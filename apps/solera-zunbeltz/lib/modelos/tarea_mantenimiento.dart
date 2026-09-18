@@ -1,7 +1,7 @@
 import 'constantes.dart';
 
 /// Una tarea de mantenimiento, anclada a una finca y opcionalmente a un
-/// punto de infraestructura concreto. Lleva responsable, prioridad, estado,
+/// punto de infraestructura o a una zona dibujada. Lleva responsable, prioridad, estado,
 /// fecha objetivo, fotos antes/después y coste opcional (que en una fase
 /// posterior enchufa con el libro económico).
 class TareaMantenimiento {
@@ -9,6 +9,7 @@ class TareaMantenimiento {
     this.id,
     required this.fincaId,
     this.puntoId,
+    this.zonaId,
     this.titulo = '',
     this.descripcion = '',
     this.responsable = '',
@@ -28,6 +29,12 @@ class TareaMantenimiento {
   /// concreto). FK con ON DELETE SET NULL: borrar el punto no borra su
   /// historial de tareas.
   final int? puntoId;
+
+  /// Zona a la que se ancla la tarea (desbrozar una parcela, reparar el
+  /// cierre de un cercado). Excluyente con [puntoId] en la práctica: una
+  /// tarea se ancla a un punto, a una zona o a nada. Al borrar la zona se
+  /// pone a null por código (ver `borrarZona`), conservando la tarea.
+  final int? zonaId;
 
   final String titulo;
   final String descripcion;
@@ -56,6 +63,7 @@ class TareaMantenimiento {
         'id': id,
         'finca_id': fincaId,
         'punto_id': puntoId,
+        'zona_id': zonaId,
         'titulo': titulo,
         'descripcion': descripcion,
         'responsable': responsable,
@@ -73,6 +81,7 @@ class TareaMantenimiento {
         id: mapa['id'] as int?,
         fincaId: (mapa['finca_id'] as int?) ?? 0,
         puntoId: mapa['punto_id'] as int?,
+        zonaId: mapa['zona_id'] as int?,
         titulo: (mapa['titulo'] as String?) ?? '',
         descripcion: (mapa['descripcion'] as String?) ?? '',
         responsable: (mapa['responsable'] as String?) ?? '',
@@ -90,6 +99,7 @@ class TareaMantenimiento {
     int? id,
     int? fincaId,
     int? puntoId,
+    int? zonaId,
     String? titulo,
     String? descripcion,
     String? responsable,
@@ -105,6 +115,7 @@ class TareaMantenimiento {
         id: id ?? this.id,
         fincaId: fincaId ?? this.fincaId,
         puntoId: puntoId ?? this.puntoId,
+        zonaId: zonaId ?? this.zonaId,
         titulo: titulo ?? this.titulo,
         descripcion: descripcion ?? this.descripcion,
         responsable: responsable ?? this.responsable,

@@ -46,6 +46,25 @@ const List<OpcionCatalogo> estadosPunto = [
   OpcionCatalogo('averiado', 'Averiado', 'Matxuratuta'),
 ];
 
+/// Tipos de zona que se dibujan como recinto sobre el mapa. Traducción del
+/// euskera pendiente de revisión nativa, como el resto de catálogos.
+const List<OpcionCatalogo> tiposZona = [
+  OpcionCatalogo('parcela_pasto', 'Parcela de pasto', 'Larre-saila'),
+  OpcionCatalogo('cercado', 'Cercado provisional', 'Behin-behineko hesitua'),
+  OpcionCatalogo('pastoreo', 'Zona de pastoreo', 'Alha-eremua'),
+  OpcionCatalogo('siega', 'Prado de siega', 'Belardi ebakigarria'),
+  OpcionCatalogo('monte', 'Monte / arbolado', 'Mendia / zuhaiztia'),
+  OpcionCatalogo('vedado', 'Vedado / exclusión', 'Debekatutako eremua'),
+  OpcionCatalogo('otra', 'Otra', 'Bestelakoa'),
+];
+
+/// Estado de uso de una zona.
+const List<OpcionCatalogo> estadosZona = [
+  OpcionCatalogo('en_uso', 'En uso', 'Erabilian'),
+  OpcionCatalogo('descanso', 'En descanso', 'Atsedenean'),
+  OpcionCatalogo('vedada', 'Vedada', 'Debekatuta'),
+];
+
 /// Estado de una tarea de mantenimiento (coincide con la leyenda de la
 /// presentación: pendiente / en curso / hecha / bloqueada).
 const List<OpcionCatalogo> estadosTarea = [
@@ -134,6 +153,8 @@ const List<int> tiposIva = [0, 4, 10, 21];
 /// Códigos por defecto (primer alta).
 const String tipoPuntoPorDefecto = 'abrevadero';
 const String estadoPuntoPorDefecto = 'operativo';
+const String tipoZonaPorDefecto = 'parcela_pasto';
+const String estadoZonaPorDefecto = 'en_uso';
 const String estadoTareaPorDefecto = 'pendiente';
 const String prioridadTareaPorDefecto = 'media';
 const String tipoActividadPorDefecto = 'alimentacion';

@@ -6,6 +6,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'package:solera_zunbeltz/datos/base_datos.dart';
@@ -17,6 +18,7 @@ import 'package:solera_zunbeltz/modelos/registro_actividad.dart';
 import 'package:solera_zunbeltz/modelos/registro_comercializacion.dart';
 import 'package:solera_zunbeltz/modelos/tarea_mantenimiento.dart';
 import 'package:solera_zunbeltz/modelos/validacion_producto.dart';
+import 'package:solera_zunbeltz/modelos/zona_finca.dart';
 
 void main() {
   setUpAll(sqfliteFfiInit);
@@ -25,7 +27,7 @@ void main() {
     final db = await databaseFactoryFfi.openDatabase(
       inMemoryDatabasePath,
       options: OpenDatabaseOptions(
-        version: 4,
+        version: 5,
         // BD nueva por test: sin esto, todas las llamadas comparten la
         // misma BD en memoria y el estado se filtra entre tests.
         singleInstance: false,
@@ -35,6 +37,7 @@ void main() {
           await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
           await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
           await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
         },
       ),
     );
@@ -373,6 +376,195 @@ void main() {
     final desglose = await bd.desglosePorCategoria('gasto');
     expect(desglose['insumos'], 500);
     await v4.close();
+    await dir.delete(recursive: true);
+  });
+
+  // ─── Zonas dibujadas (FZ-3b) ──────────────────────────────
+
+  test('alta de zona: guarda trazado, superficie y tarea anclada', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final zonaId = await bd.guardarZona(ZonaFinca.desdeTrazado(
+      fincaId: fincaId,
+      nombre: 'Larre handia',
+      tipo: 'parcela_pasto',
+      vertices: [
+        LatLng(42.700, -2.050),
+        LatLng(42.700, -2.049),
+        LatLng(42.701, -2.049),
+        LatLng(42.701, -2.050),
+      ],
+    ));
+
+    final zona = await bd.obtenerZona(zonaId);
+    expect(zona!.nombre, 'Larre handia');
+    expect(zona.vertices.length, 4);
+    expect(zona.superficieHaCalculada, greaterThan(0));
+
+    await bd.guardarTarea(TareaMantenimiento(
+        fincaId: fincaId, zonaId: zonaId, titulo: 'Desbrozar'));
+    final tareasDeLaZona = await bd.listarTareas(zonaId: zonaId);
+    expect(tareasDeLaZona.single.titulo, 'Desbrozar');
+  });
+
+  test('borrar zona desancla sus tareas, no las borra', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'La Planilla'));
+    final zonaId = await bd.guardarZona(ZonaFinca.desdeTrazado(
+      fincaId: fincaId,
+      vertices: [
+        LatLng(42.70, -2.05),
+        LatLng(42.70, -2.04),
+        LatLng(42.71, -2.04),
+      ],
+    ));
+    await bd.guardarTarea(TareaMantenimiento(
+        fincaId: fincaId, zonaId: zonaId, titulo: 'Cerrar paso'));
+
+    await bd.borrarZona(zonaId);
+
+    expect(await bd.obtenerZona(zonaId), isNull);
+    final tareas = await bd.listarTareas(fincaId: fincaId);
+    expect(tareas.single.titulo, 'Cerrar paso');
+    expect(tareas.single.zonaId, isNull);
+  });
+
+  test('borrar finca arrastra sus zonas (CASCADE)', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    await bd.guardarZona(ZonaFinca.desdeTrazado(
+      fincaId: fincaId,
+      vertices: [
+        LatLng(42.70, -2.05),
+        LatLng(42.70, -2.04),
+        LatLng(42.71, -2.04),
+      ],
+    ));
+    expect((await bd.listarZonas()).length, 1);
+
+    await bd.borrarFinca(fincaId);
+    expect(await bd.listarZonas(), isEmpty);
+  });
+
+  test('actualizarTrazadoZona recalcula la superficie', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final zonaId = await bd.guardarZona(ZonaFinca.desdeTrazado(
+      fincaId: fincaId,
+      vertices: [
+        LatLng(42.700, -2.050),
+        LatLng(42.700, -2.049),
+        LatLng(42.701, -2.049),
+        LatLng(42.701, -2.050),
+      ],
+    ));
+    final superficieInicial =
+        (await bd.obtenerZona(zonaId))!.superficieHaCalculada;
+
+    await bd.actualizarTrazadoZona(zonaId, [
+      LatLng(42.700, -2.050),
+      LatLng(42.700, -2.046),
+      LatLng(42.702, -2.046),
+      LatLng(42.702, -2.050),
+    ]);
+
+    final ampliada = (await bd.obtenerZona(zonaId))!;
+    expect(ampliada.vertices.length, 4);
+    expect(ampliada.superficieHaCalculada, greaterThan(superficieInicial * 3));
+  });
+
+  test('superficie total de zonas usa la oficial cuando existe', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final triangulo = [
+      LatLng(42.70, -2.05),
+      LatLng(42.70, -2.04),
+      LatLng(42.71, -2.04),
+    ];
+    await bd.guardarZona(ZonaFinca.desdeTrazado(
+        fincaId: fincaId, vertices: triangulo, superficieHaOficial: 2.5));
+    await bd.guardarZona(ZonaFinca.desdeTrazado(
+        fincaId: fincaId, vertices: triangulo, superficieHaOficial: 1.5));
+
+    expect(await bd.superficieTotalZonasHa(fincaId: fincaId), closeTo(4.0, 1e-9));
+  });
+
+  test('listarZonas filtra por finca', () async {
+    final bd = await abrirBdEnMemoria();
+    final zunbeltz = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final planilla = await bd.guardarFinca(Finca(nombre: 'La Planilla'));
+    final triangulo = [
+      LatLng(42.70, -2.05),
+      LatLng(42.70, -2.04),
+      LatLng(42.71, -2.04),
+    ];
+    await bd.guardarZona(
+        ZonaFinca.desdeTrazado(fincaId: zunbeltz, vertices: triangulo));
+    await bd.guardarZona(
+        ZonaFinca.desdeTrazado(fincaId: planilla, vertices: triangulo));
+
+    expect((await bd.listarZonas(fincaId: zunbeltz)).length, 1);
+    expect((await bd.listarZonas()).length, 2);
+  });
+
+  test('migración v4 → v5 conserva datos y habilita zonas', () async {
+    final dir = await Directory.systemTemp.createTemp('zunbeltz_mig5');
+    final ruta = '${dir.path}/m5.db';
+    final v4 = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: 4,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onCreate: (d, v) async {
+          await BaseDatosSoleraZunbeltz.crearEsquemaV1(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
+        },
+      ),
+    );
+    final fincaId = await v4.insert(
+        'fincas', Finca(nombre: 'Zunbeltz').toMap()..remove('id'));
+    // Fila escrita con el esquema v4: sin zona_id, como la tendría una app
+    // ya instalada en el móvil de alguien.
+    await v4.insert(
+        'tareas_mantenimiento',
+        TareaMantenimiento(fincaId: fincaId, titulo: 'Revisar abrevadero')
+            .toMap()
+          ..remove('id')
+          ..remove('zona_id'));
+    await v4.close();
+
+    final v5 = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: 5,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onUpgrade: (d, anterior, actual) async {
+          if (anterior < 5) await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
+        },
+      ),
+    );
+    final bd = BaseDatosSoleraZunbeltz.paraTests(v5);
+
+    // La tarea anterior sigue ahí y ahora no está anclada a ninguna zona.
+    final tareas = await bd.listarTareas();
+    expect(tareas.single.titulo, 'Revisar abrevadero');
+    expect(tareas.single.zonaId, isNull);
+
+    // Y ya se pueden dibujar zonas sobre la finca que ya existía.
+    final zonaId = await bd.guardarZona(ZonaFinca.desdeTrazado(
+      fincaId: fincaId,
+      nombre: 'Cercado nuevo',
+      vertices: [
+        LatLng(42.70, -2.05),
+        LatLng(42.70, -2.04),
+        LatLng(42.71, -2.04),
+      ],
+    ));
+    expect((await bd.obtenerZona(zonaId))!.nombre, 'Cercado nuevo');
+
+    await v5.close();
     await dir.delete(recursive: true);
   });
 }

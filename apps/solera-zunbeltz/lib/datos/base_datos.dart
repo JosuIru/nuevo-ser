@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart' show visibleForTesting;
+import 'package:latlong2/latlong.dart';
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/apunte_economico.dart';
 import '../modelos/finca.dart';
+import '../utiles/geodesia.dart';
 import 'espacio_generado.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/punto_infraestructura.dart';
@@ -13,6 +15,7 @@ import '../modelos/registro_comercializacion.dart';
 import '../modelos/rentabilidad_proyecto.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../modelos/validacion_producto.dart';
+import '../modelos/zona_finca.dart';
 
 /// Acceso a la base de datos local de Solera Zunbeltz. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
@@ -27,6 +30,9 @@ import '../modelos/validacion_producto.dart';
 /// v3 introduce el proceso de test por persona tester: `proyectos_test`,
 /// `registros_comercializacion` y `validaciones_producto`, y cuelga el
 /// seguimiento del proyecto (columna `proyecto_id`).
+/// v4 añade el desglose por categorías e IVA al libro económico.
+/// v5 añade las zonas dibujadas sobre el mapa (`zonas_finca`) y permite
+/// anclar una tarea a una zona (columna `zona_id` en tareas).
 class BaseDatosSoleraZunbeltz {
   static final BaseDatosSoleraZunbeltz instancia =
       BaseDatosSoleraZunbeltz._interno();
@@ -46,7 +52,7 @@ class BaseDatosSoleraZunbeltz {
     final ruta = path_lib.join(directorio.path, 'solera_zunbeltz.db');
     _basedatos = await openDatabase(
       ruta,
-      version: 4,
+      version: 5,
       onConfigure: (db) async {
         // ON DELETE CASCADE / SET NULL requieren FKs activas.
         await db.execute('PRAGMA foreign_keys = ON');
@@ -56,11 +62,13 @@ class BaseDatosSoleraZunbeltz {
         await aplicarMigracionV2(db);
         await aplicarMigracionV3(db);
         await aplicarMigracionV4(db);
+        await aplicarMigracionV5(db);
       },
       onUpgrade: (db, anterior, actual) async {
         if (anterior < 2) await aplicarMigracionV2(db);
         if (anterior < 3) await aplicarMigracionV3(db);
         if (anterior < 4) await aplicarMigracionV4(db);
+        if (anterior < 5) await aplicarMigracionV5(db);
       },
     );
     return _basedatos!;
@@ -234,6 +242,42 @@ class BaseDatosSoleraZunbeltz {
         'ALTER TABLE registros_comercializacion ADD COLUMN iva_porcentaje INTEGER NOT NULL DEFAULT 0');
   }
 
+  /// Migración v4 → v5: zonas dibujadas sobre el mapa (recintos) y anclaje
+  /// de tareas a una zona. Aditiva.
+  ///
+  /// Los vértices van como JSON en la propia fila: un polígono se lee y se
+  /// escribe siempre entero, nunca por vértice, así que una tabla hija solo
+  /// añadiría *joins* sin ganar nada.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV5(Database db) async {
+    await db.execute('''
+      CREATE TABLE zonas_finca (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        finca_id INTEGER NOT NULL,
+        tipo TEXT NOT NULL DEFAULT 'parcela_pasto',
+        nombre TEXT NOT NULL DEFAULT '',
+        vertices_json TEXT NOT NULL DEFAULT '[]',
+        superficie_ha_calculada REAL NOT NULL DEFAULT 0,
+        superficie_ha_oficial REAL,
+        estado TEXT NOT NULL DEFAULT 'en_uso',
+        recinto_sigpac TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT '',
+        rutas_fotos_json TEXT NOT NULL DEFAULT '[]',
+        fecha_creacion_ms INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY (finca_id) REFERENCES fincas(id) ON DELETE CASCADE
+      )
+    ''');
+    await db.execute('CREATE INDEX idx_zonas_finca ON zonas_finca(finca_id)');
+
+    // Una tarea puede anclarse a un punto, a una zona o a ninguno (tarea de
+    // finca). Columna nullable; SQLite no permite añadir FK por ALTER, así
+    // que el SET NULL al borrar la zona se hace por código en [borrarZona].
+    await db.execute(
+        'ALTER TABLE tareas_mantenimiento ADD COLUMN zona_id INTEGER');
+    await db.execute(
+        'CREATE INDEX idx_tareas_zona ON tareas_mantenimiento(zona_id)');
+  }
+
   // ─── Fincas ─────────────────────────────────────────────
 
   Future<int> guardarFinca(Finca finca) async {
@@ -308,6 +352,69 @@ class BaseDatosSoleraZunbeltz {
     await db.delete('puntos_infraestructura', where: 'id = ?', whereArgs: [id]);
   }
 
+  // ─── Zonas (recintos dibujados) ─────────────────────────
+
+  Future<int> guardarZona(ZonaFinca zona) async {
+    final db = await basedatos;
+    return db.insert('zonas_finca', zona.toMap()..remove('id'));
+  }
+
+  Future<void> actualizarZona(int id, Map<String, Object?> cambios) async {
+    final db = await basedatos;
+    await db.update('zonas_finca', cambios, where: 'id = ?', whereArgs: [id]);
+  }
+
+  /// Sustituye el trazado de una zona y recalcula su superficie orientativa.
+  Future<void> actualizarTrazadoZona(int id, List<LatLng> vertices) async {
+    await actualizarZona(id, {
+      'vertices_json': ZonaFinca.codificarVertices(vertices),
+      'superficie_ha_calculada': superficieHectareas(vertices),
+    });
+  }
+
+  Future<List<ZonaFinca>> listarZonas({int? fincaId}) async {
+    final db = await basedatos;
+    final filas = fincaId == null
+        ? await db.query('zonas_finca', orderBy: 'fecha_creacion_ms DESC')
+        : await db.query('zonas_finca',
+            where: 'finca_id = ?',
+            whereArgs: [fincaId],
+            orderBy: 'fecha_creacion_ms DESC');
+    return filas.map(ZonaFinca.fromMap).toList();
+  }
+
+  Future<ZonaFinca?> obtenerZona(int id) async {
+    final db = await basedatos;
+    final filas =
+        await db.query('zonas_finca', where: 'id = ?', whereArgs: [id], limit: 1);
+    if (filas.isEmpty) return null;
+    return ZonaFinca.fromMap(filas.first);
+  }
+
+  /// Borra la zona y desancla sus tareas, que se conservan como tareas de
+  /// finca. Equivale al ON DELETE SET NULL que SQLite no deja añadir por
+  /// ALTER TABLE, y va en transacción para no dejar tareas apuntando a una
+  /// zona que ya no existe.
+  Future<void> borrarZona(int id) async {
+    final db = await basedatos;
+    await db.transaction((txn) async {
+      await txn.update('tareas_mantenimiento', {'zona_id': null},
+          where: 'zona_id = ?', whereArgs: [id]);
+      await txn.delete('zonas_finca', where: 'id = ?', whereArgs: [id]);
+    });
+  }
+
+  /// Suma de superficies (ha) de las zonas de una finca, o de todas. Usa la
+  /// oficial de SIGPAC cuando existe y la calculada cuando no.
+  Future<double> superficieTotalZonasHa({int? fincaId}) async {
+    final zonas = await listarZonas(fincaId: fincaId);
+    var total = 0.0;
+    for (final zona in zonas) {
+      total += zona.superficieHa;
+    }
+    return total;
+  }
+
   // ─── Tareas de mantenimiento ────────────────────────────
 
   Future<int> guardarTarea(TareaMantenimiento tarea) async {
@@ -321,11 +428,12 @@ class BaseDatosSoleraZunbeltz {
         where: 'id = ?', whereArgs: [id]);
   }
 
-  /// Lista tareas con filtros opcionales acumulables (finca, punto, estado,
-  /// responsable). Sin filtros devuelve todas, las más recientes primero.
+  /// Lista tareas con filtros opcionales acumulables (finca, punto, zona,
+  /// estado, responsable). Sin filtros devuelve todas, las más recientes primero.
   Future<List<TareaMantenimiento>> listarTareas({
     int? fincaId,
     int? puntoId,
+    int? zonaId,
     String? estado,
     String? responsable,
   }) async {
@@ -339,6 +447,10 @@ class BaseDatosSoleraZunbeltz {
     if (puntoId != null) {
       condiciones.add('punto_id = ?');
       args.add(puntoId);
+    }
+    if (zonaId != null) {
+      condiciones.add('zona_id = ?');
+      args.add(zonaId);
     }
     if (estado != null) {
       condiciones.add('estado = ?');

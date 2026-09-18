@@ -1,6 +1,7 @@
 // Tests POJO de los modelos de FZ-2: round-trip toMap/fromMap y defaults.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:latlong2/latlong.dart';
 
 import 'package:solera_zunbeltz/modelos/apunte_economico.dart';
 import 'package:solera_zunbeltz/modelos/constantes.dart';
@@ -12,6 +13,7 @@ import 'package:solera_zunbeltz/modelos/registro_actividad.dart';
 import 'package:solera_zunbeltz/modelos/registro_comercializacion.dart';
 import 'package:solera_zunbeltz/modelos/rentabilidad_proyecto.dart';
 import 'package:solera_zunbeltz/modelos/tarea_mantenimiento.dart';
+import 'package:solera_zunbeltz/modelos/zona_finca.dart';
 import 'package:solera_zunbeltz/modelos/validacion_producto.dart';
 
 void main() {
@@ -222,6 +224,78 @@ void main() {
       expect(r.margenPorcentaje, closeTo(60, 0.01)); // 21000/35000
       expect(r.balanceAnualExtrapoladoCentimos(73), 105000); // 21000*365/73
       expect(r.balanceAnualExtrapoladoCentimos(0), isNull);
+    });
+  });
+
+  group('ZonaFinca', () {
+    final trazado = [
+      LatLng(42.700, -2.050),
+      LatLng(42.700, -2.049),
+      LatLng(42.701, -2.049),
+      LatLng(42.701, -2.050),
+    ];
+
+    test('desdeTrazado codifica vértices y calcula la superficie', () {
+      final zona = ZonaFinca.desdeTrazado(
+          fincaId: 1, vertices: trazado, nombre: 'Larre handia');
+      expect(zona.vertices.length, 4);
+      expect(zona.esPoligonoValido, isTrue);
+      expect(zona.superficieHaCalculada, greaterThan(0));
+      // ~1 ha: 0,001° de latitud son 111 m y 0,001° de longitud unos 82 m.
+      expect(zona.superficieHaCalculada, closeTo(0.91, 0.1));
+    });
+
+    test('ida y vuelta por mapa conserva el trazado', () {
+      final zona = ZonaFinca.desdeTrazado(fincaId: 3, vertices: trazado);
+      final recuperada = ZonaFinca.fromMap(zona.toMap());
+      expect(recuperada.vertices.first.latitude, closeTo(42.700, 1e-9));
+      expect(recuperada.vertices.last.longitude, closeTo(-2.050, 1e-9));
+      expect(recuperada.superficieHaCalculada,
+          closeTo(zona.superficieHaCalculada, 1e-9));
+    });
+
+    test('la superficie oficial de SIGPAC manda sobre la calculada', () {
+      final zona = ZonaFinca.desdeTrazado(
+          fincaId: 1, vertices: trazado, superficieHaOficial: 1.34);
+      expect(zona.superficieHa, 1.34);
+      expect(zona.tieneSuperficieOficial, isTrue);
+
+      final sinOficial = ZonaFinca.desdeTrazado(fincaId: 1, vertices: trazado);
+      expect(sinOficial.tieneSuperficieOficial, isFalse);
+      expect(sinOficial.superficieHa, sinOficial.superficieHaCalculada);
+    });
+
+    test('un JSON de vértices corrupto no revienta: devuelve vacío', () {
+      for (final basura in ['', 'no soy json', '{}', '[[1]]', '[["a","b"]]']) {
+        final zona = ZonaFinca(fincaId: 1, verticesJson: basura);
+        expect(zona.vertices, isEmpty, reason: basura);
+        expect(zona.esPoligonoValido, isFalse);
+        expect(zona.centro, isNull);
+      }
+    });
+
+    test('descarta los pares mal formados y conserva los buenos', () {
+      final zona =
+          ZonaFinca(fincaId: 1, verticesJson: '[[42.7,-2.05],"x",[42.71,-2.04]]');
+      expect(zona.vertices.length, 2);
+    });
+
+    test('contiene() responde al punto tocado en el mapa', () {
+      final zona = ZonaFinca.desdeTrazado(fincaId: 1, vertices: trazado);
+      expect(zona.contiene(LatLng(42.7005, -2.0495)), isTrue);
+      expect(zona.contiene(LatLng(42.8, -2.0495)), isFalse);
+    });
+
+    test('conTrazado recalcula la superficie', () {
+      final zona = ZonaFinca.desdeTrazado(fincaId: 1, vertices: trazado);
+      final ampliada = zona.conTrazado([
+        LatLng(42.700, -2.050),
+        LatLng(42.700, -2.048),
+        LatLng(42.702, -2.048),
+        LatLng(42.702, -2.050),
+      ]);
+      expect(ampliada.superficieHaCalculada,
+          greaterThan(zona.superficieHaCalculada * 3));
     });
   });
 }

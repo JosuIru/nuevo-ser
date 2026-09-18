@@ -7,6 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
+import '../modelos/zona_finca.dart';
 import '../modelos/tarea_mantenimiento.dart';
 
 /// Genera el parte de mantenimiento en PDF reutilizando el informe
@@ -18,18 +19,29 @@ Future<File> generarParteMantenimientoPdf({
   required List<Finca> fincas,
   required List<TareaMantenimiento> tareas,
   required Map<int, PuntoInfraestructura> puntosPorId,
+  Map<int, ZonaFinca> zonasPorId = const {},
 }) async {
   final formatoFecha = DateFormat('dd/MM/yyyy', idioma);
 
   String etiqueta(List<OpcionCatalogo> catalogo, String codigo) =>
       buscarOpcion(catalogo, codigo)?.etiqueta(idioma) ?? codigo;
 
-  String nombrePunto(int? puntoId) {
-    if (puntoId == null) return textos.tareaDeFinca;
-    final punto = puntosPorId[puntoId];
-    if (punto == null) return textos.tareaDeFinca;
-    if (punto.nombre.isNotEmpty) return punto.nombre;
-    return etiqueta(tiposPunto, punto.tipo);
+  /// A qué está anclada la tarea: su punto, su zona, o la finca entera.
+  String anclaje(TareaMantenimiento tarea) {
+    final punto =
+        tarea.puntoId == null ? null : puntosPorId[tarea.puntoId];
+    if (punto != null) {
+      return punto.nombre.isNotEmpty
+          ? punto.nombre
+          : etiqueta(tiposPunto, punto.tipo);
+    }
+    final zona = tarea.zonaId == null ? null : zonasPorId[tarea.zonaId];
+    if (zona != null) {
+      final nombre =
+          zona.nombre.isNotEmpty ? zona.nombre : etiqueta(tiposZona, zona.tipo);
+      return '$nombre (${zona.superficieHa.toStringAsFixed(2)} ha)';
+    }
+    return textos.tareaDeFinca;
   }
 
   final tablas = <TablaInforme>[];
@@ -40,7 +52,7 @@ Future<File> generarParteMantenimientoPdf({
     tablas.add(TablaInforme(
       titulo: finca.nombre,
       headers: [
-        textos.parteColPunto,
+        '${textos.parteColPunto} / ${textos.parteColZona}',
         textos.parteColTarea,
         textos.parteColResponsable,
         textos.parteColPrioridad,
@@ -50,7 +62,7 @@ Future<File> generarParteMantenimientoPdf({
       filas: [
         for (final tarea in tareasFinca)
           [
-            nombrePunto(tarea.puntoId),
+            anclaje(tarea),
             tarea.titulo,
             tarea.responsable.isEmpty
                 ? textos.parteSinResponsable

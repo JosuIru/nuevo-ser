@@ -724,4 +724,111 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get demoYaHay =>
       'Ya hay proyectos; bórralos para recargar la demostración.';
+
+  @override
+  String get zonaDibujar => 'Dibujar zona';
+
+  @override
+  String get zonaNuevaTitulo => 'Nueva zona';
+
+  @override
+  String get zonaTitulo => 'Zonas';
+
+  @override
+  String get zonaFinca => 'Finca';
+
+  @override
+  String get zonaTipo => 'Tipo de zona';
+
+  @override
+  String get zonaNombre => 'Nombre';
+
+  @override
+  String get zonaEstado => 'Estado';
+
+  @override
+  String get zonaNotas => 'Notas';
+
+  @override
+  String get zonaFotos => 'Fotos';
+
+  @override
+  String get zonaRecintoSigpac => 'Recinto SIGPAC';
+
+  @override
+  String get zonaSuperficie => 'Superficie';
+
+  @override
+  String get zonaSuperficieOficial => 'Superficie oficial SIGPAC (ha)';
+
+  @override
+  String get zonaPerimetro => 'Perímetro';
+
+  @override
+  String get zonaOrientativa => 'orientativa';
+
+  @override
+  String get zonaAvisoSuperficie =>
+      'La superficie del trazado es orientativa: la oficial es la del recinto SIGPAC. Si la tenéis, ponedla en «Superficie oficial» y será la que se use.';
+
+  @override
+  String get zonaGuardada => 'Zona guardada';
+
+  @override
+  String get zonaBorrar => 'Borrar zona';
+
+  @override
+  String get zonaTareas => 'Tareas de la zona';
+
+  @override
+  String get zonaSinTareas => 'Sin tareas en esta zona.';
+
+  @override
+  String get zonaNuevaTarea => 'Nueva tarea';
+
+  @override
+  String get zonaRedibujar => 'Volver a dibujar';
+
+  @override
+  String get zonaTrazadoActualizado => 'Trazado actualizado';
+
+  @override
+  String get zonaTrazadoCorto =>
+      'Marca al menos tres esquinas para cerrar la zona.';
+
+  @override
+  String get dibujoTocaVertices =>
+      'Toca las esquinas de la zona. Con tres o más, pulsa «Cerrar zona».';
+
+  @override
+  String get dibujoDeshacer => 'Deshacer';
+
+  @override
+  String get dibujoCerrar => 'Cerrar zona';
+
+  @override
+  String get dibujoCancelar => 'Cancelar';
+
+  @override
+  String dibujoEnCurso(String esquinas, String ha) {
+    return '$esquinas · ≈ $ha ha';
+  }
+
+  @override
+  String dibujoEsquinas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n esquinas',
+      one: '1 esquina',
+      zero: 'Sin esquinas',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get tareaDeZona => 'Tarea de zona';
+
+  @override
+  String get parteColZona => 'Zona';
 }

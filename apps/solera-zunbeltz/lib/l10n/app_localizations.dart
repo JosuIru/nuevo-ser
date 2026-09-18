@@ -1447,6 +1447,192 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ya hay proyectos; bórralos para recargar la demostración.'**
   String get demoYaHay;
+
+  /// No description provided for @zonaDibujar.
+  ///
+  /// In es, this message translates to:
+  /// **'Dibujar zona'**
+  String get zonaDibujar;
+
+  /// No description provided for @zonaNuevaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva zona'**
+  String get zonaNuevaTitulo;
+
+  /// No description provided for @zonaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Zonas'**
+  String get zonaTitulo;
+
+  /// No description provided for @zonaFinca.
+  ///
+  /// In es, this message translates to:
+  /// **'Finca'**
+  String get zonaFinca;
+
+  /// No description provided for @zonaTipo.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo de zona'**
+  String get zonaTipo;
+
+  /// No description provided for @zonaNombre.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get zonaNombre;
+
+  /// No description provided for @zonaEstado.
+  ///
+  /// In es, this message translates to:
+  /// **'Estado'**
+  String get zonaEstado;
+
+  /// No description provided for @zonaNotas.
+  ///
+  /// In es, this message translates to:
+  /// **'Notas'**
+  String get zonaNotas;
+
+  /// No description provided for @zonaFotos.
+  ///
+  /// In es, this message translates to:
+  /// **'Fotos'**
+  String get zonaFotos;
+
+  /// No description provided for @zonaRecintoSigpac.
+  ///
+  /// In es, this message translates to:
+  /// **'Recinto SIGPAC'**
+  String get zonaRecintoSigpac;
+
+  /// No description provided for @zonaSuperficie.
+  ///
+  /// In es, this message translates to:
+  /// **'Superficie'**
+  String get zonaSuperficie;
+
+  /// No description provided for @zonaSuperficieOficial.
+  ///
+  /// In es, this message translates to:
+  /// **'Superficie oficial SIGPAC (ha)'**
+  String get zonaSuperficieOficial;
+
+  /// No description provided for @zonaPerimetro.
+  ///
+  /// In es, this message translates to:
+  /// **'Perímetro'**
+  String get zonaPerimetro;
+
+  /// No description provided for @zonaOrientativa.
+  ///
+  /// In es, this message translates to:
+  /// **'orientativa'**
+  String get zonaOrientativa;
+
+  /// No description provided for @zonaAvisoSuperficie.
+  ///
+  /// In es, this message translates to:
+  /// **'La superficie del trazado es orientativa: la oficial es la del recinto SIGPAC. Si la tenéis, ponedla en «Superficie oficial» y será la que se use.'**
+  String get zonaAvisoSuperficie;
+
+  /// No description provided for @zonaGuardada.
+  ///
+  /// In es, this message translates to:
+  /// **'Zona guardada'**
+  String get zonaGuardada;
+
+  /// No description provided for @zonaBorrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar zona'**
+  String get zonaBorrar;
+
+  /// No description provided for @zonaTareas.
+  ///
+  /// In es, this message translates to:
+  /// **'Tareas de la zona'**
+  String get zonaTareas;
+
+  /// No description provided for @zonaSinTareas.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin tareas en esta zona.'**
+  String get zonaSinTareas;
+
+  /// No description provided for @zonaNuevaTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva tarea'**
+  String get zonaNuevaTarea;
+
+  /// No description provided for @zonaRedibujar.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver a dibujar'**
+  String get zonaRedibujar;
+
+  /// No description provided for @zonaTrazadoActualizado.
+  ///
+  /// In es, this message translates to:
+  /// **'Trazado actualizado'**
+  String get zonaTrazadoActualizado;
+
+  /// No description provided for @zonaTrazadoCorto.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca al menos tres esquinas para cerrar la zona.'**
+  String get zonaTrazadoCorto;
+
+  /// No description provided for @dibujoTocaVertices.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca las esquinas de la zona. Con tres o más, pulsa «Cerrar zona».'**
+  String get dibujoTocaVertices;
+
+  /// No description provided for @dibujoDeshacer.
+  ///
+  /// In es, this message translates to:
+  /// **'Deshacer'**
+  String get dibujoDeshacer;
+
+  /// No description provided for @dibujoCerrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar zona'**
+  String get dibujoCerrar;
+
+  /// No description provided for @dibujoCancelar.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get dibujoCancelar;
+
+  /// No description provided for @dibujoEnCurso.
+  ///
+  /// In es, this message translates to:
+  /// **'{esquinas} · ≈ {ha} ha'**
+  String dibujoEnCurso(String esquinas, String ha);
+
+  /// No description provided for @dibujoEsquinas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Sin esquinas} =1{1 esquina} other{{n} esquinas}}'**
+  String dibujoEsquinas(int n);
+
+  /// No description provided for @tareaDeZona.
+  ///
+  /// In es, this message translates to:
+  /// **'Tarea de zona'**
+  String get tareaDeZona;
+
+  /// No description provided for @parteColZona.
+  ///
+  /// In es, this message translates to:
+  /// **'Zona'**
+  String get parteColZona;
 }
 
 class _AppLocalizationsDelegate

@@ -8,11 +8,16 @@ import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
 import '../l10n/app_localizations.dart';
+import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
+import '../modelos/zona_finca.dart';
 import '../utiles/estilos_tarea.dart';
+import '../utiles/geodesia.dart';
 import '../utiles/permisos_gps.dart';
 import 'ficha_punto.dart';
+import 'ficha_zona.dart';
+import 'nueva_zona.dart';
 import 'nuevo_punto.dart';
 import 'pantalla_meteo.dart';
 import 'tablero_tareas.dart';
@@ -22,8 +27,14 @@ enum _EstiloMapa { calle, satelite }
 enum _OrigenAlta { gps, centroMapa }
 
 /// Pestaña "Fincas": mapa de Zunbeltz y La Planilla con sus puntos de
-/// infraestructura. Tap en un punto → ficha con sus tareas. FAB → nuevo
-/// punto (GPS o centro del mapa). Acción → tablero de tareas.
+/// infraestructura y sus zonas dibujadas. Tap en un punto → ficha con sus
+/// tareas; tap dentro de una zona → ficha de la zona. FAB → nuevo punto
+/// (GPS o centro del mapa) o dibujar zona. Acción → tablero de tareas.
+///
+/// El mapa tiene tres modos, y el toque significa una cosa distinta en
+/// cada uno: en normal añade un punto (o abre la zona tocada), en
+/// recolocar fija la nueva posición de un punto, y en dibujo cada toque
+/// marca una esquina de la zona en curso.
 class PantallaFincas extends StatefulWidget {
   const PantallaFincas({super.key});
 
@@ -36,12 +47,20 @@ class _PantallaFincasState extends State<PantallaFincas> {
   final _bd = BaseDatosSoleraZunbeltz();
   List<Finca> _fincas = const [];
   List<PuntoInfraestructura> _conCoords = const [];
+  List<ZonaFinca> _zonas = const [];
   bool _cargando = true;
   _EstiloMapa _estiloMapa = _EstiloMapa.calle;
   LatLng? _posicionGps;
   // Id del punto que se está recolocando (el siguiente toque fija su nueva
   // posición); null = modo normal (el toque añade un punto nuevo).
   int? _recolocandoId;
+  // Esquinas de la zona que se está dibujando; vacío = no hay dibujo en
+  // curso. Mientras haya dibujo, el toque del mapa marca esquinas y no
+  // añade puntos.
+  List<LatLng> _trazado = const [];
+  bool _dibujando = false;
+  // Zona cuyo trazado se está rehaciendo (null = zona nueva).
+  int? _redibujandoZonaId;
   // Centro aproximado de la zona de Andía / Tierra Estella (Navarra).
   LatLng _centroActual = const LatLng(42.793, -1.958);
   double _zoomActual = 12;
@@ -66,10 +85,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
   Future<void> _cargar() async {
     var fincas = <Finca>[];
     var puntos = <PuntoInfraestructura>[];
+    var zonas = <ZonaFinca>[];
     try {
       await _bd.sembrarEspacioRealSiVacia();
       fincas = await _bd.listarFincas();
       puntos = await _bd.listarPuntos();
+      zonas = await _bd.listarZonas();
     } catch (_) {
       // Sin BD disponible (p. ej. en tests sin plugins) mostramos el mapa
       // vacío en lugar de romper la pestaña.
@@ -80,6 +101,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
       _conCoords = puntos
           .where((p) => p.latitud != null && p.longitud != null)
           .toList(growable: false);
+      _zonas = zonas.where((z) => z.esPoligonoValido).toList(growable: false);
       _cargando = false;
     });
     if (!_centroResuelto) {
@@ -260,6 +282,196 @@ class _PantallaFincasState extends State<PantallaFincas> {
     await _cargar();
   }
 
+  // ─── Dibujo de zonas ──────────────────────────────────
+
+  /// Entra en modo dibujo. [zonaId] no nulo = se rehace el trazado de una
+  /// zona que ya existe en lugar de crear una nueva.
+  void _empezarDibujo({int? zonaId}) {
+    setState(() {
+      _dibujando = true;
+      _redibujandoZonaId = zonaId;
+      _trazado = const [];
+      _recolocandoId = null;
+    });
+  }
+
+  void _cancelarDibujo() {
+    setState(() {
+      _dibujando = false;
+      _redibujandoZonaId = null;
+      _trazado = const [];
+    });
+  }
+
+  void _marcarEsquina(LatLng esquina) {
+    setState(() => _trazado = [..._trazado, esquina]);
+  }
+
+  void _deshacerEsquina() {
+    if (_trazado.isEmpty) return;
+    setState(() => _trazado = _trazado.sublist(0, _trazado.length - 1));
+  }
+
+  /// Cierra el trazado: guarda el nuevo recorrido de la zona que se estaba
+  /// rehaciendo, o abre el formulario de alta para una zona nueva.
+  Future<void> _cerrarTrazado() async {
+    final textos = AppLocalizations.of(context);
+    if (_trazado.length < 3) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.zonaTrazadoCorto)));
+      return;
+    }
+    final trazado = _trazado;
+    final zonaId = _redibujandoZonaId;
+    _cancelarDibujo();
+
+    if (zonaId != null) {
+      await _bd.actualizarTrazadoZona(zonaId, trazado);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(textos.zonaTrazadoActualizado)));
+      await _cargar();
+      return;
+    }
+
+    if (_fincas.isEmpty) return;
+    final centro = centroide(trazado);
+    final fincaId = (centro == null ? null : _fincaMasCercana(centro)) ??
+        _fincas.first.id;
+    final creada = await Navigator.of(context).push<bool>(MaterialPageRoute(
+      builder: (_) => NuevaZona(
+        fincas: _fincas,
+        vertices: trazado,
+        fincaIdInicial: fincaId,
+      ),
+    ));
+    if (creada == true && mounted) await _cargar();
+  }
+
+  /// Zona que contiene el punto tocado, si hay alguna. Con zonas solapadas
+  /// gana la más pequeña: es la que el dedo quería señalar (una parcela
+  /// dentro de un cercado grande, por ejemplo).
+  ZonaFinca? _zonaEn(LatLng punto) {
+    ZonaFinca? encontrada;
+    for (final zona in _zonas) {
+      if (!zona.contiene(punto)) continue;
+      if (encontrada == null ||
+          zona.superficieHaCalculada < encontrada.superficieHaCalculada) {
+        encontrada = zona;
+      }
+    }
+    return encontrada;
+  }
+
+  Future<void> _abrirZona(ZonaFinca zona) async {
+    final res = await Navigator.of(context).push<Object?>(
+      MaterialPageRoute(builder: (_) => FichaZona(zona: zona)),
+    );
+    if (!mounted) return;
+    if (res == 'redibujar') {
+      _empezarDibujo(zonaId: zona.id);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(AppLocalizations.of(context).dibujoTocaVertices),
+      ));
+    } else if (res == true) {
+      await _cargar();
+    }
+  }
+
+  /// Qué hace un toque en el mapa, según el modo activo.
+  void _alTocarMapa(LatLng punto) {
+    if (_dibujando) {
+      _marcarEsquina(punto);
+      return;
+    }
+    if (_recolocandoId != null) {
+      _moverPunto(_recolocandoId!, punto);
+      return;
+    }
+    final zona = _zonaEn(punto);
+    if (zona != null) {
+      _abrirZona(zona);
+      return;
+    }
+    _anadirEnPunto(punto);
+  }
+
+  /// Polígonos de las zonas guardadas más el trazado en curso.
+  List<Polygon> _poligonos() => [
+        for (final zona in _zonas)
+          Polygon(
+            points: zona.vertices,
+            color: colorEstadoZona(zona.estado).withValues(alpha: 0.18),
+            borderColor: colorEstadoZona(zona.estado),
+            borderStrokeWidth: 2,
+          ),
+        if (_trazado.length >= 2)
+          Polygon(
+            points: _trazado,
+            color: colorSenalZunbeltz.withValues(alpha: 0.12),
+            borderColor: colorSenalZunbeltz,
+            borderStrokeWidth: 2,
+          ),
+      ];
+
+  /// Etiquetas de las zonas (nombre y superficie) y puntitos de las
+  /// esquinas del trazado en curso. Van fuera del clustering: agrupar una
+  /// etiqueta de parcela con un abrevadero no tendría sentido.
+  List<Marker> _marcadoresDeZonas(String idioma) {
+    final marcadores = <Marker>[];
+    for (final zona in _zonas) {
+      final centro = zona.centro;
+      if (centro == null) continue;
+      final nombre = zona.nombre.isEmpty
+          ? (buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo)
+          : zona.nombre;
+      marcadores.add(Marker(
+        point: centro,
+        width: 130,
+        height: 34,
+        child: IgnorePointer(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                nombre,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: colorMonteZunbeltz,
+                ),
+              ),
+              Text(
+                '${zona.superficieHa.toStringAsFixed(2)} ha',
+                style: const TextStyle(fontSize: 10, color: colorMonteZunbeltz),
+              ),
+            ],
+          ),
+        ),
+      ));
+    }
+    for (final esquina in _trazado) {
+      marcadores.add(Marker(
+        point: esquina,
+        width: 14,
+        height: 14,
+        child: IgnorePointer(
+          child: Container(
+            decoration: BoxDecoration(
+              color: colorSenalZunbeltz,
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 2),
+            ),
+          ),
+        ),
+      ));
+    }
+    return marcadores;
+  }
+
   /// Id de la finca cuyo centroide está más cerca del punto tocado.
   int? _fincaMasCercana(LatLng p) {
     const distancia = Distance();
@@ -286,12 +498,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
           height: 28,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.blueAccent.withValues(alpha: 0.25),
+              color: colorEstadoEnCurso.withValues(alpha: 0.25),
               shape: BoxShape.circle,
               border: Border.all(color: Colors.white, width: 2),
             ),
             child: const Center(
-              child: Icon(Icons.circle, size: 10, color: Colors.blueAccent),
+              child: Icon(Icons.circle, size: 10, color: colorEstadoEnCurso),
             ),
           ),
         ),
@@ -326,6 +538,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
     if (_cargando) {
       return Scaffold(
         appBar: AppBar(title: Text(textos.navFincas)),
@@ -365,15 +578,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 _centroActual = cam.center;
                 _zoomActual = cam.zoom;
               },
-              // Tocar/clicar el mapa: recoloca el punto en curso, o si no
-              // hay ninguno en curso, añade uno nuevo en esas coordenadas.
-              onTap: (_, punto) {
-                if (_recolocandoId != null) {
-                  _moverPunto(_recolocandoId!, punto);
-                } else {
-                  _anadirEnPunto(punto);
-                }
-              },
+              onTap: (_, punto) => _alTocarMapa(punto),
             ),
             children: [
               TileLayer(
@@ -384,6 +589,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 maxZoom: 22,
                 maxNativeZoom: 19,
               ),
+              PolygonLayer(polygons: _poligonos()),
+              MarkerLayer(markers: _marcadoresDeZonas(idioma)),
               MarkerClusterLayerWidget(
                 options: MarkerClusterLayerOptions(
                   maxClusterRadius: 42,
@@ -406,14 +613,52 @@ class _PantallaFincasState extends State<PantallaFincas> {
               ),
             ],
           ),
-          if (_conCoords.isEmpty)
+          if (_dibujando)
             Positioned(
               left: 16,
               right: 16,
               top: 12,
               child: Material(
-                elevation: 2,
-                borderRadius: BorderRadius.circular(12),
+                elevation: 0,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(radioZunbeltz)),
+                  side: BorderSide(color: colorSenalZunbeltz),
+                ),
+                color: Theme.of(context).colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(textos.dibujoTocaVertices,
+                          style: Theme.of(context).textTheme.bodyMedium),
+                      const SizedBox(height: 4),
+                      Text(
+                        textos.dibujoEnCurso(
+                          textos.dibujoEsquinas(_trazado.length),
+                          superficieHectareas(_trazado).toStringAsFixed(2),
+                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall
+                            ?.copyWith(color: colorSenalZunbeltz),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          else if (_conCoords.isEmpty)
+            Positioned(
+              left: 16,
+              right: 16,
+              top: 12,
+              child: Material(
+                elevation: 0,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(radioZunbeltz)),
+                  side: BorderSide(color: colorLineaZunbeltz),
+                ),
                 color: Theme.of(context).colorScheme.surface,
                 child: Padding(
                   padding: const EdgeInsets.all(12),
@@ -422,15 +667,19 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 ),
               ),
             ),
-          if (_conCoords.isNotEmpty || _recolocandoId != null)
+          if (!_dibujando && (_conCoords.isNotEmpty || _recolocandoId != null))
             Positioned(
               top: 10,
               left: 0,
               right: 0,
               child: Center(
                 child: Material(
-                  elevation: 2,
-                  borderRadius: BorderRadius.circular(100),
+                  elevation: 0,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(radioZunbeltz)),
+                    side: BorderSide(color: colorLineaZunbeltz),
+                  ),
                   color: Theme.of(context).colorScheme.surface,
                   child: Padding(
                     padding:
@@ -460,7 +709,27 @@ class _PantallaFincasState extends State<PantallaFincas> {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-          child: Row(
+          child: _dibujando
+              ? Row(
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: _cancelarDibujo,
+                        icon: const Icon(Icons.close),
+                        label: Text(textos.dibujoCancelar),
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: _trazado.isEmpty ? null : _deshacerEsquina,
+                        icon: const Icon(Icons.undo),
+                        label: Text(textos.dibujoDeshacer),
+                      ),
+                    ),
+                  ],
+                )
+              : Row(
             children: [
               Expanded(
                 child: OutlinedButton.icon(
@@ -489,11 +758,34 @@ class _PantallaFincasState extends State<PantallaFincas> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _alAnadirPunto,
-        icon: const Icon(Icons.add_location_alt),
-        label: Text(textos.mapaNuevoPunto),
-      ),
+      floatingActionButton: _dibujando
+          ? FloatingActionButton.extended(
+              onPressed: _trazado.length < 3 ? null : _cerrarTrazado,
+              backgroundColor: _trazado.length < 3
+                  ? Theme.of(context).disabledColor
+                  : null,
+              icon: const Icon(Icons.check),
+              label: Text(textos.dibujoCerrar),
+            )
+          : Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                FloatingActionButton.extended(
+                  heroTag: 'fabZona',
+                  onPressed: _fincas.isEmpty ? null : () => _empezarDibujo(),
+                  icon: const Icon(Icons.draw_outlined),
+                  label: Text(textos.zonaDibujar),
+                ),
+                const SizedBox(height: 10),
+                FloatingActionButton.extended(
+                  heroTag: 'fabPunto',
+                  onPressed: _alAnadirPunto,
+                  icon: const Icon(Icons.add_location_alt),
+                  label: Text(textos.mapaNuevoPunto),
+                ),
+              ],
+            ),
     );
   }
 }

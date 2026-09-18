@@ -9,12 +9,14 @@ import '../modelos/tarea_mantenimiento.dart';
 import 'widgets/cuerpo_responsivo.dart';
 
 /// Alta de una tarea de mantenimiento, anclada a una finca y opcionalmente
-/// a un punto de infraestructura.
+/// a un punto de infraestructura o a una zona dibujada.
 class NuevaTarea extends StatefulWidget {
-  const NuevaTarea({super.key, required this.fincaId, this.puntoId});
+  const NuevaTarea(
+      {super.key, required this.fincaId, this.puntoId, this.zonaId});
 
   final int fincaId;
   final int? puntoId;
+  final int? zonaId;
 
   @override
   State<NuevaTarea> createState() => _NuevaTareaState();
@@ -72,6 +74,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
     final tarea = TareaMantenimiento(
       fincaId: widget.fincaId,
       puntoId: widget.puntoId,
+      zonaId: widget.zonaId,
       titulo: _titulo.text.trim(),
       descripcion: _descripcion.text.trim(),
       responsable: _responsable.text.trim(),

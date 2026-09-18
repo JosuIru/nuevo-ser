@@ -456,8 +456,8 @@ class _Cifra extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
         color: resaltado ? colorMusgoZunbeltz.withValues(alpha: 0.30) : null,
-        border: Border.all(color: Colors.black12),
-        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: colorLineaZunbeltz),
+        borderRadius: BorderRadius.circular(radioZunbeltz),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

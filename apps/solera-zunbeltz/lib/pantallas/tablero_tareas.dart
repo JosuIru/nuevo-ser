@@ -6,6 +6,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
+import '../modelos/zona_finca.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../servicios/generador_parte_mantenimiento.dart';
 import 'widgets/tile_tarea.dart';
@@ -24,6 +25,7 @@ class _TableroTareasState extends State<TableroTareas> {
   List<Finca> _fincas = const [];
   List<TareaMantenimiento> _tareas = const [];
   Map<int, PuntoInfraestructura> _puntosPorId = const {};
+  Map<int, ZonaFinca> _zonasPorId = const {};
   bool _cargando = true;
   bool _generandoPdf = false;
 
@@ -40,10 +42,12 @@ class _TableroTareasState extends State<TableroTareas> {
     var fincas = <Finca>[];
     var tareas = <TareaMantenimiento>[];
     var puntos = <PuntoInfraestructura>[];
+    var zonas = <ZonaFinca>[];
     try {
       fincas = await _bd.listarFincas();
       tareas = await _bd.listarTareas();
       puntos = await _bd.listarPuntos();
+      zonas = await _bd.listarZonas();
     } catch (_) {
       // Sin BD disponible mostramos el tablero vacío en vez de romper.
     }
@@ -52,6 +56,7 @@ class _TableroTareasState extends State<TableroTareas> {
       _fincas = fincas;
       _tareas = tareas;
       _puntosPorId = {for (final p in puntos) if (p.id != null) p.id!: p};
+      _zonasPorId = {for (final z in zonas) if (z.id != null) z.id!: z};
       _cargando = false;
     });
   }
@@ -68,14 +73,22 @@ class _TableroTareasState extends State<TableroTareas> {
       orElse: () => Finca(),
     );
     final punto = tarea.puntoId == null ? null : _puntosPorId[tarea.puntoId];
+    final zona = tarea.zonaId == null ? null : _zonasPorId[tarea.zonaId];
     final idioma = Localizations.localeOf(context).languageCode;
-    final nombrePunto = punto == null
-        ? textos.tareaDeFinca
-        : (punto.nombre.isNotEmpty
-            ? punto.nombre
-            : buscarOpcion(tiposPunto, punto.tipo)?.etiqueta(idioma) ??
-                punto.tipo);
-    return '${finca.nombre} · $nombrePunto';
+    final String anclaje;
+    if (punto != null) {
+      anclaje = punto.nombre.isNotEmpty
+          ? punto.nombre
+          : buscarOpcion(tiposPunto, punto.tipo)?.etiqueta(idioma) ??
+              punto.tipo;
+    } else if (zona != null) {
+      anclaje = zona.nombre.isNotEmpty
+          ? zona.nombre
+          : buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo;
+    } else {
+      anclaje = textos.tareaDeFinca;
+    }
+    return '${finca.nombre} · $anclaje';
   }
 
   Future<void> _generarParte() async {
@@ -89,6 +102,7 @@ class _TableroTareasState extends State<TableroTareas> {
         fincas: _fincas,
         tareas: _tareasFiltradas,
         puntosPorId: _puntosPorId,
+        zonasPorId: _zonasPorId,
       );
       final bytes = await fichero.readAsBytes();
       await Printing.sharePdf(

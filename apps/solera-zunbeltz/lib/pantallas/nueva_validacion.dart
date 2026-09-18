@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
@@ -94,7 +95,7 @@ class _NuevaValidacionState extends State<NuevaValidacion> {
                   IconButton(
                     icon: Icon(
                         i <= _valoracion ? Icons.star : Icons.star_border),
-                    color: Colors.amber[700],
+                    color: colorSenalZunbeltz,
                     onPressed: () => setState(
                         () => _valoracion = _valoracion == i ? 0 : i),
                   ),

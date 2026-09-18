@@ -723,4 +723,110 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get demoYaHay =>
       'Jada badaude proiektuak; ezabatu itzazu demoa berriz kargatzeko.';
+
+  @override
+  String get zonaDibujar => 'Eremua marraztu';
+
+  @override
+  String get zonaNuevaTitulo => 'Eremu berria';
+
+  @override
+  String get zonaTitulo => 'Eremuak';
+
+  @override
+  String get zonaFinca => 'Finka';
+
+  @override
+  String get zonaTipo => 'Eremu mota';
+
+  @override
+  String get zonaNombre => 'Izena';
+
+  @override
+  String get zonaEstado => 'Egoera';
+
+  @override
+  String get zonaNotas => 'Oharrak';
+
+  @override
+  String get zonaFotos => 'Argazkiak';
+
+  @override
+  String get zonaRecintoSigpac => 'SIGPAC esparrua';
+
+  @override
+  String get zonaSuperficie => 'Azalera';
+
+  @override
+  String get zonaSuperficieOficial => 'SIGPAC azalera ofiziala (ha)';
+
+  @override
+  String get zonaPerimetro => 'Perimetroa';
+
+  @override
+  String get zonaOrientativa => 'orientagarria';
+
+  @override
+  String get zonaAvisoSuperficie =>
+      'Marrazkiaren azalera orientagarria da: ofiziala SIGPAC esparruarena da. Baldin baduzue, idatzi «Azalera ofiziala» atalean eta hori erabiliko da.';
+
+  @override
+  String get zonaGuardada => 'Eremua gordeta';
+
+  @override
+  String get zonaBorrar => 'Eremua ezabatu';
+
+  @override
+  String get zonaTareas => 'Eremuko zereginak';
+
+  @override
+  String get zonaSinTareas => 'Eremu honetan zereginik ez.';
+
+  @override
+  String get zonaNuevaTarea => 'Zeregin berria';
+
+  @override
+  String get zonaRedibujar => 'Berriro marraztu';
+
+  @override
+  String get zonaTrazadoActualizado => 'Marrazkia eguneratuta';
+
+  @override
+  String get zonaTrazadoCorto => 'Markatu gutxienez hiru izkina eremua ixteko.';
+
+  @override
+  String get dibujoTocaVertices =>
+      'Ukitu eremuaren izkinak. Hiru edo gehiagorekin, sakatu «Eremua itxi».';
+
+  @override
+  String get dibujoDeshacer => 'Desegin';
+
+  @override
+  String get dibujoCerrar => 'Eremua itxi';
+
+  @override
+  String get dibujoCancelar => 'Utzi';
+
+  @override
+  String dibujoEnCurso(String esquinas, String ha) {
+    return '$esquinas · ≈ $ha ha';
+  }
+
+  @override
+  String dibujoEsquinas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n izkina',
+      one: 'Izkina 1',
+      zero: 'Izkinarik ez',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get tareaDeZona => 'Eremuko zeregina';
+
+  @override
+  String get parteColZona => 'Eremua';
 }

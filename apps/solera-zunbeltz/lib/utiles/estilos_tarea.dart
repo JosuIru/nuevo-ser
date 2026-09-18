@@ -30,3 +30,17 @@ Color colorEstadoPunto(String codigo) {
       return colorEstadoHecha;
   }
 }
+
+/// Color del estado de uso de una zona (en uso = pasto, en descanso =
+/// musgo, vedada = terracota). Se usa a baja opacidad para el relleno del
+/// polígono y entero para su borde.
+Color colorEstadoZona(String codigo) {
+  switch (codigo) {
+    case 'descanso':
+      return colorEstadoPendiente;
+    case 'vedada':
+      return colorEstadoBloqueada;
+    default:
+      return colorPastoZunbeltz;
+  }
+}

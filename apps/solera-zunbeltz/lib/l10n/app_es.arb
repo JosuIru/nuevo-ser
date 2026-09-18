@@ -272,5 +272,46 @@
   "ajustesExportarEspacio": "Exportar espacio (CSV)",
   "ajustesDemo": "Cargar datos de demostración",
   "demoCargada": "Datos de demostración cargados",
-  "demoYaHay": "Ya hay proyectos; bórralos para recargar la demostración."
+  "demoYaHay": "Ya hay proyectos; bórralos para recargar la demostración.",
+
+  "zonaDibujar": "Dibujar zona",
+  "zonaNuevaTitulo": "Nueva zona",
+  "zonaTitulo": "Zonas",
+  "zonaFinca": "Finca",
+  "zonaTipo": "Tipo de zona",
+  "zonaNombre": "Nombre",
+  "zonaEstado": "Estado",
+  "zonaNotas": "Notas",
+  "zonaFotos": "Fotos",
+  "zonaRecintoSigpac": "Recinto SIGPAC",
+  "zonaSuperficie": "Superficie",
+  "zonaSuperficieOficial": "Superficie oficial SIGPAC (ha)",
+  "zonaPerimetro": "Perímetro",
+  "zonaOrientativa": "orientativa",
+  "zonaAvisoSuperficie": "La superficie del trazado es orientativa: la oficial es la del recinto SIGPAC. Si la tenéis, ponedla en «Superficie oficial» y será la que se use.",
+  "zonaGuardada": "Zona guardada",
+  "zonaBorrar": "Borrar zona",
+  "zonaTareas": "Tareas de la zona",
+  "zonaSinTareas": "Sin tareas en esta zona.",
+  "zonaNuevaTarea": "Nueva tarea",
+  "zonaRedibujar": "Volver a dibujar",
+  "zonaTrazadoActualizado": "Trazado actualizado",
+  "zonaTrazadoCorto": "Marca al menos tres esquinas para cerrar la zona.",
+  "dibujoTocaVertices": "Toca las esquinas de la zona. Con tres o más, pulsa «Cerrar zona».",
+  "dibujoDeshacer": "Deshacer",
+  "dibujoCerrar": "Cerrar zona",
+  "dibujoCancelar": "Cancelar",
+  "dibujoEnCurso": "{esquinas} · ≈ {ha} ha",
+  "@dibujoEnCurso": {
+    "placeholders": {
+      "esquinas": { "type": "String" },
+      "ha": { "type": "String" }
+    }
+  },
+  "dibujoEsquinas": "{n, plural, =0{Sin esquinas} =1{1 esquina} other{{n} esquinas}}",
+  "@dibujoEsquinas": {
+    "placeholders": { "n": { "type": "int" } }
+  },
+  "tareaDeZona": "Tarea de zona",
+  "parteColZona": "Zona"
 }

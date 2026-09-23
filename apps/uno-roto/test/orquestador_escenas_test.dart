@@ -397,4 +397,56 @@ void main() {
       }
     });
   });
+
+  group('ritmo de la sesión 1 (doc 16, eje F)', () {
+    test('desde estado virgen se llega al combate kurz_1 sin cierres', () {
+      // Simula la primera sesión completa: el orquestador encadena
+      // decisiones y nosotros hacemos lo que hace main.dart al cerrar
+      // cada cinemática (activar su flagDeSalida). El contrato de
+      // ritmo del doc 16: el primer combate jugable debe caer en la
+      // sesión 1, sin que ningún cierre amable corte la cadena antes.
+      // Si alguien añade una escena con esCierreAmable=true (o una
+      // puerta de maestría) entre 1.1 y 1.5, este test lo detecta.
+      final flags = <String>{};
+      var pasos = 0;
+      while (pasos < 20) {
+        pasos++;
+        final decision = decidir(flagsActivos: flags);
+        if (decision is CombateKurzPendiente) {
+          expect(decision.desafio.identificador, 'kurz_1',
+              reason: 'El primer combate de la sesión 1 debe ser kurz_1.');
+          return; // Objetivo del test alcanzado.
+        }
+        expect(decision, isA<CinematicaPendiente>(),
+            reason: 'Antes del combate solo debe haber escenas '
+                'encadenables (paso $pasos).');
+        final escena = (decision as CinematicaPendiente).escena;
+        expect(escena.esCierreAmable, isFalse,
+            reason: 'La escena ${escena.id} cortaría la sesión 1 antes '
+                'del combate con Kurz — el niño se iría sin haber '
+                'jugado nada (doc 16, eje F).');
+        flags.add(escena.flagDeSalida);
+      }
+      fail('En 20 pasos no se alcanzó el combate kurz_1 — la cadena '
+          'de la sesión 1 está rota o tiene una puerta nueva.');
+    });
+
+    test('tras el combate, la 1.6 cierra la sesión de forma amable', () {
+      // La secuencia canónica del día 1 termina en la 1.6 (derrota
+      // narrada + cierre). Verificamos que tras completar kurz_1 la
+      // siguiente decisión es la 1.6 y que ES un cierre amable — el
+      // día 1 debe terminar bien, no en una madeja de escenas.
+      final flags = <String>{
+        'escena_1_1_vista', 'escena_1_2_vista', 'escena_1_3_vista',
+        'escena_1_4_vista', 'escena_1_5_vista',
+        'combate_kurz_1_completado', 'derrota_kurz_1',
+      };
+      final decision = decidir(flagsActivos: flags);
+      expect(decision, isA<CinematicaPendiente>());
+      final escena = (decision as CinematicaPendiente).escena;
+      expect(escena.id, '1.6');
+      expect(escena.esCierreAmable, isTrue,
+          reason: 'La 1.6 es el "hasta mañana" del día 1.');
+    });
+  });
 }

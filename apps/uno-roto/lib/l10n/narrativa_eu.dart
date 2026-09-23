@@ -1652,4 +1652,171 @@ const Map<String, String> narrativaEu = <String, String>{
       '(x, y) bikoteen taula bat ikusiko duzu. Zure lana y bakoitza bere x-tik nola lortzen den arau bat aurkitzea.\n\nArauak beti forma hau du:  y = m·x + n.\n\nHori aurkitzeko:\n  1) Zenbat igotzen den y, x banaka igotzean. Hori da m.\n     Bi lerro segidakoak begiratu: m = (y₂ − y₁) ÷ (x₂ − x₁).\n  2) Zenbat balio duen y x = 0 denean. Hori da n.\n     Lerro hori ez bada agertzen, ebakitzen lerro bat erabiliz:\n     n = y − m·x.\n\nAukeratu aurretik, proba ezazu araua taularen beste lerro batekin.',
   'En la vida: la factura de la luz — n es la cuota fija que pagas cada mes, m es lo que cuesta cada kWh consumido.':
       'Bizitzan: argi-faktura — n da hilero ordaintzen duzun kuota finkoa, m kWh kontsumitutako bakoitzaren kostua.',
+  // Encargo del día (doc 16, eje D): línea del mapa, diálogo de Sora
+  // y cierre sobrio en el cazadero. Los tokens {n} y {distrito} se
+  // sustituyen DESPUÉS de traducir — el orden de palabras es libre.
+  'Encargo de Sora: {n} Fragmentos en {distrito}':
+      'Soraren mandatua: {n} Zati — {distrito}',
+  'Encargo de Sora: {n} Fragmentos donde tú quieras':
+      'Soraren mandatua: {n} Zati, nahi duzun tokian',
+  'Encargo de hoy: hecho.': 'Gaurko mandatua: eginda.',
+  'El encargo del día': 'Eguneko mandatua',
+  'He visto {n} Fragmentos en {distrito}. Si te apetece, tráemelos. Si no, mañana habrá otro.':
+      '{n} Zati ikusi ditut {distrito} inguruan. Nahi baduzu, ekar iezazkidazu. Bestela, bihar beste bat egongo da.',
+  'Hoy me valen {n} Fragmentos de donde sea. Si te apetece, tráemelos. Si no, mañana habrá otro.':
+      'Gaur nonahiko {n} Zatik balio didate. Nahi baduzu, ekar iezazkidazu. Bestela, bihar beste bat egongo da.',
+  'Hecho. Mañana habrá otro.': 'Eginda. Bihar beste bat egongo da.',
+  'El encargo de hoy está hecho. Bien.':
+      'Gaurko mandatua eginda dago. Ongi.',
+  'VALE': 'ADOS',
+  // El taller de Rexán (doc 16, eje B): pantalla, nodo del mapa,
+  // nombres de las 21 piezas y líneas de Rexán.
+  'El taller de Rexán': 'Rexánen tailerra',
+  'Taller': 'Tailerra',
+  'Trae esquirlas. Yo pongo las manos.':
+      'Ekarri ezpalak. Nik eskuak jarriko ditut.',
+  '¿Restaurar {pieza} por {precio} esquirlas?':
+      '{pieza} berritu {precio} ezpalen truke?',
+  'Te faltan esquirlas. Los Fragmentos de ahí fuera llevan unas cuantas.':
+      'Ezpalak falta zaizkizu. Kanpoko Zatiek badaramatzate batzuk.',
+  'RESTAURAR': 'BERRITU',
+  'CANCELAR': 'UTZI',
+  'Una luz más. La ciudad lo nota, aunque no lo diga.':
+      'Argi bat gehiago. Hiriak nabaritzen du, esan ez arren.',
+  'Alguien vive mejor esta noche. Buen trabajo.':
+      'Norbaitek hobeto biziko du gaua. Lan ona.',
+  'Mira eso. Casi parece fiesta. Casi.':
+      'Begira hori. Ia jaia dirudi. Ia.',
+  'La farola de la esquina': 'Izkinako farola',
+  'Las ventanas del ático': 'Ganbarako leihoak',
+  'La guirnalda del patio': 'Patioko argi-girlanda',
+  'El farolillo del puente': 'Zubiko farolatxoa',
+  'Las ventanas del embarcadero': 'Ontziralekuko leihoak',
+  'Las luces del canal': 'Kanaleko argiak',
+  'El farol de la entrada': 'Sarrerako farola',
+  'Las ventanas del almacén': 'Biltegiko leihoak',
+  'La guirnalda de los toldos': 'Olanetako argi-girlanda',
+  'La lámpara del taller viejo': 'Tailer zaharreko lanpara',
+  'Las ventanas de la nave': 'Nabeko leihoak',
+  'Las luces de la pasarela': 'Pasabideko argiak',
+  'El farol del muelle': 'Moilako farola',
+  'Las ventanas de la lonja': 'Lonjako leihoak',
+  'Las luces del espigón': 'Kai-muturreko argiak',
+  'El farol del sendero': 'Bidezidorreko farola',
+  'Las ventanas de la granja': 'Baserriko leihoak',
+  'Las luces del observatorio': 'Behatokiko argiak',
+  'La lámpara del refugio': 'Aterpeko lanpara',
+  'Las ventanas de la estación': 'Geltokiko leihoak',
+  'Las luces de la senda alta': 'Goiko bideko argiak',
+  // Raros de clima (doc 16, eje E): líneas de Sora en el cazadero y
+  // entradas del Cuaderno. Nombres traducidos como los distritos.
+  'Espera. Ese brillo no es normal. Ve.':
+      'Itxaron. Distira hori ez da normala. Zoaz.',
+  'Ahí. En el agua. No parpadees.': 'Hor. Uretan. Ez kliskatu begirik.',
+  'Esa luz entre la niebla no es del faro. Ve.':
+      'Laino arteko argi hori ez da itsasargiarena. Zoaz.',
+  'Mira. Flota distinto que los demás. Corre.':
+      'Begira. Besteek ez bezala flotatzen du. Korri.',
+  '«La Veleta». Solo baja cuando llueve en los Tejados. Irune querrá saberlo — mira el cuaderno.':
+      '«Haize-orratza». Teilatuetan euria ari duenean bakarrik jaisten da. Irunek jakin nahiko du — begiratu koadernoa.',
+  '«El Reflejo». Vive en la niebla de los Canales. Casi nadie lo ha visto dos veces. Apúntalo en el cuaderno.':
+      '«Isla». Kanaletako lainoan bizi da. Ia inork ez du bi aldiz ikusi. Apuntatu koadernoan.',
+  '«La Lucerna». Los del Puerto juran que guía barcos perdidos. Ahora está en tu cuaderno.':
+      '«Kriseilua». Portukoek zin egiten dute itsasontzi galduak gidatzen dituela. Orain zure koadernoan dago.',
+  '«El Vilano». Solo se deja ver cuando llueve en las Afueras, y allí casi nunca llueve. Al cuaderno.':
+      '«Lumatxa». Kanpoaldean euria ari duenean bakarrik agertzen da, eta han ia inoiz ez du euririk egiten. Koadernora.',
+  'Se ha ido. Volverá con este cielo.':
+      'Joan da. Zeru honekin itzuliko da.',
+  'La Veleta': 'Haize-orratza',
+  'El Reflejo': 'Isla',
+  'La Lucerna': 'Kriseilua',
+  'El Vilano': 'Lumatxa',
+  'Solo baja a los Tejados cuando llueve. Gira despacio sobre sí misma, como si buscara de dónde viene el viento — o de dónde vino la Rotura. Los cazadores viejos dicen que verla da suerte. Sora dice que la suerte no existe, pero esa noche silbó de vuelta a casa.':
+      'Teilatuetara euria ari duenean bakarrik jaisten da. Poliki biratzen da bere buruaren gainean, haizea nondik datorren bilatuko balu bezala — edo Haustura nondik etorri zen. Ehiztari zaharrek diote hura ikusteak zortea dakarrela. Sorak dio zortea ez dela existitzen, baina gau hartan txistuka itzuli zen etxera.',
+  'Vive en la niebla de los Canales, pegado al agua. No flota: se refleja. Lo raro es que a veces el agua lo muestra y el aire no. Maren Olbéa le dedicó una carta al director hace años preguntando si alguien más lo había visto. Nadie contestó. Tú sí lo has visto.':
+      'Kanaletako lainoan bizi da, uretik gertu. Ez du flotatzen: islatu egiten da. Bitxiena da batzuetan urak erakusten duela eta aireak ez. Maren Olbéak gutun bat idatzi zion zuzendariari duela urteak, beste inork ikusi ote zuen galdezka. Inork ez zuen erantzun. Zuk bai ikusi duzu.',
+  'Una luz pequeña que camina por la niebla del Puerto, a la altura de los mástiles. Los estibadores juran que guía a los barcos que se pierden — y que por eso el faro no la espanta. Irune sospecha que es más vieja que el faro. Quizá más vieja que el Puerto.':
+      'Argi txiki bat Portuko lainoan zehar dabilena, mastaren garaieran. Zamaketariek zin egiten dute galtzen diren itsasontziak gidatzen dituela — eta horregatik itsasargiak ez duela uxatzen. Irunek susmoa du itsasargia baino zaharragoa dela. Agian Portua baino zaharragoa.',
+  'En las Afueras casi nunca llueve. Cuando llueve, flota el Vilano: liviano, a contraviento, como una semilla que no quiere aterrizar. Capturarlo es de las cosas más difíciles que puede contar un cazador — no por el puzzle, sino por estar allí el día justo.':
+      'Kanpoaldean ia inoiz ez du euririk egiten. Euria ari duenean, Lumatxa flotatzen da: arina, haizearen kontra, lurreratu nahi ez duen hazi bat bezala. Hura harrapatzea da ehiztari batek konta dezakeen gauzarik zailenetakoa — ez puzzleagatik, egun egokian han egoteagatik baizik.',
+  // Secretos espaciales (doc 16, eje E).
+  'Ahí vive el gato de Irune. No se lo digas a nadie.':
+      'Hor bizi da Iruneren katua. Ez esan inori.',
+  'Ese farolillo lleva años sin luz. Hasta ahora, parece.':
+      'Farolatxo horrek urteak daramatza argirik gabe. Orain arte, dirudienez.',
+  'La ventana del gato': 'Katuaren leihoa',
+  'El farolillo apagado': 'Farolatxo itzalia',
+  'Una ventana concreta de los Tejados, siempre encendida. Ahí vive el gato de Irune, que no se llama de ninguna manera porque Irune dice que los nombres son para quien acude cuando lo llaman. El gato la ignora desde hace nueve años. Tocaste su ventana y no pasó nada. O eso parece.':
+      'Teilatuetako leiho jakin bat, beti piztuta. Hor bizi da Iruneren katua, izenik ez duena, Irunek dioelako izenak deitzean datozenentzat direla. Katuak bederatzi urte daramatza hari jaramonik egin gabe. Bere leihoa ukitu zenuen eta ez zen ezer gertatu. Edo hala dirudi.',
+  'En el puente bajo de los Canales hay un farolillo que no se enciende desde antes de la Rotura. Los fareros lo saltan al hacer la ronda, por respeto o por costumbre. Lo tocaste. Sora jura que esa noche parpadeó una vez. Rexán dice que Sora exagera. Ninguno de los dos volvió a pasar por el puente sin mirarlo.':
+      'Kanaletako zubi baxuan bada farolatxo bat Haustura baino lehenagotik pizten ez dena. Farolariek saltatu egiten dute erronda egitean, errespetuz edo ohituraz. Ukitu egin zenuen. Sorak zin egiten du gau hartan behin kliskatu zuela. Rexánek dio Sorak puzten duela. Bietako inor ez zen berriro zubitik pasa hari begiratu gabe.',
+  // Bestiario (doc 16, eje C): fichas de familias de Fragmentos.
+  // ('Los Plenos' ya está traducido arriba, con las escenas.)
+  'Los Comparadores': 'Konparatzaileak',
+  'Los Espejos': 'Ispiluak',
+  'Los Impropios': 'Inpropioak',
+  'Los Duales': 'Dualak',
+  'Las Comas': 'Komak',
+  'Tejados y Canales': 'Teilatuak eta Kanalak',
+  'Canales y Mercado': 'Kanalak eta Merkatua',
+  'Canales e Industria': 'Kanalak eta Industria',
+  'Común': 'Arrunta',
+  'Inusual': 'Ezohikoa',
+  'La forma más simple de Fragmento: un círculo entero que se cree indivisible. Se caza cortándolo en partes iguales. Los primeros que verás.':
+      'Zatirik sinpleena: zatiezina dela uste duen zirkulu oso bat. Zati berdinetan ebakiz ehizatzen da. Ikusiko dituzun lehenak.',
+  'No huyen casi nunca. Sora dice que es porque no saben que están rotos — cada Pleno se cree el Uno entero, y esperar no cuesta nada cuando te crees eterno.':
+      'Ia inoiz ez dute ihes egiten. Sorak dio hautsita daudela ez dakitelako dela — Oso bakoitzak bere burua Bat osotzat du, eta itxaroteak ez du ezer kostatzen betiereko sentitzen zarenean.',
+  'Irune guarda el primer Pleno que desfragmentó, dibujado a lápiz en la última página de su cuaderno. Debajo escribió: "No era grande. Era mío."':
+      'Irunek gordeta du desfragmentatu zuen lehen Osoa, arkatzez marraztuta bere koadernoaren azken orrialdean. Azpian idatzi zuen: "Ez zen handia. Nirea zen."',
+  'Aparecen de dos en dos o de tres en tres, nunca solos. Uno siempre vale más que otro, aunque no lo parezca — cazarlos es saber cuál.':
+      'Binaka edo hirunaka agertzen dira, inoiz ez bakarrik. Batek beti balio du besteak baino gehiago, hala ez badirudi ere — ehizatzea zein den jakitea da.',
+  'Las parejas engañan a los ojos: la fracción con números grandes puede ser la pequeña. Los cazadores novatos caen. Tú caíste. Todos caímos.':
+      'Bikoteek begiak engainatzen dituzte: zenbaki handiko zatikia txikiena izan daiteke. Ehiztari hasiberriak erortzen dira. Zu erori zinen. Denok erori ginen.',
+  'Hay una teoría en la redacción del Faro: los Comparadores no son varios Fragmentos, sino uno solo que se mira. Nadie la ha podido desmentir.':
+      'Teoria bat dago Faroko erredakzioan: Konparatzaileak ez dira hainbat Zati, bere buruari begiratzen dion bakar bat baizik. Inork ezin izan du gezurtatu.',
+  'Cada Espejo tiene infinitas caras: 1/2, 2/4, 3/6… Todas valen lo mismo. Cazarlo es reconocerlo aunque venga disfrazado.':
+      'Ispilu bakoitzak aurpegi infinituak ditu: 1/2, 2/4, 3/6… Denek berdin balio dute. Ehizatzea mozorrotuta etorri arren ezagutzea da.',
+  'Se amplifican y se simplifican a voluntad, como quien se cambia de abrigo. La forma mínima es su cara verdadera — la única que no pueden quitarse.':
+      'Nahieran anplifikatzen eta sinplifikatzen dira, berokia aldatzen duenaren moduan. Forma minimoa da haien benetako aurpegia — kendu ezin duten bakarra.',
+  'En los Canales dicen que si ves las dos caras de un Espejo en el agua a la vez, el reflejo se queda contigo. Pregúntale a El Reflejo, si lo encuentras.':
+      'Kanaletan diote Ispilu baten bi aurpegiak uretan aldi berean ikusten badituzu, isla zurekin geratzen dela. Galdetu Islari, aurkitzen baduzu.',
+  'Fragmentos con el numerador más grande que el denominador: llevan más de un entero dentro. Caminan raro, como sobrecargados.':
+      'Zenbakitzailea izendatzailea baino handiagoa duten Zatiak: oso bat baino gehiago daramate barruan. Arraro dabiltza, gainkargatuta bezala.',
+  'Se pueden reescribir como número mixto — el entero delante, el resto en fracción. No les gusta. Ningún Impropio admite que en el fondo es un dos y pico.':
+      'Zenbaki misto gisa berridatz daitezke — osoa aurrean, gainerakoa zatikian. Ez zaie gustatzen. Inpropio batek ere ez du onartzen funtsean bi eta piku bat dela.',
+  'Vorax era un Impropio antiguo que nunca dejó que lo reescribieran. Lo que guardaba dentro ya lo viste. O lo verás.':
+      'Vorax Inpropio zahar bat zen, inoiz berridazten utzi ez zuena. Barruan gordetzen zuena ikusi duzu jada. Edo ikusiko duzu.',
+  'Dos Fragmentos unidos por una línea de luz que no se puede cortar. Para cazarlos hay que hacerlos hablar el mismo idioma: mismo denominador.':
+      'Ebaki ezin den argi-lerro batek lotutako bi Zati. Ehizatzeko hizkuntza bera hitz egitera behartu behar dira: izendatzaile bera.',
+  'La línea que los une no es una cadena — es una operación. Sumar, restar, multiplicar. Resuélvela y la luz se apaga sola.':
+      'Lotzen dituen lerroa ez da kate bat — eragiketa bat da. Batu, kendu, biderkatu. Ebatzi eta argia berez itzaltzen da.',
+  'Zafrán es el Dual más viejo que se conoce. No habla. Sora cree que los dos extremos discutieron hace siglos y desde entonces guardan silencio.':
+      'Zafrán da ezagutzen den Dualik zaharrena. Ez du hitz egiten. Sorak uste du bi muturrek duela mendeak eztabaidatu zutela eta ordutik isilik daudela.',
+  'Fragmentos que se escriben con coma: 0,5 · 2,37 · 0,825. Parecen exactos y presumen de ello. Son fracciones con uniforme de trabajo.':
+      'Komaz idazten diren Zatiak: 0,5 · 2,37 · 0,825. Zehatzak dirudite eta harro daude. Laneko uniformea daramaten zatikiak dira.',
+  'Su trampa favorita: aparentar que más cifras es más valor. 0,35 se pavonea delante de 0,4 y pierde. Lee las cifras, no las cuentes.':
+      'Haien tranparik gogokoena: zifra gehiago balio handiagoa dela itxuratzea. 0,35 harrotu egiten da 0,4ren aurrean eta galdu egiten du. Irakurri zifrak, ez kontatu.',
+  'En Industria las Comas se alinean solas junto a las máquinas de Vadic, décima con décima, centésima con centésima. Nadie las ha entrenado. A Vadic le inquieta.':
+      'Industrian Komak berez lerrokatzen dira Vadicen makinen ondoan, hamarren hamarrenarekin, ehunen ehunenarekin. Inork ez ditu entrenatu. Vadic kezkatzen du.',
+  // Balanza de comparación (doc 16, eje A — piloto Fase D3).
+  'Arrastra hacia abajo el platillo que pese más.':
+      'Arrastatu behera gehien pisatzen duen platertxoa.',
+  // Ángulo manipulativo (doc 16, eje A — piloto Fase D3). De paso,
+  // las categorías de MED.04 que la pantalla clásica dejaba sin
+  // traducir (caían al castellano).
+  'agudo': 'zorrotza',
+  'recto': 'zuzena',
+  'obtuso': 'kamutsa',
+  'llano': 'laua',
+  'completo': 'osoa',
+  'Gira el brazo hasta formar un ángulo {tipo}.':
+      'Biratu besoa angelu {tipo} bat osatu arte.',
+  'Arrastra el brazo del ángulo y pulsa ASÍ cuando lo tengas.':
+      'Arrastatu angeluaren besoa eta sakatu HORRELA duzunean.',
+  'ASÍ': 'HORRELA',
+  'Agudo: menos de 90°.': 'Zorrotza: 90° baino gutxiago.',
+  'Recto: 90° exactos.': 'Zuzena: 90° zehatz.',
+  'Obtuso: entre 90° y 180°.': 'Kamutsa: 90° eta 180° artean.',
+  'Llano: 180° exactos.': 'Laua: 180° zehatz.',
+  'Completo: 360°.': 'Osoa: 360°.',
 };

@@ -12,14 +12,18 @@ import '../dominio/ambiente_cielo.dart';
 import '../dominio/bonus_remonte.dart';
 import '../dominio/calendario_eventos.dart';
 import '../dominio/clima_distrito.dart';
+import '../dominio/catalogo_distritos.dart';
 import '../dominio/contador_intentos_puzzle.dart';
 import '../dominio/distrito.dart';
+import '../dominio/encargo_del_dia.dart';
 import '../dominio/fragmento_en_tejado.dart';
+import '../dominio/fragmentos_de_clima.dart';
 import '../dominio/generador_caza.dart';
 import '../dominio/mapeo_habilidades_puzzle.dart';
 import '../dominio/motor_maestria.dart';
 import '../dominio/rango_narrativo.dart';
 import '../dominio/respuesta_puzzle.dart';
+import '../dominio/secretos_escenario.dart';
 import '../dominio/ayuda_puzzle.dart';
 import '../dominio/problema_comparacion_decimal.dart';
 import '../dominio/problema_comparacion_distinta.dart';
@@ -86,6 +90,7 @@ import '../sonido/servicio_sonoro.dart';
 import 'escenario.dart';
 import 'pantalla_combate_enfoque.dart';
 import 'pantalla_comparacion.dart';
+import 'pantalla_comparacion_balanza.dart';
 import 'pantalla_comparacion_distinta.dart';
 import 'pantalla_ordenar_decimales.dart';
 import 'pantalla_comparacion_unidad.dart';
@@ -119,6 +124,7 @@ import 'pantalla_masa_capacidad.dart';
 import 'pantalla_porcentaje_de.dart';
 import 'pantalla_aumento_descuento.dart';
 import 'pantalla_angulo.dart';
+import 'pantalla_angulo_manipulativo.dart';
 import 'pantalla_media.dart';
 import 'pantalla_moda_mediana.dart';
 import 'pantalla_probabilidad.dart';
@@ -197,6 +203,33 @@ class _PantallaCazaState extends State<PantallaCaza>
 
   int _esquirlasTotal = 0;
   int _esquirlasEstaSesion = 0;
+  /// Encargo del día vigente (doc 16, eje D). Se resuelve al cargar el
+  /// estado inicial con los distritos desbloqueados en ese momento; si
+  /// la sesión cruza la medianoche se regenera en la primera captura
+  /// del día nuevo.
+  EncargoDelDia? _encargoDeHoy;
+
+  /// Piezas del taller ya restauradas (doc 16, eje B) — el escenario
+  /// las pinta encendidas. Se cargan una vez al entrar al cazadero.
+  Set<String> _piezasRestauradas = const {};
+
+  /// Raro de clima que toca hoy en este distrito (doc 16, eje E), o
+  /// null si el clima no acompaña, no hay raro aquí o ya se capturó.
+  /// Se resuelve al cargar el estado inicial; se anula al capturarlo.
+  FragmentoDeClima? _raroDeClimaHoy;
+
+  /// `true` mientras el raro está flotando en el tejado. Si se
+  /// escapa vuelve a `false` — reaparecerá en otro spawn, sin castigo.
+  bool _raroEnTejado = false;
+
+  /// Spawns acumulados en esta sesión. El raro no sale de primeras:
+  /// espera al menos al tercer spawn para que el niño ya esté cazando.
+  int _spawnsEstaSesion = 0;
+
+  /// Flags narrativos activos al entrar (+ los que se activan durante
+  /// la sesión). Deciden qué secretos espaciales siguen escuchando y
+  /// qué raro de clima puede aparecer.
+  Set<String> _flagsAlEntrar = const {};
   // Habilidades que el niño ya remontó esta sesión (bonus dado).
   // Una habilidad solo paga bonus la primera vez que se captura un
   // Fragmento de ella en la sesión actual; los siguientes sin extra.
@@ -387,7 +420,26 @@ class _PantallaCazaState extends State<PantallaCaza>
         offsetDificultad: 2,
       );
     }
-    setState(() => _esquirlasTotal = total);
+    final piezas = await widget.repositorio.ciudad.cargarPiezasRestauradas();
+    final flags = await widget.repositorio.flagsNarrativosActivos();
+    // Raro de clima de hoy: solo en caza ambiental de verdad (el modo
+    // entrenamiento reutiliza la atmósfera pero no es el distrito).
+    FragmentoDeClima? raroDeHoy;
+    if (widget.dominioFiltrado == null) {
+      raroDeHoy = CatalogoFragmentosDeClima.paraHoy(
+        idDistrito: widget.distrito.identificador,
+        ambiente: _ambienteHoy,
+        flagsActivos: flags,
+      );
+    }
+    if (!mounted) return;
+    setState(() {
+      _esquirlasTotal = total;
+      _piezasRestauradas = piezas;
+      _raroDeClimaHoy = raroDeHoy;
+      _flagsAlEntrar = flags;
+    });
+    _encargoDeHoy = _encargoParaEsquirlas(total, DateTime.now());
     _programarSiguienteSpawn();
     _arrancarTickDeEscapes();
     final saludo = yaVisitado
@@ -443,13 +495,24 @@ class _PantallaCazaState extends State<PantallaCaza>
       // adaptativo es la fuente principal de Fragmentos. Si el
       // selector no devuelve candidata (caso de borde) caemos al
       // reparto del distrito.
-      final nuevo = _selectorHabilidades != null
+      var nuevo = _selectorHabilidades != null
           ? await _generarDesdeSelector(esquirlas: esquirlas, ahora: ahora)
           : _generador.siguiente(
               esquirlasAcumuladas: esquirlas,
               ahora: ahora,
             );
       if (!mounted) return;
+      _spawnsEstaSesion++;
+      // Raro de clima (doc 16, eje E): a partir del tercer spawn de la
+      // sesión, el siguiente hueco libre lo ocupa el raro. El puzzle es
+      // el normal que tocaba (calibrado por el selector); solo cambia
+      // el encuentro.
+      final raro = _raroDeClimaHoy;
+      if (raro != null && !_raroEnTejado && _spawnsEstaSesion >= 3) {
+        nuevo = nuevo.conMarcaDeClima(raro.id);
+        _raroEnTejado = true;
+        _mostrarLineaAmbienteSora(raro.lineaSoraAlAparecer);
+      }
       setState(() => _activos.add(nuevo));
     }
     _programarSiguienteSpawn();
@@ -487,13 +550,21 @@ class _PantallaCazaState extends State<PantallaCaza>
           .where((f) => f.seHaEscapado(ahora))
           .toList(growable: false);
       if (seEscapanAhora.isNotEmpty) {
+        final seEscapoElRaro = seEscapanAhora.any((f) => f.esDeClima);
         setState(() {
           for (final f in seEscapanAhora) {
             _activos.remove(f);
           }
           _ahoraRef = ahora;
         });
-        _comentarTrasEscape(seEscapanAhora.length);
+        if (seEscapoElRaro) {
+          // Sin castigo: el raro reaparecerá en otro spawn de esta
+          // misma sesión (u otro día con este clima).
+          _raroEnTejado = false;
+          _mostrarLineaAmbienteSora('Se ha ido. Volverá con este cielo.');
+        } else {
+          _comentarTrasEscape(seEscapanAhora.length);
+        }
       } else {
         setState(() => _ahoraRef = ahora);
       }
@@ -708,8 +779,85 @@ class _PantallaCazaState extends State<PantallaCaza>
             ),
           );
       }
+      await _registrarCapturaParaEncargo();
+      if (fragmento.esDeClima) {
+        await _registrarCapturaDeClima(fragmento.idFragmentoDeClima!);
+      }
     } else {
       _mostrarLineaAmbienteSora('Ya volverá otro.');
+    }
+  }
+
+  /// Descubrimiento de un secreto espacial (doc 16, eje E): el niño
+  /// tocó el punto exacto sin que nada lo señalara. Flag + línea de
+  /// Sora; la entrada del Cuaderno aparecerá al volver al mapa.
+  Future<void> _descubrirSecreto(SecretoEscenario secreto) async {
+    if (_flagsAlEntrar.contains(secreto.flagDescubierto)) return;
+    setState(() {
+      _flagsAlEntrar = {..._flagsAlEntrar, secreto.flagDescubierto};
+    });
+    await widget.repositorio.activarFlagNarrativo(secreto.flagDescubierto);
+    if (!mounted) return;
+    HapticFeedback.lightImpact();
+    _mostrarLineaAmbienteSora(secreto.lineaSora);
+  }
+
+  /// Captura de un raro de clima (doc 16, eje E): activa su flag —
+  /// que desbloquea la entrada del Cuaderno — y revela el nombre con
+  /// la voz de Sora. Va la última para que su línea gane a cualquier
+  /// otro comentario de la captura.
+  Future<void> _registrarCapturaDeClima(String idRaro) async {
+    final raro = CatalogoFragmentosDeClima.todos
+        .where((r) => r.id == idRaro)
+        .firstOrNull;
+    if (raro == null) return;
+    await widget.repositorio.activarFlagNarrativo(raro.flagCaptura);
+    if (!mounted) return;
+    setState(() {
+      _raroDeClimaHoy = null;
+      _raroEnTejado = false;
+    });
+    _mostrarLineaAmbienteSora(raro.lineaSoraAlCapturar);
+  }
+
+  /// Encargo del día vigente para un niño con [esquirlas]: los
+  /// distritos candidatos son los ya desbloqueados en este momento.
+  EncargoDelDia _encargoParaEsquirlas(int esquirlas, DateTime ahora) {
+    final desbloqueados = CatalogoDistritos.todos
+        .where((d) => d.esquirlasParaDesbloquear <= esquirlas)
+        .map((d) => d.identificador)
+        .toList();
+    return GeneradorEncargoDelDia.deHoy(
+      ahora: ahora,
+      idsDistritosDesbloqueados: desbloqueados,
+    );
+  }
+
+  /// Avanza el encargo del día si esta captura cuenta (doc 16, eje D).
+  /// El cierre es sobrio a propósito: una línea seca de Sora, sin
+  /// fanfarria — la mesura es el sabor (doc 01, principio 3).
+  Future<void> _registrarCapturaParaEncargo() async {
+    var encargo = _encargoDeHoy;
+    if (encargo == null) return;
+    final ahora = DateTime.now();
+    if (encargo.claveFecha != GeneradorEncargoDelDia.claveFechaDe(ahora)) {
+      // La sesión cruzó la medianoche: el encargo en memoria es de
+      // ayer. Regeneramos para no escribir progreso en la fecha vieja.
+      encargo = _encargoParaEsquirlas(_esquirlasTotal, ahora);
+      _encargoDeHoy = encargo;
+    }
+    final cuenta = encargo.cuentaCaptura(
+      idDistritoCaptura: widget.distrito.identificador,
+      esEntrenamiento: widget.dominioFiltrado != null,
+    );
+    if (!cuenta) return;
+    final estado = await widget.repositorio.encargo.registrarCaptura(
+      claveFecha: encargo.claveFecha,
+      objetivo: encargo.objetivo,
+    );
+    if (!mounted) return;
+    if (estado.recienCompletado) {
+      _mostrarLineaAmbienteSora('El encargo de hoy está hecho. Bien.');
     }
   }
 
@@ -947,17 +1095,26 @@ class _PantallaCazaState extends State<PantallaCaza>
           ),
         );
       case TipoFragmentoEnTejado.comparacion:
+        // Piloto del verbo manipulativo (doc 16, eje A — Fase D3):
+        // la mitad de los encuentros abren la balanza (arrastrar el
+        // platillo) y la otra mitad la pantalla clásica de tarjetas.
+        // El reparto es determinista por Fragmento para que el testeo
+        // pueda comparar las dos formas con el mismo niño.
+        final usaBalanza = fragmento.identificador.hashCode.isEven;
         return Navigator.of(context).push<bool>(
           MaterialPageRoute(
-            builder: (_) => PantallaComparacion(
-              a: Fraccion(fragmento.numerador, fragmento.denominador),
-              b: Fraccion(
+            builder: (_) {
+              final a = Fraccion(fragmento.numerador, fragmento.denominador);
+              final b = Fraccion(
                 fragmento.numeradorB ?? fragmento.numerador,
                 fragmento.denominadorB ?? fragmento.denominador,
-              ),
-              modo: fragmento.modoComparacion ??
-                  ModoComparacion.mismoDenominador,
-            ),
+              );
+              final modo = fragmento.modoComparacion ??
+                  ModoComparacion.mismoDenominador;
+              return usaBalanza
+                  ? PantallaComparacionBalanza(a: a, b: b, modo: modo)
+                  : PantallaComparacion(a: a, b: b, modo: modo);
+            },
           ),
         );
       case TipoFragmentoEnTejado.simplificar:
@@ -1417,13 +1574,22 @@ class _PantallaCazaState extends State<PantallaCaza>
           ),
         );
       case TipoFragmentoEnTejado.angulo:
-        // numerador → grados.
+        // numerador → grados. Piloto manipulativo (doc 16, eje A):
+        // la mitad de los encuentros piden PRODUCIR la categoría
+        // girando el brazo, en vez de reconocerla entre tarjetas.
+        // "Completo" (360°) no se puede formar con el brazo de 0-180
+        // — esos caen siempre en la pantalla clásica.
+        final objetivoAngulo = clasificarAngulo(fragmento.numerador);
+        final usaBrazo = fragmento.identificador.hashCode.isEven &&
+            objetivoAngulo != TipoAngulo.completo;
         return Navigator.of(context).push<bool>(
           MaterialPageRoute(
-            builder: (_) => PantallaAngulo(
-              problemaPredeterminado:
-                  GeneradorAngulo().generarDesdeGrados(fragmento.numerador),
-            ),
+            builder: (_) => usaBrazo
+                ? PantallaAnguloManipulativo(objetivo: objetivoAngulo)
+                : PantallaAngulo(
+                    problemaPredeterminado: GeneradorAngulo()
+                        .generarDesdeGrados(fragmento.numerador),
+                  ),
           ),
         );
       case TipoFragmentoEnTejado.escala:
@@ -2426,6 +2592,7 @@ Error típico en esta skill: $errorTipico$respuestaTexto''';
                       (_esquirlasTotal / 30).clamp(0.0, 1.0),
                   idDistrito: widget.distrito.identificador,
                   ambiente: _ambienteHoy,
+                  piezasRestauradas: _piezasRestauradas,
                 ),
               ),
               SafeArea(
@@ -2448,6 +2615,34 @@ Error típico en esta skill: $errorTipico$respuestaTexto''';
                         builder: (_, constraints) {
                           return Stack(
                             children: [
+                              // Secretos espaciales (doc 16, eje E):
+                              // zonas tocables SIN señal visual. Van
+                              // antes que los Fragmentos en el Stack,
+                              // así un Fragmento encima siempre gana
+                              // el toque.
+                              if (widget.dominioFiltrado == null)
+                                for (final secreto
+                                    in CatalogoSecretos.delDistrito(
+                                        widget.distrito.identificador))
+                                  if (!_flagsAlEntrar
+                                      .contains(secreto.flagDescubierto))
+                                    Positioned(
+                                      left: secreto.xEscena *
+                                              constraints.biggest.width -
+                                          CatalogoSecretos.radioToquePx,
+                                      top: secreto.yEscena *
+                                              constraints.biggest.height -
+                                          CatalogoSecretos.radioToquePx,
+                                      width:
+                                          CatalogoSecretos.radioToquePx * 2,
+                                      height:
+                                          CatalogoSecretos.radioToquePx * 2,
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.opaque,
+                                        onTap: () =>
+                                            _descubrirSecreto(secreto),
+                                      ),
+                                    ),
                               for (final fragmento in _activos)
                                 _FragmentoEnMapa(
                                   key: ValueKey(fragmento.identificador),

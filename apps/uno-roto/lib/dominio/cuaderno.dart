@@ -340,6 +340,56 @@ class CatalogoCuaderno {
           'dice "ya lo hablaremos algún día."',
       flagDesbloqueo: 'escena_3_9_vista',
     ),
+    // Raros de clima (doc 16, eje E): cada uno se desbloquea al
+    // capturarlo. La recompensa del raro es esta entrada — saber.
+    EntradaCuaderno(
+      id: 'fragmento_la_veleta',
+      categoria: CategoriaCuaderno.fragmentos,
+      titulo: 'La Veleta',
+      texto:
+          'Solo baja a los Tejados cuando llueve. Gira despacio sobre '
+          'sí misma, como si buscara de dónde viene el viento — o de '
+          'dónde vino la Rotura. Los cazadores viejos dicen que verla '
+          'da suerte. Sora dice que la suerte no existe, pero esa '
+          'noche silbó de vuelta a casa.',
+      flagDesbloqueo: 'clima_la_veleta_capturado',
+    ),
+    EntradaCuaderno(
+      id: 'fragmento_el_reflejo',
+      categoria: CategoriaCuaderno.fragmentos,
+      titulo: 'El Reflejo',
+      texto:
+          'Vive en la niebla de los Canales, pegado al agua. No flota: '
+          'se refleja. Lo raro es que a veces el agua lo muestra y el '
+          'aire no. Maren Olbéa le dedicó una carta al director hace '
+          'años preguntando si alguien más lo había visto. Nadie '
+          'contestó. Tú sí lo has visto.',
+      flagDesbloqueo: 'clima_el_reflejo_capturado',
+    ),
+    EntradaCuaderno(
+      id: 'fragmento_la_lucerna',
+      categoria: CategoriaCuaderno.fragmentos,
+      titulo: 'La Lucerna',
+      texto:
+          'Una luz pequeña que camina por la niebla del Puerto, a la '
+          'altura de los mástiles. Los estibadores juran que guía a '
+          'los barcos que se pierden — y que por eso el faro no la '
+          'espanta. Irune sospecha que es más vieja que el faro. '
+          'Quizá más vieja que el Puerto.',
+      flagDesbloqueo: 'clima_la_lucerna_capturado',
+    ),
+    EntradaCuaderno(
+      id: 'fragmento_el_vilano',
+      categoria: CategoriaCuaderno.fragmentos,
+      titulo: 'El Vilano',
+      texto:
+          'En las Afueras casi nunca llueve. Cuando llueve, flota el '
+          'Vilano: liviano, a contraviento, como una semilla que no '
+          'quiere aterrizar. Capturarlo es de las cosas más difíciles '
+          'que puede contar un cazador — no por el puzzle, sino por '
+          'estar allí el día justo.',
+      flagDesbloqueo: 'clima_el_vilano_capturado',
+    ),
 
     // ------- Lugares -------
     EntradaCuaderno(
@@ -486,6 +536,34 @@ class CatalogoCuaderno {
           'sube desde hace décadas. Brina cree que sigue ahí arriba. '
           'Algún día será un problema tuyo.',
       flagDesbloqueo: 'escena_3_17_vista',
+    ),
+    // Secretos espaciales (doc 16, eje E): se desbloquean tocando el
+    // punto exacto del escenario, sin ninguna señal. La entrada es el
+    // único registro de que ocurrió.
+    EntradaCuaderno(
+      id: 'mito_ventana_gato',
+      categoria: CategoriaCuaderno.mitos,
+      titulo: 'La ventana del gato',
+      texto:
+          'Una ventana concreta de los Tejados, siempre encendida. '
+          'Ahí vive el gato de Irune, que no se llama de ninguna '
+          'manera porque Irune dice que los nombres son para quien '
+          'acude cuando lo llaman. El gato la ignora desde hace nueve '
+          'años. Tocaste su ventana y no pasó nada. O eso parece.',
+      flagDesbloqueo: 'secreto_ventana_gato_descubierto',
+    ),
+    EntradaCuaderno(
+      id: 'mito_farolillo_apagado',
+      categoria: CategoriaCuaderno.mitos,
+      titulo: 'El farolillo apagado',
+      texto:
+          'En el puente bajo de los Canales hay un farolillo que no '
+          'se enciende desde antes de la Rotura. Los fareros lo '
+          'saltan al hacer la ronda, por respeto o por costumbre. '
+          'Lo tocaste. Sora jura que esa noche parpadeó una vez. '
+          'Rexán dice que Sora exagera. Ninguno de los dos volvió '
+          'a pasar por el puente sin mirarlo.',
+      flagDesbloqueo: 'secreto_farolillo_apagado_descubierto',
     ),
   ];
 

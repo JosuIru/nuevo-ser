@@ -1,8 +1,10 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart' show setEquals;
 import 'package:flutter/material.dart';
 
 import '../dominio/ambiente_cielo.dart';
+import '../dominio/taller_ciudad.dart';
 import '../nucleo/paleta.dart';
 
 /// Escenario urbano nocturno con atmósfera específica por distrito.
@@ -36,12 +38,18 @@ class PintorEscenario extends CustomPainter {
   /// pantallas no-cazadero usen el fondo neutro original.
   final String idDistrito;
 
+  /// Ids de [PiezaCiudad] que el niño ya restauró en el taller
+  /// (doc 16, eje B). Las de ESTE distrito se pintan encendidas por
+  /// encima de la base — el antes/después visible al volver a cazar.
+  final Set<String> piezasRestauradas;
+
   PintorEscenario({
     required this.fasePulso,
     required this.nivelRestauracion,
     this.ambiente = AmbienteCielo.neutro,
     this.fasePulsoLluvia = 0,
     this.idDistrito = 'tejados',
+    this.piezasRestauradas = const {},
   });
 
   @override
@@ -52,7 +60,88 @@ class PintorEscenario extends CustomPainter {
     _pintarMontana(canvas, size);
     _pintarNiebla(canvas, size);
     _pintarBaseDistrito(canvas, size);
+    _pintarPiezasRestauradas(canvas, size);
     _pintarLluvia(canvas, size);
+  }
+
+  // -------------------------------------------------------------------
+  // PIEZAS RESTAURADAS EN EL TALLER (doc 16, eje B)
+  // -------------------------------------------------------------------
+
+  /// Pinta las piezas del distrito actual que el niño restauró. Van
+  /// después de la base (encima de edificios) y antes de la lluvia.
+  /// Tres primitivas cálidas, sin fanfarria: la luz basta.
+  void _pintarPiezasRestauradas(Canvas canvas, Size size) {
+    if (piezasRestauradas.isEmpty) return;
+    for (final pieza in CatalogoTaller.delDistrito(idDistrito)) {
+      if (!piezasRestauradas.contains(pieza.id)) continue;
+      final centro = Offset(
+        pieza.xEscena * size.width,
+        pieza.yEscena * size.height,
+      );
+      switch (pieza.tipoVisual) {
+        case TipoPiezaVisual.farol:
+          _pintarFarolRestaurado(canvas, centro);
+        case TipoPiezaVisual.ventanas:
+          _pintarVentanasRestauradas(canvas, centro);
+        case TipoPiezaVisual.guirnalda:
+          _pintarGuirnaldaRestaurada(canvas, centro);
+      }
+    }
+  }
+
+  void _pintarFarolRestaurado(Canvas canvas, Offset centro) {
+    final pulso = math.sin(fasePulso * 2 * math.pi) * 0.10 + 0.90;
+    // Poste.
+    final pinturaPoste = Paint()
+      ..color = PaletaNeon.textoTenue.withOpacity(0.35)
+      ..strokeWidth = 1.6;
+    canvas.drawLine(centro, centro.translate(0, 26), pinturaPoste);
+    // Halo cálido y cabeza del farol.
+    final pinturaHalo = Paint()
+      ..color = PaletaNeon.ambarCanales.withOpacity(0.30 * pulso)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
+    canvas.drawCircle(centro, 12, pinturaHalo);
+    final pinturaLuz = Paint()
+      ..color = PaletaNeon.ambarCanales.withOpacity(0.95 * pulso);
+    canvas.drawCircle(centro, 3.2, pinturaLuz);
+  }
+
+  void _pintarVentanasRestauradas(Canvas canvas, Offset centro) {
+    final pulso = math.sin(fasePulso * 2 * math.pi + 1.3) * 0.08 + 0.92;
+    final pinturaVentana = Paint()
+      ..color = PaletaNeon.ambarCanales.withOpacity(0.80 * pulso);
+    final pinturaHalo = Paint()
+      ..color = PaletaNeon.ambarCanales.withOpacity(0.16 * pulso)
+      ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7);
+    for (var indice = 0; indice < 3; indice++) {
+      final esquina = centro.translate(indice * 11.0 - 11.0, 0);
+      final rect = Rect.fromCenter(center: esquina, width: 6, height: 9);
+      canvas.drawRect(rect.inflate(3), pinturaHalo);
+      canvas.drawRect(rect, pinturaVentana);
+    }
+  }
+
+  void _pintarGuirnaldaRestaurada(Canvas canvas, Offset centro) {
+    // Siete lucecitas colgadas siguiendo una catenaria suave.
+    const totalLuces = 7;
+    const anchoTotal = 72.0;
+    for (var indice = 0; indice < totalLuces; indice++) {
+      final avance = indice / (totalLuces - 1); // 0..1
+      final cordX = centro.dx + (avance - 0.5) * anchoTotal;
+      // La curva cae 10 px en el centro (forma de cuerda colgada).
+      final caida = 10.0 * (1 - (2 * avance - 1) * (2 * avance - 1));
+      final punto = Offset(cordX, centro.dy + caida);
+      final pulso =
+          math.sin(fasePulso * 2 * math.pi + indice * 0.9) * 0.20 + 0.80;
+      final pinturaHalo = Paint()
+        ..color = PaletaNeon.ambarCanales.withOpacity(0.20 * pulso)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
+      canvas.drawCircle(punto, 5, pinturaHalo);
+      final pinturaLuz = Paint()
+        ..color = PaletaNeon.ambarCanales.withOpacity(0.85 * pulso);
+      canvas.drawCircle(punto, 1.8, pinturaLuz);
+    }
   }
 
   // -------------------------------------------------------------------
@@ -1212,6 +1301,7 @@ class PintorEscenario extends CustomPainter {
         oldDelegate.fasePulsoLluvia != fasePulsoLluvia ||
         oldDelegate.nivelRestauracion != nivelRestauracion ||
         oldDelegate.ambiente != ambiente ||
-        oldDelegate.idDistrito != idDistrito;
+        oldDelegate.idDistrito != idDistrito ||
+        !setEquals(oldDelegate.piezasRestauradas, piezasRestauradas);
   }
 }

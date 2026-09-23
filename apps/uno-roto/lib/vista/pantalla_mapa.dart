@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../datos/banco_ediciones_faro.dart';
+import '../datos/repositorio_encargo.dart';
 import '../datos/repositorio_faro.dart';
 import '../datos/repositorio_progreso.dart';
 import '../dominio/catalogo_distritos.dart';
 import '../dominio/cuaderno.dart';
 import '../dominio/distrito.dart';
+import '../dominio/encargo_del_dia.dart';
 import '../dominio/faro_de_azula.dart';
 import '../dominio/progreso_arco.dart';
 import '../dominio/rango_narrativo.dart';
@@ -23,7 +25,10 @@ import 'pantalla_faro.dart';
 import 'pantalla_habilidades.dart';
 import 'pantalla_instrucciones.dart';
 import 'pantalla_mi_cuaderno.dart';
+import 'pantalla_taller.dart';
+import 'pantalla_modo_dios.dart';
 import 'pantalla_tour_educadores.dart';
+import 'widgets/banner_actualizacion.dart';
 
 /// Mapa de la ciudad. Muestra los distritos del catálogo posicionados
 /// según biblia §3.4 y la Montaña al fondo. Los distritos bloqueados
@@ -58,6 +63,11 @@ class _PantallaMapaState extends State<PantallaMapa>
   bool _cargado = false;
   bool _hayEdicionFaroNueva = false;
   List<EdicionFaro>? _bancoFaroCacheado;
+  // Encargo del día (doc 16, eje D) + su avance. Se recargan en cada
+  // _cargar() — al volver del cazadero el progreso se refresca solo.
+  EncargoDelDia? _encargoDeHoy;
+  EstadoEncargoDia _estadoEncargo =
+      const EstadoEncargoDia(progreso: 0, completado: false);
 
   @override
   void initState() {
@@ -160,8 +170,19 @@ class _PantallaMapaState extends State<PantallaMapa>
       widget.repositorio.flagNarrativoActivo,
     );
     final hayFaroNuevo = await _hayEdicionFaroNoLeida();
+    final encargo = GeneradorEncargoDelDia.deHoy(
+      ahora: DateTime.now(),
+      idsDistritosDesbloqueados: CatalogoDistritos.todos
+          .where((d) => d.esquirlasParaDesbloquear <= total)
+          .map((d) => d.identificador)
+          .toList(),
+    );
+    final estadoEncargo =
+        await widget.repositorio.encargo.cargarEstado(encargo.claveFecha);
     if (!mounted) return;
     setState(() {
+      _encargoDeHoy = encargo;
+      _estadoEncargo = estadoEncargo;
       _esquirlas = total;
       _rango = rango;
       _arcoMostrado = arco;
@@ -301,6 +322,34 @@ class _PantallaMapaState extends State<PantallaMapa>
     );
   }
 
+  /// Invocado por `_RotuloSecreto` cuando detecta 7 toques rápidos
+  /// seguidos sobre "UNO ROTO". Si el modo dios no estaba activo, lo
+  /// activa; en ambos casos abre PantallaModoDios. Sin acceso visible
+  /// — el rótulo no muestra ningún indicio de que esto exista.
+  Future<void> _activarYAbrirModoDios() async {
+    final yaEstaba = await widget.repositorio.cargarModoDiosActivo();
+    if (!yaEstaba) {
+      await widget.repositorio.guardarModoDiosActivo(true);
+    }
+    if (!mounted) return;
+    final nombre = await widget.repositorio.cargarNombreJugador() ?? '';
+    if (!mounted) return;
+    HapticFeedback.heavyImpact();
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => PantallaModoDios(
+          repositorio: widget.repositorio,
+          nombreJugador: nombre,
+          alDesactivar: () {},
+        ),
+      ),
+    );
+    if (!mounted) return;
+    // Tras volver, recargamos por si "Desbloquear todo" o "Reiniciar"
+    // cambiaron esquirlas/rango/escenas.
+    await _cargar();
+  }
+
   Future<void> _abrirFaro() async {
     HapticFeedback.selectionClick();
     final banco = await _cargarBancoFaroSiHaceFalta();
@@ -319,6 +368,99 @@ class _PantallaMapaState extends State<PantallaMapa>
   }
 
 
+  /// Diálogo sobrio con la voz de Sora presentando el encargo del día
+  /// (doc 16, eje D). Sin premios ni urgencia: propone, no obliga —
+  /// si el niño lo ignora, mañana hay otro y no pasa nada.
+  Future<void> _abrirDialogoEncargo() async {
+    final encargo = _encargoDeHoy;
+    if (encargo == null) return;
+    HapticFeedback.selectionClick();
+    final locale = Localizations.localeOf(context);
+    final String cuerpo;
+    if (_estadoEncargo.completado) {
+      cuerpo = traducirNarrativa('Hecho. Mañana habrá otro.', locale);
+    } else {
+      final plantilla = encargo.esLibre
+          ? 'Hoy me valen {n} Fragmentos de donde sea. '
+              'Si te apetece, tráemelos. Si no, mañana habrá otro.'
+          : 'He visto {n} Fragmentos en {distrito}. '
+              'Si te apetece, tráemelos. Si no, mañana habrá otro.';
+      cuerpo = traducirNarrativa(plantilla, locale)
+          .replaceAll('{n}', encargo.objetivo.toString())
+          .replaceAll('{distrito}', _nombreDistritoEncargo(locale));
+    }
+    await showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: PaletaNeon.fondoMedio,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(
+            color: PaletaNeon.violetaNeon.withOpacity(0.3),
+          ),
+        ),
+        title: Text(
+          traducirNarrativa('El encargo del día', locale),
+          style: const TextStyle(
+            color: PaletaNeon.textoPrincipal,
+            fontSize: 16,
+            fontWeight: FontWeight.w300,
+            letterSpacing: 2,
+          ),
+        ),
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              '“$cuerpo”\n— Sora',
+              style: TextStyle(
+                color: PaletaNeon.textoTenue.withOpacity(0.9),
+                fontSize: 14,
+                height: 1.5,
+              ),
+            ),
+            if (!_estadoEncargo.completado) ...[
+              const SizedBox(height: 12),
+              Text(
+                '${_estadoEncargo.progreso} / ${encargo.objetivo}',
+                style: const TextStyle(
+                  color: PaletaNeon.violetaNeon,
+                  fontSize: 14,
+                  letterSpacing: 2,
+                ),
+              ),
+            ],
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: Text(
+              traducirNarrativa('VALE', locale),
+              style: const TextStyle(
+                color: PaletaNeon.violetaNeon,
+                letterSpacing: 2,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Nombre localizado del distrito del encargo activo (cadena vacía
+  /// si el encargo es libre — el token `{distrito}` no aparece ahí).
+  String _nombreDistritoEncargo(Locale locale) {
+    final id = _encargoDeHoy?.idDistrito;
+    if (id == null) return '';
+    final distrito = CatalogoDistritos.todos
+        .where((d) => d.identificador == id)
+        .firstOrNull;
+    if (distrito == null) return '';
+    return traducirNarrativa(distrito.nombre, locale);
+  }
+
   Future<void> _entrarADistrito(Distrito distrito) async {
     HapticFeedback.selectionClick();
     await Navigator.of(context).push(
@@ -331,6 +473,19 @@ class _PantallaMapaState extends State<PantallaMapa>
     );
     // Al volver del distrito, recargamos esquirlas para reflejar las
     // ganadas durante la sesión.
+    await _cargar();
+  }
+
+  Future<void> _abrirTaller() async {
+    HapticFeedback.selectionClick();
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => PantallaTaller(repositorio: widget.repositorio),
+      ),
+    );
+    // Al volver, el saldo disponible pudo cambiar (no las esquirlas
+    // ganadas, que son las que muestra el HUD) — recargamos igualmente
+    // por si el modo dios u otra pantalla tocó algo.
     await _cargar();
   }
 
@@ -390,8 +545,16 @@ class _PantallaMapaState extends State<PantallaMapa>
                         alAbrirInstrucciones: _abrirInstrucciones,
                         alAbrirTour: _abrirTour,
                         alAbrirAjustesSonido: _abrirAjustesSonido,
+                        alActivarModoDios: _activarYAbrirModoDios,
                       ),
                     ),
+                    BannerActualizacion(repositorio: widget.repositorio),
+                    if (_encargoDeHoy != null)
+                      _BannerEncargo(
+                        encargo: _encargoDeHoy!,
+                        estado: _estadoEncargo,
+                        alTocar: _abrirDialogoEncargo,
+                      ),
                     Expanded(
                       child: _cargado
                           ? LayoutBuilder(
@@ -400,6 +563,7 @@ class _PantallaMapaState extends State<PantallaMapa>
                                 tamano: constraints.biggest,
                                 alEntrar: _entrarADistrito,
                                 onVerProgreso: (d) => _abrirProgreso(d),
+                                alAbrirTaller: _abrirTaller,
                               ),
                             )
                           : const SizedBox.shrink(),
@@ -410,6 +574,88 @@ class _PantallaMapaState extends State<PantallaMapa>
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+/// Línea fina bajo la cabecera con el encargo del día y su avance
+/// (doc 16, eje D). Da forma a la sesión: el niño sabe qué podría
+/// hacer hoy nada más entrar. Es una línea y no un chip a propósito:
+/// la cabecera va justa de ancho en móviles ~390 dp (informe Izan
+/// 2026-05-19) y el encargo es del niño, no del menú adulto.
+class _BannerEncargo extends StatelessWidget {
+  final EncargoDelDia encargo;
+  final EstadoEncargoDia estado;
+  final VoidCallback alTocar;
+
+  const _BannerEncargo({
+    required this.encargo,
+    required this.estado,
+    required this.alTocar,
+  });
+
+  String _texto(BuildContext contexto) {
+    final locale = Localizations.localeOf(contexto);
+    if (estado.completado) {
+      return traducirNarrativa('Encargo de hoy: hecho.', locale);
+    }
+    final plantilla = encargo.esLibre
+        ? 'Encargo de Sora: {n} Fragmentos donde tú quieras'
+        : 'Encargo de Sora: {n} Fragmentos en {distrito}';
+    var texto = traducirNarrativa(plantilla, locale)
+        .replaceAll('{n}', encargo.objetivo.toString());
+    if (!encargo.esLibre) {
+      final distrito = CatalogoDistritos.todos
+          .where((d) => d.identificador == encargo.idDistrito)
+          .firstOrNull;
+      texto = texto.replaceAll(
+        '{distrito}',
+        distrito == null ? '' : traducirNarrativa(distrito.nombre, locale),
+      );
+    }
+    return '$texto · ${estado.progreso}/${encargo.objetivo}';
+  }
+
+  @override
+  Widget build(BuildContext contexto) {
+    final completado = estado.completado;
+    return GestureDetector(
+      onTap: alTocar,
+      behavior: HitTestBehavior.opaque,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 2, 16, 2),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              completado
+                  ? Icons.check_circle_outline
+                  : Icons.radio_button_unchecked,
+              size: 12,
+              color: completado
+                  ? PaletaNeon.violetaNeon.withOpacity(0.7)
+                  : PaletaNeon.textoTenue.withOpacity(0.6),
+            ),
+            const SizedBox(width: 6),
+            Flexible(
+              child: Text(
+                _texto(contexto),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 11,
+                  letterSpacing: 1.2,
+                  fontWeight: FontWeight.w300,
+                  color: completado
+                      ? PaletaNeon.textoTenue.withOpacity(0.55)
+                      : PaletaNeon.textoTenue.withOpacity(0.85),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -428,6 +674,9 @@ class _Encabezado extends StatelessWidget {
   final VoidCallback alAbrirInstrucciones;
   final VoidCallback alAbrirTour;
   final VoidCallback alAbrirAjustesSonido;
+  // Trigger oculto del modo dios — pasado al _RotuloSecreto que
+  // envuelve el "UNO ROTO" y cuenta 7 toques rápidos.
+  final VoidCallback alActivarModoDios;
 
   const _Encabezado({
     required this.esquirlas,
@@ -442,6 +691,7 @@ class _Encabezado extends StatelessWidget {
     required this.alAbrirInstrucciones,
     required this.alAbrirTour,
     required this.alAbrirAjustesSonido,
+    required this.alActivarModoDios,
   });
 
   @override
@@ -461,17 +711,7 @@ class _Encabezado extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                'UNO ROTO',
-                style: TextStyle(
-                  fontSize: 14,
-                  letterSpacing: 5,
-                  color: PaletaNeon.textoTenue,
-                  fontWeight: FontWeight.w300,
-                ),
-                maxLines: 1,
-                softWrap: false,
-              ),
+              _RotuloSecreto(alActivar: alActivarModoDios),
               const SizedBox(height: 2),
               Text(
                 rango.nombreLocalizado(AppLocalizations.of(contexto)),
@@ -739,12 +979,14 @@ class _LienzoMapa extends StatelessWidget {
   final Size tamano;
   final ValueChanged<Distrito> alEntrar;
   final ValueChanged<Distrito>? onVerProgreso;
+  final VoidCallback? alAbrirTaller;
 
   const _LienzoMapa({
     required this.esquirlas,
     required this.tamano,
     required this.alEntrar,
     this.onVerProgreso,
+    this.alAbrirTaller,
   });
 
   @override
@@ -767,7 +1009,72 @@ class _LienzoMapa extends StatelessWidget {
                   : null,
             ),
           ),
+        // El taller de Rexán (doc 16, eje B): un lugar del mapa, no un
+        // chip — la cabecera va justa y el taller es del niño. Zona
+        // libre entre Afueras (0.22, 0.28) y la Montaña (0.5, 0.15).
+        if (alAbrirTaller != null)
+          Positioned(
+            left: 0.84 * ancho - 36,
+            top: 0.30 * alto - 28,
+            child: _NodoTaller(alAbrir: alAbrirTaller!),
+          ),
       ],
+    );
+  }
+}
+
+/// Marcador del taller de Rexán en el lienzo del mapa. Pequeño y
+/// cálido (ámbar del farolillo de Canales), sin badge ni urgencia.
+class _NodoTaller extends StatelessWidget {
+  final VoidCallback alAbrir;
+
+  const _NodoTaller({required this.alAbrir});
+
+  @override
+  Widget build(BuildContext contexto) {
+    final locale = Localizations.localeOf(contexto);
+    return GestureDetector(
+      onTap: alAbrir,
+      behavior: HitTestBehavior.opaque,
+      child: SizedBox(
+        width: 72,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: PaletaNeon.fondoMedio.withOpacity(0.8),
+                border: Border.all(
+                  color: PaletaNeon.ambarCanales.withOpacity(0.55),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: PaletaNeon.ambarCanales.withOpacity(0.18),
+                    blurRadius: 14,
+                  ),
+                ],
+              ),
+              child: Icon(
+                Icons.handyman_outlined,
+                size: 18,
+                color: PaletaNeon.ambarCanales.withOpacity(0.9),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              traducirNarrativa('Taller', locale).toUpperCase(),
+              style: TextStyle(
+                color: PaletaNeon.textoTenue.withOpacity(0.8),
+                fontSize: 9,
+                letterSpacing: 2,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -858,6 +1165,64 @@ class _NodoDistrito extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Envuelve el rótulo "UNO ROTO" con un detector de 7 toques rápidos
+/// que activa el modo dios (y, si ya estaba activo, abre directamente
+/// PantallaModoDios). Sin pista visual de que el gesto exista — el
+/// rótulo se ve igual que antes. El contador se resetea si pasan más
+/// de 1500 ms entre toques. Cubierto de forma indirecta por los tests
+/// de PantallaMapa cuando los haya; ahora vive solo en runtime.
+class _RotuloSecreto extends StatefulWidget {
+  final VoidCallback alActivar;
+
+  const _RotuloSecreto({required this.alActivar});
+
+  @override
+  State<_RotuloSecreto> createState() => _RotuloSecretoState();
+}
+
+class _RotuloSecretoState extends State<_RotuloSecreto> {
+  static const _toquesNecesarios = 7;
+  static const _ventanaEntreToques = Duration(milliseconds: 1500);
+
+  int _toquesAcumulados = 0;
+  DateTime? _ultimoToque;
+
+  void _registrarToque() {
+    final ahora = DateTime.now();
+    final ultimo = _ultimoToque;
+    if (ultimo == null || ahora.difference(ultimo) > _ventanaEntreToques) {
+      _toquesAcumulados = 1;
+    } else {
+      _toquesAcumulados++;
+    }
+    _ultimoToque = ahora;
+    if (_toquesAcumulados >= _toquesNecesarios) {
+      _toquesAcumulados = 0;
+      _ultimoToque = null;
+      widget.alActivar();
+    }
+  }
+
+  @override
+  Widget build(BuildContext contexto) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: _registrarToque,
+      child: const Text(
+        'UNO ROTO',
+        style: TextStyle(
+          fontSize: 14,
+          letterSpacing: 5,
+          color: PaletaNeon.textoTenue,
+          fontWeight: FontWeight.w300,
+        ),
+        maxLines: 1,
+        softWrap: false,
       ),
     );
   }

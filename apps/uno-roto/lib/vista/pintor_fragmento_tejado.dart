@@ -228,10 +228,32 @@ class PintorFragmentoTejado extends CustomPainter {
                                                                                                                                                                                                                             ? const Color(0xFFFFB300)
                                                                                                                                                                                                                             : PaletaNeon.azulNeon;
 
+    // Raros de clima (doc 16, eje E): aura blanco-cálido que no usa
+    // ninguna familia de puzzle — la señal de "esto no es normal".
+    final colorAuraEfectivo = fragmento.esDeClima && !escapando
+        ? const Color(0xFFF5E9C8)
+        : colorAura;
+
+    if (fragmento.esDeClima && !escapando) {
+      // Doble anillo exterior respirando lento.
+      final radioAnillo =
+          radio + 8 + math.sin(fasePulso * 2 * math.pi) * 2;
+      final pinturaRareza = Paint()
+        ..color = colorAuraEfectivo.withOpacity(0.45 * opacidad)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.0;
+      canvas.drawCircle(centro, radioAnillo, pinturaRareza);
+      final pinturaRarezaExterior = Paint()
+        ..color = colorAuraEfectivo.withOpacity(0.20 * opacidad)
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.0;
+      canvas.drawCircle(centro, radioAnillo + 5, pinturaRarezaExterior);
+    }
+
     if (esEspejo && !escapando) {
       // Aro fantasma que insinúa el "espejo" del Fragmento.
       final pinturaEspejo = Paint()
-        ..color = colorAura.withOpacity(0.3 * opacidad)
+        ..color = colorAuraEfectivo.withOpacity(0.3 * opacidad)
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.2;
       canvas.drawCircle(
@@ -244,7 +266,7 @@ class PintorFragmentoTejado extends CustomPainter {
     // Aura suave.
     for (var capa = 3; capa >= 1; capa--) {
       final pinturaAura = Paint()
-        ..color = colorAura.withOpacity(0.09 * capa * opacidad)
+        ..color = colorAuraEfectivo.withOpacity(0.09 * capa * opacidad)
         ..maskFilter = MaskFilter.blur(BlurStyle.normal, 6.0 * capa);
       canvas.drawCircle(centro, radio + capa * 4.0, pinturaAura);
     }
@@ -256,7 +278,7 @@ class PintorFragmentoTejado extends CustomPainter {
     canvas.drawCircle(centro, radio, pinturaInterior);
 
     final pinturaBorde = Paint()
-      ..color = colorAura.withOpacity(opacidad)
+      ..color = colorAuraEfectivo.withOpacity(opacidad)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.6;
     canvas.drawCircle(centro, radio, pinturaBorde);

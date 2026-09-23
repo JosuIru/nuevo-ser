@@ -5,6 +5,8 @@ import '../dominio/progreso_arco.dart';
 import '../dominio/rango_narrativo.dart';
 import '../dominio/ritmo_juego.dart';
 import 'package:nuevo_ser_tutor/nuevo_ser_tutor.dart';
+import 'repositorio_ciudad.dart';
+import 'repositorio_encargo.dart';
 import 'repositorio_faro.dart';
 
 // Re-exporta PerfilInfo para que la pantalla de selección no necesite
@@ -27,6 +29,18 @@ class RepositorioProgreso {
   static const _claveVersionPaqueteAudio = 'uroto.audio.version_local';
   static const _claveAudioSugerenciaVista = 'uroto.audio.sugerencia_vista';
   static const _claveIdiomaApp = 'uroto.idioma_app';
+  // Modo dios: clave global (compartida entre perfiles — es
+  // herramienta de desarrollador/operador, no estado de niño). Se
+  // activa con 7 toques rápidos sobre el rótulo del mapa y abre
+  // PantallaModoDios.
+  static const _claveModoDiosActivo = 'uroto.modo_dios_activo';
+  // Última versión sobre la que el banner "hay actualización" ya
+  // avisó al usuario. Si la versión publicada en GitHub coincide con
+  // esta, no se vuelve a mostrar el banner (el usuario ya decidió
+  // ignorarla o ya actualizó). Clave global — los avisos son del
+  // dispositivo, no del perfil.
+  static const _claveUltimaVersionAvisada =
+      'uroto.actualizacion.ultima_avisada';
   static const idPerfilPorDefecto = GestorPerfiles.idPerfilPorDefecto;
 
   // Sufijos (sin prefijo de perfil).
@@ -66,6 +80,8 @@ class RepositorioProgreso {
       _claveVersionPaqueteAudio,
       _claveAudioSugerenciaVista,
       _claveIdiomaApp,
+      _claveModoDiosActivo,
+      _claveUltimaVersionAvisada,
     },
   );
 
@@ -85,6 +101,16 @@ class RepositorioProgreso {
   /// última edición leída, respuestas a los acertijos). Expuesto para
   /// la pantalla del Faro y el HUD del mapa.
   late final RepositorioFaro faro = RepositorioFaro(gestor: _gestor);
+
+  /// Persistencia del encargo del día del perfil activo (fecha,
+  /// progreso, completado). Expuesto para la pantalla de caza (conteo
+  /// de capturas) y el mapa (línea de encargo bajo la cabecera).
+  late final RepositorioEncargo encargo = RepositorioEncargo(gestor: _gestor);
+
+  /// Persistencia del taller de restauración del perfil activo
+  /// (piezas restauradas + esquirlas gastadas). Expuesto para la
+  /// pantalla del taller y el escenario del cazadero.
+  late final RepositorioCiudad ciudad = RepositorioCiudad(gestor: _gestor);
 
   /// Preferencias de audio del perfil activo (modo silencio + volumen
   /// por capa). Sufijo y prefijo conservan el shape histórico.
@@ -195,6 +221,37 @@ class RepositorioProgreso {
 
   Future<void> guardarIdiomaApp(String codigoIdioma) =>
       _repoIdiomaApp.guardar(codigoIdioma);
+
+  /// Modo dios: activación oculta (7 toques sobre el rótulo del mapa).
+  /// Cuando está activo, el menú overflow del mapa muestra un acceso
+  /// extra a PantallaModoDios — galería de personajes, lanzador de
+  /// cinemáticas, botón "desbloquear todo" del perfil activo. Clave
+  /// global compartida entre perfiles. Disabled por defecto.
+  Future<bool> cargarModoDiosActivo() async {
+    final prefs = await _prefs();
+    return prefs.getBool(_claveModoDiosActivo) ?? false;
+  }
+
+  Future<void> guardarModoDiosActivo(bool activo) async {
+    final prefs = await _prefs();
+    if (activo) {
+      await prefs.setBool(_claveModoDiosActivo, true);
+    } else {
+      await prefs.remove(_claveModoDiosActivo);
+    }
+  }
+
+  /// Última versión sobre la que el banner "hay actualización"
+  /// ya avisó. null si no se ha avisado de ninguna todavía.
+  Future<String?> cargarUltimaVersionAvisada() async {
+    final prefs = await _prefs();
+    return prefs.getString(_claveUltimaVersionAvisada);
+  }
+
+  Future<void> guardarUltimaVersionAvisada(String version) async {
+    final prefs = await _prefs();
+    await prefs.setString(_claveUltimaVersionAvisada, version);
+  }
 
   /// Atajo: borra token y email a la vez, equivalente a "cerrar sesión".
   Future<void> cerrarSesionBackend() => _cuentaBackend.cerrarSesion();

@@ -1656,4 +1656,171 @@ const Map<String, String> narrativaCa = <String, String>{
       'Veuràs una taula amb parelles (x, y). La teva feina és trobar la regla que diu com s\'obté cada y a partir de la seva x.\n\nLa regla sempre té la forma:  y = m·x + n.\n\nPer descobrir-la:\n  1) Quant puja y quan x puja d\'1 en 1. Això és m.\n     Mira dues files seguides: m = (y₂ − y₁) ÷ (x₂ − x₁).\n  2) Quant val y quan x = 0. Això és n.\n     Si aquesta fila no apareix, aïlla amb qualsevol fila:\n     n = y − m·x.\n\nAbans de triar, prova la regla amb una altra fila de la taula.',
   'En la vida: la factura de la luz — n es la cuota fija que pagas cada mes, m es lo que cuesta cada kWh consumido.':
       'A la vida: la factura de la llum — n és la quota fixa que pagues cada mes, m el que costa cada kWh consumit.',
+  // Encargo del día (doc 16, eje D): línea del mapa, diálogo de Sora
+  // y cierre sobrio en el cazadero. Los tokens {n} y {distrito} se
+  // sustituyen DESPUÉS de traducir — el orden de palabras es libre.
+  'Encargo de Sora: {n} Fragmentos en {distrito}':
+      'Encàrrec de Sora: {n} Fragments a {distrito}',
+  'Encargo de Sora: {n} Fragmentos donde tú quieras':
+      'Encàrrec de Sora: {n} Fragments on tu vulguis',
+  'Encargo de hoy: hecho.': 'Encàrrec d\'avui: fet.',
+  'El encargo del día': 'L\'encàrrec del dia',
+  'He visto {n} Fragmentos en {distrito}. Si te apetece, tráemelos. Si no, mañana habrá otro.':
+      'He vist {n} Fragments a {distrito}. Si et ve de gust, porta-me\'ls. Si no, demà n\'hi haurà un altre.',
+  'Hoy me valen {n} Fragmentos de donde sea. Si te apetece, tráemelos. Si no, mañana habrá otro.':
+      'Avui em valen {n} Fragments de qualsevol lloc. Si et ve de gust, porta-me\'ls. Si no, demà n\'hi haurà un altre.',
+  'Hecho. Mañana habrá otro.': 'Fet. Demà n\'hi haurà un altre.',
+  'El encargo de hoy está hecho. Bien.':
+      'L\'encàrrec d\'avui està fet. Bé.',
+  'VALE': 'D\'ACORD',
+  // El taller de Rexán (doc 16, eje B): pantalla, nodo del mapa,
+  // nombres de las 21 piezas y líneas de Rexán.
+  'El taller de Rexán': 'El taller de Rexán',
+  'Taller': 'Taller',
+  'Trae esquirlas. Yo pongo las manos.':
+      'Porta esquirles. Jo hi poso les mans.',
+  '¿Restaurar {pieza} por {precio} esquirlas?':
+      'Restaurar {pieza} per {precio} esquirles?',
+  'Te faltan esquirlas. Los Fragmentos de ahí fuera llevan unas cuantas.':
+      'Et falten esquirles. Els Fragments d\'allà fora en porten unes quantes.',
+  'RESTAURAR': 'RESTAURAR',
+  'CANCELAR': 'CANCEL·LA',
+  'Una luz más. La ciudad lo nota, aunque no lo diga.':
+      'Un llum més. La ciutat ho nota, encara que no ho digui.',
+  'Alguien vive mejor esta noche. Buen trabajo.':
+      'Algú viu millor aquesta nit. Bona feina.',
+  'Mira eso. Casi parece fiesta. Casi.':
+      'Mira això. Gairebé sembla festa. Gairebé.',
+  'La farola de la esquina': 'El fanal de la cantonada',
+  'Las ventanas del ático': 'Les finestres de les golfes',
+  'La guirnalda del patio': 'La garlanda del pati',
+  'El farolillo del puente': 'El fanalet del pont',
+  'Las ventanas del embarcadero': 'Les finestres de l\'embarcador',
+  'Las luces del canal': 'Els llums del canal',
+  'El farol de la entrada': 'El fanal de l\'entrada',
+  'Las ventanas del almacén': 'Les finestres del magatzem',
+  'La guirnalda de los toldos': 'La garlanda dels tendals',
+  'La lámpara del taller viejo': 'El llum del taller vell',
+  'Las ventanas de la nave': 'Les finestres de la nau',
+  'Las luces de la pasarela': 'Els llums de la passarel·la',
+  'El farol del muelle': 'El fanal del moll',
+  'Las ventanas de la lonja': 'Les finestres de la llotja',
+  'Las luces del espigón': 'Els llums de l\'espigó',
+  'El farol del sendero': 'El fanal del corriol',
+  'Las ventanas de la granja': 'Les finestres de la granja',
+  'Las luces del observatorio': 'Els llums de l\'observatori',
+  'La lámpara del refugio': 'El llum del refugi',
+  'Las ventanas de la estación': 'Les finestres de l\'estació',
+  'Las luces de la senda alta': 'Els llums del camí alt',
+  // Raros de clima (doc 16, eje E): líneas de Sora en el cazadero y
+  // entradas del Cuaderno. Nombres traducidos como los distritos.
+  'Espera. Ese brillo no es normal. Ve.':
+      'Espera. Aquesta lluïssor no és normal. Ves-hi.',
+  'Ahí. En el agua. No parpadees.': 'Allà. A l\'aigua. No parpellegis.',
+  'Esa luz entre la niebla no es del faro. Ve.':
+      'Aquell llum entre la boira no és del far. Ves-hi.',
+  'Mira. Flota distinto que los demás. Corre.':
+      'Mira. Flota diferent dels altres. Corre.',
+  '«La Veleta». Solo baja cuando llueve en los Tejados. Irune querrá saberlo — mira el cuaderno.':
+      '«El Penell». Només baixa quan plou a les Teulades. La Irune ho voldrà saber — mira el quadern.',
+  '«El Reflejo». Vive en la niebla de los Canales. Casi nadie lo ha visto dos veces. Apúntalo en el cuaderno.':
+      '«El Reflex». Viu a la boira dels Canals. Gairebé ningú no l\'ha vist dues vegades. Apunta\'l al quadern.',
+  '«La Lucerna». Los del Puerto juran que guía barcos perdidos. Ahora está en tu cuaderno.':
+      '«La Lluerna». Els del Port juren que guia vaixells perduts. Ara és al teu quadern.',
+  '«El Vilano». Solo se deja ver cuando llueve en las Afueras, y allí casi nunca llueve. Al cuaderno.':
+      '«El Plomissol». Només es deixa veure quan plou als Afores, i allà gairebé mai no plou. Al quadern.',
+  'Se ha ido. Volverá con este cielo.':
+      'Se n\'ha anat. Tornarà amb aquest cel.',
+  'La Veleta': 'El Penell',
+  'El Reflejo': 'El Reflex',
+  'La Lucerna': 'La Lluerna',
+  'El Vilano': 'El Plomissol',
+  'Solo baja a los Tejados cuando llueve. Gira despacio sobre sí misma, como si buscara de dónde viene el viento — o de dónde vino la Rotura. Los cazadores viejos dicen que verla da suerte. Sora dice que la suerte no existe, pero esa noche silbó de vuelta a casa.':
+      'Només baixa a les Teulades quan plou. Gira a poc a poc sobre si mateix, com si busqués d\'on ve el vent — o d\'on va venir el Trencament. Els caçadors vells diuen que veure\'l porta sort. La Sora diu que la sort no existeix, però aquella nit va tornar a casa xiulant.',
+  'Vive en la niebla de los Canales, pegado al agua. No flota: se refleja. Lo raro es que a veces el agua lo muestra y el aire no. Maren Olbéa le dedicó una carta al director hace años preguntando si alguien más lo había visto. Nadie contestó. Tú sí lo has visto.':
+      'Viu a la boira dels Canals, arran d\'aigua. No flota: es reflecteix. L\'estrany és que de vegades l\'aigua el mostra i l\'aire no. La Maren Olbéa li va dedicar una carta al director fa anys preguntant si algú més l\'havia vist. Ningú no va contestar. Tu sí que l\'has vist.',
+  'Una luz pequeña que camina por la niebla del Puerto, a la altura de los mástiles. Los estibadores juran que guía a los barcos que se pierden — y que por eso el faro no la espanta. Irune sospecha que es más vieja que el faro. Quizá más vieja que el Puerto.':
+      'Un llum petit que camina per la boira del Port, a l\'altura dels pals. Els estibadors juren que guia els vaixells que es perden — i que per això el far no l\'espanta. La Irune sospita que és més vella que el far. Potser més vella que el Port.',
+  'En las Afueras casi nunca llueve. Cuando llueve, flota el Vilano: liviano, a contraviento, como una semilla que no quiere aterrizar. Capturarlo es de las cosas más difíciles que puede contar un cazador — no por el puzzle, sino por estar allí el día justo.':
+      'Als Afores gairebé mai no plou. Quan plou, flota el Plomissol: lleuger, a contravent, com una llavor que no vol aterrar. Capturar-lo és de les coses més difícils que pot explicar un caçador — no pel puzle, sinó per ser-hi el dia just.',
+  // Secretos espaciales (doc 16, eje E).
+  'Ahí vive el gato de Irune. No se lo digas a nadie.':
+      'Aquí viu el gat de la Irune. No ho diguis a ningú.',
+  'Ese farolillo lleva años sin luz. Hasta ahora, parece.':
+      'Aquest fanalet fa anys que no fa llum. Fins ara, sembla.',
+  'La ventana del gato': 'La finestra del gat',
+  'El farolillo apagado': 'El fanalet apagat',
+  'Una ventana concreta de los Tejados, siempre encendida. Ahí vive el gato de Irune, que no se llama de ninguna manera porque Irune dice que los nombres son para quien acude cuando lo llaman. El gato la ignora desde hace nueve años. Tocaste su ventana y no pasó nada. O eso parece.':
+      'Una finestra concreta de les Teulades, sempre encesa. Aquí viu el gat de la Irune, que no es diu de cap manera perquè la Irune diu que els noms són per a qui acudeix quan el criden. El gat la ignora des de fa nou anys. Vas tocar la seva finestra i no va passar res. O això sembla.',
+  'En el puente bajo de los Canales hay un farolillo que no se enciende desde antes de la Rotura. Los fareros lo saltan al hacer la ronda, por respeto o por costumbre. Lo tocaste. Sora jura que esa noche parpadeó una vez. Rexán dice que Sora exagera. Ninguno de los dos volvió a pasar por el puente sin mirarlo.':
+      'Al pont baix dels Canals hi ha un fanalet que no s\'encén des d\'abans del Trencament. Els fanalers se\'l salten en fer la ronda, per respecte o per costum. El vas tocar. La Sora jura que aquella nit va parpellejar un cop. En Rexán diu que la Sora exagera. Cap dels dos no va tornar a passar pel pont sense mirar-lo.',
+  // Bestiario (doc 16, eje C): fichas de familias de Fragmentos.
+  // ('Los Plenos' ya está traducido arriba, con las escenas.)
+  'Los Comparadores': 'Els Comparadors',
+  'Los Espejos': 'Els Miralls',
+  'Los Impropios': 'Els Impropis',
+  'Los Duales': 'Els Duals',
+  'Las Comas': 'Les Comes',
+  'Tejados y Canales': 'Teulades i Canals',
+  'Canales y Mercado': 'Canals i Mercat',
+  'Canales e Industria': 'Canals i Indústria',
+  'Común': 'Comú',
+  'Inusual': 'Inusual',
+  'La forma más simple de Fragmento: un círculo entero que se cree indivisible. Se caza cortándolo en partes iguales. Los primeros que verás.':
+      'La forma més simple de Fragment: un cercle sencer que es creu indivisible. Es caça tallant-lo en parts iguals. Els primers que veuràs.',
+  'No huyen casi nunca. Sora dice que es porque no saben que están rotos — cada Pleno se cree el Uno entero, y esperar no cuesta nada cuando te crees eterno.':
+      'Gairebé mai no fugen. La Sora diu que és perquè no saben que estan trencats — cada Ple es creu l\'U sencer, i esperar no costa res quan et creus etern.',
+  'Irune guarda el primer Pleno que desfragmentó, dibujado a lápiz en la última página de su cuaderno. Debajo escribió: "No era grande. Era mío."':
+      'La Irune guarda el primer Ple que va desfragmentar, dibuixat a llapis a l\'última pàgina del seu quadern. A sota hi va escriure: "No era gran. Era meu."',
+  'Aparecen de dos en dos o de tres en tres, nunca solos. Uno siempre vale más que otro, aunque no lo parezca — cazarlos es saber cuál.':
+      'Apareixen de dos en dos o de tres en tres, mai sols. Un sempre val més que un altre, encara que no ho sembli — caçar-los és saber quin.',
+  'Las parejas engañan a los ojos: la fracción con números grandes puede ser la pequeña. Los cazadores novatos caen. Tú caíste. Todos caímos.':
+      'Les parelles enganyen els ulls: la fracció amb números grans pot ser la petita. Els caçadors novells hi cauen. Tu hi vas caure. Tots hi vam caure.',
+  'Hay una teoría en la redacción del Faro: los Comparadores no son varios Fragmentos, sino uno solo que se mira. Nadie la ha podido desmentir.':
+      'Hi ha una teoria a la redacció del Far: els Comparadors no són diversos Fragments, sinó un de sol que es mira. Ningú no l\'ha pogut desmentir.',
+  'Cada Espejo tiene infinitas caras: 1/2, 2/4, 3/6… Todas valen lo mismo. Cazarlo es reconocerlo aunque venga disfrazado.':
+      'Cada Mirall té infinites cares: 1/2, 2/4, 3/6… Totes valen el mateix. Caçar-lo és reconèixer-lo encara que vingui disfressat.',
+  'Se amplifican y se simplifican a voluntad, como quien se cambia de abrigo. La forma mínima es su cara verdadera — la única que no pueden quitarse.':
+      'S\'amplifiquen i se simplifiquen a voluntat, com qui es canvia d\'abric. La forma mínima és la seva cara veritable — l\'única que no es poden treure.',
+  'En los Canales dicen que si ves las dos caras de un Espejo en el agua a la vez, el reflejo se queda contigo. Pregúntale a El Reflejo, si lo encuentras.':
+      'Als Canals diuen que si veus les dues cares d\'un Mirall a l\'aigua alhora, el reflex es queda amb tu. Pregunta-ho al Reflex, si el trobes.',
+  'Fragmentos con el numerador más grande que el denominador: llevan más de un entero dentro. Caminan raro, como sobrecargados.':
+      'Fragments amb el numerador més gran que el denominador: porten més d\'un sencer a dins. Caminen estrany, com sobrecarregats.',
+  'Se pueden reescribir como número mixto — el entero delante, el resto en fracción. No les gusta. Ningún Impropio admite que en el fondo es un dos y pico.':
+      'Es poden reescriure com a nombre mixt — el sencer davant, la resta en fracció. No els agrada. Cap Impropi no admet que en el fons és un dos i escaig.',
+  'Vorax era un Impropio antiguo que nunca dejó que lo reescribieran. Lo que guardaba dentro ya lo viste. O lo verás.':
+      'En Vorax era un Impropi antic que mai no va deixar que el reescrivissin. El que guardava a dins ja ho has vist. O ho veuràs.',
+  'Dos Fragmentos unidos por una línea de luz que no se puede cortar. Para cazarlos hay que hacerlos hablar el mismo idioma: mismo denominador.':
+      'Dos Fragments units per una línia de llum que no es pot tallar. Per caçar-los cal fer-los parlar el mateix idioma: mateix denominador.',
+  'La línea que los une no es una cadena — es una operación. Sumar, restar, multiplicar. Resuélvela y la luz se apaga sola.':
+      'La línia que els uneix no és una cadena — és una operació. Sumar, restar, multiplicar. Resol-la i la llum s\'apaga sola.',
+  'Zafrán es el Dual más viejo que se conoce. No habla. Sora cree que los dos extremos discutieron hace siglos y desde entonces guardan silencio.':
+      'En Zafrán és el Dual més vell que es coneix. No parla. La Sora creu que els dos extrems van discutir fa segles i des de llavors guarden silenci.',
+  'Fragmentos que se escriben con coma: 0,5 · 2,37 · 0,825. Parecen exactos y presumen de ello. Son fracciones con uniforme de trabajo.':
+      'Fragments que s\'escriuen amb coma: 0,5 · 2,37 · 0,825. Semblen exactes i en presumeixen. Són fraccions amb uniforme de feina.',
+  'Su trampa favorita: aparentar que más cifras es más valor. 0,35 se pavonea delante de 0,4 y pierde. Lee las cifras, no las cuentes.':
+      'La seva trampa preferida: aparentar que més xifres és més valor. El 0,35 es pavoneja davant del 0,4 i perd. Llegeix les xifres, no les comptis.',
+  'En Industria las Comas se alinean solas junto a las máquinas de Vadic, décima con décima, centésima con centésima. Nadie las ha entrenado. A Vadic le inquieta.':
+      'A Indústria les Comes s\'alineen soles al costat de les màquines d\'en Vadic, dècima amb dècima, centèsima amb centèsima. Ningú no les ha entrenat. En Vadic n\'està inquiet.',
+  // Balanza de comparación (doc 16, eje A — piloto Fase D3).
+  'Arrastra hacia abajo el platillo que pese más.':
+      'Arrossega cap avall el platet que pesi més.',
+  // Ángulo manipulativo (doc 16, eje A — piloto Fase D3). De paso,
+  // las categorías de MED.04 que la pantalla clásica dejaba sin
+  // traducir (caían al castellano).
+  'agudo': 'agut',
+  'recto': 'recte',
+  'obtuso': 'obtús',
+  'llano': 'pla',
+  'completo': 'complet',
+  'Gira el brazo hasta formar un ángulo {tipo}.':
+      'Gira el braç fins a formar un angle {tipo}.',
+  'Arrastra el brazo del ángulo y pulsa ASÍ cuando lo tengas.':
+      'Arrossega el braç de l\'angle i prem AIXÍ quan el tinguis.',
+  'ASÍ': 'AIXÍ',
+  'Agudo: menos de 90°.': 'Agut: menys de 90°.',
+  'Recto: 90° exactos.': 'Recte: 90° exactes.',
+  'Obtuso: entre 90° y 180°.': 'Obtús: entre 90° i 180°.',
+  'Llano: 180° exactos.': 'Pla: 180° exactes.',
+  'Completo: 360°.': 'Complet: 360°.',
 };

@@ -14,16 +14,19 @@ import '../l10n/traducciones_narrativa.dart';
 import '../nucleo/paleta.dart';
 import 'pantalla_atlas_distrito.dart';
 import 'pantalla_panel_tutor.dart';
+import 'pestana_bestiario.dart';
 import 'widgets/avatar_jugador.dart';
 import 'widgets/indicador_ventana.dart';
 
-/// "Mi cuaderno" — pantalla unificada con dos pestañas:
+/// "Mi cuaderno" — pantalla unificada con tres pestañas:
 ///   - **Habilidades**: las 66 habilidades agrupadas por distrito,
 ///     con indicador "ventana iluminada" sin números (versión niño).
 ///     Tap en distrito → [PantallaAtlasDistrito]. Permite saltar a
 ///     [PantallaPanelTutor] desde el icono de escudo.
 ///   - **Diario**: las entradas narrativas del antiguo Cuaderno de
 ///     Irune, agrupadas por categoría, marcadas como leídas al abrir.
+///   - **Bestiario**: las familias de Fragmentos como fichas con
+///     identidad y lore por tramos (doc 16, eje C).
 ///
 /// Reemplaza a `PantallaAtlas` + `PantallaCuaderno` (versión 0.5).
 class PantallaMiCuaderno extends StatefulWidget {
@@ -42,7 +45,7 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
       if (mounted) setState(() {});
     });
@@ -84,6 +87,7 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
           tabs: const [
             Tab(text: 'HABILIDADES'),
             Tab(text: 'DIARIO'),
+            Tab(text: 'BESTIARIO'),
           ],
         ),
         actions: [
@@ -108,6 +112,7 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
           children: [
             _PestanaHabilidades(repositorio: widget.repositorio),
             _PestanaDiario(repositorio: widget.repositorio),
+            PestanaBestiario(repositorio: widget.repositorio),
           ],
         ),
       ),

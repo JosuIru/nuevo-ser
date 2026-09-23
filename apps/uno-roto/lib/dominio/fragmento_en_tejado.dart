@@ -321,6 +321,12 @@ class FragmentoEnTejado {
   /// `Generador.generar(dificultad:)` con aleatoriedad interna).
   final int? semillaProblema;
 
+  /// Id del `FragmentoDeClima` que este Fragmento encarna, o null si
+  /// es un Fragmento normal (doc 16, eje E). El puzzle es el mismo;
+  /// la rareza está en el encuentro: aura distinta al flotar y flag
+  /// de captura que desbloquea su entrada del Cuaderno.
+  final String? idFragmentoDeClima;
+
   const FragmentoEnTejado({
     required this.identificador,
     required this.numerador,
@@ -339,9 +345,39 @@ class FragmentoEnTejado {
     this.modoComparacion,
     this.dificultadSugerida,
     this.semillaProblema,
+    this.idFragmentoDeClima,
   });
 
   bool get esCompuesto => numerador > 1;
+
+  bool get esDeClima => idFragmentoDeClima != null;
+
+  /// Copia idéntica marcada como encarnación del raro de clima
+  /// [idRaro]. El generador produce el Fragmento normal del distrito
+  /// y el cazadero le añade la marca en el hueco de spawn que toque —
+  /// así el puzzle sigue calibrado por el selector adaptativo.
+  FragmentoEnTejado conMarcaDeClima(String idRaro) {
+    return FragmentoEnTejado(
+      identificador: identificador,
+      numerador: numerador,
+      denominador: denominador,
+      xNormalizado: xNormalizado,
+      yNormalizado: yNormalizado,
+      instanteAparicion: instanteAparicion,
+      tiempoDeVida: tiempoDeVida,
+      tipo: tipo,
+      etiquetaDecimal: etiquetaDecimal,
+      numeradorB: numeradorB,
+      denominadorB: denominadorB,
+      operador: operador,
+      decimalA: decimalA,
+      decimalB: decimalB,
+      modoComparacion: modoComparacion,
+      dificultadSugerida: dificultadSugerida,
+      semillaProblema: semillaProblema,
+      idFragmentoDeClima: idRaro,
+    );
+  }
 
   String get etiqueta => etiquetaDecimal ?? '$numerador/$denominador';
 

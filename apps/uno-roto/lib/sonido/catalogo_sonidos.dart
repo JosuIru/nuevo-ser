@@ -132,6 +132,18 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_canales.ogg',
       enBucle: true,
     ),
+    'musica_maquina_parejas': SonidoCatalogado(
+      identificador: 'musica_maquina_parejas',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_parejas.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_minas': SonidoCatalogado(
+      identificador: 'musica_maquina_minas',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_minas.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

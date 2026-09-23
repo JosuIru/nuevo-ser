@@ -253,6 +253,70 @@ def puentes():
     return pista
 
 
+def percusion_mano(volumen=0.18, grave=True):
+    """Golpe de cajón o bongó suave: tono corto con piel."""
+    n = int(0.2 * FS)
+    t = np.arange(n) / FS
+    frecuencia = (110 if grave else 240) * (1 + 0.5 * np.exp(-t / 0.01))
+    fase = 2 * np.pi * np.cumsum(frecuencia) / FS
+    piel = filtro(AZAR.uniform(-1, 1, n), 'bandpass', [800, 3000]) * np.exp(-t / 0.006)
+    return volumen * (np.sin(fase) * envolvente(n, 0.001, 0.07) + 0.3 * piel)
+
+
+def parejas():
+    """Mercado · 88 BPM, sol mayor con toques frigios. Guitarra pulsada y
+    percusión de mano, cálido. 8 compases."""
+    negra = 60 / 88
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ('G2', ['G3', 'B3', 'D4']),
+        ('E2', ['E3', 'G3', 'B3']),
+        ('C2', ['C3', 'E3', 'G3', 'B3']),
+        ('D2', ['D3', 'F#3', 'A3', 'C4']),
+    ]
+    for c in range(8):
+        inicio = c * compas
+        raiz, voces = acordes[c % 4]
+        # Guajeo: acorde pulsado a contratiempo, a lo son.
+        for tiempo in (0, 1.5, 2.5, 3.5):
+            for i, voz in enumerate(voces):
+                sumar_circular(pista, inicio + tiempo * negra + 0.012 * i,
+                               pulsada(nota(voz) * 2, 0.9, 0.07))
+        sumar_circular(pista, inicio, bajo(nota(raiz) * 2, negra * 1.4, 0.1))
+        sumar_circular(pista, inicio + 2.5 * negra, bajo(nota(raiz) * 3, negra, 0.07))
+        for tiempo, grave in [(0, True), (1, False), (1.5, False), (2, True),
+                              (3, False), (3.5, False)]:
+            sumar_circular(pista, inicio + tiempo * negra, percusion_mano(0.14, grave))
+    # Un giro frigio (la bemol) al final, un guiño del Mercado.
+    for i, voz in enumerate(['D5', 'C5', 'G#4', 'G4']):
+        sumar_circular(pista, 7 * compas + (2 + i * 0.5) * negra,
+                       piano_fm(nota(voz), negra, 0.09))
+    return pista
+
+
+def minas():
+    """Industria · 64 BPM, do# modal. Pulso de máquina, metal y
+    reverberación: estructurado, casi inhumano. 8 compases."""
+    negra = 60 / 64
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    for c in range(8):
+        inicio = c * compas
+        sumar_circular(pista, inicio,
+                       pad([nota(v) for v in ['C#3', 'G#3', 'D#4']], compas * 1.1, 0.05, 1400))
+        sumar_circular(pista, inicio, bajo(nota('C#2'), compas * 0.9, 0.08))
+        for corchea in range(8):  # tic metálico constante, como una prensa
+            sumar_circular(pista, inicio + corchea * negra / 2,
+                           charles(0.05 if corchea % 2 == 0 else 0.025))
+        sumar_circular(pista, inicio + negra, percusion_mano(0.12, True))
+        sumar_circular(pista, inicio + 3 * negra, percusion_mano(0.12, True))
+    # Golpe de metal lejano cada dos compases (campana grave, sin afinar).
+    for c in range(0, 8, 2):
+        sumar_circular(pista, c * compas + 2 * negra, campana(nota('C#3'), 0.05))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -312,6 +376,8 @@ if __name__ == '__main__':
     guardar(puentes(), os.path.join(musica, 'maquina_puentes.ogg'), -19, es_bucle=True)
     guardar(encaje(), os.path.join(musica, 'maquina_encaje.ogg'), -19, es_bucle=True)
     guardar(canales(), os.path.join(musica, 'maquina_canales.ogg'), -19, es_bucle=True)
+    guardar(parejas(), os.path.join(musica, 'maquina_parejas.ogg'), -19, es_bucle=True)
+    guardar(minas(), os.path.join(musica, 'maquina_minas.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

@@ -1904,4 +1904,41 @@ const Map<String, String> narrativaEu = <String, String>{
       'Irakurri araua. Nahi duzunean, aukeratu norabide bat.',
   'Tres laberintos. Las sombras se van a dormir; tú también.':
       'Hiru labirinto. Itzalak lotara doaz; zu ere bai.',
+  // Parejas y Minas (minijuegos)
+  'Parejas':
+      'Bikoteak',
+  'Minas':
+      'Minak',
+  'Toca dos cartas que valgan lo mismo, aunque estén escritas distinto.':
+      'Ukitu balio bera duten bi karta, desberdin idatzita egon arren.',
+  'Un medio, cero coma cinco, cincuenta por ciento. Tres trajes para la misma persona.':
+      'Erdi bat, zero koma bost, ehuneko berrogeita hamar. Hiru jantzi pertsona berarentzat.',
+  'Abre las casillas seguras y marca las minas. La regla dice cuáles son.':
+      'Ireki gelaxka seguruak eta markatu minak. Arauak esaten du zein diren.',
+  'Las minas no se esconden: cumplen la regla. Cada casilla abierta te dice cuántas tiene alrededor.':
+      'Minak ez dira ezkutatzen: araua betetzen dute. Irekitako gelaxka bakoitzak inguruan zenbat dituen esaten dizu.',
+  'Esas dos no valen lo mismo.':
+      'Bi horiek ez dute balio bera.',
+  'Tablero limpio.':
+      'Taula garbi.',
+  'Tres tableros. Ya sabes que una misma cosa tiene muchos nombres.':
+      'Hiru taula. Badakizu gauza batek izen asko dituela.',
+  'Las minas: múltiplos de {n}.':
+      'Minak: {n} zenbakiaren multiploak.',
+  'Las minas: divisibles entre {n}.':
+      'Minak: zatigarriak. Zatitzailea: {n}.',
+  'Las minas: números primos.':
+      'Minak: zenbaki lehenak.',
+  '{n} no cumple la regla: era segura.':
+      '{n} zenbakiak ez du araua betetzen: segurua zen.',
+  '{n} cumple la regla: era mina. La desactivo yo.':
+      '{n} zenbakiak araua betetzen du: mina zen. Nik desaktibatuko dut.',
+  'Tablero despejado.':
+      'Taula garbituta.',
+  'Tres tableros sin una sola explosión. Así se trabaja.':
+      'Hiru taula leherketa bakar bat ere gabe. Horrela egiten da lana.',
+  'ABRIR':
+      'IREKI',
+  'MARCAR':
+      'MARKATU',
 };

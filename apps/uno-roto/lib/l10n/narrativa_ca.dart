@@ -1908,4 +1908,41 @@ const Map<String, String> narrativaCa = <String, String>{
       'Llegeix la regla. Quan vulguis, tria una direcció.',
   'Tres laberintos. Las sombras se van a dormir; tú también.':
       'Tres laberints. Les ombres se\'n van a dormir; tu també.',
+  // Parejas y Minas (minijuegos)
+  'Parejas':
+      'Parelles',
+  'Minas':
+      'Mines',
+  'Toca dos cartas que valgan lo mismo, aunque estén escritas distinto.':
+      'Toca dues cartes que valguin el mateix, encara que estiguin escrites diferent.',
+  'Un medio, cero coma cinco, cincuenta por ciento. Tres trajes para la misma persona.':
+      'Un mig, zero coma cinc, cinquanta per cent. Tres vestits per a la mateixa persona.',
+  'Abre las casillas seguras y marca las minas. La regla dice cuáles son.':
+      'Obre les caselles segures i marca les mines. La regla diu quines són.',
+  'Las minas no se esconden: cumplen la regla. Cada casilla abierta te dice cuántas tiene alrededor.':
+      'Les mines no s\'amaguen: compleixen la regla. Cada casella oberta et diu quantes en té al voltant.',
+  'Esas dos no valen lo mismo.':
+      'Aquestes dues no valen el mateix.',
+  'Tablero limpio.':
+      'Tauler net.',
+  'Tres tableros. Ya sabes que una misma cosa tiene muchos nombres.':
+      'Tres taulers. Ja saps que una mateixa cosa té molts noms.',
+  'Las minas: múltiplos de {n}.':
+      'Les mines: múltiples de {n}.',
+  'Las minas: divisibles entre {n}.':
+      'Les mines: divisibles entre {n}.',
+  'Las minas: números primos.':
+      'Les mines: nombres primers.',
+  '{n} no cumple la regla: era segura.':
+      '{n} no compleix la regla: era segura.',
+  '{n} cumple la regla: era mina. La desactivo yo.':
+      '{n} compleix la regla: era una mina. La desactivo jo.',
+  'Tablero despejado.':
+      'Tauler desminat.',
+  'Tres tableros sin una sola explosión. Así se trabaja.':
+      'Tres taulers sense ni una explosió. Així es treballa.',
+  'ABRIR':
+      'OBRIR',
+  'MARCAR':
+      'MARCAR',
 };

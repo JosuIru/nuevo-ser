@@ -183,12 +183,16 @@ class ReglaCanales {
   /// `{n}` se sustituye después).
   final String texto;
   final int? parametro;
-  final List<NumeroCanal> Function(math.Random azar, int cuantos) _generar;
+  final List<NumeroCanal> Function(
+      math.Random azar, int cuantos, double proporcion) _generar;
 
   const ReglaCanales._(this.idHabilidad, this.texto, this.parametro, this._generar);
 
-  List<NumeroCanal> generar(math.Random azar, int cuantos) =>
-      _generar(azar, cuantos);
+  /// [cuantos] números sin repetir; [proporcion] de ellos cumple la
+  /// regla (la mitad por defecto, como en Canales).
+  List<NumeroCanal> generar(math.Random azar, int cuantos,
+          {double proporcion = 0.5}) =>
+      _generar(azar, cuantos, proporcion);
 
   /// Regla para [idHabilidad] a la [dificultad] dada, o null si esa
   /// habilidad no tiene regla de Canales.
@@ -202,23 +206,31 @@ class ReglaCanales {
         ][dificultad.clamp(1, 3) - 1];
         final divisor = n[azar.nextInt(n.length)];
         return ReglaCanales._('DIV.01', 'Sólo múltiplos de {n}.', divisor,
-            (azar, cuantos) => _enteros(azar, cuantos, 2, 12 * divisor,
+            // Hasta 20 veces el divisor: da números de sobra también para
+            // los tableros de Minas (hasta 42 casillas).
+            (azar, cuantos, p) => _enteros(azar, cuantos, p, 2,
+                math.max(20 * divisor, 40), (x) => x % divisor == 0));
+      case 'DIV.04':
+        final divisor = [4, 6, 9][azar.nextInt(3)];
+        return ReglaCanales._('DIV.04', 'Sólo divisibles entre {n}.', divisor,
+            (azar, cuantos, p) => _enteros(azar, cuantos, p, 12, 200,
                 (x) => x % divisor == 0));
       case 'DIV.03':
         final divisor = [2, 5, 10][azar.nextInt(3)];
         return ReglaCanales._('DIV.03', 'Sólo divisibles entre {n}.', divisor,
-            (azar, cuantos) => _enteros(azar, cuantos, 10, 200,
+            (azar, cuantos, p) => _enteros(azar, cuantos, p, 10, 200,
                 (x) => x % divisor == 0));
       case 'DIV.05':
-        final maximo = dificultad >= 2 ? 60 : 30;
+        final maximo = dificultad >= 2 ? 60 : 40;
         return ReglaCanales._('DIV.05', 'Sólo números primos.', null,
-            (azar, cuantos) => _enteros(azar, cuantos, 2, maximo, _esPrimo));
+            (azar, cuantos, p) =>
+                _enteros(azar, cuantos, p, 2, maximo, _esPrimo));
       case 'DEC.02':
         return ReglaCanales._('DEC.02', 'Sólo decimales mayores que 0,5.', null,
-            (azar, cuantos) => _decimales(azar, cuantos, dificultad));
+            (azar, cuantos, p) => _decimales(azar, cuantos, p, dificultad));
       case 'FR.03':
         return ReglaCanales._('FR.03', 'Sólo fracciones mayores que 1/2.', null,
-            (azar, cuantos) => _fracciones(azar, cuantos, dificultad));
+            (azar, cuantos, p) => _fracciones(azar, cuantos, p, dificultad));
     }
     return null;
   }
@@ -231,10 +243,11 @@ class ReglaCanales {
     return true;
   }
 
-  /// Mitad (redondeando arriba) que cumple y mitad que no, sin repetir.
-  static List<NumeroCanal> _mezcla(
-      math.Random azar, int cuantos, NumeroCanal Function() candidato) {
-    final queCumplen = (cuantos + 1) ~/ 2;
+  /// [proporcion] de [cuantos] (redondeando arriba) que cumple y el resto
+  /// que no, sin repetir.
+  static List<NumeroCanal> _mezcla(math.Random azar, int cuantos,
+      double proporcion, NumeroCanal Function() candidato) {
+    final queCumplen = (cuantos * proporcion).ceil();
     final vistos = <String>{};
     final si = <NumeroCanal>[];
     final no = <NumeroCanal>[];
@@ -249,16 +262,16 @@ class ReglaCanales {
     return [...si, ...no]..shuffle(azar);
   }
 
-  static List<NumeroCanal> _enteros(math.Random azar, int cuantos, int minimo,
-          int maximo, bool Function(int) cumple) =>
-      _mezcla(azar, cuantos, () {
+  static List<NumeroCanal> _enteros(math.Random azar, int cuantos,
+          double proporcion, int minimo, int maximo, bool Function(int) cumple) =>
+      _mezcla(azar, cuantos, proporcion, () {
         final x = minimo + azar.nextInt(maximo - minimo + 1);
         return NumeroCanal('$x', cumple: cumple(x));
       });
 
   static List<NumeroCanal> _decimales(
-          math.Random azar, int cuantos, int dificultad) =>
-      _mezcla(azar, cuantos, () {
+          math.Random azar, int cuantos, double proporcion, int dificultad) =>
+      _mezcla(azar, cuantos, proporcion, () {
         // Dificultad 2+: centésimas y casos engañosos (0,45 frente a 0,5).
         if (dificultad >= 2 && azar.nextBool()) {
           final centesimas = 5 + azar.nextInt(91);
@@ -274,8 +287,8 @@ class ReglaCanales {
       });
 
   static List<NumeroCanal> _fracciones(
-          math.Random azar, int cuantos, int dificultad) =>
-      _mezcla(azar, cuantos, () {
+          math.Random azar, int cuantos, double proporcion, int dificultad) =>
+      _mezcla(azar, cuantos, proporcion, () {
         final maximo = dificultad >= 2 ? 12 : 8;
         final denominador = 3 + azar.nextInt(maximo - 2);
         final numerador = 1 + azar.nextInt(denominador - 1);

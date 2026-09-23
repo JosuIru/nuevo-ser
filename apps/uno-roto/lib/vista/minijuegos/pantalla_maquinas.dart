@@ -9,6 +9,8 @@ import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'pantalla_canales.dart';
 import 'pantalla_encaje.dart';
+import 'pantalla_minas.dart';
+import 'pantalla_parejas.dart';
 import 'pantalla_puentes.dart';
 
 /// Las máquinas de Rexán: recreativas viejas que repasan matemáticas ya
@@ -57,6 +59,8 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.puentes,
     IdMinijuego.encaje,
     IdMinijuego.canales,
+    IdMinijuego.parejas,
+    IdMinijuego.minas,
   };
 
   Widget? _pantallaDe(
@@ -72,6 +76,18 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
         );
       case IdMinijuego.encaje:
         return PantallaEncaje(dificultad: disponibilidad.dificultad);
+      case IdMinijuego.parejas:
+        return PantallaParejas(
+          registro: registro,
+          dificultad: disponibilidad.dificultad,
+          habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
+        );
+      case IdMinijuego.minas:
+        return PantallaMinas(
+          registro: registro,
+          dificultad: disponibilidad.dificultad,
+          habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
+        );
       case IdMinijuego.canales:
         return PantallaCanales(
           registro: registro,

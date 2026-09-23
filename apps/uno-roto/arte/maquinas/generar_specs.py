@@ -28,6 +28,8 @@ MAQUINAS = {
     'puentes': {'pantalla': '#E8A857', 'marquesina': '#D97E4F'},
     'encaje': {'pantalla': '#A67EC8', 'marquesina': '#E8A857'},
     'canales': {'pantalla': '#78D8E0', 'marquesina': '#F2D58E'},
+    'parejas': {'pantalla': '#9FD9B8', 'marquesina': '#C87C7C'},
+    'minas': {'pantalla': '#B45656', 'marquesina': '#8A6353'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -75,6 +77,21 @@ def juego_en_pantalla(nombre, color):
                 p.append(pixel(f'barra{i}_{j}', x0 + largo / 2, -0.24 + i * 0.085,
                                largo / 2 - 0.008, 0.035, colores[k], 1.3))
         p.append(pixel('cayendo', 0.05, 0.2, 0.1, 0.035, '#E8A857', 1.8))
+    elif nombre == 'parejas':
+        for i in range(8):
+            u, v = -0.27 + (i % 4) * 0.18, 0.1 - (i // 4) * 0.2
+            iluminada = i in (1, 6)
+            p.append(pixel(f'carta{i}', u, v, 0.07, 0.085,
+                           color if iluminada else '#413F7A', 1.8 if iluminada else 0.8))
+    elif nombre == 'minas':
+        for i in range(20):
+            u, v = -0.3 + (i % 5) * 0.15, 0.2 - (i // 5) * 0.13
+            abierta = i in (0, 1, 5, 6, 7, 11, 12, 16)
+            p.append(pixel(f'casilla{i}', u, v, 0.06, 0.055,
+                           '#16193D' if abierta else '#413F7A', 0.4 if abierta else 0.9))
+        for i in (3, 9, 18):
+            u, v = -0.3 + (i % 5) * 0.15, 0.2 - (i // 5) * 0.13
+            p.append(pixel(f'bandera{i}', u, v, 0.022, 0.03, '#E8A857', 2.0))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

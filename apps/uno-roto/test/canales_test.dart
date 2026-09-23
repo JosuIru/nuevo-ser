@@ -46,6 +46,7 @@ void main() {
     final comprobaciones = <String, bool Function(String, int?)>{
       'DIV.01': (e, n) => int.parse(e) % n! == 0,
       'DIV.03': (e, n) => int.parse(e) % n! == 0,
+      'DIV.04': (e, n) => int.parse(e) % n! == 0,
       'DIV.05': (e, _) => _esPrimo(int.parse(e)),
       'DEC.02': (e, _) => _valor(e) > 0.5,
       'FR.03': (e, _) => _valor(e) > 0.5,

@@ -10,7 +10,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 /// - La dificultad sale de su nivel real de maestría (principio 5).
 /// - Cada partida tiene un número fijo de rondas y termina con un
 ///   cierre amable de Rexán (principio 7).
-enum IdMinijuego { puentes, encaje, canales }
+enum IdMinijuego { puentes, encaje, canales, parejas, minas }
 
 class DefinicionMinijuego {
   final IdMinijuego id;
@@ -70,6 +70,26 @@ class CatalogoMinijuegos {
       lineaRexan: 'Las sombras de los Canales son lentas. Tú eliges qué '
           'números recoges.',
       habilidades: ['DIV.01', 'DIV.03', 'DIV.05', 'DEC.02', 'FR.03'],
+      rondasPorPartida: 3,
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.parejas,
+      nombre: 'Parejas',
+      descripcion: 'Toca dos cartas que valgan lo mismo, aunque estén '
+          'escritas distinto.',
+      lineaRexan: 'Un medio, cero coma cinco, cincuenta por ciento. Tres '
+          'trajes para la misma persona.',
+      habilidades: ['FR.09', 'DEC.08', 'PROP.05'],
+      rondasPorPartida: 3,
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.minas,
+      nombre: 'Minas',
+      descripcion: 'Abre las casillas seguras y marca las minas. La regla '
+          'dice cuáles son.',
+      lineaRexan: 'Las minas no se esconden: cumplen la regla. Cada '
+          'casilla abierta te dice cuántas tiene alrededor.',
+      habilidades: ['DIV.01', 'DIV.03', 'DIV.04', 'DIV.05'],
       rondasPorPartida: 3,
     ),
   ];

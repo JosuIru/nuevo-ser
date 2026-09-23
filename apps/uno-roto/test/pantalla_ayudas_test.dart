@@ -6,8 +6,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:uno_roto/datos/registro_maestria_minijuego.dart';
 import 'package:uno_roto/dominio/minijuegos/ayudas_maquinas.dart';
 import 'package:uno_roto/dominio/minijuegos/balanza.dart';
+import 'package:uno_roto/dominio/minijuegos/parejas.dart';
 import 'package:uno_roto/l10n/app_localizations.dart';
 import 'package:uno_roto/vista/minijuegos/pantalla_balanza.dart';
+import 'package:uno_roto/vista/minijuegos/pantalla_parejas.dart';
 import 'package:uno_roto/vista/minijuegos/pantalla_serpiente.dart';
 
 /// Apunta lo que se registraría en el motor de maestría.
@@ -104,5 +106,45 @@ void main() {
     expect(find.textContaining('Equilibrio.'), findsOneWidget);
     expect(registro.registros, isEmpty);
     await tester.pump(const Duration(seconds: 2));
+  });
+
+  testWidgets('tras dos fallos seguidos Rexán ofrece ayuda; un acierto la retira',
+      (tester) async {
+    _movil(tester);
+    const semilla = 11;
+    await tester.pumpWidget(_envolver(const PantallaParejas(
+        registro: null, dificultad: 1, habilidadesPracticadas: ['DEC.08'], semilla: semilla)));
+    final tablero = GeneradorParejas(semilla: semilla).generar(['DEC.08'], dificultad: 1);
+    final primera = tablero.cartas[0];
+    final companera =
+        tablero.cartas.indexWhere((c) => c.idPareja == primera.idPareja && c != primera);
+    final otra = tablero.cartas.indexWhere((c) => c.idPareja != primera.idPareja);
+
+    Future<void> tocarPar(int a, int b) async {
+      await tester.tap(find.byKey(ValueKey('carta-$a')));
+      await tester.tap(find.byKey(ValueKey('carta-$b')));
+      await tester.pump(const Duration(milliseconds: 500));
+    }
+
+    await tocarPar(0, otra);
+    expect(find.byKey(const ValueKey('pista-ofrecida')), findsNothing);
+    await tocarPar(0, otra);
+    expect(find.text('¿Te echo una mano?'), findsOneWidget);
+
+    // Abrirla la atiende: se retira la oferta.
+    await tester.tap(find.byKey(const ValueKey('pista-ofrecida')));
+    await tester.pumpAndSettle();
+    expect(find.text('EL TRUCO'), findsOneWidget);
+    await tester.tap(find.text('SEGUIR'));
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('pista-ofrecida')), findsNothing);
+
+    // Dos fallos más la traen de vuelta; un acierto la quita.
+    await tocarPar(0, otra);
+    await tocarPar(0, otra);
+    expect(find.byKey(const ValueKey('pista-ofrecida')), findsOneWidget);
+    await tocarPar(0, companera);
+    expect(find.byKey(const ValueKey('pista-ofrecida')), findsNothing);
+    await tester.pumpWidget(const SizedBox());
   });
 }

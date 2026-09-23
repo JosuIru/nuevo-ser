@@ -33,7 +33,7 @@ class PantallaBalanza extends StatefulWidget {
 }
 
 class _PantallaBalanzaState extends State<PantallaBalanza>
-    with SingleTickerProviderStateMixin, MusicaDeMaquina {
+    with SingleTickerProviderStateMixin, MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_balanza';
 
@@ -136,6 +136,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
     if (diferencia == 0) {
       HapticFeedback.heavyImpact();
       sonar('efecto_acierto');
+      anotarAcierto();
       Future.delayed(const Duration(milliseconds: 1500), () {
         if (!mounted) return;
         setState(() {
@@ -150,6 +151,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
     } else {
       HapticFeedback.lightImpact();
       sonar('efecto_tablon');
+      setState(anotarFallo);
     }
   }
 
@@ -241,6 +243,8 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
         : _lineaRexan ?? _definicion.lineaRexan;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _ecuacion.idHabilidad,
       ronda: _ronda,

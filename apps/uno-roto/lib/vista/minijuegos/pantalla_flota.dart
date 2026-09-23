@@ -33,7 +33,7 @@ class PantallaFlota extends StatefulWidget {
   State<PantallaFlota> createState() => _PantallaFlotaState();
 }
 
-class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina {
+class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_flota';
 
@@ -79,6 +79,7 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina {
       if (acierta) {
         HapticFeedback.selectionClick();
         _correccion = null;
+        anotarAcierto();
         _lineaRexan = switch (resultado) {
           ResultadoDisparo.agua => 'Agua.',
           ResultadoDisparo.tocado => '¡Tocado!',
@@ -87,6 +88,7 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina {
       } else {
         HapticFeedback.vibrate();
         sonar('efecto_error');
+        anotarFallo();
         _correccion = objetivo;
         _datoLinea = 'columna ${objetivo.columna + 1}, fila ${objetivo.fila + 1}';
         _lineaRexan = 'Era la casilla {dato}. Disparo ahí.';
@@ -135,6 +137,8 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina {
         : _lineaRexan ?? _definicion.lineaRexan;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.columna.idHabilidad,
       ronda: _ronda,

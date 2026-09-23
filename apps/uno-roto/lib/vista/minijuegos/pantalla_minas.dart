@@ -32,7 +32,7 @@ class PantallaMinas extends StatefulWidget {
   State<PantallaMinas> createState() => _PantallaMinasState();
 }
 
-class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina {
+class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_minas';
 
@@ -84,10 +84,12 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina {
       if (resultado == ResultadoJugada.bien) {
         HapticFeedback.selectionClick();
         sonar(marcar ? 'efecto_tablon' : 'efecto_tap');
+        anotarAcierto();
         _lineaRexan = null;
       } else {
         HapticFeedback.vibrate();
         sonar('efecto_error');
+        anotarFallo();
         _numeroFallo = casilla.etiqueta;
         _lineaRexan = marcar
             ? '{n} no cumple la regla: era segura.'
@@ -135,6 +137,8 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina {
     final parametro = _tablero.regla.parametro;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _tablero.regla.idHabilidad,
       ronda: _ronda,

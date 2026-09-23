@@ -2098,4 +2098,23 @@ const Map<String, String> narrativaEu = <String, String>{
       'Bost ate. Orain kutxak eta zuloak datoz: jauzi egin edo igo gainera.',
   'Cinco más. Trampolines, más pinchos y cuentas que siguen a la anterior.':
       'Beste bost. Trapolinak, arantza gehiago eta aurrekoarekin jarraitzen duten kalkuluak.',
+  // Niveles de las máquinas y pista
+  '¿Te echo una mano?':
+      'Lagunduko dizut?',
+  'Un muro. Gira y sigue.':
+      'Horma bat. Biratu eta jarraitu.',
+  'Cinco. Ahora hay muros: no hacen daño, pero hay que rodearlos.':
+      'Bost. Orain hormak daude: ez dute minik egiten, baina inguratu egin behar dira.',
+  'Cinco más. Los números ya no se están quietos.':
+      'Beste bost. Zenbakiak ez daude geldi jada.',
+  'Desliza el dedo o usa la cruceta. Lleva la serpiente al número que resuelve la cuenta. Los bordes se atraviesan. Desde la segunda ronda hay muros que rodear, y en la tercera los números se mueven.':
+      'Irristatu hatza edo erabili gurutzea. Eraman sugea kalkulua ebazten duen zenbakira. Ertzak zeharkatu egin daitezke. Bigarren txandatik aurrera inguratu beharreko hormak daude, eta hirugarrenean zenbakiak mugitu egiten dira.',
+  'Tres sombras esta vez. Lee la regla y elige dirección.':
+      'Hiru itzal oraingoan. Irakurri araua eta aukeratu norabidea.',
+  'Una sombra ya no vaga: te busca. Y hay más números trampa.':
+      'Itzal batek ez du noraezean ibiltzen: zure bila dabil. Eta tranpa-zenbaki gehiago daude.',
+  'Ahora algunas piezas vienen disfrazadas: 2/4 es 1/2.':
+      'Orain pieza batzuk mozorrotuta datoz: 2/4 eta 1/2 berdinak dira.',
+  'Más rápido y sin ayudas en el tablero. Tú sabes lo que falta.':
+      'Azkarrago eta taulan laguntzarik gabe. Badakizu zer falta den.',
 };

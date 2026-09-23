@@ -2102,4 +2102,23 @@ const Map<String, String> narrativaCa = <String, String>{
       'Cinc portes. Ara vénen caixes i forats: salta o puja-hi a sobre.',
   'Cinco más. Trampolines, más pinchos y cuentas que siguen a la anterior.':
       'Cinc més. Trampolins, més punxes i càlculs que continuen l\'anterior.',
+  // Niveles de las máquinas y pista
+  '¿Te echo una mano?':
+      'T\'hi dono un cop de mà?',
+  'Un muro. Gira y sigue.':
+      'Un mur. Gira i continua.',
+  'Cinco. Ahora hay muros: no hacen daño, pero hay que rodearlos.':
+      'Cinc. Ara hi ha murs: no fan mal, però cal envoltar-los.',
+  'Cinco más. Los números ya no se están quietos.':
+      'Cinc més. Els nombres ja no s\'estan quiets.',
+  'Desliza el dedo o usa la cruceta. Lleva la serpiente al número que resuelve la cuenta. Los bordes se atraviesan. Desde la segunda ronda hay muros que rodear, y en la tercera los números se mueven.':
+      'Llisca el dit o fes servir la creueta. Porta la serp al nombre que resol el càlcul. Les vores es travessen. Des de la segona ronda hi ha murs per envoltar, i a la tercera els nombres es mouen.',
+  'Tres sombras esta vez. Lee la regla y elige dirección.':
+      'Tres ombres aquesta vegada. Llegeix la regla i tria direcció.',
+  'Una sombra ya no vaga: te busca. Y hay más números trampa.':
+      'Una ombra ja no vaga: et busca. I hi ha més nombres trampa.',
+  'Ahora algunas piezas vienen disfrazadas: 2/4 es 1/2.':
+      'Ara algunes peces vénen disfressades: 2/4 és 1/2.',
+  'Más rápido y sin ayudas en el tablero. Tú sabes lo que falta.':
+      'Més ràpid i sense ajudes al tauler. Tu saps el que falta.',
 };

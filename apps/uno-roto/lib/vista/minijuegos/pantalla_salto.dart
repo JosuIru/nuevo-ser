@@ -36,7 +36,7 @@ class PantallaSalto extends StatefulWidget {
 }
 
 class _PantallaSaltoState extends State<PantallaSalto>
-    with SingleTickerProviderStateMixin, MusicaDeMaquina {
+    with SingleTickerProviderStateMixin, MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_salto';
 
@@ -87,6 +87,7 @@ class _PantallaSaltoState extends State<PantallaSalto>
       case EventoSalto.choquePuerta:
         HapticFeedback.mediumImpact();
         sonar(evento == EventoSalto.choquePuerta ? 'efecto_error' : 'efecto_tablon');
+        if (evento == EventoSalto.choquePuerta) anotarFallo();
         _lineaRexan = evento == EventoSalto.choquePuerta
             ? 'Esa puerta no era. Desde la marca.'
             : 'Otra vez desde la marca.';
@@ -95,6 +96,7 @@ class _PantallaSaltoState extends State<PantallaSalto>
       case EventoSalto.pasaPuerta:
         HapticFeedback.selectionClick();
         sonar('efecto_tap');
+        anotarAcierto();
         _lineaRexan = null;
         if (_partida.puertasPasadas % _puertasPorRonda == 0) _cerrarRonda();
       case EventoSalto.nada:
@@ -149,6 +151,8 @@ class _PantallaSaltoState extends State<PantallaSalto>
             (_empezado ? _definicion.lineaRexan : 'Toca para empezar. Toca para saltar.');
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.puertaSiguiente.reto.idHabilidad,
       alPausar: () => _pausado = true,

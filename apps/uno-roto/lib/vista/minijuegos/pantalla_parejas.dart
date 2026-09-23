@@ -32,7 +32,7 @@ class PantallaParejas extends StatefulWidget {
 }
 
 class _PantallaParejasState extends State<PantallaParejas>
-    with SingleTickerProviderStateMixin, MusicaDeMaquina {
+    with SingleTickerProviderStateMixin, MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_parejas';
 
@@ -82,6 +82,7 @@ class _PantallaParejasState extends State<PantallaParejas>
     if (acierta) {
       HapticFeedback.lightImpact();
       sonar('efecto_fila_completa');
+      anotarAcierto();
       setState(() {
         _elegida = null;
         _lineaRexan = null;
@@ -90,6 +91,7 @@ class _PantallaParejasState extends State<PantallaParejas>
     } else {
       HapticFeedback.vibrate();
       sonar('efecto_error');
+      anotarFallo();
       setState(() {
         _temblando = {elegida, indice};
         _elegida = null;
@@ -136,6 +138,8 @@ class _PantallaParejasState extends State<PantallaParejas>
     final columnas = 4;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: widget.habilidadesPracticadas.isEmpty ? 'FR.09' : widget.habilidadesPracticadas.first,
       ronda: _ronda,

@@ -40,7 +40,7 @@ class PantallaPuentes extends StatefulWidget {
 }
 
 class _PantallaPuentesState extends State<PantallaPuentes>
-    with SingleTickerProviderStateMixin, MusicaDeMaquina {
+    with SingleTickerProviderStateMixin, MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_puentes';
 
@@ -148,6 +148,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
     if (resultado == ResultadoPuente.exacto) {
       HapticFeedback.heavyImpact();
       sonar('efecto_acierto');
+      anotarAcierto();
       await Future.delayed(const Duration(milliseconds: 1300));
       if (!mounted) return;
       setState(() {
@@ -161,6 +162,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
     } else {
       HapticFeedback.vibrate();
       sonar('efecto_error');
+      setState(anotarFallo);
     }
   }
 
@@ -181,6 +183,8 @@ class _PantallaPuentesState extends State<PantallaPuentes>
     final locale = Localizations.localeOf(contexto);
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _reto.modo.idHabilidad,
       ronda: _ronda,

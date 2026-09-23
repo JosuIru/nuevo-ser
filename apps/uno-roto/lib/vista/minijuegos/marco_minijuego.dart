@@ -28,6 +28,10 @@ class MarcoMinijuego extends StatelessWidget {
   final VoidCallback? alPausar;
   final VoidCallback? alReanudar;
 
+  /// Tras dos fallos seguidos, Rexán ofrece la ayuda (no la abre sola).
+  final bool ofrecerPista;
+  final VoidCallback? alAbrirAyuda;
+
   const MarcoMinijuego({
     super.key,
     required this.titulo,
@@ -40,11 +44,14 @@ class MarcoMinijuego extends StatelessWidget {
     this.idHabilidadActual,
     this.alPausar,
     this.alReanudar,
+    this.ofrecerPista = false,
+    this.alAbrirAyuda,
   });
 
   Future<void> _abrirAyuda(BuildContext contexto) async {
     final locale = Localizations.localeOf(contexto);
     final truco = idHabilidadActual == null ? null : trucosPorHabilidad[idHabilidadActual];
+    alAbrirAyuda?.call();
     alPausar?.call();
     await showModalBottomSheet<void>(
       context: contexto,
@@ -162,6 +169,17 @@ class MarcoMinijuego extends StatelessWidget {
                   ),
                 ),
               ),
+              if (ofrecerPista && !terminada && comoSeJuega != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 0, 0, 8),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: _ChipPista(
+                      texto: traducirNarrativa('¿Te echo una mano?', locale),
+                      alPulsar: () => _abrirAyuda(contexto),
+                    ),
+                  ),
+                ),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 12),
@@ -180,6 +198,79 @@ class MarcoMinijuego extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+/// Botón discreto que late suave: Rexán ofrece ayuda, no la impone.
+class _ChipPista extends StatefulWidget {
+  final String texto;
+  final VoidCallback alPulsar;
+
+  const _ChipPista({required this.texto, required this.alPulsar});
+
+  @override
+  State<_ChipPista> createState() => _ChipPistaState();
+}
+
+class _ChipPistaState extends State<_ChipPista> with SingleTickerProviderStateMixin {
+  late final AnimationController _latido = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 1400))
+    ..repeat(reverse: true);
+
+  @override
+  void dispose() {
+    _latido.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext contexto) => AnimatedBuilder(
+        animation: _latido,
+        builder: (_, hijo) => DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+                color: PaletaNeon.ambarCanales
+                    .withOpacity(0.45 + 0.4 * _latido.value)),
+          ),
+          child: hijo,
+        ),
+        child: InkWell(
+          key: const ValueKey('pista-ofrecida'),
+          borderRadius: BorderRadius.circular(20),
+          onTap: widget.alPulsar,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.lightbulb_outline,
+                    size: 16, color: PaletaNeon.ambarCanales),
+                const SizedBox(width: 6),
+                Text(widget.texto,
+                    style: const TextStyle(
+                        color: PaletaNeon.ambarCanales, fontSize: 13)),
+              ],
+            ),
+          ),
+        ),
+      );
+}
+
+/// Cuenta los fallos seguidos de una máquina. Con dos, el marco ofrece
+/// la ayuda; un acierto o abrir la ayuda ponen la cuenta a cero. No
+/// toca la maestría: el truco explica el método, no da la respuesta.
+mixin PistaTrasFallos<T extends StatefulWidget> on State<T> {
+  int _fallosSeguidos = 0;
+
+  bool get ofrecerPista => _fallosSeguidos >= 2;
+
+  /// Llamar dentro de un setState (o seguido de uno).
+  void anotarFallo() => _fallosSeguidos++;
+  void anotarAcierto() => _fallosSeguidos = 0;
+
+  void pistaAtendida() {
+    if (mounted) setState(() => _fallosSeguidos = 0);
   }
 }
 

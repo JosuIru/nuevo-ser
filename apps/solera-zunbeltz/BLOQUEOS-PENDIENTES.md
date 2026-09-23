@@ -25,6 +25,7 @@ Decisiones que requieren a una persona (equipo de Zunbeltz Elkartea, asesor téc
 11. **SITRAN / RIIA**: alcance de la integración (¿sólo registro local exportable, o conexión digital?).
 12. **Certificación ecológica CPAEN/NNPEK**: qué trazabilidad exige el consejo regulador navarro para ganadería ecológica extensiva.
 13. **Catálogos** (`razas_bovino_ovino`, `medicamentos_veterinarios` con plazos de supresión, `patologias_extensivo` con declaración obligatoria, `tipos_pasto_carga`, `calendario_ganadero`): validación por veterinario asesor + descarga del registro de medicamentos vigente. Hard limit: sustancias activas, nunca marcas.
+13-bis. **Umbral de estrés por calor en la pantalla del tiempo (2026-09-23)**: la app calcula el THI horario (fórmula NRC 1971, temperatura + humedad de Open-Meteo) y avisa de «estrés por calor» desde **THI ≥ 75**, el umbral de «alerta» del Livestock Weather Safety Index (LCI). Es PROVISIONAL: el veterinario asesor debe fijar el umbral para **vacuno de carne y ovino en extensivo** (razas autóctonas, con sombra y agua a su alcance), y decir si conviene un segundo nivel («peligro», LCI ≥ 79). El valor está en `umbralThiEstresCalor` (`lib/servicios/servicio_meteo.dart`).
 
 ## C. Backend y plataforma (decisión compartida con F4 de agro)
 

@@ -1433,7 +1433,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaIdiomaDatosB.
   ///
   /// In es, this message translates to:
-  /// **'• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) muestra la previsión de 7 días con avisos de helada, lluvia, viento, calor y días buenos para el manejo.\n» Todo funciona sin internet menos la previsión del tiempo y la sincronización de tareas.'**
+  /// **'• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo y la sincronización de tareas. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.'**
   String get ayudaIdiomaDatosB;
 
   /// No description provided for @ayudaFincasT.
@@ -1915,6 +1915,180 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Mis tareas'**
   String get tableroMisTareas;
+
+  /// No description provided for @meteoAhora.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora'**
+  String get meteoAhora;
+
+  /// No description provided for @meteoSensacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Sensación'**
+  String get meteoSensacion;
+
+  /// No description provided for @meteoHumedad.
+  ///
+  /// In es, this message translates to:
+  /// **'Humedad'**
+  String get meteoHumedad;
+
+  /// No description provided for @meteoViento.
+  ///
+  /// In es, this message translates to:
+  /// **'Viento'**
+  String get meteoViento;
+
+  /// No description provided for @meteoRachas.
+  ///
+  /// In es, this message translates to:
+  /// **'rachas'**
+  String get meteoRachas;
+
+  /// No description provided for @meteoLuz.
+  ///
+  /// In es, this message translates to:
+  /// **'{horas} h {minutos} min de luz'**
+  String meteoLuz(int horas, int minutos);
+
+  /// No description provided for @meteoAmanecer.
+  ///
+  /// In es, this message translates to:
+  /// **'Amanece'**
+  String get meteoAmanecer;
+
+  /// No description provided for @meteoAnochecer.
+  ///
+  /// In es, this message translates to:
+  /// **'Anochece'**
+  String get meteoAnochecer;
+
+  /// No description provided for @meteoAltitud.
+  ///
+  /// In es, this message translates to:
+  /// **'Datos del modelo a {metros} m de altitud'**
+  String meteoAltitud(int metros);
+
+  /// No description provided for @meteoProximasHoras.
+  ///
+  /// In es, this message translates to:
+  /// **'Próximas 24 horas'**
+  String get meteoProximasHoras;
+
+  /// No description provided for @meteoAgua.
+  ///
+  /// In es, this message translates to:
+  /// **'Agua y pasto'**
+  String get meteoAgua;
+
+  /// No description provided for @meteoLluviaPasada.
+  ///
+  /// In es, this message translates to:
+  /// **'Lluvia últimos 7 días'**
+  String get meteoLluviaPasada;
+
+  /// No description provided for @meteoLluviaPrevista.
+  ///
+  /// In es, this message translates to:
+  /// **'Lluvia prevista (7 días)'**
+  String get meteoLluviaPrevista;
+
+  /// No description provided for @meteoEvapotranspiracion.
+  ///
+  /// In es, this message translates to:
+  /// **'Agua que pierden suelo y pasto (7 días)'**
+  String get meteoEvapotranspiracion;
+
+  /// No description provided for @meteoBalanceSeco.
+  ///
+  /// In es, this message translates to:
+  /// **'Se prevé que suelo y pasto pierdan más agua de la que va a llover: ojo al pasto, las balsas y los abrevaderos.'**
+  String get meteoBalanceSeco;
+
+  /// No description provided for @meteoBalanceHumedo.
+  ///
+  /// In es, this message translates to:
+  /// **'Se prevé más lluvia de la que pierden suelo y pasto.'**
+  String get meteoBalanceHumedo;
+
+  /// No description provided for @meteoDiasTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Próximos 7 días'**
+  String get meteoDiasTitulo;
+
+  /// No description provided for @meteoSensacionMin.
+  ///
+  /// In es, this message translates to:
+  /// **'Sensación mínima'**
+  String get meteoSensacionMin;
+
+  /// No description provided for @meteoHorasLluvia.
+  ///
+  /// In es, this message translates to:
+  /// **'Horas de lluvia'**
+  String get meteoHorasLluvia;
+
+  /// No description provided for @meteoNieve.
+  ///
+  /// In es, this message translates to:
+  /// **'Nieve'**
+  String get meteoNieve;
+
+  /// No description provided for @meteoUv.
+  ///
+  /// In es, this message translates to:
+  /// **'Índice UV máximo'**
+  String get meteoUv;
+
+  /// No description provided for @meteoThi.
+  ///
+  /// In es, this message translates to:
+  /// **'Índice de estrés por calor (THI) máximo'**
+  String get meteoThi;
+
+  /// No description provided for @meteoThiNota.
+  ///
+  /// In es, this message translates to:
+  /// **'El THI y su umbral de alerta (75, índice de seguridad del ganado LCI) son orientativos y están pendientes de validar con el veterinario para vacuno de carne y ovino en extensivo.'**
+  String get meteoThiNota;
+
+  /// No description provided for @meteoGuardada.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión. Previsión guardada el {fecha}.'**
+  String meteoGuardada(String fecha);
+
+  /// No description provided for @meteoActualizado.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizado {fecha}'**
+  String meteoActualizado(String fecha);
+
+  /// No description provided for @avisoNieve.
+  ///
+  /// In es, this message translates to:
+  /// **'Nieve'**
+  String get avisoNieve;
+
+  /// No description provided for @avisoTormenta.
+  ///
+  /// In es, this message translates to:
+  /// **'Tormenta'**
+  String get avisoTormenta;
+
+  /// No description provided for @avisoEstresCalor.
+  ///
+  /// In es, this message translates to:
+  /// **'Estrés por calor'**
+  String get avisoEstresCalor;
+
+  /// No description provided for @meteoEvapotranspiracionDia.
+  ///
+  /// In es, this message translates to:
+  /// **'Agua que pierden suelo y pasto'**
+  String get meteoEvapotranspiracionDia;
 }
 
 class _AppLocalizationsDelegate

@@ -12,6 +12,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-09-23 — ayuda y manual rehechos**: la pantalla de Ayuda pasa a 16 apartados en 5 grupos (primeros pasos · fincas y tareas · proyecto de test · trabajo en equipo · problemas frecuentes), con buscador y pasos numerados; cubre zonas, tareas periódicas, tablero, sincronización, roles y errores habituales. El manual imprimible (`manual/index.html` + `index_eu.html`) **se genera desde los mismos textos del ARB** con `dart run tool/generar_manual.dart` — no editarlo a mano; corregir el ARB y regenerar. Euskera de la ayuda: borrador pendiente de revisión nativa.
 
+> **2026-09-23 — pantalla del tiempo ampliada**: condiciones actuales, próximas 24 h, bloque de agua (lluvia de los 7 días anteriores vía `past_days`, lluvia prevista y evapotranspiración ET0 → aviso de pasto/balsas), días desplegables con dirección del viento, sensación mínima, UV, horas de luz y THI. Avisos nuevos: nieve, tormenta y estrés por calor (THI ≥ 75, PROVISIONAL — BLOQUEOS 13-bis). La última previsión se guarda en `shared_preferences` y se muestra sin cobertura. Fixture real de Open-Meteo en `test/fixtures/`.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

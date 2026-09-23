@@ -712,7 +712,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaIdiomaDatosB =>
-      '• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) muestra la previsión de 7 días con avisos de helada, lluvia, viento, calor y días buenos para el manejo.\n» Todo funciona sin internet menos la previsión del tiempo y la sincronización de tareas.';
+      '• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo y la sincronización de tareas. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.';
 
   @override
   String get ayudaFincasT => 'Marcar un punto en el mapa';
@@ -1003,4 +1003,103 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tableroMisTareas => 'Mis tareas';
+
+  @override
+  String get meteoAhora => 'Ahora';
+
+  @override
+  String get meteoSensacion => 'Sensación';
+
+  @override
+  String get meteoHumedad => 'Humedad';
+
+  @override
+  String get meteoViento => 'Viento';
+
+  @override
+  String get meteoRachas => 'rachas';
+
+  @override
+  String meteoLuz(int horas, int minutos) {
+    return '$horas h $minutos min de luz';
+  }
+
+  @override
+  String get meteoAmanecer => 'Amanece';
+
+  @override
+  String get meteoAnochecer => 'Anochece';
+
+  @override
+  String meteoAltitud(int metros) {
+    return 'Datos del modelo a $metros m de altitud';
+  }
+
+  @override
+  String get meteoProximasHoras => 'Próximas 24 horas';
+
+  @override
+  String get meteoAgua => 'Agua y pasto';
+
+  @override
+  String get meteoLluviaPasada => 'Lluvia últimos 7 días';
+
+  @override
+  String get meteoLluviaPrevista => 'Lluvia prevista (7 días)';
+
+  @override
+  String get meteoEvapotranspiracion =>
+      'Agua que pierden suelo y pasto (7 días)';
+
+  @override
+  String get meteoBalanceSeco =>
+      'Se prevé que suelo y pasto pierdan más agua de la que va a llover: ojo al pasto, las balsas y los abrevaderos.';
+
+  @override
+  String get meteoBalanceHumedo =>
+      'Se prevé más lluvia de la que pierden suelo y pasto.';
+
+  @override
+  String get meteoDiasTitulo => 'Próximos 7 días';
+
+  @override
+  String get meteoSensacionMin => 'Sensación mínima';
+
+  @override
+  String get meteoHorasLluvia => 'Horas de lluvia';
+
+  @override
+  String get meteoNieve => 'Nieve';
+
+  @override
+  String get meteoUv => 'Índice UV máximo';
+
+  @override
+  String get meteoThi => 'Índice de estrés por calor (THI) máximo';
+
+  @override
+  String get meteoThiNota =>
+      'El THI y su umbral de alerta (75, índice de seguridad del ganado LCI) son orientativos y están pendientes de validar con el veterinario para vacuno de carne y ovino en extensivo.';
+
+  @override
+  String meteoGuardada(String fecha) {
+    return 'Sin conexión. Previsión guardada el $fecha.';
+  }
+
+  @override
+  String meteoActualizado(String fecha) {
+    return 'Actualizado $fecha';
+  }
+
+  @override
+  String get avisoNieve => 'Nieve';
+
+  @override
+  String get avisoTormenta => 'Tormenta';
+
+  @override
+  String get avisoEstresCalor => 'Estrés por calor';
+
+  @override
+  String get meteoEvapotranspiracionDia => 'Agua que pierden suelo y pasto';
 }

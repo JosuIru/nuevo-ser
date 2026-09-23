@@ -712,7 +712,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaIdiomaDatosB =>
-      '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.\n• Argazkiak zure mugikorrean bertan gordetzen dira.\n• Finketan, hodeiaren ikonoak (goian) 7 eguneko iragarpena erakusten du, izotz, euri, haize, bero eta maneiurako egun onen abisuekin.\n» Dena internetik gabe dabil, eguraldiaren iragarpena eta zereginen sinkronizazioa izan ezik.';
+      '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.\n• Argazkiak zure mugikorrean bertan gordetzen dira.\n• Finketan, hodeiaren ikonoak (goian) finkako eguraldia irekitzen du: orain nola dagoen, hurrengo 24 orduak, ura (egindako euria, aurreikusitako euria eta lurrak eta larreak galtzen dutena) eta hurrengo 7 egunak. Ukitu egun bat xehetasun gehiago ikusteko.\n• Abisuak: izotza, elurra, ekaitza, euria, haize bortitza, beroa, abereen bero-estresa eta maneiurako egun onak.\n» Dena internetik gabe dabil, eguraldia eta zereginen sinkronizazioa izan ezik. Estaldurarik gabe, eguraldiak deskargatutako azken iragarpena erakusten du, eta noizkoa den adierazten du.';
 
   @override
   String get ayudaFincasT => 'Puntu bat markatu mapan';
@@ -1004,4 +1004,104 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get tableroMisTareas => 'Nire zereginak';
+
+  @override
+  String get meteoAhora => 'Orain';
+
+  @override
+  String get meteoSensacion => 'Sentsazioa';
+
+  @override
+  String get meteoHumedad => 'Hezetasuna';
+
+  @override
+  String get meteoViento => 'Haizea';
+
+  @override
+  String get meteoRachas => 'boladak';
+
+  @override
+  String meteoLuz(int horas, int minutos) {
+    return '$horas h $minutos min argi';
+  }
+
+  @override
+  String get meteoAmanecer => 'Egunsentia';
+
+  @override
+  String get meteoAnochecer => 'Ilunabarra';
+
+  @override
+  String meteoAltitud(int metros) {
+    return 'Ereduaren datuak $metros m-ko altitudean';
+  }
+
+  @override
+  String get meteoProximasHoras => 'Hurrengo 24 orduak';
+
+  @override
+  String get meteoAgua => 'Ura eta larrea';
+
+  @override
+  String get meteoLluviaPasada => 'Azken 7 egunetako euria';
+
+  @override
+  String get meteoLluviaPrevista => 'Aurreikusitako euria (7 egun)';
+
+  @override
+  String get meteoEvapotranspiracion =>
+      'Lurrak eta larreak galtzen duten ura (7 egun)';
+
+  @override
+  String get meteoBalanceSeco =>
+      'Lurrak eta larreak egingo duen euria baino ur gehiago galduko dutela aurreikusten da: kontuz larrearekin, urmaelekin eta askekin.';
+
+  @override
+  String get meteoBalanceHumedo =>
+      'Lurrak eta larreak galtzen dutena baino euri gehiago aurreikusten da.';
+
+  @override
+  String get meteoDiasTitulo => 'Hurrengo 7 egunak';
+
+  @override
+  String get meteoSensacionMin => 'Gutxieneko sentsazioa';
+
+  @override
+  String get meteoHorasLluvia => 'Euri-orduak';
+
+  @override
+  String get meteoNieve => 'Elurra';
+
+  @override
+  String get meteoUv => 'UV indize maximoa';
+
+  @override
+  String get meteoThi => 'Bero-estresaren indizea (THI) maximoa';
+
+  @override
+  String get meteoThiNota =>
+      'THIa eta haren alerta-muga (75, abereen segurtasun-indizea, LCI) orientagarriak dira, eta albaitariarekin balioztatzeko zain daude estentsiboko haragi-behientzat eta ardientzat.';
+
+  @override
+  String meteoGuardada(String fecha) {
+    return 'Konexiorik gabe. Iragarpena $fecha gorde zen.';
+  }
+
+  @override
+  String meteoActualizado(String fecha) {
+    return 'Eguneratua: $fecha';
+  }
+
+  @override
+  String get avisoNieve => 'Elurra';
+
+  @override
+  String get avisoTormenta => 'Ekaitza';
+
+  @override
+  String get avisoEstresCalor => 'Bero-estresa';
+
+  @override
+  String get meteoEvapotranspiracionDia =>
+      'Lurrak eta larreak galtzen duten ura';
 }

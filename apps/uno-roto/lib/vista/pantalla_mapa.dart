@@ -82,7 +82,8 @@ class _PantallaMapaState extends State<PantallaMapa>
   }
 
   Future<void> _mostrarOnboardingSiPrimeraVez() async {
-    final yaVisto = await widget.repositorio.flagNarrativoActivo('onboarding_mapa_visto');
+    final yaVisto =
+        await widget.repositorio.flagNarrativoActivo('onboarding_mapa_visto');
     if (yaVisto || !mounted) return;
     await Future.delayed(const Duration(milliseconds: 600));
     if (!mounted) return;
@@ -111,10 +112,14 @@ class _PantallaMapaState extends State<PantallaMapa>
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              _onbParrafo('Este es el mapa de la ciudad. Cada zona tiene Fragmentos matemáticos diferentes.'),
-              _onbParrafo('Para empezar, toca un distrito. Allí verás Fragmentos flotando: tócalos para resolver puzzles.'),
-              _onbParrafo('Si te atascas, pulsa el botón ? en cada puzzle. Si fallas varias veces, recibirás ayuda.'),
-              _onbParrafo('Desde arriba puedes entrenar por temas, ver tu cuaderno o ajustar el sonido.'),
+              _onbParrafo(
+                  'Este es el mapa de la ciudad. Cada zona tiene Fragmentos matemáticos diferentes.'),
+              _onbParrafo(
+                  'Para empezar, toca un distrito. Allí verás Fragmentos flotando: tócalos para resolver puzzles.'),
+              _onbParrafo(
+                  'Si te atascas, pulsa el botón ? en cada puzzle. Si fallas varias veces, recibirás ayuda.'),
+              _onbParrafo(
+                  'Desde arriba puedes entrenar por temas, ver tu cuaderno o ajustar el sonido.'),
               _onbParrafo('\u{1F917} ¡Sora te guiará!'),
             ],
           ),
@@ -122,7 +127,8 @@ class _PantallaMapaState extends State<PantallaMapa>
         actions: [
           TextButton(
             onPressed: () async {
-              await widget.repositorio.activarFlagNarrativo('onboarding_mapa_visto');
+              await widget.repositorio
+                  .activarFlagNarrativo('onboarding_mapa_visto');
               if (ctx.mounted) Navigator.of(ctx).pop();
             },
             child: const Text(
@@ -230,11 +236,9 @@ class _PantallaMapaState extends State<PantallaMapa>
   /// marca como vista en cuanto el banner aparece — no reaparece
   /// aunque la rechace, para no resultar pesada.
   Future<void> _quizasSugerirDescargaAudio() async {
-    final yaSugerido =
-        await widget.repositorio.cargarAudioSugerenciaVista();
+    final yaSugerido = await widget.repositorio.cargarAudioSugerenciaVista();
     if (yaSugerido) return;
-    final version =
-        await widget.repositorio.cargarVersionPaqueteAudio();
+    final version = await widget.repositorio.cargarVersionPaqueteAudio();
     if (version != null) return;
     if (!mounted) return;
     await widget.repositorio.marcarAudioSugerenciaVista();
@@ -273,8 +277,7 @@ class _PantallaMapaState extends State<PantallaMapa>
     HapticFeedback.selectionClick();
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) =>
-            PantallaMiCuaderno(repositorio: widget.repositorio),
+        builder: (_) => PantallaMiCuaderno(repositorio: widget.repositorio),
       ),
     );
     // Recargamos por si se abrieron entradas o subió maestría dentro.
@@ -285,8 +288,7 @@ class _PantallaMapaState extends State<PantallaMapa>
     HapticFeedback.selectionClick();
     await Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) =>
-            PantallaEntrenamiento(repositorio: widget.repositorio),
+        builder: (_) => PantallaEntrenamiento(repositorio: widget.repositorio),
       ),
     );
     // Al volver del entrenamiento puede haber esquirlas nuevas que
@@ -367,7 +369,6 @@ class _PantallaMapaState extends State<PantallaMapa>
     // así que al volver el badge debería desaparecer.
     await _cargar();
   }
-
 
   /// Diálogo sobrio con la voz de Sora presentando el encargo del día
   /// (doc 16, eje D). Sin premios ni urgencia: propone, no obliga —
@@ -455,9 +456,8 @@ class _PantallaMapaState extends State<PantallaMapa>
   String _nombreDistritoEncargo(Locale locale) {
     final id = _encargoDeHoy?.idDistrito;
     if (id == null) return '';
-    final distrito = CatalogoDistritos.todos
-        .where((d) => d.identificador == id)
-        .firstOrNull;
+    final distrito =
+        CatalogoDistritos.todos.where((d) => d.identificador == id).firstOrNull;
     if (distrito == null) return '';
     return traducirNarrativa(distrito.nombre, locale);
   }
@@ -524,8 +524,7 @@ class _PantallaMapaState extends State<PantallaMapa>
               CustomPaint(
                 painter: PintorEscenario(
                   fasePulso: _controladorCielo.value,
-                  nivelRestauracion:
-                      (_esquirlas / 100).clamp(0.0, 1.0),
+                  nivelRestauracion: (_esquirlas / 100).clamp(0.0, 1.0),
                 ),
               ),
               SafeArea(
@@ -761,9 +760,7 @@ class _Encabezado extends StatelessWidget {
           _ChipAccion(
             icono: Icons.menu_book,
             color: PaletaNeon.azulNeon,
-            badge: entradasCuaderno > 0
-                ? entradasCuaderno.toString()
-                : null,
+            badge: entradasCuaderno > 0 ? entradasCuaderno.toString() : null,
             alPulsar: alAbrirCuaderno,
             tooltip: 'Mi cuaderno',
           ),
@@ -796,11 +793,10 @@ class _Encabezado extends StatelessWidget {
           ),
           const SizedBox(width: 8),
           Tooltip(
-            message: AppLocalizations.of(contexto)
-                .habEsquirlasResumen(esquirlas),
+            message:
+                AppLocalizations.of(contexto).habEsquirlasResumen(esquirlas),
             child: Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: PaletaNeon.azulNeon.withOpacity(0.6),
@@ -867,8 +863,7 @@ class _MenuOverflowAdulto extends StatelessWidget {
             value: 0,
             child: _ItemMenuAdulto(
               icono: Icons.help_outline,
-              etiqueta:
-                  AppLocalizations.of(contexto).mapaBotonInstrucciones,
+              etiqueta: AppLocalizations.of(contexto).mapaBotonInstrucciones,
             ),
           ),
           const PopupMenuItem<int>(
@@ -892,7 +887,8 @@ class _MenuOverflowAdulto extends StatelessWidget {
             border: Border.all(color: color.withOpacity(0.5)),
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Icon(Icons.more_vert, size: 16, color: color.withOpacity(0.85)),
+          child:
+              Icon(Icons.more_vert, size: 16, color: color.withOpacity(0.85)),
         ),
       ),
     );
@@ -957,8 +953,7 @@ class _ChipAccion extends StatelessWidget {
           if (badge != null) ...[
             const SizedBox(width: 6),
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
               decoration: BoxDecoration(
                 color: color.withOpacity(0.25),
                 borderRadius: BorderRadius.circular(8),
@@ -1010,18 +1005,34 @@ class _LienzoMapa extends StatelessWidget {
     final alto = tamano.height;
     return Stack(
       children: [
+        // La ciudad a la hora azul (arte/mapa/, render de flavor3d). Cada
+        // distrito está pintado en su (xMapa, yMapa): se estira al lienzo
+        // para que caiga justo bajo su letrero.
+        Positioned.fill(
+          child: IgnorePointer(
+            child: Opacity(
+              opacity: 0.92,
+              child: Image.asset(
+                'assets/mapa/fondo.jpg',
+                fit: BoxFit.fill,
+                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+              ),
+            ),
+          ),
+        ),
         for (final distrito in CatalogoDistritos.todos)
           Positioned(
             left: distrito.xMapa * ancho - 68,
-            top: distrito.yMapa * alto - 40,
+            // El punto de luz cae en el sitio del distrito; el letrero,
+            // debajo.
+            top: distrito.yMapa * alto - 9,
             child: _NodoDistrito(
               distrito: distrito,
               desbloqueado: distrito.estaDesbloqueado(esquirlas),
               esquirlasDelJugador: esquirlas,
               alEntrar: alEntrar,
-              onLongPress: onVerProgreso != null
-                  ? () => onVerProgreso!(distrito)
-                  : null,
+              onLongPress:
+                  onVerProgreso != null ? () => onVerProgreso!(distrito) : null,
             ),
           ),
         // El taller de Rexán (doc 16, eje B): un lugar del mapa, no un
@@ -1129,74 +1140,90 @@ class _NodoDistrito extends StatelessWidget {
 
   @override
   Widget build(BuildContext contexto) {
+    final color = desbloqueado ? distrito.colorAcento : PaletaNeon.violetaBase;
     return GestureDetector(
       onTap: desbloqueado ? () => alEntrar(distrito) : null,
       onLongPress: onLongPress,
-      child: Opacity(
-        opacity: desbloqueado ? 1.0 : 0.45,
-        child: Container(
-          width: 136,
-          padding: const EdgeInsets.symmetric(
-              horizontal: 10, vertical: 8),
-          decoration: BoxDecoration(
-            color: PaletaNeon.fondoMedio.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: desbloqueado
-                  ? distrito.colorAcento
-                  : PaletaNeon.violetaBase,
-              width: 1.6,
+      behavior: HitTestBehavior.opaque,
+      child: SizedBox(
+        width: 136,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Punto de luz sobre el distrito de la ilustración.
+            Container(
+              width: 14,
+              height: 14,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: desbloqueado
+                    ? color
+                    : PaletaNeon.fondoMedio.withOpacity(0.9),
+                border: Border.all(color: color, width: 1.6),
+                boxShadow: desbloqueado
+                    ? [BoxShadow(color: color.withOpacity(0.6), blurRadius: 12)]
+                    : const [],
+              ),
             ),
-            boxShadow: desbloqueado
-                ? [
-                    BoxShadow(
-                      color: distrito.colorAcento.withOpacity(0.35),
-                      blurRadius: 12,
-                    ),
-                  ]
-                : const [],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                traducirNarrativa(
-                  distrito.nombre,
-                  Localizations.localeOf(contexto),
+            const SizedBox(height: 5),
+            Opacity(
+              opacity: desbloqueado ? 1.0 : 0.7,
+              child: Container(
+                width: 136,
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 6),
+                decoration: BoxDecoration(
+                  color: PaletaNeon.fondoProfundo.withOpacity(0.62),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: color.withOpacity(desbloqueado ? 0.75 : 0.45),
+                    width: 1.1,
+                  ),
                 ),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: desbloqueado
-                      ? PaletaNeon.textoPrincipal
-                      : PaletaNeon.textoTenue,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.6,
-                  height: 1.15,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                desbloqueado
-                    ? traducirNarrativa(
-                        distrito.descripcionCorta,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      traducirNarrativa(
+                        distrito.nombre,
                         Localizations.localeOf(contexto),
-                      )
-                    : AppLocalizations.of(contexto)
-                        .mapaDistritoBloqueado(distrito.esquirlasParaDesbloquear),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: PaletaNeon.textoTenue.withOpacity(0.85),
-                  fontSize: 10,
-                  letterSpacing: 0.4,
-                  height: 1.2,
+                      ),
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: desbloqueado
+                            ? PaletaNeon.textoPrincipal
+                            : PaletaNeon.textoTenue,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: 0.6,
+                        height: 1.15,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    Text(
+                      desbloqueado
+                          ? traducirNarrativa(
+                              distrito.descripcionCorta,
+                              Localizations.localeOf(contexto),
+                            )
+                          : '🔒 ${AppLocalizations.of(contexto).mapaDistritoBloqueado(distrito.esquirlasParaDesbloquear)}',
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: PaletaNeon.textoTenue.withOpacity(0.85),
+                        fontSize: 10,
+                        letterSpacing: 0.4,
+                        height: 1.2,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

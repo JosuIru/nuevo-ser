@@ -15,8 +15,6 @@ import '../dominio/voz_personaje.dart';
 import '../sonido/catalogo_voces.dart';
 import '../sonido/servicio_sonoro.dart';
 import 'escenario.dart';
-import 'kai_presencia.dart';
-import 'oryn_presencia.dart';
 import 'sora_presencia.dart';
 import 'widget_fragmento_tutorial.dart';
 

@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+
+import '../../l10n/traducciones_narrativa.dart';
+import '../../nucleo/paleta.dart';
+
+/// Marco común de las máquinas de Rexán: cabecera con el nombre y la
+/// ronda (sin puntos), la línea de Rexán y, al terminar la partida, el
+/// cierre amable con un único botón para volver.
+class MarcoMinijuego extends StatelessWidget {
+  final String titulo;
+  final int ronda;
+  final int rondasTotales;
+  final String lineaRexan;
+  final bool terminada;
+  final Widget child;
+
+  const MarcoMinijuego({
+    super.key,
+    required this.titulo,
+    required this.ronda,
+    required this.rondasTotales,
+    required this.lineaRexan,
+    required this.terminada,
+    required this.child,
+  });
+
+  @override
+  Widget build(BuildContext contexto) {
+    final locale = Localizations.localeOf(contexto);
+    return Scaffold(
+      backgroundColor: PaletaNeon.fondoProfundo,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(8, 10, 20, 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back,
+                        color: PaletaNeon.textoTenue, size: 20),
+                    onPressed: () => Navigator.of(contexto).pop(),
+                  ),
+                  Expanded(
+                    child: Text(
+                      traducirNarrativa(titulo, locale).toUpperCase(),
+                      style: const TextStyle(
+                        color: PaletaNeon.textoPrincipal,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w300,
+                        letterSpacing: 3,
+                      ),
+                    ),
+                  ),
+                  if (!terminada)
+                    Text(
+                      '$ronda / $rondasTotales',
+                      style: TextStyle(
+                        color: PaletaNeon.textoTenue.withOpacity(0.8),
+                        fontSize: 13,
+                        letterSpacing: 1.5,
+                      ),
+                    ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 4, 0, 8),
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 250),
+                  child: Text(
+                    '“$lineaRexan”\n— Rexán',
+                    key: ValueKey(lineaRexan),
+                    style: TextStyle(
+                      color: PaletaNeon.textoTenue.withOpacity(0.85),
+                      fontSize: 13,
+                      height: 1.5,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: terminada
+                      ? Center(
+                          child: BotonMinijuego(
+                            texto: traducirNarrativa('VOLVER', locale),
+                            alPulsar: () => Navigator.of(contexto).pop(),
+                          ),
+                        )
+                      : child,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BotonMinijuego extends StatelessWidget {
+  final String texto;
+  final VoidCallback? alPulsar;
+
+  const BotonMinijuego({super.key, required this.texto, this.alPulsar});
+
+  @override
+  Widget build(BuildContext contexto) {
+    final activo = alPulsar != null;
+    return GestureDetector(
+      onTap: alPulsar,
+      child: AnimatedOpacity(
+        opacity: activo ? 1 : 0.35,
+        duration: const Duration(milliseconds: 200),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 13),
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border.all(color: PaletaNeon.ambarCanales, width: 1.2),
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Text(
+            texto,
+            style: const TextStyle(
+              color: PaletaNeon.ambarCanales,
+              fontSize: 13,
+              letterSpacing: 2.5,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

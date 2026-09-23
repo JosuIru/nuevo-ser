@@ -1823,4 +1823,49 @@ const Map<String, String> narrativaEu = <String, String>{
   'Sirve cada fracción: pasa el dedo alrededor de su tarta.':
       'Zerbitzatu zatiki bakoitza: pasatu hatza bere tartaren inguruan.',
   'Ahora toca la tarta que tiene más.': 'Orain ukitu gehiago duen tarta.',
+  // Máquinas de Rexán y Puentes (minijuegos)
+  'Máquinas':
+      'Makinak',
+  'Las máquinas de Rexán':
+      'Rexánen makinak',
+  'Las saqué de los recreativos del Puerto. Funcionan con cabeza, no con monedas.':
+      'Portuko jolas-aretotik atera nituen. Buruarekin dabiltza, ez txanponekin.',
+  'Rexán todavía la está arreglando. Sigue cazando Fragmentos.':
+      'Rexán oraindik konpontzen ari da. Jarraitu Zatiak ehizatzen.',
+  'Puentes':
+      'Zubiak',
+  'Encaje':
+      'Txertaketa',
+  'Canales':
+      'Kanalak',
+  'Cubre el hueco con tablones. El carro sólo cruza si la medida es exacta.':
+      'Estali hutsunea oholekin. Orgak neurria zehatza denean bakarrik gurutzatzen du.',
+  'Tablones sueltos del Puerto. Si no llegan justos, el carro no pasa. Mide antes.':
+      'Portuko ohol solteak. Zehatz iristen ez badira, orga ez da pasatzen. Neurtu lehenago.',
+  'Caen trozos de fracción. Cada fila completa es una unidad entera.':
+      'Zatiki-zatiak erortzen dira. Errenkada oso bakoitza unitate oso bat da.',
+  'Una máquina vieja de los recreativos. Cada fila llena es un uno. Con eso basta.':
+      'Jolas-aretoko makina zahar bat. Errenkada bete bakoitza bat da. Horrekin nahikoa.',
+  'Recorre el laberinto y cómete sólo los números que cumplen la regla.':
+      'Ibili labirintoan eta jan araua betetzen duten zenbakiak bakarrik.',
+  'Las sombras de los Canales son lentas. Tú eliges qué números recoges.':
+      'Kanaletako itzalak geldoak dira. Zuk aukeratzen duzu zein zenbaki biltzen dituzun.',
+  'PROBAR EL PUENTE':
+      'ZUBIA PROBATU',
+  'En el puente':
+      'Zubian',
+  'Tablones':
+      'Oholak',
+  'Toca un tablón de abajo para ponerlo.':
+      'Ukitu beheko ohol bat jartzeko.',
+  'Justo. El carro pasa.':
+      'Zehatz. Orga pasatzen da.',
+  'Falta un trozo: el carro se para en el borde.':
+      'Zati bat falta da: orga ertzean gelditzen da.',
+  'Sobra: el último tablón no encaja.':
+      'Soberan dago: azken oholak ez du sartzen.',
+  'Otro hueco. Mismas reglas.':
+      'Beste hutsune bat. Arau berak.',
+  'Cinco puentes. Por hoy el Puerto está servido. Vuelve mañana si te apetece.':
+      'Bost zubi. Gaurko, Portua zerbitzatuta dago. Itzuli bihar nahi baduzu.',
 };

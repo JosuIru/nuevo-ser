@@ -1827,4 +1827,49 @@ const Map<String, String> narrativaCa = <String, String>{
   'Sirve cada fracción: pasa el dedo alrededor de su tarta.':
       'Serveix cada fracció: passa el dit al voltant del seu pastís.',
   'Ahora toca la tarta que tiene más.': 'Ara toca el pastís que en té més.',
+  // Máquinas de Rexán y Puentes (minijuegos)
+  'Máquinas':
+      'Màquines',
+  'Las máquinas de Rexán':
+      'Les màquines d\'en Rexán',
+  'Las saqué de los recreativos del Puerto. Funcionan con cabeza, no con monedas.':
+      'Les vaig treure dels recreatius del Port. Funcionen amb el cap, no amb monedes.',
+  'Rexán todavía la está arreglando. Sigue cazando Fragmentos.':
+      'En Rexán encara l\'està arreglant. Continua caçant Fragments.',
+  'Puentes':
+      'Ponts',
+  'Encaje':
+      'Encaix',
+  'Canales':
+      'Canals',
+  'Cubre el hueco con tablones. El carro sólo cruza si la medida es exacta.':
+      'Cobreix el forat amb taulons. El carro només passa si la mida és exacta.',
+  'Tablones sueltos del Puerto. Si no llegan justos, el carro no pasa. Mide antes.':
+      'Taulons solts del Port. Si no arriben justos, el carro no passa. Mesura abans.',
+  'Caen trozos de fracción. Cada fila completa es una unidad entera.':
+      'Cauen trossos de fracció. Cada fila completa és una unitat sencera.',
+  'Una máquina vieja de los recreativos. Cada fila llena es un uno. Con eso basta.':
+      'Una màquina vella dels recreatius. Cada fila plena és un u. Amb això n\'hi ha prou.',
+  'Recorre el laberinto y cómete sólo los números que cumplen la regla.':
+      'Recorre el laberint i menja\'t només els nombres que compleixen la regla.',
+  'Las sombras de los Canales son lentas. Tú eliges qué números recoges.':
+      'Les ombres dels Canals són lentes. Tu tries quins nombres reculls.',
+  'PROBAR EL PUENTE':
+      'PROVAR EL PONT',
+  'En el puente':
+      'Al pont',
+  'Tablones':
+      'Taulons',
+  'Toca un tablón de abajo para ponerlo.':
+      'Toca un tauló de baix per posar-lo.',
+  'Justo. El carro pasa.':
+      'Just. El carro passa.',
+  'Falta un trozo: el carro se para en el borde.':
+      'Falta un tros: el carro s\'atura a la vora.',
+  'Sobra: el último tablón no encaja.':
+      'Sobra: l\'últim tauló no encaixa.',
+  'Otro hueco. Mismas reglas.':
+      'Un altre forat. Mateixes regles.',
+  'Cinco puentes. Por hoy el Puerto está servido. Vuelve mañana si te apetece.':
+      'Cinc ponts. Per avui el Port està servit. Torna demà si et ve de gust.',
 };

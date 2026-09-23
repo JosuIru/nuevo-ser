@@ -25,6 +25,7 @@ import 'pantalla_faro.dart';
 import 'pantalla_habilidades.dart';
 import 'pantalla_instrucciones.dart';
 import 'pantalla_mi_cuaderno.dart';
+import 'minijuegos/pantalla_maquinas.dart';
 import 'pantalla_taller.dart';
 import 'pantalla_modo_dios.dart';
 import 'pantalla_tour_educadores.dart';
@@ -476,6 +477,17 @@ class _PantallaMapaState extends State<PantallaMapa>
     await _cargar();
   }
 
+  Future<void> _abrirMaquinas() async {
+    HapticFeedback.selectionClick();
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => PantallaMaquinas(repositorio: widget.repositorio),
+      ),
+    );
+    // Las máquinas registran maestría: al volver, el mapa se refresca.
+    await _cargar();
+  }
+
   Future<void> _abrirTaller() async {
     HapticFeedback.selectionClick();
     await Navigator.of(context).push(
@@ -564,6 +576,7 @@ class _PantallaMapaState extends State<PantallaMapa>
                                 alEntrar: _entrarADistrito,
                                 onVerProgreso: (d) => _abrirProgreso(d),
                                 alAbrirTaller: _abrirTaller,
+                                alAbrirMaquinas: _abrirMaquinas,
                               ),
                             )
                           : const SizedBox.shrink(),
@@ -980,6 +993,7 @@ class _LienzoMapa extends StatelessWidget {
   final ValueChanged<Distrito> alEntrar;
   final ValueChanged<Distrito>? onVerProgreso;
   final VoidCallback? alAbrirTaller;
+  final VoidCallback? alAbrirMaquinas;
 
   const _LienzoMapa({
     required this.esquirlas,
@@ -987,6 +1001,7 @@ class _LienzoMapa extends StatelessWidget {
     required this.alEntrar,
     this.onVerProgreso,
     this.alAbrirTaller,
+    this.alAbrirMaquinas,
   });
 
   @override
@@ -1018,6 +1033,18 @@ class _LienzoMapa extends StatelessWidget {
             top: 0.30 * alto - 28,
             child: _NodoTaller(alAbrir: alAbrirTaller!),
           ),
+        // Las máquinas de Rexán (minijuegos): zona libre abajo a la
+        // derecha, lejos de Puerto (0.78, 0.55) y Afueras (0.5, 0.88).
+        if (alAbrirMaquinas != null)
+          Positioned(
+            left: 0.84 * ancho - 36,
+            top: 0.78 * alto - 28,
+            child: _NodoTaller(
+              alAbrir: alAbrirMaquinas!,
+              icono: Icons.videogame_asset_outlined,
+              etiqueta: 'Máquinas',
+            ),
+          ),
       ],
     );
   }
@@ -1027,8 +1054,14 @@ class _LienzoMapa extends StatelessWidget {
 /// cálido (ámbar del farolillo de Canales), sin badge ni urgencia.
 class _NodoTaller extends StatelessWidget {
   final VoidCallback alAbrir;
+  final IconData icono;
+  final String etiqueta;
 
-  const _NodoTaller({required this.alAbrir});
+  const _NodoTaller({
+    required this.alAbrir,
+    this.icono = Icons.handyman_outlined,
+    this.etiqueta = 'Taller',
+  });
 
   @override
   Widget build(BuildContext contexto) {
@@ -1058,14 +1091,14 @@ class _NodoTaller extends StatelessWidget {
                 ],
               ),
               child: Icon(
-                Icons.handyman_outlined,
+                icono,
                 size: 18,
                 color: PaletaNeon.ambarCanales.withOpacity(0.9),
               ),
             ),
             const SizedBox(height: 4),
             Text(
-              traducirNarrativa('Taller', locale).toUpperCase(),
+              traducirNarrativa(etiqueta, locale).toUpperCase(),
               style: TextStyle(
                 color: PaletaNeon.textoTenue.withOpacity(0.8),
                 fontSize: 9,

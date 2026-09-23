@@ -10,7 +10,6 @@ import '../../dominio/minijuegos/retos_calculo.dart';
 import '../../dominio/minijuegos/salto.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
-import '../escenario.dart';
 import 'marco_minijuego.dart';
 
 /// Salto — máquina de Rexán al estilo Geometry Dash. Tocar = saltar.
@@ -186,12 +185,6 @@ class _PantallaSaltoState extends State<PantallaSalto>
                   fit: StackFit.expand,
                   children: [
                     CustomPaint(
-                      painter: PintorEscenario(
-                        fasePulso: (_partida.x / 40) % 1,
-                        nivelRestauracion: 0.6,
-                      ),
-                    ),
-                    CustomPaint(
                       painter: PintorSalto(partida: _partida, destello: _destello),
                     ),
                   ],
@@ -278,19 +271,33 @@ class PintorSalto extends CustomPainter {
     Offset punto(double x, double y) =>
         Offset((x - camaraX) * escala, suelo - y * escala);
 
-    // Suelo: franja oscura y línea de neón.
+    _pintarFondo(canvas, size, camaraX, escala, suelo);
+
+    // Suelo: baldosas de dos tonos que corren con el Fragmento (se nota
+    // el avance aunque no haya obstáculos a la vista).
     canvas.drawRect(Rect.fromLTRB(0, suelo, size.width, size.height),
-        Paint()..color = PaletaNeon.fondoProfundo.withOpacity(0.92));
+        Paint()..color = PaletaNeon.fondoProfundo);
+    final baldosaClara = Paint()..color = PaletaNeon.fondoMedio;
+    final junta = Paint()
+      ..color = PaletaNeon.violetaBase.withOpacity(0.7)
+      ..strokeWidth = 1.5;
+    for (var baldosa = camaraX.floorToDouble(); baldosa < camaraX + 10; baldosa += 1) {
+      final izquierda = punto(baldosa, 0).dx;
+      if (baldosa.toInt().isEven) {
+        canvas.drawRect(
+            Rect.fromLTRB(izquierda, suelo, izquierda + escala, size.height), baldosaClara);
+      }
+      canvas.drawLine(Offset(izquierda, suelo), Offset(izquierda, size.height), junta);
+    }
     canvas.drawLine(Offset(0, suelo), Offset(size.width, suelo),
         Paint()
           ..color = PaletaNeon.violetaNeon
-          ..strokeWidth = 2);
-    // Marcas del suelo que corren (sensación de velocidad).
-    final marcas = Paint()..color = PaletaNeon.violetaBase.withOpacity(0.5);
-    for (var marca = (camaraX).floorToDouble(); marca < camaraX + 10; marca += 1) {
-      final p = punto(marca, 0);
-      canvas.drawLine(p.translate(0, 6), p.translate(escala * 0.4, 6), marcas);
-    }
+          ..strokeWidth = 2.5);
+    canvas.drawLine(Offset(0, suelo), Offset(size.width, suelo),
+        Paint()
+          ..color = PaletaNeon.violetaNeon.withOpacity(0.4)
+          ..strokeWidth = 8
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6));
 
     final visibleHasta = camaraX + 10;
     for (final puerta in partida.puertas) {
@@ -332,6 +339,88 @@ class PintorSalto extends CustomPainter {
     if (destello > 0) {
       canvas.drawRect(Offset.zero & size,
           Paint()..color = PaletaNeon.rosaAcento.withOpacity(0.22 * destello));
+    }
+  }
+
+  /// Cielo, estrellas y dos filas de edificios en parallax: cuanto más
+  /// lejos, más despacio. Todo sale de la posición de la cámara, así que
+  /// el fondo es siempre el mismo en el mismo sitio.
+  void _pintarFondo(
+      Canvas canvas, Size size, double camaraX, double escala, double suelo) {
+    canvas.drawRect(
+      Offset.zero & size,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF07041A), Color(0xFF1A0E3C)],
+        ).createShader(Offset.zero & size),
+    );
+
+    // Estrellas (casi quietas).
+    final estrella = Paint()..color = Colors.white.withOpacity(0.55);
+    final desplazamientoEstrellas = camaraX * escala * 0.04;
+    for (var i = 0; i < 40; i++) {
+      final azar = math.Random(i * 7919);
+      final x = (azar.nextDouble() * size.width * 1.5 - desplazamientoEstrellas) %
+          (size.width * 1.5);
+      final y = azar.nextDouble() * suelo * 0.55;
+      canvas.drawCircle(Offset(x, y), 0.6 + azar.nextDouble() * 0.9, estrella);
+    }
+
+    _pintarEdificios(canvas, size, camaraX, escala, suelo,
+        velocidad: 0.18,
+        anchoBloque: 1.6,
+        altoMaximo: 4.2,
+        color: const Color(0xFF1C1244),
+        ventana: PaletaNeon.violetaNeon.withOpacity(0.35),
+        semilla: 11);
+    _pintarEdificios(canvas, size, camaraX, escala, suelo,
+        velocidad: 0.45,
+        anchoBloque: 1.3,
+        altoMaximo: 3.0,
+        color: const Color(0xFF120A2C),
+        ventana: PaletaNeon.ambarCanales.withOpacity(0.55),
+        semilla: 29);
+  }
+
+  void _pintarEdificios(
+    Canvas canvas,
+    Size size,
+    double camaraX,
+    double escala,
+    double suelo, {
+    required double velocidad,
+    required double anchoBloque,
+    required double altoMaximo,
+    required Color color,
+    required Color ventana,
+    required int semilla,
+  }) {
+    final camaraCapa = camaraX * velocidad;
+    final primero = (camaraCapa / anchoBloque).floor();
+    final cuantos = (9 / anchoBloque).ceil() + 2;
+    final relleno = Paint()..color = color;
+    final luz = Paint()..color = ventana;
+    for (var i = primero; i < primero + cuantos; i++) {
+      final azar = math.Random(i * 104729 + semilla);
+      final alto = altoMaximo * (0.35 + 0.65 * azar.nextDouble());
+      final ancho = anchoBloque * (0.7 + 0.3 * azar.nextDouble());
+      final izquierda = (i * anchoBloque - camaraCapa) * escala;
+      final rect = Rect.fromLTWH(izquierda, suelo - alto * escala, ancho * escala, alto * escala);
+      canvas.drawRect(rect, relleno);
+      // Ventanas encendidas al azar.
+      final lado = escala * 0.12;
+      for (var fila = 0; fila < (alto / 0.45).floor(); fila++) {
+        for (var columna = 0; columna < (ancho / 0.4).floor(); columna++) {
+          if (azar.nextDouble() > 0.35) continue;
+          canvas.drawRect(
+            Rect.fromLTWH(rect.left + (columna * 0.4 + 0.15) * escala,
+                rect.top + (fila * 0.45 + 0.2) * escala, lado, lado * 1.3),
+            luz,
+          );
+        }
+      }
     }
   }
 

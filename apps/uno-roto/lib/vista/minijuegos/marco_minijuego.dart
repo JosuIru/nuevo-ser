@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show CapaAudio;
 
 import '../../dominio/minijuegos/ayudas_maquinas.dart';
+import '../../dominio/minijuegos/ejemplos_resueltos.dart';
 import '../../dominio/minijuegos/canales.dart' show Direccion;
 
 import '../../sonido/servicio_sonoro.dart';
@@ -32,6 +33,13 @@ class MarcoMinijuego extends StatelessWidget {
   final bool ofrecerPista;
   final VoidCallback? alAbrirAyuda;
 
+  /// Para el ejemplo parecido de la ayuda: dificultad de la ronda, el
+  /// parámetro de la regla (el 4 de "múltiplos de 4") y el enunciado del
+  /// niño, que el ejemplo nunca repite.
+  final int dificultadEjemplo;
+  final int? parametroEjemplo;
+  final String? enunciadoActual;
+
   const MarcoMinijuego({
     super.key,
     required this.titulo,
@@ -46,7 +54,17 @@ class MarcoMinijuego extends StatelessWidget {
     this.alReanudar,
     this.ofrecerPista = false,
     this.alAbrirAyuda,
+    this.dificultadEjemplo = 1,
+    this.parametroEjemplo,
+    this.enunciadoActual,
   });
+
+  EjemploResuelto? _ejemploNuevo() => idHabilidadActual == null
+      ? null
+      : ejemploParecido(idHabilidadActual!,
+          dificultad: dificultadEjemplo,
+          parametro: parametroEjemplo,
+          evitar: enunciadoActual);
 
   Future<void> _abrirAyuda(BuildContext contexto) async {
     final locale = Localizations.localeOf(contexto);
@@ -60,47 +78,69 @@ class MarcoMinijuego extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
-      builder: (hoja) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(22, 20, 22, 18),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (final (titulo, texto) in [
-                if (comoSeJuega != null) ('CÓMO SE JUEGA', comoSeJuega!),
-                if (truco != null) ('EL TRUCO', truco),
-              ]) ...[
-                Text(
-                  traducirNarrativa(titulo, locale),
-                  style: TextStyle(
-                    color: PaletaNeon.ambarCanales.withOpacity(0.9),
-                    fontSize: 11,
-                    letterSpacing: 2.5,
-                  ),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  traducirNarrativa(texto, locale),
-                  style: const TextStyle(
-                    color: PaletaNeon.textoPrincipal,
-                    fontSize: 15,
-                    height: 1.45,
-                  ),
-                ),
-                const SizedBox(height: 18),
-              ],
-              Align(
-                alignment: Alignment.centerRight,
-                child: BotonMinijuego(
-                  texto: traducirNarrativa('SEGUIR', locale),
-                  alPulsar: () => Navigator.of(hoja).pop(),
+      builder: (hoja) {
+        var ejemplo = _ejemploNuevo();
+        return StatefulBuilder(
+          builder: (hoja, repintar) => SafeArea(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxHeight: MediaQuery.sizeOf(hoja).height * 0.85),
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.fromLTRB(22, 20, 22, 18),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    for (final (titulo, texto) in [
+                      if (comoSeJuega != null) ('CÓMO SE JUEGA', comoSeJuega!),
+                      if (truco != null) ('EL TRUCO', truco),
+                    ]) ...[
+                      _RotuloAyuda(traducirNarrativa(titulo, locale)),
+                      const SizedBox(height: 6),
+                      Text(
+                        traducirNarrativa(texto, locale),
+                        style: const TextStyle(
+                          color: PaletaNeon.textoPrincipal,
+                          fontSize: 15,
+                          height: 1.45,
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                    ],
+                    if (ejemplo != null) ...[
+                      _RotuloAyuda(traducirNarrativa('UN EJEMPLO PARECIDO', locale)),
+                      const SizedBox(height: 8),
+                      _EjemploResuelto(ejemplo: ejemplo!, locale: locale),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextButton.icon(
+                          key: const ValueKey('otro-ejemplo'),
+                          onPressed: () => repintar(() => ejemplo = _ejemploNuevo()),
+                          icon: const Icon(Icons.refresh,
+                              size: 18, color: PaletaNeon.textoTenue),
+                          label: Text(
+                            traducirNarrativa('OTRO EJEMPLO', locale),
+                            style: const TextStyle(
+                                color: PaletaNeon.textoTenue, letterSpacing: 1.5),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                    ],
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: BotonMinijuego(
+                        texto: traducirNarrativa('SEGUIR', locale),
+                        alPulsar: () => Navigator.of(hoja).pop(),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
     alReanudar?.call();
   }
@@ -199,6 +239,76 @@ class MarcoMinijuego extends StatelessWidget {
       ),
     );
   }
+}
+
+class _RotuloAyuda extends StatelessWidget {
+  final String texto;
+
+  const _RotuloAyuda(this.texto);
+
+  @override
+  Widget build(BuildContext contexto) => Text(
+        texto,
+        style: TextStyle(
+          color: PaletaNeon.ambarCanales.withOpacity(0.9),
+          fontSize: 11,
+          letterSpacing: 2.5,
+        ),
+      );
+}
+
+/// El enunciado del ejemplo y sus pasos numerados.
+class _EjemploResuelto extends StatelessWidget {
+  final EjemploResuelto ejemplo;
+  final Locale locale;
+
+  const _EjemploResuelto({required this.ejemplo, required this.locale});
+
+  @override
+  Widget build(BuildContext contexto) => Container(
+        width: double.infinity,
+        padding: const EdgeInsets.fromLTRB(14, 12, 14, 8),
+        decoration: BoxDecoration(
+          color: PaletaNeon.fondoProfundo.withOpacity(0.6),
+          border: Border.all(color: PaletaNeon.violetaBase.withOpacity(0.6)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              ejemplo.enunciado,
+              key: const ValueKey('ejemplo-enunciado'),
+              style: const TextStyle(
+                  color: PaletaNeon.ambarCanales, fontSize: 20, letterSpacing: 1),
+            ),
+            const SizedBox(height: 8),
+            for (var i = 0; i < ejemplo.pasos.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 6),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 22,
+                      child: Text('${i + 1}.',
+                          style: const TextStyle(
+                              color: PaletaNeon.ambarCanales, fontSize: 14, height: 1.4)),
+                    ),
+                    Expanded(
+                      child: Text(
+                        ejemplo.pasos[i].rellenar(
+                            traducirNarrativa(ejemplo.pasos[i].plantilla, locale)),
+                        style: const TextStyle(
+                            color: PaletaNeon.textoPrincipal, fontSize: 14, height: 1.4),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+          ],
+        ),
+      );
 }
 
 /// Botón discreto que late suave: Rexán ofrece ayuda, no la impone.

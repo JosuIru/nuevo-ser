@@ -2126,4 +2126,115 @@ const Map<String, String> narrativaEu = <String, String>{
       'Taula honetan karta bat soberan dago: ez du bikoterik. Zein da?',
   'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran. En el último tablero sobra una carta: parece de alguna pareja, pero no vale lo mismo que ninguna.':
       'Ukitu berdin balio duten bi karta, desberdin idatzita egon arren. Hala badira, kendu egiten dira. Azken taulan karta bat soberan dago: bikoteren batekoa dirudi, baina ez du beste ezein kartaren balio bera.',
+  // Ejemplos resueltos de la ayuda
+  'UN EJEMPLO PARECIDO':
+      'ANTZEKO ADIBIDE BAT',
+  'OTRO EJEMPLO':
+      'BESTE ADIBIDE BAT',
+  'Tienen el mismo denominador ({d}): se queda igual.':
+      'Izendatzaile bera dute ({d}): berdin geratzen da.',
+  'Suma los de arriba: {a} + {b} = {s}.':
+      'Batu goikoak: {a} + {b} = {s}.',
+  'Resultado: {r}.':
+      'Emaitza: {r}.',
+  'Busca un denominador que sirva para los dos: {c}.':
+      'Bilatu bientzat balio duen izendatzaile bat: {c}.',
+  '{f} = {g}, multiplicando arriba y abajo por {m}.':
+      '{f} = {g}, goian eta behean {m} zenbakiaz biderkatuta.',
+  'Ahora suma los de arriba: {a} + {b} = {s}. Resultado: {r}.':
+      'Orain batu goikoak: {a} + {b} = {s}. Emaitza: {r}.',
+  'Pon las comas una debajo de otra: son décimas.':
+      'Jarri komak bata bestearen azpian: hamarrenak dira.',
+  'Suma las décimas: {a} + {b} = {s} décimas.':
+      'Batu hamarrenak: {a} + {b} = {s} hamarren.',
+  '10 décimas son 1 unidad: {s} décimas = {r}.':
+      '10 hamarren unitate 1 dira: {s} hamarren = {r}.',
+  'Multiplica arriba y abajo por el mismo número, por ejemplo {m}.':
+      'Biderkatu goian eta behean zenbaki beraz, adibidez {m}.',
+  'Arriba: {n} × {m} = {a}. Abajo: {d} × {m} = {b}.':
+      'Goian: {n} × {m} = {a}. Behean: {d} × {m} = {b}.',
+  '{f} y {g} valen lo mismo.':
+      '{f} eta {g}: berdin balio dute.',
+  '{f} = {g}.':
+      '{f} = {g}.',
+  'Busca cuánto hay que multiplicar {d} para llegar a 100: {m}.':
+      'Bilatu zenbatez biderkatu behar den {d} zenbakia 100era iristeko: {m}.',
+  '{c} centésimas se escriben {r}.':
+      '{c} ehunen honela idazten da: {r}.',
+  '{c} de cada 100 es el {r}.':
+      '100etik {c}: hori da {r}.',
+  'Divide {x} entre {n}: {n} × {q} = {p}.':
+      'Zatitu {x} zenbakia {n} zenbakiaz: {n} × {q} = {p}.',
+  'No sobra nada: {x} es múltiplo de {n}.':
+      'Ez da ezer soberan geratzen: {x} zenbakia {n} zenbakiaren multiploa da.',
+  'Sobran {r}: {x} no es múltiplo de {n}.':
+      '{r} soberan: {x} zenbakia ez da {n} zenbakiaren multiploa.',
+  'Prueba a dividir {x} entre 2, 3, 5 y 7.':
+      'Probatu {x} zenbakia 2, 3, 5 eta 7 zenbakiez zatitzen.',
+  '{x} ÷ {p} = {q}, exacto: no es primo.':
+      '{x} ÷ {p} = {q}, zehatza: ez da lehena.',
+  'Ninguna división es exacta: {x} es primo.':
+      'Zatiketa bakar bat ere ez da zehatza: {x} zenbakia lehena da.',
+  'Escribe 0,5 como 0,50 para comparar cifra a cifra.':
+      'Idatzi 0,5 honela: 0,50, zifraz zifra konparatzeko.',
+  'Décimas: {a} es mayor que 5, así que {x} es mayor que 0,5.':
+      'Hamarrenak: {a} handiagoa da 5 baino; beraz, {x} handiagoa da 0,5 baino.',
+  'Décimas: {a} es menor que 5, así que {x} es menor que 0,5.':
+      'Hamarrenak: {a} txikiagoa da 5 baino; beraz, {x} txikiagoa da 0,5 baino.',
+  'Las décimas empatan (5): mira las centésimas. {x} es mayor que 0,5.':
+      'Hamarrenak berdin (5): begiratu ehunenei. {x} handiagoa da 0,5 baino.',
+  'Las décimas empatan (5): mira las centésimas. {x} es igual a 0,5.':
+      'Hamarrenak berdin (5): begiratu ehunenei. {x} eta 0,5 berdinak dira.',
+  'La mitad de {d} es {m}.':
+      '{d} zenbakiaren erdia {m} da.',
+  '{n} es más que {m}: {f} es mayor que 1/2.':
+      '{n} handiagoa da {m} baino: {f} handiagoa da 1/2 baino.',
+  '{n} es menos que {m}: {f} es menor que 1/2.':
+      '{n} txikiagoa da {m} baino: {f} txikiagoa da 1/2 baino.',
+  'Empieza por el mayor y cuenta lo que falta: {m} y {k} más.':
+      'Hasi handienetik eta zenbatu falta dena: {m} eta beste {k}.',
+  '{m} + {k} = {r}.':
+      '{m} + {k} = {r}.',
+  'Decenas: {a} + {b} = {s}.':
+      'Hamarrekoak: {a} + {b} = {s}.',
+  'Unidades: {a} + {b} = {s}.':
+      'Batekoak: {a} + {b} = {s}.',
+  'Junta las dos: {a} + {b} = {r}.':
+      'Batu biak: {a} + {b} = {r}.',
+  'Primero el paréntesis: {a} + {b} = {s}.':
+      'Lehenik parentesia: {a} + {b} = {s}.',
+  'Luego multiplica: {s} × {c} = {r}.':
+      'Gero biderkatu: {s} × {c} = {r}.',
+  'Primero la multiplicación: {b} × {c} = {m}.':
+      'Lehenik biderketa: {b} × {c} = {m}.',
+  'Luego la suma: {a} + {m} = {r}.':
+      'Gero batuketa: {a} + {m} = {r}.',
+  '{e} es {b} × {b} × {b}.':
+      '{e} = {b} × {b} × {b}.',
+  '{b} × {b} = {c}; {c} × {b} = {r}.':
+      '{b} × {b} = {c}; {c} × {b} = {r}.',
+  '{e} es {b} × {b} (no {b} × 2).':
+      '{e} = {b} × {b} (ez {b} × 2).',
+  '{b} × {b} = {r}.':
+      '{b} × {b} = {r}.',
+  'Divide {q} entre {d}: sale {u}. Eso es 1/{d}.':
+      'Zatitu {q} zenbakia {d} zenbakiaz: {u} ateratzen da. Hori da 1/{d}.',
+  'Quieres {n} partes: {u} × {n} = {r}.':
+      '{n} zati nahi dituzu: {u} × {n} = {r}.',
+  'Sólo quieres una parte: {r}.':
+      'Zati bakarra nahi duzu: {r}.',
+  'El 50 % es la mitad: {q} ÷ 2 = {r}.':
+      '% 50 erdia da: {q} ÷ 2 = {r}.',
+  'El 10 % es dividir entre 10: {q} ÷ 10 = {r}.':
+      '% 10 10ekin zatitzea da: {q} ÷ 10 = {r}.',
+  'El 25 % es la cuarta parte: {q} ÷ 4 = {r}.':
+      '% 25 laurdena da: {q} ÷ 4 = {r}.',
+  'El 25 % es la cuarta parte: {q} ÷ 4 = {t}.':
+      '% 25 laurdena da: {q} ÷ 4 = {t}.',
+  'El 75 % son tres cuartas partes: {t} × 3 = {r}.':
+      '% 75 hiru laurden dira: {t} × 3 = {r}.',
+  'El 20 % es el doble: {t} × 2 = {r}.':
+      '% 20 bikoitza da: {t} × 2 = {r}.',
+  'Calcula {p} de cada 100: {q} × {p} ÷ 100 = {r}.':
+      'Kalkulatu 100etik {p}: {q} × {p} ÷ 100 = {r}.',
 };

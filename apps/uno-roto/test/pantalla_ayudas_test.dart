@@ -58,6 +58,18 @@ void main() {
     expect(find.text('CÓMO SE JUEGA'), findsOneWidget);
     expect(find.text('EL TRUCO'), findsOneWidget);
     expect(find.text(trucosPorHabilidad['ARI.01']!), findsOneWidget);
+    expect(find.text('UN EJEMPLO PARECIDO'), findsOneWidget);
+    final primero = tester.widget<Text>(find.byKey(const ValueKey('ejemplo-enunciado'))).data;
+    expect(primero, contains('+'));
+    // "Otro ejemplo" cambia el ejemplo (con estas sumas, casi seguro a la primera).
+    var cambiado = false;
+    for (var i = 0; i < 5 && !cambiado; i++) {
+      await tester.tap(find.byKey(const ValueKey('otro-ejemplo')));
+      await tester.pump();
+      cambiado = tester.widget<Text>(find.byKey(const ValueKey('ejemplo-enunciado'))).data != primero;
+    }
+    expect(cambiado, isTrue);
+    await tester.ensureVisible(find.text('SEGUIR'));
     await tester.tap(find.text('SEGUIR'));
     await tester.pumpAndSettle();
     expect(find.text('CÓMO SE JUEGA'), findsNothing);

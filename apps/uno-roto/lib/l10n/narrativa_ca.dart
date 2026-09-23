@@ -2130,4 +2130,115 @@ const Map<String, String> narrativaCa = <String, String>{
       'En aquest tauler sobra una carta: no té parella. Quina és?',
   'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran. En el último tablero sobra una carta: parece de alguna pareja, pero no vale lo mismo que ninguna.':
       'Toca dues cartes que valguin el mateix encara que estiguin escrites diferent. Si ho són, es retiren. A l\'últim tauler sobra una carta: sembla d\'alguna parella, però no val el mateix que cap.',
+  // Ejemplos resueltos de la ayuda
+  'UN EJEMPLO PARECIDO':
+      'UN EXEMPLE SEMBLANT',
+  'OTRO EJEMPLO':
+      'UN ALTRE EXEMPLE',
+  'Tienen el mismo denominador ({d}): se queda igual.':
+      'Tenen el mateix denominador ({d}): es queda igual.',
+  'Suma los de arriba: {a} + {b} = {s}.':
+      'Suma els de dalt: {a} + {b} = {s}.',
+  'Resultado: {r}.':
+      'Resultat: {r}.',
+  'Busca un denominador que sirva para los dos: {c}.':
+      'Busca un denominador que serveixi per als dos: {c}.',
+  '{f} = {g}, multiplicando arriba y abajo por {m}.':
+      '{f} = {g}, multiplicant a dalt i a baix per {m}.',
+  'Ahora suma los de arriba: {a} + {b} = {s}. Resultado: {r}.':
+      'Ara suma els de dalt: {a} + {b} = {s}. Resultat: {r}.',
+  'Pon las comas una debajo de otra: son décimas.':
+      'Posa les comes una sota l\'altra: són dècimes.',
+  'Suma las décimas: {a} + {b} = {s} décimas.':
+      'Suma les dècimes: {a} + {b} = {s} dècimes.',
+  '10 décimas son 1 unidad: {s} décimas = {r}.':
+      '10 dècimes són 1 unitat: {s} dècimes = {r}.',
+  'Multiplica arriba y abajo por el mismo número, por ejemplo {m}.':
+      'Multiplica a dalt i a baix pel mateix nombre, per exemple {m}.',
+  'Arriba: {n} × {m} = {a}. Abajo: {d} × {m} = {b}.':
+      'A dalt: {n} × {m} = {a}. A baix: {d} × {m} = {b}.',
+  '{f} y {g} valen lo mismo.':
+      '{f} i {g} valen el mateix.',
+  '{f} = {g}.':
+      '{f} = {g}.',
+  'Busca cuánto hay que multiplicar {d} para llegar a 100: {m}.':
+      'Busca per quant cal multiplicar {d} per arribar a 100: {m}.',
+  '{c} centésimas se escriben {r}.':
+      '{c} centèsimes s\'escriuen {r}.',
+  '{c} de cada 100 es el {r}.':
+      '{c} de cada 100 és el {r}.',
+  'Divide {x} entre {n}: {n} × {q} = {p}.':
+      'Divideix {x} entre {n}: {n} × {q} = {p}.',
+  'No sobra nada: {x} es múltiplo de {n}.':
+      'No sobra res: {x} és múltiple de {n}.',
+  'Sobran {r}: {x} no es múltiplo de {n}.':
+      'En sobren {r}: {x} no és múltiple de {n}.',
+  'Prueba a dividir {x} entre 2, 3, 5 y 7.':
+      'Prova de dividir {x} entre 2, 3, 5 i 7.',
+  '{x} ÷ {p} = {q}, exacto: no es primo.':
+      '{x} ÷ {p} = {q}, exacte: no és primer.',
+  'Ninguna división es exacta: {x} es primo.':
+      'Cap divisió és exacta: {x} és primer.',
+  'Escribe 0,5 como 0,50 para comparar cifra a cifra.':
+      'Escriu 0,5 com a 0,50 per comparar xifra a xifra.',
+  'Décimas: {a} es mayor que 5, así que {x} es mayor que 0,5.':
+      'Dècimes: {a} és més gran que 5, així que {x} és més gran que 0,5.',
+  'Décimas: {a} es menor que 5, así que {x} es menor que 0,5.':
+      'Dècimes: {a} és més petit que 5, així que {x} és més petit que 0,5.',
+  'Las décimas empatan (5): mira las centésimas. {x} es mayor que 0,5.':
+      'Les dècimes empaten (5): mira les centèsimes. {x} és més gran que 0,5.',
+  'Las décimas empatan (5): mira las centésimas. {x} es igual a 0,5.':
+      'Les dècimes empaten (5): mira les centèsimes. {x} és igual a 0,5.',
+  'La mitad de {d} es {m}.':
+      'La meitat de {d} és {m}.',
+  '{n} es más que {m}: {f} es mayor que 1/2.':
+      '{n} és més que {m}: {f} és més gran que 1/2.',
+  '{n} es menos que {m}: {f} es menor que 1/2.':
+      '{n} és menys que {m}: {f} és més petit que 1/2.',
+  'Empieza por el mayor y cuenta lo que falta: {m} y {k} más.':
+      'Comença pel més gran i compta el que falta: {m} i {k} més.',
+  '{m} + {k} = {r}.':
+      '{m} + {k} = {r}.',
+  'Decenas: {a} + {b} = {s}.':
+      'Desenes: {a} + {b} = {s}.',
+  'Unidades: {a} + {b} = {s}.':
+      'Unitats: {a} + {b} = {s}.',
+  'Junta las dos: {a} + {b} = {r}.':
+      'Ajunta les dues: {a} + {b} = {r}.',
+  'Primero el paréntesis: {a} + {b} = {s}.':
+      'Primer el parèntesi: {a} + {b} = {s}.',
+  'Luego multiplica: {s} × {c} = {r}.':
+      'Després multiplica: {s} × {c} = {r}.',
+  'Primero la multiplicación: {b} × {c} = {m}.':
+      'Primer la multiplicació: {b} × {c} = {m}.',
+  'Luego la suma: {a} + {m} = {r}.':
+      'Després la suma: {a} + {m} = {r}.',
+  '{e} es {b} × {b} × {b}.':
+      '{e} és {b} × {b} × {b}.',
+  '{b} × {b} = {c}; {c} × {b} = {r}.':
+      '{b} × {b} = {c}; {c} × {b} = {r}.',
+  '{e} es {b} × {b} (no {b} × 2).':
+      '{e} és {b} × {b} (no {b} × 2).',
+  '{b} × {b} = {r}.':
+      '{b} × {b} = {r}.',
+  'Divide {q} entre {d}: sale {u}. Eso es 1/{d}.':
+      'Divideix {q} entre {d}: surt {u}. Això és 1/{d}.',
+  'Quieres {n} partes: {u} × {n} = {r}.':
+      'En vols {n} parts: {u} × {n} = {r}.',
+  'Sólo quieres una parte: {r}.':
+      'Només en vols una part: {r}.',
+  'El 50 % es la mitad: {q} ÷ 2 = {r}.':
+      'El 50 % és la meitat: {q} ÷ 2 = {r}.',
+  'El 10 % es dividir entre 10: {q} ÷ 10 = {r}.':
+      'El 10 % és dividir entre 10: {q} ÷ 10 = {r}.',
+  'El 25 % es la cuarta parte: {q} ÷ 4 = {r}.':
+      'El 25 % és la quarta part: {q} ÷ 4 = {r}.',
+  'El 25 % es la cuarta parte: {q} ÷ 4 = {t}.':
+      'El 25 % és la quarta part: {q} ÷ 4 = {t}.',
+  'El 75 % son tres cuartas partes: {t} × 3 = {r}.':
+      'El 75 % són tres quartes parts: {t} × 3 = {r}.',
+  'El 20 % es el doble: {t} × 2 = {r}.':
+      'El 20 % és el doble: {t} × 2 = {r}.',
+  'Calcula {p} de cada 100: {q} × {p} ÷ 100 = {r}.':
+      'Calcula {p} de cada 100: {q} × {p} ÷ 100 = {r}.',
 };

@@ -1998,4 +1998,7 @@ const Map<String, String> narrativaCa = <String, String>{
       'Columna',
   'Fila':
       'Fila',
+  // Versión web
+  'La foto de tu personaje sólo se puede poner en la app del móvil.':
+      'La foto del teu personatge només es pot posar a l\'app del mòbil.',
 };

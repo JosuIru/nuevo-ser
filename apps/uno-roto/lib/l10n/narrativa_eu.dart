@@ -1994,4 +1994,7 @@ const Map<String, String> narrativaEu = <String, String>{
       'Zutabea',
   'Fila':
       'Errenkada',
+  // Versión web
+  'La foto de tu personaje sólo se puede poner en la app del móvil.':
+      'Zure pertsonaiaren argazkia mugikorreko app-an bakarrik jar daiteke.',
 };

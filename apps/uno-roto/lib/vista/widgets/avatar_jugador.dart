@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import '../../nucleo/paleta.dart';
@@ -66,6 +67,8 @@ class AvatarJugador extends StatelessWidget {
   bool _imagenValida() {
     final ruta = rutaImagen;
     if (ruta == null || ruta.isEmpty) return false;
+    // En web no hay sistema de ficheros: File() lanzaría.
+    if (kIsWeb) return false;
     // No bloqueamos en sync (existsSync) por simplicidad — si el
     // fichero se borró desde fuera, FileImage falla en silencio y
     // el círculo sale gris.

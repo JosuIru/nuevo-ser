@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import '../datos/catalogo_habilidades.dart';
@@ -163,6 +164,16 @@ class _PestanaHabilidadesState extends State<_PestanaHabilidades> {
   }
 
   Future<void> _editarAvatar() async {
+    if (kIsWeb) {
+      // En el navegador no hay dónde guardar la foto en local: se avisa
+      // en vez de fallar en silencio.
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(traducirNarrativa(
+            'La foto de tu personaje sólo se puede poner en la app del móvil.',
+            Localizations.localeOf(context))),
+      ));
+      return;
+    }
     final seleccionador = SeleccionadorAvatar(widget.repositorio);
     final accion = await showModalBottomSheet<String>(
       context: context,

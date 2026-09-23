@@ -66,12 +66,14 @@ require_once NS_CORE_DIR . 'includes/class-ns-fosiles-comunidad.php';
 require_once NS_CORE_DIR . 'includes/class-ns-endpoints.php';
 require_once NS_CORE_DIR . 'includes/class-ns-admin.php';
 require_once NS_CORE_DIR . 'includes/class-ns-fosiles-admin.php';
+require_once NS_CORE_DIR . 'includes/class-ns-juegos-web.php';
 
 register_activation_hook( __FILE__, array( 'NS_Activacion', 'activar' ) );
 register_deactivation_hook( __FILE__, array( 'NS_Activacion', 'desactivar' ) );
 
 add_action( 'plugins_loaded', array( 'NS_Activacion', 'migrar_si_hace_falta' ) );
 add_action( 'rest_api_init', array( 'NS_Endpoints', 'registrar' ) );
+add_action( 'init', array( 'NS_Juegos_Web', 'registrar' ) );
 add_action( 'uroto_cron_purga_tutor', array( 'NS_Activacion', 'ejecutar_purga_tutor' ) );
 
 if ( is_admin() ) {

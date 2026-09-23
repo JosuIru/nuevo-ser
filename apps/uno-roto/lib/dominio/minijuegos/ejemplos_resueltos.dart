@@ -36,6 +36,7 @@ const habilidadesConEjemplo = {
   'FR.14', 'FR.16', 'DEC.04', // sumas de Puentes y Encaje
   'FR.09', 'DEC.08', 'PROP.05', // equivalencias de Parejas
   'DIV.01', 'DIV.03', 'DIV.04', 'DIV.05', 'DEC.02', 'FR.03', // reglas
+  'DIV.06', 'DIV.07', // Engranajes
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -136,6 +137,25 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
           PasoEjemplo('No sobra nada: {x} es múltiplo de {n}.', {'x': '$x', 'n': '$n'})
         else
           PasoEjemplo('Sobran {r}: {x} no es múltiplo de {n}.', {'r': '$resto', 'x': '$x', 'n': '$n'}),
+      ]);
+    case 'DIV.07':
+      final pares = const [(4, 6), (6, 8), (4, 10), (6, 9), (8, 12), (6, 10), (9, 12)];
+      final (a, b) = pares[azar.nextInt(pares.length)];
+      final resultado = a ~/ _mcd(a, b) * b;
+      String multiplos(int n) => [for (var k = 1; k * n <= resultado; k++) '${k * n}'].join(', ');
+      return EjemploResuelto('mcm($a, $b)', [
+        PasoEjemplo('Múltiplos de {a}: {lista}.', {'a': '$a', 'lista': multiplos(a)}),
+        PasoEjemplo('Múltiplos de {a}: {lista}.', {'a': '$b', 'lista': multiplos(b)}),
+        PasoEjemplo('El primero que está en las dos listas: {r}.', {'r': '$resultado'}),
+      ]);
+    case 'DIV.06':
+      final pares = const [(12, 18), (8, 12), (18, 24), (20, 30), (16, 24), (15, 25)];
+      final (a, b) = pares[azar.nextInt(pares.length)];
+      String divisores(int n) => [for (var d = 1; d <= n; d++) if (n % d == 0) '$d'].join(', ');
+      return EjemploResuelto('mcd($a, $b)', [
+        PasoEjemplo('Divisores de {a}: {lista}.', {'a': '$a', 'lista': divisores(a)}),
+        PasoEjemplo('Divisores de {a}: {lista}.', {'a': '$b', 'lista': divisores(b)}),
+        PasoEjemplo('El mayor que está en las dos listas: {r}.', {'r': '${_mcd(a, b)}'}),
       ]);
     case 'DIV.05':
       final x = entre(11, dificultad >= 2 ? 59 : 39);

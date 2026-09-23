@@ -34,6 +34,10 @@ const trucosPorHabilidad = <String, String>{
       'fracción es mayor que 1/2. 5/8: la mitad de 8 es 4 y 5 > 4.',
   'ALG.01': 'Haz lo mismo en los dos platillos: quita las pesas sueltas '
       'de la izquierda en los dos lados y reparte lo que queda entre las bolsas.',
+  'DIV.07': 'Escribe los múltiplos de cada número hasta encontrar el primero '
+      'que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.',
+  'DIV.06': 'Escribe los divisores de cada número y quédate con el mayor que '
+      'comparten: 24 y 36 se dividen los dos entre 12.',
   'ALG.02': 'Primero quita bolsas de los dos lados hasta que sólo queden a '
       'la izquierda; luego, como siempre.',
 };

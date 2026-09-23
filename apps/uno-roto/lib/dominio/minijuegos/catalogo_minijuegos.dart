@@ -5,8 +5,12 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 ///
 /// Salvaguardas del doc 01 codificadas aquí y en cada máquina:
 /// - Sin puntos, récords, vidas ni "game over" (principio 3).
-/// - Una máquina sólo aparece cuando el niño YA ha practicado alguna de
-///   sus habilidades: las máquinas repasan, no enseñan temas nuevos.
+/// - Primera sala: una máquina sólo aparece cuando el niño YA ha
+///   practicado alguna de sus habilidades: repasan, no enseñan.
+/// - Segunda sala (planta de arriba): enseñan habilidades nuevas, pero
+///   sólo se encienden cuando el niño domina sus llaves (competente o
+///   más). Maestría antes que volumen (principio 6). Ver
+///   docs/maquinas-segunda-sala.md.
 /// - La dificultad sale de su nivel real de maestría (principio 5).
 /// - Cada partida tiene un número fijo de rondas y termina con un
 ///   cierre amable de Rexán (principio 7).
@@ -20,6 +24,8 @@ enum IdMinijuego {
   balanza,
   flota,
   salto,
+  // Segunda sala.
+  engranajes,
 }
 
 class DefinicionMinijuego {
@@ -43,6 +49,13 @@ class DefinicionMinijuego {
   /// Cómo se juega, para el botón de ayuda.
   final String comoSeJuega;
 
+  /// 1: la sala de siempre. 2: la planta de arriba.
+  final int sala;
+
+  /// Segunda sala: habilidades que hay que dominar (competente o más)
+  /// para que la máquina se encienda.
+  final List<String> llaves;
+
   const DefinicionMinijuego({
     required this.id,
     required this.nombre,
@@ -51,6 +64,8 @@ class DefinicionMinijuego {
     required this.habilidades,
     required this.rondasPorPartida,
     required this.comoSeJuega,
+    this.sala = 1,
+    this.llaves = const [],
   });
 }
 
@@ -151,10 +166,30 @@ class CatalogoMinijuegos {
       rondasPorPartida: 3,
       comoSeJuega: 'Toca para saltar. Esquiva pinchos, cajas y fosos. Antes de cada puerta decide: si la respuesta está arriba, salta a la plataforma; si está abajo, sigue por el suelo. En el último nivel, algunas cuentas usan el resultado de la puerta anterior.',
     ),
+    DefinicionMinijuego(
+      id: IdMinijuego.engranajes,
+      nombre: 'Engranajes',
+      descripcion: 'La grúa del Puerto sólo arranca cuando las marcas de sus '
+          'ruedas coinciden.',
+      lineaRexan: 'Ruedas de 4 y de 6 dientes. Las marcas no vuelven a '
+          'juntarse cuando tú crees. Cuéntalo.',
+      habilidades: ['DIV.07', 'DIV.06'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Elige un número y mira girar las ruedas. Con las ruedas, '
+          'busca cuántos dientes tienen que pasar para que las marcas rojas '
+          'vuelvan arriba a la vez. Con los cabos, el trozo más largo que '
+          'corta los dos sin que sobre nada. La rueda oxidada esconde sus '
+          'dientes: descúbrelos.',
+      sala: 2,
+      llaves: ['DIV.01', 'DIV.05'],
+    ),
   ];
 
   static DefinicionMinijuego de(IdMinijuego id) =>
       todos.firstWhere((definicion) => definicion.id == id);
+
+  static List<DefinicionMinijuego> deLaSala(int sala) =>
+      [for (final definicion in todos) if (definicion.sala == sala) definicion];
 }
 
 class DisponibilidadMinijuego {
@@ -165,12 +200,19 @@ class DisponibilidadMinijuego {
   /// según la mejor de sus habilidades practicadas.
   final int dificultad;
 
+  /// Segunda sala: llaves que aún no domina (vacía si se enciende).
+  final List<String> llavesPendientes;
+
+  final bool _abierta;
+
   const DisponibilidadMinijuego({
     required this.habilidadesPracticadas,
     required this.dificultad,
-  });
+    this.llavesPendientes = const [],
+    bool? abierta,
+  }) : _abierta = abierta ?? habilidadesPracticadas.length > 0;
 
-  bool get disponible => habilidadesPracticadas.isNotEmpty;
+  bool get disponible => _abierta;
 }
 
 DisponibilidadMinijuego disponibilidadMinijuego(
@@ -190,8 +232,29 @@ DisponibilidadMinijuego disponibilidadMinijuego(
     NivelMaestria.competente => 2,
     _ => 1,
   };
+  if (definicion.sala == 2) {
+    // Enseña habilidades nuevas: se abre por las llaves, no por haberlas
+    // practicado, y trabaja todas las suyas.
+    final pendientes = [
+      for (final llave in definicion.llaves)
+        if ((estadosPorHabilidad[llave]?.nivel.index ?? 0) <
+            NivelMaestria.competente.index)
+          llave,
+    ];
+    return DisponibilidadMinijuego(
+      habilidadesPracticadas: definicion.habilidades,
+      dificultad: dificultad,
+      llavesPendientes: pendientes,
+      abierta: pendientes.isEmpty,
+    );
+  }
   return DisponibilidadMinijuego(
     habilidadesPracticadas: practicadas,
     dificultad: dificultad,
   );
 }
+
+/// La planta de arriba se abre en cuanto hay alguna máquina encendida.
+bool segundaSalaAbierta(Map<IdMinijuego, DisponibilidadMinijuego> disponibilidad) =>
+    CatalogoMinijuegos.deLaSala(2)
+        .any((definicion) => disponibilidad[definicion.id]?.disponible ?? false);

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
+import '../../dominio/minijuegos/niveles_maquinas.dart';
 import '../../dominio/minijuegos/parejas.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
@@ -38,6 +39,12 @@ class _PantallaParejasState extends State<PantallaParejas>
 
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.parejas);
 
+  int get _nivel => nivelDeRonda(_ronda, _definicion.rondasPorPartida);
+
+  /// Dificultad de las cuentas en esta ronda (sube con el nivel).
+  ({int dificultad, int extra}) get _enNivel =>
+      dificultadEnNivel(widget.dificultad, _nivel);
+
   late final GeneradorParejas _generador;
   late final AnimationController _temblor;
   late TableroParejas _tablero;
@@ -65,7 +72,7 @@ class _PantallaParejasState extends State<PantallaParejas>
 
   void _nuevoTablero() {
     _tablero = _generador.generar(widget.habilidadesPracticadas,
-        dificultad: widget.dificultad);
+        dificultad: _enNivel.dificultad, conTrampa: _nivel >= 3);
     _elegida = null;
     _inicioTablero = DateTime.now();
   }
@@ -110,7 +117,7 @@ class _PantallaParejasState extends State<PantallaParejas>
       widget.registro?.registrar(
         idHabilidad: habilidad,
         acierto: acierto,
-        dificultad: 0.8 + 0.3 * widget.dificultad,
+        dificultad: 0.8 + 0.3 * _enNivel.dificultad,
         duracion: duracion,
       );
     });
@@ -119,11 +126,14 @@ class _PantallaParejasState extends State<PantallaParejas>
       return;
     }
     setState(() => _lineaRexan = 'Tablero limpio.');
+    final siguienteNivel = nivelDeRonda(_ronda + 1, _definicion.rondasPorPartida);
     Future.delayed(const Duration(milliseconds: 1200), () {
       if (!mounted) return;
       setState(() {
         _ronda++;
-        _lineaRexan = null;
+        _lineaRexan = siguienteNivel >= 3
+            ? 'En este tablero sobra una carta: no tiene pareja. ¿Cuál es?'
+            : null;
         _nuevoTablero();
       });
     });

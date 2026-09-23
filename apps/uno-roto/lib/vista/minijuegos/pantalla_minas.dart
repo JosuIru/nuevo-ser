@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
+import '../../dominio/minijuegos/niveles_maquinas.dart';
 import '../../dominio/minijuegos/minas.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
@@ -38,6 +39,12 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina, Pis
 
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.minas);
 
+  int get _nivel => nivelDeRonda(_ronda, _definicion.rondasPorPartida);
+
+  /// Dificultad de las cuentas en esta ronda (sube con el nivel).
+  ({int dificultad, int extra}) get _enNivel =>
+      dificultadEnNivel(widget.dificultad, _nivel);
+
   late final math.Random _azar;
   late final List<String> _habilidades;
   late TableroMinas _tablero;
@@ -66,7 +73,8 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina, Pis
   void _nuevoTablero() {
     _tablero = TableroMinas.generar(
       idHabilidad: _habilidades[(_ronda - 1) % _habilidades.length],
-      dificultad: widget.dificultad,
+      dificultad: _enNivel.dificultad,
+      extra: _enNivel.extra,
       azar: _azar,
     );
     _entreTableros = false;
@@ -105,7 +113,7 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina, Pis
     widget.registro?.registrar(
       idHabilidad: _tablero.regla.idHabilidad,
       acierto: _tablero.acierto,
-      dificultad: 0.8 + 0.3 * widget.dificultad,
+      dificultad: 0.8 + 0.3 * _enNivel.dificultad,
       duracion: DateTime.now().difference(_inicioTablero),
     );
     if (_ronda >= _definicion.rondasPorPartida) {
@@ -118,6 +126,7 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina, Pis
       setState(() {
         _ronda++;
         _nuevoTablero();
+        _lineaRexan = 'Sube el nivel: cuentas algo más difíciles.';
       });
     });
   }

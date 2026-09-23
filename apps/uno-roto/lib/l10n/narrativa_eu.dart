@@ -2117,4 +2117,13 @@ const Map<String, String> narrativaEu = <String, String>{
       'Orain pieza batzuk mozorrotuta datoz: 2/4 eta 1/2 berdinak dira.',
   'Más rápido y sin ayudas en el tablero. Tú sabes lo que falta.':
       'Azkarrago eta taulan laguntzarik gabe. Badakizu zer falta den.',
+  // Niveles de las máquinas de pensar
+  'Sube el nivel: cuentas algo más difíciles.':
+      'Maila igotzen da: kalkulu zailxeagoak.',
+  'Flota hundida. La siguiente, mar adentro: cuentas más difíciles.':
+      'Flota hondoratuta. Hurrengoa, itsasoan barrurago: kalkulu zailagoak.',
+  'En este tablero sobra una carta: no tiene pareja. ¿Cuál es?':
+      'Taula honetan karta bat soberan dago: ez du bikoterik. Zein da?',
+  'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran. En el último tablero sobra una carta: parece de alguna pareja, pero no vale lo mismo que ninguna.':
+      'Ukitu berdin balio duten bi karta, desberdin idatzita egon arren. Hala badira, kendu egiten dira. Azken taulan karta bat soberan dago: bikoteren batekoa dirudi, baina ez du beste ezein kartaren balio bera.',
 };

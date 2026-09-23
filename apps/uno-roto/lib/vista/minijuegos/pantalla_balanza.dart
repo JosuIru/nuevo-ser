@@ -7,6 +7,7 @@ import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/ayudas_maquinas.dart';
 import '../../dominio/minijuegos/balanza.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
+import '../../dominio/minijuegos/niveles_maquinas.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
@@ -38,6 +39,12 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
   String get idMusica => 'musica_maquina_balanza';
 
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.balanza);
+
+  int get _nivel => nivelDeRonda(_ronda, _definicion.rondasPorPartida);
+
+  /// Dificultad de las cuentas en esta ronda (sube con el nivel).
+  ({int dificultad, int extra}) get _enNivel =>
+      dificultadEnNivel(widget.dificultad, _nivel);
 
   late final GeneradorBalanza _generador;
   late final AnimationController _animacion;
@@ -88,7 +95,8 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
   void _nuevaEcuacion() {
     _ecuacion = _generador.generar(
         _habilidades[(_ronda - 1) % _habilidades.length],
-        dificultad: widget.dificultad);
+        dificultad: _enNivel.dificultad,
+        extra: _enNivel.extra);
     _propuesta = 1;
     _yaRegistrada = false;
     _pasos = null;
@@ -115,7 +123,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
       if (!_ayudaUsada) widget.registro?.registrar(
         idHabilidad: _ecuacion.idHabilidad,
         acierto: diferencia == 0,
-        dificultad: 0.8 + 0.3 * widget.dificultad,
+        dificultad: 0.8 + 0.3 * _enNivel.dificultad,
         duracion: DateTime.now().difference(_inicio),
       );
     }
@@ -143,8 +151,10 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
           if (_ronda >= _definicion.rondasPorPartida) {
             _terminada = true;
           } else {
+            final nivelAntes = _nivel;
             _ronda++;
             _nuevaEcuacion();
+            if (_nivel != nivelAntes) _lineaRexan = 'Sube el nivel: cuentas algo más difíciles.';
           }
         });
       });

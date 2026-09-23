@@ -2121,4 +2121,13 @@ const Map<String, String> narrativaCa = <String, String>{
       'Ara algunes peces vénen disfressades: 2/4 és 1/2.',
   'Más rápido y sin ayudas en el tablero. Tú sabes lo que falta.':
       'Més ràpid i sense ajudes al tauler. Tu saps el que falta.',
+  // Niveles de las máquinas de pensar
+  'Sube el nivel: cuentas algo más difíciles.':
+      'Puja el nivell: càlculs una mica més difícils.',
+  'Flota hundida. La siguiente, mar adentro: cuentas más difíciles.':
+      'Flota enfonsada. La següent, mar endins: càlculs més difícils.',
+  'En este tablero sobra una carta: no tiene pareja. ¿Cuál es?':
+      'En aquest tauler sobra una carta: no té parella. Quina és?',
+  'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran. En el último tablero sobra una carta: parece de alguna pareja, pero no vale lo mismo que ninguna.':
+      'Toca dues cartes que valguin el mateix encara que estiguin escrites diferent. Si ho són, es retiren. A l\'últim tauler sobra una carta: sembla d\'alguna parella, però no val el mateix que cap.',
 };

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/canales.dart' show Celda;
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
+import '../../dominio/minijuegos/niveles_maquinas.dart';
 import '../../dominio/minijuegos/flota.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
@@ -39,6 +40,12 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, Pis
 
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.flota);
 
+  int get _nivel => nivelDeRonda(_ronda, _definicion.rondasPorPartida);
+
+  /// Dificultad de las cuentas en esta ronda (sube con el nivel).
+  ({int dificultad, int extra}) get _enNivel =>
+      dificultadEnNivel(widget.dificultad, _nivel);
+
   late final math.Random _azar;
   late final List<String> _habilidades;
   late PartidaFlota _partida;
@@ -64,7 +71,7 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, Pis
 
   void _nuevaPartida() {
     _partida = PartidaFlota(
-        habilidades: _habilidades, dificultad: widget.dificultad, azar: _azar);
+        habilidades: _habilidades, dificultad: _enNivel.dificultad, azar: _azar);
     _inicio = DateTime.now();
     _correccion = null;
     _lineaRexan = null;
@@ -116,7 +123,7 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, Pis
       widget.registro?.registrar(
         idHabilidad: habilidad,
         acierto: acierto,
-        dificultad: 0.8 + 0.3 * widget.dificultad,
+        dificultad: 0.8 + 0.3 * _enNivel.dificultad,
         duracion: duracion,
       );
     });
@@ -126,7 +133,7 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, Pis
     }
     _ronda++;
     _nuevaPartida();
-    _lineaRexan = 'Flota hundida. Otra más, mar adentro.';
+    _lineaRexan = 'Flota hundida. La siguiente, mar adentro: cuentas más difíciles.';
   }
 
   @override

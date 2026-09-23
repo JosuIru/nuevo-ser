@@ -1872,4 +1872,17 @@ const Map<String, String> narrativaCa = <String, String>{
       'Un altre forat. Mateixes regles.',
   'Cinco puentes. Por hoy el Puerto está servido. Vuelve mañana si te apetece.':
       'Cinc ponts. Per avui el Port està servit. Torna demà si et ve de gust.',
+  // Encaje (minijuego)
+  'Siguiente':
+      'Següent',
+  'SOLTAR':
+      'DEIXAR ANAR',
+  'faltan':
+      'en falten',
+  'Se ha llenado. Lo vacío y seguimos.':
+      'S\'ha omplert. El buido i continuem.',
+  'Un uno.':
+      'Un u.',
+  'Seis unidades. La máquina se calienta; mañana más.':
+      'Sis unitats. La màquina s\'escalfa; demà més.',
 };

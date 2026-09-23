@@ -7,6 +7,7 @@ import '../../datos/repositorio_progreso.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
+import 'pantalla_encaje.dart';
 import 'pantalla_puentes.dart';
 
 /// Las máquinas de Rexán: recreativas viejas que repasan matemáticas ya
@@ -51,7 +52,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
 
   /// Máquinas ya construidas. Las que falten aparecen "en reparación"
   /// aunque el niño tenga las habilidades.
-  static const _construidas = {IdMinijuego.puentes};
+  static const _construidas = {IdMinijuego.puentes, IdMinijuego.encaje};
 
   Widget? _pantallaDe(
       DefinicionMinijuego definicion, DisponibilidadMinijuego disponibilidad) {
@@ -65,6 +66,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
           habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
         );
       case IdMinijuego.encaje:
+        return PantallaEncaje(dificultad: disponibilidad.dificultad);
       case IdMinijuego.canales:
         return null;
     }

@@ -1868,4 +1868,17 @@ const Map<String, String> narrativaEu = <String, String>{
       'Beste hutsune bat. Arau berak.',
   'Cinco puentes. Por hoy el Puerto está servido. Vuelve mañana si te apetece.':
       'Bost zubi. Gaurko, Portua zerbitzatuta dago. Itzuli bihar nahi baduzu.',
+  // Encaje (minijuego)
+  'Siguiente':
+      'Hurrengoa',
+  'SOLTAR':
+      'ASKATU',
+  'faltan':
+      'falta dira',
+  'Se ha llenado. Lo vacío y seguimos.':
+      'Bete egin da. Hustu egingo dut eta jarraituko dugu.',
+  'Un uno.':
+      'Bat.',
+  'Seis unidades. La máquina se calienta; mañana más.':
+      'Sei unitate. Makina berotu egin da; bihar gehiago.',
 };

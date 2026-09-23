@@ -22,7 +22,7 @@ Widget _envolver() => MaterialApp(
 void main() {
   testWidgets('sin práctica ni modo dios, todas en reparación', (tester) async {
     SharedPreferences.setMockInitialValues({});
-    tester.view.physicalSize = const Size(1080, 3600);
+    tester.view.physicalSize = const Size(1080, 7200);
     tester.view.devicePixelRatio = 2.75;
     addTearDown(tester.view.reset);
     await tester.pumpWidget(_envolver());
@@ -35,7 +35,7 @@ void main() {
   testWidgets('en modo dios todas encendidas con sus tres dificultades',
       (tester) async {
     SharedPreferences.setMockInitialValues({'uroto.modo_dios_activo': true});
-    tester.view.physicalSize = const Size(1080, 3600);
+    tester.view.physicalSize = const Size(1080, 7200);
     tester.view.devicePixelRatio = 2.75;
     addTearDown(tester.view.reset);
     await tester.pumpWidget(_envolver());

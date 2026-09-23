@@ -70,6 +70,28 @@ flutter:
   assets:
     - assets/
 
+  # Tipografía empaquetada (se usa sin conexión, como el resto de la app):
+  # Archivo para títulos y Spectral para texto corrido. Ambas con licencia
+  # SIL Open Font License 1.1 — ver assets/fuentes/OFL.txt.
+  fonts:
+    - family: Archivo
+      fonts:
+        - asset: assets/fuentes/Archivo-Regular.ttf
+          weight: 400
+        - asset: assets/fuentes/Archivo-SemiBold.ttf
+          weight: 600
+        - asset: assets/fuentes/Archivo-Bold.ttf
+          weight: 700
+    - family: Spectral
+      fonts:
+        - asset: assets/fuentes/Spectral-Regular.ttf
+          weight: 400
+        - asset: assets/fuentes/Spectral-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fuentes/Spectral-SemiBold.ttf
+          weight: 600
+
 # Icono del lanzador. El logo es PLACEHOLDER (glifo monte+ocre+musgo sobre
 # crema, generado con ImageMagick). El ilustrador lo sustituye y se regenera
 # con `dart run flutter_launcher_icons`.

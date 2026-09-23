@@ -37,6 +37,7 @@ const habilidadesConEjemplo = {
   'FR.09', 'DEC.08', 'PROP.05', // equivalencias de Parejas
   'DIV.01', 'DIV.03', 'DIV.04', 'DIV.05', 'DEC.02', 'FR.03', // reglas
   'DIV.06', 'DIV.07', // Engranajes
+  'FR.04', 'FR.05', 'FR.06', 'FR.07', 'FR.08', 'DEC.03', // Esclusas
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -137,6 +138,74 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
           PasoEjemplo('No sobra nada: {x} es múltiplo de {n}.', {'x': '$x', 'n': '$n'})
         else
           PasoEjemplo('Sobran {r}: {x} no es múltiplo de {n}.', {'r': '$resto', 'x': '$x', 'n': '$n'}),
+      ]);
+    case 'FR.04':
+      final d = entre(3, 9);
+      var n = entre(1, d * 2 - 1);
+      if (n == d) n++;
+      return EjemploResuelto('¿$n/$d > 1?', [
+        PasoEjemplo('Compara el de arriba con el de abajo: {n} y {d}.', {'n': '$n', 'd': '$d'}),
+        PasoEjemplo(n > d ? '{n} es mayor que {d}: {f} es más que 1.' : '{n} es menor que {d}: {f} es menos que 1.',
+            {'n': '$n', 'd': '$d', 'f': '$n/$d'}),
+      ]);
+    case 'FR.05':
+      final d = entre(5, 12);
+      final a = entre(1, d - 2);
+      final b = entre(a + 1, d - 1);
+      return EjemploResuelto('¿$a/$d o $b/$d?', [
+        PasoEjemplo('Mismo denominador ({d}): mira sólo los de arriba.', {'d': '$d'}),
+        PasoEjemplo('{b} > {a}: {f} es la mayor.', {'a': '$a', 'b': '$b', 'f': '$b/$d'}),
+      ]);
+    case 'FR.06':
+      final n = entre(1, 4);
+      final d1 = entre(n + 1, 8);
+      final d2 = entre(d1 + 1, 12);
+      return EjemploResuelto('¿$n/$d1 o $n/$d2?', [
+        PasoEjemplo('Mismo numerador ({n}): mira los de abajo.', {'n': '$n'}),
+        PasoEjemplo('Partido en {a}, cada trozo es más grande que partido en {b}: {f} es la mayor.',
+            {'a': '$d1', 'b': '$d2', 'f': '$n/$d1'}),
+      ]);
+    case 'FR.07':
+      int a, b, c, d;
+      do {
+        b = entre(3, 9);
+        d = entre(3, 9);
+        a = entre(1, b - 1);
+        c = entre(1, d - 1);
+      } while (b == d || a * d == c * b);
+      final mayor = a * d > c * b ? '$a/$b' : '$c/$d';
+      return EjemploResuelto('¿$a/$b o $c/$d?', [
+        PasoEjemplo('Multiplica en cruz: {a} × {d} = {x} y {c} × {b} = {y}.',
+            {'a': '$a', 'b': '$b', 'c': '$c', 'd': '$d', 'x': '${a * d}', 'y': '${c * b}'}),
+        PasoEjemplo('El producto mayor va con la fracción mayor: {f}.', {'f': mayor}),
+      ]);
+    case 'FR.08':
+      final fracciones = <(int, int)>[];
+      final valores = <double>{};
+      while (fracciones.length < 3) {
+        final d = entre(2, 10);
+        final n = entre(1, d - 1);
+        if (!valores.add(n / d)) continue;
+        fracciones.add((n, d));
+      }
+      String decimal(double v) => v.toStringAsFixed(2).replaceAll('.', ',');
+      final ordenadas = [...fracciones]..sort((x, y) => (x.$1 / x.$2).compareTo(y.$1 / y.$2));
+      return EjemploResuelto(fracciones.map((f) => '${f.$1}/${f.$2}').join('   '), [
+        for (final (n, d) in fracciones)
+          PasoEjemplo('{f} ≈ {v}', {'f': '$n/$d', 'v': decimal(n / d)}),
+        PasoEjemplo('De menor a mayor: {orden}.',
+            {'orden': ordenadas.map((f) => '${f.$1}/${f.$2}').join(' < ')}),
+      ]);
+    case 'DEC.03':
+      final b = entre(2, 9);
+      var a = entre(11, 49);
+      if (a == b * 10) a++; // que no sean el mismo número
+      final corta = '0,$b';
+      final larga = '0,${a.toString().padLeft(2, '0')}';
+      final mayor = b * 10 > a ? corta : larga;
+      return EjemploResuelto('¿$larga o $corta?', [
+        PasoEjemplo('Iguala las cifras con ceros: {a} y {b}0.', {'a': larga, 'b': corta}),
+        PasoEjemplo('Compara las décimas y luego las centésimas: {m} es la mayor.', {'m': mayor}),
       ]);
     case 'DIV.07':
       final pares = const [(4, 6), (6, 8), (4, 10), (6, 9), (8, 12), (6, 10), (9, 12)];

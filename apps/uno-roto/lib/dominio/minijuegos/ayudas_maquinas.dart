@@ -34,6 +34,17 @@ const trucosPorHabilidad = <String, String>{
       'fracción es mayor que 1/2. 5/8: la mitad de 8 es 4 y 5 > 4.',
   'ALG.01': 'Haz lo mismo en los dos platillos: quita las pesas sueltas '
       'de la izquierda en los dos lados y reparte lo que queda entre las bolsas.',
+  'FR.04': 'Si el de arriba es menor que el de abajo, la fracción es menor '
+      'que 1; si es mayor, pasa de 1. 7/5 es más que 1 porque 7 > 5.',
+  'FR.05': 'Con el mismo denominador, gana el de arriba más grande: 5/8 > 3/8.',
+  'FR.06': 'Con el mismo numerador, gana el denominador más pequeño: 2/3 > 2/5, '
+      'porque los tercios son trozos más grandes que los quintos.',
+  'FR.07': 'Multiplica en cruz: para 3/4 y 5/7, 3 × 7 = 21 y 5 × 4 = 20. '
+      'Gana la del producto mayor: 3/4.',
+  'FR.08': 'Compáralas de dos en dos, o pásalas todas a decimal (divide '
+      'arriba entre abajo) y ordénalas.',
+  'DEC.03': 'Iguala las cifras con ceros y compara desde la coma: '
+      '0,5 = 0,50, y 0,50 > 0,45.',
   'DIV.07': 'Escribe los múltiplos de cada número hasta encontrar el primero '
       'que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.',
   'DIV.06': 'Escribe los divisores de cada número y quédate con el mayor que '

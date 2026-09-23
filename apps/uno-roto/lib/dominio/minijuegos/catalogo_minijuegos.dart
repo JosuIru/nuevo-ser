@@ -26,6 +26,7 @@ enum IdMinijuego {
   salto,
   // Segunda sala.
   engranajes,
+  esclusas,
 }
 
 class DefinicionMinijuego {
@@ -182,6 +183,23 @@ class CatalogoMinijuegos {
           'dientes: descúbrelos.',
       sala: 2,
       llaves: ['DIV.01', 'DIV.05'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.esclusas,
+      nombre: 'Esclusas',
+      descripcion: 'Los números bajan por el canal. Mándalos a su esclusa '
+          'y ordena a los que vienen atados.',
+      lineaRexan: 'Las compuertas de los Canales se han soltado. Tú decides '
+          'por dónde pasa cada barca, y rápido.',
+      habilidades: ['FR.04', 'FR.05', 'FR.06', 'FR.07', 'FR.08', 'DEC.03'],
+      rondasPorPartida: 3,
+      comoSeJuega: 'Las barquitas bajan solas. En la primera tanda, toca la '
+          'esclusa de su tramo antes de que lleguen abajo. En la segunda '
+          'vienen atadas de dos en dos: toca la que vale más. En la tercera, '
+          'de tres en tres: tócalas de la más pequeña a la más grande. Si una '
+          'llega abajo, Rexán la sube otra vez.',
+      sala: 2,
+      llaves: ['FR.03'],
     ),
   ];
 

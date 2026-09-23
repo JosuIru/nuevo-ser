@@ -7,6 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/validacion_producto.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de una prueba de validación de producto de un proyecto de test.
 class NuevaValidacion extends StatefulWidget {
@@ -70,7 +71,7 @@ class _NuevaValidacionState extends State<NuevaValidacion> {
       appBar: AppBar(title: Text(textos.valNuevaTitulo)),
       body: CuerpoResponsivo(
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
             TextField(
                 controller: _descripcion,

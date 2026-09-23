@@ -6,6 +6,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/finca.dart';
 import '../modelos/proyecto_test.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de un proyecto de test (la persona tester y su proceso).
 class NuevoProyecto extends StatefulWidget {
@@ -77,7 +78,7 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
       appBar: AppBar(title: Text(textos.proyectoNuevo)),
       body: CuerpoResponsivo(
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
             TextField(
                 controller: _nombre,

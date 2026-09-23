@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../l10n/app_localizations.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Información pública sobre el Espacio Test Agrario Zunbeltz y enlaces a las
 /// fuentes oficiales. Da contexto a quien usa la app por primera vez.
@@ -31,7 +32,7 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text(textos.acercaTitulo)),
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
         children: [
           Text(textos.acercaIntro,
               style: Theme.of(context).textTheme.bodyLarge),

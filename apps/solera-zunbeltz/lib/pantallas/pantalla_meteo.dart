@@ -5,6 +5,7 @@ import '../datos/base_datos.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/finca.dart';
 import '../servicios/servicio_meteo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Previsión meteorológica de 7 días sobre las fincas (Open-Meteo). Útil en
 /// extensivo: heladas, lluvia y viento para el manejo, traslados y puerto.
@@ -153,7 +154,7 @@ class _Contenido extends StatelessWidget {
       return Center(child: Text(textos.meteoSinConexion));
     }
     return ListView(
-      padding: const EdgeInsets.all(12),
+      padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(12)),
       children: [
         for (var i = 0; i < dias.length; i++)
           _TarjetaDia(dia: dias[i], idioma: idioma, esHoy: i == 0, textos: textos),

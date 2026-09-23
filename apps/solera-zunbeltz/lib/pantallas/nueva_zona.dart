@@ -9,6 +9,7 @@ import '../modelos/finca.dart';
 import '../modelos/zona_finca.dart';
 import '../utiles/geodesia.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de una zona a partir del trazado dibujado en el mapa. Llega con los
 /// vértices ya marcados: aquí solo se le pone nombre, tipo y estado.
@@ -99,7 +100,7 @@ class _NuevaZonaState extends State<NuevaZona> {
       appBar: AppBar(title: Text(textos.zonaNuevaTitulo)),
       body: CuerpoResponsivo(
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
             Card(
               child: Padding(

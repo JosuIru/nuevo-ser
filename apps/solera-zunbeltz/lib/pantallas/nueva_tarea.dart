@@ -8,6 +8,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de una tarea de mantenimiento, anclada a una finca y opcionalmente
 /// a un punto de infraestructura o a una zona dibujada.
@@ -150,7 +151,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
     return Scaffold(
       appBar: AppBar(title: Text(textos.tareaNuevaTitulo)),
       body: CuerpoResponsivo(child: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
         children: [
           TextField(
             controller: _titulo,

@@ -13,6 +13,7 @@ import '../modelos/tarea_mantenimiento.dart';
 import '../servicios/generador_parte_mantenimiento.dart';
 import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Tablero de tareas de mantenimiento: lista filtrable por finca y estado,
 /// con exportación del parte en PDF.
@@ -200,7 +201,7 @@ class _TableroTareasState extends State<TableroTareas> {
                   child: tareas.isEmpty
                       ? Center(child: Text(textos.tableroSinTareas))
                       : ListView(
-                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          padding: rellenoSobreBarraSistema(context, const EdgeInsets.symmetric(vertical: 8)),
                           children: [
                             for (final tarea in tareas)
                               TileTarea(

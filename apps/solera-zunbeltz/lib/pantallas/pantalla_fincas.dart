@@ -171,6 +171,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
     if (_fincas.length == 1) return _fincas.first.id;
     final textos = AppLocalizations.of(context);
     return showModalBottomSheet<int>(
+      useSafeArea: true,
       context: context,
       builder: (_) => SafeArea(
         child: Column(
@@ -196,6 +197,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
     if (fincaId == null || !mounted) return;
 
     final origen = await showModalBottomSheet<_OrigenAlta>(
+      useSafeArea: true,
       context: context,
       builder: (_) => SafeArea(
         child: Column(

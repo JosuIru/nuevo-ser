@@ -29,6 +29,7 @@ Future<bool> mostrarAccionesTarea(
   }
 
   final eleccion = await showModalBottomSheet<Object>(
+      useSafeArea: true,
     context: context,
     showDragHandle: true,
     builder: (contextoHoja) => SafeArea(

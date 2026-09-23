@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../branding.dart';
 import '../l10n/app_localizations.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Manual y ayuda dentro de la app, en lenguaje sencillo para personas no
 /// familiarizadas con apps. Apartados desplegables agrupados por tema, con
@@ -107,7 +108,7 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
       body: CuerpoResponsivo(
         maxAncho: 640,
         child: ListView(
-          padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
+          padding: rellenoSobreBarraSistema(context, const EdgeInsets.fromLTRB(12, 8, 12, 24)),
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),

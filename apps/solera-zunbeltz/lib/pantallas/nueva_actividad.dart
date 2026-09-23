@@ -6,6 +6,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/registro_actividad.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de un registro de actividad/producción de un proyecto de test
 /// (alimentación, paricion, producto). Se cuelga del proyecto; la finca es
@@ -85,7 +86,7 @@ class _NuevaActividadState extends State<NuevaActividad> {
       appBar: AppBar(title: Text(textos.actNuevaTitulo)),
       body: CuerpoResponsivo(
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
             DropdownButtonFormField<String>(
               initialValue: _tipo,

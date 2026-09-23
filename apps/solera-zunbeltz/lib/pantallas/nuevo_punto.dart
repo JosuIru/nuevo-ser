@@ -7,6 +7,7 @@ import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de un punto de infraestructura. Recibe las fincas disponibles y,
 /// opcionalmente, una finca y unas coordenadas iniciales (del GPS o del
@@ -91,7 +92,7 @@ class _NuevoPuntoState extends State<NuevoPunto> {
     return Scaffold(
       appBar: AppBar(title: Text(textos.puntoNuevoTitulo)),
       body: CuerpoResponsivo(child: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
         children: [
           DropdownButtonFormField<int>(
             initialValue: _fincaId,

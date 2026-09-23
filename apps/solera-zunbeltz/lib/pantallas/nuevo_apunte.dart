@@ -6,6 +6,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/constantes.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de un apunte económico (ingreso o gasto) de un proyecto de test.
 class NuevoApunte extends StatefulWidget {
@@ -95,7 +96,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
       appBar: AppBar(title: Text(textos.apuNuevoTitulo)),
       body: CuerpoResponsivo(
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
             DropdownButtonFormField<String>(
               initialValue: _tipo,

@@ -6,6 +6,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/registro_comercializacion.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Alta de una operación de comercialización (venta) de un proyecto de test.
 class NuevaComercializacion extends StatefulWidget {
@@ -88,7 +89,7 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
       appBar: AppBar(title: Text(textos.comNuevaTitulo)),
       body: CuerpoResponsivo(
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
             TextField(
                 controller: _producto,

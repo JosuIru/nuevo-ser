@@ -475,6 +475,40 @@ def salto():
     return pista
 
 
+def engranajes():
+    """Taller de relojería · 84 BPM, la menor. Tic-tac de ruedas que no
+    coinciden (uno cada 3 corcheas contra el pulso de 4: se encuentran
+    cada 12, como un mcm), marimba y un clac grave al cerrar la vuelta."""
+    negra = 60 / 84
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['A2', 'E3', 'A3', 'C4'],     # Am
+        ['F2', 'C3', 'A3', 'E4'],     # Fmaj7
+        ['D3', 'A3', 'C4', 'F4'],     # Dm7
+        ['E2', 'B2', 'G#3', 'D4'],    # E7: vuelve a la
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.04, 1400))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 1.6, 0.08))
+        sumar_circular(pista, inicio + 2 * negra, bajo(nota(voces[1]) / 2, negra * 1.2, 0.06))
+        # Rueda de 4: tic en cada negra. Rueda de 3: tac cada tres corcheas.
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra, taco_madera(1320, 0.05))
+        for corchea in range(0, 8, 3):
+            sumar_circular(pista, inicio + corchea * negra / 2, taco_madera(880, 0.045))
+        # Marimba en arpegio lento.
+        for i, voz in enumerate([voces[2], voces[3], voces[2], voces[1]]):
+            sumar_circular(pista, inicio + i * negra + negra / 2, marimba(nota(voz) * 2, 0.07))
+    # El clac: cuando las dos ruedas vuelven a coincidir (cada 3 compases
+    # de 4 corcheas… aquí, al cerrar cada vuelta de cuatro compases).
+    for c in (3, 7):
+        sumar_circular(pista, (c + 1) * compas - negra / 2, bombo(0.2))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -540,6 +574,7 @@ if __name__ == '__main__':
     guardar(balanza(), os.path.join(musica, 'maquina_balanza.ogg'), -19, es_bucle=True)
     guardar(flota(), os.path.join(musica, 'maquina_flota.ogg'), -19, es_bucle=True)
     guardar(salto(), os.path.join(musica, 'maquina_salto.ogg'), -19, es_bucle=True)
+    guardar(engranajes(), os.path.join(musica, 'maquina_engranajes.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

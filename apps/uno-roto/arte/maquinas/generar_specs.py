@@ -34,6 +34,8 @@ MAQUINAS = {
     'balanza': {'pantalla': '#78D8E0', 'marquesina': '#6668A8'},
     'flota': {'pantalla': '#5CB4C2', 'marquesina': '#2B4DA6'},
     'salto': {'pantalla': '#E8A857', 'marquesina': '#B45656'},
+    # Segunda sala.
+    'engranajes': {'pantalla': '#C9A04A', 'marquesina': '#8A6A2E'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -127,6 +129,16 @@ def juego_en_pantalla(nombre, color):
         p.append(pixel('plataforma', 0.22, 0.02, 0.1, 0.008, color, 1.4))
         p.append(pixel('puerta_a', 0.3, 0.12, 0.012, 0.08, '#A67EC8', 1.4))
         p.append(pixel('puerta_b', 0.3, -0.1, 0.012, 0.09, '#A67EC8', 1.4))
+    elif nombre == 'engranajes':
+        import math
+        # Dos ruedas: un anillo de dientes cada una, cubo y marca roja.
+        for rueda, (cu, cv, radio, dientes) in enumerate([(-0.14, 0.0, 0.16, 12), (0.17, 0.0, 0.12, 9)]):
+            for d in range(dientes):
+                a = d / dientes * math.pi * 2 + rueda * 0.2
+                p.append(pixel(f'diente{rueda}_{d}', cu + math.cos(a) * radio,
+                               cv + math.sin(a) * radio, 0.018, 0.018, color, 1.4))
+            p.append(pixel(f'cubo{rueda}', cu, cv, 0.04, 0.04, '#6668A8', 0.9))
+            p.append(pixel(f'marca{rueda}', cu, cv + radio * 0.7, 0.016, 0.016, '#E0453A', 2.2))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

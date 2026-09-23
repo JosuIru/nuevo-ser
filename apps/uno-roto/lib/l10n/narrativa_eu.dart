@@ -2237,4 +2237,85 @@ const Map<String, String> narrativaEu = <String, String>{
       '% 20 bikoitza da: {t} × 2 = {r}.',
   'Calcula {p} de cada 100: {q} × {p} ÷ 100 = {r}.':
       'Kalkulatu 100etik {p}: {q} × {p} ÷ 100 = {r}.',
+  // Segunda sala y Engranajes
+  'Engranajes':
+      'Engranajeak',
+  'La grúa del Puerto sólo arranca cuando las marcas de sus ruedas coinciden.':
+      'Portuko garabia bere gurpilen markak bat datozenean bakarrik abiatzen da.',
+  'Ruedas de 4 y de 6 dientes. Las marcas no vuelven a juntarse cuando tú crees. Cuéntalo.':
+      '4 eta 6 horzdun gurpilak. Markak ez dira uste duzunean elkartzen. Zenbatu.',
+  'Elige un número y mira girar las ruedas. Con las ruedas, busca cuántos dientes tienen que pasar para que las marcas rojas vuelvan arriba a la vez. Con los cabos, el trozo más largo que corta los dos sin que sobre nada. La rueda oxidada esconde sus dientes: descúbrelos.':
+      'Aukeratu zenbaki bat eta begiratu gurpilei biraka. Gurpilekin, bilatu zenbat hortz pasa behar diren marka gorriak aldi berean gora itzul daitezen. Sokekin, biak ezer soberan utzi gabe mozten dituen zatirik luzeena. Gurpil herdoilduak bere hortzak ezkutatzen ditu: aurkitu itzazu.',
+  'Trozos de {n} m y no sobra nada. Más largos no salen.':
+      '{n} metroko zatiak eta ez da ezer soberan geratzen. Luzeagoak ez dira ateratzen.',
+  'Clac. Las marcas arriba a la vez: la grúa arranca.':
+      'Klak. Markak goian aldi berean: garabia abiatzen da.',
+  'Con {v}, la rueda de {n} no ha dado vueltas enteras: su marca no está arriba.':
+      '{v} zenbakiarekin, {n} horzdun gurpilak ez du bira osorik eman: bere marka ez dago goian.',
+  'Coinciden en {v}, sí. Pero antes ya se habían juntado.':
+      '{v} zenbakian bat datoz, bai. Baina lehenago ere elkartu ziren.',
+  'Con trozos de {v} m, sobra un pedazo de cabo.':
+      '{v} metroko zatiekin, soka puska bat soberan geratzen da.',
+  'Salen iguales y no sobra nada, pero se pueden cortar más largos.':
+      'Berdinak ateratzen dira eta ez da ezer soberan geratzen, baina luzeagoak moztu daitezke.',
+  'Con {v} dientes coincidirían tras {m}, no tras {c}.':
+      '{v} hortzekin {m} hortzen ondoren etorriko lirateke bat, ez {c} hortzen ondoren.',
+  'Ruedas de {a}, {b} y {c} dientes. ¿Tras cuántos dientes vuelven las tres marcas arriba?':
+      '{a}, {b} eta {c} horzdun gurpilak. Zenbat hortzen ondoren itzultzen dira hiru markak gora?',
+  'Ruedas de {a} y {b} dientes. ¿Tras cuántos dientes vuelven las dos marcas arriba?':
+      '{a} eta {b} horzdun gurpilak. Zenbat hortzen ondoren itzultzen dira bi markak gora?',
+  'Cabos de {a} m y {b} m. ¿Cuánto mide el trozo más largo que corta los dos sin que sobre?':
+      '{a} m eta {b} m-ko sokak. Zenbat neurtzen du biak ezer soberan utzi gabe mozten dituen zatirik luzeenak?',
+  'Una rueda de {a} dientes y otra oxidada. Sus marcas coinciden tras {c} dientes. ¿Cuántos dientes tiene la oxidada?':
+      '{a} horzdun gurpil bat eta beste bat herdoilduta. Haien markak {c} hortzen ondoren datoz bat. Zenbat hortz ditu herdoildutakoak?',
+  'Seis arranques. La grúa ya carga sola; tú a descansar.':
+      'Sei abiatze. Garabiak bakarrik kargatzen du orain; zu, atseden hartzera.',
+  'La planta de arriba':
+      'Goiko solairua',
+  'Aquí arriba están las que enseñan cosas nuevas. Sólo se encienden si vienes preparado.':
+      'Hemen goian gauza berriak irakasten dituztenak daude. Prestatuta bazatoz bakarrik pizten dira.',
+  'Se enciende cuando domines: {llaves}.':
+      'Hau menderatzen duzunean pizten da: {llaves}.',
+  'Máquinas que enseñan cosas nuevas. Sube cuando quieras.':
+      'Gauza berriak irakasten dituzten makinak. Igo nahi duzunean.',
+  'Rexán la abre cuando domines bien lo de esta sala. No hay prisa.':
+      'Rexanek aretoko hau ondo menderatzen duzunean irekitzen du. Ez dago presarik.',
+  'Escribe los múltiplos de cada número hasta encontrar el primero que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.':
+      'Idatzi zenbaki bakoitzaren multiploak errepikatzen den lehena aurkitu arte: 4, 8, 12… eta 6, 12… Multiplo komunetako txikiena 12 da.',
+  'Escribe los divisores de cada número y quédate con el mayor que comparten: 24 y 36 se dividen los dos entre 12.':
+      'Idatzi zenbaki bakoitzaren zatitzaileak eta hartu partekatzen duten handiena: 24 eta 36 biak 12z zatitzen dira.',
+  'Múltiplos de {a}: {lista}.':
+      '{a} zenbakiaren multiploak: {lista}.',
+  'El primero que está en las dos listas: {r}.':
+      'Bi zerrendetan dagoen lehena: {r}.',
+  'Divisores de {a}: {lista}.':
+      '{a} zenbakiaren zatitzaileak: {lista}.',
+  'El mayor que está en las dos listas: {r}.':
+      'Bi zerrendetan dagoen handiena: {r}.',
+  'Identificar fracciones equivalentes':
+      'Zatiki baliokideak identifikatu',
+  'Comparar fracción con 1/2':
+      'Zatikia 1/2rekin konparatu',
+  'Múltiplos de un número':
+      'Zenbaki baten multiploak',
+  'Números primos':
+      'Zenbaki lehenak',
+  'Suma básica de enteros pequeños':
+      'Zenbaki oso txikien batuketa',
+  'Jerarquía de operaciones':
+      'Eragiketen hierarkia',
+  'Resolver ecuación lineal simple':
+      'Ekuazio lineal sinplea ebatzi',
+  'Fracción de una cantidad':
+      'Kantitate baten zatikia',
+  'Sumar y restar decimales':
+      'Hamartarrak batu eta kendu',
+  'Sumar fracciones con denominadores distintos':
+      'Izendatzaile desberdineko zatikiak batu',
+  'Comparar decimales':
+      'Hamartarrak konparatu',
+  'Potencias de exponente natural':
+      'Berretzaile arrunteko berreturak',
+  'Área de rectángulos y cuadrados':
+      'Laukizuzenen eta karratuen azalera',
 };

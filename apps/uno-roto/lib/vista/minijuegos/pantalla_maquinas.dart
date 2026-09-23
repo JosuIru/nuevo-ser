@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import '../../datos/catalogo_habilidades.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../datos/repositorio_progreso.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
@@ -10,6 +11,7 @@ import '../../nucleo/paleta.dart';
 import 'pantalla_balanza.dart';
 import 'pantalla_canales.dart';
 import 'pantalla_encaje.dart';
+import 'pantalla_engranajes.dart';
 import 'pantalla_flota.dart';
 import 'pantalla_minas.dart';
 import 'pantalla_parejas.dart';
@@ -68,6 +70,8 @@ Widget pantallaDeMaquina(
           registro: registro,
           dificultad: dificultad,
           habilidadesPracticadas: habilidades);
+    case IdMinijuego.engranajes:
+      return PantallaEngranajes(registro: registro, dificultad: dificultad);
   }
 }
 
@@ -78,7 +82,10 @@ Widget pantallaDeMaquina(
 class PantallaMaquinas extends StatefulWidget {
   final RepositorioProgreso repositorio;
 
-  const PantallaMaquinas({super.key, required this.repositorio});
+  /// 1: la sala de siempre. 2: la planta de arriba (ver catálogo).
+  final int sala;
+
+  const PantallaMaquinas({super.key, required this.repositorio, this.sala = 1});
 
   @override
   State<PantallaMaquinas> createState() => _PantallaMaquinasState();
@@ -87,6 +94,9 @@ class PantallaMaquinas extends StatefulWidget {
 class _PantallaMaquinasState extends State<PantallaMaquinas> {
   Map<IdMinijuego, DisponibilidadMinijuego> _disponibilidad = const {};
   bool _cargado = false;
+
+  /// Nombres de las habilidades, para decir qué llaves faltan.
+  Map<String, String> _nombresHabilidades = const {};
 
   /// En modo dios todas las máquinas están encendidas, se elige la
   /// dificultad y no se registra maestría.
@@ -102,13 +112,25 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     final modoDios = await widget.repositorio.cargarModoDiosActivo();
     final estados = <String, EstadoHabilidad?>{};
     for (final definicion in CatalogoMinijuegos.todos) {
-      for (final id in definicion.habilidades) {
+      for (final id in [...definicion.habilidades, ...definicion.llaves]) {
         estados[id] ??= await widget.repositorio.cargarEstadoHabilidad(id);
       }
+    }
+    final nombres = <String, String>{};
+    try {
+      final catalogo = await CatalogoHabilidades.cargar();
+      for (final definicion in CatalogoMinijuegos.deLaSala(2)) {
+        for (final llave in definicion.llaves) {
+          nombres[llave] = catalogo.porId(llave)?.nombre ?? llave;
+        }
+      }
+    } catch (_) {
+      // Sin catálogo se enseñan los códigos: no bloquea la sala.
     }
     if (!mounted) return;
     setState(() {
       _modoDios = modoDios;
+      _nombresHabilidades = nombres;
       _disponibilidad = {
         for (final definicion in CatalogoMinijuegos.todos)
           definicion.id: disponibilidadMinijuego(definicion, estados),
@@ -129,6 +151,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.balanza,
     IdMinijuego.flota,
     IdMinijuego.salto,
+    IdMinijuego.engranajes,
   };
 
   Widget _pantallaDe(
@@ -191,7 +214,11 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                           fit: BoxFit.scaleDown,
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            traducirNarrativa('Las máquinas de Rexán', locale)
+                            traducirNarrativa(
+                                    widget.sala == 2
+                                        ? 'La planta de arriba'
+                                        : 'Las máquinas de Rexán',
+                                    locale)
                                 .toUpperCase(),
                             style: const TextStyle(
                               color: PaletaNeon.textoPrincipal,
@@ -207,7 +234,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(12, 4, 0, 16),
                     child: Text(
-                      '“${traducirNarrativa('Las saqué de los recreativos del Puerto. Funcionan con cabeza, no con monedas.', locale)}”\n— Rexán',
+                      '“${traducirNarrativa(widget.sala == 2 ? 'Aquí arriba están las que enseñan cosas nuevas. Sólo se encienden si vienes preparado.' : 'Las saqué de los recreativos del Puerto. Funcionan con cabeza, no con monedas.', locale)}”\n— Rexán',
                       style: TextStyle(
                         color: PaletaNeon.textoTenue.withOpacity(0.85),
                         fontSize: 13,
@@ -216,9 +243,13 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                       ),
                     ),
                   ),
-                  for (final definicion in CatalogoMinijuegos.todos)
+                  for (final definicion in CatalogoMinijuegos.deLaSala(widget.sala))
                     _FichaMaquina(
                       definicion: definicion,
+                      llavesPendientes: [
+                        for (final llave in _disponibilidad[definicion.id]?.llavesPendientes ?? const <String>[])
+                          _nombresHabilidades[llave] ?? llave,
+                      ],
                       encendida: _modoDios ||
                           ((_disponibilidad[definicion.id]?.disponible ??
                                   false) &&
@@ -228,6 +259,17 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                           ? (dificultad) =>
                               _abrirEnModoDios(definicion, dificultad)
                           : null,
+                    ),
+                  if (widget.sala == 1)
+                    _Escalera(
+                      abierta: _modoDios || segundaSalaAbierta(_disponibilidad),
+                      alSubir: () async {
+                        HapticFeedback.selectionClick();
+                        await Navigator.of(contexto).push(MaterialPageRoute(
+                            builder: (_) => PantallaMaquinas(
+                                repositorio: widget.repositorio, sala: 2)));
+                        await _cargar();
+                      },
                     ),
                 ],
               ),
@@ -239,6 +281,9 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
 class _FichaMaquina extends StatelessWidget {
   final DefinicionMinijuego definicion;
   final bool encendida;
+
+  /// Segunda sala: nombres de las llaves que faltan.
+  final List<String> llavesPendientes;
   final VoidCallback alTocar;
 
   /// Sólo en modo dios: abrir la máquina con la dificultad elegida.
@@ -248,6 +293,7 @@ class _FichaMaquina extends StatelessWidget {
     required this.definicion,
     required this.encendida,
     required this.alTocar,
+    this.llavesPendientes = const [],
     this.alElegirDificultad,
   });
 
@@ -297,9 +343,13 @@ class _FichaMaquina extends StatelessWidget {
                   Text(
                     encendida
                         ? traducirNarrativa(definicion.descripcion, locale)
-                        : traducirNarrativa(
-                            'Rexán todavía la está arreglando. Sigue cazando Fragmentos.',
-                            locale),
+                        : definicion.sala == 2 && llavesPendientes.isNotEmpty
+                            ? traducirNarrativa('Se enciende cuando domines: {llaves}.', locale)
+                                .replaceAll('{llaves}',
+                                    llavesPendientes.map((n) => traducirNarrativa(n, locale)).join(', '))
+                            : traducirNarrativa(
+                                'Rexán todavía la está arreglando. Sigue cazando Fragmentos.',
+                                locale),
                     style: TextStyle(
                       color: PaletaNeon.textoTenue
                           .withOpacity(encendida ? 0.9 : 0.6),
@@ -343,6 +393,73 @@ class _FichaMaquina extends StatelessWidget {
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Al final de la primera sala: la escalera a la planta de arriba.
+/// Cerrada, dice por qué; abierta, invita a subir.
+class _Escalera extends StatelessWidget {
+  final bool abierta;
+  final VoidCallback alSubir;
+
+  const _Escalera({required this.abierta, required this.alSubir});
+
+  @override
+  Widget build(BuildContext contexto) {
+    final locale = Localizations.localeOf(contexto);
+    final color = abierta ? PaletaNeon.ambarCanales : PaletaNeon.grisMetal;
+    return GestureDetector(
+      key: const ValueKey('escalera-segunda-sala'),
+      onTap: abierta ? alSubir : null,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(12, 8, 0, 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [PaletaNeon.fondoMedio, color.withOpacity(abierta ? 0.18 : 0.05)],
+          ),
+          border: Border.all(color: color.withOpacity(abierta ? 0.7 : 0.3)),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            Icon(abierta ? Icons.stairs : Icons.lock_outline, color: color, size: 34),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    traducirNarrativa('La planta de arriba', locale).toUpperCase(),
+                    style: TextStyle(
+                      color: abierta ? PaletaNeon.textoPrincipal : PaletaNeon.textoTenue.withOpacity(0.6),
+                      fontSize: 14,
+                      letterSpacing: 2.5,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    traducirNarrativa(
+                        abierta
+                            ? 'Máquinas que enseñan cosas nuevas. Sube cuando quieras.'
+                            : 'Rexán la abre cuando domines bien lo de esta sala. No hay prisa.',
+                        locale),
+                    style: TextStyle(
+                      color: PaletaNeon.textoTenue.withOpacity(abierta ? 0.9 : 0.6),
+                      fontSize: 13,
+                      height: 1.4,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (abierta) Icon(Icons.chevron_right, color: color),
           ],
         ),
       ),

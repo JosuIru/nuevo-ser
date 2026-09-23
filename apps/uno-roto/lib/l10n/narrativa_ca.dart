@@ -2241,4 +2241,85 @@ const Map<String, String> narrativaCa = <String, String>{
       'El 20 % és el doble: {t} × 2 = {r}.',
   'Calcula {p} de cada 100: {q} × {p} ÷ 100 = {r}.':
       'Calcula {p} de cada 100: {q} × {p} ÷ 100 = {r}.',
+  // Segunda sala y Engranajes
+  'Engranajes':
+      'Engranatges',
+  'La grúa del Puerto sólo arranca cuando las marcas de sus ruedas coinciden.':
+      'La grua del Port només arrenca quan les marques de les rodes coincideixen.',
+  'Ruedas de 4 y de 6 dientes. Las marcas no vuelven a juntarse cuando tú crees. Cuéntalo.':
+      'Rodes de 4 i de 6 dents. Les marques no es tornen a trobar quan tu et penses. Compta-ho.',
+  'Elige un número y mira girar las ruedas. Con las ruedas, busca cuántos dientes tienen que pasar para que las marcas rojas vuelvan arriba a la vez. Con los cabos, el trozo más largo que corta los dos sin que sobre nada. La rueda oxidada esconde sus dientes: descúbrelos.':
+      'Tria un nombre i mira girar les rodes. Amb les rodes, busca quantes dents han de passar perquè les marques vermelles tornin a dalt alhora. Amb els caps, el tros més llarg que talla tots dos sense que sobri res. La roda rovellada amaga les dents: descobreix-les.',
+  'Trozos de {n} m y no sobra nada. Más largos no salen.':
+      'Trossos de {n} m i no sobra res. Més llargs no en surten.',
+  'Clac. Las marcas arriba a la vez: la grúa arranca.':
+      'Clac. Les marques a dalt alhora: la grua arrenca.',
+  'Con {v}, la rueda de {n} no ha dado vueltas enteras: su marca no está arriba.':
+      'Amb {v}, la roda de {n} no ha fet voltes senceres: la seva marca no és a dalt.',
+  'Coinciden en {v}, sí. Pero antes ya se habían juntado.':
+      'Coincideixen a {v}, sí. Però abans ja s\'havien trobat.',
+  'Con trozos de {v} m, sobra un pedazo de cabo.':
+      'Amb trossos de {v} m, sobra un tros de cap.',
+  'Salen iguales y no sobra nada, pero se pueden cortar más largos.':
+      'Surten iguals i no sobra res, però es poden tallar més llargs.',
+  'Con {v} dientes coincidirían tras {m}, no tras {c}.':
+      'Amb {v} dents coincidirien després de {m}, no després de {c}.',
+  'Ruedas de {a}, {b} y {c} dientes. ¿Tras cuántos dientes vuelven las tres marcas arriba?':
+      'Rodes de {a}, {b} i {c} dents. Després de quantes dents tornen les tres marques a dalt?',
+  'Ruedas de {a} y {b} dientes. ¿Tras cuántos dientes vuelven las dos marcas arriba?':
+      'Rodes de {a} i {b} dents. Després de quantes dents tornen les dues marques a dalt?',
+  'Cabos de {a} m y {b} m. ¿Cuánto mide el trozo más largo que corta los dos sin que sobre?':
+      'Caps de {a} m i {b} m. Quant fa el tros més llarg que talla tots dos sense que sobri res?',
+  'Una rueda de {a} dientes y otra oxidada. Sus marcas coinciden tras {c} dientes. ¿Cuántos dientes tiene la oxidada?':
+      'Una roda de {a} dents i una altra de rovellada. Les marques coincideixen després de {c} dents. Quantes dents té la rovellada?',
+  'Seis arranques. La grúa ya carga sola; tú a descansar.':
+      'Sis arrencades. La grua ja carrega sola; tu, a descansar.',
+  'La planta de arriba':
+      'La planta de dalt',
+  'Aquí arriba están las que enseñan cosas nuevas. Sólo se encienden si vienes preparado.':
+      'Aquí dalt hi ha les que ensenyen coses noves. Només s\'encenen si vens preparat.',
+  'Se enciende cuando domines: {llaves}.':
+      'S\'encén quan dominis: {llaves}.',
+  'Máquinas que enseñan cosas nuevas. Sube cuando quieras.':
+      'Màquines que ensenyen coses noves. Puja quan vulguis.',
+  'Rexán la abre cuando domines bien lo de esta sala. No hay prisa.':
+      'Rexán l\'obre quan dominis bé el d\'aquesta sala. No hi ha pressa.',
+  'Escribe los múltiplos de cada número hasta encontrar el primero que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.':
+      'Escriu els múltiples de cada nombre fins a trobar el primer que es repeteix: 4, 8, 12… i 6, 12… El mínim comú múltiple és 12.',
+  'Escribe los divisores de cada número y quédate con el mayor que comparten: 24 y 36 se dividen los dos entre 12.':
+      'Escriu els divisors de cada nombre i queda\'t amb el més gran que comparteixen: 24 i 36 es divideixen tots dos entre 12.',
+  'Múltiplos de {a}: {lista}.':
+      'Múltiples de {a}: {lista}.',
+  'El primero que está en las dos listas: {r}.':
+      'El primer que és a les dues llistes: {r}.',
+  'Divisores de {a}: {lista}.':
+      'Divisors de {a}: {lista}.',
+  'El mayor que está en las dos listas: {r}.':
+      'El més gran que és a les dues llistes: {r}.',
+  'Identificar fracciones equivalentes':
+      'Identificar fraccions equivalents',
+  'Comparar fracción con 1/2':
+      'Comparar una fracció amb 1/2',
+  'Múltiplos de un número':
+      'Múltiples d\'un nombre',
+  'Números primos':
+      'Nombres primers',
+  'Suma básica de enteros pequeños':
+      'Suma bàsica d\'enters petits',
+  'Jerarquía de operaciones':
+      'Jerarquia d\'operacions',
+  'Resolver ecuación lineal simple':
+      'Resoldre una equació lineal simple',
+  'Fracción de una cantidad':
+      'Fracció d\'una quantitat',
+  'Sumar y restar decimales':
+      'Sumar i restar decimals',
+  'Sumar fracciones con denominadores distintos':
+      'Sumar fraccions amb denominadors diferents',
+  'Comparar decimales':
+      'Comparar decimals',
+  'Potencias de exponente natural':
+      'Potències d\'exponent natural',
+  'Área de rectángulos y cuadrados':
+      'Àrea de rectangles i quadrats',
 };

@@ -1,0 +1,482 @@
+/*
+ * Portada web de Uno Roto ([uno_roto]). Estética del propio juego: noche
+ * azul-violeta, neón violeta y ámbar de las farolas de los Canales.
+ * Tipografías del build del juego (Roboto Light + Cormorant): ninguna
+ * petición a terceros.
+ */
+/* Las @font-face van en línea desde PHP: apuntan al build desplegado. */
+
+.ns-ur {
+	--ur-fondo: #0a0618;
+	--ur-fondo-medio: #140a2e;
+	--ur-violeta: #4b2e83;
+	--ur-neon: #8a5cff;
+	--ur-azul: #4dc9ff;
+	--ur-ambar: #e8b85c;
+	--ur-texto: #e6e0ff;
+	--ur-tenue: #9e95c7;
+	--ur-linea: rgba(138, 92, 255, 0.28);
+
+	/* A todo el ancho: lleva la clase alignfull de los temas de bloques. */
+	max-width: none !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	background: var(--ur-fondo);
+	color: var(--ur-texto);
+	font-family: "UR Roboto", "Roboto", system-ui, sans-serif;
+	font-weight: 300;
+	line-height: 1.6;
+	overflow: hidden;
+}
+
+.ns-ur *,
+.ns-ur *::before,
+.ns-ur *::after {
+	box-sizing: border-box;
+}
+
+.ns-ur a {
+	color: inherit;
+}
+
+.ns-ur-serif {
+	font-family: "UR Cormorant", "Cormorant Garamond", Georgia, serif;
+	font-style: italic;
+	font-weight: 400;
+}
+
+/* ─── Portada: texto a la izquierda, consola a la derecha ─────────── */
+
+.ns-ur-portada {
+	position: relative;
+	min-height: min(100svh, 980px);
+	padding: clamp(40px, 7vw, 96px) clamp(16px, 5vw, 72px) 0;
+	background:
+		radial-gradient(ellipse 60% 50% at 78% 38%, rgba(138, 92, 255, 0.22), transparent 70%),
+		radial-gradient(ellipse 40% 30% at 12% 20%, rgba(77, 201, 255, 0.08), transparent 70%),
+		linear-gradient(180deg, var(--ur-fondo) 0%, var(--ur-fondo-medio) 100%);
+	isolation: isolate;
+}
+
+/* Estrellas: puntos fijos, sin imagen. */
+.ns-ur-portada::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background-image:
+		radial-gradient(1px 1px at 12% 18%, #fff8 50%, transparent 51%),
+		radial-gradient(1px 1px at 28% 42%, #fff6 50%, transparent 51%),
+		radial-gradient(1.5px 1.5px at 44% 12%, #fff9 50%, transparent 51%),
+		radial-gradient(1px 1px at 61% 30%, #fff5 50%, transparent 51%),
+		radial-gradient(1px 1px at 72% 8%, #fff7 50%, transparent 51%),
+		radial-gradient(1.5px 1.5px at 88% 22%, #fff8 50%, transparent 51%),
+		radial-gradient(1px 1px at 94% 46%, #fff5 50%, transparent 51%),
+		radial-gradient(1px 1px at 6% 52%, #fff6 50%, transparent 51%),
+		radial-gradient(1px 1px at 36% 6%, #fff7 50%, transparent 51%),
+		radial-gradient(1px 1px at 52% 48%, #fff4 50%, transparent 51%);
+}
+
+/* El skyline de los Canales, encendido, al pie de la portada. */
+.ns-ur-skyline {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: clamp(150px, 20vw, 280px);
+	z-index: -1;
+	background: var(--ur-skyline) center 78% / cover no-repeat;
+	opacity: 0.5;
+	mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+	-webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+}
+
+.ns-ur-portada-rejilla {
+	max-width: 1180px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+	gap: clamp(32px, 5vw, 80px);
+	align-items: center;
+	/* Hueco para el skyline: que no quede detrás del texto. */
+	padding-bottom: clamp(150px, 20vw, 280px);
+}
+
+.ns-ur-titulo {
+	margin: 0 0 12px;
+	font-size: clamp(2.4rem, 5vw, 4.4rem);
+	font-weight: 300;
+	letter-spacing: 0.3em;
+	white-space: nowrap;
+	line-height: 1.05;
+	color: var(--ur-texto);
+	text-shadow: 0 0 28px rgba(138, 92, 255, 0.55);
+}
+
+.ns-ur-subtitulo {
+	margin: 0 0 28px;
+	font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+	line-height: 1.3;
+	color: var(--ur-ambar);
+}
+
+.ns-ur-entrada {
+	max-width: 34em;
+	margin: 0 0 32px;
+	font-size: 1.08rem;
+	color: var(--ur-tenue);
+}
+
+.ns-ur-entrada strong {
+	color: var(--ur-texto);
+	font-weight: 400;
+}
+
+.ns-ur-acciones {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 20px;
+	align-items: center;
+	margin-bottom: 36px;
+}
+
+.ns-ur-boton {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 26px;
+	border: 1px solid var(--ur-ambar);
+	border-radius: 999px;
+	background: rgba(232, 184, 92, 0.12);
+	color: var(--ur-ambar) !important;
+	font: inherit;
+	font-size: 1rem;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.ns-ur-boton:hover,
+.ns-ur-boton:focus-visible {
+	background: rgba(232, 184, 92, 0.22);
+	box-shadow: 0 0 24px rgba(232, 184, 92, 0.35);
+	transform: translateY(-1px);
+}
+
+.ns-ur-boton svg {
+	width: 18px;
+	height: 18px;
+}
+
+.ns-ur-enlace {
+	color: var(--ur-tenue) !important;
+	font-size: 0.95rem;
+	text-underline-offset: 4px;
+}
+
+.ns-ur-datos {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 28px;
+	margin: 0;
+	padding: 20px 0 0;
+	list-style: none;
+	border-top: 1px solid var(--ur-linea);
+	font-size: 0.92rem;
+	color: var(--ur-tenue);
+}
+
+.ns-ur-datos li {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+}
+
+.ns-ur-datos li::before {
+	content: "";
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--ur-neon);
+	box-shadow: 0 0 8px var(--ur-neon);
+}
+
+/* ─── La consola: el juego dentro de un móvil ─────────────────────── */
+
+.ns-ur-consola {
+	position: relative;
+	justify-self: center;
+	width: min(100%, 400px);
+	aspect-ratio: 9 / 18.5;
+	max-height: 82svh;
+	padding: 12px;
+	border-radius: 42px;
+	background: linear-gradient(160deg, #241a47, #0d0822 60%);
+	box-shadow:
+		0 0 0 1px rgba(138, 92, 255, 0.45),
+		0 0 60px rgba(138, 92, 255, 0.35),
+		0 40px 80px rgba(0, 0, 0, 0.6);
+}
+
+.ns-ur-consola::after {
+	/* Reflejo sobre el marco. */
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	background: linear-gradient(120deg, rgba(255, 255, 255, 0.08), transparent 35%);
+}
+
+.ns-ur-consola iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	border-radius: 30px;
+	background: var(--ur-fondo);
+}
+
+.ns-ur-consola:fullscreen {
+	width: 100vw;
+	height: 100vh;
+	max-height: none;
+	aspect-ratio: auto;
+	padding: 0;
+	border-radius: 0;
+	background: var(--ur-fondo);
+}
+
+.ns-ur-consola:fullscreen iframe {
+	max-width: 520px;
+	margin: 0 auto;
+	border-radius: 0;
+}
+
+/* ─── Secciones ───────────────────────────────────────────────────── */
+
+.ns-ur-seccion {
+	padding: clamp(56px, 8vw, 110px) clamp(16px, 5vw, 72px);
+	border-top: 1px solid var(--ur-linea);
+}
+
+.ns-ur-seccion-interior {
+	max-width: 1180px;
+	margin: 0 auto;
+}
+
+.ns-ur-seccion h2 {
+	margin: 0 0 10px;
+	font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+	font-weight: 300;
+	letter-spacing: 0.08em;
+	color: var(--ur-texto);
+}
+
+.ns-ur-seccion-entrada {
+	max-width: 40em;
+	margin: 0 0 40px;
+	color: var(--ur-tenue);
+	font-size: 1.05rem;
+}
+
+/* Las nueve máquinas: como una sala de recreativos. */
+.ns-ur-maquinas {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 20px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ns-ur-maquina {
+	margin: 0;
+	padding: 0 0 18px;
+	border: 1px solid var(--ur-linea);
+	border-radius: 14px;
+	background: linear-gradient(180deg, rgba(20, 10, 46, 0.9), rgba(10, 6, 24, 0.9));
+	overflow: hidden;
+	transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+
+.ns-ur-maquina:hover {
+	border-color: rgba(232, 184, 92, 0.6);
+	box-shadow: 0 0 28px rgba(232, 184, 92, 0.18);
+	transform: translateY(-3px);
+}
+
+.ns-ur-maquina-imagen {
+	position: relative;
+	aspect-ratio: 4 / 3;
+	background: #070412;
+}
+
+.ns-ur-maquina-imagen img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 30%;
+	transition: filter 0.35s;
+}
+
+/* Al pasar por encima, la pantalla de la máquina brilla un poco más. */
+.ns-ur-maquina:hover .ns-ur-maquina-imagen img,
+.ns-ur-maquina:focus-within .ns-ur-maquina-imagen img {
+	filter: brightness(1.18) saturate(1.1);
+}
+
+.ns-ur-maquina h3 {
+	margin: 14px 16px 4px;
+	font-size: 1.05rem;
+	font-weight: 400;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--ur-ambar);
+}
+
+.ns-ur-maquina p {
+	margin: 0 16px;
+	font-size: 0.92rem;
+	line-height: 1.5;
+	color: var(--ur-tenue);
+}
+
+/* Para familias y docentes. */
+.ns-ur-principios {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: clamp(24px, 4vw, 48px);
+}
+
+.ns-ur-principio h3 {
+	margin: 0 0 10px;
+	font-size: 1.6rem;
+	line-height: 1.2;
+	color: var(--ur-ambar);
+}
+
+.ns-ur-principio p {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.65;
+	color: var(--ur-tenue);
+}
+
+
+/* ─── Móvil: primero el juego ─────────────────────────────────────── */
+
+@media (max-width: 1000px) {
+	.ns-ur-maquinas {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 860px) {
+	.ns-ur-portada {
+		min-height: 0;
+		padding-top: 32px;
+	}
+
+	.ns-ur-portada-rejilla {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 28px;
+		padding-bottom: 56px;
+	}
+
+	.ns-ur-titulo {
+		letter-spacing: 0.24em;
+	}
+
+	.ns-ur-subtitulo {
+		margin-bottom: 18px;
+	}
+
+	.ns-ur-entrada {
+		margin-bottom: 24px;
+	}
+
+	/* En el móvil el marco sobra: el juego a pantalla casi completa. */
+	.ns-ur-consola {
+		width: calc(100% + 32px);
+		margin: 0 -16px;
+		aspect-ratio: auto;
+		height: 88svh;
+		max-height: none;
+		padding: 0;
+		border-radius: 0;
+		box-shadow: 0 0 0 1px var(--ur-linea);
+	}
+
+	.ns-ur-consola::after {
+		display: none;
+	}
+
+	.ns-ur-consola iframe {
+		border-radius: 0;
+	}
+
+	.ns-ur-maquinas {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px;
+	}
+
+	.ns-ur-portada-rejilla {
+		padding-bottom: 120px;
+	}
+
+	.ns-ur-titulo {
+		font-size: clamp(2.2rem, 11vw, 3.2rem);
+	}
+
+	.ns-ur-maquina h3 {
+		margin: 10px 12px 2px;
+		font-size: 0.9rem;
+	}
+
+	.ns-ur-maquina p {
+		margin: 0 12px;
+		font-size: 0.82rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ns-ur *,
+	.ns-ur *::before,
+	.ns-ur *::after {
+		transition: none !important;
+	}
+}
+
+/* ─── La página que lleva el juego: el tema, también de noche ─────── */
+
+body.ns-ur-pagina {
+	background: #0a0618;
+	color: #e6e0ff;
+}
+
+body.ns-ur-pagina .wp-site-blocks > header,
+body.ns-ur-pagina .wp-site-blocks > footer {
+	background: #0a0618;
+	color: #9e95c7;
+}
+
+body.ns-ur-pagina .wp-site-blocks > header a,
+body.ns-ur-pagina .wp-site-blocks > footer a,
+body.ns-ur-pagina .wp-site-blocks > header .wp-block-site-title a {
+	color: #e6e0ff;
+}
+
+body.ns-ur-pagina .wp-site-blocks > footer {
+	border-top: 1px solid rgba(138, 92, 255, 0.28);
+}
+
+/* Sin el hueco que el tema deja entre la cabecera y el contenido. */
+body.ns-ur-pagina main {
+	margin-top: 0 !important;
+}

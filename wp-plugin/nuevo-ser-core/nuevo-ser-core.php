@@ -5,7 +5,7 @@
  * Description: Backend compartido de la Colección Nuevo Ser Kids: sync, auth y tutor IA
  *              para Uno Roto y futuros juegos. Expone /wp-json/nuevo-ser/v1/* (canónico)
  *              y /wp-json/uno-roto/v1/* (alias deprecado, vivo hasta v1.5) con JWT propios.
- * Version:     0.16.1
+ * Version:     0.16.2
  * Author:      Equipo Colección Nuevo Ser
  * Author URI:  https://coleccion-nuevo-ser.com/
  * License:     GPL-2.0-or-later
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NS_CORE_VERSION', '0.16.1' );
+define( 'NS_CORE_VERSION', '0.16.2' );
 define( 'NS_CORE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'NS_CORE_URL', plugin_dir_url( __FILE__ ) );
 

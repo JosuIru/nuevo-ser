@@ -24,6 +24,10 @@ class TableroParejas {
   /// Habilidad de cada pareja (por [CartaPareja.idPareja]).
   final Map<int, String> habilidadDePareja;
 
+  /// Cartas sin pareja (nivel 3): escrituras de un error típico que
+  /// parecen de algún valor del tablero y no lo son. Se quedan al final.
+  final Set<int> trampas;
+
   final Set<int> retiradas = {};
   int intentosFallidos = 0;
 
@@ -31,9 +35,13 @@ class TableroParejas {
   /// que el niño intentaba emparejar.
   final Map<String, int> fallosPorHabilidad = {};
 
-  TableroParejas({required this.cartas, required this.habilidadDePareja});
+  TableroParejas({
+    required this.cartas,
+    required this.habilidadDePareja,
+    this.trampas = const {},
+  });
 
-  bool get completo => retiradas.length == cartas.length;
+  bool get completo => retiradas.length == cartas.length - trampas.length;
 
   /// Acierto del tablero para la maestría: como mucho un intento fallido.
   bool get acierto => intentosFallidos <= 1;
@@ -90,7 +98,9 @@ class GeneradorParejas {
 
   /// [habilidades]: las practicadas que tienen pareja (FR.09, DEC.08,
   /// PROP.05). [dificultad] 1-3: más parejas y amplificaciones mayores.
-  TableroParejas generar(List<String> habilidades, {int dificultad = 1}) {
+  /// [conTrampa]: una carta más, sin pareja (ver [TableroParejas.trampas]).
+  TableroParejas generar(List<String> habilidades,
+      {int dificultad = 1, bool conTrampa = false}) {
     final validas = habilidades
         .where((id) => const {'FR.09', 'DEC.08', 'PROP.05'}.contains(id))
         .toList();
@@ -115,8 +125,45 @@ class GeneradorParejas {
         ..add(CartaPareja(idPareja: id, etiqueta: izquierda))
         ..add(CartaPareja(idPareja: id, etiqueta: derecha));
     }
+    if (conTrampa) {
+      final trampa = _cartaTrampa(cartas, habilidadDePareja, usados);
+      if (trampa != null) cartas.add(trampa);
+    }
     cartas.shuffle(_azar);
-    return TableroParejas(cartas: cartas, habilidadDePareja: habilidadDePareja);
+    return TableroParejas(
+      cartas: cartas,
+      habilidadDePareja: habilidadDePareja,
+      trampas: {
+        for (var i = 0; i < cartas.length; i++)
+          if (cartas[i].idPareja == idTrampa) i,
+      },
+    );
+  }
+
+  static const idTrampa = -1;
+
+  /// El error típico sobre un valor del tablero: 1/4 → "1,4" o "14 %"
+  /// (pegar las cifras), 1/3 → "2/4" (sumar uno arriba y abajo). Sólo
+  /// si su valor no coincide con ninguno del tablero.
+  CartaPareja? _cartaTrampa(
+      List<CartaPareja> cartas, Map<int, String> habilidadDePareja, Set<double> usados) {
+    final ids = habilidadDePareja.keys.toList()..shuffle(_azar);
+    for (final id in ids) {
+      final etiqueta = cartas.firstWhere((c) => c.idPareja == id).etiqueta;
+      final partes = etiqueta.split('/');
+      if (partes.length != 2) continue;
+      final n = int.parse(partes[0]);
+      final d = int.parse(partes[1]);
+      final (texto, valor) = switch (habilidadDePareja[id]) {
+        'DEC.08' => ('$n,$d', double.parse('$n.$d')),
+        'PROP.05' => ('$n$d %', int.parse('$n$d') / 100),
+        _ => ('${n + 1}/${d + 1}', (n + 1) / (d + 1)),
+      };
+      if (usados.any((usado) => (usado - valor).abs() < 1e-9)) continue;
+      if (cartas.any((c) => c.etiqueta == texto)) continue;
+      return CartaPareja(idPareja: idTrampa, etiqueta: texto);
+    }
+    return null;
   }
 
   (String, String) _escrituras(String habilidad, Fraccion valor, int dificultad) {

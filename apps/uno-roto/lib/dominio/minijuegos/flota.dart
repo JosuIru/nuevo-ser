@@ -96,7 +96,12 @@ class PartidaFlota {
     if (habilidad == 'FR.22') {
       // valor = n/d de cantidad, con cantidad = valor·d/n entera.
       for (var intento = 0; intento < 50; intento++) {
-        final d = [2, 3, 4][_azar.nextInt(dificultad >= 2 ? 3 : 2)];
+        final denominadores = switch (dificultad) {
+          1 => const [2, 3],
+          2 => const [2, 3, 4],
+          _ => const [2, 3, 4, 5, 8],
+        };
+        final d = denominadores[_azar.nextInt(denominadores.length)];
         final n = 1 + _azar.nextInt(d - 1);
         if ((valor * d) % n != 0) continue;
         final cantidad = valor * d ~/ n;
@@ -105,7 +110,11 @@ class PartidaFlota {
       return CoordenadaCantada('FR.22', '1/2 de ${valor * 2}', valor);
     }
     // PROP.04: valor = p % de cantidad.
-    final porcentajes = dificultad >= 2 ? [10, 20, 25, 50] : [10, 50];
+    final porcentajes = switch (dificultad) {
+      1 => const [10, 50],
+      2 => const [10, 20, 25, 50],
+      _ => const [5, 10, 20, 25, 50, 75],
+    };
     for (var intento = 0; intento < 50; intento++) {
       final p = porcentajes[_azar.nextInt(porcentajes.length)];
       if ((valor * 100) % p != 0) continue;

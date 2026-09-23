@@ -52,12 +52,15 @@ class GeneradorBalanza {
 
   int _entre(int minimo, int maximo) => minimo + _azar.nextInt(maximo - minimo + 1);
 
-  EcuacionBalanza generar(String idHabilidad, {int dificultad = 1}) {
-    final x = _entre(1, dificultad >= 2 ? 12 : 8);
+  /// [dificultad] 1-3; [extra] (niveles altos) agranda aún más los
+  /// números. La x nunca pasa de 20: el selector llega a 30.
+  EcuacionBalanza generar(String idHabilidad, {int dificultad = 1, int extra = 0}) {
+    final x = _entre(1, switch (dificultad) { 1 => 8, 2 => 12, _ => 15 } + 3 * extra)
+        .clamp(1, 20);
     if (idHabilidad == 'ALG.02') {
-      final d = _entre(1, 3);
+      final d = _entre(1, dificultad >= 3 ? 4 : 3);
       final a = d + _entre(1, 3); // a > d: x sale positiva
-      final b = _entre(0, 10);
+      final b = _entre(0, dificultad >= 3 ? 15 : 10);
       final e = (a - d) * x + b;
       return EcuacionBalanza(
         idHabilidad: 'ALG.02',
@@ -68,8 +71,8 @@ class GeneradorBalanza {
         solucion: x,
       );
     }
-    final a = _entre(1, dificultad >= 2 ? 5 : 3);
-    final b = _entre(0, dificultad >= 2 ? 15 : 9);
+    final a = _entre(1, switch (dificultad) { 1 => 3, 2 => 5, _ => 6 });
+    final b = _entre(0, switch (dificultad) { 1 => 9, 2 => 15, _ => 20 });
     return EcuacionBalanza(
       idHabilidad: 'ALG.01',
       bolsasIzquierda: a,

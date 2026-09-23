@@ -98,7 +98,7 @@ class CatalogoMinijuegos {
           'trajes para la misma persona.',
       habilidades: ['FR.09', 'DEC.08', 'PROP.05'],
       rondasPorPartida: 3,
-      comoSeJuega: 'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran.',
+      comoSeJuega: 'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran. En el último tablero sobra una carta: parece de alguna pareja, pero no vale lo mismo que ninguna.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.minas,

@@ -51,6 +51,7 @@ class TableroMinas {
   factory TableroMinas.generar({
     required String idHabilidad,
     required int dificultad,
+    int extra = 0,
     math.Random? azar,
   }) {
     final aleatorio = azar ?? math.Random();
@@ -59,7 +60,7 @@ class TableroMinas {
     final filas = dificultad >= 2 ? 7 : 6;
     final columnas = dificultad >= 2 ? 6 : 5;
     final numeros =
-        regla.generar(aleatorio, filas * columnas, proporcion: 0.35);
+        regla.generar(aleatorio, filas * columnas, proporcion: 0.35 + 0.05 * extra);
     return TableroMinas(
       filas: filas,
       columnas: columnas,

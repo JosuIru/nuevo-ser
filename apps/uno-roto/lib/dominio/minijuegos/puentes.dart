@@ -88,9 +88,10 @@ class GeneradorPuentes {
   GeneradorPuentes({int? semilla}) : _azar = math.Random(semilla);
 
   /// [dificultad] 1-3: más tablones en la solución y más distractores.
-  RetoPuente generar(ModoPuente modo, {int dificultad = 1}) {
+  /// [extra]: tablones distractores de más (niveles altos).
+  RetoPuente generar(ModoPuente modo, {int dificultad = 1, int extra = 0}) {
     final piezasSolucion = dificultad >= 3 ? 3 : 2;
-    final distractores = 1 + dificultad;
+    final distractores = 1 + dificultad + extra;
     final solucion = switch (modo) {
       ModoPuente.mismoDenominador => _solucionMismoDenominador(piezasSolucion),
       ModoPuente.distintoDenominador =>

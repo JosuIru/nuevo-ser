@@ -3,7 +3,13 @@ import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:uno_roto/dominio/minijuegos/canales.dart';
+import 'package:uno_roto/dominio/minijuegos/balanza.dart';
 import 'package:uno_roto/dominio/minijuegos/encaje.dart';
+import 'package:uno_roto/dominio/minijuegos/flota.dart';
+import 'package:uno_roto/dominio/minijuegos/minas.dart';
+import 'package:uno_roto/dominio/minijuegos/niveles_maquinas.dart';
+import 'package:uno_roto/dominio/minijuegos/parejas.dart';
+import 'package:uno_roto/dominio/minijuegos/puentes.dart';
 import 'package:uno_roto/dominio/minijuegos/serpiente.dart';
 
 /// Casillas alcanzables desde [origen] sin pisar muros (el tablero de la
@@ -133,6 +139,103 @@ void main() {
       expect(anchuras(), {3, 6, 9});
       generador.nivel = 3;
       expect(anchuras().difference({3, 6, 9}), isNotEmpty);
+    });
+  });
+
+  group('Máquinas de pensar por niveles', () {
+    test('las rondas se reparten en tres tramos', () {
+      expect([for (var r = 1; r <= 5; r++) nivelDeRonda(r, 5)], [1, 1, 2, 2, 3]);
+      expect([for (var r = 1; r <= 6; r++) nivelDeRonda(r, 6)], [1, 1, 2, 2, 3, 3]);
+      expect([for (var r = 1; r <= 3; r++) nivelDeRonda(r, 3)], [1, 2, 3]);
+      expect([for (var r = 1; r <= 2; r++) nivelDeRonda(r, 2)], [1, 2]);
+      expect(dificultadEnNivel(1, 3), (dificultad: 3, extra: 0));
+      expect(dificultadEnNivel(2, 3), (dificultad: 3, extra: 1));
+      expect(dificultadEnNivel(3, 1), (dificultad: 3, extra: 0));
+    });
+
+    test('Puentes: el extra trae más tablones y sigue habiendo solución', () {
+      for (var semilla = 0; semilla < 20; semilla++) {
+        final normal = GeneradorPuentes(semilla: semilla)
+            .generar(ModoPuente.distintoDenominador, dificultad: 3);
+        final conExtra = GeneradorPuentes(semilla: semilla)
+            .generar(ModoPuente.distintoDenominador, dificultad: 3, extra: 2);
+        expect(conExtra.tablones.length, normal.tablones.length + 2);
+        expect(probarPuente(conExtra.hueco, conExtra.solucion), ResultadoPuente.exacto);
+      }
+    });
+
+    test('Balanza: en dificultad 3 y con extra, la solución cuadra y cabe en el selector', () {
+      final generador = GeneradorBalanza(azar: math.Random(5));
+      for (var i = 0; i < 200; i++) {
+        for (final id in ['ALG.01', 'ALG.02']) {
+          final ecuacion = generador.generar(id, dificultad: 3, extra: i % 3);
+          expect(ecuacion.inclinacion(ecuacion.solucion), 0);
+          expect(ecuacion.solucion, inInclusiveRange(1, 20));
+        }
+      }
+    });
+
+    test('Minas: el extra pone más minas', () {
+      int minas(int extra) => TableroMinas.generar(
+              idHabilidad: 'DIV.01', dificultad: 3, extra: extra, azar: math.Random(2))
+          .casillas
+          .where((c) => c.esMina)
+          .length;
+      expect(minas(2), greaterThan(minas(0)));
+    });
+
+    test('Flota: en dificultad 3 las coordenadas cantadas siguen valiendo 1..8', () {
+      final partida = PartidaFlota(
+          habilidades: ['FR.22', 'PROP.04'], dificultad: 3, azar: math.Random(9));
+      final vistas = <String>{};
+      for (var valor = 1; valor <= 8; valor++) {
+        for (var i = 0; i < 20; i++) {
+          final cantada = partida.cantar(valor);
+          vistas.add(cantada.expresion);
+          final partes = cantada.expresion.split(' ');
+          final cantidad = int.parse(partes.last);
+          final calculado = partes[1] == '%'
+              ? int.parse(partes[0]) * cantidad / 100
+              : int.parse(partes[0].split('/')[0]) *
+                  cantidad /
+                  int.parse(partes[0].split('/')[1]);
+          expect(calculado, valor.toDouble(), reason: cantada.expresion);
+        }
+      }
+      expect(vistas.any((e) => e.contains('/5') || e.contains('/8') || e.startsWith('75 ') || e.startsWith('5 ')),
+          isTrue);
+    });
+
+    test('Parejas: la carta trampa no tiene pareja ni vale lo que otra', () {
+      var conTrampa = 0;
+      for (var semilla = 0; semilla < 30; semilla++) {
+        for (final habilidades in [['FR.09'], ['DEC.08'], ['PROP.05']]) {
+          final tablero = GeneradorParejas(semilla: semilla)
+              .generar(habilidades, dificultad: 3, conTrampa: true);
+          if (tablero.trampas.isEmpty) continue;
+          conTrampa++;
+          expect(tablero.trampas.length, 1);
+          final indiceTrampa = tablero.trampas.first;
+          // No se puede emparejar con nada.
+          for (var i = 0; i < tablero.cartas.length; i++) {
+            if (i == indiceTrampa) continue;
+            expect(tablero.cartas[i].idPareja, isNot(GeneradorParejas.idTrampa));
+          }
+          // Se completa sin ella.
+          final porPareja = <int, List<int>>{};
+          for (var i = 0; i < tablero.cartas.length; i++) {
+            if (i != indiceTrampa) {
+              porPareja.putIfAbsent(tablero.cartas[i].idPareja, () => []).add(i);
+            }
+          }
+          for (final par in porPareja.values) {
+            expect(tablero.emparejar(par[0], par[1]), isTrue);
+          }
+          expect(tablero.completo, isTrue);
+        }
+      }
+      expect(conTrampa, greaterThan(60));
+      expect(GeneradorParejas(semilla: 1).generar(['FR.09']).trampas, isEmpty);
     });
   });
 }

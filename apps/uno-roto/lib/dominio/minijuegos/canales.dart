@@ -305,10 +305,13 @@ class ReglaCanales {
 
 enum EventoCanales { nada, recogido, noCumplia, pillado, laberintoTerminado }
 
+/// Niveles (uno por laberinto): 1, dos sombras; 2, tres; 3, tres y una
+/// de ellas (la primera) siempre persigue, con más números trampa.
 class PartidaCanales {
   final LaberintoCanales laberinto;
   final ReglaCanales regla;
   final int dificultad;
+  final int nivel;
   final math.Random _azar;
 
   late Celda jugador;
@@ -329,6 +332,7 @@ class PartidaCanales {
     required this.laberinto,
     required this.regla,
     required this.dificultad,
+    this.nivel = 1,
     math.Random? azar,
   }) : _azar = azar ?? math.Random() {
     jugador = laberinto.salida;
@@ -340,18 +344,27 @@ class PartidaCanales {
             !laberinto.vecinos(laberinto.salida).contains(celda))
         .toList()
       ..shuffle(_azar);
-    final cuantos = 8 + 2 * dificultad;
-    final generados = regla.generar(_azar, cuantos);
+    final cuantos = 8 + 2 * dificultad + (nivel >= 3 ? 2 : 0);
+    final generados =
+        regla.generar(_azar, cuantos, proporcion: nivel >= 3 ? 0.4 : 0.5);
     for (var i = 0; i < generados.length && i < libres.length; i++) {
       numeros[libres[i]] = generados[i];
     }
   }
 
+  int get _cuantasSombras => nivel >= 2 ? 3 : 2;
+
   List<Celda> _posicionesIniciales() {
     final guarida = laberinto.guarida;
     final vecinas = laberinto.vecinos(guarida);
-    return [guarida, vecinas.isEmpty ? guarida : vecinas.first];
+    return [
+      for (var i = 0; i < _cuantasSombras; i++)
+        i == 0 || vecinas.isEmpty ? guarida : vecinas[(i - 1) % vecinas.length],
+    ];
   }
+
+  /// La sombra que siempre persigue (nivel 3).
+  bool esCazadora(int indice) => nivel >= 3 && indice == 0;
 
   int get pendientes => numeros.values.where((n) => n.cumple).length;
   bool get terminado => pendientes == 0;
@@ -378,7 +391,12 @@ class PartidaCanales {
     final cadaCuanto = dificultad >= 3 ? 3 : 2;
     final mueven = dificultad >= 3 ? _ticks % cadaCuanto != 0 : _ticks % cadaCuanto == 0;
     if (mueven) {
-      sombras = [for (final sombra in sombras) _pasoSombra(sombra)];
+      sombras = [
+        for (var i = 0; i < sombras.length; i++)
+          esCazadora(i)
+              ? laberinto.primerPasoHacia(sombras[i], jugador) ?? sombras[i]
+              : _pasoSombra(sombras[i]),
+      ];
       if (_choca()) return _pillar();
     }
     if (terminado) evento = EventoCanales.laberintoTerminado;

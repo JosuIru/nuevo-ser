@@ -37,7 +37,7 @@ class PantallaSerpiente extends StatefulWidget {
 }
 
 class _PantallaSerpienteState extends State<PantallaSerpiente>
-    with MusicaDeMaquina {
+    with MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_serpiente';
 
@@ -94,12 +94,17 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
         case EventoSerpiente.correcto:
           HapticFeedback.lightImpact();
           sonar('efecto_tap');
+          anotarAcierto();
           _lineaRexan = null;
           if (_partida.correctosEnRonda >= _respuestasPorRonda) _cerrarRonda();
         case EventoSerpiente.incorrecto:
           HapticFeedback.vibrate();
           sonar('efecto_error');
+          anotarFallo();
           _lineaRexan = 'Ese no era. Busca otro.';
+        case EventoSerpiente.muro:
+          HapticFeedback.lightImpact();
+          _lineaRexan = 'Un muro. Gira y sigue.';
         case EventoSerpiente.nada:
           break;
       }
@@ -124,7 +129,10 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
       return;
     }
     _ronda++;
-    _lineaRexan = 'Cinco. Sigue, que aún tiene hambre.';
+    _partida.cambiarNivel(_ronda);
+    _lineaRexan = _ronda == 2
+        ? 'Cinco. Ahora hay muros: no hacen daño, pero hay que rodearlos.'
+        : 'Cinco más. Los números ya no se están quietos.';
   }
 
   void _alDeslizar(DragEndDetails detalles) {
@@ -148,6 +156,8 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
                 : 'Lee la cuenta. Cuando quieras, elige una dirección.');
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.reto.idHabilidad,
       alPausar: () => _pausado = true,
@@ -224,6 +234,20 @@ class PintorSerpiente extends CustomPainter {
       for (var c = 0; c < PartidaSerpiente.columnas; c++) {
         canvas.drawCircle(rectDe(Celda(f, c)).center, 1.2, punto);
       }
+    }
+
+    // Muros: bloques de neón azul.
+    for (final muro in partida.muros) {
+      final rect = rectDe(muro).deflate(lado * 0.06);
+      canvas.drawRRect(RRect.fromRectAndRadius(rect, Radius.circular(lado * 0.12)),
+          Paint()..color = PaletaNeon.azulNeon.withOpacity(0.18));
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(rect, Radius.circular(lado * 0.12)),
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.5
+          ..color = PaletaNeon.azulNeon.withOpacity(0.8),
+      );
     }
 
     partida.numeros.forEach((celda, valor) {

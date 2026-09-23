@@ -162,11 +162,16 @@ class GeneradorEncaje {
   final math.Random _azar;
   final int dificultad;
 
+  /// 1-3, sube con las unidades. Nivel 2: piezas escritas con fracciones
+  /// equivalentes también en dificultad 1. Nivel 3: además, las anchuras
+  /// de la dificultad siguiente.
+  int nivel = 1;
+
   GeneradorEncaje({required this.dificultad, int? semilla})
       : _azar = math.Random(semilla);
 
   /// Anchuras permitidas (en celdas de 12) por dificultad.
-  List<int> get _anchuras => switch (dificultad) {
+  List<int> get _anchuras => switch (math.min(3, dificultad + (nivel >= 3 ? 1 : 0))) {
         1 => const [3, 6, 9], // cuartos y medios
         2 => const [2, 3, 4, 6, 8, 9, 10], // + tercios y sextos
         _ => const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], // + doceavos
@@ -190,7 +195,7 @@ class GeneradorEncaje {
   /// Desde dificultad 2, una de cada tres piezas se escribe con una
   /// fracción equivalente (FR.09): 1/2 → 2/4, 3/6 o 6/12…
   Fraccion _etiqueta(Fraccion valor) {
-    if (dificultad < 2 || _azar.nextInt(3) != 0) return valor;
+    if ((dificultad < 2 && nivel < 2) || _azar.nextInt(3) != 0) return valor;
     final factores = [
       for (var factor = 2; factor <= 4; factor++)
         if (valor.denominador * factor <= columnasEncaje) factor,

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -46,10 +47,15 @@ class _PantallaEncajeState extends State<PantallaEncaje>
   bool _terminada = false;
   bool _pausado = false;
 
-  Duration get _periodo =>
-      widget.periodoCaida ??
-      Duration(
-          milliseconds: switch (widget.dificultad) { 1 => 1100, 2 => 900, _ => 750 });
+  /// Nivel por unidades completadas: 0-1 → 1, 2-3 → 2, 4-5 → 3.
+  int get _nivel => math.min(3, 1 + _tablero.unidades ~/ 2);
+
+  Duration get _periodo {
+    final base = widget.periodoCaida ??
+        Duration(
+            milliseconds: switch (widget.dificultad) { 1 => 1100, 2 => 900, _ => 750 });
+    return base * const [1.0, 0.85, 0.7][_nivel - 1];
+  }
 
   @override
   void initState() {
@@ -99,6 +105,14 @@ class _PantallaEncajeState extends State<PantallaEncaje>
       HapticFeedback.mediumImpact();
       sonar('efecto_fila_completa');
       _lineaRexan = 'Un uno.';
+      if (_nivel != _generador.nivel && _tablero.unidades < _definicion.rondasPorPartida) {
+        _generador.nivel = _nivel;
+        _temporizador?.cancel();
+        _temporizador = Timer.periodic(_periodo, (_) => _caer());
+        _lineaRexan = _nivel == 2
+            ? 'Ahora algunas piezas vienen disfrazadas: 2/4 es 1/2.'
+            : 'Más rápido y sin ayudas en el tablero. Tú sabes lo que falta.';
+      }
     }
     if (_tablero.unidades >= _definicion.rondasPorPartida) {
       _terminada = true;
@@ -174,8 +188,8 @@ class _PantallaEncajeState extends State<PantallaEncaje>
                         size: lienzo,
                         painter: PintorEncaje(
                           tablero: _tablero,
-                          mostrarFaltas: widget.dificultad < 3,
-                          mostrarRejilla: widget.dificultad < 3,
+                          mostrarFaltas: widget.dificultad < 3 && _nivel < 3,
+                          mostrarRejilla: widget.dificultad < 3 && _nivel < 3,
                           textoFalta: traducirNarrativa('faltan', locale),
                         ),
                       ),

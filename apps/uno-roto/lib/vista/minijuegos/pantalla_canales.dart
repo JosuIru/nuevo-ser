@@ -39,7 +39,7 @@ class PantallaCanales extends StatefulWidget {
 }
 
 class _PantallaCanalesState extends State<PantallaCanales>
-    with MusicaDeMaquina {
+    with MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_canales';
 
@@ -94,6 +94,7 @@ class _PantallaCanalesState extends State<PantallaCanales>
           laberintosCanales[(_ronda - 1) % laberintosCanales.length]),
       regla: ReglaCanales.para(idHabilidad, widget.dificultad, _azar)!,
       dificultad: widget.dificultad,
+      nivel: _ronda,
       azar: _azar,
     );
     _empezado = false;
@@ -118,9 +119,11 @@ class _PantallaCanalesState extends State<PantallaCanales>
         case EventoCanales.recogido:
           HapticFeedback.selectionClick();
           sonar('efecto_tap'); // gota entrando en agua (doc 12)
+          anotarAcierto();
         case EventoCanales.noCumplia:
           HapticFeedback.vibrate();
           sonar('efecto_error');
+          anotarFallo();
           _lineaRexan = 'no-cumple';
         case EventoCanales.pillado:
           HapticFeedback.mediumImpact();
@@ -179,7 +182,11 @@ class _PantallaCanalesState extends State<PantallaCanales>
         linea ??
             (_empezado
                 ? _definicion.lineaRexan
-                : 'Lee la regla. Cuando quieras, elige una dirección.'),
+                : switch (_ronda) {
+                    1 => 'Lee la regla. Cuando quieras, elige una dirección.',
+                    2 => 'Tres sombras esta vez. Lee la regla y elige dirección.',
+                    _ => 'Una sombra ya no vaga: te busca. Y hay más números trampa.',
+                  }),
         locale);
   }
 
@@ -199,6 +206,8 @@ class _PantallaCanalesState extends State<PantallaCanales>
     final laberinto = _partida.laberinto;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      ofrecerPista: ofrecerPista,
+      alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.regla.idHabilidad,
       alPausar: () => _pausado = true,
@@ -304,8 +313,16 @@ class PintorCanales extends CustomPainter {
 
     // Sombras.
     final spriteSombra = SpritesMaquinas.ya('sombra');
-    for (final sombra in partida.sombras) {
+    for (var indice = 0; indice < partida.sombras.length; indice++) {
+      final sombra = partida.sombras[indice];
       final centro = rectDe(sombra).center;
+      // La cazadora lleva un halo rosado: se distingue de lejos.
+      if (partida.esCazadora(indice)) {
+        canvas.drawCircle(centro, lado * 0.62,
+            Paint()
+              ..color = PaletaNeon.rosaAcento.withOpacity(0.35)
+              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6));
+      }
       if (spriteSombra != null) {
         pintarSprite(canvas, spriteSombra, rectDe(sombra).inflate(lado * 0.1));
         continue;

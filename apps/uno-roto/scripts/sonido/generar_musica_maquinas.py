@@ -317,6 +317,127 @@ def minas():
     return pista
 
 
+def marimba(frecuencia, volumen=0.16):
+    """Láminas de madera: fundamental + 4.º armónico, caída corta."""
+    n = int(0.6 * FS)
+    t = np.arange(n) / FS
+    senal = (np.sin(2 * np.pi * frecuencia * t)
+             + 0.35 * np.sin(2 * np.pi * frecuencia * 4 * t) * np.exp(-t / 0.03))
+    return volumen * senal * envolvente(n, 0.002, 0.18)
+
+
+def maraca(volumen=0.05):
+    n = int(0.07 * FS)
+    ruido = filtro(AZAR.uniform(-1, 1, n), 'bandpass', [3000, 9000])
+    return volumen * ruido * envolvente(n, 0.008, 0.025)
+
+
+def taco_madera(frecuencia, volumen=0.12):
+    """Tic-tac de péndulo: golpe de madera afinado, muy corto."""
+    n = int(0.12 * FS)
+    t = np.arange(n) / FS
+    return volumen * np.sin(2 * np.pi * frecuencia * t) * envolvente(n, 0.001, 0.02)
+
+
+def sonar(volumen=0.08):
+    """Ping de sonar lejano: tono puro que cae un poco, con cola larga."""
+    n = int(2.5 * FS)
+    t = np.arange(n) / FS
+    frecuencia = 1180 - 60 * (1 - np.exp(-t / 0.5))
+    fase = 2 * np.pi * np.cumsum(frecuencia) / FS
+    eco = np.sin(fase) * np.exp(-t / 0.7)
+    retardo = int(0.32 * FS)
+    eco[retardo:] += 0.35 * eco[:-retardo]
+    return volumen * eco * np.minimum(1, t / 0.003)
+
+
+def serpiente():
+    """Juguetona sin euforia · 92 BPM, la menor dórico. Marimba sincopada,
+    maraca y bajo. 8 compases."""
+    negra = 60 / 92
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ('A2', ['A3', 'C4', 'E4', 'G4']),      # Am7
+        ('D2', ['D4', 'F#4', 'A4', 'C5']),     # D7 (la sexta mayor, dórica)
+        ('A2', ['A3', 'C4', 'E4', 'B4']),      # Am(add9)
+        ('G2', ['G3', 'B3', 'D4', 'F#4']),     # Gmaj7
+    ]
+    # Patrón sincopado de corcheas (1 = suena).
+    patron = [1, 0, 1, 1, 0, 1, 0, 1]
+    for c in range(8):
+        inicio = c * compas
+        raiz, voces = acordes[c % 4]
+        paso = 0
+        for corchea, suena in enumerate(patron):
+            if suena:
+                voz = voces[(paso * 2 + c) % len(voces)]
+                sumar_circular(pista, inicio + corchea * negra / 2, marimba(nota(voz)))
+                paso += 1
+        sumar_circular(pista, inicio, bajo(nota(raiz) * 2, negra * 1.5, 0.1))
+        sumar_circular(pista, inicio + 2.5 * negra, bajo(nota(raiz) * 3, negra * 0.8, 0.07))
+        for semicorchea in range(16):
+            sumar_circular(pista, inicio + semicorchea * negra / 4,
+                           maraca(0.05 if semicorchea % 4 == 2 else 0.025))
+        sumar_circular(pista, inicio, percusion_mano(0.12, True))
+        sumar_circular(pista, inicio + 1.5 * negra, percusion_mano(0.08, False))
+    return pista
+
+
+def balanza():
+    """Pensar despacio · 60 BPM, re mayor con suspensiones. Piano y un
+    tic-tac de péndulo que va y viene. 8 compases."""
+    negra = 60 / 60
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['D3', 'G3', 'A3', 'E4'],     # Dsus4(add9)
+        ['D3', 'F#3', 'A3', 'E4'],    # D(add9): se resuelve
+        ['B2', 'E3', 'F#3', 'A3'],    # Bm7sus4
+        ['G2', 'D3', 'A3', 'B3'],     # Gmaj9 sin 3.ª
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.04, 1500))
+        for i, voz in enumerate(voces):
+            sumar_circular(pista, inicio + 0.03 * i, piano_fm(nota(voz), compas * 0.9, 0.08))
+        # El péndulo: tic (agudo) y tac (grave), una negra cada uno.
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra,
+                           taco_madera(1250 if tiempo % 2 == 0 else 940, 0.07))
+    # Una nota sola que pregunta, al final de cada vuelta de cuatro.
+    for c in (3, 7):
+        sumar_circular(pista, c * compas + 2.5 * negra, piano_fm(nota('F#5'), negra * 2, 0.09))
+    return pista
+
+
+def flota():
+    """Alta mar · 72 BPM, sol menor. Pad, bajo ostinato, oleaje y un ping
+    de sonar lejano en cada compás. 8 compases."""
+    negra = 60 / 72
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['G3', 'A#3', 'D4', 'F4'],     # Gm7
+        ['D#3', 'G3', 'A#3', 'D4'],    # Ebmaj7
+        ['C3', 'D#3', 'G3', 'A#3'],    # Cm7
+        ['D3', 'F#3', 'A3', 'C4'],     # D7: vuelve a sol
+    ]
+    ostinato = ['G2', 'G2', 'D3', 'G2']
+    for c in range(8):
+        inicio = c * compas
+        sumar_circular(pista, inicio,
+                       pad([nota(v) for v in acordes[c % 4]], compas * 1.1, 0.05, 1300))
+        raiz = ['G2', 'D#2', 'C2', 'D2'][c % 4]
+        for i, _ in enumerate(ostinato):
+            sumar_circular(pista, inicio + i * negra,
+                           bajo(nota(raiz) * (1.5 if i == 2 else 1), negra * 0.8, 0.08))
+        sumar_circular(pista, inicio + 0.5 * negra, sonar(0.06))
+    pista += mar(len(pista), len(pista) / FS, 0.04)
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -378,6 +499,9 @@ if __name__ == '__main__':
     guardar(canales(), os.path.join(musica, 'maquina_canales.ogg'), -19, es_bucle=True)
     guardar(parejas(), os.path.join(musica, 'maquina_parejas.ogg'), -19, es_bucle=True)
     guardar(minas(), os.path.join(musica, 'maquina_minas.ogg'), -19, es_bucle=True)
+    guardar(serpiente(), os.path.join(musica, 'maquina_serpiente.ogg'), -19, es_bucle=True)
+    guardar(balanza(), os.path.join(musica, 'maquina_balanza.ogg'), -19, es_bucle=True)
+    guardar(flota(), os.path.join(musica, 'maquina_flota.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

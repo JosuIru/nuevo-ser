@@ -196,7 +196,7 @@ uno-roto/
   - **Parejas** (FR.09/DEC.08/PROP.05): cartas boca arriba con el mismo valor escrito distinto; boca arriba para que un fallo sea de matemáticas y no de memoria. **Minas** (DIV.01/03/04/05): buscaminas de divisibilidad; abrir y marcar se comprueban al momento.
   - **Serpiente** (ARI.01/OP.01/ARI.02/FR.22/PROP.04): comer el resultado entre distractores que son los errores típicos (`retos_calculo.dart`); atraviesa bordes y a sí misma, no muere. **Balanza** (ALG.01/02): la ecuación como balanza de bolsas de x y pesas; se propone x y se pesa. **La flota** (PROP.04/FR.22): coordenadas cantadas en cálculo; si se equivoca, se le enseña la casilla y se dispara igual.
   - Modo dios: todas encendidas con D1-D3 y sin registrar maestría; también desde la pantalla del modo dios.
-  - Arte de las recreativas: `arte/maquinas/` (flavor3d). Sprites: `arte/sprites/`. Música: `scripts/sonido/generar_musica_maquinas.py` (Serpiente, Balanza y La flota reutilizan las de Parejas, Minas y Puentes). Arte y música: `~/Projects/flavor3d` (render 3D desde YAML) y `~/Projects/mesa-mezclas` (Ravero, música por géneros) están disponibles para sustituir los placeholders — revisar licencias de samples antes.
+  - Arte de las recreativas: `arte/maquinas/` (flavor3d). Sprites: `arte/sprites/`. Música: `scripts/sonido/generar_musica_maquinas.py`, un bucle propio por máquina. Arte y música: `~/Projects/flavor3d` (render 3D desde YAML) y `~/Projects/mesa-mezclas` (Ravero, música por géneros) están disponibles para sustituir los placeholders — revisar licencias de samples antes.
 
 **Gap frente a doc 03 / prompt maestro**:
 - Sin Isar (usamos shared_preferences).

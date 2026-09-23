@@ -222,6 +222,11 @@ CC-BY-SA 4.0, sin atribuciones de terceros.
 | `musica_maquina_puentes` | `musica/maquina_puentes.ogg` | Puerto: drones en fa menor, oleaje y campana del faro. 32 s en bucle |
 | `musica_maquina_encaje` | `musica/maquina_encaje.ogg` | Tejados: lo-fi 70 BPM en mi menor, piano eléctrico FM y vinilo. 8 compases |
 | `musica_maquina_canales` | `musica/maquina_canales.ogg` | Canales: 55 BPM en re menor, arpegio pulsado y gotas. 8 compases |
+| `musica_maquina_parejas` | `musica/maquina_parejas.ogg` | Mercado: 88 BPM en sol mayor con giro frigio, guitarra pulsada y cajón |
+| `musica_maquina_minas` | `musica/maquina_minas.ogg` | Industria: 64 BPM en do# modal, pulso metálico y campana grave |
+| `musica_maquina_serpiente` | `musica/maquina_serpiente.ogg` | 92 BPM en la dórico: marimba sincopada, maraca y bajo |
+| `musica_maquina_balanza` | `musica/maquina_balanza.ogg` | 60 BPM en re mayor suspendido: piano y péndulo |
+| `musica_maquina_flota` | `musica/maquina_flota.ogg` | 72 BPM en sol menor: pad, ostinato, oleaje y sonar |
 | `efecto_fila_completa` | `efectos/fila_completa.ogg` | Quinta que se cierra (doc 12, "equivaler") |
 | `efecto_tablon` | `efectos/tablon.ogg` | Golpe de madera corto, por debajo del acierto |
 

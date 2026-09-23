@@ -34,7 +34,7 @@ class PantallaBalanza extends StatefulWidget {
 class _PantallaBalanzaState extends State<PantallaBalanza>
     with SingleTickerProviderStateMixin, MusicaDeMaquina {
   @override
-  String get idMusica => 'musica_maquina_minas';
+  String get idMusica => 'musica_maquina_balanza';
 
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.balanza);
 

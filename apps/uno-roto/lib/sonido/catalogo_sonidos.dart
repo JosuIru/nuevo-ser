@@ -144,6 +144,24 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_minas.ogg',
       enBucle: true,
     ),
+    'musica_maquina_serpiente': SonidoCatalogado(
+      identificador: 'musica_maquina_serpiente',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_serpiente.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_balanza': SonidoCatalogado(
+      identificador: 'musica_maquina_balanza',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_balanza.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_flota': SonidoCatalogado(
+      identificador: 'musica_maquina_flota',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_flota.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

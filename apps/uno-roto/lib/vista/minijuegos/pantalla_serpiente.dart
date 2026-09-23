@@ -39,7 +39,7 @@ class PantallaSerpiente extends StatefulWidget {
 class _PantallaSerpienteState extends State<PantallaSerpiente>
     with MusicaDeMaquina {
   @override
-  String get idMusica => 'musica_maquina_parejas';
+  String get idMusica => 'musica_maquina_serpiente';
 
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.serpiente);
   static const _respuestasPorRonda = 5;

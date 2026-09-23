@@ -35,7 +35,7 @@ class PantallaFlota extends StatefulWidget {
 
 class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina {
   @override
-  String get idMusica => 'musica_maquina_puentes';
+  String get idMusica => 'musica_maquina_flota';
 
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.flota);
 

@@ -2391,4 +2391,73 @@ const Map<String, String> narrativaEu = <String, String>{
       'Berdindu zifrak zeroekin: {a} eta {b}0.',
   'Compara las décimas y luego las centésimas: {m} es la mayor.':
       'Konparatu hamarrenak eta gero ehunenak: {m} da handiena.',
+  // Planos
+  'Planos':
+      'Planoak',
+  'Redibuja las casas de las Afueras con la medida justa: área, valla y tejados.':
+      'Marraztu berriro Kanpoaldeko etxeak neurri zehatzarekin: azalera, hesia eta teilatuak.',
+  'Se mojaron los planos de las casas nuevas. Tú tienes cuadrícula y lápiz; yo, el sello.':
+      'Etxe berrien planoak busti egin ziren. Zuk sareta eta arkatza dituzu; nik, zigilua.',
+  'Arrastra el dedo de una esquina a la otra (o toca dos esquinas) para dibujar la habitación; cada cuadro es 1 m². Abajo ves su área y su valla. Cuando cumpla el encargo, pulsa ENTREGAR. No se construye sobre la maleza.':
+      'Arrastatu hatza izkina batetik bestera (edo ukitu bi izkina) gela marrazteko; lauki bakoitza 1 m² da. Behean bere azalera eta hesia ikusten dituzu. Enkargua betetzen duenean, sakatu ENTREGATU. Sasi gainean ez da eraikitzen.',
+  'Esta maleza crece mientras piensas. No hay prisa, pero no para.':
+      'Sasi hau pentsatzen duzun bitartean hazten da. Ez dago presarik, baina ez da gelditzen.',
+  'Ahí hay maleza: no se puede construir encima. Muévelo.':
+      'Hor sasia dago: ezin da gainean eraiki. Mugitu.',
+  'Sellado. Esa casa se puede construir.':
+      'Zigilatuta. Etxe hori eraiki daiteke.',
+  'Esa valla mide {p} m, no {P}.':
+      'Hesi horrek {p} m neurtzen ditu, ez {P}.',
+  'Con {P} m de valla cabe un huerto más grande.':
+      '{P} m-ko hesiarekin baratze handiagoa sartzen da.',
+  'Tiene {a} m², sí, pero lleva {p} m de valla. Se puede con menos.':
+      '{a} m² ditu, bai, baina {p} m hesi behar ditu. Gutxiagorekin egin daiteke.',
+  'Ese triángulo tiene {t} m²: la mitad del rectángulo de {a}.':
+      'Triangelu horrek {t} m² ditu: {a} m²-ko laukizuzenaren erdia.',
+  'Esa habitación tiene {a} m². El encargo pide otra cosa.':
+      'Gela horrek {a} m² ditu. Enkarguak beste zerbait eskatzen du.',
+  'Una habitación de {v} m².':
+      '{v} m²-ko gela bat.',
+  'Una habitación de {v} m² con la menor valla posible.':
+      '{v} m²-ko gela bat, ahalik eta hesi txikienarekin.',
+  'Con {v} m de valla, el huerto más grande posible.':
+      '{v} m-ko hesiarekin, ahalik eta baratzerik handiena.',
+  'Un tejado triangular de {v} m²: dibuja el rectángulo que lo contiene.':
+      '{v} m²-ko teilatu triangeluarra: marraztu hura barnean duen laukizuzena.',
+  'Una habitación de {v} dm².':
+      '{v} dm²-ko gela bat.',
+  'Seis planos sellados. Las Afueras ya tienen barrio.':
+      'Sei plano zigilatuta. Kanpoaldeak auzoa du dagoeneko.',
+  'Arrastra el dedo de una esquina a la otra.':
+      'Arrastatu hatza izkina batetik bestera.',
+  'Rectángulo: {a} m² · Tejado: {t} m²':
+      'Laukizuzena: {a} m² · Teilatua: {t} m²',
+  'Área: {a} m² · Valla: {p} m':
+      'Azalera: {a} m² · Hesia: {p} m',
+  'ENTREGAR':
+      'ENTREGATU',
+  'El área de un rectángulo es ancho por alto: 4 × 6 = 24 m². Cuenta los cuadros de una fila y multiplica por las filas.':
+      'Laukizuzen baten azalera zabalera bider altuera da: 4 × 6 = 24 m². Zenbatu errenkada bateko laukiak eta biderkatu errenkada kopuruaz.',
+  'El perímetro es la vuelta entera: suma los cuatro lados. Para la misma área, cuanto más cuadrado, menos valla.':
+      'Perimetroa bira osoa da: batu lau aldeak. Azalera bera izanda, zenbat eta karratuagoa, orduan eta hesi gutxiago.',
+  'Un triángulo rectángulo es medio rectángulo: base por altura y entre dos. Para 12 m² de tejado, un rectángulo de 24.':
+      'Triangelu zuzena laukizuzen erdia da: oinarria bider altuera eta bitan zatitu. 12 m²-ko teilaturako, 24ko laukizuzena.',
+  'Un metro cuadrado tiene 10 × 10 = 100 decímetros cuadrados. Para pasar de dm² a m², divide entre 100.':
+      'Metro karratu batek 10 × 10 = 100 dezimetro karratu ditu. dm²-tik m²-ra pasatzeko, zatitu 100ez.',
+  'Una fila tiene {a} cuadros y hay {h} filas.':
+      'Errenkada batek {a} lauki ditu eta {h} errenkada daude.',
+  'Área: {a} × {h} = {r} m².':
+      'Azalera: {a} × {h} = {r} m².',
+  '{a} × {b}: valla de {p} m.':
+      '{a} × {b}: {p} m-ko hesia.',
+  'La más cuadrada, {a} × {b}, gasta menos valla.':
+      'Karratuenak, {a} × {b}, hesi gutxiago behar du.',
+  'El rectángulo que lo contiene: {b} × {h} = {r} m².':
+      'Hura barnean duen laukizuzena: {b} × {h} = {r} m².',
+  'El triángulo es la mitad: {r} ÷ 2 = {t} m².':
+      'Triangelua erdia da: {r} ÷ 2 = {t} m².',
+  '1 m² = 10 dm × 10 dm = 100 dm².':
+      '1 m² = 10 dm × 10 dm = 100 dm².',
+  '{d} ÷ 100 = {m} m².':
+      '{d} ÷ 100 = {m} m².',
 };

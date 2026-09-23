@@ -2395,4 +2395,73 @@ const Map<String, String> narrativaCa = <String, String>{
       'Iguala les xifres amb zeros: {a} i {b}0.',
   'Compara las décimas y luego las centésimas: {m} es la mayor.':
       'Compara les dècimes i després les centèsimes: {m} és la més gran.',
+  // Planos
+  'Planos':
+      'Plànols',
+  'Redibuja las casas de las Afueras con la medida justa: área, valla y tejados.':
+      'Redibuixa les cases dels Afores amb la mida justa: àrea, tanca i teulades.',
+  'Se mojaron los planos de las casas nuevas. Tú tienes cuadrícula y lápiz; yo, el sello.':
+      'Es van mullar els plànols de les cases noves. Tu tens quadrícula i llapis; jo, el segell.',
+  'Arrastra el dedo de una esquina a la otra (o toca dos esquinas) para dibujar la habitación; cada cuadro es 1 m². Abajo ves su área y su valla. Cuando cumpla el encargo, pulsa ENTREGAR. No se construye sobre la maleza.':
+      'Arrossega el dit d\'una cantonada a l\'altra (o toca dues cantonades) per dibuixar l\'habitació; cada quadre és 1 m². A baix en veus l\'àrea i la tanca. Quan compleixi l\'encàrrec, prem LLIURAR. No es construeix sobre les males herbes.',
+  'Esta maleza crece mientras piensas. No hay prisa, pero no para.':
+      'Aquestes males herbes creixen mentre penses. No hi ha pressa, però no s\'aturen.',
+  'Ahí hay maleza: no se puede construir encima. Muévelo.':
+      'Aquí hi ha males herbes: no s\'hi pot construir a sobre. Mou-lo.',
+  'Sellado. Esa casa se puede construir.':
+      'Segellat. Aquesta casa es pot construir.',
+  'Esa valla mide {p} m, no {P}.':
+      'Aquesta tanca fa {p} m, no {P}.',
+  'Con {P} m de valla cabe un huerto más grande.':
+      'Amb {P} m de tanca hi cap un hort més gran.',
+  'Tiene {a} m², sí, pero lleva {p} m de valla. Se puede con menos.':
+      'Té {a} m², sí, però porta {p} m de tanca. Es pot fer amb menys.',
+  'Ese triángulo tiene {t} m²: la mitad del rectángulo de {a}.':
+      'Aquest triangle té {t} m²: la meitat del rectangle de {a}.',
+  'Esa habitación tiene {a} m². El encargo pide otra cosa.':
+      'Aquesta habitació té {a} m². L\'encàrrec demana una altra cosa.',
+  'Una habitación de {v} m².':
+      'Una habitació de {v} m².',
+  'Una habitación de {v} m² con la menor valla posible.':
+      'Una habitació de {v} m² amb la tanca més curta possible.',
+  'Con {v} m de valla, el huerto más grande posible.':
+      'Amb {v} m de tanca, l\'hort més gran possible.',
+  'Un tejado triangular de {v} m²: dibuja el rectángulo que lo contiene.':
+      'Una teulada triangular de {v} m²: dibuixa el rectangle que la conté.',
+  'Una habitación de {v} dm².':
+      'Una habitació de {v} dm².',
+  'Seis planos sellados. Las Afueras ya tienen barrio.':
+      'Sis plànols segellats. Els Afores ja tenen barri.',
+  'Arrastra el dedo de una esquina a la otra.':
+      'Arrossega el dit d\'una cantonada a l\'altra.',
+  'Rectángulo: {a} m² · Tejado: {t} m²':
+      'Rectangle: {a} m² · Teulada: {t} m²',
+  'Área: {a} m² · Valla: {p} m':
+      'Àrea: {a} m² · Tanca: {p} m',
+  'ENTREGAR':
+      'LLIURAR',
+  'El área de un rectángulo es ancho por alto: 4 × 6 = 24 m². Cuenta los cuadros de una fila y multiplica por las filas.':
+      'L\'àrea d\'un rectangle és amplada per alçada: 4 × 6 = 24 m². Compta els quadres d\'una fila i multiplica per les files.',
+  'El perímetro es la vuelta entera: suma los cuatro lados. Para la misma área, cuanto más cuadrado, menos valla.':
+      'El perímetre és la volta sencera: suma els quatre costats. Per a la mateixa àrea, com més quadrat, menys tanca.',
+  'Un triángulo rectángulo es medio rectángulo: base por altura y entre dos. Para 12 m² de tejado, un rectángulo de 24.':
+      'Un triangle rectangle és mig rectangle: base per alçada i entre dos. Per a 12 m² de teulada, un rectangle de 24.',
+  'Un metro cuadrado tiene 10 × 10 = 100 decímetros cuadrados. Para pasar de dm² a m², divide entre 100.':
+      'Un metre quadrat té 10 × 10 = 100 decímetres quadrats. Per passar de dm² a m², divideix entre 100.',
+  'Una fila tiene {a} cuadros y hay {h} filas.':
+      'Una fila té {a} quadres i hi ha {h} files.',
+  'Área: {a} × {h} = {r} m².':
+      'Àrea: {a} × {h} = {r} m².',
+  '{a} × {b}: valla de {p} m.':
+      '{a} × {b}: tanca de {p} m.',
+  'La más cuadrada, {a} × {b}, gasta menos valla.':
+      'La més quadrada, {a} × {b}, gasta menys tanca.',
+  'El rectángulo que lo contiene: {b} × {h} = {r} m².':
+      'El rectangle que el conté: {b} × {h} = {r} m².',
+  'El triángulo es la mitad: {r} ÷ 2 = {t} m².':
+      'El triangle és la meitat: {r} ÷ 2 = {t} m².',
+  '1 m² = 10 dm × 10 dm = 100 dm².':
+      '1 m² = 10 dm × 10 dm = 100 dm².',
+  '{d} ÷ 100 = {m} m².':
+      '{d} ÷ 100 = {m} m².',
 };

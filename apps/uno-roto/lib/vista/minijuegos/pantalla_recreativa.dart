@@ -24,6 +24,7 @@ const coloresDeMaquina = <String, Color>{
   'Salto': Color(0xFFD65A48),
   'Engranajes': Color(0xFFC9A04A),
   'Esclusas': Color(0xFF5CB4C2),
+  'Planos': Color(0xFF6FA8E8),
 };
 
 /// La pantalla de una máquina recreativa alrededor del juego: marco

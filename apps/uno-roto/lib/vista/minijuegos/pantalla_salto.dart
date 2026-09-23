@@ -48,6 +48,7 @@ class _PantallaSaltoState extends State<PantallaSalto>
   Duration _ultimo = Duration.zero;
   bool _empezado = false;
   bool _terminada = false;
+  bool _pausado = false;
   double _destello = 0; // 1 → 0 tras un choque
   int _ronda = 1;
   String? _lineaRexan;
@@ -79,7 +80,7 @@ class _PantallaSaltoState extends State<PantallaSalto>
     // teletransporta al Fragmento).
     final dt = ((transcurrido - _ultimo).inMicroseconds / 1e6).clamp(0.0, 1 / 30);
     _ultimo = transcurrido;
-    if (_terminada) return;
+    if (_terminada || _pausado) return;
     final evento = _partida.avanzar(dt);
     switch (evento) {
       case EventoSalto.choquePincho:
@@ -121,7 +122,10 @@ class _PantallaSaltoState extends State<PantallaSalto>
       return;
     }
     _ronda++;
-    _lineaRexan = 'Cinco puertas. Sigue, que la noche es larga.';
+    _partida.cambiarNivel(_ronda);
+    _lineaRexan = _ronda == 2
+        ? 'Cinco puertas. Ahora vienen cajas y fosos: salta o súbete encima.'
+        : 'Cinco más. Trampolines, más pinchos y cuentas que siguen a la anterior.';
   }
 
   void _tocar() {
@@ -145,6 +149,10 @@ class _PantallaSaltoState extends State<PantallaSalto>
             (_empezado ? _definicion.lineaRexan : 'Toca para empezar. Toca para saltar.');
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: _partida.puertaSiguiente.reto.idHabilidad,
+      alPausar: () => _pausado = true,
+      alReanudar: () => _pausado = false,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: traducirNarrativa(linea, locale),
@@ -152,7 +160,9 @@ class _PantallaSaltoState extends State<PantallaSalto>
       child: Column(
         children: [
           _Cuenta(
-            enunciado: puerta.reto.enunciado,
+            enunciado: puerta.reto.enunciado
+                .replaceAll('{antes}', traducirNarrativa('la de antes', locale)),
+            encadenada: puerta.encadenada,
             arriba: puerta.valorArriba,
             abajo: puerta.valorAbajo,
             puertasEnRonda: _partida.puertasPasadas % _puertasPorRonda,
@@ -192,6 +202,7 @@ class _PantallaSaltoState extends State<PantallaSalto>
 
 class _Cuenta extends StatelessWidget {
   final String enunciado;
+  final bool encadenada;
   final int arriba;
   final int abajo;
   final int puertasEnRonda;
@@ -199,6 +210,7 @@ class _Cuenta extends StatelessWidget {
 
   const _Cuenta({
     required this.enunciado,
+    required this.encadenada,
     required this.arriba,
     required this.abajo,
     required this.puertasEnRonda,
@@ -218,10 +230,19 @@ class _Cuenta extends StatelessWidget {
   @override
   Widget build(BuildContext contexto) => Row(
         children: [
+          if (encadenada)
+            const Padding(
+              padding: EdgeInsets.only(right: 6),
+              child: Icon(Icons.link, size: 20, color: PaletaNeon.ambarCanales),
+            ),
           Expanded(
-            child: Text(
-              '$enunciado = ?',
-              style: const TextStyle(color: PaletaNeon.ambarCanales, fontSize: 22),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                '$enunciado = ?',
+                style: const TextStyle(color: PaletaNeon.ambarCanales, fontSize: 22),
+              ),
             ),
           ),
           _hoja(Icons.arrow_upward, arriba),
@@ -270,20 +291,18 @@ class PintorSalto extends CustomPainter {
       if (puerta.finPlataforma < camaraX || puerta.inicioPlataforma > visibleHasta) continue;
       _pintarPuerta(canvas, puerta, punto, escala);
     }
-    final pinturaPincho = Paint()..color = PaletaNeon.rosaAcento.withOpacity(0.85);
-    final bordePincho = Paint()
-      ..style = PaintingStyle.stroke
-      ..color = PaletaNeon.textoPrincipal.withOpacity(0.6)
-      ..strokeWidth = 1.2;
-    for (final pincho in partida.pinchos) {
-      if (pincho.x + 1 < camaraX || pincho.x > visibleHasta) continue;
-      final triangulo = Path()
-        ..moveTo(punto(pincho.x, 0).dx, punto(pincho.x, 0).dy)
-        ..lineTo(punto(pincho.x + 0.5, 1).dx, punto(pincho.x + 0.5, 1).dy)
-        ..lineTo(punto(pincho.x + 1, 0).dx, punto(pincho.x + 1, 0).dy)
-        ..close();
-      canvas.drawPath(triangulo, pinturaPincho);
-      canvas.drawPath(triangulo, bordePincho);
+    for (final obstaculo in partida.obstaculos) {
+      if (obstaculo.fin < camaraX || obstaculo.x > visibleHasta) continue;
+      switch (obstaculo.tipo) {
+        case TipoObstaculo.pinchos:
+          _pintarPinchos(canvas, obstaculo, punto);
+        case TipoObstaculo.caja:
+          _pintarCaja(canvas, obstaculo, punto, escala);
+        case TipoObstaculo.foso:
+          _pintarFoso(canvas, obstaculo, punto, size);
+        case TipoObstaculo.trampolin:
+          _pintarTrampolin(canvas, obstaculo, punto, escala);
+      }
     }
 
     // El cubo del Fragmento: ámbar, girando en el aire.
@@ -308,6 +327,88 @@ class PintorSalto extends CustomPainter {
       canvas.drawRect(Offset.zero & size,
           Paint()..color = PaletaNeon.rosaAcento.withOpacity(0.22 * destello));
     }
+  }
+
+  void _pintarPinchos(
+      Canvas canvas, Obstaculo pinchos, Offset Function(double, double) punto) {
+    final relleno = Paint()..color = PaletaNeon.rosaAcento.withOpacity(0.85);
+    final borde = Paint()
+      ..style = PaintingStyle.stroke
+      ..color = PaletaNeon.textoPrincipal.withOpacity(0.6)
+      ..strokeWidth = 1.2;
+    for (var i = 0; i < pinchos.ancho.round(); i++) {
+      final izquierda = pinchos.x + i;
+      final triangulo = Path()
+        ..moveTo(punto(izquierda, 0).dx, punto(izquierda, 0).dy)
+        ..lineTo(punto(izquierda + 0.5, 1).dx, punto(izquierda + 0.5, 1).dy)
+        ..lineTo(punto(izquierda + 1, 0).dx, punto(izquierda + 1, 0).dy)
+        ..close();
+      canvas.drawPath(triangulo, relleno);
+      canvas.drawPath(triangulo, borde);
+    }
+  }
+
+  /// Caja de neón: se salta o se aterriza encima.
+  void _pintarCaja(Canvas canvas, Obstaculo caja,
+      Offset Function(double, double) punto, double escala) {
+    final rect = Rect.fromPoints(
+        punto(caja.x, PartidaSalto.altoCaja), punto(caja.fin, 0));
+    canvas.drawRect(rect, Paint()..color = PaletaNeon.fondoMedio);
+    final borde = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..color = PaletaNeon.azulNeon;
+    canvas.drawRect(rect.deflate(1), borde);
+    // Aspa interior: se lee como caja a cualquier tamaño.
+    final interior = rect.deflate(escala * 0.18);
+    final aspa = Paint()
+      ..color = PaletaNeon.azulNeon.withOpacity(0.45)
+      ..strokeWidth = 1.5;
+    canvas.drawLine(interior.topLeft, interior.bottomRight, aspa);
+    canvas.drawLine(interior.topRight, interior.bottomLeft, aspa);
+    // Tapa luminosa: aquí se puede pisar.
+    canvas.drawLine(rect.topLeft, rect.topRight,
+        Paint()
+          ..color = PaletaNeon.ambarCanales
+          ..strokeWidth = 2);
+  }
+
+  /// Foso: un corte negro en el suelo con bordes rosados.
+  void _pintarFoso(Canvas canvas, Obstaculo foso,
+      Offset Function(double, double) punto, Size size) {
+    final izquierda = punto(foso.x, 0);
+    final derecha = punto(foso.fin, 0);
+    canvas.drawRect(Rect.fromLTRB(izquierda.dx, izquierda.dy - 1, derecha.dx, size.height),
+        Paint()..color = const Color(0xFF05030A));
+    final borde = Paint()
+      ..color = PaletaNeon.rosaAcento.withOpacity(0.8)
+      ..strokeWidth = 2;
+    canvas.drawLine(izquierda, Offset(izquierda.dx, size.height), borde);
+    canvas.drawLine(derecha, Offset(derecha.dx, size.height), borde);
+  }
+
+  /// Trampolín: base con muelle y placa verde; lanza solo.
+  void _pintarTrampolin(Canvas canvas, Obstaculo trampolin,
+      Offset Function(double, double) punto, double escala) {
+    final placa = Rect.fromPoints(
+        punto(trampolin.x, 0.42), punto(trampolin.fin, 0.28));
+    final muelle = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
+      ..color = PaletaNeon.textoTenue;
+    final zigzag = Path()..moveTo(placa.center.dx, placa.bottom);
+    const tramos = 4;
+    for (var i = 1; i <= tramos; i++) {
+      final dy = placa.bottom + (punto(0, 0).dy - placa.bottom) * i / tramos;
+      zigzag.lineTo(placa.center.dx + (i.isOdd ? 1 : -1) * escala * 0.22, dy);
+    }
+    canvas.drawPath(zigzag, muelle);
+    canvas.drawRRect(RRect.fromRectAndRadius(placa, Radius.circular(escala * 0.06)),
+        Paint()..color = PaletaNeon.exitoSuave);
+    canvas.drawCircle(placa.center, escala * 0.55,
+        Paint()
+          ..color = PaletaNeon.exitoSuave.withOpacity(0.15)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8));
   }
 
   void _pintarPuerta(Canvas canvas, PuertaDoble puerta,

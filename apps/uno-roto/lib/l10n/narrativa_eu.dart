@@ -1941,4 +1941,57 @@ const Map<String, String> narrativaEu = <String, String>{
       'IREKI',
   'MARCAR':
       'MARKATU',
+  // Serpiente, Balanza y La flota (minijuegos)
+  'Serpiente':
+      'Sugea',
+  'Balanza':
+      'Balantza',
+  'La flota':
+      'Flota',
+  'Lleva la serpiente hasta el resultado. Los otros números son las trampas de siempre.':
+      'Eraman sugea emaitzaraino. Beste zenbakiak betiko tranpak dira.',
+  'Una serpiente que come cuentas. No muere nunca: sólo tiene hambre.':
+      'Kontuak jaten dituen suge bat. Ez da inoiz hiltzen: gosea besterik ez du.',
+  'Prueba un valor para la x y mira hacia dónde se inclina.':
+      'Probatu x-rentzako balio bat eta begiratu nora makurtzen den.',
+  'Una balanza no miente. Si baja un lado, algo pesa más.':
+      'Balantza batek ez du gezurrik esaten. Alde bat jaisten bada, zerbaitek gehiago pisatzen du.',
+  'Rexán canta las coordenadas en cálculo. Tú apuntas.':
+      'Rexánek koordenatuak kalkulu gisa esaten ditu. Zuk apuntatzen duzu.',
+  'Tres barcos escondidos en el Puerto. Yo canto, tú apuntas.':
+      'Hiru itsasontzi ezkutatuta Portuan. Nik esan, zuk apuntatu.',
+  'Ese no era. Busca otro.':
+      'Hori ez zen. Bilatu beste bat.',
+  'Cinco. Sigue, que aún tiene hambre.':
+      'Bost. Jarraitu, oraindik gose da eta.',
+  'Tres rondas. La serpiente se enrosca y duerme.':
+      'Hiru txanda. Sugea biribildu eta lo geratzen da.',
+  'Lee la cuenta. Cuando quieras, elige una dirección.':
+      'Irakurri kontua. Nahi duzunean, aukeratu norabide bat.',
+  'Equilibrio. x vale {x}.':
+      'Oreka. x-k {x} balio du.',
+  'Baja la derecha: con ese valor, la izquierda se queda corta.':
+      'Eskuina jaisten da: balio horrekin, ezkerra motz geratzen da.',
+  'Baja la izquierda: con ese valor, la izquierda pesa demasiado.':
+      'Ezkerra jaisten da: balio horrekin, ezkerrak gehiegi pisatzen du.',
+  'Seis ecuaciones, seis equilibrios. La balanza descansa.':
+      'Sei ekuazio, sei oreka. Balantzak atseden hartzen du.',
+  'PESAR':
+      'PISATU',
+  'Agua.':
+      'Ura.',
+  '¡Tocado!':
+      'Jo dut!',
+  'Hundido.':
+      'Hondoratuta.',
+  'Era la casilla {dato}. Disparo ahí.':
+      '{dato} gelaxka zen. Hara tiro egiten dut.',
+  'Flota hundida. Otra más, mar adentro.':
+      'Flota hondoratuta. Beste bat, itsasoan barrura.',
+  'Dos flotas al fondo. El Puerto vuelve a estar en calma.':
+      'Bi flota hondoan. Portua lasai dago berriro.',
+  'Columna':
+      'Zutabea',
+  'Fila':
+      'Errenkada',
 };

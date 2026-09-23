@@ -244,50 +244,9 @@ class _PantallaCanalesState extends State<PantallaCanales>
             ),
           ),
           const SizedBox(height: 8),
-          _Cruceta(alPulsar: _cambiarDireccion),
+          CrucetaMinijuego(alPulsar: _cambiarDireccion),
         ],
       ),
-    );
-  }
-}
-
-class _Cruceta extends StatelessWidget {
-  final void Function(Direccion) alPulsar;
-
-  const _Cruceta({required this.alPulsar});
-
-  Widget _boton(Direccion direccion, IconData icono) => GestureDetector(
-        key: ValueKey('cruceta-${direccion.name}'),
-        onTapDown: (_) => alPulsar(direccion),
-        child: Container(
-          width: 54,
-          height: 44,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            border: Border.all(color: PaletaNeon.violetaBase),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Icon(icono, color: PaletaNeon.textoTenue, size: 22),
-        ),
-      );
-
-  @override
-  Widget build(BuildContext contexto) {
-    return Column(
-      children: [
-        _boton(Direccion.arriba, Icons.keyboard_arrow_up),
-        const SizedBox(height: 4),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _boton(Direccion.izquierda, Icons.keyboard_arrow_left),
-            const SizedBox(width: 62),
-            _boton(Direccion.derecha, Icons.keyboard_arrow_right),
-          ],
-        ),
-        const SizedBox(height: 4),
-        _boton(Direccion.abajo, Icons.keyboard_arrow_down),
-      ],
     );
   }
 }

@@ -7,11 +7,14 @@ import '../../datos/repositorio_progreso.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
+import 'pantalla_balanza.dart';
 import 'pantalla_canales.dart';
 import 'pantalla_encaje.dart';
+import 'pantalla_flota.dart';
 import 'pantalla_minas.dart';
 import 'pantalla_parejas.dart';
 import 'pantalla_puentes.dart';
+import 'pantalla_serpiente.dart';
 
 /// Pantalla de la máquina [id]. Con [registro] nulo no se registra
 /// maestría (modo dios: pruebas del operador).
@@ -41,6 +44,21 @@ Widget pantallaDeMaquina(
           habilidadesPracticadas: habilidades);
     case IdMinijuego.minas:
       return PantallaMinas(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+    case IdMinijuego.serpiente:
+      return PantallaSerpiente(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+    case IdMinijuego.balanza:
+      return PantallaBalanza(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+    case IdMinijuego.flota:
+      return PantallaFlota(
           registro: registro,
           dificultad: dificultad,
           habilidadesPracticadas: habilidades);
@@ -101,6 +119,9 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.canales,
     IdMinijuego.parejas,
     IdMinijuego.minas,
+    IdMinijuego.serpiente,
+    IdMinijuego.balanza,
+    IdMinijuego.flota,
   };
 
   Widget _pantallaDe(

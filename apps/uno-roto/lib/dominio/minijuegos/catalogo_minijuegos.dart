@@ -10,7 +10,16 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 /// - La dificultad sale de su nivel real de maestría (principio 5).
 /// - Cada partida tiene un número fijo de rondas y termina con un
 ///   cierre amable de Rexán (principio 7).
-enum IdMinijuego { puentes, encaje, canales, parejas, minas }
+enum IdMinijuego {
+  puentes,
+  encaje,
+  canales,
+  parejas,
+  minas,
+  serpiente,
+  balanza,
+  flota,
+}
 
 class DefinicionMinijuego {
   final IdMinijuego id;
@@ -91,6 +100,32 @@ class CatalogoMinijuegos {
           'casilla abierta te dice cuántas tiene alrededor.',
       habilidades: ['DIV.01', 'DIV.03', 'DIV.04', 'DIV.05'],
       rondasPorPartida: 3,
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.serpiente,
+      nombre: 'Serpiente',
+      descripcion: 'Lleva la serpiente hasta el resultado. Los otros números '
+          'son las trampas de siempre.',
+      lineaRexan: 'Una serpiente que come cuentas. No muere nunca: sólo '
+          'tiene hambre.',
+      habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04'],
+      rondasPorPartida: 3,
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.balanza,
+      nombre: 'Balanza',
+      descripcion: 'Prueba un valor para la x y mira hacia dónde se inclina.',
+      lineaRexan: 'Una balanza no miente. Si baja un lado, algo pesa más.',
+      habilidades: ['ALG.01', 'ALG.02'],
+      rondasPorPartida: 6,
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.flota,
+      nombre: 'La flota',
+      descripcion: 'Rexán canta las coordenadas en cálculo. Tú apuntas.',
+      lineaRexan: 'Tres barcos escondidos en el Puerto. Yo canto, tú apuntas.',
+      habilidades: ['PROP.04', 'FR.22'],
+      rondasPorPartida: 2,
     ),
   ];
 

@@ -30,6 +30,9 @@ MAQUINAS = {
     'canales': {'pantalla': '#78D8E0', 'marquesina': '#F2D58E'},
     'parejas': {'pantalla': '#9FD9B8', 'marquesina': '#C87C7C'},
     'minas': {'pantalla': '#B45656', 'marquesina': '#8A6353'},
+    'serpiente': {'pantalla': '#E8A857', 'marquesina': '#9FD9B8'},
+    'balanza': {'pantalla': '#78D8E0', 'marquesina': '#6668A8'},
+    'flota': {'pantalla': '#5CB4C2', 'marquesina': '#2B4DA6'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -92,6 +95,29 @@ def juego_en_pantalla(nombre, color):
         for i in (3, 9, 18):
             u, v = -0.3 + (i % 5) * 0.15, 0.2 - (i // 5) * 0.13
             p.append(pixel(f'bandera{i}', u, v, 0.022, 0.03, '#E8A857', 2.0))
+    elif nombre == 'serpiente':
+        for i, (u, v) in enumerate([(-0.2, -0.05), (-0.13, -0.05), (-0.06, -0.05),
+                                    (0.01, -0.05), (0.01, 0.02), (0.01, 0.09)]):
+            p.append(pixel(f'segmento{i}', u, v, 0.03, 0.03, color, 1.8 if i == 5 else 1.2))
+        for i, (u, v) in enumerate([(0.25, 0.15), (-0.28, 0.18), (0.22, -0.18)]):
+            p.append(pixel(f'numero{i}', u, v, 0.035, 0.035, '#E8E2D0', 1.0))
+    elif nombre == 'balanza':
+        p.append(pixel('brazo', 0, 0.08, 0.3, 0.008, '#E8E2D0', 1.0))
+        p.append(pixel('pie', 0, -0.07, 0.008, 0.15, '#E8E2D0', 0.8))
+        p.append(pixel('platillo_i', -0.27, -0.02, 0.08, 0.008, '#E8E2D0', 0.9))
+        p.append(pixel('platillo_d', 0.27, -0.02, 0.08, 0.008, '#E8E2D0', 0.9))
+        p.append(pixel('bolsa', -0.29, 0.03, 0.03, 0.04, '#E8A857', 1.6))
+        for i in range(3):
+            p.append(pixel(f'pesa{i}', 0.2 + i * 0.05, 0.015, 0.018, 0.018, color, 1.4))
+    elif nombre == 'flota':
+        for f in range(4):
+            for c in range(6):
+                p.append(pixel(f'agua{f}{c}', -0.3 + c * 0.12, 0.17 - f * 0.12, 0.05, 0.05,
+                               '#2B4DA6', 0.5))
+        for f, c, tono in [(1, 1, '#E8A857'), (1, 2, '#E8A857'), (2, 4, '#B45656'),
+                           (3, 4, '#B45656')]:
+            p.append(pixel(f'barco{f}{c}', -0.3 + c * 0.12, 0.17 - f * 0.12, 0.05, 0.05,
+                           tono, 1.6))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

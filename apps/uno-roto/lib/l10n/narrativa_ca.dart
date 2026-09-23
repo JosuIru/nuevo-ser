@@ -1945,4 +1945,57 @@ const Map<String, String> narrativaCa = <String, String>{
       'OBRIR',
   'MARCAR':
       'MARCAR',
+  // Serpiente, Balanza y La flota (minijuegos)
+  'Serpiente':
+      'Serp',
+  'Balanza':
+      'Balança',
+  'La flota':
+      'La flota',
+  'Lleva la serpiente hasta el resultado. Los otros números son las trampas de siempre.':
+      'Porta la serp fins al resultat. Els altres nombres són les trampes de sempre.',
+  'Una serpiente que come cuentas. No muere nunca: sólo tiene hambre.':
+      'Una serp que menja comptes. No mor mai: només té gana.',
+  'Prueba un valor para la x y mira hacia dónde se inclina.':
+      'Prova un valor per a la x i mira cap a on s\'inclina.',
+  'Una balanza no miente. Si baja un lado, algo pesa más.':
+      'Una balança no menteix. Si baixa un costat, alguna cosa pesa més.',
+  'Rexán canta las coordenadas en cálculo. Tú apuntas.':
+      'En Rexán canta les coordenades en càlcul. Tu apuntes.',
+  'Tres barcos escondidos en el Puerto. Yo canto, tú apuntas.':
+      'Tres vaixells amagats al Port. Jo canto, tu apuntes.',
+  'Ese no era. Busca otro.':
+      'Aquest no era. Busca\'n un altre.',
+  'Cinco. Sigue, que aún tiene hambre.':
+      'Cinc. Continua, que encara té gana.',
+  'Tres rondas. La serpiente se enrosca y duerme.':
+      'Tres rondes. La serp s\'enrosca i dorm.',
+  'Lee la cuenta. Cuando quieras, elige una dirección.':
+      'Llegeix el compte. Quan vulguis, tria una direcció.',
+  'Equilibrio. x vale {x}.':
+      'Equilibri. x val {x}.',
+  'Baja la derecha: con ese valor, la izquierda se queda corta.':
+      'Baixa la dreta: amb aquest valor, l\'esquerra es queda curta.',
+  'Baja la izquierda: con ese valor, la izquierda pesa demasiado.':
+      'Baixa l\'esquerra: amb aquest valor, l\'esquerra pesa massa.',
+  'Seis ecuaciones, seis equilibrios. La balanza descansa.':
+      'Sis equacions, sis equilibris. La balança descansa.',
+  'PESAR':
+      'PESAR',
+  'Agua.':
+      'Aigua.',
+  '¡Tocado!':
+      'Tocat!',
+  'Hundido.':
+      'Enfonsat.',
+  'Era la casilla {dato}. Disparo ahí.':
+      'Era la casella {dato}. Disparo allà.',
+  'Flota hundida. Otra más, mar adentro.':
+      'Flota enfonsada. Una altra, mar endins.',
+  'Dos flotas al fondo. El Puerto vuelve a estar en calma.':
+      'Dues flotes al fons. El Port torna a estar en calma.',
+  'Columna':
+      'Columna',
+  'Fila':
+      'Fila',
 };

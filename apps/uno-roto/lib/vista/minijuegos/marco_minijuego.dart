@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show CapaAudio;
 
+import '../../dominio/minijuegos/canales.dart' show Direccion;
+
 import '../../sonido/servicio_sonoro.dart';
 
 import '../../l10n/traducciones_narrativa.dart';
@@ -156,6 +158,49 @@ class BotonMinijuego extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Cruceta de cuatro direcciones (Canales, Serpiente). Reacciona al
+/// apoyar el dedo, no al soltarlo: en un juego con reloj cuenta.
+class CrucetaMinijuego extends StatelessWidget {
+  final void Function(Direccion) alPulsar;
+
+  const CrucetaMinijuego({super.key, required this.alPulsar});
+
+  Widget _boton(Direccion direccion, IconData icono) => GestureDetector(
+        key: ValueKey('cruceta-${direccion.name}'),
+        onTapDown: (_) => alPulsar(direccion),
+        child: Container(
+          width: 54,
+          height: 44,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border.all(color: PaletaNeon.violetaBase),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(icono, color: PaletaNeon.textoTenue, size: 22),
+        ),
+      );
+
+  @override
+  Widget build(BuildContext contexto) {
+    return Column(
+      children: [
+        _boton(Direccion.arriba, Icons.keyboard_arrow_up),
+        const SizedBox(height: 4),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _boton(Direccion.izquierda, Icons.keyboard_arrow_left),
+            const SizedBox(width: 62),
+            _boton(Direccion.derecha, Icons.keyboard_arrow_right),
+          ],
+        ),
+        const SizedBox(height: 4),
+        _boton(Direccion.abajo, Icons.keyboard_arrow_down),
+      ],
     );
   }
 }

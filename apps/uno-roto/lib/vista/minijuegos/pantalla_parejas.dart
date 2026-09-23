@@ -10,6 +10,7 @@ import '../../dominio/minijuegos/parejas.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
+import 'pantalla_recreativa.dart';
 
 /// Parejas — máquina de Rexán. Cartas boca arriba: se tocan dos que
 /// valen lo mismo y se retiran; si no, tiemblan y se sigue. Al acabar
@@ -150,6 +151,7 @@ class _PantallaParejasState extends State<PantallaParejas>
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: widget.habilidadesPracticadas.isEmpty ? 'FR.09' : widget.habilidadesPracticadas.first,
       dificultadEjemplo: _enNivel.dificultad,
@@ -173,16 +175,38 @@ class _PantallaParejasState extends State<PantallaParejas>
             final desplazamiento = _temblando.contains(indice)
                 ? math.sin(_temblor.value * math.pi * 6) * 6 * (1 - _temblor.value)
                 : 0.0;
-            return Transform.translate(
-              offset: Offset(desplazamiento, 0),
-              child: AnimatedOpacity(
-                opacity: retirada ? 0.0 : 1.0,
-                duration: const Duration(milliseconds: 300),
-                child: _Carta(
-                  key: ValueKey('carta-$indice'),
-                  etiqueta: _tablero.cartas[indice].etiqueta,
-                  elegida: _elegida == indice,
-                  alTocar: retirada ? null : () => _tocar(indice),
+            // Al entrar, cada carta se da la vuelta, una tras otra.
+            return TweenAnimationBuilder<double>(
+              key: ValueKey('entrada-$_ronda-$indice'),
+              tween: Tween(begin: 0, end: 1),
+              duration: PantallaRecreativa.animacionAmbiente
+                  ? Duration(milliseconds: 240 + 30 * indice)
+                  : Duration.zero,
+              curve: Curves.easeOutBack,
+              builder: (_, giro, hijo) => Transform(
+                alignment: Alignment.center,
+                transform: Matrix4.identity()
+                  ..setEntry(3, 2, 0.002)
+                  ..rotateY((1 - giro.clamp(0.0, 1.0)) * math.pi / 2),
+                child: hijo,
+              ),
+              child: Transform.translate(
+                offset: Offset(desplazamiento, 0),
+                // Emparejada: crece un poco y se desvanece.
+                child: AnimatedScale(
+                  scale: retirada ? 1.25 : 1.0,
+                  duration: const Duration(milliseconds: 320),
+                  curve: Curves.easeOut,
+                  child: AnimatedOpacity(
+                    opacity: retirada ? 0.0 : 1.0,
+                    duration: const Duration(milliseconds: 320),
+                    child: _Carta(
+                      key: ValueKey('carta-$indice'),
+                      etiqueta: _tablero.cartas[indice].etiqueta,
+                      elegida: _elegida == indice,
+                      alTocar: retirada ? null : () => _tocar(indice),
+                    ),
+                  ),
                 ),
               ),
             );
@@ -212,17 +236,35 @@ class _Carta extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 160),
         alignment: Alignment.center,
+        transform: Matrix4.translationValues(0, elegida ? -4 : 0, 0),
         decoration: BoxDecoration(
-          color: elegida
-              ? PaletaNeon.ambarCanales.withOpacity(0.22)
-              : PaletaNeon.fondoMedio.withOpacity(0.85),
+          // Cara de la carta: luz arriba, sombra abajo.
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: elegida
+                ? [
+                    PaletaNeon.ambarCanales.withOpacity(0.34),
+                    PaletaNeon.ambarCanales.withOpacity(0.12),
+                  ]
+                : [const Color(0xFF2A1A55), PaletaNeon.fondoMedio],
+          ),
           border: Border.all(
             color: elegida
                 ? PaletaNeon.ambarCanales
-                : PaletaNeon.violetaBase.withOpacity(0.7),
+                : PaletaNeon.violetaNeon.withOpacity(0.45),
             width: elegida ? 2 : 1,
           ),
           borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: elegida
+                  ? PaletaNeon.ambarCanales.withOpacity(0.45)
+                  : Colors.black.withOpacity(0.45),
+              blurRadius: elegida ? 16 : 6,
+              offset: Offset(0, elegida ? 0 : 3),
+            ),
+          ],
         ),
         child: FittedBox(
           fit: BoxFit.scaleDown,

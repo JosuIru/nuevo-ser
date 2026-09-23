@@ -61,6 +61,20 @@ class TableroEncaje {
   /// Veces que Rexán ha tenido que vaciar el tablero.
   int vaciados = 0;
 
+  /// Fila (desde abajo) de la última unidad completada, para el destello.
+  int? ultimaFilaCompletada;
+
+  /// Altura a la que quedaría la pieza si se soltara ahora (la sombra).
+  int? get alturaDeCaida {
+    final pieza = piezaActual;
+    if (pieza == null) return null;
+    var fila = altura;
+    while (_cabeEn(fila - 1, columna, pieza.celdas)) {
+      fila--;
+    }
+    return fila;
+  }
+
   bool _ocupada(int fila, int celda) =>
       filas[fila].any((trozo) => celda >= trozo.inicio && celda < trozo.fin);
 
@@ -137,6 +151,7 @@ class TableroEncaje {
     // Filas llenas: fuera, y lo de encima baja.
     for (var fila = 0; fila < filas.length;) {
       if (celdasOcupadas(fila) == columnasEncaje) {
+        ultimaFilaCompletada = fila;
         filas.removeAt(fila);
         filas.add(<TrozoEncajado>[]);
         unidades++;

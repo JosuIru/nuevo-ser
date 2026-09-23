@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show CapaAudio;
 
@@ -9,6 +10,7 @@ import '../../sonido/servicio_sonoro.dart';
 
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
+import 'pantalla_recreativa.dart';
 
 /// Marco común de las máquinas de Rexán: cabecera con el nombre y la
 /// ronda (sin puntos), la línea de Rexán y, al terminar la partida, el
@@ -37,6 +39,9 @@ class MarcoMinijuego extends StatelessWidget {
   /// parámetro de la regla (el 4 de "múltiplos de 4") y el enunciado del
   /// niño, que el ejemplo nunca repite.
   final int dificultadEjemplo;
+
+  /// Avisos de acierto y fallo para los efectos de la pantalla.
+  final ValueListenable<AvisoEfecto?>? efectos;
   final int? parametroEjemplo;
   final String? enunciadoActual;
 
@@ -57,6 +62,7 @@ class MarcoMinijuego extends StatelessWidget {
     this.dificultadEjemplo = 1,
     this.parametroEjemplo,
     this.enunciadoActual,
+    this.efectos,
   });
 
   EjemploResuelto? _ejemploNuevo() => idHabilidadActual == null
@@ -230,7 +236,12 @@ class MarcoMinijuego extends StatelessWidget {
                             alPulsar: () => Navigator.of(contexto).pop(),
                           ),
                         )
-                      : child,
+                      : PantallaRecreativa(
+                          color: coloresDeMaquina[titulo] ?? PaletaNeon.violetaNeon,
+                          ronda: ronda,
+                          efectos: efectos,
+                          child: child,
+                        ),
                 ),
               ),
             ],
@@ -372,12 +383,29 @@ class _ChipPistaState extends State<_ChipPista> with SingleTickerProviderStateMi
 /// toca la maestría: el truco explica el método, no da la respuesta.
 mixin PistaTrasFallos<T extends StatefulWidget> on State<T> {
   int _fallosSeguidos = 0;
+  int _avisos = 0;
+
+  /// Los mismos aciertos y fallos, para los efectos de la pantalla.
+  final efectosPantalla = ValueNotifier<AvisoEfecto?>(null);
 
   bool get ofrecerPista => _fallosSeguidos >= 2;
 
   /// Llamar dentro de un setState (o seguido de uno).
-  void anotarFallo() => _fallosSeguidos++;
-  void anotarAcierto() => _fallosSeguidos = 0;
+  void anotarFallo() {
+    _fallosSeguidos++;
+    efectosPantalla.value = (efecto: EfectoPantalla.fallo, numero: ++_avisos);
+  }
+
+  void anotarAcierto() {
+    _fallosSeguidos = 0;
+    efectosPantalla.value = (efecto: EfectoPantalla.acierto, numero: ++_avisos);
+  }
+
+  @override
+  void dispose() {
+    efectosPantalla.dispose();
+    super.dispose();
+  }
 
   void pistaAtendida() {
     if (mounted) setState(() => _fallosSeguidos = 0);

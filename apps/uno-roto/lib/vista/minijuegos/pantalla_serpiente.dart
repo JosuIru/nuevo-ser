@@ -12,6 +12,7 @@ import '../../dominio/minijuegos/serpiente.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
+import 'pantalla_recreativa.dart';
 
 /// Serpiente — máquina de Rexán. Guiar la serpiente (deslizar o cruceta)
 /// hasta el número que responde al reto. Nada se mueve hasta el primer
@@ -158,6 +159,7 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.reto.idHabilidad,
       dificultadEjemplo: widget.dificultad,
@@ -200,9 +202,12 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onPanEnd: _alDeslizar,
-                  child: CustomPaint(
-                    size: Size.infinite,
-                    painter: PintorSerpiente(partida: _partida),
+                  child: RelojAmbiente(
+                    periodo: const Duration(milliseconds: 1600),
+                    builder: (_, fase) => CustomPaint(
+                      size: Size.infinite,
+                      painter: PintorSerpiente(partida: _partida, fase: fase),
+                    ),
                   ),
                 ),
               ),
@@ -218,11 +223,13 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
 
 class PintorSerpiente extends CustomPainter {
   final PartidaSerpiente partida;
+  final Animation<double>? fase;
 
-  PintorSerpiente({required this.partida});
+  PintorSerpiente({required this.partida, this.fase}) : super(repaint: fase);
 
   @override
   void paint(Canvas canvas, Size size) {
+    final t = fase?.value ?? 0;
     final lado = size.width / PartidaSerpiente.columnas;
     Rect rectDe(Celda celda) =>
         Rect.fromLTWH(celda.columna * lado, celda.fila * lado, lado, lado);
@@ -253,7 +260,14 @@ class PintorSerpiente extends CustomPainter {
     }
 
     partida.numeros.forEach((celda, valor) {
-      final rect = rectDe(celda).deflate(lado * 0.08);
+      // Laten, cada uno a su ritmo.
+      final latido = math.sin((t + (celda.fila + celda.columna) * 0.17) * math.pi * 2);
+      final rect = rectDe(celda).deflate(lado * (0.08 - 0.035 * latido));
+      canvas.drawRRect(
+          RRect.fromRectAndRadius(rect.inflate(2), Radius.circular(lado * 0.24)),
+          Paint()
+            ..color = PaletaNeon.violetaNeon.withOpacity(0.18 + 0.12 * latido)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5));
       canvas.drawRRect(RRect.fromRectAndRadius(rect, Radius.circular(lado * 0.2)),
           Paint()..color = PaletaNeon.fondoProfundo);
       canvas.drawRRect(
@@ -274,18 +288,41 @@ class PintorSerpiente extends CustomPainter {
       texto.paint(canvas, rect.center - Offset(texto.width / 2, texto.height / 2));
     });
 
-    // La serpiente: de ámbar (cabeza) a ámbar apagado (cola).
+    // La serpiente: un cuerpo continuo de la cola a la cabeza, de ámbar
+    // apagado a ámbar vivo, con escamas. Donde cruza un borde, se corta.
     final cuerpo = partida.cuerpo;
-    for (var i = cuerpo.length - 1; i >= 0; i--) {
-      final t = cuerpo.length == 1 ? 0.0 : i / (cuerpo.length - 1);
-      final rect = rectDe(cuerpo[i]).deflate(lado * (i == 0 ? 0.04 : 0.1));
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(rect, Radius.circular(lado * 0.35)),
-        Paint()
-          ..color = Color.lerp(PaletaNeon.ambarCanales,
-              PaletaNeon.ambarCanales.withOpacity(0.35), t)!,
-      );
+    final grosor = lado * 0.66;
+    for (var i = cuerpo.length - 1; i > 0; i--) {
+      final desde = cuerpo[i];
+      final hasta = cuerpo[i - 1];
+      final contiguas = (desde.fila - hasta.fila).abs() + (desde.columna - hasta.columna).abs() == 1;
+      final tono = Color.lerp(PaletaNeon.ambarCanales,
+          PaletaNeon.ambarCanales.withOpacity(0.45), i / cuerpo.length)!;
+      final trazo = Paint()
+        ..color = tono
+        ..strokeWidth = grosor * (1 - 0.35 * i / cuerpo.length)
+        ..strokeCap = StrokeCap.round;
+      if (contiguas) {
+        canvas.drawLine(rectDe(desde).center, rectDe(hasta).center, trazo);
+      } else {
+        canvas.drawCircle(rectDe(desde).center, trazo.strokeWidth / 2, trazo);
+      }
     }
+    // Escamas: pequeños arcos oscuros a lo largo del cuerpo.
+    final escama = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1
+      ..color = const Color(0xFF6B4A14).withOpacity(0.55);
+    for (var i = 1; i < cuerpo.length; i++) {
+      final centro = rectDe(cuerpo[i]).center;
+      for (final dx in [-0.14, 0.14]) {
+        canvas.drawArc(
+            Rect.fromCircle(center: centro + Offset(dx * lado, 0), radius: lado * 0.12),
+            0.3, 2.5, false, escama);
+      }
+    }
+    canvas.drawCircle(rectDe(partida.cabeza).center, grosor * 0.62,
+        Paint()..color = PaletaNeon.ambarCanales);
     final cabeza = rectDe(partida.cabeza);
     final ojo = Paint()..color = PaletaNeon.fondoProfundo;
     final lateral = Offset(partida.direccion.dFila.toDouble(),

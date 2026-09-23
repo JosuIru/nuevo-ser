@@ -148,6 +148,7 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina, Pis
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _tablero.regla.idHabilidad,
       dificultadEjemplo: _enNivel.dificultad,
@@ -234,26 +235,35 @@ class _Casilla extends StatelessWidget {
 
   @override
   Widget build(BuildContext contexto) {
-    final Color fondo;
+    final tapada = casilla.estado == EstadoCasilla.tapada;
+    final List<Color> degradado;
     final Color borde;
     Widget? marca;
     switch (casilla.estado) {
       case EstadoCasilla.tapada:
-        fondo = PaletaNeon.fondoMedio;
-        borde = PaletaNeon.violetaBase.withOpacity(0.7);
+        // En relieve: luz arriba a la izquierda.
+        degradado = const [Color(0xFF2C1C5C), Color(0xFF140A2E)];
+        borde = PaletaNeon.violetaNeon.withOpacity(0.45);
       case EstadoCasilla.abierta:
-        fondo = PaletaNeon.fondoProfundo;
+        // Hundida: sombra arriba.
+        degradado = const [Color(0xFF05030C), Color(0xFF0E0822)];
         borde = PaletaNeon.violetaBase.withOpacity(0.25);
         marca = Text(
           minasAlrededor == 0 ? '' : '$minasAlrededor',
           style: const TextStyle(color: PaletaNeon.azulNeon, fontSize: 10),
         );
       case EstadoCasilla.marcada:
-        fondo = PaletaNeon.ambarCanales.withOpacity(0.18);
+        degradado = [
+          PaletaNeon.ambarCanales.withOpacity(0.3),
+          PaletaNeon.ambarCanales.withOpacity(0.1),
+        ];
         borde = PaletaNeon.ambarCanales;
         marca = const Icon(Icons.flag, size: 11, color: PaletaNeon.ambarCanales);
       case EstadoCasilla.desactivada:
-        fondo = PaletaNeon.rosaAcento.withOpacity(0.12);
+        degradado = [
+          PaletaNeon.rosaAcento.withOpacity(0.2),
+          PaletaNeon.rosaAcento.withOpacity(0.06),
+        ];
         borde = PaletaNeon.rosaAcento.withOpacity(0.6);
         marca = Icon(Icons.power_settings_new,
             size: 11, color: PaletaNeon.rosaAcento.withOpacity(0.8));
@@ -261,38 +271,119 @@ class _Casilla extends StatelessWidget {
     return GestureDetector(
       onTap: alTocar,
       onLongPress: alMantener,
-      child: Container(
-        decoration: BoxDecoration(
-          color: fondo,
-          border: Border.all(color: borde),
-          borderRadius: BorderRadius.circular(6),
+      // Al cambiar de estado se reproduce su efecto una vez.
+      child: TweenAnimationBuilder<double>(
+        key: ValueKey(casilla.estado),
+        tween: Tween(begin: tapada ? 1 : 0, end: 1),
+        duration: const Duration(milliseconds: 520),
+        builder: (_, progreso, hijo) => CustomPaint(
+          foregroundPainter: tapada ? null : _PintorEfectoCasilla(casilla.estado, progreso),
+          child: Transform.scale(
+            scale: casilla.estado == EstadoCasilla.marcada
+                ? 1 + 0.12 * math.sin(progreso * math.pi)
+                : 1,
+            child: hijo,
+          ),
         ),
-        child: Stack(
-          children: [
-            Center(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: Text(
-                    casilla.etiqueta,
-                    style: TextStyle(
-                      color: casilla.estado == EstadoCasilla.abierta
-                          ? PaletaNeon.textoTenue
-                          : PaletaNeon.textoPrincipal,
-                      fontSize: 16,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: degradado,
+            ),
+            border: Border.all(color: borde),
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: tapada
+                ? [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.5),
+                      blurRadius: 3,
+                      offset: const Offset(0, 2),
+                    ),
+                  ]
+                : null,
+          ),
+          child: Stack(
+            children: [
+              if (tapada)
+                // Filo de luz en el borde de arriba.
+                Positioned(
+                  left: 5,
+                  right: 5,
+                  top: 1.5,
+                  child: Container(
+                    height: 1.2,
+                    color: Colors.white.withOpacity(0.12),
+                  ),
+                ),
+              Center(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: Text(
+                      casilla.etiqueta,
+                      style: TextStyle(
+                        color: casilla.estado == EstadoCasilla.abierta
+                            ? PaletaNeon.textoTenue
+                            : PaletaNeon.textoPrincipal,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            if (marca != null)
-              Positioned(right: 3, top: 2, child: marca),
-          ],
+              if (marca != null) Positioned(right: 3, top: 2, child: marca),
+            ],
+          ),
         ),
       ),
     );
   }
+}
+
+/// Onda azul al abrir y chispazo rosa (sin explosión: la desactiva
+/// Rexán) si era mina.
+class _PintorEfectoCasilla extends CustomPainter {
+  final EstadoCasilla estado;
+  final double progreso;
+
+  _PintorEfectoCasilla(this.estado, this.progreso);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (progreso >= 1) return;
+    final centro = size.center(Offset.zero);
+    final radio = size.shortestSide * (0.2 + 0.7 * progreso);
+    switch (estado) {
+      case EstadoCasilla.abierta:
+        canvas.drawCircle(
+          centro,
+          radio,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2 * (1 - progreso) + 0.5
+            ..color = PaletaNeon.azulNeon.withOpacity(0.8 * (1 - progreso)),
+        );
+      case EstadoCasilla.desactivada:
+        final rayo = Paint()
+          ..strokeCap = StrokeCap.round
+          ..strokeWidth = 2
+          ..color = PaletaNeon.rosaAcento.withOpacity(1 - progreso);
+        for (var i = 0; i < 8; i++) {
+          final angulo = i * math.pi / 4;
+          final direccion = Offset(math.cos(angulo), math.sin(angulo));
+          canvas.drawLine(centro + direccion * radio * 0.4, centro + direccion * radio, rayo);
+        }
+      case EstadoCasilla.marcada || EstadoCasilla.tapada:
+        break;
+    }
+  }
+
+  @override
+  bool shouldRepaint(_PintorEfectoCasilla anterior) =>
+      anterior.progreso != progreso || anterior.estado != estado;
 }
 
 class _SelectorModo extends StatelessWidget {

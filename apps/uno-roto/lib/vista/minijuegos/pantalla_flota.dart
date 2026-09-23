@@ -11,6 +11,7 @@ import '../../dominio/minijuegos/flota.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
+import 'pantalla_recreativa.dart';
 
 /// La flota — máquina de Rexán. Rexán canta columna y fila en cálculo;
 /// el niño toca la casilla. Si se equivoca, se le enseña cuál era y el
@@ -146,6 +147,7 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, Pis
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.columna.idHabilidad,
       dificultadEjemplo: _enNivel.dificultad,
@@ -178,10 +180,23 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, Pis
                             detalles.localPosition, lienzo);
                         if (celda != null) _tocar(celda);
                       },
-                      child: CustomPaint(
-                        size: lienzo,
-                        painter: PintorFlota(
-                            partida: _partida, correccion: _correccion),
+                      // El mar se mueve siempre; el último disparo, al caer.
+                      child: RelojAmbiente(
+                        periodo: const Duration(seconds: 3),
+                        builder: (_, fase) => TweenAnimationBuilder<double>(
+                          key: ValueKey('disparo-$_ronda-${_partida.disparos.length}'),
+                          tween: Tween(begin: 0, end: 1),
+                          duration: const Duration(milliseconds: 800),
+                          builder: (_, impacto, __) => CustomPaint(
+                            size: lienzo,
+                            painter: PintorFlota(
+                              partida: _partida,
+                              correccion: _correccion,
+                              fase: fase,
+                              impacto: impacto,
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -231,12 +246,23 @@ class _Coordenadas extends StatelessWidget {
 }
 
 /// Tablero 8×8 con números en los bordes (columnas arriba, filas a la
-/// izquierda), los disparos hechos y, si hace falta, la casilla correcta.
+/// izquierda): mar que ondula, disparos hechos (anillos en el agua,
+/// llamas en lo tocado, humo en lo hundido) y, si hace falta, la casilla
+/// correcta.
 class PintorFlota extends CustomPainter {
   final PartidaFlota partida;
   final Celda? correccion;
+  final Animation<double>? fase;
 
-  PintorFlota({required this.partida, required this.correccion});
+  /// 0→1 tras el último disparo: la salpicadura o la explosión.
+  final double impacto;
+
+  PintorFlota({
+    required this.partida,
+    required this.correccion,
+    this.fase,
+    this.impacto = 1,
+  }) : super(repaint: fase);
 
   static const _margen = 0.1; // fracción para los números de los bordes
 
@@ -255,6 +281,7 @@ class PintorFlota extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final inicio = size.width * _margen;
     final lado = (size.width - inicio) / PartidaFlota.lado;
+    final t = fase?.value ?? 0;
     Rect rectDe(Celda celda) => Rect.fromLTWH(
         inicio + celda.columna * lado, inicio + celda.fila * lado, lado, lado);
 
@@ -262,31 +289,68 @@ class PintorFlota extends CustomPainter {
       _texto(canvas, '${i + 1}', Offset(inicio + (i + 0.5) * lado, inicio / 2));
       _texto(canvas, '${i + 1}', Offset(inicio / 2, inicio + (i + 0.5) * lado));
     }
-    final agua = Paint()..color = PaletaNeon.azulNeon.withOpacity(0.08);
+
+    // El mar: degradado y olas que corren en diagonal.
+    final mar = Rect.fromLTWH(inicio, inicio, lado * PartidaFlota.lado, lado * PartidaFlota.lado);
+    canvas.drawRect(
+      mar,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF0B1F4A), Color(0xFF0A1433), Color(0xFF102A5C)],
+        ).createShader(mar),
+    );
+    canvas.save();
+    canvas.clipRect(mar);
+    final ola = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.2
+      ..color = PaletaNeon.azulNeon.withOpacity(0.16);
+    for (var fila = 0; fila < PartidaFlota.lado * 2; fila++) {
+      final y = inicio + (fila + 0.5) * lado / 2;
+      final camino = Path();
+      for (var x = 0.0; x <= mar.width; x += 4) {
+        final altura = math.sin((x / lado) * math.pi + t * math.pi * 2 + fila * 0.9) *
+            lado * 0.06;
+        if (x == 0) {
+          camino.moveTo(inicio + x, y + altura);
+        } else {
+          camino.lineTo(inicio + x, y + altura);
+        }
+      }
+      canvas.drawPath(camino, ola);
+    }
+    canvas.restore();
+
     final linea = Paint()
       ..style = PaintingStyle.stroke
-      ..color = PaletaNeon.violetaBase.withOpacity(0.5);
+      ..color = PaletaNeon.azulNeon.withOpacity(0.22);
     for (var f = 0; f < PartidaFlota.lado; f++) {
       for (var c = 0; c < PartidaFlota.lado; c++) {
-        final rect = rectDe(Celda(f, c)).deflate(1);
-        canvas.drawRect(rect, agua);
-        canvas.drawRect(rect, linea);
+        canvas.drawRect(rectDe(Celda(f, c)), linea);
       }
     }
+
+    final ultima = partida.disparos.isEmpty ? null : partida.disparos.keys.last;
     partida.disparos.forEach((celda, resultado) {
-      final rect = rectDe(celda).deflate(lado * 0.18);
+      final rect = rectDe(celda);
+      final esUltima = celda == ultima;
+      final progreso = esUltima ? impacto : 1.0;
       switch (resultado) {
         case ResultadoDisparo.agua:
-          canvas.drawCircle(rect.center, lado * 0.12,
-              Paint()..color = PaletaNeon.azulNeon.withOpacity(0.6));
+          _agua(canvas, rect.center, lado, progreso);
         case ResultadoDisparo.tocado:
-          canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(3)),
-              Paint()..color = PaletaNeon.ambarCanales);
+          _casco(canvas, rect, lado, hundido: false);
+          _llama(canvas, rect.center, lado, t + celda.columna * 0.3);
+          if (esUltima) _explosion(canvas, rect.center, lado, progreso);
         case ResultadoDisparo.hundido:
-          canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(3)),
-              Paint()..color = PaletaNeon.rojoOxidado);
+          _casco(canvas, rect, lado, hundido: true);
+          _humo(canvas, rect.center, lado, t + celda.fila * 0.37);
+          if (esUltima) _explosion(canvas, rect.center, lado, progreso);
       }
     });
+
     final celdaCorrecta = correccion;
     if (celdaCorrecta != null) {
       canvas.drawRect(
@@ -297,6 +361,88 @@ class PintorFlota extends CustomPainter {
           ..color = PaletaNeon.exitoSuave,
       );
     }
+  }
+
+  /// Agua: un punto y anillos que se abren (del todo en el último disparo).
+  void _agua(Canvas canvas, Offset centro, double lado, double progreso) {
+    canvas.drawCircle(centro, lado * 0.08,
+        Paint()..color = PaletaNeon.azulNeon.withOpacity(0.7));
+    final anillo = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.4;
+    for (var i = 0; i < 2; i++) {
+      final radio = lado * (0.16 + 0.24 * progreso) * (1 + i * 0.45);
+      anillo.color = PaletaNeon.azulNeon.withOpacity(0.55 * (1 - progreso * 0.6) / (1 + i));
+      canvas.drawCircle(centro, radio, anillo);
+    }
+  }
+
+  /// Trozo de barco: gris metal si está tocado, rojo apagado si hundido.
+  void _casco(Canvas canvas, Rect rect, double lado, {required bool hundido}) {
+    final casco = RRect.fromRectAndRadius(rect.deflate(lado * 0.14), Radius.circular(lado * 0.12));
+    canvas.drawRRect(
+      casco,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: hundido
+              ? [PaletaNeon.rojoOxidado, const Color(0xFF3A1712)]
+              : [PaletaNeon.grisMetal, const Color(0xFF5B6470)],
+        ).createShader(casco.outerRect),
+    );
+    // Remaches.
+    final remache = Paint()..color = Colors.black.withOpacity(0.35);
+    for (final dx in [-0.22, 0.0, 0.22]) {
+      canvas.drawCircle(casco.center + Offset(dx * lado, lado * 0.16), lado * 0.035, remache);
+    }
+  }
+
+  /// Llama que parpadea sobre lo tocado.
+  void _llama(Canvas canvas, Offset centro, double lado, double t) {
+    final latido = 0.8 + 0.2 * math.sin(t * math.pi * 6);
+    final base = centro + Offset(0, -lado * 0.02);
+    for (final (color, escala) in [
+      (PaletaNeon.rosaAcento, 0.34),
+      (PaletaNeon.ambarCanales, 0.24),
+      (const Color(0xFFFFF1C4), 0.12),
+    ]) {
+      final alto = lado * escala * latido;
+      final llama = Path()
+        ..moveTo(base.dx - alto * 0.55, base.dy)
+        ..quadraticBezierTo(base.dx - alto * 0.5, base.dy - alto * 0.9, base.dx, base.dy - alto * 1.6)
+        ..quadraticBezierTo(base.dx + alto * 0.5, base.dy - alto * 0.9, base.dx + alto * 0.55, base.dy)
+        ..close();
+      canvas.drawPath(llama, Paint()..color = color.withOpacity(0.9));
+    }
+  }
+
+  /// Humo gris que sube de lo hundido.
+  void _humo(Canvas canvas, Offset centro, double lado, double t) {
+    final humo = Paint();
+    for (var i = 0; i < 3; i++) {
+      final f = (t + i / 3) % 1;
+      humo.color = PaletaNeon.grisMetal.withOpacity(0.35 * (1 - f));
+      canvas.drawCircle(
+          centro + Offset(math.sin((f + i) * 3) * lado * 0.08, -lado * (0.1 + 0.45 * f)),
+          lado * (0.08 + 0.1 * f),
+          humo);
+    }
+  }
+
+  /// Destello del impacto: un anillo ámbar que se abre y se apaga.
+  void _explosion(Canvas canvas, Offset centro, double lado, double progreso) {
+    if (progreso >= 1) return;
+    canvas.drawCircle(
+      centro,
+      lado * (0.2 + 0.7 * progreso),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3 * (1 - progreso) + 0.5
+        ..color = PaletaNeon.ambarCanales.withOpacity(1 - progreso),
+    );
+    canvas.drawCircle(centro, lado * 0.45 * (1 - progreso),
+        Paint()..color = const Color(0xFFFFF1C4).withOpacity(0.6 * (1 - progreso)));
   }
 
   void _texto(Canvas canvas, String texto, Offset centro) {

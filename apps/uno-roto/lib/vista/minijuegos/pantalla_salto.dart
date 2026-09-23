@@ -152,6 +152,7 @@ class _PantallaSaltoState extends State<PantallaSalto>
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.puertaSiguiente.reto.idHabilidad,
       dificultadEjemplo: widget.dificultad,

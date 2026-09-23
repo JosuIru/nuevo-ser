@@ -10,6 +10,7 @@ import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
+import 'pantalla_recreativa.dart';
 import 'sprites_maquinas.dart';
 
 /// Canales — máquina de Rexán: comecocos matemático. Deslizar el dedo
@@ -208,6 +209,7 @@ class _PantallaCanalesState extends State<PantallaCanales>
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.regla.idHabilidad,
       dificultadEjemplo: widget.dificultad,
@@ -251,9 +253,12 @@ class _PantallaCanalesState extends State<PantallaCanales>
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onPanEnd: _alDeslizar,
-                  child: CustomPaint(
-                    size: Size.infinite,
-                    painter: PintorCanales(partida: _partida),
+                  child: RelojAmbiente(
+                    periodo: const Duration(seconds: 3),
+                    builder: (_, fase) => CustomPaint(
+                      size: Size.infinite,
+                      painter: PintorCanales(partida: _partida, fase: fase),
+                    ),
                   ),
                 ),
               ),
@@ -269,20 +274,44 @@ class _PantallaCanalesState extends State<PantallaCanales>
 
 class PintorCanales extends CustomPainter {
   final PartidaCanales partida;
+  final Animation<double>? fase;
 
-  PintorCanales({required this.partida});
+  PintorCanales({required this.partida, this.fase}) : super(repaint: fase);
 
   @override
   void paint(Canvas canvas, Size size) {
+    final t = fase?.value ?? 0;
     final laberinto = partida.laberinto;
     final lado = size.width / laberinto.ancho;
     Rect rectDe(Celda celda) =>
         Rect.fromLTWH(celda.columna * lado, celda.fila * lado, lado, lado);
 
-    // Agua de los canales y muros.
+    // Agua de los canales: fondo y destellos que corren por el agua.
     canvas.drawRect(Offset.zero & size,
-        Paint()..color = PaletaNeon.azulNeon.withOpacity(0.07));
-    final pinturaMuro = Paint()..color = PaletaNeon.fondoMedio;
+        Paint()..color = const Color(0xFF0A1A3A).withOpacity(0.85));
+    final destello = Paint()
+      ..strokeCap = StrokeCap.round
+      ..strokeWidth = 1.2;
+    for (var fila = 0; fila < laberinto.alto; fila++) {
+      for (var columna = 0; columna < laberinto.ancho; columna++) {
+        final celda = Celda(fila, columna);
+        if (!laberinto.esCanal(celda)) continue;
+        final rect = rectDe(celda);
+        // Cada celda, su propio ritmo: el agua no late toda a la vez.
+        final fase = (t + (fila * 7 + columna * 3) / 23) % 1;
+        final brillo = math.sin(fase * math.pi);
+        destello.color = PaletaNeon.azulNeon.withOpacity(0.22 * brillo);
+        final y = rect.top + rect.height * (0.3 + 0.4 * ((fila + columna) % 3) / 2);
+        final x = rect.left + rect.width * (0.2 + 0.6 * fase);
+        canvas.drawLine(Offset(x - lado * 0.12, y), Offset(x + lado * 0.12, y), destello);
+      }
+    }
+    final pinturaMuro = Paint()
+      ..shader = const LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [Color(0xFF2A1A55), Color(0xFF140A2E)],
+      ).createShader(Offset.zero & size);
     final pinturaBorde = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1
@@ -297,8 +326,30 @@ class PintorCanales extends CustomPainter {
       }
     }
 
-    // Números.
+    // Números: burbujas que flotan un poco.
     partida.numeros.forEach((celda, numero) {
+      final flote = math.sin((t + celda.fila * 0.21 + celda.columna * 0.13) * math.pi * 2) * lado * 0.05;
+      final burbuja = rectDe(celda).center + Offset(0, flote);
+      final radio = lado * 0.42;
+      canvas.drawCircle(
+        burbuja,
+        radio,
+        Paint()
+          ..shader = RadialGradient(
+            center: const Alignment(-0.35, -0.4),
+            colors: [PaletaNeon.azulNeon.withOpacity(0.35), PaletaNeon.azulNeon.withOpacity(0.06)],
+          ).createShader(Rect.fromCircle(center: burbuja, radius: radio)),
+      );
+      canvas.drawCircle(
+        burbuja,
+        radio,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1
+          ..color = PaletaNeon.azulNeon.withOpacity(0.5),
+      );
+      canvas.drawCircle(burbuja + Offset(-radio * 0.4, -radio * 0.45), radio * 0.12,
+          Paint()..color = Colors.white.withOpacity(0.5));
       final pintor = TextPainter(
         text: TextSpan(
           text: numero.etiqueta,
@@ -309,8 +360,7 @@ class PintorCanales extends CustomPainter {
         ),
         textDirection: TextDirection.ltr,
       )..layout();
-      final centro = rectDe(celda).center;
-      pintor.paint(canvas, centro - Offset(pintor.width / 2, pintor.height / 2));
+      pintor.paint(canvas, burbuja - Offset(pintor.width / 2, pintor.height / 2));
     });
 
     // Sombras.

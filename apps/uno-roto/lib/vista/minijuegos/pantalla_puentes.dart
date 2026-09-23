@@ -11,6 +11,7 @@ import '../../dominio/problema_espejo.dart' show Fraccion;
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
+import 'pantalla_recreativa.dart';
 import 'sprites_maquinas.dart';
 
 /// Puentes — máquina de Rexán. El niño cubre un hueco con tablones y
@@ -193,6 +194,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _reto.modo.idHabilidad,
       dificultadEjemplo: _enNivel.dificultad,
@@ -210,11 +212,13 @@ class _PantallaPuentesState extends State<PantallaPuentes>
               children: [
                 const SizedBox(height: 8),
                 Expanded(
-                  child: AnimatedBuilder(
+                  child: RelojAmbiente(
+                    builder: (_, fase) => AnimatedBuilder(
                     animation: _controladorCarro,
                     builder: (_, __) => CustomPaint(
                       size: Size.infinite,
                       painter: PintorPuente(
+                        fase: fase,
                         hueco: _reto.hueco,
                         etiquetaHueco: _reto.etiqueta(_reto.hueco),
                         colocados: _tablonesColocados,
@@ -227,6 +231,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
                         aEscala: widget.dificultad < 3,
                       ),
                     ),
+                  ),
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -372,8 +377,10 @@ class PintorPuente extends CustomPainter {
   final double avanceCarro;
   final ResultadoPuente resultado;
   final bool aEscala;
+  final Animation<double>? fase;
 
   PintorPuente({
+    this.fase,
     required this.hueco,
     required this.etiquetaHueco,
     required this.colocados,
@@ -381,24 +388,68 @@ class PintorPuente extends CustomPainter {
     required this.avanceCarro,
     required this.resultado,
     required this.aEscala,
-  });
+  }) : super(repaint: fase);
 
   @override
   void paint(Canvas canvas, Size size) {
+    final t = fase?.value ?? 0;
     final alturaTablero = size.height * 0.55;
     final anchoHueco = size.width * 0.56;
     final bordeIzquierdo = (size.width - anchoHueco) / 2;
     final bordeDerecho = bordeIzquierdo + anchoHueco;
     final pixelesPorUnidad = anchoHueco / hueco.valor;
 
-    // Orillas.
-    final pinturaOrilla = Paint()..color = PaletaNeon.fondoMedio;
+    // Agua: franja con degradado y olas que corren.
+    final agua = Rect.fromLTRB(bordeIzquierdo, size.height * 0.8, bordeDerecho, size.height);
     canvas.drawRect(
-        Rect.fromLTRB(0, alturaTablero, bordeIzquierdo, size.height),
-        pinturaOrilla);
-    canvas.drawRect(
-        Rect.fromLTRB(bordeDerecho, alturaTablero, size.width, size.height),
-        pinturaOrilla);
+      agua,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [PaletaNeon.azulNeon.withOpacity(0.28), const Color(0xFF071430)],
+        ).createShader(agua),
+    );
+    final ola = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.3
+      ..color = PaletaNeon.azulNeon.withOpacity(0.35);
+    for (var fila = 0; fila < 3; fila++) {
+      final y = agua.top + 4 + fila * (agua.height / 3);
+      final camino = Path()..moveTo(agua.left, y);
+      for (var x = agua.left; x <= agua.right; x += 4) {
+        camino.lineTo(x, y + math.sin(x / 14 + t * math.pi * 2 + fila) * 2.2);
+      }
+      canvas.drawPath(camino, ola..color = PaletaNeon.azulNeon.withOpacity(0.35 - fila * 0.09));
+    }
+
+    // Orillas de piedra: bloques con juntas.
+    for (final orilla in [
+      Rect.fromLTRB(0, alturaTablero, bordeIzquierdo, size.height),
+      Rect.fromLTRB(bordeDerecho, alturaTablero, size.width, size.height),
+    ]) {
+      canvas.drawRect(
+        orilla,
+        Paint()
+          ..shader = const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF2A1D52), Color(0xFF120A28)],
+          ).createShader(orilla),
+      );
+      final junta = Paint()
+        ..color = Colors.black.withOpacity(0.35)
+        ..strokeWidth = 1;
+      const altoBloque = 16.0;
+      for (var fila = 0; orilla.top + fila * altoBloque < orilla.bottom; fila++) {
+        final y = orilla.top + fila * altoBloque;
+        canvas.drawLine(Offset(orilla.left, y), Offset(orilla.right, y), junta);
+        final desfase = fila.isEven ? 0.0 : 14.0;
+        for (var x = orilla.left + desfase; x < orilla.right; x += 28) {
+          canvas.drawLine(Offset(x, y), Offset(x, math.min(y + altoBloque, orilla.bottom)), junta);
+        }
+      }
+    }
     final pinturaCanto = Paint()
       ..color = PaletaNeon.violetaBase
       ..strokeWidth = 2;
@@ -406,12 +457,6 @@ class PintorPuente extends CustomPainter {
         Offset(bordeIzquierdo, alturaTablero), pinturaCanto);
     canvas.drawLine(Offset(bordeDerecho, alturaTablero),
         Offset(size.width, alturaTablero), pinturaCanto);
-
-    // Agua.
-    canvas.drawRect(
-      Rect.fromLTRB(bordeIzquierdo, size.height * 0.88, bordeDerecho, size.height),
-      Paint()..color = PaletaNeon.azulNeon.withOpacity(0.18),
-    );
 
     // Cota del hueco.
     final pinturaCota = Paint()
@@ -443,10 +488,26 @@ class PintorPuente extends CustomPainter {
       canvas.drawRect(
         rect,
         Paint()
-          ..color = sobresale
-              ? PaletaNeon.rosaAcento.withOpacity(0.7)
-              : PaletaNeon.ambarCanales.withOpacity(0.85),
+          ..shader = LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: sobresale
+                ? [PaletaNeon.rosaAcento.withOpacity(0.85), PaletaNeon.rosaAcento.withOpacity(0.5)]
+                : [const Color(0xFFF0C878), const Color(0xFF9C6A2E)],
+          ).createShader(rect),
       );
+      // Veta de la madera.
+      final veta = Paint()
+        ..color = Colors.black.withOpacity(0.18)
+        ..strokeWidth = 0.8;
+      for (var v = 0; v < 2; v++) {
+        final y = rect.top + 3 + v * 4;
+        final camino = Path()..moveTo(rect.left + 2, y);
+        for (var vx = rect.left + 2; vx < rect.right - 2; vx += 6) {
+          camino.lineTo(vx, y + math.sin(vx / 9 + i + v) * 0.8);
+        }
+        canvas.drawPath(camino, veta..style = PaintingStyle.stroke);
+      }
       canvas.drawRect(
         rect,
         Paint()
@@ -472,9 +533,18 @@ class PintorPuente extends CustomPainter {
     final xCarro = salida + (llegada - salida) * Curves.easeInOut.transform(avanceCarro);
     final carroBase = alturaTablero;
     final spriteCarro = SpritesMaquinas.ya('carro');
+    // Si el puente es corto, el carro se tambalea en el borde.
+    final tambaleo = resultado == ResultadoPuente.corto && avanceCarro >= 1
+        ? math.sin(t * math.pi * 2 * 4) * 0.12
+        : 0.0;
     if (spriteCarro != null) {
+      canvas.save();
+      canvas.translate(xCarro, carroBase);
+      canvas.rotate(tambaleo);
+      canvas.translate(-xCarro, -carroBase);
       pintarSprite(canvas, spriteCarro,
           Rect.fromLTRB(xCarro - 22, carroBase - 44, xCarro + 22, carroBase + 1));
+      canvas.restore();
     } else {
       final rectCarro = RRect.fromRectAndRadius(
         Rect.fromCenter(center: Offset(xCarro, carroBase - 12), width: 28, height: 16),

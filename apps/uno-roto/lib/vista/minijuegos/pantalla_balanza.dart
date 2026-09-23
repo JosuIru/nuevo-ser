@@ -70,7 +70,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
   double get _inclinacion =>
       _inclinacionDesde +
       (_inclinacionHasta - _inclinacionDesde) *
-          Curves.easeOutBack.transform(_animacion.value);
+          Curves.elasticOut.transform(_animacion.value);
 
   @override
   void initState() {
@@ -82,7 +82,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
     ];
     if (_habilidades.isEmpty) _habilidades.add('ALG.01');
     _animacion = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 650));
+        vsync: this, duration: const Duration(milliseconds: 1400));
     _nuevaEcuacion();
   }
 
@@ -255,6 +255,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
       titulo: _definicion.nombre,
       ofrecerPista: ofrecerPista,
       alAbrirAyuda: pistaAtendida,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _ecuacion.idHabilidad,
       ronda: _ronda,
@@ -371,27 +372,53 @@ class PintorBalanzaEcuacion extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final fulcro = Offset(size.width / 2, size.height * 0.3);
-    final medioBrazo = size.width * 0.4;
+    // Brazo y platillos caben siempre en el ancho (con margen).
+    final medioBrazo = size.width * 0.3;
+    final anchoPlatillo = medioBrazo * 0.9;
     final angulo = inclinacion * 0.28;
-    final estructura = Paint()
-      ..color = PaletaNeon.textoTenue.withOpacity(0.75)
-      ..strokeWidth = 3
-      ..strokeCap = StrokeCap.round;
-    canvas.drawLine(fulcro, Offset(fulcro.dx, size.height * 0.95), estructura);
+
+    // Pie: columna con base triangular.
+    final pie = Paint()
+      ..shader = const LinearGradient(
+        colors: [Color(0xFF6F6893), Color(0xFFB9B2DE), Color(0xFF6F6893)],
+      ).createShader(Rect.fromLTWH(fulcro.dx - 5, fulcro.dy, 10, size.height));
+    canvas.drawRect(Rect.fromLTRB(fulcro.dx - 3, fulcro.dy, fulcro.dx + 3, size.height * 0.92), pie);
+    final base = Path()
+      ..moveTo(fulcro.dx - 36, size.height * 0.95)
+      ..lineTo(fulcro.dx + 36, size.height * 0.95)
+      ..lineTo(fulcro.dx + 10, size.height * 0.9)
+      ..lineTo(fulcro.dx - 10, size.height * 0.9)
+      ..close();
+    canvas.drawPath(base, Paint()..color = const Color(0xFF4A4370));
+
     final izquierda = fulcro +
         Offset(-medioBrazo * math.cos(angulo), -medioBrazo * math.sin(angulo));
     final derecha = fulcro +
         Offset(medioBrazo * math.cos(angulo), medioBrazo * math.sin(angulo));
-    canvas.drawLine(izquierda, derecha, estructura);
-    canvas.drawCircle(
-        fulcro,
-        6,
+    // Brazo metálico.
+    canvas.drawLine(
+        izquierda,
+        derecha,
         Paint()
-          ..color = equilibrada ? PaletaNeon.exitoSuave : PaletaNeon.violetaNeon);
+          ..color = const Color(0xFFB9B2DE)
+          ..strokeWidth = 5
+          ..strokeCap = StrokeCap.round);
+    canvas.drawLine(
+        izquierda,
+        derecha,
+        Paint()
+          ..color = Colors.white.withOpacity(0.35)
+          ..strokeWidth = 1.2);
+    final colorFulcro = equilibrada ? PaletaNeon.exitoSuave : PaletaNeon.violetaNeon;
+    canvas.drawCircle(fulcro, 12,
+        Paint()
+          ..color = colorFulcro.withOpacity(0.35)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6));
+    canvas.drawCircle(fulcro, 7, Paint()..color = colorFulcro);
     _platillo(canvas, izquierda, ecuacion.bolsasIzquierda,
-        ecuacion.pesasIzquierda, medioBrazo * 0.95);
+        ecuacion.pesasIzquierda, anchoPlatillo);
     _platillo(canvas, derecha, ecuacion.bolsasDerecha, ecuacion.pesasDerecha,
-        medioBrazo * 0.95);
+        anchoPlatillo);
   }
 
   void _platillo(Canvas canvas, Offset colgadoDe, int bolsas, int pesas, double ancho) {
@@ -401,20 +428,29 @@ class PintorBalanzaEcuacion extends CustomPainter {
       ..strokeWidth = 1;
     canvas.drawLine(colgadoDe, base + Offset(-ancho / 2, 0), cuerda);
     canvas.drawLine(colgadoDe, base + Offset(ancho / 2, 0), cuerda);
-    canvas.drawLine(base + Offset(-ancho / 2, 0), base + Offset(ancho / 2, 0),
+    // Platillo: un cuenco plano metálico.
+    final cuenco = Path()
+      ..moveTo(base.dx - ancho / 2, base.dy)
+      ..quadraticBezierTo(base.dx, base.dy + 14, base.dx + ancho / 2, base.dy)
+      ..close();
+    canvas.drawPath(
+        cuenco,
         Paint()
-          ..color = PaletaNeon.textoTenue
-          ..strokeWidth = 3);
+          ..shader = const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFB9B2DE), Color(0xFF4A4370)],
+          ).createShader(Rect.fromLTWH(base.dx - ancho / 2, base.dy, ancho, 14)));
 
     // Objetos apilados sobre el platillo: primero las bolsas, luego pesas.
-    const ladoPesa = 16.0;
-    const anchoBolsa = 28.0;
+    const ladoPesa = 15.0;
+    const anchoBolsa = 26.0;
     final objetos = <(bool, double)>[
       for (var i = 0; i < bolsas; i++) (true, anchoBolsa),
       for (var i = 0; i < pesas; i++) (false, ladoPesa),
     ];
     var x = base.dx - ancho / 2 + 4;
-    var y = base.dy - 2;
+    var y = base.dy - 1;
     var alturaFila = 0.0;
     for (final (esBolsa, anchoObjeto) in objetos) {
       if (x + anchoObjeto > base.dx + ancho / 2 - 4) {
@@ -423,27 +459,79 @@ class PintorBalanzaEcuacion extends CustomPainter {
         alturaFila = 0;
       }
       if (esBolsa) {
-        final rect = Rect.fromLTWH(x, y - 30, anchoObjeto, 30);
-        canvas.drawRRect(RRect.fromRectAndRadius(rect, const Radius.circular(8)),
-            Paint()..color = PaletaNeon.ambarCanales.withOpacity(0.85));
-        final texto = TextPainter(
-          text: const TextSpan(
-              text: 'x',
-              style: TextStyle(
-                  color: PaletaNeon.fondoProfundo,
-                  fontSize: 17,
-                  fontWeight: FontWeight.w700)),
-          textDirection: TextDirection.ltr,
-        )..layout();
-        texto.paint(canvas, rect.center - Offset(texto.width / 2, texto.height / 2));
+        _saco(canvas, Rect.fromLTWH(x, y - 30, anchoObjeto, 30));
         alturaFila = math.max(alturaFila, 30);
       } else {
-        canvas.drawRect(Rect.fromLTWH(x, y - ladoPesa, ladoPesa, ladoPesa),
-            Paint()..color = PaletaNeon.azulNeon.withOpacity(0.75));
+        _pesa(canvas, Rect.fromLTWH(x, y - ladoPesa, ladoPesa, ladoPesa));
         alturaFila = math.max(alturaFila, ladoPesa);
       }
       x += anchoObjeto + 2;
     }
+  }
+
+  /// Saco atado arriba, con la x pintada.
+  void _saco(Canvas canvas, Rect rect) {
+    final cuello = rect.top + rect.height * 0.22;
+    final saco = Path()
+      ..moveTo(rect.center.dx - rect.width * 0.18, cuello)
+      ..quadraticBezierTo(rect.left - 2, rect.top + rect.height * 0.55, rect.left + 2, rect.bottom)
+      ..lineTo(rect.right - 2, rect.bottom)
+      ..quadraticBezierTo(rect.right + 2, rect.top + rect.height * 0.55,
+          rect.center.dx + rect.width * 0.18, cuello)
+      ..close();
+    canvas.drawPath(
+        saco,
+        Paint()
+          ..shader = const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFF0C878), Color(0xFFA8732F)],
+          ).createShader(rect));
+    // Nudo y boca del saco.
+    canvas.drawLine(Offset(rect.center.dx - rect.width * 0.2, cuello),
+        Offset(rect.center.dx + rect.width * 0.2, cuello),
+        Paint()
+          ..color = const Color(0xFF6B4A14)
+          ..strokeWidth = 2.5
+          ..strokeCap = StrokeCap.round);
+    final boca = Path()
+      ..moveTo(rect.center.dx - rect.width * 0.14, cuello)
+      ..lineTo(rect.center.dx - rect.width * 0.22, rect.top)
+      ..lineTo(rect.center.dx + rect.width * 0.22, rect.top)
+      ..lineTo(rect.center.dx + rect.width * 0.14, cuello)
+      ..close();
+    canvas.drawPath(boca, Paint()..color = const Color(0xFFD9A85A));
+    final texto = TextPainter(
+      text: const TextSpan(
+          text: 'x',
+          style: TextStyle(
+              color: Color(0xFF3A2608), fontSize: 15, fontWeight: FontWeight.w700)),
+      textDirection: TextDirection.ltr,
+    )..layout();
+    texto.paint(canvas,
+        Offset(rect.center.dx - texto.width / 2, rect.top + rect.height * 0.62 - texto.height / 2));
+  }
+
+  /// Pesa de hierro: trapecio con asa y un brillo.
+  void _pesa(Canvas canvas, Rect rect) {
+    final cuerpo = Path()
+      ..moveTo(rect.left + 2, rect.top + rect.height * 0.3)
+      ..lineTo(rect.right - 2, rect.top + rect.height * 0.3)
+      ..lineTo(rect.right, rect.bottom)
+      ..lineTo(rect.left, rect.bottom)
+      ..close();
+    canvas.drawPath(
+        cuerpo,
+        Paint()
+          ..shader = const LinearGradient(
+            colors: [Color(0xFF2E7FA8), Color(0xFF8FE0FF), Color(0xFF2E7FA8)],
+          ).createShader(rect));
+    canvas.drawArc(Rect.fromLTWH(rect.left + rect.width * 0.28, rect.top, rect.width * 0.44, rect.height * 0.5),
+        math.pi, math.pi, false,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.6
+          ..color = const Color(0xFF8FE0FF));
   }
 
   @override

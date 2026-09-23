@@ -33,7 +33,7 @@ class PantallaEncaje extends StatefulWidget {
 }
 
 class _PantallaEncajeState extends State<PantallaEncaje>
-    with MusicaDeMaquina {
+    with MusicaDeMaquina, PistaTrasFallos {
   @override
   String get idMusica => 'musica_maquina_encaje';
 
@@ -104,6 +104,7 @@ class _PantallaEncajeState extends State<PantallaEncaje>
     if (_tablero.unidades > unidadesAntes) {
       HapticFeedback.mediumImpact();
       sonar('efecto_fila_completa');
+      anotarAcierto();
       _lineaRexan = 'Un uno.';
       if (_nivel != _generador.nivel && _tablero.unidades < _definicion.rondasPorPartida) {
         _generador.nivel = _nivel;
@@ -140,6 +141,7 @@ class _PantallaEncajeState extends State<PantallaEncaje>
         : _lineaRexan ?? _definicion.lineaRexan;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      efectos: efectosPantalla,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: 'FR.16',
       dificultadEjemplo: widget.dificultad,
@@ -185,14 +187,21 @@ class _PantallaEncajeState extends State<PantallaEncaje>
                       onHorizontalDragUpdate: (d) =>
                           _moverConDedo(d.localPosition, lienzo),
                       onTap: _soltar,
-                      child: CustomPaint(
+                      // El destello de la fila se reproduce con cada unidad.
+                      child: TweenAnimationBuilder<double>(
+                        key: ValueKey('unidad-${_tablero.unidades}'),
+                        tween: Tween(begin: _tablero.unidades == 0 ? 1 : 0, end: 1),
+                        duration: const Duration(milliseconds: 650),
+                        builder: (_, destello, __) => CustomPaint(
                         size: lienzo,
                         painter: PintorEncaje(
+                          destelloFila: destello,
                           tablero: _tablero,
                           mostrarFaltas: widget.dificultad < 3 && _nivel < 3,
                           mostrarRejilla: widget.dificultad < 3 && _nivel < 3,
                           textoFalta: traducirNarrativa('faltan', locale),
                         ),
+                      ),
                       ),
                     );
                   },
@@ -228,7 +237,11 @@ class PintorEncaje extends CustomPainter {
   final bool mostrarRejilla;
   final String textoFalta;
 
+  /// 0→1 tras completar una unidad: la fila brilla y se apaga.
+  final double destelloFila;
+
   PintorEncaje({
+    this.destelloFila = 1,
     required this.tablero,
     required this.mostrarFaltas,
     required this.mostrarRejilla,
@@ -281,9 +294,34 @@ class PintorEncaje extends CustomPainter {
 
     final pieza = tablero.piezaActual;
     if (pieza != null) {
+      // Sombra: dónde quedaría si se soltara ahora.
+      final caida = tablero.alturaDeCaida;
+      if (caida != null && caida != tablero.altura) {
+        final sombra = RRect.fromRectAndRadius(
+            rectDe(caida, tablero.columna, pieza.celdas), const Radius.circular(3));
+        canvas.drawRRect(
+          sombra,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1.2
+            ..color = colorDeFamilia(pieza.valor.denominador).withOpacity(0.35),
+        );
+      }
       _pintarBarra(
           canvas, rectDe(tablero.altura, tablero.columna, pieza.celdas), pieza,
-          opacidad: 1);
+          opacidad: 1, brillo: true);
+    }
+
+    final filaCompletada = tablero.ultimaFilaCompletada;
+    if (filaCompletada != null && destelloFila < 1) {
+      final banda = Rect.fromLTWH(0, size.height - (filaCompletada + 1) * altoFila,
+          size.width, altoFila).inflate(altoFila * 0.6 * destelloFila);
+      canvas.drawRect(
+        banda,
+        Paint()
+          ..color = PaletaNeon.ambarCanales.withOpacity(0.55 * (1 - destelloFila))
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
+      );
     }
 
     canvas.drawRect(
@@ -315,10 +353,30 @@ class PintorEncaje extends CustomPainter {
   }
 
   void _pintarBarra(Canvas canvas, Rect rect, PiezaEncaje pieza,
-      {required double opacidad}) {
+      {required double opacidad, bool brillo = false}) {
     final color = colorDeFamilia(pieza.valor.denominador);
     final rrect = RRect.fromRectAndRadius(rect, const Radius.circular(3));
-    canvas.drawRRect(rrect, Paint()..color = color.withOpacity(0.35 * opacidad));
+    if (brillo) {
+      canvas.drawRRect(
+          rrect.inflate(2),
+          Paint()
+            ..color = color.withOpacity(0.45)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6));
+    }
+    // Relieve: más luz arriba, más sombra abajo, filo claro.
+    canvas.drawRRect(
+      rrect,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [color.withOpacity(0.55 * opacidad), color.withOpacity(0.2 * opacidad)],
+        ).createShader(rect),
+    );
+    canvas.drawLine(rect.topLeft + const Offset(3, 1.5), rect.topRight + const Offset(-3, 1.5),
+        Paint()
+          ..color = Colors.white.withOpacity(0.25 * opacidad)
+          ..strokeWidth = 1);
     canvas.drawRRect(
       rrect,
       Paint()

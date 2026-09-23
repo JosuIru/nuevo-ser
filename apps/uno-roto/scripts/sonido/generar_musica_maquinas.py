@@ -537,6 +537,36 @@ def esclusas():
     return pista
 
 
+def planos():
+    """Mesa de delineante · 76 BPM, fa mayor. Piano tranquilo en bloques
+    (cuadros de una cuadrícula), escobilla como lápiz sobre papel y un
+    taco de madera de sello al final de cada vuelta."""
+    negra = 60 / 76
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['F2', 'C3', 'A3', 'E4'],     # Fmaj7
+        ['D2', 'A2', 'F3', 'C4'],     # Dm7
+        ['A#1', 'F2', 'D3', 'A3'],    # Bbmaj7
+        ['C2', 'G2', 'E3', 'A#3'],    # C7
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.035, 1400))
+        for tiempo in (0, 2):
+            for i, voz in enumerate(voces[1:]):
+                sumar_circular(pista, inicio + tiempo * negra + 0.02 * i,
+                               piano_fm(nota(voz) * 2, negra * 1.6, 0.06))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 3, 0.07))
+        # El lápiz: trazos cortos en corcheas sueltas.
+        for corchea in (1, 3, 4, 6):
+            sumar_circular(pista, inicio + corchea * negra / 2, escobilla(0.05, 0.12))
+    for c in (3, 7):
+        sumar_circular(pista, (c + 1) * compas - negra, taco_madera(700, 0.08))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -604,6 +634,7 @@ if __name__ == '__main__':
     guardar(salto(), os.path.join(musica, 'maquina_salto.ogg'), -19, es_bucle=True)
     guardar(engranajes(), os.path.join(musica, 'maquina_engranajes.ogg'), -19, es_bucle=True)
     guardar(esclusas(), os.path.join(musica, 'maquina_esclusas.ogg'), -19, es_bucle=True)
+    guardar(planos(), os.path.join(musica, 'maquina_planos.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

@@ -37,6 +37,7 @@ MAQUINAS = {
     # Segunda sala.
     'engranajes': {'pantalla': '#C9A04A', 'marquesina': '#8A6A2E'},
     'esclusas': {'pantalla': '#78D8E0', 'marquesina': '#3F74D8'},
+    'planos': {'pantalla': '#E8E2D0', 'marquesina': '#6FA8E8'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -150,6 +151,16 @@ def juego_en_pantalla(nombre, color):
         for i, u in enumerate((-0.2, 0.0, 0.2)):
             p.append(pixel(f'compuerta{i}', u, -0.22, 0.08, 0.025, color if i == 1 else '#6668A8',
                            1.8 if i == 1 else 0.9))
+    elif nombre == 'planos':
+        # Papel de plano: rejilla, una habitación blanca y dos matas.
+        p.append(pixel('papel', 0, 0.0, 0.34, 0.22, '#123A6E', 0.7))
+        for i in range(-3, 4):
+            p.append(pixel(f'rejilla_v{i}', i * 0.1, 0.0, 0.002, 0.22, '#E8E2D0', 0.4))
+        for j in range(-2, 3):
+            p.append(pixel(f'rejilla_h{j}', 0.0, j * 0.09, 0.34, 0.002, '#E8E2D0', 0.4))
+        p.append(pixel('habitacion', -0.05, 0.02, 0.15, 0.09, color, 1.5))
+        p.append(pixel('mata1', 0.22, 0.12, 0.03, 0.03, '#6BE38A', 1.8))
+        p.append(pixel('mata2', 0.2, -0.14, 0.03, 0.03, '#6BE38A', 1.8))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

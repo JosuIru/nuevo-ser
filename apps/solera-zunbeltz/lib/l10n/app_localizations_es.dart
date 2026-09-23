@@ -220,6 +220,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tareaTituloObligatorio => 'Pon un título a la tarea.';
 
   @override
+  String get tareaRecurrencia => 'Periodicidad';
+
+  @override
+  String get tareaMarcarHecha => 'Marcar hecha';
+
+  @override
+  String get tareaSiguienteGenerada => 'Hecha. Siguiente tarea generada.';
+
+  @override
   String get tableroTitulo => 'Tareas de mantenimiento';
 
   @override
@@ -657,63 +666,177 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaIntro =>
-      'Una guía sencilla, paso a paso. Toca cada apartado para abrirlo. No hace falta saber de apps: si te pierdes, siempre puedes volver atrás con la flecha de arriba a la izquierda.';
+      'Una guía paso a paso para usar la app. Toca un apartado para abrirlo, o escribe arriba lo que buscas. Si te pierdes, vuelve atrás con la flecha de arriba a la izquierda.';
+
+  @override
+  String get ayudaBuscar => 'Buscar en la ayuda';
+
+  @override
+  String get ayudaSinResultados =>
+      'No hay ningún apartado con esa palabra. Prueba con otra: «tarea», «zona», «venta», «token»…';
+
+  @override
+  String get ayudaConsejo => 'Bueno saber';
+
+  @override
+  String get ayudaGrupoEmpezar => 'Primeros pasos';
+
+  @override
+  String get ayudaGrupoFincas => 'Fincas y tareas';
+
+  @override
+  String get ayudaGrupoProyectos => 'Tu proyecto de test';
+
+  @override
+  String get ayudaGrupoEquipo => 'Trabajar en equipo';
+
+  @override
+  String get ayudaGrupoProblemas => 'Si algo falla';
 
   @override
   String get ayudaQueEsT => '¿Qué es esta app?';
 
   @override
   String get ayudaQueEsB =>
-      'Es tu cuaderno del Espacio Test. Sirve para llevar las fincas y, sobre todo, el seguimiento de tu proyecto de test: lo que produces, lo que vendes, lo que gastas y lo que ganas. Funciona en tu móvil aunque no tengas cobertura.';
+      'Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte.';
 
   @override
-  String get ayudaPestanasT => 'Las cuatro pestañas de abajo';
+  String get ayudaPestanasT => 'Moverse por la app';
 
   @override
   String get ayudaPestanasB =>
-      'Hoy: un resumen. Fincas: el mapa con los puntos y las tareas. Proyectos: tu proceso de test y tus números. Ajustes: idioma, ayuda y más. Toca cada una para cambiar de pantalla.';
+      'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: un resumen con las tareas abiertas.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: tu proceso de test y tus números.\n• Ajustes: idioma, ayuda, envío de informes y sincronización.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
+
+  @override
+  String get ayudaIdiomaDatosT => 'Idioma, fotos, tiempo e internet';
+
+  @override
+  String get ayudaIdiomaDatosB =>
+      '• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) muestra la previsión de 7 días con avisos de helada, lluvia, viento, calor y días buenos para el manejo.\n» Todo funciona sin internet menos la previsión del tiempo y la sincronización de tareas.';
 
   @override
   String get ayudaFincasT => 'Marcar un punto en el mapa';
 
   @override
   String get ayudaFincasB =>
-      'Entra en Fincas. Para añadir un abrevadero, una manga, un cierre… toca el sitio en el mapa (o el botón «Nuevo punto» de abajo a la derecha). Rellena el tipo y el nombre y pulsa Guardar. Toca un punto del mapa para ver su ficha.';
+      'Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…\n1. Entra en Fincas.\n2. Toca el sitio exacto en el mapa. O pulsa «Nuevo punto» (abajo a la derecha) y elige «Usar GPS actual» si estás junto a la instalación, o «Usar centro del mapa».\n3. Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.\n4. Pulsa Guardar.\n» El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón «GPS» centra el mapa en ti y «Capas» cambia entre mapa y satélite.';
+
+  @override
+  String get ayudaZonasT => 'Dibujar una zona (parcela, cercado…)';
+
+  @override
+  String get ayudaZonasB =>
+      '1. En Fincas, pulsa «Dibujar zona».\n2. Toca en el mapa las esquinas de la zona, una detrás de otra. Si te equivocas, pulsa «Deshacer».\n3. Con tres esquinas o más, pulsa «Cerrar zona».\n4. Elige la finca, el tipo (parcela de pasto, cercado, zona de pastoreo…), el nombre y el estado, y guarda.\n» La superficie que sale del dibujo es orientativa. Si tienes la oficial del recinto SIGPAC, ponla en «Superficie oficial SIGPAC» y será la que se use.';
+
+  @override
+  String get ayudaEditarMapaT => 'Mover o borrar un punto o una zona';
+
+  @override
+  String get ayudaEditarMapaB =>
+      '1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa «Volver a dibujar» (arriba) y marca de nuevo sus esquinas.\n4. Para borrarlo: pulsa la papelera y confirma.';
 
   @override
   String get ayudaTareasT => 'Apuntar una tarea de mantenimiento';
 
   @override
   String get ayudaTareasB =>
-      'Abre la ficha de un punto y pulsa «Nueva tarea». Pon qué hay que hacer, quién y para cuándo. En Fincas → Tareas ves todo lo pendiente. Con el botón de PDF sacas el parte.';
+      '1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.';
 
   @override
-  String get ayudaProyectosT => 'Tu proyecto de test y tus números';
+  String get ayudaRecurrentesT => 'Tareas que se repiten';
+
+  @override
+  String get ayudaRecurrentesB =>
+      'Lo que se hace siempre (rellenar comederos, revisar el vallado…) no hace falta apuntarlo cada vez.\n1. Al crear la tarea, elige una «Periodicidad»: diaria, semanal, quincenal, mensual o trimestral.\n2. Cuando la marques como hecha, la app crea sola la siguiente, con la fecha que toca.\n» En la lista, las tareas periódicas llevan el símbolo de repetir.';
+
+  @override
+  String get ayudaTableroT => 'Llevar las tareas al día';
+
+  @override
+  String get ayudaTableroB =>
+      '1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.';
+
+  @override
+  String get ayudaProyectosT => 'Crear tu proyecto';
 
   @override
   String get ayudaProyectosB =>
-      'En Proyectos, pulsa + para crear tu proyecto. Dentro, pulsa + y elige qué apuntar: producción, una venta (comercialización), una prueba de producto o un gasto/ingreso. Arriba verás solos tus números: ventas, gastos, balance y rentabilidad. Puedes mirarlos por trimestre con el filtro de arriba.';
+      '1. Entra en Proyectos y pulsa +.\n2. Pon el nombre del proyecto, la persona tester y la actividad. Si quieres, también la finca y las fechas de inicio y fin.\n3. Pulsa Guardar. Toca el proyecto en la lista para entrar en él.';
+
+  @override
+  String get ayudaApuntarT => 'Apuntar tu día a día';
+
+  @override
+  String get ayudaApuntarB =>
+      'Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.\n1. Ve a la pestaña de lo que quieras apuntar.\n2. Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso con su categoría.\n3. Guarda. Los números de arriba se actualizan solos.';
+
+  @override
+  String get ayudaNumerosT => 'Entender tus números';
+
+  @override
+  String get ayudaNumerosB =>
+      'Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.\n• Con el filtro «Periodo» (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.\n• Si hay gastos, verás el desglose por categorías y el IVA soportado y repercutido.\n» El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.';
 
   @override
   String get ayudaInformesT => 'Sacar informes y enviarlos';
 
   @override
   String get ayudaInformesB =>
-      'En tu proyecto, el botón de compartir (arriba) te deja sacar el informe en PDF, exportar a Excel (CSV) o «Enviar al coordinador». Para esto último, primero pon el correo del coordinador en Ajustes.';
+      '• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador».\n• Para enviarlo al coordinador, pon antes su correo en Ajustes → Coordinador.\n• En la lista de Proyectos, el botón del gráfico (arriba) saca la «Comparativa (PDF)» entre todos los proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa, para pasarlos a coordinación.';
 
   @override
-  String get ayudaIdiomaDatosT => 'Idioma, fotos e internet';
+  String get ayudaSyncT => 'Compartir las tareas con el equipo';
 
   @override
-  String get ayudaIdiomaDatosB =>
-      'Cambia entre castellano y euskera en Ajustes. Las fotos se guardan en tu móvil. Todo funciona sin internet; solo la previsión del tiempo necesita conexión.';
+  String get ayudaSyncB =>
+      'Si en el Espacio Test usáis la sincronización, las tareas se comparten entre los móviles de todo el equipo.\n1. Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.\n2. En Ajustes → Sincronización de tareas, pon la dirección del WordPress de Zunbeltz y tu token.\n3. Pulsa «Sincronizar ahora» cuando tengas cobertura: suben tus cambios y bajan los del resto.\n» Solo se comparten las tareas. Los puntos, las zonas y los proyectos siguen solo en tu móvil.';
+
+  @override
+  String get ayudaRolesT => 'Quién puede hacer qué';
+
+  @override
+  String get ayudaRolesB =>
+      'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve todas y crea las suyas. Puede cambiar las que ha creado o tiene asignadas, y coger las que están sin asignar.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.';
+
+  @override
+  String get ayudaProblemasT => 'Problemas frecuentes';
+
+  @override
+  String get ayudaProblemasB =>
+      '• «Tu rol no permite…»: esa tarea no es tuya. Cógela si está sin asignar, o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• «Sin finca reconocida»: esa tarea es de una finca que en tu móvil tiene otro nombre. Las fincas tienen que llamarse igual en todos los móviles.\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Tus datos viven en tu móvil. Si lo cambias o lo pierdes, habla antes con coordinación.';
 
   @override
   String get ayudaPie =>
-      'Si algo no queda claro, pregunta al coordinador del Espacio Test.';
+      'Si algo no queda claro, pregunta a coordinación del Espacio Test.';
 
   @override
   String get ajustesExportarEspacio => 'Exportar espacio (CSV)';
+
+  @override
+  String get ajustesSyncTitulo => 'Sincronización de tareas';
+
+  @override
+  String get ajustesSyncUrl => 'WordPress de Zunbeltz';
+
+  @override
+  String get ajustesSyncToken => 'Token personal';
+
+  @override
+  String get ajustesSyncSinConfigurar => 'Sin configurar';
+
+  @override
+  String get ajustesSyncAhora => 'Sincronizar ahora';
+
+  @override
+  String ajustesSyncResultado(int subidas, int bajadas, int omitidas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      omitidas,
+      locale: localeName,
+      other: ' · $omitidas sin finca reconocida',
+      zero: '',
+    );
+    return '$subidas tareas subidas · $bajadas bajadas$_temp0';
+  }
 
   @override
   String get ajustesDemo => 'Cargar datos de demostración';
@@ -831,4 +954,53 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get parteColZona => 'Zona';
+
+  @override
+  String ajustesSesionComo(String nombre) {
+    return 'Sesión de $nombre';
+  }
+
+  @override
+  String ajustesSesionConectada(String nombre) {
+    return 'Sesión iniciada: $nombre';
+  }
+
+  @override
+  String get ajustesSesionLocal => 'Modo local';
+
+  @override
+  String get ajustesSesionLocalDetalle =>
+      'Sin sincronización: en este dispositivo se puede editar todo.';
+
+  @override
+  String ajustesSyncRechazadas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n cambios revertidos: tu rol no los permite',
+      one: '1 cambio revertido: tu rol no lo permite',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get tareaSinAsignar => 'Sin asignar';
+
+  @override
+  String get tareaAsignarme => 'Asignármela';
+
+  @override
+  String get tareaSoltar => 'Soltar la tarea';
+
+  @override
+  String get tareaCambiarEstado => 'Cambiar estado';
+
+  @override
+  String get tareaSinPermiso => 'Tu rol no permite cambiar esta tarea.';
+
+  @override
+  String get tareaNoPuedesCrear => 'Tu rol no permite crear tareas.';
+
+  @override
+  String get tableroMisTareas => 'Mis tareas';
 }

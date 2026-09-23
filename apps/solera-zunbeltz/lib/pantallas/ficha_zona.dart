@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../datos/base_datos.dart';
+import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/tarea_mantenimiento.dart';
@@ -8,6 +9,7 @@ import '../modelos/zona_finca.dart';
 import '../utiles/estilos_tarea.dart';
 import '../utiles/geodesia.dart';
 import 'nueva_tarea.dart';
+import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
 
 /// Detalle de una zona dibujada: tipo, estado, superficie, perímetro y sus
@@ -52,6 +54,23 @@ class _FichaZonaState extends State<FichaZona> {
       ),
     );
     if (creada == true) await _cargar();
+  }
+
+  Future<void> _accionesTarea(TareaMantenimiento tarea) async {
+    if (await mostrarAccionesTarea(context, tarea)) await _cargar();
+  }
+
+  Future<void> _marcarHecha(TareaMantenimiento tarea) async {
+    final id = tarea.id;
+    if (id == null) return;
+    final textos = AppLocalizations.of(context);
+    final generoSiguiente = await _bd.marcarTareaHecha(id) != null;
+    await _cargar();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(generoSiguiente
+            ? textos.tareaSiguienteGenerada
+            : textos.tareaGuardada)));
   }
 
   Future<void> _borrarZona() async {
@@ -104,11 +123,13 @@ class _FichaZonaState extends State<FichaZona> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _nuevaTarea,
-        icon: const Icon(Icons.add_task),
-        label: Text(textos.zonaNuevaTarea),
-      ),
+      floatingActionButton: politicaTareasActual.puedeCrear
+          ? FloatingActionButton.extended(
+              onPressed: _nuevaTarea,
+              icon: const Icon(Icons.add_task),
+              label: Text(textos.zonaNuevaTarea),
+            )
+          : null,
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
           : ListView(
@@ -176,7 +197,14 @@ class _FichaZonaState extends State<FichaZona> {
                   )
                 else
                   for (final tarea in _tareas)
-                    TileTarea(tarea: tarea, idioma: idioma),
+                    TileTarea(
+                      tarea: tarea,
+                      idioma: idioma,
+                      onTap: () => _accionesTarea(tarea),
+                      onMarcarHecha: politicaTareasActual.puedeEjecutar(tarea)
+                          ? () => _marcarHecha(tarea)
+                          : null,
+                    ),
                 const SizedBox(height: 80),
               ],
             ),

@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/apunte_economico.dart';
+import '../modelos/constantes.dart' show estadoTareaPorDefecto;
 import '../modelos/finca.dart';
 import '../utiles/geodesia.dart';
 import 'espacio_generado.dart';
@@ -16,6 +17,7 @@ import '../modelos/rentabilidad_proyecto.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../modelos/validacion_producto.dart';
 import '../modelos/zona_finca.dart';
+import '../utiles/uid.dart';
 
 /// Acceso a la base de datos local de Solera Zunbeltz. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
@@ -33,6 +35,11 @@ import '../modelos/zona_finca.dart';
 /// v4 añade el desglose por categorías e IVA al libro económico.
 /// v5 añade las zonas dibujadas sobre el mapa (`zonas_finca`) y permite
 /// anclar una tarea a una zona (columna `zona_id` en tareas).
+/// v6 añade la periodicidad de una tarea (`recurrencia_dias` en tareas):
+/// rellenar comederos, revisar vallados… tareas que se repiten cada N días.
+/// v7 añade `uid` (clave estable entre dispositivos) y `actualizado_ms`
+/// (para last-write-wins) a las tareas, de cara a la sincronización con el
+/// WordPress de Zunbeltz (ver `servicios/cliente_sync_zunbeltz.dart`).
 class BaseDatosSoleraZunbeltz {
   static final BaseDatosSoleraZunbeltz instancia =
       BaseDatosSoleraZunbeltz._interno();
@@ -52,7 +59,7 @@ class BaseDatosSoleraZunbeltz {
     final ruta = path_lib.join(directorio.path, 'solera_zunbeltz.db');
     _basedatos = await openDatabase(
       ruta,
-      version: 5,
+      version: 8,
       onConfigure: (db) async {
         // ON DELETE CASCADE / SET NULL requieren FKs activas.
         await db.execute('PRAGMA foreign_keys = ON');
@@ -63,12 +70,18 @@ class BaseDatosSoleraZunbeltz {
         await aplicarMigracionV3(db);
         await aplicarMigracionV4(db);
         await aplicarMigracionV5(db);
+        await aplicarMigracionV6(db);
+        await aplicarMigracionV7(db);
+        await aplicarMigracionV8(db);
       },
       onUpgrade: (db, anterior, actual) async {
         if (anterior < 2) await aplicarMigracionV2(db);
         if (anterior < 3) await aplicarMigracionV3(db);
         if (anterior < 4) await aplicarMigracionV4(db);
         if (anterior < 5) await aplicarMigracionV5(db);
+        if (anterior < 6) await aplicarMigracionV6(db);
+        if (anterior < 7) await aplicarMigracionV7(db);
+        if (anterior < 8) await aplicarMigracionV8(db);
       },
     );
     return _basedatos!;
@@ -278,6 +291,56 @@ class BaseDatosSoleraZunbeltz {
         'CREATE INDEX idx_tareas_zona ON tareas_mantenimiento(zona_id)');
   }
 
+  /// Migración v5 → v6: periodicidad de una tarea de mantenimiento. Aditiva.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV6(Database db) async {
+    await db.execute(
+        'ALTER TABLE tareas_mantenimiento ADD COLUMN recurrencia_dias INTEGER');
+  }
+
+  /// Migración v6 → v7: sincronización de tareas con el WordPress de
+  /// Zunbeltz. Añade `uid` (clave estable entre dispositivos, generada en
+  /// el cliente) y `actualizado_ms` (para el merge last-write-wins). Las
+  /// filas ya existentes no tienen `uid` — se rellena aquí, fila a fila,
+  /// porque SQLite no admite un `DEFAULT` distinto por fila en un
+  /// `ALTER TABLE`.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV7(Database db) async {
+    await db.execute(
+        "ALTER TABLE tareas_mantenimiento ADD COLUMN uid TEXT NOT NULL DEFAULT ''");
+    await db.execute(
+        'ALTER TABLE tareas_mantenimiento ADD COLUMN actualizado_ms INTEGER NOT NULL DEFAULT 0');
+    final filas = await db.query('tareas_mantenimiento',
+        columns: ['id', 'fecha_creacion_ms'], where: "uid = ''");
+    for (final fila in filas) {
+      await db.update(
+        'tareas_mantenimiento',
+        {
+          'uid': generarUid(),
+          'actualizado_ms': (fila['fecha_creacion_ms'] as int?) ?? 0,
+        },
+        where: 'id = ?',
+        whereArgs: [fila['id']],
+      );
+    }
+    await db.execute(
+        'CREATE UNIQUE INDEX idx_tareas_uid ON tareas_mantenimiento(uid)');
+  }
+
+  /// Migración v7 → v8: roles. La tarea guarda a quién está asignada y
+  /// quién la creó por `uid` de persona del espacio (las da de alta la
+  /// coordinación en el WordPress). Aditiva: las tareas previas quedan con
+  /// ambos vacíos y conservan el responsable en texto libre.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV8(Database db) async {
+    await db.execute(
+        "ALTER TABLE tareas_mantenimiento ADD COLUMN responsable_uid TEXT NOT NULL DEFAULT ''");
+    await db.execute(
+        "ALTER TABLE tareas_mantenimiento ADD COLUMN creado_por_uid TEXT NOT NULL DEFAULT ''");
+    await db.execute(
+        'CREATE INDEX idx_tareas_responsable_uid ON tareas_mantenimiento(responsable_uid)');
+  }
+
   // ─── Fincas ─────────────────────────────────────────────
 
   Future<int> guardarFinca(Finca finca) async {
@@ -422,20 +485,27 @@ class BaseDatosSoleraZunbeltz {
     return db.insert('tareas_mantenimiento', tarea.toMap()..remove('id'));
   }
 
+  /// Actualiza una tarea y marca `actualizado_ms` a ahora (salvo que
+  /// `cambios` ya lo incluya), para que la sincronización sepa que esta
+  /// versión es más reciente que la que hubiera en el servidor.
   Future<void> actualizarTarea(int id, Map<String, Object?> cambios) async {
     final db = await basedatos;
-    await db.update('tareas_mantenimiento', cambios,
+    final conMarca = cambios.containsKey('actualizado_ms')
+        ? cambios
+        : {...cambios, 'actualizado_ms': DateTime.now().millisecondsSinceEpoch};
+    await db.update('tareas_mantenimiento', conMarca,
         where: 'id = ?', whereArgs: [id]);
   }
 
   /// Lista tareas con filtros opcionales acumulables (finca, punto, zona,
-  /// estado, responsable). Sin filtros devuelve todas, las más recientes primero.
+  /// estado, responsable por nombre o por uid). Sin filtros devuelve todas, las más recientes primero.
   Future<List<TareaMantenimiento>> listarTareas({
     int? fincaId,
     int? puntoId,
     int? zonaId,
     String? estado,
     String? responsable,
+    String? responsableUid,
   }) async {
     final db = await basedatos;
     final condiciones = <String>[];
@@ -460,6 +530,10 @@ class BaseDatosSoleraZunbeltz {
       condiciones.add('responsable = ?');
       args.add(responsable);
     }
+    if (responsableUid != null) {
+      condiciones.add('responsable_uid = ?');
+      args.add(responsableUid);
+    }
     final filas = await db.query(
       'tareas_mantenimiento',
       where: condiciones.isEmpty ? null : condiciones.join(' AND '),
@@ -477,9 +551,109 @@ class BaseDatosSoleraZunbeltz {
     return TareaMantenimiento.fromMap(filas.first);
   }
 
+  /// Busca una tarea por su clave de sincronización. Usado por
+  /// `ClienteSyncZunbeltz` para saber si una tarea que llega del servidor
+  /// ya existía en local (y desde cuándo) antes de fusionarla.
+  Future<TareaMantenimiento?> obtenerTareaPorUid(String uid) async {
+    final db = await basedatos;
+    final filas = await db.query('tareas_mantenimiento',
+        where: 'uid = ?', whereArgs: [uid], limit: 1);
+    if (filas.isEmpty) return null;
+    return TareaMantenimiento.fromMap(filas.first);
+  }
+
   Future<void> borrarTarea(int id) async {
     final db = await basedatos;
     await db.delete('tareas_mantenimiento', where: 'id = ?', whereArgs: [id]);
+  }
+
+  /// Marca una tarea como hecha. Si es recurrente ([TareaMantenimiento.esRecurrente])
+  /// genera en la misma transacción la siguiente instancia pendiente, con la
+  /// fecha objetivo desplazada `recurrenciaDias` a partir de la de hoy (o de
+  /// la fecha objetivo original si es posterior a hoy) — sin fotos ni coste,
+  /// que son de cada ocurrencia. Devuelve el id de la tarea generada, o
+  /// `null` si la tarea no era recurrente.
+  Future<int?> marcarTareaHecha(int id) async {
+    final db = await basedatos;
+    final tarea = await obtenerTarea(id);
+    if (tarea == null) return null;
+    return db.transaction<int?>((txn) async {
+      final ahoraMs = DateTime.now().millisecondsSinceEpoch;
+      await txn.update(
+          'tareas_mantenimiento', {'estado': 'hecha', 'actualizado_ms': ahoraMs},
+          where: 'id = ?', whereArgs: [id]);
+      if (!tarea.esRecurrente) return null;
+      final ahora = DateTime.now();
+      final base = tarea.fechaObjetivoMs != null &&
+              tarea.fechaObjetivoMs! > ahora.millisecondsSinceEpoch
+          ? DateTime.fromMillisecondsSinceEpoch(tarea.fechaObjetivoMs!)
+          : ahora;
+      final siguiente = TareaMantenimiento(
+        fincaId: tarea.fincaId,
+        puntoId: tarea.puntoId,
+        zonaId: tarea.zonaId,
+        titulo: tarea.titulo,
+        descripcion: tarea.descripcion,
+        responsable: tarea.responsable,
+        responsableUid: tarea.responsableUid,
+        creadoPorUid: tarea.creadoPorUid,
+        prioridad: tarea.prioridad,
+        estado: estadoTareaPorDefecto,
+        fechaObjetivoMs: base
+            .add(Duration(days: tarea.recurrenciaDias!))
+            .millisecondsSinceEpoch,
+        fechaCreacionMs: ahora.millisecondsSinceEpoch,
+        recurrenciaDias: tarea.recurrenciaDias,
+      );
+      return txn.insert('tareas_mantenimiento', siguiente.toMap()..remove('id'));
+    });
+  }
+
+  /// Todas las tareas con lo necesario para sincronizar (incluye `uid` y
+  /// `actualizado_ms`). Sin filtrar por "sucia"/"limpia": el volumen de
+  /// tareas de un espacio test es pequeño y sincronizar todo cada vez es
+  /// más simple y más difícil de dejar desincronizado por error.
+  Future<List<TareaMantenimiento>> tareasParaSincronizar() => listarTareas();
+
+  /// Inserta o actualiza (por `uid`) una tarea que llega del servidor al
+  /// sincronizar, ya con `fincaId` resuelto a un id local (ver
+  /// `ClienteSyncZunbeltz`, que empareja por nombre de finca — el único
+  /// dato de finca que viaja, porque fincas/puntos/zonas no se
+  /// sincronizan todavía). Sólo escribe si la versión remota es más
+  /// reciente (`actualizado_ms` mayor) que la que ya hay en local, para no
+  /// pisar una edición local más nueva que aún no se ha subido. Una tarea
+  /// nueva llega con `puntoId` y `zonaId` a `null`: el anclaje a un
+  /// punto/zona concreto es local a cada dispositivo mientras esos
+  /// catálogos no se sincronicen.
+  ///
+  /// Con [forzar] se escribe la versión remota aunque la local sea más
+  /// reciente: el servidor ha rechazado o ajustado el cambio local por
+  /// permisos y su versión es la buena.
+  Future<void> upsertTareaRemota(TareaMantenimiento remota,
+      {bool forzar = false}) async {
+    final db = await basedatos;
+    final existente = await db.query('tareas_mantenimiento',
+        where: 'uid = ?', whereArgs: [remota.uid], limit: 1);
+    final mapa = remota.toMap()
+      ..remove('id')
+      ..['punto_id'] = null
+      ..['zona_id'] = null;
+    if (existente.isEmpty) {
+      await db.insert('tareas_mantenimiento', mapa);
+      return;
+    }
+    final local = TareaMantenimiento.fromMap(existente.first);
+    if (!forzar && remota.actualizadoMs <= local.actualizadoMs) return;
+    mapa.remove('uid');
+    // Lo que no viaja (anclaje a punto/zona, fotos) se conserva: el
+    // servidor no lo conoce y lo mandaría vacío.
+    mapa
+      ..['punto_id'] = local.puntoId
+      ..['zona_id'] = local.zonaId
+      ..['rutas_fotos_antes_json'] = local.rutasFotosAntesJson
+      ..['rutas_fotos_despues_json'] = local.rutasFotosDespuesJson;
+    await db.update('tareas_mantenimiento', mapa,
+        where: 'uid = ?', whereArgs: [remota.uid]);
   }
 
   /// Cuenta las tareas que no están hechas (pendiente / en curso / bloqueada).

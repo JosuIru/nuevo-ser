@@ -220,6 +220,15 @@ class AppLocalizationsEu extends AppLocalizations {
   String get tareaTituloObligatorio => 'Jarri izenburua zereginari.';
 
   @override
+  String get tareaRecurrencia => 'Periodikotasuna';
+
+  @override
+  String get tareaMarcarHecha => 'Eginda gisa markatu';
+
+  @override
+  String get tareaSiguienteGenerada => 'Eginda. Hurrengo zeregina sortu da.';
+
+  @override
   String get tableroTitulo => 'Mantentze-zereginak';
 
   @override
@@ -656,63 +665,178 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaIntro =>
-      'Gida erraza, urratsez urrats. Ukitu atal bakoitza irekitzeko. Ez da app-etan jakitea behar: galtzen bazara, beti itzul zaitezke atzera, goian ezkerrean dagoen geziarekin.';
+      'App-a erabiltzeko gida, urratsez urrats. Ukitu atal bat irekitzeko, edo idatzi goian bilatzen duzuna. Galtzen bazara, itzuli atzera goian ezkerrean dagoen geziarekin.';
+
+  @override
+  String get ayudaBuscar => 'Bilatu laguntzan';
+
+  @override
+  String get ayudaSinResultados =>
+      'Ez dago hitz hori duen atalik. Probatu beste batekin: «zeregina», «eremua», «salmenta», «token»…';
+
+  @override
+  String get ayudaConsejo => 'Jakitea komeni da';
+
+  @override
+  String get ayudaGrupoEmpezar => 'Lehen urratsak';
+
+  @override
+  String get ayudaGrupoFincas => 'Finkak eta zereginak';
+
+  @override
+  String get ayudaGrupoProyectos => 'Zure test-proiektua';
+
+  @override
+  String get ayudaGrupoEquipo => 'Taldean lan egin';
+
+  @override
+  String get ayudaGrupoProblemas => 'Zerbaitek huts egiten badu';
 
   @override
   String get ayudaQueEsT => 'Zer da app hau?';
 
   @override
   String get ayudaQueEsB =>
-      'Zure Saiakuntza Guneko koadernoa da. Finkak eramateko balio du eta, batez ere, zure test-proiektuaren jarraipena egiteko: zer ekoizten duzun, zer saltzen duzun, zer gastatzen duzun eta zer irabazten duzun. Zure mugikorrean funtzionatzen du, estaldurarik ez baduzu ere.';
+      'Zunbeltz Saiakuntza Gunearen tresna da. Bi gauzatarako balio du: zure test-proiektuaren jarraipena egiteko (zer ekoizten duzun, zer saltzen duzun, zer gastatzen duzun eta zer irabazten duzun) eta finkak zaintzeko (mapako azpiegiturak eta haien mantentze-zereginak).\nDena zure mugikorrean gordetzen da, eta mendian estaldurarik gabe ere badabil.';
 
   @override
-  String get ayudaPestanasT => 'Beheko lau fitxak';
+  String get ayudaPestanasT => 'App-an mugitu';
 
   @override
   String get ayudaPestanasB =>
-      'Gaur: laburpena. Finkak: mapa, puntuekin eta zereginekin. Proiektuak: zure test-prozesua eta zure zenbakiak. Ezarpenak: hizkuntza, laguntza eta gehiago. Ukitu bakoitza pantailaz aldatzeko.';
+      'Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:\n• Gaur: laburpena, zabalik dauden zereginekin.\n• Finkak: mapa, puntuekin, eremuekin eta zereginekin.\n• Proiektuak: zure test-prozesua eta zure zenbakiak.\n• Ezarpenak: hizkuntza, laguntza, txostenak bidaltzea eta sinkronizazioa.\nAtzera itzultzeko, erabili goian ezkerrean dagoen gezia.';
+
+  @override
+  String get ayudaIdiomaDatosT =>
+      'Hizkuntza, argazkiak, eguraldia eta internet';
+
+  @override
+  String get ayudaIdiomaDatosB =>
+      '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.\n• Argazkiak zure mugikorrean bertan gordetzen dira.\n• Finketan, hodeiaren ikonoak (goian) 7 eguneko iragarpena erakusten du, izotz, euri, haize, bero eta maneiurako egun onen abisuekin.\n» Dena internetik gabe dabil, eguraldiaren iragarpena eta zereginen sinkronizazioa izan ezik.';
 
   @override
   String get ayudaFincasT => 'Puntu bat markatu mapan';
 
   @override
   String get ayudaFincasB =>
-      'Sartu Finketan. Aska bat, manga bat, hesi bat… gehitzeko, ukitu lekua mapan (edo beheko eskuineko «Puntu berria» botoia). Bete mota eta izena eta sakatu Gorde. Ukitu mapako puntu bat bere fitxa ikusteko.';
+      'Puntua azpiegitura bakoitza da: aska, manga, hesia, aterpea, urmaela…\n1. Sartu Finketan.\n2. Ukitu mapan leku zehatza. Edo sakatu «Puntu berria» (behean eskuinean) eta aukeratu «Erabili uneko GPSa» instalazioaren ondoan bazaude, edo «Erabili maparen erdigunea».\n3. Aukeratu mota eta egoera, jarri izena eta, nahi baduzu, gehitu argazkiak.\n4. Sakatu Gorde.\n» Puntuaren koloreak egoera adierazten du: berdea, operatiboa; okrea, berrikusteke; gorrixka, matxuratuta. «GPS» botoiak mapa zugan zentratzen du, eta «Geruzak» botoiak mapa eta satelitea txandakatzen ditu.';
+
+  @override
+  String get ayudaZonasT => 'Eremu bat marraztu (saila, hesitua…)';
+
+  @override
+  String get ayudaZonasB =>
+      '1. Finketan, sakatu «Eremua marraztu».\n2. Ukitu mapan eremuaren izkinak, bata bestearen atzetik. Oker bazabiltza, sakatu «Desegin».\n3. Hiru izkina edo gehiago dituzunean, sakatu «Eremua itxi».\n4. Aukeratu finka, mota (larre-saila, hesitua, alha-eremua…), izena eta egoera, eta gorde.\n» Marrazkitik ateratzen den azalera gutxi gorabeherakoa da. SIGPAC barrutiaren azalera ofiziala baduzu, jarri «SIGPAC azalera ofiziala» eremuan eta hori erabiliko da.';
+
+  @override
+  String get ayudaEditarMapaT => 'Puntu edo eremu bat mugitu edo ezabatu';
+
+  @override
+  String get ayudaEditarMapaB =>
+      '1. Ukitu mapan puntua edo eremua haren fitxa irekitzeko.\n2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.\n3. Eremu bat zuzentzeko: sakatu «Berriro marraztu» (goian) eta markatu berriro haren izkinak.\n4. Ezabatzeko: sakatu zakarrontzia eta berretsi.';
 
   @override
   String get ayudaTareasT => 'Mantentze-zeregin bat apuntatu';
 
   @override
   String get ayudaTareasB =>
-      'Ireki puntu baten fitxa eta sakatu «Zeregin berria». Jarri zer egin behar den, nork eta noizko. Finkak → Zereginak atalean ikusten duzu egiteke dagoen guztia. PDF botoiarekin partea ateratzen duzu.';
+      '1. Ireki puntu edo eremu baten fitxa eta sakatu «Zeregin berria».\n2. Idatzi zer egin behar den. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.\n3. Sakatu Gorde.\n» Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.';
 
   @override
-  String get ayudaProyectosT => 'Zure test-proiektua eta zure zenbakiak';
+  String get ayudaRecurrentesT => 'Errepikatzen diren zereginak';
+
+  @override
+  String get ayudaRecurrentesB =>
+      'Beti egiten dena (askak betetzea, hesia berrikustea…) ez da aldi bakoitzean apuntatu behar.\n1. Zeregina sortzean, aukeratu «Periodikotasuna»: egunero, astero, 15 egunero, hilero edo hiruhilero.\n2. Eginda gisa markatzen duzunean, app-ak berak sortzen du hurrengoa, dagokion datarekin.\n» Zerrendan, zeregin periodikoek errepikatzeko ikurra dute.';
+
+  @override
+  String get ayudaTableroT => 'Zereginak egunean eraman';
+
+  @override
+  String get ayudaTableroB =>
+      '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.';
+
+  @override
+  String get ayudaProyectosT => 'Zure proiektua sortu';
 
   @override
   String get ayudaProyectosB =>
-      'Proiektuetan, sakatu + zure proiektua sortzeko. Barruan, sakatu + eta aukeratu zer apuntatu: ekoizpena, salmenta bat (merkaturatzea), produktu-proba bat edo gastu/sarrera bat. Goian zeure zenbakiak ikusiko dituzu: salmentak, gastuak, balantzea eta errentagarritasuna. Hiruhilekoka ikus ditzakezu goiko iragazkiarekin.';
+      '1. Sartu Proiektuetan eta sakatu +.\n2. Jarri proiektuaren izena, pertsona testerra eta jarduera. Nahi baduzu, baita finka eta hasiera- eta amaiera-datak ere.\n3. Sakatu Gorde. Ukitu proiektua zerrendan barrura sartzeko.';
+
+  @override
+  String get ayudaApuntarT => 'Zure egunerokoa apuntatu';
+
+  @override
+  String get ayudaApuntarB =>
+      'Proiektuaren barruan lau fitxa daude: Ekoizpena, Merkaturatzea, Balidazioa eta Ekonomikoa.\n1. Joan apuntatu nahi duzunaren fitxara.\n2. Sakatu + eta bete dagokiona: ekoitzitakoa; salmenta bat (produktua, kanala, kantitatea eta prezioa); produktu-proba bat eta haren emaitza; edo gastu edo sarrera bat bere kategoriarekin.\n3. Gorde. Goiko zenbakiak berez eguneratzen dira.';
+
+  @override
+  String get ayudaNumerosT => 'Zure zenbakiak ulertu';
+
+  @override
+  String get ayudaNumerosB =>
+      'Proiektuaren goialdean errentagarritasuna ikusten duzu: salmentak, beste sarrera batzuk, gastuak, balantzea, marjina eta urtebeterako proiekzioa.\n• «Aldia» iragazkiarekin (goian) denbora osorako, aurtengo, hiruhileko honetarako edo aurreko hiruhilekorako ikus dezakezu.\n• Gastuak badaude, kategorien araberako banaketa eta BEZ jasana eta jasanarazia ikusiko dituzu.\n» BEZa gutxi gorabeherako kalkulua da, ez zerga-aitorpena: araubidea zuen aholkulariak erabakitzen du.';
 
   @override
   String get ayudaInformesT => 'Txostenak atera eta bidali';
 
   @override
   String get ayudaInformesB =>
-      'Zure proiektuan, partekatzeko botoiak (goian) PDF txostena ateratzen, Excelera (CSV) esportatzen edo «Koordinatzaileari bidaltzen» uzten dizu. Azken horretarako, jarri lehenik koordinatzailearen helbidea Ezarpenetan.';
+      '• Zure proiektuan, partekatzeko botoiak (goian) «Proiektuaren txostena (PDF)» ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo «Bidali koordinatzaileari» aukerarekin bidaltzen du.\n• Koordinatzaileari bidaltzeko, jarri lehenago haren helbidea Ezarpenak → Koordinatzailea atalean.\n• Proiektuen zerrendan, grafikoaren botoiak (goian) proiektu guztien arteko «Konparaketa (PDF)» ateratzen du.\n• Ezarpenetan, «Esportatu gunea (CSV)» aukerak finkak eta mapako puntuak ateratzen ditu, koordinazioari pasatzeko.';
 
   @override
-  String get ayudaIdiomaDatosT => 'Hizkuntza, argazkiak eta internet';
+  String get ayudaSyncT => 'Zereginak taldearekin partekatu';
 
   @override
-  String get ayudaIdiomaDatosB =>
-      'Aldatu gaztelania eta euskara artean Ezarpenetan. Argazkiak zure mugikorrean gordetzen dira. Dena internetik gabe funtzionatzen du; eguraldiaren iragarpenak bakarrik behar du konexioa.';
+  String get ayudaSyncB =>
+      'Saiakuntza Gunean sinkronizazioa erabiltzen baduzue, zereginak talde osoaren mugikorren artean partekatzen dira.\n1. Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du, eta ez da partekatzen.\n2. Ezarpenak → Zereginen sinkronizazioa atalean, jarri Zunbeltzen WordPress-aren helbidea eta zure tokena.\n3. Sakatu «Sinkronizatu orain» estaldura duzunean: zure aldaketak igotzen dira eta besteenak jaisten.\n» Zereginak bakarrik partekatzen dira. Puntuak, eremuak eta proiektuak zure mugikorrean bakarrik geratzen dira.';
+
+  @override
+  String get ayudaRolesT => 'Nork zer egin dezakeen';
+
+  @override
+  String get ayudaRolesB =>
+      'Pertsona bakoitzak rol bat du, koordinazioak ematen diona.\n• Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.\n• Testerra: guztiak ikusten ditu eta bereak sortzen ditu. Berak sortutakoak edo esleituta dituenak alda ditzake, eta esleitu gabe daudenak har ditzake.\n» Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe «Tokiko modua» zaude, eta dena edita dezakezu.';
+
+  @override
+  String get ayudaProblemasT => 'Ohiko arazoak';
+
+  @override
+  String get ayudaProblemasB =>
+      '• «Zure rolak ez du … baimenik»: zeregin hori ez da zurea. Har ezazu esleitu gabe badago, edo eskatu koordinazioari zuri esleitzeko.\n• «… desegin da / dira» sinkronizatzean: zure rolak baimentzen ez duen zerbait ukitu duzu, eta zegoen bezala utzi da.\n• «Token incorrecto…» mezua: begiratu osorik kopiatu duzula. Galdu baduzu, koordinazioak berri bat sortuko dizu, eta zaharrak ez du balioko.\n• «finka ezezagunarekin»: zeregin hori zure mugikorrean beste izen bat duen finka batekoa da. Finkek izen bera izan behar dute mugikor guztietan.\n• Eguraldiaren iragarpena ez da agertzen: internet behar du. Gainerakoa estaldurarik gabe dabil.\n» Zure datuak zure mugikorrean daude. Aldatu edo galtzen baduzu, hitz egin lehenago koordinazioarekin.';
 
   @override
   String get ayudaPie =>
-      'Zerbait argi ez badago, galdetu Saiakuntza Guneko koordinatzaileari.';
+      'Zerbait argi ez badago, galdetu Saiakuntza Guneko koordinazioari.';
 
   @override
   String get ajustesExportarEspacio => 'Esportatu gunea (CSV)';
+
+  @override
+  String get ajustesSyncTitulo => 'Zereginen sinkronizazioa';
+
+  @override
+  String get ajustesSyncUrl => 'Zunbeltzen WordPress-a';
+
+  @override
+  String get ajustesSyncToken => 'Token pertsonala';
+
+  @override
+  String get ajustesSyncSinConfigurar => 'Konfiguratu gabe';
+
+  @override
+  String get ajustesSyncAhora => 'Sinkronizatu orain';
+
+  @override
+  String ajustesSyncResultado(int subidas, int bajadas, int omitidas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      omitidas,
+      locale: localeName,
+      other: ' · $omitidas finka ezezagunarekin',
+      zero: '',
+    );
+    return '$subidas zeregin igota · $bajadas jaitsita$_temp0';
+  }
 
   @override
   String get ajustesDemo => 'Kargatu demostrazio-datuak';
@@ -829,4 +953,55 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get parteColZona => 'Eremua';
+
+  @override
+  String ajustesSesionComo(String nombre) {
+    return 'Saioa: $nombre';
+  }
+
+  @override
+  String ajustesSesionConectada(String nombre) {
+    return 'Saioa konektatuta: $nombre';
+  }
+
+  @override
+  String get ajustesSesionLocal => 'Tokiko modua';
+
+  @override
+  String get ajustesSesionLocalDetalle =>
+      'Sinkronizaziorik gabe: gailu honetan dena edita daiteke.';
+
+  @override
+  String ajustesSyncRechazadas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n aldaketa desegin dira: zure rolak ez ditu baimentzen',
+      one: 'Aldaketa 1 desegin da: zure rolak ez du baimentzen',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get tareaSinAsignar => 'Esleitu gabe';
+
+  @override
+  String get tareaAsignarme => 'Niri esleitu';
+
+  @override
+  String get tareaSoltar => 'Zeregina askatu';
+
+  @override
+  String get tareaCambiarEstado => 'Egoera aldatu';
+
+  @override
+  String get tareaSinPermiso =>
+      'Zure rolak ez du zeregin hau aldatzeko baimenik.';
+
+  @override
+  String get tareaNoPuedesCrear =>
+      'Zure rolak ez du zereginak sortzeko baimenik.';
+
+  @override
+  String get tableroMisTareas => 'Nire zereginak';
 }

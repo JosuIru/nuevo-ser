@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../datos/base_datos.dart';
+import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/punto_infraestructura.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../utiles/estilos_tarea.dart';
 import 'nueva_tarea.dart';
+import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
 
 /// Detalle de un punto de infraestructura: tipo, estado, coordenadas y la
@@ -51,6 +53,23 @@ class _FichaPuntoState extends State<FichaPunto> {
       ),
     );
     if (creada == true) await _cargar();
+  }
+
+  Future<void> _accionesTarea(TareaMantenimiento tarea) async {
+    if (await mostrarAccionesTarea(context, tarea)) await _cargar();
+  }
+
+  Future<void> _marcarHecha(TareaMantenimiento tarea) async {
+    final id = tarea.id;
+    if (id == null) return;
+    final textos = AppLocalizations.of(context);
+    final generoSiguiente = await _bd.marcarTareaHecha(id) != null;
+    await _cargar();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(generoSiguiente
+            ? textos.tareaSiguienteGenerada
+            : textos.tareaGuardada)));
   }
 
   Future<void> _borrarPunto() async {
@@ -103,11 +122,13 @@ class _FichaPuntoState extends State<FichaPunto> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _nuevaTarea,
-        icon: const Icon(Icons.add_task),
-        label: Text(textos.fichaNuevaTarea),
-      ),
+      floatingActionButton: politicaTareasActual.puedeCrear
+          ? FloatingActionButton.extended(
+              onPressed: _nuevaTarea,
+              icon: const Icon(Icons.add_task),
+              label: Text(textos.fichaNuevaTarea),
+            )
+          : null,
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
           : ListView(
@@ -155,7 +176,14 @@ class _FichaPuntoState extends State<FichaPunto> {
                   )
                 else
                   for (final tarea in _tareas)
-                    TileTarea(tarea: tarea, idioma: idioma),
+                    TileTarea(
+                      tarea: tarea,
+                      idioma: idioma,
+                      onTap: () => _accionesTarea(tarea),
+                      onMarcarHecha: politicaTareasActual.puedeEjecutar(tarea)
+                          ? () => _marcarHecha(tarea)
+                          : null,
+                    ),
                 const SizedBox(height: 80),
               ],
             ),

@@ -100,6 +100,60 @@ void main() {
       expect(recuperada.costeCentimos, isNull);
       expect(recuperada.estado, estadoTareaPorDefecto);
     });
+
+    test('tarea puntual no es recurrente por defecto', () {
+      final tarea = TareaMantenimiento(fincaId: 1, titulo: 'Reparar cierre');
+      expect(tarea.esRecurrente, isFalse);
+      expect(TareaMantenimiento.fromMap(tarea.toMap()).recurrenciaDias, isNull);
+    });
+
+    test('toMap / fromMap conserva recurrencia_dias', () {
+      final tarea = TareaMantenimiento(
+        fincaId: 3,
+        titulo: 'Rellenar comederos',
+        recurrenciaDias: 7,
+      );
+      expect(tarea.esRecurrente, isTrue);
+      final recuperada = TareaMantenimiento.fromMap(tarea.toMap());
+      expect(recuperada.recurrenciaDias, 7);
+      expect(recuperada.esRecurrente, isTrue);
+    });
+
+    test('copiarCon(limpiarRecurrencia: true) quita la periodicidad', () {
+      final tarea = TareaMantenimiento(
+          fincaId: 1, titulo: 'Revisar vallado', recurrenciaDias: 30);
+      final puntual = tarea.copiarCon(limpiarRecurrencia: true);
+      expect(puntual.esRecurrente, isFalse);
+      expect(puntual.recurrenciaDias, isNull);
+    });
+
+    test('genera un uid no vacío si no se pasa uno', () {
+      final a = TareaMantenimiento(fincaId: 1, titulo: 'A');
+      final b = TareaMantenimiento(fincaId: 1, titulo: 'B');
+      expect(a.uid, isNotEmpty);
+      expect(a.uid, isNot(equals(b.uid)));
+    });
+
+    test('conserva el uid explícito y lo sobrevive a toMap/fromMap', () {
+      final tarea = TareaMantenimiento(
+          uid: 'uid-fijo', fincaId: 1, titulo: 'Con uid propio');
+      expect(tarea.uid, 'uid-fijo');
+      expect(TareaMantenimiento.fromMap(tarea.toMap()).uid, 'uid-fijo');
+    });
+
+    test('actualizadoMs por defecto coincide con fechaCreacionMs', () {
+      final tarea = TareaMantenimiento(
+          fincaId: 1, titulo: 'Nueva', fechaCreacionMs: 42000);
+      expect(tarea.actualizadoMs, 42000);
+    });
+
+    test('copiarCon actualiza actualizadoMs cuando se pasa explícito', () {
+      final tarea = TareaMantenimiento(
+          fincaId: 1, titulo: 'X', fechaCreacionMs: 1000);
+      final editada = tarea.copiarCon(estado: 'hecha', actualizadoMs: 9999);
+      expect(editada.actualizadoMs, 9999);
+      expect(editada.uid, tarea.uid, reason: 'copiarCon conserva el uid');
+    });
   });
 
   group('Catálogos', () {

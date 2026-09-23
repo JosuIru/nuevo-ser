@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
+import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/tarea_mantenimiento.dart';
@@ -32,8 +33,13 @@ class _NuevaTareaState extends State<NuevaTarea> {
   String _prioridad = prioridadTareaPorDefecto;
   String _estado = estadoTareaPorDefecto;
   DateTime? _fechaObjetivo;
+  int? _recurrenciaDias;
   List<String> _fotosAntes = const [];
   List<String> _fotosDespues = const [];
+
+  /// Con sesión, el responsable se elige de las personas del espacio
+  /// (`''` = sin asignar); en modo local se escribe en [_responsable].
+  String _responsableUid = '';
 
   @override
   void dispose() {
@@ -71,13 +77,21 @@ class _NuevaTareaState extends State<NuevaTarea> {
           .showSnackBar(SnackBar(content: Text(textos.tareaTituloObligatorio)));
       return;
     }
+    final sesion = sesionEspacio.value;
+    final responsableElegido = personasEspacio.value
+        .where((persona) => persona.uid == _responsableUid)
+        .firstOrNull;
     final tarea = TareaMantenimiento(
       fincaId: widget.fincaId,
       puntoId: widget.puntoId,
       zonaId: widget.zonaId,
       titulo: _titulo.text.trim(),
       descripcion: _descripcion.text.trim(),
-      responsable: _responsable.text.trim(),
+      responsable: sesion == null
+          ? _responsable.text.trim()
+          : (responsableElegido?.nombre ?? ''),
+      responsableUid: responsableElegido?.uid ?? '',
+      creadoPorUid: sesion?.persona.uid ?? '',
       prioridad: _prioridad,
       estado: _estado,
       fechaObjetivoMs: _fechaObjetivo?.millisecondsSinceEpoch,
@@ -85,12 +99,45 @@ class _NuevaTareaState extends State<NuevaTarea> {
       rutasFotosDespuesJson: GestorFotos.codificar(_fotosDespues),
       costeCentimos: _costeCentimos(),
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
+      recurrenciaDias: _recurrenciaDias,
     );
     await _bd.guardarTarea(tarea);
     if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(textos.tareaGuardada)));
     Navigator.of(context).pop(true);
+  }
+
+  /// En modo local, texto libre. Con sesión, lista de personas del espacio;
+  /// sin permiso para asignar a otras, sólo "sin asignar" o una misma.
+  Widget _campoResponsable(AppLocalizations textos) {
+    final sesion = sesionEspacio.value;
+    if (sesion == null) {
+      return TextField(
+        controller: _responsable,
+        decoration: InputDecoration(labelText: textos.tareaResponsable),
+      );
+    }
+    final personasElegibles = politicaTareasActual.puedeAsignarAOtras
+        ? personasEspacio.value
+        : personasEspacio.value
+            .where((persona) => persona.uid == sesion.persona.uid)
+            .toList();
+    return DropdownButtonFormField<String>(
+      initialValue: _responsableUid,
+      decoration: InputDecoration(labelText: textos.tareaResponsable),
+      items: [
+        DropdownMenuItem(value: '', child: Text(textos.tareaSinAsignar)),
+        for (final persona in personasElegibles)
+          DropdownMenuItem(
+            value: persona.uid,
+            child: Text(persona.etiquetaRol.isEmpty
+                ? persona.nombre
+                : '${persona.nombre} · ${persona.etiquetaRol}'),
+          ),
+      ],
+      onChanged: (valor) => setState(() => _responsableUid = valor ?? ''),
+    );
   }
 
   @override
@@ -116,10 +163,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
             decoration: InputDecoration(labelText: textos.tareaDescripcion),
           ),
           const SizedBox(height: 12),
-          TextField(
-            controller: _responsable,
-            decoration: InputDecoration(labelText: textos.tareaResponsable),
-          ),
+          _campoResponsable(textos),
           const SizedBox(height: 12),
           DropdownButtonFormField<String>(
             initialValue: _prioridad,
@@ -148,6 +192,16 @@ class _NuevaTareaState extends State<NuevaTarea> {
             subtitle: Text(fecha),
             trailing: const Icon(Icons.edit_calendar_outlined),
             onTap: _elegirFecha,
+          ),
+          const SizedBox(height: 12),
+          DropdownButtonFormField<int?>(
+            initialValue: _recurrenciaDias,
+            decoration: InputDecoration(labelText: textos.tareaRecurrencia),
+            items: [
+              for (final r in recurrenciasTarea)
+                DropdownMenuItem(value: r, child: Text(etiquetaRecurrencia(r, idioma))),
+            ],
+            onChanged: (v) => setState(() => _recurrenciaDias = v),
           ),
           const SizedBox(height: 12),
           TextField(

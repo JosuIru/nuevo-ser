@@ -21,6 +21,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'branding.dart';
 import 'estado/idioma_app.dart';
+import 'estado/sesion_espacio.dart';
 import 'l10n/app_localizations.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_fincas.dart';
@@ -40,6 +41,8 @@ Future<void> main() async {
   // Precarga el idioma elegido en sesiones previas antes del primer build,
   // para evitar un parpadeo con el idioma del sistema.
   await precargarIdiomaZunbeltz();
+  // Persona conectada y sus permisos, guardados de la última sincronización.
+  await precargarSesionEspacio();
   runApp(const AppSoleraZunbeltz());
 }
 

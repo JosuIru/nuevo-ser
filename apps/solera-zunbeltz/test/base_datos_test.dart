@@ -27,7 +27,7 @@ void main() {
     final db = await databaseFactoryFfi.openDatabase(
       inMemoryDatabasePath,
       options: OpenDatabaseOptions(
-        version: 5,
+        version: 8,
         // BD nueva por test: sin esto, todas las llamadas comparten la
         // misma BD en memoria y el estado se filtra entre tests.
         singleInstance: false,
@@ -38,6 +38,9 @@ void main() {
           await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
           await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
           await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV7(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV8(d);
         },
       ),
     );
@@ -532,7 +535,12 @@ void main() {
         TareaMantenimiento(fincaId: fincaId, titulo: 'Revisar abrevadero')
             .toMap()
           ..remove('id')
-          ..remove('zona_id'));
+          ..remove('zona_id')
+          ..remove('recurrencia_dias')
+          ..remove('uid')
+          ..remove('actualizado_ms')
+          ..remove('responsable_uid')
+          ..remove('creado_por_uid'));
     await v4.close();
 
     final v5 = await databaseFactoryFfi.openDatabase(
@@ -566,5 +574,391 @@ void main() {
 
     await v5.close();
     await dir.delete(recursive: true);
+  });
+
+  test('migración v5 → v6 conserva datos y habilita recurrencia', () async {
+    final dir = await Directory.systemTemp.createTemp('zunbeltz_mig6');
+    final ruta = '${dir.path}/m6.db';
+    final v5 = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: 5,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onCreate: (d, v) async {
+          await BaseDatosSoleraZunbeltz.crearEsquemaV1(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
+        },
+      ),
+    );
+    final fincaId = await v5.insert(
+        'fincas', Finca(nombre: 'Zunbeltz').toMap()..remove('id'));
+    // Fila escrita con el esquema v5: sin recurrencia_dias, como la tendría
+    // una app ya instalada en el móvil de alguien.
+    await v5.insert(
+        'tareas_mantenimiento',
+        TareaMantenimiento(fincaId: fincaId, titulo: 'Rellenar comederos')
+            .toMap()
+          ..remove('id')
+          ..remove('recurrencia_dias')
+          ..remove('uid')
+          ..remove('actualizado_ms')
+          ..remove('responsable_uid')
+          ..remove('creado_por_uid'));
+    await v5.close();
+
+    final v6 = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: 6,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onUpgrade: (d, anterior, actual) async {
+          if (anterior < 6) await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
+        },
+      ),
+    );
+    final bd = BaseDatosSoleraZunbeltz.paraTests(v6);
+
+    final tareas = await bd.listarTareas();
+    expect(tareas.single.titulo, 'Rellenar comederos');
+    expect(tareas.single.recurrenciaDias, isNull);
+    expect(tareas.single.esRecurrente, isFalse);
+
+    await v6.close();
+    await dir.delete(recursive: true);
+  });
+
+  test('marcarTareaHecha sobre tarea puntual no genera siguiente', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final tareaId = await bd.guardarTarea(
+        TareaMantenimiento(fincaId: fincaId, titulo: 'Reparar cierre'));
+
+    final siguienteId = await bd.marcarTareaHecha(tareaId);
+
+    expect(siguienteId, isNull);
+    expect((await bd.obtenerTarea(tareaId))!.estado, 'hecha');
+    expect(await bd.contarTareasAbiertas(), 0);
+  });
+
+  test('marcarTareaHecha sobre tarea recurrente genera la siguiente pendiente',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final puntoId = await bd.guardarPunto(
+        PuntoInfraestructura(fincaId: fincaId, tipo: 'comedero'));
+    final tareaId = await bd.guardarTarea(TareaMantenimiento(
+      fincaId: fincaId,
+      puntoId: puntoId,
+      titulo: 'Rellenar comederos',
+      responsable: 'Maite',
+      prioridad: 'alta',
+      recurrenciaDias: 7,
+    ));
+
+    final siguienteId = await bd.marcarTareaHecha(tareaId);
+
+    expect(siguienteId, isNotNull);
+    final original = await bd.obtenerTarea(tareaId);
+    expect(original!.estado, 'hecha');
+
+    final siguiente = await bd.obtenerTarea(siguienteId!);
+    expect(siguiente, isNotNull);
+    expect(siguiente!.titulo, 'Rellenar comederos');
+    expect(siguiente.estado, 'pendiente');
+    expect(siguiente.puntoId, puntoId);
+    expect(siguiente.responsable, 'Maite');
+    expect(siguiente.recurrenciaDias, 7);
+    // Sin fecha objetivo previa: se cuenta desde hoy, así que la nueva fecha
+    // cae aproximadamente 7 días por delante (con margen por el tiempo del test).
+    final dentroDeSieteDias =
+        DateTime.now().add(const Duration(days: 7)).millisecondsSinceEpoch;
+    expect(
+        (siguiente.fechaObjetivoMs! - dentroDeSieteDias).abs() < 60000, isTrue);
+    expect(await bd.contarTareasAbiertas(), 1);
+  });
+
+  test(
+      'marcarTareaHecha con fecha objetivo futura calcula la siguiente desde esa fecha',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final fechaObjetivo =
+        DateTime.now().add(const Duration(days: 3)).millisecondsSinceEpoch;
+    final tareaId = await bd.guardarTarea(TareaMantenimiento(
+      fincaId: fincaId,
+      titulo: 'Revisar vallado',
+      fechaObjetivoMs: fechaObjetivo,
+      recurrenciaDias: 30,
+    ));
+
+    final siguienteId = await bd.marcarTareaHecha(tareaId);
+    final siguiente = await bd.obtenerTarea(siguienteId!);
+
+    final esperado = fechaObjetivo + Duration(days: 30).inMilliseconds;
+    expect((siguiente!.fechaObjetivoMs! - esperado).abs() < 1000, isTrue);
+  });
+
+  test('migración v6 → v7 rellena uid y actualizado_ms en filas existentes',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('zunbeltz_mig7');
+    final ruta = '${dir.path}/m7.db';
+    final v6 = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: 6,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onCreate: (d, v) async {
+          await BaseDatosSoleraZunbeltz.crearEsquemaV1(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
+        },
+      ),
+    );
+    final fincaId = await v6.insert(
+        'fincas', Finca(nombre: 'Zunbeltz').toMap()..remove('id'));
+    // Fila escrita con el esquema v6: sin uid ni actualizado_ms, como la
+    // tendría una app ya instalada en el móvil de alguien.
+    await v6.insert(
+        'tareas_mantenimiento',
+        TareaMantenimiento(
+                fincaId: fincaId,
+                titulo: 'Rellenar comederos',
+                fechaCreacionMs: 12345)
+            .toMap()
+          ..remove('id')
+          ..remove('uid')
+          ..remove('actualizado_ms')
+          ..remove('responsable_uid')
+          ..remove('creado_por_uid'));
+    await v6.close();
+
+    final v7 = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: 7,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onUpgrade: (d, anterior, actual) async {
+          if (anterior < 7) await BaseDatosSoleraZunbeltz.aplicarMigracionV7(d);
+        },
+      ),
+    );
+    final bd = BaseDatosSoleraZunbeltz.paraTests(v7);
+
+    final tareas = await bd.listarTareas();
+    final tarea = tareas.single;
+    expect(tarea.titulo, 'Rellenar comederos');
+    expect(tarea.uid, isNotEmpty);
+    expect(tarea.actualizadoMs, 12345);
+
+    // Y el uid queda como clave única: no se puede duplicar.
+    expect(
+      () => v7.insert('tareas_mantenimiento',
+          {'finca_id': fincaId, 'uid': tarea.uid, 'titulo': 'Duplicada'}),
+      throwsA(isA<DatabaseException>()),
+    );
+
+    await v7.close();
+    await dir.delete(recursive: true);
+  });
+
+  test('upsertTareaRemota inserta una tarea nueva por uid', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final remota = TareaMantenimiento(
+      uid: 'abc123',
+      fincaId: fincaId,
+      titulo: 'Tarea del servidor',
+      estado: 'en_curso',
+      actualizadoMs: 5000,
+    );
+
+    await bd.upsertTareaRemota(remota);
+
+    final local = await bd.obtenerTareaPorUid('abc123');
+    expect(local, isNotNull);
+    expect(local!.titulo, 'Tarea del servidor');
+    expect(local.estado, 'en_curso');
+    expect(local.actualizadoMs, 5000);
+  });
+
+  test('upsertTareaRemota no pisa una edición local más reciente', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final id = await bd.guardarTarea(TareaMantenimiento(
+      uid: 'xyz789',
+      fincaId: fincaId,
+      titulo: 'Editada en local',
+      actualizadoMs: 9000,
+    ));
+
+    final remotaVieja = TareaMantenimiento(
+      uid: 'xyz789',
+      fincaId: fincaId,
+      titulo: 'Versión antigua del servidor',
+      actualizadoMs: 1000,
+    );
+    await bd.upsertTareaRemota(remotaVieja);
+
+    final local = await bd.obtenerTarea(id);
+    expect(local!.titulo, 'Editada en local');
+  });
+
+  test('upsertTareaRemota sí aplica una versión remota más reciente',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    await bd.guardarTarea(TareaMantenimiento(
+      uid: 'def456',
+      fincaId: fincaId,
+      titulo: 'Versión vieja',
+      actualizadoMs: 1000,
+    ));
+
+    final remotaNueva = TareaMantenimiento(
+      uid: 'def456',
+      fincaId: fincaId,
+      titulo: 'Versión nueva del servidor',
+      estado: 'hecha',
+      actualizadoMs: 9000,
+    );
+    await bd.upsertTareaRemota(remotaNueva);
+
+    final local = await bd.obtenerTareaPorUid('def456');
+    expect(local!.titulo, 'Versión nueva del servidor');
+    expect(local.estado, 'hecha');
+  });
+
+  test('migración v8: las tareas previas quedan sin responsable_uid ni creador',
+      () async {
+    final v7 = await databaseFactoryFfi.openDatabase(
+      inMemoryDatabasePath,
+      options: OpenDatabaseOptions(
+        version: 7,
+        singleInstance: false,
+        onCreate: (d, v) async {
+          await BaseDatosSoleraZunbeltz.crearEsquemaV1(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV7(d);
+        },
+      ),
+    );
+    final fincaId = await v7.insert('fincas', {'nombre': 'Zunbeltz'});
+    await v7.insert('tareas_mantenimiento', {
+      'finca_id': fincaId,
+      'uid': 'previa',
+      'titulo': 'Tarea de antes de los roles',
+      'responsable': 'Maite',
+    });
+
+    await BaseDatosSoleraZunbeltz.aplicarMigracionV8(v7);
+    final bd = BaseDatosSoleraZunbeltz.paraTests(v7);
+
+    final tarea = (await bd.obtenerTareaPorUid('previa'))!;
+    expect(tarea.responsable, 'Maite',
+        reason: 'el responsable en texto libre se conserva');
+    expect(tarea.responsableUid, '');
+    expect(tarea.creadoPorUid, '');
+    await v7.close();
+  });
+
+  test('responsable_uid y creado_por_uid se guardan y filtran', () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    await bd.guardarTarea(TareaMantenimiento(
+      fincaId: fincaId,
+      titulo: 'De Ane',
+      responsable: 'Ane',
+      responsableUid: 'ane',
+      creadoPorUid: 'coord',
+    ));
+    await bd.guardarTarea(TareaMantenimiento(fincaId: fincaId, titulo: 'Libre'));
+
+    final deAne = await bd.listarTareas(responsableUid: 'ane');
+    expect(deAne.single.titulo, 'De Ane');
+    expect(deAne.single.creadoPorUid, 'coord');
+  });
+
+  test('la siguiente instancia de una tarea periódica conserva responsable y creador',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final id = await bd.guardarTarea(TareaMantenimiento(
+      fincaId: fincaId,
+      titulo: 'Rellenar comederos',
+      responsable: 'Ane',
+      responsableUid: 'ane',
+      creadoPorUid: 'coord',
+      recurrenciaDias: 7,
+    ));
+
+    final siguienteId = await bd.marcarTareaHecha(id);
+    final siguiente = (await bd.obtenerTarea(siguienteId!))!;
+    expect(siguiente.responsableUid, 'ane');
+    expect(siguiente.creadoPorUid, 'coord');
+  });
+
+  test('upsertTareaRemota con forzar pisa una edición local más reciente',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final id = await bd.guardarTarea(TareaMantenimiento(
+      uid: 'rechazada',
+      fincaId: fincaId,
+      titulo: 'Reparar cierre',
+      estado: 'hecha', // cambio local que el servidor no permite
+      actualizadoMs: 9000,
+    ));
+
+    await bd.upsertTareaRemota(
+      TareaMantenimiento(
+        uid: 'rechazada',
+        fincaId: fincaId,
+        titulo: 'Reparar cierre',
+        estado: 'pendiente',
+        actualizadoMs: 1000,
+      ),
+      forzar: true,
+    );
+
+    expect((await bd.obtenerTarea(id))!.estado, 'pendiente');
+  });
+
+  test('upsertTareaRemota conserva el anclaje local y las fotos al actualizar',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final puntoId = await bd.guardarPunto(
+        PuntoInfraestructura(fincaId: fincaId, tipo: 'abrevadero'));
+    final id = await bd.guardarTarea(TareaMantenimiento(
+      uid: 'anclada',
+      fincaId: fincaId,
+      puntoId: puntoId,
+      titulo: 'Limpiar abrevadero',
+      rutasFotosAntesJson: '["antes.jpg"]',
+      actualizadoMs: 1000,
+    ));
+
+    await bd.upsertTareaRemota(TareaMantenimiento(
+      uid: 'anclada',
+      fincaId: fincaId,
+      titulo: 'Limpiar abrevadero',
+      estado: 'hecha',
+      actualizadoMs: 9000,
+    ));
+
+    final local = (await bd.obtenerTarea(id))!;
+    expect(local.estado, 'hecha');
+    expect(local.puntoId, puntoId);
+    expect(local.rutasFotosAntesJson, '["antes.jpg"]');
   });
 }

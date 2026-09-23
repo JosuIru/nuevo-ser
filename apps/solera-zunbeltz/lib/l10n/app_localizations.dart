@@ -488,6 +488,24 @@ abstract class AppLocalizations {
   /// **'Pon un título a la tarea.'**
   String get tareaTituloObligatorio;
 
+  /// No description provided for @tareaRecurrencia.
+  ///
+  /// In es, this message translates to:
+  /// **'Periodicidad'**
+  String get tareaRecurrencia;
+
+  /// No description provided for @tareaMarcarHecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Marcar hecha'**
+  String get tareaMarcarHecha;
+
+  /// No description provided for @tareaSiguienteGenerada.
+  ///
+  /// In es, this message translates to:
+  /// **'Hecha. Siguiente tarea generada.'**
+  String get tareaSiguienteGenerada;
+
   /// No description provided for @tableroTitulo.
   ///
   /// In es, this message translates to:
@@ -1331,8 +1349,56 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaIntro.
   ///
   /// In es, this message translates to:
-  /// **'Una guía sencilla, paso a paso. Toca cada apartado para abrirlo. No hace falta saber de apps: si te pierdes, siempre puedes volver atrás con la flecha de arriba a la izquierda.'**
+  /// **'Una guía paso a paso para usar la app. Toca un apartado para abrirlo, o escribe arriba lo que buscas. Si te pierdes, vuelve atrás con la flecha de arriba a la izquierda.'**
   String get ayudaIntro;
+
+  /// No description provided for @ayudaBuscar.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar en la ayuda'**
+  String get ayudaBuscar;
+
+  /// No description provided for @ayudaSinResultados.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay ningún apartado con esa palabra. Prueba con otra: «tarea», «zona», «venta», «token»…'**
+  String get ayudaSinResultados;
+
+  /// No description provided for @ayudaConsejo.
+  ///
+  /// In es, this message translates to:
+  /// **'Bueno saber'**
+  String get ayudaConsejo;
+
+  /// No description provided for @ayudaGrupoEmpezar.
+  ///
+  /// In es, this message translates to:
+  /// **'Primeros pasos'**
+  String get ayudaGrupoEmpezar;
+
+  /// No description provided for @ayudaGrupoFincas.
+  ///
+  /// In es, this message translates to:
+  /// **'Fincas y tareas'**
+  String get ayudaGrupoFincas;
+
+  /// No description provided for @ayudaGrupoProyectos.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu proyecto de test'**
+  String get ayudaGrupoProyectos;
+
+  /// No description provided for @ayudaGrupoEquipo.
+  ///
+  /// In es, this message translates to:
+  /// **'Trabajar en equipo'**
+  String get ayudaGrupoEquipo;
+
+  /// No description provided for @ayudaGrupoProblemas.
+  ///
+  /// In es, this message translates to:
+  /// **'Si algo falla'**
+  String get ayudaGrupoProblemas;
 
   /// No description provided for @ayudaQueEsT.
   ///
@@ -1343,20 +1409,32 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaQueEsB.
   ///
   /// In es, this message translates to:
-  /// **'Es tu cuaderno del Espacio Test. Sirve para llevar las fincas y, sobre todo, el seguimiento de tu proyecto de test: lo que produces, lo que vendes, lo que gastas y lo que ganas. Funciona en tu móvil aunque no tengas cobertura.'**
+  /// **'Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte.'**
   String get ayudaQueEsB;
 
   /// No description provided for @ayudaPestanasT.
   ///
   /// In es, this message translates to:
-  /// **'Las cuatro pestañas de abajo'**
+  /// **'Moverse por la app'**
   String get ayudaPestanasT;
 
   /// No description provided for @ayudaPestanasB.
   ///
   /// In es, this message translates to:
-  /// **'Hoy: un resumen. Fincas: el mapa con los puntos y las tareas. Proyectos: tu proceso de test y tus números. Ajustes: idioma, ayuda y más. Toca cada una para cambiar de pantalla.'**
+  /// **'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: un resumen con las tareas abiertas.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: tu proceso de test y tus números.\n• Ajustes: idioma, ayuda, envío de informes y sincronización.\nPara volver atrás, usa la flecha de arriba a la izquierda.'**
   String get ayudaPestanasB;
+
+  /// No description provided for @ayudaIdiomaDatosT.
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma, fotos, tiempo e internet'**
+  String get ayudaIdiomaDatosT;
+
+  /// No description provided for @ayudaIdiomaDatosB.
+  ///
+  /// In es, this message translates to:
+  /// **'• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) muestra la previsión de 7 días con avisos de helada, lluvia, viento, calor y días buenos para el manejo.\n» Todo funciona sin internet menos la previsión del tiempo y la sincronización de tareas.'**
+  String get ayudaIdiomaDatosB;
 
   /// No description provided for @ayudaFincasT.
   ///
@@ -1367,8 +1445,32 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaFincasB.
   ///
   /// In es, this message translates to:
-  /// **'Entra en Fincas. Para añadir un abrevadero, una manga, un cierre… toca el sitio en el mapa (o el botón «Nuevo punto» de abajo a la derecha). Rellena el tipo y el nombre y pulsa Guardar. Toca un punto del mapa para ver su ficha.'**
+  /// **'Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…\n1. Entra en Fincas.\n2. Toca el sitio exacto en el mapa. O pulsa «Nuevo punto» (abajo a la derecha) y elige «Usar GPS actual» si estás junto a la instalación, o «Usar centro del mapa».\n3. Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.\n4. Pulsa Guardar.\n» El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón «GPS» centra el mapa en ti y «Capas» cambia entre mapa y satélite.'**
   String get ayudaFincasB;
+
+  /// No description provided for @ayudaZonasT.
+  ///
+  /// In es, this message translates to:
+  /// **'Dibujar una zona (parcela, cercado…)'**
+  String get ayudaZonasT;
+
+  /// No description provided for @ayudaZonasB.
+  ///
+  /// In es, this message translates to:
+  /// **'1. En Fincas, pulsa «Dibujar zona».\n2. Toca en el mapa las esquinas de la zona, una detrás de otra. Si te equivocas, pulsa «Deshacer».\n3. Con tres esquinas o más, pulsa «Cerrar zona».\n4. Elige la finca, el tipo (parcela de pasto, cercado, zona de pastoreo…), el nombre y el estado, y guarda.\n» La superficie que sale del dibujo es orientativa. Si tienes la oficial del recinto SIGPAC, ponla en «Superficie oficial SIGPAC» y será la que se use.'**
+  String get ayudaZonasB;
+
+  /// No description provided for @ayudaEditarMapaT.
+  ///
+  /// In es, this message translates to:
+  /// **'Mover o borrar un punto o una zona'**
+  String get ayudaEditarMapaT;
+
+  /// No description provided for @ayudaEditarMapaB.
+  ///
+  /// In es, this message translates to:
+  /// **'1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa «Volver a dibujar» (arriba) y marca de nuevo sus esquinas.\n4. Para borrarlo: pulsa la papelera y confirma.'**
+  String get ayudaEditarMapaB;
 
   /// No description provided for @ayudaTareasT.
   ///
@@ -1379,20 +1481,68 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaTareasB.
   ///
   /// In es, this message translates to:
-  /// **'Abre la ficha de un punto y pulsa «Nueva tarea». Pon qué hay que hacer, quién y para cuándo. En Fincas → Tareas ves todo lo pendiente. Con el botón de PDF sacas el parte.'**
+  /// **'1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.'**
   String get ayudaTareasB;
+
+  /// No description provided for @ayudaRecurrentesT.
+  ///
+  /// In es, this message translates to:
+  /// **'Tareas que se repiten'**
+  String get ayudaRecurrentesT;
+
+  /// No description provided for @ayudaRecurrentesB.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que se hace siempre (rellenar comederos, revisar el vallado…) no hace falta apuntarlo cada vez.\n1. Al crear la tarea, elige una «Periodicidad»: diaria, semanal, quincenal, mensual o trimestral.\n2. Cuando la marques como hecha, la app crea sola la siguiente, con la fecha que toca.\n» En la lista, las tareas periódicas llevan el símbolo de repetir.'**
+  String get ayudaRecurrentesB;
+
+  /// No description provided for @ayudaTableroT.
+  ///
+  /// In es, this message translates to:
+  /// **'Llevar las tareas al día'**
+  String get ayudaTableroT;
+
+  /// No description provided for @ayudaTableroB.
+  ///
+  /// In es, this message translates to:
+  /// **'1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.'**
+  String get ayudaTableroB;
 
   /// No description provided for @ayudaProyectosT.
   ///
   /// In es, this message translates to:
-  /// **'Tu proyecto de test y tus números'**
+  /// **'Crear tu proyecto'**
   String get ayudaProyectosT;
 
   /// No description provided for @ayudaProyectosB.
   ///
   /// In es, this message translates to:
-  /// **'En Proyectos, pulsa + para crear tu proyecto. Dentro, pulsa + y elige qué apuntar: producción, una venta (comercialización), una prueba de producto o un gasto/ingreso. Arriba verás solos tus números: ventas, gastos, balance y rentabilidad. Puedes mirarlos por trimestre con el filtro de arriba.'**
+  /// **'1. Entra en Proyectos y pulsa +.\n2. Pon el nombre del proyecto, la persona tester y la actividad. Si quieres, también la finca y las fechas de inicio y fin.\n3. Pulsa Guardar. Toca el proyecto en la lista para entrar en él.'**
   String get ayudaProyectosB;
+
+  /// No description provided for @ayudaApuntarT.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar tu día a día'**
+  String get ayudaApuntarT;
+
+  /// No description provided for @ayudaApuntarB.
+  ///
+  /// In es, this message translates to:
+  /// **'Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.\n1. Ve a la pestaña de lo que quieras apuntar.\n2. Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso con su categoría.\n3. Guarda. Los números de arriba se actualizan solos.'**
+  String get ayudaApuntarB;
+
+  /// No description provided for @ayudaNumerosT.
+  ///
+  /// In es, this message translates to:
+  /// **'Entender tus números'**
+  String get ayudaNumerosT;
+
+  /// No description provided for @ayudaNumerosB.
+  ///
+  /// In es, this message translates to:
+  /// **'Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.\n• Con el filtro «Periodo» (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.\n• Si hay gastos, verás el desglose por categorías y el IVA soportado y repercutido.\n» El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.'**
+  String get ayudaNumerosB;
 
   /// No description provided for @ayudaInformesT.
   ///
@@ -1403,25 +1553,49 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaInformesB.
   ///
   /// In es, this message translates to:
-  /// **'En tu proyecto, el botón de compartir (arriba) te deja sacar el informe en PDF, exportar a Excel (CSV) o «Enviar al coordinador». Para esto último, primero pon el correo del coordinador en Ajustes.'**
+  /// **'• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador».\n• Para enviarlo al coordinador, pon antes su correo en Ajustes → Coordinador.\n• En la lista de Proyectos, el botón del gráfico (arriba) saca la «Comparativa (PDF)» entre todos los proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa, para pasarlos a coordinación.'**
   String get ayudaInformesB;
 
-  /// No description provided for @ayudaIdiomaDatosT.
+  /// No description provided for @ayudaSyncT.
   ///
   /// In es, this message translates to:
-  /// **'Idioma, fotos e internet'**
-  String get ayudaIdiomaDatosT;
+  /// **'Compartir las tareas con el equipo'**
+  String get ayudaSyncT;
 
-  /// No description provided for @ayudaIdiomaDatosB.
+  /// No description provided for @ayudaSyncB.
   ///
   /// In es, this message translates to:
-  /// **'Cambia entre castellano y euskera en Ajustes. Las fotos se guardan en tu móvil. Todo funciona sin internet; solo la previsión del tiempo necesita conexión.'**
-  String get ayudaIdiomaDatosB;
+  /// **'Si en el Espacio Test usáis la sincronización, las tareas se comparten entre los móviles de todo el equipo.\n1. Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.\n2. En Ajustes → Sincronización de tareas, pon la dirección del WordPress de Zunbeltz y tu token.\n3. Pulsa «Sincronizar ahora» cuando tengas cobertura: suben tus cambios y bajan los del resto.\n» Solo se comparten las tareas. Los puntos, las zonas y los proyectos siguen solo en tu móvil.'**
+  String get ayudaSyncB;
+
+  /// No description provided for @ayudaRolesT.
+  ///
+  /// In es, this message translates to:
+  /// **'Quién puede hacer qué'**
+  String get ayudaRolesT;
+
+  /// No description provided for @ayudaRolesB.
+  ///
+  /// In es, this message translates to:
+  /// **'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve todas y crea las suyas. Puede cambiar las que ha creado o tiene asignadas, y coger las que están sin asignar.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.'**
+  String get ayudaRolesB;
+
+  /// No description provided for @ayudaProblemasT.
+  ///
+  /// In es, this message translates to:
+  /// **'Problemas frecuentes'**
+  String get ayudaProblemasT;
+
+  /// No description provided for @ayudaProblemasB.
+  ///
+  /// In es, this message translates to:
+  /// **'• «Tu rol no permite…»: esa tarea no es tuya. Cógela si está sin asignar, o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• «Sin finca reconocida»: esa tarea es de una finca que en tu móvil tiene otro nombre. Las fincas tienen que llamarse igual en todos los móviles.\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Tus datos viven en tu móvil. Si lo cambias o lo pierdes, habla antes con coordinación.'**
+  String get ayudaProblemasB;
 
   /// No description provided for @ayudaPie.
   ///
   /// In es, this message translates to:
-  /// **'Si algo no queda claro, pregunta al coordinador del Espacio Test.'**
+  /// **'Si algo no queda claro, pregunta a coordinación del Espacio Test.'**
   String get ayudaPie;
 
   /// No description provided for @ajustesExportarEspacio.
@@ -1429,6 +1603,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Exportar espacio (CSV)'**
   String get ajustesExportarEspacio;
+
+  /// No description provided for @ajustesSyncTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronización de tareas'**
+  String get ajustesSyncTitulo;
+
+  /// No description provided for @ajustesSyncUrl.
+  ///
+  /// In es, this message translates to:
+  /// **'WordPress de Zunbeltz'**
+  String get ajustesSyncUrl;
+
+  /// No description provided for @ajustesSyncToken.
+  ///
+  /// In es, this message translates to:
+  /// **'Token personal'**
+  String get ajustesSyncToken;
+
+  /// No description provided for @ajustesSyncSinConfigurar.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin configurar'**
+  String get ajustesSyncSinConfigurar;
+
+  /// No description provided for @ajustesSyncAhora.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronizar ahora'**
+  String get ajustesSyncAhora;
+
+  /// No description provided for @ajustesSyncResultado.
+  ///
+  /// In es, this message translates to:
+  /// **'{subidas} tareas subidas · {bajadas} bajadas{omitidas, plural, =0{} other{ · {omitidas} sin finca reconocida}}'**
+  String ajustesSyncResultado(int subidas, int bajadas, int omitidas);
 
   /// No description provided for @ajustesDemo.
   ///
@@ -1633,6 +1843,78 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Zona'**
   String get parteColZona;
+
+  /// No description provided for @ajustesSesionComo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión de {nombre}'**
+  String ajustesSesionComo(String nombre);
+
+  /// No description provided for @ajustesSesionConectada.
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión iniciada: {nombre}'**
+  String ajustesSesionConectada(String nombre);
+
+  /// No description provided for @ajustesSesionLocal.
+  ///
+  /// In es, this message translates to:
+  /// **'Modo local'**
+  String get ajustesSesionLocal;
+
+  /// No description provided for @ajustesSesionLocalDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin sincronización: en este dispositivo se puede editar todo.'**
+  String get ajustesSesionLocalDetalle;
+
+  /// No description provided for @ajustesSyncRechazadas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 cambio revertido: tu rol no lo permite} other{{n} cambios revertidos: tu rol no los permite}}'**
+  String ajustesSyncRechazadas(int n);
+
+  /// No description provided for @tareaSinAsignar.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin asignar'**
+  String get tareaSinAsignar;
+
+  /// No description provided for @tareaAsignarme.
+  ///
+  /// In es, this message translates to:
+  /// **'Asignármela'**
+  String get tareaAsignarme;
+
+  /// No description provided for @tareaSoltar.
+  ///
+  /// In es, this message translates to:
+  /// **'Soltar la tarea'**
+  String get tareaSoltar;
+
+  /// No description provided for @tareaCambiarEstado.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar estado'**
+  String get tareaCambiarEstado;
+
+  /// No description provided for @tareaSinPermiso.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu rol no permite cambiar esta tarea.'**
+  String get tareaSinPermiso;
+
+  /// No description provided for @tareaNoPuedesCrear.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu rol no permite crear tareas.'**
+  String get tareaNoPuedesCrear;
+
+  /// No description provided for @tableroMisTareas.
+  ///
+  /// In es, this message translates to:
+  /// **'Mis tareas'**
+  String get tableroMisTareas;
 }
 
 class _AppLocalizationsDelegate

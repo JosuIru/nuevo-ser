@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
 
 import '../datos/base_datos.dart';
+import '../estado/sesion_espacio.dart';
+import '../modelos/persona_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
@@ -9,6 +11,7 @@ import '../modelos/punto_infraestructura.dart';
 import '../modelos/zona_finca.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../servicios/generador_parte_mantenimiento.dart';
+import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
 
 /// Tablero de tareas de mantenimiento: lista filtrable por finca y estado,
@@ -31,6 +34,7 @@ class _TableroTareasState extends State<TableroTareas> {
 
   int? _filtroFincaId;
   String? _filtroEstado;
+  bool _soloMias = false;
 
   @override
   void initState() {
@@ -61,11 +65,32 @@ class _TableroTareasState extends State<TableroTareas> {
     });
   }
 
-  List<TareaMantenimiento> get _tareasFiltradas => _tareas.where((t) {
-        if (_filtroFincaId != null && t.fincaId != _filtroFincaId) return false;
-        if (_filtroEstado != null && t.estado != _filtroEstado) return false;
-        return true;
-      }).toList(growable: false);
+  Future<void> _marcarHecha(TareaMantenimiento tarea) async {
+    final id = tarea.id;
+    if (id == null) return;
+    final textos = AppLocalizations.of(context);
+    final generoSiguiente = await _bd.marcarTareaHecha(id) != null;
+    await _cargar();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(generoSiguiente
+            ? textos.tareaSiguienteGenerada
+            : textos.tareaGuardada)));
+  }
+
+  Future<void> _accionesTarea(TareaMantenimiento tarea) async {
+    if (await mostrarAccionesTarea(context, tarea)) await _cargar();
+  }
+
+  List<TareaMantenimiento> get _tareasFiltradas {
+    final miUid = sesionEspacio.value?.persona.uid;
+    return _tareas.where((t) {
+      if (_filtroFincaId != null && t.fincaId != _filtroFincaId) return false;
+      if (_filtroEstado != null && t.estado != _filtroEstado) return false;
+      if (_soloMias && miUid != null && t.responsableUid != miUid) return false;
+      return true;
+    }).toList(growable: false);
+  }
 
   String _subtitulo(TareaMantenimiento tarea, AppLocalizations textos) {
     final finca = _fincas.firstWhere(
@@ -118,7 +143,16 @@ class _TableroTareasState extends State<TableroTareas> {
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
+    return ValueListenableBuilder<SesionEspacio?>(
+      valueListenable: sesionEspacio,
+      builder: (contexto, sesion, _) => _construir(textos, idioma, sesion),
+    );
+  }
+
+  Widget _construir(
+      AppLocalizations textos, String idioma, SesionEspacio? sesion) {
     final tareas = _tareasFiltradas;
+    final politica = politicaTareasActual;
     return Scaffold(
       appBar: AppBar(
         title: Text(textos.tableroTitulo),
@@ -149,6 +183,18 @@ class _TableroTareasState extends State<TableroTareas> {
                   onFinca: (v) => setState(() => _filtroFincaId = v),
                   onEstado: (v) => setState(() => _filtroEstado = v),
                 ),
+                if (sesion != null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: FilterChip(
+                        label: Text(textos.tableroMisTareas),
+                        selected: _soloMias,
+                        onSelected: (valor) => setState(() => _soloMias = valor),
+                      ),
+                    ),
+                  ),
                 const Divider(height: 1),
                 Expanded(
                   child: tareas.isEmpty
@@ -161,6 +207,10 @@ class _TableroTareasState extends State<TableroTareas> {
                                 tarea: tarea,
                                 idioma: idioma,
                                 subtitulo: _subtitulo(tarea, textos),
+                                onTap: () => _accionesTarea(tarea),
+                                onMarcarHecha: politica.puedeEjecutar(tarea)
+                                    ? () => _marcarHecha(tarea)
+                                    : null,
                               ),
                           ],
                         ),

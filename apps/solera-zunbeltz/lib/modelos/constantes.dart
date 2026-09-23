@@ -74,6 +74,29 @@ const List<OpcionCatalogo> estadosTarea = [
   OpcionCatalogo('bloqueada', 'Bloqueada', 'Blokeatuta'),
 ];
 
+/// Periodicidad de una tarea recurrente (rellenar comederos, revisar
+/// vallados…), en días. `null` = tarea puntual, la opción por defecto.
+const List<int?> recurrenciasTarea = [null, 1, 7, 15, 30, 90];
+
+/// Etiqueta bilingüe de una periodicidad de tarea.
+String etiquetaRecurrencia(int? dias, String idioma) {
+  if (dias == null) return idioma == 'eu' ? 'Aldi bakarrekoa' : 'Puntual';
+  switch (dias) {
+    case 1:
+      return idioma == 'eu' ? 'Egunero' : 'Diaria';
+    case 7:
+      return idioma == 'eu' ? 'Astero' : 'Semanal';
+    case 15:
+      return idioma == 'eu' ? '15 egunero' : 'Quincenal';
+    case 30:
+      return idioma == 'eu' ? 'Hilero' : 'Mensual';
+    case 90:
+      return idioma == 'eu' ? 'Hiruhilero' : 'Trimestral';
+    default:
+      return idioma == 'eu' ? '$dias egunero' : 'Cada $dias días';
+  }
+}
+
 /// Prioridad de una tarea de mantenimiento.
 const List<OpcionCatalogo> prioridadesTarea = [
   OpcionCatalogo('baja', 'Baja', 'Baxua'),

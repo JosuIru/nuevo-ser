@@ -136,6 +136,17 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
                   'monetización. Privacidad por diseño.',
             ),
             const _Seccion(
+              titulo: 'ARTE',
+              cuerpo:
+                  'Kai y Oryn: dibujos a mano del autor. El resto del '
+                  'elenco lleva retratos provisionales tomados de Las '
+                  'Versiones (acuarelas generadas con DALL-E 3 de OpenAI y '
+                  'relicenciadas como contenido de la Colección) hasta que '
+                  'lleguen sus dibujos. Mapa, máquinas y sprites: renders '
+                  'propios con flavor3d. Música de las máquinas: '
+                  'sintetizada, sin samples.',
+            ),
+            const _Seccion(
               titulo: 'TUTOR IA',
               cuerpo:
                   'Cuando el niño falla tres veces seguidas y el '

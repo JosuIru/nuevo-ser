@@ -134,6 +134,30 @@ sino de figura tutelar.
 
 ---
 
+## Retratos PROVISIONALES (2026-09-23)
+
+Hasta que lleguen los dibujos a mano, `lib/vista/personajes/retratos.dart`
+resuelve el retrato de cada voz por orden de preferencia:
+
+1. **Dibujo a mano** (`assets/personajes/<id>.png`, cuerpo entero): Kai, Oryn.
+2. **Retrato ilustrado provisional** (`assets/personajes/retratos/<id>.webp`,
+   busto circular): acuarelas de Las Versiones (DALL-E 3, relicenciadas
+   CC-BY-SA como contenido de la Colección) viradas a la noche de Uno Roto
+   con `arte/personajes/importar_de_las_versiones.py`. Asignación por
+   parecido con el doc 04: Sora ← eider, Irune ← isaura, Rexán ← andres,
+   Naini ← iratxe, Vadic ← arqueologo, Brina ← arqueologa, Ari ← sira.
+   Ojo: son las mismas caras que en Las Versiones.
+3. **Silueta provisional** (`PintorSilueta`), con el patrón de "Estilo común":
+   hoy sólo Niko.
+
+Se descartaron los personajes 3D de flavor3d: la primitiva da figuras de
+bloques tipo Roblox, que chocan con el principio 4 del doc 01.
+
+Al llegar el dibujo de alguien: PNG en `assets/personajes/<id>.png` y su id
+en `personajesConDibujo`.
+
+---
+
 ## Cómo añadir un personaje nuevo
 
 1. Concept-art al directorio `concept-art/` (PDF o PNG escaneado).

@@ -47,9 +47,27 @@ class _AvatarSora extends StatelessWidget {
 
   @override
   Widget build(BuildContext contexto) {
-    return CustomPaint(
-      size: const Size(70, 90),
-      painter: _PintorSilueta(),
+    // Su retrato (provisional) en un círculo al pie del lienzo de 70×90;
+    // si el asset no carga, la silueta clásica.
+    return SizedBox(
+      width: 70,
+      height: 90,
+      child: Align(
+        alignment: Alignment.bottomCenter,
+        child: SizedBox(
+          width: 70,
+          height: 70,
+          child: Image.asset(
+            'assets/personajes/retratos/sora.webp',
+            fit: BoxFit.contain,
+            filterQuality: FilterQuality.medium,
+            errorBuilder: (_, __, ___) => CustomPaint(
+              size: const Size(70, 90),
+              painter: _PintorSilueta(),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -15,7 +15,7 @@ import '../dominio/voz_personaje.dart';
 import '../sonido/catalogo_voces.dart';
 import '../sonido/servicio_sonoro.dart';
 import 'escenario.dart';
-import 'sora_presencia.dart';
+import 'personajes/retratos.dart';
 import 'widget_fragmento_tutorial.dart';
 
 /// Reproductor de escenas cinemáticas. Recorre los planos uno a uno
@@ -227,38 +227,24 @@ class _PantallaCinematicaState extends State<PantallaCinematica>
   /// Vadic, Naini, Brina, Niko, narrador, Fragmentos nombrados).
   Widget _construirPresenciaPersonaje() {
     final voz = _vozActivaPlano;
-    Widget? avatarCrudo;
-    Alignment alineacion = Alignment.bottomCenter;
+    if (voz is! VozPersonaje) return const SizedBox.shrink();
+    final tipo = tipoRetrato(voz);
+    if (tipo == TipoRetrato.ninguno) return const SizedBox.shrink();
+    final Widget avatarCrudo = RetratoPersonaje(voz: voz);
+    // Sora a la izquierda (acompaña); Kai y los aprendices a la derecha
+    // (rival, iguales); maestros y Oryn centrados (figura tutelar).
+    final Alignment alineacion;
     if (voz == VozPersonaje.sora) {
-      // SoraPresencia fija el alto (120) pero no el ancho: dentro de un
-      // FittedBox el ancho quedaría sin límite y su Stack no se podría
-      // maquetar. Se le da su tamaño natural (avatar de 70 px a 16 px del
-      // borde) y el FittedBox la infla desde ahí.
-      avatarCrudo = const FittedBox(
-        fit: BoxFit.contain,
-        child: SizedBox(
-          width: 86,
-          height: 120,
-          child: SoraPresencia(textoActivo: null),
-        ),
-      );
       alineacion = Alignment.bottomLeft;
-    } else if (voz == VozPersonaje.kai) {
-      avatarCrudo = Image.asset(
-        'assets/personajes/kai.png',
-        fit: BoxFit.contain,
-        filterQuality: FilterQuality.medium,
-      );
+    } else if (voz == VozPersonaje.kai ||
+        voz == VozPersonaje.ari ||
+        voz == VozPersonaje.aprendizNiko) {
       alineacion = Alignment.bottomRight;
-    } else if (voz == VozPersonaje.oryn) {
-      avatarCrudo = Image.asset(
-        'assets/personajes/oryn.png',
-        fit: BoxFit.contain,
-        filterQuality: FilterQuality.medium,
-      );
+    } else {
       alineacion = Alignment.bottomCenter;
     }
-    if (avatarCrudo == null) return const SizedBox.shrink();
+    // Los dibujos son de cuerpo entero; los retratos, bustos: menos alto.
+    final factorAltura = tipo == TipoRetrato.dibujo ? 0.5 : 0.36;
     return Positioned.fill(
       child: IgnorePointer(
         child: SafeArea(
@@ -268,7 +254,7 @@ class _PantallaCinematicaState extends State<PantallaCinematica>
             child: Align(
               alignment: alineacion,
               child: FractionallySizedBox(
-                heightFactor: 0.5,
+                heightFactor: factorAltura,
                 child: _AvatarRespirando(child: avatarCrudo),
               ),
             ),

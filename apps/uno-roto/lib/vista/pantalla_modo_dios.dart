@@ -6,12 +6,11 @@ import '../datos/repositorio_progreso.dart';
 import '../dominio/catalogo_escenas.dart';
 import '../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../dominio/rango_narrativo.dart';
+import '../dominio/voz_personaje.dart';
 import '../nucleo/paleta.dart';
-import 'kai_presencia.dart';
 import 'minijuegos/pantalla_maquinas.dart' show pantallaDeMaquina;
-import 'oryn_presencia.dart';
+import 'personajes/retratos.dart';
 import 'pantalla_cinematica.dart';
-import 'sora_presencia.dart';
 
 /// Pantalla del modo dios — solo accesible tras 7 toques rápidos sobre
 /// el rótulo "UNO ROTO" del mapa. Tres secciones:
@@ -275,24 +274,19 @@ class _GaleriaPersonajes extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
-                children: const [
-                  _RetratoPersonaje(
-                    nombre: 'SORA',
-                    color: PaletaNeon.azulNeon,
-                    hijo: SoraPresencia(textoActivo: null),
-                  ),
-                  SizedBox(width: 16),
-                  _RetratoPersonaje(
-                    nombre: 'KAI',
-                    color: PaletaNeon.rosaAcento,
-                    hijo: KaiPresencia(textoActivo: null),
-                  ),
-                  SizedBox(width: 16),
-                  _RetratoPersonaje(
-                    nombre: 'ORYN',
-                    color: PaletaNeon.exitoSuave,
-                    hijo: OrynPresencia(textoActivo: null),
-                  ),
+                children: [
+                  for (final voz in _elenco) ...[
+                    _RetratoPersonaje(
+                      nombre: voz.nombreVisible.toUpperCase(),
+                      color: voz.colorNombre,
+                      tipo: tipoRetrato(voz),
+                      hijo: SizedBox(
+                        height: 180,
+                        child: RetratoPersonaje(voz: voz),
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                  ],
                 ],
               ),
             ),
@@ -301,9 +295,9 @@ class _GaleriaPersonajes extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Text(
-              'Resto del elenco (Irune, Rexán, Ari, Vadic, Naini, Brina, '
-              'Niko, Fragmentos): sin avatar todavía — pendiente de '
-              'concept-art.',
+              'Kai y Oryn: dibujo a mano. El resto, PROVISIONAL: retratos de '
+              'Las Versiones virados a la noche, o silueta de la biblia '
+              'visual si no hay retrato. Se sustituyen al llegar su dibujo.',
               style: TextStyle(
                 color: PaletaNeon.textoTenue.withOpacity(0.7),
                 fontSize: 11,
@@ -319,14 +313,30 @@ class _GaleriaPersonajes extends StatelessWidget {
   }
 }
 
+/// Todo el elenco con voz y retrato, en el orden de aparición.
+const _elenco = [
+  VozPersonaje.sora,
+  VozPersonaje.kai,
+  VozPersonaje.irune,
+  VozPersonaje.rexan,
+  VozPersonaje.naini,
+  VozPersonaje.vadic,
+  VozPersonaje.oryn,
+  VozPersonaje.brina,
+  VozPersonaje.ari,
+  VozPersonaje.aprendizNiko,
+];
+
 class _RetratoPersonaje extends StatelessWidget {
   final String nombre;
   final Color color;
+  final TipoRetrato tipo;
   final Widget hijo;
 
   const _RetratoPersonaje({
     required this.nombre,
     required this.color,
+    required this.tipo,
     required this.hijo,
   });
 
@@ -344,8 +354,17 @@ class _RetratoPersonaje extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
+        Text(
+          switch (tipo) {
+            TipoRetrato.dibujo => 'dibujo',
+            TipoRetrato.retrato => 'retrato provisional',
+            _ => 'silueta provisional',
+          },
+          style: TextStyle(
+              color: PaletaNeon.textoTenue.withOpacity(0.6), fontSize: 9),
+        ),
         const SizedBox(height: 4),
-        SizedBox(width: 170, child: hijo),
+        SizedBox(width: 150, child: hijo),
       ],
     );
   }

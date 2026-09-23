@@ -174,6 +174,12 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_engranajes.ogg',
       enBucle: true,
     ),
+    'musica_maquina_esclusas': SonidoCatalogado(
+      identificador: 'musica_maquina_esclusas',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_esclusas.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

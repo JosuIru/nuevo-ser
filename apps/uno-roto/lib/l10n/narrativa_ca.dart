@@ -2322,4 +2322,77 @@ const Map<String, String> narrativaCa = <String, String>{
       'Potències d\'exponent natural',
   'Área de rectángulos y cuadrados':
       'Àrea de rectangles i quadrats',
+  // Esclusas
+  'Esclusas':
+      'Rescloses',
+  'Los números bajan por el canal. Mándalos a su esclusa y ordena a los que vienen atados.':
+      'Els nombres baixen pel canal. Envia\'ls a la seva resclosa i ordena els que vénen lligats.',
+  'Las compuertas de los Canales se han soltado. Tú decides por dónde pasa cada barca, y rápido.':
+      'Les comportes dels Canals s\'han deixat anar. Tu decideixes per on passa cada barca, i de pressa.',
+  'Las barquitas bajan solas. En la primera tanda, toca la esclusa de su tramo antes de que lleguen abajo. En la segunda vienen atadas de dos en dos: toca la que vale más. En la tercera, de tres en tres: tócalas de la más pequeña a la más grande. Si una llega abajo, Rexán la sube otra vez.':
+      'Les barquetes baixen soles. A la primera tanda, toca la resclosa del seu tram abans que arribin a baix. A la segona vénen lligades de dues en dues: toca la que val més. A la tercera, de tres en tres: toca-les de la més petita a la més gran. Si una arriba a baix, Rexán la torna a pujar.',
+  'Se te ha escapado. Te la subo otra vez.':
+      'Se t\'ha escapat. Te la torno a pujar.',
+  'Esa esclusa no es la suya: {b} no está en ese tramo.':
+      'Aquesta resclosa no és la seva: {b} no és en aquest tram.',
+  '{b} no es la mayor de las dos.':
+      '{b} no és la més gran de les dues.',
+  'Esa no tocaba: {b} no es la más pequeña de las que quedan. Empieza otra vez.':
+      'Aquesta no tocava: {b} no és la més petita de les que queden. Torna a començar.',
+  'Ahora vienen atadas de dos en dos. Toca la que vale más.':
+      'Ara vénen lligades de dues en dues. Toca la que val més.',
+  'Ahora de tres en tres. De la más pequeña a la más grande.':
+      'Ara de tres en tres. De la més petita a la més gran.',
+  'Tres tandas por las esclusas. El canal queda en calma.':
+      'Tres tandes per les rescloses. El canal queda en calma.',
+  'Abre la esclusa de su tramo antes de que llegue abajo.':
+      'Obre la resclosa del seu tram abans que arribi a baix.',
+  'Toca la que vale más.':
+      'Toca la que val més.',
+  'Tócalas de la más pequeña a la más grande.':
+      'Toca-les de la més petita a la més gran.',
+  'menos de {u}':
+      'menys de {u}',
+  'entre {u} y 1':
+      'entre {u} i 1',
+  'más de 1':
+      'més d\'1',
+  'Si el de arriba es menor que el de abajo, la fracción es menor que 1; si es mayor, pasa de 1. 7/5 es más que 1 porque 7 > 5.':
+      'Si el de dalt és més petit que el de baix, la fracció és més petita que 1; si és més gran, passa d\'1. 7/5 és més que 1 perquè 7 > 5.',
+  'Con el mismo denominador, gana el de arriba más grande: 5/8 > 3/8.':
+      'Amb el mateix denominador, guanya el de dalt més gran: 5/8 > 3/8.',
+  'Con el mismo numerador, gana el denominador más pequeño: 2/3 > 2/5, porque los tercios son trozos más grandes que los quintos.':
+      'Amb el mateix numerador, guanya el denominador més petit: 2/3 > 2/5, perquè els terços són trossos més grans que els cinquens.',
+  'Multiplica en cruz: para 3/4 y 5/7, 3 × 7 = 21 y 5 × 4 = 20. Gana la del producto mayor: 3/4.':
+      'Multiplica en creu: per a 3/4 i 5/7, 3 × 7 = 21 i 5 × 4 = 20. Guanya la del producte més gran: 3/4.',
+  'Compáralas de dos en dos, o pásalas todas a decimal (divide arriba entre abajo) y ordénalas.':
+      'Compara-les de dues en dues, o passa-les totes a decimal (divideix el de dalt entre el de baix) i ordena-les.',
+  'Iguala las cifras con ceros y compara desde la coma: 0,5 = 0,50, y 0,50 > 0,45.':
+      'Iguala les xifres amb zeros i compara des de la coma: 0,5 = 0,50, i 0,50 > 0,45.',
+  'Compara el de arriba con el de abajo: {n} y {d}.':
+      'Compara el de dalt amb el de baix: {n} i {d}.',
+  '{n} es mayor que {d}: {f} es más que 1.':
+      '{n} és més gran que {d}: {f} és més que 1.',
+  '{n} es menor que {d}: {f} es menos que 1.':
+      '{n} és més petit que {d}: {f} és menys que 1.',
+  'Mismo denominador ({d}): mira sólo los de arriba.':
+      'Mateix denominador ({d}): mira només els de dalt.',
+  '{b} > {a}: {f} es la mayor.':
+      '{b} > {a}: {f} és la més gran.',
+  'Mismo numerador ({n}): mira los de abajo.':
+      'Mateix numerador ({n}): mira els de baix.',
+  'Partido en {a}, cada trozo es más grande que partido en {b}: {f} es la mayor.':
+      'Partit en {a}, cada tros és més gran que partit en {b}: {f} és la més gran.',
+  'Multiplica en cruz: {a} × {d} = {x} y {c} × {b} = {y}.':
+      'Multiplica en creu: {a} × {d} = {x} i {c} × {b} = {y}.',
+  'El producto mayor va con la fracción mayor: {f}.':
+      'El producte més gran va amb la fracció més gran: {f}.',
+  '{f} ≈ {v}':
+      '{f} ≈ {v}',
+  'De menor a mayor: {orden}.':
+      'De menor a major: {orden}.',
+  'Iguala las cifras con ceros: {a} y {b}0.':
+      'Iguala les xifres amb zeros: {a} i {b}0.',
+  'Compara las décimas y luego las centésimas: {m} es la mayor.':
+      'Compara les dècimes i després les centèsimes: {m} és la més gran.',
 };

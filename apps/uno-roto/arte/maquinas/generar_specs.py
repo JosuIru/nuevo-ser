@@ -36,6 +36,7 @@ MAQUINAS = {
     'salto': {'pantalla': '#E8A857', 'marquesina': '#B45656'},
     # Segunda sala.
     'engranajes': {'pantalla': '#C9A04A', 'marquesina': '#8A6A2E'},
+    'esclusas': {'pantalla': '#78D8E0', 'marquesina': '#3F74D8'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -139,6 +140,16 @@ def juego_en_pantalla(nombre, color):
                                cv + math.sin(a) * radio, 0.018, 0.018, color, 1.4))
             p.append(pixel(f'cubo{rueda}', cu, cv, 0.04, 0.04, '#6668A8', 0.9))
             p.append(pixel(f'marca{rueda}', cu, cv + radio * 0.7, 0.016, 0.016, '#E0453A', 2.2))
+    elif nombre == 'esclusas':
+        # Canal vertical con una barquita y tres compuertas abajo.
+        p.append(pixel('agua', 0, 0.02, 0.3, 0.2, '#16305E', 0.7))
+        p.append(pixel('orilla_i', -0.31, 0.02, 0.012, 0.2, '#6668A8', 0.9))
+        p.append(pixel('orilla_d', 0.31, 0.02, 0.012, 0.2, '#6668A8', 0.9))
+        p.append(pixel('vela', 0.0, 0.1, 0.03, 0.03, '#E8E2D0', 1.6))
+        p.append(pixel('casco', 0.0, 0.05, 0.07, 0.02, '#E8E2D0', 1.8))
+        for i, u in enumerate((-0.2, 0.0, 0.2)):
+            p.append(pixel(f'compuerta{i}', u, -0.22, 0.08, 0.025, color if i == 1 else '#6668A8',
+                           1.8 if i == 1 else 0.9))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

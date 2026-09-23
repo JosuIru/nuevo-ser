@@ -2318,4 +2318,77 @@ const Map<String, String> narrativaEu = <String, String>{
       'Berretzaile arrunteko berreturak',
   'Área de rectángulos y cuadrados':
       'Laukizuzenen eta karratuen azalera',
+  // Esclusas
+  'Esclusas':
+      'Ateak',
+  'Los números bajan por el canal. Mándalos a su esclusa y ordena a los que vienen atados.':
+      'Zenbakiak ubidean behera doaz. Bidali bakoitza bere atera eta ordenatu lotuta datozenak.',
+  'Las compuertas de los Canales se han soltado. Tú decides por dónde pasa cada barca, y rápido.':
+      'Ubideetako ateak askatu egin dira. Zuk erabakitzen duzu txalupa bakoitza nondik pasatzen den, eta azkar.',
+  'Las barquitas bajan solas. En la primera tanda, toca la esclusa de su tramo antes de que lleguen abajo. En la segunda vienen atadas de dos en dos: toca la que vale más. En la tercera, de tres en tres: tócalas de la más pequeña a la más grande. Si una llega abajo, Rexán la sube otra vez.':
+      'Txalupak bakarrik jaisten dira. Lehen txandan, ukitu bere tartearen atea behera iritsi aurretik. Bigarrenean bi eta bi lotuta datoz: ukitu gehien balio duena. Hirugarrenean, hiru eta hiru: ukitu txikienetik handienera. Bat behera iristen bada, Rexanek berriro igotzen du.',
+  'Se te ha escapado. Te la subo otra vez.':
+      'Ihes egin dizu. Berriro igoko dizut.',
+  'Esa esclusa no es la suya: {b} no está en ese tramo.':
+      'Ate hori ez da berea: {b} ez dago tarte horretan.',
+  '{b} no es la mayor de las dos.':
+      '{b} ez da bietan handiena.',
+  'Esa no tocaba: {b} no es la más pequeña de las que quedan. Empieza otra vez.':
+      'Hori ez zegokion: {b} ez da geratzen direnen artean txikiena. Hasi berriro.',
+  'Ahora vienen atadas de dos en dos. Toca la que vale más.':
+      'Orain bi eta bi lotuta datoz. Ukitu gehien balio duena.',
+  'Ahora de tres en tres. De la más pequeña a la más grande.':
+      'Orain hiru eta hiru. Txikienetik handienera.',
+  'Tres tandas por las esclusas. El canal queda en calma.':
+      'Hiru txanda ateetatik. Ubidea lasai geratzen da.',
+  'Abre la esclusa de su tramo antes de que llegue abajo.':
+      'Ireki bere tartearen atea behera iritsi aurretik.',
+  'Toca la que vale más.':
+      'Ukitu gehien balio duena.',
+  'Tócalas de la más pequeña a la más grande.':
+      'Ukitu txikienetik handienera.',
+  'menos de {u}':
+      '{u} baino gutxiago',
+  'entre {u} y 1':
+      '{u} eta 1 artean',
+  'más de 1':
+      '1 baino gehiago',
+  'Si el de arriba es menor que el de abajo, la fracción es menor que 1; si es mayor, pasa de 1. 7/5 es más que 1 porque 7 > 5.':
+      'Goikoa behekoa baino txikiagoa bada, zatikia 1 baino txikiagoa da; handiagoa bada, 1 gainditzen du. 7/5 1 baino gehiago da, 7 > 5 delako.',
+  'Con el mismo denominador, gana el de arriba más grande: 5/8 > 3/8.':
+      'Izendatzaile berarekin, goikoa handiena duenak irabazten du: 5/8 > 3/8.',
+  'Con el mismo numerador, gana el denominador más pequeño: 2/3 > 2/5, porque los tercios son trozos más grandes que los quintos.':
+      'Zenbakitzaile berarekin, izendatzaile txikienak irabazten du: 2/3 > 2/5, herenak bosdenak baino zati handiagoak direlako.',
+  'Multiplica en cruz: para 3/4 y 5/7, 3 × 7 = 21 y 5 × 4 = 20. Gana la del producto mayor: 3/4.':
+      'Biderkatu gurutzean: 3/4 eta 5/7rentzat, 3 × 7 = 21 eta 5 × 4 = 20. Biderkadura handiena duenak irabazten du: 3/4.',
+  'Compáralas de dos en dos, o pásalas todas a decimal (divide arriba entre abajo) y ordénalas.':
+      'Konparatu bi eta bi, edo pasa guztiak hamartarrera (zatitu goikoa behekoaz) eta ordenatu.',
+  'Iguala las cifras con ceros y compara desde la coma: 0,5 = 0,50, y 0,50 > 0,45.':
+      'Berdindu zifrak zeroekin eta konparatu komatik hasita: 0,5 = 0,50, eta 0,50 > 0,45.',
+  'Compara el de arriba con el de abajo: {n} y {d}.':
+      'Konparatu goikoa behekoarekin: {n} eta {d}.',
+  '{n} es mayor que {d}: {f} es más que 1.':
+      '{n} handiagoa da {d} baino: {f} 1 baino gehiago da.',
+  '{n} es menor que {d}: {f} es menos que 1.':
+      '{n} txikiagoa da {d} baino: {f} 1 baino gutxiago da.',
+  'Mismo denominador ({d}): mira sólo los de arriba.':
+      'Izendatzaile bera ({d}): begiratu goikoei bakarrik.',
+  '{b} > {a}: {f} es la mayor.':
+      '{b} > {a}: {f} da handiena.',
+  'Mismo numerador ({n}): mira los de abajo.':
+      'Zenbakitzaile bera ({n}): begiratu behekoei.',
+  'Partido en {a}, cada trozo es más grande que partido en {b}: {f} es la mayor.':
+      '{a} zatitan zatituta, zati bakoitza handiagoa da {b} zatitan baino: {f} da handiena.',
+  'Multiplica en cruz: {a} × {d} = {x} y {c} × {b} = {y}.':
+      'Biderkatu gurutzean: {a} × {d} = {x} eta {c} × {b} = {y}.',
+  'El producto mayor va con la fracción mayor: {f}.':
+      'Biderkadura handiena zatiki handienarekin doa: {f}.',
+  '{f} ≈ {v}':
+      '{f} ≈ {v}',
+  'De menor a mayor: {orden}.':
+      'Txikienetik handienera: {orden}.',
+  'Iguala las cifras con ceros: {a} y {b}0.':
+      'Berdindu zifrak zeroekin: {a} eta {b}0.',
+  'Compara las décimas y luego las centésimas: {m} es la mayor.':
+      'Konparatu hamarrenak eta gero ehunenak: {m} da handiena.',
 };

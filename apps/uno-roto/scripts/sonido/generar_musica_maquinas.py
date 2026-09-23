@@ -509,6 +509,34 @@ def engranajes():
     return pista
 
 
+def esclusas():
+    """Corriente de canal · 92 BPM, re mayor. Pulso de marimba que baja
+    como las barcas, gotas y agua de fondo; bajo que empuja hacia la
+    compuerta al final de cada compás."""
+    negra = 60 / 92
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['D3', 'F#3', 'A3', 'E4'],    # Dadd9
+        ['B2', 'D3', 'F#3', 'A3'],    # Bm7
+        ['G2', 'B2', 'D3', 'F#3'],    # Gmaj7
+        ['A2', 'C#3', 'E3', 'G3'],    # A7
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.04, 1600))
+        # Marimba descendente: la barca baja por el canal.
+        for i, voz in enumerate(reversed(voces)):
+            sumar_circular(pista, inicio + i * negra, marimba(nota(voz) * 2, 0.07))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 1.5, 0.08))
+        sumar_circular(pista, inicio + 3.5 * negra, bajo(nota(voces[0]) * 1.5, negra * 0.4, 0.06))
+        for corchea in (1, 5):
+            sumar_circular(pista, inicio + corchea * negra / 2, gota(0.05))
+    pista += mar(len(pista), len(pista) / FS, 0.025)
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -575,6 +603,7 @@ if __name__ == '__main__':
     guardar(flota(), os.path.join(musica, 'maquina_flota.ogg'), -19, es_bucle=True)
     guardar(salto(), os.path.join(musica, 'maquina_salto.ogg'), -19, es_bucle=True)
     guardar(engranajes(), os.path.join(musica, 'maquina_engranajes.ogg'), -19, es_bucle=True)
+    guardar(esclusas(), os.path.join(musica, 'maquina_esclusas.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

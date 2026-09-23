@@ -12,6 +12,7 @@ import 'pantalla_balanza.dart';
 import 'pantalla_canales.dart';
 import 'pantalla_encaje.dart';
 import 'pantalla_engranajes.dart';
+import 'pantalla_esclusas.dart';
 import 'pantalla_flota.dart';
 import 'pantalla_minas.dart';
 import 'pantalla_parejas.dart';
@@ -72,6 +73,8 @@ Widget pantallaDeMaquina(
           habilidadesPracticadas: habilidades);
     case IdMinijuego.engranajes:
       return PantallaEngranajes(registro: registro, dificultad: dificultad);
+    case IdMinijuego.esclusas:
+      return PantallaEsclusas(registro: registro, dificultad: dificultad);
   }
 }
 
@@ -152,6 +155,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.flota,
     IdMinijuego.salto,
     IdMinijuego.engranajes,
+    IdMinijuego.esclusas,
   };
 
   Widget _pantallaDe(

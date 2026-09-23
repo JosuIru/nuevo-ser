@@ -45,6 +45,14 @@ const trucosPorHabilidad = <String, String>{
       'arriba entre abajo) y ordénalas.',
   'DEC.03': 'Iguala las cifras con ceros y compara desde la coma: '
       '0,5 = 0,50, y 0,50 > 0,45.',
+  'GEO.03': 'El área de un rectángulo es ancho por alto: 4 × 6 = 24 m². '
+      'Cuenta los cuadros de una fila y multiplica por las filas.',
+  'GEO.02': 'El perímetro es la vuelta entera: suma los cuatro lados. '
+      'Para la misma área, cuanto más cuadrado, menos valla.',
+  'GEO.04': 'Un triángulo rectángulo es medio rectángulo: base por altura y '
+      'entre dos. Para 12 m² de tejado, un rectángulo de 24.',
+  'MED.05': 'Un metro cuadrado tiene 10 × 10 = 100 decímetros cuadrados. '
+      'Para pasar de dm² a m², divide entre 100.',
   'DIV.07': 'Escribe los múltiplos de cada número hasta encontrar el primero '
       'que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.',
   'DIV.06': 'Escribe los divisores de cada número y quédate con el mayor que '

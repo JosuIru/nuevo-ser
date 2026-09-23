@@ -38,6 +38,7 @@ const habilidadesConEjemplo = {
   'DIV.01', 'DIV.03', 'DIV.04', 'DIV.05', 'DEC.02', 'FR.03', // reglas
   'DIV.06', 'DIV.07', // Engranajes
   'FR.04', 'FR.05', 'FR.06', 'FR.07', 'FR.08', 'DEC.03', // Esclusas
+  'GEO.02', 'GEO.03', 'GEO.04', 'MED.05', // Planos
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -138,6 +139,40 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
           PasoEjemplo('No sobra nada: {x} es múltiplo de {n}.', {'x': '$x', 'n': '$n'})
         else
           PasoEjemplo('Sobran {r}: {x} no es múltiplo de {n}.', {'r': '$resto', 'x': '$x', 'n': '$n'}),
+      ]);
+    case 'GEO.03':
+      final ancho = entre(3, 8);
+      final alto = entre(2, 6);
+      return EjemploResuelto('$ancho m × $alto m', [
+        PasoEjemplo('Una fila tiene {a} cuadros y hay {h} filas.', {'a': '$ancho', 'h': '$alto'}),
+        PasoEjemplo('Área: {a} × {h} = {r} m².', {'a': '$ancho', 'h': '$alto', 'r': '${ancho * alto}'}),
+      ]);
+    case 'GEO.02':
+      final area = const [12, 16, 18, 20, 24, 30, 36][azar.nextInt(7)];
+      final formas = [
+        for (var a = 1; a <= area; a++)
+          if (area % a == 0 && a <= area ~/ a) (a, area ~/ a),
+      ];
+      final mejor = formas.last;
+      return EjemploResuelto('$area m²', [
+        for (final (a, b) in formas)
+          PasoEjemplo('{a} × {b}: valla de {p} m.', {'a': '$a', 'b': '$b', 'p': '${2 * (a + b)}'}),
+        PasoEjemplo('La más cuadrada, {a} × {b}, gasta menos valla.', {'a': '${mejor.$1}', 'b': '${mejor.$2}'}),
+      ]);
+    case 'GEO.04':
+      final base = entre(2, 8);
+      final altura = entre(2, 6) * (base.isOdd ? 2 : 1);
+      return EjemploResuelto('△ $base m × $altura m', [
+        PasoEjemplo('El rectángulo que lo contiene: {b} × {h} = {r} m².',
+            {'b': '$base', 'h': '$altura', 'r': '${base * altura}'}),
+        PasoEjemplo('El triángulo es la mitad: {r} ÷ 2 = {t} m².',
+            {'r': '${base * altura}', 't': '${base * altura ~/ 2}'}),
+      ]);
+    case 'MED.05':
+      final m2 = entre(3, 40);
+      return EjemploResuelto('${m2 * 100} dm² = ? m²', [
+        PasoEjemplo('1 m² = 10 dm × 10 dm = 100 dm².'),
+        PasoEjemplo('{d} ÷ 100 = {m} m².', {'d': '${m2 * 100}', 'm': '$m2'}),
       ]);
     case 'FR.04':
       final d = entre(3, 9);

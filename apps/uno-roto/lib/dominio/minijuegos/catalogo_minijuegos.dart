@@ -27,6 +27,7 @@ enum IdMinijuego {
   // Segunda sala.
   engranajes,
   esclusas,
+  planos,
 }
 
 class DefinicionMinijuego {
@@ -200,6 +201,22 @@ class CatalogoMinijuegos {
           'llega abajo, Rexán la sube otra vez.',
       sala: 2,
       llaves: ['FR.03'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.planos,
+      nombre: 'Planos',
+      descripcion: 'Redibuja las casas de las Afueras con la medida justa: '
+          'área, valla y tejados.',
+      lineaRexan: 'Se mojaron los planos de las casas nuevas. Tú tienes '
+          'cuadrícula y lápiz; yo, el sello.',
+      habilidades: ['GEO.03', 'GEO.02', 'GEO.04', 'MED.05'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Arrastra el dedo de una esquina a la otra (o toca dos '
+          'esquinas) para dibujar la habitación; cada cuadro es 1 m². Abajo '
+          'ves su área y su valla. Cuando cumpla el encargo, pulsa ENTREGAR. '
+          'No se construye sobre la maleza.',
+      sala: 2,
+      llaves: ['ARI.01', 'OP.01'],
     ),
   ];
 

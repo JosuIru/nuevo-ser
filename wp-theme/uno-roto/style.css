@@ -1,0 +1,51 @@
+/*
+Theme Name: Uno Roto
+Theme URI: https://coleccion-nuevo-ser.com/
+Author: Colección Nuevo Ser
+Description: Tema de bloques para la web de Uno Roto (Colección Nuevo Ser Kids): de noche, neón violeta y ámbar, con las tipografías del juego empaquetadas. Sin peticiones a terceros. Pensado para la página con el shortcode [uno_roto] del plugin Nuevo Ser Core.
+Requires at least: 6.4
+Tested up to: 6.8
+Requires PHP: 7.4
+Version: 0.1.0
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: uno-roto
+*/
+
+/* Casi todo va en theme.json; aquí sólo lo que no cabe allí. */
+
+.wp-site-blocks {
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+}
+
+.wp-site-blocks > main {
+	flex: 1;
+}
+
+.ur-cabecera .wp-block-site-title a {
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	text-decoration: none;
+	text-shadow: 0 0 18px rgba(138, 92, 255, 0.55);
+}
+
+.ur-cabecera .wp-block-navigation a {
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+.ur-cabecera .wp-block-navigation a:hover {
+	color: var(--wp--preset--color--ambar);
+}
+
+.ur-pie a {
+	text-underline-offset: 4px;
+}
+
+:where(.wp-site-blocks) :focus-visible {
+	outline: 2px solid var(--wp--preset--color--ambar);
+	outline-offset: 3px;
+}

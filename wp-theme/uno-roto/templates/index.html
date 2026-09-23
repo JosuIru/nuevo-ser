@@ -1,0 +1,21 @@
+<!-- wp:template-part {"slug":"cabecera","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"clamp(40px, 6vw, 80px)","bottom":"clamp(40px, 6vw, 80px)"}}},"layout":{"type":"constrained"}} -->
+<main class="wp-block-group" style="padding-top:clamp(40px, 6vw, 80px);padding-bottom:clamp(40px, 6vw, 80px)">
+	<!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true}} -->
+	<div class="wp-block-query">
+		<!-- wp:post-template -->
+			<!-- wp:post-title {"isLink":true} /-->
+			<!-- wp:post-excerpt /-->
+		<!-- /wp:post-template -->
+		<!-- wp:query-no-results -->
+			<!-- wp:paragraph -->
+			<p>Aquí todavía no hay nada. <a href="/jugar/">Ve a jugar</a>.</p>
+			<!-- /wp:paragraph -->
+		<!-- /wp:query-no-results -->
+	</div>
+	<!-- /wp:query -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"pie","area":"footer"} /-->

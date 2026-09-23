@@ -4,9 +4,11 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/repositorio_progreso.dart';
 import '../dominio/catalogo_escenas.dart';
+import '../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../dominio/rango_narrativo.dart';
 import '../nucleo/paleta.dart';
 import 'kai_presencia.dart';
+import 'minijuegos/pantalla_maquinas.dart' show pantallaDeMaquina;
 import 'oryn_presencia.dart';
 import 'pantalla_cinematica.dart';
 import 'sora_presencia.dart';
@@ -74,12 +76,26 @@ class _PantallaModoDiosState extends State<PantallaModoDios> {
           ),
           const SizedBox(height: 24),
           _Seccion(
+            titulo: 'MÁQUINAS DE REXÁN',
+            hijos: [
+              for (final definicion in CatalogoMinijuegos.todos)
+                _BotonUtilidad(
+                  etiqueta: definicion.nombre,
+                  descripcion: 'Todas sus habilidades, sin registrar '
+                      'maestría. Toca para dificultad 1; mantén para '
+                      'elegir.',
+                  onTap: () => _abrirMaquina(definicion, 1),
+                  alMantener: () => _elegirDificultad(definicion),
+                ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          _Seccion(
             titulo: 'UTILIDADES',
             hijos: [
               _BotonUtilidad(
                 etiqueta: 'Desbloquear todo (perfil activo)',
-                descripcion:
-                    'Activa todos los flags narrativos, sube al rango '
+                descripcion: 'Activa todos los flags narrativos, sube al rango '
                     'máximo y deja 999 esquirlas en el perfil activo.',
                 onTap: _trabajando ? null : _desbloquearTodo,
               ),
@@ -104,6 +120,37 @@ class _PantallaModoDiosState extends State<PantallaModoDios> {
     );
   }
 
+  Future<void> _abrirMaquina(DefinicionMinijuego definicion, int dificultad) =>
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => pantallaDeMaquina(
+          definicion.id,
+          registro: null,
+          dificultad: dificultad,
+          habilidades: definicion.habilidades,
+        ),
+      ));
+
+  Future<void> _elegirDificultad(DefinicionMinijuego definicion) async {
+    final dificultad = await showDialog<int>(
+      context: context,
+      builder: (contexto) => SimpleDialog(
+        backgroundColor: PaletaNeon.fondoMedio,
+        title: Text('${definicion.nombre} — dificultad',
+            style: const TextStyle(color: PaletaNeon.textoPrincipal)),
+        children: [
+          for (final valor in const [1, 2, 3])
+            SimpleDialogOption(
+              onPressed: () => Navigator.of(contexto).pop(valor),
+              child: Text('Dificultad $valor',
+                  style: const TextStyle(color: PaletaNeon.textoPrincipal)),
+            ),
+        ],
+      ),
+    );
+    if (dificultad != null && mounted)
+      await _abrirMaquina(definicion, dificultad);
+  }
+
   Future<void> _desbloquearTodo() async {
     setState(() => _trabajando = true);
     try {
@@ -119,7 +166,8 @@ class _PantallaModoDiosState extends State<PantallaModoDios> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Desbloqueado: 66 flags + rango Iniciado + 999 esquirlas'),
+          content:
+              Text('Desbloqueado: 66 flags + rango Iniciado + 999 esquirlas'),
           duration: Duration(seconds: 3),
         ),
       );
@@ -414,24 +462,25 @@ class _BotonUtilidad extends StatelessWidget {
   final String etiqueta;
   final String descripcion;
   final VoidCallback? onTap;
+  final VoidCallback? alMantener;
   final bool destructivo;
 
   const _BotonUtilidad({
     required this.etiqueta,
     required this.descripcion,
     required this.onTap,
+    this.alMantener,
     this.destructivo = false,
   });
 
   @override
   Widget build(BuildContext contexto) {
-    final color = destructivo
-        ? PaletaNeon.rojoOxidado
-        : PaletaNeon.violetaNeon;
+    final color = destructivo ? PaletaNeon.rojoOxidado : PaletaNeon.violetaNeon;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: onTap,
+        onLongPress: alMantener,
         borderRadius: BorderRadius.circular(8),
         child: Container(
           padding: const EdgeInsets.all(14),

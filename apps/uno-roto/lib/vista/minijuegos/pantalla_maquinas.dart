@@ -13,6 +13,40 @@ import 'pantalla_minas.dart';
 import 'pantalla_parejas.dart';
 import 'pantalla_puentes.dart';
 
+/// Pantalla de la máquina [id]. Con [registro] nulo no se registra
+/// maestría (modo dios: pruebas del operador).
+Widget pantallaDeMaquina(
+  IdMinijuego id, {
+  required RegistroMaestriaMinijuego? registro,
+  required int dificultad,
+  required List<String> habilidades,
+}) {
+  switch (id) {
+    case IdMinijuego.puentes:
+      return PantallaPuentes(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+    case IdMinijuego.encaje:
+      return PantallaEncaje(dificultad: dificultad);
+    case IdMinijuego.canales:
+      return PantallaCanales(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+    case IdMinijuego.parejas:
+      return PantallaParejas(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+    case IdMinijuego.minas:
+      return PantallaMinas(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+  }
+}
+
 /// Las máquinas de Rexán: recreativas viejas que repasan matemáticas ya
 /// vistas. Cada máquina aparece encendida cuando el niño ha practicado
 /// alguna de sus habilidades; si no, Rexán todavía la está arreglando
@@ -30,6 +64,10 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
   Map<IdMinijuego, DisponibilidadMinijuego> _disponibilidad = const {};
   bool _cargado = false;
 
+  /// En modo dios todas las máquinas están encendidas, se elige la
+  /// dificultad y no se registra maestría.
+  bool _modoDios = false;
+
   @override
   void initState() {
     super.initState();
@@ -37,6 +75,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
   }
 
   Future<void> _cargar() async {
+    final modoDios = await widget.repositorio.cargarModoDiosActivo();
     final estados = <String, EstadoHabilidad?>{};
     for (final definicion in CatalogoMinijuegos.todos) {
       for (final id in definicion.habilidades) {
@@ -45,6 +84,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     }
     if (!mounted) return;
     setState(() {
+      _modoDios = modoDios;
       _disponibilidad = {
         for (final definicion in CatalogoMinijuegos.todos)
           definicion.id: disponibilidadMinijuego(definicion, estados),
@@ -63,45 +103,35 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.minas,
   };
 
-  Widget? _pantallaDe(
+  Widget _pantallaDe(
       DefinicionMinijuego definicion, DisponibilidadMinijuego disponibilidad) {
     final registro = RegistroMaestriaMinijuego(widget.repositorio);
     registro.preparar();
-    switch (definicion.id) {
-      case IdMinijuego.puentes:
-        return PantallaPuentes(
-          registro: registro,
-          dificultad: disponibilidad.dificultad,
-          habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
-        );
-      case IdMinijuego.encaje:
-        return PantallaEncaje(dificultad: disponibilidad.dificultad);
-      case IdMinijuego.parejas:
-        return PantallaParejas(
-          registro: registro,
-          dificultad: disponibilidad.dificultad,
-          habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
-        );
-      case IdMinijuego.minas:
-        return PantallaMinas(
-          registro: registro,
-          dificultad: disponibilidad.dificultad,
-          habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
-        );
-      case IdMinijuego.canales:
-        return PantallaCanales(
-          registro: registro,
-          dificultad: disponibilidad.dificultad,
-          habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
-        );
-    }
+    return pantallaDeMaquina(
+      definicion.id,
+      registro: registro,
+      dificultad: disponibilidad.dificultad,
+      habilidades: disponibilidad.habilidadesPracticadas,
+    );
+  }
+
+  Future<void> _abrirEnModoDios(
+      DefinicionMinijuego definicion, int dificultad) async {
+    HapticFeedback.selectionClick();
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => pantallaDeMaquina(
+        definicion.id,
+        registro: null,
+        dificultad: dificultad,
+        habilidades: definicion.habilidades,
+      ),
+    ));
   }
 
   Future<void> _abrir(DefinicionMinijuego definicion) async {
     final disponibilidad = _disponibilidad[definicion.id];
     if (disponibilidad == null || !disponibilidad.disponible) return;
     final pantalla = _pantallaDe(definicion, disponibilidad);
-    if (pantalla == null) return;
     HapticFeedback.selectionClick();
     await Navigator.of(context)
         .push(MaterialPageRoute(builder: (_) => pantalla));
@@ -126,14 +156,22 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                             color: PaletaNeon.textoTenue, size: 20),
                         onPressed: () => Navigator.of(contexto).pop(),
                       ),
-                      Text(
-                        traducirNarrativa('Las máquinas de Rexán', locale)
-                            .toUpperCase(),
-                        style: const TextStyle(
-                          color: PaletaNeon.textoPrincipal,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w300,
-                          letterSpacing: 3,
+                      // Se encoge si no cabe: en euskera y catalán el
+                      // rótulo es aún más largo.
+                      Expanded(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            traducirNarrativa('Las máquinas de Rexán', locale)
+                                .toUpperCase(),
+                            style: const TextStyle(
+                              color: PaletaNeon.textoPrincipal,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: 3,
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -153,10 +191,15 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                   for (final definicion in CatalogoMinijuegos.todos)
                     _FichaMaquina(
                       definicion: definicion,
-                      encendida: (_disponibilidad[definicion.id]?.disponible ??
-                              false) &&
-                          _construidas.contains(definicion.id),
+                      encendida: _modoDios ||
+                          ((_disponibilidad[definicion.id]?.disponible ??
+                                  false) &&
+                              _construidas.contains(definicion.id)),
                       alTocar: () => _abrir(definicion),
+                      alElegirDificultad: _modoDios
+                          ? (dificultad) =>
+                              _abrirEnModoDios(definicion, dificultad)
+                          : null,
                     ),
                 ],
               ),
@@ -170,10 +213,14 @@ class _FichaMaquina extends StatelessWidget {
   final bool encendida;
   final VoidCallback alTocar;
 
+  /// Sólo en modo dios: abrir la máquina con la dificultad elegida.
+  final ValueChanged<int>? alElegirDificultad;
+
   const _FichaMaquina({
     required this.definicion,
     required this.encendida,
     required this.alTocar,
+    this.alElegirDificultad,
   });
 
   @override
@@ -181,7 +228,7 @@ class _FichaMaquina extends StatelessWidget {
     final locale = Localizations.localeOf(contexto);
     final color = encendida ? PaletaNeon.ambarCanales : PaletaNeon.grisMetal;
     return GestureDetector(
-      onTap: encendida ? alTocar : null,
+      onTap: encendida && alElegirDificultad == null ? alTocar : null,
       child: Container(
         margin: const EdgeInsets.fromLTRB(12, 0, 0, 12),
         padding: const EdgeInsets.all(16),
@@ -232,6 +279,39 @@ class _FichaMaquina extends StatelessWidget {
                       height: 1.4,
                     ),
                   ),
+                  if (alElegirDificultad != null) ...[
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        for (final dificultad in const [1, 2, 3])
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: GestureDetector(
+                              key: ValueKey(
+                                  'dios-${definicion.id.name}-$dificultad'),
+                              onTap: () => alElegirDificultad!(dificultad),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 6),
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: PaletaNeon.violetaNeon),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Text(
+                                  'D$dificultad',
+                                  style: const TextStyle(
+                                    color: PaletaNeon.violetaNeon,
+                                    fontSize: 12,
+                                    letterSpacing: 1.5,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ],
                 ],
               ),
             ),

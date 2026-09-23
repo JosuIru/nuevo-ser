@@ -210,6 +210,8 @@ class _PantallaCanalesState extends State<PantallaCanales>
       alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.regla.idHabilidad,
+      dificultadEjemplo: widget.dificultad,
+      parametroEjemplo: _partida.regla.parametro,
       alPausar: () => _pausado = true,
       alReanudar: () => _pausado = false,
       ronda: _ronda,

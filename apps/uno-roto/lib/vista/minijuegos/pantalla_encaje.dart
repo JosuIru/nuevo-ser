@@ -142,6 +142,7 @@ class _PantallaEncajeState extends State<PantallaEncaje>
       titulo: _definicion.nombre,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: 'FR.16',
+      dificultadEjemplo: widget.dificultad,
       alPausar: () => _pausado = true,
       alReanudar: () => _pausado = false,
       ronda: (_tablero.unidades + 1).clamp(1, _definicion.rondasPorPartida),

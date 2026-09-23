@@ -148,6 +148,8 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina, Pis
       alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.columna.idHabilidad,
+      dificultadEjemplo: _enNivel.dificultad,
+      enunciadoActual: _partida.columna.expresion,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan:

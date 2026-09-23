@@ -195,6 +195,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
       alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _reto.modo.idHabilidad,
+      dificultadEjemplo: _enNivel.dificultad,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: _terminada

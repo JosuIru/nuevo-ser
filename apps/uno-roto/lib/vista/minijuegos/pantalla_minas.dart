@@ -150,6 +150,8 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina, Pis
       alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _tablero.regla.idHabilidad,
+      dificultadEjemplo: _enNivel.dificultad,
+      parametroEjemplo: _tablero.regla.parametro,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: _linea(locale),

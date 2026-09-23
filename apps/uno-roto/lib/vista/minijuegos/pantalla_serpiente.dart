@@ -160,6 +160,8 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
       alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.reto.idHabilidad,
+      dificultadEjemplo: widget.dificultad,
+      enunciadoActual: _partida.reto.enunciado,
       alPausar: () => _pausado = true,
       alReanudar: () => _pausado = false,
       ronda: _ronda,

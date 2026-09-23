@@ -155,6 +155,8 @@ class _PantallaSaltoState extends State<PantallaSalto>
       alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: _partida.puertaSiguiente.reto.idHabilidad,
+      dificultadEjemplo: widget.dificultad,
+      enunciadoActual: _partida.puertaSiguiente.reto.enunciado,
       alPausar: () => _pausado = true,
       alReanudar: () => _pausado = false,
       ronda: _ronda,

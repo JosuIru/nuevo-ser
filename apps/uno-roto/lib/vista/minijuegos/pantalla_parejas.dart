@@ -152,6 +152,7 @@ class _PantallaParejasState extends State<PantallaParejas>
       alAbrirAyuda: pistaAtendida,
       comoSeJuega: _definicion.comoSeJuega,
       idHabilidadActual: widget.habilidadesPracticadas.isEmpty ? 'FR.09' : widget.habilidadesPracticadas.first,
+      dificultadEjemplo: _enNivel.dificultad,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: traducirNarrativa(linea, locale),

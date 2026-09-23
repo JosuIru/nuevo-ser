@@ -53,6 +53,7 @@ class _PantallaCanalesState extends State<PantallaCanales>
   bool _empezado = false;
   bool _entreLaberintos = false;
   bool _terminada = false;
+  bool _pausado = false;
   String? _lineaRexan;
   DateTime _inicioLaberinto = DateTime.now();
 
@@ -110,7 +111,7 @@ class _PantallaCanalesState extends State<PantallaCanales>
   }
 
   void _tic() {
-    if (!mounted || !_empezado || _entreLaberintos || _terminada) return;
+    if (!mounted || !_empezado || _entreLaberintos || _terminada || _pausado) return;
     final evento = _partida.avanzar();
     setState(() {
       switch (evento) {
@@ -198,6 +199,10 @@ class _PantallaCanalesState extends State<PantallaCanales>
     final laberinto = _partida.laberinto;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: _partida.regla.idHabilidad,
+      alPausar: () => _pausado = true,
+      alReanudar: () => _pausado = false,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: _linea(locale),

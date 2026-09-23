@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../datos/registro_maestria_minijuego.dart';
+import '../../dominio/minijuegos/ayudas_maquinas.dart';
 import '../../dominio/minijuegos/balanza.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../l10n/traducciones_narrativa.dart';
@@ -47,6 +48,13 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
   double _inclinacionDesde = 0;
   double _inclinacionHasta = 0;
   bool _yaRegistrada = false;
+
+  /// Despejar paso a paso: los pasos y cuántos se ven. Si se usa antes
+  /// del primer "pesar", esa ecuación no cuenta para la maestría (ni a
+  /// favor ni en contra).
+  List<PasoBalanza>? _pasos;
+  int _pasosVistos = 0;
+  bool _ayudaUsada = false;
   bool _resuelta = false;
   bool _terminada = false;
   String? _lineaRexan;
@@ -83,6 +91,9 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
         dificultad: widget.dificultad);
     _propuesta = 1;
     _yaRegistrada = false;
+    _pasos = null;
+    _pasosVistos = 0;
+    _ayudaUsada = false;
     _resuelta = false;
     _lineaRexan = null;
     _inicio = DateTime.now();
@@ -101,7 +112,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
     final diferencia = _ecuacion.inclinacion(_propuesta);
     if (!_yaRegistrada) {
       _yaRegistrada = true;
-      widget.registro?.registrar(
+      if (!_ayudaUsada) widget.registro?.registrar(
         idHabilidad: _ecuacion.idHabilidad,
         acierto: diferencia == 0,
         dificultad: 0.8 + 0.3 * widget.dificultad,
@@ -142,6 +153,86 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
     }
   }
 
+  void _abrirPasos() {
+    HapticFeedback.selectionClick();
+    setState(() {
+      _pasos = pasosDespejar(_ecuacion);
+      _pasosVistos = 1;
+      if (!_yaRegistrada) _ayudaUsada = true;
+    });
+  }
+
+  void _siguientePaso() {
+    HapticFeedback.selectionClick();
+    setState(() => _pasosVistos++);
+  }
+
+  void _cerrarPasos() => setState(() => _pasos = null);
+
+  /// La balanza que se dibuja: la del último paso visto, o la ecuación.
+  EcuacionBalanza get _balanzaVisible {
+    final pasos = _pasos;
+    if (pasos == null) return _ecuacion;
+    final paso = pasos[_pasosVistos - 1];
+    return EcuacionBalanza(
+      idHabilidad: _ecuacion.idHabilidad,
+      bolsasIzquierda: paso.bolsasIzquierda,
+      pesasIzquierda: paso.pesasIzquierda,
+      bolsasDerecha: paso.bolsasDerecha,
+      pesasDerecha: paso.pesasDerecha,
+      solucion: _ecuacion.solucion,
+    );
+  }
+
+  Widget _panelPasos(Locale locale) {
+    final pasos = _pasos!;
+    final ultimo = _pasosVistos >= pasos.length;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 10),
+      decoration: BoxDecoration(
+        color: PaletaNeon.fondoMedio.withOpacity(0.9),
+        border: Border.all(color: PaletaNeon.ambarCanales.withOpacity(0.6)),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (var i = 0; i < _pasosVistos; i++)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${i + 1}.',
+                      style: const TextStyle(color: PaletaNeon.ambarCanales, fontSize: 14)),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      '${traducirNarrativa(pasos[i].plantilla, locale).replaceAll('{n}', '${pasos[i].valor}')}\n→ ${pasos[i].ecuacion}',
+                      style: const TextStyle(
+                          color: PaletaNeon.textoPrincipal, fontSize: 14, height: 1.4),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              key: ValueKey(ultimo ? 'pasos-cerrar' : 'pasos-siguiente'),
+              onPressed: ultimo ? _cerrarPasos : _siguientePaso,
+              child: Text(
+                traducirNarrativa(ultimo ? 'VOLVER A LA BALANZA' : 'SIGUIENTE PASO', locale),
+                style: const TextStyle(color: PaletaNeon.ambarCanales, letterSpacing: 2),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext contexto) {
     final locale = Localizations.localeOf(contexto);
@@ -150,6 +241,8 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
         : _lineaRexan ?? _definicion.lineaRexan;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: _ecuacion.idHabilidad,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: traducirNarrativa(linea, locale)
@@ -158,7 +251,7 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
       child: Column(
         children: [
           Text(
-            _ecuacion.texto,
+            _balanzaVisible.texto,
             style: const TextStyle(
               color: PaletaNeon.ambarCanales,
               fontSize: 24,
@@ -171,13 +264,27 @@ class _PantallaBalanzaState extends State<PantallaBalanza>
               builder: (_, __) => CustomPaint(
                 size: Size.infinite,
                 painter: PintorBalanzaEcuacion(
-                  ecuacion: _ecuacion,
-                  inclinacion: _inclinacion,
-                  equilibrada: _resuelta,
+                  ecuacion: _balanzaVisible,
+                  // Durante los pasos siempre en equilibrio: es la idea.
+                  inclinacion: _pasos != null ? 0 : _inclinacion,
+                  equilibrada: _resuelta || _pasos != null,
                 ),
               ),
             ),
           ),
+          if (_pasos != null) ...[
+            _panelPasos(locale),
+            const SizedBox(height: 10),
+          ] else if (!_resuelta)
+            TextButton.icon(
+              key: const ValueKey('pasos-abrir'),
+              onPressed: _abrirPasos,
+              icon: const Icon(Icons.lightbulb_outline, color: PaletaNeon.textoTenue, size: 18),
+              label: Text(
+                traducirNarrativa('AYÚDAME PASO A PASO', locale),
+                style: const TextStyle(color: PaletaNeon.textoTenue, letterSpacing: 1.5),
+              ),
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

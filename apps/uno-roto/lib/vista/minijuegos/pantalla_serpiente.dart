@@ -49,6 +49,7 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
   int _ronda = 1;
   bool _empezado = false;
   bool _terminada = false;
+  bool _pausado = false;
   String? _lineaRexan;
   DateTime _inicioRonda = DateTime.now();
 
@@ -86,7 +87,7 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
   }
 
   void _tic() {
-    if (!mounted || !_empezado || _terminada) return;
+    if (!mounted || !_empezado || _terminada || _pausado) return;
     final evento = _partida.avanzar();
     setState(() {
       switch (evento) {
@@ -147,6 +148,10 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
                 : 'Lee la cuenta. Cuando quieras, elige una dirección.');
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: _partida.reto.idHabilidad,
+      alPausar: () => _pausado = true,
+      alReanudar: () => _pausado = false,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: traducirNarrativa(linea, locale),

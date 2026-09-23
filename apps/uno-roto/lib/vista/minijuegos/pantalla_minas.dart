@@ -135,6 +135,8 @@ class _PantallaMinasState extends State<PantallaMinas> with MusicaDeMaquina {
     final parametro = _tablero.regla.parametro;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: _tablero.regla.idHabilidad,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: _linea(locale),

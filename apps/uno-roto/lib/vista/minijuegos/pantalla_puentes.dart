@@ -181,6 +181,8 @@ class _PantallaPuentesState extends State<PantallaPuentes>
     final locale = Localizations.localeOf(contexto);
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: _reto.modo.idHabilidad,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: _terminada

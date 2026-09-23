@@ -44,6 +44,7 @@ class _PantallaEncajeState extends State<PantallaEncaje>
   Timer? _temporizador;
   String? _lineaRexan;
   bool _terminada = false;
+  bool _pausado = false;
 
   Duration get _periodo =>
       widget.periodoCaida ??
@@ -75,7 +76,7 @@ class _PantallaEncajeState extends State<PantallaEncaje>
   }
 
   void _caer() {
-    if (_terminada || !mounted) return;
+    if (_terminada || _pausado || !mounted) return;
     setState(() {
       if (_tablero.bajar() == ResultadoCaida.encajada) _trasEncajar();
     });
@@ -125,6 +126,10 @@ class _PantallaEncajeState extends State<PantallaEncaje>
         : _lineaRexan ?? _definicion.lineaRexan;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: 'FR.16',
+      alPausar: () => _pausado = true,
+      alReanudar: () => _pausado = false,
       ronda: (_tablero.unidades + 1).clamp(1, _definicion.rondasPorPartida),
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: traducirNarrativa(linea, locale),

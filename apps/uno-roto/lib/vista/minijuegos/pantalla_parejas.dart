@@ -136,6 +136,8 @@ class _PantallaParejasState extends State<PantallaParejas>
     final columnas = 4;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: widget.habilidadesPracticadas.isEmpty ? 'FR.09' : widget.habilidadesPracticadas.first,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan: traducirNarrativa(linea, locale),

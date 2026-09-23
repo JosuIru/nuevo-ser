@@ -135,6 +135,8 @@ class _PantallaFlotaState extends State<PantallaFlota> with MusicaDeMaquina {
         : _lineaRexan ?? _definicion.lineaRexan;
     return MarcoMinijuego(
       titulo: _definicion.nombre,
+      comoSeJuega: _definicion.comoSeJuega,
+      idHabilidadActual: _partida.columna.idHabilidad,
       ronda: _ronda,
       rondasTotales: _definicion.rondasPorPartida,
       lineaRexan:

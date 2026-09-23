@@ -1881,4 +1881,27 @@ const Map<String, String> narrativaEu = <String, String>{
       'Bat.',
   'Seis unidades. La máquina se calienta; mañana más.':
       'Sei unitate. Makina berotu egin da; bihar gehiago.',
+  // Canales (minijuego)
+  'Sólo múltiplos de {n}.':
+      'Multiploak bakarrik: {n}.',
+  'Sólo divisibles entre {n}.':
+      'Zatigarriak bakarrik. Zatitzailea: {n}.',
+  'Sólo números primos.':
+      'Zenbaki lehenak bakarrik.',
+  'Sólo decimales mayores que 0,5.':
+      '0,5 baino handiagoak diren hamartarrak bakarrik.',
+  'Sólo fracciones mayores que 1/2.':
+      '1/2 baino handiagoak diren zatikiak bakarrik.',
+  'Quedan {n}':
+      '{n} falta dira',
+  'Ese no cumple: {valor}.':
+      'Horrek ez du betetzen: {valor}.',
+  'Te han pillado. Vuelves a la salida.':
+      'Harrapatu zaituzte. Irteerara itzultzen zara.',
+  'Laberinto limpio.':
+      'Labirintoa garbi.',
+  'Lee la regla. Cuando quieras, elige una dirección.':
+      'Irakurri araua. Nahi duzunean, aukeratu norabide bat.',
+  'Tres laberintos. Las sombras se van a dormir; tú también.':
+      'Hiru labirinto. Itzalak lotara doaz; zu ere bai.',
 };

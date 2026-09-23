@@ -1885,4 +1885,27 @@ const Map<String, String> narrativaCa = <String, String>{
       'Un u.',
   'Seis unidades. La máquina se calienta; mañana más.':
       'Sis unitats. La màquina s\'escalfa; demà més.',
+  // Canales (minijuego)
+  'Sólo múltiplos de {n}.':
+      'Només múltiples de {n}.',
+  'Sólo divisibles entre {n}.':
+      'Només divisibles entre {n}.',
+  'Sólo números primos.':
+      'Només nombres primers.',
+  'Sólo decimales mayores que 0,5.':
+      'Només decimals més grans que 0,5.',
+  'Sólo fracciones mayores que 1/2.':
+      'Només fraccions més grans que 1/2.',
+  'Quedan {n}':
+      'En queden {n}',
+  'Ese no cumple: {valor}.':
+      'Aquest no compleix: {valor}.',
+  'Te han pillado. Vuelves a la salida.':
+      'T\'han enxampat. Tornes a la sortida.',
+  'Laberinto limpio.':
+      'Laberint net.',
+  'Lee la regla. Cuando quieras, elige una dirección.':
+      'Llegeix la regla. Quan vulguis, tria una direcció.',
+  'Tres laberintos. Las sombras se van a dormir; tú también.':
+      'Tres laberints. Les ombres se\'n van a dormir; tu també.',
 };

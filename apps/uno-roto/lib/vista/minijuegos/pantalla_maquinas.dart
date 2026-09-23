@@ -7,6 +7,7 @@ import '../../datos/repositorio_progreso.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
+import 'pantalla_canales.dart';
 import 'pantalla_encaje.dart';
 import 'pantalla_puentes.dart';
 
@@ -52,7 +53,11 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
 
   /// Máquinas ya construidas. Las que falten aparecen "en reparación"
   /// aunque el niño tenga las habilidades.
-  static const _construidas = {IdMinijuego.puentes, IdMinijuego.encaje};
+  static const _construidas = {
+    IdMinijuego.puentes,
+    IdMinijuego.encaje,
+    IdMinijuego.canales,
+  };
 
   Widget? _pantallaDe(
       DefinicionMinijuego definicion, DisponibilidadMinijuego disponibilidad) {
@@ -68,7 +73,11 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
       case IdMinijuego.encaje:
         return PantallaEncaje(dificultad: disponibilidad.dificultad);
       case IdMinijuego.canales:
-        return null;
+        return PantallaCanales(
+          registro: registro,
+          dificultad: disponibilidad.dificultad,
+          habilidadesPracticadas: disponibilidad.habilidadesPracticadas,
+        );
     }
   }
 

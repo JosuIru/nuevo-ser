@@ -31,7 +31,11 @@ class PantallaEncaje extends StatefulWidget {
   State<PantallaEncaje> createState() => _PantallaEncajeState();
 }
 
-class _PantallaEncajeState extends State<PantallaEncaje> {
+class _PantallaEncajeState extends State<PantallaEncaje>
+    with MusicaDeMaquina {
+  @override
+  String get idMusica => 'musica_maquina_encaje';
+
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.encaje);
 
   final _tablero = TableroEncaje();
@@ -80,6 +84,7 @@ class _PantallaEncajeState extends State<PantallaEncaje> {
   void _soltar() {
     if (_terminada || _tablero.piezaActual == null) return;
     HapticFeedback.lightImpact();
+    sonar('efecto_tablon');
     setState(() {
       _tablero.soltar();
       _trasEncajar();
@@ -91,6 +96,7 @@ class _PantallaEncajeState extends State<PantallaEncaje> {
     _unidadesVistas = _tablero.unidades;
     if (_tablero.unidades > unidadesAntes) {
       HapticFeedback.mediumImpact();
+      sonar('efecto_fila_completa');
       _lineaRexan = 'Un uno.';
     }
     if (_tablero.unidades >= _definicion.rondasPorPartida) {

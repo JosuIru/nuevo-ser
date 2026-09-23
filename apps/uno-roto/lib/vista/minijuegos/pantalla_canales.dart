@@ -37,7 +37,11 @@ class PantallaCanales extends StatefulWidget {
   State<PantallaCanales> createState() => _PantallaCanalesState();
 }
 
-class _PantallaCanalesState extends State<PantallaCanales> {
+class _PantallaCanalesState extends State<PantallaCanales>
+    with MusicaDeMaquina {
+  @override
+  String get idMusica => 'musica_maquina_canales';
+
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.canales);
 
   late final math.Random _azar;
@@ -106,11 +110,14 @@ class _PantallaCanalesState extends State<PantallaCanales> {
       switch (evento) {
         case EventoCanales.recogido:
           HapticFeedback.selectionClick();
+          sonar('efecto_tap'); // gota entrando en agua (doc 12)
         case EventoCanales.noCumplia:
           HapticFeedback.vibrate();
+          sonar('efecto_error');
           _lineaRexan = 'no-cumple';
         case EventoCanales.pillado:
           HapticFeedback.mediumImpact();
+          sonar('efecto_whoosh');
           _lineaRexan = 'Te han pillado. Vuelves a la salida.';
         case EventoCanales.laberintoTerminado:
           _terminarLaberinto();
@@ -122,6 +129,7 @@ class _PantallaCanalesState extends State<PantallaCanales> {
 
   void _terminarLaberinto() {
     HapticFeedback.heavyImpact();
+    sonar('efecto_acierto');
     _entreLaberintos = true;
     widget.registro?.registrar(
       idHabilidad: _partida.regla.idHabilidad,

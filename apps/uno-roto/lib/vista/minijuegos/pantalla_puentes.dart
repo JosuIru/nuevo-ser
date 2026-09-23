@@ -39,7 +39,10 @@ class PantallaPuentes extends StatefulWidget {
 }
 
 class _PantallaPuentesState extends State<PantallaPuentes>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, MusicaDeMaquina {
+  @override
+  String get idMusica => 'musica_maquina_puentes';
+
   static final _definicion = CatalogoMinijuegos.de(IdMinijuego.puentes);
 
   late final GeneradorPuentes _generador;
@@ -96,6 +99,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
   void _colocar(int indice) {
     if (_probando) return;
     HapticFeedback.selectionClick();
+    sonar('efecto_tablon');
     setState(() {
       _colocados.add(indice);
       _ultimoResultado = null;
@@ -139,6 +143,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
     });
     if (resultado == ResultadoPuente.exacto) {
       HapticFeedback.heavyImpact();
+      sonar('efecto_acierto');
       await Future.delayed(const Duration(milliseconds: 1300));
       if (!mounted) return;
       setState(() {
@@ -151,6 +156,7 @@ class _PantallaPuentesState extends State<PantallaPuentes>
       });
     } else {
       HapticFeedback.vibrate();
+      sonar('efecto_error');
     }
   }
 

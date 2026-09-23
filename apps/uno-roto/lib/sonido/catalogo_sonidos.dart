@@ -60,6 +60,18 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/efectos/whoosh.ogg',
     ),
 
+    // Máquinas de Rexán (scripts/sonido/generar_musica_maquinas.py).
+    'efecto_fila_completa': SonidoCatalogado(
+      identificador: 'efecto_fila_completa',
+      capa: CapaAudio.efectos,
+      rutaAsset: 'assets/sonido/efectos/fila_completa.ogg',
+    ),
+    'efecto_tablon': SonidoCatalogado(
+      identificador: 'efecto_tablon',
+      capa: CapaAudio.efectos,
+      rutaAsset: 'assets/sonido/efectos/tablon.ogg',
+    ),
+
     // ═══ CAPA 1 · Ambient por distrito ═══
     'ambient_tejados': SonidoCatalogado(
       identificador: 'ambient_tejados',
@@ -99,6 +111,27 @@ class CatalogoSonidos {
     ),
 
     // ═══ CAPA 2 · Música por distrito y combate ═══
+    // Música de las máquinas de Rexán: bucles sintetizados sin samples
+    // (scripts/sonido/generar_musica_maquinas.py), en el tono de su
+    // distrito: Puerto, Tejados y Canales.
+    'musica_maquina_puentes': SonidoCatalogado(
+      identificador: 'musica_maquina_puentes',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_puentes.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_encaje': SonidoCatalogado(
+      identificador: 'musica_maquina_encaje',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_encaje.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_canales': SonidoCatalogado(
+      identificador: 'musica_maquina_canales',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_canales.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

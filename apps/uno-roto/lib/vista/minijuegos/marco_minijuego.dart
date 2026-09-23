@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show CapaAudio;
+
+import '../../sonido/servicio_sonoro.dart';
 
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
@@ -99,6 +102,27 @@ class MarcoMinijuego extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Música de cada máquina mientras se juega: se enciende al entrar y
+/// se apaga con fundido al salir, como la de los combates.
+mixin MusicaDeMaquina<T extends StatefulWidget> on State<T> {
+  String get idMusica;
+
+  @override
+  void initState() {
+    super.initState();
+    ServicioSonoro.instancia.reproducirLoop(idMusica, msFade: 1500);
+  }
+
+  @override
+  void dispose() {
+    ServicioSonoro.instancia.detenerCapa(CapaAudio.musica, msFade: 1200);
+    super.dispose();
+  }
+
+  void sonar(String idEfecto) =>
+      ServicioSonoro.instancia.reproducirEfecto(idEfecto);
 }
 
 class BotonMinijuego extends StatelessWidget {

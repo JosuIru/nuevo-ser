@@ -210,3 +210,22 @@ WAV/MP3/OGG sin distinción funcional. Si un sample llega en MP3/OGG, se
 puede dejar tal cual y actualizar la ruta en `catalogo_sonidos.dart` —
 o convertir con `ffmpeg -i entrada.mp3 -acodec pcm_s16le -ar 44100
 salida.ogg` para uniformizar.
+
+## Máquinas de Rexán — composición propia (2026-09-23)
+
+Sintetizado desde cero con `scripts/sonido/generar_musica_maquinas.py`
+(numpy + scipy, sin ningún sample): licencia del contenido del juego,
+CC-BY-SA 4.0, sin atribuciones de terceros.
+
+| Id | Archivo | Qué es |
+|---|---|---|
+| `musica_maquina_puentes` | `musica/maquina_puentes.ogg` | Puerto: drones en fa menor, oleaje y campana del faro. 32 s en bucle |
+| `musica_maquina_encaje` | `musica/maquina_encaje.ogg` | Tejados: lo-fi 70 BPM en mi menor, piano eléctrico FM y vinilo. 8 compases |
+| `musica_maquina_canales` | `musica/maquina_canales.ogg` | Canales: 55 BPM en re menor, arpegio pulsado y gotas. 8 compases |
+| `efecto_fila_completa` | `efectos/fila_completa.ogg` | Quinta que se cierra (doc 12, "equivaler") |
+| `efecto_tablon` | `efectos/tablon.ogg` | Golpe de madera corto, por debajo del acierto |
+
+Se descartó generar esta música con Ravero (`~/Projects/mesa-mezclas`):
+su repertorio de lo-fi usa bancos con licencia aún sin verificar en su
+`PROVENANCE.md` (rhodes, guitarra española, arpa, kalimba).
+

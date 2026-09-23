@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show CapaAudio;
 
+import '../../dominio/minijuegos/ayudas_maquinas.dart';
 import '../../dominio/minijuegos/canales.dart' show Direccion;
 
 import '../../sonido/servicio_sonoro.dart';
@@ -19,6 +20,14 @@ class MarcoMinijuego extends StatelessWidget {
   final bool terminada;
   final Widget child;
 
+  /// Botón de ayuda: cómo se juega y el truco de la habilidad en juego.
+  final String? comoSeJuega;
+  final String? idHabilidadActual;
+
+  /// Para los juegos con reloj: se pausa mientras la ayuda está abierta.
+  final VoidCallback? alPausar;
+  final VoidCallback? alReanudar;
+
   const MarcoMinijuego({
     super.key,
     required this.titulo,
@@ -27,7 +36,67 @@ class MarcoMinijuego extends StatelessWidget {
     required this.lineaRexan,
     required this.terminada,
     required this.child,
+    this.comoSeJuega,
+    this.idHabilidadActual,
+    this.alPausar,
+    this.alReanudar,
   });
+
+  Future<void> _abrirAyuda(BuildContext contexto) async {
+    final locale = Localizations.localeOf(contexto);
+    final truco = idHabilidadActual == null ? null : trucosPorHabilidad[idHabilidadActual];
+    alPausar?.call();
+    await showModalBottomSheet<void>(
+      context: contexto,
+      backgroundColor: PaletaNeon.fondoMedio,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (hoja) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(22, 20, 22, 18),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (final (titulo, texto) in [
+                if (comoSeJuega != null) ('CÓMO SE JUEGA', comoSeJuega!),
+                if (truco != null) ('EL TRUCO', truco),
+              ]) ...[
+                Text(
+                  traducirNarrativa(titulo, locale),
+                  style: TextStyle(
+                    color: PaletaNeon.ambarCanales.withOpacity(0.9),
+                    fontSize: 11,
+                    letterSpacing: 2.5,
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  traducirNarrativa(texto, locale),
+                  style: const TextStyle(
+                    color: PaletaNeon.textoPrincipal,
+                    fontSize: 15,
+                    height: 1.45,
+                  ),
+                ),
+                const SizedBox(height: 18),
+              ],
+              Align(
+                alignment: Alignment.centerRight,
+                child: BotonMinijuego(
+                  texto: traducirNarrativa('SEGUIR', locale),
+                  alPulsar: () => Navigator.of(hoja).pop(),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    alReanudar?.call();
+  }
 
   @override
   Widget build(BuildContext contexto) {
@@ -58,6 +127,14 @@ class MarcoMinijuego extends StatelessWidget {
                       ),
                     ),
                   ),
+                  if (!terminada && comoSeJuega != null)
+                    IconButton(
+                      key: const ValueKey('ayuda-maquina'),
+                      tooltip: traducirNarrativa('Ayuda', locale),
+                      icon: const Icon(Icons.help_outline,
+                          color: PaletaNeon.textoTenue, size: 20),
+                      onPressed: () => _abrirAyuda(contexto),
+                    ),
                   if (!terminada)
                     Text(
                       '$ronda / $rondasTotales',

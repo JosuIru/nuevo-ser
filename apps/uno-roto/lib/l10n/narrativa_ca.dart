@@ -2018,4 +2018,88 @@ const Map<String, String> narrativaCa = <String, String>{
       'Quinze portes. El Fragment s\'atura a mirar la ciutat.',
   'Toca para empezar. Toca para saltar.':
       'Toca per començar. Toca per saltar.',
+  // Ayudas de las máquinas
+  'CÓMO SE JUEGA':
+      'COM ES JUGA',
+  'EL TRUCO':
+      'EL TRUC',
+  'Ayuda':
+      'Ajuda',
+  'AYÚDAME PASO A PASO':
+      'AJUDA\'M PAS A PAS',
+  'SIGUIENTE PASO':
+      'PAS SEGÜENT',
+  'VOLVER A LA BALANZA':
+      'TORNAR A LA BALANÇA',
+  'Quita {n} bolsa(s) de cada lado: la balanza sigue igual.':
+      'Treu {n} bossa(es) de cada costat: la balança continua igual.',
+  'Quita {n} pesa(s) de cada lado: sigue en equilibrio.':
+      'Treu {n} pes(os) de cada costat: continua en equilibri.',
+  'Reparte las pesas entre las bolsas: cada bolsa pesa {n}.':
+      'Reparteix els pesos entre les bosses: cada bossa pesa {n}.',
+  'Una bolsa sola frente a {n} pesas: x vale {n}.':
+      'Una bossa sola davant de {n} pesos: x val {n}.',
+  'Toca los tablones para ponerlos en el puente; tócalos otra vez para quitarlos. Cuando creas que cubren el hueco justo, pulsa PROBAR EL PUENTE.':
+      'Toca els taulons per posar-los al pont; torna\'ls a tocar per treure\'ls. Quan creguis que cobreixen el forat just, prem PROVAR EL PONT.',
+  'Arrastra el dedo por el tablero para mover la barra y toca para soltarla. Cada fila llena es una unidad: busca las piezas que completan lo que falta.':
+      'Arrossega el dit pel tauler per moure la barra i toca per deixar-la anar. Cada fila plena és una unitat: busca les peces que completen el que falta.',
+  'Desliza el dedo o usa la cruceta. Recoge sólo los números que cumplen la regla y aléjate de las sombras: si te pillan, vuelves a la salida.':
+      'Llisca el dit o fes servir la creueta. Recull només els nombres que compleixen la regla i allunya\'t de les ombres: si t\'enxampen, tornes a la sortida.',
+  'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran.':
+      'Toca dues cartes que valguin el mateix encara que estiguin escrites diferent. Si ho són, es retiren.',
+  'Con ABRIR tocas las casillas seguras; con MARCAR (o dejando el dedo) marcas las minas. La regla dice qué números son minas. El número pequeño de cada casilla abierta cuenta las minas vecinas.':
+      'Amb OBRIR toques les caselles segures; amb MARCAR (o deixant el dit) marques les mines. La regla diu quins nombres són mines. El nombre petit de cada casella oberta compta les mines veïnes.',
+  'Desliza el dedo o usa la cruceta. Lleva la serpiente al número que resuelve la cuenta. Los bordes se atraviesan.':
+      'Llisca el dit o fes servir la creueta. Porta la serp al nombre que resol el càlcul. Les vores es travessen.',
+  'Elige un valor para la x con − y + y pulsa PESAR. Si baja un lado, ese pesa más. Con AYÚDAME PASO A PASO ves cómo se despeja.':
+      'Tria un valor per a la x amb − i + i prem PESAR. Si baixa un costat, aquest pesa més. Amb AJUDA\'M PAS A PAS veus com s\'aïlla.',
+  'Calcula la columna y la fila que canta Rexán y toca esa casilla. Hunde los tres barcos.':
+      'Calcula la columna i la fila que canta Rexán i toca aquella casella. Enfonsa els tres vaixells.',
+  'Toca para saltar. Esquiva pinchos, cajas y fosos. Antes de cada puerta decide: si la respuesta está arriba, salta a la plataforma; si está abajo, sigue por el suelo. En el último nivel, algunas cuentas usan el resultado de la puerta anterior.':
+      'Toca per saltar. Esquiva punxes, caixes i forats. Abans de cada porta decideix: si la resposta és a dalt, salta a la plataforma; si és a baix, continua per terra. A l\'últim nivell, alguns càlculs fan servir el resultat de la porta anterior.',
+  'Suma primero las decenas y luego las unidades: 38 + 25 = 50 + 13 = 63.':
+      'Suma primer les desenes i després les unitats: 38 + 25 = 50 + 13 = 63.',
+  'Primero multiplicaciones y divisiones; luego sumas y restas. Lo que va entre paréntesis, antes que nada.':
+      'Primer multiplicacions i divisions; després sumes i restes. El que va entre parèntesis, abans que res.',
+  'La potencia repite la multiplicación: 5² = 5 × 5 = 25. No es 5 × 2.':
+      'La potència repeteix la multiplicació: 5² = 5 × 5 = 25. No és 5 × 2.',
+  'Para 3/4 de 20: divide 20 entre 4 (sale 5) y multiplica por 3 (sale 15).':
+      'Per a 3/4 de 20: divideix 20 entre 4 (surt 5) i multiplica per 3 (surt 15).',
+  'El 50 % es la mitad; el 25 %, la cuarta parte; el 10 %, dividir entre 10. El 20 % es el doble del 10 %.':
+      'El 50 % és la meitat; el 25 %, la quarta part; el 10 %, dividir entre 10. El 20 % és el doble del 10 %.',
+  'Con el mismo denominador, se suman los de arriba: 2/5 + 1/5 = 3/5.':
+      'Amb el mateix denominador, se sumen els de dalt: 2/5 + 1/5 = 3/5.',
+  'Con denominadores distintos, pásalas al mismo: 1/2 + 1/3 = 3/6 + 2/6 = 5/6.':
+      'Amb denominadors diferents, passa-les al mateix: 1/2 + 1/3 = 3/6 + 2/6 = 5/6.',
+  'Coloca las comas una debajo de otra y suma como siempre: 1,2 + 0,8 = 2,0.':
+      'Col·loca les comes una sota l\'altra i suma com sempre: 1,2 + 0,8 = 2,0.',
+  'Dos fracciones valen lo mismo si multiplicas (o divides) arriba y abajo por el mismo número: 1/2 = 2/4 = 3/6.':
+      'Dues fraccions valen el mateix si multipliques (o divideixes) a dalt i a baix pel mateix nombre: 1/2 = 2/4 = 3/6.',
+  'Para pasar a decimal, divide el de arriba entre el de abajo: 1/4 = 1 ÷ 4 = 0,25.':
+      'Per passar a decimal, divideix el de dalt entre el de baix: 1/4 = 1 ÷ 4 = 0,25.',
+  'Un porcentaje es una fracción sobre 100: 1/4 = 25/100 = 25 %.':
+      'Un percentatge és una fracció sobre 100: 1/4 = 25/100 = 25 %.',
+  'Los múltiplos de un número salen de su tabla: 3, 6, 9, 12…':
+      'Els múltiples d\'un nombre surten de la seva taula: 3, 6, 9, 12…',
+  'Entre 2: acaba en par. Entre 5: acaba en 0 o 5. Entre 10: acaba en 0.':
+      'Entre 2: acaba en parell. Entre 5: acaba en 0 o 5. Entre 10: acaba en 0.',
+  'Entre 4: sus dos últimas cifras son múltiplo de 4. Entre 6: es par y divisible entre 3. Entre 9: sus cifras suman múltiplo de 9.':
+      'Entre 4: les dues últimes xifres són múltiple de 4. Entre 6: és parell i divisible entre 3. Entre 9: les xifres sumen múltiple de 9.',
+  'Un primo sólo se divide entre 1 y entre sí mismo. Prueba a dividir entre 2, 3, 5 y 7.':
+      'Un primer només es divideix entre 1 i entre ell mateix. Prova de dividir entre 2, 3, 5 i 7.',
+  'Compara cifra a cifra desde la coma: 0,45 < 0,5 porque en las décimas 4 < 5.':
+      'Compara xifra a xifra des de la coma: 0,45 < 0,5 perquè a les dècimes 4 < 5.',
+  'Mira la mitad del de abajo: si el de arriba es mayor, la fracción es mayor que 1/2. 5/8: la mitad de 8 es 4 y 5 > 4.':
+      'Mira la meitat del de baix: si el de dalt és més gran, la fracció és més gran que 1/2. 5/8: la meitat de 8 és 4 i 5 > 4.',
+  'Haz lo mismo en los dos platillos: quita las pesas sueltas de la izquierda en los dos lados y reparte lo que queda entre las bolsas.':
+      'Fes el mateix als dos plats: treu els pesos solts de l\'esquerra als dos costats i reparteix el que queda entre les bosses.',
+  'Primero quita bolsas de los dos lados hasta que sólo queden a la izquierda; luego, como siempre.':
+      'Primer treu bosses dels dos costats fins que només en quedin a l\'esquerra; després, com sempre.',
+  // Salto v2: niveles
+  'la de antes':
+      'la d\'abans',
+  'Cinco puertas. Ahora vienen cajas y fosos: salta o súbete encima.':
+      'Cinc portes. Ara vénen caixes i forats: salta o puja-hi a sobre.',
+  'Cinco más. Trampolines, más pinchos y cuentas que siguen a la anterior.':
+      'Cinc més. Trampolins, més punxes i càlculs que continuen l\'anterior.',
 };

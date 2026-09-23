@@ -40,6 +40,9 @@ class DefinicionMinijuego {
   /// Rondas por partida antes del cierre amable.
   final int rondasPorPartida;
 
+  /// Cómo se juega, para el botón de ayuda.
+  final String comoSeJuega;
+
   const DefinicionMinijuego({
     required this.id,
     required this.nombre,
@@ -47,6 +50,7 @@ class DefinicionMinijuego {
     required this.lineaRexan,
     required this.habilidades,
     required this.rondasPorPartida,
+    required this.comoSeJuega,
   });
 }
 
@@ -61,6 +65,7 @@ class CatalogoMinijuegos {
           'carro no pasa. Mide antes.',
       habilidades: ['FR.14', 'FR.16', 'DEC.04'],
       rondasPorPartida: 5,
+      comoSeJuega: 'Toca los tablones para ponerlos en el puente; tócalos otra vez para quitarlos. Cuando creas que cubren el hueco justo, pulsa PROBAR EL PUENTE.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.encaje,
@@ -71,6 +76,7 @@ class CatalogoMinijuegos {
           'llena es un uno. Con eso basta.',
       habilidades: ['FR.09', 'FR.14', 'FR.16'],
       rondasPorPartida: 6,
+      comoSeJuega: 'Arrastra el dedo por el tablero para mover la barra y toca para soltarla. Cada fila llena es una unidad: busca las piezas que completan lo que falta.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.canales,
@@ -81,6 +87,7 @@ class CatalogoMinijuegos {
           'números recoges.',
       habilidades: ['DIV.01', 'DIV.03', 'DIV.05', 'DEC.02', 'FR.03'],
       rondasPorPartida: 3,
+      comoSeJuega: 'Desliza el dedo o usa la cruceta. Recoge sólo los números que cumplen la regla y aléjate de las sombras: si te pillan, vuelves a la salida.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.parejas,
@@ -91,6 +98,7 @@ class CatalogoMinijuegos {
           'trajes para la misma persona.',
       habilidades: ['FR.09', 'DEC.08', 'PROP.05'],
       rondasPorPartida: 3,
+      comoSeJuega: 'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.minas,
@@ -101,6 +109,7 @@ class CatalogoMinijuegos {
           'casilla abierta te dice cuántas tiene alrededor.',
       habilidades: ['DIV.01', 'DIV.03', 'DIV.04', 'DIV.05'],
       rondasPorPartida: 3,
+      comoSeJuega: 'Con ABRIR tocas las casillas seguras; con MARCAR (o dejando el dedo) marcas las minas. La regla dice qué números son minas. El número pequeño de cada casilla abierta cuenta las minas vecinas.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.serpiente,
@@ -111,6 +120,7 @@ class CatalogoMinijuegos {
           'tiene hambre.',
       habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04'],
       rondasPorPartida: 3,
+      comoSeJuega: 'Desliza el dedo o usa la cruceta. Lleva la serpiente al número que resuelve la cuenta. Los bordes se atraviesan.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.balanza,
@@ -119,6 +129,7 @@ class CatalogoMinijuegos {
       lineaRexan: 'Una balanza no miente. Si baja un lado, algo pesa más.',
       habilidades: ['ALG.01', 'ALG.02'],
       rondasPorPartida: 6,
+      comoSeJuega: 'Elige un valor para la x con − y + y pulsa PESAR. Si baja un lado, ese pesa más. Con AYÚDAME PASO A PASO ves cómo se despeja.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.flota,
@@ -127,6 +138,7 @@ class CatalogoMinijuegos {
       lineaRexan: 'Tres barcos escondidos en el Puerto. Yo canto, tú apuntas.',
       habilidades: ['PROP.04', 'FR.22'],
       rondasPorPartida: 2,
+      comoSeJuega: 'Calcula la columna y la fila que canta Rexán y toca esa casilla. Hunde los tres barcos.',
     ),
     DefinicionMinijuego(
       id: IdMinijuego.salto,
@@ -137,6 +149,7 @@ class CatalogoMinijuegos {
           'puerta.',
       habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04'],
       rondasPorPartida: 3,
+      comoSeJuega: 'Toca para saltar. Esquiva pinchos, cajas y fosos. Antes de cada puerta decide: si la respuesta está arriba, salta a la plataforma; si está abajo, sigue por el suelo. En el último nivel, algunas cuentas usan el resultado de la puerta anterior.',
     ),
   ];
 

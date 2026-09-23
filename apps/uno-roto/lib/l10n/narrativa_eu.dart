@@ -2014,4 +2014,88 @@ const Map<String, String> narrativaEu = <String, String>{
       'Hamabost ate. Zatia gelditu egiten da hiriari begira.',
   'Toca para empezar. Toca para saltar.':
       'Ukitu hasteko. Ukitu jauzi egiteko.',
+  // Ayudas de las máquinas
+  'CÓMO SE JUEGA':
+      'NOLA JOKATZEN DEN',
+  'EL TRUCO':
+      'TRIKIMAILUA',
+  'Ayuda':
+      'Laguntza',
+  'AYÚDAME PASO A PASO':
+      'LAGUNDU URRATSEZ URRATS',
+  'SIGUIENTE PASO':
+      'HURRENGO URRATSA',
+  'VOLVER A LA BALANZA':
+      'BALANTZARA ITZULI',
+  'Quita {n} bolsa(s) de cada lado: la balanza sigue igual.':
+      'Kendu {n} poltsa alde bakoitzetik: balantza berdin dago.',
+  'Quita {n} pesa(s) de cada lado: sigue en equilibrio.':
+      'Kendu {n} pisu alde bakoitzetik: orekan jarraitzen du.',
+  'Reparte las pesas entre las bolsas: cada bolsa pesa {n}.':
+      'Banatu pisuak poltsen artean: poltsa bakoitzak {n} pisatzen du.',
+  'Una bolsa sola frente a {n} pesas: x vale {n}.':
+      'Poltsa bakarra {n} pisuren aurrean: x = {n}.',
+  'Toca los tablones para ponerlos en el puente; tócalos otra vez para quitarlos. Cuando creas que cubren el hueco justo, pulsa PROBAR EL PUENTE.':
+      'Ukitu oholak zubian jartzeko; ukitu berriro kentzeko. Hutsunea zehazki betetzen dutela uste duzunean, sakatu ZUBIA PROBATU.',
+  'Arrastra el dedo por el tablero para mover la barra y toca para soltarla. Cada fila llena es una unidad: busca las piezas que completan lo que falta.':
+      'Arrastatu hatza taulan barra mugitzeko eta ukitu askatzeko. Errenkada bete bakoitza unitate bat da: bilatu falta dena osatzen duten piezak.',
+  'Desliza el dedo o usa la cruceta. Recoge sólo los números que cumplen la regla y aléjate de las sombras: si te pillan, vuelves a la salida.':
+      'Irristatu hatza edo erabili gurutzea. Bildu araua betetzen duten zenbakiak bakarrik eta urrundu itzaletatik: harrapatzen bazaituzte, irteerara itzultzen zara.',
+  'Toca dos cartas que valgan lo mismo aunque estén escritas distinto. Si lo son, se retiran.':
+      'Ukitu berdin balio duten bi karta, desberdin idatzita egon arren. Hala badira, kendu egiten dira.',
+  'Con ABRIR tocas las casillas seguras; con MARCAR (o dejando el dedo) marcas las minas. La regla dice qué números son minas. El número pequeño de cada casilla abierta cuenta las minas vecinas.':
+      'IREKI-rekin lauki seguruak ukitzen dituzu; MARKATU-rekin (edo hatza utzita) minak markatzen dituzu. Arauak dio zein zenbaki diren minak. Lauki ireki bakoitzeko zenbaki txikiak ondoko minak zenbatzen ditu.',
+  'Desliza el dedo o usa la cruceta. Lleva la serpiente al número que resuelve la cuenta. Los bordes se atraviesan.':
+      'Irristatu hatza edo erabili gurutzea. Eraman sugea kalkulua ebazten duen zenbakira. Ertzak zeharkatu egin daitezke.',
+  'Elige un valor para la x con − y + y pulsa PESAR. Si baja un lado, ese pesa más. Con AYÚDAME PASO A PASO ves cómo se despeja.':
+      'Aukeratu x-rentzat balio bat − eta + botoiekin eta sakatu PISATU. Alde bat jaisten bada, horrek pisu gehiago du. LAGUNDU URRATSEZ URRATS botoiarekin ikusiko duzu nola askatzen den.',
+  'Calcula la columna y la fila que canta Rexán y toca esa casilla. Hunde los tres barcos.':
+      'Kalkulatu Rexanek esaten duen zutabea eta errenkada eta ukitu lauki hori. Hondoratu hiru itsasontziak.',
+  'Toca para saltar. Esquiva pinchos, cajas y fosos. Antes de cada puerta decide: si la respuesta está arriba, salta a la plataforma; si está abajo, sigue por el suelo. En el último nivel, algunas cuentas usan el resultado de la puerta anterior.':
+      'Ukitu jauzi egiteko. Saihestu arantzak, kutxak eta zuloak. Ate bakoitzaren aurretik erabaki: erantzuna goian badago, jauzi plataformara; behean badago, jarraitu lurretik. Azken mailan, kalkulu batzuek aurreko atearen emaitza erabiltzen dute.',
+  'Suma primero las decenas y luego las unidades: 38 + 25 = 50 + 13 = 63.':
+      'Batu lehenik hamarrekoak eta gero batekoak: 38 + 25 = 50 + 13 = 63.',
+  'Primero multiplicaciones y divisiones; luego sumas y restas. Lo que va entre paréntesis, antes que nada.':
+      'Lehenik biderketak eta zatiketak; gero batuketak eta kenketak. Parentesi artean dagoena, beste ezer baino lehen.',
+  'La potencia repite la multiplicación: 5² = 5 × 5 = 25. No es 5 × 2.':
+      'Berreturak biderketa errepikatzen du: 5² = 5 × 5 = 25. Ez da 5 × 2.',
+  'Para 3/4 de 20: divide 20 entre 4 (sale 5) y multiplica por 3 (sale 15).':
+      '20ren 3/4 kalkulatzeko: zatitu 20 4rekin (5 ateratzen da) eta biderkatu 3rekin (15 ateratzen da).',
+  'El 50 % es la mitad; el 25 %, la cuarta parte; el 10 %, dividir entre 10. El 20 % es el doble del 10 %.':
+      '% 50 erdia da; % 25, laurdena; % 10, 10ekin zatitzea. % 20 % 10aren bikoitza da.',
+  'Con el mismo denominador, se suman los de arriba: 2/5 + 1/5 = 3/5.':
+      'Izendatzaile bera dutenean, goikoak batzen dira: 2/5 + 1/5 = 3/5.',
+  'Con denominadores distintos, pásalas al mismo: 1/2 + 1/3 = 3/6 + 2/6 = 5/6.':
+      'Izendatzaile desberdinekin, eraman izendatzaile berera: 1/2 + 1/3 = 3/6 + 2/6 = 5/6.',
+  'Coloca las comas una debajo de otra y suma como siempre: 1,2 + 0,8 = 2,0.':
+      'Jarri komak bata bestearen azpian eta batu beti bezala: 1,2 + 0,8 = 2,0.',
+  'Dos fracciones valen lo mismo si multiplicas (o divides) arriba y abajo por el mismo número: 1/2 = 2/4 = 3/6.':
+      'Bi zatikik berdin balio dute goian eta behean zenbaki beraz biderkatzen (edo zatitzen) baduzu: 1/2 = 2/4 = 3/6.',
+  'Para pasar a decimal, divide el de arriba entre el de abajo: 1/4 = 1 ÷ 4 = 0,25.':
+      'Hamartarrera pasatzeko, zatitu goikoa behekoarekin: 1/4 = 1 ÷ 4 = 0,25.',
+  'Un porcentaje es una fracción sobre 100: 1/4 = 25/100 = 25 %.':
+      'Ehunekoa 100en gaineko zatiki bat da: 1/4 = 25/100 = % 25.',
+  'Los múltiplos de un número salen de su tabla: 3, 6, 9, 12…':
+      'Zenbaki baten multiploak bere taulatik ateratzen dira: 3, 6, 9, 12…',
+  'Entre 2: acaba en par. Entre 5: acaba en 0 o 5. Entre 10: acaba en 0.':
+      '2rekin: bikoitiz amaitzen da. 5ekin: 0z edo 5ez amaitzen da. 10ekin: 0z amaitzen da.',
+  'Entre 4: sus dos últimas cifras son múltiplo de 4. Entre 6: es par y divisible entre 3. Entre 9: sus cifras suman múltiplo de 9.':
+      '4rekin: azken bi zifrak 4ren multiploa dira. 6rekin: bikoitia da eta 3rekin zatigarria. 9rekin: zifren batura 9ren multiploa da.',
+  'Un primo sólo se divide entre 1 y entre sí mismo. Prueba a dividir entre 2, 3, 5 y 7.':
+      'Zenbaki lehena 1ekin eta bere buruarekin bakarrik zatitzen da. Probatu 2, 3, 5 eta 7rekin zatitzen.',
+  'Compara cifra a cifra desde la coma: 0,45 < 0,5 porque en las décimas 4 < 5.':
+      'Konparatu zifraz zifra komatik hasita: 0,45 < 0,5, hamarrenetan 4 < 5 delako.',
+  'Mira la mitad del de abajo: si el de arriba es mayor, la fracción es mayor que 1/2. 5/8: la mitad de 8 es 4 y 5 > 4.':
+      'Begiratu behekoaren erdia: goikoa handiagoa bada, zatikia 1/2 baino handiagoa da. 5/8: 8ren erdia 4 da eta 5 > 4.',
+  'Haz lo mismo en los dos platillos: quita las pesas sueltas de la izquierda en los dos lados y reparte lo que queda entre las bolsas.':
+      'Egin gauza bera bi platerretan: kendu ezkerreko pisu solteak bi aldeetatik eta banatu geratzen dena poltsen artean.',
+  'Primero quita bolsas de los dos lados hasta que sólo queden a la izquierda; luego, como siempre.':
+      'Lehenik kendu poltsak bi aldeetatik ezkerrean bakarrik geratu arte; gero, beti bezala.',
+  // Salto v2: niveles
+  'la de antes':
+      'aurrekoa',
+  'Cinco puertas. Ahora vienen cajas y fosos: salta o súbete encima.':
+      'Bost ate. Orain kutxak eta zuloak datoz: jauzi egin edo igo gainera.',
+  'Cinco más. Trampolines, más pinchos y cuentas que siguen a la anterior.':
+      'Beste bost. Trapolinak, arantza gehiago eta aurrekoarekin jarraitzen duten kalkuluak.',
 };

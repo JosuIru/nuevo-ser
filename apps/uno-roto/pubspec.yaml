@@ -172,6 +172,20 @@ flutter:
     # Cormorant Garamond — voz de los Fragmentos nombrados (Kurz, Eco,
     # Zafrán, Vorax). Guía visual §5. Variable fonts de google/fonts
     # (OFL). Usamos el eje de peso dinámico.
+    # Roboto empaquetada (Apache 2.0, assets/fonts/Roboto_LICENSE.txt):
+    # en web, si no está en el FontManifest, Flutter la descarga de la CDN
+    # de Google en cada visita (sin conexión no hay texto y es un aviso a
+    # un tercero: doc 01, principio 5).
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
     - family: CormorantGaramond
       fonts:
         - asset: assets/fonts/CormorantGaramond-Variable.ttf

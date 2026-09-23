@@ -1205,13 +1205,19 @@ class _NodoDistrito extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 3),
+                    // Icono y no emoji: en web un emoji obliga a bajar la
+                    // fuente de emojis de Google.
+                    if (!desbloqueado)
+                      Icon(Icons.lock_outline,
+                          size: 11,
+                          color: PaletaNeon.textoTenue.withOpacity(0.85)),
                     Text(
                       desbloqueado
                           ? traducirNarrativa(
                               distrito.descripcionCorta,
                               Localizations.localeOf(contexto),
                             )
-                          : '🔒 ${AppLocalizations.of(contexto).mapaDistritoBloqueado(distrito.esquirlasParaDesbloquear)}',
+                          : AppLocalizations.of(contexto).mapaDistritoBloqueado(distrito.esquirlasParaDesbloquear),
                       maxLines: 2,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,

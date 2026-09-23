@@ -17,6 +17,8 @@ BASE_HREF="${BASE_HREF:-/wp-content/uploads/juegos/uno-roto/}"
 cd "$(dirname "$0")/../.."
 export PATH="$HOME/flutter/bin:$PATH"
 flutter build web --release --base-href "$BASE_HREF" --no-wasm-dry-run
+# Modo sin conexión: service worker con todos los archivos del build.
+python3 scripts/web/generar_sw.py build/web
 mkdir -p "$DESTINO"
 rsync -a --delete build/web/ "$DESTINO/"
 echo "Desplegado en: $DESTINO ($(du -sh "$DESTINO" | cut -f1))"

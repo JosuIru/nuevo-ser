@@ -146,6 +146,9 @@ flutter:
     - assets/personajes/kai.png
     - assets/personajes/kai_hablando.png
     - assets/personajes/oryn.png
+    # Las máquinas de Rexán (minijuegos): renders propios con flavor3d
+    # (arte/maquinas/), encendida y apagada.
+    - assets/maquinas/
     # Carpetas de sonido (doc 12). Pueden estar vacías: el motor
     # sonoro tolera assets ausentes y la app no falla.
     - assets/sonido/ambient/

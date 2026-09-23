@@ -174,30 +174,49 @@ class _FichaMaquina extends StatelessWidget {
           border: Border.all(color: color.withOpacity(encendida ? 0.6 : 0.3)),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              traducirNarrativa(definicion.nombre, locale).toUpperCase(),
-              style: TextStyle(
-                color: encendida
-                    ? PaletaNeon.textoPrincipal
-                    : PaletaNeon.textoTenue.withOpacity(0.6),
-                fontSize: 14,
-                letterSpacing: 2.5,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'assets/maquinas/${definicion.id.name}_${encendida ? 'on' : 'off'}.png',
+                width: 84,
+                height: 111,
+                fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => const SizedBox(width: 84),
               ),
             ),
-            const SizedBox(height: 6),
-            Text(
-              encendida
-                  ? traducirNarrativa(definicion.descripcion, locale)
-                  : traducirNarrativa(
-                      'Rexán todavía la está arreglando. Sigue cazando Fragmentos.',
-                      locale),
-              style: TextStyle(
-                color: PaletaNeon.textoTenue.withOpacity(encendida ? 0.9 : 0.6),
-                fontSize: 13,
-                height: 1.4,
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    traducirNarrativa(definicion.nombre, locale).toUpperCase(),
+                    style: TextStyle(
+                      color: encendida
+                          ? PaletaNeon.textoPrincipal
+                          : PaletaNeon.textoTenue.withOpacity(0.6),
+                      fontSize: 14,
+                      letterSpacing: 2.5,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    encendida
+                        ? traducirNarrativa(definicion.descripcion, locale)
+                        : traducirNarrativa(
+                            'Rexán todavía la está arreglando. Sigue cazando Fragmentos.',
+                            locale),
+                    style: TextStyle(
+                      color: PaletaNeon.textoTenue
+                          .withOpacity(encendida ? 0.9 : 0.6),
+                      fontSize: 13,
+                      height: 1.4,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

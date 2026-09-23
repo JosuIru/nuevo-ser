@@ -1819,4 +1819,8 @@ const Map<String, String> narrativaEu = <String, String>{
   'Obtuso: entre 90° y 180°.': 'Kamutsa: 90° eta 180° artean.',
   'Llano: 180° exactos.': 'Laua: 180° zehatz.',
   'Completo: 360°.': 'Osoa: 360°.',
+  // Cortar la tarta (FR.07 manipulativo, doc 16 eje A).
+  'Sirve cada fracción: pasa el dedo alrededor de su tarta.':
+      'Zerbitzatu zatiki bakoitza: pasatu hatza bere tartaren inguruan.',
+  'Ahora toca la tarta que tiene más.': 'Orain ukitu gehiago duen tarta.',
 };

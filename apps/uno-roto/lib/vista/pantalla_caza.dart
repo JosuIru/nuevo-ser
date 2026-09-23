@@ -92,6 +92,7 @@ import 'pantalla_combate_enfoque.dart';
 import 'pantalla_comparacion.dart';
 import 'pantalla_comparacion_balanza.dart';
 import 'pantalla_comparacion_distinta.dart';
+import 'pantalla_comparacion_tarta.dart';
 import 'pantalla_ordenar_decimales.dart';
 import 'pantalla_comparacion_unidad.dart';
 import 'pantalla_decimal.dart';
@@ -1253,17 +1254,23 @@ class _PantallaCazaState extends State<PantallaCaza>
           ),
         );
       case TipoFragmentoEnTejado.comparacionDistinta:
+        final problemaDistinta = ProblemaComparacionDistinta(
+          a: Fraccion(fragmento.numerador, fragmento.denominador),
+          b: Fraccion(
+            fragmento.numeradorB ?? fragmento.numerador,
+            fragmento.denominadorB ?? fragmento.denominador,
+          ),
+        );
+        // Mitad de los Fragmentos se resuelven cortando la tarta (doc
+        // 16, eje A), como la balanza en FR.05/06: mismo problema,
+        // gesto manipulativo en vez de tarjeta.
+        final usaTarta = fragmento.identificador.hashCode.isEven;
         return Navigator.of(context).push<bool>(
           MaterialPageRoute(
-            builder: (_) => PantallaComparacionDistinta(
-              problemaPredeterminado: ProblemaComparacionDistinta(
-                a: Fraccion(fragmento.numerador, fragmento.denominador),
-                b: Fraccion(
-                  fragmento.numeradorB ?? fragmento.numerador,
-                  fragmento.denominadorB ?? fragmento.denominador,
-                ),
-              ),
-            ),
+            builder: (_) => usaTarta
+                ? PantallaComparacionTarta(problema: problemaDistinta)
+                : PantallaComparacionDistinta(
+                    problemaPredeterminado: problemaDistinta),
           ),
         );
       case TipoFragmentoEnTejado.primo:

@@ -1823,4 +1823,8 @@ const Map<String, String> narrativaCa = <String, String>{
   'Obtuso: entre 90° y 180°.': 'Obtús: entre 90° i 180°.',
   'Llano: 180° exactos.': 'Pla: 180° exactes.',
   'Completo: 360°.': 'Complet: 360°.',
+  // Cortar la tarta (FR.07 manipulativo, doc 16 eje A).
+  'Sirve cada fracción: pasa el dedo alrededor de su tarta.':
+      'Serveix cada fracció: passa el dit al voltant del seu pastís.',
+  'Ahora toca la tarta que tiene más.': 'Ara toca el pastís que en té més.',
 };

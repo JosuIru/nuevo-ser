@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solera Zunbeltz — Esquema de la primera fase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=Archivo:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papel:#E9EBE2; --papel-hundido:#DFE2D6; --monte:#1B2320; --tinta:#171D19;
+    --tinta-apagada:#4E5751; --pasto:#5E7D3A; --senal:#B8402A;
+    --linea:rgba(27,35,32,.16); --linea-fuerte:rgba(27,35,32,.34);
+    --titular:"Archivo", system-ui, sans-serif; --texto:"Spectral", Georgia, serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--papel);color:var(--tinta);font:18px/1.6 var(--texto)}
+  .envoltorio{max-width:880px;margin:0 auto;padding:56px 24px 80px}
+  h1,h2,h3{font-family:var(--titular);color:var(--monte);letter-spacing:-.01em;line-height:1.15}
+  h1{font-size:clamp(2rem,5vw,2.9rem);margin:0 0 .3em}
+  h1 span{box-shadow:inset 0 -.14em 0 var(--senal)}
+  h2{font-size:1.55rem;margin:0 0 .6em;display:flex;gap:.6em;align-items:baseline}
+  h2 .num{color:var(--senal);font-size:1.1rem}
+  h3{font-size:1.1rem;margin:1.6em 0 .4em}
+  p{margin:.4em 0 .8em}
+  .entradilla{font-size:1.15rem;color:var(--tinta-apagada);max-width:40em}
+  ul{margin:.3em 0 .8em;padding-left:1.2em}
+  li{margin:.2em 0}
+  li::marker{color:var(--pasto)}
+  strong{font-weight:600}
+  .rasgos{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0}
+  .rasgo{border:1px solid var(--linea-fuerte);border-radius:4px;padding:12px 14px;font-size:.95rem}
+  .rasgo b{display:block;font-family:var(--titular);color:var(--monte)}
+  .navegacion{display:flex;border:1px solid var(--monte);border-radius:4px;overflow:hidden;margin:8px 0 40px}
+  .navegacion a{flex:1;text-align:center;padding:12px 4px;font-family:var(--titular);font-weight:600;color:var(--monte);text-decoration:none;border-right:1px solid var(--monte)}
+  .navegacion a:last-child{border-right:0}
+  .navegacion a:hover{background:var(--monte);color:var(--papel)}
+  section{border-top:2px solid var(--monte);padding:28px 0 12px;margin-top:28px}
+  .etiqueta{font-family:var(--titular);font-size:.8rem;font-weight:500;color:var(--tinta-apagada)}
+  .bloques{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .bloque{background:var(--papel-hundido);border:1px solid var(--linea);border-radius:4px;padding:14px 16px}
+  .bloque h3{margin-top:0}
+  .opciones{font-size:.95rem;color:var(--tinta-apagada)}
+  .preguntas{border-left:3px solid var(--senal);padding:8px 0 8px 16px;margin:20px 0}
+  .preguntas b{font-family:var(--titular);color:var(--senal);font-size:.9rem}
+  .preguntas ul{margin-bottom:0}
+  .fuera{background:var(--monte);color:var(--papel);border-radius:4px;padding:24px 26px;margin-top:40px}
+  .fuera h2{color:var(--papel)}
+  .fuera li::marker{color:var(--senal)}
+  .respuesta{margin-top:40px}
+  .pie{margin-top:48px;font-size:.9rem;color:var(--tinta-apagada);border-top:1px solid var(--linea);padding-top:14px}
+
+  .formulario{border-top:2px solid var(--monte);margin-top:40px;padding-top:28px}
+  .formulario label{display:block;font-family:var(--titular);font-weight:600;font-size:.95rem;color:var(--monte);margin:18px 0 6px}
+  .formulario label small{font-weight:500;color:var(--tinta-apagada)}
+  .formulario input,.formulario textarea{width:100%;font:inherit;font-size:1rem;color:var(--tinta);background:var(--papel-hundido);border:1px solid var(--linea-fuerte);border-radius:4px;padding:10px 12px}
+  .formulario textarea{min-height:96px;resize:vertical}
+  .formulario input:focus,.formulario textarea:focus{outline:2px solid var(--pasto);outline-offset:1px}
+  .caja-respuesta label{display:block;font-family:var(--titular);font-weight:600;font-size:.95rem;color:var(--monte);margin:14px 0 6px}
+  .caja-respuesta textarea{width:100%;min-height:90px;resize:vertical;font:inherit;font-size:1rem;color:var(--tinta);background:var(--papel-hundido);border:1px solid var(--linea-fuerte);border-radius:4px;padding:10px 12px}
+  .caja-respuesta textarea:focus{outline:2px solid var(--pasto);outline-offset:1px}
+  .acciones{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:24px}
+  .boton{font-family:var(--titular);font-weight:600;font-size:1rem;border:0;border-radius:4px;padding:12px 22px;cursor:pointer;background:var(--senal);color:#fff}
+  .boton:disabled{opacity:.6;cursor:wait}
+  .boton-secundario{background:transparent;color:var(--monte);border:1px solid var(--monte);text-decoration:none;display:inline-block}
+  .estado{margin-top:14px;font-family:var(--titular);font-weight:600}
+  .estado.ok{color:var(--pasto)} .estado.error{color:var(--senal)}
+  .oculto{position:absolute;left:-9999px}
+  @media print{
+    body{font-size:12pt} .envoltorio{padding:0} .navegacion,.formulario,.caja-respuesta{display:none}
+    section{break-inside:avoid-page} .fuera{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="envoltorio">
+
+  <p class="etiqueta">Solera Zunbeltz · Espacio Test Agrario · septiembre 2026</p>
+  <h1>Esquema de la <span>primera fase</span></h1>
+  <p class="entradilla">Aquí está lo que la app hace hoy, sección a sección, y lo que proponemos añadir en esta misma fase. Os pedimos que lo repaséis y nos digáis <strong>qué os encaja, qué sobra y qué echáis en falta</strong>. Al final de cada sección hay unas preguntas para orientar la revisión.</p>
+
+  <div class="rasgos">
+    <div class="rasgo"><b>Sin cobertura</b>Todo se guarda en el móvil. Solo la previsión del tiempo necesita internet.</div>
+    <div class="rasgo"><b>Castellano y euskera</b>El euskera está pendiente de revisión nativa.</div>
+    <div class="rasgo"><b>Compartida</b>Tareas e incidencias se sincronizan entre móviles, con dos roles (propuesta, ver sección 5).</div>
+    <div class="rasgo"><b>PDF provisionales</b>Con sello PROVISIONAL hasta validar su formato.</div>
+  </div>
+
+  <p class="etiqueta">Las cuatro pestañas de la app y la propuesta de trabajo compartido</p>
+  <nav class="navegacion">
+    <a href="#hoy">Hoy</a><a href="#fincas">Fincas</a><a href="#proyectos">Proyectos</a><a href="#ajustes">Ajustes</a><a href="#compartir">Compartido</a><a href="#responder">Responder</a>
+  </nav>
+
+  <section id="hoy">
+    <h2><span class="num">1</span>Hoy</h2>
+    <p>Pantalla de resumen al abrir la app.</p>
+    <ul>
+      <li>El tiempo del día.</li>
+      <li>Número de tareas de mantenimiento abiertas y botón <strong>Ver tareas</strong>.</li>
+      <li>Acceso a la <strong>Ayuda</strong>.</li>
+    </ul>
+    <div class="preguntas"><b>Para revisar</b>
+      <ul><li>¿Qué os gustaría ver nada más abrir la app? Avisos, próximas tareas, lo último registrado…</li></ul>
+    </div>
+    <div class="caja-respuesta">
+      <label for="r-hoy">Vuestra respuesta sobre Hoy</label>
+      <textarea id="r-hoy" name="1 · Hoy" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+  </section>
+
+  <section id="fincas">
+    <h2><span class="num">2</span>Fincas <span class="etiqueta">módulo de apoyo</span></h2>
+    <div class="bloques">
+      <div class="bloque">
+        <h3>Mapa de las fincas</h3>
+        <ul>
+          <li>Zunbeltz y La Planilla sobre el mapa, con capas.</li>
+          <li>Botón <strong>GPS</strong> para situarse.</li>
+          <li><strong>Previsión del tiempo</strong> de varios días con avisos: helada, lluvia, viento fuerte, calor, buen día de manejo.</li>
+        </ul>
+      </div>
+      <div class="bloque">
+        <h3>Puntos de infraestructura</h3>
+        <ul>
+          <li>Se añaden tocando el mapa, con el GPS o en el centro del mapa.</li>
+          <li><strong>Datos:</strong> finca, tipo, nombre, estado, notas, fotos y coordenadas.</li>
+          <li><strong>Ficha del punto:</strong> sus tareas, recolocarlo, borrarlo.</li>
+        </ul>
+        <p class="opciones"><strong>Tipos:</strong> abrevadero · manga de manejo · cierre/alambrada · refugio/cabaña · cuadra · almacén · balsa/punto de agua · comedero · cargadero · parcela de pasto.<br><strong>Estados:</strong> operativo · revisar · averiado.</p>
+      </div>
+      <div class="bloque">
+        <h3>Tareas de mantenimiento</h3>
+        <ul>
+          <li>Se crean desde un punto o para la finca en general.</li>
+          <li><strong>Datos:</strong> título, descripción, responsable, prioridad, estado, fecha objetivo, fotos antes y después, coste.</li>
+          <li><strong>Tablero</strong> con filtros por finca y estado.</li>
+          <li><strong>Parte de mantenimiento en PDF</strong>.</li>
+        </ul>
+        <p class="opciones"><strong>Prioridad:</strong> baja · media · alta.<br><strong>Estado:</strong> pendiente · en curso · hecha · bloqueada.</p>
+      </div>
+      <div class="bloque">
+        <h3>Incidencias <span class="etiqueta">nuevo, propuesto</span></h3>
+        <ul>
+          <li>Cualquier persona avisa de un problema desde el monte: un cierre roto, un abrevadero sin agua, un animal suelto…</li>
+          <li><strong>Datos:</strong> qué pasa, dónde (punto del mapa o GPS), foto, urgencia, quién avisa y cuándo.</li>
+          <li>La coordinación la revisa y la <strong>convierte en tarea</strong> asignada, o la cierra.</li>
+          <li>Quien avisó ve cómo avanza.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="preguntas"><b>Para revisar</b>
+      <ul>
+        <li>¿Faltan tipos de infraestructura?</li>
+        <li>¿Quién debe poder crear y asignar tareas?</li>
+        <li>¿Queréis avisos de tareas vencidas?</li>
+        <li>¿Os sirve el parte en PDF o necesitáis otro formato?</li>
+      </ul>
+    </div>
+    <div class="caja-respuesta">
+      <label for="r-fincas">Vuestra respuesta sobre Fincas</label>
+      <textarea id="r-fincas" name="2 · Fincas" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+  </section>
+
+  <section id="proyectos">
+    <h2><span class="num">3</span>Proyectos <span class="etiqueta">núcleo: seguimiento del proceso de test</span></h2>
+
+    <h3>Lista de proyectos de test</h3>
+    <ul>
+      <li>Un proyecto por cada persona tester.</li>
+      <li><strong>Datos:</strong> nombre, persona tester, actividad, finca que usa (opcional), fechas de inicio y fin.</li>
+      <li><strong>Comparativa de todos los proyectos en PDF</strong>.</li>
+    </ul>
+
+    <h3>Ficha del proyecto: resumen de rentabilidad</h3>
+    <p>Arriba de la ficha, filtrable por periodo (todo · este año · este trimestre · trimestre anterior):</p>
+    <p class="opciones">Ventas · otros ingresos · gastos · balance · margen · <strong>proyección anual</strong>.</p>
+
+    <h3>Ficha del proyecto: cuatro pestañas</h3>
+    <div class="bloques">
+      <div class="bloque">
+        <h3>a) Producción</h3>
+        <ul>
+          <li>Alimentación (kg), pariciones (crías), producto obtenido (uds).</li>
+          <li>Cada registro: fecha, cantidad, lote/rebaño, notas.</li>
+        </ul>
+      </div>
+      <div class="bloque">
+        <h3>b) Comercialización</h3>
+        <ul><li>Ventas: fecha, producto, canal, cantidad, unidad, precio unitario, IVA e ingreso.</li></ul>
+        <p class="opciones"><strong>Canales:</strong> venta directa · mercado/feria · tienda/grupo de consumo · online · mayorista/distribuidor · restauración · otro.</p>
+      </div>
+      <div class="bloque">
+        <h3>c) Validación de producto</h3>
+        <ul><li>Pruebas de producto: qué se valida, resultado, valoración y notas.</li></ul>
+        <p class="opciones"><strong>Resultado:</strong> validado · ajustar · descartar.</p>
+      </div>
+      <div class="bloque">
+        <h3>d) Económico</h3>
+        <ul>
+          <li>Apuntes de ingreso o gasto: concepto, importe, IVA, categoría y notas.</li>
+          <li>Desglose de gastos por categoría, e IVA soportado y repercutido (orientativo, no es una declaración fiscal).</li>
+        </ul>
+        <p class="opciones"><strong>Gastos:</strong> alimentación · sanidad/veterinario · insumos/materiales · mano de obra · alquiler/cesión · maquinaria/combustible · servicios · otros.<br><strong>Ingresos:</strong> venta · ayuda/prima · otros.</p>
+      </div>
+    </div>
+
+    <h3>Salidas del proyecto</h3>
+    <ul>
+      <li><strong>Informe del proyecto en PDF</strong>.</li>
+      <li><strong>Exportar a CSV</strong>, que se abre en Excel.</li>
+      <li><strong>Enviar al coordinador</strong> por correo.</li>
+    </ul>
+
+    <div class="preguntas"><b>Para revisar</b>
+      <ul>
+        <li>¿Estos cuatro bloques reflejan cómo evaluáis un test?</li>
+        <li>¿Qué indicadores usáis que no estén aquí?</li>
+        <li>¿Faltan canales de venta o categorías de gasto o ingreso?</li>
+        <li>¿Qué debe llevar el informe para la persona tester, para la coordinación y para la entidad que financia?</li>
+      </ul>
+    </div>
+    <div class="caja-respuesta">
+      <label for="r-proyectos">Vuestra respuesta sobre Proyectos</label>
+      <textarea id="r-proyectos" name="3 · Proyectos" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+  </section>
+
+  <section id="ajustes">
+    <h2><span class="num">4</span>Ajustes</h2>
+    <ul>
+      <li>Idioma: castellano o euskera.</li>
+      <li><strong>Correo del coordinador</strong>, para enviar los informes.</li>
+      <li><strong>Exportar todo el espacio a CSV</strong>.</li>
+      <li>Cargar datos de demostración.</li>
+      <li>Ayuda paso a paso.</li>
+      <li>Acerca del Espacio Test Zunbeltz.</li>
+      <li>Aviso de versión preliminar.</li>
+    </ul>
+    <div class="preguntas"><b>Para revisar</b>
+      <ul><li>¿Falta algo de configuración? Varias personas coordinadoras, logo o datos de la entidad en los informes…</li></ul>
+    </div>
+    <div class="caja-respuesta">
+      <label for="r-ajustes">Vuestra respuesta sobre Ajustes</label>
+      <textarea id="r-ajustes" name="4 · Ajustes" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+  </section>
+
+  <section id="compartir">
+    <h2><span class="num">5</span>Trabajo compartido: sincronización y roles <span class="etiqueta">propuesta para esta fase</span></h2>
+    <p>Para que las fincas funcionen de verdad entre varias personas, proponemos que en esta primera fase <strong>las incidencias y las tareas se compartan</strong> entre los móviles del equipo.</p>
+    <div class="bloques">
+      <div class="bloque">
+        <h3>Qué se sincroniza</h3>
+        <ul>
+          <li>Incidencias y tareas de mantenimiento, con sus fotos y estados.</li>
+          <li>Los puntos de infraestructura del mapa.</li>
+          <li>Se sigue trabajando <strong>sin cobertura</strong>: los cambios se guardan en el móvil y se envían al recuperar señal.</li>
+        </ul>
+        <p class="opciones">Los proyectos de test y sus números siguen siendo de cada persona tester; los envía a la coordinación con el informe.</p>
+      </div>
+      <div class="bloque">
+        <h3>Coordinación</h3>
+        <ul>
+          <li>Ve todas las incidencias y tareas de las dos fincas.</li>
+          <li>Convierte incidencias en tareas, las asigna y las cierra.</li>
+          <li>Gestiona el mapa y da de alta a las personas tester.</li>
+          <li>Recibe los informes de los proyectos.</li>
+        </ul>
+      </div>
+      <div class="bloque">
+        <h3>Persona tester</h3>
+        <ul>
+          <li>Avisa de incidencias desde el monte.</li>
+          <li>Ve las tareas que tiene asignadas y actualiza su estado, con fotos.</li>
+          <li>Lleva su proyecto de test y sus números.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="preguntas"><b>Para revisar</b>
+      <ul>
+        <li>¿Son estos los dos roles adecuados, o el segundo debería ser mentor u operario?</li>
+        <li>¿Todas las personas tester ven todas las tareas, o solo las suyas y las de la infraestructura que comparten?</li>
+        <li>¿Quién puede crear tareas directamente, sin pasar por una incidencia?</li>
+        <li>¿Cuántas personas lo usarían a la vez y con qué móviles?</li>
+      </ul>
+    </div>
+    <div class="caja-respuesta">
+      <label for="r-compartido">Vuestra respuesta sobre el trabajo compartido</label>
+      <textarea id="r-compartido" name="5 · Trabajo compartido" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+  </section>
+
+  <div class="fuera">
+    <h2>Lo que queda fuera de esta primera fase</h2>
+    <p>Para que lo tengáis presente al valorar. Se abordaría en fases siguientes, siempre diseñado con vosotras.</p>
+    <ul>
+      <li><strong>Más roles</strong> (mentor, asesoría veterinaria) y <strong>sincronización del resto de datos</strong> (proyectos de test, cuaderno ganadero).</li>
+      <li><strong>Cuaderno ganadero:</strong> animales, lotes, pesajes, partos, tratamientos, movimientos y escáner del DIB.</li>
+      <li><strong>Libro de explotación</strong>, cuaderno PAC y trazabilidad ecológica (CPAEN).</li>
+      <li><strong>Acompañamiento:</strong> convocatorias, cesiones, tutorías, hitos y evaluación de viabilidad.</li>
+      <li><strong>Banco de tierras</strong> y trazabilidad hasta <strong>La Venta de Zunbeltz</strong>.</li>
+    </ul>
+  </div>
+
+  <section class="respuesta">
+    <h2>Preguntas generales</h2>
+    <ol>
+      <li>¿Hay algo del día a día del Espacio Test que no aparezca en ninguna sección?</li>
+      <li>¿Qué es imprescindible para vosotras y qué podría esperar?</li>
+      <li>¿Quién va a usar la app en la práctica, y desde qué dispositivo?</li>
+    </ol>
+    <div class="caja-respuesta">
+      <label for="r-falta">¿Hay algo del día a día del Espacio Test que no aparezca en ninguna sección?</label>
+      <textarea id="r-falta" name="Qué falta" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+    <div class="caja-respuesta">
+      <label for="r-imprescindible">¿Qué es imprescindible para vosotras y qué podría esperar?</label>
+      <textarea id="r-imprescindible" name="Imprescindible y qué puede esperar" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+    <div class="caja-respuesta">
+      <label for="r-usuarios">¿Quién va a usarla en la práctica, y desde qué dispositivo?</label>
+      <textarea id="r-usuarios" name="Quién lo usa y desde qué dispositivo" form="formulario-respuestas" placeholder="Escribid aquí vuestra respuesta…"></textarea>
+    </div>
+  </section>
+
+  <section class="formulario" id="responder">
+    <h2>Enviar vuestras respuestas</h2>
+    <p>Cuando hayáis terminado, decidnos quién responde y pulsad el botón: se abrirá vuestro correo con todas las respuestas escritas, listo para enviar. No hace falta rellenar todas las cajas.</p>
+
+    <form id="formulario-respuestas">
+      <label for="quien">¿Quién responde? <small>nombre y rol en Zunbeltz</small></label>
+      <input id="quien" name="Quién responde" type="text" autocomplete="name">
+
+      <div class="acciones">
+        <button class="boton" type="submit" id="boton-enviar">Enviar por correo</button>
+        <button class="boton boton-secundario" type="button" id="boton-copiar">Copiar las respuestas</button>
+      </div>
+      <p class="estado" id="estado-envio" role="status" aria-live="polite"></p>
+      <p class="opciones">Si no se abre ningún correo, usad «Copiar las respuestas» y pegadlas en un mensaje a <strong>gailuwz@gmail.com</strong>.</p>
+    </form>
+  </section>
+
+  <p class="pie">Solera Zunbeltz · versión preliminar. Documento de trabajo para revisar con Zunbeltz Elkartea.</p>
+</div>
+<script>
+(function(){
+  var destinatario='gailuwz@gmail.com';
+  var asunto='Solera Zunbeltz — respuestas al esquema de la primera fase';
+  var formulario=document.getElementById('formulario-respuestas');
+  var estado=document.getElementById('estado-envio');
+  var botonCopiar=document.getElementById('boton-copiar');
+  var claveBorrador='zunbeltz-esquema-fase-1';
+  var campos=[document.getElementById('quien')].concat(
+    Array.prototype.slice.call(document.querySelectorAll('textarea[form="formulario-respuestas"]')));
+
+  function guardarBorrador(){
+    try{
+      var datos={};
+      campos.forEach(function(c){datos[c.id]=c.value;});
+      localStorage.setItem(claveBorrador,JSON.stringify(datos));
+    }catch(e){}
+  }
+  function recuperarBorrador(){
+    try{
+      var datos=JSON.parse(localStorage.getItem(claveBorrador)||'{}');
+      campos.forEach(function(c){if(datos[c.id])c.value=datos[c.id];});
+    }catch(e){}
+  }
+  function textoPlano(){
+    var bloques=[];
+    campos.forEach(function(c){
+      if(c.value.trim()) bloques.push(c.name+':\n'+c.value.trim());
+    });
+    return bloques.join('\n\n');
+  }
+  function mostrar(clase,mensaje){
+    estado.className='estado '+clase;
+    estado.textContent=mensaje;
+  }
+
+  campos.forEach(function(c){c.addEventListener('input',guardarBorrador);});
+  recuperarBorrador();
+
+  formulario.addEventListener('submit',function(evento){
+    evento.preventDefault();
+    var texto=textoPlano();
+    if(!texto){mostrar('error','Escribid algo antes de enviar.');return;}
+    window.location.href='mailto:'+destinatario+'?subject='+encodeURIComponent(asunto)+
+      '&body='+encodeURIComponent(texto);
+    mostrar('ok','Si se ha abierto vuestro correo, solo falta darle a enviar. Si no, usad «Copiar las respuestas».');
+  });
+
+  botonCopiar.addEventListener('click',function(){
+    var texto=textoPlano();
+    if(!texto){mostrar('error','Escribid algo antes de copiar.');return;}
+    var completo='Para: '+destinatario+'\nAsunto: '+asunto+'\n\n'+texto;
+    function copiado(){mostrar('ok','Copiado. Pegadlo en un correo a '+destinatario+'.');}
+    function noSePudo(){mostrar('error','No se pudo copiar. Seleccionad el texto de los campos a mano.');}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(completo).then(copiado,noSePudo);
+    }else{noSePudo();}
+  });
+})();
+</script>
+</body>
+</html>

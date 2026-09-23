@@ -22,20 +22,20 @@ class KaiPresencia extends StatelessWidget {
   @override
   Widget build(BuildContext contexto) {
     return SizedBox(
-      height: 120,
+      height: 200,
       child: Stack(
         clipBehavior: Clip.none,
         children: [
           const Positioned(
-            right: 16,
+            right: 12,
             bottom: 0,
             child: _AvatarKai(),
           ),
           if (textoActivo != null)
             Positioned(
               left: 16,
-              right: 96,
-              bottom: 30,
+              right: 160,
+              bottom: 40,
               child: _BocadilloKai(
                 texto: textoActivo!,
                 alTocar: alTocarBocadillo,
@@ -52,13 +52,13 @@ class _AvatarKai extends StatelessWidget {
 
   @override
   Widget build(BuildContext contexto) {
-    // PNG escaneado del concept-art original (kai.pdf). Cabe en el
-    // SizedBox de 120 del padre — si lo subimos más rompemos el
-    // layout de pantalla_combate (que asume franja de 120 al fondo).
+    // PNG escaneado del concept-art original (kai.pdf). 160x200 para
+    // que el dibujo sea reconocible (a 95x120 se veía como manchita).
+    // Cabe en el SizedBox(height: 200) del padre.
     return Image.asset(
       'assets/personajes/kai.png',
-      width: 95,
-      height: 120,
+      width: 160,
+      height: 200,
       fit: BoxFit.contain,
       filterQuality: FilterQuality.medium,
     );

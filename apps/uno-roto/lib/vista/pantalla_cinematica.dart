@@ -216,34 +216,64 @@ class _PantallaCinematicaState extends State<PantallaCinematica>
     return null;
   }
 
-  /// Devuelve el avatar de presencia del personaje que está hablando en
-  /// el plano actual. Sora a la izquierda, Kai a la derecha, Oryn
-  /// centrado — siempre sin bocadillo porque el texto del diálogo ya
-  /// se pinta encima en `_VistaDialogo`/`_VistaEleccion`. Acompaña el
-  /// fade-out del plano para no quedar congelado al avanzar. Devuelve
-  /// SizedBox vacío para voces sin avatar definido (Irune, Rexán, Ari,
-  /// los Fragmentos nombrados, narrador…).
+  /// Devuelve el avatar GRANDE del personaje que está hablando en el
+  /// plano actual. Ocupa hasta el 50 % del alto disponible y lleva
+  /// animación de respiración (escala cíclica) + sway lateral muy
+  /// sutil — así no parece un sticker estático.
+  ///
+  /// Kai y Oryn usan los PNG escaneados del concept-art original; Sora
+  /// reutiliza su CustomPainter (silueta) escalado vía FittedBox al
+  /// mismo tamaño que los demás.
+  ///
+  /// Devuelve SizedBox vacío para voces sin avatar (Irune, Rexán, Ari,
+  /// Vadic, Naini, Brina, Niko, narrador, Fragmentos nombrados).
   Widget _construirPresenciaPersonaje() {
     final voz = _vozActivaPlano;
-    Widget? presencia;
+    Widget? avatarCrudo;
+    Alignment alineacion = Alignment.bottomCenter;
     if (voz == VozPersonaje.sora) {
-      presencia = const SoraPresencia(textoActivo: null);
+      // SoraPresencia fija el alto (120) pero no el ancho: dentro de un
+      // FittedBox el ancho quedaría sin límite y su Stack no se podría
+      // maquetar. Se le da su tamaño natural (avatar de 70 px a 16 px del
+      // borde) y el FittedBox la infla desde ahí.
+      avatarCrudo = const FittedBox(
+        fit: BoxFit.contain,
+        child: SizedBox(
+          width: 86,
+          height: 120,
+          child: SoraPresencia(textoActivo: null),
+        ),
+      );
+      alineacion = Alignment.bottomLeft;
     } else if (voz == VozPersonaje.kai) {
-      presencia = const KaiPresencia(textoActivo: null);
+      avatarCrudo = Image.asset(
+        'assets/personajes/kai.png',
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.medium,
+      );
+      alineacion = Alignment.bottomRight;
     } else if (voz == VozPersonaje.oryn) {
-      presencia = const OrynPresencia(textoActivo: null);
+      avatarCrudo = Image.asset(
+        'assets/personajes/oryn.png',
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.medium,
+      );
+      alineacion = Alignment.bottomCenter;
     }
-    if (presencia == null) return const SizedBox.shrink();
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 0,
+    if (avatarCrudo == null) return const SizedBox.shrink();
+    return Positioned.fill(
       child: IgnorePointer(
         child: SafeArea(
           child: AnimatedOpacity(
             opacity: _fase == _FaseReproduccion.saliendo ? 0.0 : 1.0,
             duration: const Duration(milliseconds: 320),
-            child: presencia,
+            child: Align(
+              alignment: alineacion,
+              child: FractionallySizedBox(
+                heightFactor: 0.5,
+                child: _AvatarRespirando(child: avatarCrudo),
+              ),
+            ),
           ),
         ),
       ),
@@ -582,7 +612,7 @@ class _VistaDialogo extends StatelessWidget {
   Widget build(BuildContext contexto) {
     final nombre = voz.nombreVisible;
     return Padding(
-      padding: const EdgeInsets.fromLTRB(28, 0, 28, 120),
+      padding: const EdgeInsets.fromLTRB(28, 0, 28, 420),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -672,7 +702,7 @@ class _VistaEleccion extends StatelessWidget {
         : respuesta;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(28, 0, 28, 110),
+      padding: const EdgeInsets.fromLTRB(28, 0, 28, 420),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -892,6 +922,69 @@ class _VistaCierreAmable extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Animación de "respiración" para los avatares grandes de la
+/// cinemática: escala cíclica 1.0 ↔ 1.025 y sway horizontal de 4 px
+/// con periodo ligeramente distinto, para que no parezca un sticker
+/// estático. La animación se reproduce en bucle indefinidamente y no
+/// necesita gestión externa — el AnimationController se libera al
+/// disponer del state.
+class _AvatarRespirando extends StatefulWidget {
+  final Widget child;
+
+  const _AvatarRespirando({required this.child});
+
+  @override
+  State<_AvatarRespirando> createState() => _AvatarRespirandoState();
+}
+
+class _AvatarRespirandoState extends State<_AvatarRespirando>
+    with TickerProviderStateMixin {
+  late final AnimationController _controladorEscala;
+  late final AnimationController _controladorSway;
+
+  @override
+  void initState() {
+    super.initState();
+    _controladorEscala = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2800),
+    )..repeat(reverse: true);
+    _controladorSway = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 3700),
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controladorEscala.dispose();
+    _controladorSway.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext contexto) {
+    return AnimatedBuilder(
+      animation: Listenable.merge([_controladorEscala, _controladorSway]),
+      builder: (_, hijo) {
+        final escala = 1.0 +
+            Curves.easeInOut.transform(_controladorEscala.value) * 0.025;
+        final desplazamientoX =
+            (Curves.easeInOut.transform(_controladorSway.value) - 0.5) * 8;
+        return Transform.translate(
+          offset: Offset(desplazamientoX, 0),
+          child: Transform.scale(
+            scale: escala,
+            alignment: Alignment.bottomCenter,
+            child: hijo,
+          ),
+        );
+      },
+      child: widget.child,
     );
   }
 }

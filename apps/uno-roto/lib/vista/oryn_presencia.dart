@@ -23,7 +23,7 @@ class OrynPresencia extends StatelessWidget {
   @override
   Widget build(BuildContext contexto) {
     return SizedBox(
-      height: 120,
+      height: 200,
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.center,
@@ -36,7 +36,7 @@ class OrynPresencia extends StatelessWidget {
             Positioned(
               left: 16,
               right: 16,
-              bottom: 96,
+              bottom: 180,
               child: _BocadilloOryn(
                 texto: textoActivo!,
                 alTocar: alTocarBocadillo,
@@ -53,13 +53,13 @@ class _AvatarOryn extends StatelessWidget {
 
   @override
   Widget build(BuildContext contexto) {
-    // PNG escaneado del concept-art original (oryn.pdf). Cabe en el
-    // SizedBox de 120 del padre, pero con un pelín más de ancho que
-    // Kai porque la postura abierta de guardia ocupa más.
+    // PNG escaneado del concept-art original (oryn.pdf). 170x200 —
+    // un pelín más ancho que Kai porque la postura de guardia con
+    // pies abiertos ocupa más, y el dibujo es vertical.
     return Image.asset(
       'assets/personajes/oryn.png',
-      width: 105,
-      height: 120,
+      width: 170,
+      height: 200,
       fit: BoxFit.contain,
       filterQuality: FilterQuality.medium,
     );

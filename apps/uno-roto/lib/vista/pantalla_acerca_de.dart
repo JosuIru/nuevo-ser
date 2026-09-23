@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../datos/catalogo_habilidades.dart';
 import '../dominio/catalogo_distritos.dart';
@@ -144,6 +145,8 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
                   'usa Claude Haiku 4.5 con voz cariñosa, metáforas y '
                   'sin dar la solución directa.',
             ),
+            const SizedBox(height: 8),
+            const _BotonCompartir(),
             const SizedBox(height: 16),
             Text(
               traducirNarrativa('hasta mañana', locale),
@@ -287,6 +290,48 @@ class _CuerpoConNegrita extends StatelessWidget {
           height: 1.55,
         ),
         children: partes,
+      ),
+    );
+  }
+}
+
+/// Botón "COMPARTIR" que abre el share sheet del sistema con el
+/// enlace estable a la última versión publicada en GitHub Releases.
+/// Pensado para que el adulto pase el APK a otra familia por
+/// mensajería sin tener que buscar la URL a mano.
+class _BotonCompartir extends StatelessWidget {
+  const _BotonCompartir();
+
+  /// Enlace estable que SIEMPRE apunta al último release publicado.
+  /// El operador puede subir nuevas releases sin que esta URL cambie
+  /// — la app no necesita actualizarse para seguir compartiendo la
+  /// última.
+  static const String _urlReleaseLatest =
+      'https://github.com/JosuIru/nuevo-ser/releases/latest';
+
+  static const String _textoCompartir =
+      'Uno Roto — juego de matemáticas para 9-12 años. '
+      'Sin tracking, sin anuncios, sin compras. '
+      'Descarga el APK desde: $_urlReleaseLatest';
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: FilledButton.tonalIcon(
+        onPressed: () => Share.share(
+          _textoCompartir,
+          subject: 'Uno Roto — juego de matemáticas para niños 9-12',
+        ),
+        icon: const Icon(Icons.share_outlined, size: 18),
+        label: const Text(
+          'COMPARTIR',
+          style: TextStyle(letterSpacing: 2, fontSize: 12),
+        ),
+        style: FilledButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          backgroundColor: PaletaNeon.violetaNeon.withOpacity(0.4),
+          foregroundColor: PaletaNeon.textoPrincipal,
+        ),
       ),
     );
   }

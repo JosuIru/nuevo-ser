@@ -16,7 +16,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.0+13
+version: 1.0.0+19
 
 environment:
   sdk: ^3.5.0
@@ -70,6 +70,23 @@ dependencies:
   # o la galería. Las imágenes se guardan localmente bajo el
   # directorio de documentos del perfil; nunca salen del aparato.
   image_picker: ^1.1.2
+
+  # Lectura de la versión instalada para comparar contra GitHub
+  # Releases (banner "hay actualización"). package_info_plus es el
+  # plugin estándar Flutter para metadatos de la APK.
+  package_info_plus: ^8.0.0
+
+  # Abrir URLs externas en el navegador del sistema. Lo usa el botón
+  # "DESCARGAR" del banner de actualización para abrir la URL del
+  # APK release en GitHub. Pinned a 6.2.x: las 6.3.x traen
+  # androidx.browser 1.9.0 + androidx.core 1.17.0 que requieren AGP
+  # 8.9.1+, y la app sigue en AGP 8.1.1.
+  url_launcher: ^6.3.0
+
+  # Share sheet del sistema. Lo usa el botón "COMPARTIR" de la
+  # pantalla "Acerca de" para que el adulto pueda pasar el enlace
+  # de la última versión por mensajería sin salir de la app.
+  share_plus: ^10.0.0
 
   # Plataforma compartida de la Colección Nuevo Ser Kids — extracción
   # iniciada en C5 del refactor. Las apps de juegos consumen los

@@ -10,6 +10,7 @@ import '../../dominio/problema_espejo.dart' show Fraccion;
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
+import 'sprites_maquinas.dart';
 
 /// Puentes — máquina de Rexán. El niño cubre un hueco con tablones y
 /// prueba el puente: el carro sólo cruza si la suma es exacta. Si
@@ -73,6 +74,9 @@ class _PantallaPuentesState extends State<PantallaPuentes>
       duration: const Duration(milliseconds: 1500),
     );
     _nuevoReto();
+    SpritesMaquinas.cargar('carro').then((_) {
+      if (mounted) setState(() {});
+    });
   }
 
   @override
@@ -418,7 +422,9 @@ class PintorPuente extends CustomPainter {
           ? colocados[i].valor * pixelesPorUnidad
           : 44.0;
       final sobresale = revelarEscala && x + ancho > bordeDerecho + 0.5;
-      final rect = Rect.fromLTWH(x, alturaTablero - 10, ancho, 10);
+      // El tablero queda a ras de las orillas: su cara de arriba es el
+      // suelo por el que rueda el carro.
+      final rect = Rect.fromLTWH(x, alturaTablero, ancho, 10);
       canvas.drawRect(
         rect,
         Paint()
@@ -434,7 +440,7 @@ class PintorPuente extends CustomPainter {
           ..strokeWidth = 1.5,
       );
       if (ancho > 26) {
-        _texto(canvas, etiquetas[i], Offset(rect.center.dx, alturaTablero + 14),
+        _texto(canvas, etiquetas[i], Offset(rect.center.dx, alturaTablero + 24),
             tamano: 11, color: PaletaNeon.textoTenue);
       }
       x += ancho;
@@ -449,15 +455,21 @@ class PintorPuente extends CustomPainter {
       ResultadoPuente.largo || ResultadoPuente.vacio => bordeIzquierdo - 14,
     };
     final xCarro = salida + (llegada - salida) * Curves.easeInOut.transform(avanceCarro);
-    final carroBase = alturaTablero - 10;
-    final rectCarro = RRect.fromRectAndRadius(
-      Rect.fromCenter(center: Offset(xCarro, carroBase - 12), width: 28, height: 16),
-      const Radius.circular(3),
-    );
-    canvas.drawRRect(rectCarro, Paint()..color = PaletaNeon.violetaNeon);
-    for (final dx in [-8.0, 8.0]) {
-      canvas.drawCircle(Offset(xCarro + dx, carroBase - 3), 3.5,
-          Paint()..color = PaletaNeon.textoPrincipal);
+    final carroBase = alturaTablero;
+    final spriteCarro = SpritesMaquinas.ya('carro');
+    if (spriteCarro != null) {
+      pintarSprite(canvas, spriteCarro,
+          Rect.fromLTRB(xCarro - 22, carroBase - 44, xCarro + 22, carroBase + 1));
+    } else {
+      final rectCarro = RRect.fromRectAndRadius(
+        Rect.fromCenter(center: Offset(xCarro, carroBase - 12), width: 28, height: 16),
+        const Radius.circular(3),
+      );
+      canvas.drawRRect(rectCarro, Paint()..color = PaletaNeon.violetaNeon);
+      for (final dx in [-8.0, 8.0]) {
+        canvas.drawCircle(Offset(xCarro + dx, carroBase - 3), 3.5,
+            Paint()..color = PaletaNeon.textoPrincipal);
+      }
     }
   }
 

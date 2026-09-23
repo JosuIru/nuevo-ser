@@ -10,6 +10,7 @@ import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'marco_minijuego.dart';
+import 'sprites_maquinas.dart';
 
 /// Canales — máquina de Rexán: comecocos matemático. Deslizar el dedo
 /// por el laberinto (o la cruceta) cambia de dirección. Nada se mueve
@@ -71,6 +72,11 @@ class _PantallaCanalesState extends State<PantallaCanales>
     if (_habilidadesConRegla.isEmpty) _habilidadesConRegla.add('DIV.01');
     _nuevoLaberinto();
     _reloj = Timer.periodic(_periodo, (_) => _tic());
+    for (final sprite in ['fragmento', 'sombra']) {
+      SpritesMaquinas.cargar(sprite).then((_) {
+        if (mounted) setState(() {});
+      });
+    }
   }
 
   @override
@@ -333,8 +339,13 @@ class PintorCanales extends CustomPainter {
     });
 
     // Sombras.
+    final spriteSombra = SpritesMaquinas.ya('sombra');
     for (final sombra in partida.sombras) {
       final centro = rectDe(sombra).center;
+      if (spriteSombra != null) {
+        pintarSprite(canvas, spriteSombra, rectDe(sombra).inflate(lado * 0.1));
+        continue;
+      }
       canvas.drawCircle(centro, lado * 0.42,
           Paint()..color = PaletaNeon.violetaBase.withOpacity(0.55));
       canvas.drawCircle(centro, lado * 0.42,
@@ -344,6 +355,12 @@ class PintorCanales extends CustomPainter {
     }
 
     // El Fragmento del niño.
+    final spriteFragmento = SpritesMaquinas.ya('fragmento');
+    if (spriteFragmento != null) {
+      pintarSprite(
+          canvas, spriteFragmento, rectDe(partida.jugador).inflate(lado * 0.08));
+      return;
+    }
     final centroJugador = rectDe(partida.jugador).center;
     canvas.drawCircle(centroJugador, lado * 0.36,
         Paint()..color = PaletaNeon.ambarCanales);

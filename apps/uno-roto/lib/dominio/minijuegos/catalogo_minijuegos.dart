@@ -19,6 +19,7 @@ enum IdMinijuego {
   serpiente,
   balanza,
   flota,
+  salto,
 }
 
 class DefinicionMinijuego {
@@ -126,6 +127,16 @@ class CatalogoMinijuegos {
       lineaRexan: 'Tres barcos escondidos en el Puerto. Yo canto, tú apuntas.',
       habilidades: ['PROP.04', 'FR.22'],
       rondasPorPartida: 2,
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.salto,
+      nombre: 'Salto',
+      descripcion: 'El Fragmento corre solo. Toca para saltar y elige la '
+          'puerta del resultado: arriba o abajo.',
+      lineaRexan: 'Esta no para. Tú sólo decides cuándo saltar… y por qué '
+          'puerta.',
+      habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04'],
+      rondasPorPartida: 3,
     ),
   ];
 

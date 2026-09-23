@@ -438,6 +438,43 @@ def flota():
     return pista
 
 
+def sinte_arpegio(frecuencia, duracion, volumen=0.07):
+    """Onda cuadrada suave (pocos armónicos impares) con filtro."""
+    n = int(duracion * FS)
+    t = np.arange(n) / FS
+    senal = sum(np.sin(2 * np.pi * frecuencia * k * t) / k for k in (1, 3, 5, 7))
+    return volumen * filtro(senal, 'lowpass', 2600) * envolvente(n, 0.004, duracion * 0.5)
+
+
+def salto():
+    """Corredor sin épica · 100 BPM, mi menor. Bombo suave a negras,
+    charles a contratiempo, arpegio de sinte y bajo en corcheas."""
+    negra = 60 / 100
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ('E2', ['E4', 'G4', 'B4', 'D5']),
+        ('C2', ['C4', 'E4', 'G4', 'B4']),
+        ('A1', ['A3', 'C4', 'E4', 'G4']),
+        ('B1', ['B3', 'D#4', 'F#4', 'A4']),
+    ]
+    for c in range(8):
+        inicio = c * compas
+        raiz, voces = acordes[c % 4]
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra, bombo(0.22))
+            sumar_circular(pista, inicio + (tiempo + 0.5) * negra, charles(0.045))
+        for tiempo in (1, 3):
+            sumar_circular(pista, inicio + tiempo * negra, escobilla(0.08, 0.15))
+        orden = [0, 1, 2, 3, 2, 1, 2, 3]
+        for corchea in range(8):
+            sumar_circular(pista, inicio + corchea * negra / 2,
+                           sinte_arpegio(nota(voces[orden[corchea]]), negra * 0.45))
+            sumar_circular(pista, inicio + corchea * negra / 2,
+                           bajo(nota(raiz) * 2, negra * 0.4, 0.06 if corchea % 2 else 0.08))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -502,6 +539,7 @@ if __name__ == '__main__':
     guardar(serpiente(), os.path.join(musica, 'maquina_serpiente.ogg'), -19, es_bucle=True)
     guardar(balanza(), os.path.join(musica, 'maquina_balanza.ogg'), -19, es_bucle=True)
     guardar(flota(), os.path.join(musica, 'maquina_flota.ogg'), -19, es_bucle=True)
+    guardar(salto(), os.path.join(musica, 'maquina_salto.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

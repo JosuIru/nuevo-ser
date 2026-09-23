@@ -14,6 +14,7 @@ import 'pantalla_flota.dart';
 import 'pantalla_minas.dart';
 import 'pantalla_parejas.dart';
 import 'pantalla_puentes.dart';
+import 'pantalla_salto.dart';
 import 'pantalla_serpiente.dart';
 
 /// Pantalla de la máquina [id]. Con [registro] nulo no se registra
@@ -59,6 +60,11 @@ Widget pantallaDeMaquina(
           habilidadesPracticadas: habilidades);
     case IdMinijuego.flota:
       return PantallaFlota(
+          registro: registro,
+          dificultad: dificultad,
+          habilidadesPracticadas: habilidades);
+    case IdMinijuego.salto:
+      return PantallaSalto(
           registro: registro,
           dificultad: dificultad,
           habilidadesPracticadas: habilidades);
@@ -122,6 +128,7 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.serpiente,
     IdMinijuego.balanza,
     IdMinijuego.flota,
+    IdMinijuego.salto,
   };
 
   Widget _pantallaDe(

@@ -2001,4 +2001,21 @@ const Map<String, String> narrativaCa = <String, String>{
   // Versión web
   'La foto de tu personaje sólo se puede poner en la app del móvil.':
       'La foto del teu personatge només es pot posar a l\'app del mòbil.',
+  // Salto (minijuego)
+  'Salto':
+      'Salt',
+  'El Fragmento corre solo. Toca para saltar y elige la puerta del resultado: arriba o abajo.':
+      'El Fragment corre sol. Toca per saltar i tria la porta del resultat: a dalt o a baix.',
+  'Esta no para. Tú sólo decides cuándo saltar… y por qué puerta.':
+      'Aquesta no para. Tu només decideixes quan saltar… i per quina porta.',
+  'Esa puerta no era. Desde la marca.':
+      'Aquesta porta no era. Des de la marca.',
+  'Otra vez desde la marca.':
+      'Una altra vegada des de la marca.',
+  'Cinco puertas. Sigue, que la noche es larga.':
+      'Cinc portes. Continua, que la nit és llarga.',
+  'Quince puertas. El Fragmento se para a mirar la ciudad.':
+      'Quinze portes. El Fragment s\'atura a mirar la ciutat.',
+  'Toca para empezar. Toca para saltar.':
+      'Toca per començar. Toca per saltar.',
 };

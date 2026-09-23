@@ -1997,4 +1997,21 @@ const Map<String, String> narrativaEu = <String, String>{
   // Versión web
   'La foto de tu personaje sólo se puede poner en la app del móvil.':
       'Zure pertsonaiaren argazkia mugikorreko app-an bakarrik jar daiteke.',
+  // Salto (minijuego)
+  'Salto':
+      'Jauzia',
+  'El Fragmento corre solo. Toca para saltar y elige la puerta del resultado: arriba o abajo.':
+      'Zatia bakarrik doa korrika. Ukitu jauzi egiteko eta aukeratu emaitzaren atea: goian edo behean.',
+  'Esta no para. Tú sólo decides cuándo saltar… y por qué puerta.':
+      'Honek ez du gelditzen. Zuk bakarrik erabakitzen duzu noiz jauzi egin… eta zein atetatik.',
+  'Esa puerta no era. Desde la marca.':
+      'Ate hori ez zen. Markatik berriro.',
+  'Otra vez desde la marca.':
+      'Berriro markatik.',
+  'Cinco puertas. Sigue, que la noche es larga.':
+      'Bost ate. Jarraitu, gaua luzea da eta.',
+  'Quince puertas. El Fragmento se para a mirar la ciudad.':
+      'Hamabost ate. Zatia gelditu egiten da hiriari begira.',
+  'Toca para empezar. Toca para saltar.':
+      'Ukitu hasteko. Ukitu jauzi egiteko.',
 };

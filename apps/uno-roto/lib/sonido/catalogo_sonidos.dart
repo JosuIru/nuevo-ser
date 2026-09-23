@@ -162,6 +162,12 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_flota.ogg',
       enBucle: true,
     ),
+    'musica_maquina_salto': SonidoCatalogado(
+      identificador: 'musica_maquina_salto',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_salto.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

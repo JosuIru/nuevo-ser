@@ -195,8 +195,12 @@ uno-roto/
   - Dominio en `lib/dominio/minijuegos/`, vistas en `lib/vista/minijuegos/`. Textos vía `traducirNarrativa` (eu/ca añadidos al final de los mapas; revisión nativa pendiente como el resto).
   - **Parejas** (FR.09/DEC.08/PROP.05): cartas boca arriba con el mismo valor escrito distinto; boca arriba para que un fallo sea de matemáticas y no de memoria. **Minas** (DIV.01/03/04/05): buscaminas de divisibilidad; abrir y marcar se comprueban al momento.
   - **Serpiente** (ARI.01/OP.01/ARI.02/FR.22/PROP.04): comer el resultado entre distractores que son los errores típicos (`retos_calculo.dart`); atraviesa bordes y a sí misma, no muere. **Balanza** (ALG.01/02): la ecuación como balanza de bolsas de x y pesas; se propone x y se pesa. **La flota** (PROP.04/FR.22): coordenadas cantadas en cálculo; si se equivoca, se le enseña la casilla y se dispara igual.
+  - **Salto** (ARI.01/OP.01/ARI.02/FR.22/PROP.04): corredor al estilo Geometry Dash; tocar = saltar, pinchos y puertas dobles (arriba por la plataforma / abajo por el suelo) con la respuesta y un error típico. Chocar devuelve a la última marca (sin game over ni contador). Sólo el primer intento de cada puerta va a maestría; los pinchos no cuentan. Test que simula un piloto perfecto: el nivel siempre es superable.
   - Modo dios: todas encendidas con D1-D3 y sin registrar maestría; también desde la pantalla del modo dios.
   - Arte de las recreativas: `arte/maquinas/` (flavor3d). Sprites: `arte/sprites/`. Música: `scripts/sonido/generar_musica_maquinas.py`, un bucle propio por máquina. Arte y música: `~/Projects/flavor3d` (render 3D desde YAML) y `~/Projects/mesa-mezclas` (Ravero, música por géneros) están disponibles para sustituir los placeholders — revisar licencias de samples antes.
+
+- **Versión web** (2026-09-23): `scripts/web/desplegar.sh` compila y copia el build a `wp-content/uploads/juegos/uno-roto/` (por defecto el WordPress local uno-roto.local); el plugin `nuevo-ser-core` la incrusta con `[uno_roto]`. En web el backend es el mismo WordPress (mismo origen). Instalable y **sin conexión** con service worker propio (`scripts/web/generar_sw.py`); canvaskit, Roboto y las fuentes de respaldo servidas en local: **cero peticiones a terceros** (probado con Chrome). La foto del avatar sólo en la app.
+- **Escenarios ilustrados** de los siete distritos (`arte/escenarios/`, flavor3d, fondo transparente) sobre el cielo animado; versiones apagada/encendida fundidas según el progreso.
 
 **Gap frente a doc 03 / prompt maestro**:
 - Sin Isar (usamos shared_preferences).

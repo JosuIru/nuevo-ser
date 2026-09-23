@@ -33,6 +33,7 @@ MAQUINAS = {
     'serpiente': {'pantalla': '#E8A857', 'marquesina': '#9FD9B8'},
     'balanza': {'pantalla': '#78D8E0', 'marquesina': '#6668A8'},
     'flota': {'pantalla': '#5CB4C2', 'marquesina': '#2B4DA6'},
+    'salto': {'pantalla': '#E8A857', 'marquesina': '#B45656'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -118,6 +119,14 @@ def juego_en_pantalla(nombre, color):
                            (3, 4, '#B45656')]:
             p.append(pixel(f'barco{f}{c}', -0.3 + c * 0.12, 0.17 - f * 0.12, 0.05, 0.05,
                            tono, 1.6))
+    elif nombre == 'salto':
+        p.append(pixel('suelo', 0, -0.2, 0.36, 0.006, '#A67EC8', 1.4))
+        p.append(pixel('cubo', -0.2, -0.08, 0.035, 0.035, color, 2.0))
+        for i, u in enumerate((-0.02, 0.2)):
+            p.append(pixel(f'pincho{i}', u, -0.17, 0.02, 0.025, '#C87C7C', 1.4))
+        p.append(pixel('plataforma', 0.22, 0.02, 0.1, 0.008, color, 1.4))
+        p.append(pixel('puerta_a', 0.3, 0.12, 0.012, 0.08, '#A67EC8', 1.4))
+        p.append(pixel('puerta_b', 0.3, -0.1, 0.012, 0.09, '#A67EC8', 1.4))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

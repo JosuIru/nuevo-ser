@@ -1,131 +1,278 @@
 <!DOCTYPE html>
+<!-- GENERADO por tool/generar_manual.dart desde lib/l10n/app_es.arb — NO editar a mano. -->
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solera Zunbeltz — Manual breve</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solera Zunbeltz — Manual de uso</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --monte:#1f2e22; --pasto:#5e7d3a; --pasto-1:#4d6a2e; --ocre:#c99a3b; --ocre-claro:#e6c275;
-    --musgo:#8aa66b; --crema:#f4f0e4; --crema-2b:#eae3d2; --tinta:#1c241b; --tinta-2:#3a4a3b; --tinta-3:#6b7a6c; --beltz:#14180f;
-    --linea:rgba(31,46,34,.16); --serif:"Fraunces",Georgia,serif; --sans:"Archivo",system-ui,sans-serif; --narrow:"Archivo Narrow","Archivo",sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);color:var(--tinta);background:#cfc9b8;line-height:1.55;-webkit-font-smoothing:antialiased;padding:24px 12px}
-  .hoja{max-width:840px;margin:0 auto;background:var(--crema);box-shadow:0 10px 40px rgba(20,24,15,.18);border-radius:6px;overflow:hidden}
-  h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em}
+:root{
+  --papel:#E9EBE2; --papel-hundido:#DFE2D6; --monte:#1B2320; --senal:#B8402A;
+  --pasto:#5E7D3A; --tinta:#171D19; --tinta-apagada:#6C7870; --linea:rgba(27,35,32,.17);
+  --titular:"Archivo",system-ui,sans-serif; --texto:"Spectral",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--texto);font-size:17px;line-height:1.6;color:var(--tinta);background:#D3D7CB;padding:20px 16px 40px}
+.barra{max-width:780px;margin:0 auto 12px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--titular);font-size:14px}
+.barra a{color:var(--monte);font-weight:600}
+.barra button{font:600 14px var(--titular);background:var(--monte);color:var(--papel);border:0;border-radius:4px;padding:9px 16px;cursor:pointer}
+.hoja{max-width:780px;margin:0 auto;background:var(--papel);border:1px solid var(--linea);border-radius:4px;overflow:hidden}
+.cab{background:var(--monte);color:var(--papel);padding:32px 40px 26px}
+.cab h1{font:700 2rem/1.1 var(--titular);letter-spacing:-.02em;display:inline-block;padding-bottom:6px;border-bottom:3px solid var(--senal)}
+.cab .sub{font-family:var(--titular);font-size:14px;opacity:.75;margin-top:10px}
+.cuerpo{padding:28px 40px 12px}
+.intro{font-size:1.08rem;color:var(--tinta)}
+h2{font:700 1.3rem/1.2 var(--titular);letter-spacing:-.01em;color:var(--monte);margin:34px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--linea)}
+h3{font:600 1.08rem/1.3 var(--titular);color:var(--monte);margin:22px 0 4px;display:flex;align-items:baseline;gap:10px}
+h3 .n{font-size:.85rem;color:var(--senal);min-width:1.4em}
+section p{margin:6px 0}
+section ul,section ol{margin:6px 0 6px 0;padding-left:1.4em}
+section li{margin:5px 0}
+ol.pasos{list-style:none;padding-left:0;counter-reset:paso}
+ol.pasos li{counter-increment:paso;position:relative;padding-left:34px}
+ol.pasos li::before{content:counter(paso);position:absolute;left:0;top:2px;width:22px;height:22px;display:grid;place-items:center;background:var(--monte);color:var(--papel);font:700 12px var(--titular);border-radius:4px}
+section ul li::marker{color:var(--pasto)}
+.ui{font-family:var(--titular);font-weight:600;font-size:.92em;white-space:nowrap;background:var(--papel-hundido);border:1px solid var(--linea);border-radius:4px;padding:0 5px}
+.nota{background:var(--papel-hundido);border-left:3px solid var(--senal);padding:10px 14px;margin:10px 0!important;font-size:.95rem}
+.nota b{font-family:var(--titular);color:var(--senal)}
+.indice{margin-top:10px}
+.indice>ol{list-style:none;columns:2;column-gap:32px;margin-top:10px}
+.indice>ol>li{break-inside:avoid;margin-bottom:12px}
+.grupo-indice{font:600 .95rem var(--titular);color:var(--monte)}
+.indice ol ol{list-style:none;padding-left:0;margin-top:2px}
+.indice ol ol li{font-size:.95rem;margin:1px 0}
+.indice a{color:var(--tinta);text-decoration:none;border-bottom:1px solid var(--linea)}
+.indice a:hover{color:var(--senal)}
+.aviso{margin:36px 0 8px;padding:14px 16px;border:1px solid var(--linea);border-radius:4px;font-size:.93rem;color:var(--tinta-apagada)}
+.aviso b{font-family:var(--titular);color:var(--monte)}
+.final{margin:14px 0 18px;font-style:italic}
+.pie{background:var(--monte);color:rgba(233,235,226,.72);font:13px/1.55 var(--titular);padding:16px 40px}
+@media(max-width:640px){
+  body{padding:12px 0 24px;font-size:16px}
+  .barra{padding:0 16px}
+  .hoja{border-left:0;border-right:0;border-radius:0}
+  .cab,.cuerpo,.pie{padding-left:16px;padding-right:16px}
+  .indice>ol{columns:1}
+  .ui{white-space:normal}
+}
+@media print{
+  body{background:#fff;padding:0;font-size:11pt}
+  .barra{display:none}
+  .hoja{border:0;max-width:none}
+  .cab,.nota,ol.pasos li::before,.pie{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{break-inside:avoid}
+  h2{break-after:avoid}
+  @page{margin:14mm}
+}
 
-  .cab{display:flex;align-items:center;gap:14px;padding:30px 40px 24px;background:var(--monte);color:#eef0e6}
-  .glifo{width:38px;height:38px;border-radius:10px;background:var(--crema);position:relative;flex:0 0 auto}
-  .glifo::after{content:"";position:absolute;inset:9px 9px auto 9px;height:8px;border-radius:2px;background:var(--ocre)}
-  .glifo::before{content:"";position:absolute;inset:auto 9px 9px 9px;height:8px;border-radius:2px;background:var(--pasto)}
-  .cab h1{font-size:1.7rem;color:#fff;line-height:1.1}
-  .cab .sub{font-family:var(--narrow);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12.5px;color:var(--ocre-claro);margin-top:2px}
-
-  .cuerpo{padding:26px 40px 8px}
-  .intro{font-size:1.02rem;color:var(--tinta-2);margin-bottom:8px}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px}
-  .chip{font-family:var(--narrow);font-weight:600;font-size:12px;background:var(--crema-2b);border:1px solid var(--linea);border-radius:100px;padding:5px 12px;color:var(--tinta-2)}
-
-  h2{font-size:1.25rem;margin:26px 0 6px;color:var(--monte);border-bottom:2px solid var(--linea);padding-bottom:6px}
-  h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:7px;background:var(--monte);color:var(--ocre-claro);font-size:.85rem;margin-right:9px;vertical-align:middle}
-  p.lead{color:var(--tinta-2);margin:6px 0 8px}
-  ol,ul{margin:6px 0 6px 4px;padding-left:20px}
-  li{margin:5px 0;color:var(--tinta-2)}
-  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
-  @media(max-width:620px){.tabs{grid-template-columns:1fr}}
-  .tab{background:var(--crema-2b);border:1px solid var(--linea);border-left:3px solid var(--pasto);border-radius:9px;padding:12px 14px}
-  .tab b{font-family:var(--serif);font-weight:600}
-  .tab span{display:block;font-size:.92rem;color:var(--tinta-2);margin-top:2px}
-  kbd{font-family:var(--narrow);font-weight:700;background:var(--monte);color:#eef0e6;border-radius:5px;padding:1px 7px;font-size:.85em}
-  .nota{background:#fff;border:1px solid var(--linea);border-left:4px solid var(--ocre);border-radius:9px;padding:12px 16px;margin:10px 0;font-size:.94rem;color:var(--tinta-2)}
-  .nota b{color:var(--monte)}
-
-  .pie{background:var(--beltz);color:rgba(244,240,228,.7);padding:18px 40px;font-size:12px;line-height:1.6;font-family:var(--narrow);margin-top:20px}
-  .pie b{color:var(--ocre-claro)}
-  .barra{max-width:840px;margin:0 auto 12px;display:flex;justify-content:flex-end}
-  .barra button{font-family:var(--narrow);font-weight:700;font-size:13px;border:none;background:var(--monte);color:#eef0e6;padding:9px 18px;border-radius:8px;cursor:pointer}
-  @media print{body{background:#fff;padding:0}.hoja{box-shadow:none;border-radius:0;max-width:none}.barra{display:none}@page{margin:14mm}}
 </style>
 </head>
 <body>
-
-<div class="barra"><button onclick="window.print()">Imprimir / Guardar PDF</button></div>
-
-<div class="hoja">
-  <div class="cab">
-    <span class="glifo"></span>
-    <div>
-      <h1>Solera Zunbeltz</h1>
-      <div class="sub">Manual breve · Fase 1</div>
-    </div>
-  </div>
-
-  <div style="padding:10px 40px 0;font-family:var(--narrow);font-size:12.5px"><a href="index_eu.html" style="color:var(--pasto-1);font-weight:700;text-decoration:none">Euskaraz / En euskera →</a></div>
-
-  <div class="cuerpo">
-    <p class="intro">App para el Espacio Test Agrario Zunbeltz: gestiona las fincas e infraestructuras, reparte las tareas de mantenimiento y lleva el seguimiento del testaje. Funciona en un solo dispositivo, también sin cobertura en el monte.</p>
-    <div class="chips">
-      <span class="chip">◆ Castellano y euskera</span>
-      <span class="chip">◆ Funciona offline</span>
-      <span class="chip">◆ Un dispositivo</span>
-    </div>
-
-    <h2><span class="n">1</span>Primer arranque</h2>
-    <p class="lead">Al abrir la app por primera vez verás la bienvenida. Elige el idioma (<b>Castellano</b> o <b>Euskara</b>) y pulsa <kbd>Empezar</kbd>. Podrás cambiarlo cuando quieras en <b>Ajustes</b>.</p>
-    <p class="lead">Abajo tienes cuatro pestañas:</p>
-    <div class="tabs">
-      <div class="tab"><b>Hoy</b><span>Resumen: cuántas tareas tienes abiertas y acceso rápido al tablero.</span></div>
-      <div class="tab"><b>Fincas</b><span>El mapa de Zunbeltz y La Planilla con sus puntos de infraestructura.</span></div>
-      <div class="tab"><b>Seguimiento</b><span>Alimentación, pariciones, ventas, ingresos y gastos, con indicadores.</span></div>
-      <div class="tab"><b>Ajustes</b><span>Idioma e información del Espacio Test.</span></div>
-    </div>
-
-    <h2><span class="n">2</span>Marcar una infraestructura en el mapa</h2>
-    <p class="lead">En la pestaña <b>Fincas</b>, un punto es cada infraestructura (abrevadero, manga, cierre, refugio, balsa…). Para añadir uno tienes tres formas:</p>
-    <ol>
-      <li><b>Tocando el mapa</b>: haz clic en el sitio exacto y se abre la ficha con esas coordenadas y la finca más cercana ya elegida.</li>
-      <li><b>Con el botón <kbd>Nuevo punto</kbd></b> (abajo a la derecha): elige <i>usar GPS actual</i> (estando junto a la instalación) o <i>centro del mapa</i>.</li>
-      <li>Rellena <b>tipo</b>, <b>nombre</b>, <b>estado</b> y, si quieres, <b>fotos</b>, y pulsa <kbd>Guardar</kbd>.</li>
-    </ol>
-    <p class="lead">Cada punto aparece con un color según su estado: verde (operativo), ocre (revisar), rojizo (averiado). Pulsa <kbd>GPS</kbd> abajo para centrar el mapa en tu posición, o <kbd>Capas</kbd> para alternar mapa de calle / satélite.</p>
-
-    <h2><span class="n">3</span>Recolocar o borrar un punto</h2>
-    <ol>
-      <li>Toca el <b>marcador</b> en el mapa para abrir su ficha.</li>
-      <li>Para moverlo: pulsa <b>Recolocar en el mapa</b> (icono arriba) y luego <b>toca la nueva ubicación</b>.</li>
-      <li>Para borrarlo: pulsa la <b>papelera</b> y confirma.</li>
-    </ol>
-
-    <h2><span class="n">4</span>Tareas de mantenimiento</h2>
-    <ol>
-      <li>Abre la ficha de un punto y pulsa <kbd>Nueva tarea</kbd> (o créala desde el punto correspondiente).</li>
-      <li>Pon <b>título</b>, y si quieres descripción, <b>responsable</b>, <b>prioridad</b>, <b>estado</b>, <b>fecha objetivo</b>, fotos de antes/después y un coste. Guarda.</li>
-      <li>En <b>Fincas → Tareas</b> tienes el <b>tablero</b>: filtra por finca y por estado para ver de un vistazo qué falta y quién lo tiene.</li>
-      <li>Para el <b>parte de mantenimiento en PDF</b>, pulsa el icono de PDF arriba del tablero: se genera y puedes compartirlo o guardarlo.</li>
-    </ol>
-
-    <h2><span class="n">5</span>Seguimiento del testaje</h2>
-    <p class="lead">En la pestaña <b>Seguimiento</b> ves los <b>indicadores del periodo</b> (kg de alimentación, pariciones, productos comercializados, ingresos, gastos y balance), filtrables por finca.</p>
-    <ol>
-      <li>Pulsa el botón <kbd>+</kbd> y elige <b>Registrar actividad</b> (alimentación en kg, pariciones, productos) o <b>Apunte económico</b> (ingreso o gasto).</li>
-      <li>Rellena los datos y guarda; los indicadores se actualizan solos.</li>
-      <li>Para el <b>informe de seguimiento en PDF</b>, pulsa el icono de PDF arriba.</li>
-    </ol>
-
-    <h2><span class="n">6</span>Previsión del tiempo</h2>
-    <p class="lead">En <b>Fincas</b>, el icono de <b>nube</b> (arriba) muestra la previsión de 7 días sobre la finca, con avisos útiles para el manejo: helada, lluvia, viento, calor y «buen día de manejo». <span style="color:var(--tinta-3)">Es lo único que necesita internet; el resto de la app funciona sin cobertura.</span></p>
-
-    <div class="nota"><b>Bueno saber.</b> Las fotos se guardan en el propio dispositivo. La previsión y los avisos son orientativos y no sustituyen el criterio del ganadero ni del veterinario. Esta es una <b>versión preliminar</b>: los partes e informes tienen formato provisional, y el papeleo oficial (libro de explotación, cuaderno PAC, trazabilidad) llega en fases posteriores. Las fincas que aparecen al inicio son datos de ejemplo hasta cargar los reales con vosotras.</div>
-  </div>
-
-  <div class="pie">
-    <b>Solera Zunbeltz · Manual breve v1 · Fase 1</b> — documento de trabajo. La versión en euskera se entregará tras la revisión nativa de la terminología. App bilingüe (castellano/euskera), funciona offline; un solo dispositivo por ahora (el uso multiusuario es una fase posterior).
-  </div>
+<div class="barra">
+  <a href="index_eu.html">Euskaraz →</a>
+  <button onclick="window.print()">Imprimir / Guardar PDF</button>
 </div>
-
+<main class="hoja">
+  <header class="cab">
+    <h1>Manual de uso</h1>
+    <p class="sub">Solera Zunbeltz · versión 0.1.0</p>
+  </header>
+  <div class="cuerpo">
+    <p class="intro">Una guía paso a paso para usar la app.</p>
+    <nav class="indice">
+      <h2>Contenido</h2>
+      <ol>
+<li><span class="grupo-indice">Primeros pasos</span><ol>
+<li><a href="#a1">¿Qué es esta app?</a></li>
+<li><a href="#a2">Moverse por la app</a></li>
+<li><a href="#a3">Idioma, fotos, tiempo e internet</a></li>
+</ol></li>
+<li><span class="grupo-indice">Fincas y tareas</span><ol>
+<li><a href="#a4">Marcar un punto en el mapa</a></li>
+<li><a href="#a5">Dibujar una zona (parcela, cercado…)</a></li>
+<li><a href="#a6">Mover o borrar un punto o una zona</a></li>
+<li><a href="#a7">Apuntar una tarea de mantenimiento</a></li>
+<li><a href="#a8">Tareas que se repiten</a></li>
+<li><a href="#a9">Llevar las tareas al día</a></li>
+</ol></li>
+<li><span class="grupo-indice">Tu proyecto de test</span><ol>
+<li><a href="#a10">Crear tu proyecto</a></li>
+<li><a href="#a11">Apuntar tu día a día</a></li>
+<li><a href="#a12">Entender tus números</a></li>
+<li><a href="#a13">Sacar informes y enviarlos</a></li>
+</ol></li>
+<li><span class="grupo-indice">Trabajar en equipo</span><ol>
+<li><a href="#a14">Compartir las tareas con el equipo</a></li>
+<li><a href="#a15">Quién puede hacer qué</a></li>
+</ol></li>
+<li><span class="grupo-indice">Si algo falla</span><ol>
+<li><a href="#a16">Problemas frecuentes</a></li>
+</ol></li>
+      </ol>
+    </nav>
+<h2>Primeros pasos</h2>
+<section id="a1">
+<h3><span class="n">1</span>¿Qué es esta app?</h3>
+<p>Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).</p>
+<p>Todo se guarda en tu móvil y funciona sin cobertura en el monte.</p>
+</section>
+<section id="a2">
+<h3><span class="n">2</span>Moverse por la app</h3>
+<p>Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:</p>
+<ul>
+<li>Hoy: un resumen con las tareas abiertas.</li>
+<li>Fincas: el mapa con los puntos, las zonas y las tareas.</li>
+<li>Proyectos: tu proceso de test y tus números.</li>
+<li>Ajustes: idioma, ayuda, envío de informes y sincronización.</li>
+</ul>
+<p>Para volver atrás, usa la flecha de arriba a la izquierda.</p>
+</section>
+<section id="a3">
+<h3><span class="n">3</span>Idioma, fotos, tiempo e internet</h3>
+<ul>
+<li>Cambia entre castellano y euskera en Ajustes → Idioma.</li>
+<li>Las fotos se guardan en tu propio móvil.</li>
+<li>En Fincas, el icono de la nube (arriba) muestra la previsión de 7 días con avisos de helada, lluvia, viento, calor y días buenos para el manejo.</li>
+</ul>
+<p class="nota"><b>Bueno saber.</b> Todo funciona sin internet menos la previsión del tiempo y la sincronización de tareas.</p>
+</section>
+<h2>Fincas y tareas</h2>
+<section id="a4">
+<h3><span class="n">4</span>Marcar un punto en el mapa</h3>
+<p>Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…</p>
+<ol class="pasos">
+<li>Entra en Fincas.</li>
+<li>Toca el sitio exacto en el mapa. O pulsa <span class="ui">Nuevo punto</span> (abajo a la derecha) y elige <span class="ui">Usar GPS actual</span> si estás junto a la instalación, o <span class="ui">Usar centro del mapa</span>.</li>
+<li>Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.</li>
+<li>Pulsa Guardar.</li>
+</ol>
+<p class="nota"><b>Bueno saber.</b> El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón <span class="ui">GPS</span> centra el mapa en ti y <span class="ui">Capas</span> cambia entre mapa y satélite.</p>
+</section>
+<section id="a5">
+<h3><span class="n">5</span>Dibujar una zona (parcela, cercado…)</h3>
+<ol class="pasos">
+<li>En Fincas, pulsa <span class="ui">Dibujar zona</span>.</li>
+<li>Toca en el mapa las esquinas de la zona, una detrás de otra. Si te equivocas, pulsa <span class="ui">Deshacer</span>.</li>
+<li>Con tres esquinas o más, pulsa <span class="ui">Cerrar zona</span>.</li>
+<li>Elige la finca, el tipo (parcela de pasto, cercado, zona de pastoreo…), el nombre y el estado, y guarda.</li>
+</ol>
+<p class="nota"><b>Bueno saber.</b> La superficie que sale del dibujo es orientativa. Si tienes la oficial del recinto SIGPAC, ponla en <span class="ui">Superficie oficial SIGPAC</span> y será la que se use.</p>
+</section>
+<section id="a6">
+<h3><span class="n">6</span>Mover o borrar un punto o una zona</h3>
+<ol class="pasos">
+<li>Toca el punto o la zona en el mapa para abrir su ficha.</li>
+<li>Para mover un punto: pulsa <span class="ui">Recolocar en el mapa</span> (arriba) y toca el sitio nuevo.</li>
+<li>Para corregir una zona: pulsa <span class="ui">Volver a dibujar</span> (arriba) y marca de nuevo sus esquinas.</li>
+<li>Para borrarlo: pulsa la papelera y confirma.</li>
+</ol>
+</section>
+<section id="a7">
+<h3><span class="n">7</span>Apuntar una tarea de mantenimiento</h3>
+<ol class="pasos">
+<li>Abre la ficha de un punto o de una zona y pulsa <span class="ui">Nueva tarea</span>.</li>
+<li>Escribe qué hay que hacer. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.</li>
+<li>Pulsa Guardar.</li>
+</ol>
+<p class="nota"><b>Bueno saber.</b> La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.</p>
+</section>
+<section id="a8">
+<h3><span class="n">8</span>Tareas que se repiten</h3>
+<p>Lo que se hace siempre (rellenar comederos, revisar el vallado…) no hace falta apuntarlo cada vez.</p>
+<ol class="pasos">
+<li>Al crear la tarea, elige una <span class="ui">Periodicidad</span>: diaria, semanal, quincenal, mensual o trimestral.</li>
+<li>Cuando la marques como hecha, la app crea sola la siguiente, con la fecha que toca.</li>
+</ol>
+<p class="nota"><b>Bueno saber.</b> En la lista, las tareas periódicas llevan el símbolo de repetir.</p>
+</section>
+<section id="a9">
+<h3><span class="n">9</span>Llevar las tareas al día</h3>
+<ol class="pasos">
+<li>En Fincas, pulsa <span class="ui">Tareas</span> (arriba) para ver el tablero con todas.</li>
+<li>Filtra por finca y por estado. Si sincronizas con el equipo, <span class="ui">Mis tareas</span> deja solo las que tienes asignadas.</li>
+<li>Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.</li>
+<li>Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.</li>
+<li>Con <span class="ui">Parte PDF</span> sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.</li>
+</ol>
+</section>
+<h2>Tu proyecto de test</h2>
+<section id="a10">
+<h3><span class="n">10</span>Crear tu proyecto</h3>
+<ol class="pasos">
+<li>Entra en Proyectos y pulsa +.</li>
+<li>Pon el nombre del proyecto, la persona tester y la actividad. Si quieres, también la finca y las fechas de inicio y fin.</li>
+<li>Pulsa Guardar. Toca el proyecto en la lista para entrar en él.</li>
+</ol>
+</section>
+<section id="a11">
+<h3><span class="n">11</span>Apuntar tu día a día</h3>
+<p>Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.</p>
+<ol class="pasos">
+<li>Ve a la pestaña de lo que quieras apuntar.</li>
+<li>Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso con su categoría.</li>
+<li>Guarda. Los números de arriba se actualizan solos.</li>
+</ol>
+</section>
+<section id="a12">
+<h3><span class="n">12</span>Entender tus números</h3>
+<p>Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.</p>
+<ul>
+<li>Con el filtro <span class="ui">Periodo</span> (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.</li>
+<li>Si hay gastos, verás el desglose por categorías y el IVA soportado y repercutido.</li>
+</ul>
+<p class="nota"><b>Bueno saber.</b> El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.</p>
+</section>
+<section id="a13">
+<h3><span class="n">13</span>Sacar informes y enviarlos</h3>
+<ul>
+<li>En tu proyecto, el botón de compartir (arriba) saca el <span class="ui">Informe del proyecto (PDF)</span>, lo exporta a CSV (se abre con Excel) o lo manda con <span class="ui">Enviar al coordinador</span>.</li>
+<li>Para enviarlo al coordinador, pon antes su correo en Ajustes → Coordinador.</li>
+<li>En la lista de Proyectos, el botón del gráfico (arriba) saca la <span class="ui">Comparativa (PDF)</span> entre todos los proyectos.</li>
+<li>En Ajustes, <span class="ui">Exportar espacio (CSV)</span> saca las fincas y los puntos del mapa, para pasarlos a coordinación.</li>
+</ul>
+</section>
+<h2>Trabajar en equipo</h2>
+<section id="a14">
+<h3><span class="n">14</span>Compartir las tareas con el equipo</h3>
+<p>Si en el Espacio Test usáis la sincronización, las tareas se comparten entre los móviles de todo el equipo.</p>
+<ol class="pasos">
+<li>Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.</li>
+<li>En Ajustes → Sincronización de tareas, pon la dirección del WordPress de Zunbeltz y tu token.</li>
+<li>Pulsa <span class="ui">Sincronizar ahora</span> cuando tengas cobertura: suben tus cambios y bajan los del resto.</li>
+</ol>
+<p class="nota"><b>Bueno saber.</b> Solo se comparten las tareas. Los puntos, las zonas y los proyectos siguen solo en tu móvil.</p>
+</section>
+<section id="a15">
+<h3><span class="n">15</span>Quién puede hacer qué</h3>
+<p>Cada persona tiene un rol, que le da coordinación.</p>
+<ul>
+<li>Coordinación: ve, crea, cambia y reparte todas las tareas.</li>
+<li>Tester: ve todas y crea las suyas. Puede cambiar las que ha creado o tiene asignadas, y coger las que están sin asignar.</li>
+</ul>
+<p class="nota"><b>Bueno saber.</b> En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en <span class="ui">Modo local</span> y puedes editarlo todo.</p>
+</section>
+<h2>Si algo falla</h2>
+<section id="a16">
+<h3><span class="n">16</span>Problemas frecuentes</h3>
+<ul>
+<li><span class="ui">Tu rol no permite…</span>: esa tarea no es tuya. Cógela si está sin asignar, o pide a coordinación que te la asigne.</li>
+<li><span class="ui">Cambios revertidos</span> al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.</li>
+<li><span class="ui">Token incorrecto</span>: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.</li>
+<li><span class="ui">Sin finca reconocida</span>: esa tarea es de una finca que en tu móvil tiene otro nombre. Las fincas tienen que llamarse igual en todos los móviles.</li>
+<li>No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.</li>
+</ul>
+<p class="nota"><b>Bueno saber.</b> Tus datos viven en tu móvil. Si lo cambias o lo pierdes, habla antes con coordinación.</p>
+</section>
+    <aside class="aviso">
+      <b>Versión preliminar.</b> Versión preliminar. Los partes e informes que genera son orientativos y su formato está pendiente de validación. El papeleo oficial (libro de explotación, cuaderno PAC, trazabilidad…) llega en fases posteriores.
+      Previsión orientativa (Open-Meteo). No sustituye el criterio del ganadero ni del veterinario.
+    </aside>
+    <p class="final">Si algo no queda claro, pregunta a coordinación del Espacio Test.</p>
+  </div>
+  <footer class="pie">Este manual se genera a partir de la ayuda de la propia app, así que ambos dicen lo mismo. La versión en euskera es un borrador pendiente de revisión nativa.</footer>
+</main>
 </body>
 </html>

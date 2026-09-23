@@ -5,6 +5,12 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 > **Estado**: **FZ-1 → FZ-3 implementados** (2026-06-21). La reunión inicial con Zunbeltz Elkartea se pospuso; la persona de contacto dejó el puesto. Zunbeltz mantiene el interés y prepara una **solicitud de subvención** (~7.770 € IVA incl.) para la que se les entregó **factura proforma** (`comercial/factura-proforma.html`) y **presentación v0.2** (`presentacion/index.html`, ahora con financiación por fases atada a subvenciones reales: TEDER/LEADER, innovación PEPAC Navarra, RETA).
 >
 > Construido (single-device, offline, bilingüe es/eu): esqueleto Flutter+Melos con i18n y branding monte+crema+ocre (FZ-1); modelos `Finca`/`PuntoInfraestructura`/`TareaMantenimiento` + BD sqflite con tests (FZ-2); **módulo de gestión de fincas demoable** — mapa de las 2 fincas con puntos por GPS, ficha con tareas, tablero filtrable y parte PDF (FZ-3); y **módulo de Seguimiento** — registros de actividad (alimentación kg, pariciones, productos comercializados) + apuntes económicos (ingresos/gastos) + panel de indicadores + informe PDF (BD v2). **Reorientación 2026-06-23 (memoria de la subvención)**: el contacto avisó (nota de voz) de que lo que financia la convocatoria es el **análisis de costes, ingresos y comercialización por proyecto/tester**, no la gestión de fincas. La memoria presentada centra el alcance en *"seguimiento y gestión del proceso de test"* (producción · validación de producto · comercialización → análisis/evaluación de resultados → decisiones/mejora). Proforma y presentación reorientadas a ese encuadre; las fincas quedan como **módulo de apoyo**. La app se amplió en consecuencia: la pestaña **Seguimiento** (por finca) pasa a **Proyectos** (por persona tester), con **BD v3** (`proyectos_test`, `registros_comercializacion`, `validaciones_producto`; el seguimiento cuelga del `proyecto_id`) y **análisis de rentabilidad por proyecto** (ingresos comercialización+apuntes − gastos, margen, extrapolación anual) + **informe PDF por proyecto**. Marta ya no es el contacto. 30 tests verdes, analyze limpio, build Linux + APK release OK. **El euskera de los ARB es borrador pendiente de revisión nativa**; los datos de fincas son un seed de ejemplo (los reales se cargan con Zunbeltz). Co-diseño con el equipo sigue pendiente para el resto de fases.
+>
+> **2026-09-22 — tareas recurrentes + sincronización de tareas (adelantada, fuera de orden)**: `TareaMantenimiento` gana periodicidad (`recurrenciaDias`; al marcarla hecha se genera sola la siguiente instancia — BD v6) y sincronización (`uid` + `actualizadoMs` para merge last-write-wins — BD v7). Nuevo plugin standalone **`wp-plugin/solera-zunbeltz-sync/`** para instalar en el **WordPress propio de Zunbeltz** (no el plugin Kids `nuevo-ser-core`, no backend Solera común): expone `POST /wp-json/solera-zunbeltz/v1/tareas/sync`, auth por **token único compartido** (sin roles todavía — ver BLOQUEOS §C, punto 14-bis). Solo sincroniza tareas; fincas/puntos/zonas siguen locales, la tarea se empareja por nombre de finca y pierde su anclaje a punto/zona al llegar a otro dispositivo. Esto se adelantó fuera del roadmap normal (era FZ-9/Fase 3) a petición expresa; **queda pendiente de co-diseño con Zunbeltz** antes de darlo por cerrado — no confundir "construido" con "validado con ellas". 75 tests Flutter verdes + smoke tests PHP del plugin verdes.
+>
+> **2026-09-22 (tarde) — roles y permisos sobre tareas (plugin v0.2 + BD v8)**: el token compartido se sustituye por **personas con rol y token personal**, gestionadas desde el admin de WordPress (menú "Solera Zunbeltz"). Roles de partida **Coordinación (admin)** y **Tester**, definidos como mapa rol→capacidades ampliable (filtro `szs_roles`); la app sólo entiende capacidades. El servidor aplica los permisos al sincronizar y revierte lo no permitido (`forzar`); la app adapta la interfaz (selector de responsable entre las personas del espacio, "Mis tareas", hoja de acciones: cambiar estado / asignármela / soltarla) y en Ajustes muestra de quién es la sesión. Tarea gana `responsableUid` + `creadoPorUid`. Nuevo endpoint `GET /yo`. Probado de punta a punta contra un WordPress real en Docker. **Reparto de permisos provisional, pendiente de co-diseño** — ver BLOQUEOS §C 14-ter. 89 tests Flutter + tests PHP de la política verdes.
+
+> **2026-09-23 — ayuda y manual rehechos**: la pantalla de Ayuda pasa a 16 apartados en 5 grupos (primeros pasos · fincas y tareas · proyecto de test · trabajo en equipo · problemas frecuentes), con buscador y pasos numerados; cubre zonas, tareas periódicas, tablero, sincronización, roles y errores habituales. El manual imprimible (`manual/index.html` + `index_eu.html`) **se genera desde los mismos textos del ARB** con `dart run tool/generar_manual.dart` — no editarlo a mano; corregir el ARB y regenerar. Euskera de la ayuda: borrador pendiente de revisión nativa.
 
 ## Encuadre
 
@@ -122,6 +128,28 @@ Zunbeltz es un proyecto euskaldun (Mancomunidad de Andía, zona vascófona de Na
 
 Referencia: el patrón puede extenderse a otros ETAs en zonas con lengua cooficial (catalán, gallego) cuando la plataforma se replique.
 
+## Referencia de mercado (revisada 2026-09-14)
+
+**VacApp** (vacapp.net, Cataluña) es el punto de comparación más cercano para la **Capa A**: cuaderno de vacuno gratuito, offline, en iOS/Android/Windows/Linux, "por ganaderos para ganaderos", con escáner del código de barras del DIB, partos, saneamientos, analítica e import/export Excel. No hace multi-rol, ni ecológico/CPAEN, ni ovino extensivo, ni acompañamiento, ni euskera, ni fincas compartidas, ni análisis económico por proyecto.
+
+Consecuencias asumidas: (1) la Capa A no es diferencial — se construye con ese listón como referencia, y DIB escaneable + Excel entran en FZ-4; (2) el diferencial y el argumento de precio están en la Capa B (multi-tenant, seguimiento del proceso de test, análisis de rentabilidad por tester, replicabilidad a la red estatal de ETAs); (3) hay que neutralizar de frente el *"¿para qué, si aquello es gratis?"* — hecho en `presentacion/index.html`, sección "No reinventamos el cuaderno ganadero". Detalle en `BLOQUEOS-PENDIENTES.md` §G.
+
+## Dirección visual (revisada 2026-09-14)
+
+La presentación se rehízo para quitarle el aire de plantilla genérica. Dirección actual, en `presentacion/index.html`:
+
+- **Papel de plano catastral** (`#E9EBE2`, gris-verde frío) en lugar del crema cálido; verde monte `#1B2320` para texto y bandas oscuras.
+- **Un solo acento**: el rojo de marcaje del ganado `#B8402A`, usado con cuentagotas (subrayado del rótulo de portada, tareas pendientes, cotas del plano). Fuera el ocre dorado como acento general.
+- **Tipografía invertida**: titulares en Archivo (grotesca) y cuerpo en Spectral (serif de lectura), en vez de serif de display + sans de cuerpo. Fuera Fraunces.
+- **Portada**: curvas de nivel de las dos fincas dibujadas en SVG, en vez de degradados radiales.
+- Fuera los tics de plantilla: píldoras de rótulo, eyebrows en mayúsculas espaciadas sobre cada título, cadenas "A · B · C", rombos de viñeta, iconos decorativos de trazo, fade-up al hacer scroll, sombras y radios uniformes.
+
+**La app está alineada** (`lib/branding.dart`): mismo papel, mismo monte, misma señal roja y las mismas dos familias. El `ColorScheme` se escribe a mano en vez de derivarlo con `fromSeed`, para no heredar los tonos por defecto de Material 3, y el tema fija AppBar plana con línea inferior, tarjetas con borde en lugar de sombra, radio único de 4 px, campos sobre papel hundido, FAB en rojo de marcaje y una escala tipográfica propia (títulos en Archivo con tracking cerrado, texto en Spectral con más interlínea).
+
+Las dos familias van **empaquetadas en `assets/fuentes`** (licencia SIL OFL, ver `assets/fuentes/OFL.txt`) porque la app funciona sin cobertura: nada de `google_fonts` ni de cargar tipografía por red.
+
+Nombres de la paleta tras el cambio: `colorPapelZunbeltz` (antes crema), `colorSenalZunbeltz` (antes ocre), más `colorPapelHundidoZunbeltz`, `colorTintaApagadaZunbeltz` y `colorLineaZunbeltz`. `colorMonteZunbeltz`, `colorPastoZunbeltz` y `colorMusgoZunbeltz` conservan el nombre con valores afinados.
+
 ## Hard limits (heredados de la Suite Solera)
 
 - **No recomendar medicamentos zoosanitarios comerciales por marca**. Sólo sustancias activas + manejo + derivación al veterinario asesor.
@@ -139,7 +167,7 @@ Referencia: el patrón puede extenderse a otros ETAs en zonas con lengua coofici
 | **FZ-1 Esqueleto** | ✅ hecho | `apps/solera-zunbeltz/` Flutter+Melos, branding (monte + crema + ocre), dependencia del core, i18n es/eu, smoke test |
 | **FZ-2 Modelos + BD fincas/infra** | ✅ hecho | Finca, PuntoInfraestructura, TareaMantenimiento sobre patrón Solera (BaseDatosSolera aún sin extraer del core). Tests POJO + BD (ffi) |
 | **FZ-3 Gestión de fincas** ⭐ | ✅ hecho | **El módulo destacado**: mapa de las 2 fincas con puntos de infraestructura (alta con GPS), tablero de tareas de mantenimiento asignables con estado, parte PDF. Single-device. *Demoable y de valor inmediato para Zunbeltz.* |
-| **FZ-4 Cuaderno ganadero** | pendiente | Animal/Lote/Parcela + eventos (pesaje/parto/tratamiento/movimiento/incidencia/saca), timeline ficha animal |
+| **FZ-4 Cuaderno ganadero** | pendiente | Animal/Lote/Parcela + eventos (pesaje/parto/tratamiento/movimiento/incidencia/saca), timeline ficha animal, **escáner del código de barras del DIB** (`mobile_scanner`) e **import/export Excel/CSV visible** — listón de mercado, ver BLOQUEOS G |
 | **FZ-5 Catálogos provisionales** | pendiente | 5 CSVs ganaderos + compilador + autocomplete + banners declaración obligatoria |
 | **FZ-6 Libro de explotación ganadera** | pendiente | PDF censo/tratamientos/movimientos conforme + trazabilidad ecológica CPAEN (provisional) |
 | **FZ-7 IA Claude Vision ganadera** | pendiente | Diagnóstico por foto (podal, mamitis, ectoparásitos, condición corporal), hard limit medicamentos |

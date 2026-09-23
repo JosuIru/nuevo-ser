@@ -1,135 +1,278 @@
 <!DOCTYPE html>
+<!-- GENERADO por tool/generar_manual.dart desde lib/l10n/app_eu.arb — NO editar a mano. -->
 <html lang="eu">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solera Zunbeltz — Eskuliburu laburra</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solera Zunbeltz — Erabilera-eskuliburua</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --monte:#1f2e22; --pasto:#5e7d3a; --pasto-1:#4d6a2e; --ocre:#c99a3b; --ocre-claro:#e6c275;
-    --musgo:#8aa66b; --crema:#f4f0e4; --crema-2b:#eae3d2; --tinta:#1c241b; --tinta-2:#3a4a3b; --tinta-3:#6b7a6c; --beltz:#14180f;
-    --linea:rgba(31,46,34,.16); --serif:"Fraunces",Georgia,serif; --sans:"Archivo",system-ui,sans-serif; --narrow:"Archivo Narrow","Archivo",sans-serif;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:var(--sans);color:var(--tinta);background:#cfc9b8;line-height:1.55;-webkit-font-smoothing:antialiased;padding:24px 12px}
-  .hoja{max-width:840px;margin:0 auto;background:var(--crema);box-shadow:0 10px 40px rgba(20,24,15,.18);border-radius:6px;overflow:hidden}
-  h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em}
+:root{
+  --papel:#E9EBE2; --papel-hundido:#DFE2D6; --monte:#1B2320; --senal:#B8402A;
+  --pasto:#5E7D3A; --tinta:#171D19; --tinta-apagada:#6C7870; --linea:rgba(27,35,32,.17);
+  --titular:"Archivo",system-ui,sans-serif; --texto:"Spectral",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--texto);font-size:17px;line-height:1.6;color:var(--tinta);background:#D3D7CB;padding:20px 16px 40px}
+.barra{max-width:780px;margin:0 auto 12px;display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:var(--titular);font-size:14px}
+.barra a{color:var(--monte);font-weight:600}
+.barra button{font:600 14px var(--titular);background:var(--monte);color:var(--papel);border:0;border-radius:4px;padding:9px 16px;cursor:pointer}
+.hoja{max-width:780px;margin:0 auto;background:var(--papel);border:1px solid var(--linea);border-radius:4px;overflow:hidden}
+.cab{background:var(--monte);color:var(--papel);padding:32px 40px 26px}
+.cab h1{font:700 2rem/1.1 var(--titular);letter-spacing:-.02em;display:inline-block;padding-bottom:6px;border-bottom:3px solid var(--senal)}
+.cab .sub{font-family:var(--titular);font-size:14px;opacity:.75;margin-top:10px}
+.cuerpo{padding:28px 40px 12px}
+.intro{font-size:1.08rem;color:var(--tinta)}
+h2{font:700 1.3rem/1.2 var(--titular);letter-spacing:-.01em;color:var(--monte);margin:34px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--linea)}
+h3{font:600 1.08rem/1.3 var(--titular);color:var(--monte);margin:22px 0 4px;display:flex;align-items:baseline;gap:10px}
+h3 .n{font-size:.85rem;color:var(--senal);min-width:1.4em}
+section p{margin:6px 0}
+section ul,section ol{margin:6px 0 6px 0;padding-left:1.4em}
+section li{margin:5px 0}
+ol.pasos{list-style:none;padding-left:0;counter-reset:paso}
+ol.pasos li{counter-increment:paso;position:relative;padding-left:34px}
+ol.pasos li::before{content:counter(paso);position:absolute;left:0;top:2px;width:22px;height:22px;display:grid;place-items:center;background:var(--monte);color:var(--papel);font:700 12px var(--titular);border-radius:4px}
+section ul li::marker{color:var(--pasto)}
+.ui{font-family:var(--titular);font-weight:600;font-size:.92em;white-space:nowrap;background:var(--papel-hundido);border:1px solid var(--linea);border-radius:4px;padding:0 5px}
+.nota{background:var(--papel-hundido);border-left:3px solid var(--senal);padding:10px 14px;margin:10px 0!important;font-size:.95rem}
+.nota b{font-family:var(--titular);color:var(--senal)}
+.indice{margin-top:10px}
+.indice>ol{list-style:none;columns:2;column-gap:32px;margin-top:10px}
+.indice>ol>li{break-inside:avoid;margin-bottom:12px}
+.grupo-indice{font:600 .95rem var(--titular);color:var(--monte)}
+.indice ol ol{list-style:none;padding-left:0;margin-top:2px}
+.indice ol ol li{font-size:.95rem;margin:1px 0}
+.indice a{color:var(--tinta);text-decoration:none;border-bottom:1px solid var(--linea)}
+.indice a:hover{color:var(--senal)}
+.aviso{margin:36px 0 8px;padding:14px 16px;border:1px solid var(--linea);border-radius:4px;font-size:.93rem;color:var(--tinta-apagada)}
+.aviso b{font-family:var(--titular);color:var(--monte)}
+.final{margin:14px 0 18px;font-style:italic}
+.pie{background:var(--monte);color:rgba(233,235,226,.72);font:13px/1.55 var(--titular);padding:16px 40px}
+@media(max-width:640px){
+  body{padding:12px 0 24px;font-size:16px}
+  .barra{padding:0 16px}
+  .hoja{border-left:0;border-right:0;border-radius:0}
+  .cab,.cuerpo,.pie{padding-left:16px;padding-right:16px}
+  .indice>ol{columns:1}
+  .ui{white-space:normal}
+}
+@media print{
+  body{background:#fff;padding:0;font-size:11pt}
+  .barra{display:none}
+  .hoja{border:0;max-width:none}
+  .cab,.nota,ol.pasos li::before,.pie{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  section{break-inside:avoid}
+  h2{break-after:avoid}
+  @page{margin:14mm}
+}
 
-  .cab{display:flex;align-items:center;gap:14px;padding:30px 40px 24px;background:var(--monte);color:#eef0e6}
-  .glifo{width:38px;height:38px;border-radius:10px;background:var(--crema);position:relative;flex:0 0 auto}
-  .glifo::after{content:"";position:absolute;inset:9px 9px auto 9px;height:8px;border-radius:2px;background:var(--ocre)}
-  .glifo::before{content:"";position:absolute;inset:auto 9px 9px 9px;height:8px;border-radius:2px;background:var(--pasto)}
-  .cab h1{font-size:1.7rem;color:#fff;line-height:1.1}
-  .cab .sub{font-family:var(--narrow);font-weight:600;text-transform:uppercase;letter-spacing:.08em;font-size:12.5px;color:var(--ocre-claro);margin-top:2px}
-
-  .zirriborro{background:var(--ocre-claro);color:#5a4410;font-family:var(--narrow);font-weight:700;font-size:13px;padding:8px 40px;border-bottom:1px solid var(--linea)}
-  .idioma{padding:10px 40px 0;font-family:var(--narrow);font-size:12.5px}
-  .idioma a{color:var(--pasto-1);font-weight:700;text-decoration:none}
-
-  .cuerpo{padding:14px 40px 8px}
-  .intro{font-size:1.02rem;color:var(--tinta-2);margin-bottom:8px}
-  .chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 22px}
-  .chip{font-family:var(--narrow);font-weight:600;font-size:12px;background:var(--crema-2b);border:1px solid var(--linea);border-radius:100px;padding:5px 12px;color:var(--tinta-2)}
-
-  h2{font-size:1.25rem;margin:26px 0 6px;color:var(--monte);border-bottom:2px solid var(--linea);padding-bottom:6px}
-  h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:7px;background:var(--monte);color:var(--ocre-claro);font-size:.85rem;margin-right:9px;vertical-align:middle}
-  p.lead{color:var(--tinta-2);margin:6px 0 8px}
-  ol,ul{margin:6px 0 6px 4px;padding-left:20px}
-  li{margin:5px 0;color:var(--tinta-2)}
-  .tabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
-  @media(max-width:620px){.tabs{grid-template-columns:1fr}}
-  .tab{background:var(--crema-2b);border:1px solid var(--linea);border-left:3px solid var(--pasto);border-radius:9px;padding:12px 14px}
-  .tab b{font-family:var(--serif);font-weight:600}
-  .tab span{display:block;font-size:.92rem;color:var(--tinta-2);margin-top:2px}
-  kbd{font-family:var(--narrow);font-weight:700;background:var(--monte);color:#eef0e6;border-radius:5px;padding:1px 7px;font-size:.85em}
-  .nota{background:#fff;border:1px solid var(--linea);border-left:4px solid var(--ocre);border-radius:9px;padding:12px 16px;margin:10px 0;font-size:.94rem;color:var(--tinta-2)}
-  .nota b{color:var(--monte)}
-
-  .pie{background:var(--beltz);color:rgba(244,240,228,.7);padding:18px 40px;font-size:12px;line-height:1.6;font-family:var(--narrow);margin-top:20px}
-  .pie b{color:var(--ocre-claro)}
-  .barra{max-width:840px;margin:0 auto 12px;display:flex;justify-content:flex-end}
-  .barra button{font-family:var(--narrow);font-weight:700;font-size:13px;border:none;background:var(--monte);color:#eef0e6;padding:9px 18px;border-radius:8px;cursor:pointer}
-  @media print{body{background:#fff;padding:0}.hoja{box-shadow:none;border-radius:0;max-width:none}.barra{display:none}@page{margin:14mm}}
 </style>
 </head>
 <body>
-
-<div class="barra"><button onclick="window.print()">Inprimatu / PDF gisa gorde</button></div>
-
-<div class="hoja">
-  <div class="cab">
-    <span class="glifo"></span>
-    <div>
-      <h1>Solera Zunbeltz</h1>
-      <div class="sub">Eskuliburu laburra · 1. Fasea</div>
-    </div>
-  </div>
-  <div class="zirriborro">⚠ ZIRRIBORROA — euskara berrikuspen natiboaren zain (terminologia agroabeltzaina barne).</div>
-  <div class="idioma"><a href="index.html">Gaztelaniaz / En castellano →</a></div>
-
-  <div class="cuerpo">
-    <p class="intro">Zunbeltz Nekazaritza Saiakuntza Gunerako aplikazioa: finkak eta azpiegiturak kudeatzen ditu, mantentze-lanak banatzen ditu eta saiakuntzaren jarraipena egiten du. Gailu bakarrean funtzionatzen du, mendian estaldurarik gabe ere.</p>
-    <div class="chips">
-      <span class="chip">◆ Gaztelania eta euskara</span>
-      <span class="chip">◆ Offline funtzionatzen du</span>
-      <span class="chip">◆ Gailu bakarra</span>
-    </div>
-
-    <h2><span class="n">1</span>Lehen abioa</h2>
-    <p class="lead">Aplikazioa lehen aldiz irekitzean ongietorria ikusiko duzu. Aukeratu hizkuntza (<b>Gaztelania</b> edo <b>Euskara</b>) eta sakatu <kbd>Hasi</kbd>. Nahi duzunean alda dezakezu <b>Ezarpenak</b> atalean.</p>
-    <p class="lead">Behean lau fitxa dituzu:</p>
-    <div class="tabs">
-      <div class="tab"><b>Gaur</b><span>Laburpena: zenbat zeregin dituzun zabalik eta sarbide azkarra zereginen taulara.</span></div>
-      <div class="tab"><b>Finkak</b><span>Zunbeltz eta La Planilla finken mapa, azpiegitura-puntuekin.</span></div>
-      <div class="tab"><b>Jarraipena</b><span>Elikadura, erditzeak, salmentak, sarrerak eta gastuak, adierazleekin.</span></div>
-      <div class="tab"><b>Ezarpenak</b><span>Hizkuntza eta Saiakuntza Guneari buruzko informazioa.</span></div>
-    </div>
-
-    <h2><span class="n">2</span>Azpiegitura bat mapan markatu</h2>
-    <p class="lead"><b>Finkak</b> fitxan, puntu bakoitza azpiegitura bat da (aska, manga, hesia, aterpea, urmaela…). Bat gehitzeko hiru modu dituzu:</p>
-    <ol>
-      <li><b>Mapa ukituz</b>: egin klik kokaleku zehatzean eta fitxa irekiko da koordenatu horiekin eta finka hurbilena aukeratuta.</li>
-      <li><b><kbd>Puntu berria</kbd> botoiarekin</b> (behean eskuinean): aukeratu <i>uneko GPSa erabili</i> (instalazioaren ondoan zaudela) edo <i>maparen erdigunea</i>.</li>
-      <li>Bete <b>mota</b>, <b>izena</b>, <b>egoera</b> eta, nahi baduzu, <b>argazkiak</b>, eta sakatu <kbd>Gorde</kbd>.</li>
-    </ol>
-    <p class="lead">Puntu bakoitza kolore batekin agertzen da egoeraren arabera: berdea (operatibo), okrea (berrikusteke), gorrixka (matxuratuta). Sakatu <kbd>GPS</kbd> behean mapa zure kokapenean zentratzeko, edo <kbd>Geruzak</kbd> kale-mapa / satelite artean txandakatzeko.</p>
-
-    <h2><span class="n">3</span>Puntu bat birkokatu edo ezabatu</h2>
-    <ol>
-      <li>Ukitu mapako <b>markatzailea</b> bere fitxa irekitzeko.</li>
-      <li>Mugitzeko: sakatu <b>Kokatu berriro mapan</b> (goiko ikonoa) eta gero <b>ukitu kokaleku berria</b>.</li>
-      <li>Ezabatzeko: sakatu <b>zakarrontzia</b> eta berretsi.</li>
-    </ol>
-
-    <h2><span class="n">4</span>Mantentze-zereginak</h2>
-    <ol>
-      <li>Ireki puntu baten fitxa eta sakatu <kbd>Zeregin berria</kbd>.</li>
-      <li>Jarri <b>izenburua</b>, eta nahi baduzu deskribapena, <b>arduraduna</b>, <b>lehentasuna</b>, <b>egoera</b>, <b>helburu-data</b>, aurreko/ondorengo argazkiak eta kostua. Gorde.</li>
-      <li><b>Finkak → Zereginak</b> atalean <b>taula</b> duzu: iragazi finkaren eta egoeraren arabera, zer falta den eta nork duen begirada batean ikusteko.</li>
-      <li><b>Mantentze-partea PDFan</b> ateratzeko, sakatu PDF ikonoa taularen goialdean: sortu eta partekatu edo gorde dezakezu.</li>
-    </ol>
-
-    <h2><span class="n">5</span>Saiakuntzaren jarraipena</h2>
-    <p class="lead"><b>Jarraipena</b> fitxan <b>aldiko adierazleak</b> ikusten dituzu (elikadura kg, erditzeak, merkaturatutako produktuak, sarrerak, gastuak eta balantzea), finkaren arabera iragazgarriak.</p>
-    <ol>
-      <li>Sakatu <kbd>+</kbd> botoia eta aukeratu <b>Erregistratu jarduera</b> (elikadura kg-tan, erditzeak, produktuak) edo <b>Apunte ekonomikoa</b> (sarrera edo gastua).</li>
-      <li>Bete datuak eta gorde; adierazleak berez eguneratzen dira.</li>
-      <li><b>Jarraipen-txostena PDFan</b> ateratzeko, sakatu goiko PDF ikonoa.</li>
-    </ol>
-
-    <h2><span class="n">6</span>Eguraldiaren iragarpena</h2>
-    <p class="lead"><b>Finkak</b> atalean, <b>hodei</b> ikonoak (goian) finkaren gaineko 7 eguneko iragarpena erakusten du, kudeaketarako abisu erabilgarriekin: izotza, euria, haizea, beroa eta «lan egiteko egun ona». <span style="color:var(--tinta-3)">Interneta behar duen gauza bakarra da; gainerakoa estaldurarik gabe funtzionatzen du.</span></p>
-
-    <div class="nota"><b>Jakitea ona.</b> Argazkiak gailuan bertan gordetzen dira. Iragarpena eta abisuak orientagarriak dira eta ez dute ordezkatzen abeltzainaren ezta albaitariaren irizpidea. <b>Aurretiazko bertsioa</b> da: parte eta txostenek behin-behineko formatua dute, eta paper-lan ofiziala (ustiategi-liburua, PAC koadernoa, trazabilitatea) geroagoko faseetan iritsiko da. Hasieran agertzen diren finkak adibidezko datuak dira, zuekin benetakoak kargatu arte.</div>
-  </div>
-
-  <div class="pie">
-    <b>Solera Zunbeltz · Eskuliburu laburra v1 · 1. Fasea</b> — lan-dokumentua. ZIRRIBORROA: euskara berrikuspen natiboaren zain dago. Aplikazio elebiduna (gaztelania/euskara), offline funtzionatzen du; gailu bakarra oraingoz (erabilera anitza geroagoko fasea da).
-  </div>
+<div class="barra">
+  <a href="index.html">En castellano →</a>
+  <button onclick="window.print()">Inprimatu / Gorde PDF gisa</button>
 </div>
-
+<main class="hoja">
+  <header class="cab">
+    <h1>Erabilera-eskuliburua</h1>
+    <p class="sub">Solera Zunbeltz · 0.1.0 bertsioa</p>
+  </header>
+  <div class="cuerpo">
+    <p class="intro">App-a erabiltzeko gida, urratsez urrats.</p>
+    <nav class="indice">
+      <h2>Edukia</h2>
+      <ol>
+<li><span class="grupo-indice">Lehen urratsak</span><ol>
+<li><a href="#a1">Zer da app hau?</a></li>
+<li><a href="#a2">App-an mugitu</a></li>
+<li><a href="#a3">Hizkuntza, argazkiak, eguraldia eta internet</a></li>
+</ol></li>
+<li><span class="grupo-indice">Finkak eta zereginak</span><ol>
+<li><a href="#a4">Puntu bat markatu mapan</a></li>
+<li><a href="#a5">Eremu bat marraztu (saila, hesitua…)</a></li>
+<li><a href="#a6">Puntu edo eremu bat mugitu edo ezabatu</a></li>
+<li><a href="#a7">Mantentze-zeregin bat apuntatu</a></li>
+<li><a href="#a8">Errepikatzen diren zereginak</a></li>
+<li><a href="#a9">Zereginak egunean eraman</a></li>
+</ol></li>
+<li><span class="grupo-indice">Zure test-proiektua</span><ol>
+<li><a href="#a10">Zure proiektua sortu</a></li>
+<li><a href="#a11">Zure egunerokoa apuntatu</a></li>
+<li><a href="#a12">Zure zenbakiak ulertu</a></li>
+<li><a href="#a13">Txostenak atera eta bidali</a></li>
+</ol></li>
+<li><span class="grupo-indice">Taldean lan egin</span><ol>
+<li><a href="#a14">Zereginak taldearekin partekatu</a></li>
+<li><a href="#a15">Nork zer egin dezakeen</a></li>
+</ol></li>
+<li><span class="grupo-indice">Zerbaitek huts egiten badu</span><ol>
+<li><a href="#a16">Ohiko arazoak</a></li>
+</ol></li>
+      </ol>
+    </nav>
+<h2>Lehen urratsak</h2>
+<section id="a1">
+<h3><span class="n">1</span>Zer da app hau?</h3>
+<p>Zunbeltz Saiakuntza Gunearen tresna da. Bi gauzatarako balio du: zure test-proiektuaren jarraipena egiteko (zer ekoizten duzun, zer saltzen duzun, zer gastatzen duzun eta zer irabazten duzun) eta finkak zaintzeko (mapako azpiegiturak eta haien mantentze-zereginak).</p>
+<p>Dena zure mugikorrean gordetzen da, eta mendian estaldurarik gabe ere badabil.</p>
+</section>
+<section id="a2">
+<h3><span class="n">2</span>App-an mugitu</h3>
+<p>Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:</p>
+<ul>
+<li>Gaur: laburpena, zabalik dauden zereginekin.</li>
+<li>Finkak: mapa, puntuekin, eremuekin eta zereginekin.</li>
+<li>Proiektuak: zure test-prozesua eta zure zenbakiak.</li>
+<li>Ezarpenak: hizkuntza, laguntza, txostenak bidaltzea eta sinkronizazioa.</li>
+</ul>
+<p>Atzera itzultzeko, erabili goian ezkerrean dagoen gezia.</p>
+</section>
+<section id="a3">
+<h3><span class="n">3</span>Hizkuntza, argazkiak, eguraldia eta internet</h3>
+<ul>
+<li>Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.</li>
+<li>Argazkiak zure mugikorrean bertan gordetzen dira.</li>
+<li>Finketan, hodeiaren ikonoak (goian) 7 eguneko iragarpena erakusten du, izotz, euri, haize, bero eta maneiurako egun onen abisuekin.</li>
+</ul>
+<p class="nota"><b>Jakitea komeni da.</b> Dena internetik gabe dabil, eguraldiaren iragarpena eta zereginen sinkronizazioa izan ezik.</p>
+</section>
+<h2>Finkak eta zereginak</h2>
+<section id="a4">
+<h3><span class="n">4</span>Puntu bat markatu mapan</h3>
+<p>Puntua azpiegitura bakoitza da: aska, manga, hesia, aterpea, urmaela…</p>
+<ol class="pasos">
+<li>Sartu Finketan.</li>
+<li>Ukitu mapan leku zehatza. Edo sakatu <span class="ui">Puntu berria</span> (behean eskuinean) eta aukeratu <span class="ui">Erabili uneko GPSa</span> instalazioaren ondoan bazaude, edo <span class="ui">Erabili maparen erdigunea</span>.</li>
+<li>Aukeratu mota eta egoera, jarri izena eta, nahi baduzu, gehitu argazkiak.</li>
+<li>Sakatu Gorde.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Puntuaren koloreak egoera adierazten du: berdea, operatiboa; okrea, berrikusteke; gorrixka, matxuratuta. <span class="ui">GPS</span> botoiak mapa zugan zentratzen du, eta <span class="ui">Geruzak</span> botoiak mapa eta satelitea txandakatzen ditu.</p>
+</section>
+<section id="a5">
+<h3><span class="n">5</span>Eremu bat marraztu (saila, hesitua…)</h3>
+<ol class="pasos">
+<li>Finketan, sakatu <span class="ui">Eremua marraztu</span>.</li>
+<li>Ukitu mapan eremuaren izkinak, bata bestearen atzetik. Oker bazabiltza, sakatu <span class="ui">Desegin</span>.</li>
+<li>Hiru izkina edo gehiago dituzunean, sakatu <span class="ui">Eremua itxi</span>.</li>
+<li>Aukeratu finka, mota (larre-saila, hesitua, alha-eremua…), izena eta egoera, eta gorde.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Marrazkitik ateratzen den azalera gutxi gorabeherakoa da. SIGPAC barrutiaren azalera ofiziala baduzu, jarri <span class="ui">SIGPAC azalera ofiziala</span> eremuan eta hori erabiliko da.</p>
+</section>
+<section id="a6">
+<h3><span class="n">6</span>Puntu edo eremu bat mugitu edo ezabatu</h3>
+<ol class="pasos">
+<li>Ukitu mapan puntua edo eremua haren fitxa irekitzeko.</li>
+<li>Puntu bat mugitzeko: sakatu <span class="ui">Kokatu berriro mapan</span> (goian) eta ukitu leku berria.</li>
+<li>Eremu bat zuzentzeko: sakatu <span class="ui">Berriro marraztu</span> (goian) eta markatu berriro haren izkinak.</li>
+<li>Ezabatzeko: sakatu zakarrontzia eta berretsi.</li>
+</ol>
+</section>
+<section id="a7">
+<h3><span class="n">7</span>Mantentze-zeregin bat apuntatu</h3>
+<ol class="pasos">
+<li>Ireki puntu edo eremu baten fitxa eta sakatu <span class="ui">Zeregin berria</span>.</li>
+<li>Idatzi zer egin behar den. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.</li>
+<li>Sakatu Gorde.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.</p>
+</section>
+<section id="a8">
+<h3><span class="n">8</span>Errepikatzen diren zereginak</h3>
+<p>Beti egiten dena (askak betetzea, hesia berrikustea…) ez da aldi bakoitzean apuntatu behar.</p>
+<ol class="pasos">
+<li>Zeregina sortzean, aukeratu <span class="ui">Periodikotasuna</span>: egunero, astero, 15 egunero, hilero edo hiruhilero.</li>
+<li>Eginda gisa markatzen duzunean, app-ak berak sortzen du hurrengoa, dagokion datarekin.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Zerrendan, zeregin periodikoek errepikatzeko ikurra dute.</p>
+</section>
+<section id="a9">
+<h3><span class="n">9</span>Zereginak egunean eraman</h3>
+<ol class="pasos">
+<li>Finketan, sakatu <span class="ui">Zereginak</span> (goian) guztiak dituen taula ikusteko.</li>
+<li>Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, <span class="ui">Nire zereginak</span> aukerak zuri esleitutakoak bakarrik uzten ditu.</li>
+<li>Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.</li>
+<li>Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.</li>
+<li><span class="ui">PDF txostena</span> botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.</li>
+</ol>
+</section>
+<h2>Zure test-proiektua</h2>
+<section id="a10">
+<h3><span class="n">10</span>Zure proiektua sortu</h3>
+<ol class="pasos">
+<li>Sartu Proiektuetan eta sakatu +.</li>
+<li>Jarri proiektuaren izena, pertsona testerra eta jarduera. Nahi baduzu, baita finka eta hasiera- eta amaiera-datak ere.</li>
+<li>Sakatu Gorde. Ukitu proiektua zerrendan barrura sartzeko.</li>
+</ol>
+</section>
+<section id="a11">
+<h3><span class="n">11</span>Zure egunerokoa apuntatu</h3>
+<p>Proiektuaren barruan lau fitxa daude: Ekoizpena, Merkaturatzea, Balidazioa eta Ekonomikoa.</p>
+<ol class="pasos">
+<li>Joan apuntatu nahi duzunaren fitxara.</li>
+<li>Sakatu + eta bete dagokiona: ekoitzitakoa; salmenta bat (produktua, kanala, kantitatea eta prezioa); produktu-proba bat eta haren emaitza; edo gastu edo sarrera bat bere kategoriarekin.</li>
+<li>Gorde. Goiko zenbakiak berez eguneratzen dira.</li>
+</ol>
+</section>
+<section id="a12">
+<h3><span class="n">12</span>Zure zenbakiak ulertu</h3>
+<p>Proiektuaren goialdean errentagarritasuna ikusten duzu: salmentak, beste sarrera batzuk, gastuak, balantzea, marjina eta urtebeterako proiekzioa.</p>
+<ul>
+<li><span class="ui">Aldia</span> iragazkiarekin (goian) denbora osorako, aurtengo, hiruhileko honetarako edo aurreko hiruhilekorako ikus dezakezu.</li>
+<li>Gastuak badaude, kategorien araberako banaketa eta BEZ jasana eta jasanarazia ikusiko dituzu.</li>
+</ul>
+<p class="nota"><b>Jakitea komeni da.</b> BEZa gutxi gorabeherako kalkulua da, ez zerga-aitorpena: araubidea zuen aholkulariak erabakitzen du.</p>
+</section>
+<section id="a13">
+<h3><span class="n">13</span>Txostenak atera eta bidali</h3>
+<ul>
+<li>Zure proiektuan, partekatzeko botoiak (goian) <span class="ui">Proiektuaren txostena (PDF)</span> ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo <span class="ui">Bidali koordinatzaileari</span> aukerarekin bidaltzen du.</li>
+<li>Koordinatzaileari bidaltzeko, jarri lehenago haren helbidea Ezarpenak → Koordinatzailea atalean.</li>
+<li>Proiektuen zerrendan, grafikoaren botoiak (goian) proiektu guztien arteko <span class="ui">Konparaketa (PDF)</span> ateratzen du.</li>
+<li>Ezarpenetan, <span class="ui">Esportatu gunea (CSV)</span> aukerak finkak eta mapako puntuak ateratzen ditu, koordinazioari pasatzeko.</li>
+</ul>
+</section>
+<h2>Taldean lan egin</h2>
+<section id="a14">
+<h3><span class="n">14</span>Zereginak taldearekin partekatu</h3>
+<p>Saiakuntza Gunean sinkronizazioa erabiltzen baduzue, zereginak talde osoaren mugikorren artean partekatzen dira.</p>
+<ol class="pasos">
+<li>Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du, eta ez da partekatzen.</li>
+<li>Ezarpenak → Zereginen sinkronizazioa atalean, jarri Zunbeltzen WordPress-aren helbidea eta zure tokena.</li>
+<li>Sakatu <span class="ui">Sinkronizatu orain</span> estaldura duzunean: zure aldaketak igotzen dira eta besteenak jaisten.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Zereginak bakarrik partekatzen dira. Puntuak, eremuak eta proiektuak zure mugikorrean bakarrik geratzen dira.</p>
+</section>
+<section id="a15">
+<h3><span class="n">15</span>Nork zer egin dezakeen</h3>
+<p>Pertsona bakoitzak rol bat du, koordinazioak ematen diona.</p>
+<ul>
+<li>Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.</li>
+<li>Testerra: guztiak ikusten ditu eta bereak sortzen ditu. Berak sortutakoak edo esleituta dituenak alda ditzake, eta esleitu gabe daudenak har ditzake.</li>
+</ul>
+<p class="nota"><b>Jakitea komeni da.</b> Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe <span class="ui">Tokiko modua</span> zaude, eta dena edita dezakezu.</p>
+</section>
+<h2>Zerbaitek huts egiten badu</h2>
+<section id="a16">
+<h3><span class="n">16</span>Ohiko arazoak</h3>
+<ul>
+<li><span class="ui">Zure rolak ez du … baimenik</span>: zeregin hori ez da zurea. Har ezazu esleitu gabe badago, edo eskatu koordinazioari zuri esleitzeko.</li>
+<li><span class="ui">… desegin da / dira</span> sinkronizatzean: zure rolak baimentzen ez duen zerbait ukitu duzu, eta zegoen bezala utzi da.</li>
+<li><span class="ui">Token incorrecto…</span> mezua: begiratu osorik kopiatu duzula. Galdu baduzu, koordinazioak berri bat sortuko dizu, eta zaharrak ez du balioko.</li>
+<li><span class="ui">finka ezezagunarekin</span>: zeregin hori zure mugikorrean beste izen bat duen finka batekoa da. Finkek izen bera izan behar dute mugikor guztietan.</li>
+<li>Eguraldiaren iragarpena ez da agertzen: internet behar du. Gainerakoa estaldurarik gabe dabil.</li>
+</ul>
+<p class="nota"><b>Jakitea komeni da.</b> Zure datuak zure mugikorrean daude. Aldatu edo galtzen baduzu, hitz egin lehenago koordinazioarekin.</p>
+</section>
+    <aside class="aviso">
+      <b>Aurretiazko bertsioa.</b> Aurretiazko bertsioa. Sortzen dituen parte eta txostenak orientagarriak dira eta haien formatua baliozkotzeke dago. Paper-lan ofiziala (ustiategi-liburua, PAC koadernoa, trazabilitatea…) geroagoko faseetan iritsiko da.
+      Iragarpen orientagarria (Open-Meteo). Ez du ordezkatzen abeltzainaren ezta albaitariaren irizpidea.
+    </aside>
+    <p class="final">Zerbait argi ez badago, galdetu Saiakuntza Guneko koordinazioari.</p>
+  </div>
+  <footer class="pie">Eskuliburu hau app-aren beraren laguntzatik sortzen da, beraz biek gauza bera diote. ZIRRIBORROA: euskarazko testua berrikuspen natiboaren zain dago.</footer>
+</main>
 </body>
 </html>

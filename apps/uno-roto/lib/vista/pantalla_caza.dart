@@ -88,6 +88,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' hide SelectorHabilidades;
 import '../sonido/catalogo_sonidos.dart';
 import '../sonido/servicio_sonoro.dart';
 import 'escenario.dart';
+import 'escenarios_ilustrados.dart';
 import 'pantalla_combate_enfoque.dart';
 import 'pantalla_comparacion.dart';
 import 'pantalla_comparacion_balanza.dart';
@@ -270,6 +271,10 @@ class _PantallaCazaState extends State<PantallaCaza>
   @override
   void initState() {
     super.initState();
+    // Escenario ilustrado del distrito; al llegar, se repinta.
+    EscenariosIlustrados.cargar(widget.distrito.identificador).then((_) {
+      if (mounted) setState(() {});
+    });
     _generador = GeneradorCaza(distrito: widget.distrito);
     _controladorCielo = AnimationController(
       vsync: this,

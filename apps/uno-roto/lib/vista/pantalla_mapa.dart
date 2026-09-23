@@ -17,6 +17,7 @@ import '../l10n/textos_enums.dart';
 import '../l10n/traducciones_narrativa.dart';
 import '../nucleo/paleta.dart';
 import 'escenario.dart';
+import 'escenarios_ilustrados.dart';
 import 'pantalla_ajustes_sonido.dart';
 import 'pantalla_caza.dart';
 import 'pantalla_entrenamiento.dart';
@@ -73,6 +74,8 @@ class _PantallaMapaState extends State<PantallaMapa>
   @override
   void initState() {
     super.initState();
+    // Tejados: fondo por defecto de las pantallas de puzzle.
+    EscenariosIlustrados.cargar('tejados');
     _controladorCielo = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 16),

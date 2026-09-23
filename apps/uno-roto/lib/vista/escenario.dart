@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../dominio/ambiente_cielo.dart';
 import '../dominio/taller_ciudad.dart';
 import '../nucleo/paleta.dart';
+import 'escenarios_ilustrados.dart';
 
 /// Escenario urbano nocturno con atmósfera específica por distrito.
 ///
@@ -57,11 +58,40 @@ class PintorEscenario extends CustomPainter {
     _pintarCielo(canvas, size);
     _pintarLunas(canvas, size);
     _pintarEstrellas(canvas, size);
-    _pintarMontana(canvas, size);
+    final ilustrado = _pintarIlustracion(canvas, size);
+    if (!ilustrado) _pintarMontana(canvas, size);
     _pintarNiebla(canvas, size);
-    _pintarBaseDistrito(canvas, size);
+    if (!ilustrado) _pintarBaseDistrito(canvas, size);
     _pintarPiezasRestauradas(canvas, size);
     _pintarLluvia(canvas, size);
+  }
+
+  /// Escenario ilustrado del distrito (si ya está cargado): anclado abajo
+  /// y a todo el ancho; lo que sobre por arriba es cielo transparente.
+  /// La versión encendida se funde encima según [nivelRestauracion]: la
+  /// ciudad se enciende a medida que el niño avanza. Devuelve `false` si
+  /// no hay ilustración y hay que pintar la versión por código.
+  bool _pintarIlustracion(Canvas canvas, Size size) {
+    final apagado = EscenariosIlustrados.apagado(idDistrito);
+    if (apagado == null) return false;
+    final alto = size.width * apagado.height / apagado.width;
+    final destino = Rect.fromLTWH(0, size.height - alto, size.width, alto);
+    final origen = Rect.fromLTWH(
+        0, 0, apagado.width.toDouble(), apagado.height.toDouble());
+    final pintura = Paint()..filterQuality = FilterQuality.medium;
+    canvas.drawImageRect(apagado, origen, destino, pintura);
+    final encendido = EscenariosIlustrados.encendido(idDistrito);
+    if (encendido != null && nivelRestauracion > 0) {
+      canvas.drawImageRect(
+        encendido,
+        origen,
+        destino,
+        Paint()
+          ..filterQuality = FilterQuality.medium
+          ..color = Color.fromRGBO(255, 255, 255, nivelRestauracion.clamp(0, 1)),
+      );
+    }
+    return true;
   }
 
   // -------------------------------------------------------------------

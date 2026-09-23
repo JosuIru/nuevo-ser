@@ -154,6 +154,7 @@ flutter:
     - assets/maquinas/
     - assets/sprites/
     - assets/mapa/
+    - assets/escenarios/
     # Carpetas de sonido (doc 12). Pueden estar vacías: el motor
     # sonoro tolera assets ausentes y la app no falla.
     - assets/sonido/ambient/

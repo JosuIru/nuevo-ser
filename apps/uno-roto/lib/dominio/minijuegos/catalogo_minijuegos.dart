@@ -147,7 +147,7 @@ class CatalogoMinijuegos {
           'son las trampas de siempre.',
       lineaRexan: 'Una serpiente que come cuentas. No muere nunca: sólo '
           'tiene hambre.',
-      habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04'],
+      habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04', 'ARI.04'],
       rondasPorPartida: 3,
       comoSeJuega: 'Desliza el dedo o usa la cruceta. Lleva la serpiente al número que resuelve la cuenta. Los bordes se atraviesan. Desde la segunda ronda hay muros que rodear, y en la tercera los números se mueven.',
     ),

@@ -278,10 +278,10 @@ class PintorSerpiente extends CustomPainter {
       );
       final texto = TextPainter(
         text: TextSpan(
-          text: '$valor',
+          text: conSignoMenos(valor),
           style: TextStyle(
               color: PaletaNeon.textoPrincipal,
-              fontSize: '$valor'.length > 2 ? lado * 0.34 : lado * 0.42),
+              fontSize: conSignoMenos(valor).length > 2 ? lado * 0.34 : lado * 0.42),
         ),
         textDirection: TextDirection.ltr,
       )..layout();

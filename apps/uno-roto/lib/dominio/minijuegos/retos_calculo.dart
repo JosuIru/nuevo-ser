@@ -18,7 +18,10 @@ class RetoCalculo {
   });
 }
 
-const habilidadesConRetoCalculo = {'ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04'};
+const habilidadesConRetoCalculo = {'ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04', 'ARI.04'};
+
+/// -3 → "−3": el signo menos tipográfico, como en El pozo.
+String conSignoMenos(int valor) => valor < 0 ? '−${-valor}' : '$valor';
 
 class GeneradorRetosCalculo {
   final math.Random _azar;
@@ -37,6 +40,8 @@ class GeneradorRetosCalculo {
         return _fraccionDeCantidad(dificultad);
       case 'PROP.04':
         return _porcentaje(dificultad);
+      case 'ARI.04':
+        return _conSigno(dificultad);
       default:
         return _suma(dificultad);
     }
@@ -93,19 +98,41 @@ class GeneradorRetosCalculo {
         [cantidad - respuesta, porcentaje, respuesta * 2]);
   }
 
+  /// Sumas y restas que cruzan el cero: −3 + 5, 4 − 9, −2 − 6. Los
+  /// errores típicos son perder el signo y restar en vez de sumar.
+  RetoCalculo _conSigno(int dificultad) {
+    final maximo = [9, 15, 25][dificultad.clamp(1, 3) - 1];
+    final a = _entre(1, maximo);
+    final b = _entre(1, maximo);
+    switch (_azar.nextInt(dificultad == 1 ? 2 : 3)) {
+      case 0:
+        // a − b con b > a: se baja por debajo de cero.
+        final (menor, mayor) = a == b ? (a, a + 2) : (math.min(a, b), math.max(a, b));
+        return _reto('ARI.04', '$menor − $mayor', menor - mayor,
+            [mayor - menor, menor + mayor, menor - mayor - 1], conNegativos: true);
+      case 1:
+        // −a + b.
+        return _reto('ARI.04', '−$a + $b', b - a, [a - b, -(a + b), a + b], conNegativos: true);
+      default:
+        // −a − b.
+        return _reto('ARI.04', '−$a − $b', -(a + b), [a + b, b - a, a - b], conNegativos: true);
+    }
+  }
+
   static int _mcd(int a, int b) => b == 0 ? a : _mcd(b, a % b);
 
-  RetoCalculo _reto(String id, String enunciado, int respuesta, List<int> errores) {
+  RetoCalculo _reto(String id, String enunciado, int respuesta, List<int> errores,
+      {bool conNegativos = false}) {
     // Distractores distintos, positivos y distintos de la respuesta; si
     // un error típico coincide, se completa con vecinos cercanos.
     final distractores = <int>{};
     for (final valor in errores) {
-      if (valor > 0 && valor != respuesta) distractores.add(valor);
+      if ((conNegativos || valor > 0) && valor != respuesta) distractores.add(valor);
     }
     var desfase = 2;
     while (distractores.length < 3) {
       final vecino = respuesta + (desfase.isEven ? desfase ~/ 2 : -(desfase ~/ 2));
-      if (vecino > 0 && vecino != respuesta) distractores.add(vecino);
+      if ((conNegativos || vecino > 0) && vecino != respuesta) distractores.add(vecino);
       desfase++;
     }
     return RetoCalculo(

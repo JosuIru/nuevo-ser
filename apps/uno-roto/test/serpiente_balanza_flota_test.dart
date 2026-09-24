@@ -30,6 +30,12 @@ int _evaluar(String enunciado) {
   if (jerarquia != null) {
     return int.parse(jerarquia[1]!) + int.parse(jerarquia[2]!) * int.parse(jerarquia[3]!);
   }
+  final conSigno = RegExp(r'^(−?\d+)([+−])(\d+)$').firstMatch(e);
+  if (conSigno != null && e.contains('−')) {
+    final primero = int.parse(conSigno[1]!.replaceAll('−', '-'));
+    final segundo = int.parse(conSigno[3]!);
+    return conSigno[2] == '+' ? primero + segundo : primero - segundo;
+  }
   final suma = RegExp(r'^(\d+)\+(\d+)$').firstMatch(e);
   return int.parse(suma![1]!) + int.parse(suma[2]!);
 }
@@ -47,7 +53,7 @@ void main() {
             expect(reto.distractores, hasLength(3));
             expect(reto.distractores.toSet(), hasLength(3));
             expect(reto.distractores, isNot(contains(reto.respuesta)));
-            expect(reto.distractores.every((d) => d > 0), isTrue);
+            if (id != 'ARI.04') expect(reto.distractores.every((d) => d > 0), isTrue);
           }
         });
       }

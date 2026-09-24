@@ -49,6 +49,8 @@ const habilidadesConEjemplo = {
   'FR.01', 'FR.02', 'FR.10', 'FR.11', 'FR.12', 'FR.13', // La hornada
   'FR.18', 'FR.19', 'FR.20', 'FR.21', // El telar
   'DEC.01', 'DEC.05', 'DEC.06', 'DEC.07', 'DEC.09', // El tranvía
+  'GEO.05', 'GEO.06', // Depósitos
+  'ARI.03', 'GEO.08', // Andamios
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -231,6 +233,41 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
       return EjemploResuelto('$entero,$decima', [
         PasoEjemplo('Está entre {a} y {b}.', {'a': '$entero', 'b': '${entero + 1}'}),
         PasoEjemplo('Cuenta {d} décimas desde el {a}.', {'d': '$decima', 'a': '$entero'}),
+      ]);
+    case 'GEO.06':
+      final largo = entre(2, 6);
+      final ancho = entre(2, 5);
+      final alto = entre(2, 4);
+      return EjemploResuelto('$largo × $ancho × $alto', [
+        PasoEjemplo('Una capa: {l} × {a} = {c} cubitos.', {'l': '$largo', 'a': '$ancho', 'c': '${largo * ancho}'}),
+        PasoEjemplo('{h} capas: {c} × {h} = {v} cubitos.',
+            {'h': '$alto', 'c': '${largo * ancho}', 'v': '${largo * ancho * alto}'}),
+      ]);
+    case 'GEO.05':
+      final radio = [3, 4, 5, 6][entre(0, 3)];
+      String centesimas(int valor) =>
+          '${valor ~/ 100},${(valor % 100).toString().padLeft(2, '0')}'.replaceAll(RegExp(r',?0+$'), '');
+      final area = azar.nextBool();
+      return EjemploResuelto(area ? 'π · $radio²' : '2 · π · $radio', [
+        if (area)
+          PasoEjemplo('Superficie: 3,14 × {r} × {r} = 3,14 × {c}.', {'r': '$radio', 'c': '${radio * radio}'})
+        else
+          PasoEjemplo('Vuelta: 2 × 3,14 × {r} = 6,28 × {r}.', {'r': '$radio'}),
+        PasoEjemplo('Sale {x}.', {'x': centesimas(area ? 314 * radio * radio : 628 * radio)}),
+      ]);
+    case 'ARI.03':
+      final lado = entre(3, 12);
+      return EjemploResuelto('√${lado * lado}', [
+        PasoEjemplo('Busca un número que por sí mismo dé {a}.', {'a': '${lado * lado}'}),
+        PasoEjemplo('{l} × {l} = {a}: la raíz es {l}.', {'l': '$lado', 'a': '${lado * lado}'}),
+      ]);
+    case 'GEO.08':
+      const ternas = [[3, 4, 5], [6, 8, 10], [5, 12, 13], [9, 12, 15]];
+      final [a, b, c] = ternas[entre(0, ternas.length - 1)];
+      return EjemploResuelto('√($a² + $b²)', [
+        PasoEjemplo('Al cuadrado: {a}² + {b}² = {x} + {y} = {s}.',
+            {'a': '$a', 'b': '$b', 'x': '${a * a}', 'y': '${b * b}', 's': '${c * c}'}),
+        PasoEjemplo('¿Qué número por sí mismo da {s}? {c}.', {'s': '${c * c}', 'c': '$c'}),
       ]);
     case 'DEC.09':
       final entero = entre(0, 5);

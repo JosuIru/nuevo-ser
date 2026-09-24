@@ -3025,4 +3025,97 @@ const Map<String, String> narrativaCa = <String, String>{
   // Pinturas
   'Multiplica en cruz: {a} × {s} = {x} y {b} × {t} = {y}.':
       'Multiplica en creu: {a} × {s} = {x} i {b} × {t} = {y}.',
+  // Depósitos y Andamios
+  'Depósitos':
+      'Dipòsits',
+  'Llena los depósitos de la Industria: cubitos por capas, litros y tapas redondas de tubería.':
+      'Omple els dipòsits de la Indústria: cubets per capes, litres i tapes rodones de canonada.',
+  'La Industria se calienta. Pide el agua justa: lo que sobra, las Fugas lo tiran al suelo.':
+      'La Indústria s\'escalfa. Demana l\'aigua justa: el que sobra, les Fuites ho llencen a terra.',
+  'Lee el depósito y elige cuánto cabe. Al acertar se llena capa a capa. Cada capa son largo × ancho cubitos; hay tantas capas como alto. Un litro es un cubo de 10 cm de lado. En las tuberías, la valla es la vuelta (2 × 3,14 × radio) y la tapa, la superficie (3,14 × radio × radio).':
+      'Llegeix el dipòsit i tria quant hi cap. Quan l\'encertes s\'omple capa a capa. Cada capa són llarg × ample cubets; hi ha tantes capes com alt. Un litre és un cub de 10 cm de costat. A les canonades, la tanca és la volta (2 × 3,14 × radi) i la tapa, la superfície (3,14 × radi × radi).',
+  'Andamios':
+      'Bastides',
+  'Plataformas cuadradas y escaleras justas para subir a las farolas de la Montaña.':
+      'Plataformes quadrades i escales justes per pujar als fanals de la Muntanya.',
+  'Arriba sopla. Con la medida justa, los Vértigos no mueven nada.':
+      'A dalt bufa. Amb la mida justa, els Vertígens no mouen res.',
+  'Elige la medida entre cuatro. La plataforma o la escalera que elijas se dibuja tal cual: si no es justa, no llega, se pasa o se tambalea. El lado de un cuadrado es el número que, multiplicado por sí mismo, da el área. En una escalera apoyada, escalera² = pared² + suelo².':
+      'Tria la mida entre quatre. La plataforma o l\'escala que triïs es dibuixa tal qual: si no és justa, no arriba, es passa o trontolla. El costat d\'un quadrat és el nombre que, multiplicat per si mateix, dona l\'àrea. En una escala recolzada, escala² = paret² + terra².',
+  'Volumen de una caja: cuenta los cubitos de una capa (largo × ancho) y multiplica por las capas (alto). 4 × 3 × 2 = 24. No se suman.':
+      'Volum d\'una caixa: compta els cubets d\'una capa (llarg × ample) i multiplica per les capes (alt). 4 × 3 × 2 = 24. No se sumen.',
+  'Con π ≈ 3,14: la vuelta del círculo es 2 × 3,14 × radio; la superficie, 3,14 × radio × radio. Radio 3: vuelta 18,84; superficie 28,26.':
+      'Amb π ≈ 3,14: la volta del cercle és 2 × 3,14 × radi; la superfície, 3,14 × radi × radi. Radi 3: volta 18,84; superfície 28,26.',
+  'La raíz cuadrada busca el número que, multiplicado por sí mismo, da el que tienes: √49 = 7 porque 7 × 7 = 49. No es la mitad.':
+      'L\'arrel quadrada busca el nombre que, multiplicat per si mateix, dona el que tens: √49 = 7 perquè 7 × 7 = 49. No és la meitat.',
+  'En un triángulo rectángulo, el lado largo al cuadrado es la suma de los otros dos al cuadrado: 6² + 8² = 36 + 64 = 100 = 10². Sumar 6 + 8 da de más.':
+      'En un triangle rectangle, el costat llarg al quadrat és la suma dels altres dos al quadrat: 6² + 8² = 36 + 64 = 100 = 10². Sumar 6 + 8 dona de més.',
+  'Una capa: {l} × {a} = {c} cubitos.':
+      'Una capa: {l} × {a} = {c} cubets.',
+  '{h} capas: {c} × {h} = {v} cubitos.':
+      '{h} capes: {c} × {h} = {v} cubets.',
+  'Superficie: 3,14 × {r} × {r} = 3,14 × {c}.':
+      'Superfície: 3,14 × {r} × {r} = 3,14 × {c}.',
+  'Vuelta: 2 × 3,14 × {r} = 6,28 × {r}.':
+      'Volta: 2 × 3,14 × {r} = 6,28 × {r}.',
+  'Sale {x}.':
+      'Surt {x}.',
+  'Busca un número que por sí mismo dé {a}.':
+      'Busca un nombre que per si mateix doni {a}.',
+  '{l} × {l} = {a}: la raíz es {l}.':
+      '{l} × {l} = {a}: l\'arrel és {l}.',
+  'Al cuadrado: {a}² + {b}² = {x} + {y} = {s}.':
+      'Al quadrat: {a}² + {b}² = {x} + {y} = {s}.',
+  '¿Qué número por sí mismo da {s}? {c}.':
+      'Quin nombre per si mateix dona {s}? {c}.',
+  'Capa a capa, lleno hasta arriba.':
+      'Capa a capa, ple fins a dalt.',
+  'Cada litro es un cubo de 10 cm de lado. Lleno.':
+      'Cada litre és un cub de 10 cm de costat. Ple.',
+  'Tubería medida. La Industria se enfría.':
+      'Canonada mesurada. La Indústria es refreda.',
+  'Las Fugas: eso no cabe, se sale por el borde. Cuenta una capa y multiplica por las capas.':
+      'Les Fuites: això no hi cap, se surt per la vora. Compta una capa i multiplica per les capes.',
+  'Falta agua. Cuenta una capa y multiplica por las capas.':
+      'Falta aigua. Compta una capa i multiplica per les capes.',
+  'Multiplica las tres medidas y pasa a litros: 1 litro son 1000 cm³.':
+      'Multiplica les tres mides i passa a litres: 1 litre són 1000 cm³.',
+  'La valla es la vuelta: 2 × 3,14 × el radio. Nada al cuadrado.':
+      'La tanca és la volta: 2 × 3,14 × el radi. Res al quadrat.',
+  'La tapa es la superficie: 3,14 × el radio × el radio.':
+      'La tapa és la superfície: 3,14 × el radi × el radi.',
+  'Seis depósitos llenos y ni una gota por el suelo. Las Fugas se secan.':
+      'Sis dipòsits plens i ni una gota per terra. Les Fuites s\'assequen.',
+  'Un depósito de {l} × {a} × {h} cubitos. ¿Cuántos cubitos caben?':
+      'Un dipòsit de {l} × {a} × {h} cubets. Quants cubets hi caben?',
+  'Un depósito de {l} × {a} × {h} cm. ¿Cuántos litros caben?':
+      'Un dipòsit de {l} × {a} × {h} cm. Quants litres hi caben?',
+  'Una tapa de tubería de radio {r} m. ¿Cuántos metros de valla la rodean? (π ≈ 3,14)':
+      'Una tapa de canonada de radi {r} m. Quants metres de tanca la volten? (π ≈ 3,14)',
+  'Una tapa de tubería de radio {r} m. ¿Cuántos m² de chapa la cubren? (π ≈ 3,14)':
+      'Una tapa de canonada de radi {r} m. Quants m² de xapa la cobreixen? (π ≈ 3,14)',
+  'Lado justo. La plataforma no se mueve.':
+      'Costat just. La plataforma no es mou.',
+  'Justa. Ni el viento la mueve. A arreglar la farola.':
+      'Justa. Ni el vent la mou. A arreglar el fanal.',
+  'La mitad no: busca el número que multiplicado por sí mismo da el área.':
+      'La meitat no: busca el nombre que multiplicat per si mateix dona l\'àrea.',
+  'Esa plataforma no mide eso. ¿Qué número por sí mismo da el área?':
+      'Aquesta plataforma no fa això. Quin nombre per si mateix dona l\'àrea?',
+  'Sumar la pared y el suelo da de más: la escalera va en diagonal. Eleva al cuadrado.':
+      'Sumar la paret i el terra dona de més: l\'escala va en diagonal. Eleva al quadrat.',
+  'Los Vértigos la mueven: no es justa. Escalera² = pared² + suelo².':
+      'Els Vertígens la mouen: no és justa. Escala² = paret² + terra².',
+  'Restar sin más no vale: suelo² = escalera² − pared².':
+      'Restar sense més no val: terra² = escala² − paret².',
+  'Así no sube lo que tiene que subir. Suelo² = escalera² − pared².':
+      'Així no puja el que ha de pujar. Terra² = escala² − paret².',
+  'Seis andamios montados. Las farolas de la Montaña vuelven a dar luz.':
+      'Sis bastides muntades. Els fanals de la Muntanya tornen a fer llum.',
+  'Una plataforma cuadrada de {a} m². ¿Cuánto mide su lado?':
+      'Una plataforma quadrada de {a} m². Quant fa el costat?',
+  'La farola está a {h} m de alto y el pie de la escalera, a {b} m de la pared. ¿Qué escalera llega justa?':
+      'El fanal és a {h} m d\'alçada i el peu de l\'escala, a {b} m de la paret. Quina escala hi arriba justa?',
+  'La escalera mide {c} m y tiene que subir {h} m. ¿A cuántos metros de la pared se apoya?':
+      'L\'escala fa {c} m i ha de pujar {h} m. A quants metres de la paret es recolza?',
 };

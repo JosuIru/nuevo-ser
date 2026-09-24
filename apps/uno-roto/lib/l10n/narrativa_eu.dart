@@ -3021,4 +3021,97 @@ const Map<String, String> narrativaEu = <String, String>{
   // Pinturas
   'Multiplica en cruz: {a} × {s} = {x} y {b} × {t} = {y}.':
       'Biderkatu gurutzean: {a} × {s} = {x} eta {b} × {t} = {y}.',
+  // Depósitos y Andamios
+  'Depósitos':
+      'Biltegiak',
+  'Llena los depósitos de la Industria: cubitos por capas, litros y tapas redondas de tubería.':
+      'Bete Industriako biltegiak: kubotxoak geruzaka, litroak eta hodietako tapa biribilak.',
+  'La Industria se calienta. Pide el agua justa: lo que sobra, las Fugas lo tiran al suelo.':
+      'Industria berotzen ari da. Eskatu ur zehatza: soberan dagoena, Ihesek lurrera botatzen dute.',
+  'Lee el depósito y elige cuánto cabe. Al acertar se llena capa a capa. Cada capa son largo × ancho cubitos; hay tantas capas como alto. Un litro es un cubo de 10 cm de lado. En las tuberías, la valla es la vuelta (2 × 3,14 × radio) y la tapa, la superficie (3,14 × radio × radio).':
+      'Irakurri biltegia eta aukeratu zenbat sartzen den. Asmatzean geruzaka betetzen da. Geruza bakoitza luzera × zabalera kubotxo da; altuera adina geruza daude. Litro bat 10 cm-ko aldeko kuboa da. Hodietan, hesia bira da (2 × 3,14 × erradioa) eta tapa, azalera (3,14 × erradioa × erradioa).',
+  'Andamios':
+      'Aldamioak',
+  'Plataformas cuadradas y escaleras justas para subir a las farolas de la Montaña.':
+      'Plataforma karratuak eta eskailera zehatzak Mendiko farolara igotzeko.',
+  'Arriba sopla. Con la medida justa, los Vértigos no mueven nada.':
+      'Goian haizea dabil. Neurri zehatzarekin, Zorabioek ez dute ezer mugitzen.',
+  'Elige la medida entre cuatro. La plataforma o la escalera que elijas se dibuja tal cual: si no es justa, no llega, se pasa o se tambalea. El lado de un cuadrado es el número que, multiplicado por sí mismo, da el área. En una escalera apoyada, escalera² = pared² + suelo².':
+      'Aukeratu neurria lauren artean. Aukeratzen duzun plataforma edo eskailera den bezala marrazten da: zehatza ez bada, ez da iristen, pasatu egiten da edo dardarka hasten da. Karratu baten aldea, bere buruaz biderkatuta, azalera ematen duen zenbakia da. Eskailera bermatu batean, eskailera² = horma² + lurra².',
+  'Volumen de una caja: cuenta los cubitos de una capa (largo × ancho) y multiplica por las capas (alto). 4 × 3 × 2 = 24. No se suman.':
+      'Kutxa baten bolumena: zenbatu geruza bateko kubotxoak (luzera × zabalera) eta biderkatu geruzekin (altuera). 4 × 3 × 2 = 24. Ez dira batzen.',
+  'Con π ≈ 3,14: la vuelta del círculo es 2 × 3,14 × radio; la superficie, 3,14 × radio × radio. Radio 3: vuelta 18,84; superficie 28,26.':
+      'π ≈ 3,14 hartuta: zirkuluaren bira 2 × 3,14 × erradioa da; azalera, 3,14 × erradioa × erradioa. 3 erradioa: bira 18,84; azalera 28,26.',
+  'La raíz cuadrada busca el número que, multiplicado por sí mismo, da el que tienes: √49 = 7 porque 7 × 7 = 49. No es la mitad.':
+      'Erro karratuak, bere buruaz biderkatuta, daukazuna ematen duen zenbakia bilatzen du: √49 = 7, 7 × 7 = 49 delako. Ez da erdia.',
+  'En un triángulo rectángulo, el lado largo al cuadrado es la suma de los otros dos al cuadrado: 6² + 8² = 36 + 64 = 100 = 10². Sumar 6 + 8 da de más.':
+      'Triangelu zuzen batean, alde luzea ber bi beste bien karratuen batura da: 6² + 8² = 36 + 64 = 100 = 10². 6 + 8 batzeak gehiegi ematen du.',
+  'Una capa: {l} × {a} = {c} cubitos.':
+      'Geruza bat: {l} × {a} = {c} kubotxo.',
+  '{h} capas: {c} × {h} = {v} cubitos.':
+      'Geruzak {h}: {c} × {h} = {v} kubotxo.',
+  'Superficie: 3,14 × {r} × {r} = 3,14 × {c}.':
+      'Azalera: 3,14 × {r} × {r} = 3,14 × {c}.',
+  'Vuelta: 2 × 3,14 × {r} = 6,28 × {r}.':
+      'Bira: 2 × 3,14 × {r} = 6,28 × {r}.',
+  'Sale {x}.':
+      'Emaitza: {x}.',
+  'Busca un número que por sí mismo dé {a}.':
+      'Bilatu bere buruaz biderkatuta {a} ematen duen zenbaki bat.',
+  '{l} × {l} = {a}: la raíz es {l}.':
+      '{l} × {l} = {a}: erroa {l} da.',
+  'Al cuadrado: {a}² + {b}² = {x} + {y} = {s}.':
+      'Karratura: {a}² + {b}² = {x} + {y} = {s}.',
+  '¿Qué número por sí mismo da {s}? {c}.':
+      'Zein zenbakik ematen du {s} bere buruaz biderkatuta? {c}.',
+  'Capa a capa, lleno hasta arriba.':
+      'Geruzaz geruza, goraino beteta.',
+  'Cada litro es un cubo de 10 cm de lado. Lleno.':
+      'Litro bakoitza 10 cm-ko aldeko kuboa da. Beteta.',
+  'Tubería medida. La Industria se enfría.':
+      'Hodia neurtuta. Industria hozten ari da.',
+  'Las Fugas: eso no cabe, se sale por el borde. Cuenta una capa y multiplica por las capas.':
+      'Ihesak: hori ez da sartzen, ertzetik irteten da. Zenbatu geruza bat eta biderkatu geruzekin.',
+  'Falta agua. Cuenta una capa y multiplica por las capas.':
+      'Ura falta da. Zenbatu geruza bat eta biderkatu geruzekin.',
+  'Multiplica las tres medidas y pasa a litros: 1 litro son 1000 cm³.':
+      'Biderkatu hiru neurriak eta pasatu litrotara: litro bat 1000 cm³ da.',
+  'La valla es la vuelta: 2 × 3,14 × el radio. Nada al cuadrado.':
+      'Hesia bira da: 2 × 3,14 × erradioa. Ezer ez karratura.',
+  'La tapa es la superficie: 3,14 × el radio × el radio.':
+      'Tapa azalera da: 3,14 × erradioa × erradioa.',
+  'Seis depósitos llenos y ni una gota por el suelo. Las Fugas se secan.':
+      'Sei biltegi beteta eta tanta bat ere ez lurrean. Ihesak lehortzen dira.',
+  'Un depósito de {l} × {a} × {h} cubitos. ¿Cuántos cubitos caben?':
+      'Biltegi bat: {l} × {a} × {h} kubotxo. Zenbat kubotxo sartzen dira?',
+  'Un depósito de {l} × {a} × {h} cm. ¿Cuántos litros caben?':
+      'Biltegi bat: {l} × {a} × {h} cm. Zenbat litro sartzen dira?',
+  'Una tapa de tubería de radio {r} m. ¿Cuántos metros de valla la rodean? (π ≈ 3,14)':
+      'Hodi-tapa bat, erradioa {r} m. Zenbat metro hesik inguratzen dute? (π ≈ 3,14)',
+  'Una tapa de tubería de radio {r} m. ¿Cuántos m² de chapa la cubren? (π ≈ 3,14)':
+      'Hodi-tapa bat, erradioa {r} m. Zenbat m² txapak estaltzen dute? (π ≈ 3,14)',
+  'Lado justo. La plataforma no se mueve.':
+      'Alde zehatza. Plataforma ez da mugitzen.',
+  'Justa. Ni el viento la mueve. A arreglar la farola.':
+      'Zehatza. Haizeak ere ez du mugitzen. Farola konpontzera.',
+  'La mitad no: busca el número que multiplicado por sí mismo da el área.':
+      'Erdia ez: bilatu bere buruaz biderkatuta azalera ematen duen zenbakia.',
+  'Esa plataforma no mide eso. ¿Qué número por sí mismo da el área?':
+      'Plataforma horrek ez du hori neurtzen. Zein zenbakik ematen du azalera bere buruaz biderkatuta?',
+  'Sumar la pared y el suelo da de más: la escalera va en diagonal. Eleva al cuadrado.':
+      'Horma eta lurra batzeak gehiegi ematen du: eskailera diagonalean doa. Egin karratua.',
+  'Los Vértigos la mueven: no es justa. Escalera² = pared² + suelo².':
+      'Zorabioek mugitzen dute: ez da zehatza. Eskailera² = horma² + lurra².',
+  'Restar sin más no vale: suelo² = escalera² − pared².':
+      'Kentze hutsak ez du balio: lurra² = eskailera² − horma².',
+  'Así no sube lo que tiene que subir. Suelo² = escalera² − pared².':
+      'Horrela ez da igo behar duena igotzen. Lurra² = eskailera² − horma².',
+  'Seis andamios montados. Las farolas de la Montaña vuelven a dar luz.':
+      'Sei aldamio muntatuta. Mendiko farolek argia ematen dute berriro.',
+  'Una plataforma cuadrada de {a} m². ¿Cuánto mide su lado?':
+      'Plataforma karratu bat, {a} m². Zenbat neurtzen du aldeak?',
+  'La farola está a {h} m de alto y el pie de la escalera, a {b} m de la pared. ¿Qué escalera llega justa?':
+      'Farola {h} m-ko altueran dago eta eskaileraren oina, hormatik {b} m-ra. Zein eskailera iristen da zehazki?',
+  'La escalera mide {c} m y tiene que subir {h} m. ¿A cuántos metros de la pared se apoya?':
+      'Eskailerak {c} m neurtzen ditu eta {h} m igo behar ditu. Hormatik zenbat metrora bermatzen da?',
 };

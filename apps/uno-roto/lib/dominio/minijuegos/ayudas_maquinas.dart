@@ -129,6 +129,15 @@ const trucosPorHabilidad = <String, String>{
       'comparten: 24 y 36 se dividen los dos entre 12.',
   'ALG.02': 'Primero quita bolsas de los dos lados hasta que sólo queden a '
       'la izquierda; luego, como siempre.',
+  'GEO.06': 'Volumen de una caja: cuenta los cubitos de una capa (largo × '
+      'ancho) y multiplica por las capas (alto). 4 × 3 × 2 = 24. No se suman.',
+  'GEO.05': 'Con π ≈ 3,14: la vuelta del círculo es 2 × 3,14 × radio; la '
+      'superficie, 3,14 × radio × radio. Radio 3: vuelta 18,84; superficie 28,26.',
+  'ARI.03': 'La raíz cuadrada busca el número que, multiplicado por sí mismo, '
+      'da el que tienes: √49 = 7 porque 7 × 7 = 49. No es la mitad.',
+  'GEO.08': 'En un triángulo rectángulo, el lado largo al cuadrado es la suma '
+      'de los otros dos al cuadrado: 6² + 8² = 36 + 64 = 100 = 10². Sumar 6 + 8 '
+      'da de más.',
 };
 
 /// Un paso de despejar la x en la balanza, con cómo queda después.

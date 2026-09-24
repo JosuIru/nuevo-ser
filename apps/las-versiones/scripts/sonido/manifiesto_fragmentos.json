@@ -1,0 +1,13 @@
+{
+  "notas": "Fragmentos musicales de capa (doc 12 §2.4): 15-25 s, suenan una vez al cerrar un oficio del ático. BOCETOS PROVISIONALES con el motor de mesa-mezclas (Ravero), hasta que el compositor contratado (doc 12 §2.5) los sustituya o valide. La semilla es el asset: misma semilla, misma pieza. Cambiar la semilla = otra pieza. Todos pendientes de escucha del operador.",
+  "fragmentos": [
+    {"capa": "D-PALEO",     "genero": "ambient",  "cara": "bruma",       "semilla": 3,  "compases": 8, "desde": 4, "hasta": 26},
+    {"capa": "D-NEO",       "genero": "ambient",  "cara": "nocturno",    "semilla": 5,  "compases": 8, "desde": 4, "hasta": 26},
+    {"capa": "D-PROTO",     "genero": "celtic",   "cara": "harp-air",    "semilla": 7,  "compases": 8, "desde": 2, "hasta": 24},
+    {"capa": "D-ROMANA",    "genero": "classical","cara": "camara",      "semilla": 9,  "compases": 8, "desde": 2, "hasta": 22},
+    {"capa": "D-ANTIQ",     "genero": "medieval", "cara": "canto-llano", "semilla": 11, "compases": 8, "desde": 3, "hasta": 25},
+    {"capa": "D-FORM",      "genero": "medieval", "cara": "cantiga",     "semilla": 13, "compases": 8, "desde": 2, "hasta": 22},
+    {"capa": "D-PLENA",     "genero": "medieval", "cara": "trovador",    "semilla": 17, "compases": 8, "desde": 2, "hasta": 22},
+    {"capa": "D-DINASTIAS", "genero": "medieval", "cara": "ars-nova",    "semilla": 19, "compases": 8, "desde": 2, "hasta": 22}
+  ]
+}

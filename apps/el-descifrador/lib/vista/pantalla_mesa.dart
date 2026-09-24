@@ -15,6 +15,7 @@
 // (B8 BLOQUEOS-PENDIENTES.md).
 
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/cargador_corpus.dart';
 import '../datos/repositorio_anotaciones.dart';
@@ -338,6 +339,13 @@ class _EstadoPantallaMesa extends State<PantallaMesa> {
   }
 }
 
+/// Releases de El Descifrador en GitHub: tag `el-descifrador-<versión>`
+/// con el APK `el-descifrador-<versión>.apk`.
+final ConfigActualizaciones _configActualizacionesDescifrador =
+    configActualizacionesMonorepo('el-descifrador');
+
+const String _nombreAppDescifrador = 'El Descifrador';
+
 class _Cargando extends StatelessWidget {
   const _Cargando();
 
@@ -462,6 +470,13 @@ class _Mesa extends StatelessWidget {
                   alDescartar: alDescartarSellos,
                 ),
               ],
+              // Aviso de versión nueva, como una banda más. Si no hay
+              // versión nueva no ocupa sitio.
+              AvisoActualizaciones(
+                config: _configActualizacionesDescifrador,
+                nombreApp: _nombreAppDescifrador,
+                margen: const EdgeInsets.only(top: 8),
+              ),
             ],
           ),
         ),
@@ -488,6 +503,30 @@ class _Mesa extends StatelessWidget {
           right: 32,
           bottom: 32,
           child: _BotonCuaderno(alPulsar: alAbrirCuaderno),
+        ),
+        // Entrada a la pantalla de actualizaciones, abajo en el centro
+        // entre el mapa y el cuaderno (la mesa no tiene AppBar ni menú).
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 28,
+          child: Center(
+            child: IconButton(
+              tooltip: 'Actualizaciones',
+              icon: Icon(
+                Icons.system_update,
+                color: PaletaEstafeta.papel.withValues(alpha: 0.8),
+              ),
+              onPressed: () => Navigator.of(contexto).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => PantallaEstadoActualizaciones(
+                    config: _configActualizacionesDescifrador,
+                    nombreApp: _nombreAppDescifrador,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
         // Botón mapa, esquina inferior izquierda — para salir al puerto
         // (calle mayor → resto de localizaciones). Solo aparece si el

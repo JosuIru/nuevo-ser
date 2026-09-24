@@ -1,4 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- INTERNET es obligatorio para sync con el backend o cualquier
+         HTTP futuro. En APK debug Flutter lo añade automáticamente vía
+         src/debug/AndroidManifest.xml, pero el release lo necesita
+         declarado aquí. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Para instalar la versión nueva desde la propia app (pantalla Actualizaciones). -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:label="el_descifrador"
         android:name="${applicationName}"

@@ -94,6 +94,12 @@ class _PantallaHoyState extends State<PantallaHoy> {
       body: ListView(
         padding: const EdgeInsets.all(12),
         children: [
+          // Aviso de versión nueva (no ocupa sitio si no hay).
+          AvisoActualizaciones(
+            config: configActualizacionesMonorepo('solera-viticultura'),
+            nombreApp: 'Solera Viticultura',
+            margen: const EdgeInsets.only(bottom: 12),
+          ),
           const TarjetaResumenMeteo(),
           const SizedBox(height: 12),
           Card(

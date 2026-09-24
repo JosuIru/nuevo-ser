@@ -3392,4 +3392,21 @@ const Map<String, String> narrativaEu = <String, String>{
       'Ezin izan da deskargatu. Egiaztatu konexioa eta saiatu berriro.',
   'Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.':
       'Deskargatuta, baina Androidek ez du instalatzailea irekitzen utzi. Baimendu «aplikazio ezezagunak instalatzea» aplikazio honentzat mugikorraren ezarpenetan.',
+  // El taller de dibujo
+  'Dibuja cómo te imaginas a {n} en un papel, con los colores que quieras. Luego hazle una foto con buena luz: aparecerán así aquí y en su máquina.':
+      'Marraztu paper batean nola irudikatzen dituzun {n}, nahi dituzun koloreekin. Gero atera argazki bat argi onarekin: horrela agertuko dira hemen eta haien makinan.',
+  'Hacer una foto a mi dibujo':
+      'Atera argazki bat nire marrazkiari',
+  'Elegir de la galería':
+      'Aukeratu galeriatik',
+  'No he encontrado el dibujo en esa foto. Prueba con más luz y con el papel entero.':
+      'Ez dut marrazkia aurkitu argazki horretan. Saiatu argi gehiagorekin eta paper osoarekin.',
+  'No se ha podido abrir la cámara ni la galería.':
+      'Ezin izan da kamera edo galeria ireki.',
+  'Dibujarlo':
+      'Marraztu',
+  'Cambiar el dibujo':
+      'Aldatu marrazkia',
+  'Volver al original':
+      'Itzuli jatorrizkora',
 };

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../datos/catalogo_habilidades.dart';
+import '../../datos/dibujos_monstruos.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../datos/repositorio_progreso.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
@@ -163,6 +164,8 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
 
   Future<void> _cargar() async {
     final modoDios = await widget.repositorio.cargarModoDiosActivo();
+    // Los monstruos dibujados por el niño (El taller de dibujo).
+    await DibujosMonstruos.cargar(widget.repositorio);
     final estados = <String, EstadoHabilidad?>{};
     for (final definicion in CatalogoMinijuegos.todos) {
       for (final id in [...definicion.habilidades, ...definicion.llaves]) {

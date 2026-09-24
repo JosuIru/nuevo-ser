@@ -1,8 +1,11 @@
+import 'dart:io';
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 
+import '../../datos/dibujos_monstruos.dart';
 import '../../dominio/bestiario.dart';
 import 'pantalla_recreativa.dart';
 
@@ -113,19 +116,94 @@ class _MonstruoMaquinaState extends State<MonstruoMaquina> with TickerProviderSt
   Widget build(BuildContext contexto) => IgnorePointer(
         child: SizedBox.square(
           dimension: widget.tamano,
-          child: AnimatedBuilder(
-            animation: Listenable.merge([_respiro, _reaccion]),
-            builder: (_, __) => CustomPaint(
-              painter: PintorMonstruo(
-                familia: widget.familia,
-                respiro: _respiro.value,
-                risa: _tipo == _Reaccion.seRie ? _reaccion.value : 0,
-                derrota: _tipo == _Reaccion.seEncoge ? _reaccion.value : 0,
-              ),
-            ),
+          child: ValueListenableBuilder<Map<String, String>>(
+            valueListenable: DibujosMonstruos.rutas,
+            builder: (_, dibujos, __) {
+              final dibujo = dibujos[widget.familia.name];
+              return AnimatedBuilder(
+                animation: Listenable.merge([_respiro, _reaccion]),
+                builder: (_, __) {
+                  final risa = _tipo == _Reaccion.seRie ? _reaccion.value : 0.0;
+                  final derrota = _tipo == _Reaccion.seEncoge ? _reaccion.value : 0.0;
+                  if (dibujo == null) {
+                    return CustomPaint(
+                      painter: PintorMonstruo(
+                          familia: widget.familia, respiro: _respiro.value, risa: risa, derrota: derrota),
+                    );
+                  }
+                  // El dibujo del niño, con los mismos gestos que el original.
+                  final gesto = gestoMonstruo(_respiro.value, risa, derrota);
+                  return Transform.translate(
+                    offset: Offset(0, gesto.desplazamiento),
+                    child: Transform.rotate(
+                      angle: gesto.giro,
+                      child: Transform.scale(
+                        scale: gesto.escala,
+                        child: Opacity(
+                          opacity: gesto.opacidad,
+                          child: DibujoMonstruo(
+                            key: const ValueKey('dibujo-monstruo'),
+                            ruta: dibujo,
+                            color: colorDeMonstruo(widget.familia),
+                            tamano: widget.tamano,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            },
           ),
         ),
       );
+}
+
+/// Los gestos del monstruo (dibujado o no): cuánto crece, bota, gira y
+/// se apaga según respira, se ríe o se encoge.
+({double escala, double desplazamiento, double giro, double opacidad}) gestoMonstruo(
+    double respiro, double risa, double derrota) {
+  final ciclo = math.sin(respiro * 2 * math.pi);
+  final campanaRisa = math.sin(risa * math.pi);
+  final campanaDerrota = math.sin(derrota * math.pi);
+  return (
+    escala: 1 + 0.03 * ciclo + 0.18 * campanaRisa - 0.4 * campanaDerrota,
+    desplazamiento: 2 * ciclo - 6 * math.sin(risa * math.pi * 3).abs() * (1 - risa),
+    // El dibujo se balancea un poco al reírse, como si se burlara.
+    giro: 0.15 * math.sin(risa * math.pi * 4) * (1 - risa),
+    opacidad: 1 - 0.6 * campanaDerrota,
+  );
+}
+
+/// El dibujo del niño con un halo neón del color de su familia, que
+/// sigue la silueta: así encaja en el mundo sin tapar su trazo.
+class DibujoMonstruo extends StatelessWidget {
+  final String ruta;
+  final Color color;
+  final double tamano;
+
+  const DibujoMonstruo({super.key, required this.ruta, required this.color, required this.tamano});
+
+  @override
+  Widget build(BuildContext contexto) {
+    final fichero = File(ruta);
+    return SizedBox.square(
+      dimension: tamano,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          ImageFiltered(
+            imageFilter: ui.ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+            child: ColorFiltered(
+              colorFilter: ColorFilter.mode(color.withOpacity(0.9), BlendMode.srcIn),
+              child: Image.file(fichero, width: tamano, height: tamano, fit: BoxFit.contain, gaplessPlayback: true),
+            ),
+          ),
+          Image.file(fichero, width: tamano * 0.9, height: tamano * 0.9, fit: BoxFit.contain, gaplessPlayback: true),
+        ],
+      ),
+    );
+  }
 }
 
 /// Dibuja el monstruo en un cuadro. [respiro] (0→1, en bucle) lo mueve

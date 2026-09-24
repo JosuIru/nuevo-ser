@@ -3396,4 +3396,21 @@ const Map<String, String> narrativaCa = <String, String>{
       'No s\'ha pogut descarregar. Comprova la connexió i torna-ho a provar.',
   'Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.':
       'Descarregada, però Android no ha deixat obrir l\'instal·lador. Permet «instal·lar apps desconegudes» per a aquesta app als ajustos del mòbil.',
+  // El taller de dibujo
+  'Dibuja cómo te imaginas a {n} en un papel, con los colores que quieras. Luego hazle una foto con buena luz: aparecerán así aquí y en su máquina.':
+      'Dibuixa com t\'imagines {n} en un paper, amb els colors que vulguis. Després fes-hi una foto amb bona llum: apareixeran així aquí i a la seva màquina.',
+  'Hacer una foto a mi dibujo':
+      'Fer una foto al meu dibuix',
+  'Elegir de la galería':
+      'Triar de la galeria',
+  'No he encontrado el dibujo en esa foto. Prueba con más luz y con el papel entero.':
+      'No he trobat el dibuix en aquesta foto. Prova-ho amb més llum i amb el paper sencer.',
+  'No se ha podido abrir la cámara ni la galería.':
+      'No s\'ha pogut obrir la càmera ni la galeria.',
+  'Dibujarlo':
+      'Dibuixar-lo',
+  'Cambiar el dibujo':
+      'Canviar el dibuix',
+  'Volver al original':
+      'Tornar a l\'original',
 };

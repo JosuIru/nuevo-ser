@@ -33,6 +33,14 @@ class SessionPayload {
   /// falacias). `null` para intentos no rúbrica.
   final Map<String, double>? componentesRubrica;
 
+  /// **P4 — confianza declarada** en {0, 0.5, 1} (Disputado, Probable,
+  /// Sólido). `null` para perfiles que no miden calibración.
+  final double? confianzaDeclarada;
+
+  /// **P4 — fiabilidad real** según la reconstrucción de referencia,
+  /// misma escala.
+  final double? fiabilidadReal;
+
   const SessionPayload({
     required this.acierto,
     required this.dificultad,
@@ -41,6 +49,8 @@ class SessionPayload {
     this.senalEsperada,
     this.clasePredicha,
     this.componentesRubrica,
+    this.confianzaDeclarada,
+    this.fiabilidadReal,
   });
 }
 
@@ -140,6 +150,24 @@ class ProfileConfig {
     precisionMinSesionBuena: 0.70,
     gapHorasNuevaSesion: 4,
     maxIntentosRecientes: 12,
+  );
+
+  /// Configuración por defecto del perfil P4 (calibración epistémica),
+  /// del doc 02 de Las Versiones §4.1 y la ficha de AH.03 (§13.1):
+  /// umbrales de calibración 0.55 / 0.75 / 0.90 y «30 afirmaciones
+  /// evaluadas en al menos 6 Brechas». Las 6 Brechas se aproximan con 6
+  /// sesiones buenas seguidas (una Brecha suele ser una sesión); la
+  /// ventana guarda las 30 últimas afirmaciones.
+  static const ProfileConfig defaultP4 = ProfileConfig(
+    umbralPrecisionMaestria: 0.90,
+    umbralPrecisionCompetente: 0.75,
+    umbralPrecisionEnDesarrollo: 0.55,
+    exposicionesMinMaestria: 30,
+    sesionesConsecutivasMinMaestria: 6,
+    sesionesConsecutivasMinCompetente: 3,
+    precisionMinSesionBuena: 0.75,
+    gapHorasNuevaSesion: 4,
+    maxIntentosRecientes: 30,
   );
 }
 

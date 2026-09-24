@@ -16,7 +16,7 @@
 /// Estado de la extracción tras F1.3:
 ///   - mastery:   modelos (`Habilidad`, `EstadoHabilidad`, `IntentoHabilidad`),
 ///                motor adaptativo (`MasteryEngine` + 4 `MasteryProfile`:
-///                P1Precision funcional, P2/P3/P4 stubs).
+///                P1, P2, P3 y P4 funcionales).
 ///   - sync:      `ClienteApi`, `ExcepcionApi`.
 ///   - storage:   gestor de perfiles, repositorios de avatar, idioma,
 ///                habilidades, cuenta backend, preferencias de audio.

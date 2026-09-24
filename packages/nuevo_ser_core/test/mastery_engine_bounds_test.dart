@@ -69,7 +69,7 @@ void main() {
       expect(() => motor.perfil('P2'), returnsNormally);
       // P3 funciona.
       expect(() => motor.perfil('P3'), returnsNormally);
-      // P4 funciona (devuelve el stub; lanza UnimplementedError sólo al evaluar).
+      // P4 funciona (calibración epistémica, AH.03).
       expect(() => motor.perfil('P4'), returnsNormally);
       // P5 no.
       expect(

@@ -87,11 +87,11 @@ extension NivelMaestriaEntero on NivelMaestria {
 /// Registro de un intento concreto (resultado de un puzzle) contra una
 /// habilidad. Formato mínimo para persistencia local.
 ///
-/// Los tres campos opcionales [senalEsperada], [clasePredicha] y
-/// [componentesRubrica] llevan la metadata por intento que P2 y P3
-/// necesitan. Son `null` para intentos P1/P4, presentes para P2 y P3
-/// respectivamente. Su shape JSON es compacto (`se`, `cp`, `cr`) y se
-/// omite cuando es null para que estados P1 antiguos serialicen
+/// Los campos opcionales [senalEsperada], [clasePredicha],
+/// [componentesRubrica], [confianzaDeclarada] y [fiabilidadReal] llevan
+/// la metadata por intento que P2, P3 y P4 necesitan. Son `null` para
+/// intentos P1. Su shape JSON es compacto (`se`, `cp`, `cr`, `cd`, `fr`)
+/// y se omite cuando es null para que estados P1 antiguos serialicen
 /// idénticamente que antes (retrocompatibilidad de fixtures).
 class IntentoHabilidad {
   final DateTime instante;
@@ -114,6 +114,14 @@ class IntentoHabilidad {
   /// falacias). `null` para intentos no rúbrica.
   final Map<String, double>? componentesRubrica;
 
+  /// **P4 — confianza declarada** en {0, 0.5, 1} = {Disputado,
+  /// Probable, Sólido} (doc 02 de Las Versiones §4.1).
+  final double? confianzaDeclarada;
+
+  /// **P4 — fiabilidad real** de la afirmación en la reconstrucción de
+  /// referencia, misma escala que [confianzaDeclarada].
+  final double? fiabilidadReal;
+
   const IntentoHabilidad({
     required this.instante,
     required this.acierto,
@@ -122,6 +130,8 @@ class IntentoHabilidad {
     this.senalEsperada,
     this.clasePredicha,
     this.componentesRubrica,
+    this.confianzaDeclarada,
+    this.fiabilidadReal,
   });
 
   Map<String, dynamic> aJson() {
@@ -134,6 +144,8 @@ class IntentoHabilidad {
     if (senalEsperada != null) json['se'] = senalEsperada;
     if (clasePredicha != null) json['cp'] = clasePredicha;
     if (componentesRubrica != null) json['cr'] = componentesRubrica;
+    if (confianzaDeclarada != null) json['cd'] = confianzaDeclarada;
+    if (fiabilidadReal != null) json['fr'] = fiabilidadReal;
     return json;
   }
 
@@ -149,6 +161,8 @@ class IntentoHabilidad {
       componentesRubrica: cr == null
           ? null
           : (cr as Map).map((k, v) => MapEntry(k as String, (v as num).toDouble())),
+      confianzaDeclarada: (json['cd'] as num?)?.toDouble(),
+      fiabilidadReal: (json['fr'] as num?)?.toDouble(),
     );
   }
 }

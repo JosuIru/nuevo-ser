@@ -136,20 +136,19 @@ void main() {
     );
   });
 
-  test('el perfil P4 sigue siendo stub y lanza UnimplementedError', () {
-    // P2 y P3 fueron implementados (slice C1+C2). P4 sigue pendiente
-    // hasta que entre el primer consumidor que la requiera; el motor
-    // debe seguir rompiendo visiblemente si se cablea P4 por error.
-    final inicial = EstadoHabilidad.inicial('FR.01');
-    final payload = acierto(DateTime(2026, 1, 1, 10));
-    expect(
-      () => motor.actualizarMaestria(
-        previo: inicial,
-        payload: payload,
-        idPerfil: 'P4',
-      ),
-      throwsUnimplementedError,
-      reason: 'Perfil P4 debe lanzar UnimplementedError mientras es stub.',
+  test('P4 sin pareja declarada/real guarda el intento pero no calibra', () {
+    // P4 ya está implementado (AH.03 de Las Versiones). Un intento sin
+    // confianzaDeclarada/fiabilidadReal no puede medir calibración:
+    // se guarda por trazabilidad y la calibración queda en 0.
+    final inicial = EstadoHabilidad.inicial('AH.03');
+    final tras = motor.actualizarMaestria(
+      previo: inicial,
+      payload: acierto(DateTime(2026, 1, 1, 10)),
+      idPerfil: 'P4',
+      config: ProfileConfig.defaultP4,
     );
+    expect(tras.precision, 0.0);
+    expect(tras.totalExposiciones, 1);
+    expect(tras.nivel, NivelMaestria.introducida);
   });
 }

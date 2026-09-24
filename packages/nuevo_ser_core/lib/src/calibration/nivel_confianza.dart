@@ -11,3 +11,19 @@ enum NivelConfianza {
   probable,
   disputado,
 }
+
+/// Valor de cada nivel en la escala de P4 (doc 02 de Las Versiones
+/// §4.1): Disputado 0, Probable 0.5, Sólido 1. Es lo que se pasa como
+/// `confianzaDeclarada` / `fiabilidadReal` al motor de maestría.
+extension ValorFiabilidad on NivelConfianza {
+  double get valorFiabilidad {
+    switch (this) {
+      case NivelConfianza.solido:
+        return 1.0;
+      case NivelConfianza.probable:
+        return 0.5;
+      case NivelConfianza.disputado:
+        return 0.0;
+    }
+  }
+}

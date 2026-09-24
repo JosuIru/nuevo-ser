@@ -24,11 +24,16 @@ class PantallaEngranajes extends StatefulWidget {
   final int dificultad;
   final int? semilla;
 
+  /// «La rueda loca» (reto de la semana): todas las rondas son de MCM
+  /// con una rueda de dientes primos.
+  final bool ruedaLoca;
+
   const PantallaEngranajes({
     super.key,
     required this.registro,
     required this.dificultad,
     this.semilla,
+    this.ruedaLoca = false,
   });
 
   @override
@@ -75,6 +80,7 @@ class _PantallaEngranajesState extends State<PantallaEngranajes>
   void _nuevoReto() {
     final dificultad = _enNivel.dificultad;
     _reto = switch (_nivel) {
+      _ when widget.ruedaLoca => _generador.ruedaLoca(dificultad: dificultad),
       1 => _enNivel.extra > 0
           ? _generador.tresRuedas(dificultad: dificultad)
           : _generador.generar(TipoEngranaje.mcm, dificultad: dificultad),

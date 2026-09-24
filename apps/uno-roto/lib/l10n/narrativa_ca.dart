@@ -3285,4 +3285,27 @@ const Map<String, String> narrativaCa = <String, String>{
       'Un dipòsit s\'omple per capes: llarg per ample cubets a cadascuna, i tantes capes com alt. Qui compta així no demana mai de més, i les Fuites s\'assequen.',
   'Las tuberías de la Industria son redondas porque Vadic dice que el círculo es la forma que más agua guarda con menos chapa. Las Fugas prefieren las esquinas.':
       'Les canonades de la Indústria són rodones perquè en Vadic diu que el cercle és la forma que guarda més aigua amb menys xapa. Les Fuites prefereixen les cantonades.',
+  // Reto de la semana
+  'El reto de la semana':
+      'El repte de la setmana',
+  'El atasco':
+      'L\'embús',
+  'Las barcas se han quedado quietas en el canal, de tres en tres. Nada corre: ordénalas de menor a mayor con calma.':
+      'Les barques s\'han quedat quietes al canal, de tres en tres. Res no corre: ordena-les de menor a major amb calma.',
+  'La rueda loca':
+      'La roda boja',
+  'Una de las ruedas tiene un número primo de dientes. Es de las cabezotas: casi nunca coincide con la otra.':
+      'Una de les rodes té un nombre primer de dents. És de les tossudes: gairebé mai no coincideix amb l\'altra.',
+  'Bajo cero':
+      'Sota zero',
+  'Esta semana la Serpiente sólo come cuentas que cruzan el cero. Cuidado con el signo.':
+      'Aquesta setmana la Serp només menja comptes que creuen el zero. Compte amb el signe.',
+  'Los puentes rotos':
+      'Els ponts trencats',
+  'Todos los puentes salen largos. Quita justo lo que sobra.':
+      'Tots els ponts surten llargs. Treu just el que sobra.',
+  'Tierra de divisores':
+      'Terra de divisors',
+  'En todos los tableros, las minas son los divisores de un número. Búscalos por parejas.':
+      'A tots els taulers, les mines són els divisors d\'un nombre. Busca\'ls per parelles.',
 };

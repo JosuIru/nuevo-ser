@@ -3281,4 +3281,27 @@ const Map<String, String> narrativaEu = <String, String>{
       'Biltegi bat geruzaka betetzen da: luzera bider zabalera kubotxo bakoitzean, eta altuera adina geruza. Horrela zenbatzen duenak ez du inoiz gehiegi eskatzen, eta Ihesak lehortu egiten dira.',
   'Las tuberías de la Industria son redondas porque Vadic dice que el círculo es la forma que más agua guarda con menos chapa. Las Fugas prefieren las esquinas.':
       'Industriako hodiak biribilak dira, Vadicek dioelako zirkulua txapa gutxienarekin ur gehien gordetzen duen forma dela. Ihesek nahiago dituzte izkinak.',
+  // Reto de la semana
+  'El reto de la semana':
+      'Asteko erronka',
+  'El atasco':
+      'Buxadura',
+  'Las barcas se han quedado quietas en el canal, de tres en tres. Nada corre: ordénalas de menor a mayor con calma.':
+      'Txalupak geldirik geratu dira kanalean, hiruka. Ezer ez dabil: ordenatu txikienetik handienera lasai.',
+  'La rueda loca':
+      'Gurpil zoroa',
+  'Una de las ruedas tiene un número primo de dientes. Es de las cabezotas: casi nunca coincide con la otra.':
+      'Gurpiletako batek hortz kopuru lehena du. Burugogorretakoa da: ia inoiz ez dator bat bestearekin.',
+  'Bajo cero':
+      'Zero azpitik',
+  'Esta semana la Serpiente sólo come cuentas que cruzan el cero. Cuidado con el signo.':
+      'Aste honetan Sugeak zeroa gurutzatzen duten kontuak bakarrik jaten ditu. Kontuz zeinuarekin.',
+  'Los puentes rotos':
+      'Zubi hautsiak',
+  'Todos los puentes salen largos. Quita justo lo que sobra.':
+      'Zubi guztiak luzeegi ateratzen dira. Kendu soberan dagoena zehazki.',
+  'Tierra de divisores':
+      'Zatitzaileen lurra',
+  'En todos los tableros, las minas son los divisores de un número. Búscalos por parejas.':
+      'Taula guztietan, minak zenbaki baten zatitzaileak dira. Bilatu bikoteka.',
 };

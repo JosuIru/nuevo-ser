@@ -5,6 +5,7 @@ import 'package:uno_roto/dominio/bestiario.dart';
 import 'package:uno_roto/dominio/minijuegos/ayudas_maquinas.dart';
 import 'package:uno_roto/dominio/minijuegos/catalogo_minijuegos.dart';
 import 'package:uno_roto/dominio/minijuegos/ejemplos_resueltos.dart';
+import 'package:uno_roto/dominio/minijuegos/reto_semanal.dart';
 import 'package:uno_roto/l10n/narrativa_ca.dart';
 import 'package:uno_roto/l10n/narrativa_eu.dart';
 
@@ -57,6 +58,14 @@ void main() {
       ],
       'Común',
       'Inusual',
+    ];
+    expect(sinTraducir(textos), isEmpty);
+  });
+
+  test('retos de la semana', () {
+    final textos = [
+      'El reto de la semana',
+      for (final especial in especialesSemanales) ...[especial.nombre, especial.descripcion],
     ];
     expect(sinTraducir(textos), isEmpty);
   });

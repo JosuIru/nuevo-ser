@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uno_roto/datos/repositorio_progreso.dart';
 import 'package:uno_roto/dominio/minijuegos/catalogo_minijuegos.dart';
+import 'package:uno_roto/dominio/minijuegos/reto_semanal.dart';
 import 'package:uno_roto/l10n/app_localizations.dart';
 import 'package:uno_roto/vista/minijuegos/pantalla_maquinas.dart';
 
@@ -78,5 +79,43 @@ void main() {
       expect(find.byKey(ValueKey('dios-${definicion.id.name}-1')), findsOneWidget);
     }
     expect(find.byKey(const ValueKey('escalera-segunda-sala')), findsNothing);
+  });
+
+  testWidgets('sin práctica no hay reto de la semana', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    await tester.pumpWidget(_envolver());
+    await tester.pumpAndSettle();
+    expect(find.byKey(const ValueKey('reto-semanal')), findsNothing);
+  });
+
+  testWidgets('el cartel del reto abre la máquina con su ronda especial', (tester) async {
+    SharedPreferences.setMockInitialValues({'uroto.modo_dios_activo': true});
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 2.75;
+    addTearDown(tester.view.reset);
+    // Una semana en la que toca el puente roto.
+    final todas = {for (final e in especialesSemanales) e.maquina: e.habilidades};
+    var fecha = DateTime(2026, 1, 5);
+    while (retoDeLaSemana(fecha, todas)!.especial != EspecialSemanal.puenteRoto) {
+      fecha = fecha.add(const Duration(days: 7));
+    }
+    await tester.pumpWidget(MaterialApp(
+      locale: const Locale('es'),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('es'), Locale('eu'), Locale('ca')],
+      home: PantallaMaquinas(repositorio: RepositorioProgreso(), fecha: fecha),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Los puentes rotos'), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('reto-semanal')));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(find.textContaining('ha salido largo'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
   });
 }

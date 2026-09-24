@@ -6,6 +6,7 @@ import '../../datos/catalogo_habilidades.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../datos/repositorio_progreso.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
+import '../../dominio/minijuegos/reto_semanal.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 import 'pantalla_andamios.dart';
@@ -25,6 +26,7 @@ import 'pantalla_pinturas.dart';
 import 'pantalla_planos.dart';
 import 'pantalla_pozo.dart';
 import 'pantalla_puentes.dart';
+import 'pantalla_recreativa.dart' show coloresDeMaquina;
 import 'pantalla_rebote.dart';
 import 'pantalla_redes.dart';
 import 'pantalla_salto.dart';
@@ -40,6 +42,7 @@ Widget pantallaDeMaquina(
   required RegistroMaestriaMinijuego? registro,
   required int dificultad,
   required List<String> habilidades,
+  EspecialSemanal? especial,
 }) {
   switch (id) {
     case IdMinijuego.puentes:
@@ -85,9 +88,11 @@ Widget pantallaDeMaquina(
           dificultad: dificultad,
           habilidadesPracticadas: habilidades);
     case IdMinijuego.engranajes:
-      return PantallaEngranajes(registro: registro, dificultad: dificultad);
+      return PantallaEngranajes(
+          registro: registro, dificultad: dificultad, ruedaLoca: especial == EspecialSemanal.ruedaLoca);
     case IdMinijuego.esclusas:
-      return PantallaEsclusas(registro: registro, dificultad: dificultad);
+      return PantallaEsclusas(
+          registro: registro, dificultad: dificultad, atasco: especial == EspecialSemanal.atasco);
     case IdMinijuego.planos:
       return PantallaPlanos(registro: registro, dificultad: dificultad);
     case IdMinijuego.redes:
@@ -127,7 +132,10 @@ class PantallaMaquinas extends StatefulWidget {
   /// 1: la sala de siempre. 2: la planta de arriba (ver catálogo).
   final int sala;
 
-  const PantallaMaquinas({super.key, required this.repositorio, this.sala = 1});
+  /// Fecha para elegir el reto de la semana (los tests la fijan).
+  final DateTime? fecha;
+
+  const PantallaMaquinas({super.key, required this.repositorio, this.sala = 1, this.fecha});
 
   @override
   State<PantallaMaquinas> createState() => _PantallaMaquinasState();
@@ -222,6 +230,37 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     );
   }
 
+  /// El reto de la semana entre las máquinas encendidas (en modo dios,
+  /// todas con todas sus habilidades).
+  DefinicionEspecial? get _retoSemanal {
+    final practicadas = <IdMinijuego, List<String>>{
+      for (final definicion in CatalogoMinijuegos.todos)
+        if (_modoDios)
+          definicion.id: definicion.habilidades
+        else if ((_disponibilidad[definicion.id]?.disponible ?? false) && _construidas.contains(definicion.id))
+          definicion.id: _disponibilidad[definicion.id]!.habilidadesPracticadas,
+    };
+    return retoDeLaSemana(widget.fecha ?? DateTime.now(), practicadas);
+  }
+
+  Future<void> _abrirReto(DefinicionEspecial reto) async {
+    final definicion = CatalogoMinijuegos.de(reto.maquina);
+    final disponibilidad = _disponibilidad[reto.maquina];
+    final practicadas = _modoDios ? definicion.habilidades : disponibilidad?.habilidadesPracticadas ?? const <String>[];
+    final registro = _modoDios ? null : (RegistroMaestriaMinijuego(widget.repositorio)..preparar());
+    HapticFeedback.selectionClick();
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => pantallaDeMaquina(
+        reto.maquina,
+        registro: registro,
+        dificultad: disponibilidad?.dificultad ?? 1,
+        habilidades: habilidadesDelReto(reto, practicadas),
+        especial: reto.especial,
+      ),
+    ));
+    await _cargar();
+  }
+
   Future<void> _abrirEnModoDios(
       DefinicionMinijuego definicion, int dificultad) async {
     HapticFeedback.selectionClick();
@@ -299,6 +338,8 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                       ),
                     ),
                   ),
+                  if (widget.sala == 1 && _retoSemanal != null)
+                    _CartelReto(reto: _retoSemanal!, alJugar: () => _abrirReto(_retoSemanal!)),
                   for (final definicion in CatalogoMinijuegos.deLaSala(widget.sala))
                     _FichaMaquina(
                       definicion: definicion,
@@ -516,6 +557,68 @@ class _Escalera extends StatelessWidget {
               ),
             ),
             if (abierta) Icon(Icons.chevron_right, color: color),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// El cartel del reto de la semana: la máquina, el nombre de la ronda
+/// especial y qué tiene de distinto. Sin récords: se juega y ya está.
+class _CartelReto extends StatelessWidget {
+  final DefinicionEspecial reto;
+  final VoidCallback alJugar;
+
+  const _CartelReto({required this.reto, required this.alJugar});
+
+  @override
+  Widget build(BuildContext contexto) {
+    final locale = Localizations.localeOf(contexto);
+    final maquina = CatalogoMinijuegos.de(reto.maquina);
+    final color = coloresDeMaquina[maquina.nombre] ?? PaletaNeon.ambarCanales;
+    return GestureDetector(
+      key: const ValueKey('reto-semanal'),
+      onTap: alJugar,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(12, 0, 0, 16),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [color.withOpacity(0.22), PaletaNeon.fondoMedio],
+          ),
+          border: Border.all(color: color.withOpacity(0.8), width: 1.5),
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [BoxShadow(color: color.withOpacity(0.25), blurRadius: 18)],
+        ),
+        child: Row(
+          children: [
+            Icon(Icons.push_pin_outlined, color: color, size: 30),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    traducirNarrativa('El reto de la semana', locale).toUpperCase(),
+                    style: TextStyle(color: color, fontSize: 11, letterSpacing: 2.5),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    '${traducirNarrativa(reto.nombre, locale)} · ${traducirNarrativa(maquina.nombre, locale)}',
+                    style: const TextStyle(color: PaletaNeon.textoPrincipal, fontSize: 16),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    traducirNarrativa(reto.descripcion, locale),
+                    style: TextStyle(color: PaletaNeon.textoTenue.withOpacity(0.9), fontSize: 13, height: 1.4),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.chevron_right, color: color),
           ],
         ),
       ),

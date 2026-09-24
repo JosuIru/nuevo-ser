@@ -23,11 +23,15 @@ class PantallaEsclusas extends StatefulWidget {
   final int dificultad;
   final int? semilla;
 
+  /// «El atasco» (reto de la semana): barcas quietas, de tres en tres.
+  final bool atasco;
+
   const PantallaEsclusas({
     super.key,
     required this.registro,
     required this.dificultad,
     this.semilla,
+    this.atasco = false,
   });
 
   @override
@@ -73,7 +77,11 @@ class _PantallaEsclusasState extends State<PantallaEsclusas>
 
   void _nuevaRonda() {
     _partida = PartidaEsclusas(
-        nivel: _nivel, dificultad: _enNivel.dificultad, sinPrisas: AjusteSinPrisas.activo.value, azar: _azar);
+        nivel: widget.atasco ? 3 : _nivel,
+        dificultad: _enNivel.dificultad,
+        sinPrisas: AjusteSinPrisas.activo.value,
+        quietas: widget.atasco,
+        azar: _azar);
     _inicioRonda = DateTime.now();
     _entreRondas = false;
   }

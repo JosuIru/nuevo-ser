@@ -43,6 +43,8 @@ MAQUINAS = {
     'cajaNegra': {'pantalla': '#9FD9B8', 'marquesina': '#413F7A'},
     'pozo': {'pantalla': '#E8A857', 'marquesina': '#8A6353'},
     'pinturas': {'pantalla': '#6BB38A', 'marquesina': '#E3A457'},
+    'rebote': {'pantalla': '#7CF2FF', 'marquesina': '#2B4DA6'},
+    'taller': {'pantalla': '#E8E2D0', 'marquesina': '#8A6A2E'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -202,6 +204,24 @@ def juego_en_pantalla(nombre, color):
             p.append(pixel(f'toldo{i}', -0.3 + i * 0.085, 0.14, 0.042, 0.05, tono, 1.4))
         for i, tono in enumerate(('#3F74D8', '#6BB38A', '#E3C04A')):
             p.append(pixel(f'cubo{i}', -0.18 + i * 0.18, -0.1, 0.05, 0.06, tono, 1.6))
+    elif nombre == 'rebote':
+        import math
+        p.append(pixel('espejo', 0, -0.18, 0.32, 0.008, '#B9E6FF', 1.6))
+        for k in range(8):
+            u = -0.3 + k * 0.04
+            p.append(pixel(f'bajada{k}', u, 0.12 - k * 0.04, 0.012, 0.012, color, 2.0))
+        for k in range(8):
+            u = 0.02 + k * 0.04
+            p.append(pixel(f'subida{k}', u, -0.16 + k * 0.04, 0.012, 0.012, color, 2.0))
+        p.append(pixel('diana', 0.33, 0.16, 0.025, 0.025, '#B45656', 1.8))
+    elif nombre == 'taller':
+        import math
+        p.append(pixel('esfera', 0, 0.0, 0.14, 0.14, color, 1.2))
+        p.append(pixel('aguja_h', -0.02, 0.03, 0.05, 0.008, '#14102A', 0.5))
+        p.append(pixel('aguja_m', 0.03, 0.05, 0.008, 0.07, '#14102A', 0.5))
+        for k in range(12):
+            a = k / 12 * math.pi * 2
+            p.append(pixel(f'marca{k}', math.cos(a) * 0.12, math.sin(a) * 0.12, 0.006, 0.006, '#3A2608', 0.6))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

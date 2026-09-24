@@ -692,6 +692,59 @@ def pinturas():
     return pista
 
 
+def rebote():
+    """Luz entre espejos · 96 BPM, mi mayor. Sinte en arpegios que suben
+    y bajan como un rayo que rebota, con eco (la misma nota, más baja,
+    un poco después) y un pulso eléctrico."""
+    negra = 60 / 96
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['E3', 'G#3', 'B3', 'D#4'],
+        ['C#3', 'E3', 'G#3', 'B3'],
+        ['A2', 'C#3', 'E3', 'G#3'],
+        ['B2', 'D#3', 'F#3', 'A3'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.035, 2000))
+        orden = [0, 1, 2, 3, 3, 2, 1, 0]
+        for corchea in range(8):
+            f = nota(voces[orden[corchea]]) * 2
+            sumar_circular(pista, inicio + corchea * negra / 2, sinte_arpegio(f, negra * 0.4, 0.05))
+            sumar_circular(pista, inicio + corchea * negra / 2 + negra * 0.75, sinte_arpegio(f, negra * 0.3, 0.02))
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra, charles(0.03))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 2, 0.07))
+    return pista
+
+
+def taller():
+    """Taller de relojería · 88 BPM, si bemol mayor. Tic-tac de reloj de
+    pared, marimba y fagot de bajo pausado: se trabaja con calma."""
+    negra = 60 / 88
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['A#2', 'D3', 'F3', 'A3'],
+        ['G2', 'A#2', 'D3', 'F3'],
+        ['D#2', 'G2', 'A#2', 'D3'],
+        ['F2', 'A2', 'C3', 'D#3'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.035, 1500))
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra,
+                           taco_madera(1600 if tiempo % 2 == 0 else 1300, 0.045))
+        for i, voz in enumerate(voces[1:]):
+            sumar_circular(pista, inicio + (i + 0.5) * negra, marimba(nota(voz) * 2, 0.06))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 3, 0.07))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -765,6 +818,8 @@ if __name__ == '__main__':
     guardar(caja_negra(), os.path.join(musica, 'maquina_caja_negra.ogg'), -19, es_bucle=True)
     guardar(pozo(), os.path.join(musica, 'maquina_pozo.ogg'), -19, es_bucle=True)
     guardar(pinturas(), os.path.join(musica, 'maquina_pinturas.ogg'), -19, es_bucle=True)
+    guardar(rebote(), os.path.join(musica, 'maquina_rebote.ogg'), -19, es_bucle=True)
+    guardar(taller(), os.path.join(musica, 'maquina_taller.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

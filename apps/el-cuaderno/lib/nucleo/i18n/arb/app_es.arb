@@ -1002,5 +1002,46 @@
   "pdfPlantillaCreesQueEs": "Crees que es",
   "pdfPlantillaDibuja": "Dibuja",
 
-  "configuracionInicialPoliticaCuerpo": "Tu cuaderno es tuyo. Lo que escribes, las fotos y los dibujos que añades, viven solo en tu dispositivo. No salen al servidor.\n\nNo hay anuncios. No se vende lo que escribes a nadie. No hay rachas, niveles ni recompensas que te empujen a volver: vuelve si quieres, cuando quieras.\n\nSi una persona adulta quiere ayudarte a usar el Tutor real, o quiere recibir un resumen para hablar contigo, tiene que entrar a Ajustes y darle a un botón cada vez. Nunca pasa solo. Nunca avisa a nadie sin que tú lo sepas.\n\nCuando quieras, en Ajustes puedes exportar todo tu cuaderno como un archivo y borrarlo del todo de este dispositivo.\n\nEsta es una versión provisional escrita por el equipo que está haciendo el cuaderno. Antes de que lo use mucha gente, una persona experta en leyes va a revisarla."
+  "configuracionInicialPoliticaCuerpo": "Tu cuaderno es tuyo. Lo que escribes, las fotos y los dibujos que añades, viven solo en tu dispositivo. No salen al servidor.\n\nNo hay anuncios. No se vende lo que escribes a nadie. No hay rachas, niveles ni recompensas que te empujen a volver: vuelve si quieres, cuando quieras.\n\nSi una persona adulta quiere ayudarte a usar el Tutor real, o quiere recibir un resumen para hablar contigo, tiene que entrar a Ajustes y darle a un botón cada vez. Nunca pasa solo. Nunca avisa a nadie sin que tú lo sepas.\n\nCuando quieras, en Ajustes puedes exportar todo tu cuaderno como un archivo y borrarlo del todo de este dispositivo.\n\nEsta es una versión provisional escrita por el equipo que está haciendo el cuaderno. Antes de que lo use mucha gente, una persona experta en leyes va a revisarla.",
+  "observacionMapaSonidosComenzar": "mapa de sonidos",
+  "mapaSonidosTitulo": "Mapa de sonidos",
+  "mapaSonidosIntroduccion": "Quédate en un sitio un rato. Tú estás en el centro. Cada sonido que oigas, márcalo donde te llega: cerca, a media distancia o lejos.",
+  "@mapaSonidosIntroduccion": {
+    "description": "Mapa de sonidos (juego de campo clásico). Voz adulta amable, sin juicio estético (doc 04 §2.3). eu/ca BORRADOR."
+  },
+  "mapaSonidosAyuda": "Toca el mapa para marcar. Toca una marca para quitarla.",
+  "mapaSonidosCentro": "tú",
+  "mapaSonidosDelante": "delante",
+  "mapaSonidosGuardar": "guardar mapa",
+  "mapaSonidosDeshacer": "deshacer",
+  "mapaSonidosTipoPajaro": "pájaro",
+  "mapaSonidosTipoInsecto": "insecto",
+  "mapaSonidosTipoAgua": "agua",
+  "mapaSonidosTipoViento": "viento",
+  "mapaSonidosTipoHojas": "hojas",
+  "mapaSonidosTipoAnimal": "otro animal",
+  "mapaSonidosTipoPersona": "personas",
+  "mapaSonidosTipoMaquina": "máquina",
+  "mapaSonidosTipoNoSe": "no sé qué es",
+  "@mapaSonidosTipoNoSe": {
+    "description": "Un sonido sin nombre también se apunta: escuchar antes de nombrar (biblia §3.1)."
+  },
+  "paletaLugarTitulo": "Los colores de este sitio",
+  "@paletaLugarTitulo": {
+    "description": "Bloque de la página del sit spot con los colores dominantes de las fotos, por estación. No es progreso ni colección: una forma de mirar el mismo sitio a lo largo del año. eu/ca BORRADOR."
+  },
+  "paletaLugarExplicacion": "Salen de tus fotos de aquí, estación a estación.",
+  "paletaLugarFotos": "{numero, plural, =1{1 foto} other{{numero} fotos}}",
+  "@paletaLugarFotos": {
+    "description": "Cuántas fotos componen la franja de una estación.",
+    "placeholders": {
+      "numero": {
+        "type": "int"
+      }
+    }
+  },
+  "estacionPrimavera": "primavera",
+  "estacionVerano": "verano",
+  "estacionOtono": "otoño",
+  "estacionInvierno": "invierno"
 }

@@ -2409,6 +2409,150 @@ abstract class TextosApp {
   /// In es, this message translates to:
   /// **'Tu cuaderno es tuyo. Lo que escribes, las fotos y los dibujos que añades, viven solo en tu dispositivo. No salen al servidor.\n\nNo hay anuncios. No se vende lo que escribes a nadie. No hay rachas, niveles ni recompensas que te empujen a volver: vuelve si quieres, cuando quieras.\n\nSi una persona adulta quiere ayudarte a usar el Tutor real, o quiere recibir un resumen para hablar contigo, tiene que entrar a Ajustes y darle a un botón cada vez. Nunca pasa solo. Nunca avisa a nadie sin que tú lo sepas.\n\nCuando quieras, en Ajustes puedes exportar todo tu cuaderno como un archivo y borrarlo del todo de este dispositivo.\n\nEsta es una versión provisional escrita por el equipo que está haciendo el cuaderno. Antes de que lo use mucha gente, una persona experta en leyes va a revisarla.'**
   String get configuracionInicialPoliticaCuerpo;
+
+  /// No description provided for @observacionMapaSonidosComenzar.
+  ///
+  /// In es, this message translates to:
+  /// **'mapa de sonidos'**
+  String get observacionMapaSonidosComenzar;
+
+  /// No description provided for @mapaSonidosTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Mapa de sonidos'**
+  String get mapaSonidosTitulo;
+
+  /// Mapa de sonidos (juego de campo clásico). Voz adulta amable, sin juicio estético (doc 04 §2.3). eu/ca BORRADOR.
+  ///
+  /// In es, this message translates to:
+  /// **'Quédate en un sitio un rato. Tú estás en el centro. Cada sonido que oigas, márcalo donde te llega: cerca, a media distancia o lejos.'**
+  String get mapaSonidosIntroduccion;
+
+  /// No description provided for @mapaSonidosAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca el mapa para marcar. Toca una marca para quitarla.'**
+  String get mapaSonidosAyuda;
+
+  /// No description provided for @mapaSonidosCentro.
+  ///
+  /// In es, this message translates to:
+  /// **'tú'**
+  String get mapaSonidosCentro;
+
+  /// No description provided for @mapaSonidosDelante.
+  ///
+  /// In es, this message translates to:
+  /// **'delante'**
+  String get mapaSonidosDelante;
+
+  /// No description provided for @mapaSonidosGuardar.
+  ///
+  /// In es, this message translates to:
+  /// **'guardar mapa'**
+  String get mapaSonidosGuardar;
+
+  /// No description provided for @mapaSonidosDeshacer.
+  ///
+  /// In es, this message translates to:
+  /// **'deshacer'**
+  String get mapaSonidosDeshacer;
+
+  /// No description provided for @mapaSonidosTipoPajaro.
+  ///
+  /// In es, this message translates to:
+  /// **'pájaro'**
+  String get mapaSonidosTipoPajaro;
+
+  /// No description provided for @mapaSonidosTipoInsecto.
+  ///
+  /// In es, this message translates to:
+  /// **'insecto'**
+  String get mapaSonidosTipoInsecto;
+
+  /// No description provided for @mapaSonidosTipoAgua.
+  ///
+  /// In es, this message translates to:
+  /// **'agua'**
+  String get mapaSonidosTipoAgua;
+
+  /// No description provided for @mapaSonidosTipoViento.
+  ///
+  /// In es, this message translates to:
+  /// **'viento'**
+  String get mapaSonidosTipoViento;
+
+  /// No description provided for @mapaSonidosTipoHojas.
+  ///
+  /// In es, this message translates to:
+  /// **'hojas'**
+  String get mapaSonidosTipoHojas;
+
+  /// No description provided for @mapaSonidosTipoAnimal.
+  ///
+  /// In es, this message translates to:
+  /// **'otro animal'**
+  String get mapaSonidosTipoAnimal;
+
+  /// No description provided for @mapaSonidosTipoPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'personas'**
+  String get mapaSonidosTipoPersona;
+
+  /// No description provided for @mapaSonidosTipoMaquina.
+  ///
+  /// In es, this message translates to:
+  /// **'máquina'**
+  String get mapaSonidosTipoMaquina;
+
+  /// Un sonido sin nombre también se apunta: escuchar antes de nombrar (biblia §3.1).
+  ///
+  /// In es, this message translates to:
+  /// **'no sé qué es'**
+  String get mapaSonidosTipoNoSe;
+
+  /// Bloque de la página del sit spot con los colores dominantes de las fotos, por estación. No es progreso ni colección: una forma de mirar el mismo sitio a lo largo del año. eu/ca BORRADOR.
+  ///
+  /// In es, this message translates to:
+  /// **'Los colores de este sitio'**
+  String get paletaLugarTitulo;
+
+  /// No description provided for @paletaLugarExplicacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Salen de tus fotos de aquí, estación a estación.'**
+  String get paletaLugarExplicacion;
+
+  /// Cuántas fotos componen la franja de una estación.
+  ///
+  /// In es, this message translates to:
+  /// **'{numero, plural, =1{1 foto} other{{numero} fotos}}'**
+  String paletaLugarFotos(int numero);
+
+  /// No description provided for @estacionPrimavera.
+  ///
+  /// In es, this message translates to:
+  /// **'primavera'**
+  String get estacionPrimavera;
+
+  /// No description provided for @estacionVerano.
+  ///
+  /// In es, this message translates to:
+  /// **'verano'**
+  String get estacionVerano;
+
+  /// No description provided for @estacionOtono.
+  ///
+  /// In es, this message translates to:
+  /// **'otoño'**
+  String get estacionOtono;
+
+  /// No description provided for @estacionInvierno.
+  ///
+  /// In es, this message translates to:
+  /// **'invierno'**
+  String get estacionInvierno;
 }
 
 class _TextosAppDelegate extends LocalizationsDelegate<TextosApp> {

@@ -1380,4 +1380,87 @@ class TextosAppEs extends TextosApp {
   @override
   String get configuracionInicialPoliticaCuerpo =>
       'Tu cuaderno es tuyo. Lo que escribes, las fotos y los dibujos que añades, viven solo en tu dispositivo. No salen al servidor.\n\nNo hay anuncios. No se vende lo que escribes a nadie. No hay rachas, niveles ni recompensas que te empujen a volver: vuelve si quieres, cuando quieras.\n\nSi una persona adulta quiere ayudarte a usar el Tutor real, o quiere recibir un resumen para hablar contigo, tiene que entrar a Ajustes y darle a un botón cada vez. Nunca pasa solo. Nunca avisa a nadie sin que tú lo sepas.\n\nCuando quieras, en Ajustes puedes exportar todo tu cuaderno como un archivo y borrarlo del todo de este dispositivo.\n\nEsta es una versión provisional escrita por el equipo que está haciendo el cuaderno. Antes de que lo use mucha gente, una persona experta en leyes va a revisarla.';
+
+  @override
+  String get observacionMapaSonidosComenzar => 'mapa de sonidos';
+
+  @override
+  String get mapaSonidosTitulo => 'Mapa de sonidos';
+
+  @override
+  String get mapaSonidosIntroduccion =>
+      'Quédate en un sitio un rato. Tú estás en el centro. Cada sonido que oigas, márcalo donde te llega: cerca, a media distancia o lejos.';
+
+  @override
+  String get mapaSonidosAyuda =>
+      'Toca el mapa para marcar. Toca una marca para quitarla.';
+
+  @override
+  String get mapaSonidosCentro => 'tú';
+
+  @override
+  String get mapaSonidosDelante => 'delante';
+
+  @override
+  String get mapaSonidosGuardar => 'guardar mapa';
+
+  @override
+  String get mapaSonidosDeshacer => 'deshacer';
+
+  @override
+  String get mapaSonidosTipoPajaro => 'pájaro';
+
+  @override
+  String get mapaSonidosTipoInsecto => 'insecto';
+
+  @override
+  String get mapaSonidosTipoAgua => 'agua';
+
+  @override
+  String get mapaSonidosTipoViento => 'viento';
+
+  @override
+  String get mapaSonidosTipoHojas => 'hojas';
+
+  @override
+  String get mapaSonidosTipoAnimal => 'otro animal';
+
+  @override
+  String get mapaSonidosTipoPersona => 'personas';
+
+  @override
+  String get mapaSonidosTipoMaquina => 'máquina';
+
+  @override
+  String get mapaSonidosTipoNoSe => 'no sé qué es';
+
+  @override
+  String get paletaLugarTitulo => 'Los colores de este sitio';
+
+  @override
+  String get paletaLugarExplicacion =>
+      'Salen de tus fotos de aquí, estación a estación.';
+
+  @override
+  String paletaLugarFotos(int numero) {
+    String _temp0 = intl.Intl.pluralLogic(
+      numero,
+      locale: localeName,
+      other: '$numero fotos',
+      one: '1 foto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get estacionPrimavera => 'primavera';
+
+  @override
+  String get estacionVerano => 'verano';
+
+  @override
+  String get estacionOtono => 'otoño';
+
+  @override
+  String get estacionInvierno => 'invierno';
 }

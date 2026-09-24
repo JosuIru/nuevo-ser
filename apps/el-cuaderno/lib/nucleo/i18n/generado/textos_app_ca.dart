@@ -1382,4 +1382,87 @@ class TextosAppCa extends TextosApp {
   @override
   String get configuracionInicialPoliticaCuerpo =>
       'El teu quadern és teu. El que escrius, les fotos i els dibuixos que hi afegeixes, viuen només al teu dispositiu. No surten al servidor.\n\nNo hi ha anuncis. No es ven el que escrius a ningú. No hi ha ratxes, nivells ni recompenses que t\'empenyin a tornar: torna si vols, quan vulguis.\n\nSi una persona adulta vol ajudar-te a fer servir el Tutor real, o vol rebre un resum per parlar amb tu, ha d\'entrar a Configuració i prémer un botó cada vegada. Mai no passa sol. Mai no avisa ningú sense que tu ho sàpigues.\n\nQuan vulguis, a Configuració pots exportar tot el teu quadern com un arxiu i esborrar-lo del tot d\'aquest dispositiu.\n\nAquesta és una versió provisional escrita per l\'equip que està fent el quadern. Abans que la facin servir moltes persones, una persona experta en lleis la revisarà.';
+
+  @override
+  String get observacionMapaSonidosComenzar => 'mapa de sons';
+
+  @override
+  String get mapaSonidosTitulo => 'Mapa de sons';
+
+  @override
+  String get mapaSonidosIntroduccion =>
+      'Queda\'t en un lloc una estona. Tu ets al centre. Cada so que sentis, marca\'l on et arriba: a prop, a mitja distància o lluny.';
+
+  @override
+  String get mapaSonidosAyuda =>
+      'Toca el mapa per marcar. Toca una marca per treure-la.';
+
+  @override
+  String get mapaSonidosCentro => 'tu';
+
+  @override
+  String get mapaSonidosDelante => 'davant';
+
+  @override
+  String get mapaSonidosGuardar => 'desar mapa';
+
+  @override
+  String get mapaSonidosDeshacer => 'desfer';
+
+  @override
+  String get mapaSonidosTipoPajaro => 'ocell';
+
+  @override
+  String get mapaSonidosTipoInsecto => 'insecte';
+
+  @override
+  String get mapaSonidosTipoAgua => 'aigua';
+
+  @override
+  String get mapaSonidosTipoViento => 'vent';
+
+  @override
+  String get mapaSonidosTipoHojas => 'fulles';
+
+  @override
+  String get mapaSonidosTipoAnimal => 'un altre animal';
+
+  @override
+  String get mapaSonidosTipoPersona => 'persones';
+
+  @override
+  String get mapaSonidosTipoMaquina => 'màquina';
+
+  @override
+  String get mapaSonidosTipoNoSe => 'no sé què és';
+
+  @override
+  String get paletaLugarTitulo => 'Els colors d\'aquest lloc';
+
+  @override
+  String get paletaLugarExplicacion =>
+      'Surten de les teves fotos d\'aquí, estació a estació.';
+
+  @override
+  String paletaLugarFotos(int numero) {
+    String _temp0 = intl.Intl.pluralLogic(
+      numero,
+      locale: localeName,
+      other: '$numero fotos',
+      one: '1 foto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get estacionPrimavera => 'primavera';
+
+  @override
+  String get estacionVerano => 'estiu';
+
+  @override
+  String get estacionOtono => 'tardor';
+
+  @override
+  String get estacionInvierno => 'hivern';
 }

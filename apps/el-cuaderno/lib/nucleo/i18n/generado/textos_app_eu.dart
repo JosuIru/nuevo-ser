@@ -1379,4 +1379,87 @@ class TextosAppEu extends TextosApp {
   @override
   String get configuracionInicialPoliticaCuerpo =>
       'Zure koadernoa zurea da. Idazten duzuna, gehitzen dituzun argazki eta marrazkiak, zure gailuan baino ez dira bizi. Ez dira zerbitzarira ateratzen.\n\nEz dago iragarkirik. Idazten duzuna ez zaio inori saltzen. Ez dago segidarik, mailarik, ez itzulera bultzatzen duen saririk: itzul zaitez nahi duzunean, nahi duzunean.\n\nHelduren batek benetako Tutorea erabiltzen lagundu nahi badizu, edo zurekin hitz egiteko laburpen bat jaso nahi badu, Ezarpenetan sartu eta botoi bati eman behar dio aldi bakoitzean. Ez da bere kabuz gertatzen. Ez du inori abisatzen zuk jakin gabe.\n\nNahi duzunean, Ezarpenetan zure koaderno osoa fitxategi gisa esportatu eta gailu honetatik erabat ezabatu dezakezu.\n\nHau koadernoa egiten ari den taldeak idatzitako behin-behineko bertsioa da. Jende askok erabili aurretik, lege-aditu batek berrikusiko du.';
+
+  @override
+  String get observacionMapaSonidosComenzar => 'soinuen mapa';
+
+  @override
+  String get mapaSonidosTitulo => 'Soinuen mapa';
+
+  @override
+  String get mapaSonidosIntroduccion =>
+      'Geratu toki batean pixka batean. Zu erdian zaude. Entzuten duzun soinu bakoitza, markatu iristen zaizun lekuan: gertu, erdibidean edo urrun.';
+
+  @override
+  String get mapaSonidosAyuda =>
+      'Ukitu mapa markatzeko. Ukitu marka bat kentzeko.';
+
+  @override
+  String get mapaSonidosCentro => 'zu';
+
+  @override
+  String get mapaSonidosDelante => 'aurrean';
+
+  @override
+  String get mapaSonidosGuardar => 'gorde mapa';
+
+  @override
+  String get mapaSonidosDeshacer => 'desegin';
+
+  @override
+  String get mapaSonidosTipoPajaro => 'txoria';
+
+  @override
+  String get mapaSonidosTipoInsecto => 'intsektua';
+
+  @override
+  String get mapaSonidosTipoAgua => 'ura';
+
+  @override
+  String get mapaSonidosTipoViento => 'haizea';
+
+  @override
+  String get mapaSonidosTipoHojas => 'hostoak';
+
+  @override
+  String get mapaSonidosTipoAnimal => 'beste animalia bat';
+
+  @override
+  String get mapaSonidosTipoPersona => 'pertsonak';
+
+  @override
+  String get mapaSonidosTipoMaquina => 'makina';
+
+  @override
+  String get mapaSonidosTipoNoSe => 'ez dakit zer den';
+
+  @override
+  String get paletaLugarTitulo => 'Leku honetako koloreak';
+
+  @override
+  String get paletaLugarExplicacion =>
+      'Hemengo zure argazkietatik ateratzen dira, urtaroz urtaro.';
+
+  @override
+  String paletaLugarFotos(int numero) {
+    String _temp0 = intl.Intl.pluralLogic(
+      numero,
+      locale: localeName,
+      other: '$numero argazki',
+      one: 'argazki 1',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get estacionPrimavera => 'udaberria';
+
+  @override
+  String get estacionVerano => 'uda';
+
+  @override
+  String get estacionOtono => 'udazkena';
+
+  @override
+  String get estacionInvierno => 'negua';
 }

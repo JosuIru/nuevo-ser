@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""Genera build/web/sw_uno_roto.js: el service worker que deja Uno Roto
-entero en la caché del navegador para jugar sin conexión.
+"""Genera build/web/sw_<juego>.js: el service worker que deja un juego de
+la Colección entero en la caché del navegador para jugar sin conexión.
+
+Uso: generar_sw.py <carpeta del build> <juego>   (p. ej. build/web uno-roto)
 
 - Al instalarse, descarga todos los archivos del build (lista generada
   aquí) en una caché con versión = huella del contenido.
@@ -14,8 +16,10 @@ import json
 import os
 import sys
 
-CARPETA = sys.argv[1] if len(sys.argv) > 1 else 'build/web'
-SALIDA = 'sw_uno_roto.js'
+if len(sys.argv) != 3:
+    sys.exit('Uso: generar_sw.py <carpeta del build> <juego>')
+CARPETA, JUEGO = sys.argv[1], sys.argv[2]
+SALIDA = f"sw_{JUEGO.replace('-', '_')}.js"
 EXCLUIDOS = {SALIDA, 'flutter_service_worker.js'}
 
 archivos = []
@@ -24,7 +28,9 @@ for raiz, _, nombres in os.walk(CARPETA):
     for nombre in sorted(nombres):
         ruta = os.path.join(raiz, nombre)
         relativa = os.path.relpath(ruta, CARPETA).replace(os.sep, '/')
-        if relativa in EXCLUIDOS:
+        # Los servidores suelen negar los archivos ocultos (.last_build_id,
+        # .gitkeep): uno solo que falle tumba la instalación entera.
+        if relativa in EXCLUIDOS or any(parte.startswith('.') for parte in relativa.split('/')):
             continue
         archivos.append(relativa)
         with open(ruta, 'rb') as f:
@@ -34,7 +40,7 @@ archivos.sort()
 version = huella.hexdigest()[:12]
 
 sw = f"""// GENERADO por scripts/web/generar_sw.py — no editar a mano.
-const CACHE = "uno-roto-{version}";
+const CACHE = "{JUEGO}-{version}";
 const ARCHIVOS = {json.dumps(['./'] + archivos, indent=0)};
 // Se refrescan en segundo plano (cambian con cada versión).
 const REFRESCAR = new Set(["./", "index.html", "flutter_bootstrap.js", "main.dart.js",
@@ -50,7 +56,7 @@ self.addEventListener("activate", (evento) => {{
   evento.waitUntil(
     caches.keys()
       .then((claves) => Promise.all(
-        claves.filter((c) => c.startsWith("uno-roto-") && c !== CACHE).map((c) => caches.delete(c))))
+        claves.filter((c) => c.startsWith("{JUEGO}-") && c !== CACHE).map((c) => caches.delete(c))))
       .then(() => self.clients.claim())
   );
 }});

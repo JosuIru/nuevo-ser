@@ -642,6 +642,56 @@ def caja_negra():
     return pista
 
 
+def pozo():
+    """Mina a oscuras · 72 BPM, do menor. Bajo que baja por semitonos
+    (como el ascensor), goteo en la roca y un metal lejano."""
+    negra = 60 / 72
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['C3', 'D#3', 'G3', 'A#3'],
+        ['G#2', 'C3', 'D#3', 'G3'],
+        ['F2', 'G#2', 'C3', 'D#3'],
+        ['G2', 'B2', 'D3', 'F3'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.045, 1000))
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra,
+                           bajo(nota(voces[0]) * (1 - 0.03 * tiempo), negra * 0.8, 0.07))
+        sumar_circular(pista, inicio + 1.5 * negra, gota(0.05))
+        if c % 2 == 0:
+            sumar_circular(pista, inicio + 3 * negra, campana(nota(voces[3]) * 2, 0.04))
+    return pista
+
+
+def pinturas():
+    """Mercado con toldos · 104 BPM, la mayor. Marimba alegre en
+    arpegios, maraca y palmas suaves: color de feria sin feria."""
+    negra = 60 / 104
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['A2', 'C#3', 'E3', 'A3'],
+        ['F#2', 'A2', 'C#3', 'E3'],
+        ['D2', 'F#2', 'A2', 'D3'],
+        ['E2', 'G#2', 'B2', 'D3'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.03, 1800))
+        orden = [0, 2, 1, 3, 2, 1, 3, 2]
+        for corchea in range(8):
+            sumar_circular(pista, inicio + corchea * negra / 2, marimba(nota(voces[orden[corchea]]) * 2, 0.06))
+            sumar_circular(pista, inicio + corchea * negra / 2, maraca(0.03 if corchea % 2 else 0.018))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 1.5, 0.08))
+        sumar_circular(pista, inicio + 2 * negra, bajo(nota(voces[2]) / 2, negra * 1.2, 0.06))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -713,6 +763,8 @@ if __name__ == '__main__':
     guardar(redes(), os.path.join(musica, 'maquina_redes.ogg'), -20.5, es_bucle=True)
     guardar(nivelar(), os.path.join(musica, 'maquina_nivelar.ogg'), -19, es_bucle=True)
     guardar(caja_negra(), os.path.join(musica, 'maquina_caja_negra.ogg'), -19, es_bucle=True)
+    guardar(pozo(), os.path.join(musica, 'maquina_pozo.ogg'), -19, es_bucle=True)
+    guardar(pinturas(), os.path.join(musica, 'maquina_pinturas.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

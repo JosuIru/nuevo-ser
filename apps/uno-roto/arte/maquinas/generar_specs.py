@@ -41,6 +41,8 @@ MAQUINAS = {
     'redes': {'pantalla': '#E8A857', 'marquesina': '#4D86C9'},
     'nivelar': {'pantalla': '#B45656', 'marquesina': '#8A6353'},
     'cajaNegra': {'pantalla': '#9FD9B8', 'marquesina': '#413F7A'},
+    'pozo': {'pantalla': '#E8A857', 'marquesina': '#8A6353'},
+    'pinturas': {'pantalla': '#6BB38A', 'marquesina': '#E3A457'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -187,6 +189,19 @@ def juego_en_pantalla(nombre, color):
             p.append(pixel(f'luz{i}', -0.2 + i * 0.08, -0.04, 0.015, 0.015, color, 2.0))
         for f in range(3):
             p.append(pixel(f'fila{f}', 0.2, 0.1 - f * 0.08, 0.1, 0.012, '#E8E2D0', 0.9))
+    elif nombre == 'pozo':
+        p.append(pixel('cielo', 0, 0.12, 0.34, 0.1, '#2B2F63', 0.7))
+        p.append(pixel('suelo', 0, 0.02, 0.34, 0.006, color, 1.8))
+        p.append(pixel('hueco', 0, -0.1, 0.08, 0.12, '#0A0618', 0.3))
+        for k in range(5):
+            p.append(pixel(f'planta{k}', 0, 0.15 - k * 0.07, 0.1, 0.003, '#6668A8', 0.8))
+        p.append(pixel('cabina', 0, -0.12, 0.05, 0.03, color, 1.8))
+    elif nombre == 'pinturas':
+        franjas = ['#6BB38A', '#E8E2D0'] * 4
+        for i, tono in enumerate(franjas):
+            p.append(pixel(f'toldo{i}', -0.3 + i * 0.085, 0.14, 0.042, 0.05, tono, 1.4))
+        for i, tono in enumerate(('#3F74D8', '#6BB38A', '#E3C04A')):
+            p.append(pixel(f'cubo{i}', -0.18 + i * 0.18, -0.1, 0.05, 0.06, tono, 1.6))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

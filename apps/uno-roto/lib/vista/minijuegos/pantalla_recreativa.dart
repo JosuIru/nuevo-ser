@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart' show ValueListenable;
@@ -54,12 +55,18 @@ class PantallaRecreativa extends StatefulWidget {
   final ValueListenable<AvisoEfecto?>? efectos;
   final Widget child;
 
+  /// El fondo que el niño ha dibujado para esta máquina (El taller de
+  /// dibujo), si lo hay: se ve tenue, detrás del juego, sin quitarle
+  /// legibilidad.
+  final String? fondoDibujado;
+
   const PantallaRecreativa({
     super.key,
     required this.color,
     required this.ronda,
     required this.child,
     this.efectos,
+    this.fondoDibujado,
   });
 
   @override
@@ -157,6 +164,14 @@ class _PantallaRecreativaState extends State<PantallaRecreativa>
                 painter: _PintorFondoRecreativa(animacion: _ambiente, color: color),
               ),
             ),
+            if (widget.fondoDibujado != null)
+              IgnorePointer(
+                child: Opacity(
+                  key: const ValueKey('fondo-dibujado'),
+                  opacity: 0.22,
+                  child: Image.file(File(widget.fondoDibujado!), fit: BoxFit.cover, gaplessPlayback: true),
+                ),
+              ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
               child: widget.child,

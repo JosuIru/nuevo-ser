@@ -3468,4 +3468,15 @@ const Map<String, String> narrativaCa = <String, String>{
       'Tota la foto',
   'Usar este encuadre':
       'Fer servir aquest enquadrament',
+  // El taller de dibujo: fondos de las máquinas
+  'Dibujar el fondo':
+      'Dibuixar el fons',
+  'Cambiar el fondo':
+      'Canviar el fons',
+  'Quitar el fondo':
+      'Treure el fons',
+  'por dentro':
+      'per dins',
+  'Dibuja lo que se ve dentro de la máquina {n}, detrás del juego: un paisaje, un cielo, lo que quieras. Luego hazle una foto con buena luz.':
+      'Dibuixa el que es veu dins de la màquina {n}, darrere del joc: un paisatge, un cel, el que vulguis. Després fes-hi una foto amb bona llum.',
 };

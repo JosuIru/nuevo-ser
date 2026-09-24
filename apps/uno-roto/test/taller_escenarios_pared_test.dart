@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:uno_roto/datos/dibujos_taller.dart';
 import 'package:uno_roto/vista/escenarios_ilustrados.dart';
 import 'package:uno_roto/vista/minijuegos/pantalla_pared.dart';
+import 'package:uno_roto/vista/minijuegos/pantalla_recreativa.dart';
 
 Future<String> _png(Directory carpeta, String nombre) async {
   final fichero = File('${carpeta.path}/$nombre.png');
@@ -74,5 +75,26 @@ void main() {
     expect(find.byWidgetPredicate((w) => w.key is ValueKey && '${(w.key as ValueKey).value}'.startsWith('cartel-')),
         findsNWidgets(3));
     expect(find.textContaining('la mejor pared'), findsOneWidget);
+  });
+
+  testWidgets('el fondo dibujado se ve dentro de la máquina, tenue', (tester) async {
+    final ruta = (await tester.runAsync(() => _png(carpeta, 'fondo')))!;
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: PantallaRecreativa(color: Colors.pink, ronda: 1, fondoDibujado: ruta, child: const SizedBox()),
+      ),
+    ));
+    final fondo = tester.widget<Opacity>(find.byKey(const ValueKey('fondo-dibujado')));
+    expect(fondo.opacity, lessThan(0.3));
+    await tester.pumpWidget(const MaterialApp(
+        home: Scaffold(body: PantallaRecreativa(color: Colors.pink, ronda: 1, child: SizedBox()))));
+    expect(find.byKey(const ValueKey('fondo-dibujado')), findsNothing);
+  });
+
+  test('en la pared, el fondo de una máquina se distingue de su armario', () {
+    dibujosMaquinas.rutas.value = {'telar': '/a.png'};
+    dibujosFondos.rutas.value = {'telar': '/b.png'};
+    final colgados = dibujosColgados();
+    expect(colgados.map((d) => (d.nombre, d.detalle)), containsAll([('El telar', null), ('El telar', 'por dentro')]));
   });
 }

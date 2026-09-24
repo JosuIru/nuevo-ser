@@ -131,9 +131,16 @@ final dibujosMaquinas = ColeccionDibujos(
   ids: () => [for (final maquina in CatalogoMinijuegos.todos) maquina.id.name],
 );
 
+/// Lo que se ve dentro de cada máquina, detrás del juego.
+final dibujosFondos = ColeccionDibujos(
+  prefijoClave: 'dibujo_fondo.',
+  carpeta: 'fondos',
+  ids: () => [for (final maquina in CatalogoMinijuegos.todos) maquina.id.name],
+);
+
 /// Todas las colecciones, para la pared de Rexán (fase 4).
 List<ColeccionDibujos> get coleccionesDelTaller =>
-    [dibujosMonstruos, dibujosPersonajes, dibujosDistritos, dibujosMaquinas];
+    [dibujosMonstruos, dibujosPersonajes, dibujosDistritos, dibujosMaquinas, dibujosFondos];
 
 /// Carga todas las colecciones del perfil activo.
 Future<void> cargarDibujosDelTaller(RepositorioProgreso repositorio) async {

@@ -2,7 +2,9 @@ import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show CapaAudio;
 
+import '../../datos/dibujos_taller.dart';
 import '../../dominio/minijuegos/ayudas_maquinas.dart';
+import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../dominio/minijuegos/ejemplos_resueltos.dart';
 import '../../dominio/minijuegos/canales.dart' show Direccion;
 
@@ -65,6 +67,14 @@ class MarcoMinijuego extends StatelessWidget {
     this.enunciadoActual,
     this.efectos,
   });
+
+  /// El id de la máquina por su nombre (para su fondo dibujado).
+  String? get _idMaquina {
+    for (final definicion in CatalogoMinijuegos.todos) {
+      if (definicion.nombre == titulo) return definicion.id.name;
+    }
+    return null;
+  }
 
   EjemploResuelto? _ejemploNuevo() => idHabilidadActual == null
       ? null
@@ -253,11 +263,15 @@ class MarcoMinijuego extends StatelessWidget {
                             alPulsar: () => Navigator.of(contexto).pop(),
                           ),
                         )
-                      : PantallaRecreativa(
-                          color: coloresDeMaquina[titulo] ?? PaletaNeon.violetaNeon,
-                          ronda: ronda,
-                          efectos: efectos,
-                          child: child,
+                      : ValueListenableBuilder<Map<String, String>>(
+                          valueListenable: dibujosFondos.rutas,
+                          builder: (_, fondos, __) => PantallaRecreativa(
+                            color: coloresDeMaquina[titulo] ?? PaletaNeon.violetaNeon,
+                            ronda: ronda,
+                            efectos: efectos,
+                            fondoDibujado: fondos[_idMaquina],
+                            child: child,
+                          ),
                         ),
                 ),
               ),

@@ -16,7 +16,10 @@ class DibujoColgado {
   final String ruta;
   final String nombre;
 
-  const DibujoColgado(this.ruta, this.nombre);
+  /// Qué parte es, si hace falta (el fondo de una máquina: «por dentro»).
+  final String? detalle;
+
+  const DibujoColgado(this.ruta, this.nombre, {this.detalle});
 }
 
 /// Todos los dibujos del niño (las cuatro colecciones del taller), con
@@ -38,7 +41,8 @@ List<DibujoColgado> dibujosColgados() {
   return [
     for (final coleccion in coleccionesDelTaller)
       for (final MapEntry(key: id, value: ruta) in coleccion.rutas.value.entries)
-        DibujoColgado(ruta, nombreDe(coleccion, id)),
+        DibujoColgado(ruta, nombreDe(coleccion, id),
+            detalle: identical(coleccion, dibujosFondos) ? 'por dentro' : null),
   ];
 }
 
@@ -95,7 +99,10 @@ class PantallaPared extends StatelessWidget {
                         _Cartel(
                           key: ValueKey('cartel-${dibujo.ruta}'),
                           dibujo: dibujo,
-                          nombre: traducirNarrativa(dibujo.nombre, locale),
+                          nombre: [
+                            traducirNarrativa(dibujo.nombre, locale),
+                            if (dibujo.detalle != null) traducirNarrativa(dibujo.detalle!, locale),
+                          ].join(' · '),
                         ),
                     ],
                   ),

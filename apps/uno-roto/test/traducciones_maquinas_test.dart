@@ -99,6 +99,15 @@ void main() {
       'Aquí cuelgo lo que me traes. Es la mejor pared de los recreativos.',
       'No he encontrado el dibujo en esa foto. Prueba con más luz y con el papel entero.',
       'No se ha podido abrir la cámara ni la galería.',
+      'Dibujar el fondo',
+      'Cambiar el fondo',
+      'Quitar el fondo',
+      'por dentro',
+      'Dibuja lo que se ve dentro de la máquina {n}, detrás del juego: un paisaje, un cielo, lo que quieras. Luego hazle una foto con buena luz.',
+      'Encuadre',
+      'Ajusta el recuadro a tu dibujo: arrastra las esquinas para cambiarlo de tamaño y el centro para moverlo.',
+      'Toda la foto',
+      'Usar este encuadre',
     ];
     expect(sinTraducir(textos), isEmpty);
   });

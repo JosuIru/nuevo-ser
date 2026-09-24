@@ -3464,4 +3464,15 @@ const Map<String, String> narrativaEu = <String, String>{
       'Argazki osoa',
   'Usar este encuadre':
       'Erabili enkoadraketa hau',
+  // El taller de dibujo: fondos de las máquinas
+  'Dibujar el fondo':
+      'Marraztu hondoa',
+  'Cambiar el fondo':
+      'Aldatu hondoa',
+  'Quitar el fondo':
+      'Kendu hondoa',
+  'por dentro':
+      'barrutik',
+  'Dibuja lo que se ve dentro de la máquina {n}, detrás del juego: un paisaje, un cielo, lo que quieras. Luego hazle una foto con buena luz.':
+      'Marraztu makina honen barruan jokoaren atzean ikusten dena: {n}. Paisaia bat, zeru bat, nahi duzuna. Gero atera argazki bat argi onarekin.',
 };

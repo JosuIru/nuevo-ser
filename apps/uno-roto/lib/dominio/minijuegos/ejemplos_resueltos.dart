@@ -44,6 +44,8 @@ const habilidadesConEjemplo = {
   'FUN.01', 'ALG.03', // La caja negra
   'ARI.04', 'ARI.05', // El pozo
   'PROP.01', 'PROP.02', 'PROP.03', 'PROP.06', 'PROP.07', // Pinturas
+  'MED.04', 'GEO.01', 'GEO.07', // Rebote
+  'MED.01', 'MED.02', 'MED.03', // El taller del relojero
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -144,6 +146,52 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
           PasoEjemplo('No sobra nada: {x} es múltiplo de {n}.', {'x': '$x', 'n': '$n'})
         else
           PasoEjemplo('Sobran {r}: {x} no es múltiplo de {n}.', {'r': '$resto', 'x': '$x', 'n': '$n'}),
+      ]);
+    case 'MED.04':
+      final llega = 5 * entre(3, 16);
+      return EjemploResuelto('$llega°', [
+        PasoEjemplo('El rayo llega al espejo con {g}°.', {'g': '$llega'}),
+        PasoEjemplo('Rebota como una pelota: sale con los mismos {g}°, hacia el otro lado.', {'g': '$llega'}),
+      ]);
+    case 'GEO.01':
+      final grados = const [35, 90, 120, 180, 60, 145][azar.nextInt(6)];
+      final conclusion = grados < 90
+          ? '{g}° es menos que 90°: agudo.'
+          : (grados == 90 ? '{g}° es justo una esquina: recto.' : (grados < 180 ? '{g}° está entre 90° y 180°: obtuso.' : '{g}° es una línea recta: llano.'));
+      return EjemploResuelto('$grados°', [
+        PasoEjemplo('Compáralo con 90° (una esquina) y con 180° (una recta).'),
+        PasoEjemplo(conclusion, {'g': '$grados'}),
+      ]);
+    case 'GEO.07':
+      final distancia = entre(1, 3);
+      return EjemploResuelto('[ ]  |  [ ]', [
+        PasoEjemplo('Un cuadro está a {d} del espejo.', {'d': '$distancia'}),
+        PasoEjemplo('Su reflejo, a {d} del espejo por el otro lado, en la misma fila.', {'d': '$distancia'}),
+      ]);
+    case 'MED.01':
+      final cm = entre(105, 290);
+      return EjemploResuelto('$cm cm = ? m', [
+        PasoEjemplo('100 cm son 1 m.'),
+        PasoEjemplo('{c} cm = {m} m {r} cm = {d} m.',
+            {'c': '$cm', 'm': '${cm ~/ 100}', 'r': '${cm % 100}', 'd': '${cm ~/ 100},${(cm % 100).toString().padLeft(2, '0')}'}),
+      ]);
+    case 'MED.02':
+      final gramos = 50 * entre(21, 59);
+      final decimal = '${gramos ~/ 1000},${(gramos % 1000).toString().padLeft(3, '0').replaceAll(RegExp(r'0+$'), '')}';
+      return EjemploResuelto('$gramos g = ? kg', [
+        PasoEjemplo('1000 g son 1 kg.'),
+        PasoEjemplo('{g} g = {k} kg y {r} g = {d} kg.',
+            {'g': '$gramos', 'k': '${gramos ~/ 1000}', 'r': '${gramos % 1000}', 'd': decimal}),
+      ]);
+    case 'MED.03':
+      final hora = entre(8, 20);
+      final minutos = 5 * entre(6, 11);
+      final suma = 5 * entre(4, 11);
+      final total = minutos + suma;
+      return EjemploResuelto('$hora:${minutos.toString().padLeft(2, '0')} + $suma min', [
+        PasoEjemplo('Minutos: {a} + {b} = {t}.', {'a': '$minutos', 'b': '$suma', 't': '$total'}),
+        PasoEjemplo('{t} minutos son 1 hora y {r} minutos: las {h}:{m}.',
+            {'t': '$total', 'r': '${total - 60}', 'h': '${hora + 1}', 'm': (total - 60).toString().padLeft(2, '0')}),
       ]);
     case 'ARI.04':
       final inicio = entre(1, 6);

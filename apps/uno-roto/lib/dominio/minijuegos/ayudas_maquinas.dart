@@ -83,6 +83,18 @@ const trucosPorHabilidad = <String, String>{
       'menos, 30 €. Calcula el descuento y réstalo.',
   'PROP.07': 'La escala dice cuánto es cada centímetro del plano: si 1 cm son '
       '5 m, 4 cm son 4 × 5 = 20 m.',
+  'MED.04': 'Pon el centro del transportador en el vértice y el 0 sobre un '
+      'lado; lee dónde cae el otro. En un espejo, el rayo sale con el mismo '
+      'ángulo con el que llega.',
+  'GEO.01': 'Agudo: menos de 90°. Recto: 90°, una esquina de papel. Obtuso: '
+      'entre 90° y 180°. Llano: 180°, una línea recta.',
+  'GEO.07': 'En un reflejo, cada punto queda a la misma distancia del '
+      'espejo, pero al otro lado: si está a 2 cuadros, su reflejo también.',
+  'MED.01': '1 m = 10 dm = 100 cm. 1,35 m son 1 m y 35 cm: 135 cm.',
+  'MED.02': '1 kg = 1000 g y 1 l = 1000 ml. 1,75 kg son 1750 g; medio kilo, '
+      '500 g; un cuarto, 250 g.',
+  'MED.03': 'Suma primero los minutos; si pasan de 60, son una hora más. '
+      '10:40 + 35 min = 10:75 = 11:15. Luego suma las horas.',
   'DIV.07': 'Escribe los múltiplos de cada número hasta encontrar el primero '
       'que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.',
   'DIV.06': 'Escribe los divisores de cada número y quédate con el mayor que '

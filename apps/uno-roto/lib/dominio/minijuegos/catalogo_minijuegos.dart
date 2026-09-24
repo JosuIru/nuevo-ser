@@ -33,6 +33,8 @@ enum IdMinijuego {
   cajaNegra,
   pozo,
   pinturas,
+  rebote,
+  taller,
 }
 
 class DefinicionMinijuego {
@@ -304,6 +306,39 @@ class CatalogoMinijuegos {
           'la escala del plano y las rebajas.',
       sala: 2,
       llaves: ['FR.22'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.rebote,
+      nombre: 'Rebote',
+      descripcion: 'Mide ángulos, dispara el láser para que rebote hasta la '
+          'diana y dibuja reflejos.',
+      lineaRexan: 'Los focos de la Industria están desviados. La luz rebota '
+          'como una pelota: sale como llega.',
+      habilidades: ['MED.04', 'GEO.01', 'GEO.07'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Lee el ángulo en el transportador y di cuánto mide o qué '
+          'tipo es. En el láser, elige el ángulo para que el rayo rebote en el '
+          'espejo del suelo y dé en la diana: sale del espejo con el mismo '
+          'ángulo con el que llega. Cuidado con los Destellos. Al final, toca '
+          'los cuadros para dibujar el reflejo de la figura y pulsa COMPROBAR.',
+      sala: 2,
+      llaves: ['ARI.01'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.taller,
+      nombre: 'El taller del relojero',
+      descripcion: 'Pesa, llena, corta y pon en hora: los encargos de medida '
+          'de la Industria.',
+      lineaRexan: 'Aquí se mide todo. Ojo con las etiquetas: la misma pesa '
+          'puede venir en gramos o en kilos.',
+      habilidades: ['MED.01', 'MED.02', 'MED.03'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Toca las piezas para ponerlas (y tócalas arriba para '
+          'quitarlas) hasta tener justo lo que pide el encargo; luego ENTREGAR. '
+          'No verás el total hasta entregar: calcúlalo. En el reloj, elige qué '
+          'hora será. 1 kg = 1000 g; 1 l = 1000 ml; 1 m = 100 cm; 1 h = 60 min.',
+      sala: 2,
+      llaves: ['DEC.04'],
     ),
   ];
 

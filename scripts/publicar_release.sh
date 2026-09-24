@@ -83,7 +83,8 @@ if [[ -z "$notas" ]]; then
   git -C "$raiz" fetch --tags -q 2>/dev/null || true
   anterior="$(git -C "$raiz" tag -l "$app-*" --sort=-creatordate | head -1)"
   rango="${anterior:+$anterior..}HEAD"
-  notas="$(git -C "$raiz" log --no-merges --format='- %s' "$rango" -- "apps/$app" | head -30)"
+  # -n y no «| head»: con pipefail, head cortando la tubería mata el script en silencio.
+  notas="$(git -C "$raiz" log -n 30 --no-merges --format='- %s' "$rango" -- "apps/$app")"
   [[ -z "$notas" ]] && notas="Versión $version."
 fi
 

@@ -15,6 +15,34 @@ referencias y revertir la sustitución.
 
 ---
 
+## ÁTICO — El ático de Andrés y Tres fichas (F2-33, 2026-09-24)
+
+Diseño en `docs/el-atico-de-andres.md`. No añade contenido histórico
+(reutiliza afirmaciones, niveles canónicos y fuentes de las Brechas ya
+cerradas), pero deja provisionales que necesitan ojos humanos:
+
+- **Pigmentos y acentos por capa** (`lib/nucleo/pigmentos.dart`):
+  aproximaciones del operador a los pigmentos del doc 11 §2.1-2.3.
+  Pendiente: ilustrador.
+- **Capa principal de cada Brecha** (`lib/dominio/capa_historica.dart`):
+  cruce del lugar de cada Brecha con la tabla de capas del doc 05. Sólo
+  decide color y fragmento musical, no se enseña como dato. Casos a
+  mirar: 3.4 Roncesvalles → D-FORM (778) y 3.6 Tudela 1378 →
+  D-DINASTIAS aunque sea del Arco 3.
+- **Fragmentos musicales de capa** (`scripts/sonido/manifiesto_fragmentos.json`):
+  bocetos con el motor de mesa-mezclas (Ravero), 17-22 s cada uno.
+  Pendiente: escucha del operador y, después, compositor contratado
+  (doc 12 §2.5). D-PROTO usa `celtic · harp-air`: vigilar folclorismo
+  (doc 12 §1.2) con la asesoría.
+- **Efectos y ambiente del ático** (`scripts/sonido/generar_sonidos_archivo.py`):
+  sintetizados. Doc 12 §1.1.4 prefiere grabaciones reales (papel,
+  pinza, mimbre, balanza, lluvia).
+- **Voz de Andrés en el ático** (`lib/dominio/atico/voz_andres_atico.dart`):
+  frases nuevas en castellano, sin revisión de voz (doc 04) ni eu/ca.
+- **Maestría**: Tres fichas NO registra todavía. Falta
+  `P4Calibration.compute()` en el core y un `RegistroMaestriaArchivo`
+  (doc del ático §6).
+
 ## TUDELA-1378 — Estación 3.6 entera (10 cinemáticas + Brecha jugable + Mosaico M3 + cinemáticas de cierre del arco)
 
 **Tracker doc 17**: Prioridad 1 del comité provisional, **sin validar**. La validación crítica más sensible del MVP entero según el README v0.3.

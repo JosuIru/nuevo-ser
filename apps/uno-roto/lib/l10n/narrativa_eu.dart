@@ -2605,4 +2605,117 @@ const Map<String, String> narrativaEu = <String, String>{
       'Batu biak: y desagertzen da eta bi x = {s} geratzen dira.',
   'Una x: {s} ÷ 2 = {r}. Y la y: {t} − {r} = {z}.':
       'x bat: {s} ÷ 2 = {r}. Eta y: {t} − {r} = {z}.',
+  // El pozo y Pinturas
+  'El pozo':
+      'Putzua',
+  'El ascensor de la mina baja por debajo de cero. Sigue sus órdenes y di dónde para.':
+      'Meatzeko igogailua zerotik behera jaisten da. Jarraitu bere aginduei eta esan non gelditzen den.',
+  'La mina está a oscuras. Si no sabes a qué planta vas, no la encuentras.':
+      'Meatzea ilunpean dago. Zein solairutara zoazen ez badakizu, ez duzu aurkituko.',
+  'Lee las órdenes del ascensor de izquierda a derecha: + sube, − baja. La ficha rosa da la vuelta a la orden siguiente y la azul repite la anterior; −(−5) sube 5. Toca la planta donde acabará. Al final, distancias al suelo: la 7 y la −7 están igual de lejos.':
+      'Irakurri igogailuaren aginduak ezkerretik eskuinera: + igo, − jaitsi. Fitxa arrosak hurrengo agindua iraultzen du eta urdinak aurrekoa errepikatzen du; −(−5) 5 igotzen da. Ukitu amaituko den solairua. Amaieran, lurrarekiko distantziak: 7a eta −7a berdin urrun daude.',
+  'Planta {r}. Justo donde dijiste.':
+      '{r}. solairua. Esan zenuen tokian.',
+  'La {f} está a {d} plantas del suelo; la {t}, a {e}. La del otro lado es la {r}.':
+      '{f} solairua lurretik {d} solairura dago; {t} solairua, {e} solairura. Beste aldekoa {r} da.',
+  'El ascensor para en la {r}, no en la {t}.':
+      'Igogailua {r} solairuan gelditzen da, ez {t} solairuan.',
+  '{r} plantas, pasando por el suelo.':
+      '{r} solairu, lurretik pasatuz.',
+  'Cuenta las plantas de la {a} a la {b}, pasando por el suelo.':
+      'Zenbatu solairuak {a} solairutik {b} solairura, lurretik pasatuz.',
+  'Seis viajes a oscuras sin perderte. La mina ya tiene luz.':
+      'Sei bidaia ilunpean galdu gabe. Meatzeak argia du dagoeneko.',
+  'Sales de la planta {p}. ¿Dónde acaba el ascensor? Toca la planta.':
+      '{p} solairutik irteten zara. Non amaitzen da igogailua? Ukitu solairua.',
+  'Baja o sube a la planta que está a la misma distancia del suelo que la {p}, al otro lado.':
+      'Jaitsi edo igo lurretik {p} solairuaren distantzia berera dagoen solairura, beste aldean.',
+  '¿Cuántas plantas hay de la {a} a la {b}?':
+      'Zenbat solairu daude {a} solairutik {b} solairura?',
+  'invierte la siguiente':
+      'hurrengoa iraultzen du',
+  'repite la anterior':
+      'aurrekoa errepikatzen du',
+  'Pinturas':
+      'Margoak',
+  'Prepara los colores de los toldos del Mercado con la receta justa.':
+      'Prestatu Merkatuko toldoen koloreak errezeta zehatzarekin.',
+  'Los toldos se han desteñido. Cada puesto trae su receta; si la mezcla no guarda la proporción, el color no sale.':
+      'Toldoak kolorea galdu dute. Postu bakoitzak bere errezeta dakar; nahasteak proportzioa gordetzen ez badu, kolorea ez da ateratzen.',
+  'La receta dice cuánto azul va por cada tanto de amarillo. Elige el cubo que guarda la receta, o pon los botes justos con − y + y pulsa ENTREGAR: el color de la cubeta te dice cómo vas. Al final, la escala del plano y las rebajas.':
+      'Errezetak esaten du zenbat urdin doan hainbeste horiko. Aukeratu errezeta gordetzen duen ontzia, edo jarri pote zehatzak − eta + botoiekin eta sakatu ENTREGATU: ontziaren koloreak nola zoazen esaten dizu. Amaieran, planoaren eskala eta beherapenak.',
+  'Justo: el puesto está a {v} m.':
+      'Zehazki: postua {v} m-ra dago.',
+  'Eso cuesta ahora: {v} €.':
+      'Hori kostatzen du orain: {v} €.',
+  'El toldo recupera su color.':
+      'Toldoak bere kolorea berreskuratzen du.',
+  'Ese cubo no guarda la receta: {a} de azul por cada {b} de amarillo. El Desteñido se come el color.':
+      'Ontzi horrek ez du errezeta gordetzen: {b} horiko {a} urdin. Kolore-jaleak kolorea jaten du.',
+  'Con esa cuenta el verde no sale: la receta es {a} de azul por cada {b} de amarillo. Repinta.':
+      'Kontu horrekin berdea ez da ateratzen: errezeta {b} horiko {a} urdin da. Margotu berriro.',
+  'Cada centímetro del plano son {k} m. Mide otra vez.':
+      'Planoko zentimetro bakoitza {k} m da. Neurtu berriro.',
+  'Calcula el {k} % de {p} € y réstalo.':
+      'Kalkulatu {p} €-ren % {k} eta kendu.',
+  'Seis toldos pintados. El Mercado vuelve a tener color.':
+      'Sei toldo margotuta. Merkatuak kolorea du berriro.',
+  'Receta: {a} de azul por cada {b} de amarillo. ¿Qué cubo da el mismo color?':
+      'Errezeta: {b} horiko {a} urdin. Zein ontzik ematen du kolore bera?',
+  'Receta {a} : {b}. Hacen falta {t} botes en total. ¿Cuántos de azul?':
+      'Errezeta {a} : {b}. Guztira {t} pote behar dira. Zenbat urdin?',
+  'Receta {a} : {b}. Ya hay {t} botes de azul. ¿Cuántos de amarillo?':
+      'Errezeta {a} : {b}. Dagoeneko {t} pote urdin daude. Zenbat hori?',
+  'En el plano del Mercado, 1 cm son {k} m. El puesto está a {t} cm. ¿A cuántos metros?':
+      'Merkatuko planoan, 1 cm {k} m da. Postua {t} cm-ra dago. Zenbat metrora?',
+  'Un bote de {t} € con un {k} % de descuento. ¿Cuánto cuesta ahora?':
+      '{t} €-ko pote bat % {k} deskontuarekin. Zenbat balio du orain?',
+  '{a} azul
+{b} amarillo':
+      '{a} urdin
+{b} hori',
+  'Piensa en plantas: sumar un positivo sube, restar baja. Si estás en la 2 y bajas 7, pasas el suelo: 2 − 7 = −5.':
+      'Pentsatu solairuetan: positibo bat batzeak igotzen du, kentzeak jaisten. 2. solairuan bazaude eta 7 jaisten bazara, lurra pasatzen duzu: 2 − 7 = −5.',
+  'El valor absoluto es la distancia al suelo, sin mirar si es arriba o abajo: la 7 y la −7 están a 7 plantas. Entre la −4 y la 3 hay 4 + 3 = 7.':
+      'Balio absolutua lurrarekiko distantzia da, goian edo behean den begiratu gabe: 7a eta −7a 7 solairura daude. −4 eta 3 artean 4 + 3 = 7 daude.',
+  'Dos mezclas dan el mismo color si una es la otra multiplicada: 2 : 3 y 4 : 6 sí (×2); 2 : 3 y 4 : 5 no (se sumó 2).':
+      'Bi nahastek kolore bera ematen dute bata bestea biderkatuta bada: 2 : 3 eta 4 : 6 bai (×2); 2 : 3 eta 4 : 5 ez (2 batu zen).',
+  'Si la receta es 2 : 3, cada tanda tiene 5 botes. Para 15 botes hacen falta 15 ÷ 5 = 3 tandas: 6 de azul y 9 de amarillo.':
+      'Errezeta 2 : 3 bada, txanda bakoitzak 5 pote ditu. 15 poterako 15 ÷ 5 = 3 txanda behar dira: 6 urdin eta 9 hori.',
+  'Regla de tres: si 2 de azul van con 3 de amarillo, 6 de azul (el triple) van con 9 de amarillo (el triple).':
+      'Hiruko erregela: 2 urdin 3 horirekin badoaz, 6 urdin (hirukoitza) 9 horirekin doaz (hirukoitza).',
+  'Un descuento del 25 % es quitar la cuarta parte: de 40 €, 10 € menos, 30 €. Calcula el descuento y réstalo.':
+      '% 25eko deskontua laurdena kentzea da: 40 €-tik, 10 € gutxiago, 30 €. Kalkulatu deskontua eta kendu.',
+  'La escala dice cuánto es cada centímetro del plano: si 1 cm son 5 m, 4 cm son 4 × 5 = 20 m.':
+      'Eskalak planoko zentimetro bakoitza zenbat den esaten du: 1 cm 5 m bada, 4 cm 4 × 5 = 20 m dira.',
+  'Desde la {a}, baja {a} plantas y llegas al suelo (0).':
+      '{a} solairutik, jaitsi {a} solairu eta lurrera iristen zara (0).',
+  'Te quedan {r} por bajar: acabas en la −{r}.':
+      '{r} geratzen zaizkizu jaisteko: −{r} solairuan amaitzen duzu.',
+  'De la {a} al suelo hay {x} plantas.':
+      '{a} solairutik lurrera {x} solairu daude.',
+  'Del suelo a la {b}, {b} más: {x} + {b} = {r}.':
+      'Lurretik {b} solairura, {b} gehiago: {x} + {b} = {r}.',
+  '{a} × {k} = {x} y {b} × {k} = {y}.':
+      '{a} × {k} = {x} eta {b} × {k} = {y}.',
+  'Los dos por el mismo número: misma razón, mismo color.':
+      'Biak zenbaki beraz: arrazoi bera, kolore bera.',
+  'Cada tanda lleva {a} + {b} = {t} botes.':
+      'Txanda bakoitzak {a} + {b} = {t} pote ditu.',
+  '{n} ÷ {t} = {k} tandas.':
+      '{n} ÷ {t} = {k} txanda.',
+  'Azul: {a} × {k} = {x}. Amarillo: {b} × {k} = {y}.':
+      'Urdina: {a} × {k} = {x}. Horia: {b} × {k} = {y}.',
+  'De {a} a {x} se ha multiplicado por {k}.':
+      '{a} zenbakitik {x} zenbakira {k} zenbakiaz biderkatu da.',
+  'El otro, igual: {b} × {k} = {y}.':
+      'Bestea, berdin: {b} × {k} = {y}.',
+  'El {p} % de {x} € es {d} €.':
+      '{x} €-ren % {p} {d} € da.',
+  'Se resta: {x} − {d} = {r} €.':
+      'Kentzen da: {x} − {d} = {r} €.',
+  'Cada centímetro son {e} m.':
+      'Zentimetro bakoitza {e} m da.',
+  '{c} × {e} = {r} m.':
+      '{c} × {e} = {r} m.',
 };

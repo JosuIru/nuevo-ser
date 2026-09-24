@@ -14,7 +14,9 @@ import 'pantalla_canales.dart';
 import 'pantalla_encaje.dart';
 import 'pantalla_engranajes.dart';
 import 'pantalla_esclusas.dart';
+import 'pantalla_pinturas.dart';
 import 'pantalla_planos.dart';
+import 'pantalla_pozo.dart';
 import 'pantalla_nivelar.dart';
 import 'pantalla_redes.dart';
 import 'pantalla_flota.dart';
@@ -87,6 +89,10 @@ Widget pantallaDeMaquina(
       return PantallaNivelar(registro: registro, dificultad: dificultad);
     case IdMinijuego.cajaNegra:
       return PantallaCajaNegra(registro: registro, dificultad: dificultad);
+    case IdMinijuego.pozo:
+      return PantallaPozo(registro: registro, dificultad: dificultad);
+    case IdMinijuego.pinturas:
+      return PantallaPinturas(registro: registro, dificultad: dificultad);
   }
 }
 
@@ -172,6 +178,8 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.redes,
     IdMinijuego.nivelar,
     IdMinijuego.cajaNegra,
+    IdMinijuego.pozo,
+    IdMinijuego.pinturas,
   };
 
   Widget _pantallaDe(

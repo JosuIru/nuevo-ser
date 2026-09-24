@@ -204,6 +204,18 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_caja_negra.ogg',
       enBucle: true,
     ),
+    'musica_maquina_pozo': SonidoCatalogado(
+      identificador: 'musica_maquina_pozo',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_pozo.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_pinturas': SonidoCatalogado(
+      identificador: 'musica_maquina_pinturas',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_pinturas.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

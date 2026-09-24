@@ -2609,4 +2609,117 @@ const Map<String, String> narrativaCa = <String, String>{
       'Suma-les: la y se\'n va i queden dues x = {s}.',
   'Una x: {s} ÷ 2 = {r}. Y la y: {t} − {r} = {z}.':
       'Una x: {s} ÷ 2 = {r}. I la y: {t} − {r} = {z}.',
+  // El pozo y Pinturas
+  'El pozo':
+      'El pou',
+  'El ascensor de la mina baja por debajo de cero. Sigue sus órdenes y di dónde para.':
+      'L\'ascensor de la mina baixa per sota de zero. Segueix les seves ordres i digues on s\'atura.',
+  'La mina está a oscuras. Si no sabes a qué planta vas, no la encuentras.':
+      'La mina és a les fosques. Si no saps a quina planta vas, no la trobes.',
+  'Lee las órdenes del ascensor de izquierda a derecha: + sube, − baja. La ficha rosa da la vuelta a la orden siguiente y la azul repite la anterior; −(−5) sube 5. Toca la planta donde acabará. Al final, distancias al suelo: la 7 y la −7 están igual de lejos.':
+      'Llegeix les ordres de l\'ascensor d\'esquerra a dreta: + puja, − baixa. La fitxa rosa gira l\'ordre següent i la blava repeteix l\'anterior; −(−5) puja 5. Toca la planta on acabarà. Al final, distàncies a terra: la 7 i la −7 són igual de lluny.',
+  'Planta {r}. Justo donde dijiste.':
+      'Planta {r}. Just on deies.',
+  'La {f} está a {d} plantas del suelo; la {t}, a {e}. La del otro lado es la {r}.':
+      'La {f} és a {d} plantes de terra; la {t}, a {e}. La de l\'altre costat és la {r}.',
+  'El ascensor para en la {r}, no en la {t}.':
+      'L\'ascensor s\'atura a la {r}, no a la {t}.',
+  '{r} plantas, pasando por el suelo.':
+      '{r} plantes, passant per terra.',
+  'Cuenta las plantas de la {a} a la {b}, pasando por el suelo.':
+      'Compta les plantes de la {a} a la {b}, passant per terra.',
+  'Seis viajes a oscuras sin perderte. La mina ya tiene luz.':
+      'Sis viatges a les fosques sense perdre\'t. La mina ja té llum.',
+  'Sales de la planta {p}. ¿Dónde acaba el ascensor? Toca la planta.':
+      'Surts de la planta {p}. On acaba l\'ascensor? Toca la planta.',
+  'Baja o sube a la planta que está a la misma distancia del suelo que la {p}, al otro lado.':
+      'Baixa o puja a la planta que és a la mateixa distància de terra que la {p}, a l\'altre costat.',
+  '¿Cuántas plantas hay de la {a} a la {b}?':
+      'Quantes plantes hi ha de la {a} a la {b}?',
+  'invierte la siguiente':
+      'gira la següent',
+  'repite la anterior':
+      'repeteix l\'anterior',
+  'Pinturas':
+      'Pintures',
+  'Prepara los colores de los toldos del Mercado con la receta justa.':
+      'Prepara els colors dels tendals del Mercat amb la recepta justa.',
+  'Los toldos se han desteñido. Cada puesto trae su receta; si la mezcla no guarda la proporción, el color no sale.':
+      'Els tendals s\'han destenyit. Cada parada porta la seva recepta; si la barreja no guarda la proporció, el color no surt.',
+  'La receta dice cuánto azul va por cada tanto de amarillo. Elige el cubo que guarda la receta, o pon los botes justos con − y + y pulsa ENTREGAR: el color de la cubeta te dice cómo vas. Al final, la escala del plano y las rebajas.':
+      'La recepta diu quant de blau va per cada tant de groc. Tria el galledó que guarda la recepta, o posa els pots justos amb − i + i prem LLIURAR: el color de la cubeta et diu com vas. Al final, l\'escala del plànol i les rebaixes.',
+  'Justo: el puesto está a {v} m.':
+      'Just: la parada és a {v} m.',
+  'Eso cuesta ahora: {v} €.':
+      'Això costa ara: {v} €.',
+  'El toldo recupera su color.':
+      'El tendal recupera el seu color.',
+  'Ese cubo no guarda la receta: {a} de azul por cada {b} de amarillo. El Desteñido se come el color.':
+      'Aquest galledó no guarda la recepta: {a} de blau per cada {b} de groc. El Destenyit es menja el color.',
+  'Con esa cuenta el verde no sale: la receta es {a} de azul por cada {b} de amarillo. Repinta.':
+      'Amb aquest compte el verd no surt: la recepta és {a} de blau per cada {b} de groc. Torna a pintar.',
+  'Cada centímetro del plano son {k} m. Mide otra vez.':
+      'Cada centímetre del plànol són {k} m. Torna a mesurar.',
+  'Calcula el {k} % de {p} € y réstalo.':
+      'Calcula el {k} % de {p} € i resta\'l.',
+  'Seis toldos pintados. El Mercado vuelve a tener color.':
+      'Sis tendals pintats. El Mercat torna a tenir color.',
+  'Receta: {a} de azul por cada {b} de amarillo. ¿Qué cubo da el mismo color?':
+      'Recepta: {a} de blau per cada {b} de groc. Quin galledó dona el mateix color?',
+  'Receta {a} : {b}. Hacen falta {t} botes en total. ¿Cuántos de azul?':
+      'Recepta {a} : {b}. Calen {t} pots en total. Quants de blau?',
+  'Receta {a} : {b}. Ya hay {t} botes de azul. ¿Cuántos de amarillo?':
+      'Recepta {a} : {b}. Ja hi ha {t} pots de blau. Quants de groc?',
+  'En el plano del Mercado, 1 cm son {k} m. El puesto está a {t} cm. ¿A cuántos metros?':
+      'Al plànol del Mercat, 1 cm són {k} m. La parada és a {t} cm. A quants metres?',
+  'Un bote de {t} € con un {k} % de descuento. ¿Cuánto cuesta ahora?':
+      'Un pot de {t} € amb un {k} % de descompte. Quant costa ara?',
+  '{a} azul
+{b} amarillo':
+      '{a} blau
+{b} groc',
+  'Piensa en plantas: sumar un positivo sube, restar baja. Si estás en la 2 y bajas 7, pasas el suelo: 2 − 7 = −5.':
+      'Pensa en plantes: sumar un positiu puja, restar baixa. Si ets a la 2 i baixes 7, passes terra: 2 − 7 = −5.',
+  'El valor absoluto es la distancia al suelo, sin mirar si es arriba o abajo: la 7 y la −7 están a 7 plantas. Entre la −4 y la 3 hay 4 + 3 = 7.':
+      'El valor absolut és la distància a terra, sense mirar si és a dalt o a baix: la 7 i la −7 són a 7 plantes. Entre la −4 i la 3 n\'hi ha 4 + 3 = 7.',
+  'Dos mezclas dan el mismo color si una es la otra multiplicada: 2 : 3 y 4 : 6 sí (×2); 2 : 3 y 4 : 5 no (se sumó 2).':
+      'Dues barreges donen el mateix color si una és l\'altra multiplicada: 2 : 3 i 4 : 6 sí (×2); 2 : 3 i 4 : 5 no (es va sumar 2).',
+  'Si la receta es 2 : 3, cada tanda tiene 5 botes. Para 15 botes hacen falta 15 ÷ 5 = 3 tandas: 6 de azul y 9 de amarillo.':
+      'Si la recepta és 2 : 3, cada tanda té 5 pots. Per a 15 pots calen 15 ÷ 5 = 3 tandes: 6 de blau i 9 de groc.',
+  'Regla de tres: si 2 de azul van con 3 de amarillo, 6 de azul (el triple) van con 9 de amarillo (el triple).':
+      'Regla de tres: si 2 de blau van amb 3 de groc, 6 de blau (el triple) van amb 9 de groc (el triple).',
+  'Un descuento del 25 % es quitar la cuarta parte: de 40 €, 10 € menos, 30 €. Calcula el descuento y réstalo.':
+      'Un descompte del 25 % és treure la quarta part: de 40 €, 10 € menys, 30 €. Calcula el descompte i resta\'l.',
+  'La escala dice cuánto es cada centímetro del plano: si 1 cm son 5 m, 4 cm son 4 × 5 = 20 m.':
+      'L\'escala diu quant és cada centímetre del plànol: si 1 cm són 5 m, 4 cm són 4 × 5 = 20 m.',
+  'Desde la {a}, baja {a} plantas y llegas al suelo (0).':
+      'Des de la {a}, baixa {a} plantes i arribes a terra (0).',
+  'Te quedan {r} por bajar: acabas en la −{r}.':
+      'Te\'n queden {r} per baixar: acabes a la −{r}.',
+  'De la {a} al suelo hay {x} plantas.':
+      'De la {a} a terra hi ha {x} plantes.',
+  'Del suelo a la {b}, {b} más: {x} + {b} = {r}.':
+      'De terra a la {b}, {b} més: {x} + {b} = {r}.',
+  '{a} × {k} = {x} y {b} × {k} = {y}.':
+      '{a} × {k} = {x} i {b} × {k} = {y}.',
+  'Los dos por el mismo número: misma razón, mismo color.':
+      'Tots dos pel mateix nombre: mateixa raó, mateix color.',
+  'Cada tanda lleva {a} + {b} = {t} botes.':
+      'Cada tanda porta {a} + {b} = {t} pots.',
+  '{n} ÷ {t} = {k} tandas.':
+      '{n} ÷ {t} = {k} tandes.',
+  'Azul: {a} × {k} = {x}. Amarillo: {b} × {k} = {y}.':
+      'Blau: {a} × {k} = {x}. Groc: {b} × {k} = {y}.',
+  'De {a} a {x} se ha multiplicado por {k}.':
+      'De {a} a {x} s\'ha multiplicat per {k}.',
+  'El otro, igual: {b} × {k} = {y}.':
+      'L\'altre, igual: {b} × {k} = {y}.',
+  'El {p} % de {x} € es {d} €.':
+      'El {p} % de {x} € és {d} €.',
+  'Se resta: {x} − {d} = {r} €.':
+      'Es resta: {x} − {d} = {r} €.',
+  'Cada centímetro son {e} m.':
+      'Cada centímetre són {e} m.',
+  '{c} × {e} = {r} m.':
+      '{c} × {e} = {r} m.',
 };

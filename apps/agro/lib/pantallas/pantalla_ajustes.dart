@@ -109,6 +109,20 @@ class PantallaAjustes extends StatelessWidget {
               MaterialPageRoute(builder: (_) => PantallaBackup()),
             ),
           ),
+          ListTile(
+            leading: Icon(Icons.system_update),
+            title: Text('Actualizaciones'),
+            subtitle: Text('Versión instalada y última publicada'),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => PantallaEstadoActualizaciones(
+                  config: configActualizacionesMonorepo('agro'),
+                  nombreApp: 'Solera',
+                ),
+              ),
+            ),
+          ),
           Divider(),
           ListTile(
             leading: Icon(Icons.cloud_off),

@@ -109,6 +109,12 @@ class _PantallaHoyState extends State<PantallaHoy> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            // Aviso de versión nueva (no ocupa sitio si no hay).
+            AvisoActualizaciones(
+              config: configActualizacionesMonorepo('agro'),
+              nombreApp: 'Solera',
+              margen: const EdgeInsets.only(bottom: 12),
+            ),
             Text(
               DateFormat("EEEE d 'de' MMMM 'de' yyyy", 'es_ES').format(ahora).replaceFirstMapped(
                     RegExp(r'^.'),

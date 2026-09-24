@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
@@ -60,6 +61,12 @@ class _PantallaHoyState extends State<PantallaHoy> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            // Aviso de versión nueva: si no la hay, no ocupa sitio.
+            AvisoActualizaciones(
+              config: configActualizacionesMonorepo('solera-aceitera'),
+              nombreApp: 'Solera Aceitera',
+              margen: const EdgeInsets.only(bottom: 12),
+            ),
             const BannerCatalogosProvisionales(),
             const TarjetaResumenMeteo(),
             const SizedBox(height: 12),

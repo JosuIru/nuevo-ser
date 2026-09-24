@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
@@ -226,6 +227,26 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (_) => const PantallaClaveAnthropic(),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          const Text('Aplicación',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.system_update,
+                  color: Color(0xFF5C6B3A)),
+              title: const Text('Actualizaciones'),
+              subtitle: const Text('Versión instalada y última publicada'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => PantallaEstadoActualizaciones(
+                    config: configActualizacionesMonorepo('solera-aceitera'),
+                    nombreApp: 'Solera Aceitera',
+                  ),
                 ),
               ),
             ),

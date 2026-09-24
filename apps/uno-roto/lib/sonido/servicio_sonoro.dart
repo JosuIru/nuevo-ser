@@ -29,6 +29,15 @@ class ServicioSonoro {
   final Map<CapaAudio, int> _volumenCapa = {};
   final Map<CapaAudio, String?> _pistaActual = {};
   final Map<CapaAudio, Timer?> _fadesActivos = {};
+
+  /// Quien espera el fundido en curso de cada capa: al cancelarlo hay
+  /// que soltarlo, o se queda colgado para siempre.
+  final Map<CapaAudio, Completer<void>> _esperasDeFade = {};
+
+  /// Turno de cada capa: sube con cada reproducir/detener. Tras un
+  /// fundido, sólo actúa quien sigue teniendo el turno (si mientras se
+  /// apagaba la música entró otra, no se para la nueva).
+  final Map<CapaAudio, int> _turno = {};
   final Set<String> _idsAusentes = <String>{};
 
   bool _modoSilencio = false;
@@ -39,6 +48,16 @@ class ServicioSonoro {
     if (_inicializado) {
       await cargarPreferenciasDelPerfil(repositorio);
       return;
+    }
+    // Contexto global "mezclar": ningún reproductor pide el foco de audio
+    // de Android. Si lo pidieran (lo que hace audioplayers por defecto),
+    // cada efecto le quitaría el foco a la música y la pararía: la música
+    // de las máquinas sonaba hasta el primer "tap".
+    try {
+      await AudioPlayer.global.setAudioContext(
+          AudioContextConfig(focus: AudioContextConfigFocus.mixWithOthers).build());
+    } catch (_) {
+      // Sin plugin (tests) o plataforma sin contexto: seguimos igual.
     }
     // En entornos sin plugin de audio (tests widget, headless CI) la
     // creación del AudioPlayer o el `setReleaseMode` inicial levantan
@@ -203,8 +222,11 @@ class ServicioSonoro {
     final player = _reproductores[capa];
     if (player == null) return;
 
+    final turno = _tomarTurno(capa);
     _cancelarFade(capa);
     await _hacerFadeSalida(capa, msFade);
+    // Si mientras se apagaba lo anterior alguien pidió otra cosa, manda él.
+    if (_turno[capa] != turno) return;
 
     try {
       await player.setReleaseMode(
@@ -214,6 +236,7 @@ class ServicioSonoro {
       final fuente = await LocalizadorAudio.instancia.resolver(sonido.rutaAsset);
       await player.play(fuente);
       _pistaActual[capa] = identificador;
+      if (_turno[capa] != turno) return;
       await _hacerFadeEntrada(capa, msFade);
     } on PlatformException {
       _idsAusentes.add(identificador);
@@ -229,12 +252,28 @@ class ServicioSonoro {
 
   /// Detiene con fade el loop de una capa.
   Future<void> detenerCapa(CapaAudio capa, {int msFade = 800}) async {
+    final turno = _tomarTurno(capa);
     _cancelarFade(capa);
-    await _hacerFadeSalida(capa, msFade);
     final player = _reproductores[capa];
-    await player?.stop();
+    // La capa queda libre desde ya: si se vuelve a pedir la misma pista
+    // durante el fundido (volver a entrar en la misma máquina), se oye.
+    final sonaba = _pistaActual[capa];
     _pistaActual[capa] = null;
+    if (sonaba != null && player != null) {
+      await _fadeLineal(
+        capa: capa,
+        player: player,
+        desde: _volumenEfectivoDe(capa),
+        hasta: 0,
+        msTotal: msFade,
+      );
+    }
+    // Si durante el fundido empezó otra pista, no se para: ya no es nuestra.
+    if (_turno[capa] != turno) return;
+    await player?.stop();
   }
+
+  int _tomarTurno(CapaAudio capa) => _turno[capa] = (_turno[capa] ?? 0) + 1;
 
   /// Atenúa temporalmente las capas ambient+música+efectos (a -6 dB
   /// aprox.) para que un efecto narrativo (silbido de Zafrán, voz de
@@ -309,6 +348,9 @@ class ServicioSonoro {
   void _cancelarFade(CapaAudio capa) {
     _fadesActivos[capa]?.cancel();
     _fadesActivos[capa] = null;
+    // Soltar a quien esperaba ese fundido.
+    final espera = _esperasDeFade.remove(capa);
+    if (espera != null && !espera.isCompleted) espera.complete();
   }
 
   Future<void> _hacerFadeSalida(CapaAudio capa, int msFade) async {
@@ -350,6 +392,7 @@ class ServicioSonoro {
     const ticks = 20;
     final msPorPaso = (msTotal / ticks).round();
     final completer = Completer<void>();
+    _esperasDeFade[capa] = completer;
     var paso = 0;
     _fadesActivos[capa] = Timer.periodic(
       Duration(milliseconds: msPorPaso),
@@ -365,6 +408,7 @@ class ServicioSonoro {
         if (paso >= ticks) {
           timer.cancel();
           _fadesActivos[capa] = null;
+          if (identical(_esperasDeFade[capa], completer)) _esperasDeFade.remove(capa);
           if (!completer.isCompleted) completer.complete();
         }
       },

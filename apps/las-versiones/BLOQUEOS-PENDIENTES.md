@@ -31,8 +31,21 @@ el menú («Escenas cortas»).
   respuestas y réplicas de Isaura (flags `evaluacion_mirada_*`). No
   afirma nada histórico (la pieza sigue sin identificar), pero es voz
   nueva de Begoña e Isaura.
-- Siguiente paso si funciona: versiones cortas del resto del Arco 1 y
-  acortar las introducciones y ayudas de las fases de la Brecha.
+- **Ampliado (mismo día)** a las diez escenas del Arco 1 de más de ~180
+  palabras (1.3.3-1.3.7, 1.4.1-1.4.4, 1.Z). Se conservan literales las
+  frases clave (mano junto al bisonte, «no se puede determinar con la
+  evidencia disponible», «probablemente sí lo estoy haciendo»).
+- **Nuevo, no está en el guion**: en 1.3.4 la jugadora elige cómo pone
+  la linterna (de frente / rasante); en los Concilios 1.3.6 y 1.4.3 las
+  preguntas de Aitor, Joana y Karim se contestan eligiendo entre la
+  respuesta del guion (resumida) y una tentación (sobreconfianza,
+  confundir «sin lectura» con «sin acuerdo», mezclar presente y pasado),
+  con réplica de quien pregunta. Flags `linterna_*`,
+  `concilio_1_3_*`, `gran_concilio_*`. Revisar voz de Aitor, Joana y
+  Karim en las réplicas.
+- En 1.4.3 corto se omite la pregunta de Karim sobre las guerras
+  sertorianas (y 1.4.4 corto dice «Karim me pilló» en vez de «dos
+  veces»); sigue en la versión entera.
 
 ## ÁTICO — El ático de Andrés y Tres fichas (F2-33, 2026-09-24)
 

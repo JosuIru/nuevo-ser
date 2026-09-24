@@ -29,6 +29,9 @@ class EscenasCortas {
 
   static bool tieneVersionCorta(String idEscena) => _porId.containsKey(idEscena);
 
+  /// Ids de las escenas que tienen versión corta.
+  static Iterable<String> get ids => _porId.keys;
+
   static EscenaCinematica _corta(EscenaCinematica entera, List<PlanoEscena> planos) {
     return EscenaCinematica(
       id: entera.id,
@@ -45,6 +48,7 @@ class EscenasCortas {
 
   static const _breve = Duration(seconds: 3);
   static const _media = Duration(seconds: 4);
+  static const _larga = Duration(seconds: 6);
 
   static final Map<String, EscenaCinematica> _porId = {
     // 1.0.1 La evaluación — la primera decisión llega en el tercer plano.
@@ -225,6 +229,394 @@ class EscenasCortas {
       ),
       const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Te dejo. Vuelvo a las once.'),
       const PlanoCierreAmable(textoBoton: 'EMPEZAR'),
+    ]),
+    // ─── Pirineo ────────────────────────────────────────────────────
+
+    // 1.3.3 Dentro de la cueva.
+    EscenasArco1.dentroDeLaCueva.id: _corta(EscenasArco1.dentroDeLaCueva, [
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'El covacho: entrada amplia, luz los primeros metros, '
+            'después oscuridad. Goteo lejano.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'Mira al suelo aquí. Hoguera. La cocina, el dormir, las '
+            'herramientas — todo aquí. Hace algo más de trece mil años.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: '¿Puedo tocar?'),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'No.'),
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'El custodio abre una segunda entrada, más estrecha. Bajan '
+            'cinco minutos. Dos grandes losas cierran a medias el paso.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: '¿Para qué son?'),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'No se sabe. Las pusieron mucho después de los grabados. Por '
+            'qué exactamente — lo decidirás tú si llegas a esa Brecha algún día.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Aquí.'),
+      const PlanoCierreAmable(textoBoton: 'ENCENDER LA LINTERNA'),
+    ]),
+
+    // 1.3.4 La pared — la luz rasante se elige, no se lee.
+    EscenasArco1.laPared.id: _corta(EscenasArco1.laPared, [
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'Sala de techos altos. La linterna de Maren sobre la '
+            'piedra. Al principio no se ve nada.',
+      ),
+      // BORRADOR (nuevo): en el guion Maren prueba ángulos y las líneas
+      // aparecen con la luz oblicua; aquí lo prueba la jugadora.
+      const PlanoEleccion(
+        voz: VozPersonaje.isaura,
+        textoPrompt: '¿Cómo pones la luz?',
+        opciones: [
+          OpcionEleccion(
+            textoJugador: 'De frente, directa a la pared.',
+            textoRespuesta: 'Así sólo se ve piedra. Prueba de lado.',
+            vozRespuesta: VozPersonaje.isaura,
+            flagsAEstablecer: {'linterna_de_frente'},
+          ),
+          OpcionEleccion(
+            textoJugador: 'De lado, casi rozando la roca.',
+            textoRespuesta: 'Ahí.',
+            vozRespuesta: VozPersonaje.isaura,
+            flagsAEstablecer: {'linterna_rasante'},
+          ),
+        ],
+      ),
+      const PlanoAmbiente(
+        duracion: _larga,
+        textoLectura: 'Con la luz rasante, las líneas aparecen. Un bisonte. Un '
+            'ciervo más arriba. Una cabeza de uro. La parte trasera de un caballo.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: '¿Cuánto tiempo lleva eso allí?'),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Trece mil años, aproximadamente.'),
+      const PlanoDialogo(
+        voz: VozPersonaje.maren,
+        texto: '¿Por qué grabar algo donde no lo va a ver nadie a la luz del día?',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Esa es la pregunta.'),
+      const PlanoAmbiente(
+        duracion: _larga,
+        textoLectura: 'Maren pone la mano abierta cerca del bisonte, sin tocarlo. '
+            'Compara su mano con la línea que alguien grabó. Después la retira.',
+      ),
+      const PlanoCierreAmable(textoBoton: 'VOLVER AL COCHE'),
+    ]),
+
+    // 1.3.5 Vuelta y silencio.
+    EscenasArco1.vueltaYSilencio.id: _corta(EscenasArco1.vueltaYSilencio, [
+      const PlanoAmbiente(
+        duracion: _breve,
+        textoLectura: 'Vuelta del Pirineo. Cuarenta minutos en silencio.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.maren,
+        texto: 'El custodio dijo «después os abro la otra». Pero sólo me '
+            'llevaste a dos cuevas.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'Hay una tercera, descubierta hace poco. Pinturas de más de '
+            'veinte mil años. Se entra con cuerdas y equipo de espeleología. '
+            'Yo casi no salgo.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: 'Entonces todavía aparecen cosas.'),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Todo el tiempo. El oficio no se acaba.'),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: '¿Necesitas hablar de lo de hoy?'),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: 'No ahora.'),
+      const PlanoCierreAmable(textoBoton: 'SUBIR A CASA'),
+    ]),
+
+    // 1.3.6 El primer Concilio formal — las respuestas se eligen.
+    EscenasArco1.elPrimerConcilioFormal.id: _corta(EscenasArco1.elPrimerConcilioFormal, [
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'Salón del Concilio. Aitor y Joana revisan. Karim observa '
+            'al fondo. Maren presenta su reconstrucción de la cueva.',
+      ),
+      // BORRADOR (nuevo): la respuesta de Maren del guion es la primera
+      // opción; la segunda es la tentación que el oficio corrige.
+      const PlanoEleccion(
+        voz: VozPersonaje.aitor,
+        textoPrompt: 'El covacho data la habitación. ¿Cómo conectas covacho con '
+            'grabados?',
+        opciones: [
+          OpcionEleccion(
+            textoJugador: 'No los conecto con seguridad. La datación del covacho '
+                'es Sólida. Que los hicieran los mismos, Disputado.',
+            textoRespuesta: 'Bien.',
+            vozRespuesta: VozPersonaje.aitor,
+            flagsAEstablecer: {'concilio_1_3_conexion_prudente'},
+          ),
+          OpcionEleccion(
+            textoJugador: 'Son de la misma época, así que los hicieron los mismos.',
+            textoRespuesta: '¿Lo prueba algo, o sólo lo sugiere?',
+            vozRespuesta: VozPersonaje.aitor,
+            flagsAEstablecer: {'concilio_1_3_conexion_sobreconfiada'},
+          ),
+        ],
+      ),
+      const PlanoDialogo(voz: VozPersonaje.aitor, texto: 'Sellada. Disputada como debe ser.'),
+      const PlanoEleccion(
+        voz: VozPersonaje.karim,
+        textoPrompt: 'Dijiste que el significado de los grabados «no se puede '
+            'determinar». ¿Quieres reformular?',
+        opciones: [
+          OpcionEleccion(
+            textoJugador: 'No podemos determinarlo con la evidencia disponible.',
+            textoRespuesta: 'Mejor. La diferencia importa.',
+            vozRespuesta: VozPersonaje.karim,
+            flagsAEstablecer: {'concilio_1_3_reformula'},
+          ),
+          OpcionEleccion(
+            textoJugador: 'No. No se puede saber y ya.',
+            textoRespuesta: '¿Nunca? ¿O no con lo que tenemos hoy? La diferencia importa.',
+            vozRespuesta: VozPersonaje.karim,
+            flagsAEstablecer: {'concilio_1_3_no_reformula'},
+          ),
+        ],
+      ),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Mm.'),
+      const PlanoCierreAmable(textoBoton: 'SALIR DEL SALÓN'),
+    ]),
+
+    // 1.3.7 El apunte largo — se conservan las frases del guion.
+    EscenasArco1.elApunteLargo.id: _corta(EscenasArco1.elApunteLargo, [
+      const PlanoAmbiente(duracion: _breve, textoLectura: 'Esa noche. Maren escribe en el cuaderno.'),
+      const PlanoAmbiente(
+        duracion: _larga,
+        textoLectura: 'En la cueva no se ven hasta que mueves la linterna en el '
+            'ángulo correcto. Después aparecen. El bisonte. El ciervo. La cabeza '
+            'del uro. El caballo.',
+      ),
+      const PlanoAmbiente(
+        duracion: _larga,
+        textoLectura: 'Karim me corrigió: «no se puede determinar con la evidencia '
+            'disponible». Tiene razón. No es lo mismo.',
+      ),
+      const PlanoAmbiente(
+        duracion: _larga,
+        textoLectura: 'Alguien decidió grabar un bisonte donde nadie iba a verlo a '
+            'la luz del día. Su mano se parecía a la mía. Estuvo allí donde yo '
+            'estuve hoy. Y se fue.',
+      ),
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'Nosotras lo vimos. Eso no es Disputado.',
+      ),
+      const PlanoCierreAmable(textoBoton: 'HASTA MAÑANA'),
+    ]),
+
+    // ─── Irulegi ────────────────────────────────────────────────────
+
+    // 1.4.1 El yacimiento.
+    EscenasArco1.viajeAYacimientoIrulegi.id: _corta(EscenasArco1.viajeAYacimientoIrulegi, [
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'Monte Irulegi, sobre el valle de Aranguren. Un poblado '
+            'fortificado, parcialmente excavado.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.arqueologo,
+        texto: 'Tú eres la nueva. Empieza por la casa. Las escaleras conservan '
+            'siete peldaños.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'Esta es tu última Brecha de Aspirante. Mañana viene el Concilio '
+            'entero. No estás sola. Pero estás expuesta.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'Primer cuarto del siglo I a.C. Tropas romanas lo incendiaron. Lo '
+            'que tienes hoy es una fotografía congelada de una jornada de hace '
+            'dos mil años.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'En esta casa encontraron la Mano de Irulegi. Está en el Museo de '
+            'Navarra. Volvemos por la tarde a verla.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'Aquí cerca encontraron también los restos de un bebé. Murió poco '
+            'antes de nacer. La Brecha no se centra en él. Pero conviene que sepas '
+            'que existió.',
+      ),
+      const PlanoCierreAmable(textoBoton: 'EMPEZAR LA JORNADA'),
+    ]),
+
+    // 1.4.2 Material congelado.
+    EscenasArco1.materialCongelado.id: _corta(EscenasArco1.materialCongelado, [
+      const PlanoAmbiente(
+        duracion: _larga,
+        textoLectura: 'Dos horas en el yacimiento: cerámica local junto a piezas '
+            'romanas en el mismo nivel, puntas de flecha, glandes de honda. Las '
+            'casas colapsaron sobre todo lo demás.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.arqueologo,
+        texto: 'Aquí intentaron imitar un pavimento romano. Pero la base no estaba '
+            'bien preparada. Se les hundió.',
+      ),
+      const PlanoAmbiente(
+        duracion: _larga,
+        textoLectura: 'Por la tarde, en el Museo de Navarra, Maren mira la Mano: '
+            'lámina de bronce, una inscripción grabada. La cartela trae dos '
+            'lecturas: la de 2022 y otra tras limpiar la pieza.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.vozDeFuente,
+        texto: 'Las dos no dicen lo mismo. Los expertos no se han puesto de acuerdo.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.vozDeFuente,
+        texto: 'Voy a tener que sostener la incertidumbre. No me quiero precipitar.',
+      ),
+      const PlanoCierreAmable(textoBoton: 'EMPEZAR LA BRECHA'),
+    ]),
+
+    // 1.4.3 El gran Concilio — las tres preguntas se contestan eligiendo.
+    EscenasArco1.granConcilio.id: _corta(EscenasArco1.granConcilio, [
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'Salón del Concilio. Begoña en cabecera; Isaura, Aitor, '
+            'Joana y Karim. Maren presenta de pie su reconstrucción de Irulegi.',
+      ),
+      // BORRADOR (nuevo): en las tres elecciones la primera opción resume la
+      // respuesta de Maren en el guion; la otra es la tentación, y quien
+      // pregunta devuelve el criterio.
+      const PlanoEleccion(
+        voz: VozPersonaje.aitor,
+        textoPrompt: 'La adopción incompleta de técnicas romanas. ¿Por qué Probable '
+            'y no Sólido?',
+        opciones: [
+          OpcionEleccion(
+            textoJugador: 'Porque el enlosado hundido puede tener más de una causa. '
+                'Con un solo caso, queda Probable.',
+            textoRespuesta: 'Bien.',
+            vozRespuesta: VozPersonaje.aitor,
+            flagsAEstablecer: {'gran_concilio_aitor_prudente'},
+          ),
+          OpcionEleccion(
+            textoJugador: 'Debería ser Sólido: está claro que no sabían hacerlo.',
+            textoRespuesta: '¿Y si fue un hundimiento del terreno? Con un solo caso, '
+                'Probable.',
+            vozRespuesta: VozPersonaje.aitor,
+            flagsAEstablecer: {'gran_concilio_aitor_sobreconfiada'},
+          ),
+        ],
+      ),
+      const PlanoEleccion(
+        voz: VozPersonaje.joana,
+        textoPrompt: 'Las lecturas de la Mano. ¿Por qué Disputada y no «lectura no '
+            'establecida»?',
+        opciones: [
+          OpcionEleccion(
+            textoJugador: 'Porque sí hay lecturas. Lo que no hay es acuerdo entre '
+                'ellas ni entre los expertos.',
+            textoRespuesta: 'Distinción correcta.',
+            vozRespuesta: VozPersonaje.joana,
+            flagsAEstablecer: {'gran_concilio_joana_distingue'},
+          ),
+          OpcionEleccion(
+            textoJugador: 'Porque nadie sabe leerla.',
+            textoRespuesta: 'Hay lecturas. Lo que no hay es acuerdo. Eso es Disputado.',
+            vozRespuesta: VozPersonaje.joana,
+            flagsAEstablecer: {'gran_concilio_joana_confunde'},
+          ),
+        ],
+      ),
+      const PlanoEleccion(
+        voz: VozPersonaje.karim,
+        textoPrompt: 'La Mano sale en actos populares; hay quien se la tatúa. ¿Qué '
+            'hace la Cronista con ese peso?',
+        opciones: [
+          OpcionEleccion(
+            textoJugador: 'Lo respeta, pero no lo mete en la reconstrucción: habla '
+                'del presente, no del siglo I a.C.',
+            textoRespuesta: 'Bien.',
+            vozRespuesta: VozPersonaje.karim,
+            flagsAEstablecer: {'gran_concilio_karim_separa'},
+          ),
+          OpcionEleccion(
+            textoJugador: 'Lo tiene en cuenta: si importa tanto, será por algo.',
+            textoRespuesta: 'Eso dice mucho de hoy. De hace dos mil años, no.',
+            vozRespuesta: VozPersonaje.karim,
+            flagsAEstablecer: {'gran_concilio_karim_mezcla'},
+          ),
+        ],
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.begona,
+        texto: '¿No estás confundiendo «contacto romano» con «romanización»?',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.maren,
+        texto: 'No lo había pensado así de claro. Probablemente sí lo estoy haciendo.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.begona, texto: 'Bien que lo digas.'),
+      const PlanoAmbiente(
+        duracion: _breve,
+        textoLectura: 'Deliberan veinte minutos. Maren espera en el pasillo. Vuelve.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.begona, texto: 'Aprendiz I. Bienvenida.'),
+      const PlanoCierreAmable(textoBoton: 'SALIR DEL CONCILIO'),
+    ]),
+
+    // 1.4.4 Aprendiz I.
+    EscenasArco1.aprendizI.id: _corta(EscenasArco1.aprendizI, [
+      const PlanoAmbiente(
+        duracion: _breve,
+        textoLectura: 'El patio del Archivo. Maren en un banco junto al pozo. '
+            'Isaura se sienta a su lado.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Has estado bien.'),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: 'Pensaba que iba a hacerlo peor.'),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Tu peor sigue siendo bueno.'),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: 'Karim me pilló.'),
+      const PlanoDialogo(
+        voz: VozPersonaje.isaura,
+        texto: 'Karim te pilla siempre. Es su trabajo. Pero te ha pillado para '
+            'ayudarte a crecer. Lo que viene es Pompelo: el Arco 2.',
+      ),
+      const PlanoDialogo(voz: VozPersonaje.maren, texto: 'Isaura. Gracias.'),
+      const PlanoDialogo(voz: VozPersonaje.isaura, texto: 'Mm.'),
+      const PlanoAmbiente(duracion: _breve, textoLectura: 'APRENDIZ I'),
+      const PlanoCierreAmable(textoBoton: 'CERRAR EL ARCO'),
+    ]),
+
+    // 1.Z Cierre del arco.
+    EscenasArco1.cierreDelArco.id: _corta(EscenasArco1.cierreDelArco, [
+      const PlanoAmbiente(
+        duracion: _breve,
+        textoLectura: 'Noche de noviembre. Maren en su mesa, el cuaderno abierto.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.vozDeFuente,
+        texto: 'Hoy he entregado el Mosaico. Marina dice que ya soy del club.',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.vozDeFuente,
+        texto: 'He visto grabados en la roca de hace trece mil años. Begoña no se '
+            'rió de mí cuando dije «probablemente sí lo estoy haciendo».',
+      ),
+      const PlanoDialogo(
+        voz: VozPersonaje.vozDeFuente,
+        texto: 'El lunes empieza el Arco 2. Vamos a Pompelo, debajo de la calle '
+            'Curia. No sé qué voy a encontrar. Pero tengo ganas.',
+      ),
+      const PlanoAmbiente(
+        duracion: _media,
+        textoLectura: 'ARCO 1 — CERRADO. Continuará en Arco 2 — La llegada de las '
+            'palabras.',
+      ),
+      const PlanoCierreAmable(textoBoton: 'CERRAR EL CUADERNO'),
     ]),
   };
 }

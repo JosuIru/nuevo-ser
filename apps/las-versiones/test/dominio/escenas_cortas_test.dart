@@ -42,7 +42,26 @@ void main() {
     }
   });
 
-  for (final entera in apertura) {
+  test('todas las escenas cortas son de escenas que existen', () {
+    final idsArco1 = EscenasArco1.todas.map((e) => e.id).toSet();
+    for (final id in EscenasCortas.ids) {
+      expect(idsArco1, contains(id), reason: id);
+    }
+  });
+
+  final conVersionCorta =
+      EscenasArco1.todas.where((e) => EscenasCortas.tieneVersionCorta(e.id)).toList();
+
+  test('las escenas largas del Arco 1 (más de 180 palabras) tienen versión corta', () {
+    for (final entera in EscenasArco1.todas) {
+      if (_palabras(entera) > 180) {
+        expect(EscenasCortas.tieneVersionCorta(entera.id), isTrue,
+            reason: '${entera.id} tiene ${_palabras(entera)} palabras');
+      }
+    }
+  });
+
+  for (final entera in conVersionCorta) {
     group('escena ${entera.id}', () {
       final corta = EscenasCortas.para(entera.id)!;
 

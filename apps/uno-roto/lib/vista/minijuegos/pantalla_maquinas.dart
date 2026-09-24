@@ -27,6 +27,8 @@ import 'pantalla_pinturas.dart';
 import 'pantalla_planos.dart';
 import 'pantalla_pozo.dart';
 import 'pantalla_puentes.dart';
+import '../dibujo_con_halo.dart';
+import 'pantalla_pared.dart';
 import 'pantalla_recreativa.dart' show coloresDeMaquina;
 import 'pantalla_rebote.dart';
 import 'pantalla_redes.dart';
@@ -164,8 +166,8 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
 
   Future<void> _cargar() async {
     final modoDios = await widget.repositorio.cargarModoDiosActivo();
-    // Los monstruos dibujados por el niño (El taller de dibujo).
-    await dibujosMonstruos.cargar(widget.repositorio);
+    // Los dibujos del niño (El taller de dibujo): monstruos, armarios…
+    await cargarDibujosDelTaller(widget.repositorio);
     final estados = <String, EstadoHabilidad?>{};
     for (final definicion in CatalogoMinijuegos.todos) {
       for (final id in [...definicion.habilidades, ...definicion.llaves]) {
@@ -374,6 +376,15 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
                         await _cargar();
                       },
                     ),
+                  // La pared de Rexán: lo que el niño ha dibujado.
+                  if (widget.sala == 1 && ColeccionDibujos.disponible)
+                    _CartelPared(
+                      alAbrir: () async {
+                        HapticFeedback.selectionClick();
+                        await Navigator.of(contexto)
+                            .push(MaterialPageRoute(builder: (_) => const PantallaPared()));
+                      },
+                    ),
                 ],
               ),
       ),
@@ -417,15 +428,37 @@ class _FichaMaquina extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
-                'assets/maquinas/${definicion.id.name}_${encendida ? 'on' : 'off'}.png',
-                width: 84,
-                height: 111,
-                fit: BoxFit.cover,
-                errorBuilder: (_, __, ___) => const SizedBox(width: 84),
-              ),
+            // El armario: el dibujo del niño si lo ha hecho (El taller de
+            // dibujo), apagado mientras la máquina no se encienda.
+            ValueListenableBuilder<Map<String, String>>(
+              valueListenable: dibujosMaquinas.rutas,
+              builder: (_, dibujos, __) {
+                final dibujo = dibujos[definicion.id.name];
+                if (dibujo != null) {
+                  return Opacity(
+                    opacity: encendida ? 1 : 0.4,
+                    child: SizedBox(
+                      width: 84,
+                      height: 111,
+                      child: DibujoConHalo(
+                        key: ValueKey('dibujo-maquina-${definicion.id.name}'),
+                        ruta: dibujo,
+                        color: coloresDeMaquina[definicion.nombre] ?? PaletaNeon.violetaNeon,
+                      ),
+                    ),
+                  );
+                }
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    'assets/maquinas/${definicion.id.name}_${encendida ? 'on' : 'off'}.png',
+                    width: 84,
+                    height: 111,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => const SizedBox(width: 84),
+                  ),
+                );
+              },
             ),
             const SizedBox(width: 14),
             Expanded(
@@ -625,6 +658,54 @@ class _CartelReto extends StatelessWidget {
               ),
             ),
             Icon(Icons.chevron_right, color: color),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// El cartel de la pared de Rexán en la sala.
+class _CartelPared extends StatelessWidget {
+  final VoidCallback alAbrir;
+
+  const _CartelPared({required this.alAbrir});
+
+  @override
+  Widget build(BuildContext contexto) {
+    final locale = Localizations.localeOf(contexto);
+    return GestureDetector(
+      key: const ValueKey('pared-de-rexan'),
+      onTap: alAbrir,
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(12, 4, 0, 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: const Color(0xFFF1E9D6).withOpacity(0.08),
+          border: Border.all(color: const Color(0xFFF1E9D6).withOpacity(0.35)),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            const Icon(Icons.collections_outlined, color: Color(0xFFE8D9A8), size: 30),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    traducirNarrativa('La pared de Rexán', locale).toUpperCase(),
+                    style: const TextStyle(color: PaletaNeon.textoPrincipal, fontSize: 14, letterSpacing: 2.5),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    traducirNarrativa('Lo que dibujas, colgado en los recreativos.', locale),
+                    style: TextStyle(color: PaletaNeon.textoTenue.withOpacity(0.9), fontSize: 13, height: 1.4),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, color: Color(0xFFE8D9A8)),
           ],
         ),
       ),

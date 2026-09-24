@@ -31,6 +31,8 @@ void main() {
     expect(find.textContaining('todavía la está arreglando'),
         findsNWidgets(CatalogoMinijuegos.deLaSala(1).length));
     expect(find.byKey(const ValueKey('dios-puentes-1')), findsNothing);
+    // La pared de Rexán está siempre, aunque aún no haya dibujos.
+    expect(find.byKey(const ValueKey('pared-de-rexan')), findsOneWidget);
   });
 
   testWidgets('en modo dios todas encendidas con sus tres dificultades',

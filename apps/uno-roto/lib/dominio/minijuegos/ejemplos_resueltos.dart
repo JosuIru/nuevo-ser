@@ -39,6 +39,9 @@ const habilidadesConEjemplo = {
   'DIV.06', 'DIV.07', // Engranajes
   'FR.04', 'FR.05', 'FR.06', 'FR.07', 'FR.08', 'DEC.03', // Esclusas
   'GEO.02', 'GEO.03', 'GEO.04', 'MED.05', // Planos
+  'EST.05', 'EST.06', // Las redes
+  'EST.01', 'EST.03', 'EST.04', // Nivelar
+  'FUN.01', 'ALG.03', // La caja negra
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -139,6 +142,68 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
           PasoEjemplo('No sobra nada: {x} es múltiplo de {n}.', {'x': '$x', 'n': '$n'})
         else
           PasoEjemplo('Sobran {r}: {x} no es múltiplo de {n}.', {'r': '$resto', 'x': '$x', 'n': '$n'}),
+      ]);
+    case 'FUN.01':
+      final a = entre(2, 4);
+      final b = entre(1, 6);
+      int y(int x) => a * x + b;
+      return EjemploResuelto('1 → ${y(1)}   2 → ${y(2)}   3 → ${y(3)}', [
+        PasoEjemplo('Cada vez que entra uno más, sale {a} más: la regla multiplica por {a}.', {'a': '$a'}),
+        PasoEjemplo('{a} × 1 = {p}, pero sale {s}: además suma {b}.', {'a': '$a', 'p': '$a', 's': '${y(1)}', 'b': '$b'}),
+        PasoEjemplo('La regla: × {a} y + {b}. Si entra 10, sale {r}.', {'a': '$a', 'b': '$b', 'r': '${y(10)}'}),
+      ]);
+    case 'ALG.03':
+      final azul = entre(2, 8);
+      final rojo = azul + entre(1, 6);
+      return EjemploResuelto('x + y = ${rojo + azul}   x − y = ${rojo - azul}', [
+        PasoEjemplo('Suma las dos: la y se va y quedan dos x = {s}.', {'s': '${2 * rojo}'}),
+        PasoEjemplo('Una x: {s} ÷ 2 = {r}. Y la y: {t} − {r} = {z}.',
+            {'s': '${2 * rojo}', 'r': '$rojo', 't': '${rojo + azul}', 'z': '$azul'}),
+      ]);
+    case 'EST.01':
+      final a = entre(4, 9);
+      final b = entre(1, a - 1);
+      return EjemploResuelto('A = $a · B = $b', [
+        PasoEjemplo('La barra A llega a la línea del {a} en el eje; la B, a la del {b}.', {'a': '$a', 'b': '$b'}),
+        PasoEjemplo('A tiene {a} − {b} = {r} más que B.', {'a': '$a', 'b': '$b', 'r': '${a - b}'}),
+      ]);
+    case 'EST.03':
+      List<int> datos;
+      do {
+        datos = [for (var i = 0; i < 4; i++) entre(1, 9)];
+      } while (datos.reduce((x, y) => x + y) % 4 != 0);
+      final suma = datos.reduce((x, y) => x + y);
+      return EjemploResuelto(datos.join(', '), [
+        PasoEjemplo('Suma todo: {s}.', {'s': '${datos.join(' + ')} = $suma'}),
+        PasoEjemplo('Reparte entre {n}: {s} ÷ {n} = {m}.', {'s': '$suma', 'n': '4', 'm': '${suma ~/ 4}'}),
+      ]);
+    case 'EST.04':
+      final datos = [for (var i = 0; i < 5; i++) entre(1, 9)];
+      final ordenados = [...datos]..sort();
+      return EjemploResuelto(datos.join(', '), [
+        PasoEjemplo('Ordena de menor a mayor: {o}.', {'o': ordenados.join(', ')}),
+        PasoEjemplo('El del medio (el tercero de cinco) es la mediana: {m}.', {'m': '${ordenados[2]}'}),
+      ]);
+    case 'EST.05':
+      final pares = const [((3, 8), (5, 16)), ((2, 5), (3, 10)), ((4, 12), (3, 6)), ((5, 20), (2, 6))];
+      final ((a, t), (b, s)) = pares[azar.nextInt(pares.length)];
+      final mejor = a * s > b * t ? '$a de $t' : '$b de $s';
+      return EjemploResuelto('¿$a de $t o $b de $s?', [
+        PasoEjemplo('Escribe cada red como fracción: {f} y {g}.', {'f': '$a/$t', 'g': '$b/$s'}),
+        PasoEjemplo('Multiplica en cruz: {a} × {s} = {x} y {b} × {t} = {y}.',
+            {'a': '$a', 's': '$s', 'x': '${a * s}', 'b': '$b', 't': '$t', 'y': '${b * t}'}),
+        PasoEjemplo('Gana la del producto mayor: {m}.', {'m': mejor}),
+      ]);
+    case 'EST.06':
+      final casos = const [(1, 4), (3, 10), (2, 5), (7, 20), (3, 4)];
+      final (a, t) = casos[azar.nextInt(casos.length)];
+      final factor = 100 ~/ t;
+      final porcentaje = a * factor;
+      final decimal = porcentaje % 10 == 0 ? '0,${porcentaje ~/ 10}' : '0,$porcentaje';
+      return EjemploResuelto('$a de $t', [
+        PasoEjemplo('Como fracción: {f}.', {'f': '$a/$t'}),
+        PasoEjemplo('Multiplica arriba y abajo por {m}: {g}.', {'m': '$factor', 'g': '$porcentaje/100'}),
+        PasoEjemplo('Como decimal, {d}; como porcentaje, {p} %.', {'d': decimal, 'p': '$porcentaje'}),
       ]);
     case 'GEO.03':
       final ancho = entre(3, 8);

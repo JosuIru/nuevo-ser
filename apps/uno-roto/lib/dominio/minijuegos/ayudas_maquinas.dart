@@ -53,6 +53,21 @@ const trucosPorHabilidad = <String, String>{
       'entre dos. Para 12 m² de tejado, un rectángulo de 24.',
   'MED.05': 'Un metro cuadrado tiene 10 × 10 = 100 decímetros cuadrados. '
       'Para pasar de dm² a m², divide entre 100.',
+  'EST.05': 'Probabilidad = casos buenos entre casos posibles. 3 ámbar de 8 '
+      'es 3/8; 5 de 16 es 5/16. Compara las fracciones, no sólo los ámbar.',
+  'EST.06': 'La misma probabilidad se escribe de tres maneras: 1/4 = 0,25 = '
+      '25 %. Divide los buenos entre el total y multiplica por 100 para el %.',
+  'EST.01': 'Lleva la vista de lo alto de la barra al eje de la izquierda: '
+      'ahí está el número. Para comparar dos barras, resta.',
+  'EST.03': 'La media es repartir a partes iguales: suma todo y divide entre '
+      'cuántos hay. 3 + 5 + 7 + 5 = 20, entre 4 = 5.',
+  'EST.04': 'Mediana: ordena de menor a mayor y quédate con el del medio (si '
+      'son dos, a mitad entre ellos). Moda: el que más se repite.',
+  'FUN.01': 'Mira cuánto cambia la salida cuando la entrada sube de uno en '
+      'uno: eso es lo que multiplica. Luego ajusta lo que suma o resta, y '
+      'comprueba la regla con todas las filas.',
+  'ALG.03': 'Junta las dos balanzas: si rojo + azul = 13 y rojo − azul = 5, '
+      'sumándolas quedan dos rojos = 18. Un rojo pesa 9.',
   'DIV.07': 'Escribe los múltiplos de cada número hasta encontrar el primero '
       'que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.',
   'DIV.06': 'Escribe los divisores de cada número y quédate con el mayor que '

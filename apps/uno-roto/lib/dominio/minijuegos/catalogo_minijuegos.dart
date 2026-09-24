@@ -28,6 +28,9 @@ enum IdMinijuego {
   engranajes,
   esclusas,
   planos,
+  redes,
+  nivelar,
+  cajaNegra,
 }
 
 class DefinicionMinijuego {
@@ -217,6 +220,56 @@ class CatalogoMinijuegos {
           'No se construye sobre la maleza.',
       sala: 2,
       llaves: ['ARI.01', 'OP.01'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.redes,
+      nombre: 'Las redes',
+      descripcion: 'Elige la red de la que es más fácil sacar un pez ámbar '
+          'y compruébalo echándola.',
+      lineaRexan: 'Los pescadores quieren peces ámbar para las farolas. '
+          'Tú eliges la red; el mar decide cada lance.',
+      habilidades: ['EST.05', 'EST.06'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Toca la red de la que es más probable sacar un pez ámbar: '
+          'no la que tiene más ámbar, sino la que tiene más ámbar de cada '
+          'tantos. La máquina la echa veinte veces para comprobarlo. Cuenta tu '
+          'decisión, no lo que salga. Al final, elige cómo se escribe la '
+          'probabilidad.',
+      sala: 2,
+      llaves: ['FR.03'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.nivelar,
+      nombre: 'Nivelar',
+      descripcion: 'Lee las pilas de contenedores y reparte la carga: media, '
+          'mediana y moda.',
+      lineaRexan: 'Este barco va escorado. Si sabes a qué altura quedaría la '
+          'carga, lo enderezamos.',
+      habilidades: ['EST.01', 'EST.03', 'EST.04'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Las pilas de contenedores son un gráfico: el eje de la '
+          'izquierda dice cuántos hay. Lee la pregunta y elige un número. Al '
+          'acertar, el barco lo demuestra: las pilas se igualan (la media), se '
+          'ordenan (la mediana) o se ilumina la altura que más se repite (la '
+          'moda).',
+      sala: 2,
+      llaves: ['OP.01'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.cajaNegra,
+      nombre: 'La caja negra',
+      descripcion: 'Entran números y salen otros. Descubre la regla y la '
+          'caja se abre.',
+      lineaRexan: 'Nadie en la Montaña sabe abrirla. Traga números y escupe '
+          'otros. Tú, a mirar la tabla.',
+      habilidades: ['FUN.01', 'ALG.03'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'La tabla dice qué sale cuando entra cada número. Puedes '
+          'meter algunos números más para ver qué hace la caja (pocos: '
+          'piénsalos). Luego te pregunta por un número que no puedes probar. '
+          'Al final, dos sacos y dos balanzas: ¿cuánto pesa el rojo?',
+      sala: 2,
+      llaves: ['ALG.01'],
     ),
   ];
 

@@ -40,6 +40,9 @@ dependencies:
   # auto-instalar (lo que Android prohíbe sin REQUEST_INSTALL_PACKAGES).
   package_info_plus: ^8.0.0
   url_launcher: ^6.3.0
+  # Abre el APK descargado con el instalador de Android (actualizar
+  # desde la propia app). Cada app declara REQUEST_INSTALL_PACKAGES.
+  open_filex: ^4.7.0
 
   # Usado por src/pdf/ — plantillas reutilizables de informes
   # periódicos (cabecera + bullets resumen + tablas + paginación)

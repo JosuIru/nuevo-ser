@@ -123,7 +123,7 @@ Future<ActualizacionDisponible?> comprobarActualizacionDisponible(
   final cliente = clienteHttp ?? http.Client();
   try {
     final url = Uri.parse(
-        'https://api.github.com/repos/${config.repoOwner}/${config.repoName}/releases?per_page=20');
+        'https://api.github.com/repos/${config.repoOwner}/${config.repoName}/releases?per_page=100');
     final respuesta = await cliente
         .get(url, headers: const {'Accept': 'application/vnd.github+json'})
         .timeout(const Duration(seconds: 10));
@@ -191,6 +191,101 @@ Future<ActualizacionDisponible?> comprobarActualizacionDisponible(
     if (clienteHttp == null) cliente.close();
   }
 }
+
+/// Estado completo para la pantalla de actualizaciones: lo instalado,
+/// lo último publicado (aunque sea lo mismo) y si se pudo consultar.
+@immutable
+class EstadoActualizaciones {
+  final String versionInstalada;
+
+  /// Null si no hay ninguna release de esta app o no se pudo consultar.
+  final String? versionPublicada;
+  final String? urlAsset;
+  final String notas;
+  final int? publicadoMs;
+  final int comprobadoMs;
+
+  /// No se pudo hablar con GitHub (sin red, límite de la API…).
+  final bool sinConexion;
+
+  const EstadoActualizaciones({
+    required this.versionInstalada,
+    required this.comprobadoMs,
+    this.versionPublicada,
+    this.urlAsset,
+    this.notas = '',
+    this.publicadoMs,
+    this.sinConexion = false,
+  });
+
+  bool get hayNueva =>
+      versionPublicada != null &&
+      urlAsset != null &&
+      urlAsset!.isNotEmpty &&
+      compararVersiones(versionInstalada, versionPublicada!) < 0;
+
+  ActualizacionDisponible? get comoDisponible => hayNueva
+      ? ActualizacionDisponible(
+          versionInstalada: versionInstalada,
+          versionDisponible: versionPublicada!,
+          tagRelease: '',
+          urlAsset: urlAsset!,
+          notas: notas,
+          publicadoMs: publicadoMs ?? comprobadoMs,
+        )
+      : null;
+}
+
+/// Consulta GitHub ahora mismo (sin caché) y devuelve el estado completo.
+/// Nunca lanza: sin red devuelve `sinConexion: true`.
+Future<EstadoActualizaciones> consultarEstadoActualizaciones(
+  ConfigActualizaciones config, {
+  http.Client? clienteHttp,
+  Future<String> Function()? obtenerVersionInstalada,
+}) async {
+  final ahora = DateTime.now().millisecondsSinceEpoch;
+  final versionInstalada = obtenerVersionInstalada != null
+      ? await obtenerVersionInstalada()
+      : _formatearVersionInstalada(await PackageInfo.fromPlatform());
+  final cliente = clienteHttp ?? http.Client();
+  try {
+    final url = Uri.parse(
+        'https://api.github.com/repos/${config.repoOwner}/${config.repoName}/releases?per_page=100');
+    final respuesta = await cliente
+        .get(url, headers: const {'Accept': 'application/vnd.github+json'})
+        .timeout(const Duration(seconds: 10));
+    if (respuesta.statusCode != 200) {
+      return EstadoActualizaciones(versionInstalada: versionInstalada, comprobadoMs: ahora, sinConexion: true);
+    }
+    final release = _elegirReleaseAplicable(jsonDecode(respuesta.body) as List<dynamic>, config);
+    if (release == null) {
+      return EstadoActualizaciones(versionInstalada: versionInstalada, comprobadoMs: ahora);
+    }
+    final version = _extraerVersionDeTag(release['tag_name'] as String? ?? '', config.prefijoTag);
+    final asset = _elegirAsset(release['assets'] as List<dynamic>? ?? const [], config.sufijoAsset);
+    return EstadoActualizaciones(
+      versionInstalada: versionInstalada,
+      comprobadoMs: ahora,
+      versionPublicada: version.isEmpty ? null : version,
+      urlAsset: asset?['browser_download_url'] as String?,
+      notas: (release['body'] as String? ?? '').trim(),
+      publicadoMs: DateTime.tryParse(release['published_at'] as String? ?? '')?.millisecondsSinceEpoch,
+    );
+  } catch (_) {
+    return EstadoActualizaciones(versionInstalada: versionInstalada, comprobadoMs: ahora, sinConexion: true);
+  } finally {
+    if (clienteHttp == null) cliente.close();
+  }
+}
+
+/// Config de una app del monorepo: releases en `JosuIru/nuevo-ser` con
+/// tag `<app>-<versión>` y un APK `<app>-<versión>.apk`.
+ConfigActualizaciones configActualizacionesMonorepo(String idApp) => ConfigActualizaciones(
+      repoOwner: 'JosuIru',
+      repoName: 'nuevo-ser',
+      prefijoTag: '$idApp-',
+      sufijoAsset: '$idApp-',
+    );
 
 /// Limpia la caché para esta config — útil al instalar manualmente
 /// la nueva versión y querer que el banner desaparezca sin esperar al

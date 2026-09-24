@@ -5,8 +5,9 @@ import 'checker_actualizaciones.dart';
 
 /// Banner sticky para anunciar una versión disponible. Pensado para
 /// colocarse en la cabecera de las pantallas de inicio de cada app.
-/// Sin auto-instalar: tap abre el URL del asset en el navegador y el
-/// usuario decide (Android pide los permisos de instalación que toca).
+/// Con [alTocar] (lo que pone [AvisoActualizaciones]) abre la pantalla
+/// de actualizaciones, que descarga e instala desde la app; sin él,
+/// abre el enlace del APK en el navegador, como antes.
 class BannerActualizacionDisponible extends StatelessWidget {
   final ActualizacionDisponible actualizacion;
 
@@ -18,14 +19,25 @@ class BannerActualizacionDisponible extends StatelessWidget {
   /// llena el ancho con padding generoso.
   final bool compacto;
 
+  /// Qué hacer al tocarlo. Por defecto, abrir el enlace del APK.
+  final VoidCallback? alTocar;
+
+  /// Traductor de los textos (castellano por defecto).
+  final String Function(String textoEs)? traducir;
+
   const BannerActualizacionDisponible({
     super.key,
     required this.actualizacion,
     this.onDescartar,
     this.compacto = false,
+    this.alTocar,
+    this.traducir,
   });
 
+  String _t(String texto) => traducir?.call(texto) ?? texto;
+
   Future<void> _abrirDescarga() async {
+    if (alTocar != null) return alTocar!();
     final url = Uri.tryParse(actualizacion.urlAsset);
     if (url == null) return;
     await launchUrl(url, mode: LaunchMode.externalApplication);
@@ -56,7 +68,7 @@ class BannerActualizacionDisponible extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Versión ${actualizacion.versionDisponible} disponible',
+                      '${_t('Versión disponible')}: ${actualizacion.versionDisponible}',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: compacto ? 12 : 14,
@@ -66,8 +78,8 @@ class BannerActualizacionDisponible extends StatelessWidget {
                     if (!compacto) ...[
                       const SizedBox(height: 2),
                       Text(
-                        'Tienes instalada la ${actualizacion.versionInstalada}. '
-                        'Toca para descargar.',
+                        '${_t('Tienes instalada la')} ${actualizacion.versionInstalada}. '
+                        '${_t('Toca para actualizar.')}',
                         style: TextStyle(
                           fontSize: 12,
                           color: theme.colorScheme.onSurface.withValues(
@@ -89,7 +101,7 @@ class BannerActualizacionDisponible extends StatelessWidget {
                   ),
                 ),
                 child: Text(
-                  'Descargar',
+                  _t('Actualizar'),
                   style: TextStyle(fontSize: compacto ? 12 : 13),
                 ),
               ),
@@ -97,7 +109,7 @@ class BannerActualizacionDisponible extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.close, size: 18),
                   onPressed: onDescartar,
-                  tooltip: 'Descartar por ahora',
+                  tooltip: _t('Descartar por ahora'),
                 ),
             ],
           ),

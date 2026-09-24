@@ -94,3 +94,5 @@ export 'src/ui/tarjeta_observacion.dart';
 export 'src/ui/tarjeta_resumen.dart';
 export 'src/actualizaciones/banner_actualizacion.dart';
 export 'src/actualizaciones/checker_actualizaciones.dart';
+export 'src/actualizaciones/instalador_actualizacion.dart';
+export 'src/actualizaciones/pantalla_estado_actualizaciones.dart';

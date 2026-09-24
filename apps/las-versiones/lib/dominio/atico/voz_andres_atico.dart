@@ -1,4 +1,5 @@
 import '../brecha.dart';
+import 'partida_documento_roto.dart';
 import 'partida_tres_fichas.dart';
 
 /// Frases de Andrés en el ático. Humor seco, cercano (doc 04). No
@@ -67,6 +68,58 @@ class VozAndresAtico {
     return '«${tarjeta.afirmacion.texto}» La pusiste en '
         '${nombreNivel(desviacion.declarado)}. $fuentes. En el Archivo la '
         'dejamos en ${nombreNivel(tarjeta.nivelCanonico)}. Pero tú verás.';
+  }
+
+  // ─── El documento roto ───────────────────────────────────────────
+
+  static String instruccionDocumentoRoto(int indiceRonda) {
+    switch (indiceRonda) {
+      case 0:
+        return 'Se les despegó el sello. ¿Cuál es primaria y cuál '
+            'secundaria?';
+      case 1:
+        return 'Ahora quién lo hizo y cuándo. Ojo: la fecha es la del '
+            'documento, no la de lo que cuenta.';
+      default:
+        return '¿Para quién se hizo cada uno? Y una de estas tiras no es '
+            'de nada que haya en la mesa. Esa, a la caja.';
+    }
+  }
+
+  /// Pista cuando una tira no encaja. No dice cuál es la buena: da el
+  /// criterio del oficio para volver a mirar.
+  static String pistaNoEncaja(TipoTira tipo) {
+    switch (tipo) {
+      case TipoTira.tipoFuente:
+        return 'No encaja. Primaria: hecha en su momento, por quien '
+            'estaba. Secundaria: hecha después, mirando otras fuentes.';
+      case TipoTira.autor:
+        return 'No encaja. ¿Quién lo hizo, o de quién habla? No es lo mismo.';
+      case TipoTira.fecha:
+        return 'No encaja. Mira si esa fecha es de cuando se hizo el '
+            'documento o de lo que cuenta.';
+      case TipoTira.publico:
+        return 'No encaja. ¿A quién iba dirigido? A veces a nadie.';
+    }
+  }
+
+  static String cierreDocumentoRoto(TipoTira? tipoConMasVueltas) {
+    switch (tipoConMasVueltas) {
+      case null:
+        return 'Todo pegado a la primera. Ni la humedad puede contigo.';
+      case TipoTira.tipoFuente:
+        return 'Lo de primaria y secundaria es lo que más vueltas ha dado. '
+            'Normal: es lo primero que se aprende y lo último que se domina.';
+      case TipoTira.autor:
+        return 'Los autores son lo que más vueltas ha dado. Quien escribe '
+            'y de quien se escribe se confunden mucho.';
+      case TipoTira.fecha:
+        return 'Las fechas son lo que más vueltas ha dado. Un documento '
+            'tiene dos: la suya y la de lo que cuenta.';
+      case TipoTira.publico:
+        return 'El público es lo que más vueltas ha dado. Pregúntate '
+            'siempre para quién se hizo.';
+    }
   }
 
   static const cierre = 'Hala. Vuelve cuando quieras, que esto no se mueve de aquí.';

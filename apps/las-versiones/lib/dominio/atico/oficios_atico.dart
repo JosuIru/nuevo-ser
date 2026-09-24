@@ -10,8 +10,16 @@ enum OficioAtico {
     descripcion: 'Tarjetas de investigaciones pasadas. ¿Sólido, Probable '
         'o Disputado?',
     habilidades: ['AH.03', 'AH.02', 'AH.07'],
+  ),
+  documentoRoto(
+    titulo: 'El documento roto',
+    objeto: 'La mesa de luz',
+    descripcion: 'La humedad despegó las fichas de catalogación. Cada tira '
+        'rasgada a su documento.',
+    habilidades: ['HF.02', 'HF.03', 'HF.04', 'HF.05'],
   );
-  // Siguientes: documentoRoto (HF.01-05) y cuerdaDelTiempo (CC.01-03).
+  // Siguiente: cuerdaDelTiempo (CC.01-03), cuando haya franjas de años
+  // validadas (doc del ático §3).
   // Sólo se listan los oficios ya construidos: el ático no enseña
   // objetos que no hacen nada.
 

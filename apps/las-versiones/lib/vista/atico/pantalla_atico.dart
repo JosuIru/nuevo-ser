@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../dominio/atico/oficios_atico.dart';
+import '../../dominio/atico/partida_documento_roto.dart';
 import '../../dominio/atico/partida_tres_fichas.dart';
 import '../../dominio/atico/voz_andres_atico.dart';
 import '../../nucleo/paleta_archivo.dart';
@@ -8,6 +9,7 @@ import '../../sonido/catalogo_sonidos_archivo.dart';
 import '../../sonido/servicio_sonoro_archivo.dart';
 import '../pintura/trazo_a_mano.dart';
 import 'objetos_atico.dart';
+import 'pantalla_documento_roto.dart';
 import 'pantalla_tres_fichas.dart';
 
 /// El ático de Andrés: los oficios del Archivo para repasar con lo ya
@@ -43,6 +45,13 @@ class _EstadoPantallaAtico extends State<PantallaAtico> {
         ServicioSonoroArchivo.instancia.reproducirEfecto(CatalogoSonidosArchivo.papelTomar);
         await Navigator.of(context).push(
           MaterialPageRoute<void>(builder: (_) => PantallaTresFichas(partida: partida)),
+        );
+      case OficioAtico.documentoRoto:
+        final partida = PartidaDocumentoRoto.montar(brechasCerradas(widget.flagsActivos));
+        if (partida == null) return;
+        ServicioSonoroArchivo.instancia.reproducirEfecto(CatalogoSonidosArchivo.papelTomar);
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => PantallaDocumentoRoto(partida: partida)),
         );
     }
   }

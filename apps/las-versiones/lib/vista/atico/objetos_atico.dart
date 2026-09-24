@@ -232,3 +232,32 @@ class LineaDeAndres extends StatelessWidget {
     );
   }
 }
+
+/// Botón que es un papelito sobre la mesa, no un botón de software
+/// (doc 11 §1.1.9).
+class BotonDePapel extends StatelessWidget {
+  const BotonDePapel({super.key, required this.texto, required this.alPulsar});
+
+  final String texto;
+  final VoidCallback alPulsar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      child: GestureDetector(
+        onTap: alPulsar,
+        child: HojaDePapel(
+          semilla: texto.hashCode,
+          ladosRasgados: const {LadoPapel.derecha, LadoPapel.izquierda},
+          relleno: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          child: Text(
+            texto,
+            style: const TextStyle(
+                fontSize: 15, fontWeight: FontWeight.w600, color: PaletaArchivo.tintaNegra),
+          ),
+        ),
+      ),
+    );
+  }
+}

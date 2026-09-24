@@ -218,7 +218,7 @@ class _EstadoPantallaTresFichas extends State<PantallaTresFichas> {
         const LineaDeAndres(texto: VozAndresAtico.cierre, semilla: 23),
         const SizedBox(height: 20),
         Center(
-          child: _BotonDePapel(
+          child: BotonDePapel(
             texto: 'Volver al ático',
             alPulsar: () => Navigator.of(context).maybePop(),
           ),
@@ -273,7 +273,7 @@ class _TarjetaEnMesa extends StatelessWidget {
           if (fuentesOcultas)
             Align(
               alignment: Alignment.centerLeft,
-              child: _BotonDePapel(texto: 'Abrir el cajón de las fuentes', alPulsar: alAbrirCajon),
+              child: BotonDePapel(texto: 'Abrir el cajón de las fuentes', alPulsar: alAbrirCajon),
             )
           else if (tarjeta.fuentesAnclaje.isEmpty)
             const Text(
@@ -490,42 +490,11 @@ class _ControlSiguiente extends StatelessWidget {
           style: TextStyle(color: PaletaArchivo.textoPrincipal),
         ),
         const SizedBox(height: 16),
-        _BotonDePapel(
+        BotonDePapel(
           texto: esUltima ? 'Que hable la balanza' : 'Siguiente caja',
           alPulsar: alPulsar,
         ),
       ],
-    );
-  }
-}
-
-/// Botón que es un papelito sobre la mesa, no un botón de software.
-class _BotonDePapel extends StatelessWidget {
-  const _BotonDePapel({required this.texto, required this.alPulsar});
-
-  final String texto;
-  final VoidCallback alPulsar;
-
-  @override
-  Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      child: GestureDetector(
-        onTap: alPulsar,
-        child: HojaDePapel(
-          semilla: texto.hashCode,
-          ladosRasgados: const {LadoPapel.derecha, LadoPapel.izquierda},
-          relleno: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          child: Text(
-            texto,
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w600,
-              color: PaletaArchivo.tintaNegra,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

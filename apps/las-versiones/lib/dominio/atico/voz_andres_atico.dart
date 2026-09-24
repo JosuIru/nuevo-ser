@@ -57,10 +57,12 @@ class VozAndresAtico {
   static String sobreUnaTarjeta(DesviacionTarjeta desviacion) {
     final tarjeta = desviacion.tarjeta;
     final numeroFuentes = tarjeta.fuentesAnclaje.length;
+    // «Anclada», no «sostenida»: las fuentes de anclaje pueden
+    // sostener la afirmación o contradecirla (modelo AfirmacionCanonica).
     final fuentes = switch (numeroFuentes) {
-      0 => 'No tiene ninguna fuente que la sostenga',
-      1 => 'La sostiene una sola fuente',
-      _ => 'La sostienen $numeroFuentes fuentes',
+      0 => 'No está anclada a ninguna fuente',
+      1 => 'Está anclada a una sola fuente',
+      _ => 'Está anclada a $numeroFuentes fuentes',
     };
     return '«${tarjeta.afirmacion.texto}» La pusiste en '
         '${nombreNivel(desviacion.declarado)}. $fuentes. En el Archivo la '

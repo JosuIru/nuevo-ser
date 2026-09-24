@@ -27,6 +27,10 @@ class PantallaMenu extends StatelessWidget {
   /// Abre la pantalla con los Mosaicos entregados.
   final VoidCallback alAbrirResumenes;
 
+  /// Abre el ático de Andrés. `null` mientras no haya ninguna Brecha
+  /// cerrada: la fila no aparece (no hay candado ni «próximamente»).
+  final VoidCallback? alAbrirAtico;
+
   /// Abre la pantalla de cuenta / login del adulto acompañante.
   final VoidCallback alAbrirCuenta;
 
@@ -62,6 +66,7 @@ class PantallaMenu extends StatelessWidget {
     required this.alAbrirCuaderno,
     required this.alAbrirAvances,
     required this.alAbrirResumenes,
+    this.alAbrirAtico,
     required this.alAbrirCuenta,
     required this.alAbrirPerfiles,
     required this.nombrePerfilActivo,
@@ -137,6 +142,15 @@ class PantallaMenu extends StatelessWidget {
                   'Mosaicos de fin de arco que la Cronista ha entregado.',
               alPulsar: alAbrirResumenes,
             ),
+            if (alAbrirAtico != null)
+              _FilaMenu(
+                icono: Icons.scale_outlined,
+                titulo: 'El ático',
+                subtitulo:
+                    'Andrés guarda arriba lo ya investigado. Para repasar '
+                    'el oficio con calma.',
+                alPulsar: alAbrirAtico!,
+              ),
             const SizedBox(height: 18),
             const _Encabezado(texto: 'MI CUENTA'),
             _FilaMenu(

@@ -9,6 +9,7 @@ PantallaMenu _menu({
   VoidCallback? alAbrirCuaderno,
   VoidCallback? alAbrirAvances,
   VoidCallback? alAbrirResumenes,
+  VoidCallback? alAbrirAtico,
   VoidCallback? alAbrirCuenta,
   VoidCallback? alAbrirPerfiles,
   VoidCallback? alAbrirAjustesAudio,
@@ -22,6 +23,7 @@ PantallaMenu _menu({
     alAbrirCuaderno: alAbrirCuaderno ?? () {},
     alAbrirAvances: alAbrirAvances ?? () {},
     alAbrirResumenes: alAbrirResumenes ?? () {},
+    alAbrirAtico: alAbrirAtico,
     alAbrirCuenta: alAbrirCuenta ?? () {},
     alAbrirPerfiles: alAbrirPerfiles ?? () {},
     alAbrirAjustesAudio: alAbrirAjustesAudio ?? () {},
@@ -187,5 +189,20 @@ void main() {
         expect(find.byType(PantallaCreditos), findsOneWidget);
       },
     );
+  });
+
+  group('fila del ático', () {
+    testWidgets('no aparece sin Brechas cerradas', (tester) async {
+      await tester.pumpWidget(MaterialApp(home: _menu()));
+      expect(find.text('El ático'), findsNothing);
+    });
+
+    testWidgets('aparece y abre con el callback', (tester) async {
+      var abierto = false;
+      await tester.pumpWidget(
+          MaterialApp(home: _menu(alAbrirAtico: () => abierto = true)));
+      await tester.tap(find.text('El ático'));
+      expect(abierto, isTrue);
+    });
   });
 }

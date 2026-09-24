@@ -48,6 +48,8 @@ import 'vista/pantalla_mosaico_arco_3.dart';
 import 'vista/pantalla_mosaico_arco_4.dart';
 import 'vista/pantalla_resumenes.dart';
 import 'sonido/servicio_sonoro_archivo.dart';
+import 'dominio/atico/oficios_atico.dart';
+import 'vista/atico/pantalla_atico.dart';
 
 /// Clave global del idioma elegido por la Cronista en el primer
 /// arranque. Sigue el namespace `nuevoser.<juego>.*` que el CLAUDE.md
@@ -794,6 +796,12 @@ class _OrquestadorState extends State<Orquestador> {
             Navigator.of(context).pop();
             _alAbrirResumenes();
           },
+          alAbrirAtico: aticoAbierto(_flagsActivos)
+              ? () {
+                  Navigator.of(context).pop();
+                  _alAbrirAtico();
+                }
+              : null,
           alAbrirCuenta: () {
             Navigator.of(context).pop();
             _alAbrirSesion();
@@ -845,6 +853,15 @@ class _OrquestadorState extends State<Orquestador> {
 
   /// Abre la pantalla de Resúmenes con los Mosaicos entregados y sus
   /// marcas tal como las dejó la Cronista.
+  Future<void> _alAbrirAtico() async {
+    if (!mounted) return;
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => PantallaAtico(flagsActivos: _flagsActivos),
+      ),
+    );
+  }
+
   Future<void> _alAbrirResumenes() async {
     if (!mounted) return;
     final pantalla = await PantallaResumenes.cargandoDesde(

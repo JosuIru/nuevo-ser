@@ -63,6 +63,17 @@ class _FaseFormulacionPreguntasState extends State<FaseFormulacionPreguntas> {
     _cargarPreguntasPersistidas();
   }
 
+  /// Pone el arranque elegido en la caja y deja el cursor al final para
+  /// completar la pregunta. Sustituye lo que hubiera: el arranque es el
+  /// principio de una pregunta nueva.
+  void _empezarCon(String arranque) {
+    _controlador.value = TextEditingValue(
+      text: arranque,
+      selection: TextSelection.collapsed(offset: arranque.length),
+    );
+    _focoEntrada.requestFocus();
+  }
+
   @override
   void dispose() {
     _controlador.dispose();
@@ -134,7 +145,9 @@ class _FaseFormulacionPreguntasState extends State<FaseFormulacionPreguntas> {
           foco: _focoEntrada,
           alEnviar: _alAnadir,
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 8),
+        _ArranquesDePregunta(alElegir: _empezarCon),
+        const SizedBox(height: 14),
         Expanded(
           child: _evaluaciones.isEmpty
               ? const _ListaPreguntasVacia()
@@ -169,6 +182,9 @@ class _FaseFormulacionPreguntasState extends State<FaseFormulacionPreguntas> {
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
               foregroundColor: PaletaArchivo.textoPrincipal,
+              // Sin esto el texto desactivado sale casi negro sobre el fondo
+              // oscuro y el botón parece vacío.
+              disabledForegroundColor: PaletaArchivo.textoTenue,
               backgroundColor:
                   PaletaArchivo.fondoMedio.withOpacity(puedeAvanzar ? 0.6 : 0.3),
               side: BorderSide(
@@ -405,6 +421,43 @@ class _BloqueTipo extends StatelessWidget {
             ),
         ],
       ),
+    );
+  }
+}
+
+/// Arranques de pregunta para no empezar con la caja en blanco. Uno
+/// por tipo que reconoce el evaluador (dato, causa, quién mira, cómo lo
+/// sabemos): con dos arranques distintos ya se cumplen los «2 tipos».
+/// La pregunta la termina la Cronista; el arranque no cuenta solo
+/// (el evaluador exige 12 caracteres).
+class _ArranquesDePregunta extends StatelessWidget {
+  const _ArranquesDePregunta({required this.alElegir});
+
+  final ValueChanged<String> alElegir;
+
+  static const arranques = [
+    '¿Quién ',
+    '¿Cuándo ',
+    '¿Por qué ',
+    '¿Cómo sabemos ',
+    '¿Qué falta en ',
+  ];
+
+  @override
+  Widget build(BuildContext contexto) {
+    return Wrap(
+      spacing: 6,
+      runSpacing: 6,
+      children: [
+        for (final arranque in arranques)
+          ActionChip(
+            label: Text('${arranque.trim()}…'),
+            labelStyle: const TextStyle(fontSize: 13, color: PaletaArchivo.textoPrincipal),
+            backgroundColor: PaletaArchivo.fondoMedio,
+            side: BorderSide(color: PaletaArchivo.ambarLacre.withValues(alpha: 0.45)),
+            onPressed: () => alElegir(arranque),
+          ),
+      ],
     );
   }
 }

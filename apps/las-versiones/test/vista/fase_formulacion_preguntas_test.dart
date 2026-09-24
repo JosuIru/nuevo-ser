@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:las_versiones/datos/repositorio_preguntas_brecha.dart';
 import 'package:las_versiones/dominio/brecha.dart';
 import 'package:las_versiones/dominio/catalogo_brechas.dart';
+import 'package:las_versiones/nucleo/paleta_archivo.dart';
 import 'package:las_versiones/vista/fase_formulacion_preguntas.dart';
 
 GestorPerfiles _gestorDePrueba() => GestorPerfiles(
@@ -210,5 +211,42 @@ void main() {
 
     expect(find.text('NO ADMITIDA'), findsOneWidget);
     expect(find.textContaining('afirmación'), findsOneWidget);
+  });
+
+  testWidgets('los arranques rellenan la caja y bastan para dos tipos distintos',
+      (tester) async {
+    await bombearFase(tester, brecha: CatalogoBrechas.brecha11, alAvanzar: () {});
+
+    Future<void> preguntar(String arranque, String resto) async {
+      await tester.tap(find.text('${arranque.trim()}…'));
+      await tester.pump();
+      expect(find.text(arranque), findsOneWidget, reason: 'el arranque va a la caja');
+      await tester.enterText(find.byType(TextField), '$arranque$resto');
+      await tester.tap(find.byTooltip('Añadir'));
+      await tester.pumpAndSettle();
+    }
+
+    await preguntar('¿Quién ', 'enterró a estas personas?');
+    await preguntar('¿Cuándo ', 'se construyó el dolmen?');
+    await preguntar('¿Cómo sabemos ', 'la fecha del enterramiento?');
+
+    final cta = tester.widget<TextButton>(find.ancestor(
+      of: find.text('IR A LA RECOLECCIÓN'),
+      matching: find.byType(TextButton),
+    ));
+    expect(cta.onPressed, isNotNull);
+  });
+
+  testWidgets('el botón de avanzar desactivado se lee (no queda negro)',
+      (tester) async {
+    await bombearFase(tester, brecha: CatalogoBrechas.brecha11, alAvanzar: () {});
+    final cta = tester.widget<TextButton>(find.ancestor(
+      of: find.text('IR A LA RECOLECCIÓN'),
+      matching: find.byType(TextButton),
+    ));
+    expect(cta.onPressed, isNull);
+    final colorDesactivado =
+        cta.style!.foregroundColor!.resolve({WidgetState.disabled});
+    expect(colorDesactivado, PaletaArchivo.textoTenue);
   });
 }

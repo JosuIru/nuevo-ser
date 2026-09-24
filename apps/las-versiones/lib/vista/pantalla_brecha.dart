@@ -331,6 +331,9 @@ class _BotonSiguienteFase extends StatelessWidget {
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(vertical: 16),
           foregroundColor: PaletaArchivo.textoPrincipal,
+          // Sin esto el texto desactivado sale casi negro sobre el fondo
+          // oscuro y el botón parece vacío.
+          disabledForegroundColor: PaletaArchivo.textoTenue,
           backgroundColor: PaletaArchivo.fondoMedio.withOpacity(0.5),
           side: BorderSide(
             color: PaletaArchivo.ambarLacre.withOpacity(0.55),

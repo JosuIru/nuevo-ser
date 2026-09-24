@@ -265,4 +265,11 @@ void main() {
       expect(intento.fiabilidadReal, isNotNull);
     }
   });
+
+  testWidgets('«Anclada en» muestra el nombre de las fuentes, no su id',
+      (tester) async {
+    await bombearFase(tester, brecha: CatalogoBrechas.brecha11, alAvanzar: () {});
+    expect(find.textContaining('restos_oseos_in_situ'), findsNothing);
+    expect(find.textContaining('Restos óseos en el hueco interior'), findsWidgets);
+  });
 }

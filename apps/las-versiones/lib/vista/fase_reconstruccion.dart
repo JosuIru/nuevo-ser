@@ -89,6 +89,15 @@ class _FaseReconstruccionState extends State<FaseReconstruccion> {
     setState(() => _declaraciones = nuevas);
   }
 
+  /// Nombres visibles (`tipoVisible`) de las fuentes que anclan una
+  /// afirmación. Antes se mostraban los ids internos
+  /// (`restos_oseos_in_situ`), ilegibles para la Cronista.
+  List<String> _nombresFuentes(AfirmacionCanonica afirmacion) => [
+        for (final id in afirmacion.idsFuentesAnclaje)
+          for (final fuente in widget.brecha.fuentes)
+            if (fuente.id == id) fuente.tipoVisible,
+      ];
+
   Future<void> _alQuitar(String idAfirmacion) async {
     final nuevas = {..._declaraciones}..remove(idAfirmacion);
     await widget.repoReconstruccion.guardar(widget.brecha.id, nuevas);
@@ -133,6 +142,8 @@ class _FaseReconstruccionState extends State<FaseReconstruccion> {
                   if (indice > 0) const SizedBox(height: 12),
                   _TarjetaAfirmacion(
                     afirmacion: widget.brecha.afirmacionesCanonicas[indice],
+                    nombresFuentesAnclaje: _nombresFuentes(
+                        widget.brecha.afirmacionesCanonicas[indice]),
                     nivelDeclarado: _declaraciones[widget.brecha
                         .afirmacionesCanonicas[indice].id],
                     alElegirNivel: (nivel) => _alElegirNivel(
@@ -155,6 +166,9 @@ class _FaseReconstruccionState extends State<FaseReconstruccion> {
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
               foregroundColor: PaletaArchivo.textoPrincipal,
+              // Sin esto el texto desactivado sale casi negro sobre el fondo
+              // oscuro y el botón parece vacío.
+              disabledForegroundColor: PaletaArchivo.textoTenue,
               backgroundColor:
                   PaletaArchivo.fondoMedio.withOpacity(puedeAvanzar ? 0.6 : 0.3),
               side: BorderSide(
@@ -413,12 +427,14 @@ class _ContadorReconstruccion extends StatelessWidget {
 
 class _TarjetaAfirmacion extends StatelessWidget {
   final AfirmacionCanonica afirmacion;
+  final List<String> nombresFuentesAnclaje;
   final NivelConfianza? nivelDeclarado;
   final ValueChanged<NivelConfianza> alElegirNivel;
   final VoidCallback alQuitar;
 
   const _TarjetaAfirmacion({
     required this.afirmacion,
+    this.nombresFuentesAnclaje = const [],
     required this.nivelDeclarado,
     required this.alElegirNivel,
     required this.alQuitar,
@@ -450,10 +466,10 @@ class _TarjetaAfirmacion extends StatelessWidget {
               fontWeight: FontWeight.w300,
             ),
           ),
-          if (afirmacion.idsFuentesAnclaje.isNotEmpty) ...[
+          if (nombresFuentesAnclaje.isNotEmpty) ...[
             const SizedBox(height: 8),
             Text(
-              'Anclada en: ${afirmacion.idsFuentesAnclaje.join(', ')}',
+              'Anclada en: ${nombresFuentesAnclaje.join(' · ')}',
               style: TextStyle(
                 fontSize: 11,
                 color: PaletaArchivo.textoTenue.withOpacity(0.8),
@@ -529,6 +545,9 @@ class _BotonNivel extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(vertical: 10),
         foregroundColor: PaletaArchivo.textoPrincipal,
+        // Sin esto el texto desactivado sale casi negro sobre el fondo
+        // oscuro y el botón parece vacío.
+        disabledForegroundColor: PaletaArchivo.textoTenue,
       ),
       child: Text(
         _etiquetaNivel(nivel),

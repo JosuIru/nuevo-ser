@@ -116,6 +116,9 @@ class _FaseRecoleccionState extends State<FaseRecoleccion> {
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
               foregroundColor: PaletaArchivo.textoPrincipal,
+              // Sin esto el texto desactivado sale casi negro sobre el fondo
+              // oscuro y el botón parece vacío.
+              disabledForegroundColor: PaletaArchivo.textoTenue,
               backgroundColor:
                   PaletaArchivo.fondoMedio.withOpacity(puedeAvanzar ? 0.6 : 0.3),
               side: BorderSide(
@@ -255,6 +258,9 @@ class _TarjetaFuente extends StatelessWidget {
                     onPressed: alRecoger,
                     style: TextButton.styleFrom(
                       foregroundColor: PaletaArchivo.textoPrincipal,
+                      // Sin esto el texto desactivado sale casi negro sobre el fondo
+                      // oscuro y el botón parece vacío.
+                      disabledForegroundColor: PaletaArchivo.textoTenue,
                       backgroundColor:
                           PaletaArchivo.fondoMedio.withOpacity(0.55),
                       padding: const EdgeInsets.symmetric(

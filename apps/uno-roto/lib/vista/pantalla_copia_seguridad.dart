@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:share_plus/share_plus.dart';
 
+import '../datos/dibujos_taller.dart';
 import '../datos/exportador_progreso.dart';
 import '../datos/repositorio_progreso.dart';
 import '../nucleo/paleta.dart';
@@ -197,6 +199,12 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
             _separador(),
             const SizedBox(height: 36),
             _seccionImportar(),
+            if (ColeccionDibujos.disponible) ...[
+              const SizedBox(height: 36),
+              _separador(),
+              const SizedBox(height: 36),
+              _SeccionDibujos(repositorio: widget.repositorio),
+            ],
             const SizedBox(height: 24),
           ],
         ),
@@ -350,6 +358,73 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
     return Container(
       height: 1,
       color: PaletaNeon.textoTenue.withOpacity(0.15),
+    );
+  }
+}
+
+/// Los dibujos del taller, para el adulto: cuántos hay y un botón para
+/// sacarlos del aparato con el menú de compartir del sistema (guardar,
+/// imprimir, mandarlos a la familia). Los dibujos son del niño: no salen
+/// si el adulto no lo decide aquí.
+class _SeccionDibujos extends StatefulWidget {
+  final RepositorioProgreso repositorio;
+
+  const _SeccionDibujos({required this.repositorio});
+
+  @override
+  State<_SeccionDibujos> createState() => _SeccionDibujosState();
+}
+
+class _SeccionDibujosState extends State<_SeccionDibujos> {
+  List<String> _rutas = const [];
+
+  @override
+  void initState() {
+    super.initState();
+    _cargar();
+  }
+
+  Future<void> _cargar() async {
+    await cargarDibujosDelTaller(widget.repositorio);
+    if (!mounted) return;
+    setState(() => _rutas = [
+          for (final coleccion in coleccionesDelTaller) ...coleccion.rutas.value.values,
+        ]);
+  }
+
+  Future<void> _compartir() async {
+    await Share.shareXFiles(
+      [for (final ruta in _rutas) XFile(ruta, mimeType: 'image/png')],
+      text: 'Dibujos de Uno Roto',
+    );
+  }
+
+  @override
+  Widget build(BuildContext contexto) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text(
+          'DIBUJOS DEL TALLER',
+          style: TextStyle(color: PaletaNeon.textoPrincipal, fontSize: 13, letterSpacing: 2.5),
+        ),
+        const SizedBox(height: 8),
+        Text(
+          _rutas.isEmpty
+              ? 'Todavía no hay dibujos. Se hacen en el bestiario y en Mi cuaderno › Taller.'
+              : 'Hay ${_rutas.length} ${_rutas.length == 1 ? 'dibujo' : 'dibujos'} en este perfil. '
+                  'Sólo están en este aparato: con este botón puedes guardarlos, imprimirlos o '
+                  'mandarlos a la familia. Son del niño: compártelos si él quiere.',
+          style: TextStyle(color: PaletaNeon.textoTenue.withOpacity(0.9), fontSize: 13, height: 1.45),
+        ),
+        const SizedBox(height: 12),
+        OutlinedButton.icon(
+          key: const ValueKey('compartir-dibujos'),
+          onPressed: _rutas.isEmpty ? null : _compartir,
+          icon: const Icon(Icons.ios_share, size: 18),
+          label: const Text('COMPARTIR LOS DIBUJOS', style: TextStyle(letterSpacing: 1.5)),
+        ),
+      ],
     );
   }
 }

@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../datos/ajuste_sin_prisas.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/canales.dart' show Celda, Direccion;
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
@@ -64,12 +65,15 @@ class _PantallaSerpienteState extends State<PantallaSerpiente>
     _partida = PartidaSerpiente(
       habilidades: habilidades.isEmpty ? ['ARI.01'] : habilidades,
       dificultad: widget.dificultad,
+      sinPrisas: AjusteSinPrisas.activo.value,
       azar: math.Random(widget.semilla),
     );
+    // «Sin prisas»: la mitad de rápida.
     final periodo = widget.periodo ??
         Duration(
-            milliseconds:
-                switch (widget.dificultad) { 1 => 330, 2 => 290, _ => 250 });
+                milliseconds:
+                    switch (widget.dificultad) { 1 => 330, 2 => 290, _ => 250 }) *
+            (AjusteSinPrisas.activo.value ? 1.5 : 1);
     _reloj = Timer.periodic(periodo, (_) => _tic());
   }
 

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'datos/ajuste_sin_prisas.dart';
 import 'datos/repositorio_progreso.dart';
 import 'l10n/app_localizations.dart';
 import 'dominio/desafio_kurz.dart';
@@ -38,6 +39,7 @@ void main() async {
   // ausencia y abrirá PantallaConfiguracionInicial.
   final repositorio = RepositorioProgreso();
   final codigoIdiomaPersistido = await repositorio.cargarIdiomaApp();
+  await AjusteSinPrisas.cargar();
   if (codigoIdiomaPersistido != null) {
     localeAppUnoRoto.value = Locale(codigoIdiomaPersistido);
   }

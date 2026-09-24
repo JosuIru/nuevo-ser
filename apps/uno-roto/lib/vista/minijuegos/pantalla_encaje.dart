@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../datos/ajuste_sin_prisas.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../dominio/minijuegos/encaje.dart';
 import '../../l10n/traducciones_narrativa.dart';
@@ -50,6 +51,8 @@ class _PantallaEncajeState extends State<PantallaEncaje>
   /// Nivel por unidades completadas: 0-1 → 1, 2-3 → 2, 4-5 → 3.
   int get _nivel => math.min(3, 1 + _tablero.unidades ~/ 2);
 
+  final bool _sinPrisas = AjusteSinPrisas.activo.value;
+
   Duration get _periodo {
     final base = widget.periodoCaida ??
         Duration(
@@ -64,7 +67,12 @@ class _PantallaEncajeState extends State<PantallaEncaje>
         GeneradorEncaje(dificultad: widget.dificultad, semilla: widget.semilla);
     _siguiente = _generador.siguiente(_tablero);
     _nuevaPieza();
-    _temporizador = Timer.periodic(_periodo, (_) => _caer());
+    // «Sin prisas»: la pieza no cae sola; espera a que se suelte.
+    if (_sinPrisas) {
+      _lineaRexan = 'Sin prisas: la pieza espera arriba. Muévela y suéltala cuando lo tengas.';
+    } else {
+      _temporizador = Timer.periodic(_periodo, (_) => _caer());
+    }
   }
 
   @override
@@ -109,7 +117,7 @@ class _PantallaEncajeState extends State<PantallaEncaje>
       if (_nivel != _generador.nivel && _tablero.unidades < _definicion.rondasPorPartida) {
         _generador.nivel = _nivel;
         _temporizador?.cancel();
-        _temporizador = Timer.periodic(_periodo, (_) => _caer());
+        if (!_sinPrisas) _temporizador = Timer.periodic(_periodo, (_) => _caer());
         _lineaRexan = _nivel == 2
             ? 'Ahora algunas piezas vienen disfrazadas: 2/4 es 1/2.'
             : 'Más rápido y sin ayudas en el tablero. Tú sabes lo que falta.';

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
+import '../../datos/ajuste_sin_prisas.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../dominio/minijuegos/esclusas.dart';
@@ -71,7 +72,8 @@ class _PantallaEsclusasState extends State<PantallaEsclusas>
   }
 
   void _nuevaRonda() {
-    _partida = PartidaEsclusas(nivel: _nivel, dificultad: _enNivel.dificultad, azar: _azar);
+    _partida = PartidaEsclusas(
+        nivel: _nivel, dificultad: _enNivel.dificultad, sinPrisas: AjusteSinPrisas.activo.value, azar: _azar);
     _inicioRonda = DateTime.now();
     _entreRondas = false;
   }

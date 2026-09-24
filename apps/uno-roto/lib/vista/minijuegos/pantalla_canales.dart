@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../datos/ajuste_sin_prisas.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/canales.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
@@ -96,6 +97,7 @@ class _PantallaCanalesState extends State<PantallaCanales>
       regla: ReglaCanales.para(idHabilidad, widget.dificultad, _azar)!,
       dificultad: widget.dificultad,
       nivel: _ronda,
+      sinPrisas: AjusteSinPrisas.activo.value,
       azar: _azar,
     );
     _empezado = false;

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
+import '../../datos/ajuste_sin_prisas.dart';
 import '../../datos/registro_maestria_minijuego.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../dominio/minijuegos/retos_calculo.dart';
@@ -63,6 +64,7 @@ class _PantallaSaltoState extends State<PantallaSalto>
     _partida = PartidaSalto(
       habilidades: habilidades.isEmpty ? ['ARI.01'] : habilidades,
       dificultad: widget.dificultad,
+      sinPrisas: AjusteSinPrisas.activo.value,
       azar: math.Random(widget.semilla),
     );
     _ticker = createTicker(_alPasarTiempo);

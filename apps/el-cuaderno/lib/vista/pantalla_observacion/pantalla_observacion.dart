@@ -18,6 +18,7 @@ import '../tema/colores.dart';
 import '../tema/tipografia.dart';
 import 'chip_sugerencia_misterio.dart';
 import 'lienzo_dibujo.dart';
+import 'pantalla_mapa_sonidos.dart';
 import 'selector_confianza.dart';
 import 'selector_misterio.dart';
 
@@ -226,6 +227,9 @@ class _EstadoPantallaObservacion extends State<PantallaObservacion> {
                     alHacerDibujo: widget.almacenadorMedios == null
                         ? null
                         : _capturarDibujo,
+                    alHacerMapaSonidos: widget.almacenadorMedios == null
+                        ? null
+                        : _capturarMapaSonidos,
                     alQuitarDibujo: _rutaDibujoTemporal == null
                         ? null
                         : _quitarDibujo,
@@ -366,16 +370,27 @@ class _EstadoPantallaObservacion extends State<PantallaObservacion> {
   }
 
   Future<void> _capturarDibujo() async {
-    final almacenador = widget.almacenadorMedios;
-    if (almacenador == null) return;
-
     final bytes = await (widget.abrirLienzoDibujoOverride?.call(context) ??
         Navigator.of(context).push<Uint8List?>(
           MaterialPageRoute(
             builder: (_) => const PantallaLienzoDibujo(),
           ),
         ));
-    if (bytes == null) return;
+    await _guardarComoDibujo(bytes);
+  }
+
+  /// El mapa de sonidos se guarda en el hueco del dibujo: es un dibujo
+  /// con guía, no un medio nuevo (sin esquema nuevo, misma privacidad).
+  Future<void> _capturarMapaSonidos() async {
+    final bytes = await Navigator.of(context).push<Uint8List?>(
+      MaterialPageRoute(builder: (_) => const PantallaMapaSonidos()),
+    );
+    await _guardarComoDibujo(bytes);
+  }
+
+  Future<void> _guardarComoDibujo(Uint8List? bytes) async {
+    final almacenador = widget.almacenadorMedios;
+    if (almacenador == null || bytes == null || !mounted) return;
 
     final rutaRelativa = await almacenador.guardarBytes(
       bytes: bytes,
@@ -642,6 +657,7 @@ class _CajaFotoDibujo extends StatelessWidget {
     required this.alElegirFoto,
     required this.alQuitarFoto,
     required this.alHacerDibujo,
+    this.alHacerMapaSonidos,
     required this.alQuitarDibujo,
     required this.constructorMiniatura,
   });
@@ -655,6 +671,7 @@ class _CajaFotoDibujo extends StatelessWidget {
   final VoidCallback? alElegirFoto;
   final VoidCallback? alQuitarFoto;
   final VoidCallback? alHacerDibujo;
+  final VoidCallback? alHacerMapaSonidos;
   final VoidCallback? alQuitarDibujo;
   final Widget Function(File fichero)? constructorMiniatura;
 
@@ -706,7 +723,11 @@ class _CajaFotoDibujo extends StatelessWidget {
           ],
           if (alHacerDibujo != null && !tieneDibujo) ...[
             const SizedBox(height: 8),
-            _BotonDibujo(textos: textos, alHacerDibujo: alHacerDibujo),
+            _BotonDibujo(
+              textos: textos,
+              alHacerDibujo: alHacerDibujo,
+              alHacerMapaSonidos: alHacerMapaSonidos,
+            ),
           ],
         ],
       );
@@ -717,6 +738,7 @@ class _CajaFotoDibujo extends StatelessWidget {
       alTomarFoto: alTomarFoto,
       alElegirFoto: alElegirFoto,
       alHacerDibujo: alHacerDibujo,
+      alHacerMapaSonidos: alHacerMapaSonidos,
       mostrarFoto: selectorImagen != null,
     );
   }
@@ -759,6 +781,7 @@ class _CajaBotones extends StatelessWidget {
     required this.alTomarFoto,
     required this.alElegirFoto,
     required this.alHacerDibujo,
+    this.alHacerMapaSonidos,
     required this.mostrarFoto,
   });
 
@@ -766,6 +789,7 @@ class _CajaBotones extends StatelessWidget {
   final VoidCallback? alTomarFoto;
   final VoidCallback? alElegirFoto;
   final VoidCallback? alHacerDibujo;
+  final VoidCallback? alHacerMapaSonidos;
   final bool mostrarFoto;
 
   @override
@@ -802,13 +826,10 @@ class _CajaBotones extends StatelessWidget {
             const SizedBox(height: 8),
           ],
           if (alHacerDibujo != null) ...[
-            SizedBox(
-              width: double.infinity,
-              child: OutlinedButton.icon(
-                onPressed: alHacerDibujo,
-                icon: const Icon(Icons.brush_outlined, size: 18),
-                label: Text(textos.observacionDibujoComenzar),
-              ),
+            _BotonDibujo(
+              textos: textos,
+              alHacerDibujo: alHacerDibujo,
+              alHacerMapaSonidos: alHacerMapaSonidos,
             ),
             const SizedBox(height: 8),
           ],
@@ -861,21 +882,41 @@ class _BotonesFoto extends StatelessWidget {
   }
 }
 
+/// Botón de dibujo y, al lado, el de mapa de sonidos (que se guarda
+/// en el mismo hueco).
 class _BotonDibujo extends StatelessWidget {
-  const _BotonDibujo({required this.textos, required this.alHacerDibujo});
+  const _BotonDibujo({
+    required this.textos,
+    required this.alHacerDibujo,
+    this.alHacerMapaSonidos,
+  });
 
   final TextosApp textos;
   final VoidCallback? alHacerDibujo;
+  final VoidCallback? alHacerMapaSonidos;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton.icon(
-        onPressed: alHacerDibujo,
-        icon: const Icon(Icons.brush_outlined, size: 18),
-        label: Text(textos.observacionDibujoComenzar),
-      ),
+    final dibujo = OutlinedButton.icon(
+      onPressed: alHacerDibujo,
+      icon: const Icon(Icons.brush_outlined, size: 18),
+      label: Text(textos.observacionDibujoComenzar),
+    );
+    if (alHacerMapaSonidos == null) {
+      return SizedBox(width: double.infinity, child: dibujo);
+    }
+    return Row(
+      children: [
+        Expanded(child: dibujo),
+        const SizedBox(width: 8),
+        Expanded(
+          child: OutlinedButton.icon(
+            onPressed: alHacerMapaSonidos,
+            icon: const Icon(Icons.hearing_outlined, size: 18),
+            label: Text(textos.observacionMapaSonidosComenzar),
+          ),
+        ),
+      ],
     );
   }
 }

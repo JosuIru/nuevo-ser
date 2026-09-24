@@ -96,10 +96,14 @@ class PartidaEsclusas {
   /// Hasta dónde bajan las barcas con «sin prisas».
   static const topeSinPrisas = 0.8;
 
+  /// «El atasco» (reto de la semana): las barcas no se mueven.
+  final bool quietas;
+
   PartidaEsclusas({
     required this.nivel,
     required this.dificultad,
     this.sinPrisas = false,
+    this.quietas = false,
     math.Random? azar,
   })  : _azar = azar ?? math.Random(),
         velocidad = switch (dificultad) { 1 => 0.07, 2 => 0.09, _ => 0.11 } {
@@ -198,7 +202,7 @@ class PartidaEsclusas {
 
   /// El canal avanza. Si el grupo llega abajo sin decidir, vuelve arriba.
   EventoEsclusas avanzar(double dt) {
-    if (terminada) return EventoEsclusas.nada;
+    if (terminada || quietas) return EventoEsclusas.nada;
     posicion += velocidad * dt;
     if (sinPrisas) {
       posicion = math.min(posicion, topeSinPrisas);

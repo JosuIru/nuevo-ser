@@ -94,6 +94,27 @@ class GeneradorEngranajes {
         opciones: _opciones(12, [24, 10, 2]));
   }
 
+  /// «La rueda loca» (reto de la semana): una de las ruedas tiene un
+  /// número primo de dientes, así que casi nunca coincide con la otra:
+  /// el MCM es el producto. Rexán: «Esta es de las cabezotas».
+  RetoEngranajes ruedaLoca({int dificultad = 1}) {
+    final nivel = dificultad.clamp(1, 3);
+    final primos = nivel == 1 ? const [5, 7] : const [7, 11, 13];
+    final ruedas = _ruedas[nivel]!;
+    while (true) {
+      final primo = primos[_azar.nextInt(primos.length)];
+      final otra = ruedas[_azar.nextInt(ruedas.length)];
+      if (otra % primo == 0 || otra == 1) continue;
+      final resultado = primo * otra;
+      return RetoEngranajes(
+        tipo: TipoEngranaje.mcm,
+        numeros: _azar.nextBool() ? [primo, otra] : [otra, primo],
+        respuesta: resultado,
+        opciones: _opciones(resultado, [primo + otra, resultado ~/ 2, resultado * 2, otra * (primo - 1)]),
+      );
+    }
+  }
+
   /// Tres ruedas (nivel alto de MCM): se reutiliza el tipo mcm.
   RetoEngranajes tresRuedas({int dificultad = 2}) {
     final nivel = dificultad.clamp(1, 3);

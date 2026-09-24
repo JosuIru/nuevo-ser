@@ -23,11 +23,16 @@ class PantallaPozo extends StatefulWidget {
   final int dificultad;
   final int? semilla;
 
+  /// «La doble negación» (reto de la semana): todas las rondas son
+  /// viajes con −(−n).
+  final bool dobleNegacion;
+
   const PantallaPozo({
     super.key,
     required this.registro,
     required this.dificultad,
     this.semilla,
+    this.dobleNegacion = false,
   });
 
   @override
@@ -79,7 +84,8 @@ class _PantallaPozoState extends State<PantallaPozo>
   }
 
   void _nuevoReto() {
-    _reto = _generador.generar(_tipos[_ronda - 1], nivel: _nivel, dificultad: _enNivel.dificultad);
+    _reto = _generador.generar(widget.dobleNegacion ? TipoPozo.viaje : _tipos[_ronda - 1],
+        nivel: _nivel, dificultad: _enNivel.dificultad, dobleNegacion: widget.dobleNegacion);
     _elegida = null;
     _yaRegistrado = false;
     _resuelto = false;

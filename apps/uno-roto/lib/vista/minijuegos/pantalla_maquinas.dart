@@ -94,7 +94,8 @@ Widget pantallaDeMaquina(
       return PantallaEsclusas(
           registro: registro, dificultad: dificultad, atasco: especial == EspecialSemanal.atasco);
     case IdMinijuego.planos:
-      return PantallaPlanos(registro: registro, dificultad: dificultad);
+      return PantallaPlanos(
+          registro: registro, dificultad: dificultad, casaCompleta: especial == EspecialSemanal.casaCompleta);
     case IdMinijuego.redes:
       return PantallaRedes(registro: registro, dificultad: dificultad);
     case IdMinijuego.nivelar:
@@ -102,11 +103,13 @@ Widget pantallaDeMaquina(
     case IdMinijuego.cajaNegra:
       return PantallaCajaNegra(registro: registro, dificultad: dificultad);
     case IdMinijuego.pozo:
-      return PantallaPozo(registro: registro, dificultad: dificultad);
+      return PantallaPozo(
+          registro: registro, dificultad: dificultad, dobleNegacion: especial == EspecialSemanal.dobleNegacion);
     case IdMinijuego.pinturas:
       return PantallaPinturas(registro: registro, dificultad: dificultad);
     case IdMinijuego.rebote:
-      return PantallaRebote(registro: registro, dificultad: dificultad);
+      return PantallaRebote(
+          registro: registro, dificultad: dificultad, sinTransportador: especial == EspecialSemanal.sinTransportador);
     case IdMinijuego.taller:
       return PantallaTaller(registro: registro, dificultad: dificultad);
     case IdMinijuego.hornada:

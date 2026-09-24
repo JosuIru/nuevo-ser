@@ -20,11 +20,16 @@ class PantallaRebote extends StatefulWidget {
   final int dificultad;
   final int? semilla;
 
+  /// «Sin transportador» (reto de la semana): todas las rondas son de
+  /// medir a ojo; el transportador aparece al contestar. No puntúa.
+  final bool sinTransportador;
+
   const PantallaRebote({
     super.key,
     required this.registro,
     required this.dificultad,
     this.semilla,
+    this.sinTransportador = false,
   });
 
   @override
@@ -79,7 +84,9 @@ class _PantallaReboteState extends State<PantallaRebote>
   }
 
   void _nuevoReto() {
-    _reto = _generador.generar(_tipos[_ronda - 1], dificultad: _enNivel.dificultad);
+    _reto = widget.sinTransportador
+        ? _generador.estimar()
+        : _generador.generar(_tipos[_ronda - 1], dificultad: _enNivel.dificultad);
     _dibujadas.clear();
     _comprobado = false;
     _elegida = null;
@@ -92,7 +99,8 @@ class _PantallaReboteState extends State<PantallaRebote>
   }
 
   void _registrar(bool acierto) {
-    if (_yaRegistrado) return;
+    // A ojo no puntúa: es para afinar la intuición.
+    if (_yaRegistrado || widget.sinTransportador) return;
     _yaRegistrado = true;
     widget.registro?.registrar(
       idHabilidad: _reto.idHabilidad,
@@ -122,6 +130,7 @@ class _PantallaReboteState extends State<PantallaRebote>
         _resuelto = true;
         anotarAcierto();
         _lineaRexan = switch (_reto.tipo) {
+          _ when widget.sinTransportador => 'Buen ojo: {g}°.',
           TipoRebote.laser => 'Diana. El foco vuelve a su sitio.',
           TipoRebote.reflexion => 'Sale con {g}°: igual que llegó.',
           _ => 'Medido y apuntado.',
@@ -129,6 +138,8 @@ class _PantallaReboteState extends State<PantallaRebote>
       } else {
         anotarFallo();
         _lineaRexan = switch (_reto.tipo) {
+          _ when widget.sinTransportador =>
+            'A ojo engaña. Ahí tienes el transportador: compruébalo y vuelve a elegir.',
           TipoRebote.medir => 'Mira dónde empieza el cero del transportador y cuenta desde ahí.',
           TipoRebote.clasificar => 'Compáralo con una esquina de papel: el recto mide 90°.',
           TipoRebote.laser => _tocaDestello(opcion)
@@ -220,6 +231,8 @@ class _PantallaReboteState extends State<PantallaRebote>
         ? _texto('Seis focos en su sitio. La Industria vuelve a tener luz.', locale)
         : _texto(_lineaRexan ?? _definicion.lineaRexan, locale, _datosLinea);
     final pregunta = switch (_reto.tipo) {
+      TipoRebote.medir when widget.sinTransportador && _elegida == null =>
+        _texto('A ojo, sin transportador: ¿cuántos grados mide?', locale),
       TipoRebote.medir => _texto('¿Cuántos grados mide el ángulo?', locale),
       TipoRebote.clasificar => _texto('¿Qué tipo de ángulo es?', locale),
       TipoRebote.laser => _texto('¿Con qué ángulo hay que disparar para que rebote en el espejo y dé en la diana?', locale),
@@ -277,7 +290,11 @@ class _PantallaReboteState extends State<PantallaRebote>
                     animation: _disparo,
                     builder: (_, __) => CustomPaint(
                       size: Size.infinite,
-                      painter: PintorRebote(reto: _reto, elegida: _elegida, progreso: _disparo.value),
+                      painter: PintorRebote(
+                          reto: _reto,
+                          elegida: _elegida,
+                          progreso: _disparo.value,
+                          ocultarTransportador: widget.sinTransportador && _elegida == null),
                     ),
                   ),
           ),
@@ -340,7 +357,15 @@ class PintorRebote extends CustomPainter {
   final int? elegida;
   final double progreso;
 
-  PintorRebote({required this.reto, required this.elegida, required this.progreso});
+  /// «Sin transportador»: el ángulo solo, hasta que se contesta.
+  final bool ocultarTransportador;
+
+  PintorRebote({
+    required this.reto,
+    required this.elegida,
+    required this.progreso,
+    this.ocultarTransportador = false,
+  });
 
   static const _luz = Color(0xFF7CF2FF);
 
@@ -348,7 +373,7 @@ class PintorRebote extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     switch (reto.tipo) {
       case TipoRebote.medir || TipoRebote.clasificar:
-        _angulo(canvas, size, conTransportador: reto.tipo == TipoRebote.medir);
+        _angulo(canvas, size, conTransportador: reto.tipo == TipoRebote.medir && !ocultarTransportador);
       case TipoRebote.laser:
         _laser(canvas, size);
       case TipoRebote.reflexion:

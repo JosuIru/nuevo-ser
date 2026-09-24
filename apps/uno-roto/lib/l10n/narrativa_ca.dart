@@ -3308,4 +3308,37 @@ const Map<String, String> narrativaCa = <String, String>{
       'Terra de divisors',
   'En todos los tableros, las minas son los divisores de un número. Búscalos por parejas.':
       'A tots els taulers, les mines són els divisors d\'un nombre. Busca\'ls per parelles.',
+  // Retos de la semana: tres especiales más
+  'Sin transportador':
+      'Sense transportador',
+  'Los ángulos se miden a ojo. Luego aparece el transportador y compruebas. Esta semana no puntúa: es para afinar el ojo.':
+      'Els angles es mesuren a ull. Després apareix el transportador i ho comproves. Aquesta setmana no puntua: és per afinar l\'ull.',
+  'La doble negación':
+      'La doble negació',
+  'Todos los viajes llevan un −(−n). Dos noes en la mina significan sí.':
+      'Tots els viatges porten un −(−n). Dos nos a la mina volen dir sí.',
+  'Casa completa':
+      'Casa completa',
+  'Tres habitaciones que sumen justo lo que pide el encargo, sin pisarse ni pisar la maleza.':
+      'Tres habitacions que sumin just el que demana l\'encàrrec, sense trepitjar-se ni trepitjar la mala herba.',
+  'Buen ojo: {g}°.':
+      'Bon ull: {g}°.',
+  'A ojo engaña. Ahí tienes el transportador: compruébalo y vuelve a elegir.':
+      'A ull enganya. Aquí tens el transportador: comprova-ho i torna a triar.',
+  'A ojo, sin transportador: ¿cuántos grados mide?':
+      'A ull, sense transportador: quants graus fa?',
+  'Esa habitación pisa otra. Muévela.':
+      'Aquesta habitació en trepitja una altra. Mou-la.',
+  'Habitación {n}: {a} m². Llevas {s} m² de {T}.':
+      'Habitació {n}: {a} m². Portes {s} m² de {T}.',
+  'Las tres suman {s} m², no {T}. Las borro: prueba otra vez.':
+      'Les tres sumen {s} m², no {T}. Les esborro: torna-ho a provar.',
+  'Casa completa: {T} m² justos. Sellada.':
+      'Casa completa: {T} m² justos. Segellada.',
+  'Una casa de {v} m² en tres habitaciones, sin pisar maleza.':
+      'Una casa de {v} m² en tres habitacions, sense trepitjar mala herba.',
+  'Tres casas completas. Rexán las cuelga en la pared.':
+      'Tres cases completes. En Rexán les penja a la paret.',
+  'PONER LA HABITACIÓN':
+      'POSAR L\'HABITACIÓ',
 };

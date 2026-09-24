@@ -3304,4 +3304,37 @@ const Map<String, String> narrativaEu = <String, String>{
       'Zatitzaileen lurra',
   'En todos los tableros, las minas son los divisores de un número. Búscalos por parejas.':
       'Taula guztietan, minak zenbaki baten zatitzaileak dira. Bilatu bikoteka.',
+  // Retos de la semana: tres especiales más
+  'Sin transportador':
+      'Garraiatzailerik gabe',
+  'Los ángulos se miden a ojo. Luego aparece el transportador y compruebas. Esta semana no puntúa: es para afinar el ojo.':
+      'Angeluak begiz neurtzen dira. Gero garraiatzailea agertzen da eta egiaztatzen duzu. Aste honetan ez du punturik ematen: begia fintzeko da.',
+  'La doble negación':
+      'Ezeztapen bikoitza',
+  'Todos los viajes llevan un −(−n). Dos noes en la mina significan sí.':
+      'Bidaia guztiek −(−n) bat daramate. Meategian bi ezezkok baietz esan nahi dute.',
+  'Casa completa':
+      'Etxe osoa',
+  'Tres habitaciones que sumen justo lo que pide el encargo, sin pisarse ni pisar la maleza.':
+      'Enkarguak eskatzen duena zehazki batzen duten hiru gela, elkar zapaldu gabe eta sasiak zapaldu gabe.',
+  'Buen ojo: {g}°.':
+      'Begi ona: {g}°.',
+  'A ojo engaña. Ahí tienes el transportador: compruébalo y vuelve a elegir.':
+      'Begiz engainatzen du. Hor duzu garraiatzailea: egiaztatu eta aukeratu berriro.',
+  'A ojo, sin transportador: ¿cuántos grados mide?':
+      'Begiz, garraiatzailerik gabe: zenbat gradu neurtzen ditu?',
+  'Esa habitación pisa otra. Muévela.':
+      'Gela horrek beste bat zapaltzen du. Mugitu.',
+  'Habitación {n}: {a} m². Llevas {s} m² de {T}.':
+      '{n}. gela: {a} m². {T} m²-tik {s} m² daramatzazu.',
+  'Las tres suman {s} m², no {T}. Las borro: prueba otra vez.':
+      'Hirurek {s} m² batzen dituzte, ez {T}. Ezabatu egingo ditut: saiatu berriro.',
+  'Casa completa: {T} m² justos. Sellada.':
+      'Etxe osoa: {T} m² zehazki. Zigilatuta.',
+  'Una casa de {v} m² en tres habitaciones, sin pisar maleza.':
+      '{v} m²-ko etxe bat hiru gelatan, sasirik zapaldu gabe.',
+  'Tres casas completas. Rexán las cuelga en la pared.':
+      'Hiru etxe oso. Rexánek horman zintzilikatzen ditu.',
+  'PONER LA HABITACIÓN':
+      'GELA JARRI',
 };

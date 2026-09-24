@@ -22,11 +22,16 @@ class PantallaPlanos extends StatefulWidget {
   final int dificultad;
   final int? semilla;
 
+  /// «Casa completa» (reto de la semana): tres casas; cada una, tres
+  /// habitaciones que sumen el total sin pisarse ni pisar maleza.
+  final bool casaCompleta;
+
   const PantallaPlanos({
     super.key,
     required this.registro,
     required this.dificultad,
     this.semilla,
+    this.casaCompleta = false,
   });
 
   @override
@@ -64,7 +69,13 @@ class _PantallaPlanosState extends State<PantallaPlanos>
   Map<String, String> _datosLinea = const {};
   DateTime _inicio = DateTime.now();
 
-  int get _nivel => nivelDeRonda(_ronda, _definicion.rondasPorPartida);
+  /// Casa completa: la casa del encargo y las habitaciones ya puestas.
+  CasaCompleta? _casa;
+  final List<Rectangulo> _habitaciones = [];
+
+  int get _rondasTotales => widget.casaCompleta ? 3 : _definicion.rondasPorPartida;
+
+  int get _nivel => nivelDeRonda(_ronda, _rondasTotales);
   ({int dificultad, int extra}) get _enNivel =>
       dificultadEnNivel(widget.dificultad, _nivel);
 
@@ -89,15 +100,23 @@ class _PantallaPlanosState extends State<PantallaPlanos>
       malezaViva: malezaViva,
       azar: _azar,
     );
+    _habitaciones.clear();
+    if (widget.casaCompleta) {
+      final casa = CasaCompleta.generar(dificultad: _enNivel.dificultad, azar: _azar);
+      _casa = casa;
+      _partida.maleza
+        ..clear()
+        ..addAll(casa.maleza);
+    }
     _plano = null;
     _esquina = null;
     _yaRegistrado = false;
     _resuelto = false;
-    _lineaRexan = malezaViva ? 'Esta maleza crece mientras piensas. No hay prisa, pero no para.' : null;
+    _lineaRexan = widget.casaCompleta ? null : malezaViva ? 'Esta maleza crece mientras piensas. No hay prisa, pero no para.' : null;
     _datosLinea = const {};
     _inicio = DateTime.now();
     _crecimiento?.cancel();
-    if (malezaViva) {
+    if (malezaViva && !widget.casaCompleta) {
       _crecimiento = Timer.periodic(const Duration(seconds: 6), (_) {
         if (!mounted || _pausado || _resuelto) return;
         final nueva = _partida.crecerMaleza();
@@ -152,9 +171,76 @@ class _PantallaPlanosState extends State<PantallaPlanos>
     });
   }
 
+  /// Casa completa: poner la habitación dibujada; con la tercera, se
+  /// comprueba la suma.
+  Future<void> _ponerHabitacion(Rectangulo plano, CasaCompleta casa) async {
+    if (plano.celdas.any(_partida.maleza.contains)) {
+      setState(() => _lineaRexan = 'Ahí hay maleza: no se puede construir encima. Muévelo.');
+      return;
+    }
+    if (CasaCompleta.solapa(plano, _habitaciones)) {
+      setState(() => _lineaRexan = 'Esa habitación pisa otra. Muévela.');
+      return;
+    }
+    HapticFeedback.selectionClick();
+    sonar('efecto_tablon');
+    setState(() {
+      _habitaciones.add(plano);
+      _plano = null;
+      _esquina = null;
+      _datosLinea = {
+        'n': '${_habitaciones.length}',
+        'a': '${plano.area}',
+        's': '${CasaCompleta.suma(_habitaciones)}',
+        'T': '${casa.total}',
+      };
+      _lineaRexan = 'Habitación {n}: {a} m². Llevas {s} m² de {T}.';
+    });
+    if (_habitaciones.length < CasaCompleta.habitaciones) return;
+    final acierta = CasaCompleta.suma(_habitaciones) == casa.total;
+    if (!_yaRegistrado) {
+      _yaRegistrado = true;
+      widget.registro?.registrar(
+        idHabilidad: 'GEO.03',
+        acierto: acierta,
+        dificultad: 0.8 + 0.3 * _enNivel.dificultad,
+        duracion: DateTime.now().difference(_inicio),
+      );
+    }
+    if (!acierta) {
+      anotarFallo();
+      HapticFeedback.vibrate();
+      sonar('efecto_error');
+      setState(() {
+        _lineaRexan = 'Las tres suman {s} m², no {T}. Las borro: prueba otra vez.';
+        _habitaciones.clear();
+      });
+      return;
+    }
+    anotarAcierto();
+    HapticFeedback.heavyImpact();
+    sonar('efecto_acierto');
+    setState(() {
+      _resuelto = true;
+      _lineaRexan = 'Casa completa: {T} m² justos. Sellada.';
+    });
+    await Future.delayed(const Duration(milliseconds: 1700));
+    if (!mounted) return;
+    setState(() {
+      if (_ronda >= _rondasTotales) {
+        _terminada = true;
+      } else {
+        _ronda++;
+        _nuevoEncargo();
+      }
+    });
+  }
+
   Future<void> _entregar() async {
     final plano = _plano;
     if (plano == null || _resuelto) return;
+    final casa = _casa;
+    if (widget.casaCompleta && casa != null) return _ponerHabitacion(plano, casa);
     final resultado = _partida.evaluar(plano);
     if (resultado == ResultadoPlano.sobreMaleza || resultado == ResultadoPlano.fuera) {
       // No es un error de matemáticas: no se registra.
@@ -228,6 +314,10 @@ class _PantallaPlanosState extends State<PantallaPlanos>
   }
 
   String _textoEncargo(Locale locale) {
+    final casa = _casa;
+    if (widget.casaCompleta && casa != null) {
+      return _texto('Una casa de {v} m² en tres habitaciones, sin pisar maleza.', locale, {'v': '${casa.total}'});
+    }
     final valor = '${_partida.encargo.valor}';
     return switch (_partida.encargo.tipo) {
       TipoEncargo.area => _texto('Una habitación de {v} m².', locale, {'v': valor}),
@@ -247,7 +337,7 @@ class _PantallaPlanosState extends State<PantallaPlanos>
     final plano = _plano;
     final esTriangulo = _partida.encargo.tipo == TipoEncargo.triangulo;
     final linea = _terminada
-        ? _texto('Seis planos sellados. Las Afueras ya tienen barrio.', locale)
+        ? _texto(widget.casaCompleta ? 'Tres casas completas. Rexán las cuelga en la pared.' : 'Seis planos sellados. Las Afueras ya tienen barrio.', locale)
         : _texto(_lineaRexan ?? _definicion.lineaRexan, locale, _datosLinea);
     return MarcoMinijuego(
       titulo: _definicion.nombre,
@@ -257,10 +347,10 @@ class _PantallaPlanosState extends State<PantallaPlanos>
       alPausar: () => _pausado = true,
       alReanudar: () => _pausado = false,
       comoSeJuega: _definicion.comoSeJuega,
-      idHabilidadActual: _partida.encargo.idHabilidad,
+      idHabilidadActual: widget.casaCompleta ? 'GEO.03' : _partida.encargo.idHabilidad,
       dificultadEjemplo: _enNivel.dificultad,
       ronda: _ronda,
-      rondasTotales: _definicion.rondasPorPartida,
+      rondasTotales: _rondasTotales,
       lineaRexan: linea,
       terminada: _terminada,
       child: Column(
@@ -292,6 +382,7 @@ class _PantallaPlanosState extends State<PantallaPlanos>
                           plano: plano,
                           triangulo: esTriangulo,
                           sellado: _resuelto,
+                          habitaciones: _habitaciones,
                         ),
                       ),
                     );
@@ -314,7 +405,7 @@ class _PantallaPlanosState extends State<PantallaPlanos>
           ),
           const SizedBox(height: 10),
           BotonMinijuego(
-            texto: traducirNarrativa('ENTREGAR', locale),
+            texto: traducirNarrativa(widget.casaCompleta ? 'PONER LA HABITACIÓN' : 'ENTREGAR', locale),
             alPulsar: plano == null || _resuelto ? null : _entregar,
           ),
           const SizedBox(height: 12),
@@ -333,11 +424,15 @@ class PintorPlano extends CustomPainter {
   final bool triangulo;
   final bool sellado;
 
+  /// Casa completa: las habitaciones ya puestas, con su área dentro.
+  final List<Rectangulo> habitaciones;
+
   PintorPlano({
     required this.maleza,
     required this.plano,
     required this.triangulo,
     required this.sellado,
+    this.habitaciones = const [],
   });
 
   @override
@@ -367,6 +462,20 @@ class PintorPlano extends CustomPainter {
         canvas.drawLine(base + Offset(dx * lado, 0),
             base + Offset(dx * lado * 1.6, -alto * lado), hierba);
       }
+    }
+
+    for (final habitacion in habitaciones) {
+      final rect = Rect.fromLTWH(habitacion.columna * lado, habitacion.fila * lado,
+          habitacion.ancho * lado, habitacion.alto * lado);
+      final color = sellado ? PaletaNeon.exitoSuave : PaletaNeon.ambarCanales;
+      canvas.drawRect(rect, Paint()..color = color.withOpacity(0.3));
+      canvas.drawRect(
+          rect,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2.5
+            ..color = color);
+      _texto(canvas, '${habitacion.area} m²', rect.center, tamano: 13);
     }
 
     final dibujado = plano;

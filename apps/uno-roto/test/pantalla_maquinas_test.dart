@@ -118,4 +118,40 @@ void main() {
     expect(find.textContaining('ha salido largo'), findsOneWidget);
     await tester.pumpWidget(const SizedBox());
   });
+
+  testWidgets('cada especial del reto abre su máquina sin romperse', (tester) async {
+    SharedPreferences.setMockInitialValues({'uroto.modo_dios_activo': true});
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 2.75;
+    addTearDown(tester.view.reset);
+    final todas = {for (final e in especialesSemanales) e.maquina: e.habilidades};
+    for (final especial in [EspecialSemanal.sinTransportador, EspecialSemanal.dobleNegacion, EspecialSemanal.casaCompleta]) {
+      var fecha = DateTime(2026, 1, 5);
+      while (retoDeLaSemana(fecha, todas)!.especial != especial) {
+        fecha = fecha.add(const Duration(days: 7));
+      }
+      await tester.pumpWidget(MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [Locale('es'), Locale('eu'), Locale('ca')],
+        home: PantallaMaquinas(key: ValueKey(especial), repositorio: RepositorioProgreso(), fecha: fecha),
+      ));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const ValueKey('reto-semanal')));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+      final esperado = switch (especial) {
+        EspecialSemanal.sinTransportador => 'A ojo, sin transportador',
+        EspecialSemanal.dobleNegacion => '−(−',
+        _ => 'en tres habitaciones',
+      };
+      expect(find.textContaining(esperado), findsWidgets, reason: '$especial');
+      await tester.pumpWidget(const SizedBox());
+    }
+  });
 }

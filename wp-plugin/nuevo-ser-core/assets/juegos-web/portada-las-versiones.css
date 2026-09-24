@@ -168,6 +168,24 @@
 	text-underline-offset: 4px;
 }
 
+/* Descarga de la app Android (último release en GitHub). */
+.ns-lv-descarga {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.ns-lv-descarga svg {
+	width: 16px;
+	height: 16px;
+	flex: none;
+}
+
+.ns-lv-descarga small {
+	font-size: 0.8em;
+	opacity: 0.75;
+}
+
 .ns-lv-datos {
 	display: flex;
 	flex-wrap: wrap;

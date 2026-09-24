@@ -176,6 +176,24 @@
 	text-underline-offset: 4px;
 }
 
+/* Descarga de la app Android (último release en GitHub). */
+.ns-ur-descarga {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.ns-ur-descarga svg {
+	width: 16px;
+	height: 16px;
+	flex: none;
+}
+
+.ns-ur-descarga small {
+	font-size: 0.8em;
+	opacity: 0.75;
+}
+
 .ns-ur-datos {
 	display: flex;
 	flex-wrap: wrap;

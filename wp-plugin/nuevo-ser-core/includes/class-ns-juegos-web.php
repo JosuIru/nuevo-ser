@@ -219,6 +219,7 @@ class NS_Juegos_Web {
 						<?php esc_html_e( 'Jugar a pantalla completa', 'nuevo-ser-core' ); ?>
 					</button>
 					<a class="ns-ur-enlace" href="<?php echo $juego; // phpcs:ignore WordPress.Security.EscapeOutput ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Abrir en otra pestaña', 'nuevo-ser-core' ); ?></a>
+					<?php echo NS_Descargas_Apk::enlace( 'uno-roto', 'ns-ur-enlace ns-ur-descarga' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escapado en la clase ?>
 				</div>
 				<ul class="ns-ur-datos">
 					<li><?php esc_html_e( 'Sin puntos ni «game over»', 'nuevo-ser-core' ); ?></li>
@@ -351,6 +352,7 @@ class NS_Juegos_Web {
 						<?php esc_html_e( 'Jugar a pantalla completa', 'nuevo-ser-core' ); ?>
 					</button>
 					<a class="ns-lv-enlace" href="<?php echo $juego; // phpcs:ignore WordPress.Security.EscapeOutput ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Abrir en otra pestaña', 'nuevo-ser-core' ); ?></a>
+					<?php echo NS_Descargas_Apk::enlace( 'las-versiones', 'ns-lv-enlace ns-lv-descarga' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escapado en la clase ?>
 				</div>
 				<ul class="ns-lv-datos">
 					<li><?php esc_html_e( 'Sin rankings ni «game over»', 'nuevo-ser-core' ); ?></li>

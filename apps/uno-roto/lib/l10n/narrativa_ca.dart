@@ -3151,4 +3151,7 @@ const Map<String, String> narrativaCa = <String, String>{
       '{x} − {y} = {r}: queda {r}/{m}.',
   'Este puente ha salido largo. Quita justo lo que sobra: lo que mide el puente menos lo que mide el hueco.':
       'Aquest pont ha sortit llarg. Treu just el que sobra: el que fa el pont menys el que fa el forat.',
+  // Sin prisas
+  'Sin prisas: la pieza espera arriba. Muévela y suéltala cuando lo tengas.':
+      'Sense presses: la peça espera a dalt. Mou-la i deixa-la anar quan ho tinguis.',
 };

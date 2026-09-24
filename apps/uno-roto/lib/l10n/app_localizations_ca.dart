@@ -475,6 +475,16 @@ class AppLocalizationsCa extends AppLocalizations {
       'el joc és completament jugable en silenci';
 
   @override
+  String get ajustesSeccionMaquinas => 'MÀQUINES';
+
+  @override
+  String get sinPrisasTitulo => 'Sense presses';
+
+  @override
+  String get sinPrisasSubtitulo =>
+      'A les màquines d\'acció res no corre sol: la peça d\'Encaje espera, les ombres s\'aturen si t\'aturis, les barques no arriben a la comporta i Salto va més a poc a poc.';
+
+  @override
   String get sonidoCapaAmbient => 'vent, aigua, soroll rosa del món';
 
   @override

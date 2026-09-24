@@ -474,6 +474,16 @@ class AppLocalizationsEu extends AppLocalizations {
       'jokoa erabat jolastu daiteke isiltasunean';
 
   @override
+  String get ajustesSeccionMaquinas => 'MAKINAK';
+
+  @override
+  String get sinPrisasTitulo => 'Presarik gabe';
+
+  @override
+  String get sinPrisasSubtitulo =>
+      'Ekintza-makinetan ezer ez doa bere kabuz: Encajeko pieza zain geratzen da, itzalak gelditzen dira zu gelditzen bazara, txalupak ez dira atera iristen eta Salto polikiago doa.';
+
+  @override
   String get sonidoCapaAmbient => 'haizea, ura, munduko zarata';
 
   @override

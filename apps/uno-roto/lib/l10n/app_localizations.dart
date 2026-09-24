@@ -916,6 +916,24 @@ abstract class AppLocalizations {
   /// **'el juego es completamente jugable en silencio'**
   String get sonidoModoSilencioSubtitulo;
 
+  /// No description provided for @ajustesSeccionMaquinas.
+  ///
+  /// In es, this message translates to:
+  /// **'MÁQUINAS'**
+  String get ajustesSeccionMaquinas;
+
+  /// No description provided for @sinPrisasTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin prisas'**
+  String get sinPrisasTitulo;
+
+  /// No description provided for @sinPrisasSubtitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'En las máquinas de acción nada corre solo: la pieza de Encaje espera, las sombras se paran si tú te paras, las barcas no llegan a la compuerta y Salto va más despacio.'**
+  String get sinPrisasSubtitulo;
+
   /// No description provided for @sonidoCapaAmbient.
   ///
   /// In es, this message translates to:

@@ -473,6 +473,16 @@ class AppLocalizationsEs extends AppLocalizations {
       'el juego es completamente jugable en silencio';
 
   @override
+  String get ajustesSeccionMaquinas => 'MÁQUINAS';
+
+  @override
+  String get sinPrisasTitulo => 'Sin prisas';
+
+  @override
+  String get sinPrisasSubtitulo =>
+      'En las máquinas de acción nada corre solo: la pieza de Encaje espera, las sombras se paran si tú te paras, las barcas no llegan a la compuerta y Salto va más despacio.';
+
+  @override
   String get sonidoCapaAmbient => 'viento, agua, ruido rosa del mundo';
 
   @override

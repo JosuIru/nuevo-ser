@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import '../datos/ajuste_sin_prisas.dart';
 import '../datos/config_api.dart';
 import '../datos/repositorio_progreso.dart';
 import '../l10n/app_localizations.dart';
@@ -111,6 +112,26 @@ class _PantallaAjustesSonidoState extends State<PantallaAjustesSonido> {
                     habilitado: !_modoSilencio,
                     alCambiar: (v) => _alCambiarVolumen(capa, v),
                   ),
+                const SizedBox(height: 24),
+                Text(
+                  textos.ajustesSeccionMaquinas,
+                  style: TextStyle(
+                    color: PaletaNeon.textoTenue.withOpacity(0.7),
+                    fontSize: 11,
+                    letterSpacing: 3,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                ValueListenableBuilder<bool>(
+                  valueListenable: AjusteSinPrisas.activo,
+                  builder: (_, activo, __) => _InterruptorTile(
+                    key: const ValueKey('interruptor-sin-prisas'),
+                    activo: activo,
+                    titulo: textos.sinPrisasTitulo,
+                    subtitulo: textos.sinPrisasSubtitulo,
+                    alCambiar: AjusteSinPrisas.fijar,
+                  ),
+                ),
                 const SizedBox(height: 24),
                 _BloquePaqueteSonoro(repositorio: widget.repositorio),
                 const SizedBox(height: 24),
@@ -465,6 +486,31 @@ class _ModoSilencioTile extends StatelessWidget {
   const _ModoSilencioTile({required this.activo, required this.alCambiar});
 
   @override
+  Widget build(BuildContext contexto) => _InterruptorTile(
+        activo: activo,
+        titulo: AppLocalizations.of(contexto).sonidoModoSilencioTitulo,
+        subtitulo: AppLocalizations.of(contexto).sonidoModoSilencioSubtitulo,
+        alCambiar: alCambiar,
+      );
+}
+
+/// Un interruptor con título y explicación, en su tarjeta.
+class _InterruptorTile extends StatelessWidget {
+  final bool activo;
+  final String titulo;
+  final String subtitulo;
+  final ValueChanged<bool> alCambiar;
+
+  const _InterruptorTile({
+    super.key,
+    required this.activo,
+    required this.titulo,
+    required this.subtitulo,
+    required this.alCambiar,
+  });
+
+
+  @override
   Widget build(BuildContext contexto) {
     return Container(
       decoration: BoxDecoration(
@@ -481,7 +527,7 @@ class _ModoSilencioTile extends StatelessWidget {
         onChanged: alCambiar,
         activeColor: PaletaNeon.azulNeon,
         title: Text(
-          AppLocalizations.of(contexto).sonidoModoSilencioTitulo,
+          titulo,
           style: const TextStyle(
             color: PaletaNeon.textoPrincipal,
             fontSize: 14,
@@ -489,7 +535,7 @@ class _ModoSilencioTile extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          AppLocalizations.of(contexto).sonidoModoSilencioSubtitulo,
+          subtitulo,
           style: TextStyle(
             color: PaletaNeon.textoTenue.withOpacity(0.8),
             fontSize: 11,

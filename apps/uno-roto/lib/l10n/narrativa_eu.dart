@@ -3147,4 +3147,7 @@ const Map<String, String> narrativaEu = <String, String>{
       '{x} − {y} = {r}: {r}/{m} geratzen da.',
   'Este puente ha salido largo. Quita justo lo que sobra: lo que mide el puente menos lo que mide el hueco.':
       'Zubi hau luzeegia atera da. Kendu soberan dagoena zehazki: zubiaren neurria ken hutsunearen neurria.',
+  // Sin prisas
+  'Sin prisas: la pieza espera arriba. Muévela y suéltala cuando lo tengas.':
+      'Presarik gabe: pieza goian zain dago. Mugitu eta askatu argi duzunean.',
 };

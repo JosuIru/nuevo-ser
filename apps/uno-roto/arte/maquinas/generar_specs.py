@@ -45,6 +45,9 @@ MAQUINAS = {
     'pinturas': {'pantalla': '#6BB38A', 'marquesina': '#E3A457'},
     'rebote': {'pantalla': '#7CF2FF', 'marquesina': '#2B4DA6'},
     'taller': {'pantalla': '#E8E2D0', 'marquesina': '#8A6A2E'},
+    'hornada': {'pantalla': '#E3A457', 'marquesina': '#8A4A1E'},
+    'telar': {'pantalla': '#D9848C', 'marquesina': '#7A3A52'},
+    'tranvia': {'pantalla': '#E8B85C', 'marquesina': '#6A5A2E'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -222,6 +225,32 @@ def juego_en_pantalla(nombre, color):
         for k in range(12):
             a = k / 12 * math.pi * 2
             p.append(pixel(f'marca{k}', math.cos(a) * 0.12, math.sin(a) * 0.12, 0.006, 0.006, '#3A2608', 0.6))
+    elif nombre == 'hornada':
+        # Una bandeja con cuatro panes cortados y una caja con trozos.
+        for i in range(4):
+            u = -0.24 + i * 0.16
+            p.append(pixel(f'pan{i}', u, 0.08, 0.06, 0.05, color, 1.2))
+            p.append(pixel(f'corte{i}', u, 0.08, 0.004, 0.05, '#3A2608', 0.5))
+        p.append(pixel('caja', 0.0, -0.13, 0.22, 0.06, '#6B3A12', 0.8))
+        for i in range(3):
+            p.append(pixel(f'trozo{i}', -0.12 + i * 0.12, -0.13, 0.05, 0.035, '#B8702E', 1.0))
+    elif nombre == 'telar':
+        # Hilos verticales y horizontales; la zona que se cruza, rellena.
+        for i in range(6):
+            p.append(pixel(f'urdimbre{i}', -0.25 + i * 0.1, 0, 0.004, 0.22, '#E8E2D0', 0.7))
+        for j in range(5):
+            p.append(pixel(f'trama{j}', 0, -0.18 + j * 0.09, 0.3, 0.004, '#E8E2D0', 0.7))
+        p.append(pixel('cruce', -0.1, 0.04, 0.15, 0.13, color, 1.4))
+        p.append(pixel('agujero', 0.2, -0.14, 0.03, 0.03, '#16193D', 0.3))
+    elif nombre == 'tranvia':
+        # La vía con sus paradas y el tranvía encima.
+        p.append(pixel('via', 0, -0.08, 0.34, 0.006, '#E8E2D0', 0.9))
+        for i in range(11):
+            alto = 0.03 if i % 5 == 0 else 0.015
+            p.append(pixel(f'parada{i}', -0.3 + i * 0.06, -0.08, 0.004, alto, '#E8E2D0', 0.8))
+        p.append(pixel('tranvia', 0.06, 0.0, 0.07, 0.045, color, 1.5))
+        p.append(pixel('ventana', 0.06, 0.01, 0.05, 0.015, '#16193D', 0.4))
+        p.append(pixel('cable', 0, 0.16, 0.34, 0.003, '#6668A8', 0.8))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../datos/registro_maestria_archivo.dart';
 import '../../dominio/atico/partida_documento_roto.dart';
 import '../../dominio/atico/voz_andres_atico.dart';
 import '../../dominio/capa_historica.dart';
@@ -16,9 +17,13 @@ import 'objetos_atico.dart';
 /// documento). Si no encaja, vuelve a la mesa y Andrés da el criterio,
 /// no la respuesta.
 class PantallaDocumentoRoto extends StatefulWidget {
-  const PantallaDocumentoRoto({super.key, required this.partida});
+  const PantallaDocumentoRoto({super.key, required this.partida, this.registro});
 
   final PartidaDocumentoRoto partida;
+
+  /// Donde se apunta el primer intento de cada tira. `null` en tests o
+  /// si el juego no tiene motor cargado: entonces no se apunta nada.
+  final RegistroMaestriaArchivo? registro;
 
   @override
   State<PantallaDocumentoRoto> createState() => _EstadoPantallaDocumentoRoto();
@@ -29,6 +34,9 @@ class _EstadoPantallaDocumentoRoto extends State<PantallaDocumentoRoto> {
   String? _pista;
   bool _terminada = false;
 
+  /// Tiempo desde la última colocación: la duración del intento.
+  final Stopwatch _cronometro = Stopwatch()..start();
+
   PartidaDocumentoRoto get _partida => widget.partida;
 
   void _elegir(Tira tira) {
@@ -37,7 +45,18 @@ class _EstadoPantallaDocumentoRoto extends State<PantallaDocumentoRoto> {
   }
 
   void _colocar(Tira tira, DocumentoEnMesa documento) {
+    final cuenta = _partida.esPrimerIntento(tira);
     final encaja = _partida.colocar(tira, documento);
+    if (cuenta) {
+      widget.registro?.registrar(
+        idHabilidad: tira.tipo.idHabilidad,
+        acierto: encaja,
+        duracion: _cronometro.elapsed,
+      );
+    }
+    _cronometro
+      ..reset()
+      ..start();
     ServicioSonoroArchivo.instancia.reproducirEfecto(
         encaja ? CatalogoSonidosArchivo.pinzaMadera : CatalogoSonidosArchivo.papelDejar);
     setState(() {

@@ -198,6 +198,10 @@ class PartidaDocumentoRoto {
 
   String? documentoDe(Tira tira) => _colocadas[tira.id];
 
+  /// `true` si todavía no se ha intentado colocar [tira]: el próximo
+  /// [colocar] es el que cuenta para la maestría.
+  bool esPrimerIntento(Tira tira) => !_primerosIntentos.containsKey(tira.id);
+
   List<Tira> tirasPegadasA(DocumentoEnMesa documento) => [
         for (final tira in rondaActual.tiras)
           if (_colocadas[tira.id] == documento.id) tira,

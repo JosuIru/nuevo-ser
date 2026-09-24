@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../datos/registro_maestria_archivo.dart';
 import '../../dominio/atico/oficios_atico.dart';
 import '../../dominio/atico/partida_documento_roto.dart';
 import '../../dominio/atico/partida_tres_fichas.dart';
@@ -16,9 +17,12 @@ import 'pantalla_tres_fichas.dart';
 /// investigado (`docs/el-atico-de-andres.md`). Suena la lluvia en la
 /// claraboya; no hay música.
 class PantallaAtico extends StatefulWidget {
-  const PantallaAtico({super.key, required this.flagsActivos});
+  const PantallaAtico({super.key, required this.flagsActivos, this.registro});
 
   final Set<String> flagsActivos;
+
+  /// Motor de maestría del juego; se pasa a los oficios que apuntan.
+  final RegistroMaestriaArchivo? registro;
 
   @override
   State<PantallaAtico> createState() => _EstadoPantallaAtico();
@@ -51,7 +55,7 @@ class _EstadoPantallaAtico extends State<PantallaAtico> {
         if (partida == null) return;
         ServicioSonoroArchivo.instancia.reproducirEfecto(CatalogoSonidosArchivo.papelTomar);
         await Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: (_) => PantallaDocumentoRoto(partida: partida)),
+          MaterialPageRoute<void>(builder: (_) => PantallaDocumentoRoto(partida: partida, registro: widget.registro)),
         );
     }
   }

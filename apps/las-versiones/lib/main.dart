@@ -48,6 +48,7 @@ import 'vista/pantalla_mosaico_arco_3.dart';
 import 'vista/pantalla_mosaico_arco_4.dart';
 import 'vista/pantalla_resumenes.dart';
 import 'sonido/servicio_sonoro_archivo.dart';
+import 'datos/registro_maestria_archivo.dart';
 import 'dominio/atico/oficios_atico.dart';
 import 'vista/atico/pantalla_atico.dart';
 
@@ -313,6 +314,12 @@ class _OrquestadorState extends State<Orquestador> {
   bool _sesionIniciada = false;
   String? _nombrePerfilActivo;
   Set<String> _flagsActivos = const {};
+
+  /// Motor de maestría (P1 hoy). Lee el perfil activo en cada registro,
+  /// así que sirve tras cambiar de perfil sin recrearlo.
+  late final RegistroMaestriaArchivo _registroMaestria = RegistroMaestriaArchivo(
+    repositorio: RepositorioHabilidades(gestor: widget.gestorPerfiles),
+  );
   EscenaCinematica? _escenaEnReproduccion;
   Brecha? _brechaAbierta;
   FaseBrecha _faseBrechaActiva = FaseBrecha.formulacionPreguntas;
@@ -857,7 +864,10 @@ class _OrquestadorState extends State<Orquestador> {
     if (!mounted) return;
     await Navigator.of(context).push(
       MaterialPageRoute<void>(
-        builder: (_) => PantallaAtico(flagsActivos: _flagsActivos),
+        builder: (_) => PantallaAtico(
+          flagsActivos: _flagsActivos,
+          registro: _registroMaestria,
+        ),
       ),
     );
   }

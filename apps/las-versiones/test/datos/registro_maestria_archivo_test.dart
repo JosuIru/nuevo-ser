@@ -1,0 +1,65 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:las_versiones/datos/registro_maestria_archivo.dart';
+
+GestorPerfiles _gestor() => GestorPerfiles(
+      namespace: 'nuevoser.lasversiones',
+      sufijoNombreVisible: 'nombre_jugador',
+      clavesGlobalesNoMigrables: const {'nuevoser.lasversiones.idioma_app'},
+    );
+
+void main() {
+  setUp(() => SharedPreferences.setMockInitialValues({}));
+
+  RegistroMaestriaArchivo registro(RepositorioHabilidades repositorio) =>
+      RegistroMaestriaArchivo(
+        repositorio: repositorio,
+        reloj: () => DateTime.utc(2026, 9, 24, 10),
+      );
+
+  test('un acierto de HF.02 queda guardado en el perfil activo', () async {
+    final repositorio = RepositorioHabilidades(gestor: _gestor());
+    final estado = await registro(repositorio).registrar(
+        idHabilidad: 'HF.02', acierto: true, duracion: const Duration(seconds: 4));
+    expect(estado, isNotNull);
+    final guardado = await repositorio.cargar('HF.02');
+    expect(guardado!.totalExposiciones, 1);
+    expect(guardado.intentosRecientes.single.acierto, isTrue);
+
+    final prefs = await SharedPreferences.getInstance();
+    expect(prefs.getKeys(),
+        contains('nuevoser.lasversiones.perfil.principal.habilidad.HF.02'));
+  });
+
+  test('registros seguidos sin esperar no se pisan', () async {
+    final repositorio = RepositorioHabilidades(gestor: _gestor());
+    final motor = registro(repositorio);
+    await Future.wait([
+      for (var i = 0; i < 5; i++)
+        motor.registrar(idHabilidad: 'HF.04', acierto: i.isEven, duracion: Duration.zero),
+    ]);
+    expect((await repositorio.cargar('HF.04'))!.totalExposiciones, 5);
+  });
+
+  test('AH.03 (P4, stub en core) no se registra todavía', () async {
+    final repositorio = RepositorioHabilidades(gestor: _gestor());
+    final estado = await registro(repositorio).registrar(
+        idHabilidad: 'AH.03', acierto: true, duracion: Duration.zero);
+    expect(estado, isNull);
+    expect(await repositorio.cargar('AH.03'), isNull);
+    expect(RegistroMaestriaArchivo.registrable('AH.03'), isFalse);
+  });
+
+  test('una habilidad sin perfil asignado no se registra', () async {
+    expect(RegistroMaestriaArchivo.registrable('XX.99'), isFalse);
+  });
+
+  test('cada perfil de perfilesOperativos existe en el motor', () {
+    final motor = MasteryEngine();
+    for (final perfil in perfilesOperativos) {
+      expect(() => motor.perfil(perfil), returnsNormally);
+    }
+  });
+}

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:las_versiones/datos/registro_maestria_archivo.dart';
 import 'package:las_versiones/dominio/atico/oficios_atico.dart';
 import 'package:las_versiones/dominio/atico/partida_documento_roto.dart';
 import 'package:las_versiones/dominio/atico/voz_andres_atico.dart';
@@ -63,5 +66,34 @@ void main() {
     await tester.tap(find.text('El documento roto'));
     await tester.pumpAndSettle();
     expect(find.byType(PantallaDocumentoRoto), findsOneWidget);
+  });
+
+  testWidgets('apunta sólo el primer intento de cada tira', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final repositorio = RepositorioHabilidades(
+      gestor: GestorPerfiles(
+        namespace: 'nuevoser.lasversiones',
+        sufijoNombreVisible: 'nombre_jugador',
+      ),
+    );
+    final partida = PartidaDocumentoRoto.montar(brechasCerradas(flags), semilla: 1)!;
+    await tester.pumpWidget(MaterialApp(
+      home: PantallaDocumentoRoto(
+        partida: partida,
+        registro: RegistroMaestriaArchivo(repositorio: repositorio),
+      ),
+    ));
+    final ronda = partida.rondaActual;
+    final tira = ronda.tirasQueSeColocan.first;
+    final equivocado = ronda.documentos.firstWhere((d) => !tira.encajaEn(d));
+    final bueno = ronda.documentos.firstWhere(tira.encajaEn);
+
+    await tocarTiraYDocumento(tester, tira, equivocado);
+    await tocarTiraYDocumento(tester, tira, bueno);
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 50)));
+
+    final estado = await tester.runAsync(() => repositorio.cargar('HF.02'));
+    expect(estado!.totalExposiciones, 1, reason: 'el segundo intento no cuenta');
+    expect(estado.intentosRecientes.single.acierto, isFalse);
   });
 }

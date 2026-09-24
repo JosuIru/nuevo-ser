@@ -39,7 +39,8 @@ cerradas), pero deja provisionales que necesitan ojos humanos:
   pinza, mimbre, balanza, lluvia).
 - **Voz de Andrés en el ático** (`lib/dominio/atico/voz_andres_atico.dart`):
   frases nuevas en castellano, sin revisión de voz (doc 04) ni eu/ca.
-- **Maestría**: Tres fichas NO registra todavía. Falta
+- **El documento roto**: las tiras son los propios `PropiedadesFuente` del catálogo; si un dato está mal en el catálogo, el oficio lo repite. Nada nuevo que validar aparte de eso.
+- **Maestría**: Tres fichas y El documento roto NO registran todavía. Falta
   `P4Calibration.compute()` en el core y un `RegistroMaestriaArchivo`
   (doc del ático §6).
 

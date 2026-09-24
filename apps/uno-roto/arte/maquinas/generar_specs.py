@@ -38,6 +38,9 @@ MAQUINAS = {
     'engranajes': {'pantalla': '#C9A04A', 'marquesina': '#8A6A2E'},
     'esclusas': {'pantalla': '#78D8E0', 'marquesina': '#3F74D8'},
     'planos': {'pantalla': '#E8E2D0', 'marquesina': '#6FA8E8'},
+    'redes': {'pantalla': '#E8A857', 'marquesina': '#4D86C9'},
+    'nivelar': {'pantalla': '#B45656', 'marquesina': '#8A6353'},
+    'cajaNegra': {'pantalla': '#9FD9B8', 'marquesina': '#413F7A'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -161,6 +164,29 @@ def juego_en_pantalla(nombre, color):
         p.append(pixel('habitacion', -0.05, 0.02, 0.15, 0.09, color, 1.5))
         p.append(pixel('mata1', 0.22, 0.12, 0.03, 0.03, '#6BE38A', 1.8))
         p.append(pixel('mata2', 0.2, -0.14, 0.03, 0.03, '#6BE38A', 1.8))
+    elif nombre == 'redes':
+        import math
+        for r, cu in enumerate((-0.17, 0.17)):
+            for k in range(10):
+                a = k / 10 * math.pi * 2
+                p.append(pixel(f'aro{r}_{k}', cu + math.cos(a) * 0.12, math.sin(a) * 0.12,
+                               0.01, 0.01, '#E8E2D0', 0.9))
+            for k, (du, dv) in enumerate([(-0.04, 0.03), (0.03, -0.02), (0.0, 0.06), (-0.03, -0.05)]):
+                ambar = k < (3 if r == 0 else 1)
+                p.append(pixel(f'pez{r}_{k}', cu + du, dv, 0.022, 0.012,
+                               color if ambar else '#4D86C9', 1.8 if ambar else 1.0))
+    elif nombre == 'nivelar':
+        colores = ['#B45656', '#3F74D8', '#E3A457', '#6BB38A']
+        for i, alto in enumerate((0.1, 0.22, 0.06, 0.16)):
+            p.append(pixel(f'pila{i}', -0.22 + i * 0.15, -0.14 + alto / 2, 0.05, alto / 2,
+                           colores[i], 1.4))
+        p.append(pixel('cubierta', 0, -0.17, 0.32, 0.015, '#8A6353', 0.9))
+    elif nombre == 'cajaNegra':
+        p.append(pixel('caja', -0.12, -0.02, 0.12, 0.12, '#413F7A', 0.9))
+        for i in range(3):
+            p.append(pixel(f'luz{i}', -0.2 + i * 0.08, -0.04, 0.015, 0.015, color, 2.0))
+        for f in range(3):
+            p.append(pixel(f'fila{f}', 0.2, 0.1 - f * 0.08, 0.1, 0.012, '#E8E2D0', 0.9))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

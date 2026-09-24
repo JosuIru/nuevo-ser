@@ -567,6 +567,81 @@ def planos():
     return pista
 
 
+def redes():
+    """Muelle al amanecer · 80 BPM, sol mayor. Cuerda pulsada que va y
+    viene como una red que se echa, oleaje y gotas sueltas."""
+    negra = 60 / 80
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['G2', 'D3', 'B3', 'D4'],
+        ['E2', 'B2', 'G3', 'D4'],
+        ['C3', 'G3', 'E4', 'G4'],
+        ['D3', 'A3', 'F#4', 'A4'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.035, 1500))
+        orden = [0, 1, 2, 3, 2, 1, 2, 3]
+        for corchea in range(8):
+            sumar_circular(pista, inicio + corchea * negra / 2,
+                           pulsada(nota(voces[orden[corchea]]), negra * 0.9, 0.12))
+        sumar_circular(pista, inicio + 2.5 * negra, gota(0.04))
+    pista += mar(len(pista), len(pista) / FS, 0.035)
+    return pista
+
+
+def nivelar():
+    """Cubierta que se balancea · 3/4 a 96 BPM, re menor. Vals lento:
+    bajo en la parte fuerte, dos acordes de piano, y el mar debajo."""
+    negra = 60 / 96
+    compas = 3 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['D3', 'F3', 'A3', 'C4'],
+        ['A#2', 'D3', 'F3', 'A3'],
+        ['G2', 'A#2', 'D3', 'F3'],
+        ['A2', 'C#3', 'E3', 'G3'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 1.2, 0.1))
+        for tiempo in (1, 2):
+            for i, voz in enumerate(voces[1:]):
+                sumar_circular(pista, inicio + tiempo * negra + 0.015 * i,
+                               piano_fm(nota(voz) * 2, negra * 0.8, 0.045))
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.03, 1300))
+    pista += mar(len(pista), len(pista) / FS, 0.045)
+    return pista
+
+
+def caja_negra():
+    """Mecanismo que piensa · 70 BPM, mi menor. Pad oscuro, clics de
+    engranaje irregulares (3 contra 4) y un sonar que pregunta."""
+    negra = 60 / 70
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['E2', 'B2', 'G3', 'D4'],
+        ['C2', 'G2', 'E3', 'B3'],
+        ['A1', 'E2', 'C3', 'G3'],
+        ['B1', 'F#2', 'D#3', 'A3'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) for v in voces], compas * 1.1, 0.05, 1100))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]), negra * 3, 0.08))
+        for semicorchea in range(0, 16, 3):
+            sumar_circular(pista, inicio + semicorchea * negra / 4,
+                           taco_madera(1500 if semicorchea % 2 else 1150, 0.035))
+        if c % 2 == 1:
+            sumar_circular(pista, inicio + 2 * negra, sonar(0.05))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -635,6 +710,9 @@ if __name__ == '__main__':
     guardar(engranajes(), os.path.join(musica, 'maquina_engranajes.ogg'), -19, es_bucle=True)
     guardar(esclusas(), os.path.join(musica, 'maquina_esclusas.ogg'), -19, es_bucle=True)
     guardar(planos(), os.path.join(musica, 'maquina_planos.ogg'), -19, es_bucle=True)
+    guardar(redes(), os.path.join(musica, 'maquina_redes.ogg'), -20.5, es_bucle=True)
+    guardar(nivelar(), os.path.join(musica, 'maquina_nivelar.ogg'), -19, es_bucle=True)
+    guardar(caja_negra(), os.path.join(musica, 'maquina_caja_negra.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

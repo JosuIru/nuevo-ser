@@ -194,6 +194,34 @@
 	opacity: 0.75;
 }
 
+/* Compartir la página: al lado de la descarga, con el mismo aire. */
+.ns-ur-compartir {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 0;
+	border: 0;
+	background: none;
+	font: inherit;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.ns-ur-compartir svg {
+	width: 16px;
+	height: 16px;
+	flex: none;
+}
+
+/* La planta de arriba, dentro de la sección de máquinas. */
+.ns-ur-subseccion {
+	margin: 56px 0 8px;
+	color: var(--ur-texto);
+	font-size: 1.35rem;
+	font-weight: 300;
+	letter-spacing: 0.08em;
+}
+
 .ns-ur-datos {
 	display: flex;
 	flex-wrap: wrap;

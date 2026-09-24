@@ -92,15 +92,34 @@ class NS_Juegos_Web {
 
 	/** Las máquinas de Rexán que enseña la portada (id del arte, nombre, qué se hace). */
 	const MAQUINAS_UNO_ROTO = array(
-		array( 'puentes', 'Puentes', 'Cubre el hueco con tablones. El carro sólo cruza si la medida es exacta.' ),
+		array( 'puentes', 'Puentes', 'Cubre el hueco con tablones. El carro sólo cruza si la medida es exacta. Y a veces el puente sale largo y hay que quitar lo que sobra.' ),
 		array( 'encaje', 'Encaje', 'Caen trozos de fracción. Cada fila completa es una unidad entera.' ),
 		array( 'canales', 'Canales', 'Recorre el laberinto y cómete sólo los números que cumplen la regla.' ),
 		array( 'parejas', 'Parejas', 'Dos cartas que valen lo mismo aunque estén escritas distinto.' ),
-		array( 'minas', 'Minas', 'Abre las casillas seguras y marca las minas. La regla dice cuáles son.' ),
-		array( 'serpiente', 'Serpiente', 'Lleva la serpiente hasta el resultado, entre muros y números que se mueven.' ),
+		array( 'minas', 'Minas', 'Abre las casillas seguras y marca las minas: múltiplos, primos, divisores. La regla dice cuáles son.' ),
+		array( 'serpiente', 'Serpiente', 'Lleva la serpiente hasta el resultado, entre muros y números que se mueven. También bajo cero.' ),
 		array( 'balanza', 'Balanza', 'Prueba un valor para la x y mira hacia dónde se inclina.' ),
 		array( 'flota', 'La flota', 'Rexán canta las coordenadas en cálculo. Tú apuntas.' ),
-		array( 'salto', 'Salto', 'Corre, salta y elige la puerta del resultado: arriba o abajo.' ),
+		array( 'salto', 'Salto', 'Corre, salta y elige la puerta del resultado: arriba o abajo. Con fracciones y decimales, primero lo que va primero.' ),
+	);
+
+	/** La planta de arriba de los recreativos: se abre según lo que se sabe. */
+	const MAQUINAS_UNO_ROTO_ARRIBA = array(
+		array( 'engranajes', 'Engranajes', 'La grúa del Puerto sólo arranca cuando las marcas de sus ruedas coinciden.' ),
+		array( 'esclusas', 'Esclusas', 'Los números bajan por el canal. Mándalos a su esclusa y ordena a los que vienen atados.' ),
+		array( 'planos', 'Planos', 'Redibuja las casas de las Afueras con la medida justa: área, valla y tejados.' ),
+		array( 'redes', 'Las redes', 'Elige la red de la que es más fácil sacar un pez ámbar y compruébalo echándola.' ),
+		array( 'nivelar', 'Nivelar', 'Lee las pilas de contenedores y reparte la carga: media, mediana y moda.' ),
+		array( 'cajaNegra', 'La caja negra', 'Entran números y salen otros. Descubre la regla y la caja se abre.' ),
+		array( 'pozo', 'El pozo', 'El ascensor de la mina baja por debajo de cero. Sigue sus órdenes y di dónde para.' ),
+		array( 'pinturas', 'Pinturas', 'Prepara los colores de los toldos del Mercado con la receta justa.' ),
+		array( 'rebote', 'Rebote', 'Mide ángulos, dispara el láser para que rebote hasta la diana y dibuja reflejos.' ),
+		array( 'taller', 'El taller del relojero', 'Pesa, llena, corta y pon en hora: los encargos de medida de la Industria.' ),
+		array( 'hornada', 'La hornada', 'Empaqueta el pan justo: fracciones, impropias, mixtos y bandejas cortadas de otra manera.' ),
+		array( 'telar', 'El telar', 'Multiplica y divide fracciones con telas, hilos y cintas.' ),
+		array( 'tranvia', 'El tranvía', 'Una línea de tranvía por la recta de los decimales: situar, redondear y pagar el billete.' ),
+		array( 'depositos', 'Depósitos', 'Llena los depósitos de la Industria: cubitos por capas, litros y tapas redondas de tubería.' ),
+		array( 'andamios', 'Andamios', 'Plataformas cuadradas y escaleras justas para subir a las farolas de la Montaña.' ),
 	);
 
 	/**
@@ -162,6 +181,30 @@ class NS_Juegos_Web {
 		);
 	}
 
+	/**
+	 * Las fichas (imagen del armario, nombre y descripción) de una lista
+	 * de máquinas.
+	 *
+	 * @param array  $lista Filas (clave del arte, nombre, descripción).
+	 * @param string $arte  URL de los assets del juego desplegado.
+	 */
+	private static function lista_maquinas( array $lista, string $arte ): string {
+		$html = '';
+		foreach ( $lista as list( $clave, $nombre, $descripcion ) ) {
+			$html .= sprintf(
+				'<li class="ns-ur-maquina"><div class="ns-ur-maquina-imagen">'
+				. '<img src="%1$s" alt="%2$s" loading="lazy" width="400" height="528"></div>'
+				. '<h3>%3$s</h3><p>%4$s</p></li>',
+				esc_url( $arte . 'maquinas/' . $clave . '_on.png' ),
+				/* translators: %s: nombre de la máquina */
+				esc_attr( sprintf( __( 'Máquina recreativa %s encendida', 'nuevo-ser-core' ), $nombre ) ),
+				esc_html( $nombre ),
+				esc_html( $descripcion )
+			);
+		}
+		return $html;
+	}
+
 	/** Página completa de Uno Roto: portada con el juego, máquinas y principios. */
 	private static function portada_uno_roto( string $url_juego ): string {
 		$recursos = NS_CORE_URL . 'assets/juegos-web/';
@@ -182,19 +225,8 @@ class NS_Juegos_Web {
 		$id       = 'ns-ur-consola-' . wp_unique_id();
 		$icono_pc = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
 
-		$maquinas = '';
-		foreach ( self::MAQUINAS_UNO_ROTO as list( $clave, $nombre, $descripcion ) ) {
-			$maquinas .= sprintf(
-				'<li class="ns-ur-maquina"><div class="ns-ur-maquina-imagen">'
-				. '<img src="%1$s" alt="%2$s" loading="lazy" width="400" height="528"></div>'
-				. '<h3>%3$s</h3><p>%4$s</p></li>',
-				esc_url( $arte . 'maquinas/' . $clave . '_on.png' ),
-				/* translators: %s: nombre de la máquina */
-				esc_attr( sprintf( __( 'Máquina recreativa %s encendida', 'nuevo-ser-core' ), $nombre ) ),
-				esc_html( $nombre ),
-				esc_html( $descripcion )
-			);
-		}
+		$maquinas        = self::lista_maquinas( self::MAQUINAS_UNO_ROTO, $arte );
+		$maquinas_arriba = self::lista_maquinas( self::MAQUINAS_UNO_ROTO_ARRIBA, $arte );
 
 		ob_start();
 		?>
@@ -208,7 +240,7 @@ class NS_Juegos_Web {
 				<p class="ns-ur-entrada">
 					<?php
 					echo wp_kses(
-						__( 'Kai y Oryn recorren los siete distritos de una ciudad que se ha quedado sin luz. Cada cuenta bien pensada devuelve una farola, un puente, una calle. En los recreativos, <strong>Rexán</strong> guarda nueve máquinas donde las matemáticas se juegan. Para chicas y chicos de <strong>9 a 12 años</strong>.', 'nuevo-ser-core' ),
+						__( 'Kai y Oryn recorren los siete distritos de una ciudad que se ha quedado sin luz. Cada cuenta bien pensada devuelve una farola, un puente, una calle. En los recreativos, <strong>Rexán</strong> guarda veinticuatro máquinas, en dos plantas, donde las matemáticas se juegan. Para chicas y chicos de <strong>9 a 12 años</strong>.', 'nuevo-ser-core' ),
 						array( 'strong' => array() )
 					);
 					?>
@@ -220,6 +252,13 @@ class NS_Juegos_Web {
 					</button>
 					<a class="ns-ur-enlace" href="<?php echo $juego; // phpcs:ignore WordPress.Security.EscapeOutput ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Abrir en otra pestaña', 'nuevo-ser-core' ); ?></a>
 					<?php echo NS_Descargas_Apk::enlace( 'uno-roto', 'ns-ur-enlace ns-ur-descarga' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escapado en la clase ?>
+					<button type="button" class="ns-ur-enlace ns-ur-compartir" data-ns-ur-compartir
+						data-titulo="Uno Roto"
+						data-texto="<?php esc_attr_e( 'Uno Roto: un juego de matemáticas para 9 a 12 años. Sin anuncios, sin puntos, sin rastreadores.', 'nuevo-ser-core' ); ?>"
+						data-copiado="<?php esc_attr_e( 'Enlace copiado', 'nuevo-ser-core' ); ?>">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
+						<span><?php esc_html_e( 'Compartir', 'nuevo-ser-core' ); ?></span>
+					</button>
 				</div>
 				<ul class="ns-ur-datos">
 					<li><?php esc_html_e( 'Sin puntos ni «game over»', 'nuevo-ser-core' ); ?></li>
@@ -235,9 +274,12 @@ class NS_Juegos_Web {
 
 	<section class="ns-ur-seccion">
 		<div class="ns-ur-seccion-interior">
-			<h2><?php esc_html_e( 'Las nueve máquinas de Rexán', 'nuevo-ser-core' ); ?></h2>
+			<h2><?php esc_html_e( 'Las máquinas de Rexán', 'nuevo-ser-core' ); ?></h2>
 			<p class="ns-ur-seccion-entrada"><?php esc_html_e( 'Recreativos viejos que sólo funcionan con matemáticas: fracciones, porcentajes, divisibilidad, ecuaciones. Cada ronda sube un poco la dificultad, y si alguien se atasca, Rexán le enseña un ejemplo parecido resuelto paso a paso.', 'nuevo-ser-core' ); ?></p>
 			<ul class="ns-ur-maquinas"><?php echo $maquinas; // phpcs:ignore WordPress.Security.EscapeOutput -- escapado arriba ?></ul>
+			<h3 class="ns-ur-subseccion"><?php esc_html_e( 'La planta de arriba', 'nuevo-ser-core' ); ?></h3>
+			<p class="ns-ur-seccion-entrada"><?php esc_html_e( 'Quince máquinas más, que se encienden cuando se domina lo que piden: engranajes, ángulos, decimales, probabilidad, volúmenes, Pitágoras… Cada semana, además, Rexán cuelga un reto especial en la sala.', 'nuevo-ser-core' ); ?></p>
+			<ul class="ns-ur-maquinas"><?php echo $maquinas_arriba; // phpcs:ignore WordPress.Security.EscapeOutput -- escapado arriba ?></ul>
 		</div>
 	</section>
 

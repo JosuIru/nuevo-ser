@@ -18,8 +18,8 @@ lib/src/
 │   ├── mastery_engine.dart             ← motor adaptativo Strategy (C6)
 │   ├── mastery_profile.dart            ← contrato MasteryProfile + SessionPayload (C6)
 │   ├── perfiles/p1_precision.dart      ← P1 funcional (C6)
-│   ├── perfiles/p2_detection.dart      ← stub (C6)
-│   ├── perfiles/p3_construction.dart   ← stub (C6)
+│   ├── perfiles/p2_detection.dart      ← P2 detección F1 (C1), paridad PHP
+│   ├── perfiles/p3_construction.dart   ← P3 rúbrica compuesta (C2), paridad PHP
 │   ├── perfiles/p4_calibration.dart    ← P4 calibración epistémica (AH.03): Brier invertido con penalización doble por sobreconfianza, paridad PHP
 │   └── selector_habilidades.dart       ← selector adaptativo genérico
 ├── quiz/

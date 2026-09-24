@@ -40,7 +40,7 @@ cerradas), pero deja provisionales que necesitan ojos humanos:
 - **Voz de Andrés en el ático** (`lib/dominio/atico/voz_andres_atico.dart`):
   frases nuevas en castellano, sin revisión de voz (doc 04) ni eu/ca.
 - **El documento roto**: las tiras son los propios `PropiedadesFuente` del catálogo; si un dato está mal en el catálogo, el oficio lo repite. Nada nuevo que validar aparte de eso.
-- **Maestría**: El documento roto registra HF.02-05 (P1, primer intento de cada tira, dificultad 1.0 fija). Tres fichas NO registra todavía. Falta
+- **Maestría**: El documento roto registra HF.02-05 (P1, primer intento de cada tira, dificultad 1.0 fija). Tres fichas y la Reconstrucción registran AH.03 con P4 (core). **Decisión a validar**: la ficha de AH.03 pide «penalización doble por sobreconfianza»; se ha implementado doblando el PESO de la afirmación sobreconfiada (no el error), lo que da 0,5 en el ejemplo del liberto Marco Tulio donde la ficha, sin penalización, dice 0,67. También: «30 afirmaciones en al menos 6 Brechas» se aproxima con 30 exposiciones y 6 sesiones buenas seguidas. Falta
   `P4Calibration.compute()` en el core y un `RegistroMaestriaArchivo`
   (doc del ático §6).
 

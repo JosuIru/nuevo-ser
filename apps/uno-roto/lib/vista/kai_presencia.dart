@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../nucleo/paleta.dart';
+import 'personajes/retratos.dart' show DibujoOPersonaje;
 
 /// Presencia de Kai: avatar en silueta en la esquina inferior DERECHA
 /// con un bocadillo a su izquierda. Aparece puntualmente para
@@ -55,16 +56,21 @@ class _AvatarKai extends StatelessWidget {
     // PNG escaneado del concept-art original (kai.pdf). 160x200 para
     // que el dibujo sea reconocible (a 95x120 se veía como manchita).
     // Cabe en el SizedBox(height: 200) del padre.
-    return Image.asset(
-      'assets/personajes/kai.png',
-      width: 160,
-      height: 200,
-      fit: BoxFit.contain,
-      filterQuality: FilterQuality.medium,
+    return DibujoOPersonaje(
+      id: 'kai',
+      color: PaletaNeon.azulNeon,
+      ancho: 160,
+      alto: 200,
+      original: Image.asset(
+        'assets/personajes/kai.png',
+        width: 160,
+        height: 200,
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.medium,
+      ),
     );
   }
 }
-
 
 class _BocadilloKai extends StatelessWidget {
   final String texto;

@@ -3409,4 +3409,29 @@ const Map<String, String> narrativaEu = <String, String>{
       'Aldatu marrazkia',
   'Volver al original':
       'Itzuli jatorrizkora',
+  // El taller de dibujo: personajes
+  'Dibuja cómo ves a {n} en un papel, con los colores que quieras. Luego hazle una foto con buena luz: aparecerá así en sus escenas.':
+      'Marraztu paper batean nola ikusten duzun {n}, nahi dituzun koloreekin. Gero atera argazki bat argi onarekin: horrela agertuko da bere eszenetan.',
+  'Así los ves tú. Dibújalos en papel y aparecerán así en sus escenas.':
+      'Horrela ikusten dituzu zuk. Marraztu paperean eta horrela agertuko dira beren eszenetan.',
+  'Todavía no os conocéis.':
+      'Oraindik ez duzue elkar ezagutzen.',
+  'La mentora':
+      'Tutorea',
+  'El rival':
+      'Arerioa',
+  'Maestra de los Tejados':
+      'Teilatuetako Maistra',
+  'Maestro de los Canales':
+      'Kanaletako Maisua',
+  'Maestra del Mercado':
+      'Mercadoko Maistra',
+  'Maestro de la Industria':
+      'Industriako Maisua',
+  'Maestro del Puerto':
+      'Portuko Maisua',
+  'Maestra de las Afueras':
+      'Kanpoaldeko Maistra',
+  'Aprendiz':
+      'Ikastuna',
 };

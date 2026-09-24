@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../nucleo/paleta.dart';
+import 'personajes/retratos.dart' show DibujoOPersonaje;
 
 /// Presencia de Sora: avatar en silueta en la esquina inferior izquierda
 /// con un bocadillo que aparece cuando tiene algo que decir.
@@ -54,16 +55,22 @@ class _AvatarSora extends StatelessWidget {
       height: 90,
       child: Align(
         alignment: Alignment.bottomCenter,
-        child: SizedBox(
-          width: 70,
-          height: 70,
-          child: Image.asset(
-            'assets/personajes/retratos/sora.webp',
-            fit: BoxFit.contain,
-            filterQuality: FilterQuality.medium,
-            errorBuilder: (_, __, ___) => CustomPaint(
-              size: const Size(70, 90),
-              painter: _PintorSilueta(),
+        child: DibujoOPersonaje(
+          id: 'sora',
+          color: PaletaNeon.violetaNeon,
+          ancho: 70,
+          alto: 70,
+          original: SizedBox(
+            width: 70,
+            height: 70,
+            child: Image.asset(
+              'assets/personajes/retratos/sora.webp',
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.medium,
+              errorBuilder: (_, __, ___) => CustomPaint(
+                size: const Size(70, 90),
+                painter: _PintorSilueta(),
+              ),
             ),
           ),
         ),
@@ -95,10 +102,10 @@ class _PintorSilueta extends CustomPainter {
       ..addOval(Rect.fromCircle(center: centroCabeza, radius: radioCabeza))
       ..moveTo(centroCabeza.dx - radioCabeza * 0.7,
           centroCabeza.dy - radioCabeza * 0.4)
-      ..lineTo(
-          centroCabeza.dx - radioCabeza * 1.1, centroCabeza.dy + radioCabeza * 0.2)
-      ..lineTo(
-          centroCabeza.dx - radioCabeza * 0.3, centroCabeza.dy - radioCabeza * 0.8);
+      ..lineTo(centroCabeza.dx - radioCabeza * 1.1,
+          centroCabeza.dy + radioCabeza * 0.2)
+      ..lineTo(centroCabeza.dx - radioCabeza * 0.3,
+          centroCabeza.dy - radioCabeza * 0.8);
 
     canvas.drawPath(trazoCabeza, pinturaSilueta);
     canvas.drawCircle(centroCabeza, radioCabeza, pinturaContorno);

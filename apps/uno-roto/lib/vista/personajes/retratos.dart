@@ -2,10 +2,14 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../datos/dibujos_taller.dart';
 import '../../dominio/voz_personaje.dart';
 import '../../nucleo/paleta.dart';
+import '../dibujo_con_halo.dart';
 
 /// Retratos del elenco, por orden de preferencia:
+/// 0. **El dibujo del niño** (El taller de dibujo), si ha dibujado a
+///    ese personaje en su perfil.
 /// 1. **Dibujo a mano** (concept-art escaneado, cuerpo entero) en
 ///    `assets/personajes/<id>.png` — hoy Kai y Oryn.
 /// 2. **Retrato ilustrado PROVISIONAL** (busto circular) en
@@ -165,6 +169,18 @@ const _idPorNombre = {
   'Niko': 'niko',
 };
 
+/// Color del halo del personaje (el de su contorno en la silueta).
+Color colorDePersonaje(VozPersonaje voz) =>
+    rasgosPorVoz[voz]?.contorno ??
+    switch (voz) {
+      VozPersonaje.kai => PaletaNeon.azulNeon,
+      VozPersonaje.oryn => PaletaNeon.ambarCanales,
+      _ => PaletaNeon.violetaNeon,
+    };
+
+/// Id de retrato de [voz] (`sora`, `rexan`…), o null.
+String? idDeRetrato(VozPersonaje voz) => _idPorNombre[voz.nombreVisible];
+
 TipoRetrato tipoRetrato(VozPersonaje voz) {
   final id = _idPorNombre[voz.nombreVisible];
   if (id == null) return TipoRetrato.ninguno;
@@ -184,6 +200,19 @@ class RetratoPersonaje extends StatelessWidget {
   @override
   Widget build(BuildContext contexto) {
     final id = _idPorNombre[voz.nombreVisible];
+    return ValueListenableBuilder<Map<String, String>>(
+      valueListenable: dibujosPersonajes.rutas,
+      builder: (_, dibujos, __) {
+        final dibujo = id == null ? null : dibujos[id];
+        if (dibujo != null) {
+          return DibujoConHalo(key: const ValueKey('dibujo-personaje'), ruta: dibujo, color: colorDePersonaje(voz));
+        }
+        return _original(id);
+      },
+    );
+  }
+
+  Widget _original(String? id) {
     final rasgos = rasgosPorVoz[voz];
     Widget silueta() => rasgos == null
         ? const SizedBox.shrink()
@@ -215,6 +244,39 @@ class RetratoPersonaje extends StatelessWidget {
         return const SizedBox.shrink();
     }
   }
+}
+
+/// El dibujo del niño para el personaje [id] (El taller de dibujo), en
+/// un hueco de [ancho] × [alto]; si no lo ha dibujado, [original].
+class DibujoOPersonaje extends StatelessWidget {
+  final String id;
+  final Color color;
+  final double ancho;
+  final double alto;
+  final Widget original;
+
+  const DibujoOPersonaje({
+    super.key,
+    required this.id,
+    required this.color,
+    required this.ancho,
+    required this.alto,
+    required this.original,
+  });
+
+  @override
+  Widget build(BuildContext contexto) => ValueListenableBuilder<Map<String, String>>(
+        valueListenable: dibujosPersonajes.rutas,
+        builder: (_, dibujos, __) {
+          final dibujo = dibujos[id];
+          if (dibujo == null) return original;
+          return SizedBox(
+            width: ancho,
+            height: alto,
+            child: DibujoConHalo(key: const ValueKey('dibujo-personaje'), ruta: dibujo, color: color),
+          );
+        },
+      );
 }
 
 /// Figura humana de pie, en un único contorno limpio (las piezas se

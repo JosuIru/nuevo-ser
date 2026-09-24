@@ -16,6 +16,7 @@ import '../nucleo/paleta.dart';
 import 'pantalla_atlas_distrito.dart';
 import 'pantalla_panel_tutor.dart';
 import 'pestana_bestiario.dart';
+import 'pestana_personajes.dart';
 import 'widgets/avatar_jugador.dart';
 import 'widgets/indicador_ventana.dart';
 
@@ -46,7 +47,7 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
       if (mounted) setState(() {});
     });
@@ -85,10 +86,14 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
             letterSpacing: 2.5,
             fontWeight: FontWeight.w400,
           ),
+          // Cuatro pestañas: en un móvil estrecho se desplazan.
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
           tabs: const [
             Tab(text: 'HABILIDADES'),
             Tab(text: 'DIARIO'),
             Tab(text: 'BESTIARIO'),
+            Tab(text: 'PERSONAJES'),
           ],
         ),
         actions: [
@@ -114,6 +119,7 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
             _PestanaHabilidades(repositorio: widget.repositorio),
             _PestanaDiario(repositorio: widget.repositorio),
             PestanaBestiario(repositorio: widget.repositorio),
+            PestanaPersonajes(repositorio: widget.repositorio),
           ],
         ),
       ),

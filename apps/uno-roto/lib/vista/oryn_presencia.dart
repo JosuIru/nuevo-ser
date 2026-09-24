@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../nucleo/paleta.dart';
+import 'personajes/retratos.dart' show DibujoOPersonaje;
 
 /// Presencia de Oryn: maestro de Sora. Avatar en el centro inferior de
 /// la pantalla — su rol es figura tutelar, no compañero (izquierda) ni
@@ -56,16 +57,21 @@ class _AvatarOryn extends StatelessWidget {
     // PNG escaneado del concept-art original (oryn.pdf). 170x200 —
     // un pelín más ancho que Kai porque la postura de guardia con
     // pies abiertos ocupa más, y el dibujo es vertical.
-    return Image.asset(
-      'assets/personajes/oryn.png',
-      width: 170,
-      height: 200,
-      fit: BoxFit.contain,
-      filterQuality: FilterQuality.medium,
+    return DibujoOPersonaje(
+      id: 'oryn',
+      color: PaletaNeon.ambarCanales,
+      ancho: 170,
+      alto: 200,
+      original: Image.asset(
+        'assets/personajes/oryn.png',
+        width: 170,
+        height: 200,
+        fit: BoxFit.contain,
+        filterQuality: FilterQuality.medium,
+      ),
     );
   }
 }
-
 
 class _BocadilloOryn extends StatelessWidget {
   final String texto;

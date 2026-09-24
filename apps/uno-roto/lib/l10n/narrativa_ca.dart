@@ -3413,4 +3413,29 @@ const Map<String, String> narrativaCa = <String, String>{
       'Canviar el dibuix',
   'Volver al original':
       'Tornar a l\'original',
+  // El taller de dibujo: personajes
+  'Dibuja cómo ves a {n} en un papel, con los colores que quieras. Luego hazle una foto con buena luz: aparecerá así en sus escenas.':
+      'Dibuixa com veus {n} en un paper, amb els colors que vulguis. Després fes-hi una foto amb bona llum: apareixerà així a les seves escenes.',
+  'Así los ves tú. Dibújalos en papel y aparecerán así en sus escenas.':
+      'Així els veus tu. Dibuixa\'ls en paper i apareixeran així a les seves escenes.',
+  'Todavía no os conocéis.':
+      'Encara no us coneixeu.',
+  'La mentora':
+      'La mentora',
+  'El rival':
+      'El rival',
+  'Maestra de los Tejados':
+      'Mestra de les Teulades',
+  'Maestro de los Canales':
+      'Mestre dels Canals',
+  'Maestra del Mercado':
+      'Mestra del Mercado',
+  'Maestro de la Industria':
+      'Mestre de la Indústria',
+  'Maestro del Puerto':
+      'Mestre del Port',
+  'Maestra de las Afueras':
+      'Mestra dels Afores',
+  'Aprendiz':
+      'Aprenent',
 };

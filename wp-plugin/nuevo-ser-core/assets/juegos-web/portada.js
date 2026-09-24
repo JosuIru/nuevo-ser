@@ -1,5 +1,5 @@
 /*
- * Portada web de Uno Roto: botón de pantalla completa sobre la consola.
+ * Portadas web de los juegos: botón de pantalla completa sobre la consola.
  * Donde el navegador no deja poner un div a pantalla completa (Safari de
  * iPhone), abre el juego solo en la misma pestaña.
  */

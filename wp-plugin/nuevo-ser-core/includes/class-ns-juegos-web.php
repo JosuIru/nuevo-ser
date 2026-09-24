@@ -47,18 +47,32 @@ class NS_Juegos_Web {
 			static function ( $atributos ) {
 				$atributos          = is_array( $atributos ) ? $atributos : array();
 				$atributos['juego'] = 'las-versiones';
+				if ( ! isset( $atributos['portada'] ) ) {
+					$atributos['portada'] = 'si';
+				}
 				return self::shortcode( $atributos );
 			}
 		);
 	}
 
-	/** Marca la página que lleva [uno_roto] para vestir de noche el tema. */
+	/** Portadas propias: shortcode => clase de la página y hoja de estilos. */
+	const PORTADAS = array(
+		'uno_roto'      => array( 'ns-ur-pagina', 'ns-portada-juegos', 'portada.css' ),
+		'las_versiones' => array( 'ns-lv-pagina', 'ns-portada-las-versiones', 'portada-las-versiones.css' ),
+	);
+
+	/** Marca la página que lleva la portada de un juego para vestir el tema con su estética. */
 	public static function clase_de_pagina( array $clases ): array {
 		$entrada = is_singular() ? get_post() : null;
-		if ( $entrada && has_shortcode( $entrada->post_content, 'uno_roto' ) ) {
-			$clases[] = 'ns-ur-pagina';
-			// La hoja se necesita ya para la cabecera, antes del contenido.
-			wp_enqueue_style( 'ns-portada-juegos', NS_CORE_URL . 'assets/juegos-web/portada.css', array(), NS_CORE_VERSION );
+		if ( ! $entrada ) {
+			return $clases;
+		}
+		foreach ( self::PORTADAS as $shortcode => list( $clase, $manejador, $hoja ) ) {
+			if ( has_shortcode( $entrada->post_content, $shortcode ) ) {
+				$clases[] = $clase;
+				// La hoja se necesita ya para la cabecera, antes del contenido.
+				wp_enqueue_style( $manejador, NS_CORE_URL . 'assets/juegos-web/' . $hoja, array(), NS_CORE_VERSION );
+			}
 		}
 		return $clases;
 	}
@@ -92,7 +106,8 @@ class NS_Juegos_Web {
 	/**
 	 * @param array|string $atributos juego (id), alto (px, vh o %) y
 	 *                                portada ("si" para la página completa,
-	 *                                sólo en Uno Roto; "no" para el juego solo).
+	 *                                en Uno Roto y Las Versiones; "no" para
+	 *                                el juego solo).
 	 */
 	public static function shortcode( $atributos ): string {
 		$atributos = shortcode_atts(
@@ -121,10 +136,15 @@ class NS_Juegos_Web {
 			return '';
 		}
 
-		// [uno_roto] trae la portada completa salvo portada="no";
-		// [nuevo_ser_juego] sólo el juego salvo portada="si".
-		if ( 'uno-roto' === $juego && 'si' === $atributos['portada'] ) {
-			return self::portada_uno_roto( $ubicacion['url'] );
+		// [uno_roto] y [las_versiones] traen la portada completa salvo
+		// portada="no"; [nuevo_ser_juego] sólo el juego salvo portada="si".
+		if ( 'si' === $atributos['portada'] ) {
+			if ( 'uno-roto' === $juego ) {
+				return self::portada_uno_roto( $ubicacion['url'] );
+			}
+			if ( 'las-versiones' === $juego ) {
+				return self::portada_las_versiones( $ubicacion['url'] );
+			}
 		}
 
 		$titulo = self::JUEGOS[ $juego ];
@@ -241,6 +261,166 @@ class NS_Juegos_Web {
 		</div>
 	</section>
 
+</div>
+		<?php
+		return (string) ob_get_clean();
+	}
+
+	/** El elenco que enseña la portada de Las Versiones (id del retrato, nombre, quién es). */
+	const ELENCO_LAS_VERSIONES = array(
+		array( 'maren', 'Maren', 'Trece años. Aspirante a Cronista. Lleva un cuaderno que nadie evalúa.' ),
+		array( 'isaura', 'Isaura', 'Cronista superior y mentora de Maren en el Archivo.' ),
+		array( 'karim', 'Karim', 'Epigrafista. Enseña a leer las piedras con honestidad sobre lo que falta.' ),
+		array( 'aitor', 'Aitor', 'Especialista en el Camino. Acompaña a Maren en los viajes.' ),
+		array( 'marina', 'Marina', 'Diecisiete años, Aprendiz III. La compañera que va un paso por delante.' ),
+		array( 'andres', 'Andrés', 'Archivero técnico. Guarda las piezas del ático y un humor seco.' ),
+	);
+
+	/** Las cinco fases de una Brecha (título, qué se hace). */
+	const FASES_LAS_VERSIONES = array(
+		array( 'Preguntar', 'Antes de buscar respuestas, buenas preguntas: qué pasó, por qué, quién lo cuenta y cómo lo sabemos.' ),
+		array( 'Recoger', 'Visitar el lugar y reunir las fuentes: textos, objetos, testimonios, mapas, restos.' ),
+		array( 'Evaluar', 'Cada fuente en la mesa de trabajo: quién la hizo, para quién, qué calla, qué intereses tenía.' ),
+		array( 'Reconstruir', 'Contar lo que pasó anclando cada afirmación a su evidencia, con su nivel de confianza.' ),
+		array( 'El Concilio', 'Presentar la versión ante otras Cronistas. No gana quien tiene razón: gana quien juzgó bien.' ),
+	);
+
+	/** Página completa de Las Versiones: portada con el juego, el oficio, el elenco y principios. */
+	private static function portada_las_versiones( string $url_juego ): string {
+		$recursos = NS_CORE_URL . 'assets/juegos-web/';
+		wp_enqueue_style( 'ns-portada-las-versiones', $recursos . 'portada-las-versiones.css', array(), NS_CORE_VERSION );
+		wp_enqueue_script( 'ns-portada-juegos', $recursos . 'portada.js', array(), NS_CORE_VERSION, true );
+
+		$arte    = $url_juego . 'assets/assets/';
+		$fuentes = $arte . 'fonts/';
+		wp_add_inline_style(
+			'ns-portada-las-versiones',
+			'@font-face{font-family:"LV Roboto";src:url("' . esc_url( $fuentes . 'Roboto-Light.ttf' ) . '") format("truetype");font-weight:300;font-display:swap}'
+			. '@font-face{font-family:"LV Roboto";src:url("' . esc_url( $fuentes . 'Roboto-Regular.ttf' ) . '") format("truetype");font-weight:400;font-display:swap}'
+		);
+
+		$juego    = esc_url( $url_juego . 'index.html' );
+		$id       = 'ns-lv-consola-' . wp_unique_id();
+		$icono_pc = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+		$romanos  = array( 'I', 'II', 'III', 'IV', 'V' );
+
+		$fases = '';
+		foreach ( self::FASES_LAS_VERSIONES as $indice => list( $titulo, $descripcion ) ) {
+			$fases .= sprintf(
+				'<li class="ns-lv-fase"><span class="ns-lv-fase-numero" aria-hidden="true">%1$s</span>'
+				. '<div><h3>%2$s</h3><p>%3$s</p></div></li>',
+				esc_html( $romanos[ $indice ] ),
+				esc_html( $titulo ),
+				esc_html( $descripcion )
+			);
+		}
+
+		$elenco = '';
+		foreach ( self::ELENCO_LAS_VERSIONES as list( $clave, $nombre, $descripcion ) ) {
+			$elenco .= sprintf(
+				'<li class="ns-lv-retrato"><img src="%1$s" alt="%2$s" loading="lazy" width="512" height="512">'
+				. '<h3>%3$s</h3><p>%4$s</p></li>',
+				esc_url( $arte . 'personajes/' . $clave . '.jpg' ),
+				/* translators: %s: nombre del personaje */
+				esc_attr( sprintf( __( 'Retrato en acuarela de %s', 'nuevo-ser-core' ), $nombre ) ),
+				esc_html( $nombre ),
+				esc_html( $descripcion )
+			);
+		}
+
+		ob_start();
+		?>
+<div class="ns-lv alignfull">
+	<section class="ns-lv-portada">
+		<div class="ns-lv-portada-rejilla">
+			<div class="ns-lv-portada-texto">
+				<p class="ns-lv-antetitulo"><?php esc_html_e( 'Colección Nuevo Ser Kids', 'nuevo-ser-core' ); ?></p>
+				<h1 class="ns-lv-titulo">Las Versiones</h1>
+				<p class="ns-lv-subtitulo"><?php esc_html_e( 'El oficio de contar la historia con honestidad.', 'nuevo-ser-core' ); ?></p>
+				<p class="ns-lv-entrada">
+					<?php
+					echo wp_kses(
+						__( '<strong>Maren</strong> tiene trece años y acaba de entrar en el <strong>Archivo de Iruña</strong> como Aspirante a Cronista. A lo largo de un curso aprende un oficio raro: hacer buenas preguntas, leer las fuentes con sospecha y decir cuánto se sabe de verdad. Para chicas y chicos de <strong>10 a 14 años</strong>.', 'nuevo-ser-core' ),
+						array( 'strong' => array() )
+					);
+					?>
+				</p>
+				<div class="ns-lv-acciones">
+					<button type="button" class="ns-lv-boton" data-ns-ur-pantalla-completa="<?php echo esc_attr( $id ); ?>" data-ns-ur-url="<?php echo $juego; // phpcs:ignore WordPress.Security.EscapeOutput -- ya escapado ?>">
+						<?php echo $icono_pc; // phpcs:ignore WordPress.Security.EscapeOutput -- SVG fijo ?>
+						<?php esc_html_e( 'Jugar a pantalla completa', 'nuevo-ser-core' ); ?>
+					</button>
+					<a class="ns-lv-enlace" href="<?php echo $juego; // phpcs:ignore WordPress.Security.EscapeOutput ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Abrir en otra pestaña', 'nuevo-ser-core' ); ?></a>
+				</div>
+				<ul class="ns-lv-datos">
+					<li><?php esc_html_e( 'Sin rankings ni «game over»', 'nuevo-ser-core' ); ?></li>
+					<li><?php esc_html_e( 'Funciona sin conexión', 'nuevo-ser-core' ); ?></li>
+					<li><?php esc_html_e( 'Sin anuncios ni rastreadores', 'nuevo-ser-core' ); ?></li>
+				</ul>
+			</div>
+			<div class="ns-lv-consola" id="<?php echo esc_attr( $id ); ?>">
+				<iframe src="<?php echo $juego; // phpcs:ignore WordPress.Security.EscapeOutput ?>" title="Las Versiones" allow="fullscreen; autoplay" allowfullscreen></iframe>
+			</div>
+		</div>
+	</section>
+
+	<section class="ns-lv-seccion">
+		<div class="ns-lv-seccion-interior">
+			<h2><?php esc_html_e( 'Cómo trabaja una Cronista', 'nuevo-ser-core' ); ?></h2>
+			<p class="ns-lv-seccion-entrada"><?php esc_html_e( 'Cada misterio del pasado es una Brecha: algo que el Archivo todavía no sabe contar bien. Maren la investiga en cinco fases, de Iruña a Tudela, de Aralar a Roncesvalles.', 'nuevo-ser-core' ); ?></p>
+			<ol class="ns-lv-fases"><?php echo $fases; // phpcs:ignore WordPress.Security.EscapeOutput -- escapado arriba ?></ol>
+		</div>
+	</section>
+
+	<section class="ns-lv-seccion ns-lv-papel">
+		<div class="ns-lv-seccion-interior">
+			<h2><?php esc_html_e( 'Tres palabras para decir cuánto sabes', 'nuevo-ser-core' ); ?></h2>
+			<p class="ns-lv-seccion-entrada"><?php esc_html_e( 'Cada afirmación lleva su sello. El juego no premia acertar: premia declarar bien. Decir «sólido» de algo que no lo era cuenta el doble que quedarse corto.', 'nuevo-ser-core' ); ?></p>
+			<div class="ns-lv-sellos">
+				<div class="ns-lv-sello ns-lv-sello-solido">
+					<h3><?php esc_html_e( 'Sólido', 'nuevo-ser-core' ); ?></h3>
+					<p><?php esc_html_e( 'Hay pruebas claras y varias fuentes apuntan a lo mismo. Se puede defender ante el Concilio.', 'nuevo-ser-core' ); ?></p>
+				</div>
+				<div class="ns-lv-sello ns-lv-sello-probable">
+					<h3><?php esc_html_e( 'Probable', 'nuevo-ser-core' ); ?></h3>
+					<p><?php esc_html_e( 'Hay pistas que apuntan ahí, pero no es seguro del todo: es la opción más razonable, no la única.', 'nuevo-ser-core' ); ?></p>
+				</div>
+				<div class="ns-lv-sello ns-lv-sello-disputado">
+					<h3><?php esc_html_e( 'Disputado', 'nuevo-ser-core' ); ?></h3>
+					<p><?php esc_html_e( 'Hay lecturas distintas y las pruebas chocan o no bastan para decidir. Reconocerlo también es saber.', 'nuevo-ser-core' ); ?></p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ns-lv-seccion">
+		<div class="ns-lv-seccion-interior">
+			<h2><?php esc_html_e( 'En el Archivo', 'nuevo-ser-core' ); ?></h2>
+			<p class="ns-lv-seccion-entrada"><?php esc_html_e( 'Maren no aprende sola. El oficio se aprende al lado de quien ya lo tiene.', 'nuevo-ser-core' ); ?></p>
+			<ul class="ns-lv-elenco"><?php echo $elenco; // phpcs:ignore WordPress.Security.EscapeOutput -- escapado arriba ?></ul>
+		</div>
+	</section>
+
+	<section class="ns-lv-seccion">
+		<div class="ns-lv-seccion-interior">
+			<h2><?php esc_html_e( 'Para familias y docentes', 'nuevo-ser-core' ); ?></h2>
+			<p class="ns-lv-seccion-entrada"><?php esc_html_e( 'Las Versiones forma parte de la Colección Nuevo Ser Kids. Enseña a convivir con la incertidumbre sin caer en el «todo vale».', 'nuevo-ser-core' ); ?></p>
+			<div class="ns-lv-principios">
+				<div class="ns-lv-principio">
+					<h3><?php esc_html_e( 'Juzgar bien, no tener razón', 'nuevo-ser-core' ); ?></h3>
+					<p><?php esc_html_e( 'Lo que se mide es la honestidad al declarar cuánto se sabe. El progreso no es un marcador: es una balanza entre el exceso de confianza y la timidez.', 'nuevo-ser-core' ); ?></p>
+				</div>
+				<div class="ns-lv-principio">
+					<h3><?php esc_html_e( 'Historia revisada', 'nuevo-ser-core' ); ?></h3>
+					<p><?php esc_html_e( 'El contenido histórico pasa por un comité asesor. Mientras un dato no está validado, el juego usa una formulación genérica en vez de inventarlo.', 'nuevo-ser-core' ); ?></p>
+				</div>
+				<div class="ns-lv-principio">
+					<h3><?php esc_html_e( 'Instálalo en el móvil', 'nuevo-ser-core' ); ?></h3>
+					<p><?php esc_html_e( 'Abre el juego en su pestaña y elige «Añadir a la pantalla de inicio». Después se abre como una aplicación y funciona sin conexión. No hay anuncios, compras ni rastreadores.', 'nuevo-ser-core' ); ?></p>
+				</div>
+			</div>
+		</div>
+	</section>
 </div>
 		<?php
 		return (string) ob_get_clean();

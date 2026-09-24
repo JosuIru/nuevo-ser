@@ -1,0 +1,580 @@
+/*
+ * Portada web de Las Versiones ([las_versiones]). Estética del propio
+ * juego: el Archivo de noche, sepia y tinta, lacre ámbar, y los
+ * pigmentos del doc 11 para los tres niveles de confianza. Roboto sale
+ * del build del juego y la serif es la del sistema: ninguna petición a
+ * terceros.
+ */
+/* Las @font-face van en línea desde PHP: apuntan al build desplegado. */
+
+.ns-lv {
+	--lv-fondo: #1f1a14;
+	--lv-fondo-medio: #2c261e;
+	--lv-papel: #e8ddc9;
+	--lv-tinta: #1a1612;
+	--lv-tinta-tenue: #6b6055;
+	--lv-texto: #e8ddc9;
+	--lv-tenue: #a89b85;
+	--lv-lacre: #c8893a;
+	--lv-linea: rgba(200, 137, 58, 0.24);
+	--lv-lapislazuli: #2f4a7a;
+	--lv-ocre: #9a7428;
+	--lv-bermellon: #b8412f;
+	--lv-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+
+	/* A todo el ancho: lleva la clase alignfull de los temas de bloques. */
+	max-width: none !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	background: var(--lv-fondo);
+	color: var(--lv-texto);
+	font-family: "LV Roboto", "Roboto", system-ui, sans-serif;
+	font-weight: 300;
+	line-height: 1.6;
+	overflow: hidden;
+}
+
+.ns-lv *,
+.ns-lv *::before,
+.ns-lv *::after {
+	box-sizing: border-box;
+}
+
+.ns-lv a {
+	color: inherit;
+}
+
+/* ─── Portada: texto a la izquierda, consola a la derecha ─────────── */
+
+.ns-lv-portada {
+	position: relative;
+	min-height: min(100svh, 980px);
+	padding: clamp(40px, 7vw, 96px) clamp(16px, 5vw, 72px) clamp(56px, 8vw, 110px);
+	/* Luz de lámpara sobre la mesa de trabajo. */
+	background:
+		radial-gradient(ellipse 55% 55% at 76% 42%, rgba(200, 137, 58, 0.2), transparent 70%),
+		radial-gradient(ellipse 50% 40% at 10% 90%, rgba(168, 155, 133, 0.06), transparent 70%),
+		linear-gradient(180deg, var(--lv-fondo) 0%, var(--lv-fondo-medio) 100%);
+	isolation: isolate;
+}
+
+/* Renglones tenues de cuaderno, sólo a la izquierda. */
+.ns-lv-portada::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: repeating-linear-gradient(180deg, transparent 0 35px, rgba(232, 221, 201, 0.035) 35px 36px);
+	mask-image: linear-gradient(90deg, #000 0%, transparent 60%);
+	-webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 60%);
+}
+
+.ns-lv-portada-rejilla {
+	max-width: 1180px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+	gap: clamp(32px, 5vw, 80px);
+	align-items: center;
+}
+
+.ns-lv-antetitulo {
+	margin: 0 0 14px;
+	font-size: 0.85rem;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+	color: var(--lv-lacre);
+}
+
+.ns-lv-titulo {
+	margin: 0 0 14px;
+	font-family: var(--lv-serif);
+	font-size: clamp(2.8rem, 6vw, 5rem);
+	font-weight: 400;
+	font-variant: small-caps;
+	letter-spacing: 0.04em;
+	line-height: 1;
+	color: var(--lv-texto);
+}
+
+.ns-lv-subtitulo {
+	margin: 0 0 28px;
+	font-family: var(--lv-serif);
+	font-style: italic;
+	font-size: clamp(1.3rem, 2.3vw, 1.75rem);
+	line-height: 1.3;
+	color: var(--lv-lacre);
+}
+
+.ns-lv-entrada {
+	max-width: 34em;
+	margin: 0 0 32px;
+	font-size: 1.08rem;
+	color: var(--lv-tenue);
+}
+
+.ns-lv-entrada strong {
+	color: var(--lv-texto);
+	font-weight: 400;
+}
+
+.ns-lv-acciones {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px 20px;
+	align-items: center;
+	margin-bottom: 36px;
+}
+
+.ns-lv-boton {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 14px 26px;
+	border: 1px solid var(--lv-lacre);
+	border-radius: 4px;
+	background: var(--lv-lacre);
+	color: var(--lv-tinta) !important;
+	font: inherit;
+	font-size: 1rem;
+	font-weight: 400;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.ns-lv-boton:hover,
+.ns-lv-boton:focus-visible {
+	background: #d99a4a;
+	box-shadow: 0 6px 24px rgba(200, 137, 58, 0.35);
+	transform: translateY(-1px);
+}
+
+.ns-lv-boton:focus-visible {
+	outline: 2px solid var(--lv-texto);
+	outline-offset: 3px;
+}
+
+.ns-lv-boton svg {
+	width: 18px;
+	height: 18px;
+}
+
+.ns-lv-enlace {
+	color: var(--lv-tenue) !important;
+	font-size: 0.95rem;
+	text-underline-offset: 4px;
+}
+
+.ns-lv-datos {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 28px;
+	margin: 0;
+	padding: 20px 0 0;
+	list-style: none;
+	border-top: 1px solid var(--lv-linea);
+	font-size: 0.92rem;
+	color: var(--lv-tenue);
+}
+
+.ns-lv-datos li {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+}
+
+/* Gota de lacre. */
+.ns-lv-datos li::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: var(--lv-lacre);
+}
+
+/* ─── La consola: el juego dentro de un móvil de madera oscura ────── */
+
+.ns-lv-consola {
+	position: relative;
+	justify-self: center;
+	width: min(100%, 400px);
+	aspect-ratio: 9 / 18.5;
+	max-height: 82svh;
+	padding: 12px;
+	border-radius: 40px;
+	background: linear-gradient(160deg, #4a3b2e, #221e1b 65%);
+	box-shadow:
+		0 0 0 1px rgba(200, 137, 58, 0.4),
+		0 0 70px rgba(200, 137, 58, 0.18),
+		0 40px 80px rgba(0, 0, 0, 0.55);
+}
+
+.ns-lv-consola::after {
+	/* Reflejo sobre el marco. */
+	content: "";
+	position: absolute;
+	inset: 0;
+	border-radius: inherit;
+	pointer-events: none;
+	background: linear-gradient(120deg, rgba(255, 240, 210, 0.08), transparent 35%);
+}
+
+.ns-lv-consola iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	border-radius: 28px;
+	background: var(--lv-fondo);
+}
+
+.ns-lv-consola:fullscreen {
+	width: 100vw;
+	height: 100vh;
+	max-height: none;
+	aspect-ratio: auto;
+	padding: 0;
+	border-radius: 0;
+	background: var(--lv-fondo);
+}
+
+.ns-lv-consola:fullscreen iframe {
+	max-width: 520px;
+	margin: 0 auto;
+	border-radius: 0;
+}
+
+/* ─── Secciones ───────────────────────────────────────────────────── */
+
+.ns-lv-seccion {
+	padding: clamp(56px, 8vw, 110px) clamp(16px, 5vw, 72px);
+	border-top: 1px solid var(--lv-linea);
+}
+
+.ns-lv-seccion-interior {
+	max-width: 1180px;
+	margin: 0 auto;
+}
+
+.ns-lv-seccion h2 {
+	margin: 0 0 10px;
+	font-family: var(--lv-serif);
+	font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+	font-weight: 400;
+	line-height: 1.2;
+	color: var(--lv-texto);
+}
+
+.ns-lv-seccion-entrada {
+	max-width: 40em;
+	margin: 0 0 44px;
+	color: var(--lv-tenue);
+	font-size: 1.05rem;
+}
+
+/* Las cinco fases: como el índice de un legajo. */
+.ns-lv-fases {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 0;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border-top: 1px solid var(--lv-linea);
+}
+
+.ns-lv-fase {
+	margin: 0;
+	padding: 24px 22px 8px 0;
+}
+
+.ns-lv-fase + .ns-lv-fase {
+	padding-left: 22px;
+	border-left: 1px solid var(--lv-linea);
+}
+
+.ns-lv-fase-numero {
+	display: block;
+	margin-bottom: 10px;
+	font-family: var(--lv-serif);
+	font-size: 1.9rem;
+	line-height: 1;
+	color: var(--lv-lacre);
+}
+
+.ns-lv-fase h3 {
+	margin: 0 0 8px;
+	font-size: 0.95rem;
+	font-weight: 400;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--lv-texto);
+}
+
+.ns-lv-fase p {
+	margin: 0;
+	font-size: 0.93rem;
+	line-height: 1.55;
+	color: var(--lv-tenue);
+}
+
+/* Los tres sellos, sobre papel: la página se vuelve documento. */
+.ns-lv-papel {
+	background:
+		radial-gradient(ellipse 70% 80% at 50% 40%, transparent 55%, rgba(107, 96, 85, 0.18) 100%),
+		var(--lv-papel);
+	color: var(--lv-tinta);
+	border-top: 0;
+}
+
+.ns-lv-papel h2 {
+	color: var(--lv-tinta);
+}
+
+.ns-lv-papel .ns-lv-seccion-entrada {
+	color: var(--lv-tinta-tenue);
+}
+
+.ns-lv-sellos {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: clamp(16px, 3vw, 32px);
+}
+
+.ns-lv-sello {
+	--lv-pigmento: var(--lv-lapislazuli);
+	position: relative;
+	padding: 26px 24px 24px 30px;
+	border: 1px solid rgba(26, 22, 18, 0.18);
+	background: rgba(255, 252, 244, 0.45);
+}
+
+/* Filete de color a la izquierda, como un marcador de legajo. */
+.ns-lv-sello::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 5px;
+	background: var(--lv-pigmento);
+}
+
+.ns-lv-sello-probable {
+	--lv-pigmento: var(--lv-ocre);
+}
+
+.ns-lv-sello-disputado {
+	--lv-pigmento: var(--lv-bermellon);
+}
+
+.ns-lv-sello h3 {
+	margin: 0 0 10px;
+	font-family: var(--lv-serif);
+	font-size: 1.6rem;
+	font-weight: 400;
+	font-variant: small-caps;
+	letter-spacing: 0.04em;
+	color: var(--lv-pigmento);
+}
+
+.ns-lv-sello p {
+	margin: 0;
+	font-size: 0.98rem;
+	line-height: 1.6;
+	color: var(--lv-tinta);
+}
+
+/* El elenco: retratos en acuarela. */
+.ns-lv-elenco {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: 20px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.ns-lv-retrato {
+	margin: 0;
+}
+
+.ns-lv-retrato img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border-radius: 50%;
+	box-shadow: 0 0 0 1px var(--lv-linea), 0 12px 28px rgba(0, 0, 0, 0.35);
+	filter: sepia(0.15);
+	transition: filter 0.3s, transform 0.3s;
+}
+
+.ns-lv-retrato:hover img {
+	filter: none;
+	transform: translateY(-3px);
+}
+
+.ns-lv-retrato h3 {
+	margin: 16px 0 4px;
+	font-family: var(--lv-serif);
+	font-size: 1.3rem;
+	font-weight: 400;
+	text-align: center;
+	color: var(--lv-lacre);
+}
+
+.ns-lv-retrato p {
+	margin: 0;
+	font-size: 0.88rem;
+	line-height: 1.5;
+	text-align: center;
+	color: var(--lv-tenue);
+}
+
+/* Para familias y docentes. */
+.ns-lv-principios {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: clamp(24px, 4vw, 48px);
+}
+
+.ns-lv-principio h3 {
+	margin: 0 0 10px;
+	font-family: var(--lv-serif);
+	font-style: italic;
+	font-size: 1.5rem;
+	font-weight: 400;
+	line-height: 1.25;
+	color: var(--lv-lacre);
+}
+
+.ns-lv-principio p {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.65;
+	color: var(--lv-tenue);
+}
+
+/* ─── Pantallas medianas y móvil: primero el juego ────────────────── */
+
+@media (max-width: 1100px) {
+	.ns-lv-elenco {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 28px 20px;
+	}
+
+	.ns-lv-fases {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		border-top: 0;
+	}
+
+	.ns-lv-fase,
+	.ns-lv-fase + .ns-lv-fase {
+		padding: 20px 20px 16px 0;
+		border-left: 0;
+		border-top: 1px solid var(--lv-linea);
+	}
+}
+
+@media (max-width: 860px) {
+	.ns-lv-portada {
+		min-height: 0;
+		padding-top: 32px;
+	}
+
+	.ns-lv-portada-rejilla {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 28px;
+	}
+
+	.ns-lv-subtitulo {
+		margin-bottom: 18px;
+	}
+
+	.ns-lv-entrada {
+		margin-bottom: 24px;
+	}
+
+	/* En el móvil el marco sobra: el juego a pantalla casi completa. */
+	.ns-lv-consola {
+		width: calc(100% + 32px);
+		margin: 0 -16px;
+		aspect-ratio: auto;
+		height: 88svh;
+		max-height: none;
+		padding: 0;
+		border-radius: 0;
+		box-shadow: 0 0 0 1px var(--lv-linea);
+	}
+
+	.ns-lv-consola::after {
+		display: none;
+	}
+
+	.ns-lv-consola iframe {
+		border-radius: 0;
+	}
+
+	.ns-lv-sellos {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.ns-lv-elenco {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (max-width: 520px) {
+	.ns-lv-fases {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.ns-lv *,
+	.ns-lv *::before,
+	.ns-lv *::after {
+		transition: none !important;
+	}
+}
+
+/* ─── La página que lleva el juego: el tema, también en sepia ─────── */
+
+body.ns-lv-pagina {
+	background: #1f1a14;
+	color: #e8ddc9;
+}
+
+body.ns-lv-pagina .wp-site-blocks > header,
+body.ns-lv-pagina .wp-site-blocks > footer {
+	background: #1f1a14;
+	color: #a89b85;
+}
+
+body.ns-lv-pagina .wp-site-blocks > header a,
+body.ns-lv-pagina .wp-site-blocks > footer a,
+body.ns-lv-pagina .wp-site-blocks > header .wp-block-site-title a {
+	color: #e8ddc9;
+}
+
+/* El tema pinta el pie y su filete en violeta con estilos en línea y
+   clases de preset (con !important): aquí hay que ganarles. */
+body.ns-lv-pagina .wp-site-blocks > footer,
+body.ns-lv-pagina .wp-site-blocks > header {
+	border-color: rgba(200, 137, 58, 0.24) !important;
+}
+
+body.ns-lv-pagina .wp-site-blocks > footer.has-text-color {
+	color: #a89b85 !important;
+}
+
+/* Sin el hueco que el tema deja entre la cabecera y el contenido. */
+body.ns-lv-pagina main {
+	margin-top: 0 !important;
+}

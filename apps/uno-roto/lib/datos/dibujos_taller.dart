@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -46,14 +47,15 @@ class ColeccionDibujos {
     if (!mapEquals(encontrados, rutas.value)) rutas.value = encontrados;
   }
 
-  /// Foto (o galería) → papel fuera → PNG en la carpeta de la app →
-  /// ruta en el perfil. Devuelve la ruta nueva, o null si se canceló.
-  /// Lanza [DibujoSinContenido] si en la foto no hay dibujo.
+  /// Foto (o galería) → encuadre (si hay [encuadrar]: el niño ajusta
+  /// el que propone el juego) → papel fuera → PNG en la carpeta de la
+  /// app → ruta en el perfil. Devuelve la ruta nueva, o null si se
+  /// canceló. Lanza [DibujoSinContenido] si en la foto no hay dibujo.
   Future<String?> elegir(
     RepositorioProgreso repositorio,
     String id, {
     required bool conCamara,
-    Future<Uint8List?> Function(Uint8List bytes) limpiar = limpiarDibujo,
+    Future<ui.Rect?> Function(Uint8List foto, ui.Rect? sugerido)? encuadrar,
   }) async {
     final elegido = await ImagePicker().pickImage(
       source: conCamara ? ImageSource.camera : ImageSource.gallery,
@@ -62,7 +64,13 @@ class ColeccionDibujos {
       imageQuality: 90,
     );
     if (elegido == null) return null;
-    final png = await limpiar(await elegido.readAsBytes());
+    final foto = await elegido.readAsBytes();
+    ui.Rect? recorte;
+    if (encuadrar != null) {
+      recorte = await encuadrar(foto, await encuadreSugerido(foto));
+      if (recorte == null) return null;
+    }
+    final png = await limpiarDibujo(foto, recorte: recorte);
     if (png == null) throw const DibujoSinContenido();
     return guardar(repositorio, id, png);
   }

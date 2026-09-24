@@ -3459,4 +3459,13 @@ const Map<String, String> narrativaCa = <String, String>{
       'Aquí penjo el que em portes. De moment és buida: els monstres es dibuixen al bestiari, i la resta a El meu quadern, al taller.',
   'Aquí cuelgo lo que me traes. Es la mejor pared de los recreativos.':
       'Aquí penjo el que em portes. És la millor paret dels recreatius.',
+  // El taller de dibujo: encuadre
+  'Encuadre':
+      'Enquadrament',
+  'Ajusta el recuadro a tu dibujo: arrastra las esquinas para cambiarlo de tamaño y el centro para moverlo.':
+      'Ajusta el requadre al teu dibuix: arrossega les cantonades per canviar-ne la mida i el centre per moure\'l.',
+  'Toda la foto':
+      'Tota la foto',
+  'Usar este encuadre':
+      'Fer servir aquest enquadrament',
 };

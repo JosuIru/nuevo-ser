@@ -3455,4 +3455,13 @@ const Map<String, String> narrativaEu = <String, String>{
       'Hemen zintzilikatzen dut ekartzen didazuna. Oraingoz hutsik dago: munstroak bestiarioan marrazten dira, eta gainerakoa Nire koadernoan, tailerrean.',
   'Aquí cuelgo lo que me traes. Es la mejor pared de los recreativos.':
       'Hemen zintzilikatzen dut ekartzen didazuna. Jolas-aretoko hormarik onena da.',
+  // El taller de dibujo: encuadre
+  'Encuadre':
+      'Enkoadraketa',
+  'Ajusta el recuadro a tu dibujo: arrastra las esquinas para cambiarlo de tamaño y el centro para moverlo.':
+      'Egokitu laukia zure marrazkira: arrastatu izkinak tamaina aldatzeko eta erdigunea mugitzeko.',
+  'Toda la foto':
+      'Argazki osoa',
+  'Usar este encuadre':
+      'Erabili enkoadraketa hau',
 };

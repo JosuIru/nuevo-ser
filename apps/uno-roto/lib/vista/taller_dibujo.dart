@@ -4,6 +4,7 @@ import '../datos/dibujos_taller.dart';
 import '../datos/repositorio_progreso.dart';
 import '../l10n/traducciones_narrativa.dart';
 import '../nucleo/paleta.dart';
+import 'pantalla_encuadre.dart';
 
 /// El taller de dibujo, lado de la pantalla: la hoja que invita a
 /// dibujar (foto o galería) y lo que pasa después. [invitacion] va en
@@ -58,7 +59,15 @@ Future<void> dibujarEnElTaller(
   if (conCamara == null || !contexto.mounted) return;
   String? aviso;
   try {
-    await coleccion.elegir(repositorio, id, conCamara: conCamara);
+    await coleccion.elegir(
+      repositorio,
+      id,
+      conCamara: conCamara,
+      // El niño ajusta el encuadre antes de guardar.
+      encuadrar: (foto, sugerido) => Navigator.of(contexto).push<Rect>(
+        MaterialPageRoute(builder: (_) => PantallaEncuadre(foto: foto, sugerido: sugerido)),
+      ),
+    );
   } on DibujoSinContenido {
     aviso =
         'No he encontrado el dibujo en esa foto. Prueba con más luz y con el papel entero.';

@@ -3,6 +3,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:las_versiones/datos/registro_maestria_archivo.dart';
+import 'package:nuevo_ser_core/src/calibration/nivel_confianza.dart';
 
 GestorPerfiles _gestor() => GestorPerfiles(
       namespace: 'nuevoser.lasversiones',
@@ -43,13 +44,28 @@ void main() {
     expect((await repositorio.cargar('HF.04'))!.totalExposiciones, 5);
   });
 
-  test('AH.03 (P4, stub en core) no se registra todavía', () async {
+  test('AH.03 (P4) guarda declarado y canónico en la escala 0/0.5/1', () async {
     final repositorio = RepositorioHabilidades(gestor: _gestor());
     final estado = await registro(repositorio).registrar(
-        idHabilidad: 'AH.03', acierto: true, duracion: Duration.zero);
+      idHabilidad: 'AH.03',
+      acierto: true, // se ignora en P4: manda la coincidencia de niveles
+      nivelDeclarado: NivelConfianza.solido,
+      nivelCanonico: NivelConfianza.disputado,
+      duracion: Duration.zero,
+    );
+    final intento = estado!.intentosRecientes.single;
+    expect(intento.acierto, isFalse);
+    expect(intento.confianzaDeclarada, 1.0);
+    expect(intento.fiabilidadReal, 0.0);
+    expect(estado.precision, 0.0, reason: 'sobreconfianza máxima');
+  });
+
+  test('AH.03 sin niveles no se apunta', () async {
+    final repositorio = RepositorioHabilidades(gestor: _gestor());
+    final estado = await registro(repositorio)
+        .registrar(idHabilidad: 'AH.03', acierto: true, duracion: Duration.zero);
     expect(estado, isNull);
-    expect(await repositorio.cargar('AH.03'), isNull);
-    expect(RegistroMaestriaArchivo.registrable('AH.03'), isFalse);
+    expect(RegistroMaestriaArchivo.registrable('AH.03'), isTrue);
   });
 
   test('una habilidad sin perfil asignado no se registra', () async {

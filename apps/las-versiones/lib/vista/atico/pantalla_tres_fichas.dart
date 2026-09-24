@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../datos/registro_maestria_archivo.dart';
 import '../../dominio/atico/partida_tres_fichas.dart';
 import '../../dominio/atico/voz_andres_atico.dart';
 import '../../dominio/brecha.dart';
@@ -15,9 +16,13 @@ import 'objetos_atico.dart';
 /// tarjeta cae. Sin acierto ni fallo hasta el final: al cerrar habla
 /// la balanza y Andrés comenta una sola tarjeta.
 class PantallaTresFichas extends StatefulWidget {
-  const PantallaTresFichas({super.key, required this.partida});
+  const PantallaTresFichas({super.key, required this.partida, this.registro});
 
   final PartidaTresFichas partida;
+
+  /// Motor de maestría: al cerrar apunta cada tarjeta de las rondas que
+  /// puntúan en AH.03 (P4). `null` en tests.
+  final RegistroMaestriaArchivo? registro;
 
   @override
   State<PantallaTresFichas> createState() => _EstadoPantallaTresFichas();
@@ -26,6 +31,7 @@ class PantallaTresFichas extends StatefulWidget {
 class _EstadoPantallaTresFichas extends State<PantallaTresFichas> {
   int _indiceRonda = 0;
   CierreTresFichas? _cierre;
+  final Stopwatch _cronometro = Stopwatch()..start();
 
   /// En la ronda de la tarjeta suelta: tarjetas cuyo cajón ya se abrió.
   final Set<String> _cajonesAbiertos = {};
@@ -54,6 +60,20 @@ class _EstadoPantallaTresFichas extends State<PantallaTresFichas> {
       return;
     }
     final cierre = _partida.cerrar();
+    final declaraciones = _partida.declaracionesPuntuables;
+    final registro = widget.registro;
+    if (registro != null && declaraciones.isNotEmpty) {
+      final duracionMedia = _cronometro.elapsed ~/ declaraciones.length;
+      for (final (tarjeta, declarado) in declaraciones) {
+        registro.registrar(
+          idHabilidad: 'AH.03',
+          acierto: declarado == tarjeta.nivelCanonico,
+          nivelDeclarado: declarado,
+          nivelCanonico: tarjeta.nivelCanonico,
+          duracion: duracionMedia,
+        );
+      }
+    }
     ServicioSonoroArchivo.instancia.reproducirEfecto(CatalogoSonidosArchivo.balanzaLaton);
     final capa = cierre.capaParaFragmento;
     if (capa != null) {

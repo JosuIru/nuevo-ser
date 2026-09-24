@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:las_versiones/datos/registro_maestria_archivo.dart';
 import 'package:las_versiones/datos/repositorio_reconstruccion.dart';
 import 'package:las_versiones/dominio/brecha.dart';
 import 'package:las_versiones/dominio/catalogo_brechas.dart';
@@ -27,6 +28,7 @@ void main() {
     WidgetTester tester, {
     required Brecha brecha,
     required VoidCallback alAvanzar,
+    RegistroMaestriaArchivo? registro,
   }) async {
     await tester.pumpWidget(
       MaterialApp(
@@ -39,6 +41,7 @@ void main() {
               repoReconstruccion: RepositorioReconstruccion(
                 gestor: _gestorDePrueba(),
               ),
+              registro: registro,
             ),
           ),
         ),
@@ -233,5 +236,33 @@ void main() {
       isNotNull,
       reason: 'al alcanzar el mínimo declarado el CTA se desbloquea',
     );
+  });
+
+  testWidgets('ir al Concilio apunta cada afirmación declarada en AH.03 (P4)',
+      (tester) async {
+    final repositorio = RepositorioHabilidades(gestor: _gestorDePrueba());
+    await bombearFase(
+      tester,
+      brecha: CatalogoBrechas.brecha11,
+      alAvanzar: () {},
+      registro: RegistroMaestriaArchivo(repositorio: repositorio),
+    );
+    for (int i = 0; i < 3; i++) {
+      final solidoFinder = find.text('Sólido').at(i);
+      await tester.scrollUntilVisible(solidoFinder, 80);
+      await tester.tap(solidoFinder);
+      await tester.pumpAndSettle();
+    }
+    await tester.scrollUntilVisible(find.text('AL CONCILIO'), 80);
+    await tester.tap(find.text('AL CONCILIO'));
+    await tester.pumpAndSettle();
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 50)));
+
+    final estado = await tester.runAsync(() => repositorio.cargar('AH.03'));
+    expect(estado!.totalExposiciones, 3);
+    for (final intento in estado.intentosRecientes) {
+      expect(intento.confianzaDeclarada, 1.0, reason: 'declaró Sólido');
+      expect(intento.fiabilidadReal, isNotNull);
+    }
   });
 }

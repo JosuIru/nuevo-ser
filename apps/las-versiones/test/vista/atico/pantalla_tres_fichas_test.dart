@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:las_versiones/datos/registro_maestria_archivo.dart';
 import 'package:las_versiones/dominio/atico/oficios_atico.dart';
 import 'package:las_versiones/dominio/atico/partida_tres_fichas.dart';
 import 'package:las_versiones/dominio/atico/voz_andres_atico.dart';
@@ -98,5 +101,39 @@ void main() {
     await tester.tap(find.text('Tres fichas'));
     await tester.pumpAndSettle();
     expect(find.byType(PantallaTresFichas), findsOneWidget);
+  });
+
+  testWidgets('al cerrar apunta en AH.03 sólo las tarjetas de rondas que puntúan',
+      (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final repositorio = RepositorioHabilidades(
+      gestor: GestorPerfiles(namespace: 'nuevoser.lasversiones', sufijoNombreVisible: 'nombre_jugador'),
+    );
+    final partida = PartidaTresFichas.montar(brechasCerradas(flags), semilla: 1)!;
+    await tester.pumpWidget(MaterialApp(
+      home: PantallaTresFichas(
+        partida: partida,
+        registro: RegistroMaestriaArchivo(repositorio: repositorio),
+      ),
+    ));
+    for (var ronda = 0; ronda < partida.rondas.length; ronda++) {
+      for (final _ in partida.rondas[ronda].tarjetas) {
+        if (partida.rondas[ronda].fuentesOcultas) {
+          await tester.tap(find.text('Abrir el cajón de las fuentes'));
+          await tester.pump();
+        }
+        await tester.tap(find.text('Probable').first);
+        await tester.pump();
+      }
+      await tester.tap(find.text(ronda == partida.rondas.length - 1
+          ? 'Que hable la balanza'
+          : 'Siguiente caja'));
+      await tester.pumpAndSettle();
+    }
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 50)));
+
+    final puntuables = partida.rondas.where((r) => r.puntua).expand((r) => r.tarjetas).length;
+    final estado = await tester.runAsync(() => repositorio.cargar('AH.03'));
+    expect(estado!.totalExposiciones, puntuables);
   });
 }

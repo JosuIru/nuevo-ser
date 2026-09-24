@@ -1,4 +1,5 @@
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import 'package:nuevo_ser_core/src/calibration/nivel_confianza.dart';
 
 /// Perfil de medición de cada habilidad (doc 02 de Las Versiones,
 /// asignación copiada del CLAUDE.md del juego).
@@ -25,14 +26,16 @@ const Map<String, String> perfilDeHabilidadArchivo = {
   'AH.03': idPerfilP4,
 };
 
-/// Perfiles que el core calcula de verdad hoy. P4 sigue siendo un stub
-/// que lanza `UnimplementedError`: hasta que exista, sus habilidades no
-/// se registran (mejor no apuntar que apuntar mal, principio 5).
-const Set<String> perfilesOperativos = {idPerfilP1, idPerfilP2};
+/// Perfiles que el core calcula de verdad hoy. P3 existe en el core
+/// pero ningún oficio de este juego le da todavía su rúbrica: hasta
+/// entonces sus habilidades no se registran (mejor no apuntar que
+/// apuntar mal, principio 5).
+const Set<String> perfilesOperativos = {idPerfilP1, idPerfilP2, idPerfilP4};
 
 const Map<String, ProfileConfig> _configuracionDePerfil = {
   idPerfilP1: ProfileConfig.defaultP1,
   idPerfilP2: ProfileConfig.defaultP2,
+  idPerfilP4: ProfileConfig.defaultP4,
 };
 
 /// Motor de maestría de Las Versiones: el `MasteryEngine` del core con
@@ -65,6 +68,9 @@ class RegistroMaestriaArchivo {
   /// Las habilidades P2 necesitan [senalEsperada] (¿el caso era de la
   /// clase «sí»?) y [clasePredicha] (¿qué dijo la Cronista?); sin ellas
   /// no se apuntan. En P2 el acierto es que coincidan.
+  ///
+  /// AH.03 (P4) necesita [nivelDeclarado] y [nivelCanonico]; el acierto
+  /// es que coincidan y la calibración la calcula el core.
   Future<EstadoHabilidad?> registrar({
     required String idHabilidad,
     required bool acierto,
@@ -72,12 +78,26 @@ class RegistroMaestriaArchivo {
     double dificultad = 1.0,
     bool? senalEsperada,
     bool? clasePredicha,
+    NivelConfianza? nivelDeclarado,
+    NivelConfianza? nivelCanonico,
   }) {
     if (!registrable(idHabilidad)) return Future.value(null);
     final idPerfil = perfilDeHabilidadArchivo[idHabilidad]!;
     final esDeteccion = idPerfil == idPerfilP2;
+    final esCalibracion = idPerfil == idPerfilP4;
     if (esDeteccion && (senalEsperada == null || clasePredicha == null)) {
       return Future.value(null);
+    }
+    if (esCalibracion && (nivelDeclarado == null || nivelCanonico == null)) {
+      return Future.value(null);
+    }
+    final bool aciertoEfectivo;
+    if (esDeteccion) {
+      aciertoEfectivo = senalEsperada == clasePredicha;
+    } else if (esCalibracion) {
+      aciertoEfectivo = nivelDeclarado == nivelCanonico;
+    } else {
+      aciertoEfectivo = acierto;
     }
     final resultado = _cola.then((_) async {
       final previo =
@@ -87,9 +107,11 @@ class RegistroMaestriaArchivo {
         idPerfil: idPerfil,
         config: _configuracionDePerfil[idPerfil]!,
         payload: SessionPayload(
-          acierto: esDeteccion ? senalEsperada == clasePredicha : acierto,
+          acierto: aciertoEfectivo,
           senalEsperada: esDeteccion ? senalEsperada : null,
           clasePredicha: esDeteccion ? clasePredicha : null,
+          confianzaDeclarada: esCalibracion ? nivelDeclarado!.valorFiabilidad : null,
+          fiabilidadReal: esCalibracion ? nivelCanonico!.valorFiabilidad : null,
           dificultad: dificultad.clamp(0.5, 2.0),
           duracionSegundos: duracion.inSeconds,
           instante: _reloj(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../datos/registro_maestria_archivo.dart';
 import '../datos/repositorio_reconstruccion.dart';
 import '../dominio/brecha.dart';
 import '../nucleo/paleta_archivo.dart';
@@ -23,11 +24,16 @@ class FaseReconstruccion extends StatefulWidget {
   /// Repositorio de persistencia. Inyectable para tests.
   final RepositorioReconstruccion repoReconstruccion;
 
+  /// Motor de maestría: al ir al Concilio apunta cada afirmación
+  /// declarada en AH.03 (P4). `null` en tests.
+  final RegistroMaestriaArchivo? registro;
+
   const FaseReconstruccion({
     super.key,
     required this.brecha,
     required this.alAvanzarFase,
     required this.repoReconstruccion,
+    this.registro,
   });
 
   @override
@@ -37,6 +43,29 @@ class FaseReconstruccion extends StatefulWidget {
 class _FaseReconstruccionState extends State<FaseReconstruccion> {
   Map<String, NivelConfianza> _declaraciones = const {};
   bool _cargando = true;
+  final Stopwatch _cronometro = Stopwatch()..start();
+
+  /// Al Concilio: la versión queda cerrada y cada afirmación declarada
+  /// es un intento de AH.03 (lo que haya al pulsar, no los cambios
+  /// intermedios: aquí se construye, se juzga al cerrar).
+  void _alIrAlConcilio() {
+    final registro = widget.registro;
+    if (registro != null && _declaraciones.isNotEmpty) {
+      final duracionMedia = _cronometro.elapsed ~/ _declaraciones.length;
+      for (final afirmacion in widget.brecha.afirmacionesCanonicas) {
+        final declarado = _declaraciones[afirmacion.id];
+        if (declarado == null) continue;
+        registro.registrar(
+          idHabilidad: 'AH.03',
+          acierto: declarado == afirmacion.calibracionCorrecta,
+          nivelDeclarado: declarado,
+          nivelCanonico: afirmacion.calibracionCorrecta,
+          duracion: duracionMedia,
+        );
+      }
+    }
+    widget.alAvanzarFase();
+  }
 
   @override
   void initState() {
@@ -122,7 +151,7 @@ class _FaseReconstruccionState extends State<FaseReconstruccion> {
         SizedBox(
           width: double.infinity,
           child: TextButton(
-            onPressed: puedeAvanzar ? widget.alAvanzarFase : null,
+            onPressed: puedeAvanzar ? _alIrAlConcilio : null,
             style: TextButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 16),
               foregroundColor: PaletaArchivo.textoPrincipal,

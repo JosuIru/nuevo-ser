@@ -48,7 +48,7 @@ class _EstadoPantallaAtico extends State<PantallaAtico> {
         if (partida == null) return;
         ServicioSonoroArchivo.instancia.reproducirEfecto(CatalogoSonidosArchivo.papelTomar);
         await Navigator.of(context).push(
-          MaterialPageRoute<void>(builder: (_) => PantallaTresFichas(partida: partida)),
+          MaterialPageRoute<void>(builder: (_) => PantallaTresFichas(partida: partida, registro: widget.registro)),
         );
       case OficioAtico.documentoRoto:
         final partida = PartidaDocumentoRoto.montar(brechasCerradas(widget.flagsActivos));

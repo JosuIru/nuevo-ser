@@ -187,6 +187,15 @@ class PartidaTresFichas {
   bool rondaCompleta(int indiceRonda) =>
       rondas[indiceRonda].tarjetas.every((t) => _declarados.containsKey(t.id));
 
+  /// Tarjetas de las rondas que puntúan con el nivel en que quedaron.
+  /// Es lo que se apunta en AH.03 al cerrar.
+  List<(TarjetaAfirmacion, NivelConfianza)> get declaracionesPuntuables => [
+        for (final ronda in rondas)
+          if (ronda.puntua)
+            for (final tarjeta in ronda.tarjetas)
+              if (_declarados[tarjeta.id] != null) (tarjeta, _declarados[tarjeta.id]!),
+      ];
+
   CierreTresFichas cerrar() {
     final puntuables = [
       for (final ronda in rondas)

@@ -205,6 +205,7 @@ class _CuerpoDeFase extends StatelessWidget {
           brecha: brecha,
           alAvanzarFase: alAvanzarFase,
           repoReconstruccion: repoReconstruccion,
+          registro: registro,
         );
       case FaseBrecha.concilio:
         return FaseConcilio(

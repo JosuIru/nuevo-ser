@@ -186,6 +186,24 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_planos.ogg',
       enBucle: true,
     ),
+    'musica_maquina_redes': SonidoCatalogado(
+      identificador: 'musica_maquina_redes',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_redes.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_nivelar': SonidoCatalogado(
+      identificador: 'musica_maquina_nivelar',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_nivelar.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_caja_negra': SonidoCatalogado(
+      identificador: 'musica_maquina_caja_negra',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_caja_negra.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

@@ -2460,4 +2460,149 @@ const Map<String, String> narrativaEu = <String, String>{
       '1 m² = 10 dm × 10 dm = 100 dm².',
   '{d} ÷ 100 = {m} m².':
       '{d} ÷ 100 = {m} m².',
+  // Las redes, Nivelar y La caja negra
+  'Las redes':
+      'Sareak',
+  'Elige la red de la que es más fácil sacar un pez ámbar y compruébalo echándola.':
+      'Aukeratu arrain anbarra ateratzeko errazena den sarea eta egiaztatu botaz.',
+  'Los pescadores quieren peces ámbar para las farolas. Tú eliges la red; el mar decide cada lance.':
+      'Arrantzaleek arrain anbarrak nahi dituzte farolentzat. Zuk sarea aukeratzen duzu; itsasoak erabakitzen du bota bakoitza.',
+  'Toca la red de la que es más probable sacar un pez ámbar: no la que tiene más ámbar, sino la que tiene más ámbar de cada tantos. La máquina la echa veinte veces para comprobarlo. Cuenta tu decisión, no lo que salga. Al final, elige cómo se escribe la probabilidad.':
+      'Ukitu arrain anbar bat ateratzeko probableena den sarea: ez anbar gehien duena, baizik eta zenbatetik anbar gehien duena. Makinak hogei aldiz botatzen du egiaztatzeko. Zure erabakia zenbatzen da, ez ateratzen dena. Amaieran, aukeratu probabilitatea nola idazten den.',
+  'Echamos la red veinte veces…':
+      'Sarea hogei aldiz botatzen dugu…',
+  'Esta vez sólo {k} de 20. Mala tanda, buena decisión: {a} de cada {t} era la mejor red.':
+      'Oraingoan 20tik {k} bakarrik. Txanda txarra, erabaki ona: {t} arrainetatik {a} zituena zen sarerik onena.',
+  'Buena red: {a} de cada {t}. Han salido {k} ámbar de 20.':
+      'Sare ona: {t} arrainetatik {a}. 20tik {k} anbar atera dira.',
+  'Han salido {k} de 20, pero la mejor era la de {ma} de cada {mt}: tocaba a más.':
+      '20tik {k} atera dira, baina onena {mt} arrainetatik {ma} zituena zen: gehiago tokatzen zitzaion.',
+  '{o}: {a} de cada {t}. Da igual cómo se escriba.':
+      '{o}: {t} arrainetatik {a}. Berdin da nola idatzi.',
+  '{o} no es {a} de cada {t}. Prueba otra.':
+      '{o} ez da {t} arrainetatik {a}. Probatu beste bat.',
+  'Seis redes echadas. Hay peces ámbar para todas las farolas del muelle.':
+      'Sei sare botata. Kaiko farola guztientzat badira arrain anbarrak.',
+  'De {t} peces, {a} son ámbar. ¿Qué probabilidad hay de sacar uno ámbar?':
+      '{t} arrainetatik {a} anbarrak dira. Zer probabilitate dago anbar bat ateratzeko?',
+  '¿De qué red es más probable sacar un pez ámbar?':
+      'Zein saretatik da probableagoa arrain anbar bat ateratzea?',
+  '{a} ámbar de {t}':
+      '{a} anbar, {t} arrainetatik',
+  'Nivelar':
+      'Berdindu',
+  'Lee las pilas de contenedores y reparte la carga: media, mediana y moda.':
+      'Irakurri edukiontzi pilak eta banatu zama: batez bestekoa, mediana eta moda.',
+  'Este barco va escorado. Si sabes a qué altura quedaría la carga, lo enderezamos.':
+      'Itsasontzi hau okertuta doa. Zama zer altueratan geratuko litzatekeen badakizu, zuzenduko dugu.',
+  'Las pilas de contenedores son un gráfico: el eje de la izquierda dice cuántos hay. Lee la pregunta y elige un número. Al acertar, el barco lo demuestra: las pilas se igualan (la media), se ordenan (la mediana) o se ilumina la altura que más se repite (la moda).':
+      'Edukiontzi pilak grafiko bat dira: ezkerreko ardatzak zenbat dauden esaten du. Irakurri galdera eta aukeratu zenbaki bat. Asmatzean, itsasontziak erakusten du: pilak berdintzen dira (batez bestekoa), ordenatzen dira (mediana) edo gehien errepikatzen den altuera argitzen da (moda).',
+  'Eso es. Mira: moviendo contenedores, todas quedan igual.':
+      'Hori da. Begira: edukiontziak mugituz, denak berdin geratzen dira.',
+  'Ordenadas, la del medio manda.':
+      'Ordenatuta, erdikoak agintzen du.',
+  'La que más se repite. El barco lo agradece.':
+      'Gehien errepikatzen dena. Itsasontziak eskertzen du.',
+  'Bien leído.':
+      'Ondo irakurrita.',
+  'Cuenta otra vez los contenedores de esa pila, con el eje de al lado.':
+      'Zenbatu berriro pila horretako edukiontziak, ondoko ardatzarekin.',
+  'Resta: la pila alta menos la baja.':
+      'Kendu: pila altua ken baxua.',
+  'Con esa altura sobran o faltan contenedores. Suma todos y reparte.':
+      'Altuera horrekin edukiontziak soberan edo falta dira. Batu denak eta banatu.',
+  'Primero ordénalas de menor a mayor; luego mira la del medio.':
+      'Lehenik ordenatu txikienetik handienera; gero begiratu erdikoari.',
+  'La moda es la altura que más se repite, no la más alta.':
+      'Moda gehien errepikatzen den altuera da, ez altuena.',
+  '¿Cuántos contenedores hay en la pila {x}?':
+      'Zenbat edukiontzi daude {x} pilan?',
+  '¿Cuántos contenedores más tiene la pila {x} que la {y}?':
+      'Zenbat edukiontzi gehiago ditu {x} pilak {y} pilak baino?',
+  'Si igualas todas las pilas moviendo contenedores, ¿a qué altura quedan?':
+      'Edukiontziak mugituz pila guztiak berdintzen badituzu, zer altueratan geratzen dira?',
+  'Ordena las pilas de menor a mayor. ¿Cuánto mide la del medio?':
+      'Ordenatu pilak txikienetik handienera. Zenbat neurtzen du erdikoak?',
+  '¿Qué altura se repite más?':
+      'Zein altuera errepikatzen da gehien?',
+  'Seis cargas repartidas. El barco sale derecho del puerto.':
+      'Sei zama banatuta. Itsasontzia zuzen ateratzen da portutik.',
+  'La caja negra':
+      'Kutxa beltza',
+  'Entran números y salen otros. Descubre la regla y la caja se abre.':
+      'Zenbakiak sartzen dira eta beste batzuk ateratzen. Aurkitu araua eta kutxa irekiko da.',
+  'Nadie en la Montaña sabe abrirla. Traga números y escupe otros. Tú, a mirar la tabla.':
+      'Mendian inork ez daki irekitzen. Zenbakiak irensten ditu eta beste batzuk botatzen. Zuk, taulari begira.',
+  'La tabla dice qué sale cuando entra cada número. Puedes meter algunos números más para ver qué hace la caja (pocos: piénsalos). Luego te pregunta por un número que no puedes probar. Al final, dos sacos y dos balanzas: ¿cuánto pesa el rojo?':
+      'Taulak esaten du zer ateratzen den zenbaki bakoitza sartzean. Zenbaki gehiago sar ditzakezu kutxak zer egiten duen ikusteko (gutxi: pentsatu ondo). Gero probatu ezin duzun zenbaki bati buruz galdetzen dizu. Amaieran, bi poltsa eta bi balantza: zenbat pisatzen du gorriak?',
+  'Glup. Ese se lo ha tragado: es un Mudo.':
+      'Glup. Hori irentsi du: Mutu bat da.',
+  'Clic. La caja se abre.':
+      'Klik. Kutxa irekitzen da.',
+  'Con esa respuesta, alguna fila de la tabla no cuadra. Compruébalas todas.':
+      'Erantzun horrekin, taulako errenkadaren batek ez du bat egiten. Egiaztatu denak.',
+  'Mete {v} en la regla de la tabla: ¿sale {y}?':
+      'Sartu {v} taulako arauan: {y} ateratzen da?',
+  'Si el rojo pesa {v}, alguna de las dos balanzas no cuadra.':
+      'Gorriak {v} pisatzen badu, bi balantzetako batek ez du bat egiten.',
+  'Seis cajas abiertas. En la Montaña ya nadie les tiene miedo.':
+      'Sei kutxa irekita. Mendian inork ez die beldurrik jada.',
+  'Si entra {n}, ¿qué sale?':
+      '{n} sartzen bada, zer ateratzen da?',
+  'Ha salido {n}. ¿Qué número entró?':
+      '{n} atera da. Zein zenbaki sartu zen?',
+  '¿Cuánto pesa el saco rojo?':
+      'Zenbat pisatzen du poltsa gorriak?',
+  'Prueba números ({n} intentos)':
+      'Probatu zenbakiak ({n} saiakera)',
+  'ENTRA':
+      'SARTU',
+  'SALE':
+      'IRTEN',
+  'Probabilidad = casos buenos entre casos posibles. 3 ámbar de 8 es 3/8; 5 de 16 es 5/16. Compara las fracciones, no sólo los ámbar.':
+      'Probabilitatea = kasu onak zati kasu posibleak. 8tik 3 anbar 3/8 da; 16tik 5, 5/16. Konparatu zatikiak, ez anbarrak bakarrik.',
+  'La misma probabilidad se escribe de tres maneras: 1/4 = 0,25 = 25 %. Divide los buenos entre el total y multiplica por 100 para el %.':
+      'Probabilitate bera hiru eratara idazten da: 1/4 = 0,25 = % 25. Zatitu onak guztizkoaz eta biderkatu 100ez %-rako.',
+  'Lleva la vista de lo alto de la barra al eje de la izquierda: ahí está el número. Para comparar dos barras, resta.':
+      'Eraman begirada barraren goialdetik ezkerreko ardatzera: hor dago zenbakia. Bi barra konparatzeko, kendu.',
+  'La media es repartir a partes iguales: suma todo y divide entre cuántos hay. 3 + 5 + 7 + 5 = 20, entre 4 = 5.':
+      'Batez bestekoa zati berdinetan banatzea da: batu dena eta zatitu zenbat dauden. 3 + 5 + 7 + 5 = 20, 4rekin = 5.',
+  'Mediana: ordena de menor a mayor y quédate con el del medio (si son dos, a mitad entre ellos). Moda: el que más se repite.':
+      'Mediana: ordenatu txikienetik handienera eta hartu erdikoa (bi badira, bien erdian). Moda: gehien errepikatzen dena.',
+  'Mira cuánto cambia la salida cuando la entrada sube de uno en uno: eso es lo que multiplica. Luego ajusta lo que suma o resta, y comprueba la regla con todas las filas.':
+      'Begiratu irteera zenbat aldatzen den sarrera banaka igotzean: hori da biderkatzen duena. Gero doitu batzen edo kentzen duena, eta egiaztatu araua errenkada guztiekin.',
+  'Junta las dos balanzas: si rojo + azul = 13 y rojo − azul = 5, sumándolas quedan dos rojos = 18. Un rojo pesa 9.':
+      'Elkartu bi balantzak: gorria + urdina = 13 eta gorria − urdina = 5 badira, batuz bi gorri = 18 geratzen dira. Gorri batek 9 pisatzen du.',
+  'Escribe cada red como fracción: {f} y {g}.':
+      'Idatzi sare bakoitza zatiki gisa: {f} eta {g}.',
+  'Gana la del producto mayor: {m}.':
+      'Biderkadura handiena duenak irabazten du: {m}.',
+  'Como fracción: {f}.':
+      'Zatiki gisa: {f}.',
+  'Multiplica arriba y abajo por {m}: {g}.':
+      'Biderkatu goian eta behean {m} zenbakiaz: {g}.',
+  'Como decimal, {d}; como porcentaje, {p} %.':
+      'Hamartar gisa, {d}; ehuneko gisa, % {p}.',
+  'La barra A llega a la línea del {a} en el eje; la B, a la del {b}.':
+      'A barra ardatzeko {a} zenbakiaren lerrora iristen da; B, {b} zenbakiarenera.',
+  'A tiene {a} − {b} = {r} más que B.':
+      'Ak {a} − {b} = {r} gehiago ditu Bk baino.',
+  'Suma todo: {s}.':
+      'Batu dena: {s}.',
+  'Reparte entre {n}: {s} ÷ {n} = {m}.':
+      'Banatu {n} zatitan: {s} ÷ {n} = {m}.',
+  'Ordena de menor a mayor: {o}.':
+      'Ordenatu txikienetik handienera: {o}.',
+  'El del medio (el tercero de cinco) es la mediana: {m}.':
+      'Erdikoa (bostetik hirugarrena) mediana da: {m}.',
+  'Cada vez que entra uno más, sale {a} más: la regla multiplica por {a}.':
+      'Bat gehiago sartzen den bakoitzean, {a} gehiago ateratzen da: arauak {a} zenbakiaz biderkatzen du.',
+  '{a} × 1 = {p}, pero sale {s}: además suma {b}.':
+      '{a} × 1 = {p}, baina {s} ateratzen da: gainera {b} batzen du.',
+  'La regla: × {a} y + {b}. Si entra 10, sale {r}.':
+      'Araua: × {a} eta + {b}. 10 sartzen bada, {r} ateratzen da.',
+  'Suma las dos: la y se va y quedan dos x = {s}.':
+      'Batu biak: y desagertzen da eta bi x = {s} geratzen dira.',
+  'Una x: {s} ÷ 2 = {r}. Y la y: {t} − {r} = {z}.':
+      'x bat: {s} ÷ 2 = {r}. Eta y: {t} − {r} = {z}.',
 };

@@ -2464,4 +2464,149 @@ const Map<String, String> narrativaCa = <String, String>{
       '1 m² = 10 dm × 10 dm = 100 dm².',
   '{d} ÷ 100 = {m} m².':
       '{d} ÷ 100 = {m} m².',
+  // Las redes, Nivelar y La caja negra
+  'Las redes':
+      'Les xarxes',
+  'Elige la red de la que es más fácil sacar un pez ámbar y compruébalo echándola.':
+      'Tria la xarxa de la qual és més fàcil treure un peix ambre i comprova-ho llançant-la.',
+  'Los pescadores quieren peces ámbar para las farolas. Tú eliges la red; el mar decide cada lance.':
+      'Els pescadors volen peixos ambre per als fanals. Tu tries la xarxa; el mar decideix cada llançada.',
+  'Toca la red de la que es más probable sacar un pez ámbar: no la que tiene más ámbar, sino la que tiene más ámbar de cada tantos. La máquina la echa veinte veces para comprobarlo. Cuenta tu decisión, no lo que salga. Al final, elige cómo se escribe la probabilidad.':
+      'Toca la xarxa de la qual és més probable treure un peix ambre: no la que en té més, sinó la que en té més de cada tants. La màquina la llança vint vegades per comprovar-ho. Compta la teva decisió, no el que surti. Al final, tria com s\'escriu la probabilitat.',
+  'Echamos la red veinte veces…':
+      'Llancem la xarxa vint vegades…',
+  'Esta vez sólo {k} de 20. Mala tanda, buena decisión: {a} de cada {t} era la mejor red.':
+      'Aquesta vegada només {k} de 20. Mala tanda, bona decisió: {a} de cada {t} era la millor xarxa.',
+  'Buena red: {a} de cada {t}. Han salido {k} ámbar de 20.':
+      'Bona xarxa: {a} de cada {t}. N\'han sortit {k} d\'ambre de 20.',
+  'Han salido {k} de 20, pero la mejor era la de {ma} de cada {mt}: tocaba a más.':
+      'N\'han sortit {k} de 20, però la millor era la de {ma} de cada {mt}: en tocaven més.',
+  '{o}: {a} de cada {t}. Da igual cómo se escriba.':
+      '{o}: {a} de cada {t}. Tant és com s\'escrigui.',
+  '{o} no es {a} de cada {t}. Prueba otra.':
+      '{o} no és {a} de cada {t}. Prova\'n una altra.',
+  'Seis redes echadas. Hay peces ámbar para todas las farolas del muelle.':
+      'Sis xarxes llançades. Hi ha peixos ambre per a tots els fanals del moll.',
+  'De {t} peces, {a} son ámbar. ¿Qué probabilidad hay de sacar uno ámbar?':
+      'De {t} peixos, {a} són ambre. Quina probabilitat hi ha de treure\'n un d\'ambre?',
+  '¿De qué red es más probable sacar un pez ámbar?':
+      'De quina xarxa és més probable treure un peix ambre?',
+  '{a} ámbar de {t}':
+      '{a} ambre de {t}',
+  'Nivelar':
+      'Anivellar',
+  'Lee las pilas de contenedores y reparte la carga: media, mediana y moda.':
+      'Llegeix les piles de contenidors i reparteix la càrrega: mitjana, mediana i moda.',
+  'Este barco va escorado. Si sabes a qué altura quedaría la carga, lo enderezamos.':
+      'Aquest vaixell va escorat. Si saps a quina alçada quedaria la càrrega, l\'adrecem.',
+  'Las pilas de contenedores son un gráfico: el eje de la izquierda dice cuántos hay. Lee la pregunta y elige un número. Al acertar, el barco lo demuestra: las pilas se igualan (la media), se ordenan (la mediana) o se ilumina la altura que más se repite (la moda).':
+      'Les piles de contenidors són un gràfic: l\'eix de l\'esquerra diu quants n\'hi ha. Llegeix la pregunta i tria un nombre. Quan l\'encertes, el vaixell ho demostra: les piles s\'igualen (la mitjana), s\'ordenen (la mediana) o s\'il·lumina l\'alçada que més es repeteix (la moda).',
+  'Eso es. Mira: moviendo contenedores, todas quedan igual.':
+      'Això mateix. Mira: movent contenidors, totes queden igual.',
+  'Ordenadas, la del medio manda.':
+      'Ordenades, mana la del mig.',
+  'La que más se repite. El barco lo agradece.':
+      'La que més es repeteix. El vaixell ho agraeix.',
+  'Bien leído.':
+      'Ben llegit.',
+  'Cuenta otra vez los contenedores de esa pila, con el eje de al lado.':
+      'Torna a comptar els contenidors d\'aquesta pila, amb l\'eix del costat.',
+  'Resta: la pila alta menos la baja.':
+      'Resta: la pila alta menys la baixa.',
+  'Con esa altura sobran o faltan contenedores. Suma todos y reparte.':
+      'Amb aquesta alçada sobren o falten contenidors. Suma-ho tot i reparteix.',
+  'Primero ordénalas de menor a mayor; luego mira la del medio.':
+      'Primer ordena-les de menor a major; després mira la del mig.',
+  'La moda es la altura que más se repite, no la más alta.':
+      'La moda és l\'alçada que més es repeteix, no la més alta.',
+  '¿Cuántos contenedores hay en la pila {x}?':
+      'Quants contenidors hi ha a la pila {x}?',
+  '¿Cuántos contenedores más tiene la pila {x} que la {y}?':
+      'Quants contenidors més té la pila {x} que la {y}?',
+  'Si igualas todas las pilas moviendo contenedores, ¿a qué altura quedan?':
+      'Si iguales totes les piles movent contenidors, a quina alçada queden?',
+  'Ordena las pilas de menor a mayor. ¿Cuánto mide la del medio?':
+      'Ordena les piles de menor a major. Quant fa la del mig?',
+  '¿Qué altura se repite más?':
+      'Quina alçada es repeteix més?',
+  'Seis cargas repartidas. El barco sale derecho del puerto.':
+      'Sis càrregues repartides. El vaixell surt dret del port.',
+  'La caja negra':
+      'La caixa negra',
+  'Entran números y salen otros. Descubre la regla y la caja se abre.':
+      'Hi entren nombres i en surten d\'altres. Descobreix la regla i la caixa s\'obre.',
+  'Nadie en la Montaña sabe abrirla. Traga números y escupe otros. Tú, a mirar la tabla.':
+      'Ningú a la Muntanya no la sap obrir. S\'empassa nombres i n\'escup d\'altres. Tu, a mirar la taula.',
+  'La tabla dice qué sale cuando entra cada número. Puedes meter algunos números más para ver qué hace la caja (pocos: piénsalos). Luego te pregunta por un número que no puedes probar. Al final, dos sacos y dos balanzas: ¿cuánto pesa el rojo?':
+      'La taula diu què surt quan hi entra cada nombre. Pots posar-hi alguns nombres més per veure què fa la caixa (pocs: pensa-t\'ho). Després et pregunta per un nombre que no pots provar. Al final, dos sacs i dues balances: quant pesa el vermell?',
+  'Glup. Ese se lo ha tragado: es un Mudo.':
+      'Glup. Aquest se l\'ha empassat: és un Mut.',
+  'Clic. La caja se abre.':
+      'Clic. La caixa s\'obre.',
+  'Con esa respuesta, alguna fila de la tabla no cuadra. Compruébalas todas.':
+      'Amb aquesta resposta, alguna fila de la taula no quadra. Comprova-les totes.',
+  'Mete {v} en la regla de la tabla: ¿sale {y}?':
+      'Posa {v} a la regla de la taula: en surt {y}?',
+  'Si el rojo pesa {v}, alguna de las dos balanzas no cuadra.':
+      'Si el vermell pesa {v}, alguna de les dues balances no quadra.',
+  'Seis cajas abiertas. En la Montaña ya nadie les tiene miedo.':
+      'Sis caixes obertes. A la Muntanya ja ningú no els té por.',
+  'Si entra {n}, ¿qué sale?':
+      'Si hi entra {n}, què en surt?',
+  'Ha salido {n}. ¿Qué número entró?':
+      'N\'ha sortit {n}. Quin nombre hi va entrar?',
+  '¿Cuánto pesa el saco rojo?':
+      'Quant pesa el sac vermell?',
+  'Prueba números ({n} intentos)':
+      'Prova nombres ({n} intents)',
+  'ENTRA':
+      'ENTRA',
+  'SALE':
+      'SURT',
+  'Probabilidad = casos buenos entre casos posibles. 3 ámbar de 8 es 3/8; 5 de 16 es 5/16. Compara las fracciones, no sólo los ámbar.':
+      'Probabilitat = casos bons entre casos possibles. 3 d\'ambre de 8 és 3/8; 5 de 16 és 5/16. Compara les fraccions, no només els d\'ambre.',
+  'La misma probabilidad se escribe de tres maneras: 1/4 = 0,25 = 25 %. Divide los buenos entre el total y multiplica por 100 para el %.':
+      'La mateixa probabilitat s\'escriu de tres maneres: 1/4 = 0,25 = 25 %. Divideix els bons entre el total i multiplica per 100 per al %.',
+  'Lleva la vista de lo alto de la barra al eje de la izquierda: ahí está el número. Para comparar dos barras, resta.':
+      'Porta la vista de dalt de la barra a l\'eix de l\'esquerra: allà hi ha el nombre. Per comparar dues barres, resta.',
+  'La media es repartir a partes iguales: suma todo y divide entre cuántos hay. 3 + 5 + 7 + 5 = 20, entre 4 = 5.':
+      'La mitjana és repartir a parts iguals: suma-ho tot i divideix entre quants n\'hi ha. 3 + 5 + 7 + 5 = 20, entre 4 = 5.',
+  'Mediana: ordena de menor a mayor y quédate con el del medio (si son dos, a mitad entre ellos). Moda: el que más se repite.':
+      'Mediana: ordena de menor a major i queda\'t amb el del mig (si són dos, a mig camí entre ells). Moda: el que més es repeteix.',
+  'Mira cuánto cambia la salida cuando la entrada sube de uno en uno: eso es lo que multiplica. Luego ajusta lo que suma o resta, y comprueba la regla con todas las filas.':
+      'Mira quant canvia la sortida quan l\'entrada puja d\'un en un: això és el que multiplica. Després ajusta el que suma o resta, i comprova la regla amb totes les files.',
+  'Junta las dos balanzas: si rojo + azul = 13 y rojo − azul = 5, sumándolas quedan dos rojos = 18. Un rojo pesa 9.':
+      'Ajunta les dues balances: si vermell + blau = 13 i vermell − blau = 5, sumant-les queden dos vermells = 18. Un vermell pesa 9.',
+  'Escribe cada red como fracción: {f} y {g}.':
+      'Escriu cada xarxa com a fracció: {f} i {g}.',
+  'Gana la del producto mayor: {m}.':
+      'Guanya la del producte més gran: {m}.',
+  'Como fracción: {f}.':
+      'Com a fracció: {f}.',
+  'Multiplica arriba y abajo por {m}: {g}.':
+      'Multiplica a dalt i a baix per {m}: {g}.',
+  'Como decimal, {d}; como porcentaje, {p} %.':
+      'Com a decimal, {d}; com a percentatge, {p} %.',
+  'La barra A llega a la línea del {a} en el eje; la B, a la del {b}.':
+      'La barra A arriba a la línia del {a} a l\'eix; la B, a la del {b}.',
+  'A tiene {a} − {b} = {r} más que B.':
+      'A en té {a} − {b} = {r} més que B.',
+  'Suma todo: {s}.':
+      'Suma-ho tot: {s}.',
+  'Reparte entre {n}: {s} ÷ {n} = {m}.':
+      'Reparteix entre {n}: {s} ÷ {n} = {m}.',
+  'Ordena de menor a mayor: {o}.':
+      'Ordena de menor a major: {o}.',
+  'El del medio (el tercero de cinco) es la mediana: {m}.':
+      'El del mig (el tercer de cinc) és la mediana: {m}.',
+  'Cada vez que entra uno más, sale {a} más: la regla multiplica por {a}.':
+      'Cada vegada que n\'entra un més, en surten {a} més: la regla multiplica per {a}.',
+  '{a} × 1 = {p}, pero sale {s}: además suma {b}.':
+      '{a} × 1 = {p}, però en surt {s}: a més, suma {b}.',
+  'La regla: × {a} y + {b}. Si entra 10, sale {r}.':
+      'La regla: × {a} i + {b}. Si hi entra 10, en surt {r}.',
+  'Suma las dos: la y se va y quedan dos x = {s}.':
+      'Suma-les: la y se\'n va i queden dues x = {s}.',
+  'Una x: {s} ÷ 2 = {r}. Y la y: {t} − {r} = {z}.':
+      'Una x: {s} ÷ 2 = {r}. I la y: {t} − {r} = {z}.',
 };

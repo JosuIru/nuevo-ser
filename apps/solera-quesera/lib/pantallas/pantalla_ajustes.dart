@@ -79,6 +79,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         Divider(height: 1),
         ListTile(leading: Icon(Icons.backup), title: Text(SoleraL10n.t('backup')), subtitle: Text('Exportar / importar base de datos'), trailing: Icon(Icons.chevron_right), onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => PantallaBackup())).then((_) => _cargar())),
         Divider(height: 1),
+        ListTile(leading: Icon(Icons.system_update), title: Text('Actualizaciones'), subtitle: Text('Versión instalada y última publicada'), trailing: Icon(Icons.chevron_right), onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => PantallaEstadoActualizaciones(config: configActualizacionesMonorepo('solera-quesera'), nombreApp: 'Solera Quesera')))),
+        Divider(height: 1),
         ListTile(leading: Icon(Icons.info_outline), title: Text('Acerca de Solera Quesera'), trailing: Icon(Icons.chevron_right), onTap: () => _mostrarAcerca(context)),
       ]),
     );

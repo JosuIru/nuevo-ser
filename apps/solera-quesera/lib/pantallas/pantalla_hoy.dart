@@ -48,6 +48,12 @@ class _PantallaHoyState extends State<PantallaHoy> {
     return Scaffold(
       appBar: AppBar(title: Text('${SoleraL10n.t('hoy')} ${_formatter.format(DateTime.now())}'), backgroundColor: theme.colorScheme.surface),
       body: RefreshIndicator(onRefresh: _recargar, child: ListView(padding: const EdgeInsets.all(16), children: [
+        // Aviso de versión nueva: si no la hay, no ocupa sitio.
+        AvisoActualizaciones(
+          config: configActualizacionesMonorepo('solera-quesera'),
+          nombreApp: 'Solera Quesera',
+          margen: const EdgeInsets.only(bottom: 12),
+        ),
         TarjetaResumen(titulo: 'Partidas de leche hoy', valor: '$_partidasHoy', subtitulo: '${_litrosHoy.toStringAsFixed(1)} litros', icono: Icons.water_drop, color: theme.colorScheme.primary),
         SizedBox(height: 12),
         if (_tempCavas.isNotEmpty) ...[

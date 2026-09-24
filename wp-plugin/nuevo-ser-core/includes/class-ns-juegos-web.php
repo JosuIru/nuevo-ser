@@ -4,12 +4,13 @@
  * incrustados en una página con shortcode:
  *
  *   [uno_roto]
+ *   [las_versiones]
  *   [nuevo_ser_juego juego="uno-roto" alto="100vh"]
  *
  * El build NO va dentro del plugin (pesa ~50 MB y muchos WordPress
  * limitan la subida de zips): se despliega aparte en
  * `wp-content/uploads/juegos/<juego>/` con el script
- * `apps/<juego>/scripts/web/desplegar.sh` del monorepo. El juego habla
+ * `scripts/web/desplegar.sh <juego>` del monorepo. El juego habla
  * con el backend de este mismo WordPress (mismo origen, sin CORS).
  *
  * @package NuevoSerCore
@@ -23,7 +24,8 @@ class NS_Juegos_Web {
 
 	/** Juegos con versión web desplegable. */
 	const JUEGOS = array(
-		'uno-roto' => 'Uno Roto',
+		'uno-roto'      => 'Uno Roto',
+		'las-versiones' => 'Las Versiones',
 	);
 
 	public static function registrar(): void {
@@ -37,6 +39,14 @@ class NS_Juegos_Web {
 				if ( ! isset( $atributos['portada'] ) ) {
 					$atributos['portada'] = 'si';
 				}
+				return self::shortcode( $atributos );
+			}
+		);
+		add_shortcode(
+			'las_versiones',
+			static function ( $atributos ) {
+				$atributos          = is_array( $atributos ) ? $atributos : array();
+				$atributos['juego'] = 'las-versiones';
 				return self::shortcode( $atributos );
 			}
 		);
@@ -106,7 +116,7 @@ class NS_Juegos_Web {
 			if ( current_user_can( 'manage_options' ) ) {
 				return '<p><strong>Nuevo Ser:</strong> falta desplegar la versión web de '
 					. esc_html( self::JUEGOS[ $juego ] ) . ' en <code>wp-content/uploads/juegos/'
-					. esc_html( $juego ) . '/</code> (script <code>scripts/web/desplegar.sh</code>).</p>';
+					. esc_html( $juego ) . '/</code> (script <code>scripts/web/desplegar.sh ' . esc_html( $juego ) . '</code>).</p>';
 			}
 			return '';
 		}

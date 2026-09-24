@@ -95,6 +95,34 @@ const trucosPorHabilidad = <String, String>{
       '500 g; un cuarto, 250 g.',
   'MED.03': 'Suma primero los minutos; si pasan de 60, son una hora más. '
       '10:40 + 35 min = 10:75 = 11:15. Luego suma las horas.',
+  'FR.01': 'El de abajo dice en cuántos trozos iguales se corta el pan; el '
+      'de arriba, cuántos coges. 3/4: pan en 4 trozos, coges 3.',
+  'FR.02': 'Para escribir lo que hay: arriba los trozos que tienes, abajo en '
+      'cuántos está cortado el pan.',
+  'FR.12': 'Una impropia tiene más trozos que un pan entero: 11/4 son 8/4 (2 '
+      'panes) y 3/4. Divide 11 entre 4: 2 y sobran 3.',
+  'FR.13': 'Un mixto se pasa a trozos: 2 y 3/4 son 2 × 4 + 3 = 11 cuartos.',
+  'FR.10': 'Simplificar es juntar trozos: 6/8 = 3/4, dividiendo arriba y abajo '
+      'entre 2.',
+  'FR.11': 'Amplificar es partir los trozos: 3/4 = 6/8, multiplicando arriba y '
+      'abajo por 2.',
+  'FR.18': 'Fracción por número: multiplica sólo el de arriba. 3 × 2/5 = 6/5.',
+  'FR.19': 'Fracción por fracción: arriba por arriba y abajo por abajo. '
+      '3/4 × 2/3 = 6/12.',
+  'FR.20': 'Repartir entre un número hace los trozos más pequeños: se '
+      'multiplica el de abajo. 3/4 entre 3 = 3/12 = 1/4.',
+  'FR.21': 'Cuántas veces cabe: 3/2 entre 1/4 es contar cuartos en tres '
+      'medios: 6.',
+  'DEC.01': 'Entre 1 y 2 hay diez décimas: 1,1; 1,2… 1,9. La primera cifra '
+      'tras la coma son las décimas.',
+  'DEC.09': 'Para redondear a la décima, mira la centésima: si es 5 o más, '
+      'sube; si no, se queda. 2,46 → 2,5; 2,43 → 2,4.',
+  'DEC.05': 'Multiplica como si no hubiera coma y luego pon tantas cifras '
+      'decimales como tenía: 3 × 1,25 → 3 × 125 = 375 → 3,75.',
+  'DEC.06': 'Decimal por decimal: cuenta las cifras decimales de los dos. '
+      '0,6 × 2,5 → 6 × 25 = 150 → dos decimales: 1,50.',
+  'DEC.07': 'Dividir entre un número: reparte como siempre y pon la coma '
+      'cuando llegues a ella. 7,5 entre 3 = 2,5.',
   'DIV.07': 'Escribe los múltiplos de cada número hasta encontrar el primero '
       'que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.',
   'DIV.06': 'Escribe los divisores de cada número y quédate con el mayor que '

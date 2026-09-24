@@ -2835,4 +2835,194 @@ const Map<String, String> narrativaCa = <String, String>{
       'Minuts: {a} + {b} = {t}.',
   '{t} minutos son 1 hora y {r} minutos: las {h}:{m}.':
       '{t} minuts són 1 hora i {r} minuts: les {h}:{m}.',
+  // La hornada, El telar y El tranvía
+  'La hornada':
+      'La fornada',
+  'Empaqueta el pan justo: fracciones, impropias, mixtos y bandejas cortadas de otra manera.':
+      'Empaqueta el pa just: fraccions, impròpies, mixtes i safates tallades d\'una altra manera.',
+  'Sale la hornada de los Tejados. Los pedidos vienen escritos de mil maneras; el pan, cortado de otra.':
+      'Surt la fornada de les Teulades. Les comandes vénen escrites de mil maneres; el pa, tallat d\'una altra.',
+  'Toca los trozos de pan para meterlos en la caja (y otra vez para sacarlos) hasta tener justo el pedido; luego ENTREGAR. 11/4 son 2 panes y 3 cuartos. Si la bandeja está cortada en octavos y piden 3/4, piensa cuántos octavos son.':
+      'Toca els trossos de pa per ficar-los a la caixa (i un altre cop per treure\'ls) fins a tenir just la comanda; després LLIURAR. 11/4 són 2 pans i 3 quarts. Si la safata està tallada en vuitens i demanen 3/4, pensa quants vuitens són.',
+  'Ojo, que los Impropios parecen poca cosa.':
+      'Compte, que els Impropis semblen poca cosa.',
+  'Esta bandeja no está cortada como el pedido. Piénsalo.':
+      'Aquesta safata no està tallada com la comanda. Pensa-hi.',
+  '{k} trozos de {d}: justo el pedido. A la caja.':
+      '{k} trossos de {d}: just la comanda. A la caixa.',
+  'Llevas {k} trozos de {d}: te has pasado.':
+      'Portes {k} trossos de {d}: t\'has passat.',
+  'Llevas {k} trozos de {d}: falta pan.':
+      'Portes {k} trossos de {d}: falta pa.',
+  '{k} trozos de los {d} de un pan: {k}/{d}.':
+      '{k} trossos dels {d} d\'un pa: {k}/{d}.',
+  'Cuenta los trozos de la caja (arriba) y en cuántos está cortado el pan (abajo).':
+      'Compta els trossos de la caixa (a dalt) i en quants està tallat el pa (a baix).',
+  'Seis pedidos servidos. Huele a pan en todos los Tejados.':
+      'Sis comandes servides. Fa olor de pa a totes les Teulades.',
+  '¿Cuánto pan hay en la caja?':
+      'Quant pa hi ha a la caixa?',
+  'Pedido: {p} de pan. Toca los trozos para meterlos en la caja.':
+      'Comanda: {p} de pa. Toca els trossos per ficar-los a la caixa.',
+  'y':
+      'i',
+  'El telar':
+      'El teler',
+  'Multiplica y divide fracciones con telas, hilos y cintas.':
+      'Multiplica i divideix fraccions amb teles, fils i cintes.',
+  'En el telar se cruzan hilos. Lo que se cruza, eso es multiplicar.':
+      'Al teler es creuen fils. El que es creua, això és multiplicar.',
+  'Lee el encargo y elige el resultado. Al acertar, la tela lo enseña: varias telas juntas, los hilos cruzados (el trozo que se cruza es el resultado), el reparto o las cintas cortadas.':
+      'Llegeix l\'encàrrec i tria el resultat. Quan l\'encertes, la tela ho ensenya: diverses teles juntes, els fils creuats (el tros que es creua és el resultat), el repartiment o les cintes tallades.',
+  'Lo que se cruza es el resultado: mira la tela.':
+      'El que es creua és el resultat: mira la tela.',
+  'Cortadas y contadas.':
+      'Tallades i comptades.',
+  'Tela medida. Al telar.':
+      'Tela mesurada. Al teler.',
+  'Junta las telas: se suman los trozos, el tamaño del trozo no cambia.':
+      'Ajunta les teles: se sumen els trossos, la mida del tros no canvia.',
+  'Por fracción: arriba por arriba y abajo por abajo. No se suma nada.':
+      'Per fracció: dalt per dalt i baix per baix. No se suma res.',
+  'Repartir entre varios hace los trozos más pequeños: el de abajo crece.':
+      'Repartir entre diversos fa els trossos més petits: el de baix creix.',
+  'Cuenta cuántas cintas de ese largo caben en la tela.':
+      'Compta quantes cintes d\'aquesta llargada caben a la tela.',
+  'Seis telas tejidas. Las Polillas se quedan sin cena.':
+      'Sis teles teixides. Les Arnes es queden sense sopar.',
+  '{k} telas de {f} de metro. ¿Cuánta tela en total?':
+      '{k} teles de {f} de metre. Quanta tela en total?',
+  'Un hilo a {f} del ancho y otro a {g} del alto. ¿Cuánto es {f} × {g}?':
+      'Un fil a {f} de l\'amplada i un altre a {g} de l\'alçada. Quant és {f} × {g}?',
+  'Reparte {f} de tela entre {k}. ¿Cuánto para cada uno?':
+      'Reparteix {f} de tela entre {k}. Quant per a cadascú?',
+  '¿Cuántas cintas de 1/{c} de metro salen de {f} de metro?':
+      'Quantes cintes d\'1/{c} de metre surten de {f} de metre?',
+  'El tranvía':
+      'El tramvia',
+  'Una línea de tranvía por la recta de los decimales: situar, redondear y pagar el billete.':
+      'Una línia de tramvia per la recta dels decimals: situar, arrodonir i pagar el bitllet.',
+  'El tranvía para en cada décima. Tú dices dónde; el Revisor, cuánto.':
+      'El tramvia para a cada dècima. Tu dius on; el Revisor, quant.',
+  'Toca la vía para parar el tranvía en una parada: la pedida, o la más cercana al viajero. Cuando sube un Revisor, elige cuánto cuesta el billete. Cuidado con dónde va la coma.':
+      'Toca la via per aturar el tramvia en una parada: la demanada, o la més propera al viatger. Quan puja un Revisor, tria quant costa el bitllet. Compte amb on va la coma.',
+  'Sube un Revisor. Billete, por favor.':
+      'Puja un Revisor. Bitllet, si us plau.',
+  '{v} está más cerca de {r}. Parada.':
+      '{v} és més a prop de {r}. Parada.',
+  'Parada {r}. Todos abajo.':
+      'Parada {r}. Tothom avall.',
+  'Paramos en {p}, pero {v} queda más cerca de otra parada.':
+      'Parem a {p}, però {v} queda més a prop d\'una altra parada.',
+  'Esta es la {p}. Busca la {r}.':
+      'Aquesta és la {p}. Busca la {r}.',
+  '{o} €. El Revisor se baja contento.':
+      '{o} €. El Revisor baixa content.',
+  '{o} € no. Mira bien dónde va la coma.':
+      '{o} € no. Mira bé on va la coma.',
+  'Seis viajes sin perder ni una parada. Última estación.':
+      'Sis viatges sense perdre cap parada. Última estació.',
+  'Lleva el tranvía a la parada {v}. Toca la vía.':
+      'Porta el tramvia a la parada {v}. Toca la via.',
+  'El viajero va a {v}. ¿En qué parada (número entero) baja, la más cercana?':
+      'El viatger va a {v}. A quina parada (nombre enter) baixa, la més propera?',
+  'El viajero va a {v}. ¿En qué parada de décimas baja, la más cercana?':
+      'El viatger va a {v}. A quina parada de dècimes baixa, la més propera?',
+  'Billete: {k} viajes de {p} €. ¿Cuánto es?':
+      'Bitllet: {k} viatges de {p} €. Quant és?',
+  'Billete: el {a} del precio de {b} €. ¿Cuánto es?':
+      'Bitllet: el {a} del preu de {b} €. Quant és?',
+  'Billete: {p} € entre {k} viajeros. ¿Cuánto paga cada uno?':
+      'Bitllet: {p} € entre {k} viatgers. Quant paga cadascú?',
+  'El de abajo dice en cuántos trozos iguales se corta el pan; el de arriba, cuántos coges. 3/4: pan en 4 trozos, coges 3.':
+      'El de baix diu en quants trossos iguals es talla el pa; el de dalt, quants n\'agafes. 3/4: pa en 4 trossos, n\'agafes 3.',
+  'Para escribir lo que hay: arriba los trozos que tienes, abajo en cuántos está cortado el pan.':
+      'Per escriure el que hi ha: a dalt els trossos que tens, a baix en quants està tallat el pa.',
+  'Una impropia tiene más trozos que un pan entero: 11/4 son 8/4 (2 panes) y 3/4. Divide 11 entre 4: 2 y sobran 3.':
+      'Una impròpia té més trossos que un pa sencer: 11/4 són 8/4 (2 pans) i 3/4. Divideix 11 entre 4: 2 i en sobren 3.',
+  'Un mixto se pasa a trozos: 2 y 3/4 son 2 × 4 + 3 = 11 cuartos.':
+      'Un mixt es passa a trossos: 2 i 3/4 són 2 × 4 + 3 = 11 quarts.',
+  'Simplificar es juntar trozos: 6/8 = 3/4, dividiendo arriba y abajo entre 2.':
+      'Simplificar és ajuntar trossos: 6/8 = 3/4, dividint a dalt i a baix entre 2.',
+  'Amplificar es partir los trozos: 3/4 = 6/8, multiplicando arriba y abajo por 2.':
+      'Amplificar és partir els trossos: 3/4 = 6/8, multiplicant a dalt i a baix per 2.',
+  'Fracción por número: multiplica sólo el de arriba. 3 × 2/5 = 6/5.':
+      'Fracció per nombre: multiplica només el de dalt. 3 × 2/5 = 6/5.',
+  'Fracción por fracción: arriba por arriba y abajo por abajo. 3/4 × 2/3 = 6/12.':
+      'Fracció per fracció: dalt per dalt i baix per baix. 3/4 × 2/3 = 6/12.',
+  'Repartir entre un número hace los trozos más pequeños: se multiplica el de abajo. 3/4 entre 3 = 3/12 = 1/4.':
+      'Repartir entre un nombre fa els trossos més petits: es multiplica el de baix. 3/4 entre 3 = 3/12 = 1/4.',
+  'Cuántas veces cabe: 3/2 entre 1/4 es contar cuartos en tres medios: 6.':
+      'Quantes vegades hi cap: 3/2 entre 1/4 és comptar quarts en tres mitjos: 6.',
+  'Entre 1 y 2 hay diez décimas: 1,1; 1,2… 1,9. La primera cifra tras la coma son las décimas.':
+      'Entre 1 i 2 hi ha deu dècimes: 1,1; 1,2… 1,9. La primera xifra després de la coma són les dècimes.',
+  'Para redondear a la décima, mira la centésima: si es 5 o más, sube; si no, se queda. 2,46 → 2,5; 2,43 → 2,4.':
+      'Per arrodonir a la dècima, mira la centèsima: si és 5 o més, puja; si no, es queda. 2,46 → 2,5; 2,43 → 2,4.',
+  'Multiplica como si no hubiera coma y luego pon tantas cifras decimales como tenía: 3 × 1,25 → 3 × 125 = 375 → 3,75.':
+      'Multiplica com si no hi hagués coma i després posa tantes xifres decimals com tenia: 3 × 1,25 → 3 × 125 = 375 → 3,75.',
+  'Decimal por decimal: cuenta las cifras decimales de los dos. 0,6 × 2,5 → 6 × 25 = 150 → dos decimales: 1,50.':
+      'Decimal per decimal: compta les xifres decimals dels dos. 0,6 × 2,5 → 6 × 25 = 150 → dos decimals: 1,50.',
+  'Dividir entre un número: reparte como siempre y pon la coma cuando llegues a ella. 7,5 entre 3 = 2,5.':
+      'Dividir entre un nombre: reparteix com sempre i posa la coma quan hi arribis. 7,5 entre 3 = 2,5.',
+  'El pan se corta en {d} trozos iguales: eso es el de abajo.':
+      'El pa es talla en {d} trossos iguals: això és el de baix.',
+  'Se cogen {n}: eso es el de arriba. {n}/{d}.':
+      'N\'agafes {n}: això és el de dalt. {n}/{d}.',
+  '{n} ÷ {d} = {e} y sobran {r}.':
+      '{n} ÷ {d} = {e} i en sobren {r}.',
+  '{e} panes enteros y {r}/{d}.':
+      '{e} pans sencers i {r}/{d}.',
+  'Cada pan son {d} trozos: {e} × {d} = {p}.':
+      'Cada pa són {d} trossos: {e} × {d} = {p}.',
+  'Más los {r} sueltos: {p} + {r} = {t}. Son {t}/{d}.':
+      'Més els {r} solts: {p} + {r} = {t}. Són {t}/{d}.',
+  'Arriba y abajo se pueden dividir entre {k}.':
+      'A dalt i a baix es poden dividir entre {k}.',
+  '{a} ÷ {k} = {n}; {b} ÷ {k} = {d}. Queda {n}/{d}.':
+      '{a} ÷ {k} = {n}; {b} ÷ {k} = {d}. Queda {n}/{d}.',
+  'De {d} a {e} se multiplica por {k}.':
+      'De {d} a {e} es multiplica per {k}.',
+  'Arriba igual: {n} × {k} = {r}. {r}/{e}.':
+      'A dalt igual: {n} × {k} = {r}. {r}/{e}.',
+  '{k} veces {n} trozos: {k} × {n} = {r} trozos.':
+      '{k} vegades {n} trossos: {k} × {n} = {r} trossos.',
+  'Los trozos siguen siendo de 1/{d}: {r}/{d}.':
+      'Els trossos continuen sent d\'1/{d}: {r}/{d}.',
+  'Arriba por arriba: {a} × {c} = {x}.':
+      'Dalt per dalt: {a} × {c} = {x}.',
+  'Abajo por abajo: {b} × {d} = {y}. Resultado: {x}/{y}.':
+      'Baix per baix: {b} × {d} = {y}. Resultat: {x}/{y}.',
+  'Repartir entre {k} hace cada trozo {k} veces más pequeño.':
+      'Repartir entre {k} fa cada tros {k} vegades més petit.',
+  'El de abajo se multiplica: {d} × {k} = {e}. Cada uno, {n}/{e}.':
+      'El de baix es multiplica: {d} × {k} = {e}. Cadascú, {n}/{e}.',
+  'En cada metro caben {c} cintas de 1/{c}.':
+      'A cada metre hi caben {c} cintes d\'1/{c}.',
+  '{a}/{b} de metro: {a} × {c} ÷ {b} = {r} cintas.':
+      '{a}/{b} de metre: {a} × {c} ÷ {b} = {r} cintes.',
+  'Está entre {a} y {b}.':
+      'És entre {a} i {b}.',
+  'Cuenta {d} décimas desde el {a}.':
+      'Compta {d} dècimes des del {a}.',
+  'Mira la centésima: {c}.':
+      'Mira la centèsima: {c}.',
+  'Es 5 o más: la décima sube. Queda {r}.':
+      'És 5 o més: la dècima puja. Queda {r}.',
+  'Es menos de 5: la décima se queda. Queda {r}.':
+      'És menys de 5: la dècima es queda. Queda {r}.',
+  'Sin coma: {k} × {p} = {r}.':
+      'Sense coma: {k} × {p} = {r}.',
+  'Dos cifras decimales: {d}.':
+      'Dues xifres decimals: {d}.',
+  'Sin comas: {a} × {b} = {r}.':
+      'Sense comes: {a} × {b} = {r}.',
+  'Una decimal más otra: dos cifras decimales, {d}.':
+      'Un decimal més un altre: dues xifres decimals, {d}.',
+  'Sin coma: {p} ÷ {k} = {r}.':
+      'Sense coma: {p} ÷ {k} = {r}.',
+  'Tenía una cifra decimal: {d}.':
+      'Tenia una xifra decimal: {d}.',
+  // Pinturas
+  'Multiplica en cruz: {a} × {s} = {x} y {b} × {t} = {y}.':
+      'Multiplica en creu: {a} × {s} = {x} i {b} × {t} = {y}.',
 };

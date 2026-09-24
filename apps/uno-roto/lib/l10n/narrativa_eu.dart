@@ -2831,4 +2831,194 @@ const Map<String, String> narrativaEu = <String, String>{
       'Minutuak: {a} + {b} = {t}.',
   '{t} minutos son 1 hora y {r} minutos: las {h}:{m}.':
       '{t} minutu ordu 1 eta {r} minutu dira: {h}:{m}.',
+  // La hornada, El telar y El tranvía
+  'La hornada':
+      'Labealdia',
+  'Empaqueta el pan justo: fracciones, impropias, mixtos y bandejas cortadas de otra manera.':
+      'Ontziratu ogi zehatza: zatikiak, inpropioak, mistoak eta beste era batera moztutako erretiluak.',
+  'Sale la hornada de los Tejados. Los pedidos vienen escritos de mil maneras; el pan, cortado de otra.':
+      'Teilatuetako labealdia ateratzen da. Eskaerak mila eratara idatzita datoz; ogia, beste batera moztuta.',
+  'Toca los trozos de pan para meterlos en la caja (y otra vez para sacarlos) hasta tener justo el pedido; luego ENTREGAR. 11/4 son 2 panes y 3 cuartos. Si la bandeja está cortada en octavos y piden 3/4, piensa cuántos octavos son.':
+      'Ukitu ogi-zatiak kutxan sartzeko (eta berriro ateratzeko) eskaera zehazki izan arte; gero ENTREGATU. 11/4 2 ogi eta 3 laurden dira. Erretilua zortzirenetan moztuta badago eta 3/4 eskatzen badute, pentsatu zenbat zortziren diren.',
+  'Ojo, que los Impropios parecen poca cosa.':
+      'Kontuz, Inpropioek gutxi dirudite eta.',
+  'Esta bandeja no está cortada como el pedido. Piénsalo.':
+      'Erretilu hau ez dago eskaera bezala moztuta. Pentsatu.',
+  '{k} trozos de {d}: justo el pedido. A la caja.':
+      '{d} zatitik {k}: eskaera zehazki. Kutxara.',
+  'Llevas {k} trozos de {d}: te has pasado.':
+      '{d} zatitik {k} daramatzazu: pasatu zara.',
+  'Llevas {k} trozos de {d}: falta pan.':
+      '{d} zatitik {k} daramatzazu: ogia falta da.',
+  '{k} trozos de los {d} de un pan: {k}/{d}.':
+      'Ogi baten {d} zatietatik {k}: {k}/{d}.',
+  'Cuenta los trozos de la caja (arriba) y en cuántos está cortado el pan (abajo).':
+      'Zenbatu kutxako zatiak (goian) eta ogia zenbat zatitan dagoen moztuta (behean).',
+  'Seis pedidos servidos. Huele a pan en todos los Tejados.':
+      'Sei eskaera zerbitzatuta. Teilatu guztietan ogi usaina dago.',
+  '¿Cuánto pan hay en la caja?':
+      'Zenbat ogi dago kutxan?',
+  'Pedido: {p} de pan. Toca los trozos para meterlos en la caja.':
+      'Eskaera: {p} ogi. Ukitu zatiak kutxan sartzeko.',
+  'y':
+      'eta',
+  'El telar':
+      'Ehungailua',
+  'Multiplica y divide fracciones con telas, hilos y cintas.':
+      'Biderkatu eta zatitu zatikiak oihal, hari eta zintekin.',
+  'En el telar se cruzan hilos. Lo que se cruza, eso es multiplicar.':
+      'Ehungailuan hariak gurutzatzen dira. Gurutzatzen dena, hori da biderkatzea.',
+  'Lee el encargo y elige el resultado. Al acertar, la tela lo enseña: varias telas juntas, los hilos cruzados (el trozo que se cruza es el resultado), el reparto o las cintas cortadas.':
+      'Irakurri enkargua eta aukeratu emaitza. Asmatzean, oihalak erakusten du: hainbat oihal elkarrekin, hari gurutzatuak (gurutzatzen den zatia da emaitza), banaketa edo moztutako zintak.',
+  'Lo que se cruza es el resultado: mira la tela.':
+      'Gurutzatzen dena da emaitza: begiratu oihala.',
+  'Cortadas y contadas.':
+      'Moztuta eta zenbatuta.',
+  'Tela medida. Al telar.':
+      'Oihala neurtuta. Ehungailura.',
+  'Junta las telas: se suman los trozos, el tamaño del trozo no cambia.':
+      'Elkartu oihalak: zatiak batzen dira, zatiaren tamaina ez da aldatzen.',
+  'Por fracción: arriba por arriba y abajo por abajo. No se suma nada.':
+      'Zatikiaz: goikoa goikoaz eta behekoa behekoaz. Ez da ezer batzen.',
+  'Repartir entre varios hace los trozos más pequeños: el de abajo crece.':
+      'Hainbaten artean banatzeak zatiak txikiagoak egiten ditu: behekoa handitzen da.',
+  'Cuenta cuántas cintas de ese largo caben en la tela.':
+      'Zenbatu luzera horretako zenbat zinta sartzen diren oihalean.',
+  'Seis telas tejidas. Las Polillas se quedan sin cena.':
+      'Sei oihal ehunduta. Sitsak afaririk gabe geratzen dira.',
+  '{k} telas de {f} de metro. ¿Cuánta tela en total?':
+      'Metro baten {f}-ko {k} oihal. Zenbat oihal guztira?',
+  'Un hilo a {f} del ancho y otro a {g} del alto. ¿Cuánto es {f} × {g}?':
+      'Hari bat zabaleraren {f}-ra eta beste bat altueraren {g}-ra. Zenbat da {f} × {g}?',
+  'Reparte {f} de tela entre {k}. ¿Cuánto para cada uno?':
+      'Banatu {f} oihal {k} lagunen artean. Zenbat bakoitzarentzat?',
+  '¿Cuántas cintas de 1/{c} de metro salen de {f} de metro?':
+      'Metro baten 1/{c}-ko zenbat zinta ateratzen dira metro baten {f}-tik?',
+  'El tranvía':
+      'Tranbia',
+  'Una línea de tranvía por la recta de los decimales: situar, redondear y pagar el billete.':
+      'Tranbia-lerro bat hamartarren zuzenean zehar: kokatu, biribildu eta txartela ordaindu.',
+  'El tranvía para en cada décima. Tú dices dónde; el Revisor, cuánto.':
+      'Tranbia hamarren bakoitzean gelditzen da. Zuk esaten duzu non; Ikuskariak, zenbat.',
+  'Toca la vía para parar el tranvía en una parada: la pedida, o la más cercana al viajero. Cuando sube un Revisor, elige cuánto cuesta el billete. Cuidado con dónde va la coma.':
+      'Ukitu bidea tranbia geltoki batean gelditzeko: eskatutakoan, edo bidaiaritik hurbilenekoan. Ikuskari bat igotzen denean, aukeratu txartelak zenbat balio duen. Kontuz koma non doan.',
+  'Sube un Revisor. Billete, por favor.':
+      'Ikuskari bat igotzen da. Txartela, mesedez.',
+  '{v} está más cerca de {r}. Parada.':
+      '{v} {r} zenbakitik hurbilago dago. Geltokia.',
+  'Parada {r}. Todos abajo.':
+      '{r} geltokia. Denak behera.',
+  'Paramos en {p}, pero {v} queda más cerca de otra parada.':
+      '{p} geltokian gelditzen gara, baina {v} beste geltoki batetik hurbilago dago.',
+  'Esta es la {p}. Busca la {r}.':
+      'Hau {p} da. Bilatu {r}.',
+  '{o} €. El Revisor se baja contento.':
+      '{o} €. Ikuskaria pozik jaisten da.',
+  '{o} € no. Mira bien dónde va la coma.':
+      '{o} € ez. Begiratu ondo koma non doan.',
+  'Seis viajes sin perder ni una parada. Última estación.':
+      'Sei bidaia geltoki bat ere galdu gabe. Azken geltokia.',
+  'Lleva el tranvía a la parada {v}. Toca la vía.':
+      'Eraman tranbia {v} geltokira. Ukitu bidea.',
+  'El viajero va a {v}. ¿En qué parada (número entero) baja, la más cercana?':
+      'Bidaiaria {v}-ra doa. Zein geltokitan (zenbaki osoa) jaisten da, hurbilenean?',
+  'El viajero va a {v}. ¿En qué parada de décimas baja, la más cercana?':
+      'Bidaiaria {v}-ra doa. Hamarrenetako zein geltokitan jaisten da, hurbilenean?',
+  'Billete: {k} viajes de {p} €. ¿Cuánto es?':
+      'Txartela: {p} €-ko {k} bidaia. Zenbat da?',
+  'Billete: el {a} del precio de {b} €. ¿Cuánto es?':
+      'Txartela: {b} €-ko prezioaren {a}. Zenbat da?',
+  'Billete: {p} € entre {k} viajeros. ¿Cuánto paga cada uno?':
+      'Txartela: {p} € {k} bidaiarien artean. Zenbat ordaintzen du bakoitzak?',
+  'El de abajo dice en cuántos trozos iguales se corta el pan; el de arriba, cuántos coges. 3/4: pan en 4 trozos, coges 3.':
+      'Behekoak esaten du ogia zenbat zati berdinetan mozten den; goikoak, zenbat hartzen dituzun. 3/4: ogia 4 zatitan, 3 hartzen dituzu.',
+  'Para escribir lo que hay: arriba los trozos que tienes, abajo en cuántos está cortado el pan.':
+      'Dagoena idazteko: goian dituzun zatiak, behean ogia zenbat zatitan dagoen moztuta.',
+  'Una impropia tiene más trozos que un pan entero: 11/4 son 8/4 (2 panes) y 3/4. Divide 11 entre 4: 2 y sobran 3.':
+      'Inpropio batek ogi oso batek baino zati gehiago ditu: 11/4 8/4 (2 ogi) eta 3/4 dira. Zatitu 11 4rekin: 2 eta 3 soberan.',
+  'Un mixto se pasa a trozos: 2 y 3/4 son 2 × 4 + 3 = 11 cuartos.':
+      'Misto bat zatietara pasatzen da: 2 eta 3/4 2 × 4 + 3 = 11 laurden dira.',
+  'Simplificar es juntar trozos: 6/8 = 3/4, dividiendo arriba y abajo entre 2.':
+      'Sinplifikatzea zatiak elkartzea da: 6/8 = 3/4, goian eta behean 2rekin zatituz.',
+  'Amplificar es partir los trozos: 3/4 = 6/8, multiplicando arriba y abajo por 2.':
+      'Anplifikatzea zatiak zatitzea da: 3/4 = 6/8, goian eta behean 2rekin biderkatuz.',
+  'Fracción por número: multiplica sólo el de arriba. 3 × 2/5 = 6/5.':
+      'Zatikia bider zenbakia: biderkatu goikoa bakarrik. 3 × 2/5 = 6/5.',
+  'Fracción por fracción: arriba por arriba y abajo por abajo. 3/4 × 2/3 = 6/12.':
+      'Zatikia bider zatikia: goikoa goikoaz eta behekoa behekoaz. 3/4 × 2/3 = 6/12.',
+  'Repartir entre un número hace los trozos más pequeños: se multiplica el de abajo. 3/4 entre 3 = 3/12 = 1/4.':
+      'Zenbaki batekin banatzeak zatiak txikiagoak egiten ditu: behekoa biderkatzen da. 3/4 zati 3 = 3/12 = 1/4.',
+  'Cuántas veces cabe: 3/2 entre 1/4 es contar cuartos en tres medios: 6.':
+      'Zenbat aldiz sartzen den: 3/2 zati 1/4 hiru erditan laurdenak zenbatzea da: 6.',
+  'Entre 1 y 2 hay diez décimas: 1,1; 1,2… 1,9. La primera cifra tras la coma son las décimas.':
+      '1 eta 2 artean hamar hamarren daude: 1,1; 1,2… 1,9. Komaren ondorengo lehen zifra hamarrenak dira.',
+  'Para redondear a la décima, mira la centésima: si es 5 o más, sube; si no, se queda. 2,46 → 2,5; 2,43 → 2,4.':
+      'Hamarrenera biribiltzeko, begiratu ehunenari: 5 edo gehiago bada, igo; bestela, geratu. 2,46 → 2,5; 2,43 → 2,4.',
+  'Multiplica como si no hubiera coma y luego pon tantas cifras decimales como tenía: 3 × 1,25 → 3 × 125 = 375 → 3,75.':
+      'Biderkatu komarik ez balego bezala eta gero jarri zituen hainbat zifra hamartar: 3 × 1,25 → 3 × 125 = 375 → 3,75.',
+  'Decimal por decimal: cuenta las cifras decimales de los dos. 0,6 × 2,5 → 6 × 25 = 150 → dos decimales: 1,50.':
+      'Hamartarra bider hamartarra: zenbatu bien zifra hamartarrak. 0,6 × 2,5 → 6 × 25 = 150 → bi hamartar: 1,50.',
+  'Dividir entre un número: reparte como siempre y pon la coma cuando llegues a ella. 7,5 entre 3 = 2,5.':
+      'Zenbaki batekin zatitzea: banatu beti bezala eta jarri koma hara iristean. 7,5 zati 3 = 2,5.',
+  'El pan se corta en {d} trozos iguales: eso es el de abajo.':
+      'Ogia {d} zati berdinetan mozten da: hori da behekoa.',
+  'Se cogen {n}: eso es el de arriba. {n}/{d}.':
+      '{n} hartzen dira: hori da goikoa. {n}/{d}.',
+  '{n} ÷ {d} = {e} y sobran {r}.':
+      '{n} ÷ {d} = {e} eta {r} soberan.',
+  '{e} panes enteros y {r}/{d}.':
+      '{e} ogi oso eta {r}/{d}.',
+  'Cada pan son {d} trozos: {e} × {d} = {p}.':
+      'Ogi bakoitza {d} zati da: {e} × {d} = {p}.',
+  'Más los {r} sueltos: {p} + {r} = {t}. Son {t}/{d}.':
+      'Gehi {r} solteak: {p} + {r} = {t}. {t}/{d} dira.',
+  'Arriba y abajo se pueden dividir entre {k}.':
+      'Goikoa eta behekoa {k} zenbakiaz zatitu daitezke.',
+  '{a} ÷ {k} = {n}; {b} ÷ {k} = {d}. Queda {n}/{d}.':
+      '{a} ÷ {k} = {n}; {b} ÷ {k} = {d}. {n}/{d} geratzen da.',
+  'De {d} a {e} se multiplica por {k}.':
+      '{d} zenbakitik {e} zenbakira {k} zenbakiaz biderkatzen da.',
+  'Arriba igual: {n} × {k} = {r}. {r}/{e}.':
+      'Goian berdin: {n} × {k} = {r}. {r}/{e}.',
+  '{k} veces {n} trozos: {k} × {n} = {r} trozos.':
+      '{k} aldiz {n} zati: {k} × {n} = {r} zati.',
+  'Los trozos siguen siendo de 1/{d}: {r}/{d}.':
+      'Zatiak 1/{d}-koak dira oraindik: {r}/{d}.',
+  'Arriba por arriba: {a} × {c} = {x}.':
+      'Goikoa goikoaz: {a} × {c} = {x}.',
+  'Abajo por abajo: {b} × {d} = {y}. Resultado: {x}/{y}.':
+      'Behekoa behekoaz: {b} × {d} = {y}. Emaitza: {x}/{y}.',
+  'Repartir entre {k} hace cada trozo {k} veces más pequeño.':
+      '{k} lagunen artean banatzeak zati bakoitza {k} aldiz txikiagoa egiten du.',
+  'El de abajo se multiplica: {d} × {k} = {e}. Cada uno, {n}/{e}.':
+      'Behekoa biderkatzen da: {d} × {k} = {e}. Bakoitzak, {n}/{e}.',
+  'En cada metro caben {c} cintas de 1/{c}.':
+      'Metro bakoitzean 1/{c}-ko {c} zinta sartzen dira.',
+  '{a}/{b} de metro: {a} × {c} ÷ {b} = {r} cintas.':
+      'Metro baten {a}/{b}: {a} × {c} ÷ {b} = {r} zinta.',
+  'Está entre {a} y {b}.':
+      '{a} eta {b} artean dago.',
+  'Cuenta {d} décimas desde el {a}.':
+      'Zenbatu {d} hamarren {a} zenbakitik aurrera.',
+  'Mira la centésima: {c}.':
+      'Begiratu ehunenari: {c}.',
+  'Es 5 o más: la décima sube. Queda {r}.':
+      '5 edo gehiago da: hamarrena igotzen da. {r} geratzen da.',
+  'Es menos de 5: la décima se queda. Queda {r}.':
+      '5 baino gutxiago da: hamarrena geratzen da. {r} geratzen da.',
+  'Sin coma: {k} × {p} = {r}.':
+      'Komarik gabe: {k} × {p} = {r}.',
+  'Dos cifras decimales: {d}.':
+      'Bi zifra hamartar: {d}.',
+  'Sin comas: {a} × {b} = {r}.':
+      'Komarik gabe: {a} × {b} = {r}.',
+  'Una decimal más otra: dos cifras decimales, {d}.':
+      'Hamartar bat gehi beste bat: bi zifra hamartar, {d}.',
+  'Sin coma: {p} ÷ {k} = {r}.':
+      'Komarik gabe: {p} ÷ {k} = {r}.',
+  'Tenía una cifra decimal: {d}.':
+      'Zifra hamartar bat zuen: {d}.',
+  // Pinturas
+  'Multiplica en cruz: {a} × {s} = {x} y {b} × {t} = {y}.':
+      'Biderkatu gurutzean: {a} × {s} = {x} eta {b} × {t} = {y}.',
 };

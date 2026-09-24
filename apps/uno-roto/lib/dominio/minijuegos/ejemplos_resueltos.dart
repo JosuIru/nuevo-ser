@@ -46,6 +46,9 @@ const habilidadesConEjemplo = {
   'PROP.01', 'PROP.02', 'PROP.03', 'PROP.06', 'PROP.07', // Pinturas
   'MED.04', 'GEO.01', 'GEO.07', // Rebote
   'MED.01', 'MED.02', 'MED.03', // El taller del relojero
+  'FR.01', 'FR.02', 'FR.10', 'FR.11', 'FR.12', 'FR.13', // La hornada
+  'FR.18', 'FR.19', 'FR.20', 'FR.21', // El telar
+  'DEC.01', 'DEC.05', 'DEC.06', 'DEC.07', 'DEC.09', // El tranvía
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -146,6 +149,121 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
           PasoEjemplo('No sobra nada: {x} es múltiplo de {n}.', {'x': '$x', 'n': '$n'})
         else
           PasoEjemplo('Sobran {r}: {x} no es múltiplo de {n}.', {'r': '$resto', 'x': '$x', 'n': '$n'}),
+      ]);
+    case 'FR.01' || 'FR.02':
+      final d = entre(3, 8);
+      final n = entre(1, d - 1);
+      return EjemploResuelto('$n/$d', [
+        PasoEjemplo('El pan se corta en {d} trozos iguales: eso es el de abajo.', {'d': '$d'}),
+        PasoEjemplo('Se cogen {n}: eso es el de arriba. {n}/{d}.', {'n': '$n', 'd': '$d'}),
+      ]);
+    case 'FR.12':
+      final d = entre(3, 6);
+      final enteros = entre(1, 3);
+      final resto = entre(1, d - 1);
+      final n = enteros * d + resto;
+      return EjemploResuelto('$n/$d', [
+        PasoEjemplo('{n} ÷ {d} = {e} y sobran {r}.', {'n': '$n', 'd': '$d', 'e': '$enteros', 'r': '$resto'}),
+        PasoEjemplo('{e} panes enteros y {r}/{d}.', {'e': '$enteros', 'r': '$resto', 'd': '$d'}),
+      ]);
+    case 'FR.13':
+      final d = entre(3, 6);
+      final enteros = entre(1, 3);
+      final resto = entre(1, d - 1);
+      return EjemploResuelto('$enteros + $resto/$d', [
+        PasoEjemplo('Cada pan son {d} trozos: {e} × {d} = {p}.', {'d': '$d', 'e': '$enteros', 'p': '${enteros * d}'}),
+        PasoEjemplo('Más los {r} sueltos: {p} + {r} = {t}. Son {t}/{d}.',
+            {'r': '$resto', 'p': '${enteros * d}', 't': '${enteros * d + resto}', 'd': '$d'}),
+      ]);
+    case 'FR.10':
+      final d = const [2, 3, 4, 5][azar.nextInt(4)];
+      final n = entre(1, d - 1);
+      final k = entre(2, 3);
+      return EjemploResuelto('${n * k}/${d * k}', [
+        PasoEjemplo('Arriba y abajo se pueden dividir entre {k}.', {'k': '$k'}),
+        PasoEjemplo('{a} ÷ {k} = {n}; {b} ÷ {k} = {d}. Queda {n}/{d}.',
+            {'a': '${n * k}', 'b': '${d * k}', 'k': '$k', 'n': '$n', 'd': '$d'}),
+      ]);
+    case 'FR.11':
+      final d = const [2, 3, 4][azar.nextInt(3)];
+      final n = entre(1, d - 1);
+      final k = entre(2, 3);
+      return EjemploResuelto('$n/$d = ?/${d * k}', [
+        PasoEjemplo('De {d} a {e} se multiplica por {k}.', {'d': '$d', 'e': '${d * k}', 'k': '$k'}),
+        PasoEjemplo('Arriba igual: {n} × {k} = {r}. {r}/{e}.', {'n': '$n', 'k': '$k', 'r': '${n * k}', 'e': '${d * k}'}),
+      ]);
+    case 'FR.18':
+      final d = entre(3, 8);
+      final n = entre(1, d - 1);
+      final k = entre(2, 5);
+      return EjemploResuelto('$k × $n/$d', [
+        PasoEjemplo('{k} veces {n} trozos: {k} × {n} = {r} trozos.', {'k': '$k', 'n': '$n', 'r': '${k * n}'}),
+        PasoEjemplo('Los trozos siguen siendo de 1/{d}: {r}/{d}.', {'r': '${k * n}', 'd': '$d'}),
+      ]);
+    case 'FR.19':
+      final b = entre(2, 5);
+      final d = entre(2, 5);
+      final a = entre(1, b - 1);
+      final c = entre(1, d - 1);
+      return EjemploResuelto('$a/$b × $c/$d', [
+        PasoEjemplo('Arriba por arriba: {a} × {c} = {x}.', {'a': '$a', 'c': '$c', 'x': '${a * c}'}),
+        PasoEjemplo('Abajo por abajo: {b} × {d} = {y}. Resultado: {x}/{y}.', {'b': '$b', 'd': '$d', 'x': '${a * c}', 'y': '${b * d}'}),
+      ]);
+    case 'FR.20':
+      final d = entre(2, 5);
+      final n = entre(1, d - 1);
+      final k = entre(2, 4);
+      return EjemploResuelto('$n/$d ÷ $k', [
+        PasoEjemplo('Repartir entre {k} hace cada trozo {k} veces más pequeño.', {'k': '$k'}),
+        PasoEjemplo('El de abajo se multiplica: {d} × {k} = {e}. Cada uno, {n}/{e}.', {'d': '$d', 'k': '$k', 'e': '${d * k}', 'n': '$n'}),
+      ]);
+    case 'FR.21':
+      final c = 2 * entre(1, 3); // par: las cintas salen enteras
+      final b = 2;
+      final a = entre(3, 5);
+      return EjemploResuelto('$a/$b ÷ 1/$c', [
+        PasoEjemplo('En cada metro caben {c} cintas de 1/{c}.', {'c': '$c'}),
+        PasoEjemplo('{a}/{b} de metro: {a} × {c} ÷ {b} = {r} cintas.', {'a': '$a', 'b': '$b', 'c': '$c', 'r': '${a * c / b}'.replaceAll('.0', '').replaceAll('.', ',')}),
+      ]);
+    case 'DEC.01':
+      final entero = entre(0, 3);
+      final decima = entre(1, 9);
+      return EjemploResuelto('$entero,$decima', [
+        PasoEjemplo('Está entre {a} y {b}.', {'a': '$entero', 'b': '${entero + 1}'}),
+        PasoEjemplo('Cuenta {d} décimas desde el {a}.', {'d': '$decima', 'a': '$entero'}),
+      ]);
+    case 'DEC.09':
+      final entero = entre(0, 5);
+      var centesimas = entre(11, 98);
+      if (centesimas % 10 == 5 || centesimas % 10 == 0) centesimas++;
+      final decimas = (centesimas + 5) ~/ 10;
+      final redondeado = decimas == 10 ? '${entero + 1}' : '$entero,$decimas';
+      return EjemploResuelto('$entero,${centesimas.toString().padLeft(2, '0')}', [
+        PasoEjemplo('Mira la centésima: {c}.', {'c': '${centesimas % 10}'}),
+        PasoEjemplo(centesimas % 10 >= 5 ? 'Es 5 o más: la décima sube. Queda {r}.' : 'Es menos de 5: la décima se queda. Queda {r}.',
+            {'r': redondeado}),
+      ]);
+    case 'DEC.05':
+      final k = entre(2, 5);
+      final p = 5 * entre(21, 60);
+      return EjemploResuelto('$k × ${p ~/ 100},${(p % 100).toString().padLeft(2, '0')}', [
+        PasoEjemplo('Sin coma: {k} × {p} = {r}.', {'k': '$k', 'p': '$p', 'r': '${k * p}'}),
+        PasoEjemplo('Dos cifras decimales: {d}.', {'d': '${k * p ~/ 100},${(k * p % 100).toString().padLeft(2, '0')}'}),
+      ]);
+    case 'DEC.06':
+      final a = entre(2, 9);
+      final b = entre(11, 40);
+      return EjemploResuelto('0,$a × ${b ~/ 10},${b % 10}', [
+        PasoEjemplo('Sin comas: {a} × {b} = {r}.', {'a': '$a', 'b': '$b', 'r': '${a * b}'}),
+        PasoEjemplo('Una decimal más otra: dos cifras decimales, {d}.', {'d': '${a * b ~/ 100},${(a * b % 100).toString().padLeft(2, '0')}'}),
+      ]);
+    case 'DEC.07':
+      final k = entre(2, 5);
+      final r = entre(11, 40);
+      final p = r * k;
+      return EjemploResuelto('${p ~/ 10},${p % 10} ÷ $k', [
+        PasoEjemplo('Sin coma: {p} ÷ {k} = {r}.', {'p': '$p', 'k': '$k', 'r': '$r'}),
+        PasoEjemplo('Tenía una cifra decimal: {d}.', {'d': '${r ~/ 10},${r % 10}'}),
       ]);
     case 'MED.04':
       final llega = 5 * entre(3, 16);

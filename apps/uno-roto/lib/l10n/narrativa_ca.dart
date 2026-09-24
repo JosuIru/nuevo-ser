@@ -3438,4 +3438,25 @@ const Map<String, String> narrativaCa = <String, String>{
       'Mestra dels Afores',
   'Aprendiz':
       'Aprenent',
+  // El taller de dibujo: distritos, máquinas y la pared
+  'Así lo ves tú. Dibújalo en papel, hazle una foto y aparecerá así en el juego.':
+      'Així ho veus tu. Dibuixa-ho en paper, fes-hi una foto i apareixerà així al joc.',
+  'Personajes':
+      'Personatges',
+  'Distritos':
+      'Districtes',
+  'Su paisaje de noche':
+      'El seu paisatge de nit',
+  'Dibuja cómo ves {n} de noche, con sus edificios y sus luces. Luego hazle una foto con buena luz: será su paisaje.':
+      'Dibuixa com veus {n} de nit, amb els seus edificis i les seves llums. Després fes-hi una foto amb bona llum: serà el seu paisatge.',
+  'Dibuja cómo te imaginas la máquina {n}. Luego hazle una foto con buena luz: así estará en la sala de Rexán.':
+      'Dibuixa com t\'imagines la màquina {n}. Després fes-hi una foto amb bona llum: així estarà a la sala d\'en Rexán.',
+  'La pared de Rexán':
+      'La paret d\'en Rexán',
+  'Lo que dibujas, colgado en los recreativos.':
+      'El que dibuixes, penjat als recreatius.',
+  'Aquí cuelgo lo que me traes. De momento está vacía: los monstruos se dibujan en el bestiario, y el resto en Mi cuaderno, en el taller.':
+      'Aquí penjo el que em portes. De moment és buida: els monstres es dibuixen al bestiari, i la resta a El meu quadern, al taller.',
+  'Aquí cuelgo lo que me traes. Es la mejor pared de los recreativos.':
+      'Aquí penjo el que em portes. És la millor paret dels recreatius.',
 };

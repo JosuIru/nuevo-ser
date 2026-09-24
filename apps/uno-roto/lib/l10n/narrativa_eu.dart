@@ -3434,4 +3434,25 @@ const Map<String, String> narrativaEu = <String, String>{
       'Kanpoaldeko Maistra',
   'Aprendiz':
       'Ikastuna',
+  // El taller de dibujo: distritos, máquinas y la pared
+  'Así lo ves tú. Dibújalo en papel, hazle una foto y aparecerá así en el juego.':
+      'Horrela ikusten duzu zuk. Marraztu paperean, atera argazki bat eta horrela agertuko da jokoan.',
+  'Personajes':
+      'Pertsonaiak',
+  'Distritos':
+      'Auzoak',
+  'Su paisaje de noche':
+      'Bere gaueko paisaia',
+  'Dibuja cómo ves {n} de noche, con sus edificios y sus luces. Luego hazle una foto con buena luz: será su paisaje.':
+      'Marraztu nola ikusten duzun gauez, eraikin eta argiekin: {n}. Gero atera argazki bat argi onarekin: hori izango da bere paisaia.',
+  'Dibuja cómo te imaginas la máquina {n}. Luego hazle una foto con buena luz: así estará en la sala de Rexán.':
+      'Marraztu nola irudikatzen duzun makina hau: {n}. Gero atera argazki bat argi onarekin: horrela egongo da Rexánen aretoan.',
+  'La pared de Rexán':
+      'Rexánen horma',
+  'Lo que dibujas, colgado en los recreativos.':
+      'Marrazten duzuna, jolas-aretoan zintzilik.',
+  'Aquí cuelgo lo que me traes. De momento está vacía: los monstruos se dibujan en el bestiario, y el resto en Mi cuaderno, en el taller.':
+      'Hemen zintzilikatzen dut ekartzen didazuna. Oraingoz hutsik dago: munstroak bestiarioan marrazten dira, eta gainerakoa Nire koadernoan, tailerrean.',
+  'Aquí cuelgo lo que me traes. Es la mejor pared de los recreativos.':
+      'Hemen zintzilikatzen dut ekartzen didazuna. Jolas-aretoko hormarik onena da.',
 };

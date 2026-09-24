@@ -5,7 +5,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../dominio/bestiario.dart';
+import '../dominio/catalogo_distritos.dart';
 import '../dominio/limpiador_dibujo.dart';
+import '../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../dominio/personajes_taller.dart';
 import 'repositorio_progreso.dart';
 
@@ -106,6 +108,31 @@ final dibujosPersonajes = ColeccionDibujos(
   carpeta: 'personajes',
   ids: () => [for (final personaje in personajesDelTaller) personaje.id],
 );
+
+/// Los paisajes de los distritos (fase 3 del taller).
+final dibujosDistritos = ColeccionDibujos(
+  prefijoClave: 'dibujo_distrito.',
+  carpeta: 'distritos',
+  ids: () => [for (final distrito in CatalogoDistritos.todos) distrito.identificador],
+);
+
+/// Los armarios de las máquinas de Rexán (fase 3 del taller).
+final dibujosMaquinas = ColeccionDibujos(
+  prefijoClave: 'dibujo_maquina.',
+  carpeta: 'maquinas',
+  ids: () => [for (final maquina in CatalogoMinijuegos.todos) maquina.id.name],
+);
+
+/// Todas las colecciones, para la pared de Rexán (fase 4).
+List<ColeccionDibujos> get coleccionesDelTaller =>
+    [dibujosMonstruos, dibujosPersonajes, dibujosDistritos, dibujosMaquinas];
+
+/// Carga todas las colecciones del perfil activo.
+Future<void> cargarDibujosDelTaller(RepositorioProgreso repositorio) async {
+  for (final coleccion in coleccionesDelTaller) {
+    await coleccion.cargar(repositorio);
+  }
+}
 
 /// La foto no tenía nada dibujado (o no se distinguía del papel).
 class DibujoSinContenido implements Exception {

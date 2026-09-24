@@ -74,8 +74,15 @@ class PintorEscenario extends CustomPainter {
   bool _pintarIlustracion(Canvas canvas, Size size) {
     final apagado = EscenariosIlustrados.apagado(idDistrito);
     if (apagado == null) return false;
-    final alto = size.width * apagado.height / apagado.width;
-    final destino = Rect.fromLTWH(0, size.height - alto, size.width, alto);
+    // A todo el ancho y anclado abajo; si es muy alto (un dibujo del niño
+    // en vertical), se ajusta al 80 % del alto y se centra.
+    var ancho = size.width;
+    var alto = size.width * apagado.height / apagado.width;
+    if (alto > size.height * 0.8) {
+      alto = size.height * 0.8;
+      ancho = alto * apagado.width / apagado.height;
+    }
+    final destino = Rect.fromLTWH((size.width - ancho) / 2, size.height - alto, ancho, alto);
     final origen = Rect.fromLTWH(
         0, 0, apagado.width.toDouble(), apagado.height.toDouble());
     final pintura = Paint()..filterQuality = FilterQuality.medium;

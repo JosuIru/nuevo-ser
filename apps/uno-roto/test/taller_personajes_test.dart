@@ -12,7 +12,7 @@ import 'package:uno_roto/dominio/personajes_taller.dart';
 import 'package:uno_roto/dominio/plano_escena.dart';
 import 'package:uno_roto/dominio/voz_personaje.dart';
 import 'package:uno_roto/vista/personajes/retratos.dart';
-import 'package:uno_roto/vista/pestana_personajes.dart';
+import 'package:uno_roto/vista/pestana_taller.dart';
 
 /// La primera escena en la que habla [voz].
 String _flagDeUnaEscenaCon(VozPersonaje voz) => CatalogoEscenas.todas
@@ -65,7 +65,7 @@ void main() {
     expect(find.byKey(const ValueKey('dibujo-personaje')), findsOneWidget);
   });
 
-  testWidgets('la pestaña enseña a los conocidos con su botón y al resto como ???', (tester) async {
+  testWidgets('el taller enseña lo conocido con su botón y el resto como ???', (tester) async {
     SharedPreferences.setMockInitialValues({});
     final repositorio = RepositorioProgreso();
     await tester.runAsync(() => repositorio.activarFlagNarrativo(_flagDeUnaEscenaCon(VozPersonaje.sora)));
@@ -73,11 +73,20 @@ void main() {
     tester.view.physicalSize = const Size(1080, 6000);
     tester.view.devicePixelRatio = 2.75;
     addTearDown(tester.view.reset);
-    await tester.pumpWidget(MaterialApp(home: Scaffold(body: PestanaPersonajes(repositorio: repositorio))));
+    await tester.pumpWidget(MaterialApp(home: Scaffold(body: PestanaTaller(repositorio: repositorio))));
     await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 200)));
     await tester.pumpAndSettle();
     expect(find.text('Sora'), findsOneWidget);
     expect(find.byKey(const ValueKey('dibujar-sora')), findsOneWidget);
-    expect(find.text('???'), findsNWidgets(personajesDelTaller.length - conocidos.length));
+    // Los personajes que no conoce, como «???».
+    for (final personaje in personajesDelTaller) {
+      final tarjeta = find.byKey(ValueKey('taller-${personaje.id}'));
+      expect(find.descendant(of: tarjeta, matching: find.text('???')),
+          conocidos.contains(personaje.id) ? findsNothing : findsOneWidget,
+          reason: personaje.id);
+    }
+    // Tejados se conoce siempre; los demás distritos, al visitarlos.
+    expect(find.byKey(const ValueKey('dibujar-tejados')), findsOneWidget);
+    expect(find.byKey(const ValueKey('dibujar-mercado')), findsNothing);
   });
 }

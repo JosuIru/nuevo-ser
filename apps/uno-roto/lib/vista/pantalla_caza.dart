@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:nuevo_ser_tutor/nuevo_ser_tutor.dart';
 import '../datos/catalogo_habilidades.dart';
 import '../datos/config_api.dart';
+import '../datos/dibujos_taller.dart';
 import '../datos/repositorio_progreso.dart';
 import '../dominio/ambiente_cielo.dart';
 import '../dominio/bonus_remonte.dart';
@@ -272,7 +273,11 @@ class _PantallaCazaState extends State<PantallaCaza>
   void initState() {
     super.initState();
     // Escenario ilustrado del distrito; al llegar, se repinta.
-    EscenariosIlustrados.cargar(widget.distrito.identificador).then((_) {
+    // Primero el dibujo del niño, si lo hay: el escenario lo usa.
+    dibujosDistritos
+        .cargar(widget.repositorio)
+        .then((_) => EscenariosIlustrados.cargar(widget.distrito.identificador))
+        .then((_) {
       if (mounted) setState(() {});
     });
     _generador = GeneradorCaza(distrito: widget.distrito);

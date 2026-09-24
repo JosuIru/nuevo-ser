@@ -16,7 +16,7 @@ import '../nucleo/paleta.dart';
 import 'pantalla_atlas_distrito.dart';
 import 'pantalla_panel_tutor.dart';
 import 'pestana_bestiario.dart';
-import 'pestana_personajes.dart';
+import 'pestana_taller.dart';
 import 'widgets/avatar_jugador.dart';
 import 'widgets/indicador_ventana.dart';
 
@@ -93,7 +93,7 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
             Tab(text: 'HABILIDADES'),
             Tab(text: 'DIARIO'),
             Tab(text: 'BESTIARIO'),
-            Tab(text: 'PERSONAJES'),
+            Tab(text: 'TALLER'),
           ],
         ),
         actions: [
@@ -119,7 +119,7 @@ class _PantallaMiCuadernoState extends State<PantallaMiCuaderno>
             _PestanaHabilidades(repositorio: widget.repositorio),
             _PestanaDiario(repositorio: widget.repositorio),
             PestanaBestiario(repositorio: widget.repositorio),
-            PestanaPersonajes(repositorio: widget.repositorio),
+            PestanaTaller(repositorio: widget.repositorio),
           ],
         ),
       ),

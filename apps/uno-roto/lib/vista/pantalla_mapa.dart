@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../datos/banco_ediciones_faro.dart';
 import '../datos/repositorio_encargo.dart';
 import '../datos/repositorio_faro.dart';
+import '../datos/dibujos_taller.dart';
 import '../datos/repositorio_progreso.dart';
 import '../dominio/catalogo_distritos.dart';
 import '../dominio/cuaderno.dart';
@@ -76,6 +77,9 @@ class _PantallaMapaState extends State<PantallaMapa>
     super.initState();
     // Tejados: fondo por defecto de las pantallas de puzzle.
     EscenariosIlustrados.cargar('tejados');
+    // Los dibujos del niño (El taller de dibujo): paisajes, personajes…
+    // Si alguno cambia el escenario, éste se recarga solo.
+    cargarDibujosDelTaller(widget.repositorio);
     _controladorCielo = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 16),

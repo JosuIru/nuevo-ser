@@ -272,6 +272,30 @@ void main() {
     expect(error.razon, contains('Sin conexión'));
   });
 
+  test('ClientException (fallo de red en web): SyncMosaicoError "Sin conexión"',
+      () async {
+    await repoCuenta.guardarToken('jwt-cronista');
+    await sembrarMarcas();
+    final mock = MockClient((_) async {
+      throw http.ClientException('Failed to fetch');
+    });
+    final cliente = companion.ClienteCompanion(
+      urlBase: 'https://backend.example',
+      cliente: mock,
+    );
+    final sincronizador = SincronizadorMosaicoArco1(
+      repoCuenta: repoCuenta,
+      repoMosaico: repoMosaico,
+      clienteCompanion: cliente,
+    );
+
+    final resultado = await sincronizador.sincronizar();
+
+    expect(resultado, isA<SyncMosaicoError>());
+    final error = resultado as SyncMosaicoError;
+    expect(error.razon, contains('Sin conexión'));
+  });
+
   test('mosaico vacío (cero marcas): payload con anchors vacíos', () async {
     await repoCuenta.guardarToken('jwt-cronista');
     // No sembramos nada — el repo devuelve mapa vacío.

@@ -88,6 +88,22 @@ flutter:
     - assets/sonido/ambiente/
     - assets/sonido/fragmentos/
 
+  fonts:
+    # Roboto empaquetada (Apache 2.0, assets/fonts/Roboto_LICENSE.txt):
+    # en web, si no está en el FontManifest, Flutter la descarga de la CDN
+    # de Google en cada visita (sin conexión no hay texto y es un aviso a
+    # un tercero). Misma solución que Uno Roto.
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Roboto-Medium.ttf
+          weight: 500
+
 # Splash nativo Android: fondo sepia oscuro coherente con la
 # PaletaArchivo provisional + logo de la marca centrado.
 flutter_native_splash:

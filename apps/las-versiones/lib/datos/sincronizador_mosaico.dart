@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:http/http.dart' show ClientException;
 import 'package:nuevo_ser_companion/nuevo_ser_companion.dart' as companion;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
@@ -164,6 +165,9 @@ abstract class SincronizadorMosaicoBase {
     } on TimeoutException {
       return const SyncMosaicoError(razon: 'Tiempo de espera agotado.');
     } on SocketException {
+      return const SyncMosaicoError(razon: 'Sin conexión.');
+    } on ClientException {
+      // En web los fallos de red llegan así (no hay SocketException).
       return const SyncMosaicoError(razon: 'Sin conexión.');
     }
   }

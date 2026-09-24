@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:http/http.dart' show ClientException;
 import 'package:nuevo_ser_companion/nuevo_ser_companion.dart' as companion;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,8 +71,10 @@ const _claveEmailBackend = 'nuevoser.lasversiones.email_backend';
 /// URL base del backend `nuevo-ser-core`. Provisional — la decisión
 /// del dominio definitivo es humana (mismo bloqueante que para los
 /// otros juegos de la Colección). Cuando llegue el dominio real, se
-/// sustituye sin tocar el cliente.
-const _urlBaseBackend = 'https://nuevoser.example.org';
+/// sustituye sin tocar el cliente. En la versión web, el WordPress que
+/// sirve el juego (mismo origen: sin CORS y sin configurar nada).
+final _urlBaseBackend =
+    kIsWeb ? Uri.base.origin : 'https://nuevoser.example.org';
 
 /// Locale activo de la app. Es global para que `AppLasVersiones`
 /// pueda quedarse `StatelessWidget` y a la vez reaccionar al cambio
@@ -1008,6 +1011,9 @@ class _OrquestadorState extends State<Orquestador> {
     } on TimeoutException {
       return 'Tiempo de espera agotado. Comprueba la conexión.';
     } on SocketException {
+      return 'Sin conexión. Comprueba la red.';
+    } on ClientException {
+      // En web los fallos de red llegan así (no hay SocketException).
       return 'Sin conexión. Comprueba la red.';
     }
   }

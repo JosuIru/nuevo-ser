@@ -30,6 +30,18 @@ int _evaluar(String enunciado) {
   if (jerarquia != null) {
     return int.parse(jerarquia[1]!) + int.parse(jerarquia[2]!) * int.parse(jerarquia[3]!);
   }
+  // Jerarquía con una fracción o un decimal: se evalúa con doubles.
+  double valor(String x) => x.contains('/')
+      ? int.parse(x.split('/')[0]) / int.parse(x.split('/')[1])
+      : double.parse(x.replaceAll(',', '.'));
+  final mixta = RegExp(r'^([\d/,]+)([+−×])([\d/,]+)([+−×])([\d/,]+)$').firstMatch(e);
+  if (mixta != null && (e.contains('/') || e.contains(','))) {
+    final [x, y, z] = [valor(mixta[1]!), valor(mixta[3]!), valor(mixta[5]!)];
+    final resultado = mixta[2] == '×'
+        ? (mixta[4] == '+' ? x * y + z : x * y - z)
+        : (mixta[2] == '+' ? x + y * z : x - y * z);
+    return resultado.round();
+  }
   final conSigno = RegExp(r'^(−?\d+)([+−])(\d+)$').firstMatch(e);
   if (conSigno != null && e.contains('−')) {
     final primero = int.parse(conSigno[1]!.replaceAll('−', '-'));

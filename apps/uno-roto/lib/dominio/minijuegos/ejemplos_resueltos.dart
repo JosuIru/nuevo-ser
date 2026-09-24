@@ -32,7 +32,7 @@ class EjemploResuelto {
 
 /// Habilidades con ejemplo resuelto.
 const habilidadesConEjemplo = {
-  'ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04', // cálculo
+  'ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04', 'OP.02', 'OP.03', // cálculo
   'FR.14', 'FR.16', 'DEC.04', // sumas de Puentes y Encaje
   'FR.09', 'DEC.08', 'PROP.05', // equivalencias de Parejas
   'DIV.01', 'DIV.03', 'DIV.04', 'DIV.05', 'DEC.02', 'FR.03', // reglas
@@ -76,7 +76,7 @@ EjemploResuelto? ejemploParecido(
 EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random azar) {
   int entre(int minimo, int maximo) => minimo + azar.nextInt(maximo - minimo + 1);
   switch (id) {
-    case 'ARI.01' || 'OP.01' || 'ARI.02' || 'FR.22' || 'PROP.04':
+    case 'ARI.01' || 'OP.01' || 'ARI.02' || 'FR.22' || 'PROP.04' || 'OP.02' || 'OP.03':
       final reto = GeneradorRetosCalculo(azar: azar).generar(id, dificultad: dificultad);
       return _explicarCalculo(reto);
     case 'FR.14':
@@ -683,6 +683,30 @@ EjemploResuelto? _explicarCalculo(RetoCalculo reto) {
       return EjemploResuelto(e, [
         PasoEjemplo('Primero la multiplicación: {b} × {c} = {m}.', {'b': '$b', 'c': '$c', 'm': '${b * c}'}),
         PasoEjemplo('Luego la suma: {a} + {m} = {r}.', {'a': '$a', 'm': '${b * c}', 'r': r}),
+      ]);
+    case 'OP.02' || 'OP.03':
+      // "a + x × k" o "k × x − b" / "t − x × k": x es la fracción o el decimal.
+      final suma = RegExp(r'^(\d+) \+ (\S+) × (\d+)$').firstMatch(e);
+      if (suma != null) {
+        final m = reto.respuesta - int.parse(suma[1]!);
+        return EjemploResuelto(e, [
+          PasoEjemplo('Primero la multiplicación: {b} × {c} = {m}.', {'b': suma[2]!, 'c': suma[3]!, 'm': '$m'}),
+          PasoEjemplo('Luego la suma: {a} + {m} = {r}.', {'a': suma[1]!, 'm': '$m', 'r': r}),
+        ]);
+      }
+      final delante = RegExp(r'^(\d+) × (\S+) − (\d+)$').firstMatch(e);
+      if (delante != null) {
+        final m = reto.respuesta + int.parse(delante[3]!);
+        return EjemploResuelto(e, [
+          PasoEjemplo('Primero la multiplicación: {b} × {c} = {m}.', {'b': delante[1]!, 'c': delante[2]!, 'm': '$m'}),
+          PasoEjemplo('Luego la resta: {a} − {b} = {r}.', {'a': '$m', 'b': delante[3]!, 'r': r}),
+        ]);
+      }
+      final resta = RegExp(r'^(\d+) − (\S+) × (\d+)$').firstMatch(e)!;
+      final m = int.parse(resta[1]!) - reto.respuesta;
+      return EjemploResuelto(e, [
+        PasoEjemplo('Primero la multiplicación: {b} × {c} = {m}.', {'b': resta[2]!, 'c': resta[3]!, 'm': '$m'}),
+        PasoEjemplo('Luego la resta: {a} − {b} = {r}.', {'a': resta[1]!, 'b': '$m', 'r': r}),
       ]);
     case 'ARI.02':
       final base = int.parse(e.substring(0, e.length - 1));

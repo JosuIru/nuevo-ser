@@ -3125,4 +3125,11 @@ const Map<String, String> narrativaEu = <String, String>{
       'Bilatu biderkatuta {n} ematen duten bikoteak: {p}.',
   'Todos los números de las parejas son divisores: {d}.':
       'Bikoteetako zenbaki guztiak zatitzaileak dira: {d}.',
+  // Salto: jerarquía con fracciones y decimales
+  'Luego la resta: {a} − {b} = {r}.':
+      'Gero kenketa: {a} − {b} = {r}.',
+  'Con fracciones, el orden es el mismo: primero × y ÷, luego + y −. 3 + 1/2 × 8: primero 1/2 de 8 = 4, luego 3 + 4 = 7. No (3 + 1/2) × 8.':
+      'Zatikiekin, ordena berdina da: lehenik × eta ÷, gero + eta −. 3 + 1/2 × 8: lehenik 8ren 1/2 = 4, gero 3 + 4 = 7. Ez (3 + 1/2) × 8.',
+  'Con decimales, lo mismo: primero la multiplicación. 4 + 2,5 × 2: 2,5 × 2 = 5, luego 4 + 5 = 9. Y cuidado con la coma: 2,5 no es 25.':
+      'Hamartarrekin, berdin: lehenik biderketa. 4 + 2,5 × 2: 2,5 × 2 = 5, gero 4 + 5 = 9. Eta kontuz komarekin: 2,5 ez da 25.',
 };

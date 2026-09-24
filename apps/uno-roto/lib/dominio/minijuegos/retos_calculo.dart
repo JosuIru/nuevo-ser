@@ -18,7 +18,7 @@ class RetoCalculo {
   });
 }
 
-const habilidadesConRetoCalculo = {'ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04', 'ARI.04'};
+const habilidadesConRetoCalculo = {'ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04', 'ARI.04', 'OP.02', 'OP.03'};
 
 /// -3 → "−3": el signo menos tipográfico, como en El pozo.
 String conSignoMenos(int valor) => valor < 0 ? '−${-valor}' : '$valor';
@@ -42,6 +42,10 @@ class GeneradorRetosCalculo {
         return _porcentaje(dificultad);
       case 'ARI.04':
         return _conSigno(dificultad);
+      case 'OP.02':
+        return _jerarquiaConFraccion(dificultad);
+      case 'OP.03':
+        return _jerarquiaConDecimal(dificultad);
       default:
         return _suma(dificultad);
     }
@@ -117,6 +121,45 @@ class GeneradorRetosCalculo {
         // −a − b.
         return _reto('ARI.04', '−$a − $b', -(a + b), [a + b, b - a, a - b], conNegativos: true);
     }
+  }
+
+  /// Jerarquía con una fracción y resultado entero: "3 + 2/5 × 10" o
+  /// "12 × 3/4 − 5". El error típico es operar de izquierda a derecha u
+  /// olvidar dividir entre el denominador.
+  RetoCalculo _jerarquiaConFraccion(int dificultad) {
+    final denominador = [2, 3, 4, 5][_azar.nextInt(dificultad >= 2 ? 4 : 2)];
+    final numerador = _entre(1, denominador - 1);
+    final factor = denominador * _entre(2, dificultad >= 2 ? 5 : 3);
+    final producto = numerador * factor ~/ denominador;
+    final fraccion = '$numerador/$denominador';
+    if (_azar.nextBool() || producto <= 2) {
+      final a = _entre(2, 9);
+      return _reto('OP.02', '$a + $fraccion × $factor', a + producto,
+          [a * factor + producto, a + numerador * factor, a + factor ~/ denominador]);
+    }
+    final b = _entre(1, producto - 1);
+    return _reto('OP.02', '$factor × $fraccion − $b', producto - b,
+        [numerador * factor - b, producto + b, factor - b]);
+  }
+
+  /// Jerarquía con un decimal y resultado entero: "4 + 2,5 × 2" o
+  /// "20 − 1,5 × 4". Errores: de izquierda a derecha y leer el decimal
+  /// sin la coma.
+  RetoCalculo _jerarquiaConDecimal(int dificultad) {
+    final decimas = [5, 15, 25, 2, 4, 12][_azar.nextInt(dificultad >= 2 ? 6 : 3)];
+    // Un factor que deja el producto entero.
+    final paso = 10 ~/ _mcd(decimas, 10);
+    final factor = paso * _entre(1, dificultad >= 2 ? 4 : 2);
+    final producto = decimas * factor ~/ 10;
+    final decimal = '${decimas ~/ 10},${decimas % 10}';
+    final a = _entre(2, 9);
+    if (_azar.nextBool()) {
+      return _reto('OP.03', '$a + $decimal × $factor', a + producto,
+          [(a * 10 + decimas) * factor ~/ 10, a + decimas * factor, a + factor]);
+    }
+    final total = producto + a;
+    return _reto('OP.03', '$total − $decimal × $factor', a,
+        [(total * 10 - decimas) * factor ~/ 10, total + producto, total - factor]);
   }
 
   static int _mcd(int a, int b) => b == 0 ? a : _mcd(b, a % b);

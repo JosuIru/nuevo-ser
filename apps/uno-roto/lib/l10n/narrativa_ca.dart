@@ -3129,4 +3129,11 @@ const Map<String, String> narrativaCa = <String, String>{
       'Busca parelles que multiplicades donin {n}: {p}.',
   'Todos los números de las parejas son divisores: {d}.':
       'Tots els nombres de les parelles són divisors: {d}.',
+  // Salto: jerarquía con fracciones y decimales
+  'Luego la resta: {a} − {b} = {r}.':
+      'Després la resta: {a} − {b} = {r}.',
+  'Con fracciones, el orden es el mismo: primero × y ÷, luego + y −. 3 + 1/2 × 8: primero 1/2 de 8 = 4, luego 3 + 4 = 7. No (3 + 1/2) × 8.':
+      'Amb fraccions, l\'ordre és el mateix: primer × i ÷, després + i −. 3 + 1/2 × 8: primer 1/2 de 8 = 4, després 3 + 4 = 7. No (3 + 1/2) × 8.',
+  'Con decimales, lo mismo: primero la multiplicación. 4 + 2,5 × 2: 2,5 × 2 = 5, luego 4 + 5 = 9. Y cuidado con la coma: 2,5 no es 25.':
+      'Amb decimals, igual: primer la multiplicació. 4 + 2,5 × 2: 2,5 × 2 = 5, després 4 + 5 = 9. I compte amb la coma: 2,5 no és 25.',
 };

@@ -141,6 +141,10 @@ const trucosPorHabilidad = <String, String>{
   'DIV.02': 'Un divisor de 36 cabe en 36 un número exacto de veces: 36 ÷ 9 = 4, '
       'así que 9 es divisor. Búscalos por parejas: 1 y 36, 2 y 18, 3 y 12, 4 y 9, '
       '6 y 6. El 24 no: 36 ÷ 24 no es exacto.',
+  'OP.02': 'Con fracciones, el orden es el mismo: primero × y ÷, luego + y −. '
+      '3 + 1/2 × 8: primero 1/2 de 8 = 4, luego 3 + 4 = 7. No (3 + 1/2) × 8.',
+  'OP.03': 'Con decimales, lo mismo: primero la multiplicación. 4 + 2,5 × 2: '
+      '2,5 × 2 = 5, luego 4 + 5 = 9. Y cuidado con la coma: 2,5 no es 25.',
 };
 
 /// Un paso de despejar la x en la balanza, con cómo queda después.

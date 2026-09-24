@@ -176,7 +176,7 @@ class CatalogoMinijuegos {
           'puerta del resultado: arriba o abajo.',
       lineaRexan: 'Esta no para. Tú sólo decides cuándo saltar… y por qué '
           'puerta.',
-      habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04'],
+      habilidades: ['ARI.01', 'OP.01', 'ARI.02', 'FR.22', 'PROP.04', 'OP.02', 'OP.03'],
       rondasPorPartida: 3,
       comoSeJuega: 'Toca para saltar. Esquiva pinchos, cajas y fosos. Antes de cada puerta decide: si la respuesta está arriba, salta a la plataforma; si está abajo, sigue por el suelo. En el último nivel, algunas cuentas usan el resultado de la puerta anterior.',
     ),

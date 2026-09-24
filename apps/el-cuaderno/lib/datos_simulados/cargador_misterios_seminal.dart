@@ -21,8 +21,15 @@ const String rutaAssetMisteriosSeminal =
 /// El catálogo viene del propio repositorio: si está roto, debe
 /// reventar al iniciar — paralelo a `cargarBancoEdicionesFaro` de
 /// uno-roto.
+///
+/// Sin caché del bundle (`cache: false`): el catálogo se lee una vez al
+/// arrancar, y la caché de `rootBundle` guarda el `Future` en la zona
+/// donde se creó. En los tests eso colgaba el segundo `testWidgets` que
+/// sembraba datos: esperaba un `Future` de la zona de tiempo simulado
+/// del test anterior, que ya nadie avanza.
 Future<List<Misterio>> cargarCatalogoSeminal() async {
-  final contenidoBruto = await rootBundle.loadString(rutaAssetMisteriosSeminal);
+  final contenidoBruto =
+      await rootBundle.loadString(rutaAssetMisteriosSeminal, cache: false);
   return parseCatalogoSeminalDesdeJson(contenidoBruto);
 }
 

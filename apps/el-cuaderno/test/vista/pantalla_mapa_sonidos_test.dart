@@ -68,9 +68,15 @@ void main() {
     await tester.tapAt(tester.getCenter(superficie()) + const Offset(0, -100));
     await tester.pump();
 
+    // toImage/toByteData son asíncronos de verdad: se espera en tiempo
+    // real hasta que la pantalla devuelva los bytes (con tope), no un
+    // retardo fijo que falla cuando la máquina va cargada.
     await tester.runAsync(() async {
       await tester.tap(botonGuardar());
-      await Future<void>.delayed(const Duration(milliseconds: 300));
+      for (var intento = 0; intento < 100 && devuelto == null; intento++) {
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+        await tester.pump();
+      }
     });
     await tester.pumpAndSettle();
     expect(devuelto, isNotNull);

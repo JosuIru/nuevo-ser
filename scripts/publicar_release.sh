@@ -8,7 +8,8 @@
 #   scripts/publicar_release.sh <app> [--subir-build] [--notas "texto"] [--sin-publicar]
 #
 #   <app>            carpeta de apps/ (uno-roto, las-versiones, agro, solera-quesera…)
-#   --subir-build    suma 1 al número de build (+N) del pubspec y lo commitea
+#   --subir-build    suma 1 al número de build (+N) del pubspec, lo commitea y
+#                    lo sube
 #   --notas "…"      notas del release; si no, las del git log de la app desde el
 #                    release anterior
 #   --sin-publicar   compila y deja el APK preparado, sin crear el release
@@ -52,7 +53,8 @@ if [[ "$subir_build" == si ]]; then
   sed -i -E "s/^version: .*/version: $nueva/" "$pubspec"
   git -C "$raiz" add "$pubspec"
   git -C "$raiz" commit -q -m "$app: versión $nueva"
-  echo "Versión subida: $actual → $nueva (commit hecho; recuerda git push)"
+  git -C "$raiz" push -q
+  echo "Versión subida: $actual → $nueva (commit y push hechos)"
 fi
 
 version="$(grep -E '^version:' "$pubspec" | awk '{print $2}')"

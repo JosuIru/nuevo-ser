@@ -48,6 +48,8 @@ MAQUINAS = {
     'hornada': {'pantalla': '#E3A457', 'marquesina': '#8A4A1E'},
     'telar': {'pantalla': '#D9848C', 'marquesina': '#7A3A52'},
     'tranvia': {'pantalla': '#E8B85C', 'marquesina': '#6A5A2E'},
+    'depositos': {'pantalla': '#4FA9D9', 'marquesina': '#1E4A6A'},
+    'andamios': {'pantalla': '#C9A25E', 'marquesina': '#5A4A2A'},
 }
 
 def material(color, rough=0.6, emision=None, fuerza=0.0):
@@ -251,6 +253,25 @@ def juego_en_pantalla(nombre, color):
         p.append(pixel('tranvia', 0.06, 0.0, 0.07, 0.045, color, 1.5))
         p.append(pixel('ventana', 0.06, 0.01, 0.05, 0.015, '#16193D', 0.4))
         p.append(pixel('cable', 0, 0.16, 0.34, 0.003, '#6668A8', 0.8))
+    elif nombre == 'depositos':
+        # Un depósito con el agua a media altura y sus capas.
+        p.append(pixel('pared_i', -0.14, 0.0, 0.006, 0.17, '#8C93B8', 0.9))
+        p.append(pixel('pared_d', 0.14, 0.0, 0.006, 0.17, '#8C93B8', 0.9))
+        p.append(pixel('fondo', 0.0, -0.17, 0.146, 0.006, '#8C93B8', 0.9))
+        p.append(pixel('agua', 0.0, -0.07, 0.134, 0.095, color, 1.3))
+        for i in range(3):
+            p.append(pixel(f'capa{i}', 0.0, -0.13 + i * 0.06, 0.134, 0.003, '#E8E2D0', 0.6))
+        p.append(pixel('gota', 0.24, -0.12, 0.012, 0.018, color, 1.0))
+    elif nombre == 'andamios':
+        # Pared a la derecha, escalera apoyada y la farola arriba.
+        import math
+        p.append(pixel('pared', 0.22, 0.0, 0.02, 0.22, '#6668A8', 0.8))
+        p.append(pixel('suelo', 0.0, -0.21, 0.3, 0.005, '#6668A8', 0.8))
+        angulo = math.atan2(0.36, 0.26)
+        for i in range(9):
+            f = i / 8
+            p.append(pixel(f'peldano{i}', -0.08 + f * 0.28, -0.2 + f * 0.36, 0.018, 0.004, color, 1.3))
+        p.append(pixel('farola', 0.19, 0.17, 0.018, 0.018, '#E8B85C', 2.2))
     else:  # canales
         for i, (u, v, a, b) in enumerate([(0, 0.25, 0.36, 0.012), (0, -0.25, 0.36, 0.012),
                                           (-0.36, 0, 0.012, 0.25), (0.36, 0, 0.012, 0.25),

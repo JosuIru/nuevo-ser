@@ -828,6 +828,61 @@ def tranvia():
     return pista
 
 
+def depositos():
+    """Sala de depósitos de la Industria · 84 BPM, mi menor. Goteo que
+    marca el pulso, pad acuoso y bajo lento: el agua sube sin prisa."""
+    negra = 60 / 84
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['E2', 'G2', 'B2', 'D3'],
+        ['C2', 'E2', 'G2', 'B2'],
+        ['A1', 'C2', 'E2', 'G2'],
+        ['B1', 'D#2', 'F#2', 'A2'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) * 2 for v in voces], compas * 1.1, 0.04, 1200))
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra, gota(0.06 if tiempo % 2 == 0 else 0.04))
+        for i, voz in enumerate(voces[1:]):
+            sumar_circular(pista, inicio + (i * 1.25 + 0.75) * negra, marimba(nota(voz) * 4, 0.045))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]) * 2, negra * 3, 0.08))
+    return pista
+
+
+def andamios():
+    """Andamios en la Montaña · 100 BPM, la menor. Campanas lejanas de
+    altura, pulsada que sube por la escala y bajo firme: se trepa."""
+    negra = 60 / 100
+    compas = 4 * negra
+    pista = np.zeros(int(8 * compas * FS))
+    acordes = [
+        ['A1', 'C2', 'E2', 'G2'],
+        ['F1', 'A1', 'C2', 'E2'],
+        ['C2', 'E2', 'G2', 'B2'],
+        ['G1', 'B1', 'D2', 'F2'],
+    ]
+    for c in range(8):
+        inicio = c * compas
+        voces = acordes[c % 4]
+        sumar_circular(pista, inicio, pad([nota(v) * 2 for v in voces], compas * 1.1, 0.03, 1500))
+        # Peldaños: la pulsada sube por el acorde.
+        for corchea in range(8):
+            voz = voces[1 + corchea % 3]
+            octava = 4 if corchea < 4 else 8
+            sumar_circular(pista, inicio + corchea * negra / 2,
+                           pulsada(nota(voz) * octava, negra * 0.5, 0.04, 0.4))
+        for tiempo in range(4):
+            sumar_circular(pista, inicio + tiempo * negra, taco_madera(1400, 0.03))
+        if c % 2 == 0:
+            sumar_circular(pista, inicio, campana(nota(voces[2]) * 8, 0.04))
+        sumar_circular(pista, inicio, bajo(nota(voces[0]) * 2, negra * 2, 0.08))
+        sumar_circular(pista, inicio + 2 * negra, bajo(nota(voces[0]) * 2, negra * 2, 0.06))
+    return pista
+
+
 # ─── Efectos ─────────────────────────────────────────────────────────
 
 def efecto_fila():
@@ -906,6 +961,8 @@ if __name__ == '__main__':
     guardar(hornada(), os.path.join(musica, 'maquina_hornada.ogg'), -19, es_bucle=True)
     guardar(telar(), os.path.join(musica, 'maquina_telar.ogg'), -19, es_bucle=True)
     guardar(tranvia(), os.path.join(musica, 'maquina_tranvia.ogg'), -19, es_bucle=True)
+    guardar(depositos(), os.path.join(musica, 'maquina_depositos.ogg'), -19, es_bucle=True)
+    guardar(andamios(), os.path.join(musica, 'maquina_andamios.ogg'), -19, es_bucle=True)
     # A la altura del acierto existente, no por encima (doc 12).
     guardar(efecto_fila(), os.path.join(efectos, 'fila_completa.ogg'), -27)
     # El tablón es un gesto menor: más bajo que el acierto.

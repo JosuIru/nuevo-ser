@@ -11,19 +11,18 @@ subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
 
     // Workaround para plugins que leen `flutter.compileSdkVersion`
-    // dentro del bloque `android {}` (geolocator_android 4.x). En
-    // Flutter 3.27+ el flutter-gradle-plugin propaga estas props al
-    // rootProject, pero en 3.24 sólo existen en `:app`. Inyectamos un
-    // mapa con los mismos valores que `:app` usa, pero NO al `:app`
-    // (donde el flutter-gradle-plugin define la propiedad real).
+    // dentro del bloque `android {}` (geolocator_android 4.x). Inyectamos
+    // un mapa con los mismos valores que `:app` recibe de Flutter 3.41
+    // (compileSdk 36, minSdk 24, NDK 28.2), pero NO al `:app` (donde el
+    // flutter-gradle-plugin define la propiedad real).
     if (project.name != 'app') {
         project.ext.flutter = [
-            compileSdkVersion: 35,
-            minSdkVersion: 21,
-            targetSdkVersion: 35,
+            compileSdkVersion: 36,
+            minSdkVersion: 24,
+            targetSdkVersion: 36,
             versionCode: 1,
             versionName: '0.0.1',
-            ndkVersion: '25.1.8937393',
+            ndkVersion: '28.2.13676358',
         ]
     }
     // Workaround para plugins antiguos que no declaran `namespace`
@@ -47,7 +46,7 @@ subprojects {
                     }
                 }
             }
-            // Forzamos compileSdk = 35 en TODOS los subproyectos
+            // Forzamos compileSdk = 36 en TODOS los subproyectos
             // (excepto :app, que ya lo declara explícitamente). En
             // debug el `if (==null)` original valía, pero en release
             // algunos plugins (isar_flutter_libs 3.x) traen un valor
@@ -55,7 +54,7 @@ subprojects {
             // `android:attr/lStar` (introducido en API 31). Sobrescribir
             // siempre evita el `lStar not found` en release.
             try {
-                androidExt.compileSdk = 35
+                androidExt.compileSdk = 36
             } catch (Exception ignored) {
                 // Algunos plugins exponen compileSdk vía propiedad
                 // distinta — ignoramos y dejamos que AGP siga si ya

@@ -105,7 +105,7 @@ En `docs/el-cuaderno/` del repo. Al empezar tarea → solo los relevantes:
 
 **Bloque A — del "código completo" al "instalable y probable"** (plan `~/.claude/plans/bubbly-gathering-pretzel.md`):
 
-- **A1** — plataformas Android (Java 17, Gradle 8.5, AGP 8.1.0, Kotlin 1.9.20, compileSdk 35) + Linux generadas con `flutter create --platforms=android,linux`. Patrón heredado de `apps/uno-roto/`. APK debug compila.
+- **A1** — plataformas Android (Java 17; desde 2026-09-24 Gradle 8.11.1, AGP 8.9.1, Kotlin 2.1.0, compileSdk = el de Flutter 3.41 (36), alineado con Las Versiones: url_launcher_android >= 6.3.28 exige compileSdk 36 y AGP 8.9.1) + Linux generadas con `flutter create --platforms=android,linux`. Patrón heredado de `apps/uno-roto/`. APK debug compila.
 - **A2** — onboarding multi-perfil: tras elegir idioma, segundo paso "¿cómo te llamas?" persiste el nombre como nombre del perfil activo en `GestorPerfiles` con namespace `nuevoser.elcuaderno.perfil.*`. `RepositorioPerfilCuaderno` fino sobre el gestor del core.
 - **A3** — foto vía `image_picker ^1.1.2`. `SelectorImagen` (abstract) + `SelectorImagenImagePicker` con cámara y galería; `AlmacenadorMedios` con `proveedorDirRaiz` inyectable mueve el `XFile` a `medios/<obs-id>_<tipo>.<ext>` bajo el directorio de documentos privado de la app. `Observacion.fotoRutaLocal` guarda la ruta relativa, nunca cruza red. Permisos `CAMERA` + `READ_MEDIA_IMAGES` en `AndroidManifest.xml`.
 - **A4** — lienzo de dibujo espartano (`PantallaLienzoDibujo` con `CustomPainter` y `RepaintBoundary.toImage(pixelRatio: 2)`): una sola tinta negra gruesa (PaletaCuaderno.tinta), gesto pan, "borrar y empezar otra vez" + "guardar". Sin paleta, sin presión, sin deshacer multi-paso. UX rica queda para B6 (decisión de la ilustradora).

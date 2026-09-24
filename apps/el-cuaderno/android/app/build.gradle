@@ -7,10 +7,10 @@ plugins {
 
 android {
     namespace = "org.coleccionnuevoser.el_cuaderno"
-    // image_picker_android (1.x) requiere compileSdk >= 35. El
-    // `flutter.compileSdkVersion` del SDK Flutter 3.24 actual queda en
-    // 34, así que fijamos 35 explícitamente.
-    compileSdk = 35
+    // Flutter 3.41 trae compileSdk 36, que piden androidx.core 1.17 y
+    // androidx.browser 1.9 (url_launcher_android >= 6.3.28). Antes se
+    // fijaba 35 a mano porque Flutter 3.24 se quedaba en 34.
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

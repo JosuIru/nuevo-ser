@@ -60,6 +60,13 @@ export 'src/narrative/escena_cinematica.dart';
 export 'src/narrative/opcion_eleccion.dart';
 export 'src/narrative/plano_escena.dart';
 export 'src/narrative/voz_personaje.dart';
+// Quiz de identificación genérico, extraído del de Fósiles: catálogo →
+// preguntas con distractores por parecido, sesión de rondas fijas y
+// calibración opcional de la confianza.
+export 'src/quiz/calibracion_quiz.dart';
+export 'src/quiz/generador_preguntas_quiz.dart';
+export 'src/quiz/pregunta_quiz.dart';
+export 'src/quiz/sesion_quiz.dart';
 export 'src/storage/gestor_perfiles.dart';
 export 'src/storage/repositorio_avatar_perfil.dart';
 export 'src/storage/repositorio_cuenta_backend.dart';
@@ -78,6 +85,7 @@ export 'src/ui/banner_coincidencia_catalogo.dart';
 export 'src/ui/cruz_centro_mapa.dart';
 export 'src/ui/campo_autocomplete_catalogo.dart';
 export 'src/ui/dialogo_confirmacion.dart';
+export 'src/ui/vista_quiz.dart';
 export 'src/ui/galeria_imagenes.dart';
 export 'src/ui/indicador_estado.dart';
 export 'src/ui/selector_fotos.dart';

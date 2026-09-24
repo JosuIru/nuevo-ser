@@ -22,6 +22,11 @@ lib/src/
 │   ├── perfiles/p3_construction.dart   ← stub (C6)
 │   ├── perfiles/p4_calibration.dart    ← stub (C6)
 │   └── selector_habilidades.dart       ← selector adaptativo genérico
+├── quiz/
+│   ├── pregunta_quiz.dart              ← ElementoQuiz (catálogo), OpcionQuiz, PreguntaQuiz
+│   ├── generador_preguntas_quiz.dart   ← distractores por parecido (confundibles > mismo grupo > resto), semilla, sin reposición
+│   ├── sesion_quiz.dart                ← rondas fijas, un solo intento por pregunta, callback para el motor de maestría
+│   └── calibracion_quiz.dart           ← confianza declarada (alta/media/baja) + Brier binario + tendencia (sobreconfianza/timidez)
 ├── storage/
 │   ├── gestor_perfiles.dart                ← multi-perfil sobre SharedPreferences + PerfilInfo
 │   ├── repositorio_avatar_perfil.dart      ← ruta a la imagen-avatar del niño (por perfil)
@@ -33,6 +38,8 @@ lib/src/
     ├── cliente_api.dart                ← ClienteApi, ExcepcionApi (REST con plugin WP)
     └── fecha_mysql.dart                ← formato YYYY-MM-DD HH:MM:SS UTC
 ```
+
+**Quiz de identificación** (`quiz/` + `ui/vista_quiz.dart`): extraído del quiz de Fósiles (cuadernos-de-campo). Cualquier juego o app lo monta sobre su propio catálogo. En Kids: sin marcador ni rojo por defecto (`ColoresDevolucionQuiz`) e imágenes locales vía `constructorImagen`. Las apps de adulto pueden activar el marcador y los colores verde/rojo. Diseño de uso por juego en `apps/las-versiones/docs/el-atico-de-andres.md` §11.
 
 Los demás submódulos previstos (`account/`, `i18n/`, `narrative/`) siguen vacíos a la espera de la próxima ronda de extracción.
 

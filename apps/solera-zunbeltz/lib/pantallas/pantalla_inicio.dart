@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
 import '../l10n/app_localizations.dart';
+import '../utiles/traductor_actualizaciones.dart';
 import 'pantalla_ayuda.dart';
 import 'tablero_tareas.dart';
 
@@ -71,6 +73,13 @@ class _PantallaInicioState extends State<PantallaInicio> {
         child: ListView(
           padding: const EdgeInsets.all(24),
           children: [
+            // Aviso de versión nueva: si no la hay, no ocupa sitio.
+            AvisoActualizaciones(
+              config: configActualizacionesZunbeltz,
+              nombreApp: textos.appTitulo,
+              traducir: traductorActualizaciones(textos),
+              margen: EdgeInsets.zero,
+            ),
             const SizedBox(height: 24),
             Icon(Icons.wb_sunny_outlined,
                 size: 56, color: Theme.of(context).colorScheme.primary),

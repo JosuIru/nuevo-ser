@@ -7,6 +7,8 @@
     <!-- Cámara y fotos: infraestructuras y antes/después de tareas. -->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!-- Para instalar la versión nueva desde la propia app (pantalla Actualizaciones). -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <application
         android:label="Solera Zunbeltz"
         android:name="${applicationName}"

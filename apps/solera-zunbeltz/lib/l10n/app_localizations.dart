@@ -2089,6 +2089,144 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Agua que pierden suelo y pasto'**
   String get meteoEvapotranspiracionDia;
+
+  /// Textos de la pantalla de actualizaciones del core (claves actualizaciones*). Euskera: borrador pendiente de revisión nativa.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizaciones'**
+  String get actualizacionesTitulo;
+
+  /// No description provided for @actualizacionesVersionInstalada.
+  ///
+  /// In es, this message translates to:
+  /// **'Versión instalada'**
+  String get actualizacionesVersionInstalada;
+
+  /// No description provided for @actualizacionesUltimaPublicada.
+  ///
+  /// In es, this message translates to:
+  /// **'Última publicada'**
+  String get actualizacionesUltimaPublicada;
+
+  /// No description provided for @actualizacionesSinConexion.
+  ///
+  /// In es, this message translates to:
+  /// **'sin conexión'**
+  String get actualizacionesSinConexion;
+
+  /// No description provided for @actualizacionesNingunaTodavia.
+  ///
+  /// In es, this message translates to:
+  /// **'ninguna todavía'**
+  String get actualizacionesNingunaTodavia;
+
+  /// No description provided for @actualizacionesPublicadaEl.
+  ///
+  /// In es, this message translates to:
+  /// **'Publicada el'**
+  String get actualizacionesPublicadaEl;
+
+  /// No description provided for @actualizacionesComprobadoEl.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprobado el'**
+  String get actualizacionesComprobadoEl;
+
+  /// No description provided for @actualizacionesHayVersionNueva.
+  ///
+  /// In es, this message translates to:
+  /// **'Hay una versión nueva.'**
+  String get actualizacionesHayVersionNueva;
+
+  /// No description provided for @actualizacionesTienesLaUltima.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienes la última versión.'**
+  String get actualizacionesTienesLaUltima;
+
+  /// No description provided for @actualizacionesQueTrae.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué trae'**
+  String get actualizacionesQueTrae;
+
+  /// No description provided for @actualizacionesDescargando.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargando…'**
+  String get actualizacionesDescargando;
+
+  /// No description provided for @actualizacionesDescargarEInstalar.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargar e instalar'**
+  String get actualizacionesDescargarEInstalar;
+
+  /// No description provided for @actualizacionesBuscarAhora.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar ahora'**
+  String get actualizacionesBuscarAhora;
+
+  /// No description provided for @actualizacionesVersionDisponible.
+  ///
+  /// In es, this message translates to:
+  /// **'Versión disponible'**
+  String get actualizacionesVersionDisponible;
+
+  /// No description provided for @actualizacionesTienesInstalada.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienes instalada la'**
+  String get actualizacionesTienesInstalada;
+
+  /// No description provided for @actualizacionesTocaParaActualizar.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca para actualizar.'**
+  String get actualizacionesTocaParaActualizar;
+
+  /// No description provided for @actualizacionesActualizar.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizar'**
+  String get actualizacionesActualizar;
+
+  /// No description provided for @actualizacionesDescartar.
+  ///
+  /// In es, this message translates to:
+  /// **'Descartar por ahora'**
+  String get actualizacionesDescartar;
+
+  /// No description provided for @actualizacionesInstaladorAbierto.
+  ///
+  /// In es, this message translates to:
+  /// **'Se ha abierto el instalador. Confirma la actualización y vuelve a abrir la app.'**
+  String get actualizacionesInstaladorAbierto;
+
+  /// No description provided for @actualizacionesDescargaEnNavegador.
+  ///
+  /// In es, this message translates to:
+  /// **'Se ha abierto la descarga en el navegador.'**
+  String get actualizacionesDescargaEnNavegador;
+
+  /// No description provided for @actualizacionesErrorDescarga.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido descargar. Comprueba la conexión y vuelve a probar.'**
+  String get actualizacionesErrorDescarga;
+
+  /// No description provided for @actualizacionesErrorInstalador.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.'**
+  String get actualizacionesErrorInstalador;
+
+  /// No description provided for @ajustesActualizacionesSubtitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Versión instalada y última publicada'**
+  String get ajustesActualizacionesSubtitulo;
 }
 
 class _AppLocalizationsDelegate

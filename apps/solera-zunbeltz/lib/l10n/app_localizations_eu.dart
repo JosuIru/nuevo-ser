@@ -1104,4 +1104,78 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get meteoEvapotranspiracionDia =>
       'Lurrak eta larreak galtzen duten ura';
+
+  @override
+  String get actualizacionesTitulo => 'Eguneraketak';
+
+  @override
+  String get actualizacionesVersionInstalada => 'Instalatutako bertsioa';
+
+  @override
+  String get actualizacionesUltimaPublicada => 'Argitaratutako azkena';
+
+  @override
+  String get actualizacionesSinConexion => 'konexiorik gabe';
+
+  @override
+  String get actualizacionesNingunaTodavia => 'oraindik bat ere ez';
+
+  @override
+  String get actualizacionesPublicadaEl => 'Argitaratze-data';
+
+  @override
+  String get actualizacionesComprobadoEl => 'Egiaztatze-data';
+
+  @override
+  String get actualizacionesHayVersionNueva => 'Bertsio berri bat dago.';
+
+  @override
+  String get actualizacionesTienesLaUltima => 'Azken bertsioa duzu.';
+
+  @override
+  String get actualizacionesQueTrae => 'Zer dakarren';
+
+  @override
+  String get actualizacionesDescargando => 'Deskargatzen…';
+
+  @override
+  String get actualizacionesDescargarEInstalar => 'Deskargatu eta instalatu';
+
+  @override
+  String get actualizacionesBuscarAhora => 'Bilatu orain';
+
+  @override
+  String get actualizacionesVersionDisponible => 'Bertsio eskuragarria';
+
+  @override
+  String get actualizacionesTienesInstalada => 'Instalatuta duzuna:';
+
+  @override
+  String get actualizacionesTocaParaActualizar => 'Sakatu eguneratzeko.';
+
+  @override
+  String get actualizacionesActualizar => 'Eguneratu';
+
+  @override
+  String get actualizacionesDescartar => 'Baztertu oraingoz';
+
+  @override
+  String get actualizacionesInstaladorAbierto =>
+      'Instalatzailea ireki da. Berretsi eguneraketa eta ireki berriro aplikazioa.';
+
+  @override
+  String get actualizacionesDescargaEnNavegador =>
+      'Deskarga nabigatzailean ireki da.';
+
+  @override
+  String get actualizacionesErrorDescarga =>
+      'Ezin izan da deskargatu. Egiaztatu konexioa eta saiatu berriro.';
+
+  @override
+  String get actualizacionesErrorInstalador =>
+      'Deskargatuta dago, baina Androidek ez du utzi instalatzailea irekitzen. Baimendu «aplikazio ezezagunak instalatzea» aplikazio honetarako mugikorraren ezarpenetan.';
+
+  @override
+  String get ajustesActualizacionesSubtitulo =>
+      'Instalatutako bertsioa eta argitaratutako azkena';
 }

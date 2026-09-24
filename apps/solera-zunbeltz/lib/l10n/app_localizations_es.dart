@@ -1102,4 +1102,78 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get meteoEvapotranspiracionDia => 'Agua que pierden suelo y pasto';
+
+  @override
+  String get actualizacionesTitulo => 'Actualizaciones';
+
+  @override
+  String get actualizacionesVersionInstalada => 'Versión instalada';
+
+  @override
+  String get actualizacionesUltimaPublicada => 'Última publicada';
+
+  @override
+  String get actualizacionesSinConexion => 'sin conexión';
+
+  @override
+  String get actualizacionesNingunaTodavia => 'ninguna todavía';
+
+  @override
+  String get actualizacionesPublicadaEl => 'Publicada el';
+
+  @override
+  String get actualizacionesComprobadoEl => 'Comprobado el';
+
+  @override
+  String get actualizacionesHayVersionNueva => 'Hay una versión nueva.';
+
+  @override
+  String get actualizacionesTienesLaUltima => 'Tienes la última versión.';
+
+  @override
+  String get actualizacionesQueTrae => 'Qué trae';
+
+  @override
+  String get actualizacionesDescargando => 'Descargando…';
+
+  @override
+  String get actualizacionesDescargarEInstalar => 'Descargar e instalar';
+
+  @override
+  String get actualizacionesBuscarAhora => 'Buscar ahora';
+
+  @override
+  String get actualizacionesVersionDisponible => 'Versión disponible';
+
+  @override
+  String get actualizacionesTienesInstalada => 'Tienes instalada la';
+
+  @override
+  String get actualizacionesTocaParaActualizar => 'Toca para actualizar.';
+
+  @override
+  String get actualizacionesActualizar => 'Actualizar';
+
+  @override
+  String get actualizacionesDescartar => 'Descartar por ahora';
+
+  @override
+  String get actualizacionesInstaladorAbierto =>
+      'Se ha abierto el instalador. Confirma la actualización y vuelve a abrir la app.';
+
+  @override
+  String get actualizacionesDescargaEnNavegador =>
+      'Se ha abierto la descarga en el navegador.';
+
+  @override
+  String get actualizacionesErrorDescarga =>
+      'No se ha podido descargar. Comprueba la conexión y vuelve a probar.';
+
+  @override
+  String get actualizacionesErrorInstalador =>
+      'Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.';
+
+  @override
+  String get ajustesActualizacionesSubtitulo =>
+      'Versión instalada y última publicada';
 }

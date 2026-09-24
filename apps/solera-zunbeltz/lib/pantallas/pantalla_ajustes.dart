@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
@@ -12,6 +13,7 @@ import '../estado/idioma_app.dart';
 import '../estado/sesion_espacio.dart';
 import '../modelos/persona_espacio.dart';
 import '../l10n/app_localizations.dart';
+import '../utiles/traductor_actualizaciones.dart';
 import 'pantalla_acerca_espacio_test.dart';
 import 'pantalla_ayuda.dart';
 
@@ -272,6 +274,21 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             leading: const Icon(Icons.info_outline),
             title: Text(textos.ajustesAcercaDe),
             subtitle: Text(textos.ajustesVersion(versionAppZunbeltz)),
+          ),
+          ListTile(
+            leading: const Icon(Icons.system_update),
+            title: Text(textos.actualizacionesTitulo),
+            subtitle: Text(textos.ajustesActualizacionesSubtitulo),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => PantallaEstadoActualizaciones(
+                  config: configActualizacionesZunbeltz,
+                  nombreApp: textos.appTitulo,
+                  traducir: traductorActualizaciones(textos),
+                ),
+              ),
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.upload_file_outlined),

@@ -6,6 +6,7 @@ import '../dominio/catalogo_distritos.dart';
 import '../dominio/progreso_arco.dart';
 import '../l10n/traducciones_narrativa.dart';
 import '../nucleo/paleta.dart';
+import 'widgets/banner_actualizacion.dart' show abrirActualizacionesUnoRoto;
 
 /// Pantalla "Acerca de Uno Roto". Página estática (fuera de
 /// gameplay) que explica qué es el juego, qué hay dentro y bajo qué
@@ -158,6 +159,23 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             ),
             const SizedBox(height: 8),
             const _BotonCompartir(),
+            const SizedBox(height: 12),
+            Center(
+              child: OutlinedButton.icon(
+                key: const ValueKey('boton-actualizaciones'),
+                onPressed: () => abrirActualizacionesUnoRoto(context),
+                icon: const Icon(Icons.system_update, size: 18),
+                label: Text(
+                  traducirNarrativa('ACTUALIZACIONES', Localizations.localeOf(context)),
+                  style: const TextStyle(letterSpacing: 2, fontSize: 12),
+                ),
+                style: OutlinedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  foregroundColor: PaletaNeon.textoPrincipal,
+                  side: BorderSide(color: PaletaNeon.violetaNeon.withOpacity(0.6)),
+                ),
+              ),
+            ),
             const SizedBox(height: 16),
             Text(
               traducirNarrativa('hasta mañana', locale),
@@ -313,12 +331,10 @@ class _CuerpoConNegrita extends StatelessWidget {
 class _BotonCompartir extends StatelessWidget {
   const _BotonCompartir();
 
-  /// Enlace estable que SIEMPRE apunta al último release publicado.
-  /// El operador puede subir nuevas releases sin que esta URL cambie
-  /// — la app no necesita actualizarse para seguir compartiendo la
-  /// última.
+  /// Las releases de Uno Roto (el repo publica varias apps, así que no
+  /// sirve «latest»: podría ser otra). La más nueva sale la primera.
   static const String _urlReleaseLatest =
-      'https://github.com/JosuIru/nuevo-ser/releases/latest';
+      'https://github.com/JosuIru/nuevo-ser/releases?q=uno-roto&expanded=true';
 
   static const String _textoCompartir =
       'Uno Roto — juego de matemáticas para 9-12 años. '

@@ -4,6 +4,8 @@
          así que sin esta línea el APK release no puede ni resolver DNS
          (errno=7 "No address associated with hostname"). -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Para instalar la versión nueva desde el propio juego (pantalla Actualizaciones). -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <!-- Para que el niño pueda hacer foto a su dibujo del personaje
          desde la pantalla "Mi cuaderno". image_picker delega en una
          actividad externa de cámara, así que sólo necesitamos la

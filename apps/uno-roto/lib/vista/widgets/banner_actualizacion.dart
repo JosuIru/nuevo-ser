@@ -1,15 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-import '../../datos/buscador_actualizacion.dart';
 import '../../datos/repositorio_progreso.dart';
+import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
 
+/// Releases de Uno Roto en GitHub: tag `uno-roto-<versión>`.
+final configActualizacionesUnoRoto = configActualizacionesMonorepo('uno-roto');
+
+/// Abre la pantalla de actualizaciones del core con los textos en el
+/// idioma de la app.
+Future<void> abrirActualizacionesUnoRoto(BuildContext contexto) {
+  final locale = Localizations.localeOf(contexto);
+  return Navigator.of(contexto).push(MaterialPageRoute(
+    builder: (_) => PantallaEstadoActualizaciones(
+      config: configActualizacionesUnoRoto,
+      nombreApp: 'Uno Roto',
+      traducir: (texto) => traducirNarrativa(texto, locale),
+    ),
+  ));
+}
+
 /// Banner discreto que aparece bajo el header del mapa cuando hay una
-/// versión más reciente publicada en GitHub Releases. El tester pulsa
-/// "DESCARGAR" para abrir la URL del APK en el navegador del sistema,
-/// o "AHORA NO" para ocultar el banner para esa versión. La siguiente
-/// versión vuelve a disparar el aviso.
+/// versión más reciente publicada en GitHub Releases (sólo las de Uno
+/// Roto: tag `uno-roto-…`). "ACTUALIZAR" abre la pantalla de
+/// actualizaciones, que descarga e instala sin salir del juego; "AHORA
+/// NO" oculta el banner para esa versión. La siguiente vuelve a avisar.
 ///
 /// El widget hace la comprobación en `initState` con un timeout de 8s
 /// y nunca bloquea la UI: si falla la red o el parseo, simplemente no
@@ -19,22 +35,14 @@ import '../../nucleo/paleta.dart';
 class BannerActualizacion extends StatefulWidget {
   final RepositorioProgreso repositorio;
 
-  /// Inyectable para tests. En runtime el default crea su propio
-  /// buscador con `http.get` y `PackageInfo.fromPlatform`.
-  final BuscadorActualizacion? buscador;
-
-  const BannerActualizacion({
-    super.key,
-    required this.repositorio,
-    this.buscador,
-  });
+  const BannerActualizacion({super.key, required this.repositorio});
 
   @override
   State<BannerActualizacion> createState() => _BannerActualizacionState();
 }
 
 class _BannerActualizacionState extends State<BannerActualizacion> {
-  NuevaVersionDisponible? _disponible;
+  ActualizacionDisponible? _disponible;
   bool _ocultoEstaSesion = false;
 
   @override
@@ -44,12 +52,16 @@ class _BannerActualizacionState extends State<BannerActualizacion> {
   }
 
   Future<void> _comprobar() async {
-    final buscador = widget.buscador ?? BuscadorActualizacion();
-    final disponible = await buscador.comprobar();
+    ActualizacionDisponible? disponible;
+    try {
+      disponible = await comprobarActualizacionDisponible(configActualizacionesUnoRoto);
+    } catch (_) {
+      return; // sin plugins o sin red: no hay aviso
+    }
     if (disponible == null || !mounted) return;
     final ultimaAvisada =
         await widget.repositorio.cargarUltimaVersionAvisada();
-    if (ultimaAvisada == disponible.versionRemota.toString()) {
+    if (ultimaAvisada == disponible.versionDisponible) {
       // Ya avisamos de esta versión y el usuario la rechazó. No
       // volvemos a molestar hasta que haya una más nueva.
       return;
@@ -58,13 +70,10 @@ class _BannerActualizacionState extends State<BannerActualizacion> {
     setState(() => _disponible = disponible);
   }
 
-  Future<void> _descargar() async {
+  Future<void> _actualizar() async {
     final disponible = _disponible;
     if (disponible == null) return;
-    await widget.repositorio
-        .guardarUltimaVersionAvisada(disponible.versionRemota.toString());
-    final url = Uri.parse(disponible.urlPaginaRelease);
-    await launchUrl(url, mode: LaunchMode.externalApplication);
+    await abrirActualizacionesUnoRoto(context);
     if (!mounted) return;
     setState(() => _ocultoEstaSesion = true);
   }
@@ -73,7 +82,7 @@ class _BannerActualizacionState extends State<BannerActualizacion> {
     final disponible = _disponible;
     if (disponible == null) return;
     await widget.repositorio
-        .guardarUltimaVersionAvisada(disponible.versionRemota.toString());
+        .guardarUltimaVersionAvisada(disponible.versionDisponible);
     if (!mounted) return;
     setState(() => _ocultoEstaSesion = true);
   }
@@ -103,7 +112,7 @@ class _BannerActualizacionState extends State<BannerActualizacion> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'NUEVA VERSIÓN: ${disponible.versionRemota}',
+                    '${traducirNarrativa('NUEVA VERSIÓN', Localizations.localeOf(context))}: ${disponible.versionDisponible}',
                     style: const TextStyle(
                       color: PaletaNeon.textoPrincipal,
                       fontSize: 12,
@@ -113,7 +122,7 @@ class _BannerActualizacionState extends State<BannerActualizacion> {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    'Toca DESCARGAR para abrir la página del release.',
+                    traducirNarrativa('Se descarga e instala sin salir del juego.', Localizations.localeOf(context)),
                     style: TextStyle(
                       color: PaletaNeon.textoTenue.withOpacity(0.8),
                       fontSize: 11,
@@ -130,22 +139,22 @@ class _BannerActualizacionState extends State<BannerActualizacion> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 minimumSize: const Size(0, 36),
               ),
-              child: const Text(
-                'AHORA NO',
+              child: Text(
+                traducirNarrativa('AHORA NO', Localizations.localeOf(context)),
                 style: TextStyle(fontSize: 11, letterSpacing: 1.5),
               ),
             ),
             const SizedBox(width: 4),
             FilledButton.tonal(
-              onPressed: _descargar,
+              onPressed: _actualizar,
               style: FilledButton.styleFrom(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 minimumSize: const Size(0, 36),
                 backgroundColor: PaletaNeon.violetaNeon.withOpacity(0.4),
                 foregroundColor: PaletaNeon.textoPrincipal,
               ),
-              child: const Text(
-                'DESCARGAR',
+              child: Text(
+                traducirNarrativa('ACTUALIZAR', Localizations.localeOf(context)),
                 style: TextStyle(fontSize: 11, letterSpacing: 1.5),
               ),
             ),

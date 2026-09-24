@@ -3337,4 +3337,59 @@ const Map<String, String> narrativaEu = <String, String>{
       'Hiru etxe oso. Rexánek horman zintzilikatzen ditu.',
   'PONER LA HABITACIÓN':
       'GELA JARRI',
+  // Actualizaciones
+  'NUEVA VERSIÓN':
+      'BERTSIO BERRIA',
+  'Se descarga e instala sin salir del juego.':
+      'Jokotik irten gabe deskargatu eta instalatzen da.',
+  'AHORA NO':
+      'ORAIN EZ',
+  'ACTUALIZAR':
+      'EGUNERATU',
+  'ACTUALIZACIONES':
+      'EGUNERATZEAK',
+  'Actualizaciones':
+      'Eguneratzeak',
+  'Versión instalada':
+      'Instalatutako bertsioa',
+  'Última publicada':
+      'Argitaratutako azkena',
+  'sin conexión':
+      'konexiorik gabe',
+  'ninguna todavía':
+      'bat ere ez oraindik',
+  'Publicada el':
+      'Argitaratze-data',
+  'Comprobado el':
+      'Egiaztatze-data',
+  'Hay una versión nueva.':
+      'Bertsio berri bat dago.',
+  'Tienes la última versión.':
+      'Azken bertsioa duzu.',
+  'Qué trae':
+      'Zer dakar',
+  'Descargando…':
+      'Deskargatzen…',
+  'Descargar e instalar':
+      'Deskargatu eta instalatu',
+  'Buscar ahora':
+      'Bilatu orain',
+  'Versión disponible':
+      'Bertsio erabilgarria',
+  'Tienes instalada la':
+      'Instalatuta duzuna:',
+  'Toca para actualizar.':
+      'Ukitu eguneratzeko.',
+  'Actualizar':
+      'Eguneratu',
+  'Descartar por ahora':
+      'Baztertu oraingoz',
+  'Se ha abierto el instalador. Confirma la actualización y vuelve a abrir la app.':
+      'Instalatzailea ireki da. Berretsi eguneratzea eta ireki berriro aplikazioa.',
+  'Se ha abierto la descarga en el navegador.':
+      'Deskarga nabigatzailean ireki da.',
+  'No se ha podido descargar. Comprueba la conexión y vuelve a probar.':
+      'Ezin izan da deskargatu. Egiaztatu konexioa eta saiatu berriro.',
+  'Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.':
+      'Deskargatuta, baina Androidek ez du instalatzailea irekitzen utzi. Baimendu «aplikazio ezezagunak instalatzea» aplikazio honentzat mugikorraren ezarpenetan.',
 };

@@ -3341,4 +3341,59 @@ const Map<String, String> narrativaCa = <String, String>{
       'Tres cases completes. En Rexán les penja a la paret.',
   'PONER LA HABITACIÓN':
       'POSAR L\'HABITACIÓ',
+  // Actualizaciones
+  'NUEVA VERSIÓN':
+      'VERSIÓ NOVA',
+  'Se descarga e instala sin salir del juego.':
+      'Es descarrega i s\'instal·la sense sortir del joc.',
+  'AHORA NO':
+      'ARA NO',
+  'ACTUALIZAR':
+      'ACTUALITZAR',
+  'ACTUALIZACIONES':
+      'ACTUALITZACIONS',
+  'Actualizaciones':
+      'Actualitzacions',
+  'Versión instalada':
+      'Versió instal·lada',
+  'Última publicada':
+      'Última publicada',
+  'sin conexión':
+      'sense connexió',
+  'ninguna todavía':
+      'cap encara',
+  'Publicada el':
+      'Publicada el',
+  'Comprobado el':
+      'Comprovat el',
+  'Hay una versión nueva.':
+      'Hi ha una versió nova.',
+  'Tienes la última versión.':
+      'Tens l\'última versió.',
+  'Qué trae':
+      'Què porta',
+  'Descargando…':
+      'Descarregant…',
+  'Descargar e instalar':
+      'Descarregar i instal·lar',
+  'Buscar ahora':
+      'Cercar ara',
+  'Versión disponible':
+      'Versió disponible',
+  'Tienes instalada la':
+      'Tens instal·lada la',
+  'Toca para actualizar.':
+      'Toca per actualitzar.',
+  'Actualizar':
+      'Actualitzar',
+  'Descartar por ahora':
+      'Descartar per ara',
+  'Se ha abierto el instalador. Confirma la actualización y vuelve a abrir la app.':
+      'S\'ha obert l\'instal·lador. Confirma l\'actualització i torna a obrir l\'app.',
+  'Se ha abierto la descarga en el navegador.':
+      'S\'ha obert la descàrrega al navegador.',
+  'No se ha podido descargar. Comprueba la conexión y vuelve a probar.':
+      'No s\'ha pogut descarregar. Comprova la connexió i torna-ho a provar.',
+  'Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.':
+      'Descarregada, però Android no ha deixat obrir l\'instal·lador. Permet «instal·lar apps desconegudes» per a aquesta app als ajustos del mòbil.',
 };

@@ -228,6 +228,24 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_taller.ogg',
       enBucle: true,
     ),
+    'musica_maquina_hornada': SonidoCatalogado(
+      identificador: 'musica_maquina_hornada',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_hornada.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_telar': SonidoCatalogado(
+      identificador: 'musica_maquina_telar',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_telar.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_tranvia': SonidoCatalogado(
+      identificador: 'musica_maquina_tranvia',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_tranvia.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

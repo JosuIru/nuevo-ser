@@ -35,6 +35,9 @@ enum IdMinijuego {
   pinturas,
   rebote,
   taller,
+  hornada,
+  telar,
+  tranvia,
 }
 
 class DefinicionMinijuego {
@@ -339,6 +342,51 @@ class CatalogoMinijuegos {
           'hora será. 1 kg = 1000 g; 1 l = 1000 ml; 1 m = 100 cm; 1 h = 60 min.',
       sala: 2,
       llaves: ['DEC.04'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.hornada,
+      nombre: 'La hornada',
+      descripcion: 'Empaqueta el pan justo: fracciones, impropias, mixtos y '
+          'bandejas cortadas de otra manera.',
+      lineaRexan: 'Sale la hornada de los Tejados. Los pedidos vienen escritos '
+          'de mil maneras; el pan, cortado de otra.',
+      habilidades: ['FR.01', 'FR.02', 'FR.12', 'FR.13', 'FR.11', 'FR.10'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Toca los trozos de pan para meterlos en la caja (y otra '
+          'vez para sacarlos) hasta tener justo el pedido; luego ENTREGAR. 11/4 '
+          'son 2 panes y 3 cuartos. Si la bandeja está cortada en octavos y '
+          'piden 3/4, piensa cuántos octavos son.',
+      sala: 2,
+      llaves: ['FR.09'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.telar,
+      nombre: 'El telar',
+      descripcion: 'Multiplica y divide fracciones con telas, hilos y cintas.',
+      lineaRexan: 'En el telar se cruzan hilos. Lo que se cruza, eso es '
+          'multiplicar.',
+      habilidades: ['FR.18', 'FR.19', 'FR.20', 'FR.21'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Lee el encargo y elige el resultado. Al acertar, la tela lo '
+          'enseña: varias telas juntas, los hilos cruzados (el trozo que se '
+          'cruza es el resultado), el reparto o las cintas cortadas.',
+      sala: 2,
+      llaves: ['FR.16'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.tranvia,
+      nombre: 'El tranvía',
+      descripcion: 'Una línea de tranvía por la recta de los decimales: situar, '
+          'redondear y pagar el billete.',
+      lineaRexan: 'El tranvía para en cada décima. Tú dices dónde; el Revisor, '
+          'cuánto.',
+      habilidades: ['DEC.01', 'DEC.09', 'DEC.05', 'DEC.06', 'DEC.07'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Toca la vía para parar el tranvía en una parada: la '
+          'pedida, o la más cercana al viajero. Cuando sube un Revisor, elige '
+          'cuánto cuesta el billete. Cuidado con dónde va la coma.',
+      sala: 2,
+      llaves: ['DEC.02'],
     ),
   ];
 

@@ -66,7 +66,7 @@ void main() {
 
   testWidgets('en modo dios se sube y Engranajes está encendida', (tester) async {
     SharedPreferences.setMockInitialValues({'uroto.modo_dios_activo': true});
-    tester.view.physicalSize = const Size(1080, 7200);
+    tester.view.physicalSize = const Size(1080, 12000);
     tester.view.devicePixelRatio = 2.75;
     addTearDown(tester.view.reset);
     await tester.pumpWidget(_envolver());

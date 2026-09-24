@@ -3150,4 +3150,135 @@ const Map<String, String> narrativaEu = <String, String>{
   // Sin prisas
   'Sin prisas: la pieza espera arriba. Muévela y suéltala cuando lo tengas.':
       'Presarik gabe: pieza goian zain dago. Mugitu eta askatu argi duzunean.',
+  // Bestiario: familias de la segunda sala
+  'Los Oxidados':
+      'Herdoilduak',
+  'Puerto, en la grúa':
+      'Portua, garabian',
+  'Óxido con hambre de dientes. Se meten en los engranajes de la grúa y se comen un diente aquí y otro allá, hasta que las marcas ya no vuelven a coincidir.':
+      'Hortzen gose den herdoila. Garabiaren engranajeetan sartzen dira eta hortz bat hemen eta beste bat han jaten dute, markak berriro bat etorri ezin diren arte.',
+  'Odian el número que comparten dos ruedas. Por eso lo esconden: quien encuentra el mayor divisor común o el primer múltiplo común los deja sin nada que roer.':
+      'Bi gurpilek partekatzen duten zenbakia gorroto dute. Horregatik ezkutatzen dute: zatitzaile komunetan handiena edo multiplo komunetan lehena aurkitzen duenak ez die ezer uzten karraskatzeko.',
+  'Rexán guarda en un bote una rueda de doce dientes que los Oxidados dejaron en siete. Dice que no la tira porque siete es primo y ya nadie puede quitarle nada más.':
+      'Rexánek pote batean gordetzen du Herdoilduek zazpi hortzetan utzi zuten hamabi hortzeko gurpil bat. Ez duela botatzen dio, zazpi lehena delako eta inork ezin diolako ezer gehiago kendu.',
+  'Los Signos':
+      'Zeinuak',
+  'Montaña, en la mina':
+      'Mendia, meategian',
+  'Viven por debajo del suelo, donde los números llevan un menos delante. No son números malos: son los que cuentan hacia abajo.':
+      'Lurraren azpian bizi dira, zenbakiek minus bat daramaten tokian. Ez dira zenbaki txarrak: beherantz zenbatzen dutenak dira.',
+  'Su truco es esconder el signo. Si bajas de la planta 3 a la −2 y te olvidas del cero, te quedas un piso corto. Los Signos lo saben y te esperan en el rellano.':
+      'Zeinua ezkutatzea da haien trikimailua. 3. solairutik −2ra jaitsi eta zeroaz ahazten bazara, solairu bat laburrago geratzen zara. Zeinuek badakite eta eskailera-buruan zain daude.',
+  'En la planta más honda de la mina hay una pared con marcas: −1, −2, −3… hasta donde llega la luz. Nadie sabe quién empezó a contar. Nadie ha llegado al final.':
+      'Meategiko solairurik sakonenean markak dituen horma bat dago: −1, −2, −3… argia iristen den arte. Inork ez daki nork hasi zuen zenbatzen. Inor ez da amaierara iritsi.',
+  'Los Destellos':
+      'Distirak',
+  'Industria, en los focos':
+      'Industria, fokuetan',
+  'Chispas sueltas que se beben la luz. Si el rayo pasa demasiado cerca, se lo tragan. Se esquivan eligiendo bien el ángulo.':
+      'Argia edaten duten txinparta solteak. Izpia gertuegi pasatzen bada, irentsi egiten dute. Angelua ondo aukeratuta saihesten dira.',
+  'La luz rebota en un espejo igual que llega: el mismo ángulo de ida que de vuelta. Los Destellos no lo entienden y se quedan mirando el reflejo, quietos.':
+      'Argiak ispilu batean iristen den bezala egiten du errebote: joaneko angelu bera itzulerakoan. Distirek ez dute ulertzen eta islari begira geratzen dira, geldi.',
+  'Vadic dice que en Industria hubo un foco que alumbraba en línea recta hasta el mar. Desde que llegaron los Destellos, la luz dobla esquinas. A Vadic no le gusta nada que doble esquinas.':
+      'Vadicek dio Industrian bazela lerro zuzenean itsasoraino argitzen zuen foko bat. Distirak iritsi zirenetik, argiak izkinak biratzen ditu. Vadici ez zaio batere gustatzen izkinak biratzea.',
+  'La Maleza':
+      'Sasiak',
+  'Afueras, en los planos':
+      'Kanpoaldea, planoetan',
+  'Hierba que brota en las casillas de los planos y no deja construir encima. No muerde. Sólo ocupa sitio.':
+      'Planoetako laukietan ateratzen den belarra, gainean eraikitzen uzten ez duena. Ez du hozka egiten. Tokia hartzen du, besterik ez.',
+  'Con la Maleza en medio, 24 metros cuadrados ya no caben como 4 por 6, pero sí como 3 por 8. La misma área, otra forma. La Maleza enseña eso sin querer.':
+      'Sasiak erdian daudela, 24 metro karratu ez dira sartzen 4 bider 6 bezala, baina bai 3 bider 8 bezala. Azalera bera, beste forma bat. Sasiek hori erakusten dute nahi gabe.',
+  'Las casas de las Afueras se levantaron sobre planos mojados. Por eso algunas tienen un rincón torcido: es donde creció la Maleza y alguien no quiso volver a medir.':
+      'Kanpoaldeko etxeak plano bustien gainean altxatu ziren. Horregatik dute batzuek txoko oker bat: Sasiak hazi ziren tokia da, eta norbaitek ez zuen berriro neurtu nahi izan.',
+  'Los Azarosos':
+      'Zorizkoak',
+  'Puerto, en el mar':
+      'Portua, itsasoan',
+  'Peces que cambian de color al saltar. No hacen trampa: son el azar mismo, nadando.':
+      'Jauzi egitean kolorez aldatzen diren arrainak. Ez dute tranparik egiten: zoria bera dira, igeri.',
+  'Un solo lance no dice nada. Veinte ya cuentan algo. Con la red buena también se puede sacar un pez gris, y eso no quita la razón a quien la eligió.':
+      'Sare-jaurtiketa batek ez du ezer esaten. Hogeik zerbait kontatzen dute. Sare onarekin ere arrain gris bat atera daiteke, eta horrek ez dio arrazoia kentzen aukeratu zuenari.',
+  'Los pescadores más viejos del Puerto no apuestan nunca. Cuentan. Dicen que el mar no tiene memoria, pero las libretas sí.':
+      'Portuko arrantzale zaharrenek ez dute inoiz apusturik egiten. Zenbatu egiten dute. Itsasoak memoriarik ez duela diote, baina koadernoek bai.',
+  'El Oleaje':
+      'Olatuak',
+  'Puerto, en los barcos':
+      'Portua, itsasontzietan',
+  'Olas que llegan cada cierto rato y empujan el barco hacia la pila más alta. Avisan antes. No rompen nada.':
+      'Noizean behin iristen diren eta itsasontzia pilarik altuenerantz bultzatzen duten olatuak. Aurretik abisatzen dute. Ez dute ezer apurtzen.',
+  'Un barco bien cargado deja pasar el Oleaje sin moverse. Para eso hay que saber repartir: la media es lo que tendría cada pila si fueran todas iguales.':
+      'Ondo kargatutako itsasontzi batek Olatuak mugitu gabe pasatzen uzten ditu. Horretarako banatzen jakin behar da: batez bestekoa pila bakoitzak izango lukeena da, denak berdinak balira.',
+  'Hay capitanes que leen el Oleaje en las pilas de contenedores como quien lee un gráfico. No miran el mar. Miran la carga, y saben.':
+      'Badira Olatuak edukiontzi-piletan irakurtzen dituzten kapitainak, grafiko bat irakurtzen duenak bezala. Ez diote itsasoari begiratzen. Kargari begiratzen diote, eta badakite.',
+  'Los Desteñidos':
+      'Koloregabeak',
+  'Mercado, en los toldos':
+      'Merkatua, toldoetan',
+  'Manchas grises que se comen el color de un toldo cuando la mezcla no guarda la receta. El toldo se queda gris, pero se puede repintar.':
+      'Nahasketak errezeta gordetzen ez duenean toldo baten kolorea jaten duten orban grisak. Toldoa gris geratzen da, baina berriro margotu daiteke.',
+  'Dos de azul por tres de amarillo es el mismo verde que cuatro por seis. Los Desteñidos no soportan que el color se mantenga cuando todo crece a la vez.':
+      'Bi urdin hiru horirekin lau sei-rekiko berde bera da. Koloregabeek ezin dute jasan dena batera hazten denean kolorea mantentzea.',
+  'En el Mercado cuentan que el primer toldo desteñido fue el de un puesto que subió los precios sin avisar. Desde entonces, cada vez que alguien hace trampa con un porcentaje, algo pierde el color.':
+      'Merkatuan kontatzen dute lehen toldo koloregabetua abisatu gabe prezioak igo zituen postu batena izan zela. Harrezkero, norbaitek ehuneko batekin tranpa egiten duen bakoitzean, zerbaitek kolorea galtzen du.',
+  'Los Cambiados':
+      'Aldatuak',
+  'Industria, en el taller':
+      'Industria, tailerrean',
+  'Piezas con la etiqueta en otra unidad: una pesa de 0,5 kg junto a una de 500 g. Parecen distintas. Son la misma.':
+      'Etiketa beste unitate batean duten piezak: 0,5 kg-ko pisu bat 500 g-ko baten ondoan. Desberdinak dirudite. Bera dira.',
+  'Algunos Cambiados mienten. Uno dice que 1000 cm son un kilómetro, muy serio. Hay que apartarlo sin enfadarse: sólo le falta subir dos peldaños de la escalera.':
+      'Aldatu batzuek gezurra esaten dute. Batek dio 1000 cm kilometro bat direla, oso serio. Haserretu gabe baztertu behar da: eskailerako bi maila igotzea besterik ez zaio falta.',
+  'El relojero del taller tiene un reloj que marca las horas en minutos, otro en segundos y otro en días. Dice que así nunca llega tarde, porque siempre hay uno que va bien.':
+      'Tailerreko erlojugileak erloju bat du orduak minututan markatzen dituena, beste bat segundotan eta beste bat egunetan. Horrela ez dela inoiz berandu iristen dio, beti dagoelako bat ondo doana.',
+  'Los Mudos':
+      'Mutuak',
+  'Montaña, en la caja negra':
+      'Mendia, kutxa beltzean',
+  'Números que la caja negra se traga sin devolver. Cada Mudo cuesta un experimento, y los experimentos se acaban.':
+      'Kutxa beltzak itzuli gabe irensten dituen zenbakiak. Mutu bakoitzak esperimentu bat balio du, eta esperimentuak amaitu egiten dira.',
+  'Callan, pero no esconden la regla. Si entra 1 y sale 5, entra 2 y sale 8, la caja suma de tres en tres. Los Mudos sólo esperan a que alguien lo diga en voz alta.':
+      'Isilik daude, baina ez dute araua ezkutatzen. 1 sartu eta 5 ateratzen bada, 2 sartu eta 8, kutxak hiruzka batzen du. Mutuak norbaitek ozen esan dezan zain daude.',
+  'Nadie en la Montaña sabe quién construyó la caja. Rexán la encontró ya cerrada. Tiene una teoría: dentro no hay nada, sólo una regla. Y una regla no necesita sitio.':
+      'Mendian inork ez daki nork eraiki zuen kutxa. Rexánek itxita aurkitu zuen. Teoria bat du: barruan ez dago ezer, arau bat besterik ez. Eta arau batek ez du tokirik behar.',
+  'Las Polillas':
+      'Sitsak',
+  'Mercado, en el telar':
+      'Merkatua, ehungailuan',
+  'Se comen la tela que sobra y dejan agujeros donde no hay que mirar. Si te fijas en los agujeros, te equivocas de cuenta.':
+      'Soberan dagoen oihala jaten dute eta begiratu behar ez den tokian zuloak uzten dituzte. Zuloetan fijatzen bazara, kontuan huts egiten duzu.',
+  'Donde se cruzan dos hilos está la multiplicación: tres cuartos de ancho por dos tercios de alto. Las Polillas nunca muerden ahí. Dicen que sabe raro.':
+      'Bi hari gurutzatzen diren tokian dago biderketa: zabaleraren hiru laurden bider altueraren bi heren. Sitsek ez dute inoiz hor hozka egiten. Zapore arraroa duela diote.',
+  'La tejedora más vieja del Mercado no tira los retales. Los cose en una manta de trozos iguales. Dice que es la única tela a la que las Polillas no se acercan: está toda contada.':
+      'Merkatuko ehule zaharrenak ez ditu oihal-puskak botatzen. Zati berdinetako manta batean josten ditu. Sitsak hurbiltzen ez diren oihal bakarra dela dio: dena zenbatuta dago.',
+  'Los Revisores':
+      'Ikuskariak',
+  'Canales y Mercado, en el tranvía':
+      'Kanalak eta Merkatua, tranbian',
+  'Suben al tranvía y piden el billete con una cuenta: tres viajes de 1,25, el 0,6 de 2,5, repartir 7,5 entre tres. No multan a nadie. Sólo quieren la cuenta bien hecha.':
+      'Tranbiara igotzen dira eta txartela kontu batekin eskatzen dute: 1,25eko hiru bidaia, 2,5en 0,6, 7,5 hiruren artean banatu. Ez diote inori isunik jartzen. Kontua ondo egina nahi dute, besterik ez.',
+  'Su manía es la coma. Si la pones un sitio más allá, el billete cuesta diez veces más, y el Revisor te mira por encima de las gafas sin decir nada.':
+      'Koma da haien zaletasuna. Toki bat haratago jartzen baduzu, txartelak hamar aldiz gehiago balio du, eta Ikuskariak betaurrekoen gainetik begiratzen dizu ezer esan gabe.',
+  'El tranvía para en cada décima. Los Revisores se saben todas las paradas de memoria, hasta las que no existen: la 1,45, la 2,999… Dicen que entre dos paradas siempre cabe otra.':
+      'Tranbia hamarren bakoitzean gelditzen da. Ikuskariek geltoki guztiak buruz dakizkite, existitzen ez direnak ere: 1,45, 2,999… Bi geltokiren artean beti sartzen dela beste bat diote.',
+  'Los Vértigos':
+      'Zorabioak',
+  'Montaña, en los andamios':
+      'Mendia, aldamioetan',
+  'Ráfagas de viento que sólo soplan arriba. Si la escalera no es justa, la hacen temblar. Si lo es, pasan de largo.':
+      'Goian bakarrik jotzen duten haize-boladak. Eskailera zehatza ez bada, dardaraz jartzen dute. Zehatza bada, aurrera jarraitzen dute.',
+  'Pared y suelo al cuadrado, sumados, son la escalera al cuadrado. Los Vértigos lo saben desde siempre. Por eso no pueden con un 3, un 4 y un 5.':
+      'Horma eta lurra ber bi, batuta, eskailera ber bi dira. Zorabioek betidanik dakite. Horregatik ezin dute 3, 4 eta 5 batekin.',
+  'Las farolas de la Montaña se apagaron el día que alguien subió con una escalera larga «por si acaso». Rexán lo cuenta a menudo. Nunca dice quién fue.':
+      'Mendiko farolak norbait eskailera luze batekin igo zen egunean itzali ziren, «badaezpada». Rexánek maiz kontatzen du. Ez du inoiz esaten nor izan zen.',
+  'Las Fugas':
+      'Ihesak',
+  'Industria, en los depósitos':
+      'Industria, biltegietan',
+  'Agujeros que aparecen cuando se pide más agua de la que cabe. Lo que sobra, lo tiran al suelo.':
+      'Sartzen dena baino ur gehiago eskatzen denean agertzen diren zuloak. Soberan dagoena lurrera botatzen dute.',
+  'Un depósito se llena por capas: largo por ancho cubitos en cada una, y tantas capas como alto. Quien cuenta así nunca pide de más, y las Fugas se secan.':
+      'Biltegi bat geruzaka betetzen da: luzera bider zabalera kubotxo bakoitzean, eta altuera adina geruza. Horrela zenbatzen duenak ez du inoiz gehiegi eskatzen, eta Ihesak lehortu egiten dira.',
+  'Las tuberías de la Industria son redondas porque Vadic dice que el círculo es la forma que más agua guarda con menos chapa. Las Fugas prefieren las esquinas.':
+      'Industriako hodiak biribilak dira, Vadicek dioelako zirkulua txapa gutxienarekin ur gehien gordetzen duen forma dela. Ihesek nahiago dituzte izkinak.',
 };

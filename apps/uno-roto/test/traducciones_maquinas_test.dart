@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:uno_roto/dominio/bestiario.dart';
 import 'package:uno_roto/dominio/minijuegos/ayudas_maquinas.dart';
 import 'package:uno_roto/dominio/minijuegos/catalogo_minijuegos.dart';
 import 'package:uno_roto/dominio/minijuegos/ejemplos_resueltos.dart';
@@ -45,5 +46,18 @@ void main() {
       }
     }
     expect(sinTraducir(plantillas), isEmpty);
+  });
+
+  test('fichas del bestiario', () {
+    final textos = [
+      for (final ficha in CatalogoBestiario.todas) ...[
+        ficha.nombre,
+        ficha.habitat,
+        for (final tramo in ficha.tramos) tramo.texto,
+      ],
+      'Común',
+      'Inusual',
+    ];
+    expect(sinTraducir(textos), isEmpty);
   });
 }

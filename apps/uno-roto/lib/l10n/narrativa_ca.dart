@@ -3154,4 +3154,135 @@ const Map<String, String> narrativaCa = <String, String>{
   // Sin prisas
   'Sin prisas: la pieza espera arriba. Muévela y suéltala cuando lo tengas.':
       'Sense presses: la peça espera a dalt. Mou-la i deixa-la anar quan ho tinguis.',
+  // Bestiario: familias de la segunda sala
+  'Los Oxidados':
+      'Els Oxidats',
+  'Puerto, en la grúa':
+      'Port, a la grua',
+  'Óxido con hambre de dientes. Se meten en los engranajes de la grúa y se comen un diente aquí y otro allá, hasta que las marcas ya no vuelven a coincidir.':
+      'Rovell amb gana de dents. Es fiquen als engranatges de la grua i es mengen una dent aquí i una altra allà, fins que les marques ja no tornen a coincidir.',
+  'Odian el número que comparten dos ruedas. Por eso lo esconden: quien encuentra el mayor divisor común o el primer múltiplo común los deja sin nada que roer.':
+      'Odien el nombre que comparteixen dues rodes. Per això l\'amaguen: qui troba el divisor comú més gran o el primer múltiple comú els deixa sense res per rosegar.',
+  'Rexán guarda en un bote una rueda de doce dientes que los Oxidados dejaron en siete. Dice que no la tira porque siete es primo y ya nadie puede quitarle nada más.':
+      'En Rexán guarda en un pot una roda de dotze dents que els Oxidats van deixar en set. Diu que no la llença perquè set és primer i ja ningú no li pot treure res més.',
+  'Los Signos':
+      'Els Signes',
+  'Montaña, en la mina':
+      'Muntanya, a la mina',
+  'Viven por debajo del suelo, donde los números llevan un menos delante. No son números malos: son los que cuentan hacia abajo.':
+      'Viuen per sota del terra, on els nombres porten un menys al davant. No són nombres dolents: són els que compten cap avall.',
+  'Su truco es esconder el signo. Si bajas de la planta 3 a la −2 y te olvidas del cero, te quedas un piso corto. Los Signos lo saben y te esperan en el rellano.':
+      'El seu truc és amagar el signe. Si baixes de la planta 3 a la −2 i t\'oblides del zero, et quedes un pis curt. Els Signes ho saben i t\'esperen al replà.',
+  'En la planta más honda de la mina hay una pared con marcas: −1, −2, −3… hasta donde llega la luz. Nadie sabe quién empezó a contar. Nadie ha llegado al final.':
+      'A la planta més fonda de la mina hi ha una paret amb marques: −1, −2, −3… fins on arriba la llum. Ningú no sap qui va començar a comptar. Ningú no ha arribat al final.',
+  'Los Destellos':
+      'Els Esclats',
+  'Industria, en los focos':
+      'Indústria, als focus',
+  'Chispas sueltas que se beben la luz. Si el rayo pasa demasiado cerca, se lo tragan. Se esquivan eligiendo bien el ángulo.':
+      'Espurnes soltes que es beuen la llum. Si el raig passa massa a prop, se l\'empassen. S\'esquiven triant bé l\'angle.',
+  'La luz rebota en un espejo igual que llega: el mismo ángulo de ida que de vuelta. Los Destellos no lo entienden y se quedan mirando el reflejo, quietos.':
+      'La llum rebota en un mirall igual que arriba: el mateix angle d\'anada que de tornada. Els Esclats no ho entenen i es queden mirant el reflex, quiets.',
+  'Vadic dice que en Industria hubo un foco que alumbraba en línea recta hasta el mar. Desde que llegaron los Destellos, la luz dobla esquinas. A Vadic no le gusta nada que doble esquinas.':
+      'En Vadic diu que a la Indústria hi havia un focus que il·luminava en línia recta fins al mar. D\'ençà que van arribar els Esclats, la llum gira cantonades. A en Vadic no li agrada gens que giri cantonades.',
+  'La Maleza':
+      'La Mala Herba',
+  'Afueras, en los planos':
+      'Afores, als plànols',
+  'Hierba que brota en las casillas de los planos y no deja construir encima. No muerde. Sólo ocupa sitio.':
+      'Herba que brota a les caselles dels plànols i no deixa construir-hi a sobre. No mossega. Només ocupa lloc.',
+  'Con la Maleza en medio, 24 metros cuadrados ya no caben como 4 por 6, pero sí como 3 por 8. La misma área, otra forma. La Maleza enseña eso sin querer.':
+      'Amb la Mala Herba al mig, 24 metres quadrats ja no hi caben com 4 per 6, però sí com 3 per 8. La mateixa àrea, una altra forma. La Mala Herba ensenya això sense voler.',
+  'Las casas de las Afueras se levantaron sobre planos mojados. Por eso algunas tienen un rincón torcido: es donde creció la Maleza y alguien no quiso volver a medir.':
+      'Les cases dels Afores es van aixecar sobre plànols mullats. Per això algunes tenen un racó tort: és on va créixer la Mala Herba i algú no va voler tornar a mesurar.',
+  'Los Azarosos':
+      'Els Atzarosos',
+  'Puerto, en el mar':
+      'Port, al mar',
+  'Peces que cambian de color al saltar. No hacen trampa: son el azar mismo, nadando.':
+      'Peixos que canvien de color quan salten. No fan trampa: són l\'atzar mateix, nedant.',
+  'Un solo lance no dice nada. Veinte ya cuentan algo. Con la red buena también se puede sacar un pez gris, y eso no quita la razón a quien la eligió.':
+      'Una sola calada no diu res. Vint ja expliquen alguna cosa. Amb la xarxa bona també es pot treure un peix gris, i això no treu la raó a qui la va triar.',
+  'Los pescadores más viejos del Puerto no apuestan nunca. Cuentan. Dicen que el mar no tiene memoria, pero las libretas sí.':
+      'Els pescadors més vells del Port no aposten mai. Compten. Diuen que el mar no té memòria, però les llibretes sí.',
+  'El Oleaje':
+      'L\'Onatge',
+  'Puerto, en los barcos':
+      'Port, als vaixells',
+  'Olas que llegan cada cierto rato y empujan el barco hacia la pila más alta. Avisan antes. No rompen nada.':
+      'Onades que arriben de tant en tant i empenyen el vaixell cap a la pila més alta. Avisen abans. No trenquen res.',
+  'Un barco bien cargado deja pasar el Oleaje sin moverse. Para eso hay que saber repartir: la media es lo que tendría cada pila si fueran todas iguales.':
+      'Un vaixell ben carregat deixa passar l\'Onatge sense moure\'s. Per a això cal saber repartir: la mitjana és el que tindria cada pila si fossin totes iguals.',
+  'Hay capitanes que leen el Oleaje en las pilas de contenedores como quien lee un gráfico. No miran el mar. Miran la carga, y saben.':
+      'Hi ha capitans que llegeixen l\'Onatge a les piles de contenidors com qui llegeix un gràfic. No miren el mar. Miren la càrrega, i ho saben.',
+  'Los Desteñidos':
+      'Els Destenyits',
+  'Mercado, en los toldos':
+      'Mercat, als tendals',
+  'Manchas grises que se comen el color de un toldo cuando la mezcla no guarda la receta. El toldo se queda gris, pero se puede repintar.':
+      'Taques grises que es mengen el color d\'un tendal quan la barreja no guarda la recepta. El tendal queda gris, però es pot tornar a pintar.',
+  'Dos de azul por tres de amarillo es el mismo verde que cuatro por seis. Los Desteñidos no soportan que el color se mantenga cuando todo crece a la vez.':
+      'Dos de blau per tres de groc és el mateix verd que quatre per sis. Els Destenyits no suporten que el color es mantingui quan tot creix alhora.',
+  'En el Mercado cuentan que el primer toldo desteñido fue el de un puesto que subió los precios sin avisar. Desde entonces, cada vez que alguien hace trampa con un porcentaje, algo pierde el color.':
+      'Al Mercat expliquen que el primer tendal destenyit va ser el d\'una parada que va apujar els preus sense avisar. Des d\'aleshores, cada cop que algú fa trampa amb un percentatge, alguna cosa perd el color.',
+  'Los Cambiados':
+      'Els Canviats',
+  'Industria, en el taller':
+      'Indústria, al taller',
+  'Piezas con la etiqueta en otra unidad: una pesa de 0,5 kg junto a una de 500 g. Parecen distintas. Son la misma.':
+      'Peces amb l\'etiqueta en una altra unitat: un pes de 0,5 kg al costat d\'un de 500 g. Semblen diferents. Són el mateix.',
+  'Algunos Cambiados mienten. Uno dice que 1000 cm son un kilómetro, muy serio. Hay que apartarlo sin enfadarse: sólo le falta subir dos peldaños de la escalera.':
+      'Alguns Canviats menteixen. Un diu que 1000 cm són un quilòmetre, molt seriós. Cal apartar-lo sense enfadar-se: només li falta pujar dos esglaons de l\'escala.',
+  'El relojero del taller tiene un reloj que marca las horas en minutos, otro en segundos y otro en días. Dice que así nunca llega tarde, porque siempre hay uno que va bien.':
+      'El rellotger del taller té un rellotge que marca les hores en minuts, un altre en segons i un altre en dies. Diu que així no arriba mai tard, perquè sempre n\'hi ha un que va bé.',
+  'Los Mudos':
+      'Els Muts',
+  'Montaña, en la caja negra':
+      'Muntanya, a la caixa negra',
+  'Números que la caja negra se traga sin devolver. Cada Mudo cuesta un experimento, y los experimentos se acaban.':
+      'Nombres que la caixa negra s\'empassa sense tornar. Cada Mut costa un experiment, i els experiments s\'acaben.',
+  'Callan, pero no esconden la regla. Si entra 1 y sale 5, entra 2 y sale 8, la caja suma de tres en tres. Los Mudos sólo esperan a que alguien lo diga en voz alta.':
+      'Callen, però no amaguen la regla. Si entra 1 i en surt 5, entra 2 i en surt 8, la caixa suma de tres en tres. Els Muts només esperen que algú ho digui en veu alta.',
+  'Nadie en la Montaña sabe quién construyó la caja. Rexán la encontró ya cerrada. Tiene una teoría: dentro no hay nada, sólo una regla. Y una regla no necesita sitio.':
+      'Ningú a la Muntanya no sap qui va construir la caixa. En Rexán la va trobar ja tancada. Té una teoria: a dins no hi ha res, només una regla. I una regla no necessita lloc.',
+  'Las Polillas':
+      'Les Arnes',
+  'Mercado, en el telar':
+      'Mercat, al teler',
+  'Se comen la tela que sobra y dejan agujeros donde no hay que mirar. Si te fijas en los agujeros, te equivocas de cuenta.':
+      'Es mengen la tela que sobra i deixen forats on no cal mirar. Si et fixes en els forats, t\'equivoques de compte.',
+  'Donde se cruzan dos hilos está la multiplicación: tres cuartos de ancho por dos tercios de alto. Las Polillas nunca muerden ahí. Dicen que sabe raro.':
+      'On es creuen dos fils hi ha la multiplicació: tres quarts d\'amplada per dos terços d\'alçada. Les Arnes no hi mosseguen mai. Diuen que té un gust estrany.',
+  'La tejedora más vieja del Mercado no tira los retales. Los cose en una manta de trozos iguales. Dice que es la única tela a la que las Polillas no se acercan: está toda contada.':
+      'La teixidora més vella del Mercat no llença els retalls. Els cus en una manta de trossos iguals. Diu que és l\'única tela a la qual les Arnes no s\'acosten: està tota comptada.',
+  'Los Revisores':
+      'Els Revisors',
+  'Canales y Mercado, en el tranvía':
+      'Canals i Mercat, al tramvia',
+  'Suben al tranvía y piden el billete con una cuenta: tres viajes de 1,25, el 0,6 de 2,5, repartir 7,5 entre tres. No multan a nadie. Sólo quieren la cuenta bien hecha.':
+      'Pugen al tramvia i demanen el bitllet amb un compte: tres viatges d\'1,25, el 0,6 de 2,5, repartir 7,5 entre tres. No multen ningú. Només volen el compte ben fet.',
+  'Su manía es la coma. Si la pones un sitio más allá, el billete cuesta diez veces más, y el Revisor te mira por encima de las gafas sin decir nada.':
+      'La seva mania és la coma. Si la poses un lloc més enllà, el bitllet costa deu vegades més, i el Revisor et mira per sobre de les ulleres sense dir res.',
+  'El tranvía para en cada décima. Los Revisores se saben todas las paradas de memoria, hasta las que no existen: la 1,45, la 2,999… Dicen que entre dos paradas siempre cabe otra.':
+      'El tramvia para a cada dècima. Els Revisors se saben totes les parades de memòria, fins i tot les que no existeixen: l\'1,45, el 2,999… Diuen que entre dues parades sempre n\'hi cap una altra.',
+  'Los Vértigos':
+      'Els Vertígens',
+  'Montaña, en los andamios':
+      'Muntanya, a les bastides',
+  'Ráfagas de viento que sólo soplan arriba. Si la escalera no es justa, la hacen temblar. Si lo es, pasan de largo.':
+      'Ràfegues de vent que només bufen a dalt. Si l\'escala no és justa, la fan tremolar. Si ho és, passen de llarg.',
+  'Pared y suelo al cuadrado, sumados, son la escalera al cuadrado. Los Vértigos lo saben desde siempre. Por eso no pueden con un 3, un 4 y un 5.':
+      'Paret i terra al quadrat, sumats, són l\'escala al quadrat. Els Vertígens ho saben des de sempre. Per això no poden amb un 3, un 4 i un 5.',
+  'Las farolas de la Montaña se apagaron el día que alguien subió con una escalera larga «por si acaso». Rexán lo cuenta a menudo. Nunca dice quién fue.':
+      'Els fanals de la Muntanya es van apagar el dia que algú va pujar amb una escala llarga «per si de cas». En Rexán ho explica sovint. No diu mai qui va ser.',
+  'Las Fugas':
+      'Les Fuites',
+  'Industria, en los depósitos':
+      'Indústria, als dipòsits',
+  'Agujeros que aparecen cuando se pide más agua de la que cabe. Lo que sobra, lo tiran al suelo.':
+      'Forats que apareixen quan es demana més aigua de la que hi cap. El que sobra, ho llencen a terra.',
+  'Un depósito se llena por capas: largo por ancho cubitos en cada una, y tantas capas como alto. Quien cuenta así nunca pide de más, y las Fugas se secan.':
+      'Un dipòsit s\'omple per capes: llarg per ample cubets a cadascuna, i tantes capes com alt. Qui compta així no demana mai de més, i les Fuites s\'assequen.',
+  'Las tuberías de la Industria son redondas porque Vadic dice que el círculo es la forma que más agua guarda con menos chapa. Las Fugas prefieren las esquinas.':
+      'Les canonades de la Indústria són rodones perquè en Vadic diu que el cercle és la forma que guarda més aigua amb menys xapa. Les Fuites prefereixen les cantonades.',
 };

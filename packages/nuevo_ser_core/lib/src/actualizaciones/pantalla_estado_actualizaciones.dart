@@ -98,78 +98,80 @@ class _PantallaEstadoActualizacionesState extends State<PantallaEstadoActualizac
     final estado = _estado;
     return Scaffold(
       appBar: AppBar(title: Text(_t('Actualizaciones'))),
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          Text(widget.nombreApp, style: tema.textTheme.titleLarge),
-          const SizedBox(height: 16),
-          _Fila(etiqueta: _t('Versión instalada'), valor: estado?.versionInstalada ?? '…'),
-          _Fila(
-            etiqueta: _t('Última publicada'),
-            valor: estado == null
-                ? '…'
-                : estado.sinConexion
-                    ? _t('sin conexión')
-                    : estado.versionPublicada ?? _t('ninguna todavía'),
-          ),
-          if (estado?.publicadoMs != null) _Fila(etiqueta: _t('Publicada el'), valor: _fecha(estado!.publicadoMs)),
-          if (estado != null) _Fila(etiqueta: _t('Comprobado el'), valor: _fecha(estado.comprobadoMs)),
-          const SizedBox(height: 20),
-          if (estado != null && !estado.sinConexion)
-            Container(
-              key: const ValueKey('estado-actualizaciones'),
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                color: (estado.hayNueva ? tema.colorScheme.primary : tema.colorScheme.secondary).withValues(alpha: 0.10),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  Icon(estado.hayNueva ? Icons.system_update : Icons.check_circle_outline,
-                      color: estado.hayNueva ? tema.colorScheme.primary : tema.colorScheme.secondary),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(estado.hayNueva
-                        ? _t('Hay una versión nueva.')
-                        : _t('Tienes la última versión.')),
-                  ),
-                ],
-              ),
-            ),
-          if (estado != null && estado.hayNueva && estado.notas.isNotEmpty) ...[
+      // SafeArea: que la barra de navegación del móvil no tape los botones.
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.all(20),
+          children: [
+            Text(widget.nombreApp, style: tema.textTheme.titleLarge),
             const SizedBox(height: 16),
-            Text(_t('Qué trae'), style: tema.textTheme.titleSmall),
-            const SizedBox(height: 6),
-            Text(estado.notas),
-          ],
-          const SizedBox(height: 24),
-          if (_progreso != null) ...[
-            LinearProgressIndicator(value: _progreso! < 0 ? null : _progreso),
+            _Fila(etiqueta: _t('Versión instalada'), valor: estado?.versionInstalada ?? '…'),
+            _Fila(
+              etiqueta: _t('Última publicada'),
+              valor: estado == null
+                  ? '…'
+                  : estado.sinConexion
+                      ? _t('sin conexión')
+                      : estado.versionPublicada ?? _t('ninguna todavía'),
+            ),
+            if (estado?.publicadoMs != null) _Fila(etiqueta: _t('Publicada el'), valor: _fecha(estado!.publicadoMs)),
+            if (estado != null) _Fila(etiqueta: _t('Comprobado el'), valor: _fecha(estado.comprobadoMs)),
+            const SizedBox(height: 20),
+            if (estado != null && !estado.sinConexion)
+              Container(
+                key: const ValueKey('estado-actualizaciones'),
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color:
+                      (estado.hayNueva ? tema.colorScheme.primary : tema.colorScheme.secondary).withValues(alpha: 0.10),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  children: [
+                    Icon(estado.hayNueva ? Icons.system_update : Icons.check_circle_outline,
+                        color: estado.hayNueva ? tema.colorScheme.primary : tema.colorScheme.secondary),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(estado.hayNueva ? _t('Hay una versión nueva.') : _t('Tienes la última versión.')),
+                    ),
+                  ],
+                ),
+              ),
+            if (estado != null && estado.hayNueva && estado.notas.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(_t('Qué trae'), style: tema.textTheme.titleSmall),
+              const SizedBox(height: 6),
+              Text(estado.notas),
+            ],
+            const SizedBox(height: 24),
+            if (_progreso != null) ...[
+              LinearProgressIndicator(value: _progreso! < 0 ? null : _progreso),
+              const SizedBox(height: 8),
+              Text(_progreso! < 0 ? _t('Descargando…') : '${_t('Descargando…')} ${(_progreso! * 100).round()} %'),
+              const SizedBox(height: 16),
+            ],
+            if (estado != null && estado.hayNueva && _progreso == null)
+              FilledButton.icon(
+                key: const ValueKey('boton-instalar-actualizacion'),
+                icon: const Icon(Icons.download),
+                label: Text('${_t('Descargar e instalar')} ${estado.versionPublicada}'),
+                onPressed: () => _instalar(estado.urlAsset!),
+              ),
             const SizedBox(height: 8),
-            Text(_progreso! < 0 ? _t('Descargando…') : '${_t('Descargando…')} ${(_progreso! * 100).round()} %'),
-            const SizedBox(height: 16),
-          ],
-          if (estado != null && estado.hayNueva && _progreso == null)
-            FilledButton.icon(
-              key: const ValueKey('boton-instalar-actualizacion'),
-              icon: const Icon(Icons.download),
-              label: Text('${_t('Descargar e instalar')} ${estado.versionPublicada}'),
-              onPressed: () => _instalar(estado.urlAsset!),
+            OutlinedButton.icon(
+              key: const ValueKey('boton-buscar-actualizacion'),
+              icon: _buscando
+                  ? const SizedBox.square(dimension: 16, child: CircularProgressIndicator(strokeWidth: 2))
+                  : const Icon(Icons.refresh),
+              label: Text(_t('Buscar ahora')),
+              onPressed: _buscando || _progreso != null ? null : _buscar,
             ),
-          const SizedBox(height: 8),
-          OutlinedButton.icon(
-            key: const ValueKey('boton-buscar-actualizacion'),
-            icon: _buscando
-                ? const SizedBox.square(dimension: 16, child: CircularProgressIndicator(strokeWidth: 2))
-                : const Icon(Icons.refresh),
-            label: Text(_t('Buscar ahora')),
-            onPressed: _buscando || _progreso != null ? null : _buscar,
-          ),
-          if (_mensaje != null) ...[
-            const SizedBox(height: 16),
-            Text(_mensaje!, key: const ValueKey('mensaje-actualizacion')),
+            if (_mensaje != null) ...[
+              const SizedBox(height: 16),
+              Text(_mensaje!, key: const ValueKey('mensaje-actualizacion')),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }

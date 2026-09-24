@@ -346,69 +346,81 @@ class _PantallaMapaState extends State<PantallaMapa> {
           ),
         ],
       ),
-      body: Stack(
+      // Aviso de versión nueva encima del mapa (no ocupa sitio si no hay).
+      body: Column(
         children: [
-          FlutterMap(
-            mapController: _controlador,
-            options: MapOptions(
-              initialCenter: _centroActual,
-              initialZoom: _zoomActual,
-              minZoom: 3,
-              maxZoom: 19,
-            ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'com.coleccionnuevoser.solera_arbolado_urbano',
-                maxNativeZoom: 19,
-              ),
-              MarkerClusterLayerWidget(
-                options: MarkerClusterLayerOptions(
-                  maxClusterRadius: 60,
-                  size: Size(40, 40),
-                  alignment: Alignment.center,
-                  markers: _marcadores(),
-                  builder: (context, markers) {
-                    final paleta = Theme.of(context).colorScheme;
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: paleta.primary,
-                        shape: BoxShape.circle,
+          AvisoActualizaciones(
+            config: configActualizacionesMonorepo('solera-arbolado-urbano'),
+            nombreApp: 'Solera Arbolado Urbano',
+            margen: const EdgeInsets.all(8),
+          ),
+          Expanded(
+            child: Stack(
+              children: [
+                FlutterMap(
+                  mapController: _controlador,
+                  options: MapOptions(
+                    initialCenter: _centroActual,
+                    initialZoom: _zoomActual,
+                    minZoom: 3,
+                    maxZoom: 19,
+                  ),
+                  children: [
+                    TileLayer(
+                      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      userAgentPackageName: 'com.coleccionnuevoser.solera_arbolado_urbano',
+                      maxNativeZoom: 19,
+                    ),
+                    MarkerClusterLayerWidget(
+                      options: MarkerClusterLayerOptions(
+                        maxClusterRadius: 60,
+                        size: Size(40, 40),
+                        alignment: Alignment.center,
+                        markers: _marcadores(),
+                        builder: (context, markers) {
+                          final paleta = Theme.of(context).colorScheme;
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: paleta.primary,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: Text(
+                                markers.length.toString(),
+                                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                      child: Center(
-                        child: Text(
-                          markers.length.toString(),
-                          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Positioned(
+                  top: 8,
+                  left: 8,
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(20),
+                    color: Theme.of(context).colorScheme.surface,
+                    child: InkWell(
+                      onTap: _abrirSelectorZona,
+                      borderRadius: BorderRadius.circular(20),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.filter_list, size: 16),
+                            SizedBox(width: 6),
+                            Text(_tituloFiltro()),
+                          ],
                         ),
                       ),
-                    );
-                  },
-                ),
-              ),
-            ],
-          ),
-          Positioned(
-            top: 8,
-            left: 8,
-            child: Material(
-              elevation: 2,
-              borderRadius: BorderRadius.circular(20),
-              color: Theme.of(context).colorScheme.surface,
-              child: InkWell(
-                onTap: _abrirSelectorZona,
-                borderRadius: BorderRadius.circular(20),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.filter_list, size: 16),
-                      SizedBox(width: 6),
-                      Text(_tituloFiltro()),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ],

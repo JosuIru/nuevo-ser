@@ -2674,10 +2674,8 @@ const Map<String, String> narrativaCa = <String, String>{
       'Al plànol del Mercat, 1 cm són {k} m. La parada és a {t} cm. A quants metres?',
   'Un bote de {t} € con un {k} % de descuento. ¿Cuánto cuesta ahora?':
       'Un pot de {t} € amb un {k} % de descompte. Quant costa ara?',
-  '{a} azul
-{b} amarillo':
-      '{a} blau
-{b} groc',
+  '{a} azul\n{b} amarillo':
+      '{a} blau\n{b} groc',
   'Piensa en plantas: sumar un positivo sube, restar baja. Si estás en la 2 y bajas 7, pasas el suelo: 2 − 7 = −5.':
       'Pensa en plantes: sumar un positiu puja, restar baixa. Si ets a la 2 i baixes 7, passes terra: 2 − 7 = −5.',
   'El valor absoluto es la distancia al suelo, sin mirar si es arriba o abajo: la 7 y la −7 están a 7 plantas. Entre la −4 y la 3 hay 4 + 3 = 7.':

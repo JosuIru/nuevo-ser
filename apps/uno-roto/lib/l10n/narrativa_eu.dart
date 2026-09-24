@@ -2670,10 +2670,8 @@ const Map<String, String> narrativaEu = <String, String>{
       'Merkatuko planoan, 1 cm {k} m da. Postua {t} cm-ra dago. Zenbat metrora?',
   'Un bote de {t} € con un {k} % de descuento. ¿Cuánto cuesta ahora?':
       '{t} €-ko pote bat % {k} deskontuarekin. Zenbat balio du orain?',
-  '{a} azul
-{b} amarillo':
-      '{a} urdin
-{b} hori',
+  '{a} azul\n{b} amarillo':
+      '{a} urdin\n{b} hori',
   'Piensa en plantas: sumar un positivo sube, restar baja. Si estás en la 2 y bajas 7, pasas el suelo: 2 − 7 = −5.':
       'Pentsatu solairuetan: positibo bat batzeak igotzen du, kentzeak jaisten. 2. solairuan bazaude eta 7 jaisten bazara, lurra pasatzen duzu: 2 − 7 = −5.',
   'El valor absoluto es la distancia al suelo, sin mirar si es arriba o abajo: la 7 y la −7 están a 7 plantas. Entre la −4 y la 3 hay 4 + 3 = 7.':

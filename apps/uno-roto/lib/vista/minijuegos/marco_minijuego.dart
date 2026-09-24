@@ -10,6 +10,7 @@ import '../../sonido/servicio_sonoro.dart';
 
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
+import 'monstruo_maquina.dart';
 import 'pantalla_recreativa.dart';
 
 /// Marco común de las máquinas de Rexán: cabecera con el nombre y la
@@ -201,18 +202,34 @@ class MarcoMinijuego extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(12, 4, 0, 8),
-                child: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 250),
-                  child: Text(
-                    '“$lineaRexan”\n— Rexán',
-                    key: ValueKey(lineaRexan),
-                    style: TextStyle(
-                      color: PaletaNeon.textoTenue.withOpacity(0.85),
-                      fontSize: 13,
-                      height: 1.5,
-                      fontStyle: FontStyle.italic,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 250),
+                        child: Text(
+                          '“$lineaRexan”\n— Rexán',
+                          key: ValueKey(lineaRexan),
+                          style: TextStyle(
+                            color: PaletaNeon.textoTenue.withOpacity(0.85),
+                            fontSize: 13,
+                            height: 1.5,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    // El monstruo de la máquina, si tiene.
+                    if (!terminada && monstruoDeMaquina[titulo] != null) ...[
+                      const SizedBox(width: 8),
+                      MonstruoMaquina(
+                        key: const ValueKey('monstruo-maquina'),
+                        familia: monstruoDeMaquina[titulo]!,
+                        efectos: efectos,
+                      ),
+                    ],
+                  ],
                 ),
               ),
               if (ofrecerPista && !terminada && comoSeJuega != null)

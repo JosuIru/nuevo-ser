@@ -2,7 +2,7 @@
 Theme Name: Uno Roto
 Theme URI: https://coleccion-nuevo-ser.com/
 Author: Colección Nuevo Ser
-Description: Tema de bloques para la web de Uno Roto (Colección Nuevo Ser Kids): de noche, neón violeta y ámbar, con las tipografías del juego empaquetadas. Sin peticiones a terceros. Pensado para la página con el shortcode [uno_roto] del plugin Nuevo Ser Core.
+Description: Tema de bloques para la web de los juegos de la Colección Nuevo Ser Kids: de noche, neón violeta y ámbar, con las tipografías del juego empaquetadas. Sin peticiones a terceros. Pensado para la página con el shortcode [uno_roto] del plugin Nuevo Ser Core.
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 7.4
@@ -39,6 +39,31 @@ Text Domain: uno-roto
 
 .ur-cabecera .wp-block-navigation a:hover {
 	color: var(--wp--preset--color--ambar);
+}
+
+/* Menú de juegos: el juego de la página en la que se está, marcado. */
+.ns-ur-pagina .ur-cabecera .wp-block-navigation a[href$="/jugar/"],
+.ns-lv-pagina .ur-cabecera .wp-block-navigation a[href$="/las-versiones/"] {
+	color: var(--ur-activo, var(--wp--preset--color--ambar));
+	text-decoration: underline;
+	text-underline-offset: 8px;
+	text-decoration-thickness: 1px;
+}
+
+.ns-lv-pagina {
+	--ur-activo: #c8893a;
+}
+
+/* Menú desplegado en el móvil: de noche (atributos del bloque en la
+   cabecera); en Las Versiones, sepia (gana a la clase de preset). */
+.ns-lv-pagina .ur-cabecera .wp-block-navigation__responsive-container.is-menu-open {
+	background-color: #1f1a14 !important;
+	color: #e8ddc9 !important;
+}
+
+.ur-cabecera .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__container {
+	gap: 24px;
+	font-size: 1.1rem;
 }
 
 .ur-pie a {

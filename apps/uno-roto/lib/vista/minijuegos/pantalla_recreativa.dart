@@ -35,6 +35,8 @@ const coloresDeMaquina = <String, Color>{
   'La hornada': Color(0xFFE3A457),
   'El telar': Color(0xFFD9848C),
   'El tranvía': Color(0xFFE8B85C),
+  'Depósitos': Color(0xFF4FA9D9),
+  'Andamios': Color(0xFFC9A25E),
 };
 
 /// La pantalla de una máquina recreativa alrededor del juego: marco

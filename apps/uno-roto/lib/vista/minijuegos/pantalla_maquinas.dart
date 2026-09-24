@@ -8,23 +8,25 @@ import '../../datos/repositorio_progreso.dart';
 import '../../dominio/minijuegos/catalogo_minijuegos.dart';
 import '../../l10n/traducciones_narrativa.dart';
 import '../../nucleo/paleta.dart';
+import 'pantalla_andamios.dart';
 import 'pantalla_balanza.dart';
 import 'pantalla_caja_negra.dart';
 import 'pantalla_canales.dart';
+import 'pantalla_depositos.dart';
 import 'pantalla_encaje.dart';
 import 'pantalla_engranajes.dart';
 import 'pantalla_esclusas.dart';
-import 'pantalla_pinturas.dart';
-import 'pantalla_planos.dart';
-import 'pantalla_pozo.dart';
-import 'pantalla_rebote.dart';
-import 'pantalla_nivelar.dart';
-import 'pantalla_redes.dart';
 import 'pantalla_flota.dart';
 import 'pantalla_hornada.dart';
 import 'pantalla_minas.dart';
+import 'pantalla_nivelar.dart';
 import 'pantalla_parejas.dart';
+import 'pantalla_pinturas.dart';
+import 'pantalla_planos.dart';
+import 'pantalla_pozo.dart';
 import 'pantalla_puentes.dart';
+import 'pantalla_rebote.dart';
+import 'pantalla_redes.dart';
 import 'pantalla_salto.dart';
 import 'pantalla_serpiente.dart';
 import 'pantalla_taller.dart';
@@ -108,6 +110,10 @@ Widget pantallaDeMaquina(
       return PantallaTelar(registro: registro, dificultad: dificultad);
     case IdMinijuego.tranvia:
       return PantallaTranvia(registro: registro, dificultad: dificultad);
+    case IdMinijuego.depositos:
+      return PantallaDepositos(registro: registro, dificultad: dificultad);
+    case IdMinijuego.andamios:
+      return PantallaAndamios(registro: registro, dificultad: dificultad);
   }
 }
 
@@ -200,6 +206,8 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.hornada,
     IdMinijuego.telar,
     IdMinijuego.tranvia,
+    IdMinijuego.depositos,
+    IdMinijuego.andamios,
   };
 
   Widget _pantallaDe(

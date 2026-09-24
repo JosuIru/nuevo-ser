@@ -38,6 +38,8 @@ enum IdMinijuego {
   hornada,
   telar,
   tranvia,
+  depositos,
+  andamios,
 }
 
 class DefinicionMinijuego {
@@ -387,6 +389,40 @@ class CatalogoMinijuegos {
           'cuánto cuesta el billete. Cuidado con dónde va la coma.',
       sala: 2,
       llaves: ['DEC.02'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.depositos,
+      nombre: 'Depósitos',
+      descripcion: 'Llena los depósitos de la Industria: cubitos por capas, '
+          'litros y tapas redondas de tubería.',
+      lineaRexan: 'La Industria se calienta. Pide el agua justa: lo que '
+          'sobra, las Fugas lo tiran al suelo.',
+      habilidades: ['GEO.06', 'MED.02', 'GEO.05'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Lee el depósito y elige cuánto cabe. Al acertar se llena '
+          'capa a capa. Cada capa son largo × ancho cubitos; hay tantas capas '
+          'como alto. Un litro es un cubo de 10 cm de lado. En las tuberías, '
+          'la valla es la vuelta (2 × 3,14 × radio) y la tapa, la superficie '
+          '(3,14 × radio × radio).',
+      sala: 2,
+      llaves: ['GEO.03'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.andamios,
+      nombre: 'Andamios',
+      descripcion: 'Plataformas cuadradas y escaleras justas para subir a las '
+          'farolas de la Montaña.',
+      lineaRexan: 'Arriba sopla. Con la medida justa, los Vértigos no mueven '
+          'nada.',
+      habilidades: ['ARI.03', 'GEO.08'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Elige la medida entre cuatro. La plataforma o la escalera '
+          'que elijas se dibuja tal cual: si no es justa, no llega, se pasa o '
+          'se tambalea. El lado de un cuadrado es el número que, multiplicado '
+          'por sí mismo, da el área. En una escalera apoyada, escalera² = '
+          'pared² + suelo².',
+      sala: 2,
+      llaves: ['ARI.02'],
     ),
   ];
 

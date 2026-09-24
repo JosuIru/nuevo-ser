@@ -1,7 +1,7 @@
 name: las_versiones
 description: "Las Versiones — juego de pensamiento histórico para 10-14 años. Fase 10 del roadmap, esqueleto inicial cableado a la plataforma nuevo-ser-core."
 publish_to: none
-version: 0.0.1
+version: 0.0.1+1
 
 environment:
   sdk: ^3.5.0

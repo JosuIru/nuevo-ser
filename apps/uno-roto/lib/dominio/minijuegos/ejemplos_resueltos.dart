@@ -49,6 +49,7 @@ const habilidadesConEjemplo = {
   'FR.01', 'FR.02', 'FR.10', 'FR.11', 'FR.12', 'FR.13', // La hornada
   'FR.18', 'FR.19', 'FR.20', 'FR.21', // El telar
   'DEC.01', 'DEC.05', 'DEC.06', 'DEC.07', 'DEC.09', // El tranvía
+  'DIV.02', // Minas
   'GEO.05', 'GEO.06', // Depósitos
   'ARI.03', 'GEO.08', // Andamios
 };
@@ -233,6 +234,17 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
       return EjemploResuelto('$entero,$decima', [
         PasoEjemplo('Está entre {a} y {b}.', {'a': '$entero', 'b': '${entero + 1}'}),
         PasoEjemplo('Cuenta {d} décimas desde el {a}.', {'d': '$decima', 'a': '$entero'}),
+      ]);
+    case 'DIV.02':
+      final numero = [12, 18, 20, 24, 30, 36][entre(0, 5)];
+      final parejas = [
+        for (var d = 1; d * d <= numero; d++)
+          if (numero % d == 0) '$d × ${numero ~/ d}',
+      ];
+      final divisores = [for (var d = 1; d <= numero; d++) if (numero % d == 0) d];
+      return EjemploResuelto('$numero', [
+        PasoEjemplo('Busca parejas que multiplicadas den {n}: {p}.', {'n': '$numero', 'p': parejas.join('; ')}),
+        PasoEjemplo('Todos los números de las parejas son divisores: {d}.', {'d': divisores.join(', ')}),
       ]);
     case 'GEO.06':
       final largo = entre(2, 6);

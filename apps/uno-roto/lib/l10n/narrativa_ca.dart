@@ -3118,4 +3118,15 @@ const Map<String, String> narrativaCa = <String, String>{
       'El fanal és a {h} m d\'alçada i el peu de l\'escala, a {b} m de la paret. Quina escala hi arriba justa?',
   'La escalera mide {c} m y tiene que subir {h} m. ¿A cuántos metros de la pared se apoya?':
       'L\'escala fa {c} m i ha de pujar {h} m. A quants metres de la paret es recolza?',
+  // Minas: divisores
+  'Las minas: divisores de {n}.':
+      'Les mines: divisors de {n}.',
+  'Sólo divisores de {n}.':
+      'Només divisors de {n}.',
+  'Un divisor de 36 cabe en 36 un número exacto de veces: 36 ÷ 9 = 4, así que 9 es divisor. Búscalos por parejas: 1 y 36, 2 y 18, 3 y 12, 4 y 9, 6 y 6. El 24 no: 36 ÷ 24 no es exacto.':
+      'Un divisor de 36 hi cap un nombre exacte de vegades: 36 ÷ 9 = 4, així que 9 és divisor. Busca\'ls per parelles: 1 i 36, 2 i 18, 3 i 12, 4 i 9, 6 i 6. El 24 no: 36 ÷ 24 no és exacte.',
+  'Busca parejas que multiplicadas den {n}: {p}.':
+      'Busca parelles que multiplicades donin {n}: {p}.',
+  'Todos los números de las parejas son divisores: {d}.':
+      'Tots els nombres de les parelles són divisors: {d}.',
 };

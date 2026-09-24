@@ -29,6 +29,7 @@ class CasillaMina {
 /// sustituye después).
 const textosReglaMinas = <String, String>{
   'DIV.01': 'Las minas: múltiplos de {n}.',
+  'DIV.02': 'Las minas: divisores de {n}.',
   'DIV.03': 'Las minas: divisibles entre {n}.',
   'DIV.04': 'Las minas: divisibles entre {n}.',
   'DIV.05': 'Las minas: números primos.',

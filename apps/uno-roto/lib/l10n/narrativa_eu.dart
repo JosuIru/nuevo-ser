@@ -3114,4 +3114,15 @@ const Map<String, String> narrativaEu = <String, String>{
       'Farola {h} m-ko altueran dago eta eskaileraren oina, hormatik {b} m-ra. Zein eskailera iristen da zehazki?',
   'La escalera mide {c} m y tiene que subir {h} m. ¿A cuántos metros de la pared se apoya?':
       'Eskailerak {c} m neurtzen ditu eta {h} m igo behar ditu. Hormatik zenbat metrora bermatzen da?',
+  // Minas: divisores
+  'Las minas: divisores de {n}.':
+      'Minak: {n} zenbakiaren zatitzaileak.',
+  'Sólo divisores de {n}.':
+      '{n} zenbakiaren zatitzaileak bakarrik.',
+  'Un divisor de 36 cabe en 36 un número exacto de veces: 36 ÷ 9 = 4, así que 9 es divisor. Búscalos por parejas: 1 y 36, 2 y 18, 3 y 12, 4 y 9, 6 y 6. El 24 no: 36 ÷ 24 no es exacto.':
+      '36ren zatitzaile bat 36n aldi kopuru zehatz batean sartzen da: 36 ÷ 9 = 4, beraz 9 zatitzailea da. Bilatu bikoteka: 1 eta 36, 2 eta 18, 3 eta 12, 4 eta 9, 6 eta 6. 24 ez: 36 ÷ 24 ez da zehatza.',
+  'Busca parejas que multiplicadas den {n}: {p}.':
+      'Bilatu biderkatuta {n} ematen duten bikoteak: {p}.',
+  'Todos los números de las parejas son divisores: {d}.':
+      'Bikoteetako zenbaki guztiak zatitzaileak dira: {d}.',
 };

@@ -138,6 +138,9 @@ const trucosPorHabilidad = <String, String>{
   'GEO.08': 'En un triángulo rectángulo, el lado largo al cuadrado es la suma '
       'de los otros dos al cuadrado: 6² + 8² = 36 + 64 = 100 = 10². Sumar 6 + 8 '
       'da de más.',
+  'DIV.02': 'Un divisor de 36 cabe en 36 un número exacto de veces: 36 ÷ 9 = 4, '
+      'así que 9 es divisor. Búscalos por parejas: 1 y 36, 2 y 18, 3 y 12, 4 y 9, '
+      '6 y 6. El 24 no: 36 ÷ 24 no es exacto.',
 };
 
 /// Un paso de despejar la x en la balanza, con cómo queda después.

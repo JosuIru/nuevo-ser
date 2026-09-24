@@ -36,6 +36,25 @@ void main() {
     }
   }
 
+  for (final dificultad in [1, 2, 3]) {
+    test('DIV.02 d$dificultad: las minas son los divisores del número y el tablero se llena', () {
+      for (var semilla = 0; semilla < 25; semilla++) {
+        for (final extra in [0, 2]) {
+          final tablero = TableroMinas.generar(
+              idHabilidad: 'DIV.02', dificultad: dificultad, extra: extra, azar: math.Random(semilla));
+          final numero = tablero.regla.parametro!;
+          expect(tablero.casillas.length, tablero.filas * tablero.columnas);
+          expect(tablero.casillas.map((c) => c.etiqueta).toSet().length, tablero.casillas.length);
+          for (final casilla in tablero.casillas) {
+            final x = int.parse(casilla.etiqueta);
+            expect(casilla.esMina, numero % x == 0, reason: '$x y $numero');
+          }
+          expect(tablero.casillas.where((c) => c.esMina).length, greaterThanOrEqualTo(9));
+        }
+      }
+    });
+  }
+
   test('vecinas en esquina, borde y centro', () {
     final tablero = TableroMinas.generar(
         idHabilidad: 'DIV.01', dificultad: 1, azar: math.Random(1));

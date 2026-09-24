@@ -220,6 +220,16 @@ class ReglaCanales {
         return ReglaCanales._('DIV.03', 'Sólo divisibles entre {n}.', divisor,
             (azar, cuantos, p) => _enteros(azar, cuantos, p, 10, 200,
                 (x) => x % divisor == 0));
+      case 'DIV.02':
+        // Números con muchos divisores, para que haya minas de sobra.
+        final n = [
+          [36, 48, 60],
+          [60, 72, 84, 90],
+          [96, 120, 180],
+        ][dificultad.clamp(1, 3) - 1];
+        final numero = n[azar.nextInt(n.length)];
+        return ReglaCanales._('DIV.02', 'Sólo divisores de {n}.', numero,
+            (azar, cuantos, p) => _divisoresDe(azar, cuantos, p, numero));
       case 'DIV.05':
         final maximo = dificultad >= 2 ? 60 : 40;
         return ReglaCanales._('DIV.05', 'Sólo números primos.', null,
@@ -233,6 +243,22 @@ class ReglaCanales {
             (azar, cuantos, p) => _fracciones(azar, cuantos, p, dificultad));
     }
     return null;
+  }
+
+  /// Divisores de [numero] (tantos como pida [proporcion], o todos si no
+  /// hay tantos) y el resto hasta [cuantos] con no divisores de 2 a
+  /// [numero]: sobre todo múltiplos de algún divisor, que son la trampa
+  /// ("24 no divide a 36 aunque 12 sí").
+  static List<NumeroCanal> _divisoresDe(math.Random azar, int cuantos, double proporcion, int numero) {
+    final divisores = [for (var d = 1; d <= numero; d++) if (numero % d == 0) d]..shuffle(azar);
+    final minas = divisores.take(math.min((cuantos * proporcion).ceil(), divisores.length));
+    final noDivisores = [for (var x = 2; x <= numero; x++) if (numero % x != 0) x]..shuffle(azar);
+    final trampas = noDivisores.where((x) => x.isEven || x % 3 == 0).toList();
+    final resto = [...trampas, ...noDivisores.where((x) => !trampas.contains(x))].take(cuantos - minas.length);
+    return [
+      for (final d in minas) NumeroCanal('$d', cumple: true),
+      for (final x in resto) NumeroCanal('$x', cumple: false),
+    ]..shuffle(azar);
   }
 
   static bool _esPrimo(int x) {

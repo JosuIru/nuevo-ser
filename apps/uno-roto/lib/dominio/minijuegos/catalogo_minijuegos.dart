@@ -136,7 +136,7 @@ class CatalogoMinijuegos {
           'dice cuáles son.',
       lineaRexan: 'Las minas no se esconden: cumplen la regla. Cada '
           'casilla abierta te dice cuántas tiene alrededor.',
-      habilidades: ['DIV.01', 'DIV.03', 'DIV.04', 'DIV.05'],
+      habilidades: ['DIV.01', 'DIV.02', 'DIV.03', 'DIV.04', 'DIV.05'],
       rondasPorPartida: 3,
       comoSeJuega: 'Con ABRIR tocas las casillas seguras; con MARCAR (o dejando el dedo) marcas las minas. La regla dice qué números son minas. El número pequeño de cada casilla abierta cuenta las minas vecinas.',
     ),

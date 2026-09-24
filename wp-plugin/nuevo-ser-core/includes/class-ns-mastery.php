@@ -12,8 +12,8 @@
  * `IntentoHabilidad.aJson()` del Dart — eso permite serializar
  * directamente entre ambos lados sin transformación.
  *
- * Stubs P2/P3/P4 lanzan RuntimeException si se invocan antes de
- * tiempo (paralelo al UnimplementedError de Dart).
+ * Los cuatro perfiles P1-P4 están implementados. La clase base
+ * `NS_Mastery_Profile_Stub` se conserva para perfiles futuros.
  *
  * @package NuevoSerCore
  */
@@ -113,6 +113,21 @@ final class NS_Profile_Config {
 			0.70,
 			4,
 			12
+		);
+	}
+
+	/**
+	 * Configuración por defecto del perfil P4 (calibración epistémica).
+	 * Espejo de `ProfileConfig.defaultP4` del Dart: umbrales del doc 02
+	 * de Las Versiones §4.1 y ficha AH.03 (30 afirmaciones, 6 sesiones).
+	 */
+	public static function default_p4(): self {
+		return new self(
+			0.90, 0.75, 0.55,
+			30, 6, 3,
+			0.75,
+			4,
+			30
 		);
 	}
 }
@@ -546,11 +561,126 @@ final class NS_P3_Construction implements NS_Mastery_Profile {
 	}
 }
 
-final class NS_P4_Calibration extends NS_Mastery_Profile_Stub {
-	public function __construct() {
-		parent::__construct( 'P4Calibration pendiente — espejo del UnimplementedError Dart.' );
+/**
+ * Perfil P4 — calibración epistémica (AH.03 de Las Versiones). Espejo
+ * de `P4Calibration` del Dart:
+ *
+ *   calibración = 1 − Σ wᵢ·(cdᵢ − frᵢ)² / Σ wᵢ
+ *
+ * con cd (confianza declarada) y fr (fiabilidad real) en {0, 0.5, 1} y
+ * wᵢ = dificultad × 2 si cd > fr (sobreconfianza, penalización doble de
+ * la ficha AH.03). Los intentos sin pareja cd/fr se guardan y no cuentan.
+ */
+final class NS_P4_Calibration implements NS_Mastery_Profile {
+	const PENALIZACION_SOBRECONFIANZA = 2.0;
+
+	public function id(): string {
+		return NS_MASTERY_ID_PERFIL_P4;
 	}
-	public function id(): string { return NS_MASTERY_ID_PERFIL_P4; }
+
+	public function compute( array $payload, array $previo, NS_Profile_Config $config ): array {
+		$dificultad = (float) $payload['dificultad'];
+		assert( $dificultad >= 0.5 && $dificultad <= 2.0 );
+
+		$intento_nuevo = array(
+			't' => $payload['instante'],
+			'a' => (bool) $payload['acierto'],
+			'd' => $dificultad,
+			's' => (int) $payload['duracionSegundos'],
+		);
+		if ( array_key_exists( 'confianzaDeclarada', $payload ) && null !== $payload['confianzaDeclarada'] ) {
+			$intento_nuevo['cd'] = (float) $payload['confianzaDeclarada'];
+		}
+		if ( array_key_exists( 'fiabilidadReal', $payload ) && null !== $payload['fiabilidadReal'] ) {
+			$intento_nuevo['fr'] = (float) $payload['fiabilidadReal'];
+		}
+
+		$intentos   = $previo['ir'];
+		$intentos[] = $intento_nuevo;
+		if ( count( $intentos ) > $config->max_intentos_recientes ) {
+			$intentos = array_slice(
+				$intentos,
+				count( $intentos ) - $config->max_intentos_recientes
+			);
+		}
+
+		$calibracion = self::calibracion_de( $intentos );
+
+		return array(
+			'precision'                  => $calibracion,
+			'tiempoMedianoSeg'           => NS_P1_Precision::tiempo_mediano_publico( $intentos ),
+			'sesionesConsecutivasBuenas' => self::actualizar_sesiones_consecutivas(
+				$previo,
+				$payload['instante'],
+				$calibracion,
+				$config
+			),
+			'totalExposiciones'          => (int) $previo['te'] + 1,
+			'intentosRecientes'          => $intentos,
+		);
+	}
+
+	public function level_from_score( array $score, NS_Profile_Config $config, int $nivel_previo ): int {
+		if (
+			$score['precision'] >= $config->umbral_precision_maestria &&
+			$score['totalExposiciones'] >= $config->exposiciones_min_maestria &&
+			$score['sesionesConsecutivasBuenas'] >= $config->sesiones_consecutivas_min_maestria
+		) {
+			return NS_Nivel_Maestria::MAESTRIA;
+		}
+		if (
+			$score['precision'] >= $config->umbral_precision_competente &&
+			$score['sesionesConsecutivasBuenas'] >= $config->sesiones_consecutivas_min_competente
+		) {
+			return NS_Nivel_Maestria::COMPETENTE;
+		}
+		if ( $score['precision'] >= $config->umbral_precision_en_desarrollo ) {
+			return NS_Nivel_Maestria::EN_DESARROLLO;
+		}
+		if ( $score['totalExposiciones'] > 0 ) {
+			return NS_Nivel_Maestria::INTRODUCIDA;
+		}
+		return NS_Nivel_Maestria::INEXPLORADA;
+	}
+
+	public static function calibracion_de( array $intentos ): float {
+		$suma_pesos   = 0.0;
+		$suma_errores = 0.0;
+		foreach ( $intentos as $intento ) {
+			if ( ! array_key_exists( 'cd', $intento ) || ! array_key_exists( 'fr', $intento ) ) {
+				continue;
+			}
+			$diferencia    = (float) $intento['cd'] - (float) $intento['fr'];
+			$peso          = (float) $intento['d']
+				* ( $diferencia > 0 ? self::PENALIZACION_SOBRECONFIANZA : 1.0 );
+			$suma_pesos   += $peso;
+			$suma_errores += $peso * $diferencia * $diferencia;
+		}
+		if ( $suma_pesos <= 0 ) {
+			return 0.0;
+		}
+		return 1 - $suma_errores / $suma_pesos;
+	}
+
+	private static function actualizar_sesiones_consecutivas(
+		array $previo,
+		string $ahora_iso,
+		float $calibracion_actual,
+		NS_Profile_Config $config
+	): int {
+		$ahora     = new DateTimeImmutable( $ahora_iso );
+		$ultima    = new DateTimeImmutable( $previo['up'] );
+		$gap_seg   = $ahora->getTimestamp() - $ultima->getTimestamp();
+		$gap_horas = intdiv( $gap_seg, 3600 );
+		$es_nueva  = $gap_horas >= $config->gap_horas_nueva_sesion;
+		if ( ! $es_nueva ) {
+			return (int) $previo['scb'];
+		}
+		if ( $calibracion_actual >= $config->precision_min_sesion_buena ) {
+			return (int) $previo['scb'] + 1;
+		}
+		return 0;
+	}
 }
 
 /**

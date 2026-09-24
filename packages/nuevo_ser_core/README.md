@@ -20,7 +20,7 @@ lib/src/
 │   ├── perfiles/p1_precision.dart      ← P1 funcional (C6)
 │   ├── perfiles/p2_detection.dart      ← stub (C6)
 │   ├── perfiles/p3_construction.dart   ← stub (C6)
-│   ├── perfiles/p4_calibration.dart    ← stub (C6)
+│   ├── perfiles/p4_calibration.dart    ← P4 calibración epistémica (AH.03): Brier invertido con penalización doble por sobreconfianza, paridad PHP
 │   └── selector_habilidades.dart       ← selector adaptativo genérico
 ├── quiz/
 │   ├── pregunta_quiz.dart              ← ElementoQuiz (catálogo), OpcionQuiz, PreguntaQuiz

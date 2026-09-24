@@ -1,12 +1,11 @@
-import 'dart:io';
 import 'dart:math' as math;
-import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart' show ValueListenable;
 import 'package:flutter/material.dart';
 
-import '../../datos/dibujos_monstruos.dart';
+import '../../datos/dibujos_taller.dart';
 import '../../dominio/bestiario.dart';
+import '../dibujo_con_halo.dart';
 import 'pantalla_recreativa.dart';
 
 /// El monstruo de cada máquina (su familia del bestiario), pequeño y
@@ -117,7 +116,7 @@ class _MonstruoMaquinaState extends State<MonstruoMaquina> with TickerProviderSt
         child: SizedBox.square(
           dimension: widget.tamano,
           child: ValueListenableBuilder<Map<String, String>>(
-            valueListenable: DibujosMonstruos.rutas,
+            valueListenable: dibujosMonstruos.rutas,
             builder: (_, dibujos, __) {
               final dibujo = dibujos[widget.familia.name];
               return AnimatedBuilder(
@@ -141,7 +140,7 @@ class _MonstruoMaquinaState extends State<MonstruoMaquina> with TickerProviderSt
                         scale: gesto.escala,
                         child: Opacity(
                           opacity: gesto.opacidad,
-                          child: DibujoMonstruo(
+                          child: DibujoConHalo(
                             key: const ValueKey('dibujo-monstruo'),
                             ruta: dibujo,
                             color: colorDeMonstruo(widget.familia),
@@ -173,37 +172,6 @@ class _MonstruoMaquinaState extends State<MonstruoMaquina> with TickerProviderSt
     giro: 0.15 * math.sin(risa * math.pi * 4) * (1 - risa),
     opacidad: 1 - 0.6 * campanaDerrota,
   );
-}
-
-/// El dibujo del niño con un halo neón del color de su familia, que
-/// sigue la silueta: así encaja en el mundo sin tapar su trazo.
-class DibujoMonstruo extends StatelessWidget {
-  final String ruta;
-  final Color color;
-  final double tamano;
-
-  const DibujoMonstruo({super.key, required this.ruta, required this.color, required this.tamano});
-
-  @override
-  Widget build(BuildContext contexto) {
-    final fichero = File(ruta);
-    return SizedBox.square(
-      dimension: tamano,
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          ImageFiltered(
-            imageFilter: ui.ImageFilter.blur(sigmaX: 3, sigmaY: 3),
-            child: ColorFiltered(
-              colorFilter: ColorFilter.mode(color.withOpacity(0.9), BlendMode.srcIn),
-              child: Image.file(fichero, width: tamano, height: tamano, fit: BoxFit.contain, gaplessPlayback: true),
-            ),
-          ),
-          Image.file(fichero, width: tamano * 0.9, height: tamano * 0.9, fit: BoxFit.contain, gaplessPlayback: true),
-        ],
-      ),
-    );
-  }
 }
 
 /// Dibuja el monstruo en un cuadro. [respiro] (0→1, en bucle) lo mueve

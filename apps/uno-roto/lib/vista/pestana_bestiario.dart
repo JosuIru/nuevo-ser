@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../datos/dibujos_monstruos.dart';
+import '../datos/dibujos_taller.dart';
 import '../datos/repositorio_progreso.dart';
 import '../dominio/bestiario.dart';
 import '../l10n/traducciones_narrativa.dart';
 import '../nucleo/paleta.dart';
-import 'minijuegos/monstruo_maquina.dart' show DibujoMonstruo;
+import 'dibujo_con_halo.dart';
+import 'taller_dibujo.dart';
 
 /// Pestaña BESTIARIO de Mi Cuaderno (doc 16, eje C): las familias de
 /// Fragmentos como fichas con identidad. Los encuentros se derivan de
@@ -43,7 +44,7 @@ class _PestanaBestiarioState extends State<PestanaBestiario> {
         if (estado != null) mapa[idHabilidad] = estado;
       }
     }
-    await DibujosMonstruos.cargar(widget.repositorio);
+    await dibujosMonstruos.cargar(widget.repositorio);
     if (!mounted) return;
     setState(() {
       _estados = mapa;
@@ -53,72 +54,21 @@ class _PestanaBestiarioState extends State<PestanaBestiario> {
 
   /// El taller de dibujo: foto de su dibujo en papel → la familia pasa a
   /// ser así, aquí y en su máquina.
-  Future<void> _dibujar(FichaBestiario ficha) async {
-    final locale = Localizations.localeOf(context);
-    final conCamara = await showModalBottomSheet<bool>(
-      context: context,
-      backgroundColor: PaletaNeon.fondoMedio,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
-      builder: (hoja) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(22, 20, 22, 12),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                traducirNarrativa(
-                        'Dibuja cómo te imaginas a {n} en un papel, con los colores que quieras. Luego hazle una foto con buena luz: aparecerán así aquí y en su máquina.',
-                        locale)
-                    .replaceAll('{n}', traducirNarrativa(ficha.nombre, locale)),
-                style: const TextStyle(
-                    color: PaletaNeon.textoPrincipal,
-                    fontSize: 14,
-                    height: 1.45),
-              ),
-              const SizedBox(height: 16),
-              FilledButton.icon(
-                key: const ValueKey('dibujo-camara'),
-                onPressed: () => Navigator.of(hoja).pop(true),
-                icon: const Icon(Icons.photo_camera_outlined),
-                label: Text(
-                    traducirNarrativa('Hacer una foto a mi dibujo', locale)),
-              ),
-              const SizedBox(height: 8),
-              OutlinedButton.icon(
-                key: const ValueKey('dibujo-galeria'),
-                onPressed: () => Navigator.of(hoja).pop(false),
-                icon: const Icon(Icons.photo_library_outlined),
-                label: Text(traducirNarrativa('Elegir de la galería', locale)),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-    if (conCamara == null || !mounted) return;
-    String? aviso;
-    try {
-      await DibujosMonstruos.elegir(widget.repositorio, ficha.id,
-          conCamara: conCamara);
-    } on DibujoSinContenido {
-      aviso =
-          'No he encontrado el dibujo en esa foto. Prueba con más luz y con el papel entero.';
-    } catch (_) {
-      aviso = 'No se ha podido abrir la cámara ni la galería.';
-    }
-    if (aviso != null && mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(traducirNarrativa(aviso, locale))));
-    }
-  }
+  Future<void> _dibujar(FichaBestiario ficha) => dibujarEnElTaller(
+        context,
+        coleccion: dibujosMonstruos,
+        repositorio: widget.repositorio,
+        id: ficha.id,
+        nombre: ficha.nombre,
+        invitacion:
+            'Dibuja cómo te imaginas a {n} en un papel, con los colores que quieras. Luego hazle una foto con buena luz: aparecerán así aquí y en su máquina.',
+      );
 
   @override
   Widget build(BuildContext contexto) {
     if (!_cargado) return const SizedBox.shrink();
     return ValueListenableBuilder<Map<String, String>>(
-      valueListenable: DibujosMonstruos.rutas,
+      valueListenable: dibujosMonstruos.rutas,
       builder: (_, dibujos, __) => ListView(
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
         children: [
@@ -128,9 +78,9 @@ class _PestanaBestiarioState extends State<PestanaBestiario> {
               encuentros: ficha.encuentros(_estados),
               dibujo: dibujos[ficha.id],
               alDibujar:
-                  DibujosMonstruos.disponible ? () => _dibujar(ficha) : null,
+                  ColeccionDibujos.disponible ? () => _dibujar(ficha) : null,
               alQuitarDibujo: () =>
-                  DibujosMonstruos.quitar(widget.repositorio, ficha.id),
+                  dibujosMonstruos.quitar(widget.repositorio, ficha.id),
             ),
         ],
       ),
@@ -191,8 +141,7 @@ class _TarjetaFicha extends StatelessWidget {
               // La "silueta": el aura de la familia, la misma que el
               // niño ve flotando en el cazadero; o su dibujo, si lo hizo.
               if (_conocida && dibujo != null)
-                DibujoMonstruo(
-                    ruta: dibujo!, color: ficha.colorAura, tamano: 52)
+                DibujoConHalo(ruta: dibujo!, color: ficha.colorAura, tamano: 52)
               else
                 Container(
                   width: 30,
@@ -268,33 +217,12 @@ class _TarjetaFicha extends StatelessWidget {
           // El taller de dibujo: sólo para las familias ya vistas.
           if (_conocida && alDibujar != null) ...[
             const SizedBox(height: 8),
-            Wrap(
-              spacing: 4,
-              children: [
-                TextButton.icon(
-                  key: ValueKey('dibujar-${ficha.id}'),
-                  onPressed: alDibujar,
-                  icon: Icon(Icons.brush_outlined, size: 16, color: colorFicha),
-                  label: Text(
-                    traducirNarrativa(
-                        dibujo == null ? 'Dibujarlo' : 'Cambiar el dibujo',
-                        locale),
-                    style: TextStyle(
-                        color: colorFicha, fontSize: 12, letterSpacing: 1),
-                  ),
-                ),
-                if (dibujo != null)
-                  TextButton(
-                    key: ValueKey('quitar-dibujo-${ficha.id}'),
-                    onPressed: alQuitarDibujo,
-                    child: Text(
-                      traducirNarrativa('Volver al original', locale),
-                      style: TextStyle(
-                          color: PaletaNeon.textoTenue.withOpacity(0.8),
-                          fontSize: 12),
-                    ),
-                  ),
-              ],
+            BotonesTaller(
+              id: ficha.id,
+              tieneDibujo: dibujo != null,
+              color: colorFicha,
+              alDibujar: alDibujar!,
+              alQuitar: alQuitarDibujo,
             ),
           ],
           // Los tramos que faltan se insinúan sin contador ni barra:

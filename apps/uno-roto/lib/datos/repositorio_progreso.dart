@@ -60,7 +60,6 @@ class RepositorioProgreso {
   static const _sufRitmoJuego = 'ritmo_juego';
   static const _sufModoExperto = 'modo_experto';
   static const _sufRutaAvatar = 'avatar.ruta';
-  static const _sufDibujoMonstruo = 'dibujo_monstruo.';
   static const _prefijoCuadernoLeida = 'cuaderno.leida.';
   static const _prefijoDistritoVisitado = 'distrito_visitado.';
   static const _prefijoFlagNarrativo = 'flag.';
@@ -324,23 +323,24 @@ class RepositorioProgreso {
 
   Future<void> borrarRutaAvatar() => _repoAvatar.borrarRuta();
 
-  /// Dibujo del niño para una familia del bestiario (El taller de
-  /// dibujo): ruta local de un PNG ya limpio de papel. Por perfil, como
-  /// el avatar; nunca sale del aparato. `null`: se usa el original.
-  Future<String?> cargarRutaDibujoMonstruo(String idFamilia) async {
+  /// Dibujos del niño (El taller de dibujo): ruta local de un PNG ya
+  /// limpio de papel, bajo la clave [clave] (p. ej. `dibujo_monstruo.fugas`
+  /// o `dibujo_personaje.sora`). Por perfil, como el avatar; nunca sale
+  /// del aparato. `null`: se usa el original.
+  Future<String?> cargarRutaDibujo(String clave) async {
     final prefs = await _prefs();
-    final ruta = prefs.getString(await _clave('$_sufDibujoMonstruo$idFamilia'));
+    final ruta = prefs.getString(await _clave(clave));
     return ruta == null || ruta.isEmpty ? null : ruta;
   }
 
-  Future<void> guardarRutaDibujoMonstruo(String idFamilia, String ruta) async {
+  Future<void> guardarRutaDibujo(String clave, String ruta) async {
     final prefs = await _prefs();
-    await prefs.setString(await _clave('$_sufDibujoMonstruo$idFamilia'), ruta);
+    await prefs.setString(await _clave(clave), ruta);
   }
 
-  Future<void> borrarRutaDibujoMonstruo(String idFamilia) async {
+  Future<void> borrarRutaDibujo(String clave) async {
     final prefs = await _prefs();
-    await prefs.remove(await _clave('$_sufDibujoMonstruo$idFamilia'));
+    await prefs.remove(await _clave(clave));
   }
 
   Future<RangoNarrativo> cargarRango() async {

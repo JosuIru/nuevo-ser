@@ -4,7 +4,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:uno_roto/datos/dibujos_monstruos.dart';
+import 'package:uno_roto/datos/dibujos_taller.dart';
 import 'package:uno_roto/dominio/limpiador_dibujo.dart';
 import 'package:uno_roto/vista/minijuegos/monstruo_maquina.dart';
 
@@ -95,11 +95,11 @@ void main() {
       }
       fichero.writeAsBytesSync((await lista.first.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List());
     });
-    DibujosMonstruos.rutas.value = const {};
-    addTearDown(() => DibujosMonstruos.rutas.value = const {});
+    dibujosMonstruos.rutas.value = const {};
+    addTearDown(() => dibujosMonstruos.rutas.value = const {});
     await tester.pumpWidget(const MaterialApp(home: Center(child: MonstruoMaquina(familia: FamiliaMonstruo.fugas))));
     expect(find.byKey(const ValueKey('dibujo-monstruo')), findsNothing);
-    DibujosMonstruos.rutas.value = {'fugas': fichero.path};
+    dibujosMonstruos.rutas.value = {'fugas': fichero.path};
     await tester.pump();
     expect(find.byKey(const ValueKey('dibujo-monstruo')), findsOneWidget);
     // Otra familia no cambia.

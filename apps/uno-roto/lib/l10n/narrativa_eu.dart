@@ -2716,4 +2716,119 @@ const Map<String, String> narrativaEu = <String, String>{
       'Zentimetro bakoitza {e} m da.',
   '{c} × {e} = {r} m.':
       '{c} × {e} = {r} m.',
+  // Rebote y El taller del relojero
+  'Rebote':
+      'Errebotea',
+  'Mide ángulos, dispara el láser para que rebote hasta la diana y dibuja reflejos.':
+      'Neurtu angeluak, bota laserra itua jo arte errebota dezan eta marraztu islak.',
+  'Los focos de la Industria están desviados. La luz rebota como una pelota: sale como llega.':
+      'Industriako fokuak desbideratuta daude. Argiak pilota batek bezala errebotatzen du: iristen den bezala ateratzen da.',
+  'Lee el ángulo en el transportador y di cuánto mide o qué tipo es. En el láser, elige el ángulo para que el rayo rebote en el espejo del suelo y dé en la diana: sale del espejo con el mismo ángulo con el que llega. Cuidado con los Destellos. Al final, toca los cuadros para dibujar el reflejo de la figura y pulsa COMPROBAR.':
+      'Irakurri angelua garraiagailuan eta esan zenbat neurtzen duen edo zer motatakoa den. Laserrean, aukeratu angelua izpiak lurreko ispiluan errebota dezan eta itua jo dezan: iristen den angelu berarekin ateratzen da ispilutik. Kontuz Distirekin. Amaieran, ukitu laukiak irudiaren isla marrazteko eta sakatu EGIAZTATU.',
+  'Diana. El foco vuelve a su sitio.':
+      'Itua. Fokua bere lekura itzultzen da.',
+  'Sale con {g}°: igual que llegó.':
+      '{g}°-rekin ateratzen da: iritsi zen bezala.',
+  'Medido y apuntado.':
+      'Neurtuta eta idatzita.',
+  'Mira dónde empieza el cero del transportador y cuenta desde ahí.':
+      'Begiratu garraiagailuaren zeroa non hasten den eta zenbatu hortik.',
+  'Compáralo con una esquina de papel: el recto mide 90°.':
+      'Konparatu paper-izkina batekin: zuzenak 90° neurtzen ditu.',
+  'Un Destello se ha tragado la luz. Con {v}° no llega.':
+      'Distira batek argia irentsi du. {v}°-rekin ez da iristen.',
+  'Con {v}° el rayo no da en la diana. Prueba otro.':
+      '{v}°-rekin izpiak ez du itua jotzen. Probatu beste bat.',
+  'El rayo sale del espejo con el mismo ángulo con el que llega.':
+      'Izpia iristen den angelu berarekin ateratzen da ispilutik.',
+  'El reflejo, exacto: cada cuadro a la misma distancia del espejo.':
+      'Isla, zehatza: lauki bakoitza ispilutik distantzia berera.',
+  'En rosa, los que sobran; con borde, los que faltan. Cada cuadro, a la misma distancia del espejo.':
+      'Arrosaz, soberan daudenak; ertzarekin, falta direnak. Lauki bakoitza, ispilutik distantzia berera.',
+  'Seis focos en su sitio. La Industria vuelve a tener luz.':
+      'Sei foku bere lekuan. Industriak argia du berriro.',
+  '¿Cuántos grados mide el ángulo?':
+      'Zenbat gradu neurtzen ditu angeluak?',
+  '¿Qué tipo de ángulo es?':
+      'Zer motatako angelua da?',
+  '¿Con qué ángulo hay que disparar para que rebote en el espejo y dé en la diana?':
+      'Zein angelurekin bota behar da ispiluan errebota dezan eta itua jo dezan?',
+  'El rayo llega al espejo con {g}°. ¿Con qué ángulo sale?':
+      'Izpia {g}°-rekin iristen da ispilura. Zein angelurekin ateratzen da?',
+  'Dibuja el reflejo de la figura al otro lado del espejo.':
+      'Marraztu irudiaren isla ispiluaren beste aldean.',
+  'COMPROBAR':
+      'EGIAZTATU',
+  'El taller del relojero':
+      'Erlojugilearen tailerra',
+  'Pesa, llena, corta y pon en hora: los encargos de medida de la Industria.':
+      'Pisatu, bete, moztu eta ordua jarri: Industriako neurketa-enkarguak.',
+  'Aquí se mide todo. Ojo con las etiquetas: la misma pesa puede venir en gramos o en kilos.':
+      'Hemen dena neurtzen da. Kontuz etiketekin: pisu bera gramotan edo kilotan etor daiteke.',
+  'Toca las piezas para ponerlas (y tócalas arriba para quitarlas) hasta tener justo lo que pide el encargo; luego ENTREGAR. No verás el total hasta entregar: calcúlalo. En el reloj, elige qué hora será. 1 kg = 1000 g; 1 l = 1000 ml; 1 m = 100 cm; 1 h = 60 min.':
+      'Ukitu piezak jartzeko (eta ukitu goian kentzeko) enkarguak eskatzen duena zehazki izan arte; gero ENTREGATU. Ez duzu guztizkoa ikusiko entregatu arte: kalkulatu. Erlojuan, aukeratu zer ordu izango den. 1 kg = 1000 g; 1 l = 1000 ml; 1 m = 100 cm; 1 h = 60 min.',
+  'Justo lo que pedían. Al cliente.':
+      'Eskatzen zutena zehazki. Bezeroarentzat.',
+  'Llevas {x}: sobran {d}. Quita algo.':
+      '{x} daramatzazu: {d} soberan. Kendu zerbait.',
+  'Llevas {x}: faltan {d}. Añade algo.':
+      '{x} daramatzazu: {d} falta dira. Gehitu zerbait.',
+  'Las {h}. En hora.':
+      '{h}. Orduan.',
+  '{o} no. Recuerda: 60 minutos hacen una hora.':
+      '{o} ez. Gogoratu: 60 minutuk ordu bat egiten dute.',
+  'Seis encargos servidos. El taller cierra a su hora.':
+      'Sei enkargu zerbitzatuta. Tailerra bere orduan ixten da.',
+  'Corta una varilla de {o}.':
+      'Moztu {o}-ko hagatxo bat.',
+  'Pon en la báscula {o}.':
+      'Jarri balantzan {o}.',
+  'Llena la probeta con {o}.':
+      'Bete probeta {o}-rekin.',
+  'Son las {h}. ¿Qué hora será dentro de {s}?':
+      '{h} dira. Zer ordu izango da {s} barru?',
+  'Toca las piezas de abajo para ponerlas.':
+      'Ukitu beheko piezak jartzeko.',
+  'Pon el centro del transportador en el vértice y el 0 sobre un lado; lee dónde cae el otro. En un espejo, el rayo sale con el mismo ángulo con el que llega.':
+      'Jarri garraiagailuaren erdigunea erpinean eta 0a alde baten gainean; irakurri bestea non erortzen den. Ispilu batean, izpia iristen den angelu berarekin ateratzen da.',
+  'Agudo: menos de 90°. Recto: 90°, una esquina de papel. Obtuso: entre 90° y 180°. Llano: 180°, una línea recta.':
+      'Zorrotza: 90° baino gutxiago. Zuzena: 90°, paper-izkina bat. Kamutsa: 90° eta 180° artean. Laua: 180°, lerro zuzen bat.',
+  'En un reflejo, cada punto queda a la misma distancia del espejo, pero al otro lado: si está a 2 cuadros, su reflejo también.':
+      'Isla batean, puntu bakoitza ispilutik distantzia berera geratzen da, baina beste aldean: 2 laukira badago, bere isla ere bai.',
+  '1 m = 10 dm = 100 cm. 1,35 m son 1 m y 35 cm: 135 cm.':
+      '1 m = 10 dm = 100 cm. 1,35 m 1 m eta 35 cm dira: 135 cm.',
+  '1 kg = 1000 g y 1 l = 1000 ml. 1,75 kg son 1750 g; medio kilo, 500 g; un cuarto, 250 g.':
+      '1 kg = 1000 g eta 1 l = 1000 ml. 1,75 kg 1750 g dira; kilo erdia, 500 g; laurdena, 250 g.',
+  'Suma primero los minutos; si pasan de 60, son una hora más. 10:40 + 35 min = 10:75 = 11:15. Luego suma las horas.':
+      'Batu lehenik minutuak; 60 gainditzen badituzte, ordu bat gehiago da. 10:40 + 35 min = 10:75 = 11:15. Gero batu orduak.',
+  'El rayo llega al espejo con {g}°.':
+      'Izpia {g}°-rekin iristen da ispilura.',
+  'Rebota como una pelota: sale con los mismos {g}°, hacia el otro lado.':
+      'Pilota batek bezala errebotatzen du: {g}° berberekin ateratzen da, beste aldera.',
+  'Compáralo con 90° (una esquina) y con 180° (una recta).':
+      'Konparatu 90°-rekin (izkina bat) eta 180°-rekin (lerro zuzen bat).',
+  '{g}° es menos que 90°: agudo.':
+      '{g}° 90° baino gutxiago da: zorrotza.',
+  '{g}° es justo una esquina: recto.':
+      '{g}° izkina bat da justu: zuzena.',
+  '{g}° está entre 90° y 180°: obtuso.':
+      '{g}° 90° eta 180° artean dago: kamutsa.',
+  '{g}° es una línea recta: llano.':
+      '{g}° lerro zuzen bat da: laua.',
+  'Un cuadro está a {d} del espejo.':
+      'Lauki bat ispilutik {d} laukira dago.',
+  'Su reflejo, a {d} del espejo por el otro lado, en la misma fila.':
+      'Bere isla, ispilutik {d} laukira beste aldean, errenkada berean.',
+  '100 cm son 1 m.':
+      '100 cm 1 m dira.',
+  '{c} cm = {m} m {r} cm = {d} m.':
+      '{c} cm = {m} m {r} cm = {d} m.',
+  '1000 g son 1 kg.':
+      '1000 g 1 kg dira.',
+  '{g} g = {k} kg y {r} g = {d} kg.':
+      '{g} g = {k} kg eta {r} g = {d} kg.',
+  'Minutos: {a} + {b} = {t}.':
+      'Minutuak: {a} + {b} = {t}.',
+  '{t} minutos son 1 hora y {r} minutos: las {h}:{m}.':
+      '{t} minutu ordu 1 eta {r} minutu dira: {h}:{m}.',
 };

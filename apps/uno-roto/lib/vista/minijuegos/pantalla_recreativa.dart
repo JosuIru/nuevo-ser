@@ -30,6 +30,8 @@ const coloresDeMaquina = <String, Color>{
   'La caja negra': Color(0xFF9E95C7),
   'El pozo': Color(0xFF8A6353),
   'Pinturas': Color(0xFF6BB38A),
+  'Rebote': Color(0xFF7CF2FF),
+  'El taller del relojero': Color(0xFFD9B77A),
 };
 
 /// La pantalla de una máquina recreativa alrededor del juego: marco

@@ -216,6 +216,18 @@ class CatalogoSonidos {
       rutaAsset: 'assets/sonido/musica/maquina_pinturas.ogg',
       enBucle: true,
     ),
+    'musica_maquina_rebote': SonidoCatalogado(
+      identificador: 'musica_maquina_rebote',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_rebote.ogg',
+      enBucle: true,
+    ),
+    'musica_maquina_taller': SonidoCatalogado(
+      identificador: 'musica_maquina_taller',
+      capa: CapaAudio.musica,
+      rutaAsset: 'assets/sonido/musica/maquina_taller.ogg',
+      enBucle: true,
+    ),
     'musica_tejados': SonidoCatalogado(
       identificador: 'musica_tejados',
       capa: CapaAudio.musica,

@@ -17,6 +17,7 @@ import 'pantalla_esclusas.dart';
 import 'pantalla_pinturas.dart';
 import 'pantalla_planos.dart';
 import 'pantalla_pozo.dart';
+import 'pantalla_rebote.dart';
 import 'pantalla_nivelar.dart';
 import 'pantalla_redes.dart';
 import 'pantalla_flota.dart';
@@ -25,6 +26,7 @@ import 'pantalla_parejas.dart';
 import 'pantalla_puentes.dart';
 import 'pantalla_salto.dart';
 import 'pantalla_serpiente.dart';
+import 'pantalla_taller.dart';
 
 /// Pantalla de la máquina [id]. Con [registro] nulo no se registra
 /// maestría (modo dios: pruebas del operador).
@@ -93,6 +95,10 @@ Widget pantallaDeMaquina(
       return PantallaPozo(registro: registro, dificultad: dificultad);
     case IdMinijuego.pinturas:
       return PantallaPinturas(registro: registro, dificultad: dificultad);
+    case IdMinijuego.rebote:
+      return PantallaRebote(registro: registro, dificultad: dificultad);
+    case IdMinijuego.taller:
+      return PantallaTaller(registro: registro, dificultad: dificultad);
   }
 }
 
@@ -180,6 +186,8 @@ class _PantallaMaquinasState extends State<PantallaMaquinas> {
     IdMinijuego.cajaNegra,
     IdMinijuego.pozo,
     IdMinijuego.pinturas,
+    IdMinijuego.rebote,
+    IdMinijuego.taller,
   };
 
   Widget _pantallaDe(

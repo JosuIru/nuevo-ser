@@ -2720,4 +2720,119 @@ const Map<String, String> narrativaCa = <String, String>{
       'Cada centímetre són {e} m.',
   '{c} × {e} = {r} m.':
       '{c} × {e} = {r} m.',
+  // Rebote y El taller del relojero
+  'Rebote':
+      'Rebot',
+  'Mide ángulos, dispara el láser para que rebote hasta la diana y dibuja reflejos.':
+      'Mesura angles, dispara el làser perquè reboti fins a la diana i dibuixa reflexos.',
+  'Los focos de la Industria están desviados. La luz rebota como una pelota: sale como llega.':
+      'Els focus de la Indústria estan desviats. La llum rebota com una pilota: surt com arriba.',
+  'Lee el ángulo en el transportador y di cuánto mide o qué tipo es. En el láser, elige el ángulo para que el rayo rebote en el espejo del suelo y dé en la diana: sale del espejo con el mismo ángulo con el que llega. Cuidado con los Destellos. Al final, toca los cuadros para dibujar el reflejo de la figura y pulsa COMPROBAR.':
+      'Llegeix l\'angle al transportador i digues quant fa o de quin tipus és. Al làser, tria l\'angle perquè el raig reboti al mirall de terra i faci diana: surt del mirall amb el mateix angle amb què arriba. Compte amb els Espurnes. Al final, toca els quadres per dibuixar el reflex de la figura i prem COMPROVAR.',
+  'Diana. El foco vuelve a su sitio.':
+      'Diana. El focus torna al seu lloc.',
+  'Sale con {g}°: igual que llegó.':
+      'Surt amb {g}°: igual que va arribar.',
+  'Medido y apuntado.':
+      'Mesurat i apuntat.',
+  'Mira dónde empieza el cero del transportador y cuenta desde ahí.':
+      'Mira on comença el zero del transportador i compta des d\'allà.',
+  'Compáralo con una esquina de papel: el recto mide 90°.':
+      'Compara\'l amb una cantonada de paper: el recte fa 90°.',
+  'Un Destello se ha tragado la luz. Con {v}° no llega.':
+      'Una Espurna s\'ha empassat la llum. Amb {v}° no hi arriba.',
+  'Con {v}° el rayo no da en la diana. Prueba otro.':
+      'Amb {v}° el raig no fa diana. Prova\'n un altre.',
+  'El rayo sale del espejo con el mismo ángulo con el que llega.':
+      'El raig surt del mirall amb el mateix angle amb què arriba.',
+  'El reflejo, exacto: cada cuadro a la misma distancia del espejo.':
+      'El reflex, exacte: cada quadre a la mateixa distància del mirall.',
+  'En rosa, los que sobran; con borde, los que faltan. Cada cuadro, a la misma distancia del espejo.':
+      'En rosa, els que sobren; amb vora, els que falten. Cada quadre, a la mateixa distància del mirall.',
+  'Seis focos en su sitio. La Industria vuelve a tener luz.':
+      'Sis focus al seu lloc. La Indústria torna a tenir llum.',
+  '¿Cuántos grados mide el ángulo?':
+      'Quants graus fa l\'angle?',
+  '¿Qué tipo de ángulo es?':
+      'Quin tipus d\'angle és?',
+  '¿Con qué ángulo hay que disparar para que rebote en el espejo y dé en la diana?':
+      'Amb quin angle cal disparar perquè reboti al mirall i faci diana?',
+  'El rayo llega al espejo con {g}°. ¿Con qué ángulo sale?':
+      'El raig arriba al mirall amb {g}°. Amb quin angle surt?',
+  'Dibuja el reflejo de la figura al otro lado del espejo.':
+      'Dibuixa el reflex de la figura a l\'altre costat del mirall.',
+  'COMPROBAR':
+      'COMPROVAR',
+  'El taller del relojero':
+      'El taller del rellotger',
+  'Pesa, llena, corta y pon en hora: los encargos de medida de la Industria.':
+      'Pesa, omple, talla i posa en hora: els encàrrecs de mesura de la Indústria.',
+  'Aquí se mide todo. Ojo con las etiquetas: la misma pesa puede venir en gramos o en kilos.':
+      'Aquí es mesura tot. Compte amb les etiquetes: el mateix pes pot venir en grams o en quilos.',
+  'Toca las piezas para ponerlas (y tócalas arriba para quitarlas) hasta tener justo lo que pide el encargo; luego ENTREGAR. No verás el total hasta entregar: calcúlalo. En el reloj, elige qué hora será. 1 kg = 1000 g; 1 l = 1000 ml; 1 m = 100 cm; 1 h = 60 min.':
+      'Toca les peces per posar-les (i toca-les a dalt per treure-les) fins a tenir just el que demana l\'encàrrec; després LLIURAR. No veuràs el total fins a lliurar: calcula\'l. Al rellotge, tria quina hora serà. 1 kg = 1000 g; 1 l = 1000 ml; 1 m = 100 cm; 1 h = 60 min.',
+  'Justo lo que pedían. Al cliente.':
+      'Just el que demanaven. Al client.',
+  'Llevas {x}: sobran {d}. Quita algo.':
+      'Portes {x}: en sobren {d}. Treu alguna cosa.',
+  'Llevas {x}: faltan {d}. Añade algo.':
+      'Portes {x}: en falten {d}. Afegeix alguna cosa.',
+  'Las {h}. En hora.':
+      'Les {h}. En hora.',
+  '{o} no. Recuerda: 60 minutos hacen una hora.':
+      '{o} no. Recorda: 60 minuts fan una hora.',
+  'Seis encargos servidos. El taller cierra a su hora.':
+      'Sis encàrrecs servits. El taller tanca a la seva hora.',
+  'Corta una varilla de {o}.':
+      'Talla una vareta de {o}.',
+  'Pon en la báscula {o}.':
+      'Posa a la bàscula {o}.',
+  'Llena la probeta con {o}.':
+      'Omple la proveta amb {o}.',
+  'Son las {h}. ¿Qué hora será dentro de {s}?':
+      'Són les {h}. Quina hora serà d\'aquí a {s}?',
+  'Toca las piezas de abajo para ponerlas.':
+      'Toca les peces de baix per posar-les.',
+  'Pon el centro del transportador en el vértice y el 0 sobre un lado; lee dónde cae el otro. En un espejo, el rayo sale con el mismo ángulo con el que llega.':
+      'Posa el centre del transportador al vèrtex i el 0 sobre un costat; llegeix on cau l\'altre. En un mirall, el raig surt amb el mateix angle amb què arriba.',
+  'Agudo: menos de 90°. Recto: 90°, una esquina de papel. Obtuso: entre 90° y 180°. Llano: 180°, una línea recta.':
+      'Agut: menys de 90°. Recte: 90°, una cantonada de paper. Obtús: entre 90° i 180°. Pla: 180°, una línia recta.',
+  'En un reflejo, cada punto queda a la misma distancia del espejo, pero al otro lado: si está a 2 cuadros, su reflejo también.':
+      'En un reflex, cada punt queda a la mateixa distància del mirall, però a l\'altre costat: si és a 2 quadres, el seu reflex també.',
+  '1 m = 10 dm = 100 cm. 1,35 m son 1 m y 35 cm: 135 cm.':
+      '1 m = 10 dm = 100 cm. 1,35 m són 1 m i 35 cm: 135 cm.',
+  '1 kg = 1000 g y 1 l = 1000 ml. 1,75 kg son 1750 g; medio kilo, 500 g; un cuarto, 250 g.':
+      '1 kg = 1000 g i 1 l = 1000 ml. 1,75 kg són 1750 g; mig quilo, 500 g; un quart, 250 g.',
+  'Suma primero los minutos; si pasan de 60, son una hora más. 10:40 + 35 min = 10:75 = 11:15. Luego suma las horas.':
+      'Suma primer els minuts; si passen de 60, és una hora més. 10:40 + 35 min = 10:75 = 11:15. Després suma les hores.',
+  'El rayo llega al espejo con {g}°.':
+      'El raig arriba al mirall amb {g}°.',
+  'Rebota como una pelota: sale con los mismos {g}°, hacia el otro lado.':
+      'Rebota com una pilota: surt amb els mateixos {g}°, cap a l\'altre costat.',
+  'Compáralo con 90° (una esquina) y con 180° (una recta).':
+      'Compara\'l amb 90° (una cantonada) i amb 180° (una recta).',
+  '{g}° es menos que 90°: agudo.':
+      '{g}° és menys de 90°: agut.',
+  '{g}° es justo una esquina: recto.':
+      '{g}° és just una cantonada: recte.',
+  '{g}° está entre 90° y 180°: obtuso.':
+      '{g}° és entre 90° i 180°: obtús.',
+  '{g}° es una línea recta: llano.':
+      '{g}° és una línia recta: pla.',
+  'Un cuadro está a {d} del espejo.':
+      'Un quadre és a {d} del mirall.',
+  'Su reflejo, a {d} del espejo por el otro lado, en la misma fila.':
+      'El seu reflex, a {d} del mirall per l\'altre costat, a la mateixa fila.',
+  '100 cm son 1 m.':
+      '100 cm són 1 m.',
+  '{c} cm = {m} m {r} cm = {d} m.':
+      '{c} cm = {m} m {r} cm = {d} m.',
+  '1000 g son 1 kg.':
+      '1000 g són 1 kg.',
+  '{g} g = {k} kg y {r} g = {d} kg.':
+      '{g} g = {k} kg i {r} g = {d} kg.',
+  'Minutos: {a} + {b} = {t}.':
+      'Minuts: {a} + {b} = {t}.',
+  '{t} minutos son 1 hora y {r} minutos: las {h}:{m}.':
+      '{t} minuts són 1 hora i {r} minuts: les {h}:{m}.',
 };

@@ -70,4 +70,23 @@ void main() {
     expect(PintorAndamio.alturaApoyada(10, 6), 8);
     expect(PintorAndamio.alturaApoyada(5, 5), 0);
   });
+
+  testWidgets('el monstruo está en la máquina y dos fallos dibujan la pista', (tester) async {
+    _movil(tester);
+    const semilla = 2;
+    await tester.pumpWidget(_envolver(const PantallaAndamios(registro: null, dificultad: 1, semilla: semilla)));
+    expect(find.byKey(const ValueKey('monstruo-maquina')), findsOneWidget);
+    PintorAndamio pintor() => tester
+        .widget<CustomPaint>(find.byWidgetPredicate((w) => w is CustomPaint && w.painter is PintorAndamio))
+        .painter as PintorAndamio;
+    expect(pintor().pista, isFalse);
+    final reto = GeneradorAndamios(azar: math.Random(semilla)).generar(TipoAndamio.plataforma);
+    final malas = reto.opciones.where((o) => o != reto.respuesta).take(2);
+    for (final mala in malas) {
+      await tester.tap(find.byKey(ValueKey('opcion-$mala')));
+      await tester.pump(const Duration(milliseconds: 1100));
+    }
+    expect(pintor().pista, isTrue);
+    await tester.pumpWidget(const SizedBox());
+  });
 }

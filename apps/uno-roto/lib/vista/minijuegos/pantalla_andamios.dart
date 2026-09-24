@@ -198,6 +198,7 @@ class _PantallaAndamiosState extends State<PantallaAndamios>
                   elegida: _elegida,
                   asentado: _asentado.value,
                   vaiven: _vaiven.value,
+                  pista: ofrecerPista,
                 ),
               ),
             ),
@@ -249,7 +250,10 @@ class PintorAndamio extends CustomPainter {
   final double asentado;
   final double vaiven;
 
-  PintorAndamio({required this.reto, this.elegida, this.asentado = 0, this.vaiven = 1});
+  /// Pista (tras dos fallos): la cuenta que hay que hacer, con símbolos.
+  final bool pista;
+
+  PintorAndamio({required this.reto, this.elegida, this.asentado = 0, this.vaiven = 1, this.pista = false});
 
   static const _madera = Color(0xFFC9A25E);
   static const _pared = Color(0xFF2A2F5A);
@@ -266,6 +270,27 @@ class PintorAndamio extends CustomPainter {
       _plataforma(canvas, size);
     } else {
       _paredYEscalera(canvas, size);
+    }
+    if (pista) {
+      final d = reto.datos;
+      final cuenta = switch (reto.tipo) {
+        TipoAndamio.plataforma => '? × ? = ${d[0]}',
+        TipoAndamio.escalera => '${d[0]}² + ${d[1]}² = ?²',
+        TipoAndamio.apoyar => '${d[0]}² − ${d[1]}² = ?²',
+      };
+      final pintor = TextPainter(
+        text: TextSpan(text: cuenta, style: const TextStyle(color: PaletaNeon.ambarCanales, fontSize: 18)),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      final caja = Rect.fromLTWH(8, 6, pintor.width + 16, pintor.height + 8);
+      canvas.drawRRect(RRect.fromRectAndRadius(caja, const Radius.circular(8)),
+          Paint()..color = const Color(0xFF14102A).withOpacity(0.85));
+      canvas.drawRRect(
+          RRect.fromRectAndRadius(caja, const Radius.circular(8)),
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..color = PaletaNeon.ambarCanales.withOpacity(0.7));
+      pintor.paint(canvas, caja.topLeft + const Offset(8, 4));
     }
   }
 

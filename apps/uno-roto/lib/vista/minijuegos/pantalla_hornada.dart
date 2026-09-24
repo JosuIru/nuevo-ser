@@ -219,7 +219,7 @@ class _PantallaHornadaState extends State<PantallaHornada>
             child: LayoutBuilder(
               builder: (_, restricciones) {
                 final lienzo = restricciones.biggest;
-                final pintor = PintorBandeja(pedido: _pedido, enCaja: _enCaja);
+                final pintor = PintorBandeja(pedido: _pedido, enCaja: _enCaja, pista: ofrecerPista);
                 return GestureDetector(
                   key: const ValueKey('bandeja'),
                   behavior: HitTestBehavior.opaque,
@@ -281,7 +281,10 @@ class PintorBandeja extends CustomPainter {
   final PedidoHornada pedido;
   final Set<(int, int)> enCaja;
 
-  PintorBandeja({required this.pedido, required this.enCaja});
+  /// Pista (tras dos fallos): cada trozo lleva escrito cuánto es, 1/d.
+  final bool pista;
+
+  PintorBandeja({required this.pedido, required this.enCaja, this.pista = false});
 
   (Offset, double) _pan(int indice, Size size) {
     final panes = pedido.panes;
@@ -346,6 +349,22 @@ class PintorBandeja extends CustomPainter {
             ..style = PaintingStyle.stroke
             ..strokeWidth = 3
             ..color = const Color(0xFF8A5A2A));
+      if (pista) {
+        for (var t = 0; t < pedido.cortes; t++) {
+          final angulo = (t + 0.5) / pedido.cortes * math.pi * 2 - math.pi / 2;
+          final posicion = centro + Offset(math.cos(angulo), math.sin(angulo)) * radio * 0.62;
+          final texto = TextPainter(
+            text: TextSpan(
+                text: '1/${pedido.cortes}',
+                style: TextStyle(
+                    color: const Color(0xFF3A2208),
+                    fontSize: math.max(8, math.min(12, radio / pedido.cortes * 1.4)),
+                    fontWeight: FontWeight.bold)),
+            textDirection: TextDirection.ltr,
+          )..layout();
+          texto.paint(canvas, posicion - Offset(texto.width / 2, texto.height / 2));
+        }
+      }
     }
   }
 

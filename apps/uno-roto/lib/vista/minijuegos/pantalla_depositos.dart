@@ -193,7 +193,7 @@ class _PantallaDepositosState extends State<PantallaDepositos>
               animation: _llenado,
               builder: (_, __) => CustomPaint(
                 size: Size.infinite,
-                painter: PintorDeposito(reto: _reto, llenado: _llenado.value, desborda: desborda),
+                painter: PintorDeposito(reto: _reto, llenado: _llenado.value, desborda: desborda, pista: ofrecerPista),
               ),
             ),
           ),
@@ -250,7 +250,11 @@ class PintorDeposito extends CustomPainter {
   final double llenado;
   final bool desborda;
 
-  PintorDeposito({required this.reto, required this.llenado, this.desborda = false});
+  /// Pista (tras dos fallos): una capa marcada con largo × ancho y las
+  /// capas contadas; en las tuberías, la fórmula.
+  final bool pista;
+
+  PintorDeposito({required this.reto, required this.llenado, this.desborda = false, this.pista = false});
 
   static const _chapa = Color(0xFF8C93B8);
   static const _agua = Color(0xFF4FA9D9);
@@ -369,6 +373,28 @@ class PintorDeposito extends CustomPainter {
       canvas.drawLine(a, b, borde);
     }
 
+    if (pista) {
+      // La capa de abajo, en ámbar, con lo que tiene.
+      final capa = Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.5
+        ..color = PaletaNeon.ambarCanales;
+      canvas.drawPath(
+          cara([punto(0, 1, 0), punto(largo.toDouble(), 1, 0), punto(largo.toDouble(), 1, ancho.toDouble()),
+            punto(0, 1, ancho.toDouble())]),
+          capa);
+      canvas.drawPath(cara([punto(0, 0, 0), punto(largo.toDouble(), 0, 0), punto(largo.toDouble(), 1, 0), punto(0, 1, 0)]),
+          Paint()..color = PaletaNeon.ambarCanales.withOpacity(0.25));
+      _rotulo(canvas, '$largo × $ancho', punto(largo / 2, 0.5, 0), color: PaletaNeon.ambarCanales);
+      // Las capas, contadas en el lateral.
+      for (var y = 1; y <= alto; y++) {
+        _rotulo(canvas, '$y', punto(largo.toDouble(), y - 0.5, 0) + const Offset(12, 0),
+            color: PaletaNeon.ambarCanales);
+      }
+      _rotulo(canvas, '× $alto', punto(largo.toDouble(), alto.toDouble(), 0) + const Offset(18, -14),
+          color: PaletaNeon.ambarCanales);
+    }
+
     // Medidas.
     final unidad = reto.tipo == TipoDeposito.litros ? ' cm' : '';
     _rotulo(canvas, '${reto.datos[0]}$unidad', punto(largo / 2, 0, 0) + const Offset(0, 14));
@@ -423,11 +449,18 @@ class PintorDeposito extends CustomPainter {
           ..strokeWidth = 2.5);
     canvas.drawCircle(centro, 3.5, Paint()..color = PaletaNeon.rosaAcento);
     _rotulo(canvas, 'r = $radio m', centro + Offset(radioPantalla / 2, -14));
+    if (pista) {
+      _rotulo(
+          canvas,
+          reto.tipo == TipoDeposito.vallaCirculo ? '2 × 3,14 × $radio' : '3,14 × $radio × $radio',
+          Offset(size.width / 2, size.height - 10),
+          color: PaletaNeon.ambarCanales);
+    }
   }
 
-  void _rotulo(Canvas canvas, String texto, Offset centro) {
+  void _rotulo(Canvas canvas, String texto, Offset centro, {Color color = PaletaNeon.textoPrincipal}) {
     final pintor = TextPainter(
-      text: TextSpan(text: texto, style: const TextStyle(color: PaletaNeon.textoPrincipal, fontSize: 13)),
+      text: TextSpan(text: texto, style: TextStyle(color: color, fontSize: 13)),
       textDirection: TextDirection.ltr,
     )..layout();
     pintor.paint(canvas, centro - Offset(pintor.width / 2, pintor.height / 2));

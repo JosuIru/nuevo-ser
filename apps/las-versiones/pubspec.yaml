@@ -45,6 +45,10 @@ dependencies:
   # reportar la causa al jugador con precisión.
   http: ^1.1.0
 
+  # Reproducción de audio (ambiente, efectos de objeto y fragmentos de
+  # capa). Mismo paquete que Uno Roto. Ver lib/sonido/.
+  audioplayers: ^6.1.0
+
 dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
@@ -77,6 +81,12 @@ flutter:
     # desde aquí. También disponible como asset en runtime para la
     # pantalla de inicio del juego.
     - assets/marca/
+    # Sonido del juego (doc 12). Los OGG no se versionan: se regeneran
+    # con scripts/sonido/generar_sonidos_archivo.py. Si faltan, el
+    # servicio sonoro calla sin romper nada.
+    - assets/sonido/efectos/
+    - assets/sonido/ambiente/
+    - assets/sonido/fragmentos/
 
 # Splash nativo Android: fondo sepia oscuro coherente con la
 # PaletaArchivo provisional + logo de la marca centrado.

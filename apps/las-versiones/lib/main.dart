@@ -47,6 +47,7 @@ import 'vista/pantalla_mosaico_arco_2.dart';
 import 'vista/pantalla_mosaico_arco_3.dart';
 import 'vista/pantalla_mosaico_arco_4.dart';
 import 'vista/pantalla_resumenes.dart';
+import 'sonido/servicio_sonoro_archivo.dart';
 
 /// Clave global del idioma elegido por la Cronista en el primer
 /// arranque. Sigue el namespace `nuevoser.<juego>.*` que el CLAUDE.md
@@ -133,6 +134,11 @@ void main() async {
     prefs: SharedPreferences.getInstance,
   );
 
+  // Motor sonoro (F2-27 dejó las preferencias; aquí empieza a sonar).
+  // Tolera no tener plugin ni assets: si falta algo, calla.
+  final repoAudio = RepositorioPreferenciasAudio(gestor: gestorPerfiles);
+  await ServicioSonoroArchivo.instancia.inicializar(repoAudio);
+
   runApp(AppLasVersiones(
     repoIdioma: repoIdioma,
     repoFlags: RepositorioFlagsNarrativos(gestor: gestorPerfiles),
@@ -143,7 +149,7 @@ void main() async {
     repoRecoleccion: RepositorioRecoleccionFuentes(gestor: gestorPerfiles),
     repoEvaluacion: RepositorioEvaluacionFuente(gestor: gestorPerfiles),
     repoReconstruccion: RepositorioReconstruccion(gestor: gestorPerfiles),
-    repoAudio: RepositorioPreferenciasAudio(gestor: gestorPerfiles),
+    repoAudio: repoAudio,
     repoCuenta: repoCuenta,
     gestorPerfiles: gestorPerfiles,
     reseteoArchivo: reseteoArchivo,
@@ -856,9 +862,8 @@ class _OrquestadorState extends State<Orquestador> {
 
   /// Abre la pantalla de ajustes de audio. Estos ajustes son
   /// **por perfil** (cada Cronista tiene su modo silencio y sus
-  /// volúmenes por capa). El cambio toma efecto al instante en el
-  /// repo; cuando entren los assets sonoros del juego, el
-  /// servicio sonoro los respetará.
+  /// volúmenes por capa). Al volver, el servicio sonoro relee las
+  /// preferencias para aplicarlas.
   Future<void> _alAbrirAjustesAudio() async {
     if (!mounted) return;
     await Navigator.of(context).push(
@@ -866,6 +871,7 @@ class _OrquestadorState extends State<Orquestador> {
         builder: (_) => PantallaAjustesAudio(repoAudio: widget.repoAudio),
       ),
     );
+    await ServicioSonoroArchivo.instancia.cargarPreferenciasDelPerfil();
   }
 
   /// Abre la pantalla de gestión de perfiles. Tras volver, el
@@ -895,6 +901,7 @@ class _OrquestadorState extends State<Orquestador> {
   /// distinto guardado (en caso futuro de idioma por-perfil).
   Future<void> _cambiarAPerfil(String idPerfil) async {
     await widget.gestorPerfiles.cambiarAPerfil(idPerfil);
+    await ServicioSonoroArchivo.instancia.cargarPreferenciasDelPerfil();
     if (!mounted) return;
     final codigo = await widget.repoIdioma.cargar();
     if (!mounted) return;

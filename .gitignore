@@ -86,3 +86,7 @@ apps/uno-roto/assets/sonido/narrativos/*.mp3
 # Salidas del empaquetador del paquete sonoro descargable
 # ============================================================================
 dist/
+
+# Sonido de Las Versiones — se regenera con apps/las-versiones/scripts/sonido/.
+apps/las-versiones/assets/sonido/**/*.ogg
+apps/las-versiones/assets/sonido/**/*.wav

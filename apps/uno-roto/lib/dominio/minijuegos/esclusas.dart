@@ -90,9 +90,16 @@ class PartidaEsclusas {
   /// Barca o esclusa del último fallo (para que Rexán explique).
   Barca? ultimaEquivocada;
 
+  /// «Sin prisas»: las barcas se paran antes de la compuerta y esperan.
+  final bool sinPrisas;
+
+  /// Hasta dónde bajan las barcas con «sin prisas».
+  static const topeSinPrisas = 0.8;
+
   PartidaEsclusas({
     required this.nivel,
     required this.dificultad,
+    this.sinPrisas = false,
     math.Random? azar,
   })  : _azar = azar ?? math.Random(),
         velocidad = switch (dificultad) { 1 => 0.07, 2 => 0.09, _ => 0.11 } {
@@ -193,6 +200,10 @@ class PartidaEsclusas {
   EventoEsclusas avanzar(double dt) {
     if (terminada) return EventoEsclusas.nada;
     posicion += velocidad * dt;
+    if (sinPrisas) {
+      posicion = math.min(posicion, topeSinPrisas);
+      return EventoEsclusas.nada;
+    }
     if (posicion >= 1) {
       posicion = 0;
       pasadasDelGrupo = 0;

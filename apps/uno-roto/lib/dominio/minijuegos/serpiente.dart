@@ -36,9 +36,13 @@ class PartidaSerpiente {
   final Map<String, int> fallosPorHabilidad = {};
   final Map<String, int> aciertosPorHabilidad = {};
 
+  /// «Sin prisas»: los números del nivel 3 se quedan quietos.
+  final bool sinPrisas;
+
   PartidaSerpiente({
     required this.habilidades,
     required this.dificultad,
+    this.sinPrisas = false,
     math.Random? azar,
   })  : _azar = azar ?? math.Random(),
         _generador = GeneradorRetosCalculo(azar: azar) {
@@ -166,7 +170,7 @@ class PartidaSerpiente {
       _siguienteDireccion = null;
     }
     _ticks++;
-    if (nivel >= 3 && _ticks % 4 == 0) _moverNumeros();
+    if (nivel >= 3 && !sinPrisas && _ticks % 4 == 0) _moverNumeros();
     final nueva = _vecina(cabeza, direccion);
     if (muros.contains(nueva)) return EventoSerpiente.muro;
     cuerpo.insert(0, nueva);

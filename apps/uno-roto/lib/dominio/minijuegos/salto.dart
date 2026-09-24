@@ -102,14 +102,21 @@ class PartidaSalto {
   final Map<String, int> fallosPorHabilidad = {};
   final Map<String, int> aciertosPorHabilidad = {};
 
+  /// Velocidad con «sin prisas», sea cual sea la dificultad: da tiempo a
+  /// leer las puertas y aún salva los pinchos dobles.
+  static const velocidadSinPrisas = 5.5;
+
   PartidaSalto({
     required this.habilidades,
     required this.dificultad,
     this.nivel = 1,
+    bool sinPrisas = false,
     math.Random? azar,
   })  : _azar = azar ?? math.Random(),
         _generador = GeneradorRetosCalculo(azar: azar),
-        velocidad = switch (dificultad) { 1 => 6.0, 2 => 7.0, _ => 8.0 } {
+        velocidad = sinPrisas
+            ? velocidadSinPrisas
+            : switch (dificultad) { 1 => 6.0, 2 => 7.0, _ => 8.0 } {
     _anadirTramo();
     _anadirTramo();
   }
@@ -166,7 +173,7 @@ class PartidaSalto {
     // Pinchos: triples sólo a la velocidad más alta (a menos velocidad el
     // salto apenas los cubre); dobles, más a menudo en niveles altos.
     final int cuantos;
-    if (nivel >= 3 && dificultad >= 3 && _azar.nextDouble() < 0.4) {
+    if (nivel >= 3 && velocidad >= 8 && _azar.nextDouble() < 0.4) {
       cuantos = 3;
     } else if (dificultad >= 2 || nivel >= 2) {
       cuantos = _azar.nextDouble() < (nivel >= 3 ? 0.55 : 0.35) ? 2 : 1;

@@ -351,6 +351,11 @@ class PartidaCanales {
   int pillado = 0;
   int _ticks = 0;
 
+  /// «Sin prisas»: las sombras sólo se mueven cuando el niño se mueve
+  /// (una vez cada tres pasos suyos). Parado contra un muro, piensa.
+  final bool sinPrisas;
+  int _pasosJugador = 0;
+
   /// Número del último fallo (para que Rexán diga cuál era).
   NumeroCanal? ultimoFallo;
 
@@ -359,6 +364,7 @@ class PartidaCanales {
     required this.regla,
     required this.dificultad,
     this.nivel = 1,
+    this.sinPrisas = false,
     math.Random? azar,
   }) : _azar = azar ?? math.Random() {
     jugador = laberinto.salida;
@@ -409,13 +415,18 @@ class PartidaCanales {
       direccion = deseada;
     }
     final actual = direccion;
+    var seMovio = false;
     if (actual != null && laberinto.esCanal(jugador.mas(actual))) {
       jugador = jugador.mas(actual);
+      seMovio = true;
+      _pasosJugador++;
     }
     var evento = _comer();
     if (_choca()) return _pillar();
     final cadaCuanto = dificultad >= 3 ? 3 : 2;
-    final mueven = dificultad >= 3 ? _ticks % cadaCuanto != 0 : _ticks % cadaCuanto == 0;
+    final mueven = sinPrisas
+        ? seMovio && _pasosJugador % 3 == 0
+        : dificultad >= 3 ? _ticks % cadaCuanto != 0 : _ticks % cadaCuanto == 0;
     if (mueven) {
       sombras = [
         for (var i = 0; i < sombras.length; i++)

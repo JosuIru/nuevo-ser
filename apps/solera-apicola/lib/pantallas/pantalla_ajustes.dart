@@ -100,6 +100,20 @@ class PantallaAjustes extends StatelessWidget {
       ),
       Divider(height: 1),
           ListTile(
+            leading: Icon(Icons.system_update),
+            title: Text('Actualizaciones'),
+            subtitle: Text('Versión instalada y última publicada'),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => PantallaEstadoActualizaciones(
+                  config: configActualizacionesMonorepo('solera-apicola'),
+                  nombreApp: 'Solera Apícola',
+                ),
+              ),
+            ),
+          ),
+          ListTile(
             leading: Icon(Icons.info_outline),
             title: Text('Acerca de'),
             subtitle: Text('Versión, créditos, compromisos legales'),

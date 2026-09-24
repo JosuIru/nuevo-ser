@@ -22,6 +22,20 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <!-- INTERNET es obligatorio para que los tiles del mapa (OSM,
+         pestaña Mapa) lleguen al cliente. En debug Flutter lo añade
+         automáticamente vía src/debug/AndroidManifest.xml, pero el
+         APK release lo necesita declarado aquí. Solo se usa para:
+         (1) tiles del mapa cuando el adulto activó el opt-in,
+         (2) sincronización al backend cuando el adulto la dispara,
+         (3) Tutor IA cuando el adulto lo abre,
+         (4) buscar actualizaciones cuando el adulto abre Ajustes >
+             Actualizaciones.
+         Ninguna salida automática — todo opt-in del adulto. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Para instalar la versión nueva desde la propia app (pantalla Actualizaciones). -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:label="El Cuaderno"
         android:name="${applicationName}"

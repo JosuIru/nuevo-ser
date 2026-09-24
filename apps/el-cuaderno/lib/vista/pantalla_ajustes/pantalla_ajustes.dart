@@ -14,6 +14,7 @@ import '../../dominio/exportador_cuaderno.dart';
 import '../../dominio/exportador_cuaderno_pdf.dart';
 import '../../dominio/repositorio_local.dart';
 import '../../dominio/sit_spot.dart';
+import '../../nucleo/actualizaciones_el_cuaderno.dart';
 import '../../nucleo/i18n/generado/textos_app.dart';
 import '../pantalla_cuidador/pantalla_cuidador.dart';
 import '../pantalla_profesor/pantalla_aula_profesor.dart';
@@ -307,6 +308,15 @@ class PantallaAjustes extends StatelessWidget {
                 alCambiarToken: alCambiarTokenDebug,
               ),
             ],
+            // Al final de la lista para no desplazar los bloques de arriba.
+            const SizedBox(height: 24),
+            _BloqueAccion(
+              titulo: 'Actualizaciones',
+              descripcion:
+                  'Versión instalada y, si la hay, la nueva para descargar e instalar.',
+              alPulsar: () => _abrirActualizaciones(context),
+              esquema: esquema,
+            ),
           ],
         ),
       ),
@@ -328,6 +338,17 @@ class PantallaAjustes extends StatelessWidget {
   Future<void> _abrirAcercaDe(BuildContext context) async {
     await Navigator.of(context).push<void>(
       MaterialPageRoute(builder: (_) => const PantallaAcercaDe()),
+    );
+  }
+
+  Future<void> _abrirActualizaciones(BuildContext context) async {
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute(
+        builder: (_) => PantallaEstadoActualizaciones(
+          config: configActualizacionesElCuaderno,
+          nombreApp: nombreAppElCuaderno,
+        ),
+      ),
     );
   }
 

@@ -50,6 +50,7 @@ const habilidadesConEjemplo = {
   'FR.18', 'FR.19', 'FR.20', 'FR.21', // El telar
   'DEC.01', 'DEC.05', 'DEC.06', 'DEC.07', 'DEC.09', // El tranvía
   'DIV.02', // Minas
+  'FR.15', 'FR.17', // el puente roto
   'GEO.05', 'GEO.06', // Depósitos
   'ARI.03', 'GEO.08', // Andamios
 };
@@ -234,6 +235,29 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
       return EjemploResuelto('$entero,$decima', [
         PasoEjemplo('Está entre {a} y {b}.', {'a': '$entero', 'b': '${entero + 1}'}),
         PasoEjemplo('Cuenta {d} décimas desde el {a}.', {'d': '$decima', 'a': '$entero'}),
+      ]);
+    case 'FR.15':
+      final d = [5, 6, 8, 10][entre(0, 3)];
+      final a = entre(3, d - 1);
+      final b = entre(1, a - 1);
+      return EjemploResuelto('$a/$d − $b/$d', [
+        PasoEjemplo('Mismo denominador: resta los de arriba, {a} − {b} = {r}.', {'a': '$a', 'b': '$b', 'r': '${a - b}'}),
+        PasoEjemplo('El de abajo se queda: {r}/{d}.', {'r': '${a - b}', 'd': '$d'}),
+      ]);
+    case 'FR.17':
+      const pares = [[4, 6, 12], [3, 4, 12], [2, 3, 6], [2, 5, 10], [3, 6, 6]];
+      final [d1, d2, comun] = pares[entre(0, pares.length - 1)];
+      final a = entre(1, d1 - 1);
+      var c = entre(1, d2 - 1);
+      if (a * comun ~/ d1 == c * comun ~/ d2) c = c == 1 ? 2 : c - 1;
+      // La mayor, delante.
+      final (n1, e1, n2, e2) = a * comun ~/ d1 > c * comun ~/ d2 ? (a, d1, c, d2) : (c, d2, a, d1);
+      final x = n1 * comun ~/ e1;
+      final y = n2 * comun ~/ e2;
+      return EjemploResuelto('$n1/$e1 − $n2/$e2', [
+        PasoEjemplo('Denominador común: {m}. {a}/{b} = {x}/{m} y {c}/{d} = {y}/{m}.',
+            {'m': '$comun', 'a': '$n1', 'b': '$e1', 'x': '$x', 'c': '$n2', 'd': '$e2', 'y': '$y'}),
+        PasoEjemplo('{x} − {y} = {r}: queda {r}/{m}.', {'x': '$x', 'y': '$y', 'r': '${x - y}', 'm': '$comun'}),
       ]);
     case 'DIV.02':
       final numero = [12, 18, 20, 24, 30, 36][entre(0, 5)];

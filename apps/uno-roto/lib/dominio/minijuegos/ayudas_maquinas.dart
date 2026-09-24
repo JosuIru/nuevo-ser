@@ -145,6 +145,10 @@ const trucosPorHabilidad = <String, String>{
       '3 + 1/2 × 8: primero 1/2 de 8 = 4, luego 3 + 4 = 7. No (3 + 1/2) × 8.',
   'OP.03': 'Con decimales, lo mismo: primero la multiplicación. 4 + 2,5 × 2: '
       '2,5 × 2 = 5, luego 4 + 5 = 9. Y cuidado con la coma: 2,5 no es 25.',
+  'FR.15': 'Con el mismo denominador se restan los de arriba y el de abajo se '
+      'queda: 7/8 − 3/8 = 4/8. El de abajo no se resta.',
+  'FR.17': 'Con denominadores distintos, pásalas primero al mismo: 3/4 − 1/6 → '
+      '9/12 − 2/12 = 7/12.',
 };
 
 /// Un paso de despejar la x en la balanza, con cómo queda después.

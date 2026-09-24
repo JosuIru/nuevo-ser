@@ -6,19 +6,37 @@ import '../problema_espejo.dart' show Fraccion;
 /// sea EXACTA. Si falta, el carro se para en el borde; si sobra, el
 /// tablón no encaja. Ejercita la suma de fracciones (FR.14 mismo
 /// denominador, FR.16 distinto) y de decimales (DEC.04).
-enum ModoPuente { mismoDenominador, distintoDenominador, decimales }
+///
+/// El puente roto (FR.15, FR.17): el puente sale montado con todos los
+/// tablones y sobra un trozo. Hay que quitar justo lo que sobra: el
+/// largo del puente menos el del hueco.
+enum ModoPuente {
+  mismoDenominador,
+  distintoDenominador,
+  decimales,
+  restaMismoDenominador,
+  restaDistintoDenominador,
+}
 
 extension ModoPuenteHabilidad on ModoPuente {
   String get idHabilidad => switch (this) {
         ModoPuente.mismoDenominador => 'FR.14',
         ModoPuente.distintoDenominador => 'FR.16',
         ModoPuente.decimales => 'DEC.04',
+        ModoPuente.restaMismoDenominador => 'FR.15',
+        ModoPuente.restaDistintoDenominador => 'FR.17',
       };
+
+  /// El puente roto: se empieza con todo montado y se quitan tablones.
+  bool get esResta =>
+      this == ModoPuente.restaMismoDenominador || this == ModoPuente.restaDistintoDenominador;
 
   static ModoPuente? paraHabilidad(String idHabilidad) => switch (idHabilidad) {
         'FR.14' => ModoPuente.mismoDenominador,
         'FR.16' => ModoPuente.distintoDenominador,
         'DEC.04' => ModoPuente.decimales,
+        'FR.15' => ModoPuente.restaMismoDenominador,
+        'FR.17' => ModoPuente.restaDistintoDenominador,
         _ => null,
       };
 }
@@ -90,6 +108,7 @@ class GeneradorPuentes {
   /// [dificultad] 1-3: más tablones en la solución y más distractores.
   /// [extra]: tablones distractores de más (niveles altos).
   RetoPuente generar(ModoPuente modo, {int dificultad = 1, int extra = 0}) {
+    if (modo.esResta) return _puenteRoto(modo, dificultad);
     final piezasSolucion = dificultad >= 3 ? 3 : 2;
     final distractores = 1 + dificultad + extra;
     final solucion = switch (modo) {
@@ -97,6 +116,8 @@ class GeneradorPuentes {
       ModoPuente.distintoDenominador =>
         _solucionDistintoDenominador(piezasSolucion, dificultad),
       ModoPuente.decimales => _solucionDecimales(piezasSolucion, dificultad),
+      ModoPuente.restaMismoDenominador || ModoPuente.restaDistintoDenominador =>
+        throw StateError('el puente roto se genera aparte'),
     };
     final hueco = modo == ModoPuente.decimales
         ? _enDecimos(sumaExacta(solucion), solucion.first.denominador)
@@ -116,6 +137,30 @@ class GeneradorPuentes {
       modo: modo,
       hueco: hueco,
       tablones: tablones,
+      solucion: solucion,
+    );
+  }
+
+  /// Los tablones que llenan el hueco y uno o dos que sobran, todos
+  /// montados. Ninguno de los que sobran mide por sí solo el hueco.
+  RetoPuente _puenteRoto(ModoPuente modo, int dificultad) {
+    final mismo = modo == ModoPuente.restaMismoDenominador;
+    final base = mismo ? ModoPuente.mismoDenominador : ModoPuente.distintoDenominador;
+    final solucion = mismo
+        ? _solucionMismoDenominador(2)
+        : _solucionDistintoDenominador(2, dificultad);
+    final hueco = sumaExacta(solucion);
+    final sobrantes = <Fraccion>[];
+    var intentos = 0;
+    while (sobrantes.length < (dificultad >= 2 ? 2 : 1) && intentos++ < 200) {
+      final candidato = _distractor(base, solucion, dificultad);
+      if (probarPuente(hueco, [candidato]) == ResultadoPuente.exacto) continue;
+      sobrantes.add(candidato);
+    }
+    return RetoPuente(
+      modo: modo,
+      hueco: hueco,
+      tablones: [...solucion, ...sobrantes]..shuffle(_azar),
       solucion: solucion,
     );
   }
@@ -161,9 +206,11 @@ class GeneradorPuentes {
     final modelo = solucion[_azar.nextInt(solucion.length)];
     switch (modo) {
       case ModoPuente.mismoDenominador:
+      case ModoPuente.restaMismoDenominador:
         return Fraccion(
             1 + _azar.nextInt(modelo.denominador - 1), modelo.denominador);
       case ModoPuente.distintoDenominador:
+      case ModoPuente.restaDistintoDenominador:
         final denominadores =
             dificultad >= 3 ? [3, 4, 6, 8, 12] : [2, 3, 4, 6, 12];
         final denominador = denominadores[_azar.nextInt(denominadores.length)];

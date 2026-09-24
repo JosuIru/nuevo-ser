@@ -92,7 +92,7 @@ class CatalogoMinijuegos {
           'la medida es exacta.',
       lineaRexan: 'Tablones sueltos del Puerto. Si no llegan justos, el '
           'carro no pasa. Mide antes.',
-      habilidades: ['FR.14', 'FR.16', 'DEC.04'],
+      habilidades: ['FR.14', 'FR.16', 'DEC.04', 'FR.15', 'FR.17'],
       rondasPorPartida: 5,
       comoSeJuega: 'Toca los tablones para ponerlos en el puente; tócalos otra vez para quitarlos. Cuando creas que cubren el hueco justo, pulsa PROBAR EL PUENTE.',
     ),

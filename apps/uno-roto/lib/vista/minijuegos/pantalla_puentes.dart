@@ -100,6 +100,8 @@ class _PantallaPuentesState extends State<PantallaPuentes>
       extra: _enNivel.extra,
     );
     _colocados.clear();
+    // El puente roto sale montado entero: se quitan tablones.
+    if (_reto.modo.esResta) _colocados.addAll(List.generate(_reto.tablones.length, (i) => i));
     _inicioReto = DateTime.now();
     _yaRegistrado = false;
     _ultimoResultado = null;
@@ -180,6 +182,8 @@ class _PantallaPuentesState extends State<PantallaPuentes>
       ResultadoPuente.exacto => 'Justo. El carro pasa.',
       ResultadoPuente.corto => 'Falta un trozo: el carro se para en el borde.',
       ResultadoPuente.largo => 'Sobra: el último tablón no encaja.',
+      _ when _reto.modo.esResta =>
+        'Este puente ha salido largo. Quita justo lo que sobra: lo que mide el puente menos lo que mide el hueco.',
       _ => _ronda == 1
           ? _definicion.lineaRexan
           : 'Otro hueco. Mismas reglas.',

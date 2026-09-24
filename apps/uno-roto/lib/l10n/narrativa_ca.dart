@@ -3136,4 +3136,19 @@ const Map<String, String> narrativaCa = <String, String>{
       'Amb fraccions, l\'ordre és el mateix: primer × i ÷, després + i −. 3 + 1/2 × 8: primer 1/2 de 8 = 4, després 3 + 4 = 7. No (3 + 1/2) × 8.',
   'Con decimales, lo mismo: primero la multiplicación. 4 + 2,5 × 2: 2,5 × 2 = 5, luego 4 + 5 = 9. Y cuidado con la coma: 2,5 no es 25.':
       'Amb decimals, igual: primer la multiplicació. 4 + 2,5 × 2: 2,5 × 2 = 5, després 4 + 5 = 9. I compte amb la coma: 2,5 no és 25.',
+  // Puentes: el puente roto
+  'Con el mismo denominador se restan los de arriba y el de abajo se queda: 7/8 − 3/8 = 4/8. El de abajo no se resta.':
+      'Amb el mateix denominador es resten els de dalt i el de baix es queda: 7/8 − 3/8 = 4/8. El de baix no es resta.',
+  'Con denominadores distintos, pásalas primero al mismo: 3/4 − 1/6 → 9/12 − 2/12 = 7/12.':
+      'Amb denominadors diferents, passa-les primer al mateix: 3/4 − 1/6 → 9/12 − 2/12 = 7/12.',
+  'Mismo denominador: resta los de arriba, {a} − {b} = {r}.':
+      'Mateix denominador: resta els de dalt, {a} − {b} = {r}.',
+  'El de abajo se queda: {r}/{d}.':
+      'El de baix es queda: {r}/{d}.',
+  'Denominador común: {m}. {a}/{b} = {x}/{m} y {c}/{d} = {y}/{m}.':
+      'Denominador comú: {m}. {a}/{b} = {x}/{m} i {c}/{d} = {y}/{m}.',
+  '{x} − {y} = {r}: queda {r}/{m}.':
+      '{x} − {y} = {r}: queda {r}/{m}.',
+  'Este puente ha salido largo. Quita justo lo que sobra: lo que mide el puente menos lo que mide el hueco.':
+      'Aquest pont ha sortit llarg. Treu just el que sobra: el que fa el pont menys el que fa el forat.',
 };

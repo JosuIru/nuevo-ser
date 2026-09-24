@@ -93,6 +93,19 @@ void main() {
       }
     }
 
+    for (final modo in [ModoPuente.restaMismoDenominador, ModoPuente.restaDistintoDenominador]) {
+      for (final dificultad in [1, 2, 3]) {
+        test('puente roto $modo d$dificultad: montado entero sobra; quitando lo que sobra queda justo', () {
+          for (var semilla = 0; semilla < 60; semilla++) {
+            final reto = GeneradorPuentes(semilla: semilla).generar(modo, dificultad: dificultad);
+            expect(probarPuente(reto.hueco, reto.tablones), ResultadoPuente.largo);
+            expect(reto.tablones.length, reto.solucion.length + (dificultad >= 2 ? 2 : 1));
+            expect(probarPuente(reto.hueco, reto.solucion), ResultadoPuente.exacto);
+          }
+        });
+      }
+    }
+
     test('etiquetas decimales con coma', () {
       expect(etiquetaDecimal(const Fraccion(12, 10)), '1,2');
       expect(etiquetaDecimal(const Fraccion(105, 100)), '1,05');

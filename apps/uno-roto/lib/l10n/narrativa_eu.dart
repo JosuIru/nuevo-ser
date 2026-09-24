@@ -3132,4 +3132,19 @@ const Map<String, String> narrativaEu = <String, String>{
       'Zatikiekin, ordena berdina da: lehenik × eta ÷, gero + eta −. 3 + 1/2 × 8: lehenik 8ren 1/2 = 4, gero 3 + 4 = 7. Ez (3 + 1/2) × 8.',
   'Con decimales, lo mismo: primero la multiplicación. 4 + 2,5 × 2: 2,5 × 2 = 5, luego 4 + 5 = 9. Y cuidado con la coma: 2,5 no es 25.':
       'Hamartarrekin, berdin: lehenik biderketa. 4 + 2,5 × 2: 2,5 × 2 = 5, gero 4 + 5 = 9. Eta kontuz komarekin: 2,5 ez da 25.',
+  // Puentes: el puente roto
+  'Con el mismo denominador se restan los de arriba y el de abajo se queda: 7/8 − 3/8 = 4/8. El de abajo no se resta.':
+      'Izendatzaile berarekin goikoak kentzen dira eta behekoa geratu egiten da: 7/8 − 3/8 = 4/8. Behekoa ez da kentzen.',
+  'Con denominadores distintos, pásalas primero al mismo: 3/4 − 1/6 → 9/12 − 2/12 = 7/12.':
+      'Izendatzaile desberdinekin, lehenik pasatu berera: 3/4 − 1/6 → 9/12 − 2/12 = 7/12.',
+  'Mismo denominador: resta los de arriba, {a} − {b} = {r}.':
+      'Izendatzaile bera: kendu goikoak, {a} − {b} = {r}.',
+  'El de abajo se queda: {r}/{d}.':
+      'Behekoa geratu egiten da: {r}/{d}.',
+  'Denominador común: {m}. {a}/{b} = {x}/{m} y {c}/{d} = {y}/{m}.':
+      'Izendatzaile komuna: {m}. {a}/{b} = {x}/{m} eta {c}/{d} = {y}/{m}.',
+  '{x} − {y} = {r}: queda {r}/{m}.':
+      '{x} − {y} = {r}: {r}/{m} geratzen da.',
+  'Este puente ha salido largo. Quita justo lo que sobra: lo que mide el puente menos lo que mide el hueco.':
+      'Zubi hau luzeegia atera da. Kendu soberan dagoena zehazki: zubiaren neurria ken hutsunearen neurria.',
 };

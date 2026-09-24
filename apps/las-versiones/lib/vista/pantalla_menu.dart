@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import '../nucleo/actualizaciones_las_versiones.dart';
 import '../nucleo/paleta_archivo.dart';
 import 'pantalla_creditos.dart';
 import 'pantalla_instrucciones.dart';
@@ -111,6 +113,12 @@ class PantallaMenu extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
           children: [
+            // Aviso de versión nueva: sólo ocupa sitio si la hay.
+            AvisoActualizaciones(
+              config: configActualizacionesLasVersiones,
+              nombreApp: nombreAppLasVersiones,
+              margen: const EdgeInsets.only(bottom: 12),
+            ),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: Image.asset(
@@ -198,6 +206,21 @@ class PantallaMenu extends StatelessWidget {
                   'Modo silencio y volumen por capa (ambiente, música, '
                   'efectos, narrativos).',
               alPulsar: alAbrirAjustesAudio,
+            ),
+            _FilaMenu(
+              icono: Icons.system_update,
+              titulo: 'Actualizaciones',
+              subtitulo:
+                  'Versión instalada y, si la hay, la nueva para '
+                  'descargar e instalar.',
+              alPulsar: () => Navigator.of(contexto).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => PantallaEstadoActualizaciones(
+                    config: configActualizacionesLasVersiones,
+                    nombreApp: nombreAppLasVersiones,
+                  ),
+                ),
+              ),
             ),
             _FilaMenu(
               icono: Icons.image_outlined,

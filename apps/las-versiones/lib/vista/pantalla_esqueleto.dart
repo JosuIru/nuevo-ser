@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import '../nucleo/actualizaciones_las_versiones.dart';
 import '../nucleo/paleta_archivo.dart';
 
 /// Pantalla provisional para mientras el juego está en construcción.
@@ -68,6 +70,17 @@ class PantallaEsqueleto extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+            ),
+            // Aviso de versión nueva arriba, dejando libre el engranaje
+            // del menú. Si no hay versión nueva no ocupa sitio.
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 52,
+              child: AvisoActualizaciones(
+                config: configActualizacionesLasVersiones,
+                nombreApp: nombreAppLasVersiones,
               ),
             ),
             if (alAbrirMenu != null)

@@ -1,4 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- INTERNET es obligatorio para sync con el companion y para el
+         Tutor IA. En APK debug Flutter lo añade automáticamente vía
+         src/debug/AndroidManifest.xml, pero el release lo necesita
+         declarado aquí — sin él cualquier HTTP devuelve SocketException
+         sin pista. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Para instalar la versión nueva desde la propia app (pantalla Actualizaciones). -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:label="Las Versiones"
         android:name="${applicationName}"

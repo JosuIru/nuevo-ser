@@ -6,7 +6,16 @@ import 'catalogo_minijuegos.dart';
 ///
 /// Cada especial pide haber practicado alguna de sus [habilidades]: el
 /// reto repasa lo visto, no estrena nada.
-enum EspecialSemanal { atasco, ruedaLoca, bajoCero, puenteRoto, soloDivisores }
+enum EspecialSemanal {
+  atasco,
+  ruedaLoca,
+  bajoCero,
+  puenteRoto,
+  soloDivisores,
+  sinTransportador,
+  dobleNegacion,
+  casaCompleta,
+}
 
 class DefinicionEspecial {
   final EspecialSemanal especial;
@@ -66,6 +75,30 @@ const especialesSemanales = <DefinicionEspecial>[
     descripcion: 'En todos los tableros, las minas son los divisores de un '
         'número. Búscalos por parejas.',
     habilidades: ['DIV.02'],
+  ),
+  DefinicionEspecial(
+    especial: EspecialSemanal.sinTransportador,
+    maquina: IdMinijuego.rebote,
+    nombre: 'Sin transportador',
+    descripcion: 'Los ángulos se miden a ojo. Luego aparece el transportador '
+        'y compruebas. Esta semana no puntúa: es para afinar el ojo.',
+    habilidades: ['MED.04'],
+  ),
+  DefinicionEspecial(
+    especial: EspecialSemanal.dobleNegacion,
+    maquina: IdMinijuego.pozo,
+    nombre: 'La doble negación',
+    descripcion: 'Todos los viajes llevan un −(−n). Dos noes en la mina '
+        'significan sí.',
+    habilidades: ['ARI.04'],
+  ),
+  DefinicionEspecial(
+    especial: EspecialSemanal.casaCompleta,
+    maquina: IdMinijuego.planos,
+    nombre: 'Casa completa',
+    descripcion: 'Tres habitaciones que sumen justo lo que pide el encargo, '
+        'sin pisarse ni pisar la maleza.',
+    habilidades: ['GEO.03'],
   ),
 ];
 

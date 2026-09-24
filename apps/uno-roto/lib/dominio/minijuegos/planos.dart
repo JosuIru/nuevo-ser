@@ -280,3 +280,51 @@ class PartidaPlanos {
     };
   }
 }
+
+/// «Casa completa» (reto de la semana): tres habitaciones que no se pisen
+/// entre sí ni pisen maleza y que sumen [total] m². Se genera a partir de
+/// una solución, así que siempre hay al menos una.
+class CasaCompleta {
+  static const habitaciones = 3;
+
+  final int total;
+  final Set<Celda> maleza;
+  final List<Rectangulo> solucion;
+
+  const CasaCompleta({required this.total, required this.maleza, required this.solucion});
+
+  factory CasaCompleta.generar({int dificultad = 1, math.Random? azar}) {
+    final aleatorio = azar ?? math.Random();
+    final maximo = switch (dificultad) { 1 => 36, 2 => 48, _ => 60 };
+    while (true) {
+      final ocupadas = <Celda>{};
+      final solucion = <Rectangulo>[];
+      for (var intento = 0; intento < 200 && solucion.length < habitaciones; intento++) {
+        final ancho = 2 + aleatorio.nextInt(4);
+        final alto = 2 + aleatorio.nextInt(3);
+        final habitacion = Rectangulo(aleatorio.nextInt(PartidaPlanos.columnas - ancho + 1),
+            aleatorio.nextInt(PartidaPlanos.filas - alto + 1), ancho, alto);
+        if (habitacion.celdas.any(ocupadas.contains)) continue;
+        solucion.add(habitacion);
+        ocupadas.addAll(habitacion.celdas);
+      }
+      final total = solucion.fold(0, (suma, r) => suma + r.area);
+      if (solucion.length < habitaciones || total < 20 || total > maximo) continue;
+      final cuantas = switch (dificultad) { 1 => 0, 2 => 4, _ => 7 };
+      final maleza = <Celda>{};
+      while (maleza.length < cuantas) {
+        final celda = Celda(aleatorio.nextInt(PartidaPlanos.filas), aleatorio.nextInt(PartidaPlanos.columnas));
+        if (!ocupadas.contains(celda)) maleza.add(celda);
+      }
+      return CasaCompleta(total: total, maleza: maleza, solucion: solucion);
+    }
+  }
+
+  /// Si [nueva] pisa alguna de las ya [puestas].
+  static bool solapa(Rectangulo nueva, List<Rectangulo> puestas) {
+    final celdas = nueva.celdas.toSet();
+    return puestas.any((puesta) => puesta.celdas.any(celdas.contains));
+  }
+
+  static int suma(List<Rectangulo> puestas) => puestas.fold(0, (suma, r) => suma + r.area);
+}

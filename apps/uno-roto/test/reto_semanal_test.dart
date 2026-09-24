@@ -4,6 +4,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:uno_roto/dominio/minijuegos/catalogo_minijuegos.dart';
 import 'package:uno_roto/dominio/minijuegos/engranajes.dart';
 import 'package:uno_roto/dominio/minijuegos/esclusas.dart';
+import 'package:uno_roto/dominio/minijuegos/planos.dart';
+import 'package:uno_roto/dominio/minijuegos/pozo.dart';
+import 'package:uno_roto/dominio/minijuegos/rebote.dart';
 import 'package:uno_roto/dominio/minijuegos/reto_semanal.dart';
 
 void main() {
@@ -70,5 +73,48 @@ void main() {
       expect(partida.avanzar(0.5), EventoEsclusas.nada);
     }
     expect(partida.posicion, 0);
+  });
+
+  test('sin transportador: opciones separadas al menos 20°', () {
+    final generador = GeneradorRebote(azar: math.Random(8));
+    for (var i = 0; i < 200; i++) {
+      final reto = generador.estimar();
+      expect(reto.opciones.toSet().length, 4);
+      expect(reto.opciones, contains(reto.respuesta));
+      for (final a in reto.opciones) {
+        expect(a, inInclusiveRange(1, 179));
+        for (final b in reto.opciones) {
+          if (a != b) expect((a - b).abs(), greaterThanOrEqualTo(20));
+        }
+      }
+    }
+  });
+
+  test('la doble negación: todos los viajes llevan −(−n) y cruzan el suelo', () {
+    final generador = GeneradorPozo(azar: math.Random(9));
+    for (final nivel in [1, 2, 3]) {
+      for (var i = 0; i < 100; i++) {
+        final reto = generador.generar(TipoPozo.viaje, nivel: nivel, dobleNegacion: true);
+        expect(reto.ordenes.any((o) => o.tipo == TipoOrden.dobleNegacion), isTrue);
+        expect(reto.respuesta, recorrido(reto.inicio, reto.ordenes).last);
+      }
+    }
+  });
+
+  test('casa completa: la solución cabe, suma el total y no pisa maleza', () {
+    for (final dificultad in [1, 2, 3]) {
+      for (var semilla = 0; semilla < 50; semilla++) {
+        final casa = CasaCompleta.generar(dificultad: dificultad, azar: math.Random(semilla));
+        expect(casa.solucion, hasLength(CasaCompleta.habitaciones));
+        expect(CasaCompleta.suma(casa.solucion), casa.total);
+        for (var i = 0; i < casa.solucion.length; i++) {
+          final habitacion = casa.solucion[i];
+          expect(habitacion.celdas.any(casa.maleza.contains), isFalse);
+          expect(CasaCompleta.solapa(habitacion, casa.solucion.sublist(0, i)), isFalse);
+          expect(habitacion.columna + habitacion.ancho, lessThanOrEqualTo(PartidaPlanos.columnas));
+          expect(habitacion.fila + habitacion.alto, lessThanOrEqualTo(PartidaPlanos.filas));
+        }
+      }
+    }
   });
 }

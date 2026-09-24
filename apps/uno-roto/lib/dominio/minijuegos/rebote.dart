@@ -189,6 +189,27 @@ class GeneradorRebote {
     }
   }
 
+  /// «Sin transportador» (reto de la semana): un ángulo para estimar a
+  /// ojo. Opciones separadas al menos 20°, para que se pueda distinguir
+  /// sin medir; después se enseña el transportador y se comprueba.
+  RetoRebote estimar() {
+    final grados = 10 * _entre(2, 16);
+    final opciones = <int>{grados};
+    final candidatos = [grados + 30, grados - 30, grados + 60, grados - 60, 180 - grados, grados + 90, grados - 90]
+      ..shuffle(_azar);
+    for (final candidato in candidatos) {
+      if (opciones.length == 4) break;
+      if (candidato <= 0 || candidato >= 180) continue;
+      if (opciones.every((o) => (o - candidato).abs() >= 20)) opciones.add(candidato);
+    }
+    return RetoRebote(
+      tipo: TipoRebote.medir,
+      grados: grados,
+      respuesta: grados,
+      opciones: opciones.toList()..shuffle(_azar),
+    );
+  }
+
   List<int> _opciones(int respuesta, List<int> errores) {
     final elegidas = <int>{respuesta};
     for (final error in errores) {

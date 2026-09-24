@@ -95,13 +95,19 @@ class GeneradorPozo {
 
   int _limite(int dificultad) => dificultad == 1 ? 10 : 15;
 
-  RetoPozo generar(TipoPozo tipo, {required int nivel, int dificultad = 1}) {
+  /// [dobleNegacion] («La doble negación», reto de la semana): todos los
+  /// viajes llevan −(−n), que sube.
+  RetoPozo generar(TipoPozo tipo, {required int nivel, int dificultad = 1, bool dobleNegacion = false}) {
     final limite = _limite(dificultad);
     switch (tipo) {
       case TipoPozo.viaje:
         for (var intento = 0; intento < 1000; intento++) {
           final inicio = nivel == 1 && _azar.nextBool() ? 0 : _entre(-limite ~/ 2, limite ~/ 2);
-          final ordenes = nivel == 1 ? _ordenesSimples() : _ordenesConSignos(dificultad);
+          final ordenes = dobleNegacion
+              ? _ordenesDobleNegacion(nivel)
+              : nivel == 1
+                  ? _ordenesSimples()
+                  : _ordenesConSignos(dificultad);
           final paradas = recorrido(inicio, ordenes);
           if (paradas.any((p) => p.abs() > limite)) continue;
           // Que cruce el suelo al menos una vez: ahí está la dificultad.
@@ -143,6 +149,14 @@ class GeneradorPozo {
     final v = _entre(1, maximo);
     return _azar.nextBool() ? v : -v;
   }
+
+  /// Un −n y un −(−n) juntos: parecen iguales y van al revés.
+  List<Orden> _ordenesDobleNegacion(int nivel) => [
+        Orden(TipoOrden.mover, -_entre(2, 8)),
+        Orden(TipoOrden.dobleNegacion, _entre(2, 7)),
+        if (nivel >= 2) Orden(TipoOrden.mover, _movimiento(8)),
+        if (nivel >= 3) Orden(TipoOrden.dobleNegacion, _entre(2, 7)),
+      ];
 
   List<Orden> _ordenesSimples() => [
         for (var i = 0; i < _entre(1, 2); i++) Orden(TipoOrden.mover, _movimiento(9)),

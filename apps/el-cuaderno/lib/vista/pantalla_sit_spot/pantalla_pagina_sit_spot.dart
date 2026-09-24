@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../datos/almacenador_medios.dart';
 import '../../dominio/observacion.dart';
 import '../../dominio/repositorio_local.dart';
 import '../../dominio/resumen_mes_sit_spot.dart';
@@ -7,6 +8,7 @@ import '../../dominio/sit_spot.dart';
 import '../../nucleo/i18n/generado/textos_app.dart';
 import '../tema/colores.dart';
 import '../tema/tipografia.dart';
+import 'bloque_paleta_del_lugar.dart';
 import 'pantalla_comparar_visitas.dart';
 
 /// Página del sit spot activo. Hermana de `PantallaPaginaSitSpotJubilado`
@@ -30,6 +32,8 @@ class PantallaPaginaSitSpot extends StatefulWidget {
     required this.sitSpot,
     this.alAbrirNuevaObservacion,
     this.proveedorAhora,
+    this.almacenadorMedios,
+    this.extractorColores,
   });
 
   final RepositorioLocal repositorio;
@@ -47,6 +51,14 @@ class PantallaPaginaSitSpot extends StatefulWidget {
   /// datos, el bloque del resumen no se mostraría aunque hubiera
   /// observaciones (por diseño: filtra al mes calendárico en curso).
   final DateTime Function()? proveedorAhora;
+
+  /// Para leer las fotos del sit spot y pintar «los colores de este
+  /// sitio». Si es null, el bloque no aparece.
+  final AlmacenadorMedios? almacenadorMedios;
+
+  /// Extractor de colores inyectable para tests (sin decodificar
+  /// imágenes). Por defecto, [extraerColoresDeFoto].
+  final ExtractorColores? extractorColores;
 
   @override
   State<PantallaPaginaSitSpot> createState() => _EstadoPantallaPaginaSitSpot();
@@ -128,6 +140,15 @@ class _EstadoPantallaPaginaSitSpot extends State<PantallaPaginaSitSpot> {
                       resumen: _resumenMes,
                       textos: textos,
                       esquema: esquema,
+                    ),
+                  ],
+                  if (widget.almacenadorMedios != null &&
+                      _observaciones.any((o) => o.fotoRutaLocal != null)) ...[
+                    const SizedBox(height: 20),
+                    BloquePaletaDelLugar(
+                      observaciones: _observaciones,
+                      almacenadorMedios: widget.almacenadorMedios!,
+                      extractor: widget.extractorColores ?? extraerColoresDeFoto,
                     ),
                   ],
                   if (widget.alAbrirNuevaObservacion != null) ...[

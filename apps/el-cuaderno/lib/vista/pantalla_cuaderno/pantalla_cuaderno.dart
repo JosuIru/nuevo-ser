@@ -480,6 +480,7 @@ class _EstadoPantallaCuaderno extends State<PantallaCuaderno> {
           repositorio: widget.repositorio,
           sitSpot: sitSpot,
           alAbrirNuevaObservacion: _abrirNuevaObservacion,
+          almacenadorMedios: widget.almacenadorMedios,
         ),
       ),
     );

@@ -58,6 +58,12 @@ class PantallaMenu extends StatelessWidget {
   /// por capa).
   final VoidCallback alAbrirAjustesAudio;
 
+  /// `true` si las cinemáticas se ven en versión corta (por defecto).
+  final bool escenasCortas;
+
+  /// Cambia entre escenas cortas y enteras. `null` oculta la fila.
+  final ValueChanged<bool>? alCambiarEscenasCortas;
+
   /// Confirma y ejecuta el reset total del Archivo. La pantalla
   /// muestra el diálogo de confirmación; el callback hace el borrado
   /// real y cierra la pantalla a la configuración inicial.
@@ -77,6 +83,8 @@ class PantallaMenu extends StatelessWidget {
     required this.idiomaActivo,
     required this.alAbrirAjustesAudio,
     required this.alResetearArchivo,
+    this.escenasCortas = true,
+    this.alCambiarEscenasCortas,
   });
 
   @override
@@ -199,6 +207,15 @@ class PantallaMenu extends StatelessWidget {
                 ),
               ),
             ),
+            if (alCambiarEscenasCortas != null)
+              _FilaInterruptor(
+                icono: Icons.short_text,
+                titulo: 'Escenas cortas',
+                subtitulo: 'La historia en pocas líneas para llegar antes a '
+                    'jugar. Cada escena se puede ver entera con un toque.',
+                valorInicial: escenasCortas,
+                alCambiar: alCambiarEscenasCortas!,
+              ),
             _FilaMenu(
               icono: Icons.volume_up_outlined,
               titulo: 'Audio',
@@ -422,6 +439,93 @@ class _Encabezado extends StatelessWidget {
           letterSpacing: 4,
           color: PaletaArchivo.textoTenue.withOpacity(0.85),
           fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+}
+
+/// Fila del menú con interruptor. Guarda el valor en local para que el
+/// cambio se vea al momento sin reconstruir la pantalla entera.
+class _FilaInterruptor extends StatefulWidget {
+  const _FilaInterruptor({
+    required this.icono,
+    required this.titulo,
+    required this.subtitulo,
+    required this.valorInicial,
+    required this.alCambiar,
+  });
+
+  final IconData icono;
+  final String titulo;
+  final String subtitulo;
+  final bool valorInicial;
+  final ValueChanged<bool> alCambiar;
+
+  @override
+  State<_FilaInterruptor> createState() => _EstadoFilaInterruptor();
+}
+
+class _EstadoFilaInterruptor extends State<_FilaInterruptor> {
+  late bool _valor = widget.valorInicial;
+
+  void _cambiar(bool nuevo) {
+    setState(() => _valor = nuevo);
+    widget.alCambiar(nuevo);
+  }
+
+  @override
+  Widget build(BuildContext contexto) {
+    return Semantics(
+      toggled: _valor,
+      label: widget.titulo,
+      child: InkWell(
+        onTap: () => _cambiar(!_valor),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: PaletaArchivo.tintaTenue.withValues(alpha: 0.35),
+                width: 0.5,
+              ),
+            ),
+          ),
+          child: Row(
+            children: [
+              Icon(widget.icono, color: PaletaArchivo.ambarLacre, size: 22),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.titulo,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        color: PaletaArchivo.textoPrincipal,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.subtitulo,
+                      style: TextStyle(
+                        fontSize: 12,
+                        height: 1.4,
+                        color: PaletaArchivo.textoTenue.withValues(alpha: 0.85),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Switch(
+                value: _valor,
+                activeThumbColor: PaletaArchivo.ambarLacre,
+                onChanged: _cambiar,
+              ),
+            ],
+          ),
         ),
       ),
     );

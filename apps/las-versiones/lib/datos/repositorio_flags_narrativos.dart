@@ -32,6 +32,14 @@ class RepositorioFlagsNarrativos {
     await prefs.setBool(await _claveDe(flag), true);
   }
 
+  /// Desactiva el flag para el perfil actual. Idempotente. Sólo para
+  /// flags que son preferencias (p. ej. `preferencia_escenas_enteras`):
+  /// los hitos narrativos no se deshacen.
+  Future<void> desactivar(String flag) async {
+    final prefs = await _gestor.prefsInicializadas();
+    await prefs.remove(await _claveDe(flag));
+  }
+
   /// Conjunto de flags actualmente activos del perfil actual. Útil
   /// para que el orquestador resuelva precondiciones
   /// (`flagsRequeridos` de `EscenaCinematica`).

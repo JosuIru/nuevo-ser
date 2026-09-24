@@ -157,4 +157,101 @@ void main() {
       },
     );
   });
+
+  group('PantallaCinematica — respuestas y versión corta', () {
+    testWidgets('una opción con textoRespuesta muestra la réplica antes de seguir',
+        (tester) async {
+      final flags = <String>[];
+      const escena = EscenaCinematica(
+        id: 'test_respuesta',
+        titulo: 'test',
+        flagDeSalida: 'test_visto',
+        ambiente: AmbienteArchivo.aticoArchivo,
+        planos: [
+          PlanoEleccion(
+            voz: VozPersonaje.begona,
+            textoPrompt: '¿Qué sabes?',
+            opciones: [
+              OpcionEleccion(
+                textoJugador: 'Poco.',
+                textoRespuesta: 'Eso sí se puede decir.',
+                vozRespuesta: VozPersonaje.isaura,
+                flagsAEstablecer: {'eligio_poco'},
+              ),
+            ],
+          ),
+          PlanoAmbiente(duracion: Duration(seconds: 60), textoLectura: 'Después'),
+        ],
+      );
+      await tester.pumpWidget(MaterialApp(
+        home: PantallaCinematica(escena: escena, alTerminar: () {}, alEstablecerFlag: flags.add),
+      ));
+      await tester.pump(const Duration(seconds: 2));
+      await tester.tap(find.text('Poco.'));
+      await tester.pump(const Duration(seconds: 2));
+
+      expect(flags, ['eligio_poco']);
+      expect(find.text('Eso sí se puede decir.'), findsOneWidget);
+      expect(find.text('Después'), findsNothing);
+
+      await tester.tap(find.byType(PantallaCinematica));
+      await tester.pump();
+      expect(find.text('Después'), findsOneWidget);
+    });
+
+    testWidgets('«VER ENTERA» cambia a la escena entera desde el principio',
+        (tester) async {
+      var terminada = false;
+      const corta = EscenaCinematica(
+        id: 'x',
+        titulo: 'test',
+        flagDeSalida: 'x_vista',
+        ambiente: AmbienteArchivo.aticoArchivo,
+        planos: [PlanoAmbiente(duracion: Duration(seconds: 60), textoLectura: 'Resumen')],
+      );
+      const entera = EscenaCinematica(
+        id: 'x',
+        titulo: 'test',
+        flagDeSalida: 'x_vista',
+        ambiente: AmbienteArchivo.aticoArchivo,
+        planos: [
+          PlanoAmbiente(duracion: Duration(seconds: 60), textoLectura: 'Primer plano entero'),
+          PlanoAmbiente(duracion: Duration(seconds: 60), textoLectura: 'Segundo plano entero'),
+        ],
+      );
+      await tester.pumpWidget(MaterialApp(
+        home: PantallaCinematica(
+          escena: corta,
+          escenaEntera: entera,
+          alTerminar: () => terminada = true,
+        ),
+      ));
+      await tester.pump();
+      expect(find.text('Resumen'), findsOneWidget);
+
+      await tester.tap(find.text('VER ENTERA'));
+      await tester.pump();
+      expect(find.text('Primer plano entero'), findsOneWidget);
+      expect(find.text('VER ENTERA'), findsNothing);
+
+      await tester.tap(find.byType(PantallaCinematica));
+      await tester.pump();
+      await tester.tap(find.byType(PantallaCinematica));
+      await tester.pump();
+      expect(terminada, isTrue);
+    });
+
+    testWidgets('sin escena entera no aparece «VER ENTERA»', (tester) async {
+      const escena = EscenaCinematica(
+        id: 'y',
+        titulo: 'test',
+        flagDeSalida: 'y_vista',
+        ambiente: AmbienteArchivo.aticoArchivo,
+        planos: [PlanoAmbiente(duracion: Duration(seconds: 60), textoLectura: 'Algo')],
+      );
+      await tester.pumpWidget(MaterialApp(home: PantallaCinematica(escena: escena, alTerminar: () {})));
+      await tester.pump();
+      expect(find.text('VER ENTERA'), findsNothing);
+    });
+  });
 }

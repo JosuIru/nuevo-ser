@@ -50,6 +50,7 @@ import 'vista/pantalla_resumenes.dart';
 import 'sonido/servicio_sonoro_archivo.dart';
 import 'datos/registro_maestria_archivo.dart';
 import 'dominio/atico/oficios_atico.dart';
+import 'dominio/escenas_cortas.dart';
 import 'vista/atico/pantalla_atico.dart';
 
 /// Clave global del idioma elegido por la Cronista en el primer
@@ -314,6 +315,11 @@ class _OrquestadorState extends State<Orquestador> {
   bool _sesionIniciada = false;
   String? _nombrePerfilActivo;
   Set<String> _flagsActivos = const {};
+
+  /// Preferencia por perfil (se guarda como flag): si está activa, las
+  /// cinemáticas se ven enteras; si no (por defecto), en versión corta
+  /// cuando la escena la tiene (`EscenasCortas`).
+  static const String _flagEscenasEnteras = 'preferencia_escenas_enteras';
 
   /// Motor de maestría (P1 hoy). Lee el perfil activo en cada registro,
   /// así que sirve tras cambiar de perfil sin recrearlo.
@@ -821,6 +827,8 @@ class _OrquestadorState extends State<Orquestador> {
             Navigator.of(context).pop();
             _alAbrirAjustesAudio();
           },
+          escenasCortas: !_flagsActivos.contains(_flagEscenasEnteras),
+          alCambiarEscenasCortas: _alCambiarEscenasCortas,
           nombrePerfilActivo: _nombrePerfilActivo,
           sesionIniciada: _sesionIniciada,
           alCambiarIdioma: (codigo) async {
@@ -860,6 +868,17 @@ class _OrquestadorState extends State<Orquestador> {
 
   /// Abre la pantalla de Resúmenes con los Mosaicos entregados y sus
   /// marcas tal como las dejó la Cronista.
+  Future<void> _alCambiarEscenasCortas(bool cortas) async {
+    if (cortas) {
+      await widget.repoFlags.desactivar(_flagEscenasEnteras);
+      _flagsActivos = {..._flagsActivos}..remove(_flagEscenasEnteras);
+    } else {
+      await widget.repoFlags.activar(_flagEscenasEnteras);
+      _flagsActivos = {..._flagsActivos, _flagEscenasEnteras};
+    }
+    if (mounted) setState(() {});
+  }
+
   Future<void> _alAbrirAtico() async {
     if (!mounted) return;
     await Navigator.of(context).push(
@@ -1027,9 +1046,16 @@ class _OrquestadorState extends State<Orquestador> {
       // accesible vía engranaje arriba-derecha (F2-25) para que la
       // Cronista pueda salir o consultar el Cuaderno sin terminar
       // la cinemática primero.
+      final corta = _flagsActivos.contains(_flagEscenasEnteras)
+          ? null
+          : EscenasCortas.para(escena.id);
       return PantallaCinematica(
+        // La clave es el id de la escena (contrato con los tests del
+        // orquestador). Cambiar «escenas cortas» a mitad de una escena
+        // se nota desde la siguiente.
         key: ValueKey(escena.id),
-        escena: escena,
+        escena: corta ?? escena,
+        escenaEntera: corta == null ? null : escena,
         alEstablecerFlag: _alEstablecerFlag,
         alTerminar: () => _alTerminarEscena(escena),
         alAbrirMenu: _alAbrirMenu,

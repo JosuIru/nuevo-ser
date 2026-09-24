@@ -15,6 +15,25 @@ referencias y revertir la sustitución.
 
 ---
 
+## ESCENAS-CORTAS — versiones cortas de la apertura del Arco 1 (2026-09-24)
+
+Motivo: probado con dos jugadores de 12 y 13 años, se aburrían leyendo
+antes de poder hacer algo (≈1.050 palabras y ≈140 toques antes de la
+Brecha 1.1). `lib/dominio/escenas_cortas.dart` da versiones de 4-9
+planos de 1.0.1, 1.0.2, 1.0.3, 1.1.1 y 1.1.2 (≈300 palabras en total),
+por defecto; la entera sigue a un toque («VER ENTERA») y hay ajuste en
+el menú («Escenas cortas»).
+
+- Frases del guion (doc 07) resumidas o fusionadas: **revisar tono y
+  que no se pierda nada que el Arco use después.**
+- **Nuevo, no está en el guion**: en 1.0.1, Begoña pregunta «Una
+  inscripción romana, rota. ¿Qué sabes seguro de ella?» con tres
+  respuestas y réplicas de Isaura (flags `evaluacion_mirada_*`). No
+  afirma nada histórico (la pieza sigue sin identificar), pero es voz
+  nueva de Begoña e Isaura.
+- Siguiente paso si funciona: versiones cortas del resto del Arco 1 y
+  acortar las introducciones y ayudas de las fases de la Brecha.
+
 ## ÁTICO — El ático de Andrés y Tres fichas (F2-33, 2026-09-24)
 
 Diseño en `docs/el-atico-de-andres.md`. No añade contenido histórico

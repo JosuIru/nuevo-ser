@@ -44,12 +44,18 @@ class PantallaCinematica extends StatefulWidget {
   /// arriba-derecha, fuera del área de tap-para-avanzar.
   final VoidCallback? alAbrirMenu;
 
+  /// Si [escena] es la versión corta de una cinemática, la versión
+  /// entera. Aparece el botón «VER ENTERA», que la reproduce desde el
+  /// principio en el mismo sitio (mismos flags al terminar).
+  final EscenaCinematica? escenaEntera;
+
   const PantallaCinematica({
     super.key,
     required this.escena,
     required this.alTerminar,
     this.alEstablecerFlag,
     this.alAbrirMenu,
+    this.escenaEntera,
   });
 
   @override
@@ -81,13 +87,41 @@ class _PantallaCinematicaState extends State<PantallaCinematica> {
 
   int _indicePlano = 0;
   _Fase _fase = _Fase.pausaPrevia;
+
+  /// Escena en reproducción: la recibida, o la entera si se pulsó
+  /// «VER ENTERA».
+  late EscenaCinematica _escena = widget.escena;
+
+  /// Réplica a la opción elegida en un `PlanoEleccion`
+  /// (`OpcionEleccion.textoRespuesta`), mostrada como diálogo antes de
+  /// pasar al plano siguiente.
+  PlanoDialogo? _planoRespuesta;
   int _caracteresRevelados = 0;
   Timer? _temporizadorReveal;
   Timer? _temporizadorPlanoAmbiente;
   Timer? _temporizadorBotonSaltar;
   bool _botonSaltarVisible = false;
 
-  PlanoEscena get _planoActual => widget.escena.planos[_indicePlano];
+  PlanoEscena get _planoActual => _planoRespuesta ?? _escena.planos[_indicePlano];
+
+  bool get _puedeVerEntera =>
+      widget.escenaEntera != null && !identical(_escena, widget.escenaEntera);
+
+  void _verEntera() {
+    final entera = widget.escenaEntera;
+    if (entera == null) return;
+    HapticFeedback.selectionClick();
+    _temporizadorReveal?.cancel();
+    _temporizadorPlanoAmbiente?.cancel();
+    setState(() {
+      _escena = entera;
+      _indicePlano = 0;
+      _planoRespuesta = null;
+      _caracteresRevelados = 0;
+      _fase = _Fase.pausaPrevia;
+    });
+    _iniciarPlanoActual();
+  }
 
   /// `true` si el botón SALTAR ESCENA debe estar visible y operable.
   /// No aparece durante un `PlanoEleccion` — la elección es agencia
@@ -239,6 +273,17 @@ class _PantallaCinematicaState extends State<PantallaCinematica> {
     for (final flag in opcion.flagsAEstablecer) {
       widget.alEstablecerFlag?.call(flag);
     }
+    final respuesta = opcion.textoRespuesta;
+    if (respuesta != null && respuesta.isNotEmpty) {
+      setState(() {
+        _planoRespuesta = PlanoDialogo(
+          voz: opcion.vozRespuesta ?? plano.voz,
+          texto: respuesta,
+        );
+      });
+      _iniciarPlanoActual();
+      return;
+    }
     _avanzar();
   }
 
@@ -246,7 +291,8 @@ class _PantallaCinematicaState extends State<PantallaCinematica> {
     if (!mounted) return;
     _temporizadorReveal?.cancel();
     _temporizadorPlanoAmbiente?.cancel();
-    if (_indicePlano + 1 >= widget.escena.planos.length) {
+    _planoRespuesta = null;
+    if (_indicePlano + 1 >= _escena.planos.length) {
       widget.alTerminar();
       return;
     }
@@ -267,7 +313,8 @@ class _PantallaCinematicaState extends State<PantallaCinematica> {
     HapticFeedback.selectionClick();
     _temporizadorReveal?.cancel();
     _temporizadorPlanoAmbiente?.cancel();
-    final planos = widget.escena.planos;
+    _planoRespuesta = null;
+    final planos = _escena.planos;
     var indice = _indicePlano + 1;
     while (indice < planos.length) {
       if (planos[indice] is PlanoEleccion) break;
@@ -287,7 +334,7 @@ class _PantallaCinematicaState extends State<PantallaCinematica> {
 
   @override
   Widget build(BuildContext contexto) {
-    final totalPlanos = widget.escena.planos.length;
+    final totalPlanos = _escena.planos.length;
     final fraccion =
         totalPlanos == 0 ? 0.0 : (_indicePlano + 1) / totalPlanos;
     return Scaffold(
@@ -298,7 +345,7 @@ class _PantallaCinematicaState extends State<PantallaCinematica> {
         child: Stack(
           children: [
             Positioned.fill(
-              child: FondoAmbiente(ambiente: widget.escena.ambiente),
+              child: FondoAmbiente(ambiente: _escena.ambiente),
             ),
             SafeArea(child: _construirContenidoDePlano()),
             // Barra de progreso de la cinemática — discreta, en la
@@ -337,6 +384,27 @@ class _PantallaCinematicaState extends State<PantallaCinematica> {
                       color: PaletaArchivo.ambarLacre,
                     ),
                     onPressed: widget.alAbrirMenu,
+                  ),
+                ),
+              ),
+            // «VER ENTERA» — arriba a la izquierda, sólo en la versión
+            // corta de una escena. Discreto: la corta es la opción por
+            // defecto (muchos 12-13 años se aburrían leyendo).
+            if (_puedeVerEntera)
+              Positioned(
+                top: 4,
+                left: 4,
+                child: SafeArea(
+                  child: TextButton.icon(
+                    onPressed: _verEntera,
+                    style: TextButton.styleFrom(
+                      foregroundColor: PaletaArchivo.textoTenue,
+                    ),
+                    icon: const Icon(Icons.unfold_more, size: 16),
+                    label: const Text(
+                      'VER ENTERA',
+                      style: TextStyle(fontSize: 11, letterSpacing: 2.4),
+                    ),
                   ),
                 ),
               ),

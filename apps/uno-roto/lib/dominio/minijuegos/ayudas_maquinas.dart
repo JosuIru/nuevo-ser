@@ -68,6 +68,21 @@ const trucosPorHabilidad = <String, String>{
       'comprueba la regla con todas las filas.',
   'ALG.03': 'Junta las dos balanzas: si rojo + azul = 13 y rojo − azul = 5, '
       'sumándolas quedan dos rojos = 18. Un rojo pesa 9.',
+  'ARI.04': 'Piensa en plantas: sumar un positivo sube, restar baja. Si '
+      'estás en la 2 y bajas 7, pasas el suelo: 2 − 7 = −5.',
+  'ARI.05': 'El valor absoluto es la distancia al suelo, sin mirar si es '
+      'arriba o abajo: la 7 y la −7 están a 7 plantas. Entre la −4 y la 3 hay '
+      '4 + 3 = 7.',
+  'PROP.01': 'Dos mezclas dan el mismo color si una es la otra multiplicada: '
+      '2 : 3 y 4 : 6 sí (×2); 2 : 3 y 4 : 5 no (se sumó 2).',
+  'PROP.02': 'Si la receta es 2 : 3, cada tanda tiene 5 botes. Para 15 botes '
+      'hacen falta 15 ÷ 5 = 3 tandas: 6 de azul y 9 de amarillo.',
+  'PROP.03': 'Regla de tres: si 2 de azul van con 3 de amarillo, 6 de azul (el '
+      'triple) van con 9 de amarillo (el triple).',
+  'PROP.06': 'Un descuento del 25 % es quitar la cuarta parte: de 40 €, 10 € '
+      'menos, 30 €. Calcula el descuento y réstalo.',
+  'PROP.07': 'La escala dice cuánto es cada centímetro del plano: si 1 cm son '
+      '5 m, 4 cm son 4 × 5 = 20 m.',
   'DIV.07': 'Escribe los múltiplos de cada número hasta encontrar el primero '
       'que se repite: 4, 8, 12… y 6, 12… El mínimo común múltiplo es 12.',
   'DIV.06': 'Escribe los divisores de cada número y quédate con el mayor que '

@@ -31,6 +31,8 @@ enum IdMinijuego {
   redes,
   nivelar,
   cajaNegra,
+  pozo,
+  pinturas,
 }
 
 class DefinicionMinijuego {
@@ -270,6 +272,38 @@ class CatalogoMinijuegos {
           'Al final, dos sacos y dos balanzas: ¿cuánto pesa el rojo?',
       sala: 2,
       llaves: ['ALG.01'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.pozo,
+      nombre: 'El pozo',
+      descripcion: 'El ascensor de la mina baja por debajo de cero. Sigue sus '
+          'órdenes y di dónde para.',
+      lineaRexan: 'La mina está a oscuras. Si no sabes a qué planta vas, no '
+          'la encuentras.',
+      habilidades: ['ARI.04', 'ARI.05'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'Lee las órdenes del ascensor de izquierda a derecha: + sube, '
+          '− baja. La ficha rosa da la vuelta a la orden siguiente y la azul '
+          'repite la anterior; −(−5) sube 5. Toca la planta donde acabará. Al '
+          'final, distancias al suelo: la 7 y la −7 están igual de lejos.',
+      sala: 2,
+      llaves: ['ARI.01'],
+    ),
+    DefinicionMinijuego(
+      id: IdMinijuego.pinturas,
+      nombre: 'Pinturas',
+      descripcion: 'Prepara los colores de los toldos del Mercado con la '
+          'receta justa.',
+      lineaRexan: 'Los toldos se han desteñido. Cada puesto trae su receta; '
+          'si la mezcla no guarda la proporción, el color no sale.',
+      habilidades: ['PROP.01', 'PROP.02', 'PROP.03', 'PROP.07', 'PROP.06'],
+      rondasPorPartida: 6,
+      comoSeJuega: 'La receta dice cuánto azul va por cada tanto de amarillo. '
+          'Elige el cubo que guarda la receta, o pon los botes justos con − y + '
+          'y pulsa ENTREGAR: el color de la cubeta te dice cómo vas. Al final, '
+          'la escala del plano y las rebajas.',
+      sala: 2,
+      llaves: ['FR.22'],
     ),
   ];
 

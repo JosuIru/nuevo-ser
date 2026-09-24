@@ -42,6 +42,8 @@ const habilidadesConEjemplo = {
   'EST.05', 'EST.06', // Las redes
   'EST.01', 'EST.03', 'EST.04', // Nivelar
   'FUN.01', 'ALG.03', // La caja negra
+  'ARI.04', 'ARI.05', // El pozo
+  'PROP.01', 'PROP.02', 'PROP.03', 'PROP.06', 'PROP.07', // Pinturas
 };
 
 /// Un ejemplo parecido para [idHabilidad], o null si no hay. [parametro]
@@ -142,6 +144,62 @@ EjemploResuelto? _ejemplo(String id, int dificultad, int? parametro, math.Random
           PasoEjemplo('No sobra nada: {x} es múltiplo de {n}.', {'x': '$x', 'n': '$n'})
         else
           PasoEjemplo('Sobran {r}: {x} no es múltiplo de {n}.', {'r': '$resto', 'x': '$x', 'n': '$n'}),
+      ]);
+    case 'ARI.04':
+      final inicio = entre(1, 6);
+      final baja = entre(inicio + 1, inicio + 8);
+      return EjemploResuelto('$inicio − $baja', [
+        PasoEjemplo('Desde la {a}, baja {a} plantas y llegas al suelo (0).', {'a': '$inicio'}),
+        PasoEjemplo('Te quedan {r} por bajar: acabas en la −{r}.', {'r': '${baja - inicio}'}),
+      ]);
+    case 'ARI.05':
+      final a = -entre(2, 8);
+      final b = entre(2, 8);
+      return EjemploResuelto('¿$a → $b?', [
+        PasoEjemplo('De la {a} al suelo hay {x} plantas.', {'a': '$a', 'x': '${-a}'}),
+        PasoEjemplo('Del suelo a la {b}, {b} más: {x} + {b} = {r}.', {'b': '$b', 'x': '${-a}', 'r': '${b - a}'}),
+      ]);
+    case 'PROP.01':
+      final a = entre(1, 4);
+      final b = a + entre(1, 3);
+      final k = entre(2, 4);
+      return EjemploResuelto('¿$a : $b = ${a * k} : ${b * k}?', [
+        PasoEjemplo('{a} × {k} = {x} y {b} × {k} = {y}.', {'a': '$a', 'b': '$b', 'k': '$k', 'x': '${a * k}', 'y': '${b * k}'}),
+        PasoEjemplo('Los dos por el mismo número: misma razón, mismo color.'),
+      ]);
+    case 'PROP.02':
+      final a = entre(1, 3);
+      final b = a + entre(1, 3);
+      final k = entre(2, 5);
+      return EjemploResuelto('$a : $b → ${(a + b) * k}', [
+        PasoEjemplo('Cada tanda lleva {a} + {b} = {t} botes.', {'a': '$a', 'b': '$b', 't': '${a + b}'}),
+        PasoEjemplo('{n} ÷ {t} = {k} tandas.', {'n': '${(a + b) * k}', 't': '${a + b}', 'k': '$k'}),
+        PasoEjemplo('Azul: {a} × {k} = {x}. Amarillo: {b} × {k} = {y}.',
+            {'a': '$a', 'b': '$b', 'k': '$k', 'x': '${a * k}', 'y': '${b * k}'}),
+      ]);
+    case 'PROP.03':
+      final a = entre(1, 3);
+      final b = a + entre(1, 3);
+      final k = entre(2, 5);
+      return EjemploResuelto('$a : $b = ${a * k} : ?', [
+        PasoEjemplo('De {a} a {x} se ha multiplicado por {k}.', {'a': '$a', 'x': '${a * k}', 'k': '$k'}),
+        PasoEjemplo('El otro, igual: {b} × {k} = {y}.', {'b': '$b', 'k': '$k', 'y': '${b * k}'}),
+      ]);
+    case 'PROP.06':
+      final porcentaje = const [10, 20, 25, 50][azar.nextInt(4)];
+      final paso = 100 ~/ _mcd(porcentaje, 100);
+      final precio = paso * entre(2, 8);
+      final descuento = precio * porcentaje ~/ 100;
+      return EjemploResuelto('$precio € − $porcentaje %', [
+        PasoEjemplo('El {p} % de {x} € es {d} €.', {'p': '$porcentaje', 'x': '$precio', 'd': '$descuento'}),
+        PasoEjemplo('Se resta: {x} − {d} = {r} €.', {'x': '$precio', 'd': '$descuento', 'r': '${precio - descuento}'}),
+      ]);
+    case 'PROP.07':
+      final escala = const [2, 5, 10, 20][azar.nextInt(4)];
+      final cm = entre(2, 9);
+      return EjemploResuelto('1 cm = $escala m · $cm cm', [
+        PasoEjemplo('Cada centímetro son {e} m.', {'e': '$escala'}),
+        PasoEjemplo('{c} × {e} = {r} m.', {'c': '$cm', 'e': '$escala', 'r': '${cm * escala}'}),
       ]);
     case 'FUN.01':
       final a = entre(2, 4);

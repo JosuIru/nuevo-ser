@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:las_versiones/datos/registro_maestria_archivo.dart';
 import 'package:las_versiones/datos/repositorio_evaluacion_fuente.dart';
 import 'package:las_versiones/datos/repositorio_recoleccion_fuentes.dart';
 import 'package:las_versiones/dominio/brecha.dart';
@@ -41,6 +42,7 @@ void main() {
     WidgetTester tester, {
     required Brecha brecha,
     required VoidCallback alAvanzar,
+    RegistroMaestriaArchivo? registro,
   }) async {
     final gestor = _gestorDePrueba();
     await tester.pumpWidget(
@@ -53,6 +55,7 @@ void main() {
               alAvanzarFase: alAvanzar,
               repoRecoleccion: RepositorioRecoleccionFuentes(gestor: gestor),
               repoEvaluacion: RepositorioEvaluacionFuente(gestor: gestor),
+              registro: registro,
             ),
           ),
         ),
@@ -149,5 +152,37 @@ void main() {
     await tester.tap(find.text('IR A LA RECONSTRUCCIÓN'));
     await tester.pumpAndSettle();
     expect(avancesInvocados, 1);
+  });
+
+  testWidgets(
+      'apunta la primera elección de tipo (HF.02) y de sesgo (HF.09); '
+      'cambiarla después no vuelve a contar', (tester) async {
+    final repositorio = RepositorioHabilidades(gestor: _gestorDePrueba());
+    await bombearFase(
+      tester,
+      brecha: CatalogoBrechas.brecha11,
+      alAvanzar: () {},
+      registro: RegistroMaestriaArchivo(repositorio: repositorio),
+    );
+
+    // Primera fuente: restos óseos, primaria y sin sesgo.
+    for (final opcion in ['Primaria', 'Secundaria', 'Ninguno']) {
+      final boton = find.text(opcion).first;
+      await tester.scrollUntilVisible(boton, 80);
+      await tester.tap(boton);
+      await tester.pumpAndSettle();
+    }
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 50)));
+
+    final tipo = await tester.runAsync(() => repositorio.cargar('HF.02'));
+    expect(tipo!.totalExposiciones, 1);
+    expect(tipo.intentosRecientes.single.acierto, isTrue,
+        reason: 'contó «Primaria», no el cambio a «Secundaria»');
+
+    final sesgo = await tester.runAsync(() => repositorio.cargar('HF.09'));
+    final intento = sesgo!.intentosRecientes.single;
+    expect(intento.acierto, isTrue);
+    expect(intento.senalEsperada, isFalse, reason: 'la fuente no tiene sesgo');
+    expect(intento.clasePredicha, isFalse);
   });
 }

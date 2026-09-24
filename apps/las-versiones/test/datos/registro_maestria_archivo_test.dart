@@ -62,4 +62,28 @@ void main() {
       expect(() => motor.perfil(perfil), returnsNormally);
     }
   });
+
+  test('HF.09 (P2) guarda señal y predicción, y el acierto es que coincidan',
+      () async {
+    final repositorio = RepositorioHabilidades(gestor: _gestor());
+    final estado = await registro(repositorio).registrar(
+      idHabilidad: 'HF.09',
+      acierto: true, // se ignora en P2: manda la coincidencia
+      senalEsperada: true,
+      clasePredicha: false,
+      duracion: Duration.zero,
+    );
+    final intento = estado!.intentosRecientes.single;
+    expect(intento.acierto, isFalse);
+    expect(intento.senalEsperada, isTrue);
+    expect(intento.clasePredicha, isFalse);
+  });
+
+  test('una habilidad P2 sin señal ni predicción no se apunta', () async {
+    final repositorio = RepositorioHabilidades(gestor: _gestor());
+    final estado = await registro(repositorio)
+        .registrar(idHabilidad: 'HF.09', acierto: true, duracion: Duration.zero);
+    expect(estado, isNull);
+    expect(await repositorio.cargar('HF.09'), isNull);
+  });
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../datos/registro_maestria_archivo.dart';
 import '../datos/repositorio_evaluacion_fuente.dart';
 import '../datos/repositorio_preguntas_brecha.dart';
 import '../datos/repositorio_recoleccion_fuentes.dart';
@@ -57,6 +58,10 @@ class PantallaBrecha extends StatelessWidget {
   /// confianza.
   final RepositorioReconstruccion repoReconstruccion;
 
+  /// Motor de maestría. `null` en tests: las fases juegan igual sin
+  /// apuntar nada.
+  final RegistroMaestriaArchivo? registro;
+
   const PantallaBrecha({
     super.key,
     required this.brecha,
@@ -68,6 +73,7 @@ class PantallaBrecha extends StatelessWidget {
     required this.repoEvaluacion,
     required this.repoReconstruccion,
     this.alAbrirMenu,
+    this.registro,
   });
 
   bool get _esFaseFinal => faseActiva == FaseBrecha.concilio;
@@ -108,6 +114,7 @@ class PantallaBrecha extends StatelessWidget {
                         repoRecoleccion: repoRecoleccion,
                         repoEvaluacion: repoEvaluacion,
                         repoReconstruccion: repoReconstruccion,
+                        registro: registro,
                       ),
                     ),
                   ),
@@ -157,6 +164,7 @@ class _CuerpoDeFase extends StatelessWidget {
   final RepositorioRecoleccionFuentes repoRecoleccion;
   final RepositorioEvaluacionFuente repoEvaluacion;
   final RepositorioReconstruccion repoReconstruccion;
+  final RegistroMaestriaArchivo? registro;
 
   const _CuerpoDeFase({
     required this.brecha,
@@ -166,6 +174,7 @@ class _CuerpoDeFase extends StatelessWidget {
     required this.repoRecoleccion,
     required this.repoEvaluacion,
     required this.repoReconstruccion,
+    this.registro,
   });
 
   @override
@@ -189,6 +198,7 @@ class _CuerpoDeFase extends StatelessWidget {
           alAvanzarFase: alAvanzarFase,
           repoRecoleccion: repoRecoleccion,
           repoEvaluacion: repoEvaluacion,
+          registro: registro,
         );
       case FaseBrecha.reconstruccion:
         return FaseReconstruccion(

@@ -1017,6 +1017,7 @@ class _OrquestadorState extends State<Orquestador> {
         repoRecoleccion: widget.repoRecoleccion,
         repoEvaluacion: widget.repoEvaluacion,
         repoReconstruccion: widget.repoReconstruccion,
+        registro: _registroMaestria,
       );
     }
     final escena = _escenaEnReproduccion;

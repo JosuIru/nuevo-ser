@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../datos/registro_maestria_archivo.dart';
 import '../datos/repositorio_evaluacion_fuente.dart';
 import '../datos/repositorio_recoleccion_fuentes.dart';
 import '../dominio/brecha.dart';
@@ -41,6 +42,10 @@ class FaseEvaluacion extends StatefulWidget {
   /// Evaluador puro inyectable.
   final EvaluadorFuente evaluador;
 
+  /// Motor de maestría: apunta la primera elección de tipo (HF.02) y de
+  /// sesgo (HF.09) de cada fuente. `null` en tests.
+  final RegistroMaestriaArchivo? registro;
+
   const FaseEvaluacion({
     super.key,
     required this.brecha,
@@ -48,6 +53,7 @@ class FaseEvaluacion extends StatefulWidget {
     required this.repoRecoleccion,
     required this.repoEvaluacion,
     this.evaluador = const EvaluadorFuente(),
+    this.registro,
   });
 
   @override
@@ -80,8 +86,36 @@ class _FaseEvaluacionState extends State<FaseEvaluacion> {
     });
   }
 
+  /// Tiempo desde la última elección: la duración del intento.
+  final Stopwatch _cronometro = Stopwatch()..start();
+
+  PropiedadesFuente? _canonicasDe(String idFuente) {
+    for (final fuente in widget.brecha.fuentes) {
+      if (fuente.id == idFuente) return fuente.propiedadesCanonicas;
+    }
+    return null;
+  }
+
+  Duration _tomarDuracion() {
+    final duracion = _cronometro.elapsed;
+    _cronometro
+      ..reset()
+      ..start();
+    return duracion;
+  }
+
   Future<void> _alElegirTipo(String idFuente, TipoFuente tipo) async {
     final actual = _respuestas[idFuente] ?? const RespuestaEvaluacionFuente();
+    final canonicas = _canonicasDe(idFuente);
+    // Sólo la primera elección de cada fuente cuenta (luego puede
+    // cambiarla, pero ya ha visto el resultado).
+    if (actual.tipoElegido == null && canonicas != null) {
+      widget.registro?.registrar(
+        idHabilidad: 'HF.02',
+        acierto: tipo == canonicas.tipo,
+        duracion: _tomarDuracion(),
+      );
+    }
     final nueva = actual.copiarCon(tipoElegido: tipo);
     await widget.repoEvaluacion.guardar(widget.brecha.id, idFuente, nueva);
     if (!mounted) return;
@@ -92,6 +126,20 @@ class _FaseEvaluacionState extends State<FaseEvaluacion> {
 
   Future<void> _alElegirSesgo(String idFuente, SesgoFuente sesgo) async {
     final actual = _respuestas[idFuente] ?? const RespuestaEvaluacionFuente();
+    final canonicas = _canonicasDe(idFuente);
+    // HF.09 es P2 (detección): cuenta si ve que hay sesgo o que no lo
+    // hay. Qué sesgo concreto elige no entra en esta medida.
+    if (actual.sesgoElegido == null && canonicas != null) {
+      final haySesgo = canonicas.sesgo != SesgoFuente.ninguno;
+      final diceQueHay = sesgo != SesgoFuente.ninguno;
+      widget.registro?.registrar(
+        idHabilidad: 'HF.09',
+        acierto: haySesgo == diceQueHay,
+        senalEsperada: haySesgo,
+        clasePredicha: diceQueHay,
+        duracion: _tomarDuracion(),
+      );
+    }
     final nueva = actual.copiarCon(sesgoElegido: sesgo);
     await widget.repoEvaluacion.guardar(widget.brecha.id, idFuente, nueva);
     if (!mounted) return;

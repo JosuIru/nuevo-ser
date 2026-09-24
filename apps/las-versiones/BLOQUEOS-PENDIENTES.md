@@ -46,6 +46,31 @@ el menú («Escenas cortas»).
 - En 1.4.3 corto se omite la pregunta de Karim sobre las guerras
   sertorianas (y 1.4.4 corto dice «Karim me pilló» en vez de «dos
   veces»); sigue en la versión entera.
+- **Arcos 2-4 (mismo día)**: versión corta de las 51 escenas de más de
+  ~180 palabras (25 del Arco 2, 14 del Arco 3, 12 del Arco 4). Todas
+  ≤10 planos, mismo cierre y mismas elecciones.
+- **TUDELA-1378 (3.6.x)**, 4.H.2 y 4.Z: sólo condensadas, sin elecciones
+  ni réplicas nuevas; literales víctimas, cifras, nombres, las notas de
+  los días 4/11/18/22 y «El silencio es información». En 3.6.1/3.6.5 se
+  fusionan réplicas seguidas (texto literal, diálogo reordenado): revisar.
+- **Elecciones nuevas (BORRADOR, revisar voz)**:
+  - 2.1.3 Karim, paleografía cara A/B — `epigrafia_2_1_*`.
+  - 2.1.4 Karim, el error del lapicida — `epigrafia_2_1_error_*`.
+  - 2.1.5 Begoña, el ara en la muralla — `concilio_2_1_muralla_*`.
+  - 2.2.4 arqueóloga, por qué omite Quintiliano — `quintiliano_omisiones_*`.
+  - 2.3.1 Isaura, qué preguntas tú — `domus_pregunta_*`.
+  - 2.3.6 Karim, la ausencia de la afirmación 6 — `concilio_2_3_ausencia_*`.
+  - 2.4.2 Aitor, dominio visigodo — `wamba_dominio_*`.
+  - 2.4.7 Joana (afirmación 8) y Begoña (afirmación 9) — `concilio_2_4_*`.
+  - 3.2.5 Tasio, «¿reformable desde dentro?» — `tasio_reformable_*`
+    (réplicas = frases literales de Tasio).
+  - 4.A.2 Isaura, las cartas de Catalina — `cartas_catalina_*`.
+- Omisiones en la corta (siguen en la entera): 2.1.3 padre e hijo y
+  BNFO; 2.2.5 «¿qué te haría cambiarlo?»; 2.4.6 afirmaciones 2-6 y 8
+  resumidas; 2.Z.1 la cebolla y la salsa; 3.6.1 el pasaje del «precio»;
+  3.6.8 preguntas de Joana (afirmación 4) y Aitor (afirmación 5); 4.F
+  intercambios intermedios; 4.G.2 detalles del puesto; 4.H.2 abrazos y
+  «Hermana mayor».
 
 ## ÁTICO — El ático de Andrés y Tres fichas (F2-33, 2026-09-24)
 

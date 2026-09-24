@@ -1,6 +1,9 @@
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import 'escenas_arco_1.dart';
+import 'escenas_cortas_arco_2.dart';
+import 'escenas_cortas_arco_3.dart';
+import 'escenas_cortas_arco_4.dart';
 import 'voz_personaje.dart';
 
 /// Versiones cortas de las cinemáticas: 4-9 planos en vez de 15-46.
@@ -25,12 +28,25 @@ class EscenasCortas {
   EscenasCortas._();
 
   /// Versión corta de la escena [idEscena], o `null` si no tiene.
-  static EscenaCinematica? para(String idEscena) => _porId[idEscena];
+  static EscenaCinematica? para(String idEscena) => _todas[idEscena];
 
-  static bool tieneVersionCorta(String idEscena) => _porId.containsKey(idEscena);
+  static bool tieneVersionCorta(String idEscena) => _todas.containsKey(idEscena);
 
   /// Ids de las escenas que tienen versión corta.
-  static Iterable<String> get ids => _porId.keys;
+  static Iterable<String> get ids => _todas.keys;
+
+  /// Arco 1 aquí; arcos 2-4 en `escenas_cortas_arco_<n>.dart`.
+  static final Map<String, EscenaCinematica> _todas = {
+    ..._porId,
+    ...escenasCortasArco2,
+    ...escenasCortasArco3,
+    ...escenasCortasArco4,
+  };
+
+  /// Construye la versión corta de [entera] con [planos], copiando id,
+  /// flags, ambiente y demás. Público para los archivos de cada arco.
+  static EscenaCinematica corta(EscenaCinematica entera, List<PlanoEscena> planos) =>
+      _corta(entera, planos);
 
   static EscenaCinematica _corta(EscenaCinematica entera, List<PlanoEscena> planos) {
     return EscenaCinematica(

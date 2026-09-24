@@ -1,5 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:las_versiones/dominio/escenas_arco_1.dart';
+import 'package:las_versiones/dominio/escenas_arco_2.dart';
+import 'package:las_versiones/dominio/escenas_arco_3.dart';
+import 'package:las_versiones/dominio/escenas_arco_4.dart';
 import 'package:las_versiones/dominio/escenas_cortas.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
@@ -42,18 +45,25 @@ void main() {
     }
   });
 
+  final todasLasEscenas = [
+    ...EscenasArco1.todas,
+    ...EscenasArco2.todas,
+    ...EscenasArco3.todas,
+    ...EscenasArco4.todas,
+  ];
+
   test('todas las escenas cortas son de escenas que existen', () {
-    final idsArco1 = EscenasArco1.todas.map((e) => e.id).toSet();
+    final idsExistentes = todasLasEscenas.map((e) => e.id).toSet();
     for (final id in EscenasCortas.ids) {
-      expect(idsArco1, contains(id), reason: id);
+      expect(idsExistentes, contains(id), reason: id);
     }
   });
 
   final conVersionCorta =
-      EscenasArco1.todas.where((e) => EscenasCortas.tieneVersionCorta(e.id)).toList();
+      todasLasEscenas.where((e) => EscenasCortas.tieneVersionCorta(e.id)).toList();
 
-  test('las escenas largas del Arco 1 (más de 180 palabras) tienen versión corta', () {
-    for (final entera in EscenasArco1.todas) {
+  test('las escenas largas (más de 180 palabras) de los cuatro arcos tienen versión corta', () {
+    for (final entera in todasLasEscenas) {
       if (_palabras(entera) > 180) {
         expect(EscenasCortas.tieneVersionCorta(entera.id), isTrue,
             reason: '${entera.id} tiene ${_palabras(entera)} palabras');
@@ -75,10 +85,15 @@ void main() {
         expect(_flagsDeElecciones(corta), containsAll(_flagsDeElecciones(entera)));
       });
 
-      test('termina con el mismo botón de cierre', () {
-        final cierreEntera = entera.planos.last as PlanoCierreAmable;
-        final cierreCorta = corta.planos.last as PlanoCierreAmable;
-        expect(cierreCorta.textoBoton, cierreEntera.textoBoton);
+      test('termina igual: mismo cierre amable, o ninguno si la entera no lo tiene', () {
+        final ultimoEntera = entera.planos.last;
+        final ultimoCorta = corta.planos.last;
+        if (ultimoEntera is PlanoCierreAmable) {
+          expect(ultimoCorta, isA<PlanoCierreAmable>());
+          expect((ultimoCorta as PlanoCierreAmable).textoBoton, ultimoEntera.textoBoton);
+        } else {
+          expect(ultimoCorta, isNot(isA<PlanoCierreAmable>()));
+        }
       });
 
       test('es corta de verdad', () {

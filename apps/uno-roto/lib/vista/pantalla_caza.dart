@@ -22,6 +22,7 @@ import '../dominio/fragmentos_de_clima.dart';
 import '../dominio/generador_caza.dart';
 import '../dominio/mapeo_habilidades_puzzle.dart';
 import '../dominio/motor_maestria.dart';
+import '../dominio/nivel_escolar.dart';
 import '../dominio/rango_narrativo.dart';
 import '../dominio/respuesta_puzzle.dart';
 import '../dominio/secretos_escenario.dart';
@@ -205,6 +206,10 @@ class _PantallaCazaState extends State<PantallaCaza>
   final Map<String, DateTime> _instanteAperturaPuzzle = {};
 
   int _esquirlasTotal = 0;
+
+  /// Punto de partida del perfil (prueba de nivel o adulto): sube el
+  /// suelo de acceso y la dificultad, y aparta lo que queda muy atrás.
+  NivelEscolar? _nivelEscolar;
   int _esquirlasEstaSesion = 0;
   /// Encargo del día vigente (doc 16, eje D). Se resuelve al cargar el
   /// estado inicial con los distritos desbloqueados en ese momento; si
@@ -420,6 +425,7 @@ class _PantallaCazaState extends State<PantallaCaza>
     final yaVisitado = await widget.repositorio
         .distritoVisitado(widget.distrito.identificador);
     final modoExperto = await widget.repositorio.cargarModoExperto();
+    _nivelEscolar = await widget.repositorio.cargarNivelEscolar();
     if (!mounted) return;
     if (modoExperto) {
       // Reconstruimos el generador con offset +2 — niños avanzados
@@ -450,7 +456,7 @@ class _PantallaCazaState extends State<PantallaCaza>
       _raroDeClimaHoy = raroDeHoy;
       _flagsAlEntrar = flags;
     });
-    _encargoDeHoy = _encargoParaEsquirlas(total, DateTime.now());
+    _encargoDeHoy = _encargoParaEsquirlas(esquirlasParaAcceso(total, _nivelEscolar), DateTime.now());
     _programarSiguienteSpawn();
     _arrancarTickDeEscapes();
     final saludo = yaVisitado
@@ -500,7 +506,9 @@ class _PantallaCazaState extends State<PantallaCaza>
   Future<void> _intentarSpawn() async {
     if (!mounted) return;
     if (_activos.length < _maxFragmentosEnTejado) {
-      final esquirlas = _esquirlasTotal + _esquirlasEstaSesion;
+      // Para el acceso y la dificultad cuentan las reales o el suelo del
+      // nivel escolar, lo que sea mayor.
+      final esquirlas = esquirlasParaAcceso(_esquirlasTotal + _esquirlasEstaSesion, _nivelEscolar);
       final ahora = DateTime.now();
       // Con las 66 habilidades del catálogo cubiertas, el selector
       // adaptativo es la fuente principal de Fragmentos. Si el
@@ -538,6 +546,7 @@ class _PantallaCazaState extends State<PantallaCaza>
       distrito: widget.distrito,
       dominioFiltrado: widget.dominioFiltrado,
       rangoActual: rangoStringSegunEsquirlas(esquirlas),
+      nivelEscolar: _nivelEscolar,
     );
     if (idHabilidad == null) {
       return _generador.siguiente(
@@ -545,10 +554,13 @@ class _PantallaCazaState extends State<PantallaCaza>
         ahora: ahora,
       );
     }
+    // La dificultad también sigue a lo que domina de esa habilidad.
+    final estado = await widget.repositorio.cargarEstadoHabilidad(idHabilidad);
     return _generador.siguienteParaSkill(
       idHabilidad: idHabilidad,
       esquirlasAcumuladas: esquirlas,
       ahora: ahora,
+      nivelMaestria: estado?.nivel,
     );
   }
 

@@ -3,6 +3,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' as core;
 import '../datos/catalogo_habilidades.dart';
 import 'distrito.dart';
 import 'mapeo_habilidades_puzzle.dart';
+import 'nivel_escolar.dart';
 
 /// Wrapper específico de Uno Roto sobre [core.SelectorHabilidades].
 ///
@@ -46,22 +47,44 @@ class SelectorHabilidades {
   /// El cazadero detecta el null y cae al reparto por `mezclaPuzzles`
   /// del distrito, que sí da variedad ambiental aunque el motor de
   /// maestría todavía no tenga skills suficientes en rango.
+  ///
+  /// Con [nivelEscolar] (el punto de partida del niño), se apartan las
+  /// habilidades de dos o más cursos por debajo, salvo las que le estén
+  /// costando (precisión baja con varios intentos). Si al apartarlas
+  /// quedan menos de 2, se usan todas: el distrito sigue teniendo sus
+  /// Fragmentos, sólo que más difíciles.
   Future<String?> elegirSiguienteHabilidad({
     required Distrito distrito,
     String? dominioFiltrado,
     String? rangoActual,
-  }) {
-    final candidatas = (dominioFiltrado != null
+    NivelEscolar? nivelEscolar,
+  }) async {
+    var candidatas = (dominioFiltrado != null
             ? catalogo.delDominio(dominioFiltrado, rangoActual: rangoActual)
             : catalogo.delDistrito(distrito.identificador,
                 rangoActual: rangoActual))
         .where((h) => skillsConPuzzleImplementado.contains(h.identificador))
         .toList();
-    if (candidatas.length < 2) return Future.value(null);
+    if (nivelEscolar != null) {
+      final aSuAltura = [
+        for (final habilidad in candidatas)
+          if (!quedaMuyAtras(habilidad.curso, nivelEscolar) || await _leCuesta(habilidad.identificador))
+            habilidad,
+      ];
+      if (aSuAltura.length >= 2) candidatas = aSuAltura;
+    }
+    if (candidatas.length < 2) return null;
     return _selectorCore.elegirSiguienteHabilidad(
       candidatas: candidatas,
       contextoBonusId: distrito.identificador,
       aplicarBonusContexto: dominioFiltrado == null,
     );
+  }
+
+  /// Una habilidad le cuesta si, tras varios intentos, acierta menos de
+  /// la mitad: entonces vuelve a salir aunque sea de un curso anterior.
+  Future<bool> _leCuesta(String idHabilidad) async {
+    final estado = await cargarEstado(idHabilidad);
+    return estado != null && estado.intentosRecientes.length >= 3 && estado.precision < 0.5;
   }
 }

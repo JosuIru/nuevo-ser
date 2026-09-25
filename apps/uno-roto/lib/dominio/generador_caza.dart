@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show NivelMaestria;
+
 import 'distrito.dart';
 import 'fragmento_en_tejado.dart';
 import 'mapeo_habilidades_puzzle.dart'
@@ -113,10 +115,16 @@ class GeneradorCaza {
   /// habilidad tocar y este generador produce un Fragmento del tipo
   /// correspondiente. Si el skill no tiene tipo mapeado, cae al
   /// comportamiento normal.
+  ///
+  /// Con [nivelMaestria], la dificultad no baja de lo que el niño ya
+  /// domina de esa habilidad (en desarrollo, competente, maestría): así
+  /// quien la sabe no se entretiene en los casos triviales aunque tenga
+  /// pocas esquirlas.
   FragmentoEnTejado siguienteParaSkill({
     required String idHabilidad,
     required int esquirlasAcumuladas,
     required DateTime ahora,
+    NivelMaestria? nivelMaestria,
   }) {
     final tipoObjetivo = tipoParaSkillId(idHabilidad);
     if (tipoObjetivo == null) {
@@ -125,7 +133,10 @@ class GeneradorCaza {
         ahora: ahora,
       );
     }
-    final dificultad = _nivelDificultadSegunEsquirlas(esquirlasAcumuladas);
+    final dificultad = math.max(
+      _nivelDificultadSegunEsquirlas(esquirlasAcumuladas),
+      dificultadMinimaPorMaestria(nivelMaestria),
+    );
     return _generarDeTipo(
       tipo: tipoObjetivo,
       dificultad: dificultad,
@@ -2049,3 +2060,12 @@ class GeneradorCaza {
     return Duration(milliseconds: ms);
   }
 }
+
+/// El peldaño de dificultad (0-7) por debajo del cual no se baja para
+/// una habilidad que el niño ya domina a ese [nivel].
+int dificultadMinimaPorMaestria(NivelMaestria? nivel) => switch (nivel) {
+      NivelMaestria.enDesarrollo => 3,
+      NivelMaestria.competente => 5,
+      NivelMaestria.maestria => 7,
+      _ => 0,
+    };

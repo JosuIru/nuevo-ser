@@ -28,6 +28,9 @@ class PantallaTaller extends StatefulWidget {
 
 class _PantallaTallerState extends State<PantallaTaller> {
   int _esquirlasGanadas = 0;
+
+  /// Las que abren distritos (las reales o el suelo del nivel escolar).
+  int _esquirlasAcceso = 0;
   int _esquirlasGastadas = 0;
   Set<String> _restauradas = const {};
   bool _cargado = false;
@@ -46,12 +49,14 @@ class _PantallaTallerState extends State<PantallaTaller> {
 
   Future<void> _cargar() async {
     final ganadas = await widget.repositorio.cargarEsquirlas();
+    final acceso = await widget.repositorio.cargarEsquirlasParaAcceso();
     final gastadas = await widget.repositorio.ciudad.cargarEsquirlasGastadas();
     final restauradas =
         await widget.repositorio.ciudad.cargarPiezasRestauradas();
     if (!mounted) return;
     setState(() {
       _esquirlasGanadas = ganadas;
+      _esquirlasAcceso = acceso;
       _esquirlasGastadas = gastadas;
       _restauradas = restauradas;
       _cargado = true;
@@ -139,7 +144,7 @@ class _PantallaTallerState extends State<PantallaTaller> {
   Widget build(BuildContext contexto) {
     final locale = Localizations.localeOf(contexto);
     final distritosAbiertos = CatalogoDistritos.todos
-        .where((d) => d.estaDesbloqueado(_esquirlasGanadas))
+        .where((d) => d.estaDesbloqueado(_esquirlasAcceso))
         .toList();
     return Scaffold(
       backgroundColor: PaletaNeon.fondoProfundo,

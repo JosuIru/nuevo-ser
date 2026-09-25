@@ -21,7 +21,7 @@ import 'widgets/avatar_jugador.dart';
 import 'widgets/indicador_ventana.dart';
 
 /// "Mi cuaderno" — pantalla unificada con tres pestañas:
-///   - **Habilidades**: las 66 habilidades agrupadas por distrito,
+///   - **Habilidades**: las habilidades agrupadas por distrito,
 ///     con indicador "ventana iluminada" sin números (versión niño).
 ///     Tap en distrito → [PantallaAtlasDistrito]. Permite saltar a
 ///     [PantallaPanelTutor] desde el icono de escudo.

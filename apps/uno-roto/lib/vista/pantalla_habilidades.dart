@@ -21,7 +21,7 @@ import 'pantalla_cuenta.dart';
 import 'pantalla_perfiles.dart';
 import 'pantalla_tutor.dart';
 
-/// Panel que lista las 66 habilidades del mapa pedagógico y muestra
+/// Panel que lista las habilidades del mapa pedagógico y muestra
 /// para cada una el nivel actual del niño y su precisión. Accesible
 /// desde el mapa con long-press. Futuro dashboard de padres (doc 03 §7)
 /// en forma rudimentaria.

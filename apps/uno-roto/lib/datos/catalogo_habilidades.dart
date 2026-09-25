@@ -5,7 +5,7 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-/// Carga y expone el catálogo de 66 habilidades desde
+/// Carga y expone el catálogo de habilidades (106: de 4.º de Primaria a 2.º de ESO) desde
 /// `assets/data/skills.json`. Singleton perezoso; las habilidades son
 /// inmutables después de cargarse.
 class CatalogoHabilidades {

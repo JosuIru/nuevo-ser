@@ -512,7 +512,7 @@ class _PantallaCazaState extends State<PantallaCaza>
       // nivel escolar, lo que sea mayor.
       final esquirlas = esquirlasParaAcceso(_esquirlasTotal + _esquirlasEstaSesion, _nivelEscolar);
       final ahora = DateTime.now();
-      // Con las 66 habilidades del catálogo cubiertas, el selector
+      // Con todas las habilidades del catálogo cubiertas, el selector
       // adaptativo es la fuente principal de Fragmentos. Si el
       // selector no devuelve candidata (caso de borde) caemos al
       // reparto del distrito.

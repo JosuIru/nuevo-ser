@@ -61,17 +61,23 @@ class TarjetaNumero extends StatelessWidget {
                   : const [],
         ),
         child: Center(
-          child: Text(
-            valor,
-            style: TextStyle(
-              color: marcarCorrecto
-                  ? PaletaNeon.exitoSuave
-                  : marcarIncorrecto
-                      ? PaletaNeon.rosaAcento
-                      : PaletaNeon.textoPrincipal,
-              fontSize: 28,
-              fontWeight: FontWeight.w300,
-              letterSpacing: 1.2,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                valor,
+                style: TextStyle(
+                  color: marcarCorrecto
+                      ? PaletaNeon.exitoSuave
+                      : marcarIncorrecto
+                          ? PaletaNeon.rosaAcento
+                          : PaletaNeon.textoPrincipal,
+                  fontSize: 28,
+                  fontWeight: FontWeight.w300,
+                  letterSpacing: 1.2,
+                ),
+              ),
             ),
           ),
         ),

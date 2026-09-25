@@ -22,6 +22,7 @@ import '../dominio/fragmentos_de_clima.dart';
 import '../dominio/generador_caza.dart';
 import '../dominio/mapeo_habilidades_puzzle.dart';
 import '../dominio/motor_maestria.dart';
+import '../dominio/eso/problema_eso.dart';
 import '../dominio/nivel_escolar.dart';
 import '../dominio/rango_narrativo.dart';
 import '../dominio/respuesta_puzzle.dart';
@@ -110,6 +111,7 @@ import 'pantalla_potencia_natural.dart';
 import 'pantalla_raiz_cuadrada.dart';
 import 'pantalla_ecuacion_ambos_lados.dart';
 import 'pantalla_pitagoras.dart';
+import 'pantalla_problema_eso.dart';
 import 'pantalla_entero_signo.dart';
 import 'pantalla_valor_absoluto.dart';
 import 'pantalla_sistema_dos_x_dos.dart';
@@ -732,6 +734,7 @@ class _PantallaCazaState extends State<PantallaCaza>
         TipoFragmentoEnTejado.valorAbsoluto => 2,
         TipoFragmentoEnTejado.sistemaDosXDos => 6,
         TipoFragmentoEnTejado.relacionLineal => 4,
+        TipoFragmentoEnTejado.problemaEso => fichasProblemasEso[fragmento.idHabilidadEso]?.esquirlas ?? 5,
         TipoFragmentoEnTejado.unitario => fragmento.numerador,
       };
       // Escalado motivacional: acertar a la primera da [esquirlasBase];
@@ -980,6 +983,19 @@ class _PantallaCazaState extends State<PantallaCaza>
                     .generar(dificultad: dif),
               ),
               dificultad: fragmento.dificultadSugerida ?? 1,
+            ),
+          ),
+        );
+      case TipoFragmentoEnTejado.problemaEso:
+        final idHabilidad = fragmento.idHabilidadEso!;
+        return Navigator.of(context).push<bool>(
+          MaterialPageRoute(
+            builder: (_) => PantallaProblemaEso(
+              problema: generarProblemaEso(
+                idHabilidad,
+                semilla: fragmento.semillaProblema ?? 0,
+                dificultad: fragmento.dificultadSugerida ?? 1,
+              ),
             ),
           ),
         );
@@ -1994,7 +2010,7 @@ class _PantallaCazaState extends State<PantallaCaza>
   /// tutor remoto disponible.
   Future<void> _mostrarAyudaLocal(FragmentoEnTejado fragmento) async {
     final (tituloEs, textoEs, transferenciaEs) =
-        AyudaPuzzle.paraTipo(fragmento.tipo);
+        AyudaPuzzle.paraTipo(fragmento.tipo, idHabilidadEso: fragmento.idHabilidadEso);
     if (!mounted) return;
     final locale = Localizations.localeOf(context);
     final titulo = traducirNarrativa(tituloEs, locale);
@@ -2091,10 +2107,13 @@ class _PantallaCazaState extends State<PantallaCaza>
   /// que el flujo de [_alTocarFragmento] abra el puzzle.
   Future<void> _mostrarAyudaPuzzleSiPrimeraVez(
       FragmentoEnTejado fragmento) async {
-    final idTipo = fragmento.tipo.name;
+    // Las de ESO comparten tipo: cada habilidad tiene su primera vez.
+    final idTipo = fragmento.tipo == TipoFragmentoEnTejado.problemaEso
+        ? 'eso:${fragmento.idHabilidadEso}'
+        : fragmento.tipo.name;
     if (_ayudasPuzzlesVistas.contains(idTipo)) return;
     final (tituloEs, textoEs, transferenciaEs) =
-        AyudaPuzzle.paraTipo(fragmento.tipo);
+        AyudaPuzzle.paraTipo(fragmento.tipo, idHabilidadEso: fragmento.idHabilidadEso);
     if (!mounted) return;
     final locale = Localizations.localeOf(context);
     final titulo = traducirNarrativa(tituloEs, locale);
@@ -2550,6 +2569,9 @@ Error típico en esta skill: $errorTipico$respuestaTexto''';
           'calcular valor absoluto',
           'ignorar el valor absoluto y tratar como paréntesis'
         );
+      case TipoFragmentoEnTejado.problemaEso:
+        final ficha = fichasProblemasEso[f.idHabilidadEso];
+        return (ficha?.preguntaTutor ?? 'resolver un problema', ficha?.errorTipico ?? '');
       case TipoFragmentoEnTejado.sistemaDosXDos:
         return (
           'resolver sistema de dos ecuaciones',

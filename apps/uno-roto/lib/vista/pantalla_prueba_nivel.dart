@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 import '../datos/nivel_de_partida.dart';
 import '../datos/repositorio_progreso.dart';
-import '../dominio/nivel_escolar.dart';
 import '../dominio/prueba_nivel.dart';
 import '../l10n/traducciones_narrativa.dart';
 import '../nucleo/paleta.dart';

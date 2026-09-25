@@ -1,3 +1,4 @@
+import 'eso/problema_eso.dart';
 import 'fragmento_en_tejado.dart';
 
 /// Descripciones pedagógicas de cada tipo de puzzle. Se muestran al
@@ -572,7 +573,10 @@ class AyudaPuzzle {
   /// Devuelve el título y la explicación para un tipo de puzzle.
   /// Si no hay ayuda registrada, devuelve un texto genérico.
   static (String titulo, String texto, String transferencia) paraTipo(
-      TipoFragmentoEnTejado tipo) {
+      TipoFragmentoEnTejado tipo, {String? idHabilidadEso}) {
+    // Las habilidades de ESO comparten tipo: su ayuda está en su ficha.
+    final ficha = idHabilidadEso == null ? null : fichasProblemasEso[idHabilidadEso];
+    if (ficha != null) return (ficha.tituloAyuda, ficha.textoAyuda, ficha.transferencia);
     final ayuda = _ayudas[tipo];
     if (ayuda != null) return (ayuda.titulo, ayuda.texto, ayuda.transferencia);
     return ('Puzzle', 'Resuelve el puzzle usando lo que has aprendido.', '');

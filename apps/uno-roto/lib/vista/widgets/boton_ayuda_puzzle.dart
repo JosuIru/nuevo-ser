@@ -13,9 +13,13 @@ class BotonAyudaPuzzle extends StatefulWidget {
   final TipoFragmentoEnTejado tipo;
   final bool destacar;
 
+  /// Para los puzzles de ESO: de qué habilidad es la ayuda.
+  final String? idHabilidadEso;
+
   const BotonAyudaPuzzle({
     super.key,
     required this.tipo,
+    this.idHabilidadEso,
     this.destacar = false,
   });
 
@@ -123,7 +127,7 @@ class _BotonAyudaPuzzleState extends State<BotonAyudaPuzzle>
 
   void _mostrarAyuda(BuildContext context) {
     final (tituloEs, textoEs, transferenciaEs) =
-        AyudaPuzzle.paraTipo(widget.tipo);
+        AyudaPuzzle.paraTipo(widget.tipo, idHabilidadEso: widget.idHabilidadEso);
     final locale = Localizations.localeOf(context);
     final titulo = traducirNarrativa(tituloEs, locale);
     final texto = traducirNarrativa(textoEs, locale);

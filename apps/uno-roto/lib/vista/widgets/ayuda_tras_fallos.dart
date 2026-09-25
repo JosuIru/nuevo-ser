@@ -14,8 +14,9 @@ import '../estado_pista_puzzle.dart';
 Future<bool> comprobarYAyudarSiProcede(
   BuildContext context,
   EstadoPistaPuzzle pista,
-  TipoFragmentoEnTejado tipo,
-) async {
+  TipoFragmentoEnTejado tipo, {
+  String? idHabilidadEso,
+}) async {
   if (pista.fallosConsecutivos < 5) return false;
 
   // Reset para no encadenar diálogos. Reseteamos también el contador de
@@ -28,7 +29,7 @@ Future<bool> comprobarYAyudarSiProcede(
 
   if (!context.mounted) return false;
 
-  final result = AyudaPuzzle.paraTipo(tipo);
+  final result = AyudaPuzzle.paraTipo(tipo, idHabilidadEso: idHabilidadEso);
   final locale = Localizations.localeOf(context);
   final titulo = traducirNarrativa(result.$1, locale);
   final texto = traducirNarrativa(result.$2, locale);

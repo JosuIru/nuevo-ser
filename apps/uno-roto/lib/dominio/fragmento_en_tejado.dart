@@ -219,6 +219,10 @@ enum TipoFragmentoEnTejado {
   valorAbsoluto,
   sistemaDosXDos,
   relacionLineal,
+  // Ampliación a 14 años (1.º y 2.º de ESO): un único tipo para todas
+  // las habilidades nuevas; la habilidad va en `idHabilidadEso` y lo
+  // propio de cada una, en su ficha (`lib/dominio/eso/`).
+  problemaEso,
 }
 
 /// Operador aritmético usado por los Fragmentos Duales y los de
@@ -327,7 +331,12 @@ class FragmentoEnTejado {
   /// de captura que desbloquea su entrada del Cuaderno.
   final String? idFragmentoDeClima;
 
+  /// En los Fragmentos `problemaEso`: la habilidad de ESO que ejercita
+  /// (su ficha genera el problema desde [semillaProblema]).
+  final String? idHabilidadEso;
+
   const FragmentoEnTejado({
+    this.idHabilidadEso,
     required this.identificador,
     required this.numerador,
     required this.denominador,
@@ -376,6 +385,7 @@ class FragmentoEnTejado {
       dificultadSugerida: dificultadSugerida,
       semillaProblema: semillaProblema,
       idFragmentoDeClima: idRaro,
+      idHabilidadEso: idHabilidadEso,
     );
   }
 

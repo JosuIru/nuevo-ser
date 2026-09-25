@@ -63,7 +63,7 @@ class SelectorHabilidades {
             ? catalogo.delDominio(dominioFiltrado, rangoActual: rangoActual)
             : catalogo.delDistrito(distrito.identificador,
                 rangoActual: rangoActual))
-        .where((h) => skillsConPuzzleImplementado.contains(h.identificador))
+        .where((h) => puzzleDisponible(h.identificador))
         .toList();
     if (nivelEscolar != null) {
       final aSuAltura = [

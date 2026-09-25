@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show NivelMaestria;
 
 import 'distrito.dart';
+import 'eso/problema_eso.dart';
 import 'fragmento_en_tejado.dart';
 import 'mapeo_habilidades_puzzle.dart'
     show
@@ -127,6 +128,9 @@ class GeneradorCaza {
     NivelMaestria? nivelMaestria,
   }) {
     final tipoObjetivo = tipoParaSkillId(idHabilidad);
+    if (tipoObjetivo == TipoFragmentoEnTejado.problemaEso) {
+      return _fragmentoEso(idHabilidad, esquirlasAcumuladas, ahora, nivelMaestria);
+    }
     if (tipoObjetivo == null) {
       return siguiente(
         esquirlasAcumuladas: esquirlasAcumuladas,
@@ -147,6 +151,32 @@ class GeneradorCaza {
       modoMcmMcdPreferido: modoMcmMcdParaSkillId(idHabilidad),
       segundoOperandoNatural:
           segundoOperandoNaturalParaSkill(idHabilidad),
+    );
+  }
+
+  /// Un Fragmento de ESO: la ficha de [idHabilidad] genera el problema
+  /// desde la semilla (la pantalla lo regenera igual).
+  FragmentoEnTejado _fragmentoEso(
+      String idHabilidad, int esquirlasAcumuladas, DateTime ahora, NivelMaestria? nivelMaestria) {
+    final dificultad = math.max(
+      _nivelDificultadSegunEsquirlas(esquirlasAcumuladas),
+      dificultadMinimaPorMaestria(nivelMaestria),
+    );
+    final semilla = _azar.nextInt(1 << 30);
+    final ficha = fichasProblemasEso[idHabilidad]!;
+    return FragmentoEnTejado(
+      identificador: 'frag_${ahora.microsecondsSinceEpoch}_${_azar.nextInt(9999)}',
+      numerador: 1,
+      denominador: 1,
+      tipo: TipoFragmentoEnTejado.problemaEso,
+      etiquetaDecimal: ficha.etiquetaTejado,
+      xNormalizado: 0.18 + _azar.nextDouble() * 0.64,
+      yNormalizado: 0.2 + _azar.nextDouble() * 0.48,
+      instanteAparicion: ahora,
+      tiempoDeVida: _tiempoDeVida(dificultad),
+      dificultadSugerida: dificultad,
+      semillaProblema: semilla,
+      idHabilidadEso: idHabilidad,
     );
   }
 
@@ -1859,6 +1889,10 @@ class GeneradorCaza {
       case TipoFragmentoEnTejado.sistemaDosXDos:
         // ALG.03 — sistemas 2×2. Fraccionista / techo.
         return dificultad >= 5;
+      case TipoFragmentoEnTejado.problemaEso:
+        // Sólo aparece cuando el selector elige una habilidad de ESO
+        // (siguienteParaSkill): nunca en el reparto al azar del distrito.
+        return false;
       case TipoFragmentoEnTejado.relacionLineal:
         // FUN.01 — relación lineal en tabla. Iniciado III.
         return dificultad >= 4;

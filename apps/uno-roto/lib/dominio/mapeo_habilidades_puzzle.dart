@@ -1,3 +1,4 @@
+import 'eso/problema_eso.dart';
 import 'fragmento_en_tejado.dart';
 
 /// Conjunto de skill_ids del doc 02 que el MVP sí sabe plantear hoy
@@ -81,12 +82,85 @@ const Set<String> skillsConPuzzleImplementado = {
   'ARI.05',
   'ALG.03',
   'FUN.01',
+  // Ampliación a 14 años: todas con el tipo `problemaEso` (ver
+  // `habilidadesEso`); el selector sólo propone las que ya tienen ficha.
+  'ARI.06',
+  'ARI.07',
+  'ARI.08',
+  'ARI.09',
+  'FR.23',
+  'DIV.08',
+  'PROP.08',
+  'PROP.09',
+  'PROP.10',
+  'MED.06',
+  'ALG.04',
+  'ALG.05',
+  'ALG.06',
+  'ALG.07',
+  'ALG.08',
+  'ALG.09',
+  'ALG.10',
+  'ALG.11',
+  'ALG.12',
+  'FUN.02',
+  'FUN.03',
+  'FUN.04',
+  'GEO.09',
+  'GEO.10',
+  'GEO.11',
+  'GEO.12',
+  'GEO.13',
+  'EST.07',
+  'EST.08',
+  'EST.09',
 };
+
+/// Las habilidades de 1.º y 2.º de ESO que usan el tipo `problemaEso`.
+const Set<String> habilidadesEso = {
+  'ARI.06',
+  'ARI.07',
+  'ARI.08',
+  'ARI.09',
+  'FR.23',
+  'DIV.08',
+  'PROP.08',
+  'PROP.09',
+  'PROP.10',
+  'MED.06',
+  'ALG.04',
+  'ALG.05',
+  'ALG.06',
+  'ALG.07',
+  'ALG.08',
+  'ALG.09',
+  'ALG.10',
+  'ALG.11',
+  'ALG.12',
+  'FUN.02',
+  'FUN.03',
+  'FUN.04',
+  'GEO.09',
+  'GEO.10',
+  'GEO.11',
+  'GEO.12',
+  'GEO.13',
+  'EST.07',
+  'EST.08',
+  'EST.09',
+};
+
+/// Si el juego puede proponer ya [skillId]: tiene puzzle y, si es de
+/// ESO, su ficha está escrita.
+bool puzzleDisponible(String skillId) =>
+    skillsConPuzzleImplementado.contains(skillId) &&
+    (!habilidadesEso.contains(skillId) || fichasProblemasEso.containsKey(skillId));
 
 /// Dado un skill_id, devuelve el tipo de Fragmento que lo ejercita.
 /// Si no hay mapeo, devuelve null (no debería ocurrir si el selector
 /// filtra por [skillsConPuzzleImplementado]).
 TipoFragmentoEnTejado? tipoParaSkillId(String skillId) {
+  if (habilidadesEso.contains(skillId)) return TipoFragmentoEnTejado.problemaEso;
   if (skillId == 'FR.05' || skillId == 'FR.06') {
     return TipoFragmentoEnTejado.comparacion;
   }
@@ -295,6 +369,8 @@ String idHabilidadPrincipal(FragmentoEnTejado fragmento) {
       return 'ALG.03';
     case TipoFragmentoEnTejado.relacionLineal:
       return 'FUN.01';
+    case TipoFragmentoEnTejado.problemaEso:
+      return fragmento.idHabilidadEso ?? 'ALG.01';
     case TipoFragmentoEnTejado.espejo:
       return 'FR.09';
     case TipoFragmentoEnTejado.decimal:
@@ -487,6 +563,9 @@ double dificultadEstimadaDelPuzzle(FragmentoEnTejado fragmento) {
     case TipoFragmentoEnTejado.relacionLineal:
       // FUN.01 — peso alto: leer la regla detrás de los datos.
       return 1.6;
+    case TipoFragmentoEnTejado.problemaEso:
+      // Cada habilidad de ESO declara su peso en su ficha.
+      return fichasProblemasEso[fragmento.idHabilidadEso]?.dificultadEstimada ?? 1.6;
     case TipoFragmentoEnTejado.unitario:
       final n = fragmento.numerador;
       final d = fragmento.denominador;

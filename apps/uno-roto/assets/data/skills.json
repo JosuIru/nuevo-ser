@@ -1,6 +1,6 @@
 {
   "version": "0.4",
-  "total_skills": 76,
+  "total_skills": 106,
   "domains": {
     "ARI": "Aritmética básica e intermedia",
     "ALG": "Álgebra",
@@ -1692,6 +1692,617 @@
       "time_median_seconds": [
         12,
         25
+      ]
+    },
+    {
+      "id": "ARI.06",
+      "name": "Multiplicar y dividir enteros",
+      "domain": "ARI",
+      "deps": [
+        "ARI.04"
+      ],
+      "families": [],
+      "districts": [
+        "industria"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "ARI.07",
+      "name": "Operaciones combinadas con enteros",
+      "domain": "ARI",
+      "deps": [
+        "ARI.06",
+        "OP.01"
+      ],
+      "families": [],
+      "districts": [
+        "industria"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "ARI.08",
+      "name": "Propiedades de las potencias",
+      "domain": "ARI",
+      "deps": [
+        "ARI.02"
+      ],
+      "families": [],
+      "districts": [
+        "industria"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "ARI.09",
+      "name": "Potencias de exponente negativo y notación científica",
+      "domain": "ARI",
+      "deps": [
+        "ARI.08"
+      ],
+      "families": [],
+      "districts": [
+        "industria"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "FR.23",
+      "name": "Operar fracciones con signo",
+      "domain": "FR",
+      "deps": [
+        "FR.16",
+        "ARI.04"
+      ],
+      "families": [],
+      "districts": [
+        "canales"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "DIV.08",
+      "name": "Descomposición en factores primos",
+      "domain": "DIV",
+      "deps": [
+        "DIV.05"
+      ],
+      "families": [],
+      "districts": [
+        "puerto"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "PROP.08",
+      "name": "Proporcionalidad inversa",
+      "domain": "PROP",
+      "deps": [
+        "PROP.02"
+      ],
+      "families": [],
+      "districts": [
+        "mercado"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "PROP.09",
+      "name": "Porcentajes encadenados",
+      "domain": "PROP",
+      "deps": [
+        "PROP.06"
+      ],
+      "families": [],
+      "districts": [
+        "mercado"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "PROP.10",
+      "name": "Repartos proporcionales",
+      "domain": "PROP",
+      "deps": [
+        "PROP.03"
+      ],
+      "families": [],
+      "districts": [
+        "mercado"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "MED.06",
+      "name": "Unidades de volumen y capacidad",
+      "domain": "MED",
+      "deps": [
+        "MED.02",
+        "MED.05"
+      ],
+      "families": [],
+      "districts": [
+        "industria"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "ALG.04",
+      "name": "Lenguaje algebraico",
+      "domain": "ALG",
+      "deps": [
+        "OP.01"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "ALG.05",
+      "name": "Valor numérico de una expresión",
+      "domain": "ALG",
+      "deps": [
+        "ALG.04",
+        "ARI.04"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "ALG.06",
+      "name": "Monomios",
+      "domain": "ALG",
+      "deps": [
+        "ALG.05"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "ALG.07",
+      "name": "Polinomios",
+      "domain": "ALG",
+      "deps": [
+        "ALG.06"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "ALG.08",
+      "name": "Identidades notables",
+      "domain": "ALG",
+      "deps": [
+        "ALG.07"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "ALG.09",
+      "name": "Ecuaciones con paréntesis y denominadores",
+      "domain": "ALG",
+      "deps": [
+        "ALG.02",
+        "FR.16"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "ALG.10",
+      "name": "Ecuaciones de segundo grado",
+      "domain": "ALG",
+      "deps": [
+        "ALG.09",
+        "ARI.03"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "ALG.11",
+      "name": "Problemas con ecuaciones",
+      "domain": "ALG",
+      "deps": [
+        "ALG.04",
+        "ALG.02"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "ALG.12",
+      "name": "Problemas con sistemas",
+      "domain": "ALG",
+      "deps": [
+        "ALG.11",
+        "ALG.03"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "FUN.02",
+      "name": "Coordenadas cartesianas",
+      "domain": "FUN",
+      "deps": [
+        "ARI.04"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "FUN.03",
+      "name": "Leer una gráfica",
+      "domain": "FUN",
+      "deps": [
+        "FUN.02"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "FUN.04",
+      "name": "Función lineal y afín",
+      "domain": "FUN",
+      "deps": [
+        "FUN.01",
+        "FUN.03"
+      ],
+      "families": [],
+      "districts": [
+        "montana"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "GEO.09",
+      "name": "Teorema de Tales y semejanza",
+      "domain": "GEO",
+      "deps": [
+        "PROP.03"
+      ],
+      "families": [],
+      "districts": [
+        "afueras"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "GEO.10",
+      "name": "Áreas de polígonos",
+      "domain": "GEO",
+      "deps": [
+        "GEO.04"
+      ],
+      "families": [],
+      "districts": [
+        "afueras"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "GEO.11",
+      "name": "Prismas y cilindros",
+      "domain": "GEO",
+      "deps": [
+        "GEO.06",
+        "GEO.05"
+      ],
+      "families": [],
+      "districts": [
+        "afueras"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "GEO.12",
+      "name": "Pirámides, conos y esferas",
+      "domain": "GEO",
+      "deps": [
+        "GEO.11"
+      ],
+      "families": [],
+      "districts": [
+        "afueras"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "GEO.13",
+      "name": "Pitágoras en problemas",
+      "domain": "GEO",
+      "deps": [
+        "GEO.08"
+      ],
+      "families": [],
+      "districts": [
+        "afueras"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "EST.07",
+      "name": "Tablas de frecuencias",
+      "domain": "EST",
+      "deps": [
+        "EST.01"
+      ],
+      "families": [],
+      "districts": [
+        "puerto"
+      ],
+      "intro_rank": "Iniciado_III",
+      "required_rank": "Iniciado_I",
+      "course": "1E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        15,
+        40
+      ]
+    },
+    {
+      "id": "EST.08",
+      "name": "Dispersión y media de una tabla",
+      "domain": "EST",
+      "deps": [
+        "EST.03",
+        "EST.07"
+      ],
+      "families": [],
+      "districts": [
+        "puerto"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
+      ]
+    },
+    {
+      "id": "EST.09",
+      "name": "Probabilidad compuesta",
+      "domain": "EST",
+      "deps": [
+        "EST.05"
+      ],
+      "families": [],
+      "districts": [
+        "puerto"
+      ],
+      "intro_rank": "Fraccionista",
+      "required_rank": "Iniciado_II",
+      "course": "2E",
+      "precision_threshold": 0.75,
+      "time_median_seconds": [
+        20,
+        50
       ]
     }
   ],

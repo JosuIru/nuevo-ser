@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import '../dominio/progreso_arco.dart';
+import '../dominio/nivel_escolar.dart';
 import '../dominio/rango_narrativo.dart';
 import '../dominio/ritmo_juego.dart';
 import 'package:nuevo_ser_tutor/nuevo_ser_tutor.dart';
@@ -59,6 +60,9 @@ class RepositorioProgreso {
   static const _sufAyudasPuzzlesVistas = 'ayudas_puzzles_vistas';
   static const _sufRitmoJuego = 'ritmo_juego';
   static const _sufModoExperto = 'modo_experto';
+  static const _sufNivelEscolar = 'nivel_escolar';
+  static const _sufNivelEscolarOrigen = 'nivel_escolar.origen';
+  static const _sufAvisoNivelDescartado = 'nivel_escolar.aviso_descartado';
   static const _sufRutaAvatar = 'avatar.ruta';
   static const _prefijoCuadernoLeida = 'cuaderno.leida.';
   static const _prefijoDistritoVisitado = 'distrito_visitado.';
@@ -571,6 +575,47 @@ class RepositorioProgreso {
     final prefs = await _prefs();
     await prefs.setBool(await _clave(_sufModoExperto), activo);
   }
+
+  /// Punto de partida del perfil (el curso por el que va en
+  /// matemáticas), fijado por la prueba de nivel con Sora o por el
+  /// adulto. `null`: sin fijar, se empieza por lo más básico.
+  Future<NivelEscolar?> cargarNivelEscolar() async {
+    final prefs = await _prefs();
+    return NivelEscolar.deCodigo(prefs.getString(await _clave(_sufNivelEscolar)));
+  }
+
+  /// Quién lo fijó: `prueba` (Sora) o `adulto`.
+  Future<String?> cargarOrigenNivelEscolar() async {
+    final prefs = await _prefs();
+    return prefs.getString(await _clave(_sufNivelEscolarOrigen));
+  }
+
+  Future<void> guardarNivelEscolar(NivelEscolar? nivel, {required String origen}) async {
+    final prefs = await _prefs();
+    if (nivel == null) {
+      await prefs.remove(await _clave(_sufNivelEscolar));
+      await prefs.remove(await _clave(_sufNivelEscolarOrigen));
+      return;
+    }
+    await prefs.setString(await _clave(_sufNivelEscolar), nivel.codigo);
+    await prefs.setString(await _clave(_sufNivelEscolarOrigen), origen);
+  }
+
+  /// Si ya se descartó el aviso del mapa «¿Por dónde empiezo?».
+  Future<bool> cargarAvisoNivelDescartado() async {
+    final prefs = await _prefs();
+    return prefs.getBool(await _clave(_sufAvisoNivelDescartado)) ?? false;
+  }
+
+  Future<void> descartarAvisoNivel() async {
+    final prefs = await _prefs();
+    await prefs.setBool(await _clave(_sufAvisoNivelDescartado), true);
+  }
+
+  /// Las esquirlas con las que se decide el acceso (distritos, rango de
+  /// habilidades, dificultad): las reales o el suelo del nivel escolar.
+  Future<int> cargarEsquirlasParaAcceso() async =>
+      esquirlasParaAcceso(await cargarEsquirlas(), await cargarNivelEscolar());
 
   /// Preferencias de audio del perfil activo. El volumen de cada capa
   /// se guarda en 0..100; el motor lo traduce a 0.0..1.0.

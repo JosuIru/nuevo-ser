@@ -244,15 +244,13 @@ class DesafioKurz {
     segundosPorPregunta: 7,
     preguntas: [
       PreguntaKurz(
-        enunciado:
-            'Ronda de reacción. ¿Cuánto es 3/5 de 20?',
+        enunciado: 'Ronda de reacción. ¿Cuánto es 3/5 de 20?',
         opciones: ['10', '12', '15', '18'],
         indiceCorrecto: 1,
         fraseFalloKurz: 'Más rápido.',
       ),
       PreguntaKurz(
-        enunciado:
-            'Ronda de precisión. ¿A qué porcentaje equivale 3/4?',
+        enunciado: 'Ronda de precisión. ¿A qué porcentaje equivale 3/4?',
         opciones: ['60 %', '70 %', '75 %', '80 %'],
         indiceCorrecto: 2,
         fraseFalloKurz: 'No está mal. Pero sigue mal.',
@@ -284,15 +282,13 @@ class DesafioKurz {
     segundosPorPregunta: 10,
     preguntas: [
       PreguntaKurz(
-        enunciado:
-            '11/4 es Impropio. Conviértelo a número mixto.',
+        enunciado: '11/4 es Impropio. Conviértelo a número mixto.',
         opciones: ['1 y 7/4', '2 y 3/4', '3 y 2/4', '4 y 1/4'],
         indiceCorrecto: 1,
         fraseFalloKurz: 'Vorax recupera la forma impropia. Respira.',
       ),
       PreguntaKurz(
-        enunciado:
-            'Eliminas el 2 entero. ¿Qué parte queda como Fragmento?',
+        enunciado: 'Eliminas el 2 entero. ¿Qué parte queda como Fragmento?',
         opciones: ['1/4', '2/4', '3/4', '4/4'],
         indiceCorrecto: 2,
         fraseFalloKurz: 'Vorax tiembla. Descomponer es también parar.',
@@ -301,8 +297,7 @@ class DesafioKurz {
         enunciado: '3/4 en cuartos: ¿cuántos cuartos son?',
         opciones: ['2', '3', '4', '6'],
         indiceCorrecto: 1,
-        fraseFalloKurz:
-            'Vorax se agita. No vayas rápido.',
+        fraseFalloKurz: 'Vorax se agita. No vayas rápido.',
       ),
       PreguntaKurz(
         enunciado: 'Tras eliminar un cuarto, ¿cuánto queda?',
@@ -320,6 +315,55 @@ class DesafioKurz {
     fraseAcierto: 'Vorax se encoge un grado más.',
     fraseDerrota: 'Vorax se retira. Tendrás que volver.',
     fraseVictoria: 'Vorax se retira hacia arriba. Silencio.',
+  );
+
+  /// Velo (Arco V, tras la 5.7): el Fragmento de la niebla tapa un
+  /// número y hay que nombrarlo. Ecuaciones de 1.º y 2.º de ESO; más
+  /// tiempo por pregunta que los de Primaria.
+  static const DesafioKurz velo = DesafioKurz(
+    identificador: 'velo',
+    nombreFragmento: 'VELO',
+    vozQueHabla: VozPersonaje.fragmentoVelo,
+    mostrarOjos: false,
+    secuenciaValores: ['▢▢▢▢▢', '▢▢▢▢', '▢▢▢', '▢▢', '▢', '—'],
+    kiInicial: 5,
+    segundosPorPregunta: 20,
+    preguntas: [
+      PreguntaKurz(
+        enunciado: 'Velo tapa un número: 3 · ▢ − 5 = 16. ¿Cuál es?',
+        opciones: ['5', '7', '8', '11'],
+        indiceCorrecto: 1,
+        fraseFalloKurz: 'La niebla se espesa. Deshaz la cuenta al revés.',
+      ),
+      PreguntaKurz(
+        enunciado:
+            'El doble de un número, más cuatro, es dieciocho. ¿Qué número es?',
+        opciones: ['7', '9', '11', '14'],
+        indiceCorrecto: 0,
+        fraseFalloKurz: 'Escríbelo primero: 2x + 4 = 18.',
+      ),
+      PreguntaKurz(
+        enunciado: '2 · (▢ + 4) = 18. ¿Qué número tapa?',
+        opciones: ['5', '7', '9', '14'],
+        indiceCorrecto: 0,
+        fraseFalloKurz: 'El dos multiplica a todo el paréntesis.',
+      ),
+      PreguntaKurz(
+        enunciado: '▢/2 + ▢/3 = 10. Es el mismo número las dos veces. ¿Cuál?',
+        opciones: ['12', '15', '20', '60'],
+        indiceCorrecto: 0,
+        fraseFalloKurz: 'Busca un denominador común. Seis.',
+      ),
+      PreguntaKurz(
+        enunciado: 'x + y = 14 y x − y = 4. ¿Cuánto vale x?',
+        opciones: ['5', '9', '10', '18'],
+        indiceCorrecto: 1,
+        fraseFalloKurz: 'Suma las dos igualdades. La y desaparece.',
+      ),
+    ],
+    fraseAcierto: 'La niebla se abre un palmo.',
+    fraseDerrota: 'Velo se cierra. Alguien sale de la niebla.',
+    fraseVictoria: 'Velo se deshace en gotas. Hay alguien detrás.',
   );
 }
 

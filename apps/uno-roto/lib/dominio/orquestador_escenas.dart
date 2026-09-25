@@ -97,6 +97,11 @@ class OrquestadorEscenas {
       flagCompletado: 'combate_vorax_completado',
       desafio: DesafioKurz.vorax,
     ),
+    _GateCombate(
+      flagDisparador: 'escena_5_7_vista',
+      flagCompletado: 'combate_velo_completado',
+      desafio: DesafioKurz.velo,
+    ),
   ];
 
   /// Devuelve el primer combate cuya escena disparadora se ha visto y

@@ -25,8 +25,13 @@ void main() {
   // produce un flag `combate_<id>_completado` y otro `victoria_<id>` o
   // `derrota_<id>`.
   const idsCombate = <String>{
-    'kurz_1', 'kurz_2', 'kurz_3',
-    'zafran', 'vorax', 'duel_kai',
+    'kurz_1',
+    'kurz_2',
+    'kurz_3',
+    'zafran',
+    'vorax',
+    'duel_kai',
+    'velo',
   };
   final flagsDeCombate = <String>{
     for (final id in idsCombate) ...[
@@ -39,7 +44,7 @@ void main() {
   // Maestría. `MotorMaestria.flagDeMaestria` produce
   // `<dominio>_<numero>_<nivel>`. Lista blanca por regex.
   final reMaestria = RegExp(
-    r'^(fr|dec|prop|div|op|med|geo|est)_\d+_'
+    r'^(fr|dec|prop|div|op|med|geo|est|ari|alg|fun)_\d+_'
     r'(introducida|en_desarrollo|competente|maestria)$',
   );
 
@@ -94,8 +99,7 @@ void main() {
     expect(
       huerfanos,
       isEmpty,
-      reason:
-          'Las siguientes escenas requieren flags que nadie produce: '
+      reason: 'Las siguientes escenas requieren flags que nadie produce: '
           '$huerfanos. Si la habilidad cambió de id o se quitó una '
           'escena productora, el gate quedó colgando.',
     );
@@ -110,16 +114,16 @@ void main() {
     const convergenciasPermitidas = <String>{
       'escena_1_10_resuelta',
       'prueba_completada',
+      // 5.8victoria y 5.8derrota: la 5.9 sigue gane o pierda con Velo.
+      'escena_5_8_vista',
     };
     final cuentas = <String, int>{};
     for (final escena in CatalogoEscenas.todas) {
-      cuentas[escena.flagDeSalida] =
-          (cuentas[escena.flagDeSalida] ?? 0) + 1;
+      cuentas[escena.flagDeSalida] = (cuentas[escena.flagDeSalida] ?? 0) + 1;
     }
     final duplicadosNoPermitidos = {
       for (final entrada in cuentas.entries)
-        if (entrada.value > 1 &&
-            !convergenciasPermitidas.contains(entrada.key))
+        if (entrada.value > 1 && !convergenciasPermitidas.contains(entrada.key))
           entrada.key: entrada.value,
     };
     expect(duplicadosNoPermitidos, isEmpty);
@@ -179,8 +183,7 @@ void main() {
     expect(
       inalcanzables,
       isEmpty,
-      reason:
-          'Hay escenas inalcanzables incluso simulando combates, '
+      reason: 'Hay escenas inalcanzables incluso simulando combates, '
           'maestría, rangos y elecciones: $inalcanzables. Probable '
           'gate dependiendo de un flag que nadie produce.',
     );

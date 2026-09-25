@@ -1,4 +1,5 @@
 import 'escena_cinematica.dart';
+import 'escenas_arco_cinco.dart';
 import 'plano_escena.dart';
 import 'voz_personaje.dart';
 
@@ -5122,7 +5123,8 @@ class CatalogoEscenas {
     ],
   );
 
-  /// 4.14 — La Montaña. Último plano del MVP. Doc 10 §4.14.
+  /// 4.14 — La Montaña. Cierre de la Era 2. Doc 10 §4.14. La historia
+  /// sigue en el Arco V (`escenas_arco_cinco.dart`).
   /// Fundido a blanco, créditos mínimos, HASTA ENTONCES.
   static const EscenaCinematica laMontanaCierre = EscenaCinematica(
     id: '4.14',
@@ -5153,10 +5155,6 @@ class CatalogoEscenas {
       PlanoAmbiente(
         duracion: Duration(milliseconds: 2400),
         textoLectura: 'URO UNO ROTO',
-      ),
-      PlanoAmbiente(
-        duracion: Duration(milliseconds: 2400),
-        textoLectura: 'FIN DEL MVP.',
       ),
       PlanoCierreAmable(textoBoton: 'HASTA ENTONCES'),
     ],
@@ -5232,6 +5230,8 @@ class CatalogoEscenas {
     kaiLejos,
     soraEnElBorde,
     laMontanaCierre,
+    // Arco 5 (Era 3): la Montaña.
+    ...EscenasArcoCinco.todas,
   ];
 
   static EscenaCinematica? porId(String id) {

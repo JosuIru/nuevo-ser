@@ -75,6 +75,17 @@ final class VozPersonaje implements VozPersonajeContrato {
     nombreVisible: 'Niko',
     colorNombre: PaletaNeon.azulNeon,
   );
+  /// Arco V (Era 3): el guardián del Archivo de la Sociedad.
+  static const VozPersonaje ulden = VozPersonaje._(
+    nombreVisible: 'Ulden',
+    colorNombre: PaletaNeon.ambarCanales,
+  );
+
+  /// Arco V (Era 3): la Algebrista de la Montaña.
+  static const VozPersonaje aldara = VozPersonaje._(
+    nombreVisible: 'Aldara',
+    colorNombre: PaletaNeon.exitoSuave,
+  );
   static const VozPersonaje fragmentoKurz = VozPersonaje._(
     nombreVisible: 'Kurz',
     colorNombre: PaletaNeon.violetaNeon,
@@ -92,6 +103,13 @@ final class VozPersonaje implements VozPersonajeContrato {
   );
   static const VozPersonaje fragmentoVorax = VozPersonaje._(
     nombreVisible: 'Vorax',
+    colorNombre: PaletaNeon.violetaNeon,
+    esEnfasis: true,
+  );
+
+  /// Arco V: el Fragmento de la niebla, que borra los números que sabes.
+  static const VozPersonaje fragmentoVelo = VozPersonaje._(
+    nombreVisible: 'Velo',
     colorNombre: PaletaNeon.violetaNeon,
     esEnfasis: true,
   );

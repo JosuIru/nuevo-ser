@@ -144,6 +144,24 @@ final rasgosPorVoz = <VozPersonaje, RasgosSilueta>{
     peinado: Peinado.coleta,
     acentos: [Acento.panueloVerde],
   ),
+  VozPersonaje.ulden: const RasgosSilueta(
+    id: 'ulden',
+    relleno: Color(0xFF17130D),
+    contorno: PaletaNeon.ambarCanales,
+    altura: 0.88,
+    hombros: 0.95,
+    peinado: Peinado.corto,
+    acentos: [Acento.gafas, Acento.chaquetaLarga, Acento.barba],
+  ),
+  VozPersonaje.aldara: const RasgosSilueta(
+    id: 'aldara',
+    relleno: Color(0xFF0D1712),
+    contorno: PaletaNeon.exitoSuave,
+    altura: 0.9,
+    hombros: 0.92,
+    peinado: Peinado.recogido,
+    acentos: [Acento.panueloVerde, Acento.baston],
+  ),
   VozPersonaje.aprendizNiko: const RasgosSilueta(
     id: 'niko',
     relleno: Color(0xFF0E1224),
@@ -167,6 +185,8 @@ const _idPorNombre = {
   'Vadic': 'vadic',
   'Ari': 'ari',
   'Niko': 'niko',
+  'Ulden': 'ulden',
+  'Aldara': 'aldara',
 };
 
 /// Color del halo del personaje (el de su contorno en la silueta).

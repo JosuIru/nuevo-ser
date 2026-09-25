@@ -31,6 +31,8 @@ const personajesDelTaller = [
   PersonajeTaller('brina', VozPersonaje.brina, 'Maestra de las Afueras'),
   PersonajeTaller('ari', VozPersonaje.ari, 'Aprendiz'),
   PersonajeTaller('niko', VozPersonaje.aprendizNiko, 'Aprendiz'),
+  PersonajeTaller('ulden', VozPersonaje.ulden, 'Guardián del Archivo'),
+  PersonajeTaller('aldara', VozPersonaje.aldara, 'La Algebrista'),
 ];
 
 /// El personaje del taller de [voz], si lo es.

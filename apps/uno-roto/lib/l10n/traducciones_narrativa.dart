@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../dominio/eso/problema_eso.dart' show traduccionesEso;
+import 'narrativa_arco_cinco.dart';
 import 'narrativa_ca.dart';
 import 'narrativa_eu.dart';
 
@@ -18,9 +19,9 @@ String traducirNarrativa(String textoEs, Locale? locale) {
   if (locale == null) return textoEs;
   switch (locale.languageCode) {
     case 'eu':
-      return narrativaEu[textoEs] ?? traduccionesEso[textoEs]?[0] ?? textoEs;
+      return narrativaEu[textoEs] ?? narrativaArcoCinco[textoEs]?[0] ?? traduccionesEso[textoEs]?[0] ?? textoEs;
     case 'ca':
-      return narrativaCa[textoEs] ?? traduccionesEso[textoEs]?[1] ?? textoEs;
+      return narrativaCa[textoEs] ?? narrativaArcoCinco[textoEs]?[1] ?? traduccionesEso[textoEs]?[1] ?? textoEs;
     default:
       return textoEs;
   }

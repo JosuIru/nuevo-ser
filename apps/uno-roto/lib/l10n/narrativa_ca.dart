@@ -3536,4 +3536,9 @@ const Map<String, String> narrativaCa = <String, String>{
       'Si x + y = {s} i x − y = {d}, quant val x?',
   'Si y = {m}x − {n}, ¿cuánto vale y cuando x = {x}?':
       'Si y = {m}x − {n}, quant val y quan x = {x}?',
+  // Taller de dibujo: personajes del Arco V
+  'Guardián del Archivo':
+      'Guardià de l\'Arxiu',
+  'La Algebrista':
+      'L\'Algebrista',
 };

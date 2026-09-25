@@ -94,12 +94,18 @@ void main() {
     test('todos los combates cerrados → null', () {
       expect(
         OrquestadorEscenas.combateKurzPendiente({
-          'escena_1_5_vista', 'combate_kurz_1_completado',
-          'escena_1_10_pre_vista', 'combate_kurz_2_completado',
-          'escena_1_12_pre_vista', 'combate_kurz_3_completado',
-          'escena_2_12_vista', 'combate_zafran_completado',
-          'escena_3_3_vista', 'combate_duel_kai_completado',
-          'escena_4_8_fuego_vista', 'combate_vorax_completado',
+          'escena_1_5_vista',
+          'combate_kurz_1_completado',
+          'escena_1_10_pre_vista',
+          'combate_kurz_2_completado',
+          'escena_1_12_pre_vista',
+          'combate_kurz_3_completado',
+          'escena_2_12_vista',
+          'combate_zafran_completado',
+          'escena_3_3_vista',
+          'combate_duel_kai_completado',
+          'escena_4_8_fuego_vista',
+          'combate_vorax_completado',
         }),
         isNull,
       );
@@ -149,8 +155,7 @@ void main() {
       }
     });
 
-    test(
-        'catálogo cerrado y arco 4 cerrado → variante recurrente de Era 2',
+    test('catálogo cerrado y arco 4 cerrado → variante recurrente de Era 2',
         () {
       // Cargamos como vistas todas las del catálogo principal y todos
       // los combates cerrados. `escena_4_14_vista` está incluido (es
@@ -165,6 +170,7 @@ void main() {
         'combate_zafran_completado',
         'combate_duel_kai_completado',
         'combate_vorax_completado',
+        'combate_velo_completado',
       };
       final decision = decidir(flagsActivos: flags);
       expect(decision, isA<VariantePendiente>(),
@@ -184,6 +190,7 @@ void main() {
         'combate_zafran_completado',
         'combate_duel_kai_completado',
         'combate_vorax_completado',
+        'combate_velo_completado',
       };
       final decision = decidir(
         flagsActivos: flags,
@@ -255,8 +262,12 @@ void main() {
       // disparable y se suprime, no debe devolver VariantePendiente.
       final decision = decidir(
         flagsActivos: const {
-          'escena_1_1_vista', 'escena_1_2_vista', 'escena_1_3_vista',
-          'escena_1_4_vista', 'escena_1_5_vista', 'escena_1_6_vista',
+          'escena_1_1_vista',
+          'escena_1_2_vista',
+          'escena_1_3_vista',
+          'escena_1_4_vista',
+          'escena_1_5_vista',
+          'escena_1_6_vista',
           'escena_1_7_vista',
           'combate_kurz_1_completado',
         },
@@ -437,9 +448,13 @@ void main() {
       // siguiente decisión es la 1.6 y que ES un cierre amable — el
       // día 1 debe terminar bien, no en una madeja de escenas.
       final flags = <String>{
-        'escena_1_1_vista', 'escena_1_2_vista', 'escena_1_3_vista',
-        'escena_1_4_vista', 'escena_1_5_vista',
-        'combate_kurz_1_completado', 'derrota_kurz_1',
+        'escena_1_1_vista',
+        'escena_1_2_vista',
+        'escena_1_3_vista',
+        'escena_1_4_vista',
+        'escena_1_5_vista',
+        'combate_kurz_1_completado',
+        'derrota_kurz_1',
       };
       final decision = decidir(flagsActivos: flags);
       expect(decision, isA<CinematicaPendiente>());

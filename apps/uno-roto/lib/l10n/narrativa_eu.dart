@@ -3532,4 +3532,9 @@ const Map<String, String> narrativaEu = <String, String>{
       'x + y = {s} eta x − y = {d} badira, zenbat balio du x-k?',
   'Si y = {m}x − {n}, ¿cuánto vale y cuando x = {x}?':
       'y = {m}x − {n} bada, zenbat balio du y-k x = {x} denean?',
+  // Taller de dibujo: personajes del Arco V
+  'Guardián del Archivo':
+      'Artxiboko zaindaria',
+  'La Algebrista':
+      'Algebralaria',
 };

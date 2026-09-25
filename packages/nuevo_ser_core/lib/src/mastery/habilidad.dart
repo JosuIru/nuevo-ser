@@ -16,7 +16,13 @@ class Habilidad {
   final int tiempoMedianoMinSeg;
   final int tiempoMedianoMaxSeg;
 
+  /// Curso escolar orientativo en que se trabaja (`4P` = 4.º de
+  /// Primaria … `2E` = 2.º de ESO), si el catálogo lo declara. Sirve
+  /// para adaptar el juego al nivel del niño.
+  final String? curso;
+
   const Habilidad({
+    this.curso,
     required this.identificador,
     required this.nombre,
     required this.dominio,
@@ -44,6 +50,7 @@ class Habilidad {
       umbralPrecision: (json['precision_threshold'] as num).toDouble(),
       tiempoMedianoMinSeg: tiempo[0].toInt(),
       tiempoMedianoMaxSeg: tiempo[1].toInt(),
+      curso: json['course'] as String?,
     );
   }
 }

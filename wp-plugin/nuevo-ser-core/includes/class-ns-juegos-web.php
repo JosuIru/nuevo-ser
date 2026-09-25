@@ -240,7 +240,7 @@ class NS_Juegos_Web {
 				<p class="ns-ur-entrada">
 					<?php
 					echo wp_kses(
-						__( 'Kai y Oryn recorren los siete distritos de una ciudad que se ha quedado sin luz. Cada cuenta bien pensada devuelve una farola, un puente, una calle. En los recreativos, <strong>Rexán</strong> guarda veinticuatro máquinas, en dos plantas, donde las matemáticas se juegan. Para chicas y chicos de <strong>9 a 12 años</strong>.', 'nuevo-ser-core' ),
+						__( 'Kai y Oryn recorren los siete distritos de una ciudad que se ha quedado sin luz. Cada cuenta bien pensada devuelve una farola, un puente, una calle. En los recreativos, <strong>Rexán</strong> guarda veinticuatro máquinas, en dos plantas, donde las matemáticas se juegan. Para chicas y chicos de <strong>9 a 14 años</strong>: empieza por su curso, de 4.º de Primaria a 2.º de ESO.', 'nuevo-ser-core' ),
 						array( 'strong' => array() )
 					);
 					?>
@@ -254,7 +254,7 @@ class NS_Juegos_Web {
 					<?php echo NS_Descargas_Apk::enlace( 'uno-roto', 'ns-ur-enlace ns-ur-descarga' ); // phpcs:ignore WordPress.Security.EscapeOutput -- escapado en la clase ?>
 					<button type="button" class="ns-ur-enlace ns-ur-compartir" data-ns-ur-compartir
 						data-titulo="Uno Roto"
-						data-texto="<?php esc_attr_e( 'Uno Roto: un juego de matemáticas para 9 a 12 años. Sin anuncios, sin puntos, sin rastreadores.', 'nuevo-ser-core' ); ?>"
+						data-texto="<?php esc_attr_e( 'Uno Roto: un juego de matemáticas para 9 a 14 años. Sin anuncios, sin puntos, sin rastreadores.', 'nuevo-ser-core' ); ?>"
 						data-copiado="<?php esc_attr_e( 'Enlace copiado', 'nuevo-ser-core' ); ?>">
 						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></svg>
 						<span><?php esc_html_e( 'Compartir', 'nuevo-ser-core' ); ?></span>

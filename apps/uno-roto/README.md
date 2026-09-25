@@ -6,22 +6,22 @@ Parte de la línea **Colección Nuevo Ser Kids**.
 
 ## Estado del proyecto
 
-**MVP prácticamente completo (~95%)**. Catálogo de **76 habilidades** implementado en 11 dominios, 4 arcos narrativos con más de 60 escenas, combates jugables, motor adaptativo, backend WordPress y tutor IA.
+**MVP prácticamente completo (~95%)**. Catálogo de **106 habilidades** en 11 dominios, de 4.º de Primaria a 2.º de ESO (9 a 14 años), con prueba de nivel inicial, 4 arcos narrativos con más de 60 escenas, combates jugables, motor adaptativo, backend WordPress y tutor IA.
 
 ## Lo que incluye
 
-### 76 habilidades en 11 dominios
-- **FR** (22) — Fracciones: unitario, comparación, simplificar, amplificar, mixto a impropio, equivalente, fracción de cantidad, ordenar, dual (suma, resta, multiplicación, división)
+### 106 habilidades en 11 dominios
+- **FR** (23) — Fracciones: unitario, comparación, simplificar, amplificar, mixto a impropio, equivalente, fracción de cantidad, ordenar, dual (suma, resta, multiplicación, división), fracciones con signo
 - **DEC** (9) — Decimales: lectura, comparación, ordenar, redondeo, operaciones, conversión fracción↔decimal
-- **PROP** (7) — Proporcionalidad: razón, regla de tres, porcentajes, aumentos y descuentos, escala, proporcionalidad directa
-- **DIV** (7) — Divisibilidad: múltiplos, divisores, criterios, primos, MCM y MCD
+- **PROP** (10) — Proporcionalidad: razón, regla de tres, porcentajes, aumentos y descuentos, escala, proporcionalidad directa e inversa, porcentajes encadenados, repartos
+- **DIV** (8) — Divisibilidad: múltiplos, divisores, criterios, primos, MCM y MCD, factorización
 - **OP** (3) — Jerarquía de operaciones: básica y con fracciones, operación mixta decimal+fracción
-- **MED** (5) — Medidas: longitud, masa y capacidad, tiempo sexagesimal, ángulos, superficie y áreas
-- **GEO** (8) — Geometría: polígonos, perímetro, área de rectángulo y triángulo, círculo, volumen, simetría axial, ortoedro
-- **EST** (6) — Estadística: gráfico de barras, gráfico circular, media, moda y mediana, probabilidad
-- **ARI** (5) — Aritmética: suma, resta, multiplicación, división, operaciones combinadas
-- **ALG** (3) — Álgebra: ecuaciones lineales, ecuaciones de ambos lados, valor absoluto
-- **FUN** (1) — Funciones: relación lineal
+- **MED** (6) — Medidas: longitud, masa y capacidad, tiempo sexagesimal, ángulos, superficie y áreas, volumen
+- **GEO** (13) — Geometría: polígonos, perímetro, áreas, círculo, volumen, simetría axial, Pitágoras, Tales, prismas, cilindros, pirámides, conos y esferas
+- **EST** (9) — Estadística: gráficos, media, moda y mediana, tablas de frecuencias, dispersión, probabilidad simple y compuesta
+- **ARI** (9) — Aritmética: enteros (las cuatro operaciones y combinadas), potencias, raíces, notación científica
+- **ALG** (12) — Álgebra: lenguaje algebraico, valor numérico, monomios, polinomios, identidades notables, ecuaciones de primer y segundo grado, sistemas, problemas
+- **FUN** (4) — Funciones: relación lineal, coordenadas, lectura de gráficas, función lineal y afín
 
 ### Narrativa — 4 arcos completos
 - **Arco 1** (14 escenas): El encuentro con Sora, el primer Fragmento, la ciudad rota. Combates con Kurz.

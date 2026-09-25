@@ -70,9 +70,8 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             const SizedBox(height: 28),
             const _Seccion(
               titulo: 'EL JUEGO',
-              cuerpo:
-                  'Uno Roto es un juego de matemáticas para niños y niñas '
-                  '9–12. Las matemáticas son el mundo en el que se mueven '
+              cuerpo: 'Uno Roto es un juego de matemáticas para niños y niñas '
+                  'de 9 a 14 años. Las matemáticas son el mundo en el que se mueven '
                   '— no un peaje para llegar a la diversión. Cada combate '
                   'es un puzzle de fracciones, decimales o proporciones; '
                   'cada Fragmento atrapado restaura un trozo de ciudad.\n\n'
@@ -82,8 +81,7 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             ),
             _Seccion(
               titulo: 'LAS MATEMÁTICAS',
-              cuerpo:
-                  '${_totalHabilidades ?? 66} habilidades repartidas en 8 '
+              cuerpo: '${_totalHabilidades ?? 66} habilidades repartidas en 8 '
                   'dominios: fracciones, decimales, proporciones, '
                   'divisibilidad, operaciones, medida, geometría y '
                   'estadística. Un motor adaptativo elige la siguiente '
@@ -92,8 +90,7 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             ),
             _Seccion(
               titulo: 'LA CIUDAD',
-              cuerpo:
-                  '${CatalogoDistritos.todos.length} distritos para '
+              cuerpo: '${CatalogoDistritos.todos.length} distritos para '
                   'recorrer y La Montaña al horizonte. Cada distrito '
                   'tiene su atmósfera (Tejados, Canales, Mercado, '
                   'Industria, Puerto, Afueras) y se desbloquea al ir '
@@ -101,8 +98,7 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             ),
             _Seccion(
               titulo: 'LA HISTORIA',
-              cuerpo:
-                  '${ProgresoArco.todos.length} arcos narrativos con '
+              cuerpo: '${ProgresoArco.todos.length} arcos narrativos con '
                   '$_totalEscenas escenas cinemáticas en total. Sora '
                   'guía el camino, los Fragmentos nombrados (Kurz, '
                   'Zafrán, Vorax) ponen los obstáculos, y Eco aparece '
@@ -110,8 +106,7 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             ),
             const _Seccion(
               titulo: 'LOS PERSONAJES',
-              cuerpo:
-                  '**Sora** — la guía. Voz seca, sin adornos.\n'
+              cuerpo: '**Sora** — la guía. Voz seca, sin adornos.\n'
                   '**Kurz** — el primer Fragmento que habla. Murmura.\n'
                   '**Eco** — el tutor IA, voz poética, llega por '
                   'silencio.\n'
@@ -124,22 +119,19 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             ),
             const _Seccion(
               titulo: 'IDIOMAS',
-              cuerpo:
-                  'Castellano, euskera y catalán desde el primer '
+              cuerpo: 'Castellano, euskera y catalán desde el primer '
                   'arranque. La traducción inicial es automática — la '
                   'voz de cada personaje aún está en revisión humana.',
             ),
             const _Seccion(
               titulo: 'LICENCIA',
-              cuerpo:
-                  'Código AGPL-3.0. Contenido (textos, arte, sonido) '
+              cuerpo: 'Código AGPL-3.0. Contenido (textos, arte, sonido) '
                   'CC-BY-SA 4.0. Sin tracking, sin anuncios, sin '
                   'monetización. Privacidad por diseño.',
             ),
             const _Seccion(
               titulo: 'ARTE',
-              cuerpo:
-                  'Kai y Oryn: dibujos a mano del autor. El resto del '
+              cuerpo: 'Kai y Oryn: dibujos a mano del autor. El resto del '
                   'elenco lleva retratos provisionales tomados de Las '
                   'Versiones (acuarelas generadas con DALL-E 3 de OpenAI y '
                   'relicenciadas como contenido de la Colección) hasta que '
@@ -149,8 +141,7 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
             ),
             const _Seccion(
               titulo: 'TUTOR IA',
-              cuerpo:
-                  'Cuando el niño falla tres veces seguidas y el '
+              cuerpo: 'Cuando el niño falla tres veces seguidas y el '
                   'Fragmento se le escapa, aparece la opción de hablar '
                   'con Eco. Las preguntas se filtran (sin emails, sin '
                   'texto fuera del alcance del juego) y la respuesta '
@@ -166,13 +157,16 @@ class _PantallaAcercaDeState extends State<PantallaAcercaDe> {
                 onPressed: () => abrirActualizacionesUnoRoto(context),
                 icon: const Icon(Icons.system_update, size: 18),
                 label: Text(
-                  traducirNarrativa('ACTUALIZACIONES', Localizations.localeOf(context)),
+                  traducirNarrativa(
+                      'ACTUALIZACIONES', Localizations.localeOf(context)),
                   style: const TextStyle(letterSpacing: 2, fontSize: 12),
                 ),
                 style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   foregroundColor: PaletaNeon.textoPrincipal,
-                  side: BorderSide(color: PaletaNeon.violetaNeon.withOpacity(0.6)),
+                  side: BorderSide(
+                      color: PaletaNeon.violetaNeon.withOpacity(0.6)),
                 ),
               ),
             ),
@@ -337,7 +331,7 @@ class _BotonCompartir extends StatelessWidget {
       'https://github.com/JosuIru/nuevo-ser/releases?q=uno-roto&expanded=true';
 
   static const String _textoCompartir =
-      'Uno Roto — juego de matemáticas para 9-12 años. '
+      'Uno Roto — juego de matemáticas para 9 a 14 años. '
       'Sin tracking, sin anuncios, sin compras. '
       'Descarga el APK desde: $_urlReleaseLatest';
 
@@ -347,7 +341,7 @@ class _BotonCompartir extends StatelessWidget {
       child: FilledButton.tonalIcon(
         onPressed: () => Share.share(
           _textoCompartir,
-          subject: 'Uno Roto — juego de matemáticas para niños 9-12',
+          subject: 'Uno Roto — juego de matemáticas para 9 a 14 años',
         ),
         icon: const Icon(Icons.share_outlined, size: 18),
         label: const Text(

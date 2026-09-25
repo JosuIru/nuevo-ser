@@ -219,7 +219,8 @@ class _SlideBienvenida extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            _Etiqueta('76 habilidades · 8 dominios · 4 arcos narrativos'),
+            _Etiqueta(
+                '106 habilidades · 11 dominios · 4.º de Primaria a 2.º de ESO'),
           ],
         ),
       ),
@@ -293,9 +294,8 @@ class _SlideMapa extends StatelessWidget {
       width: 60,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: activo
-            ? PaletaNeon.violetaBase.withOpacity(0.4)
-            : Colors.black26,
+        color:
+            activo ? PaletaNeon.violetaBase.withOpacity(0.4) : Colors.black26,
         borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: activo
@@ -316,9 +316,7 @@ class _SlideMapa extends StatelessWidget {
             nombre,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: activo
-                  ? PaletaNeon.textoPrincipal
-                  : PaletaNeon.textoTenue,
+              color: activo ? PaletaNeon.textoPrincipal : PaletaNeon.textoTenue,
               fontSize: 7,
             ),
           ),
@@ -428,8 +426,8 @@ class _SlidePuzzles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _PlantillaSlide(
-      titulo: '76 Tipos de Puzzle',
-      subtitulo: '8 dominios curriculares',
+      titulo: '106 habilidades',
+      subtitulo: '11 dominios curriculares',
       nino: null,
       cuerpo: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -446,19 +444,24 @@ class _SlidePuzzles extends StatelessWidget {
                   children: [
                     _chipDomino('FR', 'Fracciones', PaletaNeon.azulNeon),
                     _chipDomino('DEC', 'Decimales', PaletaNeon.violetaNeon),
-                    _chipDomino('PROP', 'Proporciones', PaletaNeon.ambarCanales),
+                    _chipDomino(
+                        'PROP', 'Proporciones', PaletaNeon.ambarCanales),
                     _chipDomino('DIV', 'Divisibilidad', PaletaNeon.exitoSuave),
                     _chipDomino('OP', 'Operaciones', PaletaNeon.rosaAcento),
                     _chipDomino('MED', 'Medidas', PaletaNeon.textoPrincipal),
                     _chipDomino('GEO', 'Geometría', PaletaNeon.azulNeon),
                     _chipDomino('EST', 'Estadística', PaletaNeon.violetaNeon),
+                    _chipDomino(
+                        'ARI', 'Enteros y potencias', PaletaNeon.ambarCanales),
+                    _chipDomino('ALG', 'Álgebra', PaletaNeon.exitoSuave),
+                    _chipDomino('FUN', 'Funciones', PaletaNeon.rosaAcento),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 16),
             Text(
-              'Cada habilidad tiene su propio tipo de puzzle con distractores curados a partir de errores reales de niños. No son ejercicios genéricos — cada uno ataca una dificultad concreta.',
+              'Cada habilidad tiene su propio puzzle con distractores sacados de los errores típicos. No son ejercicios genéricos — cada uno ataca una dificultad concreta. Las de 1.º y 2.º de ESO llegan como problemas con dibujo: plano, gráficas, cuerpos, tablas.',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: PaletaNeon.textoTenue,
@@ -563,7 +566,8 @@ class _SlideNarrativa extends StatelessWidget {
                   ),
                   const Divider(color: PaletaNeon.textoTenue, height: 1),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     child: Text(
                       'Kurz · Eco · Zafrán · Kai · Vorax · Vadic · Ari · Irune · Niko · Rexán',
                       textAlign: TextAlign.center,
@@ -587,7 +591,8 @@ class _SlideNarrativa extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            _Etiqueta('Cinemáticas con diálogos, opciones y combates narrativos'),
+            _Etiqueta(
+                'Cinemáticas con diálogos, opciones y combates narrativos'),
           ],
         ),
       ),
@@ -641,7 +646,8 @@ class _SlideProgreso extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            _Etiqueta('Decaimiento 21 días · Anti-repetición · Dificultad adaptativa'),
+            _Etiqueta(
+                'Decaimiento 21 días · Anti-repetición · Dificultad adaptativa'),
           ],
         ),
       ),
@@ -831,7 +837,7 @@ class _SlideEntrenamiento extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            _Etiqueta('8 dominios · Dificultad progresiva · Sin límite'),
+            _Etiqueta('11 dominios · Dificultad progresiva · Sin límite'),
           ],
         ),
       ),
@@ -903,7 +909,8 @@ class _SlideTutor extends StatelessWidget {
                             height: 20,
                             decoration: BoxDecoration(
                               border: Border.all(
-                                  color: PaletaNeon.textoTenue.withOpacity(0.3)),
+                                  color:
+                                      PaletaNeon.textoTenue.withOpacity(0.3)),
                               borderRadius: BorderRadius.circular(4),
                             ),
                           ),

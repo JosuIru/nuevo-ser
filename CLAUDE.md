@@ -13,7 +13,7 @@ Cuando los docs de este repo dicen "la Colección" sin más, se refieren a Kids.
 ```
 .
 ├── apps/
-│   ├── uno-roto/         juego de matemáticas 9-12 (Kids, en producción, fase ~8-9 MVP)
+│   ├── uno-roto/         juego de matemáticas 9-14 (Kids, en producción, fase ~8-9 MVP)
 │   ├── las-versiones/    juego de pensamiento histórico 10-14 (Kids, Fase 10)
 │   ├── el-cuaderno/      cuaderno de campo digital 9-13 (Kids, Bloque B)
 │   ├── el-descifrador/   juego de oficio civil para descifrar documentos 11-14 (Kids, esqueleto v0.1.0)

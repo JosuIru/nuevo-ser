@@ -42,8 +42,7 @@ class PantallaInstrucciones extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              for (final seccion in secciones)
-                _BloqueSeccion(seccion: seccion),
+              for (final seccion in secciones) _BloqueSeccion(seccion: seccion),
             ],
           ),
         ),
@@ -152,8 +151,8 @@ const List<_SeccionInstrucciones> _instruccionesEs = [
   _SeccionInstrucciones(
     titulo: 'PARA TUTORES Y MAESTROS',
     cuerpo:
-        '**Qué entrena.** Uno Roto cubre **66 habilidades** del último ciclo de primaria: fracciones (de la lectura a las cuatro operaciones), decimales (incluido el redondeo y la multiplicación cruzada), proporciones (regla de tres, porcentajes, escala), divisibilidad (criterios, primos, MCM/MCD), jerarquía de operaciones, medidas (longitud, masa, capacidad, tiempo, ángulos, áreas), geometría básica (clasificación, perímetro, área de polígonos y círculo, volumen del ortoedro, simetría) y estadística (gráfico de barras y circular). Un motor adaptativo elige qué practicar en función de los aciertos, los fallos y el tiempo.\n\n'
-        '**Cómo se adapta a la edad.** El juego no pregunta edad ni curso. Cada niño empieza igual: las 66 habilidades en *inexplorada*. El motor mide precisión y tiempo en cada intento, sube una habilidad de nivel cuando hay aciertos consistentes, y la baja con el paso de los días si no se practica. El selector da prioridad a la **zona de desarrollo próximo** — lo que el niño está empezando a entender — saca del pool lo que ya domina y respeta dependencias entre habilidades para formar un currículo natural sin currículo declarado. Resultado: un niño de nueve ve casos simples una y otra vez hasta consolidarlos; uno de doce con más rodaje los dispara a *maestría* enseguida y el juego le sirve lo que todavía le viene grande. Sin preguntas, sin etiquetas, sin nivel inicial asumido.\n\n'
+        '**Qué entrena.** Uno Roto cubre **106 habilidades** de 4.º de Primaria a 2.º de ESO: fracciones (de la lectura a las cuatro operaciones, también con signo), decimales, proporciones (regla de tres directa e inversa, porcentajes encadenados, repartos, escala), divisibilidad (criterios, primos, factorización, MCM/MCD), números enteros y potencias (incluida la notación científica), jerarquía de operaciones, medidas, geometría (áreas de polígonos, Pitágoras, Tales, volúmenes de prismas, cilindros, pirámides, conos y esferas), álgebra (lenguaje algebraico, monomios y polinomios, identidades notables, ecuaciones de primer y segundo grado, sistemas y problemas), funciones (coordenadas, gráficas, función lineal) y estadística y probabilidad. Un motor adaptativo elige qué practicar en función de los aciertos, los fallos y el tiempo.\n\n'
+        '**Cómo se adapta a la edad y al nivel.** El punto de partida lo pone una prueba corta con Sora (unas diez preguntas, sin marcador) o el adulto, que elige el curso desde la pantalla de Habilidades. Lo de los cursos anteriores se da por sabido y lo que viene grande no aparece todavía. A partir de ahí manda el motor: mide precisión y tiempo en cada intento, sube una habilidad de nivel cuando hay aciertos consistentes y la baja con el paso de los días si no se practica. El selector da prioridad a la **zona de desarrollo próximo** — lo que el niño está empezando a entender — y respeta las dependencias entre habilidades. Si algo dado por sabido cuesta, vuelve a salir. Sin punto de partida, el juego empieza por lo más básico.\n\n'
         '**No es un juego de puntos.** No hay rankings, ni medallas, ni racha de días. La única medida visible es el rango narrativo y un contador discreto de esquirlas, que es **proxy de progreso, no recompensa**. No se diseñó para enganchar; se diseñó para acompañar. Que el niño deje de jugar cuando le apetezca es un éxito, no un fracaso.\n\n'
         '**Privacidad por diseño.** El progreso vive en el aparato. No hay anuncios, no hay analítica, no hay compras integradas. Si un educador conecta el juego a un servidor (opcional), el niño tiene un identificador anónimo: el sistema separa hermanos y compañeros, pero no envía nombre real ni datos sensibles.\n\n'
         '**Sobre el tutor.** El juego incluye un tutor — *Eco* — al que el niño puede preguntar cuando se atasca. Lo que se le pregunta y lo que se le contesta no salen del juego con su nombre. Las preguntas anónimas se pueden cachear para que muchos niños se beneficien de la misma explicación. Eco no da soluciones directas: ofrece metáforas, analogías, hilos.\n\n'
@@ -161,7 +160,7 @@ const List<_SeccionInstrucciones> _instruccionesEs = [
         '**Cómo acompañar.** La mejor compañía es el silencio interesado. Mire al niño jugar de vez en cuando. Pregúntele por la historia, por los personajes, por lo que está aprendiendo — no por las puntuaciones. Si se frustra con un Fragmento, ofrézcale parar. No está obligado a vencer en ningún momento.\n\n'
         '**Sin sesiones cronometradas.** Que juegue cuando le apetezca. Que pare cuando quiera. La cadencia la pone él.\n\n'
         '**Idiomas.** Castellano, euskera y catalán. Las traducciones de los textos largos pueden estar en revisión humana — el castellano es la voz canónica.\n\n'
-        '**Edad recomendada.** 9-12 años. Niños más pequeños pueden jugar acompañados; niños más mayores también, si las matemáticas del último ciclo aún les vienen bien.\n\n'
+        '**Edad recomendada.** De 9 a 14 años (de 4.º de Primaria a 2.º de ESO). Niños más pequeños pueden jugar acompañados.\n\n'
         '*Uno Roto* es uno de los juegos de la **Colección Nuevo Ser Kids**. Código abierto bajo AGPL-3.0; contenido bajo CC BY-SA 4.0.',
   ),
 ];

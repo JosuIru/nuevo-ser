@@ -3479,4 +3479,61 @@ const Map<String, String> narrativaCa = <String, String>{
       'per dins',
   'Dibuja lo que se ve dentro de la máquina {n}, detrás del juego: un paisaje, un cielo, lo que quieras. Luego hazle una foto con buena luz.':
       'Dibuixa el que es veu dins de la màquina {n}, darrere del joc: un paisatge, un cel, el que vulguis. Després fes-hi una foto amb bona llum.',
+  // Punto de partida: prueba de nivel con Sora
+  'Antes de salir quiero ver qué sabes ya. Unas preguntas, sin prisa. No cuentan para nada: son para saber por dónde empezar.':
+      'Abans de sortir vull veure què saps ja. Unes preguntes, sense presses. No compten per a res: són per saber per on començar.',
+  'Empezamos.':
+      'Comencem.',
+  'Ya sé por dónde empezar: {curso}. Lo de antes lo doy por sabido. Si algo cuesta, volverá a salir.':
+      'Ja sé per on començar: {curso}. El d\'abans ho dono per sabut. Si alguna cosa costa, tornarà a sortir.',
+  'Ahora no':
+      'Ara no',
+  'Por dónde empiezo':
+      'Per on començo',
+  'Empezar':
+      'Començar',
+  'Vamos':
+      'Som-hi',
+  '¿Por dónde empiezo? Sora puede ver qué sabes ya.':
+      'Per on començo? La Sora pot veure què saps ja.',
+  '4.º de Primaria':
+      '4t de Primària',
+  '5.º de Primaria':
+      '5è de Primària',
+  '6.º de Primaria':
+      '6è de Primària',
+  '1.º de ESO':
+      '1r d\'ESO',
+  '2.º de ESO':
+      '2n d\'ESO',
+  '¿Qué fracción es mayor?':
+      'Quina fracció és més gran?',
+  'Son iguales':
+      'Són iguals',
+  '¿Cuánto es {a} + {b}?':
+      'Quant és {a} + {b}?',
+  '¿Cuántos minutos hay en {h} horas y cuarto?':
+      'Quants minuts hi ha en {h} hores i quart?',
+  'Simplifica {f}.':
+      'Simplifica {f}.',
+  '¿Cuánto es {a} × {k}?':
+      'Quant és {a} × {k}?',
+  '¿Cuánto es el 25 % de {t}?':
+      'Quant és el 25 % de {t}?',
+  '¿Cuál es el mínimo común múltiplo de {a} y {b}?':
+      'Quin és el mínim comú múltiple de {a} i {b}?',
+  '¿Cuánto es {b} al cubo?':
+      'Quant és {b} al cub?',
+  '¿Cuánto es −{a} + {b} − {c}?':
+      'Quant és −{a} + {b} − {c}?',
+  'Si {a}x + {b} = {c}, ¿cuánto vale x?':
+      'Si {a}x + {b} = {c}, quant val x?',
+  '¿Cuál es la raíz cuadrada de {n}?':
+      'Quina és l\'arrel quadrada de {n}?',
+  'Un triángulo rectángulo tiene catetos de {a} y {b} cm. ¿Cuánto mide la hipotenusa?':
+      'Un triangle rectangle té catets de {a} i {b} cm. Quant fa la hipotenusa?',
+  'Si x + y = {s} y x − y = {d}, ¿cuánto vale x?':
+      'Si x + y = {s} i x − y = {d}, quant val x?',
+  'Si y = {m}x − {n}, ¿cuánto vale y cuando x = {x}?':
+      'Si y = {m}x − {n}, quant val y quan x = {x}?',
 };

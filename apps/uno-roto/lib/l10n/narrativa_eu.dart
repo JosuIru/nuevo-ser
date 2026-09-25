@@ -3475,4 +3475,61 @@ const Map<String, String> narrativaEu = <String, String>{
       'barrutik',
   'Dibuja lo que se ve dentro de la máquina {n}, detrás del juego: un paisaje, un cielo, lo que quieras. Luego hazle una foto con buena luz.':
       'Marraztu makina honen barruan jokoaren atzean ikusten dena: {n}. Paisaia bat, zeru bat, nahi duzuna. Gero atera argazki bat argi onarekin.',
+  // Punto de partida: prueba de nivel con Sora
+  'Antes de salir quiero ver qué sabes ya. Unas preguntas, sin prisa. No cuentan para nada: son para saber por dónde empezar.':
+      'Irten aurretik jakin nahi dut zer dakizun jada. Galdera batzuk, presarik gabe. Ez dute ezertarako balio: nondik hasi jakiteko dira.',
+  'Empezamos.':
+      'Hasiko gara.',
+  'Ya sé por dónde empezar: {curso}. Lo de antes lo doy por sabido. Si algo cuesta, volverá a salir.':
+      'Badakit nondik hasi: {curso}. Aurrekoa jakintzat ematen dut. Zerbait kostatzen bada, berriro aterako da.',
+  'Ahora no':
+      'Orain ez',
+  'Por dónde empiezo':
+      'Nondik hasi',
+  'Empezar':
+      'Hasi',
+  'Vamos':
+      'Goazen',
+  '¿Por dónde empiezo? Sora puede ver qué sabes ya.':
+      'Nondik hasi? Sorak ikus dezake zer dakizun jada.',
+  '4.º de Primaria':
+      'Lehen Hezkuntzako 4. maila',
+  '5.º de Primaria':
+      'Lehen Hezkuntzako 5. maila',
+  '6.º de Primaria':
+      'Lehen Hezkuntzako 6. maila',
+  '1.º de ESO':
+      'DBHko 1. maila',
+  '2.º de ESO':
+      'DBHko 2. maila',
+  '¿Qué fracción es mayor?':
+      'Zein zatiki da handiagoa?',
+  'Son iguales':
+      'Berdinak dira',
+  '¿Cuánto es {a} + {b}?':
+      'Zenbat da {a} + {b}?',
+  '¿Cuántos minutos hay en {h} horas y cuarto?':
+      'Zenbat minutu daude {h} ordu eta laurdenean?',
+  'Simplifica {f}.':
+      'Sinplifikatu {f}.',
+  '¿Cuánto es {a} × {k}?':
+      'Zenbat da {a} × {k}?',
+  '¿Cuánto es el 25 % de {t}?':
+      'Zenbat da % 25, {t} kopurutik?',
+  '¿Cuál es el mínimo común múltiplo de {a} y {b}?':
+      'Zein da {a} eta {b} zenbakien multiplo komunetako txikiena?',
+  '¿Cuánto es {b} al cubo?':
+      'Zenbat da {b} ber hiru?',
+  '¿Cuánto es −{a} + {b} − {c}?':
+      'Zenbat da −{a} + {b} − {c}?',
+  'Si {a}x + {b} = {c}, ¿cuánto vale x?':
+      '{a}x + {b} = {c} bada, zenbat balio du x-k?',
+  '¿Cuál es la raíz cuadrada de {n}?':
+      'Zein da {n} zenbakiaren erro karratua?',
+  'Un triángulo rectángulo tiene catetos de {a} y {b} cm. ¿Cuánto mide la hipotenusa?':
+      'Triangelu zuzen batek {a} eta {b} cm-ko katetoak ditu. Zenbat neurtzen du hipotenusak?',
+  'Si x + y = {s} y x − y = {d}, ¿cuánto vale x?':
+      'x + y = {s} eta x − y = {d} badira, zenbat balio du x-k?',
+  'Si y = {m}x − {n}, ¿cuánto vale y cuando x = {x}?':
+      'y = {m}x − {n} bada, zenbat balio du y-k x = {x} denean?',
 };

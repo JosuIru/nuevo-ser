@@ -5,6 +5,7 @@ import '../datos/banco_ediciones_faro.dart';
 import '../datos/repositorio_encargo.dart';
 import '../datos/repositorio_faro.dart';
 import '../datos/dibujos_taller.dart';
+import '../dominio/nivel_escolar.dart';
 import '../datos/repositorio_progreso.dart';
 import '../dominio/catalogo_distritos.dart';
 import '../dominio/cuaderno.dart';
@@ -32,6 +33,7 @@ import 'pantalla_taller.dart';
 import 'pantalla_modo_dios.dart';
 import 'pantalla_tour_educadores.dart';
 import 'widgets/banner_actualizacion.dart';
+import 'pantalla_prueba_nivel.dart';
 
 /// Mapa de la ciudad. Muestra los distritos del catálogo posicionados
 /// según biblia §3.4 y la Montaña al fondo. Los distritos bloqueados
@@ -59,6 +61,13 @@ class _PantallaMapaState extends State<PantallaMapa>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controladorCielo;
   int _esquirlas = 0;
+
+  /// Las que abren distritos: las reales o el suelo del nivel escolar.
+  int _esquirlasAcceso = 0;
+
+  /// Si se enseña «¿Por dónde empiezo?»: sin punto de partida y sin
+  /// haberlo descartado.
+  bool _ofrecerPruebaNivel = false;
   RangoNarrativo _rango = RangoNarrativo.aprendiz1;
   ProgresoArco _arcoMostrado = ProgresoArco.arco1;
   int _escenasDelArcoVistas = 0;
@@ -173,6 +182,9 @@ class _PantallaMapaState extends State<PantallaMapa>
 
   Future<void> _cargar() async {
     final total = await widget.repositorio.cargarEsquirlas();
+    final acceso = await widget.repositorio.cargarEsquirlasParaAcceso();
+    final ofrecerPrueba = await widget.repositorio.cargarNivelEscolar() == null &&
+        !await widget.repositorio.cargarAvisoNivelDescartado();
     final rango = await widget.repositorio.cargarRango();
     final arco = await ProgresoArco.arcoActual(
       widget.repositorio.flagNarrativoActivo,
@@ -187,7 +199,7 @@ class _PantallaMapaState extends State<PantallaMapa>
     final encargo = GeneradorEncargoDelDia.deHoy(
       ahora: DateTime.now(),
       idsDistritosDesbloqueados: CatalogoDistritos.todos
-          .where((d) => d.esquirlasParaDesbloquear <= total)
+          .where((d) => d.esquirlasParaDesbloquear <= acceso)
           .map((d) => d.identificador)
           .toList(),
     );
@@ -198,6 +210,8 @@ class _PantallaMapaState extends State<PantallaMapa>
       _encargoDeHoy = encargo;
       _estadoEncargo = estadoEncargo;
       _esquirlas = total;
+      _esquirlasAcceso = acceso;
+      _ofrecerPruebaNivel = ofrecerPrueba;
       _rango = rango;
       _arcoMostrado = arco;
       _escenasDelArcoVistas = vistas;
@@ -567,6 +581,18 @@ class _PantallaMapaState extends State<PantallaMapa>
                       ),
                     ),
                     BannerActualizacion(repositorio: widget.repositorio),
+                    if (_ofrecerPruebaNivel)
+                      _AvisoPruebaNivel(
+                        alAbrir: () async {
+                          await Navigator.of(context).push<NivelEscolar>(MaterialPageRoute(
+                              builder: (_) => PantallaPruebaNivel(repositorio: widget.repositorio)));
+                          await _cargar();
+                        },
+                        alDescartar: () async {
+                          await widget.repositorio.descartarAvisoNivel();
+                          if (mounted) setState(() => _ofrecerPruebaNivel = false);
+                        },
+                      ),
                     if (_encargoDeHoy != null)
                       _BannerEncargo(
                         encargo: _encargoDeHoy!,
@@ -577,7 +603,7 @@ class _PantallaMapaState extends State<PantallaMapa>
                       child: _cargado
                           ? LayoutBuilder(
                               builder: (_, constraints) => _LienzoMapa(
-                                esquirlas: _esquirlas,
+                                esquirlas: _esquirlasAcceso,
                                 tamano: constraints.biggest,
                                 alEntrar: _entrarADistrito,
                                 onVerProgreso: (d) => _abrirProgreso(d),
@@ -1296,6 +1322,53 @@ class _RotuloSecretoState extends State<_RotuloSecreto> {
         ),
         maxLines: 1,
         softWrap: false,
+      ),
+    );
+  }
+}
+
+/// «¿Por dónde empiezo?»: Sora ofrece la prueba de nivel a quien aún no
+/// tiene punto de partida. Se puede descartar.
+class _AvisoPruebaNivel extends StatelessWidget {
+  final VoidCallback alAbrir;
+  final VoidCallback alDescartar;
+
+  const _AvisoPruebaNivel({required this.alAbrir, required this.alDescartar});
+
+  @override
+  Widget build(BuildContext contexto) {
+    final locale = Localizations.localeOf(contexto);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+      child: Material(
+        color: PaletaNeon.fondoMedio.withOpacity(0.7),
+        borderRadius: BorderRadius.circular(10),
+        child: InkWell(
+          key: const ValueKey('aviso-prueba-nivel'),
+          borderRadius: BorderRadius.circular(10),
+          onTap: alAbrir,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(14, 10, 4, 10),
+            child: Row(
+              children: [
+                const Icon(Icons.school_outlined, color: PaletaNeon.ambarCanales, size: 22),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    traducirNarrativa('¿Por dónde empiezo? Sora puede ver qué sabes ya.', locale),
+                    style: const TextStyle(color: PaletaNeon.textoPrincipal, fontSize: 13, height: 1.35),
+                  ),
+                ),
+                IconButton(
+                  key: const ValueKey('aviso-prueba-nivel-descartar'),
+                  icon: const Icon(Icons.close, size: 18, color: PaletaNeon.textoTenue),
+                  tooltip: traducirNarrativa('Ahora no', locale),
+                  onPressed: alDescartar,
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

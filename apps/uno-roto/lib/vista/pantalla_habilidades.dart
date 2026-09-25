@@ -4,7 +4,9 @@ import 'package:nuevo_ser_tutor/nuevo_ser_tutor.dart';
 import '../datos/catalogo_habilidades.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import '../datos/config_api.dart';
+import '../datos/nivel_de_partida.dart';
 import '../datos/repositorio_progreso.dart';
+import '../dominio/nivel_escolar.dart';
 import '../dominio/rango_narrativo.dart';
 import '../dominio/ritmo_juego.dart';
 import '../l10n/app_localizations.dart';
@@ -14,6 +16,7 @@ import '../nucleo/paleta.dart';
 import 'pantalla_acerca_de.dart';
 import 'pantalla_ajustes_sonido.dart';
 import 'pantalla_copia_seguridad.dart';
+import 'pantalla_prueba_nivel.dart';
 import 'pantalla_cuenta.dart';
 import 'pantalla_perfiles.dart';
 import 'pantalla_tutor.dart';
@@ -128,6 +131,8 @@ class _PantallaHabilidadesState extends State<PantallaHabilidades> {
               switch (id) {
                 case 'ritmo':
                   _abrirDialogoRitmo();
+                case 'nivel':
+                  _abrirDialogoPuntoDePartida();
                 case 'experto':
                   _abrirDialogoModoExperto();
                 case 'idioma':
@@ -149,6 +154,11 @@ class _PantallaHabilidadesState extends State<PantallaHabilidades> {
                 id: 'ritmo',
                 icono: Icons.speed,
                 etiqueta: textos.habTooltipRitmo,
+              ),
+              _itemMenu(
+                id: 'nivel',
+                icono: Icons.school_outlined,
+                etiqueta: 'Punto de partida',
               ),
               _itemMenu(
                 id: 'experto',
@@ -248,6 +258,77 @@ class _PantallaHabilidadesState extends State<PantallaHabilidades> {
         ),
       ),
     );
+  }
+
+  /// Punto de partida (ampliación a 14 años): la prueba de nivel con
+  /// Sora o el curso que elige el adulto. Con él, lo de cursos anteriores
+  /// se da por sabido y se abre lo que corresponde a su curso.
+  Future<void> _abrirDialogoPuntoDePartida() async {
+    final actual = await widget.repositorio.cargarNivelEscolar();
+    final origen = await widget.repositorio.cargarOrigenNivelEscolar();
+    if (!mounted) return;
+    final eleccion = await showDialog<Object>(
+      context: context,
+      builder: (ctx) => SimpleDialog(
+        backgroundColor: PaletaNeon.fondoMedio,
+        title: const Text('Punto de partida', style: TextStyle(color: PaletaNeon.textoPrincipal)),
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 0, 24, 12),
+            child: Text(
+              actual == null
+                  ? 'Sin fijar: se empieza por lo más básico. Si ya va por un curso más alto, '
+                      'que lo pruebe con Sora o elige tú el curso. Lo de cursos anteriores se '
+                      'dará por sabido; si algo le cuesta, volverá a salir.'
+                  : 'Ahora: ${actual.nombre} (${origen == 'adulto' ? 'elegido por un adulto' : 'prueba con Sora'}). '
+                      'Lo de cursos anteriores se da por sabido.',
+              style: const TextStyle(color: PaletaNeon.textoTenue, fontSize: 13, height: 1.5),
+            ),
+          ),
+          SimpleDialogOption(
+            key: const ValueKey('nivel-prueba'),
+            onPressed: () => Navigator.of(ctx).pop('prueba'),
+            child: const Text('Prueba de nivel con Sora', style: TextStyle(color: PaletaNeon.violetaNeon)),
+          ),
+          const Divider(),
+          for (final nivel in NivelEscolar.values)
+            SimpleDialogOption(
+              key: ValueKey('nivel-${nivel.codigo}'),
+              onPressed: () => Navigator.of(ctx).pop(nivel),
+              child: Text(
+                '${nivel == actual ? '● ' : ''}${nivel.nombre}',
+                style: const TextStyle(color: PaletaNeon.textoPrincipal),
+              ),
+            ),
+          if (actual != null)
+            SimpleDialogOption(
+              onPressed: () => Navigator.of(ctx).pop('quitar'),
+              child: const Text('Empezar por lo básico', style: TextStyle(color: PaletaNeon.textoTenue)),
+            ),
+        ],
+      ),
+    );
+    if (!mounted || eleccion == null) return;
+    String? aviso;
+    if (eleccion == 'prueba') {
+      final nivel = await Navigator.of(context).push<NivelEscolar>(
+        MaterialPageRoute(builder: (_) => PantallaPruebaNivel(repositorio: widget.repositorio)),
+      );
+      if (nivel != null) aviso = 'Punto de partida: ${nivel.nombre}.';
+    } else if (eleccion == 'quitar') {
+      await widget.repositorio.guardarNivelEscolar(null, origen: 'adulto');
+      aviso = 'Sin punto de partida: se empieza por lo básico.';
+    } else if (eleccion is NivelEscolar) {
+      final sembradas = await aplicarNivelDePartida(widget.repositorio, eleccion, origen: 'adulto');
+      aviso = 'Punto de partida: ${eleccion.nombre}. $sembradas habilidades de cursos anteriores, dadas por sabidas.';
+    }
+    if (!mounted) return;
+    await _cargar();
+    if (aviso != null && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(backgroundColor: PaletaNeon.fondoMedio, content: Text(aviso)),
+      );
+    }
   }
 
   Future<void> _abrirDialogoModoExperto() async {

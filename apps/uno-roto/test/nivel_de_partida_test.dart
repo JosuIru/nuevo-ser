@@ -79,6 +79,11 @@ void main() {
     expect(await repositorio.cargarEstadoHabilidad('FR.19'), isNull);
     expect(await repositorio.cargarNivelEscolar(), NivelEscolar.sextoPrimaria);
     expect(await repositorio.cargarOrigenNivelEscolar(), 'prueba');
+    // Lo sembrado lleva sus flags de maestría (la historia los espera).
+    final flags = await repositorio.flagsNarrativosActivos();
+    expect(flags, containsAll(['fr_01_introducida', 'fr_01_en_desarrollo', 'fr_01_competente', 'fr_10_maestria']));
+    expect(flags, isNot(contains('fr_01_maestria')));
+    expect(flags.where((flag) => flag.startsWith('fr_19')), isEmpty);
     await repositorio.guardarEsquirlas(20);
     expect(await repositorio.cargarEsquirlasParaAcceso(), 100);
   });

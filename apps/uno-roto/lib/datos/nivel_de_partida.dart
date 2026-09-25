@@ -1,5 +1,6 @@
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import '../dominio/motor_maestria.dart';
 import '../dominio/nivel_escolar.dart';
 import 'catalogo_habilidades.dart';
 import 'repositorio_progreso.dart';
@@ -40,5 +41,25 @@ Future<int> aplicarNivelDePartida(
     ));
     sembradas++;
   }
+  await asegurarFlagsDeMaestria(repositorio, catalogo: catalogo);
   return sembradas;
+}
+
+/// Activa los flags narrativos de maestría (`fr_05_competente`…) de
+/// cada habilidad hasta el nivel que tiene. El motor los activa al
+/// subir de nivel; lo sembrado por el punto de partida no ha subido,
+/// y sin ellos las escenas que esperan esos flags (la 1.9, la 2.6…)
+/// no llegarían nunca. Idempotente: se puede llamar en cada arranque.
+Future<void> asegurarFlagsDeMaestria(RepositorioProgreso repositorio, {CatalogoHabilidades? catalogo}) async {
+  final habilidades = (catalogo ?? await CatalogoHabilidades.cargar()).habilidades.keys;
+  final activos = await repositorio.flagsNarrativosActivos();
+  for (final idHabilidad in habilidades) {
+    final estado = await repositorio.cargarEstadoHabilidad(idHabilidad);
+    if (estado == null) continue;
+    for (final nivel in NivelMaestria.values) {
+      if (nivel == NivelMaestria.inexplorada || nivel.index > estado.nivel.index) continue;
+      final flag = MotorMaestria.flagDeMaestria(idHabilidad, nivel);
+      if (!activos.contains(flag)) await repositorio.activarFlagNarrativo(flag);
+    }
+  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'datos/ajuste_sin_prisas.dart';
+import 'datos/nivel_de_partida.dart';
 import 'datos/repositorio_progreso.dart';
 import 'l10n/app_localizations.dart';
 import 'dominio/desafio_kurz.dart';
@@ -165,6 +166,12 @@ class _OrquestadorFasesState extends State<OrquestadorFases> {
     await _repositorio.guardarAhoraComoUltimaApertura();
     _nombreJugador = await _repositorio.cargarNombreJugador();
     _ritmo = await _repositorio.cargarRitmo();
+    // Con punto de partida, lo dado por sabido necesita sus flags de
+    // maestría para que la historia avance (perfiles de antes del
+    // arreglo incluidos).
+    if (await _repositorio.cargarNivelEscolar() != null) {
+      await asegurarFlagsDeMaestria(_repositorio);
+    }
     if (!mounted) return;
     if (!yaVioApertura) {
       setState(() => _fase = _FaseApp.apertura);

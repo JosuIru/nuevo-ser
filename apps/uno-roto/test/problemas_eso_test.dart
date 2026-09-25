@@ -29,6 +29,10 @@ void main() {
     }
   }
 
+  test('todas las habilidades de ESO tienen ficha', () {
+    expect(fichasProblemasEso.keys.toSet(), habilidadesEso);
+  });
+
   test('las fichas son de habilidades de ESO del catálogo', () {
     final catalogo =
         jsonDecode(File('assets/data/skills.json').readAsStringSync())

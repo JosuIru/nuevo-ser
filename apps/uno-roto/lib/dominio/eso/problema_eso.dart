@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'algebra_eso.dart';
+import 'ecuaciones_eso.dart';
 import 'estadistica_eso.dart';
 import 'funciones_eso.dart';
 import 'geometria_eso.dart';
@@ -191,6 +192,7 @@ final Map<String, FichaProblemaEso> fichasProblemasEso = {
     ...fichasNumerosEso,
     ...fichasProporcionEso,
     ...fichasAlgebraEso,
+    ...fichasEcuacionesEso,
     ...fichasFuncionesEso,
     ...fichasGeometriaEso,
     ...fichasEstadisticaEso,
@@ -205,6 +207,7 @@ final Map<String, List<String>> traduccionesEso = {
   ...traduccionesNumerosEso,
   ...traduccionesProporcionEso,
   ...traduccionesAlgebraEso,
+  ...traduccionesEcuacionesEso,
   ...traduccionesFuncionesEso,
   ...traduccionesGeometriaEso,
   ...traduccionesEstadisticaEso,

@@ -318,31 +318,34 @@ class _CuerpoConNegrita extends StatelessWidget {
   }
 }
 
-/// Botón "COMPARTIR" que abre el share sheet del sistema con el
-/// enlace estable a la última versión publicada en GitHub Releases.
-/// Pensado para que el adulto pase el APK a otra familia por
-/// mensajería sin tener que buscar la URL a mano.
+/// Las releases de Uno Roto (el repo publica varias apps, así que no
+/// sirve «latest»: podría ser otra). La más nueva sale la primera.
+const String _urlReleasesUnoRoto =
+    'https://github.com/JosuIru/nuevo-ser/releases?q=uno-roto&expanded=true';
+
+const String _textoCompartirUnoRoto =
+    'Uno Roto — juego de matemáticas para 9 a 14 años. '
+    'Sin tracking, sin anuncios, sin compras. '
+    'Descarga el APK desde: $_urlReleasesUnoRoto';
+
+/// Abre el share sheet del sistema con el enlace estable a la última
+/// versión publicada en GitHub Releases. Pensado para que el adulto
+/// pase el APK a otra familia por mensajería sin buscar la URL a mano.
+/// Lo usan el botón de "Acerca de" y el menú de la pantalla del adulto.
+Future<void> compartirUnoRoto() => Share.share(
+      _textoCompartirUnoRoto,
+      subject: 'Uno Roto — juego de matemáticas para 9 a 14 años',
+    );
+
+/// Botón "COMPARTIR" de "Acerca de".
 class _BotonCompartir extends StatelessWidget {
   const _BotonCompartir();
-
-  /// Las releases de Uno Roto (el repo publica varias apps, así que no
-  /// sirve «latest»: podría ser otra). La más nueva sale la primera.
-  static const String _urlReleaseLatest =
-      'https://github.com/JosuIru/nuevo-ser/releases?q=uno-roto&expanded=true';
-
-  static const String _textoCompartir =
-      'Uno Roto — juego de matemáticas para 9 a 14 años. '
-      'Sin tracking, sin anuncios, sin compras. '
-      'Descarga el APK desde: $_urlReleaseLatest';
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: FilledButton.tonalIcon(
-        onPressed: () => Share.share(
-          _textoCompartir,
-          subject: 'Uno Roto — juego de matemáticas para 9 a 14 años',
-        ),
+        onPressed: compartirUnoRoto,
         icon: const Icon(Icons.share_outlined, size: 18),
         label: const Text(
           'COMPARTIR',

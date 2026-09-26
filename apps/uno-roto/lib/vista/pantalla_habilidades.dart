@@ -137,6 +137,8 @@ class _PantallaHabilidadesState extends State<PantallaHabilidades> {
                   _abrirDialogoModoExperto();
                 case 'idioma':
                   _abrirDialogoIdioma();
+                case 'compartir':
+                  compartirUnoRoto();
                 case 'acerca':
                   _abrirAcercaDe();
                 case 'sync':
@@ -169,6 +171,11 @@ class _PantallaHabilidadesState extends State<PantallaHabilidades> {
                 id: 'idioma',
                 icono: Icons.translate,
                 etiqueta: textos.habTooltipIdioma,
+              ),
+              _itemMenu(
+                id: 'compartir',
+                icono: Icons.share_outlined,
+                etiqueta: 'Compartir Uno Roto',
               ),
               _itemMenu(
                 id: 'acerca',

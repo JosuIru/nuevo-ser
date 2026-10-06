@@ -650,7 +650,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get enviarCoordinadorAdjuntar =>
-      'Adjunta el informe (ya generado en):';
+      'Adjunta el informe PDF que acabas de guardar.';
 
   @override
   String get ajustesCoordinador => 'Coordinador (envío de informes)';
@@ -796,7 +796,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaRolesB =>
-      'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve todas y crea las suyas. Puede cambiar las que ha creado o tiene asignadas, y coger las que están sin asignar.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.';
+      'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve las tareas que tiene asignadas y las generales (las que no son de nadie). Puede cambiar el estado de las suyas, coger una general y soltar una suya. No crea tareas: si hace falta una nueva, pídesela a coordinación.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.';
 
   @override
   String get ayudaProblemasT => 'Problemas frecuentes';
@@ -1176,4 +1176,11 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ajustesActualizacionesSubtitulo =>
       'Versión instalada y última publicada';
+
+  @override
+  String get fotosSoloEnMovil => 'Las fotos se añaden desde la app del móvil.';
+
+  @override
+  String get demoFranja =>
+      'Versión de prueba: los datos se guardan solo en este navegador y no se comparten con nadie.';
 }

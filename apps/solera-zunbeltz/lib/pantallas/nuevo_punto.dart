@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import 'widgets/selector_fotos_app.dart';
 import '../datos/base_datos.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
@@ -159,7 +160,7 @@ class _NuevoPuntoState extends State<NuevoPunto> {
           const SizedBox(height: 16),
           Text(textos.puntoFotos, style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 8),
-          SelectorFotos(
+          SelectorFotosApp(
             rutas: _fotos,
             alCambiar: (nuevas) => setState(() => _fotos = nuevas),
           ),

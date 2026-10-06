@@ -34,6 +34,10 @@ dependencies:
   # En escritorio (Linux/Windows/macOS) sqflite usa el backend ffi; en
   # móvil (Android/iOS) usa el nativo. Se inicializa en main() según plataforma.
   sqflite_common_ffi: ^2.3.3
+  # En web, SQLite compilado a wasm sobre IndexedDB. Los ficheros
+  # web/sqlite3.wasm y web/sqflite_sw.js salen de
+  # `dart run sqflite_common_ffi_web:setup` (repetir al subir de versión).
+  sqflite_common_ffi_web: ^1.1.1
   shared_preferences: ^2.3.2
 
   # HTTP (reservado para IA visual ganadera en fase posterior).

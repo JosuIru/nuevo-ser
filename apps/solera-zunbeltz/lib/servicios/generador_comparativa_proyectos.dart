@@ -1,18 +1,17 @@
-import 'dart:io';
-
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../l10n/app_localizations.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/rentabilidad_proyecto.dart';
+import 'documento_generado.dart';
 
 /// Fila de la comparativa: un proyecto con su rentabilidad.
 typedef FilaComparativa = ({ProyectoTest proyecto, RentabilidadProyecto rentabilidad});
 
 /// Comparativa de rentabilidad entre proyectos de test, en PDF. Es la vista
 /// de análisis del coordinador (comparable/extrapolable). Sello PROVISIONAL.
-Future<File> generarComparativaProyectosPdf({
+Future<DocumentoGenerado> generarComparativaProyectosPdf({
   required AppLocalizations textos,
   required String idioma,
   required List<FilaComparativa> filas,
@@ -26,7 +25,7 @@ Future<File> generarComparativaProyectosPdf({
     totalBalance += f.rentabilidad.balanceCentimos;
   }
 
-  return generarInformePeriodicoPdf(
+  final bytes = await generarInformePeriodicoPdfBytes(
     tituloCabecera: textos.comparativaTitulo,
     subtituloCabecera: textos.parteSubtitulo,
     bulletsResumen: [
@@ -67,6 +66,6 @@ Future<File> generarComparativaProyectosPdf({
         ],
       ),
     ],
-    prefijoNombreFichero: 'comparativa_proyectos',
   );
+  return DocumentoGenerado.pdf('comparativa_proyectos', bytes);
 }

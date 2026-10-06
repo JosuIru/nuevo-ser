@@ -1,16 +1,17 @@
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
 import '../estado/ajustes_sincronizacion.dart';
 import '../estado/coordinador.dart';
 import '../estado/datos_notificador.dart';
 import '../servicios/cliente_sync_zunbeltz.dart';
+import '../servicios/documento_generado.dart';
 import '../servicios/exportador_espacio.dart';
 import '../estado/idioma_app.dart';
 import '../estado/sesion_espacio.dart';
+import '../estado/version_demo.dart';
 import '../modelos/persona_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../utiles/traductor_actualizaciones.dart';
@@ -55,15 +56,17 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   }
 
   Future<void> _exportarEspacio() async {
-    final ficheros = await exportarEspacioCsv();
+    final documentos = await exportarEspacioCsv();
     if (!mounted) return;
     try {
-      await Share.shareXFiles(ficheros.map((f) => XFile(f.path)).toList(),
-          subject: 'Espacio Solera Zunbeltz (CSV)');
+      await compartirDocumentos(documentos,
+          asunto: 'Espacio Solera Zunbeltz (CSV)');
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(ficheros.map((f) => f.path).join('\n'))));
+            content: Text(documentos
+                .map((documento) => documento.nombreFichero)
+                .join('\n'))));
       }
     }
   }
@@ -343,7 +346,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                     ? null
                     : _sincronizarAhora,
           ),
-          if (kDebugMode)
+          if (kDebugMode || esVersionDemo)
             ListTile(
               leading: const Icon(Icons.science_outlined),
               title: Text(textos.ajustesDemo),

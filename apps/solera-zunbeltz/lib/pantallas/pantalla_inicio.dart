@@ -92,12 +92,14 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(height: 8),
-              Text(
-                textos.hoyVacio,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              if (_abiertas == 0) ...[
+                const SizedBox(height: 8),
+                Text(
+                  textos.hoyVacio,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
               const SizedBox(height: 20),
               Center(
                 child: FilledButton.tonalIcon(

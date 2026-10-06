@@ -18,10 +18,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 import 'branding.dart';
+import 'datos/base_datos.dart';
 import 'estado/idioma_app.dart';
 import 'estado/sesion_espacio.dart';
+import 'estado/version_demo.dart';
 import 'l10n/app_localizations.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_fincas.dart';
@@ -31,9 +34,12 @@ import 'pantallas/pantalla_proyectos.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // En escritorio (Linux/Windows/macOS) sqflite necesita el backend ffi;
-  // en móvil usa el nativo y esto no se toca.
-  if (!kIsWeb && (Platform.isLinux || Platform.isWindows || Platform.isMacOS)) {
+  // En web sqflite va sobre SQLite wasm + IndexedDB; en escritorio
+  // (Linux/Windows/macOS) necesita el backend ffi; en móvil usa el nativo
+  // y esto no se toca.
+  if (kIsWeb) {
+    databaseFactory = databaseFactoryFfiWeb;
+  } else if (Platform.isLinux || Platform.isWindows || Platform.isMacOS) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
   }
@@ -43,6 +49,14 @@ Future<void> main() async {
   await precargarIdiomaZunbeltz();
   // Persona conectada y sus permisos, guardados de la última sincronización.
   await precargarSesionEspacio();
+  if (esVersionDemo) {
+    try {
+      await BaseDatosSoleraZunbeltz().sembrarDemostracionSiVacia();
+    } catch (_) {
+      // Sin datos de ejemplo la demo sigue siendo usable: se puede cargar
+      // a mano desde Ajustes.
+    }
+  }
   runApp(const AppSoleraZunbeltz());
 }
 
@@ -79,6 +93,9 @@ class AppSoleraZunbeltz extends StatelessWidget {
             return const Locale('es');
           },
           home: const _Orquestador(),
+          builder: esVersionDemo
+              ? (contexto, hijo) => _ConFranjaDemo(hijo: hijo!)
+              : null,
         );
       },
     );
@@ -169,6 +186,45 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Franja fija arriba en la versión de demostración: recuerda que los datos
+/// solo viven en este navegador y no se comparten con nadie.
+class _ConFranjaDemo extends StatelessWidget {
+  final Widget hijo;
+  const _ConFranjaDemo({required this.hijo});
+
+  @override
+  Widget build(BuildContext context) {
+    final tema = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Material(
+          color: tema.colorScheme.primary,
+          child: SafeArea(
+            bottom: false,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+              child: Text(
+                AppLocalizations.of(context).demoFranja,
+                textAlign: TextAlign.center,
+                style: tema.textTheme.bodySmall
+                    ?.copyWith(color: tema.colorScheme.onPrimary),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          child: MediaQuery.removePadding(
+            context: context,
+            removeTop: true,
+            child: hijo,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
@@ -11,11 +9,12 @@ import '../modelos/registro_actividad.dart';
 import '../modelos/registro_comercializacion.dart';
 import '../modelos/rentabilidad_proyecto.dart';
 import '../modelos/validacion_producto.dart';
+import 'documento_generado.dart';
 
 /// Informe de un proyecto de test en PDF: análisis de resultados
 /// (rentabilidad) + comercialización + producción + validación. Reutiliza el
 /// informe periódico del core. Sello PROVISIONAL.
-Future<File> generarInformeProyectoPdf({
+Future<DocumentoGenerado> generarInformeProyectoPdf({
   required AppLocalizations textos,
   required String idioma,
   required ProyectoTest proyecto,
@@ -34,7 +33,7 @@ Future<File> generarInformeProyectoPdf({
       buscarOpcion(cat, cod)?.etiqueta(idioma) ?? cod;
   String euros(int c) => '${eurosDesdeCentimos(c)} €';
 
-  return generarInformePeriodicoPdf(
+  final bytes = await generarInformePeriodicoPdfBytes(
     tituloCabecera: textos.infProyTitulo,
     subtituloCabecera: textos.parteSubtitulo,
     bulletsResumen: [
@@ -120,6 +119,6 @@ Future<File> generarInformeProyectoPdf({
         ],
       ),
     ],
-    prefijoNombreFichero: 'informe_proyecto',
   );
+  return DocumentoGenerado.pdf('informe_proyecto', bytes);
 }

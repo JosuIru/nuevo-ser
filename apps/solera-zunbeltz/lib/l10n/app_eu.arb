@@ -229,7 +229,7 @@
   "enviarCoordinador": "Bidali koordinatzaileari",
   "enviarCoordinadorTexto": "Zunbeltz Saiakuntza Guneko koordinatzailearentzako test-proiektuaren txostena.",
   "enviarCoordinadorSinDestino": "Konfiguratu koordinatzailearen helbidea Ezarpenetan.",
-  "enviarCoordinadorAdjuntar": "Erantsi txostena (hemen sortuta):",
+  "enviarCoordinadorAdjuntar": "Erantsi gorde berri duzun PDF txostena.",
   "ajustesCoordinador": "Koordinatzailea (txostenak bidaltzea)",
   "ajustesCoordinadorVacio": "Konfiguratu gabe",
   "coordinadorCorreo": "Koordinatzailearen helbide elektronikoa",
@@ -273,7 +273,7 @@
   "ayudaSyncT": "Zereginak taldearekin partekatu",
   "ayudaSyncB": "Saiakuntza Gunean sinkronizazioa erabiltzen baduzue, zereginak talde osoaren mugikorren artean partekatzen dira.\n1. Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du, eta ez da partekatzen.\n2. Ezarpenak → Zereginen sinkronizazioa atalean, jarri Zunbeltzen WordPress-aren helbidea eta zure tokena.\n3. Sakatu «Sinkronizatu orain» estaldura duzunean: zure aldaketak igotzen dira eta besteenak jaisten.\n» Zereginak bakarrik partekatzen dira. Puntuak, eremuak eta proiektuak zure mugikorrean bakarrik geratzen dira.",
   "ayudaRolesT": "Nork zer egin dezakeen",
-  "ayudaRolesB": "Pertsona bakoitzak rol bat du, koordinazioak ematen diona.\n• Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.\n• Testerra: guztiak ikusten ditu eta bereak sortzen ditu. Berak sortutakoak edo esleituta dituenak alda ditzake, eta esleitu gabe daudenak har ditzake.\n» Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe «Tokiko modua» zaude, eta dena edita dezakezu.",
+  "ayudaRolesB": "Pertsona bakoitzak rol bat du, koordinazioak ematen diona.\n• Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.\n• Testerra: esleituta dituen zereginak eta orokorrak (inorenak ez direnak) ikusten ditu. Bereen egoera alda dezake, orokor bat hartu eta berea dena utzi. Ez du zereginik sortzen: berri bat behar bada, eskatu koordinazioari.\n» Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe «Tokiko modua» zaude, eta dena edita dezakezu.",
   "ayudaProblemasT": "Ohiko arazoak",
   "ayudaProblemasB": "• «Zure rolak ez du … baimenik»: zeregin hori ez da zurea. Har ezazu esleitu gabe badago, edo eskatu koordinazioari zuri esleitzeko.\n• «… desegin da / dira» sinkronizatzean: zure rolak baimentzen ez duen zerbait ukitu duzu, eta zegoen bezala utzi da.\n• «Token incorrecto…» mezua: begiratu osorik kopiatu duzula. Galdu baduzu, koordinazioak berri bat sortuko dizu, eta zaharrak ez du balioko.\n• «finka ezezagunarekin»: zeregin hori zure mugikorrean beste izen bat duen finka batekoa da. Finkek izen bera izan behar dute mugikor guztietan.\n• Eguraldiaren iragarpena ez da agertzen: internet behar du. Gainerakoa estaldurarik gabe dabil.\n» Zure datuak zure mugikorrean daude. Aldatu edo galtzen baduzu, hitz egin lehenago koordinazioarekin.",
   "ayudaPie": "Zerbait argi ez badago, galdetu Saiakuntza Guneko koordinazioari.",
@@ -391,5 +391,7 @@
   "actualizacionesDescargaEnNavegador": "Deskarga nabigatzailean ireki da.",
   "actualizacionesErrorDescarga": "Ezin izan da deskargatu. Egiaztatu konexioa eta saiatu berriro.",
   "actualizacionesErrorInstalador": "Deskargatuta dago, baina Androidek ez du utzi instalatzailea irekitzen. Baimendu «aplikazio ezezagunak instalatzea» aplikazio honetarako mugikorraren ezarpenetan.",
-  "ajustesActualizacionesSubtitulo": "Instalatutako bertsioa eta argitaratutako azkena"
+  "ajustesActualizacionesSubtitulo": "Instalatutako bertsioa eta argitaratutako azkena",
+  "fotosSoloEnMovil": "Argazkiak mugikorreko aplikaziotik gehitzen dira.",
+  "demoFranja": "Proba-bertsioa: datuak nabigatzaile honetan bakarrik gordetzen dira eta ez dira inorekin partekatzen."
 }

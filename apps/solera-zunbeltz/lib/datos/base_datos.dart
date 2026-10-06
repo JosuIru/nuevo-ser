@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show visibleForTesting;
+import 'package:flutter/foundation.dart' show kIsWeb, visibleForTesting;
 import 'package:latlong2/latlong.dart';
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
@@ -55,8 +55,11 @@ class BaseDatosSoleraZunbeltz {
 
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
-    final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, 'solera_zunbeltz.db');
+    // En web la BD vive en IndexedDB y la "ruta" es solo su nombre.
+    final ruta = kIsWeb
+        ? 'solera_zunbeltz.db'
+        : path_lib.join(
+            (await getApplicationDocumentsDirectory()).path, 'solera_zunbeltz.db');
     _basedatos = await openDatabase(
       ruta,
       version: 8,
@@ -1031,11 +1034,14 @@ class BaseDatosSoleraZunbeltz {
   /// con categorías e IVA) para ver la app con datos sin teclearlos. No hace
   /// nada si ya hay proyectos. Devuelve true si sembró.
   Future<bool> sembrarDemostracionSiVacia() async {
-    if ((await listarProyectos()).isNotEmpty) return false;
     await sembrarFincasDemoSiVacia();
     final fincas = await listarFincas();
-    final fincaId = fincas.isEmpty ? 0 : (fincas.first.id ?? 0);
     final ahora = DateTime.now();
+    // Puntos y tareas van por separado (su propia comprobación de vacío)
+    // para que una BD con proyectos pero sin mapa también los reciba.
+    final sembroInfraestructura = await _sembrarInfraestructuraDemo(fincas, ahora);
+    if ((await listarProyectos()).isNotEmpty) return sembroInfraestructura;
+    final fincaId = fincas.isEmpty ? 0 : (fincas.first.id ?? 0);
     int hace(int dias) =>
         ahora.subtract(Duration(days: dias)).millisecondsSinceEpoch;
     final creado = ahora.millisecondsSinceEpoch;
@@ -1104,6 +1110,63 @@ class BaseDatosSoleraZunbeltz {
       await guardarApunte(g);
     }
 
+    return true;
+  }
+
+  /// Puntos y tareas **de ejemplo** alrededor del centroide de cada finca,
+  /// para que el mapa, el tablero y la pantalla Hoy no salgan vacíos en la
+  /// demostración. No son el inventario real (BLOQUEOS A4): las notas lo
+  /// dicen. No hace nada si ya hay puntos. Devuelve true si sembró.
+  Future<bool> _sembrarInfraestructuraDemo(
+      List<Finca> fincas, DateTime ahora) async {
+    if ((await listarPuntos()).isNotEmpty) return false;
+    const notaEjemplo = 'Ejemplo de demostración — no es el inventario real.';
+    final creado = ahora.millisecondsSinceEpoch;
+    int enDias(int dias) =>
+        ahora.add(Duration(days: dias)).millisecondsSinceEpoch;
+
+    // (tipo, nombre, desplazamiento lat, desplazamiento long, estado)
+    const puntosPorFinca = [
+      [
+        ('abrevadero', 'Abrevadero de la borda', 0.0030, -0.0040, 'operativo'),
+        ('manga', 'Manga de manejo', -0.0020, 0.0025, 'revisar'),
+        ('cierre', 'Cierre del cercado norte', 0.0055, 0.0010, 'averiado'),
+        ('almacen', 'Almacén de pienso', -0.0008, -0.0012, 'operativo'),
+      ],
+      [
+        ('balsa', 'Balsa', 0.0025, 0.0035, 'operativo'),
+        ('refugio', 'Refugio', -0.0030, -0.0020, 'operativo'),
+      ],
+    ];
+    final idsPunto = <String, int>{};
+    for (var indice = 0; indice < fincas.length && indice < puntosPorFinca.length; indice++) {
+      final finca = fincas[indice];
+      if (finca.id == null || finca.latitud == null || finca.longitud == null) continue;
+      for (final (tipo, nombre, desplazamientoLat, desplazamientoLong, estado) in puntosPorFinca[indice]) {
+        idsPunto[nombre] = await guardarPunto(PuntoInfraestructura(
+          fincaId: finca.id!,
+          tipo: tipo,
+          nombre: nombre,
+          latitud: finca.latitud! + desplazamientoLat,
+          longitud: finca.longitud! + desplazamientoLong,
+          estado: estado,
+          notas: notaEjemplo,
+          fechaCreacionMs: creado,
+        ));
+      }
+    }
+    if (fincas.isEmpty || fincas.first.id == null) return idsPunto.isNotEmpty;
+    final fincaPrincipal = fincas.first.id!;
+
+    for (final tarea in [
+      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Cierre del cercado norte'], titulo: 'Reparar alambrada caída', descripcion: 'Dos postes rotos tras el viento.', prioridad: 'alta', fechaObjetivoMs: enDias(-2), fechaCreacionMs: creado),
+      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Almacén de pienso'], titulo: 'Comprar pienso', prioridad: 'alta', fechaObjetivoMs: enDias(1), fechaCreacionMs: creado),
+      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Abrevadero de la borda'], titulo: 'Limpiar abrevadero', prioridad: 'media', fechaObjetivoMs: enDias(3), recurrenciaDias: 14, fechaCreacionMs: creado),
+      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Manga de manejo'], titulo: 'Revisar cancela de la manga', estado: 'en_curso', fechaObjetivoMs: enDias(5), fechaCreacionMs: creado),
+      TareaMantenimiento(fincaId: fincaPrincipal, titulo: 'Inscripción en la feria de ganado', descripcion: 'Plazo de inscripción.', prioridad: 'media', fechaObjetivoMs: enDias(10), fechaCreacionMs: creado),
+    ]) {
+      await guardarTarea(tarea);
+    }
     return true;
   }
 }

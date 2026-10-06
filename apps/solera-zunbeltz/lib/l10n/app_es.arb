@@ -250,7 +250,7 @@
   "enviarCoordinador": "Enviar al coordinador",
   "enviarCoordinadorTexto": "Informe del proyecto de test para el coordinador del Espacio Test Zunbeltz.",
   "enviarCoordinadorSinDestino": "Configura el correo del coordinador en Ajustes.",
-  "enviarCoordinadorAdjuntar": "Adjunta el informe (ya generado en):",
+  "enviarCoordinadorAdjuntar": "Adjunta el informe PDF que acabas de guardar.",
   "ajustesCoordinador": "Coordinador (envío de informes)",
   "ajustesCoordinadorVacio": "Sin configurar",
   "coordinadorCorreo": "Correo del coordinador",
@@ -294,7 +294,7 @@
   "ayudaSyncT": "Compartir las tareas con el equipo",
   "ayudaSyncB": "Si en el Espacio Test usáis la sincronización, las tareas se comparten entre los móviles de todo el equipo.\n1. Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.\n2. En Ajustes → Sincronización de tareas, pon la dirección del WordPress de Zunbeltz y tu token.\n3. Pulsa «Sincronizar ahora» cuando tengas cobertura: suben tus cambios y bajan los del resto.\n» Solo se comparten las tareas. Los puntos, las zonas y los proyectos siguen solo en tu móvil.",
   "ayudaRolesT": "Quién puede hacer qué",
-  "ayudaRolesB": "Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve todas y crea las suyas. Puede cambiar las que ha creado o tiene asignadas, y coger las que están sin asignar.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.",
+  "ayudaRolesB": "Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve las tareas que tiene asignadas y las generales (las que no son de nadie). Puede cambiar el estado de las suyas, coger una general y soltar una suya. No crea tareas: si hace falta una nueva, pídesela a coordinación.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.",
   "ayudaProblemasT": "Problemas frecuentes",
   "ayudaProblemasB": "• «Tu rol no permite…»: esa tarea no es tuya. Cógela si está sin asignar, o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• «Sin finca reconocida»: esa tarea es de una finca que en tu móvil tiene otro nombre. Las fincas tienen que llamarse igual en todos los móviles.\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Tus datos viven en tu móvil. Si lo cambias o lo pierdes, habla antes con coordinación.",
   "ayudaPie": "Si algo no queda claro, pregunta a coordinación del Espacio Test.",
@@ -429,5 +429,13 @@
   "actualizacionesDescargaEnNavegador": "Se ha abierto la descarga en el navegador.",
   "actualizacionesErrorDescarga": "No se ha podido descargar. Comprueba la conexión y vuelve a probar.",
   "actualizacionesErrorInstalador": "Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.",
-  "ajustesActualizacionesSubtitulo": "Versión instalada y última publicada"
+  "ajustesActualizacionesSubtitulo": "Versión instalada y última publicada",
+  "fotosSoloEnMovil": "Las fotos se añaden desde la app del móvil.",
+  "@fotosSoloEnMovil": {
+    "description": "En la versión web no se pueden adjuntar fotos (no hay sistema de ficheros)."
+  },
+  "demoFranja": "Versión de prueba: los datos se guardan solo en este navegador y no se comparten con nadie.",
+  "@demoFranja": {
+    "description": "Franja superior de la versión web de demostración."
+  }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import 'widgets/selector_fotos_app.dart';
 import '../datos/base_datos.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
@@ -214,7 +215,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
           Text(textos.tareaFotosAntes,
               style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 8),
-          SelectorFotos(
+          SelectorFotosApp(
             rutas: _fotosAntes,
             alCambiar: (n) => setState(() => _fotosAntes = n),
           ),
@@ -222,7 +223,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
           Text(textos.tareaFotosDespues,
               style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 8),
-          SelectorFotos(
+          SelectorFotosApp(
             rutas: _fotosDespues,
             alCambiar: (n) => setState(() => _fotosDespues = n),
           ),

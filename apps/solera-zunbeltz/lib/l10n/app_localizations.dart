@@ -1319,7 +1319,7 @@ abstract class AppLocalizations {
   /// No description provided for @enviarCoordinadorAdjuntar.
   ///
   /// In es, this message translates to:
-  /// **'Adjunta el informe (ya generado en):'**
+  /// **'Adjunta el informe PDF que acabas de guardar.'**
   String get enviarCoordinadorAdjuntar;
 
   /// No description provided for @ajustesCoordinador.
@@ -1577,7 +1577,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaRolesB.
   ///
   /// In es, this message translates to:
-  /// **'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve todas y crea las suyas. Puede cambiar las que ha creado o tiene asignadas, y coger las que están sin asignar.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.'**
+  /// **'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve las tareas que tiene asignadas y las generales (las que no son de nadie). Puede cambiar el estado de las suyas, coger una general y soltar una suya. No crea tareas: si hace falta una nueva, pídesela a coordinación.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.'**
   String get ayudaRolesB;
 
   /// No description provided for @ayudaProblemasT.
@@ -2227,6 +2227,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Versión instalada y última publicada'**
   String get ajustesActualizacionesSubtitulo;
+
+  /// En la versión web no se pueden adjuntar fotos (no hay sistema de ficheros).
+  ///
+  /// In es, this message translates to:
+  /// **'Las fotos se añaden desde la app del móvil.'**
+  String get fotosSoloEnMovil;
+
+  /// Franja superior de la versión web de demostración.
+  ///
+  /// In es, this message translates to:
+  /// **'Versión de prueba: los datos se guardan solo en este navegador y no se comparten con nadie.'**
+  String get demoFranja;
 }
 
 class _AppLocalizationsDelegate

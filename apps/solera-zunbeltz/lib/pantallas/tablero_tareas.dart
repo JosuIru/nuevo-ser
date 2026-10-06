@@ -122,7 +122,7 @@ class _TableroTareasState extends State<TableroTareas> {
     final idioma = Localizations.localeOf(context).languageCode;
     setState(() => _generandoPdf = true);
     try {
-      final fichero = await generarParteMantenimientoPdf(
+      final documento = await generarParteMantenimientoPdf(
         textos: textos,
         idioma: idioma,
         fincas: _fincas,
@@ -130,10 +130,9 @@ class _TableroTareasState extends State<TableroTareas> {
         puntosPorId: _puntosPorId,
         zonasPorId: _zonasPorId,
       );
-      final bytes = await fichero.readAsBytes();
       await Printing.sharePdf(
-        bytes: bytes,
-        filename: fichero.uri.pathSegments.last,
+        bytes: documento.bytes,
+        filename: documento.nombreFichero,
       );
     } finally {
       if (mounted) setState(() => _generandoPdf = false);

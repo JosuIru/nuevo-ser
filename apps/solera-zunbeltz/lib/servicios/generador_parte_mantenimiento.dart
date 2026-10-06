@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
@@ -9,11 +7,12 @@ import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
 import '../modelos/zona_finca.dart';
 import '../modelos/tarea_mantenimiento.dart';
+import 'documento_generado.dart';
 
 /// Genera el parte de mantenimiento en PDF reutilizando el informe
 /// periódico del core. Una tabla por finca con sus tareas. Lleva sello
 /// PROVISIONAL hasta validación humana del formato.
-Future<File> generarParteMantenimientoPdf({
+Future<DocumentoGenerado> generarParteMantenimientoPdf({
   required AppLocalizations textos,
   required String idioma,
   required List<Finca> fincas,
@@ -78,7 +77,7 @@ Future<File> generarParteMantenimientoPdf({
     ));
   }
 
-  return generarInformePeriodicoPdf(
+  final bytes = await generarInformePeriodicoPdfBytes(
     tituloCabecera: textos.parteTitulo,
     subtituloCabecera: textos.parteSubtitulo,
     bulletsResumen: [
@@ -86,6 +85,6 @@ Future<File> generarParteMantenimientoPdf({
       textos.parteResumenTareas(tareas.length),
     ],
     tablas: tablas,
-    prefijoNombreFichero: 'parte_mantenimiento',
   );
+  return DocumentoGenerado.pdf('parte_mantenimiento', bytes);
 }

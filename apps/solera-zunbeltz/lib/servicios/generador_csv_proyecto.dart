@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
@@ -10,11 +7,12 @@ import '../modelos/constantes.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_comercializacion.dart';
+import 'documento_generado.dart';
 
 /// Exporta los movimientos económicos de un proyecto (apuntes + ventas) a un
 /// CSV apto para Excel (delimitador `;`, decimales con coma, BOM UTF-8), para
 /// que el coordinador analice por su cuenta.
-Future<File> generarCsvProyecto({
+Future<DocumentoGenerado> generarCsvProyecto({
   required AppLocalizations textos,
   required String idioma,
   required ProyectoTest proyecto,
@@ -65,12 +63,7 @@ Future<File> generarCsvProyecto({
     ], delim: ';'));
   }
 
-  final contenido = '﻿${filas.join('\r\n')}';
-  final dir = await getTemporaryDirectory();
   final base = proyecto.nombre.isEmpty ? 'proyecto' : proyecto.nombre;
-  final nombre =
-      'proyecto_${base.replaceAll(RegExp(r'[^A-Za-z0-9]+'), '_')}.csv';
-  final fichero = File('${dir.path}/$nombre');
-  await fichero.writeAsString(contenido);
-  return fichero;
+  return DocumentoGenerado.csv(
+      'proyecto_${nombreSeguroFichero(base)}.csv', filas.join('\r\n'));
 }

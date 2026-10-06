@@ -649,7 +649,8 @@ class AppLocalizationsEu extends AppLocalizations {
       'Konfiguratu koordinatzailearen helbidea Ezarpenetan.';
 
   @override
-  String get enviarCoordinadorAdjuntar => 'Erantsi txostena (hemen sortuta):';
+  String get enviarCoordinadorAdjuntar =>
+      'Erantsi gorde berri duzun PDF txostena.';
 
   @override
   String get ajustesCoordinador => 'Koordinatzailea (txostenak bidaltzea)';
@@ -796,7 +797,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaRolesB =>
-      'Pertsona bakoitzak rol bat du, koordinazioak ematen diona.\n• Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.\n• Testerra: guztiak ikusten ditu eta bereak sortzen ditu. Berak sortutakoak edo esleituta dituenak alda ditzake, eta esleitu gabe daudenak har ditzake.\n» Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe «Tokiko modua» zaude, eta dena edita dezakezu.';
+      'Pertsona bakoitzak rol bat du, koordinazioak ematen diona.\n• Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.\n• Testerra: esleituta dituen zereginak eta orokorrak (inorenak ez direnak) ikusten ditu. Bereen egoera alda dezake, orokor bat hartu eta berea dena utzi. Ez du zereginik sortzen: berri bat behar bada, eskatu koordinazioari.\n» Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe «Tokiko modua» zaude, eta dena edita dezakezu.';
 
   @override
   String get ayudaProblemasT => 'Ohiko arazoak';
@@ -1178,4 +1179,12 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ajustesActualizacionesSubtitulo =>
       'Instalatutako bertsioa eta argitaratutako azkena';
+
+  @override
+  String get fotosSoloEnMovil =>
+      'Argazkiak mugikorreko aplikaziotik gehitzen dira.';
+
+  @override
+  String get demoFranja =>
+      'Proba-bertsioa: datuak nabigatzaile honetan bakarrik gordetzen dira eta ez dira inorekin partekatzen.';
 }

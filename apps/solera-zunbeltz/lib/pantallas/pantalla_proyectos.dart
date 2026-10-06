@@ -94,11 +94,10 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
                   _rentabilidad[p.id!] ?? const RentabilidadProyecto()
             ),
       ];
-      final fichero = await generarComparativaProyectosPdf(
+      final documento = await generarComparativaProyectosPdf(
           textos: textos, idioma: idioma, filas: filas);
       await Printing.sharePdf(
-          bytes: await fichero.readAsBytes(),
-          filename: fichero.uri.pathSegments.last);
+          bytes: documento.bytes, filename: documento.nombreFichero);
     } finally {
       if (mounted) setState(() => _generando = false);
     }

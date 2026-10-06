@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../branding.dart';
@@ -16,6 +15,7 @@ import '../modelos/registro_actividad.dart';
 import '../modelos/registro_comercializacion.dart';
 import '../modelos/rentabilidad_proyecto.dart';
 import '../modelos/validacion_producto.dart';
+import '../servicios/documento_generado.dart';
 import '../servicios/generador_csv_proyecto.dart';
 import '../servicios/generador_informe_proyecto.dart';
 import '../utiles/periodo.dart';
@@ -166,7 +166,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     setState(() => _generando = true);
     try {
       final (ivaSoportado, ivaRepercutido) = _ivaTotales();
-      final fichero = await generarInformeProyectoPdf(
+      final documento = await generarInformeProyectoPdf(
         textos: textos,
         idioma: idioma,
         proyecto: widget.proyecto,
@@ -179,8 +179,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
         ivaRepercutidoCentimos: ivaRepercutido,
       );
       await Printing.sharePdf(
-          bytes: await fichero.readAsBytes(),
-          filename: fichero.uri.pathSegments.last);
+          bytes: documento.bytes, filename: documento.nombreFichero);
     } finally {
       if (mounted) setState(() => _generando = false);
     }
@@ -189,7 +188,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   Future<void> _exportarCsv() async {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
-    final fichero = await generarCsvProyecto(
+    final documento = await generarCsvProyecto(
       textos: textos,
       idioma: idioma,
       proyecto: widget.proyecto,
@@ -197,14 +196,12 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
       ventas: _ventas,
     );
     try {
-      await Share.shareXFiles([XFile(fichero.path)],
-          subject: widget.proyecto.nombre);
+      await compartirDocumentos([documento], asunto: widget.proyecto.nombre);
     } catch (_) {
-      // En escritorio el menú de compartir puede no estar disponible: al
-      // menos indicamos dónde quedó el CSV.
+      // En escritorio el menú de compartir puede no estar disponible.
       if (mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text('CSV: ${fichero.path}')));
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('CSV: ${documento.nombreFichero}')));
       }
     }
   }
@@ -225,7 +222,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     setState(() => _generando = true);
     try {
       final (ivaSoportado, ivaRepercutido) = _ivaTotales();
-      final fichero = await generarInformeProyectoPdf(
+      final documento = await generarInformeProyectoPdf(
         textos: textos,
         idioma: idioma,
         proyecto: widget.proyecto,
@@ -241,24 +238,26 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
           '${widget.proyecto.persona.isEmpty ? '' : ' (${widget.proyecto.persona})'}';
       try {
         // Móvil: hoja de compartir con el PDF adjunto (eliges tu correo).
-        await Share.shareXFiles([XFile(fichero.path)],
-            subject: asunto, text: '${textos.enviarCoordinadorTexto}\n$correo');
+        await compartirDocumentos([documento],
+            asunto: asunto, texto: '${textos.enviarCoordinadorTexto}\n$correo');
       } catch (_) {
-        // Escritorio (sin hoja de compartir): abrir el cliente de correo ya
-        // dirigido al coordinador. mailto no admite adjuntos, así que la ruta
-        // del PDF va en el cuerpo para adjuntarlo a mano.
+        // Escritorio (sin hoja de compartir): primero se ofrece guardar el
+        // PDF y después se abre el cliente de correo ya dirigido al
+        // coordinador; mailto no admite adjuntos, se adjunta a mano.
+        await Printing.sharePdf(
+            bytes: documento.bytes, filename: documento.nombreFichero);
         final uri = Uri(
           scheme: 'mailto',
           path: correo,
           query: 'subject=${Uri.encodeComponent(asunto)}'
-              '&body=${Uri.encodeComponent('${textos.enviarCoordinadorTexto}\n\n${textos.enviarCoordinadorAdjuntar}\n${fichero.path}')}',
+              '&body=${Uri.encodeComponent('${textos.enviarCoordinadorTexto}\n\n${textos.enviarCoordinadorAdjuntar}')}',
         );
         try {
           await launchUrl(uri);
         } catch (_) {}
         if (mounted) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(fichero.path)));
+              .showSnackBar(SnackBar(content: Text(documento.nombreFichero)));
         }
       }
     } finally {

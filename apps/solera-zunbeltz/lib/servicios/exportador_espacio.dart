@@ -1,15 +1,12 @@
-import 'dart:io';
-
-import 'package:path_provider/path_provider.dart';
-
 import '../datos/base_datos.dart';
+import 'documento_generado.dart';
 
 /// Exporta el espacio (fincas + puntos de infraestructura) de la BD a dos CSV
 /// con **el mismo formato que `content/espacio/`**, para cerrar el bucle de
 /// captura: un coordinador marca los puntos en campo con la app, exporta aquí,
 /// y esos CSV se vuelcan en `content/espacio/` y se recompilan como seed
 /// (`dart run tool/compilar_espacio.dart`). Devuelve los ficheros generados.
-Future<List<File>> exportarEspacioCsv() async {
+Future<List<DocumentoGenerado>> exportarEspacioCsv() async {
   final bd = BaseDatosSoleraZunbeltz();
   final fincas = await bd.listarFincas();
   final puntos = await bd.listarPuntos();
@@ -45,12 +42,10 @@ Future<List<File>> exportarEspacioCsv() async {
       ].map(_campo).join(';'),
   ];
 
-  final dir = await getTemporaryDirectory();
-  final ficheroFincas = File('${dir.path}/fincas.csv');
-  final ficheroPuntos = File('${dir.path}/puntos.csv');
-  await ficheroFincas.writeAsString('﻿${fincasLineas.join('\r\n')}');
-  await ficheroPuntos.writeAsString('﻿${puntosLineas.join('\r\n')}');
-  return [ficheroFincas, ficheroPuntos];
+  return [
+    DocumentoGenerado.csv('fincas.csv', fincasLineas.join('\r\n')),
+    DocumentoGenerado.csv('puntos.csv', puntosLineas.join('\r\n')),
+  ];
 }
 
 /// Saneado: el seed se compila con un split por `;` simple, así que evitamos

@@ -34,6 +34,7 @@
  * - Registro de actividad (`includes/actividad.php`) de todo cambio
  *   aceptado, venga de la app o del panel.
  * - Panel de coordinación (`includes/panel/`) y correos (`includes/correo.php`).
+ * - La app web servida en `/app/` (`includes/app-web.php`, ficheros en `app-web/`).
  *
  * Instalación y puesta en marcha: `INSTALACION.md`. Entorno de pruebas con
  * Docker: `dev/`.
@@ -72,6 +73,7 @@ require_once __DIR__ . '/includes/panel/pagina-tareas.php';
 require_once __DIR__ . '/includes/panel/pagina-comunicacion.php';
 require_once __DIR__ . '/includes/panel/pagina-seguimiento.php';
 require_once __DIR__ . '/includes/correo.php';
+require_once __DIR__ . '/includes/app-web.php';
 
 // ============================================================
 // Esquema: se crea al activar y se actualiza al cargar si cambió

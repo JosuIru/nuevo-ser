@@ -44,9 +44,16 @@ App → **Ajustes → Sincronización**:
 
 **La primera en sincronizar debe ser coordinación**, desde el móvil donde estén las fincas y los puntos: así llegan al servidor y, de ahí, a todos. Después, cada tester configura su móvil y recibe el espacio.
 
-## 6. La versión web (opcional)
+## 6. La app web, en el mismo WordPress
 
-La app también funciona en el navegador, útil en la oficina. Se compila con `apps/solera-zunbeltz/tool/construir_demo_web.sh` (demo con datos de ejemplo) y se sube el contenido de `build/web` a una carpeta o subdominio con HTTPS. La demo guarda los datos solo en ese navegador; para usarla con el servidor real hay que compilarla sin `SOLERA_DEMO` y configurar la sincronización igual que en el móvil.
+El plugin sirve también la **versión web de la app** en `https://app.zunbeltz.com/app/` (menú Solera Zunbeltz → «Abrir la app»). Sirve para la oficina (desde el PC) y para que las testers la prueben sin instalar nada.
+
+- Va dentro del `.zip` si se compiló antes de empaquetar: `dev/construir_app_web.sh` y luego `dev/empaquetar.sh`.
+- Al abrirla desde `/app/`, la app ya sabe cuál es su servidor: en Ajustes → Sincronización solo hay que poner el **token**.
+- Los datos se guardan en el navegador y se sincronizan con el servidor como en el móvil. Las fotos no se pueden adjuntar desde la web.
+- Si el WordPress está en una subcarpeta (p. ej. `/espacio`), compilar con `dev/construir_app_web.sh /espacio/app/`.
+
+Para una **demo sin servidor** (datos de ejemplo, solo en ese navegador) está `apps/solera-zunbeltz/tool/construir_demo_web.sh`.
 
 ## 7. Copias de seguridad y datos personales
 

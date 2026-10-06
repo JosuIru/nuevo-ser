@@ -43,6 +43,8 @@ function szs_registrar_menu_panel(): void {
 	add_submenu_page( SZS_PAGINA_TAREAS, 'Proyectos de test', 'Proyectos', $capacidad, SZS_PAGINA_PROYECTOS, 'szs_pagina_proyectos' );
 	add_submenu_page( SZS_PAGINA_TAREAS, 'Actividad del espacio', 'Actividad', $capacidad, SZS_PAGINA_ACTIVIDAD, 'szs_pagina_actividad' );
 	add_submenu_page( SZS_PAGINA_TAREAS, 'Personas del espacio', 'Personas', $capacidad, SZS_PAGINA_PERSONAS, 'szs_pagina_admin' );
+	// Acceso directo a la app web que sirve este mismo WordPress en /app/.
+	add_submenu_page( SZS_PAGINA_TAREAS, 'App web', 'Abrir la app ↗', $capacidad, szs_url_app_web() );
 }
 
 /** Los administradores siempre pueden usar el panel. */

@@ -72,6 +72,7 @@ require_once __DIR__ . '/includes/panel/comun.php';
 require_once __DIR__ . '/includes/panel/pagina-tareas.php';
 require_once __DIR__ . '/includes/panel/pagina-comunicacion.php';
 require_once __DIR__ . '/includes/panel/pagina-seguimiento.php';
+require_once __DIR__ . '/includes/panel/pagina-android.php';
 require_once __DIR__ . '/includes/correo.php';
 require_once __DIR__ . '/includes/app-web.php';
 

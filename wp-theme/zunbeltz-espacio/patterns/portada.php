@@ -12,6 +12,7 @@
 
 $zunbeltz_url_app     = zunbeltz_espacio_url_app();
 $zunbeltz_url_oficina = zunbeltz_espacio_url_oficina();
+$zunbeltz_url_android = zunbeltz_espacio_url_android();
 ?>
 <!-- wp:group {"align":"wide","style":{"border":{"radius":"28px"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"backgroundColor":"pasto-claro","layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide has-pasto-claro-background-color has-background" style="border-radius:28px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
@@ -36,6 +37,12 @@ $zunbeltz_url_oficina = zunbeltz_espacio_url_oficina();
 <div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:button -->
 <div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_app ); ?>">Abrir la app · Aplikazioa ireki</a></div>
 <!-- /wp:button -->
+
+<?php if ( null !== $zunbeltz_url_android ) : ?>
+<!-- wp:button {"className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_android ); ?>">Descargar para Android</a></div>
+<!-- /wp:button -->
+<?php endif; ?>
 
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_oficina ); ?>">Oficina de coordinación</a></div>
@@ -85,11 +92,11 @@ $zunbeltz_url_oficina = zunbeltz_espacio_url_oficina();
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Desde el navegador, con el botón «Abrir la app», o en tu móvil Android con la app que te pase coordinación.</p>
+<p>Desde el navegador, con el botón «Abrir la app», o en tu móvil Android con «Descargar para Android».</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Nabigatzailetik, «Aplikazioa ireki» botoiarekin, edo zure Android mugikorrean koordinazioak emandako aplikazioarekin.</p>
+<p class="has-pequeno-font-size">Nabigatzailetik, «Aplikazioa ireki» botoiarekin, edo zure Android mugikorrean «Descargar para Android» botoiarekin.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 

@@ -30,6 +30,17 @@ function zunbeltz_espacio_url_oficina(): string {
 	return admin_url( 'admin.php?page=solera-zunbeltz' );
 }
 
+/**
+ * Descarga de la app Android que sirve el plugin, o null si todavía no se
+ * ha publicado ninguna (la portada no muestra el botón).
+ */
+function zunbeltz_espacio_url_android(): ?string {
+	if ( ! function_exists( 'szs_apk_publicado' ) || null === szs_apk_publicado() ) {
+		return null;
+	}
+	return szs_url_apk();
+}
+
 function zunbeltz_espacio_imagen( string $fichero ): string {
 	return get_theme_file_uri( 'assets/imagenes/' . $fichero );
 }

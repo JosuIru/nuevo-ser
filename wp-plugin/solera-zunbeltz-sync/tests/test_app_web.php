@@ -57,6 +57,15 @@ afirmar( true, szs_etag_coincide( '"x", W/"abc"', '"abc"' ), 'varias etiquetas' 
 afirmar( false, szs_etag_coincide( '"otra"', '"abc"' ), 'etiqueta distinta' );
 afirmar( false, szs_etag_coincide( '', '"abc"' ), 'sin cabecera' );
 
+// --- app Android ---
+afirmar( 'descargar/android', szs_ruta_relativa_app_web( '/app/descargar/android', '/app' ), 'la descarga del APK cuelga de /app/' );
+afirmar( 'solera-zunbeltz-0.3.0.apk', szs_nombre_descarga_apk( '0.3.0' ), 'el fichero descargado lleva la versión' );
+afirmar( 'solera-zunbeltz.apk', szs_nombre_descarga_apk( '' ), 'sin versión, nombre simple' );
+afirmar( 'solera-zunbeltz-0.3.0_beta.apk', szs_nombre_descarga_apk( '0.3.0 beta' ), 'la versión se sanea para el nombre' );
+afirmar( 'application/vnd.android.package-archive', szs_tipo_mime_app_web( 'x.apk' ), 'tipo de un APK' );
+afirmar( true, szs_es_apk( "PK\x03\x04resto" ), 'un APK es un zip (empieza por PK)' );
+afirmar( false, szs_es_apk( '<?php echo 1;' ), 'cualquier otra cosa no se acepta' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

@@ -8,7 +8,7 @@
  * este mapa o engancharse al filtro `szs_roles` desde otro plugin, sin
  * publicar una versión nueva de la app mientras las capacidades existan.
  *
- * Capacidades actuales (todas sobre tareas de mantenimiento):
+ * Capacidades sobre tareas de mantenimiento:
  *
  * - `ver_todas_tareas`        ve las tareas de todo el espacio. Sin ella,
  *                             sólo las que tiene asignadas o ha creado y
@@ -16,6 +16,21 @@
  * - `crear_tareas`            da de alta tareas nuevas.
  * - `editar_cualquier_tarea`  cambia cualquier campo de cualquier tarea.
  * - `asignar_tareas`          asigna tareas a otras personas.
+ *
+ * Capacidades sobre el resto de entidades (ver `entidades.php`):
+ *
+ * - `editar_espacio`          crea, edita y borra fincas, zonas y puntos.
+ * - `anadir_puntos`           añade puntos y los mueve (corrales móviles,
+ *                             bidones…) o cambia su estado; no los borra.
+ * - `gestionar_proyectos`     ve todos los proyectos, edita sus fichas y lo
+ *                             que solo lleva coordinación (presupuesto,
+ *                             fianza, acompañamiento, incidencias de
+ *                             cumplimiento) y escribe aunque estén cerrados.
+ * - `enviar_peticiones`       pide tareas nuevas.
+ * - `gestionar_peticiones`    ve todas las peticiones y las acepta o descarta.
+ * - `crear_avisos`            da avisos de campo (animal enfermo, rotura…).
+ * - `gestionar_avisos`        edita y resuelve cualquier aviso.
+ * - `ver_actividad`           recibe el registro de actividad del espacio.
  *
  * Reparto acordado con Zunbeltz el 2026-10-06: sólo la coordinación crea y
  * asigna tareas; las personas tester ven las suyas y las generales, las
@@ -37,6 +52,14 @@ const SZS_CAPACIDAD_VER_TODAS_TAREAS       = 'ver_todas_tareas';
 const SZS_CAPACIDAD_CREAR_TAREAS           = 'crear_tareas';
 const SZS_CAPACIDAD_EDITAR_CUALQUIER_TAREA = 'editar_cualquier_tarea';
 const SZS_CAPACIDAD_ASIGNAR_TAREAS         = 'asignar_tareas';
+const SZS_CAPACIDAD_EDITAR_ESPACIO         = 'editar_espacio';
+const SZS_CAPACIDAD_ANADIR_PUNTOS          = 'anadir_puntos';
+const SZS_CAPACIDAD_GESTIONAR_PROYECTOS    = 'gestionar_proyectos';
+const SZS_CAPACIDAD_ENVIAR_PETICIONES      = 'enviar_peticiones';
+const SZS_CAPACIDAD_GESTIONAR_PETICIONES   = 'gestionar_peticiones';
+const SZS_CAPACIDAD_CREAR_AVISOS           = 'crear_avisos';
+const SZS_CAPACIDAD_GESTIONAR_AVISOS       = 'gestionar_avisos';
+const SZS_CAPACIDAD_VER_ACTIVIDAD          = 'ver_actividad';
 
 const SZS_ROL_COORDINADOR = 'coordinador';
 const SZS_ROL_TESTER      = 'tester';
@@ -56,11 +79,23 @@ function szs_roles(): array {
 				SZS_CAPACIDAD_CREAR_TAREAS,
 				SZS_CAPACIDAD_EDITAR_CUALQUIER_TAREA,
 				SZS_CAPACIDAD_ASIGNAR_TAREAS,
+				SZS_CAPACIDAD_EDITAR_ESPACIO,
+				SZS_CAPACIDAD_ANADIR_PUNTOS,
+				SZS_CAPACIDAD_GESTIONAR_PROYECTOS,
+				SZS_CAPACIDAD_ENVIAR_PETICIONES,
+				SZS_CAPACIDAD_GESTIONAR_PETICIONES,
+				SZS_CAPACIDAD_CREAR_AVISOS,
+				SZS_CAPACIDAD_GESTIONAR_AVISOS,
+				SZS_CAPACIDAD_VER_ACTIVIDAD,
 			),
 		),
 		SZS_ROL_TESTER      => array(
 			'etiqueta'    => 'Tester',
-			'capacidades' => array(),
+			'capacidades' => array(
+				SZS_CAPACIDAD_ANADIR_PUNTOS,
+				SZS_CAPACIDAD_ENVIAR_PETICIONES,
+				SZS_CAPACIDAD_CREAR_AVISOS,
+			),
 		),
 	);
 	return apply_filters( 'szs_roles', $roles );

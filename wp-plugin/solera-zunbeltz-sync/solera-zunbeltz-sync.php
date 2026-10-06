@@ -44,17 +44,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '0.2.0' );
-define( 'SZS_VERSION_ESQUEMA', 2 );
+define( 'SZS_VERSION', '0.3.0' );
+define( 'SZS_VERSION_ESQUEMA', 3 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
+define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
+define( 'SZS_TABLA_REVISIONES', 'solera_zunbeltz_revisiones' );
+define( 'SZS_TABLA_ACTIVIDAD', 'solera_zunbeltz_actividad' );
 define( 'SZS_OPCION_VERSION_ESQUEMA', 'solera_zunbeltz_sync_esquema' );
 /** Token compartido de la v0.1, retirado en la v0.2. */
 define( 'SZS_OPCION_TOKEN_COMPARTIDO_V1', 'solera_zunbeltz_sync_token' );
 
 require_once __DIR__ . '/includes/roles.php';
 require_once __DIR__ . '/includes/politica-tareas.php';
+require_once __DIR__ . '/includes/entidades.php';
 require_once __DIR__ . '/includes/personas.php';
+require_once __DIR__ . '/includes/actividad.php';
+require_once __DIR__ . '/includes/sync-entidades.php';
 require_once __DIR__ . '/includes/admin.php';
 
 // ============================================================
@@ -73,8 +79,11 @@ function szs_actualizar_esquema_si_hace_falta(): void {
 
 function szs_instalar_esquema(): void {
 	global $wpdb;
-	$tabla_tareas    = $wpdb->prefix . SZS_TABLA;
-	$tabla_personas  = $wpdb->prefix . SZS_TABLA_PERSONAS;
+	$tabla_tareas     = $wpdb->prefix . SZS_TABLA;
+	$tabla_personas   = $wpdb->prefix . SZS_TABLA_PERSONAS;
+	$tabla_entidades  = $wpdb->prefix . SZS_TABLA_ENTIDADES;
+	$tabla_revisiones = $wpdb->prefix . SZS_TABLA_REVISIONES;
+	$tabla_actividad  = $wpdb->prefix . SZS_TABLA_ACTIVIDAD;
 	$charset_collate = $wpdb->get_charset_collate();
 
 	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -82,6 +91,9 @@ function szs_instalar_esquema(): void {
 		"CREATE TABLE {$tabla_tareas} (
 		uid VARCHAR(64) NOT NULL,
 		finca_nombre VARCHAR(255) NOT NULL DEFAULT '',
+		finca_uid VARCHAR(64) NOT NULL DEFAULT '',
+		punto_uid VARCHAR(64) NOT NULL DEFAULT '',
+		zona_uid VARCHAR(64) NOT NULL DEFAULT '',
 		titulo VARCHAR(500) NOT NULL DEFAULT '',
 		descripcion TEXT NULL,
 		responsable VARCHAR(255) NOT NULL DEFAULT '',
@@ -107,9 +119,53 @@ function szs_instalar_esquema(): void {
 		rol VARCHAR(64) NOT NULL DEFAULT 'tester',
 		token_hash CHAR(64) NOT NULL,
 		activo TINYINT(1) NOT NULL DEFAULT 1,
+		wp_user_id BIGINT UNSIGNED NOT NULL DEFAULT 0,
+		correo VARCHAR(255) NOT NULL DEFAULT '',
 		creado_en DATETIME NOT NULL,
 		PRIMARY KEY  (uid),
-		UNIQUE KEY token_hash (token_hash)
+		UNIQUE KEY token_hash (token_hash),
+		KEY wp_user_id (wp_user_id)
+	) {$charset_collate};"
+	);
+	// Entidades genéricas (fincas, puntos, proyectos…): ver entidades.php.
+	// `revision` crece con cada escritura y es el cursor de sincronización.
+	dbDelta(
+		"CREATE TABLE {$tabla_entidades} (
+		tipo VARCHAR(40) NOT NULL,
+		uid VARCHAR(64) NOT NULL,
+		proyecto_uid VARCHAR(64) NOT NULL DEFAULT '',
+		autor_uid VARCHAR(64) NOT NULL DEFAULT '',
+		datos LONGTEXT NOT NULL,
+		borrado TINYINT(1) NOT NULL DEFAULT 0,
+		actualizado_ms BIGINT NOT NULL DEFAULT 0,
+		revision BIGINT UNSIGNED NOT NULL DEFAULT 0,
+		recibido_en DATETIME NOT NULL,
+		PRIMARY KEY  (tipo, uid),
+		KEY revision (revision),
+		KEY proyecto_uid (proyecto_uid)
+	) {$charset_collate};"
+	);
+	dbDelta(
+		"CREATE TABLE {$tabla_revisiones} (
+		id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+		PRIMARY KEY  (id)
+	) {$charset_collate};"
+	);
+	dbDelta(
+		"CREATE TABLE {$tabla_actividad} (
+		id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+		momento_ms BIGINT NOT NULL DEFAULT 0,
+		persona_uid VARCHAR(64) NOT NULL DEFAULT '',
+		persona_nombre VARCHAR(255) NOT NULL DEFAULT '',
+		accion VARCHAR(40) NOT NULL DEFAULT '',
+		tipo VARCHAR(40) NOT NULL DEFAULT '',
+		uid VARCHAR(64) NOT NULL DEFAULT '',
+		etiqueta VARCHAR(255) NOT NULL DEFAULT '',
+		contexto VARCHAR(255) NOT NULL DEFAULT '',
+		detalle VARCHAR(255) NOT NULL DEFAULT '',
+		origen VARCHAR(20) NOT NULL DEFAULT 'app',
+		PRIMARY KEY  (id),
+		KEY momento_ms (momento_ms)
 	) {$charset_collate};"
 	);
 
@@ -210,8 +266,6 @@ function szs_endpoint_yo( WP_REST_Request $request ) {
  * - `yo`, `personas`: como `GET /yo`, para refrescar la sesión de paso.
  */
 function szs_sincronizar_tareas( WP_REST_Request $request ) {
-	global $wpdb;
-	$tabla       = $wpdb->prefix . SZS_TABLA;
 	$persona     = $request->get_param( 'szs_persona' );
 	$persona_uid = (string) $persona['uid'];
 	$capacidades = szs_capacidades_de_rol( (string) $persona['rol'] );
@@ -227,35 +281,7 @@ function szs_sincronizar_tareas( WP_REST_Request $request ) {
 		);
 	}
 
-	$forzar   = array();
-	$rechazos = array();
-	foreach ( $body['tareas'] as $item ) {
-		if ( ! is_array( $item ) ) {
-			continue;
-		}
-		$entrante = szs_normalizar_tarea( $item );
-		if ( '' === $entrante['uid'] ) {
-			continue;
-		}
-		$fila       = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$tabla} WHERE uid = %s", $entrante['uid'] ), ARRAY_A );
-		$existente  = is_array( $fila ) ? szs_normalizar_tarea( $fila ) : null;
-		$resolucion = szs_resolver_tarea_entrante( $existente, $entrante, $persona_uid, $capacidades );
-
-		$ajustada = $resolucion['ajustada'];
-		if ( in_array( $resolucion['accion'], array( 'insertar', 'actualizar' ), true ) ) {
-			$guardada = szs_guardar_tarea( $tabla, $resolucion['datos'], 'insertar' === $resolucion['accion'] );
-			$ajustada = $ajustada || $guardada['responsable'] !== $entrante['responsable'];
-		}
-		if ( $ajustada ) {
-			$forzar[] = $entrante['uid'];
-		}
-		if ( '' !== $resolucion['motivo'] ) {
-			$rechazos[] = array(
-				'uid'    => $entrante['uid'],
-				'motivo' => $resolucion['motivo'],
-			);
-		}
-	}
+	list( $forzar, $rechazos ) = szs_procesar_tareas_entrantes( $persona, $body['tareas'], array(), 'app' );
 
 	$tareas = szs_listar_tareas_visibles( $persona_uid, $capacidades );
 
@@ -271,6 +297,74 @@ function szs_sincronizar_tareas( WP_REST_Request $request ) {
 		),
 		200
 	);
+}
+
+/**
+ * Aplica las tareas que sube un dispositivo (permisos + last-write-wins) y
+ * los borrados que pide, y deja huella en el registro de actividad.
+ *
+ * @param array    $persona          Quien sincroniza.
+ * @param array    $tareas_entrantes Tareas en el formato del API.
+ * @param string[] $uids_borrados    Tareas que el dispositivo ha borrado.
+ * @return array{0: string[], 1: array} `forzar` y `rechazos`.
+ */
+function szs_procesar_tareas_entrantes( array $persona, array $tareas_entrantes, array $uids_borrados, string $origen ): array {
+	global $wpdb;
+	$tabla       = $wpdb->prefix . SZS_TABLA;
+	$persona_uid = (string) $persona['uid'];
+	$capacidades = szs_capacidades_de_rol( (string) $persona['rol'] );
+
+	$forzar   = array();
+	$rechazos = array();
+	foreach ( $tareas_entrantes as $item ) {
+		if ( ! is_array( $item ) ) {
+			continue;
+		}
+		$entrante = szs_normalizar_tarea( $item );
+		if ( '' === $entrante['uid'] ) {
+			continue;
+		}
+		$fila       = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$tabla} WHERE uid = %s", $entrante['uid'] ), ARRAY_A );
+		$existente  = is_array( $fila ) ? szs_normalizar_tarea( $fila ) : null;
+		$resolucion = szs_resolver_tarea_entrante( $existente, $entrante, $persona_uid, $capacidades );
+
+		$ajustada = $resolucion['ajustada'];
+		if ( in_array( $resolucion['accion'], array( 'insertar', 'actualizar' ), true ) ) {
+			$guardada = szs_guardar_tarea( $tabla, $resolucion['datos'], 'insertar' === $resolucion['accion'] );
+			$ajustada = $ajustada || $guardada['responsable'] !== $entrante['responsable'];
+			szs_registrar_actividad_tarea( $persona, $existente, $guardada, $origen );
+		}
+		if ( $ajustada ) {
+			$forzar[] = $entrante['uid'];
+		}
+		if ( '' !== $resolucion['motivo'] ) {
+			$rechazos[] = array(
+				'uid'    => $entrante['uid'],
+				'motivo' => $resolucion['motivo'],
+			);
+		}
+	}
+
+	// Borrar una tarea es cosa de quien puede editar cualquiera; al resto
+	// se le ignora y la tarea vuelve a su dispositivo en la respuesta.
+	foreach ( $uids_borrados as $uid ) {
+		$uid  = szs_recortar( $uid, 64 );
+		$fila = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$tabla} WHERE uid = %s", $uid ), ARRAY_A );
+		if ( ! is_array( $fila ) ) {
+			continue;
+		}
+		if ( ! szs_puede( $capacidades, SZS_CAPACIDAD_EDITAR_CUALQUIER_TAREA ) ) {
+			$rechazos[] = array(
+				'uid'    => $uid,
+				'motivo' => 'sin_permiso_borrar',
+			);
+			continue;
+		}
+		$wpdb->delete( $tabla, array( 'uid' => $uid ) );
+		$tarea = szs_normalizar_tarea( $fila );
+		szs_registrar_actividad( $persona, 'borrar', 'tarea', $uid, $tarea['titulo'], $tarea['finca_nombre'], '', $origen );
+	}
+	return array( $forzar, $rechazos );
 }
 
 /**

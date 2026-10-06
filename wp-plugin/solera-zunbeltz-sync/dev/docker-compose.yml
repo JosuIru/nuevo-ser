@@ -1,0 +1,52 @@
+# Entorno local para probar el plugin contra un WordPress real.
+#
+#   docker compose up -d                 # WordPress en http://localhost:8790
+#   ./preparar.sh                        # instala WP, activa el plugin y crea personas de prueba
+#   docker compose down -v               # lo borra todo
+#
+# El plugin se monta desde el repo: los cambios en PHP se ven sin reconstruir.
+name: solera-zunbeltz-dev
+
+services:
+  bd:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: raiz-solo-local
+    volumes:
+      - bd:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:php8.3-apache
+    depends_on: [bd]
+    ports:
+      - "127.0.0.1:8790:80"
+    environment:
+      WORDPRESS_DB_HOST: bd
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp:/var/www/html
+      - ..:/var/www/html/wp-content/plugins/solera-zunbeltz-sync
+
+  cli:
+    image: wordpress:cli-php8.3
+    depends_on: [wordpress]
+    user: "33:33"
+    environment:
+      WORDPRESS_DB_HOST: bd
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp:/var/www/html
+      - ..:/var/www/html/wp-content/plugins/solera-zunbeltz-sync
+    entrypoint: ["wp"]
+    profiles: [cli]
+
+volumes:
+  bd:
+  wp:

@@ -21,6 +21,9 @@ const SZS_CAMPOS_EJECUCION = array( 'estado', 'coste_centimos' );
 /** Campos que describen la tarea. */
 const SZS_CAMPOS_CONTENIDO = array(
 	'finca_nombre',
+	'finca_uid',
+	'punto_uid',
+	'zona_uid',
 	'titulo',
 	'descripcion',
 	'prioridad',
@@ -42,6 +45,9 @@ function szs_normalizar_tarea( array $tarea ): array {
 	return array(
 		'uid'               => szs_recortar( $tarea['uid'] ?? '', 64 ),
 		'finca_nombre'      => szs_recortar( $tarea['finca_nombre'] ?? '', 255 ),
+		'finca_uid'         => szs_recortar( $tarea['finca_uid'] ?? '', 64 ),
+		'punto_uid'         => szs_recortar( $tarea['punto_uid'] ?? '', 64 ),
+		'zona_uid'          => szs_recortar( $tarea['zona_uid'] ?? '', 64 ),
 		'titulo'            => szs_recortar( $tarea['titulo'] ?? '', 500 ),
 		'descripcion'       => sanitize_textarea_field( (string) ( $tarea['descripcion'] ?? '' ) ),
 		'responsable'       => szs_recortar( $tarea['responsable'] ?? '', 255 ),

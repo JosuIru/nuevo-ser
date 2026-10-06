@@ -20,8 +20,10 @@ void main() {
     capacidadEditarCualquierTarea,
     capacidadAsignarTareas,
   });
-  final ane = sesion('ane', {capacidadVerTodasTareas, capacidadCrearTareas});
-  final jon = sesion('jon', {capacidadVerTodasTareas, capacidadCrearTareas});
+  // Tester (reparto acordado el 2026-10-06): ninguna capacidad sobre
+  // tareas; ve las suyas y las generales y las ejecuta.
+  final ane = sesion('ane', const {});
+  final jon = sesion('jon', const {});
 
   final tareaDeAne = TareaMantenimiento(
     fincaId: 1,
@@ -63,6 +65,27 @@ void main() {
     expect(politica.puedeSoltar(tareaDeAne), isFalse);
     expect(politica.puedeCogerse(tareaDeAne), isFalse);
     expect(politica.puedeCogerse(tareaLibre), isTrue);
+  });
+
+  test('un tester no crea tareas (las pide)', () {
+    expect(PoliticaTareas(ane).puedeCrear, isFalse);
+    expect(PoliticaTareas(coordinacion).puedeCrear, isTrue);
+  });
+
+  test('visibilidad: tester ve las suyas y las generales; coordinación, todas',
+      () {
+    final deJon = PoliticaTareas(jon);
+    expect(deJon.tareaVisible(tareaDeAne), isFalse);
+    expect(deJon.tareaVisible(tareaLibre), isTrue,
+        reason: 'general = sin responsable');
+    expect(PoliticaTareas(ane).tareaVisible(tareaDeAne), isTrue);
+    expect(
+        deJon.tareaVisible(TareaMantenimiento(
+            fincaId: 1, responsableUid: 'ane', creadoPorUid: 'jon')),
+        isTrue,
+        reason: 'las que creó antes del reparto nuevo');
+    expect(PoliticaTareas(coordinacion).tareaVisible(tareaDeAne), isTrue);
+    expect(const PoliticaTareas(null).tareaVisible(tareaDeAne), isTrue);
   });
 
   test('quien crea una tarea la edita y ejecuta aunque no la tenga asignada',

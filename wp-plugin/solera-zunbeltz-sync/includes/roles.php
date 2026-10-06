@@ -11,10 +11,15 @@
  * Capacidades actuales (todas sobre tareas de mantenimiento):
  *
  * - `ver_todas_tareas`        ve las tareas de todo el espacio. Sin ella,
- *                             sólo las que tiene asignadas o ha creado.
+ *                             sólo las que tiene asignadas o ha creado y
+ *                             las generales (sin responsable).
  * - `crear_tareas`            da de alta tareas nuevas.
  * - `editar_cualquier_tarea`  cambia cualquier campo de cualquier tarea.
  * - `asignar_tareas`          asigna tareas a otras personas.
+ *
+ * Reparto acordado con Zunbeltz el 2026-10-06: sólo la coordinación crea y
+ * asigna tareas; las personas tester ven las suyas y las generales, las
+ * ejecutan y piden tareas nuevas mediante peticiones.
  *
  * Sin `editar_cualquier_tarea`, una persona puede ejecutar (estado, coste)
  * las tareas que tiene asignadas o que ha creado, editar el contenido de las
@@ -55,10 +60,7 @@ function szs_roles(): array {
 		),
 		SZS_ROL_TESTER      => array(
 			'etiqueta'    => 'Tester',
-			'capacidades' => array(
-				SZS_CAPACIDAD_VER_TODAS_TAREAS,
-				SZS_CAPACIDAD_CREAR_TAREAS,
-			),
+			'capacidades' => array(),
 		),
 	);
 	return apply_filters( 'szs_roles', $roles );

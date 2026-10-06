@@ -34,6 +34,14 @@ class PoliticaTareas {
 
   bool get puedeVerTodas => _puede(capacidadVerTodasTareas);
 
+  /// Sin ver todas: las asignadas, las creadas y las generales (sin
+  /// responsable). Mismo criterio que `szs_tarea_visible` en el servidor.
+  bool tareaVisible(TareaMantenimiento tarea) =>
+      puedeVerTodas ||
+      tarea.responsableUid.isEmpty ||
+      esResponsable(tarea) ||
+      esCreadora(tarea);
+
   /// Estado y coste: quien la tiene asignada o la creó.
   bool puedeEjecutar(TareaMantenimiento tarea) =>
       _puede(capacidadEditarCualquierTarea) ||

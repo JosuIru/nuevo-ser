@@ -198,7 +198,11 @@ function szs_endpoint_yo( WP_REST_Request $request ) {
  * Cada tarea pasa por `szs_resolver_tarea_entrante` (permisos + last-write-
  * wins). Respuesta:
  *
- * - `tareas`: las que esta persona puede ver (hasta 1000, las más recientes).
+ * - `tareas`: **todas** las que esta persona puede ver.
+ * - `completo`: siempre `true` desde la v0.3. Le dice al dispositivo que
+ *   `tareas` es la lista entera, así que puede borrar las que tenga
+ *   sincronizadas y ya no aparezcan (reasignadas a otra persona, por
+ *   ejemplo). Un servidor v0.2 no lo manda y el dispositivo no borra nada.
  * - `forzar`: uids en los que el dispositivo debe quedarse con la versión
  *   del servidor aunque la suya sea más reciente (cambio rechazado o
  *   ajustado por permisos).
@@ -253,23 +257,13 @@ function szs_sincronizar_tareas( WP_REST_Request $request ) {
 		}
 	}
 
-	$filas = (array) $wpdb->get_results(
-		"SELECT * FROM {$tabla} ORDER BY actualizado_ms DESC LIMIT 1000",
-		ARRAY_A
-	);
-
-	$tareas = array();
-	foreach ( $filas as $fila ) {
-		$tarea = szs_normalizar_tarea( $fila );
-		if ( szs_tarea_visible( $tarea, $persona_uid, $capacidades ) ) {
-			$tareas[] = $tarea;
-		}
-	}
+	$tareas = szs_listar_tareas_visibles( $persona_uid, $capacidades );
 
 	return new WP_REST_Response(
 		array_merge(
 			array(
 				'tareas'   => $tareas,
+				'completo' => true,
 				'forzar'   => $forzar,
 				'rechazos' => $rechazos,
 			),
@@ -277,6 +271,36 @@ function szs_sincronizar_tareas( WP_REST_Request $request ) {
 		),
 		200
 	);
+}
+
+/**
+ * Todas las tareas que ve una persona, normalizadas, de la más reciente a
+ * la más antigua. El filtro va en SQL (misma regla que
+ * `szs_tarea_visible`) y sin límite: la respuesta tiene que ser la lista
+ * completa para que el dispositivo pueda retirar las que ya no ve.
+ *
+ * @param string[] $capacidades
+ * @return array<int, array>
+ */
+function szs_listar_tareas_visibles( string $persona_uid, array $capacidades ): array {
+	global $wpdb;
+	$tabla = $wpdb->prefix . SZS_TABLA;
+
+	if ( in_array( SZS_CAPACIDAD_VER_TODAS_TAREAS, $capacidades, true ) ) {
+		$filas = $wpdb->get_results( "SELECT * FROM {$tabla} ORDER BY actualizado_ms DESC", ARRAY_A );
+	} else {
+		$filas = $wpdb->get_results(
+			$wpdb->prepare(
+				"SELECT * FROM {$tabla}
+				WHERE responsable_uid = '' OR responsable_uid = %s OR creado_por_uid = %s
+				ORDER BY actualizado_ms DESC",
+				$persona_uid,
+				$persona_uid
+			),
+			ARRAY_A
+		);
+	}
+	return array_map( 'szs_normalizar_tarea', (array) $filas );
 }
 
 /**

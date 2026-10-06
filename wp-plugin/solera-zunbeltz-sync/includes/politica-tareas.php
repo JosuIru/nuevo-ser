@@ -177,13 +177,17 @@ function szs_resolucion( string $accion, array $datos, bool $ajustada, string $m
 }
 
 /**
- * ¿Puede esta persona ver esta tarea?
+ * ¿Puede esta persona ver esta tarea? Sin `ver_todas_tareas`: las que
+ * tiene asignadas, las que creó y las generales (sin responsable). Es la
+ * misma regla que aplica en SQL `szs_listar_tareas_visibles`.
  */
 function szs_tarea_visible( array $tarea, string $persona_uid, array $capacidades ): bool {
 	if ( in_array( SZS_CAPACIDAD_VER_TODAS_TAREAS, $capacidades, true ) ) {
 		return true;
 	}
-	return $tarea['responsable_uid'] === $persona_uid || $tarea['creado_por_uid'] === $persona_uid;
+	return '' === $tarea['responsable_uid']
+		|| $tarea['responsable_uid'] === $persona_uid
+		|| $tarea['creado_por_uid'] === $persona_uid;
 }
 
 function szs_entero_o_null( $valor ): ?int {

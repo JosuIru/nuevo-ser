@@ -42,7 +42,8 @@ class SesionRemota {
 /// Resultado de una sincronización: cuántas tareas se subieron, cuántas
 /// llegaron nuevas o actualizadas del servidor, cuántas no se pudieron
 /// bajar por no reconocer la finca (nombre sin equivalente local), cuántos
-/// cambios locales rechazó el servidor por permisos, y la sesión refrescada.
+/// cambios locales rechazó el servidor por permisos, cuántas se retiraron
+/// del dispositivo por haber dejado de ser visibles, y la sesión refrescada.
 class ResultadoSyncZunbeltz {
   ResultadoSyncZunbeltz({
     required this.subidas,
@@ -50,6 +51,7 @@ class ResultadoSyncZunbeltz {
     required this.omitidasFincaDesconocida,
     required this.rechazadasPorPermisos,
     required this.sesionRemota,
+    this.retiradas = 0,
   });
 
   final int subidas;
@@ -57,6 +59,7 @@ class ResultadoSyncZunbeltz {
   final int omitidasFincaDesconocida;
   final int rechazadasPorPermisos;
   final SesionRemota sesionRemota;
+  final int retiradas;
 }
 
 /// Sincroniza las tareas de mantenimiento con el plugin `solera-zunbeltz-sync`
@@ -199,12 +202,28 @@ class ClienteSyncZunbeltz {
       if (local?.id != null) await bd.borrarTarea(local!.id!);
     }
 
+    // Servidor v0.3+: `tareas` es la lista entera de lo que esta persona
+    // ve. Lo que haya en local y no venga ya no le corresponde (reasignada
+    // a otra persona, por ejemplo) y se retira. Las nuevas de este
+    // dispositivo ya se subieron en esta misma petición: si se aceptaron,
+    // vienen en la respuesta; si no, se borraron arriba.
+    var retiradas = 0;
+    if (json['completo'] == true) {
+      for (final local in await bd.listarTareas()) {
+        if (local.id != null && !uidsRemotos.contains(local.uid)) {
+          await bd.borrarTarea(local.id!);
+          retiradas++;
+        }
+      }
+    }
+
     return ResultadoSyncZunbeltz(
       subidas: tareas.length,
       bajadas: bajadas,
       omitidasFincaDesconocida: omitidas,
       rechazadasPorPermisos: ((json['rechazos'] as List?) ?? const []).length,
       sesionRemota: sesionRemota,
+      retiradas: retiradas,
     );
   }
 

@@ -85,10 +85,15 @@ afirmar( false, szs_rol_existe( 'root' ), 'un rol inventado no existe' );
 afirmar( array(), szs_capacidades_de_rol( 'root' ), 'un rol inventado no tiene capacidades' );
 afirmar( true, in_array( 'asignar_tareas', szs_capacidades_de_rol( 'coordinador' ), true ), 'coordinación asigna' );
 afirmar( false, in_array( 'asignar_tareas', szs_capacidades_de_rol( 'tester' ), true ), 'tester no asigna' );
+afirmar( false, in_array( 'crear_tareas', szs_capacidades_de_rol( 'tester' ), true ), 'tester no crea tareas (envía peticiones)' );
+afirmar( false, in_array( 'ver_todas_tareas', szs_capacidades_de_rol( 'tester' ), true ), 'tester no ve todas las tareas' );
 
 // --- política de tareas ---
 $coordinacion = szs_capacidades_de_rol( 'coordinador' );
 $tester       = szs_capacidades_de_rol( 'tester' );
+// Rol hipotético (añadible con el filtro `szs_roles`) que crea pero no
+// asigna: sirve para probar la regla de asignación al crear.
+$crea_sin_asignar = array( 'crear_tareas' );
 
 function tarea_base( array $cambios = array() ): array {
 	return szs_normalizar_tarea(
@@ -110,11 +115,16 @@ function tarea_base( array $cambios = array() ): array {
 
 // Alta de tareas.
 $r = szs_resolver_tarea_entrante( null, tarea_base( array( 'creado_por_uid' => 'ane', 'responsable_uid' => '' ) ), 'ane', $tester );
-afirmar( 'insertar', $r['accion'], 'tester crea una tarea sin asignar' );
+afirmar( 'rechazar', $r['accion'], 'tester no crea tareas directamente' );
+afirmar( 'sin_permiso_crear', $r['motivo'], '… y se dice por qué' );
+afirmar( true, $r['ajustada'], '… y su dispositivo la descarta' );
+
+$r = szs_resolver_tarea_entrante( null, tarea_base( array( 'creado_por_uid' => 'ane', 'responsable_uid' => '' ) ), 'ane', $crea_sin_asignar );
+afirmar( 'insertar', $r['accion'], 'quien puede crear crea una tarea sin asignar' );
 afirmar( false, $r['ajustada'], 'crear sin asignar no se ajusta' );
 
-$r = szs_resolver_tarea_entrante( null, tarea_base( array( 'creado_por_uid' => 'ane', 'responsable_uid' => 'jon' ) ), 'ane', $tester );
-afirmar( 'insertar', $r['accion'], 'tester crea una tarea asignada a otra persona: entra igual' );
+$r = szs_resolver_tarea_entrante( null, tarea_base( array( 'creado_por_uid' => 'ane', 'responsable_uid' => 'jon' ) ), 'ane', $crea_sin_asignar );
+afirmar( 'insertar', $r['accion'], 'quien crea sin poder asignar, asignando a otra persona: entra igual' );
 afirmar( '', $r['datos']['responsable_uid'], '… pero sin asignar' );
 afirmar( true, $r['ajustada'], '… y el dispositivo debe quedarse con la versión del servidor' );
 
@@ -160,10 +170,13 @@ afirmar( 'rechazar', $r['accion'], 'un tester no asigna una tarea libre a otra p
 $r = szs_resolver_tarea_entrante( $existente, tarea_base( array( 'responsable_uid' => '', 'responsable' => '', 'actualizado_ms' => 200 ) ), 'ane', $tester );
 afirmar( '', $r['datos']['responsable_uid'] ?? null, 'la responsable suelta su tarea' );
 
-// Visibilidad.
-afirmar( true, szs_tarea_visible( $existente, 'jon', $tester ), 'tester ve todas las tareas' );
-afirmar( false, szs_tarea_visible( $existente, 'jon', array() ), 'sin ver_todas_tareas no ve ajenas' );
-afirmar( true, szs_tarea_visible( $existente, 'ane', array() ), '… pero sí las suyas' );
+// Visibilidad: tester ve las suyas (asignadas o creadas) y las generales
+// (sin responsable); coordinación, todas.
+afirmar( false, szs_tarea_visible( $existente, 'jon', $tester ), 'tester no ve una tarea asignada a otra persona' );
+afirmar( true, szs_tarea_visible( $existente, 'ane', $tester ), 'tester ve las que tiene asignadas' );
+afirmar( true, szs_tarea_visible( tarea_base( array( 'responsable_uid' => 'jon', 'creado_por_uid' => 'ane' ) ), 'ane', $tester ), 'tester ve las que creó (tareas anteriores a la v0.3)' );
+afirmar( true, szs_tarea_visible( $libre, 'jon', $tester ), 'tester ve las generales (sin responsable)' );
+afirmar( true, szs_tarea_visible( $existente, 'jon', $coordinacion ), 'coordinación ve todas' );
 
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );

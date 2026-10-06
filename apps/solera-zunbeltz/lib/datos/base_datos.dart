@@ -68,6 +68,11 @@ class BaseDatosSoleraZunbeltz {
 
   Database? _basedatos;
 
+  /// Para tests de pantallas: hace que el singleton use [db] (p. ej. ffi en
+  /// memoria) en vez de abrir el fichero del móvil.
+  @visibleForTesting
+  static void inyectarParaTests(Database db) => instancia._basedatos = db;
+
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
     // En web la BD vive en IndexedDB y la "ruta" es solo su nombre.
@@ -1251,7 +1256,10 @@ class BaseDatosSoleraZunbeltz {
     // para que una BD con proyectos pero sin mapa también los reciba.
     final sembroInfraestructura =
         await _sembrarInfraestructuraDemo(fincas, ahora);
-    if ((await listarProyectos()).isNotEmpty) return sembroInfraestructura;
+    final sembroComunicacion = await _sembrarComunicacionDemo(fincas, ahora);
+    if ((await listarProyectos()).isNotEmpty) {
+      return sembroInfraestructura || sembroComunicacion;
+    }
     final fincaId = fincas.isEmpty ? 0 : (fincas.first.id ?? 0);
     int hace(int dias) =>
         ahora.subtract(Duration(days: dias)).millisecondsSinceEpoch;
@@ -1463,7 +1471,77 @@ class BaseDatosSoleraZunbeltz {
       await guardarApunte(g);
     }
 
+    await _sembrarConvenioDemo(p1, ahora);
     return true;
+  }
+
+  /// Avisos y una petición de ejemplo para la bandeja de Hoy. No hace nada si
+  /// ya hay avisos. Devuelve true si sembró.
+  Future<bool> _sembrarComunicacionDemo(List<Finca> fincas, DateTime ahora) async {
+    if ((await listarAvisos()).isNotEmpty) return false;
+    final fincaId = fincas.isEmpty ? null : fincas.first.id;
+    int hace(int horas) =>
+        ahora.subtract(Duration(hours: horas)).millisecondsSinceEpoch;
+    await guardarAviso(AvisoCampo(
+        fincaId: fincaId,
+        categoria: categoriaAvisoGanado,
+        gravedad: gravedadAlarma,
+        titulo: 'Oveja coja en el lote de la borda',
+        descripcion: 'Ejemplo de demostración.',
+        fechaMs: hace(2)));
+    await guardarAviso(AvisoCampo(
+        fincaId: fincaId,
+        categoria: categoriaAvisoInstalaciones,
+        titulo: 'Gotea el abrevadero de la borda',
+        descripcion: 'Ejemplo de demostración.',
+        fechaMs: hace(20)));
+    await guardarAviso(AvisoCampo(
+        categoria: categoriaAvisoNoticias,
+        titulo: 'Feria de ganado: inscripción abierta',
+        descripcion: 'Ejemplo de demostración.',
+        fechaMs: hace(30)));
+    await guardarPeticion(PeticionTarea(
+        fincaId: fincaId,
+        titulo: 'Hace falta pienso para la semana que viene',
+        urgente: true,
+        fechaCreacionMs: hace(5)));
+    return true;
+  }
+
+  /// Presupuesto, fianza y acompañamiento de ejemplo para un proyecto.
+  Future<void> _sembrarConvenioDemo(int proyectoId, DateTime ahora) async {
+    int hace(int dias) =>
+        ahora.subtract(Duration(days: dias)).millisecondsSinceEpoch;
+    for (final (categoria, asumidoPor, euros, amortizacion) in const [
+      ('ganado', 'tester', 3000, false),
+      ('alimentacion', 'tester', 1800, false),
+      ('sanidad', 'tester', 400, false),
+      ('infraestructuras', 'zunbeltz', 6000, true),
+      ('transformacion', 'zunbeltz', 2500, false),
+    ]) {
+      await guardarPartidaPresupuesto(PartidaPresupuesto(
+          proyectoId: proyectoId,
+          categoria: categoria,
+          asumidoPor: asumidoPor,
+          esAmortizacion: amortizacion,
+          importeCentimos: euros * 100));
+    }
+    await guardarMovimientoFianza(MovimientoFianza(
+        proyectoId: proyectoId, importeCentimos: 85000, fechaMs: hace(150)));
+    for (final (tipo, dias, asistencia) in const [
+      ('formacion', 140, 'asistida'),
+      ('reunion', 120, 'asistida'),
+      ('reunion', 90, 'asistida'),
+      ('visita_finca', 100, 'asistida'),
+      ('asesoramiento', 60, 'asistida'),
+      ('mercado', 30, 'no_asistida'),
+    ]) {
+      await guardarAcompanamiento(Acompanamiento(
+          proyectoId: proyectoId,
+          tipo: tipo,
+          asistencia: asistencia,
+          fechaMs: hace(dias)));
+    }
   }
 
   /// Puntos y tareas **de ejemplo** alrededor del centroide de cada finca,

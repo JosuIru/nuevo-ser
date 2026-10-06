@@ -330,6 +330,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       const [],
       constructor: (actualizar) => [
         DropdownButtonFormField<String>(
+          isExpanded: true,
           initialValue: categoria,
           decoration: InputDecoration(labelText: textos.apuCategoria),
           items: [
@@ -431,6 +432,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       const [],
       constructor: (actualizar) => [
         DropdownButtonFormField<String>(
+          isExpanded: true,
           initialValue: tipo,
           decoration: InputDecoration(labelText: textos.convenioTipo),
           items: [
@@ -597,8 +599,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       const [],
       constructor: (actualizar) => [
         DropdownButtonFormField<String>(
-          initialValue: tipo,
           isExpanded: true,
+          initialValue: tipo,
           decoration: InputDecoration(labelText: textos.convenioTipo),
           items: [
             for (final opcion in tiposAcompanamiento)
@@ -608,6 +610,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           onChanged: (valor) => actualizar(() => tipo = valor ?? tipo),
         ),
         DropdownButtonFormField<String>(
+          isExpanded: true,
           initialValue: asistencia,
           decoration:
               InputDecoration(labelText: textos.acompanamientoAsistencia),

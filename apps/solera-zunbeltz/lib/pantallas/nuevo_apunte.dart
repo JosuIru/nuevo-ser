@@ -104,6 +104,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
           padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
             DropdownButtonFormField<String>(
+              isExpanded: true,
               initialValue: _tipo,
               decoration: InputDecoration(labelText: textos.apuTipo),
               items: [
@@ -115,6 +116,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
+              isExpanded: true,
               key: ValueKey(_tipo),
               initialValue: _categoria,
               decoration: InputDecoration(labelText: textos.apuCategoria),
@@ -172,6 +174,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
                 SizedBox(
                   width: 110,
                   child: DropdownButtonFormField<int>(
+                    isExpanded: true,
                     initialValue: _iva,
                     decoration: InputDecoration(labelText: textos.apuIva),
                     items: [

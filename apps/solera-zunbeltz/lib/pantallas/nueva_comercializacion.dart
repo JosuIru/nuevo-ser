@@ -96,6 +96,7 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
                 decoration: InputDecoration(labelText: textos.comProducto)),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
+              isExpanded: true,
               initialValue: _canal,
               decoration: InputDecoration(labelText: textos.comCanal),
               items: [
@@ -151,6 +152,7 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
                 SizedBox(
                   width: 100,
                   child: DropdownButtonFormField<int>(
+                    isExpanded: true,
                     initialValue: _iva,
                     decoration: InputDecoration(labelText: textos.comIva),
                     items: [

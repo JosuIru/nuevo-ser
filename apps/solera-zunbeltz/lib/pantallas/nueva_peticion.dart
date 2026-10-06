@@ -88,6 +88,7 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<int?>(
+              isExpanded: true,
               initialValue: _fincaId,
               decoration: InputDecoration(labelText: textos.peticionFinca),
               items: [

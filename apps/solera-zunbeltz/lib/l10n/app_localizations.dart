@@ -1607,7 +1607,7 @@ abstract class AppLocalizations {
   /// No description provided for @ajustesSyncTitulo.
   ///
   /// In es, this message translates to:
-  /// **'Sincronización de tareas'**
+  /// **'Sincronización'**
   String get ajustesSyncTitulo;
 
   /// No description provided for @ajustesSyncUrl.
@@ -1637,8 +1637,8 @@ abstract class AppLocalizations {
   /// No description provided for @ajustesSyncResultado.
   ///
   /// In es, this message translates to:
-  /// **'{subidas} tareas subidas · {bajadas} bajadas{omitidas, plural, =0{} other{ · {omitidas} sin finca reconocida}}'**
-  String ajustesSyncResultado(int subidas, int bajadas, int omitidas);
+  /// **'{enviados} cambios enviados · {recibidos} recibidos{retirados, plural, =0{} other{ · {retirados} retirados de este móvil}}'**
+  String ajustesSyncResultado(int enviados, int recibidos, int retirados);
 
   /// No description provided for @ajustesDemo.
   ///
@@ -2239,6 +2239,54 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Versión de prueba: los datos se guardan solo en este navegador y no se comparten con nadie.'**
   String get demoFranja;
+
+  /// Sincronización completa: baja todo y retira lo que ya no corresponde.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronizar todo desde cero'**
+  String get ajustesSyncCompleta;
+
+  /// No description provided for @ajustesSyncCompletaDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve a bajar todo el espacio y quita de este móvil lo que ya no te corresponde.'**
+  String get ajustesSyncCompletaDetalle;
+
+  /// No description provided for @ajustesDemoSoloLocal.
+  ///
+  /// In es, this message translates to:
+  /// **'Los datos de ejemplo solo se cargan en modo local, para que no lleguen al WordPress de Zunbeltz.'**
+  String get ajustesDemoSoloLocal;
+
+  /// No description provided for @fincaNueva.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva finca'**
+  String get fincaNueva;
+
+  /// No description provided for @fincaNuevaNombre.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get fincaNuevaNombre;
+
+  /// No description provided for @fincaNuevaSuperficie.
+  ///
+  /// In es, this message translates to:
+  /// **'Superficie (ha)'**
+  String get fincaNuevaSuperficie;
+
+  /// No description provided for @fincaNuevaCentro.
+  ///
+  /// In es, this message translates to:
+  /// **'Se coloca en el centro del mapa. Muévelo antes si hace falta.'**
+  String get fincaNuevaCentro;
+
+  /// No description provided for @fincaNuevaCreada.
+  ///
+  /// In es, this message translates to:
+  /// **'Finca «{nombre}» creada'**
+  String fincaNuevaCreada(String nombre);
 }
 
 class _AppLocalizationsDelegate

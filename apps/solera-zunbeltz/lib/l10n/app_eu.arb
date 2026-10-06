@@ -278,12 +278,12 @@
   "ayudaProblemasB": "• «Zure rolak ez du … baimenik»: zeregin hori ez da zurea. Har ezazu esleitu gabe badago, edo eskatu koordinazioari zuri esleitzeko.\n• «… desegin da / dira» sinkronizatzean: zure rolak baimentzen ez duen zerbait ukitu duzu, eta zegoen bezala utzi da.\n• «Token incorrecto…» mezua: begiratu osorik kopiatu duzula. Galdu baduzu, koordinazioak berri bat sortuko dizu, eta zaharrak ez du balioko.\n• «finka ezezagunarekin»: zeregin hori zure mugikorrean beste izen bat duen finka batekoa da. Finkek izen bera izan behar dute mugikor guztietan.\n• Eguraldiaren iragarpena ez da agertzen: internet behar du. Gainerakoa estaldurarik gabe dabil.\n» Zure datuak zure mugikorrean daude. Aldatu edo galtzen baduzu, hitz egin lehenago koordinazioarekin.",
   "ayudaPie": "Zerbait argi ez badago, galdetu Saiakuntza Guneko koordinazioari.",
   "ajustesExportarEspacio": "Esportatu gunea (CSV)",
-  "ajustesSyncTitulo": "Zereginen sinkronizazioa",
+  "ajustesSyncTitulo": "Sinkronizazioa",
   "ajustesSyncUrl": "Zunbeltzen WordPress-a",
   "ajustesSyncToken": "Token pertsonala",
   "ajustesSyncSinConfigurar": "Konfiguratu gabe",
   "ajustesSyncAhora": "Sinkronizatu orain",
-  "ajustesSyncResultado": "{subidas} zeregin igota · {bajadas} jaitsita{omitidas, plural, =0{} other{ · {omitidas} finka ezezagunarekin}}",
+  "ajustesSyncResultado": "{enviados} aldaketa bidalita · {recibidos} jasota{retirados, plural, =0{} other{ · {retirados} mugikor honetatik kenduta}}",
   "@ajustesSyncResultado": {
     "placeholders": {
       "subidas": { "type": "int" },
@@ -393,5 +393,14 @@
   "actualizacionesErrorInstalador": "Deskargatuta dago, baina Androidek ez du utzi instalatzailea irekitzen. Baimendu «aplikazio ezezagunak instalatzea» aplikazio honetarako mugikorraren ezarpenetan.",
   "ajustesActualizacionesSubtitulo": "Instalatutako bertsioa eta argitaratutako azkena",
   "fotosSoloEnMovil": "Argazkiak mugikorreko aplikaziotik gehitzen dira.",
-  "demoFranja": "Proba-bertsioa: datuak nabigatzaile honetan bakarrik gordetzen dira eta ez dira inorekin partekatzen."
+  "demoFranja": "Proba-bertsioa: datuak nabigatzaile honetan bakarrik gordetzen dira eta ez dira inorekin partekatzen.",
+
+  "ajustesSyncCompleta": "Dena hasieratik sinkronizatu",
+  "ajustesSyncCompletaDetalle": "Gune osoa berriro jaisten du eta dagokizuna ez dena mugikor honetatik kentzen du.",
+  "ajustesDemoSoloLocal": "Adibide-datuak tokiko moduan bakarrik kargatzen dira, Zunbeltzen WordPressera irits ez daitezen.",
+  "fincaNueva": "Finka berria",
+  "fincaNuevaNombre": "Izena",
+  "fincaNuevaSuperficie": "Azalera (ha)",
+  "fincaNuevaCentro": "Maparen erdian kokatzen da. Mugitu aurretik, behar bada.",
+  "fincaNuevaCreada": "«{nombre}» finka sortuta"
 }

@@ -37,7 +37,15 @@ const List<OpcionCatalogo> tiposPunto = [
   OpcionCatalogo('comedero', 'Comedero', 'Askatokia'),
   OpcionCatalogo('cargadero', 'Cargadero', 'Zamalekua'),
   OpcionCatalogo('parcela', 'Parcela de pasto', 'Larre-saila'),
+  // Infraestructura móvil (respuestas de Zunbeltz, 2026-10-06): se recoloca
+  // en el mapa cada vez que se mueve.
+  OpcionCatalogo('corral_movil', 'Corral móvil', 'Korta mugikorra'),
+  OpcionCatalogo(
+      'deposito_movil', 'Bidón / depósito portátil', 'Ur-biltegi eramangarria'),
 ];
+
+/// Tipos de punto que se mueven de sitio (corrales, bidones…).
+const Set<String> tiposPuntoMoviles = {'corral_movil', 'deposito_movil'};
 
 /// Estado de conservación de un punto de infraestructura.
 const List<OpcionCatalogo> estadosPunto = [

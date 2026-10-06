@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../modelos/persona_espacio.dart';
+import '../servicios/politica_espacio.dart';
 import '../servicios/politica_tareas.dart';
 
 /// Persona conectada en este dispositivo. `null` = modo local (sin
@@ -19,6 +20,11 @@ final ValueNotifier<List<PersonaEspacio>> personasEspacio =
 
 /// Política de tareas de la sesión actual.
 PoliticaTareas get politicaTareasActual => PoliticaTareas(sesionEspacio.value);
+
+/// Política del resto del espacio (fincas, puntos, proyectos…) de la sesión
+/// actual.
+PoliticaEspacio get politicaEspacioActual =>
+    PoliticaEspacio(sesionEspacio.value);
 
 const _claveSesion = 'zunbeltz.sesion_json';
 const _clavePersonas = 'zunbeltz.personas_json';

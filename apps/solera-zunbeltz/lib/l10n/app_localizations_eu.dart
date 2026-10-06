@@ -814,7 +814,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get ajustesExportarEspacio => 'Esportatu gunea (CSV)';
 
   @override
-  String get ajustesSyncTitulo => 'Zereginen sinkronizazioa';
+  String get ajustesSyncTitulo => 'Sinkronizazioa';
 
   @override
   String get ajustesSyncUrl => 'Zunbeltzen WordPress-a';
@@ -829,14 +829,14 @@ class AppLocalizationsEu extends AppLocalizations {
   String get ajustesSyncAhora => 'Sinkronizatu orain';
 
   @override
-  String ajustesSyncResultado(int subidas, int bajadas, int omitidas) {
+  String ajustesSyncResultado(int enviados, int recibidos, int retirados) {
     String _temp0 = intl.Intl.pluralLogic(
-      omitidas,
+      retirados,
       locale: localeName,
-      other: ' · $omitidas finka ezezagunarekin',
+      other: ' · $retirados mugikor honetatik kenduta',
       zero: '',
     );
-    return '$subidas zeregin igota · $bajadas jaitsita$_temp0';
+    return '$enviados aldaketa bidalita · $recibidos jasota$_temp0';
   }
 
   @override
@@ -1187,4 +1187,33 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get demoFranja =>
       'Proba-bertsioa: datuak nabigatzaile honetan bakarrik gordetzen dira eta ez dira inorekin partekatzen.';
+
+  @override
+  String get ajustesSyncCompleta => 'Dena hasieratik sinkronizatu';
+
+  @override
+  String get ajustesSyncCompletaDetalle =>
+      'Gune osoa berriro jaisten du eta dagokizuna ez dena mugikor honetatik kentzen du.';
+
+  @override
+  String get ajustesDemoSoloLocal =>
+      'Adibide-datuak tokiko moduan bakarrik kargatzen dira, Zunbeltzen WordPressera irits ez daitezen.';
+
+  @override
+  String get fincaNueva => 'Finka berria';
+
+  @override
+  String get fincaNuevaNombre => 'Izena';
+
+  @override
+  String get fincaNuevaSuperficie => 'Azalera (ha)';
+
+  @override
+  String get fincaNuevaCentro =>
+      'Maparen erdian kokatzen da. Mugitu aurretik, behar bada.';
+
+  @override
+  String fincaNuevaCreada(String nombre) {
+    return '«$nombre» finka sortuta';
+  }
 }

@@ -6,6 +6,14 @@ const String capacidadVerTodasTareas = 'ver_todas_tareas';
 const String capacidadCrearTareas = 'crear_tareas';
 const String capacidadEditarCualquierTarea = 'editar_cualquier_tarea';
 const String capacidadAsignarTareas = 'asignar_tareas';
+const String capacidadEditarEspacio = 'editar_espacio';
+const String capacidadAnadirPuntos = 'anadir_puntos';
+const String capacidadGestionarProyectos = 'gestionar_proyectos';
+const String capacidadEnviarPeticiones = 'enviar_peticiones';
+const String capacidadGestionarPeticiones = 'gestionar_peticiones';
+const String capacidadCrearAvisos = 'crear_avisos';
+const String capacidadGestionarAvisos = 'gestionar_avisos';
+const String capacidadVerActividad = 'ver_actividad';
 
 /// Una persona del Espacio Test, tal como la da de alta la coordinación en
 /// el WordPress. Se usa para elegir responsable de una tarea.

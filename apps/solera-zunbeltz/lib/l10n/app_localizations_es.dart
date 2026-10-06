@@ -813,7 +813,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ajustesExportarEspacio => 'Exportar espacio (CSV)';
 
   @override
-  String get ajustesSyncTitulo => 'Sincronización de tareas';
+  String get ajustesSyncTitulo => 'Sincronización';
 
   @override
   String get ajustesSyncUrl => 'WordPress de Zunbeltz';
@@ -828,14 +828,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ajustesSyncAhora => 'Sincronizar ahora';
 
   @override
-  String ajustesSyncResultado(int subidas, int bajadas, int omitidas) {
+  String ajustesSyncResultado(int enviados, int recibidos, int retirados) {
     String _temp0 = intl.Intl.pluralLogic(
-      omitidas,
+      retirados,
       locale: localeName,
-      other: ' · $omitidas sin finca reconocida',
+      other: ' · $retirados retirados de este móvil',
       zero: '',
     );
-    return '$subidas tareas subidas · $bajadas bajadas$_temp0';
+    return '$enviados cambios enviados · $recibidos recibidos$_temp0';
   }
 
   @override
@@ -1183,4 +1183,33 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get demoFranja =>
       'Versión de prueba: los datos se guardan solo en este navegador y no se comparten con nadie.';
+
+  @override
+  String get ajustesSyncCompleta => 'Sincronizar todo desde cero';
+
+  @override
+  String get ajustesSyncCompletaDetalle =>
+      'Vuelve a bajar todo el espacio y quita de este móvil lo que ya no te corresponde.';
+
+  @override
+  String get ajustesDemoSoloLocal =>
+      'Los datos de ejemplo solo se cargan en modo local, para que no lleguen al WordPress de Zunbeltz.';
+
+  @override
+  String get fincaNueva => 'Nueva finca';
+
+  @override
+  String get fincaNuevaNombre => 'Nombre';
+
+  @override
+  String get fincaNuevaSuperficie => 'Superficie (ha)';
+
+  @override
+  String get fincaNuevaCentro =>
+      'Se coloca en el centro del mapa. Muévelo antes si hace falta.';
+
+  @override
+  String fincaNuevaCreada(String nombre) {
+    return 'Finca «$nombre» creada';
+  }
 }

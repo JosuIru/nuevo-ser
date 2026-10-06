@@ -299,17 +299,23 @@
   "ayudaProblemasB": "• «Tu rol no permite…»: esa tarea no es tuya. Cógela si está sin asignar, o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• «Sin finca reconocida»: esa tarea es de una finca que en tu móvil tiene otro nombre. Las fincas tienen que llamarse igual en todos los móviles.\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Tus datos viven en tu móvil. Si lo cambias o lo pierdes, habla antes con coordinación.",
   "ayudaPie": "Si algo no queda claro, pregunta a coordinación del Espacio Test.",
   "ajustesExportarEspacio": "Exportar espacio (CSV)",
-  "ajustesSyncTitulo": "Sincronización de tareas",
+  "ajustesSyncTitulo": "Sincronización",
   "ajustesSyncUrl": "WordPress de Zunbeltz",
   "ajustesSyncToken": "Token personal",
   "ajustesSyncSinConfigurar": "Sin configurar",
   "ajustesSyncAhora": "Sincronizar ahora",
-  "ajustesSyncResultado": "{subidas} tareas subidas · {bajadas} bajadas{omitidas, plural, =0{} other{ · {omitidas} sin finca reconocida}}",
+  "ajustesSyncResultado": "{enviados} cambios enviados · {recibidos} recibidos{retirados, plural, =0{} other{ · {retirados} retirados de este móvil}}",
   "@ajustesSyncResultado": {
     "placeholders": {
-      "subidas": { "type": "int" },
-      "bajadas": { "type": "int" },
-      "omitidas": { "type": "int" }
+      "enviados": {
+        "type": "int"
+      },
+      "recibidos": {
+        "type": "int"
+      },
+      "retirados": {
+        "type": "int"
+      }
     }
   },
   "ajustesDemo": "Cargar datos de demostración",
@@ -437,5 +443,24 @@
   "demoFranja": "Versión de prueba: los datos se guardan solo en este navegador y no se comparten con nadie.",
   "@demoFranja": {
     "description": "Franja superior de la versión web de demostración."
+  },
+
+  "ajustesSyncCompleta": "Sincronizar todo desde cero",
+  "@ajustesSyncCompleta": {
+    "description": "Sincronización completa: baja todo y retira lo que ya no corresponde."
+  },
+  "ajustesSyncCompletaDetalle": "Vuelve a bajar todo el espacio y quita de este móvil lo que ya no te corresponde.",
+  "ajustesDemoSoloLocal": "Los datos de ejemplo solo se cargan en modo local, para que no lleguen al WordPress de Zunbeltz.",
+  "fincaNueva": "Nueva finca",
+  "fincaNuevaNombre": "Nombre",
+  "fincaNuevaSuperficie": "Superficie (ha)",
+  "fincaNuevaCentro": "Se coloca en el centro del mapa. Muévelo antes si hace falta.",
+  "fincaNuevaCreada": "Finca «{nombre}» creada",
+  "@fincaNuevaCreada": {
+    "placeholders": {
+      "nombre": {
+        "type": "String"
+      }
+    }
   }
 }

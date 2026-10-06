@@ -11,6 +11,7 @@
 //
 // Detalle de fase y decisiones en `CLAUDE.md` del paquete.
 
+import 'dart:async';
 import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -31,6 +32,7 @@ import 'pantallas/pantalla_fincas.dart';
 import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_onboarding.dart';
 import 'pantallas/pantalla_proyectos.dart';
+import 'servicios/servicio_sincronizacion.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -145,8 +147,35 @@ class PantallaPrincipal extends StatefulWidget {
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
 }
 
-class _PantallaPrincipalState extends State<PantallaPrincipal> {
+class _PantallaPrincipalState extends State<PantallaPrincipal>
+    with WidgetsBindingObserver {
   int _indice = 0;
+
+  /// Con sincronización configurada, se sincroniza en silencio al abrir la
+  /// app, al volver a ella y cada pocos minutos mientras está abierta.
+  static const _intervaloSincronizacion = Duration(minutes: 10);
+  Timer? _temporizadorSincronizacion;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    sincronizarEspacioEnSilencio();
+    _temporizadorSincronizacion = Timer.periodic(
+        _intervaloSincronizacion, (_) => sincronizarEspacioEnSilencio());
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState estado) {
+    if (estado == AppLifecycleState.resumed) sincronizarEspacioEnSilencio();
+  }
+
+  @override
+  void dispose() {
+    _temporizadorSincronizacion?.cancel();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   static const _pantallas = <Widget>[
     PantallaInicio(),

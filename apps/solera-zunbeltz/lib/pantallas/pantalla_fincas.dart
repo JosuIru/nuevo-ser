@@ -7,6 +7,7 @@ import 'package:latlong2/latlong.dart';
 import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
+import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
@@ -537,6 +538,62 @@ class _PantallaFincasState extends State<PantallaFincas> {
     ];
   }
 
+  /// Alta de una finca en el centro del mapa (p. ej. la de Zufía). Solo
+  /// coordinación; los recintos y puntos se añaden después sobre el mapa.
+  Future<void> _nuevaFinca() async {
+    final textos = AppLocalizations.of(context);
+    final controladorNombre = TextEditingController();
+    final controladorSuperficie = TextEditingController();
+    final confirmada = await showDialog<bool>(
+      context: context,
+      builder: (contexto) => AlertDialog(
+        title: Text(textos.fincaNueva),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextField(
+              controller: controladorNombre,
+              autofocus: true,
+              decoration: InputDecoration(labelText: textos.fincaNuevaNombre),
+            ),
+            TextField(
+              controller: controladorSuperficie,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              decoration:
+                  InputDecoration(labelText: textos.fincaNuevaSuperficie),
+            ),
+            const SizedBox(height: 12),
+            Text(textos.fincaNuevaCentro,
+                style: Theme.of(contexto).textTheme.bodySmall),
+          ],
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(contexto, false),
+              child: Text(textos.comunCancelar)),
+          FilledButton(
+              onPressed: () => Navigator.pop(contexto, true),
+              child: Text(textos.comunGuardar)),
+        ],
+      ),
+    );
+    final nombre = controladorNombre.text.trim();
+    if (confirmada != true || nombre.isEmpty) return;
+    await _bd.guardarFinca(Finca(
+      nombre: nombre,
+      latitud: _centroActual.latitude,
+      longitud: _centroActual.longitude,
+      superficieHa: double.tryParse(
+              controladorSuperficie.text.trim().replaceAll(',', '.')) ??
+          0,
+    ));
+    avisarCambioDatos();
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(textos.fincaNuevaCreada(nombre))));
+  }
+
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
@@ -565,6 +622,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
             icon: const Icon(Icons.checklist),
             label: Text(textos.mapaTablero),
           ),
+          if (politicaEspacioActual.puedeEditarEspacio)
+            IconButton(
+              tooltip: textos.fincaNueva,
+              icon: const Icon(Icons.add_home_work_outlined),
+              onPressed: _nuevaFinca,
+            ),
         ],
       ),
       body: Stack(
@@ -773,19 +836,22 @@ class _PantallaFincasState extends State<PantallaFincas> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                FloatingActionButton.extended(
-                  heroTag: 'fabZona',
-                  onPressed: _fincas.isEmpty ? null : () => _empezarDibujo(),
-                  icon: const Icon(Icons.draw_outlined),
-                  label: Text(textos.zonaDibujar),
-                ),
-                const SizedBox(height: 10),
-                FloatingActionButton.extended(
-                  heroTag: 'fabPunto',
-                  onPressed: _alAnadirPunto,
-                  icon: const Icon(Icons.add_location_alt),
-                  label: Text(textos.mapaNuevoPunto),
-                ),
+                if (politicaEspacioActual.puedeEditarEspacio) ...[
+                  FloatingActionButton.extended(
+                    heroTag: 'fabZona',
+                    onPressed: _fincas.isEmpty ? null : () => _empezarDibujo(),
+                    icon: const Icon(Icons.draw_outlined),
+                    label: Text(textos.zonaDibujar),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+                if (politicaEspacioActual.puedeAnadirPuntos)
+                  FloatingActionButton.extended(
+                    heroTag: 'fabPunto',
+                    onPressed: _alAnadirPunto,
+                    icon: const Icon(Icons.add_location_alt),
+                    label: Text(textos.mapaNuevoPunto),
+                  ),
               ],
             ),
     );

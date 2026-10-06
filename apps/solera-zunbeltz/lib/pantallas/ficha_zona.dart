@@ -111,16 +111,18 @@ class _FichaZonaState extends State<FichaZona> {
       appBar: AppBar(
         title: Text(titulo),
         actions: [
-          IconButton(
-            tooltip: textos.zonaRedibujar,
-            icon: const Icon(Icons.edit_outlined),
-            onPressed: () => Navigator.of(context).pop('redibujar'),
-          ),
-          IconButton(
-            tooltip: textos.zonaBorrar,
-            icon: const Icon(Icons.delete_outline),
-            onPressed: _borrarZona,
-          ),
+          if (politicaEspacioActual.puedeEditarEspacio) ...[
+            IconButton(
+              tooltip: textos.zonaRedibujar,
+              icon: const Icon(Icons.edit_outlined),
+              onPressed: () => Navigator.of(context).pop('redibujar'),
+            ),
+            IconButton(
+              tooltip: textos.zonaBorrar,
+              icon: const Icon(Icons.delete_outline),
+              onPressed: _borrarZona,
+            ),
+          ],
         ],
       ),
       floatingActionButton: politicaTareasActual.puedeCrear

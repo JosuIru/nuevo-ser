@@ -7,6 +7,7 @@ import '../estado/ajustes_sincronizacion.dart';
 import '../estado/coordinador.dart';
 import '../estado/datos_notificador.dart';
 import '../servicios/cliente_sync_zunbeltz.dart';
+import '../servicios/servicio_sincronizacion.dart';
 import '../servicios/documento_generado.dart';
 import '../servicios/exportador_espacio.dart';
 import '../estado/idioma_app.dart';
@@ -169,6 +170,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   Future<void> _conectar() async {
     final textos = AppLocalizations.of(context);
     await cerrarSesionEspacio();
+    await reiniciarCursoresSincronizacion();
     if (!mounted || _syncUrl.isEmpty || _syncToken.isEmpty) return;
     setState(() => _sincronizando = true);
     try {
@@ -188,20 +190,16 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     }
   }
 
-  Future<void> _sincronizarAhora() async {
+  Future<void> _sincronizarAhora({bool completa = false}) async {
     final textos = AppLocalizations.of(context);
     setState(() => _sincronizando = true);
     try {
-      final resultado = await ClienteSyncZunbeltz(
-        urlBase: _syncUrl,
-        token: _syncToken,
-      ).sincronizar(BaseDatosSoleraZunbeltz());
-      await guardarSesionEspacio(
-          resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
-      avisarCambioDatos();
-      if (!mounted) return;
+      final resultado = await sincronizarEspacio(completa: completa);
+      if (!mounted || resultado == null) return;
       final resumen = textos.ajustesSyncResultado(
-          resultado.subidas, resultado.bajadas, resultado.omitidasFincaDesconocida);
+          resultado.subidas + resultado.entidadesSubidas,
+          resultado.bajadas + resultado.entidadesBajadas,
+          resultado.retiradas);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(resultado.rechazadasPorPermisos == 0
               ? resumen
@@ -346,12 +344,24 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                     ? null
                     : _sincronizarAhora,
           ),
+          if (_syncUrl.isNotEmpty && _syncToken.isNotEmpty)
+            ListTile(
+              leading: const Icon(Icons.restart_alt),
+              title: Text(textos.ajustesSyncCompleta),
+              subtitle: Text(textos.ajustesSyncCompletaDetalle),
+              onTap: _sincronizando
+                  ? null
+                  : () => _sincronizarAhora(completa: true),
+            ),
+          // Los datos de ejemplo no deben acabar en el WordPress de
+          // Zunbeltz: solo en modo local.
           if (kDebugMode || esVersionDemo)
             ListTile(
               leading: const Icon(Icons.science_outlined),
               title: Text(textos.ajustesDemo),
+              subtitle: _syncUrl.isEmpty ? null : Text(textos.ajustesDemoSoloLocal),
               trailing: const Icon(Icons.download),
-              onTap: _cargarDemo,
+              onTap: _syncUrl.isEmpty ? _cargarDemo : null,
             ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),

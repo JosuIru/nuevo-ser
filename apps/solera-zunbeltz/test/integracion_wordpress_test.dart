@@ -13,7 +13,6 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:solera_zunbeltz/datos/base_datos.dart';
 import 'package:solera_zunbeltz/modelos/apunte_economico.dart';
 import 'package:solera_zunbeltz/modelos/finca.dart';
 import 'package:solera_zunbeltz/modelos/proyecto_test.dart';

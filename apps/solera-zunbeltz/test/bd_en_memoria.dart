@@ -10,20 +10,14 @@ Future<BaseDatosSoleraZunbeltz> abrirBdEnMemoria() async {
   final db = await databaseFactoryFfi.openDatabase(
     inMemoryDatabasePath,
     options: OpenDatabaseOptions(
-      version: 8,
+      version: BaseDatosSoleraZunbeltz.versionEsquema,
       // BD nueva por test: sin esto, todas las llamadas comparten la
       // misma BD en memoria y el estado se filtra entre tests.
       singleInstance: false,
       onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
       onCreate: (d, v) async {
         await BaseDatosSoleraZunbeltz.crearEsquemaV1(d);
-        await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
-        await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
-        await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
-        await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
-        await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
-        await BaseDatosSoleraZunbeltz.aplicarMigracionV7(d);
-        await BaseDatosSoleraZunbeltz.aplicarMigracionV8(d);
+        await BaseDatosSoleraZunbeltz.migrarDesde(d, 1);
       },
     ),
   );

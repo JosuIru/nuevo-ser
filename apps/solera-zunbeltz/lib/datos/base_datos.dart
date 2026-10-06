@@ -5,10 +5,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/apunte_economico.dart';
+import '../modelos/entrada_actividad.dart';
 import '../modelos/constantes.dart' show estadoTareaPorDefecto;
 import '../modelos/finca.dart';
 import '../utiles/geodesia.dart';
 import 'espacio_generado.dart';
+import 'esquema_sincronizable.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/punto_infraestructura.dart';
 import '../modelos/registro_actividad.dart';
@@ -18,6 +20,8 @@ import '../modelos/tarea_mantenimiento.dart';
 import '../modelos/validacion_producto.dart';
 import '../modelos/zona_finca.dart';
 import '../utiles/uid.dart';
+
+part 'base_datos_sync.dart';
 
 /// Acceso a la base de datos local de Solera Zunbeltz. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
@@ -40,6 +44,12 @@ import '../utiles/uid.dart';
 /// v7 añade `uid` (clave estable entre dispositivos) y `actualizado_ms`
 /// (para last-write-wins) a las tareas, de cara a la sincronización con el
 /// WordPress de Zunbeltz (ver `servicios/cliente_sync_zunbeltz.dart`).
+/// v8 añade responsable y creadora por persona del espacio a las tareas.
+/// v9 sincroniza todo el espacio: `uid` + `actualizado_ms` en todas las
+/// tablas de [tablasSincronizables], lápidas de borrado, cursores y
+/// actividad recibida; y crea las tablas de la economía del convenio
+/// (presupuesto, fianza), el acompañamiento, las incidencias de
+/// cumplimiento, las peticiones y los avisos de campo.
 class BaseDatosSoleraZunbeltz {
   static final BaseDatosSoleraZunbeltz instancia =
       BaseDatosSoleraZunbeltz._interno();
@@ -58,36 +68,37 @@ class BaseDatosSoleraZunbeltz {
     // En web la BD vive en IndexedDB y la "ruta" es solo su nombre.
     final ruta = kIsWeb
         ? 'solera_zunbeltz.db'
-        : path_lib.join(
-            (await getApplicationDocumentsDirectory()).path, 'solera_zunbeltz.db');
+        : path_lib.join((await getApplicationDocumentsDirectory()).path,
+            'solera_zunbeltz.db');
     _basedatos = await openDatabase(
       ruta,
-      version: 8,
+      version: versionEsquema,
       onConfigure: (db) async {
         // ON DELETE CASCADE / SET NULL requieren FKs activas.
         await db.execute('PRAGMA foreign_keys = ON');
       },
       onCreate: (db, version) async {
         await crearEsquemaV1(db);
-        await aplicarMigracionV2(db);
-        await aplicarMigracionV3(db);
-        await aplicarMigracionV4(db);
-        await aplicarMigracionV5(db);
-        await aplicarMigracionV6(db);
-        await aplicarMigracionV7(db);
-        await aplicarMigracionV8(db);
+        await migrarDesde(db, 1);
       },
-      onUpgrade: (db, anterior, actual) async {
-        if (anterior < 2) await aplicarMigracionV2(db);
-        if (anterior < 3) await aplicarMigracionV3(db);
-        if (anterior < 4) await aplicarMigracionV4(db);
-        if (anterior < 5) await aplicarMigracionV5(db);
-        if (anterior < 6) await aplicarMigracionV6(db);
-        if (anterior < 7) await aplicarMigracionV7(db);
-        if (anterior < 8) await aplicarMigracionV8(db);
-      },
+      onUpgrade: (db, anterior, actual) => migrarDesde(db, anterior),
     );
     return _basedatos!;
+  }
+
+  static const int versionEsquema = 9;
+
+  /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
+  /// apertura de la BD (alta y subida de versión) y los tests.
+  static Future<void> migrarDesde(Database db, int anterior) async {
+    if (anterior < 2) await aplicarMigracionV2(db);
+    if (anterior < 3) await aplicarMigracionV3(db);
+    if (anterior < 4) await aplicarMigracionV4(db);
+    if (anterior < 5) await aplicarMigracionV5(db);
+    if (anterior < 6) await aplicarMigracionV6(db);
+    if (anterior < 7) await aplicarMigracionV7(db);
+    if (anterior < 8) await aplicarMigracionV8(db);
+    if (anterior < 9) await aplicarMigracionV9(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -288,8 +299,8 @@ class BaseDatosSoleraZunbeltz {
     // Una tarea puede anclarse a un punto, a una zona o a ninguno (tarea de
     // finca). Columna nullable; SQLite no permite añadir FK por ALTER, así
     // que el SET NULL al borrar la zona se hace por código en [borrarZona].
-    await db.execute(
-        'ALTER TABLE tareas_mantenimiento ADD COLUMN zona_id INTEGER');
+    await db
+        .execute('ALTER TABLE tareas_mantenimiento ADD COLUMN zona_id INTEGER');
     await db.execute(
         'CREATE INDEX idx_tareas_zona ON tareas_mantenimiento(zona_id)');
   }
@@ -344,17 +355,194 @@ class BaseDatosSoleraZunbeltz {
         'CREATE INDEX idx_tareas_responsable_uid ON tareas_mantenimiento(responsable_uid)');
   }
 
+  /// Migración v8 → v9: sincronización de todo el espacio y tablas nuevas
+  /// del convenio tester. Aditiva.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV9(Database db) async {
+    // Tablas nuevas. Todas con uid + actualizado_ms desde el principio.
+    const columnasSync =
+        "uid TEXT NOT NULL DEFAULT '', actualizado_ms INTEGER NOT NULL DEFAULT 0";
+    const fkProyecto =
+        'FOREIGN KEY (proyecto_id) REFERENCES proyectos_test(id) ON DELETE CASCADE';
+    await db.execute('''
+      CREATE TABLE partidas_presupuesto (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        proyecto_id INTEGER NOT NULL,
+        categoria TEXT NOT NULL DEFAULT '',
+        concepto TEXT NOT NULL DEFAULT '',
+        asumido_por TEXT NOT NULL DEFAULT 'tester',
+        es_amortizacion INTEGER NOT NULL DEFAULT 0,
+        importe_centimos INTEGER NOT NULL DEFAULT 0,
+        notas TEXT NOT NULL DEFAULT '',
+        $fkProyecto
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE movimientos_fianza (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        proyecto_id INTEGER NOT NULL,
+        tipo TEXT NOT NULL DEFAULT 'deposito',
+        importe_centimos INTEGER NOT NULL DEFAULT 0,
+        fecha_ms INTEGER NOT NULL DEFAULT 0,
+        notas TEXT NOT NULL DEFAULT '',
+        $fkProyecto
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE acompanamientos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        proyecto_id INTEGER NOT NULL,
+        tipo TEXT NOT NULL DEFAULT 'reunion',
+        fecha_ms INTEGER NOT NULL DEFAULT 0,
+        descripcion TEXT NOT NULL DEFAULT '',
+        asistencia TEXT NOT NULL DEFAULT 'propuesta',
+        horas REAL,
+        notas TEXT NOT NULL DEFAULT '',
+        $fkProyecto
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE incidencias_cumplimiento (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        proyecto_id INTEGER NOT NULL,
+        nivel TEXT NOT NULL DEFAULT 'leve',
+        fecha_ms INTEGER NOT NULL DEFAULT 0,
+        descripcion TEXT NOT NULL DEFAULT '',
+        retencion_centimos INTEGER NOT NULL DEFAULT 0,
+        notas TEXT NOT NULL DEFAULT '',
+        $fkProyecto
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE peticiones (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        autor_uid TEXT NOT NULL DEFAULT '',
+        finca_id INTEGER,
+        punto_id INTEGER,
+        titulo TEXT NOT NULL DEFAULT '',
+        descripcion TEXT NOT NULL DEFAULT '',
+        urgente INTEGER NOT NULL DEFAULT 0,
+        estado TEXT NOT NULL DEFAULT 'pendiente',
+        respuesta TEXT NOT NULL DEFAULT '',
+        tarea_uid TEXT NOT NULL DEFAULT '',
+        fecha_creacion_ms INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY (finca_id) REFERENCES fincas(id) ON DELETE SET NULL,
+        FOREIGN KEY (punto_id) REFERENCES puntos_infraestructura(id) ON DELETE SET NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE avisos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        autor_uid TEXT NOT NULL DEFAULT '',
+        finca_id INTEGER,
+        punto_id INTEGER,
+        categoria TEXT NOT NULL DEFAULT 'instalaciones',
+        gravedad TEXT NOT NULL DEFAULT 'aviso',
+        titulo TEXT NOT NULL DEFAULT '',
+        descripcion TEXT NOT NULL DEFAULT '',
+        estado TEXT NOT NULL DEFAULT 'abierto',
+        fecha_ms INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY (finca_id) REFERENCES fincas(id) ON DELETE SET NULL,
+        FOREIGN KEY (punto_id) REFERENCES puntos_infraestructura(id) ON DELETE SET NULL
+      )
+    ''');
+
+    // Columnas nuevas del proyecto (convenio art. 7-8) y de los apuntes.
+    for (final sentencia in [
+      "ALTER TABLE proyectos_test ADD COLUMN persona_uid TEXT NOT NULL DEFAULT ''",
+      "ALTER TABLE proyectos_test ADD COLUMN estado TEXT NOT NULL DEFAULT 'abierto'",
+      'ALTER TABLE proyectos_test ADD COLUMN cerrado_ms INTEGER',
+      'ALTER TABLE proyectos_test ADD COLUMN porcentaje_beneficio_zunbeltz INTEGER NOT NULL DEFAULT 25',
+      'ALTER TABLE proyectos_test ADD COLUMN porcentaje_perdida_zunbeltz INTEGER NOT NULL DEFAULT 50',
+      'ALTER TABLE proyectos_test ADD COLUMN valoracion_zunbeltz INTEGER',
+      'ALTER TABLE proyectos_test ADD COLUMN valoracion_tester INTEGER',
+      "ALTER TABLE apuntes_economicos ADD COLUMN asumido_por TEXT NOT NULL DEFAULT 'tester'",
+      'ALTER TABLE apuntes_economicos ADD COLUMN es_amortizacion INTEGER NOT NULL DEFAULT 0',
+    ]) {
+      await db.execute(sentencia);
+    }
+
+    // uid + actualizado_ms en las tablas que ya existían. Las filas previas
+    // quedan "pendientes de subir" (marca = ahora) para la primera sync.
+    final ahora = DateTime.now().millisecondsSinceEpoch;
+    for (final tabla in const [
+      'fincas',
+      'zonas_finca',
+      'puntos_infraestructura',
+      'proyectos_test',
+      'registros_actividad',
+      'apuntes_economicos',
+      'registros_comercializacion',
+      'validaciones_producto',
+    ]) {
+      await db.execute(
+          "ALTER TABLE $tabla ADD COLUMN uid TEXT NOT NULL DEFAULT ''");
+      await db.execute(
+          'ALTER TABLE $tabla ADD COLUMN actualizado_ms INTEGER NOT NULL DEFAULT 0');
+    }
+    for (final tabla in tablasSincronizables) {
+      final columnas = tabla.tabla == 'fincas' ? ['id', 'nombre'] : ['id'];
+      for (final fila in await db.query(tabla.tabla, columns: columnas)) {
+        final uidFijo = tabla.tabla == 'fincas'
+            ? uidsFincasSembradas[fila['nombre']]
+            : null;
+        await db.update(
+          tabla.tabla,
+          {'uid': uidFijo ?? generarUid(), 'actualizado_ms': ahora},
+          where: 'id = ?',
+          whereArgs: [fila['id']],
+        );
+      }
+      await db.execute(
+          'CREATE UNIQUE INDEX idx_${tabla.tabla}_uid ON ${tabla.tabla}(uid)');
+    }
+
+    // Lápidas de lo borrado en este móvil, pendientes de subir.
+    await db.execute('''
+      CREATE TABLE borrados_sync (
+        tipo TEXT NOT NULL,
+        uid TEXT NOT NULL,
+        borrado_ms INTEGER NOT NULL DEFAULT 0,
+        PRIMARY KEY (tipo, uid)
+      )
+    ''');
+    // Cursores de sincronización (revisión, actividad, última subida…).
+    await db.execute('''
+      CREATE TABLE estado_sync (
+        clave TEXT PRIMARY KEY,
+        valor INTEGER NOT NULL DEFAULT 0
+      )
+    ''');
+    // Registro de actividad del espacio recibido del servidor (solo lo
+    // recibe coordinación). Es de solo lectura: no se sube.
+    await db.execute('''
+      CREATE TABLE actividad_espacio (
+        id INTEGER PRIMARY KEY,
+        momento_ms INTEGER NOT NULL DEFAULT 0,
+        persona_uid TEXT NOT NULL DEFAULT '',
+        persona_nombre TEXT NOT NULL DEFAULT '',
+        accion TEXT NOT NULL DEFAULT '',
+        tipo TEXT NOT NULL DEFAULT '',
+        uid TEXT NOT NULL DEFAULT '',
+        etiqueta TEXT NOT NULL DEFAULT '',
+        contexto TEXT NOT NULL DEFAULT '',
+        detalle TEXT NOT NULL DEFAULT '',
+        origen TEXT NOT NULL DEFAULT 'app'
+      )
+    ''');
+  }
+
   // ─── Fincas ─────────────────────────────────────────────
 
-  Future<int> guardarFinca(Finca finca) async {
+  /// [uid] fijo solo para las fincas sembradas (ver [uidsFincasSembradas]).
+  Future<int> guardarFinca(Finca finca, {String? uid}) async {
     final db = await basedatos;
-    return db.insert('fincas', finca.toMap()..remove('id'));
+    return _insertarSincronizable(db, 'fincas', finca.toMap()..remove('id'),
+        uid: uid);
   }
 
-  Future<void> actualizarFinca(int id, Map<String, Object?> cambios) async {
-    final db = await basedatos;
-    await db.update('fincas', cambios, where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> actualizarFinca(int id, Map<String, Object?> cambios) =>
+      _actualizarSincronizable('fincas', id, cambios);
 
   Future<List<Finca>> listarFincas() async {
     final db = await basedatos;
@@ -370,23 +558,21 @@ class BaseDatosSoleraZunbeltz {
     return Finca.fromMap(filas.first);
   }
 
-  Future<void> borrarFinca(int id) async {
-    final db = await basedatos;
-    await db.delete('fincas', where: 'id = ?', whereArgs: [id]);
-  }
+  /// Borra la finca con sus zonas, puntos, tareas y seguimiento (lápidas
+  /// incluidas, para que el borrado llegue al resto de móviles).
+  Future<void> borrarFinca(int id) => _borrarSincronizable('fincas', id);
 
   // ─── Puntos de infraestructura ──────────────────────────
 
-  Future<int> guardarPunto(PuntoInfraestructura punto) async {
+  Future<int> guardarPunto(PuntoInfraestructura punto, {String? uid}) async {
     final db = await basedatos;
-    return db.insert('puntos_infraestructura', punto.toMap()..remove('id'));
+    return _insertarSincronizable(
+        db, 'puntos_infraestructura', punto.toMap()..remove('id'),
+        uid: uid);
   }
 
-  Future<void> actualizarPunto(int id, Map<String, Object?> cambios) async {
-    final db = await basedatos;
-    await db.update('puntos_infraestructura', cambios,
-        where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> actualizarPunto(int id, Map<String, Object?> cambios) =>
+      _actualizarSincronizable('puntos_infraestructura', id, cambios);
 
   Future<void> actualizarPuntoCoords(
       int id, double latitud, double longitud) async {
@@ -413,22 +599,19 @@ class BaseDatosSoleraZunbeltz {
     return PuntoInfraestructura.fromMap(filas.first);
   }
 
-  Future<void> borrarPunto(int id) async {
-    final db = await basedatos;
-    await db.delete('puntos_infraestructura', where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> borrarPunto(int id) =>
+      _borrarSincronizable('puntos_infraestructura', id);
 
   // ─── Zonas (recintos dibujados) ─────────────────────────
 
   Future<int> guardarZona(ZonaFinca zona) async {
     final db = await basedatos;
-    return db.insert('zonas_finca', zona.toMap()..remove('id'));
+    return _insertarSincronizable(
+        db, 'zonas_finca', zona.toMap()..remove('id'));
   }
 
-  Future<void> actualizarZona(int id, Map<String, Object?> cambios) async {
-    final db = await basedatos;
-    await db.update('zonas_finca', cambios, where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> actualizarZona(int id, Map<String, Object?> cambios) =>
+      _actualizarSincronizable('zonas_finca', id, cambios);
 
   /// Sustituye el trazado de una zona y recalcula su superficie orientativa.
   Future<void> actualizarTrazadoZona(int id, List<LatLng> vertices) async {
@@ -451,8 +634,8 @@ class BaseDatosSoleraZunbeltz {
 
   Future<ZonaFinca?> obtenerZona(int id) async {
     final db = await basedatos;
-    final filas =
-        await db.query('zonas_finca', where: 'id = ?', whereArgs: [id], limit: 1);
+    final filas = await db.query('zonas_finca',
+        where: 'id = ?', whereArgs: [id], limit: 1);
     if (filas.isEmpty) return null;
     return ZonaFinca.fromMap(filas.first);
   }
@@ -461,14 +644,7 @@ class BaseDatosSoleraZunbeltz {
   /// finca. Equivale al ON DELETE SET NULL que SQLite no deja añadir por
   /// ALTER TABLE, y va en transacción para no dejar tareas apuntando a una
   /// zona que ya no existe.
-  Future<void> borrarZona(int id) async {
-    final db = await basedatos;
-    await db.transaction((txn) async {
-      await txn.update('tareas_mantenimiento', {'zona_id': null},
-          where: 'zona_id = ?', whereArgs: [id]);
-      await txn.delete('zonas_finca', where: 'id = ?', whereArgs: [id]);
-    });
-  }
+  Future<void> borrarZona(int id) => _borrarSincronizable('zonas_finca', id);
 
   /// Suma de superficies (ha) de las zonas de una finca, o de todas. Usa la
   /// oficial de SIGPAC cuando existe y la calculada cuando no.
@@ -565,7 +741,31 @@ class BaseDatosSoleraZunbeltz {
     return TareaMantenimiento.fromMap(filas.first);
   }
 
+  /// Borra la tarea y deja lápida para pedir al servidor que la borre
+  /// también (solo lo acepta de quien puede editar cualquier tarea).
   Future<void> borrarTarea(int id) async {
+    final db = await basedatos;
+    await db.transaction((txn) async {
+      final filas = await txn.query('tareas_mantenimiento',
+          columns: ['uid'], where: 'id = ?', whereArgs: [id], limit: 1);
+      if (filas.isNotEmpty) {
+        await txn.insert(
+          'borrados_sync',
+          {
+            'tipo': 'tarea',
+            'uid': filas.first['uid'],
+            'borrado_ms': DateTime.now().millisecondsSinceEpoch,
+          },
+          conflictAlgorithm: ConflictAlgorithm.replace,
+        );
+      }
+      await txn
+          .delete('tareas_mantenimiento', where: 'id = ?', whereArgs: [id]);
+    });
+  }
+
+  /// Borra una tarea sin lápida: la ha retirado o rechazado el servidor.
+  Future<void> borrarTareaSinLapida(int id) async {
     final db = await basedatos;
     await db.delete('tareas_mantenimiento', where: 'id = ?', whereArgs: [id]);
   }
@@ -582,8 +782,8 @@ class BaseDatosSoleraZunbeltz {
     if (tarea == null) return null;
     return db.transaction<int?>((txn) async {
       final ahoraMs = DateTime.now().millisecondsSinceEpoch;
-      await txn.update(
-          'tareas_mantenimiento', {'estado': 'hecha', 'actualizado_ms': ahoraMs},
+      await txn.update('tareas_mantenimiento',
+          {'estado': 'hecha', 'actualizado_ms': ahoraMs},
           where: 'id = ?', whereArgs: [id]);
       if (!tarea.esRecurrente) return null;
       final ahora = DateTime.now();
@@ -608,7 +808,8 @@ class BaseDatosSoleraZunbeltz {
         fechaCreacionMs: ahora.millisecondsSinceEpoch,
         recurrenciaDias: tarea.recurrenciaDias,
       );
-      return txn.insert('tareas_mantenimiento', siguiente.toMap()..remove('id'));
+      return txn.insert(
+          'tareas_mantenimiento', siguiente.toMap()..remove('id'));
     });
   }
 
@@ -632,15 +833,16 @@ class BaseDatosSoleraZunbeltz {
   /// Con [forzar] se escribe la versión remota aunque la local sea más
   /// reciente: el servidor ha rechazado o ajustado el cambio local por
   /// permisos y su versión es la buena.
+  ///
+  /// Con [anclajeDelServidor] el punto y la zona de [remota] (ya resueltos a
+  /// ids locales por `uid`) mandan; sin él (servidor anterior a la v0.3,
+  /// que no los manda) se conserva el anclaje local.
   Future<void> upsertTareaRemota(TareaMantenimiento remota,
-      {bool forzar = false}) async {
+      {bool forzar = false, bool anclajeDelServidor = false}) async {
     final db = await basedatos;
     final existente = await db.query('tareas_mantenimiento',
         where: 'uid = ?', whereArgs: [remota.uid], limit: 1);
-    final mapa = remota.toMap()
-      ..remove('id')
-      ..['punto_id'] = null
-      ..['zona_id'] = null;
+    final mapa = remota.toMap()..remove('id');
     if (existente.isEmpty) {
       await db.insert('tareas_mantenimiento', mapa);
       return;
@@ -648,11 +850,13 @@ class BaseDatosSoleraZunbeltz {
     final local = TareaMantenimiento.fromMap(existente.first);
     if (!forzar && remota.actualizadoMs <= local.actualizadoMs) return;
     mapa.remove('uid');
-    // Lo que no viaja (anclaje a punto/zona, fotos) se conserva: el
-    // servidor no lo conoce y lo mandaría vacío.
+    if (!anclajeDelServidor) {
+      mapa
+        ..['punto_id'] = local.puntoId
+        ..['zona_id'] = local.zonaId;
+    }
+    // Las fotos no viajan: se conservan las de este móvil.
     mapa
-      ..['punto_id'] = local.puntoId
-      ..['zona_id'] = local.zonaId
       ..['rutas_fotos_antes_json'] = local.rutasFotosAntesJson
       ..['rutas_fotos_despues_json'] = local.rutasFotosDespuesJson;
     await db.update('tareas_mantenimiento', mapa,
@@ -671,7 +875,8 @@ class BaseDatosSoleraZunbeltz {
 
   Future<int> guardarRegistro(RegistroActividad registro) async {
     final db = await basedatos;
-    return db.insert('registros_actividad', registro.toMap()..remove('id'));
+    return _insertarSincronizable(
+        db, 'registros_actividad', registro.toMap()..remove('id'));
   }
 
   Future<List<RegistroActividad>> listarRegistros({
@@ -697,10 +902,8 @@ class BaseDatosSoleraZunbeltz {
     return filas.map(RegistroActividad.fromMap).toList();
   }
 
-  Future<void> borrarRegistro(int id) async {
-    final db = await basedatos;
-    await db.delete('registros_actividad', where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> borrarRegistro(int id) =>
+      _borrarSincronizable('registros_actividad', id);
 
   /// Suma de cantidades de actividad de un tipo (kg de alimentación, nº de
   /// pariciones, uds comercializadas) con filtros opcionales de finca y fechas.
@@ -731,7 +934,8 @@ class BaseDatosSoleraZunbeltz {
 
   Future<int> guardarApunte(ApunteEconomico apunte) async {
     final db = await basedatos;
-    return db.insert('apuntes_economicos', apunte.toMap()..remove('id'));
+    return _insertarSincronizable(
+        db, 'apuntes_economicos', apunte.toMap()..remove('id'));
   }
 
   Future<List<ApunteEconomico>> listarApuntes({
@@ -757,10 +961,8 @@ class BaseDatosSoleraZunbeltz {
     return filas.map(ApunteEconomico.fromMap).toList();
   }
 
-  Future<void> borrarApunte(int id) async {
-    final db = await basedatos;
-    await db.delete('apuntes_economicos', where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> borrarApunte(int id) =>
+      _borrarSincronizable('apuntes_economicos', id);
 
   /// Suma de importes (en céntimos) de un tipo de apunte (ingreso / gasto)
   /// con filtros opcionales de finca y fechas.
@@ -826,13 +1028,12 @@ class BaseDatosSoleraZunbeltz {
 
   Future<int> guardarProyecto(ProyectoTest proyecto) async {
     final db = await basedatos;
-    return db.insert('proyectos_test', proyecto.toMap()..remove('id'));
+    return _insertarSincronizable(
+        db, 'proyectos_test', proyecto.toMap()..remove('id'));
   }
 
-  Future<void> actualizarProyecto(int id, Map<String, Object?> cambios) async {
-    final db = await basedatos;
-    await db.update('proyectos_test', cambios, where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> actualizarProyecto(int id, Map<String, Object?> cambios) =>
+      _actualizarSincronizable('proyectos_test', id, cambios);
 
   Future<List<ProyectoTest>> listarProyectos() async {
     final db = await basedatos;
@@ -848,16 +1049,16 @@ class BaseDatosSoleraZunbeltz {
     return ProyectoTest.fromMap(filas.first);
   }
 
-  Future<void> borrarProyecto(int id) async {
-    final db = await basedatos;
-    await db.delete('proyectos_test', where: 'id = ?', whereArgs: [id]);
-  }
+  /// Borra el proyecto con todo su seguimiento.
+  Future<void> borrarProyecto(int id) =>
+      _borrarSincronizable('proyectos_test', id);
 
   // ─── Comercialización ───────────────────────────────────
 
   Future<int> guardarComercializacion(RegistroComercializacion registro) async {
     final db = await basedatos;
-    return db.insert('registros_comercializacion', registro.toMap()..remove('id'));
+    return _insertarSincronizable(
+        db, 'registros_comercializacion', registro.toMap()..remove('id'));
   }
 
   Future<List<RegistroComercializacion>> listarComercializacion({
@@ -873,11 +1074,8 @@ class BaseDatosSoleraZunbeltz {
     return filas.map(RegistroComercializacion.fromMap).toList();
   }
 
-  Future<void> borrarComercializacion(int id) async {
-    final db = await basedatos;
-    await db
-        .delete('registros_comercializacion', where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> borrarComercializacion(int id) =>
+      _borrarSincronizable('registros_comercializacion', id);
 
   /// Suma de ingresos (céntimos) de comercialización del proyecto/periodo.
   Future<int> sumarIngresoComercializacion({
@@ -900,7 +1098,8 @@ class BaseDatosSoleraZunbeltz {
 
   Future<int> guardarValidacion(ValidacionProducto validacion) async {
     final db = await basedatos;
-    return db.insert('validaciones_producto', validacion.toMap()..remove('id'));
+    return _insertarSincronizable(
+        db, 'validaciones_producto', validacion.toMap()..remove('id'));
   }
 
   Future<List<ValidacionProducto>> listarValidaciones({int? proyectoId}) async {
@@ -914,10 +1113,8 @@ class BaseDatosSoleraZunbeltz {
     return filas.map(ValidacionProducto.fromMap).toList();
   }
 
-  Future<void> borrarValidacion(int id) async {
-    final db = await basedatos;
-    await db.delete('validaciones_producto', where: 'id = ?', whereArgs: [id]);
-  }
+  Future<void> borrarValidacion(int id) =>
+      _borrarSincronizable('validaciones_producto', id);
 
   // ─── Rentabilidad por proyecto ──────────────────────────
 
@@ -974,20 +1171,24 @@ class BaseDatosSoleraZunbeltz {
   Future<bool> sembrarFincasDemoSiVacia() async {
     final existentes = await listarFincas();
     if (existentes.isNotEmpty) return false;
-    await guardarFinca(Finca(
-      nombre: 'Zunbeltz',
-      latitud: 42.7872,
-      longitud: -1.9450,
-      superficieHa: 231,
-      notas: 'Datos de ejemplo · superficie pública, centroide aproximado.',
-    ));
-    await guardarFinca(Finca(
-      nombre: 'La Planilla',
-      latitud: 42.8010,
-      longitud: -1.9720,
-      superficieHa: 197,
-      notas: 'Datos de ejemplo · superficie pública, centroide aproximado.',
-    ));
+    await guardarFinca(
+        Finca(
+          nombre: 'Zunbeltz',
+          latitud: 42.7872,
+          longitud: -1.9450,
+          superficieHa: 231,
+          notas: 'Datos de ejemplo · superficie pública, centroide aproximado.',
+        ),
+        uid: uidsFincasSembradas['Zunbeltz']);
+    await guardarFinca(
+        Finca(
+          nombre: 'La Planilla',
+          latitud: 42.8010,
+          longitud: -1.9720,
+          superficieHa: 197,
+          notas: 'Datos de ejemplo · superficie pública, centroide aproximado.',
+        ),
+        uid: uidsFincasSembradas['La Planilla']);
     return true;
   }
 
@@ -1002,29 +1203,33 @@ class BaseDatosSoleraZunbeltz {
     final ahora = DateTime.now().millisecondsSinceEpoch;
     final idPorFinca = <String, int>{};
     for (final f in fincasEspacio) {
-      final id = await guardarFinca(Finca(
-        nombre: f.nombre,
-        latitud: f.latitud,
-        longitud: f.longitud,
-        superficieHa: f.superficieHa,
-        recintosSigpac: f.recintosSigpac,
-        notas: f.notas,
-      ));
+      final id = await guardarFinca(
+          Finca(
+            nombre: f.nombre,
+            latitud: f.latitud,
+            longitud: f.longitud,
+            superficieHa: f.superficieHa,
+            recintosSigpac: f.recintosSigpac,
+            notas: f.notas,
+          ),
+          uid: uidSembrado('finca', f.nombre));
       idPorFinca[f.nombre] = id;
     }
     for (final p in puntosEspacio) {
       final fincaId = idPorFinca[p.finca];
       if (fincaId == null) continue;
-      await guardarPunto(PuntoInfraestructura(
-        fincaId: fincaId,
-        tipo: p.tipo,
-        nombre: p.nombre,
-        latitud: p.latitud,
-        longitud: p.longitud,
-        estado: p.estado,
-        notas: p.notas,
-        fechaCreacionMs: ahora,
-      ));
+      await guardarPunto(
+          PuntoInfraestructura(
+            fincaId: fincaId,
+            tipo: p.tipo,
+            nombre: p.nombre,
+            latitud: p.latitud,
+            longitud: p.longitud,
+            estado: p.estado,
+            notas: p.notas,
+            fechaCreacionMs: ahora,
+          ),
+          uid: uidSembrado('punto', '${p.finca} ${p.nombre}'));
     }
     return true;
   }
@@ -1039,7 +1244,8 @@ class BaseDatosSoleraZunbeltz {
     final ahora = DateTime.now();
     // Puntos y tareas van por separado (su propia comprobación de vacío)
     // para que una BD con proyectos pero sin mapa también los reciba.
-    final sembroInfraestructura = await _sembrarInfraestructuraDemo(fincas, ahora);
+    final sembroInfraestructura =
+        await _sembrarInfraestructuraDemo(fincas, ahora);
     if ((await listarProyectos()).isNotEmpty) return sembroInfraestructura;
     final fincaId = fincas.isEmpty ? 0 : (fincas.first.id ?? 0);
     int hace(int dias) =>
@@ -1056,31 +1262,122 @@ class BaseDatosSoleraZunbeltz {
       fechaCreacionMs: creado,
     ));
     for (final r in [
-      RegistroActividad(fincaId: fincaId, proyectoId: p1, tipo: 'alimentacion', cantidad: 1200, fechaMs: hace(120), lote: 'Rebaño A'),
-      RegistroActividad(fincaId: fincaId, proyectoId: p1, tipo: 'paricion', cantidad: 18, fechaMs: hace(100)),
-      RegistroActividad(fincaId: fincaId, proyectoId: p1, tipo: 'producto', cantidad: 320, fechaMs: hace(40)),
+      RegistroActividad(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'alimentacion',
+          cantidad: 1200,
+          fechaMs: hace(120),
+          lote: 'Rebaño A'),
+      RegistroActividad(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'paricion',
+          cantidad: 18,
+          fechaMs: hace(100)),
+      RegistroActividad(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'producto',
+          cantidad: 320,
+          fechaMs: hace(40)),
     ]) {
       await guardarRegistro(r);
     }
     for (final v in [
-      RegistroComercializacion(proyectoId: p1, fechaMs: hace(60), producto: 'Queso curado', canal: 'directa', cantidad: 40, unidad: 'uds', precioUnitarioCentimos: 1200, ingresoCentimos: 48000, ivaPorcentaje: 10),
-      RegistroComercializacion(proyectoId: p1, fechaMs: hace(30), producto: 'Queso curado', canal: 'mercado', cantidad: 55, unidad: 'uds', precioUnitarioCentimos: 1300, ingresoCentimos: 71500, ivaPorcentaje: 10),
-      RegistroComercializacion(proyectoId: p1, fechaMs: hace(10), producto: 'Requesón', canal: 'tienda', cantidad: 30, unidad: 'uds', precioUnitarioCentimos: 450, ingresoCentimos: 13500, ivaPorcentaje: 4),
+      RegistroComercializacion(
+          proyectoId: p1,
+          fechaMs: hace(60),
+          producto: 'Queso curado',
+          canal: 'directa',
+          cantidad: 40,
+          unidad: 'uds',
+          precioUnitarioCentimos: 1200,
+          ingresoCentimos: 48000,
+          ivaPorcentaje: 10),
+      RegistroComercializacion(
+          proyectoId: p1,
+          fechaMs: hace(30),
+          producto: 'Queso curado',
+          canal: 'mercado',
+          cantidad: 55,
+          unidad: 'uds',
+          precioUnitarioCentimos: 1300,
+          ingresoCentimos: 71500,
+          ivaPorcentaje: 10),
+      RegistroComercializacion(
+          proyectoId: p1,
+          fechaMs: hace(10),
+          producto: 'Requesón',
+          canal: 'tienda',
+          cantidad: 30,
+          unidad: 'uds',
+          precioUnitarioCentimos: 450,
+          ingresoCentimos: 13500,
+          ivaPorcentaje: 4),
     ]) {
       await guardarComercializacion(v);
     }
     for (final val in [
-      ValidacionProducto(proyectoId: p1, fechaMs: hace(70), descripcion: 'Curación a 60 días', resultado: 'validado', valoracion: 4),
-      ValidacionProducto(proyectoId: p1, fechaMs: hace(20), descripcion: 'Formato cuña 250 g', resultado: 'ajustar', valoracion: 3),
+      ValidacionProducto(
+          proyectoId: p1,
+          fechaMs: hace(70),
+          descripcion: 'Curación a 60 días',
+          resultado: 'validado',
+          valoracion: 4),
+      ValidacionProducto(
+          proyectoId: p1,
+          fechaMs: hace(20),
+          descripcion: 'Formato cuña 250 g',
+          resultado: 'ajustar',
+          valoracion: 3),
     ]) {
       await guardarValidacion(val);
     }
     for (final g in [
-      ApunteEconomico(fincaId: fincaId, proyectoId: p1, tipo: 'gasto', categoria: 'alimentacion', concepto: 'Pienso y forraje', importeCentimos: 42000, ivaPorcentaje: 10, fechaMs: hace(115)),
-      ApunteEconomico(fincaId: fincaId, proyectoId: p1, tipo: 'gasto', categoria: 'sanidad', concepto: 'Veterinario', importeCentimos: 9000, ivaPorcentaje: 21, fechaMs: hace(80)),
-      ApunteEconomico(fincaId: fincaId, proyectoId: p1, tipo: 'gasto', categoria: 'insumos', concepto: 'Cuajo y sal', importeCentimos: 6000, ivaPorcentaje: 21, fechaMs: hace(50)),
-      ApunteEconomico(fincaId: fincaId, proyectoId: p1, tipo: 'gasto', categoria: 'mano_obra', concepto: 'Jornales', importeCentimos: 30000, fechaMs: hace(25)),
-      ApunteEconomico(fincaId: fincaId, proyectoId: p1, tipo: 'ingreso', categoria: 'ayuda', concepto: 'Prima PAC / ecorégimen', importeCentimos: 28000, fechaMs: hace(90)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'gasto',
+          categoria: 'alimentacion',
+          concepto: 'Pienso y forraje',
+          importeCentimos: 42000,
+          ivaPorcentaje: 10,
+          fechaMs: hace(115)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'gasto',
+          categoria: 'sanidad',
+          concepto: 'Veterinario',
+          importeCentimos: 9000,
+          ivaPorcentaje: 21,
+          fechaMs: hace(80)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'gasto',
+          categoria: 'insumos',
+          concepto: 'Cuajo y sal',
+          importeCentimos: 6000,
+          ivaPorcentaje: 21,
+          fechaMs: hace(50)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'gasto',
+          categoria: 'mano_obra',
+          concepto: 'Jornales',
+          importeCentimos: 30000,
+          fechaMs: hace(25)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p1,
+          tipo: 'ingreso',
+          categoria: 'ayuda',
+          concepto: 'Prima PAC / ecorégimen',
+          importeCentimos: 28000,
+          fechaMs: hace(90)),
     ]) {
       await guardarApunte(g);
     }
@@ -1094,18 +1391,69 @@ class BaseDatosSoleraZunbeltz {
       fechaInicioMs: hace(90),
       fechaCreacionMs: creado,
     ));
-    await guardarRegistro(RegistroActividad(fincaId: fincaId, proyectoId: p2, tipo: 'producto', cantidad: 180, fechaMs: hace(20)));
+    await guardarRegistro(RegistroActividad(
+        fincaId: fincaId,
+        proyectoId: p2,
+        tipo: 'producto',
+        cantidad: 180,
+        fechaMs: hace(20)));
     for (final v in [
-      RegistroComercializacion(proyectoId: p2, fechaMs: hace(35), producto: 'Cesta de verdura', canal: 'directa', cantidad: 25, unidad: 'uds', precioUnitarioCentimos: 1500, ingresoCentimos: 37500, ivaPorcentaje: 4),
-      RegistroComercializacion(proyectoId: p2, fechaMs: hace(7), producto: 'Tomate', canal: 'restauracion', cantidad: 60, unidad: 'kg', precioUnitarioCentimos: 250, ingresoCentimos: 15000, ivaPorcentaje: 4),
+      RegistroComercializacion(
+          proyectoId: p2,
+          fechaMs: hace(35),
+          producto: 'Cesta de verdura',
+          canal: 'directa',
+          cantidad: 25,
+          unidad: 'uds',
+          precioUnitarioCentimos: 1500,
+          ingresoCentimos: 37500,
+          ivaPorcentaje: 4),
+      RegistroComercializacion(
+          proyectoId: p2,
+          fechaMs: hace(7),
+          producto: 'Tomate',
+          canal: 'restauracion',
+          cantidad: 60,
+          unidad: 'kg',
+          precioUnitarioCentimos: 250,
+          ingresoCentimos: 15000,
+          ivaPorcentaje: 4),
     ]) {
       await guardarComercializacion(v);
     }
-    await guardarValidacion(ValidacionProducto(proyectoId: p2, fechaMs: hace(15), descripcion: 'Variedad de tomate local', resultado: 'validado', valoracion: 5));
+    await guardarValidacion(ValidacionProducto(
+        proyectoId: p2,
+        fechaMs: hace(15),
+        descripcion: 'Variedad de tomate local',
+        resultado: 'validado',
+        valoracion: 5));
     for (final g in [
-      ApunteEconomico(fincaId: fincaId, proyectoId: p2, tipo: 'gasto', categoria: 'insumos', concepto: 'Semilla y plantel', importeCentimos: 12000, ivaPorcentaje: 10, fechaMs: hace(85)),
-      ApunteEconomico(fincaId: fincaId, proyectoId: p2, tipo: 'gasto', categoria: 'maquinaria', concepto: 'Gasoil motoazada', importeCentimos: 8000, ivaPorcentaje: 21, fechaMs: hace(40)),
-      ApunteEconomico(fincaId: fincaId, proyectoId: p2, tipo: 'gasto', categoria: 'alquiler', concepto: 'Cesión de parcela', importeCentimos: 24000, fechaMs: hace(60)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p2,
+          tipo: 'gasto',
+          categoria: 'insumos',
+          concepto: 'Semilla y plantel',
+          importeCentimos: 12000,
+          ivaPorcentaje: 10,
+          fechaMs: hace(85)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p2,
+          tipo: 'gasto',
+          categoria: 'maquinaria',
+          concepto: 'Gasoil motoazada',
+          importeCentimos: 8000,
+          ivaPorcentaje: 21,
+          fechaMs: hace(40)),
+      ApunteEconomico(
+          fincaId: fincaId,
+          proyectoId: p2,
+          tipo: 'gasto',
+          categoria: 'alquiler',
+          concepto: 'Cesión de parcela',
+          importeCentimos: 24000,
+          fechaMs: hace(60)),
     ]) {
       await guardarApunte(g);
     }
@@ -1139,10 +1487,15 @@ class BaseDatosSoleraZunbeltz {
       ],
     ];
     final idsPunto = <String, int>{};
-    for (var indice = 0; indice < fincas.length && indice < puntosPorFinca.length; indice++) {
+    for (var indice = 0;
+        indice < fincas.length && indice < puntosPorFinca.length;
+        indice++) {
       final finca = fincas[indice];
-      if (finca.id == null || finca.latitud == null || finca.longitud == null) continue;
-      for (final (tipo, nombre, desplazamientoLat, desplazamientoLong, estado) in puntosPorFinca[indice]) {
+      if (finca.id == null || finca.latitud == null || finca.longitud == null) {
+        continue;
+      }
+      for (final (tipo, nombre, desplazamientoLat, desplazamientoLong, estado)
+          in puntosPorFinca[indice]) {
         idsPunto[nombre] = await guardarPunto(PuntoInfraestructura(
           fincaId: finca.id!,
           tipo: tipo,
@@ -1159,11 +1512,43 @@ class BaseDatosSoleraZunbeltz {
     final fincaPrincipal = fincas.first.id!;
 
     for (final tarea in [
-      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Cierre del cercado norte'], titulo: 'Reparar alambrada caída', descripcion: 'Dos postes rotos tras el viento.', prioridad: 'alta', fechaObjetivoMs: enDias(-2), fechaCreacionMs: creado),
-      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Almacén de pienso'], titulo: 'Comprar pienso', prioridad: 'alta', fechaObjetivoMs: enDias(1), fechaCreacionMs: creado),
-      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Abrevadero de la borda'], titulo: 'Limpiar abrevadero', prioridad: 'media', fechaObjetivoMs: enDias(3), recurrenciaDias: 14, fechaCreacionMs: creado),
-      TareaMantenimiento(fincaId: fincaPrincipal, puntoId: idsPunto['Manga de manejo'], titulo: 'Revisar cancela de la manga', estado: 'en_curso', fechaObjetivoMs: enDias(5), fechaCreacionMs: creado),
-      TareaMantenimiento(fincaId: fincaPrincipal, titulo: 'Inscripción en la feria de ganado', descripcion: 'Plazo de inscripción.', prioridad: 'media', fechaObjetivoMs: enDias(10), fechaCreacionMs: creado),
+      TareaMantenimiento(
+          fincaId: fincaPrincipal,
+          puntoId: idsPunto['Cierre del cercado norte'],
+          titulo: 'Reparar alambrada caída',
+          descripcion: 'Dos postes rotos tras el viento.',
+          prioridad: 'alta',
+          fechaObjetivoMs: enDias(-2),
+          fechaCreacionMs: creado),
+      TareaMantenimiento(
+          fincaId: fincaPrincipal,
+          puntoId: idsPunto['Almacén de pienso'],
+          titulo: 'Comprar pienso',
+          prioridad: 'alta',
+          fechaObjetivoMs: enDias(1),
+          fechaCreacionMs: creado),
+      TareaMantenimiento(
+          fincaId: fincaPrincipal,
+          puntoId: idsPunto['Abrevadero de la borda'],
+          titulo: 'Limpiar abrevadero',
+          prioridad: 'media',
+          fechaObjetivoMs: enDias(3),
+          recurrenciaDias: 14,
+          fechaCreacionMs: creado),
+      TareaMantenimiento(
+          fincaId: fincaPrincipal,
+          puntoId: idsPunto['Manga de manejo'],
+          titulo: 'Revisar cancela de la manga',
+          estado: 'en_curso',
+          fechaObjetivoMs: enDias(5),
+          fechaCreacionMs: creado),
+      TareaMantenimiento(
+          fincaId: fincaPrincipal,
+          titulo: 'Inscripción en la feria de ganado',
+          descripcion: 'Plazo de inscripción.',
+          prioridad: 'media',
+          fechaObjetivoMs: enDias(10),
+          fechaCreacionMs: creado),
     ]) {
       await guardarTarea(tarea);
     }

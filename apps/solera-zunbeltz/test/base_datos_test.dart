@@ -153,12 +153,10 @@ void main() {
     final v3 = await databaseFactoryFfi.openDatabase(
       ruta,
       options: OpenDatabaseOptions(
-        version: 3,
+        version: BaseDatosSoleraZunbeltz.versionEsquema,
         onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
-        onUpgrade: (d, anterior, actual) async {
-          if (anterior < 2) await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
-          if (anterior < 3) await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
-        },
+        onUpgrade: (d, anterior, actual) =>
+            BaseDatosSoleraZunbeltz.migrarDesde(d, anterior),
       ),
     );
     final bd = BaseDatosSoleraZunbeltz.paraTests(v3);
@@ -258,12 +256,10 @@ void main() {
     final v3 = await databaseFactoryFfi.openDatabase(
       ruta,
       options: OpenDatabaseOptions(
-        version: 4,
+        version: BaseDatosSoleraZunbeltz.versionEsquema,
         onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
-        onUpgrade: (d, anterior, actual) async {
-          if (anterior < 3) await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
-          if (anterior < 4) await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
-        },
+        onUpgrade: (d, anterior, actual) =>
+            BaseDatosSoleraZunbeltz.migrarDesde(d, anterior),
       ),
     );
     final bd = BaseDatosSoleraZunbeltz.paraTests(v3);
@@ -339,11 +335,10 @@ void main() {
     final v4 = await databaseFactoryFfi.openDatabase(
       ruta,
       options: OpenDatabaseOptions(
-        version: 4,
+        version: BaseDatosSoleraZunbeltz.versionEsquema,
         onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
-        onUpgrade: (d, anterior, actual) async {
-          if (anterior < 4) await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
-        },
+        onUpgrade: (d, anterior, actual) =>
+            BaseDatosSoleraZunbeltz.migrarDesde(d, anterior),
       ),
     );
     final bd = BaseDatosSoleraZunbeltz.paraTests(v4);
@@ -524,11 +519,10 @@ void main() {
     final v5 = await databaseFactoryFfi.openDatabase(
       ruta,
       options: OpenDatabaseOptions(
-        version: 5,
+        version: BaseDatosSoleraZunbeltz.versionEsquema,
         onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
-        onUpgrade: (d, anterior, actual) async {
-          if (anterior < 5) await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
-        },
+        onUpgrade: (d, anterior, actual) =>
+            BaseDatosSoleraZunbeltz.migrarDesde(d, anterior),
       ),
     );
     final bd = BaseDatosSoleraZunbeltz.paraTests(v5);
@@ -590,11 +584,10 @@ void main() {
     final v6 = await databaseFactoryFfi.openDatabase(
       ruta,
       options: OpenDatabaseOptions(
-        version: 6,
+        version: BaseDatosSoleraZunbeltz.versionEsquema,
         onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
-        onUpgrade: (d, anterior, actual) async {
-          if (anterior < 6) await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
-        },
+        onUpgrade: (d, anterior, actual) =>
+            BaseDatosSoleraZunbeltz.migrarDesde(d, anterior),
       ),
     );
     final bd = BaseDatosSoleraZunbeltz.paraTests(v6);
@@ -719,11 +712,10 @@ void main() {
     final v7 = await databaseFactoryFfi.openDatabase(
       ruta,
       options: OpenDatabaseOptions(
-        version: 7,
+        version: BaseDatosSoleraZunbeltz.versionEsquema,
         onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
-        onUpgrade: (d, anterior, actual) async {
-          if (anterior < 7) await BaseDatosSoleraZunbeltz.aplicarMigracionV7(d);
-        },
+        onUpgrade: (d, anterior, actual) =>
+            BaseDatosSoleraZunbeltz.migrarDesde(d, anterior),
       ),
     );
     final bd = BaseDatosSoleraZunbeltz.paraTests(v7);

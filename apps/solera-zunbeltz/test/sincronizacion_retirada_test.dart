@@ -30,9 +30,13 @@ void main() {
         fincaId: fincaId, titulo: 'Reparar cierre', responsableUid: 'ane');
     await bd.guardarTarea(tareaQueSigue);
     await bd.guardarTarea(tareaReasignada);
+    // Ya sincronizado antes: así esta no es la primera (completa).
+    await bd.guardarEstadoSync('revision', 1);
   });
 
   Map<String, Object?> respuestaServidor({required bool completo}) => {
+        'entidades': <Object>[],
+        'revision': 1,
         'tareas': [ClienteSyncZunbeltz.tareaAJson(tareaQueSigue, 'Zunbeltz')],
         if (completo) 'completo': true,
         'forzar': <String>[],

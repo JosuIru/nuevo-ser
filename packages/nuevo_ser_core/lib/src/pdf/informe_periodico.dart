@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:math' as math;
+import 'dart:typed_data';
 
 import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
@@ -57,15 +59,73 @@ Future<File> generarInformePeriodicoPdf({
   required String prefijoNombreFichero,
   String? operador,
   DateTime? fechaGeneracion,
+  String? marcaAgua,
 }) async {
+  final documento = construirInformePeriodicoPdf(
+    tituloCabecera: tituloCabecera,
+    subtituloCabecera: subtituloCabecera,
+    bulletsResumen: bulletsResumen,
+    tablas: tablas,
+    operador: operador,
+    fechaGeneracion: fechaGeneracion,
+    marcaAgua: marcaAgua,
+  );
+  return guardarPdfTemporal(
+    documento: documento,
+    prefijoNombre: prefijoNombreFichero,
+  );
+}
+
+/// Como [generarInformePeriodicoPdf] pero devuelve los bytes del PDF sin
+/// tocar el disco. Es la variante que sirve en web (no hay sistema de
+/// ficheros) y para quien solo quiere pasarlo a `printing`.
+Future<Uint8List> generarInformePeriodicoPdfBytes({
+  required String tituloCabecera,
+  required String subtituloCabecera,
+  required List<String> bulletsResumen,
+  required List<TablaInforme> tablas,
+  String? operador,
+  DateTime? fechaGeneracion,
+  String? marcaAgua,
+}) {
+  return construirInformePeriodicoPdf(
+    tituloCabecera: tituloCabecera,
+    subtituloCabecera: subtituloCabecera,
+    bulletsResumen: bulletsResumen,
+    tablas: tablas,
+    operador: operador,
+    fechaGeneracion: fechaGeneracion,
+    marcaAgua: marcaAgua,
+  ).save();
+}
+
+/// Construye el documento del informe periódico en memoria.
+///
+/// Si [marcaAgua] no es `null`, cada página lleva ese texto en grande, en
+/// diagonal y en gris claro por encima del contenido (p. ej. "BORRADOR"
+/// para que una copia de trabajo no pase por versión definitiva).
+pw.Document construirInformePeriodicoPdf({
+  required String tituloCabecera,
+  required String subtituloCabecera,
+  required List<String> bulletsResumen,
+  required List<TablaInforme> tablas,
+  String? operador,
+  DateTime? fechaGeneracion,
+  String? marcaAgua,
+}) {
   final fecha = fechaGeneracion ?? DateTime.now();
   final fechaFormateada = DateFormat('dd/MM/yyyy HH:mm').format(fecha);
 
   final pdf = pw.Document();
   pdf.addPage(
     pw.MultiPage(
-      pageFormat: PdfPageFormat.a4,
-      margin: const pw.EdgeInsets.all(32),
+      pageTheme: pw.PageTheme(
+        pageFormat: PdfPageFormat.a4,
+        margin: const pw.EdgeInsets.all(32),
+        buildForeground: marcaAgua == null
+            ? null
+            : (_) => marcaAguaPdf(marcaAgua),
+      ),
       header: (_) => cabeceraInformePdf(
         titulo: tituloCabecera,
         subtitulo: subtituloCabecera,
@@ -81,10 +141,30 @@ Future<File> generarInformePeriodicoPdf({
       ],
     ),
   );
+  return pdf;
+}
 
-  return guardarPdfTemporal(
-    documento: pdf,
-    prefijoNombre: prefijoNombreFichero,
+/// Texto de marca de agua a página completa: diagonal, grande y casi
+/// transparente para no impedir la lectura.
+pw.Widget marcaAguaPdf(String texto) {
+  return pw.FullPage(
+    ignoreMargins: true,
+    child: pw.Center(
+      child: pw.Transform.rotate(
+        angle: math.pi / 5,
+        child: pw.Opacity(
+          opacity: 0.12,
+          child: pw.Text(
+            texto,
+            style: pw.TextStyle(
+              fontSize: 96,
+              fontWeight: pw.FontWeight.bold,
+              color: PdfColors.grey800,
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 }
 

@@ -55,6 +55,14 @@ El plugin sirve también la **versión web de la app** en `https://app.zunbeltz.
 
 Para una **demo sin servidor** (datos de ejemplo, solo en ese navegador) está `apps/solera-zunbeltz/tool/construir_demo_web.sh`.
 
+## 6-bis. Portada bilingüe (tema y WPML)
+
+La entrada del WordPress es el tema **Zunbeltz Espacio** (`wp-theme/zunbeltz-espacio`, ver su `LEEME.md`):
+
+1. Instalar **WPML** (Multilingual CMS + String Translation). Hace falta **licencia de WPML a nombre de Zunbeltz** para el servidor real; alternativa gratuita: Polylang (habría que adaptar el tema, que usa los filtros de WPML).
+2. Asistente de WPML: castellano por defecto, euskera como segundo idioma, idiomas en directorios (`/eu/`).
+3. Subir y activar el tema: crea la «Portada» y su traducción «Atarikoa» y las deja como página de inicio.
+
 ## 7. Copias de seguridad y datos personales
 
 - **Copias**: base de datos completa del WordPress (las tablas `*_solera_zunbeltz_*`) al menos a diario, con el sistema del hosting o un plugin de copias.

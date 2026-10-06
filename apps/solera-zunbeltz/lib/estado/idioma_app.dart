@@ -28,12 +28,25 @@ final RepositorioIdiomaApp repositorioIdiomaZunbeltz = RepositorioIdiomaApp(
 /// Carga el idioma persistido (si lo hay) y lo aplica al notifier global
 /// antes del primer build, para evitar un parpadeo con el idioma del
 /// sistema. Devuelve el código cargado o `null` si es primer arranque.
+///
+/// Sin idioma guardado, en la app web vale el de la dirección (`?lang=eu`,
+/// lo pone la portada en euskera del WordPress): se aplica sin guardarlo,
+/// así la bienvenida sale ya en ese idioma.
 Future<String?> precargarIdiomaZunbeltz() async {
-  final codigo = await repositorioIdiomaZunbeltz.cargar();
+  final codigo =
+      await repositorioIdiomaZunbeltz.cargar() ?? idiomaDesdeDireccion(Uri.base);
   if (codigo != null) {
     localeAppZunbeltz.value = Locale(codigo);
   }
   return codigo;
+}
+
+/// Idioma soportado pedido en la dirección (`?lang=eu`), o `null`.
+String? idiomaDesdeDireccion(Uri direccion) {
+  final pedido = direccion.queryParameters['lang'];
+  return localesSoportadosZunbeltz.any((locale) => locale.languageCode == pedido)
+      ? pedido
+      : null;
 }
 
 /// Persiste y aplica el idioma elegido.

@@ -1,11 +1,10 @@
 <?php
 /**
- * Title: Portada — entrada a la herramienta
- * Slug: zunbeltz-espacio/portada
+ * Title: Portada — entrada a la herramienta (castellano)
+ * Slug: zunbeltz-espacio/portada-es
  * Categories: zunbeltz-espacio
- * Description: Presentación del Espacio Test, botones a la app web y a la oficina, cómo empezar y qué hay dentro. Castellano y euskera.
+ * Description: Presentación del Espacio Test, botones a la app web y a la oficina, cómo empezar y qué hay dentro. En castellano.
  *
- * Euskera: borrador pendiente de revisión nativa (como el de la app).
  *
  * @package ZunbeltzEspacio
  */
@@ -18,7 +17,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <div class="wp-block-group alignwide has-pasto-claro-background-color has-background" style="border-radius:28px;padding-top:var(--wp--preset--spacing--50);padding-right:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50);padding-left:var(--wp--preset--spacing--50)"><!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"left":"var:preset|spacing|50"}}}} -->
 <div class="wp-block-columns are-vertically-aligned-center"><!-- wp:column {"verticalAlignment":"center","width":"55%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%"><!-- wp:paragraph {"textColor":"pasto","fontSize":"pequeno","style":{"typography":{"fontWeight":"600"}}} -->
-<p class="has-pasto-color has-text-color has-pequeno-font-size" style="font-weight:600">Espacio Test Agrario · Nekazaritzako Test Gunea</p>
+<p class="has-pasto-color has-text-color has-pequeno-font-size" style="font-weight:600">Espacio Test Agrario</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
@@ -29,20 +28,14 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <p class="has-medio-font-size">Fincas, tareas, avisos y el seguimiento de cada proyecto de test, en el móvil y en la oficina. Funciona también sin cobertura.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph -->
-<p>Zunbeltzeko taldearen tresna: finkak, zereginak, abisuak eta test-proiektu bakoitzaren jarraipena, mugikorrean eta bulegoan. Estaldurarik gabe ere badabil.</p>
-<!-- /wp:paragraph -->
-
 <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
 <div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_app ); ?>">Abrir la app · Aplikazioa ireki</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_app ); ?>">Abrir la app</a></div>
 <!-- /wp:button -->
 
-<?php if ( null !== $zunbeltz_url_android ) : ?>
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_android ); ?>">Descargar para Android</a></div>
 <!-- /wp:button -->
-<?php endif; ?>
 
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_oficina ); ?>">Oficina de coordinación</a></div>
@@ -60,7 +53,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|40"}}},"layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--40)"><!-- wp:heading -->
-<h2 class="wp-block-heading">Cómo empezar · Nola hasi</h2>
+<h2 class="wp-block-heading">Cómo empezar</h2>
 <!-- /wp:heading -->
 
 <!-- wp:columns {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"},"blockGap":{"left":"var:preset|spacing|40"}}}} -->
@@ -76,10 +69,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- wp:paragraph -->
 <p>Coordinación te da de alta y te entrega tu token personal: es tu llave y no se comparte.</p>
 <!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Koordinazioak alta ematen dizu eta zure token pertsonala ematen dizu: zure giltza da eta ez da partekatzen.</p>
-<!-- /wp:paragraph --></div>
+</div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
@@ -94,10 +84,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- wp:paragraph -->
 <p>Desde el navegador, con el botón «Abrir la app», o en tu móvil Android con «Descargar para Android».</p>
 <!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Nabigatzailetik, «Aplikazioa ireki» botoiarekin, edo zure Android mugikorrean «Descargar para Android» botoiarekin.</p>
-<!-- /wp:paragraph --></div>
+</div>
 <!-- /wp:column -->
 
 <!-- wp:column -->
@@ -112,10 +99,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- wp:paragraph -->
 <p>En Ajustes → Sincronización, pega tu token. A partir de ahí la app se pone al día sola.</p>
 <!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Ezarpenak → Sinkronizazioa atalean, itsatsi zure tokena. Hortik aurrera aplikazioa bera eguneratzen da.</p>
-<!-- /wp:paragraph --></div>
+</div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
 <!-- /wp:group -->
@@ -126,7 +110,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 
 <!-- wp:group {"align":"wide","style":{"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50"}}},"layout":{"type":"default"}} -->
 <div class="wp-block-group alignwide" style="padding-top:var(--wp--preset--spacing--50);padding-bottom:var(--wp--preset--spacing--50)"><!-- wp:heading -->
-<h2 class="wp-block-heading">Qué hay dentro · Zer dago barruan</h2>
+<h2 class="wp-block-heading">Qué hay dentro</h2>
 <!-- /wp:heading -->
 
 <!-- wp:columns {"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"},"blockGap":{"left":"var:preset|spacing|30"}}}} -->
@@ -136,7 +120,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">El mapa de las fincas con sus abrevaderos, cierres y corrales, y las tareas de mantenimiento de cada uno. Finkak, zereginak eta mapa.</p>
+<p class="has-pequeno-font-size">El mapa de las fincas con sus abrevaderos, cierres y corrales, y las tareas de mantenimiento de cada uno.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -146,7 +130,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Un animal enfermo, una rotura, que falta pienso: avísalo y le llega al equipo. Abisuak eta alarmak.</p>
+<p class="has-pequeno-font-size">Un animal enfermo, una rotura, que falta pienso: avísalo y le llega al equipo.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -156,7 +140,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Producción, ventas, pruebas de producto y gastos, con sus números al día. Zure test-proiektua.</p>
+<p class="has-pequeno-font-size">Producción, ventas, pruebas de producto y gastos, con sus números al día.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column -->
 
@@ -166,7 +150,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Balance del test y del proyecto, fianza y acompañamiento, como recoge el convenio tester. Hitzarmena.</p>
+<p class="has-pequeno-font-size">Balance del test y del proyecto, fianza y acompañamiento, como recoge el convenio tester.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
@@ -182,16 +166,13 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 
 <!-- wp:column {"verticalAlignment":"center","width":"60%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:60%"><!-- wp:heading {"textColor":"blanco"} -->
-<h2 class="wp-block-heading has-blanco-color has-text-color">Pensada para el monte · Mendirako pentsatua</h2>
+<h2 class="wp-block-heading has-blanco-color has-text-color">Pensada para el monte</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
 <p>Sin cobertura, la app lo guarda todo en el móvil y lo comparte con el equipo en cuanto vuelve la conexión. Cada persona ve lo suyo y lo que es de todos; la oficina lo ve todo.</p>
 <!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size">Estaldurarik gabe, aplikazioak dena mugikorrean gordetzen du eta konexioa itzultzean taldearekin partekatzen du. Bakoitzak berea eta guztiena ikusten du; bulegoak dena.</p>
-<!-- /wp:paragraph --></div>
+</div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></div>
 <!-- /wp:group -->

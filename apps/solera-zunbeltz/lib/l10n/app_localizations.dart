@@ -3233,7 +3233,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaNotificacionesB.
   ///
   /// In es, this message translates to:
-  /// **'La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona (al sincronizar).\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada del todo, las alarmas llegan al volver a abrirla; las vencidas avisan igualmente.'**
+  /// **'La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona.\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Solera Zunbeltz de esa lista.'**
   String get ayudaNotificacionesB;
 }
 

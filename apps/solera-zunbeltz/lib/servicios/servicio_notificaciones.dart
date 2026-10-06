@@ -26,8 +26,9 @@ import '../utiles/descripcion_actividad.dart';
 ///   sistema para que salte aunque la app esté cerrada, hasta que no quede
 ///   ninguna. Se reprograma al abrir la app y tras cada sincronización.
 ///
-/// Sin push: con la app cerrada del todo no llegan las alarmas de otras
-/// personas hasta que se abre (ver BLOQUEOS, decisión Firebase).
+/// Con la app cerrada, en Android, la sincronización en segundo plano
+/// (`sincronizacion_segundo_plano.dart`) trae las alarmas en unos 15
+/// minutos. Sin push: nada es instantáneo (ver BLOQUEOS 28, Firebase).
 /// En web no se usan.
 final _plugin = FlutterLocalNotificationsPlugin();
 bool _notificacionesListas = false;
@@ -39,7 +40,8 @@ const _idCambios = 4;
 const _horaRecordatorio = 9;
 const _claveYaNotificadas = 'zunbeltz.notificadas';
 
-Future<void> iniciarNotificaciones() async {
+/// [pedirPermiso] es false en segundo plano: no hay pantalla para pedirlo.
+Future<void> iniciarNotificaciones({bool pedirPermiso = true}) async {
   if (kIsWeb || _notificacionesListas) return;
   try {
     datos_zonas_horarias.initializeTimeZones();
@@ -50,10 +52,12 @@ Future<void> iniciarNotificaciones() async {
         linux: LinuxInitializationSettings(defaultActionName: 'Abrir'),
       ),
     );
-    await _plugin
-        .resolvePlatformSpecificImplementation<
-            AndroidFlutterLocalNotificationsPlugin>()
-        ?.requestNotificationsPermission();
+    if (pedirPermiso) {
+      await _plugin
+          .resolvePlatformSpecificImplementation<
+              AndroidFlutterLocalNotificationsPlugin>()
+          ?.requestNotificationsPermission();
+    }
     _notificacionesListas = true;
     oyentesSincronizacion.add(_alSincronizar);
     await reprogramarRecordatorioVencidas();

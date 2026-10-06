@@ -1801,5 +1801,5 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaNotificacionesB =>
-      'Aplikazioak mugikorrean abisatzen dizu:\n• Beste pertsona baten alarma bat iristen denean (sinkronizatzean).\n• Koordinazioari: eskaera berriak daudenean eta gunean aldatu denaren laburpena.\n• Goizero 9:00etan, zeregin iraungiak badituzu, egintzat markatu arte.\n» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa guztiz itxita badago, alarmak berriro irekitzean iristen dira; iraungiek berdin abisatzen dute.';
+      'Aplikazioak mugikorrean abisatzen dizu:\n• Beste pertsona baten alarma bat iristen denean.\n• Koordinazioari: eskaera berriak daudenean eta gunean aldatu denaren laburpena.\n• Goizero 9:00etan, zeregin iraungiak badituzu, egintzat markatu arte.\n» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa itxita dagoenean, Android mugikorrak 15 minuturo gutxi gorabehera begiratzen du berririk dagoen, konexioa badago; mugikorra atsedenean badago, zertxobait gehiago atzera daiteke. Zure mugikorrak bateria aurrezteko bigarren planoko aplikazioak mozten baditu, kendu Solera Zunbeltz zerrenda horretatik.';
 }

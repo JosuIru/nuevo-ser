@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../datos/base_datos.dart';
 import '../estado/ajustes_sincronizacion.dart';
 import '../estado/datos_notificador.dart';
 import '../estado/sesion_espacio.dart';
 import 'cliente_sync_zunbeltz.dart';
+import 'sincronizacion_segundo_plano.dart' show claveUltimaSincronizacion;
 
 /// `true` mientras hay una sincronización en marcha (para que la interfaz
 /// muestre que está trabajando y no lance otra a la vez).
@@ -21,7 +23,8 @@ final List<Future<void> Function(ResultadoSyncZunbeltz)> oyentesSincronizacion =
 ///
 /// Refresca la sesión (persona y permisos) y avisa a las pantallas para que
 /// recarguen.
-Future<ResultadoSyncZunbeltz?> sincronizarEspacio({bool completa = false}) async {
+Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
+    {bool completa = false}) async {
   if (sincronizandoEspacio.value) return null;
   final url = await AjustesSincronizacion.cargarUrl();
   final token = await AjustesSincronizacion.cargarToken();
@@ -33,6 +36,9 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio({bool completa = false}) async
         .sincronizar(BaseDatosSoleraZunbeltz(), completa: completa);
     await guardarSesionEspacio(
         resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
+    // La comparte la tarea en segundo plano para no sincronizar a la vez.
+    await (await SharedPreferences.getInstance()).setInt(
+        claveUltimaSincronizacion, DateTime.now().millisecondsSinceEpoch);
     avisarCambioDatos();
     for (final oyente in List.of(oyentesSincronizacion)) {
       await oyente(resultado);

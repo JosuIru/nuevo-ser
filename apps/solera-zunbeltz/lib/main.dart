@@ -33,6 +33,7 @@ import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_onboarding.dart';
 import 'pantallas/pantalla_proyectos.dart';
 import 'servicios/servicio_notificaciones.dart';
+import 'servicios/sincronizacion_segundo_plano.dart';
 import 'servicios/servicio_sincronizacion.dart';
 
 Future<void> main() async {
@@ -54,6 +55,7 @@ Future<void> main() async {
   await precargarSesionEspacio();
   // Sin esperar: pedir permiso no debe retrasar el arranque.
   iniciarNotificaciones();
+  programarSincronizacionSegundoPlano();
   if (esVersionDemo) {
     try {
       await BaseDatosSoleraZunbeltz().sembrarDemostracionSiVacia();

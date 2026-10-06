@@ -13,13 +13,27 @@ import 'widgets/relleno_seguro.dart';
 
 /// Alta de una tarea de mantenimiento, anclada a una finca y opcionalmente
 /// a un punto de infraestructura o a una zona dibujada.
+///
+/// Con [tituloInicial]/[descripcionInicial] llega rellena (p. ej. desde una
+/// petición) y con [guardar] se sustituye el guardado normal (aceptar la
+/// petición y crear la tarea en una sola operación).
 class NuevaTarea extends StatefulWidget {
-  const NuevaTarea(
-      {super.key, required this.fincaId, this.puntoId, this.zonaId});
+  const NuevaTarea({
+    super.key,
+    required this.fincaId,
+    this.puntoId,
+    this.zonaId,
+    this.tituloInicial = '',
+    this.descripcionInicial = '',
+    this.guardar,
+  });
 
   final int fincaId;
   final int? puntoId;
   final int? zonaId;
+  final String tituloInicial;
+  final String descripcionInicial;
+  final Future<void> Function(TareaMantenimiento tarea)? guardar;
 
   @override
   State<NuevaTarea> createState() => _NuevaTareaState();
@@ -42,6 +56,13 @@ class _NuevaTareaState extends State<NuevaTarea> {
   /// Con sesión, el responsable se elige de las personas del espacio
   /// (`''` = sin asignar); en modo local se escribe en [_responsable].
   String _responsableUid = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _titulo.text = widget.tituloInicial;
+    _descripcion.text = widget.descripcionInicial;
+  }
 
   @override
   void dispose() {
@@ -103,7 +124,12 @@ class _NuevaTareaState extends State<NuevaTarea> {
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
       recurrenciaDias: _recurrenciaDias,
     );
-    await _bd.guardarTarea(tarea);
+    final guardar = widget.guardar;
+    if (guardar == null) {
+      await _bd.guardarTarea(tarea);
+    } else {
+      await guardar(tarea);
+    }
     if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(textos.tareaGuardada)));

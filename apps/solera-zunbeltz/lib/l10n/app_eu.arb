@@ -412,5 +412,27 @@
   "proyectoCerrarPregunta": "Ixten baduzu, pertsona testerrak ezin izango du bertan idatzi eta txostenak behin betiko bertsio gisa aterako dira. Proiektua itxi?",
   "proyectoCerradoAviso": "Proiektua {fecha}(e)an itxi zen. Koordinazioak bakarrik alda dezake.",
   "proyectoCerradoEtiqueta": "Itxita",
-  "proyectoMas": "Aukera gehiago"
+  "proyectoMas": "Aukera gehiago",
+
+  "peticionesTitulo": "Zeregin-eskaerak",
+  "peticionNueva": "Zeregin bat eskatu",
+  "peticionQue": "Zer behar den",
+  "peticionDetalles": "Xehetasunak",
+  "peticionFinca": "Finka",
+  "peticionSinFinca": "Finka zehatzik gabe",
+  "peticionUrgente": "Premiazkoa da",
+  "peticionUrgenteEtiqueta": "Premiazkoa",
+  "peticionEnviada": "Eskaera gordeta. Koordinazioak sinkronizatzean ikusiko du.",
+  "peticionesVacio": "Ez dago eskaerarik.",
+  "peticionCrearTarea": "Zeregina sortu",
+  "peticionDescartar": "Baztertu",
+  "peticionMotivo": "Arrazoia (eskatu zuenak ikusiko du)",
+  "peticionRetirar": "Eskaera kendu",
+  "peticionEstadoPendiente": "Zain",
+  "peticionEstadoAceptada": "Onartuta: zeregina sortuta",
+  "peticionEstadoDescartada": "Baztertuta",
+  "peticionDe": "{nombre}(e)k eskatzen du",
+  "peticionRespuesta": "Erantzuna: {texto}",
+  "peticionNecesitaFinca": "Zeregina sortzeko, aukeratu lehenik finka bat.",
+  "personaDesconocida": "guneko norbait"
 }

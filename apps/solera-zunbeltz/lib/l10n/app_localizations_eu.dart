@@ -1246,4 +1246,73 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get proyectoMas => 'Aukera gehiago';
+
+  @override
+  String get peticionesTitulo => 'Zeregin-eskaerak';
+
+  @override
+  String get peticionNueva => 'Zeregin bat eskatu';
+
+  @override
+  String get peticionQue => 'Zer behar den';
+
+  @override
+  String get peticionDetalles => 'Xehetasunak';
+
+  @override
+  String get peticionFinca => 'Finka';
+
+  @override
+  String get peticionSinFinca => 'Finka zehatzik gabe';
+
+  @override
+  String get peticionUrgente => 'Premiazkoa da';
+
+  @override
+  String get peticionUrgenteEtiqueta => 'Premiazkoa';
+
+  @override
+  String get peticionEnviada =>
+      'Eskaera gordeta. Koordinazioak sinkronizatzean ikusiko du.';
+
+  @override
+  String get peticionesVacio => 'Ez dago eskaerarik.';
+
+  @override
+  String get peticionCrearTarea => 'Zeregina sortu';
+
+  @override
+  String get peticionDescartar => 'Baztertu';
+
+  @override
+  String get peticionMotivo => 'Arrazoia (eskatu zuenak ikusiko du)';
+
+  @override
+  String get peticionRetirar => 'Eskaera kendu';
+
+  @override
+  String get peticionEstadoPendiente => 'Zain';
+
+  @override
+  String get peticionEstadoAceptada => 'Onartuta: zeregina sortuta';
+
+  @override
+  String get peticionEstadoDescartada => 'Baztertuta';
+
+  @override
+  String peticionDe(String nombre) {
+    return '$nombre(e)k eskatzen du';
+  }
+
+  @override
+  String peticionRespuesta(String texto) {
+    return 'Erantzuna: $texto';
+  }
+
+  @override
+  String get peticionNecesitaFinca =>
+      'Zeregina sortzeko, aukeratu lehenik finka bat.';
+
+  @override
+  String get personaDesconocida => 'guneko norbait';
 }

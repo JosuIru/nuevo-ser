@@ -11,6 +11,7 @@ import '../modelos/punto_infraestructura.dart';
 import '../modelos/zona_finca.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../servicios/generador_parte_mantenimiento.dart';
+import 'pantalla_peticiones.dart';
 import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
 import 'widgets/relleno_seguro.dart';
@@ -157,6 +158,13 @@ class _TableroTareasState extends State<TableroTareas> {
       appBar: AppBar(
         title: Text(textos.tableroTitulo),
         actions: [
+          if (!politica.modoLocal)
+            IconButton(
+              tooltip: textos.peticionesTitulo,
+              icon: const Icon(Icons.forum_outlined),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => const PantallaPeticiones())),
+            ),
           IconButton(
             tooltip: textos.tableroPartePdf,
             icon: _generandoPdf

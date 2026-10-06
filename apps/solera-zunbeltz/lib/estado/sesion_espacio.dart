@@ -70,3 +70,13 @@ Future<void> cerrarSesionEspacio() async {
   sesionEspacio.value = null;
   personasEspacio.value = const [];
 }
+
+/// Nombre de una persona del espacio por su `uid`, o `null` si no se conoce
+/// (persona dada de baja, o modo local).
+String? nombrePersonaEspacio(String uid) {
+  if (uid.isEmpty) return null;
+  for (final persona in personasEspacio.value) {
+    if (persona.uid == uid) return persona.nombre;
+  }
+  return null;
+}

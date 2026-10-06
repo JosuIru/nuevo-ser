@@ -7,6 +7,7 @@ import '../modelos/constantes.dart';
 import '../modelos/punto_infraestructura.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../utiles/estilos_tarea.dart';
+import 'nueva_peticion.dart';
 import 'nueva_tarea.dart';
 import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
@@ -130,7 +131,16 @@ class _FichaPuntoState extends State<FichaPunto> {
               icon: const Icon(Icons.add_task),
               label: Text(textos.fichaNuevaTarea),
             )
-          : null,
+          : politicaEspacioActual.puedeEnviarPeticiones
+              ? FloatingActionButton.extended(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => NuevaPeticion(
+                          fincaId: widget.punto.fincaId,
+                          puntoId: widget.punto.id))),
+                  icon: const Icon(Icons.add_comment_outlined),
+                  label: Text(textos.peticionNueva),
+                )
+              : null,
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
           : ListView(

@@ -479,5 +479,41 @@
     }
   },
   "proyectoCerradoEtiqueta": "Cerrado",
-  "proyectoMas": "Más opciones"
+  "proyectoMas": "Más opciones",
+
+  "peticionesTitulo": "Peticiones de tarea",
+  "peticionNueva": "Pedir una tarea",
+  "peticionQue": "Qué hace falta",
+  "peticionDetalles": "Detalles",
+  "peticionFinca": "Finca",
+  "peticionSinFinca": "Sin finca concreta",
+  "peticionUrgente": "Es urgente",
+  "peticionUrgenteEtiqueta": "Urgente",
+  "peticionEnviada": "Petición guardada. Coordinación la verá al sincronizar.",
+  "peticionesVacio": "No hay peticiones.",
+  "peticionCrearTarea": "Crear la tarea",
+  "peticionDescartar": "Descartar",
+  "peticionMotivo": "Motivo (lo verá quien la pidió)",
+  "peticionRetirar": "Retirar la petición",
+  "peticionEstadoPendiente": "Pendiente",
+  "peticionEstadoAceptada": "Aceptada: tarea creada",
+  "peticionEstadoDescartada": "Descartada",
+  "peticionDe": "Pide {nombre}",
+  "@peticionDe": {
+    "placeholders": {
+      "nombre": {
+        "type": "String"
+      }
+    }
+  },
+  "peticionRespuesta": "Respuesta: {texto}",
+  "@peticionRespuesta": {
+    "placeholders": {
+      "texto": {
+        "type": "String"
+      }
+    }
+  },
+  "peticionNecesitaFinca": "Para crear la tarea, elige antes una finca.",
+  "personaDesconocida": "alguien del espacio"
 }

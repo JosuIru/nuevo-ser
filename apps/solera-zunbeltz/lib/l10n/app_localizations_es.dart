@@ -1242,4 +1242,73 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get proyectoMas => 'Más opciones';
+
+  @override
+  String get peticionesTitulo => 'Peticiones de tarea';
+
+  @override
+  String get peticionNueva => 'Pedir una tarea';
+
+  @override
+  String get peticionQue => 'Qué hace falta';
+
+  @override
+  String get peticionDetalles => 'Detalles';
+
+  @override
+  String get peticionFinca => 'Finca';
+
+  @override
+  String get peticionSinFinca => 'Sin finca concreta';
+
+  @override
+  String get peticionUrgente => 'Es urgente';
+
+  @override
+  String get peticionUrgenteEtiqueta => 'Urgente';
+
+  @override
+  String get peticionEnviada =>
+      'Petición guardada. Coordinación la verá al sincronizar.';
+
+  @override
+  String get peticionesVacio => 'No hay peticiones.';
+
+  @override
+  String get peticionCrearTarea => 'Crear la tarea';
+
+  @override
+  String get peticionDescartar => 'Descartar';
+
+  @override
+  String get peticionMotivo => 'Motivo (lo verá quien la pidió)';
+
+  @override
+  String get peticionRetirar => 'Retirar la petición';
+
+  @override
+  String get peticionEstadoPendiente => 'Pendiente';
+
+  @override
+  String get peticionEstadoAceptada => 'Aceptada: tarea creada';
+
+  @override
+  String get peticionEstadoDescartada => 'Descartada';
+
+  @override
+  String peticionDe(String nombre) {
+    return 'Pide $nombre';
+  }
+
+  @override
+  String peticionRespuesta(String texto) {
+    return 'Respuesta: $texto';
+  }
+
+  @override
+  String get peticionNecesitaFinca =>
+      'Para crear la tarea, elige antes una finca.';
+
+  @override
+  String get personaDesconocida => 'alguien del espacio';
 }

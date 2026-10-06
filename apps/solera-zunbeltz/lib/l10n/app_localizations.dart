@@ -2341,6 +2341,132 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Más opciones'**
   String get proyectoMas;
+
+  /// No description provided for @peticionesTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Peticiones de tarea'**
+  String get peticionesTitulo;
+
+  /// No description provided for @peticionNueva.
+  ///
+  /// In es, this message translates to:
+  /// **'Pedir una tarea'**
+  String get peticionNueva;
+
+  /// No description provided for @peticionQue.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué hace falta'**
+  String get peticionQue;
+
+  /// No description provided for @peticionDetalles.
+  ///
+  /// In es, this message translates to:
+  /// **'Detalles'**
+  String get peticionDetalles;
+
+  /// No description provided for @peticionFinca.
+  ///
+  /// In es, this message translates to:
+  /// **'Finca'**
+  String get peticionFinca;
+
+  /// No description provided for @peticionSinFinca.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin finca concreta'**
+  String get peticionSinFinca;
+
+  /// No description provided for @peticionUrgente.
+  ///
+  /// In es, this message translates to:
+  /// **'Es urgente'**
+  String get peticionUrgente;
+
+  /// No description provided for @peticionUrgenteEtiqueta.
+  ///
+  /// In es, this message translates to:
+  /// **'Urgente'**
+  String get peticionUrgenteEtiqueta;
+
+  /// No description provided for @peticionEnviada.
+  ///
+  /// In es, this message translates to:
+  /// **'Petición guardada. Coordinación la verá al sincronizar.'**
+  String get peticionEnviada;
+
+  /// No description provided for @peticionesVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay peticiones.'**
+  String get peticionesVacio;
+
+  /// No description provided for @peticionCrearTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear la tarea'**
+  String get peticionCrearTarea;
+
+  /// No description provided for @peticionDescartar.
+  ///
+  /// In es, this message translates to:
+  /// **'Descartar'**
+  String get peticionDescartar;
+
+  /// No description provided for @peticionMotivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Motivo (lo verá quien la pidió)'**
+  String get peticionMotivo;
+
+  /// No description provided for @peticionRetirar.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirar la petición'**
+  String get peticionRetirar;
+
+  /// No description provided for @peticionEstadoPendiente.
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get peticionEstadoPendiente;
+
+  /// No description provided for @peticionEstadoAceptada.
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptada: tarea creada'**
+  String get peticionEstadoAceptada;
+
+  /// No description provided for @peticionEstadoDescartada.
+  ///
+  /// In es, this message translates to:
+  /// **'Descartada'**
+  String get peticionEstadoDescartada;
+
+  /// No description provided for @peticionDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Pide {nombre}'**
+  String peticionDe(String nombre);
+
+  /// No description provided for @peticionRespuesta.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta: {texto}'**
+  String peticionRespuesta(String texto);
+
+  /// No description provided for @peticionNecesitaFinca.
+  ///
+  /// In es, this message translates to:
+  /// **'Para crear la tarea, elige antes una finca.'**
+  String get peticionNecesitaFinca;
+
+  /// No description provided for @personaDesconocida.
+  ///
+  /// In es, this message translates to:
+  /// **'alguien del espacio'**
+  String get personaDesconocida;
 }
 
 class _AppLocalizationsDelegate

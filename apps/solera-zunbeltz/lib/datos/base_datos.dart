@@ -5,9 +5,11 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/apunte_economico.dart';
+import '../modelos/aviso_campo.dart';
 import '../modelos/entrada_actividad.dart';
 import '../modelos/constantes.dart' show estadoTareaPorDefecto;
 import '../modelos/finca.dart';
+import '../modelos/peticion_tarea.dart';
 import '../utiles/geodesia.dart';
 import 'espacio_generado.dart';
 import 'esquema_sincronizable.dart';
@@ -21,6 +23,7 @@ import '../modelos/validacion_producto.dart';
 import '../modelos/zona_finca.dart';
 import '../utiles/uid.dart';
 
+part 'base_datos_comunicacion.dart';
 part 'base_datos_sync.dart';
 
 /// Acceso a la base de datos local de Solera Zunbeltz. Singleton con

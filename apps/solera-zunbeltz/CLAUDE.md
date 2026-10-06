@@ -144,9 +144,9 @@ Referencia: el patrón puede extenderse a otros ETAs en zonas con lengua coofici
 
 ## Referencia de mercado (revisada 2026-09-14)
 
-**VacApp** (vacapp.net, Cataluña) es el punto de comparación más cercano para la **Capa A**: cuaderno de vacuno gratuito, offline, en iOS/Android/Windows/Linux, "por ganaderos para ganaderos", con escáner del código de barras del DIB, partos, saneamientos, analítica e import/export Excel. No hace multi-rol, ni ecológico/CPAEN, ni ovino extensivo, ni acompañamiento, ni euskera, ni fincas compartidas, ni análisis económico por proyecto.
+**VacApp** (vacapp.net, Cataluña) es el punto de comparación más cercano para la **Capa A**: cuaderno de vacuno de pago bajo (prueba de 3 meses y planes desde 4 €/mes, comprobado el 2026-10-06; antes era gratuito), offline, en iOS/Android/Windows/Linux, "por ganaderos para ganaderos", con escáner del código de barras del DIB, partos, saneamientos, analítica e import/export Excel. No hace multi-rol, ni ecológico/CPAEN, ni ovino extensivo, ni acompañamiento, ni euskera, ni fincas compartidas, ni análisis económico por proyecto.
 
-Consecuencias asumidas: (1) la Capa A no es diferencial — se construye con ese listón como referencia, y DIB escaneable + Excel entran en FZ-4; (2) el diferencial y el argumento de precio están en la Capa B (multi-tenant, seguimiento del proceso de test, análisis de rentabilidad por tester, replicabilidad a la red estatal de ETAs); (3) hay que neutralizar de frente el *"¿para qué, si aquello es gratis?"* — hecho en `presentacion/index.html`, sección "No reinventamos el cuaderno ganadero". Detalle en `BLOQUEOS-PENDIENTES.md` §G.
+Consecuencias asumidas: (1) la Capa A no es diferencial — se construye con ese listón como referencia, y DIB escaneable + Excel entran en FZ-4; (2) el diferencial y el argumento de precio están en la Capa B (multi-tenant, seguimiento del proceso de test, análisis de rentabilidad por tester, replicabilidad a la red estatal de ETAs); (3) hay que neutralizar de frente el *"¿para qué, si aquello ya existe y es barato?"* — hecho en `presentacion/index.html`, sección "No reinventamos el cuaderno ganadero". Detalle en `BLOQUEOS-PENDIENTES.md` §G.
 
 ## Dirección visual (revisada 2026-09-14)
 

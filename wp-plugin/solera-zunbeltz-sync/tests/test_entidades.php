@@ -10,6 +10,7 @@
 define( 'ABSPATH', __DIR__ );
 
 function register_activation_hook( $file, $callback ) {}
+function register_deactivation_hook( $file, $callback ) {}
 function add_action( $hook, $callback ) {}
 function add_filter( $hook, $callback ) {}
 function apply_filters( $hook, $valor ) {

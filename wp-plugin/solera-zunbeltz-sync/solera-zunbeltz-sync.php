@@ -45,7 +45,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'SZS_VERSION', '0.3.0' );
-define( 'SZS_VERSION_ESQUEMA', 3 );
+define( 'SZS_VERSION_ESQUEMA', 4 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
 define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
@@ -58,10 +58,16 @@ define( 'SZS_OPCION_TOKEN_COMPARTIDO_V1', 'solera_zunbeltz_sync_token' );
 require_once __DIR__ . '/includes/roles.php';
 require_once __DIR__ . '/includes/politica-tareas.php';
 require_once __DIR__ . '/includes/entidades.php';
+require_once __DIR__ . '/includes/panel/logica.php';
 require_once __DIR__ . '/includes/personas.php';
 require_once __DIR__ . '/includes/actividad.php';
 require_once __DIR__ . '/includes/sync-entidades.php';
 require_once __DIR__ . '/includes/admin.php';
+require_once __DIR__ . '/includes/panel/comun.php';
+require_once __DIR__ . '/includes/panel/pagina-tareas.php';
+require_once __DIR__ . '/includes/panel/pagina-comunicacion.php';
+require_once __DIR__ . '/includes/panel/pagina-seguimiento.php';
+require_once __DIR__ . '/includes/correo.php';
 
 // ============================================================
 // Esquema: se crea al activar y se actualiza al cargar si cambió
@@ -69,6 +75,7 @@ require_once __DIR__ . '/includes/admin.php';
 // ============================================================
 
 register_activation_hook( __FILE__, 'szs_instalar_esquema' );
+register_deactivation_hook( __FILE__, 'szs_desprogramar_correo_diario' );
 add_action( 'plugins_loaded', 'szs_actualizar_esquema_si_hace_falta' );
 
 function szs_actualizar_esquema_si_hace_falta(): void {
@@ -172,6 +179,7 @@ function szs_instalar_esquema(): void {
 	// El token compartido de la v0.1 daba acceso total sin identificar a
 	// nadie: se retira para que no quede un secreto huérfano.
 	delete_option( SZS_OPCION_TOKEN_COMPARTIDO_V1 );
+	szs_dar_capacidad_panel_a_administradores();
 	update_option( SZS_OPCION_VERSION_ESQUEMA, SZS_VERSION_ESQUEMA );
 }
 

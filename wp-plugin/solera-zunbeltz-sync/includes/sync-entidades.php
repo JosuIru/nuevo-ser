@@ -205,6 +205,7 @@ function szs_procesar_entidades_entrantes( array $persona, array $items, string 
 			continue;
 		}
 		$guardada = szs_guardar_entidad( $entrante, $existente, $resolucion['autor_uid'] );
+		do_action( 'szs_entidad_guardada', $guardada, $existente, $persona );
 		szs_registrar_actividad(
 			$persona,
 			szs_accion_entidad( $existente, $guardada ),

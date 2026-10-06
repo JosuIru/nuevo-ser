@@ -1,27 +1,14 @@
 <?php
 /**
- * Admin de WordPress: menú "Solera Zunbeltz" para gestionar las personas
- * del espacio (alta, rol, token personal, activar/desactivar).
+ * Panel · Personas: alta, rol, token personal, activar/desactivar y enlace
+ * con un usuario de WordPress y un correo. El menú está en
+ * `panel/comun.php`.
  *
  * @package SoleraZunbeltzSync
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-}
-
-add_action( 'admin_menu', 'szs_registrar_menu_admin' );
-
-function szs_registrar_menu_admin(): void {
-	add_menu_page(
-		'Solera Zunbeltz — Personas',
-		'Solera Zunbeltz',
-		'manage_options',
-		'solera-zunbeltz-sync',
-		'szs_pagina_admin',
-		'dashicons-groups',
-		80
-	);
 }
 
 /**
@@ -55,6 +42,10 @@ function szs_procesar_accion_admin(): ?array {
 			szs_cambiar_rol_persona( $uid, sanitize_key( wp_unslash( $_POST['szs_rol'] ?? '' ) ) );
 			return array( 'success', 'Rol actualizado. La app lo recoge en la próxima sincronización.', null, null );
 
+		case 'enlazar':
+			szs_enlazar_persona_usuario( $uid, (int) ( $_POST['szs_wp_user_id'] ?? 0 ), sanitize_email( wp_unslash( $_POST['szs_correo'] ?? '' ) ) );
+			return array( 'success', 'Enlace guardado.', null, null );
+
 		case 'desactivar':
 		case 'activar':
 			szs_activar_persona( $uid, 'activar' === $accion );
@@ -64,17 +55,22 @@ function szs_procesar_accion_admin(): ?array {
 }
 
 function szs_pagina_admin(): void {
-	if ( ! current_user_can( 'manage_options' ) ) {
+	if ( ! szs_puede_usar_panel() ) {
 		return;
 	}
 
 	$aviso    = szs_procesar_accion_admin();
+	$usuarios = array();
+	foreach ( get_users( array( 'fields' => array( 'ID', 'display_name', 'user_login' ) ) ) as $usuario ) {
+		$usuarios[ (int) $usuario->ID ] = $usuario->display_name . ' (' . $usuario->user_login . ')';
+	}
 	$personas = szs_listar_personas( false );
 	$roles    = szs_roles();
 	?>
 	<div class="wrap">
 		<h1>Solera Zunbeltz — Personas del espacio</h1>
-		<p>Cada persona que usa la app tiene su <strong>token personal</strong> y un <strong>rol</strong>. En la app, en <strong>Ajustes → Sincronización de tareas</strong>, se configura la dirección de este WordPress y el token de esa persona.</p>
+		<p>Cada persona que usa la app tiene su <strong>token personal</strong> y un <strong>rol</strong>. En la app, en <strong>Ajustes → Sincronización</strong>, se configura la dirección de este WordPress y el token de esa persona.</p>
+		<p>Una persona de coordinación enlazada con su <strong>usuario de WordPress</strong> puede entrar a este panel aunque no sea administradora del WordPress, y lo que haga aquí queda a su nombre. Su <strong>correo</strong> recibe el resumen diario y las alarmas.</p>
 
 		<?php if ( null !== $aviso ) : ?>
 			<div class="notice notice-<?php echo esc_attr( $aviso[0] ); ?>">
@@ -96,11 +92,11 @@ function szs_pagina_admin(): void {
 		<h2>Personas</h2>
 		<table class="widefat striped" style="max-width:960px;">
 			<thead>
-				<tr><th>Nombre</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr>
+				<tr><th>Nombre</th><th>Rol</th><th>Usuario de WordPress y correo</th><th>Estado</th><th>Acciones</th></tr>
 			</thead>
 			<tbody>
 			<?php if ( empty( $personas ) ) : ?>
-				<tr><td colspan="4">Todavía no hay personas. Crea al menos una con rol de coordinación.</td></tr>
+				<tr><td colspan="5">Todavía no hay personas. Crea al menos una con rol de coordinación.</td></tr>
 			<?php endif; ?>
 			<?php foreach ( $personas as $persona ) : ?>
 				<?php $activa = '1' === (string) $persona['activo']; ?>
@@ -112,6 +108,16 @@ function szs_pagina_admin(): void {
 							<input type="hidden" name="szs_accion" value="cambiar_rol">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $persona['uid'] ); ?>">
 							<?php szs_selector_rol( $roles, (string) $persona['rol'] ); ?>
+							<button type="submit" class="button button-small">Guardar</button>
+						</form>
+					</td>
+					<td>
+						<form method="post" style="display:flex;gap:6px;flex-wrap:wrap;">
+							<?php wp_nonce_field( 'szs_gestionar_personas' ); ?>
+							<input type="hidden" name="szs_accion" value="enlazar">
+							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $persona['uid'] ); ?>">
+							<?php szs_selector( 'szs_wp_user_id', $usuarios, (string) $persona['wp_user_id'], 'Sin usuario' ); ?>
+							<input type="email" name="szs_correo" placeholder="correo@ejemplo.org" value="<?php echo esc_attr( (string) $persona['correo'] ); ?>">
 							<button type="submit" class="button button-small">Guardar</button>
 						</form>
 					</td>
@@ -154,12 +160,10 @@ function szs_pagina_admin(): void {
 
 		<h2>Qué puede hacer cada rol</h2>
 		<ul style="list-style:disc;padding-left:20px;max-width:720px;">
-			<li><strong>Coordinación (admin)</strong>: crea, edita y asigna cualquier tarea.</li>
-			<li><strong>Tester</strong>: ve todas las tareas del espacio y crea tareas. Ejecuta (estado y coste) las que tiene asignadas o ha creado, edita las que ha creado, puede cogerse una tarea libre y soltar una suya. No asigna tareas a otras personas.</li>
+			<li><strong>Coordinación (admin)</strong>: crea, edita, asigna y borra tareas; gestiona fincas, zonas y puntos, todos los proyectos (presupuesto, fianza, acompañamiento, incidencias, cierre), las peticiones y los avisos; ve la actividad del espacio.</li>
+			<li><strong>Tester</strong>: ve sus tareas y las generales (sin responsable), cambia su estado, se coge una general y suelta una suya. No crea tareas: las pide. Añade y mueve puntos (corrales móviles, bidones), da avisos y apunta el seguimiento de su proyecto mientras esté abierto. No ve los proyectos ni las peticiones de otras personas.</li>
 		</ul>
-		<p style="color:#7d5a00;background:#fff8e5;border-left:4px solid #dba617;padding:8px 12px;max-width:720px;">
-			<strong>Provisional:</strong> este reparto de permisos es un punto de partida para el piloto y está pendiente de revisarse con el equipo de Zunbeltz.
-		</p>
+		<p class="description" style="max-width:720px;">Reparto acordado con Zunbeltz el 6 de octubre de 2026.</p>
 	</div>
 	<?php
 }

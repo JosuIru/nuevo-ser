@@ -1,0 +1,236 @@
+<?php
+/**
+ * Lógica pura del panel de coordinación (sin `$wpdb` ni funciones de
+ * WordPress más allá del saneado): filtros y orden del listado de tareas,
+ * exportación CSV, siguiente instancia de una tarea periódica, balance del
+ * convenio y resumen del correo diario. Probada en `tests/test_panel.php`.
+ *
+ * @package SoleraZunbeltzSync
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+const SZS_MS_DIA = 86_400_000;
+
+/** Fecha objetivo pasada (antes de hoy) y sin hacer. */
+function szs_tarea_vencida( array $tarea, int $inicio_de_hoy_ms ): bool {
+	return null !== $tarea['fecha_objetivo_ms']
+		&& $tarea['fecha_objetivo_ms'] < $inicio_de_hoy_ms
+		&& 'hecha' !== $tarea['estado'];
+}
+
+/**
+ * Filtros del listado: `finca` (nombre), `estado` (código, o `abiertas`),
+ * `responsable` (uid, o `sin_asignar`) y `vencidas` (bool).
+ *
+ * @return array<int, array>
+ */
+function szs_filtrar_tareas_panel( array $tareas, array $filtros, int $inicio_de_hoy_ms ): array {
+	$finca       = (string) ( $filtros['finca'] ?? '' );
+	$estado      = (string) ( $filtros['estado'] ?? '' );
+	$responsable = (string) ( $filtros['responsable'] ?? '' );
+	$vencidas    = ! empty( $filtros['vencidas'] );
+
+	return array_values(
+		array_filter(
+			$tareas,
+			static function ( array $tarea ) use ( $finca, $estado, $responsable, $vencidas, $inicio_de_hoy_ms ): bool {
+				if ( '' !== $finca && $tarea['finca_nombre'] !== $finca ) {
+					return false;
+				}
+				if ( 'abiertas' === $estado && 'hecha' === $tarea['estado'] ) {
+					return false;
+				}
+				if ( '' !== $estado && 'abiertas' !== $estado && $tarea['estado'] !== $estado ) {
+					return false;
+				}
+				if ( 'sin_asignar' === $responsable && '' !== $tarea['responsable_uid'] ) {
+					return false;
+				}
+				if ( '' !== $responsable && 'sin_asignar' !== $responsable && $tarea['responsable_uid'] !== $responsable ) {
+					return false;
+				}
+				return ! $vencidas || szs_tarea_vencida( $tarea, $inicio_de_hoy_ms );
+			}
+		)
+	);
+}
+
+/**
+ * Vencidas primero; luego por fecha objetivo; sin fecha al final; hechas
+ * siempre detrás.
+ */
+function szs_ordenar_tareas_panel( array $tareas, int $inicio_de_hoy_ms ): array {
+	usort(
+		$tareas,
+		static function ( array $a, array $b ) use ( $inicio_de_hoy_ms ): int {
+			$clave = static fn( array $tarea ): array => array(
+				'hecha' === $tarea['estado'] ? 1 : 0,
+				szs_tarea_vencida( $tarea, $inicio_de_hoy_ms ) ? 0 : 1,
+				null === $tarea['fecha_objetivo_ms'] ? 1 : 0,
+				$tarea['fecha_objetivo_ms'] ?? 0,
+			);
+			return $clave( $a ) <=> $clave( $b );
+		}
+	);
+	return $tareas;
+}
+
+function szs_campo_csv( $valor ): string {
+	$texto = (string) $valor;
+	if ( preg_match( '/[;"\r\n]/', $texto ) ) {
+		return '"' . str_replace( '"', '""', $texto ) . '"';
+	}
+	return $texto;
+}
+
+/**
+ * CSV para Excel (UTF-8 con BOM, separador `;`).
+ */
+function szs_tareas_a_csv( array $tareas ): string {
+	$lineas = array( 'Tarea;Finca;Responsable;Prioridad;Estado;Fecha objetivo;Coste (€);Cada (días)' );
+	foreach ( $tareas as $tarea ) {
+		$lineas[] = implode(
+			';',
+			array_map(
+				'szs_campo_csv',
+				array(
+					$tarea['titulo'],
+					$tarea['finca_nombre'],
+					$tarea['responsable'],
+					$tarea['prioridad'],
+					$tarea['estado'],
+					null === $tarea['fecha_objetivo_ms'] ? '' : gmdate( 'd/m/Y', intdiv( $tarea['fecha_objetivo_ms'], 1000 ) ),
+					null === $tarea['coste_centimos'] ? '' : number_format( $tarea['coste_centimos'] / 100, 2, ',', '' ),
+					$tarea['recurrencia_dias'] ?? '',
+				)
+			)
+		);
+	}
+	return "\u{FEFF}" . implode( "\r\n", $lineas ) . "\r\n";
+}
+
+/**
+ * Siguiente instancia de una tarea periódica al marcarla hecha (lo mismo
+ * que hace la app en `marcarTareaHecha`): pendiente, a `recurrencia_dias`
+ * de hoy o de su fecha si aún no ha llegado. `null` si no es periódica.
+ */
+function szs_siguiente_tarea_periodica( array $tarea, int $ahora_ms, string $uid_nuevo ): ?array {
+	$dias = $tarea['recurrencia_dias'];
+	if ( null === $dias || $dias <= 0 ) {
+		return null;
+	}
+	$base = ( null !== $tarea['fecha_objetivo_ms'] && $tarea['fecha_objetivo_ms'] > $ahora_ms )
+		? $tarea['fecha_objetivo_ms']
+		: $ahora_ms;
+	return array_merge(
+		$tarea,
+		array(
+			'uid'               => $uid_nuevo,
+			'estado'            => 'pendiente',
+			'coste_centimos'    => null,
+			'fecha_objetivo_ms' => $base + $dias * SZS_MS_DIA,
+			'fecha_creacion_ms' => $ahora_ms,
+			'actualizado_ms'    => $ahora_ms,
+		)
+	);
+}
+
+/**
+ * Balance del convenio tester (art. 7) a partir de las entidades de un
+ * proyecto (`venta` y `apunte`). Mismo cálculo que `BalanceConvenio` en la
+ * app.
+ *
+ * @param array $proyecto_datos `datos` del proyecto (porcentajes).
+ * @param array $entidades      Entidades hijas del proyecto (no borradas).
+ * @return array<string, int>
+ */
+function szs_balance_convenio( array $proyecto_datos, array $entidades ): array {
+	$ingresos         = 0;
+	$gastos_test      = 0;
+	$amortizaciones   = 0;
+	$asumido_tester   = 0;
+	$asumido_zunbeltz = 0;
+	foreach ( $entidades as $entidad ) {
+		$datos = $entidad['datos'] ?? array();
+		if ( 'venta' === $entidad['tipo'] ) {
+			$ingresos += (int) ( $datos['ingreso_centimos'] ?? 0 );
+			continue;
+		}
+		if ( 'apunte' !== $entidad['tipo'] ) {
+			continue;
+		}
+		$importe = (int) ( $datos['importe_centimos'] ?? 0 );
+		if ( 'ingreso' === ( $datos['tipo'] ?? 'gasto' ) ) {
+			$ingresos += $importe;
+			continue;
+		}
+		if ( ! empty( $datos['es_amortizacion'] ) ) {
+			$amortizaciones += $importe;
+		} else {
+			$gastos_test += $importe;
+		}
+		if ( 'zunbeltz' === ( $datos['asumido_por'] ?? 'tester' ) ) {
+			$asumido_zunbeltz += $importe;
+		} else {
+			$asumido_tester += $importe;
+		}
+	}
+	$balance_test = $ingresos - $gastos_test;
+	$porcentaje   = $balance_test >= 0
+		? (int) ( $proyecto_datos['porcentaje_beneficio_zunbeltz'] ?? 25 )
+		: (int) ( $proyecto_datos['porcentaje_perdida_zunbeltz'] ?? 50 );
+	$parte        = (int) round( $balance_test * $porcentaje / 100 );
+	return array(
+		'ingresos'         => $ingresos,
+		'gastos_test'      => $gastos_test,
+		'amortizaciones'   => $amortizaciones,
+		'balance_test'     => $balance_test,
+		'balance_proyecto' => $balance_test - $amortizaciones,
+		'asumido_tester'   => $asumido_tester,
+		'asumido_zunbeltz' => $asumido_zunbeltz,
+		'parte_zunbeltz'   => $parte,
+		'parte_tester'     => $balance_test - $parte,
+	);
+}
+
+/**
+ * Correo diario a coordinación: tareas vencidas, peticiones pendientes y
+ * alarmas abiertas. `null` si no hay nada que contar.
+ *
+ * @param string[] $peticiones Títulos de las peticiones pendientes.
+ * @param string[] $alarmas    Títulos de las alarmas abiertas.
+ * @return array{asunto: string, cuerpo: string}|null
+ */
+function szs_resumen_correo_diario( array $tareas, array $peticiones, array $alarmas, int $inicio_de_hoy_ms ): ?array {
+	$vencidas = array_values( array_filter( $tareas, static fn( array $tarea ): bool => szs_tarea_vencida( $tarea, $inicio_de_hoy_ms ) ) );
+	if ( empty( $vencidas ) && empty( $peticiones ) && empty( $alarmas ) ) {
+		return null;
+	}
+	$partes_asunto = array();
+	$cuerpo        = array();
+	if ( ! empty( $alarmas ) ) {
+		$partes_asunto[] = count( $alarmas ) . ( 1 === count( $alarmas ) ? ' alarma abierta' : ' alarmas abiertas' );
+		$cuerpo[]        = "Alarmas abiertas:\n" . implode( "\n", array_map( static fn( $titulo ) => "  - {$titulo}", $alarmas ) );
+	}
+	if ( ! empty( $vencidas ) ) {
+		$partes_asunto[] = count( $vencidas ) . ( 1 === count( $vencidas ) ? ' tarea vencida' : ' tareas vencidas' );
+		$lineas          = array();
+		foreach ( $vencidas as $tarea ) {
+			$quien    = '' === $tarea['responsable'] ? 'sin asignar' : $tarea['responsable'];
+			$fecha    = gmdate( 'd/m/Y', intdiv( (int) $tarea['fecha_objetivo_ms'], 1000 ) );
+			$lineas[] = "  - {$tarea['titulo']} ({$tarea['finca_nombre']}, {$quien}, desde el {$fecha})";
+		}
+		$cuerpo[] = "Tareas vencidas:\n" . implode( "\n", $lineas );
+	}
+	if ( ! empty( $peticiones ) ) {
+		$partes_asunto[] = count( $peticiones ) . ( 1 === count( $peticiones ) ? ' petición pendiente' : ' peticiones pendientes' );
+		$cuerpo[]        = "Peticiones de tarea pendientes:\n" . implode( "\n", array_map( static fn( $titulo ) => "  - {$titulo}", $peticiones ) );
+	}
+	return array(
+		'asunto' => 'Solera Zunbeltz: ' . implode( ', ', $partes_asunto ),
+		'cuerpo' => implode( "\n\n", $cuerpo ) . "\n",
+	);
+}

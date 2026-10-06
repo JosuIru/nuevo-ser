@@ -7,10 +7,12 @@
  * El token se entrega una vez al crearlo o regenerarlo y en BD sólo se
  * guarda su SHA-256: si la BD se filtra, los tokens no.
  *
- * Las personas no son usuarios de WordPress a propósito: testers y
- * mentores no necesitan entrar al escritorio de WP, y un token por
- * dispositivo funciona sin cobertura estable. Si más adelante se quiere
- * enlazar con cuentas WP, basta añadir una columna `wp_user_id`.
+ * Las personas no son usuarios de WordPress a propósito: las testers no
+ * necesitan entrar al escritorio, y un token por dispositivo funciona sin
+ * cobertura estable. Una persona **puede enlazarse** con un usuario de
+ * WordPress (`wp_user_id`): si es de coordinación, ese usuario entra al
+ * panel de la oficina y lo que hace allí queda a nombre de la persona.
+ * El `correo` es para los avisos (resumen diario, alarmas).
  *
  * @package SoleraZunbeltzSync
  */
@@ -51,15 +53,86 @@ function szs_persona_por_token( string $token ): ?array {
 	return is_array( $fila ) ? $fila : null;
 }
 
-/** @return array<int, array{uid: string, nombre: string, rol: string, activo: string}> */
+/** @return array<int, array{uid: string, nombre: string, rol: string, activo: string, wp_user_id: string, correo: string}> */
 function szs_listar_personas( bool $solo_activas = true ): array {
 	global $wpdb;
 	$tabla  = szs_tabla_personas();
 	$filtro = $solo_activas ? 'WHERE activo = 1' : '';
 	return (array) $wpdb->get_results(
-		"SELECT uid, nombre, rol, activo FROM {$tabla} {$filtro} ORDER BY nombre ASC",
+		"SELECT uid, nombre, rol, activo, wp_user_id, correo FROM {$tabla} {$filtro} ORDER BY nombre ASC",
 		ARRAY_A
 	);
+}
+
+/**
+ * Enlaza una persona con un usuario de WordPress (0 = ninguno) y guarda su
+ * correo. El usuario recibe acceso al panel si la persona es de un rol que
+ * gestiona proyectos (coordinación); se le quita si deja de tenerlo.
+ */
+function szs_enlazar_persona_usuario( string $uid, int $wp_user_id, string $correo ): void {
+	global $wpdb;
+	$tabla    = szs_tabla_personas();
+	$anterior = (int) $wpdb->get_var( $wpdb->prepare( "SELECT wp_user_id FROM {$tabla} WHERE uid = %s", $uid ) );
+	$wpdb->update(
+		$tabla,
+		array(
+			'wp_user_id' => max( 0, $wp_user_id ),
+			'correo'     => sanitize_email( $correo ),
+		),
+		array( 'uid' => $uid ),
+		array( '%d', '%s' ),
+		array( '%s' )
+	);
+	if ( $anterior > 0 && $anterior !== $wp_user_id ) {
+		szs_sincronizar_acceso_panel( $anterior );
+	}
+	if ( $wp_user_id > 0 ) {
+		szs_sincronizar_acceso_panel( $wp_user_id );
+	}
+}
+
+/**
+ * Da o quita a un usuario de WordPress el acceso al panel según la persona
+ * enlazada con él. Los administradores lo tienen siempre por su rol.
+ */
+function szs_sincronizar_acceso_panel( int $wp_user_id ): void {
+	global $wpdb;
+	$usuario = get_userdata( $wp_user_id );
+	if ( false === $usuario ) {
+		return;
+	}
+	$tabla = szs_tabla_personas();
+	$rol   = $wpdb->get_var( $wpdb->prepare( "SELECT rol FROM {$tabla} WHERE wp_user_id = %d AND activo = 1", $wp_user_id ) );
+	$puede = null !== $rol && in_array( SZS_CAPACIDAD_GESTIONAR_PROYECTOS, szs_capacidades_de_rol( (string) $rol ), true );
+	if ( $puede ) {
+		$usuario->add_cap( SZS_CAPACIDAD_WP_PANEL );
+	} else {
+		$usuario->remove_cap( SZS_CAPACIDAD_WP_PANEL );
+	}
+}
+
+/**
+ * Correos a los que avisar: personas activas de coordinación (su correo o,
+ * si no tienen, el de su usuario de WordPress enlazado).
+ *
+ * @return string[]
+ */
+function szs_correos_coordinacion(): array {
+	$correos = array();
+	foreach ( szs_listar_personas() as $persona ) {
+		if ( ! in_array( SZS_CAPACIDAD_GESTIONAR_PROYECTOS, szs_capacidades_de_rol( (string) $persona['rol'] ), true ) ) {
+			continue;
+		}
+		$correo = (string) $persona['correo'];
+		if ( '' === $correo && (int) $persona['wp_user_id'] > 0 ) {
+			$usuario = get_userdata( (int) $persona['wp_user_id'] );
+			$correo  = false === $usuario ? '' : (string) $usuario->user_email;
+		}
+		if ( '' !== $correo ) {
+			$correos[] = $correo;
+		}
+	}
+	return array_values( array_unique( $correos ) );
 }
 
 function szs_nombre_persona( string $uid ): ?string {
@@ -118,6 +191,16 @@ function szs_cambiar_rol_persona( string $uid, string $rol ): void {
 		return;
 	}
 	$wpdb->update( szs_tabla_personas(), array( 'rol' => $rol ), array( 'uid' => $uid ), array( '%s' ), array( '%s' ) );
+	szs_resincronizar_acceso_de_persona( $uid );
+}
+
+function szs_resincronizar_acceso_de_persona( string $uid ): void {
+	global $wpdb;
+	$tabla      = szs_tabla_personas();
+	$wp_user_id = (int) $wpdb->get_var( $wpdb->prepare( "SELECT wp_user_id FROM {$tabla} WHERE uid = %s", $uid ) );
+	if ( $wp_user_id > 0 ) {
+		szs_sincronizar_acceso_panel( $wp_user_id );
+	}
 }
 
 /**
@@ -127,6 +210,7 @@ function szs_cambiar_rol_persona( string $uid, string $rol ): void {
 function szs_activar_persona( string $uid, bool $activa ): void {
 	global $wpdb;
 	$wpdb->update( szs_tabla_personas(), array( 'activo' => $activa ? 1 : 0 ), array( 'uid' => $uid ), array( '%d' ), array( '%s' ) );
+	szs_resincronizar_acceso_de_persona( $uid );
 }
 
 /**

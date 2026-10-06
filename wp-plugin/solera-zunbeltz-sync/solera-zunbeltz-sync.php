@@ -1,12 +1,14 @@
 <?php
 /**
- * Plugin Name: Solera Zunbeltz — Sincronización de tareas
+ * Plugin Name: Solera Zunbeltz — Espacio Test
  * Plugin URI:  https://coleccion-nuevo-ser.com/
- * Description: Sincroniza las tareas de mantenimiento de la app Solera Zunbeltz
- *              entre los dispositivos del Espacio Test, usando el WordPress
- *              propio de Zunbeltz Elkartea como backend. Gestiona las
- *              personas del espacio, sus roles y sus tokens personales.
- * Version:     0.2.0
+ * Description: Servidor de la app Solera Zunbeltz para el Espacio Test
+ *              Agrario Zunbeltz: sincroniza entre los móviles del equipo las
+ *              fincas, los puntos, las tareas, los proyectos de test y su
+ *              seguimiento, las peticiones y los avisos; gestiona personas,
+ *              roles y tokens; y ofrece el panel de coordinación de la
+ *              oficina y los avisos por correo.
+ * Version:     0.3.0
  * Author:      Equipo Colección Nuevo Ser
  * Author URI:  https://coleccion-nuevo-ser.com/
  * License:     GPL-2.0-or-later
@@ -16,26 +18,28 @@
  * Requires at least: 6.4
  *
  * ============================================================
- * ALCANCE Y LIMITACIONES (léase antes de instalar en producción)
+ * QUÉ HAY DENTRO (léase antes de instalar en producción)
  * ============================================================
  *
- * **Solo sincroniza tareas de mantenimiento**, no fincas, puntos, zonas,
- * ni el cuaderno ganadero (que todavía no existe — ver FZ-4 en el roadmap).
+ * - `POST /wp-json/solera-zunbeltz/v1/sync` (`includes/sync-entidades.php`):
+ *   la app sube y baja todo en una petición. Entidades en una tabla genérica
+ *   con revisión como cursor y lápidas para los borrados; tareas en su tabla.
+ *   `POST /tareas/sync` se mantiene para apps anteriores a la 0.3.
+ * - Permisos (`includes/roles.php`, `politica-tareas.php`, `entidades.php`):
+ *   cada persona tiene un rol y un token personal; el servidor aplica las
+ *   reglas y deshace lo no permitido. Reparto acordado con Zunbeltz el
+ *   2026-10-06: coordinación lo gestiona todo; la persona tester ve sus
+ *   tareas y las generales, pide tareas, da avisos, añade y mueve puntos y
+ *   apunta en su proyecto mientras está abierto.
+ * - Registro de actividad (`includes/actividad.php`) de todo cambio
+ *   aceptado, venga de la app o del panel.
+ * - Panel de coordinación (`includes/panel/`) y correos (`includes/correo.php`).
  *
- * Auth (v0.2): **un token personal por persona**, creado desde el admin de
- * WordPress (menú "Solera Zunbeltz"). Cada persona tiene un rol y cada rol
- * un conjunto de capacidades (`includes/roles.php`); el servidor aplica los
- * permisos al sincronizar (`includes/politica-tareas.php`), la app sólo
- * adapta la interfaz. Roles de partida: coordinación (admin) y tester. El
- * reparto concreto de permisos está pendiente de co-diseño con Zunbeltz —
- * ver `apps/solera-zunbeltz/BLOQUEOS-PENDIENTES.md` §C en el monorepo.
+ * Instalación y puesta en marcha: `INSTALACION.md`. Entorno de pruebas con
+ * Docker: `dev/`.
  *
  * Multi-espacio: cada Espacio Test instala el plugin en su propio
  * WordPress, así que cada instalación es un espacio aislado.
- *
- * Fincas/puntos/zonas no viajan por id (son locales a cada dispositivo);
- * el cliente empareja por **nombre de finca**. Una tarea anclada a un
- * punto o zona concreto pierde ese anclaje al llegar a otro dispositivo.
  *
  * @package SoleraZunbeltzSync
  */
@@ -190,6 +194,15 @@ function szs_instalar_esquema(): void {
 // ============================================================
 
 add_action( 'rest_api_init', 'szs_registrar_rutas' );
+
+// La versión web de la app puede servirse desde otro dominio: el navegador
+// solo deja mandar la cabecera del token si WordPress la anuncia en CORS.
+add_filter( 'rest_allowed_cors_headers', 'szs_permitir_cabecera_token' );
+
+function szs_permitir_cabecera_token( array $cabeceras ): array {
+	$cabeceras[] = 'X-Zunbeltz-Token';
+	return $cabeceras;
+}
 
 function szs_registrar_rutas(): void {
 	register_rest_route(

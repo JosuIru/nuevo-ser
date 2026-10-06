@@ -705,7 +705,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaPestanasB =>
-      'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: un resumen con las tareas abiertas.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: tu proceso de test y tus números.\n• Ajustes: idioma, ayuda, envío de informes y sincronización.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
+      'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, ayuda, envío de informes y sincronización.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
 
   @override
   String get ayudaIdiomaDatosT => 'Idioma, fotos, tiempo e internet';
@@ -761,7 +761,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaProyectosB =>
-      '1. Entra en Proyectos y pulsa +.\n2. Pon el nombre del proyecto, la persona tester y la actividad. Si quieres, también la finca y las fechas de inicio y fin.\n3. Pulsa Guardar. Toca el proyecto en la lista para entrar en él.';
+      'Los proyectos los crea coordinación, y cada uno es de una persona tester.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).';
 
   @override
   String get ayudaApuntarT => 'Apuntar tu día a día';
@@ -782,28 +782,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaInformesB =>
-      '• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador».\n• Para enviarlo al coordinador, pon antes su correo en Ajustes → Coordinador.\n• En la lista de Proyectos, el botón del gráfico (arriba) saca la «Comparativa (PDF)» entre todos los proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa, para pasarlos a coordinación.';
+      '• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador».\n• El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.\n• Los PDF salen con la marca «BORRADOR». La versión definitiva la saca coordinación con el proyecto cerrado.\n• En la lista de Proyectos, el botón del gráfico saca la «Comparativa (PDF)» entre proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa.';
 
   @override
-  String get ayudaSyncT => 'Compartir las tareas con el equipo';
+  String get ayudaSyncT => 'Compartir el espacio con el equipo';
 
   @override
   String get ayudaSyncB =>
-      'Si en el Espacio Test usáis la sincronización, las tareas se comparten entre los móviles de todo el equipo.\n1. Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.\n2. En Ajustes → Sincronización de tareas, pon la dirección del WordPress de Zunbeltz y tu token.\n3. Pulsa «Sincronizar ahora» cuando tengas cobertura: suben tus cambios y bajan los del resto.\n» Solo se comparten las tareas. Los puntos, las zonas y los proyectos siguen solo en tu móvil.';
+      'Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu token.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.';
 
   @override
   String get ayudaRolesT => 'Quién puede hacer qué';
 
   @override
   String get ayudaRolesB =>
-      'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: ve, crea, cambia y reparte todas las tareas.\n• Tester: ve las tareas que tiene asignadas y las generales (las que no son de nadie). Puede cambiar el estado de las suyas, coger una general y soltar una suya. No crea tareas: si hace falta una nueva, pídesela a coordinación.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.';
+      'Cada persona tiene un rol, que le da coordinación.\n• Coordinación: crea, reparte y cierra tareas; gestiona fincas, zonas, puntos y todos los proyectos; acepta o descarta peticiones; ve lo que pasa en el espacio.\n• Tester: ve sus tareas y las generales (las que no son de nadie), cambia su estado, coge una general o suelta una suya. Pide tareas en vez de crearlas. Añade y mueve puntos (un corral móvil, un bidón), da avisos y apunta el día a día de su proyecto mientras esté abierto.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.';
 
   @override
   String get ayudaProblemasT => 'Problemas frecuentes';
 
   @override
   String get ayudaProblemasB =>
-      '• «Tu rol no permite…»: esa tarea no es tuya. Cógela si está sin asignar, o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• «Sin finca reconocida»: esa tarea es de una finca que en tu móvil tiene otro nombre. Las fincas tienen que llamarse igual en todos los móviles.\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Tus datos viven en tu móvil. Si lo cambias o lo pierdes, habla antes con coordinación.';
+      '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.';
 
   @override
   String get ayudaPie =>
@@ -1772,4 +1772,32 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get informeBorradorAviso =>
       'Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.';
+
+  @override
+  String get ayudaHoyAvisosT => 'Hoy y los avisos';
+
+  @override
+  String get ayudaHoyAvisosB =>
+      'Hoy es la bandeja del espacio. Arriba salen las alarmas abiertas; luego tus tareas vencidas y las de los próximos días; y los avisos, por categorías: Ganado, Instalaciones, Seguimiento individual y Noticias.\n1. Para avisar de algo, pulsa «Dar un aviso».\n2. Elige la categoría, escribe qué pasa y, si quieres, la finca.\n3. Si es grave (un animal enfermo, una rotura importante, falta de alimento), marca «Es una alarma»: al resto le saltará una notificación.\n4. Toca un aviso para verlo y, cuando esté arreglado, márcalo como resuelto.';
+
+  @override
+  String get ayudaPeticionesT => 'Pedir una tarea';
+
+  @override
+  String get ayudaPeticionesB =>
+      'Si ves que hace falta algo (comprar pienso, arreglar una cancela…), pídeselo a coordinación:\n1. Desde Hoy, o desde la ficha del punto, pulsa «Pedir una tarea».\n2. Escribe qué hace falta; marca «Es urgente» si corre prisa.\n3. Guarda. Coordinación la verá al sincronizar y la convertirá en tarea o te contestará.\n» Tus peticiones y su respuesta están en Fincas → Tareas → botón de peticiones (arriba).';
+
+  @override
+  String get ayudaConvenioT => 'El convenio: cuentas, fianza y acompañamiento';
+
+  @override
+  String get ayudaConvenioB =>
+      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume y si es una amortización. Coordinación lleva el resto.';
+
+  @override
+  String get ayudaNotificacionesT => 'Notificaciones';
+
+  @override
+  String get ayudaNotificacionesB =>
+      'La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona (al sincronizar).\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada del todo, las alarmas llegan al volver a abrirla; las vencidas avisan igualmente.';
 }

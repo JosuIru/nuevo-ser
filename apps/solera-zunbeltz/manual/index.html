@@ -105,7 +105,7 @@ section ul li::marker{color:var(--pasto)}
 <li><a href="#a13">Sacar informes y enviarlos</a></li>
 </ol></li>
 <li><span class="grupo-indice">Trabajar en equipo</span><ol>
-<li><a href="#a14">Compartir las tareas con el equipo</a></li>
+<li><a href="#a14">Compartir el espacio con el equipo</a></li>
 <li><a href="#a15">Quién puede hacer qué</a></li>
 </ol></li>
 <li><span class="grupo-indice">Si algo falla</span><ol>
@@ -123,9 +123,9 @@ section ul li::marker{color:var(--pasto)}
 <h3><span class="n">2</span>Moverse por la app</h3>
 <p>Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:</p>
 <ul>
-<li>Hoy: un resumen con las tareas abiertas.</li>
+<li>Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.</li>
 <li>Fincas: el mapa con los puntos, las zonas y las tareas.</li>
-<li>Proyectos: tu proceso de test y tus números.</li>
+<li>Proyectos: el proceso de test, sus números y el convenio.</li>
 <li>Ajustes: idioma, ayuda, envío de informes y sincronización.</li>
 </ul>
 <p>Para volver atrás, usa la flecha de arriba a la izquierda.</p>
@@ -202,11 +202,13 @@ section ul li::marker{color:var(--pasto)}
 <h2>Tu proyecto de test</h2>
 <section id="a10">
 <h3><span class="n">10</span>Crear tu proyecto</h3>
+<p>Los proyectos los crea coordinación, y cada uno es de una persona tester.</p>
 <ol class="pasos">
-<li>Entra en Proyectos y pulsa +.</li>
-<li>Pon el nombre del proyecto, la persona tester y la actividad. Si quieres, también la finca y las fechas de inicio y fin.</li>
-<li>Pulsa Guardar. Toca el proyecto en la lista para entrar en él.</li>
+<li>En Proyectos, pulsa + (solo coordinación).</li>
+<li>Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.</li>
+<li>Pulsa Guardar.</li>
 </ol>
+<p class="nota"><b>Bueno saber.</b> Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).</p>
 </section>
 <section id="a11">
 <h3><span class="n">11</span>Apuntar tu día a día</h3>
@@ -230,28 +232,29 @@ section ul li::marker{color:var(--pasto)}
 <h3><span class="n">13</span>Sacar informes y enviarlos</h3>
 <ul>
 <li>En tu proyecto, el botón de compartir (arriba) saca el <span class="ui">Informe del proyecto (PDF)</span>, lo exporta a CSV (se abre con Excel) o lo manda con <span class="ui">Enviar al coordinador</span>.</li>
-<li>Para enviarlo al coordinador, pon antes su correo en Ajustes → Coordinador.</li>
-<li>En la lista de Proyectos, el botón del gráfico (arriba) saca la <span class="ui">Comparativa (PDF)</span> entre todos los proyectos.</li>
-<li>En Ajustes, <span class="ui">Exportar espacio (CSV)</span> saca las fincas y los puntos del mapa, para pasarlos a coordinación.</li>
+<li>El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.</li>
+<li>Los PDF salen con la marca <span class="ui">BORRADOR</span>. La versión definitiva la saca coordinación con el proyecto cerrado.</li>
+<li>En la lista de Proyectos, el botón del gráfico saca la <span class="ui">Comparativa (PDF)</span> entre proyectos.</li>
+<li>En Ajustes, <span class="ui">Exportar espacio (CSV)</span> saca las fincas y los puntos del mapa.</li>
 </ul>
 </section>
 <h2>Trabajar en equipo</h2>
 <section id="a14">
-<h3><span class="n">14</span>Compartir las tareas con el equipo</h3>
-<p>Si en el Espacio Test usáis la sincronización, las tareas se comparten entre los móviles de todo el equipo.</p>
+<h3><span class="n">14</span>Compartir el espacio con el equipo</h3>
+<p>Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.</p>
 <ol class="pasos">
 <li>Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.</li>
-<li>En Ajustes → Sincronización de tareas, pon la dirección del WordPress de Zunbeltz y tu token.</li>
-<li>Pulsa <span class="ui">Sincronizar ahora</span> cuando tengas cobertura: suben tus cambios y bajan los del resto.</li>
+<li>En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu token.</li>
+<li>La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.</li>
 </ol>
-<p class="nota"><b>Bueno saber.</b> Solo se comparten las tareas. Los puntos, las zonas y los proyectos siguen solo en tu móvil.</p>
+<p class="nota"><b>Bueno saber.</b> Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.</p>
 </section>
 <section id="a15">
 <h3><span class="n">15</span>Quién puede hacer qué</h3>
 <p>Cada persona tiene un rol, que le da coordinación.</p>
 <ul>
-<li>Coordinación: ve, crea, cambia y reparte todas las tareas.</li>
-<li>Tester: ve las tareas que tiene asignadas y las generales (las que no son de nadie). Puede cambiar el estado de las suyas, coger una general y soltar una suya. No crea tareas: si hace falta una nueva, pídesela a coordinación.</li>
+<li>Coordinación: crea, reparte y cierra tareas; gestiona fincas, zonas, puntos y todos los proyectos; acepta o descarta peticiones; ve lo que pasa en el espacio.</li>
+<li>Tester: ve sus tareas y las generales (las que no son de nadie), cambia su estado, coge una general o suelta una suya. Pide tareas en vez de crearlas. Añade y mueve puntos (un corral móvil, un bidón), da avisos y apunta el día a día de su proyecto mientras esté abierto.</li>
 </ul>
 <p class="nota"><b>Bueno saber.</b> En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en <span class="ui">Modo local</span> y puedes editarlo todo.</p>
 </section>
@@ -259,13 +262,13 @@ section ul li::marker{color:var(--pasto)}
 <section id="a16">
 <h3><span class="n">16</span>Problemas frecuentes</h3>
 <ul>
-<li><span class="ui">Tu rol no permite…</span>: esa tarea no es tuya. Cógela si está sin asignar, o pide a coordinación que te la asigne.</li>
+<li><span class="ui">Tu rol no permite…</span>: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.</li>
 <li><span class="ui">Cambios revertidos</span> al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.</li>
 <li><span class="ui">Token incorrecto</span>: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.</li>
-<li><span class="ui">Sin finca reconocida</span>: esa tarea es de una finca que en tu móvil tiene otro nombre. Las fincas tienen que llamarse igual en todos los móviles.</li>
+<li>Falta algo o ves cosas que ya no son tuyas: en Ajustes, <span class="ui">Sincronizar todo desde cero</span>.</li>
 <li>No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.</li>
 </ul>
-<p class="nota"><b>Bueno saber.</b> Tus datos viven en tu móvil. Si lo cambias o lo pierdes, habla antes con coordinación.</p>
+<p class="nota"><b>Bueno saber.</b> Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.</p>
 </section>
     <aside class="aviso">
       <b>Versión preliminar.</b> Versión preliminar. Los partes e informes que genera son orientativos y su formato está pendiente de validación. El papeleo oficial (libro de explotación, cuaderno PAC, trazabilidad…) llega en fases posteriores.

@@ -105,7 +105,7 @@ section ul li::marker{color:var(--pasto)}
 <li><a href="#a13">Txostenak atera eta bidali</a></li>
 </ol></li>
 <li><span class="grupo-indice">Taldean lan egin</span><ol>
-<li><a href="#a14">Zereginak taldearekin partekatu</a></li>
+<li><a href="#a14">Gunea taldearekin partekatu</a></li>
 <li><a href="#a15">Nork zer egin dezakeen</a></li>
 </ol></li>
 <li><span class="grupo-indice">Zerbaitek huts egiten badu</span><ol>
@@ -123,12 +123,12 @@ section ul li::marker{color:var(--pasto)}
 <h3><span class="n">2</span>App-an mugitu</h3>
 <p>Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:</p>
 <ul>
-<li>Gaur: laburpena, zabalik dauden zereginekin.</li>
+<li>Gaur: gunearen sarrera-ontzia — alarmak, zeregin iraungiak eta hurrengoak, eskaerak eta abisuak.</li>
 <li>Finkak: mapa, puntuekin, eremuekin eta zereginekin.</li>
-<li>Proiektuak: zure test-prozesua eta zure zenbakiak.</li>
-<li>Ezarpenak: hizkuntza, laguntza, txostenak bidaltzea eta sinkronizazioa.</li>
+<li>Proiektuak: test-prozesua, haren zenbakiak eta hitzarmena.</li>
+<li>Ezarpenak: hizkuntza, laguntza, txostenen bidalketa eta sinkronizazioa.</li>
 </ul>
-<p>Atzera itzultzeko, erabili goian ezkerrean dagoen gezia.</p>
+<p>Atzera itzultzeko, erabili goiko ezkerreko gezia.</p>
 </section>
 <section id="a3">
 <h3><span class="n">3</span>Hizkuntza, argazkiak, eguraldia eta internet</h3>
@@ -202,11 +202,13 @@ section ul li::marker{color:var(--pasto)}
 <h2>Zure test-proiektua</h2>
 <section id="a10">
 <h3><span class="n">10</span>Zure proiektua sortu</h3>
+<p>Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da.</p>
 <ol class="pasos">
-<li>Sartu Proiektuetan eta sakatu +.</li>
-<li>Jarri proiektuaren izena, pertsona testerra eta jarduera. Nahi baduzu, baita finka eta hasiera- eta amaiera-datak ere.</li>
-<li>Sakatu Gorde. Ukitu proiektua zerrendan barrura sartzeko.</li>
+<li>Proiektuetan, sakatu + (koordinazioak bakarrik).</li>
+<li>Jarri izena, jarduera eta aukeratu pertsona testerra. Nahi baduzu, finka eta datak ere bai.</li>
+<li>Sakatu Gorde.</li>
 </ol>
+<p class="nota"><b>Jakitea komeni da.</b> Pertsona tester bakoitzak bere proiektua bakarrik ikusten du. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).</p>
 </section>
 <section id="a11">
 <h3><span class="n">11</span>Zure egunerokoa apuntatu</h3>
@@ -229,29 +231,30 @@ section ul li::marker{color:var(--pasto)}
 <section id="a13">
 <h3><span class="n">13</span>Txostenak atera eta bidali</h3>
 <ul>
-<li>Zure proiektuan, partekatzeko botoiak (goian) <span class="ui">Proiektuaren txostena (PDF)</span> ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo <span class="ui">Bidali koordinatzaileari</span> aukerarekin bidaltzen du.</li>
-<li>Koordinatzaileari bidaltzeko, jarri lehenago haren helbidea Ezarpenak → Koordinatzailea atalean.</li>
-<li>Proiektuen zerrendan, grafikoaren botoiak (goian) proiektu guztien arteko <span class="ui">Konparaketa (PDF)</span> ateratzen du.</li>
-<li>Ezarpenetan, <span class="ui">Esportatu gunea (CSV)</span> aukerak finkak eta mapako puntuak ateratzen ditu, koordinazioari pasatzeko.</li>
+<li>Zure proiektuan, partekatzeko botoiak (goian) <span class="ui">Proiektuaren txostena (PDF)</span> ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo <span class="ui">Koordinatzaileari bidali</span> bidez bidaltzen du.</li>
+<li>Txostenak hitzarmenaren kontuak ditu: testaren eta proiektuaren balantzea, banaketa, fidantza, laguntza eta gorabeherak.</li>
+<li>PDFak <span class="ui">ZIRRIBORROA</span> markarekin ateratzen dira. Behin betiko bertsioa koordinazioak ateratzen du proiektua itxita dagoenean.</li>
+<li>Proiektuen zerrendan, grafikoaren botoiak proiektuen arteko <span class="ui">Konparaketa (PDF)</span> ateratzen du.</li>
+<li>Ezarpenetan, <span class="ui">Gunea esportatu (CSV)</span> aukerak maparen finkak eta puntuak ateratzen ditu.</li>
 </ul>
 </section>
 <h2>Taldean lan egin</h2>
 <section id="a14">
-<h3><span class="n">14</span>Zereginak taldearekin partekatu</h3>
-<p>Saiakuntza Gunean sinkronizazioa erabiltzen baduzue, zereginak talde osoaren mugikorren artean partekatzen dira.</p>
+<h3><span class="n">14</span>Gunea taldearekin partekatu</h3>
+<p>Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.</p>
 <ol class="pasos">
-<li>Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du, eta ez da partekatzen.</li>
-<li>Ezarpenak → Zereginen sinkronizazioa atalean, jarri Zunbeltzen WordPress-aren helbidea eta zure tokena.</li>
-<li>Sakatu <span class="ui">Sinkronizatu orain</span> estaldura duzunean: zure aldaketak igotzen dira eta besteenak jaisten.</li>
+<li>Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.</li>
+<li>Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure tokena.</li>
+<li>Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.</li>
 </ol>
-<p class="nota"><b>Jakitea komeni da.</b> Zereginak bakarrik partekatzen dira. Puntuak, eremuak eta proiektuak zure mugikorrean bakarrik geratzen dira.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.</p>
 </section>
 <section id="a15">
 <h3><span class="n">15</span>Nork zer egin dezakeen</h3>
 <p>Pertsona bakoitzak rol bat du, koordinazioak ematen diona.</p>
 <ul>
-<li>Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.</li>
-<li>Testerra: esleituta dituen zereginak eta orokorrak (inorenak ez direnak) ikusten ditu. Bereen egoera alda dezake, orokor bat hartu eta berea dena utzi. Ez du zereginik sortzen: berri bat behar bada, eskatu koordinazioari.</li>
+<li>Koordinazioa: zereginak sortu, banatu eta ixten ditu; finkak, eremuak, puntuak eta proiektu guztiak kudeatzen ditu; eskaerak onartu edo baztertzen ditu; gunean gertatzen dena ikusten du.</li>
+<li>Testerra: bere zereginak eta orokorrak (inorenak ez direnak) ikusten ditu, haien egoera aldatzen du, orokor bat hartu edo berea utzi. Zereginak eskatu egiten ditu, ez sortu. Puntuak gehitu eta mugitzen ditu (korta mugikor bat, bidoi bat), abisuak ematen ditu eta bere proiektuaren eguneroko lana idazten du irekita dagoen bitartean.</li>
 </ul>
 <p class="nota"><b>Jakitea komeni da.</b> Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe <span class="ui">Tokiko modua</span> zaude, eta dena edita dezakezu.</p>
 </section>
@@ -259,13 +262,13 @@ section ul li::marker{color:var(--pasto)}
 <section id="a16">
 <h3><span class="n">16</span>Ohiko arazoak</h3>
 <ul>
-<li><span class="ui">Zure rolak ez du … baimenik</span>: zeregin hori ez da zurea. Har ezazu esleitu gabe badago, edo eskatu koordinazioari zuri esleitzeko.</li>
-<li><span class="ui">… desegin da / dira</span> sinkronizatzean: zure rolak baimentzen ez duen zerbait ukitu duzu, eta zegoen bezala utzi da.</li>
-<li><span class="ui">Token incorrecto…</span> mezua: begiratu osorik kopiatu duzula. Galdu baduzu, koordinazioak berri bat sortuko dizu, eta zaharrak ez du balioko.</li>
-<li><span class="ui">finka ezezagunarekin</span>: zeregin hori zure mugikorrean beste izen bat duen finka batekoa da. Finkek izen bera izan behar dute mugikor guztietan.</li>
-<li>Eguraldiaren iragarpena ez da agertzen: internet behar du. Gainerakoa estaldurarik gabe dabil.</li>
+<li><span class="ui">Zure rolak ez du uzten…</span>: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.</li>
+<li>Sinkronizatzean <span class="ui">Aldaketak desegin dira</span>: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.</li>
+<li><span class="ui">Token okerra</span>: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.</li>
+<li>Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, <span class="ui">Dena hasieratik sinkronizatu</span>.</li>
+<li>Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.</li>
 </ul>
-<p class="nota"><b>Jakitea komeni da.</b> Zure datuak zure mugikorrean daude. Aldatu edo galtzen baduzu, hitz egin lehenago koordinazioarekin.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure tokenarekin eta berreskuratuko dituzu.</p>
 </section>
     <aside class="aviso">
       <b>Aurretiazko bertsioa.</b> Aurretiazko bertsioa. Sortzen dituen parte eta txostenak orientagarriak dira eta haien formatua baliozkotzeke dago. Paper-lan ofiziala (ustiategi-liburua, PAC koadernoa, trazabilitatea…) geroagoko faseetan iritsiko da.

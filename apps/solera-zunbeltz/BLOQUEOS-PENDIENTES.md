@@ -21,6 +21,18 @@ Decisiones que requieren a una persona (equipo de Zunbeltz Elkartea, asesor téc
 9-bis. **Revisión nativa del euskera de la presentación**. El texto eu de `presentacion/index.html` es un borrador propio (batua) y, aunque cuidado, debe pasar por una persona euskaldun — idealmente del propio equipo de Zunbeltz, lo que además lo convierte en co-diseño. Puntos a confirmar con ellas: terminología agroganadera oficial (¿"Nekazaritza Saiakuntza Gunea" o la forma que ellas usan?, "manga de manejo", "larre-saila"…), euskera batua vs. variante navarra/local, y respeto de nombres propios. **No dar el euskera por bueno sin esa revisión.**
 9-ter. **Bilingüismo de toda la app** (no solo la presentación): decidir alcance (es+eu mínimo; ¿se contempla algún tercer caso?) y si los PDF oficiales se emiten bilingües. Ver decisión "Lenguas" en `CLAUDE.md`.
 
+## A-ter. Tras las respuestas y el convenio (2026-10-06) — a validar con Zunbeltz
+
+27. **Categorías de aviso**: Ganado · Instalaciones · Seguimiento individual · Noticias son PROVISIONALES, tomadas de lo que contó Elena de la **app de la Mancomunidad de Andía**. Ver esa app (capturas o nombre) y ajustar categorías e iconos.
+28. **Notificaciones push** con la app cerrada: hoy solo hay notificaciones locales (alarmas al sincronizar, recordatorio diario de vencidas programado en el sistema). Para que una alarma llegue al instante con la app cerrada hace falta **Firebase Cloud Messaging** (cuenta Google, tratamiento de datos de un tercero) u otro servicio push. Decisión de Zunbeltz.
+29. **Correo**: el WordPress de Zunbeltz tiene que poder enviar correo (SMTP) y conviene un cron del sistema para `wp-cron.php`. Ver `wp-plugin/solera-zunbeltz-sync/INSTALACION.md`.
+30. **Convenio**: confirmar (a) si el reparto 25/75 · 50/50 se calcula en la app o solo se muestra el balance; (b) amortizaciones: ¿tabla de vida útil por infraestructura o cuota a mano (hoy, a mano)?; (c) si la persona tester ve sus incidencias de cumplimiento en la app (hoy sí: art. 8, «resolución motivada»); (d) fianza de referencia = 10 % de lo que el presupuesto prevé que asuma Zunbeltz (anexo I).
+31. **Valoración 0-10** del anexo IV: la apunta coordinación por ambas partes (la persona tester no edita la ficha del proyecto). ¿Vale así?
+32. **Personal de Andía**: no hay rol propio todavía. ¿Coordinación, solo lectura u otro?
+33. **Euskera de todos los textos nuevos** (Hoy, avisos, peticiones, convenio, notificaciones, ayuda, panel): borrador pendiente de revisión nativa, como el resto. El **panel de WordPress está solo en castellano**.
+34. **Hosting**: confirmar PHP ≥ 8.1, subdominio y certificado HTTPS, y quién instala y mantiene el plugin.
+35. **Fotos**: no se sincronizan (pesan). Decidir si se suben al servidor y con qué límite.
+
 ## B. Compliance ganadero (asesor veterinario + técnico OCA + decreto foral Navarra)
 
 10. **Formato vigente del libro de explotación ganadera** y de las **guías de movimiento pecuario / DST** conforme a normativa estatal + decreto foral de Navarra. Validar antes de cada release.

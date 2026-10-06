@@ -705,7 +705,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaPestanasB =>
-      'Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:\n• Gaur: laburpena, zabalik dauden zereginekin.\n• Finkak: mapa, puntuekin, eremuekin eta zereginekin.\n• Proiektuak: zure test-prozesua eta zure zenbakiak.\n• Ezarpenak: hizkuntza, laguntza, txostenak bidaltzea eta sinkronizazioa.\nAtzera itzultzeko, erabili goian ezkerrean dagoen gezia.';
+      'Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:\n• Gaur: gunearen sarrera-ontzia — alarmak, zeregin iraungiak eta hurrengoak, eskaerak eta abisuak.\n• Finkak: mapa, puntuekin, eremuekin eta zereginekin.\n• Proiektuak: test-prozesua, haren zenbakiak eta hitzarmena.\n• Ezarpenak: hizkuntza, laguntza, txostenen bidalketa eta sinkronizazioa.\nAtzera itzultzeko, erabili goiko ezkerreko gezia.';
 
   @override
   String get ayudaIdiomaDatosT =>
@@ -762,7 +762,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaProyectosB =>
-      '1. Sartu Proiektuetan eta sakatu +.\n2. Jarri proiektuaren izena, pertsona testerra eta jarduera. Nahi baduzu, baita finka eta hasiera- eta amaiera-datak ere.\n3. Sakatu Gorde. Ukitu proiektua zerrendan barrura sartzeko.';
+      'Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da.\n1. Proiektuetan, sakatu + (koordinazioak bakarrik).\n2. Jarri izena, jarduera eta aukeratu pertsona testerra. Nahi baduzu, finka eta datak ere bai.\n3. Sakatu Gorde.\n» Pertsona tester bakoitzak bere proiektua bakarrik ikusten du. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).';
 
   @override
   String get ayudaApuntarT => 'Zure egunerokoa apuntatu';
@@ -783,28 +783,28 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaInformesB =>
-      '• Zure proiektuan, partekatzeko botoiak (goian) «Proiektuaren txostena (PDF)» ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo «Bidali koordinatzaileari» aukerarekin bidaltzen du.\n• Koordinatzaileari bidaltzeko, jarri lehenago haren helbidea Ezarpenak → Koordinatzailea atalean.\n• Proiektuen zerrendan, grafikoaren botoiak (goian) proiektu guztien arteko «Konparaketa (PDF)» ateratzen du.\n• Ezarpenetan, «Esportatu gunea (CSV)» aukerak finkak eta mapako puntuak ateratzen ditu, koordinazioari pasatzeko.';
+      '• Zure proiektuan, partekatzeko botoiak (goian) «Proiektuaren txostena (PDF)» ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo «Koordinatzaileari bidali» bidez bidaltzen du.\n• Txostenak hitzarmenaren kontuak ditu: testaren eta proiektuaren balantzea, banaketa, fidantza, laguntza eta gorabeherak.\n• PDFak «ZIRRIBORROA» markarekin ateratzen dira. Behin betiko bertsioa koordinazioak ateratzen du proiektua itxita dagoenean.\n• Proiektuen zerrendan, grafikoaren botoiak proiektuen arteko «Konparaketa (PDF)» ateratzen du.\n• Ezarpenetan, «Gunea esportatu (CSV)» aukerak maparen finkak eta puntuak ateratzen ditu.';
 
   @override
-  String get ayudaSyncT => 'Zereginak taldearekin partekatu';
+  String get ayudaSyncT => 'Gunea taldearekin partekatu';
 
   @override
   String get ayudaSyncB =>
-      'Saiakuntza Gunean sinkronizazioa erabiltzen baduzue, zereginak talde osoaren mugikorren artean partekatzen dira.\n1. Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du, eta ez da partekatzen.\n2. Ezarpenak → Zereginen sinkronizazioa atalean, jarri Zunbeltzen WordPress-aren helbidea eta zure tokena.\n3. Sakatu «Sinkronizatu orain» estaldura duzunean: zure aldaketak igotzen dira eta besteenak jaisten.\n» Zereginak bakarrik partekatzen dira. Puntuak, eremuak eta proiektuak zure mugikorrean bakarrik geratzen dira.';
+      'Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.\n1. Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.\n2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure tokena.\n3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.\n» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.';
 
   @override
   String get ayudaRolesT => 'Nork zer egin dezakeen';
 
   @override
   String get ayudaRolesB =>
-      'Pertsona bakoitzak rol bat du, koordinazioak ematen diona.\n• Koordinazioa: zeregin guztiak ikusi, sortu, aldatu eta banatzen ditu.\n• Testerra: esleituta dituen zereginak eta orokorrak (inorenak ez direnak) ikusten ditu. Bereen egoera alda dezake, orokor bat hartu eta berea dena utzi. Ez du zereginik sortzen: berri bat behar bada, eskatu koordinazioari.\n» Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe «Tokiko modua» zaude, eta dena edita dezakezu.';
+      'Pertsona bakoitzak rol bat du, koordinazioak ematen diona.\n• Koordinazioa: zereginak sortu, banatu eta ixten ditu; finkak, eremuak, puntuak eta proiektu guztiak kudeatzen ditu; eskaerak onartu edo baztertzen ditu; gunean gertatzen dena ikusten du.\n• Testerra: bere zereginak eta orokorrak (inorenak ez direnak) ikusten ditu, haien egoera aldatzen du, orokor bat hartu edo berea utzi. Zereginak eskatu egiten ditu, ez sortu. Puntuak gehitu eta mugitzen ditu (korta mugikor bat, bidoi bat), abisuak ematen ditu eta bere proiektuaren eguneroko lana idazten du irekita dagoen bitartean.\n» Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe «Tokiko modua» zaude, eta dena edita dezakezu.';
 
   @override
   String get ayudaProblemasT => 'Ohiko arazoak';
 
   @override
   String get ayudaProblemasB =>
-      '• «Zure rolak ez du … baimenik»: zeregin hori ez da zurea. Har ezazu esleitu gabe badago, edo eskatu koordinazioari zuri esleitzeko.\n• «… desegin da / dira» sinkronizatzean: zure rolak baimentzen ez duen zerbait ukitu duzu, eta zegoen bezala utzi da.\n• «Token incorrecto…» mezua: begiratu osorik kopiatu duzula. Galdu baduzu, koordinazioak berri bat sortuko dizu, eta zaharrak ez du balioko.\n• «finka ezezagunarekin»: zeregin hori zure mugikorrean beste izen bat duen finka batekoa da. Finkek izen bera izan behar dute mugikor guztietan.\n• Eguraldiaren iragarpena ez da agertzen: internet behar du. Gainerakoa estaldurarik gabe dabil.\n» Zure datuak zure mugikorrean daude. Aldatu edo galtzen baduzu, hitz egin lehenago koordinazioarekin.';
+      '• «Zure rolak ez du uzten…»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.\n• Sinkronizatzean «Aldaketak desegin dira»: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.\n• «Token okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.\n• Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».\n• Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.\n» Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure tokenarekin eta berreskuratuko dituzu.';
 
   @override
   String get ayudaPie =>
@@ -1774,4 +1774,32 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get informeBorradorAviso =>
       'Zirriborroa: behin betiko bertsioa koordinazioak sortzen du proiektua itxita dagoenean.';
+
+  @override
+  String get ayudaHoyAvisosT => 'Gaur eta abisuak';
+
+  @override
+  String get ayudaHoyAvisosB =>
+      'Gaur gunearen sarrera-ontzia da. Goian alarma irekiak agertzen dira; gero zure zeregin iraungiak eta hurrengo egunetakoak; eta abisuak, kategorien arabera: Abereak, Instalazioak, Banakako jarraipena eta Berriak.\n1. Zerbaiten berri emateko, sakatu «Abisua eman».\n2. Aukeratu kategoria, idatzi zer gertatzen den eta, nahi baduzu, finka.\n3. Larria bada (animalia gaixo bat, matxura handi bat, janari falta), markatu «Alarma da»: besteei jakinarazpen bat agertuko zaie.\n4. Ukitu abisu bat ikusteko eta, konponduta dagoenean, markatu konpondutzat.';
+
+  @override
+  String get ayudaPeticionesT => 'Zeregin bat eskatu';
+
+  @override
+  String get ayudaPeticionesB =>
+      'Zerbait behar dela ikusten baduzu (pentsua erosi, ate bat konpondu…), eskatu koordinazioari:\n1. Gaur pantailatik edo puntuaren fitxatik, sakatu «Zeregin bat eskatu».\n2. Idatzi zer behar den; markatu «Premiazkoa da» presa badu.\n3. Gorde. Koordinazioak sinkronizatzean ikusiko du eta zeregin bihurtuko du edo erantzun egingo dizu.\n» Zure eskaerak eta haien erantzuna Finkak → Zereginak → eskaeren botoian daude (goian).';
+
+  @override
+  String get ayudaConvenioT => 'Hitzarmena: kontuak, fidantza eta laguntza';
+
+  @override
+  String get ayudaConvenioB =>
+      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen eta amortizazioa den. Gainerakoa koordinazioak eramaten du.';
+
+  @override
+  String get ayudaNotificacionesT => 'Jakinarazpenak';
+
+  @override
+  String get ayudaNotificacionesB =>
+      'Aplikazioak mugikorrean abisatzen dizu:\n• Beste pertsona baten alarma bat iristen denean (sinkronizatzean).\n• Koordinazioari: eskaera berriak daudenean eta gunean aldatu denaren laburpena.\n• Goizero 9:00etan, zeregin iraungiak badituzu, egintzat markatu arte.\n» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa guztiz itxita badago, alarmak berriro irekitzean iristen dira; iraungiek berdin abisatzen dute.';
 }

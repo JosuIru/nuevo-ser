@@ -62,15 +62,15 @@ La coordinación (dinamizador, responsable de finca y, si procede, personal de A
 
 ## Orden de trabajo
 1. ✅ Roles nuevos + política + app: tester ve sus tareas + generales y no crea; el servidor manda la lista completa y la app retira lo que ya no ve (2026-10-06).
-2. Enlace persona ↔ usuario WP + huella de actividad.
-3. Panel de tareas en el admin.
-4. Peticiones (servidor + app + panel).
-5. Sincronizar fincas, puntos y zonas (anclaje por `uid`, puntos móviles, altas de fincas).
-6. Sincronizar proyectos y su seguimiento.
-7. Economía real del test (balances, reparto, fianza, previsto vs. real) + marca BORRADOR.
-8. Avisos de campo + incidencias de cumplimiento + notificaciones.
-9. Avisos por correo.
-10. Instalación y puesta en marcha.
+2. ✅ Enlace persona ↔ usuario WP + huella de actividad.
+3. ✅ Panel de tareas en el admin (y peticiones, avisos, proyectos, actividad, personas).
+4. ✅ Peticiones (servidor + app + panel).
+5. ✅ Sincronizar fincas, puntos y zonas (anclaje por `uid`, puntos móviles, altas de fincas).
+6. ✅ Sincronizar proyectos y su seguimiento.
+7. ✅ Economía real del test (balances, reparto, fianza, previsto vs. real) + marca BORRADOR.
+8. ✅ Avisos de campo + incidencias de cumplimiento + notificaciones (locales; push pendiente de decisión).
+9. ✅ Avisos por correo.
+10. 🟡 Instalación y puesta en marcha: guía escrita (`wp-plugin/solera-zunbeltz-sync/INSTALACION.md`) y paquete `.zip`; falta hacerla en el servidor de Zunbeltz.
 
 **Coste**: la partida aprobada (2.000 €) se pensó para los bloques 1-6 originales. Los bloques 7-9 se han incorporado después; hay que **revisar presupuesto y plazos** con Zunbeltz.
 

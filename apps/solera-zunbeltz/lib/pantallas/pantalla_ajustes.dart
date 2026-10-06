@@ -21,7 +21,7 @@ import 'pantalla_ayuda.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`).
-const String versionAppZunbeltz = '0.1.0';
+const String versionAppZunbeltz = '0.3.0';
 
 /// Pestaña "Ajustes": idioma y acerca de.
 class PantallaAjustes extends StatefulWidget {

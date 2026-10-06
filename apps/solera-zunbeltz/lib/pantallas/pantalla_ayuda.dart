@@ -54,6 +54,8 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
               t.ayudaPestanasT, t.ayudaPestanasB, Icons.dashboard_outlined),
           _ApartadoAyuda(t.ayudaIdiomaDatosT, t.ayudaIdiomaDatosB,
               Icons.translate_outlined),
+          _ApartadoAyuda(
+              t.ayudaHoyAvisosT, t.ayudaHoyAvisosB, Icons.campaign_outlined),
         ]),
         _GrupoAyuda(t.ayudaGrupoFincas, [
           _ApartadoAyuda(
@@ -73,11 +75,17 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
               t.ayudaApuntarT, t.ayudaApuntarB, Icons.edit_note_outlined),
           _ApartadoAyuda(
               t.ayudaNumerosT, t.ayudaNumerosB, Icons.bar_chart_outlined),
+          _ApartadoAyuda(
+              t.ayudaConvenioT, t.ayudaConvenioB, Icons.handshake_outlined),
           _ApartadoAyuda(t.ayudaInformesT, t.ayudaInformesB, Icons.ios_share),
         ]),
         _GrupoAyuda(t.ayudaGrupoEquipo, [
           _ApartadoAyuda(t.ayudaSyncT, t.ayudaSyncB, Icons.sync_outlined),
           _ApartadoAyuda(t.ayudaRolesT, t.ayudaRolesB, Icons.badge_outlined),
+          _ApartadoAyuda(t.ayudaPeticionesT, t.ayudaPeticionesB,
+              Icons.add_comment_outlined),
+          _ApartadoAyuda(t.ayudaNotificacionesT, t.ayudaNotificacionesB,
+              Icons.notifications_outlined),
         ]),
         _GrupoAyuda(t.ayudaGrupoProblemas, [
           _ApartadoAyuda(

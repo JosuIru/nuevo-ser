@@ -14,6 +14,8 @@ Decisiones que requieren a una persona (equipo de Zunbeltz Elkartea, asesor téc
 8. **Banco de tierras / relevo**: ¿lo gestiona la app o ya tienen otra vía? ¿Qué datos de cedentes/demandantes son públicos y cuáles no?
 9. **La Venta de Zunbeltz**: ¿quieren trazabilidad lote→producto→venta directa dentro de la app, o queda fuera del alcance?
 
+**Respuestas recibidas 2026-10-06** (`docs/respuestas-zunbeltz-2026-10-06.md`): cierran en parte A1 (arrancar por fincas+tareas+proyectos: sí), A6 (tester sin crear tareas, sólo peticiones; ve sus tareas + generales), A7 (seguimiento = hitos + acompañamiento + evaluación) y A8/A9 (banco de tierras y cesiones fuera; comercialización ampliada dentro). Siguen abiertas las 9 preguntas del final de ese documento (qué es el hito del 31-oct, app de Andía, tipos de infraestructura e incidencias, rol del personal de Andía, regla de gasto imputado, rendimientos de transformación, logo/datos de entidad).
+
 ## A-bis. Euskera (revisión nativa — antes de la reunión si da tiempo)
 
 9-bis. **Revisión nativa del euskera de la presentación**. El texto eu de `presentacion/index.html` es un borrador propio (batua) y, aunque cuidado, debe pasar por una persona euskaldun — idealmente del propio equipo de Zunbeltz, lo que además lo convierte en co-diseño. Puntos a confirmar con ellas: terminología agroganadera oficial (¿"Nekazaritza Saiakuntza Gunea" o la forma que ellas usan?, "manga de manejo", "larre-saila"…), euskera batua vs. variante navarra/local, y respeto de nombres propios. **No dar el euskera por bueno sin esa revisión.**
@@ -41,7 +43,8 @@ Decisiones que requieren a una persona (equipo de Zunbeltz Elkartea, asesor téc
     - **Roles → capacidades** en `includes/roles.php`, ampliable con el filtro `szs_roles`. La app no conoce roles, sólo capacidades (`ver_todas_tareas`, `crear_tareas`, `editar_cualquier_tarea`, `asignar_tareas`), así que un rol nuevo no exige publicar otra versión de la app.
     - **Reparto provisional**: *Coordinación (admin)* crea, edita y asigna todo. *Tester* ve todo el espacio y crea tareas; ejecuta (estado, coste) las suyas o las que creó, edita el contenido de las que creó, se coge tareas libres y suelta las suyas; no asigna a otras personas (si lo intenta, la tarea entra sin asignar).
     - **El servidor manda**: aplica la política al sincronizar (`includes/politica-tareas.php`) y devuelve `forzar` + `rechazos`; la app sobrescribe con la versión del servidor lo rechazado. La app replica las reglas (`lib/servicios/politica_tareas.dart`) sólo para no ofrecer lo que se va a rechazar. Sin sincronización configurada la app sigue en modo local, sin restricciones.
-    - **A decidir con Zunbeltz**: si el tester ve todas las tareas o sólo las suyas (basta quitar `ver_todas_tareas`); si el tester puede asignar; roles de **mentor** y **asesor** y qué ven; qué pasa con fincas/puntos/zonas (hoy locales, sin permisos); RGPD de la evaluación de viabilidad (punto 6), que llegará con la Capa B.
+    - **Cerrado el 2026-10-06** (respuestas de Zunbeltz, plugin v0.3): el tester **no crea tareas** (las pide) y **ve sólo las suyas + las generales** (general = sin responsable); el servidor devuelve la lista completa (`completo: true`) y la app retira lo que ya no le corresponde.
+    - **A decidir con Zunbeltz**: roles de **mentor** y **asesor** y qué ven; qué pasa con fincas/puntos/zonas (hoy locales, sin permisos); RGPD de la evaluación de viabilidad (punto 6), que llegará con la Capa B.
 
 15. **Monetización B2B**: licencia anual a la entidad gestora vs modelo por ETA en la red. Financiación pública de Zunbeltz lo descarta como SaaS individual.
 16. **`applicationId` y branding visual definitivo** (logo, splash, paleta extendida más allá de monte+crema+ocre).

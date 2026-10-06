@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../datos/base_datos.dart';
+import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/finca.dart';
 import '../modelos/proyecto_test.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
 
-/// Alta de un proyecto de test (la persona tester y su proceso).
+/// Alta o edición (con [proyecto]) de un proyecto de test: la persona
+/// tester y su proceso. Con sincronización, la persona se elige entre las
+/// del espacio (su `uid` decide quién ve el proyecto).
 class NuevoProyecto extends StatefulWidget {
-  const NuevoProyecto({super.key, required this.fincas});
+  const NuevoProyecto({super.key, required this.fincas, this.proyecto});
 
   final List<Finca> fincas;
+  final ProyectoTest? proyecto;
 
   @override
   State<NuevoProyecto> createState() => _NuevoProyectoState();
@@ -26,6 +30,23 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
   final _notas = TextEditingController();
   int? _fincaId;
   DateTime? _inicio;
+  String _personaUid = '';
+
+  @override
+  void initState() {
+    super.initState();
+    final proyecto = widget.proyecto;
+    if (proyecto == null) return;
+    _nombre.text = proyecto.nombre;
+    _persona.text = proyecto.persona;
+    _actividad.text = proyecto.actividad;
+    _notas.text = proyecto.notas;
+    _fincaId = proyecto.fincaId;
+    _personaUid = proyecto.personaUid;
+    if (proyecto.fechaInicioMs != null) {
+      _inicio = DateTime.fromMillisecondsSinceEpoch(proyecto.fechaInicioMs!);
+    }
+  }
 
   @override
   void dispose() {
@@ -55,15 +76,29 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
           SnackBar(content: Text(textos.proyectoNombreObligatorio)));
       return;
     }
-    await _bd.guardarProyecto(ProyectoTest(
-      nombre: _nombre.text.trim(),
-      persona: _persona.text.trim(),
-      actividad: _actividad.text.trim(),
-      fincaId: _fincaId,
-      fechaInicioMs: _inicio?.millisecondsSinceEpoch,
-      notas: _notas.text.trim(),
-      fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
-    ));
+    final existente = widget.proyecto;
+    if (existente?.id != null) {
+      await _bd.actualizarProyecto(existente!.id!, {
+        'nombre': _nombre.text.trim(),
+        'persona': _persona.text.trim(),
+        'persona_uid': _personaUid,
+        'actividad': _actividad.text.trim(),
+        'finca_id': _fincaId,
+        'fecha_inicio_ms': _inicio?.millisecondsSinceEpoch,
+        'notas': _notas.text.trim(),
+      });
+    } else {
+      await _bd.guardarProyecto(ProyectoTest(
+        nombre: _nombre.text.trim(),
+        persona: _persona.text.trim(),
+        personaUid: _personaUid,
+        actividad: _actividad.text.trim(),
+        fincaId: _fincaId,
+        fechaInicioMs: _inicio?.millisecondsSinceEpoch,
+        notas: _notas.text.trim(),
+        fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
+      ));
+    }
     if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(textos.proyectoGuardado)));
@@ -75,7 +110,10 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
     return Scaffold(
-      appBar: AppBar(title: Text(textos.proyectoNuevo)),
+      appBar: AppBar(
+          title: Text(widget.proyecto == null
+              ? textos.proyectoNuevo
+              : textos.proyectoEditar)),
       body: CuerpoResponsivo(
         child: ListView(
           padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
@@ -84,9 +122,31 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
                 controller: _nombre,
                 decoration: InputDecoration(labelText: textos.proyectoNombre)),
             const SizedBox(height: 12),
-            TextField(
-                controller: _persona,
-                decoration: InputDecoration(labelText: textos.proyectoPersona)),
+            if (personasEspacio.value.isEmpty)
+              TextField(
+                  controller: _persona,
+                  decoration:
+                      InputDecoration(labelText: textos.proyectoPersona))
+            else
+              DropdownButtonFormField<String>(
+                initialValue: _personaUid,
+                decoration:
+                    InputDecoration(labelText: textos.proyectoPersonaTester),
+                items: [
+                  DropdownMenuItem(
+                      value: '', child: Text(textos.proyectoSinPersona)),
+                  for (final persona in personasEspacio.value)
+                    DropdownMenuItem(
+                        value: persona.uid, child: Text(persona.nombre)),
+                ],
+                onChanged: (uid) => setState(() {
+                  _personaUid = uid ?? '';
+                  _persona.text = [
+                    for (final persona in personasEspacio.value)
+                      if (persona.uid == _personaUid) persona.nombre,
+                  ].firstOrNull ?? '';
+                }),
+              ),
             const SizedBox(height: 12),
             TextField(
                 controller: _actividad,

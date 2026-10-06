@@ -1212,4 +1212,34 @@ class AppLocalizationsEs extends AppLocalizations {
   String fincaNuevaCreada(String nombre) {
     return 'Finca «$nombre» creada';
   }
+
+  @override
+  String get proyectoEditar => 'Editar proyecto';
+
+  @override
+  String get proyectoPersonaTester => 'Persona tester';
+
+  @override
+  String get proyectoSinPersona => 'Sin asignar';
+
+  @override
+  String get proyectoCerrar => 'Cerrar proyecto';
+
+  @override
+  String get proyectoReabrir => 'Reabrir proyecto';
+
+  @override
+  String get proyectoCerrarPregunta =>
+      'Al cerrarlo, la persona tester ya no podrá apuntar en él y los informes saldrán como versión definitiva. ¿Cerrar el proyecto?';
+
+  @override
+  String proyectoCerradoAviso(String fecha) {
+    return 'Proyecto cerrado el $fecha. Solo coordinación puede cambiarlo.';
+  }
+
+  @override
+  String get proyectoCerradoEtiqueta => 'Cerrado';
+
+  @override
+  String get proyectoMas => 'Más opciones';
 }

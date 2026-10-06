@@ -1216,4 +1216,34 @@ class AppLocalizationsEu extends AppLocalizations {
   String fincaNuevaCreada(String nombre) {
     return '«$nombre» finka sortuta';
   }
+
+  @override
+  String get proyectoEditar => 'Proiektua editatu';
+
+  @override
+  String get proyectoPersonaTester => 'Pertsona testerra';
+
+  @override
+  String get proyectoSinPersona => 'Esleitu gabe';
+
+  @override
+  String get proyectoCerrar => 'Proiektua itxi';
+
+  @override
+  String get proyectoReabrir => 'Proiektua berrireki';
+
+  @override
+  String get proyectoCerrarPregunta =>
+      'Ixten baduzu, pertsona testerrak ezin izango du bertan idatzi eta txostenak behin betiko bertsio gisa aterako dira. Proiektua itxi?';
+
+  @override
+  String proyectoCerradoAviso(String fecha) {
+    return 'Proiektua $fecha(e)an itxi zen. Koordinazioak bakarrik alda dezake.';
+  }
+
+  @override
+  String get proyectoCerradoEtiqueta => 'Itxita';
+
+  @override
+  String get proyectoMas => 'Aukera gehiago';
 }

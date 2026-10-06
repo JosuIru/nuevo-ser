@@ -402,5 +402,15 @@
   "fincaNuevaNombre": "Izena",
   "fincaNuevaSuperficie": "Azalera (ha)",
   "fincaNuevaCentro": "Maparen erdian kokatzen da. Mugitu aurretik, behar bada.",
-  "fincaNuevaCreada": "«{nombre}» finka sortuta"
+  "fincaNuevaCreada": "«{nombre}» finka sortuta",
+
+  "proyectoEditar": "Proiektua editatu",
+  "proyectoPersonaTester": "Pertsona testerra",
+  "proyectoSinPersona": "Esleitu gabe",
+  "proyectoCerrar": "Proiektua itxi",
+  "proyectoReabrir": "Proiektua berrireki",
+  "proyectoCerrarPregunta": "Ixten baduzu, pertsona testerrak ezin izango du bertan idatzi eta txostenak behin betiko bertsio gisa aterako dira. Proiektua itxi?",
+  "proyectoCerradoAviso": "Proiektua {fecha}(e)an itxi zen. Koordinazioak bakarrik alda dezake.",
+  "proyectoCerradoEtiqueta": "Itxita",
+  "proyectoMas": "Aukera gehiago"
 }

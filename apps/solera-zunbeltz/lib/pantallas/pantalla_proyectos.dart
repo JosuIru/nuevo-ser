@@ -3,6 +3,7 @@ import 'package:printing/printing.dart';
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
+import '../estado/sesion_espacio.dart';
 import '../estado/datos_notificador.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/finca.dart';
@@ -123,10 +124,12 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _nuevo,
-        child: const Icon(Icons.add),
-      ),
+      floatingActionButton: politicaEspacioActual.puedeGestionarProyectos
+          ? FloatingActionButton(
+              onPressed: _nuevo,
+              child: const Icon(Icons.add),
+            )
+          : null,
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
           : _proyectos.isEmpty
@@ -175,7 +178,10 @@ class _TarjetaProyecto extends StatelessWidget {
         leading: const CircleAvatar(child: Icon(Icons.science_outlined)),
         title: Text(proyecto.nombre,
             style: const TextStyle(fontWeight: FontWeight.w600)),
-        subtitle: subt.isEmpty ? null : Text(subt),
+        subtitle: Text([
+          if (subt.isNotEmpty) subt,
+          if (proyecto.cerrado) AppLocalizations.of(context).proyectoCerradoEtiqueta,
+        ].join(' · ')),
         trailing: r == null
             ? const Icon(Icons.chevron_right)
             : Column(

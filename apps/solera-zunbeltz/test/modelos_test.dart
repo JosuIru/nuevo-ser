@@ -352,4 +352,24 @@ void main() {
           greaterThan(zona.superficieHaCalculada * 3));
     });
   });
+
+  test('ProyectoTest: persona tester, cierre y reparto del convenio', () {
+    final proyecto = ProyectoTest(
+      nombre: 'Quesería',
+      personaUid: 'ane',
+      estado: estadoProyectoCerrado,
+      cerradoMs: 99,
+      porcentajeBeneficioZunbeltz: 30,
+      valoracionTester: 8,
+    );
+    final reconstruido = ProyectoTest.fromMap(proyecto.toMap());
+    expect(reconstruido.personaUid, 'ane');
+    expect(reconstruido.cerrado, isTrue);
+    expect(reconstruido.cerradoMs, 99);
+    expect(reconstruido.porcentajeBeneficioZunbeltz, 30);
+    expect(reconstruido.porcentajePerdidaZunbeltz, 50,
+        reason: 'por defecto, 50 % de la pérdida para Zunbeltz');
+    expect(reconstruido.valoracionTester, 8);
+    expect(ProyectoTest(nombre: 'x').cerrado, isFalse);
+  });
 }

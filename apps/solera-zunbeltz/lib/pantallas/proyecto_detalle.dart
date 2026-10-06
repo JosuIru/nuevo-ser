@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/coordinador.dart';
+import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/constantes.dart';
@@ -23,6 +24,7 @@ import 'nueva_actividad.dart';
 import 'nueva_comercializacion.dart';
 import 'nueva_validacion.dart';
 import 'nuevo_apunte.dart';
+import 'nuevo_proyecto.dart';
 
 /// Detalle de un proyecto de test: análisis de rentabilidad + producción,
 /// comercialización, validación de producto y económico, con informe PDF.
@@ -49,8 +51,18 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
 
   RangoPeriodo get _rango => rangoDePeriodo(_periodo, DateTime.now());
 
+  /// Copia viva del proyecto: se relee al volver de editarlo o cerrarlo.
+  late ProyectoTest _proyecto = widget.proyecto;
+
+  /// Finca para los registros si el proyecto no tiene una propia (la
+  /// columna es obligatoria y tiene que existir en todos los móviles).
+  int? _fincaRespaldo;
+
   int get _proyectoId => widget.proyecto.id!;
-  int get _fincaId => widget.proyecto.fincaId ?? 0;
+  int get _fincaId => _proyecto.fincaId ?? _fincaRespaldo ?? 0;
+
+  bool get _puedeRegistrar => politicaEspacioActual.puedeRegistrarEnProyecto(
+      personaUidProyecto: _proyecto.personaUid, cerrado: _proyecto.cerrado);
 
   @override
   void initState() {
@@ -62,6 +74,9 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     final desde = _rango.desdeMs;
     final hasta = _rango.hastaMs;
     try {
+      final proyecto = await _bd.obtenerProyecto(_proyectoId);
+      if (proyecto != null) _proyecto = proyecto;
+      _fincaRespaldo ??= (await _bd.listarFincas()).firstOrNull?.id;
       final rent = await _bd.rentabilidadProyecto(_proyectoId,
           desdeMs: desde, hastaMs: hasta);
       final ventas = await _bd.listarComercializacion(
@@ -92,10 +107,10 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     // Si hay periodo acotado, sus días; si no, los del proyecto.
     final delPeriodo = _rango.dias;
     if (delPeriodo != null) return delPeriodo;
-    final inicio = widget.proyecto.fechaInicioMs;
+    final inicio = _proyecto.fechaInicioMs;
     if (inicio == null) return null;
     final fin =
-        widget.proyecto.fechaFinMs ?? DateTime.now().millisecondsSinceEpoch;
+        _proyecto.fechaFinMs ?? DateTime.now().millisecondsSinceEpoch;
     final dias = ((fin - inicio) / 86400000).round();
     return dias > 0 ? dias : null;
   }
@@ -139,6 +154,47 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     }
   }
 
+  Future<void> _editar() async {
+    final cambiado = await Navigator.of(context).push<bool>(MaterialPageRoute(
+        builder: (_) => FutureBuilder(
+              future: _bd.listarFincas(),
+              builder: (contexto, fincas) => fincas.hasData
+                  ? NuevoProyecto(fincas: fincas.data!, proyecto: _proyecto)
+                  : const Scaffold(
+                      body: Center(child: CircularProgressIndicator())),
+            )));
+    if (cambiado == true) await _cargar();
+  }
+
+  /// Cerrar lo deja en solo lectura para la persona tester y hace que los
+  /// informes salgan como versión definitiva (sin marca de borrador).
+  Future<void> _cambiarCierre({required bool cerrar}) async {
+    final textos = AppLocalizations.of(context);
+    if (cerrar) {
+      final confirmado = await showDialog<bool>(
+        context: context,
+        builder: (contexto) => AlertDialog(
+          title: Text(textos.proyectoCerrar),
+          content: Text(textos.proyectoCerrarPregunta),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(contexto, false),
+                child: Text(textos.comunCancelar)),
+            FilledButton(
+                onPressed: () => Navigator.pop(contexto, true),
+                child: Text(textos.proyectoCerrar)),
+          ],
+        ),
+      );
+      if (confirmado != true) return;
+    }
+    await _bd.actualizarProyecto(_proyectoId, {
+      'estado': cerrar ? estadoProyectoCerrado : estadoProyectoAbierto,
+      'cerrado_ms': cerrar ? DateTime.now().millisecondsSinceEpoch : null,
+    });
+    await _cargar();
+  }
+
   Future<void> _borrar() async {
     final textos = AppLocalizations.of(context);
     final ok = await showDialog<bool>(
@@ -169,7 +225,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
       final documento = await generarInformeProyectoPdf(
         textos: textos,
         idioma: idioma,
-        proyecto: widget.proyecto,
+        proyecto: _proyecto,
         rentabilidad: _rent,
         comercializacion: _ventas,
         validaciones: _validaciones,
@@ -191,12 +247,12 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     final documento = await generarCsvProyecto(
       textos: textos,
       idioma: idioma,
-      proyecto: widget.proyecto,
+      proyecto: _proyecto,
       apuntes: _apuntes,
       ventas: _ventas,
     );
     try {
-      await compartirDocumentos([documento], asunto: widget.proyecto.nombre);
+      await compartirDocumentos([documento], asunto: _proyecto.nombre);
     } catch (_) {
       // En escritorio el menú de compartir puede no estar disponible.
       if (mounted) {
@@ -225,7 +281,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
       final documento = await generarInformeProyectoPdf(
         textos: textos,
         idioma: idioma,
-        proyecto: widget.proyecto,
+        proyecto: _proyecto,
         rentabilidad: _rent,
         comercializacion: _ventas,
         validaciones: _validaciones,
@@ -234,8 +290,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
         ivaSoportadoCentimos: ivaSoportado,
         ivaRepercutidoCentimos: ivaRepercutido,
       );
-      final asunto = 'Solera Zunbeltz · ${widget.proyecto.nombre}'
-          '${widget.proyecto.persona.isEmpty ? '' : ' (${widget.proyecto.persona})'}';
+      final asunto = 'Solera Zunbeltz · ${_proyecto.nombre}'
+          '${_proyecto.persona.isEmpty ? '' : ' (${_proyecto.persona})'}';
       try {
         // Móvil: hoja de compartir con el PDF adjunto (eliges tu correo).
         await compartirDocumentos([documento],
@@ -269,7 +325,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
-    final p = widget.proyecto;
+    final p = _proyecto;
     final subt = [p.persona, p.actividad].where((s) => s.isNotEmpty).join(' · ');
     if (_cargando) {
       return Scaffold(
@@ -349,11 +405,38 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                 ),
               ],
             ),
-            IconButton(
-              tooltip: textos.proyectoBorrar,
-              icon: const Icon(Icons.delete_outline),
-              onPressed: _borrar,
-            ),
+            if (politicaEspacioActual.puedeGestionarProyectos)
+              PopupMenuButton<_AccionProyecto>(
+                tooltip: textos.proyectoMas,
+                onSelected: (accion) {
+                  switch (accion) {
+                    case _AccionProyecto.editar:
+                      _editar();
+                    case _AccionProyecto.cerrar:
+                      _cambiarCierre(cerrar: true);
+                    case _AccionProyecto.reabrir:
+                      _cambiarCierre(cerrar: false);
+                    case _AccionProyecto.borrar:
+                      _borrar();
+                  }
+                },
+                itemBuilder: (_) => [
+                  PopupMenuItem(
+                      value: _AccionProyecto.editar,
+                      child: Text(textos.proyectoEditar)),
+                  if (p.cerrado)
+                    PopupMenuItem(
+                        value: _AccionProyecto.reabrir,
+                        child: Text(textos.proyectoReabrir))
+                  else
+                    PopupMenuItem(
+                        value: _AccionProyecto.cerrar,
+                        child: Text(textos.proyectoCerrar)),
+                  PopupMenuItem(
+                      value: _AccionProyecto.borrar,
+                      child: Text(textos.proyectoBorrar)),
+                ],
+              ),
           ],
           bottom: TabBar(isScrollable: true, tabs: [
             Tab(text: textos.detProduccion),
@@ -362,14 +445,25 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
             Tab(text: textos.detEconomico),
           ]),
         ),
-        floatingActionButton: Builder(
-          builder: (ctx) => FloatingActionButton(
-            onPressed: () => _anadir(DefaultTabController.of(ctx).index),
-            child: const Icon(Icons.add),
-          ),
-        ),
+        floatingActionButton: _puedeRegistrar
+            ? Builder(
+                builder: (ctx) => FloatingActionButton(
+                  onPressed: () => _anadir(DefaultTabController.of(ctx).index),
+                  child: const Icon(Icons.add),
+                ),
+              )
+            : null,
         body: Column(
           children: [
+            if (p.cerrado)
+              MaterialBanner(
+                leading: const Icon(Icons.lock_outline),
+                content: Text(textos.proyectoCerradoAviso(p.cerradoMs == null
+                    ? '—'
+                    : DateFormat('dd/MM/yyyy', idioma).format(
+                        DateTime.fromMillisecondsSinceEpoch(p.cerradoMs!)))),
+                actions: const [SizedBox.shrink()],
+              ),
             if (subt.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
@@ -625,3 +719,5 @@ class _DesgloseIva extends StatelessWidget {
     );
   }
 }
+
+enum _AccionProyecto { editar, cerrar, reabrir, borrar }

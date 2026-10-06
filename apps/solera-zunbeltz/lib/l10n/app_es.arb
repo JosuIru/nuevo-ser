@@ -462,5 +462,22 @@
         "type": "String"
       }
     }
-  }
+  },
+
+  "proyectoEditar": "Editar proyecto",
+  "proyectoPersonaTester": "Persona tester",
+  "proyectoSinPersona": "Sin asignar",
+  "proyectoCerrar": "Cerrar proyecto",
+  "proyectoReabrir": "Reabrir proyecto",
+  "proyectoCerrarPregunta": "Al cerrarlo, la persona tester ya no podrá apuntar en él y los informes saldrán como versión definitiva. ¿Cerrar el proyecto?",
+  "proyectoCerradoAviso": "Proyecto cerrado el {fecha}. Solo coordinación puede cambiarlo.",
+  "@proyectoCerradoAviso": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "proyectoCerradoEtiqueta": "Cerrado",
+  "proyectoMas": "Más opciones"
 }

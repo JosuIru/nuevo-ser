@@ -2287,6 +2287,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Finca «{nombre}» creada'**
   String fincaNuevaCreada(String nombre);
+
+  /// No description provided for @proyectoEditar.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar proyecto'**
+  String get proyectoEditar;
+
+  /// No description provided for @proyectoPersonaTester.
+  ///
+  /// In es, this message translates to:
+  /// **'Persona tester'**
+  String get proyectoPersonaTester;
+
+  /// No description provided for @proyectoSinPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin asignar'**
+  String get proyectoSinPersona;
+
+  /// No description provided for @proyectoCerrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar proyecto'**
+  String get proyectoCerrar;
+
+  /// No description provided for @proyectoReabrir.
+  ///
+  /// In es, this message translates to:
+  /// **'Reabrir proyecto'**
+  String get proyectoReabrir;
+
+  /// No description provided for @proyectoCerrarPregunta.
+  ///
+  /// In es, this message translates to:
+  /// **'Al cerrarlo, la persona tester ya no podrá apuntar en él y los informes saldrán como versión definitiva. ¿Cerrar el proyecto?'**
+  String get proyectoCerrarPregunta;
+
+  /// No description provided for @proyectoCerradoAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Proyecto cerrado el {fecha}. Solo coordinación puede cambiarlo.'**
+  String proyectoCerradoAviso(String fecha);
+
+  /// No description provided for @proyectoCerradoEtiqueta.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrado'**
+  String get proyectoCerradoEtiqueta;
+
+  /// No description provided for @proyectoMas.
+  ///
+  /// In es, this message translates to:
+  /// **'Más opciones'**
+  String get proyectoMas;
 }
 
 class _AppLocalizationsDelegate

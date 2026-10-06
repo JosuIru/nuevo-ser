@@ -12,7 +12,8 @@ final ValueNotifier<bool> sincronizandoEspacio = ValueNotifier<bool>(false);
 
 /// Funciones a las que se avisa tras cada sincronización correcta (p. ej.
 /// para lanzar notificaciones de alarmas o peticiones nuevas).
-final List<void Function(ResultadoSyncZunbeltz)> oyentesSincronizacion = [];
+final List<Future<void> Function(ResultadoSyncZunbeltz)> oyentesSincronizacion =
+    [];
 
 /// Sincroniza el espacio con el WordPress configurado en Ajustes. Devuelve
 /// `null` si no hay sincronización configurada o ya hay una en curso; lanza
@@ -34,7 +35,7 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio({bool completa = false}) async
         resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
     avisarCambioDatos();
     for (final oyente in List.of(oyentesSincronizacion)) {
-      oyente(resultado);
+      await oyente(resultado);
     }
     return resultado;
   } finally {

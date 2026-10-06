@@ -515,5 +515,214 @@
     }
   },
   "peticionNecesitaFinca": "Para crear la tarea, elige antes una finca.",
-  "personaDesconocida": "alguien del espacio"
+  "personaDesconocida": "alguien del espacio",
+
+  "avisoCategoriaGanado": "Ganado",
+  "avisoCategoriaInstalaciones": "Instalaciones",
+  "avisoCategoriaSeguimiento": "Seguimiento individual",
+  "avisoCategoriaNoticias": "Noticias",
+  "avisoNuevo": "Dar un aviso",
+  "avisoTitulo": "Qué pasa",
+  "avisoDescripcion": "Detalles",
+  "avisoCategoria": "Categoría",
+  "avisoEsAlarma": "Es una alarma (animal enfermo, rotura importante, falta de alimento…)",
+  "avisoAlarma": "Alarma",
+  "avisoGuardado": "Aviso guardado. Llegará al resto al sincronizar.",
+  "avisoResolver": "Marcar como resuelto",
+  "avisoReabrir": "Reabrir",
+  "avisoResuelto": "Resuelto",
+  "avisoBorrar": "Borrar aviso",
+  "avisosVacio": "Sin avisos en esta categoría.",
+  "avisoDe": "Avisa {nombre}",
+  "@avisoDe": {
+    "placeholders": {
+      "nombre": {
+        "type": "String"
+      }
+    }
+  },
+  "hoyAlarmasAbiertas": "{n, plural, =1{1 alarma abierta} other{{n} alarmas abiertas}}",
+  "@hoyAlarmasAbiertas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "hoyTareasVencidas": "{n, plural, =0{Ninguna tarea vencida} =1{1 tarea vencida} other{{n} tareas vencidas}}",
+  "@hoyTareasVencidas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "hoyTareasProximas": "{n, plural, =0{Nada para los próximos 7 días} =1{1 tarea en los próximos 7 días} other{{n} tareas en los próximos 7 días}}",
+  "@hoyTareasProximas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "hoyPeticionesPendientes": "{n, plural, =1{1 petición pendiente} other{{n} peticiones pendientes}}",
+  "@hoyPeticionesPendientes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "hoyActividad": "Lo último en el espacio",
+  "hoyActividadVacia": "Todavía no ha llegado actividad. Sincroniza para verla.",
+  "hoyAvisos": "Avisos",
+  "hoyTareas": "Tareas",
+  "hoyTiempo": "El tiempo",
+  "actividadCrear": "{persona} ha añadido {cosa}",
+  "@actividadCrear": {
+    "placeholders": {
+      "persona": {
+        "type": "String"
+      },
+      "cosa": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadEditar": "{persona} ha cambiado {cosa}",
+  "@actividadEditar": {
+    "placeholders": {
+      "persona": {
+        "type": "String"
+      },
+      "cosa": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadBorrar": "{persona} ha borrado {cosa}",
+  "@actividadBorrar": {
+    "placeholders": {
+      "persona": {
+        "type": "String"
+      },
+      "cosa": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadMover": "{persona} ha movido {cosa}",
+  "@actividadMover": {
+    "placeholders": {
+      "persona": {
+        "type": "String"
+      },
+      "cosa": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadEstado": "{persona} ha marcado {cosa} como «{estado}»",
+  "@actividadEstado": {
+    "placeholders": {
+      "persona": {
+        "type": "String"
+      },
+      "cosa": {
+        "type": "String"
+      },
+      "estado": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadAsignar": "{persona} ha asignado {cosa} a {responsable}",
+  "@actividadAsignar": {
+    "placeholders": {
+      "persona": {
+        "type": "String"
+      },
+      "cosa": {
+        "type": "String"
+      },
+      "responsable": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadDesasignar": "{persona} ha dejado sin asignar {cosa}",
+  "@actividadDesasignar": {
+    "placeholders": {
+      "persona": {
+        "type": "String"
+      },
+      "cosa": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadEn": "en {lugar}",
+  "@actividadEn": {
+    "placeholders": {
+      "lugar": {
+        "type": "String"
+      }
+    }
+  },
+  "actividadDesdePanel": "desde la oficina",
+  "tipoEntidadTarea": "la tarea",
+  "tipoEntidadPunto": "el punto",
+  "tipoEntidadFinca": "la finca",
+  "tipoEntidadZona": "la zona",
+  "tipoEntidadProyecto": "el proyecto",
+  "tipoEntidadApunte": "el apunte",
+  "tipoEntidadVenta": "la venta",
+  "tipoEntidadRegistro": "el registro",
+  "tipoEntidadValidacion": "la prueba de producto",
+  "tipoEntidadPeticion": "la petición",
+  "tipoEntidadAviso": "el aviso",
+  "tipoEntidadOtra": "un dato",
+  "notificacionCanalAlarmas": "Alarmas del espacio",
+  "notificacionCanalAvisos": "Avisos y recordatorios",
+  "notificacionAlarma": "Alarma: {titulo}",
+  "@notificacionAlarma": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      }
+    }
+  },
+  "notificacionAlarmas": "{n} alarmas nuevas en el espacio",
+  "@notificacionAlarmas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "notificacionPeticiones": "{n, plural, =1{Nueva petición de tarea} other{{n} peticiones de tarea nuevas}}",
+  "@notificacionPeticiones": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "notificacionCambios": "{n, plural, =1{1 cambio en el espacio} other{{n} cambios en el espacio}}",
+  "@notificacionCambios": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "notificacionVencidas": "{n, plural, =1{Tienes 1 tarea vencida} other{Tienes {n} tareas vencidas}}",
+  "@notificacionVencidas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "notificacionVencidasCuerpo": "Siguen pendientes hasta que se marquen como hechas."
 }

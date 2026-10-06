@@ -32,6 +32,7 @@ import 'pantallas/pantalla_fincas.dart';
 import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_onboarding.dart';
 import 'pantallas/pantalla_proyectos.dart';
+import 'servicios/servicio_notificaciones.dart';
 import 'servicios/servicio_sincronizacion.dart';
 
 Future<void> main() async {
@@ -51,6 +52,8 @@ Future<void> main() async {
   await precargarIdiomaZunbeltz();
   // Persona conectada y sus permisos, guardados de la última sincronización.
   await precargarSesionEspacio();
+  // Sin esperar: pedir permiso no debe retrasar el arranque.
+  iniciarNotificaciones();
   if (esVersionDemo) {
     try {
       await BaseDatosSoleraZunbeltz().sembrarDemostracionSiVacia();

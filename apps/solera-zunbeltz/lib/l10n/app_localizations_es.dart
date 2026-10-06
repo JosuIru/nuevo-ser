@@ -1311,4 +1311,253 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get personaDesconocida => 'alguien del espacio';
+
+  @override
+  String get avisoCategoriaGanado => 'Ganado';
+
+  @override
+  String get avisoCategoriaInstalaciones => 'Instalaciones';
+
+  @override
+  String get avisoCategoriaSeguimiento => 'Seguimiento individual';
+
+  @override
+  String get avisoCategoriaNoticias => 'Noticias';
+
+  @override
+  String get avisoNuevo => 'Dar un aviso';
+
+  @override
+  String get avisoTitulo => 'Qué pasa';
+
+  @override
+  String get avisoDescripcion => 'Detalles';
+
+  @override
+  String get avisoCategoria => 'Categoría';
+
+  @override
+  String get avisoEsAlarma =>
+      'Es una alarma (animal enfermo, rotura importante, falta de alimento…)';
+
+  @override
+  String get avisoAlarma => 'Alarma';
+
+  @override
+  String get avisoGuardado =>
+      'Aviso guardado. Llegará al resto al sincronizar.';
+
+  @override
+  String get avisoResolver => 'Marcar como resuelto';
+
+  @override
+  String get avisoReabrir => 'Reabrir';
+
+  @override
+  String get avisoResuelto => 'Resuelto';
+
+  @override
+  String get avisoBorrar => 'Borrar aviso';
+
+  @override
+  String get avisosVacio => 'Sin avisos en esta categoría.';
+
+  @override
+  String avisoDe(String nombre) {
+    return 'Avisa $nombre';
+  }
+
+  @override
+  String hoyAlarmasAbiertas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n alarmas abiertas',
+      one: '1 alarma abierta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoyTareasVencidas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n tareas vencidas',
+      one: '1 tarea vencida',
+      zero: 'Ninguna tarea vencida',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoyTareasProximas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n tareas en los próximos 7 días',
+      one: '1 tarea en los próximos 7 días',
+      zero: 'Nada para los próximos 7 días',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoyPeticionesPendientes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n peticiones pendientes',
+      one: '1 petición pendiente',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get hoyActividad => 'Lo último en el espacio';
+
+  @override
+  String get hoyActividadVacia =>
+      'Todavía no ha llegado actividad. Sincroniza para verla.';
+
+  @override
+  String get hoyAvisos => 'Avisos';
+
+  @override
+  String get hoyTareas => 'Tareas';
+
+  @override
+  String get hoyTiempo => 'El tiempo';
+
+  @override
+  String actividadCrear(String persona, String cosa) {
+    return '$persona ha añadido $cosa';
+  }
+
+  @override
+  String actividadEditar(String persona, String cosa) {
+    return '$persona ha cambiado $cosa';
+  }
+
+  @override
+  String actividadBorrar(String persona, String cosa) {
+    return '$persona ha borrado $cosa';
+  }
+
+  @override
+  String actividadMover(String persona, String cosa) {
+    return '$persona ha movido $cosa';
+  }
+
+  @override
+  String actividadEstado(String persona, String cosa, String estado) {
+    return '$persona ha marcado $cosa como «$estado»';
+  }
+
+  @override
+  String actividadAsignar(String persona, String cosa, String responsable) {
+    return '$persona ha asignado $cosa a $responsable';
+  }
+
+  @override
+  String actividadDesasignar(String persona, String cosa) {
+    return '$persona ha dejado sin asignar $cosa';
+  }
+
+  @override
+  String actividadEn(String lugar) {
+    return 'en $lugar';
+  }
+
+  @override
+  String get actividadDesdePanel => 'desde la oficina';
+
+  @override
+  String get tipoEntidadTarea => 'la tarea';
+
+  @override
+  String get tipoEntidadPunto => 'el punto';
+
+  @override
+  String get tipoEntidadFinca => 'la finca';
+
+  @override
+  String get tipoEntidadZona => 'la zona';
+
+  @override
+  String get tipoEntidadProyecto => 'el proyecto';
+
+  @override
+  String get tipoEntidadApunte => 'el apunte';
+
+  @override
+  String get tipoEntidadVenta => 'la venta';
+
+  @override
+  String get tipoEntidadRegistro => 'el registro';
+
+  @override
+  String get tipoEntidadValidacion => 'la prueba de producto';
+
+  @override
+  String get tipoEntidadPeticion => 'la petición';
+
+  @override
+  String get tipoEntidadAviso => 'el aviso';
+
+  @override
+  String get tipoEntidadOtra => 'un dato';
+
+  @override
+  String get notificacionCanalAlarmas => 'Alarmas del espacio';
+
+  @override
+  String get notificacionCanalAvisos => 'Avisos y recordatorios';
+
+  @override
+  String notificacionAlarma(String titulo) {
+    return 'Alarma: $titulo';
+  }
+
+  @override
+  String notificacionAlarmas(int n) {
+    return '$n alarmas nuevas en el espacio';
+  }
+
+  @override
+  String notificacionPeticiones(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n peticiones de tarea nuevas',
+      one: 'Nueva petición de tarea',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notificacionCambios(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n cambios en el espacio',
+      one: '1 cambio en el espacio',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notificacionVencidas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Tienes $n tareas vencidas',
+      one: 'Tienes 1 tarea vencida',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get notificacionVencidasCuerpo =>
+      'Siguen pendientes hasta que se marquen como hechas.';
 }

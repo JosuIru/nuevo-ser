@@ -1315,4 +1315,253 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get personaDesconocida => 'guneko norbait';
+
+  @override
+  String get avisoCategoriaGanado => 'Abereak';
+
+  @override
+  String get avisoCategoriaInstalaciones => 'Instalazioak';
+
+  @override
+  String get avisoCategoriaSeguimiento => 'Banakako jarraipena';
+
+  @override
+  String get avisoCategoriaNoticias => 'Berriak';
+
+  @override
+  String get avisoNuevo => 'Abisua eman';
+
+  @override
+  String get avisoTitulo => 'Zer gertatzen den';
+
+  @override
+  String get avisoDescripcion => 'Xehetasunak';
+
+  @override
+  String get avisoCategoria => 'Kategoria';
+
+  @override
+  String get avisoEsAlarma =>
+      'Alarma da (animalia gaixo, matxura larria, janari falta…)';
+
+  @override
+  String get avisoAlarma => 'Alarma';
+
+  @override
+  String get avisoGuardado =>
+      'Abisua gordeta. Besteei sinkronizatzean iritsiko zaie.';
+
+  @override
+  String get avisoResolver => 'Konpondutzat jo';
+
+  @override
+  String get avisoReabrir => 'Berrireki';
+
+  @override
+  String get avisoResuelto => 'Konponduta';
+
+  @override
+  String get avisoBorrar => 'Abisua ezabatu';
+
+  @override
+  String get avisosVacio => 'Ez dago abisurik kategoria honetan.';
+
+  @override
+  String avisoDe(String nombre) {
+    return '$nombre(e)k abisatzen du';
+  }
+
+  @override
+  String hoyAlarmasAbiertas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n alarma irekita',
+      one: 'Alarma 1 irekita',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoyTareasVencidas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n zeregin iraungita',
+      one: 'Zeregin 1 iraungita',
+      zero: 'Ez dago zeregin iraungirik',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoyTareasProximas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n zeregin hurrengo 7 egunetan',
+      one: 'Zeregin 1 hurrengo 7 egunetan',
+      zero: 'Ezer ez hurrengo 7 egunetarako',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String hoyPeticionesPendientes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n eskaera zain',
+      one: 'Eskaera 1 zain',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get hoyActividad => 'Gunean azkena';
+
+  @override
+  String get hoyActividadVacia =>
+      'Oraindik ez da jarduerarik iritsi. Sinkronizatu ikusteko.';
+
+  @override
+  String get hoyAvisos => 'Abisuak';
+
+  @override
+  String get hoyTareas => 'Zereginak';
+
+  @override
+  String get hoyTiempo => 'Eguraldia';
+
+  @override
+  String actividadCrear(String persona, String cosa) {
+    return '$persona(e)k $cosa gehitu du';
+  }
+
+  @override
+  String actividadEditar(String persona, String cosa) {
+    return '$persona(e)k $cosa aldatu du';
+  }
+
+  @override
+  String actividadBorrar(String persona, String cosa) {
+    return '$persona(e)k $cosa ezabatu du';
+  }
+
+  @override
+  String actividadMover(String persona, String cosa) {
+    return '$persona(e)k $cosa mugitu du';
+  }
+
+  @override
+  String actividadEstado(String persona, String cosa, String estado) {
+    return '$persona(e)k $cosa «$estado» gisa markatu du';
+  }
+
+  @override
+  String actividadAsignar(String persona, String cosa, String responsable) {
+    return '$persona(e)k $cosa $responsable(r)i esleitu dio';
+  }
+
+  @override
+  String actividadDesasignar(String persona, String cosa) {
+    return '$persona(e)k $cosa esleitu gabe utzi du';
+  }
+
+  @override
+  String actividadEn(String lugar) {
+    return '$lugar(e)n';
+  }
+
+  @override
+  String get actividadDesdePanel => 'bulegotik';
+
+  @override
+  String get tipoEntidadTarea => 'zeregina';
+
+  @override
+  String get tipoEntidadPunto => 'puntua';
+
+  @override
+  String get tipoEntidadFinca => 'finka';
+
+  @override
+  String get tipoEntidadZona => 'eremua';
+
+  @override
+  String get tipoEntidadProyecto => 'proiektua';
+
+  @override
+  String get tipoEntidadApunte => 'idazpena';
+
+  @override
+  String get tipoEntidadVenta => 'salmenta';
+
+  @override
+  String get tipoEntidadRegistro => 'erregistroa';
+
+  @override
+  String get tipoEntidadValidacion => 'produktu-proba';
+
+  @override
+  String get tipoEntidadPeticion => 'eskaera';
+
+  @override
+  String get tipoEntidadAviso => 'abisua';
+
+  @override
+  String get tipoEntidadOtra => 'datu bat';
+
+  @override
+  String get notificacionCanalAlarmas => 'Guneko alarmak';
+
+  @override
+  String get notificacionCanalAvisos => 'Abisuak eta oroigarriak';
+
+  @override
+  String notificacionAlarma(String titulo) {
+    return 'Alarma: $titulo';
+  }
+
+  @override
+  String notificacionAlarmas(int n) {
+    return '$n alarma berri gunean';
+  }
+
+  @override
+  String notificacionPeticiones(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n zeregin-eskaera berri',
+      one: 'Zeregin-eskaera berria',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notificacionCambios(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n aldaketa gunean',
+      one: 'Aldaketa 1 gunean',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String notificacionVencidas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n zeregin iraungita dituzu',
+      one: 'Zeregin 1 iraungita duzu',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get notificacionVencidasCuerpo =>
+      'Egintzat markatu arte zain jarraitzen dute.';
 }

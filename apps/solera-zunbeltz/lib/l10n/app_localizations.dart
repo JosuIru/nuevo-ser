@@ -2467,6 +2467,336 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'alguien del espacio'**
   String get personaDesconocida;
+
+  /// No description provided for @avisoCategoriaGanado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado'**
+  String get avisoCategoriaGanado;
+
+  /// No description provided for @avisoCategoriaInstalaciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Instalaciones'**
+  String get avisoCategoriaInstalaciones;
+
+  /// No description provided for @avisoCategoriaSeguimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguimiento individual'**
+  String get avisoCategoriaSeguimiento;
+
+  /// No description provided for @avisoCategoriaNoticias.
+  ///
+  /// In es, this message translates to:
+  /// **'Noticias'**
+  String get avisoCategoriaNoticias;
+
+  /// No description provided for @avisoNuevo.
+  ///
+  /// In es, this message translates to:
+  /// **'Dar un aviso'**
+  String get avisoNuevo;
+
+  /// No description provided for @avisoTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué pasa'**
+  String get avisoTitulo;
+
+  /// No description provided for @avisoDescripcion.
+  ///
+  /// In es, this message translates to:
+  /// **'Detalles'**
+  String get avisoDescripcion;
+
+  /// No description provided for @avisoCategoria.
+  ///
+  /// In es, this message translates to:
+  /// **'Categoría'**
+  String get avisoCategoria;
+
+  /// No description provided for @avisoEsAlarma.
+  ///
+  /// In es, this message translates to:
+  /// **'Es una alarma (animal enfermo, rotura importante, falta de alimento…)'**
+  String get avisoEsAlarma;
+
+  /// No description provided for @avisoAlarma.
+  ///
+  /// In es, this message translates to:
+  /// **'Alarma'**
+  String get avisoAlarma;
+
+  /// No description provided for @avisoGuardado.
+  ///
+  /// In es, this message translates to:
+  /// **'Aviso guardado. Llegará al resto al sincronizar.'**
+  String get avisoGuardado;
+
+  /// No description provided for @avisoResolver.
+  ///
+  /// In es, this message translates to:
+  /// **'Marcar como resuelto'**
+  String get avisoResolver;
+
+  /// No description provided for @avisoReabrir.
+  ///
+  /// In es, this message translates to:
+  /// **'Reabrir'**
+  String get avisoReabrir;
+
+  /// No description provided for @avisoResuelto.
+  ///
+  /// In es, this message translates to:
+  /// **'Resuelto'**
+  String get avisoResuelto;
+
+  /// No description provided for @avisoBorrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar aviso'**
+  String get avisoBorrar;
+
+  /// No description provided for @avisosVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin avisos en esta categoría.'**
+  String get avisosVacio;
+
+  /// No description provided for @avisoDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Avisa {nombre}'**
+  String avisoDe(String nombre);
+
+  /// No description provided for @hoyAlarmasAbiertas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 alarma abierta} other{{n} alarmas abiertas}}'**
+  String hoyAlarmasAbiertas(int n);
+
+  /// No description provided for @hoyTareasVencidas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Ninguna tarea vencida} =1{1 tarea vencida} other{{n} tareas vencidas}}'**
+  String hoyTareasVencidas(int n);
+
+  /// No description provided for @hoyTareasProximas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Nada para los próximos 7 días} =1{1 tarea en los próximos 7 días} other{{n} tareas en los próximos 7 días}}'**
+  String hoyTareasProximas(int n);
+
+  /// No description provided for @hoyPeticionesPendientes.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 petición pendiente} other{{n} peticiones pendientes}}'**
+  String hoyPeticionesPendientes(int n);
+
+  /// No description provided for @hoyActividad.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo último en el espacio'**
+  String get hoyActividad;
+
+  /// No description provided for @hoyActividadVacia.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no ha llegado actividad. Sincroniza para verla.'**
+  String get hoyActividadVacia;
+
+  /// No description provided for @hoyAvisos.
+  ///
+  /// In es, this message translates to:
+  /// **'Avisos'**
+  String get hoyAvisos;
+
+  /// No description provided for @hoyTareas.
+  ///
+  /// In es, this message translates to:
+  /// **'Tareas'**
+  String get hoyTareas;
+
+  /// No description provided for @hoyTiempo.
+  ///
+  /// In es, this message translates to:
+  /// **'El tiempo'**
+  String get hoyTiempo;
+
+  /// No description provided for @actividadCrear.
+  ///
+  /// In es, this message translates to:
+  /// **'{persona} ha añadido {cosa}'**
+  String actividadCrear(String persona, String cosa);
+
+  /// No description provided for @actividadEditar.
+  ///
+  /// In es, this message translates to:
+  /// **'{persona} ha cambiado {cosa}'**
+  String actividadEditar(String persona, String cosa);
+
+  /// No description provided for @actividadBorrar.
+  ///
+  /// In es, this message translates to:
+  /// **'{persona} ha borrado {cosa}'**
+  String actividadBorrar(String persona, String cosa);
+
+  /// No description provided for @actividadMover.
+  ///
+  /// In es, this message translates to:
+  /// **'{persona} ha movido {cosa}'**
+  String actividadMover(String persona, String cosa);
+
+  /// No description provided for @actividadEstado.
+  ///
+  /// In es, this message translates to:
+  /// **'{persona} ha marcado {cosa} como «{estado}»'**
+  String actividadEstado(String persona, String cosa, String estado);
+
+  /// No description provided for @actividadAsignar.
+  ///
+  /// In es, this message translates to:
+  /// **'{persona} ha asignado {cosa} a {responsable}'**
+  String actividadAsignar(String persona, String cosa, String responsable);
+
+  /// No description provided for @actividadDesasignar.
+  ///
+  /// In es, this message translates to:
+  /// **'{persona} ha dejado sin asignar {cosa}'**
+  String actividadDesasignar(String persona, String cosa);
+
+  /// No description provided for @actividadEn.
+  ///
+  /// In es, this message translates to:
+  /// **'en {lugar}'**
+  String actividadEn(String lugar);
+
+  /// No description provided for @actividadDesdePanel.
+  ///
+  /// In es, this message translates to:
+  /// **'desde la oficina'**
+  String get actividadDesdePanel;
+
+  /// No description provided for @tipoEntidadTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'la tarea'**
+  String get tipoEntidadTarea;
+
+  /// No description provided for @tipoEntidadPunto.
+  ///
+  /// In es, this message translates to:
+  /// **'el punto'**
+  String get tipoEntidadPunto;
+
+  /// No description provided for @tipoEntidadFinca.
+  ///
+  /// In es, this message translates to:
+  /// **'la finca'**
+  String get tipoEntidadFinca;
+
+  /// No description provided for @tipoEntidadZona.
+  ///
+  /// In es, this message translates to:
+  /// **'la zona'**
+  String get tipoEntidadZona;
+
+  /// No description provided for @tipoEntidadProyecto.
+  ///
+  /// In es, this message translates to:
+  /// **'el proyecto'**
+  String get tipoEntidadProyecto;
+
+  /// No description provided for @tipoEntidadApunte.
+  ///
+  /// In es, this message translates to:
+  /// **'el apunte'**
+  String get tipoEntidadApunte;
+
+  /// No description provided for @tipoEntidadVenta.
+  ///
+  /// In es, this message translates to:
+  /// **'la venta'**
+  String get tipoEntidadVenta;
+
+  /// No description provided for @tipoEntidadRegistro.
+  ///
+  /// In es, this message translates to:
+  /// **'el registro'**
+  String get tipoEntidadRegistro;
+
+  /// No description provided for @tipoEntidadValidacion.
+  ///
+  /// In es, this message translates to:
+  /// **'la prueba de producto'**
+  String get tipoEntidadValidacion;
+
+  /// No description provided for @tipoEntidadPeticion.
+  ///
+  /// In es, this message translates to:
+  /// **'la petición'**
+  String get tipoEntidadPeticion;
+
+  /// No description provided for @tipoEntidadAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'el aviso'**
+  String get tipoEntidadAviso;
+
+  /// No description provided for @tipoEntidadOtra.
+  ///
+  /// In es, this message translates to:
+  /// **'un dato'**
+  String get tipoEntidadOtra;
+
+  /// No description provided for @notificacionCanalAlarmas.
+  ///
+  /// In es, this message translates to:
+  /// **'Alarmas del espacio'**
+  String get notificacionCanalAlarmas;
+
+  /// No description provided for @notificacionCanalAvisos.
+  ///
+  /// In es, this message translates to:
+  /// **'Avisos y recordatorios'**
+  String get notificacionCanalAvisos;
+
+  /// No description provided for @notificacionAlarma.
+  ///
+  /// In es, this message translates to:
+  /// **'Alarma: {titulo}'**
+  String notificacionAlarma(String titulo);
+
+  /// No description provided for @notificacionAlarmas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} alarmas nuevas en el espacio'**
+  String notificacionAlarmas(int n);
+
+  /// No description provided for @notificacionPeticiones.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{Nueva petición de tarea} other{{n} peticiones de tarea nuevas}}'**
+  String notificacionPeticiones(int n);
+
+  /// No description provided for @notificacionCambios.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 cambio en el espacio} other{{n} cambios en el espacio}}'**
+  String notificacionCambios(int n);
+
+  /// No description provided for @notificacionVencidas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{Tienes 1 tarea vencida} other{Tienes {n} tareas vencidas}}'**
+  String notificacionVencidas(int n);
+
+  /// No description provided for @notificacionVencidasCuerpo.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguen pendientes hasta que se marquen como hechas.'**
+  String get notificacionVencidasCuerpo;
 }
 
 class _AppLocalizationsDelegate

@@ -2797,6 +2797,396 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Siguen pendientes hasta que se marquen como hechas.'**
   String get notificacionVencidasCuerpo;
+
+  /// No description provided for @apuAsumidoPor.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo asume'**
+  String get apuAsumidoPor;
+
+  /// No description provided for @apuAmortizacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Es amortización (infraestructura o material)'**
+  String get apuAmortizacion;
+
+  /// No description provided for @apuAmortizacionDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta en el balance del proyecto, no en el del test.'**
+  String get apuAmortizacionDetalle;
+
+  /// No description provided for @convenioTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Convenio'**
+  String get convenioTitulo;
+
+  /// No description provided for @convenioBalance.
+  ///
+  /// In es, this message translates to:
+  /// **'Balance'**
+  String get convenioBalance;
+
+  /// No description provided for @convenioPresupuesto.
+  ///
+  /// In es, this message translates to:
+  /// **'Presupuesto'**
+  String get convenioPresupuesto;
+
+  /// No description provided for @convenioFianza.
+  ///
+  /// In es, this message translates to:
+  /// **'Fianza'**
+  String get convenioFianza;
+
+  /// No description provided for @convenioAcompanamiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Acompañamiento'**
+  String get convenioAcompanamiento;
+
+  /// No description provided for @convenioIncidencias.
+  ///
+  /// In es, this message translates to:
+  /// **'Incidencias'**
+  String get convenioIncidencias;
+
+  /// No description provided for @convenioProvisional.
+  ///
+  /// In es, this message translates to:
+  /// **'Orientativo, según el convenio tester. No es contabilidad ni declaración fiscal.'**
+  String get convenioProvisional;
+
+  /// No description provided for @balanceIngresos.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingresos'**
+  String get balanceIngresos;
+
+  /// No description provided for @balanceGastosTest.
+  ///
+  /// In es, this message translates to:
+  /// **'Gastos del test (sin amortizaciones)'**
+  String get balanceGastosTest;
+
+  /// No description provided for @balanceAmortizaciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Amortizaciones'**
+  String get balanceAmortizaciones;
+
+  /// No description provided for @balanceTest.
+  ///
+  /// In es, this message translates to:
+  /// **'Balance del test'**
+  String get balanceTest;
+
+  /// No description provided for @balanceProyecto.
+  ///
+  /// In es, this message translates to:
+  /// **'Balance del proyecto (coste real)'**
+  String get balanceProyecto;
+
+  /// No description provided for @balanceAsumeTester.
+  ///
+  /// In es, this message translates to:
+  /// **'Gastos que asume la persona tester'**
+  String get balanceAsumeTester;
+
+  /// No description provided for @balanceAsumeZunbeltz.
+  ///
+  /// In es, this message translates to:
+  /// **'Gastos que asume Zunbeltz'**
+  String get balanceAsumeZunbeltz;
+
+  /// No description provided for @balanceReparto.
+  ///
+  /// In es, this message translates to:
+  /// **'Reparto del resultado'**
+  String get balanceReparto;
+
+  /// No description provided for @balanceRepartoDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'{tipo}: {zunbeltz} % Zunbeltz · {tester} % tester'**
+  String balanceRepartoDetalle(String tipo, int zunbeltz, int tester);
+
+  /// No description provided for @balanceBeneficio.
+  ///
+  /// In es, this message translates to:
+  /// **'Beneficio'**
+  String get balanceBeneficio;
+
+  /// No description provided for @balancePerdida.
+  ///
+  /// In es, this message translates to:
+  /// **'Pérdida'**
+  String get balancePerdida;
+
+  /// No description provided for @balanceParteZunbeltz.
+  ///
+  /// In es, this message translates to:
+  /// **'Parte de Zunbeltz'**
+  String get balanceParteZunbeltz;
+
+  /// No description provided for @balanceParteTester.
+  ///
+  /// In es, this message translates to:
+  /// **'Parte de la persona tester'**
+  String get balanceParteTester;
+
+  /// No description provided for @balancePrevistoReal.
+  ///
+  /// In es, this message translates to:
+  /// **'Previsto frente a real'**
+  String get balancePrevistoReal;
+
+  /// No description provided for @balancePrevisto.
+  ///
+  /// In es, this message translates to:
+  /// **'Previsto'**
+  String get balancePrevisto;
+
+  /// No description provided for @balanceReal.
+  ///
+  /// In es, this message translates to:
+  /// **'Real'**
+  String get balanceReal;
+
+  /// No description provided for @balancePorcentajes.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar porcentajes del reparto'**
+  String get balancePorcentajes;
+
+  /// No description provided for @balancePorcentajeBeneficio.
+  ///
+  /// In es, this message translates to:
+  /// **'% para Zunbeltz si hay beneficio'**
+  String get balancePorcentajeBeneficio;
+
+  /// No description provided for @balancePorcentajePerdida.
+  ///
+  /// In es, this message translates to:
+  /// **'% para Zunbeltz si hay pérdida'**
+  String get balancePorcentajePerdida;
+
+  /// No description provided for @presupuestoVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin presupuesto. Coordinación añade las partidas del anexo II.'**
+  String get presupuestoVacio;
+
+  /// No description provided for @presupuestoNuevaPartida.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir partida'**
+  String get presupuestoNuevaPartida;
+
+  /// No description provided for @presupuestoTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total previsto'**
+  String get presupuestoTotal;
+
+  /// No description provided for @fianzaReferencia.
+  ///
+  /// In es, this message translates to:
+  /// **'Fianza de referencia (10 % de lo que asume Zunbeltz)'**
+  String get fianzaReferencia;
+
+  /// No description provided for @fianzaDepositado.
+  ///
+  /// In es, this message translates to:
+  /// **'Depositado'**
+  String get fianzaDepositado;
+
+  /// No description provided for @fianzaDevuelto.
+  ///
+  /// In es, this message translates to:
+  /// **'Devuelto'**
+  String get fianzaDevuelto;
+
+  /// No description provided for @fianzaRetenido.
+  ///
+  /// In es, this message translates to:
+  /// **'Retenido (incluidas incidencias)'**
+  String get fianzaRetenido;
+
+  /// No description provided for @fianzaPendiente.
+  ///
+  /// In es, this message translates to:
+  /// **'En depósito ahora'**
+  String get fianzaPendiente;
+
+  /// No description provided for @fianzaNuevoMovimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir movimiento'**
+  String get fianzaNuevoMovimiento;
+
+  /// No description provided for @acompanamientoNuevo.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir actividad'**
+  String get acompanamientoNuevo;
+
+  /// No description provided for @acompanamientoVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin actividades de acompañamiento todavía.'**
+  String get acompanamientoVacio;
+
+  /// No description provided for @acompanamientoIndicadores.
+  ///
+  /// In es, this message translates to:
+  /// **'Indicadores del anexo IV ({meses} meses)'**
+  String acompanamientoIndicadores(int meses);
+
+  /// No description provided for @acompanamientoSoporte.
+  ///
+  /// In es, this message translates to:
+  /// **'Soporte integral: formación, visita de referencia y asesoramiento'**
+  String get acompanamientoSoporte;
+
+  /// No description provided for @acompanamientoDifusion.
+  ///
+  /// In es, this message translates to:
+  /// **'Difusión: visita recibida, mercado y medio'**
+  String get acompanamientoDifusion;
+
+  /// No description provided for @acompanamientoSeguimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguimiento: reunión y visita a la finca cada mes'**
+  String get acompanamientoSeguimiento;
+
+  /// No description provided for @acompanamientoVenta.
+  ///
+  /// In es, this message translates to:
+  /// **'Venta: búsqueda de canales o mercado'**
+  String get acompanamientoVenta;
+
+  /// No description provided for @acompanamientoAsistidas.
+  ///
+  /// In es, this message translates to:
+  /// **'{asistidas} de {propuestas}'**
+  String acompanamientoAsistidas(int asistidas, int propuestas);
+
+  /// No description provided for @acompanamientoValoraciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Valoración de la implicación (0-10)'**
+  String get acompanamientoValoraciones;
+
+  /// No description provided for @acompanamientoValoracionZunbeltz.
+  ///
+  /// In es, this message translates to:
+  /// **'Según Zunbeltz'**
+  String get acompanamientoValoracionZunbeltz;
+
+  /// No description provided for @acompanamientoValoracionTester.
+  ///
+  /// In es, this message translates to:
+  /// **'Según la persona tester'**
+  String get acompanamientoValoracionTester;
+
+  /// No description provided for @acompanamientoHoras.
+  ///
+  /// In es, this message translates to:
+  /// **'Horas'**
+  String get acompanamientoHoras;
+
+  /// No description provided for @acompanamientoAsistencia.
+  ///
+  /// In es, this message translates to:
+  /// **'Asistencia'**
+  String get acompanamientoAsistencia;
+
+  /// No description provided for @incidenciasVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin incidencias.'**
+  String get incidenciasVacio;
+
+  /// No description provided for @incidenciaNueva.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar incidencia'**
+  String get incidenciaNueva;
+
+  /// No description provided for @incidenciaNivel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel'**
+  String get incidenciaNivel;
+
+  /// No description provided for @incidenciaRetencion.
+  ///
+  /// In es, this message translates to:
+  /// **'Retención de fianza (€)'**
+  String get incidenciaRetencion;
+
+  /// No description provided for @incidenciasPrivado.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo lo ven coordinación y la persona tester de este proyecto.'**
+  String get incidenciasPrivado;
+
+  /// No description provided for @convenioTipo.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get convenioTipo;
+
+  /// No description provided for @convenioConcepto.
+  ///
+  /// In es, this message translates to:
+  /// **'Concepto'**
+  String get convenioConcepto;
+
+  /// No description provided for @convenioImporte.
+  ///
+  /// In es, this message translates to:
+  /// **'Importe (€)'**
+  String get convenioImporte;
+
+  /// No description provided for @convenioFecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get convenioFecha;
+
+  /// No description provided for @convenioDescripcion.
+  ///
+  /// In es, this message translates to:
+  /// **'Descripción'**
+  String get convenioDescripcion;
+
+  /// No description provided for @convenioCumple.
+  ///
+  /// In es, this message translates to:
+  /// **'Cumple'**
+  String get convenioCumple;
+
+  /// No description provided for @convenioNoCumple.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no'**
+  String get convenioNoCumple;
+
+  /// No description provided for @marcaBorrador.
+  ///
+  /// In es, this message translates to:
+  /// **'BORRADOR'**
+  String get marcaBorrador;
+
+  /// No description provided for @informeBorradorAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.'**
+  String get informeBorradorAviso;
 }
 
 class _AppLocalizationsDelegate

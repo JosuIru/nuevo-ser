@@ -1564,4 +1564,214 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get notificacionVencidasCuerpo =>
       'Egintzat markatu arte zain jarraitzen dute.';
+
+  @override
+  String get apuAsumidoPor => 'Nork hartzen duen';
+
+  @override
+  String get apuAmortizacion => 'Amortizazioa da (azpiegitura edo materiala)';
+
+  @override
+  String get apuAmortizacionDetalle =>
+      'Proiektuaren balantzean zenbatzen da, ez testarenean.';
+
+  @override
+  String get convenioTitulo => 'Hitzarmena';
+
+  @override
+  String get convenioBalance => 'Balantzea';
+
+  @override
+  String get convenioPresupuesto => 'Aurrekontua';
+
+  @override
+  String get convenioFianza => 'Fidantza';
+
+  @override
+  String get convenioAcompanamiento => 'Laguntza';
+
+  @override
+  String get convenioIncidencias => 'Gorabeherak';
+
+  @override
+  String get convenioProvisional =>
+      'Orientagarria, tester-hitzarmenaren arabera. Ez da kontabilitatea ezta zerga-aitorpena ere.';
+
+  @override
+  String get balanceIngresos => 'Sarrerak';
+
+  @override
+  String get balanceGastosTest => 'Testaren gastuak (amortizaziorik gabe)';
+
+  @override
+  String get balanceAmortizaciones => 'Amortizazioak';
+
+  @override
+  String get balanceTest => 'Testaren balantzea';
+
+  @override
+  String get balanceProyecto => 'Proiektuaren balantzea (benetako kostua)';
+
+  @override
+  String get balanceAsumeTester => 'Pertsona testerrak hartzen dituen gastuak';
+
+  @override
+  String get balanceAsumeZunbeltz => 'Zunbeltzek hartzen dituen gastuak';
+
+  @override
+  String get balanceReparto => 'Emaitzaren banaketa';
+
+  @override
+  String balanceRepartoDetalle(String tipo, int zunbeltz, int tester) {
+    return '$tipo: % $zunbeltz Zunbeltz · % $tester testerra';
+  }
+
+  @override
+  String get balanceBeneficio => 'Irabazia';
+
+  @override
+  String get balancePerdida => 'Galera';
+
+  @override
+  String get balanceParteZunbeltz => 'Zunbeltzen zatia';
+
+  @override
+  String get balanceParteTester => 'Pertsona testerraren zatia';
+
+  @override
+  String get balancePrevistoReal => 'Aurreikusia eta benetakoa';
+
+  @override
+  String get balancePrevisto => 'Aurreikusia';
+
+  @override
+  String get balanceReal => 'Benetakoa';
+
+  @override
+  String get balancePorcentajes => 'Banaketaren ehunekoak aldatu';
+
+  @override
+  String get balancePorcentajeBeneficio => 'Zunbeltzentzako % irabazia badago';
+
+  @override
+  String get balancePorcentajePerdida => 'Zunbeltzentzako % galera badago';
+
+  @override
+  String get presupuestoVacio =>
+      'Aurrekonturik ez. Koordinazioak II. eranskineko partidak gehitzen ditu.';
+
+  @override
+  String get presupuestoNuevaPartida => 'Partida gehitu';
+
+  @override
+  String get presupuestoTotal => 'Aurreikusitako guztira';
+
+  @override
+  String get fianzaReferencia =>
+      'Erreferentziazko fidantza (Zunbeltzek hartzen duenaren % 10)';
+
+  @override
+  String get fianzaDepositado => 'Gordailutua';
+
+  @override
+  String get fianzaDevuelto => 'Itzulia';
+
+  @override
+  String get fianzaRetenido => 'Atxikia (gorabeherak barne)';
+
+  @override
+  String get fianzaPendiente => 'Orain gordailuan';
+
+  @override
+  String get fianzaNuevoMovimiento => 'Mugimendua gehitu';
+
+  @override
+  String get acompanamientoNuevo => 'Jarduera gehitu';
+
+  @override
+  String get acompanamientoVacio => 'Oraindik ez dago laguntza-jarduerarik.';
+
+  @override
+  String acompanamientoIndicadores(int meses) {
+    return 'IV. eranskineko adierazleak ($meses hilabete)';
+  }
+
+  @override
+  String get acompanamientoSoporte =>
+      'Laguntza osoa: prestakuntza, erreferentziazko bisita eta aholkularitza';
+
+  @override
+  String get acompanamientoDifusion =>
+      'Hedapena: jasotako bisita, azoka eta hedabidea';
+
+  @override
+  String get acompanamientoSeguimiento =>
+      'Jarraipena: bilera eta finkara bisita hilero';
+
+  @override
+  String get acompanamientoVenta => 'Salmenta: bide-bilaketa edo azoka';
+
+  @override
+  String acompanamientoAsistidas(int asistidas, int propuestas) {
+    return '$propuestas(e)tik $asistidas';
+  }
+
+  @override
+  String get acompanamientoValoraciones => 'Inplikazioaren balorazioa (0-10)';
+
+  @override
+  String get acompanamientoValoracionZunbeltz => 'Zunbeltzen ustez';
+
+  @override
+  String get acompanamientoValoracionTester => 'Pertsona testerraren ustez';
+
+  @override
+  String get acompanamientoHoras => 'Orduak';
+
+  @override
+  String get acompanamientoAsistencia => 'Asistentzia';
+
+  @override
+  String get incidenciasVacio => 'Gorabeherarik ez.';
+
+  @override
+  String get incidenciaNueva => 'Gorabehera erregistratu';
+
+  @override
+  String get incidenciaNivel => 'Maila';
+
+  @override
+  String get incidenciaRetencion => 'Fidantza-atxikipena (€)';
+
+  @override
+  String get incidenciasPrivado =>
+      'Koordinazioak eta proiektu honetako pertsona testerrak bakarrik ikusten dute.';
+
+  @override
+  String get convenioTipo => 'Mota';
+
+  @override
+  String get convenioConcepto => 'Kontzeptua';
+
+  @override
+  String get convenioImporte => 'Zenbatekoa (€)';
+
+  @override
+  String get convenioFecha => 'Data';
+
+  @override
+  String get convenioDescripcion => 'Deskribapena';
+
+  @override
+  String get convenioCumple => 'Betetzen du';
+
+  @override
+  String get convenioNoCumple => 'Oraindik ez';
+
+  @override
+  String get marcaBorrador => 'ZIRRIBORROA';
+
+  @override
+  String get informeBorradorAviso =>
+      'Zirriborroa: behin betiko bertsioa koordinazioak sortzen du proiektua itxita dagoenean.';
 }

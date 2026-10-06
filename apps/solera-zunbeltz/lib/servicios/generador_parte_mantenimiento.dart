@@ -19,6 +19,7 @@ Future<DocumentoGenerado> generarParteMantenimientoPdf({
   required List<TareaMantenimiento> tareas,
   required Map<int, PuntoInfraestructura> puntosPorId,
   Map<int, ZonaFinca> zonasPorId = const {},
+  bool definitivo = false,
 }) async {
   final formatoFecha = DateFormat('dd/MM/yyyy', idioma);
 
@@ -78,6 +79,7 @@ Future<DocumentoGenerado> generarParteMantenimientoPdf({
   }
 
   final bytes = await generarInformePeriodicoPdfBytes(
+    marcaAgua: definitivo ? null : textos.marcaBorrador,
     tituloCabecera: textos.parteTitulo,
     subtituloCabecera: textos.parteSubtitulo,
     bulletsResumen: [

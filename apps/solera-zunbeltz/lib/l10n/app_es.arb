@@ -724,5 +724,101 @@
       }
     }
   },
-  "notificacionVencidasCuerpo": "Siguen pendientes hasta que se marquen como hechas."
+  "notificacionVencidasCuerpo": "Siguen pendientes hasta que se marquen como hechas.",
+
+  "apuAsumidoPor": "Lo asume",
+  "apuAmortizacion": "Es amortización (infraestructura o material)",
+  "apuAmortizacionDetalle": "Cuenta en el balance del proyecto, no en el del test.",
+  "convenioTitulo": "Convenio",
+  "convenioBalance": "Balance",
+  "convenioPresupuesto": "Presupuesto",
+  "convenioFianza": "Fianza",
+  "convenioAcompanamiento": "Acompañamiento",
+  "convenioIncidencias": "Incidencias",
+  "convenioProvisional": "Orientativo, según el convenio tester. No es contabilidad ni declaración fiscal.",
+  "balanceIngresos": "Ingresos",
+  "balanceGastosTest": "Gastos del test (sin amortizaciones)",
+  "balanceAmortizaciones": "Amortizaciones",
+  "balanceTest": "Balance del test",
+  "balanceProyecto": "Balance del proyecto (coste real)",
+  "balanceAsumeTester": "Gastos que asume la persona tester",
+  "balanceAsumeZunbeltz": "Gastos que asume Zunbeltz",
+  "balanceReparto": "Reparto del resultado",
+  "balanceRepartoDetalle": "{tipo}: {zunbeltz} % Zunbeltz · {tester} % tester",
+  "@balanceRepartoDetalle": {
+    "placeholders": {
+      "tipo": {
+        "type": "String"
+      },
+      "zunbeltz": {
+        "type": "int"
+      },
+      "tester": {
+        "type": "int"
+      }
+    }
+  },
+  "balanceBeneficio": "Beneficio",
+  "balancePerdida": "Pérdida",
+  "balanceParteZunbeltz": "Parte de Zunbeltz",
+  "balanceParteTester": "Parte de la persona tester",
+  "balancePrevistoReal": "Previsto frente a real",
+  "balancePrevisto": "Previsto",
+  "balanceReal": "Real",
+  "balancePorcentajes": "Cambiar porcentajes del reparto",
+  "balancePorcentajeBeneficio": "% para Zunbeltz si hay beneficio",
+  "balancePorcentajePerdida": "% para Zunbeltz si hay pérdida",
+  "presupuestoVacio": "Sin presupuesto. Coordinación añade las partidas del anexo II.",
+  "presupuestoNuevaPartida": "Añadir partida",
+  "presupuestoTotal": "Total previsto",
+  "fianzaReferencia": "Fianza de referencia (10 % de lo que asume Zunbeltz)",
+  "fianzaDepositado": "Depositado",
+  "fianzaDevuelto": "Devuelto",
+  "fianzaRetenido": "Retenido (incluidas incidencias)",
+  "fianzaPendiente": "En depósito ahora",
+  "fianzaNuevoMovimiento": "Añadir movimiento",
+  "acompanamientoNuevo": "Añadir actividad",
+  "acompanamientoVacio": "Sin actividades de acompañamiento todavía.",
+  "acompanamientoIndicadores": "Indicadores del anexo IV ({meses} meses)",
+  "@acompanamientoIndicadores": {
+    "placeholders": {
+      "meses": {
+        "type": "int"
+      }
+    }
+  },
+  "acompanamientoSoporte": "Soporte integral: formación, visita de referencia y asesoramiento",
+  "acompanamientoDifusion": "Difusión: visita recibida, mercado y medio",
+  "acompanamientoSeguimiento": "Seguimiento: reunión y visita a la finca cada mes",
+  "acompanamientoVenta": "Venta: búsqueda de canales o mercado",
+  "acompanamientoAsistidas": "{asistidas} de {propuestas}",
+  "@acompanamientoAsistidas": {
+    "placeholders": {
+      "asistidas": {
+        "type": "int"
+      },
+      "propuestas": {
+        "type": "int"
+      }
+    }
+  },
+  "acompanamientoValoraciones": "Valoración de la implicación (0-10)",
+  "acompanamientoValoracionZunbeltz": "Según Zunbeltz",
+  "acompanamientoValoracionTester": "Según la persona tester",
+  "acompanamientoHoras": "Horas",
+  "acompanamientoAsistencia": "Asistencia",
+  "incidenciasVacio": "Sin incidencias.",
+  "incidenciaNueva": "Registrar incidencia",
+  "incidenciaNivel": "Nivel",
+  "incidenciaRetencion": "Retención de fianza (€)",
+  "incidenciasPrivado": "Solo lo ven coordinación y la persona tester de este proyecto.",
+  "convenioTipo": "Tipo",
+  "convenioConcepto": "Concepto",
+  "convenioImporte": "Importe (€)",
+  "convenioFecha": "Fecha",
+  "convenioDescripcion": "Descripción",
+  "convenioCumple": "Cumple",
+  "convenioNoCumple": "Todavía no",
+  "marcaBorrador": "BORRADOR",
+  "informeBorradorAviso": "Borrador: la versión definitiva la genera coordinación con el proyecto cerrado."
 }

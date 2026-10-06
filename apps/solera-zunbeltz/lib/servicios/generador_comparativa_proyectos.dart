@@ -15,6 +15,7 @@ Future<DocumentoGenerado> generarComparativaProyectosPdf({
   required AppLocalizations textos,
   required String idioma,
   required List<FilaComparativa> filas,
+  bool definitivo = false,
 }) async {
   var totalVentas = 0;
   var totalGastos = 0;
@@ -26,6 +27,7 @@ Future<DocumentoGenerado> generarComparativaProyectosPdf({
   }
 
   final bytes = await generarInformePeriodicoPdfBytes(
+    marcaAgua: definitivo ? null : textos.marcaBorrador,
     tituloCabecera: textos.comparativaTitulo,
     subtituloCabecera: textos.parteSubtitulo,
     bulletsResumen: [

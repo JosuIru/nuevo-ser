@@ -96,7 +96,10 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
             ),
       ];
       final documento = await generarComparativaProyectosPdf(
-          textos: textos, idioma: idioma, filas: filas);
+          textos: textos,
+          idioma: idioma,
+          filas: filas,
+          definitivo: politicaEspacioActual.documentoDefinitivo());
       await Printing.sharePdf(
           bytes: documento.bytes, filename: documento.nombreFichero);
     } finally {

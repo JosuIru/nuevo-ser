@@ -31,6 +31,8 @@ class _NuevoApunteState extends State<NuevoApunte> {
 
   String _tipo = tipoApuntePorDefecto;
   String _categoria = categoriaGastoPorDefecto;
+  String _asumidoPor = asumidoPorDefecto(categoriaGastoPorDefecto);
+  bool _esAmortizacion = false;
   int _iva = ivaPorDefecto;
   DateTime _fecha = DateTime.now();
 
@@ -40,6 +42,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
       _tipo = v;
       // Al cambiar gasto/ingreso, la categoría debe ser del catálogo correcto.
       _categoria = categoriasDe(v).first.codigo;
+      _asumidoPor = asumidoPorDefecto(_categoria);
     });
   }
 
@@ -81,6 +84,8 @@ class _NuevoApunteState extends State<NuevoApunte> {
       fechaMs: _fecha.millisecondsSinceEpoch,
       notas: _notas.text.trim(),
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
+      asumidoPor: _tipo == 'gasto' ? _asumidoPor : asumidoPorTester,
+      esAmortizacion: _tipo == 'gasto' && _esAmortizacion,
     ));
     if (!mounted) return;
     ScaffoldMessenger.of(context)
@@ -118,8 +123,35 @@ class _NuevoApunteState extends State<NuevoApunte> {
                   DropdownMenuItem(
                       value: c.codigo, child: Text(c.etiqueta(idioma))),
               ],
-              onChanged: (v) => setState(() => _categoria = v ?? _categoria),
+              onChanged: (v) => setState(() {
+                _categoria = v ?? _categoria;
+                _asumidoPor = asumidoPorDefecto(_categoria);
+              }),
             ),
+            if (_tipo == 'gasto') ...[
+              const SizedBox(height: 12),
+              Text(textos.apuAsumidoPor,
+                  style: Theme.of(context).textTheme.labelLarge),
+              const SizedBox(height: 6),
+              SegmentedButton<String>(
+                segments: [
+                  for (final opcion in asumidoPorOpciones)
+                    ButtonSegment(
+                        value: opcion.codigo,
+                        label: Text(opcion.etiqueta(idioma))),
+                ],
+                selected: {_asumidoPor},
+                onSelectionChanged: (seleccion) =>
+                    setState(() => _asumidoPor = seleccion.first),
+              ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(textos.apuAmortizacion),
+                subtitle: Text(textos.apuAmortizacionDetalle),
+                value: _esAmortizacion,
+                onChanged: (valor) => setState(() => _esAmortizacion = valor),
+              ),
+            ],
             const SizedBox(height: 12),
             TextField(
                 controller: _concepto,

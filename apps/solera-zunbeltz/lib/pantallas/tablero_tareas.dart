@@ -130,6 +130,7 @@ class _TableroTareasState extends State<TableroTareas> {
         tareas: _tareasFiltradas,
         puntosPorId: _puntosPorId,
         zonasPorId: _zonasPorId,
+        definitivo: politicaEspacioActual.documentoDefinitivo(),
       );
       await Printing.sharePdf(
         bytes: documento.bytes,

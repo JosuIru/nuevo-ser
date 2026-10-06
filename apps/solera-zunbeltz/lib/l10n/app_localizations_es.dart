@@ -1560,4 +1560,216 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get notificacionVencidasCuerpo =>
       'Siguen pendientes hasta que se marquen como hechas.';
+
+  @override
+  String get apuAsumidoPor => 'Lo asume';
+
+  @override
+  String get apuAmortizacion => 'Es amortización (infraestructura o material)';
+
+  @override
+  String get apuAmortizacionDetalle =>
+      'Cuenta en el balance del proyecto, no en el del test.';
+
+  @override
+  String get convenioTitulo => 'Convenio';
+
+  @override
+  String get convenioBalance => 'Balance';
+
+  @override
+  String get convenioPresupuesto => 'Presupuesto';
+
+  @override
+  String get convenioFianza => 'Fianza';
+
+  @override
+  String get convenioAcompanamiento => 'Acompañamiento';
+
+  @override
+  String get convenioIncidencias => 'Incidencias';
+
+  @override
+  String get convenioProvisional =>
+      'Orientativo, según el convenio tester. No es contabilidad ni declaración fiscal.';
+
+  @override
+  String get balanceIngresos => 'Ingresos';
+
+  @override
+  String get balanceGastosTest => 'Gastos del test (sin amortizaciones)';
+
+  @override
+  String get balanceAmortizaciones => 'Amortizaciones';
+
+  @override
+  String get balanceTest => 'Balance del test';
+
+  @override
+  String get balanceProyecto => 'Balance del proyecto (coste real)';
+
+  @override
+  String get balanceAsumeTester => 'Gastos que asume la persona tester';
+
+  @override
+  String get balanceAsumeZunbeltz => 'Gastos que asume Zunbeltz';
+
+  @override
+  String get balanceReparto => 'Reparto del resultado';
+
+  @override
+  String balanceRepartoDetalle(String tipo, int zunbeltz, int tester) {
+    return '$tipo: $zunbeltz % Zunbeltz · $tester % tester';
+  }
+
+  @override
+  String get balanceBeneficio => 'Beneficio';
+
+  @override
+  String get balancePerdida => 'Pérdida';
+
+  @override
+  String get balanceParteZunbeltz => 'Parte de Zunbeltz';
+
+  @override
+  String get balanceParteTester => 'Parte de la persona tester';
+
+  @override
+  String get balancePrevistoReal => 'Previsto frente a real';
+
+  @override
+  String get balancePrevisto => 'Previsto';
+
+  @override
+  String get balanceReal => 'Real';
+
+  @override
+  String get balancePorcentajes => 'Cambiar porcentajes del reparto';
+
+  @override
+  String get balancePorcentajeBeneficio => '% para Zunbeltz si hay beneficio';
+
+  @override
+  String get balancePorcentajePerdida => '% para Zunbeltz si hay pérdida';
+
+  @override
+  String get presupuestoVacio =>
+      'Sin presupuesto. Coordinación añade las partidas del anexo II.';
+
+  @override
+  String get presupuestoNuevaPartida => 'Añadir partida';
+
+  @override
+  String get presupuestoTotal => 'Total previsto';
+
+  @override
+  String get fianzaReferencia =>
+      'Fianza de referencia (10 % de lo que asume Zunbeltz)';
+
+  @override
+  String get fianzaDepositado => 'Depositado';
+
+  @override
+  String get fianzaDevuelto => 'Devuelto';
+
+  @override
+  String get fianzaRetenido => 'Retenido (incluidas incidencias)';
+
+  @override
+  String get fianzaPendiente => 'En depósito ahora';
+
+  @override
+  String get fianzaNuevoMovimiento => 'Añadir movimiento';
+
+  @override
+  String get acompanamientoNuevo => 'Añadir actividad';
+
+  @override
+  String get acompanamientoVacio =>
+      'Sin actividades de acompañamiento todavía.';
+
+  @override
+  String acompanamientoIndicadores(int meses) {
+    return 'Indicadores del anexo IV ($meses meses)';
+  }
+
+  @override
+  String get acompanamientoSoporte =>
+      'Soporte integral: formación, visita de referencia y asesoramiento';
+
+  @override
+  String get acompanamientoDifusion =>
+      'Difusión: visita recibida, mercado y medio';
+
+  @override
+  String get acompanamientoSeguimiento =>
+      'Seguimiento: reunión y visita a la finca cada mes';
+
+  @override
+  String get acompanamientoVenta => 'Venta: búsqueda de canales o mercado';
+
+  @override
+  String acompanamientoAsistidas(int asistidas, int propuestas) {
+    return '$asistidas de $propuestas';
+  }
+
+  @override
+  String get acompanamientoValoraciones =>
+      'Valoración de la implicación (0-10)';
+
+  @override
+  String get acompanamientoValoracionZunbeltz => 'Según Zunbeltz';
+
+  @override
+  String get acompanamientoValoracionTester => 'Según la persona tester';
+
+  @override
+  String get acompanamientoHoras => 'Horas';
+
+  @override
+  String get acompanamientoAsistencia => 'Asistencia';
+
+  @override
+  String get incidenciasVacio => 'Sin incidencias.';
+
+  @override
+  String get incidenciaNueva => 'Registrar incidencia';
+
+  @override
+  String get incidenciaNivel => 'Nivel';
+
+  @override
+  String get incidenciaRetencion => 'Retención de fianza (€)';
+
+  @override
+  String get incidenciasPrivado =>
+      'Solo lo ven coordinación y la persona tester de este proyecto.';
+
+  @override
+  String get convenioTipo => 'Tipo';
+
+  @override
+  String get convenioConcepto => 'Concepto';
+
+  @override
+  String get convenioImporte => 'Importe (€)';
+
+  @override
+  String get convenioFecha => 'Fecha';
+
+  @override
+  String get convenioDescripcion => 'Descripción';
+
+  @override
+  String get convenioCumple => 'Cumple';
+
+  @override
+  String get convenioNoCumple => 'Todavía no';
+
+  @override
+  String get marcaBorrador => 'BORRADOR';
+
+  @override
+  String get informeBorradorAviso =>
+      'Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.';
 }

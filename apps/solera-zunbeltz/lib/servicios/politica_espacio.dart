@@ -61,4 +61,10 @@ class PoliticaEspacio {
       puedeGestionarAvisos || (miUid.isNotEmpty && autorUid == miUid);
 
   bool get puedeVerActividad => _puede(capacidadVerActividad);
+
+  /// Los documentos salen sin marca de BORRADOR solo cuando los genera
+  /// coordinación identificada (no en modo local) y, si son de un proyecto,
+  /// con el proyecto cerrado (respuestas de Zunbeltz, 2026-10-06).
+  bool documentoDefinitivo({bool? proyectoCerrado}) =>
+      !modoLocal && puedeGestionarProyectos && (proyectoCerrado ?? true);
 }

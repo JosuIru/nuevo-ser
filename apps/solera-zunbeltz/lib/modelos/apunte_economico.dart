@@ -16,6 +16,8 @@ class ApunteEconomico {
     this.fechaMs = 0,
     this.notas = '',
     this.fechaCreacionMs = 0,
+    this.asumidoPor = asumidoPorTester,
+    this.esAmortizacion = false,
   });
 
   final int? id;
@@ -42,6 +44,13 @@ class ApunteEconomico {
   final String notas;
   final int fechaCreacionMs;
 
+  /// Quién asume el gasto: `tester` o `zunbeltz` (convenio, art. 7).
+  final String asumidoPor;
+
+  /// Cuota de amortización (infraestructura, material): cuenta en el
+  /// balance del proyecto pero no en el del test.
+  final bool esAmortizacion;
+
   Map<String, Object?> toMap() => {
         'id': id,
         'finca_id': fincaId,
@@ -54,6 +63,8 @@ class ApunteEconomico {
         'fecha_ms': fechaMs,
         'notas': notas,
         'fecha_creacion_ms': fechaCreacionMs,
+        'asumido_por': asumidoPor,
+        'es_amortizacion': esAmortizacion ? 1 : 0,
       };
 
   factory ApunteEconomico.fromMap(Map<String, Object?> mapa) => ApunteEconomico(
@@ -68,5 +79,7 @@ class ApunteEconomico {
         fechaMs: (mapa['fecha_ms'] as int?) ?? 0,
         notas: (mapa['notas'] as String?) ?? '',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,
+        asumidoPor: (mapa['asumido_por'] as String?) ?? asumidoPorTester,
+        esAmortizacion: ((mapa['es_amortizacion'] as int?) ?? 0) != 0,
       );
 }

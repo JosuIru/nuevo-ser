@@ -9,6 +9,7 @@ import '../estado/coordinador.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
+import '../modelos/balance_convenio.dart';
 import '../modelos/constantes.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
@@ -25,6 +26,7 @@ import 'nueva_comercializacion.dart';
 import 'nueva_validacion.dart';
 import 'nuevo_apunte.dart';
 import 'nuevo_proyecto.dart';
+import 'pantalla_convenio.dart';
 
 /// Detalle de un proyecto de test: análisis de rentabilidad + producción,
 /// comercialización, validación de producto y económico, con informe PDF.
@@ -216,24 +218,56 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     if (mounted) Navigator.of(context).pop(true);
   }
 
+  /// Informe del proyecto con las cuentas del convenio. Sin marca de
+  /// BORRADOR solo si lo genera coordinación con el proyecto cerrado.
+  Future<DocumentoGenerado> _generarInforme(
+      AppLocalizations textos, String idioma) async {
+    final (ivaSoportado, ivaRepercutido) = _ivaTotales();
+    final todosLosApuntes = await _bd.listarApuntes(proyectoId: _proyectoId);
+    final todasLasVentas =
+        await _bd.listarComercializacion(proyectoId: _proyectoId);
+    final incidencias = await _bd.listarIncidencias(_proyectoId);
+    final inicio = _proyecto.fechaInicioMs == null
+        ? DateTime.now()
+        : DateTime.fromMillisecondsSinceEpoch(_proyecto.fechaInicioMs!);
+    final fin = _proyecto.fechaFinMs == null
+        ? DateTime.now()
+        : DateTime.fromMillisecondsSinceEpoch(_proyecto.fechaFinMs!);
+    return generarInformeProyectoPdf(
+      textos: textos,
+      idioma: idioma,
+      proyecto: _proyecto,
+      rentabilidad: _rent,
+      comercializacion: _ventas,
+      validaciones: _validaciones,
+      actividades: _produccion,
+      desgloseGastos: _desgloseGastos,
+      ivaSoportadoCentimos: ivaSoportado,
+      ivaRepercutidoCentimos: ivaRepercutido,
+      balance: BalanceConvenio.calcular(
+        proyecto: _proyecto,
+        apuntes: todosLosApuntes,
+        ventas: todasLasVentas,
+        presupuesto: await _bd.listarPresupuesto(_proyectoId),
+      ),
+      fianza: EstadoFianza.calcular(
+          await _bd.listarMovimientosFianza(_proyectoId), incidencias),
+      indicadores: IndicadoresAcompanamiento.calcular(
+          await _bd.listarAcompanamientos(_proyectoId),
+          inicio: inicio,
+          fin: fin),
+      incidencias: incidencias,
+      definitivo: politicaEspacioActual.documentoDefinitivo(
+          proyectoCerrado: _proyecto.cerrado),
+    );
+  }
+
   Future<void> _informe() async {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
     setState(() => _generando = true);
     try {
-      final (ivaSoportado, ivaRepercutido) = _ivaTotales();
-      final documento = await generarInformeProyectoPdf(
-        textos: textos,
-        idioma: idioma,
-        proyecto: _proyecto,
-        rentabilidad: _rent,
-        comercializacion: _ventas,
-        validaciones: _validaciones,
-        actividades: _produccion,
-        desgloseGastos: _desgloseGastos,
-        ivaSoportadoCentimos: ivaSoportado,
-        ivaRepercutidoCentimos: ivaRepercutido,
-      );
+      final documento = await _generarInforme(textos, idioma);
       await Printing.sharePdf(
           bytes: documento.bytes, filename: documento.nombreFichero);
     } finally {
@@ -277,19 +311,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     }
     setState(() => _generando = true);
     try {
-      final (ivaSoportado, ivaRepercutido) = _ivaTotales();
-      final documento = await generarInformeProyectoPdf(
-        textos: textos,
-        idioma: idioma,
-        proyecto: _proyecto,
-        rentabilidad: _rent,
-        comercializacion: _ventas,
-        validaciones: _validaciones,
-        actividades: _produccion,
-        desgloseGastos: _desgloseGastos,
-        ivaSoportadoCentimos: ivaSoportado,
-        ivaRepercutidoCentimos: ivaRepercutido,
-      );
+      final documento = await _generarInforme(textos, idioma);
       final asunto = 'Solera Zunbeltz · ${_proyecto.nombre}'
           '${_proyecto.persona.isEmpty ? '' : ' (${_proyecto.persona})'}';
       try {
@@ -404,6 +426,15 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                       contentPadding: EdgeInsets.zero),
                 ),
               ],
+            ),
+            IconButton(
+              tooltip: textos.convenioTitulo,
+              icon: const Icon(Icons.handshake_outlined),
+              onPressed: () async {
+                await Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => PantallaConvenio(proyecto: _proyecto)));
+                await _cargar();
+              },
             ),
             if (politicaEspacioActual.puedeGestionarProyectos)
               PopupMenuButton<_AccionProyecto>(

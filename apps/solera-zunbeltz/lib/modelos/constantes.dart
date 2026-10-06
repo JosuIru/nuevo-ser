@@ -138,14 +138,22 @@ const List<OpcionCatalogo> tiposApunte = [
 ];
 
 /// Canales de comercialización del proyecto de test.
+///
+/// Lista del convenio tester (anexo IV, «búsqueda de canales»). Se conservan
+/// los códigos antiguos (`tienda`, `mercado`…) para no perder los registros
+/// que ya los usan.
 const List<OpcionCatalogo> canalesComercializacion = [
   OpcionCatalogo('directa', 'Venta directa', 'Zuzeneko salmenta'),
-  OpcionCatalogo('mercado', 'Mercado / feria', 'Azoka / feria'),
-  OpcionCatalogo('tienda', 'Tienda / grupo de consumo', 'Denda / kontsumo-taldea'),
+  OpcionCatalogo('grupo_consumo', 'Grupos de consumo', 'Kontsumo-taldeak'),
+  OpcionCatalogo('mercado', 'Mercados y ferias', 'Azokak eta feriak'),
+  OpcionCatalogo('tienda', 'Pequeño comercio', 'Merkataritza txikia'),
+  OpcionCatalogo('hosteleria', 'Hostelería', 'Ostalaritza'),
+  OpcionCatalogo('restauracion', 'Restauración colectiva', 'Jantoki kolektiboak'),
+  OpcionCatalogo('acopio', 'Centro de acopio y distribución', 'Bilketa- eta banaketa-zentroa'),
+  OpcionCatalogo('crowdfunding', 'Crowdfunding', 'Crowdfundinga'),
   OpcionCatalogo('online', 'Online', 'Online'),
   OpcionCatalogo('mayorista', 'Mayorista / distribuidor', 'Handizkaria / banatzailea'),
-  OpcionCatalogo('restauracion', 'Restauración', 'Ostalaritza'),
-  OpcionCatalogo('otro', 'Otro', 'Bestelakoa'),
+  OpcionCatalogo('otro', 'Otros', 'Bestelakoak'),
 ];
 
 /// Resultado de una prueba de validación de producto.
@@ -155,12 +163,18 @@ const List<OpcionCatalogo> resultadosValidacion = [
   OpcionCatalogo('descartar', 'Descartar', 'Baztertu'),
 ];
 
-/// Categorías de gasto (desglose de costes del proyecto de test).
+/// Categorías de gasto (desglose de costes del proyecto de test). Siguen el
+/// reparto de costes iniciales del convenio tester (art. 7): ganado,
+/// alimentación y veterinario los asume la persona tester; el resto,
+/// Zunbeltz (ver [asumidoPorDefecto]).
 const List<OpcionCatalogo> categoriasGasto = [
+  OpcionCatalogo('ganado', 'Ganado', 'Abereak'),
   OpcionCatalogo('alimentacion', 'Alimentación', 'Elikadura'),
   OpcionCatalogo('sanidad', 'Sanidad / veterinario', 'Osasuna / albaitaritza'),
-  OpcionCatalogo('insumos', 'Insumos / materiales', 'Hornidurak / materialak'),
-  OpcionCatalogo('mano_obra', 'Mano de obra', 'Eskulana'),
+  OpcionCatalogo('infraestructuras', 'Infraestructuras y fincas', 'Azpiegiturak eta finkak'),
+  OpcionCatalogo('insumos', 'Materiales ganaderos / insumos', 'Abeltzaintza-materialak / hornidurak'),
+  OpcionCatalogo('transformacion', 'Transformación', 'Eraldaketa'),
+  OpcionCatalogo('mano_obra', 'Personal / mano de obra', 'Langileak / eskulana'),
   OpcionCatalogo('alquiler', 'Alquiler / cesión', 'Alokairua / lagapena'),
   OpcionCatalogo('maquinaria', 'Maquinaria / combustible', 'Makineria / erregaia'),
   OpcionCatalogo('servicios', 'Servicios', 'Zerbitzuak'),
@@ -173,6 +187,21 @@ const List<OpcionCatalogo> categoriasIngreso = [
   OpcionCatalogo('ayuda', 'Ayuda / prima', 'Laguntza / saria'),
   OpcionCatalogo('otros', 'Otros', 'Bestelakoak'),
 ];
+
+/// Quién asume un coste: la persona tester o la asociación.
+const String asumidoPorTester = 'tester';
+const String asumidoPorZunbeltz = 'zunbeltz';
+
+const List<OpcionCatalogo> asumidoPorOpciones = [
+  OpcionCatalogo(asumidoPorTester, 'Persona tester', 'Pertsona testerra'),
+  OpcionCatalogo(asumidoPorZunbeltz, 'Zunbeltz', 'Zunbeltz'),
+];
+
+/// Quién asume de entrada un gasto de esta categoría (convenio, art. 7).
+String asumidoPorDefecto(String categoria) =>
+    const {'ganado', 'alimentacion', 'sanidad'}.contains(categoria)
+        ? asumidoPorTester
+        : asumidoPorZunbeltz;
 
 /// Devuelve el catálogo de categorías según el tipo de apunte.
 List<OpcionCatalogo> categoriasDe(String tipoApunte) =>
@@ -195,3 +224,39 @@ const String resultadoValidacionPorDefecto = 'validado';
 const String categoriaGastoPorDefecto = 'otros';
 const String categoriaIngresoPorDefecto = 'venta';
 const int ivaPorDefecto = 0;
+
+/// Movimientos de la fianza (convenio, art. 7 y 8).
+const List<OpcionCatalogo> tiposMovimientoFianza = [
+  OpcionCatalogo('deposito', 'Depósito', 'Gordailua'),
+  OpcionCatalogo('devolucion', 'Devolución', 'Itzulketa'),
+  OpcionCatalogo('retencion', 'Retención', 'Atxikipena'),
+];
+
+/// Niveles de incidencia de cumplimiento (convenio, art. 8).
+const List<OpcionCatalogo> nivelesIncidencia = [
+  OpcionCatalogo('leve', 'Leve', 'Arina'),
+  OpcionCatalogo('grave', 'Grave', 'Larria'),
+  OpcionCatalogo('muy_grave', 'Muy grave', 'Oso larria'),
+];
+
+/// Actividades de acompañamiento que cuentan en los indicadores del anexo
+/// IV del convenio.
+const List<OpcionCatalogo> tiposAcompanamiento = [
+  OpcionCatalogo('formacion', 'Formación', 'Prestakuntza'),
+  OpcionCatalogo('visita_referencia', 'Visita a explotación de referencia', 'Erreferentziazko ustiategira bisita'),
+  OpcionCatalogo('asesoramiento', 'Asesoramiento de ganadería experta', 'Abeltzain adituen aholkularitza'),
+  OpcionCatalogo('reunion', 'Reunión de seguimiento', 'Jarraipen-bilera'),
+  OpcionCatalogo('visita_finca', 'Visita del equipo a la finca', 'Taldearen bisita finkara'),
+  OpcionCatalogo('visita_recibida', 'Visita recibida en el espacio', 'Gunean jasotako bisita'),
+  OpcionCatalogo('mercado', 'Mercado o feria', 'Azoka edo feria'),
+  OpcionCatalogo('difusion', 'Medio de difusión', 'Hedabidea'),
+  OpcionCatalogo('busqueda_canales', 'Búsqueda de canales de venta', 'Salmenta-bideen bilaketa'),
+  OpcionCatalogo('apoyo_tareas', 'Apoyo en tareas generales', 'Laguntza zeregin orokorretan'),
+];
+
+/// Si la persona tester asistió a lo propuesto.
+const List<OpcionCatalogo> asistenciasAcompanamiento = [
+  OpcionCatalogo('propuesta', 'Propuesta', 'Proposatua'),
+  OpcionCatalogo('asistida', 'Asistió', 'Joan zen'),
+  OpcionCatalogo('no_asistida', 'No asistió', 'Ez zen joan'),
+];

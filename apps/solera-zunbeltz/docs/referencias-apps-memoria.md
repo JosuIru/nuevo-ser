@@ -35,7 +35,7 @@ Solera Zunbeltz es la primera pensada para un **espacio test**: varias personas,
 
 ## 4. Pendiente
 
-- La **«App de Andia»** que mencionó Elena (cuatro categorías de avisos con iconos) es, muy probablemente, **Línea Verde** (2026-10-06, a confirmar con Zunbeltz). Revisar sus categorías con capturas para ajustar las nuestras (`lib/modelos/aviso_campo.dart`, BLOQUEOS 27).
+- La **«App de Andia»** que mencionó Elena (cuatro categorías de avisos con iconos) es **Línea Verde** (confirmado el 2026-10-07). Revisar sus categorías con capturas para ajustar las nuestras (`lib/modelos/aviso_campo.dart`, BLOQUEOS 27).
 
 ## Fuentes
 

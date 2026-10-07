@@ -23,14 +23,14 @@ Decisiones que requieren a una persona (equipo de Zunbeltz Elkartea, asesor téc
 
 ## A-ter. Tras las respuestas y el convenio (2026-10-06) — a validar con Zunbeltz
 
-27. **Categorías de aviso**: Ganado · Instalaciones · Seguimiento individual · Noticias son PROVISIONALES, tomadas de lo que contó Elena de la **app de la Mancomunidad de Andía**. Ver esa app (capturas o nombre) y ajustar categorías e iconos.
+27. **Categorías de aviso**: Ganado · Instalaciones · Seguimiento individual · Noticias son PROVISIONALES. La «App de Andia» que citó Elena es **Línea Verde** (confirmado el 2026-10-07). Revisar sus categorías e iconos (capturas) y ajustar las nuestras.
 28. **Notificaciones push** con la app cerrada: desde el 2026-10-06, en Android, una tarea en segundo plano (`workmanager`) sincroniza cada ~15 min con conexión y lanza las notificaciones locales (alarmas, peticiones, cambios); más el recordatorio diario de vencidas. Retraso típico ≤15 min, más con el móvil en reposo o con ahorro de batería agresivo (Xiaomi, Huawei…). **Sin probar todavía en un móvil real.** Para que una alarma llegue al instante con la app cerrada hace falta **Firebase Cloud Messaging** (cuenta Google, tratamiento de datos de un tercero) u otro servicio push. Decisión de Zunbeltz.
 29. **Correo**: el WordPress de Zunbeltz tiene que poder enviar correo (SMTP) y conviene un cron del sistema para `wp-cron.php`. Ver `wp-plugin/solera-zunbeltz-sync/INSTALACION.md`.
 30. **Convenio**: confirmar (a) si el reparto 25/75 · 50/50 se calcula en la app o solo se muestra el balance; (b) amortizaciones: ¿tabla de vida útil por infraestructura o cuota a mano (hoy, a mano)?; (c) si la persona tester ve sus incidencias de cumplimiento en la app (hoy sí: art. 8, «resolución motivada»); (d) fianza de referencia = 10 % de lo que el presupuesto prevé que asuma Zunbeltz (anexo I).
 31. **Valoración 0-10** del anexo IV: la apunta coordinación por ambas partes (la persona tester no edita la ficha del proyecto). ¿Vale así?
 32. **Personal de Andía**: no hay rol propio todavía. ¿Coordinación, solo lectura u otro?
 33. **Euskera de todos los textos nuevos** (Hoy, avisos, peticiones, convenio, notificaciones, ayuda, panel): borrador pendiente de revisión nativa, como el resto. El **panel de WordPress está solo en castellano**.
-34. **Hosting**: confirmar PHP ≥ 8.1, subdominio y certificado HTTPS, y quién instala y mantiene el plugin.
+34. **Hosting**: el servidor de Zunbeltz lo gestiona Josu (2026-10-07): instalación y mantenimiento por nuestra parte. Falta fijar el subdominio y confirmar PHP ≥ 8.1, HTTPS y SMTP.
 35. **Fotos**: no se sincronizan (pesan). Decidir si se suben al servidor y con qué límite.
 
 ## B. Compliance ganadero (asesor veterinario + técnico OCA + decreto foral Navarra)

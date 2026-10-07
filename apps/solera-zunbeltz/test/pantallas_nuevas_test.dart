@@ -13,7 +13,10 @@ import 'package:solera_zunbeltz/l10n/app_localizations.dart';
 import 'package:solera_zunbeltz/modelos/aviso_campo.dart';
 import 'package:solera_zunbeltz/modelos/convenio.dart';
 import 'package:solera_zunbeltz/modelos/peticion_tarea.dart';
+import 'package:solera_zunbeltz/modelos/agenda.dart';
 import 'package:solera_zunbeltz/pantallas/nuevo_apunte.dart';
+import 'package:solera_zunbeltz/pantallas/pantalla_calculadora.dart';
+import 'package:solera_zunbeltz/pantallas/pantalla_contactos.dart';
 import 'package:solera_zunbeltz/pantallas/nuevo_aviso.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_convenio.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_inicio.dart';
@@ -56,6 +59,11 @@ void main() {
         proyectoId: proyectoId, categoria: 'infraestructuras', asumidoPor: 'zunbeltz', importeCentimos: 900000));
     await bd.guardarAcompanamiento(Acompanamiento(proyectoId: proyectoId, tipo: 'formacion', asistencia: 'asistida'));
     await bd.guardarIncidencia(IncidenciaCumplimiento(proyectoId: proyectoId, nivel: 'grave', descripcion: 'Retraso'));
+    await bd.guardarContacto(Contacto(nombre: 'Matadero de prueba', tipo: 'matadero', telefono: '948000000'));
+    await bd.guardarRendimiento(RendimientoReferencia(nombre: 'Cordero — canal', rendimientoCanal: 50));
+    await bd.guardarEscenario(EscenarioTransformacion(
+        proyectoId: proyectoId, nombre: 'Despiece y venta directa', pesoVivoKg: 25,
+        rendimientoCanal: 50, rendimientoProducto: 85, precioKgCentimos: 1600));
   });
 
   Future<void> montar(WidgetTester tester, Widget pantalla, {String idioma = 'es'}) async {
@@ -103,6 +111,34 @@ void main() {
 
   testWidgets('Apunte de gasto con quién lo asume', (tester) async {
     await montar(tester, NuevoApunte(proyectoId: proyectoId, fincaId: 1));
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final idioma in ['es', 'eu']) {
+    testWidgets('Contactos ($idioma)', (tester) async {
+      await montar(tester, const PantallaContactos(), idioma: idioma);
+      expect(find.text('Matadero de prueba'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Calculadora de transformación ($idioma)', (tester) async {
+      final proyecto = (await tester.runAsync(() => bd.obtenerProyecto(proyectoId)))!;
+      await montar(tester, PantallaCalculadora(proyecto: proyecto), idioma: idioma);
+      await tester.enterText(find.byType(TextField).first, '30');
+      await tester.pump();
+      await tester.scrollUntilVisible(find.text('Despiece y venta directa'), 300,
+          scrollable: find
+              .descendant(of: find.byType(ListView), matching: find.byType(Scrollable))
+              .first);
+      expect(find.text('Despiece y venta directa'), findsOneWidget,
+          reason: 'el camino guardado aparece para comparar');
+      await tester.pump();
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('Formulario de contacto', (tester) async {
+    await montar(tester, const FormularioContacto());
     expect(tester.takeException(), isNull);
   });
 }

@@ -90,7 +90,8 @@ function szs_pagina_proyectos(): void {
 					<td><?php echo esc_html( szs_euros( $balance['balance_proyecto'] ) ); ?></td>
 					<td><?php echo esc_html( szs_euros( $balance['parte_zunbeltz'] ) . ' / ' . szs_euros( $balance['parte_tester'] ) ); ?></td>
 					<td>
-						<form method="post">
+						<a class="button button-small" href="<?php echo esc_url( szs_url_alimentacion_csv( $proyecto['uid'] ) ); ?>">Alimentación (Excel)</a>
+						<form method="post" style="margin-top:4px;">
 							<?php wp_nonce_field( 'szs_proyectos' ); ?>
 							<input type="hidden" name="szs_accion" value="<?php echo $cerrado ? 'reabrir' : 'cerrar'; ?>">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $proyecto['uid'] ); ?>">

@@ -30,6 +30,10 @@ const SZS_AMBITO_PROYECTO = 'proyecto';
 const SZS_AMBITO_HIJO_PROYECTO = 'hijo_proyecto';
 const SZS_AMBITO_PETICION      = 'peticion';
 const SZS_AMBITO_AVISO         = 'aviso';
+/** Agenda compartida: cualquiera añade, cada cual edita lo suyo. */
+const SZS_AMBITO_CONTACTO = 'contacto';
+/** Datos de referencia del espacio (rendimientos…): solo coordinación. */
+const SZS_AMBITO_REFERENCIA = 'referencia';
 
 /** Campos de un punto que puede cambiar quien solo tiene `anadir_puntos`. */
 const SZS_CAMPOS_PUNTO_MOVIBLES = array( 'latitud', 'longitud', 'estado', 'notas' );
@@ -55,8 +59,11 @@ function szs_tipos_entidad(): array {
 		'movimiento_fianza'       => array( 'ambito' => SZS_AMBITO_HIJO_PROYECTO, 'tester_registra' => false ),
 		'acompanamiento'          => array( 'ambito' => SZS_AMBITO_HIJO_PROYECTO, 'tester_registra' => false ),
 		'incidencia_cumplimiento' => array( 'ambito' => SZS_AMBITO_HIJO_PROYECTO, 'tester_registra' => false ),
+		'escenario_transformacion' => array( 'ambito' => SZS_AMBITO_HIJO_PROYECTO, 'tester_registra' => true ),
 		'peticion'                => array( 'ambito' => SZS_AMBITO_PETICION ),
 		'aviso'                   => array( 'ambito' => SZS_AMBITO_AVISO ),
+		'contacto'                => array( 'ambito' => SZS_AMBITO_CONTACTO ),
+		'rendimiento'             => array( 'ambito' => SZS_AMBITO_REFERENCIA ),
 	);
 }
 
@@ -168,6 +175,17 @@ function szs_entidad_permitida( array $definicion, ?array $existente, array $ent
 			return $es_alta
 				? szs_puede( $capacidades, SZS_CAPACIDAD_CREAR_AVISOS )
 				: $existente['autor_uid'] === $persona_uid;
+
+		case SZS_AMBITO_CONTACTO:
+			if ( szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_CONTACTOS ) ) {
+				return true;
+			}
+			return $es_alta
+				? szs_puede( $capacidades, SZS_CAPACIDAD_CREAR_CONTACTOS )
+				: $existente['autor_uid'] === $persona_uid;
+
+		case SZS_AMBITO_REFERENCIA:
+			return szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_PROYECTOS );
 	}
 	return false;
 }
@@ -210,6 +228,8 @@ function szs_entidad_visible( array $entidad, string $persona_uid, array $capaci
 	switch ( $tipos[ $entidad['tipo'] ]['ambito'] ) {
 		case SZS_AMBITO_ESPACIO:
 		case SZS_AMBITO_AVISO:
+		case SZS_AMBITO_CONTACTO:
+		case SZS_AMBITO_REFERENCIA:
 			return true;
 		case SZS_AMBITO_PROYECTO:
 			return szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_PROYECTOS )

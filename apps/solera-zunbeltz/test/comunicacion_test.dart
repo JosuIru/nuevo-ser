@@ -3,9 +3,11 @@
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:solera_zunbeltz/datos/base_datos.dart';
+import 'package:solera_zunbeltz/modelos/agenda.dart';
 import 'package:solera_zunbeltz/modelos/aviso_campo.dart';
 import 'package:solera_zunbeltz/modelos/finca.dart';
 import 'package:solera_zunbeltz/modelos/peticion_tarea.dart';
+import 'package:solera_zunbeltz/modelos/proyecto_test.dart';
 import 'package:solera_zunbeltz/modelos/tarea_mantenimiento.dart';
 
 import 'bd_en_memoria.dart';
@@ -54,5 +56,26 @@ void main() {
     final entidades = await bd.entidadesPendientesDeSubir(0);
     final aviso = entidades.firstWhere((e) => e['tipo'] == 'aviso');
     expect((aviso['datos'] as Map)['finca_uid'], await bd.uidDeFila('fincas', fincaId));
+  });
+
+  test('contactos, rendimientos y escenarios viajan con la sincronización',
+      () async {
+    final proyectoId =
+        await bd.guardarProyecto(ProyectoTest(nombre: 'Corderos'));
+    await bd.guardarContacto(Contacto(nombre: 'Matadero de prueba', tipo: 'matadero'));
+    await bd.guardarRendimiento(
+        RendimientoReferencia(nombre: 'Cordero', rendimientoCanal: 50));
+    await bd.guardarEscenario(EscenarioTransformacion(
+        proyectoId: proyectoId, nombre: 'Venta en canal', pesoVivoKg: 25));
+    expect((await bd.listarContactos(tipo: 'matadero')).single.nombre,
+        'Matadero de prueba');
+    final tipos = {
+      for (final entidad in await bd.entidadesPendientesDeSubir(0))
+        entidad['tipo'],
+    };
+    expect(tipos, containsAll(['contacto', 'rendimiento', 'escenario_transformacion']));
+    await bd.borrarProyecto(proyectoId);
+    expect(await bd.listarEscenarios(proyectoId), isEmpty,
+        reason: 'los escenarios se van con su proyecto');
   });
 }

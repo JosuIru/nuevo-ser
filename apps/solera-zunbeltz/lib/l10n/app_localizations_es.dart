@@ -1800,4 +1800,163 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ayudaNotificacionesB =>
       'La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona.\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Solera Zunbeltz de esa lista.';
+
+  @override
+  String get contactosTitulo => 'Contactos';
+
+  @override
+  String get contactosVacio => 'Todavía no hay contactos.';
+
+  @override
+  String get contactosTodos => 'Todos';
+
+  @override
+  String get contactoNuevo => 'Añadir contacto';
+
+  @override
+  String get contactoEditar => 'Editar contacto';
+
+  @override
+  String get contactoNombre => 'Nombre';
+
+  @override
+  String get contactoTipo => 'Tipo';
+
+  @override
+  String get contactoTelefono => 'Teléfono';
+
+  @override
+  String get contactoCorreo => 'Correo';
+
+  @override
+  String get contactoLocalidad => 'Localidad';
+
+  @override
+  String get contactoNotas => 'Notas';
+
+  @override
+  String get contactoLlamar => 'Llamar';
+
+  @override
+  String get contactoEscribir => 'Escribir';
+
+  @override
+  String get contactoBorrar => 'Borrar contacto';
+
+  @override
+  String get contactoGuardado => 'Contacto guardado.';
+
+  @override
+  String get tipoContactoMatadero => 'Matadero';
+
+  @override
+  String get tipoContactoVeterinaria => 'Veterinaria';
+
+  @override
+  String get tipoContactoExperto => 'Persona experta';
+
+  @override
+  String get tipoContactoComprador => 'Comprador / tienda';
+
+  @override
+  String get tipoContactoProveedor => 'Proveedor';
+
+  @override
+  String get tipoContactoAdministracion => 'Administración';
+
+  @override
+  String get tipoContactoOtro => 'Otro';
+
+  @override
+  String get calculadoraTitulo => 'Calculadora de transformación';
+
+  @override
+  String get calculadoraIntro =>
+      'De un animal de X kg a kg de producto, precio y margen. Prueba caminos (canal, despiece, elaborado) y guárdalos para compararlos.';
+
+  @override
+  String get calculadoraReferencia => 'Rendimiento de referencia';
+
+  @override
+  String get calculadoraSinReferencias =>
+      'Coordinación puede guardar rendimientos de referencia en la oficina. Mientras, pon los porcentajes a mano.';
+
+  @override
+  String get calculadoraNinguna => 'Ninguno (a mano)';
+
+  @override
+  String get calculadoraPesoVivo => 'Peso vivo por animal (kg)';
+
+  @override
+  String get calculadoraAnimales => 'Animales';
+
+  @override
+  String get calculadoraRendimientoCanal => 'Rendimiento a canal (%)';
+
+  @override
+  String get calculadoraRendimientoProducto =>
+      'Producto vendible sobre canal (%)';
+
+  @override
+  String get calculadoraPrecioKg => 'Precio de venta (€/kg)';
+
+  @override
+  String get calculadoraCosteSacrificio => 'Matadero por animal (€)';
+
+  @override
+  String get calculadoraCosteTransformacion =>
+      'Transformación y envasado (€/kg)';
+
+  @override
+  String get calculadoraOtrosCostes => 'Otros costes (€)';
+
+  @override
+  String get calculadoraKgCanal => 'Kg de canal';
+
+  @override
+  String get calculadoraKgProducto => 'Kg de producto';
+
+  @override
+  String get calculadoraIngreso => 'Ingreso';
+
+  @override
+  String get calculadoraCostes => 'Costes';
+
+  @override
+  String get calculadoraMargen => 'Margen';
+
+  @override
+  String get calculadoraMargenKgVivo => 'Margen por kg vivo';
+
+  @override
+  String get calculadoraGuardar => 'Guardar este camino';
+
+  @override
+  String get calculadoraNombreEscenario =>
+      'Nombre (p. ej. «Despiece y venta directa»)';
+
+  @override
+  String get calculadoraEscenarios => 'Caminos guardados';
+
+  @override
+  String get calculadoraOrientativo =>
+      'Cálculo orientativo: los rendimientos reales dependen del animal, del matadero y del despiece.';
+
+  @override
+  String get alimentacionExcel => 'Alimentación por días (Excel)';
+
+  @override
+  String get ayudaContactosT => 'Contactos del espacio';
+
+  @override
+  String get ayudaContactosB =>
+      'La agenda compartida: mataderos, veterinaria, personas expertas, compradores…\n1. En Hoy, pulsa el icono de contactos (arriba).\n2. Filtra por tipo y toca un contacto para llamar o escribir.\n3. Para añadir uno, pulsa «Añadir contacto». Puedes corregir los que añadas tú; coordinación los gestiona todos, también desde la oficina.';
+
+  @override
+  String get ayudaCalculadoraT =>
+      'Calculadora de transformación y Excel de alimentación';
+
+  @override
+  String get ayudaCalculadoraB =>
+      'En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por lote.';
 }

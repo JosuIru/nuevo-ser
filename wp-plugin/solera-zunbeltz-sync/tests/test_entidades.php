@@ -145,6 +145,27 @@ afirmar( true, szs_entidad_visible( $peticion_guardada, 'ane', $tester, array() 
 afirmar( false, szs_entidad_visible( $peticion_guardada, 'jon', $tester, array() ), 'otra tester no ve peticiones ajenas' );
 afirmar( true, szs_entidad_visible( $peticion_guardada, 'coord', $coordinacion, array() ), 'coordinación ve todas las peticiones' );
 
+// --- contactos: cualquiera añade; cada cual edita los suyos, coordinación todos ---
+$contacto = entidad( 'contacto', array( 'nombre' => 'Matadero de Estella', 'tipo' => 'matadero' ) );
+afirmar( 'insertar', accion( null, $contacto, 'ane', $tester ), 'tester añade un contacto' );
+$contacto_guardado = array_merge( $contacto, array( 'autor_uid' => 'ane' ) );
+$contacto_cambiado = entidad( 'contacto', array( 'nombre' => 'Matadero de Estella', 'telefono' => '948' ), array( 'actualizado_ms' => 200 ) );
+afirmar( 'actualizar', accion( $contacto_guardado, $contacto_cambiado, 'ane', $tester ), 'quien lo añadió lo corrige' );
+afirmar( 'rechazar', accion( $contacto_guardado, $contacto_cambiado, 'jon', $tester ), 'otra tester no toca un contacto ajeno' );
+afirmar( 'actualizar', accion( $contacto_guardado, $contacto_cambiado, 'coord', $coordinacion ), 'coordinación edita cualquier contacto' );
+afirmar( true, szs_entidad_visible( $contacto_guardado, 'jon', $tester, array() ), 'todas ven los contactos' );
+
+// --- rendimientos de referencia: solo coordinación; los ve todo el espacio ---
+$rendimiento = entidad( 'rendimiento', array( 'nombre' => 'Cordero lechal', 'rendimiento_canal' => 50 ) );
+afirmar( 'rechazar', accion( null, $rendimiento, 'ane', $tester ), 'tester no crea rendimientos de referencia' );
+afirmar( 'insertar', accion( null, $rendimiento, 'coord', $coordinacion ), 'coordinación los crea' );
+afirmar( true, szs_entidad_visible( $rendimiento, 'ane', $tester, array() ), 'todas los ven' );
+
+// --- escenarios de la calculadora: seguimiento del proyecto ---
+$escenario = entidad( 'escenario_transformacion', array( 'nombre' => 'Despiece y venta directa' ), array( 'proyecto_uid' => 'p1' ) );
+afirmar( 'insertar', accion( null, $escenario, 'ane', $tester, $proyecto_ane ), 'la tester guarda escenarios en su proyecto' );
+afirmar( 'rechazar', accion( null, $escenario, 'jon', $tester, $proyecto_ane ), 'no en uno ajeno' );
+
 // --- etiqueta para la actividad ---
 afirmar( 'Corral', szs_etiqueta_entidad( $punto ), 'la etiqueta de un punto es su nombre' );
 afirmar( 'Cencerro', szs_etiqueta_entidad( $apunte ), 'la etiqueta de un apunte es su concepto' );

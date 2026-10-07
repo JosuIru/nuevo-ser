@@ -121,6 +121,9 @@ final List<TablaSincronizable> tablasSincronizables = [
       tipo: 'aviso',
       tabla: 'avisos',
       referencias: [_refFincaOpcional, _refPuntoOpcional]),
+  const TablaSincronizable(tipo: 'contacto', tabla: 'contactos'),
+  const TablaSincronizable(tipo: 'rendimiento', tabla: 'rendimientos'),
+  _hijoDeProyecto('escenario_transformacion', 'escenarios_transformacion'),
 ];
 
 TablaSincronizable? tablaSincronizablePorTipo(String tipo) {

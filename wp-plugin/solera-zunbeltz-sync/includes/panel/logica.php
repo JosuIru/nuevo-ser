@@ -234,3 +234,50 @@ function szs_resumen_correo_diario( array $tareas, array $peticiones, array $ala
 		'cuerpo' => implode( "\n\n", $cuerpo ) . "\n",
 	);
 }
+
+/**
+ * Alimentación por días a partir de los registros de actividad de un
+ * proyecto: una fila por día (en la zona horaria dada) y lote, con los kg
+ * sumados, ordenadas por día y lote. Pura.
+ *
+ * @return array<int, array{dia: string, lote: string, kg: float}>
+ */
+function szs_alimentacion_por_dias( array $registros, string $zona_horaria ): array {
+	$zona  = new DateTimeZone( $zona_horaria );
+	$suma  = array();
+	foreach ( $registros as $registro ) {
+		$datos = $registro['datos'] ?? array();
+		if ( 'registro_actividad' !== ( $registro['tipo'] ?? '' ) || 'alimentacion' !== ( $datos['tipo'] ?? '' ) ) {
+			continue;
+		}
+		$dia   = ( new DateTimeImmutable( '@' . intdiv( (int) ( $datos['fecha_ms'] ?? 0 ), 1000 ) ) )->setTimezone( $zona )->format( 'Y-m-d' );
+		$lote  = trim( (string) ( $datos['lote'] ?? '' ) );
+		$clave = $dia . "\0" . $lote;
+		$suma[ $clave ] = ( $suma[ $clave ] ?? 0.0 ) + (float) ( $datos['cantidad'] ?? 0 );
+	}
+	ksort( $suma );
+	$filas = array();
+	foreach ( $suma as $clave => $kg ) {
+		list( $dia, $lote ) = explode( "\0", $clave );
+		$filas[] = array(
+			'dia'  => $dia,
+			'lote' => $lote,
+			'kg'   => round( $kg, 3 ),
+		);
+	}
+	return $filas;
+}
+
+/** CSV para Excel (BOM, `;`, coma decimal) con fila de total. Pura. */
+function szs_alimentacion_a_csv( array $filas ): string {
+	$numero = static fn( float $kg ): string => rtrim( rtrim( number_format( $kg, 3, ',', '' ), '0' ), ',' );
+	$lineas = array( 'Fecha;Lote;Kg' );
+	$total  = 0.0;
+	foreach ( $filas as $fila ) {
+		$fecha    = DateTimeImmutable::createFromFormat( 'Y-m-d', $fila['dia'] );
+		$lineas[] = implode( ';', array( false === $fecha ? $fila['dia'] : $fecha->format( 'd/m/Y' ), szs_campo_csv( $fila['lote'] ), $numero( $fila['kg'] ) ) );
+		$total   += $fila['kg'];
+	}
+	$lineas[] = 'Total;;' . $numero( $total );
+	return "\u{FEFF}" . implode( "\r\n", $lineas ) . "\r\n";
+}

@@ -1802,4 +1802,163 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ayudaNotificacionesB =>
       'Aplikazioak mugikorrean abisatzen dizu:\n• Beste pertsona baten alarma bat iristen denean.\n• Koordinazioari: eskaera berriak daudenean eta gunean aldatu denaren laburpena.\n• Goizero 9:00etan, zeregin iraungiak badituzu, egintzat markatu arte.\n» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa itxita dagoenean, Android mugikorrak 15 minuturo gutxi gorabehera begiratzen du berririk dagoen, konexioa badago; mugikorra atsedenean badago, zertxobait gehiago atzera daiteke. Zure mugikorrak bateria aurrezteko bigarren planoko aplikazioak mozten baditu, kendu Solera Zunbeltz zerrenda horretatik.';
+
+  @override
+  String get contactosTitulo => 'Kontaktuak';
+
+  @override
+  String get contactosVacio => 'Oraindik ez dago kontakturik.';
+
+  @override
+  String get contactosTodos => 'Denak';
+
+  @override
+  String get contactoNuevo => 'Kontaktua gehitu';
+
+  @override
+  String get contactoEditar => 'Kontaktua editatu';
+
+  @override
+  String get contactoNombre => 'Izena';
+
+  @override
+  String get contactoTipo => 'Mota';
+
+  @override
+  String get contactoTelefono => 'Telefonoa';
+
+  @override
+  String get contactoCorreo => 'Posta elektronikoa';
+
+  @override
+  String get contactoLocalidad => 'Herria';
+
+  @override
+  String get contactoNotas => 'Oharrak';
+
+  @override
+  String get contactoLlamar => 'Deitu';
+
+  @override
+  String get contactoEscribir => 'Idatzi';
+
+  @override
+  String get contactoBorrar => 'Kontaktua ezabatu';
+
+  @override
+  String get contactoGuardado => 'Kontaktua gordeta.';
+
+  @override
+  String get tipoContactoMatadero => 'Hiltegia';
+
+  @override
+  String get tipoContactoVeterinaria => 'Albaitaritza';
+
+  @override
+  String get tipoContactoExperto => 'Pertsona aditua';
+
+  @override
+  String get tipoContactoComprador => 'Erosle / denda';
+
+  @override
+  String get tipoContactoProveedor => 'Hornitzailea';
+
+  @override
+  String get tipoContactoAdministracion => 'Administrazioa';
+
+  @override
+  String get tipoContactoOtro => 'Bestelakoa';
+
+  @override
+  String get calculadoraTitulo => 'Eraldaketa-kalkulagailua';
+
+  @override
+  String get calculadoraIntro =>
+      'X kg-ko animalia batetik produktu-kg, prezio eta marjinara. Probatu bideak (kanala, zatiketa, elaboratua) eta gorde alderatzeko.';
+
+  @override
+  String get calculadoraReferencia => 'Erreferentziazko errendimendua';
+
+  @override
+  String get calculadoraSinReferencias =>
+      'Koordinazioak erreferentziazko errendimenduak gorde ditzake bulegoan. Bitartean, jarri ehunekoak eskuz.';
+
+  @override
+  String get calculadoraNinguna => 'Bat ere ez (eskuz)';
+
+  @override
+  String get calculadoraPesoVivo => 'Animalia bakoitzaren pisu bizia (kg)';
+
+  @override
+  String get calculadoraAnimales => 'Animaliak';
+
+  @override
+  String get calculadoraRendimientoCanal => 'Kanal-errendimendua (%)';
+
+  @override
+  String get calculadoraRendimientoProducto =>
+      'Produktu salgarria kanalaren gainean (%)';
+
+  @override
+  String get calculadoraPrecioKg => 'Salmenta-prezioa (€/kg)';
+
+  @override
+  String get calculadoraCosteSacrificio => 'Hiltegia animalia bakoitzeko (€)';
+
+  @override
+  String get calculadoraCosteTransformacion =>
+      'Eraldaketa eta ontziratzea (€/kg)';
+
+  @override
+  String get calculadoraOtrosCostes => 'Beste kostu batzuk (€)';
+
+  @override
+  String get calculadoraKgCanal => 'Kanal-kg';
+
+  @override
+  String get calculadoraKgProducto => 'Produktu-kg';
+
+  @override
+  String get calculadoraIngreso => 'Sarrera';
+
+  @override
+  String get calculadoraCostes => 'Kostuak';
+
+  @override
+  String get calculadoraMargen => 'Marjina';
+
+  @override
+  String get calculadoraMargenKgVivo => 'Marjina kg bizi bakoitzeko';
+
+  @override
+  String get calculadoraGuardar => 'Bide hau gorde';
+
+  @override
+  String get calculadoraNombreEscenario =>
+      'Izena (adib. «Zatiketa eta zuzeneko salmenta»)';
+
+  @override
+  String get calculadoraEscenarios => 'Gordetako bideak';
+
+  @override
+  String get calculadoraOrientativo =>
+      'Kalkulu orientagarria: benetako errendimenduak animaliaren, hiltegiaren eta zatiketaren araberakoak dira.';
+
+  @override
+  String get alimentacionExcel => 'Elikadura egunka (Excel)';
+
+  @override
+  String get ayudaContactosT => 'Guneko kontaktuak';
+
+  @override
+  String get ayudaContactosB =>
+      'Agenda partekatua: hiltegiak, albaitaritza, pertsona adituak, erosleak…\n1. Gaur pantailan, sakatu kontaktuen ikonoa (goian).\n2. Iragazi motaren arabera eta ukitu kontaktu bat deitzeko edo idazteko.\n3. Bat gehitzeko, sakatu «Kontaktua gehitu». Zuk gehitutakoak zuzen ditzakezu; koordinazioak denak kudeatzen ditu, bulegotik ere bai.';
+
+  @override
+  String get ayudaCalculadoraT =>
+      'Eraldaketa-kalkulagailua eta elikaduraren Excela';
+
+  @override
+  String get ayudaCalculadoraB =>
+      'Zure proiektuan, kalkulagailuaren botoia (goian):\n1. Aukeratu erreferentziazko errendimendu bat (koordinazioak jartzen ditu) edo idatzi ehunekoak.\n2. Jarri pisu bizia, kg bakoitzeko prezioa eta kostuak: produktu-kg, sarrera, marjina eta kg biziaren prezioa ikusiko dituzu.\n3. «Bide hau gorde» beste batzuekin alderatzeko (kanala, zatiketa, elaboratua…).\n» Proiektuaren partekatzeko botoian, «Elikadura egunka (Excel)» aukerak egunero eta loteka emandako kg-ak ateratzen ditu.';
 }

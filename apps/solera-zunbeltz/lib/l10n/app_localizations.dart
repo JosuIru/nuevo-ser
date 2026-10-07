@@ -3235,6 +3235,306 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona.\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Solera Zunbeltz de esa lista.'**
   String get ayudaNotificacionesB;
+
+  /// No description provided for @contactosTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Contactos'**
+  String get contactosTitulo;
+
+  /// No description provided for @contactosVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no hay contactos.'**
+  String get contactosVacio;
+
+  /// No description provided for @contactosTodos.
+  ///
+  /// In es, this message translates to:
+  /// **'Todos'**
+  String get contactosTodos;
+
+  /// No description provided for @contactoNuevo.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir contacto'**
+  String get contactoNuevo;
+
+  /// No description provided for @contactoEditar.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar contacto'**
+  String get contactoEditar;
+
+  /// No description provided for @contactoNombre.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get contactoNombre;
+
+  /// No description provided for @contactoTipo.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get contactoTipo;
+
+  /// No description provided for @contactoTelefono.
+  ///
+  /// In es, this message translates to:
+  /// **'Teléfono'**
+  String get contactoTelefono;
+
+  /// No description provided for @contactoCorreo.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo'**
+  String get contactoCorreo;
+
+  /// No description provided for @contactoLocalidad.
+  ///
+  /// In es, this message translates to:
+  /// **'Localidad'**
+  String get contactoLocalidad;
+
+  /// No description provided for @contactoNotas.
+  ///
+  /// In es, this message translates to:
+  /// **'Notas'**
+  String get contactoNotas;
+
+  /// No description provided for @contactoLlamar.
+  ///
+  /// In es, this message translates to:
+  /// **'Llamar'**
+  String get contactoLlamar;
+
+  /// No description provided for @contactoEscribir.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribir'**
+  String get contactoEscribir;
+
+  /// No description provided for @contactoBorrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar contacto'**
+  String get contactoBorrar;
+
+  /// No description provided for @contactoGuardado.
+  ///
+  /// In es, this message translates to:
+  /// **'Contacto guardado.'**
+  String get contactoGuardado;
+
+  /// No description provided for @tipoContactoMatadero.
+  ///
+  /// In es, this message translates to:
+  /// **'Matadero'**
+  String get tipoContactoMatadero;
+
+  /// No description provided for @tipoContactoVeterinaria.
+  ///
+  /// In es, this message translates to:
+  /// **'Veterinaria'**
+  String get tipoContactoVeterinaria;
+
+  /// No description provided for @tipoContactoExperto.
+  ///
+  /// In es, this message translates to:
+  /// **'Persona experta'**
+  String get tipoContactoExperto;
+
+  /// No description provided for @tipoContactoComprador.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprador / tienda'**
+  String get tipoContactoComprador;
+
+  /// No description provided for @tipoContactoProveedor.
+  ///
+  /// In es, this message translates to:
+  /// **'Proveedor'**
+  String get tipoContactoProveedor;
+
+  /// No description provided for @tipoContactoAdministracion.
+  ///
+  /// In es, this message translates to:
+  /// **'Administración'**
+  String get tipoContactoAdministracion;
+
+  /// No description provided for @tipoContactoOtro.
+  ///
+  /// In es, this message translates to:
+  /// **'Otro'**
+  String get tipoContactoOtro;
+
+  /// No description provided for @calculadoraTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Calculadora de transformación'**
+  String get calculadoraTitulo;
+
+  /// No description provided for @calculadoraIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'De un animal de X kg a kg de producto, precio y margen. Prueba caminos (canal, despiece, elaborado) y guárdalos para compararlos.'**
+  String get calculadoraIntro;
+
+  /// No description provided for @calculadoraReferencia.
+  ///
+  /// In es, this message translates to:
+  /// **'Rendimiento de referencia'**
+  String get calculadoraReferencia;
+
+  /// No description provided for @calculadoraSinReferencias.
+  ///
+  /// In es, this message translates to:
+  /// **'Coordinación puede guardar rendimientos de referencia en la oficina. Mientras, pon los porcentajes a mano.'**
+  String get calculadoraSinReferencias;
+
+  /// No description provided for @calculadoraNinguna.
+  ///
+  /// In es, this message translates to:
+  /// **'Ninguno (a mano)'**
+  String get calculadoraNinguna;
+
+  /// No description provided for @calculadoraPesoVivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Peso vivo por animal (kg)'**
+  String get calculadoraPesoVivo;
+
+  /// No description provided for @calculadoraAnimales.
+  ///
+  /// In es, this message translates to:
+  /// **'Animales'**
+  String get calculadoraAnimales;
+
+  /// No description provided for @calculadoraRendimientoCanal.
+  ///
+  /// In es, this message translates to:
+  /// **'Rendimiento a canal (%)'**
+  String get calculadoraRendimientoCanal;
+
+  /// No description provided for @calculadoraRendimientoProducto.
+  ///
+  /// In es, this message translates to:
+  /// **'Producto vendible sobre canal (%)'**
+  String get calculadoraRendimientoProducto;
+
+  /// No description provided for @calculadoraPrecioKg.
+  ///
+  /// In es, this message translates to:
+  /// **'Precio de venta (€/kg)'**
+  String get calculadoraPrecioKg;
+
+  /// No description provided for @calculadoraCosteSacrificio.
+  ///
+  /// In es, this message translates to:
+  /// **'Matadero por animal (€)'**
+  String get calculadoraCosteSacrificio;
+
+  /// No description provided for @calculadoraCosteTransformacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Transformación y envasado (€/kg)'**
+  String get calculadoraCosteTransformacion;
+
+  /// No description provided for @calculadoraOtrosCostes.
+  ///
+  /// In es, this message translates to:
+  /// **'Otros costes (€)'**
+  String get calculadoraOtrosCostes;
+
+  /// No description provided for @calculadoraKgCanal.
+  ///
+  /// In es, this message translates to:
+  /// **'Kg de canal'**
+  String get calculadoraKgCanal;
+
+  /// No description provided for @calculadoraKgProducto.
+  ///
+  /// In es, this message translates to:
+  /// **'Kg de producto'**
+  String get calculadoraKgProducto;
+
+  /// No description provided for @calculadoraIngreso.
+  ///
+  /// In es, this message translates to:
+  /// **'Ingreso'**
+  String get calculadoraIngreso;
+
+  /// No description provided for @calculadoraCostes.
+  ///
+  /// In es, this message translates to:
+  /// **'Costes'**
+  String get calculadoraCostes;
+
+  /// No description provided for @calculadoraMargen.
+  ///
+  /// In es, this message translates to:
+  /// **'Margen'**
+  String get calculadoraMargen;
+
+  /// No description provided for @calculadoraMargenKgVivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Margen por kg vivo'**
+  String get calculadoraMargenKgVivo;
+
+  /// No description provided for @calculadoraGuardar.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar este camino'**
+  String get calculadoraGuardar;
+
+  /// No description provided for @calculadoraNombreEscenario.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre (p. ej. «Despiece y venta directa»)'**
+  String get calculadoraNombreEscenario;
+
+  /// No description provided for @calculadoraEscenarios.
+  ///
+  /// In es, this message translates to:
+  /// **'Caminos guardados'**
+  String get calculadoraEscenarios;
+
+  /// No description provided for @calculadoraOrientativo.
+  ///
+  /// In es, this message translates to:
+  /// **'Cálculo orientativo: los rendimientos reales dependen del animal, del matadero y del despiece.'**
+  String get calculadoraOrientativo;
+
+  /// No description provided for @alimentacionExcel.
+  ///
+  /// In es, this message translates to:
+  /// **'Alimentación por días (Excel)'**
+  String get alimentacionExcel;
+
+  /// No description provided for @ayudaContactosT.
+  ///
+  /// In es, this message translates to:
+  /// **'Contactos del espacio'**
+  String get ayudaContactosT;
+
+  /// No description provided for @ayudaContactosB.
+  ///
+  /// In es, this message translates to:
+  /// **'La agenda compartida: mataderos, veterinaria, personas expertas, compradores…\n1. En Hoy, pulsa el icono de contactos (arriba).\n2. Filtra por tipo y toca un contacto para llamar o escribir.\n3. Para añadir uno, pulsa «Añadir contacto». Puedes corregir los que añadas tú; coordinación los gestiona todos, también desde la oficina.'**
+  String get ayudaContactosB;
+
+  /// No description provided for @ayudaCalculadoraT.
+  ///
+  /// In es, this message translates to:
+  /// **'Calculadora de transformación y Excel de alimentación'**
+  String get ayudaCalculadoraT;
+
+  /// No description provided for @ayudaCalculadoraB.
+  ///
+  /// In es, this message translates to:
+  /// **'En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por lote.'**
+  String get ayudaCalculadoraB;
 }
 
 class _AppLocalizationsDelegate

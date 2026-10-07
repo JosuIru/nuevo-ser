@@ -22,11 +22,14 @@ void main() {
     capacidadCrearAvisos,
     capacidadGestionarAvisos,
     capacidadVerActividad,
+    capacidadCrearContactos,
+    capacidadGestionarContactos,
   }));
   final ane = PoliticaEspacio(sesion('ane', {
     capacidadAnadirPuntos,
     capacidadEnviarPeticiones,
     capacidadCrearAvisos,
+    capacidadCrearContactos,
   }));
 
   test('modo local: todo permitido', () {
@@ -60,5 +63,14 @@ void main() {
     expect(ane.puedeEditarAviso('jon'), isFalse);
     expect(coordinacion.puedeEditarAviso('jon'), isTrue);
     expect(ane.puedeVerActividad, isFalse);
+  });
+
+  test('contactos y rendimientos', () {
+    expect(ane.puedeCrearContactos, isTrue);
+    expect(ane.puedeEditarContacto('ane'), isTrue);
+    expect(ane.puedeEditarContacto('jon'), isFalse);
+    expect(coordinacion.puedeEditarContacto('jon'), isTrue);
+    expect(ane.puedeEditarRendimientos, isFalse);
+    expect(coordinacion.puedeEditarRendimientos, isTrue);
   });
 }

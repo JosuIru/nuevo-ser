@@ -95,6 +95,22 @@ afirmar( true, str_contains( $resumen['cuerpo'], 'Oveja coja' ), '… y las alar
 afirmar( true, str_contains( $resumen['asunto'], '1 tarea vencida' ), 'el asunto resume' );
 afirmar( null, szs_resumen_correo_diario( array( $tareas[2] ), array(), array(), $hoy_ms ), 'sin nada pendiente no se manda correo' );
 
+// --- alimentación por días ---
+$dia = static fn( int $d ): int => ( $hoy_ms + $d * $dia_ms ) + 9 * 3_600_000;
+$registros = array(
+	array( 'tipo' => 'registro_actividad', 'datos' => array( 'tipo' => 'alimentacion', 'cantidad' => 120, 'fecha_ms' => $dia( 0 ), 'lote' => 'Rebaño A' ) ),
+	array( 'tipo' => 'registro_actividad', 'datos' => array( 'tipo' => 'alimentacion', 'cantidad' => 30.5, 'fecha_ms' => $dia( 0 ) + 3_600_000, 'lote' => 'Rebaño A' ) ),
+	array( 'tipo' => 'registro_actividad', 'datos' => array( 'tipo' => 'alimentacion', 'cantidad' => 80, 'fecha_ms' => $dia( -1 ), 'lote' => 'Rebaño B' ) ),
+	array( 'tipo' => 'registro_actividad', 'datos' => array( 'tipo' => 'paricion', 'cantidad' => 3, 'fecha_ms' => $dia( 0 ) ) ),
+);
+$filas = szs_alimentacion_por_dias( $registros, 'UTC' );
+afirmar( 2, count( $filas ), 'una fila por día y lote; las pariciones no cuentan' );
+afirmar( array( '2026-10-05', 'Rebaño B', 80.0 ), array( $filas[0]['dia'], $filas[0]['lote'], $filas[0]['kg'] ), 'ordenado por día' );
+afirmar( 150.5, $filas[1]['kg'], 'los kg del mismo día y lote se suman' );
+$csv = szs_alimentacion_a_csv( $filas );
+afirmar( true, str_contains( $csv, "06/10/2026;Rebaño A;150,5" ), 'fecha y decimales a la española' );
+afirmar( true, str_contains( $csv, 'Total;;230,5' ), 'fila de total' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

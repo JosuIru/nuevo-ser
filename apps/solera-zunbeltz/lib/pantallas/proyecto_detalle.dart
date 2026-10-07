@@ -17,6 +17,7 @@ import '../modelos/registro_actividad.dart';
 import '../modelos/registro_comercializacion.dart';
 import '../modelos/rentabilidad_proyecto.dart';
 import '../modelos/validacion_producto.dart';
+import '../servicios/alimentacion_por_dias.dart';
 import '../servicios/documento_generado.dart';
 import '../servicios/generador_csv_proyecto.dart';
 import '../servicios/generador_informe_proyecto.dart';
@@ -26,6 +27,7 @@ import 'nueva_comercializacion.dart';
 import 'nueva_validacion.dart';
 import 'nuevo_apunte.dart';
 import 'nuevo_proyecto.dart';
+import 'pantalla_calculadora.dart';
 import 'pantalla_convenio.dart';
 
 /// Detalle de un proyecto de test: análisis de rentabilidad + producción,
@@ -85,7 +87,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
           proyectoId: _proyectoId, desdeMs: desde, hastaMs: hasta);
       final produccion = await _bd.listarRegistros(
           proyectoId: _proyectoId, desdeMs: desde, hastaMs: hasta);
-      final validaciones = await _bd.listarValidaciones(proyectoId: _proyectoId);
+      final validaciones =
+          await _bd.listarValidaciones(proyectoId: _proyectoId);
       final apuntes = await _bd.listarApuntes(
           proyectoId: _proyectoId, desdeMs: desde, hastaMs: hasta);
       final desglose = await _bd.desglosePorCategoria('gasto',
@@ -111,8 +114,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     if (delPeriodo != null) return delPeriodo;
     final inicio = _proyecto.fechaInicioMs;
     if (inicio == null) return null;
-    final fin =
-        _proyecto.fechaFinMs ?? DateTime.now().millisecondsSinceEpoch;
+    final fin = _proyecto.fechaFinMs ?? DateTime.now().millisecondsSinceEpoch;
     final dias = ((fin - inicio) / 86400000).round();
     return dias > 0 ? dias : null;
   }
@@ -146,7 +148,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   Future<void> _anadir(int pestana) async {
     switch (pestana) {
       case 0:
-        await _abrir(NuevaActividad(proyectoId: _proyectoId, fincaId: _fincaId));
+        await _abrir(
+            NuevaActividad(proyectoId: _proyectoId, fincaId: _fincaId));
       case 1:
         await _abrir(NuevaComercializacion(proyectoId: _proyectoId));
       case 2:
@@ -275,6 +278,20 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     }
   }
 
+  /// Kg de alimentación por día y lote de todo el proyecto, para Excel.
+  Future<void> _exportarAlimentacion() async {
+    final registros = await _bd.listarRegistros(proyectoId: _proyectoId);
+    final documento = documentoAlimentacion(_proyecto.nombre, registros);
+    try {
+      await compartirDocumentos([documento], asunto: _proyecto.nombre);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(documento.nombreFichero)));
+      }
+    }
+  }
+
   Future<void> _exportarCsv() async {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
@@ -348,7 +365,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
     final p = _proyecto;
-    final subt = [p.persona, p.actividad].where((s) => s.isNotEmpty).join(' · ');
+    final subt =
+        [p.persona, p.actividad].where((s) => s.isNotEmpty).join(' · ');
     if (_cargando) {
       return Scaffold(
         appBar: AppBar(title: Text(p.nombre)),
@@ -401,6 +419,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                     _exportarCsv();
                   case 2:
                     _enviarCoordinador();
+                  case 3:
+                    _exportarAlimentacion();
                 }
               },
               itemBuilder: (_) => [
@@ -425,7 +445,20 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                       title: Text(textos.enviarCoordinador),
                       contentPadding: EdgeInsets.zero),
                 ),
+                PopupMenuItem(
+                  value: 3,
+                  child: ListTile(
+                      leading: const Icon(Icons.grass_outlined),
+                      title: Text(textos.alimentacionExcel),
+                      contentPadding: EdgeInsets.zero),
+                ),
               ],
+            ),
+            IconButton(
+              tooltip: textos.calculadoraTitulo,
+              icon: const Icon(Icons.calculate_outlined),
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => PantallaCalculadora(proyecto: _proyecto))),
             ),
             IconButton(
               tooltip: textos.convenioTitulo,
@@ -500,8 +533,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(subt,
-                      style: Theme.of(context).textTheme.bodyMedium),
+                  child:
+                      Text(subt, style: Theme.of(context).textTheme.bodyMedium),
                 ),
               ),
             _PanelRentabilidad(
@@ -517,10 +550,13 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
             Expanded(
               child: TabBarView(
                 children: [
-                  _ListaProduccion(items: _produccion, idioma: idioma, textos: textos),
+                  _ListaProduccion(
+                      items: _produccion, idioma: idioma, textos: textos),
                   _ListaVentas(items: _ventas, idioma: idioma, textos: textos),
-                  _ListaValidacion(items: _validaciones, idioma: idioma, textos: textos),
-                  _ListaApuntes(items: _apuntes, idioma: idioma, textos: textos),
+                  _ListaValidacion(
+                      items: _validaciones, idioma: idioma, textos: textos),
+                  _ListaApuntes(
+                      items: _apuntes, idioma: idioma, textos: textos),
                 ],
               ),
             ),
@@ -559,8 +595,8 @@ class _PanelRentabilidad extends StatelessWidget {
           _Cifra(textos.rentMargen,
               '${rent.margenPorcentaje.toStringAsFixed(0)} %'),
           if (proyeccion != null)
-            _Cifra(textos.rentProyeccion,
-                '${eurosDesdeCentimos(proyeccion)} €'),
+            _Cifra(
+                textos.rentProyeccion, '${eurosDesdeCentimos(proyeccion)} €'),
         ],
       ),
     );
@@ -615,7 +651,8 @@ class _ListaProduccion extends StatelessWidget {
           leading: const Icon(Icons.grass_outlined),
           title: Text(
               '${buscarOpcion(tiposActividad, a.tipo)?.etiqueta(idioma) ?? a.tipo} · ${cantidadBonita(a.cantidad)} ${unidadActividad(a.tipo, idioma)}'),
-          subtitle: Text(f.format(DateTime.fromMillisecondsSinceEpoch(a.fechaMs))),
+          subtitle:
+              Text(f.format(DateTime.fromMillisecondsSinceEpoch(a.fechaMs))),
         ),
     ]);
   }
@@ -637,7 +674,9 @@ class _ListaVentas extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.storefront_outlined),
           title: Text(c.producto.isEmpty
-              ? (buscarOpcion(canalesComercializacion, c.canal)?.etiqueta(idioma) ?? c.canal)
+              ? (buscarOpcion(canalesComercializacion, c.canal)
+                      ?.etiqueta(idioma) ??
+                  c.canal)
               : c.producto),
           subtitle: Text(
               '${buscarOpcion(canalesComercializacion, c.canal)?.etiqueta(idioma) ?? c.canal} · ${cantidadBonita(c.cantidad)} ${c.unidad} · ${f.format(DateTime.fromMillisecondsSinceEpoch(c.fechaMs))}'),
@@ -664,10 +703,13 @@ class _ListaValidacion extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.verified_outlined),
           title: Text(v.descripcion.isEmpty
-              ? (buscarOpcion(resultadosValidacion, v.resultado)?.etiqueta(idioma) ?? v.resultado)
+              ? (buscarOpcion(resultadosValidacion, v.resultado)
+                      ?.etiqueta(idioma) ??
+                  v.resultado)
               : v.descripcion),
           subtitle: Text([
-            buscarOpcion(resultadosValidacion, v.resultado)?.etiqueta(idioma) ?? v.resultado,
+            buscarOpcion(resultadosValidacion, v.resultado)?.etiqueta(idioma) ??
+                v.resultado,
             if (v.valoracion > 0) '${v.valoracion}/5',
             f.format(DateTime.fromMillisecondsSinceEpoch(v.fechaMs)),
           ].join(' · ')),
@@ -690,12 +732,16 @@ class _ListaApuntes extends StatelessWidget {
     return ListView(children: [
       for (final a in items)
         ListTile(
-          leading: Icon(a.tipo == 'ingreso' ? Icons.south_west : Icons.north_east,
-              color: a.tipo == 'ingreso' ? colorEstadoHecha : colorEstadoBloqueada),
+          leading: Icon(
+              a.tipo == 'ingreso' ? Icons.south_west : Icons.north_east,
+              color: a.tipo == 'ingreso'
+                  ? colorEstadoHecha
+                  : colorEstadoBloqueada),
           title: Text(a.concepto.isEmpty
               ? (buscarOpcion(tiposApunte, a.tipo)?.etiqueta(idioma) ?? a.tipo)
               : a.concepto),
-          subtitle: Text(f.format(DateTime.fromMillisecondsSinceEpoch(a.fechaMs))),
+          subtitle:
+              Text(f.format(DateTime.fromMillisecondsSinceEpoch(a.fechaMs))),
           trailing: Text('${eurosDesdeCentimos(a.importeCentimos)} €',
               style: const TextStyle(fontWeight: FontWeight.w600)),
         ),

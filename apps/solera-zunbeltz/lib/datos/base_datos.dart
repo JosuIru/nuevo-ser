@@ -4,6 +4,7 @@ import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../modelos/agenda.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/aviso_campo.dart';
 import '../modelos/entrada_actividad.dart';
@@ -25,6 +26,7 @@ import '../modelos/zona_finca.dart';
 import '../utiles/uid.dart';
 
 part 'base_datos_comunicacion.dart';
+part 'base_datos_agenda.dart';
 part 'base_datos_convenio.dart';
 part 'base_datos_sync.dart';
 
@@ -96,7 +98,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 9;
+  static const int versionEsquema = 10;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -109,6 +111,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 7) await aplicarMigracionV7(db);
     if (anterior < 8) await aplicarMigracionV8(db);
     if (anterior < 9) await aplicarMigracionV9(db);
+    if (anterior < 10) await aplicarMigracionV10(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -490,7 +493,26 @@ class BaseDatosSoleraZunbeltz {
       await db.execute(
           'ALTER TABLE $tabla ADD COLUMN actualizado_ms INTEGER NOT NULL DEFAULT 0');
     }
-    for (final tabla in tablasSincronizables) {
+    // Solo las tablas que existen en la v9: las de versiones posteriores se
+    // crean ya con uid en su propia migración.
+    const tablasHastaV9 = {
+      'fincas',
+      'zonas_finca',
+      'puntos_infraestructura',
+      'proyectos_test',
+      'registros_actividad',
+      'apuntes_economicos',
+      'registros_comercializacion',
+      'validaciones_producto',
+      'partidas_presupuesto',
+      'movimientos_fianza',
+      'acompanamientos',
+      'incidencias_cumplimiento',
+      'peticiones',
+      'avisos',
+    };
+    for (final tabla in tablasSincronizables
+        .where((descriptor) => tablasHastaV9.contains(descriptor.tabla))) {
       final columnas = tabla.tabla == 'fincas' ? ['id', 'nombre'] : ['id'];
       for (final fila in await db.query(tabla.tabla, columns: columnas)) {
         final uidFijo = tabla.tabla == 'fincas'
@@ -540,6 +562,60 @@ class BaseDatosSoleraZunbeltz {
         origen TEXT NOT NULL DEFAULT 'app'
       )
     ''');
+  }
+
+  /// Migración v9 → v10: agenda de contactos, rendimientos de referencia y
+  /// escenarios de la calculadora de transformación. Aditiva.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV10(Database db) async {
+    const columnasSync =
+        "uid TEXT NOT NULL DEFAULT '', actualizado_ms INTEGER NOT NULL DEFAULT 0";
+    await db.execute('''
+      CREATE TABLE contactos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        autor_uid TEXT NOT NULL DEFAULT '',
+        nombre TEXT NOT NULL DEFAULT '',
+        tipo TEXT NOT NULL DEFAULT 'otro',
+        telefono TEXT NOT NULL DEFAULT '',
+        correo TEXT NOT NULL DEFAULT '',
+        localidad TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT ''
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE rendimientos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        nombre TEXT NOT NULL DEFAULT '',
+        rendimiento_canal REAL NOT NULL DEFAULT 0,
+        rendimiento_producto REAL NOT NULL DEFAULT 100,
+        fuente TEXT NOT NULL DEFAULT ''
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE escenarios_transformacion (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        proyecto_id INTEGER NOT NULL,
+        nombre TEXT NOT NULL DEFAULT '',
+        peso_vivo_kg REAL NOT NULL DEFAULT 0,
+        animales INTEGER NOT NULL DEFAULT 1,
+        rendimiento_canal REAL NOT NULL DEFAULT 0,
+        rendimiento_producto REAL NOT NULL DEFAULT 100,
+        precio_kg_centimos INTEGER NOT NULL DEFAULT 0,
+        coste_sacrificio_centimos INTEGER NOT NULL DEFAULT 0,
+        coste_transformacion_kg_centimos INTEGER NOT NULL DEFAULT 0,
+        otros_costes_centimos INTEGER NOT NULL DEFAULT 0,
+        notas TEXT NOT NULL DEFAULT '',
+        fecha_ms INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY (proyecto_id) REFERENCES proyectos_test(id) ON DELETE CASCADE
+      )
+    ''');
+    for (final tabla in const [
+      'contactos',
+      'rendimientos',
+      'escenarios_transformacion',
+    ]) {
+      await db.execute('CREATE UNIQUE INDEX idx_${tabla}_uid ON $tabla(uid)');
+    }
   }
 
   // ─── Fincas ─────────────────────────────────────────────
@@ -1477,7 +1553,8 @@ class BaseDatosSoleraZunbeltz {
 
   /// Avisos y una petición de ejemplo para la bandeja de Hoy. No hace nada si
   /// ya hay avisos. Devuelve true si sembró.
-  Future<bool> _sembrarComunicacionDemo(List<Finca> fincas, DateTime ahora) async {
+  Future<bool> _sembrarComunicacionDemo(
+      List<Finca> fincas, DateTime ahora) async {
     if ((await listarAvisos()).isNotEmpty) return false;
     final fincaId = fincas.isEmpty ? null : fincas.first.id;
     int hace(int horas) =>

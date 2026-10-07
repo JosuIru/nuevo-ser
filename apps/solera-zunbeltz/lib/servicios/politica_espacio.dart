@@ -62,6 +62,18 @@ class PoliticaEspacio {
 
   bool get puedeVerActividad => _puede(capacidadVerActividad);
 
+  bool get puedeGestionarContactos => _puede(capacidadGestionarContactos);
+
+  bool get puedeCrearContactos =>
+      _puede(capacidadCrearContactos) || puedeGestionarContactos;
+
+  /// Editar o borrar un contacto: quien lo añadió o quien gestiona contactos.
+  bool puedeEditarContacto(String autorUid) =>
+      puedeGestionarContactos || (miUid.isNotEmpty && autorUid == miUid);
+
+  /// Rendimientos de referencia de la calculadora: solo coordinación.
+  bool get puedeEditarRendimientos => puedeGestionarProyectos;
+
   /// Los documentos salen sin marca de BORRADOR solo cuando los genera
   /// coordinación identificada (no en modo local) y, si son de un proyecto,
   /// con el proyecto cerrado (respuestas de Zunbeltz, 2026-10-06).

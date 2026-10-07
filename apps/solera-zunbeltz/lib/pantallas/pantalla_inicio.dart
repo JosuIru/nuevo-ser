@@ -17,6 +17,7 @@ import '../utiles/traductor_actualizaciones.dart';
 import 'nueva_peticion.dart';
 import 'nuevo_aviso.dart';
 import 'pantalla_ayuda.dart';
+import 'pantalla_contactos.dart';
 import 'pantalla_meteo.dart';
 import 'pantalla_peticiones.dart';
 import 'tablero_tareas.dart';
@@ -120,6 +121,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 onPressed: sincronizando ? null : _refrescar,
               ),
             ),
+          IconButton(
+            tooltip: textos.contactosTitulo,
+            icon: const Icon(Icons.contacts_outlined),
+            onPressed: () => _abrir(const PantallaContactos()),
+          ),
           IconButton(
             tooltip: textos.hoyTiempo,
             icon: const Icon(Icons.cloud_outlined),

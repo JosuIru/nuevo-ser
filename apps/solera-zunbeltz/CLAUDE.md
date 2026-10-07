@@ -26,6 +26,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 > - **Panel de coordinación en WordPress** (`wp-plugin/solera-zunbeltz-sync/includes/panel/`): tareas (filtros, alta/edición, Excel), peticiones → tarea, avisos y noticias, proyectos (asignar tester, cerrar, cuentas), actividad, personas enlazadas a usuarios WP (permiso `gestionar_solera_zunbeltz`), **correo** diario a las 8:00 y al momento con alarmas y peticiones urgentes. Guía: `wp-plugin/solera-zunbeltz-sync/INSTALACION.md`.
 > - Pruebas: 151 tests Flutter, tests PHP (`test_sync`, `test_entidades`, `test_panel`), y de punta a punta contra WordPress en Docker (`dev/probar_sync.sh`, `dev/probar_panel.sh`, `test/integracion_wordpress_test.dart`).
 
+> **2026-10-07 — contactos, calculadora de transformación y Excel de alimentación (BD v10)**. Agenda compartida de **contactos** (cualquiera añade, cada cual edita los suyos, coordinación todos; también en el panel WP). **Calculadora de transformación** por proyecto (peso vivo → canal → producto → ingreso, costes, margen, margen por kg vivo) con **escenarios** guardados para comparar caminos; los **rendimientos de referencia** no vienen de serie: los pone coordinación en el panel WP (con su fuente). **Alimentación por días** en Excel desde el proyecto (app) y desde Proyectos (panel WP). Tipos sincronizados nuevos: `contacto`, `rendimiento`, `escenario_transformacion`.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

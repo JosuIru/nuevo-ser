@@ -77,6 +77,8 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
               t.ayudaNumerosT, t.ayudaNumerosB, Icons.bar_chart_outlined),
           _ApartadoAyuda(
               t.ayudaConvenioT, t.ayudaConvenioB, Icons.handshake_outlined),
+          _ApartadoAyuda(t.ayudaCalculadoraT, t.ayudaCalculadoraB,
+              Icons.calculate_outlined),
           _ApartadoAyuda(t.ayudaInformesT, t.ayudaInformesB, Icons.ios_share),
         ]),
         _GrupoAyuda(t.ayudaGrupoEquipo, [
@@ -84,6 +86,8 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
           _ApartadoAyuda(t.ayudaRolesT, t.ayudaRolesB, Icons.badge_outlined),
           _ApartadoAyuda(t.ayudaPeticionesT, t.ayudaPeticionesB,
               Icons.add_comment_outlined),
+          _ApartadoAyuda(
+              t.ayudaContactosT, t.ayudaContactosB, Icons.contacts_outlined),
           _ApartadoAyuda(t.ayudaNotificacionesT, t.ayudaNotificacionesB,
               Icons.notifications_outlined),
         ]),

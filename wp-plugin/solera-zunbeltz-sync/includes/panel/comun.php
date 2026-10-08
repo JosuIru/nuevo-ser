@@ -176,10 +176,27 @@ function szs_nombres_fincas(): array {
 /**
  * Crea o cambia una entidad desde el panel con la marca de tiempo de ahora,
  * deja huella en la actividad y avisa (correo inmediato, etc.).
+ *
+ * Si mientras tanto alguien la ha borrado (un formulario abierto de antes),
+ * no se toca: guardarla la resucitaría en todos los móviles.
  */
 function szs_guardar_entidad_desde_panel( string $tipo, string $uid, array $datos, string $proyecto_uid = '' ): array {
+	$con_candado = szs_tomar_candado_espacio();
+	try {
+		return szs_guardar_entidad_desde_panel_con_candado( $tipo, $uid, $datos, $proyecto_uid );
+	} finally {
+		if ( $con_candado ) {
+			szs_soltar_candado_espacio();
+		}
+	}
+}
+
+function szs_guardar_entidad_desde_panel_con_candado( string $tipo, string $uid, array $datos, string $proyecto_uid ): array {
 	$persona   = szs_persona_del_panel();
 	$existente = szs_obtener_entidad( $tipo, $uid );
+	if ( null !== $existente && $existente['borrado'] ) {
+		return $existente;
+	}
 	$entidad   = szs_normalizar_entidad(
 		array(
 			'tipo'           => $tipo,

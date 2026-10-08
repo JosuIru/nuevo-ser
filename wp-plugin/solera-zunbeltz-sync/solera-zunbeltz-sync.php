@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     0.3.0
+ * Version:     0.4.0
  * Author:      Equipo Colección Nuevo Ser
  * Author URI:  https://coleccion-nuevo-ser.com/
  * License:     GPL-2.0-or-later
@@ -35,6 +35,12 @@
  *   aceptado, venga de la app o del panel.
  * - Panel de coordinación (`includes/panel/`) y correos (`includes/correo.php`).
  * - La app web servida en `/app/` (`includes/app-web.php`, ficheros en `app-web/`).
+ * - Datos de demostración para desarrollo (`includes/datos-demo.php`): se
+ *   crean y se retiran desde el panel o con `wp solera-zunbeltz demo`;
+ *   ocultos en producción.
+ * - Noticias del sector (`includes/noticias-sector.php`): canales RSS que
+ *   coordinación da de alta en el panel; el servidor los lee cada tres
+ *   horas y la app los baja con `GET /noticias`.
  *
  * Instalación y puesta en marcha: `INSTALACION.md`. Entorno de pruebas con
  * Docker: `dev/`.
@@ -49,13 +55,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '0.3.0' );
-define( 'SZS_VERSION_ESQUEMA', 4 );
+define( 'SZS_VERSION', '0.4.0' );
+define( 'SZS_VERSION_ESQUEMA', 6 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
 define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
 define( 'SZS_TABLA_REVISIONES', 'solera_zunbeltz_revisiones' );
 define( 'SZS_TABLA_ACTIVIDAD', 'solera_zunbeltz_actividad' );
+/** uids de tareas borradas, para que una copia vieja no las resucite. */
+define( 'SZS_TABLA_TAREAS_BORRADAS', 'solera_zunbeltz_tareas_borradas' );
 define( 'SZS_OPCION_VERSION_ESQUEMA', 'solera_zunbeltz_sync_esquema' );
 /** Token compartido de la v0.1, retirado en la v0.2. */
 define( 'SZS_OPCION_TOKEN_COMPARTIDO_V1', 'solera_zunbeltz_sync_token' );
@@ -76,6 +84,8 @@ require_once __DIR__ . '/includes/panel/pagina-android.php';
 require_once __DIR__ . '/includes/panel/pagina-agenda.php';
 require_once __DIR__ . '/includes/correo.php';
 require_once __DIR__ . '/includes/app-web.php';
+require_once __DIR__ . '/includes/datos-demo.php';
+require_once __DIR__ . '/includes/noticias-sector.php';
 
 // ============================================================
 // Esquema: se crea al activar y se actualiza al cargar si cambió
@@ -84,6 +94,7 @@ require_once __DIR__ . '/includes/app-web.php';
 
 register_activation_hook( __FILE__, 'szs_instalar_esquema' );
 register_deactivation_hook( __FILE__, 'szs_desprogramar_correo_diario' );
+register_deactivation_hook( __FILE__, 'szs_desprogramar_lectura_canales' );
 add_action( 'plugins_loaded', 'szs_actualizar_esquema_si_hace_falta' );
 
 function szs_actualizar_esquema_si_hace_falta(): void {
@@ -181,6 +192,15 @@ function szs_instalar_esquema(): void {
 		origen VARCHAR(20) NOT NULL DEFAULT 'app',
 		PRIMARY KEY  (id),
 		KEY momento_ms (momento_ms)
+	) {$charset_collate};"
+	);
+	szs_instalar_esquema_noticias( $charset_collate );
+	$tabla_tareas_borradas = $wpdb->prefix . SZS_TABLA_TAREAS_BORRADAS;
+	dbDelta(
+		"CREATE TABLE {$tabla_tareas_borradas} (
+		uid VARCHAR(64) NOT NULL,
+		borrado_ms BIGINT NOT NULL DEFAULT 0,
+		PRIMARY KEY  (uid)
 	) {$charset_collate};"
 	);
 
@@ -341,16 +361,44 @@ function szs_procesar_tareas_entrantes( array $persona, array $tareas_entrantes,
 
 	$forzar   = array();
 	$rechazos = array();
+
+	// Primero los cambios y luego las altas: si el móvil cierra una tarea
+	// periódica y sube también la siguiente que ha generado, el servidor
+	// genera esa misma (mismo uid) al aceptar el cierre, y la del móvil
+	// llega como una versión ya existente en vez de como un alta que una
+	// tester no puede hacer.
+	$entrantes = array();
 	foreach ( $tareas_entrantes as $item ) {
 		if ( ! is_array( $item ) ) {
 			continue;
 		}
 		$entrante = szs_normalizar_tarea( $item );
-		if ( '' === $entrante['uid'] ) {
-			continue;
+		if ( '' !== $entrante['uid'] ) {
+			$entrantes[] = $entrante;
 		}
+	}
+	$uids_existentes = array();
+	if ( ! empty( $entrantes ) ) {
+		$marcadores      = implode( ',', array_fill( 0, count( $entrantes ), '%s' ) );
+		$uids_existentes = array_flip(
+			(array) $wpdb->get_col( $wpdb->prepare( "SELECT uid FROM {$tabla} WHERE uid IN ({$marcadores})", array_column( $entrantes, 'uid' ) ) )
+		);
+	}
+	usort(
+		$entrantes,
+		static fn( array $a, array $b ): int => ( isset( $uids_existentes[ $a['uid'] ] ) ? 0 : 1 ) <=> ( isset( $uids_existentes[ $b['uid'] ] ) ? 0 : 1 )
+	);
+
+	foreach ( $entrantes as $entrante ) {
 		$fila       = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$tabla} WHERE uid = %s", $entrante['uid'] ), ARRAY_A );
 		$existente  = is_array( $fila ) ? szs_normalizar_tarea( $fila ) : null;
+		// Borrada en el panel o en otro móvil: una copia que la editó sin
+		// cobertura no la vuelve a crear. Con `forzar` y sin ella en la
+		// respuesta, el móvil la borra.
+		if ( null === $existente && szs_tarea_borrada( $entrante['uid'] ) ) {
+			$forzar[] = $entrante['uid'];
+			continue;
+		}
 		$resolucion = szs_resolver_tarea_entrante( $existente, $entrante, $persona_uid, $capacidades );
 
 		$ajustada = $resolucion['ajustada'];
@@ -358,6 +406,9 @@ function szs_procesar_tareas_entrantes( array $persona, array $tareas_entrantes,
 			$guardada = szs_guardar_tarea( $tabla, $resolucion['datos'], 'insertar' === $resolucion['accion'] );
 			$ajustada = $ajustada || $guardada['responsable'] !== $entrante['responsable'];
 			szs_registrar_actividad_tarea( $persona, $existente, $guardada, $origen );
+			// Si la cierra una tester (que no puede crear tareas), la
+			// siguiente la genera el servidor.
+			szs_generar_siguiente_periodica_si_toca( $tabla, $persona, $existente, $guardada, $origen );
 		}
 		if ( $ajustada ) {
 			$forzar[] = $entrante['uid'];
@@ -385,11 +436,54 @@ function szs_procesar_tareas_entrantes( array $persona, array $tareas_entrantes,
 			);
 			continue;
 		}
-		$wpdb->delete( $tabla, array( 'uid' => $uid ) );
+		szs_borrar_tarea_con_lapida( $uid );
 		$tarea = szs_normalizar_tarea( $fila );
 		szs_registrar_actividad( $persona, 'borrar', 'tarea', $uid, $tarea['titulo'], $tarea['finca_nombre'], '', $origen );
 	}
 	return array( $forzar, $rechazos );
+}
+
+/** Borra una tarea y deja constancia de su uid para que no vuelva. */
+function szs_borrar_tarea_con_lapida( string $uid ): void {
+	global $wpdb;
+	$wpdb->delete( $wpdb->prefix . SZS_TABLA, array( 'uid' => $uid ) );
+	$wpdb->replace(
+		$wpdb->prefix . SZS_TABLA_TAREAS_BORRADAS,
+		array(
+			'uid'        => $uid,
+			'borrado_ms' => szs_ahora_ms(),
+		)
+	);
+}
+
+function szs_tarea_borrada( string $uid ): bool {
+	global $wpdb;
+	$tabla = $wpdb->prefix . SZS_TABLA_TAREAS_BORRADAS;
+	return null !== $wpdb->get_var( $wpdb->prepare( "SELECT uid FROM {$tabla} WHERE uid = %s", $uid ) );
+}
+
+/**
+ * Al cerrar una tarea periódica (o darla de alta ya hecha), crea la
+ * siguiente instancia salvo que ya exista: el uid es fijo para cada tarea
+ * (`szs_uid_siguiente_periodica`), así que si un móvil ya la había
+ * generado no se duplica.
+ */
+function szs_generar_siguiente_periodica_si_toca( string $tabla, array $persona, ?array $existente, array $guardada, string $origen ): void {
+	global $wpdb;
+	$se_cierra = 'hecha' === $guardada['estado'] && ( null === $existente || 'hecha' !== $existente['estado'] );
+	if ( ! $se_cierra ) {
+		return;
+	}
+	$uid_siguiente = szs_uid_siguiente_periodica( $guardada['uid'] );
+	$siguiente     = szs_siguiente_tarea_periodica( $guardada, szs_ahora_ms(), $uid_siguiente );
+	if ( null === $siguiente ) {
+		return;
+	}
+	if ( null !== $wpdb->get_var( $wpdb->prepare( "SELECT uid FROM {$tabla} WHERE uid = %s", $uid_siguiente ) ) ) {
+		return;
+	}
+	$nueva = szs_guardar_tarea( $tabla, $siguiente, true );
+	szs_registrar_actividad_tarea( $persona, null, $nueva, $origen );
 }
 
 /**

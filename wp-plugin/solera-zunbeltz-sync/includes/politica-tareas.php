@@ -207,7 +207,9 @@ function szs_recortar( $valor, int $max ): string {
 	$texto = is_string( $valor ) ? $valor : (string) $valor;
 	$texto = sanitize_text_field( $texto );
 	if ( strlen( $texto ) > $max ) {
-		$texto = substr( $texto, 0, $max );
+		// Por bytes pero sin partir una letra con tilde: un UTF-8 roto hace
+		// fallar el insert sin que nadie se entere.
+		$texto = mb_strcut( $texto, 0, $max, 'UTF-8' );
 	}
 	return $texto;
 }

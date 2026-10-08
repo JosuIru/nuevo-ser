@@ -73,3 +73,16 @@ La entrada del WordPress es el tema **Zunbeltz Espacio** (`wp-theme/zunbeltz-esp
 - Entrar a `https://app.zunbeltz.com/wp-json/solera-zunbeltz/v1/yo` sin token debe dar **401** (la API está viva y protegida).
 - En la app, «Sincronizar ahora» debe decir «… cambios enviados · … recibidos».
 - En el panel, **Actividad** debe mostrar lo que se acaba de sincronizar.
+
+## 9. Datos de demostración (solo en desarrollo)
+
+En un WordPress de pruebas (`WP_ENVIRONMENT_TYPE` distinto de `production`, como el de Local) aparece **Solera Zunbeltz → Datos demo**: crea personas (una de coordinación y dos tester, con sus tokens), puntos fijos y móviles, zonas, tareas en todos los estados, tres proyectos con todo su seguimiento y convenio, peticiones, avisos, contactos, rendimientos y actividad. **Retirar datos de demostración** lo quita todo, también de los móviles ya sincronizados. Lo mismo desde la consola: `wp solera-zunbeltz demo sembrar | vaciar | estado`.
+
+En producción no aparece. Para forzarlo (o esconderlo en pruebas): `define( 'SZS_DATOS_DEMO', true );` (o `false`) en `wp-config.php`.
+
+## 10. Noticias del sector (canales RSS)
+
+**Solera Zunbeltz → Noticias del sector**: coordinación da de alta canales RSS/Atom (nombre, dirección del feed, idioma y, opcionalmente, palabras clave para filtrar medios generalistas). El servidor los lee **cada tres horas** con el cron de WordPress y la app los muestra en Hoy → Noticias, debajo de lo que publica el espacio. Se guarda solo titular, entradilla corta y enlace; las noticias de más de 90 días se borran solas (salvo las fijadas). Desde la misma página se puede fijar u ocultar cada noticia y forzar la lectura.
+
+- El cron de WordPress solo corre cuando alguien visita la web. Si el subdominio tiene poco tráfico, conviene un cron real del servidor: `*/15 * * * * curl -s https://app.zunbeltz.com/wp-cron.php > /dev/null`.
+- Canales comprobados el 2026-10-08: UAGN (`https://www.uagn.es/feed/`), Red de Espacios Test Agrarios (`https://www.espaciostestagrarios.org/feed/`), EFEAgro (`https://www.efeagro.com/feed/`, con palabras clave). Sin RSS útil encontrado: INTIA, Gobierno de Navarra, Diario de Navarra, Berria. EHNE Nafarroa no respondió.

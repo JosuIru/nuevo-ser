@@ -140,6 +140,27 @@ function szs_proyectos_visibles( string $persona_uid, array $capacidades ): arra
 	return $uids;
 }
 
+/**
+ * Huella de lo que puede ver una persona: su rol, sus capacidades y los
+ * proyectos que le tocan. El cursor de revisión solo trae lo que ha
+ * cambiado, así que cuando cambia la visibilidad (se le asigna o se le
+ * quita un proyecto, cambia de rol) no le llegaría el seguimiento antiguo
+ * del proyecto nuevo, ni se le retiraría lo que deja de ver. Si la huella
+ * cambia, la app hace una sincronización completa.
+ *
+ * Quien ve todos los proyectos no depende de cuáles haya: no cuenta la
+ * lista, para no forzar una completa cada vez que se crea uno.
+ *
+ * @param string[] $capacidades
+ * @param string[] $proyectos_visibles
+ */
+function szs_huella_visibilidad( string $rol, array $capacidades, array $proyectos_visibles ): string {
+	sort( $capacidades );
+	sort( $proyectos_visibles );
+	$proyectos = szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_PROYECTOS ) ? '*' : implode( ',', $proyectos_visibles );
+	return substr( sha1( $rol . '|' . implode( ',', $capacidades ) . '|' . $proyectos ), 0, 12 );
+}
+
 /** Nombre de la finca o del proyecto en que ocurre algo, para la actividad. */
 function szs_contexto_entidad( array $entidad ): string {
 	$finca_uid = $entidad['datos']['finca_uid'] ?? '';
@@ -202,6 +223,16 @@ function szs_procesar_entidades_entrantes( array $persona, array $items, string 
 			continue;
 		}
 		if ( 'ignorar' === $resolucion['accion'] ) {
+			// El móvil manda una versión distinta pero no más reciente (reloj
+			// atrasado, o la misma marca de tiempo): que se quede con la del
+			// servidor, que por el cursor quizá no le volvería a llegar.
+			if ( null !== $existente
+				&& ( $existente['datos'] != $entrante['datos'] || $existente['borrado'] !== $entrante['borrado'] ) ) {
+				$forzar[] = array(
+					'tipo' => $entrante['tipo'],
+					'uid'  => $entrante['uid'],
+				);
+			}
 			continue;
 		}
 		$guardada = szs_guardar_entidad( $entrante, $existente, $resolucion['autor_uid'] );
@@ -245,7 +276,41 @@ function szs_listar_entidades_cambiadas( string $persona_uid, array $capacidades
 	return $visibles;
 }
 
+/**
+ * Candado de escritura del espacio. La revisión se reserva antes de
+ * escribir la fila: sin candado, otra sincronización podría leer una
+ * revisión mayor ya escrita, avanzar su cursor y no recibir nunca la fila
+ * que aún se estaba escribiendo. Los candados de MySQL son reentrantes en
+ * la misma conexión, así que el panel puede tomarlo dentro de otro.
+ */
+function szs_tomar_candado_espacio(): bool {
+	global $wpdb;
+	return '1' === (string) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, 15)', $wpdb->prefix . 'szs_espacio' ) );
+}
+
+function szs_soltar_candado_espacio(): void {
+	global $wpdb;
+	$wpdb->query( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', $wpdb->prefix . 'szs_espacio' ) );
+}
+
 function szs_endpoint_sync( WP_REST_Request $request ) {
+	if ( ! szs_tomar_candado_espacio() ) {
+		return new WP_REST_Response(
+			array(
+				'error'   => 'ocupado',
+				'mensaje' => 'Hay otra sincronización en curso. Se reintentará.',
+			),
+			503
+		);
+	}
+	try {
+		return szs_endpoint_sync_con_candado( $request );
+	} finally {
+		szs_soltar_candado_espacio();
+	}
+}
+
+function szs_endpoint_sync_con_candado( WP_REST_Request $request ) {
 	$persona     = $request->get_param( 'szs_persona' );
 	$persona_uid = (string) $persona['uid'];
 	$capacidades = szs_capacidades_de_rol( (string) $persona['rol'] );
@@ -275,9 +340,15 @@ function szs_endpoint_sync( WP_REST_Request $request ) {
 	foreach ( $entidades as $entidad ) {
 		$ya_incluidas[ $entidad['tipo'] . '|' . $entidad['uid'] ] = true;
 	}
+	// Solo si esta persona puede verla: si no, subir un uid ajeno con
+	// una fecha imposible bastaría para leer el proyecto de otra tester. Sin
+	// ella en la respuesta, el móvil borra su copia rechazada.
+	$proyectos_visibles = szs_proyectos_visibles( $persona_uid, $capacidades );
 	foreach ( $forzar_entidades as $clave ) {
 		$actual = szs_obtener_entidad( $clave['tipo'], $clave['uid'] );
-		if ( null !== $actual && ! isset( $ya_incluidas[ $clave['tipo'] . '|' . $clave['uid'] ] ) ) {
+		if ( null !== $actual
+			&& ! isset( $ya_incluidas[ $clave['tipo'] . '|' . $clave['uid'] ] )
+			&& szs_entidad_visible( $actual, $persona_uid, $capacidades, $proyectos_visibles ) ) {
 			$entidades[] = $actual;
 		}
 	}
@@ -297,6 +368,7 @@ function szs_endpoint_sync( WP_REST_Request $request ) {
 				'forzar'             => $forzar_tareas,
 				'rechazos'           => $rechazos_tareas,
 				'actividad'          => $actividad,
+				'huella_visibilidad' => szs_huella_visibilidad( (string) $persona['rol'], $capacidades, $proyectos_visibles ),
 			),
 			szs_respuesta_sesion( $persona )
 		),

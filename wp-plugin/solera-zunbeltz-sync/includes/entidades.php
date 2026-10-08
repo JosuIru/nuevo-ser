@@ -84,8 +84,29 @@ function szs_normalizar_entidad( array $entidad ): array {
 		'borrado'        => ! empty( $entidad['borrado'] ),
 		'proyecto_uid'   => szs_recortar( $entidad['proyecto_uid'] ?? '', 64 ),
 		'autor_uid'      => szs_recortar( $entidad['autor_uid'] ?? '', 64 ),
-		'datos'          => is_array( $datos ) ? $datos : array(),
+		'datos'          => szs_sanear_datos_entidad( is_array( $datos ) ? $datos : array() ),
 	);
+}
+
+/**
+ * Tipos de los campos de `datos` que el servidor y el panel usan para
+ * calcular o como clave: fechas e importes, números; uids y códigos, texto.
+ * Un móvil roto o malintencionado podría mandar `fecha_ms: "x"` o
+ * `categoria: []`, y el panel fallaría con un error de PHP al pintarlo.
+ */
+function szs_sanear_datos_entidad( array $datos ): array {
+	$campos_texto = array( 'categoria', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion' );
+	foreach ( $datos as $clave => $valor ) {
+		if ( null === $valor ) {
+			continue;
+		}
+		if ( preg_match( '/(_ms|_centimos|_porcentaje|_dias)$/', (string) $clave ) ) {
+			$datos[ $clave ] = is_numeric( $valor ) ? $valor + 0 : 0;
+		} elseif ( str_ends_with( (string) $clave, '_uid' ) || in_array( $clave, $campos_texto, true ) ) {
+			$datos[ $clave ] = is_scalar( $valor ) ? (string) $valor : '';
+		}
+	}
+	return $datos;
 }
 
 function szs_puede( array $capacidades, string $capacidad ): bool {

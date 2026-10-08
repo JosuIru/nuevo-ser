@@ -67,12 +67,7 @@ function szs_guardar_tarea_desde_panel( array $datos, ?array $existente ): array
 	$guardada = szs_guardar_tarea( $tabla, szs_normalizar_tarea( $datos ), null === $existente );
 	szs_registrar_actividad_tarea( $persona, $existente, $guardada, 'panel' );
 
-	$se_cierra = 'hecha' === $guardada['estado'] && ( null === $existente || 'hecha' !== $existente['estado'] );
-	$siguiente = $se_cierra ? szs_siguiente_tarea_periodica( $guardada, $ahora, szs_nuevo_uid() ) : null;
-	if ( null !== $siguiente ) {
-		$nueva = szs_guardar_tarea( $tabla, $siguiente, true );
-		szs_registrar_actividad_tarea( $persona, null, $nueva, 'panel' );
-	}
+	szs_generar_siguiente_periodica_si_toca( $tabla, $persona, $existente, $guardada, 'panel' );
 	return $guardada;
 }
 
@@ -109,7 +104,7 @@ function szs_procesar_accion_tareas(): ?array {
 			if ( null === $existente ) {
 				return null;
 			}
-			$wpdb->delete( $wpdb->prefix . SZS_TABLA, array( 'uid' => $uid ) );
+			szs_borrar_tarea_con_lapida( $uid );
 			szs_registrar_actividad( szs_persona_del_panel(), 'borrar', 'tarea', $uid, $existente['titulo'], $existente['finca_nombre'], '', 'panel' );
 			return array( 'success', 'Tarea borrada. Desaparecerá de los móviles al sincronizar.' );
 
@@ -273,6 +268,11 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 			'prioridad'   => ! empty( $peticion['datos']['urgente'] ) ? 'alta' : 'media',
 		)
 	);
+	// Responsable ya desactivada: sin esta opción el desplegable mostraría
+	// «Sin asignar» y, al guardar, la tarea perdería su responsable.
+	if ( '' !== $valores['responsable_uid'] && ! isset( $personas[ $valores['responsable_uid'] ] ) ) {
+		$personas[ $valores['responsable_uid'] ] = ( '' !== $valores['responsable'] ? $valores['responsable'] : $valores['responsable_uid'] ) . ' (desactivada)';
+	}
 	?>
 	<div class="wrap">
 		<h1><?php echo null === $tarea ? 'Nueva tarea' : 'Editar tarea'; ?></h1>

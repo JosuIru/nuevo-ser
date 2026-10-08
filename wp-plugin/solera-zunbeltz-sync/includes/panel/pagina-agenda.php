@@ -39,6 +39,17 @@ function szs_registrar_paginas_agenda(): void {
 
 /** Lápida de una entidad desde el panel (llega como borrado a los móviles). */
 function szs_borrar_entidad_desde_panel( string $tipo, string $uid ): bool {
+	$con_candado = szs_tomar_candado_espacio();
+	try {
+		return szs_borrar_entidad_desde_panel_con_candado( $tipo, $uid );
+	} finally {
+		if ( $con_candado ) {
+			szs_soltar_candado_espacio();
+		}
+	}
+}
+
+function szs_borrar_entidad_desde_panel_con_candado( string $tipo, string $uid ): bool {
 	$existente = szs_obtener_entidad( $tipo, $uid );
 	if ( null === $existente || $existente['borrado'] ) {
 		return false;

@@ -62,6 +62,11 @@ $csv = szs_tareas_a_csv( array( $tareas[0] ) );
 afirmar( true, str_starts_with( $csv, "\u{FEFF}" ), 'el CSV lleva BOM para Excel' );
 afirmar( true, str_contains( $csv, 'Vencida;Zunbeltz' ), 'campos separados por punto y coma' );
 afirmar( true, str_contains( szs_tareas_a_csv( array( szs_normalizar_tarea( array( 'uid' => 'x', 'titulo' => 'Con ; y "comillas"' ) ) ) ), '"Con ; y ""comillas"""' ), 'los campos con ; o comillas se escapan' );
+afirmar( "\"'=HYPERLINK(\"\"http://x\"\")\"", szs_campo_csv( '=HYPERLINK("http://x")' ), 'una fórmula no se ejecuta al abrir en Excel' );
+afirmar( "'@SUMA(A1)", szs_campo_csv( '@SUMA(A1)' ), 'tampoco con @' );
+afirmar( '-12,50', szs_campo_csv( '-12,50' ), 'un número negativo sigue siendo un número' );
+afirmar( 'ñandú', szs_recortar( 'ñandú', 64 ), 'recortar no toca lo corto' );
+afirmar( true, mb_check_encoding( szs_recortar( str_repeat( 'á', 300 ), 501 ), 'UTF-8' ), 'recortar no parte una letra con tilde' );
 
 // --- tarea periódica: siguiente instancia al cerrarla ---
 $periodica = szs_normalizar_tarea( array( 'uid' => 'p', 'titulo' => 'Limpiar abrevadero', 'estado' => 'pendiente', 'recurrencia_dias' => 7, 'fecha_objetivo_ms' => $hoy_ms - $dia_ms, 'responsable_uid' => 'ane' ) );
@@ -71,6 +76,18 @@ afirmar( 'pendiente', $siguiente['estado'], '… y empieza pendiente' );
 afirmar( $hoy_ms + 7 * $dia_ms, $siguiente['fecha_objetivo_ms'], '… a 7 días de hoy (la fecha original ya pasó)' );
 afirmar( 'ane', $siguiente['responsable_uid'], '… con la misma responsable' );
 afirmar( null, szs_siguiente_tarea_periodica( $tareas[0], $hoy_ms, 'z' ), 'una tarea puntual no genera siguiente' );
+afirmar( 'sig-a9993e364706816aba3e25717850', szs_uid_siguiente_periodica( 'abc' ), 'el uid de la siguiente coincide con el de la app' );
+$madrid      = new DateTimeZone( 'Europe/Madrid' );
+$dia_22_oct  = ( new DateTimeImmutable( '2026-10-22 00:00', $madrid ) )->getTimestamp() * 1000;
+$antes_1_oct = ( new DateTimeImmutable( '2026-10-01 00:00', $madrid ) )->getTimestamp() * 1000;
+$con_cambio  = szs_siguiente_tarea_periodica( szs_normalizar_tarea( array( 'uid' => 'h', 'recurrencia_dias' => 7, 'fecha_objetivo_ms' => $dia_22_oct ) ), $antes_1_oct, 'x', $madrid );
+afirmar( '2026-10-29 00:00', ( new DateTimeImmutable( '@' . intdiv( $con_cambio['fecha_objetivo_ms'], 1000 ) ) )->setTimezone( $madrid )->format( 'Y-m-d H:i' ), 'con el cambio de hora del 25-oct la siguiente cae el 29 a medianoche, no el 28 a las 23:00' );
+
+// --- correo de las 8:00 con el cambio de hora ---
+$madrid = new DateTimeZone( 'Europe/Madrid' );
+$a_las  = static fn( int $segundos ): string => ( new DateTimeImmutable( '@' . $segundos ) )->setTimezone( $madrid )->format( 'Y-m-d H:i' );
+afirmar( '2026-10-26 08:00', $a_las( szs_proximas_8_de_la_manana( ( new DateTimeImmutable( '2026-10-25 09:00', $madrid ) )->getTimestamp(), $madrid ) ), 'tras el cambio de hora sigue llegando a las 8:00' );
+afirmar( '2026-10-25 08:00', $a_las( szs_proximas_8_de_la_manana( ( new DateTimeImmutable( '2026-10-25 07:59', $madrid ) )->getTimestamp(), $madrid ) ), 'antes de las 8, hoy mismo' );
 
 // --- balance del convenio (mismo cálculo que la app) ---
 $entidades = array(

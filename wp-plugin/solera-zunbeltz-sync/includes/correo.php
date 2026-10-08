@@ -20,20 +20,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const SZS_EVENTO_CORREO_DIARIO = 'szs_correo_diario';
 const SZS_HORA_CORREO_DIARIO   = 8;
+const SZS_MAXIMO_CORREOS_AL_MOMENTO_POR_HORA = 10;
 
 add_action( 'init', 'szs_programar_correo_diario' );
 add_action( SZS_EVENTO_CORREO_DIARIO, 'szs_enviar_correo_diario' );
 add_action( 'szs_entidad_guardada', 'szs_avisar_por_correo_al_momento', 10, 3 );
 
+/**
+ * Programa el próximo resumen como evento único a las 8:00 de la hora
+ * local. Un evento `daily` repite cada 86.400 s fijos y, con el cambio de
+ * hora, pasaría a llegar a las 7:00 (o a las 9:00 en primavera). Cuando el
+ * evento se ejecuta, WordPress lo quita y la siguiente petición programa
+ * el del día siguiente.
+ */
 function szs_programar_correo_diario(): void {
+	// Instalaciones anteriores lo tenían como `daily`.
+	if ( 'daily' === wp_get_schedule( SZS_EVENTO_CORREO_DIARIO ) ) {
+		wp_clear_scheduled_hook( SZS_EVENTO_CORREO_DIARIO );
+	}
 	if ( wp_next_scheduled( SZS_EVENTO_CORREO_DIARIO ) ) {
 		return;
 	}
-	$proxima = new DateTimeImmutable( 'today ' . SZS_HORA_CORREO_DIARIO . ':00', wp_timezone() );
-	if ( $proxima->getTimestamp() <= time() ) {
-		$proxima = $proxima->modify( '+1 day' );
+	wp_schedule_single_event( szs_proximas_8_de_la_manana( time(), wp_timezone() ), SZS_EVENTO_CORREO_DIARIO );
+}
+
+/** Instante (s) de las próximas 8:00 locales después de `$ahora`. */
+function szs_proximas_8_de_la_manana( int $ahora, DateTimeZone $zona ): int {
+	$hoy     = ( new DateTimeImmutable( '@' . $ahora ) )->setTimezone( $zona );
+	$proxima = $hoy->setTime( SZS_HORA_CORREO_DIARIO, 0 );
+	if ( $proxima->getTimestamp() <= $ahora ) {
+		$proxima = $hoy->modify( '+1 day' )->setTime( SZS_HORA_CORREO_DIARIO, 0 );
 	}
-	wp_schedule_event( $proxima->getTimestamp(), 'daily', SZS_EVENTO_CORREO_DIARIO );
+	return $proxima->getTimestamp();
 }
 
 function szs_desprogramar_correo_diario(): void {
@@ -88,6 +106,14 @@ function szs_avisar_por_correo_al_momento( array $entidad, ?array $existente, ar
 	if ( empty( $destinatarios ) ) {
 		return;
 	}
+	// Una sincronización con muchas urgentes de golpe no debe mandar
+	// decenas de correos (y quemar el SMTP): pasado el límite, lo recoge
+	// el resumen de la mañana.
+	$enviados_esta_hora = (int) get_transient( 'szs_correos_al_momento' );
+	if ( $enviados_esta_hora >= SZS_MAXIMO_CORREOS_AL_MOMENTO_POR_HORA ) {
+		return;
+	}
+	set_transient( 'szs_correos_al_momento', $enviados_esta_hora + 1, HOUR_IN_SECONDS );
 	$cuerpo = sprintf(
 		"%s\n\n%s\n\nLo envía: %s\n",
 		$titulo,

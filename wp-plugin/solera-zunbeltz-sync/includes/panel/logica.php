@@ -78,8 +78,23 @@ function szs_ordenar_tareas_panel( array $tareas, int $inicio_de_hoy_ms ): array
 	return $tareas;
 }
 
+/**
+ * Fecha en la hora del espacio. La app guarda las fechas a medianoche
+ * local, que en UTC es la víspera: con `gmdate` la tarea del 8 salía del 7.
+ */
+function szs_fecha_local( int $ms, string $formato = 'd/m/Y' ): string {
+	$segundos = intdiv( $ms, 1000 );
+	return function_exists( 'wp_date' ) ? (string) wp_date( $formato, $segundos ) : gmdate( $formato, $segundos );
+}
+
 function szs_campo_csv( $valor ): string {
 	$texto = (string) $valor;
+	// Excel ejecuta como fórmula lo que empieza por = + - @: un lote o un
+	// título escrito en la app como `=HYPERLINK(...)` se ejecutaría al
+	// abrir la exportación. Los números negativos se dejan como están.
+	if ( preg_match( '/^[=+\-@\t\r]/', $texto ) && ! preg_match( '/^-?\d[\d.,]*$/', $texto ) ) {
+		$texto = "'" . $texto;
+	}
 	if ( preg_match( '/[;"\r\n]/', $texto ) ) {
 		return '"' . str_replace( '"', '""', $texto ) . '"';
 	}
@@ -102,7 +117,7 @@ function szs_tareas_a_csv( array $tareas ): string {
 					$tarea['responsable'],
 					$tarea['prioridad'],
 					$tarea['estado'],
-					null === $tarea['fecha_objetivo_ms'] ? '' : gmdate( 'd/m/Y', intdiv( $tarea['fecha_objetivo_ms'], 1000 ) ),
+					null === $tarea['fecha_objetivo_ms'] ? '' : szs_fecha_local( (int) $tarea['fecha_objetivo_ms'] ),
 					null === $tarea['coste_centimos'] ? '' : number_format( $tarea['coste_centimos'] / 100, 2, ',', '' ),
 					$tarea['recurrencia_dias'] ?? '',
 				)
@@ -113,25 +128,40 @@ function szs_tareas_a_csv( array $tareas ): string {
 }
 
 /**
+ * uid de la instancia que sigue a una tarea periódica: el mismo que calcula
+ * la app (`uidSiguientePeriodica`). Así, si la genera el servidor y también
+ * el móvil que la cerró, o la cierran dos móviles, es una sola tarea.
+ */
+function szs_uid_siguiente_periodica( string $uid ): string {
+	return 'sig-' . substr( sha1( $uid ), 0, 28 );
+}
+
+/**
  * Siguiente instancia de una tarea periódica al marcarla hecha (lo mismo
  * que hace la app en `marcarTareaHecha`): pendiente, a `recurrencia_dias`
  * de hoy o de su fecha si aún no ha llegado. `null` si no es periódica.
+ *
+ * Se suman días de calendario en la zona horaria del espacio, no tandas
+ * de 24 h: con el cambio de hora, una fecha a medianoche caería la víspera.
  */
-function szs_siguiente_tarea_periodica( array $tarea, int $ahora_ms, string $uid_nuevo ): ?array {
+function szs_siguiente_tarea_periodica( array $tarea, int $ahora_ms, string $uid_nuevo, ?DateTimeZone $zona = null ): ?array {
 	$dias = $tarea['recurrencia_dias'];
 	if ( null === $dias || $dias <= 0 ) {
 		return null;
 	}
-	$base = ( null !== $tarea['fecha_objetivo_ms'] && $tarea['fecha_objetivo_ms'] > $ahora_ms )
+	$zona     = $zona ?? ( function_exists( 'wp_timezone' ) ? wp_timezone() : new DateTimeZone( 'UTC' ) );
+	$base_ms  = ( null !== $tarea['fecha_objetivo_ms'] && $tarea['fecha_objetivo_ms'] > $ahora_ms )
 		? $tarea['fecha_objetivo_ms']
 		: $ahora_ms;
+	$base     = ( new DateTimeImmutable( '@' . intdiv( $base_ms, 1000 ) ) )->setTimezone( $zona );
+	$objetivo = $base->modify( '+' . (int) $dias . ' days' );
 	return array_merge(
 		$tarea,
 		array(
 			'uid'               => $uid_nuevo,
 			'estado'            => 'pendiente',
 			'coste_centimos'    => null,
-			'fecha_objetivo_ms' => $base + $dias * SZS_MS_DIA,
+			'fecha_objetivo_ms' => $objetivo->getTimestamp() * 1000 + $base_ms % 1000,
 			'fecha_creacion_ms' => $ahora_ms,
 			'actualizado_ms'    => $ahora_ms,
 		)
@@ -220,7 +250,7 @@ function szs_resumen_correo_diario( array $tareas, array $peticiones, array $ala
 		$lineas          = array();
 		foreach ( $vencidas as $tarea ) {
 			$quien    = '' === $tarea['responsable'] ? 'sin asignar' : $tarea['responsable'];
-			$fecha    = gmdate( 'd/m/Y', intdiv( (int) $tarea['fecha_objetivo_ms'], 1000 ) );
+			$fecha    = szs_fecha_local( (int) $tarea['fecha_objetivo_ms'] );
 			$lineas[] = "  - {$tarea['titulo']} ({$tarea['finca_nombre']}, {$quien}, desde el {$fecha})";
 		}
 		$cuerpo[] = "Tareas vencidas:\n" . implode( "\n", $lineas );

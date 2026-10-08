@@ -8,33 +8,14 @@
 //
 //   dart run tool/generar_manual.dart
 //
-// El orden de grupos y apartados replica el de lib/pantallas/pantalla_ayuda.dart;
-// si se añade un apartado allí, hay que añadirlo también aquí.
+// El orden de grupos y apartados sale de lib/pantallas/indice_ayuda.dart, el
+// mismo que comprueba el test de la pantalla de Ayuda.
 
 import 'dart:convert';
 import 'dart:io';
 
-/// Grupo → claves base de sus apartados (cada una tiene `<clave>T` título y
-/// `<clave>B` cuerpo en el ARB).
-const _estructura = <String, List<String>>{
-  'ayudaGrupoEmpezar': ['ayudaQueEs', 'ayudaPestanas', 'ayudaIdiomaDatos'],
-  'ayudaGrupoFincas': [
-    'ayudaFincas',
-    'ayudaZonas',
-    'ayudaEditarMapa',
-    'ayudaTareas',
-    'ayudaRecurrentes',
-    'ayudaTablero',
-  ],
-  'ayudaGrupoProyectos': [
-    'ayudaProyectos',
-    'ayudaApuntar',
-    'ayudaNumeros',
-    'ayudaInformes',
-  ],
-  'ayudaGrupoEquipo': ['ayudaSync', 'ayudaRoles'],
-  'ayudaGrupoProblemas': ['ayudaProblemas'],
-};
+import 'package:solera_zunbeltz/pantallas/indice_ayuda.dart';
+
 
 /// Textos propios del documento impreso, que no están en la app.
 class _TextosManual {
@@ -131,7 +112,7 @@ String _componer(
   final indice = StringBuffer();
   final cuerpo = StringBuffer();
   var numeroApartado = 0;
-  _estructura.forEach((claveGrupo, apartados) {
+  indiceAyuda.forEach((claveGrupo, apartados) {
     final tituloGrupo = _escapar(_texto(arb, claveGrupo));
     indice.writeln('<li><span class="grupo-indice">$tituloGrupo</span><ol>');
     cuerpo.writeln('<h2>$tituloGrupo</h2>');

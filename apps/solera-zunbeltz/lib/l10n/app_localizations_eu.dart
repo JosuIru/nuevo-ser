@@ -698,14 +698,14 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaQueEsB =>
-      'Zunbeltz Saiakuntza Gunearen tresna da. Bi gauzatarako balio du: zure test-proiektuaren jarraipena egiteko (zer ekoizten duzun, zer saltzen duzun, zer gastatzen duzun eta zer irabazten duzun) eta finkak zaintzeko (mapako azpiegiturak eta haien mantentze-zereginak).\nDena zure mugikorrean gordetzen da, eta mendian estaldurarik gabe ere badabil.';
+      'Zunbeltz Saiakuntza Gunearen tresna da. Bi gauzatarako balio du: zure test-proiektuaren jarraipena egiteko (zer ekoizten duzun, zer saltzen duzun, zer gastatzen duzun eta zer irabazten duzun) eta finkak zaintzeko (mapako azpiegiturak eta haien mantentze-zereginak).\nDena zure mugikorrean gordetzen da, eta mendian estaldurarik gabe ere badabil. Sinkronizatzen baduzu, gainera taldeko gainerakoekin partekatzen duzu Zunbeltzen zerbitzariaren bidez.';
 
   @override
   String get ayudaPestanasT => 'App-an mugitu';
 
   @override
   String get ayudaPestanasB =>
-      'Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:\n• Gaur: gunearen sarrera-ontzia — alarmak, zeregin iraungiak eta hurrengoak, eskaerak eta abisuak.\n• Finkak: mapa, puntuekin, eremuekin eta zereginekin.\n• Proiektuak: test-prozesua, haren zenbakiak eta hitzarmena.\n• Ezarpenak: hizkuntza, laguntza, txostenen bidalketa eta sinkronizazioa.\nAtzera itzultzeko, erabili goiko ezkerreko gezia.';
+      'Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:\n• Gaur: gunearen sarrera-ontzia — alarmak, zeregin iraungiak eta hurrengoak, eskaerak eta abisuak.\n• Finkak: mapa, puntuekin, eremuekin eta zereginekin.\n• Proiektuak: test-prozesua, haren zenbakiak eta hitzarmena.\n• Ezarpenak: hizkuntza, sinkronizazioa, eguneraketak, txostenen bidalketa eta Saiakuntza Guneari buruzko informazioa.\nGaur pantailan, goiko ikonoek kontaktuak, eguraldia eta laguntza hau irekitzen dituzte.\nAtzera itzultzeko, erabili goiko ezkerreko gezia.';
 
   @override
   String get ayudaIdiomaDatosT =>
@@ -713,7 +713,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaIdiomaDatosB =>
-      '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.\n• Argazkiak zure mugikorrean bertan gordetzen dira.\n• Finketan, hodeiaren ikonoak (goian) finkako eguraldia irekitzen du: orain nola dagoen, hurrengo 24 orduak, ura (egindako euria, aurreikusitako euria eta lurrak eta larreak galtzen dutena) eta hurrengo 7 egunak. Ukitu egun bat xehetasun gehiago ikusteko.\n• Abisuak: izotza, elurra, ekaitza, euria, haize bortitza, beroa, abereen bero-estresa eta maneiurako egun onak.\n» Dena internetik gabe dabil, eguraldia eta zereginen sinkronizazioa izan ezik. Estaldurarik gabe, eguraldiak deskargatutako azken iragarpena erakusten du, eta noizkoa den adierazten du.';
+      '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.\n• Argazkiak zure mugikorrean bertan gordetzen dira.\n• Gaur edo Finkak pantailan, hodeiaren ikonoak (goian) finkako eguraldia irekitzen du: orain nola dagoen, hurrengo 24 orduak, ura (egindako euria, aurreikusitako euria eta lurrak eta larreak galtzen dutena) eta hurrengo 7 egunak. Ukitu egun bat xehetasun gehiago ikusteko.\n• Abisuak: izotza, elurra, ekaitza, euria, haize bortitza, beroa, abereen bero-estresa eta maneiurako egun onak.\n» Dena internetik gabe dabil, eguraldia, sinkronizazioa eta eguneraketak izan ezik. Estaldurarik gabe, eguraldiak deskargatutako azken iragarpena erakusten du, eta noizkoa den adierazten du.';
 
   @override
   String get ayudaFincasT => 'Puntu bat markatu mapan';
@@ -783,7 +783,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaInformesB =>
-      '• Zure proiektuan, partekatzeko botoiak (goian) «Proiektuaren txostena (PDF)» ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo «Koordinatzaileari bidali» bidez bidaltzen du.\n• Txostenak hitzarmenaren kontuak ditu: testaren eta proiektuaren balantzea, banaketa, fidantza, laguntza eta gorabeherak.\n• PDFak «ZIRRIBORROA» markarekin ateratzen dira. Behin betiko bertsioa koordinazioak ateratzen du proiektua itxita dagoenean.\n• Proiektuen zerrendan, grafikoaren botoiak proiektuen arteko «Konparaketa (PDF)» ateratzen du.\n• Ezarpenetan, «Gunea esportatu (CSV)» aukerak maparen finkak eta puntuak ateratzen ditu.';
+      '• Zure proiektuan, partekatzeko botoiak (goian) «Proiektuaren txostena (PDF)» ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo «Koordinatzaileari bidali» bidez bidaltzen du. Zein helbidetara bidali Ezarpenak → «Koordinatzailea (txostenak bidaltzea)» atalean jartzen da.\n• Txostenak hitzarmenaren kontuak ditu: testaren eta proiektuaren balantzea, banaketa, fidantza, laguntza eta gorabeherak.\n• PDFak «ZIRRIBORROA» markarekin ateratzen dira. Behin betiko bertsioa koordinazioak ateratzen du proiektua itxita dagoenean.\n• Proiektuen zerrendan, grafikoaren botoiak proiektuen arteko «Konparaketa (PDF)» ateratzen du.\n• Ezarpenetan, «Gunea esportatu (CSV)» aukerak maparen finkak eta puntuak ateratzen ditu.';
 
   @override
   String get ayudaSyncT => 'Gunea taldearekin partekatu';
@@ -804,7 +804,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaProblemasB =>
-      '• «Zure rolak ez du uzten…»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.\n• Sinkronizatzean «Aldaketak desegin dira»: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.\n• «Token okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.\n• Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».\n• Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.\n» Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure tokenarekin eta berreskuratuko dituzu.';
+      '• «Zure rolak ez du … baimenik»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.\n• Sinkronizatzean «… aldaketa desegin dira: zure rolak ez ditu baimentzen»: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.\n• «Token okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.\n• Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».\n• Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.\n• Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu «aplikazio ezezagunak instalatzea» Solera Zunbeltzentzat.\n» Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure tokenarekin eta berreskuratuko dituzu.';
 
   @override
   String get ayudaPie =>
@@ -1780,7 +1780,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaHoyAvisosB =>
-      'Gaur gunearen sarrera-ontzia da. Goian alarma irekiak agertzen dira; gero zure zeregin iraungiak eta hurrengo egunetakoak; eta abisuak, kategorien arabera: Abereak, Instalazioak, Banakako jarraipena eta Berriak.\n1. Zerbaiten berri emateko, sakatu «Abisua eman».\n2. Aukeratu kategoria, idatzi zer gertatzen den eta, nahi baduzu, finka.\n3. Larria bada (animalia gaixo bat, matxura handi bat, janari falta), markatu «Alarma da»: besteei jakinarazpen bat agertuko zaie.\n4. Ukitu abisu bat ikusteko eta, konponduta dagoenean, markatu konpondutzat.';
+      'Gaur gunearen sarrera-ontzia da. Goian alarma irekiak agertzen dira; gero zure zeregin iraungiak eta hurrengo 7 egunetakoak; eskaerak; eta abisuak, kategorien arabera: Abereak, Instalazioak, Banakako jarraipena eta Berriak. Koordinazioak, gainera, eskaera zain daudenak eta «Gunean azkena» ikusten ditu: nork zer egin duen, aplikaziotik edo bulegotik.\n1. Zerbaiten berri emateko, sakatu «Abisua eman».\n2. Aukeratu kategoria, idatzi zer gertatzen den eta, nahi baduzu, finka.\n3. Larria bada (animalia gaixo bat, matxura handi bat, janari falta), markatu «Alarma da»: besteei jakinarazpen bat agertuko zaie.\n4. Ukitu abisu bat ikusteko eta, konponduta dagoenean, markatu konpondutzat.\n» Berriak atalean, koordinazioak argitaratzen duenaren azpian, «Sektoreko berriak» agertzen dira: kanpoko albisteak (administrazioa, nekazari-sindikatuak, sektoreko prentsa), koordinazioak panelean aukeratutako kanaletakoak. Ukitu bat osorik nabigatzailean irakurtzeko. Ez dute jakinarazpenik bidaltzen.';
 
   @override
   String get ayudaPeticionesT => 'Zeregin bat eskatu';
@@ -1961,4 +1961,95 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ayudaCalculadoraB =>
       'Zure proiektuan, kalkulagailuaren botoia (goian):\n1. Aukeratu erreferentziazko errendimendu bat (koordinazioak jartzen ditu) edo idatzi ehunekoak.\n2. Jarri pisu bizia, kg bakoitzeko prezioa eta kostuak: produktu-kg, sarrera, marjina eta kg biziaren prezioa ikusiko dituzu.\n3. «Bide hau gorde» beste batzuekin alderatzeko (kanala, zatiketa, elaboratua…).\n» Proiektuaren partekatzeko botoian, «Elikadura egunka (Excel)» aukerak egunero eta loteka emandako kg-ak ateratzen ditu.';
+
+  @override
+  String get ayudaActualizacionesT => 'Bertsio berri bat instalatu';
+
+  @override
+  String get ayudaActualizacionesB =>
+      'Bertsio berri bat ateratzen denean, aplikazioak abisatzen dizu irekitzean («Bertsio eskuragarria»). Sakatu «Eguneratu», edo «Baztertu oraingoz» une txarra bada.\n1. Ezarpenak → Eguneraketak atalean ere begira dezakezu: instalatutako bertsioa, argitaratutako azkena eta zer dakarren ikusten dituzu. «Bilatu orain» sakatuta berriro egiaztatzen da.\n2. Sakatu «Deskargatu eta instalatu» eta baieztatu mugikorraren instalatzailean.\n3. Ireki berriro aplikazioa.\n» Lehen aldian, Androidek «aplikazio ezezagunak instalatzea» baimentzeko eska dezake Solera Zunbeltzentzat. Zure datuak gorde egiten dira eguneratzean.';
+
+  @override
+  String get ayudaWebT => 'Aplikazioa ordenagailuan erabili';
+
+  @override
+  String get ayudaWebB =>
+      'Aplikazioak nabigatzailean ere funtzionatzen du; erabilgarria da bulegoan edo pantaila handiarekin.\n1. Ireki koordinazioak emandako helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena).\n2. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure tokena baino ez duzu jarri behar.\n3. Hortik aurrera mugikorrean bezala dabil.\n» Nabigatzailean ezin da argazkirik gehitu: mugikorretik gehitzen dira. Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.';
+
+  @override
+  String get noticiasSectorTitulo => 'Sektoreko berriak';
+
+  @override
+  String noticiasSectorVerTodas(int n) {
+    return 'Guztiak ikusi ($n)';
+  }
+
+  @override
+  String get noticiasSectorVacio =>
+      'Oraindik ez dago sektoreko berririk. Kanalak koordinazioak gehitzen ditu WordPresseko panelean.';
+
+  @override
+  String noticiasSectorActualizadas(String fecha) {
+    return 'Eguneratua: $fecha';
+  }
+
+  @override
+  String get noticiasSectorDestacada => 'Nabarmendua';
+
+  @override
+  String get noticiasSectorSinAbrir => 'Ezin izan da berria ireki.';
+
+  @override
+  String get noticiasSectorSinServidor =>
+      'Sektoreko berriak guneko zerbitzaritik datoz: konfiguratu Ezarpenak → Sinkronizazioa atalean.';
+
+  @override
+  String get numeroNoValido =>
+      'Zenbaki bat ez da ulertzen. Idatzi, adibidez, honela: 1200 edo 1.200,50.';
+
+  @override
+  String get comProductoObligatorio => 'Adierazi zer produktu saldu duzun.';
+
+  @override
+  String get puntoCoordenadasNoValidas =>
+      'Berrikusi koordenatuak: latitudea -90 eta 90 artean eta longitudea -180 eta 180 artean, adibidez 42,795 eta -1,912.';
+
+  @override
+  String get comunBorrarConfirmar =>
+      'Ezabatu? Ezin da desegin, eta beste mugikorretatik ere desagertzen da.';
+
+  @override
+  String get errorSyncConfiguracion =>
+      'Jarri WordPressaren helbidea eta zure tokena Ezarpenak → Sinkronizazioa atalean.';
+
+  @override
+  String get errorSyncSinConexion =>
+      'Ezin izan da zerbitzariarekin konektatu. Egiaztatu estaldura eta helbidea.';
+
+  @override
+  String get errorSyncToken =>
+      'Token okerra edo pertsona desaktibatua. Eskatu berri bat koordinazioari.';
+
+  @override
+  String get errorSyncPluginAntiguo =>
+      'WordPress horrek ez du Solera Zunbeltz plugina (0.3 edo berriagoa).';
+
+  @override
+  String errorSyncServidor(int codigo) {
+    return 'Zerbitzariak errore bat eman du ($codigo). Saiatu geroago.';
+  }
+
+  @override
+  String get errorSyncRespuesta =>
+      'Zerbitzariak ezusteko zerbait erantzun du. Egiaztatu helbidea Zunbeltzeko WordPressarena dela.';
+
+  @override
+  String get informePeriodo => 'Zifren aldia';
+
+  @override
+  String get informeTodoElProyecto => 'proiektu osoa';
+
+  @override
+  String get informeConvenioAcumulado =>
+      'Hitzarmenaren kontuak (proiektu osoa, aldia edozein dela ere):';
 }

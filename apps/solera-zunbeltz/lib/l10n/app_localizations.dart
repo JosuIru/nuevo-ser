@@ -1409,7 +1409,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaQueEsB.
   ///
   /// In es, this message translates to:
-  /// **'Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte.'**
+  /// **'Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte. Si sincronizas, además lo compartes con el resto del equipo a través del servidor de Zunbeltz.'**
   String get ayudaQueEsB;
 
   /// No description provided for @ayudaPestanasT.
@@ -1421,7 +1421,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaPestanasB.
   ///
   /// In es, this message translates to:
-  /// **'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, ayuda, envío de informes y sincronización.\nPara volver atrás, usa la flecha de arriba a la izquierda.'**
+  /// **'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.'**
   String get ayudaPestanasB;
 
   /// No description provided for @ayudaIdiomaDatosT.
@@ -1433,7 +1433,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaIdiomaDatosB.
   ///
   /// In es, this message translates to:
-  /// **'• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo y la sincronización de tareas. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.'**
+  /// **'• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Hoy o en Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo, la sincronización y las actualizaciones. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.'**
   String get ayudaIdiomaDatosB;
 
   /// No description provided for @ayudaFincasT.
@@ -1553,7 +1553,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaInformesB.
   ///
   /// In es, this message translates to:
-  /// **'• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador».\n• El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.\n• Los PDF salen con la marca «BORRADOR». La versión definitiva la saca coordinación con el proyecto cerrado.\n• En la lista de Proyectos, el botón del gráfico saca la «Comparativa (PDF)» entre proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa.'**
+  /// **'• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador». El correo al que se manda se pone en Ajustes → «Coordinador (envío de informes)».\n• El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.\n• Los PDF salen con la marca «BORRADOR». La versión definitiva la saca coordinación con el proyecto cerrado.\n• En la lista de Proyectos, el botón del gráfico saca la «Comparativa (PDF)» entre proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa.'**
   String get ayudaInformesB;
 
   /// No description provided for @ayudaSyncT.
@@ -1589,7 +1589,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaProblemasB.
   ///
   /// In es, this message translates to:
-  /// **'• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.'**
+  /// **'• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.'**
   String get ayudaProblemasB;
 
   /// No description provided for @ayudaPie.
@@ -3197,7 +3197,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaHoyAvisosB.
   ///
   /// In es, this message translates to:
-  /// **'Hoy es la bandeja del espacio. Arriba salen las alarmas abiertas; luego tus tareas vencidas y las de los próximos días; y los avisos, por categorías: Ganado, Instalaciones, Seguimiento individual y Noticias.\n1. Para avisar de algo, pulsa «Dar un aviso».\n2. Elige la categoría, escribe qué pasa y, si quieres, la finca.\n3. Si es grave (un animal enfermo, una rotura importante, falta de alimento), marca «Es una alarma»: al resto le saltará una notificación.\n4. Toca un aviso para verlo y, cuando esté arreglado, márcalo como resuelto.'**
+  /// **'Hoy es la bandeja del espacio. Arriba salen las alarmas abiertas; luego tus tareas vencidas y las de los próximos 7 días; las peticiones; y los avisos, por categorías: Ganado, Instalaciones, Seguimiento individual y Noticias. Coordinación ve además las peticiones pendientes y «Lo último en el espacio»: quién ha hecho qué, desde la app o desde la oficina.\n1. Para avisar de algo, pulsa «Dar un aviso».\n2. Elige la categoría, escribe qué pasa y, si quieres, la finca.\n3. Si es grave (un animal enfermo, una rotura importante, falta de alimento), marca «Es una alarma»: al resto le saltará una notificación.\n4. Toca un aviso para verlo y, cuando esté arreglado, márcalo como resuelto.\n» En Noticias, debajo de lo que publica coordinación, salen las «Noticias del sector»: titulares de fuera (administración, sindicatos agrarios, prensa del sector) de los canales que elige coordinación en el panel. Toca una para leerla entera en el navegador. No avisan con notificación.'**
   String get ayudaHoyAvisosB;
 
   /// No description provided for @ayudaPeticionesT.
@@ -3535,6 +3535,150 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por lote.'**
   String get ayudaCalculadoraB;
+
+  /// No description provided for @ayudaActualizacionesT.
+  ///
+  /// In es, this message translates to:
+  /// **'Instalar una versión nueva'**
+  String get ayudaActualizacionesT;
+
+  /// No description provided for @ayudaActualizacionesB.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuando sale una versión nueva, la app te avisa al abrirla («Versión disponible»). Pulsa «Actualizar», o «Descartar por ahora» si te viene mal.\n1. También puedes mirarlo en Ajustes → Actualizaciones: ves la versión instalada, la última publicada y qué trae. «Buscar ahora» lo vuelve a comprobar.\n2. Pulsa «Descargar e instalar» y confirma en el instalador del móvil.\n3. Vuelve a abrir la app.\n» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Solera Zunbeltz. Tus datos se conservan al actualizar.'**
+  String get ayudaActualizacionesB;
+
+  /// No description provided for @ayudaWebT.
+  ///
+  /// In es, this message translates to:
+  /// **'Usar la app en el ordenador'**
+  String get ayudaWebT;
+
+  /// No description provided for @ayudaWebB.
+  ///
+  /// In es, this message translates to:
+  /// **'La app también funciona en el navegador, útil en la oficina o con pantalla grande.\n1. Abre la dirección que te dé coordinación (la del WordPress de Zunbeltz, terminada en /app/).\n2. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu token.\n3. A partir de ahí funciona igual que en el móvil.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.'**
+  String get ayudaWebB;
+
+  /// No description provided for @noticiasSectorTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Noticias del sector'**
+  String get noticiasSectorTitulo;
+
+  /// No description provided for @noticiasSectorVerTodas.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver todas ({n})'**
+  String noticiasSectorVerTodas(int n);
+
+  /// No description provided for @noticiasSectorVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no hay noticias del sector. Los canales los añade coordinación en el panel de WordPress.'**
+  String get noticiasSectorVacio;
+
+  /// No description provided for @noticiasSectorActualizadas.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizado: {fecha}'**
+  String noticiasSectorActualizadas(String fecha);
+
+  /// No description provided for @noticiasSectorDestacada.
+  ///
+  /// In es, this message translates to:
+  /// **'Destacada'**
+  String get noticiasSectorDestacada;
+
+  /// No description provided for @noticiasSectorSinAbrir.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido abrir la noticia.'**
+  String get noticiasSectorSinAbrir;
+
+  /// No description provided for @noticiasSectorSinServidor.
+  ///
+  /// In es, this message translates to:
+  /// **'Las noticias del sector llegan del servidor del espacio: configúralo en Ajustes → Sincronización.'**
+  String get noticiasSectorSinServidor;
+
+  /// No description provided for @numeroNoValido.
+  ///
+  /// In es, this message translates to:
+  /// **'Hay un número que no se entiende. Escríbelo, por ejemplo, así: 1200 o 1.200,50.'**
+  String get numeroNoValido;
+
+  /// No description provided for @comProductoObligatorio.
+  ///
+  /// In es, this message translates to:
+  /// **'Indica qué producto has vendido.'**
+  String get comProductoObligatorio;
+
+  /// No description provided for @puntoCoordenadasNoValidas.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa las coordenadas: latitud entre -90 y 90 y longitud entre -180 y 180, por ejemplo 42,795 y -1,912.'**
+  String get puntoCoordenadasNoValidas;
+
+  /// No description provided for @comunBorrarConfirmar.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borrarlo? No se puede deshacer y desaparece también de los demás móviles.'**
+  String get comunBorrarConfirmar;
+
+  /// No description provided for @errorSyncConfiguracion.
+  ///
+  /// In es, this message translates to:
+  /// **'Pon la dirección del WordPress y tu token en Ajustes → Sincronización.'**
+  String get errorSyncConfiguracion;
+
+  /// No description provided for @errorSyncSinConexion.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido contactar con el servidor. Comprueba la cobertura y la dirección.'**
+  String get errorSyncSinConexion;
+
+  /// No description provided for @errorSyncToken.
+  ///
+  /// In es, this message translates to:
+  /// **'Token incorrecto o persona desactivada. Pide uno nuevo a coordinación.'**
+  String get errorSyncToken;
+
+  /// No description provided for @errorSyncPluginAntiguo.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese WordPress no tiene el plugin de Solera Zunbeltz (0.3 o posterior).'**
+  String get errorSyncPluginAntiguo;
+
+  /// No description provided for @errorSyncServidor.
+  ///
+  /// In es, this message translates to:
+  /// **'El servidor ha respondido con un error ({codigo}). Prueba más tarde.'**
+  String errorSyncServidor(int codigo);
+
+  /// No description provided for @errorSyncRespuesta.
+  ///
+  /// In es, this message translates to:
+  /// **'El servidor ha respondido algo inesperado. Revisa que la dirección sea la del WordPress de Zunbeltz.'**
+  String get errorSyncRespuesta;
+
+  /// No description provided for @informePeriodo.
+  ///
+  /// In es, this message translates to:
+  /// **'Periodo de las cifras'**
+  String get informePeriodo;
+
+  /// No description provided for @informeTodoElProyecto.
+  ///
+  /// In es, this message translates to:
+  /// **'todo el proyecto'**
+  String get informeTodoElProyecto;
+
+  /// No description provided for @informeConvenioAcumulado.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuentas del convenio (todo el proyecto, sea cual sea el periodo):'**
+  String get informeConvenioAcumulado;
 }
 
 class _AppLocalizationsDelegate

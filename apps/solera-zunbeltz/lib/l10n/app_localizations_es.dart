@@ -698,21 +698,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaQueEsB =>
-      'Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte.';
+      'Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte. Si sincronizas, además lo compartes con el resto del equipo a través del servidor de Zunbeltz.';
 
   @override
   String get ayudaPestanasT => 'Moverse por la app';
 
   @override
   String get ayudaPestanasB =>
-      'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, ayuda, envío de informes y sincronización.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
+      'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
 
   @override
   String get ayudaIdiomaDatosT => 'Idioma, fotos, tiempo e internet';
 
   @override
   String get ayudaIdiomaDatosB =>
-      '• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo y la sincronización de tareas. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.';
+      '• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Hoy o en Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo, la sincronización y las actualizaciones. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.';
 
   @override
   String get ayudaFincasT => 'Marcar un punto en el mapa';
@@ -782,7 +782,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaInformesB =>
-      '• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador».\n• El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.\n• Los PDF salen con la marca «BORRADOR». La versión definitiva la saca coordinación con el proyecto cerrado.\n• En la lista de Proyectos, el botón del gráfico saca la «Comparativa (PDF)» entre proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa.';
+      '• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador». El correo al que se manda se pone en Ajustes → «Coordinador (envío de informes)».\n• El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.\n• Los PDF salen con la marca «BORRADOR». La versión definitiva la saca coordinación con el proyecto cerrado.\n• En la lista de Proyectos, el botón del gráfico saca la «Comparativa (PDF)» entre proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa.';
 
   @override
   String get ayudaSyncT => 'Compartir el espacio con el equipo';
@@ -803,7 +803,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaProblemasB =>
-      '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «Cambios revertidos» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.';
+      '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.';
 
   @override
   String get ayudaPie =>
@@ -1778,7 +1778,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaHoyAvisosB =>
-      'Hoy es la bandeja del espacio. Arriba salen las alarmas abiertas; luego tus tareas vencidas y las de los próximos días; y los avisos, por categorías: Ganado, Instalaciones, Seguimiento individual y Noticias.\n1. Para avisar de algo, pulsa «Dar un aviso».\n2. Elige la categoría, escribe qué pasa y, si quieres, la finca.\n3. Si es grave (un animal enfermo, una rotura importante, falta de alimento), marca «Es una alarma»: al resto le saltará una notificación.\n4. Toca un aviso para verlo y, cuando esté arreglado, márcalo como resuelto.';
+      'Hoy es la bandeja del espacio. Arriba salen las alarmas abiertas; luego tus tareas vencidas y las de los próximos 7 días; las peticiones; y los avisos, por categorías: Ganado, Instalaciones, Seguimiento individual y Noticias. Coordinación ve además las peticiones pendientes y «Lo último en el espacio»: quién ha hecho qué, desde la app o desde la oficina.\n1. Para avisar de algo, pulsa «Dar un aviso».\n2. Elige la categoría, escribe qué pasa y, si quieres, la finca.\n3. Si es grave (un animal enfermo, una rotura importante, falta de alimento), marca «Es una alarma»: al resto le saltará una notificación.\n4. Toca un aviso para verlo y, cuando esté arreglado, márcalo como resuelto.\n» En Noticias, debajo de lo que publica coordinación, salen las «Noticias del sector»: titulares de fuera (administración, sindicatos agrarios, prensa del sector) de los canales que elige coordinación en el panel. Toca una para leerla entera en el navegador. No avisan con notificación.';
 
   @override
   String get ayudaPeticionesT => 'Pedir una tarea';
@@ -1959,4 +1959,95 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ayudaCalculadoraB =>
       'En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por lote.';
+
+  @override
+  String get ayudaActualizacionesT => 'Instalar una versión nueva';
+
+  @override
+  String get ayudaActualizacionesB =>
+      'Cuando sale una versión nueva, la app te avisa al abrirla («Versión disponible»). Pulsa «Actualizar», o «Descartar por ahora» si te viene mal.\n1. También puedes mirarlo en Ajustes → Actualizaciones: ves la versión instalada, la última publicada y qué trae. «Buscar ahora» lo vuelve a comprobar.\n2. Pulsa «Descargar e instalar» y confirma en el instalador del móvil.\n3. Vuelve a abrir la app.\n» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Solera Zunbeltz. Tus datos se conservan al actualizar.';
+
+  @override
+  String get ayudaWebT => 'Usar la app en el ordenador';
+
+  @override
+  String get ayudaWebB =>
+      'La app también funciona en el navegador, útil en la oficina o con pantalla grande.\n1. Abre la dirección que te dé coordinación (la del WordPress de Zunbeltz, terminada en /app/).\n2. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu token.\n3. A partir de ahí funciona igual que en el móvil.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.';
+
+  @override
+  String get noticiasSectorTitulo => 'Noticias del sector';
+
+  @override
+  String noticiasSectorVerTodas(int n) {
+    return 'Ver todas ($n)';
+  }
+
+  @override
+  String get noticiasSectorVacio =>
+      'Todavía no hay noticias del sector. Los canales los añade coordinación en el panel de WordPress.';
+
+  @override
+  String noticiasSectorActualizadas(String fecha) {
+    return 'Actualizado: $fecha';
+  }
+
+  @override
+  String get noticiasSectorDestacada => 'Destacada';
+
+  @override
+  String get noticiasSectorSinAbrir => 'No se ha podido abrir la noticia.';
+
+  @override
+  String get noticiasSectorSinServidor =>
+      'Las noticias del sector llegan del servidor del espacio: configúralo en Ajustes → Sincronización.';
+
+  @override
+  String get numeroNoValido =>
+      'Hay un número que no se entiende. Escríbelo, por ejemplo, así: 1200 o 1.200,50.';
+
+  @override
+  String get comProductoObligatorio => 'Indica qué producto has vendido.';
+
+  @override
+  String get puntoCoordenadasNoValidas =>
+      'Revisa las coordenadas: latitud entre -90 y 90 y longitud entre -180 y 180, por ejemplo 42,795 y -1,912.';
+
+  @override
+  String get comunBorrarConfirmar =>
+      '¿Borrarlo? No se puede deshacer y desaparece también de los demás móviles.';
+
+  @override
+  String get errorSyncConfiguracion =>
+      'Pon la dirección del WordPress y tu token en Ajustes → Sincronización.';
+
+  @override
+  String get errorSyncSinConexion =>
+      'No se ha podido contactar con el servidor. Comprueba la cobertura y la dirección.';
+
+  @override
+  String get errorSyncToken =>
+      'Token incorrecto o persona desactivada. Pide uno nuevo a coordinación.';
+
+  @override
+  String get errorSyncPluginAntiguo =>
+      'Ese WordPress no tiene el plugin de Solera Zunbeltz (0.3 o posterior).';
+
+  @override
+  String errorSyncServidor(int codigo) {
+    return 'El servidor ha respondido con un error ($codigo). Prueba más tarde.';
+  }
+
+  @override
+  String get errorSyncRespuesta =>
+      'El servidor ha respondido algo inesperado. Revisa que la dirección sea la del WordPress de Zunbeltz.';
+
+  @override
+  String get informePeriodo => 'Periodo de las cifras';
+
+  @override
+  String get informeTodoElProyecto => 'todo el proyecto';
+
+  @override
+  String get informeConvenioAcumulado =>
+      'Cuentas del convenio (todo el proyecto, sea cual sea el periodo):';
 }

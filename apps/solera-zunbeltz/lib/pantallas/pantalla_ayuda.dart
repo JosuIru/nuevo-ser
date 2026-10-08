@@ -5,7 +5,7 @@ import '../l10n/app_localizations.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
 
-/// Manual y ayuda dentro de la app, en lenguaje sencillo para personas no
+/// Manual y ayuda dentro de la app (el orden está en `indice_ayuda.dart`), en lenguaje sencillo para personas no
 /// familiarizadas con apps. Apartados desplegables agrupados por tema, con
 /// buscador.
 ///
@@ -56,6 +56,8 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
               Icons.translate_outlined),
           _ApartadoAyuda(
               t.ayudaHoyAvisosT, t.ayudaHoyAvisosB, Icons.campaign_outlined),
+          _ApartadoAyuda(t.ayudaActualizacionesT, t.ayudaActualizacionesB,
+              Icons.system_update),
         ]),
         _GrupoAyuda(t.ayudaGrupoFincas, [
           _ApartadoAyuda(
@@ -83,6 +85,7 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
         ]),
         _GrupoAyuda(t.ayudaGrupoEquipo, [
           _ApartadoAyuda(t.ayudaSyncT, t.ayudaSyncB, Icons.sync_outlined),
+          _ApartadoAyuda(t.ayudaWebT, t.ayudaWebB, Icons.computer_outlined),
           _ApartadoAyuda(t.ayudaRolesT, t.ayudaRolesB, Icons.badge_outlined),
           _ApartadoAyuda(t.ayudaPeticionesT, t.ayudaPeticionesB,
               Icons.add_comment_outlined),

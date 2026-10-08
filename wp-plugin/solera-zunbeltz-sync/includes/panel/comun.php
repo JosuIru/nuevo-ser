@@ -181,13 +181,14 @@ function szs_nombres_fincas(): array {
  * no se toca: guardarla la resucitaría en todos los móviles.
  */
 function szs_guardar_entidad_desde_panel( string $tipo, string $uid, array $datos, string $proyecto_uid = '' ): array {
-	$con_candado = szs_tomar_candado_espacio();
+	// Sin candado no se escribe: es la carrera que el candado evita.
+	if ( ! szs_tomar_candado_espacio() ) {
+		wp_die( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.', 'Solera Zunbeltz', array( 'back_link' => true ) );
+	}
 	try {
 		return szs_guardar_entidad_desde_panel_con_candado( $tipo, $uid, $datos, $proyecto_uid );
 	} finally {
-		if ( $con_candado ) {
-			szs_soltar_candado_espacio();
-		}
+		szs_soltar_candado_espacio();
 	}
 }
 

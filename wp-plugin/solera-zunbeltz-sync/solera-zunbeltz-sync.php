@@ -475,14 +475,23 @@ function szs_generar_siguiente_periodica_si_toca( string $tabla, array $persona,
 		return;
 	}
 	$uid_siguiente = szs_uid_siguiente_periodica( $guardada['uid'] );
-	$siguiente     = szs_siguiente_tarea_periodica( $guardada, szs_ahora_ms(), $uid_siguiente );
+	// La fecha se calcula desde cuándo se cerró (un móvil puede subir el
+	// cierre días después), no desde que llega al servidor.
+	$cerrada_ms = max( 1, (int) $guardada['actualizado_ms'] );
+	$siguiente  = szs_siguiente_tarea_periodica( $guardada, $cerrada_ms, $uid_siguiente );
 	if ( null === $siguiente ) {
 		return;
 	}
-	if ( null !== $wpdb->get_var( $wpdb->prepare( "SELECT uid FROM {$tabla} WHERE uid = %s", $uid_siguiente ) ) ) {
+	// Ya existe, o coordinación la borró para cortar la serie.
+	if ( null !== $wpdb->get_var( $wpdb->prepare( "SELECT uid FROM {$tabla} WHERE uid = %s", $uid_siguiente ) )
+		|| szs_tarea_borrada( $uid_siguiente ) ) {
 		return;
 	}
-	$nueva = szs_guardar_tarea( $tabla, $siguiente, true );
+	// Marca mínima, igual que la copia que genera el móvil: si ese móvil la
+	// cerró o la cambió sin cobertura, su versión gana a esta (y no se
+	// pierde el cierre ni se duplica la serie).
+	$siguiente['actualizado_ms'] = 1;
+	$nueva                       = szs_guardar_tarea( $tabla, $siguiente, true );
 	szs_registrar_actividad_tarea( $persona, null, $nueva, $origen );
 }
 

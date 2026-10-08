@@ -386,9 +386,11 @@ function szs_descargar_items_feed( string $url ) {
 	$respuesta = wp_safe_remote_get(
 		$url,
 		array(
-			'timeout'     => 15,
-			'redirection' => 3,
-			'user-agent'  => 'SoleraZunbeltz/' . SZS_VERSION . ' (lector de noticias; ' . home_url() . ')',
+			'timeout'             => 15,
+			'redirection'         => 3,
+			// Un feed enorme (o malicioso) no debe cargarse entero en memoria.
+			'limit_response_size' => 2 * MB_IN_BYTES,
+			'user-agent'          => 'SoleraZunbeltz/' . SZS_VERSION . ' (lector de noticias; ' . home_url() . ')',
 		)
 	);
 	if ( is_wp_error( $respuesta ) ) {

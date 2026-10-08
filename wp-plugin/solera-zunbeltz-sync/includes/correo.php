@@ -120,5 +120,25 @@ function szs_avisar_por_correo_al_momento( array $entidad, ?array $existente, ar
 		(string) ( $datos['descripcion'] ?? '' ),
 		(string) ( $persona['nombre'] ?? '' )
 	);
-	wp_mail( $destinatarios, $asunto, $cuerpo );
+	// Se envía al terminar la petición, ya soltado el candado del espacio:
+	// un SMTP lento no debe dejar al resto de móviles esperando.
+	szs_encolar_correo( $destinatarios, $asunto, $cuerpo );
+}
+
+/** @var array<int, array{0: string[], 1: string, 2: string}> */
+$GLOBALS['szs_correos_pendientes'] = array();
+
+function szs_encolar_correo( array $destinatarios, string $asunto, string $cuerpo ): void {
+	if ( empty( $GLOBALS['szs_correos_pendientes'] ) ) {
+		add_action( 'shutdown', 'szs_enviar_correos_pendientes' );
+	}
+	$GLOBALS['szs_correos_pendientes'][] = array( $destinatarios, $asunto, $cuerpo );
+}
+
+function szs_enviar_correos_pendientes(): void {
+	$pendientes                        = $GLOBALS['szs_correos_pendientes'];
+	$GLOBALS['szs_correos_pendientes'] = array();
+	foreach ( $pendientes as list( $destinatarios, $asunto, $cuerpo ) ) {
+		wp_mail( $destinatarios, $asunto, $cuerpo );
+	}
 }

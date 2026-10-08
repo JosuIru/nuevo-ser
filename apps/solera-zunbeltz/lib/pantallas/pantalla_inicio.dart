@@ -6,10 +6,12 @@ import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
 import '../estado/sesion_espacio.dart';
+import '../estado/version_demo.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/aviso_campo.dart';
 import '../modelos/entrada_actividad.dart';
 import '../servicios/resumen_notificaciones.dart';
+import '../servicios/servicio_noticias_sector.dart';
 import '../servicios/servicio_sincronizacion.dart';
 import '../utiles/descripcion_actividad.dart';
 import '../utiles/estilo_aviso.dart';
@@ -19,6 +21,7 @@ import 'nuevo_aviso.dart';
 import 'pantalla_ayuda.dart';
 import 'pantalla_contactos.dart';
 import 'pantalla_meteo.dart';
+import 'pantalla_noticias_sector.dart';
 import 'pantalla_peticiones.dart';
 import 'tablero_tareas.dart';
 import 'widgets/ficha_aviso.dart';
@@ -26,7 +29,9 @@ import 'widgets/ficha_aviso.dart';
 /// Pestaña «Hoy»: la bandeja del espacio. Arriba las alarmas abiertas;
 /// luego las tareas (vencidas y próximas), las peticiones, los avisos por
 /// categoría (ganado, instalaciones, seguimiento individual, noticias) y,
-/// para coordinación, lo último que ha pasado en el espacio.
+/// para coordinación, lo último que ha pasado en el espacio. En Noticias,
+/// debajo de lo que publica coordinación, van las noticias del sector (los
+/// canales RSS del panel).
 class PantallaInicio extends StatefulWidget {
   const PantallaInicio({super.key});
 
@@ -36,6 +41,7 @@ class PantallaInicio extends StatefulWidget {
 
 class _PantallaInicioState extends State<PantallaInicio> {
   final _bd = BaseDatosSoleraZunbeltz();
+  final _noticiasSector = ServicioNoticiasSector();
   List<AvisoCampo> _avisos = const [];
   List<EntradaActividad> _actividad = const [];
   int _vencidas = 0;
@@ -48,6 +54,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
   void initState() {
     super.initState();
     _cargar();
+    _noticiasSector.actualizar();
     notificadorDatos.addListener(_recargar);
   }
 
@@ -86,7 +93,10 @@ class _PantallaInicioState extends State<PantallaInicio> {
   }
 
   Future<void> _refrescar() async {
-    await sincronizarEspacioEnSilencio();
+    await Future.wait([
+      sincronizarEspacioEnSilencio(),
+      _noticiasSector.actualizar(forzar: true),
+    ]);
     await _cargar();
   }
 
@@ -228,6 +238,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
                           for (final aviso in _avisosDeCategoria())
                             _TarjetaAviso(aviso, alCambiar: _cargar),
                         ],
+                  if (_categoria == categoriaAvisoNoticias &&
+                      (!politica.modoLocal || esVersionDemo))
+                    _NoticiasSectorResumidas(
+                      alVerTodas: () => _abrir(const PantallaNoticiasSector()),
+                    ),
                   if (politica.puedeVerActividad && !politica.modoLocal) ...[
                     _Seccion(textos.hoyActividad),
                     if (_actividad.isEmpty)
@@ -262,6 +277,46 @@ class _PantallaInicioState extends State<PantallaInicio> {
         .length;
     final etiqueta = etiquetaCategoriaAviso(categoria, textos);
     return abiertos == 0 ? etiqueta : '$etiqueta ($abiertos)';
+  }
+}
+
+/// Las primeras noticias del sector y el acceso a todas.
+class _NoticiasSectorResumidas extends StatelessWidget {
+  const _NoticiasSectorResumidas({required this.alVerTodas});
+
+  static const _cuantasSeVen = 3;
+
+  final VoidCallback alVerTodas;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    return ValueListenableBuilder<NoticiasSectorGuardadas>(
+      valueListenable: ServicioNoticiasSector.actuales,
+      builder: (contexto, guardadas, _) {
+        final noticias = guardadas.noticias;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            _Seccion(textos.noticiasSectorTitulo),
+            if (noticias.isEmpty)
+              Text(textos.noticiasSectorVacio)
+            else ...[
+              for (final noticia in noticias.take(_cuantasSeVen))
+                TarjetaNoticiaSector(noticia),
+              if (noticias.length > _cuantasSeVen)
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: alVerTodas,
+                    child: Text(textos.noticiasSectorVerTodas(noticias.length)),
+                  ),
+                ),
+            ],
+          ],
+        );
+      },
+    );
   }
 }
 

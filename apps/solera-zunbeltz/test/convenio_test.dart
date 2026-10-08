@@ -29,6 +29,7 @@ ApunteEconomico gasto(int euros, String categoria,
         esAmortizacion: amortizacion);
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
   final proyecto = ProyectoTest(nombre: 'Quesería');
 
   test('balance del test sin amortizaciones; del proyecto, con ellas', () {
@@ -115,6 +116,23 @@ void main() {
     expect(indicadores.cumpleSeguimiento, isFalse, reason: 'falta una visita a la finca');
     expect(indicadores.propuestasDe('visita_finca'), 2);
     expect(indicadores.cumpleVenta, isTrue);
+
+    expect(
+        IndicadoresAcompanamiento.calcular(const [],
+                inicio: DateTime(2026, 1, 1),
+                fin: DateTime(2026, 12, 31),
+                ahora: DateTime(2027, 2, 1))
+            .meses,
+        12,
+        reason: 'un año entero son 12 meses, no 11');
+    expect(
+        IndicadoresAcompanamiento.calcular(const [],
+                inicio: DateTime(2026, 8, 1),
+                fin: DateTime(2027, 7, 31),
+                ahora: DateTime(2026, 10, 8))
+            .meses,
+        2,
+        reason: 'con el fin previsto por llegar, solo lo transcurrido');
     expect(indicadores.cumpleDifusion, isFalse);
   });
 

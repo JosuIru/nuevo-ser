@@ -48,3 +48,24 @@ RangoPeriodo _trimestre(int anio, int q) {
   return RangoPeriodo(
       desde.millisecondsSinceEpoch, hasta.millisecondsSinceEpoch);
 }
+
+/// Días con datos para extrapolar a un año: desde el principio del periodo
+/// (o el inicio del proyecto, si empezó después) hasta su final, pero nunca
+/// más allá de hoy ni del fin del proyecto. Un trimestre en curso cuenta
+/// los días que han pasado, no los 92 del trimestre: si no, el resultado
+/// anual sale muy por debajo. `null` si no se sabe desde cuándo.
+int? diasParaExtrapolar({
+  required RangoPeriodo rango,
+  int? inicioProyectoMs,
+  int? finProyectoMs,
+  required int ahoraMs,
+}) {
+  final candidatosDesde = [rango.desdeMs, inicioProyectoMs].whereType<int>();
+  if (candidatosDesde.isEmpty) return null;
+  final desde = candidatosDesde.reduce((a, b) => a > b ? a : b);
+  final hasta = [rango.hastaMs, finProyectoMs, ahoraMs]
+      .whereType<int>()
+      .reduce((a, b) => a < b ? a : b);
+  final dias = ((hasta - desde) / 86400000).ceil();
+  return dias > 0 ? dias : null;
+}

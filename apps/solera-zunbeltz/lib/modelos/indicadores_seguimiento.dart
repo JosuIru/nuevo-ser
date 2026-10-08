@@ -23,9 +23,12 @@ class IndicadoresSeguimiento {
 String eurosDesdeCentimos(int centimos) =>
     (centimos / 100).toStringAsFixed(2).replaceAll('.', ',');
 
-/// Formatea una cantidad sin decimales sobrantes (3.0 → "3", 12.5 → "12,5").
+/// Formatea una cantidad sin decimales sobrantes (3.0 → "3", 12.5 →
+/// "12,5", 2.25 → "2,25"). Hasta tres decimales: con uno, 0,04 kg salía
+/// como «0».
 String cantidadBonita(double valor) {
-  final texto = valor.toStringAsFixed(valor.truncateToDouble() == valor ? 0 : 1);
+  var texto = valor.toStringAsFixed(3);
+  texto = texto.replaceFirst(RegExp(r'0+$'), '').replaceFirst(RegExp(r'\.$'), '');
   return texto.replaceAll('.', ',');
 }
 

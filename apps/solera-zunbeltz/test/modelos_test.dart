@@ -212,6 +212,9 @@ void main() {
       expect(eurosDesdeCentimos(45000), '450,00');
       expect(cantidadBonita(3), '3');
       expect(cantidadBonita(12.5), '12,5');
+      expect(cantidadBonita(2.25), '2,25');
+      expect(cantidadBonita(0.04), '0,04');
+      expect(cantidadBonita(-1.5), '-1,5');
     });
   });
 

@@ -29,6 +29,8 @@ import 'nuevo_apunte.dart';
 import 'nuevo_proyecto.dart';
 import 'pantalla_calculadora.dart';
 import 'pantalla_convenio.dart';
+import '../estado/datos_notificador.dart';
+import 'widgets/confirmar_borrado.dart';
 
 /// Detalle de un proyecto de test: análisis de rentabilidad + producción,
 /// comercialización, validación de producto y económico, con informe PDF.
@@ -108,16 +110,19 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     }
   }
 
-  int? _diasPeriodo() {
-    // Si hay periodo acotado, sus días; si no, los del proyecto.
-    final delPeriodo = _rango.dias;
-    if (delPeriodo != null) return delPeriodo;
-    final inicio = _proyecto.fechaInicioMs;
-    if (inicio == null) return null;
-    final fin = _proyecto.fechaFinMs ?? DateTime.now().millisecondsSinceEpoch;
-    final dias = ((fin - inicio) / 86400000).round();
-    return dias > 0 ? dias : null;
+  Future<void> _borrarElemento(Future<void> Function() borrado) async {
+    if (!await confirmarBorrado(context)) return;
+    await borrado();
+    avisarCambioDatos();
+    await _cargar();
   }
+
+  int? _diasPeriodo() => diasParaExtrapolar(
+        rango: _rango,
+        inicioProyectoMs: _proyecto.fechaInicioMs,
+        finProyectoMs: _proyecto.fechaFinMs,
+        ahoraMs: DateTime.now().millisecondsSinceEpoch,
+      );
 
   /// IVA soportado (gastos) y repercutido (ventas + otros ingresos), céntimos.
   (int, int) _ivaTotales() {
@@ -236,7 +241,14 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     final fin = _proyecto.fechaFinMs == null
         ? DateTime.now()
         : DateTime.fromMillisecondsSinceEpoch(_proyecto.fechaFinMs!);
+    final formatoPeriodo = DateFormat('dd/MM/yyyy', idioma);
+    final desdeMs = _rango.desdeMs, hastaMs = _rango.hastaMs;
+    final periodo = desdeMs == null || hastaMs == null
+        ? null
+        : '${formatoPeriodo.format(DateTime.fromMillisecondsSinceEpoch(desdeMs))} – '
+            '${formatoPeriodo.format(DateTime.fromMillisecondsSinceEpoch(hastaMs))}';
     return generarInformeProyectoPdf(
+      periodo: periodo,
       textos: textos,
       idioma: idioma,
       proyecto: _proyecto,
@@ -517,50 +529,81 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                 ),
               )
             : null,
-        body: Column(
-          children: [
-            if (p.cerrado)
-              MaterialBanner(
-                leading: const Icon(Icons.lock_outline),
-                content: Text(textos.proyectoCerradoAviso(p.cerradoMs == null
-                    ? '—'
-                    : DateFormat('dd/MM/yyyy', idioma).format(
-                        DateTime.fromMillisecondsSinceEpoch(p.cerradoMs!)))),
-                actions: const [SizedBox.shrink()],
-              ),
-            if (subt.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child:
-                      Text(subt, style: Theme.of(context).textTheme.bodyMedium),
-                ),
-              ),
-            _PanelRentabilidad(
-                rent: _rent, dias: _diasPeriodo(), textos: textos),
-            if (_desgloseGastos.isNotEmpty)
-              _DesgloseIva(
-                desgloseGastos: _desgloseGastos,
-                ivaTotales: _ivaTotales(),
-                idioma: idioma,
-                textos: textos,
-              ),
-            const Divider(height: 1),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  _ListaProduccion(
-                      items: _produccion, idioma: idioma, textos: textos),
-                  _ListaVentas(items: _ventas, idioma: idioma, textos: textos),
-                  _ListaValidacion(
-                      items: _validaciones, idioma: idioma, textos: textos),
-                  _ListaApuntes(
-                      items: _apuntes, idioma: idioma, textos: textos),
-                ],
-              ),
+        // La cabecera (cifras y desglose) se desplaza con la lista: fija
+        // encima de las pestañas no cabe en un móvil apaisado o con el
+        // desglose abierto.
+        body: NestedScrollView(
+          headerSliverBuilder: (contexto, _) => [
+            SliverToBoxAdapter(
+              child: Column(children: [
+                if (p.cerrado)
+                  MaterialBanner(
+                    leading: const Icon(Icons.lock_outline),
+                    content: Text(textos.proyectoCerradoAviso(
+                        p.cerradoMs == null
+                            ? '—'
+                            : DateFormat('dd/MM/yyyy', idioma).format(
+                                DateTime.fromMillisecondsSinceEpoch(
+                                    p.cerradoMs!)))),
+                    actions: const [SizedBox.shrink()],
+                  ),
+                if (subt.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(subt,
+                          style: Theme.of(context).textTheme.bodyMedium),
+                    ),
+                  ),
+                _PanelRentabilidad(
+                    rent: _rent, dias: _diasPeriodo(), textos: textos),
+                if (_desgloseGastos.isNotEmpty)
+                  _DesgloseIva(
+                    desgloseGastos: _desgloseGastos,
+                    ivaTotales: _ivaTotales(),
+                    idioma: idioma,
+                    textos: textos,
+                  ),
+                const Divider(height: 1),
+              ]),
             ),
           ],
+          body: TabBarView(
+            children: [
+              // Mantener pulsado borra (con confirmación): sin esto, un
+              // apunte mal metido no se podía quitar.
+              _ListaProduccion(
+                  items: _produccion,
+                  idioma: idioma,
+                  textos: textos,
+                  alBorrar: _puedeRegistrar
+                      ? (id) => _borrarElemento(() => _bd.borrarRegistro(id))
+                      : null),
+              _ListaVentas(
+                  items: _ventas,
+                  idioma: idioma,
+                  textos: textos,
+                  alBorrar: _puedeRegistrar
+                      ? (id) =>
+                          _borrarElemento(() => _bd.borrarComercializacion(id))
+                      : null),
+              _ListaValidacion(
+                  items: _validaciones,
+                  idioma: idioma,
+                  textos: textos,
+                  alBorrar: _puedeRegistrar
+                      ? (id) => _borrarElemento(() => _bd.borrarValidacion(id))
+                      : null),
+              _ListaApuntes(
+                  items: _apuntes,
+                  idioma: idioma,
+                  textos: textos,
+                  alBorrar: _puedeRegistrar
+                      ? (id) => _borrarElemento(() => _bd.borrarApunte(id))
+                      : null),
+            ],
+          ),
         ),
       ),
     );
@@ -636,8 +679,12 @@ class _Cifra extends StatelessWidget {
 
 class _ListaProduccion extends StatelessWidget {
   const _ListaProduccion(
-      {required this.items, required this.idioma, required this.textos});
+      {required this.items,
+      required this.idioma,
+      required this.textos,
+      this.alBorrar});
   final List<RegistroActividad> items;
+  final Future<void> Function(int id)? alBorrar;
   final String idioma;
   final AppLocalizations textos;
 
@@ -648,6 +695,8 @@ class _ListaProduccion extends StatelessWidget {
     return ListView(children: [
       for (final a in items)
         ListTile(
+          onLongPress:
+              alBorrar == null || a.id == null ? null : () => alBorrar!(a.id!),
           leading: const Icon(Icons.grass_outlined),
           title: Text(
               '${buscarOpcion(tiposActividad, a.tipo)?.etiqueta(idioma) ?? a.tipo} · ${cantidadBonita(a.cantidad)} ${unidadActividad(a.tipo, idioma)}'),
@@ -660,8 +709,12 @@ class _ListaProduccion extends StatelessWidget {
 
 class _ListaVentas extends StatelessWidget {
   const _ListaVentas(
-      {required this.items, required this.idioma, required this.textos});
+      {required this.items,
+      required this.idioma,
+      required this.textos,
+      this.alBorrar});
   final List<RegistroComercializacion> items;
+  final Future<void> Function(int id)? alBorrar;
   final String idioma;
   final AppLocalizations textos;
 
@@ -672,6 +725,8 @@ class _ListaVentas extends StatelessWidget {
     return ListView(children: [
       for (final c in items)
         ListTile(
+          onLongPress:
+              alBorrar == null || c.id == null ? null : () => alBorrar!(c.id!),
           leading: const Icon(Icons.storefront_outlined),
           title: Text(c.producto.isEmpty
               ? (buscarOpcion(canalesComercializacion, c.canal)
@@ -689,8 +744,12 @@ class _ListaVentas extends StatelessWidget {
 
 class _ListaValidacion extends StatelessWidget {
   const _ListaValidacion(
-      {required this.items, required this.idioma, required this.textos});
+      {required this.items,
+      required this.idioma,
+      required this.textos,
+      this.alBorrar});
   final List<ValidacionProducto> items;
+  final Future<void> Function(int id)? alBorrar;
   final String idioma;
   final AppLocalizations textos;
 
@@ -701,6 +760,8 @@ class _ListaValidacion extends StatelessWidget {
     return ListView(children: [
       for (final v in items)
         ListTile(
+          onLongPress:
+              alBorrar == null || v.id == null ? null : () => alBorrar!(v.id!),
           leading: const Icon(Icons.verified_outlined),
           title: Text(v.descripcion.isEmpty
               ? (buscarOpcion(resultadosValidacion, v.resultado)
@@ -720,8 +781,12 @@ class _ListaValidacion extends StatelessWidget {
 
 class _ListaApuntes extends StatelessWidget {
   const _ListaApuntes(
-      {required this.items, required this.idioma, required this.textos});
+      {required this.items,
+      required this.idioma,
+      required this.textos,
+      this.alBorrar});
   final List<ApunteEconomico> items;
+  final Future<void> Function(int id)? alBorrar;
   final String idioma;
   final AppLocalizations textos;
 
@@ -732,6 +797,8 @@ class _ListaApuntes extends StatelessWidget {
     return ListView(children: [
       for (final a in items)
         ListTile(
+          onLongPress:
+              alBorrar == null || a.id == null ? null : () => alBorrar!(a.id!),
           leading: Icon(
               a.tipo == 'ingreso' ? Icons.south_west : Icons.north_east,
               color: a.tipo == 'ingreso'

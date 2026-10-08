@@ -12,6 +12,7 @@ import '../modelos/registro_comercializacion.dart';
 import '../modelos/rentabilidad_proyecto.dart';
 import '../modelos/validacion_producto.dart';
 import 'documento_generado.dart';
+import 'tema_pdf.dart';
 
 /// Informe de un proyecto de test en PDF: análisis de resultados
 /// (rentabilidad) + comercialización + producción + validación y, si se
@@ -35,6 +36,7 @@ Future<DocumentoGenerado> generarInformeProyectoPdf({
   IndicadoresAcompanamiento? indicadores,
   List<IncidenciaCumplimiento> incidencias = const [],
   bool definitivo = false,
+  String? periodo,
 }) async {
   final formatoFecha = DateFormat('dd/MM/yyyy', idioma);
   String fecha(int ms) => ms == 0
@@ -45,6 +47,7 @@ Future<DocumentoGenerado> generarInformeProyectoPdf({
   String euros(int c) => '${eurosDesdeCentimos(c)} €';
 
   final bytes = await generarInformePeriodicoPdfBytes(
+    tema: await temaPdfZunbeltz(),
     tituloCabecera: textos.infProyTitulo,
     subtituloCabecera: textos.parteSubtitulo,
     marcaAgua: definitivo ? null : textos.marcaBorrador,
@@ -52,6 +55,7 @@ Future<DocumentoGenerado> generarInformeProyectoPdf({
       textos.parteProvisional,
       if (!definitivo) textos.informeBorradorAviso,
       textos.infProyResumen(proyecto.nombre, proyecto.persona),
+      '${textos.informePeriodo}: ${periodo ?? textos.informeTodoElProyecto}',
       '${textos.rentVentas}: ${euros(rentabilidad.ingresosComercializacionCentimos)}',
       '${textos.rentOtrosIngresos}: ${euros(rentabilidad.ingresosApuntesCentimos)}',
       '${textos.rentGastos}: ${euros(rentabilidad.gastosCentimos)}',
@@ -61,6 +65,9 @@ Future<DocumentoGenerado> generarInformeProyectoPdf({
         textos.ivaNoFiscal,
       ],
       if (balance != null) ...[
+        // Las cifras de arriba son del periodo elegido; las del convenio,
+        // de todo el proyecto: sin decirlo, parecen contradecirse.
+        textos.informeConvenioAcumulado,
         '${textos.balanceTest}: ${euros(balance.balanceTestCentimos)} · ${textos.balanceProyecto}: ${euros(balance.balanceProyectoCentimos)}',
         '${textos.balanceAsumeTester}: ${euros(balance.gastosAsumidosTesterCentimos)} · ${textos.balanceAsumeZunbeltz}: ${euros(balance.gastosAsumidosZunbeltzCentimos)}',
         '${textos.balanceReparto} (${balance.hayBeneficio ? textos.balanceBeneficio : textos.balancePerdida}): ${textos.balanceParteZunbeltz} ${euros(balance.parteZunbeltzCentimos)} · ${textos.balanceParteTester} ${euros(balance.parteTesterCentimos)}',

@@ -23,6 +23,8 @@ import 'package:solera_zunbeltz/pantallas/pantalla_inicio.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_peticiones.dart';
 
 import 'bd_en_memoria.dart';
+import 'package:solera_zunbeltz/pantallas/proyecto_detalle.dart';
+import 'package:solera_zunbeltz/pantallas/nueva_comercializacion.dart';
 
 Widget envolver(Widget pantalla, {String idioma = 'es'}) => MaterialApp(
       locale: Locale(idioma),
@@ -96,6 +98,40 @@ void main() {
       }
     });
   }
+
+  testWidgets('Detalle de proyecto en apaisado: la cabecera se desplaza sin desbordar',
+      (tester) async {
+    final proyecto = (await tester.runAsync(() => bd.obtenerProyecto(proyectoId)))!;
+    await montar(tester, ProyectoDetalle(proyecto: proyecto));
+    tester.view.physicalSize = const Size(740, 360) * 3;
+    await tester.pumpAndSettle();
+    final desglose = find.byType(ExpansionTile);
+    if (desglose.evaluate().isNotEmpty) {
+      await tester.tap(desglose.first);
+      await tester.pumpAndSettle();
+    }
+    expect(tester.takeException(), isNull);
+    for (var pestana = 0; pestana < 4; pestana++) {
+      await tester.tap(find.byType(Tab).at(pestana));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'pestaña $pestana');
+    }
+  });
+
+  testWidgets('Una venta con «1.200,00» se guarda como 1200 €, no como 0',
+      (tester) async {
+    await montar(tester, NuevaComercializacion(proyectoId: proyectoId));
+    final campos = find.byType(TextField);
+    await tester.enterText(campos.at(0), 'Queso');
+    await tester.enterText(campos.last, '1.200,00');
+    final guardar = find.byWidgetPredicate((widget) => widget is FilledButton);
+    await tester.ensureVisible(guardar);
+    await tester.tap(guardar);
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 600)));
+    await tester.pumpAndSettle();
+    final ventas = await tester.runAsync(() => bd.listarComercializacion(proyectoId: proyectoId));
+    expect(ventas!.map((venta) => venta.ingresoCentimos), contains(120000));
+  });
 
   testWidgets('Dar un aviso', (tester) async {
     await montar(tester, const NuevoAviso());

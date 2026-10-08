@@ -8,6 +8,7 @@ import '../modelos/punto_infraestructura.dart';
 import '../modelos/zona_finca.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import 'documento_generado.dart';
+import 'tema_pdf.dart';
 
 /// Genera el parte de mantenimiento en PDF reutilizando el informe
 /// periódico del core. Una tabla por finca con sus tareas. Lleva sello
@@ -28,8 +29,7 @@ Future<DocumentoGenerado> generarParteMantenimientoPdf({
 
   /// A qué está anclada la tarea: su punto, su zona, o la finca entera.
   String anclaje(TareaMantenimiento tarea) {
-    final punto =
-        tarea.puntoId == null ? null : puntosPorId[tarea.puntoId];
+    final punto = tarea.puntoId == null ? null : puntosPorId[tarea.puntoId];
     if (punto != null) {
       return punto.nombre.isNotEmpty
           ? punto.nombre
@@ -79,6 +79,7 @@ Future<DocumentoGenerado> generarParteMantenimientoPdf({
   }
 
   final bytes = await generarInformePeriodicoPdfBytes(
+    tema: await temaPdfZunbeltz(),
     marcaAgua: definitivo ? null : textos.marcaBorrador,
     tituloCabecera: textos.parteTitulo,
     subtituloCabecera: textos.parteSubtitulo,

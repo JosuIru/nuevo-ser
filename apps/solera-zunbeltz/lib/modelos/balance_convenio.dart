@@ -169,7 +169,8 @@ class IndicadoresAcompanamiento {
     List<Acompanamiento> actividades, {
     required DateTime inicio,
     required DateTime fin,
-  }) : meses = _mesesEntre(inicio, fin) {
+    DateTime? ahora,
+  }) : meses = _mesesEntre(inicio, fin, ahora ?? DateTime.now()) {
     for (final actividad in actividades) {
       propuestas.update(actividad.tipo, (n) => n + 1, ifAbsent: () => 1);
       if (actividad.asistida) {
@@ -210,8 +211,18 @@ class IndicadoresAcompanamiento {
   bool get cumpleVenta =>
       asistidasDe('busqueda_canales') >= 1 || asistidasDe('mercado') >= 1;
 
-  static int _mesesEntre(DateTime inicio, DateTime fin) {
-    final meses = (fin.year - inicio.year) * 12 + fin.month - inicio.month;
+  /// Meses completos entre el inicio y el fin, contando el día final (del
+  /// 1 de enero al 31 de diciembre son 12, no 11). Si el fin aún no ha
+  /// llegado (fin previsto), solo cuenta hasta hoy: en el segundo mes de un
+  /// proyecto de un año no se exigen las doce reuniones.
+  static int _mesesEntre(DateTime inicio, DateTime fin, DateTime ahora) {
+    final finEfectivo = fin.isAfter(ahora) ? ahora : fin;
+    final finInclusivo =
+        DateTime(finEfectivo.year, finEfectivo.month, finEfectivo.day + 1);
+    var meses = (finInclusivo.year - inicio.year) * 12 +
+        finInclusivo.month -
+        inicio.month;
+    if (finInclusivo.day < inicio.day) meses--;
     return meses < 1 ? 1 : meses;
   }
 }

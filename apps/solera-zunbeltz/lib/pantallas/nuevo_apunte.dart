@@ -7,6 +7,7 @@ import '../modelos/apunte_economico.dart';
 import '../modelos/constantes.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
 
 /// Alta de un apunte económico (ingreso o gasto) de un proyecto de test.
 class NuevoApunte extends StatefulWidget {
@@ -24,6 +25,18 @@ class NuevoApunte extends StatefulWidget {
 }
 
 class _NuevoApunteState extends State<NuevoApunte> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
   final _bd = BaseDatosSoleraZunbeltz();
   final _concepto = TextEditingController();
   final _importe = TextEditingController();
@@ -67,8 +80,8 @@ class _NuevoApunteState extends State<NuevoApunte> {
   Future<void> _guardar() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final textos = AppLocalizations.of(context);
-    final euros = double.tryParse(_importe.text.trim().replaceAll(',', '.'));
-    if (euros == null || euros <= 0) {
+    final importeCentimos = centimosDesdeTexto(_importe.text);
+    if (importeCentimos == null || importeCentimos <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(textos.apuImporteObligatorio)));
       return;
@@ -79,7 +92,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
       tipo: _tipo,
       categoria: _categoria,
       concepto: _concepto.text.trim(),
-      importeCentimos: (euros * 100).round(),
+      importeCentimos: importeCentimos,
       ivaPorcentaje: _iva,
       fechaMs: _fecha.millisecondsSinceEpoch,
       notas: _notas.text.trim(),
@@ -202,7 +215,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
                 decoration: InputDecoration(labelText: textos.apuNotas)),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: _guardar,
+              onPressed: _guardando ? null : _guardarUnaVez,
               icon: const Icon(Icons.save),
               label: Text(textos.comunGuardar),
             ),

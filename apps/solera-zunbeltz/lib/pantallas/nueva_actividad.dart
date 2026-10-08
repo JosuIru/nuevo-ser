@@ -7,6 +7,7 @@ import '../modelos/constantes.dart';
 import '../modelos/registro_actividad.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
 
 /// Alta de un registro de actividad/producción de un proyecto de test
 /// (alimentación, paricion, producto). Se cuelga del proyecto; la finca es
@@ -26,6 +27,18 @@ class NuevaActividad extends StatefulWidget {
 }
 
 class _NuevaActividadState extends State<NuevaActividad> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
   final _bd = BaseDatosSoleraZunbeltz();
   final _cantidad = TextEditingController();
   final _lote = TextEditingController();
@@ -55,7 +68,7 @@ class _NuevaActividadState extends State<NuevaActividad> {
   Future<void> _guardar() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final textos = AppLocalizations.of(context);
-    final cantidad = double.tryParse(_cantidad.text.trim().replaceAll(',', '.'));
+    final cantidad = leerNumero(_cantidad.text);
     if (cantidad == null || cantidad <= 0) {
       ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(textos.actCantidadObligatoria)));
@@ -127,7 +140,7 @@ class _NuevaActividadState extends State<NuevaActividad> {
                 decoration: InputDecoration(labelText: textos.actNotas)),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: _guardar,
+              onPressed: _guardando ? null : _guardarUnaVez,
               icon: const Icon(Icons.save),
               label: Text(textos.comunGuardar),
             ),

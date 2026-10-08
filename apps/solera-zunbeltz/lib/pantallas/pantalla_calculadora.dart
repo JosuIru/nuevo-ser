@@ -9,6 +9,8 @@ import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
+import 'widgets/confirmar_borrado.dart';
 
 /// Calculadora de transformación de un proyecto: de un animal de X kg a kg
 /// de producto, ingreso, costes y margen, con caminos guardados para
@@ -84,7 +86,7 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
   }
 
   double _decimal(TextEditingController campo) =>
-      double.tryParse(campo.text.trim().replaceAll(',', '.')) ?? 0;
+      leerNumero(campo.text) ?? 0;
 
   int _centimos(TextEditingController campo) => (_decimal(campo) * 100).round();
 
@@ -282,6 +284,7 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
                             IconButton(
                               icon: const Icon(Icons.delete_outline),
                               onPressed: () async {
+                                if (!await confirmarBorrado(context)) return;
                                 await _bd.borrarEscenario(escenario.id!);
                                 await _cargar();
                               },

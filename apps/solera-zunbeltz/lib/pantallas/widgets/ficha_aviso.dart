@@ -8,6 +8,7 @@ import '../../estado/sesion_espacio.dart';
 import '../../l10n/app_localizations.dart';
 import '../../modelos/aviso_campo.dart';
 import '../../utiles/estilo_aviso.dart';
+import 'confirmar_borrado.dart';
 
 /// Hoja con el detalle de un aviso y lo que se puede hacer con él
 /// (resolverlo, reabrirlo, borrarlo) según quién mira. Devuelve `true` si
@@ -20,7 +21,8 @@ Future<bool> mostrarFichaAviso(BuildContext context, AvisoCampo aviso) async {
   final cambio = await showModalBottomSheet<bool>(
     context: context,
     showDragHandle: true,
-    builder: (contexto) => SafeArea(
+    builder: (contexto) => SingleChildScrollView(
+        child: SafeArea(
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
         child: Column(
@@ -69,6 +71,7 @@ Future<bool> mostrarFichaAviso(BuildContext context, AvisoCampo aviso) async {
                 ),
                 TextButton(
                   onPressed: () async {
+                    if (!await confirmarBorrado(contexto)) return;
                     await bd.borrarAviso(aviso.id!);
                     if (contexto.mounted) Navigator.pop(contexto, true);
                   },
@@ -79,7 +82,7 @@ Future<bool> mostrarFichaAviso(BuildContext context, AvisoCampo aviso) async {
           ],
         ),
       ),
-    ),
+    )),
   );
   if (cambio == true) avisarCambioDatos();
   return cambio == true;

@@ -20,6 +20,18 @@ class NuevaValidacion extends StatefulWidget {
 }
 
 class _NuevaValidacionState extends State<NuevaValidacion> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
   final _bd = BaseDatosSoleraZunbeltz();
   final _descripcion = TextEditingController();
   final _notas = TextEditingController();
@@ -118,10 +130,10 @@ class _NuevaValidacionState extends State<NuevaValidacion> {
             TextField(
                 controller: _notas,
                 maxLines: 2,
-                decoration: const InputDecoration(labelText: 'Notas')),
+                decoration: InputDecoration(labelText: textos.apuNotas)),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: _guardar,
+              onPressed: _guardando ? null : _guardarUnaVez,
               icon: const Icon(Icons.save),
               label: Text(textos.comunGuardar),
             ),

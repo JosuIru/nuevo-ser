@@ -13,6 +13,8 @@ import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_comercializacion.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
+import 'widgets/confirmar_borrado.dart';
 
 /// El proyecto visto desde el convenio tester: balance del test y del
 /// proyecto con su reparto, presupuesto previsto, fianza, acompañamiento
@@ -48,24 +50,29 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
   }
 
   Future<void> _cargar() async {
-    final proyecto = await _bd.obtenerProyecto(_proyectoId);
-    final apuntes = await _bd.listarApuntes(proyectoId: _proyectoId);
-    final ventas = await _bd.listarComercializacion(proyectoId: _proyectoId);
-    final presupuesto = await _bd.listarPresupuesto(_proyectoId);
-    final movimientos = await _bd.listarMovimientosFianza(_proyectoId);
-    final acompanamientos = await _bd.listarAcompanamientos(_proyectoId);
-    final incidencias = await _bd.listarIncidencias(_proyectoId);
-    if (!mounted) return;
-    setState(() {
-      if (proyecto != null) _proyecto = proyecto;
-      _apuntes = apuntes;
-      _ventas = ventas;
-      _presupuesto = presupuesto;
-      _movimientos = movimientos;
-      _acompanamientos = acompanamientos;
-      _incidencias = incidencias;
-      _cargando = false;
-    });
+    try {
+      final proyecto = await _bd.obtenerProyecto(_proyectoId);
+      final apuntes = await _bd.listarApuntes(proyectoId: _proyectoId);
+      final ventas = await _bd.listarComercializacion(proyectoId: _proyectoId);
+      final presupuesto = await _bd.listarPresupuesto(_proyectoId);
+      final movimientos = await _bd.listarMovimientosFianza(_proyectoId);
+      final acompanamientos = await _bd.listarAcompanamientos(_proyectoId);
+      final incidencias = await _bd.listarIncidencias(_proyectoId);
+      if (!mounted) return;
+      setState(() {
+        if (proyecto != null) _proyecto = proyecto;
+        _apuntes = apuntes;
+        _ventas = ventas;
+        _presupuesto = presupuesto;
+        _movimientos = movimientos;
+        _acompanamientos = acompanamientos;
+        _incidencias = incidencias;
+        _cargando = false;
+      });
+    } catch (_) {
+      // Sin esto, si la BD falla el indicador de carga gira para siempre.
+      if (mounted) setState(() => _cargando = false);
+    }
   }
 
   BalanceConvenio get _balance => BalanceConvenio.calcular(
@@ -306,6 +313,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
               onLongPress: !_gestiona || partida.id == null
                   ? null
                   : () async {
+                      if (!await confirmarBorrado(context)) return;
                       await _bd.borrarPartidaPresupuesto(partida.id!);
                       await _cargar();
                     },
@@ -371,13 +379,15 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       ],
     );
     if (!aceptado) return;
+    final importeCentimos = _importeObligatorio(importe.text, textos);
+    if (importeCentimos == null) return;
     await _bd.guardarPartidaPresupuesto(PartidaPresupuesto(
       proyectoId: _proyectoId,
       categoria: categoria,
       concepto: concepto.text.trim(),
       asumidoPor: asumidoPor,
       esAmortizacion: esAmortizacion,
-      importeCentimos: _centimos(importe.text),
+      importeCentimos: importeCentimos,
     ));
     await _cargar();
   }
@@ -411,6 +421,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
             onLongPress: !_gestiona || movimiento.id == null
                 ? null
                 : () async {
+                    if (!await confirmarBorrado(context)) return;
                     await _bd.borrarMovimientoFianza(movimiento.id!);
                     await _cargar();
                   },
@@ -454,10 +465,12 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       ],
     );
     if (!aceptado) return;
+    final importeCentimos = _importeObligatorio(importe.text, textos);
+    if (importeCentimos == null) return;
     await _bd.guardarMovimientoFianza(MovimientoFianza(
       proyectoId: _proyectoId,
       tipo: tipo,
-      importeCentimos: _centimos(importe.text),
+      importeCentimos: importeCentimos,
       fechaMs: fecha.millisecondsSinceEpoch,
       notas: notas.text.trim(),
     ));
@@ -540,6 +553,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
             onLongPress: !_gestiona || actividad.id == null
                 ? null
                 : () async {
+                    if (!await confirmarBorrado(context)) return;
                     await _bd.borrarAcompanamiento(actividad.id!);
                     await _cargar();
                   },
@@ -640,7 +654,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       asistencia: asistencia,
       fechaMs: fecha.millisecondsSinceEpoch,
       descripcion: descripcion.text.trim(),
-      horas: double.tryParse(horas.text.trim().replaceAll(',', '.')),
+      horas: leerNumero(horas.text),
     ));
     await _cargar();
   }
@@ -674,6 +688,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
               onLongPress: !_gestiona || incidencia.id == null
                   ? null
                   : () async {
+                      if (!await confirmarBorrado(context)) return;
                       await _bd.borrarIncidencia(incidencia.id!);
                       await _cargar();
                     },
@@ -715,20 +730,40 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       ],
     );
     if (!aceptado) return;
+    final retencionCentimos =
+        retencion.text.trim().isEmpty ? 0 : centimosDesdeTexto(retencion.text);
+    if (retencionCentimos == null || retencionCentimos < 0) {
+      _avisar(textos.numeroNoValido);
+      return;
+    }
     await _bd.guardarIncidencia(IncidenciaCumplimiento(
       proyectoId: _proyectoId,
       nivel: nivel,
       fechaMs: fecha.millisecondsSinceEpoch,
       descripcion: descripcion.text.trim(),
-      retencionCentimos: _centimos(retencion.text),
+      retencionCentimos: retencionCentimos,
     ));
     await _cargar();
   }
 
   // ─── Utilidades de formulario ───
 
-  int _centimos(String texto) =>
-      ((double.tryParse(texto.trim().replaceAll(',', '.')) ?? 0) * 100).round();
+  /// Céntimos de un importe que tiene que ser mayor que cero, o `null`
+  /// (avisando) si está vacío o no se entiende.
+  int? _importeObligatorio(String texto, AppLocalizations textos) {
+    final centimos = centimosDesdeTexto(texto);
+    if (centimos == null || centimos <= 0) {
+      _avisar(textos.apuImporteObligatorio);
+      return null;
+    }
+    return centimos;
+  }
+
+  void _avisar(String mensaje) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(mensaje)));
+  }
 
   Widget _selectorFecha(AppLocalizations textos, DateTime fecha,
           ValueChanged<DateTime> alCambiar) =>

@@ -23,6 +23,18 @@ class NuevoProyecto extends StatefulWidget {
 }
 
 class _NuevoProyectoState extends State<NuevoProyecto> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
   final _bd = BaseDatosSoleraZunbeltz();
   final _nombre = TextEditingController();
   final _persona = TextEditingController();
@@ -138,6 +150,16 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
                   for (final persona in personasEspacio.value)
                     DropdownMenuItem(
                         value: persona.uid, child: Text(persona.nombre)),
+                  // Tester dada de baja: sin su opción el desplegable falla
+                  // (o se queda en blanco y se perdería al guardar).
+                  if (_personaUid.isNotEmpty &&
+                      !personasEspacio.value
+                          .any((persona) => persona.uid == _personaUid))
+                    DropdownMenuItem(
+                        value: _personaUid,
+                        child: Text(_persona.text.isEmpty
+                            ? _personaUid
+                            : _persona.text)),
                 ],
                 onChanged: (uid) => setState(() {
                   _personaUid = uid ?? '';
@@ -154,7 +176,11 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
                     InputDecoration(labelText: textos.proyectoActividad)),
             const SizedBox(height: 12),
             DropdownButtonFormField<int?>(
-              initialValue: _fincaId,
+              // Una finca que ya no está (borrada al sincronizar) no puede
+              // ser el valor inicial.
+              initialValue: widget.fincas.any((finca) => finca.id == _fincaId)
+                  ? _fincaId
+                  : null,
               decoration: InputDecoration(labelText: textos.proyectoFinca),
               items: [
                 DropdownMenuItem(
@@ -179,10 +205,10 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
             TextField(
                 controller: _notas,
                 maxLines: 2,
-                decoration: const InputDecoration(labelText: 'Notas')),
+                decoration: InputDecoration(labelText: textos.apuNotas)),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: _guardar,
+              onPressed: _guardando ? null : _guardarUnaVez,
               icon: const Icon(Icons.save),
               label: Text(textos.comunGuardar),
             ),

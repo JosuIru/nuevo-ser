@@ -10,6 +10,8 @@ import '../modelos/constantes.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
+import '../estado/datos_notificador.dart';
 
 /// Alta de una tarea de mantenimiento, anclada a una finca y opcionalmente
 /// a un punto de infraestructura o a una zona dibujada.
@@ -40,6 +42,19 @@ class NuevaTarea extends StatefulWidget {
 }
 
 class _NuevaTareaState extends State<NuevaTarea> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _titulo = TextEditingController();
   final _descripcion = TextEditingController();
@@ -84,20 +99,19 @@ class _NuevaTareaState extends State<NuevaTarea> {
     if (elegida != null) setState(() => _fechaObjetivo = elegida);
   }
 
-  int? _costeCentimos() {
-    final texto = _coste.text.trim().replaceAll(',', '.');
-    if (texto.isEmpty) return null;
-    final euros = double.tryParse(texto);
-    if (euros == null) return null;
-    return (euros * 100).round();
-  }
-
   Future<void> _guardar() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final textos = AppLocalizations.of(context);
     if (_titulo.text.trim().isEmpty) {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(textos.tareaTituloObligatorio)));
+      return;
+    }
+    final costeEscrito = _coste.text.trim().isNotEmpty;
+    final costeCentimos = costeEscrito ? centimosDesdeTexto(_coste.text) : null;
+    if (costeEscrito && (costeCentimos == null || costeCentimos < 0)) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.numeroNoValido)));
       return;
     }
     final sesion = sesionEspacio.value;
@@ -120,7 +134,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
       fechaObjetivoMs: _fechaObjetivo?.millisecondsSinceEpoch,
       rutasFotosAntesJson: GestorFotos.codificar(_fotosAntes),
       rutasFotosDespuesJson: GestorFotos.codificar(_fotosDespues),
-      costeCentimos: _costeCentimos(),
+      costeCentimos: costeCentimos,
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
       recurrenciaDias: _recurrenciaDias,
     );
@@ -130,6 +144,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
     } else {
       await guardar(tarea);
     }
+    avisarCambioDatos();
     if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(textos.tareaGuardada)));
@@ -152,6 +167,8 @@ class _NuevaTareaState extends State<NuevaTarea> {
             .where((persona) => persona.uid == sesion.persona.uid)
             .toList();
     return DropdownButtonFormField<String>(
+      // «Nombre · Rol» no cabe en un móvil estrecho sin recortar.
+      isExpanded: true,
       initialValue: _responsableUid,
       decoration: InputDecoration(labelText: textos.tareaResponsable),
       items: [
@@ -159,9 +176,11 @@ class _NuevaTareaState extends State<NuevaTarea> {
         for (final persona in personasElegibles)
           DropdownMenuItem(
             value: persona.uid,
-            child: Text(persona.etiquetaRol.isEmpty
-                ? persona.nombre
-                : '${persona.nombre} · ${persona.etiquetaRol}'),
+            child: Text(
+                persona.etiquetaRol.isEmpty
+                    ? persona.nombre
+                    : '${persona.nombre} · ${persona.etiquetaRol}',
+                overflow: TextOverflow.ellipsis),
           ),
       ],
       onChanged: (valor) => setState(() => _responsableUid = valor ?? ''),
@@ -177,7 +196,8 @@ class _NuevaTareaState extends State<NuevaTarea> {
         : DateFormat('dd/MM/yyyy', idioma).format(_fechaObjetivo!);
     return Scaffold(
       appBar: AppBar(title: Text(textos.tareaNuevaTitulo)),
-      body: CuerpoResponsivo(child: ListView(
+      body: CuerpoResponsivo(
+          child: ListView(
         padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
         children: [
           TextField(
@@ -198,7 +218,8 @@ class _NuevaTareaState extends State<NuevaTarea> {
             decoration: InputDecoration(labelText: textos.tareaPrioridad),
             items: [
               for (final p in prioridadesTarea)
-                DropdownMenuItem(value: p.codigo, child: Text(p.etiqueta(idioma))),
+                DropdownMenuItem(
+                    value: p.codigo, child: Text(p.etiqueta(idioma))),
             ],
             onChanged: (v) => setState(() => _prioridad = v ?? _prioridad),
           ),
@@ -208,7 +229,8 @@ class _NuevaTareaState extends State<NuevaTarea> {
             decoration: InputDecoration(labelText: textos.tareaEstado),
             items: [
               for (final e in estadosTarea)
-                DropdownMenuItem(value: e.codigo, child: Text(e.etiqueta(idioma))),
+                DropdownMenuItem(
+                    value: e.codigo, child: Text(e.etiqueta(idioma))),
             ],
             onChanged: (v) => setState(() => _estado = v ?? _estado),
           ),
@@ -227,7 +249,8 @@ class _NuevaTareaState extends State<NuevaTarea> {
             decoration: InputDecoration(labelText: textos.tareaRecurrencia),
             items: [
               for (final r in recurrenciasTarea)
-                DropdownMenuItem(value: r, child: Text(etiquetaRecurrencia(r, idioma))),
+                DropdownMenuItem(
+                    value: r, child: Text(etiquetaRecurrencia(r, idioma))),
             ],
             onChanged: (v) => setState(() => _recurrenciaDias = v),
           ),
@@ -255,7 +278,7 @@ class _NuevaTareaState extends State<NuevaTarea> {
           ),
           const SizedBox(height: 24),
           FilledButton.icon(
-            onPressed: _guardar,
+            onPressed: _guardando ? null : _guardarUnaVez,
             icon: const Icon(Icons.save),
             label: Text(textos.comunGuardar),
           ),

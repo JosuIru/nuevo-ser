@@ -7,6 +7,7 @@ import '../modelos/constantes.dart';
 import '../modelos/registro_comercializacion.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
 
 /// Alta de una operación de comercialización (venta) de un proyecto de test.
 class NuevaComercializacion extends StatefulWidget {
@@ -19,6 +20,18 @@ class NuevaComercializacion extends StatefulWidget {
 }
 
 class _NuevaComercializacionState extends State<NuevaComercializacion> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
   final _bd = BaseDatosSoleraZunbeltz();
   final _producto = TextEditingController();
   final _cantidad = TextEditingController();
@@ -40,8 +53,6 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
     super.dispose();
   }
 
-  double _num(TextEditingController c) =>
-      double.tryParse(c.text.trim().replaceAll(',', '.')) ?? 0;
 
   Future<void> _elegirFecha() async {
     final ahora = DateTime.now();
@@ -57,12 +68,36 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
   Future<void> _guardar() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final textos = AppLocalizations.of(context);
-    final cantidad = _num(_cantidad);
-    final precioCent = (_num(_precio) * 100).round();
+    if (_producto.text.trim().isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(textos.comProductoObligatorio)));
+      return;
+    }
+    // Vacío vale 0; escrito y que no se entienda (o negativo), se avisa.
+    final cantidad =
+        _cantidad.text.trim().isEmpty ? 0.0 : leerNumero(_cantidad.text);
+    final precioCent =
+        _precio.text.trim().isEmpty ? 0 : centimosDesdeTexto(_precio.text);
+    final ingresoEscrito = _ingreso.text.trim().isEmpty
+        ? null
+        : centimosDesdeTexto(_ingreso.text);
+    if (cantidad == null ||
+        precioCent == null ||
+        cantidad < 0 ||
+        precioCent < 0 ||
+        (_ingreso.text.trim().isNotEmpty &&
+            (ingresoEscrito == null || ingresoEscrito < 0))) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.numeroNoValido)));
+      return;
+    }
     // Ingreso: el indicado, o cantidad × precio si se deja vacío.
-    final ingresoCent = _ingreso.text.trim().isEmpty
-        ? (cantidad * precioCent).round()
-        : (_num(_ingreso) * 100).round();
+    final ingresoCent = ingresoEscrito ?? (cantidad * precioCent).round();
+    if (ingresoCent <= 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(textos.apuImporteObligatorio)));
+      return;
+    }
     await _bd.guardarComercializacion(RegistroComercializacion(
       proyectoId: widget.proyectoId,
       fechaMs: _fecha.millisecondsSinceEpoch,
@@ -175,7 +210,7 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
             ),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: _guardar,
+              onPressed: _guardando ? null : _guardarUnaVez,
               icon: const Icon(Icons.save),
               label: Text(textos.comunGuardar),
             ),

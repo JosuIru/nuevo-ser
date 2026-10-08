@@ -9,6 +9,7 @@ import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
 
 /// Alta de un punto de infraestructura. Recibe las fincas disponibles y,
 /// opcionalmente, una finca y unas coordenadas iniciales (del GPS o del
@@ -32,6 +33,18 @@ class NuevoPunto extends StatefulWidget {
 }
 
 class _NuevoPuntoState extends State<NuevoPunto> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
   final _bd = BaseDatosSoleraZunbeltz();
   final _nombre = TextEditingController();
   final _notas = TextEditingController();
@@ -67,13 +80,29 @@ class _NuevoPuntoState extends State<NuevoPunto> {
     FocusManager.instance.primaryFocus?.unfocus();
     final fincaId = _fincaId;
     if (fincaId == null) return;
+    // Sin coordenadas el punto no sale en el mapa y no se podría encontrar:
+    // si se escriben, tienen que entenderse las dos y estar en rango.
+    final hayCoordenadas =
+        _latitud.text.trim().isNotEmpty || _longitud.text.trim().isNotEmpty;
+    final latitud = leerNumero(_latitud.text);
+    final longitud = leerNumero(_longitud.text);
+    if (hayCoordenadas &&
+        (latitud == null ||
+            longitud == null ||
+            latitud.abs() > 90 ||
+            longitud.abs() > 180)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+              AppLocalizations.of(context).puntoCoordenadasNoValidas)));
+      return;
+    }
     final punto = PuntoInfraestructura(
       fincaId: fincaId,
       tipo: _tipo,
       nombre: _nombre.text.trim(),
       estado: _estado,
-      latitud: double.tryParse(_latitud.text.replaceAll(',', '.')),
-      longitud: double.tryParse(_longitud.text.replaceAll(',', '.')),
+      latitud: latitud,
+      longitud: longitud,
       notas: _notas.text.trim(),
       rutasFotosJson: GestorFotos.codificar(_fotos),
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
@@ -166,7 +195,7 @@ class _NuevoPuntoState extends State<NuevoPunto> {
           ),
           const SizedBox(height: 24),
           FilledButton.icon(
-            onPressed: _fincaId == null ? null : _guardar,
+            onPressed: _fincaId == null || _guardando ? null : _guardarUnaVez,
             icon: const Icon(Icons.save),
             label: Text(textos.comunGuardar),
           ),

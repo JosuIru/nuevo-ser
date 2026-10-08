@@ -25,6 +25,18 @@ class NuevoAviso extends StatefulWidget {
 }
 
 class _NuevoAvisoState extends State<NuevoAviso> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
   final _bd = BaseDatosSoleraZunbeltz();
   final _titulo = TextEditingController();
   final _descripcion = TextEditingController();
@@ -131,7 +143,7 @@ class _NuevoAvisoState extends State<NuevoAviso> {
             ),
             const SizedBox(height: 16),
             FilledButton.icon(
-              onPressed: _guardar,
+              onPressed: _guardando ? null : _guardarUnaVez,
               icon: const Icon(Icons.campaign_outlined),
               label: Text(textos.comunGuardar),
             ),

@@ -8,6 +8,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/agenda.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import 'widgets/confirmar_borrado.dart';
 
 String etiquetaTipoContacto(String tipo, AppLocalizations textos) =>
     switch (tipo) {
@@ -91,7 +92,8 @@ class _PantallaContactosState extends State<PantallaContactos> {
     await showModalBottomSheet<void>(
       context: context,
       showDragHandle: true,
-      builder: (contexto) => SafeArea(
+      builder: (contexto) => SingleChildScrollView(
+          child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
           child: Column(
@@ -137,6 +139,7 @@ class _PantallaContactosState extends State<PantallaContactos> {
                     onPressed: () async {
                       Navigator.pop(contexto);
                       if (contacto.id == null) return;
+                      if (!await confirmarBorrado(context)) return;
                       await _bd.borrarContacto(contacto.id!);
                       avisarCambioDatos();
                       await _cargar();
@@ -148,7 +151,7 @@ class _PantallaContactosState extends State<PantallaContactos> {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 
@@ -236,6 +239,19 @@ class FormularioContacto extends StatefulWidget {
 }
 
 class _FormularioContactoState extends State<FormularioContacto> {
+  /// Un doble toque en Guardar no debe guardar dos veces.
+  bool _guardando = false;
+
+  Future<void> _guardarUnaVez() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardar();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
+
   final _bd = BaseDatosSoleraZunbeltz();
   late final _nombre = TextEditingController(text: widget.contacto?.nombre);
   late final _telefono = TextEditingController(text: widget.contacto?.telefono);
@@ -337,7 +353,7 @@ class _FormularioContactoState extends State<FormularioContacto> {
                 decoration: InputDecoration(labelText: textos.contactoNotas)),
             const SizedBox(height: 24),
             FilledButton.icon(
-              onPressed: _guardar,
+              onPressed: _guardando ? null : _guardarUnaVez,
               icon: const Icon(Icons.save),
               label: Text(textos.comunGuardar),
             ),

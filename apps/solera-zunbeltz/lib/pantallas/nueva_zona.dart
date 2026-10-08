@@ -11,6 +11,7 @@ import '../modelos/zona_finca.dart';
 import '../utiles/geodesia.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
+import '../utiles/numeros.dart';
 
 /// Alta de una zona a partir del trazado dibujado en el mapa. Llega con los
 /// vértices ya marcados: aquí solo se le pone nombre, tipo y estado.
@@ -69,7 +70,7 @@ class _NuevaZonaState extends State<NuevaZona> {
     setState(() => _guardando = true);
 
     final oficial =
-        double.tryParse(_superficieOficial.text.trim().replaceAll(',', '.'));
+        leerNumero(_superficieOficial.text);
     final zona = ZonaFinca.desdeTrazado(
       fincaId: fincaId,
       vertices: widget.vertices,

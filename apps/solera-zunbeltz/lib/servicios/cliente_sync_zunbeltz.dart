@@ -157,14 +157,30 @@ class ClienteSyncZunbeltz {
     }
   }
 
+  /// Esperas antes de reintentar cuando el servidor está ocupado con otra
+  /// sincronización (503 `ocupado`). Configurable para los tests.
+  List<Duration> esperasSiOcupado = const [
+    Duration(seconds: 2),
+    Duration(seconds: 5),
+    Duration(seconds: 10),
+  ];
+
   Future<Map<Object?, Object?>> _leerRespuesta(
       Future<http.Response> Function() peticion) async {
     http.Response respuesta;
-    try {
-      respuesta = await peticion().timeout(const Duration(seconds: 60));
-    } catch (e) {
-      throw ErrorSyncZunbeltz('No se pudo contactar con el servidor: $e',
-          motivo: MotivoErrorSync.sinConexion);
+    var intento = 0;
+    while (true) {
+      try {
+        respuesta = await peticion().timeout(const Duration(seconds: 60));
+      } catch (e) {
+        throw ErrorSyncZunbeltz('No se pudo contactar con el servidor: $e',
+            motivo: MotivoErrorSync.sinConexion);
+      }
+      // Otro móvil está sincronizando: no es un error, se espera un poco.
+      final ocupado =
+          respuesta.statusCode == 503 && respuesta.body.contains('"ocupado"');
+      if (!ocupado || intento >= esperasSiOcupado.length) break;
+      await Future<void>.delayed(esperasSiOcupado[intento++]);
     }
     if (respuesta.statusCode == 401 || respuesta.statusCode == 403) {
       throw ErrorSyncZunbeltz(
@@ -320,9 +336,25 @@ class ClienteSyncZunbeltz {
       await bd.borrarEntidadSinLapida(partes[0], partes[1]);
     }
     var retiradas = 0;
+    var retiradaAplazada = false;
     if (sincronizacionCompleta) {
-      retiradas += await bd.retirarEntidadesNoRecibidas(uidsRecibidosPorTipo,
-          cambiadasDesdeMs: inicioMs);
+      // Retirar un padre borra en cascada sus hijos, también uno apuntado
+      // mientras viajaba la petición. Si hubo cambios locales entretanto, la
+      // retirada se deja para la próxima completa.
+      final recibidosConTareas = {
+        ...uidsRecibidosPorTipo,
+        'tarea': {
+          for (final tarea in json['tareas'] as List)
+            if (tarea is Map && tarea['uid'] is String) tarea['uid'] as String,
+        },
+      };
+      if (await bd.hayCambiosLocalesDesde(inicioMs, recibidosConTareas)) {
+        retiradaAplazada = true;
+      } else {
+        retiradas += await bd.retirarEntidadesNoRecibidas(
+            uidsRecibidosPorTipo,
+            cambiadasDesdeMs: inicioMs);
+      }
     }
     await bd.olvidarBorrados(lapidas);
 
@@ -364,9 +396,11 @@ class ClienteSyncZunbeltz {
     }
     if (cambioVisibilidad) await bd.pedirSincronizacionCompleta();
 
-    if (sincronizacionCompleta) {
+    if (sincronizacionCompleta && !retiradaAplazada) {
       await bd.guardarEstadoSync(
           SincronizacionBaseDatos.claveCompletaHecha, completasPedidas);
+    } else if (retiradaAplazada) {
+      await bd.pedirSincronizacionCompleta();
     } else if (entidadesDescartadas > 0) {
       // El cursor ya ha pasado por ellas: sin una completa no volverían.
       await bd.pedirSincronizacionCompleta();

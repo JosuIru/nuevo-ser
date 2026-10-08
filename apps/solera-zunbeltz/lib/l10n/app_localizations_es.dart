@@ -2050,4 +2050,8 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get informeConvenioAcumulado =>
       'Cuentas del convenio (todo el proyecto, sea cual sea el periodo):';
+
+  @override
+  String get ajustesSyncOcupado =>
+      'Ya hay una sincronización en marcha. Se terminará sola; prueba de nuevo en un momento.';
 }

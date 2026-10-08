@@ -19,10 +19,12 @@ import '../utiles/traductor_actualizaciones.dart';
 import 'pantalla_acerca_espacio_test.dart';
 import 'pantalla_ayuda.dart';
 import '../utiles/texto_error_sync.dart';
+import '../servicios/servicio_noticias_sector.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
-/// del `pubspec.yaml` (campo antes del `+`).
-const String versionAppZunbeltz = '0.3.1';
+/// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
+/// falla si no coinciden.
+const String versionAppZunbeltz = '0.4.0';
 
 /// Pestaña "Ajustes": idioma y acerca de.
 class PantallaAjustes extends StatefulWidget {
@@ -172,6 +174,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     final textos = AppLocalizations.of(context);
     await cerrarSesionEspacio();
     await reiniciarCursoresSincronizacion();
+    await ServicioNoticiasSector.olvidarGuardadas();
     avisarCambioDatos();
     if (!mounted || _syncUrl.isEmpty || _syncToken.isEmpty) return;
     setState(() => _sincronizando = true);
@@ -201,7 +204,20 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     setState(() => _sincronizando = true);
     try {
       final resultado = await sincronizarEspacio(completa: completa);
-      if (!mounted || resultado == null) return;
+      if (!mounted) return;
+      if (resultado == null) {
+        // Otra sincronización (la automática) tiene el candado: que la
+        // completa pedida no se pierda, y decirlo.
+        if (completa) {
+          await BaseDatosSoleraZunbeltz().pedirSincronizacionCompleta();
+        }
+        if (!mounted) return;
+        if (_syncUrl.isNotEmpty && _syncToken.isNotEmpty) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(textos.ajustesSyncOcupado)));
+        }
+        return;
+      }
       final resumen = textos.ajustesSyncResultado(
           resultado.subidas + resultado.entidadesSubidas,
           resultado.bajadas + resultado.entidadesBajadas,

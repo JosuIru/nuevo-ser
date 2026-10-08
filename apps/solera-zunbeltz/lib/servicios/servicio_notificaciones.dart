@@ -76,8 +76,13 @@ Timer? _esperaReprogramar;
 
 void _reprogramarTrasCambio() {
   _esperaReprogramar?.cancel();
-  _esperaReprogramar =
-      Timer(const Duration(seconds: 2), reprogramarRecordatorioVencidas);
+  _esperaReprogramar = Timer(const Duration(seconds: 2), () async {
+    try {
+      await reprogramarRecordatorioVencidas();
+    } catch (_) {
+      // Un recordatorio que no se puede programar no debe tumbar nada.
+    }
+  });
 }
 
 AppLocalizations _textos() {

@@ -2052,4 +2052,8 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get informeConvenioAcumulado =>
       'Hitzarmenaren kontuak (proiektu osoa, aldia edozein dela ere):';
+
+  @override
+  String get ajustesSyncOcupado =>
+      'Sinkronizazio bat abian da jada. Berez amaituko da; saiatu berriro une batean.';
 }

@@ -3679,6 +3679,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cuentas del convenio (todo el proyecto, sea cual sea el periodo):'**
   String get informeConvenioAcumulado;
+
+  /// No description provided for @ajustesSyncOcupado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya hay una sincronización en marcha. Se terminará sola; prueba de nuevo en un momento.'**
+  String get ajustesSyncOcupado;
 }
 
 class _AppLocalizationsDelegate

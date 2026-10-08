@@ -1331,6 +1331,10 @@ class BaseDatosSoleraZunbeltz {
   Future<bool> sembrarEspacioRealSiVacia() async {
     if (fincasEspacio.isEmpty) return false;
     if ((await listarFincas()).isNotEmpty) return false;
+    // Ya sincronizado: las fincas las manda el servidor. Sembrarlas aquí
+    // dejaría unas que nunca suben (marca mínima) y que el servidor no
+    // conoce.
+    if (await leerEstadoSync('revision') > 0) return false;
     final ahora = DateTime.now().millisecondsSinceEpoch;
     final idPorFinca = <String, int>{};
     for (final f in fincasEspacio) {

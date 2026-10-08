@@ -180,8 +180,10 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
   /// Candado de sincronización compartido entre la app abierta y la tarea
   /// en segundo plano (otro isolate) o varias pestañas: viven en la misma
   /// BD pero no comparten memoria. Caduca a los [caducidad] por si una
-  /// sincronización murió sin soltarlo. Devuelve `true` si se ha tomado.
-  Future<bool> tomarCandadoSync(
+  /// sincronización murió sin soltarlo. Devuelve la marca con que se ha
+  /// tomado (para soltarlo solo si sigue siendo nuestro), o `null` si lo
+  /// tiene otra.
+  Future<int?> tomarCandadoSync(
       {Duration caducidad = const Duration(minutes: 3)}) async {
     final db = await basedatos;
     final ahoraMs = DateTime.now().millisecondsSinceEpoch;
@@ -190,18 +192,29 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
           where: 'clave = ?', whereArgs: [_claveCandadoSync], limit: 1);
       final tomadoMs =
           filas.isEmpty ? 0 : (filas.first['valor'] as num).toInt();
-      if (tomadoMs > 0 && ahoraMs - tomadoMs < caducidad.inMilliseconds) {
-        return false;
-      }
+      // Una marca del futuro (el reloj se ha corregido hacia atrás) no
+      // puede bloquear hasta que el reloj la alcance: cuenta como caducada.
+      final vigente = tomadoMs > 0 &&
+          tomadoMs <= ahoraMs &&
+          ahoraMs - tomadoMs < caducidad.inMilliseconds;
+      if (vigente) return null;
+      // Siempre distinta de la anterior, para saber de quién es.
+      final marca = ahoraMs == tomadoMs ? ahoraMs + 1 : ahoraMs;
       await txn.insert(
-          'estado_sync', {'clave': _claveCandadoSync, 'valor': ahoraMs},
+          'estado_sync', {'clave': _claveCandadoSync, 'valor': marca},
           conflictAlgorithm: ConflictAlgorithm.replace);
-      return true;
+      return marca;
     });
   }
 
-  Future<void> soltarCandadoSync() =>
-      guardarEstadoSync(_claveCandadoSync, 0);
+  /// Suelta el candado si sigue siendo el que se tomó con [marca]: si una
+  /// sincronización muy larga lo perdió por caducidad, no suelta el de otra.
+  Future<void> soltarCandadoSync(int marca) async {
+    final db = await basedatos;
+    await db.update('estado_sync', {'valor': 0},
+        where: 'clave = ? AND valor = ?',
+        whereArgs: [_claveCandadoSync, marca]);
+  }
 
   static const _claveCandadoSync = 'candado_sync_ms';
 
@@ -400,6 +413,27 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
     if (id == null) return;
     await db.transaction(
         (txn) => _borrarConLapidas(txn, descriptor.tabla, id, null));
+  }
+
+  /// Si algo se ha creado o cambiado en este móvil desde [desdeMs] (en
+  /// cualquier tabla sincronizable o en las tareas). Lo que acaba de llegar
+  /// del servidor ([recibidosPorTipo], con las tareas bajo `tarea`) no
+  /// cuenta, aunque su marca sea posterior (cambios recientes de otras
+  /// personas o relojes adelantados).
+  Future<bool> hayCambiosLocalesDesde(
+      int desdeMs, Map<String, Set<String>> recibidosPorTipo) async {
+    final db = await basedatos;
+    for (final (tipo, tabla) in [
+      for (final descriptor in tablasSincronizables)
+        (descriptor.tipo, descriptor.tabla),
+      ('tarea', 'tareas_mantenimiento'),
+    ]) {
+      final recibidos = recibidosPorTipo[tipo] ?? const <String>{};
+      final filas = await db.query(tabla,
+          columns: ['uid'], where: 'actualizado_ms >= ?', whereArgs: [desdeMs]);
+      if (filas.any((fila) => !recibidos.contains(fila['uid']))) return true;
+    }
+    return false;
   }
 
   /// Tras una sincronización completa: borra (sin lápida) lo que el

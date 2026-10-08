@@ -641,5 +641,6 @@
   "errorSyncRespuesta": "Zerbitzariak ezusteko zerbait erantzun du. Egiaztatu helbidea Zunbeltzeko WordPressarena dela.",
   "informePeriodo": "Zifren aldia",
   "informeTodoElProyecto": "proiektu osoa",
-  "informeConvenioAcumulado": "Hitzarmenaren kontuak (proiektu osoa, aldia edozein dela ere):"
+  "informeConvenioAcumulado": "Hitzarmenaren kontuak (proiektu osoa, aldia edozein dela ere):",
+  "ajustesSyncOcupado": "Sinkronizazio bat abian da jada. Berez amaituko da; saiatu berriro une batean."
 }

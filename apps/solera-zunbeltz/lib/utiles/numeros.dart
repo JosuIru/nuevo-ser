@@ -4,14 +4,18 @@
 /// entiende, para que el formulario avise en vez de guardar un 0.
 ///
 /// Un solo punto seguido de tres cifras («1.200») es ambiguo: con
-/// [puntoDeMillares] se lee como millares (importes en euros); sin él, como
-/// decimal (kilos, hectáreas, coordenadas).
-double? leerNumero(String texto, {bool puntoDeMillares = false}) {
+/// [puntoDeMillares] se lee como millares (importes en euros); con
+/// [nullSiAmbiguo] no se lee (cantidades: «1.200 kg» podría ser 1,2 o
+/// 1200, y mejor avisar que adivinar); sin ninguno, como decimal
+/// (coordenadas, hectáreas).
+double? leerNumero(String texto,
+    {bool puntoDeMillares = false, bool nullSiAmbiguo = false}) {
   var limpio = texto.replaceAll(RegExp(r'[\s €]'), '');
   if (limpio.isEmpty) return null;
   final tieneComa = limpio.contains(',');
   final tienePunto = limpio.contains('.');
-  final millaresConPuntos = RegExp(r'^-?\d{1,3}(\.\d{3})+$');
+  // Sin cero delante: «0.500» es medio, no quinientos.
+  final millaresConPuntos = RegExp(r'^-?[1-9]\d{0,2}(\.\d{3})+$');
   final millaresConComas = RegExp(r'^-?\d{1,3}(,\d{3})+$');
 
   if (tieneComa && tienePunto) {
@@ -30,6 +34,12 @@ double? leerNumero(String texto, {bool puntoDeMillares = false}) {
   } else if (tienePunto) {
     final variosPuntos = '.'.allMatches(limpio).length > 1;
     if (variosPuntos && !millaresConPuntos.hasMatch(limpio)) return null;
+    if (!variosPuntos &&
+        nullSiAmbiguo &&
+        !puntoDeMillares &&
+        millaresConPuntos.hasMatch(limpio)) {
+      return null;
+    }
     if (variosPuntos || (puntoDeMillares && millaresConPuntos.hasMatch(limpio))) {
       limpio = limpio.replaceAll('.', '');
     }

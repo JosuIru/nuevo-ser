@@ -14,6 +14,7 @@ import 'package:solera_zunbeltz/modelos/apunte_economico.dart';
 import 'package:solera_zunbeltz/modelos/finca.dart';
 import 'package:solera_zunbeltz/modelos/proyecto_test.dart';
 import 'package:solera_zunbeltz/modelos/punto_infraestructura.dart';
+import 'package:solera_zunbeltz/modelos/registro_comercializacion.dart';
 import 'package:solera_zunbeltz/modelos/tarea_mantenimiento.dart';
 import 'package:solera_zunbeltz/servicios/cliente_sync_zunbeltz.dart';
 
@@ -421,12 +422,78 @@ void main() {
     });
 
     test('el candado impide dos sincronizaciones a la vez y caduca', () async {
-      expect(await bd.tomarCandadoSync(), isTrue);
-      expect(await bd.tomarCandadoSync(), isFalse);
-      expect(await bd.tomarCandadoSync(caducidad: Duration.zero), isTrue,
+      final primera = await bd.tomarCandadoSync();
+      expect(primera, isNotNull);
+      expect(await bd.tomarCandadoSync(), isNull);
+      final segunda = await bd.tomarCandadoSync(caducidad: Duration.zero);
+      expect(segunda, isNotNull,
           reason: 'una sync que murió sin soltarlo no bloquea para siempre');
-      await bd.soltarCandadoSync();
-      expect(await bd.tomarCandadoSync(), isTrue);
+      await bd.soltarCandadoSync(primera!);
+      expect(await bd.tomarCandadoSync(), isNull,
+          reason: 'la que lo perdió por caducidad no suelta el de otra');
+      await bd.soltarCandadoSync(segunda!);
+      expect(await bd.tomarCandadoSync(), isNotNull);
+    });
+
+    test('con el servidor ocupado se reintenta en vez de fallar', () async {
+      var llamadas = 0;
+      final cliente =
+          ClienteSyncZunbeltz(urlBase: 'https://zunbeltz.test', token: 't')
+            ..esperasSiOcupado = const [Duration.zero, Duration.zero];
+      await http.runWithClient(
+        () => cliente.sincronizar(bd),
+        () => MockClient((peticion) async {
+          llamadas++;
+          if (llamadas < 3) {
+            return http.Response('{"error":"ocupado"}', 503);
+          }
+          return http.Response(jsonEncode(servidor.respuestaCompleta), 200,
+              headers: {'content-type': 'application/json; charset=utf-8'});
+        }),
+      );
+      expect(llamadas, 3);
+    });
+
+    test('si se apunta algo durante una completa, la retirada se aplaza',
+        () async {
+      servidor.respuesta = {
+        'revision': 2,
+        'entidades': [entidad('proyecto', 'p1', {'nombre': 'Ajeno'})],
+      };
+      await sincronizar();
+      final proyectoId = (await bd.listarProyectos()).single.id!;
+      // El servidor ya no lo manda (se lo han quitado) y, mientras, aquí se
+      // apunta una venta en él.
+      servidor.respuesta = {'revision': 3};
+      servidor.durantePeticion = () => bd.guardarComercializacion(
+          RegistroComercializacion(proyectoId: proyectoId, producto: 'Queso'));
+      await sincronizar(completa: true);
+      expect(await bd.listarComercializacion(), hasLength(1),
+          reason: 'la venta recién apuntada no se pierde en cascada');
+      servidor.durantePeticion = null;
+      await sincronizar();
+      expect(servidor.ultimaPeticion['desde_revision'], 0,
+          reason: 'la completa queda pendiente para la siguiente vuelta');
+    });
+
+    test('lo recién recibido con marca futura no aplaza la retirada', () async {
+      await bd.guardarProyecto(ProyectoTest(nombre: 'Que ya no se ve'));
+      servidor.respuesta = {
+        'entidades': [
+          entidad('finca', 'f1', {'nombre': 'Zufía'},
+              actualizadoMs: DateTime.now()
+                  .add(const Duration(minutes: 5))
+                  .millisecondsSinceEpoch),
+        ],
+      };
+      await sincronizar(completa: true);
+      expect(await bd.listarProyectos(), isEmpty);
+    });
+
+    test('una marca del futuro no bloquea el candado', () async {
+      await bd.guardarEstadoSync('candado_sync_ms',
+          DateTime.now().add(const Duration(hours: 1)).millisecondsSinceEpoch);
+      expect(await bd.tomarCandadoSync(), isNotNull);
     });
   });
 }

@@ -88,7 +88,9 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
   double _decimal(TextEditingController campo) =>
       leerNumero(campo.text) ?? 0;
 
-  int _centimos(TextEditingController campo) => (_decimal(campo) * 100).round();
+  // Euros a la española: «1.500» son mil quinientos, no 1,50.
+  int _centimos(TextEditingController campo) =>
+      centimosDesdeTexto(campo.text) ?? 0;
 
   CalculoTransformacion get _calculo => CalculoTransformacion(
         pesoVivoKg: _decimal(_pesoVivo),

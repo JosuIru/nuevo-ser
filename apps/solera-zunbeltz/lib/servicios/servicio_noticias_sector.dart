@@ -30,7 +30,10 @@ class NoticiasSectorGuardadas {
 /// [servidorNoticiasDemo] (o al WordPress que la sirve en `/app/`).
 class ServicioNoticiasSector {
   ServicioNoticiasSector({http.Client? cliente})
-      : _cliente = cliente ?? http.Client();
+      : _cliente = cliente ?? _clienteCompartido;
+
+  /// Uno para toda la app: cada pantalla crea su servicio.
+  static final http.Client _clienteCompartido = http.Client();
 
   static const _claveCache = 'zunbeltz.noticias_sector';
 
@@ -49,6 +52,15 @@ class ServicioNoticiasSector {
   /// Cambia cada vez que llegan noticias nuevas del servidor.
   static final ValueNotifier<NoticiasSectorGuardadas> actuales =
       ValueNotifier(NoticiasSectorGuardadas.vacias);
+
+  /// Al cambiar de servidor, las noticias del anterior ya no valen.
+  static Future<void> olvidarGuardadas() async {
+    actuales.value = NoticiasSectorGuardadas.vacias;
+    try {
+      final preferencias = await SharedPreferences.getInstance();
+      await preferencias.remove(_claveCache);
+    } catch (_) {}
+  }
 
   Future<NoticiasSectorGuardadas> cargarGuardadas() async {
     try {

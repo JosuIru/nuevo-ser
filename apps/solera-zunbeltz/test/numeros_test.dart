@@ -21,6 +21,12 @@ void main() {
     expect(leerNumero('1.200', puntoDeMillares: true), 1200);
     expect(leerNumero('42.795'), 42.795, reason: 'coordenadas y kilos');
     expect(leerNumero('12.50', puntoDeMillares: true), 12.5);
+    expect(leerNumero('0.500', puntoDeMillares: true), 0.5,
+        reason: 'con un cero delante no son millares');
+    expect(leerNumero('1.200', nullSiAmbiguo: true), isNull,
+        reason: '«1.200 kg» puede ser 1,2 o 1200: se pregunta');
+    expect(leerNumero('1,2', nullSiAmbiguo: true), 1.2);
+    expect(leerNumero('1200', nullSiAmbiguo: true), 1200);
   });
 
   test('lo que no se entiende da null, no 0', () {

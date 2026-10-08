@@ -75,7 +75,9 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
     }
     // Vacío vale 0; escrito y que no se entienda (o negativo), se avisa.
     final cantidad =
-        _cantidad.text.trim().isEmpty ? 0.0 : leerNumero(_cantidad.text);
+        _cantidad.text.trim().isEmpty
+            ? 0.0
+            : leerNumero(_cantidad.text, nullSiAmbiguo: true);
     final precioCent =
         _precio.text.trim().isEmpty ? 0 : centimosDesdeTexto(_precio.text);
     final ingresoEscrito = _ingreso.text.trim().isEmpty

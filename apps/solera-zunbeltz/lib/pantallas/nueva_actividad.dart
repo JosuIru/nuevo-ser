@@ -68,10 +68,15 @@ class _NuevaActividadState extends State<NuevaActividad> {
   Future<void> _guardar() async {
     FocusManager.instance.primaryFocus?.unfocus();
     final textos = AppLocalizations.of(context);
-    final cantidad = leerNumero(_cantidad.text);
+    final cantidad = leerNumero(_cantidad.text, nullSiAmbiguo: true);
     if (cantidad == null || cantidad <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(textos.actCantidadObligatoria)));
+      // Escrita pero sin entender («1.200»: ¿1,2 o 1200?) no es lo mismo
+      // que vacía.
+      final escrita = _cantidad.text.trim().isNotEmpty && cantidad == null;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(escrita
+              ? textos.numeroNoValido
+              : textos.actCantidadObligatoria)));
       return;
     }
     await _bd.guardarRegistro(RegistroActividad(

@@ -32,7 +32,8 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
 
   final bd = BaseDatosSoleraZunbeltz();
   // La tarea en segundo plano y otras pestañas no ven `sincronizandoEspacio`.
-  if (!await bd.tomarCandadoSync()) return null;
+  final candado = await bd.tomarCandadoSync();
+  if (candado == null) return null;
   sincronizandoEspacio.value = true;
   try {
     final cliente = ClienteSyncZunbeltz(urlBase: url, token: token);
@@ -41,7 +42,15 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
     // no esperar a la próxima vuelta con datos que no tocan.
     if (resultado.cambioVisibilidad) {
       final primera = resultado;
-      final completa = await cliente.sincronizar(bd, completa: true);
+      final ResultadoSyncZunbeltz completa;
+      try {
+        completa = await cliente.sincronizar(bd, completa: true);
+      } catch (_) {
+        // Lo de la primera ya está en la BD: hay que acabar de procesarlo
+        // (sesión, avisos). La completa sigue pedida y se hará en la
+        // siguiente vuelta.
+        return await _terminarSincronizacion(primera);
+      }
       // Lo recibido en la primera también tiene que avisar (alarmas…).
       resultado = ResultadoSyncZunbeltz(
         subidas: primera.subidas + completa.subidas,
@@ -60,20 +69,31 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
         ],
       );
     }
-    await guardarSesionEspacio(
-        resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
-    // La comparte la tarea en segundo plano para no sincronizar a la vez.
-    await (await SharedPreferences.getInstance()).setInt(
-        claveUltimaSincronizacion, DateTime.now().millisecondsSinceEpoch);
-    avisarCambioDatos();
-    for (final oyente in List.of(oyentesSincronizacion)) {
-      await oyente(resultado);
-    }
-    return resultado;
+    return await _terminarSincronizacion(resultado);
   } finally {
-    await bd.soltarCandadoSync();
     sincronizandoEspacio.value = false;
+    try {
+      await bd.soltarCandadoSync(candado);
+    } catch (_) {
+      // Si no se puede soltar, caduca solo a los pocos minutos.
+    }
   }
+}
+
+/// Lo que se hace tras una sincronización correcta: sesión refrescada,
+/// pantallas avisadas y oyentes (notificaciones).
+Future<ResultadoSyncZunbeltz> _terminarSincronizacion(
+    ResultadoSyncZunbeltz resultado) async {
+  await guardarSesionEspacio(
+      resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
+  // La comparte la tarea en segundo plano para no sincronizar a la vez.
+  await (await SharedPreferences.getInstance()).setInt(
+      claveUltimaSincronizacion, DateTime.now().millisecondsSinceEpoch);
+  avisarCambioDatos();
+  for (final oyente in List.of(oyentesSincronizacion)) {
+    await oyente(resultado);
+  }
+  return resultado;
 }
 
 /// Como [sincronizarEspacio] pero sin errores: para la sincronización

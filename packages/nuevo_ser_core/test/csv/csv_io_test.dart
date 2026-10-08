@@ -119,6 +119,12 @@ void main() {
     test('cadena vacía no se entrecomilla', () {
       expect(escaparCampoCsv(''), '');
     });
+
+    test('con «;» como separador, el «;» del campo se entrecomilla', () {
+      expect(filaCsvAString(['Pienso; 2 sacos', '12,50'], delim: ';'),
+          '"Pienso; 2 sacos";"12,50"');
+      expect(escaparCampoCsv('a\rb'), '"a\rb"');
+    });
   });
 
   group('filaCsvAString', () {

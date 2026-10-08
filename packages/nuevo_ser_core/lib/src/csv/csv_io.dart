@@ -39,10 +39,12 @@ TablaCsv parsearTablaCsv(String contenido) {
   // no está; en cualquier otro caso usa `,`. Heurística simple
   // suficiente para Excel ES vs Excel EN.
   final primeraLinea = contenido.split('\n').first;
-  final delim = primeraLinea.contains(';') && !primeraLinea.contains(',') ? ';' : ',';
+  final delim =
+      primeraLinea.contains(';') && !primeraLinea.contains(',') ? ';' : ',';
   final filasCrudas = <List<String>>[];
   for (final linea in contenido.split('\n')) {
-    final limpia = linea.endsWith('\r') ? linea.substring(0, linea.length - 1) : linea;
+    final limpia =
+        linea.endsWith('\r') ? linea.substring(0, linea.length - 1) : linea;
     if (limpia.isEmpty) continue;
     filasCrudas.add(_parsearLinea(limpia, delim));
   }
@@ -82,7 +84,8 @@ List<String> _parsearLinea(String linea, String delim) {
 /// pueden buscar alias con varias claves: `idx['cultivo_id'] ?? idx['cultivo']`.
 Map<String, int> indicesDeCabecera(List<String> cabecera) {
   return {
-    for (var i = 0; i < cabecera.length; i++) cabecera[i].trim().toLowerCase(): i,
+    for (var i = 0; i < cabecera.length; i++)
+      cabecera[i].trim().toLowerCase(): i,
   };
 }
 
@@ -99,8 +102,16 @@ String campoEnFila(List<String> fila, int? indice) {
 /// coma, comillas o salto de línea, lo entrecomilla y duplica las
 /// comillas internas. En cualquier otro caso devuelve el campo tal
 /// cual.
-String escaparCampoCsv(String campo) {
-  if (campo.contains(',') || campo.contains('"') || campo.contains('\n')) {
+///
+/// Se entrecomilla también si el campo contiene el [delim] en uso (con
+/// `;` para Excel en castellano, un «Pienso; 2 sacos» partiría la fila) o
+/// un retorno de carro.
+String escaparCampoCsv(String campo, {String delim = ','}) {
+  if (campo.contains(',') ||
+      campo.contains(delim) ||
+      campo.contains('"') ||
+      campo.contains('\n') ||
+      campo.contains('\r')) {
     return '"${campo.replaceAll('"', '""')}"';
   }
   return campo;
@@ -110,5 +121,7 @@ String escaparCampoCsv(String campo) {
 /// indicado, escapando cada campo con `escaparCampoCsv`. No añade
 /// salto de línea final — eso lo decide el consumidor.
 String filaCsvAString(List<String> campos, {String delim = ','}) {
-  return campos.map(escaparCampoCsv).join(delim);
+  return campos
+      .map((campo) => escaparCampoCsv(campo, delim: delim))
+      .join(delim);
 }

@@ -60,6 +60,7 @@ Future<File> generarInformePeriodicoPdf({
   String? operador,
   DateTime? fechaGeneracion,
   String? marcaAgua,
+  pw.ThemeData? tema,
 }) async {
   final documento = construirInformePeriodicoPdf(
     tituloCabecera: tituloCabecera,
@@ -69,6 +70,7 @@ Future<File> generarInformePeriodicoPdf({
     operador: operador,
     fechaGeneracion: fechaGeneracion,
     marcaAgua: marcaAgua,
+    tema: tema,
   );
   return guardarPdfTemporal(
     documento: documento,
@@ -87,6 +89,7 @@ Future<Uint8List> generarInformePeriodicoPdfBytes({
   String? operador,
   DateTime? fechaGeneracion,
   String? marcaAgua,
+  pw.ThemeData? tema,
 }) {
   return construirInformePeriodicoPdf(
     tituloCabecera: tituloCabecera,
@@ -96,6 +99,7 @@ Future<Uint8List> generarInformePeriodicoPdfBytes({
     operador: operador,
     fechaGeneracion: fechaGeneracion,
     marcaAgua: marcaAgua,
+    tema: tema,
   ).save();
 }
 
@@ -104,6 +108,10 @@ Future<Uint8List> generarInformePeriodicoPdfBytes({
 /// Si [marcaAgua] no es `null`, cada página lleva ese texto en grande, en
 /// diagonal y en gris claro por encima del contenido (p. ej. "BORRADOR"
 /// para que una copia de trabajo no pase por versión definitiva).
+///
+/// [tema] fija las fuentes. Sin él se usa Helvetica, que solo cubre
+/// Latin-1: el «€» y el «—» no salen. Para importes conviene pasar
+/// `pw.ThemeData.withFont` con una TTF incrustada.
 pw.Document construirInformePeriodicoPdf({
   required String tituloCabecera,
   required String subtituloCabecera,
@@ -112,6 +120,7 @@ pw.Document construirInformePeriodicoPdf({
   String? operador,
   DateTime? fechaGeneracion,
   String? marcaAgua,
+  pw.ThemeData? tema,
 }) {
   final fecha = fechaGeneracion ?? DateTime.now();
   final fechaFormateada = DateFormat('dd/MM/yyyy HH:mm').format(fecha);
@@ -120,6 +129,7 @@ pw.Document construirInformePeriodicoPdf({
   pdf.addPage(
     pw.MultiPage(
       pageTheme: pw.PageTheme(
+        theme: tema,
         pageFormat: PdfPageFormat.a4,
         margin: const pw.EdgeInsets.all(32),
         buildForeground: marcaAgua == null

@@ -22,6 +22,7 @@ import 'nueva_zona.dart';
 import 'nuevo_punto.dart';
 import 'pantalla_meteo.dart';
 import 'tablero_tareas.dart';
+import '../utiles/numeros.dart';
 
 enum _EstiloMapa { calle, satelite }
 
@@ -396,7 +397,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
       _abrirZona(zona);
       return;
     }
-    _anadirEnPunto(punto);
+    // Igual que el botón de añadir: solo si el rol lo permite.
+    if (politicaEspacioActual.puedeAnadirPuntos) _anadirEnPunto(punto);
   }
 
   /// Polígonos de las zonas guardadas más el trazado en curso.
@@ -584,8 +586,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
       nombre: nombre,
       latitud: _centroActual.latitude,
       longitud: _centroActual.longitude,
-      superficieHa: double.tryParse(
-              controladorSuperficie.text.trim().replaceAll(',', '.')) ??
+      superficieHa: leerNumero(controladorSuperficie.text) ??
           0,
     ));
     avisarCambioDatos();
@@ -758,11 +759,21 @@ class _PantallaFincasState extends State<PantallaFincas> {
                                 : Icons.touch_app_outlined,
                             size: 16),
                         const SizedBox(width: 6),
-                        Text(
-                            _recolocandoId != null
-                                ? textos.mapaTocaNuevaUbicacion
-                                : textos.mapaTocaParaAnadir,
-                            style: Theme.of(context).textTheme.bodySmall),
+                        Flexible(
+                          child: Text(
+                              _recolocandoId != null
+                                  ? textos.mapaTocaNuevaUbicacion
+                                  : textos.mapaTocaParaAnadir,
+                              style: Theme.of(context).textTheme.bodySmall),
+                        ),
+                        // Si no, el siguiente toque en el mapa, aunque sea
+                        // horas después, movería el punto.
+                        if (_recolocandoId != null)
+                          TextButton(
+                            onPressed: () =>
+                                setState(() => _recolocandoId = null),
+                            child: Text(textos.comunCancelar),
+                          ),
                       ],
                     ),
                   ),

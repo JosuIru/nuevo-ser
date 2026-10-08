@@ -69,11 +69,23 @@ ResumenNotificable resumirParaNotificar(
 }
 
 /// Claves `tipo|uid` de lo notificado en [resultado], para no repetir.
+/// Solo lo que de verdad suena (alarmas abiertas, peticiones pendientes):
+/// un aviso normal que después se sube a alarma tiene que sonar entonces.
 Set<String> clavesNotificadas(ResultadoSyncZunbeltz resultado) => {
       for (final entidad in resultado.entidadesNuevasRecibidas)
-        if (entidad['tipo'] == 'aviso' || entidad['tipo'] == 'peticion')
-          '${entidad['tipo']}|${entidad['uid']}',
+        if (_suena(entidad)) '${entidad['tipo']}|${entidad['uid']}',
     };
+
+bool _suena(Map<String, Object?> entidad) {
+  final datos = (entidad['datos'] as Map?) ?? const {};
+  return switch (entidad['tipo']) {
+    'aviso' => datos['gravedad'] == gravedadAlarma &&
+        (datos['estado'] ?? estadoAvisoAbierto) == estadoAvisoAbierto,
+    'peticion' => (datos['estado'] ?? estadoPeticionPendiente) ==
+        estadoPeticionPendiente,
+    _ => false,
+  };
+}
 
 /// Tareas vencidas que le tocan a esta persona: fecha objetivo anterior a
 /// hoy y sin hacer. Coordinación, todas; una persona tester, las suyas y las

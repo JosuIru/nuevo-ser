@@ -75,10 +75,12 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
   }
 
   Future<void> _abrir(ProyectoTest p) async {
-    final cambiado = await Navigator.of(context).push<bool>(
+    await Navigator.of(context).push<bool>(
       MaterialPageRoute(builder: (_) => ProyectoDetalle(proyecto: p)),
     );
-    if (cambiado == true) await _cargar();
+    // Siempre: desde el detalle se edita, se cierra o se apuntan ventas, y
+    // la lista enseña nombre, estado y balance.
+    if (mounted) await _cargar();
   }
 
   Future<void> _comparativa() async {

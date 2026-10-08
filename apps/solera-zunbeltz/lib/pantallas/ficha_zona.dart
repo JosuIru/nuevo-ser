@@ -11,6 +11,7 @@ import '../utiles/geodesia.dart';
 import 'nueva_tarea.dart';
 import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
+import '../estado/datos_notificador.dart';
 
 /// Detalle de una zona dibujada: tipo, estado, superficie, perímetro y sus
 /// tareas de mantenimiento. Permite añadir tareas, volver a dibujar el
@@ -65,6 +66,8 @@ class _FichaZonaState extends State<FichaZona> {
     if (id == null) return;
     final textos = AppLocalizations.of(context);
     final generoSiguiente = await _bd.marcarTareaHecha(id) != null;
+    // Hoy, los contadores y el recordatorio de vencidas.
+    avisarCambioDatos();
     await _cargar();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

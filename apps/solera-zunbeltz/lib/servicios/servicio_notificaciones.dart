@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -14,6 +15,7 @@ import 'cliente_sync_zunbeltz.dart';
 import 'resumen_notificaciones.dart';
 import 'servicio_sincronizacion.dart';
 import '../utiles/descripcion_actividad.dart';
+import '../estado/datos_notificador.dart';
 
 /// Notificaciones del móvil:
 ///
@@ -60,11 +62,22 @@ Future<void> iniciarNotificaciones({bool pedirPermiso = true}) async {
     }
     _notificacionesListas = true;
     oyentesSincronizacion.add(_alSincronizar);
+    // Sin servidor no hay sincronizaciones: el recordatorio se rehace
+    // también cuando cambian las tareas en este móvil.
+    notificadorDatos.addListener(_reprogramarTrasCambio);
     await reprogramarRecordatorioVencidas();
   } catch (_) {
     // Plataforma sin notificaciones (tests, escritorio sin demonio…): la
     // app funciona igual.
   }
+}
+
+Timer? _esperaReprogramar;
+
+void _reprogramarTrasCambio() {
+  _esperaReprogramar?.cancel();
+  _esperaReprogramar =
+      Timer(const Duration(seconds: 2), reprogramarRecordatorioVencidas);
 }
 
 AppLocalizations _textos() {

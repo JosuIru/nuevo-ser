@@ -6,6 +6,7 @@ import '../../l10n/app_localizations.dart';
 import '../../modelos/constantes.dart';
 import '../../modelos/tarea_mantenimiento.dart';
 import '../../utiles/estilos_tarea.dart';
+import '../../estado/datos_notificador.dart';
 
 enum _AccionTarea { asignarme, soltar }
 
@@ -82,17 +83,21 @@ Future<bool> mostrarAccionesTarea(
       if (tarea.estado == 'hecha') return false;
       // Pasa por marcarTareaHecha para generar la siguiente si es periódica.
       await bd.marcarTareaHecha(id);
+      avisarCambioDatos();
       return true;
     case String estado:
       if (estado == tarea.estado) return false;
       await bd.actualizarTarea(id, {'estado': estado});
+      avisarCambioDatos();
       return true;
     case _AccionTarea.asignarme when persona != null:
       await bd.actualizarTarea(
           id, {'responsable_uid': persona.uid, 'responsable': persona.nombre});
+      avisarCambioDatos();
       return true;
     case _AccionTarea.soltar:
       await bd.actualizarTarea(id, {'responsable_uid': '', 'responsable': ''});
+      avisarCambioDatos();
       return true;
   }
   return false;

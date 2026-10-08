@@ -41,17 +41,22 @@ class _PantallaPeticionesState extends State<PantallaPeticiones> {
   }
 
   Future<void> _cargar() async {
-    final peticiones = await _bd.listarPeticiones();
-    final fincas = await _bd.listarFincas();
-    if (!mounted) return;
-    setState(() {
-      _peticiones = peticiones;
-      _fincasPorId = {
-        for (final finca in fincas)
-          if (finca.id != null) finca.id!: finca,
-      };
-      _cargando = false;
-    });
+    try {
+      final peticiones = await _bd.listarPeticiones();
+      final fincas = await _bd.listarFincas();
+      if (!mounted) return;
+      setState(() {
+        _peticiones = peticiones;
+        _fincasPorId = {
+          for (final finca in fincas)
+            if (finca.id != null) finca.id!: finca,
+        };
+        _cargando = false;
+      });
+    } catch (_) {
+      // Sin esto, si la BD falla el indicador de carga gira para siempre.
+      if (mounted) setState(() => _cargando = false);
+    }
   }
 
   Future<void> _nueva() async {

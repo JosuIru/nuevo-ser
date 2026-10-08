@@ -55,6 +55,16 @@ void main() {
     expect(resumirParaNotificar(r, ane, yaNotificadas: {'aviso|a1'}).alarmas, isEmpty);
   });
 
+  test('un aviso normal que luego se sube a alarma, suena entonces', () {
+    final primero = resultado(entidades: [aviso('a1', 'jon', gravedad: 'aviso')]);
+    final notificadas = clavesNotificadas(primero);
+    expect(notificadas, isEmpty, reason: 'un aviso normal no suena');
+    final despues = resultado(entidades: [aviso('a1', 'jon')]);
+    expect(resumirParaNotificar(despues, ane, yaNotificadas: notificadas).alarmas,
+        ['Oveja coja']);
+    expect(clavesNotificadas(despues), {'aviso|a1'});
+  });
+
   test('peticiones nuevas solo para quien las gestiona', () {
     final r = resultado(entidades: [
       {'tipo': 'peticion', 'uid': 'p1', 'autor_uid': 'ane', 'datos': {'estado': 'pendiente'}},

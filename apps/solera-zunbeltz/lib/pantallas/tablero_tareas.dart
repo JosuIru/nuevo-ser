@@ -15,6 +15,7 @@ import 'pantalla_peticiones.dart';
 import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
 import 'widgets/relleno_seguro.dart';
+import '../estado/datos_notificador.dart';
 
 /// Tablero de tareas de mantenimiento: lista filtrable por finca y estado,
 /// con exportación del parte en PDF.
@@ -72,6 +73,8 @@ class _TableroTareasState extends State<TableroTareas> {
     if (id == null) return;
     final textos = AppLocalizations.of(context);
     final generoSiguiente = await _bd.marcarTareaHecha(id) != null;
+    // Hoy, los contadores y el recordatorio de vencidas.
+    avisarCambioDatos();
     await _cargar();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

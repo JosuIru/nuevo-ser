@@ -73,18 +73,21 @@ class _PantallaMeteoState extends State<PantallaMeteo> {
       _error = false;
     });
     final finca = _fincaActiva;
+    final fincaPedida = _fincaId;
     try {
       final resultado = await _servicio.obtener(
         latitud: finca?.latitud ?? _latFallback,
         longitud: finca?.longitud ?? _lonFallback,
       );
-      if (!mounted) return;
+      // Si mientras tanto se ha elegido otra finca, esta respuesta llega
+      // tarde y pisaría la buena.
+      if (!mounted || fincaPedida != _fincaId) return;
       setState(() {
         _resultado = resultado;
         _cargando = false;
       });
     } catch (_) {
-      if (!mounted) return;
+      if (!mounted || fincaPedida != _fincaId) return;
       setState(() {
         _error = _resultado == null;
         _cargando = false;
@@ -108,7 +111,8 @@ class _PantallaMeteoState extends State<PantallaMeteo> {
                 underline: const SizedBox.shrink(),
                 items: [
                   for (final finca in _fincas)
-                    DropdownMenuItem(value: finca.id, child: Text(finca.nombre)),
+                    DropdownMenuItem(
+                        value: finca.id, child: Text(finca.nombre)),
                 ],
                 onChanged: (fincaElegida) {
                   setState(() {
@@ -289,8 +293,9 @@ IconData _iconoTiempo(int? codigo, {bool deDia = true}) {
 String _num(double? valor, String sufijo) =>
     valor == null ? '—' : '${valor.round()}$sufijo';
 
-String _decimal(double? valor, String sufijo) =>
-    valor == null ? '—' : '${valor.toStringAsFixed(1).replaceAll('.', ',')}$sufijo';
+String _decimal(double? valor, String sufijo) => valor == null
+    ? '—'
+    : '${valor.toStringAsFixed(1).replaceAll('.', ',')}$sufijo';
 
 /// Flecha que apunta hacia donde va el viento, más el punto cardinal desde
 /// el que sopla.
@@ -453,8 +458,7 @@ class _FranjaHoras extends StatelessWidget {
                   Text(DateFormat('HH', idioma).format(hora.hora),
                       style: estilos.labelMedium),
                   const SizedBox(height: 4),
-                  Icon(_iconoTiempo(hora.codigoTiempo, deDia: deDia),
-                      size: 22),
+                  Icon(_iconoTiempo(hora.codigoTiempo, deDia: deDia), size: 22),
                   const SizedBox(height: 4),
                   Text(_num(hora.temperatura, '°'),
                       style: const TextStyle(fontWeight: FontWeight.w700)),
@@ -570,19 +574,16 @@ class _TarjetaDia extends StatelessWidget {
             DateFormat('EEEE', idioma).format(dia.fecha));
     final formatoHora = DateFormat('HH:mm', idioma);
     final avisos = <_Aviso>[
-      if (dia.tormenta)
-        _Aviso(textos.avisoTormenta, const Color(0xFF5A4A7A)),
+      if (dia.tormenta) _Aviso(textos.avisoTormenta, const Color(0xFF5A4A7A)),
       if (dia.nieve) _Aviso(textos.avisoNieve, const Color(0xFF6C8AA0)),
-      if (dia.riesgoHelada)
-        _Aviso(textos.avisoHelada, const Color(0xFF6C8AA0)),
+      if (dia.riesgoHelada) _Aviso(textos.avisoHelada, const Color(0xFF6C8AA0)),
       if (dia.lluviaRelevante)
         _Aviso(textos.avisoLluvia, const Color(0xFF4E7A9B)),
       if (dia.vientoFuerte) _Aviso(textos.avisoViento, const Color(0xFF9A7A2E)),
       if (dia.calorIntenso) _Aviso(textos.avisoCalor, colorEstadoBloqueada),
       if (dia.estresCalor && !dia.calorIntenso)
         _Aviso(textos.avisoEstresCalor, colorEstadoBloqueada),
-      if (dia.buenDiaManejo)
-        _Aviso(textos.avisoBuenManejo, colorPastoZunbeltz),
+      if (dia.buenDiaManejo) _Aviso(textos.avisoBuenManejo, colorPastoZunbeltz),
     ];
 
     Widget detalle(String etiqueta, String valor) => Padding(
@@ -658,7 +659,8 @@ class _TarjetaDia extends StatelessWidget {
         children: [
           detalle(textos.meteoSensacionMin, _num(dia.sensacionMin, '°')),
           detalle(textos.meteoHorasLluvia, _num(dia.horasLluvia, ' h')),
-          if (dia.nieve) detalle(textos.meteoNieve, _decimal(dia.nieveCm, ' cm')),
+          if (dia.nieve)
+            detalle(textos.meteoNieve, _decimal(dia.nieveCm, ' cm')),
           detalle(textos.meteoViento,
               '${_num(dia.vientoMaxKmh, '')} km/h · ${textos.meteoRachas} ${_num(dia.rachaMaxKmh, '')}'),
           detalle(textos.meteoUv, _num(dia.uvMax, '')),

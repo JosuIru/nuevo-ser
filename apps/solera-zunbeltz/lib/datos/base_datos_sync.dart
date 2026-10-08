@@ -1,5 +1,18 @@
 part of 'base_datos.dart';
 
+/// Qué ha pasado al aplicar una entidad recibida del servidor.
+enum ResultadoAplicarEntidad {
+  /// Se ha insertado, actualizado o borrado en local.
+  cambiada,
+
+  /// La versión local era igual o más reciente: no se toca.
+  sinCambios,
+
+  /// Falta en este móvil algo a lo que apunta (su finca, su proyecto…): no
+  /// se ha podido guardar.
+  descartadaPorReferencia,
+}
+
 /// Lápida de algo borrado en este móvil, pendiente de subir.
 class BorradoPendiente {
   const BorradoPendiente(this.tipo, this.uid, {this.borradoMs = 0});
@@ -164,6 +177,55 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  /// Candado de sincronización compartido entre la app abierta y la tarea
+  /// en segundo plano (otro isolate) o varias pestañas: viven en la misma
+  /// BD pero no comparten memoria. Caduca a los [caducidad] por si una
+  /// sincronización murió sin soltarlo. Devuelve `true` si se ha tomado.
+  Future<bool> tomarCandadoSync(
+      {Duration caducidad = const Duration(minutes: 3)}) async {
+    final db = await basedatos;
+    final ahoraMs = DateTime.now().millisecondsSinceEpoch;
+    return db.transaction((txn) async {
+      final filas = await txn.query('estado_sync',
+          where: 'clave = ?', whereArgs: [_claveCandadoSync], limit: 1);
+      final tomadoMs =
+          filas.isEmpty ? 0 : (filas.first['valor'] as num).toInt();
+      if (tomadoMs > 0 && ahoraMs - tomadoMs < caducidad.inMilliseconds) {
+        return false;
+      }
+      await txn.insert(
+          'estado_sync', {'clave': _claveCandadoSync, 'valor': ahoraMs},
+          conflictAlgorithm: ConflictAlgorithm.replace);
+      return true;
+    });
+  }
+
+  Future<void> soltarCandadoSync() =>
+      guardarEstadoSync(_claveCandadoSync, 0);
+
+  static const _claveCandadoSync = 'candado_sync_ms';
+
+  /// Pide que la próxima sincronización sea completa (cambio de persona, o
+  /// algo recibido que no se pudo guardar). Es un contador y no un sí/no
+  /// para que una sincronización que ya estaba en marcha no borre la
+  /// petición al terminar: solo cuenta como hecha la que se pidió antes de
+  /// empezar.
+  Future<void> pedirSincronizacionCompleta() async {
+    final db = await basedatos;
+    await db.transaction((txn) async {
+      final filas = await txn.query('estado_sync',
+          where: 'clave = ?', whereArgs: [claveCompletaPedida], limit: 1);
+      final pedidas =
+          filas.isEmpty ? 0 : (filas.first['valor'] as num).toInt();
+      await txn.insert(
+          'estado_sync', {'clave': claveCompletaPedida, 'valor': pedidas + 1},
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    });
+  }
+
+  static const claveCompletaPedida = 'completa_pedida';
+  static const claveCompletaHecha = 'completa_hecha';
+
   // ─── Actividad del espacio ───
 
   Future<void> guardarActividadEspacio(List<EntradaActividad> entradas) async {
@@ -245,21 +307,31 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
   /// Una entidad cuyas referencias obligatorias no existen en este móvil se
   /// descarta (devuelve `false`).
   Future<bool> aplicarEntidadRemota(Map<String, Object?> entidad,
+          {bool forzar = false}) async =>
+      await aplicarEntidadRemotaDetallada(entidad, forzar: forzar) ==
+      ResultadoAplicarEntidad.cambiada;
+
+  /// Como [aplicarEntidadRemota], distinguiendo «sin cambios» de
+  /// «descartada porque falta su finca o su proyecto».
+  Future<ResultadoAplicarEntidad> aplicarEntidadRemotaDetallada(
+      Map<String, Object?> entidad,
       {bool forzar = false}) async {
+    const sinCambios = ResultadoAplicarEntidad.sinCambios;
+    const descartada = ResultadoAplicarEntidad.descartadaPorReferencia;
     final descriptor =
         tablaSincronizablePorTipo((entidad['tipo'] as String?) ?? '');
     final uid = (entidad['uid'] as String?) ?? '';
-    if (descriptor == null || uid.isEmpty) return false;
+    if (descriptor == null || uid.isEmpty) return sinCambios;
     final db = await basedatos;
     final existentes = await db.query(descriptor.tabla,
         where: 'uid = ?', whereArgs: [uid], limit: 1);
     final existente = existentes.isEmpty ? null : existentes.first;
 
     if (entidad['borrado'] == true) {
-      if (existente == null) return false;
+      if (existente == null) return sinCambios;
       await db.transaction((txn) => _borrarConLapidas(
           txn, descriptor.tabla, existente['id'] as int, null));
-      return true;
+      return ResultadoAplicarEntidad.cambiada;
     }
 
     final actualizadoMs = (entidad['actualizado_ms'] as num?)?.toInt() ?? 0;
@@ -267,10 +339,11 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
         !forzar &&
         actualizadoMs <=
             ((existente['actualizado_ms'] as num?)?.toInt() ?? 0)) {
-      return false;
+      return sinCambios;
     }
 
     final columnas = await _columnasDe(db, descriptor.tabla);
+    final columnasNoNulas = await _columnasNoNulasDe(db, descriptor.tabla);
     final datos = Map<String, Object?>.from(
         (entidad['datos'] as Map?) ?? const <String, Object?>{});
     final fila = <String, Object?>{};
@@ -278,13 +351,15 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
       final uidReferido = (datos.remove(referencia.claveUid) as String?) ?? '';
       final idReferido =
           await _idDeUidEn(db, referencia.tablaDestino, uidReferido);
-      if (idReferido == null && referencia.obligatoria) return false;
+      if (idReferido == null && referencia.obligatoria) return descartada;
       fila[referencia.columna] = idReferido;
     }
     if (descriptor.columnaProyecto != null) {
       final proyectoId = await _idDeUidEn(
           db, 'proyectos_test', (entidad['proyecto_uid'] as String?) ?? '');
-      if (proyectoId == null && descriptor.proyectoObligatorio) return false;
+      if (proyectoId == null && descriptor.proyectoObligatorio) {
+        return descartada;
+      }
       fila[descriptor.columnaProyecto!] = proyectoId;
     }
     // Solo columnas que existen en esta versión de la app: un servidor o un
@@ -293,6 +368,12 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
       if (columnas.contains(entrada.key) &&
           !descriptor.columnasLocales.contains(entrada.key) &&
           entrada.key != 'id') {
+        // Un null en una columna obligatoria haría fallar el insert y, con
+        // él, todas las sincronizaciones siguientes: se queda el valor por
+        // defecto (o el que hubiera).
+        if (entrada.value == null && columnasNoNulas.contains(entrada.key)) {
+          continue;
+        }
         fila[entrada.key] = _valorSqlite(entrada.value);
       }
     }
@@ -307,7 +388,7 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
       await db.update(descriptor.tabla, fila,
           where: 'id = ?', whereArgs: [existente['id']]);
     }
-    return true;
+    return ResultadoAplicarEntidad.cambiada;
   }
 
   /// Borra en local (sin lápida) lo que el servidor ha rechazado y no tiene.
@@ -324,15 +405,26 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
   /// Tras una sincronización completa: borra (sin lápida) lo que el
   /// servidor no ha mandado, porque esta persona ya no lo ve. Devuelve
   /// cuántas filas se retiraron.
+  ///
+  /// Lo creado o cambiado desde [cambiadasDesdeMs] (el inicio de la
+  /// sincronización) no se toca: no iba en la subida, así que el servidor
+  /// no podía mandarlo, y borrarlo sería perderlo.
   Future<int> retirarEntidadesNoRecibidas(
-      Map<String, Set<String>> uidsRecibidosPorTipo) async {
+      Map<String, Set<String>> uidsRecibidosPorTipo,
+      {int? cambiadasDesdeMs}) async {
     final db = await basedatos;
     var retiradas = 0;
     for (final descriptor in tablasSincronizables.reversed) {
       final recibidos = uidsRecibidosPorTipo[descriptor.tipo] ?? const {};
-      final filas = await db.query(descriptor.tabla, columns: ['id', 'uid']);
+      final filas = await db
+          .query(descriptor.tabla, columns: ['id', 'uid', 'actualizado_ms']);
       for (final fila in filas) {
         if (recibidos.contains(fila['uid'])) continue;
+        if (cambiadasDesdeMs != null &&
+            ((fila['actualizado_ms'] as num?)?.toInt() ?? 0) >=
+                cambiadasDesdeMs) {
+          continue;
+        }
         // Puede haberse ido ya en cascada con su padre.
         if (await _uidDeFilaEn(db, descriptor.tabla, fila['id'] as int) ==
             null) {
@@ -349,6 +441,15 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
   Future<Set<String>> _columnasDe(DatabaseExecutor db, String tabla) async {
     final filas = await db.rawQuery('PRAGMA table_info($tabla)');
     return {for (final fila in filas) fila['name'] as String};
+  }
+
+  Future<Set<String>> _columnasNoNulasDe(
+      DatabaseExecutor db, String tabla) async {
+    final filas = await db.rawQuery('PRAGMA table_info($tabla)');
+    return {
+      for (final fila in filas)
+        if ((fila['notnull'] as num?) == 1) fila['name'] as String,
+    };
   }
 
   /// SQLite no guarda booleanos: el JSON puede traer `true`/`false`.

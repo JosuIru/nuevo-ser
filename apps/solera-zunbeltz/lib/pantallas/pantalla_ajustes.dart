@@ -18,6 +18,7 @@ import '../l10n/app_localizations.dart';
 import '../utiles/traductor_actualizaciones.dart';
 import 'pantalla_acerca_espacio_test.dart';
 import 'pantalla_ayuda.dart';
+import '../utiles/texto_error_sync.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`).
@@ -171,6 +172,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     final textos = AppLocalizations.of(context);
     await cerrarSesionEspacio();
     await reiniciarCursoresSincronizacion();
+    avisarCambioDatos();
     if (!mounted || _syncUrl.isEmpty || _syncToken.isEmpty) return;
     setState(() => _sincronizando = true);
     try {
@@ -181,11 +183,15 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(textos.ajustesSesionConectada(remota.sesion.persona.nombre))));
-    } on ErrorSyncZunbeltz catch (e) {
+    } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.mensaje)));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(textoErrorSync(error, textos))));
     } finally {
+      // Las pestañas (Fincas, Proyectos…) solo se reconstruyen con este
+      // aviso: sin él seguirían ofreciendo lo que permitía la sesión
+      // anterior hasta la siguiente sincronización.
+      avisarCambioDatos();
       if (mounted) setState(() => _sincronizando = false);
     }
   }
@@ -204,10 +210,10 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           content: Text(resultado.rechazadasPorPermisos == 0
               ? resumen
               : '$resumen\n${textos.ajustesSyncRechazadas(resultado.rechazadasPorPermisos)}')));
-    } on ErrorSyncZunbeltz catch (e) {
+    } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.mensaje)));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(textoErrorSync(error, textos))));
     } finally {
       if (mounted) setState(() => _sincronizando = false);
     }

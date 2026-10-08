@@ -21,6 +21,7 @@ import 'package:solera_zunbeltz/modelos/validacion_producto.dart';
 import 'package:solera_zunbeltz/modelos/zona_finca.dart';
 
 import 'bd_en_memoria.dart';
+import 'package:solera_zunbeltz/utiles/tarea_periodica.dart';
 
 void main() {
   setUpAll(sqfliteFfiInit);
@@ -668,8 +669,56 @@ void main() {
     final siguienteId = await bd.marcarTareaHecha(tareaId);
     final siguiente = await bd.obtenerTarea(siguienteId!);
 
-    final esperado = fechaObjetivo + Duration(days: 30).inMilliseconds;
-    expect((siguiente!.fechaObjetivoMs! - esperado).abs() < 1000, isTrue);
+    // 30 días de calendario, no 30 × 24 h (puede haber cambio de hora).
+    final objetivo = DateTime.fromMillisecondsSinceEpoch(fechaObjetivo);
+    final esperado = DateTime(objetivo.year, objetivo.month, objetivo.day + 30,
+            objetivo.hour, objetivo.minute, objetivo.second, objetivo.millisecond)
+        .millisecondsSinceEpoch;
+    expect(siguiente!.fechaObjetivoMs, esperado);
+  });
+
+  test('un doble cierre no genera dos siguientes, y su uid es el previsto',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final tarea = TareaMantenimiento(
+        fincaId: fincaId, titulo: 'Limpiar abrevadero', recurrenciaDias: 14);
+    final tareaId = await bd.guardarTarea(tarea);
+    final resultados = await Future.wait(
+        [bd.marcarTareaHecha(tareaId), bd.marcarTareaHecha(tareaId)]);
+    expect(resultados.whereType<int>(), hasLength(1));
+    final tareas = await bd.listarTareas();
+    expect(tareas, hasLength(2));
+    expect(tareas.map((t) => t.uid), contains(uidSiguientePeriodica(tarea.uid)));
+  });
+
+  test('una periódica dada de alta ya hecha también genera la siguiente',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    await bd.guardarTarea(TareaMantenimiento(
+        fincaId: fincaId,
+        titulo: 'Desparasitar',
+        estado: 'hecha',
+        recurrenciaDias: 90));
+    final pendientes = await bd.listarTareas(estado: 'pendiente');
+    expect(pendientes.single.titulo, 'Desparasitar');
+  });
+
+  test('la siguiente cae en su día aunque haya cambio de hora por medio', () {
+    final siguiente = fechaSiguientePeriodica(
+        fechaObjetivoMs: DateTime(2026, 10, 22).millisecondsSinceEpoch,
+        dias: 7,
+        ahora: DateTime(2026, 10, 1));
+    expect(siguiente, DateTime(2026, 10, 29),
+        reason: 'el 25-oct se atrasa la hora: 7 × 24 h daría el 28 a las 23:00');
+  });
+
+  test('el uid de la siguiente es el mismo en todos los móviles y en PHP', () {
+    expect(uidSiguientePeriodica('abc'), uidSiguientePeriodica('abc'));
+    expect(uidSiguientePeriodica('abc'), isNot(uidSiguientePeriodica('abd')));
+    // Mismo valor que szs_uid_siguiente_periodica('abc') en el plugin.
+    expect(uidSiguientePeriodica('abc'), 'sig-a9993e364706816aba3e25717850');
   });
 
   test('migración v6 → v7 rellena uid y actualizado_ms en filas existentes',
@@ -839,6 +888,38 @@ void main() {
     expect(tarea.responsableUid, '');
     expect(tarea.creadoPorUid, '');
     await v7.close();
+  });
+
+  test('migración v9 con dos fincas «Zunbeltz»: abre y no repite uid',
+      () async {
+    final v8 = await databaseFactoryFfi.openDatabase(
+      inMemoryDatabasePath,
+      options: OpenDatabaseOptions(
+        version: 8,
+        singleInstance: false,
+        onCreate: (d, v) async {
+          await BaseDatosSoleraZunbeltz.crearEsquemaV1(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV7(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV8(d);
+        },
+      ),
+    );
+    await v8.insert('fincas', {'nombre': 'Zunbeltz'});
+    await v8.insert('fincas', {'nombre': 'Zunbeltz'});
+
+    await BaseDatosSoleraZunbeltz.aplicarMigracionV9(v8);
+
+    final filas = await v8.query('fincas', orderBy: 'id');
+    expect(filas.first['uid'], 'finca-zunbeltz');
+    expect(filas.last['uid'], isNot('finca-zunbeltz'));
+    expect(filas.first['actualizado_ms'], BaseDatosSoleraZunbeltz.marcaSembrado,
+        reason: 'la del servidor gana a la copia de un móvil que migra tarde');
+    await v8.close();
   });
 
   test('responsable_uid y creado_por_uid se guardan y filtran', () async {

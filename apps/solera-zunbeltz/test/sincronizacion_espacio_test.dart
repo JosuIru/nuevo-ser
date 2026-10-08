@@ -24,6 +24,9 @@ class ServidorSimulado {
   Map<String, Object?> ultimaPeticion = {};
   Map<String, Object?> respuesta = {};
 
+  /// Lo que pasa en el móvil mientras la petición está de viaje.
+  Future<void> Function()? durantePeticion;
+
   Map<String, Object?> get respuestaCompleta => {
         'entidades': <Object>[],
         'revision': 0,
@@ -48,6 +51,7 @@ class ServidorSimulado {
   MockClient get cliente => MockClient((peticion) async {
         ultimaPeticion =
             Map<String, Object?>.from(jsonDecode(peticion.body) as Map);
+        await durantePeticion?.call();
         return http.Response(jsonEncode(respuestaCompleta), 200,
             headers: {'content-type': 'application/json; charset=utf-8'});
       });
@@ -301,6 +305,128 @@ void main() {
       final actividad = await bd.listarActividadEspacio();
       expect(actividad.single.etiqueta, 'Corral móvil');
       expect(await bd.leerEstadoSync('actividad'), 41);
+    });
+  });
+
+  group('robustez', () {
+    test('una tarea creada mientras viaja la petición no se retira', () async {
+      final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+      await bd.guardarEstadoSync('revision', 3);
+      servidor.respuesta = {'revision': 3};
+      servidor.durantePeticion = () => bd.guardarTarea(
+          TareaMantenimiento(fincaId: fincaId, titulo: 'Recién apuntada'));
+      await sincronizar();
+      expect((await bd.listarTareas()).map((tarea) => tarea.titulo),
+          ['Recién apuntada'],
+          reason: 'no iba en la subida: el servidor no podía mandarla');
+    });
+
+    test('lo creado durante una sincronización completa no se retira',
+        () async {
+      servidor.durantePeticion =
+          () => bd.guardarProyecto(ProyectoTest(nombre: 'Recién creado'));
+      await sincronizar(completa: true);
+      expect((await bd.listarProyectos()).single.nombre, 'Recién creado');
+    });
+
+    test('un null del servidor en una columna obligatoria no rompe la sync',
+        () async {
+      await bd.guardarEstadoSync('revision', 1);
+      servidor.respuesta = {
+        'revision': 2,
+        'entidades': [
+          entidad('finca', 'f1', {'nombre': 'Zufía', 'notas': null}),
+        ],
+      };
+      await sincronizar();
+      final finca = (await bd.listarFincas()).single;
+      expect(finca.nombre, 'Zufía');
+      expect(finca.notas, '');
+    });
+
+    test('lo que llega sin su finca pide una sincronización completa',
+        () async {
+      await bd.guardarEstadoSync('revision', 1);
+      servidor.respuesta = {
+        'revision': 5,
+        'entidades': [
+          entidad('punto', 'pu1', {'nombre': 'Huérfano', 'finca_uid': 'nadie'}),
+        ],
+      };
+      await sincronizar();
+      expect(await bd.listarPuntos(), isEmpty);
+      servidor.respuesta = {'revision': 5};
+      await sincronizar();
+      expect(servidor.ultimaPeticion['desde_revision'], 0,
+          reason: 'el cursor ya había pasado: sin completa no volvería');
+      await sincronizar();
+      expect(servidor.ultimaPeticion['desde_revision'], 5,
+          reason: 'hecha la completa, vuelve a ser incremental');
+    });
+
+    test('cambiar de persona durante una sync deja la completa pendiente',
+        () async {
+      await bd.guardarEstadoSync('revision', 1);
+      servidor.respuesta = {'revision': 8};
+      // Como `reiniciarCursoresSincronizacion` al pegar otro token.
+      servidor.durantePeticion = () async {
+        await bd.guardarEstadoSync('revision', 0);
+        await bd.pedirSincronizacionCompleta();
+      };
+      await sincronizar();
+      servidor.durantePeticion = null;
+      await sincronizar();
+      expect(servidor.ultimaPeticion['desde_revision'], 0);
+    });
+
+    test('las fincas sembradas suben, pero no pisan las del servidor',
+        () async {
+      if (!await bd.sembrarEspacioRealSiVacia()) return; // sin CSV del espacio
+      servidor.respuesta = {
+        'revision': 4,
+        'entidades': [
+          entidad('finca', 'finca-zunbeltz', {'nombre': 'Zunbeltz (corregida)'},
+              actualizadoMs: 1000),
+        ],
+      };
+      await sincronizar();
+      expect(
+          servidor.entidadesSubidas
+              .where((e) => e['uid'] == 'finca-zunbeltz')
+              .single['actualizado_ms'],
+          BaseDatosSoleraZunbeltz.marcaSembrado);
+      expect((await bd.listarFincas()).map((f) => f.nombre),
+          contains('Zunbeltz (corregida)'));
+    });
+
+    test('si cambia lo que se ve, la siguiente es completa y retira lo ajeno',
+        () async {
+      // Ane tenía el proyecto p1; coordinación se lo pasa a Jon.
+      servidor.respuesta = {
+        'revision': 3,
+        'huella_visibilidad': 'aaaaaaaaaaaa',
+        'entidades': [entidad('proyecto', 'p1', {'nombre': 'Quesería', 'persona_uid': 'ane'})],
+      };
+      await sincronizar();
+      expect(await bd.listarProyectos(), hasLength(1));
+      servidor.respuesta = {'revision': 4, 'huella_visibilidad': 'bbbbbbbbbbbb'};
+      final resultado = await sincronizar();
+      expect(resultado.cambioVisibilidad, isTrue);
+      await sincronizar();
+      expect(servidor.ultimaPeticion['desde_revision'], 0);
+      expect(await bd.listarProyectos(), isEmpty,
+          reason: 'sus cuentas no se quedan en el móvil de Ane');
+      await sincronizar();
+      expect(servidor.ultimaPeticion['desde_revision'], 4);
+    });
+
+    test('el candado impide dos sincronizaciones a la vez y caduca', () async {
+      expect(await bd.tomarCandadoSync(), isTrue);
+      expect(await bd.tomarCandadoSync(), isFalse);
+      expect(await bd.tomarCandadoSync(caducidad: Duration.zero), isTrue,
+          reason: 'una sync que murió sin soltarlo no bloquea para siempre');
+      await bd.soltarCandadoSync();
+      expect(await bd.tomarCandadoSync(), isTrue);
     });
   });
 }

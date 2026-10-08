@@ -30,10 +30,36 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
   final token = await AjustesSincronizacion.cargarToken();
   if (url.isEmpty || token.isEmpty) return null;
 
+  final bd = BaseDatosSoleraZunbeltz();
+  // La tarea en segundo plano y otras pestañas no ven `sincronizandoEspacio`.
+  if (!await bd.tomarCandadoSync()) return null;
   sincronizandoEspacio.value = true;
   try {
-    final resultado = await ClienteSyncZunbeltz(urlBase: url, token: token)
-        .sincronizar(BaseDatosSoleraZunbeltz(), completa: completa);
+    final cliente = ClienteSyncZunbeltz(urlBase: url, token: token);
+    var resultado = await cliente.sincronizar(bd, completa: completa);
+    // Proyecto asignado o retirado, o cambio de rol: la completa ya, para
+    // no esperar a la próxima vuelta con datos que no tocan.
+    if (resultado.cambioVisibilidad) {
+      final primera = resultado;
+      final completa = await cliente.sincronizar(bd, completa: true);
+      // Lo recibido en la primera también tiene que avisar (alarmas…).
+      resultado = ResultadoSyncZunbeltz(
+        subidas: primera.subidas + completa.subidas,
+        bajadas: primera.bajadas + completa.bajadas,
+        omitidasFincaDesconocida: completa.omitidasFincaDesconocida,
+        rechazadasPorPermisos:
+            primera.rechazadasPorPermisos + completa.rechazadasPorPermisos,
+        sesionRemota: completa.sesionRemota,
+        retiradas: primera.retiradas + completa.retiradas,
+        entidadesSubidas: primera.entidadesSubidas + completa.entidadesSubidas,
+        entidadesBajadas: primera.entidadesBajadas + completa.entidadesBajadas,
+        actividadNueva: [...primera.actividadNueva, ...completa.actividadNueva],
+        entidadesNuevasRecibidas: [
+          ...primera.entidadesNuevasRecibidas,
+          ...completa.entidadesNuevasRecibidas,
+        ],
+      );
+    }
     await guardarSesionEspacio(
         resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
     // La comparte la tarea en segundo plano para no sincronizar a la vez.
@@ -45,6 +71,7 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
     }
     return resultado;
   } finally {
+    await bd.soltarCandadoSync();
     sincronizandoEspacio.value = false;
   }
 }
@@ -66,6 +93,9 @@ Future<void> sincronizarEspacioEnSilencio() async {
 /// móvil puede no corresponder a la nueva sesión: la próxima sincronización
 /// será completa y retirará lo que ya no se ve.
 Future<void> reiniciarCursoresSincronizacion() async {
-  await BaseDatosSoleraZunbeltz()
-      .guardarEstadoSync(ClienteSyncZunbeltz.claveRevision, 0);
+  final bd = BaseDatosSoleraZunbeltz();
+  await bd.guardarEstadoSync(ClienteSyncZunbeltz.claveRevision, 0);
+  // Por si había una sincronización en marcha: al terminar guardaría la
+  // revisión de la sesión anterior y la completa no llegaría a hacerse.
+  await bd.pedirSincronizacionCompleta();
 }

@@ -9,9 +9,27 @@ import '../modelos/constantes.dart';
 import '../modelos/persona_espacio.dart';
 import '../modelos/tarea_mantenimiento.dart';
 
+/// Por qué ha fallado la conexión, para mostrarlo traducido en la app.
+enum MotivoErrorSync {
+  configuracion,
+  sinConexion,
+  token,
+  pluginAntiguo,
+  servidor,
+  respuestaInesperada,
+}
+
 class ErrorSyncZunbeltz implements Exception {
+  /// Detalle técnico en castellano (para registros); a la persona se le
+  /// enseña el texto traducido de [motivo].
   final String mensaje;
-  ErrorSyncZunbeltz(this.mensaje);
+  final MotivoErrorSync motivo;
+
+  /// Código HTTP cuando el servidor respondió con error.
+  final int? codigoHttp;
+
+  ErrorSyncZunbeltz(this.mensaje,
+      {this.motivo = MotivoErrorSync.respuestaInesperada, this.codigoHttp});
   @override
   String toString() => 'ErrorSyncZunbeltz: $mensaje';
 }
@@ -59,6 +77,7 @@ class ResultadoSyncZunbeltz {
     this.entidadesBajadas = 0,
     this.actividadNueva = const [],
     this.entidadesNuevasRecibidas = const [],
+    this.cambioVisibilidad = false,
   });
 
   final int subidas;
@@ -76,6 +95,11 @@ class ResultadoSyncZunbeltz {
   /// Entidades (en formato del API) que llegaron y cambiaron algo en local:
   /// sirve para avisar de alarmas o peticiones nuevas.
   final List<Map<String, Object?>> entidadesNuevasRecibidas;
+
+  /// Ha cambiado lo que esta persona puede ver (proyecto asignado o
+  /// retirado, cambio de rol): hace falta una sincronización completa, que
+  /// queda pedida.
+  final bool cambioVisibilidad;
 }
 
 /// Sincroniza el espacio con el plugin `solera-zunbeltz-sync` instalado en
@@ -113,7 +137,8 @@ class ClienteSyncZunbeltz {
   void _comprobarConfiguracion() {
     if (urlBase.trim().isEmpty || token.trim().isEmpty) {
       throw ErrorSyncZunbeltz(
-          'Configura la URL del WordPress y el token en Ajustes.');
+          'Configura la URL del WordPress y el token en Ajustes.',
+          motivo: MotivoErrorSync.configuracion);
     }
   }
 
@@ -123,7 +148,13 @@ class ClienteSyncZunbeltz {
     _comprobarConfiguracion();
     final json =
         await _leerRespuesta(() => http.get(_ruta('yo'), headers: _cabeceras));
-    return SesionRemota.desdeJson(json);
+    try {
+      return SesionRemota.desdeJson(json);
+    } on ErrorSyncZunbeltz {
+      rethrow;
+    } catch (e) {
+      throw ErrorSyncZunbeltz('Sesión mal formada: $e');
+    }
   }
 
   Future<Map<Object?, Object?>> _leerRespuesta(
@@ -132,21 +163,32 @@ class ClienteSyncZunbeltz {
     try {
       respuesta = await peticion().timeout(const Duration(seconds: 60));
     } catch (e) {
-      throw ErrorSyncZunbeltz('No se pudo contactar con el servidor: $e');
+      throw ErrorSyncZunbeltz('No se pudo contactar con el servidor: $e',
+          motivo: MotivoErrorSync.sinConexion);
     }
     if (respuesta.statusCode == 401 || respuesta.statusCode == 403) {
       throw ErrorSyncZunbeltz(
-          'Token incorrecto o persona desactivada. Revisa Ajustes.');
+          'Token incorrecto o persona desactivada. Revisa Ajustes.',
+          motivo: MotivoErrorSync.token);
     }
     if (respuesta.statusCode == 404) {
       throw ErrorSyncZunbeltz(
-          'El WordPress no tiene el plugin solera-zunbeltz-sync 0.3 o posterior.');
+          'El WordPress no tiene el plugin solera-zunbeltz-sync 0.3 o posterior.',
+          motivo: MotivoErrorSync.pluginAntiguo);
     }
     if (respuesta.statusCode != 200) {
       throw ErrorSyncZunbeltz(
-          'Error HTTP ${respuesta.statusCode}: ${respuesta.body}');
+          'Error HTTP ${respuesta.statusCode}: ${respuesta.body}',
+          motivo: MotivoErrorSync.servidor,
+          codigoHttp: respuesta.statusCode);
     }
-    final json = jsonDecode(utf8.decode(respuesta.bodyBytes));
+    // Una dirección equivocada suele responder 200 con una página HTML.
+    final Object? json;
+    try {
+      json = jsonDecode(utf8.decode(respuesta.bodyBytes));
+    } catch (e) {
+      throw ErrorSyncZunbeltz('La respuesta no es JSON: $e');
+    }
     if (json is! Map) {
       throw ErrorSyncZunbeltz('Respuesta inesperada del servidor.');
     }
@@ -165,7 +207,12 @@ class ClienteSyncZunbeltz {
     _comprobarConfiguracion();
     final inicioMs = DateTime.now().millisecondsSinceEpoch;
     final esPrimera = await bd.leerEstadoSync(claveRevision) == 0;
-    final sincronizacionCompleta = completa || esPrimera;
+    final completasPedidas = await bd
+        .leerEstadoSync(SincronizacionBaseDatos.claveCompletaPedida);
+    final sincronizacionCompleta = completa ||
+        esPrimera ||
+        completasPedidas >
+            await bd.leerEstadoSync(SincronizacionBaseDatos.claveCompletaHecha);
 
     // ── Lo que sube ──
     final entidades = await bd
@@ -226,6 +273,7 @@ class ClienteSyncZunbeltz {
       return borradaA ? -orden : orden;
     });
     var entidadesBajadas = 0;
+    var entidadesDescartadas = 0;
     final entidadesNuevas = <Map<String, Object?>>[];
     final uidsRecibidosPorTipo = <String, Set<String>>{};
     for (final entidad in recibidas) {
@@ -235,11 +283,32 @@ class ClienteSyncZunbeltz {
             .putIfAbsent(entidad['tipo'] as String? ?? '', () => {})
             .add(entidad['uid'] as String? ?? '');
       }
-      final cambio = await bd.aplicarEntidadRemota(entidad,
-          forzar: forzadas.contains(clave));
-      if (cambio) {
-        entidadesBajadas++;
-        entidadesNuevas.add(entidad);
+      final forzada = forzadas.contains(clave);
+      ResultadoAplicarEntidad resultado;
+      try {
+        resultado =
+            await bd.aplicarEntidadRemotaDetallada(entidad, forzar: forzada);
+      } catch (_) {
+        // Una fila que no se puede guardar no debe bloquear para siempre la
+        // sincronización de este móvil: se cuenta y se reintenta con una
+        // sincronización completa.
+        resultado = ResultadoAplicarEntidad.descartadaPorReferencia;
+      }
+      switch (resultado) {
+        case ResultadoAplicarEntidad.cambiada:
+          entidadesBajadas++;
+          entidadesNuevas.add(entidad);
+        case ResultadoAplicarEntidad.sinCambios:
+          break;
+        case ResultadoAplicarEntidad.descartadaPorReferencia:
+          entidadesDescartadas++;
+          // El servidor rechazó la versión local y la buena no cabe aquí:
+          // mejor sin ella que con la rechazada, que ya no se reenviaría.
+          if (forzada) {
+            await bd.borrarEntidadSinLapida(
+                (entidad['tipo'] as String?) ?? '',
+                (entidad['uid'] as String?) ?? '');
+          }
       }
     }
     // Lo rechazado que el servidor no tiene (altas no permitidas) se borra.
@@ -252,13 +321,14 @@ class ClienteSyncZunbeltz {
     }
     var retiradas = 0;
     if (sincronizacionCompleta) {
-      retiradas += await bd.retirarEntidadesNoRecibidas(uidsRecibidosPorTipo);
+      retiradas += await bd.retirarEntidadesNoRecibidas(uidsRecibidosPorTipo,
+          cambiadasDesdeMs: inicioMs);
     }
     await bd.olvidarBorrados(lapidas);
 
     // ── Tareas que bajan ──
     final (bajadas, omitidas, tareasRetiradas) =
-        await _aplicarTareasRemotas(bd, json);
+        await _aplicarTareasRemotas(bd, json, cambiadasDesdeMs: inicioMs);
     retiradas += tareasRetiradas;
 
     // ── Actividad ──
@@ -280,6 +350,28 @@ class ClienteSyncZunbeltz {
         claveRevision, (json['revision'] as num?)?.toInt() ?? 0);
     await bd.guardarEstadoSync(claveSubida, inicioMs);
 
+    // Si cambia lo que se ve, lo antiguo de un proyecto recién asignado no
+    // llega con el cursor, ni se retira lo que se deja de ver: completa.
+    var cambioVisibilidad = false;
+    final huella = json['huella_visibilidad'];
+    if (huella is String && huella.isNotEmpty) {
+      final huellaNueva = int.tryParse(huella, radix: 16) ?? 0;
+      final huellaAnterior = await bd.leerEstadoSync(claveHuellaVisibilidad);
+      cambioVisibilidad = !sincronizacionCompleta &&
+          huellaAnterior != 0 &&
+          huellaAnterior != huellaNueva;
+      await bd.guardarEstadoSync(claveHuellaVisibilidad, huellaNueva);
+    }
+    if (cambioVisibilidad) await bd.pedirSincronizacionCompleta();
+
+    if (sincronizacionCompleta) {
+      await bd.guardarEstadoSync(
+          SincronizacionBaseDatos.claveCompletaHecha, completasPedidas);
+    } else if (entidadesDescartadas > 0) {
+      // El cursor ya ha pasado por ellas: sin una completa no volverían.
+      await bd.pedirSincronizacionCompleta();
+    }
+
     return ResultadoSyncZunbeltz(
       subidas: tareas.length,
       bajadas: bajadas,
@@ -292,6 +384,7 @@ class ClienteSyncZunbeltz {
       entidadesBajadas: entidadesBajadas,
       actividadNueva: actividad,
       entidadesNuevasRecibidas: entidadesNuevas,
+      cambioVisibilidad: cambioVisibilidad,
     );
   }
 
@@ -299,6 +392,7 @@ class ClienteSyncZunbeltz {
   static const claveRevision = 'revision';
   static const claveActividad = 'actividad';
   static const claveSubida = 'subida_ms';
+  static const claveHuellaVisibilidad = 'huella_visibilidad';
 
   Future<Map<String, Object?>> _tareaConAnclajes(
       BaseDatosSoleraZunbeltz bd, TareaMantenimiento tarea) async {
@@ -317,9 +411,11 @@ class ClienteSyncZunbeltz {
   }
 
   /// Fusiona las tareas recibidas y retira las que ya no llegan. Devuelve
-  /// (bajadas, omitidas por finca desconocida, retiradas).
+  /// (bajadas, omitidas por finca desconocida, retiradas). Lo cambiado en
+  /// local desde [cambiadasDesdeMs] no se retira: no iba en la subida.
   Future<(int, int, int)> _aplicarTareasRemotas(
-      BaseDatosSoleraZunbeltz bd, Map<Object?, Object?> json) async {
+      BaseDatosSoleraZunbeltz bd, Map<Object?, Object?> json,
+      {required int cambiadasDesdeMs}) async {
     final uidsForzados = {
       for (final uid in (json['forzar'] as List?) ?? const [])
         if (uid is String) uid,
@@ -375,7 +471,9 @@ class ClienteSyncZunbeltz {
     var retiradas = 0;
     if (json['completo'] == true) {
       for (final local in await bd.listarTareas()) {
-        if (local.id != null && !uidsRemotos.contains(local.uid)) {
+        if (local.id != null &&
+            !uidsRemotos.contains(local.uid) &&
+            local.actualizadoMs < cambiadasDesdeMs) {
           await bd.borrarTareaSinLapida(local.id!);
           retiradas++;
         }

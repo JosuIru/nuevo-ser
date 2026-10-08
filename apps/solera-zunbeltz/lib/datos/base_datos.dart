@@ -23,6 +23,7 @@ import '../modelos/rentabilidad_proyecto.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import '../modelos/validacion_producto.dart';
 import '../modelos/zona_finca.dart';
+import '../utiles/tarea_periodica.dart';
 import '../utiles/uid.dart';
 
 part 'base_datos_comunicacion.dart';
@@ -511,16 +512,28 @@ class BaseDatosSoleraZunbeltz {
       'peticiones',
       'avisos',
     };
+    final uidsFijosUsados = <String>{};
     for (final tabla in tablasSincronizables
         .where((descriptor) => tablasHastaV9.contains(descriptor.tabla))) {
       final columnas = tabla.tabla == 'fincas' ? ['id', 'nombre'] : ['id'];
-      for (final fila in await db.query(tabla.tabla, columns: columnas)) {
-        final uidFijo = tabla.tabla == 'fincas'
+      for (final fila in await db.query(tabla.tabla,
+          columns: columnas, orderBy: 'id')) {
+        var uidFijo = tabla.tabla == 'fincas'
             ? uidsFincasSembradas[fila['nombre']]
             : null;
+        // Dos fincas con el mismo nombre sembrado (posible antes de la v9)
+        // no pueden compartir uid: el índice único fallaría y la BD no
+        // volvería a abrir. Solo la primera se queda el fijo.
+        if (uidFijo != null && !uidsFijosUsados.add(uidFijo)) uidFijo = null;
         await db.update(
           tabla.tabla,
-          {'uid': uidFijo ?? generarUid(), 'actualizado_ms': ahora},
+          {
+            'uid': uidFijo ?? generarUid(),
+            // Las sembradas existen igual en todos los móviles: con marca
+            // mínima, la versión del servidor (quizá ya corregida) gana
+            // siempre a la copia de un móvil que se actualiza tarde.
+            'actualizado_ms': uidFijo != null ? marcaSembrado : ahora,
+          },
           where: 'id = ?',
           whereArgs: [fila['id']],
         );
@@ -747,7 +760,21 @@ class BaseDatosSoleraZunbeltz {
 
   Future<int> guardarTarea(TareaMantenimiento tarea) async {
     final db = await basedatos;
-    return db.insert('tareas_mantenimiento', tarea.toMap()..remove('id'));
+    final ahora = DateTime.now();
+    final fila = tarea.toMap()..remove('id');
+    // Sin marca de tiempo, la sincronización la tomaría por antigua y podría
+    // retirarla antes de haberla subido.
+    if (tarea.actualizadoMs == 0) {
+      fila['actualizado_ms'] = ahora.millisecondsSinceEpoch;
+    }
+    return db.transaction((txn) async {
+      final id = await txn.insert('tareas_mantenimiento', fila);
+      // Dada de alta ya hecha: también toca la siguiente.
+      if (tarea.estado == 'hecha') {
+        await _insertarSiguientePeriodica(txn, tarea, ahora);
+      }
+      return id;
+    });
   }
 
   /// Actualiza una tarea y marca `actualizado_ms` a ahora (salvo que
@@ -864,39 +891,57 @@ class BaseDatosSoleraZunbeltz {
   /// `null` si la tarea no era recurrente.
   Future<int?> marcarTareaHecha(int id) async {
     final db = await basedatos;
-    final tarea = await obtenerTarea(id);
-    if (tarea == null) return null;
     return db.transaction<int?>((txn) async {
-      final ahoraMs = DateTime.now().millisecondsSinceEpoch;
-      await txn.update('tareas_mantenimiento',
-          {'estado': 'hecha', 'actualizado_ms': ahoraMs},
-          where: 'id = ?', whereArgs: [id]);
-      if (!tarea.esRecurrente) return null;
+      final filas = await txn.query('tareas_mantenimiento',
+          where: 'id = ?', whereArgs: [id], limit: 1);
+      if (filas.isEmpty) return null;
+      final tarea = TareaMantenimiento.fromMap(filas.first);
       final ahora = DateTime.now();
-      final base = tarea.fechaObjetivoMs != null &&
-              tarea.fechaObjetivoMs! > ahora.millisecondsSinceEpoch
-          ? DateTime.fromMillisecondsSinceEpoch(tarea.fechaObjetivoMs!)
-          : ahora;
-      final siguiente = TareaMantenimiento(
-        fincaId: tarea.fincaId,
-        puntoId: tarea.puntoId,
-        zonaId: tarea.zonaId,
-        titulo: tarea.titulo,
-        descripcion: tarea.descripcion,
-        responsable: tarea.responsable,
-        responsableUid: tarea.responsableUid,
-        creadoPorUid: tarea.creadoPorUid,
-        prioridad: tarea.prioridad,
-        estado: estadoTareaPorDefecto,
-        fechaObjetivoMs: base
-            .add(Duration(days: tarea.recurrenciaDias!))
-            .millisecondsSinceEpoch,
-        fechaCreacionMs: ahora.millisecondsSinceEpoch,
-        recurrenciaDias: tarea.recurrenciaDias,
-      );
-      return txn.insert(
-          'tareas_mantenimiento', siguiente.toMap()..remove('id'));
+      // Solo cuenta el primer cierre: un doble toque no genera dos.
+      final cerradas = await txn.update('tareas_mantenimiento',
+          {'estado': 'hecha', 'actualizado_ms': ahora.millisecondsSinceEpoch},
+          where: "id = ? AND estado != 'hecha'", whereArgs: [id]);
+      if (cerradas == 0) return null;
+      return _insertarSiguientePeriodica(txn, tarea, ahora);
     });
+  }
+
+  /// Inserta la siguiente instancia de una tarea periódica recién cerrada,
+  /// salvo que ya exista (la generó otro móvil o el servidor). Devuelve su
+  /// id, o `null` si no toca.
+  Future<int?> _insertarSiguientePeriodica(
+      DatabaseExecutor db, TareaMantenimiento tarea, DateTime ahora) async {
+    if (!tarea.esRecurrente) return null;
+    final uidSiguiente = uidSiguientePeriodica(tarea.uid);
+    final existentes = await db.query('tareas_mantenimiento',
+        columns: ['id'], where: 'uid = ?', whereArgs: [uidSiguiente], limit: 1);
+    if (existentes.isNotEmpty) return null;
+    final siguiente = TareaMantenimiento(
+      uid: uidSiguiente,
+      fincaId: tarea.fincaId,
+      puntoId: tarea.puntoId,
+      zonaId: tarea.zonaId,
+      titulo: tarea.titulo,
+      descripcion: tarea.descripcion,
+      responsable: tarea.responsable,
+      responsableUid: tarea.responsableUid,
+      creadoPorUid: tarea.creadoPorUid,
+      prioridad: tarea.prioridad,
+      estado: estadoTareaPorDefecto,
+      fechaObjetivoMs: fechaSiguientePeriodica(
+              fechaObjetivoMs: tarea.fechaObjetivoMs,
+              dias: tarea.recurrenciaDias!,
+              ahora: ahora)
+          .millisecondsSinceEpoch,
+      fechaCreacionMs: ahora.millisecondsSinceEpoch,
+      recurrenciaDias: tarea.recurrenciaDias,
+      // La misma instancia la genera también el servidor al aceptar el
+      // cierre (mismo uid): con marca mínima, la copia de este móvil nunca
+      // pisa la del servidor ni cuenta como un cambio rechazado (una tester
+      // no puede crear tareas). Si el servidor no la tiene, se sube igual.
+      actualizadoMs: 1,
+    );
+    return db.insert('tareas_mantenimiento', siguiente.toMap()..remove('id'));
   }
 
   /// Todas las tareas con lo necesario para sincronizar (incluye `uid` y
@@ -1301,6 +1346,7 @@ class BaseDatosSoleraZunbeltz {
           uid: uidSembrado('finca', f.nombre));
       idPorFinca[f.nombre] = id;
     }
+    final uidsPuntos = <String>[];
     for (final p in puntosEspacio) {
       final fincaId = idPorFinca[p.finca];
       if (fincaId == null) continue;
@@ -1316,9 +1362,29 @@ class BaseDatosSoleraZunbeltz {
             fechaCreacionMs: ahora,
           ),
           uid: uidSembrado('punto', '${p.finca} ${p.nombre}'));
+      uidsPuntos.add(uidSembrado('punto', '${p.finca} ${p.nombre}'));
+    }
+    // Lo sembrado es igual en todos los móviles: con marca mínima sube si el
+    // servidor no lo tiene, pero nunca pisa la versión del servidor (quizá
+    // ya corregida por coordinación) ni resucita una finca borrada allí.
+    final db = await basedatos;
+    final uidsFincas = [
+      for (final f in fincasEspacio) uidSembrado('finca', f.nombre),
+    ];
+    await db.update('fincas', {'actualizado_ms': marcaSembrado},
+        where: 'uid IN (${List.filled(uidsFincas.length, '?').join(',')})',
+        whereArgs: uidsFincas);
+    if (uidsPuntos.isNotEmpty) {
+      await db.update('puntos_infraestructura', {'actualizado_ms': marcaSembrado},
+          where: 'uid IN (${List.filled(uidsPuntos.length, '?').join(',')})',
+          whereArgs: uidsPuntos);
     }
     return true;
   }
+
+  /// `actualizado_ms` de lo sembrado: más viejo que cualquier cambio real,
+  /// pero mayor que 0 para que la primera sincronización lo suba.
+  static const marcaSembrado = 1;
 
   /// Carga un juego de **datos de demostración** (dos proyectos de test con
   /// producción, comercialización, validación de producto e ingresos/gastos

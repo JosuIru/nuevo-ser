@@ -1,12 +1,15 @@
 // Tareas tipo de Zunbeltz (Ganado.docx), tipos de punto y especies nuevos,
 // y partidas de presupuesto con fórmula (material del 2026-10-13).
 
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:solera_zunbeltz/modelos/constantes.dart';
 import 'package:solera_zunbeltz/modelos/convenio.dart';
 import 'package:solera_zunbeltz/modelos/plantillas_tarea.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_convenio.dart';
+import 'package:solera_zunbeltz/utiles/plantillas_php.dart';
 
 void main() {
   test('las tareas tipo apuntan a catálogos que existen', () {
@@ -113,5 +116,13 @@ void main() {
     ).toMap());
     expect(formulaPartida(partida), '0,15 × 300 × 90 × 0,35 €');
     expect(formulaPartida(PartidaPresupuesto(proyectoId: 1)), isNull);
+  });
+
+  test('el panel de WordPress ofrece las mismas tareas tipo', () {
+    final enPlugin = File(
+            '../../wp-plugin/solera-zunbeltz-sync/includes/plantillas-tarea.php')
+        .readAsStringSync();
+    expect(enPlugin, plantillasTareaComoPhp(),
+        reason: 'ejecuta: dart run tool/generar_plantillas_php.dart');
   });
 }

@@ -46,8 +46,11 @@ Future<DocumentoGenerado> generarInformeProyectoPdf({
       buscarOpcion(cat, cod)?.etiqueta(idioma) ?? cod;
   String euros(int c) => '${eurosDesdeCentimos(c)} €';
 
+  final logos = await logosPdfZunbeltz();
   final bytes = await generarInformePeriodicoPdfBytes(
     tema: await temaPdfZunbeltz(),
+    logoCabecera: logos.cabecera,
+    logosPie: logos.pie,
     tituloCabecera: textos.infProyTitulo,
     subtituloCabecera: textos.parteSubtitulo,
     marcaAgua: definitivo ? null : textos.marcaBorrador,

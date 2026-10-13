@@ -451,6 +451,18 @@ class AppLocalizationsEs extends AppLocalizations {
   String get acercaFuentes => 'Información de fuentes públicas.';
 
   @override
+  String get acercaImpulsan => 'Impulsan el proyecto';
+
+  @override
+  String get acercaApoyan => 'Apoyan el proyecto';
+
+  @override
+  String get acercaColaboran => 'Colaboran';
+
+  @override
+  String get acercaMiembroDe => 'Miembro de';
+
+  @override
   String get navProyectos => 'Proyectos';
 
   @override

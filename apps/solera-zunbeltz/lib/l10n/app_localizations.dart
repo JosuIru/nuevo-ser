@@ -932,6 +932,30 @@ abstract class AppLocalizations {
   /// **'Información de fuentes públicas.'**
   String get acercaFuentes;
 
+  /// No description provided for @acercaImpulsan.
+  ///
+  /// In es, this message translates to:
+  /// **'Impulsan el proyecto'**
+  String get acercaImpulsan;
+
+  /// No description provided for @acercaApoyan.
+  ///
+  /// In es, this message translates to:
+  /// **'Apoyan el proyecto'**
+  String get acercaApoyan;
+
+  /// No description provided for @acercaColaboran.
+  ///
+  /// In es, this message translates to:
+  /// **'Colaboran'**
+  String get acercaColaboran;
+
+  /// No description provided for @acercaMiembroDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Miembro de'**
+  String get acercaMiembroDe;
+
   /// No description provided for @navProyectos.
   ///
   /// In es, this message translates to:

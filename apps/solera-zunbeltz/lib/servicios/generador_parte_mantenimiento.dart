@@ -78,8 +78,11 @@ Future<DocumentoGenerado> generarParteMantenimientoPdf({
     ));
   }
 
+  final logos = await logosPdfZunbeltz();
   final bytes = await generarInformePeriodicoPdfBytes(
     tema: await temaPdfZunbeltz(),
+    logoCabecera: logos.cabecera,
+    logosPie: logos.pie,
     marcaAgua: definitivo ? null : textos.marcaBorrador,
     tituloCabecera: textos.parteTitulo,
     subtituloCabecera: textos.parteSubtitulo,

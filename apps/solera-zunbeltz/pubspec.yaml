@@ -78,6 +78,7 @@ flutter:
   generate: true
   assets:
     - assets/
+    - assets/logos/
 
   # Tipografía empaquetada (se usa sin conexión, como el resto de la app):
   # Archivo para títulos y Spectral para texto corrido. Ambas con licencia

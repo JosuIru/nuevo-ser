@@ -451,6 +451,18 @@ class AppLocalizationsEu extends AppLocalizations {
   String get acercaFuentes => 'Informazioa iturri publikoetatik.';
 
   @override
+  String get acercaImpulsan => 'Proiektuaren bultzatzaileak';
+
+  @override
+  String get acercaApoyan => 'Proiektuaren babesleak';
+
+  @override
+  String get acercaColaboran => 'Laguntzaileak';
+
+  @override
+  String get acercaMiembroDe => 'Sareko kide';
+
+  @override
   String get navProyectos => 'Proiektuak';
 
   @override

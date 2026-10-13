@@ -34,8 +34,11 @@ Future<DocumentoGenerado> generarComparativaProyectosPdf({
     totalBalance += f.rentabilidad.balanceCentimos;
   }
 
+  final logos = await logosPdfZunbeltz();
   final bytes = await generarInformePeriodicoPdfBytes(
     tema: await temaPdfZunbeltz(),
+    logoCabecera: logos.cabecera,
+    logosPie: logos.pie,
     marcaAgua: definitivo ? null : textos.marcaBorrador,
     tituloCabecera: textos.comparativaTitulo,
     subtituloCabecera: textos.parteSubtitulo,

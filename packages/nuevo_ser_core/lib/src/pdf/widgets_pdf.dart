@@ -15,10 +15,17 @@ import 'package:pdf/widgets.dart' as pw;
 /// (típicamente un periodo o etiqueta) a la derecha en gris,
 /// separados por una línea inferior. Pensada como `header` de un
 /// `pw.MultiPage`.
+///
+/// Si se pasa [logo], va a la izquierda del título con 28 pt de alto.
 pw.Widget cabeceraInformePdf({
   required String titulo,
   required String subtitulo,
+  pw.ImageProvider? logo,
 }) {
+  final textoTitulo = pw.Text(
+    titulo,
+    style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold),
+  );
   return pw.Container(
     padding: const pw.EdgeInsets.only(bottom: 8),
     decoration: const pw.BoxDecoration(
@@ -27,13 +34,23 @@ pw.Widget cabeceraInformePdf({
     child: pw.Row(
       mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
       children: [
-        pw.Text(
-          titulo,
-          style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold),
-        ),
-        pw.Text(
-          subtitulo,
-          style: const pw.TextStyle(fontSize: 14, color: PdfColors.grey700),
+        if (logo == null)
+          textoTitulo
+        else
+          pw.Row(children: [
+            pw.Image(logo, height: 28),
+            pw.SizedBox(width: 10),
+            textoTitulo,
+          ]),
+        pw.SizedBox(width: 12),
+        // El subtítulo cede espacio (y pasa a dos líneas) antes que pisar
+        // el título.
+        pw.Flexible(
+          child: pw.Text(
+            subtitulo,
+            textAlign: pw.TextAlign.right,
+            style: const pw.TextStyle(fontSize: 14, color: PdfColors.grey700),
+          ),
         ),
       ],
     ),
@@ -50,6 +67,38 @@ pw.Widget footerPaginacionPdf(pw.Context ctx) {
       'Página ${ctx.pageNumber} de ${ctx.pagesCount}',
       style: const pw.TextStyle(fontSize: 10, color: PdfColors.grey),
     ),
+  );
+}
+
+/// Footer con una franja de logos (financiadores, entidades que apoyan)
+/// encima de la paginación. Los logos se escalan a [altoLogo] y se
+/// reparten en una o varias filas si no caben.
+pw.Widget footerConLogosPdf(
+  pw.Context ctx,
+  List<pw.ImageProvider> logos, {
+  double altoLogo = 18,
+}) {
+  return pw.Column(
+    mainAxisSize: pw.MainAxisSize.min,
+    children: [
+      pw.Container(
+        padding: const pw.EdgeInsets.only(top: 6, bottom: 4),
+        decoration: const pw.BoxDecoration(
+          border: pw.Border(
+              top: pw.BorderSide(width: 0.5, color: PdfColors.grey400)),
+        ),
+        child: pw.Wrap(
+          alignment: pw.WrapAlignment.center,
+          crossAxisAlignment: pw.WrapCrossAlignment.center,
+          spacing: 14,
+          runSpacing: 4,
+          children: [
+            for (final logo in logos) pw.Image(logo, height: altoLogo),
+          ],
+        ),
+      ),
+      footerPaginacionPdf(ctx),
+    ],
   );
 }
 

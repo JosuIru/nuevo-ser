@@ -90,6 +90,8 @@ Future<Uint8List> generarInformePeriodicoPdfBytes({
   DateTime? fechaGeneracion,
   String? marcaAgua,
   pw.ThemeData? tema,
+  pw.ImageProvider? logoCabecera,
+  List<pw.ImageProvider> logosPie = const [],
 }) {
   return construirInformePeriodicoPdf(
     tituloCabecera: tituloCabecera,
@@ -100,6 +102,8 @@ Future<Uint8List> generarInformePeriodicoPdfBytes({
     fechaGeneracion: fechaGeneracion,
     marcaAgua: marcaAgua,
     tema: tema,
+    logoCabecera: logoCabecera,
+    logosPie: logosPie,
   ).save();
 }
 
@@ -112,6 +116,9 @@ Future<Uint8List> generarInformePeriodicoPdfBytes({
 /// [tema] fija las fuentes. Sin él se usa Helvetica, que solo cubre
 /// Latin-1: el «€» y el «—» no salen. Para importes conviene pasar
 /// `pw.ThemeData.withFont` con una TTF incrustada.
+///
+/// [logoCabecera] va junto al título en cada página; [logosPie], en una
+/// franja encima de la paginación (entidades que financian o apoyan).
 pw.Document construirInformePeriodicoPdf({
   required String tituloCabecera,
   required String subtituloCabecera,
@@ -121,6 +128,8 @@ pw.Document construirInformePeriodicoPdf({
   DateTime? fechaGeneracion,
   String? marcaAgua,
   pw.ThemeData? tema,
+  pw.ImageProvider? logoCabecera,
+  List<pw.ImageProvider> logosPie = const [],
 }) {
   final fecha = fechaGeneracion ?? DateTime.now();
   final fechaFormateada = DateFormat('dd/MM/yyyy HH:mm').format(fecha);
@@ -139,8 +148,11 @@ pw.Document construirInformePeriodicoPdf({
       header: (_) => cabeceraInformePdf(
         titulo: tituloCabecera,
         subtitulo: subtituloCabecera,
+        logo: logoCabecera,
       ),
-      footer: footerPaginacionPdf,
+      footer: logosPie.isEmpty
+          ? footerPaginacionPdf
+          : (ctx) => footerConLogosPdf(ctx, logosPie),
       build: (_) => [
         pw.SizedBox(height: 12),
         tituloSeccionPdf('Resumen'),

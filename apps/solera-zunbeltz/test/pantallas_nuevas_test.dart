@@ -10,6 +10,7 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'package:solera_zunbeltz/datos/base_datos.dart';
 import 'package:solera_zunbeltz/l10n/app_localizations.dart';
+import 'package:solera_zunbeltz/modelos/amortizacion.dart';
 import 'package:solera_zunbeltz/modelos/aviso_campo.dart';
 import 'package:solera_zunbeltz/modelos/convenio.dart';
 import 'package:solera_zunbeltz/modelos/peticion_tarea.dart';
@@ -20,6 +21,7 @@ import 'package:solera_zunbeltz/pantallas/pantalla_contactos.dart';
 import 'package:solera_zunbeltz/pantallas/nuevo_aviso.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_convenio.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_inicio.dart';
+import 'package:solera_zunbeltz/pantallas/pantalla_inventario.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_peticiones.dart';
 
 import 'bd_en_memoria.dart';
@@ -60,6 +62,10 @@ void main() {
     await bd.guardarPartidaPresupuesto(PartidaPresupuesto(
         proyectoId: proyectoId, categoria: 'infraestructuras', asumidoPor: 'zunbeltz', importeCentimos: 900000));
     await bd.guardarAcompanamiento(Acompanamiento(proyectoId: proyectoId, tipo: 'formacion', asistencia: 'asistida'));
+    final bienId = await bd.guardarBien(BienAmortizable(
+        nombre: 'Corral móvil con kit de enganche y ruedas para 60-90 m²',
+        grupo: 'instalaciones', precioUnidadCentimos: 1137542, unidades: 2));
+    await bd.guardarUsoBien(UsoBien(proyectoId: proyectoId, bienId: bienId, imputacionPorcentaje: 50));
     await bd.guardarIncidencia(IncidenciaCumplimiento(proyectoId: proyectoId, nivel: 'grave', descripcion: 'Retraso'));
     await bd.guardarContacto(Contacto(nombre: 'Matadero de prueba', tipo: 'matadero', telefono: '948000000'));
     await bd.guardarRendimiento(RendimientoReferencia(nombre: 'Cordero — canal', rendimientoCanal: 50));
@@ -88,14 +94,29 @@ void main() {
       expect(tester.takeException(), isNull);
     });
 
-    testWidgets('Convenio: las cinco pestañas ($idioma)', (tester) async {
+    testWidgets('Convenio: las seis pestañas ($idioma)', (tester) async {
       final proyecto = (await tester.runAsync(() => bd.obtenerProyecto(proyectoId)))!;
       await montar(tester, PantallaConvenio(proyecto: proyecto), idioma: idioma);
-      for (var pestana = 0; pestana < 5; pestana++) {
+      for (var pestana = 0; pestana < 6; pestana++) {
         await tester.tap(find.byType(Tab).at(pestana));
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull, reason: 'pestaña $pestana');
       }
+    });
+  }
+
+  for (final idioma in ['es', 'eu']) {
+    testWidgets('Inventario de bienes y su formulario ($idioma)', (tester) async {
+      await montar(tester, const PantallaInventario(), idioma: idioma);
+      expect(find.textContaining('kit de enganche'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await montar(tester, const FormularioBienAmortizable(), idioma: idioma);
+      await tester.enterText(find.byType(TextField).at(1), '1.392,00');
+      await tester.pump();
+      // 1.392 € + 21 % = 1.684,32 €; entre 72 meses, 23,39 € al mes.
+      expect(find.text('1684,32 €'), findsOneWidget);
+      expect(find.text('23,39 €'), findsOneWidget);
+      expect(tester.takeException(), isNull);
     });
   }
 

@@ -5,6 +5,7 @@ import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
+import '../modelos/amortizacion.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/balance_convenio.dart';
 import '../modelos/constantes.dart';
@@ -12,6 +13,7 @@ import '../modelos/convenio.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_comercializacion.dart';
+import 'pantalla_inventario.dart';
 import 'widgets/campo_partida_gasto.dart';
 import 'widgets/relleno_seguro.dart';
 import '../utiles/numeros.dart';
@@ -39,6 +41,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
   List<MovimientoFianza> _movimientos = const [];
   List<Acompanamiento> _acompanamientos = const [];
   List<IncidenciaCumplimiento> _incidencias = const [];
+  List<UsoBien> _usos = const [];
+  Map<int, BienAmortizable> _bienesPorId = const {};
   bool _cargando = true;
 
   int get _proyectoId => widget.proyecto.id!;
@@ -59,6 +63,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       final movimientos = await _bd.listarMovimientosFianza(_proyectoId);
       final acompanamientos = await _bd.listarAcompanamientos(_proyectoId);
       final incidencias = await _bd.listarIncidencias(_proyectoId);
+      final usos = await _bd.listarUsosBienes(_proyectoId);
+      final bienes = await _bd.listarBienes();
       if (!mounted) return;
       setState(() {
         if (proyecto != null) _proyecto = proyecto;
@@ -68,6 +74,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
         _movimientos = movimientos;
         _acompanamientos = acompanamientos;
         _incidencias = incidencias;
+        _usos = usos;
+        _bienesPorId = {for (final bien in bienes) bien.id!: bien};
         _cargando = false;
       });
     } catch (_) {
@@ -76,9 +84,16 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     }
   }
 
+  /// Cuotas del inventario como gastos del bloque VI.
+  List<ApunteEconomico> get _cuotasInventario => apuntesDeAmortizacion(
+      proyecto: _proyecto,
+      usos: _usos,
+      bienesPorId: _bienesPorId,
+      fincaId: _proyecto.fincaId ?? 0);
+
   BalanceConvenio get _balance => BalanceConvenio.calcular(
       proyecto: _proyecto,
-      apuntes: _apuntes,
+      apuntes: [..._apuntes, ..._cuotasInventario],
       ventas: _ventas,
       presupuesto: _presupuesto);
 
@@ -86,13 +101,14 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           title: Text('${textos.convenioTitulo} · ${_proyecto.nombre}'),
           bottom: TabBar(isScrollable: true, tabs: [
             Tab(text: textos.convenioBalance),
             Tab(text: textos.convenioPresupuesto),
+            Tab(text: textos.balanceAmortizaciones),
             Tab(text: textos.convenioFianza),
             Tab(text: textos.convenioAcompanamiento),
             Tab(text: textos.convenioIncidencias),
@@ -103,6 +119,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
             : TabBarView(children: [
                 _pestanaBalance(textos),
                 _pestanaPresupuesto(textos),
+                _pestanaAmortizaciones(textos),
                 _pestanaFianza(textos),
                 _pestanaAcompanamiento(textos),
                 _pestanaIncidencias(textos),
@@ -397,6 +414,122 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       concepto: concepto.text.trim(),
       asumidoPor: asumidoPor,
       importeCentimos: importeCentimos,
+    ));
+    await _cargar();
+  }
+
+  // ─── Amortizaciones (inventario) ───
+
+  Widget _pestanaAmortizaciones(AppLocalizations textos) {
+    final sinFechas = (_proyecto.fechaInicioMs ?? 0) == 0 &&
+        _usos.any((uso) => uso.duracionMeses <= 0);
+    var total = 0;
+    final filas = <Widget>[];
+    for (final uso in _usos) {
+      final bien = _bienesPorId[uso.bienId];
+      if (bien == null) continue;
+      final cuota = cuotaImputadaCentimos(bien, uso, _proyecto);
+      total += cuota;
+      filas.add(Card(
+        child: ListTile(
+          title: Text(bien.nombre),
+          subtitle: Text(textos.amortResumen(
+            _euros(bien.cuotaMensualCentimos.round()),
+            numeroLegible(mesesImputados(uso, _proyecto)),
+            '${uso.imputacionPorcentaje}',
+          )),
+          trailing: Text(_euros(cuota)),
+          onLongPress: !politicaEspacioActual.puedeEditarInventario ||
+                  uso.id == null
+              ? null
+              : () async {
+                  if (!await confirmarBorrado(context)) return;
+                  await _bd.borrarUsoBien(uso.id!);
+                  await _cargar();
+                },
+        ),
+      ));
+    }
+    return _lista([
+      Text(textos.amortIntro, style: Theme.of(context).textTheme.bodyMedium),
+      const SizedBox(height: 8),
+      if (mesesDelProyecto(_proyecto) > 0)
+        Text(textos.amortMesesDelTest(
+            numeroLegible(mesesDelProyecto(_proyecto)))),
+      if (sinFechas)
+        Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Text(textos.amortSinFechas,
+              style: const TextStyle(color: colorSenalZunbeltz)),
+        ),
+      const SizedBox(height: 8),
+      if (filas.isEmpty) Text(textos.amortVacio) else ...filas,
+      if (filas.isNotEmpty)
+        _fila(textos.amortTotal, _euros(total), destacado: true),
+      if (politicaEspacioActual.puedeEditarInventario)
+        _botonAnadir(textos.amortAnadir, _nuevoUsoBien),
+      Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: TextButton.icon(
+          onPressed: _abrirInventario,
+          icon: const Icon(Icons.inventory_2_outlined),
+          label: Text(textos.amortVerInventario),
+        ),
+      ),
+    ]);
+  }
+
+  Future<void> _abrirInventario() async {
+    await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (_) => const PantallaInventario()));
+    await _cargar();
+  }
+
+  Future<void> _nuevoUsoBien() async {
+    final textos = AppLocalizations.of(context);
+    final bienes = _bienesPorId.values.toList()
+      ..sort((a, b) => a.nombre.toLowerCase().compareTo(b.nombre.toLowerCase()));
+    if (bienes.isEmpty) {
+      _avisar(textos.amortSinBienes);
+      await _abrirInventario();
+      return;
+    }
+    var bienId = bienes.first.id!;
+    final porcentaje = TextEditingController(text: '100');
+    final meses = TextEditingController();
+    final aceptado = await _dialogo(
+      textos.amortAnadir,
+      const [],
+      constructor: (actualizar) => [
+        DropdownButtonFormField<int>(
+          isExpanded: true,
+          initialValue: bienId,
+          decoration: InputDecoration(labelText: textos.amortBien),
+          items: [
+            for (final bien in bienes)
+              DropdownMenuItem(
+                  value: bien.id,
+                  child: Text(bien.nombre, overflow: TextOverflow.ellipsis)),
+          ],
+          onChanged: (valor) => actualizar(() => bienId = valor ?? bienId),
+        ),
+        TextField(
+            controller: porcentaje,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(labelText: textos.amortPorcentaje)),
+        TextField(
+            controller: meses,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            decoration: InputDecoration(labelText: textos.amortMeses)),
+      ],
+    );
+    if (!aceptado) return;
+    await _bd.guardarUsoBien(UsoBien(
+      proyectoId: _proyectoId,
+      bienId: bienId,
+      imputacionPorcentaje:
+          (int.tryParse(porcentaje.text.trim()) ?? 100).clamp(1, 100),
+      duracionMeses: (leerNumero(meses.text) ?? 0).clamp(0, 1200).toDouble(),
     ));
     await _cargar();
   }

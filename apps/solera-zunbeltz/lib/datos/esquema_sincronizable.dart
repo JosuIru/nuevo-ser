@@ -124,6 +124,18 @@ final List<TablaSincronizable> tablasSincronizables = [
   const TablaSincronizable(tipo: 'contacto', tabla: 'contactos'),
   const TablaSincronizable(tipo: 'rendimiento', tabla: 'rendimientos'),
   _hijoDeProyecto('escenario_transformacion', 'escenarios_transformacion'),
+  const TablaSincronizable(
+      tipo: 'bien_amortizable', tabla: 'bienes_amortizables'),
+  const TablaSincronizable(
+    tipo: 'uso_bien',
+    tabla: 'usos_bienes',
+    referencias: [
+      ReferenciaSincronizable('bien_id', 'bienes_amortizables',
+          obligatoria: true, alBorrar: AlBorrarReferencia.cascada),
+    ],
+    columnaProyecto: 'proyecto_id',
+    proyectoObligatorio: true,
+  ),
 ];
 
 TablaSincronizable? tablaSincronizablePorTipo(String tipo) {

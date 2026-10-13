@@ -94,7 +94,12 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
           await _bd.listarValidaciones(proyectoId: _proyectoId);
       final apuntes = await _bd.listarApuntes(
           proyectoId: _proyectoId, desdeMs: desde, hastaMs: hasta);
-      final desglose = DesgloseGastos.calcular(apuntes);
+      final cuotasInventario = await _bd.amortizacionesDelInventario(
+          _proyecto,
+          desdeMs: desde,
+          hastaMs: hasta);
+      final desglose =
+          DesgloseGastos.calcular([...apuntes, ...cuotasInventario]);
       if (!mounted) return;
       setState(() {
         _rent = rent;
@@ -231,7 +236,10 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   Future<DocumentoGenerado> _generarInforme(
       AppLocalizations textos, String idioma) async {
     final (ivaSoportado, ivaRepercutido) = _ivaTotales();
-    final todosLosApuntes = await _bd.listarApuntes(proyectoId: _proyectoId);
+    final todosLosApuntes = [
+      ...await _bd.listarApuntes(proyectoId: _proyectoId),
+      ...await _bd.amortizacionesDelInventario(_proyecto),
+    ];
     final todasLasVentas =
         await _bd.listarComercializacion(proyectoId: _proyectoId);
     final incidencias = await _bd.listarIncidencias(_proyectoId);

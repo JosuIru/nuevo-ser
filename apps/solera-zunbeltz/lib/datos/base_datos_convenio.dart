@@ -75,4 +75,59 @@ extension ConvenioBaseDatos on BaseDatosSoleraZunbeltz {
 
   Future<void> borrarIncidencia(int id) =>
       _borrarSincronizable('incidencias_cumplimiento', id);
+
+  // ─── Inventario de amortizaciones ───
+
+  Future<int> guardarBien(BienAmortizable bien) async {
+    final db = await basedatos;
+    return _insertarSincronizable(
+        db, 'bienes_amortizables', bien.toMap()..remove('id'));
+  }
+
+  Future<void> actualizarBien(BienAmortizable bien) => _actualizarSincronizable(
+      'bienes_amortizables', bien.id!, bien.toMap()..remove('id'));
+
+  Future<List<BienAmortizable>> listarBienes() async {
+    final db = await basedatos;
+    final filas = await db.query('bienes_amortizables',
+        orderBy: 'grupo ASC, nombre COLLATE NOCASE ASC');
+    return filas.map(BienAmortizable.fromMap).toList();
+  }
+
+  /// Borra el bien y, con él, su uso en los proyectos.
+  Future<void> borrarBien(int id) =>
+      _borrarSincronizable('bienes_amortizables', id);
+
+  Future<int> guardarUsoBien(UsoBien uso) =>
+      _guardarDeProyecto('usos_bienes', uso.toMap());
+
+  Future<List<UsoBien>> listarUsosBienes(int proyectoId) async =>
+      (await _filasDeProyecto('usos_bienes', proyectoId, 'id ASC'))
+          .map(UsoBien.fromMap)
+          .toList();
+
+  Future<void> borrarUsoBien(int id) => _borrarSincronizable('usos_bienes', id);
+
+  /// Cuotas de amortización del inventario para un proyecto, como apuntes
+  /// del bloque VI (calculados, no guardados). Con periodo, la parte que
+  /// cae en él.
+  Future<List<ApunteEconomico>> amortizacionesDelInventario(
+    ProyectoTest proyecto, {
+    int? desdeMs,
+    int? hastaMs,
+  }) async {
+    final usos = await listarUsosBienes(proyecto.id!);
+    if (usos.isEmpty) return const [];
+    final bienes = {
+      for (final bien in await listarBienes()) bien.id!: bien,
+    };
+    return apuntesDeAmortizacion(
+      proyecto: proyecto,
+      usos: usos,
+      bienesPorId: bienes,
+      fincaId: proyecto.fincaId ?? 0,
+      desdeMs: desdeMs,
+      hastaMs: hastaMs,
+    );
+  }
 }

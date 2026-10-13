@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/agenda.dart';
+import '../modelos/amortizacion.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/desglose_gastos.dart';
 import '../modelos/aviso_campo.dart';
@@ -105,7 +106,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 11;
+  static const int versionEsquema = 12;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -120,6 +121,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 9) await aplicarMigracionV9(db);
     if (anterior < 10) await aplicarMigracionV10(db);
     if (anterior < 11) await aplicarMigracionV11(db);
+    if (anterior < 12) await aplicarMigracionV12(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -665,6 +667,41 @@ class BaseDatosSoleraZunbeltz {
             where: 'id = ?',
             whereArgs: [fila['id']]);
       }
+    }
+  }
+
+  /// Migración v11 → v12: inventario de amortizaciones (bienes del espacio
+  /// y su uso por cada proyecto). Aditiva.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV12(Database db) async {
+    const columnasSync =
+        "uid TEXT NOT NULL DEFAULT '', actualizado_ms INTEGER NOT NULL DEFAULT 0";
+    await db.execute('''
+      CREATE TABLE bienes_amortizables (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        nombre TEXT NOT NULL DEFAULT '',
+        grupo TEXT NOT NULL DEFAULT 'material_ganadero',
+        precio_unidad_centimos INTEGER NOT NULL DEFAULT 0,
+        unidades REAL NOT NULL DEFAULT 1,
+        iva_porcentaje INTEGER NOT NULL DEFAULT 21,
+        vida_util_meses INTEGER NOT NULL DEFAULT 72,
+        notas TEXT NOT NULL DEFAULT ''
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE usos_bienes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        proyecto_id INTEGER NOT NULL,
+        bien_id INTEGER NOT NULL,
+        imputacion_porcentaje INTEGER NOT NULL DEFAULT 100,
+        duracion_meses REAL NOT NULL DEFAULT 0,
+        notas TEXT NOT NULL DEFAULT '',
+        FOREIGN KEY (proyecto_id) REFERENCES proyectos_test(id) ON DELETE CASCADE,
+        FOREIGN KEY (bien_id) REFERENCES bienes_amortizables(id) ON DELETE CASCADE
+      )
+    ''');
+    for (final tabla in const ['bienes_amortizables', 'usos_bienes']) {
+      await db.execute('CREATE UNIQUE INDEX idx_${tabla}_uid ON $tabla(uid)');
     }
   }
 
@@ -1297,8 +1334,15 @@ class BaseDatosSoleraZunbeltz {
         proyectoId: proyectoId, desdeMs: desdeMs, hastaMs: hastaMs);
     final ingresosApuntes = await sumarImporteEconomico('ingreso',
         proyectoId: proyectoId, desdeMs: desdeMs, hastaMs: hastaMs);
-    final gastos = await sumarImporteEconomico('gasto',
+    var gastos = await sumarImporteEconomico('gasto',
         proyectoId: proyectoId, desdeMs: desdeMs, hastaMs: hastaMs);
+    final proyecto = await obtenerProyecto(proyectoId);
+    if (proyecto != null) {
+      for (final cuota in await amortizacionesDelInventario(proyecto,
+          desdeMs: desdeMs, hastaMs: hastaMs)) {
+        gastos += cuota.importeCentimos;
+      }
+    }
     return RentabilidadProyecto(
       ingresosComercializacionCentimos: ingresosComercial,
       ingresosApuntesCentimos: ingresosApuntes,
@@ -1307,19 +1351,29 @@ class BaseDatosSoleraZunbeltz {
   }
 
   /// Gastos de un proyecto/periodo por bloque y partida (ver
-  /// [DesgloseGastos]). Se agrupa en Dart y no con `GROUP BY` porque los
+  /// [DesgloseGastos]), con las cuotas del inventario de amortizaciones si
+  /// es de un proyecto. Se agrupa en Dart y no con `GROUP BY` porque los
   /// apuntes que llegan del servidor pueden traer categorías antiguas, que
   /// `ApunteEconomico.fromMap` traduce a bloque y partida.
   Future<DesgloseGastos> desgloseGastos({
     int? proyectoId,
     int? desdeMs,
     int? hastaMs,
-  }) async =>
-      DesgloseGastos.calcular(await listarApuntes(
-          proyectoId: proyectoId,
-          tipo: 'gasto',
-          desdeMs: desdeMs,
-          hastaMs: hastaMs));
+  }) async {
+    final apuntes = await listarApuntes(
+        proyectoId: proyectoId,
+        tipo: 'gasto',
+        desdeMs: desdeMs,
+        hastaMs: hastaMs);
+    final proyecto =
+        proyectoId == null ? null : await obtenerProyecto(proyectoId);
+    return DesgloseGastos.calcular([
+      ...apuntes,
+      if (proyecto != null)
+        ...await amortizacionesDelInventario(proyecto,
+            desdeMs: desdeMs, hastaMs: hastaMs),
+    ]);
+  }
 
   // ─── Semilla de ejemplo ─────────────────────────────────
 
@@ -1708,6 +1762,21 @@ class BaseDatosSoleraZunbeltz {
           asumidoPor: asumidoPorDefecto(partida),
           importeCentimos: euros * 100));
     }
+    // Inventario de amortizaciones: un corral móvil compartido a medias y
+    // los abrevaderos enteros.
+    final corral = await guardarBien(BienAmortizable(
+        nombre: 'Corral móvil',
+        grupo: 'instalaciones',
+        precioUnidadCentimos: 1137542,
+        unidades: 2));
+    final abrevaderos = await guardarBien(BienAmortizable(
+        nombre: 'Abrevadero de vacuno',
+        grupo: 'material_ganadero',
+        precioUnidadCentimos: 13600,
+        unidades: 3));
+    await guardarUsoBien(UsoBien(
+        proyectoId: proyectoId, bienId: corral, imputacionPorcentaje: 50));
+    await guardarUsoBien(UsoBien(proyectoId: proyectoId, bienId: abrevaderos));
     await guardarMovimientoFianza(MovimientoFianza(
         proyectoId: proyectoId, importeCentimos: 85000, fechaMs: hace(150)));
     for (final (tipo, dias, asistencia) in const [

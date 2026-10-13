@@ -646,6 +646,98 @@ class AppLocalizationsEs extends AppLocalizations {
   String get apuSinPartida => 'Sin partida';
 
   @override
+  String get invTitulo => 'Inventario de bienes';
+
+  @override
+  String get invIntro =>
+      'Lo que se amortiza: instalaciones, material ganadero y adecuaciones de finca. Lo mantiene coordinación; cada proyecto marca qué usa y la cuota se calcula sola con los meses del test.';
+
+  @override
+  String get invVacio => 'Todavía no hay bienes en el inventario.';
+
+  @override
+  String get invNuevo => 'Añadir bien';
+
+  @override
+  String get invEditar => 'Editar bien';
+
+  @override
+  String get invNombre => 'Nombre';
+
+  @override
+  String get invGrupo => 'Grupo';
+
+  @override
+  String get invPrecioUnidad => 'Precio por unidad, sin IVA';
+
+  @override
+  String get invUnidades => 'Unidades';
+
+  @override
+  String get invVidaUtil => 'Vida útil (meses)';
+
+  @override
+  String get invTotal => 'Total con IVA';
+
+  @override
+  String get invCuotaMensual => 'Cuota mensual';
+
+  @override
+  String get invNombreObligatorio => 'Ponle un nombre al bien.';
+
+  @override
+  String get invVidaUtilObligatoria =>
+      'La vida útil tiene que ser de al menos un mes.';
+
+  @override
+  String invResumen(
+      String unidades, String precio, String total, String cuota) {
+    return '$unidades × $precio · total $total · $cuota al mes';
+  }
+
+  @override
+  String get amortIntro =>
+      'Bienes del inventario que usa este proyecto. La cuota se calcula con los meses del test y la asume Zunbeltz; cuenta en el balance del proyecto, no en el del test.';
+
+  @override
+  String get amortVacio => 'Este proyecto aún no usa bienes del inventario.';
+
+  @override
+  String get amortAnadir => 'Añadir bien del inventario';
+
+  @override
+  String get amortVerInventario => 'Ver el inventario';
+
+  @override
+  String get amortBien => 'Bien';
+
+  @override
+  String get amortPorcentaje => 'Parte que se imputa (%)';
+
+  @override
+  String get amortMeses => 'Meses (vacío: lo que dure el test)';
+
+  @override
+  String amortMesesDelTest(String meses) {
+    return '$meses meses del test';
+  }
+
+  @override
+  String amortResumen(String cuota, String meses, String porcentaje) {
+    return '$cuota al mes × $meses meses × $porcentaje %';
+  }
+
+  @override
+  String get amortTotal => 'Total imputado';
+
+  @override
+  String get amortSinBienes => 'Primero añade bienes al inventario.';
+
+  @override
+  String get amortSinFechas =>
+      'El proyecto no tiene fecha de inicio: pon las fechas del proyecto o indica los meses de cada bien.';
+
+  @override
   String get apuIva => 'IVA';
 
   @override
@@ -1810,7 +1902,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.';
+      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.';
 
   @override
   String get ayudaNotificacionesT => 'Notificaciones';

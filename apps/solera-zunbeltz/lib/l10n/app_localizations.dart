@@ -1316,6 +1316,168 @@ abstract class AppLocalizations {
   /// **'Sin partida'**
   String get apuSinPartida;
 
+  /// No description provided for @invTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Inventario de bienes'**
+  String get invTitulo;
+
+  /// No description provided for @invIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que se amortiza: instalaciones, material ganadero y adecuaciones de finca. Lo mantiene coordinación; cada proyecto marca qué usa y la cuota se calcula sola con los meses del test.'**
+  String get invIntro;
+
+  /// No description provided for @invVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no hay bienes en el inventario.'**
+  String get invVacio;
+
+  /// No description provided for @invNuevo.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir bien'**
+  String get invNuevo;
+
+  /// No description provided for @invEditar.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar bien'**
+  String get invEditar;
+
+  /// No description provided for @invNombre.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get invNombre;
+
+  /// No description provided for @invGrupo.
+  ///
+  /// In es, this message translates to:
+  /// **'Grupo'**
+  String get invGrupo;
+
+  /// No description provided for @invPrecioUnidad.
+  ///
+  /// In es, this message translates to:
+  /// **'Precio por unidad, sin IVA'**
+  String get invPrecioUnidad;
+
+  /// No description provided for @invUnidades.
+  ///
+  /// In es, this message translates to:
+  /// **'Unidades'**
+  String get invUnidades;
+
+  /// No description provided for @invVidaUtil.
+  ///
+  /// In es, this message translates to:
+  /// **'Vida útil (meses)'**
+  String get invVidaUtil;
+
+  /// No description provided for @invTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total con IVA'**
+  String get invTotal;
+
+  /// No description provided for @invCuotaMensual.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuota mensual'**
+  String get invCuotaMensual;
+
+  /// No description provided for @invNombreObligatorio.
+  ///
+  /// In es, this message translates to:
+  /// **'Ponle un nombre al bien.'**
+  String get invNombreObligatorio;
+
+  /// No description provided for @invVidaUtilObligatoria.
+  ///
+  /// In es, this message translates to:
+  /// **'La vida útil tiene que ser de al menos un mes.'**
+  String get invVidaUtilObligatoria;
+
+  /// No description provided for @invResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'{unidades} × {precio} · total {total} · {cuota} al mes'**
+  String invResumen(String unidades, String precio, String total, String cuota);
+
+  /// No description provided for @amortIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Bienes del inventario que usa este proyecto. La cuota se calcula con los meses del test y la asume Zunbeltz; cuenta en el balance del proyecto, no en el del test.'**
+  String get amortIntro;
+
+  /// No description provided for @amortVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Este proyecto aún no usa bienes del inventario.'**
+  String get amortVacio;
+
+  /// No description provided for @amortAnadir.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir bien del inventario'**
+  String get amortAnadir;
+
+  /// No description provided for @amortVerInventario.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver el inventario'**
+  String get amortVerInventario;
+
+  /// No description provided for @amortBien.
+  ///
+  /// In es, this message translates to:
+  /// **'Bien'**
+  String get amortBien;
+
+  /// No description provided for @amortPorcentaje.
+  ///
+  /// In es, this message translates to:
+  /// **'Parte que se imputa (%)'**
+  String get amortPorcentaje;
+
+  /// No description provided for @amortMeses.
+  ///
+  /// In es, this message translates to:
+  /// **'Meses (vacío: lo que dure el test)'**
+  String get amortMeses;
+
+  /// No description provided for @amortMesesDelTest.
+  ///
+  /// In es, this message translates to:
+  /// **'{meses} meses del test'**
+  String amortMesesDelTest(String meses);
+
+  /// No description provided for @amortResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'{cuota} al mes × {meses} meses × {porcentaje} %'**
+  String amortResumen(String cuota, String meses, String porcentaje);
+
+  /// No description provided for @amortTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total imputado'**
+  String get amortTotal;
+
+  /// No description provided for @amortSinBienes.
+  ///
+  /// In es, this message translates to:
+  /// **'Primero añade bienes al inventario.'**
+  String get amortSinBienes;
+
+  /// No description provided for @amortSinFechas.
+  ///
+  /// In es, this message translates to:
+  /// **'El proyecto no tiene fecha de inicio: pon las fechas del proyecto o indica los meses de cada bien.'**
+  String get amortSinFechas;
+
   /// No description provided for @apuIva.
   ///
   /// In es, this message translates to:
@@ -3257,7 +3419,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaConvenioB.
   ///
   /// In es, this message translates to:
-  /// **'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.'**
+  /// **'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.'**
   String get ayudaConvenioB;
 
   /// No description provided for @ayudaNotificacionesT.

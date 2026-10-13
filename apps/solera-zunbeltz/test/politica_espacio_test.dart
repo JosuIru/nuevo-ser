@@ -73,4 +73,9 @@ void main() {
     expect(ane.puedeEditarRendimientos, isFalse);
     expect(coordinacion.puedeEditarRendimientos, isTrue);
   });
+
+  test('inventario de amortizaciones: solo coordinación', () {
+    expect(ane.puedeEditarInventario, isFalse);
+    expect(coordinacion.puedeEditarInventario, isTrue);
+  });
 }

@@ -74,6 +74,10 @@ class PoliticaEspacio {
   /// Rendimientos de referencia de la calculadora: solo coordinación.
   bool get puedeEditarRendimientos => puedeGestionarProyectos;
 
+  /// Inventario de amortizaciones y su uso en cada proyecto: solo
+  /// coordinación (como el presupuesto del convenio).
+  bool get puedeEditarInventario => puedeGestionarProyectos;
+
   /// Los documentos salen sin marca de BORRADOR solo cuando los genera
   /// coordinación identificada (no en modo local) y, si son de un proyecto,
   /// con el proyecto cerrado (respuestas de Zunbeltz, 2026-10-06).

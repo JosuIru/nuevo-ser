@@ -646,6 +646,99 @@ class AppLocalizationsEu extends AppLocalizations {
   String get apuSinPartida => 'Partidarik gabe';
 
   @override
+  String get invTitulo => 'Ondasunen inbentarioa';
+
+  @override
+  String get invIntro =>
+      'Amortizatzen dena: instalazioak, abeltzaintza-materiala eta finkaren egokitzapenak. Koordinazioak eramaten du; proiektu bakoitzak zer erabiltzen duen markatzen du eta kuota berez kalkulatzen da testaren hilabeteekin.';
+
+  @override
+  String get invVacio => 'Oraindik ez dago ondasunik inbentarioan.';
+
+  @override
+  String get invNuevo => 'Ondasuna gehitu';
+
+  @override
+  String get invEditar => 'Ondasuna editatu';
+
+  @override
+  String get invNombre => 'Izena';
+
+  @override
+  String get invGrupo => 'Taldea';
+
+  @override
+  String get invPrecioUnidad => 'Unitateko prezioa, BEZik gabe';
+
+  @override
+  String get invUnidades => 'Unitateak';
+
+  @override
+  String get invVidaUtil => 'Bizitza erabilgarria (hilabeteak)';
+
+  @override
+  String get invTotal => 'Guztira BEZarekin';
+
+  @override
+  String get invCuotaMensual => 'Hileko kuota';
+
+  @override
+  String get invNombreObligatorio => 'Jarri izen bat ondasunari.';
+
+  @override
+  String get invVidaUtilObligatoria =>
+      'Bizitza erabilgarriak hilabete bat izan behar du gutxienez.';
+
+  @override
+  String invResumen(
+      String unidades, String precio, String total, String cuota) {
+    return '$unidades × $precio · guztira $total · $cuota hilean';
+  }
+
+  @override
+  String get amortIntro =>
+      'Proiektu honek erabiltzen dituen inbentarioko ondasunak. Kuota testaren hilabeteekin kalkulatzen da eta Zunbeltzek hartzen du; proiektuaren balantzean zenbatzen da, ez testarenean.';
+
+  @override
+  String get amortVacio =>
+      'Proiektu honek oraindik ez du inbentarioko ondasunik erabiltzen.';
+
+  @override
+  String get amortAnadir => 'Inbentarioko ondasuna gehitu';
+
+  @override
+  String get amortVerInventario => 'Inbentarioa ikusi';
+
+  @override
+  String get amortBien => 'Ondasuna';
+
+  @override
+  String get amortPorcentaje => 'Egozten den zatia (%)';
+
+  @override
+  String get amortMeses => 'Hilabeteak (hutsik: testak irauten duena)';
+
+  @override
+  String amortMesesDelTest(String meses) {
+    return 'testaren $meses hilabete';
+  }
+
+  @override
+  String amortResumen(String cuota, String meses, String porcentaje) {
+    return '$cuota hilean × $meses hilabete × % $porcentaje';
+  }
+
+  @override
+  String get amortTotal => 'Egotzitakoa guztira';
+
+  @override
+  String get amortSinBienes => 'Lehenik gehitu ondasunak inbentariora.';
+
+  @override
+  String get amortSinFechas =>
+      'Proiektuak ez du hasiera-datarik: jarri proiektuaren datak edo adierazi ondasun bakoitzaren hilabeteak.';
+
+  @override
   String get apuIva => 'BEZ';
 
   @override
@@ -1812,7 +1905,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.';
+      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta.\n• Amortizazioak: proiektuak erabiltzen dituen inbentarioko ondasunak (artegia, korta mugikorra, askak…). Kuota berez kalkulatzen da testaren hilabeteekin.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.';
 
   @override
   String get ayudaNotificacionesT => 'Jakinarazpenak';

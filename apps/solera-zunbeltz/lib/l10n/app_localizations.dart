@@ -1298,6 +1298,24 @@ abstract class AppLocalizations {
   /// **'Categoría'**
   String get apuCategoria;
 
+  /// No description provided for @apuBloque.
+  ///
+  /// In es, this message translates to:
+  /// **'Bloque de gasto'**
+  String get apuBloque;
+
+  /// No description provided for @apuPartida.
+  ///
+  /// In es, this message translates to:
+  /// **'Partida'**
+  String get apuPartida;
+
+  /// No description provided for @apuSinPartida.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin partida'**
+  String get apuSinPartida;
+
   /// No description provided for @apuIva.
   ///
   /// In es, this message translates to:
@@ -1553,7 +1571,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaApuntarB.
   ///
   /// In es, this message translates to:
-  /// **'Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.\n1. Ve a la pestaña de lo que quieras apuntar.\n2. Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso con su categoría.\n3. Guarda. Los números de arriba se actualizan solos.'**
+  /// **'Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.\n1. Ve a la pestaña de lo que quieras apuntar.\n2. Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso.\n3. Los gastos van en uno de los seis bloques de la hoja de seguimiento (I. Costes directos … VI. Amortización) y en una partida: elige una de las sugeridas o escribe la tuya.\n4. Guarda. Los números de arriba se actualizan solos.'**
   String get ayudaApuntarB;
 
   /// No description provided for @ayudaNumerosT.
@@ -1565,7 +1583,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaNumerosB.
   ///
   /// In es, this message translates to:
-  /// **'Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.\n• Con el filtro «Periodo» (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.\n• Si hay gastos, verás el desglose por categorías y el IVA soportado y repercutido.\n» El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.'**
+  /// **'Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.\n• Con el filtro «Periodo» (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.\n• Si hay gastos, verás el desglose por bloques y partidas, como en la hoja de seguimiento, y el IVA soportado y repercutido.\n» El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.'**
   String get ayudaNumerosB;
 
   /// No description provided for @ayudaInformesT.
@@ -2828,12 +2846,6 @@ abstract class AppLocalizations {
   /// **'Lo asume'**
   String get apuAsumidoPor;
 
-  /// No description provided for @apuAmortizacion.
-  ///
-  /// In es, this message translates to:
-  /// **'Es amortización (infraestructura o material)'**
-  String get apuAmortizacion;
-
   /// No description provided for @apuAmortizacionDetalle.
   ///
   /// In es, this message translates to:
@@ -3245,7 +3257,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaConvenioB.
   ///
   /// In es, this message translates to:
-  /// **'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume y si es una amortización. Coordinación lleva el resto.'**
+  /// **'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.'**
   String get ayudaConvenioB;
 
   /// No description provided for @ayudaNotificacionesT.

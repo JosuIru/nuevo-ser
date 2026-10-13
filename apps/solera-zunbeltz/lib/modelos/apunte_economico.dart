@@ -10,6 +10,7 @@ class ApunteEconomico {
     this.proyectoId,
     this.tipo = tipoApuntePorDefecto,
     this.categoria = '',
+    this.partida = '',
     this.concepto = '',
     this.importeCentimos = 0,
     this.ivaPorcentaje = 0,
@@ -17,7 +18,6 @@ class ApunteEconomico {
     this.notas = '',
     this.fechaCreacionMs = 0,
     this.asumidoPor = asumidoPorTester,
-    this.esAmortizacion = false,
   });
 
   final int? id;
@@ -26,8 +26,13 @@ class ApunteEconomico {
   /// Proyecto de test al que pertenece (opcional).
   final int? proyectoId;
 
-  /// Código de categoría (`categoriasGasto` / `categoriasIngreso`).
+  /// Código de categoría: el bloque de gasto (`categoriasGasto`) o la
+  /// categoría de ingreso (`categoriasIngreso`).
   final String categoria;
+
+  /// Partida dentro del bloque de gasto: código de `partidasGasto` o texto
+  /// propio del proyecto. Vacía en los ingresos.
+  final String partida;
 
   /// Tipo de IVA aplicado (%); 0 = sin IVA. El importe es el total (con IVA).
   final int ivaPorcentaje;
@@ -48,8 +53,9 @@ class ApunteEconomico {
   final String asumidoPor;
 
   /// Cuota de amortización (infraestructura, material): cuenta en el
-  /// balance del proyecto pero no en el del test.
-  final bool esAmortizacion;
+  /// balance del proyecto pero no en el del test. Es el bloque VI.
+  bool get esAmortizacion =>
+      tipo == 'gasto' && categoria == categoriaAmortizacion;
 
   Map<String, Object?> toMap() => {
         'id': id,
@@ -57,6 +63,7 @@ class ApunteEconomico {
         'proyecto_id': proyectoId,
         'tipo': tipo,
         'categoria': categoria,
+        'partida': partida,
         'concepto': concepto,
         'importe_centimos': importeCentimos,
         'iva_porcentaje': ivaPorcentaje,
@@ -67,12 +74,21 @@ class ApunteEconomico {
         'es_amortizacion': esAmortizacion ? 1 : 0,
       };
 
-  factory ApunteEconomico.fromMap(Map<String, Object?> mapa) => ApunteEconomico(
+  factory ApunteEconomico.fromMap(Map<String, Object?> mapa) {
+    final tipo = (mapa['tipo'] as String?) ?? tipoApuntePorDefecto;
+    var categoria = (mapa['categoria'] as String?) ?? '';
+    var partida = (mapa['partida'] as String?) ?? '';
+    if (tipo == 'gasto') {
+      (categoria, partida) = normalizarCategoriaGasto(categoria, partida,
+          ((mapa['es_amortizacion'] as int?) ?? 0) != 0);
+    }
+    return ApunteEconomico(
         id: mapa['id'] as int?,
         fincaId: (mapa['finca_id'] as int?) ?? 0,
         proyectoId: mapa['proyecto_id'] as int?,
-        tipo: (mapa['tipo'] as String?) ?? tipoApuntePorDefecto,
-        categoria: (mapa['categoria'] as String?) ?? '',
+        tipo: tipo,
+        categoria: categoria,
+        partida: partida,
         concepto: (mapa['concepto'] as String?) ?? '',
         importeCentimos: (mapa['importe_centimos'] as int?) ?? 0,
         ivaPorcentaje: (mapa['iva_porcentaje'] as int?) ?? 0,
@@ -80,6 +96,6 @@ class ApunteEconomico {
         notas: (mapa['notas'] as String?) ?? '',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,
         asumidoPor: (mapa['asumido_por'] as String?) ?? asumidoPorTester,
-        esAmortizacion: ((mapa['es_amortizacion'] as int?) ?? 0) != 0,
       );
+  }
 }

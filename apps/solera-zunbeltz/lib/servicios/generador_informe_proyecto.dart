@@ -5,6 +5,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/balance_convenio.dart';
 import '../modelos/constantes.dart';
 import '../modelos/convenio.dart';
+import '../modelos/desglose_gastos.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_actividad.dart';
@@ -28,7 +29,7 @@ Future<DocumentoGenerado> generarInformeProyectoPdf({
   required List<RegistroComercializacion> comercializacion,
   required List<ValidacionProducto> validaciones,
   required List<RegistroActividad> actividades,
-  Map<String, int> desgloseGastos = const {},
+  DesgloseGastos? desgloseGastos,
   int ivaSoportadoCentimos = 0,
   int ivaRepercutidoCentimos = 0,
   BalanceConvenio? balance,
@@ -136,11 +137,19 @@ Future<DocumentoGenerado> generarInformeProyectoPdf({
         titulo: textos.detDesgloseGastos,
         headers: [textos.apuCategoria, textos.rentGastos],
         filas: [
-          for (final e in desgloseGastos.entries)
-            [
-              buscarOpcion(categoriasGasto, e.key)?.etiqueta(idioma) ??
-                  (e.key.isEmpty ? '—' : e.key),
-              eurosDesdeCentimos(e.value),
+          // Como la hoja de seguimiento: subtotal del bloque y, debajo,
+          // sus partidas sangradas.
+          if (desgloseGastos != null)
+            for (final bloque in desgloseGastos.bloques) ...[
+              [
+                etiqueta(categoriasGasto, bloque),
+                eurosDesdeCentimos(desgloseGastos.totalDe(bloque)),
+              ],
+              for (final partida in desgloseGastos.partidasDe(bloque))
+                [
+                  '    ${partida.key.isEmpty ? textos.apuSinPartida : etiquetaPartida(bloque, partida.key, idioma)}',
+                  eurosDesdeCentimos(partida.value),
+                ],
             ],
         ],
       ),

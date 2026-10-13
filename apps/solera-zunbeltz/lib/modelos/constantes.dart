@@ -163,28 +163,91 @@ const List<OpcionCatalogo> resultadosValidacion = [
   OpcionCatalogo('descartar', 'Descartar', 'Baztertu'),
 ];
 
-/// Categorías de gasto (desglose de costes del proyecto de test). Siguen el
-/// reparto de costes iniciales del convenio tester (art. 7): ganado,
-/// alimentación y veterinario los asume la persona tester; el resto,
-/// Zunbeltz (ver [asumidoPorDefecto]).
+/// Bloques de gasto de la hoja de seguimiento de Zunbeltz (material del
+/// 2026-10-13): fijos para todos los proyectos. Lo que cambia de un
+/// proyecto a otro es la partida ([partidasGasto]), no el bloque.
 const List<OpcionCatalogo> categoriasGasto = [
-  OpcionCatalogo('ganado', 'Ganado', 'Abereak'),
-  OpcionCatalogo('alimentacion', 'Alimentación', 'Elikadura'),
-  OpcionCatalogo('sanidad', 'Sanidad / veterinario', 'Osasuna / albaitaritza'),
-  OpcionCatalogo('infraestructuras', 'Infraestructuras y fincas', 'Azpiegiturak eta finkak'),
-  OpcionCatalogo('insumos', 'Materiales ganaderos / insumos', 'Abeltzaintza-materialak / hornidurak'),
-  OpcionCatalogo('transformacion', 'Transformación', 'Eraldaketa'),
-  OpcionCatalogo('mano_obra', 'Personal / mano de obra', 'Langileak / eskulana'),
-  OpcionCatalogo('alquiler', 'Alquiler / cesión', 'Alokairua / lagapena'),
-  OpcionCatalogo('maquinaria', 'Maquinaria / combustible', 'Makineria / erregaia'),
-  OpcionCatalogo('servicios', 'Servicios', 'Zerbitzuak'),
-  OpcionCatalogo('otros', 'Otros', 'Bestelakoak'),
+  OpcionCatalogo('directos', 'I. Costes directos', 'I. Kostu zuzenak'),
+  OpcionCatalogo('maquinaria', 'II. Costes de maquinaria', 'II. Makineria-kostuak'),
+  OpcionCatalogo('transformacion', 'III. Coste de transformación', 'III. Eraldaketa-kostua'),
+  OpcionCatalogo('mano_obra', 'IV. Costes de mano de obra', 'IV. Eskulan-kostuak'),
+  OpcionCatalogo('indirectos', 'V. Costes indirectos', 'V. Zeharkako kostuak'),
+  OpcionCatalogo('amortizacion', 'VI. Amortización', 'VI. Amortizazioa'),
 ];
 
-/// Categorías de ingreso (desglose de ingresos del proyecto de test).
+/// Bloque de las cuotas de amortización: cuentan en el balance del
+/// proyecto pero no en el del test.
+const String categoriaAmortizacion = 'amortizacion';
+
+/// Partidas habituales de cada bloque, sacadas de los Excel de seguimiento
+/// de Zunbeltz. Son sugerencias: cada proyecto puede escribir las suyas
+/// (la partida se guarda como código si es de aquí y como texto si no).
+const Map<String, List<OpcionCatalogo>> partidasGasto = {
+  'directos': [
+    OpcionCatalogo('animales', 'Animales', 'Abereak'),
+    OpcionCatalogo('compra_alimento', 'Compra de alimento', 'Elikagai-erosketa'),
+    OpcionCatalogo('forraje', 'Forraje', 'Bazka'),
+    OpcionCatalogo('concentrados', 'Concentrados', 'Kontzentratuak'),
+    OpcionCatalogo('transporte_concentrados', 'Transporte de concentrados', 'Kontzentratuen garraioa'),
+    OpcionCatalogo('zoosanitarios', 'Productos zoosanitarios y otros suministros', 'Zoosanitarioak eta bestelako hornidurak'),
+    OpcionCatalogo('inseminacion', 'Inseminación', 'Intseminazioa'),
+    OpcionCatalogo('vacunas_veterinario', 'Vacunas y veterinario', 'Txertoak eta albaitaria'),
+    OpcionCatalogo('tasas_cpaen', 'Tasas CPAEN', 'NNPEK tasak'),
+    OpcionCatalogo('cama_limpieza', 'Cama, limpieza y desinfección', 'Ohea, garbiketa eta desinfekzioa'),
+    OpcionCatalogo('agua_luz', 'Agua, luz y calefacción', 'Ura, argia eta berogailua'),
+    OpcionCatalogo('transporte', 'Transporte', 'Garraioa'),
+    OpcionCatalogo('semillas_pastizales', 'Semillas y manejo de pastizales', 'Haziak eta larreen kudeaketa'),
+    OpcionCatalogo('canon_arrendamiento', 'Canon de arrendamiento', 'Errentamendu-kanona'),
+  ],
+  'maquinaria': [
+    OpcionCatalogo('trabajos_realizados', 'Trabajos realizados', 'Egindako lanak'),
+    OpcionCatalogo('combustibles', 'Combustibles', 'Erregaiak'),
+    OpcionCatalogo('reparaciones_cercados', 'Reparaciones y repuestos de cercados', 'Hesien konponketak eta ordezkoak'),
+  ],
+  'transformacion': [
+    OpcionCatalogo('transporte_matadero', 'Transporte', 'Garraioa'),
+    OpcionCatalogo('tasa_sanitaria', 'Tasa sanitaria', 'Osasun-tasa'),
+    OpcionCatalogo('sacrificio', 'Sacrificio', 'Hiltzea'),
+    OpcionCatalogo('despiece', 'Deshuese y despiece', 'Hezurgabetzea eta zatiketa'),
+    OpcionCatalogo('obrador', 'Trabajos de elaboración (obrador)', 'Elaborazio-lanak (obradorea)'),
+    OpcionCatalogo('envasado', 'Envasado y bolsas', 'Ontziratzea eta poltsak'),
+    OpcionCatalogo('transporte_venta', 'Transporte de venta', 'Salmenta-garraioa'),
+    OpcionCatalogo('comercializacion', 'Comercialización', 'Merkaturatzea'),
+  ],
+  'mano_obra': [
+    OpcionCatalogo('asalariada', 'Asalariada', 'Soldatapekoa'),
+    OpcionCatalogo('no_asalariada', 'No asalariada', 'Soldatapekoa ez dena'),
+  ],
+  'indirectos': [
+    OpcionCatalogo('financieros_impuestos', 'Intereses, gastos financieros e impuestos', 'Interesak, finantza-gastuak eta zergak'),
+    OpcionCatalogo('mano_obra_familiar', 'Mano de obra familiar', 'Familiako eskulana'),
+  ],
+  'amortizacion': [
+    OpcionCatalogo('instalaciones', 'Instalaciones', 'Instalazioak'),
+    OpcionCatalogo('material_ganadero', 'Material ganadero', 'Abeltzaintza-materiala'),
+    OpcionCatalogo('adecuaciones', 'Adecuaciones de finca', 'Finkaren egokitzapenak'),
+  ],
+};
+
+/// Partidas que de entrada asume la persona tester: los animales, su
+/// alimentación y su sanidad (convenio, art. 7; así lo reparte también la
+/// hoja de seguimiento de Zunbeltz). El resto, Zunbeltz.
+const Set<String> partidasAsumidasPorTester = {
+  'animales',
+  'compra_alimento',
+  'forraje',
+  'concentrados',
+  'transporte_concentrados',
+  'zoosanitarios',
+  'inseminacion',
+  'vacunas_veterinario',
+};
+
+/// Categorías de ingreso de la hoja de seguimiento.
 const List<OpcionCatalogo> categoriasIngreso = [
-  OpcionCatalogo('venta', 'Venta', 'Salmenta'),
-  OpcionCatalogo('ayuda', 'Ayuda / prima', 'Laguntza / saria'),
+  OpcionCatalogo('venta', 'Venta de ganado y productos ganaderos', 'Abereen eta abeltzaintza-produktuen salmenta'),
+  OpcionCatalogo('venta_transformado', 'Venta de transformado', 'Eraldatutakoaren salmenta'),
+  OpcionCatalogo('ayuda', 'Subvenciones directas y primas', 'Diru-laguntza zuzenak eta sariak'),
   OpcionCatalogo('otros', 'Otros', 'Bestelakoak'),
 ];
 
@@ -197,15 +260,78 @@ const List<OpcionCatalogo> asumidoPorOpciones = [
   OpcionCatalogo(asumidoPorZunbeltz, 'Zunbeltz', 'Zunbeltz'),
 ];
 
-/// Quién asume de entrada un gasto de esta categoría (convenio, art. 7).
-String asumidoPorDefecto(String categoria) =>
-    const {'ganado', 'alimentacion', 'sanidad'}.contains(categoria)
+/// Quién asume de entrada un gasto de esta partida (convenio, art. 7).
+String asumidoPorDefecto(String partida) =>
+    partidasAsumidasPorTester.contains(partida)
         ? asumidoPorTester
         : asumidoPorZunbeltz;
 
 /// Devuelve el catálogo de categorías según el tipo de apunte.
 List<OpcionCatalogo> categoriasDe(String tipoApunte) =>
     tipoApunte == 'ingreso' ? categoriasIngreso : categoriasGasto;
+
+/// Partidas sugeridas de un bloque de gasto (vacío para ingresos).
+List<OpcionCatalogo> partidasDe(String categoria) =>
+    partidasGasto[categoria] ?? const [];
+
+/// Etiqueta de una partida: la del catálogo si es un código conocido; si
+/// no, el texto tal cual (partida propia del proyecto).
+String etiquetaPartida(String categoria, String partida, String idioma) =>
+    buscarOpcion(partidasDe(categoria), partida)?.etiqueta(idioma) ?? partida;
+
+/// Si [texto] es la etiqueta (en cualquier idioma) de una partida del
+/// bloque, su código; si no, el texto recortado.
+String codigoPartida(String categoria, String texto) {
+  final limpio = texto.trim();
+  final minusculas = limpio.toLowerCase();
+  for (final opcion in partidasDe(categoria)) {
+    if (opcion.codigo == limpio ||
+        opcion.es.toLowerCase() == minusculas ||
+        opcion.eu.toLowerCase() == minusculas) {
+      return opcion.codigo;
+    }
+  }
+  return limpio;
+}
+
+/// Categorías de gasto de antes de los bloques (hasta la BD v10) → bloque
+/// y partida. Los datos guardados en el servidor o en un móvil sin migrar
+/// pueden traerlas todavía.
+const Map<String, (String, String)> _categoriasGastoAntiguas = {
+  'ganado': ('directos', 'animales'),
+  'alimentacion': ('directos', 'compra_alimento'),
+  'sanidad': ('directos', 'vacunas_veterinario'),
+  'insumos': ('directos', 'zoosanitarios'),
+  'alquiler': ('directos', 'canon_arrendamiento'),
+  'infraestructuras': ('maquinaria', 'reparaciones_cercados'),
+  'servicios': ('indirectos', ''),
+  'otros': ('directos', ''),
+};
+
+/// Bloque y partida de un gasto, traduciendo las categorías antiguas.
+/// Una cuota de amortización va siempre al bloque VI.
+(String categoria, String partida) normalizarCategoriaGasto(
+    String categoria, String partida, bool esAmortizacion) {
+  var bloque = categoria;
+  var partidaNormalizada = partida;
+  final antigua = _categoriasGastoAntiguas[categoria];
+  if (antigua != null) {
+    bloque = antigua.$1;
+    if (partidaNormalizada.isEmpty) partidaNormalizada = antigua.$2;
+  } else if (buscarOpcion(categoriasGasto, categoria) == null) {
+    bloque = 'directos';
+  }
+  if (esAmortizacion && bloque != categoriaAmortizacion) {
+    bloque = categoriaAmortizacion;
+    // La partida antigua (p. ej. «reparaciones_cercados») no es de este
+    // bloque; mejor sin partida que con una equivocada.
+    if (buscarOpcion(partidasDe(bloque), partidaNormalizada) == null &&
+        antigua != null) {
+      partidaNormalizada = '';
+    }
+  }
+  return (bloque, partidaNormalizada);
+}
 
 /// Tipos de IVA aplicables (España). 0 = sin IVA / exento.
 const List<int> tiposIva = [0, 4, 10, 21];
@@ -221,7 +347,7 @@ const String tipoActividadPorDefecto = 'alimentacion';
 const String tipoApuntePorDefecto = 'gasto';
 const String canalComercializacionPorDefecto = 'directa';
 const String resultadoValidacionPorDefecto = 'validado';
-const String categoriaGastoPorDefecto = 'otros';
+const String categoriaGastoPorDefecto = 'directos';
 const String categoriaIngresoPorDefecto = 'venta';
 const int ivaPorDefecto = 0;
 

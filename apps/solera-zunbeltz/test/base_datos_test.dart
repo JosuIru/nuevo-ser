@@ -288,29 +288,36 @@ void main() {
         fincaId: fincaId,
         proyectoId: proyectoId,
         tipo: 'gasto',
-        categoria: 'alimentacion',
+        categoria: 'directos',
+        partida: 'forraje',
         importeCentimos: 10000,
         ivaPorcentaje: 10));
     await bd.guardarApunte(ApunteEconomico(
         fincaId: fincaId,
         proyectoId: proyectoId,
         tipo: 'gasto',
-        categoria: 'sanidad',
+        categoria: 'transformacion',
+        partida: 'sacrificio',
         importeCentimos: 4000));
     await bd.guardarApunte(ApunteEconomico(
         fincaId: fincaId,
         proyectoId: proyectoId,
         tipo: 'gasto',
-        categoria: 'alimentacion',
+        categoria: 'directos',
+        partida: 'Paja de la cooperativa',
         importeCentimos: 6000));
 
-    final desglose =
-        await bd.desglosePorCategoria('gasto', proyectoId: proyectoId);
-    expect(desglose['alimentacion'], 16000);
-    expect(desglose['sanidad'], 4000);
+    final desglose = await bd.desgloseGastos(proyectoId: proyectoId);
+    expect(desglose.bloques, ['directos', 'transformacion']);
+    expect(desglose.totalDe('directos'), 16000);
+    expect(desglose.totalDe('transformacion'), 4000);
+    // Primero las partidas del catálogo, después las propias del proyecto.
+    expect(desglose.partidasDe('directos').map((p) => p.key),
+        ['forraje', 'Paja de la cooperativa']);
+    expect(desglose.totalCentimos, 20000);
     // El IVA se persiste.
     final apunte = (await bd.listarApuntes(proyectoId: proyectoId))
-        .firstWhere((a) => a.categoria == 'alimentacion' && a.ivaPorcentaje == 10);
+        .firstWhere((a) => a.partida == 'forraje' && a.ivaPorcentaje == 10);
     expect(apunte.ivaPorcentaje, 10);
   });
 
@@ -350,9 +357,100 @@ void main() {
         tipo: 'gasto',
         categoria: 'insumos',
         importeCentimos: 500));
-    final desglose = await bd.desglosePorCategoria('gasto');
-    expect(desglose['insumos'], 500);
+    // Una categoría de antes de los bloques se lee traducida.
+    final desglose = await bd.desgloseGastos();
+    expect(desglose.totalDe('directos'), 500);
+    expect(desglose.partidasDe('directos').single.key, 'zoosanitarios');
     await v4.close();
+    await dir.delete(recursive: true);
+  });
+
+  test('migración v10 → v11: las categorías antiguas pasan a bloque y partida',
+      () async {
+    final dir = await Directory.systemTemp.createTemp('zunbeltz_mig11');
+    final ruta = '${dir.path}/m11.db';
+    // Esquema v10 tal cual: las migraciones hasta la 10, ninguna más.
+    final antigua = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: 10,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onCreate: (d, v) async {
+          await BaseDatosSoleraZunbeltz.crearEsquemaV1(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV2(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV3(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV4(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV5(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV6(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV7(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV8(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV9(d);
+          await BaseDatosSoleraZunbeltz.aplicarMigracionV10(d);
+        },
+      ),
+    );
+    var siguienteUid = 0;
+    String uid() => 'uid-${++siguienteUid}';
+    final fincaId =
+        await antigua.insert('fincas', {'nombre': 'Zunbeltz', 'uid': uid()});
+    final proyectoId = await antigua
+        .insert('proyectos_test', {'nombre': 'Pollos', 'uid': uid()});
+    for (final (categoria, amortizacion) in const [
+      ('ganado', 0),
+      ('infraestructuras', 1),
+      ('servicios', 0),
+      ('transformacion', 0),
+    ]) {
+      await antigua.insert('apuntes_economicos', {
+        'finca_id': fincaId,
+        'proyecto_id': proyectoId,
+        'tipo': 'gasto',
+        'categoria': categoria,
+        'importe_centimos': 100,
+        'es_amortizacion': amortizacion,
+        'uid': uid(),
+      });
+    }
+    await antigua.insert('apuntes_economicos', {
+      'finca_id': fincaId,
+      'proyecto_id': proyectoId,
+      'tipo': 'ingreso',
+      'categoria': 'otros',
+      'importe_centimos': 100,
+      'uid': uid(),
+    });
+    await antigua.insert('partidas_presupuesto', {
+      'proyecto_id': proyectoId,
+      'categoria': 'alimentacion',
+      'uid': uid(),
+    });
+    await antigua.close();
+
+    final nueva = await databaseFactoryFfi.openDatabase(
+      ruta,
+      options: OpenDatabaseOptions(
+        version: BaseDatosSoleraZunbeltz.versionEsquema,
+        onConfigure: (d) => d.execute('PRAGMA foreign_keys = ON'),
+        onUpgrade: (d, anterior, actual) =>
+            BaseDatosSoleraZunbeltz.migrarDesde(d, anterior),
+      ),
+    );
+    final filas = await nueva.query('apuntes_economicos',
+        columns: ['tipo', 'categoria', 'partida', 'es_amortizacion'],
+        orderBy: 'id');
+    expect(filas.map((f) => [f['categoria'], f['partida'], f['es_amortizacion']]),
+        [
+          ['directos', 'animales', 0],
+          ['amortizacion', '', 1],
+          ['indirectos', '', 0],
+          ['transformacion', '', 0],
+          // Los ingresos no se tocan: «otros» es también categoría de ingreso.
+          ['otros', '', 0],
+        ]);
+    final partida = (await nueva.query('partidas_presupuesto')).single;
+    expect([partida['categoria'], partida['partida']],
+        ['directos', 'compra_alimento']);
+    await nueva.close();
     await dir.delete(recursive: true);
   });
 

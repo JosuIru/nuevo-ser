@@ -637,6 +637,15 @@ class AppLocalizationsEu extends AppLocalizations {
   String get apuCategoria => 'Kategoria';
 
   @override
+  String get apuBloque => 'Gastu-multzoa';
+
+  @override
+  String get apuPartida => 'Partida';
+
+  @override
+  String get apuSinPartida => 'Partidarik gabe';
+
+  @override
   String get apuIva => 'BEZ';
 
   @override
@@ -781,14 +790,14 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaApuntarB =>
-      'Proiektuaren barruan lau fitxa daude: Ekoizpena, Merkaturatzea, Balidazioa eta Ekonomikoa.\n1. Joan apuntatu nahi duzunaren fitxara.\n2. Sakatu + eta bete dagokiona: ekoitzitakoa; salmenta bat (produktua, kanala, kantitatea eta prezioa); produktu-proba bat eta haren emaitza; edo gastu edo sarrera bat bere kategoriarekin.\n3. Gorde. Goiko zenbakiak berez eguneratzen dira.';
+      'Proiektuaren barruan lau fitxa daude: Ekoizpena, Merkaturatzea, Balidazioa eta Ekonomikoa.\n1. Joan apuntatu nahi duzunaren fitxara.\n2. Sakatu + eta bete dagokiona: ekoitzitakoa; salmenta bat (produktua, kanala, kantitatea eta prezioa); produktu-proba bat eta haren emaitza; edo gastu edo sarrera bat.\n3. Gastuak jarraipen-orriko sei multzoetako batean doaz (I. Kostu zuzenak … VI. Amortizazioa) eta partida batean: aukeratu iradokitakoetako bat edo idatzi zurea.\n4. Gorde. Goiko zenbakiak berez eguneratzen dira.';
 
   @override
   String get ayudaNumerosT => 'Zure zenbakiak ulertu';
 
   @override
   String get ayudaNumerosB =>
-      'Proiektuaren goialdean errentagarritasuna ikusten duzu: salmentak, beste sarrera batzuk, gastuak, balantzea, marjina eta urtebeterako proiekzioa.\n• «Aldia» iragazkiarekin (goian) denbora osorako, aurtengo, hiruhileko honetarako edo aurreko hiruhilekorako ikus dezakezu.\n• Gastuak badaude, kategorien araberako banaketa eta BEZ jasana eta jasanarazia ikusiko dituzu.\n» BEZa gutxi gorabeherako kalkulua da, ez zerga-aitorpena: araubidea zuen aholkulariak erabakitzen du.';
+      'Proiektuaren goialdean errentagarritasuna ikusten duzu: salmentak, beste sarrera batzuk, gastuak, balantzea, marjina eta urtebeterako proiekzioa.\n• «Aldia» iragazkiarekin (goian) denbora osorako, aurtengo, hiruhileko honetarako edo aurreko hiruhilekorako ikus dezakezu.\n• Gastuak badaude, multzoen eta partiden araberako banaketa ikusiko duzu, jarraipen-orrian bezala, eta BEZ jasana eta jasanarazia.\n» BEZa gutxi gorabeherako kalkulua da, ez zerga-aitorpena: araubidea zuen aholkulariak erabakitzen du.';
 
   @override
   String get ayudaInformesT => 'Txostenak atera eta bidali';
@@ -1581,9 +1590,6 @@ class AppLocalizationsEu extends AppLocalizations {
   String get apuAsumidoPor => 'Nork hartzen duen';
 
   @override
-  String get apuAmortizacion => 'Amortizazioa da (azpiegitura edo materiala)';
-
-  @override
   String get apuAmortizacionDetalle =>
       'Proiektuaren balantzean zenbatzen da, ez testarenean.';
 
@@ -1806,7 +1812,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen eta amortizazioa den. Gainerakoa koordinazioak eramaten du.';
+      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.';
 
   @override
   String get ayudaNotificacionesT => 'Jakinarazpenak';

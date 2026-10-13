@@ -19,14 +19,14 @@ import 'package:solera_zunbeltz/servicios/generador_informe_proyecto.dart';
 import 'bd_en_memoria.dart';
 
 ApunteEconomico gasto(int euros, String categoria,
-        {String asumidoPor = 'tester', bool amortizacion = false}) =>
+        {String asumidoPor = 'tester', String partida = ''}) =>
     ApunteEconomico(
         fincaId: 1,
         tipo: 'gasto',
         categoria: categoria,
+        partida: partida,
         importeCentimos: euros * 100,
-        asumidoPor: asumidoPor,
-        esAmortizacion: amortizacion);
+        asumidoPor: asumidoPor);
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -37,8 +37,8 @@ void main() {
       proyecto: proyecto,
       ventas: [RegistroComercializacion(proyectoId: 1, ingresoCentimos: 300000)],
       apuntes: [
-        gasto(1000, 'alimentacion'),
-        gasto(400, 'infraestructuras', asumidoPor: 'zunbeltz', amortizacion: true),
+        gasto(1000, 'directos', partida: 'compra_alimento'),
+        gasto(400, 'amortizacion', asumidoPor: 'zunbeltz'),
         ApunteEconomico(fincaId: 1, tipo: 'ingreso', importeCentimos: 20000),
       ],
     );
@@ -58,7 +58,7 @@ void main() {
     expect(conBeneficio.parteTesterCentimos, 75000);
 
     final conPerdida = BalanceConvenio.calcular(
-        proyecto: proyecto, ventas: const [], apuntes: [gasto(200, 'sanidad')]);
+        proyecto: proyecto, ventas: const [], apuntes: [gasto(200, 'directos')]);
     expect(conPerdida.hayBeneficio, isFalse);
     expect(conPerdida.parteZunbeltzCentimos, -10000);
     expect(conPerdida.parteTesterCentimos, -10000);
@@ -74,16 +74,16 @@ void main() {
     final balance = BalanceConvenio.calcular(
       proyecto: proyecto,
       ventas: const [],
-      apuntes: [gasto(300, 'alimentacion')],
+      apuntes: [gasto(300, 'directos')],
       presupuesto: [
-        PartidaPresupuesto(proyectoId: 1, categoria: 'alimentacion', importeCentimos: 50000),
+        PartidaPresupuesto(proyectoId: 1, categoria: 'directos', importeCentimos: 50000),
         PartidaPresupuesto(
-            proyectoId: 1, categoria: 'infraestructuras', asumidoPor: 'zunbeltz', importeCentimos: 800000),
+            proyectoId: 1, categoria: 'amortizacion', asumidoPor: 'zunbeltz', importeCentimos: 800000),
       ],
     );
-    expect(balance.previstoPorCategoria['alimentacion'], 50000);
-    expect(balance.realPorCategoria['alimentacion'], 30000);
-    expect(balance.categoriasComparadas, ['alimentacion', 'infraestructuras']);
+    expect(balance.previstoPorCategoria['directos'], 50000);
+    expect(balance.realPorCategoria['directos'], 30000);
+    expect(balance.categoriasComparadas, ['directos', 'amortizacion']);
     expect(balance.fianzaReferenciaCentimos, 80000, reason: '10 % de lo que asume Zunbeltz');
   });
 
@@ -141,11 +141,13 @@ void main() {
     await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
     final proyectoId = await bd.guardarProyecto(ProyectoTest(nombre: 'Quesería'));
     await bd.guardarPartidaPresupuesto(
-        PartidaPresupuesto(proyectoId: proyectoId, categoria: 'ganado', importeCentimos: 100));
+        PartidaPresupuesto(proyectoId: proyectoId, categoria: 'directos', partida: 'animales', importeCentimos: 100));
     await bd.guardarMovimientoFianza(MovimientoFianza(proyectoId: proyectoId, importeCentimos: 50));
     await bd.guardarAcompanamiento(Acompanamiento(proyectoId: proyectoId, tipo: 'reunion'));
     await bd.guardarIncidencia(IncidenciaCumplimiento(proyectoId: proyectoId, nivel: 'leve'));
-    expect((await bd.listarPresupuesto(proyectoId)).single.categoria, 'ganado');
+    final guardada = (await bd.listarPresupuesto(proyectoId)).single;
+    expect(guardada.categoria, 'directos');
+    expect(guardada.partida, 'animales');
     expect((await bd.listarIncidencias(proyectoId)).single.nivel, 'leve');
 
     await bd.borrarProyecto(proyectoId);
@@ -168,7 +170,7 @@ void main() {
         validaciones: const [],
         actividades: const [],
         balance: BalanceConvenio.calcular(
-            proyecto: proyecto, apuntes: [gasto(10, 'ganado')], ventas: const []),
+            proyecto: proyecto, apuntes: [gasto(10, 'directos', partida: 'animales')], ventas: const []),
         fianza: EstadoFianza.calcular(const [], const []),
         indicadores: IndicadoresAcompanamiento.calcular(const [],
             inicio: DateTime(2026, 1, 1), fin: DateTime(2026, 6, 1)),

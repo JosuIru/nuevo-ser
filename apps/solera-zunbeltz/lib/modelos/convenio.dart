@@ -11,26 +11,32 @@ class PartidaPresupuesto {
     this.id,
     required this.proyectoId,
     this.categoria = '',
+    this.partida = '',
     this.concepto = '',
     this.asumidoPor = asumidoPorTester,
-    this.esAmortizacion = false,
     this.importeCentimos = 0,
     this.notas = '',
   });
 
   final int? id;
   final int proyectoId;
+  /// Bloque de gasto (`categoriasGasto`).
   final String categoria;
+
+  /// Partida del bloque: código de `partidasGasto` o texto propio.
+  final String partida;
   final String concepto;
   final String asumidoPor;
-  final bool esAmortizacion;
   final int importeCentimos;
+
+  bool get esAmortizacion => categoria == categoriaAmortizacion;
   final String notas;
 
   Map<String, Object?> toMap() => {
         'id': id,
         'proyecto_id': proyectoId,
         'categoria': categoria,
+        'partida': partida,
         'concepto': concepto,
         'asumido_por': asumidoPor,
         'es_amortizacion': esAmortizacion ? 1 : 0,
@@ -38,17 +44,22 @@ class PartidaPresupuesto {
         'notas': notas,
       };
 
-  factory PartidaPresupuesto.fromMap(Map<String, Object?> mapa) =>
-      PartidaPresupuesto(
-        id: mapa['id'] as int?,
-        proyectoId: (mapa['proyecto_id'] as int?) ?? 0,
-        categoria: (mapa['categoria'] as String?) ?? '',
-        concepto: (mapa['concepto'] as String?) ?? '',
-        asumidoPor: (mapa['asumido_por'] as String?) ?? asumidoPorTester,
-        esAmortizacion: ((mapa['es_amortizacion'] as int?) ?? 0) != 0,
-        importeCentimos: (mapa['importe_centimos'] as int?) ?? 0,
-        notas: (mapa['notas'] as String?) ?? '',
-      );
+  factory PartidaPresupuesto.fromMap(Map<String, Object?> mapa) {
+    final (categoria, partida) = normalizarCategoriaGasto(
+        (mapa['categoria'] as String?) ?? '',
+        (mapa['partida'] as String?) ?? '',
+        ((mapa['es_amortizacion'] as int?) ?? 0) != 0);
+    return PartidaPresupuesto(
+      id: mapa['id'] as int?,
+      proyectoId: (mapa['proyecto_id'] as int?) ?? 0,
+      categoria: categoria,
+      partida: partida,
+      concepto: (mapa['concepto'] as String?) ?? '',
+      asumidoPor: (mapa['asumido_por'] as String?) ?? asumidoPorTester,
+      importeCentimos: (mapa['importe_centimos'] as int?) ?? 0,
+      notas: (mapa['notas'] as String?) ?? '',
+    );
+  }
 }
 
 /// Depósito, devolución o retención de la fianza.

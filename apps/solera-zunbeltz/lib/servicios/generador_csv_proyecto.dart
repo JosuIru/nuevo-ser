@@ -40,8 +40,11 @@ Future<DocumentoGenerado> generarCsvProyecto({
     filas.add(filaCsvAString([
       fecha(a.fechaMs),
       buscarOpcion(tiposApunte, a.tipo)?.etiqueta(idioma) ?? a.tipo,
-      buscarOpcion(categoriasDe(a.tipo), a.categoria)?.etiqueta(idioma) ??
-          a.categoria,
+      [
+        buscarOpcion(categoriasDe(a.tipo), a.categoria)?.etiqueta(idioma) ??
+            a.categoria,
+        if (a.partida.isNotEmpty) etiquetaPartida(a.categoria, a.partida, idioma),
+      ].join(' · '),
       a.concepto,
       eurosDesdeCentimos(a.importeCentimos),
       '${a.ivaPorcentaje}',

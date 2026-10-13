@@ -6,9 +6,15 @@ import 'package:sqflite/sqflite.dart';
 
 import '../modelos/agenda.dart';
 import '../modelos/apunte_economico.dart';
+import '../modelos/desglose_gastos.dart';
 import '../modelos/aviso_campo.dart';
 import '../modelos/entrada_actividad.dart';
-import '../modelos/constantes.dart' show estadoTareaPorDefecto;
+import '../modelos/constantes.dart'
+    show
+        asumidoPorDefecto,
+        categoriaAmortizacion,
+        estadoTareaPorDefecto,
+        normalizarCategoriaGasto;
 import '../modelos/convenio.dart';
 import '../modelos/finca.dart';
 import '../modelos/peticion_tarea.dart';
@@ -99,7 +105,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 10;
+  static const int versionEsquema = 11;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -113,6 +119,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 8) await aplicarMigracionV8(db);
     if (anterior < 9) await aplicarMigracionV9(db);
     if (anterior < 10) await aplicarMigracionV10(db);
+    if (anterior < 11) await aplicarMigracionV11(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -628,6 +635,36 @@ class BaseDatosSoleraZunbeltz {
       'escenarios_transformacion',
     ]) {
       await db.execute('CREATE UNIQUE INDEX idx_${tabla}_uid ON $tabla(uid)');
+    }
+  }
+
+  /// Migración v10 → v11: los gastos pasan a los seis bloques fijos de la
+  /// hoja de seguimiento de Zunbeltz más una partida. Añade la columna
+  /// `partida` y traduce las categorías antiguas (`ganado` → directos /
+  /// animales…). No toca `actualizado_ms`: cada móvil hace la misma
+  /// traducción y los datos del servidor se traducen al leerlos.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV11(Database db) async {
+    for (final tabla in const ['apuntes_economicos', 'partidas_presupuesto']) {
+      await db.execute(
+          "ALTER TABLE $tabla ADD COLUMN partida TEXT NOT NULL DEFAULT ''");
+      final filas = await db.query(tabla,
+          columns: ['id', 'categoria', 'partida', 'es_amortizacion'],
+          where: tabla == 'apuntes_economicos' ? "tipo = 'gasto'" : null);
+      for (final fila in filas) {
+        final categoria = (fila['categoria'] as String?) ?? '';
+        final (bloque, partida) = normalizarCategoriaGasto(
+            categoria, '', ((fila['es_amortizacion'] as int?) ?? 0) != 0);
+        await db.update(
+            tabla,
+            {
+              'categoria': bloque,
+              'partida': partida,
+              'es_amortizacion': bloque == categoriaAmortizacion ? 1 : 0,
+            },
+            where: 'id = ?',
+            whereArgs: [fila['id']]);
+      }
     }
   }
 
@@ -1269,29 +1306,20 @@ class BaseDatosSoleraZunbeltz {
     );
   }
 
-  /// Desglose de importes (céntimos) por categoría para un tipo de apunte
-  /// (gasto / ingreso) de un proyecto/periodo. Devuelve categoría → total.
-  Future<Map<String, int>> desglosePorCategoria(
-    String tipo, {
+  /// Gastos de un proyecto/periodo por bloque y partida (ver
+  /// [DesgloseGastos]). Se agrupa en Dart y no con `GROUP BY` porque los
+  /// apuntes que llegan del servidor pueden traer categorías antiguas, que
+  /// `ApunteEconomico.fromMap` traduce a bloque y partida.
+  Future<DesgloseGastos> desgloseGastos({
     int? proyectoId,
     int? desdeMs,
     int? hastaMs,
-  }) async {
-    final db = await basedatos;
-    final filtro = _filtroSeguimiento(
-        proyectoId: proyectoId, tipo: tipo, desdeMs: desdeMs, hastaMs: hastaMs);
-    final filas = await db.rawQuery(
-      'SELECT categoria, COALESCE(SUM(importe_centimos), 0) AS total FROM apuntes_economicos'
-      '${filtro.where == null ? '' : ' WHERE ${filtro.where}'}'
-      ' GROUP BY categoria ORDER BY total DESC',
-      filtro.args,
-    );
-    final mapa = <String, int>{};
-    for (final f in filas) {
-      mapa[(f['categoria'] as String?) ?? ''] = (f['total'] as num).toInt();
-    }
-    return mapa;
-  }
+  }) async =>
+      DesgloseGastos.calcular(await listarApuntes(
+          proyectoId: proyectoId,
+          tipo: 'gasto',
+          desdeMs: desdeMs,
+          hastaMs: hastaMs));
 
   // ─── Semilla de ejemplo ─────────────────────────────────
 
@@ -1498,7 +1526,8 @@ class BaseDatosSoleraZunbeltz {
           fincaId: fincaId,
           proyectoId: p1,
           tipo: 'gasto',
-          categoria: 'alimentacion',
+          categoria: 'directos',
+          partida: 'compra_alimento',
           concepto: 'Pienso y forraje',
           importeCentimos: 42000,
           ivaPorcentaje: 10,
@@ -1507,7 +1536,8 @@ class BaseDatosSoleraZunbeltz {
           fincaId: fincaId,
           proyectoId: p1,
           tipo: 'gasto',
-          categoria: 'sanidad',
+          categoria: 'directos',
+          partida: 'vacunas_veterinario',
           concepto: 'Veterinario',
           importeCentimos: 9000,
           ivaPorcentaje: 21,
@@ -1516,7 +1546,8 @@ class BaseDatosSoleraZunbeltz {
           fincaId: fincaId,
           proyectoId: p1,
           tipo: 'gasto',
-          categoria: 'insumos',
+          categoria: 'transformacion',
+          partida: 'obrador',
           concepto: 'Cuajo y sal',
           importeCentimos: 6000,
           ivaPorcentaje: 21,
@@ -1526,6 +1557,7 @@ class BaseDatosSoleraZunbeltz {
           proyectoId: p1,
           tipo: 'gasto',
           categoria: 'mano_obra',
+          partida: 'asalariada',
           concepto: 'Jornales',
           importeCentimos: 30000,
           fechaMs: hace(25)),
@@ -1591,7 +1623,8 @@ class BaseDatosSoleraZunbeltz {
           fincaId: fincaId,
           proyectoId: p2,
           tipo: 'gasto',
-          categoria: 'insumos',
+          categoria: 'directos',
+          partida: 'semillas_pastizales',
           concepto: 'Semilla y plantel',
           importeCentimos: 12000,
           ivaPorcentaje: 10,
@@ -1601,6 +1634,7 @@ class BaseDatosSoleraZunbeltz {
           proyectoId: p2,
           tipo: 'gasto',
           categoria: 'maquinaria',
+          partida: 'combustibles',
           concepto: 'Gasoil motoazada',
           importeCentimos: 8000,
           ivaPorcentaje: 21,
@@ -1609,7 +1643,8 @@ class BaseDatosSoleraZunbeltz {
           fincaId: fincaId,
           proyectoId: p2,
           tipo: 'gasto',
-          categoria: 'alquiler',
+          categoria: 'directos',
+          partida: 'canon_arrendamiento',
           concepto: 'Cesión de parcela',
           importeCentimos: 24000,
           fechaMs: hace(60)),
@@ -1659,18 +1694,18 @@ class BaseDatosSoleraZunbeltz {
   Future<void> _sembrarConvenioDemo(int proyectoId, DateTime ahora) async {
     int hace(int dias) =>
         ahora.subtract(Duration(days: dias)).millisecondsSinceEpoch;
-    for (final (categoria, asumidoPor, euros, amortizacion) in const [
-      ('ganado', 'tester', 3000, false),
-      ('alimentacion', 'tester', 1800, false),
-      ('sanidad', 'tester', 400, false),
-      ('infraestructuras', 'zunbeltz', 6000, true),
-      ('transformacion', 'zunbeltz', 2500, false),
+    for (final (categoria, partida, euros) in const [
+      ('directos', 'animales', 3000),
+      ('directos', 'compra_alimento', 1800),
+      ('directos', 'vacunas_veterinario', 400),
+      ('amortizacion', 'instalaciones', 6000),
+      ('transformacion', 'sacrificio', 2500),
     ]) {
       await guardarPartidaPresupuesto(PartidaPresupuesto(
           proyectoId: proyectoId,
           categoria: categoria,
-          asumidoPor: asumidoPor,
-          esAmortizacion: amortizacion,
+          partida: partida,
+          asumidoPor: asumidoPorDefecto(partida),
           importeCentimos: euros * 100));
     }
     await guardarMovimientoFianza(MovimientoFianza(

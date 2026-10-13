@@ -5,6 +5,7 @@ import '../datos/base_datos.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/constantes.dart';
+import 'widgets/campo_partida_gasto.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
 import '../utiles/numeros.dart';
@@ -39,13 +40,13 @@ class _NuevoApunteState extends State<NuevoApunte> {
   }
   final _bd = BaseDatosSoleraZunbeltz();
   final _concepto = TextEditingController();
+  final _partida = TextEditingController();
   final _importe = TextEditingController();
   final _notas = TextEditingController();
 
   String _tipo = tipoApuntePorDefecto;
   String _categoria = categoriaGastoPorDefecto;
-  String _asumidoPor = asumidoPorDefecto(categoriaGastoPorDefecto);
-  bool _esAmortizacion = false;
+  String _asumidoPor = asumidoPorDefecto('');
   int _iva = ivaPorDefecto;
   DateTime _fecha = DateTime.now();
 
@@ -55,13 +56,15 @@ class _NuevoApunteState extends State<NuevoApunte> {
       _tipo = v;
       // Al cambiar gasto/ingreso, la categoría debe ser del catálogo correcto.
       _categoria = categoriasDe(v).first.codigo;
-      _asumidoPor = asumidoPorDefecto(_categoria);
+      _partida.clear();
+      _asumidoPor = asumidoPorDefecto('');
     });
   }
 
   @override
   void dispose() {
     _concepto.dispose();
+    _partida.dispose();
     _importe.dispose();
     _notas.dispose();
     super.dispose();
@@ -91,6 +94,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
       proyectoId: widget.proyectoId,
       tipo: _tipo,
       categoria: _categoria,
+      partida: _tipo == 'gasto' ? codigoPartida(_categoria, _partida.text) : '',
       concepto: _concepto.text.trim(),
       importeCentimos: importeCentimos,
       ivaPorcentaje: _iva,
@@ -98,7 +102,6 @@ class _NuevoApunteState extends State<NuevoApunte> {
       notas: _notas.text.trim(),
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
       asumidoPor: _tipo == 'gasto' ? _asumidoPor : asumidoPorTester,
-      esAmortizacion: _tipo == 'gasto' && _esAmortizacion,
     ));
     if (!mounted) return;
     ScaffoldMessenger.of(context)
@@ -132,18 +135,36 @@ class _NuevoApunteState extends State<NuevoApunte> {
               isExpanded: true,
               key: ValueKey(_tipo),
               initialValue: _categoria,
-              decoration: InputDecoration(labelText: textos.apuCategoria),
+              decoration: InputDecoration(
+                labelText:
+                    _tipo == 'gasto' ? textos.apuBloque : textos.apuCategoria,
+                helperText: _categoria == categoriaAmortizacion
+                    ? textos.apuAmortizacionDetalle
+                    : null,
+              ),
               items: [
                 for (final c in categoriasDe(_tipo))
                   DropdownMenuItem(
                       value: c.codigo, child: Text(c.etiqueta(idioma))),
               ],
               onChanged: (v) => setState(() {
-                _categoria = v ?? _categoria;
-                _asumidoPor = asumidoPorDefecto(_categoria);
+                if (v == null || v == _categoria) return;
+                _categoria = v;
+                _partida.clear();
+                _asumidoPor = asumidoPorDefecto('');
               }),
             ),
             if (_tipo == 'gasto') ...[
+              const SizedBox(height: 12),
+              CampoPartidaGasto(
+                key: ValueKey(_categoria),
+                bloque: _categoria,
+                controlador: _partida,
+                idioma: idioma,
+                etiqueta: textos.apuPartida,
+                alElegirDelCatalogo: (codigo) =>
+                    setState(() => _asumidoPor = asumidoPorDefecto(codigo)),
+              ),
               const SizedBox(height: 12),
               Text(textos.apuAsumidoPor,
                   style: Theme.of(context).textTheme.labelLarge),
@@ -158,13 +179,6 @@ class _NuevoApunteState extends State<NuevoApunte> {
                 selected: {_asumidoPor},
                 onSelectionChanged: (seleccion) =>
                     setState(() => _asumidoPor = seleccion.first),
-              ),
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(textos.apuAmortizacion),
-                subtitle: Text(textos.apuAmortizacionDetalle),
-                value: _esAmortizacion,
-                onChanged: (valor) => setState(() => _esAmortizacion = valor),
               ),
             ],
             const SizedBox(height: 12),

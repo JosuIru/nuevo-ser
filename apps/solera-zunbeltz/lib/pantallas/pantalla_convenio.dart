@@ -12,6 +12,7 @@ import '../modelos/convenio.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_comercializacion.dart';
+import 'widgets/campo_partida_gasto.dart';
 import 'widgets/relleno_seguro.dart';
 import '../utiles/numeros.dart';
 import 'widgets/confirmar_borrado.dart';
@@ -295,19 +296,23 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
         for (final partida in _presupuesto)
           Card(
             child: ListTile(
-              title: Text(partida.concepto.isEmpty
-                  ? (buscarOpcion(categoriasGasto, partida.categoria)
-                          ?.etiqueta(_idioma) ??
-                      partida.categoria)
-                  : partida.concepto),
+              title: Text(partida.concepto.isNotEmpty
+                  ? partida.concepto
+                  : partida.partida.isNotEmpty
+                      ? etiquetaPartida(
+                          partida.categoria, partida.partida, _idioma)
+                      : (buscarOpcion(categoriasGasto, partida.categoria)
+                              ?.etiqueta(_idioma) ??
+                          partida.categoria)),
               subtitle: Text([
                 buscarOpcion(categoriasGasto, partida.categoria)
                         ?.etiqueta(_idioma) ??
                     partida.categoria,
+                if (partida.partida.isNotEmpty && partida.concepto.isNotEmpty)
+                  etiquetaPartida(partida.categoria, partida.partida, _idioma),
                 buscarOpcion(asumidoPorOpciones, partida.asumidoPor)
                         ?.etiqueta(_idioma) ??
                     '',
-                if (partida.esAmortizacion) textos.balanceAmortizaciones,
               ].join(' · ')),
               trailing: Text(_euros(partida.importeCentimos)),
               onLongPress: !_gestiona || partida.id == null
@@ -329,8 +334,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
   Future<void> _nuevaPartida() async {
     final textos = AppLocalizations.of(context);
     var categoria = categoriasGasto.first.codigo;
-    var asumidoPor = asumidoPorDefecto(categoria);
-    var esAmortizacion = false;
+    var asumidoPor = asumidoPorDefecto('');
+    final partida = TextEditingController();
     final concepto = TextEditingController();
     final importe = TextEditingController();
     final aceptado = await _dialogo(
@@ -340,16 +345,27 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
         DropdownButtonFormField<String>(
           isExpanded: true,
           initialValue: categoria,
-          decoration: InputDecoration(labelText: textos.apuCategoria),
+          decoration: InputDecoration(labelText: textos.apuBloque),
           items: [
             for (final opcion in categoriasGasto)
               DropdownMenuItem(
                   value: opcion.codigo, child: Text(opcion.etiqueta(_idioma))),
           ],
           onChanged: (valor) => actualizar(() {
-            categoria = valor ?? categoria;
-            asumidoPor = asumidoPorDefecto(categoria);
+            if (valor == null || valor == categoria) return;
+            categoria = valor;
+            partida.clear();
+            asumidoPor = asumidoPorDefecto('');
           }),
+        ),
+        CampoPartidaGasto(
+          key: ValueKey(categoria),
+          bloque: categoria,
+          controlador: partida,
+          idioma: _idioma,
+          etiqueta: textos.apuPartida,
+          alElegirDelCatalogo: (codigo) =>
+              actualizar(() => asumidoPor = asumidoPorDefecto(codigo)),
         ),
         TextField(
             controller: concepto,
@@ -369,13 +385,6 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           onSelectionChanged: (seleccion) =>
               actualizar(() => asumidoPor = seleccion.first),
         ),
-        CheckboxListTile(
-          contentPadding: EdgeInsets.zero,
-          value: esAmortizacion,
-          title: Text(textos.apuAmortizacion),
-          onChanged: (valor) =>
-              actualizar(() => esAmortizacion = valor ?? false),
-        ),
       ],
     );
     if (!aceptado) return;
@@ -384,9 +393,9 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     await _bd.guardarPartidaPresupuesto(PartidaPresupuesto(
       proyectoId: _proyectoId,
       categoria: categoria,
+      partida: codigoPartida(categoria, partida.text),
       concepto: concepto.text.trim(),
       asumidoPor: asumidoPor,
-      esAmortizacion: esAmortizacion,
       importeCentimos: importeCentimos,
     ));
     await _cargar();

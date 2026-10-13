@@ -11,6 +11,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/balance_convenio.dart';
 import '../modelos/constantes.dart';
+import '../modelos/desglose_gastos.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_actividad.dart';
@@ -50,7 +51,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   List<RegistroActividad> _produccion = const [];
   List<ValidacionProducto> _validaciones = const [];
   List<ApunteEconomico> _apuntes = const [];
-  Map<String, int> _desgloseGastos = const {};
+  DesgloseGastos _desgloseGastos = DesgloseGastos.calcular(const []);
   TipoPeriodo _periodo = TipoPeriodo.todo;
   bool _cargando = true;
   bool _generando = false;
@@ -93,8 +94,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
           await _bd.listarValidaciones(proyectoId: _proyectoId);
       final apuntes = await _bd.listarApuntes(
           proyectoId: _proyectoId, desdeMs: desde, hastaMs: hasta);
-      final desglose = await _bd.desglosePorCategoria('gasto',
-          proyectoId: _proyectoId, desdeMs: desde, hastaMs: hasta);
+      final desglose = DesgloseGastos.calcular(apuntes);
       if (!mounted) return;
       setState(() {
         _rent = rent;
@@ -804,11 +804,20 @@ class _ListaApuntes extends StatelessWidget {
               color: a.tipo == 'ingreso'
                   ? colorEstadoHecha
                   : colorEstadoBloqueada),
-          title: Text(a.concepto.isEmpty
-              ? (buscarOpcion(tiposApunte, a.tipo)?.etiqueta(idioma) ?? a.tipo)
-              : a.concepto),
-          subtitle:
-              Text(f.format(DateTime.fromMillisecondsSinceEpoch(a.fechaMs))),
+          title: Text(a.concepto.isNotEmpty
+              ? a.concepto
+              : a.partida.isNotEmpty
+                  ? etiquetaPartida(a.categoria, a.partida, idioma)
+                  : (buscarOpcion(tiposApunte, a.tipo)?.etiqueta(idioma) ??
+                      a.tipo)),
+          subtitle: Text([
+            f.format(DateTime.fromMillisecondsSinceEpoch(a.fechaMs)),
+            buscarOpcion(categoriasDe(a.tipo), a.categoria)
+                    ?.etiqueta(idioma) ??
+                a.categoria,
+            if (a.partida.isNotEmpty && a.concepto.isNotEmpty)
+              etiquetaPartida(a.categoria, a.partida, idioma),
+          ].where((parte) => parte.isNotEmpty).join(' · ')),
           trailing: Text('${eurosDesdeCentimos(a.importeCentimos)} €',
               style: const TextStyle(fontWeight: FontWeight.w600)),
         ),
@@ -824,7 +833,7 @@ class _DesgloseIva extends StatelessWidget {
     required this.textos,
   });
 
-  final Map<String, int> desgloseGastos;
+  final DesgloseGastos desgloseGastos;
   final (int, int) ivaTotales;
   final String idioma;
   final AppLocalizations textos;
@@ -836,18 +845,33 @@ class _DesgloseIva extends StatelessWidget {
       title: Text(textos.detDesgloseGastos),
       childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
       children: [
-        for (final e in desgloseGastos.entries)
+        for (final bloque in desgloseGastos.bloques) ...[
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 3),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(buscarOpcion(categoriasGasto, e.key)?.etiqueta(idioma) ??
-                    (e.key.isEmpty ? '—' : e.key)),
-                Text('${eurosDesdeCentimos(e.value)} €'),
-              ],
-            ),
+            padding: const EdgeInsets.only(top: 6, bottom: 2),
+            child: Row(children: [
+              Expanded(
+                child: Text(
+                    buscarOpcion(categoriasGasto, bloque)?.etiqueta(idioma) ??
+                        bloque,
+                    style: const TextStyle(fontWeight: FontWeight.w600)),
+              ),
+              Text('${eurosDesdeCentimos(desgloseGastos.totalDe(bloque))} €',
+                  style: const TextStyle(fontWeight: FontWeight.w600)),
+            ]),
           ),
+          for (final partida in desgloseGastos.partidasDe(bloque))
+            Padding(
+              padding: const EdgeInsets.only(left: 12, top: 2, bottom: 2),
+              child: Row(children: [
+                Expanded(
+                  child: Text(partida.key.isEmpty
+                      ? textos.apuSinPartida
+                      : etiquetaPartida(bloque, partida.key, idioma)),
+                ),
+                Text('${eurosDesdeCentimos(partida.value)} €'),
+              ]),
+            ),
+        ],
         const Divider(),
         Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text(textos.detIvaSoportado),

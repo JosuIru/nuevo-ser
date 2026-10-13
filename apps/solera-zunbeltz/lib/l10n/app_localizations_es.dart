@@ -637,6 +637,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get apuCategoria => 'Categoría';
 
   @override
+  String get apuBloque => 'Bloque de gasto';
+
+  @override
+  String get apuPartida => 'Partida';
+
+  @override
+  String get apuSinPartida => 'Sin partida';
+
+  @override
   String get apuIva => 'IVA';
 
   @override
@@ -780,14 +789,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaApuntarB =>
-      'Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.\n1. Ve a la pestaña de lo que quieras apuntar.\n2. Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso con su categoría.\n3. Guarda. Los números de arriba se actualizan solos.';
+      'Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.\n1. Ve a la pestaña de lo que quieras apuntar.\n2. Pulsa + y rellena lo que toque: lo producido; una venta (producto, canal, cantidad y precio); una prueba de producto y su resultado; o un gasto o ingreso.\n3. Los gastos van en uno de los seis bloques de la hoja de seguimiento (I. Costes directos … VI. Amortización) y en una partida: elige una de las sugeridas o escribe la tuya.\n4. Guarda. Los números de arriba se actualizan solos.';
 
   @override
   String get ayudaNumerosT => 'Entender tus números';
 
   @override
   String get ayudaNumerosB =>
-      'Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.\n• Con el filtro «Periodo» (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.\n• Si hay gastos, verás el desglose por categorías y el IVA soportado y repercutido.\n» El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.';
+      'Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.\n• Con el filtro «Periodo» (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.\n• Si hay gastos, verás el desglose por bloques y partidas, como en la hoja de seguimiento, y el IVA soportado y repercutido.\n» El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.';
 
   @override
   String get ayudaInformesT => 'Sacar informes y enviarlos';
@@ -1577,9 +1586,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get apuAsumidoPor => 'Lo asume';
 
   @override
-  String get apuAmortizacion => 'Es amortización (infraestructura o material)';
-
-  @override
   String get apuAmortizacionDetalle =>
       'Cuenta en el balance del proyecto, no en el del test.';
 
@@ -1804,7 +1810,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume y si es una amortización. Coordinación lleva el resto.';
+      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.';
 
   @override
   String get ayudaNotificacionesT => 'Notificaciones';

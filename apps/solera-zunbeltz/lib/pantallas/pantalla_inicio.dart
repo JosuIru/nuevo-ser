@@ -209,22 +209,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
                     ]),
                   ),
                   _Seccion(textos.hoyAvisos),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Row(children: [
-                      for (final categoria in categoriasAviso)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: ChoiceChip(
-                            avatar:
-                                Icon(iconoCategoriaAviso(categoria), size: 18),
-                            label: Text(_etiquetaConCuenta(categoria, textos)),
-                            selected: _categoria == categoria,
-                            onSelected: (_) =>
-                                setState(() => _categoria = categoria),
-                          ),
-                        ),
-                    ]),
+                  _SelectorCategoriasAviso(
+                    seleccionada: _categoria,
+                    avisos: _avisos,
+                    alElegir: (categoria) =>
+                        setState(() => _categoria = categoria),
                   ),
                   const SizedBox(height: 8),
                   ..._avisosDeCategoria().isEmpty
@@ -270,13 +259,211 @@ class _PantallaInicioState extends State<PantallaInicio> {
 
   List<AvisoCampo> _avisosDeCategoria() =>
       _avisos.where((aviso) => aviso.categoria == _categoria).take(20).toList();
+}
 
-  String _etiquetaConCuenta(String categoria, AppLocalizations textos) {
-    final abiertos = _avisos
-        .where((aviso) => aviso.categoria == categoria && aviso.abierto)
-        .length;
-    final etiqueta = etiquetaCategoriaAviso(categoria, textos);
-    return abiertos == 0 ? etiqueta : '$etiqueta ($abiertos)';
+/// Las cuatro categorías de avisos como tarjetas que caben siempre en
+/// pantalla: 2 × 2 en el móvil, las cuatro en fila si hay sitio. Cada una
+/// con su color, el número de avisos abiertos y un punto rojo si hay
+/// alguna alarma abierta.
+class _SelectorCategoriasAviso extends StatelessWidget {
+  const _SelectorCategoriasAviso({
+    required this.seleccionada,
+    required this.avisos,
+    required this.alElegir,
+  });
+
+  final String seleccionada;
+  final List<AvisoCampo> avisos;
+  final ValueChanged<String> alElegir;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    return LayoutBuilder(builder: (contexto, limites) {
+      const separacion = 8.0;
+      final columnas = limites.maxWidth >= 560 ? 4 : 2;
+      final anchoTarjeta =
+          (limites.maxWidth - separacion * (columnas - 1)) / columnas;
+      // Estrecha (móvil pequeño, letra grande): icono y número arriba y el
+      // nombre debajo, a todo lo ancho, para no partir palabras.
+      final apilada = anchoTarjeta <
+          (150 + 18) * MediaQuery.textScalerOf(contexto).scale(1);
+      Widget tarjeta(String categoria) => _TarjetaCategoriaAviso(
+            apilada: apilada,
+            etiqueta: etiquetaCategoriaAviso(categoria, textos),
+            icono: iconoCategoriaAviso(categoria),
+            color: colorCategoriaAviso(categoria),
+            abiertos: avisos
+                .where((aviso) => aviso.categoria == categoria && aviso.abierto)
+                .length,
+            hayAlarma: avisos.any((aviso) =>
+                aviso.categoria == categoria &&
+                aviso.abierto &&
+                aviso.gravedad == gravedadAlarma),
+            seleccionada: categoria == seleccionada,
+            alPulsar: () => alElegir(categoria),
+          );
+      // Por filas y no con Wrap: las tarjetas de una fila, de igual alto.
+      return Column(children: [
+        for (var inicio = 0;
+            inicio < categoriasAviso.length;
+            inicio += columnas) ...[
+          if (inicio > 0) const SizedBox(height: separacion),
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (var indice = inicio;
+                    indice < inicio + columnas;
+                    indice++) ...[
+                  if (indice > inicio) const SizedBox(width: separacion),
+                  Expanded(
+                    child: indice < categoriasAviso.length
+                        ? tarjeta(categoriasAviso[indice])
+                        : const SizedBox.shrink(),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ]);
+    });
+  }
+}
+
+class _TarjetaCategoriaAviso extends StatelessWidget {
+  const _TarjetaCategoriaAviso({
+    required this.etiqueta,
+    required this.icono,
+    required this.color,
+    required this.abiertos,
+    required this.hayAlarma,
+    required this.seleccionada,
+    required this.alPulsar,
+    required this.apilada,
+  });
+
+  /// Icono y número arriba y el nombre debajo.
+  final bool apilada;
+  final String etiqueta;
+  final IconData icono;
+  final Color color;
+  final int abiertos;
+  final bool hayAlarma;
+  final bool seleccionada;
+  final VoidCallback alPulsar;
+
+  @override
+  Widget build(BuildContext context) {
+    final colorTexto = seleccionada ? colorPapelZunbeltz : colorTintaZunbeltz;
+    return Semantics(
+      button: true,
+      selected: seleccionada,
+      label: abiertos == 0 ? etiqueta : '$etiqueta, $abiertos',
+      excludeSemantics: true,
+      child: Material(
+        color: seleccionada ? color : color.withValues(alpha: 0.10),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+          side: BorderSide(color: color, width: seleccionada ? 2 : 1),
+        ),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(4),
+          onTap: alPulsar,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 64),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
+              child: Builder(builder: (contexto) {
+                final iconoCategoria = Icon(icono,
+                    size: 28, color: seleccionada ? colorPapelZunbeltz : color);
+                final texto = Text(
+                  etiqueta,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleSmall
+                      ?.copyWith(color: colorTexto, height: 1.15),
+                );
+                final contador = abiertos == 0
+                    ? null
+                    : _ContadorAvisos(
+                        cuenta: abiertos,
+                        hayAlarma: hayAlarma,
+                        sobreColor: seleccionada,
+                        color: color,
+                      );
+                if (!apilada) {
+                  return Row(children: [
+                    iconoCategoria,
+                    const SizedBox(width: 8),
+                    Expanded(child: texto),
+                    if (contador != null) ...[
+                      const SizedBox(width: 6),
+                      contador,
+                    ],
+                  ]);
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(children: [
+                      iconoCategoria,
+                      const Spacer(),
+                      if (contador != null) contador,
+                    ]),
+                    const SizedBox(height: 4),
+                    texto,
+                  ],
+                );
+              }),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Número de avisos abiertos; con una alarma abierta, en rojo de marcaje.
+class _ContadorAvisos extends StatelessWidget {
+  const _ContadorAvisos({
+    required this.cuenta,
+    required this.hayAlarma,
+    required this.sobreColor,
+    required this.color,
+  });
+
+  final int cuenta;
+  final bool hayAlarma;
+  final bool sobreColor;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    final fondo = hayAlarma
+        ? colorSenalZunbeltz
+        : (sobreColor ? colorPapelZunbeltz : color);
+    final texto = hayAlarma || !sobreColor ? colorPapelZunbeltz : color;
+    return Container(
+      constraints: const BoxConstraints(minWidth: 26),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+      decoration: BoxDecoration(
+        color: fondo,
+        borderRadius: BorderRadius.circular(13),
+        border: hayAlarma && sobreColor
+            ? Border.all(color: colorPapelZunbeltz, width: 1.5)
+            : null,
+      ),
+      child: Text(
+        '$cuenta',
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+            color: texto, fontWeight: FontWeight.w700),
+      ),
+    );
   }
 }
 

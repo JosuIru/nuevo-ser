@@ -64,9 +64,9 @@ Las capturas pegadas bajo la hoja (ración casera para pollos, calendario de tem
 | 2 | Ingresos: separar venta en vivo / transformado / subvenciones. | ✅ hecho 2026-10-13 |
 | 3 | **Inventario de bienes amortizables** mantenido por coordinación (panel WP). Cada proyecto marca qué usa, cuántas unidades y qué porcentaje, y la cuota se calcula sola con los meses del test. | ✅ hecho 2026-10-13 |
 | 4 | Imputar un **porcentaje de un coste compartido** (mano de obra asalariada). | 🟡 resuelto para bienes amortizables (porcentaje por uso); para gastos corrientes, hoy se apunta el importe ya imputado |
-| 5 | Líneas de presupuesto con fórmula (cantidad × precio con unidades). | ❌ |
-| 6 | Especies: **aves y porcino** además de bovino y ovino. Tipos de punto nuevos: aprisco, placas solares, vestuario, bebedero móvil, pastor eléctrico, isotermo, molino. | ❌ |
-| 7 | **Plantillas de tarea** a partir de `Ganado.docx` (grupo · tarea · subtipo · periodicidad sugerida); las tareas de «Compra» podrían generar el gasto. | ❌ |
+| 5 | Líneas de presupuesto con fórmula: cantidad × precio, o ración × cabezas × días × precio. | ✅ hecho 2026-10-13 |
+| 6 | Especies: **aves y porcino** además de bovino y ovino (especie en proyectos y en el material del inventario). Tipos de punto nuevos: aprisco, placas solares, vestuario, bebedero móvil, pastor eléctrico, isotermo, molino. | ✅ hecho 2026-10-13 |
+| 7 | **Plantillas de tarea** a partir de `Ganado.docx` (grupo · tarea · subtipo · periodicidad sugerida PROVISIONAL), en la app (tareas y peticiones) y en el panel WP. Una tarea con coste se apunta como gasto de un proyecto; si es una compra, con su bloque y partida. | ✅ hecho 2026-10-13 |
 | 8 | Logos de impulsores, apoyos y colaboradores en la app y en los informes. | ✅ hecho 2026-10-13 |
 
 ## Preguntas abiertas para Pablo

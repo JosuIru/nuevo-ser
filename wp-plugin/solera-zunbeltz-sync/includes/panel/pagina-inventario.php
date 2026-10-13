@@ -17,6 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 const SZS_PAGINA_INVENTARIO = 'solera-zunbeltz-inventario';
+const SZS_ESPECIES_GANADO   = array(
+	'vacuno'  => 'Vacuno',
+	'ovino'   => 'Ovino',
+	'caprino' => 'Caprino',
+	'porcino' => 'Porcino',
+	'aves'    => 'Aves',
+	'equino'  => 'Equino',
+	'varias'  => 'Varias / sin ganado',
+);
 const SZS_GRUPOS_BIEN       = array(
 	'instalaciones'     => 'Instalaciones',
 	'material_ganadero' => 'Material ganadero',
@@ -72,6 +81,7 @@ function szs_procesar_inventario(): ?array {
 		$unidades  = (float) str_replace( ',', '.', szs_campo_post( 'szs_unidades', '1' ) );
 		$vida_util = (int) szs_campo_post( 'szs_vida_util', '72' );
 		$grupo     = szs_campo_post( 'szs_grupo', 'material_ganadero' );
+		$especie   = szs_campo_post( 'szs_especie' );
 		if ( '' === $nombre || null === $precio || $precio <= 0 || $unidades <= 0 || $vida_util < 1 || ! isset( SZS_GRUPOS_BIEN[ $grupo ] ) ) {
 			return array( 'error', 'Faltan el nombre, el precio, las unidades o la vida útil (al menos un mes).' );
 		}
@@ -81,6 +91,7 @@ function szs_procesar_inventario(): ?array {
 			array(
 				'nombre'                 => $nombre,
 				'grupo'                  => $grupo,
+				'especie'                => isset( SZS_ESPECIES_GANADO[ $especie ] ) ? $especie : '',
 				'precio_unidad_centimos' => $precio,
 				'unidades'               => $unidades,
 				'iva_porcentaje'         => (int) szs_campo_post( 'szs_iva', '21' ),
@@ -144,10 +155,10 @@ function szs_pagina_inventario(): void {
 
 		<h2>Bienes</h2>
 		<table class="widefat striped">
-			<thead><tr><th>Bien</th><th>Grupo</th><th>Precio/ud</th><th>Uds</th><th>IVA</th><th>Total</th><th>Vida útil</th><th>Cuota mensual</th><th></th></tr></thead>
+			<thead><tr><th>Bien</th><th>Grupo</th><th>Especie</th><th>Precio/ud</th><th>Uds</th><th>IVA</th><th>Total</th><th>Vida útil</th><th>Cuota mensual</th><th></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $bienes ) ) : ?>
-				<tr><td colspan="9">Todavía no hay bienes en el inventario.</td></tr>
+				<tr><td colspan="10">Todavía no hay bienes en el inventario.</td></tr>
 			<?php endif; ?>
 			<?php foreach ( $bienes as $bien ) : ?>
 				<?php
@@ -158,6 +169,7 @@ function szs_pagina_inventario(): void {
 				<tr>
 					<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_INVENTARIO, array( 'uid' => $bien['uid'] ) ) ); ?>"><strong><?php echo esc_html( (string) ( $datos['nombre'] ?? '' ) ); ?></strong></a></td>
 					<td><?php echo esc_html( SZS_GRUPOS_BIEN[ $datos['grupo'] ?? '' ] ?? (string) ( $datos['grupo'] ?? '' ) ); ?></td>
+					<td><?php echo esc_html( SZS_ESPECIES_GANADO[ $datos['especie'] ?? '' ] ?? 'Común' ); ?></td>
 					<td><?php echo esc_html( szs_euros( (int) ( $datos['precio_unidad_centimos'] ?? 0 ) ) ); ?></td>
 					<td><?php echo esc_html( szs_numero_legible( (float) ( $datos['unidades'] ?? 1 ) ) ); ?></td>
 					<td><?php echo esc_html( (string) (int) ( $datos['iva_porcentaje'] ?? 21 ) ); ?> %</td>
@@ -185,6 +197,7 @@ function szs_pagina_inventario(): void {
 			<table class="form-table" role="presentation">
 				<tr><th><label for="szs_nombre">Nombre</label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text" required placeholder="Corral móvil" value="<?php echo esc_attr( (string) ( $valores['nombre'] ?? '' ) ); ?>"></td></tr>
 				<tr><th><label for="szs_grupo">Grupo</label></th><td><?php szs_selector( 'szs_grupo', SZS_GRUPOS_BIEN, (string) ( $valores['grupo'] ?? 'material_ganadero' ) ); ?></td></tr>
+				<tr><th><label for="szs_especie">Especie</label></th><td><?php szs_selector( 'szs_especie', SZS_ESPECIES_GANADO, (string) ( $valores['especie'] ?? '' ), 'Cualquiera (común)' ); ?></td></tr>
 				<tr><th><label for="szs_precio">Precio por unidad, sin IVA (€)</label></th><td><input type="text" id="szs_precio" name="szs_precio" class="small-text" required placeholder="1.392,00" value="<?php echo esc_attr( isset( $valores['precio_unidad_centimos'] ) ? number_format( (int) $valores['precio_unidad_centimos'] / 100, 2, ',', '.' ) : '' ); ?>"></td></tr>
 				<tr><th><label for="szs_unidades">Unidades</label></th><td><input type="text" id="szs_unidades" name="szs_unidades" class="small-text" value="<?php echo esc_attr( szs_numero_legible( (float) ( $valores['unidades'] ?? 1 ) ) ); ?>"></td></tr>
 				<tr><th><label for="szs_iva">IVA</label></th><td><?php szs_selector( 'szs_iva', array( 0 => '0 %', 4 => '4 %', 10 => '10 %', 21 => '21 %' ), (string) (int) ( $valores['iva_porcentaje'] ?? 21 ) ); ?> <span class="description">La hoja de Zunbeltz amortiza con el IVA incluido; con 0 % se amortiza la base.</span></td></tr>

@@ -212,9 +212,9 @@ function szs_plan_datos_demo( int $ahora_ms, string $lote, array $fincas_existen
 		),
 		$campos
 	);
-	$anadir( 'proyecto', $proyecto_queso, $datos_proyecto( array( 'nombre' => 'Quesería de prueba (demo)', 'persona' => $nombre_de[ $tester_queso ], 'persona_uid' => $tester_queso, 'actividad' => 'Ovino de leche · quesería', 'finca_uid' => $finca_a, 'fecha_inicio_ms' => $hace( 150 ), 'fecha_fin_ms' => $en( 215 ) ) ), $coordinacion );
-	$anadir( 'proyecto', $proyecto_huerta, $datos_proyecto( array( 'nombre' => 'Huerta de prueba (demo)', 'persona' => $nombre_de[ $tester_huerta ], 'persona_uid' => $tester_huerta, 'actividad' => 'Horticultura ecológica', 'finca_uid' => $finca_b, 'fecha_inicio_ms' => $hace( 90 ), 'fecha_fin_ms' => $en( 275 ), 'porcentaje_perdida_zunbeltz' => 50 ) ), $coordinacion );
-	$anadir( 'proyecto', $proyecto_cerrado, $datos_proyecto( array( 'nombre' => 'Cordero de pasto 2025 (demo)', 'persona' => $nombre_de[ $tester_queso ], 'persona_uid' => $tester_queso, 'actividad' => 'Ovino de carne', 'finca_uid' => $finca_a, 'fecha_inicio_ms' => $hace( 560 ), 'fecha_fin_ms' => $hace( 195 ), 'estado' => 'cerrado', 'cerrado_ms' => $hace( 190 ), 'valoracion_zunbeltz' => 4, 'valoracion_tester' => 5, 'notas' => 'Proyecto cerrado: sus informes salen sin marca de borrador.' ) ), $coordinacion );
+	$anadir( 'proyecto', $proyecto_queso, $datos_proyecto( array( 'nombre' => 'Quesería de prueba (demo)', 'persona' => $nombre_de[ $tester_queso ], 'persona_uid' => $tester_queso, 'actividad' => 'Ovino de leche · quesería', 'especie' => 'ovino', 'finca_uid' => $finca_a, 'fecha_inicio_ms' => $hace( 150 ), 'fecha_fin_ms' => $en( 215 ) ) ), $coordinacion );
+	$anadir( 'proyecto', $proyecto_huerta, $datos_proyecto( array( 'nombre' => 'Huerta de prueba (demo)', 'persona' => $nombre_de[ $tester_huerta ], 'persona_uid' => $tester_huerta, 'actividad' => 'Horticultura ecológica', 'especie' => 'varias', 'finca_uid' => $finca_b, 'fecha_inicio_ms' => $hace( 90 ), 'fecha_fin_ms' => $en( 275 ), 'porcentaje_perdida_zunbeltz' => 50 ) ), $coordinacion );
+	$anadir( 'proyecto', $proyecto_cerrado, $datos_proyecto( array( 'nombre' => 'Cordero de pasto 2025 (demo)', 'persona' => $nombre_de[ $tester_queso ], 'persona_uid' => $tester_queso, 'actividad' => 'Ovino de carne', 'especie' => 'ovino', 'finca_uid' => $finca_a, 'fecha_inicio_ms' => $hace( 560 ), 'fecha_fin_ms' => $hace( 195 ), 'estado' => 'cerrado', 'cerrado_ms' => $hace( 190 ), 'valoracion_zunbeltz' => 4, 'valoracion_tester' => 5, 'notas' => 'Proyecto cerrado: sus informes salen sin marca de borrador.' ) ), $coordinacion );
 
 	// Seguimiento: alimentación varios días (para el Excel por días),
 	// pariciones y producto.
@@ -272,11 +272,11 @@ function szs_plan_datos_demo( int $ahora_ms, string $lote, array $fincas_existen
 	}
 	// Inventario de amortizaciones: un corral móvil a medias y abrevaderos.
 	$bienes = array(
-		'corral'      => array( 'Corral móvil', 'instalaciones', 1137542, 2 ),
-		'abrevaderos' => array( 'Abrevadero de vacuno', 'material_ganadero', 13600, 3 ),
+		'corral'      => array( 'Corral móvil', 'instalaciones', '', 1137542, 2 ),
+		'abrevaderos' => array( 'Abrevadero de vacuno', 'material_ganadero', 'vacuno', 13600, 3 ),
 	);
-	foreach ( $bienes as $clave => list( $nombre, $grupo, $centimos, $unidades ) ) {
-		$anadir( 'bien_amortizable', $uid( 'bien-' . $clave ), array( 'nombre' => $nombre, 'grupo' => $grupo, 'precio_unidad_centimos' => $centimos, 'unidades' => $unidades, 'iva_porcentaje' => 21, 'vida_util_meses' => 72, 'notas' => '' ), $coordinacion );
+	foreach ( $bienes as $clave => list( $nombre, $grupo, $especie, $centimos, $unidades ) ) {
+		$anadir( 'bien_amortizable', $uid( 'bien-' . $clave ), array( 'nombre' => $nombre, 'grupo' => $grupo, 'especie' => $especie, 'precio_unidad_centimos' => $centimos, 'unidades' => $unidades, 'iva_porcentaje' => 21, 'vida_util_meses' => 72, 'notas' => '' ), $coordinacion );
 	}
 	$anadir( 'uso_bien', $uid( 'uso-corral' ), array( 'bien_uid' => $uid( 'bien-corral' ), 'imputacion_porcentaje' => 50, 'duracion_meses' => 0, 'notas' => '' ), $coordinacion, $proyecto_queso );
 	$anadir( 'uso_bien', $uid( 'uso-abrevaderos' ), array( 'bien_uid' => $uid( 'bien-abrevaderos' ), 'imputacion_porcentaje' => 100, 'duracion_meses' => 0, 'notas' => '' ), $coordinacion, $proyecto_queso );

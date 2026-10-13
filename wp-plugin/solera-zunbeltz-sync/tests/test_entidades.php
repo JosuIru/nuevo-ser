@@ -168,6 +168,8 @@ afirmar( 'insertar', accion( null, $bien, 'coord', $coordinacion ), 'coordinaci�
 afirmar( true, szs_entidad_visible( $bien, 'ane', $tester, array() ), 'todas ven el inventario' );
 $saneado = szs_sanear_datos_entidad( array( 'unidades' => '2', 'vida_util_meses' => 'x', 'duracion_meses' => '3.5', 'grupo' => array() ) );
 afirmar( array( 2, 0, 3.5, '' ), array( $saneado['unidades'], $saneado['vida_util_meses'], $saneado['duracion_meses'], $saneado['grupo'] ), 'números e importes del inventario saneados' );
+$partida = szs_sanear_datos_entidad( array( 'cantidad' => '0.15', 'cabezas' => 'x', 'dias' => '90', 'precio_unitario_centimos' => '35', 'modo_calculo' => array(), 'especie' => 7 ) );
+afirmar( array( 0.15, 0, 90, 35, '', '7' ), array( $partida['cantidad'], $partida['cabezas'], $partida['dias'], $partida['precio_unitario_centimos'], $partida['modo_calculo'], $partida['especie'] ), 'fórmula del presupuesto y especie saneadas' );
 
 // --- escenarios de la calculadora: seguimiento del proyecto ---
 $escenario = entidad( 'escenario_transformacion', array( 'nombre' => 'Despiece y venta directa' ), array( 'proyecto_uid' => 'p1' ) );

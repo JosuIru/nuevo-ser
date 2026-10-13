@@ -288,7 +288,26 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 			<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $tarea['uid'] ?? '' ); ?>">
 			<input type="hidden" name="szs_peticion_uid" value="<?php echo esc_attr( $peticion_uid ); ?>">
 			<table class="form-table" role="presentation">
-				<tr><th><label for="szs_titulo">Tarea</label></th><td><input type="text" id="szs_titulo" name="szs_titulo" class="regular-text" required value="<?php echo esc_attr( $valores['titulo'] ); ?>"></td></tr>
+				<tr><th><label for="szs_titulo">Tarea</label></th><td><input type="text" id="szs_titulo" name="szs_titulo" class="regular-text" required list="szs_plantillas_tarea" value="<?php echo esc_attr( $valores['titulo'] ); ?>">
+					<datalist id="szs_plantillas_tarea">
+						<?php foreach ( array_keys( SZS_PLANTILLAS_TAREA ) as $plantilla ) : ?>
+							<option value="<?php echo esc_attr( $plantilla ); ?>"></option>
+						<?php endforeach; ?>
+					</datalist>
+					<p class="description">Empieza a escribir para elegir una tarea tipo (alimentación, revisión del vallado, compras…). La periodicidad sugerida se rellena sola si está vacía.</p>
+					<script>
+					( function () {
+						const periodicidades = <?php echo wp_json_encode( SZS_PLANTILLAS_TAREA ); ?>;
+						const titulo = document.getElementById( 'szs_titulo' );
+						titulo.addEventListener( 'change', function () {
+							const dias = periodicidades[ titulo.value ];
+							const repeticion = document.getElementById( 'szs_recurrencia_dias' );
+							if ( dias && repeticion && '' === repeticion.value ) {
+								repeticion.value = dias;
+							}
+						} );
+					} )();
+					</script></td></tr>
 				<tr><th><label for="szs_descripcion">Descripción</label></th><td><textarea id="szs_descripcion" name="szs_descripcion" rows="3" class="large-text"><?php echo esc_textarea( $valores['descripcion'] ); ?></textarea></td></tr>
 				<tr><th><label for="szs_finca_uid">Finca</label></th><td><?php szs_selector( 'szs_finca_uid', $fincas, $valores['finca_uid'], '— Elige —' ); ?></td></tr>
 				<tr><th><label for="szs_punto_uid">Punto (opcional)</label></th><td><?php szs_selector( 'szs_punto_uid', $puntos, $valores['punto_uid'], 'Toda la finca' ); ?></td></tr>

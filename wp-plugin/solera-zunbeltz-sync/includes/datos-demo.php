@@ -230,19 +230,19 @@ function szs_plan_datos_demo( int $ahora_ms, string $lote, array $fincas_existen
 	$registro( $proyecto_huerta, $tester_huerta, $finca_b, 'producto', 180, 20 );
 	$registro( $proyecto_cerrado, $tester_queso, $finca_a, 'paricion', 26, 400 );
 
-	$apunte = static function ( string $proyecto, string $autor, string $uid_finca, string $tipo, string $categoria, string $concepto, int $centimos, int $iva, int $dias, string $asumido_por = 'tester', int $amortizacion = 0 ) use ( $anadir, $uid, $hace, &$n ): void {
-		$anadir( 'apunte', $uid( 'apunte-' . ( ++$n ) ), array( 'finca_uid' => $uid_finca, 'tipo' => $tipo, 'categoria' => $categoria, 'concepto' => $concepto, 'importe_centimos' => $centimos, 'iva_porcentaje' => $iva, 'fecha_ms' => $hace( $dias ), 'notas' => '', 'asumido_por' => $asumido_por, 'es_amortizacion' => $amortizacion, 'fecha_creacion_ms' => $hace( $dias ) ), $autor, $proyecto );
+	$apunte = static function ( string $proyecto, string $autor, string $uid_finca, string $tipo, string $categoria, string $partida, string $concepto, int $centimos, int $iva, int $dias, string $asumido_por = 'tester' ) use ( $anadir, $uid, $hace, &$n ): void {
+		$anadir( 'apunte', $uid( 'apunte-' . ( ++$n ) ), array( 'finca_uid' => $uid_finca, 'tipo' => $tipo, 'categoria' => $categoria, 'partida' => $partida, 'concepto' => $concepto, 'importe_centimos' => $centimos, 'iva_porcentaje' => $iva, 'fecha_ms' => $hace( $dias ), 'notas' => '', 'asumido_por' => $asumido_por, 'es_amortizacion' => 'amortizacion' === $categoria ? 1 : 0, 'fecha_creacion_ms' => $hace( $dias ) ), $autor, $proyecto );
 	};
-	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'gasto', 'alimentacion', 'Pienso y forraje', 42000, 10, 115 );
-	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'gasto', 'sanidad', 'Veterinario', 9000, 21, 80 );
-	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'gasto', 'insumos', 'Cuajo y sal', 6000, 21, 50, 'zunbeltz' );
-	$apunte( $proyecto_queso, $coordinacion, $finca_a, 'gasto', 'infraestructuras', 'Amortización de la sala de quesería', 25000, 0, 30, 'zunbeltz', 1 );
-	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'ingreso', 'ayuda', 'Prima PAC / ecorégimen', 28000, 0, 90 );
-	$apunte( $proyecto_huerta, $tester_huerta, $finca_b, 'gasto', 'insumos', 'Semillas y plantel', 31000, 10, 85 );
-	$apunte( $proyecto_huerta, $tester_huerta, $finca_b, 'gasto', 'maquinaria', 'Gasoil de la motoazada', 9500, 21, 40 );
-	$apunte( $proyecto_huerta, $tester_huerta, $finca_b, 'gasto', 'mano_obra', 'Jornales de recogida', 42000, 0, 15 );
-	$apunte( $proyecto_cerrado, $tester_queso, $finca_a, 'gasto', 'ganado', 'Compra de ovejas', 180000, 10, 540 );
-	$apunte( $proyecto_cerrado, $tester_queso, $finca_a, 'ingreso', 'venta', 'Venta de corderos a carnicería', 265000, 10, 220 );
+	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'gasto', 'directos', 'compra_alimento', 'Pienso y forraje', 42000, 10, 115 );
+	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'gasto', 'directos', 'vacunas_veterinario', 'Veterinario', 9000, 21, 80 );
+	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'gasto', 'transformacion', 'obrador', 'Cuajo y sal', 6000, 21, 50, 'zunbeltz' );
+	$apunte( $proyecto_queso, $coordinacion, $finca_a, 'gasto', 'amortizacion', 'instalaciones', 'Amortización de la sala de quesería', 25000, 0, 30, 'zunbeltz' );
+	$apunte( $proyecto_queso, $tester_queso, $finca_a, 'ingreso', 'ayuda', '', 'Prima PAC / ecorégimen', 28000, 0, 90 );
+	$apunte( $proyecto_huerta, $tester_huerta, $finca_b, 'gasto', 'directos', 'semillas_pastizales', 'Semillas y plantel', 31000, 10, 85 );
+	$apunte( $proyecto_huerta, $tester_huerta, $finca_b, 'gasto', 'maquinaria', 'combustibles', 'Gasoil de la motoazada', 9500, 21, 40 );
+	$apunte( $proyecto_huerta, $tester_huerta, $finca_b, 'gasto', 'mano_obra', 'asalariada', 'Jornales de recogida', 42000, 0, 15, 'zunbeltz' );
+	$apunte( $proyecto_cerrado, $tester_queso, $finca_a, 'gasto', 'directos', 'animales', 'Compra de ovejas', 180000, 10, 540 );
+	$apunte( $proyecto_cerrado, $tester_queso, $finca_a, 'ingreso', 'venta', '', 'Venta de corderos a carnicería', 265000, 10, 220 );
 
 	$venta = static function ( string $proyecto, string $autor, string $producto, string $canal, float $cantidad, string $unidad, int $precio, int $iva, int $dias ) use ( $anadir, $uid, $hace, &$n ): void {
 		$anadir( 'venta', $uid( 'venta-' . ( ++$n ) ), array( 'fecha_ms' => $hace( $dias ), 'producto' => $producto, 'canal' => $canal, 'cantidad' => $cantidad, 'unidad' => $unidad, 'precio_unitario_centimos' => $precio, 'ingreso_centimos' => (int) round( $cantidad * $precio ), 'iva_porcentaje' => $iva, 'notas' => '', 'fecha_creacion_ms' => $hace( $dias ) ), $autor, $proyecto );
@@ -262,13 +262,13 @@ function szs_plan_datos_demo( int $ahora_ms, string $lote, array $fincas_existen
 
 	// Convenio: presupuesto, fianza, acompañamiento, incidencias (coordinación).
 	foreach ( array(
-		array( $proyecto_queso, 'alimentacion', 'Pienso y forraje del año', 'tester', 0, 90000 ),
-		array( $proyecto_queso, 'sanidad', 'Saneamiento y veterinario', 'tester', 0, 20000 ),
-		array( $proyecto_queso, 'infraestructuras', 'Sala de quesería', 'zunbeltz', 1, 60000 ),
-		array( $proyecto_huerta, 'insumos', 'Semillas, plantel y abono', 'tester', 0, 50000 ),
-		array( $proyecto_huerta, 'maquinaria', 'Motoazada y combustible', 'zunbeltz', 1, 30000 ),
-	) as list( $proyecto, $categoria, $concepto, $asumido_por, $amortizacion, $centimos ) ) {
-		$anadir( 'partida_presupuesto', $uid( 'partida-' . ( ++$n ) ), array( 'categoria' => $categoria, 'concepto' => $concepto, 'asumido_por' => $asumido_por, 'es_amortizacion' => $amortizacion, 'importe_centimos' => $centimos, 'notas' => '' ), $coordinacion, $proyecto );
+		array( $proyecto_queso, 'directos', 'compra_alimento', 'Pienso y forraje del año', 'tester', 90000 ),
+		array( $proyecto_queso, 'directos', 'vacunas_veterinario', 'Saneamiento y veterinario', 'tester', 20000 ),
+		array( $proyecto_queso, 'amortizacion', 'instalaciones', 'Sala de quesería', 'zunbeltz', 60000 ),
+		array( $proyecto_huerta, 'directos', 'semillas_pastizales', 'Semillas, plantel y abono', 'zunbeltz', 50000 ),
+		array( $proyecto_huerta, 'maquinaria', 'combustibles', 'Motoazada y combustible', 'zunbeltz', 30000 ),
+	) as list( $proyecto, $categoria, $partida, $concepto, $asumido_por, $centimos ) ) {
+		$anadir( 'partida_presupuesto', $uid( 'partida-' . ( ++$n ) ), array( 'categoria' => $categoria, 'partida' => $partida, 'concepto' => $concepto, 'asumido_por' => $asumido_por, 'es_amortizacion' => 'amortizacion' === $categoria ? 1 : 0, 'importe_centimos' => $centimos, 'notas' => '' ), $coordinacion, $proyecto );
 	}
 	foreach ( array(
 		array( $proyecto_queso, 'deposito', 50000, 150 ),

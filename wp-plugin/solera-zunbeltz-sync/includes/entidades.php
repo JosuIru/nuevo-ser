@@ -95,7 +95,7 @@ function szs_normalizar_entidad( array $entidad ): array {
  * `categoria: []`, y el panel fallaría con un error de PHP al pintarlo.
  */
 function szs_sanear_datos_entidad( array $datos ): array {
-	$campos_texto = array( 'categoria', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion' );
+	$campos_texto = array( 'categoria', 'partida', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion' );
 	foreach ( $datos as $clave => $valor ) {
 		if ( null === $valor ) {
 			continue;

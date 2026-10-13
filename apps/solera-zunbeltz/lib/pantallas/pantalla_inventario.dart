@@ -106,7 +106,13 @@ class _PantallaInventarioState extends State<PantallaInventario> {
                         Card(
                           child: ListTile(
                             title: Text(bien.nombre),
-                            subtitle: Text(resumenBien(textos, bien)),
+                            subtitle: Text([
+                              if (bien.especie.isNotEmpty)
+                                buscarOpcion(especiesGanado, bien.especie)
+                                        ?.etiqueta(idioma) ??
+                                    bien.especie,
+                              resumenBien(textos, bien),
+                            ].join(' · ')),
                             trailing: Text(
                                 '${eurosDesdeCentimos(bien.totalCentimos)} €'),
                             onTap: _gestiona ? () => _editar(bien) : null,
@@ -160,6 +166,7 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
       TextEditingController(text: '${widget.bien?.vidaUtilMeses ?? 72}');
   late final _notas = TextEditingController(text: widget.bien?.notas ?? '');
   late String _grupo = widget.bien?.grupo ?? grupoBienPorDefecto;
+  late String _especie = widget.bien?.especie ?? '';
   late int _iva = widget.bien?.ivaPorcentaje ?? 21;
   bool _guardando = false;
 
@@ -176,6 +183,7 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
         id: widget.bien?.id,
         nombre: _nombre.text.trim(),
         grupo: _grupo,
+        especie: _especie,
         precioUnidadCentimos: centimosDesdeTexto(_precio.text) ?? 0,
         unidades: leerNumero(_unidades.text) ?? 1,
         ivaPorcentaje: _iva,
@@ -241,6 +249,22 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
                       value: opcion.codigo, child: Text(opcion.etiqueta(idioma))),
               ],
               onChanged: (valor) => setState(() => _grupo = valor ?? _grupo),
+            ),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String>(
+              isExpanded: true,
+              initialValue: buscarOpcion(especiesGanado, _especie) == null
+                  ? ''
+                  : _especie,
+              decoration: InputDecoration(labelText: textos.invEspecie),
+              items: [
+                DropdownMenuItem(value: '', child: Text(textos.invEspecieComun)),
+                for (final especie in especiesGanado)
+                  DropdownMenuItem(
+                      value: especie.codigo,
+                      child: Text(especie.etiqueta(idioma))),
+              ],
+              onChanged: (valor) => setState(() => _especie = valor ?? ''),
             ),
             const SizedBox(height: 12),
             Row(children: [

@@ -17,6 +17,7 @@ class BienAmortizable {
     this.id,
     this.nombre = '',
     this.grupo = grupoBienPorDefecto,
+    this.especie = '',
     this.precioUnidadCentimos = 0,
     this.unidades = 1,
     this.ivaPorcentaje = 21,
@@ -30,6 +31,10 @@ class BienAmortizable {
   /// Partida del bloque VI: `instalaciones`, `material_ganadero` o
   /// `adecuaciones` (ver `partidasGasto['amortizacion']`).
   final String grupo;
+
+  /// Código de `especiesGanado` si el material es de una especie (manga
+  /// de ovino, tolva de pollitos); vacío si sirve para cualquiera.
+  final String especie;
   final int precioUnidadCentimos;
   final double unidades;
 
@@ -51,6 +56,7 @@ class BienAmortizable {
         'id': id,
         'nombre': nombre,
         'grupo': grupo,
+        'especie': especie,
         'precio_unidad_centimos': precioUnidadCentimos,
         'unidades': unidades,
         'iva_porcentaje': ivaPorcentaje,
@@ -63,6 +69,7 @@ class BienAmortizable {
         id: mapa['id'] as int?,
         nombre: (mapa['nombre'] as String?) ?? '',
         grupo: (mapa['grupo'] as String?) ?? grupoBienPorDefecto,
+        especie: (mapa['especie'] as String?) ?? '',
         precioUnidadCentimos: (mapa['precio_unidad_centimos'] as num?)?.toInt() ?? 0,
         unidades: (mapa['unidades'] as num?)?.toDouble() ?? 1,
         ivaPorcentaje: (mapa['iva_porcentaje'] as num?)?.toInt() ?? 21,

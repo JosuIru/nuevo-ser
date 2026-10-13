@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import '../../datos/base_datos.dart';
 import '../../estado/sesion_espacio.dart';
 import '../../l10n/app_localizations.dart';
+import '../../modelos/apunte_economico.dart';
 import '../../modelos/constantes.dart';
+import '../../modelos/plantillas_tarea.dart';
+import '../../modelos/proyecto_test.dart';
 import '../../modelos/tarea_mantenimiento.dart';
 import '../../utiles/estilos_tarea.dart';
 import '../../estado/datos_notificador.dart';
+import '../nuevo_apunte.dart';
 
-enum _AccionTarea { asignarme, soltar }
+enum _AccionTarea { asignarme, soltar, apuntarGasto }
 
 /// Hoja con lo que la persona conectada puede hacer con una tarea según su
 /// rol (ver `PoliticaTareas`): cambiar el estado, cogérsela o soltarla.
@@ -22,8 +26,12 @@ Future<bool> mostrarAccionesTarea(
   final puedeCogerse = politica.puedeCogerse(tarea);
   final puedeSoltar = politica.puedeSoltar(tarea);
   final id = tarea.id;
+  // Una compra con coste se puede llevar a las cuentas de un proyecto.
+  final puedeApuntarGasto = (tarea.costeCentimos ?? 0) > 0 &&
+      politicaEspacioActual.puedeGestionarProyectos;
 
-  if (id == null || !(puedeEjecutar || puedeCogerse || puedeSoltar)) {
+  if (id == null ||
+      !(puedeEjecutar || puedeCogerse || puedeSoltar || puedeApuntarGasto)) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(textos.tareaSinPermiso)));
     return false;
@@ -71,6 +79,13 @@ Future<bool> mostrarAccionesTarea(
               title: Text(textos.tareaSoltar),
               onTap: () => Navigator.pop(contextoHoja, _AccionTarea.soltar),
             ),
+          if (puedeApuntarGasto)
+            ListTile(
+              leading: const Icon(Icons.euro_outlined),
+              title: Text(textos.tareaApuntarGasto),
+              onTap: () =>
+                  Navigator.pop(contextoHoja, _AccionTarea.apuntarGasto),
+            ),
         ],
       ),
     ),
@@ -99,6 +114,57 @@ Future<bool> mostrarAccionesTarea(
       await bd.actualizarTarea(id, {'responsable_uid': '', 'responsable': ''});
       avisarCambioDatos();
       return true;
+    case _AccionTarea.apuntarGasto:
+      if (context.mounted) await _apuntarComoGasto(context, tarea);
+      return false;
   }
   return false;
+}
+
+/// Lleva el coste de la tarea a las cuentas de un proyecto abierto, con
+/// el bloque y la partida de la tarea tipo si salió de una compra.
+Future<void> _apuntarComoGasto(
+    BuildContext context, TareaMantenimiento tarea) async {
+  final textos = AppLocalizations.of(context);
+  final proyectos = (await BaseDatosSoleraZunbeltz().listarProyectos())
+      .where((proyecto) => !proyecto.cerrado && proyecto.id != null)
+      .toList();
+  if (!context.mounted) return;
+  if (proyectos.isEmpty) {
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(textos.tareaSinProyectosAbiertos)));
+    return;
+  }
+  final proyecto = await showDialog<ProyectoTest>(
+    context: context,
+    builder: (contexto) => SimpleDialog(
+      title: Text(textos.tareaElegirProyecto),
+      children: [
+        for (final proyecto in proyectos)
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(contexto, proyecto),
+            child: Text(proyecto.persona.isEmpty
+                ? proyecto.nombre
+                : '${proyecto.nombre} · ${proyecto.persona}'),
+          ),
+      ],
+    ),
+  );
+  if (proyecto == null || !context.mounted) return;
+  final (bloque, partida) = gastoSugeridoParaTarea(tarea.titulo);
+  await Navigator.of(context).push(MaterialPageRoute(
+    builder: (_) => NuevoApunte(
+      proyectoId: proyecto.id!,
+      fincaId: proyecto.fincaId ?? tarea.fincaId,
+      gastoInicial: ApunteEconomico(
+        fincaId: proyecto.fincaId ?? tarea.fincaId,
+        tipo: 'gasto',
+        categoria: bloque,
+        partida: partida,
+        concepto: tarea.titulo,
+        importeCentimos: tarea.costeCentimos ?? 0,
+        fechaMs: tarea.actualizadoMs,
+      ),
+    ),
+  ));
 }

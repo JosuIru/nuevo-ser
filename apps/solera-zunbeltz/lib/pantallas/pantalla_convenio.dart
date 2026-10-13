@@ -330,6 +330,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
                 buscarOpcion(asumidoPorOpciones, partida.asumidoPor)
                         ?.etiqueta(_idioma) ??
                     '',
+                if (formulaPartida(partida) case final formula?) formula,
               ].join(' · ')),
               trailing: Text(_euros(partida.importeCentimos)),
               onLongPress: !_gestiona || partida.id == null
@@ -355,6 +356,27 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     final partida = TextEditingController();
     final concepto = TextEditingController();
     final importe = TextEditingController();
+    var modo = modoPartidaManual;
+    final cantidad = TextEditingController();
+    final cabezas = TextEditingController();
+    final dias = TextEditingController();
+    final precio = TextEditingController();
+    int? calculado() => importeCalculadoPartida(
+          modo: modo,
+          cantidad: leerNumero(cantidad.text) ?? 0,
+          cabezas: leerNumero(cabezas.text) ?? 0,
+          dias: leerNumero(dias.text) ?? 0,
+          precioUnitarioCentimos: centimosDesdeTexto(precio.text) ?? 0,
+        );
+    TextField campoNumero(TextEditingController controlador, String etiqueta,
+            void Function(VoidCallback) actualizar,
+            {String? sufijo}) =>
+        TextField(
+          controller: controlador,
+          keyboardType: const TextInputType.numberWithOptions(decimal: true),
+          decoration: InputDecoration(labelText: etiqueta, suffixText: sufijo),
+          onChanged: (_) => actualizar(() {}),
+        );
     final aceptado = await _dialogo(
       textos.presupuestoNuevaPartida,
       const [],
@@ -387,10 +409,44 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
         TextField(
             controller: concepto,
             decoration: InputDecoration(labelText: textos.convenioConcepto)),
-        TextField(
-            controller: importe,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(labelText: textos.convenioImporte)),
+        DropdownButtonFormField<String>(
+          isExpanded: true,
+          initialValue: modo,
+          decoration: InputDecoration(labelText: textos.presModo),
+          items: [
+            DropdownMenuItem(
+                value: modoPartidaManual, child: Text(textos.presModoManual)),
+            DropdownMenuItem(
+                value: modoPartidaUnidades,
+                child: Text(textos.presModoUnidades)),
+            DropdownMenuItem(
+                value: modoPartidaRacion, child: Text(textos.presModoRacion)),
+          ],
+          onChanged: (valor) => actualizar(() => modo = valor ?? modo),
+        ),
+        if (modo == modoPartidaManual)
+          TextField(
+              controller: importe,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              decoration: InputDecoration(labelText: textos.convenioImporte))
+        else ...[
+          if (modo == modoPartidaUnidades)
+            campoNumero(cantidad, textos.presCantidad, actualizar)
+          else ...[
+            campoNumero(cantidad, textos.presRacion, actualizar),
+            campoNumero(cabezas, textos.presCabezas, actualizar),
+            campoNumero(dias, textos.presDias, actualizar),
+          ],
+          campoNumero(precio, textos.presPrecioUnitario, actualizar,
+              sufijo: '€'),
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(
+                '${textos.presImporteCalculado}: ${_euros(calculado() ?? 0)}',
+                style: Theme.of(context).textTheme.titleSmall),
+          ),
+        ],
         const SizedBox(height: 8),
         SegmentedButton<String>(
           segments: [
@@ -405,8 +461,13 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       ],
     );
     if (!aceptado) return;
-    final importeCentimos = _importeObligatorio(importe.text, textos);
-    if (importeCentimos == null) return;
+    final importeCentimos = modo == modoPartidaManual
+        ? _importeObligatorio(importe.text, textos)
+        : calculado();
+    if (importeCentimos == null || importeCentimos <= 0) {
+      if (modo != modoPartidaManual) _avisar(textos.apuImporteObligatorio);
+      return;
+    }
     await _bd.guardarPartidaPresupuesto(PartidaPresupuesto(
       proyectoId: _proyectoId,
       categoria: categoria,
@@ -414,6 +475,11 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       concepto: concepto.text.trim(),
       asumidoPor: asumidoPor,
       importeCentimos: importeCentimos,
+      modoCalculo: modo,
+      cantidad: leerNumero(cantidad.text) ?? 0,
+      cabezas: leerNumero(cabezas.text) ?? 0,
+      dias: leerNumero(dias.text) ?? 0,
+      precioUnitarioCentimos: centimosDesdeTexto(precio.text) ?? 0,
     ));
     await _cargar();
   }
@@ -487,8 +553,20 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
 
   Future<void> _nuevoUsoBien() async {
     final textos = AppLocalizations.of(context);
+    // Primero lo de la especie del proyecto, luego lo común, luego el resto.
+    int orden(BienAmortizable bien) => _proyecto.especie.isNotEmpty &&
+            bien.especie == _proyecto.especie
+        ? 0
+        : bien.especie.isEmpty
+            ? 1
+            : 2;
     final bienes = _bienesPorId.values.toList()
-      ..sort((a, b) => a.nombre.toLowerCase().compareTo(b.nombre.toLowerCase()));
+      ..sort((a, b) {
+        final porEspecie = orden(a).compareTo(orden(b));
+        return porEspecie != 0
+            ? porEspecie
+            : a.nombre.toLowerCase().compareTo(b.nombre.toLowerCase());
+      });
     if (bienes.isEmpty) {
       _avisar(textos.amortSinBienes);
       await _abrirInventario();
@@ -957,4 +1035,22 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     );
     return aceptado == true;
   }
+}
+
+/// «0,15 × 300 × 90 × 0,35 €» para una partida con fórmula; `null` si se
+/// puso el importe a mano.
+String? formulaPartida(PartidaPresupuesto partida) {
+  String numero(double valor) => valor == valor.roundToDouble()
+      ? valor.toStringAsFixed(0)
+      : valor
+          .toStringAsFixed(3)
+          .replaceAll(RegExp(r'0+$'), '')
+          .replaceAll('.', ',');
+  final precio = '${eurosDesdeCentimos(partida.precioUnitarioCentimos)} €';
+  return switch (partida.modoCalculo) {
+    modoPartidaUnidades => '${numero(partida.cantidad)} × $precio',
+    modoPartidaRacion =>
+      '${numero(partida.cantidad)} × ${numero(partida.cabezas)} × ${numero(partida.dias)} × $precio',
+    _ => null,
+  };
 }

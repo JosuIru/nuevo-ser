@@ -1478,6 +1478,126 @@ abstract class AppLocalizations {
   /// **'El proyecto no tiene fecha de inicio: pon las fechas del proyecto o indica los meses de cada bien.'**
   String get amortSinFechas;
 
+  /// No description provided for @plantillaElegir.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir una tarea tipo'**
+  String get plantillaElegir;
+
+  /// No description provided for @plantillaOtra.
+  ///
+  /// In es, this message translates to:
+  /// **'Otra (la escribo yo)'**
+  String get plantillaOtra;
+
+  /// No description provided for @plantillaAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Las tareas habituales de Zunbeltz con ganado e instalaciones. La periodicidad es una sugerencia: cámbiala si no encaja.'**
+  String get plantillaAviso;
+
+  /// No description provided for @plantillaParaEstePunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Para este punto'**
+  String get plantillaParaEstePunto;
+
+  /// No description provided for @tareaApuntarGasto.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar como gasto de un proyecto'**
+  String get tareaApuntarGasto;
+
+  /// No description provided for @tareaSinProyectosAbiertos.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay proyectos abiertos donde apuntarlo.'**
+  String get tareaSinProyectosAbiertos;
+
+  /// No description provided for @tareaElegirProyecto.
+  ///
+  /// In es, this message translates to:
+  /// **'¿En qué proyecto?'**
+  String get tareaElegirProyecto;
+
+  /// No description provided for @proyectoEspecie.
+  ///
+  /// In es, this message translates to:
+  /// **'Especie'**
+  String get proyectoEspecie;
+
+  /// No description provided for @invEspecie.
+  ///
+  /// In es, this message translates to:
+  /// **'Especie'**
+  String get invEspecie;
+
+  /// No description provided for @invEspecieComun.
+  ///
+  /// In es, this message translates to:
+  /// **'Cualquiera (común)'**
+  String get invEspecieComun;
+
+  /// No description provided for @presModo.
+  ///
+  /// In es, this message translates to:
+  /// **'Cómo se calcula'**
+  String get presModo;
+
+  /// No description provided for @presModoManual.
+  ///
+  /// In es, this message translates to:
+  /// **'Importe a mano'**
+  String get presModoManual;
+
+  /// No description provided for @presModoUnidades.
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad × precio'**
+  String get presModoUnidades;
+
+  /// No description provided for @presModoRacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Ración × cabezas × días × precio'**
+  String get presModoRacion;
+
+  /// No description provided for @presCantidad.
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad (km, cabezas, unidades…)'**
+  String get presCantidad;
+
+  /// No description provided for @presRacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Ración por animal y día (kg)'**
+  String get presRacion;
+
+  /// No description provided for @presCabezas.
+  ///
+  /// In es, this message translates to:
+  /// **'Cabezas'**
+  String get presCabezas;
+
+  /// No description provided for @presDias.
+  ///
+  /// In es, this message translates to:
+  /// **'Días'**
+  String get presDias;
+
+  /// No description provided for @presPrecioUnitario.
+  ///
+  /// In es, this message translates to:
+  /// **'Precio por unidad'**
+  String get presPrecioUnitario;
+
+  /// No description provided for @presImporteCalculado.
+  ///
+  /// In es, this message translates to:
+  /// **'Importe calculado'**
+  String get presImporteCalculado;
+
   /// No description provided for @apuIva.
   ///
   /// In es, this message translates to:
@@ -1685,7 +1805,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaTareasB.
   ///
   /// In es, this message translates to:
-  /// **'1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.'**
+  /// **'1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.'**
   String get ayudaTareasB;
 
   /// No description provided for @ayudaRecurrentesT.
@@ -3419,7 +3539,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaConvenioB.
   ///
   /// In es, this message translates to:
-  /// **'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.'**
+  /// **'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado. Cada partida se puede poner a mano o calcular como en la hoja: cantidad × precio, o ración por animal y día × cabezas × días × precio.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.'**
   String get ayudaConvenioB;
 
   /// No description provided for @ayudaNotificacionesT.

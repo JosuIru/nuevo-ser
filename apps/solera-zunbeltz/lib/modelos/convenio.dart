@@ -16,6 +16,11 @@ class PartidaPresupuesto {
     this.asumidoPor = asumidoPorTester,
     this.importeCentimos = 0,
     this.notas = '',
+    this.modoCalculo = modoPartidaManual,
+    this.cantidad = 0,
+    this.cabezas = 0,
+    this.dias = 0,
+    this.precioUnitarioCentimos = 0,
   });
 
   final int? id;
@@ -30,6 +35,15 @@ class PartidaPresupuesto {
   final int importeCentimos;
 
   bool get esAmortizacion => categoria == categoriaAmortizacion;
+
+  /// Cómo sale el importe, como en la hoja de seguimiento de Zunbeltz:
+  /// a mano, «cantidad × precio» (km × €/km, cabezas × €/cabeza) o
+  /// «ración × cabezas × días × precio» (kg por animal y día).
+  final String modoCalculo;
+  final double cantidad;
+  final double cabezas;
+  final double dias;
+  final int precioUnitarioCentimos;
   final String notas;
 
   Map<String, Object?> toMap() => {
@@ -42,6 +56,11 @@ class PartidaPresupuesto {
         'es_amortizacion': esAmortizacion ? 1 : 0,
         'importe_centimos': importeCentimos,
         'notas': notas,
+        'modo_calculo': modoCalculo,
+        'cantidad': cantidad,
+        'cabezas': cabezas,
+        'dias': dias,
+        'precio_unitario_centimos': precioUnitarioCentimos,
       };
 
   factory PartidaPresupuesto.fromMap(Map<String, Object?> mapa) {
@@ -58,9 +77,36 @@ class PartidaPresupuesto {
       asumidoPor: (mapa['asumido_por'] as String?) ?? asumidoPorTester,
       importeCentimos: (mapa['importe_centimos'] as int?) ?? 0,
       notas: (mapa['notas'] as String?) ?? '',
+      modoCalculo: (mapa['modo_calculo'] as String?) ?? modoPartidaManual,
+      cantidad: (mapa['cantidad'] as num?)?.toDouble() ?? 0,
+      cabezas: (mapa['cabezas'] as num?)?.toDouble() ?? 0,
+      dias: (mapa['dias'] as num?)?.toDouble() ?? 0,
+      precioUnitarioCentimos:
+          (mapa['precio_unitario_centimos'] as num?)?.toInt() ?? 0,
     );
   }
 }
+
+const String modoPartidaManual = '';
+const String modoPartidaUnidades = 'unidades';
+const String modoPartidaRacion = 'racion';
+
+/// Importe de una partida con fórmula: cantidad × precio, o ración ×
+/// cabezas × días × precio (p. ej. 0,15 kg × 300 pollos × 90 días ×
+/// 0,35 €/kg = 1.417,50 €). `null` en modo manual.
+int? importeCalculadoPartida({
+  required String modo,
+  required double cantidad,
+  required double cabezas,
+  required double dias,
+  required int precioUnitarioCentimos,
+}) =>
+    switch (modo) {
+      modoPartidaUnidades => (cantidad * precioUnitarioCentimos).round(),
+      modoPartidaRacion =>
+        (cantidad * cabezas * dias * precioUnitarioCentimos).round(),
+      _ => null,
+    };
 
 /// Depósito, devolución o retención de la fianza.
 class MovimientoFianza {

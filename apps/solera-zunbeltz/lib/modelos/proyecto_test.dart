@@ -11,6 +11,7 @@ class ProyectoTest {
     this.nombre = '',
     this.persona = '',
     this.actividad = '',
+    this.especie = '',
     this.fincaId,
     this.fechaInicioMs,
     this.fechaFinMs,
@@ -35,6 +36,9 @@ class ProyectoTest {
 
   /// Actividad o vertical productiva (p. ej. «ovino de leche», «huerta»).
   final String actividad;
+
+  /// Código de `especiesGanado`; vacío si no se ha indicado.
+  final String especie;
 
   /// Finca de apoyo donde se desarrolla (opcional).
   final int? fincaId;
@@ -69,6 +73,7 @@ class ProyectoTest {
         'nombre': nombre,
         'persona': persona,
         'actividad': actividad,
+        'especie': especie,
         'finca_id': fincaId,
         'fecha_inicio_ms': fechaInicioMs,
         'fecha_fin_ms': fechaFinMs,
@@ -88,6 +93,7 @@ class ProyectoTest {
         nombre: (mapa['nombre'] as String?) ?? '',
         persona: (mapa['persona'] as String?) ?? '',
         actividad: (mapa['actividad'] as String?) ?? '',
+        especie: (mapa['especie'] as String?) ?? '',
         fincaId: mapa['finca_id'] as int?,
         fechaInicioMs: mapa['fecha_inicio_ms'] as int?,
         fechaFinMs: mapa['fecha_fin_ms'] as int?,

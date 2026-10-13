@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../datos/base_datos.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
+import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/proyecto_test.dart';
 import 'widgets/cuerpo_responsivo.dart';
@@ -43,6 +44,7 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
   int? _fincaId;
   DateTime? _inicio;
   String _personaUid = '';
+  String _especie = '';
 
   @override
   void initState() {
@@ -52,6 +54,7 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
     _nombre.text = proyecto.nombre;
     _persona.text = proyecto.persona;
     _actividad.text = proyecto.actividad;
+    _especie = proyecto.especie;
     _notas.text = proyecto.notas;
     _fincaId = proyecto.fincaId;
     _personaUid = proyecto.personaUid;
@@ -95,6 +98,7 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
         'persona': _persona.text.trim(),
         'persona_uid': _personaUid,
         'actividad': _actividad.text.trim(),
+        'especie': _especie,
         'finca_id': _fincaId,
         'fecha_inicio_ms': _inicio?.millisecondsSinceEpoch,
         'notas': _notas.text.trim(),
@@ -105,6 +109,7 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
         persona: _persona.text.trim(),
         personaUid: _personaUid,
         actividad: _actividad.text.trim(),
+        especie: _especie,
         fincaId: _fincaId,
         fechaInicioMs: _inicio?.millisecondsSinceEpoch,
         notas: _notas.text.trim(),
@@ -174,6 +179,22 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
                 controller: _actividad,
                 decoration:
                     InputDecoration(labelText: textos.proyectoActividad)),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String>(
+              isExpanded: true,
+              initialValue: buscarOpcion(especiesGanado, _especie) == null
+                  ? ''
+                  : _especie,
+              decoration: InputDecoration(labelText: textos.proyectoEspecie),
+              items: [
+                const DropdownMenuItem(value: '', child: Text('—')),
+                for (final especie in especiesGanado)
+                  DropdownMenuItem(
+                      value: especie.codigo,
+                      child: Text(especie.etiqueta(idioma))),
+              ],
+              onChanged: (valor) => setState(() => _especie = valor ?? ''),
+            ),
             const SizedBox(height: 12),
             DropdownButtonFormField<int?>(
               // Una finca que ya no está (borrada al sincronizar) no puede

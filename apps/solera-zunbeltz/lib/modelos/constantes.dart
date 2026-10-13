@@ -42,10 +42,35 @@ const List<OpcionCatalogo> tiposPunto = [
   OpcionCatalogo('corral_movil', 'Corral móvil', 'Korta mugikorra'),
   OpcionCatalogo(
       'deposito_movil', 'Bidón / depósito portátil', 'Ur-biltegi eramangarria'),
+  // Del inventario de Zunbeltz (2026-10-13).
+  OpcionCatalogo('aprisco', 'Aprisco', 'Artegia'),
+  OpcionCatalogo('placas_solares', 'Placas solares y baterías', 'Eguzki-plakak eta bateriak'),
+  OpcionCatalogo('vestuario', 'Caseta / vestuario', 'Etxola / aldagela'),
+  OpcionCatalogo('bebedero_movil', 'Bebedero móvil', 'Edaska mugikorra'),
+  OpcionCatalogo('pastor_electrico', 'Pastor eléctrico', 'Artzain elektrikoa'),
+  OpcionCatalogo('isotermo', 'Isotermo / cámara de frío', 'Isotermoa / hotz-ganbera'),
+  OpcionCatalogo('molino', 'Molino', 'Errota'),
 ];
 
 /// Tipos de punto que se mueven de sitio (corrales, bidones…).
-const Set<String> tiposPuntoMoviles = {'corral_movil', 'deposito_movil'};
+const Set<String> tiposPuntoMoviles = {
+  'corral_movil',
+  'deposito_movil',
+  'bebedero_movil',
+  'pastor_electrico',
+};
+
+/// Especie del proyecto o del material ganadero. La hoja de amortizaciones
+/// de Zunbeltz agrupa el material por especie y ya hay tests avícolas.
+const List<OpcionCatalogo> especiesGanado = [
+  OpcionCatalogo('vacuno', 'Vacuno', 'Behiak'),
+  OpcionCatalogo('ovino', 'Ovino', 'Ardiak'),
+  OpcionCatalogo('caprino', 'Caprino', 'Ahuntzak'),
+  OpcionCatalogo('porcino', 'Porcino', 'Txerriak'),
+  OpcionCatalogo('aves', 'Aves', 'Hegaztiak'),
+  OpcionCatalogo('equino', 'Equino', 'Zaldiak'),
+  OpcionCatalogo('varias', 'Varias / sin ganado', 'Hainbat / abererik gabe'),
+];
 
 /// Estado de conservación de un punto de infraestructura.
 const List<OpcionCatalogo> estadosPunto = [
@@ -84,7 +109,7 @@ const List<OpcionCatalogo> estadosTarea = [
 
 /// Periodicidad de una tarea recurrente (rellenar comederos, revisar
 /// vallados…), en días. `null` = tarea puntual, la opción por defecto.
-const List<int?> recurrenciasTarea = [null, 1, 7, 15, 30, 90];
+const List<int?> recurrenciasTarea = [null, 1, 7, 14, 15, 30, 90, 180, 365];
 
 /// Etiqueta bilingüe de una periodicidad de tarea.
 String etiquetaRecurrencia(int? dias, String idioma) {
@@ -94,12 +119,18 @@ String etiquetaRecurrencia(int? dias, String idioma) {
       return idioma == 'eu' ? 'Egunero' : 'Diaria';
     case 7:
       return idioma == 'eu' ? 'Astero' : 'Semanal';
+    case 14:
+      return idioma == 'eu' ? '2 astero' : 'Cada 2 semanas';
     case 15:
       return idioma == 'eu' ? '15 egunero' : 'Quincenal';
     case 30:
       return idioma == 'eu' ? 'Hilero' : 'Mensual';
     case 90:
       return idioma == 'eu' ? 'Hiruhilero' : 'Trimestral';
+    case 180:
+      return idioma == 'eu' ? 'Seihilero' : 'Semestral';
+    case 365:
+      return idioma == 'eu' ? 'Urtero' : 'Anual';
     default:
       return idioma == 'eu' ? '$dias egunero' : 'Cada $dias días';
   }

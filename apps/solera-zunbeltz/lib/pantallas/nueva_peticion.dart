@@ -6,6 +6,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/finca.dart';
 import '../modelos/peticion_tarea.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/selector_plantilla_tarea.dart';
 import 'widgets/relleno_seguro.dart';
 
 /// Pedir una tarea a coordinación: lo que alguien ve que hace falta.
@@ -38,11 +39,18 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
   List<Finca> _fincas = const [];
   int? _fincaId;
   bool _urgente = false;
+  String? _tipoPunto;
 
   @override
   void initState() {
     super.initState();
     _fincaId = widget.fincaId;
+    final puntoId = widget.puntoId;
+    if (puntoId != null) {
+      _bd.obtenerPunto(puntoId).then((punto) {
+        if (mounted && punto != null) setState(() => _tipoPunto = punto.tipo);
+      });
+    }
     _bd.listarFincas().then((fincas) {
       if (mounted) setState(() => _fincas = fincas);
     });
@@ -87,9 +95,17 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
         child: ListView(
           padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
           children: [
+            BotonPlantillaTarea(
+              tipoPunto: _tipoPunto,
+              alElegir: (eleccion) {
+                final (plantilla, subtipo) = eleccion;
+                _titulo.text = plantilla.titulo(
+                    Localizations.localeOf(context).languageCode, subtipo);
+              },
+            ),
+            const SizedBox(height: 12),
             TextField(
               controller: _titulo,
-              autofocus: true,
               decoration: InputDecoration(labelText: textos.peticionQue),
             ),
             const SizedBox(height: 12),

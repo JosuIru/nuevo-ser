@@ -739,6 +739,68 @@ class AppLocalizationsEu extends AppLocalizations {
       'Proiektuak ez du hasiera-datarik: jarri proiektuaren datak edo adierazi ondasun bakoitzaren hilabeteak.';
 
   @override
+  String get plantillaElegir => 'Ohiko zeregin bat aukeratu';
+
+  @override
+  String get plantillaOtra => 'Beste bat (nik idatziko dut)';
+
+  @override
+  String get plantillaAviso =>
+      'Zunbeltzeko ohiko zereginak abereekin eta instalazioekin. Maiztasuna iradokizuna da: aldatu ez badator bat.';
+
+  @override
+  String get plantillaParaEstePunto => 'Puntu honetarako';
+
+  @override
+  String get tareaApuntarGasto => 'Proiektu baten gastu gisa apuntatu';
+
+  @override
+  String get tareaSinProyectosAbiertos =>
+      'Ez dago proiektu irekirik non apuntatu.';
+
+  @override
+  String get tareaElegirProyecto => 'Zein proiektutan?';
+
+  @override
+  String get proyectoEspecie => 'Espeziea';
+
+  @override
+  String get invEspecie => 'Espeziea';
+
+  @override
+  String get invEspecieComun => 'Edozein (komuna)';
+
+  @override
+  String get presModo => 'Nola kalkulatzen den';
+
+  @override
+  String get presModoManual => 'Zenbatekoa eskuz';
+
+  @override
+  String get presModoUnidades => 'Kantitatea × prezioa';
+
+  @override
+  String get presModoRacion => 'Errazioa × buruak × egunak × prezioa';
+
+  @override
+  String get presCantidad => 'Kantitatea (km, buruak, unitateak…)';
+
+  @override
+  String get presRacion => 'Errazioa abereko eta eguneko (kg)';
+
+  @override
+  String get presCabezas => 'Buruak';
+
+  @override
+  String get presDias => 'Egunak';
+
+  @override
+  String get presPrecioUnitario => 'Unitateko prezioa';
+
+  @override
+  String get presImporteCalculado => 'Kalkulatutako zenbatekoa';
+
+  @override
   String get apuIva => 'BEZ';
 
   @override
@@ -855,7 +917,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaTareasB =>
-      '1. Ireki puntu edo eremu baten fitxa eta sakatu «Zeregin berria».\n2. Idatzi zer egin behar den. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.\n3. Sakatu Gorde.\n» Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.';
+      '1. Ireki puntu edo eremu baten fitxa eta sakatu «Zeregin berria».\n2. Idatzi zer egin behar den edo sakatu «Ohiko zeregin bat aukeratu»: Zunbeltzeko ohikoak agertzen dira (elikadura, hesiaren berrikuspena, erosketak…) iradokitako maiztasunarekin, eta goian puntu horri dagozkionak. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.\n3. Sakatu Gorde.\n» Zereginak kostua badu, koordinazioak proiektu baten kontuetara eraman dezake zereginetik bertatik: «Proiektu baten gastu gisa apuntatu».\n» Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.';
 
   @override
   String get ayudaRecurrentesT => 'Errepikatzen diren zereginak';
@@ -1905,7 +1967,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta.\n• Amortizazioak: proiektuak erabiltzen dituen inbentarioko ondasunak (artegia, korta mugikorra, askak…). Kuota berez kalkulatzen da testaren hilabeteekin.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.';
+      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta. Partida bakoitza eskuz jar daiteke edo orrian bezala kalkulatu: kantitatea × prezioa, edo abereko eta eguneko errazioa × buruak × egunak × prezioa.\n• Amortizazioak: proiektuak erabiltzen dituen inbentarioko ondasunak (artegia, korta mugikorra, askak…). Kuota berez kalkulatzen da testaren hilabeteekin.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.';
 
   @override
   String get ayudaNotificacionesT => 'Jakinarazpenak';

@@ -9,6 +9,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/selector_plantilla_tarea.dart';
 import 'widgets/relleno_seguro.dart';
 import '../utiles/numeros.dart';
 import '../estado/datos_notificador.dart';
@@ -72,11 +73,31 @@ class _NuevaTareaState extends State<NuevaTarea> {
   /// (`''` = sin asignar); en modo local se escribe en [_responsable].
   String _responsableUid = '';
 
+  /// Tipo del punto al que va la tarea, para sugerir tareas tipo.
+  String? _tipoPunto;
+
   @override
   void initState() {
     super.initState();
     _titulo.text = widget.tituloInicial;
     _descripcion.text = widget.descripcionInicial;
+    final puntoId = widget.puntoId;
+    if (puntoId != null) {
+      _bd.obtenerPunto(puntoId).then((punto) {
+        if (mounted && punto != null) setState(() => _tipoPunto = punto.tipo);
+      });
+    }
+  }
+
+  void _aplicarPlantilla(EleccionPlantilla eleccion) {
+    final (plantilla, subtipo) = eleccion;
+    final idioma = Localizations.localeOf(context).languageCode;
+    setState(() {
+      _titulo.text = plantilla.titulo(idioma, subtipo);
+      _recurrenciaDias = recurrenciasTarea.contains(plantilla.recurrenciaDias)
+          ? plantilla.recurrenciaDias
+          : null;
+    });
   }
 
   @override
@@ -200,6 +221,9 @@ class _NuevaTareaState extends State<NuevaTarea> {
           child: ListView(
         padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
         children: [
+          BotonPlantillaTarea(
+              tipoPunto: _tipoPunto, alElegir: _aplicarPlantilla),
+          const SizedBox(height: 12),
           TextField(
             controller: _titulo,
             decoration: InputDecoration(labelText: textos.tareaTitulo),
@@ -245,6 +269,8 @@ class _NuevaTareaState extends State<NuevaTarea> {
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<int?>(
+            // Cambia al elegir una tarea tipo: la clave lo redibuja.
+            key: ValueKey(_recurrenciaDias),
             initialValue: _recurrenciaDias,
             decoration: InputDecoration(labelText: textos.tareaRecurrencia),
             items: [

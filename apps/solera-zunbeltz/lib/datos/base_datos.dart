@@ -106,7 +106,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 12;
+  static const int versionEsquema = 13;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -122,6 +122,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 10) await aplicarMigracionV10(db);
     if (anterior < 11) await aplicarMigracionV11(db);
     if (anterior < 12) await aplicarMigracionV12(db);
+    if (anterior < 13) await aplicarMigracionV13(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -702,6 +703,24 @@ class BaseDatosSoleraZunbeltz {
     ''');
     for (final tabla in const ['bienes_amortizables', 'usos_bienes']) {
       await db.execute('CREATE UNIQUE INDEX idx_${tabla}_uid ON $tabla(uid)');
+    }
+  }
+
+  /// Migración v12 → v13: especie del proyecto y del material del
+  /// inventario, y partidas de presupuesto con fórmula (cantidad × precio o
+  /// ración × cabezas × días × precio). Aditiva.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV13(Database db) async {
+    for (final sentencia in const [
+      "ALTER TABLE proyectos_test ADD COLUMN especie TEXT NOT NULL DEFAULT ''",
+      "ALTER TABLE bienes_amortizables ADD COLUMN especie TEXT NOT NULL DEFAULT ''",
+      "ALTER TABLE partidas_presupuesto ADD COLUMN modo_calculo TEXT NOT NULL DEFAULT ''",
+      'ALTER TABLE partidas_presupuesto ADD COLUMN cantidad REAL NOT NULL DEFAULT 0',
+      'ALTER TABLE partidas_presupuesto ADD COLUMN cabezas REAL NOT NULL DEFAULT 0',
+      'ALTER TABLE partidas_presupuesto ADD COLUMN dias REAL NOT NULL DEFAULT 0',
+      'ALTER TABLE partidas_presupuesto ADD COLUMN precio_unitario_centimos INTEGER NOT NULL DEFAULT 0',
+    ]) {
+      await db.execute(sentencia);
     }
   }
 
@@ -1498,6 +1517,7 @@ class BaseDatosSoleraZunbeltz {
       nombre: 'Quesería de prueba',
       persona: 'Maite Etxeberria',
       actividad: 'Ovino de leche · quesería',
+      especie: 'ovino',
       fincaId: fincaId,
       fechaInicioMs: hace(150),
       fechaCreacionMs: creado,
@@ -1632,6 +1652,7 @@ class BaseDatosSoleraZunbeltz {
       nombre: 'Huerta de prueba',
       persona: 'Iñaki Larrea',
       actividad: 'Horticultura ecológica',
+      especie: 'varias',
       fincaId: fincaId,
       fechaInicioMs: hace(90),
       fechaCreacionMs: creado,
@@ -1748,9 +1769,21 @@ class BaseDatosSoleraZunbeltz {
   Future<void> _sembrarConvenioDemo(int proyectoId, DateTime ahora) async {
     int hace(int dias) =>
         ahora.subtract(Duration(days: dias)).millisecondsSinceEpoch;
+    // Como en la hoja de Zunbeltz: la alimentación sale de la ración
+    // (1 kg por oveja y día × 120 ovejas × 150 días × 0,10 €/kg).
+    await guardarPartidaPresupuesto(PartidaPresupuesto(
+        proyectoId: proyectoId,
+        categoria: 'directos',
+        partida: 'compra_alimento',
+        asumidoPor: asumidoPorDefecto('compra_alimento'),
+        modoCalculo: 'racion',
+        cantidad: 1,
+        cabezas: 120,
+        dias: 150,
+        precioUnitarioCentimos: 10,
+        importeCentimos: 180000));
     for (final (categoria, partida, euros) in const [
       ('directos', 'animales', 3000),
-      ('directos', 'compra_alimento', 1800),
       ('directos', 'vacunas_veterinario', 400),
       ('amortizacion', 'instalaciones', 6000),
       ('transformacion', 'sacrificio', 2500),

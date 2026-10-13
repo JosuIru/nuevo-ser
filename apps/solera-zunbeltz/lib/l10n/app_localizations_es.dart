@@ -738,6 +738,68 @@ class AppLocalizationsEs extends AppLocalizations {
       'El proyecto no tiene fecha de inicio: pon las fechas del proyecto o indica los meses de cada bien.';
 
   @override
+  String get plantillaElegir => 'Elegir una tarea tipo';
+
+  @override
+  String get plantillaOtra => 'Otra (la escribo yo)';
+
+  @override
+  String get plantillaAviso =>
+      'Las tareas habituales de Zunbeltz con ganado e instalaciones. La periodicidad es una sugerencia: cámbiala si no encaja.';
+
+  @override
+  String get plantillaParaEstePunto => 'Para este punto';
+
+  @override
+  String get tareaApuntarGasto => 'Apuntar como gasto de un proyecto';
+
+  @override
+  String get tareaSinProyectosAbiertos =>
+      'No hay proyectos abiertos donde apuntarlo.';
+
+  @override
+  String get tareaElegirProyecto => '¿En qué proyecto?';
+
+  @override
+  String get proyectoEspecie => 'Especie';
+
+  @override
+  String get invEspecie => 'Especie';
+
+  @override
+  String get invEspecieComun => 'Cualquiera (común)';
+
+  @override
+  String get presModo => 'Cómo se calcula';
+
+  @override
+  String get presModoManual => 'Importe a mano';
+
+  @override
+  String get presModoUnidades => 'Cantidad × precio';
+
+  @override
+  String get presModoRacion => 'Ración × cabezas × días × precio';
+
+  @override
+  String get presCantidad => 'Cantidad (km, cabezas, unidades…)';
+
+  @override
+  String get presRacion => 'Ración por animal y día (kg)';
+
+  @override
+  String get presCabezas => 'Cabezas';
+
+  @override
+  String get presDias => 'Días';
+
+  @override
+  String get presPrecioUnitario => 'Precio por unidad';
+
+  @override
+  String get presImporteCalculado => 'Importe calculado';
+
+  @override
   String get apuIva => 'IVA';
 
   @override
@@ -853,7 +915,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaTareasB =>
-      '1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.';
+      '1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.';
 
   @override
   String get ayudaRecurrentesT => 'Tareas que se repiten';
@@ -1902,7 +1964,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.';
+      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado. Cada partida se puede poner a mano o calcular como en la hoja: cantidad × precio, o ración por animal y día × cabezas × días × precio.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.';
 
   @override
   String get ayudaNotificacionesT => 'Notificaciones';

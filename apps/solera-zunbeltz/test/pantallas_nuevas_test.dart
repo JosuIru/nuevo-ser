@@ -15,6 +15,7 @@ import 'package:solera_zunbeltz/modelos/aviso_campo.dart';
 import 'package:solera_zunbeltz/modelos/convenio.dart';
 import 'package:solera_zunbeltz/modelos/peticion_tarea.dart';
 import 'package:solera_zunbeltz/modelos/agenda.dart';
+import 'package:solera_zunbeltz/pantallas/nueva_tarea.dart';
 import 'package:solera_zunbeltz/pantallas/nuevo_apunte.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_calculadora.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_contactos.dart';
@@ -116,6 +117,22 @@ void main() {
       // 1.392 € + 21 % = 1.684,32 €; entre 72 meses, 23,39 € al mes.
       expect(find.text('1684,32 €'), findsOneWidget);
       expect(find.text('23,39 €'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  for (final idioma in ['es', 'eu']) {
+    testWidgets('Nueva tarea desde una tarea tipo ($idioma)', (tester) async {
+      final fincaId = (await tester.runAsync(() => bd.listarFincas()))!.first.id!;
+      await montar(tester, NuevaTarea(fincaId: fincaId), idioma: idioma);
+      await tester.tap(find.byIcon(Icons.list_alt_outlined));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(idioma == 'eu' ? 'Abereen elikadura' : 'Alimentación del ganado').first);
+      await tester.pumpAndSettle();
+      expect(find.text(idioma == 'eu' ? 'Abereen elikadura' : 'Alimentación del ganado'), findsOneWidget,
+          reason: 'el título queda escrito');
+      expect(find.text(idioma == 'eu' ? 'Egunero' : 'Diaria'), findsOneWidget,
+          reason: 'y la periodicidad sugerida');
       expect(tester.takeException(), isNull);
     });
   }

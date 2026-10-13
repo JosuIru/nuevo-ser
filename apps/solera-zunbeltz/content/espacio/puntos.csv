@@ -1,7 +1,7 @@
 finca;tipo;nombre;latitud;longitud;estado;notas
 # Inventario real de puntos de infraestructura de Zunbeltz / La Planilla.
 # PENDIENTE: lo rellena Zunbeltz (o se captura en campo con la app y se exporta aqui).
-# tipo: abrevadero | manga | cierre | refugio | cuadra | almacen | balsa | comedero | cargadero | parcela
+# tipo: abrevadero | manga | cierre | refugio | cuadra | almacen | balsa | comedero | cargadero | parcela | corral_movil | deposito_movil | aprisco | placas_solares | vestuario | bebedero_movil | pastor_electrico | isotermo | molino
 # estado: operativo | revisar | averiado
 # Ejemplo (borrar al cargar los reales):
 # Zunbeltz;abrevadero;Abrevadero Norte;42.7900;-1.9450;operativo;

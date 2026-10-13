@@ -5,6 +5,7 @@ import '../datos/base_datos.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/constantes.dart';
+import '../modelos/indicadores_seguimiento.dart' show eurosDesdeCentimos;
 import 'widgets/campo_partida_gasto.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
@@ -16,10 +17,14 @@ class NuevoApunte extends StatefulWidget {
     super.key,
     required this.proyectoId,
     required this.fincaId,
+    this.gastoInicial,
   });
 
   final int proyectoId;
   final int fincaId;
+
+  /// Llega relleno como gasto (p. ej. desde una tarea de compra con coste).
+  final ApunteEconomico? gastoInicial;
 
   @override
   State<NuevoApunte> createState() => _NuevoApunteState();
@@ -59,6 +64,37 @@ class _NuevoApunteState extends State<NuevoApunte> {
       _partida.clear();
       _asumidoPor = asumidoPorDefecto('');
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final inicial = widget.gastoInicial;
+    if (inicial == null) return;
+    _tipo = 'gasto';
+    _categoria = inicial.categoria;
+    _asumidoPor = asumidoPorDefecto(inicial.partida);
+    _concepto.text = inicial.concepto;
+    if (inicial.importeCentimos > 0) {
+      _importe.text = eurosDesdeCentimos(inicial.importeCentimos);
+    }
+    if (inicial.fechaMs > 0) {
+      _fecha = DateTime.fromMillisecondsSinceEpoch(inicial.fechaMs);
+    }
+  }
+
+  bool _partidaInicialPuesta = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // La etiqueta de la partida depende del idioma, que no se puede leer
+    // en initState.
+    final inicial = widget.gastoInicial;
+    if (_partidaInicialPuesta || inicial == null) return;
+    _partidaInicialPuesta = true;
+    _partida.text = etiquetaPartida(inicial.categoria, inicial.partida,
+        Localizations.localeOf(context).languageCode);
   }
 
   @override

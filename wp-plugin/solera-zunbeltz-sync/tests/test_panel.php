@@ -104,6 +104,28 @@ afirmar( 40000, $balance['asumido_zunbeltz'], 'gasto que asume Zunbeltz' );
 $perdida = szs_balance_convenio( array(), array( array( 'tipo' => 'apunte', 'datos' => array( 'tipo' => 'gasto', 'importe_centimos' => 20000 ) ) ) );
 afirmar( -10000, $perdida['parte_zunbeltz'], 'pérdida: 50 % por defecto' );
 
+// --- inventario de amortizaciones (mismos casos que test/amortizacion_test.dart) ---
+$ms = static fn( string $fecha ): int => ( new DateTimeImmutable( $fecha, new DateTimeZone( 'Europe/Madrid' ) ) )->getTimestamp() * 1000;
+afirmar( 4.0, szs_meses_entre( $ms( '2026-06-01' ), $ms( '2026-10-01' ) ), 'del 1-jun al 1-oct, 4 meses' );
+afirmar( 0.5, szs_meses_entre( $ms( '2026-06-01' ), $ms( '2026-06-16' ) ), '15 días, medio mes' );
+afirmar( 1.03, szs_meses_entre( $ms( '2026-01-31' ), $ms( '2026-03-01' ) ), 'del 31-ene: un mes llega al 28-feb' );
+afirmar( 0.0, szs_meses_entre( $ms( '2026-06-01' ), $ms( '2026-05-01' ) ), 'al revés, 0' );
+$bebedero = array( 'precio_unidad_centimos' => 2094, 'unidades' => 10, 'iva_porcentaje' => 21, 'vida_util_meses' => 72 );
+$pollos   = array( 'fecha_inicio_ms' => $ms( '2026-06-01' ), 'fecha_fin_ms' => $ms( '2026-10-01' ) );
+afirmar( 1408, szs_cuota_uso_bien( $bebedero, array(), $pollos, $hoy_ms ), 'cuota: mensual × meses del test' );
+afirmar( 528, szs_cuota_uso_bien( $bebedero, array( 'imputacion_porcentaje' => 50, 'duracion_meses' => 3 ), $pollos, $hoy_ms ), 'con meses propios y la mitad' );
+afirmar( 0, szs_cuota_uso_bien( array_merge( $bebedero, array( 'vida_util_meses' => 0 ) ), array(), $pollos, $hoy_ms ), 'sin vida útil no se amortiza' );
+$con_inventario = szs_balance_convenio(
+	$pollos,
+	array(
+		array( 'tipo' => 'uso_bien', 'datos' => array( 'bien_uid' => 'bebedero' ) ),
+		array( 'tipo' => 'uso_bien', 'datos' => array( 'bien_uid' => 'borrado' ) ),
+	),
+	array( 'bebedero' => $bebedero ),
+	$hoy_ms
+);
+afirmar( array( 1408, 0, -1408, 1408 ), array( $con_inventario['amortizaciones'], $con_inventario['balance_test'], $con_inventario['balance_proyecto'], $con_inventario['asumido_zunbeltz'] ), 'las cuotas del inventario son amortizaciones que asume Zunbeltz' );
+
 // --- resumen del correo diario ---
 $resumen = szs_resumen_correo_diario( $tareas, array( 'Falta pienso' ), array( 'Oveja coja' ), $hoy_ms );
 afirmar( true, str_contains( $resumen['cuerpo'], 'Vencida' ), 'el correo lista las tareas vencidas' );

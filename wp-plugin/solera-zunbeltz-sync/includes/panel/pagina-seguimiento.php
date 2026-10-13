@@ -52,6 +52,7 @@ function szs_pagina_proyectos(): void {
 	}
 
 	$proyectos = szs_listar_entidades_tipo( 'proyecto' );
+	$bienes    = szs_bienes_por_uid();
 	$personas  = array();
 	foreach ( szs_listar_personas() as $persona ) {
 		$personas[ $persona['uid'] ] = $persona['nombre'];
@@ -59,7 +60,7 @@ function szs_pagina_proyectos(): void {
 	?>
 	<div class="wrap">
 		<h1>Proyectos de test</h1>
-		<p>Las cuentas siguen el convenio tester (art. 7): el <strong>balance del test</strong> no incluye amortizaciones y es el que se reparte; el <strong>del proyecto</strong> las incluye y muestra el coste real. Orientativo, no es contabilidad. El detalle (presupuesto, fianza, acompañamiento, incidencias) está en la app, en la pantalla «Convenio» de cada proyecto.</p>
+		<p>Las cuentas siguen el convenio tester (art. 7): el <strong>balance del test</strong> no incluye amortizaciones y es el que se reparte; el <strong>del proyecto</strong> las incluye (también las del <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_INVENTARIO ) ); ?>">inventario</a>) y muestra el coste real. Orientativo, no es contabilidad. El detalle (presupuesto, fianza, acompañamiento, incidencias) está en la app, en la pantalla «Convenio» de cada proyecto.</p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 		<table class="widefat striped">
 			<thead><tr><th>Proyecto</th><th>Persona tester</th><th>Estado</th><th>Balance del test</th><th>Balance del proyecto</th><th>Reparto (Zunbeltz / tester)</th><th></th></tr></thead>
@@ -70,8 +71,8 @@ function szs_pagina_proyectos(): void {
 			<?php foreach ( $proyectos as $proyecto ) : ?>
 				<?php
 				$datos   = $proyecto['datos'];
-				$hijas   = array_merge( szs_listar_entidades_tipo( 'venta', $proyecto['uid'] ), szs_listar_entidades_tipo( 'apunte', $proyecto['uid'] ) );
-				$balance = szs_balance_convenio( $datos, $hijas );
+				$hijas   = array_merge( szs_listar_entidades_tipo( 'venta', $proyecto['uid'] ), szs_listar_entidades_tipo( 'apunte', $proyecto['uid'] ), szs_listar_entidades_tipo( 'uso_bien', $proyecto['uid'] ) );
+				$balance = szs_balance_convenio( $datos, $hijas, $bienes, szs_ahora_ms(), wp_timezone_string() );
 				$cerrado = 'cerrado' === ( $datos['estado'] ?? 'abierto' );
 				?>
 				<tr>
@@ -124,6 +125,8 @@ function szs_describir_actividad( array $entrada ): string {
 		'movimiento_fianza'       => 'el movimiento de fianza',
 		'acompanamiento'          => 'la actividad de acompañamiento',
 		'incidencia_cumplimiento' => 'la incidencia',
+		'bien_amortizable'        => 'el bien del inventario',
+		'uso_bien'                => 'el uso de un bien',
 	);
 	$cosa   = ( $tipos[ $entrada['tipo'] ] ?? 'un dato' ) . ( '' === $entrada['etiqueta'] ? '' : ' «' . $entrada['etiqueta'] . '»' );
 	$quien  = '' === $entrada['persona_nombre'] ? 'Alguien' : $entrada['persona_nombre'];

@@ -103,7 +103,7 @@ afirmar( 'insertar', accion( null, $apunte, 'coord', $coordinacion, $cerrado ), 
 $mudado = entidad( 'apunte', array( 'concepto' => 'Cencerro' ), array( 'proyecto_uid' => 'p2', 'actualizado_ms' => 200 ) );
 afirmar( 'rechazar', accion( $apunte, $mudado, 'ane', $tester, $proyecto_ane ), 'tester no mueve un apunte a otro proyecto' );
 afirmar( 'actualizar', accion( $apunte, entidad( 'apunte', array( 'concepto' => 'Cencerro grande' ), array( 'proyecto_uid' => 'p1', 'actualizado_ms' => 200 ) ), 'ane', $tester, $proyecto_ane ), 'tester corrige un apunte suyo' );
-foreach ( array( 'partida_presupuesto', 'movimiento_fianza', 'incidencia_cumplimiento', 'acompanamiento' ) as $solo_coordinacion ) {
+foreach ( array( 'partida_presupuesto', 'movimiento_fianza', 'incidencia_cumplimiento', 'acompanamiento', 'uso_bien' ) as $solo_coordinacion ) {
 	afirmar( 'rechazar', accion( null, entidad( $solo_coordinacion, array(), array( 'proyecto_uid' => 'p1' ) ), 'ane', $tester, $proyecto_ane ), "tester no crea {$solo_coordinacion}" );
 	afirmar( 'insertar', accion( null, entidad( $solo_coordinacion, array(), array( 'proyecto_uid' => 'p1' ) ), 'coord', $coordinacion, $proyecto_ane ), "coordinación crea {$solo_coordinacion}" );
 }
@@ -160,6 +160,14 @@ $rendimiento = entidad( 'rendimiento', array( 'nombre' => 'Cordero lechal', 'ren
 afirmar( 'rechazar', accion( null, $rendimiento, 'ane', $tester ), 'tester no crea rendimientos de referencia' );
 afirmar( 'insertar', accion( null, $rendimiento, 'coord', $coordinacion ), 'coordinación los crea' );
 afirmar( true, szs_entidad_visible( $rendimiento, 'ane', $tester, array() ), 'todas los ven' );
+
+// --- inventario de amortizaciones: lo mantiene coordinación; lo ve todo el espacio ---
+$bien = entidad( 'bien_amortizable', array( 'nombre' => 'Corral móvil', 'unidades' => '2', 'vida_util_meses' => '72' ) );
+afirmar( 'rechazar', accion( null, $bien, 'ane', $tester ), 'tester no añade bienes al inventario' );
+afirmar( 'insertar', accion( null, $bien, 'coord', $coordinacion ), 'coordinación sí' );
+afirmar( true, szs_entidad_visible( $bien, 'ane', $tester, array() ), 'todas ven el inventario' );
+$saneado = szs_sanear_datos_entidad( array( 'unidades' => '2', 'vida_util_meses' => 'x', 'duracion_meses' => '3.5', 'grupo' => array() ) );
+afirmar( array( 2, 0, 3.5, '' ), array( $saneado['unidades'], $saneado['vida_util_meses'], $saneado['duracion_meses'], $saneado['grupo'] ), 'números e importes del inventario saneados' );
 
 // --- escenarios de la calculadora: seguimiento del proyecto ---
 $escenario = entidad( 'escenario_transformacion', array( 'nombre' => 'Despiece y venta directa' ), array( 'proyecto_uid' => 'p1' ) );

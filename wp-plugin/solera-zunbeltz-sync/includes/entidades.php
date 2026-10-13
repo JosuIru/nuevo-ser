@@ -32,7 +32,7 @@ const SZS_AMBITO_PETICION      = 'peticion';
 const SZS_AMBITO_AVISO         = 'aviso';
 /** Agenda compartida: cualquiera añade, cada cual edita lo suyo. */
 const SZS_AMBITO_CONTACTO = 'contacto';
-/** Datos de referencia del espacio (rendimientos…): solo coordinación. */
+/** Datos de referencia del espacio (rendimientos, inventario de bienes…): solo coordinación. */
 const SZS_AMBITO_REFERENCIA = 'referencia';
 
 /** Campos de un punto que puede cambiar quien solo tiene `anadir_puntos`. */
@@ -64,6 +64,8 @@ function szs_tipos_entidad(): array {
 		'aviso'                   => array( 'ambito' => SZS_AMBITO_AVISO ),
 		'contacto'                => array( 'ambito' => SZS_AMBITO_CONTACTO ),
 		'rendimiento'             => array( 'ambito' => SZS_AMBITO_REFERENCIA ),
+		'bien_amortizable'        => array( 'ambito' => SZS_AMBITO_REFERENCIA ),
+		'uso_bien'                => array( 'ambito' => SZS_AMBITO_HIJO_PROYECTO, 'tester_registra' => false ),
 	);
 }
 
@@ -95,12 +97,12 @@ function szs_normalizar_entidad( array $entidad ): array {
  * `categoria: []`, y el panel fallaría con un error de PHP al pintarlo.
  */
 function szs_sanear_datos_entidad( array $datos ): array {
-	$campos_texto = array( 'categoria', 'partida', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion' );
+	$campos_texto = array( 'categoria', 'partida', 'grupo', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion' );
 	foreach ( $datos as $clave => $valor ) {
 		if ( null === $valor ) {
 			continue;
 		}
-		if ( preg_match( '/(_ms|_centimos|_porcentaje|_dias)$/', (string) $clave ) ) {
+		if ( preg_match( '/(_ms|_centimos|_porcentaje|_dias|_meses)$/', (string) $clave ) || 'unidades' === $clave ) {
 			$datos[ $clave ] = is_numeric( $valor ) ? $valor + 0 : 0;
 		} elseif ( str_ends_with( (string) $clave, '_uid' ) || in_array( $clave, $campos_texto, true ) ) {
 			$datos[ $clave ] = is_scalar( $valor ) ? (string) $valor : '';

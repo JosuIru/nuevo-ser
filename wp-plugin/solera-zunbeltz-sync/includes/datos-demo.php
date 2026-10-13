@@ -270,6 +270,16 @@ function szs_plan_datos_demo( int $ahora_ms, string $lote, array $fincas_existen
 	) as list( $proyecto, $categoria, $partida, $concepto, $asumido_por, $centimos ) ) {
 		$anadir( 'partida_presupuesto', $uid( 'partida-' . ( ++$n ) ), array( 'categoria' => $categoria, 'partida' => $partida, 'concepto' => $concepto, 'asumido_por' => $asumido_por, 'es_amortizacion' => 'amortizacion' === $categoria ? 1 : 0, 'importe_centimos' => $centimos, 'notas' => '' ), $coordinacion, $proyecto );
 	}
+	// Inventario de amortizaciones: un corral móvil a medias y abrevaderos.
+	$bienes = array(
+		'corral'      => array( 'Corral móvil', 'instalaciones', 1137542, 2 ),
+		'abrevaderos' => array( 'Abrevadero de vacuno', 'material_ganadero', 13600, 3 ),
+	);
+	foreach ( $bienes as $clave => list( $nombre, $grupo, $centimos, $unidades ) ) {
+		$anadir( 'bien_amortizable', $uid( 'bien-' . $clave ), array( 'nombre' => $nombre, 'grupo' => $grupo, 'precio_unidad_centimos' => $centimos, 'unidades' => $unidades, 'iva_porcentaje' => 21, 'vida_util_meses' => 72, 'notas' => '' ), $coordinacion );
+	}
+	$anadir( 'uso_bien', $uid( 'uso-corral' ), array( 'bien_uid' => $uid( 'bien-corral' ), 'imputacion_porcentaje' => 50, 'duracion_meses' => 0, 'notas' => '' ), $coordinacion, $proyecto_queso );
+	$anadir( 'uso_bien', $uid( 'uso-abrevaderos' ), array( 'bien_uid' => $uid( 'bien-abrevaderos' ), 'imputacion_porcentaje' => 100, 'duracion_meses' => 0, 'notas' => '' ), $coordinacion, $proyecto_queso );
 	foreach ( array(
 		array( $proyecto_queso, 'deposito', 50000, 150 ),
 		array( $proyecto_huerta, 'deposito', 50000, 90 ),

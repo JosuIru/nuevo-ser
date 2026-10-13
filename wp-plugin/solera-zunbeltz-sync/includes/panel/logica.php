@@ -169,15 +169,66 @@ function szs_siguiente_tarea_periodica( array $tarea, int $ahora_ms, string $uid
 }
 
 /**
+ * Meses entre dos instantes: los de calendario completos más la fracción
+ * de días que sobra, sobre 30 (del 1-jun al 1-oct son 4; del 1 al 16 de
+ * junio, 0,5). Redondeado a centésimas. Mismo cálculo que `mesesEntre` en
+ * la app.
+ */
+function szs_meses_entre( int $inicio_ms, int $fin_ms, string $zona = 'Europe/Madrid' ): float {
+	if ( $fin_ms <= $inicio_ms ) {
+		return 0.0;
+	}
+	$huso   = new DateTimeZone( '' === $zona ? 'UTC' : $zona );
+	$inicio = ( new DateTimeImmutable( '@' . intdiv( $inicio_ms, 1000 ) ) )->setTimezone( $huso );
+	$fin    = ( new DateTimeImmutable( '@' . intdiv( $fin_ms, 1000 ) ) )->setTimezone( $huso );
+	$dia_inicio = (int) $inicio->format( 'j' );
+	$dia_fin    = (int) $fin->format( 'j' );
+	$meses      = ( (int) $fin->format( 'Y' ) - (int) $inicio->format( 'Y' ) ) * 12 + (int) $fin->format( 'n' ) - (int) $inicio->format( 'n' );
+	if ( $dia_fin < $dia_inicio ) {
+		--$meses;
+	}
+	// Del 31 de enero, un mes después es el 28 de febrero, no el 3 de marzo.
+	$mes_destino = $inicio->setDate( (int) $inicio->format( 'Y' ), (int) $inicio->format( 'n' ) + $meses, 1 );
+	$ultimo_dia  = (int) $mes_destino->format( 't' );
+	$fin_enteros = gmmktime( 0, 0, 0, (int) $mes_destino->format( 'n' ), min( $dia_inicio, $ultimo_dia ), (int) $mes_destino->format( 'Y' ) );
+	$fin_dia     = gmmktime( 0, 0, 0, (int) $fin->format( 'n' ), $dia_fin, (int) $fin->format( 'Y' ) );
+	$sobrantes   = (int) round( ( $fin_dia - $fin_enteros ) / 86400 );
+	return round( $meses + $sobrantes / 30, 2 );
+}
+
+/**
+ * Cuota de amortización que un uso de bien carga a su proyecto: (precio ×
+ * unidades + IVA) ÷ vida útil × meses × porcentaje. Los meses son los del
+ * uso o, si no tiene, los del test (fechas del proyecto; sin fin, hasta
+ * ahora). Mismo cálculo que `cuotaImputadaCentimos` en la app.
+ */
+function szs_cuota_uso_bien( array $bien, array $uso, array $proyecto, int $ahora_ms, string $zona = 'Europe/Madrid' ): int {
+	$vida_util = (int) ( $bien['vida_util_meses'] ?? 0 );
+	if ( $vida_util <= 0 ) {
+		return 0;
+	}
+	$total   = (int) round( (int) ( $bien['precio_unidad_centimos'] ?? 0 ) * (float) ( $bien['unidades'] ?? 1 ) * ( 100 + (int) ( $bien['iva_porcentaje'] ?? 21 ) ) / 100 );
+	$meses   = (float) ( $uso['duracion_meses'] ?? 0 );
+	if ( $meses <= 0 ) {
+		$inicio = (int) ( $proyecto['fecha_inicio_ms'] ?? 0 );
+		$fin    = (int) ( $proyecto['fecha_fin_ms'] ?? 0 );
+		$meses  = 0 === $inicio ? 0.0 : szs_meses_entre( $inicio, 0 === $fin ? $ahora_ms : $fin, $zona );
+	}
+	return (int) round( $total / $vida_util * $meses * (int) ( $uso['imputacion_porcentaje'] ?? 100 ) / 100 );
+}
+
+/**
  * Balance del convenio tester (art. 7) a partir de las entidades de un
- * proyecto (`venta` y `apunte`). Mismo cálculo que `BalanceConvenio` en la
- * app.
+ * proyecto (`venta`, `apunte` y `uso_bien`). Mismo cálculo que
+ * `BalanceConvenio` en la app: las cuotas del inventario son
+ * amortizaciones que asume Zunbeltz.
  *
- * @param array $proyecto_datos `datos` del proyecto (porcentajes).
+ * @param array $proyecto_datos `datos` del proyecto (porcentajes, fechas).
  * @param array $entidades      Entidades hijas del proyecto (no borradas).
+ * @param array $bienes         `datos` de cada bien amortizable por uid.
  * @return array<string, int>
  */
-function szs_balance_convenio( array $proyecto_datos, array $entidades ): array {
+function szs_balance_convenio( array $proyecto_datos, array $entidades, array $bienes = array(), ?int $ahora_ms = null, string $zona = 'Europe/Madrid' ): array {
 	$ingresos         = 0;
 	$gastos_test      = 0;
 	$amortizaciones   = 0;
@@ -187,6 +238,15 @@ function szs_balance_convenio( array $proyecto_datos, array $entidades ): array 
 		$datos = $entidad['datos'] ?? array();
 		if ( 'venta' === $entidad['tipo'] ) {
 			$ingresos += (int) ( $datos['ingreso_centimos'] ?? 0 );
+			continue;
+		}
+		if ( 'uso_bien' === $entidad['tipo'] ) {
+			$bien = $bienes[ (string) ( $datos['bien_uid'] ?? '' ) ] ?? null;
+			if ( null !== $bien ) {
+				$cuota             = szs_cuota_uso_bien( $bien, $datos, $proyecto_datos, $ahora_ms ?? (int) floor( microtime( true ) * 1000 ), $zona );
+				$amortizaciones   += $cuota;
+				$asumido_zunbeltz += $cuota;
+			}
 			continue;
 		}
 		if ( 'apunte' !== $entidad['tipo'] ) {

@@ -463,6 +463,16 @@ class AppLocalizationsEu extends AppLocalizations {
   String get acercaMiembroDe => 'Sareko kide';
 
   @override
+  String get entidadesTitulo => 'Hau posible egiten duten erakundeak';
+
+  @override
+  String get entidadesIntro =>
+      'Zunbeltz aurrera doa bultzatzen, babesten eta laguntzen duten erakunde, fundazio eta sareei esker.';
+
+  @override
+  String get entidadesFranja => 'Hauen laguntzarekin';
+
+  @override
   String get navProyectos => 'Proiektuak';
 
   @override

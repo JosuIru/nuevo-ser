@@ -17,8 +17,10 @@ import '../modelos/persona_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../utiles/traductor_actualizaciones.dart';
 import 'pantalla_acerca_espacio_test.dart';
+import 'pantalla_entidades.dart';
 import 'pantalla_ayuda.dart';
 import '../utiles/texto_error_sync.dart';
+import '../servicios/servicio_logos_entidades.dart';
 import '../servicios/servicio_noticias_sector.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
@@ -175,6 +177,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     await cerrarSesionEspacio();
     await reiniciarCursoresSincronizacion();
     await ServicioNoticiasSector.olvidarGuardadas();
+    await ServicioLogosEntidades.olvidarGuardadas();
     avisarCambioDatos();
     if (!mounted || _syncUrl.isEmpty || _syncToken.isEmpty) return;
     setState(() => _sincronizando = true);
@@ -291,6 +294,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (_) => const PantallaAcercaEspacioTest()),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.handshake_outlined),
+            title: Text(textos.entidadesTitulo),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const PantallaEntidades()),
             ),
           ),
           ListTile(

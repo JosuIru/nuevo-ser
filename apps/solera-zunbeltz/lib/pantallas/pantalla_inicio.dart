@@ -11,6 +11,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/aviso_campo.dart';
 import '../modelos/entrada_actividad.dart';
 import '../servicios/resumen_notificaciones.dart';
+import '../servicios/servicio_logos_entidades.dart';
 import '../servicios/servicio_noticias_sector.dart';
 import '../servicios/servicio_sincronizacion.dart';
 import '../utiles/descripcion_actividad.dart';
@@ -21,7 +22,9 @@ import 'nuevo_aviso.dart';
 import 'pantalla_ayuda.dart';
 import 'pantalla_contactos.dart';
 import 'pantalla_meteo.dart';
+import 'pantalla_entidades.dart';
 import 'pantalla_noticias_sector.dart';
+import 'widgets/logos_entidades.dart';
 import 'pantalla_peticiones.dart';
 import 'tablero_tareas.dart';
 import 'widgets/ficha_aviso.dart';
@@ -42,6 +45,7 @@ class PantallaInicio extends StatefulWidget {
 class _PantallaInicioState extends State<PantallaInicio> {
   final _bd = BaseDatosSoleraZunbeltz();
   final _noticiasSector = ServicioNoticiasSector();
+  final _logosEntidades = ServicioLogosEntidades();
   List<AvisoCampo> _avisos = const [];
   List<EntradaActividad> _actividad = const [];
   int _vencidas = 0;
@@ -55,6 +59,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
     super.initState();
     _cargar();
     _noticiasSector.actualizar();
+    _logosEntidades.actualizar();
     notificadorDatos.addListener(_recargar);
   }
 
@@ -96,6 +101,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
     await Future.wait([
       sincronizarEspacioEnSilencio(),
       _noticiasSector.actualizar(forzar: true),
+      _logosEntidades.actualizar(forzar: true),
     ]);
     await _cargar();
   }
@@ -251,6 +257,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
                         ]),
                       ),
                   ],
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  FranjaLogosEntidades(
+                    alPulsar: () => _abrir(const PantallaEntidades()),
+                  ),
                 ],
               ),
       ),

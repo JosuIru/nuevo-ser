@@ -463,6 +463,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get acercaMiembroDe => 'Miembro de';
 
   @override
+  String get entidadesTitulo => 'Entidades que lo hacen posible';
+
+  @override
+  String get entidadesIntro =>
+      'Zunbeltz sale adelante gracias a las instituciones, fundaciones y redes que lo impulsan, lo apoyan y colaboran con él.';
+
+  @override
+  String get entidadesFranja => 'Con el apoyo de';
+
+  @override
   String get navProyectos => 'Proyectos';
 
   @override

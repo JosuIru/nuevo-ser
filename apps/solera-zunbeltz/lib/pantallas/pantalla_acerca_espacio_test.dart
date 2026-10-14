@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../l10n/app_localizations.dart';
 import '../logos_entidades.dart';
+import 'widgets/logos_entidades.dart';
 import 'widgets/relleno_seguro.dart';
 
 /// Información pública sobre el Espacio Test Agrario Zunbeltz y enlaces a las
@@ -56,25 +57,7 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
               onTap: () => _abrir(e.url),
             ),
           const Divider(),
-          for (final grupo in GrupoEntidades.values) ...[
-            const SizedBox(height: 12),
-            Text(_tituloGrupo(textos, grupo),
-                style: Theme.of(context).textTheme.titleSmall),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 20,
-              runSpacing: 14,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                for (final logo in logosPorGrupo[grupo]!)
-                  Tooltip(
-                    message: logo.nombre,
-                    child: Image.asset(logo.ruta,
-                        height: 40, semanticLabel: logo.nombre),
-                  ),
-              ],
-            ),
-          ],
+          const LogosEntidadesPorGrupo(),
           const SizedBox(height: 12),
           const Divider(),
           Padding(
@@ -87,14 +70,6 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
     );
   }
 }
-
-String _tituloGrupo(AppLocalizations textos, GrupoEntidades grupo) =>
-    switch (grupo) {
-      GrupoEntidades.impulsan => textos.acercaImpulsan,
-      GrupoEntidades.apoyan => textos.acercaApoyan,
-      GrupoEntidades.colaboran => textos.acercaColaboran,
-      GrupoEntidades.miembroDe => textos.acercaMiembroDe,
-    };
 
 class _Enlace {
   const _Enlace(this.titulo, this.url);

@@ -956,6 +956,24 @@ abstract class AppLocalizations {
   /// **'Miembro de'**
   String get acercaMiembroDe;
 
+  /// No description provided for @entidadesTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Entidades que lo hacen posible'**
+  String get entidadesTitulo;
+
+  /// No description provided for @entidadesIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Zunbeltz sale adelante gracias a las instituciones, fundaciones y redes que lo impulsan, lo apoyan y colaboran con él.'**
+  String get entidadesIntro;
+
+  /// No description provided for @entidadesFranja.
+  ///
+  /// In es, this message translates to:
+  /// **'Con el apoyo de'**
+  String get entidadesFranja;
+
   /// No description provided for @navProyectos.
   ///
   /// In es, this message translates to:

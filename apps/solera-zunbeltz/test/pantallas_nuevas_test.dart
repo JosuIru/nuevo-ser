@@ -1,6 +1,8 @@
 // Las pantallas nuevas se montan sin errores de diseño (desbordes,
 // excepciones) en móvil, con datos de ejemplo.
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -92,6 +94,31 @@ void main() {
       await montar(tester, const PantallaInicio(), idioma: idioma);
       expect(find.byIcon(Icons.notification_important), findsWidgets,
           reason: 'la alarma abierta aparece arriba');
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Hoy enseña las noticias del sector sin sesión ($idioma)',
+        (tester) async {
+      SharedPreferences.setMockInitialValues({
+        'zunbeltz.noticias_sector': jsonEncode({
+          'actualizado_ms': DateTime.now().millisecondsSinceEpoch,
+          'noticias': [
+            {
+              'id': 1,
+              'titulo': 'Tractorada en Madrid',
+              'entradilla': '',
+              'enlace': 'https://uagn.es/a',
+              'fecha_ms': DateTime.now().millisecondsSinceEpoch,
+              'fuente': 'UAGN',
+              'idioma': 'es',
+            }
+          ],
+        }),
+      });
+      await montar(tester, const PantallaInicio(), idioma: idioma);
+      await tester.tap(find.text(idioma == 'eu' ? 'Berriak' : 'Noticias').first);
+      await tester.pumpAndSettle();
+      expect(find.text('Tractorada en Madrid', skipOffstage: false), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
 

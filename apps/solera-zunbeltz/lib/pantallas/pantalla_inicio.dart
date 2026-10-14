@@ -233,9 +233,12 @@ class _PantallaInicioState extends State<PantallaInicio> {
                           for (final aviso in _avisosDeCategoria())
                             _TarjetaAviso(aviso, alCambiar: _cargar),
                         ],
-                  if (_categoria == categoriaAvisoNoticias &&
-                      (!politica.modoLocal || esVersionDemo))
+                  if (_categoria == categoriaAvisoNoticias)
                     _NoticiasSectorResumidas(
+                      // Sin sesión también se ven (el servidor las da sin
+                      // token), pero el hueco vacío solo tiene sentido si
+                      // hay servidor del que esperarlas.
+                      ocultarSiNoHay: politica.modoLocal && !esVersionDemo,
                       alVerTodas: () => _abrir(const PantallaNoticiasSector()),
                     ),
                   if (politica.puedeVerActividad && !politica.modoLocal) ...[
@@ -480,11 +483,13 @@ class _ContadorAvisos extends StatelessWidget {
 
 /// Las primeras noticias del sector y el acceso a todas.
 class _NoticiasSectorResumidas extends StatelessWidget {
-  const _NoticiasSectorResumidas({required this.alVerTodas});
+  const _NoticiasSectorResumidas(
+      {required this.alVerTodas, required this.ocultarSiNoHay});
 
   static const _cuantasSeVen = 3;
 
   final VoidCallback alVerTodas;
+  final bool ocultarSiNoHay;
 
   @override
   Widget build(BuildContext context) {
@@ -493,6 +498,7 @@ class _NoticiasSectorResumidas extends StatelessWidget {
       valueListenable: ServicioNoticiasSector.actuales,
       builder: (contexto, guardadas, _) {
         final noticias = guardadas.noticias;
+        if (noticias.isEmpty && ocultarSiNoHay) return const SizedBox.shrink();
         return Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

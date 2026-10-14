@@ -18,6 +18,16 @@ Guía para poner en marcha el servidor de la app en el **WordPress propio de Zun
 3. Ajustes → Enlaces permanentes → «Nombre de la entrada» (la API de la app usa `/wp-json/`).
 4. Opcional: Ajustes → Lectura → «Pide a los motores de búsqueda que no indexen este sitio».
 
+**Alternativa: subir el sitio de pruebas ya montado** (portada es/eu, tema, WPML, entidades y canales de noticias).
+`dev/preparar_bd_produccion.sh [dominio] [correo_admin]` copia la base del WordPress de Local
+(`zunbeltz-app.local`) sin tocarla, quita personas, tokens, tareas, actividad y la APK, cambia
+la dirección al dominio, pone hora de Madrid y español, y deja en `~/Documentos/zunbeltz-app/produccion/<fecha>/`
+el `.sql.gz` y `admin.txt` con una contraseña de admin nueva. En el servidor: importar el `.sql.gz`
+en una base vacía, `$table_prefix = 'wp_'` en `wp-config.php`, y copiar de Local `wp-content/plugins`
+(WPML y WPML String Translation; el nuestro, desde el `.zip`), `wp-content/themes/zunbeltz-espacio`
+y `wp-content/languages`. Después, Ajustes → Enlaces permanentes → Guardar, registrar el dominio
+nuevo en la cuenta de WPML y subir la APK en Solera Zunbeltz → Android.
+
 ## 3. Instalar el plugin
 
 1. Generar el paquete: `wp-plugin/solera-zunbeltz-sync/dev/empaquetar.sh` (crea `solera-zunbeltz-sync-<versión>.zip`).

@@ -7,6 +7,7 @@ Tema de bloques para el WordPress de la herramienta del Espacio Test Zunbeltz (e
   - La portada es una **página** («Portada», castellano) con su traducción («Atarikoa», euskera, en `/eu/`), editables en Gutenberg y enlazadas en WPML. Se crean solas al activar el tema; a mano: `wp eval 'zunbeltz_espacio_crear_portadas();'`. Su contenido inicial sale de `patterns/portada-es.php` y `patterns/portada-eu.php`.
   - Cabecera (con selector **ES · EU**), pie y 404 cambian de idioma solos (`zunbeltz_espacio_texto()`).
   - El botón de la app en euskera abre `/app/?lang=eu` y la app arranca en euskera.
+- **Logos de las entidades** (impulsan, apoyan, colaboran, miembro de) en el pie, con el bloque «Entidades y logos» del plugin (`solera-zunbeltz/entidades`; en una página vale también el shortcode `[solera_zunbeltz_entidades]`). Se editan en **Solera Zunbeltz → Entidades y logos**; sin el plugin, el pie sale sin ellos.
 - **El euskera es borrador pendiente de revisión nativa.**
 
 Instalar: copiar o enlazar `wp-theme/zunbeltz-espacio` en `wp-content/themes/`, activar WPML (castellano por defecto, euskera, idiomas en directorios) y activar el tema en Apariencia → Temas.

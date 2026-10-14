@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     0.6.0
+ * Version:     0.7.0
  * Author:      Equipo Colección Nuevo Ser
  * Author URI:  https://coleccion-nuevo-ser.com/
  * License:     GPL-2.0-or-later
@@ -41,6 +41,9 @@
  * - Noticias del sector (`includes/noticias-sector.php`): canales RSS que
  *   coordinación da de alta en el panel; el servidor los lee cada tres
  *   horas y la app los baja con `GET /noticias`.
+ * - Entidades y logos (`includes/logos-entidades.php`): los del pie de
+ *   zunbeltz.com, editables en el panel; la app los baja con
+ *   `GET /entidades` y la web los pinta con `[solera_zunbeltz_entidades]`.
  *
  * Instalación y puesta en marcha: `INSTALACION.md`. Entorno de pruebas con
  * Docker: `dev/`.
@@ -55,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '0.6.0' );
+define( 'SZS_VERSION', '0.7.0' );
 define( 'SZS_VERSION_ESQUEMA', 6 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
@@ -88,6 +91,7 @@ require_once __DIR__ . '/includes/correo.php';
 require_once __DIR__ . '/includes/app-web.php';
 require_once __DIR__ . '/includes/datos-demo.php';
 require_once __DIR__ . '/includes/noticias-sector.php';
+require_once __DIR__ . '/includes/logos-entidades.php';
 
 // ============================================================
 // Esquema: se crea al activar y se actualiza al cargar si cambió

@@ -106,7 +106,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 13;
+  static const int versionEsquema = 14;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -123,6 +123,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 11) await aplicarMigracionV11(db);
     if (anterior < 12) await aplicarMigracionV12(db);
     if (anterior < 13) await aplicarMigracionV13(db);
+    if (anterior < 14) await aplicarMigracionV14(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -722,6 +723,14 @@ class BaseDatosSoleraZunbeltz {
     ]) {
       await db.execute(sentencia);
     }
+  }
+
+  /// Migración v13 → v14: color elegido para pintar cada zona ('' = el de
+  /// su tipo). Aditiva.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV14(Database db) async {
+    await db.execute(
+        "ALTER TABLE zonas_finca ADD COLUMN color TEXT NOT NULL DEFAULT ''");
   }
 
   // ─── Fincas ─────────────────────────────────────────────
@@ -1487,6 +1496,7 @@ class BaseDatosSoleraZunbeltz {
             recintoSigpac: z.recintoSigpac,
             notas: z.notas,
             fechaCreacionMs: ahora,
+            color: z.color,
           ),
           uid: uid);
       uidsZonas.add(uid);

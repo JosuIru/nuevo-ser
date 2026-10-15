@@ -44,11 +44,13 @@ const List<OpcionCatalogo> tiposPunto = [
       'deposito_movil', 'Bidón / depósito portátil', 'Ur-biltegi eramangarria'),
   // Del inventario de Zunbeltz (2026-10-13).
   OpcionCatalogo('aprisco', 'Aprisco', 'Artegia'),
-  OpcionCatalogo('placas_solares', 'Placas solares y baterías', 'Eguzki-plakak eta bateriak'),
+  OpcionCatalogo('placas_solares', 'Placas solares y baterías',
+      'Eguzki-plakak eta bateriak'),
   OpcionCatalogo('vestuario', 'Caseta / vestuario', 'Etxola / aldagela'),
   OpcionCatalogo('bebedero_movil', 'Bebedero móvil', 'Edaska mugikorra'),
   OpcionCatalogo('pastor_electrico', 'Pastor eléctrico', 'Artzain elektrikoa'),
-  OpcionCatalogo('isotermo', 'Isotermo / cámara de frío', 'Isotermoa / hotz-ganbera'),
+  OpcionCatalogo(
+      'isotermo', 'Isotermo / cámara de frío', 'Isotermoa / hotz-ganbera'),
   OpcionCatalogo('molino', 'Molino', 'Errota'),
   // Mapa de actuaciones de la finca de Zunbeltz (2026-10-15).
   OpcionCatalogo('puerta', 'Puerta / portillo', 'Atea / langa'),
@@ -94,6 +96,31 @@ const List<OpcionCatalogo> tiposZona = [
 ];
 
 /// Estado de uso de una zona.
+/// Colores para pintar una zona en el mapa. Vivos a propósito: tienen que
+/// leerse sobre el verde del monte y sobre la foto aérea. Vacío =
+/// automático, el de su tipo ([colorPorTipoZona]).
+const List<OpcionCatalogo> coloresZona = [
+  OpcionCatalogo('amarillo', 'Amarillo', 'Horia'),
+  OpcionCatalogo('naranja', 'Naranja', 'Laranja'),
+  OpcionCatalogo('rojo', 'Rojo', 'Gorria'),
+  OpcionCatalogo('magenta', 'Magenta', 'Magenta'),
+  OpcionCatalogo('violeta', 'Violeta', 'Morea'),
+  OpcionCatalogo('azul', 'Azul', 'Urdina'),
+  OpcionCatalogo('cian', 'Cian', 'Ziana'),
+  OpcionCatalogo('blanco', 'Blanco', 'Zuria'),
+];
+
+/// Color automático de cada tipo de zona (código de [coloresZona]).
+const Map<String, String> colorPorTipoZona = {
+  'parcela_pasto': 'amarillo',
+  'cercado': 'magenta',
+  'pastoreo': 'naranja',
+  'siega': 'cian',
+  'monte': 'azul',
+  'vedado': 'rojo',
+  'otra': 'blanco',
+};
+
 const List<OpcionCatalogo> estadosZona = [
   OpcionCatalogo('en_uso', 'En uso', 'Erabilian'),
   OpcionCatalogo('descanso', 'En descanso', 'Atsedenean'),
@@ -149,7 +176,8 @@ const List<OpcionCatalogo> prioridadesTarea = [
 const List<OpcionCatalogo> tiposActividad = [
   OpcionCatalogo('alimentacion', 'Alimentación', 'Elikadura'),
   OpcionCatalogo('paricion', 'Pariciones', 'Erditzeak'),
-  OpcionCatalogo('producto', 'Producto comercializado', 'Merkaturatutako produktua'),
+  OpcionCatalogo(
+      'producto', 'Producto comercializado', 'Merkaturatutako produktua'),
 ];
 
 /// Unidad de la cantidad según el tipo de actividad.
@@ -181,11 +209,14 @@ const List<OpcionCatalogo> canalesComercializacion = [
   OpcionCatalogo('mercado', 'Mercados y ferias', 'Azokak eta feriak'),
   OpcionCatalogo('tienda', 'Pequeño comercio', 'Merkataritza txikia'),
   OpcionCatalogo('hosteleria', 'Hostelería', 'Ostalaritza'),
-  OpcionCatalogo('restauracion', 'Restauración colectiva', 'Jantoki kolektiboak'),
-  OpcionCatalogo('acopio', 'Centro de acopio y distribución', 'Bilketa- eta banaketa-zentroa'),
+  OpcionCatalogo(
+      'restauracion', 'Restauración colectiva', 'Jantoki kolektiboak'),
+  OpcionCatalogo('acopio', 'Centro de acopio y distribución',
+      'Bilketa- eta banaketa-zentroa'),
   OpcionCatalogo('crowdfunding', 'Crowdfunding', 'Crowdfundinga'),
   OpcionCatalogo('online', 'Online', 'Online'),
-  OpcionCatalogo('mayorista', 'Mayorista / distribuidor', 'Handizkaria / banatzailea'),
+  OpcionCatalogo(
+      'mayorista', 'Mayorista / distribuidor', 'Handizkaria / banatzailea'),
   OpcionCatalogo('otro', 'Otros', 'Bestelakoak'),
 ];
 
@@ -201,9 +232,12 @@ const List<OpcionCatalogo> resultadosValidacion = [
 /// proyecto a otro es la partida ([partidasGasto]), no el bloque.
 const List<OpcionCatalogo> categoriasGasto = [
   OpcionCatalogo('directos', 'I. Costes directos', 'I. Kostu zuzenak'),
-  OpcionCatalogo('maquinaria', 'II. Costes de maquinaria', 'II. Makineria-kostuak'),
-  OpcionCatalogo('transformacion', 'III. Coste de transformación', 'III. Eraldaketa-kostua'),
-  OpcionCatalogo('mano_obra', 'IV. Costes de mano de obra', 'IV. Eskulan-kostuak'),
+  OpcionCatalogo(
+      'maquinaria', 'II. Costes de maquinaria', 'II. Makineria-kostuak'),
+  OpcionCatalogo('transformacion', 'III. Coste de transformación',
+      'III. Eraldaketa-kostua'),
+  OpcionCatalogo(
+      'mano_obra', 'IV. Costes de mano de obra', 'IV. Eskulan-kostuak'),
   OpcionCatalogo('indirectos', 'V. Costes indirectos', 'V. Zeharkako kostuak'),
   OpcionCatalogo('amortizacion', 'VI. Amortización', 'VI. Amortizazioa'),
 ];
@@ -218,33 +252,50 @@ const String categoriaAmortizacion = 'amortizacion';
 const Map<String, List<OpcionCatalogo>> partidasGasto = {
   'directos': [
     OpcionCatalogo('animales', 'Animales', 'Abereak'),
-    OpcionCatalogo('compra_alimento', 'Compra de alimento', 'Elikagai-erosketa'),
+    OpcionCatalogo(
+        'compra_alimento', 'Compra de alimento', 'Elikagai-erosketa'),
     OpcionCatalogo('forraje', 'Forraje', 'Bazka'),
     OpcionCatalogo('concentrados', 'Concentrados', 'Kontzentratuak'),
-    OpcionCatalogo('transporte_concentrados', 'Transporte de concentrados', 'Kontzentratuen garraioa'),
-    OpcionCatalogo('zoosanitarios', 'Productos zoosanitarios y otros suministros', 'Zoosanitarioak eta bestelako hornidurak'),
+    OpcionCatalogo('transporte_concentrados', 'Transporte de concentrados',
+        'Kontzentratuen garraioa'),
+    OpcionCatalogo(
+        'zoosanitarios',
+        'Productos zoosanitarios y otros suministros',
+        'Zoosanitarioak eta bestelako hornidurak'),
     OpcionCatalogo('inseminacion', 'Inseminación', 'Intseminazioa'),
-    OpcionCatalogo('vacunas_veterinario', 'Vacunas y veterinario', 'Txertoak eta albaitaria'),
+    OpcionCatalogo('vacunas_veterinario', 'Vacunas y veterinario',
+        'Txertoak eta albaitaria'),
     OpcionCatalogo('tasas_cpaen', 'Tasas CPAEN', 'NNPEK tasak'),
-    OpcionCatalogo('cama_limpieza', 'Cama, limpieza y desinfección', 'Ohea, garbiketa eta desinfekzioa'),
-    OpcionCatalogo('agua_luz', 'Agua, luz y calefacción', 'Ura, argia eta berogailua'),
+    OpcionCatalogo('cama_limpieza', 'Cama, limpieza y desinfección',
+        'Ohea, garbiketa eta desinfekzioa'),
+    OpcionCatalogo(
+        'agua_luz', 'Agua, luz y calefacción', 'Ura, argia eta berogailua'),
     OpcionCatalogo('transporte', 'Transporte', 'Garraioa'),
-    OpcionCatalogo('semillas_pastizales', 'Semillas y manejo de pastizales', 'Haziak eta larreen kudeaketa'),
-    OpcionCatalogo('canon_arrendamiento', 'Canon de arrendamiento', 'Errentamendu-kanona'),
+    OpcionCatalogo('semillas_pastizales', 'Semillas y manejo de pastizales',
+        'Haziak eta larreen kudeaketa'),
+    OpcionCatalogo(
+        'canon_arrendamiento', 'Canon de arrendamiento', 'Errentamendu-kanona'),
   ],
   'maquinaria': [
-    OpcionCatalogo('trabajos_realizados', 'Trabajos realizados', 'Egindako lanak'),
+    OpcionCatalogo(
+        'trabajos_realizados', 'Trabajos realizados', 'Egindako lanak'),
     OpcionCatalogo('combustibles', 'Combustibles', 'Erregaiak'),
-    OpcionCatalogo('reparaciones_cercados', 'Reparaciones y repuestos de cercados', 'Hesien konponketak eta ordezkoak'),
+    OpcionCatalogo(
+        'reparaciones_cercados',
+        'Reparaciones y repuestos de cercados',
+        'Hesien konponketak eta ordezkoak'),
   ],
   'transformacion': [
     OpcionCatalogo('transporte_matadero', 'Transporte', 'Garraioa'),
     OpcionCatalogo('tasa_sanitaria', 'Tasa sanitaria', 'Osasun-tasa'),
     OpcionCatalogo('sacrificio', 'Sacrificio', 'Hiltzea'),
-    OpcionCatalogo('despiece', 'Deshuese y despiece', 'Hezurgabetzea eta zatiketa'),
-    OpcionCatalogo('obrador', 'Trabajos de elaboración (obrador)', 'Elaborazio-lanak (obradorea)'),
+    OpcionCatalogo(
+        'despiece', 'Deshuese y despiece', 'Hezurgabetzea eta zatiketa'),
+    OpcionCatalogo('obrador', 'Trabajos de elaboración (obrador)',
+        'Elaborazio-lanak (obradorea)'),
     OpcionCatalogo('envasado', 'Envasado y bolsas', 'Ontziratzea eta poltsak'),
-    OpcionCatalogo('transporte_venta', 'Transporte de venta', 'Salmenta-garraioa'),
+    OpcionCatalogo(
+        'transporte_venta', 'Transporte de venta', 'Salmenta-garraioa'),
     OpcionCatalogo('comercializacion', 'Comercialización', 'Merkaturatzea'),
   ],
   'mano_obra': [
@@ -252,13 +303,19 @@ const Map<String, List<OpcionCatalogo>> partidasGasto = {
     OpcionCatalogo('no_asalariada', 'No asalariada', 'Soldatapekoa ez dena'),
   ],
   'indirectos': [
-    OpcionCatalogo('financieros_impuestos', 'Intereses, gastos financieros e impuestos', 'Interesak, finantza-gastuak eta zergak'),
-    OpcionCatalogo('mano_obra_familiar', 'Mano de obra familiar', 'Familiako eskulana'),
+    OpcionCatalogo(
+        'financieros_impuestos',
+        'Intereses, gastos financieros e impuestos',
+        'Interesak, finantza-gastuak eta zergak'),
+    OpcionCatalogo(
+        'mano_obra_familiar', 'Mano de obra familiar', 'Familiako eskulana'),
   ],
   'amortizacion': [
     OpcionCatalogo('instalaciones', 'Instalaciones', 'Instalazioak'),
-    OpcionCatalogo('material_ganadero', 'Material ganadero', 'Abeltzaintza-materiala'),
-    OpcionCatalogo('adecuaciones', 'Adecuaciones de finca', 'Finkaren egokitzapenak'),
+    OpcionCatalogo(
+        'material_ganadero', 'Material ganadero', 'Abeltzaintza-materiala'),
+    OpcionCatalogo(
+        'adecuaciones', 'Adecuaciones de finca', 'Finkaren egokitzapenak'),
   ],
 };
 
@@ -278,9 +335,12 @@ const Set<String> partidasAsumidasPorTester = {
 
 /// Categorías de ingreso de la hoja de seguimiento.
 const List<OpcionCatalogo> categoriasIngreso = [
-  OpcionCatalogo('venta', 'Venta de ganado y productos ganaderos', 'Abereen eta abeltzaintza-produktuen salmenta'),
-  OpcionCatalogo('venta_transformado', 'Venta de transformado', 'Eraldatutakoaren salmenta'),
-  OpcionCatalogo('ayuda', 'Subvenciones directas y primas', 'Diru-laguntza zuzenak eta sariak'),
+  OpcionCatalogo('venta', 'Venta de ganado y productos ganaderos',
+      'Abereen eta abeltzaintza-produktuen salmenta'),
+  OpcionCatalogo('venta_transformado', 'Venta de transformado',
+      'Eraldatutakoaren salmenta'),
+  OpcionCatalogo('ayuda', 'Subvenciones directas y primas',
+      'Diru-laguntza zuzenak eta sariak'),
   OpcionCatalogo('otros', 'Otros', 'Bestelakoak'),
 ];
 
@@ -402,15 +462,21 @@ const List<OpcionCatalogo> nivelesIncidencia = [
 /// IV del convenio.
 const List<OpcionCatalogo> tiposAcompanamiento = [
   OpcionCatalogo('formacion', 'Formación', 'Prestakuntza'),
-  OpcionCatalogo('visita_referencia', 'Visita a explotación de referencia', 'Erreferentziazko ustiategira bisita'),
-  OpcionCatalogo('asesoramiento', 'Asesoramiento de ganadería experta', 'Abeltzain adituen aholkularitza'),
+  OpcionCatalogo('visita_referencia', 'Visita a explotación de referencia',
+      'Erreferentziazko ustiategira bisita'),
+  OpcionCatalogo('asesoramiento', 'Asesoramiento de ganadería experta',
+      'Abeltzain adituen aholkularitza'),
   OpcionCatalogo('reunion', 'Reunión de seguimiento', 'Jarraipen-bilera'),
-  OpcionCatalogo('visita_finca', 'Visita del equipo a la finca', 'Taldearen bisita finkara'),
-  OpcionCatalogo('visita_recibida', 'Visita recibida en el espacio', 'Gunean jasotako bisita'),
+  OpcionCatalogo('visita_finca', 'Visita del equipo a la finca',
+      'Taldearen bisita finkara'),
+  OpcionCatalogo('visita_recibida', 'Visita recibida en el espacio',
+      'Gunean jasotako bisita'),
   OpcionCatalogo('mercado', 'Mercado o feria', 'Azoka edo feria'),
   OpcionCatalogo('difusion', 'Medio de difusión', 'Hedabidea'),
-  OpcionCatalogo('busqueda_canales', 'Búsqueda de canales de venta', 'Salmenta-bideen bilaketa'),
-  OpcionCatalogo('apoyo_tareas', 'Apoyo en tareas generales', 'Laguntza zeregin orokorretan'),
+  OpcionCatalogo('busqueda_canales', 'Búsqueda de canales de venta',
+      'Salmenta-bideen bilaketa'),
+  OpcionCatalogo('apoyo_tareas', 'Apoyo en tareas generales',
+      'Laguntza zeregin orokorretan'),
 ];
 
 /// Si la persona tester asistió a lo propuesto.

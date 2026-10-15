@@ -32,6 +32,7 @@ class ZonaFinca {
     this.notas = '',
     this.rutasFotosJson = '[]',
     this.fechaCreacionMs = 0,
+    this.color = '',
   });
 
   final int? id;
@@ -62,6 +63,9 @@ class ZonaFinca {
   final String notas;
   final String rutasFotosJson;
   final int fechaCreacionMs;
+
+  /// Código de `coloresZona` con que se pinta, o '' para el de su tipo.
+  final String color;
 
   /// Vértices decodificados. Devuelve lista vacía si el JSON está corrupto o
   /// tiene una forma inesperada: una zona ilegible no debe tirar el mapa.
@@ -120,6 +124,7 @@ class ZonaFinca {
     String notas = '',
     String rutasFotosJson = '[]',
     int fechaCreacionMs = 0,
+    String color = '',
   }) =>
       ZonaFinca(
         id: id,
@@ -134,6 +139,7 @@ class ZonaFinca {
         notas: notas,
         rutasFotosJson: rutasFotosJson,
         fechaCreacionMs: fechaCreacionMs,
+        color: color,
       );
 
   Map<String, Object?> toMap() => {
@@ -149,6 +155,7 @@ class ZonaFinca {
         'notas': notas,
         'rutas_fotos_json': rutasFotosJson,
         'fecha_creacion_ms': fechaCreacionMs,
+        'color': color,
       };
 
   factory ZonaFinca.fromMap(Map<String, Object?> mapa) => ZonaFinca(
@@ -166,6 +173,7 @@ class ZonaFinca {
         notas: (mapa['notas'] as String?) ?? '',
         rutasFotosJson: (mapa['rutas_fotos_json'] as String?) ?? '[]',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as int?) ?? 0,
+        color: (mapa['color'] as String?) ?? '',
       );
 
   ZonaFinca copiarCon({
@@ -181,6 +189,7 @@ class ZonaFinca {
     String? notas,
     String? rutasFotosJson,
     int? fechaCreacionMs,
+    String? color,
   }) =>
       ZonaFinca(
         id: id ?? this.id,
@@ -196,6 +205,7 @@ class ZonaFinca {
         notas: notas ?? this.notas,
         rutasFotosJson: rutasFotosJson ?? this.rutasFotosJson,
         fechaCreacionMs: fechaCreacionMs ?? this.fechaCreacionMs,
+        color: color ?? this.color,
       );
 
   /// Sustituye el trazado y recalcula la superficie orientativa.

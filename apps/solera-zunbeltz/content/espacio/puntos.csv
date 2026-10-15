@@ -1,7 +1,34 @@
 finca;tipo;nombre;latitud;longitud;estado;notas
-# Inventario real de puntos de infraestructura de Zunbeltz / La Planilla.
-# PENDIENTE: lo rellena Zunbeltz (o se captura en campo con la app y se exporta aqui).
-# tipo: abrevadero | manga | cierre | refugio | cuadra | almacen | balsa | comedero | cargadero | parcela | corral_movil | deposito_movil | aprisco | placas_solares | vestuario | bebedero_movil | pastor_electrico | isotermo | molino
+# GENERADO con ~/Documentos/zunbeltz-app/pdfs-piezas/extraido/generar_csv_espacio.py; se puede editar a mano.
+# tipo: abrevadero | manga | cierre | refugio | cuadra | almacen | balsa | comedero | cargadero | parcela | corral_movil | deposito_movil | aprisco | placas_solares | vestuario | bebedero_movil | pastor_electrico | isotermo | molino | puerta
 # estado: operativo | revisar | averiado
-# Ejemplo (borrar al cargar los reales):
-# Zunbeltz;abrevadero;Abrevadero Norte;42.7900;-1.9450;operativo;
+Zunbeltz;puerta;Puerta / portillo 1;42.828325;-2.028554;revisar;Punto rojo nº 1 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Portillo norte (sierra de Urbasa);42.828266;-2.029794;revisar;Punto rojo nº 2 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Finca de la Era;42.826293;-2.028720;revisar;Punto rojo nº 3 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;La Cañada;42.825170;-2.028468;revisar;Punto rojo nº 4 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 5;42.824727;-2.028906;revisar;Punto rojo nº 5 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 6;42.824209;-2.029844;revisar;Punto rojo nº 6 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Sectorización oeste;42.822947;-2.030767;revisar;Punto rojo nº 7 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 8;42.822617;-2.029330;revisar;Punto rojo nº 8 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 9;42.822461;-2.030815;revisar;Punto rojo nº 9 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 10;42.822405;-2.028848;revisar;Punto rojo nº 10 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 11;42.822322;-2.028378;revisar;Punto rojo nº 11 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 12;42.822253;-2.030859;revisar;Punto rojo nº 12 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 13;42.821627;-2.030626;revisar;Punto rojo nº 13 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 14;42.821595;-2.029198;revisar;Punto rojo nº 14 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 15;42.821333;-2.028798;revisar;Punto rojo nº 15 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 16;42.821311;-2.028515;revisar;Punto rojo nº 16 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 17;42.821160;-2.028302;revisar;Punto rojo nº 17 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 18;42.821068;-2.029166;revisar;Punto rojo nº 18 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 19;42.820903;-2.028387;revisar;Punto rojo nº 19 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 20;42.820897;-2.028832;revisar;Punto rojo nº 20 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Entrada de la finca;42.820304;-2.027978;revisar;Punto rojo nº 21 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 22;42.820070;-2.029518;revisar;Punto rojo nº 22 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 23;42.819951;-2.028402;revisar;Punto rojo nº 23 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 24;42.819327;-2.029665;revisar;Punto rojo nº 24 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 25;42.819027;-2.025937;revisar;Punto rojo nº 25 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 26;42.817884;-2.030307;revisar;Punto rojo nº 26 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 27;42.817768;-2.024878;revisar;Punto rojo nº 27 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;puerta;Puerta / portillo 28;42.815605;-2.023646;revisar;Punto rojo nº 28 del mapa de actuaciones: qué es exactamente, POR CONFIRMAR. Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;aprisco;Aprisco;42.821063;-2.028559;revisar;Mapa de actuaciones de Zunbeltz (oct-2026), situado a mano sobre el plano de QGIS: ±20 m.
+Zunbeltz;parcela;Las Bordas;42.826588;-2.030831;operativo;Pol. 24 parc. 2 subp. AE. Sin contorno todavía. Plano «Subparcelas entorno de Zunbeltz» (QGIS).

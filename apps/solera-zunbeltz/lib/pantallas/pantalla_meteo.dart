@@ -30,8 +30,8 @@ class _PantallaMeteoState extends State<PantallaMeteo> {
   final _bd = BaseDatosSoleraZunbeltz();
   late final _servicio = widget.servicio ?? ServicioMeteo();
   // Centro aproximado de Zunbeltz como fallback si la finca no tiene coords.
-  static const _latFallback = 42.793;
-  static const _lonFallback = -1.958;
+  static const _latFallback = 42.8226;
+  static const _lonFallback = -2.0315;
 
   List<Finca> _fincas = const [];
   int? _fincaId;

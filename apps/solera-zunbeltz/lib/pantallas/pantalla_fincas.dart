@@ -64,7 +64,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   // Zona cuyo trazado se está rehaciendo (null = zona nueva).
   int? _redibujandoZonaId;
   // Centro aproximado de la zona de Andía / Tierra Estella (Navarra).
-  LatLng _centroActual = const LatLng(42.793, -1.958);
+  LatLng _centroActual = const LatLng(42.8226, -2.0315);
   double _zoomActual = 12;
   bool _centroResuelto = false;
 

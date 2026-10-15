@@ -1,0 +1,16 @@
+finca;clave;titulo;descripcion;zona;punto;prioridad
+# GENERADO con ~/Documentos/zunbeltz-app/pdfs-piezas/extraido/generar_csv_espacio.py; se puede editar a mano.
+# zona / punto: nombre exacto en zonas.csv / puntos.csv (o vacío). clave: fija, da el uid.
+Zunbeltz;actuacion-1;1. Cierre norte sierra Urbasa (izda. portillo): Desbroce y reparación;Actuación 1 del mapa de la finca. Cierre norte sierra Urbasa (izda. portillo). Desbroce y reparación;;Portillo norte (sierra de Urbasa);media
+Zunbeltz;actuacion-2;2. Cierre norte sierra Urbasa (dcha. portillo): Desbroce y reparación;Actuación 2 del mapa de la finca. Cierre norte sierra Urbasa (dcha. portillo). Desbroce y reparación;;Portillo norte (sierra de Urbasa);media
+Zunbeltz;actuacion-3;3. Finca de la Era: Limpieza de muro seco, reparación;Actuación 3 del mapa de la finca. Finca de la Era. Limpieza de muro seco, reparación. Colocación de puerta.;;Finca de la Era;media
+Zunbeltz;actuacion-4;4. La Cañada: Colocación de malla ganadera, alambre y 2 portillos;Actuación 4 del mapa de la finca. La Cañada. Colocación de malla ganadera, alambre y 2 portillos.;;La Cañada;media
+Zunbeltz;actuacion-5;5. Cierre lado oeste finca: Limpieza alambrado y reparación;Actuación 5 del mapa de la finca. Cierre lado oeste finca. Limpieza alambrado y reparación.;Perímetro de la finca;;media
+Zunbeltz;actuacion-6;6. Sectorización oeste finca: Colocación de malla ganadera, portillo y alambre;Actuación 6 del mapa de la finca. Sectorización oeste finca. Colocación de malla ganadera, portillo y alambre.;;Sectorización oeste;media
+Zunbeltz;actuacion-7;7. Sectorización parques: Instalación de portillo ganadero de 1 hoja;Actuación 7 del mapa de la finca. Sectorización parques. Instalación de portillo ganadero de 1 hoja.;Parques (por confirmar);;media
+Zunbeltz;actuacion-8;8. Pieza de los Silos (frente al aprisco): Sectorización de pieza de los Silos con cierre y portillo de 2 hojas;Actuación 8 del mapa de la finca. Pieza de los Silos (frente al aprisco). Sectorización de pieza de los Silos con cierre y portillo de 2 hojas.;Pieza de los Silos;;media
+Zunbeltz;actuacion-9;9. Entrada finca: Desbroce y limpieza;Actuación 9 del mapa de la finca. Entrada finca. Desbroce y limpieza.;;Entrada de la finca;media
+Zunbeltz;actuacion-10;10. Aprisco: Colocación de cierre y puerta;Actuación 10 del mapa de la finca. Aprisco. Colocación de cierre y puerta.;;Aprisco;media
+Zunbeltz;actuacion-11;11. Pieza de la Puerta: Reparación de muro seco;Actuación 11 del mapa de la finca. Pieza de la Puerta. Reparación de muro seco. Colocación de malla ganadera y postes.;Pieza de la Puerta;;media
+Zunbeltz;actuacion-12;12. Pieza de la Puerta: Reparación de muro seco;Actuación 12 del mapa de la finca. Pieza de la Puerta. Reparación de muro seco. Colocación de malla ganadera y postes.;Pieza de la Puerta;;media
+Zunbeltz;actuacion-13;13. Pieza de la Venta Vieja: Reparación de muro seco;Actuación 13 del mapa de la finca. Pieza de la Venta Vieja. Reparación de muro seco. Colocación de malla ganadera. Instalación de abrevadero.;Pieza de la Venta Vieja;;media

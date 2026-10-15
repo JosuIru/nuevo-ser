@@ -50,6 +50,8 @@ const List<OpcionCatalogo> tiposPunto = [
   OpcionCatalogo('pastor_electrico', 'Pastor eléctrico', 'Artzain elektrikoa'),
   OpcionCatalogo('isotermo', 'Isotermo / cámara de frío', 'Isotermoa / hotz-ganbera'),
   OpcionCatalogo('molino', 'Molino', 'Errota'),
+  // Mapa de actuaciones de la finca de Zunbeltz (2026-10-15).
+  OpcionCatalogo('puerta', 'Puerta / portillo', 'Atea / langa'),
 ];
 
 /// Tipos de punto que se mueven de sitio (corrales, bidones…).

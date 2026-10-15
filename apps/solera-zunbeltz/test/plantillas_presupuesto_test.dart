@@ -70,6 +70,7 @@ void main() {
       'pastor_electrico',
       'isotermo',
       'molino',
+      'puerta',
     ]) {
       expect(buscarOpcion(tiposPunto, codigo), isNotNull, reason: codigo);
     }

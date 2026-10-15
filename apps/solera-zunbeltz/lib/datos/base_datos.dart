@@ -796,10 +796,11 @@ class BaseDatosSoleraZunbeltz {
 
   // ─── Zonas (recintos dibujados) ─────────────────────────
 
-  Future<int> guardarZona(ZonaFinca zona) async {
+  Future<int> guardarZona(ZonaFinca zona, {String? uid}) async {
     final db = await basedatos;
     return _insertarSincronizable(
-        db, 'zonas_finca', zona.toMap()..remove('id'));
+        db, 'zonas_finca', zona.toMap()..remove('id'),
+        uid: uid);
   }
 
   Future<void> actualizarZona(int id, Map<String, Object?> cambios) =>
@@ -1406,8 +1407,8 @@ class BaseDatosSoleraZunbeltz {
     await guardarFinca(
         Finca(
           nombre: 'Zunbeltz',
-          latitud: 42.7872,
-          longitud: -1.9450,
+          latitud: 42.8226,
+          longitud: -2.0315,
           superficieHa: 231,
           notas: 'Datos de ejemplo · superficie pública, centroide aproximado.',
         ),
@@ -1424,7 +1425,7 @@ class BaseDatosSoleraZunbeltz {
     return true;
   }
 
-  /// Siembra el **espacio real** (fincas + puntos de infraestructura) desde
+  /// Siembra el **espacio real** (fincas, puntos, zonas y tareas) desde
   /// los CSV compilados (`espacio_generado.dart`) si la BD no tiene fincas.
   /// Es el seed que se entrega de serie a los testadores. Devuelve true si
   /// sembró. Cuando Zunbeltz aporte los puntos, se rellenan los CSV y se
@@ -1452,10 +1453,11 @@ class BaseDatosSoleraZunbeltz {
       idPorFinca[f.nombre] = id;
     }
     final uidsPuntos = <String>[];
+    final idPorPunto = <String, int>{};
     for (final p in puntosEspacio) {
       final fincaId = idPorFinca[p.finca];
       if (fincaId == null) continue;
-      await guardarPunto(
+      idPorPunto['${p.finca} ${p.nombre}'] = await guardarPunto(
           PuntoInfraestructura(
             fincaId: fincaId,
             tipo: p.tipo,
@@ -1469,6 +1471,44 @@ class BaseDatosSoleraZunbeltz {
           uid: uidSembrado('punto', '${p.finca} ${p.nombre}'));
       uidsPuntos.add(uidSembrado('punto', '${p.finca} ${p.nombre}'));
     }
+    final uidsZonas = <String>[];
+    final idPorZona = <String, int>{};
+    for (final z in zonasEspacio) {
+      final fincaId = idPorFinca[z.finca];
+      if (fincaId == null) continue;
+      final uid = uidSembrado('zona', '${z.finca} ${z.nombre}');
+      idPorZona['${z.finca} ${z.nombre}'] = await guardarZona(
+          ZonaFinca.desdeTrazado(
+            fincaId: fincaId,
+            vertices: ZonaFinca.decodificarVertices(z.verticesJson),
+            tipo: z.tipo,
+            nombre: z.nombre,
+            estado: z.estado,
+            recintoSigpac: z.recintoSigpac,
+            notas: z.notas,
+            fechaCreacionMs: ahora,
+          ),
+          uid: uid);
+      uidsZonas.add(uid);
+    }
+    final uidsTareas = <String>[];
+    for (final t in tareasEspacio) {
+      final fincaId = idPorFinca[t.finca];
+      if (fincaId == null) continue;
+      final uid = uidSembrado('tarea', t.clave);
+      await guardarTarea(TareaMantenimiento(
+        uid: uid,
+        fincaId: fincaId,
+        zonaId: idPorZona['${t.finca} ${t.zona}'],
+        puntoId: idPorPunto['${t.finca} ${t.punto}'],
+        titulo: t.titulo,
+        descripcion: t.descripcion,
+        prioridad: t.prioridad,
+        fechaCreacionMs: ahora,
+        actualizadoMs: marcaSembrado,
+      ));
+      uidsTareas.add(uid);
+    }
     // Lo sembrado es igual en todos los móviles: con marca mínima sube si el
     // servidor no lo tiene, pero nunca pisa la versión del servidor (quizá
     // ya corregida por coordinación) ni resucita una finca borrada allí.
@@ -1479,10 +1519,15 @@ class BaseDatosSoleraZunbeltz {
     await db.update('fincas', {'actualizado_ms': marcaSembrado},
         where: 'uid IN (${List.filled(uidsFincas.length, '?').join(',')})',
         whereArgs: uidsFincas);
-    if (uidsPuntos.isNotEmpty) {
-      await db.update('puntos_infraestructura', {'actualizado_ms': marcaSembrado},
-          where: 'uid IN (${List.filled(uidsPuntos.length, '?').join(',')})',
-          whereArgs: uidsPuntos);
+    for (final (tabla, uids) in [
+      ('puntos_infraestructura', uidsPuntos),
+      ('zonas_finca', uidsZonas),
+      ('tareas_mantenimiento', uidsTareas),
+    ]) {
+      if (uids.isEmpty) continue;
+      await db.update(tabla, {'actualizado_ms': marcaSembrado},
+          where: 'uid IN (${List.filled(uids.length, '?').join(',')})',
+          whereArgs: uids);
     }
     return true;
   }

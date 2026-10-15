@@ -613,7 +613,10 @@ class _PantallaFincasState extends State<PantallaFincas> {
             ),
             Polygon(
               points: zona.vertices,
-              color: colorDeZona(zona).withValues(alpha: 0.22),
+              // El blanco relleno tapa la foto: casi transparente.
+              color: colorDeZona(zona).withValues(
+                  alpha:
+                      colorDeZona(zona) == paletaZonas['blanco'] ? 0.05 : 0.22),
               borderColor: colorDeZona(zona),
               borderStrokeWidth: 3.5,
               pattern: patronEstadoZona(zona.estado),

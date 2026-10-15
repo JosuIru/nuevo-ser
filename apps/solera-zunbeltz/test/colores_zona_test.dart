@@ -48,7 +48,7 @@ void main() {
 
   test('las zonas de Zunbeltz vienen con los colores del mapa', () {
     final perimetro =
-        zonasEspacio.singleWhere((z) => z.nombre == 'Perímetro de la finca');
+        zonasEspacio.singleWhere((z) => z.nombre == 'Cierre perimetral');
     expect(perimetro.color, 'amarillo');
     for (final zona in zonasEspacio) {
       expect(paletaZonas.containsKey(zona.color) || zona.color.isEmpty, isTrue,

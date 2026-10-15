@@ -49,7 +49,8 @@ void main() {
     ..writeln()
     ..writeln('class ZonaSeed {')
     ..writeln('  const ZonaSeed(this.finca, this.tipo, this.nombre,')
-    ..writeln('      this.recintoSigpac, this.estado, this.notas, this.verticesJson);')
+    ..writeln('      this.recintoSigpac, this.estado, this.notas, this.verticesJson,')
+    ..writeln("      [this.color = '']);")
     ..writeln('  final String finca;')
     ..writeln('  final String tipo;')
     ..writeln('  final String nombre;')
@@ -57,6 +58,7 @@ void main() {
     ..writeln('  final String estado;')
     ..writeln('  final String notas;')
     ..writeln('  final String verticesJson;')
+    ..writeln('  final String color;')
     ..writeln('}')
     ..writeln()
     ..writeln('/// Tarea de partida, anclada por nombre a una zona o a un punto de su')
@@ -96,7 +98,7 @@ void main() {
     buffer.writeln('  ZonaSeed(${_s(z['finca'])}, ${_s(z['tipo'])}, '
         '${_s(z['nombre'])}, ${_s(z['recinto_sigpac'])}, '
         '${_s(z['estado'], def: 'en_uso')}, ${_s(z['notas'])}, '
-        '${_s(z['vertices'], def: '[]')}),');
+        '${_s(z['vertices'], def: '[]')}, ${_s(z['color'])}),');
   }
   buffer
     ..writeln('];')

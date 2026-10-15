@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     0.7.10
+ * Version:     0.7.11
  * Author:      Equipo Colección Nuevo Ser
  * Author URI:  https://coleccion-nuevo-ser.com/
  * License:     GPL-2.0-or-later
@@ -58,8 +58,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '0.7.10' );
-define( 'SZS_VERSION_ESQUEMA', 6 );
+define( 'SZS_VERSION', '0.7.11' );
+define( 'SZS_VERSION_ESQUEMA', 7 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
 define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
@@ -214,6 +214,11 @@ function szs_instalar_esquema(): void {
 	// nadie: se retira para que no quede un secreto huérfano.
 	delete_option( SZS_OPCION_TOKEN_COMPARTIDO_V1 );
 	szs_dar_capacidad_panel_a_administradores();
+	// Esquema 7: las fincas del espacio que la demo o una app antigua dejaron
+	// a kilómetros de su sitio se colocan donde dice el catastro.
+	if ( function_exists( 'szs_corregir_fincas_del_espacio' ) ) {
+		szs_corregir_fincas_del_espacio();
+	}
 	update_option( SZS_OPCION_VERSION_ESQUEMA, SZS_VERSION_ESQUEMA );
 }
 

@@ -36,11 +36,80 @@ if ( ! defined( 'ABSPATH' ) ) {
 const SZS_PREFIJO_DEMO      = 'demo-';
 const SZS_PAGINA_DATOS_DEMO = 'solera-zunbeltz-datos-demo';
 
-/** Fincas que siembra la app (`uidsFincasSembradas` en `esquema_sincronizable.dart`). */
+/**
+ * Fincas que siembra la app (`uidsFincasSembradas` en
+ * `esquema_sincronizable.dart`), con su sitio según el Catastro de Navarra:
+ * Zunbeltz es la parcela 24-2 de Yerri y La Planilla el polígono 13.
+ */
 const SZS_FINCAS_DEL_ESPACIO = array(
-	'finca-zunbeltz'    => array( 'nombre' => 'Zunbeltz', 'latitud' => 42.7872, 'longitud' => -1.9450, 'superficie_ha' => 231 ),
-	'finca-la-planilla' => array( 'nombre' => 'La Planilla', 'latitud' => 42.8010, 'longitud' => -1.9720, 'superficie_ha' => 197 ),
+	'finca-zunbeltz'    => array( 'nombre' => 'Zunbeltz', 'latitud' => 42.8169, 'longitud' => -2.0330, 'superficie_ha' => 229.36 ),
+	'finca-la-planilla' => array( 'nombre' => 'La Planilla', 'latitud' => 42.7707, 'longitud' => -2.0144, 'superficie_ha' => 197.14 ),
 );
+
+/** Sitios aproximados que tuvieron antes (demo y versiones previas de la app). */
+const SZS_COORDENADAS_ANTIGUAS_FINCAS = array(
+	'finca-zunbeltz'    => array( array( 42.7872, -1.9450 ), array( 42.8226, -2.0315 ), array( 42.8223, -2.0297 ) ),
+	'finca-la-planilla' => array( array( 42.8010, -1.9720 ) ),
+);
+
+/**
+ * La finca del espacio con su sitio bueno, o null si no hay que tocarla:
+ * solo se corrige si sigue en uno de los sitios antiguos o si nadie la ha
+ * cambiado desde que la sembró la app (`actualizado_ms` 1). Pura.
+ */
+function szs_finca_del_espacio_corregida( string $uid, array $datos, int $actualizado_ms ): ?array {
+	if ( ! isset( SZS_FINCAS_DEL_ESPACIO[ $uid ] ) ) {
+		return null;
+	}
+	$buena   = SZS_FINCAS_DEL_ESPACIO[ $uid ];
+	$latitud = (float) ( $datos['latitud'] ?? 0 );
+	$longitud = (float) ( $datos['longitud'] ?? 0 );
+	if ( abs( $latitud - $buena['latitud'] ) < 1e-4 && abs( $longitud - $buena['longitud'] ) < 1e-4 ) {
+		return null;
+	}
+	$en_sitio_antiguo = false;
+	foreach ( SZS_COORDENADAS_ANTIGUAS_FINCAS[ $uid ] as list( $latitud_antigua, $longitud_antigua ) ) {
+		if ( abs( $latitud - $latitud_antigua ) < 1e-4 && abs( $longitud - $longitud_antigua ) < 1e-4 ) {
+			$en_sitio_antiguo = true;
+		}
+	}
+	if ( ! $en_sitio_antiguo && $actualizado_ms > 1 ) {
+		return null;
+	}
+	return array_merge(
+		$datos,
+		array(
+			'latitud'       => $buena['latitud'],
+			'longitud'      => $buena['longitud'],
+			'superficie_ha' => $buena['superficie_ha'],
+		)
+	);
+}
+
+/** Corrige en el servidor las fincas del espacio que se quedaron en un sitio antiguo. */
+function szs_corregir_fincas_del_espacio(): int {
+	$corregidas = 0;
+	foreach ( array_keys( SZS_FINCAS_DEL_ESPACIO ) as $uid ) {
+		$existente = szs_obtener_entidad( 'finca', $uid );
+		if ( null === $existente || $existente['borrado'] ) {
+			continue;
+		}
+		$datos = szs_finca_del_espacio_corregida( $uid, $existente['datos'], (int) $existente['actualizado_ms'] );
+		if ( null === $datos ) {
+			continue;
+		}
+		$entidad = array_merge(
+			$existente,
+			array(
+				'datos'          => $datos,
+				'actualizado_ms' => max( (int) round( microtime( true ) * 1000 ), (int) $existente['actualizado_ms'] + 1 ),
+			)
+		);
+		szs_guardar_entidad( $entidad, $existente, $existente['autor_uid'] );
+		$corregidas++;
+	}
+	return $corregidas;
+}
 
 add_action( 'admin_menu', 'szs_registrar_pagina_datos_demo', 20 );
 
@@ -461,6 +530,8 @@ function szs_vaciar_datos_demo(): array {
 	$actividad       = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM {$tabla_actividad} WHERE persona_uid LIKE %s OR uid LIKE %s", $patron, $patron ) );
 	$tabla_personas  = szs_tabla_personas();
 	$personas        = (int) $wpdb->query( $wpdb->prepare( "DELETE FROM {$tabla_personas} WHERE uid LIKE %s", $patron ) );
+	// Las fincas se conservan: que al menos queden en su sitio.
+	szs_corregir_fincas_del_espacio();
 
 	return array(
 		'entidades' => count( $filas ),

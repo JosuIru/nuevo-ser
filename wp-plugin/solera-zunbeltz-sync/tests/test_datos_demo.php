@@ -174,6 +174,20 @@ foreach ( $plan['tareas'] as $tarea ) {
 	}
 }
 
+// ─── Fincas del espacio con coordenadas antiguas ───
+$vieja_zunbeltz = array( 'nombre' => 'Zunbeltz', 'latitud' => 42.7872, 'longitud' => -1.945, 'superficie_ha' => 231 );
+$corregida      = szs_finca_del_espacio_corregida( 'finca-zunbeltz', $vieja_zunbeltz, 1_791_000_000_000 );
+afirmar( SZS_FINCAS_DEL_ESPACIO['finca-zunbeltz']['latitud'], $corregida['latitud'] ?? null, 'Zunbeltz: latitud corregida' );
+afirmar( SZS_FINCAS_DEL_ESPACIO['finca-zunbeltz']['longitud'], $corregida['longitud'] ?? null, 'Zunbeltz: longitud corregida' );
+afirmar( 'Zunbeltz', $corregida['nombre'] ?? null, 'Zunbeltz: conserva el resto' );
+$sembrada_por_la_app = array( 'nombre' => 'La Planilla', 'latitud' => 42.8226, 'longitud' => -2.0315, 'superficie_ha' => 197 );
+afirmar( SZS_FINCAS_DEL_ESPACIO['finca-la-planilla']['latitud'], szs_finca_del_espacio_corregida( 'finca-la-planilla', $sembrada_por_la_app, 1 )['latitud'] ?? null, 'sembrada por la app y sin tocar: se corrige' );
+$movida_a_mano = array( 'nombre' => 'Zunbeltz', 'latitud' => 42.80, 'longitud' => -2.00, 'superficie_ha' => 231 );
+afirmar( null, szs_finca_del_espacio_corregida( 'finca-zunbeltz', $movida_a_mano, 1_791_000_000_000 ), 'editada a mano: no se toca' );
+afirmar( null, szs_finca_del_espacio_corregida( 'finca-zufia', $vieja_zunbeltz, 1 ), 'otra finca: no se toca' );
+afirmar( true, abs( SZS_FINCAS_DEL_ESPACIO['finca-zunbeltz']['latitud'] - 42.8169 ) < 0.001, 'Zunbeltz en su sitio (catastro 24-2)' );
+afirmar( true, abs( SZS_FINCAS_DEL_ESPACIO['finca-la-planilla']['latitud'] - 42.7707 ) < 0.001, 'La Planilla en su sitio (catastro 13)' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

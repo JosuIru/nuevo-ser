@@ -346,6 +346,21 @@ class _PantallaFincasState extends State<PantallaFincas> {
       _historialAjuste = const [];
       _recolocandoId = null;
     });
+    _encuadrar(zona.vertices);
+  }
+
+  /// Centra y acerca el mapa a una zona, con margen para las asas.
+  void _encuadrar(List<LatLng> vertices) {
+    if (vertices.length < 2) return;
+    try {
+      _controlador.fitCamera(CameraFit.bounds(
+        bounds: LatLngBounds.fromPoints(vertices),
+        padding: const EdgeInsets.fromLTRB(48, 110, 48, 48),
+        maxZoom: 19,
+      ));
+    } catch (_) {
+      // Sin mapa montado todavía: se queda donde está.
+    }
   }
 
   void _cancelarAjuste() {
@@ -504,6 +519,9 @@ class _PantallaFincasState extends State<PantallaFincas> {
       MaterialPageRoute(builder: (_) => FichaZona(zona: zona)),
     );
     if (!mounted) return;
+    if (res == 'redibujar') {
+      _encuadrar(zona.vertices);
+    }
     if (res == 'editar_datos') {
       final editada = await Navigator.of(context).push<bool>(
         MaterialPageRoute(
@@ -552,11 +570,32 @@ class _PantallaFincasState extends State<PantallaFincas> {
   }
 
   /// Polígonos de las zonas guardadas más el trazado en curso.
+  /// Mientras se ajusta o se dibuja una zona, el resto se apaga y la que
+  /// se edita destaca (halo blanco y borde de señal), para no perderla.
+  bool get _editandoContorno => _ajustando || _dibujando;
+
   List<Polygon> _poligonos() => [
-        // Cada zona va dos veces: un filo oscuro ancho debajo y su color
-        // encima, para que el borde se lea sobre el verde y sobre la foto.
         for (final zona in _zonas)
-          if (zona.id != _ajustandoZonaId) ...[
+          if (zona.id == _ajustandoZonaId)
+            ...const <Polygon>[]
+          else if (zona.id == _redibujandoZonaId && _dibujando)
+            // El contorno que se está rehaciendo, de referencia.
+            Polygon(
+              points: zona.vertices,
+              borderColor: Colors.white,
+              borderStrokeWidth: 2.5,
+              pattern: StrokePattern.dashed(segments: const [10, 8]),
+            )
+          else if (_editandoContorno)
+            Polygon(
+              points: zona.vertices,
+              color: colorDeZona(zona).withValues(alpha: 0.06),
+              borderColor: colorDeZona(zona).withValues(alpha: 0.45),
+              borderStrokeWidth: 1.5,
+            )
+          else ...[
+            // Cada zona va dos veces: un filo oscuro ancho debajo y su color
+            // encima, para que el borde se lea sobre el verde y sobre la foto.
             Polygon(
               points: zona.vertices,
               borderColor: Colors.black.withValues(alpha: 0.55),
@@ -571,13 +610,19 @@ class _PantallaFincasState extends State<PantallaFincas> {
               pattern: patronEstadoZona(zona.estado),
             ),
           ],
-        if (_trazado.length >= 2)
+        if (_trazado.length >= 2) ...[
           Polygon(
             points: _trazado,
-            color: colorSenalZunbeltz.withValues(alpha: 0.12),
-            borderColor: colorSenalZunbeltz,
-            borderStrokeWidth: 2,
+            borderColor: Colors.white.withValues(alpha: 0.9),
+            borderStrokeWidth: 9,
           ),
+          Polygon(
+            points: _trazado,
+            color: colorSenalZunbeltz.withValues(alpha: 0.28),
+            borderColor: colorSenalZunbeltz,
+            borderStrokeWidth: 4,
+          ),
+        ],
       ];
 
   /// Etiquetas de las zonas (nombre y superficie) y puntitos de las
@@ -585,8 +630,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   /// etiqueta de parcela con un abrevadero no tendría sentido.
   List<Marker> _marcadoresDeZonas(String idioma) {
     final marcadores = <Marker>[];
-    for (final zona in _zonas) {
-      if (zona.id == _ajustandoZonaId) continue;
+    for (final zona in _editandoContorno ? const <ZonaFinca>[] : _zonas) {
       final centro = zona.centro;
       if (centro == null) continue;
       final nombre = zona.nombre.isEmpty

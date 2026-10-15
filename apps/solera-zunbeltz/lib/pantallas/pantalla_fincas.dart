@@ -313,6 +313,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   void _empezarDibujo({int? zonaId}) {
     setState(() {
       _dibujando = true;
+      _estiloMapa = _EstiloMapa.satelite;
       _redibujandoZonaId = zonaId;
       _trazado = const [];
       _recolocandoId = null;
@@ -336,11 +337,19 @@ class _PantallaFincasState extends State<PantallaFincas> {
     setState(() => _trazado = _trazado.sublist(0, _trazado.length - 1));
   }
 
+  void _cambiarEstiloMapa() => setState(() {
+        _estiloMapa = _estiloMapa == _EstiloMapa.calle
+            ? _EstiloMapa.satelite
+            : _EstiloMapa.calle;
+      });
+
   // ─── Ajuste del contorno de una zona ──────────────────
 
   void _empezarAjuste(ZonaFinca zona) {
     setState(() {
       _ajustandoZonaId = zona.id;
+      // Los bordes se siguen sobre la foto aérea.
+      _estiloMapa = _EstiloMapa.satelite;
       _trazado = zona.vertices;
       _esquinaElegida = null;
       _historialAjuste = const [];
@@ -920,6 +929,23 @@ class _PantallaFincasState extends State<PantallaFincas> {
           ),
           if (_dibujando || _ajustando)
             Positioned(
+              right: 16,
+              top: 96,
+              child: FloatingActionButton.small(
+                heroTag: 'capaEdicion',
+                tooltip: _estiloMapa == _EstiloMapa.calle
+                    ? textos.mapaCapas
+                    : textos.mapaMapa,
+                backgroundColor: Theme.of(context).colorScheme.surface,
+                foregroundColor: colorMonteZunbeltz,
+                onPressed: _cambiarEstiloMapa,
+                child: Icon(_estiloMapa == _EstiloMapa.calle
+                    ? Icons.satellite_alt_outlined
+                    : Icons.map_outlined),
+              ),
+            ),
+          if (_dibujando || _ajustando)
+            Positioned(
               left: 16,
               right: 16,
               top: 12,
@@ -1090,11 +1116,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
                       children: [
                         Expanded(
                           child: OutlinedButton.icon(
-                            onPressed: () => setState(() {
-                              _estiloMapa = _estiloMapa == _EstiloMapa.calle
-                                  ? _EstiloMapa.satelite
-                                  : _EstiloMapa.calle;
-                            }),
+                            onPressed: _cambiarEstiloMapa,
                             icon: Icon(_estiloMapa == _EstiloMapa.calle
                                 ? Icons.layers_outlined
                                 : Icons.map_outlined),

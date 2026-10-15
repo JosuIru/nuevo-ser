@@ -27,6 +27,11 @@ import '../utiles/numeros.dart';
 
 enum _EstiloMapa { calle, satelite }
 
+const String _urlOrtofotoPnoa = 'https://www.ign.es/wmts/pnoa-ma?'
+    'request=GetTile&service=WMTS&VERSION=1.0.0&Layer=OI.OrthoimageCoverage'
+    '&Style=default&Format=image/jpeg&TileMatrixSet=GoogleMapsCompatible'
+    '&TileMatrix={z}&TileRow={y}&TileCol={x}';
+
 /// Halo blanco de los nombres de zona: se leen sobre cualquier fondo.
 const List<Shadow> _haloEtiqueta = [
   Shadow(color: Colors.white, blurRadius: 3),
@@ -678,6 +683,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
           point: LatLng(punto.latitud!, punto.longitud!),
           width: 40,
           height: 40,
+          // La punta de la chincheta, no su centro, es la que marca el sitio.
+          alignment: Alignment.topCenter,
           child: GestureDetector(
             onTap: () async {
               final res = await Navigator.of(context).push<Object?>(
@@ -694,8 +701,11 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 await _cargar();
               }
             },
-            child: Icon(Icons.location_on,
-                size: 38, color: colorEstadoPunto(punto.estado)),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Icon(Icons.location_on,
+                  size: 38, color: colorEstadoPunto(punto.estado)),
+            ),
           ),
         ),
     ];
@@ -807,9 +817,15 @@ class _PantallaFincasState extends State<PantallaFincas> {
               onTap: (_, punto) => _alTocarMapa(punto),
             ),
             children: [
+              // Foto aérea: la ortofoto oficial del PNOA (IGN), la misma
+              // sobre la que se encajaron los mapas de la finca; fuera de
+              // España, o si el IGN no responde, la de Esri.
               TileLayer(
                 urlTemplate: _estiloMapa == _EstiloMapa.calle
                     ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    : _urlOrtofotoPnoa,
+                fallbackUrl: _estiloMapa == _EstiloMapa.calle
+                    ? null
                     : 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
                 userAgentPackageName: 'com.coleccionnuevoser.solera_zunbeltz',
                 maxZoom: 22,
@@ -834,6 +850,24 @@ class _PantallaFincasState extends State<PantallaFincas> {
                           style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: IgnorePointer(
+                  child: Container(
+                    margin: const EdgeInsets.all(4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                    color: Colors.white.withValues(alpha: 0.7),
+                    child: Text(
+                      _estiloMapa == _EstiloMapa.calle
+                          ? '© OpenStreetMap'
+                          : 'PNOA © IGN · Esri',
+                      style: const TextStyle(
+                          fontSize: 10, color: colorMonteZunbeltz),
                     ),
                   ),
                 ),

@@ -52,6 +52,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-15 — cierre y monte revisados (app 0.5.11)**. El **cierre perimetral** (amarillo) no coincide con nada oficial (IoU 0,72 con las subparcelas, hasta 170 m): es el vallado dibujado por Zunbeltz. Tenía muescas de los recuadros de número y la ranura del camino blanco; ahora los recuadros y caminos interiores cuentan como dentro (34,3 ha). El **«Monte»** (azul) no es el bosque sino un área dibujada (incluye Las Bordas): se cierra a 20 m, se rellenan huecos, se recorta por dentro del cierre y se le quita lo pintado de otro color.
 
+> **2026-10-15 — piezas sin nombre (app 0.5.12)**. Zunbeltz aclara que las **líneas blancas** del mapa «Finca Zunbeltz» no son caminos sino **límites de otras piezas** cuyo nombre falta. El interior del cierre se parte por esas líneas (separadas de los recuadros de número por grosor), por La Cañada (cian), por los puntos rojos y por las zonas de color: salen **«Pieza sin nombre A (norte)»** (~12 ha), **B (junto a la carretera, ¿Finca de la Era?)**, **C (oeste)** y **D (sur)**, que sustituyen a los «Monte». Nombres por confirmar por teléfono. ⚠️ El plugin del WordPress local (`zunbeltz-app.local`) es un **enlace simbólico al repo**: subir allí un zip con «Reemplazar» **vacía la carpeta del repo** (pasó el 2026-10-15; se restauró con git). Los zips, solo en producción.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

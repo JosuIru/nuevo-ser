@@ -42,6 +42,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-15 (tarde) — editar zonas (app 0.5.4)**. La ficha de una zona tiene un menú (lápiz) con **Editar datos** (el formulario de alta en modo edición: finca, tipo, nombre, estado, SIGPAC, superficie oficial, notas, fotos) y **Ajustar contorno**: en el mapa salen las esquinas y un «+» en mitad de cada lado; tocar una esquina la elige, el siguiente toque en el mapa la lleva ahí, «+» añade una, «Quitar esquina» la borra (mínimo 3), con deshacer. Lógica pura en `utiles/edicion_contorno.dart` (tests). Sin arrastrar a propósito: el arrastre de marcadores compite con el del mapa; elegir y tocar funciona igual en móvil y en web. «Volver a dibujar» sigue para rehacerla entera.
 
+> **2026-10-15 — zonas visibles y con color (app 0.5.5, BD v14, plugin 0.7.4)**. Las zonas se veían poco (borde fino verde sobre mapa verde). Ahora cada una se pinta dos veces (filo oscuro de 6 px debajo y su color a 3,5 px encima), con relleno al 22 % y nombre con halo blanco; el **estado** va en el trazo (continuo en uso, a trazos en descanso, de puntos vedada). **Color por zona** (`zonas_finca.color`, paleta `coloresZona`/`paletaZonas`; vacío = el de su tipo, `colorPorTipoZona`), elegible en el alta y en «Editar datos». Las zonas sembradas de Zunbeltz traen los colores del mapa original (`zonas.csv`, columna `color`). El plugin sanea `color` como texto.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

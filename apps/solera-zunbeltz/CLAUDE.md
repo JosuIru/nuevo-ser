@@ -50,6 +50,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-15 — La Planilla localizada (app 0.5.10)**. Por la **toponimia oficial de IDENA** (`TOPONI_Txt_Toponimos`: «La Planilla» y «El Alto de la Planilla», Valle de Yerri) y el catastro: es el **polígono 13 de Yerri**, parcelas 13-1 (188,69 ha) y 13-2 (8,45 ha) = 197,14 ha, como dicen las fuentes públicas. Su prado es la subparcela **13-1 C** (9,59 ha, pastizal en SIGPAC; las fuentes hablan de 3,9 ha de pastos — por confirmar). Centro: 42.7707, -2.0144 (`extraido/catastro-yerri-13.geojson`). La parcela 24-2 se dibuja **sin la ranura del camino** que el catastro deja fuera (cierre morfológico de 6 m); su borde sur, aunque no siga nada visible, es el oficial: catastro y SIGPAC coinciden (IoU 1,000). `generar_csv_espacio.py` necesita ahora shapely y pyproj.
 
+> **2026-10-15 — cierre y monte revisados (app 0.5.11)**. El **cierre perimetral** (amarillo) no coincide con nada oficial (IoU 0,72 con las subparcelas, hasta 170 m): es el vallado dibujado por Zunbeltz. Tenía muescas de los recuadros de número y la ranura del camino blanco; ahora los recuadros y caminos interiores cuentan como dentro (34,3 ha). El **«Monte»** (azul) no es el bosque sino un área dibujada (incluye Las Bordas): se cierra a 20 m, se rellenan huecos, se recorta por dentro del cierre y se le quita lo pintado de otro color.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

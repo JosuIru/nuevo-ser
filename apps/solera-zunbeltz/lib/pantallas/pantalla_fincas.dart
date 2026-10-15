@@ -27,6 +27,12 @@ import '../utiles/numeros.dart';
 
 enum _EstiloMapa { calle, satelite }
 
+/// Halo blanco de los nombres de zona: se leen sobre cualquier fondo.
+const List<Shadow> _haloEtiqueta = [
+  Shadow(color: Colors.white, blurRadius: 3),
+  Shadow(color: Colors.white, blurRadius: 6),
+];
+
 enum _OrigenAlta { gps, centroMapa }
 
 /// Pestaña "Fincas": mapa de Zunbeltz y La Planilla con sus puntos de
@@ -542,14 +548,24 @@ class _PantallaFincasState extends State<PantallaFincas> {
 
   /// Polígonos de las zonas guardadas más el trazado en curso.
   List<Polygon> _poligonos() => [
+        // Cada zona va dos veces: un filo oscuro ancho debajo y su color
+        // encima, para que el borde se lea sobre el verde y sobre la foto.
         for (final zona in _zonas)
-          if (zona.id != _ajustandoZonaId)
+          if (zona.id != _ajustandoZonaId) ...[
             Polygon(
               points: zona.vertices,
-              color: colorEstadoZona(zona.estado).withValues(alpha: 0.18),
-              borderColor: colorEstadoZona(zona.estado),
-              borderStrokeWidth: 2,
+              borderColor: Colors.black.withValues(alpha: 0.55),
+              borderStrokeWidth: 6,
+              pattern: patronEstadoZona(zona.estado),
             ),
+            Polygon(
+              points: zona.vertices,
+              color: colorDeZona(zona).withValues(alpha: 0.22),
+              borderColor: colorDeZona(zona),
+              borderStrokeWidth: 3.5,
+              pattern: patronEstadoZona(zona.estado),
+            ),
+          ],
         if (_trazado.length >= 2)
           Polygon(
             points: _trazado,
@@ -588,11 +604,15 @@ class _PantallaFincasState extends State<PantallaFincas> {
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                   color: colorMonteZunbeltz,
+                  shadows: _haloEtiqueta,
                 ),
               ),
               Text(
                 '${zona.superficieHa.toStringAsFixed(2)} ha',
-                style: const TextStyle(fontSize: 10, color: colorMonteZunbeltz),
+                style: const TextStyle(
+                    fontSize: 10,
+                    color: colorMonteZunbeltz,
+                    shadows: _haloEtiqueta),
               ),
             ],
           ),

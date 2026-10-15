@@ -1112,6 +1112,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get zonaEditarTitulo => 'Eremua editatu';
 
   @override
+  String get zonaColor => 'Kolorea mapan';
+
+  @override
+  String get zonaColorAutomatico => 'Automatikoa, motaren arabera';
+
+  @override
   String get zonaAjustarContorno => 'Ingurua doitu';
 
   @override

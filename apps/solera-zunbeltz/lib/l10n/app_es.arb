@@ -407,6 +407,8 @@
   "zonaEditar": "Editar",
   "zonaEditarDatos": "Editar datos",
   "zonaEditarTitulo": "Editar zona",
+  "zonaColor": "Color en el mapa",
+  "zonaColorAutomatico": "Automático, según el tipo",
   "zonaAjustarContorno": "Ajustar contorno",
   "zonaActualizada": "Zona actualizada",
   "ajusteInstrucciones": "Toca una esquina y después el sitio nuevo. Toca un «+» para añadir una esquina en mitad de un lado.",

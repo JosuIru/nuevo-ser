@@ -8,6 +8,8 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/zona_finca.dart';
+import '../branding.dart';
+import '../utiles/estilos_tarea.dart';
 import '../utiles/geodesia.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
@@ -49,6 +51,7 @@ class _NuevaZonaState extends State<NuevaZona> {
   late int? _fincaId;
   String _tipo = tipoZonaPorDefecto;
   String _estado = estadoZonaPorDefecto;
+  String _color = '';
   List<String> _fotos = const [];
   bool _guardando = false;
 
@@ -66,6 +69,7 @@ class _NuevaZonaState extends State<NuevaZona> {
       _estado = buscarOpcion(estadosZona, zona.estado) == null
           ? estadoZonaPorDefecto
           : zona.estado;
+      _color = zona.color;
       _nombre.text = zona.nombre;
       _recintoSigpac.text = zona.recintoSigpac;
       _notas.text = zona.notas;
@@ -96,6 +100,7 @@ class _NuevaZonaState extends State<NuevaZona> {
       await _bd.actualizarZona(existente!.id!, {
         'finca_id': fincaId,
         'tipo': _tipo,
+        'color': _color,
         'nombre': _nombre.text.trim(),
         'estado': _estado,
         'superficie_ha_oficial':
@@ -121,6 +126,7 @@ class _NuevaZonaState extends State<NuevaZona> {
       notas: _notas.text.trim(),
       rutasFotosJson: GestorFotos.codificar(_fotos),
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
+      color: _color,
     );
     await _bd.guardarZona(zona);
     if (!mounted) return;
@@ -197,6 +203,12 @@ class _NuevaZonaState extends State<NuevaZona> {
               onChanged: (v) => setState(() => _tipo = v ?? _tipo),
             ),
             const SizedBox(height: 12),
+            _SelectorColorZona(
+              color: _color,
+              tipo: _tipo,
+              alCambiar: (color) => setState(() => _color = color),
+            ),
+            const SizedBox(height: 12),
             TextField(
               controller: _nombre,
               decoration: InputDecoration(labelText: textos.zonaNombre),
@@ -252,6 +264,82 @@ class _NuevaZonaState extends State<NuevaZona> {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Muestras de [coloresZona] para elegir con qué color se pinta la zona.
+/// La primera es «automático» (el color de su tipo, con una «A»).
+class _SelectorColorZona extends StatelessWidget {
+  const _SelectorColorZona({
+    required this.color,
+    required this.tipo,
+    required this.alCambiar,
+  });
+
+  final String color;
+  final String tipo;
+  final ValueChanged<String> alCambiar;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
+    Widget muestra(String codigo, String etiqueta) {
+      final elegido = codigo == color;
+      final relleno = paletaZonas[codigo] ??
+          paletaZonas[colorPorTipoZona[tipo]] ??
+          Colors.white;
+      return Tooltip(
+        message: etiqueta,
+        child: Semantics(
+          button: true,
+          selected: elegido,
+          label: etiqueta,
+          child: InkResponse(
+            onTap: () => alCambiar(codigo),
+            radius: 24,
+            child: Container(
+              width: 36,
+              height: 36,
+              decoration: BoxDecoration(
+                color: relleno,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: elegido ? colorMonteZunbeltz : Colors.black26,
+                  width: elegido ? 3 : 1,
+                ),
+              ),
+              child: codigo.isEmpty
+                  ? const Center(
+                      child: Text('A',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87)))
+                  : elegido
+                      ? const Icon(Icons.check, size: 18, color: Colors.black87)
+                      : null,
+            ),
+          ),
+        ),
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(textos.zonaColor, style: Theme.of(context).textTheme.labelLarge),
+        const SizedBox(height: 8),
+        Wrap(
+          spacing: 10,
+          runSpacing: 10,
+          children: [
+            muestra('', textos.zonaColorAutomatico),
+            for (final opcion in coloresZona)
+              muestra(opcion.codigo, opcion.etiqueta(idioma)),
+          ],
+        ),
+      ],
     );
   }
 }

@@ -1110,6 +1110,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get zonaEditarTitulo => 'Editar zona';
 
   @override
+  String get zonaColor => 'Color en el mapa';
+
+  @override
+  String get zonaColorAutomatico => 'Automático, según el tipo';
+
+  @override
   String get zonaAjustarContorno => 'Ajustar contorno';
 
   @override

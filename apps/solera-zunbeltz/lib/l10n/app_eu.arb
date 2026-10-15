@@ -380,6 +380,8 @@
   "zonaEditar": "Editatu",
   "zonaEditarDatos": "Datuak editatu",
   "zonaEditarTitulo": "Eremua editatu",
+  "zonaColor": "Kolorea mapan",
+  "zonaColorAutomatico": "Automatikoa, motaren arabera",
   "zonaAjustarContorno": "Ingurua doitu",
   "zonaActualizada": "Eremua eguneratuta",
   "ajusteInstrucciones": "Ukitu izkina bat eta gero leku berria. Ukitu «+» bat alde baten erdian izkina bat gehitzeko.",

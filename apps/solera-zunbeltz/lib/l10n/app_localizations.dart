@@ -2150,6 +2150,18 @@ abstract class AppLocalizations {
   /// **'Editar zona'**
   String get zonaEditarTitulo;
 
+  /// No description provided for @zonaColor.
+  ///
+  /// In es, this message translates to:
+  /// **'Color en el mapa'**
+  String get zonaColor;
+
+  /// No description provided for @zonaColorAutomatico.
+  ///
+  /// In es, this message translates to:
+  /// **'Automático, según el tipo'**
+  String get zonaColorAutomatico;
+
   /// No description provided for @zonaAjustarContorno.
   ///
   /// In es, this message translates to:

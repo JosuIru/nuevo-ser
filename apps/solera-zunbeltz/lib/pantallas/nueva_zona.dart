@@ -16,6 +16,9 @@ import '../utiles/numeros.dart';
 /// Alta de una zona a partir del trazado dibujado en el mapa. Llega con los
 /// vértices ya marcados: aquí solo se le pone nombre, tipo y estado.
 ///
+/// Con [zona], edita los datos de una que ya existe (su contorno se cambia
+/// desde el mapa, no aquí).
+///
 /// La superficie del trazado se muestra pero no se edita (la calcula la
 /// app). La oficial de SIGPAC sí se teclea, y manda sobre la calculada.
 class NuevaZona extends StatefulWidget {
@@ -24,9 +27,11 @@ class NuevaZona extends StatefulWidget {
     required this.fincas,
     required this.vertices,
     this.fincaIdInicial,
+    this.zona,
   });
 
   final List<Finca> fincas;
+  final ZonaFinca? zona;
   final List<LatLng> vertices;
   final int? fincaIdInicial;
 
@@ -52,6 +57,22 @@ class _NuevaZonaState extends State<NuevaZona> {
     super.initState();
     _fincaId = widget.fincaIdInicial ??
         (widget.fincas.isNotEmpty ? widget.fincas.first.id : null);
+    final zona = widget.zona;
+    if (zona != null) {
+      _fincaId = zona.fincaId;
+      _tipo = buscarOpcion(tiposZona, zona.tipo) == null
+          ? tipoZonaPorDefecto
+          : zona.tipo;
+      _estado = buscarOpcion(estadosZona, zona.estado) == null
+          ? estadoZonaPorDefecto
+          : zona.estado;
+      _nombre.text = zona.nombre;
+      _recintoSigpac.text = zona.recintoSigpac;
+      _notas.text = zona.notas;
+      _superficieOficial.text =
+          zona.superficieHaOficial?.toString().replaceAll('.', ',') ?? '';
+      _fotos = GestorFotos.decodificar(zona.rutasFotosJson);
+    }
   }
 
   @override
@@ -69,8 +90,26 @@ class _NuevaZonaState extends State<NuevaZona> {
     if (fincaId == null || _guardando) return;
     setState(() => _guardando = true);
 
-    final oficial =
-        leerNumero(_superficieOficial.text);
+    final oficial = leerNumero(_superficieOficial.text);
+    final existente = widget.zona;
+    if (existente?.id != null) {
+      await _bd.actualizarZona(existente!.id!, {
+        'finca_id': fincaId,
+        'tipo': _tipo,
+        'nombre': _nombre.text.trim(),
+        'estado': _estado,
+        'superficie_ha_oficial':
+            oficial != null && oficial > 0 ? oficial : null,
+        'recinto_sigpac': _recintoSigpac.text.trim(),
+        'notas': _notas.text.trim(),
+        'rutas_fotos_json': GestorFotos.codificar(_fotos),
+      });
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(AppLocalizations.of(context).zonaActualizada)));
+      Navigator.of(context).pop(true);
+      return;
+    }
     final zona = ZonaFinca.desdeTrazado(
       fincaId: fincaId,
       vertices: widget.vertices,
@@ -99,7 +138,10 @@ class _NuevaZonaState extends State<NuevaZona> {
     final metrosPerimetro = perimetroMetros(widget.vertices);
 
     return Scaffold(
-      appBar: AppBar(title: Text(textos.zonaNuevaTitulo)),
+      appBar: AppBar(
+          title: Text(widget.zona == null
+              ? textos.zonaNuevaTitulo
+              : textos.zonaEditarTitulo)),
       body: CuerpoResponsivo(
         child: ListView(
           padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
@@ -174,8 +216,7 @@ class _NuevaZonaState extends State<NuevaZona> {
             const SizedBox(height: 12),
             TextField(
               controller: _recintoSigpac,
-              decoration:
-                  InputDecoration(labelText: textos.zonaRecintoSigpac),
+              decoration: InputDecoration(labelText: textos.zonaRecintoSigpac),
             ),
             const SizedBox(height: 12),
             TextField(

@@ -1811,7 +1811,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaEditarMapaB.
   ///
   /// In es, this message translates to:
-  /// **'1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa «Volver a dibujar» (arriba) y marca de nuevo sus esquinas.\n4. Para borrarlo: pulsa la papelera y confirma.'**
+  /// **'1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa el lápiz (arriba). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.\n4. Para borrarlo: pulsa la papelera y confirma.'**
   String get ayudaEditarMapaB;
 
   /// No description provided for @ayudaTareasT.
@@ -2131,6 +2131,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Trazado actualizado'**
   String get zonaTrazadoActualizado;
+
+  /// No description provided for @zonaEditar.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar'**
+  String get zonaEditar;
+
+  /// No description provided for @zonaEditarDatos.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar datos'**
+  String get zonaEditarDatos;
+
+  /// No description provided for @zonaEditarTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar zona'**
+  String get zonaEditarTitulo;
+
+  /// No description provided for @zonaAjustarContorno.
+  ///
+  /// In es, this message translates to:
+  /// **'Ajustar contorno'**
+  String get zonaAjustarContorno;
+
+  /// No description provided for @zonaActualizada.
+  ///
+  /// In es, this message translates to:
+  /// **'Zona actualizada'**
+  String get zonaActualizada;
+
+  /// No description provided for @ajusteInstrucciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca una esquina y después el sitio nuevo. Toca un «+» para añadir una esquina en mitad de un lado.'**
+  String get ajusteInstrucciones;
+
+  /// No description provided for @ajusteEsquinaElegida.
+  ///
+  /// In es, this message translates to:
+  /// **'Esquina elegida: toca dónde va o quítala.'**
+  String get ajusteEsquinaElegida;
+
+  /// No description provided for @ajusteQuitarEsquina.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar esquina'**
+  String get ajusteQuitarEsquina;
+
+  /// No description provided for @ajusteGuardar.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar contorno'**
+  String get ajusteGuardar;
 
   /// No description provided for @zonaTrazadoCorto.
   ///

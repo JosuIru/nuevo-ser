@@ -104,7 +104,8 @@ class _FichaZonaState extends State<FichaZona> {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
     final zona = widget.zona;
-    final tipo = buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo;
+    final tipo =
+        buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo;
     final estado =
         buscarOpcion(estadosZona, zona.estado)?.etiqueta(idioma) ?? zona.estado;
     final titulo = zona.nombre.isEmpty ? tipo : zona.nombre;
@@ -115,10 +116,34 @@ class _FichaZonaState extends State<FichaZona> {
         title: Text(titulo),
         actions: [
           if (politicaEspacioActual.puedeEditarEspacio) ...[
-            IconButton(
-              tooltip: textos.zonaRedibujar,
+            // Lo devuelve al mapa, que es quien sabe dibujar y editar.
+            PopupMenuButton<String>(
+              tooltip: textos.zonaEditar,
               icon: const Icon(Icons.edit_outlined),
-              onPressed: () => Navigator.of(context).pop('redibujar'),
+              onSelected: (accion) => Navigator.of(context).pop(accion),
+              itemBuilder: (_) => [
+                PopupMenuItem(
+                  value: 'editar_datos',
+                  child: ListTile(
+                    leading: const Icon(Icons.edit_note),
+                    title: Text(textos.zonaEditarDatos),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'ajustar',
+                  child: ListTile(
+                    leading: const Icon(Icons.polyline_outlined),
+                    title: Text(textos.zonaAjustarContorno),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'redibujar',
+                  child: ListTile(
+                    leading: const Icon(Icons.draw_outlined),
+                    title: Text(textos.zonaRedibujar),
+                  ),
+                ),
+              ],
             ),
             IconButton(
               tooltip: textos.zonaBorrar,

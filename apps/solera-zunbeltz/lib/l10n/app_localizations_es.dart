@@ -918,7 +918,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaEditarMapaB =>
-      '1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa «Volver a dibujar» (arriba) y marca de nuevo sus esquinas.\n4. Para borrarlo: pulsa la papelera y confirma.';
+      '1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa el lápiz (arriba). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.\n4. Para borrarlo: pulsa la papelera y confirma.';
 
   @override
   String get ayudaTareasT => 'Apuntar una tarea de mantenimiento';
@@ -1099,6 +1099,35 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get zonaTrazadoActualizado => 'Trazado actualizado';
+
+  @override
+  String get zonaEditar => 'Editar';
+
+  @override
+  String get zonaEditarDatos => 'Editar datos';
+
+  @override
+  String get zonaEditarTitulo => 'Editar zona';
+
+  @override
+  String get zonaAjustarContorno => 'Ajustar contorno';
+
+  @override
+  String get zonaActualizada => 'Zona actualizada';
+
+  @override
+  String get ajusteInstrucciones =>
+      'Toca una esquina y después el sitio nuevo. Toca un «+» para añadir una esquina en mitad de un lado.';
+
+  @override
+  String get ajusteEsquinaElegida =>
+      'Esquina elegida: toca dónde va o quítala.';
+
+  @override
+  String get ajusteQuitarEsquina => 'Quitar esquina';
+
+  @override
+  String get ajusteGuardar => 'Guardar contorno';
 
   @override
   String get zonaTrazadoCorto =>

@@ -14,6 +14,7 @@ import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
 import '../modelos/zona_finca.dart';
 import '../utiles/estilos_tarea.dart';
+import '../utiles/edicion_contorno.dart';
 import '../utiles/geodesia.dart';
 import '../utiles/permisos_gps.dart';
 import 'ficha_punto.dart';
@@ -33,10 +34,11 @@ enum _OrigenAlta { gps, centroMapa }
 /// tareas; tap dentro de una zona → ficha de la zona. FAB → nuevo punto
 /// (GPS o centro del mapa) o dibujar zona. Acción → tablero de tareas.
 ///
-/// El mapa tiene tres modos, y el toque significa una cosa distinta en
+/// El mapa tiene cuatro modos, y el toque significa una cosa distinta en
 /// cada uno: en normal añade un punto (o abre la zona tocada), en
-/// recolocar fija la nueva posición de un punto, y en dibujo cada toque
-/// marca una esquina de la zona en curso.
+/// recolocar fija la nueva posición de un punto, en dibujo cada toque
+/// marca una esquina de la zona en curso, y en ajuste lleva la esquina
+/// elegida al sitio tocado.
 class PantallaFincas extends StatefulWidget {
   const PantallaFincas({super.key});
 
@@ -63,6 +65,13 @@ class _PantallaFincasState extends State<PantallaFincas> {
   bool _dibujando = false;
   // Zona cuyo trazado se está rehaciendo (null = zona nueva).
   int? _redibujandoZonaId;
+  // Zona cuyo contorno se está ajustando esquina a esquina (en `_trazado`),
+  // la esquina elegida para moverla y los contornos anteriores para
+  // deshacer.
+  int? _ajustandoZonaId;
+  int? _esquinaElegida;
+  List<List<LatLng>> _historialAjuste = const [];
+  bool get _ajustando => _ajustandoZonaId != null;
   // Centro aproximado de la zona de Andía / Tierra Estella (Navarra).
   LatLng _centroActual = const LatLng(42.8226, -2.0315);
   double _zoomActual = 12;
@@ -155,8 +164,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
     final permitido = await asegurarPermisoUbicacion();
     if (!permitido) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(textos.mapaGpsNoDisponible)));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(textos.mapaGpsNoDisponible)));
       }
       return;
     }
@@ -242,8 +251,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
         }
       } catch (_) {}
       if (latitud == null && mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(textos.mapaGpsNoDisponible)));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(textos.mapaGpsNoDisponible)));
       }
     }
 
@@ -316,6 +325,118 @@ class _PantallaFincasState extends State<PantallaFincas> {
     setState(() => _trazado = _trazado.sublist(0, _trazado.length - 1));
   }
 
+  // ─── Ajuste del contorno de una zona ──────────────────
+
+  void _empezarAjuste(ZonaFinca zona) {
+    setState(() {
+      _ajustandoZonaId = zona.id;
+      _trazado = zona.vertices;
+      _esquinaElegida = null;
+      _historialAjuste = const [];
+      _recolocandoId = null;
+    });
+  }
+
+  void _cancelarAjuste() {
+    setState(() {
+      _ajustandoZonaId = null;
+      _trazado = const [];
+      _esquinaElegida = null;
+      _historialAjuste = const [];
+    });
+  }
+
+  void _cambiarContorno(List<LatLng> nuevo) {
+    if (identical(nuevo, _trazado)) return;
+    setState(() {
+      _historialAjuste = [..._historialAjuste, _trazado];
+      _trazado = nuevo;
+    });
+  }
+
+  void _deshacerAjuste() {
+    if (_historialAjuste.isEmpty) return;
+    setState(() {
+      _trazado = _historialAjuste.last;
+      _historialAjuste =
+          _historialAjuste.sublist(0, _historialAjuste.length - 1);
+      _esquinaElegida = null;
+    });
+  }
+
+  void _quitarEsquinaElegida() {
+    final elegida = _esquinaElegida;
+    if (elegida == null) return;
+    _cambiarContorno(quitarEsquina(_trazado, elegida));
+    setState(() => _esquinaElegida = null);
+  }
+
+  void _anadirEsquinaEnLado(int lado) {
+    _cambiarContorno(insertarEsquinaEnLado(_trazado, lado));
+    setState(() =>
+        _esquinaElegida = posicionEsquinaInsertada(_trazado.length, lado));
+  }
+
+  Future<void> _guardarAjuste() async {
+    final zonaId = _ajustandoZonaId;
+    if (zonaId == null || _trazado.length < esquinasMinimas) return;
+    final contorno = _trazado;
+    _cancelarAjuste();
+    await _bd.actualizarTrazadoZona(zonaId, contorno);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(AppLocalizations.of(context).zonaTrazadoActualizado)));
+    await _cargar();
+  }
+
+  /// Asas del ajuste: un círculo por esquina (tocar = elegirla) y un «+»
+  /// en mitad de cada lado (tocar = añadir ahí una esquina).
+  List<Marker> _asasDeAjuste() {
+    final medios = puntosMedios(_trazado);
+    return [
+      for (var lado = 0; lado < medios.length; lado++)
+        Marker(
+          point: medios[lado],
+          width: 22,
+          height: 22,
+          child: GestureDetector(
+            onTap: () => _anadirEsquinaEnLado(lado),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.85),
+                shape: BoxShape.circle,
+                border: Border.all(color: colorSenalZunbeltz),
+              ),
+              child: const Icon(Icons.add, size: 14, color: colorSenalZunbeltz),
+            ),
+          ),
+        ),
+      for (var indice = 0; indice < _trazado.length; indice++)
+        Marker(
+          point: _trazado[indice],
+          width: 28,
+          height: 28,
+          child: GestureDetector(
+            onTap: () => setState(() =>
+                _esquinaElegida = _esquinaElegida == indice ? null : indice),
+            child: Center(
+              child: Container(
+                width: _esquinaElegida == indice ? 24 : 14,
+                height: _esquinaElegida == indice ? 24 : 14,
+                decoration: BoxDecoration(
+                  color: _esquinaElegida == indice
+                      ? colorSenalZunbeltz
+                      : colorMonteZunbeltz,
+                  shape: BoxShape.circle,
+                  border: Border.all(color: Colors.white, width: 2),
+                ),
+              ),
+            ),
+          ),
+        ),
+    ];
+  }
+
   /// Cierra el trazado: guarda el nuevo recorrido de la zona que se estaba
   /// rehaciendo, o abre el formulario de alta para una zona nueva.
   Future<void> _cerrarTrazado() async {
@@ -332,16 +453,16 @@ class _PantallaFincasState extends State<PantallaFincas> {
     if (zonaId != null) {
       await _bd.actualizarTrazadoZona(zonaId, trazado);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(textos.zonaTrazadoActualizado)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.zonaTrazadoActualizado)));
       await _cargar();
       return;
     }
 
     if (_fincas.isEmpty) return;
     final centro = centroide(trazado);
-    final fincaId = (centro == null ? null : _fincaMasCercana(centro)) ??
-        _fincas.first.id;
+    final fincaId =
+        (centro == null ? null : _fincaMasCercana(centro)) ?? _fincas.first.id;
     final creada = await Navigator.of(context).push<bool>(MaterialPageRoute(
       builder: (_) => NuevaZona(
         fincas: _fincas,
@@ -372,7 +493,17 @@ class _PantallaFincasState extends State<PantallaFincas> {
       MaterialPageRoute(builder: (_) => FichaZona(zona: zona)),
     );
     if (!mounted) return;
-    if (res == 'redibujar') {
+    if (res == 'editar_datos') {
+      final editada = await Navigator.of(context).push<bool>(
+        MaterialPageRoute(
+          builder: (_) =>
+              NuevaZona(fincas: _fincas, vertices: zona.vertices, zona: zona),
+        ),
+      );
+      if (editada == true && mounted) await _cargar();
+    } else if (res == 'ajustar') {
+      _empezarAjuste(zona);
+    } else if (res == 'redibujar') {
       _empezarDibujo(zonaId: zona.id);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(AppLocalizations.of(context).dibujoTocaVertices),
@@ -384,6 +515,14 @@ class _PantallaFincasState extends State<PantallaFincas> {
 
   /// Qué hace un toque en el mapa, según el modo activo.
   void _alTocarMapa(LatLng punto) {
+    if (_ajustando) {
+      final elegida = _esquinaElegida;
+      if (elegida != null) {
+        _cambiarContorno(moverEsquina(_trazado, elegida, punto));
+        setState(() => _esquinaElegida = null);
+      }
+      return;
+    }
     if (_dibujando) {
       _marcarEsquina(punto);
       return;
@@ -404,12 +543,13 @@ class _PantallaFincasState extends State<PantallaFincas> {
   /// Polígonos de las zonas guardadas más el trazado en curso.
   List<Polygon> _poligonos() => [
         for (final zona in _zonas)
-          Polygon(
-            points: zona.vertices,
-            color: colorEstadoZona(zona.estado).withValues(alpha: 0.18),
-            borderColor: colorEstadoZona(zona.estado),
-            borderStrokeWidth: 2,
-          ),
+          if (zona.id != _ajustandoZonaId)
+            Polygon(
+              points: zona.vertices,
+              color: colorEstadoZona(zona.estado).withValues(alpha: 0.18),
+              borderColor: colorEstadoZona(zona.estado),
+              borderStrokeWidth: 2,
+            ),
         if (_trazado.length >= 2)
           Polygon(
             points: _trazado,
@@ -425,6 +565,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   List<Marker> _marcadoresDeZonas(String idioma) {
     final marcadores = <Marker>[];
     for (final zona in _zonas) {
+      if (zona.id == _ajustandoZonaId) continue;
       final centro = zona.centro;
       if (centro == null) continue;
       final nombre = zona.nombre.isEmpty
@@ -458,7 +599,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
         ),
       ));
     }
-    for (final esquina in _trazado) {
+    for (final esquina in _ajustando ? const <LatLng>[] : _trazado) {
       marcadores.add(Marker(
         point: esquina,
         width: 14,
@@ -586,8 +727,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
       nombre: nombre,
       latitud: _centroActual.latitude,
       longitud: _centroActual.longitude,
-      superficieHa: leerNumero(controladorSuperficie.text) ??
-          0,
+      superficieHa: leerNumero(controladorSuperficie.text) ?? 0,
     ));
     avisarCambioDatos();
     if (!mounted) return;
@@ -657,6 +797,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
               ),
               PolygonLayer(polygons: _poligonos()),
               MarkerLayer(markers: _marcadoresDeZonas(idioma)),
+              if (_ajustando) MarkerLayer(markers: _asasDeAjuste()),
               MarkerClusterLayerWidget(
                 options: MarkerClusterLayerOptions(
                   maxClusterRadius: 42,
@@ -679,7 +820,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
               ),
             ],
           ),
-          if (_dibujando)
+          if (_dibujando || _ajustando)
             Positioned(
               left: 16,
               right: 16,
@@ -687,7 +828,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
               child: Material(
                 elevation: 0,
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(radioZunbeltz)),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(radioZunbeltz)),
                   side: BorderSide(color: colorSenalZunbeltz),
                 ),
                 color: Theme.of(context).colorScheme.surface,
@@ -696,7 +838,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(textos.dibujoTocaVertices,
+                      Text(
+                          !_ajustando
+                              ? textos.dibujoTocaVertices
+                              : _esquinaElegida == null
+                                  ? textos.ajusteInstrucciones
+                                  : textos.ajusteEsquinaElegida,
                           style: Theme.of(context).textTheme.bodyMedium),
                       const SizedBox(height: 4),
                       Text(
@@ -722,7 +869,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
               child: Material(
                 elevation: 0,
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(radioZunbeltz)),
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(radioZunbeltz)),
                   side: BorderSide(color: colorLineaZunbeltz),
                 ),
                 color: Theme.of(context).colorScheme.surface,
@@ -733,7 +881,9 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 ),
               ),
             ),
-          if (!_dibujando && (_conCoords.isNotEmpty || _recolocandoId != null))
+          if (!_dibujando &&
+              !_ajustando &&
+              (_conCoords.isNotEmpty || _recolocandoId != null))
             Positioned(
               top: 10,
               left: 0,
@@ -785,12 +935,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-          child: _dibujando
+          child: _ajustando
               ? Row(
                   children: [
                     Expanded(
                       child: OutlinedButton.icon(
-                        onPressed: _cancelarDibujo,
+                        onPressed: _cancelarAjuste,
                         icon: const Icon(Icons.close),
                         label: Text(textos.dibujoCancelar),
                       ),
@@ -798,73 +948,113 @@ class _PantallaFincasState extends State<PantallaFincas> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: OutlinedButton.icon(
-                        onPressed: _trazado.isEmpty ? null : _deshacerEsquina,
+                        onPressed:
+                            _historialAjuste.isEmpty ? null : _deshacerAjuste,
                         icon: const Icon(Icons.undo),
                         label: Text(textos.dibujoDeshacer),
                       ),
                     ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: _esquinaElegida != null &&
+                                sePuedeQuitarEsquina(_trazado)
+                            ? _quitarEsquinaElegida
+                            : null,
+                        icon: const Icon(Icons.remove_circle_outline),
+                        label: Text(textos.ajusteQuitarEsquina),
+                      ),
+                    ),
                   ],
                 )
-              : Row(
-            children: [
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: () => setState(() {
-                    _estiloMapa = _estiloMapa == _EstiloMapa.calle
-                        ? _EstiloMapa.satelite
-                        : _EstiloMapa.calle;
-                  }),
-                  icon: Icon(_estiloMapa == _EstiloMapa.calle
-                      ? Icons.layers_outlined
-                      : Icons.map_outlined),
-                  label: Text(_estiloMapa == _EstiloMapa.calle
-                      ? textos.mapaCapas
-                      : textos.mapaMapa),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _centrarEnGps,
-                  icon: const Icon(Icons.my_location),
-                  label: Text(textos.mapaGps),
-                ),
-              ),
-            ],
-          ),
+              : _dibujando
+                  ? Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: _cancelarDibujo,
+                            icon: const Icon(Icons.close),
+                            label: Text(textos.dibujoCancelar),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed:
+                                _trazado.isEmpty ? null : _deshacerEsquina,
+                            icon: const Icon(Icons.undo),
+                            label: Text(textos.dibujoDeshacer),
+                          ),
+                        ),
+                      ],
+                    )
+                  : Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: () => setState(() {
+                              _estiloMapa = _estiloMapa == _EstiloMapa.calle
+                                  ? _EstiloMapa.satelite
+                                  : _EstiloMapa.calle;
+                            }),
+                            icon: Icon(_estiloMapa == _EstiloMapa.calle
+                                ? Icons.layers_outlined
+                                : Icons.map_outlined),
+                            label: Text(_estiloMapa == _EstiloMapa.calle
+                                ? textos.mapaCapas
+                                : textos.mapaMapa),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: _centrarEnGps,
+                            icon: const Icon(Icons.my_location),
+                            label: Text(textos.mapaGps),
+                          ),
+                        ),
+                      ],
+                    ),
         ),
       ),
-      floatingActionButton: _dibujando
+      floatingActionButton: _ajustando
           ? FloatingActionButton.extended(
-              onPressed: _trazado.length < 3 ? null : _cerrarTrazado,
-              backgroundColor: _trazado.length < 3
-                  ? Theme.of(context).disabledColor
-                  : null,
+              onPressed: _guardarAjuste,
               icon: const Icon(Icons.check),
-              label: Text(textos.dibujoCerrar),
+              label: Text(textos.ajusteGuardar),
             )
-          : Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                if (politicaEspacioActual.puedeEditarEspacio) ...[
-                  FloatingActionButton.extended(
-                    heroTag: 'fabZona',
-                    onPressed: _fincas.isEmpty ? null : () => _empezarDibujo(),
-                    icon: const Icon(Icons.draw_outlined),
-                    label: Text(textos.zonaDibujar),
-                  ),
-                  const SizedBox(height: 10),
-                ],
-                if (politicaEspacioActual.puedeAnadirPuntos)
-                  FloatingActionButton.extended(
-                    heroTag: 'fabPunto',
-                    onPressed: _alAnadirPunto,
-                    icon: const Icon(Icons.add_location_alt),
-                    label: Text(textos.mapaNuevoPunto),
-                  ),
-              ],
-            ),
+          : _dibujando
+              ? FloatingActionButton.extended(
+                  onPressed: _trazado.length < 3 ? null : _cerrarTrazado,
+                  backgroundColor: _trazado.length < 3
+                      ? Theme.of(context).disabledColor
+                      : null,
+                  icon: const Icon(Icons.check),
+                  label: Text(textos.dibujoCerrar),
+                )
+              : Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    if (politicaEspacioActual.puedeEditarEspacio) ...[
+                      FloatingActionButton.extended(
+                        heroTag: 'fabZona',
+                        onPressed:
+                            _fincas.isEmpty ? null : () => _empezarDibujo(),
+                        icon: const Icon(Icons.draw_outlined),
+                        label: Text(textos.zonaDibujar),
+                      ),
+                      const SizedBox(height: 10),
+                    ],
+                    if (politicaEspacioActual.puedeAnadirPuntos)
+                      FloatingActionButton.extended(
+                        heroTag: 'fabPunto',
+                        onPressed: _alAnadirPunto,
+                        icon: const Icon(Icons.add_location_alt),
+                        label: Text(textos.mapaNuevoPunto),
+                      ),
+                  ],
+                ),
     );
   }
 }

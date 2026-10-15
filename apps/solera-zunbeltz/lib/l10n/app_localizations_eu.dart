@@ -920,7 +920,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaEditarMapaB =>
-      '1. Ukitu mapan puntua edo eremua haren fitxa irekitzeko.\n2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.\n3. Eremu bat zuzentzeko: sakatu «Berriro marraztu» (goian) eta markatu berriro haren izkinak.\n4. Ezabatzeko: sakatu zakarrontzia eta berretsi.';
+      '1. Ukitu mapan puntua edo eremua haren fitxa irekitzeko.\n2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.\n3. Eremu bat zuzentzeko: sakatu arkatza (goian). «Datuak editatu» aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; «Ingurua doitu» aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; «+» ikurrek izkina bat gehitzen dute); «Berriro marraztu» aukerak osorik egiten du berriro.\n4. Ezabatzeko: sakatu zakarrontzia eta berretsi.';
 
   @override
   String get ayudaTareasT => 'Mantentze-zeregin bat apuntatu';
@@ -1101,6 +1101,35 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get zonaTrazadoActualizado => 'Marrazkia eguneratuta';
+
+  @override
+  String get zonaEditar => 'Editatu';
+
+  @override
+  String get zonaEditarDatos => 'Datuak editatu';
+
+  @override
+  String get zonaEditarTitulo => 'Eremua editatu';
+
+  @override
+  String get zonaAjustarContorno => 'Ingurua doitu';
+
+  @override
+  String get zonaActualizada => 'Eremua eguneratuta';
+
+  @override
+  String get ajusteInstrucciones =>
+      'Ukitu izkina bat eta gero leku berria. Ukitu «+» bat alde baten erdian izkina bat gehitzeko.';
+
+  @override
+  String get ajusteEsquinaElegida =>
+      'Izkina hautatuta: ukitu non doan edo kendu.';
+
+  @override
+  String get ajusteQuitarEsquina => 'Izkina kendu';
+
+  @override
+  String get ajusteGuardar => 'Ingurua gorde';
 
   @override
   String get zonaTrazadoCorto => 'Markatu gutxienez hiru izkina eremua ixteko.';

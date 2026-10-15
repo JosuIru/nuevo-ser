@@ -44,6 +44,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-15 — zonas visibles y con color (app 0.5.5, BD v14, plugin 0.7.4)**. Las zonas se veían poco (borde fino verde sobre mapa verde). Ahora cada una se pinta dos veces (filo oscuro de 6 px debajo y su color a 3,5 px encima), con relleno al 22 % y nombre con halo blanco; el **estado** va en el trazo (continuo en uso, a trazos en descanso, de puntos vedada). **Color por zona** (`zonas_finca.color`, paleta `coloresZona`/`paletaZonas`; vacío = el de su tipo, `colorPorTipoZona`), elegible en el alta y en «Editar datos». Las zonas sembradas de Zunbeltz traen los colores del mapa original (`zonas.csv`, columna `color`). El plugin sanea `color` como texto.
 
+> **2026-10-15 — encaje contra la ortofoto (app 0.5.6)**. El primer encaje del mapa de actuaciones (traslación sobre el plano QGIS) se desviaba **hasta 50 m** (estirado norte-sur). Rehecho con SIFT contra la **ortofoto PNOA** (teselas WMTS z17; `extraido/registrar.py` → `afin_pnoa.npy`, error ~2-3 m: el tejado rojo del aprisco cae en su sitio). La **foto aérea de la app es ahora el PNOA** (IGN, CORS abierto, z19) con Esri de respaldo (`fallbackUrl`; difieren ~4-5 m aquí), con atribución en el mapa. Las **chinchetas** se anclan por la punta (`alignment: topCenter`), antes por el centro (≈19 px de desvío). La Pieza de la Puerta sigue siendo un contorno trazado a mano.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

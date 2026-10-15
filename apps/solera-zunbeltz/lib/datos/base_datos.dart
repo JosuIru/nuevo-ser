@@ -1416,8 +1416,8 @@ class BaseDatosSoleraZunbeltz {
     await guardarFinca(
         Finca(
           nombre: 'Zunbeltz',
-          latitud: 42.8226,
-          longitud: -2.0315,
+          latitud: 42.8169,
+          longitud: -2.0330,
           superficieHa: 231,
           notas: 'Datos de ejemplo · superficie pública, centroide aproximado.',
         ),
@@ -1425,8 +1425,8 @@ class BaseDatosSoleraZunbeltz {
     await guardarFinca(
         Finca(
           nombre: 'La Planilla',
-          latitud: 42.8010,
-          longitud: -1.9720,
+          latitud: 42.7707,
+          longitud: -2.0144,
           superficieHa: 197,
           notas: 'Datos de ejemplo · superficie pública, centroide aproximado.',
         ),

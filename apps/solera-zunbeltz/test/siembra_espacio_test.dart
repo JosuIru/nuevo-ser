@@ -24,7 +24,13 @@ void main() {
     expect(zunbeltz.longitud, closeTo(-2.03, 0.01));
 
     final zonas = await bd.listarZonas(fincaId: zunbeltz.id);
-    expect(zonas, hasLength(zonasEspacio.length));
+    expect(zonas,
+        hasLength(zonasEspacio.where((z) => z.finca == 'Zunbeltz').length));
+    final planilla =
+        (await bd.listarFincas()).singleWhere((f) => f.nombre == 'La Planilla');
+    expect(planilla.latitud, closeTo(42.77, 0.01));
+    expect((await bd.listarZonas(fincaId: planilla.id)).map((z) => z.nombre),
+        contains('Prado de La Planilla'));
     final ventaVieja =
         zonas.singleWhere((z) => z.nombre == 'Pieza de la Venta Vieja');
     expect(ventaVieja.recintoSigpac, 'Pol. 24 parc. 2 subp. O');
@@ -37,13 +43,13 @@ void main() {
 
     final tareas = await bd.listarTareas();
     expect(tareas, hasLength(tareasEspacio.length));
-    final actuacion13 =
-        tareas.singleWhere((t) => t.uid == uidSembrado('tarea', 'actuacion-13'));
+    final actuacion13 = tareas
+        .singleWhere((t) => t.uid == uidSembrado('tarea', 'actuacion-13'));
     expect(actuacion13.zonaId, ventaVieja.id);
     expect(actuacion13.fincaId, zunbeltz.id);
     expect(actuacion13.estado, 'pendiente');
-    final actuacion10 =
-        tareas.singleWhere((t) => t.uid == uidSembrado('tarea', 'actuacion-10'));
+    final actuacion10 = tareas
+        .singleWhere((t) => t.uid == uidSembrado('tarea', 'actuacion-10'));
     expect(actuacion10.puntoId, aprisco.id);
   });
 
@@ -72,11 +78,13 @@ void main() {
       final db = await base.basedatos;
       return {
         for (final tabla in ['zonas_finca', 'tareas_mantenimiento'])
-          for (final fila in await db.query(tabla, columns: ['uid'])) fila['uid'],
+          for (final fila in await db.query(tabla, columns: ['uid']))
+            fila['uid'],
       };
     }
-    expect(await uids(bd),
-        hasLength(zonasEspacio.length + tareasEspacio.length));
+
+    expect(
+        await uids(bd), hasLength(zonasEspacio.length + tareasEspacio.length));
     expect(await uids(otro), await uids(bd));
   });
 

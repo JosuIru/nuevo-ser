@@ -49,6 +49,7 @@ class LogoEntidad extends StatelessWidget {
 
 String tituloGrupoEntidades(AppLocalizations textos, String codigoGrupo) =>
     switch (GrupoEntidades.desdeCodigo(codigoGrupo)) {
+      GrupoEntidades.financian => textos.acercaFinancian,
       GrupoEntidades.impulsan => textos.acercaImpulsan,
       GrupoEntidades.apoyan => textos.acercaApoyan,
       GrupoEntidades.colaboran || null => textos.acercaColaboran,

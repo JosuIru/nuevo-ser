@@ -35,8 +35,8 @@ void main() {
     test('descarta lo que no sirve y los enlaces que no son web', () {
       expect(EntidadColaboradora.desdeJson({..._entidad('a'), 'clave': ''}),
           isNull);
-      expect(EntidadColaboradora.desdeJson({'clave': 'b', 'nombre': 'B'}),
-          isNull);
+      expect(
+          EntidadColaboradora.desdeJson({'clave': 'b', 'nombre': 'B'}), isNull);
       final conEnlaceRaro = EntidadColaboradora.desdeJson(
           {..._entidad('c'), 'enlace': 'javascript:alert(1)'})!;
       expect(conEnlaceRaro.enlace, '');
@@ -49,6 +49,15 @@ void main() {
       expect(clavesLogosEmpaquetados, contains(entidad.clave));
       expect(GrupoEntidades.desdeCodigo(entidad.grupo), isNotNull);
     }
+  });
+
+  test('las que financian van primero y en su grupo', () {
+    expect(GrupoEntidades.values.first, GrupoEntidades.financian);
+    expect(
+        entidadesDePartida
+            .where((entidad) => entidad.grupo == 'financian')
+            .map((entidad) => entidad.clave),
+        ['carasso', 'gobierno_navarra']);
   });
 
   group('ServicioLogosEntidades', () {

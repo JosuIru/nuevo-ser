@@ -1,7 +1,8 @@
 /// Logos de las entidades que impulsan, apoyan y colaboran con Zunbeltz,
 /// tal como salen en el pie de zunbeltz.com (de ahí se tomaron, el
 /// 2026-10-13). Van teñidos en un solo color para que se lean sobre el
-/// papel de la app.
+/// papel de la app, salvo los de las que financian, que van con su logo
+/// oficial.
 ///
 /// Esta es la lista **de partida**, la que va dentro de la app. Coordinación
 /// la cambia en el panel de WordPress (Solera Zunbeltz → Entidades y logos)
@@ -16,6 +17,7 @@ const String rutaLogoZunbeltz = 'assets/logos/zunbeltz.png';
 
 /// Grupos del pie de la web, en su orden. El código es el del servidor.
 enum GrupoEntidades {
+  financian('financian'),
   impulsan('impulsan'),
   apoyan('apoyan'),
   colaboran('colaboran'),
@@ -59,6 +61,15 @@ const Set<String> clavesLogosEmpaquetados = {
 String rutaLogoEmpaquetado(String clave) => 'assets/logos/$clave.png';
 
 const List<EntidadColaboradora> entidadesDePartida = [
+  // Las que financian (Zunbeltz, 2026-10-16), con su logo oficial en color.
+  EntidadColaboradora(
+      clave: 'carasso',
+      nombre: 'Fundación Daniel y Nina Carasso',
+      grupo: 'financian'),
+  EntidadColaboradora(
+      clave: 'gobierno_navarra',
+      nombre: 'Gobierno de Navarra',
+      grupo: 'financian'),
   EntidadColaboradora(
       clave: 'andia', nombre: 'Mancomunidad de Andía', grupo: 'impulsan'),
   EntidadColaboradora(
@@ -73,12 +84,6 @@ const List<EntidadColaboradora> entidadesDePartida = [
       clave: 'salinas',
       nombre: 'Ayuntamiento de Salinas de Oro',
       grupo: 'impulsan'),
-  EntidadColaboradora(
-      clave: 'carasso',
-      nombre: 'Fundación Daniel y Nina Carasso',
-      grupo: 'apoyan'),
-  EntidadColaboradora(
-      clave: 'gobierno_navarra', nombre: 'Gobierno de Navarra', grupo: 'apoyan'),
   EntidadColaboradora(
       clave: 'ue_feader', nombre: 'Unión Europea · FEADER', grupo: 'apoyan'),
   EntidadColaboradora(

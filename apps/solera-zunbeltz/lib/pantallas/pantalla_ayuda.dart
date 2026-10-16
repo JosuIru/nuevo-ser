@@ -70,6 +70,14 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
               t.ayudaRecurrentesT, t.ayudaRecurrentesB, Icons.repeat),
           _ApartadoAyuda(t.ayudaTableroT, t.ayudaTableroB, Icons.checklist),
         ]),
+        _GrupoAyuda(t.ayudaGrupoGanado, [
+          _ApartadoAyuda(
+              t.ayudaGanadoLotesT, t.ayudaGanadoLotesB, Icons.pets_outlined),
+          _ApartadoAyuda(
+              t.ayudaGanadoMoverT, t.ayudaGanadoMoverB, Icons.moving),
+          _ApartadoAyuda(t.ayudaGanadoManejoT, t.ayudaGanadoManejoB,
+              Icons.medication_outlined),
+        ]),
         _GrupoAyuda(t.ayudaGrupoProyectos, [
           _ApartadoAyuda(
               t.ayudaProyectosT, t.ayudaProyectosB, Icons.science_outlined),

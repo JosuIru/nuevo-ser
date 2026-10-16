@@ -1769,7 +1769,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaPestanasB.
   ///
   /// In es, this message translates to:
-  /// **'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.'**
+  /// **'Abajo tienes cinco pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Ganado: los lotes, dónde está cada uno, sus animales, movimientos y curas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.'**
   String get ayudaPestanasB;
 
   /// No description provided for @ayudaIdiomaDatosT.
@@ -4093,6 +4093,654 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ya hay una sincronización en marcha. Se terminará sola; prueba de nuevo en un momento.'**
   String get ajustesSyncOcupado;
+
+  /// No description provided for @navGanado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado'**
+  String get navGanado;
+
+  /// No description provided for @ganTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado'**
+  String get ganTitulo;
+
+  /// No description provided for @ganLotes.
+  ///
+  /// In es, this message translates to:
+  /// **'Lotes'**
+  String get ganLotes;
+
+  /// No description provided for @ganAnimales.
+  ///
+  /// In es, this message translates to:
+  /// **'Animales'**
+  String get ganAnimales;
+
+  /// No description provided for @ganMovimientos.
+  ///
+  /// In es, this message translates to:
+  /// **'Movimientos'**
+  String get ganMovimientos;
+
+  /// No description provided for @ganIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'El ganado se maneja por lotes: cada lote está en una pieza y se mueve entero. Los animales con crotal van dentro de su lote.'**
+  String get ganIntro;
+
+  /// No description provided for @ganVerCerrados.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver también los lotes cerrados'**
+  String get ganVerCerrados;
+
+  /// No description provided for @ganSinLotes.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no hay lotes. Crea uno con «Nuevo lote».'**
+  String get ganSinLotes;
+
+  /// No description provided for @ganSinAnimales.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay animales con esa identificación.'**
+  String get ganSinAnimales;
+
+  /// No description provided for @ganSinMovimientos.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no se ha movido ningún lote.'**
+  String get ganSinMovimientos;
+
+  /// No description provided for @ganNuevoLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevo lote'**
+  String get ganNuevoLote;
+
+  /// No description provided for @ganNuevoAnimal.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir animal'**
+  String get ganNuevoAnimal;
+
+  /// No description provided for @ganEditarLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar lote'**
+  String get ganEditarLote;
+
+  /// No description provided for @ganEditarAnimal.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar animal'**
+  String get ganEditarAnimal;
+
+  /// No description provided for @ganMoverLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Mover un lote'**
+  String get ganMoverLote;
+
+  /// No description provided for @ganMover.
+  ///
+  /// In es, this message translates to:
+  /// **'Mover'**
+  String get ganMover;
+
+  /// No description provided for @ganApuntarManejo.
+  ///
+  /// In es, this message translates to:
+  /// **'Cura, pesaje, parto…'**
+  String get ganApuntarManejo;
+
+  /// No description provided for @ganCambiarDeLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar de lote'**
+  String get ganCambiarDeLote;
+
+  /// No description provided for @ganDarDeBaja.
+  ///
+  /// In es, this message translates to:
+  /// **'Dar de baja'**
+  String get ganDarDeBaja;
+
+  /// No description provided for @ganBuscarAnimal.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar por crotal o nombre'**
+  String get ganBuscarAnimal;
+
+  /// No description provided for @ganSinUbicar.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin ubicar'**
+  String get ganSinUbicar;
+
+  /// No description provided for @ganFueraDelEspacio.
+  ///
+  /// In es, this message translates to:
+  /// **'fuera del espacio'**
+  String get ganFueraDelEspacio;
+
+  /// No description provided for @ganSinLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin lote'**
+  String get ganSinLote;
+
+  /// No description provided for @ganLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Lote'**
+  String get ganLote;
+
+  /// No description provided for @ganLoteCerrado.
+  ///
+  /// In es, this message translates to:
+  /// **'cerrado'**
+  String get ganLoteCerrado;
+
+  /// No description provided for @ganLoteActivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Lote en uso'**
+  String get ganLoteActivo;
+
+  /// No description provided for @ganLoteActivoAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Desactívalo cuando el lote ya no exista (se vendió, se deshizo): deja de salir en las piezas, pero se conserva su historial.'**
+  String get ganLoteActivoAyuda;
+
+  /// No description provided for @ganLoteSinAnimales.
+  ///
+  /// In es, this message translates to:
+  /// **'Ningún animal con crotal en este lote.'**
+  String get ganLoteSinAnimales;
+
+  /// No description provided for @ganHistorial.
+  ///
+  /// In es, this message translates to:
+  /// **'Historial'**
+  String get ganHistorial;
+
+  /// No description provided for @ganSinHistorial.
+  ///
+  /// In es, this message translates to:
+  /// **'Nada apuntado todavía.'**
+  String get ganSinHistorial;
+
+  /// No description provided for @ganAlLote.
+  ///
+  /// In es, this message translates to:
+  /// **'al lote'**
+  String get ganAlLote;
+
+  /// No description provided for @ganNoExiste.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya no existe: puede que se haya borrado en otro dispositivo.'**
+  String get ganNoExiste;
+
+  /// No description provided for @ganEnEstaPieza.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado en esta pieza'**
+  String get ganEnEstaPieza;
+
+  /// No description provided for @ganPiezaSinGanado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora no hay ningún lote aquí.'**
+  String get ganPiezaSinGanado;
+
+  /// No description provided for @ganTraerAqui.
+  ///
+  /// In es, this message translates to:
+  /// **'Traer un lote'**
+  String get ganTraerAqui;
+
+  /// No description provided for @ganSinOtrosLotes.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay otros lotes en uso.'**
+  String get ganSinOtrosLotes;
+
+  /// No description provided for @ganElegirLote.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué lote?'**
+  String get ganElegirLote;
+
+  /// No description provided for @ganEnSupresion.
+  ///
+  /// In es, this message translates to:
+  /// **'En plazo de supresión'**
+  String get ganEnSupresion;
+
+  /// No description provided for @ganNombreLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre del lote'**
+  String get ganNombreLote;
+
+  /// No description provided for @ganNombreLoteAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Por ejemplo: «Ovejas de Ane», «Cerdos de cebo 2026».'**
+  String get ganNombreLoteAyuda;
+
+  /// No description provided for @ganNombreObligatorio.
+  ///
+  /// In es, this message translates to:
+  /// **'Ponle un nombre.'**
+  String get ganNombreObligatorio;
+
+  /// No description provided for @ganEspecie.
+  ///
+  /// In es, this message translates to:
+  /// **'Especie'**
+  String get ganEspecie;
+
+  /// No description provided for @ganTitular.
+  ///
+  /// In es, this message translates to:
+  /// **'De quién es'**
+  String get ganTitular;
+
+  /// No description provided for @ganTitularEspacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Del espacio (Zunbeltz)'**
+  String get ganTitularEspacio;
+
+  /// No description provided for @ganCabezasSinIdentificar.
+  ///
+  /// In es, this message translates to:
+  /// **'Cabezas sin crotal'**
+  String get ganCabezasSinIdentificar;
+
+  /// No description provided for @ganCabezasSinIdentificarAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Las que no se llevan una a una (aves, cerdos de cebo, crías aún sin crotal). Se suman a los animales con crotal del lote.'**
+  String get ganCabezasSinIdentificarAyuda;
+
+  /// No description provided for @ganDondeEsta.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Dónde está ahora?'**
+  String get ganDondeEsta;
+
+  /// No description provided for @ganFechaEntrada.
+  ///
+  /// In es, this message translates to:
+  /// **'Desde cuándo'**
+  String get ganFechaEntrada;
+
+  /// No description provided for @ganGuardado.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardado.'**
+  String get ganGuardado;
+
+  /// No description provided for @ganNotas.
+  ///
+  /// In es, this message translates to:
+  /// **'Notas'**
+  String get ganNotas;
+
+  /// No description provided for @ganIdentificacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Crotal / identificación'**
+  String get ganIdentificacion;
+
+  /// No description provided for @ganIdentificacionAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'El número oficial (DIB, REIA…), tal como viene en la chapa.'**
+  String get ganIdentificacionAyuda;
+
+  /// No description provided for @ganIdentificacionObligatoria.
+  ///
+  /// In es, this message translates to:
+  /// **'Pon el crotal o, al menos, un nombre.'**
+  String get ganIdentificacionObligatoria;
+
+  /// No description provided for @ganNombreAnimal.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre (si lo tiene)'**
+  String get ganNombreAnimal;
+
+  /// No description provided for @ganRaza.
+  ///
+  /// In es, this message translates to:
+  /// **'Raza'**
+  String get ganRaza;
+
+  /// No description provided for @ganSexo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sexo'**
+  String get ganSexo;
+
+  /// No description provided for @ganNacimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Nacimiento'**
+  String get ganNacimiento;
+
+  /// No description provided for @ganSinFecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin fecha'**
+  String get ganSinFecha;
+
+  /// No description provided for @ganMadre.
+  ///
+  /// In es, this message translates to:
+  /// **'Madre (crotal)'**
+  String get ganMadre;
+
+  /// No description provided for @ganTipoMovimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué movimiento'**
+  String get ganTipoMovimiento;
+
+  /// No description provided for @ganAQuePieza.
+  ///
+  /// In es, this message translates to:
+  /// **'A qué pieza'**
+  String get ganAQuePieza;
+
+  /// No description provided for @ganAdondeSale.
+  ///
+  /// In es, this message translates to:
+  /// **'Adónde va'**
+  String get ganAdondeSale;
+
+  /// No description provided for @ganAdondeSaleAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'La sierra, otra explotación, el matadero…'**
+  String get ganAdondeSaleAyuda;
+
+  /// No description provided for @ganDeDondeViene.
+  ///
+  /// In es, this message translates to:
+  /// **'De dónde viene'**
+  String get ganDeDondeViene;
+
+  /// No description provided for @ganGuia.
+  ///
+  /// In es, this message translates to:
+  /// **'Guía de movimiento'**
+  String get ganGuia;
+
+  /// No description provided for @ganGuiaAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'El número de la guía, si el movimiento la necesita.'**
+  String get ganGuiaAyuda;
+
+  /// No description provided for @ganDestinoObligatorio.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige la pieza a la que va.'**
+  String get ganDestinoObligatorio;
+
+  /// No description provided for @ganYaEstaAhi.
+  ///
+  /// In es, this message translates to:
+  /// **'El lote ya está en esa pieza.'**
+  String get ganYaEstaAhi;
+
+  /// No description provided for @ganMovimientoGuardado.
+  ///
+  /// In es, this message translates to:
+  /// **'Movimiento apuntado.'**
+  String get ganMovimientoGuardado;
+
+  /// No description provided for @ganAhoraFuera.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora no está en ninguna pieza del espacio.'**
+  String get ganAhoraFuera;
+
+  /// No description provided for @ganTipoManejo.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué se ha hecho'**
+  String get ganTipoManejo;
+
+  /// No description provided for @ganAvisoVeterinario.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta lo que pone la receta del veterinario. La app no recomienda medicamentos: solo te avisa de cuándo termina el plazo de supresión.'**
+  String get ganAvisoVeterinario;
+
+  /// No description provided for @ganSustanciaActiva.
+  ///
+  /// In es, this message translates to:
+  /// **'Sustancia activa'**
+  String get ganSustanciaActiva;
+
+  /// No description provided for @ganSustanciaObligatoria.
+  ///
+  /// In es, this message translates to:
+  /// **'Pon la sustancia activa (la de la receta).'**
+  String get ganSustanciaObligatoria;
+
+  /// No description provided for @ganDosis.
+  ///
+  /// In es, this message translates to:
+  /// **'Dosis y vía'**
+  String get ganDosis;
+
+  /// No description provided for @ganSupresionCarneDias.
+  ///
+  /// In es, this message translates to:
+  /// **'Supresión carne'**
+  String get ganSupresionCarneDias;
+
+  /// No description provided for @ganSupresionLecheDias.
+  ///
+  /// In es, this message translates to:
+  /// **'Supresión leche'**
+  String get ganSupresionLecheDias;
+
+  /// No description provided for @ganDias.
+  ///
+  /// In es, this message translates to:
+  /// **'días'**
+  String get ganDias;
+
+  /// No description provided for @ganVeterinario.
+  ///
+  /// In es, this message translates to:
+  /// **'Veterinario/a'**
+  String get ganVeterinario;
+
+  /// No description provided for @ganReceta.
+  ///
+  /// In es, this message translates to:
+  /// **'N.º de receta'**
+  String get ganReceta;
+
+  /// No description provided for @ganPeso.
+  ///
+  /// In es, this message translates to:
+  /// **'Peso'**
+  String get ganPeso;
+
+  /// No description provided for @ganPesoObligatorio.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe el peso en kg.'**
+  String get ganPesoObligatorio;
+
+  /// No description provided for @ganCrias.
+  ///
+  /// In es, this message translates to:
+  /// **'Crías nacidas'**
+  String get ganCrias;
+
+  /// No description provided for @ganCabezasTratadas.
+  ///
+  /// In es, this message translates to:
+  /// **'Cabezas'**
+  String get ganCabezasTratadas;
+
+  /// No description provided for @ganCabezasTratadasAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuántas del lote; vacío = todas.'**
+  String get ganCabezasTratadasAyuda;
+
+  /// No description provided for @ganDescripcion.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué ha pasado / notas'**
+  String get ganDescripcion;
+
+  /// No description provided for @tipoEntidadGanado.
+  ///
+  /// In es, this message translates to:
+  /// **'el ganado'**
+  String get tipoEntidadGanado;
+
+  /// No description provided for @ayudaGrupoGanado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado y movimientos'**
+  String get ayudaGrupoGanado;
+
+  /// No description provided for @ayudaGanadoLotesT.
+  ///
+  /// In es, this message translates to:
+  /// **'Lotes y animales'**
+  String get ayudaGanadoLotesT;
+
+  /// No description provided for @ayudaGanadoLotesB.
+  ///
+  /// In es, this message translates to:
+  /// **'El ganado se lleva por lotes, como se maneja en extensivo: un rebaño, un lote de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo lote».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el lote y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.'**
+  String get ayudaGanadoLotesB;
+
+  /// No description provided for @ayudaGanadoMoverT.
+  ///
+  /// In es, this message translates to:
+  /// **'Mover el ganado de pieza'**
+  String get ayudaGanadoMoverT;
+
+  /// No description provided for @ayudaGanadoMoverB.
+  ///
+  /// In es, this message translates to:
+  /// **'1. Abre el lote y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un lote»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un lote».\n» En la ficha de cada pieza se ve qué lotes hay, cuántas cabezas y cuántas por hectárea. El historial del lote guarda todos sus movimientos.\n» Un animal suelto se cambia de lote desde su ficha («Cambiar de lote»).'**
+  String get ayudaGanadoMoverB;
+
+  /// No description provided for @ayudaGanadoManejoT.
+  ///
+  /// In es, this message translates to:
+  /// **'Curas, tratamientos, pesajes y partos'**
+  String get ayudaGanadoManejoT;
+
+  /// No description provided for @ayudaGanadoManejoB.
+  ///
+  /// In es, this message translates to:
+  /// **'1. Abre el lote (si es para todo el lote) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el lote o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.'**
+  String get ayudaGanadoManejoB;
+
+  /// No description provided for @ganCabezas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 cabeza} other{{n} cabezas}}'**
+  String ganCabezas(int n);
+
+  /// No description provided for @ganAnimalesDelLote.
+  ///
+  /// In es, this message translates to:
+  /// **'Animales con crotal ({n})'**
+  String ganAnimalesDelLote(int n);
+
+  /// No description provided for @ganDeEllasSinCrotal.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} sin crotal'**
+  String ganDeEllasSinCrotal(int n);
+
+  /// No description provided for @ganCriasN.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 cría} other{{n} crías}}'**
+  String ganCriasN(int n);
+
+  /// No description provided for @ganPlazoCarne.
+  ///
+  /// In es, this message translates to:
+  /// **'carne {n} d'**
+  String ganPlazoCarne(int n);
+
+  /// No description provided for @ganPlazoLeche.
+  ///
+  /// In es, this message translates to:
+  /// **'leche {n} d'**
+  String ganPlazoLeche(int n);
+
+  /// No description provided for @ganEnZona.
+  ///
+  /// In es, this message translates to:
+  /// **'En {zona} desde el {fecha}'**
+  String ganEnZona(String zona, String fecha);
+
+  /// No description provided for @ganFuera.
+  ///
+  /// In es, this message translates to:
+  /// **'Fuera: {destino} (desde el {fecha})'**
+  String ganFuera(String destino, String fecha);
+
+  /// No description provided for @ganSupresionCarne.
+  ///
+  /// In es, this message translates to:
+  /// **'Carne: libre desde el {fecha}'**
+  String ganSupresionCarne(String fecha);
+
+  /// No description provided for @ganSupresionLeche.
+  ///
+  /// In es, this message translates to:
+  /// **'Leche: libre desde el {fecha}'**
+  String ganSupresionLeche(String fecha);
+
+  /// No description provided for @ganAhoraEn.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora está en {zona}.'**
+  String ganAhoraEn(String zona);
+
+  /// No description provided for @ganMoverTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Mover «{lote}»'**
+  String ganMoverTitulo(String lote);
+
+  /// No description provided for @ganManejoTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar a {quien}'**
+  String ganManejoTitulo(String quien);
+
+  /// No description provided for @ganCabezasPorHa.
+  ///
+  /// In es, this message translates to:
+  /// **'{valor} cab./ha'**
+  String ganCabezasPorHa(String valor);
 }
 
 class _AppLocalizationsDelegate

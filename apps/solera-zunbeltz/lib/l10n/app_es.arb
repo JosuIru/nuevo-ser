@@ -329,7 +329,7 @@
   "ayudaQueEsT": "¿Qué es esta app?",
   "ayudaQueEsB": "Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte. Si sincronizas, además lo compartes con el resto del equipo a través del servidor de Zunbeltz.",
   "ayudaPestanasT": "Moverse por la app",
-  "ayudaPestanasB": "Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.",
+  "ayudaPestanasB": "Abajo tienes cinco pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Ganado: los lotes, dónde está cada uno, sus animales, movimientos y curas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.",
   "ayudaIdiomaDatosT": "Idioma, fotos, tiempo e internet",
   "ayudaIdiomaDatosB": "• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Hoy o en Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo, la sincronización y las actualizaciones. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.",
   "ayudaFincasT": "Marcar un punto en el mapa",
@@ -980,5 +980,218 @@
   "informePeriodo": "Periodo de las cifras",
   "informeTodoElProyecto": "todo el proyecto",
   "informeConvenioAcumulado": "Cuentas del convenio (todo el proyecto, sea cual sea el periodo):",
-  "ajustesSyncOcupado": "Ya hay una sincronización en marcha. Se terminará sola; prueba de nuevo en un momento."
+  "ajustesSyncOcupado": "Ya hay una sincronización en marcha. Se terminará sola; prueba de nuevo en un momento.",
+
+  "navGanado": "Ganado",
+  "ganTitulo": "Ganado",
+  "ganLotes": "Lotes",
+  "ganAnimales": "Animales",
+  "ganMovimientos": "Movimientos",
+  "ganIntro": "El ganado se maneja por lotes: cada lote está en una pieza y se mueve entero. Los animales con crotal van dentro de su lote.",
+  "ganVerCerrados": "Ver también los lotes cerrados",
+  "ganSinLotes": "Todavía no hay lotes. Crea uno con «Nuevo lote».",
+  "ganSinAnimales": "No hay animales con esa identificación.",
+  "ganSinMovimientos": "Todavía no se ha movido ningún lote.",
+  "ganNuevoLote": "Nuevo lote",
+  "ganNuevoAnimal": "Añadir animal",
+  "ganEditarLote": "Editar lote",
+  "ganEditarAnimal": "Editar animal",
+  "ganMoverLote": "Mover un lote",
+  "ganMover": "Mover",
+  "ganApuntarManejo": "Cura, pesaje, parto…",
+  "ganCambiarDeLote": "Cambiar de lote",
+  "ganDarDeBaja": "Dar de baja",
+  "ganBuscarAnimal": "Buscar por crotal o nombre",
+  "ganSinUbicar": "Sin ubicar",
+  "ganFueraDelEspacio": "fuera del espacio",
+  "ganSinLote": "Sin lote",
+  "ganLote": "Lote",
+  "ganLoteCerrado": "cerrado",
+  "ganLoteActivo": "Lote en uso",
+  "ganLoteActivoAyuda": "Desactívalo cuando el lote ya no exista (se vendió, se deshizo): deja de salir en las piezas, pero se conserva su historial.",
+  "ganLoteSinAnimales": "Ningún animal con crotal en este lote.",
+  "ganHistorial": "Historial",
+  "ganSinHistorial": "Nada apuntado todavía.",
+  "ganAlLote": "al lote",
+  "ganNoExiste": "Ya no existe: puede que se haya borrado en otro dispositivo.",
+  "ganEnEstaPieza": "Ganado en esta pieza",
+  "ganPiezaSinGanado": "Ahora no hay ningún lote aquí.",
+  "ganTraerAqui": "Traer un lote",
+  "ganSinOtrosLotes": "No hay otros lotes en uso.",
+  "ganElegirLote": "¿Qué lote?",
+  "ganEnSupresion": "En plazo de supresión",
+  "ganNombreLote": "Nombre del lote",
+  "ganNombreLoteAyuda": "Por ejemplo: «Ovejas de Ane», «Cerdos de cebo 2026».",
+  "ganNombreObligatorio": "Ponle un nombre.",
+  "ganEspecie": "Especie",
+  "ganTitular": "De quién es",
+  "ganTitularEspacio": "Del espacio (Zunbeltz)",
+  "ganCabezasSinIdentificar": "Cabezas sin crotal",
+  "ganCabezasSinIdentificarAyuda": "Las que no se llevan una a una (aves, cerdos de cebo, crías aún sin crotal). Se suman a los animales con crotal del lote.",
+  "ganDondeEsta": "¿Dónde está ahora?",
+  "ganFechaEntrada": "Desde cuándo",
+  "ganGuardado": "Guardado.",
+  "ganNotas": "Notas",
+  "ganIdentificacion": "Crotal / identificación",
+  "ganIdentificacionAyuda": "El número oficial (DIB, REIA…), tal como viene en la chapa.",
+  "ganIdentificacionObligatoria": "Pon el crotal o, al menos, un nombre.",
+  "ganNombreAnimal": "Nombre (si lo tiene)",
+  "ganRaza": "Raza",
+  "ganSexo": "Sexo",
+  "ganNacimiento": "Nacimiento",
+  "ganSinFecha": "Sin fecha",
+  "ganMadre": "Madre (crotal)",
+  "ganTipoMovimiento": "Qué movimiento",
+  "ganAQuePieza": "A qué pieza",
+  "ganAdondeSale": "Adónde va",
+  "ganAdondeSaleAyuda": "La sierra, otra explotación, el matadero…",
+  "ganDeDondeViene": "De dónde viene",
+  "ganGuia": "Guía de movimiento",
+  "ganGuiaAyuda": "El número de la guía, si el movimiento la necesita.",
+  "ganDestinoObligatorio": "Elige la pieza a la que va.",
+  "ganYaEstaAhi": "El lote ya está en esa pieza.",
+  "ganMovimientoGuardado": "Movimiento apuntado.",
+  "ganAhoraFuera": "Ahora no está en ninguna pieza del espacio.",
+  "ganTipoManejo": "Qué se ha hecho",
+  "ganAvisoVeterinario": "Apunta lo que pone la receta del veterinario. La app no recomienda medicamentos: solo te avisa de cuándo termina el plazo de supresión.",
+  "ganSustanciaActiva": "Sustancia activa",
+  "ganSustanciaObligatoria": "Pon la sustancia activa (la de la receta).",
+  "ganDosis": "Dosis y vía",
+  "ganSupresionCarneDias": "Supresión carne",
+  "ganSupresionLecheDias": "Supresión leche",
+  "ganDias": "días",
+  "ganVeterinario": "Veterinario/a",
+  "ganReceta": "N.º de receta",
+  "ganPeso": "Peso",
+  "ganPesoObligatorio": "Escribe el peso en kg.",
+  "ganCrias": "Crías nacidas",
+  "ganCabezasTratadas": "Cabezas",
+  "ganCabezasTratadasAyuda": "Cuántas del lote; vacío = todas.",
+  "ganDescripcion": "Qué ha pasado / notas",
+  "tipoEntidadGanado": "el ganado",
+  "ayudaGrupoGanado": "Ganado y movimientos",
+  "ayudaGanadoLotesT": "Lotes y animales",
+  "ayudaGanadoLotesB": "El ganado se lleva por lotes, como se maneja en extensivo: un rebaño, un lote de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo lote».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el lote y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.",
+  "ayudaGanadoMoverT": "Mover el ganado de pieza",
+  "ayudaGanadoMoverB": "1. Abre el lote y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un lote»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un lote».\n» En la ficha de cada pieza se ve qué lotes hay, cuántas cabezas y cuántas por hectárea. El historial del lote guarda todos sus movimientos.\n» Un animal suelto se cambia de lote desde su ficha («Cambiar de lote»).",
+  "ayudaGanadoManejoT": "Curas, tratamientos, pesajes y partos",
+  "ayudaGanadoManejoB": "1. Abre el lote (si es para todo el lote) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el lote o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.",
+  "ganCabezas": "{n, plural, =1{1 cabeza} other{{n} cabezas}}",
+  "@ganCabezas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganAnimalesDelLote": "Animales con crotal ({n})",
+  "@ganAnimalesDelLote": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganDeEllasSinCrotal": "{n} sin crotal",
+  "@ganDeEllasSinCrotal": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganCriasN": "{n, plural, =1{1 cría} other{{n} crías}}",
+  "@ganCriasN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganPlazoCarne": "carne {n} d",
+  "@ganPlazoCarne": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganPlazoLeche": "leche {n} d",
+  "@ganPlazoLeche": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganEnZona": "En {zona} desde el {fecha}",
+  "@ganEnZona": {
+    "placeholders": {
+      "zona": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "ganFuera": "Fuera: {destino} (desde el {fecha})",
+  "@ganFuera": {
+    "placeholders": {
+      "destino": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "ganSupresionCarne": "Carne: libre desde el {fecha}",
+  "@ganSupresionCarne": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "ganSupresionLeche": "Leche: libre desde el {fecha}",
+  "@ganSupresionLeche": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "ganAhoraEn": "Ahora está en {zona}.",
+  "@ganAhoraEn": {
+    "placeholders": {
+      "zona": {
+        "type": "String"
+      }
+    }
+  },
+  "ganMoverTitulo": "Mover «{lote}»",
+  "@ganMoverTitulo": {
+    "placeholders": {
+      "lote": {
+        "type": "String"
+      }
+    }
+  },
+  "ganManejoTitulo": "Apuntar a {quien}",
+  "@ganManejoTitulo": {
+    "placeholders": {
+      "quien": {
+        "type": "String"
+      }
+    }
+  },
+  "ganCabezasPorHa": "{valor} cab./ha",
+  "@ganCabezasPorHa": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  }
 }

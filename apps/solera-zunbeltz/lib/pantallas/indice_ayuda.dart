@@ -24,6 +24,11 @@ const Map<String, List<String>> indiceAyuda = {
     'ayudaRecurrentes',
     'ayudaTablero',
   ],
+  'ayudaGrupoGanado': [
+    'ayudaGanadoLotes',
+    'ayudaGanadoMover',
+    'ayudaGanadoManejo',
+  ],
   'ayudaGrupoProyectos': [
     'ayudaProyectos',
     'ayudaApuntar',

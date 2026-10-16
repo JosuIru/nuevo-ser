@@ -893,7 +893,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaPestanasB =>
-      'Abajo tienes cuatro pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
+      'Abajo tienes cinco pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Ganado: los lotes, dónde está cada uno, sus animales, movimientos y curas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
 
   @override
   String get ayudaIdiomaDatosT => 'Idioma, fotos, tiempo e internet';
@@ -2274,4 +2274,381 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ajustesSyncOcupado =>
       'Ya hay una sincronización en marcha. Se terminará sola; prueba de nuevo en un momento.';
+
+  @override
+  String get navGanado => 'Ganado';
+
+  @override
+  String get ganTitulo => 'Ganado';
+
+  @override
+  String get ganLotes => 'Lotes';
+
+  @override
+  String get ganAnimales => 'Animales';
+
+  @override
+  String get ganMovimientos => 'Movimientos';
+
+  @override
+  String get ganIntro =>
+      'El ganado se maneja por lotes: cada lote está en una pieza y se mueve entero. Los animales con crotal van dentro de su lote.';
+
+  @override
+  String get ganVerCerrados => 'Ver también los lotes cerrados';
+
+  @override
+  String get ganSinLotes => 'Todavía no hay lotes. Crea uno con «Nuevo lote».';
+
+  @override
+  String get ganSinAnimales => 'No hay animales con esa identificación.';
+
+  @override
+  String get ganSinMovimientos => 'Todavía no se ha movido ningún lote.';
+
+  @override
+  String get ganNuevoLote => 'Nuevo lote';
+
+  @override
+  String get ganNuevoAnimal => 'Añadir animal';
+
+  @override
+  String get ganEditarLote => 'Editar lote';
+
+  @override
+  String get ganEditarAnimal => 'Editar animal';
+
+  @override
+  String get ganMoverLote => 'Mover un lote';
+
+  @override
+  String get ganMover => 'Mover';
+
+  @override
+  String get ganApuntarManejo => 'Cura, pesaje, parto…';
+
+  @override
+  String get ganCambiarDeLote => 'Cambiar de lote';
+
+  @override
+  String get ganDarDeBaja => 'Dar de baja';
+
+  @override
+  String get ganBuscarAnimal => 'Buscar por crotal o nombre';
+
+  @override
+  String get ganSinUbicar => 'Sin ubicar';
+
+  @override
+  String get ganFueraDelEspacio => 'fuera del espacio';
+
+  @override
+  String get ganSinLote => 'Sin lote';
+
+  @override
+  String get ganLote => 'Lote';
+
+  @override
+  String get ganLoteCerrado => 'cerrado';
+
+  @override
+  String get ganLoteActivo => 'Lote en uso';
+
+  @override
+  String get ganLoteActivoAyuda =>
+      'Desactívalo cuando el lote ya no exista (se vendió, se deshizo): deja de salir en las piezas, pero se conserva su historial.';
+
+  @override
+  String get ganLoteSinAnimales => 'Ningún animal con crotal en este lote.';
+
+  @override
+  String get ganHistorial => 'Historial';
+
+  @override
+  String get ganSinHistorial => 'Nada apuntado todavía.';
+
+  @override
+  String get ganAlLote => 'al lote';
+
+  @override
+  String get ganNoExiste =>
+      'Ya no existe: puede que se haya borrado en otro dispositivo.';
+
+  @override
+  String get ganEnEstaPieza => 'Ganado en esta pieza';
+
+  @override
+  String get ganPiezaSinGanado => 'Ahora no hay ningún lote aquí.';
+
+  @override
+  String get ganTraerAqui => 'Traer un lote';
+
+  @override
+  String get ganSinOtrosLotes => 'No hay otros lotes en uso.';
+
+  @override
+  String get ganElegirLote => '¿Qué lote?';
+
+  @override
+  String get ganEnSupresion => 'En plazo de supresión';
+
+  @override
+  String get ganNombreLote => 'Nombre del lote';
+
+  @override
+  String get ganNombreLoteAyuda =>
+      'Por ejemplo: «Ovejas de Ane», «Cerdos de cebo 2026».';
+
+  @override
+  String get ganNombreObligatorio => 'Ponle un nombre.';
+
+  @override
+  String get ganEspecie => 'Especie';
+
+  @override
+  String get ganTitular => 'De quién es';
+
+  @override
+  String get ganTitularEspacio => 'Del espacio (Zunbeltz)';
+
+  @override
+  String get ganCabezasSinIdentificar => 'Cabezas sin crotal';
+
+  @override
+  String get ganCabezasSinIdentificarAyuda =>
+      'Las que no se llevan una a una (aves, cerdos de cebo, crías aún sin crotal). Se suman a los animales con crotal del lote.';
+
+  @override
+  String get ganDondeEsta => '¿Dónde está ahora?';
+
+  @override
+  String get ganFechaEntrada => 'Desde cuándo';
+
+  @override
+  String get ganGuardado => 'Guardado.';
+
+  @override
+  String get ganNotas => 'Notas';
+
+  @override
+  String get ganIdentificacion => 'Crotal / identificación';
+
+  @override
+  String get ganIdentificacionAyuda =>
+      'El número oficial (DIB, REIA…), tal como viene en la chapa.';
+
+  @override
+  String get ganIdentificacionObligatoria =>
+      'Pon el crotal o, al menos, un nombre.';
+
+  @override
+  String get ganNombreAnimal => 'Nombre (si lo tiene)';
+
+  @override
+  String get ganRaza => 'Raza';
+
+  @override
+  String get ganSexo => 'Sexo';
+
+  @override
+  String get ganNacimiento => 'Nacimiento';
+
+  @override
+  String get ganSinFecha => 'Sin fecha';
+
+  @override
+  String get ganMadre => 'Madre (crotal)';
+
+  @override
+  String get ganTipoMovimiento => 'Qué movimiento';
+
+  @override
+  String get ganAQuePieza => 'A qué pieza';
+
+  @override
+  String get ganAdondeSale => 'Adónde va';
+
+  @override
+  String get ganAdondeSaleAyuda => 'La sierra, otra explotación, el matadero…';
+
+  @override
+  String get ganDeDondeViene => 'De dónde viene';
+
+  @override
+  String get ganGuia => 'Guía de movimiento';
+
+  @override
+  String get ganGuiaAyuda =>
+      'El número de la guía, si el movimiento la necesita.';
+
+  @override
+  String get ganDestinoObligatorio => 'Elige la pieza a la que va.';
+
+  @override
+  String get ganYaEstaAhi => 'El lote ya está en esa pieza.';
+
+  @override
+  String get ganMovimientoGuardado => 'Movimiento apuntado.';
+
+  @override
+  String get ganAhoraFuera => 'Ahora no está en ninguna pieza del espacio.';
+
+  @override
+  String get ganTipoManejo => 'Qué se ha hecho';
+
+  @override
+  String get ganAvisoVeterinario =>
+      'Apunta lo que pone la receta del veterinario. La app no recomienda medicamentos: solo te avisa de cuándo termina el plazo de supresión.';
+
+  @override
+  String get ganSustanciaActiva => 'Sustancia activa';
+
+  @override
+  String get ganSustanciaObligatoria =>
+      'Pon la sustancia activa (la de la receta).';
+
+  @override
+  String get ganDosis => 'Dosis y vía';
+
+  @override
+  String get ganSupresionCarneDias => 'Supresión carne';
+
+  @override
+  String get ganSupresionLecheDias => 'Supresión leche';
+
+  @override
+  String get ganDias => 'días';
+
+  @override
+  String get ganVeterinario => 'Veterinario/a';
+
+  @override
+  String get ganReceta => 'N.º de receta';
+
+  @override
+  String get ganPeso => 'Peso';
+
+  @override
+  String get ganPesoObligatorio => 'Escribe el peso en kg.';
+
+  @override
+  String get ganCrias => 'Crías nacidas';
+
+  @override
+  String get ganCabezasTratadas => 'Cabezas';
+
+  @override
+  String get ganCabezasTratadasAyuda => 'Cuántas del lote; vacío = todas.';
+
+  @override
+  String get ganDescripcion => 'Qué ha pasado / notas';
+
+  @override
+  String get tipoEntidadGanado => 'el ganado';
+
+  @override
+  String get ayudaGrupoGanado => 'Ganado y movimientos';
+
+  @override
+  String get ayudaGanadoLotesT => 'Lotes y animales';
+
+  @override
+  String get ayudaGanadoLotesB =>
+      'El ganado se lleva por lotes, como se maneja en extensivo: un rebaño, un lote de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo lote».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el lote y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.';
+
+  @override
+  String get ayudaGanadoMoverT => 'Mover el ganado de pieza';
+
+  @override
+  String get ayudaGanadoMoverB =>
+      '1. Abre el lote y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un lote»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un lote».\n» En la ficha de cada pieza se ve qué lotes hay, cuántas cabezas y cuántas por hectárea. El historial del lote guarda todos sus movimientos.\n» Un animal suelto se cambia de lote desde su ficha («Cambiar de lote»).';
+
+  @override
+  String get ayudaGanadoManejoT => 'Curas, tratamientos, pesajes y partos';
+
+  @override
+  String get ayudaGanadoManejoB =>
+      '1. Abre el lote (si es para todo el lote) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el lote o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.';
+
+  @override
+  String ganCabezas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n cabezas',
+      one: '1 cabeza',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganAnimalesDelLote(int n) {
+    return 'Animales con crotal ($n)';
+  }
+
+  @override
+  String ganDeEllasSinCrotal(int n) {
+    return '$n sin crotal';
+  }
+
+  @override
+  String ganCriasN(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n crías',
+      one: '1 cría',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganPlazoCarne(int n) {
+    return 'carne $n d';
+  }
+
+  @override
+  String ganPlazoLeche(int n) {
+    return 'leche $n d';
+  }
+
+  @override
+  String ganEnZona(String zona, String fecha) {
+    return 'En $zona desde el $fecha';
+  }
+
+  @override
+  String ganFuera(String destino, String fecha) {
+    return 'Fuera: $destino (desde el $fecha)';
+  }
+
+  @override
+  String ganSupresionCarne(String fecha) {
+    return 'Carne: libre desde el $fecha';
+  }
+
+  @override
+  String ganSupresionLeche(String fecha) {
+    return 'Leche: libre desde el $fecha';
+  }
+
+  @override
+  String ganAhoraEn(String zona) {
+    return 'Ahora está en $zona.';
+  }
+
+  @override
+  String ganMoverTitulo(String lote) {
+    return 'Mover «$lote»';
+  }
+
+  @override
+  String ganManejoTitulo(String quien) {
+    return 'Apuntar a $quien';
+  }
+
+  @override
+  String ganCabezasPorHa(String valor) {
+    return '$valor cab./ha';
+  }
 }

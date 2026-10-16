@@ -894,7 +894,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaPestanasB =>
-      'Behean lau fitxa dituzu. Ukitu pantailaz aldatzeko:\n• Gaur: gunearen sarrera-ontzia — alarmak, zeregin iraungiak eta hurrengoak, eskaerak eta abisuak.\n• Finkak: mapa, puntuekin, eremuekin eta zereginekin.\n• Proiektuak: test-prozesua, haren zenbakiak eta hitzarmena.\n• Ezarpenak: hizkuntza, sinkronizazioa, eguneraketak, txostenen bidalketa eta Saiakuntza Guneari buruzko informazioa.\nGaur pantailan, goiko ikonoek kontaktuak, eguraldia eta laguntza hau irekitzen dituzte.\nAtzera itzultzeko, erabili goiko ezkerreko gezia.';
+      'Behean bost fitxa dituzu. Ukitu pantailaz aldatzeko:\n• Gaur: gunearen sarrera-ontzia — alarmak, zeregin iraungiak eta hurrengoak, eskaerak eta abisuak.\n• Finkak: mapa, puntuekin, eremuekin eta zereginekin.\n• Abereak: taldeak, bakoitza non dagoen, haien animaliak, mugimenduak eta sendaketak.\n• Proiektuak: test-prozesua, haren zenbakiak eta hitzarmena.\n• Ezarpenak: hizkuntza, sinkronizazioa, eguneraketak, txostenen bidalketa eta Saiakuntza Guneari buruzko informazioa.\nGaur pantailan, goiko ikonoek kontaktuak, eguraldia eta laguntza hau irekitzen dituzte.\nAtzera itzultzeko, erabili goiko ezkerreko gezia.';
 
   @override
   String get ayudaIdiomaDatosT =>
@@ -2277,4 +2277,383 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ajustesSyncOcupado =>
       'Sinkronizazio bat abian da jada. Berez amaituko da; saiatu berriro une batean.';
+
+  @override
+  String get navGanado => 'Abereak';
+
+  @override
+  String get ganTitulo => 'Abereak';
+
+  @override
+  String get ganLotes => 'Taldeak';
+
+  @override
+  String get ganAnimales => 'Animaliak';
+
+  @override
+  String get ganMovimientos => 'Mugimenduak';
+
+  @override
+  String get ganIntro =>
+      'Abereak taldeka maneiatzen dira: talde bakoitza sail batean dago eta osorik mugitzen da. Krotaldun animaliak beren taldean daude.';
+
+  @override
+  String get ganVerCerrados => 'Itxitako taldeak ere ikusi';
+
+  @override
+  String get ganSinLotes =>
+      'Oraindik ez dago talderik. Sortu bat «Talde berria» botoiarekin.';
+
+  @override
+  String get ganSinAnimales => 'Ez dago identifikazio hori duen animaliarik.';
+
+  @override
+  String get ganSinMovimientos => 'Oraindik ez da talderik mugitu.';
+
+  @override
+  String get ganNuevoLote => 'Talde berria';
+
+  @override
+  String get ganNuevoAnimal => 'Animalia gehitu';
+
+  @override
+  String get ganEditarLote => 'Taldea editatu';
+
+  @override
+  String get ganEditarAnimal => 'Animalia editatu';
+
+  @override
+  String get ganMoverLote => 'Talde bat mugitu';
+
+  @override
+  String get ganMover => 'Mugitu';
+
+  @override
+  String get ganApuntarManejo => 'Sendaketa, pisaketa, erditzea…';
+
+  @override
+  String get ganCambiarDeLote => 'Taldez aldatu';
+
+  @override
+  String get ganDarDeBaja => 'Baja eman';
+
+  @override
+  String get ganBuscarAnimal => 'Bilatu krotalaren edo izenaren arabera';
+
+  @override
+  String get ganSinUbicar => 'Kokatu gabe';
+
+  @override
+  String get ganFueraDelEspacio => 'espaziotik kanpo';
+
+  @override
+  String get ganSinLote => 'Talderik gabe';
+
+  @override
+  String get ganLote => 'Taldea';
+
+  @override
+  String get ganLoteCerrado => 'itxita';
+
+  @override
+  String get ganLoteActivo => 'Taldea erabilian';
+
+  @override
+  String get ganLoteActivoAyuda =>
+      'Desaktibatu taldea jada ez denean (saldu da, desegin da): ez da sailetan agertuko, baina bere historia gordeko da.';
+
+  @override
+  String get ganLoteSinAnimales =>
+      'Talde honetan ez dago krotaldun animaliarik.';
+
+  @override
+  String get ganHistorial => 'Historia';
+
+  @override
+  String get ganSinHistorial => 'Oraindik ez da ezer idatzi.';
+
+  @override
+  String get ganAlLote => 'taldeari';
+
+  @override
+  String get ganNoExiste =>
+      'Jada ez da existitzen: agian beste gailu batean ezabatu da.';
+
+  @override
+  String get ganEnEstaPieza => 'Sail honetako abereak';
+
+  @override
+  String get ganPiezaSinGanado => 'Orain ez dago talderik hemen.';
+
+  @override
+  String get ganTraerAqui => 'Talde bat ekarri';
+
+  @override
+  String get ganSinOtrosLotes => 'Ez dago erabilian dagoen beste talderik.';
+
+  @override
+  String get ganElegirLote => 'Zein talde?';
+
+  @override
+  String get ganEnSupresion => 'Kentze-epean';
+
+  @override
+  String get ganNombreLote => 'Taldearen izena';
+
+  @override
+  String get ganNombreLoteAyuda =>
+      'Adibidez: «Aneren ardiak», «2026ko gizentzeko txerriak».';
+
+  @override
+  String get ganNombreObligatorio => 'Jarri izen bat.';
+
+  @override
+  String get ganEspecie => 'Espeziea';
+
+  @override
+  String get ganTitular => 'Noren da';
+
+  @override
+  String get ganTitularEspacio => 'Espaziokoa (Zunbeltz)';
+
+  @override
+  String get ganCabezasSinIdentificar => 'Krotalik gabeko buruak';
+
+  @override
+  String get ganCabezasSinIdentificarAyuda =>
+      'Banan-banan eramaten ez direnak (hegaztiak, gizentzeko txerriak, oraindik krotalik gabeko kumeak). Taldeko krotaldun animaliei gehitzen zaizkie.';
+
+  @override
+  String get ganDondeEsta => 'Non dago orain?';
+
+  @override
+  String get ganFechaEntrada => 'Noiztik';
+
+  @override
+  String get ganGuardado => 'Gordeta.';
+
+  @override
+  String get ganNotas => 'Oharrak';
+
+  @override
+  String get ganIdentificacion => 'Krotala / identifikazioa';
+
+  @override
+  String get ganIdentificacionAyuda =>
+      'Zenbaki ofiziala (DIB, REIA…), xaflan dagoen bezala.';
+
+  @override
+  String get ganIdentificacionObligatoria =>
+      'Jarri krotala edo, gutxienez, izen bat.';
+
+  @override
+  String get ganNombreAnimal => 'Izena (baldin badu)';
+
+  @override
+  String get ganRaza => 'Arraza';
+
+  @override
+  String get ganSexo => 'Sexua';
+
+  @override
+  String get ganNacimiento => 'Jaiotza';
+
+  @override
+  String get ganSinFecha => 'Datarik gabe';
+
+  @override
+  String get ganMadre => 'Ama (krotala)';
+
+  @override
+  String get ganTipoMovimiento => 'Zein mugimendu';
+
+  @override
+  String get ganAQuePieza => 'Zein sailetara';
+
+  @override
+  String get ganAdondeSale => 'Nora doa';
+
+  @override
+  String get ganAdondeSaleAyuda => 'Mendia, beste ustiategi bat, hiltegia…';
+
+  @override
+  String get ganDeDondeViene => 'Nondik dator';
+
+  @override
+  String get ganGuia => 'Mugimendu-gida';
+
+  @override
+  String get ganGuiaAyuda => 'Gidaren zenbakia, mugimenduak behar badu.';
+
+  @override
+  String get ganDestinoObligatorio => 'Aukeratu zein sailetara doan.';
+
+  @override
+  String get ganYaEstaAhi => 'Taldea sail horretan dago jada.';
+
+  @override
+  String get ganMovimientoGuardado => 'Mugimendua idatzita.';
+
+  @override
+  String get ganAhoraFuera => 'Orain ez dago espazioko inongo sailetan.';
+
+  @override
+  String get ganTipoManejo => 'Zer egin da';
+
+  @override
+  String get ganAvisoVeterinario =>
+      'Idatzi albaitariaren errezetan dagoena. Aplikazioak ez du sendagairik gomendatzen: kentze-epea noiz amaitzen den bakarrik abisatzen dizu.';
+
+  @override
+  String get ganSustanciaActiva => 'Substantzia aktiboa';
+
+  @override
+  String get ganSustanciaObligatoria =>
+      'Jarri substantzia aktiboa (errezetakoa).';
+
+  @override
+  String get ganDosis => 'Dosia eta bidea';
+
+  @override
+  String get ganSupresionCarneDias => 'Kentze-epea haragia';
+
+  @override
+  String get ganSupresionLecheDias => 'Kentze-epea esnea';
+
+  @override
+  String get ganDias => 'egun';
+
+  @override
+  String get ganVeterinario => 'Albaitaria';
+
+  @override
+  String get ganReceta => 'Errezeta-zk.';
+
+  @override
+  String get ganPeso => 'Pisua';
+
+  @override
+  String get ganPesoObligatorio => 'Idatzi pisua kg-tan.';
+
+  @override
+  String get ganCrias => 'Jaiotako kumeak';
+
+  @override
+  String get ganCabezasTratadas => 'Buruak';
+
+  @override
+  String get ganCabezasTratadasAyuda => 'Taldeko zenbat; hutsik = denak.';
+
+  @override
+  String get ganDescripcion => 'Zer gertatu da / oharrak';
+
+  @override
+  String get tipoEntidadGanado => 'abereak';
+
+  @override
+  String get ayudaGrupoGanado => 'Abereak eta mugimenduak';
+
+  @override
+  String get ayudaGanadoLotesT => 'Taldeak eta animaliak';
+
+  @override
+  String get ayudaGanadoLotesB =>
+      'Abereak taldeka eramaten dira, estentsiboan maneiatzen diren bezala: artalde bat, behi-talde bat, gizentzeko txerriak…\n1. Sartu Abereak fitxan eta sakatu «Talde berria».\n2. Jarri izena, espeziea eta norena den (espaziokoa edo tester batena). Banan-banan eramaten ez diren animaliak badaude (hegaztiak, gizentzeko txerriak), jarri zenbat diren «Krotalik gabeko buruak» atalean.\n3. Aukeratu orain zein sailetan dagoen eta gorde.\n4. Krotaldun animalientzat, ireki taldea eta sakatu «Animalia gehitu»: krotala, izena baldin badu, arraza, sexua, jaiotza eta ama.\n» Animaliak fitxan edozein animalia bilatzen da bere krotalaren bidez.';
+
+  @override
+  String get ayudaGanadoMoverT => 'Abereak sailez mugitu';
+
+  @override
+  String get ayudaGanadoMoverB =>
+      '1. Ireki taldea eta sakatu «Mugitu» (edo, Mugimenduak fitxan, «Talde bat mugitu»).\n2. Aukeratu zein sailetara doan eta data. Espaziotik ateratzen bada (mendira, beste ustiategi batera, hiltegira), aukeratu «Espaziotik irteera» eta idatzi nora doan; itzultzen denean, «Espaziora sarrera».\n3. Mugimenduak gida badu, idatzi bere zenbakia.\n» Mapatik ere bai: ukitu sail bat eta, «Sail honetako abereak» atalean, sakatu «Talde bat ekarri».\n» Sail bakoitzaren fitxan ikusten da zein talde dauden, zenbat buru eta zenbat hektareako. Taldearen historiak bere mugimendu guztiak gordetzen ditu.\n» Animalia solte bat bere fitxatik aldatzen da taldez («Taldez aldatu»).';
+
+  @override
+  String get ayudaGanadoManejoT =>
+      'Sendaketak, tratamenduak, pisaketak eta erditzeak';
+
+  @override
+  String get ayudaGanadoManejoB =>
+      '1. Ireki taldea (talde osoarentzat bada) edo animalia eta sakatu «Sendaketa, pisaketa, erditzea…».\n2. Aukeratu zer egin den eta data.\n3. Sendaketa edo tratamendu batean, idatzi errezetan dagoena: substantzia aktiboa, dosia, haragiaren eta esnearen kentze-egunak, albaitaria eta errezeta-zenbakia. Aplikazioak ez du sendagairik gomendatzen.\n4. Gorde. Epeak irauten duen bitartean, taldea edo animalia «Kentze-epean» markatuta agertzen da, libre geratzen den egunarekin.\n» Animalia bati baja emateko (salmenta, hilketa, heriotza), erabili «Baja eman» bere fitxan: ez da ezabatzen, bere historia gordetzen da.';
+
+  @override
+  String ganCabezas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n buru',
+      one: 'buru 1',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganAnimalesDelLote(int n) {
+    return 'Krotaldun animaliak ($n)';
+  }
+
+  @override
+  String ganDeEllasSinCrotal(int n) {
+    return '$n krotalik gabe';
+  }
+
+  @override
+  String ganCriasN(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n kume',
+      one: 'kume 1',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganPlazoCarne(int n) {
+    return 'haragia $n e';
+  }
+
+  @override
+  String ganPlazoLeche(int n) {
+    return 'esnea $n e';
+  }
+
+  @override
+  String ganEnZona(String zona, String fecha) {
+    return '$zona sailean, $fecha-tik';
+  }
+
+  @override
+  String ganFuera(String destino, String fecha) {
+    return 'Kanpoan: $destino ($fecha-tik)';
+  }
+
+  @override
+  String ganSupresionCarne(String fecha) {
+    return 'Haragia: $fecha-tik libre';
+  }
+
+  @override
+  String ganSupresionLeche(String fecha) {
+    return 'Esnea: $fecha-tik libre';
+  }
+
+  @override
+  String ganAhoraEn(String zona) {
+    return 'Orain $zona sailean dago.';
+  }
+
+  @override
+  String ganMoverTitulo(String lote) {
+    return '«$lote» mugitu';
+  }
+
+  @override
+  String ganManejoTitulo(String quien) {
+    return '$quien-ri idatzi';
+  }
+
+  @override
+  String ganCabezasPorHa(String valor) {
+    return '$valor buru/ha';
+  }
 }

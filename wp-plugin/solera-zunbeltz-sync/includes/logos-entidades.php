@@ -29,6 +29,7 @@ const SZS_OPCION_LOGOS_ENTIDADES = 'szs_logos_entidades';
 const SZS_PAGINA_LOGOS_ENTIDADES = 'solera-zunbeltz-entidades';
 /** Grupos del pie de zunbeltz.com, en su orden, con su rótulo es / eu. */
 const SZS_GRUPOS_LOGOS = array(
+	'financian'  => array( 'Financian el proyecto', 'Proiektuaren finantzatzaileak' ),
 	'impulsan'   => array( 'Impulsan el proyecto', 'Proiektuaren bultzatzaileak' ),
 	'apoyan'     => array( 'Apoyan el proyecto', 'Proiektuaren babesleak' ),
 	'colaboran'  => array( 'Colaboran', 'Laguntzaileak' ),
@@ -39,6 +40,7 @@ add_action( 'rest_api_init', 'szs_registrar_ruta_logos_entidades' );
 add_action( 'admin_menu', 'szs_registrar_pagina_logos_entidades', 13 );
 add_action( 'admin_enqueue_scripts', 'szs_cargar_selector_medios_logos' );
 add_action( 'init', 'szs_registrar_bloque_logos_entidades' );
+add_action( 'plugins_loaded', 'szs_mover_financiadoras_una_vez' );
 // Al cargar el fichero y no en `init`: los patrones del tema se evalúan en
 // `init` y comprueban si el shortcode existe.
 if ( function_exists( 'add_shortcode' ) ) {
@@ -52,6 +54,11 @@ if ( function_exists( 'add_shortcode' ) ) {
 /** La lista de partida: la del pie de zunbeltz.com el 2026-10-13. */
 function szs_logos_entidades_por_defecto(): array {
 	$por_grupo = array(
+		// Las que financian (Zunbeltz, 2026-10-16), con su logo oficial.
+		'financian'  => array(
+			'carasso'          => 'Fundación Daniel y Nina Carasso',
+			'gobierno_navarra' => 'Gobierno de Navarra',
+		),
 		'impulsan'   => array(
 			'andia'    => 'Mancomunidad de Andía',
 			'abarzuza' => 'Ayuntamiento de Abárzuza',
@@ -61,8 +68,6 @@ function szs_logos_entidades_por_defecto(): array {
 			'salinas'  => 'Ayuntamiento de Salinas de Oro',
 		),
 		'apoyan'     => array(
-			'carasso'                => 'Fundación Daniel y Nina Carasso',
-			'gobierno_navarra'       => 'Gobierno de Navarra',
 			'ue_feader'              => 'Unión Europea · FEADER',
 			'miteco'                 => 'Ministerio para la Transición Ecológica y el Reto Demográfico',
 			'innova'                 => 'Innova',
@@ -94,6 +99,22 @@ function szs_logos_entidades_por_defecto(): array {
 				'orden'      => $orden,
 				'activo'     => true,
 			);
+		}
+	}
+	return $lista;
+}
+
+/** Entidades que financian el proyecto: van en su grupo. */
+const SZS_CLAVES_FINANCIADORAS = array( 'carasso', 'gobierno_navarra' );
+
+/**
+ * Una lista guardada antes de que hubiera grupo «financian», con las
+ * financiadoras ya en él. Lo demás (nombre, logo, orden) no se toca.
+ */
+function szs_logos_con_financiadoras( array $lista ): array {
+	foreach ( $lista as &$entidad ) {
+		if ( in_array( $entidad['clave'] ?? '', SZS_CLAVES_FINANCIADORAS, true ) ) {
+			$entidad['grupo'] = 'financian';
 		}
 	}
 	return $lista;
@@ -205,6 +226,18 @@ function szs_logos_entidades_para_app( array $lista, callable $url_logo ): array
 function szs_listar_logos_entidades(): array {
 	$guardada = get_option( SZS_OPCION_LOGOS_ENTIDADES, null );
 	return is_array( $guardada ) ? szs_normalizar_logos_entidades( $guardada ) : szs_logos_entidades_por_defecto();
+}
+
+/** Una sola vez: en una lista ya guardada, las financiadoras a su grupo. */
+function szs_mover_financiadoras_una_vez(): void {
+	if ( get_option( 'szs_logos_financiadoras_movidas' ) ) {
+		return;
+	}
+	$guardada = get_option( SZS_OPCION_LOGOS_ENTIDADES, null );
+	if ( is_array( $guardada ) ) {
+		szs_guardar_logos_entidades( szs_logos_con_financiadoras( $guardada ) );
+	}
+	update_option( 'szs_logos_financiadoras_movidas', 1, false );
 }
 
 function szs_guardar_logos_entidades( array $lista ): void {

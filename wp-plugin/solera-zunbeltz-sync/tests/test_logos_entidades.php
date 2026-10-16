@@ -33,6 +33,22 @@ foreach ( $por_defecto as $entidad ) {
 	afirmar( true, szs_hay_logo_de_partida( $entidad['clave'] ), "hay logo de partida para {$entidad['clave']}" );
 }
 afirmar( false, szs_hay_logo_de_partida( '../solera-zunbeltz-sync' ), 'una clave con barras no sale del directorio de logos' );
+afirmar( 'financian', array_key_first( SZS_GRUPOS_LOGOS ), 'las que financian, lo primero' );
+afirmar(
+	array( 'carasso', 'gobierno_navarra' ),
+	array_column( array_filter( $por_defecto, static fn( $entidad ) => 'financian' === $entidad['grupo'] ), 'clave' ),
+	'financian la Fundación Carasso y el Gobierno de Navarra (Zunbeltz, 2026-10-16)'
+);
+
+// --- una lista guardada antes de que hubiera grupo de financiadoras ---
+$guardada_antes = array(
+	array( 'clave' => 'carasso', 'nombre' => 'Carasso', 'grupo' => 'apoyan', 'enlace' => '', 'adjunto_id' => 9, 'orden' => 10, 'activo' => true ),
+	array( 'clave' => 'gobierno_navarra', 'nombre' => 'GN', 'grupo' => 'colaboran', 'enlace' => '', 'adjunto_id' => 0, 'orden' => 20, 'activo' => true ),
+	array( 'clave' => 'upna', 'nombre' => 'UPNA', 'grupo' => 'apoyan', 'enlace' => '', 'adjunto_id' => 0, 'orden' => 30, 'activo' => true ),
+);
+$movida = szs_logos_con_financiadoras( $guardada_antes );
+afirmar( array( 'financian', 'financian', 'apoyan' ), array_column( $movida, 'grupo' ), 'las financiadoras pasan a su grupo; el resto se queda' );
+afirmar( 9, $movida[0]['adjunto_id'], 'conservan el logo que les pusieran' );
 
 // --- claves ---
 afirmar( 'fundacion_la_caixa', szs_clave_logo_desde_nombre( 'Fundación «la Caixa»' ), 'clave sin tildes ni símbolos' );

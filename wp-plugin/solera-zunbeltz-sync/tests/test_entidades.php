@@ -155,6 +155,34 @@ afirmar( 'rechazar', accion( $contacto_guardado, $contacto_cambiado, 'jon', $tes
 afirmar( 'actualizar', accion( $contacto_guardado, $contacto_cambiado, 'coord', $coordinacion ), 'coordinación edita cualquier contacto' );
 afirmar( true, szs_entidad_visible( $contacto_guardado, 'jon', $tester, array() ), 'todas ven los contactos' );
 
+// --- ganado: quien maneja ganado apunta; cada cual corrige lo suyo; coordinación todo ---
+$lote = entidad( 'lote_ganado', array( 'nombre' => 'Ovejas latxas', 'especie' => 'ovino', 'cabezas_sin_identificar' => '12' ) );
+afirmar( 12, $lote['datos']['cabezas_sin_identificar'], 'las cabezas sin identificar son un número' );
+afirmar( 'insertar', accion( null, $lote, 'ane', $tester ), 'tester da de alta un lote' );
+afirmar( 'rechazar', accion( null, $lote, 'ane', array() ), 'sin registrar_ganado no' );
+$lote_de_coord    = array_merge( $lote, array( 'autor_uid' => 'coord' ) );
+$lote_renombrado  = entidad( 'lote_ganado', array( 'nombre' => 'Latxas' ), array( 'actualizado_ms' => 200 ) );
+afirmar( 'rechazar', accion( $lote_de_coord, $lote_renombrado, 'ane', $tester ), 'tester no cambia un lote ajeno' );
+afirmar( 'actualizar', accion( array_merge( $lote, array( 'autor_uid' => 'ane' ) ), $lote_renombrado, 'ane', $tester ), 'tester corrige su lote' );
+afirmar( 'actualizar', accion( $lote_de_coord, $lote_renombrado, 'coord', $coordinacion ), 'coordinación corrige cualquiera' );
+$movimiento = entidad( 'movimiento_ganado', array( 'lote_uid' => 'lote_ganado-1', 'zona_destino_uid' => 'zona-pasillo', 'tipo' => 'traslado', 'fecha_ms' => '1792000000000' ) );
+afirmar( 'insertar', accion( null, $movimiento, 'ane', $tester ), 'tester mueve un lote ajeno (apunta el movimiento)' );
+$cura = entidad( 'evento_ganado', array( 'animal_uid' => 'animal-1', 'tipo' => 'tratamiento', 'plazo_supresion_carne_dias' => '28', 'peso_kg' => 'x' ) );
+afirmar( 28, $cura['datos']['plazo_supresion_carne_dias'], 'el plazo de supresión es un número' );
+afirmar( 0, $cura['datos']['peso_kg'], 'un peso que no es número queda en 0' );
+afirmar( 'insertar', accion( null, $cura, 'ane', $tester ), 'tester apunta una cura' );
+$animal = array_merge( entidad( 'animal', array( 'identificacion' => 'ES01', 'lote_uid' => 'lote-a', 'estado' => 'activo', 'raza' => 'Latxa' ) ), array( 'autor_uid' => 'coord' ) );
+$animal_a_otro_lote = entidad( 'animal', array( 'identificacion' => 'ES01', 'lote_uid' => 'lote-b', 'estado' => 'activo', 'raza' => 'Latxa' ), array( 'actualizado_ms' => 200 ) );
+afirmar( 'actualizar', accion( $animal, $animal_a_otro_lote, 'ane', $tester ), 'tester pasa de lote un animal ajeno' );
+$animal_vendido = entidad( 'animal', array( 'identificacion' => 'ES01', 'lote_uid' => 'lote-a', 'estado' => 'vendido', 'fecha_baja_ms' => 5, 'raza' => 'Latxa' ), array( 'actualizado_ms' => 200 ) );
+afirmar( 'actualizar', accion( $animal, $animal_vendido, 'ane', $tester ), 'tester da de baja un animal ajeno' );
+$animal_otra_raza = entidad( 'animal', array( 'identificacion' => 'ES01', 'lote_uid' => 'lote-a', 'estado' => 'activo', 'raza' => 'Sasi ardi' ), array( 'actualizado_ms' => 200 ) );
+afirmar( 'rechazar', accion( $animal, $animal_otra_raza, 'ane', $tester ), 'pero no le cambia la ficha' );
+$animal_borrado = entidad( 'animal', array( 'identificacion' => 'ES01', 'lote_uid' => 'lote-a', 'estado' => 'activo', 'raza' => 'Latxa' ), array( 'actualizado_ms' => 200, 'borrado' => true ) );
+afirmar( 'rechazar', accion( $animal, $animal_borrado, 'ane', $tester ), 'ni lo borra' );
+afirmar( true, szs_entidad_visible( $animal, 'jon', $tester, array() ), 'todas ven el ganado' );
+afirmar( 'ES01', szs_etiqueta_entidad( $animal ), 'el animal se nombra por su crotal' );
+
 // --- rendimientos de referencia: solo coordinación; los ve todo el espacio ---
 $rendimiento = entidad( 'rendimiento', array( 'nombre' => 'Cordero lechal', 'rendimiento_canal' => 50 ) );
 afirmar( 'rechazar', accion( null, $rendimiento, 'ane', $tester ), 'tester no crea rendimientos de referencia' );

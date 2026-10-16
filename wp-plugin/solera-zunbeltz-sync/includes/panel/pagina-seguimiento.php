@@ -127,6 +127,10 @@ function szs_describir_actividad( array $entrada ): string {
 		'incidencia_cumplimiento' => 'la incidencia',
 		'bien_amortizable'        => 'el bien del inventario',
 		'uso_bien'                => 'el uso de un bien',
+		'lote_ganado'             => 'el lote',
+		'animal'                  => 'el animal',
+		'movimiento_ganado'       => 'un movimiento de ganado',
+		'evento_ganado'           => 'un manejo de ganado',
 	);
 	$cosa   = ( $tipos[ $entrada['tipo'] ] ?? 'un dato' ) . ( '' === $entrada['etiqueta'] ? '' : ' «' . $entrada['etiqueta'] . '»' );
 	$quien  = '' === $entrada['persona_nombre'] ? 'Alguien' : $entrada['persona_nombre'];

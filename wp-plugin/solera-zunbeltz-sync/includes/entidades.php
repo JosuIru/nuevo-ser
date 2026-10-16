@@ -34,6 +34,17 @@ const SZS_AMBITO_AVISO         = 'aviso';
 const SZS_AMBITO_CONTACTO = 'contacto';
 /** Datos de referencia del espacio (rendimientos, inventario de bienes…): solo coordinación. */
 const SZS_AMBITO_REFERENCIA = 'referencia';
+/**
+ * El ganado (lotes, animales, movimientos, curas…): lo ve todo el espacio;
+ * quien maneja ganado apunta, cada cual corrige lo suyo y coordinación todo.
+ */
+const SZS_AMBITO_GANADO = 'ganado';
+
+/**
+ * Campos de un animal ajeno que puede cambiar quien maneja ganado: pasarlo
+ * de lote y darlo de baja (venta, muerte) es trabajo de campo.
+ */
+const SZS_CAMPOS_ANIMAL_MANEJO = array( 'lote_uid', 'estado', 'fecha_baja_ms', 'notas' );
 
 /** Campos de un punto que puede cambiar quien solo tiene `anadir_puntos`. */
 const SZS_CAMPOS_PUNTO_MOVIBLES = array( 'latitud', 'longitud', 'estado', 'notas' );
@@ -66,6 +77,10 @@ function szs_tipos_entidad(): array {
 		'rendimiento'             => array( 'ambito' => SZS_AMBITO_REFERENCIA ),
 		'bien_amortizable'        => array( 'ambito' => SZS_AMBITO_REFERENCIA ),
 		'uso_bien'                => array( 'ambito' => SZS_AMBITO_HIJO_PROYECTO, 'tester_registra' => false ),
+		'lote_ganado'             => array( 'ambito' => SZS_AMBITO_GANADO ),
+		'animal'                  => array( 'ambito' => SZS_AMBITO_GANADO ),
+		'movimiento_ganado'       => array( 'ambito' => SZS_AMBITO_GANADO ),
+		'evento_ganado'           => array( 'ambito' => SZS_AMBITO_GANADO ),
 	);
 }
 
@@ -97,12 +112,12 @@ function szs_normalizar_entidad( array $entidad ): array {
  * `categoria: []`, y el panel fallaría con un error de PHP al pintarlo.
  */
 function szs_sanear_datos_entidad( array $datos ): array {
-	$campos_texto = array( 'categoria', 'partida', 'grupo', 'especie', 'modo_calculo', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion', 'color' );
+	$campos_texto = array( 'categoria', 'partida', 'grupo', 'especie', 'modo_calculo', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion', 'color', 'identificacion', 'sexo' );
 	foreach ( $datos as $clave => $valor ) {
 		if ( null === $valor ) {
 			continue;
 		}
-		if ( preg_match( '/(_ms|_centimos|_porcentaje|_dias|_meses)$/', (string) $clave ) || in_array( $clave, array( 'unidades', 'cantidad', 'cabezas', 'dias' ), true ) ) {
+		if ( preg_match( '/(_ms|_centimos|_porcentaje|_dias|_meses)$/', (string) $clave ) || in_array( $clave, array( 'unidades', 'cantidad', 'cabezas', 'dias', 'cabezas_sin_identificar', 'crias', 'peso_kg' ), true ) ) {
 			$datos[ $clave ] = is_numeric( $valor ) ? $valor + 0 : 0;
 		} elseif ( str_ends_with( (string) $clave, '_uid' ) || in_array( $clave, $campos_texto, true ) ) {
 			$datos[ $clave ] = is_scalar( $valor ) ? (string) $valor : '';
@@ -209,6 +224,19 @@ function szs_entidad_permitida( array $definicion, ?array $existente, array $ent
 
 		case SZS_AMBITO_REFERENCIA:
 			return szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_PROYECTOS );
+
+		case SZS_AMBITO_GANADO:
+			if ( szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_GANADO ) ) {
+				return true;
+			}
+			if ( ! szs_puede( $capacidades, SZS_CAPACIDAD_REGISTRAR_GANADO ) ) {
+				return false;
+			}
+			if ( $es_alta || ( '' !== $persona_uid && $existente['autor_uid'] === $persona_uid ) ) {
+				return true;
+			}
+			return 'animal' === $tipo && ! $entrante['borrado']
+				&& szs_solo_cambian( $existente['datos'], $entrante['datos'], SZS_CAMPOS_ANIMAL_MANEJO );
 	}
 	return false;
 }
@@ -253,6 +281,7 @@ function szs_entidad_visible( array $entidad, string $persona_uid, array $capaci
 		case SZS_AMBITO_AVISO:
 		case SZS_AMBITO_CONTACTO:
 		case SZS_AMBITO_REFERENCIA:
+		case SZS_AMBITO_GANADO:
 			return true;
 		case SZS_AMBITO_PROYECTO:
 			return szs_puede( $capacidades, SZS_CAPACIDAD_GESTIONAR_PROYECTOS )
@@ -271,7 +300,7 @@ function szs_entidad_visible( array $entidad, string $persona_uid, array $capaci
  * Nombre legible de una entidad para el registro de actividad.
  */
 function szs_etiqueta_entidad( array $entidad ): string {
-	foreach ( array( 'nombre', 'titulo', 'concepto', 'producto', 'descripcion' ) as $campo ) {
+	foreach ( array( 'nombre', 'titulo', 'concepto', 'producto', 'descripcion', 'identificacion' ) as $campo ) {
 		$valor = $entidad['datos'][ $campo ] ?? '';
 		if ( is_string( $valor ) && '' !== trim( $valor ) ) {
 			return szs_recortar( $valor, 255 );

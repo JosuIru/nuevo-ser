@@ -64,6 +64,10 @@ const SZS_CAPACIDAD_GESTIONAR_AVISOS       = 'gestionar_avisos';
 const SZS_CAPACIDAD_VER_ACTIVIDAD          = 'ver_actividad';
 const SZS_CAPACIDAD_CREAR_CONTACTOS        = 'crear_contactos';
 const SZS_CAPACIDAD_GESTIONAR_CONTACTOS    = 'gestionar_contactos';
+/** Dar de alta lotes y animales, moverlos y apuntar curas, pesajes… */
+const SZS_CAPACIDAD_REGISTRAR_GANADO = 'registrar_ganado';
+/** Corregir o borrar cualquier dato del ganado. */
+const SZS_CAPACIDAD_GESTIONAR_GANADO = 'gestionar_ganado';
 
 const SZS_ROL_COORDINADOR = 'coordinador';
 const SZS_ROL_TESTER      = 'tester';
@@ -93,6 +97,8 @@ function szs_roles(): array {
 				SZS_CAPACIDAD_VER_ACTIVIDAD,
 				SZS_CAPACIDAD_CREAR_CONTACTOS,
 				SZS_CAPACIDAD_GESTIONAR_CONTACTOS,
+				SZS_CAPACIDAD_REGISTRAR_GANADO,
+				SZS_CAPACIDAD_GESTIONAR_GANADO,
 			),
 		),
 		SZS_ROL_TESTER      => array(
@@ -102,6 +108,7 @@ function szs_roles(): array {
 				SZS_CAPACIDAD_ENVIAR_PETICIONES,
 				SZS_CAPACIDAD_CREAR_AVISOS,
 				SZS_CAPACIDAD_CREAR_CONTACTOS,
+				SZS_CAPACIDAD_REGISTRAR_GANADO,
 			),
 		),
 	);

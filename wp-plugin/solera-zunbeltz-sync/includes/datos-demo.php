@@ -2,7 +2,7 @@
 /**
  * Datos de demostración para desarrollo: rellena el espacio con personas,
  * puntos, zonas, tareas, proyectos con todo su seguimiento, peticiones,
- * avisos, contactos, rendimientos y actividad, para ver y probar todas las
+ * avisos, contactos, rendimientos, ganado y actividad, para ver y probar todas las
  * pantallas del panel y de la app sin teclear nada. Y los retira de un
  * golpe.
  *
@@ -406,6 +406,26 @@ function szs_plan_datos_demo( int $ahora_ms, string $lote, array $fincas_existen
 	$anadir( 'rendimiento', $uid( 'rendimiento-cordero' ), array( 'nombre' => 'Cordero lechal (demo)', 'rendimiento_canal' => 50.0, 'rendimiento_producto' => 100.0, 'fuente' => $fuente_inventada ), $coordinacion );
 	$anadir( 'rendimiento', $uid( 'rendimiento-ternera' ), array( 'nombre' => 'Ternera (demo)', 'rendimiento_canal' => 55.0, 'rendimiento_producto' => 75.0, 'fuente' => $fuente_inventada ), $coordinacion );
 
+	// ─── Ganado: un lote de la tester y otro del espacio, con movimientos y manejo ───
+	$lote_ovejas = $uid( 'lote-ovejas' );
+	$lote_vacas  = $uid( 'lote-vacas' );
+	$anadir( 'lote_ganado', $lote_ovejas, array( 'nombre' => 'Ovejas latxas (demo)', 'especie' => 'ovino', 'titular_uid' => $tester_queso, 'cabezas_sin_identificar' => 0, 'estado' => 'activo', 'notas' => '', 'fecha_creacion_ms' => $hace( 140 ) ), $tester_queso );
+	$anadir( 'lote_ganado', $lote_vacas, array( 'nombre' => 'Vacas pirenaicas (demo)', 'especie' => 'vacuno', 'titular_uid' => '', 'cabezas_sin_identificar' => 4, 'estado' => 'activo', 'notas' => 'Cuatro terneros aún sin crotal.', 'fecha_creacion_ms' => $hace( 100 ) ), $coordinacion );
+	foreach ( array(
+		array( 'oveja-1', $lote_ovejas, 'ES0001DEMO', 'Beltza', 'ovino', 'Latxa cara negra', 'hembra' ),
+		array( 'oveja-2', $lote_ovejas, 'ES0002DEMO', '', 'ovino', 'Latxa cara negra', 'hembra' ),
+		array( 'oveja-3', $lote_ovejas, 'ES0003DEMO', '', 'ovino', 'Latxa cara rubia', 'macho' ),
+		array( 'vaca-1', $lote_vacas, 'ES1001DEMO', 'Morena', 'vacuno', 'Pirenaica', 'hembra' ),
+		array( 'vaca-2', $lote_vacas, 'ES1002DEMO', '', 'vacuno', 'Pirenaica', 'hembra' ),
+	) as list( $clave, $lote_animal, $identificacion, $nombre_animal, $especie, $raza, $sexo ) ) {
+		$anadir( 'animal', $uid( $clave ), array( 'identificacion' => $identificacion, 'nombre' => $nombre_animal, 'especie' => $especie, 'raza' => $raza, 'sexo' => $sexo, 'fecha_nacimiento_ms' => null, 'madre' => '', 'lote_uid' => $lote_animal, 'estado' => 'activo', 'fecha_baja_ms' => null, 'titular_uid' => '', 'notas' => '' ), $coordinacion );
+	}
+	$anadir( 'movimiento_ganado', $uid( 'movimiento-1' ), array( 'lote_uid' => $lote_ovejas, 'fecha_ms' => $hace( 140 ), 'tipo' => 'entrada', 'zona_origen_uid' => '', 'zona_destino_uid' => $zona_pasto, 'destino_externo' => '', 'cabezas' => 3, 'guia' => '', 'notas' => 'Llegan de la explotación de origen.' ), $tester_queso );
+	$anadir( 'movimiento_ganado', $uid( 'movimiento-2' ), array( 'lote_uid' => $lote_vacas, 'fecha_ms' => $hace( 100 ), 'tipo' => 'entrada', 'zona_origen_uid' => '', 'zona_destino_uid' => $zona_vedada, 'destino_externo' => '', 'cabezas' => 6, 'guia' => '', 'notas' => '' ), $coordinacion );
+	$anadir( 'movimiento_ganado', $uid( 'movimiento-3' ), array( 'lote_uid' => $lote_vacas, 'fecha_ms' => $hace( 20 ), 'tipo' => 'traslado', 'zona_origen_uid' => $zona_vedada, 'zona_destino_uid' => $zona_pasto, 'destino_externo' => '', 'cabezas' => 6, 'guia' => '', 'notas' => 'El regenerado necesita descanso.' ), $coordinacion );
+	$anadir( 'evento_ganado', $uid( 'evento-1' ), array( 'animal_uid' => '', 'lote_uid' => $lote_ovejas, 'fecha_ms' => $hace( 5 ), 'tipo' => 'tratamiento', 'descripcion' => 'Desparasitación de otoño', 'sustancia_activa' => '(la de la receta)', 'dosis' => 'Según peso', 'plazo_supresion_carne_dias' => 28, 'plazo_supresion_leche_dias' => 0, 'veterinario' => '', 'receta' => '', 'peso_kg' => null, 'crias' => 0, 'cabezas' => 0 ), $tester_queso );
+	$anadir( 'evento_ganado', $uid( 'evento-2' ), array( 'animal_uid' => $uid( 'vaca-1' ), 'lote_uid' => '', 'fecha_ms' => $hace( 15 ), 'tipo' => 'pesaje', 'descripcion' => '', 'sustancia_activa' => '', 'dosis' => '', 'plazo_supresion_carne_dias' => 0, 'plazo_supresion_leche_dias' => 0, 'veterinario' => '', 'receta' => '', 'peso_kg' => 455.0, 'crias' => 0, 'cabezas' => 0 ), $coordinacion );
+
 	// ─── Actividad del espacio ───
 	$actividad = array();
 	foreach ( array(
@@ -592,7 +612,7 @@ function szs_pagina_datos_demo(): void {
 	?>
 	<div class="wrap">
 		<h1>Datos de demostración</h1>
-		<p style="max-width:720px;">Herramienta de desarrollo: rellena el espacio con datos de ejemplo para ver y probar todas las pantallas del panel y de la app (tareas en todos los estados, tareas periódicas, puntos fijos y móviles, zonas, tres proyectos — uno cerrado — con seguimiento, ventas, validaciones, convenio y escenarios de transformación, peticiones, avisos y alarmas, contactos, rendimientos y actividad). Solo se ve fuera de producción.</p>
+		<p style="max-width:720px;">Herramienta de desarrollo: rellena el espacio con datos de ejemplo para ver y probar todas las pantallas del panel y de la app (tareas en todos los estados, tareas periódicas, puntos fijos y móviles, zonas, tres proyectos — uno cerrado — con seguimiento, ventas, validaciones, convenio y escenarios de transformación, peticiones, avisos y alarmas, contactos, rendimientos, ganado con movimientos y curas, y actividad). Solo se ve fuera de producción.</p>
 		<p style="max-width:720px;">Todo lo creado lleva un identificador que empieza por <code>demo-</code> y se retira de un golpe. Las fincas existentes se reutilizan; si no hay ninguna se crean Zunbeltz y La Planilla, que se conservan al retirar. No se envían correos.</p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 

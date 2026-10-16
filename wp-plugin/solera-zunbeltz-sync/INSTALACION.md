@@ -36,6 +36,8 @@ nuevo en la cuenta de WPML y subir la APK en Solera Zunbeltz → Android.
 
 Actualizar: subir el `.zip` nuevo (WordPress ofrece reemplazar la versión instalada). Las tablas se actualizan solas y no se pierde nada. Al actualizar, el plugin pone también al día las zonas y puntos de Zunbeltz que sembró la app (nombres, contornos, los que sobran), salvo los que alguien haya editado.
 
+**Orden al actualizar**: primero el plugin y después la app. La app 0.6.0 (ganado: lotes, animales, movimientos y curas) necesita el plugin 0.8.0; con uno anterior el ganado no se pierde, pero se queda en cada móvil hasta que se actualice el plugin.
+
 ## 4. Personas y tokens
 
 En **Solera Zunbeltz → Personas**:

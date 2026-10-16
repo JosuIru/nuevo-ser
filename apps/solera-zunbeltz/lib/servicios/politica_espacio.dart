@@ -78,6 +78,24 @@ class PoliticaEspacio {
   /// coordinación (como el presupuesto del convenio).
   bool get puedeEditarInventario => puedeGestionarProyectos;
 
+  /// Ganado: dar de alta lotes y animales, moverlos y apuntar curas,
+  /// pesajes… (provisional, pendiente de co-diseño con Zunbeltz).
+  bool get puedeRegistrarGanado =>
+      _puede(capacidadRegistrarGanado) || puedeGestionarGanado;
+
+  /// Corregir o borrar cualquier dato del ganado.
+  bool get puedeGestionarGanado => _puede(capacidadGestionarGanado);
+
+  /// Corregir o borrar un lote, un movimiento o un evento: quien lo apuntó
+  /// o quien gestiona el ganado.
+  bool puedeEditarGanado(String autorUid) =>
+      puedeGestionarGanado ||
+      (puedeRegistrarGanado && miUid.isNotEmpty && autorUid == miUid);
+
+  /// Pasar de lote o dar de baja un animal (aunque lo diera de alta otra
+  /// persona): trabajo de campo.
+  bool get puedeManejarAnimales => puedeRegistrarGanado;
+
   /// Los documentos salen sin marca de BORRADOR solo cuando los genera
   /// coordinación identificada (no en modo local) y, si son de un proyecto,
   /// con el proyecto cerrado (respuestas de Zunbeltz, 2026-10-06).

@@ -29,6 +29,7 @@ import 'estado/version_demo.dart';
 import 'l10n/app_localizations.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_fincas.dart';
+import 'pantallas/pantalla_ganado.dart';
 import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_onboarding.dart';
 import 'pantallas/pantalla_proyectos.dart';
@@ -185,6 +186,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal>
   static const _pantallas = <Widget>[
     PantallaInicio(),
     PantallaFincas(),
+    PantallaGanado(),
     PantallaProyectos(),
     PantallaAjustes(),
   ];
@@ -207,6 +209,11 @@ class _PantallaPrincipalState extends State<PantallaPrincipal>
             icon: const Icon(Icons.map_outlined),
             selectedIcon: const Icon(Icons.map),
             label: textos.navFincas,
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.pets_outlined),
+            selectedIcon: const Icon(Icons.pets),
+            label: textos.navGanado,
           ),
           NavigationDestination(
             icon: const Icon(Icons.science_outlined),

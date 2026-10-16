@@ -16,6 +16,8 @@ const String capacidadGestionarAvisos = 'gestionar_avisos';
 const String capacidadVerActividad = 'ver_actividad';
 const String capacidadCrearContactos = 'crear_contactos';
 const String capacidadGestionarContactos = 'gestionar_contactos';
+const String capacidadRegistrarGanado = 'registrar_ganado';
+const String capacidadGestionarGanado = 'gestionar_ganado';
 
 /// Una persona del Espacio Test, tal como la da de alta la coordinación en
 /// el WordPress. Se usa para elegir responsable de una tarea.

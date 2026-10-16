@@ -24,12 +24,15 @@ void main() {
     capacidadVerActividad,
     capacidadCrearContactos,
     capacidadGestionarContactos,
+    capacidadRegistrarGanado,
+    capacidadGestionarGanado,
   }));
   final ane = PoliticaEspacio(sesion('ane', {
     capacidadAnadirPuntos,
     capacidadEnviarPeticiones,
     capacidadCrearAvisos,
     capacidadCrearContactos,
+    capacidadRegistrarGanado,
   }));
 
   test('modo local: todo permitido', () {
@@ -77,5 +80,17 @@ void main() {
   test('inventario de amortizaciones: solo coordinación', () {
     expect(ane.puedeEditarInventario, isFalse);
     expect(coordinacion.puedeEditarInventario, isTrue);
+  });
+
+  test('ganado: quien maneja apunta; cada cual corrige lo suyo', () {
+    expect(ane.puedeRegistrarGanado, isTrue);
+    expect(ane.puedeEditarGanado('ane'), isTrue);
+    expect(ane.puedeEditarGanado('coord'), isFalse);
+    expect(ane.puedeManejarAnimales, isTrue);
+    expect(coordinacion.puedeEditarGanado('ane'), isTrue);
+    expect(const PoliticaEspacio(null).puedeEditarGanado(''), isTrue);
+    final sinGanado = PoliticaEspacio(sesion('jon', {capacidadCrearAvisos}));
+    expect(sinGanado.puedeRegistrarGanado, isFalse);
+    expect(sinGanado.puedeEditarGanado('jon'), isFalse);
   });
 }

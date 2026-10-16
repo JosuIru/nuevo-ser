@@ -8,7 +8,10 @@ import '../modelos/tarea_mantenimiento.dart';
 import '../modelos/zona_finca.dart';
 import '../utiles/estilos_tarea.dart';
 import '../utiles/geodesia.dart';
+import 'ficha_lote.dart';
+import 'formularios_ganado.dart';
 import 'nueva_tarea.dart';
+import 'pantalla_ganado.dart';
 import 'widgets/acciones_tarea.dart';
 import 'widgets/tile_tarea.dart';
 import '../estado/datos_notificador.dart';
@@ -28,6 +31,7 @@ class FichaZona extends StatefulWidget {
 class _FichaZonaState extends State<FichaZona> {
   final _bd = BaseDatosSoleraZunbeltz();
   List<TareaMantenimiento> _tareas = const [];
+  List<ResumenLote> _ganado = const [];
   bool _cargando = true;
 
   @override
@@ -38,9 +42,11 @@ class _FichaZonaState extends State<FichaZona> {
 
   Future<void> _cargar() async {
     final tareas = await _bd.listarTareas(zonaId: widget.zona.id);
+    final ganado = (await _bd.lotesPorZona())[widget.zona.id] ?? const [];
     if (!mounted) return;
     setState(() {
       _tareas = tareas;
+      _ganado = ganado;
       _cargando = false;
     });
   }
@@ -55,6 +61,37 @@ class _FichaZonaState extends State<FichaZona> {
       ),
     );
     if (creada == true) await _cargar();
+  }
+
+  /// Trae aquí un lote que está en otra pieza (o fuera).
+  Future<void> _traerLote() async {
+    final textos = AppLocalizations.of(context);
+    final aqui = {for (final resumen in _ganado) resumen.lote.id};
+    final lotes = (await _bd.listarResumenLotes())
+        .where((resumen) => !aqui.contains(resumen.lote.id))
+        .toList();
+    final zonas = await nombresDeZonas(_bd);
+    if (!mounted) return;
+    if (lotes.isEmpty) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.ganSinOtrosLotes)));
+      return;
+    }
+    final elegido = await elegirLote(context, lotes, zonas);
+    if (elegido == null || !mounted) return;
+    final movido = await Navigator.of(context).push<bool>(MaterialPageRoute(
+        builder: (_) => FormularioMovimiento(
+            lote: elegido.lote, zonaDestinoId: widget.zona.id)));
+    if (movido == true) {
+      avisarCambioDatos();
+      await _cargar();
+    }
+  }
+
+  Future<void> _abrirLote(int loteId) async {
+    await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (_) => FichaLote(loteId: loteId)));
+    await _cargar();
   }
 
   Future<void> _accionesTarea(TareaMantenimiento tarea) async {
@@ -214,6 +251,45 @@ class _FichaZonaState extends State<FichaZona> {
                     padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
                     child: Text(zona.notas),
                   ),
+                const Divider(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 8, 0),
+                  child: Row(children: [
+                    Expanded(
+                      child: Text(textos.ganEnEstaPieza,
+                          style: Theme.of(context).textTheme.titleMedium),
+                    ),
+                    if (politicaEspacioActual.puedeRegistrarGanado)
+                      TextButton.icon(
+                        onPressed: _traerLote,
+                        icon: const Icon(Icons.moving),
+                        label: Text(textos.ganTraerAqui),
+                      ),
+                  ]),
+                ),
+                if (_ganado.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                    child: Text(textos.ganPiezaSinGanado),
+                  )
+                else
+                  for (final resumen in _ganado)
+                    ListTile(
+                      leading: const Icon(Icons.pets_outlined),
+                      title: Text(resumen.lote.nombre),
+                      subtitle: Text([
+                        if (resumen.lote.especie.isNotEmpty)
+                          etiquetaEspecie(resumen.lote.especie, idioma),
+                        textos.ganCabezas(resumen.cabezas),
+                        if (zona.superficieHa > 0 && resumen.cabezas > 0)
+                          textos.ganCabezasPorHa(
+                              (resumen.cabezas / zona.superficieHa)
+                                  .toStringAsFixed(1)
+                                  .replaceAll('.', ',')),
+                      ].join(' · ')),
+                      trailing: const Icon(Icons.chevron_right),
+                      onTap: () => _abrirLote(resumen.lote.id!),
+                    ),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),

@@ -109,6 +109,10 @@
   .capa ul{list-style:none;margin-top:10px}
   .capa li{padding:9px 0 9px 26px;position:relative;border-top:1px solid rgba(255,255,255,.1);font-size:.97rem;color:rgba(238,240,230,.86)}
   .capa li::before{content:"";position:absolute;left:2px;top:22px;width:10px;height:1px;background:rgba(203,214,182,.55)}
+  .capa li .hecho,.capa li .prox{display:inline-block;margin-left:6px;font-family:var(--narrow);font-size:11.5px;font-weight:600;letter-spacing:.02em;white-space:nowrap;padding:0 6px;border-radius:3px;vertical-align:1px}
+  .capa li .hecho{color:var(--monte);background:var(--musgo)}
+  .capa li .prox{color:rgba(238,240,230,.85);border:1px solid rgba(238,240,230,.35)}
+  .capas-pie{margin-top:26px;max-width:760px;color:rgba(238,240,230,.78);font-size:1rem}
 
   .destacado-marco{background:var(--crema-2b);border:1px solid var(--linea-fuerte);border-radius:5px;box-shadow:var(--sombra-alta);overflow:hidden}
   .destacado-top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 22px;background:var(--monte);color:#eef0e6;flex-wrap:wrap}
@@ -275,7 +279,7 @@
     <nav>
       <a href="#contexto">El reto</a>
       <a href="#fincas">Gestión de fincas</a>
-      <a href="#capas">Las dos capas</a>
+      <a href="#capas">Partes de la app</a>
       <a href="#roadmap">Por dónde</a>
       <a href="#financiacion">Cómo se sostiene</a>
       <a href="#glosario">Glosario</a>
@@ -396,42 +400,49 @@
   </div>
 </section>
 
-<!-- ====== LAS DOS CAPAS ====== -->
+<!-- ====== PARTES DE LA APLICACIÓN ====== -->
 <section id="capas" class="banda-oscura">
   <div class="contenedor">
     <div class="seccion-cabecera sr">
-      <span class="ojo">La idea en una frase</span>
-      <h2 class="titulo">Dos capas sobre una misma base</h2>
-      <p>Debajo, el cuaderno de quien produce. Encima, el panel de quien acompaña. La gestión de fincas que acabáis de ver vive entre las dos: la usa todo el mundo.</p>
+      <span class="ojo">Qué hace la aplicación</span>
+      <h2 class="titulo">Las dos partes de la aplicación</h2>
+      <p>Una sola app, en el móvil y en el ordenador de la oficina, con dos partes: lo que pasa en las fincas y con el ganado, y lo que vive cada persona durante su test. Marcamos qué está ya en la app y qué estamos construyendo.</p>
     </div>
     <div class="capas">
       <div class="capa sr">
-        <span class="etq">Capa A · para cada testador</span>
-        <h3>El cuaderno ganadero</h3>
-        <div class="sub">Solera Ganadería Extensiva Ecológica</div>
-        <p class="intro">El cuaderno de campo de cada proyecto en prueba. Hermano de las Solera que ya existen, pero pensado para vacuno y ovino en extensivo y ecológico.</p>
+        <span class="etq">Parte 1 · las fincas y el ganado</span>
+        <h3>Seguimiento ganadero de fincas</h3>
+        <div class="sub">Todo lo que se hace y se puede hacer en Zunbeltz y La Planilla</div>
+        <p class="intro">El mapa de las dos fincas con sus piezas, sus cierres y sus puntos, el ganado que hay en cada pieza y todo lo que se le hace.</p>
         <ul>
-          <li>Cada animal con su <abbr class="term" title="El crotal es la chapa numerada de la oreja; el DIB, su documento de identificación. Identifican a cada res.">crotal/DIB</abbr> e historia: pesajes, partos, sanidad, movimientos</li>
-          <li>Pastoreo y <abbr class="term" title="Cuántos animales pastan por hectárea. Controlarla evita sobrepastorear y es requisito de la PAC y del ecológico.">carga ganadera</abbr> por parcela — clave en extensivo y en la <abbr class="term" title="Política Agraria Común: el marco europeo de ayudas al campo.">PAC</abbr></li>
-          <li>Libro de explotación y <abbr class="term" title="El documento oficial que acompaña a los animales cuando se trasladan de una explotación a otra.">guías de movimiento</abbr> en PDF</li>
-          <li><abbr class="term" title="Poder seguir el rastro de un animal o producto desde el origen hasta la venta.">Trazabilidad</abbr> ecológica (<abbr class="term" title="Consejo de la Producción Agraria Ecológica de Navarra: certifica lo ecológico en Navarra.">CPAEN/NNPEK</abbr>) y plazos de medicamentos</li>
-          <li>Identificación por foto con <abbr class="term" title="Inteligencia artificial: el móvil sugiere a partir de una foto; nunca sustituye al veterinario.">IA</abbr> (lesiones, condición corporal)</li>
+          <li>Mapa de las fincas sobre foto aérea, con las piezas, parques y cierres marcados y sus límites catastrales <span class="hecho">en la app</span></li>
+          <li>Puntos fijos y móviles: abrevaderos, cierres, portillos, balsas, aprisco, corrales, bidones… con su estado y fotos <span class="hecho">en la app</span></li>
+          <li>Tareas de mantenimiento con responsable, plazo y aviso; las periódicas se repiten solas <span class="hecho">en la app</span></li>
+          <li>Identificación de cada animal con su <abbr class="term" title="El crotal es la chapa numerada de la oreja; el DIB, su documento de identificación. Identifican a cada res.">crotal/DIB</abbr>, lectura del código y lotes o rebaños <span class="prox">en desarrollo</span></li>
+          <li>Qué ganado hay en cada pieza y <strong>movimientos de ganado</strong> entre piezas y fincas, con la <abbr class="term" title="Cuántos animales pastan por hectárea. Controlarla evita sobrepastorear y es requisito de la PAC y del ecológico.">carga ganadera</abbr> de cada una <span class="prox">en desarrollo</span></li>
+          <li>Seguimiento de cada animal: pesajes, partos, condición corporal, incidencias <span class="prox">en desarrollo</span></li>
+          <li>Curas y tratamientos, con sus plazos de supresión y la trazabilidad ecológica (<abbr class="term" title="Consejo de la Producción Agraria Ecológica de Navarra: certifica lo ecológico en Navarra.">CPAEN/NNPEK</abbr>) <span class="prox">en desarrollo</span></li>
+          <li>Libro de explotación y <abbr class="term" title="El documento oficial que acompaña a los animales cuando se trasladan de una explotación a otra.">guías de movimiento</abbr> en PDF <span class="prox">en desarrollo</span></li>
         </ul>
       </div>
       <div class="capa sr">
-        <span class="etq">Capa B · para quien coordina y acompaña</span>
-        <h3>El panel del Espacio Test</h3>
-        <div class="sub">Convocatorias, acompañamiento y relevo generacional</div>
-        <p class="intro">Lo que es propio de un espacio test y no existe en ninguna app de gestión agrícola del mercado. Aquí reutilizamos el motor de acompañamiento que ya tenemos construido para otros proyectos.</p>
+        <span class="etq">Parte 2 · cada persona en test</span>
+        <h3>Seguimiento individualizado del test</h3>
+        <div class="sub">Producción, comercialización y números de cada proyecto</div>
+        <p class="intro">Cada tester tiene su proyecto, con lo que produce, lo que vende y lo que le cuesta, para ver si su actividad es viable.</p>
         <ul>
-          <li>Convocatorias y selección de proyectos candidatos</li>
-          <li>Cesión de parcelas, instalaciones y cabezas a cada testador por su periodo</li>
-          <li>Plan de acompañamiento: hitos, tutorías y formación con el mentor</li>
-          <li>Evaluación de viabilidad del proyecto y de competencias</li>
-          <li>Banco de tierras: relevo entre quien se jubila y quien empieza</li>
+          <li>Registro de la producción: alimentación por días, pariciones, validación del producto <span class="hecho">en la app</span></li>
+          <li>Comercialización: ventas por canal y agenda de contactos compartida <span class="hecho">en la app</span></li>
+          <li>Calculadora de transformación: de peso vivo a canal, producto e ingreso, con escenarios para comparar caminos <span class="hecho">en la app</span></li>
+          <li>Gastos en los seis bloques de vuestra hoja de seguimiento, con quién asume cada uno <span class="hecho">en la app</span></li>
+          <li>Inventario de lo que usa cada proyecto y su amortización <span class="hecho">en la app</span></li>
+          <li>El convenio: presupuesto previsto frente al real, reparto de gastos y fianza <span class="hecho">en la app</span></li>
+          <li>Rentabilidad: ingresos, gastos, margen y extrapolación al año <span class="hecho">en la app</span></li>
+          <li>Acompañamiento con los indicadores del anexo IV, e informes en PDF y Excel <span class="hecho">en la app</span></li>
         </ul>
       </div>
     </div>
+    <p class="capas-pie sr">Y para todo el equipo: cada persona entra con su usuario y ve lo que le toca; las testers piden tareas y dan avisos, y coordinación lo gestiona desde la app o desde el panel web, con un correo diario de lo urgente.</p>
   </div>
 </section>
 

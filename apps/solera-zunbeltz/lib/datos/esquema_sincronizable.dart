@@ -71,6 +71,9 @@ const _refPuntoOpcional = ReferenciaSincronizable(
     'punto_id', 'puntos_infraestructura',
     obligatoria: false, alBorrar: AlBorrarReferencia.anular);
 
+const _refLoteOpcional = ReferenciaSincronizable('lote_id', 'lotes_ganado',
+    obligatoria: false, alBorrar: AlBorrarReferencia.anular);
+
 TablaSincronizable _hijoDeProyecto(String tipo, String tabla) =>
     TablaSincronizable(
       tipo: tipo,
@@ -135,6 +138,32 @@ final List<TablaSincronizable> tablasSincronizables = [
     ],
     columnaProyecto: 'proyecto_id',
     proyectoObligatorio: true,
+  ),
+  // Ganado (BD v15).
+  const TablaSincronizable(tipo: 'lote_ganado', tabla: 'lotes_ganado'),
+  const TablaSincronizable(
+      tipo: 'animal', tabla: 'animales', referencias: [_refLoteOpcional]),
+  const TablaSincronizable(
+    tipo: 'movimiento_ganado',
+    tabla: 'movimientos_ganado',
+    referencias: [
+      ReferenciaSincronizable('lote_id', 'lotes_ganado',
+          obligatoria: true, alBorrar: AlBorrarReferencia.cascada),
+      ReferenciaSincronizable('zona_origen_id', 'zonas_finca',
+          obligatoria: false, alBorrar: AlBorrarReferencia.anular),
+      ReferenciaSincronizable('zona_destino_id', 'zonas_finca',
+          obligatoria: false, alBorrar: AlBorrarReferencia.anular),
+    ],
+  ),
+  const TablaSincronizable(
+    tipo: 'evento_ganado',
+    tabla: 'eventos_ganado',
+    referencias: [
+      ReferenciaSincronizable('animal_id', 'animales',
+          obligatoria: false, alBorrar: AlBorrarReferencia.cascada),
+      ReferenciaSincronizable('lote_id', 'lotes_ganado',
+          obligatoria: false, alBorrar: AlBorrarReferencia.cascada),
+    ],
   ),
 ];
 

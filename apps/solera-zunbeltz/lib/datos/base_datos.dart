@@ -18,6 +18,7 @@ import '../modelos/constantes.dart'
         normalizarCategoriaGasto;
 import '../modelos/convenio.dart';
 import '../modelos/finca.dart';
+import '../modelos/ganado.dart';
 import '../modelos/peticion_tarea.dart';
 import '../utiles/geodesia.dart';
 import 'espacio_generado.dart';
@@ -36,6 +37,7 @@ import '../utiles/uid.dart';
 part 'base_datos_comunicacion.dart';
 part 'base_datos_agenda.dart';
 part 'base_datos_convenio.dart';
+part 'base_datos_ganado.dart';
 part 'base_datos_sync.dart';
 
 /// Acceso a la base de datos local de Solera Zunbeltz. Singleton con
@@ -106,7 +108,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 14;
+  static const int versionEsquema = 15;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -124,6 +126,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 12) await aplicarMigracionV12(db);
     if (anterior < 13) await aplicarMigracionV13(db);
     if (anterior < 14) await aplicarMigracionV14(db);
+    if (anterior < 15) await aplicarMigracionV15(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -731,6 +734,94 @@ class BaseDatosSoleraZunbeltz {
   static Future<void> aplicarMigracionV14(Database db) async {
     await db.execute(
         "ALTER TABLE zonas_finca ADD COLUMN color TEXT NOT NULL DEFAULT ''");
+  }
+
+  /// Migración v14 → v15: el ganado (lotes, animales, movimientos entre
+  /// piezas y eventos de manejo). Aditiva. Ver `modelos/ganado.dart`.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV15(Database db) async {
+    const columnasSync =
+        "uid TEXT NOT NULL DEFAULT '', actualizado_ms INTEGER NOT NULL DEFAULT 0, "
+        "autor_uid TEXT NOT NULL DEFAULT ''";
+    await db.execute('''
+      CREATE TABLE lotes_ganado (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        nombre TEXT NOT NULL DEFAULT '',
+        especie TEXT NOT NULL DEFAULT '',
+        titular_uid TEXT NOT NULL DEFAULT '',
+        cabezas_sin_identificar INTEGER NOT NULL DEFAULT 0,
+        estado TEXT NOT NULL DEFAULT 'activo',
+        notas TEXT NOT NULL DEFAULT '',
+        fecha_creacion_ms INTEGER NOT NULL DEFAULT 0
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE animales (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        identificacion TEXT NOT NULL DEFAULT '',
+        nombre TEXT NOT NULL DEFAULT '',
+        especie TEXT NOT NULL DEFAULT '',
+        raza TEXT NOT NULL DEFAULT '',
+        sexo TEXT NOT NULL DEFAULT '',
+        fecha_nacimiento_ms INTEGER,
+        madre TEXT NOT NULL DEFAULT '',
+        lote_id INTEGER,
+        estado TEXT NOT NULL DEFAULT 'activo',
+        fecha_baja_ms INTEGER,
+        titular_uid TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT '',
+        FOREIGN KEY (lote_id) REFERENCES lotes_ganado(id) ON DELETE SET NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE movimientos_ganado (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        lote_id INTEGER NOT NULL,
+        fecha_ms INTEGER NOT NULL DEFAULT 0,
+        tipo TEXT NOT NULL DEFAULT 'traslado',
+        zona_origen_id INTEGER,
+        zona_destino_id INTEGER,
+        destino_externo TEXT NOT NULL DEFAULT '',
+        cabezas INTEGER NOT NULL DEFAULT 0,
+        guia TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT '',
+        FOREIGN KEY (lote_id) REFERENCES lotes_ganado(id) ON DELETE CASCADE,
+        FOREIGN KEY (zona_origen_id) REFERENCES zonas_finca(id) ON DELETE SET NULL,
+        FOREIGN KEY (zona_destino_id) REFERENCES zonas_finca(id) ON DELETE SET NULL
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE eventos_ganado (
+        id INTEGER PRIMARY KEY AUTOINCREMENT, $columnasSync,
+        animal_id INTEGER,
+        lote_id INTEGER,
+        fecha_ms INTEGER NOT NULL DEFAULT 0,
+        tipo TEXT NOT NULL DEFAULT 'tratamiento',
+        descripcion TEXT NOT NULL DEFAULT '',
+        sustancia_activa TEXT NOT NULL DEFAULT '',
+        dosis TEXT NOT NULL DEFAULT '',
+        plazo_supresion_carne_dias INTEGER NOT NULL DEFAULT 0,
+        plazo_supresion_leche_dias INTEGER NOT NULL DEFAULT 0,
+        veterinario TEXT NOT NULL DEFAULT '',
+        receta TEXT NOT NULL DEFAULT '',
+        peso_kg REAL,
+        crias INTEGER NOT NULL DEFAULT 0,
+        cabezas INTEGER NOT NULL DEFAULT 0,
+        FOREIGN KEY (animal_id) REFERENCES animales(id) ON DELETE CASCADE,
+        FOREIGN KEY (lote_id) REFERENCES lotes_ganado(id) ON DELETE CASCADE
+      )
+    ''');
+    for (final tabla in const [
+      'lotes_ganado',
+      'animales',
+      'movimientos_ganado',
+      'eventos_ganado'
+    ]) {
+      await db.execute('CREATE UNIQUE INDEX idx_${tabla}_uid ON $tabla(uid)');
+    }
+    await db.execute(
+        'CREATE INDEX idx_movimientos_ganado_lote ON movimientos_ganado(lote_id)');
+    await db.execute('CREATE INDEX idx_animales_lote ON animales(lote_id)');
   }
 
   // ─── Fincas ─────────────────────────────────────────────
@@ -1551,7 +1642,9 @@ class BaseDatosSoleraZunbeltz {
   /// con categorías e IVA) para ver la app con datos sin teclearlos. No hace
   /// nada si ya hay proyectos. Devuelve true si sembró.
   Future<bool> sembrarDemostracionSiVacia() async {
-    await sembrarFincasDemoSiVacia();
+    // Con la BD vacía, el mapa real de Zunbeltz (sus piezas hacen falta para
+    // ubicar el ganado de ejemplo); si no se puede, las dos fincas sueltas.
+    if (!await sembrarEspacioRealSiVacia()) await sembrarFincasDemoSiVacia();
     final fincas = await listarFincas();
     final ahora = DateTime.now();
     // Puntos y tareas van por separado (su propia comprobación de vacío)
@@ -1559,8 +1652,9 @@ class BaseDatosSoleraZunbeltz {
     final sembroInfraestructura =
         await _sembrarInfraestructuraDemo(fincas, ahora);
     final sembroComunicacion = await _sembrarComunicacionDemo(fincas, ahora);
+    final sembroGanado = await _sembrarGanadoDemo(ahora);
     if ((await listarProyectos()).isNotEmpty) {
-      return sembroInfraestructura || sembroComunicacion;
+      return sembroInfraestructura || sembroComunicacion || sembroGanado;
     }
     final fincaId = fincas.isEmpty ? 0 : (fincas.first.id ?? 0);
     int hace(int dias) =>
@@ -1887,6 +1981,71 @@ class BaseDatosSoleraZunbeltz {
   /// para que el mapa, el tablero y la pantalla Hoy no salgan vacíos en la
   /// demostración. No son el inventario real (BLOQUEOS A4): las notas lo
   /// dicen. No hace nada si ya hay puntos. Devuelve true si sembró.
+  /// Dos lotes de ejemplo en las primeras piezas, con animales, un
+  /// movimiento, una cura en plazo de supresión y un pesaje.
+  Future<bool> _sembrarGanadoDemo(DateTime ahora) async {
+    if ((await listarLotes()).isNotEmpty) return false;
+    int hace(int dias) =>
+        ahora.subtract(Duration(days: dias)).millisecondsSinceEpoch;
+    final zonas = (await listarZonas()).map((zona) => zona.id).toList();
+    final primera = zonas.isEmpty ? null : zonas.first;
+    final segunda = zonas.length < 2 ? primera : zonas[1];
+    const nota = 'Ejemplo de demostración.';
+    final ovejas = await guardarLote(LoteGanado(
+        nombre: 'Ovejas latxas (ejemplo)', especie: 'ovino', notas: nota));
+    final vacas = await guardarLote(LoteGanado(
+        nombre: 'Vacas pirenaicas (ejemplo)',
+        especie: 'vacuno',
+        cabezasSinIdentificar: 4,
+        notas: 'Cuatro terneros aún sin crotal. $nota'));
+    for (final (identificacion, nombre, raza, sexo, lote) in [
+      ('ES0001EJEMPLO', 'Beltza', 'Latxa cara negra', 'hembra', ovejas),
+      ('ES0002EJEMPLO', '', 'Latxa cara negra', 'hembra', ovejas),
+      ('ES0003EJEMPLO', '', 'Latxa cara rubia', 'macho', ovejas),
+      ('ES1001EJEMPLO', 'Morena', 'Pirenaica', 'hembra', vacas),
+      ('ES1002EJEMPLO', '', 'Pirenaica', 'hembra', vacas),
+    ]) {
+      await guardarAnimal(Animal(
+          identificacion: identificacion,
+          nombre: nombre,
+          especie: lote == ovejas ? 'ovino' : 'vacuno',
+          raza: raza,
+          sexo: sexo,
+          loteId: lote));
+    }
+    if (primera != null) {
+      await moverLote(
+          loteId: ovejas,
+          fechaMs: hace(60),
+          tipo: tipoMovimientoEntrada,
+          zonaDestinoId: primera);
+      await moverLote(
+          loteId: vacas,
+          fechaMs: hace(90),
+          tipo: tipoMovimientoEntrada,
+          zonaDestinoId: primera);
+      await moverLote(
+          loteId: vacas,
+          fechaMs: hace(20),
+          tipo: tipoMovimientoTraslado,
+          zonaDestinoId: segunda,
+          notas: 'Rotación de pasto.');
+    }
+    await guardarEventoGanado(EventoGanado(
+        loteId: ovejas,
+        fechaMs: hace(5),
+        descripcion: 'Desparasitación de otoño (ejemplo)',
+        sustanciaActiva: '(la de la receta)',
+        plazoSupresionCarneDias: 28));
+    final morena = (await listarAnimales(loteId: vacas)).first.id;
+    await guardarEventoGanado(EventoGanado(
+        animalId: morena,
+        fechaMs: hace(15),
+        tipo: tipoEventoPesaje,
+        pesoKg: 455));
+    return true;
+  }
+
   Future<bool> _sembrarInfraestructuraDemo(
       List<Finca> fincas, DateTime ahora) async {
     if ((await listarPuntos()).isNotEmpty) return false;

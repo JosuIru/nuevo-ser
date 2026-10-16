@@ -440,15 +440,21 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
   /// servidor no ha mandado, porque esta persona ya no lo ve. Devuelve
   /// cuántas filas se retiraron.
   ///
+  /// Los tipos de [salvoTipos] (los que un plugin sin actualizar aún no
+  /// conoce) no se retiran.
+  ///
   /// Lo creado o cambiado desde [cambiadasDesdeMs] (el inicio de la
   /// sincronización) no se toca: no iba en la subida, así que el servidor
   /// no podía mandarlo, y borrarlo sería perderlo.
   Future<int> retirarEntidadesNoRecibidas(
       Map<String, Set<String>> uidsRecibidosPorTipo,
-      {int? cambiadasDesdeMs}) async {
+      {int? cambiadasDesdeMs,
+      Set<String> salvoTipos = const {}}) async {
     final db = await basedatos;
     var retiradas = 0;
     for (final descriptor in tablasSincronizables.reversed) {
+      // Tipos que el servidor aún no conoce: no los manda, pero existen.
+      if (salvoTipos.contains(descriptor.tipo)) continue;
       final recibidos = uidsRecibidosPorTipo[descriptor.tipo] ?? const {};
       final filas = await db
           .query(descriptor.tabla, columns: ['id', 'uid', 'actualizado_ms']);

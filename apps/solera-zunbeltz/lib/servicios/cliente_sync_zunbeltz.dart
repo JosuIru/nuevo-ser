@@ -268,10 +268,18 @@ class ClienteSyncZunbeltz {
     final sesionRemota = SesionRemota.desdeJson(json);
 
     // ── Entidades que bajan ──
+    // Un servidor con el plugin sin actualizar no conoce los tipos nuevos
+    // (el ganado antes de la 0.8.0) y los rechaza: no es que no se puedan
+    // tener, así que se guardan y se suben cuando el plugin se actualice.
+    final tiposQueNoConoceElServidor = {
+      for (final rechazo in (json['rechazos_entidades'] as List?) ?? const [])
+        if (rechazo is Map && rechazo['motivo'] == 'tipo_desconocido')
+          '${rechazo['tipo']}|${rechazo['uid']}',
+    };
     final forzadas = {
       for (final clave in (json['forzar_entidades'] as List?) ?? const [])
         if (clave is Map) '${clave['tipo']}|${clave['uid']}',
-    };
+    }.difference(tiposQueNoConoceElServidor);
     final recibidas = [
       for (final item in json['entidades'] as List)
         if (item is Map) Map<String, Object?>.from(item),
@@ -351,9 +359,12 @@ class ClienteSyncZunbeltz {
       if (await bd.hayCambiosLocalesDesde(inicioMs, recibidosConTareas)) {
         retiradaAplazada = true;
       } else {
-        retiradas += await bd.retirarEntidadesNoRecibidas(
-            uidsRecibidosPorTipo,
-            cambiadasDesdeMs: inicioMs);
+        retiradas += await bd.retirarEntidadesNoRecibidas(uidsRecibidosPorTipo,
+            cambiadasDesdeMs: inicioMs,
+            salvoTipos: {
+              for (final clave in tiposQueNoConoceElServidor)
+                clave.split('|').first,
+            });
       }
     }
     await bd.olvidarBorrados(lapidas);
@@ -380,7 +391,16 @@ class ClienteSyncZunbeltz {
 
     await bd.guardarEstadoSync(
         claveRevision, (json['revision'] as num?)?.toInt() ?? 0);
-    await bd.guardarEstadoSync(claveSubida, inicioMs);
+    // Lo que el servidor aún no conoce se vuelve a subir la próxima vez.
+    var subidaHastaMs = inicioMs;
+    for (final entidad in entidades) {
+      if (tiposQueNoConoceElServidor
+          .contains('${entidad['tipo']}|${entidad['uid']}')) {
+        final marca = (entidad['actualizado_ms'] as num?)?.toInt() ?? 0;
+        if (marca - 1 < subidaHastaMs) subidaHastaMs = marca - 1;
+      }
+    }
+    await bd.guardarEstadoSync(claveSubida, subidaHastaMs);
 
     // Si cambia lo que se ve, lo antiguo de un proyecto recién asignado no
     // llega con el cursor, ni se retira lo que se deja de ver: completa.
@@ -411,7 +431,8 @@ class ClienteSyncZunbeltz {
       bajadas: bajadas,
       omitidasFincaDesconocida: omitidas,
       rechazadasPorPermisos: ((json['rechazos'] as List?) ?? const []).length +
-          ((json['rechazos_entidades'] as List?) ?? const []).length,
+          ((json['rechazos_entidades'] as List?) ?? const []).length -
+          tiposQueNoConoceElServidor.length,
       sesionRemota: sesionRemota,
       retiradas: retiradas,
       entidadesSubidas: entidades.length,

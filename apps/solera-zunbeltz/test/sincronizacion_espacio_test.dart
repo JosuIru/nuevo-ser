@@ -12,6 +12,7 @@ import 'package:http/testing.dart';
 import 'package:solera_zunbeltz/datos/base_datos.dart';
 import 'package:solera_zunbeltz/modelos/apunte_economico.dart';
 import 'package:solera_zunbeltz/modelos/finca.dart';
+import 'package:solera_zunbeltz/modelos/ganado.dart';
 import 'package:solera_zunbeltz/modelos/proyecto_test.dart';
 import 'package:solera_zunbeltz/modelos/punto_infraestructura.dart';
 import 'package:solera_zunbeltz/modelos/registro_comercializacion.dart';
@@ -253,7 +254,36 @@ void main() {
       expect(resultado.rechazadasPorPermisos, 1);
     });
 
-    test('lo forzado con versión en el servidor sobrescribe aunque sea más vieja',
+    test(
+        'con el plugin sin actualizar, el ganado se guarda y se vuelve a subir',
+        () async {
+      final loteId = await bd.guardarLote(LoteGanado(nombre: 'Ovejas'));
+      final uid = (await bd.uidDeFila('lotes_ganado', loteId))!;
+      servidor.respuesta = {
+        'forzar_entidades': [
+          {'tipo': 'lote_ganado', 'uid': uid}
+        ],
+        'rechazos_entidades': [
+          {'tipo': 'lote_ganado', 'uid': uid, 'motivo': 'tipo_desconocido'}
+        ],
+      };
+      // Completa: tampoco se retira por no venir del servidor.
+      await sincronizar(completa: true);
+      expect((await bd.listarLotes()).single.nombre, 'Ovejas');
+
+      servidor.respuesta = {};
+      await sincronizar();
+      expect(servidor.entidadesSubidas.map((entidad) => entidad['uid']),
+          contains(uid),
+          reason: 'con el plugin ya actualizado, sube');
+      await sincronizar();
+      expect(servidor.entidadesSubidas.map((entidad) => entidad['uid']),
+          isNot(contains(uid)),
+          reason: 'aceptado, ya no se repite');
+    });
+
+    test(
+        'lo forzado con versión en el servidor sobrescribe aunque sea más vieja',
         () async {
       final fincaId = await bd.guardarFinca(Finca(nombre: 'Cambiada'));
       final uid = (await bd.uidDeFila('fincas', fincaId))!;

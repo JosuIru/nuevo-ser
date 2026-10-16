@@ -34,7 +34,7 @@ nuevo en la cuenta de WPML y subir la APK en Solera Zunbeltz → Android.
 2. En el WordPress: Plugins → Añadir nuevo → Subir plugin → el `.zip` → Activar.
 3. Aparece el menú **Solera Zunbeltz** (Tareas, Peticiones, Avisos, Proyectos, Actividad, Personas).
 
-Actualizar: subir el `.zip` nuevo (WordPress ofrece reemplazar la versión instalada). Las tablas se actualizan solas y no se pierde nada.
+Actualizar: subir el `.zip` nuevo (WordPress ofrece reemplazar la versión instalada). Las tablas se actualizan solas y no se pierde nada. Al actualizar, el plugin pone también al día las zonas y puntos de Zunbeltz que sembró la app (nombres, contornos, los que sobran), salvo los que alguien haya editado.
 
 ## 4. Personas y tokens
 

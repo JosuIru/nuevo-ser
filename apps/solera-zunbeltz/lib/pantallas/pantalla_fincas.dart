@@ -63,6 +63,9 @@ class _PantallaFincasState extends State<PantallaFincas> {
   List<Finca> _fincas = const [];
   List<PuntoInfraestructura> _conCoords = const [];
   List<ZonaFinca> _zonas = const [];
+
+  /// Cabezas de ganado que hay ahora en cada zona (por id).
+  Map<int, int> _cabezasPorZona = const {};
   bool _cargando = true;
   _EstiloMapa _estiloMapa = _EstiloMapa.calle;
   LatLng? _posicionGps;
@@ -108,11 +111,17 @@ class _PantallaFincasState extends State<PantallaFincas> {
     var fincas = <Finca>[];
     var puntos = <PuntoInfraestructura>[];
     var zonas = <ZonaFinca>[];
+    var cabezasPorZona = <int, int>{};
     try {
       await _bd.sembrarEspacioRealSiVacia();
       fincas = await _bd.listarFincas();
       puntos = await _bd.listarPuntos();
       zonas = await _bd.listarZonas();
+      cabezasPorZona = {
+        for (final MapEntry(key: zonaId, value: lotes)
+            in (await _bd.lotesPorZona()).entries)
+          zonaId: lotes.fold(0, (suma, resumen) => suma + resumen.cabezas),
+      };
     } catch (_) {
       // Sin BD disponible (p. ej. en tests sin plugins) mostramos el mapa
       // vacío en lugar de romper la pestaña.
@@ -124,6 +133,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
           .where((p) => p.latitud != null && p.longitud != null)
           .toList(growable: false);
       _zonas = zonas.where((z) => z.esPoligonoValido).toList(growable: false);
+      _cabezasPorZona = cabezasPorZona;
       _cargando = false;
     });
     if (!_centroResuelto) {
@@ -669,7 +679,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 ),
               ),
               Text(
-                '${zona.superficieHa.toStringAsFixed(2)} ha',
+                [
+                  '${zona.superficieHa.toStringAsFixed(2)} ha',
+                  if ((_cabezasPorZona[zona.id] ?? 0) > 0)
+                    AppLocalizations.of(context)
+                        .ganCabezas(_cabezasPorZona[zona.id]!),
+                ].join(' · '),
                 style: const TextStyle(
                     fontSize: 10,
                     color: colorMonteZunbeltz,

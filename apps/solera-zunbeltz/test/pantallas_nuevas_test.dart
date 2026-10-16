@@ -25,6 +25,10 @@ import 'package:solera_zunbeltz/pantallas/nuevo_aviso.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_convenio.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_inicio.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_inventario.dart';
+import 'package:solera_zunbeltz/pantallas/ficha_animal.dart';
+import 'package:solera_zunbeltz/pantallas/ficha_lote.dart';
+import 'package:solera_zunbeltz/pantallas/formularios_ganado.dart';
+import 'package:solera_zunbeltz/pantallas/pantalla_ganado.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_peticiones.dart';
 
 import 'bd_en_memoria.dart';
@@ -90,6 +94,50 @@ void main() {
   }
 
   for (final idioma in ['es', 'eu']) {
+    testWidgets('Ganado: lotes, animales y movimientos ($idioma)',
+        (tester) async {
+      await montar(tester, const PantallaGanado(), idioma: idioma);
+      expect(find.textContaining('Ovejas latxas'), findsOneWidget);
+      expect(find.byIcon(Icons.medication_outlined), findsOneWidget,
+          reason: 'el lote desparasitado sale en plazo de supresión');
+      for (final pestana in [1, 2]) {
+        await tester.tap(find.byType(Tab).at(pestana));
+        await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 300)));
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+      }
+      expect(find.textContaining('→'), findsWidgets);
+    });
+
+    testWidgets('Ficha de lote y de animal ($idioma)', (tester) async {
+      final lote = (await tester.runAsync(() => bd.listarLotes()))!
+          .firstWhere((lote) => lote.nombre.startsWith('Vacas'));
+      await montar(tester, FichaLote(loteId: lote.id!), idioma: idioma);
+      expect(find.textContaining('ES1001EJEMPLO'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      final animal =
+          (await tester.runAsync(() => bd.listarAnimales(loteId: lote.id)))!
+              .first;
+      await montar(tester, FichaAnimal(animalId: animal.id!), idioma: idioma);
+      expect(find.textContaining('455'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Formularios del ganado ($idioma)', (tester) async {
+      final lote = (await tester.runAsync(() => bd.listarLotes()))!.first;
+      for (final formulario in [
+        const FormularioLote(),
+        FormularioLote(lote: lote),
+        const FormularioAnimal(),
+        FormularioMovimiento(lote: lote),
+        FormularioEventoGanado(loteId: lote.id, titulo: lote.nombre),
+      ]) {
+        await montar(tester, formulario, idioma: idioma);
+        expect(tester.takeException(), isNull);
+      }
+    });
+
     testWidgets('Hoy como bandeja ($idioma)', (tester) async {
       await montar(tester, const PantallaInicio(), idioma: idioma);
       expect(find.byIcon(Icons.notification_important), findsWidgets,

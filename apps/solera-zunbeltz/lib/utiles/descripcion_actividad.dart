@@ -40,5 +40,10 @@ String _tipoEntidad(String tipo, AppLocalizations textos) => switch (tipo) {
       'validacion' => textos.tipoEntidadValidacion,
       'peticion' => textos.tipoEntidadPeticion,
       'aviso' => textos.tipoEntidadAviso,
+      'lote_ganado' ||
+      'animal' ||
+      'movimiento_ganado' ||
+      'evento_ganado' =>
+        textos.tipoEntidadGanado,
       _ => textos.tipoEntidadOtra,
     };

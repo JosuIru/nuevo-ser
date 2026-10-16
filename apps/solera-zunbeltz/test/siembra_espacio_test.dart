@@ -94,12 +94,20 @@ void main() {
     Future<String?> uidDe(String nombre) async => (await db.query('zonas_finca',
             columns: ['uid'], where: 'nombre = ?', whereArgs: [nombre]))
         .single['uid'] as String?;
-    expect(await uidDe('Parque de cerdos 1'),
+    // Los parques se cruzaron (Zunbeltz, 16-oct): cada uid sigue con su
+    // contorno.
+    expect(await uidDe('Parque de cerdos 2'),
         uidSembrado('zona', 'Zunbeltz Parques (por confirmar)'));
+    expect(await uidDe('Parque de cerdos 1'),
+        uidSembrado('zona', 'Zunbeltz Parque de cerdos 2'));
     expect(await uidDe('Pasillo'),
         uidSembrado('zona', 'Zunbeltz Zona verde (por confirmar)'));
-    expect(await uidDe('Parque de cerdos 2'),
-        uidSembrado('zona', 'Zunbeltz Parque de cerdos 2'));
+    expect(await uidDe('Monte 3'),
+        uidSembrado('zona', 'Zunbeltz Pieza sin nombre A (norte)'));
+    expect(
+        await uidDe('La Cañada'),
+        uidSembrado(
+            'zona', 'Zunbeltz Pieza sin nombre B (junto a la carretera)'));
   });
 
   test('con fincas ya en la BD no siembra nada', () async {

@@ -50,8 +50,11 @@ void main() {
           'Parque de cerdos 1',
           'Parque de cerdos 2',
           'Enfermería',
-          'Pasillo'
+          'Pasillo',
+          'Monte 1',
+          'La Cañada',
         ]));
+    expect(nombres, isNot(contains('Pieza sin nombre A (norte)')));
     expect(nombres, isNot(contains('Parques (por confirmar)')));
     expect(nombres, isNot(contains('Monte (norte)')));
   },

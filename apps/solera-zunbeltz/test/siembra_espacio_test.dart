@@ -88,6 +88,20 @@ void main() {
     expect(await uids(otro), await uids(bd));
   });
 
+  test('una zona renombrada conserva el uid con que se sembró', () async {
+    await bd.sembrarEspacioRealSiVacia();
+    final db = await bd.basedatos;
+    Future<String?> uidDe(String nombre) async => (await db.query('zonas_finca',
+            columns: ['uid'], where: 'nombre = ?', whereArgs: [nombre]))
+        .single['uid'] as String?;
+    expect(await uidDe('Parque de cerdos 1'),
+        uidSembrado('zona', 'Zunbeltz Parques (por confirmar)'));
+    expect(await uidDe('Pasillo'),
+        uidSembrado('zona', 'Zunbeltz Zona verde (por confirmar)'));
+    expect(await uidDe('Parque de cerdos 2'),
+        uidSembrado('zona', 'Zunbeltz Parque de cerdos 2'));
+  });
+
   test('con fincas ya en la BD no siembra nada', () async {
     await bd.sembrarFincasDemoSiVacia();
     expect(await bd.sembrarEspacioRealSiVacia(), isFalse);

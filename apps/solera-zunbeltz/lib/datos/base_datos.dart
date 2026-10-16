@@ -1485,7 +1485,7 @@ class BaseDatosSoleraZunbeltz {
     for (final z in zonasEspacio) {
       final fincaId = idPorFinca[z.finca];
       if (fincaId == null) continue;
-      final uid = uidSembrado('zona', '${z.finca} ${z.nombre}');
+      final uid = uidSembrado('zona', '${z.finca} ${z.claveUid}');
       idPorZona['${z.finca} ${z.nombre}'] = await guardarZona(
           ZonaFinca.desdeTrazado(
             fincaId: fincaId,

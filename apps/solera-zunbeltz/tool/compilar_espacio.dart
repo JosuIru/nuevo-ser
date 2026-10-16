@@ -49,8 +49,9 @@ void main() {
     ..writeln()
     ..writeln('class ZonaSeed {')
     ..writeln('  const ZonaSeed(this.finca, this.tipo, this.nombre,')
-    ..writeln('      this.recintoSigpac, this.estado, this.notas, this.verticesJson,')
-    ..writeln("      [this.color = '']);")
+    ..writeln(
+        '      this.recintoSigpac, this.estado, this.notas, this.verticesJson,')
+    ..writeln("      [this.color = '', this.clave = '']);")
     ..writeln('  final String finca;')
     ..writeln('  final String tipo;')
     ..writeln('  final String nombre;')
@@ -59,9 +60,16 @@ void main() {
     ..writeln('  final String notas;')
     ..writeln('  final String verticesJson;')
     ..writeln('  final String color;')
+    ..writeln('')
+    ..writeln(
+        '  /// Nombre con que se sembró la primera vez: da el uid. Vacía = [nombre].')
+    ..writeln('  final String clave;')
+    ..writeln('')
+    ..writeln('  String get claveUid => clave.isEmpty ? nombre : clave;')
     ..writeln('}')
     ..writeln()
-    ..writeln('/// Tarea de partida, anclada por nombre a una zona o a un punto de su')
+    ..writeln(
+        '/// Tarea de partida, anclada por nombre a una zona o a un punto de su')
     ..writeln('/// finca. [clave] da el uid: el mismo en todos los móviles.')
     ..writeln('class TareaSeed {')
     ..writeln('  const TareaSeed(this.finca, this.clave, this.titulo,')
@@ -98,7 +106,8 @@ void main() {
     buffer.writeln('  ZonaSeed(${_s(z['finca'])}, ${_s(z['tipo'])}, '
         '${_s(z['nombre'])}, ${_s(z['recinto_sigpac'])}, '
         '${_s(z['estado'], def: 'en_uso')}, ${_s(z['notas'])}, '
-        '${_s(z['vertices'], def: '[]')}, ${_s(z['color'])}),');
+        '${_s(z['vertices'], def: '[]')}, ${_s(z['color'])}, '
+        '${_s(z['clave'])}),');
   }
   buffer
     ..writeln('];')

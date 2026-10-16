@@ -1,0 +1,10 @@
+tipo;finca;nombre
+# Zonas y puntos que la app sembró en una versión anterior y ya no siembra.
+# Al actualizar el plugin, el servidor los retira si nadie los ha tocado
+# (ver includes/espacio-sembrado.php). Una zona renombrada NO va aquí: se
+# le pone su nombre anterior en la columna «clave» de zonas.csv.
+# tipo: zona | punto
+zona;Zunbeltz;Perímetro de la finca
+zona;Zunbeltz;Monte (norte)
+zona;Zunbeltz;Monte (sur)
+punto;Zunbeltz;Las Bordas

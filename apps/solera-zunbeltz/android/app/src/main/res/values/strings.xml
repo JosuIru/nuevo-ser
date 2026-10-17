@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos del widget de inicio antes de que la app lo rellene (luego los
+     pone la app en su idioma: lib/servicios/widget_hoy.dart). -->
+<resources>
+    <string name="widget_hoy_nombre">Hoy en Zunbeltz</string>
+    <string name="widget_hoy_descripcion">Alarmas, tareas, ganado en supresión y el tiempo, con accesos directos</string>
+    <string name="widget_hoy_abre_app">Abre la app para ver el resumen</string>
+    <string name="widget_boton_aviso">Aviso</string>
+    <string name="widget_boton_mover">Mover lote</string>
+    <string name="widget_boton_cura">Cura</string>
+</resources>

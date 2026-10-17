@@ -34,6 +34,10 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+            <!-- Los enlaces zunbeltz:// del widget los atiende la app
+                 (acciones_widget_hoy.dart); sin esto Flutter los toma por
+                 rutas y abre otra copia de la pantalla principal. -->
+            <meta-data android:name="flutter_deeplinking_enabled" android:value="false" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -44,6 +48,15 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+        <!-- Widget «Hoy en Zunbeltz» de la pantalla de inicio. -->
+        <receiver android:name=".WidgetHoyZunbeltz" android:exported="false"
+            android:label="@string/widget_hoy_nombre">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/widget_hoy_info" />
+        </receiver>
         <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
         <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
             <intent-filter>

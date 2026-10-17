@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Euskara: zirriborroa, berrikusteko. -->
+<resources>
+    <string name="widget_hoy_nombre">Gaur Zunbeltzen</string>
+    <string name="widget_hoy_descripcion">Alarmak, lanak, kentze-epeko abereak eta eguraldia, lasterbideekin</string>
+    <string name="widget_hoy_abre_app">Ireki aplikazioa laburpena ikusteko</string>
+    <string name="widget_boton_aviso">Abisua</string>
+    <string name="widget_boton_mover">Mugitu</string>
+    <string name="widget_boton_cura">Sendaketa</string>
+</resources>

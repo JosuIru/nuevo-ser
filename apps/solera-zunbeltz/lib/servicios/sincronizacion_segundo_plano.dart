@@ -8,11 +8,13 @@ import '../estado/idioma_app.dart';
 import '../estado/sesion_espacio.dart';
 import 'servicio_notificaciones.dart';
 import 'servicio_sincronizacion.dart';
+import 'widget_hoy.dart';
 
 /// Sincronización con la app cerrada (solo Android): Android lanza cada
 /// ~15 minutos, con conexión, una tarea que sincroniza en segundo plano y,
 /// si llega algo nuevo (una alarma de otra persona, una petición), muestra
-/// las mismas notificaciones que con la app abierta.
+/// las mismas notificaciones que con la app abierta. De paso pone al día
+/// el widget de la pantalla de inicio (`widget_hoy.dart`).
 ///
 /// No es instantáneo: Android agrupa estas tareas para ahorrar batería y,
 /// con el móvil en reposo, puede retrasarlas. Para avisos al instante haría
@@ -33,17 +35,19 @@ void despachadorSegundoPlano() {
     try {
       final preferencias = await SharedPreferences.getInstance();
       await preferencias.reload();
-      if (!tocaSincronizar(
-          preferencias.getInt(claveUltimaSincronizacion), DateTime.now())) {
-        return true;
-      }
       await precargarIdiomaZunbeltz();
       await precargarSesionEspacio();
-      await iniciarNotificaciones(pedirPermiso: false);
-      await sincronizarEspacio();
+      if (tocaSincronizar(
+          preferencias.getInt(claveUltimaSincronizacion), DateTime.now())) {
+        await iniciarNotificaciones(pedirPermiso: false);
+        await sincronizarEspacio();
+      }
     } catch (_) {
       // Sin cobertura o sin configurar: se reintenta en la próxima ronda.
     }
+    // Aunque no toque sincronizar: al cambiar de día las tareas de hoy y
+    // los plazos de supresión cambian solos.
+    await actualizarWidgetHoy();
     return true;
   });
 }

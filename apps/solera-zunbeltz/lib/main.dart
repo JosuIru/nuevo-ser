@@ -17,6 +17,7 @@ import 'dart:io' show Platform;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:home_widget/home_widget.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
@@ -27,6 +28,7 @@ import 'estado/idioma_app.dart';
 import 'estado/sesion_espacio.dart';
 import 'estado/version_demo.dart';
 import 'l10n/app_localizations.dart';
+import 'pantallas/acciones_widget_hoy.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_fincas.dart';
 import 'pantallas/pantalla_ganado.dart';
@@ -36,6 +38,7 @@ import 'pantallas/pantalla_proyectos.dart';
 import 'servicios/servicio_notificaciones.dart';
 import 'servicios/sincronizacion_segundo_plano.dart';
 import 'servicios/servicio_sincronizacion.dart';
+import 'servicios/widget_hoy.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -65,6 +68,8 @@ Future<void> main() async {
       // a mano desde Ajustes.
     }
   }
+  // Después de sembrar la demo, para que el widget ya la cuente.
+  escucharCambiosParaWidgetHoy();
   runApp(const AppSoleraZunbeltz());
 }
 
@@ -162,6 +167,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal>
   static const _intervaloSincronizacion = Duration(minutes: 10);
   Timer? _temporizadorSincronizacion;
 
+  /// Toques en los botones del widget de la pantalla de inicio (Android).
+  StreamSubscription<Uri?>? _toquesWidget;
+
   @override
   void initState() {
     super.initState();
@@ -169,15 +177,37 @@ class _PantallaPrincipalState extends State<PantallaPrincipal>
     sincronizarEspacioEnSilencio();
     _temporizadorSincronizacion = Timer.periodic(
         _intervaloSincronizacion, (_) => sincronizarEspacioEnSilencio());
+    _escucharWidget();
+  }
+
+  Future<void> _escucharWidget() async {
+    if (kIsWeb || !Platform.isAndroid) return;
+    try {
+      _toquesWidget = HomeWidget.widgetClicked.listen(_abrirDesdeWidget);
+      _abrirDesdeWidget(await HomeWidget.initiallyLaunchedFromHomeWidget());
+    } catch (_) {
+      // Sin el plugin (tests): la app funciona igual sin widget.
+    }
+  }
+
+  void _abrirDesdeWidget(Uri? enlace) {
+    final accion = accionDesdeEnlaceWidget(enlace);
+    if (accion == null || !mounted) return;
+    // Si había algo abierto encima (una ficha, un formulario), se cierra.
+    Navigator.of(context).popUntil((ruta) => ruta.isFirst);
+    abrirAccionWidgetHoy(context, accion,
+        irAPestana: (indice) => setState(() => _indice = indice));
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState estado) {
     if (estado == AppLifecycleState.resumed) sincronizarEspacioEnSilencio();
+    if (estado == AppLifecycleState.paused) actualizarWidgetHoy();
   }
 
   @override
   void dispose() {
+    _toquesWidget?.cancel();
     _temporizadorSincronizacion?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();

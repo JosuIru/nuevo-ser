@@ -109,6 +109,37 @@ void main() {
       expect(segundo.prevision.actual?.temperatura, 19.6);
     });
 
+    test('para el widget: usa la guardada si es reciente, si no la pide',
+        () async {
+      SharedPreferences.setMockInitialValues({});
+      var peticiones = 0;
+      final servicio = ServicioMeteo(cliente: MockClient((_) async {
+        peticiones++;
+        return http.Response.bytes(utf8.encode(respuestaReal), 200);
+      }));
+      expect(await servicio.obtenerSiCaduca(latitud: 1, longitud: 1),
+          isNotNull);
+      expect(peticiones, 1);
+      await servicio.obtenerSiCaduca(latitud: 1, longitud: 1);
+      expect(peticiones, 1, reason: 'recién guardada: no se vuelve a pedir');
+      await servicio.obtenerSiCaduca(
+          latitud: 1,
+          longitud: 1,
+          ahora: DateTime.now().add(const Duration(hours: 3)));
+      expect(peticiones, 2);
+
+      final sinRed = ServicioMeteo(
+          cliente: MockClient((_) async => throw const SocketException('x')));
+      expect(
+          await sinRed.obtenerSiCaduca(
+              latitud: 1,
+              longitud: 1,
+              ahora: DateTime.now().add(const Duration(hours: 3))),
+          isNotNull,
+          reason: 'sin red, la vieja');
+      expect(await sinRed.obtenerSiCaduca(latitud: 9, longitud: 9), isNull);
+    });
+
     test('sin red ni caché lanza MeteoException', () async {
       SharedPreferences.setMockInitialValues({});
       final sinRed = ServicioMeteo(

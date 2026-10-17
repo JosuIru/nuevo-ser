@@ -369,6 +369,30 @@ class ServicioMeteo {
     }
   }
 
+  /// La previsión guardada si tiene menos de [edadMaxima]; si no, la pide
+  /// (para el widget de la pantalla de inicio, que se refresca cada
+  /// ~15 minutos y no necesita bajarla en cada vuelta). Null si no hay ni
+  /// conexión ni nada guardado.
+  Future<PrevisionMeteo?> obtenerSiCaduca({
+    required double latitud,
+    required double longitud,
+    Duration edadMaxima = const Duration(hours: 2),
+    DateTime? ahora,
+  }) async {
+    final guardada = await _leerCache(
+        '$_prefijoCache${latitud.toStringAsFixed(3)},${longitud.toStringAsFixed(3)}');
+    if (guardada != null &&
+        (ahora ?? DateTime.now()).difference(guardada.actualizado) <
+            edadMaxima) {
+      return guardada;
+    }
+    try {
+      return (await obtener(latitud: latitud, longitud: longitud)).prevision;
+    } catch (_) {
+      return guardada;
+    }
+  }
+
   Future<String> _descargar(double latitud, double longitud) async {
     final uri = Uri.parse(_endpoint).replace(
       queryParameters: {

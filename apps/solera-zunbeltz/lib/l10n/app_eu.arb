@@ -822,5 +822,64 @@
   "ganAhoraEn": "Orain {zona} sailean dago.",
   "ganMoverTitulo": "«{lote}» mugitu",
   "ganManejoTitulo": "{quien}-ri idatzi",
-  "ganCabezasPorHa": "{valor} buru/ha"
+  "ganCabezasPorHa": "{valor} buru/ha",
+  "widgetHoyTitulo": "Gaur Zunbeltzen",
+  "widgetActualizado": "Eguneratua: {hora}",
+  "@widgetActualizado": {
+    "placeholders": {
+      "hora": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetAlarmas": "{n, plural, =1{Alarma: {titulo}} other{{n} alarma · {titulo}}}",
+  "@widgetAlarmas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "titulo": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetTareasHoy": "{n, plural, =0{gaurko ezer ez} =1{1 gaurko} other{{n} gaurko}}",
+  "@widgetTareasHoy": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "widgetSupresion": "{n, plural, =0{Ez dago talderik kentze-epean} =1{Talde 1 kentze-epean · libre {fecha}(e)tik} other{{n} talde kentze-epean · lehena, libre {fecha}(e)tik}}",
+  "@widgetSupresion": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetTiempo": "Gaur {minima}° / {maxima}° · {lluvia} mm",
+  "@widgetTiempo": {
+    "placeholders": {
+      "minima": {
+        "type": "String"
+      },
+      "maxima": {
+        "type": "String"
+      },
+      "lluvia": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetSinTiempo": "Ez dago iragarpenik gordeta",
+  "widgetBotonAviso": "Abisua",
+  "widgetBotonMover": "Mugitu",
+  "widgetBotonCura": "Sendaketa",
+  "ayudaWidgetT": "Hasierako pantailako widgeta (Android)",
+  "ayudaWidgetB": "Android-en, mugikorraren hasierako pantailan Gaur-en laburpen bat jar dezakezu aplikazioa ireki gabe: alarma irekiak, zure zeregin iraungiak eta gaurkoak, kentze-epean dauden taldeak (eta lehena noiz geratzen den libre) eta finkako gaurko eguraldia.\n1. Eutsi sakatuta hasierako pantailako hutsune bat eta aukeratu «Widgetak».\n2. Bilatu «Solera Zunbeltz» eta arrastatu «Gaur Zunbeltzen» pantailara.\n3. Nahi baduzu, eutsi sakatuta handiago edo txikiago egiteko: leku gutxirekin, lehenik eguraldia kentzen da eta gero kentze-epea.\n» Bere botoiek aplikazioa zuzenean irekitzen dute abisu bat emateko, talde bat mugitzeko edo sendaketa bat idazteko (taldea aukeratuta). Zure profilak erabil ditzakeenak bakarrik agertzen dira.\n» Aplikazioan zerbait aldatzean eguneratzen da eta, aplikazioa itxita dagoela, 15 minutuz behin gutxi gorabehera (Android-ek erabakitzen du noiz). Goiko orduak azken aldia noiz izan zen dio.\n» Web bertsioan eta ordenagailuan ez dago widgetik."
 }

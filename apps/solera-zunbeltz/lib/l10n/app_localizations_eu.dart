@@ -2656,4 +2656,71 @@ class AppLocalizationsEu extends AppLocalizations {
   String ganCabezasPorHa(String valor) {
     return '$valor buru/ha';
   }
+
+  @override
+  String get widgetHoyTitulo => 'Gaur Zunbeltzen';
+
+  @override
+  String widgetActualizado(String hora) {
+    return 'Eguneratua: $hora';
+  }
+
+  @override
+  String widgetAlarmas(int n, String titulo) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n alarma · $titulo',
+      one: 'Alarma: $titulo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String widgetTareasHoy(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n gaurko',
+      one: '1 gaurko',
+      zero: 'gaurko ezer ez',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String widgetSupresion(int n, String fecha) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n talde kentze-epean · lehena, libre $fecha(e)tik',
+      one: 'Talde 1 kentze-epean · libre $fecha(e)tik',
+      zero: 'Ez dago talderik kentze-epean',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String widgetTiempo(String minima, String maxima, String lluvia) {
+    return 'Gaur $minima° / $maxima° · $lluvia mm';
+  }
+
+  @override
+  String get widgetSinTiempo => 'Ez dago iragarpenik gordeta';
+
+  @override
+  String get widgetBotonAviso => 'Abisua';
+
+  @override
+  String get widgetBotonMover => 'Mugitu';
+
+  @override
+  String get widgetBotonCura => 'Sendaketa';
+
+  @override
+  String get ayudaWidgetT => 'Hasierako pantailako widgeta (Android)';
+
+  @override
+  String get ayudaWidgetB =>
+      'Android-en, mugikorraren hasierako pantailan Gaur-en laburpen bat jar dezakezu aplikazioa ireki gabe: alarma irekiak, zure zeregin iraungiak eta gaurkoak, kentze-epean dauden taldeak (eta lehena noiz geratzen den libre) eta finkako gaurko eguraldia.\n1. Eutsi sakatuta hasierako pantailako hutsune bat eta aukeratu «Widgetak».\n2. Bilatu «Solera Zunbeltz» eta arrastatu «Gaur Zunbeltzen» pantailara.\n3. Nahi baduzu, eutsi sakatuta handiago edo txikiago egiteko: leku gutxirekin, lehenik eguraldia kentzen da eta gero kentze-epea.\n» Bere botoiek aplikazioa zuzenean irekitzen dute abisu bat emateko, talde bat mugitzeko edo sendaketa bat idazteko (taldea aukeratuta). Zure profilak erabil ditzakeenak bakarrik agertzen dira.\n» Aplikazioan zerbait aldatzean eguneratzen da eta, aplikazioa itxita dagoela, 15 minutuz behin gutxi gorabehera (Android-ek erabakitzen du noiz). Goiko orduak azken aldia noiz izan zen dio.\n» Web bertsioan eta ordenagailuan ez dago widgetik.';
 }

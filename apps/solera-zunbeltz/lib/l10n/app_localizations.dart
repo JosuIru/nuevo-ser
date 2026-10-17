@@ -4741,6 +4741,78 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'{valor} cab./ha'**
   String ganCabezasPorHa(String valor);
+
+  /// No description provided for @widgetHoyTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy en Zunbeltz'**
+  String get widgetHoyTitulo;
+
+  /// No description provided for @widgetActualizado.
+  ///
+  /// In es, this message translates to:
+  /// **'Act. {hora}'**
+  String widgetActualizado(String hora);
+
+  /// No description provided for @widgetAlarmas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{Alarma: {titulo}} other{{n} alarmas · {titulo}}}'**
+  String widgetAlarmas(int n, String titulo);
+
+  /// No description provided for @widgetTareasHoy.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{nada para hoy} =1{1 para hoy} other{{n} para hoy}}'**
+  String widgetTareasHoy(int n);
+
+  /// No description provided for @widgetSupresion.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =0{Ningún lote en supresión} =1{1 lote en supresión · libre el {fecha}} other{{n} lotes en supresión · el primero, libre el {fecha}}}'**
+  String widgetSupresion(int n, String fecha);
+
+  /// No description provided for @widgetTiempo.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy {minima}° / {maxima}° · {lluvia} mm'**
+  String widgetTiempo(String minima, String maxima, String lluvia);
+
+  /// No description provided for @widgetSinTiempo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin previsión guardada'**
+  String get widgetSinTiempo;
+
+  /// No description provided for @widgetBotonAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Aviso'**
+  String get widgetBotonAviso;
+
+  /// No description provided for @widgetBotonMover.
+  ///
+  /// In es, this message translates to:
+  /// **'Mover lote'**
+  String get widgetBotonMover;
+
+  /// No description provided for @widgetBotonCura.
+  ///
+  /// In es, this message translates to:
+  /// **'Cura'**
+  String get widgetBotonCura;
+
+  /// No description provided for @ayudaWidgetT.
+  ///
+  /// In es, this message translates to:
+  /// **'El widget de la pantalla de inicio (Android)'**
+  String get ayudaWidgetT;
+
+  /// No description provided for @ayudaWidgetB.
+  ///
+  /// In es, this message translates to:
+  /// **'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los lotes en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un lote o apuntar una cura (eligiendo el lote). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.'**
+  String get ayudaWidgetB;
 }
 
 class _AppLocalizationsDelegate

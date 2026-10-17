@@ -2651,4 +2651,71 @@ class AppLocalizationsEs extends AppLocalizations {
   String ganCabezasPorHa(String valor) {
     return '$valor cab./ha';
   }
+
+  @override
+  String get widgetHoyTitulo => 'Hoy en Zunbeltz';
+
+  @override
+  String widgetActualizado(String hora) {
+    return 'Act. $hora';
+  }
+
+  @override
+  String widgetAlarmas(int n, String titulo) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n alarmas · $titulo',
+      one: 'Alarma: $titulo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String widgetTareasHoy(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n para hoy',
+      one: '1 para hoy',
+      zero: 'nada para hoy',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String widgetSupresion(int n, String fecha) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n lotes en supresión · el primero, libre el $fecha',
+      one: '1 lote en supresión · libre el $fecha',
+      zero: 'Ningún lote en supresión',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String widgetTiempo(String minima, String maxima, String lluvia) {
+    return 'Hoy $minima° / $maxima° · $lluvia mm';
+  }
+
+  @override
+  String get widgetSinTiempo => 'Sin previsión guardada';
+
+  @override
+  String get widgetBotonAviso => 'Aviso';
+
+  @override
+  String get widgetBotonMover => 'Mover lote';
+
+  @override
+  String get widgetBotonCura => 'Cura';
+
+  @override
+  String get ayudaWidgetT => 'El widget de la pantalla de inicio (Android)';
+
+  @override
+  String get ayudaWidgetB =>
+      'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los lotes en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un lote o apuntar una cura (eligiendo el lote). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.';
 }

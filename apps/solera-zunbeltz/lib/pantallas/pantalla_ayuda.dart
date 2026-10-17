@@ -56,6 +56,8 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
               Icons.translate_outlined),
           _ApartadoAyuda(
               t.ayudaHoyAvisosT, t.ayudaHoyAvisosB, Icons.campaign_outlined),
+          _ApartadoAyuda(
+              t.ayudaWidgetT, t.ayudaWidgetB, Icons.widgets_outlined),
           _ApartadoAyuda(t.ayudaActualizacionesT, t.ayudaActualizacionesB,
               Icons.system_update),
         ]),

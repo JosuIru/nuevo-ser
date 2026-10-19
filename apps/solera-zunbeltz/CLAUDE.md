@@ -66,6 +66,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-19 — el 406 al sincronizar (app 0.6.2) y APK desde GitHub (plugin 0.8.2)**. El ModSecurity del hosting de `app.zunbeltz.com` responde **406 a los POST sin cabecera `Accept`**, y Dart no la manda: ninguna sincronización con datos llegaba. La app manda ahora `accept: application/json` (`test/cliente_sync_cabeceras_test.dart`). Para depurar algo así: la app no enseña el cuerpo del error; curl manda `Accept: */*` y por eso desde el ordenador funcionaba. «Descargar para Android» (`/app/descargar/android`) redirige al APK de la última release `solera-zunbeltz-<versión>` (`includes/apk-github.php`, caché 1 h); el APK subido en el panel queda de respaldo.
 
+> **2026-10-19 — la presentación en app.zunbeltz.com (plugin 0.8.3, tema 0.1.2)**. El plugin sirve `presentacion/index.html` en `/presentacion/` (`includes/presentacion.php`; `dev/empaquetar.sh` la mete en el zip; enlazado al repo, sirve el original) y el pie del tema la enlaza («Sobre el proyecto» / «Proiektuari buruz»). La copia de gailu.it/desarrollo/zunbeltz/ se quedó en la versión del 23-sep. El tema no se actualiza solo: su zip va adjunto a la release del plugin.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

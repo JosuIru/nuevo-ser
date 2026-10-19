@@ -129,7 +129,10 @@ class ClienteSyncZunbeltz {
   Uri _ruta(String ruta) =>
       Uri.parse('${_sinBarraFinal(urlBase)}/wp-json/solera-zunbeltz/v1/$ruta');
 
+  // Sin `accept`, el ModSecurity del hosting de Zunbeltz responde 406 a
+  // los POST (Dart no la manda por defecto).
   Map<String, String> get _cabeceras => {
+        'accept': 'application/json',
         'content-type': 'application/json',
         'X-Zunbeltz-Token': token,
       };

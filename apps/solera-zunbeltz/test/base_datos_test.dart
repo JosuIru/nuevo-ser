@@ -743,8 +743,11 @@ void main() {
     expect(siguiente.recurrenciaDias, 7);
     // Sin fecha objetivo previa: se cuenta desde hoy, así que la nueva fecha
     // cae aproximadamente 7 días por delante (con margen por el tiempo del test).
-    final dentroDeSieteDias =
-        DateTime.now().add(const Duration(days: 7)).millisecondsSinceEpoch;
+    // Días de calendario, no 7 × 24 h: si hay cambio de hora en medio, difieren.
+    final ahora = DateTime.now();
+    final dentroDeSieteDias = DateTime(ahora.year, ahora.month, ahora.day + 7,
+            ahora.hour, ahora.minute, ahora.second)
+        .millisecondsSinceEpoch;
     expect(
         (siguiente.fechaObjetivoMs! - dentroDeSieteDias).abs() < 60000, isTrue);
     expect(await bd.contarTareasAbiertas(), 1);

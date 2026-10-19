@@ -23,7 +23,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"fontSize":"pequeno"} -->
-<p class="has-pequeno-font-size"><?php echo esc_html( zunbeltz_espacio_texto( 'Herramienta Solera Zunbeltz', 'Solera Zunbeltz tresna' ) ); ?> · <a href="<?php echo esc_url( admin_url() ); ?>"><?php echo esc_html( zunbeltz_espacio_texto( 'Acceder', 'Sartu' ) ); ?></a></p>
+<p class="has-pequeno-font-size"><?php echo esc_html( zunbeltz_espacio_texto( 'Herramienta Solera Zunbeltz', 'Solera Zunbeltz tresna' ) ); ?> · <?php if ( function_exists( 'szs_hay_presentacion' ) && szs_hay_presentacion() ) : ?><a href="<?php echo esc_url( szs_url_presentacion() ); ?>"><?php echo esc_html( zunbeltz_espacio_texto( 'Sobre el proyecto', 'Proiektuari buruz' ) ); ?></a> · <?php endif; ?><a href="<?php echo esc_url( admin_url() ); ?>"><?php echo esc_html( zunbeltz_espacio_texto( 'Acceder', 'Sartu' ) ); ?></a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

@@ -15,6 +15,9 @@ if [ -d app-web ]; then
 else
   echo "Aviso: sin app-web/ (ejecuta dev/construir_app_web.sh para incluir la app web)" >&2
 fi
+# La presentación del proyecto, que se sirve en /presentacion/.
+mkdir -p "$temporal/solera-zunbeltz-sync/presentacion"
+cp ../../apps/solera-zunbeltz/presentacion/index.html "$temporal/solera-zunbeltz-sync/presentacion/"
 ( cd "$temporal" && zip -qr "solera-zunbeltz-sync-$version.zip" solera-zunbeltz-sync )
 mv "$temporal/solera-zunbeltz-sync-$version.zip" "$destino/"
 echo "$destino/solera-zunbeltz-sync-$version.zip"

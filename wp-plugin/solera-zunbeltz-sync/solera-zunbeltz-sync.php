@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     0.8.2
+ * Version:     0.8.3
  * Author:      Gailu Sare - Solera
  * Author URI:  https://gailu.net/
  * License:     GPL-2.0-or-later
@@ -35,6 +35,7 @@
  *   aceptado, venga de la app o del panel.
  * - Panel de coordinación (`includes/panel/`) y correos (`includes/correo.php`).
  * - La app web servida en `/app/` (`includes/app-web.php`, ficheros en `app-web/`).
+ * - La presentación del proyecto en `/presentacion/` (`includes/presentacion.php`).
  * - Datos de demostración para desarrollo (`includes/datos-demo.php`): se
  *   crean y se retiran desde el panel o con `wp solera-zunbeltz demo`;
  *   ocultos en producción.
@@ -58,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '0.8.2' );
+define( 'SZS_VERSION', '0.8.3' );
 define( 'SZS_VERSION_ESQUEMA', 7 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
@@ -90,6 +91,7 @@ require_once __DIR__ . '/includes/panel/pagina-agenda.php';
 require_once __DIR__ . '/includes/correo.php';
 require_once __DIR__ . '/includes/app-web.php';
 require_once __DIR__ . '/includes/apk-github.php';
+require_once __DIR__ . '/includes/presentacion.php';
 require_once __DIR__ . '/includes/datos-demo.php';
 require_once __DIR__ . '/includes/espacio-sembrado.php';
 require_once __DIR__ . '/includes/actualizar-espacio-sembrado.php';

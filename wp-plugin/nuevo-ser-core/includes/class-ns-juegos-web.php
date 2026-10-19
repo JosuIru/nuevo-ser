@@ -8,9 +8,10 @@
  *   [nuevo_ser_juego juego="uno-roto" alto="100vh"]
  *
  * El build NO va dentro del plugin (pesa ~50 MB y muchos WordPress
- * limitan la subida de zips): se despliega aparte en
- * `wp-content/uploads/juegos/<juego>/` con el script
- * `scripts/web/desplegar.sh <juego>` del monorepo. El juego habla
+ * limitan la subida de zips): va aparte en
+ * `wp-content/uploads/juegos/<juego>/`, instalado desde el wp-admin
+ * (Nuevo Ser Core → Juegos web, ver NS_Instalador_Juegos_Web) o con el
+ * script `scripts/web/desplegar.sh <juego>` del monorepo. El juego habla
  * con el backend de este mismo WordPress (mismo origen, sin CORS).
  *
  * @package NuevoSerCore
@@ -84,9 +85,12 @@ class NS_Juegos_Web {
 		if ( ! file_exists( $carpeta . '/index.html' ) ) {
 			return null;
 		}
+		// Con el esquema de la página que se está viendo: si la dirección del
+		// sitio quedó en http y se visita por https, un iframe en http se
+		// bloquea por contenido mixto y el juego no carga.
 		return array(
 			'carpeta' => $carpeta,
-			'url'     => trailingslashit( $subidas['baseurl'] ) . 'juegos/' . $juego . '/',
+			'url'     => set_url_scheme( trailingslashit( $subidas['baseurl'] ) . 'juegos/' . $juego . '/' ),
 		);
 	}
 
@@ -148,9 +152,9 @@ class NS_Juegos_Web {
 		if ( null === $ubicacion ) {
 			// Sólo quien administra ve el aviso; los visitantes, nada.
 			if ( current_user_can( 'manage_options' ) ) {
-				return '<p><strong>Nuevo Ser:</strong> falta desplegar la versión web de '
-					. esc_html( self::JUEGOS[ $juego ] ) . ' en <code>wp-content/uploads/juegos/'
-					. esc_html( $juego ) . '/</code> (script <code>scripts/web/desplegar.sh ' . esc_html( $juego ) . '</code>).</p>';
+				return '<p><strong>Nuevo Ser:</strong> falta instalar la versión web de '
+					. esc_html( self::JUEGOS[ $juego ] ) . '. Se instala desde <a href="'
+					. esc_url( admin_url( 'admin.php?page=nuevo-ser-core-juegos' ) ) . '">Nuevo Ser Core → Juegos web</a>.</p>';
 			}
 			return '';
 		}

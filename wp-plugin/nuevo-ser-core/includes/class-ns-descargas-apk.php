@@ -70,9 +70,12 @@ class NS_Descargas_Apk {
 		return self::elegir_apk( self::releases(), $juego );
 	}
 
-	/** Releases del repositorio, guardados una hora (diez minutos si GitHub falla). */
-	private static function releases(): array {
-		$guardados = get_transient( self::CLAVE_CACHE );
+	/**
+	 * Releases del repositorio, guardados una hora (diez minutos si GitHub
+	 * falla). Con [forzar] se pregunta a GitHub aunque haya copia guardada.
+	 */
+	public static function releases( bool $forzar = false ): array {
+		$guardados = $forzar ? false : get_transient( self::CLAVE_CACHE );
 		if ( is_array( $guardados ) ) {
 			return $guardados;
 		}

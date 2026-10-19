@@ -26,6 +26,7 @@ v0.5 — refactor en curso. Chunks 2-3 del plan: rename de `uno-roto-core` → `
    curl https://tu-wp.example.org/wp-json/nuevo-ser/v1/login -I
    ```
    El alias deprecado `/wp-json/uno-roto/v1/login` también responde — devuelve el header `Deprecation: true` y un `Link: <…>; rel="successor-version"` apuntando al canónico, pero el cuerpo de la respuesta es idéntico. Vivirá hasta v1.5 para no romper APKs de testers desplegados.
+5. **Juegos web** (v0.19+): en *Nuevo Ser Core → Juegos web*, «Instalar» descarga de GitHub Releases el build web del juego (tag `web-<juego>-<versión>`, zip + `.sha256`), lo comprueba y lo coloca en `wp-content/uploads/juegos/<juego>/`; «Crear /jugar/» crea la página con `[uno_roto]` y la plantilla *Página del juego* del tema Uno Roto. El build se publica desde el monorepo con `bash scripts/web/publicar_web.sh <juego>`. Requiere la extensión PHP `zip`.
 
 ## Tablas creadas
 

@@ -66,6 +66,32 @@ afirmar( 'application/vnd.android.package-archive', szs_tipo_mime_app_web( 'x.ap
 afirmar( true, szs_es_apk( "PK\x03\x04resto" ), 'un APK es un zip (empieza por PK)' );
 afirmar( false, szs_es_apk( '<?php echo 1;' ), 'cualquier otra cosa no se acepta' );
 
+// --- APK desde las releases de GitHub ---
+$apk_de = static fn( string $tag, string $nombre, array $extra = array() ) => $extra + array(
+	'tag_name'     => $tag,
+	'published_at' => '2026-10-19T10:50:00Z',
+	'assets'       => array( array( 'name' => $nombre, 'size' => 1000, 'browser_download_url' => "https://github.com/JosuIru/nuevo-ser/releases/download/{$tag}/{$nombre}" ) ),
+);
+$releases = array(
+	$apk_de( 'plugin-solera-zunbeltz-sync-0.8.2', 'solera-zunbeltz-sync-0.8.2.zip' ),
+	$apk_de( 'solera-zunbeltz-0.7.0+24', 'solera-zunbeltz-0.7.0+24.apk', array( 'draft' => true ) ),
+	$apk_de( 'solera-zunbeltz-0.6.9+23', 'solera-zunbeltz-0.6.9+23.apk', array( 'prerelease' => true ) ),
+	$apk_de( 'uno-roto-1.0.0+26', 'uno-roto-1.0.0+26.apk' ),
+	$apk_de( 'solera-zunbeltz-sync-0.9.0', 'solera-zunbeltz-sync-0.9.0.apk' ),
+	$apk_de( 'solera-zunbeltz-0.6.2+23', 'solera-zunbeltz-0.6.2+23.apk' ),
+	$apk_de( 'solera-zunbeltz-0.6.1+22', 'solera-zunbeltz-0.6.1+22.apk' ),
+);
+$elegido = szs_elegir_release_apk( $releases );
+afirmar( '0.6.2+23', $elegido['version'] ?? null, 'la release de la app más nueva, saltando plugin, borradores, previas y otras apps' );
+afirmar( 'https://github.com/JosuIru/nuevo-ser/releases/download/solera-zunbeltz-0.6.2+23/solera-zunbeltz-0.6.2+23.apk', $elegido['url'] ?? null, 'enlace de descarga del APK' );
+afirmar( 1000, $elegido['tamano'] ?? null, 'tamaño del APK' );
+afirmar( null, szs_elegir_release_apk( array( $apk_de( 'solera-zunbeltz-0.6.3+24', 'notas.txt' ) ) ), 'una release sin APK no vale' );
+afirmar( null, szs_elegir_release_apk( array( $apk_de( 'solera-zunbeltz-0.6.3+24', 'solera-zunbeltz-0.6.3+24.apk', array( 'assets' => array() ) ) ) ), 'sin ficheros, nada' );
+$fuera_de_github = $apk_de( 'solera-zunbeltz-0.6.3+24', 'solera-zunbeltz-0.6.3+24.apk' );
+$fuera_de_github['assets'][0]['browser_download_url'] = 'https://otro.example/x.apk';
+afirmar( null, szs_elegir_release_apk( array( $fuera_de_github ) ), 'solo se redirige a github.com' );
+afirmar( null, szs_elegir_release_apk( array() ), 'sin releases, nada' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

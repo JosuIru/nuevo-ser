@@ -26,7 +26,7 @@ el `.sql.gz` y `admin.txt` con una contraseña de admin nueva. En el servidor: i
 en una base vacía, `$table_prefix = 'wp_'` en `wp-config.php`, y copiar de Local `wp-content/plugins`
 (WPML y WPML String Translation; el nuestro, desde el `.zip`), `wp-content/themes/zunbeltz-espacio`
 y `wp-content/languages`. Después, Ajustes → Enlaces permanentes → Guardar, registrar el dominio
-nuevo en la cuenta de WPML y subir la APK en Solera Zunbeltz → Android.
+nuevo en la cuenta de WPML y la APK ya no hace falta subirla: desde la 0.8.2, «Descargar para Android» lleva al APK de la última release de la app en GitHub (Solera Zunbeltz → App Android dice cuál; el APK subido ahí solo se ofrece si GitHub no responde).
 
 ## 3. Instalar el plugin
 

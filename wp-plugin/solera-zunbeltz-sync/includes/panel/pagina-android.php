@@ -46,8 +46,12 @@ function szs_pagina_android(): void {
 		return;
 	}
 	$aviso  = szs_procesar_subida_apk();
-	$apk    = szs_apk_publicado();
-	$limite = (int) wp_max_upload_size();
+	if ( isset( $_GET['szs_comprobar_github'] ) ) {
+		delete_transient( SZS_TRANSITORIO_APK );
+	}
+	$apk_github = szs_apk_github();
+	$apk        = szs_apk_publicado();
+	$limite     = (int) wp_max_upload_size();
 	?>
 	<div class="wrap">
 		<h1>App Android</h1>
@@ -55,9 +59,22 @@ function szs_pagina_android(): void {
 		<p><code style="user-select:all;"><?php echo esc_html( szs_url_apk() ); ?></code></p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 
-		<h2>Versión publicada</h2>
+		<h2>Versión que se descarga</h2>
+		<?php if ( null !== $apk_github ) : ?>
+			<p>
+				<strong><?php echo esc_html( 'Versión ' . $apk_github['version'] ); ?></strong>
+				· <?php echo esc_html( size_format( $apk_github['tamano'] ) ); ?>
+				· publicada en GitHub el <?php echo esc_html( wp_date( 'd/m/Y H:i', $apk_github['fecha'] ) ); ?>
+			</p>
+			<p class="description">Sale sola de la última versión publicada de la app; no hace falta subir nada. Se comprueba cada hora: <a href="<?php echo esc_url( add_query_arg( 'szs_comprobar_github', '1' ) ); ?>">comprobar ahora</a>.</p>
+		<?php else : ?>
+			<p><em>No se ha podido consultar GitHub (o no hay versiones publicadas). Mientras, se descarga el APK subido aquí abajo. <a href="<?php echo esc_url( add_query_arg( 'szs_comprobar_github', '1' ) ); ?>">Volver a comprobar</a>.</em></p>
+		<?php endif; ?>
+
+		<h2>APK de respaldo</h2>
+		<p class="description">Solo se ofrece si GitHub no responde.</p>
 		<?php if ( null === $apk ) : ?>
-			<p><em>Todavía no hay ninguna. La portada no muestra el botón de descarga hasta que se publique.</em></p>
+			<p><em>No hay ninguno subido.</em></p>
 		<?php else : ?>
 			<p>
 				<strong><?php echo esc_html( '' === $apk['version'] ? 'Sin número de versión' : 'Versión ' . $apk['version'] ); ?></strong>
@@ -66,7 +83,7 @@ function szs_pagina_android(): void {
 			</p>
 		<?php endif; ?>
 
-		<h2>Publicar una versión nueva</h2>
+		<h2>Subir un APK de respaldo</h2>
 		<form method="post" enctype="multipart/form-data">
 			<?php wp_nonce_field( 'szs_android' ); ?>
 			<input type="hidden" name="szs_accion" value="subir">
@@ -84,7 +101,7 @@ function szs_pagina_android(): void {
 			<li>Abre el fichero descargado. Android pedirá permiso para instalar apps de este origen (el navegador): concédelo.</li>
 			<li>Instala y abre la app. En Ajustes → Sincronización pon la dirección de este WordPress y tu token.</li>
 		</ol>
-		<p class="description">Para actualizar, publica aquí la versión nueva y vuelve a descargarla en el móvil: se instala encima sin perder datos si está firmada con la misma clave que la anterior.</p>
+		<p class="description">Para actualizar, en la app: Ajustes → Actualizaciones. Se instala encima sin perder datos.</p>
 	</div>
 	<?php
 }

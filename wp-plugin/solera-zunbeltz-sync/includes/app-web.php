@@ -12,10 +12,11 @@
  * `--base-href /app/`). Si el WordPress está en una subcarpeta, hay que
  * compilar con esa ruta (`dev/construir_app_web.sh /subcarpeta/app/`).
  *
- * Además sirve la **app Android** (APK) en `/app/descargar/android`. El APK
- * se sube desde el panel («App Android») y se guarda en
- * `wp-content/uploads/solera-zunbeltz/`, fuera del plugin: así no se pierde
- * al actualizarlo ni engorda su `.zip`.
+ * Además sirve la **app Android** (APK) en `/app/descargar/android`: redirige
+ * al de la última release de GitHub (`includes/apk-github.php`) y, si no
+ * hay o GitHub no responde, sirve el que se sube desde el panel («App
+ * Android»), guardado en `wp-content/uploads/solera-zunbeltz/`, fuera del
+ * plugin: así no se pierde al actualizarlo ni engorda su `.zip`.
  *
  * @package SoleraZunbeltzSync
  */
@@ -175,6 +176,12 @@ function szs_publicar_apk( string $ruta_origen, string $version, bool $mover_sub
 }
 
 function szs_descargar_apk(): void {
+	$apk_github = szs_apk_github();
+	if ( null !== $apk_github ) {
+		nocache_headers();
+		wp_redirect( $apk_github['url'], 302, 'Solera Zunbeltz' );
+		exit;
+	}
 	$apk = szs_apk_publicado();
 	if ( null === $apk ) {
 		status_header( 404 );

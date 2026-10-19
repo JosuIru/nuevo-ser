@@ -8,7 +8,7 @@ destino="${1:-$PWD/dev}"
 temporal="$(mktemp -d)"
 trap 'rm -rf "$temporal"' EXIT
 mkdir -p "$temporal/solera-zunbeltz-sync"
-cp -r solera-zunbeltz-sync.php includes assets INSTALACION.md "$temporal/solera-zunbeltz-sync/"
+cp -r solera-zunbeltz-sync.php includes assets lib INSTALACION.md "$temporal/solera-zunbeltz-sync/"
 # La app web va dentro si está compilada (dev/construir_app_web.sh).
 if [ -d app-web ]; then
   cp -r app-web "$temporal/solera-zunbeltz-sync/"

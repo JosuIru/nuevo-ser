@@ -34,7 +34,7 @@ nuevo en la cuenta de WPML y subir la APK en Solera Zunbeltz → Android.
 2. En el WordPress: Plugins → Añadir nuevo → Subir plugin → el `.zip` → Activar.
 3. Aparece el menú **Solera Zunbeltz** (Tareas, Peticiones, Avisos, Proyectos, Actividad, Personas).
 
-Actualizar: subir el `.zip` nuevo (WordPress ofrece reemplazar la versión instalada). Las tablas se actualizan solas y no se pierde nada. Al actualizar, el plugin pone también al día las zonas y puntos de Zunbeltz que sembró la app (nombres, contornos, los que sobran), salvo los que alguien haya editado.
+Actualizar: desde la 0.8.1, WordPress avisa en **Plugins** cuando hay versión nueva y se actualiza con «Actualizar ahora», como cualquier plugin. Las busca en las releases de GitHub del repo (`plugin-solera-zunbeltz-sync-<versión>`, que publica `dev/publicar_release.sh`); para comprobarlo al momento, «Comprobar actualizaciones» bajo el nombre del plugin. Para pasar de la 0.8.0 o anterior a la 0.8.1 hay que subir el `.zip` una vez a mano (WordPress ofrece reemplazar la versión instalada). Las tablas se actualizan solas y no se pierde nada. Al actualizar, el plugin pone también al día las zonas y puntos de Zunbeltz que sembró la app (nombres, contornos, los que sobran), salvo los que alguien haya editado.
 
 **Orden al actualizar**: primero el plugin y después la app. La app 0.6.0 (ganado: lotes, animales, movimientos y curas) necesita el plugin 0.8.0; con uno anterior el ganado no se pierde, pero se queda en cada móvil hasta que se actualice el plugin.
 

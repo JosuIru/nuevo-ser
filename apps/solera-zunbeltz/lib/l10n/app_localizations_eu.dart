@@ -926,6 +926,13 @@ class AppLocalizationsEu extends AppLocalizations {
       '1. Ukitu mapan puntua edo eremua haren fitxa irekitzeko.\n2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.\n3. Eremu bat zuzentzeko: sakatu arkatza (goian). «Datuak editatu» aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; «Ingurua doitu» aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; «+» ikurrek izkina bat gehitzen dute); «Berriro marraztu» aukerak osorik egiten du berriro.\n4. Ezabatzeko: sakatu zakarrontzia eta berretsi.';
 
   @override
+  String get ayudaCierresT => 'Aska edo hesi berri bat';
+
+  @override
+  String get ayudaCierresB =>
+      'Aska, edaska edo manga bat puntu bat da: «Puntu bat markatu mapan» atalean bezala markatzen da, bere motarekin.\nHesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hauetako batean jasotzen da:\n1. Zati edo ate jakin bat axola bada (tenkatzeko, berrikusteko edo konpontzeko), markatu puntu bat leku horretan «Hesia», «Artzain elektrikoa» edo «Atea / langa» motarekin, eta adierazi izenean edo oharretan zein zati den.\n2. Hesiak ixten duen barrutia axola bada, marraztu eremu gisa («Eremua marraztu»). Jarri eta kentzen den hesia bada, aukeratu «Behin-behineko hesitua» mota.\n» Hesiaren zereginak puntu edo eremu horri lotzen zaizkio.\n» Hesiaren trazadura mapan ikusi behar baduzue, esan iezaguzue: funtzio berria litzateke.';
+
+  @override
   String get ayudaTareasT => 'Mantentze-zeregin bat apuntatu';
 
   @override
@@ -2443,6 +2450,45 @@ class AppLocalizationsEu extends AppLocalizations {
       'Zenbaki ofiziala (DIB, REIA…), xaflan dagoen bezala.';
 
   @override
+  String get ganEscanearCrotal => 'Krotala eskaneatu';
+
+  @override
+  String get ganEscanerApuntar =>
+      'Jarri kamera DIBaren edo aberearen agiriaren barra-kodeari begira. Irakurritakoak krotal itxura badu, berez beteko da.';
+
+  @override
+  String get ganEscanerNoReconocido =>
+      'Honek ez du krotal ofizialaren itxurarik (bi letra eta hamabi zifra). Irakurritakoa:';
+
+  @override
+  String get ganEscanerOtraVez => 'Beste bat irakurri';
+
+  @override
+  String get ganEscanerUsarIgual => 'Hala ere erabili';
+
+  @override
+  String get ganEscanerLinterna => 'Linterna';
+
+  @override
+  String get ganEscanerSinPermiso =>
+      'Kamera erabiltzeko baimenik ez. Eman baimena aplikazioari telefonoaren ezarpenetan.';
+
+  @override
+  String get ganEscanerError => 'Ezin izan da kamera ireki.';
+
+  @override
+  String get ganEscanerDesdeFoto => 'Argazki batetik irakurri';
+
+  @override
+  String get ganEscanerFotoSinCodigo =>
+      'Argazki horretan ez da barra-koderik ikusten.';
+
+  @override
+  String ganCrotalLeido(String crotal) {
+    return 'Irakurritako krotala: $crotal';
+  }
+
+  @override
   String get ganIdentificacionObligatoria =>
       'Jarri krotala edo, gutxienez, izen bat.';
 
@@ -2558,7 +2604,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaGanadoLotesB =>
-      'Abereak taldeka eramaten dira, estentsiboan maneiatzen diren bezala: artalde bat, behi-talde bat, gizentzeko txerriak…\n1. Sartu Abereak fitxan eta sakatu «Talde berria».\n2. Jarri izena, espeziea eta norena den (espaziokoa edo tester batena). Banan-banan eramaten ez diren animaliak badaude (hegaztiak, gizentzeko txerriak), jarri zenbat diren «Krotalik gabeko buruak» atalean.\n3. Aukeratu orain zein sailetan dagoen eta gorde.\n4. Krotaldun animalientzat, ireki taldea eta sakatu «Animalia gehitu»: krotala, izena baldin badu, arraza, sexua, jaiotza eta ama.\n» Animaliak fitxan edozein animalia bilatzen da bere krotalaren bidez.';
+      'Abereak taldeka eramaten dira, estentsiboan maneiatzen diren bezala: artalde bat, behi-talde bat, gizentzeko txerriak…\n1. Sartu Abereak fitxan eta sakatu «Talde berria».\n2. Jarri izena, espeziea eta norena den (espaziokoa edo tester batena). Banan-banan eramaten ez diren animaliak badaude (hegaztiak, gizentzeko txerriak), jarri zenbat diren «Krotalik gabeko buruak» atalean.\n3. Aukeratu orain zein sailetan dagoen eta gorde.\n4. Krotaldun animalientzat, ireki taldea eta sakatu «Animalia gehitu»: krotala, izena baldin badu, arraza, sexua, jaiotza eta ama.\n» Animaliak fitxan edozein animalia bilatzen da bere krotalaren bidez.\n» Krotalaren ondoko kamera-ikonoak (alta ematean eta bilaketan) DIBaren barra-kodea irakurri eta zenbakia berez betetzen du. Linux edo Windows duen ordenagailuan ez dago.';
 
   @override
   String get ayudaGanadoMoverT => 'Abereak sailez mugitu';

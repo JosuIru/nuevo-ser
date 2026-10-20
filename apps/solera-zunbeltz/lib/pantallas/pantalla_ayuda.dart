@@ -67,6 +67,7 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
           _ApartadoAyuda(t.ayudaZonasT, t.ayudaZonasB, Icons.pentagon_outlined),
           _ApartadoAyuda(t.ayudaEditarMapaT, t.ayudaEditarMapaB,
               Icons.edit_location_alt_outlined),
+          _ApartadoAyuda(t.ayudaCierresT, t.ayudaCierresB, Icons.fence),
           _ApartadoAyuda(t.ayudaTareasT, t.ayudaTareasB, Icons.add_task),
           _ApartadoAyuda(
               t.ayudaRecurrentesT, t.ayudaRecurrentesB, Icons.repeat),

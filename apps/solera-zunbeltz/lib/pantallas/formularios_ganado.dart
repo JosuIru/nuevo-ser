@@ -7,6 +7,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/ganado.dart';
 import '../utiles/numeros.dart';
+import 'pantalla_escaner_crotal.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
 
@@ -395,8 +396,21 @@ class _FormularioAnimalState extends State<FormularioAnimal>
               autofocus: _esAlta,
               textCapitalization: TextCapitalization.characters,
               decoration: InputDecoration(
-                  labelText: textos.ganIdentificacion,
-                  helperText: textos.ganIdentificacionAyuda),
+                labelText: textos.ganIdentificacion,
+                helperText: textos.ganIdentificacionAyuda,
+                suffixIcon: escanerCrotalDisponible
+                    ? IconButton(
+                        tooltip: textos.ganEscanearCrotal,
+                        icon: const Icon(Icons.qr_code_scanner),
+                        onPressed: () async {
+                          final leido = await escanearCrotal(context);
+                          if (leido == null || !mounted) return;
+                          setState(() => _identificacion.text = leido);
+                          avisar(textos.ganCrotalLeido(leido));
+                        },
+                      )
+                    : null,
+              ),
             ),
             const SizedBox(height: 12),
             TextField(

@@ -1,7 +1,7 @@
 name: solera_zunbeltz
 description: "Solera Zunbeltz — herramienta para el Espacio Test Agrario Zunbeltz. Gestión de fincas e infraestructuras compartidas, tareas de mantenimiento y cuaderno ganadero extensivo ecológico. Bilingüe castellano/euskera, funciona sin cobertura."
 publish_to: 'none'
-version: 0.6.2+23
+version: 0.6.3+24
 
 environment:
   sdk: ^3.5.0
@@ -64,6 +64,7 @@ dependencies:
   timezone: ^0.11.1
   workmanager: ^0.10.10
   home_widget: ^0.10.0
+  mobile_scanner: ^7.4.2
 
 dev_dependencies:
   flutter_test:

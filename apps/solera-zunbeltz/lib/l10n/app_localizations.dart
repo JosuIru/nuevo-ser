@@ -1820,6 +1820,18 @@ abstract class AppLocalizations {
   /// **'1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa el lápiz (arriba). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.\n4. Para borrarlo: pulsa la papelera y confirma.'**
   String get ayudaEditarMapaB;
 
+  /// No description provided for @ayudaCierresT.
+  ///
+  /// In es, this message translates to:
+  /// **'Un abrevadero o un cierre nuevo'**
+  String get ayudaCierresT;
+
+  /// No description provided for @ayudaCierresB.
+  ///
+  /// In es, this message translates to:
+  /// **'Un abrevadero, un bebedero o una manga son un punto: se marcan como en «Marcar un punto en el mapa», con su tipo.\nUn cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de una de estas dos maneras:\n1. Si importa un tramo o una puerta concreta (para tensarlo, revisarlo o arreglarlo), marca un punto en ese sitio con el tipo «Cierre / alambrada», «Pastor eléctrico» o «Puerta / portillo», y di en el nombre o en las notas qué tramo es.\n2. Si importa el recinto que cierra, dibújalo como zona («Dibujar zona»). Si es un cierre que se pone y se quita, elige el tipo «Cercado provisional».\n» Las tareas del cierre se anclan a ese punto o a esa zona.\n» Si necesitáis ver el trazado del cierre en el mapa, decídnoslo: sería una función nueva.'**
+  String get ayudaCierresB;
+
   /// No description provided for @ayudaTareasT.
   ///
   /// In es, this message translates to:
@@ -4406,6 +4418,72 @@ abstract class AppLocalizations {
   /// **'El número oficial (DIB, REIA…), tal como viene en la chapa.'**
   String get ganIdentificacionAyuda;
 
+  /// No description provided for @ganEscanearCrotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanear el crotal'**
+  String get ganEscanearCrotal;
+
+  /// No description provided for @ganEscanerApuntar.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta al código de barras del DIB o del documento del animal. Si lo leído tiene forma de crotal, se rellena solo.'**
+  String get ganEscanerApuntar;
+
+  /// No description provided for @ganEscanerNoReconocido.
+  ///
+  /// In es, this message translates to:
+  /// **'Esto no tiene forma de crotal oficial (dos letras y doce cifras). Lo leído:'**
+  String get ganEscanerNoReconocido;
+
+  /// No description provided for @ganEscanerOtraVez.
+  ///
+  /// In es, this message translates to:
+  /// **'Leer otro'**
+  String get ganEscanerOtraVez;
+
+  /// No description provided for @ganEscanerUsarIgual.
+  ///
+  /// In es, this message translates to:
+  /// **'Usarlo igual'**
+  String get ganEscanerUsarIgual;
+
+  /// No description provided for @ganEscanerLinterna.
+  ///
+  /// In es, this message translates to:
+  /// **'Linterna'**
+  String get ganEscanerLinterna;
+
+  /// No description provided for @ganEscanerSinPermiso.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin permiso para usar la cámara. Dáselo a la app en los ajustes del teléfono.'**
+  String get ganEscanerSinPermiso;
+
+  /// No description provided for @ganEscanerError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido abrir la cámara.'**
+  String get ganEscanerError;
+
+  /// No description provided for @ganEscanerDesdeFoto.
+  ///
+  /// In es, this message translates to:
+  /// **'Leer de una foto'**
+  String get ganEscanerDesdeFoto;
+
+  /// No description provided for @ganEscanerFotoSinCodigo.
+  ///
+  /// In es, this message translates to:
+  /// **'En esa foto no se ve ningún código de barras.'**
+  String get ganEscanerFotoSinCodigo;
+
+  /// No description provided for @ganCrotalLeido.
+  ///
+  /// In es, this message translates to:
+  /// **'Crotal leído: {crotal}'**
+  String ganCrotalLeido(String crotal);
+
   /// No description provided for @ganIdentificacionObligatoria.
   ///
   /// In es, this message translates to:
@@ -4631,7 +4709,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaGanadoLotesB.
   ///
   /// In es, this message translates to:
-  /// **'El ganado se lleva por lotes, como se maneja en extensivo: un rebaño, un lote de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo lote».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el lote y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.'**
+  /// **'El ganado se lleva por lotes, como se maneja en extensivo: un rebaño, un lote de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo lote».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el lote y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.'**
   String get ayudaGanadoLotesB;
 
   /// No description provided for @ayudaGanadoMoverT.

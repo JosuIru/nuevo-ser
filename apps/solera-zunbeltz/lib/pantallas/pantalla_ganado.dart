@@ -10,6 +10,7 @@ import '../modelos/ganado.dart';
 import 'ficha_animal.dart';
 import 'ficha_lote.dart';
 import 'formularios_ganado.dart';
+import 'pantalla_escaner_crotal.dart';
 import 'widgets/relleno_seguro.dart';
 
 // ─── Textos compartidos por las pantallas del ganado ───
@@ -307,6 +308,17 @@ class _PantallaGanadoState extends State<PantallaGanado>
             decoration: InputDecoration(
               prefixIcon: const Icon(Icons.search),
               labelText: textos.ganBuscarAnimal,
+              suffixIcon: escanerCrotalDisponible
+                  ? IconButton(
+                      tooltip: textos.ganEscanearCrotal,
+                      icon: const Icon(Icons.qr_code_scanner),
+                      onPressed: () async {
+                        final leido = await escanearCrotal(context);
+                        if (leido == null || !mounted) return;
+                        setState(() => _busqueda.text = leido);
+                      },
+                    )
+                  : null,
             ),
             onChanged: (_) => setState(() {}),
           ),

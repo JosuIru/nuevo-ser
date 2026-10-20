@@ -15,7 +15,7 @@ const SZS_PAGINA_ANDROID = 'solera-zunbeltz-android';
 add_action( 'admin_menu', 'szs_registrar_pagina_android', 20 );
 
 function szs_registrar_pagina_android(): void {
-	add_submenu_page( SZS_PAGINA_TAREAS, 'App Android', 'App Android', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_ANDROID, 'szs_pagina_android' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'App Android', 'App Android', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_ANDROID, 'szs_pagina_android' );
 }
 
 function szs_procesar_subida_apk(): ?array {

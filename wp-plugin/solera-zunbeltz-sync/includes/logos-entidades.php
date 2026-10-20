@@ -376,7 +376,7 @@ function szs_shortcode_logos_entidades(): string {
 // ============================================================
 
 function szs_registrar_pagina_logos_entidades(): void {
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Entidades y logos', 'Entidades y logos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_LOGOS_ENTIDADES, 'szs_pagina_logos_entidades' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Entidades y logos', 'Entidades y logos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_LOGOS_ENTIDADES, 'szs_pagina_logos_entidades' );
 }
 
 function szs_cargar_selector_medios_logos( string $pantalla ): void {

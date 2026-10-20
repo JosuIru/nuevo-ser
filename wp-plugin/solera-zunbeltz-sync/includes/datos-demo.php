@@ -587,7 +587,7 @@ function szs_registrar_pagina_datos_demo(): void {
 	if ( ! szs_herramientas_desarrollo_activas() ) {
 		return;
 	}
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Datos de demostración', 'Datos demo', 'manage_options', SZS_PAGINA_DATOS_DEMO, 'szs_pagina_datos_demo' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Datos de demostración', 'Datos demo', 'manage_options', SZS_PAGINA_DATOS_DEMO, 'szs_pagina_datos_demo' );
 }
 
 function szs_pagina_datos_demo(): void {

@@ -150,6 +150,61 @@ $csv = szs_alimentacion_a_csv( $filas );
 afirmar( true, str_contains( $csv, "06/10/2026;Rebaño A;150,5" ), 'fecha y decimales a la española' );
 afirmar( true, str_contains( $csv, 'Total;;230,5' ), 'fila de total' );
 
+// --- portada (Inicio): recuentos y lo que pide atención ---
+if ( ! function_exists( 'current_user_can' ) ) {
+	function current_user_can( $capacidad ) {
+		return false;
+	}
+}
+$entidad = static fn( string $tipo, string $uid, array $datos ): array => szs_normalizar_entidad( array( 'tipo' => $tipo, 'uid' => $uid, 'datos' => $datos ) );
+$tareas_inicio = array_merge(
+	$tareas,
+	array(
+		szs_normalizar_tarea( array( 'uid' => 'e', 'titulo' => 'Hoy', 'estado' => 'pendiente', 'fecha_objetivo_ms' => $hoy_ms + 3_600_000, 'responsable_uid' => 'ane' ) ),
+		szs_normalizar_tarea( array( 'uid' => 'f', 'titulo' => 'Bloqueada', 'estado' => 'bloqueada', 'fecha_objetivo_ms' => $hoy_ms + 20 * $dia_ms, 'responsable_uid' => 'ane', 'recurrencia_dias' => 7 ) ),
+		szs_normalizar_tarea( array( 'uid' => 'g', 'titulo' => 'Hecha hace mucho', 'estado' => 'hecha', 'actualizado_ms' => $hoy_ms - 40 * $dia_ms ) ),
+	)
+);
+$tareas_inicio[1]['actualizado_ms'] = $hoy_ms - $dia_ms; // la hecha de ayer cuenta en los 30 días.
+$resumen = szs_resumen_inicio(
+	$tareas_inicio,
+	array( $entidad( 'peticion', 'p1', array( 'estado' => 'pendiente', 'urgente' => true ) ), $entidad( 'peticion', 'p2', array( 'estado' => 'pendiente' ) ), $entidad( 'peticion', 'p3', array( 'estado' => 'aceptada' ) ) ),
+	array( $entidad( 'aviso', 'v1', array( 'estado' => 'abierto', 'gravedad' => 'alarma' ) ), $entidad( 'aviso', 'v2', array( 'estado' => 'abierto', 'gravedad' => 'aviso' ) ), $entidad( 'aviso', 'v3', array( 'estado' => 'resuelto', 'gravedad' => 'alarma' ) ) ),
+	array( $entidad( 'proyecto', 'y1', array( 'estado' => 'abierto', 'persona_uid' => 'ane' ) ), $entidad( 'proyecto', 'y2', array( 'estado' => 'abierto', 'persona_uid' => '' ) ), $entidad( 'proyecto', 'y3', array( 'estado' => 'cerrado' ) ) ),
+	array(
+		array( 'uid' => 'ane', 'nombre' => 'Ane', 'rol' => 'tester', 'activo' => 1 ),
+		array( 'uid' => 'pablo', 'nombre' => 'Pablo', 'rol' => 'coordinador', 'activo' => 1 ),
+		array( 'uid' => 'baja', 'nombre' => 'Baja', 'rol' => 'tester', 'activo' => 0 ),
+	),
+	array( $entidad( 'lote_ganado', 'l1', array( 'cabezas_sin_identificar' => 12 ) ), $entidad( 'lote_ganado', 'l2', array() ) ),
+	array( $entidad( 'animal', 'a1', array( 'fecha_baja_ms' => null ) ), $entidad( 'animal', 'a2', array( 'fecha_baja_ms' => $hoy_ms ) ) ),
+	array(
+		array( 'persona_uid' => 'ane', 'momento_ms' => $hoy_ms - 2 * $dia_ms, 'origen' => 'app' ),
+		array( 'persona_uid' => 'ane', 'momento_ms' => $hoy_ms - 10 * $dia_ms, 'origen' => 'app' ),
+		array( 'persona_uid' => 'pablo', 'momento_ms' => $hoy_ms + 3_600_000, 'origen' => 'panel' ),
+	),
+	$hoy_ms,
+	$hoy_ms + 2 * 3_600_000
+);
+afirmar( array( 'abiertas' => 5, 'vencidas' => 1, 'hoy' => 1, 'proximas' => 1, 'sin_asignar' => 2, 'bloqueadas' => 1, 'hechas_30_dias' => 1, 'periodicas' => 1 ), $resumen['tareas'], 'inicio: recuento de tareas' );
+afirmar( array( 'pendientes' => 2, 'urgentes' => 1 ), $resumen['peticiones'], 'inicio: peticiones' );
+afirmar( array( 'abiertos' => 2, 'alarmas' => 1 ), $resumen['avisos'], 'inicio: avisos (las resueltas no cuentan)' );
+afirmar( array( 'abiertos' => 2, 'cerrados' => 1, 'sin_tester' => 1 ), $resumen['proyectos'], 'inicio: proyectos' );
+afirmar( array( 'activas' => 2, 'coordinacion' => 1, 'testers' => 1, 'sin_token_usado' => 0 ), $resumen['personas'], 'inicio: personas activas por rol' );
+afirmar( array( 'lotes' => 2, 'animales_en_alta' => 1, 'cabezas_sin_identificar' => 12 ), $resumen['ganado'], 'inicio: ganado' );
+afirmar( array( 'ultimos_7_dias' => 2, 'desde_app' => 1, 'desde_oficina' => 1 ), $resumen['actividad'], 'inicio: actividad de la semana' );
+afirmar( $hoy_ms - 2 * $dia_ms, $resumen['ultima_actividad_por_persona']['ane'], 'inicio: la última huella de cada persona es la más reciente' );
+$pendientes = szs_pendientes_inicio( $resumen );
+afirmar( array( 'alarma', 'alarma', 'aviso', 'aviso', 'aviso', 'info', 'info', 'info' ), array_column( $pendientes, 'nivel' ), 'inicio: lo que pide atención va de más a menos urgente' );
+afirmar( '1 alarma(s) abierta(s)', $pendientes[0]['texto'], 'inicio: la alarma va primero' );
+afirmar( array( 'vencidas' => '1' ), $pendientes[2]['argumentos'], 'inicio: las vencidas enlazan al tablero filtrado' );
+$vacio = szs_resumen_inicio( array(), array(), array(), array(), array(), array(), array(), array(), $hoy_ms, $hoy_ms );
+afirmar( array(), szs_pendientes_inicio( $vacio ), 'inicio: sin datos no hay nada que pida atención' );
+afirmar( 'hace 1 min', szs_hace_cuanto( $hoy_ms, $hoy_ms + 10_000 ), 'hace cuánto: menos de un minuto redondea a 1' );
+afirmar( 'hace 3 h', szs_hace_cuanto( $hoy_ms, $hoy_ms + 3 * 3_600_000 ), 'hace cuánto: horas' );
+afirmar( 'ayer', szs_hace_cuanto( $hoy_ms, $hoy_ms + $dia_ms ), 'hace cuánto: un día es «ayer»' );
+afirmar( 'hace 12 días', szs_hace_cuanto( $hoy_ms, $hoy_ms + 12 * $dia_ms ), 'hace cuánto: días' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

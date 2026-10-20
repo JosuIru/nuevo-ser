@@ -33,8 +33,8 @@ add_action( 'admin_menu', 'szs_registrar_paginas_agenda', 15 );
 add_action( 'admin_init', 'szs_exportar_alimentacion_csv' );
 
 function szs_registrar_paginas_agenda(): void {
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Contactos', 'Contactos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_CONTACTOS, 'szs_pagina_contactos' );
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Rendimientos de referencia', 'Rendimientos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_RENDIMIENTOS, 'szs_pagina_rendimientos' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Contactos', 'Contactos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_CONTACTOS, 'szs_pagina_contactos' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Rendimientos de referencia', 'Rendimientos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_RENDIMIENTOS, 'szs_pagina_rendimientos' );
 }
 
 /** Lápida de una entidad desde el panel (llega como borrado a los móviles). */

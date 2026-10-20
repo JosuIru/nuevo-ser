@@ -35,7 +35,7 @@ const SZS_GRUPOS_BIEN       = array(
 add_action( 'admin_menu', 'szs_registrar_pagina_inventario', 16 );
 
 function szs_registrar_pagina_inventario(): void {
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Inventario de amortizaciones', 'Inventario', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_INVENTARIO, 'szs_pagina_inventario' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Inventario de amortizaciones', 'Inventario', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_INVENTARIO, 'szs_pagina_inventario' );
 }
 
 /** `datos` de cada bien amortizable (no borrado) por uid. */

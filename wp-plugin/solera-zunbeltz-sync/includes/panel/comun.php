@@ -1,8 +1,8 @@
 <?php
 /**
  * Panel de coordinación en el escritorio de WordPress: menú, permisos y
- * utilidades comunes a sus páginas (tareas, peticiones, avisos, proyectos,
- * actividad y personas).
+ * utilidades comunes a sus páginas (inicio, tareas, peticiones, avisos,
+ * proyectos, actividad y personas).
  *
  * Quién entra: quien tenga la capacidad de WordPress
  * `gestionar_solera_zunbeltz` (los administradores la reciben al activar el
@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 const SZS_CAPACIDAD_WP_PANEL = 'gestionar_solera_zunbeltz';
+const SZS_PAGINA_INICIO      = 'solera-zunbeltz-inicio';
 const SZS_PAGINA_TAREAS      = 'solera-zunbeltz';
 const SZS_PAGINA_PETICIONES  = 'solera-zunbeltz-peticiones';
 const SZS_PAGINA_AVISOS      = 'solera-zunbeltz-avisos';
@@ -36,15 +37,18 @@ function szs_registrar_menu_panel(): void {
 	$pendientes = szs_contar_peticiones_pendientes();
 	$burbuja    = $pendientes > 0 ? sprintf( ' <span class="awaiting-mod">%d</span>', $pendientes ) : '';
 
-	add_menu_page( 'Solera Zunbeltz', 'Solera Zunbeltz' . $burbuja, $capacidad, SZS_PAGINA_TAREAS, 'szs_pagina_tareas', 'dashicons-location-alt', 80 );
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Tareas', 'Tareas', $capacidad, SZS_PAGINA_TAREAS, 'szs_pagina_tareas' );
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Peticiones de tarea', 'Peticiones' . $burbuja, $capacidad, SZS_PAGINA_PETICIONES, 'szs_pagina_peticiones' );
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Avisos', 'Avisos', $capacidad, SZS_PAGINA_AVISOS, 'szs_pagina_avisos' );
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Proyectos de test', 'Proyectos', $capacidad, SZS_PAGINA_PROYECTOS, 'szs_pagina_proyectos' );
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Actividad del espacio', 'Actividad', $capacidad, SZS_PAGINA_ACTIVIDAD, 'szs_pagina_actividad' );
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Personas del espacio', 'Personas', $capacidad, SZS_PAGINA_PERSONAS, 'szs_pagina_admin' );
+	// La portada (Inicio) es la página del menú principal; el resto cuelga
+	// de ella. Las URL de cada apartado no cambian: siguen siendo su slug.
+	add_menu_page( 'Solera Zunbeltz', 'Solera Zunbeltz' . $burbuja, $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio', 'dashicons-location-alt', 80 );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Inicio', 'Inicio', $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Tareas', 'Tareas', $capacidad, SZS_PAGINA_TAREAS, 'szs_pagina_tareas' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Peticiones de tarea', 'Peticiones' . $burbuja, $capacidad, SZS_PAGINA_PETICIONES, 'szs_pagina_peticiones' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Avisos', 'Avisos', $capacidad, SZS_PAGINA_AVISOS, 'szs_pagina_avisos' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Proyectos de test', 'Proyectos', $capacidad, SZS_PAGINA_PROYECTOS, 'szs_pagina_proyectos' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Actividad del espacio', 'Actividad', $capacidad, SZS_PAGINA_ACTIVIDAD, 'szs_pagina_actividad' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Personas del espacio', 'Personas', $capacidad, SZS_PAGINA_PERSONAS, 'szs_pagina_admin' );
 	// Acceso directo a la app web que sirve este mismo WordPress en /app/.
-	add_submenu_page( SZS_PAGINA_TAREAS, 'App web', 'Abrir la app ↗', $capacidad, szs_url_app_web() );
+	add_submenu_page( SZS_PAGINA_INICIO, 'App web', 'Abrir la app ↗', $capacidad, szs_url_app_web() );
 }
 
 /** Los administradores siempre pueden usar el panel. */

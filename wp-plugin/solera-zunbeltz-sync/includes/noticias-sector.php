@@ -488,7 +488,7 @@ function szs_listar_noticias_con_canal( int $dias, bool $incluir_canales_inactiv
 // ============================================================
 
 function szs_registrar_pagina_noticias(): void {
-	add_submenu_page( SZS_PAGINA_TAREAS, 'Noticias del sector', 'Noticias del sector', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_NOTICIAS, 'szs_pagina_noticias' );
+	add_submenu_page( SZS_PAGINA_INICIO, 'Noticias del sector', 'Noticias del sector', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_NOTICIAS, 'szs_pagina_noticias' );
 }
 
 /** Procesa los formularios de la página y devuelve el aviso a mostrar. */

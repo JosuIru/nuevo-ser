@@ -29,11 +29,12 @@ const SZS_DIAS_ACTIVIDAD_RECIENTE = 7;
  * @param array $personas   Filas de personas (uid, nombre, rol, activo).
  * @param array $lotes      Entidades `lote_ganado`.
  * @param array $animales   Entidades `animal`.
- * @param array $actividad  Entradas de actividad (`szs_actividad_a_json`), las más recientes.
+ * @param array $actividad  Entradas de actividad (`szs_actividad_a_json`) de los últimos 7 días.
  * @param int   $inicio_de_hoy_ms Medianoche local de hoy.
  * @param int   $ahora_ms   Ahora.
+ * @param array $ultima_por_persona Última huella (ms) por uid de persona, de toda la historia; si no se da, se saca de `$actividad`.
  */
-function szs_resumen_inicio( array $tareas, array $peticiones, array $avisos, array $proyectos, array $personas, array $lotes, array $animales, array $actividad, int $inicio_de_hoy_ms, int $ahora_ms ): array {
+function szs_resumen_inicio( array $tareas, array $peticiones, array $avisos, array $proyectos, array $personas, array $lotes, array $animales, array $actividad, int $inicio_de_hoy_ms, int $ahora_ms, array $ultima_por_persona = array() ): array {
 	$dia_ms          = 86_400_000;
 	$fin_de_hoy_ms   = $inicio_de_hoy_ms + $dia_ms;
 	$limite_proximas = $inicio_de_hoy_ms + SZS_DIAS_PROXIMAS_INICIO * $dia_ms;
@@ -47,7 +48,7 @@ function szs_resumen_inicio( array $tareas, array $peticiones, array $avisos, ar
 		'personas' => array( 'activas' => 0, 'coordinacion' => 0, 'testers' => 0, 'sin_token_usado' => 0 ),
 		'ganado' => array( 'lotes' => 0, 'animales_en_alta' => 0, 'cabezas_sin_identificar' => 0 ),
 		'actividad' => array( 'ultimos_7_dias' => 0, 'desde_app' => 0, 'desde_oficina' => 0 ),
-		'ultima_actividad_por_persona' => array(),
+		'ultima_actividad_por_persona' => array_map( 'intval', $ultima_por_persona ),
 	);
 
 	foreach ( $tareas as $tarea ) {
@@ -254,11 +255,19 @@ function szs_pagina_inicio(): void {
 	$ahora_ms      = szs_ahora_ms();
 	$inicio_hoy_ms = szs_inicio_de_hoy_ms();
 	$tabla_actividad = $wpdb->prefix . SZS_TABLA_ACTIVIDAD;
-	// Las 2.000 entradas más recientes bastan para «última vez» y los 7 días.
+	// Los 7 días completos para los recuentos, y la última huella de cada
+	// persona de toda la historia (no solo de lo reciente).
 	$actividad = array_map(
 		'szs_actividad_a_json',
-		(array) $wpdb->get_results( "SELECT * FROM {$tabla_actividad} ORDER BY id DESC LIMIT 2000", ARRAY_A )
+		(array) $wpdb->get_results(
+			$wpdb->prepare( "SELECT * FROM {$tabla_actividad} WHERE momento_ms >= %d ORDER BY id DESC", $ahora_ms - SZS_DIAS_ACTIVIDAD_RECIENTE * 86_400_000 ),
+			ARRAY_A
+		)
 	);
+	$ultima_por_persona = array();
+	foreach ( (array) $wpdb->get_results( "SELECT persona_uid, MAX(momento_ms) AS ultimo_ms FROM {$tabla_actividad} WHERE persona_uid <> '' GROUP BY persona_uid", ARRAY_A ) as $fila ) {
+		$ultima_por_persona[ (string) $fila['persona_uid'] ] = (int) $fila['ultimo_ms'];
+	}
 	$personas = szs_listar_personas();
 	$resumen  = szs_resumen_inicio(
 		szs_listar_todas_las_tareas(),
@@ -270,7 +279,8 @@ function szs_pagina_inicio(): void {
 		szs_listar_entidades_tipo( 'animal' ),
 		$actividad,
 		$inicio_hoy_ms,
-		$ahora_ms
+		$ahora_ms,
+		$ultima_por_persona
 	);
 	$pendientes = szs_pendientes_inicio( $resumen );
 	$fincas     = szs_nombres_fincas();
@@ -278,7 +288,11 @@ function szs_pagina_inicio(): void {
 	$zonas      = count( szs_listar_entidades_tipo( 'zona' ) );
 	$canales    = function_exists( 'szs_listar_canales' ) ? szs_listar_canales( true ) : array();
 	$apk        = szs_apk_publicado();
-	$ultimas    = array_slice( $actividad, 0, 8 );
+	// Las últimas entradas de verdad, aunque sean de hace más de 7 días.
+	$ultimas = array_map(
+		'szs_actividad_a_json',
+		(array) $wpdb->get_results( "SELECT * FROM {$tabla_actividad} ORDER BY id DESC LIMIT 8", ARRAY_A )
+	);
 	usort( $personas, static fn( array $a, array $b ): int => ( $resumen['ultima_actividad_por_persona'][ $b['uid'] ] ?? 0 ) <=> ( $resumen['ultima_actividad_por_persona'][ $a['uid'] ] ?? 0 ) );
 
 	$cifra = static function ( string $etiqueta, $valor, string $pagina = '', array $argumentos = array(), string $clase = '' ): void {

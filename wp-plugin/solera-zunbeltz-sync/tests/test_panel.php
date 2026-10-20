@@ -194,6 +194,9 @@ afirmar( array( 'activas' => 2, 'coordinacion' => 1, 'testers' => 1, 'sin_token_
 afirmar( array( 'lotes' => 2, 'animales_en_alta' => 1, 'cabezas_sin_identificar' => 12 ), $resumen['ganado'], 'inicio: ganado' );
 afirmar( array( 'ultimos_7_dias' => 2, 'desde_app' => 1, 'desde_oficina' => 1 ), $resumen['actividad'], 'inicio: actividad de la semana' );
 afirmar( $hoy_ms - 2 * $dia_ms, $resumen['ultima_actividad_por_persona']['ane'], 'inicio: la última huella de cada persona es la más reciente' );
+$con_historia = szs_resumen_inicio( array(), array(), array(), array(), array( array( 'uid' => 'vieja', 'nombre' => 'Vieja', 'rol' => 'tester', 'activo' => 1 ) ), array(), array(), array(), $hoy_ms, $hoy_ms, array( 'vieja' => $hoy_ms - 400 * $dia_ms ) );
+afirmar( 0, $con_historia['personas']['sin_token_usado'], 'inicio: una huella antigua (fuera de los 7 días) cuenta como actividad de la persona' );
+afirmar( $hoy_ms - 400 * $dia_ms, $con_historia['ultima_actividad_por_persona']['vieja'], 'inicio: … y se conserva su fecha' );
 $pendientes = szs_pendientes_inicio( $resumen );
 afirmar( array( 'alarma', 'alarma', 'aviso', 'aviso', 'aviso', 'info', 'info', 'info' ), array_column( $pendientes, 'nivel' ), 'inicio: lo que pide atención va de más a menos urgente' );
 afirmar( '1 alarma(s) abierta(s)', $pendientes[0]['texto'], 'inicio: la alarma va primero' );

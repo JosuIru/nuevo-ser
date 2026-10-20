@@ -311,7 +311,9 @@ class NS_Instalador_Juegos_Web {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_die( esc_html__( 'No tienes permiso para ver esta página.' ) );
 		}
-		$releases = NS_Descargas_Apk::releases();
+		// Siempre fresco: sólo la ve quien administra y, recién publicado un
+		// build, no se puede esperar a que caduque la copia de una hora.
+		$releases = NS_Descargas_Apk::releases( true );
 		?>
 		<div class="wrap">
 			<h1>Juegos web</h1>

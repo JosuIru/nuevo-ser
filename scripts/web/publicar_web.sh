@@ -59,6 +59,11 @@ if [[ "$sin_publicar" == si ]]; then
   exit 0
 fi
 
+if [[ -n "$(git -C "$raiz" log '@{u}..HEAD' --oneline 2>/dev/null)" ]]; then
+  echo "Hay commits sin subir: haz git push antes de publicar (el tag apunta a HEAD)." >&2
+  exit 1
+fi
+
 echo
 echo "Se va a publicar en GitHub (público):"
 echo "  release  $tag"

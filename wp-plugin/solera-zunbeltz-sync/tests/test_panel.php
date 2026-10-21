@@ -208,6 +208,68 @@ afirmar( 'hace 3 h', szs_hace_cuanto( $hoy_ms, $hoy_ms + 3 * 3_600_000 ), 'hace 
 afirmar( 'ayer', szs_hace_cuanto( $hoy_ms, $hoy_ms + $dia_ms ), 'hace cuánto: un día es «ayer»' );
 afirmar( 'hace 12 días', szs_hace_cuanto( $hoy_ms, $hoy_ms + 12 * $dia_ms ), 'hace cuánto: días' );
 
+// --- convenio editable desde el panel ---
+$ent = static fn( string $tipo, array $datos ): array => array( 'tipo' => $tipo, 'uid' => bin2hex( random_bytes( 4 ) ), 'datos' => $datos );
+afirmar( 141750, szs_importe_calculado_partida( 'racion', 0.15, 300, 90, 35 ), 'partida: ración × cabezas × días × precio (pollos: 1.417,50 €)' );
+afirmar( 2500, szs_importe_calculado_partida( 'unidades', 50, 0, 0, 50 ), 'partida: cantidad × precio' );
+afirmar( null, szs_importe_calculado_partida( '', 50, 0, 0, 50 ), 'partida: a mano no se calcula' );
+$comparado = szs_presupuesto_comparado(
+	array(
+		$ent( 'partida_presupuesto', array( 'categoria' => 'directos', 'asumido_por' => 'tester', 'importe_centimos' => 90000 ) ),
+		$ent( 'partida_presupuesto', array( 'categoria' => 'maquinaria', 'asumido_por' => 'zunbeltz', 'importe_centimos' => 30000 ) ),
+		$ent( 'partida_presupuesto', array( 'categoria' => 'amortizacion', 'asumido_por' => 'zunbeltz', 'importe_centimos' => 60000 ) ),
+	),
+	array(
+		$ent( 'apunte', array( 'tipo' => 'gasto', 'categoria' => 'directos', 'importe_centimos' => 42000 ) ),
+		$ent( 'apunte', array( 'tipo' => 'gasto', 'categoria' => 'directos', 'importe_centimos' => 9000 ) ),
+		$ent( 'apunte', array( 'tipo' => 'gasto', 'categoria' => 'otra', 'es_amortizacion' => 1, 'importe_centimos' => 5000 ) ),
+		$ent( 'apunte', array( 'tipo' => 'ingreso', 'categoria' => 'venta', 'importe_centimos' => 99999 ) ),
+		$ent( 'venta', array( 'ingreso_centimos' => 99999 ) ),
+	),
+	array( 'fecha_inicio_ms' => $hoy_ms - 365 * $dia_ms, 'fecha_fin_ms' => $hoy_ms ),
+	array(),
+	$hoy_ms
+);
+afirmar( array( 'directos' => 90000, 'maquinaria' => 30000, 'amortizacion' => 60000 ), $comparado['previsto'], 'presupuesto: previsto por bloque' );
+afirmar( array( 'directos' => 51000, 'amortizacion' => 5000 ), $comparado['real'], 'presupuesto: real por bloque (los ingresos no cuentan; una amortización va al bloque VI)' );
+afirmar( 90000, $comparado['previsto_asumido_zunbeltz'], 'presupuesto: lo previsto que asume Zunbeltz' );
+afirmar( 9000, $comparado['fianza_referencia'], 'fianza de referencia: 10 % de lo que asume Zunbeltz' );
+afirmar( 180000, $comparado['total_previsto'], 'presupuesto: total previsto' );
+$fianza = szs_estado_fianza(
+	array(
+		$ent( 'movimiento_fianza', array( 'tipo' => 'deposito', 'importe_centimos' => 50000 ) ),
+		$ent( 'movimiento_fianza', array( 'tipo' => 'retencion', 'importe_centimos' => 10000 ) ),
+		$ent( 'movimiento_fianza', array( 'tipo' => 'devolucion', 'importe_centimos' => 20000 ) ),
+	),
+	array( $ent( 'incidencia_cumplimiento', array( 'nivel' => 'grave', 'retencion_centimos' => 5000 ) ) )
+);
+afirmar( array( 'depositado' => 50000, 'devuelto' => 20000, 'retenido' => 15000, 'pendiente' => 15000 ), $fianza, 'fianza: depositado − devuelto − retenido (incluidas las retenciones de incidencias)' );
+afirmar( 12, szs_meses_de_seguimiento( 1_767_225_600_000, 1_798_675_200_000, 1_800_000_000_000, 'UTC' ), 'meses de seguimiento: del 1 de enero al 31 de diciembre son 12' );
+afirmar( 2, szs_meses_de_seguimiento( 1_767_225_600_000, 1_798_675_200_000, 1_772_323_200_000, 'UTC' ), 'meses de seguimiento: si el fin no ha llegado, solo hasta hoy (1 ene → 1 mar = 2)' );
+afirmar( 1, szs_meses_de_seguimiento( $hoy_ms, $hoy_ms + $dia_ms, $hoy_ms + 2 * $dia_ms, 'UTC' ), 'meses de seguimiento: al menos 1' );
+$indicadores = szs_indicadores_acompanamiento(
+	array(
+		$ent( 'acompanamiento', array( 'tipo' => 'formacion', 'asistencia' => 'asistida', 'horas' => 8 ) ),
+		$ent( 'acompanamiento', array( 'tipo' => 'visita_referencia', 'asistencia' => 'asistida', 'horas' => 4 ) ),
+		$ent( 'acompanamiento', array( 'tipo' => 'asesoramiento', 'asistencia' => 'no_asistida', 'horas' => null ) ),
+		$ent( 'acompanamiento', array( 'tipo' => 'reunion', 'asistencia' => 'asistida' ) ),
+		$ent( 'acompanamiento', array( 'tipo' => 'visita_finca', 'asistencia' => 'asistida' ) ),
+		$ent( 'acompanamiento', array( 'tipo' => 'mercado', 'asistencia' => 'asistida', 'horas' => 2.5 ) ),
+	),
+	$hoy_ms - 10 * $dia_ms,
+	$hoy_ms + 300 * $dia_ms,
+	$hoy_ms,
+	'UTC'
+);
+afirmar( 1, $indicadores['meses'], 'indicadores: diez días son un mes' );
+afirmar( 14.5, $indicadores['horas'], 'indicadores: horas sumadas (sin horas cuenta 0)' );
+afirmar( array( 'formacion' => 1, 'visita_referencia' => 1, 'reunion' => 1, 'visita_finca' => 1, 'mercado' => 1 ), $indicadores['asistidas'], 'indicadores: asistidas por tipo' );
+afirmar( 1, $indicadores['propuestas']['asesoramiento'], 'indicadores: la no asistida cuenta como propuesta' );
+afirmar( false, $indicadores['soporte_integral'], 'indicadores: sin asesoramiento asistido no hay soporte integral' );
+afirmar( true, $indicadores['seguimiento'], 'indicadores: una reunión y una visita en un mes cumplen el seguimiento' );
+afirmar( false, $indicadores['difusion'], 'indicadores: difusión pide visita recibida, mercado y medio' );
+afirmar( true, $indicadores['venta'], 'indicadores: un mercado basta para venta' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

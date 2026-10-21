@@ -4,7 +4,8 @@
  *
  * - Proyectos de test: cada uno con su persona tester, su estado y las
  *   cuentas del convenio (balance del test y del proyecto, reparto). Desde
- *   aquí se asigna la persona tester y se cierra o reabre el proyecto.
+ *   aquí se asigna la persona tester y se cierra o reabre el proyecto; el
+ *   convenio se edita en `pagina-convenio.php`.
  * - Actividad: la huella de quién ha hecho qué en el espacio.
  *
  * @package SoleraZunbeltzSync
@@ -60,7 +61,7 @@ function szs_pagina_proyectos(): void {
 	?>
 	<div class="wrap">
 		<h1>Proyectos de test</h1>
-		<p>Las cuentas siguen el convenio tester (art. 7): el <strong>balance del test</strong> no incluye amortizaciones y es el que se reparte; el <strong>del proyecto</strong> las incluye (también las del <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_INVENTARIO ) ); ?>">inventario</a>) y muestra el coste real. Orientativo, no es contabilidad. El detalle (presupuesto, fianza, acompañamiento, incidencias) está en la app, en la pantalla «Convenio» de cada proyecto.</p>
+		<p>Las cuentas siguen el convenio tester (art. 7): el <strong>balance del test</strong> no incluye amortizaciones y es el que se reparte; el <strong>del proyecto</strong> las incluye (también las del <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_INVENTARIO ) ); ?>">inventario</a>) y muestra el coste real. Orientativo, no es contabilidad. El convenio de cada proyecto (condiciones, presupuesto, fianza, acompañamiento, incidencias) se carga y edita en <strong>Convenio</strong>; la persona tester lo ve en la app.</p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 		<table class="widefat striped">
 			<thead><tr><th>Proyecto</th><th>Persona tester</th><th>Estado</th><th>Balance del test</th><th>Balance del proyecto</th><th>Reparto (Zunbeltz / tester)</th><th></th></tr></thead>
@@ -91,6 +92,7 @@ function szs_pagina_proyectos(): void {
 					<td><?php echo esc_html( szs_euros( $balance['balance_proyecto'] ) ); ?></td>
 					<td><?php echo esc_html( szs_euros( $balance['parte_zunbeltz'] ) . ' / ' . szs_euros( $balance['parte_tester'] ) ); ?></td>
 					<td>
+						<a class="button button-small" href="<?php echo esc_url( szs_url_convenio( $proyecto['uid'] ) ); ?>">Convenio</a>
 						<a class="button button-small" href="<?php echo esc_url( szs_url_alimentacion_csv( $proyecto['uid'] ) ); ?>">Alimentación (Excel)</a>
 						<form method="post" style="margin-top:4px;">
 							<?php wp_nonce_field( 'szs_proyectos' ); ?>

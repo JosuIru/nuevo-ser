@@ -371,3 +371,149 @@ function szs_alimentacion_a_csv( array $filas ): string {
 	$lineas[] = 'Total;;' . $numero( $total );
 	return "\u{FEFF}" . implode( "\r\n", $lineas ) . "\r\n";
 }
+
+/**
+ * Importe de una partida de presupuesto con fórmula, como en la hoja de
+ * Zunbeltz: «cantidad × precio» o «ración × cabezas × días × precio».
+ * `null` en modo manual. Mismo cálculo que `importeCalculadoPartida`.
+ */
+function szs_importe_calculado_partida( string $modo, float $cantidad, float $cabezas, float $dias, int $precio_unitario_centimos ): ?int {
+	return match ( $modo ) {
+		'unidades' => (int) round( $cantidad * $precio_unitario_centimos ),
+		'racion'   => (int) round( $cantidad * $cabezas * $dias * $precio_unitario_centimos ),
+		default    => null,
+	};
+}
+
+/**
+ * Presupuesto previsto frente a lo gastado, por bloque, a partir de las
+ * partidas del presupuesto y de los gastos reales (`apunte` de gasto y
+ * cuotas de `uso_bien`, que van al bloque de amortización). También la
+ * base de la fianza: lo previsto que asume Zunbeltz, y su 10 % de
+ * referencia (anexo I; orientativo, la cuantía se pacta). Pura.
+ *
+ * @param array $partidas  Entidades `partida_presupuesto`.
+ * @param array $gastos    Entidades `apunte` y `uso_bien` del proyecto.
+ * @param array $bienes    `datos` de cada bien por uid (para las cuotas).
+ * @return array{previsto: array<string,int>, real: array<string,int>, previsto_asumido_zunbeltz: int, fianza_referencia: int, total_previsto: int, total_real: int}
+ */
+function szs_presupuesto_comparado( array $partidas, array $gastos, array $proyecto_datos, array $bienes = array(), ?int $ahora_ms = null, string $zona = 'Europe/Madrid' ): array {
+	$previsto = array();
+	$real     = array();
+	$zunbeltz = 0;
+	foreach ( $partidas as $partida ) {
+		$datos   = $partida['datos'] ?? array();
+		$bloque  = (string) ( $datos['categoria'] ?? '' );
+		$importe = (int) ( $datos['importe_centimos'] ?? 0 );
+		$previsto[ $bloque ] = ( $previsto[ $bloque ] ?? 0 ) + $importe;
+		if ( 'zunbeltz' === ( $datos['asumido_por'] ?? 'tester' ) ) {
+			$zunbeltz += $importe;
+		}
+	}
+	foreach ( $gastos as $gasto ) {
+		$datos = $gasto['datos'] ?? array();
+		if ( 'uso_bien' === ( $gasto['tipo'] ?? '' ) ) {
+			$bien = $bienes[ (string) ( $datos['bien_uid'] ?? '' ) ] ?? null;
+			if ( null !== $bien ) {
+				$real['amortizacion'] = ( $real['amortizacion'] ?? 0 ) + szs_cuota_uso_bien( $bien, $datos, $proyecto_datos, $ahora_ms ?? (int) floor( microtime( true ) * 1000 ), $zona );
+			}
+			continue;
+		}
+		if ( 'apunte' !== ( $gasto['tipo'] ?? '' ) || 'gasto' !== ( $datos['tipo'] ?? 'gasto' ) ) {
+			continue;
+		}
+		$bloque = ! empty( $datos['es_amortizacion'] ) ? 'amortizacion' : (string) ( $datos['categoria'] ?? '' );
+		$real[ $bloque ] = ( $real[ $bloque ] ?? 0 ) + (int) ( $datos['importe_centimos'] ?? 0 );
+	}
+	return array(
+		'previsto'                  => $previsto,
+		'real'                      => $real,
+		'previsto_asumido_zunbeltz' => $zunbeltz,
+		'fianza_referencia'         => (int) round( $zunbeltz * 10 / 100 ),
+		'total_previsto'            => array_sum( $previsto ),
+		'total_real'                => array_sum( $real ),
+	);
+}
+
+/**
+ * Estado de la fianza: lo depositado menos lo devuelto y lo retenido
+ * (movimientos de retención más las retenciones de las incidencias).
+ * Mismo cálculo que `EstadoFianza` en la app. Pura.
+ *
+ * @return array{depositado: int, devuelto: int, retenido: int, pendiente: int}
+ */
+function szs_estado_fianza( array $movimientos, array $incidencias ): array {
+	$estado = array( 'depositado' => 0, 'devuelto' => 0, 'retenido' => 0 );
+	foreach ( $movimientos as $movimiento ) {
+		$datos   = $movimiento['datos'] ?? array();
+		$importe = (int) ( $datos['importe_centimos'] ?? 0 );
+		switch ( $datos['tipo'] ?? 'deposito' ) {
+			case 'deposito':
+				$estado['depositado'] += $importe;
+				break;
+			case 'devolucion':
+				$estado['devuelto'] += $importe;
+				break;
+			case 'retencion':
+				$estado['retenido'] += $importe;
+				break;
+		}
+	}
+	foreach ( $incidencias as $incidencia ) {
+		$estado['retenido'] += (int) ( $incidencia['datos']['retencion_centimos'] ?? 0 );
+	}
+	$estado['pendiente'] = $estado['depositado'] - $estado['devuelto'] - $estado['retenido'];
+	return $estado;
+}
+
+/**
+ * Meses completos del periodo de un test, contando el día final (del 1 de
+ * enero al 31 de diciembre son 12). Si el fin aún no ha llegado, solo
+ * hasta hoy: en el segundo mes de un proyecto de un año no se exigen las
+ * doce reuniones. Al menos 1. Mismo cálculo que en la app.
+ */
+function szs_meses_de_seguimiento( int $inicio_ms, int $fin_ms, int $ahora_ms, string $zona = 'Europe/Madrid' ): int {
+	$huso   = new DateTimeZone( '' === $zona ? 'UTC' : $zona );
+	$inicio = ( new DateTimeImmutable( '@' . intdiv( $inicio_ms, 1000 ) ) )->setTimezone( $huso );
+	$fin    = ( new DateTimeImmutable( '@' . intdiv( min( $fin_ms, $ahora_ms ), 1000 ) ) )->setTimezone( $huso )->modify( '+1 day' );
+	$meses  = ( (int) $fin->format( 'Y' ) - (int) $inicio->format( 'Y' ) ) * 12 + (int) $fin->format( 'n' ) - (int) $inicio->format( 'n' );
+	if ( (int) $fin->format( 'j' ) < (int) $inicio->format( 'j' ) ) {
+		--$meses;
+	}
+	return max( 1, $meses );
+}
+
+/**
+ * Indicadores del anexo IV del convenio a partir de las actividades de
+ * acompañamiento (`acompanamiento`): cuántas de cada tipo se han propuesto
+ * y asistido, horas, y si se cumple cada bloque. Mismo criterio que
+ * `IndicadoresAcompanamiento` en la app. Pura.
+ *
+ * @return array{meses: int, propuestas: array<string,int>, asistidas: array<string,int>, horas: float, soporte_integral: bool, difusion: bool, seguimiento: bool, venta: bool}
+ */
+function szs_indicadores_acompanamiento( array $actividades, int $inicio_ms, int $fin_ms, int $ahora_ms, string $zona = 'Europe/Madrid' ): array {
+	$propuestas = array();
+	$asistidas  = array();
+	$horas      = 0.0;
+	foreach ( $actividades as $actividad ) {
+		$datos = $actividad['datos'] ?? array();
+		$tipo  = (string) ( $datos['tipo'] ?? 'reunion' );
+		$propuestas[ $tipo ] = ( $propuestas[ $tipo ] ?? 0 ) + 1;
+		if ( 'asistida' === ( $datos['asistencia'] ?? 'propuesta' ) ) {
+			$asistidas[ $tipo ] = ( $asistidas[ $tipo ] ?? 0 ) + 1;
+		}
+		$horas += (float) ( $datos['horas'] ?? 0 );
+	}
+	$de    = static fn( string $tipo ): int => $asistidas[ $tipo ] ?? 0;
+	$meses = szs_meses_de_seguimiento( $inicio_ms, $fin_ms, $ahora_ms, $zona );
+	return array(
+		'meses'            => $meses,
+		'propuestas'       => $propuestas,
+		'asistidas'        => $asistidas,
+		'horas'            => $horas,
+		'soporte_integral' => $de( 'formacion' ) >= 1 && $de( 'visita_referencia' ) >= 1 && $de( 'asesoramiento' ) >= 1,
+		'difusion'         => $de( 'visita_recibida' ) >= 1 && $de( 'mercado' ) >= 1 && $de( 'difusion' ) >= 1,
+		'seguimiento'      => $de( 'reunion' ) >= $meses && $de( 'visita_finca' ) >= $meses,
+		'venta'            => $de( 'busqueda_canales' ) >= 1 || $de( 'mercado' ) >= 1,
+	);
+}

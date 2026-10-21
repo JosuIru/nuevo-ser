@@ -1,19 +1,26 @@
-// Escribe las tareas tipo de la app en el plugin de WordPress, para que el
-// panel de coordinación ofrezca las mismas al crear una tarea:
+// Escribe en el plugin de WordPress lo que el panel de coordinación
+// comparte con la app: las tareas tipo y los catálogos del convenio.
 //
 //   dart run tool/generar_plantillas_php.dart
 //
-// Hay que ejecutarlo tras cambiar lib/modelos/plantillas_tarea.dart (el test
-// test/plantillas_presupuesto_test.dart avisa si se olvida).
+// Hay que ejecutarlo tras cambiar lib/modelos/plantillas_tarea.dart o los
+// catálogos del convenio de lib/modelos/constantes.dart (los tests
+// test/plantillas_presupuesto_test.dart y test/catalogos_convenio_php_test.dart
+// avisan si se olvida).
 
 import 'dart:io';
 
+import 'package:solera_zunbeltz/utiles/catalogos_convenio_php.dart';
 import 'package:solera_zunbeltz/utiles/plantillas_php.dart';
 
-const rutaPlugin =
-    '../../wp-plugin/solera-zunbeltz-sync/includes/plantillas-tarea.php';
+const rutaPlugin = '../../wp-plugin/solera-zunbeltz-sync/includes/';
 
 void main() {
-  File(rutaPlugin).writeAsStringSync(plantillasTareaComoPhp());
-  stdout.writeln('Escrito $rutaPlugin');
+  for (final (fichero, contenido) in [
+    ('plantillas-tarea.php', plantillasTareaComoPhp()),
+    ('catalogos-convenio.php', catalogosConvenioComoPhp()),
+  ]) {
+    File(rutaPlugin + fichero).writeAsStringSync(contenido);
+    stdout.writeln('Escrito $rutaPlugin$fichero');
+  }
 }

@@ -21,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 add_action( 'init', 'zunbeltz_espacio_registrar_categoria_patrones' );
 add_action( 'after_switch_theme', 'zunbeltz_espacio_crear_portadas' );
+add_action( 'admin_notices', 'zunbeltz_espacio_avisar_portadas_desactualizadas' );
+add_action( 'admin_post_zunbeltz_espacio_rehacer_portadas', 'zunbeltz_espacio_atender_rehacer_portadas' );
 
 function zunbeltz_espacio_registrar_categoria_patrones(): void {
 	register_block_pattern_category( 'zunbeltz-espacio', array( 'label' => 'Zunbeltz' ) );
@@ -126,4 +128,95 @@ function zunbeltz_espacio_crear_portadas(): array {
 	update_option( 'show_on_front', 'page' );
 	update_option( 'page_on_front', $es );
 	return array( 'es' => (int) $es, 'eu' => (int) $eu );
+}
+
+/**
+ * Frases de versiones anteriores del patrón de portada: si la página
+ * todavía las tiene, no se ha puesto al día con los textos nuevos.
+ */
+const ZUNBELTZ_ESPACIO_FRASES_PORTADA_VIEJA = array( 'Pide tu token', 'Oficina de coordinación', 'Eskatu zure tokena', 'Koordinazio-bulegoa' );
+
+/** Ids de la portada (es) y su traducción (eu, 0 si no hay). */
+function zunbeltz_espacio_ids_portadas(): array {
+	$es = (int) get_option( 'page_on_front' );
+	if ( $es <= 0 || 'page' !== get_option( 'show_on_front' ) || ! get_post( $es ) ) {
+		return array( 'es' => 0, 'eu' => 0 );
+	}
+	$eu = (int) apply_filters( 'wpml_object_id', $es, 'page', false, 'eu' );
+	return array( 'es' => $es, 'eu' => $eu === $es ? 0 : $eu );
+}
+
+/** `true` si alguna portada conserva textos de un patrón anterior. */
+function zunbeltz_espacio_portadas_desactualizadas(): bool {
+	foreach ( zunbeltz_espacio_ids_portadas() as $id ) {
+		$pagina = $id > 0 ? get_post( $id ) : null;
+		if ( ! $pagina ) {
+			continue;
+		}
+		foreach ( ZUNBELTZ_ESPACIO_FRASES_PORTADA_VIEJA as $frase ) {
+			if ( str_contains( (string) $pagina->post_content, $frase ) ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+/**
+ * Vuelve a escribir el contenido de las portadas con los patrones actuales
+ * del tema (`portada-es` y `portada-eu`). Pisa lo editado a mano en ellas.
+ * También por WP-CLI: `wp eval 'zunbeltz_espacio_rehacer_portadas();'`.
+ *
+ * @return int Páginas reescritas.
+ */
+function zunbeltz_espacio_rehacer_portadas(): int {
+	$ids    = zunbeltz_espacio_ids_portadas();
+	$hechas = 0;
+	foreach ( array( 'es' => 'zunbeltz-espacio/portada-es', 'eu' => 'zunbeltz-espacio/portada-eu' ) as $idioma => $slug ) {
+		$contenido = zunbeltz_espacio_contenido_patron( $slug );
+		if ( $ids[ $idioma ] <= 0 || '' === $contenido ) {
+			continue;
+		}
+		$resultado = wp_update_post( array( 'ID' => $ids[ $idioma ], 'post_content' => $contenido ), true );
+		if ( ! is_wp_error( $resultado ) ) {
+			$hechas++;
+		}
+	}
+	return $hechas;
+}
+
+/** Aviso en Escritorio y Apariencia → Temas, con el botón que las rehace. */
+function zunbeltz_espacio_avisar_portadas_desactualizadas(): void {
+	$pantalla = get_current_screen();
+	if ( ! $pantalla || ! in_array( $pantalla->id, array( 'dashboard', 'themes' ), true ) || ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+	if ( isset( $_GET['zunbeltz_portadas'] ) ) {
+		$hechas = (int) $_GET['zunbeltz_portadas'];
+		echo '<div class="notice notice-success is-dismissible"><p>' . esc_html( sprintf( 'Portadas actualizadas con los textos del tema: %d.', $hechas ) ) . '</p></div>';
+		return;
+	}
+	if ( ! zunbeltz_espacio_portadas_desactualizadas() ) {
+		return;
+	}
+	?>
+	<div class="notice notice-warning">
+		<p><strong>Zunbeltz Espacio:</strong> la portada conserva textos de una versión anterior del tema (botón «Oficina de coordinación», «token»). Actualizarla la reescribe con el patrón actual y <strong>pierde lo editado a mano</strong> en ella; si la habéis retocado en Gutenberg, mejor cambiar esos textos a mano.</p>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<input type="hidden" name="action" value="zunbeltz_espacio_rehacer_portadas">
+			<?php wp_nonce_field( 'zunbeltz_espacio_rehacer_portadas' ); ?>
+			<p><button type="submit" class="button button-primary">Actualizar las portadas con los textos nuevos</button></p>
+		</form>
+	</div>
+	<?php
+}
+
+function zunbeltz_espacio_atender_rehacer_portadas(): void {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		wp_die( 'Sin permiso.' );
+	}
+	check_admin_referer( 'zunbeltz_espacio_rehacer_portadas' );
+	$hechas = zunbeltz_espacio_rehacer_portadas();
+	wp_safe_redirect( add_query_arg( 'zunbeltz_portadas', $hechas, admin_url( 'themes.php' ) ) );
+	exit;
 }

@@ -14,7 +14,7 @@ import 'package:solera_zunbeltz/pantallas/widgets/logos_entidades.dart';
 import 'package:solera_zunbeltz/servicios/servicio_logos_entidades.dart';
 
 Map<String, Object?> _entidad(String clave,
-        {String grupo = 'apoyan', bool logoPropio = false}) =>
+        {String grupo = 'colaboran', bool logoPropio = false}) =>
     {
       'clave': clave,
       'nombre': 'Entidad $clave',
@@ -30,6 +30,12 @@ void main() {
       final entidad = EntidadColaboradora.desdeJson(_entidad('upna'))!;
       expect(entidad.nombre, 'Entidad upna');
       expect(entidad.aJson(), _entidad('upna'));
+    });
+
+    test('el antiguo grupo «apoyan» del servidor se lee como «colaboran»', () {
+      final entidad =
+          EntidadColaboradora.desdeJson(_entidad('upna', grupo: 'apoyan'))!;
+      expect(entidad.grupo, 'colaboran');
     });
 
     test('descarta lo que no sirve y los enlaces que no son web', () {
@@ -51,8 +57,11 @@ void main() {
     }
   });
 
-  test('las que financian van primero y en su grupo', () {
-    expect(GrupoEntidades.values.first, GrupoEntidades.financian);
+  test(
+      'cuatro grupos en el orden de Zunbeltz; Carasso y Gobierno con apoyo económico',
+      () {
+    expect(GrupoEntidades.values.map((grupo) => grupo.codigo),
+        ['impulsan', 'financian', 'colaboran', 'miembro_de']);
     expect(
         entidadesDePartida
             .where((entidad) => entidad.grupo == 'financian')

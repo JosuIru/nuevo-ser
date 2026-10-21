@@ -15,7 +15,8 @@ class EntidadColaboradora {
   final String clave;
   final String nombre;
 
-  /// `impulsan`, `apoyan`, `colaboran` o `miembro_de`.
+  /// `impulsan`, `financian`, `colaboran` o `miembro_de`. El antiguo
+  /// `apoyan` (servidores anteriores a la 0.9.1) se lee como `colaboran`.
   final String grupo;
 
   /// Web de la entidad, o ''.
@@ -38,7 +39,7 @@ class EntidadColaboradora {
     return EntidadColaboradora(
       clave: clave,
       nombre: nombre,
-      grupo: grupo,
+      grupo: grupo == 'apoyan' ? 'colaboran' : grupo,
       enlace: _soloWeb(json['enlace']),
       logoUrl: _soloWeb(json['logo_url']),
       logoPropio: json['logo_propio'] == true,

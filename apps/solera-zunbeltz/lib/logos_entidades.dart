@@ -15,11 +15,13 @@ import 'modelos/entidad_colaboradora.dart';
 
 const String rutaLogoZunbeltz = 'assets/logos/zunbeltz.png';
 
-/// Grupos del pie de la web, en su orden. El código es el del servidor.
+/// Grupos de entidades, en su orden (los cuatro que pidió Zunbeltz el
+/// 2026-10-21). El código es el del servidor; `financian` se rotula «Con el
+/// apoyo económico de». El antiguo `apoyan` ya no existe: se lee como
+/// `colaboran`.
 enum GrupoEntidades {
-  financian('financian'),
   impulsan('impulsan'),
-  apoyan('apoyan'),
+  financian('financian'),
   colaboran('colaboran'),
   miembroDe('miembro_de');
 
@@ -61,7 +63,7 @@ const Set<String> clavesLogosEmpaquetados = {
 String rutaLogoEmpaquetado(String clave) => 'assets/logos/$clave.png';
 
 const List<EntidadColaboradora> entidadesDePartida = [
-  // Las que financian (Zunbeltz, 2026-10-16), con su logo oficial en color.
+  // Con apoyo económico (Zunbeltz, 2026-10-16), con su logo oficial en color.
   EntidadColaboradora(
       clave: 'carasso',
       nombre: 'Fundación Daniel y Nina Carasso',
@@ -85,20 +87,20 @@ const List<EntidadColaboradora> entidadesDePartida = [
       nombre: 'Ayuntamiento de Salinas de Oro',
       grupo: 'impulsan'),
   EntidadColaboradora(
-      clave: 'ue_feader', nombre: 'Unión Europea · FEADER', grupo: 'apoyan'),
+      clave: 'ue_feader', nombre: 'Unión Europea · FEADER', grupo: 'colaboran'),
   EntidadColaboradora(
       clave: 'miteco',
       nombre: 'Ministerio para la Transición Ecológica y el Reto Demográfico',
-      grupo: 'apoyan'),
-  EntidadColaboradora(clave: 'innova', nombre: 'Innova', grupo: 'apoyan'),
+      grupo: 'colaboran'),
+  EntidadColaboradora(clave: 'innova', nombre: 'Innova', grupo: 'colaboran'),
   EntidadColaboradora(
       clave: 'fundacion_la_caixa',
       nombre: 'Fundación «la Caixa»',
-      grupo: 'apoyan'),
+      grupo: 'colaboran'),
   EntidadColaboradora(
       clave: 'fundacion_caja_navarra',
       nombre: 'Fundación Caja Navarra',
-      grupo: 'apoyan'),
+      grupo: 'colaboran'),
   EntidadColaboradora(
       clave: 'cpaen', nombre: 'CPAEN / NNPEK', grupo: 'colaboran'),
   EntidadColaboradora(

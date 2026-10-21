@@ -438,11 +438,11 @@ class AppLocalizationsEu extends AppLocalizations {
   String get avisoBuenManejo => 'Lan egiteko egun ona';
 
   @override
-  String get acercaTitulo => 'Saiakuntza Guneari buruz';
+  String get acercaTitulo => 'Zunbeltzi buruz';
 
   @override
   String get acercaIntro =>
-      'Zunbeltz Nafarroako lehen Nekazaritza eta Abeltzaintza Saiakuntza Gunea da: ekintzaileek abeltzaintza ekologiko estentsiboko proiektu bat denbora-tarte mugatu batean probatzeko inkubagailua, abeltzain adituen laguntzarekin, Zunbeltz (231 ha) eta La Planilla (197 ha) finketan. Nafarroako Gobernuak, Andiako Mankomunitateak eta inguruko udalerriek bultzatua, EBren finantzaketarekin, eta Zunbeltz Elkarteak kudeatua.';
+      'Zunbeltz Nafarroako lehen Nekazaritzako Test Gunea da. Ekintzaileei beren nekazaritza-proiektu ekologikoak ingurune seguru batean probatzeko aukera eskaintzen die, prestakuntza eta laguntza pertsonalizatuarekin, beren kabuz ezarri aurretik.\n\nGainera, belaunaldi-erreleboa, landa-eremuaren dinamizazioa eta lurraldearen kontserbazioa sustatzen ditu.\n\nGaur egun Zunbeltz Landa Garapenerako Elkarteak kudeatzen du, Nafarroako Gobernuaren eta Carasso Fundazioaren babesarekin.';
 
   @override
   String get acercaEnlaces => 'Estekak';
@@ -451,13 +451,10 @@ class AppLocalizationsEu extends AppLocalizations {
   String get acercaFuentes => 'Informazioa iturri publikoetatik.';
 
   @override
-  String get acercaFinancian => 'Proiektuaren finantzatzaileak';
+  String get acercaFinancian => 'Honen babes ekonomikoarekin';
 
   @override
   String get acercaImpulsan => 'Proiektuaren bultzatzaileak';
-
-  @override
-  String get acercaApoyan => 'Proiektuaren babesleak';
 
   @override
   String get acercaColaboran => 'Laguntzaileak';

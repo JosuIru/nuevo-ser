@@ -911,13 +911,13 @@ abstract class AppLocalizations {
   /// No description provided for @acercaTitulo.
   ///
   /// In es, this message translates to:
-  /// **'Acerca del Espacio Test'**
+  /// **'Acerca de Zunbeltz'**
   String get acercaTitulo;
 
   /// No description provided for @acercaIntro.
   ///
   /// In es, this message translates to:
-  /// **'Zunbeltz es el primer Espacio Test Agroganadero de Navarra: una incubadora donde personas emprendedoras prueban un proyecto de ganadería ecológica extensiva durante un periodo acotado, con acompañamiento de ganaderas y ganaderos expertos, sobre las fincas de Zunbeltz (231 ha) y La Planilla (197 ha). Impulsado por el Gobierno de Navarra, la Mancomunidad de Andía y los municipios de la zona, con financiación de la UE, y gestionado por la Asociación Zunbeltz Elkartea.'**
+  /// **'Zunbeltz es el primer Espacio Test Agrario de Navarra. Ofrece a personas emprendedoras la oportunidad de probar sus proyectos agrarios ecológicos en un entorno seguro, con formación y acompañamiento personalizado, antes de establecerse por su cuenta.\n\nAdemás, promueve el relevo generacional, la dinamización del medio rural y la conservación del territorio.\n\nActualmente está gestionado por la Asociación para el Desarrollo Rural Zunbeltz, con el apoyo del Gobierno de Navarra y la Fundación Carasso.'**
   String get acercaIntro;
 
   /// No description provided for @acercaEnlaces.
@@ -935,7 +935,7 @@ abstract class AppLocalizations {
   /// No description provided for @acercaFinancian.
   ///
   /// In es, this message translates to:
-  /// **'Financian el proyecto'**
+  /// **'Con el apoyo económico de'**
   String get acercaFinancian;
 
   /// No description provided for @acercaImpulsan.
@@ -943,12 +943,6 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Impulsan el proyecto'**
   String get acercaImpulsan;
-
-  /// No description provided for @acercaApoyan.
-  ///
-  /// In es, this message translates to:
-  /// **'Apoyan el proyecto'**
-  String get acercaApoyan;
 
   /// No description provided for @acercaColaboran.
   ///

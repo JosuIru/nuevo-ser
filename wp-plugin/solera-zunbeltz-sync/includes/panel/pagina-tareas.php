@@ -124,6 +124,7 @@ function szs_procesar_accion_tareas(): ?array {
 					'finca_uid'         => $finca,
 					'finca_nombre'      => $fincas[ $finca ],
 					'punto_uid'         => szs_campo_post( 'szs_punto_uid' ),
+					'zona_uid'          => szs_campo_post( 'szs_zona_uid' ),
 					'responsable_uid'   => szs_campo_post( 'szs_responsable_uid' ),
 					'prioridad'         => sanitize_key( szs_campo_post( 'szs_prioridad', 'media' ) ),
 					'estado'            => sanitize_key( szs_campo_post( 'szs_estado', 'pendiente' ) ),
@@ -256,8 +257,14 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 		$puntos[ $punto['uid'] ] = trim( $finca . ' — ' . szs_etiqueta_entidad( $punto ), ' —' );
 	}
 	asort( $puntos );
+	$zonas = array();
+	foreach ( szs_listar_entidades_tipo( 'zona' ) as $zona ) {
+		$finca                 = $fincas[ $zona['datos']['finca_uid'] ?? '' ] ?? '';
+		$zonas[ $zona['uid'] ] = trim( $finca . ' — ' . szs_etiqueta_entidad( $zona ), ' —' );
+	}
+	asort( $zonas );
 
-	// Desde una petición: el formulario llega relleno.
+	// Desde una petición: el formulario llega relleno (también la pieza o el punto sobre los que se pidió).
 	$peticion = '' === $peticion_uid ? null : szs_obtener_entidad( 'peticion', $peticion_uid );
 	$valores  = $tarea ?? szs_normalizar_tarea(
 		array(
@@ -265,6 +272,7 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 			'descripcion' => $peticion['datos']['descripcion'] ?? '',
 			'finca_uid'   => $peticion['datos']['finca_uid'] ?? '',
 			'punto_uid'   => $peticion['datos']['punto_uid'] ?? '',
+			'zona_uid'    => $peticion['datos']['zona_uid'] ?? '',
 			'prioridad'   => ! empty( $peticion['datos']['urgente'] ) ? 'alta' : 'media',
 		)
 	);
@@ -310,7 +318,8 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 					</script></td></tr>
 				<tr><th><label for="szs_descripcion">Descripción</label></th><td><textarea id="szs_descripcion" name="szs_descripcion" rows="3" class="large-text"><?php echo esc_textarea( $valores['descripcion'] ); ?></textarea></td></tr>
 				<tr><th><label for="szs_finca_uid">Finca</label></th><td><?php szs_selector( 'szs_finca_uid', $fincas, $valores['finca_uid'], '— Elige —' ); ?></td></tr>
-				<tr><th><label for="szs_punto_uid">Punto (opcional)</label></th><td><?php szs_selector( 'szs_punto_uid', $puntos, $valores['punto_uid'], 'Toda la finca' ); ?></td></tr>
+				<tr><th><label for="szs_zona_uid">Pieza (opcional)</label></th><td><?php szs_selector( 'szs_zona_uid', $zonas, $valores['zona_uid'] ?? '', 'Toda la finca' ); ?> <span class="description">La parcela, el parque o el cercado donde se hace.</span></td></tr>
+				<tr><th><label for="szs_punto_uid">Punto (opcional)</label></th><td><?php szs_selector( 'szs_punto_uid', $puntos, $valores['punto_uid'], 'Ninguno' ); ?></td></tr>
 				<tr><th><label for="szs_responsable_uid">Responsable</label></th><td><?php szs_selector( 'szs_responsable_uid', $personas, $valores['responsable_uid'], 'Sin asignar (tarea general)' ); ?></td></tr>
 				<tr><th><label for="szs_prioridad">Prioridad</label></th><td><?php szs_selector( 'szs_prioridad', SZS_PRIORIDADES_TAREA, $valores['prioridad'] ); ?></td></tr>
 				<tr><th><label for="szs_estado">Estado</label></th><td><?php szs_selector( 'szs_estado', SZS_ESTADOS_TAREA, $valores['estado'] ); ?></td></tr>

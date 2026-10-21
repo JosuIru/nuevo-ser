@@ -50,6 +50,10 @@ function szs_pagina_peticiones(): void {
 	);
 	$nombres = szs_nombres_personas();
 	$fincas  = szs_nombres_fincas();
+	$lugares = array(); // Pieza o punto sobre el que se pide, por uid.
+	foreach ( array_merge( szs_listar_entidades_tipo( 'zona' ), szs_listar_entidades_tipo( 'punto' ) ) as $lugar ) {
+		$lugares[ $lugar['uid'] ] = szs_etiqueta_entidad( $lugar );
+	}
 	$estados = array(
 		'pendiente'  => 'Pendiente',
 		'aceptada'   => 'Aceptada (tarea creada)',
@@ -80,7 +84,11 @@ function szs_pagina_peticiones(): void {
 						<?php if ( '' !== (string) ( $datos['respuesta'] ?? '' ) ) : ?><br><em>Respuesta: <?php echo esc_html( (string) $datos['respuesta'] ); ?></em><?php endif; ?>
 					</td>
 					<td><?php echo esc_html( $nombres[ $peticion['autor_uid'] ] ?? '—' ); ?></td>
-					<td><?php echo esc_html( $fincas[ $datos['finca_uid'] ?? '' ] ?? '—' ); ?></td>
+					<td>
+						<?php echo esc_html( $fincas[ $datos['finca_uid'] ?? '' ] ?? '—' ); ?>
+						<?php $lugar = $lugares[ $datos['zona_uid'] ?? '' ] ?? $lugares[ $datos['punto_uid'] ?? '' ] ?? ''; ?>
+						<?php if ( '' !== $lugar ) : ?><br><small><?php echo esc_html( $lugar ); ?></small><?php endif; ?>
+					</td>
 					<td><?php echo esc_html( szs_fecha_ms( (int) ( $datos['fecha_creacion_ms'] ?? 0 ) ) ); ?></td>
 					<td><?php echo esc_html( $estados[ $estado ] ?? $estado ); ?></td>
 					<td>

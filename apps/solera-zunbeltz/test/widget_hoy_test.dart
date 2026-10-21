@@ -67,7 +67,7 @@ void main() {
     expect(contenido.alarmas, isEmpty);
     expect(contenido.tareas, 'Ninguna tarea vencida · nada para hoy');
     expect(contenido.tareasUrgentes, isFalse);
-    expect(contenido.supresion, 'Ningún lote en supresión');
+    expect(contenido.supresion, 'Ningún rebaño en supresión');
     expect(contenido.hayLotesEnSupresion, isFalse);
     expect(contenido.tiempo, 'Sin previsión guardada');
     expect(contenido.puedeDarAvisos, isTrue);
@@ -161,7 +161,7 @@ void main() {
     expect(libres, [DateTime(2026, 10, 21), DateTime(2026, 11, 4)]);
     final contenido = componer(libres: libres);
     expect(contenido.supresion,
-        '2 lotes en supresión · el primero, libre el 21/10');
+        '2 rebaños en supresión · el primero, libre el 21/10');
     expect(contenido.hayLotesEnSupresion, isTrue);
   });
 

@@ -347,7 +347,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get actCantidad => 'Cantidad';
 
   @override
-  String get actLote => 'Lote / rebaño';
+  String get actLote => 'Rebaño';
 
   @override
   String get actNotas => 'Notas';
@@ -858,10 +858,17 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaSinResultados =>
-      'No hay ningún apartado con esa palabra. Prueba con otra: «tarea», «zona», «venta», «token»…';
+      'No hay ningún apartado con esa palabra. Prueba con otra: «tarea», «zona», «venta», «usuario»…';
 
   @override
   String get ayudaConsejo => 'Bueno saber';
+
+  @override
+  String get ayudaPerfilTester =>
+      'Estás viendo la ayuda para personas tester: cuenta lo que puedes hacer con tu rol.';
+
+  @override
+  String get ayudaManualTester => 'Si eres persona tester';
 
   @override
   String get ayudaGrupoEmpezar => 'Primeros pasos';
@@ -890,7 +897,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaPestanasB =>
-      'Abajo tienes cinco pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Ganado: los lotes, dónde está cada uno, sus animales, movimientos y curas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
+      'Abajo tienes cinco pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Ganado: los rebaños y sus animales, dónde está cada uno, movimientos y curas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.';
 
   @override
   String get ayudaIdiomaDatosT => 'Idioma, fotos, tiempo e internet';
@@ -914,11 +921,27 @@ class AppLocalizationsEs extends AppLocalizations {
       '1. En Fincas, pulsa «Dibujar zona».\n2. Toca en el mapa las esquinas de la zona, una detrás de otra. Si te equivocas, pulsa «Deshacer».\n3. Con tres esquinas o más, pulsa «Cerrar zona».\n4. Elige la finca, el tipo (parcela de pasto, cercado, zona de pastoreo…), el nombre y el estado, y guarda.\n» La superficie que sale del dibujo es orientativa. Si tienes la oficial del recinto SIGPAC, ponla en «Superficie oficial SIGPAC» y será la que se use.';
 
   @override
+  String get ayudaZonasTesterT =>
+      'Consultar las zonas de una finca (parcelas, cercados…)';
+
+  @override
+  String get ayudaZonasTesterB =>
+      'En Fincas puedes consultar las parcelas, cercados, zonas de pastoreo y otros espacios que forman parte de la finca.\n1. Entra en Fincas para ver el mapa con las zonas y los puntos.\n2. Toca una zona del mapa para ver su información: nombre, tipo, superficie y otros datos.\n3. Si falta una zona, sus límites no son correctos o hay algún dato que actualizar, comunícalo a coordinación.\n» Las personas tester pueden consultar las zonas, pero no dibujar nuevas ni modificar sus límites. Esos cambios los hace coordinación.';
+
+  @override
   String get ayudaEditarMapaT => 'Mover o borrar un punto o una zona';
 
   @override
   String get ayudaEditarMapaB =>
       '1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa el lápiz (arriba). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.\n4. Para borrarlo: pulsa la papelera y confirma.';
+
+  @override
+  String get ayudaEditarMapaTesterT =>
+      'Comunicar cambios o incidencias en una finca';
+
+  @override
+  String get ayudaEditarMapaTesterB =>
+      'Si encuentras un problema en una instalación o ves que la información del mapa no es correcta, puedes comunicárselo a coordinación.\n1. Entra en Fincas y localiza en el mapa el punto o la zona.\n2. Tócalo para ver su información.\n3. Si hay un error, hay que cambiar algún dato o quieres comunicar una incidencia, da un aviso desde Hoy o contacta con coordinación.\n» Los puntos móviles (un corral, un bidón) sí los puedes añadir y mover tú: pulsa «Recolocar en el mapa» en su ficha.\n» No necesitas modificar el mapa. Coordinación actualiza los puntos, las zonas y sus datos con la información que recibe.';
 
   @override
   String get ayudaCierresT => 'Un abrevadero o un cierre nuevo';
@@ -935,6 +958,13 @@ class AppLocalizationsEs extends AppLocalizations {
       '1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.';
 
   @override
+  String get ayudaTareasTesterT => 'Pedir una tarea de mantenimiento';
+
+  @override
+  String get ayudaTareasTesterB =>
+      'Si ves algo que hay que arreglar, revisar o mantener en la finca, puedes pedir que se haga una tarea.\n1. Entra en Fincas y localiza el punto o la zona donde hace falta.\n2. En su ficha, pulsa «Pedir una tarea» y explica qué pasa y qué hace falta hacer. Si puedes, añade una foto para que se entienda mejor.\n3. Coordinación revisará la petición y organizará la tarea.\n» Pedir una tarea no significa que tengas que hacerla tú. Coordinación valora la petición y decide cómo organizar el trabajo.\n» Cuanto más clara sea la descripción del problema y su ubicación, más fácil será organizar la actuación.';
+
+  @override
   String get ayudaRecurrentesT => 'Tareas que se repiten';
 
   @override
@@ -942,11 +972,25 @@ class AppLocalizationsEs extends AppLocalizations {
       'Lo que se hace siempre (rellenar comederos, revisar el vallado…) no hace falta apuntarlo cada vez.\n1. Al crear la tarea, elige una «Periodicidad»: diaria, semanal, quincenal, mensual o trimestral.\n2. Cuando la marques como hecha, la app crea sola la siguiente, con la fecha que toca.\n» En la lista, las tareas periódicas llevan el símbolo de repetir.';
 
   @override
+  String get ayudaRecurrentesTesterT => 'Tareas que se repiten';
+
+  @override
+  String get ayudaRecurrentesTesterB =>
+      'Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…\n1. En Fincas, pulsa «Tareas» para ver las actuaciones previstas.\n2. Las que se repiten llevan el símbolo de repetir.\n3. Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.\n» No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.';
+
+  @override
   String get ayudaTableroT => 'Llevar las tareas al día';
 
   @override
   String get ayudaTableroB =>
       '1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.';
+
+  @override
+  String get ayudaTableroTesterT => 'Consultar y llevar las tareas al día';
+
+  @override
+  String get ayudaTableroTesterB =>
+      'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso o hechas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.';
 
   @override
   String get ayudaProyectosT => 'Crear tu proyecto';
@@ -981,7 +1025,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaSyncB =>
-      'Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu token.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.';
+      'Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.\n» Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.';
 
   @override
   String get ayudaRolesT => 'Quién puede hacer qué';
@@ -995,7 +1039,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaProblemasB =>
-      '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.';
+      '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Clave de usuario incorrecta»: revisa que lo copiaste entero. Si la has perdido, coordinación te genera una nueva y la vieja deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu clave de usuario y lo recuperas.';
 
   @override
   String get ayudaPie =>
@@ -1011,7 +1055,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ajustesSyncUrl => 'WordPress de Zunbeltz';
 
   @override
-  String get ajustesSyncToken => 'Token personal';
+  String get ajustesSyncToken => 'Clave de usuario';
 
   @override
   String get ajustesSyncSinConfigurar => 'Sin configurar';
@@ -2016,7 +2060,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado. Cada partida se puede poner a mano o calcular como en la hoja: cantidad × precio, o ración por animal y día × cabezas × días × precio.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.';
+      '» Esta información es orientativa y sirve como modelo general. Cada proyecto de test tiene sus propias condiciones, que se negocian y acuerdan entre la persona tester y Zunbeltz antes de empezar: los gastos, el reparto económico, la fianza y el resto del convenio.\nEn tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado. Cada partida se puede poner a mano o calcular como en la hoja: cantidad × precio, o ración por animal y día × cabezas × días × precio.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.';
 
   @override
   String get ayudaNotificacionesT => 'Notificaciones';
@@ -2182,7 +2226,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaCalculadoraB =>
-      'En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por lote.';
+      'En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por rebaño.';
 
   @override
   String get ayudaActualizacionesT => 'Instalar una versión nueva';
@@ -2196,7 +2240,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaWebB =>
-      'La app también funciona en el navegador, útil en la oficina o con pantalla grande.\n1. Abre la dirección que te dé coordinación (la del WordPress de Zunbeltz, terminada en /app/).\n2. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu token.\n3. A partir de ahí funciona igual que en el móvil.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.';
+      'La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.';
 
   @override
   String get noticiasSectorTitulo => 'Noticias del sector';
@@ -2242,7 +2286,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorSyncConfiguracion =>
-      'Pon la dirección del WordPress y tu token en Ajustes → Sincronización.';
+      'Pon la dirección del WordPress y tu clave de usuario en Ajustes → Sincronización.';
 
   @override
   String get errorSyncSinConexion =>
@@ -2250,7 +2294,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorSyncToken =>
-      'Token incorrecto o persona desactivada. Pide uno nuevo a coordinación.';
+      'Clave de usuario incorrecta o persona desactivada. Pide una nueva a coordinación.';
 
   @override
   String get errorSyncPluginAntiguo =>
@@ -2286,7 +2330,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ganTitulo => 'Ganado';
 
   @override
-  String get ganLotes => 'Lotes';
+  String get ganLotes => 'Rebaños';
 
   @override
   String get ganAnimales => 'Animales';
@@ -2296,34 +2340,35 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ganIntro =>
-      'El ganado se maneja por lotes: cada lote está en una pieza y se mueve entero. Los animales con crotal van dentro de su lote.';
+      'El ganado se maneja por rebaños: cada rebaño está en una pieza y se mueve entero. Los animales con crotal van dentro de su rebaño.';
 
   @override
-  String get ganVerCerrados => 'Ver también los lotes cerrados';
+  String get ganVerCerrados => 'Ver también los rebaños cerrados';
 
   @override
-  String get ganSinLotes => 'Todavía no hay lotes. Crea uno con «Nuevo lote».';
+  String get ganSinLotes =>
+      'Todavía no hay rebaños. Crea uno con «Nuevo rebaño».';
 
   @override
   String get ganSinAnimales => 'No hay animales con esa identificación.';
 
   @override
-  String get ganSinMovimientos => 'Todavía no se ha movido ningún lote.';
+  String get ganSinMovimientos => 'Todavía no se ha movido ningún rebaño.';
 
   @override
-  String get ganNuevoLote => 'Nuevo lote';
+  String get ganNuevoLote => 'Nuevo rebaño';
 
   @override
   String get ganNuevoAnimal => 'Añadir animal';
 
   @override
-  String get ganEditarLote => 'Editar lote';
+  String get ganEditarLote => 'Editar rebaño';
 
   @override
   String get ganEditarAnimal => 'Editar animal';
 
   @override
-  String get ganMoverLote => 'Mover un lote';
+  String get ganMoverLote => 'Mover un rebaño';
 
   @override
   String get ganMover => 'Mover';
@@ -2332,7 +2377,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ganApuntarManejo => 'Cura, pesaje, parto…';
 
   @override
-  String get ganCambiarDeLote => 'Cambiar de lote';
+  String get ganCambiarDeLote => 'Cambiar de rebaño';
 
   @override
   String get ganDarDeBaja => 'Dar de baja';
@@ -2347,23 +2392,23 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ganFueraDelEspacio => 'fuera del espacio';
 
   @override
-  String get ganSinLote => 'Sin lote';
+  String get ganSinLote => 'Sin rebaño';
 
   @override
-  String get ganLote => 'Lote';
+  String get ganLote => 'Rebaño';
 
   @override
   String get ganLoteCerrado => 'cerrado';
 
   @override
-  String get ganLoteActivo => 'Lote en uso';
+  String get ganLoteActivo => 'Rebaño en uso';
 
   @override
   String get ganLoteActivoAyuda =>
-      'Desactívalo cuando el lote ya no exista (se vendió, se deshizo): deja de salir en las piezas, pero se conserva su historial.';
+      'Desactívalo cuando el rebaño ya no exista (se vendió, se deshizo): deja de salir en las piezas, pero se conserva su historial.';
 
   @override
-  String get ganLoteSinAnimales => 'Ningún animal con crotal en este lote.';
+  String get ganLoteSinAnimales => 'Ningún animal con crotal en este rebaño.';
 
   @override
   String get ganHistorial => 'Historial';
@@ -2372,7 +2417,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ganSinHistorial => 'Nada apuntado todavía.';
 
   @override
-  String get ganAlLote => 'al lote';
+  String get ganAlLote => 'al rebaño';
 
   @override
   String get ganNoExiste =>
@@ -2382,22 +2427,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ganEnEstaPieza => 'Ganado en esta pieza';
 
   @override
-  String get ganPiezaSinGanado => 'Ahora no hay ningún lote aquí.';
+  String get ganPiezaSinGanado => 'Ahora no hay ningún rebaño aquí.';
 
   @override
-  String get ganTraerAqui => 'Traer un lote';
+  String get ganTraerAqui => 'Traer un rebaño';
 
   @override
-  String get ganSinOtrosLotes => 'No hay otros lotes en uso.';
+  String get ganSinOtrosLotes => 'No hay otros rebaños en uso.';
 
   @override
-  String get ganElegirLote => '¿Qué lote?';
+  String get ganElegirLote => '¿Qué rebaño?';
 
   @override
   String get ganEnSupresion => 'En plazo de supresión';
 
   @override
-  String get ganNombreLote => 'Nombre del lote';
+  String get ganNombreLote => 'Nombre del rebaño';
 
   @override
   String get ganNombreLoteAyuda =>
@@ -2420,7 +2465,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ganCabezasSinIdentificarAyuda =>
-      'Las que no se llevan una a una (aves, cerdos de cebo, crías aún sin crotal). Se suman a los animales con crotal del lote.';
+      'Las que no se llevan una a una (aves, cerdos de cebo, crías aún sin crotal). Se suman a los animales con crotal del rebaño.';
 
   @override
   String get ganDondeEsta => '¿Dónde está ahora?';
@@ -2528,7 +2573,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ganDestinoObligatorio => 'Elige la pieza a la que va.';
 
   @override
-  String get ganYaEstaAhi => 'El lote ya está en esa pieza.';
+  String get ganYaEstaAhi => 'El rebaño ya está en esa pieza.';
 
   @override
   String get ganMovimientoGuardado => 'Movimiento apuntado.';
@@ -2581,7 +2626,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ganCabezasTratadas => 'Cabezas';
 
   @override
-  String get ganCabezasTratadasAyuda => 'Cuántas del lote; vacío = todas.';
+  String get ganCabezasTratadasAyuda => 'Cuántas del rebaño; vacío = todas.';
 
   @override
   String get ganDescripcion => 'Qué ha pasado / notas';
@@ -2593,25 +2638,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ayudaGrupoGanado => 'Ganado y movimientos';
 
   @override
-  String get ayudaGanadoLotesT => 'Lotes y animales';
+  String get ayudaGanadoLotesT => 'Rebaños y animales';
 
   @override
   String get ayudaGanadoLotesB =>
-      'El ganado se lleva por lotes, como se maneja en extensivo: un rebaño, un lote de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo lote».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el lote y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.';
+      'El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.';
 
   @override
   String get ayudaGanadoMoverT => 'Mover el ganado de pieza';
 
   @override
   String get ayudaGanadoMoverB =>
-      '1. Abre el lote y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un lote»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un lote».\n» En la ficha de cada pieza se ve qué lotes hay, cuántas cabezas y cuántas por hectárea. El historial del lote guarda todos sus movimientos.\n» Un animal suelto se cambia de lote desde su ficha («Cambiar de lote»).';
+      '1. Abre el rebaño y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un rebaño»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un rebaño».\n» En la ficha de cada pieza se ve qué rebaños hay, cuántas cabezas y cuántas por hectárea. El historial del rebaño guarda todos sus movimientos.\n» Un animal suelto se cambia de rebaño desde su ficha («Cambiar de rebaño»).';
 
   @override
   String get ayudaGanadoManejoT => 'Curas, tratamientos, pesajes y partos';
 
   @override
   String get ayudaGanadoManejoB =>
-      '1. Abre el lote (si es para todo el lote) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el lote o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.';
+      '1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.';
 
   @override
   String ganCabezas(int n) {
@@ -2731,9 +2776,9 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n lotes en supresión · el primero, libre el $fecha',
-      one: '1 lote en supresión · libre el $fecha',
-      zero: 'Ningún lote en supresión',
+      other: '$n rebaños en supresión · el primero, libre el $fecha',
+      one: '1 rebaño en supresión · libre el $fecha',
+      zero: 'Ningún rebaño en supresión',
     );
     return '$_temp0';
   }
@@ -2750,7 +2795,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get widgetBotonAviso => 'Aviso';
 
   @override
-  String get widgetBotonMover => 'Mover lote';
+  String get widgetBotonMover => 'Mover rebaño';
 
   @override
   String get widgetBotonCura => 'Cura';
@@ -2760,5 +2805,5 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaWidgetB =>
-      'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los lotes en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un lote o apuntar una cura (eligiendo el lote). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.';
+      'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.';
 }

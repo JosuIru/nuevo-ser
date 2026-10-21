@@ -6,6 +6,6 @@
     <string name="widget_hoy_descripcion">Alarmas, tareas, ganado en supresión y el tiempo, con accesos directos</string>
     <string name="widget_hoy_abre_app">Abre la app para ver el resumen</string>
     <string name="widget_boton_aviso">Aviso</string>
-    <string name="widget_boton_mover">Mover lote</string>
+    <string name="widget_boton_mover">Mover rebaño</string>
     <string name="widget_boton_cura">Cura</string>
 </resources>

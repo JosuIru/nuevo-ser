@@ -1,40 +1,41 @@
 {
   "@@locale": "es",
-
   "appTitulo": "Solera Zunbeltz",
-
   "navHoy": "Hoy",
   "navFincas": "Fincas",
   "navSeguimiento": "Seguimiento",
   "navAjustes": "Ajustes",
-
   "onboardingTitulo": "Solera Zunbeltz",
   "onboardingCuerpo": "La herramienta del Espacio Test Agrario: gestiona las fincas, reparte las tareas de mantenimiento y lleva el seguimiento del testaje. Funciona sin cobertura en el monte.",
   "onboardingBoton": "Empezar",
-
   "hoyTitulo": "Hoy",
   "hoyResumenTareas": "{n, plural, =0{Sin tareas abiertas} =1{1 tarea abierta} other{{n} tareas abiertas}}",
   "@hoyResumenTareas": {
-    "placeholders": { "n": { "type": "int" } }
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   },
   "hoyVacio": "Aún no hay nada registrado. Empieza por marcar una infraestructura en el mapa de Fincas.",
   "hoyVerTablero": "Ver tareas",
-
   "ajustesIdioma": "Idioma",
   "ajustesIdiomaCastellano": "Castellano",
   "ajustesIdiomaEuskera": "Euskara",
   "ajustesAcercaDe": "Acerca de",
   "ajustesVersion": "Versión {version}",
   "@ajustesVersion": {
-    "placeholders": { "version": { "type": "String" } }
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
   },
   "ajustesProvisional": "Versión preliminar. Los partes e informes que genera son orientativos y su formato está pendiente de validación. El papeleo oficial (libro de explotación, cuaderno PAC, trazabilidad…) llega en fases posteriores.",
-
   "comunGuardar": "Guardar",
   "comunCancelar": "Cancelar",
   "comunBorrar": "Borrar",
   "comunFecha": "Fecha",
-
   "mapaNuevoPunto": "Nuevo punto",
   "mapaUsarGps": "Usar GPS actual",
   "mapaUsarCentro": "Usar centro del mapa",
@@ -49,7 +50,6 @@
   "mapaMapa": "Mapa",
   "mapaGps": "GPS",
   "mapaTablero": "Tareas",
-
   "puntoNuevoTitulo": "Nuevo punto de infraestructura",
   "puntoFinca": "Finca",
   "puntoTipo": "Tipo",
@@ -60,14 +60,12 @@
   "puntoLatitud": "Latitud",
   "puntoLongitud": "Longitud",
   "puntoGuardado": "Punto guardado",
-
   "fichaPuntoTareas": "Tareas del punto",
   "fichaSinTareas": "Sin tareas en este punto.",
   "fichaNuevaTarea": "Nueva tarea",
   "fichaBorrarPunto": "Borrar punto",
   "fichaCoordenadas": "Coordenadas",
   "fichaSinCoordenadas": "Sin coordenadas",
-
   "tareaNuevaTitulo": "Nueva tarea",
   "tareaTitulo": "Título",
   "tareaDescripcion": "Descripción",
@@ -84,7 +82,6 @@
   "tareaRecurrencia": "Periodicidad",
   "tareaMarcarHecha": "Marcar hecha",
   "tareaSiguienteGenerada": "Hecha. Siguiente tarea generada.",
-
   "tableroTitulo": "Tareas de mantenimiento",
   "tableroTodas": "Todas",
   "tableroFiltroFinca": "Finca",
@@ -93,13 +90,16 @@
   "tableroPartePdf": "Parte PDF",
   "tableroGenerandoPdf": "Generando parte…",
   "tareaDeFinca": "Tarea de finca",
-
   "parteTitulo": "Parte de mantenimiento",
   "parteSubtitulo": "Espacio Test Agrario Zunbeltz · documento PROVISIONAL",
   "parteProvisional": "DOCUMENTO PROVISIONAL — formato pendiente de validación.",
   "parteResumenTareas": "Tareas incluidas: {n}",
   "@parteResumenTareas": {
-    "placeholders": { "n": { "type": "int" } }
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   },
   "parteColPunto": "Punto",
   "parteColTarea": "Tarea",
@@ -108,7 +108,6 @@
   "parteColEstado": "Estado",
   "parteColFecha": "Fecha objetivo",
   "parteSinResponsable": "Sin asignar",
-
   "segTitulo": "Seguimiento",
   "segIndicadores": "Indicadores del periodo",
   "segTodasFincas": "Todas las fincas",
@@ -125,15 +124,13 @@
   "segSinRegistros": "Sin registros todavía.",
   "segInformePdf": "Informe de seguimiento (PDF)",
   "segGenerandoInforme": "Generando informe…",
-
   "actNuevaTitulo": "Registrar actividad",
   "actTipo": "Tipo de actividad",
   "actCantidad": "Cantidad",
-  "actLote": "Lote / rebaño",
+  "actLote": "Rebaño",
   "actNotas": "Notas",
   "actGuardada": "Actividad registrada",
   "actCantidadObligatoria": "Indica una cantidad mayor que cero.",
-
   "apuNuevoTitulo": "Nuevo apunte económico",
   "apuTipo": "Tipo",
   "apuConcepto": "Concepto",
@@ -141,13 +138,16 @@
   "apuNotas": "Notas",
   "apuGuardado": "Apunte guardado",
   "apuImporteObligatorio": "Indica un importe mayor que cero.",
-
   "informeSegTitulo": "Informe de seguimiento",
   "informeSegResumenPeriodo": "Registros: {actividades} · apuntes: {apuntes}",
   "@informeSegResumenPeriodo": {
     "placeholders": {
-      "actividades": { "type": "int" },
-      "apuntes": { "type": "int" }
+      "actividades": {
+        "type": "int"
+      },
+      "apuntes": {
+        "type": "int"
+      }
     }
   },
   "informeSegTablaActividad": "Registros de actividad",
@@ -156,7 +156,6 @@
   "informeSegColCantidad": "Cantidad",
   "informeSegColConcepto": "Concepto",
   "informeSegColImporte": "Importe (€)",
-
   "meteoTitulo": "Previsión",
   "meteoHoy": "Hoy",
   "meteoSinConexion": "No se pudo obtener la previsión. Revisa la conexión e inténtalo de nuevo.",
@@ -167,7 +166,6 @@
   "avisoViento": "Viento fuerte",
   "avisoCalor": "Calor",
   "avisoBuenManejo": "Buen día de manejo",
-
   "acercaTitulo": "Acerca de Zunbeltz",
   "acercaIntro": "Zunbeltz es el primer Espacio Test Agrario de Navarra. Ofrece a personas emprendedoras la oportunidad de probar sus proyectos agrarios ecológicos en un entorno seguro, con formación y acompañamiento personalizado, antes de establecerse por su cuenta.\n\nAdemás, promueve el relevo generacional, la dinamización del medio rural y la conservación del territorio.\n\nActualmente está gestionado por la Asociación para el Desarrollo Rural Zunbeltz, con el apoyo del Gobierno de Navarra y la Fundación Carasso.",
   "acercaEnlaces": "Enlaces",
@@ -179,7 +177,6 @@
   "entidadesTitulo": "Entidades que lo hacen posible",
   "entidadesIntro": "Zunbeltz sale adelante gracias a las instituciones, fundaciones y redes que lo impulsan, lo apoyan y colaboran con él.",
   "entidadesFranja": "Con el apoyo de",
-
   "navProyectos": "Proyectos",
   "proyectosTitulo": "Proyectos de test",
   "proyectosVacio": "Aún no hay proyectos. Pulsa + para añadir el primero.",
@@ -194,7 +191,6 @@
   "proyectoGuardado": "Proyecto guardado",
   "proyectoNombreObligatorio": "Pon un nombre al proyecto.",
   "proyectoBorrar": "Borrar proyecto",
-
   "rentTitulo": "Rentabilidad",
   "rentVentas": "Ventas",
   "rentOtrosIngresos": "Otros ingresos",
@@ -208,7 +204,6 @@
   "detEconomico": "Económico",
   "detSinDatos": "Sin datos todavía.",
   "detInformePdf": "Informe del proyecto (PDF)",
-
   "comNuevaTitulo": "Nueva venta",
   "comProducto": "Producto",
   "comCanal": "Canal",
@@ -217,35 +212,34 @@
   "comPrecio": "Precio unitario (€)",
   "comIngreso": "Ingreso (€)",
   "comGuardada": "Venta guardada",
-
   "valNuevaTitulo": "Nueva validación de producto",
   "valDescripcion": "¿Qué se valida?",
   "valResultado": "Resultado",
   "valValoracion": "Valoración",
   "valSinValorar": "Sin valorar",
   "valGuardada": "Validación guardada",
-
   "infProyTitulo": "Informe del proyecto de test",
   "infProyResumen": "Proyecto: {nombre} · tester: {persona}",
   "@infProyResumen": {
     "placeholders": {
-      "nombre": { "type": "String" },
-      "persona": { "type": "String" }
+      "nombre": {
+        "type": "String"
+      },
+      "persona": {
+        "type": "String"
+      }
     }
   },
-
   "comparativaPdf": "Comparativa (PDF)",
   "comparativaTitulo": "Comparativa de proyectos de test",
   "comparativaColProyecto": "Proyecto",
   "comparativaColTester": "Tester",
   "comparativaTotal": "Total",
-
   "periodoEtiqueta": "Periodo",
   "periodoTodo": "Todo",
   "periodoAnio": "Este año",
   "periodoTrimestre": "Este trimestre",
   "periodoTrimestreAnterior": "Trimestre anterior",
-
   "detDesgloseGastos": "Desglose de gastos",
   "detIvaSoportado": "IVA soportado",
   "detIvaRepercutido": "IVA repercutido",
@@ -268,7 +262,22 @@
   "invNombreObligatorio": "Ponle un nombre al bien.",
   "invVidaUtilObligatoria": "La vida útil tiene que ser de al menos un mes.",
   "invResumen": "{unidades} × {precio} · total {total} · {cuota} al mes",
-  "@invResumen": {"placeholders": {"unidades": {"type": "String"}, "precio": {"type": "String"}, "total": {"type": "String"}, "cuota": {"type": "String"}}},
+  "@invResumen": {
+    "placeholders": {
+      "unidades": {
+        "type": "String"
+      },
+      "precio": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      },
+      "cuota": {
+        "type": "String"
+      }
+    }
+  },
   "amortIntro": "Bienes del inventario que usa este proyecto. La cuota se calcula con los meses del test y la asume Zunbeltz; cuenta en el balance del proyecto, no en el del test.",
   "amortVacio": "Este proyecto aún no usa bienes del inventario.",
   "amortAnadir": "Añadir bien del inventario",
@@ -277,9 +286,27 @@
   "amortPorcentaje": "Parte que se imputa (%)",
   "amortMeses": "Meses (vacío: lo que dure el test)",
   "amortMesesDelTest": "{meses} meses del test",
-  "@amortMesesDelTest": {"placeholders": {"meses": {"type": "String"}}},
+  "@amortMesesDelTest": {
+    "placeholders": {
+      "meses": {
+        "type": "String"
+      }
+    }
+  },
   "amortResumen": "{cuota} al mes × {meses} meses × {porcentaje} %",
-  "@amortResumen": {"placeholders": {"cuota": {"type": "String"}, "meses": {"type": "String"}, "porcentaje": {"type": "String"}}},
+  "@amortResumen": {
+    "placeholders": {
+      "cuota": {
+        "type": "String"
+      },
+      "meses": {
+        "type": "String"
+      },
+      "porcentaje": {
+        "type": "String"
+      }
+    }
+  },
   "amortTotal": "Total imputado",
   "amortSinBienes": "Primero añade bienes al inventario.",
   "amortSinFechas": "El proyecto no tiene fecha de inicio: pon las fechas del proyecto o indica los meses de cada bien.",
@@ -314,12 +341,13 @@
   "ajustesCoordinador": "Coordinador (envío de informes)",
   "ajustesCoordinadorVacio": "Sin configurar",
   "coordinadorCorreo": "Correo del coordinador",
-
   "ayudaTitulo": "Ayuda",
   "ayudaIntro": "Una guía paso a paso para usar la app. Toca un apartado para abrirlo, o escribe arriba lo que buscas. Si te pierdes, vuelve atrás con la flecha de arriba a la izquierda.",
   "ayudaBuscar": "Buscar en la ayuda",
-  "ayudaSinResultados": "No hay ningún apartado con esa palabra. Prueba con otra: «tarea», «zona», «venta», «token»…",
+  "ayudaSinResultados": "No hay ningún apartado con esa palabra. Prueba con otra: «tarea», «zona», «venta», «usuario»…",
   "ayudaConsejo": "Bueno saber",
+  "ayudaPerfilTester": "Estás viendo la ayuda para personas tester: cuenta lo que puedes hacer con tu rol.",
+  "ayudaManualTester": "Si eres persona tester",
   "ayudaGrupoEmpezar": "Primeros pasos",
   "ayudaGrupoFincas": "Fincas y tareas",
   "ayudaGrupoProyectos": "Tu proyecto de test",
@@ -328,23 +356,33 @@
   "ayudaQueEsT": "¿Qué es esta app?",
   "ayudaQueEsB": "Es la herramienta del Espacio Test Zunbeltz. Sirve para dos cosas: llevar el seguimiento de tu proyecto de test (lo que produces, lo que vendes, lo que gastas y lo que ganas) y cuidar las fincas (las infraestructuras del mapa y sus tareas de mantenimiento).\nTodo se guarda en tu móvil y funciona sin cobertura en el monte. Si sincronizas, además lo compartes con el resto del equipo a través del servidor de Zunbeltz.",
   "ayudaPestanasT": "Moverse por la app",
-  "ayudaPestanasB": "Abajo tienes cinco pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Ganado: los lotes, dónde está cada uno, sus animales, movimientos y curas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.",
+  "ayudaPestanasB": "Abajo tienes cinco pestañas. Tócalas para cambiar de pantalla:\n• Hoy: la bandeja del espacio — alarmas, tareas vencidas y próximas, peticiones y avisos.\n• Fincas: el mapa con los puntos, las zonas y las tareas.\n• Ganado: los rebaños y sus animales, dónde está cada uno, movimientos y curas.\n• Proyectos: el proceso de test, sus números y el convenio.\n• Ajustes: idioma, sincronización, actualizaciones, envío de informes e información sobre el Espacio Test.\nEn Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.\nPara volver atrás, usa la flecha de arriba a la izquierda.",
   "ayudaIdiomaDatosT": "Idioma, fotos, tiempo e internet",
   "ayudaIdiomaDatosB": "• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Hoy o en Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo, la sincronización y las actualizaciones. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.",
   "ayudaFincasT": "Marcar un punto en el mapa",
   "ayudaFincasB": "Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…\n1. Entra en Fincas.\n2. Toca el sitio exacto en el mapa. O pulsa «Nuevo punto» (abajo a la derecha) y elige «Usar GPS actual» si estás junto a la instalación, o «Usar centro del mapa».\n3. Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.\n4. Pulsa Guardar.\n» El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón «GPS» centra el mapa en ti y «Capas» cambia entre mapa y satélite.",
   "ayudaZonasT": "Dibujar una zona (parcela, cercado…)",
   "ayudaZonasB": "1. En Fincas, pulsa «Dibujar zona».\n2. Toca en el mapa las esquinas de la zona, una detrás de otra. Si te equivocas, pulsa «Deshacer».\n3. Con tres esquinas o más, pulsa «Cerrar zona».\n4. Elige la finca, el tipo (parcela de pasto, cercado, zona de pastoreo…), el nombre y el estado, y guarda.\n» La superficie que sale del dibujo es orientativa. Si tienes la oficial del recinto SIGPAC, ponla en «Superficie oficial SIGPAC» y será la que se use.",
+  "ayudaZonasTesterT": "Consultar las zonas de una finca (parcelas, cercados…)",
+  "ayudaZonasTesterB": "En Fincas puedes consultar las parcelas, cercados, zonas de pastoreo y otros espacios que forman parte de la finca.\n1. Entra en Fincas para ver el mapa con las zonas y los puntos.\n2. Toca una zona del mapa para ver su información: nombre, tipo, superficie y otros datos.\n3. Si falta una zona, sus límites no son correctos o hay algún dato que actualizar, comunícalo a coordinación.\n» Las personas tester pueden consultar las zonas, pero no dibujar nuevas ni modificar sus límites. Esos cambios los hace coordinación.",
   "ayudaEditarMapaT": "Mover o borrar un punto o una zona",
   "ayudaEditarMapaB": "1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa el lápiz (arriba). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.\n4. Para borrarlo: pulsa la papelera y confirma.",
+  "ayudaEditarMapaTesterT": "Comunicar cambios o incidencias en una finca",
+  "ayudaEditarMapaTesterB": "Si encuentras un problema en una instalación o ves que la información del mapa no es correcta, puedes comunicárselo a coordinación.\n1. Entra en Fincas y localiza en el mapa el punto o la zona.\n2. Tócalo para ver su información.\n3. Si hay un error, hay que cambiar algún dato o quieres comunicar una incidencia, da un aviso desde Hoy o contacta con coordinación.\n» Los puntos móviles (un corral, un bidón) sí los puedes añadir y mover tú: pulsa «Recolocar en el mapa» en su ficha.\n» No necesitas modificar el mapa. Coordinación actualiza los puntos, las zonas y sus datos con la información que recibe.",
   "ayudaCierresT": "Un abrevadero o un cierre nuevo",
   "ayudaCierresB": "Un abrevadero, un bebedero o una manga son un punto: se marcan como en «Marcar un punto en el mapa», con su tipo.\nUn cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de una de estas dos maneras:\n1. Si importa un tramo o una puerta concreta (para tensarlo, revisarlo o arreglarlo), marca un punto en ese sitio con el tipo «Cierre / alambrada», «Pastor eléctrico» o «Puerta / portillo», y di en el nombre o en las notas qué tramo es.\n2. Si importa el recinto que cierra, dibújalo como zona («Dibujar zona»). Si es un cierre que se pone y se quita, elige el tipo «Cercado provisional».\n» Las tareas del cierre se anclan a ese punto o a esa zona.\n» Si necesitáis ver el trazado del cierre en el mapa, decídnoslo: sería una función nueva.",
   "ayudaTareasT": "Apuntar una tarea de mantenimiento",
   "ayudaTareasB": "1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.",
+  "ayudaTareasTesterT": "Pedir una tarea de mantenimiento",
+  "ayudaTareasTesterB": "Si ves algo que hay que arreglar, revisar o mantener en la finca, puedes pedir que se haga una tarea.\n1. Entra en Fincas y localiza el punto o la zona donde hace falta.\n2. En su ficha, pulsa «Pedir una tarea» y explica qué pasa y qué hace falta hacer. Si puedes, añade una foto para que se entienda mejor.\n3. Coordinación revisará la petición y organizará la tarea.\n» Pedir una tarea no significa que tengas que hacerla tú. Coordinación valora la petición y decide cómo organizar el trabajo.\n» Cuanto más clara sea la descripción del problema y su ubicación, más fácil será organizar la actuación.",
   "ayudaRecurrentesT": "Tareas que se repiten",
   "ayudaRecurrentesB": "Lo que se hace siempre (rellenar comederos, revisar el vallado…) no hace falta apuntarlo cada vez.\n1. Al crear la tarea, elige una «Periodicidad»: diaria, semanal, quincenal, mensual o trimestral.\n2. Cuando la marques como hecha, la app crea sola la siguiente, con la fecha que toca.\n» En la lista, las tareas periódicas llevan el símbolo de repetir.",
+  "ayudaRecurrentesTesterT": "Tareas que se repiten",
+  "ayudaRecurrentesTesterB": "Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…\n1. En Fincas, pulsa «Tareas» para ver las actuaciones previstas.\n2. Las que se repiten llevan el símbolo de repetir.\n3. Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.\n» No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.",
   "ayudaTableroT": "Llevar las tareas al día",
   "ayudaTableroB": "1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.",
+  "ayudaTableroTesterT": "Consultar y llevar las tareas al día",
+  "ayudaTableroTesterB": "En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso o hechas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.",
   "ayudaProyectosT": "Crear tu proyecto",
   "ayudaProyectosB": "Los proyectos los crea coordinación, y cada uno es de una persona tester.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).",
   "ayudaApuntarT": "Apuntar tu día a día",
@@ -354,16 +392,16 @@
   "ayudaInformesT": "Sacar informes y enviarlos",
   "ayudaInformesB": "• En tu proyecto, el botón de compartir (arriba) saca el «Informe del proyecto (PDF)», lo exporta a CSV (se abre con Excel) o lo manda con «Enviar al coordinador». El correo al que se manda se pone en Ajustes → «Coordinador (envío de informes)».\n• El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.\n• Los PDF salen con la marca «BORRADOR». La versión definitiva la saca coordinación con el proyecto cerrado.\n• En la lista de Proyectos, el botón del gráfico saca la «Comparativa (PDF)» entre proyectos.\n• En Ajustes, «Exportar espacio (CSV)» saca las fincas y los puntos del mapa.",
   "ayudaSyncT": "Compartir el espacio con el equipo",
-  "ayudaSyncB": "Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu token personal. Es tu llave: cada persona tiene el suyo y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu token.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.",
+  "ayudaSyncB": "Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.\n» Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.",
   "ayudaRolesT": "Quién puede hacer qué",
   "ayudaRolesB": "Cada persona tiene un rol, que le da coordinación.\n• Coordinación: crea, reparte y cierra tareas; gestiona fincas, zonas, puntos y todos los proyectos; acepta o descarta peticiones; ve lo que pasa en el espacio.\n• Tester: ve sus tareas y las generales (las que no son de nadie), cambia su estado, coge una general o suelta una suya. Pide tareas en vez de crearlas. Añade y mueve puntos (un corral móvil, un bidón), da avisos y apunta el día a día de su proyecto mientras esté abierto.\n» En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en «Modo local» y puedes editarlo todo.",
   "ayudaProblemasT": "Problemas frecuentes",
-  "ayudaProblemasB": "• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Token incorrecto»: revisa que lo copiaste entero. Si lo has perdido, coordinación te genera uno nuevo y el viejo deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu token y lo recuperas.",
+  "ayudaProblemasB": "• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Clave de usuario incorrecta»: revisa que lo copiaste entero. Si la has perdido, coordinación te genera una nueva y la vieja deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu clave de usuario y lo recuperas.",
   "ayudaPie": "Si algo no queda claro, pregunta a coordinación del Espacio Test.",
   "ajustesExportarEspacio": "Exportar espacio (CSV)",
   "ajustesSyncTitulo": "Sincronización",
   "ajustesSyncUrl": "WordPress de Zunbeltz",
-  "ajustesSyncToken": "Token personal",
+  "ajustesSyncToken": "Clave de usuario",
   "ajustesSyncSinConfigurar": "Sin configurar",
   "ajustesSyncAhora": "Sincronizar ahora",
   "ajustesSyncResultado": "{enviados} cambios enviados · {recibidos} recibidos{retirados, plural, =0{} other{ · {retirados} retirados de este móvil}}",
@@ -383,7 +421,6 @@
   "ajustesDemo": "Cargar datos de demostración",
   "demoCargada": "Datos de demostración cargados",
   "demoYaHay": "Ya hay proyectos; bórralos para recargar la demostración.",
-
   "zonaDibujar": "Dibujar zona",
   "zonaNuevaTitulo": "Nueva zona",
   "zonaTitulo": "Zonas",
@@ -425,24 +462,50 @@
   "dibujoEnCurso": "{esquinas} · ≈ {ha} ha",
   "@dibujoEnCurso": {
     "placeholders": {
-      "esquinas": { "type": "String" },
-      "ha": { "type": "String" }
+      "esquinas": {
+        "type": "String"
+      },
+      "ha": {
+        "type": "String"
+      }
     }
   },
   "dibujoEsquinas": "{n, plural, =0{Sin esquinas} =1{1 esquina} other{{n} esquinas}}",
   "@dibujoEsquinas": {
-    "placeholders": { "n": { "type": "int" } }
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
   },
   "tareaDeZona": "Tarea de zona",
   "parteColZona": "Zona",
   "ajustesSesionComo": "Sesión de {nombre}",
-  "@ajustesSesionComo": { "placeholders": { "nombre": { "type": "String" } } },
+  "@ajustesSesionComo": {
+    "placeholders": {
+      "nombre": {
+        "type": "String"
+      }
+    }
+  },
   "ajustesSesionConectada": "Sesión iniciada: {nombre}",
-  "@ajustesSesionConectada": { "placeholders": { "nombre": { "type": "String" } } },
+  "@ajustesSesionConectada": {
+    "placeholders": {
+      "nombre": {
+        "type": "String"
+      }
+    }
+  },
   "ajustesSesionLocal": "Modo local",
   "ajustesSesionLocalDetalle": "Sin sincronización: en este dispositivo se puede editar todo.",
   "ajustesSyncRechazadas": "{n, plural, =1{1 cambio revertido: tu rol no lo permite} other{{n} cambios revertidos: tu rol no los permite}}",
-  "@ajustesSyncRechazadas": { "placeholders": { "n": { "type": "int" } } },
+  "@ajustesSyncRechazadas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "tareaSinAsignar": "Sin asignar",
   "tareaAsignarme": "Asignármela",
   "tareaSoltar": "Soltar la tarea",
@@ -450,18 +513,32 @@
   "tareaSinPermiso": "Tu rol no permite cambiar esta tarea.",
   "tareaNoPuedesCrear": "Tu rol no permite crear tareas.",
   "tableroMisTareas": "Mis tareas",
-
   "meteoAhora": "Ahora",
   "meteoSensacion": "Sensación",
   "meteoHumedad": "Humedad",
   "meteoViento": "Viento",
   "meteoRachas": "rachas",
   "meteoLuz": "{horas} h {minutos} min de luz",
-  "@meteoLuz": {"placeholders": {"horas": {"type": "int"}, "minutos": {"type": "int"}}},
+  "@meteoLuz": {
+    "placeholders": {
+      "horas": {
+        "type": "int"
+      },
+      "minutos": {
+        "type": "int"
+      }
+    }
+  },
   "meteoAmanecer": "Amanece",
   "meteoAnochecer": "Anochece",
   "meteoAltitud": "Datos del modelo a {metros} m de altitud",
-  "@meteoAltitud": {"placeholders": {"metros": {"type": "int"}}},
+  "@meteoAltitud": {
+    "placeholders": {
+      "metros": {
+        "type": "int"
+      }
+    }
+  },
   "meteoProximasHoras": "Próximas 24 horas",
   "meteoAgua": "Agua y pasto",
   "meteoLluviaPasada": "Lluvia últimos 7 días",
@@ -477,16 +554,29 @@
   "meteoThi": "Índice de estrés por calor (THI) máximo",
   "meteoThiNota": "El THI y su umbral de alerta (75, índice de seguridad del ganado LCI) son orientativos y están pendientes de validar con el veterinario para vacuno de carne y ovino en extensivo.",
   "meteoGuardada": "Sin conexión. Previsión guardada el {fecha}.",
-  "@meteoGuardada": {"placeholders": {"fecha": {"type": "String"}}},
+  "@meteoGuardada": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
   "meteoActualizado": "Actualizado {fecha}",
-  "@meteoActualizado": {"placeholders": {"fecha": {"type": "String"}}},
+  "@meteoActualizado": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
   "avisoNieve": "Nieve",
   "avisoTormenta": "Tormenta",
   "avisoEstresCalor": "Estrés por calor",
   "meteoEvapotranspiracionDia": "Agua que pierden suelo y pasto",
-
   "actualizacionesTitulo": "Actualizaciones",
-  "@actualizacionesTitulo": {"description": "Textos de la pantalla de actualizaciones del core (claves actualizaciones*). Euskera: borrador pendiente de revisión nativa."},
+  "@actualizacionesTitulo": {
+    "description": "Textos de la pantalla de actualizaciones del core (claves actualizaciones*). Euskera: borrador pendiente de revisión nativa."
+  },
   "actualizacionesVersionInstalada": "Versión instalada",
   "actualizacionesUltimaPublicada": "Última publicada",
   "actualizacionesSinConexion": "sin conexión",
@@ -517,7 +607,6 @@
   "@demoFranja": {
     "description": "Franja superior de la versión web de demostración."
   },
-
   "ajustesSyncCompleta": "Sincronizar todo desde cero",
   "@ajustesSyncCompleta": {
     "description": "Sincronización completa: baja todo y retira lo que ya no corresponde."
@@ -536,7 +625,6 @@
       }
     }
   },
-
   "proyectoEditar": "Editar proyecto",
   "proyectoPersonaTester": "Persona tester",
   "proyectoSinPersona": "Sin asignar",
@@ -553,7 +641,6 @@
   },
   "proyectoCerradoEtiqueta": "Cerrado",
   "proyectoMas": "Más opciones",
-
   "peticionesTitulo": "Peticiones de tarea",
   "peticionNueva": "Pedir una tarea",
   "peticionQue": "Qué hace falta",
@@ -589,7 +676,6 @@
   },
   "peticionNecesitaFinca": "Para crear la tarea, elige antes una finca.",
   "personaDesconocida": "alguien del espacio",
-
   "avisoCategoriaGanado": "Ganado",
   "avisoCategoriaInstalaciones": "Instalaciones",
   "avisoCategoriaSeguimiento": "Seguimiento individual",
@@ -798,7 +884,6 @@
     }
   },
   "notificacionVencidasCuerpo": "Siguen pendientes hasta que se marquen como hechas.",
-
   "apuAsumidoPor": "Lo asume",
   "apuAmortizacionDetalle": "Cuenta en el balance del proyecto, no en el del test.",
   "convenioTitulo": "Convenio",
@@ -893,16 +978,14 @@
   "convenioNoCumple": "Todavía no",
   "marcaBorrador": "BORRADOR",
   "informeBorradorAviso": "Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.",
-
   "ayudaHoyAvisosT": "Hoy y los avisos",
   "ayudaHoyAvisosB": "Hoy es la bandeja del espacio. Arriba salen las alarmas abiertas; luego tus tareas vencidas y las de los próximos 7 días; las peticiones; y los avisos, por categorías: Ganado, Instalaciones, Seguimiento individual y Noticias. Coordinación ve además las peticiones pendientes y «Lo último en el espacio»: quién ha hecho qué, desde la app o desde la oficina.\n1. Para avisar de algo, pulsa «Dar un aviso».\n2. Elige la categoría, escribe qué pasa y, si quieres, la finca.\n3. Si es grave (un animal enfermo, una rotura importante, falta de alimento), marca «Es una alarma»: al resto le saltará una notificación.\n4. Toca un aviso para verlo y, cuando esté arreglado, márcalo como resuelto.\n» En Noticias, debajo de lo que publica coordinación, salen las «Noticias del sector»: titulares de fuera (administración, sindicatos agrarios, prensa del sector) de los canales que elige coordinación en el panel. Toca una para leerla entera en el navegador. No avisan con notificación.",
   "ayudaPeticionesT": "Pedir una tarea",
   "ayudaPeticionesB": "Si ves que hace falta algo (comprar pienso, arreglar una cancela…), pídeselo a coordinación:\n1. Desde Hoy, o desde la ficha del punto, pulsa «Pedir una tarea».\n2. Escribe qué hace falta; marca «Es urgente» si corre prisa.\n3. Guarda. Coordinación la verá al sincronizar y la convertirá en tarea o te contestará.\n» Tus peticiones y su respuesta están en Fincas → Tareas → botón de peticiones (arriba).",
   "ayudaConvenioT": "El convenio: cuentas, fianza y acompañamiento",
-  "ayudaConvenioB": "En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado. Cada partida se puede poner a mano o calcular como en la hoja: cantidad × precio, o ración por animal y día × cabezas × días × precio.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.",
+  "ayudaConvenioB": "» Esta información es orientativa y sirve como modelo general. Cada proyecto de test tiene sus propias condiciones, que se negocian y acuerdan entre la persona tester y Zunbeltz antes de empezar: los gastos, el reparto económico, la fianza y el resto del convenio.\nEn tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:\n• Balance: el del test (sin amortizaciones, el que se reparte) y el del proyecto (con ellas, el coste real), quién asume cada gasto y el reparto (por defecto 25 % Zunbeltz / 75 % tester si hay beneficio; 50 / 50 si hay pérdida).\n• Presupuesto: lo previsto, comparado con lo gastado. Cada partida se puede poner a mano o calcular como en la hoja: cantidad × precio, o ración por animal y día × cabezas × días × precio.\n• Amortizaciones: los bienes del inventario que usa el proyecto (aprisco, corral móvil, abrevaderos…). La cuota se calcula sola con los meses del test.\n• Fianza: depósitos, devoluciones y retenciones.\n• Acompañamiento: formaciones, visitas, asesoramientos, reuniones… y si se cumplen los indicadores del anexo IV.\n• Incidencias: solo las ven coordinación y la persona tester del proyecto.\n» Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.",
   "ayudaNotificacionesT": "Notificaciones",
   "ayudaNotificacionesB": "La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona.\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Solera Zunbeltz de esa lista.",
-
   "contactosTitulo": "Contactos",
   "contactosVacio": "Todavía no hay contactos.",
   "contactosTodos": "Todos",
@@ -949,21 +1032,32 @@
   "calculadoraEscenarios": "Caminos guardados",
   "calculadoraOrientativo": "Cálculo orientativo: los rendimientos reales dependen del animal, del matadero y del despiece.",
   "alimentacionExcel": "Alimentación por días (Excel)",
-
   "ayudaContactosT": "Contactos del espacio",
   "ayudaContactosB": "La agenda compartida: mataderos, veterinaria, personas expertas, compradores…\n1. En Hoy, pulsa el icono de contactos (arriba).\n2. Filtra por tipo y toca un contacto para llamar o escribir.\n3. Para añadir uno, pulsa «Añadir contacto». Puedes corregir los que añadas tú; coordinación los gestiona todos, también desde la oficina.",
   "ayudaCalculadoraT": "Calculadora de transformación y Excel de alimentación",
-  "ayudaCalculadoraB": "En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por lote.",
+  "ayudaCalculadoraB": "En tu proyecto, el botón de la calculadora (arriba):\n1. Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.\n2. Pon el peso vivo, el precio por kg y los costes: verás los kg de producto, el ingreso, el margen y a cuánto sale el kg vivo.\n3. «Guardar este camino» para compararlo con otros (canal, despiece, elaborado…).\n» En el botón de compartir del proyecto, «Alimentación por días (Excel)» saca los kg suministrados cada día y por rebaño.",
   "ayudaActualizacionesT": "Instalar una versión nueva",
   "ayudaActualizacionesB": "Cuando sale una versión nueva, la app te avisa al abrirla («Versión disponible»). Pulsa «Actualizar», o «Descartar por ahora» si te viene mal.\n1. También puedes mirarlo en Ajustes → Actualizaciones: ves la versión instalada, la última publicada y qué trae. «Buscar ahora» lo vuelve a comprobar.\n2. Pulsa «Descargar e instalar» y confirma en el instalador del móvil.\n3. Vuelve a abrir la app.\n» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Solera Zunbeltz. Tus datos se conservan al actualizar.",
   "ayudaWebT": "Usar la app en el ordenador",
-  "ayudaWebB": "La app también funciona en el navegador, útil en la oficina o con pantalla grande.\n1. Abre la dirección que te dé coordinación (la del WordPress de Zunbeltz, terminada en /app/).\n2. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu token.\n3. A partir de ahí funciona igual que en el móvil.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.",
+  "ayudaWebB": "La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.",
   "noticiasSectorTitulo": "Noticias del sector",
   "noticiasSectorVerTodas": "Ver todas ({n})",
-  "@noticiasSectorVerTodas": {"placeholders": {"n": {"type": "int"}}},
+  "@noticiasSectorVerTodas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "noticiasSectorVacio": "Todavía no hay noticias del sector. Los canales los añade coordinación en el panel de WordPress.",
   "noticiasSectorActualizadas": "Actualizado: {fecha}",
-  "@noticiasSectorActualizadas": {"placeholders": {"fecha": {"type": "String"}}},
+  "@noticiasSectorActualizadas": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
   "noticiasSectorDestacada": "Destacada",
   "noticiasSectorSinAbrir": "No se ha podido abrir la noticia.",
   "noticiasSectorSinServidor": "Las noticias del sector llegan del servidor del espacio: configúralo en Ajustes → Sincronización.",
@@ -971,64 +1065,69 @@
   "comProductoObligatorio": "Indica qué producto has vendido.",
   "puntoCoordenadasNoValidas": "Revisa las coordenadas: latitud entre -90 y 90 y longitud entre -180 y 180, por ejemplo 42,795 y -1,912.",
   "comunBorrarConfirmar": "¿Borrarlo? No se puede deshacer y desaparece también de los demás móviles.",
-  "errorSyncConfiguracion": "Pon la dirección del WordPress y tu token en Ajustes → Sincronización.",
+  "errorSyncConfiguracion": "Pon la dirección del WordPress y tu clave de usuario en Ajustes → Sincronización.",
   "errorSyncSinConexion": "No se ha podido contactar con el servidor. Comprueba la cobertura y la dirección.",
-  "errorSyncToken": "Token incorrecto o persona desactivada. Pide uno nuevo a coordinación.",
+  "errorSyncToken": "Clave de usuario incorrecta o persona desactivada. Pide una nueva a coordinación.",
   "errorSyncPluginAntiguo": "Ese WordPress no tiene el plugin de Solera Zunbeltz (0.3 o posterior).",
   "errorSyncServidor": "El servidor ha respondido con un error ({codigo}). Prueba más tarde.",
-  "@errorSyncServidor": {"placeholders": {"codigo": {"type": "int"}}},
+  "@errorSyncServidor": {
+    "placeholders": {
+      "codigo": {
+        "type": "int"
+      }
+    }
+  },
   "errorSyncRespuesta": "El servidor ha respondido algo inesperado. Revisa que la dirección sea la del WordPress de Zunbeltz.",
   "informePeriodo": "Periodo de las cifras",
   "informeTodoElProyecto": "todo el proyecto",
   "informeConvenioAcumulado": "Cuentas del convenio (todo el proyecto, sea cual sea el periodo):",
   "ajustesSyncOcupado": "Ya hay una sincronización en marcha. Se terminará sola; prueba de nuevo en un momento.",
-
   "navGanado": "Ganado",
   "ganTitulo": "Ganado",
-  "ganLotes": "Lotes",
+  "ganLotes": "Rebaños",
   "ganAnimales": "Animales",
   "ganMovimientos": "Movimientos",
-  "ganIntro": "El ganado se maneja por lotes: cada lote está en una pieza y se mueve entero. Los animales con crotal van dentro de su lote.",
-  "ganVerCerrados": "Ver también los lotes cerrados",
-  "ganSinLotes": "Todavía no hay lotes. Crea uno con «Nuevo lote».",
+  "ganIntro": "El ganado se maneja por rebaños: cada rebaño está en una pieza y se mueve entero. Los animales con crotal van dentro de su rebaño.",
+  "ganVerCerrados": "Ver también los rebaños cerrados",
+  "ganSinLotes": "Todavía no hay rebaños. Crea uno con «Nuevo rebaño».",
   "ganSinAnimales": "No hay animales con esa identificación.",
-  "ganSinMovimientos": "Todavía no se ha movido ningún lote.",
-  "ganNuevoLote": "Nuevo lote",
+  "ganSinMovimientos": "Todavía no se ha movido ningún rebaño.",
+  "ganNuevoLote": "Nuevo rebaño",
   "ganNuevoAnimal": "Añadir animal",
-  "ganEditarLote": "Editar lote",
+  "ganEditarLote": "Editar rebaño",
   "ganEditarAnimal": "Editar animal",
-  "ganMoverLote": "Mover un lote",
+  "ganMoverLote": "Mover un rebaño",
   "ganMover": "Mover",
   "ganApuntarManejo": "Cura, pesaje, parto…",
-  "ganCambiarDeLote": "Cambiar de lote",
+  "ganCambiarDeLote": "Cambiar de rebaño",
   "ganDarDeBaja": "Dar de baja",
   "ganBuscarAnimal": "Buscar por crotal o nombre",
   "ganSinUbicar": "Sin ubicar",
   "ganFueraDelEspacio": "fuera del espacio",
-  "ganSinLote": "Sin lote",
-  "ganLote": "Lote",
+  "ganSinLote": "Sin rebaño",
+  "ganLote": "Rebaño",
   "ganLoteCerrado": "cerrado",
-  "ganLoteActivo": "Lote en uso",
-  "ganLoteActivoAyuda": "Desactívalo cuando el lote ya no exista (se vendió, se deshizo): deja de salir en las piezas, pero se conserva su historial.",
-  "ganLoteSinAnimales": "Ningún animal con crotal en este lote.",
+  "ganLoteActivo": "Rebaño en uso",
+  "ganLoteActivoAyuda": "Desactívalo cuando el rebaño ya no exista (se vendió, se deshizo): deja de salir en las piezas, pero se conserva su historial.",
+  "ganLoteSinAnimales": "Ningún animal con crotal en este rebaño.",
   "ganHistorial": "Historial",
   "ganSinHistorial": "Nada apuntado todavía.",
-  "ganAlLote": "al lote",
+  "ganAlLote": "al rebaño",
   "ganNoExiste": "Ya no existe: puede que se haya borrado en otro dispositivo.",
   "ganEnEstaPieza": "Ganado en esta pieza",
-  "ganPiezaSinGanado": "Ahora no hay ningún lote aquí.",
-  "ganTraerAqui": "Traer un lote",
-  "ganSinOtrosLotes": "No hay otros lotes en uso.",
-  "ganElegirLote": "¿Qué lote?",
+  "ganPiezaSinGanado": "Ahora no hay ningún rebaño aquí.",
+  "ganTraerAqui": "Traer un rebaño",
+  "ganSinOtrosLotes": "No hay otros rebaños en uso.",
+  "ganElegirLote": "¿Qué rebaño?",
   "ganEnSupresion": "En plazo de supresión",
-  "ganNombreLote": "Nombre del lote",
+  "ganNombreLote": "Nombre del rebaño",
   "ganNombreLoteAyuda": "Por ejemplo: «Ovejas de Ane», «Cerdos de cebo 2026».",
   "ganNombreObligatorio": "Ponle un nombre.",
   "ganEspecie": "Especie",
   "ganTitular": "De quién es",
   "ganTitularEspacio": "Del espacio (Zunbeltz)",
   "ganCabezasSinIdentificar": "Cabezas sin crotal",
-  "ganCabezasSinIdentificarAyuda": "Las que no se llevan una a una (aves, cerdos de cebo, crías aún sin crotal). Se suman a los animales con crotal del lote.",
+  "ganCabezasSinIdentificarAyuda": "Las que no se llevan una a una (aves, cerdos de cebo, crías aún sin crotal). Se suman a los animales con crotal del rebaño.",
   "ganDondeEsta": "¿Dónde está ahora?",
   "ganFechaEntrada": "Desde cuándo",
   "ganGuardado": "Guardado.",
@@ -1046,7 +1145,13 @@
   "ganEscanerDesdeFoto": "Leer de una foto",
   "ganEscanerFotoSinCodigo": "En esa foto no se ve ningún código de barras.",
   "ganCrotalLeido": "Crotal leído: {crotal}",
-  "@ganCrotalLeido": {"placeholders": {"crotal": {"type": "String"}}},
+  "@ganCrotalLeido": {
+    "placeholders": {
+      "crotal": {
+        "type": "String"
+      }
+    }
+  },
   "ganIdentificacionObligatoria": "Pon el crotal o, al menos, un nombre.",
   "ganNombreAnimal": "Nombre (si lo tiene)",
   "ganRaza": "Raza",
@@ -1062,7 +1167,7 @@
   "ganGuia": "Guía de movimiento",
   "ganGuiaAyuda": "El número de la guía, si el movimiento la necesita.",
   "ganDestinoObligatorio": "Elige la pieza a la que va.",
-  "ganYaEstaAhi": "El lote ya está en esa pieza.",
+  "ganYaEstaAhi": "El rebaño ya está en esa pieza.",
   "ganMovimientoGuardado": "Movimiento apuntado.",
   "ganAhoraFuera": "Ahora no está en ninguna pieza del espacio.",
   "ganTipoManejo": "Qué se ha hecho",
@@ -1079,16 +1184,16 @@
   "ganPesoObligatorio": "Escribe el peso en kg.",
   "ganCrias": "Crías nacidas",
   "ganCabezasTratadas": "Cabezas",
-  "ganCabezasTratadasAyuda": "Cuántas del lote; vacío = todas.",
+  "ganCabezasTratadasAyuda": "Cuántas del rebaño; vacío = todas.",
   "ganDescripcion": "Qué ha pasado / notas",
   "tipoEntidadGanado": "el ganado",
   "ayudaGrupoGanado": "Ganado y movimientos",
-  "ayudaGanadoLotesT": "Lotes y animales",
-  "ayudaGanadoLotesB": "El ganado se lleva por lotes, como se maneja en extensivo: un rebaño, un lote de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo lote».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el lote y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.",
+  "ayudaGanadoLotesT": "Rebaños y animales",
+  "ayudaGanadoLotesB": "El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.",
   "ayudaGanadoMoverT": "Mover el ganado de pieza",
-  "ayudaGanadoMoverB": "1. Abre el lote y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un lote»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un lote».\n» En la ficha de cada pieza se ve qué lotes hay, cuántas cabezas y cuántas por hectárea. El historial del lote guarda todos sus movimientos.\n» Un animal suelto se cambia de lote desde su ficha («Cambiar de lote»).",
+  "ayudaGanadoMoverB": "1. Abre el rebaño y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un rebaño»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un rebaño».\n» En la ficha de cada pieza se ve qué rebaños hay, cuántas cabezas y cuántas por hectárea. El historial del rebaño guarda todos sus movimientos.\n» Un animal suelto se cambia de rebaño desde su ficha («Cambiar de rebaño»).",
   "ayudaGanadoManejoT": "Curas, tratamientos, pesajes y partos",
-  "ayudaGanadoManejoB": "1. Abre el lote (si es para todo el lote) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el lote o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.",
+  "ayudaGanadoManejoB": "1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.",
   "ganCabezas": "{n, plural, =1{1 cabeza} other{{n} cabezas}}",
   "@ganCabezas": {
     "placeholders": {
@@ -1235,7 +1340,7 @@
       }
     }
   },
-  "widgetSupresion": "{n, plural, =0{Ningún lote en supresión} =1{1 lote en supresión · libre el {fecha}} other{{n} lotes en supresión · el primero, libre el {fecha}}}",
+  "widgetSupresion": "{n, plural, =0{Ningún rebaño en supresión} =1{1 rebaño en supresión · libre el {fecha}} other{{n} rebaños en supresión · el primero, libre el {fecha}}}",
   "@widgetSupresion": {
     "placeholders": {
       "n": {
@@ -1262,8 +1367,8 @@
   },
   "widgetSinTiempo": "Sin previsión guardada",
   "widgetBotonAviso": "Aviso",
-  "widgetBotonMover": "Mover lote",
+  "widgetBotonMover": "Mover rebaño",
   "widgetBotonCura": "Cura",
   "ayudaWidgetT": "El widget de la pantalla de inicio (Android)",
-  "ayudaWidgetB": "En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los lotes en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un lote o apuntar una cura (eligiendo el lote). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget."
+  "ayudaWidgetB": "En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget."
 }

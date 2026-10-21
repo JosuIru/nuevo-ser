@@ -347,7 +347,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get actCantidad => 'Kopurua';
 
   @override
-  String get actLote => 'Sorta / artaldea';
+  String get actLote => 'Taldea';
 
   @override
   String get actNotas => 'Oharrak';
@@ -859,10 +859,17 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaSinResultados =>
-      'Ez dago hitz hori duen atalik. Probatu beste batekin: «zeregina», «eremua», «salmenta», «token»…';
+      'Ez dago hitz hori duen atalik. Probatu beste batekin: «zeregina», «eremua», «salmenta», «erabiltzailea»…';
 
   @override
   String get ayudaConsejo => 'Jakitea komeni da';
+
+  @override
+  String get ayudaPerfilTester =>
+      'Pertsona testerrentzako laguntza ikusten ari zara: zure rolarekin egin dezakezuna azaltzen du.';
+
+  @override
+  String get ayudaManualTester => 'Pertsona testerra bazara';
 
   @override
   String get ayudaGrupoEmpezar => 'Lehen urratsak';
@@ -916,11 +923,27 @@ class AppLocalizationsEu extends AppLocalizations {
       '1. Finketan, sakatu «Eremua marraztu».\n2. Ukitu mapan eremuaren izkinak, bata bestearen atzetik. Oker bazabiltza, sakatu «Desegin».\n3. Hiru izkina edo gehiago dituzunean, sakatu «Eremua itxi».\n4. Aukeratu finka, mota (larre-saila, hesitua, alha-eremua…), izena eta egoera, eta gorde.\n» Marrazkitik ateratzen den azalera gutxi gorabeherakoa da. SIGPAC barrutiaren azalera ofiziala baduzu, jarri «SIGPAC azalera ofiziala» eremuan eta hori erabiliko da.';
 
   @override
+  String get ayudaZonasTesterT =>
+      'Finka baten eremuak kontsultatu (sailak, hesituak…)';
+
+  @override
+  String get ayudaZonasTesterB =>
+      'Finketan finkaren sailak, hesituak, alha-eremuak eta gainerako guneak kontsulta ditzakezu.\n1. Sartu Finketan, eremuak eta puntuak dituen mapa ikusteko.\n2. Ukitu mapan eremu bat haren informazioa ikusteko: izena, mota, azalera eta beste datu batzuk.\n3. Eremu bat falta bada, mugak zuzenak ez badira edo daturen bat eguneratu behar bada, jakinarazi koordinazioari.\n» Pertsona testerrek eremuak kontsulta ditzakete, baina ezin dute berririk marraztu, ezta mugak aldatu ere. Aldaketa horiek koordinazioak egiten ditu.';
+
+  @override
   String get ayudaEditarMapaT => 'Puntu edo eremu bat mugitu edo ezabatu';
 
   @override
   String get ayudaEditarMapaB =>
       '1. Ukitu mapan puntua edo eremua haren fitxa irekitzeko.\n2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.\n3. Eremu bat zuzentzeko: sakatu arkatza (goian). «Datuak editatu» aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; «Ingurua doitu» aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; «+» ikurrek izkina bat gehitzen dute); «Berriro marraztu» aukerak osorik egiten du berriro.\n4. Ezabatzeko: sakatu zakarrontzia eta berretsi.';
+
+  @override
+  String get ayudaEditarMapaTesterT =>
+      'Finka bateko aldaketak edo gorabeherak jakinarazi';
+
+  @override
+  String get ayudaEditarMapaTesterB =>
+      'Instalazio batean arazoren bat aurkitzen baduzu edo maparen informazioa zuzena ez dela ikusten baduzu, koordinazioari jakinaraz diezaiokezu.\n1. Sartu Finketan eta aurkitu mapan puntua edo eremua.\n2. Ukitu haren informazioa ikusteko.\n3. Akatsen bat badago, daturen bat aldatu behar bada edo gorabehera bat jakinarazi nahi baduzu, eman abisu bat Gaur pantailatik edo jarri harremanetan koordinazioarekin.\n» Puntu mugikorrak (korta bat, bidoi bat) zuk zeuk gehitu eta mugi ditzakezu: sakatu «Kokatu berriro mapan» haren fitxan.\n» Ez duzu mapa aldatu behar. Koordinazioak eguneratzen ditu puntuak, eremuak eta haien datuak, jasotzen duen informazioarekin.';
 
   @override
   String get ayudaCierresT => 'Aska edo hesi berri bat';
@@ -937,6 +960,13 @@ class AppLocalizationsEu extends AppLocalizations {
       '1. Ireki puntu edo eremu baten fitxa eta sakatu «Zeregin berria».\n2. Idatzi zer egin behar den edo sakatu «Ohiko zeregin bat aukeratu»: Zunbeltzeko ohikoak agertzen dira (elikadura, hesiaren berrikuspena, erosketak…) iradokitako maiztasunarekin, eta goian puntu horri dagozkionak. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.\n3. Sakatu Gorde.\n» Zereginak kostua badu, koordinazioak proiektu baten kontuetara eraman dezake zereginetik bertatik: «Proiektu baten gastu gisa apuntatu».\n» Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.';
 
   @override
+  String get ayudaTareasTesterT => 'Mantentze-zeregin bat eskatu';
+
+  @override
+  String get ayudaTareasTesterB =>
+      'Finkan zerbait konpondu, berrikusi edo mantendu behar dela ikusten baduzu, zeregin bat egiteko eska dezakezu.\n1. Sartu Finketan eta aurkitu beharra dagoen puntua edo eremua.\n2. Haren fitxan, sakatu «Zeregin bat eskatu» eta azaldu zer gertatzen den eta zer egin behar den. Ahal baduzu, gehitu argazki bat hobeto ulertzeko.\n3. Koordinazioak eskaera berrikusi eta zeregina antolatuko du.\n» Zeregin bat eskatzeak ez du esan nahi zuk egin behar duzunik. Koordinazioak eskaera baloratu eta lana nola antolatu erabakitzen du.\n» Arazoaren eta kokapenaren deskribapena zenbat eta argiagoa izan, orduan eta errazagoa izango da jarduera antolatzea.';
+
+  @override
   String get ayudaRecurrentesT => 'Errepikatzen diren zereginak';
 
   @override
@@ -944,11 +974,25 @@ class AppLocalizationsEu extends AppLocalizations {
       'Beti egiten dena (askak betetzea, hesia berrikustea…) ez da aldi bakoitzean apuntatu behar.\n1. Zeregina sortzean, aukeratu «Periodikotasuna»: egunero, astero, 15 egunero, hilero edo hiruhilero.\n2. Eginda gisa markatzen duzunean, app-ak berak sortzen du hurrengoa, dagokion datarekin.\n» Zerrendan, zeregin periodikoek errepikatzeko ikurra dute.';
 
   @override
+  String get ayudaRecurrentesTesterT => 'Errepikatzen diren zereginak';
+
+  @override
+  String get ayudaRecurrentesTesterB =>
+      'Zeregin batzuk aldiro egiten dira: askak bete, hesia berrikusi, instalazioak egiaztatu…\n1. Finketan, sakatu «Zereginak» aurreikusitako jarduerak ikusteko.\n2. Errepikatzen direnek errepikatzeko ikurra dute.\n3. Ohiko zereginen bat falta bada edo beste maiztasun batekin egin beharko balitz, jakinarazi koordinazioari.\n» Ez dago jada programatuta dagoen zeregin periodiko bat aldi bakoitzean eskatu beharrik. Eginda gisa markatzean, app-ak berak prestatzen du hurrengoa.';
+
+  @override
   String get ayudaTableroT => 'Zereginak egunean eraman';
 
   @override
   String get ayudaTableroB =>
       '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.';
+
+  @override
+  String get ayudaTableroTesterT => 'Zereginak kontsultatu eta egunean eraman';
+
+  @override
+  String get ayudaTableroTesterB =>
+      'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten edo eginda.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.';
 
   @override
   String get ayudaProyectosT => 'Zure proiektua sortu';
@@ -983,7 +1027,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaSyncB =>
-      'Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.\n1. Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.\n2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure tokena.\n3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.\n» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.';
+      'Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.\n1. Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.\n2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.\n3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.\n» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.\n» Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.';
 
   @override
   String get ayudaRolesT => 'Nork zer egin dezakeen';
@@ -997,7 +1041,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaProblemasB =>
-      '• «Zure rolak ez du … baimenik»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.\n• Sinkronizatzean «… aldaketa desegin dira: zure rolak ez ditu baimentzen»: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.\n• «Token okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.\n• Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».\n• Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.\n• Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu «aplikazio ezezagunak instalatzea» Solera Zunbeltzentzat.\n» Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure tokenarekin eta berreskuratuko dituzu.';
+      '• «Zure rolak ez du … baimenik»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.\n• Sinkronizatzean «… aldaketa desegin dira: zure rolak ez ditu baimentzen»: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.\n• «Erabiltzaile-gako okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.\n• Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».\n• Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.\n• Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu «aplikazio ezezagunak instalatzea» Solera Zunbeltzentzat.\n» Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure erabiltzaile-gakoarekin eta berreskuratuko dituzu.';
 
   @override
   String get ayudaPie =>
@@ -1013,7 +1057,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get ajustesSyncUrl => 'Zunbeltzen WordPress-a';
 
   @override
-  String get ajustesSyncToken => 'Token pertsonala';
+  String get ajustesSyncToken => 'Erabiltzaile-gakoa';
 
   @override
   String get ajustesSyncSinConfigurar => 'Konfiguratu gabe';
@@ -2019,7 +2063,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaConvenioB =>
-      'Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta. Partida bakoitza eskuz jar daiteke edo orrian bezala kalkulatu: kantitatea × prezioa, edo abereko eta eguneko errazioa × buruak × egunak × prezioa.\n• Amortizazioak: proiektuak erabiltzen dituen inbentarioko ondasunak (artegia, korta mugikorra, askak…). Kuota berez kalkulatzen da testaren hilabeteekin.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.';
+      '» Informazio hau orientagarria da eta eredu orokor gisa balio du. Test-proiektu bakoitzak bere baldintzak ditu, pertsona testerrak eta Zunbeltzek hasi aurretik negoziatu eta adosten dituztenak: gastuak, banaketa ekonomikoa, fidantza eta hitzarmenaren gainerakoa.\nZure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:\n• Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).\n• Aurrekontua: aurreikusia, gastatutakoarekin alderatuta. Partida bakoitza eskuz jar daiteke edo orrian bezala kalkulatu: kantitatea × prezioa, edo abereko eta eguneko errazioa × buruak × egunak × prezioa.\n• Amortizazioak: proiektuak erabiltzen dituen inbentarioko ondasunak (artegia, korta mugikorra, askak…). Kuota berez kalkulatzen da testaren hilabeteekin.\n• Fidantza: gordailuak, itzulketak eta atxikipenak.\n• Laguntza: prestakuntzak, bisitak, aholkularitzak, bilerak… eta IV. eranskineko adierazleak betetzen diren.\n• Gorabeherak: koordinazioak eta proiektuko pertsona testerrak bakarrik ikusten dituzte.\n» Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.';
 
   @override
   String get ayudaNotificacionesT => 'Jakinarazpenak';
@@ -2199,7 +2243,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaWebB =>
-      'Aplikazioak nabigatzailean ere funtzionatzen du; erabilgarria da bulegoan edo pantaila handiarekin.\n1. Ireki koordinazioak emandako helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena).\n2. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure tokena baino ez duzu jarri behar.\n3. Hortik aurrera mugikorrean bezala dabil.\n» Nabigatzailean ezin da argazkirik gehitu: mugikorretik gehitzen dira. Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.';
+      'Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.\n1. Ireki aplikazioaren web-helbidea zure ordenagailuko nabigatzailean.\n2. App-a zure kabuz erabiltzen baduzu, zuzenean has zaitezke lanean, zerbitzaririk konfiguratu gabe eta erabiltzaile-gakorik jarri gabe.\n3. Hortik aurrera mugikorrean bezala dabil.\n» Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.\n» Nabigatzailean ezin da argazkirik gehitu: mugikorretik gehitzen dira. Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.';
 
   @override
   String get noticiasSectorTitulo => 'Sektoreko berriak';
@@ -2245,7 +2289,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get errorSyncConfiguracion =>
-      'Jarri WordPressaren helbidea eta zure tokena Ezarpenak → Sinkronizazioa atalean.';
+      'Jarri WordPressaren helbidea eta zure erabiltzaile-gakoa Ezarpenak → Sinkronizazioa atalean.';
 
   @override
   String get errorSyncSinConexion =>
@@ -2253,7 +2297,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get errorSyncToken =>
-      'Token okerra edo pertsona desaktibatua. Eskatu berri bat koordinazioari.';
+      'Erabiltzaile-gako okerra edo pertsona desaktibatua. Eskatu berri bat koordinazioari.';
 
   @override
   String get errorSyncPluginAntiguo =>

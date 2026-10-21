@@ -11,7 +11,6 @@
  */
 
 $zunbeltz_url_app     = zunbeltz_espacio_url_app( 'eu' );
-$zunbeltz_url_oficina = zunbeltz_espacio_url_oficina();
 $zunbeltz_url_android = zunbeltz_espacio_url_android();
 ?>
 <!-- wp:group {"align":"wide","style":{"border":{"radius":"28px"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"backgroundColor":"pasto-claro","layout":{"type":"default"}} -->
@@ -22,7 +21,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">Zunbeltzeko taldearen tresna</h1>
+<h1 class="wp-block-heading">Testerrak kudeatzeko tresna</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"medio"} -->
@@ -37,10 +36,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_android ); ?>">Androiderako deskargatu</a></div>
 <!-- /wp:button -->
-
-<!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_oficina ); ?>">Koordinazio-bulegoa</a></div>
-<!-- /wp:button --></div>
+</div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
 
@@ -64,11 +60,11 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Eskatu zure tokena</h3>
+<h3 class="wp-block-heading">Eskatu zure erabiltzailea</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Koordinazioak alta ematen dizu eta zure token pertsonala ematen dizu: zure giltza da eta ez da partekatzen.</p>
+<p>Koordinazioak alta ematen dizu eta zure erabiltzaile-gakoa ematen dizu: pertsonala da eta ez da partekatzen.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column -->
@@ -94,11 +90,11 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Jarri zure tokena</h3>
+<h3 class="wp-block-heading">Jarri zure erabiltzailea</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Ezarpenak → Sinkronizazioa atalean, itsatsi zure tokena. Hortik aurrera aplikazioa bera eguneratzen da.</p>
+<p>Ezarpenak → Sinkronizazioa atalean, itsatsi zure erabiltzaile-gakoa. Hortik aurrera aplikazioa bera eguneratzen da.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column --></div>

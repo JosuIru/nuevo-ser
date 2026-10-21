@@ -3,14 +3,13 @@
  * Title: Portada — entrada a la herramienta (castellano)
  * Slug: zunbeltz-espacio/portada-es
  * Categories: zunbeltz-espacio
- * Description: Presentación del Espacio Test, botones a la app web y a la oficina, cómo empezar y qué hay dentro. En castellano.
+ * Description: Presentación de la herramienta, botones a la app web y a la descarga, cómo empezar y qué hay dentro. En castellano.
  *
  *
  * @package ZunbeltzEspacio
  */
 
 $zunbeltz_url_app     = zunbeltz_espacio_url_app();
-$zunbeltz_url_oficina = zunbeltz_espacio_url_oficina();
 $zunbeltz_url_android = zunbeltz_espacio_url_android();
 ?>
 <!-- wp:group {"align":"wide","style":{"border":{"radius":"28px"},"spacing":{"padding":{"top":"var:preset|spacing|50","bottom":"var:preset|spacing|50","left":"var:preset|spacing|50","right":"var:preset|spacing|50"}}},"backgroundColor":"pasto-claro","layout":{"type":"default"}} -->
@@ -21,7 +20,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":1} -->
-<h1 class="wp-block-heading">La herramienta del equipo de Zunbeltz</h1>
+<h1 class="wp-block-heading">La herramienta de gestión de los tester</h1>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"fontSize":"medio"} -->
@@ -36,10 +35,7 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- wp:button {"className":"is-style-outline"} -->
 <div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_android ); ?>">Descargar para Android</a></div>
 <!-- /wp:button -->
-
-<!-- wp:button {"className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( $zunbeltz_url_oficina ); ?>">Oficina de coordinación</a></div>
-<!-- /wp:button --></div>
+</div>
 <!-- /wp:buttons --></div>
 <!-- /wp:column -->
 
@@ -63,11 +59,11 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Pide tu token</h3>
+<h3 class="wp-block-heading">Pide tu usuario</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Coordinación te da de alta y te entrega tu token personal: es tu llave y no se comparte.</p>
+<p>Coordinación te da de alta y te entrega tu clave de usuario: es personal y no se comparte.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column -->
@@ -93,11 +89,11 @@ $zunbeltz_url_android = zunbeltz_espacio_url_android();
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"level":3} -->
-<h3 class="wp-block-heading">Pon tu token</h3>
+<h3 class="wp-block-heading">Pon tu usuario</h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>En Ajustes → Sincronización, pega tu token. A partir de ahí la app se pone al día sola.</p>
+<p>En Ajustes → Sincronización, pega tu clave de usuario. A partir de ahí la app se pone al día sola.</p>
 <!-- /wp:paragraph -->
 </div>
 <!-- /wp:column --></div>

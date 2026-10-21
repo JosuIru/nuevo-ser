@@ -33,7 +33,8 @@ foreach ( $por_defecto as $entidad ) {
 	afirmar( true, szs_hay_logo_de_partida( $entidad['clave'] ), "hay logo de partida para {$entidad['clave']}" );
 }
 afirmar( false, szs_hay_logo_de_partida( '../solera-zunbeltz-sync' ), 'una clave con barras no sale del directorio de logos' );
-afirmar( 'financian', array_key_first( SZS_GRUPOS_LOGOS ), 'las que financian, lo primero' );
+afirmar( array( 'impulsan', 'financian', 'colaboran', 'miembro_de' ), array_keys( SZS_GRUPOS_LOGOS ), 'los cuatro grupos que pidió Zunbeltz, en su orden' );
+afirmar( 'Con el apoyo económico de', SZS_GRUPOS_LOGOS['financian'][0], 'rótulo del apoyo económico' );
 afirmar(
 	array( 'carasso', 'gobierno_navarra' ),
 	array_column( array_filter( $por_defecto, static fn( $entidad ) => 'financian' === $entidad['grupo'] ), 'clave' ),
@@ -48,6 +49,7 @@ $guardada_antes = array(
 );
 $movida = szs_logos_con_financiadoras( $guardada_antes );
 afirmar( array( 'financian', 'financian', 'apoyan' ), array_column( $movida, 'grupo' ), 'las financiadoras pasan a su grupo; el resto se queda' );
+afirmar( array( 'financian', 'financian', 'colaboran' ), array_column( szs_normalizar_logos_entidades( $movida ), 'grupo' ), 'el antiguo grupo «apoyan» pasa a «colaboran» al normalizar' );
 afirmar( 9, $movida[0]['adjunto_id'], 'conservan el logo que les pusieran' );
 
 // --- claves ---

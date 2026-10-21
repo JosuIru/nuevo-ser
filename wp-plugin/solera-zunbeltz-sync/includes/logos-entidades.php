@@ -27,11 +27,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 const SZS_OPCION_LOGOS_ENTIDADES = 'szs_logos_entidades';
 const SZS_PAGINA_LOGOS_ENTIDADES = 'solera-zunbeltz-entidades';
-/** Grupos del pie de zunbeltz.com, en su orden, con su rótulo es / eu. */
+/**
+ * Grupos de entidades, en su orden, con su rótulo es / eu. Los cuatro que
+ * pidió Zunbeltz (Pablo, 2026-10-21): impulsan (Mancomunidad y
+ * ayuntamientos), apoyo económico (Fundación Carasso y Gobierno de Navarra),
+ * colaboran (entidades que participan) y miembro de (redes e iniciativas).
+ * El antiguo grupo «apoyan» ya no existe: lo que estaba en él pasa a
+ * «colaboran» al normalizar.
+ */
 const SZS_GRUPOS_LOGOS = array(
-	'financian'  => array( 'Financian el proyecto', 'Proiektuaren finantzatzaileak' ),
 	'impulsan'   => array( 'Impulsan el proyecto', 'Proiektuaren bultzatzaileak' ),
-	'apoyan'     => array( 'Apoyan el proyecto', 'Proiektuaren babesleak' ),
+	'financian'  => array( 'Con el apoyo económico de', 'Honen babes ekonomikoarekin' ),
 	'colaboran'  => array( 'Colaboran', 'Laguntzaileak' ),
 	'miembro_de' => array( 'Miembro de', 'Sareko kide' ),
 );
@@ -54,11 +60,6 @@ if ( function_exists( 'add_shortcode' ) ) {
 /** La lista de partida: la del pie de zunbeltz.com el 2026-10-13. */
 function szs_logos_entidades_por_defecto(): array {
 	$por_grupo = array(
-		// Las que financian (Zunbeltz, 2026-10-16), con su logo oficial.
-		'financian'  => array(
-			'carasso'          => 'Fundación Daniel y Nina Carasso',
-			'gobierno_navarra' => 'Gobierno de Navarra',
-		),
 		'impulsan'   => array(
 			'andia'    => 'Mancomunidad de Andía',
 			'abarzuza' => 'Ayuntamiento de Abárzuza',
@@ -67,14 +68,19 @@ function szs_logos_entidades_por_defecto(): array {
 			'yerri'    => 'Ayuntamiento de Yerri',
 			'salinas'  => 'Ayuntamiento de Salinas de Oro',
 		),
-		'apoyan'     => array(
+		// Con apoyo económico (Zunbeltz, 2026-10-16 y 21), con su logo oficial.
+		'financian'  => array(
+			'carasso'          => 'Fundación Daniel y Nina Carasso',
+			'gobierno_navarra' => 'Gobierno de Navarra',
+		),
+		// Las del antiguo grupo «apoyan» del pie de zunbeltz.com van aquí
+		// hasta que Zunbeltz diga otra cosa.
+		'colaboran'  => array(
 			'ue_feader'              => 'Unión Europea · FEADER',
 			'miteco'                 => 'Ministerio para la Transición Ecológica y el Reto Demográfico',
 			'innova'                 => 'Innova',
 			'fundacion_la_caixa'     => 'Fundación «la Caixa»',
 			'fundacion_caja_navarra' => 'Fundación Caja Navarra',
-		),
-		'colaboran'  => array(
 			'cpaen'           => 'CPAEN / NNPEK',
 			'upna'            => 'Universidad Pública de Navarra',
 			'ci_agroforestal' => 'CI Agroforestal',

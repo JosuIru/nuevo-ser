@@ -28,6 +28,7 @@ body{font-family:var(--texto);font-size:17px;line-height:1.6;color:var(--tinta);
 h2{font:700 1.3rem/1.2 var(--titular);letter-spacing:-.01em;color:var(--monte);margin:34px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--linea)}
 h3{font:600 1.08rem/1.3 var(--titular);color:var(--monte);margin:22px 0 4px;display:flex;align-items:baseline;gap:10px}
 h3 .n{font-size:.85rem;color:var(--senal);min-width:1.4em}
+h4{font:600 .95rem/1.3 var(--titular);color:var(--senal);margin:18px 0 2px}
 section p{margin:6px 0}
 section ul,section ol{margin:6px 0 6px 0;padding-left:1.4em}
 section li{margin:5px 0}
@@ -78,7 +79,7 @@ section ul li::marker{color:var(--pasto)}
 <main class="hoja">
   <header class="cab">
     <h1>Erabilera-eskuliburua</h1>
-    <p class="sub">Solera Zunbeltz · 0.6.3 bertsioa</p>
+    <p class="sub">Solera Zunbeltz · 0.6.4 bertsioa</p>
   </header>
   <div class="cuerpo">
     <p class="intro">App-a erabiltzeko gida, urratsez urrats.</p>
@@ -211,6 +212,14 @@ section ul li::marker{color:var(--pasto)}
 <li>Aukeratu finka, mota (larre-saila, hesitua, alha-eremua…), izena eta egoera, eta gorde.</li>
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Marrazkitik ateratzen den azalera gutxi gorabeherakoa da. SIGPAC barrutiaren azalera ofiziala baduzu, jarri <span class="ui">SIGPAC azalera ofiziala</span> eremuan eta hori erabiliko da.</p>
+<h4>Pertsona testerra bazara: Finka baten eremuak kontsultatu (sailak, hesituak…)</h4>
+<p>Finketan finkaren sailak, hesituak, alha-eremuak eta gainerako guneak kontsulta ditzakezu.</p>
+<ol class="pasos">
+<li>Sartu Finketan, eremuak eta puntuak dituen mapa ikusteko.</li>
+<li>Ukitu mapan eremu bat haren informazioa ikusteko: izena, mota, azalera eta beste datu batzuk.</li>
+<li>Eremu bat falta bada, mugak zuzenak ez badira edo daturen bat eguneratu behar bada, jakinarazi koordinazioari.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Pertsona testerrek eremuak kontsulta ditzakete, baina ezin dute berririk marraztu, ezta mugak aldatu ere. Aldaketa horiek koordinazioak egiten ditu.</p>
 </section>
 <section id="a9">
 <h3><span class="n">9</span>Puntu edo eremu bat mugitu edo ezabatu</h3>
@@ -220,6 +229,15 @@ section ul li::marker{color:var(--pasto)}
 <li>Eremu bat zuzentzeko: sakatu arkatza (goian). <span class="ui">Datuak editatu</span> aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; <span class="ui">Ingurua doitu</span> aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; <span class="ui">+</span> ikurrek izkina bat gehitzen dute); <span class="ui">Berriro marraztu</span> aukerak osorik egiten du berriro.</li>
 <li>Ezabatzeko: sakatu zakarrontzia eta berretsi.</li>
 </ol>
+<h4>Pertsona testerra bazara: Finka bateko aldaketak edo gorabeherak jakinarazi</h4>
+<p>Instalazio batean arazoren bat aurkitzen baduzu edo maparen informazioa zuzena ez dela ikusten baduzu, koordinazioari jakinaraz diezaiokezu.</p>
+<ol class="pasos">
+<li>Sartu Finketan eta aurkitu mapan puntua edo eremua.</li>
+<li>Ukitu haren informazioa ikusteko.</li>
+<li>Akatsen bat badago, daturen bat aldatu behar bada edo gorabehera bat jakinarazi nahi baduzu, eman abisu bat Gaur pantailatik edo jarri harremanetan koordinazioarekin.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Puntu mugikorrak (korta bat, bidoi bat) zuk zeuk gehitu eta mugi ditzakezu: sakatu <span class="ui">Kokatu berriro mapan</span> haren fitxan.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Ez duzu mapa aldatu behar. Koordinazioak eguneratzen ditu puntuak, eremuak eta haien datuak, jasotzen duen informazioarekin.</p>
 </section>
 <section id="a10">
 <h3><span class="n">10</span>Aska edo hesi berri bat</h3>
@@ -241,6 +259,15 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Zereginak kostua badu, koordinazioak proiektu baten kontuetara eraman dezake zereginetik bertatik: <span class="ui">Proiektu baten gastu gisa apuntatu</span>.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.</p>
+<h4>Pertsona testerra bazara: Mantentze-zeregin bat eskatu</h4>
+<p>Finkan zerbait konpondu, berrikusi edo mantendu behar dela ikusten baduzu, zeregin bat egiteko eska dezakezu.</p>
+<ol class="pasos">
+<li>Sartu Finketan eta aurkitu beharra dagoen puntua edo eremua.</li>
+<li>Haren fitxan, sakatu <span class="ui">Zeregin bat eskatu</span> eta azaldu zer gertatzen den eta zer egin behar den. Ahal baduzu, gehitu argazki bat hobeto ulertzeko.</li>
+<li>Koordinazioak eskaera berrikusi eta zeregina antolatuko du.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Zeregin bat eskatzeak ez du esan nahi zuk egin behar duzunik. Koordinazioak eskaera baloratu eta lana nola antolatu erabakitzen du.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Arazoaren eta kokapenaren deskribapena zenbat eta argiagoa izan, orduan eta errazagoa izango da jarduera antolatzea.</p>
 </section>
 <section id="a12">
 <h3><span class="n">12</span>Errepikatzen diren zereginak</h3>
@@ -250,6 +277,14 @@ section ul li::marker{color:var(--pasto)}
 <li>Eginda gisa markatzen duzunean, app-ak berak sortzen du hurrengoa, dagokion datarekin.</li>
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Zerrendan, zeregin periodikoek errepikatzeko ikurra dute.</p>
+<h4>Pertsona testerra bazara: Errepikatzen diren zereginak</h4>
+<p>Zeregin batzuk aldiro egiten dira: askak bete, hesia berrikusi, instalazioak egiaztatu…</p>
+<ol class="pasos">
+<li>Finketan, sakatu <span class="ui">Zereginak</span> aurreikusitako jarduerak ikusteko.</li>
+<li>Errepikatzen direnek errepikatzeko ikurra dute.</li>
+<li>Ohiko zereginen bat falta bada edo beste maiztasun batekin egin beharko balitz, jakinarazi koordinazioari.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Ez dago jada programatuta dagoen zeregin periodiko bat aldi bakoitzean eskatu beharrik. Eginda gisa markatzean, app-ak berak prestatzen du hurrengoa.</p>
 </section>
 <section id="a13">
 <h3><span class="n">13</span>Zereginak egunean eraman</h3>
@@ -260,6 +295,16 @@ section ul li::marker{color:var(--pasto)}
 <li>Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.</li>
 <li><span class="ui">PDF txostena</span> botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.</li>
 </ol>
+<h4>Pertsona testerra bazara: Zereginak kontsultatu eta egunean eraman</h4>
+<p>App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten edo eginda.</p>
+<ol class="pasos">
+<li>Finketan, sakatu <span class="ui">Zereginak</span> (goian) zerrenda ikusteko.</li>
+<li>Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.</li>
+<li><span class="ui">Nire zereginak</span> aukerak zuri esleitutakoak bakarrik uzten ditu.</li>
+<li>Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.</li>
+<li>Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.</p>
 </section>
 <h2>Abereak eta mugimenduak</h2>
 <section id="a14">
@@ -327,6 +372,7 @@ section ul li::marker{color:var(--pasto)}
 </section>
 <section id="a20">
 <h3><span class="n">20</span>Hitzarmena: kontuak, fidantza eta laguntza</h3>
+<p class="nota"><b>Jakitea komeni da.</b> Informazio hau orientagarria da eta eredu orokor gisa balio du. Test-proiektu bakoitzak bere baldintzak ditu, pertsona testerrak eta Zunbeltzek hasi aurretik negoziatu eta adosten dituztenak: gastuak, banaketa ekonomikoa, fidantza eta hitzarmenaren gainerakoa.</p>
 <p>Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:</p>
 <ul>
 <li>Balantzea: testarena (amortizaziorik gabe, banatzen dena) eta proiektuarena (haiekin, benetako kostua), gastu bakoitza nork hartzen duen eta banaketa (lehenetsita % 25 Zunbeltz / % 75 testerra irabazia badago; 50 / 50 galera badago).</li>
@@ -363,20 +409,22 @@ section ul li::marker{color:var(--pasto)}
 <h3><span class="n">23</span>Gunea taldearekin partekatu</h3>
 <p>Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.</p>
 <ol class="pasos">
-<li>Eskatu koordinazioari zure token pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.</li>
-<li>Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure tokena.</li>
+<li>Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.</li>
+<li>Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.</li>
 <li>Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.</li>
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.</p>
 </section>
 <section id="a24">
 <h3><span class="n">24</span>Aplikazioa ordenagailuan erabili</h3>
-<p>Aplikazioak nabigatzailean ere funtzionatzen du; erabilgarria da bulegoan edo pantaila handiarekin.</p>
+<p>Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.</p>
 <ol class="pasos">
-<li>Ireki koordinazioak emandako helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena).</li>
-<li>Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure tokena baino ez duzu jarri behar.</li>
+<li>Ireki aplikazioaren web-helbidea zure ordenagailuko nabigatzailean.</li>
+<li>App-a zure kabuz erabiltzen baduzu, zuzenean has zaitezke lanean, zerbitzaririk konfiguratu gabe eta erabiltzaile-gakorik jarri gabe.</li>
 <li>Hortik aurrera mugikorrean bezala dabil.</li>
 </ol>
+<p class="nota"><b>Jakitea komeni da.</b> Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Nabigatzailean ezin da argazkirik gehitu: mugikorretik gehitzen dira. Goian <span class="ui">Proba-bertsioa</span> zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.</p>
 </section>
 <section id="a25">
@@ -423,12 +471,12 @@ section ul li::marker{color:var(--pasto)}
 <ul>
 <li><span class="ui">Zure rolak ez du … baimenik</span>: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.</li>
 <li>Sinkronizatzean <span class="ui">… aldaketa desegin dira: zure rolak ez ditu baimentzen</span>: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.</li>
-<li><span class="ui">Token okerra</span>: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.</li>
+<li><span class="ui">Erabiltzaile-gako okerra</span>: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.</li>
 <li>Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, <span class="ui">Dena hasieratik sinkronizatu</span>.</li>
 <li>Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.</li>
 <li>Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu <span class="ui">aplikazio ezezagunak instalatzea</span> Solera Zunbeltzentzat.</li>
 </ul>
-<p class="nota"><b>Jakitea komeni da.</b> Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure tokenarekin eta berreskuratuko dituzu.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure erabiltzaile-gakoarekin eta berreskuratuko dituzu.</p>
 </section>
     <aside class="aviso">
       <b>Aurretiazko bertsioa.</b> Aurretiazko bertsioa. Sortzen dituen parte eta txostenak orientagarriak dira eta haien formatua baliozkotzeke dago. Paper-lan ofiziala (ustiategi-liburua, PAC koadernoa, trazabilitatea…) geroagoko faseetan iritsiko da.

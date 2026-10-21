@@ -16,7 +16,6 @@ import 'dart:io';
 
 import 'package:solera_zunbeltz/pantallas/indice_ayuda.dart';
 
-
 /// Textos propios del documento impreso, que no están en la app.
 class _TextosManual {
   const _TextosManual({
@@ -125,8 +124,16 @@ String _componer(
         ..writeln('<section id="$ancla">')
         ..writeln('<h3><span class="n">$numeroApartado</span>$titulo</h3>')
         ..writeln(_cuerpoApartado(
-            _texto(arb, '${clave}B'), _texto(arb, 'ayudaConsejo')))
-        ..writeln('</section>');
+            _texto(arb, '${clave}B'), _texto(arb, 'ayudaConsejo')));
+      if (apartadosConVersionTester.contains(clave)) {
+        // La versión para personas tester, a continuación de la general.
+        cuerpo
+          ..writeln('<h4>${_escapar(_texto(arb, 'ayudaManualTester'))}: '
+              '${_escapar(_texto(arb, '${clave}TesterT'))}</h4>')
+          ..writeln(_cuerpoApartado(
+              _texto(arb, '${clave}TesterB'), _texto(arb, 'ayudaConsejo')));
+      }
+      cuerpo.writeln('</section>');
     }
     indice.writeln('</ol></li>');
   });
@@ -250,6 +257,7 @@ body{font-family:var(--texto);font-size:17px;line-height:1.6;color:var(--tinta);
 h2{font:700 1.3rem/1.2 var(--titular);letter-spacing:-.01em;color:var(--monte);margin:34px 0 4px;padding-bottom:6px;border-bottom:1px solid var(--linea)}
 h3{font:600 1.08rem/1.3 var(--titular);color:var(--monte);margin:22px 0 4px;display:flex;align-items:baseline;gap:10px}
 h3 .n{font-size:.85rem;color:var(--senal);min-width:1.4em}
+h4{font:600 .95rem/1.3 var(--titular);color:var(--senal);margin:18px 0 2px}
 section p{margin:6px 0}
 section ul,section ol{margin:6px 0 6px 0;padding-left:1.4em}
 section li{margin:5px 0}

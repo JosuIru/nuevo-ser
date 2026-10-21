@@ -81,7 +81,8 @@ void main() {
       final arb = _arb(idioma);
       final enArb = {
         for (final clave in arb.keys)
-          if (RegExp(r'^ayuda[A-Z]\w*T$').hasMatch(clave))
+          if (RegExp(r'^ayuda[A-Z]\w*T$').hasMatch(clave) &&
+              !clave.endsWith('TesterT'))
             clave.substring(0, clave.length - 1),
       };
       expect(enArb, enIndice, reason: 'apartados del ARB $idioma');
@@ -90,5 +91,39 @@ void main() {
             reason: '${clave}B en $idioma');
       }
     }
+  });
+
+  test('Las versiones para tester existen en los dos idiomas, por parejas', () {
+    final es = _arb('es');
+    final eu = _arb('eu');
+    final conTester = {
+      for (final clave in es.keys)
+        if (clave.endsWith('TesterT'))
+          clave.substring(0, clave.length - 'TesterT'.length),
+    };
+    expect(conTester, apartadosConVersionTester);
+    for (final clave in conTester) {
+      for (final arb in [es, eu]) {
+        expect((arb['${clave}TesterB'] as String?)?.isNotEmpty, isTrue);
+        expect((arb['${clave}T'] as String?)?.isNotEmpty, isTrue);
+      }
+    }
+  });
+
+  testWidgets('Una persona tester ve su versión de los apartados de fincas',
+      (tester) async {
+    tester.view.physicalSize = const Size(800, 8000);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(MaterialApp(
+      locale: const Locale('es'),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: const PantallaAyuda(perfilTester: true),
+    ));
+    await tester.pumpAndSettle();
+    expect(find.text('Pedir una tarea de mantenimiento'), findsOneWidget);
+    expect(find.text('Apuntar una tarea de mantenimiento'), findsNothing);
+    expect(find.textContaining('ayuda para personas tester'), findsOneWidget);
   });
 }

@@ -49,3 +49,14 @@ const Map<String, List<String>> indiceAyuda = {
   ],
   'ayudaGrupoProblemas': ['ayudaProblemas'],
 };
+
+/// Apartados que tienen además una versión para personas tester
+/// (`<clave>TesterT` / `<clave>TesterB`): la pantalla enseña una u otra
+/// según el rol y el manual imprime las dos.
+const Set<String> apartadosConVersionTester = {
+  'ayudaZonas',
+  'ayudaEditarMapa',
+  'ayudaTareas',
+  'ayudaRecurrentes',
+  'ayudaTablero',
+};

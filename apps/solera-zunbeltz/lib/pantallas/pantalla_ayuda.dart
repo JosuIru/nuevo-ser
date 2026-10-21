@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../branding.dart';
+import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
@@ -15,8 +16,18 @@ import 'widgets/relleno_seguro.dart';
 /// - `• …` viñeta.
 /// - `» …` nota «Bueno saber».
 /// - cualquier otra línea, párrafo.
+///
+/// Algunos apartados tienen una versión para personas tester (claves
+/// `<clave>TesterT` / `<clave>TesterB` en el ARB): cuentan lo que su rol
+/// puede hacer (consultar, pedir, avisar) en vez de cómo se edita el
+/// espacio. Se enseña cuando la sesión es de alguien que no puede editar el
+/// espacio; en modo local y para coordinación va la versión general.
 class PantallaAyuda extends StatefulWidget {
-  const PantallaAyuda({super.key});
+  const PantallaAyuda({super.key, this.perfilTester});
+
+  /// Fuerza la versión para tester (o la general con `false`). `null` =
+  /// según la sesión actual.
+  final bool? perfilTester;
 
   @override
   State<PantallaAyuda> createState() => _PantallaAyudaState();
@@ -47,69 +58,86 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
     super.dispose();
   }
 
-  List<_GrupoAyuda> _grupos(AppLocalizations t) => [
-        _GrupoAyuda(t.ayudaGrupoEmpezar, [
-          _ApartadoAyuda(t.ayudaQueEsT, t.ayudaQueEsB, Icons.help_outline),
-          _ApartadoAyuda(
-              t.ayudaPestanasT, t.ayudaPestanasB, Icons.dashboard_outlined),
-          _ApartadoAyuda(t.ayudaIdiomaDatosT, t.ayudaIdiomaDatosB,
-              Icons.translate_outlined),
-          _ApartadoAyuda(
-              t.ayudaHoyAvisosT, t.ayudaHoyAvisosB, Icons.campaign_outlined),
-          _ApartadoAyuda(
-              t.ayudaWidgetT, t.ayudaWidgetB, Icons.widgets_outlined),
-          _ApartadoAyuda(t.ayudaActualizacionesT, t.ayudaActualizacionesB,
-              Icons.system_update),
-        ]),
-        _GrupoAyuda(t.ayudaGrupoFincas, [
-          _ApartadoAyuda(
-              t.ayudaFincasT, t.ayudaFincasB, Icons.add_location_alt_outlined),
-          _ApartadoAyuda(t.ayudaZonasT, t.ayudaZonasB, Icons.pentagon_outlined),
-          _ApartadoAyuda(t.ayudaEditarMapaT, t.ayudaEditarMapaB,
-              Icons.edit_location_alt_outlined),
-          _ApartadoAyuda(t.ayudaCierresT, t.ayudaCierresB, Icons.fence),
-          _ApartadoAyuda(t.ayudaTareasT, t.ayudaTareasB, Icons.add_task),
-          _ApartadoAyuda(
-              t.ayudaRecurrentesT, t.ayudaRecurrentesB, Icons.repeat),
-          _ApartadoAyuda(t.ayudaTableroT, t.ayudaTableroB, Icons.checklist),
-        ]),
-        _GrupoAyuda(t.ayudaGrupoGanado, [
-          _ApartadoAyuda(
-              t.ayudaGanadoLotesT, t.ayudaGanadoLotesB, Icons.pets_outlined),
-          _ApartadoAyuda(
-              t.ayudaGanadoMoverT, t.ayudaGanadoMoverB, Icons.moving),
-          _ApartadoAyuda(t.ayudaGanadoManejoT, t.ayudaGanadoManejoB,
-              Icons.medication_outlined),
-        ]),
-        _GrupoAyuda(t.ayudaGrupoProyectos, [
-          _ApartadoAyuda(
-              t.ayudaProyectosT, t.ayudaProyectosB, Icons.science_outlined),
-          _ApartadoAyuda(
-              t.ayudaApuntarT, t.ayudaApuntarB, Icons.edit_note_outlined),
-          _ApartadoAyuda(
-              t.ayudaNumerosT, t.ayudaNumerosB, Icons.bar_chart_outlined),
-          _ApartadoAyuda(
-              t.ayudaConvenioT, t.ayudaConvenioB, Icons.handshake_outlined),
-          _ApartadoAyuda(t.ayudaCalculadoraT, t.ayudaCalculadoraB,
-              Icons.calculate_outlined),
-          _ApartadoAyuda(t.ayudaInformesT, t.ayudaInformesB, Icons.ios_share),
-        ]),
-        _GrupoAyuda(t.ayudaGrupoEquipo, [
-          _ApartadoAyuda(t.ayudaSyncT, t.ayudaSyncB, Icons.sync_outlined),
-          _ApartadoAyuda(t.ayudaWebT, t.ayudaWebB, Icons.computer_outlined),
-          _ApartadoAyuda(t.ayudaRolesT, t.ayudaRolesB, Icons.badge_outlined),
-          _ApartadoAyuda(t.ayudaPeticionesT, t.ayudaPeticionesB,
-              Icons.add_comment_outlined),
-          _ApartadoAyuda(
-              t.ayudaContactosT, t.ayudaContactosB, Icons.contacts_outlined),
-          _ApartadoAyuda(t.ayudaNotificacionesT, t.ayudaNotificacionesB,
-              Icons.notifications_outlined),
-        ]),
-        _GrupoAyuda(t.ayudaGrupoProblemas, [
-          _ApartadoAyuda(
-              t.ayudaProblemasT, t.ayudaProblemasB, Icons.build_outlined),
-        ]),
-      ];
+  bool get _esTester {
+    final forzado = widget.perfilTester;
+    if (forzado != null) return forzado;
+    final politica = politicaEspacioActual;
+    return !politica.modoLocal && !politica.puedeEditarEspacio;
+  }
+
+  List<_GrupoAyuda> _grupos(AppLocalizations t) {
+    final tester = _esTester;
+    // Apartado con versión para tester: (general, tester).
+    _ApartadoAyuda segun(String tituloGeneral, String cuerpoGeneral,
+            String tituloTester, String cuerpoTester, IconData icono) =>
+        tester
+            ? _ApartadoAyuda(tituloTester, cuerpoTester, icono)
+            : _ApartadoAyuda(tituloGeneral, cuerpoGeneral, icono);
+    return [
+      _GrupoAyuda(t.ayudaGrupoEmpezar, [
+        _ApartadoAyuda(t.ayudaQueEsT, t.ayudaQueEsB, Icons.help_outline),
+        _ApartadoAyuda(
+            t.ayudaPestanasT, t.ayudaPestanasB, Icons.dashboard_outlined),
+        _ApartadoAyuda(
+            t.ayudaIdiomaDatosT, t.ayudaIdiomaDatosB, Icons.translate_outlined),
+        _ApartadoAyuda(
+            t.ayudaHoyAvisosT, t.ayudaHoyAvisosB, Icons.campaign_outlined),
+        _ApartadoAyuda(t.ayudaWidgetT, t.ayudaWidgetB, Icons.widgets_outlined),
+        _ApartadoAyuda(t.ayudaActualizacionesT, t.ayudaActualizacionesB,
+            Icons.system_update),
+      ]),
+      _GrupoAyuda(t.ayudaGrupoFincas, [
+        _ApartadoAyuda(
+            t.ayudaFincasT, t.ayudaFincasB, Icons.add_location_alt_outlined),
+        segun(t.ayudaZonasT, t.ayudaZonasB, t.ayudaZonasTesterT,
+            t.ayudaZonasTesterB, Icons.pentagon_outlined),
+        segun(t.ayudaEditarMapaT, t.ayudaEditarMapaB, t.ayudaEditarMapaTesterT,
+            t.ayudaEditarMapaTesterB, Icons.edit_location_alt_outlined),
+        _ApartadoAyuda(t.ayudaCierresT, t.ayudaCierresB, Icons.fence),
+        segun(t.ayudaTareasT, t.ayudaTareasB, t.ayudaTareasTesterT,
+            t.ayudaTareasTesterB, Icons.add_task),
+        segun(t.ayudaRecurrentesT, t.ayudaRecurrentesB,
+            t.ayudaRecurrentesTesterT, t.ayudaRecurrentesTesterB, Icons.repeat),
+        segun(t.ayudaTableroT, t.ayudaTableroB, t.ayudaTableroTesterT,
+            t.ayudaTableroTesterB, Icons.checklist),
+      ]),
+      _GrupoAyuda(t.ayudaGrupoGanado, [
+        _ApartadoAyuda(
+            t.ayudaGanadoLotesT, t.ayudaGanadoLotesB, Icons.pets_outlined),
+        _ApartadoAyuda(t.ayudaGanadoMoverT, t.ayudaGanadoMoverB, Icons.moving),
+        _ApartadoAyuda(t.ayudaGanadoManejoT, t.ayudaGanadoManejoB,
+            Icons.medication_outlined),
+      ]),
+      _GrupoAyuda(t.ayudaGrupoProyectos, [
+        _ApartadoAyuda(
+            t.ayudaProyectosT, t.ayudaProyectosB, Icons.science_outlined),
+        _ApartadoAyuda(
+            t.ayudaApuntarT, t.ayudaApuntarB, Icons.edit_note_outlined),
+        _ApartadoAyuda(
+            t.ayudaNumerosT, t.ayudaNumerosB, Icons.bar_chart_outlined),
+        _ApartadoAyuda(
+            t.ayudaConvenioT, t.ayudaConvenioB, Icons.handshake_outlined),
+        _ApartadoAyuda(
+            t.ayudaCalculadoraT, t.ayudaCalculadoraB, Icons.calculate_outlined),
+        _ApartadoAyuda(t.ayudaInformesT, t.ayudaInformesB, Icons.ios_share),
+      ]),
+      _GrupoAyuda(t.ayudaGrupoEquipo, [
+        _ApartadoAyuda(t.ayudaSyncT, t.ayudaSyncB, Icons.sync_outlined),
+        _ApartadoAyuda(t.ayudaWebT, t.ayudaWebB, Icons.computer_outlined),
+        _ApartadoAyuda(t.ayudaRolesT, t.ayudaRolesB, Icons.badge_outlined),
+        _ApartadoAyuda(
+            t.ayudaPeticionesT, t.ayudaPeticionesB, Icons.add_comment_outlined),
+        _ApartadoAyuda(
+            t.ayudaContactosT, t.ayudaContactosB, Icons.contacts_outlined),
+        _ApartadoAyuda(t.ayudaNotificacionesT, t.ayudaNotificacionesB,
+            Icons.notifications_outlined),
+      ]),
+      _GrupoAyuda(t.ayudaGrupoProblemas, [
+        _ApartadoAyuda(
+            t.ayudaProblemasT, t.ayudaProblemasB, Icons.build_outlined),
+      ]),
+    ];
+  }
 
   bool _coincide(_ApartadoAyuda apartado) {
     if (_textoBuscado.isEmpty) return true;
@@ -134,12 +162,20 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
       body: CuerpoResponsivo(
         maxAncho: 640,
         child: ListView(
-          padding: rellenoSobreBarraSistema(context, const EdgeInsets.fromLTRB(12, 8, 12, 24)),
+          padding: rellenoSobreBarraSistema(
+              context, const EdgeInsets.fromLTRB(12, 8, 12, 24)),
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
               child: Text(t.ayudaIntro, style: estilos.bodyLarge),
             ),
+            if (_esTester)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(8, 0, 8, 12),
+                child: Text(t.ayudaPerfilTester,
+                    style: estilos.bodySmall
+                        ?.copyWith(color: colorTintaApagadaZunbeltz)),
+              ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: TextField(
@@ -229,8 +265,8 @@ class _CuerpoApartado extends StatelessWidget {
       } else if (texto.startsWith('•')) {
         bloques.add(_Vineta(texto: texto.substring(1).trim()));
       } else if (texto.startsWith('»')) {
-        bloques.add(_Nota(
-            etiqueta: etiquetaNota, texto: texto.substring(1).trim()));
+        bloques.add(
+            _Nota(etiqueta: etiquetaNota, texto: texto.substring(1).trim()));
       } else {
         bloques.add(Text(texto, style: estilos.bodyMedium));
       }

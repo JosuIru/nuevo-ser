@@ -646,6 +646,14 @@
   "peticionQue": "Qué hace falta",
   "peticionDetalles": "Detalles",
   "peticionFinca": "Finca",
+  "peticionSobre": "Sobre: {lugar}",
+  "@peticionSobre": {
+    "placeholders": {
+      "lugar": {
+        "type": "String"
+      }
+    }
+  },
   "peticionSinFinca": "Sin finca concreta",
   "peticionUrgente": "Es urgente",
   "peticionUrgenteEtiqueta": "Urgente",

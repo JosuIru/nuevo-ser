@@ -71,6 +71,9 @@ const _refPuntoOpcional = ReferenciaSincronizable(
     'punto_id', 'puntos_infraestructura',
     obligatoria: false, alBorrar: AlBorrarReferencia.anular);
 
+const _refZonaOpcional = ReferenciaSincronizable('zona_id', 'zonas_finca',
+    obligatoria: false, alBorrar: AlBorrarReferencia.anular);
+
 const _refLoteOpcional = ReferenciaSincronizable('lote_id', 'lotes_ganado',
     obligatoria: false, alBorrar: AlBorrarReferencia.anular);
 
@@ -119,7 +122,7 @@ final List<TablaSincronizable> tablasSincronizables = [
   const TablaSincronizable(
       tipo: 'peticion',
       tabla: 'peticiones',
-      referencias: [_refFincaOpcional, _refPuntoOpcional]),
+      referencias: [_refFincaOpcional, _refPuntoOpcional, _refZonaOpcional]),
   const TablaSincronizable(
       tipo: 'aviso',
       tabla: 'avisos',

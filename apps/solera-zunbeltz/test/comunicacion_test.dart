@@ -7,6 +7,7 @@ import 'package:solera_zunbeltz/modelos/agenda.dart';
 import 'package:solera_zunbeltz/modelos/aviso_campo.dart';
 import 'package:solera_zunbeltz/modelos/finca.dart';
 import 'package:solera_zunbeltz/modelos/peticion_tarea.dart';
+import 'package:solera_zunbeltz/modelos/zona_finca.dart';
 import 'package:solera_zunbeltz/modelos/proyecto_test.dart';
 import 'package:solera_zunbeltz/modelos/tarea_mantenimiento.dart';
 
@@ -22,9 +23,12 @@ void main() {
   });
 
   test('las peticiones pendientes y urgentes van delante', () async {
-    await bd.guardarPeticion(PeticionTarea(titulo: 'Vieja', estado: estadoPeticionDescartada, fechaCreacionMs: 3));
-    await bd.guardarPeticion(PeticionTarea(titulo: 'Normal', fechaCreacionMs: 2));
-    await bd.guardarPeticion(PeticionTarea(titulo: 'Urgente', urgente: true, fechaCreacionMs: 1));
+    await bd.guardarPeticion(PeticionTarea(
+        titulo: 'Vieja', estado: estadoPeticionDescartada, fechaCreacionMs: 3));
+    await bd
+        .guardarPeticion(PeticionTarea(titulo: 'Normal', fechaCreacionMs: 2));
+    await bd.guardarPeticion(
+        PeticionTarea(titulo: 'Urgente', urgente: true, fechaCreacionMs: 1));
     final titulos = (await bd.listarPeticiones()).map((p) => p.titulo);
     expect(titulos, ['Urgente', 'Normal', 'Vieja']);
     expect(await bd.contarPeticionesPendientes(), 2);
@@ -33,7 +37,8 @@ void main() {
   test('aceptar una petición crea su tarea y la enlaza', () async {
     final peticionId = await bd.guardarPeticion(
         PeticionTarea(titulo: 'Falta pienso', fincaId: fincaId));
-    final tarea = TareaMantenimiento(fincaId: fincaId, titulo: 'Comprar pienso');
+    final tarea =
+        TareaMantenimiento(fincaId: fincaId, titulo: 'Comprar pienso');
     await bd.aceptarPeticion(peticionId, tarea);
     final peticion = (await bd.listarPeticiones()).single;
     expect(peticion.estado, estadoPeticionAceptada);
@@ -42,12 +47,21 @@ void main() {
   });
 
   test('avisos: abiertos y alarmas primero; filtro por categoría', () async {
-    await bd.guardarAviso(AvisoCampo(titulo: 'Resuelto', estado: estadoAvisoResuelto, fechaMs: 9));
+    await bd.guardarAviso(AvisoCampo(
+        titulo: 'Resuelto', estado: estadoAvisoResuelto, fechaMs: 9));
     await bd.guardarAviso(AvisoCampo(titulo: 'Aviso', fechaMs: 8));
     await bd.guardarAviso(AvisoCampo(
-        titulo: 'Oveja coja', gravedad: gravedadAlarma, categoria: categoriaAvisoGanado, fechaMs: 1));
-    expect((await bd.listarAvisos()).map((a) => a.titulo), ['Oveja coja', 'Aviso', 'Resuelto']);
-    expect((await bd.listarAvisos(categoria: categoriaAvisoGanado)).single.esAlarma, isTrue);
+        titulo: 'Oveja coja',
+        gravedad: gravedadAlarma,
+        categoria: categoriaAvisoGanado,
+        fechaMs: 1));
+    expect((await bd.listarAvisos()).map((a) => a.titulo),
+        ['Oveja coja', 'Aviso', 'Resuelto']);
+    expect(
+        (await bd.listarAvisos(categoria: categoriaAvisoGanado))
+            .single
+            .esAlarma,
+        isTrue);
     expect((await bd.listarAvisos(soloAbiertos: true)).length, 2);
   });
 
@@ -55,14 +69,38 @@ void main() {
     await bd.guardarAviso(AvisoCampo(titulo: 'Cierre roto', fincaId: fincaId));
     final entidades = await bd.entidadesPendientesDeSubir(0);
     final aviso = entidades.firstWhere((e) => e['tipo'] == 'aviso');
-    expect((aviso['datos'] as Map)['finca_uid'], await bd.uidDeFila('fincas', fincaId));
+    expect((aviso['datos'] as Map)['finca_uid'],
+        await bd.uidDeFila('fincas', fincaId));
+  });
+
+  test('una petición sobre una pieza sube su zona por uid y la tarea la hereda',
+      () async {
+    final zonaId = await bd.guardarZona(ZonaFinca(
+        fincaId: fincaId, tipo: 'cercado', nombre: 'Parque de cerdos 1'));
+    final peticionId = await bd.guardarPeticion(PeticionTarea(
+        titulo: 'Arreglar la puerta', fincaId: fincaId, zonaId: zonaId));
+    final subida = (await bd.entidadesPendientesDeSubir(0))
+        .firstWhere((e) => e['tipo'] == 'peticion');
+    expect((subida['datos'] as Map)['zona_uid'],
+        await bd.uidDeFila('zonas_finca', zonaId));
+    final peticion = (await bd.listarPeticiones()).single;
+    expect(peticion.zonaId, zonaId);
+    await bd.aceptarPeticion(
+        peticionId,
+        TareaMantenimiento(
+            titulo: peticion.titulo,
+            fincaId: fincaId,
+            zonaId: peticion.zonaId));
+    expect((await bd.listarTareas(zonaId: zonaId)).single.titulo,
+        'Arreglar la puerta');
   });
 
   test('contactos, rendimientos y escenarios viajan con la sincronización',
       () async {
     final proyectoId =
         await bd.guardarProyecto(ProyectoTest(nombre: 'Corderos'));
-    await bd.guardarContacto(Contacto(nombre: 'Matadero de prueba', tipo: 'matadero'));
+    await bd.guardarContacto(
+        Contacto(nombre: 'Matadero de prueba', tipo: 'matadero'));
     await bd.guardarRendimiento(
         RendimientoReferencia(nombre: 'Cordero', rendimientoCanal: 50));
     await bd.guardarEscenario(EscenarioTransformacion(
@@ -73,7 +111,8 @@ void main() {
       for (final entidad in await bd.entidadesPendientesDeSubir(0))
         entidad['tipo'],
     };
-    expect(tipos, containsAll(['contacto', 'rendimiento', 'escenario_transformacion']));
+    expect(tipos,
+        containsAll(['contacto', 'rendimiento', 'escenario_transformacion']));
     await bd.borrarProyecto(proyectoId);
     expect(await bd.listarEscenarios(proyectoId), isEmpty,
         reason: 'los escenarios se van con su proyecto');

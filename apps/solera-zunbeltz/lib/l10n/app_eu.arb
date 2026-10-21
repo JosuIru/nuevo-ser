@@ -510,6 +510,7 @@
   "peticionQue": "Zer behar den",
   "peticionDetalles": "Xehetasunak",
   "peticionFinca": "Finka",
+  "peticionSobre": "Honi buruz: {lugar}",
   "peticionSinFinca": "Finka zehatzik gabe",
   "peticionUrgente": "Premiazkoa da",
   "peticionUrgenteEtiqueta": "Premiazkoa",

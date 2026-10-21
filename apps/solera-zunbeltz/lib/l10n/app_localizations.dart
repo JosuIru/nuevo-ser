@@ -2864,6 +2864,12 @@ abstract class AppLocalizations {
   /// **'Finca'**
   String get peticionFinca;
 
+  /// No description provided for @peticionSobre.
+  ///
+  /// In es, this message translates to:
+  /// **'Sobre: {lugar}'**
+  String peticionSobre(String lugar);
+
   /// No description provided for @peticionSinFinca.
   ///
   /// In es, this message translates to:

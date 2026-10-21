@@ -1535,6 +1535,11 @@ class AppLocalizationsEu extends AppLocalizations {
   String get peticionFinca => 'Finka';
 
   @override
+  String peticionSobre(String lugar) {
+    return 'Honi buruz: $lugar';
+  }
+
+  @override
   String get peticionSinFinca => 'Finka zehatzik gabe';
 
   @override

@@ -80,6 +80,7 @@ class _PantallaPeticionesState extends State<PantallaPeticiones> {
       builder: (_) => NuevaTarea(
         fincaId: fincaId,
         puntoId: peticion.puntoId,
+        zonaId: peticion.zonaId,
         tituloInicial: peticion.titulo,
         descripcionInicial: peticion.descripcion,
         guardar: (tarea) => _bd.aceptarPeticion(peticion.id!, tarea),

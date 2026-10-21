@@ -12,6 +12,7 @@ class PeticionTarea {
     this.autorUid = '',
     this.fincaId,
     this.puntoId,
+    this.zonaId,
     this.titulo = '',
     this.descripcion = '',
     this.urgente = false,
@@ -27,6 +28,9 @@ class PeticionTarea {
   final String autorUid;
   final int? fincaId;
   final int? puntoId;
+
+  /// Pieza (zona) sobre la que se pide, si la tester la ha señalado.
+  final int? zonaId;
   final String titulo;
   final String descripcion;
   final bool urgente;
@@ -48,6 +52,7 @@ class PeticionTarea {
         'autor_uid': autorUid,
         'finca_id': fincaId,
         'punto_id': puntoId,
+        'zona_id': zonaId,
         'titulo': titulo,
         'descripcion': descripcion,
         'urgente': urgente ? 1 : 0,
@@ -62,6 +67,7 @@ class PeticionTarea {
         autorUid: (mapa['autor_uid'] as String?) ?? '',
         fincaId: mapa['finca_id'] as int?,
         puntoId: mapa['punto_id'] as int?,
+        zonaId: mapa['zona_id'] as int?,
         titulo: (mapa['titulo'] as String?) ?? '',
         descripcion: (mapa['descripcion'] as String?) ?? '',
         urgente: ((mapa['urgente'] as int?) ?? 0) != 0,

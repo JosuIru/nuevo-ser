@@ -1530,6 +1530,11 @@ class AppLocalizationsEs extends AppLocalizations {
   String get peticionFinca => 'Finca';
 
   @override
+  String peticionSobre(String lugar) {
+    return 'Sobre: $lugar';
+  }
+
+  @override
   String get peticionSinFinca => 'Sin finca concreta';
 
   @override

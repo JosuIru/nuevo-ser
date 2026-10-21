@@ -108,7 +108,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 15;
+  static const int versionEsquema = 16;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -127,6 +127,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 13) await aplicarMigracionV13(db);
     if (anterior < 14) await aplicarMigracionV14(db);
     if (anterior < 15) await aplicarMigracionV15(db);
+    if (anterior < 16) await aplicarMigracionV16(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -739,6 +740,13 @@ class BaseDatosSoleraZunbeltz {
   /// Migración v14 → v15: el ganado (lotes, animales, movimientos entre
   /// piezas y eventos de manejo). Aditiva. Ver `modelos/ganado.dart`.
   @visibleForTesting
+  /// v16: una petición puede ir sobre una pieza (zona), no solo sobre un
+  /// punto, para que una tester pida una tarea «en el parque de cerdos».
+  static Future<void> aplicarMigracionV16(Database db) async {
+    await db.execute('ALTER TABLE peticiones ADD COLUMN zona_id INTEGER');
+    await db.execute('CREATE INDEX idx_peticiones_zona ON peticiones(zona_id)');
+  }
+
   static Future<void> aplicarMigracionV15(Database db) async {
     const columnasSync =
         "uid TEXT NOT NULL DEFAULT '', actualizado_ms INTEGER NOT NULL DEFAULT 0, "

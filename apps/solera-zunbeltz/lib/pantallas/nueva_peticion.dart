@@ -11,10 +11,13 @@ import 'widgets/relleno_seguro.dart';
 
 /// Pedir una tarea a coordinación: lo que alguien ve que hace falta.
 class NuevaPeticion extends StatefulWidget {
-  const NuevaPeticion({super.key, this.fincaId, this.puntoId});
+  const NuevaPeticion({super.key, this.fincaId, this.puntoId, this.zonaId});
 
   final int? fincaId;
   final int? puntoId;
+
+  /// Pieza desde cuya ficha se pide: la tarea irá sobre ella.
+  final int? zonaId;
 
   @override
   State<NuevaPeticion> createState() => _NuevaPeticionState();
@@ -33,6 +36,7 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _titulo = TextEditingController();
   final _descripcion = TextEditingController();
@@ -41,6 +45,9 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
   bool _urgente = false;
   String? _tipoPunto;
 
+  /// Nombre del punto o la pieza sobre la que se pide, para enseñarlo.
+  String _lugar = '';
+
   @override
   void initState() {
     super.initState();
@@ -48,7 +55,18 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
     final puntoId = widget.puntoId;
     if (puntoId != null) {
       _bd.obtenerPunto(puntoId).then((punto) {
-        if (mounted && punto != null) setState(() => _tipoPunto = punto.tipo);
+        if (mounted && punto != null) {
+          setState(() {
+            _tipoPunto = punto.tipo;
+            _lugar = punto.nombre;
+          });
+        }
+      });
+    }
+    final zonaId = widget.zonaId;
+    if (zonaId != null) {
+      _bd.obtenerZona(zonaId).then((zona) {
+        if (mounted && zona != null) setState(() => _lugar = zona.nombre);
       });
     }
     _bd.listarFincas().then((fincas) {
@@ -75,6 +93,7 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
       autorUid: sesionEspacio.value?.persona.uid ?? '',
       fincaId: _fincaId,
       puntoId: _fincaId == widget.fincaId ? widget.puntoId : null,
+      zonaId: _fincaId == widget.fincaId ? widget.zonaId : null,
       titulo: _titulo.text.trim(),
       descripcion: _descripcion.text.trim(),
       urgente: _urgente,
@@ -103,6 +122,11 @@ class _NuevaPeticionState extends State<NuevaPeticion> {
                     Localizations.localeOf(context).languageCode, subtipo);
               },
             ),
+            if (_lugar.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              Text(textos.peticionSobre(_lugar),
+                  style: Theme.of(context).textTheme.bodyMedium),
+            ],
             const SizedBox(height: 12),
             TextField(
               controller: _titulo,

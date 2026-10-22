@@ -8,7 +8,6 @@ import '../modelos/lote_aceite.dart';
 import '../modelos/molturacion.dart';
 import '../modelos/movimiento.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../utiles/validacion_numeros.dart';
 
 /// Registra una molturación: kg molturados, rendimiento, aceite
 /// obtenido. Crea automáticamente el LoteAceite resultante y el
@@ -158,7 +157,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
                   final n = leerNumero(v, nullSiAmbiguo: true);
-                  if (n == null) return textoNumeroNoValido;
+                  if (n == null) return SoleraL10n.t('numero_no_valido');
                   if (n <= 0) return 'Debe ser un número > 0';
                   return null;
                 },
@@ -176,7 +175,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
                   final n = leerNumero(v);
-                  if (n == null) return textoNumeroNoValido;
+                  if (n == null) return SoleraL10n.t('numero_no_valido');
                   if (n < 0 || n > 100) return '0-100';
                   return null;
                 },

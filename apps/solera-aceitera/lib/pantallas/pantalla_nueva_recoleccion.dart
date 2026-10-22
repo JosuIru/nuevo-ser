@@ -4,7 +4,6 @@ import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
 import '../modelos/recoleccion.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../utiles/validacion_numeros.dart';
 
 /// Formulario rápido para registrar una recolección sobre una parcela
 /// concreta. Requiere una campaña abierta — si no hay, redirige al
@@ -109,7 +108,7 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
                   final n = leerNumero(v, nullSiAmbiguo: true);
-                  if (n == null) return textoNumeroNoValido;
+                  if (n == null) return SoleraL10n.t('numero_no_valido');
                   if (n <= 0) return 'Debe ser un número > 0';
                   return null;
                 },

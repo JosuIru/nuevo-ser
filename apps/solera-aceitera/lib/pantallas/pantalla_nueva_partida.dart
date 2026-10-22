@@ -5,7 +5,6 @@ import '../modelos/campania.dart';
 import '../modelos/partida_aceituna.dart';
 import 'pantalla_nueva_molturacion.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../utiles/validacion_numeros.dart';
 
 /// Formulario de recepción de aceituna en almazara. Una partida
 /// puede ser de finca propia (recoleccion_id link futuro) o de socio
@@ -135,7 +134,7 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
                   final n = leerNumero(v, nullSiAmbiguo: true);
-                  if (n == null) return textoNumeroNoValido;
+                  if (n == null) return SoleraL10n.t('numero_no_valido');
                   if (n <= 0) return 'Debe ser un número > 0';
                   return null;
                 },

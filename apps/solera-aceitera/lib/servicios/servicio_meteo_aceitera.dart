@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show EstadoMeteoException;
 
 class PrevisionAceitera {
   final double latitud;
@@ -231,12 +232,4 @@ class ServicioMeteoAceitera {
     }
     return maximo;
   }
-}
-
-class EstadoMeteoException implements Exception {
-  final String mensaje;
-  const EstadoMeteoException(this.mensaje);
-
-  @override
-  String toString() => mensaje;
 }

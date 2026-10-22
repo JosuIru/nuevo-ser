@@ -6,7 +6,6 @@ import '../datos/catalogos_generados/catalogo_variedades_olivo.dart';
 import '../modelos/parcela.dart';
 import '../utiles/permisos_gps.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../utiles/validacion_numeros.dart';
 
 /// Formulario de alta de una parcela nueva. Sin catálogo curado en
 /// F1-A3 — la variedad y el sistema de riego son texto libre. F1-A6

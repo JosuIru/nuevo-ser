@@ -3,15 +3,13 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show buscarLugarEnMapa;
 
 import '../datos/base_datos.dart';
 import '../modelos/parcela.dart';
 import '../utiles/permisos_gps.dart';
 import 'pantalla_ficha_parcela.dart';
-import 'pantalla_meteo_aceitera.dart';
 import 'pantalla_nueva_parcela.dart';
-
-enum _AccionMenu { meteo, sinCoords }
 
 enum _EstiloMapa { calle, satelite }
 
@@ -24,7 +22,8 @@ enum _OrigenAltaMapa { gps, centroMapa }
 /// Paridad con el patrón de viticultura/apícola/arbolado: capa base
 /// toggle (calle/satélite), centro inicial inteligente (lastKnown →
 /// GPS preciso → fallback Jaén), marker GPS, cluster, bottom bar con
-/// capas/GPS/altitud y atajo a meteo en el menú.
+/// capas/GPS/altitud y buscador de lugares en la barra. La meteo está
+/// en Hoy.
 class PantallaMapa extends StatefulWidget {
   const PantallaMapa({super.key});
 
@@ -101,6 +100,13 @@ class _PantallaMapaState extends State<PantallaMapa> {
         setState(() {});
       }
     } catch (_) {}
+  }
+
+  Future<void> _buscarLugar() async {
+    final lugar =
+        await buscarLugarEnMapa(context, identificacion: 'Solera Aceitera');
+    if (lugar == null || !mounted) return;
+    _aplicarCentro(lugar, 15);
   }
 
   void _aplicarCentro(LatLng centro, double zoom) {
@@ -408,44 +414,20 @@ class _PantallaMapaState extends State<PantallaMapa> {
       appBar: AppBar(
         title: const Text('Mapa'),
         actions: [
-          PopupMenuButton<_AccionMenu>(
-            tooltip: 'Más',
-            onSelected: (a) async {
-              switch (a) {
-                case _AccionMenu.meteo:
-                  await Navigator.of(context).push(
-                    MaterialPageRoute(
-                        builder: (_) => const PantallaMeteoAceitera()),
-                  );
-                  break;
-                case _AccionMenu.sinCoords:
-                  _mostrarSinCoords();
-                  break;
-              }
-            },
-            itemBuilder: (_) => [
-              const PopupMenuItem(
-                value: _AccionMenu.meteo,
-                child: ListTile(
-                  leading: Icon(Icons.cloud),
-                  title: Text('Meteo del olivar'),
-                  contentPadding: EdgeInsets.zero,
-                ),
-              ),
-              PopupMenuItem(
-                value: _AccionMenu.sinCoords,
-                child: ListTile(
-                  leading: _sinCoords.isEmpty
-                      ? const Icon(Icons.check, color: Color(0xFF2E7D32))
-                      : Badge(
-                          label: Text('${_sinCoords.length}'),
-                          child: const Icon(Icons.location_off),
-                        ),
-                  title: const Text('Parcelas sin coordenadas'),
-                  contentPadding: EdgeInsets.zero,
-                ),
-              ),
-            ],
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Buscar un lugar',
+            onPressed: _buscarLugar,
+          ),
+          IconButton(
+            tooltip: 'Parcelas sin coordenadas',
+            onPressed: _mostrarSinCoords,
+            icon: _sinCoords.isEmpty
+                ? const Icon(Icons.location_off_outlined)
+                : Badge(
+                    label: Text('${_sinCoords.length}'),
+                    child: const Icon(Icons.location_off),
+                  ),
           ),
         ],
       ),

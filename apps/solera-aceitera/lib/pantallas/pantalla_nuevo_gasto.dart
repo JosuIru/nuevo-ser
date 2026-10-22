@@ -5,7 +5,6 @@ import '../modelos/apunte_gasto.dart';
 import '../modelos/parcela.dart';
 import '../modelos/tercero.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../utiles/validacion_numeros.dart';
 
 /// Alta de un apunte de gasto. Tipos olivar específicos y selector
 /// de imputación a parcela/variedad/general. El IVA soportado se

@@ -6,7 +6,6 @@ import '../modelos/configuracion_fiscal.dart';
 import '../modelos/parcela.dart';
 import '../modelos/tercero.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../utiles/validacion_numeros.dart';
 
 /// Alta de un apunte de ingreso. Autocálculo de IVA repercutido y
 /// compensación REAGP según la configuración fiscal y el tipo de

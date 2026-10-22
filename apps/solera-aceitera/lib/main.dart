@@ -14,6 +14,7 @@
 // Detalle de fase y diferenciadores en `CLAUDE.md` del paquete.
 
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show cargarIdiomaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'branding.dart';
@@ -27,6 +28,8 @@ import 'pantallas/pantalla_onboarding.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Idioma elegido en Ajustes la última vez (si no, castellano).
+  await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
   runApp(const AppSoleraAceitera());
 }

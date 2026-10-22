@@ -6,7 +6,6 @@ import '../datos/catalogos_generados/catalogo_plagas_olivo.dart';
 import '../modelos/tratamiento.dart';
 import 'widgets/boton_diagnosticar_plaga_ia.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import '../utiles/validacion_numeros.dart';
 
 /// Formulario para registrar un tratamiento fitosanitario sobre una
 /// parcela. Sin catálogo curado en F1-A3 — sustancia y plaga son

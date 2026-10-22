@@ -53,11 +53,7 @@ class BaseDatosSoleraViticultura {
         // ON DELETE CASCADE en eventos hijos requiere FKs activas.
         await db.execute('PRAGMA foreign_keys = ON');
       },
-      onCreate: (db, version) async {
-        await _crearEsquemaInicial(db);
-        await _crearTablasContabilidadV2(db);
-        await _crearTablasFacturasV3(db);
-      },
+      onCreate: (db, version) => crearEsquemaCompleto(db),
       onUpgrade: (db, viejaVersion, nuevaVersion) async {
         if (viejaVersion < 2) {
           await _crearTablasContabilidadV2(db);
@@ -498,11 +494,10 @@ class BaseDatosSoleraViticultura {
     return db.path;
   }
 
-  Future<bool> estaVacia() async {
-    final db = await basedatos;
-    final count = Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM hallazgos'));
-    return (count ?? 0) == 0;
-  }
+  /// Sin registros propios: la copia automática solo se restaura entonces
+  /// (tras reinstalar). Antes contaba una tabla `hallazgos` que no existe,
+  /// la consulta fallaba y la restauración no se lanzaba nunca.
+  Future<bool> estaVacia() async => baseDatosSinRegistros(await basedatos);
 
   Future<void> reiniciar() async {
     await _basedatos?.close();
@@ -741,4 +736,34 @@ Future<void> _crearTablasFacturasV3(Database db) async {
     "notas TEXT NOT NULL DEFAULT ''," +
     "fecha_creacion_ms INTEGER NOT NULL" +
   ")");
+}
+
+/// Tablas con datos de quien usa la app. Quedan fuera titular y
+/// configuración fiscal, que pueden existir en una instalación sin datos.
+const tablasConRegistrosViticultura = <String>[
+  'vinedos',
+  'cepas',
+  'cosechas',
+  'observaciones',
+  'incidencias',
+  'tratamientos',
+  'apuntes_ingreso',
+  'apuntes_gasto',
+  'facturas',
+];
+
+/// `true` si ninguna de [tablasConRegistrosViticultura] tiene filas.
+Future<bool> baseDatosSinRegistros(DatabaseExecutor db) async {
+  for (final tabla in tablasConRegistrosViticultura) {
+    final filas = await db.rawQuery('SELECT 1 FROM $tabla LIMIT 1');
+    if (filas.isNotEmpty) return false;
+  }
+  return true;
+}
+
+/// Esquema de una instalación nueva (también lo usan los tests).
+Future<void> crearEsquemaCompleto(Database db) async {
+  await _crearEsquemaInicial(db);
+  await _crearTablasContabilidadV2(db);
+  await _crearTablasFacturasV3(db);
 }

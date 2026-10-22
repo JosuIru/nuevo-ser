@@ -33,6 +33,13 @@ foreach ( array( 'es', 'eu' ) as $idioma ) {
 	afirmar( array(), array_diff( $claves, array_keys( SZS_AYUDA_TEXTOS_DE_SERIE[ $idioma ] ) ), "todas las claves tienen texto de serie en {$idioma}" );
 }
 
+// --- clave válida (con mayúsculas, sin sanitize_key) ---
+afirmar( 'ayudaQueEsT', szs_clave_ayuda_valida( 'ayudaQueEsT' ), 'una clave de texto vale tal cual' );
+afirmar( 'ayudaZonas', szs_clave_ayuda_valida( 'ayudaZonas' ), 'un apartado del índice también' );
+afirmar( 'ayudaGrupoFincas', szs_clave_ayuda_valida( 'ayudaGrupoFincas' ), 'y un grupo' );
+afirmar( '', szs_clave_ayuda_valida( 'ayudaqueest' ), 'en minúsculas no es ninguna clave' );
+afirmar( '', szs_clave_ayuda_valida( '<script>' ), 'basura fuera' );
+
 // --- normalizar ---
 $de_serie_es = SZS_AYUDA_TEXTOS_DE_SERIE['es']['ayudaQueEsT'];
 $limpios     = szs_normalizar_textos_ayuda(

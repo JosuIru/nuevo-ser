@@ -50,6 +50,21 @@ function szs_claves_ayuda(): array {
 }
 
 /**
+ * Clave tal como llega (de la URL o del formulario), solo si es una clave
+ * conocida de la ayuda o un apartado/grupo del índice. Las claves llevan
+ * mayúsculas (`ayudaQueEsT`): no pasarlas por `sanitize_key`, que las
+ * pondría en minúsculas y dejaría de reconocerlas.
+ */
+function szs_clave_ayuda_valida( string $clave ): string {
+	$clave = trim( $clave );
+	if ( 1 !== preg_match( '/^[A-Za-z0-9_]{1,80}$/', $clave ) ) {
+		return '';
+	}
+	$apartados = array_merge( array_keys( SZS_AYUDA_INDICE ), ...array_values( SZS_AYUDA_INDICE ) );
+	return in_array( $clave, szs_claves_ayuda(), true ) || in_array( $clave, $apartados, true ) ? $clave : '';
+}
+
+/**
  * Deja lo recibido (del formulario o de la opción) en forma: solo idiomas y
  * claves conocidas, texto recortado, y fuera lo vacío o igual al de serie.
  */
@@ -409,7 +424,11 @@ function szs_procesar_formulario_ayuda(): ?array {
 	$cambiados = szs_textos_ayuda_cambiados();
 	foreach ( SZS_IDIOMAS_AYUDA as $idioma ) {
 		foreach ( (array) ( $recibidos[ $idioma ] ?? array() ) as $clave => $texto ) {
-			$cambiados[ $idioma ][ sanitize_key( (string) $clave ) ] = sanitize_textarea_field( (string) $texto );
+			$clave = szs_clave_ayuda_valida( (string) $clave );
+			if ( '' === $clave ) {
+				continue;
+			}
+			$cambiados[ $idioma ][ $clave ] = sanitize_textarea_field( (string) $texto );
 		}
 	}
 	szs_guardar_textos_ayuda( $cambiados );
@@ -422,11 +441,7 @@ function szs_pagina_ayuda(): void {
 	}
 	$aviso     = szs_procesar_formulario_ayuda();
 	$cambiados = szs_textos_ayuda_cambiados();
-	$apartado  = sanitize_key( szs_campo_get( 'apartado' ) );
-	$claves_ok = array_merge( array_keys( SZS_AYUDA_INDICE ), ...array_values( SZS_AYUDA_INDICE ) );
-	if ( '' !== $apartado && ! in_array( $apartado, $claves_ok, true ) ) {
-		$apartado = '';
-	}
+	$apartado  = szs_clave_ayuda_valida( szs_campo_get( 'apartado' ) );
 	$n_cambiados = count( $cambiados['es'] ?? array() ) + count( $cambiados['eu'] ?? array() );
 	?>
 	<div class="wrap">

@@ -94,6 +94,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-22 — el buscador del mapa, con respaldo (app 0.7.1, plugin 1.0.1)**. El geocodificador de CartoCiudad se cae a ratos (corta la conexión en todo `/geocoder/`) y la app decía «el buscador necesita internet» aunque la hubiera. Ahora, si CartoCiudad falla o no contesta en 8 s, se busca en **Nominatim** (OpenStreetMap; CORS abierto; `User-Agent` propio en móvil, en web vale el Referer). El aviso solo sale si fallan los dos, y ya no culpa a la conexión.
 
+> **2026-10-22 — el aviso de actualización mira cada 3 h (app 0.7.2, core)**. La franja automática guardaba la respuesta de GitHub 24 h: tras instalar una versión, la siguiente no se avisaba hasta el día después. Ahora 3 h (`_ttlCache` del core, afecta a todas las apps). «Buscar ahora» en Ajustes sigue sin caché.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

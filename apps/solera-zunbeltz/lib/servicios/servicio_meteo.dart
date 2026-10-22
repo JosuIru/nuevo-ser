@@ -110,13 +110,17 @@ class PrevisionMeteo {
         .toList(growable: false);
   }
 
-  /// Lluvia caída en los [dias] días anteriores a hoy. `null` si la
-  /// respuesta no trae días pasados.
+  /// Lluvia caída en los [dias] días anteriores a hoy. Solo cuentan los
+  /// días que ya habían pasado cuando se bajó la previsión ([actualizado]):
+  /// con una previsión guardada de hace días, lo que entonces era pronóstico
+  /// no es lluvia medida. `null` si no hay ningún día medido en la ventana.
   double? lluviaDiasAnteriores(DateTime ahora, {int dias = 7}) {
     final hoy = _soloFecha(ahora);
     final desde = hoy.subtract(Duration(days: dias));
+    final diaDeLaDescarga = _soloFecha(actualizado);
+    final limite = diaDeLaDescarga.isBefore(hoy) ? diaDeLaDescarga : hoy;
     final pasados = todosLosDias.where(
-        (d) => d.fecha.isBefore(hoy) && !d.fecha.isBefore(desde));
+        (d) => d.fecha.isBefore(limite) && !d.fecha.isBefore(desde));
     if (pasados.isEmpty) return null;
     return pasados.fold<double>(0, (suma, d) => suma + (d.lluviaMm ?? 0));
   }

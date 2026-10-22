@@ -531,8 +531,8 @@ class BaseDatosSoleraZunbeltz {
     for (final tabla in tablasSincronizables
         .where((descriptor) => tablasHastaV9.contains(descriptor.tabla))) {
       final columnas = tabla.tabla == 'fincas' ? ['id', 'nombre'] : ['id'];
-      for (final fila in await db.query(tabla.tabla,
-          columns: columnas, orderBy: 'id')) {
+      for (final fila
+          in await db.query(tabla.tabla, columns: columnas, orderBy: 'id')) {
         var uidFijo = tabla.tabla == 'fincas'
             ? uidsFincasSembradas[fila['nombre']]
             : null;
@@ -740,6 +740,7 @@ class BaseDatosSoleraZunbeltz {
   /// Migración v14 → v15: el ganado (lotes, animales, movimientos entre
   /// piezas y eventos de manejo). Aditiva. Ver `modelos/ganado.dart`.
   @visibleForTesting
+
   /// v16: una petición puede ir sobre una pieza (zona), no solo sobre un
   /// punto, para que una tester pida una tarea «en el parque de cerdos».
   static Future<void> aplicarMigracionV16(Database db) async {
@@ -858,9 +859,28 @@ class BaseDatosSoleraZunbeltz {
     return Finca.fromMap(filas.first);
   }
 
-  /// Borra la finca con sus zonas, puntos, tareas y seguimiento (lápidas
-  /// incluidas, para que el borrado llegue al resto de móviles).
-  Future<void> borrarFinca(int id) => _borrarSincronizable('fincas', id);
+  /// Borra la finca con sus zonas, puntos y tareas (lápidas incluidas, para
+  /// que el borrado llegue al resto de móviles).
+  ///
+  /// Si algún proyecto tiene apuntes o registros en ella, no se borra y
+  /// lanza [FincaConDatosDeProyecto]: el borrado se llevaría en cascada las
+  /// cuentas del test, en este móvil y en todos los demás. El servidor
+  /// rechaza también esa lápida.
+  Future<void> borrarFinca(int id) async {
+    final db = await basedatos;
+    int contar(List<Map<String, Object?>> filas) =>
+        (filas.first['n'] as int?) ?? 0;
+    final apuntes = contar(await db.rawQuery(
+        'SELECT COUNT(*) AS n FROM apuntes_economicos WHERE finca_id = ?',
+        [id]));
+    final registros = contar(await db.rawQuery(
+        'SELECT COUNT(*) AS n FROM registros_actividad WHERE finca_id = ?',
+        [id]));
+    if (apuntes + registros > 0) {
+      throw FincaConDatosDeProyecto(apuntes: apuntes, registros: registros);
+    }
+    await _borrarSincronizable('fincas', id);
+  }
 
   // ─── Puntos de infraestructura ──────────────────────────
 
@@ -906,8 +926,7 @@ class BaseDatosSoleraZunbeltz {
 
   Future<int> guardarZona(ZonaFinca zona, {String? uid}) async {
     final db = await basedatos;
-    return _insertarSincronizable(
-        db, 'zonas_finca', zona.toMap()..remove('id'),
+    return _insertarSincronizable(db, 'zonas_finca', zona.toMap()..remove('id'),
         uid: uid);
   }
 
@@ -2151,4 +2170,18 @@ class _FiltroSql {
 
   final String? where;
   final List<Object?>? args;
+}
+
+/// Una finca no se borra mientras un proyecto tenga apuntes económicos o
+/// registros de actividad en ella.
+class FincaConDatosDeProyecto implements Exception {
+  const FincaConDatosDeProyecto(
+      {required this.apuntes, required this.registros});
+
+  final int apuntes;
+  final int registros;
+
+  @override
+  String toString() =>
+      'La finca tiene $apuntes apuntes y $registros registros de proyectos';
 }

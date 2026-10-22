@@ -54,6 +54,17 @@ void main() {
       expect(prevision.evapotranspiracionPrevista(momentoCaptura),
           greaterThan(0));
     });
+
+    test('una previsión guardada de hace días no cuenta el pronóstico como lluvia caída',
+        () {
+      final prevision = leer();
+      // El 28 y el 29 de septiembre venían con 4,2 y 7,8 mm previstos. El
+      // 1 de octubre ya son «días anteriores», pero nadie midió esa lluvia.
+      expect(prevision.lluviaDiasAnteriores(DateTime(2026, 10, 1, 9)), isNull,
+          reason: 'ningún día de la ventana estaba medido al bajarla');
+      // El 25: la ventana (18-24) solo tiene medidos del 18 al 22.
+      expect(prevision.lluviaDiasAnteriores(DateTime(2026, 9, 25, 9)), 0);
+    });
   });
 
   group('Avisos', () {

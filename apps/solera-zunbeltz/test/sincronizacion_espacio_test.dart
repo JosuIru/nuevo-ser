@@ -64,7 +64,8 @@ class ServidorSimulado {
       ];
 }
 
-Map<String, Object?> entidad(String tipo, String uid, Map<String, Object?> datos,
+Map<String, Object?> entidad(
+        String tipo, String uid, Map<String, Object?> datos,
         {int actualizadoMs = 5000,
         bool borrado = false,
         String proyectoUid = '',
@@ -110,7 +111,8 @@ void main() {
       final otra = await abrirBdEnMemoria();
       await otra.sembrarFincasDemoSiVacia();
       final uidsAqui = {
-        for (final f in await bd.listarFincas()) await bd.uidDeFila('fincas', f.id!)
+        for (final f in await bd.listarFincas())
+          await bd.uidDeFila('fincas', f.id!)
       };
       final uidsAlli = {
         for (final f in await otra.listarFincas())
@@ -123,8 +125,8 @@ void main() {
       final fincaId = await bd.guardarFinca(Finca(nombre: 'Zufía'));
       final puntoId = await bd.guardarPunto(
           PuntoInfraestructura(fincaId: fincaId, tipo: 'abrevadero'));
-      final tareaId =
-          await bd.guardarTarea(TareaMantenimiento(fincaId: fincaId, titulo: 'x'));
+      final tareaId = await bd
+          .guardarTarea(TareaMantenimiento(fincaId: fincaId, titulo: 'x'));
       final uidPunto = await bd.uidDeFila('puntos_infraestructura', puntoId);
       final uidTarea = (await bd.obtenerTarea(tareaId))!.uid;
       await bd.borrarFinca(fincaId);
@@ -132,12 +134,27 @@ void main() {
       expect(lapidas.map((l) => l.tipo).toSet(), {'finca', 'punto', 'tarea'});
       expect(lapidas.map((l) => l.uid), containsAll([uidPunto, uidTarea]));
     });
+
+    test('una finca con apuntes o registros de un proyecto no se borra',
+        () async {
+      final fincaId = await bd.guardarFinca(Finca(nombre: 'Zufía'));
+      final proyectoId =
+          await bd.guardarProyecto(ProyectoTest(nombre: 'Quesería'));
+      await bd.guardarApunte(ApunteEconomico(
+          fincaId: fincaId, proyectoId: proyectoId, concepto: 'Cencerro'));
+      await expectLater(
+          bd.borrarFinca(fincaId), throwsA(isA<FincaConDatosDeProyecto>()));
+      expect(await bd.obtenerFinca(fincaId), isNotNull);
+      expect(await bd.listarBorradosPendientes(), isEmpty,
+          reason: 'ni lápida de la finca ni de los apuntes');
+    });
   });
 
   group('subida', () {
     test('las referencias viajan como uid, no como id local', () async {
       final fincaId = await bd.guardarFinca(Finca(nombre: 'Zufía'));
-      final proyectoId = await bd.guardarProyecto(ProyectoTest(nombre: 'Quesería'));
+      final proyectoId =
+          await bd.guardarProyecto(ProyectoTest(nombre: 'Quesería'));
       await bd.guardarApunte(ApunteEconomico(
           fincaId: fincaId, proyectoId: proyectoId, concepto: 'Cencerro'));
       final uidFinca = await bd.uidDeFila('fincas', fincaId);
@@ -168,8 +185,8 @@ void main() {
           PuntoInfraestructura(fincaId: fincaId, tipo: 'abrevadero'));
       await bd.guardarTarea(
           TareaMantenimiento(fincaId: fincaId, puntoId: puntoId, titulo: 'x'));
-      final borrarId =
-          await bd.guardarTarea(TareaMantenimiento(fincaId: fincaId, titulo: 'y'));
+      final borrarId = await bd
+          .guardarTarea(TareaMantenimiento(fincaId: fincaId, titulo: 'y'));
       final uidBorrada = (await bd.obtenerTarea(borrarId))!.uid;
       final uidPunto = await bd.uidDeFila('puntos_infraestructura', puntoId);
       await bd.borrarTarea(borrarId);
@@ -198,11 +215,21 @@ void main() {
       servidor.respuesta = {
         'revision': 9,
         'entidades': [
-          entidad('punto', 'pu1', {'nombre': 'Abrevadero', 'tipo': 'abrevadero', 'finca_uid': 'f1'}),
+          entidad('punto', 'pu1', {
+            'nombre': 'Abrevadero',
+            'tipo': 'abrevadero',
+            'finca_uid': 'f1'
+          }),
           entidad('finca', 'f1', {'nombre': 'Zufía'}),
         ],
         'tareas': [
-          {'uid': 't1', 'finca_uid': 'f1', 'punto_uid': 'pu1', 'titulo': 'Limpiar', 'actualizado_ms': 1},
+          {
+            'uid': 't1',
+            'finca_uid': 'f1',
+            'punto_uid': 'pu1',
+            'titulo': 'Limpiar',
+            'actualizado_ms': 1
+          },
         ],
       };
       await sincronizar();
@@ -220,7 +247,9 @@ void main() {
       final fincaId = await bd.guardarFinca(Finca(nombre: 'Local'));
       final uid = (await bd.uidDeFila('fincas', fincaId))!;
       servidor.respuesta = {
-        'entidades': [entidad('finca', uid, {'nombre': 'Vieja'}, actualizadoMs: 1)],
+        'entidades': [
+          entidad('finca', uid, {'nombre': 'Vieja'}, actualizadoMs: 1)
+        ],
       };
       await sincronizar();
       expect((await bd.obtenerFinca(fincaId))!.nombre, 'Local');
@@ -228,10 +257,16 @@ void main() {
 
     test('una lápida del servidor borra en local sin dejar lápida propia',
         () async {
-      servidor.respuesta = {'entidades': [entidad('finca', 'f1', {'nombre': 'Zufía'})]};
+      servidor.respuesta = {
+        'entidades': [
+          entidad('finca', 'f1', {'nombre': 'Zufía'})
+        ]
+      };
       await sincronizar();
       servidor.respuesta = {
-        'entidades': [entidad('finca', 'f1', {}, actualizadoMs: 9000, borrado: true)],
+        'entidades': [
+          entidad('finca', 'f1', {}, actualizadoMs: 9000, borrado: true)
+        ],
       };
       await sincronizar();
       expect(await bd.listarFincas(), isEmpty);
@@ -288,7 +323,9 @@ void main() {
       final fincaId = await bd.guardarFinca(Finca(nombre: 'Cambiada'));
       final uid = (await bd.uidDeFila('fincas', fincaId))!;
       servidor.respuesta = {
-        'entidades': [entidad('finca', uid, {'nombre': 'Original'}, actualizadoMs: 1)],
+        'entidades': [
+          entidad('finca', uid, {'nombre': 'Original'}, actualizadoMs: 1)
+        ],
         'forzar_entidades': [
           {'tipo': 'finca', 'uid': uid}
         ],
@@ -306,7 +343,11 @@ void main() {
         ],
       };
       await sincronizar();
-      servidor.respuesta = {'entidades': [entidad('finca', 'f1', {'nombre': 'Zufía'})]};
+      servidor.respuesta = {
+        'entidades': [
+          entidad('finca', 'f1', {'nombre': 'Zufía'})
+        ]
+      };
       await sincronizar(completa: true);
       expect(servidor.ultimaPeticion['desde_revision'], 0);
       expect(await bd.listarProyectos(), isEmpty);
@@ -436,11 +477,17 @@ void main() {
       servidor.respuesta = {
         'revision': 3,
         'huella_visibilidad': 'aaaaaaaaaaaa',
-        'entidades': [entidad('proyecto', 'p1', {'nombre': 'Quesería', 'persona_uid': 'ane'})],
+        'entidades': [
+          entidad(
+              'proyecto', 'p1', {'nombre': 'Quesería', 'persona_uid': 'ane'})
+        ],
       };
       await sincronizar();
       expect(await bd.listarProyectos(), hasLength(1));
-      servidor.respuesta = {'revision': 4, 'huella_visibilidad': 'bbbbbbbbbbbb'};
+      servidor.respuesta = {
+        'revision': 4,
+        'huella_visibilidad': 'bbbbbbbbbbbb'
+      };
       final resultado = await sincronizar();
       expect(resultado.cambioVisibilidad, isTrue);
       await sincronizar();
@@ -488,7 +535,9 @@ void main() {
         () async {
       servidor.respuesta = {
         'revision': 2,
-        'entidades': [entidad('proyecto', 'p1', {'nombre': 'Ajeno'})],
+        'entidades': [
+          entidad('proyecto', 'p1', {'nombre': 'Ajeno'})
+        ],
       };
       await sincronizar();
       final proyectoId = (await bd.listarProyectos()).single.id!;

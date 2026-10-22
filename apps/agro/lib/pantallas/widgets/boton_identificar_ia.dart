@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show ErrorClaude;
 
 import '../../datos/catalogo_cultivos.dart';
 import '../../datos/catalogo_plagas.dart';
-import '../../estado/clave_anthropic.dart';
 import '../../servicios/cliente_anthropic.dart';
 
 /// Resultado que devuelve el modal cuando el usuario confirma. La
@@ -53,7 +53,7 @@ class BotonIdentificarIA extends StatefulWidget {
 }
 
 class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
-  final _persistencia = ClaveAnthropic();
+  final _persistencia = estadoClaveAnthropicAgro;
   bool _comprobando = true;
   bool _hayClave = false;
   bool _ejecutando = false;
@@ -92,10 +92,10 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
       return;
     }
     setState(() => _ejecutando = true);
-    final cliente = ClienteAnthropic(clave);
+    final analizador = AnalizadorFotoCultivo(claveApi: clave);
     final cultivo = cultivoPorId(widget.cultivoId);
     try {
-      final resultado = await cliente.analizarFoto(
+      final resultado = await analizador.analizarFoto(
         foto: fichero,
         cultivoContexto: cultivo,
         observacionesUsuario: widget.observacionesUsuario,
@@ -106,7 +106,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
       if (aceptado != null) {
         widget.alAceptar(aceptado);
       }
-    } on ErrorIA catch (e) {
+    } on ErrorClaude catch (e) {
       if (!mounted) return;
       setState(() => _ejecutando = false);
       ScaffoldMessenger.of(context).showSnackBar(

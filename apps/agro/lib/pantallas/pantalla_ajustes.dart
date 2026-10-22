@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
+import '../servicios/cliente_anthropic.dart';
 import 'pantalla_acerca.dart';
 import 'pantalla_backup.dart';
-import 'pantalla_clave_anthropic.dart';
 import 'pantalla_configuracion_fiscal.dart';
-import 'pantalla_cuaderno_mapa.dart';
-import 'pantalla_estadisticas.dart';
-import 'pantalla_facturas.dart';
 import 'pantalla_fincas.dart';
-import 'pantalla_importar_csv.dart';
-import 'pantalla_libro_economico.dart';
-import 'pantalla_reportes.dart';
 import 'pantalla_terceros.dart';
 import 'pantalla_titular.dart';
-import 'pantalla_tracks.dart';
 
 /// Ajustes ordenados por secciones, en el mismo orden que el resto de la
-/// suite Solera: explotación, registros y documentos, inteligencia
-/// artificial, preferencias, datos y aplicación.
+/// suite Solera: explotación, inteligencia artificial, preferencias,
+/// datos y aplicación. Los documentos y libros están en la pestaña
+/// Registros (`PantallaRegistros`).
 class PantallaAjustes extends StatelessWidget {
   const PantallaAjustes({super.key});
 
@@ -58,56 +52,24 @@ class PantallaAjustes extends StatelessWidget {
             subtitulo: 'Terceros con NIF · alimentan el modelo 347',
             alPulsar: () => abrir(() => PantallaTerceros()),
           ),
-          CabeceraSeccionAjustes(SoleraL10n.t('seccion_registros')),
-          _EntradaAjustes(
-            icono: Icons.bar_chart,
-            titulo: 'Estadísticas',
-            subtitulo: 'Plantas por cultivo, cosecha por campaña',
-            alPulsar: () => abrir(() => const PantallaEstadisticas()),
-          ),
-          _EntradaAjustes(
-            icono: Icons.timeline,
-            titulo: 'Recorridos de inspección',
-            subtitulo: 'Lista de tracks GPS grabados',
-            alPulsar: () => abrir(() => PantallaTracks()),
-          ),
-          _EntradaAjustes(
-            icono: Icons.upload_file,
-            titulo: 'Importar / exportar plantas (CSV)',
-            subtitulo: 'Alta masiva desde hoja de cálculo o backup completo',
-            alPulsar: () => abrir(() => const PantallaImportarCsv()),
-          ),
-          _EntradaAjustes(
-            icono: Icons.picture_as_pdf,
-            titulo: 'Informe de campaña (PDF)',
-            subtitulo: 'Generar y compartir PDF por finca y año',
-            alPulsar: () => abrir(() => const PantallaReportes()),
-          ),
-          _EntradaAjustes(
-            icono: Icons.description,
-            titulo: 'Cuaderno de explotación digital (MAPA)',
-            subtitulo: 'Genera PDF conforme RD 1311/2012 por finca y campaña',
-            alPulsar: () => abrir(() => PantallaCuadernoMapa()),
-          ),
-          _EntradaAjustes(
-            icono: Icons.receipt,
-            titulo: SoleraL10n.t('facturas'),
-            subtitulo: SoleraL10n.t('emision_pdf_y_envio'),
-            alPulsar: () => abrir(() => PantallaFacturas()),
-          ),
-          _EntradaAjustes(
-            icono: Icons.menu_book,
-            titulo: SoleraL10n.t('libro_economico'),
-            subtitulo: 'Ingresos, gastos y extracto anual · provisional',
-            alPulsar: () => abrir(() => const PantallaLibroEconomico()),
-          ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           _EntradaAjustes(
             icono: Icons.psychology,
             titulo: SoleraL10n.t('identificacion_con_ia'),
             subtitulo: 'Configurar clave Anthropic para identificar plagas '
                 'y enfermedades por foto',
-            alPulsar: () => abrir(() => const PantallaClaveAnthropic()),
+            alPulsar: () => abrir(
+              () => PantallaClaveAnthropic(
+                estado: estadoClaveAnthropicAgro,
+                nombreApp: 'Solera',
+                titulo: SoleraL10n.t('identificacion_con_ia'),
+                queIdentifica: 'Identifica plagas y enfermedades por foto',
+                descripcion: 'Solera puede usar Claude AI de Anthropic para analizar la foto '
+                    'que adjuntas a una incidencia y proponer un diagnóstico, severidad y '
+                    'recomendaciones de manejo cultural.',
+                probarClave: probarClaveAnthropic,
+              ),
+            ),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_preferencias')),
           const Padding(

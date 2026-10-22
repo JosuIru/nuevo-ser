@@ -10,7 +10,7 @@ import '../datos/fenologia.dart';
 /// `package_info_plus`, así que va escrita aquí, como en las hermanas:
 /// hay que subirla a la vez que la de `pubspec.yaml`. La versión que de
 /// verdad está instalada se ve en «Comprobar actualizaciones».
-const versionVisibleAgro = '0.3.4';
+const versionVisibleAgro = '0.3.5';
 
 /// Pantalla «Acerca de»: qué es Solera, sus compromisos legales, el estado
 /// de los catálogos y de dónde viene la app.

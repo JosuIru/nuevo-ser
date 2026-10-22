@@ -8,11 +8,12 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'pantallas/pantalla_ajustes.dart';
-import 'pantallas/pantalla_guia.dart';
 import 'pantallas/pantalla_hoy.dart';
 import 'pantallas/pantalla_lista_plantas.dart';
 import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_onboarding.dart';
+import 'pantallas/pantalla_registros.dart';
+import 'servicios/backup_servicio.dart';
 import 'servicios/grabador_track.dart';
 
 Future<void> main() async {
@@ -27,6 +28,13 @@ Future<void> main() async {
   if (!kIsWeb && (Platform.isLinux || Platform.isWindows || Platform.isMacOS)) {
     sqfliteFfiInit();
     databaseFactory = databaseFactoryFfi;
+  }
+  // Si la app murió a mitad de restaurar una copia, deja la BD y las
+  // fotos como estaban antes. Tiene que ir antes del primer acceso a la BD.
+  try {
+    await servicioCopiaSeguridadAgro.recuperarRestauracionInterrumpida();
+  } catch (error) {
+    debugPrint('No se pudo revisar la restauración interrumpida: $error');
   }
   // intl/DateFormat con locale `es_ES` (usado en lista de plantas y
   // ficha) requiere cargar los datos de localización antes del runApp.
@@ -91,12 +99,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   //
   // El acceso al meteo se ha movido a la pantalla Hoy (tarjeta resumen
   // que abre `PantallaMeteoAgro` en push) para reducir el número de
-  // iconos del NavigationBar.
+  // iconos del NavigationBar. La Guía de cultivos y plagas se abre
+  // desde el icono de libro en la barra superior de Hoy.
   final _pantallas = const <Widget>[
     PantallaHoy(),
     PantallaMapa(),
     PantallaListaPlantas(),
-    PantallaGuia(),
+    PantallaRegistros(),
     PantallaAjustes(),
   ];
 
@@ -124,9 +133,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             label: 'Plantas',
           ),
           NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: 'Guía',
+            icon: Icon(Icons.folder_outlined),
+            selectedIcon: Icon(Icons.folder),
+            label: 'Registros',
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),

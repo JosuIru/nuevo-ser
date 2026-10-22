@@ -8,6 +8,7 @@ import '../datos/fenologia.dart';
 import '../estado/finca_activa.dart';
 import '../modelos/incidencia.dart';
 import 'pantalla_ficha_planta.dart';
+import 'pantalla_guia.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
 
 /// Pantalla "Hoy" — primera pestaña del NavBar. Resumen activo de:
@@ -103,6 +104,15 @@ class _PantallaHoyState extends State<PantallaHoy> {
     return Scaffold(
       appBar: AppBar(
         title: Text(saludo),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu_book_outlined),
+            tooltip: 'Guía de cultivos y plagas',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const PantallaGuia()),
+            ),
+          ),
+        ],
       ),
       body: RefreshIndicator(
         onRefresh: _cargar,

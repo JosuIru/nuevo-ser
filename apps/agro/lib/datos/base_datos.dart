@@ -23,6 +23,17 @@ import '../modelos/tratamiento.dart';
 /// dato por una actualización es inaceptable. Cada subida de versión
 /// es un paso aditivo en `_aplicarMigraciones`. Ese es el principio
 /// que las apps fósiles/naturaleza ya siguen y este monorepo respeta.
+/// Fichero de la BD dentro de la carpeta de documentos.
+const String nombreFicheroBaseDatosAgro = 'agro.db';
+
+/// Versión del esquema (`version:` de openDatabase). Subirla cada vez
+/// que se añada un paso en `_aplicarMigraciones`. Nunca destructivo.
+/// v7 añade la tabla `facturas` que usa pantalla_facturas — antes estaba
+/// declarada en _aplicarMigraciones pero la versión seguía en 6, así que
+/// la tabla no llegaba a crearse y la pantalla de facturas fallaba en
+/// silencio.
+const int versionEsquemaAgro = 7;
+
 class BaseDatosAgro {
   static final BaseDatosAgro instancia = BaseDatosAgro._interno();
   factory BaseDatosAgro() => instancia;
@@ -33,16 +44,11 @@ class BaseDatosAgro {
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
     final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, 'agro.db');
+    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosAgro);
     _basedatos = await openDatabase(
       ruta,
-      // Esquema con migración escalonada. Subir esta constante cada vez
-      // que se añada un paso en `_aplicarMigraciones`. Nunca destructivo.
-      // v7 añade la tabla `facturas` que usa pantalla_facturas — antes
-      // estaba declarada en _aplicarMigraciones pero la versión seguía
-      // en 6, así que la tabla no llegaba a crearse y la pantalla de
-      // facturas fallaba en silencio.
-      version: 7,
+      // Esquema con migración escalonada (ver `versionEsquemaAgro`).
+      version: versionEsquemaAgro,
       onConfigure: (db) async {
         // ON DELETE CASCADE en eventos hijos requiere FKs activas.
         await db.execute('PRAGMA foreign_keys = ON');

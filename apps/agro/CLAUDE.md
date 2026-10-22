@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 — piezas comunes del core y pestaña Registros (0.3.5+8)**. Barra inferior: **Hoy · Mapa · Plantas · Registros · Ajustes**; la Guía (cultivos y plagas) se abre con el icono de libro de la AppBar de Hoy. `pantalla_registros.dart` reúne cuaderno MAPA, informe de campaña, estadísticas, recorridos, libro económico, facturas e importar/exportar CSV; Ajustes queda en Explotación · IA · Preferencias · Datos · Aplicación. Clave de Anthropic con `EstadoClaveAnthropic.paraApp('agro')` + `PantallaClaveAnthropic` del core (con «Probar clave»); el diagnóstico por foto (`servicios/cliente_anthropic.dart`, `AnalizadorFotoCultivo`) va por `ClienteClaude` con Haiku 5.5, esfuerzo bajo y `pedirJson`, conservando su prompt y el cruce con `catalogo_plagas`. Facturas con `Factura`/`GeneradorFacturaPdf` del core. Copia de seguridad con `ServicioCopiaSeguridad` (`servicioCopiaSeguridadAgro`: id `agro`, `agro.db`, ZIP `solera-backup-…`, esquema `versionEsquemaAgro`, `PRAGMA integrity_check`; recupera restauraciones interrumpidas en `main()`); la pantalla valida la copia y enseña su fecha antes de restaurar y ya no dice «Tu BD original NO se ha tocado» cuando no es verdad. Borrados: `estado/clave_anthropic.dart`, `pantallas/pantalla_clave_anthropic.dart`, `modelos/factura.dart`, `servicios/generador_factura_pdf.dart`.
+
 > **2026-10-22 — Ajustes por secciones, «Acerca de», buscador del mapa y duplicados al core (0.3.4+7)**. Ajustes se ordena como el resto de la suite con `CabeceraSeccionAjustes`: Explotación · Registros y documentos · Inteligencia artificial · Preferencias · Datos · Aplicación (fuera la tarjeta de versión escrita a mano y el marcador «Sincronización en la nube»). Nueva `pantalla_acerca.dart` (la versión va en `versionVisibleAgro`, a subir junto a la del pubspec: agro no depende de `package_info_plus`). El mapa tiene lupa (`buscarLugarEnMapa` del core, zoom 15). `ServicioMeteoAgro` y los validadores numéricos (`validarImporteObligatorio`, `validarNumeroOpcional`… y `numeroParaEditar`) vienen ahora del core: borrados `servicios/servicio_meteo_agro.dart` y `utiles/numeros_formulario.dart` (los avisos pasan a ir por SoleraL10n).
 
 > **2026-10-22 — PDF con letra incrustada y números a la española (0.3.3+6)**. Los cuatro PDF (campaña, extracto económico, cuaderno MAPA, factura) usan `temaPdfSolera()` del core (Archivo incrustada: con Helvetica «€» y «—» salían en blanco). Los importes, cantidades y superficies de los formularios (ingreso, gasto, factura, evento, SIGPAC) se leen con `leerNumero`/`centimosDesdeTexto` del core («1.200,50» ya no se guarda como 0) y los validadores avisan si no se entiende (`utiles/numeros_formulario.dart`).
@@ -51,7 +53,7 @@ lib/
 │                          nueva_planta, nuevo_evento, fincas,
 │                          editar_sigpac, guia, estadisticas,
 │                          importar_csv, reportes, backup, tracks,
-│                          onboarding, clave_anthropic, titular,
+│                          onboarding, titular, registros,
 │                          cuaderno_mapa, ajustes
 │                          + widgets/{selector_fotos,
 │                                     imagen_commons_widget,
@@ -60,8 +62,7 @@ lib/
 │                          generador_cuaderno_mapa,
 │                          backup_servicio, grabador_track,
 │                          servicio_commons, cliente_anthropic
-├── estado/                finca_activa, ultimo_centro_mapa,
-│                          clave_anthropic
+├── estado/                finca_activa, ultimo_centro_mapa
 └── utiles/                permisos_gps
 ```
 

@@ -2,9 +2,10 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' as core
+    show buscarLugarEnMapa, TextosBuscadorLugares;
 
 import '../l10n/app_localizations.dart';
-import '../servicios/servicio_buscador_mapa.dart';
 import '../servicios/servicio_catastro_navarra.dart';
 import '../utiles/geodesia.dart';
 import '../utiles/importar_contornos.dart';
@@ -28,128 +29,22 @@ void _avisar(BuildContext context, String texto) =>
 
 // ─── Buscador de lugares ───
 
-/// Pide un lugar y devuelve dónde está (null si se cancela).
-Future<LatLng?> buscarLugarEnMapa(BuildContext context) => showDialog<LatLng>(
-    context: context, builder: (_) => const _BuscadorLugar());
-
-class _BuscadorLugar extends StatefulWidget {
-  const _BuscadorLugar();
-
-  @override
-  State<_BuscadorLugar> createState() => _BuscadorLugarState();
-}
-
-class _BuscadorLugarState extends State<_BuscadorLugar> {
-  final _servicio = ServicioBuscadorMapa();
-  final _texto = TextEditingController();
-  List<LugarEncontrado> _lugares = const [];
-  bool _buscando = false;
-  String _aviso = '';
-  int _consulta = 0;
-
-  @override
-  void dispose() {
-    _texto.dispose();
-    super.dispose();
-  }
-
-  Future<void> _buscar() async {
-    final textos = AppLocalizations.of(context);
-    final numero = ++_consulta;
-    setState(() {
-      _buscando = true;
-      _aviso = '';
-    });
-    try {
-      final lugares = await _servicio.buscar(_texto.text);
-      if (!mounted || numero != _consulta) return;
-      setState(() {
-        _lugares = lugares;
-        _aviso = lugares.isEmpty ? textos.mapaBuscarSinResultados : '';
-      });
-    } catch (_) {
-      if (mounted) setState(() => _aviso = textos.mapaBuscarSinConexion);
-    } finally {
-      if (mounted && numero == _consulta) setState(() => _buscando = false);
-    }
-  }
-
-  Future<void> _elegir(LugarEncontrado lugar) async {
-    final textos = AppLocalizations.of(context);
-    try {
-      final posicion = await _servicio.posicionDe(lugar);
-      if (!mounted) return;
-      if (posicion == null) {
-        setState(() => _aviso = textos.mapaBuscarSinResultados);
-        return;
-      }
-      Navigator.of(context).pop(posicion);
-    } catch (_) {
-      if (mounted) setState(() => _aviso = textos.mapaBuscarSinConexion);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final textos = AppLocalizations.of(context);
-    return AlertDialog(
-      title: Text(textos.mapaBuscar),
-      content: SizedBox(
-        width: 420,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: _texto,
-              autofocus: true,
-              textInputAction: TextInputAction.search,
-              decoration: InputDecoration(
-                hintText: textos.mapaBuscarAyuda,
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: _buscando
-                    ? const Padding(
-                        padding: EdgeInsets.all(12),
-                        child: SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: CircularProgressIndicator(strokeWidth: 2)))
-                    : null,
-              ),
-              onSubmitted: (_) => _buscar(),
-            ),
-            if (_aviso.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 12),
-                child: Text(_aviso),
-              ),
-            Flexible(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  for (final lugar in _lugares)
-                    ListTile(
-                      dense: true,
-                      leading: const Icon(Icons.place_outlined),
-                      title: Text(lugar.texto),
-                      subtitle: lugar.municipio.isEmpty
-                          ? null
-                          : Text(lugar.municipio),
-                      onTap: () => _elegir(lugar),
-                    ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(textos.comunCancelar)),
-        FilledButton(onPressed: _buscar, child: Text(textos.catastroBuscar)),
-      ],
-    );
-  }
+/// Pide un lugar y devuelve dónde está (null si se cancela). El buscador es
+/// el del core; aquí solo se le dan los textos de la app.
+Future<LatLng?> buscarLugarEnMapa(BuildContext context) {
+  final textos = AppLocalizations.of(context);
+  return core.buscarLugarEnMapa(
+    context,
+    identificacion: 'LarreaZunbeltz (app.zunbeltz.com)',
+    textos: core.TextosBuscadorLugares(
+      titulo: textos.mapaBuscar,
+      ayuda: textos.mapaBuscarAyuda,
+      sinResultados: textos.mapaBuscarSinResultados,
+      sinConexion: textos.mapaBuscarSinConexion,
+      cancelar: textos.comunCancelar,
+      buscar: textos.catastroBuscar,
+    ),
+  );
 }
 
 // ─── Catastro ───

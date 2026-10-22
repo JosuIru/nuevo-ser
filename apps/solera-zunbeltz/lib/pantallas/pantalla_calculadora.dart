@@ -11,6 +11,7 @@ import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
 import '../utiles/numeros.dart';
 import 'widgets/confirmar_borrado.dart';
+import 'widgets/liberar_al_cerrar.dart';
 
 /// Calculadora de transformación de un proyecto: de un animal de X kg a kg
 /// de producto, ingreso, costes y margen, con caminos guardados para
@@ -124,22 +125,25 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
     final nombre = TextEditingController();
     final aceptado = await showDialog<bool>(
       context: context,
-      builder: (contexto) => AlertDialog(
-        title: Text(textos.calculadoraGuardar),
-        content: TextField(
-          controller: nombre,
-          autofocus: true,
-          decoration:
-              InputDecoration(labelText: textos.calculadoraNombreEscenario),
+      builder: (contexto) => LiberarAlCerrar(
+        controladores: [nombre],
+        child: AlertDialog(
+          title: Text(textos.calculadoraGuardar),
+          content: TextField(
+            controller: nombre,
+            autofocus: true,
+            decoration:
+                InputDecoration(labelText: textos.calculadoraNombreEscenario),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(contexto, false),
+                child: Text(textos.comunCancelar)),
+            FilledButton(
+                onPressed: () => Navigator.pop(contexto, true),
+                child: Text(textos.comunGuardar)),
+          ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(contexto, false),
-              child: Text(textos.comunCancelar)),
-          FilledButton(
-              onPressed: () => Navigator.pop(contexto, true),
-              child: Text(textos.comunGuardar)),
-        ],
       ),
     );
     if (aceptado != true || widget.proyecto.id == null) return;

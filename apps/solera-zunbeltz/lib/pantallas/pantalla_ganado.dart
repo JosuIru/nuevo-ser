@@ -9,11 +9,14 @@ import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/ganado.dart';
 import '../modelos/ganado_ecologico.dart';
+import '../servicios/documento_generado.dart';
+import '../servicios/exportar_ganado.dart';
 import '../servicios/generador_libro_explotacion.dart';
 import 'ficha_animal.dart';
 import 'ficha_lote.dart';
 import 'formularios_ganado.dart';
 import 'pantalla_escaner_crotal.dart';
+import 'pantalla_importar_animales.dart';
 import 'widgets/relleno_seguro.dart';
 
 // ─── Textos compartidos por las pantallas del ganado ───
@@ -144,13 +147,7 @@ class _PantallaGanadoState extends State<PantallaGanado>
       final documento = await generarLibroExplotacionPdf(
         textos: textos,
         idioma: idioma,
-        datos: DatosGanado(
-          lotes: await _bd.listarLotes(),
-          animales: await _bd.listarAnimales(),
-          movimientos: await _bd.listarMovimientos(),
-          eventos: await _bd.listarEventosGanado(),
-          zonas: await nombresDeZonas(_bd),
-        ),
+        datos: await _datosGanado(),
         definitivo: politicaEspacioActual.documentoDefinitivo(),
       );
       await Printing.sharePdf(
@@ -158,6 +155,39 @@ class _PantallaGanadoState extends State<PantallaGanado>
     } finally {
       if (mounted) setState(() => _generandoLibro = false);
     }
+  }
+
+  Future<DatosGanado> _datosGanado() async => DatosGanado(
+        lotes: await _bd.listarLotes(),
+        animales: await _bd.listarAnimales(),
+        movimientos: await _bd.listarMovimientos(),
+        eventos: await _bd.listarEventosGanado(),
+        zonas: await nombresDeZonas(_bd),
+      );
+
+  /// Censo, movimientos y manejo en tres CSV para Excel.
+  Future<void> _exportarExcel() async {
+    final textos = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
+    final documentos =
+        documentosGanado(await _datosGanado(), idioma, DateTime.now());
+    try {
+      await compartirDocumentos(documentos, asunto: textos.ganExportarAsunto);
+    } catch (_) {
+      // En escritorio el menú de compartir puede no estar disponible.
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(documentos
+                .map((documento) => documento.nombreFichero)
+                .join(', '))));
+      }
+    }
+  }
+
+  Future<void> _importarAnimales() async {
+    final guardado = await Navigator.of(context).push<bool>(
+        MaterialPageRoute(builder: (_) => const PantallaImportarAnimales()));
+    if (guardado == true) await _cargar();
   }
 
   Future<void> _cargar() async {
@@ -255,6 +285,28 @@ class _PantallaGanadoState extends State<PantallaGanado>
                     child: CircularProgressIndicator(strokeWidth: 2))
                 : const Icon(Icons.menu_book_outlined),
             onPressed: _generandoLibro ? null : _libroExplotacion,
+          ),
+          PopupMenuButton<VoidCallback>(
+            onSelected: (accion) => accion(),
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                value: _exportarExcel,
+                child: ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.table_view_outlined),
+                  title: Text(textos.ganExportar),
+                ),
+              ),
+              if (puedeRegistrar)
+                PopupMenuItem(
+                  value: _importarAnimales,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.upload_file),
+                    title: Text(textos.ganImportar),
+                  ),
+                ),
+            ],
           ),
         ],
         bottom: TabBar(

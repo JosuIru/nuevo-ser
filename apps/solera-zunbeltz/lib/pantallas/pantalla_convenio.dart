@@ -14,6 +14,7 @@ import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_comercializacion.dart';
 import 'pantalla_inventario.dart';
+import 'widgets/liberar_al_cerrar.dart';
 import 'widgets/campo_partida_gasto.dart';
 import 'widgets/relleno_seguro.dart';
 import '../utiles/numeros.dart';
@@ -286,7 +287,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           keyboardType: TextInputType.number,
           decoration:
               InputDecoration(labelText: textos.balancePorcentajePerdida)),
-    ]);
+    ], controladores: [beneficio, perdida]);
     if (!aceptado) return;
     int acotar(String texto, int porDefecto) =>
         (int.tryParse(texto.trim()) ?? porDefecto).clamp(0, 100);
@@ -380,6 +381,15 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     final aceptado = await _dialogo(
       textos.presupuestoNuevaPartida,
       const [],
+      controladores: [
+        partida,
+        concepto,
+        importe,
+        cantidad,
+        cabezas,
+        dias,
+        precio,
+      ],
       constructor: (actualizar) => [
         DropdownButtonFormField<String>(
           isExpanded: true,
@@ -578,6 +588,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     final aceptado = await _dialogo(
       textos.amortAnadir,
       const [],
+      controladores: [porcentaje, meses],
       constructor: (actualizar) => [
         DropdownButtonFormField<int>(
           isExpanded: true,
@@ -661,6 +672,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     final aceptado = await _dialogo(
       textos.fianzaNuevoMovimiento,
       const [],
+      controladores: [importe, notas],
       constructor: (actualizar) => [
         DropdownButtonFormField<String>(
           isExpanded: true,
@@ -811,7 +823,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
               labelText: textos.acompanamientoValoracionTester)),
-    ]);
+    ], controladores: [zunbeltz, tester]);
     if (!aceptado) return;
     int? nota(String texto) => int.tryParse(texto.trim())?.clamp(0, 10);
     await _bd.actualizarProyecto(_proyectoId, {
@@ -831,6 +843,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     final aceptado = await _dialogo(
       textos.acompanamientoNuevo,
       const [],
+      controladores: [descripcion, horas],
       constructor: (actualizar) => [
         DropdownButtonFormField<String>(
           isExpanded: true,
@@ -926,6 +939,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     final aceptado = await _dialogo(
       textos.incidenciaNueva,
       const [],
+      controladores: [descripcion, retencion],
       constructor: (actualizar) => [
         SegmentedButton<String>(
           segments: [
@@ -1004,32 +1018,38 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       );
 
   /// Diálogo de formulario. Con [constructor] los campos se reconstruyen al
-  /// cambiar (desplegables, interruptores).
+  /// cambiar (desplegables, interruptores). Los [controladores] de sus
+  /// campos se liberan cuando el diálogo termina de cerrarse; sus textos se
+  /// pueden leer después del `await`.
   Future<bool> _dialogo(
     String titulo,
     List<Widget> campos, {
+    required List<TextEditingController> controladores,
     List<Widget> Function(void Function(VoidCallback) actualizar)? constructor,
   }) async {
     final textos = AppLocalizations.of(context);
     final aceptado = await showDialog<bool>(
       context: context,
-      builder: (contexto) => StatefulBuilder(
-        builder: (contextoInterno, actualizar) => AlertDialog(
-          title: Text(titulo),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: constructor == null ? campos : constructor(actualizar),
+      builder: (contexto) => LiberarAlCerrar(
+        controladores: controladores,
+        child: StatefulBuilder(
+          builder: (contextoInterno, actualizar) => AlertDialog(
+            title: Text(titulo),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: constructor == null ? campos : constructor(actualizar),
+              ),
             ),
+            actions: [
+              TextButton(
+                  onPressed: () => Navigator.pop(contexto, false),
+                  child: Text(textos.comunCancelar)),
+              FilledButton(
+                  onPressed: () => Navigator.pop(contexto, true),
+                  child: Text(textos.comunGuardar)),
+            ],
           ),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.pop(contexto, false),
-                child: Text(textos.comunCancelar)),
-            FilledButton(
-                onPressed: () => Navigator.pop(contexto, true),
-                child: Text(textos.comunGuardar)),
-          ],
         ),
       ),
     );

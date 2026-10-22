@@ -9,6 +9,7 @@ import '../l10n/app_localizations.dart';
 import '../servicios/servicio_catastro_navarra.dart';
 import '../utiles/geodesia.dart';
 import '../utiles/importar_contornos.dart';
+import 'widgets/liberar_al_cerrar.dart';
 
 /// Un contorno propuesto para crear una zona: viene del catastro o de un
 /// fichero, con su nombre de origen y una nota de dónde sale.
@@ -99,54 +100,54 @@ Future<List<ContornoPropuesto>> parcelaCatastralPorReferencia(
   final parcela = TextEditingController();
   final aceptado = await showDialog<bool>(
     context: context,
-    builder: (contexto) => AlertDialog(
-      title: Text(textos.zonaDesdeCatastroRef),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextField(
-              controller: municipio,
-              autofocus: true,
-              decoration: InputDecoration(labelText: textos.catastroMunicipio)),
-          Row(children: [
-            Expanded(
-              child: TextField(
-                  controller: poligono,
-                  keyboardType: TextInputType.number,
-                  decoration:
-                      InputDecoration(labelText: textos.catastroPoligono)),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: TextField(
-                  controller: parcela,
-                  keyboardType: TextInputType.number,
-                  decoration:
-                      InputDecoration(labelText: textos.catastroParcela)),
-            ),
-          ]),
-          const SizedBox(height: 12),
-          Text(textos.catastroSoloNavarra,
-              style: Theme.of(contexto).textTheme.bodySmall),
+    builder: (contexto) => LiberarAlCerrar(
+      controladores: [municipio, poligono, parcela],
+      child: AlertDialog(
+        title: Text(textos.zonaDesdeCatastroRef),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+                controller: municipio,
+                autofocus: true,
+                decoration: InputDecoration(labelText: textos.catastroMunicipio)),
+            Row(children: [
+              Expanded(
+                child: TextField(
+                    controller: poligono,
+                    keyboardType: TextInputType.number,
+                    decoration:
+                        InputDecoration(labelText: textos.catastroPoligono)),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: TextField(
+                    controller: parcela,
+                    keyboardType: TextInputType.number,
+                    decoration:
+                        InputDecoration(labelText: textos.catastroParcela)),
+              ),
+            ]),
+            const SizedBox(height: 12),
+            Text(textos.catastroSoloNavarra,
+                style: Theme.of(contexto).textTheme.bodySmall),
+          ],
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(contexto, false),
+              child: Text(textos.comunCancelar)),
+          FilledButton(
+              onPressed: () => Navigator.pop(contexto, true),
+              child: Text(textos.catastroBuscar)),
         ],
       ),
-      actions: [
-        TextButton(
-            onPressed: () => Navigator.pop(contexto, false),
-            child: Text(textos.comunCancelar)),
-        FilledButton(
-            onPressed: () => Navigator.pop(contexto, true),
-            child: Text(textos.catastroBuscar)),
-      ],
     ),
   );
   final numeroPoligono = int.tryParse(poligono.text.trim());
   final numeroParcela = int.tryParse(parcela.text.trim());
   final nombreMunicipio = municipio.text.trim();
-  municipio.dispose();
-  poligono.dispose();
-  parcela.dispose();
   if (aceptado != true ||
       numeroPoligono == null ||
       numeroParcela == null ||

@@ -1555,5 +1555,164 @@
   "elegirContornoAyuda": "Están en el mapa con borde a trazos. Toca uno para crear su zona; los demás siguen en la lista.",
   "contornoSinNombre": "Sin nombre",
   "ayudaImportarT": "Zonas desde el catastro o desde un fichero",
-  "ayudaImportarB": "No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí."
+  "ayudaImportarB": "No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.",
+  "ganExportar": "Exportar a Excel (CSV)",
+  "ganExportarAsunto": "Ganado: animales, movimientos y manejo",
+  "ganImportar": "Importar animales",
+  "ganImportarIntro": "Elige una hoja de Excel (.xlsx) o un CSV con una fila por animal. Columnas: Crotal (obligatoria), Nombre, Especie, Raza, Sexo, Nacimiento, Madre, Rebaño, Estado, Fecha de baja y Notas, en castellano o en euskera. Si el crotal ya está, se cambia lo escrito (una celda vacía no borra nada); si no, se da de alta. Antes de guardar verás qué pasará con cada fila.",
+  "ganImportarElegir": "Elegir fichero",
+  "ganImportarPlantilla": "Plantilla vacía",
+  "ganImportarFichero": "Fichero: {fichero}",
+  "@ganImportarFichero": {
+    "placeholders": {
+      "fichero": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImportarSeccionCrear": "Se dan de alta ({n})",
+  "@ganImportarSeccionCrear": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganImportarSeccionActualizar": "Se actualizan ({n})",
+  "@ganImportarSeccionActualizar": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganImportarSeccionIguales": "Ya están igual ({n})",
+  "@ganImportarSeccionIguales": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganImportarSeccionErrores": "No se importan ({n})",
+  "@ganImportarSeccionErrores": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganImportarFila": "Fila {n}",
+  "@ganImportarFila": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganImportarCambia": "Cambia: {campos}",
+  "@ganImportarCambia": {
+    "placeholders": {
+      "campos": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImportarGuardar": "{n, plural, =1{Guardar 1 animal} other{Guardar {n} animales}}",
+  "@ganImportarGuardar": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganImportarGuardado": "{n, plural, =1{1 animal guardado.} other{{n} animales guardados.}}",
+  "@ganImportarGuardado": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ganImportarSinCrotal": "La hoja no tiene columna «Crotal» (o «Krotala»): no se puede importar.",
+  "ganImportarIgnoradas": "Columnas que no se importan: {columnas}",
+  "@ganImportarIgnoradas": {
+    "placeholders": {
+      "columnas": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImportarNoLegible": "No se ha podido leer el fichero. Vale un CSV o una hoja de Excel .xlsx (el .xls antiguo no: guárdalo como .xlsx o CSV).",
+  "ganImportarVacio": "La hoja no trae ninguna fila.",
+  "ganImpCrotalVacio": "Falta el crotal.",
+  "ganImpCrotalNumeroExcel": "Excel ha convertido el crotal en un número ({valor}) y se han perdido cifras. Da a la columna formato de texto y vuelve a escribirlo.",
+  "@ganImpCrotalNumeroExcel": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImpCrotalRepetido": "Este crotal ya sale en otra fila de la hoja.",
+  "ganImpFechaNoValida": "{columna}: «{valor}» no es una fecha (escríbela como 23/10/2026).",
+  "@ganImpFechaNoValida": {
+    "placeholders": {
+      "columna": {
+        "type": "String"
+      },
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImpNacimientoFuturo": "La fecha de nacimiento es posterior a hoy.",
+  "ganImpBajaAntesDeNacimiento": "La fecha de baja es anterior al nacimiento.",
+  "ganImpEspecieDesconocida": "Especie desconocida: «{valor}».",
+  "@ganImpEspecieDesconocida": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImpSexoDesconocido": "Sexo desconocido: «{valor}» (vale hembra, macho o castrado).",
+  "@ganImpSexoDesconocido": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImpEstadoDesconocido": "Estado desconocido: «{valor}».",
+  "@ganImpEstadoDesconocido": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImpRebanoDesconocido": "No hay ningún rebaño activo que se llame «{valor}». Créalo antes o corrige el nombre.",
+  "@ganImpRebanoDesconocido": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ganImpSinPermisoAlta": "No tienes permiso para dar de alta animales.",
+  "ganImpSinPermisoFicha": "Este animal lo dio de alta otra persona: solo puedes cambiarle el rebaño, la baja y las notas.",
+  "ganImpAvisoCrotalNoOficial": "No tiene la forma de un crotal oficial (dos letras y doce cifras): se guarda tal cual.",
+  "ganImpAvisoCeroRecuperado": "Excel le había quitado el cero del principio: se ha repuesto.",
+  "ganHistNacimiento": "Nacimiento",
+  "ganHistBaja": "Baja: {estado}",
+  "@ganHistBaja": {
+    "placeholders": {
+      "estado": {
+        "type": "String"
+      }
+    }
+  },
+  "ganHistConSuRebano": "con su rebaño",
+  "ganHistNotaRebano": "Lo del rebaño (movimientos y manejo) se cuenta desde que nació el animal: los cambios de rebaño no se apuntan, así que si entró más tarde también sale lo anterior."
 }

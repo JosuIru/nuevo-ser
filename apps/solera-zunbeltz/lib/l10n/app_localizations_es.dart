@@ -3126,4 +3126,172 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ayudaImportarB =>
       'No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.';
+
+  @override
+  String get ganExportar => 'Exportar a Excel (CSV)';
+
+  @override
+  String get ganExportarAsunto => 'Ganado: animales, movimientos y manejo';
+
+  @override
+  String get ganImportar => 'Importar animales';
+
+  @override
+  String get ganImportarIntro =>
+      'Elige una hoja de Excel (.xlsx) o un CSV con una fila por animal. Columnas: Crotal (obligatoria), Nombre, Especie, Raza, Sexo, Nacimiento, Madre, Rebaño, Estado, Fecha de baja y Notas, en castellano o en euskera. Si el crotal ya está, se cambia lo escrito (una celda vacía no borra nada); si no, se da de alta. Antes de guardar verás qué pasará con cada fila.';
+
+  @override
+  String get ganImportarElegir => 'Elegir fichero';
+
+  @override
+  String get ganImportarPlantilla => 'Plantilla vacía';
+
+  @override
+  String ganImportarFichero(String fichero) {
+    return 'Fichero: $fichero';
+  }
+
+  @override
+  String ganImportarSeccionCrear(int n) {
+    return 'Se dan de alta ($n)';
+  }
+
+  @override
+  String ganImportarSeccionActualizar(int n) {
+    return 'Se actualizan ($n)';
+  }
+
+  @override
+  String ganImportarSeccionIguales(int n) {
+    return 'Ya están igual ($n)';
+  }
+
+  @override
+  String ganImportarSeccionErrores(int n) {
+    return 'No se importan ($n)';
+  }
+
+  @override
+  String ganImportarFila(int n) {
+    return 'Fila $n';
+  }
+
+  @override
+  String ganImportarCambia(String campos) {
+    return 'Cambia: $campos';
+  }
+
+  @override
+  String ganImportarGuardar(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Guardar $n animales',
+      one: 'Guardar 1 animal',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganImportarGuardado(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n animales guardados.',
+      one: '1 animal guardado.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ganImportarSinCrotal =>
+      'La hoja no tiene columna «Crotal» (o «Krotala»): no se puede importar.';
+
+  @override
+  String ganImportarIgnoradas(String columnas) {
+    return 'Columnas que no se importan: $columnas';
+  }
+
+  @override
+  String get ganImportarNoLegible =>
+      'No se ha podido leer el fichero. Vale un CSV o una hoja de Excel .xlsx (el .xls antiguo no: guárdalo como .xlsx o CSV).';
+
+  @override
+  String get ganImportarVacio => 'La hoja no trae ninguna fila.';
+
+  @override
+  String get ganImpCrotalVacio => 'Falta el crotal.';
+
+  @override
+  String ganImpCrotalNumeroExcel(String valor) {
+    return 'Excel ha convertido el crotal en un número ($valor) y se han perdido cifras. Da a la columna formato de texto y vuelve a escribirlo.';
+  }
+
+  @override
+  String get ganImpCrotalRepetido =>
+      'Este crotal ya sale en otra fila de la hoja.';
+
+  @override
+  String ganImpFechaNoValida(String columna, String valor) {
+    return '$columna: «$valor» no es una fecha (escríbela como 23/10/2026).';
+  }
+
+  @override
+  String get ganImpNacimientoFuturo =>
+      'La fecha de nacimiento es posterior a hoy.';
+
+  @override
+  String get ganImpBajaAntesDeNacimiento =>
+      'La fecha de baja es anterior al nacimiento.';
+
+  @override
+  String ganImpEspecieDesconocida(String valor) {
+    return 'Especie desconocida: «$valor».';
+  }
+
+  @override
+  String ganImpSexoDesconocido(String valor) {
+    return 'Sexo desconocido: «$valor» (vale hembra, macho o castrado).';
+  }
+
+  @override
+  String ganImpEstadoDesconocido(String valor) {
+    return 'Estado desconocido: «$valor».';
+  }
+
+  @override
+  String ganImpRebanoDesconocido(String valor) {
+    return 'No hay ningún rebaño activo que se llame «$valor». Créalo antes o corrige el nombre.';
+  }
+
+  @override
+  String get ganImpSinPermisoAlta =>
+      'No tienes permiso para dar de alta animales.';
+
+  @override
+  String get ganImpSinPermisoFicha =>
+      'Este animal lo dio de alta otra persona: solo puedes cambiarle el rebaño, la baja y las notas.';
+
+  @override
+  String get ganImpAvisoCrotalNoOficial =>
+      'No tiene la forma de un crotal oficial (dos letras y doce cifras): se guarda tal cual.';
+
+  @override
+  String get ganImpAvisoCeroRecuperado =>
+      'Excel le había quitado el cero del principio: se ha repuesto.';
+
+  @override
+  String get ganHistNacimiento => 'Nacimiento';
+
+  @override
+  String ganHistBaja(String estado) {
+    return 'Baja: $estado';
+  }
+
+  @override
+  String get ganHistConSuRebano => 'con su rebaño';
+
+  @override
+  String get ganHistNotaRebano =>
+      'Lo del rebaño (movimientos y manejo) se cuenta desde que nació el animal: los cambios de rebaño no se apuntan, así que si entró más tarde también sale lo anterior.';
 }

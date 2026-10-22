@@ -23,6 +23,7 @@ import '../utiles/texto_error_sync.dart';
 import '../servicios/servicio_logos_entidades.dart';
 import '../servicios/servicio_textos_ayuda.dart';
 import '../servicios/servicio_noticias_sector.dart';
+import 'widgets/liberar_al_cerrar.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
@@ -93,22 +94,25 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     final controlador = TextEditingController(text: _coordinador);
     final correo = await showDialog<String>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(textos.ajustesCoordinador),
-        content: TextField(
-          controller: controlador,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(labelText: textos.coordinadorCorreo),
-          autofocus: true,
+      builder: (ctx) => LiberarAlCerrar(
+        controladores: [controlador],
+        child: AlertDialog(
+          title: Text(textos.ajustesCoordinador),
+          content: TextField(
+            controller: controlador,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(labelText: textos.coordinadorCorreo),
+            autofocus: true,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: Text(textos.comunCancelar)),
+            FilledButton(
+                onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
+                child: Text(textos.comunGuardar)),
+          ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: Text(textos.comunCancelar)),
-          FilledButton(
-              onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
-              child: Text(textos.comunGuardar)),
-        ],
       ),
     );
     if (correo == null) return;
@@ -121,23 +125,26 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     final controlador = TextEditingController(text: _syncUrl);
     final url = await showDialog<String>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(textos.ajustesSyncUrl),
-        content: TextField(
-          controller: controlador,
-          keyboardType: TextInputType.url,
-          decoration:
-              const InputDecoration(hintText: 'https://tuwordpress.org'),
-          autofocus: true,
+      builder: (ctx) => LiberarAlCerrar(
+        controladores: [controlador],
+        child: AlertDialog(
+          title: Text(textos.ajustesSyncUrl),
+          content: TextField(
+            controller: controlador,
+            keyboardType: TextInputType.url,
+            decoration:
+                const InputDecoration(hintText: 'https://tuwordpress.org'),
+            autofocus: true,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: Text(textos.comunCancelar)),
+            FilledButton(
+                onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
+                child: Text(textos.comunGuardar)),
+          ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: Text(textos.comunCancelar)),
-          FilledButton(
-              onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
-              child: Text(textos.comunGuardar)),
-        ],
       ),
     );
     if (url == null || url == _syncUrl) return;
@@ -151,20 +158,23 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     final controlador = TextEditingController(text: _syncToken);
     final token = await showDialog<String>(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(textos.ajustesSyncToken),
-        content: TextField(
-          controller: controlador,
-          autofocus: true,
+      builder: (ctx) => LiberarAlCerrar(
+        controladores: [controlador],
+        child: AlertDialog(
+          title: Text(textos.ajustesSyncToken),
+          content: TextField(
+            controller: controlador,
+            autofocus: true,
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: Text(textos.comunCancelar)),
+            FilledButton(
+                onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
+                child: Text(textos.comunGuardar)),
+          ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: Text(textos.comunCancelar)),
-          FilledButton(
-              onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
-              child: Text(textos.comunGuardar)),
-        ],
       ),
     );
     if (token == null || token == _syncToken) return;

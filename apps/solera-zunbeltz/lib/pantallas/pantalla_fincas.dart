@@ -25,6 +25,7 @@ import 'nuevo_punto.dart';
 import 'pantalla_meteo.dart';
 import 'tablero_tareas.dart';
 import '../utiles/numeros.dart';
+import 'widgets/liberar_al_cerrar.dart';
 
 enum _EstiloMapa { calle, satelite }
 
@@ -854,36 +855,39 @@ class _PantallaFincasState extends State<PantallaFincas> {
     final controladorSuperficie = TextEditingController();
     final confirmada = await showDialog<bool>(
       context: context,
-      builder: (contexto) => AlertDialog(
-        title: Text(textos.fincaNueva),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextField(
-              controller: controladorNombre,
-              autofocus: true,
-              decoration: InputDecoration(labelText: textos.fincaNuevaNombre),
-            ),
-            TextField(
-              controller: controladorSuperficie,
-              keyboardType:
-                  const TextInputType.numberWithOptions(decimal: true),
-              decoration:
-                  InputDecoration(labelText: textos.fincaNuevaSuperficie),
-            ),
-            const SizedBox(height: 12),
-            Text(textos.fincaNuevaCentro,
-                style: Theme.of(contexto).textTheme.bodySmall),
+      builder: (contexto) => LiberarAlCerrar(
+        controladores: [controladorNombre, controladorSuperficie],
+        child: AlertDialog(
+          title: Text(textos.fincaNueva),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: controladorNombre,
+                autofocus: true,
+                decoration: InputDecoration(labelText: textos.fincaNuevaNombre),
+              ),
+              TextField(
+                controller: controladorSuperficie,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                decoration:
+                    InputDecoration(labelText: textos.fincaNuevaSuperficie),
+              ),
+              const SizedBox(height: 12),
+              Text(textos.fincaNuevaCentro,
+                  style: Theme.of(contexto).textTheme.bodySmall),
+            ],
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(contexto, false),
+                child: Text(textos.comunCancelar)),
+            FilledButton(
+                onPressed: () => Navigator.pop(contexto, true),
+                child: Text(textos.comunGuardar)),
           ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(contexto, false),
-              child: Text(textos.comunCancelar)),
-          FilledButton(
-              onPressed: () => Navigator.pop(contexto, true),
-              child: Text(textos.comunGuardar)),
-        ],
       ),
     );
     final nombre = controladorNombre.text.trim();

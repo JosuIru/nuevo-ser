@@ -7,6 +7,7 @@ import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/ganado.dart';
+import '../modelos/historial_animal.dart';
 import 'ficha_lote.dart';
 import 'formularios_ganado.dart';
 import 'pantalla_ganado.dart';
@@ -29,6 +30,8 @@ class _FichaAnimalState extends State<FichaAnimal> {
   Animal? _animal;
   LoteGanado? _lote;
   List<EventoGanado> _eventos = const [];
+  List<MovimientoGanado> _movimientosRebano = const [];
+  Map<int, String> _zonas = const {};
   bool _cargando = true;
 
   @override
@@ -45,11 +48,17 @@ class _FichaAnimalState extends State<FichaAnimal> {
         ? const <EventoGanado>[]
         : await _bd.listarEventosGanado(
             animalId: animal.id, loteId: animal.loteId);
+    final movimientos = animal?.loteId == null
+        ? const <MovimientoGanado>[]
+        : await _bd.listarMovimientos(loteId: animal!.loteId);
+    final zonas = await nombresDeZonas(_bd);
     if (!mounted) return;
     setState(() {
       _animal = animal;
       _lote = lote;
       _eventos = eventos;
+      _movimientosRebano = movimientos;
+      _zonas = zonas;
       _cargando = false;
     });
   }
@@ -165,6 +174,68 @@ class _FichaAnimalState extends State<FichaAnimal> {
     if (mounted) Navigator.of(context).pop(true);
   }
 
+  /// Una entrada de la línea de tiempo.
+  Widget _hito(HitoAnimal hito, AppLocalizations textos, String idioma,
+      String Function(int?) fecha) {
+    final animal = _animal!;
+    switch (hito.tipo) {
+      case TipoHitoAnimal.nacimiento:
+        return ListTile(
+          leading: const Icon(Icons.cake_outlined),
+          title: Text(textos.ganHistNacimiento),
+          subtitle: Text([
+            fecha(hito.fechaMs),
+            if (animal.madre.isNotEmpty) '${textos.ganMadre}: ${animal.madre}',
+          ].join(' · ')),
+        );
+      case TipoHitoAnimal.baja:
+        return ListTile(
+          leading: const Icon(Icons.remove_circle_outline),
+          title: Text(textos.ganHistBaja(
+              buscarOpcion(estadosAnimal, animal.estado)?.etiqueta(idioma) ??
+                  animal.estado)),
+          subtitle: Text(fecha(hito.fechaMs)),
+        );
+      case TipoHitoAnimal.movimientoRebano:
+        final movimiento = hito.movimiento!;
+        return ListTile(
+          leading: Icon(iconoMovimiento(movimiento.tipo)),
+          title: Text(
+              '${buscarOpcion(tiposMovimientoGanado, movimiento.tipo)?.etiqueta(idioma) ?? movimiento.tipo}: '
+              '${trayectoMovimiento(movimiento, _zonas, textos)}'),
+          subtitle: Text([
+            fecha(hito.fechaMs),
+            textos.ganHistConSuRebano,
+            if (movimiento.guia.isNotEmpty)
+              '${textos.ganGuia}: ${movimiento.guia}',
+          ].join(' · ')),
+          onTap: _lote == null
+              ? null
+              : () => _tras(_ir(FichaLote(loteId: _lote!.id!))),
+        );
+      case TipoHitoAnimal.evento:
+        final evento = hito.evento!;
+        return ListTile(
+          leading: Icon(iconoEvento(evento.tipo)),
+          title: Text(describirEvento(evento, textos, idioma)),
+          subtitle: Text([
+            fecha(evento.fechaMs),
+            if (evento.animalId == null) textos.ganAlLote,
+          ].join(' · ')),
+          onTap: () => _tras(mostrarApunteGanado(context,
+              titulo: describirEvento(evento, textos, idioma),
+              detalle: [
+                fecha(evento.fechaMs),
+                if (evento.veterinario.isNotEmpty) evento.veterinario,
+                if (evento.receta.isNotEmpty)
+                  '${textos.ganReceta}: ${evento.receta}',
+              ].join(' · '),
+              autorUid: evento.autorUid,
+              borrar: () => _bd.borrarEventoGanado(evento.id!))),
+        );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
@@ -192,6 +263,8 @@ class _FichaAnimalState extends State<FichaAnimal> {
     String fecha(int? ms) => ms == null
         ? '—'
         : formato.format(DateTime.fromMillisecondsSinceEpoch(ms));
+    final historial = historialDeAnimal(
+        animal: animal, movimientos: _movimientosRebano, eventos: _eventos);
 
     return Scaffold(
       appBar: AppBar(
@@ -287,29 +360,17 @@ class _FichaAnimalState extends State<FichaAnimal> {
             child: Text(textos.ganHistorial,
                 style: Theme.of(context).textTheme.titleMedium),
           ),
-          if (_eventos.isEmpty)
+          if (historial.isEmpty)
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
               child: Text(textos.ganSinHistorial),
             ),
-          for (final evento in _eventos)
-            ListTile(
-              leading: Icon(iconoEvento(evento.tipo)),
-              title: Text(describirEvento(evento, textos, idioma)),
-              subtitle: Text([
-                fecha(evento.fechaMs),
-                if (evento.animalId == null) textos.ganAlLote,
-              ].join(' · ')),
-              onTap: () => _tras(mostrarApunteGanado(context,
-                  titulo: describirEvento(evento, textos, idioma),
-                  detalle: [
-                    fecha(evento.fechaMs),
-                    if (evento.veterinario.isNotEmpty) evento.veterinario,
-                    if (evento.receta.isNotEmpty)
-                      '${textos.ganReceta}: ${evento.receta}',
-                  ].join(' · '),
-                  autorUid: evento.autorUid,
-                  borrar: () => _bd.borrarEventoGanado(evento.id!))),
+          for (final hito in historial) _hito(hito, textos, idioma, fecha),
+          if (historial.any((hito) => hito.delRebano))
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+              child: Text(textos.ganHistNotaRebano,
+                  style: Theme.of(context).textTheme.bodySmall),
             ),
         ],
       ),

@@ -5521,6 +5521,228 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.'**
   String get ayudaImportarB;
+
+  /// No description provided for @ganExportar.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar a Excel (CSV)'**
+  String get ganExportar;
+
+  /// No description provided for @ganExportarAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado: animales, movimientos y manejo'**
+  String get ganExportarAsunto;
+
+  /// No description provided for @ganImportar.
+  ///
+  /// In es, this message translates to:
+  /// **'Importar animales'**
+  String get ganImportar;
+
+  /// No description provided for @ganImportarIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige una hoja de Excel (.xlsx) o un CSV con una fila por animal. Columnas: Crotal (obligatoria), Nombre, Especie, Raza, Sexo, Nacimiento, Madre, Rebaño, Estado, Fecha de baja y Notas, en castellano o en euskera. Si el crotal ya está, se cambia lo escrito (una celda vacía no borra nada); si no, se da de alta. Antes de guardar verás qué pasará con cada fila.'**
+  String get ganImportarIntro;
+
+  /// No description provided for @ganImportarElegir.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir fichero'**
+  String get ganImportarElegir;
+
+  /// No description provided for @ganImportarPlantilla.
+  ///
+  /// In es, this message translates to:
+  /// **'Plantilla vacía'**
+  String get ganImportarPlantilla;
+
+  /// No description provided for @ganImportarFichero.
+  ///
+  /// In es, this message translates to:
+  /// **'Fichero: {fichero}'**
+  String ganImportarFichero(String fichero);
+
+  /// No description provided for @ganImportarSeccionCrear.
+  ///
+  /// In es, this message translates to:
+  /// **'Se dan de alta ({n})'**
+  String ganImportarSeccionCrear(int n);
+
+  /// No description provided for @ganImportarSeccionActualizar.
+  ///
+  /// In es, this message translates to:
+  /// **'Se actualizan ({n})'**
+  String ganImportarSeccionActualizar(int n);
+
+  /// No description provided for @ganImportarSeccionIguales.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya están igual ({n})'**
+  String ganImportarSeccionIguales(int n);
+
+  /// No description provided for @ganImportarSeccionErrores.
+  ///
+  /// In es, this message translates to:
+  /// **'No se importan ({n})'**
+  String ganImportarSeccionErrores(int n);
+
+  /// No description provided for @ganImportarFila.
+  ///
+  /// In es, this message translates to:
+  /// **'Fila {n}'**
+  String ganImportarFila(int n);
+
+  /// No description provided for @ganImportarCambia.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambia: {campos}'**
+  String ganImportarCambia(String campos);
+
+  /// No description provided for @ganImportarGuardar.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{Guardar 1 animal} other{Guardar {n} animales}}'**
+  String ganImportarGuardar(int n);
+
+  /// No description provided for @ganImportarGuardado.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 animal guardado.} other{{n} animales guardados.}}'**
+  String ganImportarGuardado(int n);
+
+  /// No description provided for @ganImportarSinCrotal.
+  ///
+  /// In es, this message translates to:
+  /// **'La hoja no tiene columna «Crotal» (o «Krotala»): no se puede importar.'**
+  String get ganImportarSinCrotal;
+
+  /// No description provided for @ganImportarIgnoradas.
+  ///
+  /// In es, this message translates to:
+  /// **'Columnas que no se importan: {columnas}'**
+  String ganImportarIgnoradas(String columnas);
+
+  /// No description provided for @ganImportarNoLegible.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido leer el fichero. Vale un CSV o una hoja de Excel .xlsx (el .xls antiguo no: guárdalo como .xlsx o CSV).'**
+  String get ganImportarNoLegible;
+
+  /// No description provided for @ganImportarVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'La hoja no trae ninguna fila.'**
+  String get ganImportarVacio;
+
+  /// No description provided for @ganImpCrotalVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta el crotal.'**
+  String get ganImpCrotalVacio;
+
+  /// No description provided for @ganImpCrotalNumeroExcel.
+  ///
+  /// In es, this message translates to:
+  /// **'Excel ha convertido el crotal en un número ({valor}) y se han perdido cifras. Da a la columna formato de texto y vuelve a escribirlo.'**
+  String ganImpCrotalNumeroExcel(String valor);
+
+  /// No description provided for @ganImpCrotalRepetido.
+  ///
+  /// In es, this message translates to:
+  /// **'Este crotal ya sale en otra fila de la hoja.'**
+  String get ganImpCrotalRepetido;
+
+  /// No description provided for @ganImpFechaNoValida.
+  ///
+  /// In es, this message translates to:
+  /// **'{columna}: «{valor}» no es una fecha (escríbela como 23/10/2026).'**
+  String ganImpFechaNoValida(String columna, String valor);
+
+  /// No description provided for @ganImpNacimientoFuturo.
+  ///
+  /// In es, this message translates to:
+  /// **'La fecha de nacimiento es posterior a hoy.'**
+  String get ganImpNacimientoFuturo;
+
+  /// No description provided for @ganImpBajaAntesDeNacimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'La fecha de baja es anterior al nacimiento.'**
+  String get ganImpBajaAntesDeNacimiento;
+
+  /// No description provided for @ganImpEspecieDesconocida.
+  ///
+  /// In es, this message translates to:
+  /// **'Especie desconocida: «{valor}».'**
+  String ganImpEspecieDesconocida(String valor);
+
+  /// No description provided for @ganImpSexoDesconocido.
+  ///
+  /// In es, this message translates to:
+  /// **'Sexo desconocido: «{valor}» (vale hembra, macho o castrado).'**
+  String ganImpSexoDesconocido(String valor);
+
+  /// No description provided for @ganImpEstadoDesconocido.
+  ///
+  /// In es, this message translates to:
+  /// **'Estado desconocido: «{valor}».'**
+  String ganImpEstadoDesconocido(String valor);
+
+  /// No description provided for @ganImpRebanoDesconocido.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay ningún rebaño activo que se llame «{valor}». Créalo antes o corrige el nombre.'**
+  String ganImpRebanoDesconocido(String valor);
+
+  /// No description provided for @ganImpSinPermisoAlta.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes permiso para dar de alta animales.'**
+  String get ganImpSinPermisoAlta;
+
+  /// No description provided for @ganImpSinPermisoFicha.
+  ///
+  /// In es, this message translates to:
+  /// **'Este animal lo dio de alta otra persona: solo puedes cambiarle el rebaño, la baja y las notas.'**
+  String get ganImpSinPermisoFicha;
+
+  /// No description provided for @ganImpAvisoCrotalNoOficial.
+  ///
+  /// In es, this message translates to:
+  /// **'No tiene la forma de un crotal oficial (dos letras y doce cifras): se guarda tal cual.'**
+  String get ganImpAvisoCrotalNoOficial;
+
+  /// No description provided for @ganImpAvisoCeroRecuperado.
+  ///
+  /// In es, this message translates to:
+  /// **'Excel le había quitado el cero del principio: se ha repuesto.'**
+  String get ganImpAvisoCeroRecuperado;
+
+  /// No description provided for @ganHistNacimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Nacimiento'**
+  String get ganHistNacimiento;
+
+  /// No description provided for @ganHistBaja.
+  ///
+  /// In es, this message translates to:
+  /// **'Baja: {estado}'**
+  String ganHistBaja(String estado);
+
+  /// No description provided for @ganHistConSuRebano.
+  ///
+  /// In es, this message translates to:
+  /// **'con su rebaño'**
+  String get ganHistConSuRebano;
+
+  /// No description provided for @ganHistNotaRebano.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo del rebaño (movimientos y manejo) se cuenta desde que nació el animal: los cambios de rebaño no se apuntan, así que si entró más tarde también sale lo anterior.'**
+  String get ganHistNotaRebano;
 }
 
 class _AppLocalizationsDelegate

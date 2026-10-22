@@ -29,6 +29,7 @@ import 'package:solera_zunbeltz/pantallas/ficha_animal.dart';
 import 'package:solera_zunbeltz/pantallas/ficha_lote.dart';
 import 'package:solera_zunbeltz/pantallas/formularios_ganado.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_ganado.dart';
+import 'package:solera_zunbeltz/pantallas/pantalla_importar_animales.dart';
 import 'package:solera_zunbeltz/pantallas/pantalla_peticiones.dart';
 
 import 'bd_en_memoria.dart';
@@ -121,6 +122,24 @@ void main() {
               .first;
       await montar(tester, FichaAnimal(animalId: animal.id!), idioma: idioma);
       expect(find.textContaining('455'), findsOneWidget);
+      // El historial trae también los movimientos de su rebaño.
+      expect(
+          find.textContaining(
+              lookupAppLocalizations(Locale(idioma)).ganHistConSuRebano),
+          findsWidgets);
+      expect(tester.takeException(), isNull);
+    });
+
+    testWidgets('Ganado: menú de Excel e importar animales ($idioma)',
+        (tester) async {
+      await montar(tester, const PantallaGanado(), idioma: idioma);
+      final textos = lookupAppLocalizations(Locale(idioma));
+      await tester.tap(find.byType(PopupMenuButton<VoidCallback>));
+      await tester.pumpAndSettle();
+      expect(find.text(textos.ganExportar), findsOneWidget);
+      expect(find.text(textos.ganImportar), findsOneWidget);
+      await montar(tester, const PantallaImportarAnimales(), idioma: idioma);
+      expect(find.text(textos.ganImportarElegir), findsOneWidget);
       expect(tester.takeException(), isNull);
     });
 

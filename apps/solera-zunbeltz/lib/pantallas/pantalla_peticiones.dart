@@ -11,6 +11,7 @@ import '../modelos/peticion_tarea.dart';
 import 'nueva_peticion.dart';
 import 'nueva_tarea.dart';
 import 'widgets/relleno_seguro.dart';
+import 'widgets/liberar_al_cerrar.dart';
 
 /// Peticiones de tarea. Coordinación ve todas y las convierte en tarea o
 /// las descarta; cada persona tester ve las suyas y su respuesta.
@@ -97,22 +98,25 @@ class _PantallaPeticionesState extends State<PantallaPeticiones> {
     final controlador = TextEditingController();
     final confirmado = await showDialog<bool>(
       context: context,
-      builder: (contexto) => AlertDialog(
-        title: Text(textos.peticionDescartar),
-        content: TextField(
-          controller: controlador,
-          autofocus: true,
-          maxLines: 2,
-          decoration: InputDecoration(labelText: textos.peticionMotivo),
+      builder: (contexto) => LiberarAlCerrar(
+        controladores: [controlador],
+        child: AlertDialog(
+          title: Text(textos.peticionDescartar),
+          content: TextField(
+            controller: controlador,
+            autofocus: true,
+            maxLines: 2,
+            decoration: InputDecoration(labelText: textos.peticionMotivo),
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(contexto, false),
+                child: Text(textos.comunCancelar)),
+            FilledButton(
+                onPressed: () => Navigator.pop(contexto, true),
+                child: Text(textos.peticionDescartar)),
+          ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(contexto, false),
-              child: Text(textos.comunCancelar)),
-          FilledButton(
-              onPressed: () => Navigator.pop(contexto, true),
-              child: Text(textos.peticionDescartar)),
-        ],
       ),
     );
     if (confirmado != true || peticion.id == null) return;

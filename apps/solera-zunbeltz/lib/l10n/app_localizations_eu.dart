@@ -3130,4 +3130,170 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ayudaImportarB =>
       'Ez da eskuz marraztu behar neurtuta dagoen partzela bat.\n1. Finketan, sakatu geruzen ikonoa (goian) eta aukeratu ingurua nondik ateratzen den.\n• «Maparen erdiko katastro-partzela»: mugitu mapa gurutzea partzelaren barruan erori arte.\n• «Katastro-partzela erreferentziaz»: udalerria, poligonoa eta partzela, kontribuzioaren ordainagirian bezala.\n• «Fitxategia inportatu»: Google Earth-eko KML edo KMZ, GeoJSON, GPS baten ibilbidea (GPX) edo QGISeko Shapefile bat zip-ean.\n2. Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.\n» Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.\n» Goiko luparekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.';
+
+  @override
+  String get ganExportar => 'Excelera esportatu (CSV)';
+
+  @override
+  String get ganExportarAsunto => 'Abereak: animaliak, mugimenduak eta maneiua';
+
+  @override
+  String get ganImportar => 'Animaliak inportatu';
+
+  @override
+  String get ganImportarIntro =>
+      'Aukeratu Excel orri bat (.xlsx) edo CSV bat, animalia bakoitzeko errenkada batekin. Zutabeak: Krotala (derrigorrezkoa), Izena, Espeziea, Arraza, Sexua, Jaiotza, Ama, Taldea, Egoera, Baja-data eta Oharrak, gaztelaniaz edo euskaraz. Krotala jada badago, idatzitakoa aldatzen da (gelaxka huts batek ez du ezer ezabatzen); bestela, alta ematen zaio. Gorde aurretik ikusiko duzu errenkada bakoitzarekin zer gertatuko den.';
+
+  @override
+  String get ganImportarElegir => 'Fitxategia aukeratu';
+
+  @override
+  String get ganImportarPlantilla => 'Txantiloi hutsa';
+
+  @override
+  String ganImportarFichero(String fichero) {
+    return 'Fitxategia: $fichero';
+  }
+
+  @override
+  String ganImportarSeccionCrear(int n) {
+    return 'Alta ematen zaie ($n)';
+  }
+
+  @override
+  String ganImportarSeccionActualizar(int n) {
+    return 'Eguneratzen dira ($n)';
+  }
+
+  @override
+  String ganImportarSeccionIguales(int n) {
+    return 'Berdin daude jada ($n)';
+  }
+
+  @override
+  String ganImportarSeccionErrores(int n) {
+    return 'Ez dira inportatzen ($n)';
+  }
+
+  @override
+  String ganImportarFila(int n) {
+    return '$n. errenkada';
+  }
+
+  @override
+  String ganImportarCambia(String campos) {
+    return 'Aldatzen da: $campos';
+  }
+
+  @override
+  String ganImportarGuardar(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n animalia gorde',
+      one: 'Animalia 1 gorde',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganImportarGuardado(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n animalia gordeta.',
+      one: 'Animalia 1 gordeta.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ganImportarSinCrotal =>
+      'Orriak ez du «Krotala» (edo «Crotal») zutaberik: ezin da inportatu.';
+
+  @override
+  String ganImportarIgnoradas(String columnas) {
+    return 'Inportatzen ez diren zutabeak: $columnas';
+  }
+
+  @override
+  String get ganImportarNoLegible =>
+      'Ezin izan da fitxategia irakurri. CSV bat edo Excel .xlsx orri bat balio du (.xls zaharrak ez: gorde .xlsx edo CSV gisa).';
+
+  @override
+  String get ganImportarVacio => 'Orriak ez dakar errenkadarik.';
+
+  @override
+  String get ganImpCrotalVacio => 'Krotala falta da.';
+
+  @override
+  String ganImpCrotalNumeroExcel(String valor) {
+    return 'Excelek krotala zenbaki bihurtu du ($valor) eta zifrak galdu dira. Eman zutabeari testu-formatua eta idatzi berriro.';
+  }
+
+  @override
+  String get ganImpCrotalRepetido =>
+      'Krotal hau orriko beste errenkada batean dago jada.';
+
+  @override
+  String ganImpFechaNoValida(String columna, String valor) {
+    return '$columna: «$valor» ez da data bat (idatzi 2026/10/23 edo 23/10/2026 bezala).';
+  }
+
+  @override
+  String get ganImpNacimientoFuturo => 'Jaiotza-data gaur baino geroagokoa da.';
+
+  @override
+  String get ganImpBajaAntesDeNacimiento =>
+      'Baja-data jaiotza baino lehenagokoa da.';
+
+  @override
+  String ganImpEspecieDesconocida(String valor) {
+    return 'Espezie ezezaguna: «$valor».';
+  }
+
+  @override
+  String ganImpSexoDesconocido(String valor) {
+    return 'Sexu ezezaguna: «$valor» (emea, arra edo zikiratua balio du).';
+  }
+
+  @override
+  String ganImpEstadoDesconocido(String valor) {
+    return 'Egoera ezezaguna: «$valor».';
+  }
+
+  @override
+  String ganImpRebanoDesconocido(String valor) {
+    return 'Ez dago «$valor» izeneko talde aktiborik. Sortu lehenago edo zuzendu izena.';
+  }
+
+  @override
+  String get ganImpSinPermisoAlta => 'Ez duzu animaliei alta emateko baimenik.';
+
+  @override
+  String get ganImpSinPermisoFicha =>
+      'Animalia honi beste pertsona batek eman zion alta: taldea, baja eta oharrak bakarrik alda diezazkiokezu.';
+
+  @override
+  String get ganImpAvisoCrotalNoOficial =>
+      'Ez du krotal ofizialaren itxurarik (bi letra eta hamabi zifra): dagoen bezala gordetzen da.';
+
+  @override
+  String get ganImpAvisoCeroRecuperado =>
+      'Excelek hasierako zeroa kendu zion: berriro jarri da.';
+
+  @override
+  String get ganHistNacimiento => 'Jaiotza';
+
+  @override
+  String ganHistBaja(String estado) {
+    return 'Baja: $estado';
+  }
+
+  @override
+  String get ganHistConSuRebano => 'bere taldearekin';
+
+  @override
+  String get ganHistNotaRebano =>
+      'Taldearena (mugimenduak eta maneiua) animalia jaio zenetik kontatzen da: talde-aldaketak ez dira idazten, beraz geroago sartu bazen, aurrekoa ere agertzen da.';
 }

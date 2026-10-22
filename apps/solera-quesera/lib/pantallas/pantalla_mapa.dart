@@ -105,6 +105,13 @@ class _PantallaMapaState extends State<PantallaMapa> {
     }
   }
 
+  Future<void> _buscarLugar() async {
+    final lugar =
+        await buscarLugarEnMapa(context, identificacion: 'Solera Quesera');
+    if (lugar == null || !mounted) return;
+    _aplicarCentro(lugar, 15);
+  }
+
   void _alternarEstiloMapa() {
     setState(() {
       _estiloMapa = _estiloMapa == _EstiloMapa.calle
@@ -271,6 +278,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
       appBar: AppBar(
         title: Text(SoleraL10n.t('mapa')),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Buscar un lugar',
+            onPressed: _buscarLugar,
+          ),
           PopupMenuButton<_AccionMenu>(
             tooltip: 'Más',
             onSelected: (a) async {

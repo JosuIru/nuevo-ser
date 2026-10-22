@@ -12,6 +12,8 @@ import 'pantallas/pantalla_trazabilidad.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Idioma elegido en Ajustes la última vez (si no, castellano).
+  await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
   runApp(const SoleraQueseraApp());
 }

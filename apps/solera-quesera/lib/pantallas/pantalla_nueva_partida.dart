@@ -3,7 +3,6 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/partida_leche.dart';
-import '../utiles/validar_numero.dart';
 
 class PantallaNuevaPartida extends StatefulWidget {
   const PantallaNuevaPartida({super.key});
@@ -43,11 +42,11 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
     body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
       DropdownButtonFormField<int>(decoration: const InputDecoration(labelText: 'Proveedor', border: OutlineInputBorder()), items: _proveedores.map((p) => DropdownMenuItem<int>(value: p.id as int, child: Text(p.nombre as String))).toList(), onChanged: (id) => _proveedorId = id, validator: (v) => v == null ? 'Requerido' : null),
       const SizedBox(height: 12),
-      TextFormField(controller: _volC, decoration: const InputDecoration(labelText: 'Volumen (litros)', border: OutlineInputBorder(), suffixText: 'L'), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : avisoNumeroNoValido(v, nullSiAmbiguo: true)),
+      TextFormField(controller: _volC, decoration: const InputDecoration(labelText: 'Volumen (litros)', border: OutlineInputBorder(), suffixText: 'L'), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : validarNumeroOpcional(v, nullSiAmbiguo: true)),
       const SizedBox(height: 12),
-      Row(children: [Expanded(child: TextFormField(controller: _tempC, decoration: const InputDecoration(labelText: 'Temperatura recepción (°C)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: avisoNumeroNoValido)), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _phC, decoration: const InputDecoration(labelText: 'pH', border: OutlineInputBorder(), isDense: true), keyboardType: const TextInputType.numberWithOptions(decimal: true), validator: avisoNumeroNoValido))]),
+      Row(children: [Expanded(child: TextFormField(controller: _tempC, decoration: const InputDecoration(labelText: 'Temperatura recepción (°C)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: (v) => validarNumeroOpcional(v, permitirNegativos: true))), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _phC, decoration: const InputDecoration(labelText: 'pH', border: OutlineInputBorder(), isDense: true), keyboardType: const TextInputType.numberWithOptions(decimal: true), validator: validarNumeroOpcional))]),
       const SizedBox(height: 12),
-      Row(children: [Expanded(child: TextFormField(controller: _grasaC, decoration: const InputDecoration(labelText: 'Grasa (%)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: avisoNumeroNoValido)), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _protC, decoration: const InputDecoration(labelText: 'Proteína (%)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: avisoNumeroNoValido))]),
+      Row(children: [Expanded(child: TextFormField(controller: _grasaC, decoration: const InputDecoration(labelText: 'Grasa (%)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: validarNumeroOpcional)), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _protC, decoration: const InputDecoration(labelText: 'Proteína (%)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: validarNumeroOpcional))]),
       const SizedBox(height: 12),
       CheckboxListTile(title: Text(SoleraL10n.t('antibioticos_positivos')), value: _antib, onChanged: (v) => setState(() => _antib = v ?? false)),
       const SizedBox(height: 12),

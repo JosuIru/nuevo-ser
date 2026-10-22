@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 — ajustes por secciones, Acerca de y buscador del mapa (0.1.4)**. Fuera `lib/utiles/validar_numero.dart`: los formularios usan los validadores del core (`validarNumeroOpcional`, `validarImporteOpcional`, `validarEnteroOpcional`/`leerEntero`; temperaturas con `permitirNegativos: true`); cantidad de factura, nº de piezas, minutos de coagulación, días de curación y nº de animales ya no leen «2,5» en silencio. Ajustes por secciones con `CabeceraSeccionAjustes` (Explotación · Registros y documentos · Inteligencia artificial · Preferencias · Datos · Aplicación), sin la tarjeta «Resumen»; «Acerca de» es `pantalla_acerca.dart` (con `versionSoleraQuesera` y estado de los catálogos). El mapa tiene lupa (`buscarLugarEnMapa` del core).
+
 > **2026-10-22 — PDF con «€» y «—» y números a la española (0.1.3)**. Factura, libro de trazabilidad e informe de simulación usan `temaPdfSolera()` del core (Archivo incrustada; Helvetica dejaba «€» y «—» en blanco). Los campos numéricos de partidas, lotes, recetas, cava/APPCC, libro económico y facturas se leen con `leerNumero` del core (antes «12,5» se perdía): importes con punto de millares, litros/kg avisan si «1.200» es ambiguo; los formularios avisan con `avisoNumeroNoValido` (`lib/utiles/validar_numero.dart`) en vez de guardar 0.
 
 ## Encuadre

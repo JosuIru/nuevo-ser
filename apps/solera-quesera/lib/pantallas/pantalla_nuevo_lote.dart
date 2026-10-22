@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import '../datos/base_datos.dart';
 import '../modelos/lote_produccion.dart';
-import '../utiles/validar_numero.dart';
 
 class PantallaNuevoLote extends StatefulWidget {
   const PantallaNuevoLote({super.key});
@@ -36,10 +35,10 @@ class _PantallaNuevoLoteState extends State<PantallaNuevoLote> {
 
   Future<void> _guardar() async {
     if (!_fk.currentState!.validate()) return; setState(() => _guardando = true);
-    final vol = leerNumero(_volC.text, nullSiAmbiguo: true) ?? 0; final peso = leerNumero(_pesoC.text, nullSiAmbiguo: true) ?? 0; final np = int.tryParse(_numPieC.text) ?? 0;
+    final vol = leerNumero(_volC.text, nullSiAmbiguo: true) ?? 0; final peso = leerNumero(_pesoC.text, nullSiAmbiguo: true) ?? 0; final np = leerEntero(_numPieC.text) ?? 0;
     try {
       final nl = await _bd.siguienteNumeroLote(_fecha);
-      final lid = await _bd.guardarLote(LoteProduccion(numeroLote: nl, fechaMs: _fecha.millisecondsSinceEpoch, recetaId: _recetaId ?? 0, tipoQuesoId: _tipoQueso, doId: _doId.isEmpty ? null : _doId, partidasLecheUsadasJson: _partidasIds.toString(), volumenLecheTotal: vol, pesoTotalObtenido: peso, rendimientoReal: peso > 0 ? vol / peso : 0, numPiezasProducidas: np, pesoMedioPieza: np > 0 ? peso / np : 0, fermentoNombre: _fermC.text, fermentoLoteComercial: _fermLotC.text, cuajoTipo: _cuajoC.text, cuajoLoteComercial: _cuajoLotC.text, salLote: _salC.text, tempCoagulacion: leerNumero(_tempCoagC.text) ?? 30, tiempoCoagMinutos: int.tryParse(_tiempoCoagC.text) ?? 30, phCuajada: leerNumero(_phC.text), estado: 'fresca', notas: _notasC.text, fechaCreacionMs: DateTime.now().millisecondsSinceEpoch));
+      final lid = await _bd.guardarLote(LoteProduccion(numeroLote: nl, fechaMs: _fecha.millisecondsSinceEpoch, recetaId: _recetaId ?? 0, tipoQuesoId: _tipoQueso, doId: _doId.isEmpty ? null : _doId, partidasLecheUsadasJson: _partidasIds.toString(), volumenLecheTotal: vol, pesoTotalObtenido: peso, rendimientoReal: peso > 0 ? vol / peso : 0, numPiezasProducidas: np, pesoMedioPieza: np > 0 ? peso / np : 0, fermentoNombre: _fermC.text, fermentoLoteComercial: _fermLotC.text, cuajoTipo: _cuajoC.text, cuajoLoteComercial: _cuajoLotC.text, salLote: _salC.text, tempCoagulacion: leerNumero(_tempCoagC.text) ?? 30, tiempoCoagMinutos: leerEntero(_tiempoCoagC.text) ?? 30, phCuajada: leerNumero(_phC.text), estado: 'fresca', notas: _notasC.text, fechaCreacionMs: DateTime.now().millisecondsSinceEpoch));
       if (lid > 0 && np > 0) await _bd.generarPiezasParaLote(lid, nl, np, np > 0 ? peso / np : 0);
       if (mounted) { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Lote $nl creado ($np piezas)'))); Navigator.pop(context); }
     } catch (e) { if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error: $e'))); }
@@ -60,9 +59,9 @@ class _PantallaNuevoLoteState extends State<PantallaNuevoLote> {
       Text('Partidas de leche usadas', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
       ..._partidas.cast<Map<String, Object?>>().map((p) { final id = p['id'] as int; return CheckboxListTile(dense: true, title: Text('Partida #$id — ${(p['volumen_litros'] as num?)?.toDouble() ?? 0}L'), value: _partidasIds.contains(id), onChanged: (s) { setState(() { if (s == true) _partidasIds.add(id); else _partidasIds.remove(id); }); }); }),
       const SizedBox(height: 16),
-      TextFormField(controller: _volC, decoration: const InputDecoration(labelText: 'Volumen total de leche (L)', border: OutlineInputBorder(), suffixText: 'L'), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : avisoNumeroNoValido(v, nullSiAmbiguo: true)),
+      TextFormField(controller: _volC, decoration: const InputDecoration(labelText: 'Volumen total de leche (L)', border: OutlineInputBorder(), suffixText: 'L'), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : validarNumeroOpcional(v, nullSiAmbiguo: true)),
       const SizedBox(height: 12),
-      Row(children: [Expanded(child: TextFormField(controller: _pesoC, decoration: const InputDecoration(labelText: 'Peso total obtenido (kg)', border: OutlineInputBorder(), suffixText: 'kg'), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : avisoNumeroNoValido(v, nullSiAmbiguo: true))), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _numPieC, decoration: const InputDecoration(labelText: 'Nº piezas', border: OutlineInputBorder()), keyboardType: TextInputType.number, validator: (v) => (v == null || v.isEmpty) ? 'Requerido' : null))]),
+      Row(children: [Expanded(child: TextFormField(controller: _pesoC, decoration: const InputDecoration(labelText: 'Peso total obtenido (kg)', border: OutlineInputBorder(), suffixText: 'kg'), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : validarNumeroOpcional(v, nullSiAmbiguo: true))), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _numPieC, decoration: const InputDecoration(labelText: 'Nº piezas', border: OutlineInputBorder()), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : validarEnteroOpcional(v)))]),
       if (_rendEsp > 0) Text('Rendimiento esperado: $_rendEsp L/kg', style: const TextStyle(color: Colors.grey)),
       const SizedBox(height: 16),
       Text('Ingredientes', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
@@ -75,9 +74,9 @@ class _PantallaNuevoLoteState extends State<PantallaNuevoLote> {
       const SizedBox(height: 16),
       Text('Parámetros de proceso', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
       const SizedBox(height: 8),
-      Row(children: [Expanded(child: TextFormField(controller: _tempCoagC, decoration: const InputDecoration(labelText: 'Temp. coagulación (°C)', border: OutlineInputBorder(), suffixText: '°C'), keyboardType: TextInputType.number, validator: avisoNumeroNoValido)), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _tiempoCoagC, decoration: const InputDecoration(labelText: 'Tiempo coag. (min)', border: OutlineInputBorder(), suffixText: 'min'), keyboardType: TextInputType.number))]),
+      Row(children: [Expanded(child: TextFormField(controller: _tempCoagC, decoration: const InputDecoration(labelText: 'Temp. coagulación (°C)', border: OutlineInputBorder(), suffixText: '°C'), keyboardType: TextInputType.number, validator: (v) => validarNumeroOpcional(v, permitirNegativos: true))), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _tiempoCoagC, decoration: const InputDecoration(labelText: 'Tiempo coag. (min)', border: OutlineInputBorder(), suffixText: 'min'), keyboardType: TextInputType.number, validator: validarEnteroOpcional))]),
       const SizedBox(height: 8),
-      TextFormField(controller: _phC, decoration: const InputDecoration(labelText: 'pH de la cuajada (opcional)', border: OutlineInputBorder()), keyboardType: const TextInputType.numberWithOptions(decimal: true), validator: avisoNumeroNoValido),
+      TextFormField(controller: _phC, decoration: const InputDecoration(labelText: 'pH de la cuajada (opcional)', border: OutlineInputBorder()), keyboardType: const TextInputType.numberWithOptions(decimal: true), validator: validarNumeroOpcional),
       const SizedBox(height: 12),
       TextFormField(controller: _notasC, decoration: const InputDecoration(labelText: 'Notas', border: OutlineInputBorder()), maxLines: 3),
       const SizedBox(height: 24),

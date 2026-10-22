@@ -118,7 +118,7 @@ class _EditarProveedorState extends State<_EditarProveedor> {
       SizedBox(height: 12),
       TextFormField(decoration: InputDecoration(labelText: 'Raza (ID del catálogo)', border: OutlineInputBorder(), helperText: 'latxa, carranzana, manchega…'), initialValue: _razaId, onChanged: (v) => _razaId = v),
       SizedBox(height: 12),
-      TextFormField(decoration: InputDecoration(labelText: 'Número de animales', border: OutlineInputBorder()), initialValue: _numAnimales?.toString() ?? '', keyboardType: TextInputType.number, onChanged: (v) => _numAnimales = int.tryParse(v)),
+      TextFormField(decoration: InputDecoration(labelText: 'Número de animales', border: OutlineInputBorder()), initialValue: _numAnimales?.toString() ?? '', keyboardType: TextInputType.number, validator: validarEnteroOpcional, onChanged: (v) => _numAnimales = leerEntero(v)),
       SizedBox(height: 24),
       FilledButton(onPressed: _guardando ? null : _guardar, child: _guardando ? SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Text(widget.p != null ? 'Guardar cambios' : 'Crear proveedor')),
     ])),

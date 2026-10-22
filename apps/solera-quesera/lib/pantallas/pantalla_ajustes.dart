@@ -89,7 +89,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   Widget _info(String e, String v) => Padding(padding: const EdgeInsets.symmetric(vertical: 2), child: Row(children: [SizedBox(width: 110, child: Text(e, style: TextStyle(color: Colors.grey))), Expanded(child: Text(v))]));
 
   void _mostrarAcerca(BuildContext context) {
-    showAboutDialog(context: context, applicationName: 'Solera Quesera', applicationVersion: '0.1.0', applicationLegalese: 'Suite Solera · Colección Nuevo Ser Kids © 2026\n\nApp para queserías artesanales.');
+    showAboutDialog(context: context, applicationName: 'Solera Quesera', applicationVersion: '0.1.3', applicationLegalese: 'Suite Solera · Colección Nuevo Ser Kids © 2026\n\nApp para queserías artesanales.');
   }
 }
 

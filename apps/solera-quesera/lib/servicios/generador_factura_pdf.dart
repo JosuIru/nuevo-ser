@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -25,7 +26,7 @@ class GeneradorFacturaPdf {
     String emisorTelefono = '',
     String emisorEmail = '',
   }) async {
-    final doc = pw.Document();
+    final doc = pw.Document(theme: await temaPdfSolera());
     final lineas = jsonDecode(factura.lineasJson) as List<dynamic>;
 
     doc.addPage(

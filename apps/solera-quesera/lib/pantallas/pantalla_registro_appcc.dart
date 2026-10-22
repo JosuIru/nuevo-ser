@@ -68,8 +68,8 @@ class _PantallaRegistroAppccState extends State<PantallaRegistroAppcc> {
   ]);
 
   Future<void> _guardarTemp() async {
-    final t = double.tryParse(_tValC.text); final h = double.tryParse(_tHrC.text);
-    if (t == null || h == null) { ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Introduce temperatura y humedad'))); return; }
+    final t = leerNumero(_tValC.text); final h = leerNumero(_tHrC.text);
+    if (t == null || h == null) { ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Introduce temperatura y humedad (p. ej. 12,5)'))); return; }
     await _bd.guardarControlTemperatura(ControlTemperatura(fechaMs: DateTime.now().millisecondsSinceEpoch, cavaId: _tCavaC.text, temperatura: t, humedadRelativa: h));
     _tValC.clear(); _tHrC.clear(); await _recargar(); if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(SoleraL10n.t('temperatura_registrada'))));
   }

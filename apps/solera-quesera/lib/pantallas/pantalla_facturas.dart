@@ -118,8 +118,12 @@ class _NuevaFacturaState extends State<_NuevaFactura> {
   void dispose() { _numC.dispose(); _cliC.dispose(); _nifC.dispose(); _dirC.dispose(); _descC.dispose(); _cantC.dispose(); _precioC.dispose(); super.dispose(); }
 
   void _addLinea() {
-    final d = _descC.text.trim(); final c = int.tryParse(_cantC.text) ?? 1; final p = double.tryParse(_precioC.text) ?? 0;
+    final d = _descC.text.trim(); final c = int.tryParse(_cantC.text) ?? 1;
     if (d.isEmpty) return;
+    final textoPrecio = _precioC.text.trim();
+    final precioLeido = leerNumero(textoPrecio, puntoDeMillares: true);
+    if (textoPrecio.isNotEmpty && precioLeido == null) { ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Precio no válido (p. ej. 12,50)'))); return; }
+    final p = precioLeido ?? 0;
     setState(() { _lineas.add({'descripcion': d, 'cantidad': c, 'precioUnitario': p, 'importe': c * p}); _descC.clear(); _precioC.clear(); });
   }
 

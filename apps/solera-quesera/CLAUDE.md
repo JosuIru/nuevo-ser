@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 — PDF con «€» y «—» y números a la española (0.1.3)**. Factura, libro de trazabilidad e informe de simulación usan `temaPdfSolera()` del core (Archivo incrustada; Helvetica dejaba «€» y «—» en blanco). Los campos numéricos de partidas, lotes, recetas, cava/APPCC, libro económico y facturas se leen con `leerNumero` del core (antes «12,5» se perdía): importes con punto de millares, litros/kg avisan si «1.200» es ambiguo; los formularios avisan con `avisoNumeroNoValido` (`lib/utiles/validar_numero.dart`) en vez de guardar 0.
+
 ## Encuadre
 
 Cuarto fork de la **Suite Solera** dentro del monorepo. Producto comercial dirigido a **queserías artesanales pequeñas y medianas** (1-10 empleados, 20-500 piezas en afinado) en toda España. Hermana técnica de `apps/agro` (Solera generalista), `apps/solera-viticultura`, `apps/solera-apicola` y `apps/solera-arbolado-urbano`.

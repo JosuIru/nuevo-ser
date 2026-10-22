@@ -32,8 +32,8 @@ class _PantallaCavaState extends State<PantallaCava> {
   }
 
   Future<void> _regTemp() async {
-    final t = double.tryParse(_tempC.text); final h = double.tryParse(_hrC.text);
-    if (t == null || h == null) return;
+    final t = leerNumero(_tempC.text); final h = leerNumero(_hrC.text);
+    if (t == null || h == null) { ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Introduce temperatura y humedad (p. ej. 12,5)'))); return; }
     await _bd.guardarControlTemperatura(ControlTemperatura(fechaMs: DateTime.now().millisecondsSinceEpoch, cavaId: _cavaC.text, temperatura: t, humedadRelativa: h));
     _tempC.clear(); _hrC.clear(); await _recargar();
     if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(SoleraL10n.t('temperatura_registrada'))));

@@ -5,6 +5,7 @@ import '../datos/base_datos.dart';
 import '../modelos/apunte_gasto.dart';
 import '../modelos/apunte_ingreso.dart';
 import '../modelos/tercero.dart';
+import '../utiles/validar_numero.dart';
 
 class PantallaLibroEconomico extends StatefulWidget {
   const PantallaLibroEconomico({super.key});
@@ -120,7 +121,7 @@ class _NuevoApunteState extends State<_NuevoApunte> {
         items: (widget.tipo == 'ingreso' ? _catsIng : _catsGas).map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
         onChanged: (v) => setState(() => _cat = v ?? _cat)),
       const SizedBox(height: 12),
-      Row(children: [Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'Base imponible (€)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, onChanged: (v) { _base = double.tryParse(v) ?? 0; _calc(); })), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'IVA %', border: OutlineInputBorder(), isDense: true), initialValue: '10', keyboardType: TextInputType.number, onChanged: (v) { _iva = double.tryParse(v) ?? 10; _calc(); }))]),
+      Row(children: [Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'Base imponible (€)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: (v) => avisoNumeroNoValido(v, puntoDeMillares: true), onChanged: (v) { _base = leerNumero(v, puntoDeMillares: true) ?? 0; _calc(); })), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'IVA %', border: OutlineInputBorder(), isDense: true), initialValue: '10', keyboardType: TextInputType.number, validator: avisoNumeroNoValido, onChanged: (v) { _iva = leerNumero(v) ?? 10; _calc(); }))]),
       Text('Total: ${_tot.toStringAsFixed(2)}€', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
       TextFormField(controller: _facC, decoration: const InputDecoration(labelText: 'Nº factura', border: OutlineInputBorder(), isDense: true)),
       TextFormField(controller: _notasC, decoration: const InputDecoration(labelText: 'Notas', border: OutlineInputBorder(), isDense: true), maxLines: 2),

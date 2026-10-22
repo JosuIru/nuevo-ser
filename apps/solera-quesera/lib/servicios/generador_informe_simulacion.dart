@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -26,7 +27,7 @@ class GeneradorInformeSimulacion {
     required String realizador,
     required String notas,
   }) async {
-    final doc = pw.Document();
+    final doc = pw.Document(theme: await temaPdfSolera());
 
     final fechaSimulacion = DateTime.now();
 

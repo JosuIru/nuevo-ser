@@ -222,6 +222,7 @@ function szs_apartados_inicio(): array {
 		),
 		'Comunicación y web' => array(
 			array( 'pagina' => SZS_PAGINA_NOTICIAS, 'nombre' => 'Noticias del sector', 'para_que' => 'Canales RSS que el servidor lee cada 3 horas y la app enseña en Hoy.' ),
+			array( 'pagina' => SZS_PAGINA_AYUDA, 'nombre' => 'Ayuda de la app', 'para_que' => 'Cambiar los textos de la ayuda de la app y del manual imprimible (/manual/), en castellano y euskera.' ),
 			array( 'pagina' => SZS_PAGINA_LOGOS_ENTIDADES, 'nombre' => 'Entidades y logos', 'para_que' => 'Quién impulsa, apoya, colabora y financia: los logos del pie de la web, de la app y de Acerca de.' ),
 		),
 	);

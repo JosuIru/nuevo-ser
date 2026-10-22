@@ -1513,7 +1513,7 @@
   "mapaBuscar": "Buscar un lugar",
   "mapaBuscarAyuda": "Paraje, pueblo, calle o referencia catastral",
   "mapaBuscarSinResultados": "No se ha encontrado nada.",
-  "mapaBuscarSinConexion": "El buscador necesita internet.",
+  "mapaBuscarSinConexion": "No se ha podido consultar el buscador. Comprueba la conexión o prueba dentro de un rato.",
   "zonasDesde": "Crear zonas desde…",
   "zonaDesdeCatastroCentro": "Parcela catastral en el centro del mapa",
   "zonaDesdeCatastroRef": "Parcela catastral por referencia",

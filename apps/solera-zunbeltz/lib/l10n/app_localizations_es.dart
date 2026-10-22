@@ -3046,7 +3046,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get mapaBuscarSinResultados => 'No se ha encontrado nada.';
 
   @override
-  String get mapaBuscarSinConexion => 'El buscador necesita internet.';
+  String get mapaBuscarSinConexion =>
+      'No se ha podido consultar el buscador. Comprueba la conexión o prueba dentro de un rato.';
 
   @override
   String get zonasDesde => 'Crear zonas desde…';

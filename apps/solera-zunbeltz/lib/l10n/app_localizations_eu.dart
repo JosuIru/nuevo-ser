@@ -3051,7 +3051,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get mapaBuscarSinResultados => 'Ez da ezer aurkitu.';
 
   @override
-  String get mapaBuscarSinConexion => 'Bilatzaileak internet behar du.';
+  String get mapaBuscarSinConexion =>
+      'Ezin izan da bilatzailea kontsultatu. Egiaztatu konexioa edo saiatu berriro geroago.';
 
   @override
   String get zonasDesde => 'Eremuak sortu hemendik…';

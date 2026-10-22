@@ -5387,7 +5387,7 @@ abstract class AppLocalizations {
   /// No description provided for @mapaBuscarSinConexion.
   ///
   /// In es, this message translates to:
-  /// **'El buscador necesita internet.'**
+  /// **'No se ha podido consultar el buscador. Comprueba la conexión o prueba dentro de un rato.'**
   String get mapaBuscarSinConexion;
 
   /// No description provided for @zonasDesde.

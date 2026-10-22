@@ -103,5 +103,38 @@ void main() {
       expect(pedida!.path, endsWith('/find'));
       expect(pedida!.queryParameters['id'], '31154');
     });
+  
+
+    test('Nominatim: lee nombre y posición', () {
+      final lugar =
+          lugaresDesdeNominatim(_fixture('nominatim_lezaun.json')).first;
+      expect(lugar.texto, contains('Lezáun'));
+      expect(lugar.posicion!.latitude, closeTo(42.78, 0.05));
+      expect(lugar.posicion!.longitude, closeTo(-2.0, 0.05));
+    });
+
+    test('si CartoCiudad corta la conexión, busca en Nominatim', () async {
+      final pedidas = <String>[];
+      final servicio =
+          ServicioBuscadorMapa(cliente: MockClient((peticion) async {
+        pedidas.add(peticion.url.host);
+        if (peticion.url.host == 'www.cartociudad.es') {
+          throw const SocketException('Connection reset by peer');
+        }
+        return http.Response.bytes(
+            File('test/fixtures/servicios_mapa/nominatim_lezaun.json')
+                .readAsBytesSync(),
+            200);
+      }));
+      final lugares = await servicio.buscar('Lezaun');
+      expect(pedidas, ['www.cartociudad.es', 'nominatim.openstreetmap.org']);
+      expect(lugares.single.posicion, isNotNull);
+    });
+
+    test('si fallan los dos, lanza', () async {
+      final servicio = ServicioBuscadorMapa(
+          cliente: MockClient((_) async => throw const SocketException('no')));
+      expect(servicio.buscar('Lezaun'), throwsA(isA<SocketException>()));
+    });
   });
 }

@@ -984,7 +984,7 @@
   "mapaBuscar": "Leku bat bilatu",
   "mapaBuscarAyuda": "Paraje, herri, kale edo katastro-erreferentzia",
   "mapaBuscarSinResultados": "Ez da ezer aurkitu.",
-  "mapaBuscarSinConexion": "Bilatzaileak internet behar du.",
+  "mapaBuscarSinConexion": "Ezin izan da bilatzailea kontsultatu. Egiaztatu konexioa edo saiatu berriro geroago.",
   "zonasDesde": "Eremuak sortu hemendik…",
   "zonaDesdeCatastroCentro": "Maparen erdiko katastro-partzela",
   "zonaDesdeCatastroRef": "Katastro-partzela erreferentziaz",

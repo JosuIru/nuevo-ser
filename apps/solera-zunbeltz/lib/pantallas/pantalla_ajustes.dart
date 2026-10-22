@@ -27,7 +27,7 @@ import '../servicios/servicio_noticias_sector.dart';
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
 /// falla si no coinciden.
-const String versionAppZunbeltz = '0.6.6';
+const String versionAppZunbeltz = '0.6.7';
 
 /// Pestaña "Ajustes": idioma y acerca de.
 class PantallaAjustes extends StatefulWidget {
@@ -67,7 +67,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     if (!mounted) return;
     try {
       await compartirDocumentos(documentos,
-          asunto: 'Espacio Solera Zunbeltz (CSV)');
+          asunto: 'Espacio Larrea Zunbeltz (CSV)');
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

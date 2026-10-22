@@ -9,7 +9,7 @@ class AppLocalizationsEu extends AppLocalizations {
   AppLocalizationsEu([String locale = 'eu']) : super(locale);
 
   @override
-  String get appTitulo => 'Solera Zunbeltz';
+  String get appTitulo => 'Larrea Zunbeltz';
 
   @override
   String get navHoy => 'Gaur';
@@ -24,7 +24,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get navAjustes => 'Ezarpenak';
 
   @override
-  String get onboardingTitulo => 'Solera Zunbeltz';
+  String get onboardingTitulo => 'Larrea Zunbeltz';
 
   @override
   String get onboardingCuerpo =>
@@ -1041,7 +1041,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaProblemasB =>
-      '• «Zure rolak ez du … baimenik»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.\n• Sinkronizatzean «… aldaketa desegin dira: zure rolak ez ditu baimentzen»: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.\n• «Erabiltzaile-gako okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.\n• Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».\n• Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.\n• Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu «aplikazio ezezagunak instalatzea» Solera Zunbeltzentzat.\n» Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure erabiltzaile-gakoarekin eta berreskuratuko dituzu.';
+      '• «Zure rolak ez du … baimenik»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.\n• Sinkronizatzean «… aldaketa desegin dira: zure rolak ez ditu baimentzen»: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.\n• «Erabiltzaile-gako okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.\n• Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».\n• Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.\n• Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu «aplikazio ezezagunak instalatzea» Larrea Zunbeltzentzat.\n» Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure erabiltzaile-gakoarekin eta berreskuratuko dituzu.';
 
   @override
   String get ayudaPie =>
@@ -2075,7 +2075,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaNotificacionesB =>
-      'Aplikazioak mugikorrean abisatzen dizu:\n• Beste pertsona baten alarma bat iristen denean.\n• Koordinazioari: eskaera berriak daudenean eta gunean aldatu denaren laburpena.\n• Goizero 9:00etan, zeregin iraungiak badituzu, egintzat markatu arte.\n» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa itxita dagoenean, Android mugikorrak 15 minuturo gutxi gorabehera begiratzen du berririk dagoen, konexioa badago; mugikorra atsedenean badago, zertxobait gehiago atzera daiteke. Zure mugikorrak bateria aurrezteko bigarren planoko aplikazioak mozten baditu, kendu Solera Zunbeltz zerrenda horretatik.';
+      'Aplikazioak mugikorrean abisatzen dizu:\n• Beste pertsona baten alarma bat iristen denean.\n• Koordinazioari: eskaera berriak daudenean eta gunean aldatu denaren laburpena.\n• Goizero 9:00etan, zeregin iraungiak badituzu, egintzat markatu arte.\n» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa itxita dagoenean, Android mugikorrak 15 minuturo gutxi gorabehera begiratzen du berririk dagoen, konexioa badago; mugikorra atsedenean badago, zertxobait gehiago atzera daiteke. Zure mugikorrak bateria aurrezteko bigarren planoko aplikazioak mozten baditu, kendu Larrea Zunbeltz zerrenda horretatik.';
 
   @override
   String get contactosTitulo => 'Kontaktuak';
@@ -2241,7 +2241,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaActualizacionesB =>
-      'Bertsio berri bat ateratzen denean, aplikazioak abisatzen dizu irekitzean («Bertsio eskuragarria»). Sakatu «Eguneratu», edo «Baztertu oraingoz» une txarra bada.\n1. Ezarpenak → Eguneraketak atalean ere begira dezakezu: instalatutako bertsioa, argitaratutako azkena eta zer dakarren ikusten dituzu. «Bilatu orain» sakatuta berriro egiaztatzen da.\n2. Sakatu «Deskargatu eta instalatu» eta baieztatu mugikorraren instalatzailean.\n3. Ireki berriro aplikazioa.\n» Lehen aldian, Androidek «aplikazio ezezagunak instalatzea» baimentzeko eska dezake Solera Zunbeltzentzat. Zure datuak gorde egiten dira eguneratzean.';
+      'Bertsio berri bat ateratzen denean, aplikazioak abisatzen dizu irekitzean («Bertsio eskuragarria»). Sakatu «Eguneratu», edo «Baztertu oraingoz» une txarra bada.\n1. Ezarpenak → Eguneraketak atalean ere begira dezakezu: instalatutako bertsioa, argitaratutako azkena eta zer dakarren ikusten dituzu. «Bilatu orain» sakatuta berriro egiaztatzen da.\n2. Sakatu «Deskargatu eta instalatu» eta baieztatu mugikorraren instalatzailean.\n3. Ireki berriro aplikazioa.\n» Lehen aldian, Androidek «aplikazio ezezagunak instalatzea» baimentzeko eska dezake Larrea Zunbeltzentzat. Zure datuak gorde egiten dira eguneratzean.';
 
   @override
   String get ayudaWebT => 'Aplikazioa ordenagailuan erabili';
@@ -2306,7 +2306,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get errorSyncPluginAntiguo =>
-      'WordPress horrek ez du Solera Zunbeltz plugina (0.3 edo berriagoa).';
+      'WordPress horrek ez du Larrea Zunbeltz plugina (0.3 edo berriagoa).';
 
   @override
   String errorSyncServidor(int codigo) {
@@ -2814,5 +2814,5 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaWidgetB =>
-      'Android-en, mugikorraren hasierako pantailan Gaur-en laburpen bat jar dezakezu aplikazioa ireki gabe: alarma irekiak, zure zeregin iraungiak eta gaurkoak, kentze-epean dauden taldeak (eta lehena noiz geratzen den libre) eta finkako gaurko eguraldia.\n1. Eutsi sakatuta hasierako pantailako hutsune bat eta aukeratu «Widgetak».\n2. Bilatu «Solera Zunbeltz» eta arrastatu «Gaur Zunbeltzen» pantailara.\n3. Nahi baduzu, eutsi sakatuta handiago edo txikiago egiteko: leku gutxirekin, lehenik eguraldia kentzen da eta gero kentze-epea.\n» Bere botoiek aplikazioa zuzenean irekitzen dute abisu bat emateko, talde bat mugitzeko edo sendaketa bat idazteko (taldea aukeratuta). Zure profilak erabil ditzakeenak bakarrik agertzen dira.\n» Aplikazioan zerbait aldatzean eguneratzen da eta, aplikazioa itxita dagoela, 15 minutuz behin gutxi gorabehera (Android-ek erabakitzen du noiz). Goiko orduak azken aldia noiz izan zen dio.\n» Web bertsioan eta ordenagailuan ez dago widgetik.';
+      'Android-en, mugikorraren hasierako pantailan Gaur-en laburpen bat jar dezakezu aplikazioa ireki gabe: alarma irekiak, zure zeregin iraungiak eta gaurkoak, kentze-epean dauden taldeak (eta lehena noiz geratzen den libre) eta finkako gaurko eguraldia.\n1. Eutsi sakatuta hasierako pantailako hutsune bat eta aukeratu «Widgetak».\n2. Bilatu «Larrea Zunbeltz» eta arrastatu «Gaur Zunbeltzen» pantailara.\n3. Nahi baduzu, eutsi sakatuta handiago edo txikiago egiteko: leku gutxirekin, lehenik eguraldia kentzen da eta gero kentze-epea.\n» Bere botoiek aplikazioa zuzenean irekitzen dute abisu bat emateko, talde bat mugitzeko edo sendaketa bat idazteko (taldea aukeratuta). Zure profilak erabil ditzakeenak bakarrik agertzen dira.\n» Aplikazioan zerbait aldatzean eguneratzen da eta, aplikazioa itxita dagoela, 15 minutuz behin gutxi gorabehera (Android-ek erabakitzen du noiz). Goiko orduak azken aldia noiz izan zen dio.\n» Web bertsioan eta ordenagailuan ez dago widgetik.';
 }

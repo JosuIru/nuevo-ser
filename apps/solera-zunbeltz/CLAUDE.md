@@ -82,6 +82,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-22 — el tema se actualiza solo (plugin 0.9.4)**. El plugin registra también el comprobador de actualizaciones para el tema `zunbeltz-espacio` (releases `tema-zunbeltz-espacio-<versión>` con `zunbeltz-espacio-<versión>.zip`, publicadas con `dev/publicar_release_tema.sh`); WordPress lo ofrece en Escritorio → Actualizaciones. En un tema enlazado al repo (local) se bloquea como el plugin. Ya no hay zip del tema que subir a mano.
 
+> **2026-10-22 — la app se llama «Larrea Zunbeltz» (app 0.6.7, plugin 0.9.6, tema 0.2.1)**. Decidido por Josu («larre» = pasto, prado) tras la petición de Pablo de un nombre. Es solo el **nombre visible**: título de la app y del onboarding, etiqueta de Android, título y manifiesto de la web, asuntos de correo, manual y pie de la web. **No cambian** el paquete Android, los identificadores, la carpeta `apps/solera-zunbeltz`, el plugin «Solera Zunbeltz» ni su menú en WordPress, ni los tags de las releases (`solera-zunbeltz-<v>`, `plugin-solera-zunbeltz-sync-<v>`). El widget sigue siendo «Hoy en Zunbeltz». Icono pendiente.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

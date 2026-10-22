@@ -49,9 +49,9 @@ final _manuales = [
   _TextosManual(
     idioma: 'es',
     fichero: 'index.html',
-    tituloPagina: 'Solera Zunbeltz — Manual de uso',
+    tituloPagina: 'Larrea Zunbeltz — Manual de uso',
     titulo: 'Manual de uso',
-    version: (v) => 'Solera Zunbeltz · versión $v',
+    version: (v) => 'Larrea Zunbeltz · versión $v',
     imprimir: 'Imprimir / Guardar PDF',
     otroIdioma: 'Euskaraz',
     ficheroOtroIdioma: 'index_eu.html',
@@ -64,9 +64,9 @@ final _manuales = [
   _TextosManual(
     idioma: 'eu',
     fichero: 'index_eu.html',
-    tituloPagina: 'Solera Zunbeltz — Erabilera-eskuliburua',
+    tituloPagina: 'Larrea Zunbeltz — Erabilera-eskuliburua',
     titulo: 'Erabilera-eskuliburua',
-    version: (v) => 'Solera Zunbeltz · $v bertsioa',
+    version: (v) => 'Larrea Zunbeltz · $v bertsioa',
     imprimir: 'Inprimatu / Gorde PDF gisa',
     otroIdioma: 'En castellano',
     ficheroOtroIdioma: 'index.html',

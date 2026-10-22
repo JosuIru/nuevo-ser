@@ -349,7 +349,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     setState(() => _generando = true);
     try {
       final documento = await _generarInforme(textos, idioma);
-      final asunto = 'Solera Zunbeltz · ${_proyecto.nombre}'
+      final asunto = 'Larrea Zunbeltz · ${_proyecto.nombre}'
           '${_proyecto.persona.isEmpty ? '' : ' (${_proyecto.persona})'}';
       try {
         // Móvil: hoja de compartir con el PDF adjunto (eliges tu correo).

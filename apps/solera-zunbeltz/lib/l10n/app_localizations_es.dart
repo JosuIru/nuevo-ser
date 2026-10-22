@@ -9,7 +9,7 @@ class AppLocalizationsEs extends AppLocalizations {
   AppLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appTitulo => 'Solera Zunbeltz';
+  String get appTitulo => 'Larrea Zunbeltz';
 
   @override
   String get navHoy => 'Hoy';
@@ -24,7 +24,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get navAjustes => 'Ajustes';
 
   @override
-  String get onboardingTitulo => 'Solera Zunbeltz';
+  String get onboardingTitulo => 'Larrea Zunbeltz';
 
   @override
   String get onboardingCuerpo =>
@@ -1039,7 +1039,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaProblemasB =>
-      '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Clave de usuario incorrecta»: revisa que lo copiaste entero. Si la has perdido, coordinación te genera una nueva y la vieja deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu clave de usuario y lo recuperas.';
+      '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.\n• «… cambios revertidos: tu rol no los permite» al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.\n• «Clave de usuario incorrecta»: revisa que lo copiaste entero. Si la has perdido, coordinación te genera una nueva y la vieja deja de valer.\n• Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».\n• No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.\n• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Larrea Zunbeltz.\n» Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu clave de usuario y lo recuperas.';
 
   @override
   String get ayudaPie =>
@@ -2072,7 +2072,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaNotificacionesB =>
-      'La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona.\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Solera Zunbeltz de esa lista.';
+      'La app te avisa en el móvil:\n• Cuando llega una alarma de otra persona.\n• A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.\n• Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.\n» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Larrea Zunbeltz de esa lista.';
 
   @override
   String get contactosTitulo => 'Contactos';
@@ -2238,7 +2238,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaActualizacionesB =>
-      'Cuando sale una versión nueva, la app te avisa al abrirla («Versión disponible»). Pulsa «Actualizar», o «Descartar por ahora» si te viene mal.\n1. También puedes mirarlo en Ajustes → Actualizaciones: ves la versión instalada, la última publicada y qué trae. «Buscar ahora» lo vuelve a comprobar.\n2. Pulsa «Descargar e instalar» y confirma en el instalador del móvil.\n3. Vuelve a abrir la app.\n» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Solera Zunbeltz. Tus datos se conservan al actualizar.';
+      'Cuando sale una versión nueva, la app te avisa al abrirla («Versión disponible»). Pulsa «Actualizar», o «Descartar por ahora» si te viene mal.\n1. También puedes mirarlo en Ajustes → Actualizaciones: ves la versión instalada, la última publicada y qué trae. «Buscar ahora» lo vuelve a comprobar.\n2. Pulsa «Descargar e instalar» y confirma en el instalador del móvil.\n3. Vuelve a abrir la app.\n» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Larrea Zunbeltz. Tus datos se conservan al actualizar.';
 
   @override
   String get ayudaWebT => 'Usar la app en el ordenador';
@@ -2303,7 +2303,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get errorSyncPluginAntiguo =>
-      'Ese WordPress no tiene el plugin de Solera Zunbeltz (0.3 o posterior).';
+      'Ese WordPress no tiene el plugin de Larrea Zunbeltz (0.3 o posterior).';
 
   @override
   String errorSyncServidor(int codigo) {
@@ -2810,5 +2810,5 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaWidgetB =>
-      'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.';
+      'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Larrea Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.';
 }

@@ -8,6 +8,7 @@ import '../modelos/cosecha.dart';
 import '../modelos/incidencia.dart';
 import '../modelos/observacion.dart';
 import '../modelos/tratamiento.dart';
+import '../utiles/numeros_formulario.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 enum TipoEventoNuevo { cosecha, observacion, incidencia, tratamiento }
@@ -107,7 +108,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         final c = await db.obtenerCosecha(id);
         if (c != null) {
           _fecha = DateTime.fromMillisecondsSinceEpoch(c.fechaMs);
-          if (c.kilos != null) _controladorKilos.text = c.kilos!.toString();
+          if (c.kilos != null) _controladorKilos.text = numeroParaEditar(c.kilos!);
           if (c.unidades != null) _controladorUnidades.text = c.unidades!.toString();
           _calidad = c.calidad;
           _rutasFotos = GestorFotos.decodificar(c.rutasFotosJson);
@@ -148,7 +149,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           _controladorNumeroRegistroFito.text = t.numeroRegistroFitosanitario;
           _controladorNifAplicador.text = t.nifAplicador;
           if (t.superficieTratadaHectareas != null) {
-            _controladorSuperficieTratada.text = t.superficieTratadaHectareas!.toString();
+            _controladorSuperficieTratada.text = numeroParaEditar(t.superficieTratadaHectareas!);
           }
           _controladorNotas.text = t.notas;
         }
@@ -316,7 +317,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
       case TipoEventoNuevo.cosecha:
         final cambios = <String, Object?>{
           'fecha_ms': fechaMs,
-          'kilos': double.tryParse(_controladorKilos.text.replaceAll(',', '.')),
+          'kilos': leerNumero(_controladorKilos.text, nullSiAmbiguo: true),
           'unidades': int.tryParse(_controladorUnidades.text),
           'calidad': _calidad,
           'rutas_fotos_json': fotosJson,
@@ -379,9 +380,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         }
         break;
       case TipoEventoNuevo.tratamiento:
-        final superficieTratada = double.tryParse(
-          _controladorSuperficieTratada.text.replaceAll(',', '.'),
-        );
+        final superficieTratada = leerNumero(_controladorSuperficieTratada.text);
         final cambios = <String, Object?>{
           'fecha_ms': fechaMs,
           'tipo': _tipoTratamiento,
@@ -490,6 +489,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                   decoration: InputDecoration(labelText: 'Kilos', border: OutlineInputBorder()),
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\d.,]'))],
+                  validator: (v) => validarNumeroOpcional(v, nullSiAmbiguo: true),
                 ),
               ),
               SizedBox(width: 8),
@@ -617,11 +617,12 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               controller: _controladorSuperficieTratada,
               decoration: InputDecoration(
                 labelText: 'Superficie tratada (ha)',
-                hintText: 'Ej: 1.5',
+                hintText: 'Ej: 1,5',
                 border: OutlineInputBorder(),
               ),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\d.,]'))],
+              validator: validarNumeroOpcional,
             ),
             SizedBox(height: 12),
             TextFormField(

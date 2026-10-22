@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 — PDF con letra incrustada y números a la española (0.3.3+6)**. Los cuatro PDF (campaña, extracto económico, cuaderno MAPA, factura) usan `temaPdfSolera()` del core (Archivo incrustada: con Helvetica «€» y «—» salían en blanco). Los importes, cantidades y superficies de los formularios (ingreso, gasto, factura, evento, SIGPAC) se leen con `leerNumero`/`centimosDesdeTexto` del core («1.200,50» ya no se guarda como 0) y los validadores avisan si no se entiende (`utiles/numeros_formulario.dart`).
+
 ## Encuadre
 
 App **producto comercial general** (no del operador, no Kids). Gestor de fincas agrícolas para Iberia: frutales, truficultura, olivar, pistacho, vid, dehesa y forestal. Entidad central = **planta con identidad persistente** (cada árbol tiene historia: cosechas, observaciones, incidencias, tratamientos), distinto del modelo "evento puntual" de fósiles/naturaleza.

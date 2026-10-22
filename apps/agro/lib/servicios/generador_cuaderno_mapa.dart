@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show temaPdfSolera;
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
@@ -147,7 +148,8 @@ Future<File> generarCuadernoMapa({
         if (i.fechaMs >= desdeMs && i.fechaMs <= hastaMs) i,
   ];
 
-  final pdf = pw.Document();
+  // Tema con Archivo incrustada: Helvetica deja «€» y «—» en blanco.
+  final pdf = pw.Document(theme: await temaPdfSolera());
   pdf.addPage(
     pw.MultiPage(
       pageFormat: PdfPageFormat.a4,

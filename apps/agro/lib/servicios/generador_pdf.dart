@@ -149,6 +149,7 @@ Future<File> generarPdfCampana({
     tablas: tablas,
     prefijoNombreFichero: 'agro-${finca?.nombre.replaceAll(RegExp(r'\s+'), '_') ?? 'todas'}-${ano ?? 'historico'}',
     operador: operador,
+    tema: await temaPdfSolera(),
   );
 }
 

@@ -301,6 +301,7 @@ Future<File> generarExtractoEconomico({
     ],
     prefijoNombreFichero: 'extracto_economico-$ano',
     operador: titular.nombre.isEmpty ? null : titular.nombre,
+    tema: await temaPdfSolera(),
   );
 }
 

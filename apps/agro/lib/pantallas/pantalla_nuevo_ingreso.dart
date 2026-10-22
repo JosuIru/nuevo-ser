@@ -7,6 +7,7 @@ import '../modelos/apunte_ingreso.dart';
 import '../modelos/configuracion_fiscal.dart';
 import '../modelos/finca.dart';
 import '../modelos/tercero.dart';
+import '../utiles/numeros_formulario.dart';
 
 /// Formulario de apunte de ingreso (alta o edición). El bloque más
 /// delicado es el cálculo de IVA y compensación REAGP — el régimen
@@ -76,7 +77,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       _importeBase.text = _formatearCentimos(e.importeBaseCentimos);
       _ivaRepercutido.text = _formatearCentimos(e.ivaRepercutidoCentimos);
       _compensacionReagp.text = _formatearCentimos(e.compensacionReagpCentimos);
-      _cantidad.text = e.cantidad?.toString() ?? '';
+      _cantidad.text = e.cantidad == null ? '' : numeroParaEditar(e.cantidad!);
       _terceroId = e.terceroId;
       _fincaId = e.fincaId;
       _cultivoId = e.cultivoId;
@@ -112,15 +113,12 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _formatearCentimos(int centimos) {
     if (centimos == 0) return '';
-    return (centimos / 100).toStringAsFixed(2);
+    return (centimos / 100).toStringAsFixed(2).replaceAll('.', ',');
   }
 
-  int _parsearCentimos(String texto) {
-    final limpio = texto.trim().replaceAll(',', '.');
-    if (limpio.isEmpty) return 0;
-    final v = double.tryParse(limpio) ?? 0.0;
-    return (v * 100).round();
-  }
+  /// Importe escrito a la española («1.200,50») → céntimos. Vacío o no
+  /// entendido → 0; lo no entendido ya lo para el validador del campo.
+  int _parsearCentimos(String texto) => centimosDesdeTexto(texto) ?? 0;
 
   _Opcion get _tipoActual =>
       _opcionesTipo.firstWhere((o) => o.codigo == _tipoIngreso,
@@ -188,7 +186,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       return;
     }
     setState(() => _guardando = true);
-    final cantidadValor = double.tryParse(_cantidad.text.trim().replaceAll(',', '.'));
+    final cantidadValor = leerNumero(_cantidad.text, nullSiAmbiguo: true);
     final apunte = ApunteIngreso(
       id: widget.existente?.id,
       fechaMs: _fecha.millisecondsSinceEpoch,
@@ -300,6 +298,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                   labelText: 'Cantidad (${_tipoActual.unidad})',
                   border: OutlineInputBorder(),
                 ),
+                validator: (v) => validarNumeroOpcional(v, nullSiAmbiguo: true),
               ),
             if (_tipoActual.unidad.isNotEmpty) SizedBox(height: 12),
             TextFormField(
@@ -311,11 +310,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 hintText: 'Sin IVA ni compensación',
                 border: OutlineInputBorder(),
               ),
-              validator: (v) {
-                if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
-                if (_parsearCentimos(v!) <= 0) return 'Mayor que cero';
-                return null;
-              },
+              validator: validarImporteObligatorio,
               onChanged: (_) {
                 _recalcular();
                 setState(() {});
@@ -344,6 +339,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     labelText: 'Compensación REAGP (€)',
                     border: OutlineInputBorder(),
                   ),
+                  validator: validarImporteOpcional,
                 ),
               if (!(_configFiscal.regimenIva == 'reagp' && _esCosechaOLena))
                 TextFormField(
@@ -355,6 +351,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     labelText: 'IVA repercutido (€)',
                     border: OutlineInputBorder(),
                   ),
+                  validator: validarImporteOpcional,
                 ),
               if (_configFiscal.regimenIva == 'sin_elegir')
                 Container(

@@ -7,6 +7,7 @@ import '../modelos/apunte_gasto.dart';
 import '../modelos/configuracion_fiscal.dart';
 import '../modelos/finca.dart';
 import '../modelos/tercero.dart';
+import '../utiles/numeros_formulario.dart';
 
 /// Formulario de apunte de gasto agrícola. La complicación está en
 /// `imputacion`: un mismo gasto puede afectar a una parcela
@@ -117,15 +118,12 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
 
   String _formatearCentimos(int centimos) {
     if (centimos == 0) return '';
-    return (centimos / 100).toStringAsFixed(2);
+    return (centimos / 100).toStringAsFixed(2).replaceAll('.', ',');
   }
 
-  int _parsearCentimos(String texto) {
-    final limpio = texto.trim().replaceAll(',', '.');
-    if (limpio.isEmpty) return 0;
-    final v = double.tryParse(limpio) ?? 0.0;
-    return (v * 100).round();
-  }
+  /// Importe escrito a la española («1.200,50») → céntimos. Vacío o no
+  /// entendido → 0; lo no entendido ya lo para el validador del campo.
+  int _parsearCentimos(String texto) => centimosDesdeTexto(texto) ?? 0;
 
   void _recalcular() {
     if (!_autocalcular) return;
@@ -302,11 +300,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 hintText: 'Sin IVA',
                 border: OutlineInputBorder(),
               ),
-              validator: (v) {
-                if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
-                if (_parsearCentimos(v!) <= 0) return 'Mayor que cero';
-                return null;
-              },
+              validator: validarImporteObligatorio,
               onChanged: (_) {
                 _recalcular();
                 setState(() {});
@@ -333,6 +327,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 labelText: 'IVA soportado (€)',
                 border: OutlineInputBorder(),
               ),
+              validator: validarImporteOpcional,
             ),
             if (_configFiscal.regimenIva == 'reagp')
               Padding(

@@ -362,9 +362,29 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
 
   void _anadirLinea() {
     final desc = _descCtrl.text.trim();
-    final cant = int.tryParse(_cantCtrl.text) ?? 1;
-    final precio = double.tryParse(_precioCtrl.text) ?? 0;
     if (desc.isEmpty) return;
+    // Cantidad entera (la factura la imprime sin decimales); vacía = 1.
+    // «1.000» es ambiguo y se avisa en vez de adivinar.
+    final textoCantidad = _cantCtrl.text.trim();
+    final cantidadLeida = textoCantidad.isEmpty
+        ? 1.0
+        : leerNumero(textoCantidad, nullSiAmbiguo: true);
+    if (cantidadLeida == null ||
+        cantidadLeida <= 0 ||
+        cantidadLeida != cantidadLeida.roundToDouble()) {
+      _avisarNumeroNoValido('Cantidad', textoCantidad);
+      return;
+    }
+    final cant = cantidadLeida.round();
+    // Precio en euros a la española («1.200,50»); vacío = 0.
+    final textoPrecio = _precioCtrl.text.trim();
+    final precio = textoPrecio.isEmpty
+        ? 0.0
+        : leerNumero(textoPrecio, puntoDeMillares: true);
+    if (precio == null) {
+      _avisarNumeroNoValido('Precio', textoPrecio);
+      return;
+    }
     setState(() {
       _lineas.add({
         'descripcion': desc,
@@ -375,6 +395,16 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
       _descCtrl.clear();
       _precioCtrl.clear();
     });
+  }
+
+  void _avisarNumeroNoValido(String nombreCampo, String textoEscrito) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          '$nombreCampo no válido: "$textoEscrito". Escribe un número (p. ej. 12,50).',
+        ),
+      ),
+    );
   }
 
   double get _baseImponible =>

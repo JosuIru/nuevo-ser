@@ -56,12 +56,12 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
     final textoSup = _controladorSuperficie.text.trim();
     double? superficie;
     if (textoSup.isNotEmpty) {
-      superficie = double.tryParse(textoSup.replaceAll(',', '.'));
+      superficie = leerNumero(textoSup);
       if (superficie == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Superficie no válida: "$textoSup". Usa solo números (p. ej. 4.7).',
+              'Superficie no válida: "$textoSup". Usa solo números (p. ej. 4,7).',
             ),
             backgroundColor: Colors.red.shade700,
           ),

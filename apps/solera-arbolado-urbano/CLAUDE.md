@@ -82,6 +82,8 @@ Forkeado del patrón de las hermanas con renombrados B2B y un evento extra de **
 
 **2026-10-22 (0.1.3)** — los PDF (factura, hoja de QR, informe municipal) usan `temaPdfSolera()` del core: con Helvetica «€» y «—» salían en blanco. Los números de los formularios se leen a la española con `leerNumero` del core (`utiles/numeros_formulario.dart`): precio de factura con punto de millares («1.200,50» ya no da 0 €), cantidad de línea sin adivinar «1.200» (y admite decimales), perímetro/altura/volumen de restos con validador que avisa si no se entiende.
 
+**2026-10-22 (0.1.4)** — fuera `utiles/numeros_formulario.dart`: los formularios usan `leerNumero` y `validarNumeroOpcional` del core (mensaje por SoleraL10n, rechaza negativos). **Ajustes por secciones** con `CabeceraSeccionAjustes`: Ayuntamiento (titular y técnicos; título literal, «Explotación» no encaja) · Registros y documentos (QR, facturas, informe municipal) · Inteligencia artificial · Preferencias (idioma) · Datos (copia) · Aplicación (actualizaciones, acerca de). **Mapa**: lupa «Buscar un lugar» (`buscarLugarEnMapa` del core, zoom 17) y botón Satélite/Callejero arriba a la derecha (Esri World Imagery, con atribución). La navegación (mapa + menú «Más») no cambia.
+
 ## Hard limits
 
 - **No recomendar productos fitosanitarios concretos por marca**. En catálogo van **sustancias activas** + **tipos de poda** (heredado de viticultura/apícola).

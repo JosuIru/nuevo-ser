@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show cargarIdiomaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'pantallas/pantalla_mapa.dart';
@@ -10,6 +11,8 @@ Future<void> main() async {
   // símbolos del locale no están cargados — la lista de facturas
   // reventaba al renderizar el primer item tras emitir una.
   WidgetsFlutterBinding.ensureInitialized();
+  // Idioma elegido en Ajustes la última vez (si no, castellano).
+  await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
   runApp(const SoleraArboladoUrbanoApp());
 }

@@ -12,7 +12,6 @@ import '../modelos/inspeccion.dart';
 import '../modelos/poda.dart';
 import '../modelos/tecnico.dart';
 import '../modelos/tratamiento.dart';
-import '../utiles/numeros_formulario.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 /// Tipo de evento que crea esta pantalla. 4 tipos: arbolado urbano no
@@ -202,7 +201,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           fechaMs: fechaMs,
           tipoPodaId: _resolverIdTipoPoda(_controladorTipoPoda.text),
           volumenRestosM3:
-              medidaDesdeTexto(_controladorVolumenRestos.text),
+              leerNumero(_controladorVolumenRestos.text),
           motivo: _controladorMotivoPoda.text.trim(),
           rutasFotosAntesJson: GestorFotos.codificar(_rutasFotosAntes),
           rutasFotosDespuesJson: GestorFotos.codificar(_rutasFotosDespues),
@@ -388,7 +387,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorVolumenRestos,
-            validator: validarMedidaOpcional,
+            validator: validarNumeroOpcional,
             decoration: InputDecoration(
               labelText: 'Volumen estimado de restos (m³)',
               border: OutlineInputBorder(),

@@ -7,11 +7,12 @@ import 'pantalla_backup.dart';
 import 'pantalla_clave_anthropic.dart';
 import 'pantalla_facturas.dart';
 import 'pantalla_generar_qr.dart';
+import 'pantalla_informe_municipal.dart';
 import 'pantalla_tecnicos.dart';
 
-/// Pantalla agregadora de ajustes. Reúne todos los puntos de
-/// configuración (ayuntamiento, técnicos, IA, backup, acerca) en una
-/// lista limpia.
+/// Pantalla agregadora de ajustes, por secciones como el resto de la
+/// suite: Ayuntamiento (titular y técnicos) · Registros y documentos ·
+/// Inteligencia artificial · Preferencias · Datos · Aplicación.
 class PantallaAjustes extends StatelessWidget {
   PantallaAjustes({super.key});
 
@@ -21,6 +22,8 @@ class PantallaAjustes extends StatelessWidget {
       appBar: AppBar(title: Text(SoleraL10n.t('ajustes'))),
       body: ListView(
         children: [
+          // «Explotación» no encaja en un ayuntamiento: título literal.
+          CabeceraSeccionAjustes('Ayuntamiento'),
           ListTile(
             leading: Icon(Icons.account_balance),
             title: Text('Ayuntamiento'),
@@ -37,14 +40,7 @@ class PantallaAjustes extends StatelessWidget {
               MaterialPageRoute(builder: (_) => PantallaTecnicos()),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.auto_awesome),
-            title: Text('Identificación con IA'),
-            subtitle: Text('Configura tu clave Anthropic (Claude vision)'),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => PantallaClaveAnthropic()),
-            ),
-          ),
+          CabeceraSeccionAjustes(SoleraL10n.t('seccion_registros')),
           ListTile(
             leading: Icon(Icons.qr_code_2),
             title: Text('Generar QR'),
@@ -62,6 +58,29 @@ class PantallaAjustes extends StatelessWidget {
             ),
           ),
           ListTile(
+            leading: Icon(Icons.description),
+            title: Text('Informe municipal'),
+            subtitle: Text('Actuaciones de una campaña en PDF'),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => PantallaInformeMunicipal()),
+            ),
+          ),
+          CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
+          ListTile(
+            leading: Icon(Icons.auto_awesome),
+            title: Text(SoleraL10n.t('identificacion_con_ia')),
+            subtitle: Text('Configura tu clave Anthropic (Claude vision)'),
+            onTap: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => PantallaClaveAnthropic()),
+            ),
+          ),
+          CabeceraSeccionAjustes(SoleraL10n.t('seccion_preferencias')),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: SelectorIdioma(),
+          ),
+          CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
+          ListTile(
             leading: Icon(Icons.backup),
             title: Text('Backup y restauración'),
             subtitle: Text('Empaqueta BD + fotos como zip'),
@@ -69,26 +88,10 @@ class PantallaAjustes extends StatelessWidget {
               MaterialPageRoute(builder: (_) => PantallaBackup()),
             ),
           ),
-          Card(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Idioma / Language',
-                  style: Theme.of(context).textTheme.titleSmall
-                      ?.copyWith(fontWeight: FontWeight.bold)),
-              SizedBox(height: 8),
-              SelectorIdioma(),
-            ],
-          ),
-        ),
-      ),
-      Divider(height: 1),
+          CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),
           ListTile(
             leading: Icon(Icons.system_update),
-            title: Text('Actualizaciones'),
+            title: Text(SoleraL10n.t('comprobar_actualizaciones')),
             subtitle: Text('Versión instalada y última publicada'),
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
@@ -102,7 +105,7 @@ class PantallaAjustes extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.info_outline),
-            title: Text('Acerca de'),
+            title: Text(SoleraL10n.t('acerca_de')),
             subtitle: Text('Versión, créditos, compromisos legales'),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaAcerca()),

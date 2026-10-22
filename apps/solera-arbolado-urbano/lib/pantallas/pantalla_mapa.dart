@@ -21,6 +21,13 @@ import 'pantalla_nuevo_arbol.dart';
 
 enum _AccionMenu { hoy, guia, informeMunicipal, ajustes }
 
+/// Capa de fondo del mapa: callejero (OSM) o foto aérea (Esri).
+enum _CapaMapa { callejero, satelite }
+
+const _urlCapaCallejero = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+const _urlCapaSatelite =
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+
 /// Pantalla principal de Solera Arbolado Urbano — el operario abre la
 /// app y ve los árboles del municipio sobre el mapa filtrados por zona.
 /// Tap en un árbol → ficha. FAB principal "Nuevo árbol" con captura
@@ -42,6 +49,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   LatLng _centroActual = LatLng(40.4, -3.7);
   double _zoomActual = 6;
   bool _centroResuelto = false;
+  _CapaMapa _capaMapa = _CapaMapa.callejero;
 
   @override
   void initState() {
@@ -76,6 +84,29 @@ class _PantallaMapaState extends State<PantallaMapa> {
         _controlador.move(centro, zoom);
       } catch (_) {}
     }
+  }
+
+  void _alternarCapaMapa() {
+    setState(() {
+      _capaMapa = _capaMapa == _CapaMapa.callejero
+          ? _CapaMapa.satelite
+          : _CapaMapa.callejero;
+    });
+  }
+
+  /// Busca una calle, plaza o dirección y lleva el mapa allí (zoom de
+  /// ciudad: se ven los árboles uno a uno).
+  Future<void> _alBuscarLugar() async {
+    final lugar = await buscarLugarEnMapa(
+      context,
+      identificacion: 'Solera Arbolado Urbano',
+    );
+    if (lugar == null || !mounted) return;
+    // Movemos siempre: el GPS inicial ya no debe pisar lo buscado.
+    _centroResuelto = true;
+    _centroActual = lugar;
+    _zoomActual = 17;
+    _controlador.move(lugar, 17);
   }
 
   Future<void> _cargarTodo() async {
@@ -269,6 +300,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
         title: Text('Solera Arbolado Urbano'),
         actions: [
           IconButton(
+            icon: Icon(Icons.search),
+            tooltip: 'Buscar un lugar',
+            onPressed: _alBuscarLugar,
+          ),
+          IconButton(
             icon: Icon(Icons.qr_code_scanner),
             tooltip: 'Buscar por QR',
             onPressed: _alEscanearQr,
@@ -367,7 +403,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   ),
                   children: [
                     TileLayer(
-                      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                      urlTemplate: _capaMapa == _CapaMapa.callejero
+                          ? _urlCapaCallejero
+                          : _urlCapaSatelite,
                       userAgentPackageName: 'com.coleccionnuevoser.solera_arbolado_urbano',
                       maxNativeZoom: 19,
                     ),
@@ -420,6 +458,56 @@ class _PantallaMapaState extends State<PantallaMapa> {
                     ),
                   ),
                 ),
+                // Selector de capa: callejero ↔ satélite, como en Solera.
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Material(
+                    elevation: 2,
+                    borderRadius: BorderRadius.circular(20),
+                    color: Theme.of(context).colorScheme.surface,
+                    child: InkWell(
+                      onTap: _alternarCapaMapa,
+                      borderRadius: BorderRadius.circular(20),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              _capaMapa == _CapaMapa.callejero
+                                  ? Icons.satellite_alt
+                                  : Icons.map_outlined,
+                              size: 16,
+                            ),
+                            SizedBox(width: 6),
+                            Text(_capaMapa == _CapaMapa.callejero
+                                ? 'Satélite'
+                                : 'Callejero'),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                if (_capaMapa == _CapaMapa.satelite)
+                  Positioned(
+                    left: 8,
+                    bottom: 8,
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.45),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        child: Text(
+                          'Esri satélite',
+                          style: TextStyle(color: Colors.white, fontSize: 11),
+                        ),
+                      ),
+                    ),
+                  ),
               ],
             ),
           ),

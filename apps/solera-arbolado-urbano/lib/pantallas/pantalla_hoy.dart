@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_calendario_arbolado.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 /// Pantalla de escaneo QR para identificar la chapa municipal del

@@ -89,8 +89,7 @@ class _PantallaInventarioState extends State<PantallaInventario> {
                     // Por si llega un grupo que esta versión no conoce.
                     ..._bienes
                         .map((bien) => bien.grupo)
-                        .where((codigo) =>
-                            buscarOpcion(grupos, codigo) == null)
+                        .where((codigo) => buscarOpcion(grupos, codigo) == null)
                         .toSet(),
                   ])
                     if (_bienes.any((bien) => bien.grupo == grupo)) ...[
@@ -116,8 +115,7 @@ class _PantallaInventarioState extends State<PantallaInventario> {
                             trailing: Text(
                                 '${eurosDesdeCentimos(bien.totalCentimos)} €'),
                             onTap: _gestiona ? () => _editar(bien) : null,
-                            onLongPress:
-                                _gestiona ? () => _borrar(bien) : null,
+                            onLongPress: _gestiona ? () => _borrar(bien) : null,
                           ),
                         ),
                     ],
@@ -140,7 +138,10 @@ String resumenBien(AppLocalizations textos, BienAmortizable bien) =>
 /// 2 → «2»; 2,5 → «2,5».
 String numeroLegible(double numero) => numero == numero.roundToDouble()
     ? numero.toStringAsFixed(0)
-    : numero.toStringAsFixed(2).replaceAll(RegExp(r'0+$'), '').replaceAll('.', ',');
+    : numero
+        .toStringAsFixed(2)
+        .replaceAll(RegExp(r'0+$'), '')
+        .replaceAll('.', ',');
 
 /// Alta o edición de un bien del inventario.
 class FormularioBienAmortizable extends StatefulWidget {
@@ -160,8 +161,8 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
       text: widget.bien == null
           ? ''
           : eurosDesdeCentimos(widget.bien!.precioUnidadCentimos));
-  late final _unidades = TextEditingController(
-      text: numeroLegible(widget.bien?.unidades ?? 1));
+  late final _unidades =
+      TextEditingController(text: numeroLegible(widget.bien?.unidades ?? 1));
   late final _vidaUtil =
       TextEditingController(text: '${widget.bien?.vidaUtilMeses ?? 72}');
   late final _notas = TextEditingController(text: widget.bien?.notas ?? '');
@@ -172,7 +173,13 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
 
   @override
   void dispose() {
-    for (final controlador in [_nombre, _precio, _unidades, _vidaUtil, _notas]) {
+    for (final controlador in [
+      _nombre,
+      _precio,
+      _unidades,
+      _vidaUtil,
+      _notas
+    ]) {
       controlador.dispose();
     }
     super.dispose();
@@ -224,7 +231,8 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
     final vistaPrevia = _bienEscrito;
     return Scaffold(
       appBar: AppBar(
-          title: Text(widget.bien == null ? textos.invNuevo : textos.invEditar)),
+          title:
+              Text(widget.bien == null ? textos.invNuevo : textos.invEditar)),
       body: CuerpoResponsivo(
         child: ListView(
           padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
@@ -237,16 +245,17 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
               isExpanded: true,
-              initialValue: buscarOpcion(
-                          partidasDe(categoriaAmortizacion), _grupo) ==
-                      null
-                  ? grupoBienPorDefecto
-                  : _grupo,
+              initialValue:
+                  buscarOpcion(partidasDe(categoriaAmortizacion), _grupo) ==
+                          null
+                      ? grupoBienPorDefecto
+                      : _grupo,
               decoration: InputDecoration(labelText: textos.invGrupo),
               items: [
                 for (final opcion in partidasDe(categoriaAmortizacion))
                   DropdownMenuItem(
-                      value: opcion.codigo, child: Text(opcion.etiqueta(idioma))),
+                      value: opcion.codigo,
+                      child: Text(opcion.etiqueta(idioma))),
               ],
               onChanged: (valor) => setState(() => _grupo = valor ?? _grupo),
             ),
@@ -258,7 +267,8 @@ class _FormularioBienAmortizableState extends State<FormularioBienAmortizable> {
                   : _especie,
               decoration: InputDecoration(labelText: textos.invEspecie),
               items: [
-                DropdownMenuItem(value: '', child: Text(textos.invEspecieComun)),
+                DropdownMenuItem(
+                    value: '', child: Text(textos.invEspecieComun)),
                 for (final especie in especiesGanado)
                   DropdownMenuItem(
                       value: especie.codigo,

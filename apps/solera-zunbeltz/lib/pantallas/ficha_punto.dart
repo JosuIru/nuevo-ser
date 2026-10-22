@@ -104,9 +104,10 @@ class _FichaPuntoState extends State<FichaPunto> {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
     final punto = widget.punto;
-    final tipo = buscarOpcion(tiposPunto, punto.tipo)?.etiqueta(idioma) ?? punto.tipo;
-    final estado =
-        buscarOpcion(estadosPunto, punto.estado)?.etiqueta(idioma) ?? punto.estado;
+    final tipo =
+        buscarOpcion(tiposPunto, punto.tipo)?.etiqueta(idioma) ?? punto.tipo;
+    final estado = buscarOpcion(estadosPunto, punto.estado)?.etiqueta(idioma) ??
+        punto.estado;
     final titulo = punto.nombre.isEmpty ? tipo : punto.nombre;
     final tieneCoords = punto.latitud != null && punto.longitud != null;
 

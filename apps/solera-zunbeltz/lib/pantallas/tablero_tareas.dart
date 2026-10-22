@@ -62,8 +62,14 @@ class _TableroTareasState extends State<TableroTareas> {
     setState(() {
       _fincas = fincas;
       _tareas = tareas;
-      _puntosPorId = {for (final p in puntos) if (p.id != null) p.id!: p};
-      _zonasPorId = {for (final z in zonas) if (z.id != null) z.id!: z};
+      _puntosPorId = {
+        for (final p in puntos)
+          if (p.id != null) p.id!: p
+      };
+      _zonasPorId = {
+        for (final z in zonas)
+          if (z.id != null) z.id!: z
+      };
       _cargando = false;
     });
   }
@@ -177,8 +183,7 @@ class _TableroTareasState extends State<TableroTareas> {
                     height: 18,
                     child: CircularProgressIndicator(strokeWidth: 2))
                 : const Icon(Icons.picture_as_pdf_outlined),
-            onPressed:
-                (_generandoPdf || tareas.isEmpty) ? null : _generarParte,
+            onPressed: (_generandoPdf || tareas.isEmpty) ? null : _generarParte,
           ),
         ],
       ),
@@ -203,7 +208,8 @@ class _TableroTareasState extends State<TableroTareas> {
                       child: FilterChip(
                         label: Text(textos.tableroMisTareas),
                         selected: _soloMias,
-                        onSelected: (valor) => setState(() => _soloMias = valor),
+                        onSelected: (valor) =>
+                            setState(() => _soloMias = valor),
                       ),
                     ),
                   ),
@@ -212,7 +218,8 @@ class _TableroTareasState extends State<TableroTareas> {
                   child: tareas.isEmpty
                       ? Center(child: Text(textos.tableroSinTareas))
                       : ListView(
-                          padding: rellenoSobreBarraSistema(context, const EdgeInsets.symmetric(vertical: 8)),
+                          padding: rellenoSobreBarraSistema(
+                              context, const EdgeInsets.symmetric(vertical: 8)),
                           children: [
                             for (final tarea in tareas)
                               TileTarea(

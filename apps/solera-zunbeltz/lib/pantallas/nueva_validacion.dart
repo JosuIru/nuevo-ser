@@ -32,6 +32,7 @@ class _NuevaValidacionState extends State<NuevaValidacion> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _descripcion = TextEditingController();
   final _notas = TextEditingController();
@@ -106,11 +107,11 @@ class _NuevaValidacionState extends State<NuevaValidacion> {
               children: [
                 for (var i = 1; i <= 5; i++)
                   IconButton(
-                    icon: Icon(
-                        i <= _valoracion ? Icons.star : Icons.star_border),
+                    icon:
+                        Icon(i <= _valoracion ? Icons.star : Icons.star_border),
                     color: colorSenalZunbeltz,
-                    onPressed: () => setState(
-                        () => _valoracion = _valoracion == i ? 0 : i),
+                    onPressed: () =>
+                        setState(() => _valoracion = _valoracion == i ? 0 : i),
                   ),
                 if (_valoracion == 0)
                   Text(textos.valSinValorar,

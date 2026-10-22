@@ -37,6 +37,7 @@ class _NuevoAvisoState extends State<NuevoAviso> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _titulo = TextEditingController();
   final _descripcion = TextEditingController();

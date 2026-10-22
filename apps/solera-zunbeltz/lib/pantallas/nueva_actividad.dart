@@ -39,6 +39,7 @@ class _NuevaActividadState extends State<NuevaActividad> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _cantidad = TextEditingController();
   final _lote = TextEditingController();
@@ -119,7 +120,8 @@ class _NuevaActividadState extends State<NuevaActividad> {
             const SizedBox(height: 12),
             TextField(
               controller: _cantidad,
-              keyboardType: const TextInputType.numberWithOptions(decimal: true),
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
                 labelText: textos.actCantidad,
                 suffixText: unidad,

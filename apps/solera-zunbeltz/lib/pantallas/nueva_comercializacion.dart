@@ -32,6 +32,7 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _producto = TextEditingController();
   final _cantidad = TextEditingController();
@@ -53,7 +54,6 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
     super.dispose();
   }
 
-
   Future<void> _elegirFecha() async {
     final ahora = DateTime.now();
     final d = await showDatePicker(
@@ -69,20 +69,18 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
     FocusManager.instance.primaryFocus?.unfocus();
     final textos = AppLocalizations.of(context);
     if (_producto.text.trim().isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(textos.comProductoObligatorio)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.comProductoObligatorio)));
       return;
     }
     // Vacío vale 0; escrito y que no se entienda (o negativo), se avisa.
-    final cantidad =
-        _cantidad.text.trim().isEmpty
-            ? 0.0
-            : leerNumero(_cantidad.text, nullSiAmbiguo: true);
+    final cantidad = _cantidad.text.trim().isEmpty
+        ? 0.0
+        : leerNumero(_cantidad.text, nullSiAmbiguo: true);
     final precioCent =
         _precio.text.trim().isEmpty ? 0 : centimosDesdeTexto(_precio.text);
-    final ingresoEscrito = _ingreso.text.trim().isEmpty
-        ? null
-        : centimosDesdeTexto(_ingreso.text);
+    final ingresoEscrito =
+        _ingreso.text.trim().isEmpty ? null : centimosDesdeTexto(_ingreso.text);
     if (cantidad == null ||
         precioCent == null ||
         cantidad < 0 ||
@@ -96,8 +94,8 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
     // Ingreso: el indicado, o cantidad × precio si se deja vacío.
     final ingresoCent = ingresoEscrito ?? (cantidad * precioCent).round();
     if (ingresoCent <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(textos.apuImporteObligatorio)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.apuImporteObligatorio)));
       return;
     }
     await _bd.guardarComercializacion(RegistroComercializacion(
@@ -151,8 +149,7 @@ class _NuevaComercializacionState extends State<NuevaComercializacion> {
                     controller: _cantidad,
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
-                    decoration:
-                        InputDecoration(labelText: textos.comCantidad),
+                    decoration: InputDecoration(labelText: textos.comCantidad),
                   ),
                 ),
                 const SizedBox(width: 12),

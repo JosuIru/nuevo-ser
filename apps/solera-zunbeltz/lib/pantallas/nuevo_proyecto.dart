@@ -36,6 +36,7 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _nombre = TextEditingController();
   final _persona = TextEditingController();
@@ -169,9 +170,10 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
                 onChanged: (uid) => setState(() {
                   _personaUid = uid ?? '';
                   _persona.text = [
-                    for (final persona in personasEspacio.value)
-                      if (persona.uid == _personaUid) persona.nombre,
-                  ].firstOrNull ?? '';
+                        for (final persona in personasEspacio.value)
+                          if (persona.uid == _personaUid) persona.nombre,
+                      ].firstOrNull ??
+                      '';
                 }),
               ),
             const SizedBox(height: 12),

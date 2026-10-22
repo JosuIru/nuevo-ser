@@ -85,8 +85,7 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
     });
   }
 
-  double _decimal(TextEditingController campo) =>
-      leerNumero(campo.text) ?? 0;
+  double _decimal(TextEditingController campo) => leerNumero(campo.text) ?? 0;
 
   // Euros a la española: «1.500» son mil quinientos, no 1,50.
   int _centimos(TextEditingController campo) =>

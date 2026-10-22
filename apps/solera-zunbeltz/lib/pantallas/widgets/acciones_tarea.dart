@@ -38,7 +38,7 @@ Future<bool> mostrarAccionesTarea(
   }
 
   final eleccion = await showModalBottomSheet<Object>(
-      useSafeArea: true,
+    useSafeArea: true,
     context: context,
     showDragHandle: true,
     builder: (contextoHoja) => SafeArea(
@@ -58,7 +58,8 @@ Future<bool> mostrarAccionesTarea(
             ),
             for (final estado in estadosTarea)
               ListTile(
-                leading: Icon(Icons.circle, color: colorEstadoTarea(estado.codigo)),
+                leading:
+                    Icon(Icons.circle, color: colorEstadoTarea(estado.codigo)),
                 title: Text(estado.etiqueta(idioma)),
                 trailing: estado.codigo == tarea.estado
                     ? const Icon(Icons.check)

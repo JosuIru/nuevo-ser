@@ -43,6 +43,7 @@ class _NuevoApunteState extends State<NuevoApunte> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _concepto = TextEditingController();
   final _partida = TextEditingController();
@@ -121,8 +122,8 @@ class _NuevoApunteState extends State<NuevoApunte> {
     final textos = AppLocalizations.of(context);
     final importeCentimos = centimosDesdeTexto(_importe.text);
     if (importeCentimos == null || importeCentimos <= 0) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(textos.apuImporteObligatorio)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textos.apuImporteObligatorio)));
       return;
     }
     await _bd.guardarApunte(ApunteEconomico(

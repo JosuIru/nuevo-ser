@@ -96,7 +96,8 @@ class _Chip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fondo = color ?? Theme.of(context).colorScheme.surfaceContainerHighest;
+    final fondo =
+        color ?? Theme.of(context).colorScheme.surfaceContainerHighest;
     final claro = color != null;
     final colorTexto = claro ? Colors.white : null;
     return Container(

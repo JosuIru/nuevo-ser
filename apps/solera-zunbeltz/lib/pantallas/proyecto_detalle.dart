@@ -94,10 +94,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
           await _bd.listarValidaciones(proyectoId: _proyectoId);
       final apuntes = await _bd.listarApuntes(
           proyectoId: _proyectoId, desdeMs: desde, hastaMs: hasta);
-      final cuotasInventario = await _bd.amortizacionesDelInventario(
-          _proyecto,
-          desdeMs: desde,
-          hastaMs: hasta);
+      final cuotasInventario = await _bd.amortizacionesDelInventario(_proyecto,
+          desdeMs: desde, hastaMs: hasta);
       final desglose =
           DesgloseGastos.calcular([...apuntes, ...cuotasInventario]);
       if (!mounted) return;
@@ -820,8 +818,7 @@ class _ListaApuntes extends StatelessWidget {
                       a.tipo)),
           subtitle: Text([
             f.format(DateTime.fromMillisecondsSinceEpoch(a.fechaMs)),
-            buscarOpcion(categoriasDe(a.tipo), a.categoria)
-                    ?.etiqueta(idioma) ??
+            buscarOpcion(categoriasDe(a.tipo), a.categoria)?.etiqueta(idioma) ??
                 a.categoria,
             if (a.partida.isNotEmpty && a.concepto.isNotEmpty)
               etiquetaPartida(a.categoria, a.partida, idioma),

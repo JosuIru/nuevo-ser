@@ -45,6 +45,7 @@ class _NuevoPuntoState extends State<NuevoPunto> {
       if (mounted) setState(() => _guardando = false);
     }
   }
+
   final _bd = BaseDatosSoleraZunbeltz();
   final _nombre = TextEditingController();
   final _notas = TextEditingController();
@@ -92,8 +93,8 @@ class _NuevoPuntoState extends State<NuevoPunto> {
             latitud.abs() > 90 ||
             longitud.abs() > 180)) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-              AppLocalizations.of(context).puntoCoordenadasNoValidas)));
+          content:
+              Text(AppLocalizations.of(context).puntoCoordenadasNoValidas)));
       return;
     }
     final punto = PuntoInfraestructura(
@@ -121,7 +122,8 @@ class _NuevoPuntoState extends State<NuevoPunto> {
     final idioma = Localizations.localeOf(context).languageCode;
     return Scaffold(
       appBar: AppBar(title: Text(textos.puntoNuevoTitulo)),
-      body: CuerpoResponsivo(child: ListView(
+      body: CuerpoResponsivo(
+          child: ListView(
         padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
         children: [
           DropdownButtonFormField<int>(
@@ -139,7 +141,8 @@ class _NuevoPuntoState extends State<NuevoPunto> {
             decoration: InputDecoration(labelText: textos.puntoTipo),
             items: [
               for (final t in tiposPunto)
-                DropdownMenuItem(value: t.codigo, child: Text(t.etiqueta(idioma))),
+                DropdownMenuItem(
+                    value: t.codigo, child: Text(t.etiqueta(idioma))),
             ],
             onChanged: (v) => setState(() => _tipo = v ?? _tipo),
           ),
@@ -154,7 +157,8 @@ class _NuevoPuntoState extends State<NuevoPunto> {
             decoration: InputDecoration(labelText: textos.puntoEstado),
             items: [
               for (final e in estadosPunto)
-                DropdownMenuItem(value: e.codigo, child: Text(e.etiqueta(idioma))),
+                DropdownMenuItem(
+                    value: e.codigo, child: Text(e.etiqueta(idioma))),
             ],
             onChanged: (v) => setState(() => _estado = v ?? _estado),
           ),
@@ -164,8 +168,8 @@ class _NuevoPuntoState extends State<NuevoPunto> {
               Expanded(
                 child: TextField(
                   controller: _latitud,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true, signed: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                      decimal: true, signed: true),
                   decoration: InputDecoration(labelText: textos.puntoLatitud),
                 ),
               ),
@@ -173,8 +177,8 @@ class _NuevoPuntoState extends State<NuevoPunto> {
               Expanded(
                 child: TextField(
                   controller: _longitud,
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true, signed: true),
+                  keyboardType: const TextInputType.numberWithOptions(
+                      decimal: true, signed: true),
                   decoration: InputDecoration(labelText: textos.puntoLongitud),
                 ),
               ),
@@ -187,7 +191,8 @@ class _NuevoPuntoState extends State<NuevoPunto> {
             decoration: InputDecoration(labelText: textos.puntoNotas),
           ),
           const SizedBox(height: 16),
-          Text(textos.puntoFotos, style: Theme.of(context).textTheme.labelLarge),
+          Text(textos.puntoFotos,
+              style: Theme.of(context).textTheme.labelLarge),
           const SizedBox(height: 8),
           SelectorFotosApp(
             rutas: _fotos,

@@ -93,8 +93,7 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
           if (p.id != null)
             (
               proyecto: p,
-              rentabilidad:
-                  _rentabilidad[p.id!] ?? const RentabilidadProyecto()
+              rentabilidad: _rentabilidad[p.id!] ?? const RentabilidadProyecto()
             ),
       ];
       final documento = await generarComparativaProyectosPdf(
@@ -124,8 +123,7 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
                     height: 18,
                     child: CircularProgressIndicator(strokeWidth: 2))
                 : const Icon(Icons.bar_chart_outlined),
-            onPressed:
-                (_generando || _proyectos.isEmpty) ? null : _comparativa,
+            onPressed: (_generando || _proyectos.isEmpty) ? null : _comparativa,
           ),
         ],
       ),
@@ -150,7 +148,8 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
                     for (final p in _proyectos)
                       _TarjetaProyecto(
                         proyecto: p,
-                        rentabilidad: p.id == null ? null : _rentabilidad[p.id!],
+                        rentabilidad:
+                            p.id == null ? null : _rentabilidad[p.id!],
                         onTap: () => _abrir(p),
                       ),
                   ],
@@ -185,7 +184,8 @@ class _TarjetaProyecto extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.w600)),
         subtitle: Text([
           if (subt.isNotEmpty) subt,
-          if (proyecto.cerrado) AppLocalizations.of(context).proyectoCerradoEtiqueta,
+          if (proyecto.cerrado)
+            AppLocalizations.of(context).proyectoCerradoEtiqueta,
         ].join(' · ')),
         trailing: r == null
             ? const Icon(Icons.chevron_right)

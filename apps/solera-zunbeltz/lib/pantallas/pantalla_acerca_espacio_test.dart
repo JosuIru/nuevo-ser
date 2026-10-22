@@ -17,8 +17,8 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
     _Enlace('Mancomunidad de Andía',
         'https://andiamank.com/proyecto/espacio-test-agrario-zunbeltz/'),
     _Enlace('zunbeltz.com', 'https://zunbeltz.com/'),
-    _Enlace(
-        'Red de Espacios Test Agrarios (RETA)', 'https://espaciostestagrarios.org/'),
+    _Enlace('Red de Espacios Test Agrarios (RETA)',
+        'https://espaciostestagrarios.org/'),
   ];
 
   Future<void> _abrir(String url) async {

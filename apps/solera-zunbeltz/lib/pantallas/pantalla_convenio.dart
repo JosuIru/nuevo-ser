@@ -505,14 +505,14 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
             '${uso.imputacionPorcentaje}',
           )),
           trailing: Text(_euros(cuota)),
-          onLongPress: !politicaEspacioActual.puedeEditarInventario ||
-                  uso.id == null
-              ? null
-              : () async {
-                  if (!await confirmarBorrado(context)) return;
-                  await _bd.borrarUsoBien(uso.id!);
-                  await _cargar();
-                },
+          onLongPress:
+              !politicaEspacioActual.puedeEditarInventario || uso.id == null
+                  ? null
+                  : () async {
+                      if (!await confirmarBorrado(context)) return;
+                      await _bd.borrarUsoBien(uso.id!);
+                      await _cargar();
+                    },
         ),
       ));
     }
@@ -520,8 +520,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
       Text(textos.amortIntro, style: Theme.of(context).textTheme.bodyMedium),
       const SizedBox(height: 8),
       if (mesesDelProyecto(_proyecto) > 0)
-        Text(textos.amortMesesDelTest(
-            numeroLegible(mesesDelProyecto(_proyecto)))),
+        Text(textos
+            .amortMesesDelTest(numeroLegible(mesesDelProyecto(_proyecto)))),
       if (sinFechas)
         Padding(
           padding: const EdgeInsets.only(top: 8),
@@ -554,12 +554,12 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
   Future<void> _nuevoUsoBien() async {
     final textos = AppLocalizations.of(context);
     // Primero lo de la especie del proyecto, luego lo común, luego el resto.
-    int orden(BienAmortizable bien) => _proyecto.especie.isNotEmpty &&
-            bien.especie == _proyecto.especie
-        ? 0
-        : bien.especie.isEmpty
-            ? 1
-            : 2;
+    int orden(BienAmortizable bien) =>
+        _proyecto.especie.isNotEmpty && bien.especie == _proyecto.especie
+            ? 0
+            : bien.especie.isEmpty
+                ? 1
+                : 2;
     final bienes = _bienesPorId.values.toList()
       ..sort((a, b) {
         final porEspecie = orden(a).compareTo(orden(b));

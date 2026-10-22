@@ -47,9 +47,9 @@ Future<EleccionPlantilla?> elegirPlantillaTarea(BuildContext context,
       : plantillasTarea.where((p) => p.encajaCon(tipoPunto)).toList();
 
   Widget fila(BuildContext contextoHoja, PlantillaTarea plantilla) {
-    final tipo = buscarOpcion(tiposPlantillaTarea, plantilla.tipo)
-            ?.etiqueta(idioma) ??
-        plantilla.tipo;
+    final tipo =
+        buscarOpcion(tiposPlantillaTarea, plantilla.tipo)?.etiqueta(idioma) ??
+            plantilla.tipo;
     final periodicidad = plantilla.recurrenciaDias == null
         ? tipo
         : '$tipo · ${etiquetaRecurrencia(plantilla.recurrenciaDias, idioma)}';

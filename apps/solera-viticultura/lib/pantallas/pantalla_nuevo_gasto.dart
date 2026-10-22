@@ -7,7 +7,6 @@ import '../modelos/apunte_gasto.dart';
 import '../modelos/configuracion_fiscal.dart';
 import '../modelos/tercero.dart';
 import '../modelos/vinedo.dart';
-import '../utiles/validadores_numero.dart';
 
 /// Formulario de apunte de gasto del viticultor/bodega. Categorías
 /// específicas del ciclo vitivinícola (vendimia, embotellado,
@@ -258,14 +257,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 hintText: 'Sin IVA',
                 border: OutlineInputBorder(),
               ),
-              validator: (v) {
-                if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
-                if (validarImporteOpcional(v) != null) {
-                  return textoNumeroNoValido;
-                }
-                if (_parsearCentimos(v!) <= 0) return 'Mayor que cero';
-                return null;
-              },
+              validator: validarImporteObligatorio,
               onChanged: (_) {
                 _recalcular();
                 setState(() {});

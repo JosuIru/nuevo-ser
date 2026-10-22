@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../estado/clave_anthropic.dart';

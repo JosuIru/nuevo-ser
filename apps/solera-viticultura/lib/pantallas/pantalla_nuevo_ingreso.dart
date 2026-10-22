@@ -7,7 +7,6 @@ import '../modelos/apunte_ingreso.dart';
 import '../modelos/configuracion_fiscal.dart';
 import '../modelos/tercero.dart';
 import '../modelos/vinedo.dart';
-import '../utiles/validadores_numero.dart';
 
 /// Formulario de apunte de ingreso para viticultor/bodega. La
 /// diferencia clave vs agro es que aquí distinguimos venta de UVA
@@ -271,7 +270,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                   labelText: 'Cantidad (${_tipoActual.unidad})',
                   border: OutlineInputBorder(),
                 ),
-                validator: validarCantidadOpcional,
+                validator: (texto) => validarNumeroOpcional(texto, nullSiAmbiguo: true),
               ),
             if (_tipoActual.unidad.isNotEmpty) SizedBox(height: 12),
             TextFormField(
@@ -283,14 +282,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 hintText: 'Sin IVA ni compensación',
                 border: OutlineInputBorder(),
               ),
-              validator: (v) {
-                if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
-                if (validarImporteOpcional(v) != null) {
-                  return textoNumeroNoValido;
-                }
-                if (_parsearCentimos(v!) <= 0) return 'Mayor que cero';
-                return null;
-              },
+              validator: validarImporteObligatorio,
               onChanged: (_) {
                 _recalcular();
                 setState(() {});

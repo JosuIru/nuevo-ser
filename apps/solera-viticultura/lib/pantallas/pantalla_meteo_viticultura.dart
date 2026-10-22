@@ -7,7 +7,6 @@ import '../datos/base_datos.dart';
 import '../estado/vinedo_activo.dart';
 import '../modelos/cepa.dart';
 import '../modelos/vinedo.dart';
-import '../servicios/servicio_meteo_agro.dart';
 import '../utiles/permisos_gps.dart';
 
 class PantallaMeteoViticultura extends StatefulWidget {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Onboarding del primer arranque. 3 cards con beneficios + CTA

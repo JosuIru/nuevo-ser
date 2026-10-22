@@ -9,7 +9,6 @@ import '../modelos/cosecha.dart';
 import '../modelos/incidencia.dart';
 import '../modelos/observacion.dart';
 import '../modelos/tratamiento.dart';
-import '../utiles/validadores_numero.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 /// Tipo de evento que crea esta pantalla. Se elige antes de abrirla
@@ -295,7 +294,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             decoration: InputDecoration(labelText: 'Kilos', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
-            validator: validarCantidadOpcional,
+            validator: (texto) => validarNumeroOpcional(texto, nullSiAmbiguo: true),
           ),
           SizedBox(height: 12),
           TextFormField(
@@ -448,7 +447,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               ),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
-              validator: validarMedidaOpcional,
+              validator: validarNumeroOpcional,
             ),
           ],
         ];

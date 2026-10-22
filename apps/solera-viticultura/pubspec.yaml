@@ -1,7 +1,7 @@
 name: solera_viticultura
 description: "Solera Viticultura — gestor para bodegas pequeñas y medias. Censo de cepas, fenología BBCH, libro de tratamientos PAC, identificación IA de mildiu/oídio/botritis."
 publish_to: 'none'
-version: 0.1.3+4
+version: 0.1.4+5
 
 environment:
   sdk: ^3.5.0

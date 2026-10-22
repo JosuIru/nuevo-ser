@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:image_picker/image_picker.dart';
 import '../datos/configuracion.dart';
-import '../servicios/servicio_chat.dart';
 
 class PantallaChat extends StatefulWidget {
   final String? contextoInicial;

@@ -12,7 +12,6 @@ import 'package:share_plus/share_plus.dart';
 import '../datos/base_datos.dart';
 import '../modelos/factura.dart';
 import '../servicios/generador_factura_pdf.dart';
-import '../utiles/validadores_numero.dart';
 
 const _claveEmailBackup = 'solera_viticultura.facturas.email_backup';
 
@@ -365,19 +364,16 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
     final desc = _descCtrl.text.trim();
     if (desc.isEmpty) return;
     // Cantidad entera de unidades; precio en euros a la española («1.200,50»).
-    final cantidadLeida = _cantCtrl.text.trim().isEmpty
-        ? 1.0
-        : leerNumero(_cantCtrl.text, nullSiAmbiguo: true);
+    final cantidadLeida =
+        _cantCtrl.text.trim().isEmpty ? 1 : leerEntero(_cantCtrl.text);
     final precio = leerNumero(_precioCtrl.text, puntoDeMillares: true);
-    if (cantidadLeida == null ||
-        cantidadLeida != cantidadLeida.roundToDouble() ||
-        precio == null) {
+    if (cantidadLeida == null || precio == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(textoNumeroNoValido)),
+        SnackBar(content: Text(SoleraL10n.t('numero_no_valido'))),
       );
       return;
     }
-    final cant = cantidadLeida.round();
+    final cant = cantidadLeida;
     setState(() {
       _lineas.add({
         'descripcion': desc,

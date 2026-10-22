@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 (0.1.4)**: fuera duplicados con el core — `ServicioChat`, `AutoBackup`, `ServicioMeteoAgro` y los validadores numéricos (`validarImporteObligatorio`, `validarNumeroOpcional`, `leerEntero`; mensajes por `SoleraL10n`, rechazan negativos) vienen ya de `nuevo_ser_core`; borrados `servicios/{servicio_chat,auto_backup,servicio_meteo_agro}.dart` y `utiles/validadores_numero.dart`. Ajustes por secciones (`CabeceraSeccionAjustes`: Explotación · Registros y documentos —con Libro PAC, que sigue también en el menú del mapa— · Inteligencia artificial · Preferencias · Datos · Aplicación). El mapa tiene lupa «Buscar un lugar» (`buscarLugarEnMapa` del core, zoom 15).
+
 > **2026-10-22 (0.1.3)**: los tres PDF (factura, libro PAC, extracto económico) usan `temaPdfSolera()` del core (letra Archivo incrustada: Helvetica dejaba «€» y «—» en blanco). Los números de los formularios se leen a la española con `leerNumero`/`centimosDesdeTexto` del core (gasto, ingreso, evento, línea de factura) y avisan si no se entienden (`utiles/validadores_numero.dart`) en vez de guardar 0.
 
 ## Encuadre

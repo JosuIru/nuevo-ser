@@ -339,12 +339,27 @@ class _PantallaMapaState extends State<PantallaMapa> {
     return v?.nombre ?? 'Viñedo';
   }
 
+  /// Abre el buscador de lugares del core y lleva el mapa al elegido.
+  Future<void> _buscarLugar() async {
+    final lugarElegido = await buscarLugarEnMapa(
+      context,
+      identificacion: 'Solera Viticultura',
+    );
+    if (lugarElegido == null || !mounted) return;
+    _controlador.move(lugarElegido, 15);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Solera Viticultura'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Buscar un lugar',
+            onPressed: _buscarLugar,
+          ),
           PopupMenuButton<_AccionMenu>(
             tooltip: 'Más',
             onSelected: (a) async {

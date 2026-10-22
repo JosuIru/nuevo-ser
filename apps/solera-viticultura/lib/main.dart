@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import 'datos/base_datos.dart';
-import 'servicios/auto_backup.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_guia.dart';
 import 'pantallas/pantalla_hoy.dart';
@@ -22,6 +22,8 @@ final _autoBackupViticultura = AutoBackup(
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Idioma elegido en Ajustes la última vez (si no, castellano).
+  await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
   unawaited(_autoBackupViticultura.restaurarSiProcede());
   runApp(const SoleraViticulturaApp());

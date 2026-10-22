@@ -8,7 +8,6 @@ import '../modelos/cosecha.dart';
 import '../modelos/incidencia.dart';
 import '../modelos/observacion.dart';
 import '../modelos/tratamiento.dart';
-import '../utiles/numeros_formulario.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 enum TipoEventoNuevo { cosecha, observacion, incidencia, tratamiento }

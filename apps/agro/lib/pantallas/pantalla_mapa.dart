@@ -542,6 +542,17 @@ class _PantallaMapaState extends State<PantallaMapa> {
     }
   }
 
+  /// Busca un paraje, pueblo o dirección y lleva el mapa allí. El nuevo
+  /// centro se guarda solo, por `onPositionChanged`.
+  Future<void> _buscarLugar() async {
+    final lugarEncontrado = await buscarLugarEnMapa(
+      context,
+      identificacion: 'Solera (agro)',
+    );
+    if (lugarEncontrado == null || !mounted) return;
+    _controlador.move(lugarEncontrado, 15);
+  }
+
   LatLng _centroInicial() {
     if (_plantas.isNotEmpty) {
       return LatLng(_plantas.first.latitud, _plantas.first.longitud);
@@ -576,6 +587,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
           alCambiar: _cambiarFincaActiva,
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Buscar un lugar',
+            onPressed: _buscarLugar,
+          ),
           IconButton(
             icon: Icon(
               GrabadorTrack.instancia.grabando

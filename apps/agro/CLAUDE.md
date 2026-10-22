@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 — Ajustes por secciones, «Acerca de», buscador del mapa y duplicados al core (0.3.4+7)**. Ajustes se ordena como el resto de la suite con `CabeceraSeccionAjustes`: Explotación · Registros y documentos · Inteligencia artificial · Preferencias · Datos · Aplicación (fuera la tarjeta de versión escrita a mano y el marcador «Sincronización en la nube»). Nueva `pantalla_acerca.dart` (la versión va en `versionVisibleAgro`, a subir junto a la del pubspec: agro no depende de `package_info_plus`). El mapa tiene lupa (`buscarLugarEnMapa` del core, zoom 15). `ServicioMeteoAgro` y los validadores numéricos (`validarImporteObligatorio`, `validarNumeroOpcional`… y `numeroParaEditar`) vienen ahora del core: borrados `servicios/servicio_meteo_agro.dart` y `utiles/numeros_formulario.dart` (los avisos pasan a ir por SoleraL10n).
+
 > **2026-10-22 — PDF con letra incrustada y números a la española (0.3.3+6)**. Los cuatro PDF (campaña, extracto económico, cuaderno MAPA, factura) usan `temaPdfSolera()` del core (Archivo incrustada: con Helvetica «€» y «—» salían en blanco). Los importes, cantidades y superficies de los formularios (ingreso, gasto, factura, evento, SIGPAC) se leen con `leerNumero`/`centimosDesdeTexto` del core («1.200,50» ya no se guarda como 0) y los validadores avisan si no se entiende (`utiles/numeros_formulario.dart`).
 
 ## Encuadre

@@ -7,7 +7,6 @@ import '../datos/base_datos.dart';
 import '../estado/finca_activa.dart';
 import '../modelos/finca.dart';
 import '../modelos/planta.dart';
-import '../servicios/servicio_meteo_agro.dart';
 import '../utiles/permisos_gps.dart';
 
 class PantallaMeteoAgro extends StatefulWidget {

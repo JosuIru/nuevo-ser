@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../datos/base_datos.dart';
 import '../../estado/finca_activa.dart';
 import '../../modelos/finca.dart';
 import '../../modelos/planta.dart';
-import '../../servicios/servicio_meteo_agro.dart';
 import '../../utiles/permisos_gps.dart';
 import '../pantalla_meteo_agro.dart';
 

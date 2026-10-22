@@ -3,6 +3,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show cargarIdiomaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -16,6 +17,8 @@ import 'servicios/grabador_track.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Idioma elegido en Ajustes la última vez (si no, castellano).
+  await cargarIdiomaSolera();
   // En Linux/Windows/macOS sqflite no tiene plugin nativo y necesita el
   // adapter FFI. En Android el plugin nativo manda y este bloque es
   // no-op (no entra al if). Sin esto la BD lanza

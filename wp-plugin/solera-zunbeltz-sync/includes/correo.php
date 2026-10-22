@@ -96,9 +96,9 @@ function szs_avisar_por_correo_al_momento( array $entidad, ?array $existente, ar
 	$datos  = $entidad['datos'];
 	$titulo = szs_etiqueta_entidad( $entidad );
 	if ( 'aviso' === $entidad['tipo'] && 'alarma' === ( $datos['gravedad'] ?? '' ) ) {
-		$asunto = "Solera Zunbeltz: alarma — {$titulo}";
+		$asunto = "Larrea Zunbeltz: alarma — {$titulo}";
 	} elseif ( 'peticion' === $entidad['tipo'] && ! empty( $datos['urgente'] ) ) {
-		$asunto = "Solera Zunbeltz: petición urgente — {$titulo}";
+		$asunto = "Larrea Zunbeltz: petición urgente — {$titulo}";
 	} else {
 		return;
 	}

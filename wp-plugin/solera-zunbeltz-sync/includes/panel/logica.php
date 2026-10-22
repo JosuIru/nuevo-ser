@@ -320,7 +320,7 @@ function szs_resumen_correo_diario( array $tareas, array $peticiones, array $ala
 		$cuerpo[]        = "Peticiones de tarea pendientes:\n" . implode( "\n", array_map( static fn( $titulo ) => "  - {$titulo}", $peticiones ) );
 	}
 	return array(
-		'asunto' => 'Solera Zunbeltz: ' . implode( ', ', $partes_asunto ),
+		'asunto' => 'Larrea Zunbeltz: ' . implode( ', ', $partes_asunto ),
 		'cuerpo' => implode( "\n\n", $cuerpo ) . "\n",
 	);
 }

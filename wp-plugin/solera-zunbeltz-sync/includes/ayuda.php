@@ -150,9 +150,9 @@ function szs_manual_cuerpo_apartado( string $cuerpo, string $etiqueta_nota ): st
 function szs_rotulos_manual( string $idioma ): array {
 	if ( 'eu' === $idioma ) {
 		return array(
-			'titulo_pagina' => 'Solera Zunbeltz — Erabilera-eskuliburua',
+			'titulo_pagina' => 'Larrea Zunbeltz — Erabilera-eskuliburua',
 			'titulo'        => 'Erabilera-eskuliburua',
-			'version'       => 'Solera Zunbeltz · %s bertsioa',
+			'version'       => 'Larrea Zunbeltz · %s bertsioa',
 			'imprimir'      => 'Inprimatu / Gorde PDF gisa',
 			'otro_idioma'   => 'En castellano',
 			'indice'        => 'Edukia',
@@ -161,9 +161,9 @@ function szs_rotulos_manual( string $idioma ): array {
 		);
 	}
 	return array(
-		'titulo_pagina' => 'Solera Zunbeltz — Manual de uso',
+		'titulo_pagina' => 'Larrea Zunbeltz — Manual de uso',
 		'titulo'        => 'Manual de uso',
-		'version'       => 'Solera Zunbeltz · versión %s',
+		'version'       => 'Larrea Zunbeltz · versión %s',
 		'imprimir'      => 'Imprimir / Guardar PDF',
 		'otro_idioma'   => 'Euskaraz',
 		'indice'        => 'Contenido',

@@ -69,7 +69,7 @@ Para volver atrás, usa la flecha de arriba a la izquierda.',
 		'ayudaWidgetT' => 'El widget de la pantalla de inicio (Android)',
 		'ayudaWidgetB' => 'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.
 1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».
-2. Busca «Solera Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.
+2. Busca «Larrea Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.
 3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.
 » Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.
 » Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.
@@ -79,7 +79,7 @@ Para volver atrás, usa la flecha de arriba a la izquierda.',
 1. También puedes mirarlo en Ajustes → Actualizaciones: ves la versión instalada, la última publicada y qué trae. «Buscar ahora» lo vuelve a comprobar.
 2. Pulsa «Descargar e instalar» y confirma en el instalador del móvil.
 3. Vuelve a abrir la app.
-» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Solera Zunbeltz. Tus datos se conservan al actualizar.',
+» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Larrea Zunbeltz. Tus datos se conservan al actualizar.',
 		'ayudaGrupoFincas' => 'Fincas y tareas',
 		'ayudaFincasT' => 'Marcar un punto en el mapa',
 		'ayudaFincasB' => 'Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…
@@ -255,7 +255,7 @@ En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:
 • Cuando llega una alarma de otra persona.
 • A coordinación: cuando hay peticiones nuevas y un resumen de lo que ha cambiado en el espacio.
 • Cada mañana a las 9:00, si tienes tareas vencidas, hasta que las marques como hechas.
-» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Solera Zunbeltz de esa lista.',
+» Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Larrea Zunbeltz de esa lista.',
 		'ayudaGrupoProblemas' => 'Si algo falla',
 		'ayudaProblemasT' => 'Problemas frecuentes',
 		'ayudaProblemasB' => '• «Tu rol no permite…»: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.
@@ -263,7 +263,7 @@ En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:
 • «Clave de usuario incorrecta»: revisa que lo copiaste entero. Si la has perdido, coordinación te genera una nueva y la vieja deja de valer.
 • Falta algo o ves cosas que ya no son tuyas: en Ajustes, «Sincronizar todo desde cero».
 • No sale la previsión del tiempo: necesita internet. Lo demás funciona sin cobertura.
-• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Solera Zunbeltz.
+• La actualización se descarga pero no se instala: en los ajustes del móvil, permite «instalar apps desconocidas» para Larrea Zunbeltz.
 » Con sincronización, tus datos están también en el servidor de Zunbeltz: si cambias de móvil, configura el nuevo con tu clave de usuario y lo recuperas.',
 	),
 	'eu' => array(
@@ -303,7 +303,7 @@ Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 		'ayudaWidgetT' => 'Hasierako pantailako widgeta (Android)',
 		'ayudaWidgetB' => 'Android-en, mugikorraren hasierako pantailan Gaur-en laburpen bat jar dezakezu aplikazioa ireki gabe: alarma irekiak, zure zeregin iraungiak eta gaurkoak, kentze-epean dauden taldeak (eta lehena noiz geratzen den libre) eta finkako gaurko eguraldia.
 1. Eutsi sakatuta hasierako pantailako hutsune bat eta aukeratu «Widgetak».
-2. Bilatu «Solera Zunbeltz» eta arrastatu «Gaur Zunbeltzen» pantailara.
+2. Bilatu «Larrea Zunbeltz» eta arrastatu «Gaur Zunbeltzen» pantailara.
 3. Nahi baduzu, eutsi sakatuta handiago edo txikiago egiteko: leku gutxirekin, lehenik eguraldia kentzen da eta gero kentze-epea.
 » Bere botoiek aplikazioa zuzenean irekitzen dute abisu bat emateko, talde bat mugitzeko edo sendaketa bat idazteko (taldea aukeratuta). Zure profilak erabil ditzakeenak bakarrik agertzen dira.
 » Aplikazioan zerbait aldatzean eguneratzen da eta, aplikazioa itxita dagoela, 15 minutuz behin gutxi gorabehera (Android-ek erabakitzen du noiz). Goiko orduak azken aldia noiz izan zen dio.
@@ -313,7 +313,7 @@ Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 1. Ezarpenak → Eguneraketak atalean ere begira dezakezu: instalatutako bertsioa, argitaratutako azkena eta zer dakarren ikusten dituzu. «Bilatu orain» sakatuta berriro egiaztatzen da.
 2. Sakatu «Deskargatu eta instalatu» eta baieztatu mugikorraren instalatzailean.
 3. Ireki berriro aplikazioa.
-» Lehen aldian, Androidek «aplikazio ezezagunak instalatzea» baimentzeko eska dezake Solera Zunbeltzentzat. Zure datuak gorde egiten dira eguneratzean.',
+» Lehen aldian, Androidek «aplikazio ezezagunak instalatzea» baimentzeko eska dezake Larrea Zunbeltzentzat. Zure datuak gorde egiten dira eguneratzean.',
 		'ayudaGrupoFincas' => 'Finkak eta zereginak',
 		'ayudaFincasT' => 'Puntu bat markatu mapan',
 		'ayudaFincasB' => 'Puntua azpiegitura bakoitza da: aska, manga, hesia, aterpea, urmaela…
@@ -489,7 +489,7 @@ Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:
 • Beste pertsona baten alarma bat iristen denean.
 • Koordinazioari: eskaera berriak daudenean eta gunean aldatu denaren laburpena.
 • Goizero 9:00etan, zeregin iraungiak badituzu, egintzat markatu arte.
-» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa itxita dagoenean, Android mugikorrak 15 minuturo gutxi gorabehera begiratzen du berririk dagoen, konexioa badago; mugikorra atsedenean badago, zertxobait gehiago atzera daiteke. Zure mugikorrak bateria aurrezteko bigarren planoko aplikazioak mozten baditu, kendu Solera Zunbeltz zerrenda horretatik.',
+» Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa itxita dagoenean, Android mugikorrak 15 minuturo gutxi gorabehera begiratzen du berririk dagoen, konexioa badago; mugikorra atsedenean badago, zertxobait gehiago atzera daiteke. Zure mugikorrak bateria aurrezteko bigarren planoko aplikazioak mozten baditu, kendu Larrea Zunbeltz zerrenda horretatik.',
 		'ayudaGrupoProblemas' => 'Zerbaitek huts egiten badu',
 		'ayudaProblemasT' => 'Ohiko arazoak',
 		'ayudaProblemasB' => '• «Zure rolak ez du … baimenik»: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.
@@ -497,7 +497,7 @@ Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:
 • «Erabiltzaile-gako okerra»: begiratu osorik kopiatu duzun. Galdu baduzu, koordinazioak berri bat sortzen dizu eta zaharrak ez du balioko.
 • Zerbait falta da edo jada zureak ez diren gauzak ikusten dituzu: Ezarpenetan, «Dena hasieratik sinkronizatu».
 • Eguraldi-iragarpena ez da agertzen: internet behar du. Gainerakoak estaldurarik gabe dabil.
-• Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu «aplikazio ezezagunak instalatzea» Solera Zunbeltzentzat.
+• Eguneraketa deskargatzen da baina ez da instalatzen: mugikorraren ezarpenetan, baimendu «aplikazio ezezagunak instalatzea» Larrea Zunbeltzentzat.
 » Sinkronizazioarekin, zure datuak Zunbeltzen zerbitzarian ere badaude: mugikorrez aldatzen baduzu, konfiguratu berria zure erabiltzaile-gakoarekin eta berreskuratuko dituzu.',
 	),
 );

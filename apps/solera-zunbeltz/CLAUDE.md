@@ -84,6 +84,8 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 > **2026-10-22 — la app se llama «Larrea Zunbeltz» (app 0.6.7, plugin 0.9.6, tema 0.2.1)**. Decidido por Josu («larre» = pasto, prado) tras la petición de Pablo de un nombre. Es solo el **nombre visible**: título de la app y del onboarding, etiqueta de Android, título y manifiesto de la web, asuntos de correo, manual y pie de la web. **No cambian** el paquete Android, los identificadores, la carpeta `apps/solera-zunbeltz`, el plugin «Solera Zunbeltz» ni su menú en WordPress, ni los tags de las releases (`solera-zunbeltz-<v>`, `plugin-solera-zunbeltz-sync-<v>`). El widget sigue siendo «Hoy en Zunbeltz». Icono pendiente.
 
+> **2026-10-22 — icono de la app: el símbolo de zunbeltz.com (app 0.6.8, plugin 0.9.7)**. Los cuatro cuadros del logo de la asociación (persona, manos, pasto, vaca), recortados de `assets/logos/zunbeltz.png` sobre blanco: `assets/icono-logo-zunbeltz.png` (icono clásico, splash y `rutaLogoZunbeltz` en la app) e `icono-zunbeltz-frontal.png` (capa frontal del adaptativo, símbolo al 66 % con fondo transparente); iconos web (`web/favicon.png`, `web/icons/`) iguales. Regenerar con `dart run flutter_launcher_icons` y `dart run flutter_native_splash:create`. El plugin 0.9.7 solo lleva la app web con los iconos nuevos.
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo, pero el **más distinto de todos**. Las cinco Solera anteriores asumen *una explotación, un titular* (o un ayuntamiento en arbolado). Zunbeltz rompe ese supuesto: es un **Espacio Test Agrario** — una incubadora de proyectos agroganaderos.

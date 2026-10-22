@@ -1,7 +1,7 @@
 name: solera_zunbeltz
 description: "Solera Zunbeltz — herramienta para el Espacio Test Agrario Zunbeltz. Gestión de fincas e infraestructuras compartidas, tareas de mantenimiento y cuaderno ganadero extensivo ecológico. Bilingüe castellano/euskera, funciona sin cobertura."
 publish_to: 'none'
-version: 0.6.7+28
+version: 0.6.8+29
 
 environment:
   sdk: ^3.5.0
@@ -104,23 +104,24 @@ flutter:
         - asset: assets/fuentes/Spectral-SemiBold.ttf
           weight: 600
 
-# Icono del lanzador. El logo es PLACEHOLDER (glifo monte+ocre+musgo sobre
-# crema, generado con ImageMagick). El ilustrador lo sustituye y se regenera
-# con `dart run flutter_launcher_icons`.
+# Icono del lanzador: el símbolo de cuatro cuadros del logo de zunbeltz.com
+# (recortado de assets/logos/zunbeltz.png, decidido el 2026-10-22). Se regenera
+# con `dart run flutter_launcher_icons` y el splash con
+# `dart run flutter_native_splash:create`.
 flutter_launcher_icons:
   android: true
   ios: false
   image_path: "assets/icono-logo-zunbeltz.png"
   min_sdk_android: 21
-  adaptive_icon_background: "#F4F0E4"
-  adaptive_icon_foreground: "assets/icono-logo-zunbeltz.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icono-zunbeltz-frontal.png"
 
 # Splash de arranque. Regenerar con `dart run flutter_native_splash:create`.
 flutter_native_splash:
-  color: "#F4F0E4"
+  color: "#FFFFFF"
   image: assets/icono-logo-zunbeltz.png
   android: true
   ios: false
   android_12:
-    color: "#F4F0E4"
+    color: "#FFFFFF"
     image: assets/icono-logo-zunbeltz.png

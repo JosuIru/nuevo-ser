@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="ic_launcher_background">#F4F0E4</color>
+    <color name="ic_launcher_background">#FFFFFF</color>
     <!-- Paleta de la app (lib/branding.dart), para el widget de inicio. -->
     <color name="zunbeltz_papel">#FFE9EBE2</color>
     <color name="zunbeltz_monte">#FF1B2320</color>

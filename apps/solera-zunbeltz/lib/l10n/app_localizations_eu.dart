@@ -3039,4 +3039,94 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get hojaColValor => 'Balioa';
+
+  @override
+  String get mapaBuscar => 'Leku bat bilatu';
+
+  @override
+  String get mapaBuscarAyuda =>
+      'Paraje, herri, kale edo katastro-erreferentzia';
+
+  @override
+  String get mapaBuscarSinResultados => 'Ez da ezer aurkitu.';
+
+  @override
+  String get mapaBuscarSinConexion => 'Bilatzaileak internet behar du.';
+
+  @override
+  String get zonasDesde => 'Eremuak sortu hemendik…';
+
+  @override
+  String get zonaDesdeCatastroCentro => 'Maparen erdiko katastro-partzela';
+
+  @override
+  String get zonaDesdeCatastroRef => 'Katastro-partzela erreferentziaz';
+
+  @override
+  String get zonaDesdeFichero =>
+      'Fitxategia inportatu (KML, GeoJSON, GPX, Shapefile)';
+
+  @override
+  String get catastroMunicipio => 'Udalerria';
+
+  @override
+  String get catastroPoligono => 'Poligonoa';
+
+  @override
+  String get catastroParcela => 'Partzela';
+
+  @override
+  String get catastroBuscar => 'Bilatu';
+
+  @override
+  String get catastroSoloNavarra =>
+      'Nafarroako Katastroa (IDENA), landa-lurra. Nafarroatik kanpo ez du ezer aurkitzen.';
+
+  @override
+  String get catastroNada => 'Ez dago katastro-partzelarik hor.';
+
+  @override
+  String get catastroSinConexion =>
+      'Ezin izan da katastroa kontsultatu (internet behar da).';
+
+  @override
+  String catastroNotas(String referencia, String hectareas, String fecha) {
+    return 'Nafarroako Katastroko (IDENA) ingurua: $referencia, $hectareas ha, $fecha egunean deskargatua.';
+  }
+
+  @override
+  String get importarNada => 'Fitxategiak ez dakar poligonorik.';
+
+  @override
+  String get importarNoSoportado =>
+      'Formatu hori ezin da irakurri. KML, KMZ, GeoJSON, GPX eta zip-eko Shapefile balio dute.';
+
+  @override
+  String get importarSupuestoUtm =>
+      'Shapefileak ez dakar .prj fitxategia: UTM 30N (ETRS89) gisa hartu da. Egiaztatu bere lekuan erortzen dela.';
+
+  @override
+  String importarNotas(String fichero) {
+    return '$fichero fitxategitik inportatutako ingurua.';
+  }
+
+  @override
+  String get importarError => 'Ezin izan da fitxategia irakurri.';
+
+  @override
+  String get elegirContornoTitulo => 'Zein sortu nahi duzu?';
+
+  @override
+  String get elegirContornoAyuda =>
+      'Mapan daude ertz marratuarekin. Ukitu bat haren eremua sortzeko; besteak zerrendan jarraitzen dute.';
+
+  @override
+  String get contornoSinNombre => 'Izenik gabe';
+
+  @override
+  String get ayudaImportarT => 'Eremuak katastrotik edo fitxategi batetik';
+
+  @override
+  String get ayudaImportarB =>
+      'Ez da eskuz marraztu behar neurtuta dagoen partzela bat.\n1. Finketan, sakatu geruzen ikonoa (goian) eta aukeratu ingurua nondik ateratzen den.\n• «Maparen erdiko katastro-partzela»: mugitu mapa gurutzea partzelaren barruan erori arte.\n• «Katastro-partzela erreferentziaz»: udalerria, poligonoa eta partzela, kontribuzioaren ordainagirian bezala.\n• «Fitxategia inportatu»: Google Earth-eko KML edo KMZ, GeoJSON, GPS baten ibilbidea (GPX) edo QGISeko Shapefile bat zip-ean.\n2. Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.\n» Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.\n» Goiko luparekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.';
 }

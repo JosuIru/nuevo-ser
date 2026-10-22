@@ -3035,4 +3035,94 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get hojaColValor => 'Valor';
+
+  @override
+  String get mapaBuscar => 'Buscar un lugar';
+
+  @override
+  String get mapaBuscarAyuda => 'Paraje, pueblo, calle o referencia catastral';
+
+  @override
+  String get mapaBuscarSinResultados => 'No se ha encontrado nada.';
+
+  @override
+  String get mapaBuscarSinConexion => 'El buscador necesita internet.';
+
+  @override
+  String get zonasDesde => 'Crear zonas desde…';
+
+  @override
+  String get zonaDesdeCatastroCentro =>
+      'Parcela catastral en el centro del mapa';
+
+  @override
+  String get zonaDesdeCatastroRef => 'Parcela catastral por referencia';
+
+  @override
+  String get zonaDesdeFichero =>
+      'Importar fichero (KML, GeoJSON, GPX, Shapefile)';
+
+  @override
+  String get catastroMunicipio => 'Municipio';
+
+  @override
+  String get catastroPoligono => 'Polígono';
+
+  @override
+  String get catastroParcela => 'Parcela';
+
+  @override
+  String get catastroBuscar => 'Buscar';
+
+  @override
+  String get catastroSoloNavarra =>
+      'Catastro de Navarra (IDENA), rústica. Fuera de Navarra no encuentra nada.';
+
+  @override
+  String get catastroNada => 'No hay ninguna parcela catastral ahí.';
+
+  @override
+  String get catastroSinConexion =>
+      'No se ha podido consultar el catastro (hace falta internet).';
+
+  @override
+  String catastroNotas(String referencia, String hectareas, String fecha) {
+    return 'Contorno del Catastro de Navarra (IDENA): $referencia, $hectareas ha, descargado el $fecha.';
+  }
+
+  @override
+  String get importarNada => 'El fichero no trae ningún polígono.';
+
+  @override
+  String get importarNoSoportado =>
+      'Ese formato no se puede leer. Valen KML, KMZ, GeoJSON, GPX y Shapefile en zip.';
+
+  @override
+  String get importarSupuestoUtm =>
+      'El Shapefile no trae el fichero .prj: se ha tomado como UTM 30N (ETRS89). Comprueba que cae en su sitio.';
+
+  @override
+  String importarNotas(String fichero) {
+    return 'Contorno importado de $fichero.';
+  }
+
+  @override
+  String get importarError => 'No se ha podido leer el fichero.';
+
+  @override
+  String get elegirContornoTitulo => '¿Cuál quieres crear?';
+
+  @override
+  String get elegirContornoAyuda =>
+      'Están en el mapa con borde a trazos. Toca uno para crear su zona; los demás siguen en la lista.';
+
+  @override
+  String get contornoSinNombre => 'Sin nombre';
+
+  @override
+  String get ayudaImportarT => 'Zonas desde el catastro o desde un fichero';
+
+  @override
+  String get ayudaImportarB =>
+      'No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.';
 }

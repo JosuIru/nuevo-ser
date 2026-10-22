@@ -79,7 +79,7 @@ section ul li::marker{color:var(--pasto)}
 <main class="hoja">
   <header class="cab">
     <h1>Erabilera-eskuliburua</h1>
-    <p class="sub">Larrea Zunbeltz · 0.6.8 bertsioa</p>
+    <p class="sub">Larrea Zunbeltz · 0.6.9 bertsioa</p>
   </header>
   <div class="cuerpo">
     <p class="intro">App-a erabiltzeko gida, urratsez urrats.</p>
@@ -98,34 +98,35 @@ section ul li::marker{color:var(--pasto)}
 <li><a href="#a7">Puntu bat markatu mapan</a></li>
 <li><a href="#a8">Eremu bat marraztu (saila, hesitua…)</a></li>
 <li><a href="#a9">Puntu edo eremu bat mugitu edo ezabatu</a></li>
-<li><a href="#a10">Aska edo hesi berri bat</a></li>
-<li><a href="#a11">Mantentze-zeregin bat apuntatu</a></li>
-<li><a href="#a12">Errepikatzen diren zereginak</a></li>
-<li><a href="#a13">Zereginak egunean eraman</a></li>
+<li><a href="#a10">Eremuak katastrotik edo fitxategi batetik</a></li>
+<li><a href="#a11">Aska edo hesi berri bat</a></li>
+<li><a href="#a12">Mantentze-zeregin bat apuntatu</a></li>
+<li><a href="#a13">Errepikatzen diren zereginak</a></li>
+<li><a href="#a14">Zereginak egunean eraman</a></li>
 </ol></li>
 <li><span class="grupo-indice">Abereak eta mugimenduak</span><ol>
-<li><a href="#a14">Taldeak eta animaliak</a></li>
-<li><a href="#a15">Abereak sailez mugitu</a></li>
-<li><a href="#a16">Sendaketak, tratamenduak, pisaketak eta erditzeak</a></li>
+<li><a href="#a15">Taldeak eta animaliak</a></li>
+<li><a href="#a16">Abereak sailez mugitu</a></li>
+<li><a href="#a17">Sendaketak, tratamenduak, pisaketak eta erditzeak</a></li>
 </ol></li>
 <li><span class="grupo-indice">Zure test-proiektua</span><ol>
-<li><a href="#a17">Zure proiektua sortu</a></li>
-<li><a href="#a18">Zure egunerokoa apuntatu</a></li>
-<li><a href="#a19">Zure zenbakiak ulertu</a></li>
-<li><a href="#a20">Hitzarmena: kontuak, fidantza eta laguntza</a></li>
-<li><a href="#a21">Eraldaketa-kalkulagailua eta elikaduraren Excela</a></li>
-<li><a href="#a22">Txostenak atera eta bidali</a></li>
+<li><a href="#a18">Zure proiektua sortu</a></li>
+<li><a href="#a19">Zure egunerokoa apuntatu</a></li>
+<li><a href="#a20">Zure zenbakiak ulertu</a></li>
+<li><a href="#a21">Hitzarmena: kontuak, fidantza eta laguntza</a></li>
+<li><a href="#a22">Eraldaketa-kalkulagailua eta elikaduraren Excela</a></li>
+<li><a href="#a23">Txostenak atera eta bidali</a></li>
 </ol></li>
 <li><span class="grupo-indice">Taldean lan egin</span><ol>
-<li><a href="#a23">Gunea taldearekin partekatu</a></li>
-<li><a href="#a24">Aplikazioa ordenagailuan erabili</a></li>
-<li><a href="#a25">Nork zer egin dezakeen</a></li>
-<li><a href="#a26">Zeregin bat eskatu</a></li>
-<li><a href="#a27">Guneko kontaktuak</a></li>
-<li><a href="#a28">Jakinarazpenak</a></li>
+<li><a href="#a24">Gunea taldearekin partekatu</a></li>
+<li><a href="#a25">Aplikazioa ordenagailuan erabili</a></li>
+<li><a href="#a26">Nork zer egin dezakeen</a></li>
+<li><a href="#a27">Zeregin bat eskatu</a></li>
+<li><a href="#a28">Guneko kontaktuak</a></li>
+<li><a href="#a29">Jakinarazpenak</a></li>
 </ol></li>
 <li><span class="grupo-indice">Zerbaitek huts egiten badu</span><ol>
-<li><a href="#a29">Ohiko arazoak</a></li>
+<li><a href="#a30">Ohiko arazoak</a></li>
 </ol></li>
       </ol>
     </nav>
@@ -240,7 +241,24 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Ez duzu mapa aldatu behar. Koordinazioak eguneratzen ditu puntuak, eremuak eta haien datuak, jasotzen duen informazioarekin.</p>
 </section>
 <section id="a10">
-<h3><span class="n">10</span>Aska edo hesi berri bat</h3>
+<h3><span class="n">10</span>Eremuak katastrotik edo fitxategi batetik</h3>
+<p>Ez da eskuz marraztu behar neurtuta dagoen partzela bat.</p>
+<ol class="pasos">
+<li>Finketan, sakatu geruzen ikonoa (goian) eta aukeratu ingurua nondik ateratzen den.</li>
+</ol>
+<ul>
+<li><span class="ui">Maparen erdiko katastro-partzela</span>: mugitu mapa gurutzea partzelaren barruan erori arte.</li>
+<li><span class="ui">Katastro-partzela erreferentziaz</span>: udalerria, poligonoa eta partzela, kontribuzioaren ordainagirian bezala.</li>
+<li><span class="ui">Fitxategia inportatu</span>: Google Earth-eko KML edo KMZ, GeoJSON, GPS baten ibilbidea (GPX) edo QGISeko Shapefile bat zip-ean.</li>
+</ul>
+<ol class="pasos">
+<li>Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.</li>
+</ol>
+<p class="nota"><b>Jakitea komeni da.</b> Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Goiko luparekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.</p>
+</section>
+<section id="a11">
+<h3><span class="n">11</span>Aska edo hesi berri bat</h3>
 <p>Aska, edaska edo manga bat puntu bat da: <span class="ui">Puntu bat markatu mapan</span> atalean bezala markatzen da, bere motarekin.</p>
 <p>Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hauetako batean jasotzen da:</p>
 <ol class="pasos">
@@ -250,8 +268,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Hesiaren zereginak puntu edo eremu horri lotzen zaizkio.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Hesiaren trazadura mapan ikusi behar baduzue, esan iezaguzue: funtzio berria litzateke.</p>
 </section>
-<section id="a11">
-<h3><span class="n">11</span>Mantentze-zeregin bat apuntatu</h3>
+<section id="a12">
+<h3><span class="n">12</span>Mantentze-zeregin bat apuntatu</h3>
 <ol class="pasos">
 <li>Ireki puntu edo eremu baten fitxa eta sakatu <span class="ui">Zeregin berria</span>.</li>
 <li>Idatzi zer egin behar den edo sakatu <span class="ui">Ohiko zeregin bat aukeratu</span>: Zunbeltzeko ohikoak agertzen dira (elikadura, hesiaren berrikuspena, erosketak…) iradokitako maiztasunarekin, eta goian puntu horri dagozkionak. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.</li>
@@ -269,8 +287,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Zeregin bat eskatzeak ez du esan nahi zuk egin behar duzunik. Koordinazioak eskaera baloratu eta lana nola antolatu erabakitzen du.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Arazoaren eta kokapenaren deskribapena zenbat eta argiagoa izan, orduan eta errazagoa izango da jarduera antolatzea.</p>
 </section>
-<section id="a12">
-<h3><span class="n">12</span>Errepikatzen diren zereginak</h3>
+<section id="a13">
+<h3><span class="n">13</span>Errepikatzen diren zereginak</h3>
 <p>Beti egiten dena (askak betetzea, hesia berrikustea…) ez da aldi bakoitzean apuntatu behar.</p>
 <ol class="pasos">
 <li>Zeregina sortzean, aukeratu <span class="ui">Periodikotasuna</span>: egunero, astero, 15 egunero, hilero edo hiruhilero.</li>
@@ -286,8 +304,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Ez dago jada programatuta dagoen zeregin periodiko bat aldi bakoitzean eskatu beharrik. Eginda gisa markatzean, app-ak berak prestatzen du hurrengoa.</p>
 </section>
-<section id="a13">
-<h3><span class="n">13</span>Zereginak egunean eraman</h3>
+<section id="a14">
+<h3><span class="n">14</span>Zereginak egunean eraman</h3>
 <ol class="pasos">
 <li>Finketan, sakatu <span class="ui">Zereginak</span> (goian) guztiak dituen taula ikusteko.</li>
 <li>Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, <span class="ui">Nire zereginak</span> aukerak zuri esleitutakoak bakarrik uzten ditu.</li>
@@ -307,8 +325,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.</p>
 </section>
 <h2>Abereak eta mugimenduak</h2>
-<section id="a14">
-<h3><span class="n">14</span>Taldeak eta animaliak</h3>
+<section id="a15">
+<h3><span class="n">15</span>Taldeak eta animaliak</h3>
 <p>Abereak taldeka eramaten dira, estentsiboan maneiatzen diren bezala: artalde bat, behi-talde bat, gizentzeko txerriak…</p>
 <ol class="pasos">
 <li>Sartu Abereak fitxan eta sakatu <span class="ui">Talde berria</span>.</li>
@@ -320,8 +338,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Krotalaren ondoko kamera-ikonoak (alta ematean eta bilaketan) DIBaren barra-kodea irakurri eta zenbakia berez betetzen du. Linux edo Windows duen ordenagailuan ez dago.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Ustiategi-liburuak (liburuaren ikonoa, goian Abereak atalean) errolda, animaliak, mugimenduak eta tratamenduak ateratzen ditu PDFn, artalde bakoitzaren ALUekin. Mugimendu bakoitzak bere PDF orria du lekualdaketarekin batera eramateko. Ez dute ordezkatzen liburu ofiziala ezta SITRANeko gida ere.</p>
 </section>
-<section id="a15">
-<h3><span class="n">15</span>Abereak sailez mugitu</h3>
+<section id="a16">
+<h3><span class="n">16</span>Abereak sailez mugitu</h3>
 <ol class="pasos">
 <li>Ireki taldea eta sakatu <span class="ui">Mugitu</span> (edo, Mugimenduak fitxan, <span class="ui">Talde bat mugitu</span>).</li>
 <li>Aukeratu zein sailetara doan eta data. Espaziotik ateratzen bada (mendira, beste ustiategi batera, hiltegira), aukeratu <span class="ui">Espaziotik irteera</span> eta idatzi nora doan; itzultzen denean, <span class="ui">Espaziora sarrera</span>.</li>
@@ -331,8 +349,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Sail bakoitzaren fitxan ikusten da zein talde dauden, zenbat buru eta zenbat hektareako. Taldearen historiak bere mugimendu guztiak gordetzen ditu.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Animalia solte bat bere fitxatik aldatzen da taldez (<span class="ui">Taldez aldatu</span>).</p>
 </section>
-<section id="a16">
-<h3><span class="n">16</span>Sendaketak, tratamenduak, pisaketak eta erditzeak</h3>
+<section id="a17">
+<h3><span class="n">17</span>Sendaketak, tratamenduak, pisaketak eta erditzeak</h3>
 <ol class="pasos">
 <li>Ireki taldea (talde osoarentzat bada) edo animalia eta sakatu <span class="ui">Sendaketa, pisaketa, erditzea…</span>.</li>
 <li>Aukeratu zer egin den eta data.</li>
@@ -343,8 +361,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Ekologiko gisa markatutako artalde batean, adierazi sendagai mota: alopatikoek itxaronaldia bikoizten dute (gutxienez 48 ordu) eta fitxak abisatzen du urteko tratamendu-mugara hurbiltzen denean edo gainditzen denean. BEHIN-BEHINEKOA CPAEN/NNPEKek berrikusi arte.</p>
 </section>
 <h2>Zure test-proiektua</h2>
-<section id="a17">
-<h3><span class="n">17</span>Zure proiektua sortu</h3>
+<section id="a18">
+<h3><span class="n">18</span>Zure proiektua sortu</h3>
 <p>Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da.</p>
 <ol class="pasos">
 <li>Proiektuetan, sakatu + (koordinazioak bakarrik).</li>
@@ -353,8 +371,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Pertsona tester bakoitzak bere proiektua bakarrik ikusten du. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).</p>
 </section>
-<section id="a18">
-<h3><span class="n">18</span>Zure egunerokoa apuntatu</h3>
+<section id="a19">
+<h3><span class="n">19</span>Zure egunerokoa apuntatu</h3>
 <p>Proiektuaren barruan lau fitxa daude: Ekoizpena, Merkaturatzea, Balidazioa eta Ekonomikoa.</p>
 <ol class="pasos">
 <li>Joan apuntatu nahi duzunaren fitxara.</li>
@@ -363,8 +381,8 @@ section ul li::marker{color:var(--pasto)}
 <li>Gorde. Goiko zenbakiak berez eguneratzen dira.</li>
 </ol>
 </section>
-<section id="a19">
-<h3><span class="n">19</span>Zure zenbakiak ulertu</h3>
+<section id="a20">
+<h3><span class="n">20</span>Zure zenbakiak ulertu</h3>
 <p>Proiektuaren goialdean errentagarritasuna ikusten duzu: salmentak, beste sarrera batzuk, gastuak, balantzea, marjina eta urtebeterako proiekzioa.</p>
 <ul>
 <li><span class="ui">Aldia</span> iragazkiarekin (goian) denbora osorako, aurtengo, hiruhileko honetarako edo aurreko hiruhilekorako ikus dezakezu.</li>
@@ -372,8 +390,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 <p class="nota"><b>Jakitea komeni da.</b> BEZa gutxi gorabeherako kalkulua da, ez zerga-aitorpena: araubidea zuen aholkulariak erabakitzen du.</p>
 </section>
-<section id="a20">
-<h3><span class="n">20</span>Hitzarmena: kontuak, fidantza eta laguntza</h3>
+<section id="a21">
+<h3><span class="n">21</span>Hitzarmena: kontuak, fidantza eta laguntza</h3>
 <p class="nota"><b>Jakitea komeni da.</b> Informazio hau orientagarria da eta eredu orokor gisa balio du. Test-proiektu bakoitzak bere baldintzak ditu, pertsona testerrak eta Zunbeltzek hasi aurretik negoziatu eta adosten dituztenak: gastuak, banaketa ekonomikoa, fidantza eta hitzarmenaren gainerakoa.</p>
 <p>Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:</p>
 <ul>
@@ -386,8 +404,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 <p class="nota"><b>Jakitea komeni da.</b> Gastu bat idaztean, adierazi nork hartzen duen. Amortizazioak VI. multzoan doaz. Gainerakoa koordinazioak eramaten du.</p>
 </section>
-<section id="a21">
-<h3><span class="n">21</span>Eraldaketa-kalkulagailua eta elikaduraren Excela</h3>
+<section id="a22">
+<h3><span class="n">22</span>Eraldaketa-kalkulagailua eta elikaduraren Excela</h3>
 <p>Zure proiektuan, kalkulagailuaren botoia (goian):</p>
 <ol class="pasos">
 <li>Aukeratu erreferentziazko errendimendu bat (koordinazioak jartzen ditu) edo idatzi ehunekoak.</li>
@@ -396,8 +414,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Proiektuaren partekatzeko botoian, <span class="ui">Elikadura egunka (Excel)</span> aukerak egunero eta loteka emandako kg-ak ateratzen ditu.</p>
 </section>
-<section id="a22">
-<h3><span class="n">22</span>Txostenak atera eta bidali</h3>
+<section id="a23">
+<h3><span class="n">23</span>Txostenak atera eta bidali</h3>
 <ul>
 <li>Zure proiektuan, partekatzeko botoiak (goian) <span class="ui">Proiektuaren txostena (PDF)</span> ateratzen du, CSVra esportatzen du (Excelekin irekitzen da) edo <span class="ui">Koordinatzaileari bidali</span> bidez bidaltzen du. Zein helbidetara bidali Ezarpenak → <span class="ui">Koordinatzailea (txostenak bidaltzea)</span> atalean jartzen da.</li>
 <li>Txostenak hitzarmenaren kontuak ditu: testaren eta proiektuaren balantzea, banaketa, fidantza, laguntza eta gorabeherak.</li>
@@ -407,8 +425,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 </section>
 <h2>Taldean lan egin</h2>
-<section id="a23">
-<h3><span class="n">23</span>Gunea taldearekin partekatu</h3>
+<section id="a24">
+<h3><span class="n">24</span>Gunea taldearekin partekatu</h3>
 <p>Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.</p>
 <ol class="pasos">
 <li>Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.</li>
@@ -418,8 +436,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.</p>
 </section>
-<section id="a24">
-<h3><span class="n">24</span>Aplikazioa ordenagailuan erabili</h3>
+<section id="a25">
+<h3><span class="n">25</span>Aplikazioa ordenagailuan erabili</h3>
 <p>Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.</p>
 <ol class="pasos">
 <li>Ireki aplikazioaren web-helbidea zure ordenagailuko nabigatzailean.</li>
@@ -429,8 +447,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.</p>
 <p class="nota"><b>Jakitea komeni da.</b> Nabigatzailean ezin da argazkirik gehitu: mugikorretik gehitzen dira. Goian <span class="ui">Proba-bertsioa</span> zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.</p>
 </section>
-<section id="a25">
-<h3><span class="n">25</span>Nork zer egin dezakeen</h3>
+<section id="a26">
+<h3><span class="n">26</span>Nork zer egin dezakeen</h3>
 <p>Pertsona bakoitzak rol bat du, koordinazioak ematen diona.</p>
 <ul>
 <li>Koordinazioa: zereginak sortu, banatu eta ixten ditu; finkak, eremuak, puntuak eta proiektu guztiak kudeatzen ditu; eskaerak onartu edo baztertzen ditu; gunean gertatzen dena ikusten du.</li>
@@ -438,8 +456,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 <p class="nota"><b>Jakitea komeni da.</b> Ezarpenetan ikusten duzu zein izen eta rolekin zauden konektatuta. Sinkronizaziorik gabe <span class="ui">Tokiko modua</span> zaude, eta dena edita dezakezu.</p>
 </section>
-<section id="a26">
-<h3><span class="n">26</span>Zeregin bat eskatu</h3>
+<section id="a27">
+<h3><span class="n">27</span>Zeregin bat eskatu</h3>
 <p>Zerbait behar dela ikusten baduzu (pentsua erosi, ate bat konpondu…), eskatu koordinazioari:</p>
 <ol class="pasos">
 <li>Gaur pantailatik edo puntuaren fitxatik, sakatu <span class="ui">Zeregin bat eskatu</span>.</li>
@@ -448,8 +466,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Zure eskaerak eta haien erantzuna Finkak → Zereginak → eskaeren botoian daude (goian).</p>
 </section>
-<section id="a27">
-<h3><span class="n">27</span>Guneko kontaktuak</h3>
+<section id="a28">
+<h3><span class="n">28</span>Guneko kontaktuak</h3>
 <p>Agenda partekatua: hiltegiak, albaitaritza, pertsona adituak, erosleak…</p>
 <ol class="pasos">
 <li>Gaur pantailan, sakatu kontaktuen ikonoa (goian).</li>
@@ -457,8 +475,8 @@ section ul li::marker{color:var(--pasto)}
 <li>Bat gehitzeko, sakatu <span class="ui">Kontaktua gehitu</span>. Zuk gehitutakoak zuzen ditzakezu; koordinazioak denak kudeatzen ditu, bulegotik ere bai.</li>
 </ol>
 </section>
-<section id="a28">
-<h3><span class="n">28</span>Jakinarazpenak</h3>
+<section id="a29">
+<h3><span class="n">29</span>Jakinarazpenak</h3>
 <p>Aplikazioak mugikorrean abisatzen dizu:</p>
 <ul>
 <li>Beste pertsona baten alarma bat iristen denean.</li>
@@ -468,8 +486,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Jakitea komeni da.</b> Onartu jakinarazpenen baimena aplikazioak lehen aldiz eskatzen duenean. Aplikazioa itxita dagoenean, Android mugikorrak 15 minuturo gutxi gorabehera begiratzen du berririk dagoen, konexioa badago; mugikorra atsedenean badago, zertxobait gehiago atzera daiteke. Zure mugikorrak bateria aurrezteko bigarren planoko aplikazioak mozten baditu, kendu Larrea Zunbeltz zerrenda horretatik.</p>
 </section>
 <h2>Zerbaitek huts egiten badu</h2>
-<section id="a29">
-<h3><span class="n">29</span>Ohiko arazoak</h3>
+<section id="a30">
+<h3><span class="n">30</span>Ohiko arazoak</h3>
 <ul>
 <li><span class="ui">Zure rolak ez du … baimenik</span>: hori ez dagokizu. Zeregin bat, hartu esleitu gabe badago edo eskatu koordinazioari zuri esleitzeko.</li>
 <li>Sinkronizatzean <span class="ui">… aldaketa desegin dira: zure rolak ez ditu baimentzen</span>: zure rolak uzten ez duen zerbait ukitu duzu eta zegoen bezala utzi da.</li>

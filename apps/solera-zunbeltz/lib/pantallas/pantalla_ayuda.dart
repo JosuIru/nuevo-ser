@@ -79,6 +79,7 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
     'ayudaFincas': Icons.add_location_alt_outlined,
     'ayudaZonas': Icons.pentagon_outlined,
     'ayudaEditarMapa': Icons.edit_location_alt_outlined,
+    'ayudaImportar': Icons.layers_outlined,
     'ayudaCierres': Icons.fence,
     'ayudaTareas': Icons.add_task,
     'ayudaRecurrentes': Icons.repeat,

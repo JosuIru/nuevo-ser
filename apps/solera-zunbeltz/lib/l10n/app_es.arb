@@ -1509,5 +1509,51 @@
   "hojaDatos": "Datos del movimiento",
   "hojaAnimales": "Animales con crotal del rebaño",
   "hojaColDato": "Dato",
-  "hojaColValor": "Valor"
+  "hojaColValor": "Valor",
+  "mapaBuscar": "Buscar un lugar",
+  "mapaBuscarAyuda": "Paraje, pueblo, calle o referencia catastral",
+  "mapaBuscarSinResultados": "No se ha encontrado nada.",
+  "mapaBuscarSinConexion": "El buscador necesita internet.",
+  "zonasDesde": "Crear zonas desde…",
+  "zonaDesdeCatastroCentro": "Parcela catastral en el centro del mapa",
+  "zonaDesdeCatastroRef": "Parcela catastral por referencia",
+  "zonaDesdeFichero": "Importar fichero (KML, GeoJSON, GPX, Shapefile)",
+  "catastroMunicipio": "Municipio",
+  "catastroPoligono": "Polígono",
+  "catastroParcela": "Parcela",
+  "catastroBuscar": "Buscar",
+  "catastroSoloNavarra": "Catastro de Navarra (IDENA), rústica. Fuera de Navarra no encuentra nada.",
+  "catastroNada": "No hay ninguna parcela catastral ahí.",
+  "catastroSinConexion": "No se ha podido consultar el catastro (hace falta internet).",
+  "catastroNotas": "Contorno del Catastro de Navarra (IDENA): {referencia}, {hectareas} ha, descargado el {fecha}.",
+  "@catastroNotas": {
+    "placeholders": {
+      "referencia": {
+        "type": "String"
+      },
+      "hectareas": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "importarNada": "El fichero no trae ningún polígono.",
+  "importarNoSoportado": "Ese formato no se puede leer. Valen KML, KMZ, GeoJSON, GPX y Shapefile en zip.",
+  "importarSupuestoUtm": "El Shapefile no trae el fichero .prj: se ha tomado como UTM 30N (ETRS89). Comprueba que cae en su sitio.",
+  "importarNotas": "Contorno importado de {fichero}.",
+  "@importarNotas": {
+    "placeholders": {
+      "fichero": {
+        "type": "String"
+      }
+    }
+  },
+  "importarError": "No se ha podido leer el fichero.",
+  "elegirContornoTitulo": "¿Cuál quieres crear?",
+  "elegirContornoAyuda": "Están en el mapa con borde a trazos. Toca uno para crear su zona; los demás siguen en la lista.",
+  "contornoSinNombre": "Sin nombre",
+  "ayudaImportarT": "Zonas desde el catastro o desde un fichero",
+  "ayudaImportarB": "No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí."
 }

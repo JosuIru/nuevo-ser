@@ -5365,6 +5365,162 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Valor'**
   String get hojaColValor;
+
+  /// No description provided for @mapaBuscar.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar un lugar'**
+  String get mapaBuscar;
+
+  /// No description provided for @mapaBuscarAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Paraje, pueblo, calle o referencia catastral'**
+  String get mapaBuscarAyuda;
+
+  /// No description provided for @mapaBuscarSinResultados.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha encontrado nada.'**
+  String get mapaBuscarSinResultados;
+
+  /// No description provided for @mapaBuscarSinConexion.
+  ///
+  /// In es, this message translates to:
+  /// **'El buscador necesita internet.'**
+  String get mapaBuscarSinConexion;
+
+  /// No description provided for @zonasDesde.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear zonas desde…'**
+  String get zonasDesde;
+
+  /// No description provided for @zonaDesdeCatastroCentro.
+  ///
+  /// In es, this message translates to:
+  /// **'Parcela catastral en el centro del mapa'**
+  String get zonaDesdeCatastroCentro;
+
+  /// No description provided for @zonaDesdeCatastroRef.
+  ///
+  /// In es, this message translates to:
+  /// **'Parcela catastral por referencia'**
+  String get zonaDesdeCatastroRef;
+
+  /// No description provided for @zonaDesdeFichero.
+  ///
+  /// In es, this message translates to:
+  /// **'Importar fichero (KML, GeoJSON, GPX, Shapefile)'**
+  String get zonaDesdeFichero;
+
+  /// No description provided for @catastroMunicipio.
+  ///
+  /// In es, this message translates to:
+  /// **'Municipio'**
+  String get catastroMunicipio;
+
+  /// No description provided for @catastroPoligono.
+  ///
+  /// In es, this message translates to:
+  /// **'Polígono'**
+  String get catastroPoligono;
+
+  /// No description provided for @catastroParcela.
+  ///
+  /// In es, this message translates to:
+  /// **'Parcela'**
+  String get catastroParcela;
+
+  /// No description provided for @catastroBuscar.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar'**
+  String get catastroBuscar;
+
+  /// No description provided for @catastroSoloNavarra.
+  ///
+  /// In es, this message translates to:
+  /// **'Catastro de Navarra (IDENA), rústica. Fuera de Navarra no encuentra nada.'**
+  String get catastroSoloNavarra;
+
+  /// No description provided for @catastroNada.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay ninguna parcela catastral ahí.'**
+  String get catastroNada;
+
+  /// No description provided for @catastroSinConexion.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido consultar el catastro (hace falta internet).'**
+  String get catastroSinConexion;
+
+  /// No description provided for @catastroNotas.
+  ///
+  /// In es, this message translates to:
+  /// **'Contorno del Catastro de Navarra (IDENA): {referencia}, {hectareas} ha, descargado el {fecha}.'**
+  String catastroNotas(String referencia, String hectareas, String fecha);
+
+  /// No description provided for @importarNada.
+  ///
+  /// In es, this message translates to:
+  /// **'El fichero no trae ningún polígono.'**
+  String get importarNada;
+
+  /// No description provided for @importarNoSoportado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese formato no se puede leer. Valen KML, KMZ, GeoJSON, GPX y Shapefile en zip.'**
+  String get importarNoSoportado;
+
+  /// No description provided for @importarSupuestoUtm.
+  ///
+  /// In es, this message translates to:
+  /// **'El Shapefile no trae el fichero .prj: se ha tomado como UTM 30N (ETRS89). Comprueba que cae en su sitio.'**
+  String get importarSupuestoUtm;
+
+  /// No description provided for @importarNotas.
+  ///
+  /// In es, this message translates to:
+  /// **'Contorno importado de {fichero}.'**
+  String importarNotas(String fichero);
+
+  /// No description provided for @importarError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido leer el fichero.'**
+  String get importarError;
+
+  /// No description provided for @elegirContornoTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cuál quieres crear?'**
+  String get elegirContornoTitulo;
+
+  /// No description provided for @elegirContornoAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Están en el mapa con borde a trazos. Toca uno para crear su zona; los demás siguen en la lista.'**
+  String get elegirContornoAyuda;
+
+  /// No description provided for @contornoSinNombre.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin nombre'**
+  String get contornoSinNombre;
+
+  /// No description provided for @ayudaImportarT.
+  ///
+  /// In es, this message translates to:
+  /// **'Zonas desde el catastro o desde un fichero'**
+  String get ayudaImportarT;
+
+  /// No description provided for @ayudaImportarB.
+  ///
+  /// In es, this message translates to:
+  /// **'No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.'**
+  String get ayudaImportarB;
 }
 
 class _AppLocalizationsDelegate

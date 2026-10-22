@@ -38,6 +38,8 @@ Map<String, String> textosAyudaDeSerie(AppLocalizations t) => {
       'ayudaEditarMapaB': t.ayudaEditarMapaB,
       'ayudaEditarMapaTesterT': t.ayudaEditarMapaTesterT,
       'ayudaEditarMapaTesterB': t.ayudaEditarMapaTesterB,
+      'ayudaImportarT': t.ayudaImportarT,
+      'ayudaImportarB': t.ayudaImportarB,
       'ayudaCierresT': t.ayudaCierresT,
       'ayudaCierresB': t.ayudaCierresB,
       'ayudaTareasT': t.ayudaTareasT,

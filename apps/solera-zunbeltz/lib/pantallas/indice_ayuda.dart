@@ -21,6 +21,7 @@ const Map<String, List<String>> indiceAyuda = {
     'ayudaFincas',
     'ayudaZonas',
     'ayudaEditarMapa',
+    'ayudaImportar',
     'ayudaCierres',
     'ayudaTareas',
     'ayudaRecurrentes',

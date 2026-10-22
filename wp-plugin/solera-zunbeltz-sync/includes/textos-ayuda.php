@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** Grupo → claves de sus apartados (cada uno con T título y B cuerpo). */
 const SZS_AYUDA_INDICE = array(
 	'ayudaGrupoEmpezar' => array( 'ayudaQueEs', 'ayudaPestanas', 'ayudaIdiomaDatos', 'ayudaHoyAvisos', 'ayudaWidget', 'ayudaActualizaciones' ),
-	'ayudaGrupoFincas' => array( 'ayudaFincas', 'ayudaZonas', 'ayudaEditarMapa', 'ayudaCierres', 'ayudaTareas', 'ayudaRecurrentes', 'ayudaTablero' ),
+	'ayudaGrupoFincas' => array( 'ayudaFincas', 'ayudaZonas', 'ayudaEditarMapa', 'ayudaImportar', 'ayudaCierres', 'ayudaTareas', 'ayudaRecurrentes', 'ayudaTablero' ),
 	'ayudaGrupoGanado' => array( 'ayudaGanadoLotes', 'ayudaGanadoMover', 'ayudaGanadoManejo' ),
 	'ayudaGrupoProyectos' => array( 'ayudaProyectos', 'ayudaApuntar', 'ayudaNumeros', 'ayudaConvenio', 'ayudaCalculadora', 'ayudaInformes' ),
 	'ayudaGrupoEquipo' => array( 'ayudaSync', 'ayudaWeb', 'ayudaRoles', 'ayudaPeticiones', 'ayudaContactos', 'ayudaNotificaciones' ),
@@ -112,6 +112,15 @@ Para volver atrás, usa la flecha de arriba a la izquierda.',
 3. Si hay un error, hay que cambiar algún dato o quieres comunicar una incidencia, da un aviso desde Hoy o contacta con coordinación.
 » Los puntos móviles (un corral, un bidón) sí los puedes añadir y mover tú: pulsa «Recolocar en el mapa» en su ficha.
 » No necesitas modificar el mapa. Coordinación actualiza los puntos, las zonas y sus datos con la información que recibe.',
+		'ayudaImportarT' => 'Zonas desde el catastro o desde un fichero',
+		'ayudaImportarB' => 'No hace falta dibujar a mano una parcela que ya está medida.
+1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.
+• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.
+• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.
+• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.
+2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.
+» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.
+» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.',
 		'ayudaCierresT' => 'Un abrevadero o un cierre nuevo',
 		'ayudaCierresB' => 'Un abrevadero, un bebedero o una manga son un punto: se marcan como en «Marcar un punto en el mapa», con su tipo.
 Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de una de estas dos maneras:
@@ -348,6 +357,15 @@ Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 3. Akatsen bat badago, daturen bat aldatu behar bada edo gorabehera bat jakinarazi nahi baduzu, eman abisu bat Gaur pantailatik edo jarri harremanetan koordinazioarekin.
 » Puntu mugikorrak (korta bat, bidoi bat) zuk zeuk gehitu eta mugi ditzakezu: sakatu «Kokatu berriro mapan» haren fitxan.
 » Ez duzu mapa aldatu behar. Koordinazioak eguneratzen ditu puntuak, eremuak eta haien datuak, jasotzen duen informazioarekin.',
+		'ayudaImportarT' => 'Eremuak katastrotik edo fitxategi batetik',
+		'ayudaImportarB' => 'Ez da eskuz marraztu behar neurtuta dagoen partzela bat.
+1. Finketan, sakatu geruzen ikonoa (goian) eta aukeratu ingurua nondik ateratzen den.
+• «Maparen erdiko katastro-partzela»: mugitu mapa gurutzea partzelaren barruan erori arte.
+• «Katastro-partzela erreferentziaz»: udalerria, poligonoa eta partzela, kontribuzioaren ordainagirian bezala.
+• «Fitxategia inportatu»: Google Earth-eko KML edo KMZ, GeoJSON, GPS baten ibilbidea (GPX) edo QGISeko Shapefile bat zip-ean.
+2. Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.
+» Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.
+» Goiko luparekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.',
 		'ayudaCierresT' => 'Aska edo hesi berri bat',
 		'ayudaCierresB' => 'Aska, edaska edo manga bat puntu bat da: «Puntu bat markatu mapan» atalean bezala markatzen da, bere motarekin.
 Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hauetako batean jasotzen da:

@@ -8,7 +8,11 @@ import 'pantalla_ficha_lote.dart';
 import 'pantalla_nuevo_lote.dart';
 
 class PantallaListaLotes extends StatefulWidget {
-  PantallaListaLotes({super.key});
+  PantallaListaLotes({super.key, this.barraPestanas});
+
+  /// Pestañas Lotes/Cava bajo la barra superior cuando la pantalla va
+  /// dentro de la pestaña Lotes (ver `PantallaLotesYCava`).
+  final PreferredSizeWidget? barraPestanas;
   @override
   State<PantallaListaLotes> createState() => _PantallaListaLotesState();
 }
@@ -43,6 +47,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
     final filtrados = _filtrados;
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('lotes_de_produccion')),
+        bottom: widget.barraPestanas,
         actions: [PopupMenuButton<String?>(icon: Icon(Icons.filter_list), onSelected: (e) { setState(() => _filtroEstado = e); _recargar(); },
           itemBuilder: (_) => [
             PopupMenuItem(value: null, child: Text(SoleraL10n.t('todos'))),

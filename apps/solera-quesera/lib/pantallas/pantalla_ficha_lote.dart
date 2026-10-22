@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import '../datos/base_datos.dart';
 import '../modelos/analitica.dart';
 import '../modelos/incidencia.dart';

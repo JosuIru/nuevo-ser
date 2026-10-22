@@ -3,15 +3,22 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import 'pantallas/pantalla_ajustes.dart';
-import 'pantallas/pantalla_cava.dart';
-import 'pantallas/pantalla_lista_lotes.dart';
-import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_hoy.dart';
+import 'pantallas/pantalla_lotes_y_cava.dart';
+import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_onboarding.dart';
-import 'pantallas/pantalla_trazabilidad.dart';
+import 'pantallas/pantalla_registros.dart';
+import 'servicios/backup_servicio.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Antes de tocar la BD: si una restauración de copia se quedó a medias
+  // (la app murió mientras sustituía ficheros), se deshace aquí.
+  try {
+    await BackupServicioQuesera.instancia.recuperarRestauracionInterrumpida();
+  } catch (error) {
+    debugPrint('No se pudo comprobar la restauración interrumpida: $error');
+  }
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
@@ -101,9 +108,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   final _pantallas = <Widget>[
     PantallaHoy(),
     PantallaMapa(),
-    PantallaCava(),
-    PantallaListaLotes(),
-    PantallaTrazabilidad(),
+    const PantallaLotesYCava(),
+    const PantallaRegistros(),
     PantallaAjustes(),
   ];
 
@@ -115,34 +121,29 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         selectedIndex: _indice,
         onDestinationSelected: (i) => setState(() => _indice = i),
         destinations: [
-          NavigationDestination(
+          const NavigationDestination(
             icon: Icon(Icons.today_outlined),
             selectedIcon: Icon(Icons.today),
-            label: SoleraL10n.t('hoy'),
+            label: 'Hoy',
           ),
           NavigationDestination(
-            icon: Icon(Icons.map_outlined),
-            selectedIcon: Icon(Icons.map),
+            icon: const Icon(Icons.map_outlined),
+            selectedIcon: const Icon(Icons.map),
             label: SoleraL10n.t('mapa'),
           ),
-          NavigationDestination(
-            icon: Icon(Icons.kitchen_outlined),
-            selectedIcon: Icon(Icons.kitchen),
-            label: SoleraL10n.t('cava'),
-          ),
-          NavigationDestination(
+          const NavigationDestination(
             icon: Icon(Icons.inventory_2_outlined),
             selectedIcon: Icon(Icons.inventory_2),
-            label: SoleraL10n.t('lotes'),
+            label: 'Lotes',
           ),
-          NavigationDestination(
+          const NavigationDestination(
             icon: Icon(Icons.description_outlined),
             selectedIcon: Icon(Icons.description),
-            label: SoleraL10n.t('doc'),
+            label: 'Registros',
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
             label: SoleraL10n.t('ajustes'),
           ),
         ],

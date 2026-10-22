@@ -10,7 +10,7 @@ import '../datos/catalogos_generados/razas_lecheras.dart';
 import '../datos/catalogos_generados/tipos_queso.dart';
 
 /// Versión visible de la app. Se sube a mano junto con la de `pubspec.yaml`.
-const versionSoleraQuesera = '0.1.4';
+const versionSoleraQuesera = '0.1.5';
 
 /// Pantalla «Acerca de»: versión, qué hace la app, compromisos legales,
 /// estado de los catálogos y enlaces. Sustituye al `showAboutDialog`.

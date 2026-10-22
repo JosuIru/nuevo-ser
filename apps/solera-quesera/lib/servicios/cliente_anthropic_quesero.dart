@@ -1,11 +1,10 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 class ResultadoAnalisisIA {
   final String nombreDefecto;
-  final String tipo; // textura / corteza / color / sabor / otro
+  final String tipo; // textura / corteza / color / sabor / hinchazon / otro
   final int? severidad;
   final double confianza;
   final String descripcion;
@@ -23,93 +22,57 @@ class ResultadoAnalisisIA {
     this.accionRecomendada = '',
     this.advertencia = '',
   });
+
+  /// Lee el JSON que devuelve el modelo (claves del prompt de sistema).
+  factory ResultadoAnalisisIA.desdeJson(Map<String, dynamic> json) =>
+      ResultadoAnalisisIA(
+        nombreDefecto: (json['nombre_defecto'] as String?) ?? 'Sin identificar',
+        tipo: (json['tipo'] as String?) ?? 'otro',
+        severidad: (json['severidad'] as num?)?.toInt(),
+        confianza:
+            ((json['confianza'] as num?)?.toDouble() ?? 0).clamp(0, 1).toDouble(),
+        descripcion: (json['descripcion'] as String?) ?? '',
+        posibleCausa: (json['posible_causa'] as String?) ?? '',
+        accionRecomendada: (json['accion_recomendada'] as String?) ?? '',
+        advertencia: (json['advertencia'] as String?) ?? '',
+      );
 }
 
-class ErrorIA implements Exception {
-  final String mensaje;
-  ErrorIA(this.mensaje);
-  @override
-  String toString() => 'ErrorIA: $mensaje';
-}
+/// Tamaño máximo de foto que se envía (la API admite 5 MB por imagen).
+const int tamanoMaximoFotoBytes = 5 * 1024 * 1024;
 
-/// Cliente Anthropic con vision para identificación de defectos
-/// en queso artesanal. Analiza fotos de corte y corteza.
+/// Identificación de defectos en queso artesanal por foto (corte y
+/// corteza). El transporte (petición, imagen, errores) es el
+/// [ClienteClaude] del core con el modelo rápido (Haiku 5.5); aquí solo
+/// vive el prompt quesero y la lectura del resultado. Los errores que
+/// llegan a la pantalla son [ErrorClaude], con su mensaje en castellano
+/// (también la negativa por los filtros de seguridad).
 class ClienteAnthropicQuesero {
-  static const _modelo = 'claude-haiku-4-5';
-  static const _endpoint = 'https://api.anthropic.com/v1/messages';
-  static const _version = '2023-06-01';
+  ClienteAnthropicQuesero(String claveApi, {ClienteClaude? clienteClaude})
+      : _clienteClaude = clienteClaude ?? ClienteClaude(claveApi: claveApi);
 
-  final String claveApi;
-  ClienteAnthropicQuesero(this.claveApi);
+  final ClienteClaude _clienteClaude;
 
   Future<ResultadoAnalisisIA> analizarFoto({
     required File foto,
     String observaciones = '',
   }) async {
-    final bytes = await foto.readAsBytes();
-    if (bytes.length > 5 * 1024 * 1024) {
-      throw ErrorIA(
-        'La foto pesa más de 5 MB. Reduce el tamaño antes de enviarla.',
-      );
+    final imagen = await ImagenClaude.desdeFichero(foto.path);
+    if (imagen.bytes.length > tamanoMaximoFotoBytes) {
+      throw ErrorClaude(MotivoErrorClaude.peticionNoValida,
+          'La foto pesa más de 5 MB. Reduce el tamaño antes de enviarla.');
     }
-    final base64Foto = base64Encode(bytes);
-    final mediaType = _detectarTipoMedia(foto.path);
-
-    final cuerpo = jsonEncode({
-      'model': _modelo,
-      'max_tokens': 1024,
-      'system': _promptSistema,
-      'messages': [
-        {
-          'role': 'user',
-          'content': [
-            {
-              'type': 'image',
-              'source': {
-                'type': 'base64',
-                'media_type': mediaType,
-                'data': base64Foto,
-              },
-            },
-            {
-              'type': 'text',
-              'text': _construirPrompt(observaciones),
-            },
-          ],
-        },
+    final json = await _clienteClaude.pedirJson(
+      modelo: modeloClaudeRapido,
+      sistema: _promptSistema,
+      mensajes: [
+        MensajeClaude.usuario(construirPromptAnalisis(observaciones),
+            imagenes: [imagen]),
       ],
-    });
-
-    final respuesta = await http.post(
-      Uri.parse(_endpoint),
-      headers: {
-        'x-api-key': claveApi,
-        'anthropic-version': _version,
-        'content-type': 'application/json',
-      },
-      body: cuerpo,
-    ).timeout(const Duration(seconds: 60));
-
-    if (respuesta.statusCode == 401) {
-      throw ErrorIA('Clave inválida. Revísala en Ajustes > IA.');
-    }
-    if (respuesta.statusCode == 429) {
-      throw ErrorIA('Límite de peticiones. Espera unos minutos.');
-    }
-    if (respuesta.statusCode != 200) {
-      throw ErrorIA('Error HTTP ${respuesta.statusCode}: ${respuesta.body}');
-    }
-
-    final json = jsonDecode(utf8.decode(respuesta.bodyBytes)) as Map<String, dynamic>;
-    final contenido = (json['content'] as List?) ?? [];
-    String texto = '';
-    for (final bloque in contenido) {
-      if (bloque is Map && bloque['type'] == 'text') {
-        texto += bloque['text']?.toString() ?? '';
-      }
-    }
-    if (texto.isEmpty) throw ErrorIA('Respuesta vacía de la IA.');
-    return _parsearJson(texto);
+      maxTokens: 4096,
+      esfuerzo: EsfuerzoClaude.bajo,
+    );
+    return ResultadoAnalisisIA.desdeJson(json);
   }
 }
 
@@ -143,43 +106,10 @@ REGLAS ESTRICTAS:
 6. Sé conservador con severidad: 5 solo para alteraciones graves (moho generalizado, hinchazón severa, claramente no apto).
 ''';
 
-String _construirPrompt(String observaciones) {
+/// Texto del mensaje que acompaña a la foto.
+String construirPromptAnalisis(String observaciones) {
   if (observaciones.trim().isNotEmpty) {
     return 'Observaciones del quesero: ${observaciones.trim()}\n\nAnaliza el queso de la foto e identifica defectos.';
   }
   return 'Analiza el queso de la foto e identifica posibles defectos visibles.';
-}
-
-ResultadoAnalisisIA _parsearJson(String texto) {
-  var limpio = texto.trim();
-  if (limpio.startsWith('```')) {
-    final primerSalto = limpio.indexOf('\n');
-    if (primerSalto != -1) limpio = limpio.substring(primerSalto + 1);
-    if (limpio.endsWith('```')) {
-      limpio = limpio.substring(0, limpio.length - 3).trim();
-    }
-  }
-  try {
-    final json = jsonDecode(limpio) as Map<String, dynamic>;
-    return ResultadoAnalisisIA(
-      nombreDefecto: (json['nombre_defecto'] as String?) ?? 'Sin identificar',
-      tipo: (json['tipo'] as String?) ?? 'otro',
-      severidad: (json['severidad'] as num?)?.toInt(),
-      confianza: ((json['confianza'] as num?)?.toDouble() ?? 0).clamp(0, 1),
-      descripcion: (json['descripcion'] as String?) ?? '',
-      posibleCausa: (json['posible_causa'] as String?) ?? '',
-      accionRecomendada: (json['accion_recomendada'] as String?) ?? '',
-      advertencia: (json['advertencia'] as String?) ?? '',
-    );
-  } catch (e) {
-    throw ErrorIA('La respuesta no era JSON válido: $e\nTexto: $limpio');
-  }
-}
-
-String _detectarTipoMedia(String ruta) {
-  final lower = ruta.toLowerCase();
-  if (lower.endsWith('.png')) return 'image/png';
-  if (lower.endsWith('.gif')) return 'image/gif';
-  if (lower.endsWith('.webp')) return 'image/webp';
-  return 'image/jpeg';
 }

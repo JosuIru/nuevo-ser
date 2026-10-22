@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/control_temperatura.dart';
 import '../modelos/evento_curacion.dart';
 import '../modelos/pieza.dart';
+import 'pantalla_ia_queso.dart';
 
 class PantallaCava extends StatefulWidget {
-  const PantallaCava({super.key});
+  const PantallaCava({super.key, this.barraPestanas});
+
+  /// Pestañas Lotes/Cava bajo la barra superior cuando la pantalla va
+  /// dentro de la pestaña Lotes (ver `PantallaLotesYCava`).
+  final PreferredSizeWidget? barraPestanas;
   @override
   State<PantallaCava> createState() => _PantallaCavaState();
 }
 
 class _PantallaCavaState extends State<PantallaCava> {
   final _bd = BaseDatosSoleraQuesera.instancia;
-  final _formatter = DateFormat('d MMM yyyy', 'es_ES');
   List<Pieza> _piezasAfinando = [], _piezasListas = [];
   Map<String, String> _tempsCava = {};
   final _tempC = TextEditingController(), _hrC = TextEditingController(), _cavaC = TextEditingController(text: 'Cava principal');
@@ -57,7 +60,17 @@ class _PantallaCavaState extends State<PantallaCava> {
     final t = Theme.of(context);
     final total = _piezasAfinando.length + _piezasListas.length;
     return Scaffold(
-      appBar: AppBar(title: Text('Cava ($total piezas)')),
+      appBar: AppBar(
+        title: Text('Cava ($total piezas)'),
+        bottom: widget.barraPestanas,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.visibility),
+            tooltip: 'Defectos en queso con IA',
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const PantallaIaQueso())),
+          ),
+        ],
+      ),
       body: RefreshIndicator(onRefresh: _recargar, child: ListView(padding: const EdgeInsets.all(16), children: [
         Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text('Registro de temperatura', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),

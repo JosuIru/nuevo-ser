@@ -24,6 +24,14 @@ import '../modelos/simulacion_trazabilidad.dart';
 import '../modelos/tercero.dart';
 import '../modelos/venta.dart';
 
+/// Versión del esquema que abre la app (`version:` de openDatabase).
+/// La copia de seguridad la usa para rechazar copias de un esquema más
+/// nuevo: súbela aquí, nunca solo en openDatabase.
+const int versionEsquemaSoleraQuesera = 4;
+
+/// Nombre del fichero de la BD en la carpeta de documentos.
+const String nombreFicheroBaseDatosSoleraQuesera = 'solera_quesera.db';
+
 /// Acceso a la base de datos local de Solera Quesera. Singleton con
 /// inicialización perezosa siguiendo el patrón de la suite Solera.
 ///
@@ -41,10 +49,10 @@ class BaseDatosSoleraQuesera {
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
     final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, 'solera_quesera.db');
+    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosSoleraQuesera);
     _basedatos = await openDatabase(
       ruta,
-      version: 4,
+      version: versionEsquemaSoleraQuesera,
       onConfigure: (db) async {
         await db.execute('PRAGMA foreign_keys = ON');
       },

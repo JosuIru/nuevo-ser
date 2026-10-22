@@ -1,16 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
-import '../modelos/factura.dart';
-import '../servicios/generador_factura_pdf.dart';
 
 const _claveEmail = 'solera_quesera.facturas.email_backup';
 
@@ -22,7 +17,12 @@ class PantallaFacturas extends StatefulWidget {
 
 class _PantallaFacturasState extends State<PantallaFacturas> {
   final _bd = BaseDatosSoleraQuesera.instancia;
-  final _gen = GeneradorFacturaPdf();
+  final _gen = GeneradorFacturaPdf(
+    marca: 'SOLERA QUESERA',
+    tituloDocumento: 'Factura Simplificada',
+    nombreAplicacion: 'Solera Quesera',
+    textoLegal: 'Factura generada electrónicamente. Válida como justificante fiscal conforme al RD 1619/2012.',
+  );
   final _f = DateFormat('d MMM yyyy', 'es_ES');
   List<Factura> _facturas = [];
   String? _emailBackup;
@@ -53,7 +53,17 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
   }
 
   Future<void> _verPdf(Factura f) async {
-    final doc = await _gen.generar(factura: f, emisorNombre: 'Solera Quesera', emisorNif: '', emisorDireccion: '');
+    // Emisor: los datos de la quesería (Ajustes → Quesería). Sin razón
+    // social todavía, se firma como la app, como antes.
+    final queseria = await _bd.obtenerQueseria();
+    final emisor = DatosEmisorFactura(
+      nombre: queseria.razonSocial.trim().isNotEmpty ? queseria.razonSocial : 'Solera Quesera',
+      nif: queseria.nif,
+      direccion: queseria.direccion,
+      telefono: queseria.telefono,
+      email: queseria.email,
+    );
+    final doc = await _gen.generar(factura: f, emisor: emisor);
     await Printing.sharePdf(bytes: await doc.save(), filename: 'factura_${f.numeroFactura}.pdf');
   }
 

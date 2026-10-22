@@ -1,104 +1,108 @@
-import 'dart:io';
-
-import 'package:archive/archive_io.dart';
-import 'package:intl/intl.dart';
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import 'package:sqflite/sqflite.dart';
 
 import '../datos/base_datos.dart';
 
+/// Identificador de la app en las copias y en las preferencias. Es el
+/// prefijo de siempre (`solera_quesera.backup.ultimo_ms` guarda la fecha
+/// de la última copia): no cambiarlo nunca.
+const String identificadorCopiaSoleraQuesera = 'solera_quesera';
+
+/// Prefijo del nombre del ZIP, el mismo que usaba la app antes del
+/// servicio común (`solera-quesera-backup-<fecha>.zip`).
+const String prefijoNombreCopiaSoleraQuesera = 'solera-quesera-backup';
+
+/// Configuración de la copia de seguridad de Solera Quesera: la BD
+/// `solera_quesera.db` y la carpeta `fotos/`.
+ConfiguracionCopiaSeguridad configuracionCopiaSoleraQuesera() =>
+    ConfiguracionCopiaSeguridad(
+      identificadorApp: identificadorCopiaSoleraQuesera,
+      nombreApp: 'Solera Quesera',
+      nombreFicheroBaseDatos: nombreFicheroBaseDatosSoleraQuesera,
+      prefijoNombreCopia: prefijoNombreCopiaSoleraQuesera,
+      versionEsquemaActual: versionEsquemaSoleraQuesera,
+      cerrarBaseDatos: () => BaseDatosSoleraQuesera.instancia.cerrar(),
+      reabrirBaseDatos: () async {
+        await BaseDatosSoleraQuesera.instancia.basedatos;
+      },
+      comprobarIntegridad: comprobarIntegridadBaseDatos,
+    );
+
+/// Abre la BD extraída de una copia en solo lectura y pasa
+/// `PRAGMA integrity_check`. True solo si SQLite responde «ok».
+Future<bool> comprobarIntegridadBaseDatos(String rutaBaseDatos) async {
+  final baseDatos =
+      await openReadOnlyDatabase(rutaBaseDatos, singleInstance: false);
+  try {
+    final filas = await baseDatos.rawQuery('PRAGMA integrity_check');
+    return filas.length == 1 &&
+        filas.first.values.first?.toString().toLowerCase() == 'ok';
+  } finally {
+    await baseDatos.close();
+  }
+}
+
+/// Copia de seguridad de Solera Quesera sobre el servicio común del core
+/// (valida antes de tocar nada, respalda el estado actual y revierte si
+/// algo falla). Una sola instancia para toda la app.
 class BackupServicioQuesera {
-  static const _claveUltimoBackupMs =
-      'solera_quesera.backup.ultimo_ms';
-  static const _nombreBd = 'solera_quesera.db';
+  BackupServicioQuesera._();
 
-  static Future<File> crearZip() async {
-    final docs = await getApplicationDocumentsDirectory();
-    final tmp = await getTemporaryDirectory();
-    final ahora = DateTime.now();
-    final marcaTemporal =
-        DateFormat('yyyyMMdd-HHmm').format(ahora);
-    final destino = File(path_lib.join(tmp.path,
-        'solera-quesera-backup-$marcaTemporal.zip'));
+  static final ServicioCopiaSeguridad instancia =
+      ServicioCopiaSeguridad(configuracionCopiaSoleraQuesera());
+}
 
-    await BaseDatosSoleraQuesera.instancia.cerrar();
-
-    final encoder = ZipFileEncoder();
-    encoder.create(destino.path);
-    try {
-      for (final nombre in [
-        _nombreBd,
-        '$_nombreBd-wal',
-        '$_nombreBd-shm'
-      ]) {
-        final f = File(path_lib.join(docs.path, nombre));
-        if (await f.exists()) encoder.addFile(f, nombre);
-      }
-      final dirFotos =
-          Directory(path_lib.join(docs.path, 'fotos'));
-      if (await dirFotos.exists()) {
-        encoder.addDirectory(dirFotos, includeDirName: true);
-      }
-    } finally {
-      encoder.close();
-    }
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(
-        _claveUltimoBackupMs, ahora.millisecondsSinceEpoch);
-    return destino;
+/// Explicación para la persona de por qué ha fallado una copia o una
+/// restauración. Solo dice que los datos no se han tocado cuando el
+/// servicio lo garantiza ([ErrorCopiaSeguridad.datosIntactos]).
+String textoErrorCopia(ErrorCopiaSeguridad error) {
+  final String causa;
+  switch (error.motivo) {
+    case MotivoErrorCopiaSeguridad.ficheroNoExiste:
+      causa = 'No se encuentra el fichero elegido.';
+      break;
+    case MotivoErrorCopiaSeguridad.noEsZip:
+      causa = 'El fichero no es un ZIP válido o está dañado.';
+      break;
+    case MotivoErrorCopiaSeguridad.manifiestoNoValido:
+      causa = 'La copia está incompleta o no se entiende.';
+      break;
+    case MotivoErrorCopiaSeguridad.formatoMasNuevo:
+    case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
+      causa = 'La copia la hizo una versión más nueva de Solera Quesera. '
+          'Actualiza la app y vuelve a intentarlo.';
+      break;
+    case MotivoErrorCopiaSeguridad.deOtraApp:
+      causa = 'La copia es de otra aplicación, no de Solera Quesera.';
+      break;
+    case MotivoErrorCopiaSeguridad.sinBaseDatos:
+      causa = 'El ZIP no contiene una base de datos de Solera Quesera.';
+      break;
+    case MotivoErrorCopiaSeguridad.baseDatosNoValida:
+    case MotivoErrorCopiaSeguridad.integridadFallida:
+      causa = 'La base de datos de la copia está dañada.';
+      break;
+    case MotivoErrorCopiaSeguridad.rutaPeligrosa:
+      causa = 'La copia contiene rutas no permitidas y se ha rechazado.';
+      break;
+    case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
+      causa = 'No se ha podido guardar antes una copia de los datos '
+          'actuales, así que no se ha restaurado nada.';
+      break;
+    case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
+      causa = 'Todavía no hay datos que copiar.';
+      break;
+    case MotivoErrorCopiaSeguridad.restauracionRevertida:
+      causa = 'La restauración ha fallado a mitad y se ha vuelto al '
+          'estado anterior.';
+      break;
+    case MotivoErrorCopiaSeguridad.reversionFallida:
+      final respaldo = error.respaldoPrevio;
+      causa = 'La restauración ha fallado y no se ha podido volver del '
+          'todo al estado anterior. No borres nada y pide ayuda'
+          '${respaldo != null ? ': tus datos anteriores están en ${respaldo.path}' : ''}.';
+      break;
   }
-
-  static Future<File> restaurarZip(File zipOrigen) async {
-    if (!await zipOrigen.exists()) {
-      throw Exception(
-          'El fichero de backup no existe: ${zipOrigen.path}');
-    }
-    final bytes = await zipOrigen.readAsBytes();
-    final archive = ZipDecoder().decodeBytes(bytes);
-    final tieneBd =
-        archive.any((f) => f.name == _nombreBd);
-    if (!tieneBd) {
-      throw Exception(
-        'El zip no contiene $_nombreBd — no parece un backup '
-        'de Solera Quesera.',
-      );
-    }
-    final preRestore = await crearZip();
-    await BaseDatosSoleraQuesera.instancia.cerrar();
-    final docs = await getApplicationDocumentsDirectory();
-    for (final nombre in [
-      _nombreBd,
-      '$_nombreBd-wal',
-      '$_nombreBd-shm'
-    ]) {
-      final f = File(path_lib.join(docs.path, nombre));
-      if (await f.exists()) await f.delete();
-    }
-    for (final entrada in archive) {
-      if (!entrada.isFile) continue;
-      final destino =
-          File(path_lib.join(docs.path, entrada.name));
-      await destino.parent.create(recursive: true);
-      final contenido = entrada.content as List<int>;
-      await destino.writeAsBytes(contenido);
-    }
-    return preRestore;
-  }
-
-  static Future<DateTime?> ultimoBackup() async {
-    final prefs = await SharedPreferences.getInstance();
-    final ms = prefs.getInt(_claveUltimoBackupMs);
-    if (ms == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(ms);
-  }
-
-  static Future<bool> tocaSugerir({
-    Duration intervaloAviso = const Duration(days: 7),
-  }) async {
-    final ultimo = await ultimoBackup();
-    if (ultimo == null) return true;
-    return DateTime.now().difference(ultimo) > intervaloAviso;
-  }
+  if (!error.datosIntactos) return causa;
+  return '$causa Tus datos no se han tocado.';
 }

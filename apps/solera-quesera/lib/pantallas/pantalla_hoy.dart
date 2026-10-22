@@ -46,7 +46,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: Text('${SoleraL10n.t('hoy')} ${_formatter.format(DateTime.now())}'), backgroundColor: theme.colorScheme.surface),
+      appBar: AppBar(title: Text('Hoy ${_formatter.format(DateTime.now())}'), backgroundColor: theme.colorScheme.surface),
       body: RefreshIndicator(onRefresh: _recargar, child: ListView(padding: const EdgeInsets.all(16), children: [
         // Aviso de versión nueva: si no la hay, no ocupa sitio.
         AvisoActualizaciones(

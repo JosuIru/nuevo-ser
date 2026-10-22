@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
+import '../estado/clave_anthropic_quesera.dart';
 import '../modelos/queseria.dart';
 import 'pantalla_acerca.dart';
 import 'pantalla_backup.dart';
-import 'pantalla_facturas.dart';
-import 'pantalla_ia_queso.dart';
-import 'pantalla_libro_economico.dart';
 import 'pantalla_lista_proveedores.dart';
-import 'pantalla_lista_recetas.dart';
-import 'pantalla_perfil_do.dart';
 
 /// Pantalla agregadora de ajustes, por secciones como el resto de la
-/// suite: Explotación · Registros y documentos · Inteligencia artificial ·
-/// Preferencias · Datos · Aplicación.
+/// suite: Explotación · Inteligencia artificial · Preferencias · Datos ·
+/// Aplicación. Los libros y documentos están en la pestaña Registros.
 class PantallaAjustes extends StatefulWidget {
   PantallaAjustes({super.key});
   @override
@@ -25,7 +21,6 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   final _bd = BaseDatosSoleraQuesera.instancia;
   Queseria _queseria = Queseria();
   int _numeroProveedores = 0;
-  int _numeroRecetas = 0;
 
   @override
   void initState() {
@@ -36,12 +31,10 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   Future<void> _cargar() async {
     final queseria = await _bd.obtenerQueseria();
     final proveedores = await _bd.listarProveedores();
-    final recetas = await _bd.listarRecetas();
     if (mounted) {
       setState(() {
         _queseria = queseria;
         _numeroProveedores = proveedores.length;
-        _numeroRecetas = recetas.length;
       });
     }
   }
@@ -92,43 +85,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(PantallaListaProveedores()),
           ),
-          CabeceraSeccionAjustes(SoleraL10n.t('seccion_registros')),
-          ListTile(
-            leading: const Icon(Icons.receipt),
-            title: Text(SoleraL10n.t('facturas')),
-            subtitle: const Text('Emisión, PDF y envío'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _abrir(PantallaFacturas()),
-          ),
-          ListTile(
-            leading: const Icon(Icons.euro),
-            title: Text(SoleraL10n.t('libro_economico')),
-            subtitle: const Text('Ingresos, gastos y resumen fiscal'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _abrir(PantallaLibroEconomico()),
-          ),
-          ListTile(
-            leading: const Icon(Icons.restaurant_menu),
-            title: Text(SoleraL10n.t('recetas')),
-            subtitle: Text('$_numeroRecetas registradas'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _abrir(PantallaListaRecetas()),
-          ),
-          ListTile(
-            leading: const Icon(Icons.verified),
-            title: Text(SoleraL10n.t('perfiles_do')),
-            subtitle: const Text('Denominaciones de Origen activas'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _abrir(PantallaPerfilDo()),
-          ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           ListTile(
             leading: const Icon(Icons.visibility),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
             subtitle: const Text(
-                'Defectos en corte y corteza del queso con Claude Vision'),
+                'Clave de Anthropic para identificar defectos del queso por foto'),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => _abrir(PantallaIaQueso()),
+            onTap: () => _abrir(pantallaClaveAnthropicQuesera()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_preferencias')),
           const Padding(

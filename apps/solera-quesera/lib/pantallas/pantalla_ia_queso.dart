@@ -1,11 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../estado/clave_anthropic_quesera.dart';
 import '../servicios/cliente_anthropic_quesero.dart';
-
-// _claveApiPref used in state below
 
 class PantallaIaQueso extends StatefulWidget {
   const PantallaIaQueso({super.key});
@@ -19,17 +16,20 @@ class _PantallaIaQuesoState extends State<PantallaIaQueso> {
   bool _analizando = false;
   ResultadoAnalisisIA? _resultado;
   String? _error, _claveApi;
-  static const _claveApiPref = 'solera_quesera.anthropic.clave';
   final _obsC = TextEditingController();
 
   @override
   void initState() { super.initState(); _cargarClave(); }
-  Future<void> _cargarClave() async { _claveApi = (await SharedPreferences.getInstance()).getString(_claveApiPref); }
+  Future<void> _cargarClave() async {
+    final clave = await estadoClaveAnthropicQuesera.cargar();
+    if (mounted) setState(() => _claveApi = clave);
+  }
 
+  /// Abre la pantalla común de la clave (poner, probar, borrar) y relee
+  /// la clave al volver.
   Future<void> _configClave() async {
-    final c = TextEditingController(text: _claveApi ?? '');
-    final r = await showDialog<String>(context: context, builder: (_) => AlertDialog(title: const Text('Clave API Anthropic'), content: TextField(controller: c, decoration: const InputDecoration(hintText: 'sk-ant-...', border: OutlineInputBorder()), obscureText: true), actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')), FilledButton(onPressed: () => Navigator.pop(context, c.text), child: const Text('Guardar'))]));
-    if (r != null && r.isNotEmpty) { (await SharedPreferences.getInstance()).setString(_claveApiPref, r); setState(() => _claveApi = r); }
+    await Navigator.push(context, MaterialPageRoute(builder: (_) => pantallaClaveAnthropicQuesera()));
+    await _cargarClave();
   }
 
   Future<void> _tomarFoto() async {
@@ -63,7 +63,7 @@ class _PantallaIaQuesoState extends State<PantallaIaQueso> {
       body: ListView(padding: const EdgeInsets.all(16), children: [
         Card(color: tk ? Colors.green.withAlpha(15) : Colors.orange.withAlpha(15), child: Padding(padding: const EdgeInsets.all(12), child: Row(children: [
           Icon(tk ? Icons.check_circle : Icons.warning, color: tk ? Colors.green : Colors.orange),
-          const SizedBox(width: 8), Expanded(child: Text(tk ? 'Clave API configurada' : 'Configura tu clave de Anthropic', style: TextStyle(color: tk ? Colors.green : Colors.orange))),
+          const SizedBox(width: 8), Expanded(child: Text(tk ? 'Clave de Anthropic configurada' : 'Configura tu clave de Anthropic', style: TextStyle(color: tk ? Colors.green : Colors.orange))),
           TextButton(onPressed: _configClave, child: Text(tk ? 'Cambiar' : 'Configurar')),
         ]))),
         const SizedBox(height: 16),

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:printing/printing.dart';
 import '../datos/base_datos.dart';
 import '../datos/sembrador_datos.dart';
@@ -17,7 +16,7 @@ class PantallaSimulacionTrazabilidad extends StatefulWidget {
 
 class _PantallaSimulacionTrazabilidadState extends State<PantallaSimulacionTrazabilidad> {
   final _bd = BaseDatosSoleraQuesera.instancia;
-  final _fd = DateFormat('d MMM yyyy HH:mm', 'es_ES'), _fdd = DateFormat('d MMM yyyy', 'es_ES');
+  final _fd = DateFormat('d MMM yyyy HH:mm', 'es_ES');
   int _paso = 0;
   List<LoteProduccion> _lotes = [];
   LoteProduccion? _loteSel;

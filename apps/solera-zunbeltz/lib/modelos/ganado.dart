@@ -1,4 +1,6 @@
 import 'constantes.dart';
+import 'carga_ganadera.dart';
+import 'ganado_ecologico.dart';
 
 /// El ganado de las fincas (FZ-4, primera versión para probar con
 /// Zunbeltz): **lotes** (el rebaño o grupo que se maneja junto), **animales**
@@ -28,6 +30,8 @@ class LoteGanado {
     this.notas = '',
     this.autorUid = '',
     this.fechaCreacionMs = 0,
+    this.ecologico = false,
+    this.cicloCorto = false,
   });
 
   final int? id;
@@ -49,11 +53,22 @@ class LoteGanado {
   final String autorUid;
   final int fechaCreacionMs;
 
+  /// Ganado ecológico (certificado o en conversión): los tratamientos
+  /// alopáticos doblan el plazo de espera y cuentan para el límite anual
+  /// (`ganado_ecologico.dart`).
+  final bool ecologico;
+
+  /// Vida productiva menor de un año (cebo, corderos, aves de carne): el
+  /// límite ecológico es de un tratamiento al año en vez de tres.
+  final bool cicloCorto;
+
   bool get activo => estado != estadoLoteCerrado;
 
   Map<String, Object?> toMap() => {
         'id': id,
         'nombre': nombre,
+        'ecologico': ecologico ? 1 : 0,
+        'ciclo_corto': cicloCorto ? 1 : 0,
         'especie': especie,
         'titular_uid': titularUid,
         'cabezas_sin_identificar': cabezasSinIdentificar,
@@ -74,6 +89,8 @@ class LoteGanado {
         notas: (mapa['notas'] as String?) ?? '',
         autorUid: (mapa['autor_uid'] as String?) ?? '',
         fechaCreacionMs: (mapa['fecha_creacion_ms'] as num?)?.toInt() ?? 0,
+        ecologico: ((mapa['ecologico'] as num?)?.toInt() ?? 0) != 0,
+        cicloCorto: ((mapa['ciclo_corto'] as num?)?.toInt() ?? 0) != 0,
       );
 }
 
@@ -265,6 +282,7 @@ class EventoGanado {
     this.crias = 0,
     this.cabezas = 0,
     this.autorUid = '',
+    this.claseMedicamento = '',
   });
 
   final int? id;
@@ -298,6 +316,10 @@ class EventoGanado {
   final int cabezas;
   final String autorUid;
 
+  /// Código de `clasesMedicamento` ('' = sin indicar). Decide, en ganado
+  /// ecológico, si dobla el plazo y si cuenta para el límite anual.
+  final String claseMedicamento;
+
   Map<String, Object?> toMap() => {
         'id': id,
         'animal_id': animalId,
@@ -315,6 +337,7 @@ class EventoGanado {
         'crias': crias,
         'cabezas': cabezas,
         'autor_uid': autorUid,
+        'clase_medicamento': claseMedicamento,
       };
 
   factory EventoGanado.fromMap(Map<String, Object?> mapa) => EventoGanado(
@@ -336,6 +359,7 @@ class EventoGanado {
         crias: (mapa['crias'] as num?)?.toInt() ?? 0,
         cabezas: (mapa['cabezas'] as num?)?.toInt() ?? 0,
         autorUid: (mapa['autor_uid'] as String?) ?? '',
+        claseMedicamento: (mapa['clase_medicamento'] as String?) ?? '',
       );
 }
 
@@ -417,6 +441,24 @@ int cabezasDeLote(LoteGanado lote, Iterable<Animal> animalesDelLote) =>
     animalesDelLote.where((animal) => animal.activo).length +
     lote.cabezasSinIdentificar;
 
+/// UGM de un lote: sus animales en el espacio, cada uno por su especie,
+/// sexo y edad, más las cabezas sin crotal como adultas de la especie del
+/// lote. PROVISIONAL (`carga_ganadera.dart`).
+double ugmDeLote(
+    LoteGanado lote, Iterable<Animal> animalesDelLote, DateTime ahora) {
+  var total = 0.0;
+  for (final animal in animalesDelLote.where((animal) => animal.activo)) {
+    total += ugmPorCabeza(
+        especie: animal.especie.isEmpty ? lote.especie : animal.especie,
+        sexo: animal.sexo,
+        fechaNacimientoMs: animal.fechaNacimientoMs,
+        ahora: ahora);
+  }
+  return total +
+      lote.cabezasSinIdentificar *
+          ugmPorCabeza(especie: lote.especie, ahora: ahora);
+}
+
 /// Día (local) en que termina un plazo de [dias] contado desde [fechaMs]:
 /// días de calendario, sin que el cambio de hora lo descuadre.
 DateTime finDePlazo(int fechaMs, int dias) {
@@ -436,9 +478,13 @@ class SupresionVigente {
 }
 
 /// La supresión que sigue vigente en [ahora] por los [eventos] (los de un
-/// animal y los de su lote): el final más tardío de cada plazo.
+/// animal y los de su lote): el final más tardío de cada plazo. En ganado
+/// [ecologico] los plazos de los medicamentos son los dobles (mínimo 48 h).
 SupresionVigente supresionVigente(
-    Iterable<EventoGanado> eventos, DateTime ahora) {
+    Iterable<EventoGanado> eventosRegistrados, DateTime ahora,
+    {bool ecologico = false}) {
+  final eventos = eventosRegistrados
+      .map((evento) => eventoConPlazosEfectivos(evento, ecologico: ecologico));
   DateTime? carne;
   DateTime? leche;
   final hoy = DateTime(ahora.year, ahora.month, ahora.day);

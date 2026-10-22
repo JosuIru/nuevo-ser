@@ -108,7 +108,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 16;
+  static const int versionEsquema = 17;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -128,6 +128,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 14) await aplicarMigracionV14(db);
     if (anterior < 15) await aplicarMigracionV15(db);
     if (anterior < 16) await aplicarMigracionV16(db);
+    if (anterior < 17) await aplicarMigracionV17(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -743,6 +744,18 @@ class BaseDatosSoleraZunbeltz {
 
   /// v16: una petición puede ir sobre una pieza (zona), no solo sobre un
   /// punto, para que una tester pida una tarea «en el parque de cerdos».
+  /// v17: ganado ecológico. El rebaño sabe si es ecológico y si su vida
+  /// productiva es menor de un año; el tratamiento, la clase de medicamento
+  /// (`ganado_ecologico.dart`).
+  static Future<void> aplicarMigracionV17(Database db) async {
+    await db.execute(
+        'ALTER TABLE lotes_ganado ADD COLUMN ecologico INTEGER NOT NULL DEFAULT 0');
+    await db.execute(
+        'ALTER TABLE lotes_ganado ADD COLUMN ciclo_corto INTEGER NOT NULL DEFAULT 0');
+    await db.execute(
+        "ALTER TABLE eventos_ganado ADD COLUMN clase_medicamento TEXT NOT NULL DEFAULT ''");
+  }
+
   static Future<void> aplicarMigracionV16(Database db) async {
     await db.execute('ALTER TABLE peticiones ADD COLUMN zona_id INTEGER');
     await db.execute('CREATE INDEX idx_peticiones_zona ON peticiones(zona_id)');

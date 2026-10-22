@@ -6,10 +6,14 @@ class ResumenLote {
     required this.lote,
     required this.cabezas,
     this.ultimoMovimiento,
+    this.ugm = 0,
   });
 
   final LoteGanado lote;
   final int cabezas;
+
+  /// Unidades de ganado mayor (PROVISIONAL, `carga_ganadera.dart`).
+  final double ugm;
   final MovimientoGanado? ultimoMovimiento;
 
   /// Pieza en la que está (null: fuera del espacio o sin ubicar).
@@ -61,10 +65,13 @@ extension GanadoBaseDatos on BaseDatosSoleraZunbeltz {
     final lotes = await listarLotes(soloActivos: soloActivos);
     final animales = await listarAnimales(soloActivos: true);
     final movimientos = await listarMovimientos();
+    final ahora = DateTime.now();
     return [
       for (final lote in lotes)
         ResumenLote(
           lote: lote,
+          ugm: ugmDeLote(lote,
+              animales.where((animal) => animal.loteId == lote.id), ahora),
           cabezas: cabezasDeLote(
               lote, animales.where((animal) => animal.loteId == lote.id)),
           ultimoMovimiento: ultimoMovimiento(

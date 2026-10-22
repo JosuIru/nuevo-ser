@@ -61,3 +61,9 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+
+flutter:
+  assets:
+    # Letra de los PDF (Archivo, SIL OFL): Helvetica, la de serie del
+    # paquete pdf, no tiene «€» ni «—». Ver lib/src/pdf/tema_pdf.dart.
+    - assets/fuentes/

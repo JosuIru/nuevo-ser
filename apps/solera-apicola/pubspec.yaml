@@ -1,7 +1,7 @@
 name: solera_apicola
 description: "Solera Apícola — gestor para apicultores profesionales y semi-pro. Censo de colmenas con matrícula, libro oficial REGA, gestión de varroa, identificación IA."
 publish_to: 'none'
-version: 0.1.5+6
+version: 0.1.6+7
 
 environment:
   sdk: ^3.5.0
@@ -62,6 +62,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  sqflite_common_ffi: ^2.3.3
   # Generador de iconos Android (mipmap-*) e iOS a partir del PNG fuente.
   # Sólo se invoca con `dart run flutter_launcher_icons` cuando cambia
   # el logo — no es runtime dep.

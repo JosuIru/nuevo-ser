@@ -190,6 +190,7 @@ Future<File> generarExtractoEconomicoAnual({
   ];
 
   return generarInformePeriodicoPdf(
+    tema: await temaPdfSolera(),
     tituloCabecera: tituloCabecera,
     subtituloCabecera: subtituloCabecera,
     bulletsResumen: bulletsResumen,

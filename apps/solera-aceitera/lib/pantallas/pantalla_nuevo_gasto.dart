@@ -4,6 +4,8 @@ import '../datos/base_datos.dart';
 import '../modelos/apunte_gasto.dart';
 import '../modelos/parcela.dart';
 import '../modelos/tercero.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import '../utiles/validacion_numeros.dart';
 
 /// Alta de un apunte de gasto. Tipos olivar específicos y selector
 /// de imputación a parcela/variedad/general. El IVA soportado se
@@ -89,12 +91,8 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
       fechaMs: _fecha.millisecondsSinceEpoch,
       concepto: _conceptoCtrl.text.trim(),
       tipoGasto: _tipoGasto,
-      importeBaseCentimos:
-          ((double.tryParse(_baseCtrl.text.replaceAll(',', '.')) ?? 0) * 100)
-              .round(),
-      ivaSoportadoCentimos:
-          ((double.tryParse(_ivaCtrl.text.replaceAll(',', '.')) ?? 0) * 100)
-              .round(),
+      importeBaseCentimos: centimosDesdeTexto(_baseCtrl.text) ?? 0,
+      ivaSoportadoCentimos: centimosDesdeTexto(_ivaCtrl.text) ?? 0,
       imputacion: _imputacion,
       parcelaId:
           _imputacion == 'parcela_concreta' ? _parcelaSeleccionada?.id : null,
@@ -176,8 +174,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
                     validator: (v) {
-                      final n =
-                          double.tryParse((v ?? '').replaceAll(',', '.'));
+                      final n = centimosDesdeTexto(v ?? '');
                       if (n == null || n < 0) return 'Importe inválido';
                       return null;
                     },
@@ -194,6 +191,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                     ),
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
+                    validator: validarImporteOpcional,
                   ),
                 ),
               ],

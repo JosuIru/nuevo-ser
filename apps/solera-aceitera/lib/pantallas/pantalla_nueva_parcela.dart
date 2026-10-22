@@ -5,6 +5,8 @@ import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_variedades_olivo.dart';
 import '../modelos/parcela.dart';
 import '../utiles/permisos_gps.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import '../utiles/validacion_numeros.dart';
 
 /// Formulario de alta de una parcela nueva. Sin catálogo curado en
 /// F1-A3 — la variedad y el sistema de riego son texto libre. F1-A6
@@ -105,10 +107,10 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
       olivarId: widget.olivarId,
       nombre: _nombreCtrl.text.trim(),
       codigoSigpac: _sigpacCtrl.text.trim(),
-      superficieHa: double.tryParse(_superficieCtrl.text.replaceAll(',', '.')) ?? 0,
+      superficieHa: leerNumero(_superficieCtrl.text) ?? 0,
       variedadMayoritariaId: _variedadCtrl.text.trim(),
       marcoPlantacion: _marcoCtrl.text.trim(),
-      edadMediaAnyos: int.tryParse(_edadCtrl.text) ?? 0,
+      edadMediaAnyos: leerNumero(_edadCtrl.text)?.round() ?? 0,
       sistemaRiego: _sistemaRiego,
       latitud: _latitud,
       longitud: _longitud,
@@ -155,6 +157,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                validator: validarNumeroOpcional,
               ),
               const SizedBox(height: 12),
               Autocomplete<VariedadOlivo>(
@@ -204,6 +207,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
+                validator: validarNumeroOpcional,
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(

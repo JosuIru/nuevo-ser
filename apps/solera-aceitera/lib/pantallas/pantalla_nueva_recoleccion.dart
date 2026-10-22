@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
 import '../modelos/recoleccion.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import '../utiles/validacion_numeros.dart';
 
 /// Formulario rápido para registrar una recolección sobre una parcela
 /// concreta. Requiere una campaña abierta — si no hay, redirige al
@@ -59,7 +61,7 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
       parcelaId: widget.parcelaId,
       campaniaId: c.id!,
       fechaMs: DateTime.now().millisecondsSinceEpoch,
-      kgEstimados: double.tryParse(_kgCtrl.text.replaceAll(',', '.')) ?? 0,
+      kgEstimados: leerNumero(_kgCtrl.text, nullSiAmbiguo: true) ?? 0,
       tipoAceituna: _tipoAceituna,
       metodo: _metodo,
       cuadrilla: _cuadrillaCtrl.text.trim(),
@@ -106,8 +108,9 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
-                  final n = double.tryParse(v.replaceAll(',', '.'));
-                  if (n == null || n <= 0) return 'Debe ser un número > 0';
+                  final n = leerNumero(v, nullSiAmbiguo: true);
+                  if (n == null) return textoNumeroNoValido;
+                  if (n <= 0) return 'Debe ser un número > 0';
                   return null;
                 },
               ),

@@ -5,6 +5,8 @@ import '../modelos/apunte_ingreso.dart';
 import '../modelos/configuracion_fiscal.dart';
 import '../modelos/parcela.dart';
 import '../modelos/tercero.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import '../utiles/validacion_numeros.dart';
 
 /// Alta de un apunte de ingreso. Autocálculo de IVA repercutido y
 /// compensación REAGP según la configuración fiscal y el tipo de
@@ -87,8 +89,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
   /// automáticamente en cada keystroke para no sorprender al
   /// usuario — sólo cuando pulsa "Recalcular" o cambia el tipo.
   void _autocalcular() {
-    final base = double.tryParse(_baseCtrl.text.replaceAll(',', '.')) ?? 0;
-    final baseCent = (base * 100).round();
+    final baseCent = centimosDesdeTexto(_baseCtrl.text) ?? 0;
     int iva = 0;
     int comp = 0;
     switch (_tipoIngreso) {
@@ -116,8 +117,10 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
         break;
     }
     setState(() {
-      _ivaCtrl.text = (iva / 100).toStringAsFixed(2);
-      _compensacionCtrl.text = (comp / 100).toStringAsFixed(2);
+      // Con coma decimal, como lo escribiría la persona.
+      _ivaCtrl.text = (iva / 100).toStringAsFixed(2).replaceAll('.', ',');
+      _compensacionCtrl.text =
+          (comp / 100).toStringAsFixed(2).replaceAll('.', ',');
     });
   }
 
@@ -128,18 +131,11 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       fechaMs: _fecha.millisecondsSinceEpoch,
       concepto: _conceptoCtrl.text.trim(),
       tipoIngreso: _tipoIngreso,
-      importeBaseCentimos:
-          ((double.tryParse(_baseCtrl.text.replaceAll(',', '.')) ?? 0) * 100)
-              .round(),
-      ivaRepercutidoCentimos:
-          ((double.tryParse(_ivaCtrl.text.replaceAll(',', '.')) ?? 0) * 100)
-              .round(),
+      importeBaseCentimos: centimosDesdeTexto(_baseCtrl.text) ?? 0,
+      ivaRepercutidoCentimos: centimosDesdeTexto(_ivaCtrl.text) ?? 0,
       compensacionReagpCentimos:
-          ((double.tryParse(_compensacionCtrl.text.replaceAll(',', '.')) ??
-                      0) *
-                  100)
-              .round(),
-      cantidad: double.tryParse(_cantidadCtrl.text.replaceAll(',', '.')),
+          centimosDesdeTexto(_compensacionCtrl.text) ?? 0,
+      cantidad: leerNumero(_cantidadCtrl.text, nullSiAmbiguo: true),
       unidad: _unidad,
       terceroId: _terceroSeleccionado?.id,
       parcelaId: _parcelaSeleccionada?.id,
@@ -221,7 +217,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               validator: (v) {
-                final n = double.tryParse((v ?? '').replaceAll(',', '.'));
+                final n = centimosDesdeTexto(v ?? '');
                 if (n == null || n < 0) return 'Importe inválido';
                 return null;
               },
@@ -238,6 +234,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     ),
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
+                    validator: validarImporteOpcional,
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -250,6 +247,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     ),
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
+                    validator: validarImporteOpcional,
                   ),
                 ),
               ],
@@ -272,6 +270,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     ),
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
+                    validator: (v) =>
+                        validarNumeroOpcional(v, nullSiAmbiguo: true),
                   ),
                 ),
                 const SizedBox(width: 8),

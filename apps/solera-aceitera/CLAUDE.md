@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 — PDF con «€» y «—», y números a la española (0.1.4)**. Los tres PDF (cuaderno PAC, libro del aceite, extracto económico) llevan `tema: await temaPdfSolera()` del core (Helvetica dejaba «€» y «—» en blanco). Los formularios leen números con `leerNumero`/`centimosDesdeTexto` del core en vez de `replaceAll(',', '.')` + `double.tryParse` («1.200,50 €» ya no se pierde; «1.200» en kg se rechaza por ambiguo) y avisan si un número no se entiende (`utiles/validacion_numeros.dart`).
+
 ## Encuadre
 
 Sexto fork de la **Suite Solera** dentro del monorepo. Producto comercial dirigido a **almazaras pequeñas y medianas** (1-15 empleados, 100-2000 hl/campaña) en España. Hermana técnica de `apps/agro` (Solera generalista), `apps/solera-viticultura`, `apps/solera-apicola`, `apps/solera-arbolado-urbano` y `apps/solera-quesera`.

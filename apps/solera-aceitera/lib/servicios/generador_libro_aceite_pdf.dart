@@ -183,6 +183,7 @@ Future<File> generarLibroMovimientosAceite({
       lote == null ? 'campania' : 'lote-${_slug(lote.identificadorLote)}';
 
   return generarInformePeriodicoPdf(
+    tema: await temaPdfSolera(),
     tituloCabecera: tituloCabecera,
     subtituloCabecera: subtituloCabecera,
     bulletsResumen: bulletsResumen,

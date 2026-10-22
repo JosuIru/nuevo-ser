@@ -7,6 +7,8 @@ import '../modelos/campania.dart';
 import '../modelos/lote_aceite.dart';
 import '../modelos/molturacion.dart';
 import '../modelos/movimiento.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import '../utiles/validacion_numeros.dart';
 
 /// Registra una molturación: kg molturados, rendimiento, aceite
 /// obtenido. Crea automáticamente el LoteAceite resultante y el
@@ -68,8 +70,8 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
     setState(() => _guardando = true);
 
     final ahora = DateTime.now().millisecondsSinceEpoch;
-    final kgMolt = double.tryParse(_kgMolturadosCtrl.text.replaceAll(',', '.')) ?? 0;
-    final rend = double.tryParse(_rendimientoCtrl.text.replaceAll(',', '.')) ?? 0;
+    final kgMolt = leerNumero(_kgMolturadosCtrl.text, nullSiAmbiguo: true) ?? 0;
+    final rend = leerNumero(_rendimientoCtrl.text) ?? 0;
     final aceiteKg = kgMolt * rend / 100.0;
 
     final bd = BaseDatosSoleraAceitera();
@@ -155,8 +157,9 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
                     const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
-                  final n = double.tryParse(v.replaceAll(',', '.'));
-                  if (n == null || n <= 0) return 'Debe ser un número > 0';
+                  final n = leerNumero(v, nullSiAmbiguo: true);
+                  if (n == null) return textoNumeroNoValido;
+                  if (n <= 0) return 'Debe ser un número > 0';
                   return null;
                 },
               ),
@@ -172,8 +175,9 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
                     const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
-                  final n = double.tryParse(v.replaceAll(',', '.'));
-                  if (n == null || n < 0 || n > 100) return '0-100';
+                  final n = leerNumero(v);
+                  if (n == null) return textoNumeroNoValido;
+                  if (n < 0 || n > 100) return '0-100';
                   return null;
                 },
               ),

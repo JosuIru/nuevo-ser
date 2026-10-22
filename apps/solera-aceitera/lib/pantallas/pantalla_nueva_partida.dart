@@ -4,6 +4,8 @@ import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
 import '../modelos/partida_aceituna.dart';
 import 'pantalla_nueva_molturacion.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import '../utiles/validacion_numeros.dart';
 
 /// Formulario de recepción de aceituna en almazara. Una partida
 /// puede ser de finca propia (recoleccion_id link futuro) o de socio
@@ -57,9 +59,9 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
         campaniaId: c.id!,
         fechaMs: DateTime.now().millisecondsSinceEpoch,
         kgNetosBascula:
-            double.tryParse(_kgCtrl.text.replaceAll(',', '.')) ?? 0,
+            leerNumero(_kgCtrl.text, nullSiAmbiguo: true) ?? 0,
         porcentajeAceitunaDefectuosa:
-            double.tryParse(_defectoCtrl.text.replaceAll(',', '.')) ?? 0,
+            leerNumero(_defectoCtrl.text) ?? 0,
         catador: _catadorCtrl.text.trim(),
         numeroAlbaran: _albaranCtrl.text.trim(),
         origenEsSocio: _origenEsSocio,
@@ -132,8 +134,9 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
-                  final n = double.tryParse(v.replaceAll(',', '.'));
-                  if (n == null || n <= 0) return 'Debe ser un número > 0';
+                  final n = leerNumero(v, nullSiAmbiguo: true);
+                  if (n == null) return textoNumeroNoValido;
+                  if (n <= 0) return 'Debe ser un número > 0';
                   return null;
                 },
               ),
@@ -156,6 +159,7 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
                 ),
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
+                validator: validarNumeroOpcional,
               ),
               const SizedBox(height: 12),
               TextFormField(

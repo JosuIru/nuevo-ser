@@ -133,6 +133,7 @@ Future<File> generarCuadernoPacOlivar({
       : (parcela.nombre.isEmpty ? 'sin-nombre' : _slug(parcela.nombre));
 
   return generarInformePeriodicoPdf(
+    tema: await temaPdfSolera(),
     tituloCabecera: tituloCabecera,
     subtituloCabecera: subtituloCabecera,
     bulletsResumen: bulletsResumen,

@@ -5,6 +5,8 @@ import '../datos/catalogos_generados/catalogo_fitosanitarios_olivar.dart';
 import '../datos/catalogos_generados/catalogo_plagas_olivo.dart';
 import '../modelos/tratamiento.dart';
 import 'widgets/boton_diagnosticar_plaga_ia.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import '../utiles/validacion_numeros.dart';
 
 /// Formulario para registrar un tratamiento fitosanitario sobre una
 /// parcela. Sin catálogo curado en F1-A3 — sustancia y plaga son
@@ -39,7 +41,7 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
       productoComercialReferencia: _productoCtrl.text.trim(),
       sustanciaActivaId: _sustanciaCtrl.text.trim(),
       dosisLitrosPorHa:
-          double.tryParse(_dosisCtrl.text.replaceAll(',', '.')) ?? 0,
+          leerNumero(_dosisCtrl.text) ?? 0,
       plagaObjetivoId: _plagaCtrl.text.trim(),
       aplicadorNombre: _aplicadorCtrl.text.trim(),
       carnetAplicadorNumero: _carnetCtrl.text.trim(),
@@ -125,6 +127,7 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
                 ),
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
+                validator: validarNumeroOpcional,
               ),
               const SizedBox(height: 12),
               Autocomplete<PlagaOlivo>(

@@ -45,6 +45,76 @@ function szs_version_tema_desde_tag( string $tag ): ?string {
 	return szs_version_desde_tag( $tag, SZS_PREFIJO_TAG_TEMA );
 }
 
+/**
+ * Las piezas numéricas de la versión al final de una etiqueta:
+ * `solera-zunbeltz-0.6.10+31` → [0, 6, 10, 31]. Vacío si no acaba en versión.
+ */
+function szs_piezas_version_tag( string $tag ): array {
+	if ( 1 !== preg_match( '/(\d+(?:\.\d+)*)(?:\+(\d+))?$/', $tag, $partes ) ) {
+		return array();
+	}
+	$piezas = array_map( 'intval', explode( '.', $partes[1] ) );
+	if ( isset( $partes[2] ) && '' !== $partes[2] ) {
+		$piezas[] = (int) $partes[2];
+	}
+	return $piezas;
+}
+
+/** Negativo, cero o positivo, como en la app (`compararVersiones`). */
+function szs_comparar_piezas_version( array $a, array $b ): int {
+	$largo = max( count( $a ), count( $b ) );
+	for ( $i = 0; $i < $largo; $i++ ) {
+		$diferencia = ( $a[ $i ] ?? 0 ) - ( $b[ $i ] ?? 0 );
+		if ( 0 !== $diferencia ) {
+			return $diferencia;
+		}
+	}
+	return 0;
+}
+
+/**
+ * Releases de GitHub de la versión más alta a la más baja (a igual versión,
+ * la publicada después primero).
+ *
+ * GitHub ordena la lista por el nombre de la etiqueta como texto
+ * («0.9.9» antes que «0.9.10»), y tanto plugin-update-checker como la
+ * descarga del APK se quedan con la primera que encaja: sin reordenar, una
+ * versión con un número de dos cifras no se vería nunca. Pura.
+ */
+function szs_ordenar_releases_por_version( array $releases ): array {
+	$valor = static fn( $release, string $campo ) => is_array( $release ) ? ( $release[ $campo ] ?? '' ) : ( $release->$campo ?? '' );
+	usort(
+		$releases,
+		static function ( $a, $b ) use ( $valor ): int {
+			$comparacion = szs_comparar_piezas_version( szs_piezas_version_tag( (string) $valor( $b, 'tag_name' ) ), szs_piezas_version_tag( (string) $valor( $a, 'tag_name' ) ) );
+			return 0 !== $comparacion ? $comparacion : strcmp( (string) $valor( $b, 'published_at' ), (string) $valor( $a, 'published_at' ) );
+		}
+	);
+	return $releases;
+}
+
+add_filter( 'http_response', 'szs_ordenar_respuesta_releases', 10, 3 );
+
+/**
+ * Reordena por versión la lista de releases del monorepo que pide
+ * WordPress (plugin-update-checker, para el plugin y el tema).
+ *
+ * @param array|WP_Error $respuesta
+ * @return array|WP_Error
+ */
+function szs_ordenar_respuesta_releases( $respuesta, $argumentos, $url ) {
+	if ( ! is_array( $respuesta ) || ! is_string( $url ) || ! str_starts_with( $url, 'https://api.github.com/repos/JosuIru/nuevo-ser/releases' )
+		|| str_contains( $url, '/releases/' ) ) {
+		return $respuesta;
+	}
+	$lista = json_decode( (string) ( $respuesta['body'] ?? '' ), true );
+	if ( ! is_array( $lista ) || ! array_is_list( $lista ) ) {
+		return $respuesta;
+	}
+	$respuesta['body'] = (string) wp_json_encode( szs_ordenar_releases_por_version( $lista ) );
+	return $respuesta;
+}
+
 add_action( 'plugins_loaded', 'szs_activar_actualizaciones' );
 
 function szs_activar_actualizaciones(): void {

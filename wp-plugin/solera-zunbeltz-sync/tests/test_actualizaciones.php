@@ -8,6 +8,7 @@
 define( 'ABSPATH', __DIR__ );
 
 function add_action( $hook, $callback, $prioridad = 10, $argumentos = 1 ) {}
+function add_filter( $hook, $callback, $prioridad = 10, $argumentos = 1 ) {}
 
 require_once __DIR__ . '/../includes/actualizaciones.php';
 
@@ -26,6 +27,16 @@ afirmar( null, szs_version_desde_tag( 'solera-zunbeltz-0.6.1+22' ), 'la release 
 afirmar( null, szs_version_desde_tag( 'uno-roto-1.0.0+26' ), 'releases de otras apps no cuentan' );
 afirmar( null, szs_version_desde_tag( 'plugin-solera-zunbeltz-sync-0.9.0-beta' ), 'sin sufijos raros' );
 afirmar( null, szs_version_desde_tag( 'plugin-solera-zunbeltz-sync-' ), 'sin versión' );
+afirmar( array( 0, 6, 10, 31 ), szs_piezas_version_tag( 'solera-zunbeltz-0.6.10+31' ), 'piezas de la versión de una etiqueta' );
+$ordenadas = szs_ordenar_releases_por_version(
+	array(
+		array( 'tag_name' => 'plugin-solera-zunbeltz-sync-0.9.9' ),
+		array( 'tag_name' => 'plugin-solera-zunbeltz-sync-0.9.10' ),
+		array( 'tag_name' => 'plugin-solera-zunbeltz-sync-1.0.0' ),
+		(object) array( 'tag_name' => 'tema-zunbeltz-espacio-0.2.1' ),
+	)
+);
+afirmar( array( 'plugin-solera-zunbeltz-sync-1.0.0', 'plugin-solera-zunbeltz-sync-0.9.10', 'plugin-solera-zunbeltz-sync-0.9.9', 'tema-zunbeltz-espacio-0.2.1' ), array_map( static fn( $r ) => is_array( $r ) ? $r['tag_name'] : $r->tag_name, $ordenadas ), 'de la versión más alta a la más baja (0.9.10 > 0.9.9)' );
 afirmar( '0.2.0', szs_version_tema_desde_tag( 'tema-zunbeltz-espacio-0.2.0' ), 'tag del tema' );
 afirmar( null, szs_version_tema_desde_tag( 'plugin-solera-zunbeltz-sync-0.9.3' ), 'la release del plugin no es del tema' );
 afirmar( null, szs_version_desde_tag( 'tema-zunbeltz-espacio-0.2.0' ), 'ni la del tema del plugin' );

@@ -25,7 +25,9 @@ const SZS_CADUCIDAD_APK_FALLO  = 600;
  * (timestamp), o null. Pura.
  */
 function szs_elegir_release_apk( array $releases ): ?array {
-	foreach ( $releases as $release ) {
+	// La de versión más alta, no la primera: GitHub ordena por etiqueta como
+	// texto (0.6.9 antes que 0.6.10).
+	foreach ( szs_ordenar_releases_por_version( $releases ) as $release ) {
 		if ( ! is_array( $release ) || ! empty( $release['draft'] ) || ! empty( $release['prerelease'] ) ) {
 			continue;
 		}

@@ -91,6 +91,12 @@ $fuera_de_github = $apk_de( 'solera-zunbeltz-0.6.3+24', 'solera-zunbeltz-0.6.3+2
 $fuera_de_github['assets'][0]['browser_download_url'] = 'https://otro.example/x.apk';
 afirmar( null, szs_elegir_release_apk( array( $fuera_de_github ) ), 'solo se redirige a github.com' );
 afirmar( null, szs_elegir_release_apk( array() ), 'sin releases, nada' );
+$como_github = array(
+	$apk_de( 'solera-zunbeltz-0.6.9+30', 'solera-zunbeltz-0.6.9+30.apk' ),
+	$apk_de( 'solera-zunbeltz-0.6.8+29', 'solera-zunbeltz-0.6.8+29.apk' ),
+	$apk_de( 'solera-zunbeltz-0.6.10+31', 'solera-zunbeltz-0.6.10+31.apk' ),
+);
+afirmar( '0.6.10+31', szs_elegir_release_apk( $como_github )['version'] ?? null, 'la de versión más alta aunque GitHub la ponga después (0.6.10 > 0.6.9)' );
 
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );

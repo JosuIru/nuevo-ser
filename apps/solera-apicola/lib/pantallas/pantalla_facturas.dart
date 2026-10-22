@@ -9,6 +9,7 @@ import 'package:printing/printing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../utiles/numeros_formulario.dart';
 import '../datos/base_datos.dart';
 import '../modelos/factura.dart';
 import '../servicios/generador_factura_pdf.dart';
@@ -363,9 +364,20 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
 
   void _anadirLinea() {
     final desc = _descCtrl.text.trim();
-    final cant = int.tryParse(_cantCtrl.text) ?? 1;
-    final precio = double.tryParse(_precioCtrl.text) ?? 0;
     if (desc.isEmpty) return;
+    final cant =
+        _cantCtrl.text.trim().isEmpty ? 1 : leerEntero(_cantCtrl.text);
+    final precio = _precioCtrl.text.trim().isEmpty
+        ? 0.0
+        : leerNumero(_precioCtrl.text, puntoDeMillares: true);
+    if (cant == null || precio == null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(cant == null
+            ? 'Cantidad: $textoNumeroNoValido'
+            : 'Precio: $textoNumeroNoValido'),
+      ));
+      return;
+    }
     setState(() {
       _lineas.add({
         'descripcion': desc,
@@ -517,7 +529,8 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                         labelText: 'Precio (€)',
                         border: OutlineInputBorder(),
                         isDense: true),
-                    keyboardType: TextInputType.number,
+                    keyboardType:
+                        const TextInputType.numberWithOptions(decimal: true),
                   ),
                 ),
                 SizedBox(width: 8),

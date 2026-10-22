@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:geolocator/geolocator.dart';
 
+import '../utiles/numeros_formulario.dart';
 import '../datos/base_datos.dart';
 import '../modelos/apiario.dart';
 import '../utiles/permisos_gps.dart';
@@ -92,8 +93,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
   Future<void> _guardar() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
     setState(() => _guardando = true);
-    final superficie =
-        double.tryParse(_superficie.text.replaceAll(',', '.').trim());
+    final superficie = leerNumero(_superficie.text);
     final db = BaseDatosSoleraApicola.instancia;
     final ahora = DateTime.now().millisecondsSinceEpoch;
     final cambios = <String, Object?>{
@@ -162,6 +162,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
               ),
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
+              validator: validarDecimalOpcional,
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<int>(

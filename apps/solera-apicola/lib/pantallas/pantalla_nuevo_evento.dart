@@ -12,6 +12,7 @@ import '../modelos/incidencia_apicola.dart';
 import '../modelos/movimiento.dart';
 import '../modelos/revision.dart';
 import '../modelos/tratamiento_varroa.dart';
+import '../utiles/numeros_formulario.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 /// Tipo de evento que crea esta pantalla. Apícola tiene 5 tipos —
@@ -235,10 +236,10 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         await db.guardarCosechaMiel(CosechaMiel(
           colmenaId: widget.colmenaId,
           fechaMs: fechaMs,
-          kilosMiel: double.tryParse(_controladorKilosMiel.text.replaceAll(',', '.')),
-          kilosCera: double.tryParse(_controladorKilosCera.text.replaceAll(',', '.')),
-          kilosPolen: double.tryParse(_controladorKilosPolen.text.replaceAll(',', '.')),
-          kilosPropoleo: double.tryParse(_controladorKilosPropoleo.text.replaceAll(',', '.')),
+          kilosMiel: leerNumero(_controladorKilosMiel.text, nullSiAmbiguo: true),
+          kilosCera: leerNumero(_controladorKilosCera.text, nullSiAmbiguo: true),
+          kilosPolen: leerNumero(_controladorKilosPolen.text, nullSiAmbiguo: true),
+          kilosPropoleo: leerNumero(_controladorKilosPropoleo.text, nullSiAmbiguo: true),
           numeroAlza: int.tryParse(_controladorAlza.text),
           rutasFotosJson: fotosJson,
           notas: notas,
@@ -389,6 +390,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             decoration: InputDecoration(labelText: 'Kilos miel', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
+            validator: validarCantidadOpcional,
           ),
           SizedBox(height: 12),
           TextFormField(
@@ -396,6 +398,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             decoration: InputDecoration(labelText: 'Kilos cera', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
+            validator: validarCantidadOpcional,
           ),
           SizedBox(height: 12),
           TextFormField(
@@ -403,6 +406,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             decoration: InputDecoration(labelText: 'Kilos polen', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
+            validator: validarCantidadOpcional,
           ),
           SizedBox(height: 12),
           TextFormField(
@@ -410,6 +414,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             decoration: InputDecoration(labelText: 'Kilos propóleo', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
+            validator: validarCantidadOpcional,
           ),
           SizedBox(height: 12),
           TextFormField(

@@ -64,6 +64,10 @@ afirmar( 7, $n['actualizado_ms'], 'actualizado_ms se castea a entero' );
 afirmar( false, $n['borrado'], 'borrado por defecto es false' );
 afirmar( false, szs_tipo_entidad_existe( 'cohete' ), 'un tipo inventado no existe' );
 afirmar( 'rechazar', accion( null, entidad( 'cohete' ), 'coord', $coordinacion ), 'un tipo inventado se rechaza' );
+afirmar( true, szs_borrado_finca_bloqueado( entidad( 'finca', array(), array( 'borrado' => true ) ), 3 ), 'la lápida de una finca con apuntes o registros se bloquea' );
+afirmar( false, szs_borrado_finca_bloqueado( entidad( 'finca', array(), array( 'borrado' => true ) ), 0 ), 'sin datos de proyecto, se puede borrar' );
+afirmar( false, szs_borrado_finca_bloqueado( entidad( 'finca' ), 3 ), 'editar una finca con datos no se bloquea' );
+afirmar( false, szs_borrado_finca_bloqueado( entidad( 'zona', array(), array( 'borrado' => true ) ), 3 ), 'solo afecta a fincas' );
 
 // --- last-write-wins ---
 $finca = entidad( 'finca', array( 'nombre' => 'Zunbeltz' ) );

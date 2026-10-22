@@ -64,6 +64,25 @@ function szs_revision_actual(): int {
 	return (int) $wpdb->get_var( "SELECT COALESCE(MAX(revision), 0) FROM {$tabla}" );
 }
 
+/**
+ * Apuntes y registros de actividad (sin borrar) que cuelgan de una finca.
+ * Solo se consulta al recibir la lápida de una finca.
+ */
+function szs_contar_datos_proyecto_en_finca( string $finca_uid ): int {
+	global $wpdb;
+	if ( '' === $finca_uid ) {
+		return 0;
+	}
+	$tabla = szs_tabla_entidades();
+	$patron = '%' . $wpdb->esc_like( '"finca_uid":"' . $finca_uid . '"' ) . '%';
+	return (int) $wpdb->get_var(
+		$wpdb->prepare(
+			"SELECT COUNT(*) FROM {$tabla} WHERE tipo IN ('apunte', 'registro_actividad') AND borrado = 0 AND datos LIKE %s",
+			$patron
+		)
+	);
+}
+
 function szs_fila_a_entidad( array $fila ): array {
 	$datos = json_decode( (string) $fila['datos'], true );
 	return array_merge(
@@ -209,6 +228,12 @@ function szs_procesar_entidades_entrantes( array $persona, array $items, string 
 		$proyecto   = 'proyecto' === $entrante['tipo'] ? null : szs_obtener_entidad( 'proyecto', $entrante['proyecto_uid'] );
 		$proyecto   = ( null !== $proyecto && ! $proyecto['borrado'] ) ? $proyecto : null;
 		$resolucion = szs_resolver_entidad_entrante( $existente, $entrante, $persona_uid, $capacidades, $proyecto );
+		// Borrar una finca se llevaría en cascada, en cada móvil, los apuntes y
+		// registros de los proyectos que hay en ella: no se acepta.
+		if ( 'rechazar' !== $resolucion['accion'] && 'ignorar' !== $resolucion['accion']
+			&& szs_borrado_finca_bloqueado( $entrante, szs_contar_datos_proyecto_en_finca( $entrante['uid'] ) ) ) {
+			$resolucion = szs_resolucion_entidad( 'rechazar', 'finca_con_datos_de_proyecto', $resolucion['autor_uid'] );
+		}
 
 		if ( 'rechazar' === $resolucion['accion'] ) {
 			$forzar[]   = array(

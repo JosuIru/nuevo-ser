@@ -166,6 +166,14 @@ function szs_resolver_entidad_entrante( ?array $existente, array $entrante, stri
 	return szs_resolucion_entidad( null === $existente ? 'insertar' : 'actualizar', '', $autor );
 }
 
+/**
+ * ¿Es la lápida de una finca que aún tiene apuntes o registros de
+ * proyectos ([$datos_de_proyecto] > 0)? Entonces no se acepta. Pura.
+ */
+function szs_borrado_finca_bloqueado( array $entrante, int $datos_de_proyecto ): bool {
+	return 'finca' === $entrante['tipo'] && ! empty( $entrante['borrado'] ) && $datos_de_proyecto > 0;
+}
+
 function szs_entidad_permitida( array $definicion, ?array $existente, array $entrante, string $persona_uid, array $capacidades, ?array $proyecto ): bool {
 	$tipo   = $entrante['tipo'];
 	$es_alta = null === $existente;

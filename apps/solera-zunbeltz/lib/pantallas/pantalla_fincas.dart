@@ -17,6 +17,7 @@ import '../utiles/estilos_tarea.dart';
 import '../utiles/edicion_contorno.dart';
 import '../utiles/geodesia.dart';
 import '../utiles/permisos_gps.dart';
+import 'crear_zonas_importadas.dart';
 import 'ficha_punto.dart';
 import 'ficha_zona.dart';
 import 'nueva_zona.dart';
@@ -76,6 +77,10 @@ class _PantallaFincasState extends State<PantallaFincas> {
   // curso. Mientras haya dibujo, el toque del mapa marca esquinas y no
   // añade puntos.
   List<LatLng> _trazado = const [];
+
+  /// Contornos del catastro o de un fichero, a la espera de elegir cuál se
+  /// crea (borde a trazos en el mapa).
+  List<ContornoPropuesto> _propuestos = const [];
   bool _dibujando = false;
   // Zona cuyo trazado se está rehaciendo (null = zona nueva).
   int? _redibujandoZonaId;
@@ -518,6 +523,57 @@ class _PantallaFincasState extends State<PantallaFincas> {
     if (creada == true && mounted) await _cargar();
   }
 
+  /// Lleva el mapa a un lugar buscado por nombre.
+  Future<void> _buscarLugar() async {
+    final posicion = await buscarLugarEnMapa(context);
+    if (posicion == null || !mounted) return;
+    try {
+      _controlador.move(posicion, 16);
+    } catch (_) {}
+  }
+
+  /// Crea zonas a partir de contornos propuestos: se pintan a trazos y se
+  /// elige uno tras otro hasta cerrar la hoja.
+  Future<void> _crearZonasDesde(
+      Future<List<ContornoPropuesto>> Function() obtener) async {
+    if (_fincas.isEmpty) return;
+    final contornos = await obtener();
+    if (!mounted || contornos.isEmpty) return;
+    setState(() => _propuestos = contornos);
+    _encuadrar([for (final c in contornos) ...c.vertices]);
+    try {
+      while (_propuestos.isNotEmpty) {
+        if (!mounted) break;
+        final elegido = _propuestos.length == 1
+            ? _propuestos.single
+            : await elegirContorno(context, _propuestos);
+        if (elegido == null || !mounted) break;
+        final centro = centroide(elegido.vertices);
+        final creada = await Navigator.of(context).push<bool>(MaterialPageRoute(
+          builder: (_) => NuevaZona(
+            fincas: _fincas,
+            vertices: elegido.vertices,
+            fincaIdInicial:
+                (centro == null ? null : _fincaMasCercana(centro)) ??
+                    _fincas.first.id,
+            nombreInicial: elegido.nombre,
+            notasIniciales: elegido.notas,
+          ),
+        ));
+        if (!mounted) return;
+        if (creada != true) {
+          if (_propuestos.length == 1) break;
+          continue;
+        }
+        setState(() => _propuestos =
+            _propuestos.where((c) => !identical(c, elegido)).toList());
+        await _cargar();
+      }
+    } finally {
+      if (mounted) setState(() => _propuestos = const []);
+    }
+  }
+
   /// Zona que contiene el punto tocado, si hay alguna. Con zonas solapadas
   /// gana la más pequeña: es la que el dedo quería señalar (una parcela
   /// dentro de un cercado grande, por ejemplo).
@@ -632,6 +688,14 @@ class _PantallaFincasState extends State<PantallaFincas> {
               pattern: patronEstadoZona(zona.estado),
             ),
           ],
+        for (final contorno in _propuestos)
+          Polygon(
+            points: contorno.vertices,
+            color: colorSenalZunbeltz.withValues(alpha: 0.12),
+            borderColor: colorSenalZunbeltz,
+            borderStrokeWidth: 3,
+            pattern: StrokePattern.dashed(segments: const [12, 8]),
+          ),
         if (_trazado.length >= 2) ...[
           Polygon(
             points: _trazado,
@@ -850,6 +914,30 @@ class _PantallaFincasState extends State<PantallaFincas> {
       appBar: AppBar(
         title: Text(textos.navFincas),
         actions: [
+          IconButton(
+            tooltip: textos.mapaBuscar,
+            icon: const Icon(Icons.search),
+            onPressed: _buscarLugar,
+          ),
+          if (politicaEspacioActual.puedeEditarEspacio && _fincas.isNotEmpty)
+            PopupMenuButton<int>(
+              tooltip: textos.zonasDesde,
+              icon: const Icon(Icons.layers_outlined),
+              onSelected: (opcion) => switch (opcion) {
+                0 => _crearZonasDesde(
+                    () => parcelaCatastralEn(context, _centroActual)),
+                1 => _crearZonasDesde(
+                    () => parcelaCatastralPorReferencia(context)),
+                _ => _crearZonasDesde(() => contornosDeFichero(context)),
+              },
+              itemBuilder: (_) => [
+                PopupMenuItem(
+                    value: 0, child: Text(textos.zonaDesdeCatastroCentro)),
+                PopupMenuItem(
+                    value: 1, child: Text(textos.zonaDesdeCatastroRef)),
+                PopupMenuItem(value: 2, child: Text(textos.zonaDesdeFichero)),
+              ],
+            ),
           IconButton(
             tooltip: textos.meteoTitulo,
             icon: const Icon(Icons.cloud_outlined),

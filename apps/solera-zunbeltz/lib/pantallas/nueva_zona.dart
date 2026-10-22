@@ -30,9 +30,16 @@ class NuevaZona extends StatefulWidget {
     required this.vertices,
     this.fincaIdInicial,
     this.zona,
+    this.nombreInicial = '',
+    this.notasIniciales = '',
   });
 
   final List<Finca> fincas;
+
+  /// Para una zona importada (catastro, fichero): su nombre de origen y de
+  /// dónde sale el contorno.
+  final String nombreInicial;
+  final String notasIniciales;
   final ZonaFinca? zona;
   final List<LatLng> vertices;
   final int? fincaIdInicial;
@@ -60,6 +67,8 @@ class _NuevaZonaState extends State<NuevaZona> {
     super.initState();
     _fincaId = widget.fincaIdInicial ??
         (widget.fincas.isNotEmpty ? widget.fincas.first.id : null);
+    _nombre.text = widget.nombreInicial;
+    _notas.text = widget.notasIniciales;
     final zona = widget.zona;
     if (zona != null) {
       _fincaId = zona.fincaId;

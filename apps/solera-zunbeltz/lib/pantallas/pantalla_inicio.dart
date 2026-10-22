@@ -12,6 +12,7 @@ import '../modelos/aviso_campo.dart';
 import '../modelos/entrada_actividad.dart';
 import '../servicios/resumen_notificaciones.dart';
 import '../servicios/servicio_logos_entidades.dart';
+import '../servicios/servicio_textos_ayuda.dart';
 import '../servicios/servicio_noticias_sector.dart';
 import '../servicios/servicio_sincronizacion.dart';
 import '../utiles/descripcion_actividad.dart';
@@ -46,6 +47,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
   final _bd = BaseDatosSoleraZunbeltz();
   final _noticiasSector = ServicioNoticiasSector();
   final _logosEntidades = ServicioLogosEntidades();
+  final _textosAyuda = ServicioTextosAyuda();
   List<AvisoCampo> _avisos = const [];
   List<EntradaActividad> _actividad = const [];
   int _vencidas = 0;
@@ -60,6 +62,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
     _cargar();
     _noticiasSector.actualizar();
     _logosEntidades.actualizar();
+    _textosAyuda.actualizar();
     notificadorDatos.addListener(_recargar);
   }
 
@@ -102,6 +105,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
       sincronizarEspacioEnSilencio(),
       _noticiasSector.actualizar(forzar: true),
       _logosEntidades.actualizar(forzar: true),
+      _textosAyuda.actualizar(forzar: true),
     ]);
     await _cargar();
   }
@@ -474,8 +478,10 @@ class _ContadorAvisos extends StatelessWidget {
       child: Text(
         '$cuenta',
         textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-            color: texto, fontWeight: FontWeight.w700),
+        style: Theme.of(context)
+            .textTheme
+            .labelMedium
+            ?.copyWith(color: texto, fontWeight: FontWeight.w700),
       ),
     );
   }

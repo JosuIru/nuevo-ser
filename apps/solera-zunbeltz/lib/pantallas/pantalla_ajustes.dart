@@ -21,12 +21,13 @@ import 'pantalla_entidades.dart';
 import 'pantalla_ayuda.dart';
 import '../utiles/texto_error_sync.dart';
 import '../servicios/servicio_logos_entidades.dart';
+import '../servicios/servicio_textos_ayuda.dart';
 import '../servicios/servicio_noticias_sector.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
 /// falla si no coinciden.
-const String versionAppZunbeltz = '0.6.5';
+const String versionAppZunbeltz = '0.6.6';
 
 /// Pestaña "Ajustes": idioma y acerca de.
 class PantallaAjustes extends StatefulWidget {
@@ -79,7 +80,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
 
   Future<void> _cargarDemo() async {
     final textos = AppLocalizations.of(context);
-    final sembrado = await BaseDatosSoleraZunbeltz().sembrarDemostracionSiVacia();
+    final sembrado =
+        await BaseDatosSoleraZunbeltz().sembrarDemostracionSiVacia();
     if (sembrado) avisarCambioDatos();
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -124,7 +126,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         content: TextField(
           controller: controlador,
           keyboardType: TextInputType.url,
-          decoration: const InputDecoration(hintText: 'https://tuwordpress.org'),
+          decoration:
+              const InputDecoration(hintText: 'https://tuwordpress.org'),
           autofocus: true,
         ),
         actions: [
@@ -178,6 +181,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     await reiniciarCursoresSincronizacion();
     await ServicioNoticiasSector.olvidarGuardadas();
     await ServicioLogosEntidades.olvidarGuardadas();
+    await ServicioTextosAyuda.olvidarGuardados();
     avisarCambioDatos();
     if (!mounted || _syncUrl.isEmpty || _syncToken.isEmpty) return;
     setState(() => _sincronizando = true);
@@ -188,11 +192,12 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       await guardarSesionEspacio(remota.sesion, remota.personas);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(textos.ajustesSesionConectada(remota.sesion.persona.nombre))));
+          content: Text(
+              textos.ajustesSesionConectada(remota.sesion.persona.nombre))));
     } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(textoErrorSync(error, textos))));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textoErrorSync(error, textos))));
     } finally {
       // Las pestañas (Fincas, Proyectos…) solo se reconstruyen con este
       // aviso: sin él seguirían ofreciendo lo que permitía la sesión
@@ -216,8 +221,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         }
         if (!mounted) return;
         if (_syncUrl.isNotEmpty && _syncToken.isNotEmpty) {
-          ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(textos.ajustesSyncOcupado)));
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(textos.ajustesSyncOcupado)));
         }
         return;
       }
@@ -231,8 +236,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               : '$resumen\n${textos.ajustesSyncRechazadas(resultado.rechazadasPorPermisos)}')));
     } catch (error) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(textoErrorSync(error, textos))));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(textoErrorSync(error, textos))));
     } finally {
       if (mounted) setState(() => _sincronizando = false);
     }
@@ -281,8 +286,9 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.outgoing_mail),
             title: Text(textos.ajustesCoordinador),
-            subtitle: Text(
-                _coordinador.isEmpty ? textos.ajustesCoordinadorVacio : _coordinador),
+            subtitle: Text(_coordinador.isEmpty
+                ? textos.ajustesCoordinadorVacio
+                : _coordinador),
             trailing: const Icon(Icons.edit_outlined),
             onTap: _editarCoordinador,
           ),
@@ -339,7 +345,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.dns_outlined),
             title: Text(textos.ajustesSyncUrl),
-            subtitle: Text(_syncUrl.isEmpty ? textos.ajustesSyncSinConfigurar : _syncUrl),
+            subtitle: Text(
+                _syncUrl.isEmpty ? textos.ajustesSyncSinConfigurar : _syncUrl),
             trailing: const Icon(Icons.edit_outlined),
             onTap: _editarSyncUrl,
           ),
@@ -372,10 +379,9 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                     child: CircularProgressIndicator(strokeWidth: 2))
                 : const Icon(Icons.sync_outlined),
             title: Text(textos.ajustesSyncAhora),
-            onTap:
-                (_sincronizando || _syncUrl.isEmpty || _syncToken.isEmpty)
-                    ? null
-                    : _sincronizarAhora,
+            onTap: (_sincronizando || _syncUrl.isEmpty || _syncToken.isEmpty)
+                ? null
+                : _sincronizarAhora,
           ),
           if (_syncUrl.isNotEmpty && _syncToken.isNotEmpty)
             ListTile(
@@ -392,7 +398,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             ListTile(
               leading: const Icon(Icons.science_outlined),
               title: Text(textos.ajustesDemo),
-              subtitle: _syncUrl.isEmpty ? null : Text(textos.ajustesDemoSoloLocal),
+              subtitle:
+                  _syncUrl.isEmpty ? null : Text(textos.ajustesDemoSoloLocal),
               trailing: const Icon(Icons.download),
               onTap: _syncUrl.isEmpty ? _cargarDemo : null,
             ),

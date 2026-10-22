@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../branding.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
+import '../servicios/servicio_textos_ayuda.dart';
+import 'indice_ayuda.dart';
+import 'textos_ayuda_de_serie.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
 
@@ -65,77 +68,61 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
     return !politica.modoLocal && !politica.puedeEditarEspacio;
   }
 
-  List<_GrupoAyuda> _grupos(AppLocalizations t) {
+  /// Icono de cada apartado, por clave del índice.
+  static const Map<String, IconData> _iconos = {
+    'ayudaQueEs': Icons.help_outline,
+    'ayudaPestanas': Icons.dashboard_outlined,
+    'ayudaIdiomaDatos': Icons.translate_outlined,
+    'ayudaHoyAvisos': Icons.campaign_outlined,
+    'ayudaWidget': Icons.widgets_outlined,
+    'ayudaActualizaciones': Icons.system_update,
+    'ayudaFincas': Icons.add_location_alt_outlined,
+    'ayudaZonas': Icons.pentagon_outlined,
+    'ayudaEditarMapa': Icons.edit_location_alt_outlined,
+    'ayudaCierres': Icons.fence,
+    'ayudaTareas': Icons.add_task,
+    'ayudaRecurrentes': Icons.repeat,
+    'ayudaTablero': Icons.checklist,
+    'ayudaGanadoLotes': Icons.pets_outlined,
+    'ayudaGanadoMover': Icons.moving,
+    'ayudaGanadoManejo': Icons.medication_outlined,
+    'ayudaProyectos': Icons.science_outlined,
+    'ayudaApuntar': Icons.edit_note_outlined,
+    'ayudaNumeros': Icons.bar_chart_outlined,
+    'ayudaConvenio': Icons.handshake_outlined,
+    'ayudaCalculadora': Icons.calculate_outlined,
+    'ayudaInformes': Icons.ios_share,
+    'ayudaSync': Icons.sync_outlined,
+    'ayudaWeb': Icons.computer_outlined,
+    'ayudaRoles': Icons.badge_outlined,
+    'ayudaPeticiones': Icons.add_comment_outlined,
+    'ayudaContactos': Icons.contacts_outlined,
+    'ayudaNotificaciones': Icons.notifications_outlined,
+    'ayudaProblemas': Icons.build_outlined,
+  };
+
+  /// Los grupos y apartados del índice, con el texto de serie o el que
+  /// coordinación haya cambiado en el panel ([cambiados]), y la versión
+  /// para tester donde la hay y toca.
+  List<_GrupoAyuda> _grupos(AppLocalizations t, String idioma,
+      Map<String, Map<String, String>> cambiados) {
+    final deSerie = textosAyudaDeSerie(t);
     final tester = _esTester;
-    // Apartado con versión para tester: (general, tester).
-    _ApartadoAyuda segun(String tituloGeneral, String cuerpoGeneral,
-            String tituloTester, String cuerpoTester, IconData icono) =>
-        tester
-            ? _ApartadoAyuda(tituloTester, cuerpoTester, icono)
-            : _ApartadoAyuda(tituloGeneral, cuerpoGeneral, icono);
+    String texto(String clave) => textoAyuda(cambiados, idioma, deSerie, clave);
     return [
-      _GrupoAyuda(t.ayudaGrupoEmpezar, [
-        _ApartadoAyuda(t.ayudaQueEsT, t.ayudaQueEsB, Icons.help_outline),
-        _ApartadoAyuda(
-            t.ayudaPestanasT, t.ayudaPestanasB, Icons.dashboard_outlined),
-        _ApartadoAyuda(
-            t.ayudaIdiomaDatosT, t.ayudaIdiomaDatosB, Icons.translate_outlined),
-        _ApartadoAyuda(
-            t.ayudaHoyAvisosT, t.ayudaHoyAvisosB, Icons.campaign_outlined),
-        _ApartadoAyuda(t.ayudaWidgetT, t.ayudaWidgetB, Icons.widgets_outlined),
-        _ApartadoAyuda(t.ayudaActualizacionesT, t.ayudaActualizacionesB,
-            Icons.system_update),
-      ]),
-      _GrupoAyuda(t.ayudaGrupoFincas, [
-        _ApartadoAyuda(
-            t.ayudaFincasT, t.ayudaFincasB, Icons.add_location_alt_outlined),
-        segun(t.ayudaZonasT, t.ayudaZonasB, t.ayudaZonasTesterT,
-            t.ayudaZonasTesterB, Icons.pentagon_outlined),
-        segun(t.ayudaEditarMapaT, t.ayudaEditarMapaB, t.ayudaEditarMapaTesterT,
-            t.ayudaEditarMapaTesterB, Icons.edit_location_alt_outlined),
-        _ApartadoAyuda(t.ayudaCierresT, t.ayudaCierresB, Icons.fence),
-        segun(t.ayudaTareasT, t.ayudaTareasB, t.ayudaTareasTesterT,
-            t.ayudaTareasTesterB, Icons.add_task),
-        segun(t.ayudaRecurrentesT, t.ayudaRecurrentesB,
-            t.ayudaRecurrentesTesterT, t.ayudaRecurrentesTesterB, Icons.repeat),
-        segun(t.ayudaTableroT, t.ayudaTableroB, t.ayudaTableroTesterT,
-            t.ayudaTableroTesterB, Icons.checklist),
-      ]),
-      _GrupoAyuda(t.ayudaGrupoGanado, [
-        _ApartadoAyuda(
-            t.ayudaGanadoLotesT, t.ayudaGanadoLotesB, Icons.pets_outlined),
-        _ApartadoAyuda(t.ayudaGanadoMoverT, t.ayudaGanadoMoverB, Icons.moving),
-        _ApartadoAyuda(t.ayudaGanadoManejoT, t.ayudaGanadoManejoB,
-            Icons.medication_outlined),
-      ]),
-      _GrupoAyuda(t.ayudaGrupoProyectos, [
-        _ApartadoAyuda(
-            t.ayudaProyectosT, t.ayudaProyectosB, Icons.science_outlined),
-        _ApartadoAyuda(
-            t.ayudaApuntarT, t.ayudaApuntarB, Icons.edit_note_outlined),
-        _ApartadoAyuda(
-            t.ayudaNumerosT, t.ayudaNumerosB, Icons.bar_chart_outlined),
-        _ApartadoAyuda(
-            t.ayudaConvenioT, t.ayudaConvenioB, Icons.handshake_outlined),
-        _ApartadoAyuda(
-            t.ayudaCalculadoraT, t.ayudaCalculadoraB, Icons.calculate_outlined),
-        _ApartadoAyuda(t.ayudaInformesT, t.ayudaInformesB, Icons.ios_share),
-      ]),
-      _GrupoAyuda(t.ayudaGrupoEquipo, [
-        _ApartadoAyuda(t.ayudaSyncT, t.ayudaSyncB, Icons.sync_outlined),
-        _ApartadoAyuda(t.ayudaWebT, t.ayudaWebB, Icons.computer_outlined),
-        _ApartadoAyuda(t.ayudaRolesT, t.ayudaRolesB, Icons.badge_outlined),
-        _ApartadoAyuda(
-            t.ayudaPeticionesT, t.ayudaPeticionesB, Icons.add_comment_outlined),
-        _ApartadoAyuda(
-            t.ayudaContactosT, t.ayudaContactosB, Icons.contacts_outlined),
-        _ApartadoAyuda(t.ayudaNotificacionesT, t.ayudaNotificacionesB,
-            Icons.notifications_outlined),
-      ]),
-      _GrupoAyuda(t.ayudaGrupoProblemas, [
-        _ApartadoAyuda(
-            t.ayudaProblemasT, t.ayudaProblemasB, Icons.build_outlined),
-      ]),
+      for (final entrada in indiceAyuda.entries)
+        _GrupoAyuda(texto(entrada.key), [
+          for (final clave in entrada.value)
+            _ApartadoAyuda(
+              texto(tester && apartadosConVersionTester.contains(clave)
+                  ? '${clave}TesterT'
+                  : '${clave}T'),
+              texto(tester && apartadosConVersionTester.contains(clave)
+                  ? '${clave}TesterB'
+                  : '${clave}B'),
+              _iconos[clave] ?? Icons.article_outlined,
+            ),
+        ]),
     ];
   }
 
@@ -147,12 +134,19 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) => ValueListenableBuilder(
+        valueListenable: ServicioTextosAyuda.actuales,
+        builder: (contexto, cambiados, _) => _pantalla(contexto, cambiados),
+      );
+
+  Widget _pantalla(
+      BuildContext context, Map<String, Map<String, String>> cambiados) {
     final t = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
     final estilos = Theme.of(context).textTheme;
     final buscando = _textoBuscado.isNotEmpty;
     final gruposVisibles = [
-      for (final grupo in _grupos(t))
+      for (final grupo in _grupos(t, idioma, cambiados))
         _GrupoAyuda(grupo.titulo,
             grupo.apartados.where(_coincide).toList(growable: false)),
     ].where((grupo) => grupo.apartados.isNotEmpty).toList(growable: false);
@@ -167,12 +161,17 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
-              child: Text(t.ayudaIntro, style: estilos.bodyLarge),
+              child: Text(
+                  textoAyuda(
+                      cambiados, idioma, textosAyudaDeSerie(t), 'ayudaIntro'),
+                  style: estilos.bodyLarge),
             ),
             if (_esTester)
               Padding(
                 padding: const EdgeInsets.fromLTRB(8, 0, 8, 12),
-                child: Text(t.ayudaPerfilTester,
+                child: Text(
+                    textoAyuda(cambiados, idioma, textosAyudaDeSerie(t),
+                        'ayudaPerfilTester'),
                     style: estilos.bodySmall
                         ?.copyWith(color: colorTintaApagadaZunbeltz)),
               ),
@@ -226,14 +225,18 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
                     children: [
                       _CuerpoApartado(
                           cuerpo: apartado.cuerpo,
-                          etiquetaNota: t.ayudaConsejo),
+                          etiquetaNota: textoAyuda(cambiados, idioma,
+                              textosAyudaDeSerie(t), 'ayudaConsejo')),
                     ],
                   ),
                 ),
             ],
             Padding(
               padding: const EdgeInsets.fromLTRB(8, 20, 8, 0),
-              child: Text(t.ayudaPie, style: estilos.bodySmall),
+              child: Text(
+                  textoAyuda(
+                      cambiados, idioma, textosAyudaDeSerie(t), 'ayudaPie'),
+                  style: estilos.bodySmall),
             ),
           ],
         ),

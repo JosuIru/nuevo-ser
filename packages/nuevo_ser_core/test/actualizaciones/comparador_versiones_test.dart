@@ -88,4 +88,33 @@ void main() {
       expect(reconstruido.publicadoMs, original.publicadoMs);
     });
   });
+
+  group('elegirReleaseMasNueva', () {
+    Map<String, dynamic> release(String tag,
+            {bool draft = false, bool prerelease = false}) =>
+        {'tag_name': tag, 'draft': draft, 'prerelease': prerelease};
+
+    test('elige la versión más alta, no la primera de la lista', () {
+      // Así ordena GitHub: por etiqueta como texto (0.6.9 antes que 0.6.10).
+      final lista = [
+        release('tema-zunbeltz-espacio-0.2.1'),
+        release('solera-zunbeltz-0.6.9+30'),
+        release('solera-zunbeltz-0.6.8+29'),
+        release('solera-zunbeltz-0.6.10+31'),
+        release('plugin-solera-zunbeltz-sync-0.9.9'),
+      ];
+      expect(elegirReleaseMasNueva(lista, 'solera-zunbeltz-')?['tag_name'],
+          'solera-zunbeltz-0.6.10+31');
+    });
+
+    test('sin borradores ni pre-releases; sin coincidencias, null', () {
+      final lista = [
+        release('app-2.0.0', draft: true),
+        release('app-1.5.0', prerelease: true),
+        release('app-1.0.0'),
+      ];
+      expect(elegirReleaseMasNueva(lista, 'app-')?['tag_name'], 'app-1.0.0');
+      expect(elegirReleaseMasNueva(lista, 'otra-'), isNull);
+    });
+  });
 }

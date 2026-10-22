@@ -309,17 +309,32 @@ ActualizacionDisponible? _leerCache(
 }
 
 Map<String, dynamic>? _elegirReleaseAplicable(
-    List<dynamic> lista, ConfigActualizaciones config) {
+        List<dynamic> lista, ConfigActualizaciones config) =>
+    elegirReleaseMasNueva(lista, config.prefijoTag);
+
+/// De la lista de releases de la API de GitHub, la de versión más alta con
+/// la etiqueta [prefijoTag] (sin borradores ni pre-releases).
+///
+/// No vale quedarse con la primera: GitHub ordena la lista por el nombre de
+/// la etiqueta como texto, y así «app-0.6.9» va antes que «app-0.6.10». Con
+/// la primera, un móvil con la 0.6.9 no vería nunca la 0.6.10.
+Map<String, dynamic>? elegirReleaseMasNueva(
+    List<dynamic> lista, String prefijoTag) {
+  Map<String, dynamic>? mejor;
+  String? versionMejor;
   for (final item in lista) {
     if (item is! Map<String, dynamic>) continue;
     if (item['draft'] == true) continue;
     if (item['prerelease'] == true) continue;
     final tag = item['tag_name'] as String? ?? '';
-    if (config.prefijoTag.isNotEmpty &&
-        !tag.startsWith(config.prefijoTag)) continue;
-    return item;
+    if (prefijoTag.isNotEmpty && !tag.startsWith(prefijoTag)) continue;
+    final version = _extraerVersionDeTag(tag, prefijoTag);
+    if (versionMejor == null || compararVersiones(version, versionMejor) > 0) {
+      mejor = item;
+      versionMejor = version;
+    }
   }
-  return null;
+  return mejor;
 }
 
 Map<String, dynamic>? _elegirAsset(

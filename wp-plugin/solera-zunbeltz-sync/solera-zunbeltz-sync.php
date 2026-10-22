@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     0.9.3
+ * Version:     0.9.4
  * Author:      Gailu Sare - Solera
  * Author URI:  https://gailu.net/
  * License:     GPL-2.0-or-later
@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '0.9.3' );
+define( 'SZS_VERSION', '0.9.4' );
 define( 'SZS_VERSION_ESQUEMA', 7 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );

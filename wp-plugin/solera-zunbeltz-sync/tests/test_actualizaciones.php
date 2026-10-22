@@ -26,6 +26,10 @@ afirmar( null, szs_version_desde_tag( 'solera-zunbeltz-0.6.1+22' ), 'la release 
 afirmar( null, szs_version_desde_tag( 'uno-roto-1.0.0+26' ), 'releases de otras apps no cuentan' );
 afirmar( null, szs_version_desde_tag( 'plugin-solera-zunbeltz-sync-0.9.0-beta' ), 'sin sufijos raros' );
 afirmar( null, szs_version_desde_tag( 'plugin-solera-zunbeltz-sync-' ), 'sin versión' );
+afirmar( '0.2.0', szs_version_tema_desde_tag( 'tema-zunbeltz-espacio-0.2.0' ), 'tag del tema' );
+afirmar( null, szs_version_tema_desde_tag( 'plugin-solera-zunbeltz-sync-0.9.3' ), 'la release del plugin no es del tema' );
+afirmar( null, szs_version_desde_tag( 'tema-zunbeltz-espacio-0.2.0' ), 'ni la del tema del plugin' );
+afirmar( '0.2.0', szs_filtro_version_desde_tag( 'tema-zunbeltz-espacio-' )( (object) array( 'version' => 'tema-zunbeltz-espacio-0.2.0' ) )->version, 'el filtro deja solo el número' );
 
 if ( $fallos > 0 ) {
 	fprintf( STDERR, "%d fallo(s)\n", $fallos );

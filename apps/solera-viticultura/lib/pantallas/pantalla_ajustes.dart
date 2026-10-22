@@ -2,20 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import 'pantalla_acerca.dart';
+import '../estado/clave_ia.dart';
 import 'pantalla_backup.dart';
-import 'pantalla_facturas.dart';
-import 'pantalla_clave_anthropic.dart';
 import 'pantalla_configuracion_fiscal.dart';
-import 'pantalla_libro_economico.dart';
-import 'pantalla_libro_pac.dart';
 import 'pantalla_terceros.dart';
 import 'pantalla_titular.dart';
 
 /// Pantalla agregadora de ajustes, agrupada por secciones (explotación,
-/// registros, IA, preferencias, datos, aplicación). El menú overflow del
-/// mapa redirige aquí en lugar de abrir cada uno como entrada propia,
-/// para que la cabecera del mapa no se llene según vaya creciendo el
-/// conjunto. El Libro PAC sigue también en el menú del mapa.
+/// IA, preferencias, datos, aplicación). Los libros y documentos (Libro
+/// PAC, facturas, libro económico, extracto) están en la pestaña
+/// Registros.
 class PantallaAjustes extends StatelessWidget {
   const PantallaAjustes({super.key});
 
@@ -51,31 +47,28 @@ class PantallaAjustes extends StatelessWidget {
             subtitle: Text('Terceros con NIF · alimentan el modelo 347'),
             onTap: () => _abrir(context, () => PantallaTerceros()),
           ),
-          CabeceraSeccionAjustes(SoleraL10n.t('seccion_registros')),
-          ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Libro PAC'),
-            subtitle: Text('Cuaderno de explotación (RD 1311/2012)'),
-            onTap: () => _abrir(context, () => const PantallaLibroPac()),
-          ),
-          ListTile(
-            leading: Icon(Icons.receipt),
-            title: Text(SoleraL10n.t('facturas')),
-            subtitle: Text(SoleraL10n.t('emision_pdf_y_envio')),
-            onTap: () => _abrir(context, () => PantallaFacturas()),
-          ),
-          ListTile(
-            leading: Icon(Icons.menu_book),
-            title: Text(SoleraL10n.t('libro_economico')),
-            subtitle: Text('Ingresos, gastos y extracto anual · provisional'),
-            onTap: () => _abrir(context, () => PantallaLibroEconomico()),
-          ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
-            subtitle: Text('Configura tu clave Anthropic (Claude vision)'),
-            onTap: () => _abrir(context, () => PantallaClaveAnthropic()),
+            subtitle: Text('Configura tu clave de Anthropic (Claude)'),
+            onTap: () => _abrir(
+              context,
+              () => PantallaClaveAnthropic(
+                estado: estadoClaveAnthropicViticultura,
+                nombreApp: 'Solera Viticultura',
+                titulo: 'Identificación con IA',
+                queIdentifica:
+                    'Identifica mildiu, oídio, botritis y otras incidencias por foto',
+                descripcion:
+                    'Solera Viticultura puede usar Claude, de Anthropic, para analizar la foto que adjuntas '
+                    'a una incidencia y proponer un diagnóstico, severidad y recomendaciones de manejo '
+                    'cultural. Con la misma clave funciona el asistente (chat) de la pantalla Hoy. '
+                    'Tú pagas el uso a Anthropic con tu clave; sin clave la app funciona igual, '
+                    'sin el botón de IA.',
+                probarClave: probarClaveAnthropicViticultura,
+              ),
+            ),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_preferencias')),
           Padding(
@@ -95,7 +88,7 @@ class PantallaAjustes extends StatelessWidget {
             leading: Icon(Icons.backup),
             title: Text('Backup y restauración'),
             subtitle: Text('Empaqueta BD + fotos como zip'),
-            onTap: () => _abrir(context, () => PantallaBackup()),
+            onTap: () => _abrir(context, () => const PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),
           ListTile(

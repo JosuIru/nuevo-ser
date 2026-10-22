@@ -14,6 +14,14 @@ import '../modelos/titular.dart';
 import '../modelos/tratamiento.dart';
 import '../modelos/vinedo.dart';
 
+/// Nombre del fichero de la BD en la carpeta de documentos. Lo usan
+/// también las copias de seguridad: no cambiarlo.
+const String nombreFicheroBaseDatosViticultura = 'solera_viticultura.db';
+
+/// Versión del esquema (`version:` de `openDatabase`). Súbela con cada
+/// migración: la copia de seguridad rechaza copias más nuevas que esto.
+const int versionEsquemaBaseDatosViticultura = 3;
+
 /// Acceso a la base de datos local de Solera Viticultura. Singleton
 /// con inicialización perezosa: la primera lectura crea la BD.
 ///
@@ -37,10 +45,10 @@ class BaseDatosSoleraViticultura {
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
     final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, 'solera_viticultura.db');
+    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosViticultura);
     _basedatos = await openDatabase(
       ruta,
-      version: 3,
+      version: versionEsquemaBaseDatosViticultura,
       onConfigure: (db) async {
         // ON DELETE CASCADE en eventos hijos requiere FKs activas.
         await db.execute('PRAGMA foreign_keys = ON');

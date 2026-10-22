@@ -2,37 +2,24 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:image_picker/image_picker.dart';
-import '../datos/configuracion.dart';
+import '../estado/clave_ia.dart';
 
+/// Asistente de viticultura por chat (Claude, con la clave de Anthropic
+/// de la app). Admite foto: se manda junto a la pregunta. Se abre desde
+/// la pantalla Hoy.
 class PantallaChat extends StatefulWidget {
   final String? contextoInicial;
   final String sistemaPrompt;
 
-  const PantallaChat({super.key, this.contextoInicial, this.sistemaPrompt = sistemaFosiles});
+  const PantallaChat({super.key, this.contextoInicial, this.sistemaPrompt = sistemaViticultura});
 
-  static const sistemaFosiles =
-      'Eres un asistente especializado en paleontología y geología para aficionados. '
-      'Ayudas a identificar fósiles, interpretar formaciones geológicas, entender la '
-      'cronoestratigrafía y dar consejos prácticos de campo. '
-      'Hablas con precisión científica pero en tono accesible y entusiasta. '
-      'Cuando no estés seguro de algo, lo dices claramente y sugieres consultar '
-      'a un geólogo profesional o a un museo. '
-      'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
-
-  static const sistemaNaturaleza =
-      'Eres un asistente especializado en naturaleza, fauna, flora y biodiversidad. '
-      'Ayudas a identificar especies animales y vegetales, entender ecosistemas, '
-      'dar consejos de observación responsable y buenas prácticas de campo. '
-      'Hablas con precisión científica pero en tono accesible y entusiasta. '
-      'Cuando no estés seguro de algo, lo dices claramente. '
-      'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
-
-  static const sistemaSolera =
-      'Eres un asistente especializado en agricultura, viticultura y apicultura. '
-      'Ayudas a identificar plagas y enfermedades, interpretar síntomas, sugerir '
-      'tratamientos (siempre mencionando que consultes a un técnico antes de aplicar), '
-      'y dar consejos de manejo agronómico. Hablas con precisión técnica pero en tono '
-      'accesible. Cuando no estés seguro, lo dices y sugieres consultar a un especialista. '
+  static const sistemaViticultura =
+      'Eres un asistente especializado en viticultura para bodegas pequeñas y medianas de la '
+      'península ibérica. Ayudas a interpretar síntomas en cepas, hojas y racimos (mildiu, oídio, '
+      'botritis, polilla del racimo…), a entender la fenología BBCH, el manejo del viñedo y el '
+      'cuaderno de explotación PAC. NUNCA recomiendes productos fitosanitarios por nombre comercial: '
+      'habla de manejo cultural y, como mucho, de materias activas, y di siempre que consulte con '
+      'su técnico o asesor antes de tratar. Cuando no estés seguro, lo dices. '
       'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
 
   @override
@@ -45,14 +32,11 @@ class _PantallaChatState extends State<PantallaChat> {
   final _selectorImagen = ImagePicker();
   final List<MensajeChat> _mensajes = [];
   bool _enviando = false;
-  ProveedorChat _proveedor = ProveedorChat.deepseek;
-  ServicioChat? _servicio;
   String? _imagenAdjunta;
 
   @override
   void initState() {
     super.initState();
-    _inicializarServicio();
     if (widget.contextoInicial != null && widget.contextoInicial!.isNotEmpty) {
       _mensajes.add(MensajeChat(
         texto: widget.contextoInicial!,
@@ -66,19 +50,6 @@ class _PantallaChatState extends State<PantallaChat> {
     _controladorMensaje.dispose();
     _scrollController.dispose();
     super.dispose();
-  }
-
-  Future<void> _inicializarServicio() async {
-    final apiKeyClaude = await Configuracion.obtenerApiKey();
-    final apiKeyDeepseek = await Configuracion.obtenerApiKeyDeepseek();
-    final modeloClaude = await Configuracion.obtenerModelo();
-    setState(() {
-      _servicio = ServicioChat(
-        apiKeyClaude: apiKeyClaude,
-        apiKeyDeepseek: apiKeyDeepseek,
-        modeloClaude: modeloClaude,
-      );
-    });
   }
 
   Future<void> _hacerFoto() async {
@@ -97,18 +68,14 @@ class _PantallaChatState extends State<PantallaChat> {
     if (texto.isEmpty && imagen == null || _enviando) return;
     _controladorMensaje.clear();
 
-    // Si hay imagen, forzar Claude
-    final proveedor = imagen != null ? ProveedorChat.claude : _proveedor;
+    const proveedor = ProveedorChat.claude;
+    final clave = await estadoClaveAnthropicViticultura.cargar();
+    if (!mounted) return;
 
-    final clave = proveedor == ProveedorChat.claude
-        ? await Configuracion.obtenerApiKey()
-        : await Configuracion.obtenerApiKeyDeepseek();
-
-    if (clave.isEmpty) {
-      final nombre = proveedor == ProveedorChat.claude ? 'Claude' : 'DeepSeek';
+    if (clave == null || clave.isEmpty) {
       setState(() {
         _mensajes.add(MensajeChat(
-          texto: 'Necesitas configurar tu API key de $nombre en Ajustes.',
+          texto: 'Necesitas configurar tu clave de Anthropic en Ajustes → Identificación con IA.',
           esUsuario: false,
           proveedor: proveedor,
         ));
@@ -128,7 +95,8 @@ class _PantallaChatState extends State<PantallaChat> {
     _scrollAbajo();
 
     try {
-      final respuesta = await _servicio!.enviarMensaje(
+      final servicioChat = ServicioChat(apiKeyClaude: clave, apiKeyDeepseek: '');
+      final respuesta = await servicioChat.enviarMensaje(
         texto.isNotEmpty ? texto : '¿Qué ves en esta imagen? Identifícala por favor.',
         proveedor: proveedor,
         historial: _mensajes.length > 1
@@ -147,11 +115,11 @@ class _PantallaChatState extends State<PantallaChat> {
         _enviando = false;
       });
       _scrollAbajo();
-    } catch (e) {
+    } catch (error) {
       if (!mounted) return;
       setState(() {
         _mensajes.add(MensajeChat(
-          texto: 'Error: $e',
+          texto: error.toString().replaceFirst('Exception: ', ''),
           esUsuario: false,
           proveedor: proveedor,
         ));
@@ -179,30 +147,7 @@ class _PantallaChatState extends State<PantallaChat> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat'),
-        actions: [
-          SegmentedButton<ProveedorChat>(
-            segments: const [
-              ButtonSegment(
-                value: ProveedorChat.deepseek,
-                label: Text('DeepSeek', style: TextStyle(fontSize: 11)),
-                icon: Icon(Icons.bolt, size: 16),
-              ),
-              ButtonSegment(
-                value: ProveedorChat.claude,
-                label: Text('Claude', style: TextStyle(fontSize: 11)),
-                icon: Icon(Icons.auto_awesome, size: 16),
-              ),
-            ],
-            selected: {_proveedor},
-            onSelectionChanged: (s) => setState(() => _proveedor = s.first),
-            style: ButtonStyle(
-              visualDensity: VisualDensity.compact,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            ),
-          ),
-          const SizedBox(width: 8),
-        ],
+        title: const Text('Asistente'),
       ),
       body: Column(children: [
         Expanded(
@@ -216,7 +161,7 @@ class _PantallaChatState extends State<PantallaChat> {
                         Icon(Icons.chat_bubble_outline, size: 64, color: esquema.primary.withValues(alpha: 0.3)),
                         const SizedBox(height: 16),
                         const Text(
-                          'Pregúntame lo que quieras sobre fósiles,\ngeología, identificación, yacimientos…',
+                          'Pregúntame lo que quieras sobre tus cepas,\nsíntomas, fenología, manejo o el cuaderno PAC…',
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.grey),
                         ),
@@ -280,7 +225,7 @@ class _PantallaChatState extends State<PantallaChat> {
                             Padding(
                               padding: const EdgeInsets.only(top: 2, left: 4),
                               child: Text(
-                                'vía ${m.proveedor == ProveedorChat.claude ? 'Claude' : 'DeepSeek'}',
+                                'vía Claude',
                                 style: TextStyle(fontSize: 10, color: Colors.grey[400]),
                               ),
                             ),

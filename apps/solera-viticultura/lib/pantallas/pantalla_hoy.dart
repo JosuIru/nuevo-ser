@@ -3,6 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_bbch.dart';
 import '../datos/catalogos_generados/catalogo_variedades.dart';
+import 'pantalla_chat.dart';
+import 'pantalla_guia.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
 
 const _diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
@@ -90,7 +92,18 @@ class _PantallaHoyState extends State<PantallaHoy> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Hoy')),
+      appBar: AppBar(
+        title: const Text('Hoy'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu_book_outlined),
+            tooltip: 'Guía de viticultura',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const PantallaGuia()),
+            ),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(12),
         children: [
@@ -101,6 +114,18 @@ class _PantallaHoyState extends State<PantallaHoy> {
             margen: const EdgeInsets.only(bottom: 12),
           ),
           const TarjetaResumenMeteo(),
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.chat_bubble_outline),
+              title: const Text('Asistente (chat)'),
+              subtitle: const Text('Pregunta a Claude por síntomas, fenología o manejo. Usa tu clave de Anthropic.'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const PantallaChat()),
+              ),
+            ),
+          ),
           const SizedBox(height: 12),
           Card(
             child: Padding(

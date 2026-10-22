@@ -10,8 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
-import '../modelos/factura.dart';
-import '../servicios/generador_factura_pdf.dart';
 
 const _claveEmailBackup = 'solera_viticultura.facturas.email_backup';
 
@@ -90,13 +88,15 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     final titular = await _bd.obtenerTitular();
     final doc = await _generador.generar(
       factura: f,
-      emisorNombre: titular.nombre.isNotEmpty
-          ? titular.nombre
-          : 'Bodega (sin configurar)',
-      emisorNif: titular.nif,
-      emisorDireccion: titular.direccion,
-      emisorTelefono: titular.telefono,
-      emisorEmail: titular.email,
+      emisor: DatosEmisorFactura(
+        nombre: titular.nombre.isNotEmpty
+            ? titular.nombre
+            : 'Bodega (sin configurar)',
+        nif: titular.nif,
+        direccion: titular.direccion,
+        telefono: titular.telefono,
+        email: titular.email,
+      ),
     );
     await Printing.sharePdf(
       bytes: await doc.save(),
@@ -108,9 +108,11 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     final titular = await _bd.obtenerTitular();
     final doc = await _generador.generar(
       factura: f,
-      emisorNombre: titular.nombre.isNotEmpty ? titular.nombre : 'Bodega',
-      emisorNif: titular.nif,
-      emisorDireccion: titular.direccion,
+      emisor: DatosEmisorFactura(
+        nombre: titular.nombre.isNotEmpty ? titular.nombre : 'Bodega',
+        nif: titular.nif,
+        direccion: titular.direccion,
+      ),
     );
     final pdfBytes = await doc.save();
     final tmp = await getTemporaryDirectory();

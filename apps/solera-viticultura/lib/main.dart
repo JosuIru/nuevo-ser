@@ -5,13 +5,14 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import 'datos/base_datos.dart';
 import 'pantallas/pantalla_ajustes.dart';
-import 'pantallas/pantalla_guia.dart';
 import 'pantallas/pantalla_hoy.dart';
 import 'pantallas/pantalla_lista_cepas.dart';
 import 'pantallas/pantalla_mapa.dart';
 // pantalla_meteo_viticultura.dart se invoca desde la tarjeta resumen de
 // PantallaHoy (push) en lugar de ocupar una pestaña del NavigationBar.
 import 'pantallas/pantalla_onboarding.dart';
+import 'pantallas/pantalla_registros.dart';
+import 'servicios/backup_servicio.dart';
 
 final _autoBackupViticultura = AutoBackup(
   nombreApp: 'solera_viticultura',
@@ -22,6 +23,13 @@ final _autoBackupViticultura = AutoBackup(
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Antes de cualquier acceso a la BD: si una restauración de copia se
+  // quedó a medias (la app murió), se deshace aquí.
+  try {
+    await servicioCopiaSeguridadViticultura.recuperarRestauracionInterrumpida();
+  } catch (error) {
+    debugPrint('No se pudo revisar una restauración interrumpida: $error');
+  }
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
@@ -124,14 +132,13 @@ class PantallaPrincipal extends StatefulWidget {
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
   int _indice = 1;
 
-  // Meteo se ha movido a la pantalla Hoy (tarjeta resumen que abre
-  // `PantallaMeteoViticultura` en push) para reducir el número de
-  // iconos del NavigationBar.
+  // Máximo cinco pestañas: Hoy · Mapa · Cepas · Registros · Ajustes.
+  // Meteo (tarjeta resumen), la Guía y el asistente se abren desde Hoy.
   final _pantallas = const <Widget>[
     PantallaHoy(),
     PantallaMapa(),
     PantallaListaCepas(),
-    PantallaGuia(),
+    PantallaRegistros(),
     PantallaAjustes(),
   ];
 
@@ -159,9 +166,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             label: 'Cepas',
           ),
           NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: 'Guía',
+            icon: Icon(Icons.folder_outlined),
+            selectedIcon: Icon(Icons.folder),
+            label: 'Registros',
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),

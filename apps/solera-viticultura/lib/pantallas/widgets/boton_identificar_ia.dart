@@ -5,8 +5,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../datos/catalogos_generados/catalogo_plagas_vid.dart';
 import '../../datos/catalogos_generados/flag_revision.dart';
-import '../../estado/clave_anthropic.dart';
-import '../../servicios/cliente_anthropic.dart';
+import '../../estado/clave_ia.dart';
+import '../../servicios/analizador_foto_vid.dart';
 
 /// Resultado que devuelve el modal cuando el usuario confirma. La
 /// pantalla anfitriona usa estos campos para pre-rellenar el
@@ -58,7 +58,7 @@ class BotonIdentificarIA extends StatefulWidget {
 }
 
 class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
-  final _persistencia = ClaveAnthropic();
+  final _estadoClave = estadoClaveAnthropicViticultura;
   bool _comprobando = true;
   bool _hayClave = false;
   bool _ejecutando = false;
@@ -70,7 +70,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
   }
 
   Future<void> _refrescarClave() async {
-    final hay = await _persistencia.tieneClave();
+    final hay = await _estadoClave.tieneClave();
     if (!mounted) return;
     setState(() {
       _hayClave = hay;
@@ -80,11 +80,11 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
 
   Future<void> _ejecutar() async {
     if (widget.rutasFotos.isEmpty) return;
-    final clave = await _persistencia.cargar();
+    final clave = await _estadoClave.cargar();
     if (clave == null || clave.isEmpty) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No hay clave Anthropic configurada. Ve al menú → IA.')),
+        const SnackBar(content: Text('No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.')),
       );
       return;
     }
@@ -97,9 +97,9 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
       return;
     }
     setState(() => _ejecutando = true);
-    final cliente = ClienteAnthropic(clave);
+    final analizador = AnalizadorFotoVid(claveApi: clave);
     try {
-      final resultado = await cliente.analizarFoto(
+      final resultado = await analizador.analizarFoto(
         foto: fichero,
         observacionesUsuario: widget.observacionesUsuario,
       );
@@ -109,11 +109,11 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
       if (aceptado != null) {
         widget.alAceptar(aceptado);
       }
-    } on ErrorIA catch (e) {
+    } on ErrorClaude catch (errorClaude) {
       if (!mounted) return;
       setState(() => _ejecutando = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.mensaje), duration: const Duration(seconds: 6)),
+        SnackBar(content: Text(errorClaude.mensaje), duration: const Duration(seconds: 6)),
       );
     } catch (e) {
       if (!mounted) return;

@@ -9,7 +9,6 @@ import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
-import '../utiles/numeros.dart';
 
 /// Alta de un punto de infraestructura. Recibe las fincas disponibles y,
 /// opcionalmente, una finca y unas coordenadas iniciales (del GPS o del

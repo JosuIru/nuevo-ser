@@ -11,7 +11,6 @@ import '../modelos/tarea_mantenimiento.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/selector_plantilla_tarea.dart';
 import 'widgets/relleno_seguro.dart';
-import '../utiles/numeros.dart';
 import '../estado/datos_notificador.dart';
 
 /// Alta de una tarea de mantenimiento, anclada a una finca y opcionalmente

@@ -13,7 +13,6 @@ import '../utiles/estilos_tarea.dart';
 import '../utiles/geodesia.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
-import '../utiles/numeros.dart';
 
 /// Alta de una zona a partir del trazado dibujado en el mapa. Llega con los
 /// vértices ya marcados: aquí solo se le pone nombre, tipo y estado.

@@ -17,6 +17,7 @@ if gh release view "$tag" -R JosuIru/nuevo-ser >/dev/null 2>&1; then
   echo "Ya existe la release $tag: sube la versión antes de publicar" >&2
   exit 1
 fi
+../../scripts/comprobar_orden_release.sh plugin-solera-zunbeltz-sync- "$tag"
 temporal="$(mktemp -d)"
 trap 'rm -rf "$temporal"' EXIT
 zip="$(dev/empaquetar.sh "$temporal")"

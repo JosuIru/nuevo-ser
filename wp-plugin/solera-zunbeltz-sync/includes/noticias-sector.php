@@ -488,7 +488,7 @@ function szs_listar_noticias_con_canal( int $dias, bool $incluir_canales_inactiv
 // ============================================================
 
 function szs_registrar_pagina_noticias(): void {
-	add_submenu_page( SZS_PAGINA_INICIO, 'Noticias del sector', 'Noticias del sector', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_NOTICIAS, 'szs_pagina_noticias' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Noticias del sector' ), szs_t( 'Noticias del sector' ), SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_NOTICIAS, 'szs_pagina_noticias' );
 }
 
 /** Procesa los formularios de la página y devuelve el aviso a mostrar. */
@@ -509,7 +509,7 @@ function szs_procesar_formulario_noticias(): ?array {
 			$url    = esc_url_raw( szs_campo_post( 'szs_url' ) );
 			$idioma = sanitize_key( szs_campo_post( 'szs_idioma', 'es' ) );
 			if ( '' === $nombre || ! szs_enlace_web_valido( $url ) ) {
-				return array( 'error', 'Hacen falta un nombre y la dirección (http/https) del canal RSS.' );
+				return array( 'error', szs_t( 'Hacen falta un nombre y la dirección (http/https) del canal RSS.' ) );
 			}
 			$wpdb->insert(
 				$canales,
@@ -522,40 +522,40 @@ function szs_procesar_formulario_noticias(): ?array {
 				)
 			);
 			$canal     = szs_obtener_canal( (int) $wpdb->insert_id );
-			$resultado = null === $canal ? array( 'error' => 'No se pudo guardar.' ) : szs_leer_canal( $canal );
+			$resultado = null === $canal ? array( 'error' => szs_t( 'No se pudo guardar.' ) ) : szs_leer_canal( $canal );
 			return '' === $resultado['error']
-				? array( 'success', sprintf( 'Canal añadido. Primera lectura: %d noticias.', $resultado['nuevas'] ) )
-				: array( 'warning', 'Canal añadido, pero la primera lectura ha fallado: ' . $resultado['error'] );
+				? array( 'success', szs_t( 'Canal añadido. Primera lectura: %d noticias.', $resultado['nuevas'] ) )
+				: array( 'warning', szs_t( 'Canal añadido, pero la primera lectura ha fallado: %s', $resultado['error'] ) );
 
 		case 'editar_palabras':
 			$wpdb->update( $canales, array( 'palabras_clave' => szs_texto_largo_post( 'szs_palabras_clave' ) ), array( 'id' => $id ) );
-			return array( 'success', 'Palabras clave guardadas. Se aplican a las noticias que entren a partir de ahora.' );
+			return array( 'success', szs_t( 'Palabras clave guardadas. Se aplican a las noticias que entren a partir de ahora.' ) );
 
 		case 'alternar_canal':
 			$canal = szs_obtener_canal( $id );
 			if ( null !== $canal ) {
 				$wpdb->update( $canales, array( 'activo' => $canal['activo'] ? 0 : 1 ), array( 'id' => $id ) );
 			}
-			return array( 'success', 'Canal actualizado.' );
+			return array( 'success', szs_t( 'Canal actualizado.' ) );
 
 		case 'borrar_canal':
 			$wpdb->delete( $noticias, array( 'canal_id' => $id ) );
 			$wpdb->delete( $canales, array( 'id' => $id ) );
-			return array( 'success', 'Canal y sus noticias borrados.' );
+			return array( 'success', szs_t( 'Canal y sus noticias borrados.' ) );
 
 		case 'leer_ahora':
 			szs_leer_todos_los_canales();
-			return array( 'success', 'Canales leídos. Mira la columna «Última lectura» por si alguno ha fallado.' );
+			return array( 'success', szs_t( 'Canales leídos. Mira la columna «Última lectura» por si alguno ha fallado.' ) );
 
 		case 'ocultar':
 		case 'mostrar':
 			$wpdb->update( $noticias, array( 'oculta' => 'ocultar' === $accion ? 1 : 0 ), array( 'id' => $id ) );
-			return array( 'success', 'ocultar' === $accion ? 'Noticia oculta: desaparece de la app.' : 'Noticia visible de nuevo.' );
+			return array( 'success', 'ocultar' === $accion ? szs_t( 'Noticia oculta: desaparece de la app.' ) : szs_t( 'Noticia visible de nuevo.' ) );
 
 		case 'fijar':
 		case 'desfijar':
 			$wpdb->update( $noticias, array( 'fijada' => 'fijar' === $accion ? 1 : 0 ), array( 'id' => $id ) );
-			return array( 'success', 'fijar' === $accion ? 'Noticia fijada arriba en la app.' : 'Noticia desfijada.' );
+			return array( 'success', 'fijar' === $accion ? szs_t( 'Noticia fijada arriba en la app.' ) : szs_t( 'Noticia desfijada.' ) );
 	}
 	return null;
 }
@@ -580,32 +580,32 @@ function szs_pagina_noticias(): void {
 	$noticias = szs_listar_noticias_con_canal( SZS_DIAS_NOTICIAS_EN_APP, true );
 	?>
 	<div class="wrap">
-		<h1>Noticias del sector</h1>
-		<p>Canales RSS de fuera (administración, sindicatos agrarios, prensa del sector…) que el servidor lee cada tres horas. Sus noticias aparecen en la app, en Hoy → Noticias, debajo de las que publicáis vosotras en <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_AVISOS ) ); ?>">Avisos</a>. Solo se guarda el titular, una entradilla corta y el enlace al original; no avisan con notificación.</p>
+		<h1><?php echo esc_html( szs_t( 'Noticias del sector' ) ); ?></h1>
+		<p><?php echo szs_t( 'Canales RSS de fuera (administración, sindicatos agrarios, prensa del sector…) que el servidor lee cada tres horas. Sus noticias aparecen en la app, en Hoy → Noticias, debajo de las que publicáis vosotras en <a href="%s">Avisos</a>. Solo se guarda el titular, una entradilla corta y el enlace al original; no avisan con notificación.', esc_url( szs_url_pagina( SZS_PAGINA_AVISOS ) ) ); ?></p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 
-		<h2>Canales</h2>
+		<h2><?php echo esc_html( szs_t( 'Canales' ) ); ?></h2>
 		<table class="widefat striped">
-			<thead><tr><th>Canal</th><th>Idioma</th><th>Palabras clave</th><th>Última lectura</th><th></th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Canal' ) ); ?></th><th><?php echo esc_html( szs_t( 'Idioma' ) ); ?></th><th><?php echo esc_html( szs_t( 'Palabras clave' ) ); ?></th><th><?php echo esc_html( szs_t( 'Última lectura' ) ); ?></th><th></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $canales ) ) : ?>
-				<tr><td colspan="5">Todavía no hay canales. Añadid el primero abajo.</td></tr>
+				<tr><td colspan="5"><?php echo esc_html( szs_t( 'Todavía no hay canales. Añadid el primero abajo.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $canales as $canal ) : ?>
 				<?php $id = (int) $canal['id']; ?>
 				<tr<?php echo $canal['activo'] ? '' : ' style="opacity:.6"'; ?>>
 					<td>
-						<strong><?php echo esc_html( (string) $canal['nombre'] ); ?></strong><?php echo $canal['activo'] ? '' : ' (pausado)'; ?>
+						<strong><?php echo esc_html( (string) $canal['nombre'] ); ?></strong><?php echo $canal['activo'] ? '' : esc_html( szs_t( ' (pausado)' ) ); ?>
 						<br><code style="font-size:11px;"><?php echo esc_html( (string) $canal['url'] ); ?></code>
 					</td>
-					<td><?php echo esc_html( SZS_IDIOMAS_CANAL[ $canal['idioma'] ] ?? (string) $canal['idioma'] ); ?></td>
+					<td><?php echo esc_html( isset( SZS_IDIOMAS_CANAL[ $canal['idioma'] ] ) ? szs_t( SZS_IDIOMAS_CANAL[ $canal['idioma'] ] ) : (string) $canal['idioma'] ); ?></td>
 					<td>
 						<form method="post" style="display:flex;gap:4px;align-items:flex-start;">
 							<?php wp_nonce_field( 'szs_noticias' ); ?>
 							<input type="hidden" name="szs_accion" value="editar_palabras">
 							<input type="hidden" name="szs_id" value="<?php echo esc_attr( (string) $id ); ?>">
-							<input type="text" name="szs_palabras_clave" value="<?php echo esc_attr( (string) $canal['palabras_clave'] ); ?>" placeholder="(todas)" style="width:220px;">
-							<button class="button button-small">Guardar</button>
+							<input type="text" name="szs_palabras_clave" value="<?php echo esc_attr( (string) $canal['palabras_clave'] ); ?>" placeholder="<?php echo esc_attr( szs_t( '(todas)' ) ); ?>" style="width:220px;">
+							<button class="button button-small"><?php echo esc_html( szs_t( 'Guardar' ) ); ?></button>
 						</form>
 					</td>
 					<td>
@@ -616,55 +616,55 @@ function szs_pagina_noticias(): void {
 							<?php if ( '' !== (string) $canal['ultimo_error'] ) : ?>
 								<br><strong style="color:#b8402a;"><?php echo esc_html( (string) $canal['ultimo_error'] ); ?></strong>
 							<?php else : ?>
-								· <?php echo esc_html( sprintf( '%d nuevas', (int) $canal['ultimas_nuevas'] ) ); ?>
+								· <?php echo esc_html( szs_t( '%d nuevas', (int) $canal['ultimas_nuevas'] ) ); ?>
 							<?php endif; ?>
 						<?php endif; ?>
 					</td>
 					<td>
-						<?php szs_boton_noticias( 'alternar_canal', $id, $canal['activo'] ? 'Pausar' : 'Reanudar' ); ?>
-						<?php szs_boton_noticias( 'borrar_canal', $id, 'Borrar', 'button button-small button-link-delete' ); ?>
+						<?php szs_boton_noticias( 'alternar_canal', $id, $canal['activo'] ? szs_t( 'Pausar' ) : szs_t( 'Reanudar' ) ); ?>
+						<?php szs_boton_noticias( 'borrar_canal', $id, szs_t( 'Borrar' ), 'button button-small button-link-delete' ); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
 		</table>
 		<?php if ( ! empty( $canales ) ) : ?>
-			<p><?php szs_boton_noticias( 'leer_ahora', 0, 'Leer los canales ahora', 'button' ); ?></p>
+			<p><?php szs_boton_noticias( 'leer_ahora', 0, szs_t( 'Leer los canales ahora' ), 'button' ); ?></p>
 		<?php endif; ?>
 
-		<h2>Añadir un canal</h2>
+		<h2><?php echo esc_html( szs_t( 'Añadir un canal' ) ); ?></h2>
 		<form method="post" style="max-width:720px;">
 			<?php wp_nonce_field( 'szs_noticias' ); ?>
 			<input type="hidden" name="szs_accion" value="anadir_canal">
 			<table class="form-table" role="presentation">
-				<tr><th><label for="szs_nombre">Nombre</label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text" placeholder="INTIA"></td></tr>
-				<tr><th><label for="szs_url">Dirección del RSS</label></th><td><input type="url" id="szs_url" name="szs_url" class="large-text" placeholder="https://…/feed/"><p class="description">La del canal RSS o Atom, no la de la portada. En un WordPress suele ser la portada seguida de <code>/feed/</code>.</p></td></tr>
-				<tr><th><label for="szs_idioma">Idioma</label></th><td><?php szs_selector( 'szs_idioma', SZS_IDIOMAS_CANAL, 'es' ); ?></td></tr>
-				<tr><th><label for="szs_palabras_clave">Palabras clave</label></th><td><textarea id="szs_palabras_clave" name="szs_palabras_clave" rows="2" class="large-text" placeholder="ganader, ovino, vacuno, bovino, ecológic, PAC, abeltzaintza"></textarea><p class="description">Opcional, separadas por comas. Si las ponéis, solo entran las noticias que contengan alguna, sin distinguir mayúsculas ni tildes. Basta con el principio de la palabra: «ganader» encuentra «ganadería» y «ganaderos». Útil para periódicos generalistas.</p></td></tr>
+				<tr><th><label for="szs_nombre"><?php echo esc_html( szs_t( 'Nombre' ) ); ?></label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text" placeholder="INTIA"></td></tr>
+				<tr><th><label for="szs_url"><?php echo esc_html( szs_t( 'Dirección del RSS' ) ); ?></label></th><td><input type="url" id="szs_url" name="szs_url" class="large-text" placeholder="https://…/feed/"><p class="description"><?php echo szs_t( 'La del canal RSS o Atom, no la de la portada. En un WordPress suele ser la portada seguida de <code>/feed/</code>.' ); ?></p></td></tr>
+				<tr><th><label for="szs_idioma"><?php echo esc_html( szs_t( 'Idioma' ) ); ?></label></th><td><?php szs_selector( 'szs_idioma', szs_t_opciones( SZS_IDIOMAS_CANAL ), 'es' ); ?></td></tr>
+				<tr><th><label for="szs_palabras_clave"><?php echo esc_html( szs_t( 'Palabras clave' ) ); ?></label></th><td><textarea id="szs_palabras_clave" name="szs_palabras_clave" rows="2" class="large-text" placeholder="ganader, ovino, vacuno, bovino, ecológic, PAC, abeltzaintza"></textarea><p class="description"><?php echo esc_html( szs_t( 'Opcional, separadas por comas. Si las ponéis, solo entran las noticias que contengan alguna, sin distinguir mayúsculas ni tildes. Basta con el principio de la palabra: «ganader» encuentra «ganadería» y «ganaderos». Útil para periódicos generalistas.' ) ); ?></p></td></tr>
 			</table>
-			<?php submit_button( 'Añadir y leer' ); ?>
+			<?php submit_button( szs_t( 'Añadir y leer' ) ); ?>
 		</form>
 
-		<h2>Últimas noticias (<?php echo esc_html( (string) SZS_DIAS_NOTICIAS_EN_APP ); ?> días)</h2>
+		<h2><?php echo esc_html( szs_t( 'Últimas noticias (%d días)', SZS_DIAS_NOTICIAS_EN_APP ) ); ?></h2>
 		<table class="widefat striped">
-			<thead><tr><th>Noticia</th><th>Canal</th><th>Fecha</th><th></th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Noticia' ) ); ?></th><th><?php echo esc_html( szs_t( 'Canal' ) ); ?></th><th><?php echo esc_html( szs_t( 'Fecha' ) ); ?></th><th></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $noticias ) ) : ?>
-				<tr><td colspan="4">Sin noticias.</td></tr>
+				<tr><td colspan="4"><?php echo esc_html( szs_t( 'Sin noticias.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $noticias as $noticia ) : ?>
 				<?php $id = (int) $noticia['id']; ?>
 				<tr<?php echo $noticia['oculta'] ? ' style="opacity:.5"' : ''; ?>>
 					<td>
-						<?php if ( $noticia['fijada'] ) : ?><strong style="color:#b8402a;">Fijada · </strong><?php endif; ?>
+						<?php if ( $noticia['fijada'] ) : ?><strong style="color:#b8402a;"><?php echo esc_html( szs_t( 'Fijada' ) ); ?> · </strong><?php endif; ?>
 						<a href="<?php echo esc_url( (string) $noticia['enlace'] ); ?>" target="_blank" rel="noopener noreferrer"><strong><?php echo esc_html( (string) $noticia['titulo'] ); ?></strong></a>
 						<?php if ( '' !== (string) $noticia['entradilla'] ) : ?><br><?php echo esc_html( (string) $noticia['entradilla'] ); ?><?php endif; ?>
 					</td>
 					<td><?php echo esc_html( (string) $noticia['canal_nombre'] ); ?></td>
 					<td><?php echo esc_html( szs_fecha_ms( (int) $noticia['fecha_ms'] ) ); ?></td>
 					<td style="white-space:nowrap;">
-						<?php szs_boton_noticias( $noticia['fijada'] ? 'desfijar' : 'fijar', $id, $noticia['fijada'] ? 'Desfijar' : 'Fijar' ); ?>
-						<?php szs_boton_noticias( $noticia['oculta'] ? 'mostrar' : 'ocultar', $id, $noticia['oculta'] ? 'Mostrar' : 'Ocultar' ); ?>
+						<?php szs_boton_noticias( $noticia['fijada'] ? 'desfijar' : 'fijar', $id, $noticia['fijada'] ? szs_t( 'Desfijar' ) : szs_t( 'Fijar' ) ); ?>
+						<?php szs_boton_noticias( $noticia['oculta'] ? 'mostrar' : 'ocultar', $id, $noticia['oculta'] ? szs_t( 'Mostrar' ) : szs_t( 'Ocultar' ) ); ?>
 					</td>
 				</tr>
 			<?php endforeach; ?>

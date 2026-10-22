@@ -40,15 +40,15 @@ function szs_registrar_menu_panel(): void {
 	// La portada (Inicio) es la página del menú principal; el resto cuelga
 	// de ella. Las URL de cada apartado no cambian: siguen siendo su slug.
 	add_menu_page( 'Solera Zunbeltz', 'Solera Zunbeltz' . $burbuja, $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio', 'dashicons-location-alt', 80 );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Inicio', 'Inicio', $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio' );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Tareas', 'Tareas', $capacidad, SZS_PAGINA_TAREAS, 'szs_pagina_tareas' );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Peticiones de tarea', 'Peticiones' . $burbuja, $capacidad, SZS_PAGINA_PETICIONES, 'szs_pagina_peticiones' );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Avisos', 'Avisos', $capacidad, SZS_PAGINA_AVISOS, 'szs_pagina_avisos' );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Proyectos de test', 'Proyectos', $capacidad, SZS_PAGINA_PROYECTOS, 'szs_pagina_proyectos' );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Actividad del espacio', 'Actividad', $capacidad, SZS_PAGINA_ACTIVIDAD, 'szs_pagina_actividad' );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Personas del espacio', 'Personas', $capacidad, SZS_PAGINA_PERSONAS, 'szs_pagina_admin' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Inicio' ), szs_t( 'Inicio' ), $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Tareas' ), szs_t( 'Tareas' ), $capacidad, SZS_PAGINA_TAREAS, 'szs_pagina_tareas' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Peticiones de tarea' ), szs_t( 'Peticiones' ) . $burbuja, $capacidad, SZS_PAGINA_PETICIONES, 'szs_pagina_peticiones' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Avisos' ), szs_t( 'Avisos' ), $capacidad, SZS_PAGINA_AVISOS, 'szs_pagina_avisos' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Proyectos de test' ), szs_t( 'Proyectos' ), $capacidad, SZS_PAGINA_PROYECTOS, 'szs_pagina_proyectos' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Actividad del espacio' ), szs_t( 'Actividad' ), $capacidad, SZS_PAGINA_ACTIVIDAD, 'szs_pagina_actividad' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Personas del espacio' ), szs_t( 'Personas' ), $capacidad, SZS_PAGINA_PERSONAS, 'szs_pagina_admin' );
 	// Acceso directo a la app web que sirve este mismo WordPress en /app/.
-	add_submenu_page( SZS_PAGINA_INICIO, 'App web', 'Abrir la app ↗', $capacidad, szs_url_app_web() );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'App web' ), szs_t( 'Abrir la app ↗' ), $capacidad, szs_url_app_web() );
 }
 
 /** Los administradores siempre pueden usar el panel. */
@@ -187,7 +187,7 @@ function szs_nombres_fincas(): array {
 function szs_guardar_entidad_desde_panel( string $tipo, string $uid, array $datos, string $proyecto_uid = '' ): array {
 	// Sin candado no se escribe: es la carrera que el candado evita.
 	if ( ! szs_tomar_candado_espacio() ) {
-		wp_die( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.', 'Solera Zunbeltz', array( 'back_link' => true ) );
+		wp_die( esc_html( szs_t( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.' ) ), 'Solera Zunbeltz', array( 'back_link' => true ) );
 	}
 	try {
 		return szs_guardar_entidad_desde_panel_con_candado( $tipo, $uid, $datos, $proyecto_uid );
@@ -244,7 +244,10 @@ function szs_selector( string $nombre, array $opciones, string $seleccionado, st
 	echo '</select>';
 }
 
-/** Estados, prioridades… como los muestra la app. */
+/**
+ * Estados, prioridades… como los muestra la app (en castellano: se
+ * traducen al mostrarlos con `szs_t()` / `szs_t_opciones()`).
+ */
 const SZS_ESTADOS_TAREA = array(
 	'pendiente' => 'Pendiente',
 	'en_curso'  => 'En curso',

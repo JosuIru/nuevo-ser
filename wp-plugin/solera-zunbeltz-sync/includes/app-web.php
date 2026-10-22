@@ -149,11 +149,11 @@ function szs_url_apk(): string {
 function szs_publicar_apk( string $ruta_origen, string $version, bool $mover_subido = true ): ?string {
 	$cabeza = (string) file_get_contents( $ruta_origen, false, null, 0, 4 );
 	if ( ! szs_es_apk( $cabeza ) ) {
-		return 'El fichero no es un APK de Android.';
+		return szs_t( 'El fichero no es un APK de Android.' );
 	}
 	$carpeta = szs_carpeta_apk();
 	if ( ! wp_mkdir_p( $carpeta ) ) {
-		return 'No se pudo crear la carpeta en uploads.';
+		return szs_t( 'No se pudo crear la carpeta en uploads.' );
 	}
 	// Que nadie liste la carpeta; el APK se descarga solo por /app/descargar/android.
 	if ( ! is_file( $carpeta . '/index.php' ) ) {
@@ -162,7 +162,7 @@ function szs_publicar_apk( string $ruta_origen, string $version, bool $mover_sub
 	$destino = szs_ruta_apk();
 	$movido  = $mover_subido ? move_uploaded_file( $ruta_origen, $destino ) : copy( $ruta_origen, $destino );
 	if ( ! $movido ) {
-		return 'No se pudo guardar el APK.';
+		return szs_t( 'No se pudo guardar el APK.' );
 	}
 	update_option(
 		SZS_OPCION_APK,

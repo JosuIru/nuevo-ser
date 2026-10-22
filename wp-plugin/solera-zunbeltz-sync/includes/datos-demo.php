@@ -587,7 +587,7 @@ function szs_registrar_pagina_datos_demo(): void {
 	if ( ! szs_herramientas_desarrollo_activas() ) {
 		return;
 	}
-	add_submenu_page( SZS_PAGINA_INICIO, 'Datos de demostración', 'Datos demo', 'manage_options', SZS_PAGINA_DATOS_DEMO, 'szs_pagina_datos_demo' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Datos de demostración' ), szs_t( 'Datos demo' ), 'manage_options', SZS_PAGINA_DATOS_DEMO, 'szs_pagina_datos_demo' );
 }
 
 function szs_pagina_datos_demo(): void {
@@ -601,24 +601,24 @@ function szs_pagina_datos_demo(): void {
 		$accion = sanitize_key( wp_unslash( $_POST['szs_accion'] ) );
 		if ( 'sembrar' === $accion ) {
 			$tokens = szs_sembrar_datos_demo();
-			$aviso  = array( 'success', 'Datos de demostración creados. Los móviles los reciben en la próxima sincronización.' );
+			$aviso  = array( 'success', szs_t( 'Datos de demostración creados. Los móviles los reciben en la próxima sincronización.' ) );
 		}
 		if ( 'vaciar' === $accion ) {
 			$retirado = szs_vaciar_datos_demo();
-			$aviso    = array( 'success', sprintf( 'Retirados: %d entidades, %d tareas, %d personas y %d entradas de actividad.', $retirado['entidades'], $retirado['tareas'], $retirado['personas'], $retirado['actividad'] ) );
+			$aviso    = array( 'success', szs_t( 'Retirados: %d entidades, %d tareas, %d personas y %d entradas de actividad.', $retirado['entidades'], $retirado['tareas'], $retirado['personas'], $retirado['actividad'] ) );
 		}
 	}
 	$cuenta = szs_contar_datos_demo();
 	?>
 	<div class="wrap">
-		<h1>Datos de demostración</h1>
-		<p style="max-width:720px;">Herramienta de desarrollo: rellena el espacio con datos de ejemplo para ver y probar todas las pantallas del panel y de la app (tareas en todos los estados, tareas periódicas, puntos fijos y móviles, zonas, tres proyectos — uno cerrado — con seguimiento, ventas, validaciones, convenio y escenarios de transformación, peticiones, avisos y alarmas, contactos, rendimientos, ganado con movimientos y curas, y actividad). Solo se ve fuera de producción.</p>
-		<p style="max-width:720px;">Todo lo creado lleva un identificador que empieza por <code>demo-</code> y se retira de un golpe. Las fincas existentes se reutilizan; si no hay ninguna se crean Zunbeltz y La Planilla, que se conservan al retirar. No se envían correos.</p>
+		<h1><?php echo esc_html( szs_t( 'Datos de demostración' ) ); ?></h1>
+		<p style="max-width:720px;"><?php echo esc_html( szs_t( 'Herramienta de desarrollo: rellena el espacio con datos de ejemplo para ver y probar todas las pantallas del panel y de la app (tareas en todos los estados, tareas periódicas, puntos fijos y móviles, zonas, tres proyectos — uno cerrado — con seguimiento, ventas, validaciones, convenio y escenarios de transformación, peticiones, avisos y alarmas, contactos, rendimientos, ganado con movimientos y curas, y actividad). Solo se ve fuera de producción.' ) ); ?></p>
+		<p style="max-width:720px;"><?php echo szs_t( 'Todo lo creado lleva un identificador que empieza por <code>demo-</code> y se retira de un golpe. Las fincas existentes se reutilizan; si no hay ninguna se crean Zunbeltz y La Planilla, que se conservan al retirar. No se envían correos.' ); ?></p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 
 		<?php if ( ! empty( $tokens ) ) : ?>
 			<div class="notice notice-info">
-				<p>Tokens de las personas de demostración — cópialos ahora, <strong>no se vuelven a mostrar</strong>. En la app: <strong>Ajustes → Sincronización</strong>, dirección <code><?php echo esc_html( home_url() ); ?></code>.</p>
+				<p><?php echo szs_t( 'Claves de usuario de las personas de demostración — cópialas ahora, <strong>no se vuelven a mostrar</strong>. En la app: <strong>Ajustes → Sincronización</strong>, dirección <code>%s</code>.', esc_html( home_url() ) ); ?></p>
 				<table class="widefat striped" style="max-width:720px;">
 					<?php foreach ( $tokens as $nombre => $token ) : ?>
 						<tr><td><?php echo esc_html( $nombre ); ?></td><td><code style="user-select:all;"><?php echo esc_html( $token ); ?></code></td></tr>
@@ -627,20 +627,20 @@ function szs_pagina_datos_demo(): void {
 			</div>
 		<?php endif; ?>
 
-		<p>Ahora hay <strong><?php echo (int) $cuenta['entidades']; ?></strong> entidades, <strong><?php echo (int) $cuenta['tareas']; ?></strong> tareas y <strong><?php echo (int) $cuenta['personas']; ?></strong> personas de demostración.</p>
+		<p><?php echo szs_t( 'Ahora hay <strong>%1$d</strong> entidades, <strong>%2$d</strong> tareas y <strong>%3$d</strong> personas de demostración.', (int) $cuenta['entidades'], (int) $cuenta['tareas'], (int) $cuenta['personas'] ); ?></p>
 
 		<form method="post" style="display:inline-block;margin-right:8px;">
 			<?php wp_nonce_field( 'szs_datos_demo' ); ?>
 			<input type="hidden" name="szs_accion" value="sembrar">
-			<button type="submit" class="button button-primary">Crear datos de demostración</button>
+			<button type="submit" class="button button-primary"><?php echo esc_html( szs_t( 'Crear datos de demostración' ) ); ?></button>
 		</form>
 		<form method="post" style="display:inline-block;">
 			<?php wp_nonce_field( 'szs_datos_demo' ); ?>
 			<input type="hidden" name="szs_accion" value="vaciar">
-			<button type="submit" class="button" onclick="return confirm('¿Retirar todos los datos de demostración?');">Retirar datos de demostración</button>
+			<button type="submit" class="button" onclick="return confirm('<?php echo esc_js( szs_t( '¿Retirar todos los datos de demostración?' ) ); ?>');"><?php echo esc_html( szs_t( 'Retirar datos de demostración' ) ); ?></button>
 		</form>
-		<p class="description" style="max-width:720px;margin-top:12px;">Al retirar, las entidades quedan como borradas para que también desaparezcan de los móviles ya sincronizados. Se retira además lo que alguien haya apuntado en un proyecto de demostración y las tareas asignadas a personas de demostración o ancladas a sus puntos y zonas.</p>
-		<p class="description">Desde la consola: <code>wp solera-zunbeltz demo sembrar | vaciar | estado</code></p>
+		<p class="description" style="max-width:720px;margin-top:12px;"><?php echo esc_html( szs_t( 'Al retirar, las entidades quedan como borradas para que también desaparezcan de los móviles ya sincronizados. Se retira además lo que alguien haya apuntado en un proyecto de demostración y las tareas asignadas a personas de demostración o ancladas a sus puntos y zonas.' ) ); ?></p>
+		<p class="description"><?php echo esc_html( szs_t( 'Desde la consola:' ) ); ?> <code>wp solera-zunbeltz demo sembrar | vaciar | estado</code></p>
 	</div>
 	<?php
 }

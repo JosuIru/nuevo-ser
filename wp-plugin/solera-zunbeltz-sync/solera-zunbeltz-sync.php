@@ -72,6 +72,7 @@ define( 'SZS_OPCION_VERSION_ESQUEMA', 'solera_zunbeltz_sync_esquema' );
 /** Token compartido de la v0.1, retirado en la v0.2. */
 define( 'SZS_OPCION_TOKEN_COMPARTIDO_V1', 'solera_zunbeltz_sync_token' );
 
+require_once __DIR__ . '/includes/i18n.php';
 require_once __DIR__ . '/includes/roles.php';
 require_once __DIR__ . '/includes/politica-tareas.php';
 require_once __DIR__ . '/includes/entidades.php';

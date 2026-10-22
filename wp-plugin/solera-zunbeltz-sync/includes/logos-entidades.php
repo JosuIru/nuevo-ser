@@ -382,7 +382,7 @@ function szs_shortcode_logos_entidades(): string {
 // ============================================================
 
 function szs_registrar_pagina_logos_entidades(): void {
-	add_submenu_page( SZS_PAGINA_INICIO, 'Entidades y logos', 'Entidades y logos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_LOGOS_ENTIDADES, 'szs_pagina_logos_entidades' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Entidades y logos' ), szs_t( 'Entidades y logos' ), SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_LOGOS_ENTIDADES, 'szs_pagina_logos_entidades' );
 }
 
 function szs_cargar_selector_medios_logos( string $pantalla ): void {
@@ -418,12 +418,12 @@ function szs_procesar_formulario_logos_entidades(): ?array {
 				);
 			}
 			szs_guardar_logos_entidades( $lista );
-			return array( 'success', 'Guardado. La web lo enseña ya; la app, la próxima vez que se abra con conexión.' );
+			return array( 'success', szs_t( 'Guardado. La web lo enseña ya; la app, la próxima vez que se abra con conexión.' ) );
 
 		case 'anadir':
 			$nombre = szs_campo_post( 'szs_nombre' );
 			if ( '' === $nombre ) {
-				return array( 'error', 'Hace falta el nombre de la entidad.' );
+				return array( 'error', szs_t( 'Hace falta el nombre de la entidad.' ) );
 			}
 			$lista       = szs_listar_logos_entidades();
 			$mismo_grupo = array_filter( $lista, static fn( array $entidad ): bool => $entidad['grupo'] === szs_campo_post( 'szs_grupo' ) );
@@ -437,11 +437,11 @@ function szs_procesar_formulario_logos_entidades(): ?array {
 				'activo'     => true,
 			);
 			szs_guardar_logos_entidades( $lista );
-			return array( 'success', 'Entidad añadida al final de su grupo.' );
+			return array( 'success', szs_t( 'Entidad añadida al final de su grupo.' ) );
 
 		case 'restaurar':
 			delete_option( SZS_OPCION_LOGOS_ENTIDADES );
-			return array( 'success', 'Vuelve a estar la lista original, con sus logos de partida.' );
+			return array( 'success', szs_t( 'Vuelve a estar la lista original, con sus logos de partida.' ) );
 	}
 	return null;
 }
@@ -455,14 +455,14 @@ function szs_campo_logo_entidad( string $nombre_campo, array $entidad ): void {
 			<?php if ( '' !== $url_logo ) : ?>
 				<img src="<?php echo esc_url( $url_logo ); ?>" alt="" style="max-width:100px;max-height:44px;">
 			<?php else : ?>
-				<em style="color:#666;">sin logo</em>
+				<em style="color:#666;"><?php echo esc_html( szs_t( 'sin logo' ) ); ?></em>
 			<?php endif; ?>
 		</span>
 		<input type="hidden" name="<?php echo esc_attr( $nombre_campo ); ?>" value="<?php echo esc_attr( (string) $entidad['adjunto_id'] ); ?>">
 		<span>
-			<button type="button" class="button button-small szs-elegir-logo">Cambiar…</button>
+			<button type="button" class="button button-small szs-elegir-logo"><?php echo esc_html( szs_t( 'Cambiar…' ) ); ?></button>
 			<?php if ( $entidad['adjunto_id'] > 0 ) : ?>
-				<br><button type="button" class="button-link szs-quitar-logo" style="font-size:12px;"><?php echo szs_hay_logo_de_partida( $entidad['clave'] ) ? 'Volver al original' : 'Quitar'; ?></button>
+				<br><button type="button" class="button-link szs-quitar-logo" style="font-size:12px;"><?php echo esc_html( szs_hay_logo_de_partida( $entidad['clave'] ) ? szs_t( 'Volver al original' ) : szs_t( 'Quitar' ) ); ?></button>
 			<?php endif; ?>
 		</span>
 	</div>
@@ -480,18 +480,20 @@ function szs_pagina_logos_entidades(): void {
 		static fn( array $a, array $b ): int => array( array_search( $a['grupo'], array_keys( SZS_GRUPOS_LOGOS ), true ), $a['orden'], $a['nombre'] )
 			<=> array( array_search( $b['grupo'], array_keys( SZS_GRUPOS_LOGOS ), true ), $b['orden'], $b['nombre'] )
 	);
-	$grupos = array_map( static fn( array $rotulos ): string => $rotulos[0], SZS_GRUPOS_LOGOS );
+	// Los rótulos de cada grupo ya vienen en los dos idiomas.
+	$indice_rotulo = 'eu' === szs_idioma_panel() ? 1 : 0;
+	$grupos        = array_map( static fn( array $rotulos ): string => $rotulos[ $indice_rotulo ], SZS_GRUPOS_LOGOS );
 	?>
 	<div class="wrap">
-		<h1>Entidades y logos</h1>
-		<p>Las entidades que impulsan, apoyan y colaboran con el espacio. Salen en el pie de la web y en la app (Hoy, abajo del todo, y Ajustes → Entidades). Los logos de partida son los del pie de zunbeltz.com; para poner otro, «Cambiar…» y elegidlo o subidlo a la biblioteca de medios (PNG o SVG con fondo transparente se ven mejor).</p>
+		<h1><?php echo esc_html( szs_t( 'Entidades y logos' ) ); ?></h1>
+		<p><?php echo esc_html( szs_t( 'Las entidades que impulsan, apoyan y colaboran con el espacio. Salen en el pie de la web y en la app (Hoy, abajo del todo, y Ajustes → Entidades). Los logos de partida son los del pie de zunbeltz.com; para poner otro, «Cambiar…» y elegidlo o subidlo a la biblioteca de medios (PNG o SVG con fondo transparente se ven mejor).' ) ); ?></p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 
 		<form method="post">
 			<?php wp_nonce_field( 'szs_logos_entidades' ); ?>
 			<input type="hidden" name="szs_accion" value="guardar">
 			<table class="widefat striped">
-				<thead><tr><th>Logo</th><th>Nombre</th><th>Grupo</th><th>Enlace</th><th style="width:70px;">Orden</th><th>Visible</th><th>Borrar</th></tr></thead>
+				<thead><tr><th><?php echo esc_html( szs_t( 'Logo' ) ); ?></th><th><?php echo esc_html( szs_t( 'Nombre' ) ); ?></th><th><?php echo esc_html( szs_t( 'Grupo' ) ); ?></th><th><?php echo esc_html( szs_t( 'Enlace' ) ); ?></th><th style="width:70px;"><?php echo esc_html( szs_t( 'Orden' ) ); ?></th><th><?php echo esc_html( szs_t( 'Visible' ) ); ?></th><th><?php echo esc_html( szs_t( 'Borrar' ) ); ?></th></tr></thead>
 				<tbody>
 				<?php foreach ( $lista as $entidad ) : ?>
 					<?php $prefijo = 'szs_entidad[' . $entidad['clave'] . ']'; ?>
@@ -507,19 +509,19 @@ function szs_pagina_logos_entidades(): void {
 				<?php endforeach; ?>
 				</tbody>
 			</table>
-			<p class="description">El orden va de menor a mayor dentro de cada grupo. Quitar «Visible» la esconde sin borrarla.</p>
-			<?php submit_button( 'Guardar cambios' ); ?>
+			<p class="description"><?php echo esc_html( szs_t( 'El orden va de menor a mayor dentro de cada grupo. Quitar «Visible» la esconde sin borrarla.' ) ); ?></p>
+			<?php submit_button( szs_t( 'Guardar cambios' ) ); ?>
 		</form>
 
-		<h2>Añadir una entidad</h2>
+		<h2><?php echo esc_html( szs_t( 'Añadir una entidad' ) ); ?></h2>
 		<form method="post" style="max-width:720px;">
 			<?php wp_nonce_field( 'szs_logos_entidades' ); ?>
 			<input type="hidden" name="szs_accion" value="anadir">
 			<table class="form-table" role="presentation">
-				<tr><th><label for="szs_nombre">Nombre</label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text"></td></tr>
-				<tr><th><label for="szs_grupo">Grupo</label></th><td><?php szs_selector( 'szs_grupo', $grupos, 'colaboran' ); ?></td></tr>
-				<tr><th><label for="szs_enlace">Enlace</label></th><td><input type="url" id="szs_enlace" name="szs_enlace" class="regular-text" placeholder="https://…"></td></tr>
-				<tr><th>Logo</th><td>
+				<tr><th><label for="szs_nombre"><?php echo esc_html( szs_t( 'Nombre' ) ); ?></label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text"></td></tr>
+				<tr><th><label for="szs_grupo"><?php echo esc_html( szs_t( 'Grupo' ) ); ?></label></th><td><?php szs_selector( 'szs_grupo', $grupos, 'colaboran' ); ?></td></tr>
+				<tr><th><label for="szs_enlace"><?php echo esc_html( szs_t( 'Enlace' ) ); ?></label></th><td><input type="url" id="szs_enlace" name="szs_enlace" class="regular-text" placeholder="https://…"></td></tr>
+				<tr><th><?php echo esc_html( szs_t( 'Logo' ) ); ?></th><td>
 					<?php
 					szs_campo_logo_entidad(
 						'szs_adjunto_id',
@@ -531,14 +533,14 @@ function szs_pagina_logos_entidades(): void {
 					?>
 				</td></tr>
 			</table>
-			<?php submit_button( 'Añadir' ); ?>
+			<?php submit_button( szs_t( 'Añadir' ) ); ?>
 		</form>
 
-		<h2>Volver a empezar</h2>
-		<form method="post" onsubmit="return confirm('¿Volver a la lista original? Se pierden los cambios hechos aquí.');">
+		<h2><?php echo esc_html( szs_t( 'Volver a empezar' ) ); ?></h2>
+		<form method="post" onsubmit="return confirm('<?php echo esc_js( szs_t( '¿Volver a la lista original? Se pierden los cambios hechos aquí.' ) ); ?>');">
 			<?php wp_nonce_field( 'szs_logos_entidades' ); ?>
 			<input type="hidden" name="szs_accion" value="restaurar">
-			<p>Recupera las 19 entidades del pie de zunbeltz.com con sus logos de partida. <button class="button button-link-delete">Restaurar la lista original</button></p>
+			<p><?php echo esc_html( szs_t( 'Recupera las 19 entidades del pie de zunbeltz.com con sus logos de partida.' ) ); ?> <button class="button button-link-delete"><?php echo esc_html( szs_t( 'Restaurar la lista original' ) ); ?></button></p>
 		</form>
 	</div>
 	<script>
@@ -547,7 +549,7 @@ function szs_pagina_logos_entidades(): void {
 			var entrada = campo.querySelector( 'input[type=hidden]' );
 			var vista = campo.querySelector( '.szs-vista-logo' );
 			campo.querySelector( '.szs-elegir-logo' ).addEventListener( 'click', function () {
-				var selector = wp.media( { title: 'Logo de la entidad', button: { text: 'Usar este logo' }, library: { type: 'image' }, multiple: false } );
+				var selector = wp.media( { title: <?php echo wp_json_encode( szs_t( 'Logo de la entidad' ) ); ?>, button: { text: <?php echo wp_json_encode( szs_t( 'Usar este logo' ) ); ?> }, library: { type: 'image' }, multiple: false } );
 				selector.on( 'select', function () {
 					var adjunto = selector.state().get( 'selection' ).first().toJSON();
 					var tamano = ( adjunto.sizes && adjunto.sizes.medium ) || adjunto;
@@ -565,7 +567,7 @@ function szs_pagina_logos_entidades(): void {
 			if ( quitar ) {
 				quitar.addEventListener( 'click', function () {
 					entrada.value = '0';
-					vista.innerHTML = '<em style="color:#666;">se guarda al pulsar «Guardar cambios»</em>';
+					vista.innerHTML = '<em style="color:#666;"><?php echo esc_js( szs_t( 'se guarda al pulsar «Guardar cambios»' ) ); ?></em>';
 				} );
 			}
 		} );

@@ -404,7 +404,7 @@ function szs_version_app_web_rotulo(): string {
 // ============================================================
 
 function szs_registrar_pagina_ayuda(): void {
-	add_submenu_page( SZS_PAGINA_INICIO, 'Ayuda de la app', 'Ayuda de la app', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_AYUDA, 'szs_pagina_ayuda' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Ayuda de la app' ), szs_t( 'Ayuda de la app' ), SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_AYUDA, 'szs_pagina_ayuda' );
 }
 
 function szs_procesar_formulario_ayuda(): ?array {
@@ -415,7 +415,7 @@ function szs_procesar_formulario_ayuda(): ?array {
 	$accion = sanitize_key( wp_unslash( $_POST['szs_accion'] ) );
 	if ( 'restaurar_todo' === $accion ) {
 		delete_option( SZS_OPCION_AYUDA_TEXTOS );
-		return array( 'success', 'Vuelven todos los textos de serie de la app.' );
+		return array( 'success', szs_t( 'Vuelven todos los textos de serie de la app.' ) );
 	}
 	if ( 'guardar' !== $accion ) {
 		return null;
@@ -432,7 +432,7 @@ function szs_procesar_formulario_ayuda(): ?array {
 		}
 	}
 	szs_guardar_textos_ayuda( $cambiados );
-	return array( 'success', 'Guardado. El manual lo enseña ya; la app, la próxima vez que se abra con conexión (como mucho en 6 horas).' );
+	return array( 'success', szs_t( 'Guardado. El manual lo enseña ya; la app, la próxima vez que se abra con conexión (como mucho en 6 horas).' ) );
 }
 
 function szs_pagina_ayuda(): void {
@@ -445,26 +445,26 @@ function szs_pagina_ayuda(): void {
 	$n_cambiados = count( $cambiados['es'] ?? array() ) + count( $cambiados['eu'] ?? array() );
 	?>
 	<div class="wrap">
-		<h1>Ayuda de la app</h1>
-		<p>Los textos de la pantalla de Ayuda de la app y del manual imprimible. Lo que cambies aquí lo bajan los móviles al abrir la app y lo enseña el manual al momento. Las marcas al principio de cada línea mandan en cómo se pinta: <code>1.</code> paso numerado, <code>•</code> viñeta, <code>»</code> nota «Bueno saber»; lo demás, párrafo. Lo que va entre «comillas latinas» se resalta como nombre de botón.</p>
+		<h1><?php echo esc_html( szs_t( 'Ayuda de la app' ) ); ?></h1>
+		<p><?php echo szs_t( 'Los textos de la pantalla de Ayuda de la app y del manual imprimible. Lo que cambies aquí lo bajan los móviles al abrir la app y lo enseña el manual al momento. Las marcas al principio de cada línea mandan en cómo se pinta: <code>1.</code> paso numerado, <code>•</code> viñeta, <code>»</code> nota «Bueno saber»; lo demás, párrafo. Lo que va entre «comillas latinas» se resalta como nombre de botón.' ); ?></p>
 		<p>
-			<a class="button" href="<?php echo esc_url( szs_url_manual( 'es' ) ); ?>" target="_blank">Ver el manual (castellano)</a>
+			<a class="button" href="<?php echo esc_url( szs_url_manual( 'es' ) ); ?>" target="_blank"><?php echo esc_html( szs_t( 'Ver el manual (castellano)' ) ); ?></a>
 			<a class="button" href="<?php echo esc_url( szs_url_manual( 'eu' ) ); ?>" target="_blank">Eskuliburua (euskaraz)</a>
 			<?php if ( $n_cambiados > 0 ) : ?>
-				<span class="description"><?php echo esc_html( "Textos cambiados respecto a la app: {$n_cambiados}." ); ?></span>
+				<span class="description"><?php echo esc_html( szs_t( 'Textos cambiados respecto a la app: %d.', $n_cambiados ) ); ?></span>
 			<?php endif; ?>
 		</p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 
 		<?php if ( '' === $apartado ) : ?>
 			<table class="widefat striped" style="max-width:900px;">
-				<thead><tr><th>Apartado</th><th>Cambiado</th><th></th></tr></thead>
+				<thead><tr><th><?php echo esc_html( szs_t( 'Apartado' ) ); ?></th><th><?php echo esc_html( szs_t( 'Cambiado' ) ); ?></th><th></th></tr></thead>
 				<tbody>
 				<?php foreach ( SZS_AYUDA_INDICE as $grupo => $apartados ) : ?>
 					<tr>
-						<td><strong><?php echo esc_html( szs_textos_ayuda_efectivos( 'es', $cambiados )[ $grupo ] ?? $grupo ); ?></strong></td>
-						<td><?php echo isset( $cambiados['es'][ $grupo ] ) || isset( $cambiados['eu'][ $grupo ] ) ? 'sí' : ''; ?></td>
-						<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_AYUDA, array( 'apartado' => $grupo ) ) ); ?>">Editar el nombre del grupo</a></td>
+						<td><strong><?php echo esc_html( szs_textos_ayuda_efectivos( szs_idioma_panel(), $cambiados )[ $grupo ] ?? $grupo ); ?></strong></td>
+						<td><?php echo isset( $cambiados['es'][ $grupo ] ) || isset( $cambiados['eu'][ $grupo ] ) ? esc_html( szs_t( 'sí' ) ) : ''; ?></td>
+						<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_AYUDA, array( 'apartado' => $grupo ) ) ); ?>"><?php echo esc_html( szs_t( 'Editar el nombre del grupo' ) ); ?></a></td>
 					</tr>
 					<?php foreach ( $apartados as $clave ) : ?>
 						<?php
@@ -474,36 +474,36 @@ function szs_pagina_ayuda(): void {
 						}
 						?>
 						<tr>
-							<td style="padding-left:28px;"><?php echo esc_html( szs_textos_ayuda_efectivos( 'es', $cambiados )[ $clave . 'T' ] ?? $clave ); ?></td>
-							<td><?php echo $tocado ? 'sí' : ''; ?></td>
-							<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_AYUDA, array( 'apartado' => $clave ) ) ); ?>">Editar</a></td>
+							<td style="padding-left:28px;"><?php echo esc_html( szs_textos_ayuda_efectivos( szs_idioma_panel(), $cambiados )[ $clave . 'T' ] ?? $clave ); ?></td>
+							<td><?php echo $tocado ? esc_html( szs_t( 'sí' ) ) : ''; ?></td>
+							<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_AYUDA, array( 'apartado' => $clave ) ) ); ?>"><?php echo esc_html( szs_t( 'Editar' ) ); ?></a></td>
 						</tr>
 					<?php endforeach; ?>
 				<?php endforeach; ?>
 				</tbody>
 			</table>
-			<form method="post" style="margin-top:16px;" onsubmit="return confirm('¿Volver a los textos de serie de la app en todos los apartados?');">
+			<form method="post" style="margin-top:16px;" onsubmit="return confirm('<?php echo esc_js( szs_t( '¿Volver a los textos de serie de la app en todos los apartados?' ) ); ?>');">
 				<?php wp_nonce_field( 'szs_ayuda' ); ?>
 				<input type="hidden" name="szs_accion" value="restaurar_todo">
-				<?php submit_button( 'Volver a los textos de serie en todo', 'secondary', 'submit', false ); ?>
+				<?php submit_button( szs_t( 'Volver a los textos de serie en todo' ), 'secondary', 'submit', false ); ?>
 			</form>
 		<?php else : ?>
 			<?php
 			$es_grupo = isset( SZS_AYUDA_INDICE[ $apartado ] );
 			$campos   = $es_grupo
-				? array( '' => 'Nombre del grupo' )
-				: array( 'T' => 'Título', 'B' => 'Texto' );
+				? array( '' => szs_t( 'Nombre del grupo' ) )
+				: array( 'T' => szs_t( 'Título' ), 'B' => szs_t( 'Texto' ) );
 			if ( ! $es_grupo && in_array( $apartado, SZS_AYUDA_CON_TESTER, true ) ) {
-				$campos['TesterT'] = 'Título para personas tester';
-				$campos['TesterB'] = 'Texto para personas tester';
+				$campos['TesterT'] = szs_t( 'Título para personas tester' );
+				$campos['TesterB'] = szs_t( 'Texto para personas tester' );
 			}
 			?>
-			<p><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_AYUDA ) ); ?>">← Todos los apartados</a></p>
+			<p><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_AYUDA ) ); ?>"><?php echo esc_html( szs_t( '← Todos los apartados' ) ); ?></a></p>
 			<form method="post">
 				<?php wp_nonce_field( 'szs_ayuda' ); ?>
 				<input type="hidden" name="szs_accion" value="guardar">
 				<?php foreach ( SZS_IDIOMAS_AYUDA as $idioma ) : ?>
-					<h2><?php echo 'eu' === $idioma ? 'Euskaraz' : 'Castellano'; ?></h2>
+					<h2><?php echo esc_html( 'eu' === $idioma ? szs_t( 'Euskera' ) : szs_t( 'Castellano' ) ); ?></h2>
 					<table class="form-table" role="presentation">
 						<?php foreach ( $campos as $sufijo => $rotulo ) : ?>
 							<?php
@@ -522,15 +522,15 @@ function szs_pagina_ayuda(): void {
 										<input type="text" id="<?php echo esc_attr( $id ); ?>" name="szs_texto[<?php echo esc_attr( $idioma ); ?>][<?php echo esc_attr( $clave ); ?>]" class="large-text" value="<?php echo esc_attr( $actual ); ?>">
 									<?php endif; ?>
 									<?php if ( isset( $cambiados[ $idioma ][ $clave ] ) ) : ?>
-										<p class="description">Cambiado respecto a la app. Para volver al de serie, déjalo vacío y guarda.</p>
-										<details><summary>Texto de serie</summary><pre style="white-space:pre-wrap;"><?php echo esc_html( $de_serie ); ?></pre></details>
+										<p class="description"><?php echo esc_html( szs_t( 'Cambiado respecto a la app. Para volver al de serie, déjalo vacío y guarda.' ) ); ?></p>
+										<details><summary><?php echo esc_html( szs_t( 'Texto de serie' ) ); ?></summary><pre style="white-space:pre-wrap;"><?php echo esc_html( $de_serie ); ?></pre></details>
 									<?php endif; ?>
 								</td>
 							</tr>
 						<?php endforeach; ?>
 					</table>
 				<?php endforeach; ?>
-				<?php submit_button( 'Guardar' ); ?>
+				<?php submit_button( szs_t( 'Guardar' ) ); ?>
 			</form>
 		<?php endif; ?>
 	</div>

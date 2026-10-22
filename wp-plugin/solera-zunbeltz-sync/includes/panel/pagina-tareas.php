@@ -91,14 +91,14 @@ function szs_procesar_accion_tareas(): ?array {
 	switch ( $accion ) {
 		case 'cambiar_estado':
 			if ( null === $existente ) {
-				return array( 'error', 'La tarea ya no existe.' );
+				return array( 'error', szs_t( 'La tarea ya no existe.' ) );
 			}
 			$estado = sanitize_key( szs_campo_post( 'szs_estado' ) );
 			if ( ! isset( SZS_ESTADOS_TAREA[ $estado ] ) ) {
 				return null;
 			}
 			szs_guardar_tarea_desde_panel( array_merge( $existente, array( 'estado' => $estado ) ), $existente );
-			return array( 'success', 'Estado cambiado.' );
+			return array( 'success', szs_t( 'Estado cambiado.' ) );
 
 		case 'borrar':
 			if ( null === $existente ) {
@@ -106,14 +106,14 @@ function szs_procesar_accion_tareas(): ?array {
 			}
 			szs_borrar_tarea_con_lapida( $uid );
 			szs_registrar_actividad( szs_persona_del_panel(), 'borrar', 'tarea', $uid, $existente['titulo'], $existente['finca_nombre'], '', 'panel' );
-			return array( 'success', 'Tarea borrada. Desaparecerá de los móviles al sincronizar.' );
+			return array( 'success', szs_t( 'Tarea borrada. Desaparecerá de los móviles al sincronizar.' ) );
 
 		case 'guardar':
 			$titulo = szs_campo_post( 'szs_titulo' );
 			$fincas = szs_nombres_fincas();
 			$finca  = szs_campo_post( 'szs_finca_uid' );
 			if ( '' === $titulo || ! isset( $fincas[ $finca ] ) ) {
-				return array( 'error', 'Faltan el título o la finca.' );
+				return array( 'error', szs_t( 'Faltan el título o la finca.' ) );
 			}
 			$recurrencia = (int) szs_campo_post( 'szs_recurrencia_dias' );
 			$datos       = array_merge(
@@ -150,7 +150,7 @@ function szs_procesar_accion_tareas(): ?array {
 					)
 				);
 			}
-			return array( 'success', null === $existente ? 'Tarea creada. Llegará a los móviles al sincronizar.' : 'Tarea guardada.' );
+			return array( 'success', null === $existente ? szs_t( 'Tarea creada. Llegará a los móviles al sincronizar.' ) : szs_t( 'Tarea guardada.' ) );
 	}
 	return null;
 }
@@ -179,32 +179,32 @@ function szs_pagina_tareas(): void {
 	sort( $fincas_tareas );
 	?>
 	<div class="wrap">
-		<h1 class="wp-heading-inline">Tareas</h1>
-		<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS, array( 'vista' => 'formulario' ) ) ); ?>" class="page-title-action">Nueva tarea</a>
+		<h1 class="wp-heading-inline"><?php echo esc_html( szs_t( 'Tareas' ) ); ?></h1>
+		<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS, array( 'vista' => 'formulario' ) ) ); ?>" class="page-title-action"><?php echo esc_html( szs_t( 'Nueva tarea' ) ); ?></a>
 		<hr class="wp-header-end">
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 		<?php if ( $vencidas > 0 ) : ?>
 			<div class="notice notice-warning"><p>
-				<strong><?php echo esc_html( 1 === $vencidas ? '1 tarea vencida.' : "{$vencidas} tareas vencidas." ); ?></strong>
-				<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS, array( 'vencidas' => '1', 'estado' => 'abiertas' ) ) ); ?>">Ver solo las vencidas</a>
+				<strong><?php echo esc_html( szs_tn( '1 tarea vencida.', '%d tareas vencidas.', $vencidas, $vencidas ) ); ?></strong>
+				<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS, array( 'vencidas' => '1', 'estado' => 'abiertas' ) ) ); ?>"><?php echo esc_html( szs_t( 'Ver solo las vencidas' ) ); ?></a>
 			</p></div>
 		<?php endif; ?>
 
 		<form method="get" style="margin:12px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
 			<input type="hidden" name="page" value="<?php echo esc_attr( SZS_PAGINA_TAREAS ); ?>">
-			<?php szs_selector( 'finca', array_combine( $fincas_tareas, $fincas_tareas ) ?: array(), $filtros['finca'], 'Todas las fincas' ); ?>
-			<?php szs_selector( 'estado', array_merge( array( 'abiertas' => 'Abiertas (sin hacer)' ), SZS_ESTADOS_TAREA ), $filtros['estado'], 'Todos los estados' ); ?>
-			<?php szs_selector( 'responsable', array_merge( array( 'sin_asignar' => 'Sin asignar (generales)' ), $personas ), $filtros['responsable'], 'Cualquier responsable' ); ?>
-			<label><input type="checkbox" name="vencidas" value="1" <?php checked( $filtros['vencidas'] ); ?>> Solo vencidas</label>
-			<button class="button">Filtrar</button>
-			<a class="button" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array_merge( array_map( 'strval', $filtros ), array( 'page' => SZS_PAGINA_TAREAS, 'exportar' => 'csv', 'vencidas' => $filtros['vencidas'] ? '1' : '' ) ), admin_url( 'admin.php' ) ), 'szs_exportar_tareas' ) ); ?>">Exportar a Excel (CSV)</a>
+			<?php szs_selector( 'finca', array_combine( $fincas_tareas, $fincas_tareas ) ?: array(), $filtros['finca'], szs_t( 'Todas las fincas' ) ); ?>
+			<?php szs_selector( 'estado', array_merge( array( 'abiertas' => szs_t( 'Abiertas (sin hacer)' ) ), szs_t_opciones( SZS_ESTADOS_TAREA ) ), $filtros['estado'], szs_t( 'Todos los estados' ) ); ?>
+			<?php szs_selector( 'responsable', array_merge( array( 'sin_asignar' => szs_t( 'Sin asignar (generales)' ) ), $personas ), $filtros['responsable'], szs_t( 'Cualquier responsable' ) ); ?>
+			<label><input type="checkbox" name="vencidas" value="1" <?php checked( $filtros['vencidas'] ); ?>> <?php echo esc_html( szs_t( 'Solo vencidas' ) ); ?></label>
+			<button class="button"><?php echo esc_html( szs_t( 'Filtrar' ) ); ?></button>
+			<a class="button" href="<?php echo esc_url( wp_nonce_url( add_query_arg( array_merge( array_map( 'strval', $filtros ), array( 'page' => SZS_PAGINA_TAREAS, 'exportar' => 'csv', 'vencidas' => $filtros['vencidas'] ? '1' : '' ) ), admin_url( 'admin.php' ) ), 'szs_exportar_tareas' ) ); ?>"><?php echo esc_html( szs_t( 'Exportar a Excel (CSV)' ) ); ?></a>
 		</form>
 
 		<table class="widefat striped">
-			<thead><tr><th>Tarea</th><th>Finca</th><th>Responsable</th><th>Prioridad</th><th>Fecha</th><th>Estado</th><th></th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Tarea' ) ); ?></th><th><?php echo esc_html( szs_t( 'Finca' ) ); ?></th><th><?php echo esc_html( szs_t( 'Responsable' ) ); ?></th><th><?php echo esc_html( szs_t( 'Prioridad' ) ); ?></th><th><?php echo esc_html( szs_t( 'Fecha' ) ); ?></th><th><?php echo esc_html( szs_t( 'Estado' ) ); ?></th><th></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $tareas ) ) : ?>
-				<tr><td colspan="7">No hay tareas con estos filtros.</td></tr>
+				<tr><td colspan="7"><?php echo esc_html( szs_t( 'No hay tareas con estos filtros.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $tareas as $tarea ) : ?>
 				<?php $vencida = szs_tarea_vencida( $tarea, $hoy ); ?>
@@ -212,20 +212,20 @@ function szs_pagina_tareas(): void {
 					<td>
 						<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS, array( 'vista' => 'formulario', 'uid' => $tarea['uid'] ) ) ); ?>"><strong><?php echo esc_html( $tarea['titulo'] ); ?></strong></a>
 						<?php if ( null !== $tarea['recurrencia_dias'] ) : ?>
-							<br><small>Cada <?php echo esc_html( (string) $tarea['recurrencia_dias'] ); ?> días</small>
+							<br><small><?php echo esc_html( szs_t( 'Cada %d días', (int) $tarea['recurrencia_dias'] ) ); ?></small>
 						<?php endif; ?>
 					</td>
 					<td><?php echo esc_html( $tarea['finca_nombre'] ); ?></td>
-					<td><?php echo '' === $tarea['responsable'] ? '<em>Sin asignar</em>' : esc_html( $tarea['responsable'] ); ?></td>
-					<td><?php echo esc_html( SZS_PRIORIDADES_TAREA[ $tarea['prioridad'] ] ?? $tarea['prioridad'] ); ?></td>
-					<td<?php echo $vencida ? ' style="color:#b8402a;font-weight:600;"' : ''; ?>><?php echo esc_html( szs_fecha_ms( $tarea['fecha_objetivo_ms'] ) ); ?><?php echo $vencida ? ' · vencida' : ''; ?></td>
+					<td><?php echo '' === $tarea['responsable'] ? '<em>' . esc_html( szs_t( 'Sin asignar' ) ) . '</em>' : esc_html( $tarea['responsable'] ); ?></td>
+					<td><?php echo esc_html( isset( SZS_PRIORIDADES_TAREA[ $tarea['prioridad'] ] ) ? szs_t( SZS_PRIORIDADES_TAREA[ $tarea['prioridad'] ] ) : $tarea['prioridad'] ); ?></td>
+					<td<?php echo $vencida ? ' style="color:#b8402a;font-weight:600;"' : ''; ?>><?php echo esc_html( szs_fecha_ms( $tarea['fecha_objetivo_ms'] ) ); ?><?php echo $vencida ? ' · ' . esc_html( szs_t( 'vencida' ) ) : ''; ?></td>
 					<td>
 						<form method="post" style="display:flex;gap:4px;">
 							<?php wp_nonce_field( 'szs_tareas' ); ?>
 							<input type="hidden" name="szs_accion" value="cambiar_estado">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $tarea['uid'] ); ?>">
-							<?php szs_selector( 'szs_estado', SZS_ESTADOS_TAREA, $tarea['estado'] ); ?>
-							<button class="button button-small">Cambiar</button>
+							<?php szs_selector( 'szs_estado', szs_t_opciones( SZS_ESTADOS_TAREA ), $tarea['estado'] ); ?>
+							<button class="button button-small"><?php echo esc_html( szs_t( 'Cambiar' ) ); ?></button>
 						</form>
 					</td>
 					<td>
@@ -233,14 +233,14 @@ function szs_pagina_tareas(): void {
 							<?php wp_nonce_field( 'szs_tareas' ); ?>
 							<input type="hidden" name="szs_accion" value="borrar">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $tarea['uid'] ); ?>">
-							<button class="button button-small button-link-delete" onclick="return confirm('¿Borrar la tarea? Desaparecerá también de los móviles.');">Borrar</button>
+							<button class="button button-small button-link-delete" onclick="return confirm('<?php echo esc_js( szs_t( '¿Borrar la tarea? Desaparecerá también de los móviles.' ) ); ?>');"><?php echo esc_html( szs_t( 'Borrar' ) ); ?></button>
 						</form>
 					</td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
 		</table>
-		<p class="description">Lo que se cambia aquí llega a los móviles en su próxima sincronización (al abrir la app o cada pocos minutos).</p>
+		<p class="description"><?php echo esc_html( szs_t( 'Lo que se cambia aquí llega a los móviles en su próxima sincronización (al abrir la app o cada pocos minutos).' ) ); ?></p>
 	</div>
 	<?php
 }
@@ -279,16 +279,16 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 	// Responsable ya desactivada: sin esta opción el desplegable mostraría
 	// «Sin asignar» y, al guardar, la tarea perdería su responsable.
 	if ( '' !== $valores['responsable_uid'] && ! isset( $personas[ $valores['responsable_uid'] ] ) ) {
-		$personas[ $valores['responsable_uid'] ] = ( '' !== $valores['responsable'] ? $valores['responsable'] : $valores['responsable_uid'] ) . ' (desactivada)';
+		$personas[ $valores['responsable_uid'] ] = ( '' !== $valores['responsable'] ? $valores['responsable'] : $valores['responsable_uid'] ) . ' (' . szs_t( 'desactivada' ) . ')';
 	}
 	?>
 	<div class="wrap">
-		<h1><?php echo null === $tarea ? 'Nueva tarea' : 'Editar tarea'; ?></h1>
+		<h1><?php echo esc_html( null === $tarea ? szs_t( 'Nueva tarea' ) : szs_t( 'Editar tarea' ) ); ?></h1>
 		<?php if ( null !== $peticion ) : ?>
-			<div class="notice notice-info"><p>Desde la petición «<?php echo esc_html( szs_etiqueta_entidad( $peticion ) ); ?>». Al guardar, la petición queda aceptada.</p></div>
+			<div class="notice notice-info"><p><?php echo esc_html( szs_t( 'Desde la petición «%s». Al guardar, la petición queda aceptada.', szs_etiqueta_entidad( $peticion ) ) ); ?></p></div>
 		<?php endif; ?>
 		<?php if ( empty( $fincas ) ) : ?>
-			<div class="notice notice-warning"><p>Todavía no hay fincas en el servidor. Sincroniza primero desde la app de coordinación para que lleguen.</p></div>
+			<div class="notice notice-warning"><p><?php echo esc_html( szs_t( 'Todavía no hay fincas en el servidor. Sincroniza primero desde la app de coordinación para que lleguen.' ) ); ?></p></div>
 		<?php endif; ?>
 		<form method="post" action="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS ) ); ?>">
 			<?php wp_nonce_field( 'szs_tareas' ); ?>
@@ -296,13 +296,13 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 			<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $tarea['uid'] ?? '' ); ?>">
 			<input type="hidden" name="szs_peticion_uid" value="<?php echo esc_attr( $peticion_uid ); ?>">
 			<table class="form-table" role="presentation">
-				<tr><th><label for="szs_titulo">Tarea</label></th><td><input type="text" id="szs_titulo" name="szs_titulo" class="regular-text" required list="szs_plantillas_tarea" value="<?php echo esc_attr( $valores['titulo'] ); ?>">
+				<tr><th><label for="szs_titulo"><?php echo esc_html( szs_t( 'Tarea' ) ); ?></label></th><td><input type="text" id="szs_titulo" name="szs_titulo" class="regular-text" required list="szs_plantillas_tarea" value="<?php echo esc_attr( $valores['titulo'] ); ?>">
 					<datalist id="szs_plantillas_tarea">
 						<?php foreach ( array_keys( SZS_PLANTILLAS_TAREA ) as $plantilla ) : ?>
 							<option value="<?php echo esc_attr( $plantilla ); ?>"></option>
 						<?php endforeach; ?>
 					</datalist>
-					<p class="description">Empieza a escribir para elegir una tarea tipo (alimentación, revisión del vallado, compras…). La periodicidad sugerida se rellena sola si está vacía.</p>
+					<p class="description"><?php echo esc_html( szs_t( 'Empieza a escribir para elegir una tarea tipo (alimentación, revisión del vallado, compras…). La periodicidad sugerida se rellena sola si está vacía.' ) ); ?></p>
 					<script>
 					( function () {
 						const periodicidades = <?php echo wp_json_encode( SZS_PLANTILLAS_TAREA ); ?>;
@@ -316,19 +316,19 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 						} );
 					} )();
 					</script></td></tr>
-				<tr><th><label for="szs_descripcion">Descripción</label></th><td><textarea id="szs_descripcion" name="szs_descripcion" rows="3" class="large-text"><?php echo esc_textarea( $valores['descripcion'] ); ?></textarea></td></tr>
-				<tr><th><label for="szs_finca_uid">Finca</label></th><td><?php szs_selector( 'szs_finca_uid', $fincas, $valores['finca_uid'], '— Elige —' ); ?></td></tr>
-				<tr><th><label for="szs_zona_uid">Pieza (opcional)</label></th><td><?php szs_selector( 'szs_zona_uid', $zonas, $valores['zona_uid'] ?? '', 'Toda la finca' ); ?> <span class="description">La parcela, el parque o el cercado donde se hace.</span></td></tr>
-				<tr><th><label for="szs_punto_uid">Punto (opcional)</label></th><td><?php szs_selector( 'szs_punto_uid', $puntos, $valores['punto_uid'], 'Ninguno' ); ?></td></tr>
-				<tr><th><label for="szs_responsable_uid">Responsable</label></th><td><?php szs_selector( 'szs_responsable_uid', $personas, $valores['responsable_uid'], 'Sin asignar (tarea general)' ); ?></td></tr>
-				<tr><th><label for="szs_prioridad">Prioridad</label></th><td><?php szs_selector( 'szs_prioridad', SZS_PRIORIDADES_TAREA, $valores['prioridad'] ); ?></td></tr>
-				<tr><th><label for="szs_estado">Estado</label></th><td><?php szs_selector( 'szs_estado', SZS_ESTADOS_TAREA, $valores['estado'] ); ?></td></tr>
-				<tr><th><label for="szs_fecha">Fecha objetivo</label></th><td><input type="date" id="szs_fecha" name="szs_fecha" value="<?php echo esc_attr( null === $valores['fecha_objetivo_ms'] ? '' : wp_date( 'Y-m-d', intdiv( $valores['fecha_objetivo_ms'], 1000 ) ) ); ?>"></td></tr>
-				<tr><th><label for="szs_recurrencia_dias">Se repite cada (días)</label></th><td><input type="number" min="0" id="szs_recurrencia_dias" name="szs_recurrencia_dias" class="small-text" value="<?php echo esc_attr( (string) ( $valores['recurrencia_dias'] ?? '' ) ); ?>"> <span class="description">Vacío = tarea puntual. Al marcarla hecha se crea la siguiente.</span></td></tr>
-				<tr><th><label for="szs_coste">Coste (€)</label></th><td><input type="text" id="szs_coste" name="szs_coste" class="small-text" value="<?php echo esc_attr( null === $valores['coste_centimos'] ? '' : number_format( $valores['coste_centimos'] / 100, 2, ',', '' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_descripcion"><?php echo esc_html( szs_t( 'Descripción' ) ); ?></label></th><td><textarea id="szs_descripcion" name="szs_descripcion" rows="3" class="large-text"><?php echo esc_textarea( $valores['descripcion'] ); ?></textarea></td></tr>
+				<tr><th><label for="szs_finca_uid"><?php echo esc_html( szs_t( 'Finca' ) ); ?></label></th><td><?php szs_selector( 'szs_finca_uid', $fincas, $valores['finca_uid'], szs_t( '— Elige —' ) ); ?></td></tr>
+				<tr><th><label for="szs_zona_uid"><?php echo esc_html( szs_t( 'Pieza (opcional)' ) ); ?></label></th><td><?php szs_selector( 'szs_zona_uid', $zonas, $valores['zona_uid'] ?? '', szs_t( 'Toda la finca' ) ); ?> <span class="description"><?php echo esc_html( szs_t( 'La parcela, el parque o el cercado donde se hace.' ) ); ?></span></td></tr>
+				<tr><th><label for="szs_punto_uid"><?php echo esc_html( szs_t( 'Punto (opcional)' ) ); ?></label></th><td><?php szs_selector( 'szs_punto_uid', $puntos, $valores['punto_uid'], szs_t( 'Ninguno' ) ); ?></td></tr>
+				<tr><th><label for="szs_responsable_uid"><?php echo esc_html( szs_t( 'Responsable' ) ); ?></label></th><td><?php szs_selector( 'szs_responsable_uid', $personas, $valores['responsable_uid'], szs_t( 'Sin asignar (tarea general)' ) ); ?></td></tr>
+				<tr><th><label for="szs_prioridad"><?php echo esc_html( szs_t( 'Prioridad' ) ); ?></label></th><td><?php szs_selector( 'szs_prioridad', szs_t_opciones( SZS_PRIORIDADES_TAREA ), $valores['prioridad'] ); ?></td></tr>
+				<tr><th><label for="szs_estado"><?php echo esc_html( szs_t( 'Estado' ) ); ?></label></th><td><?php szs_selector( 'szs_estado', szs_t_opciones( SZS_ESTADOS_TAREA ), $valores['estado'] ); ?></td></tr>
+				<tr><th><label for="szs_fecha"><?php echo esc_html( szs_t( 'Fecha objetivo' ) ); ?></label></th><td><input type="date" id="szs_fecha" name="szs_fecha" value="<?php echo esc_attr( null === $valores['fecha_objetivo_ms'] ? '' : wp_date( 'Y-m-d', intdiv( $valores['fecha_objetivo_ms'], 1000 ) ) ); ?>"></td></tr>
+				<tr><th><label for="szs_recurrencia_dias"><?php echo esc_html( szs_t( 'Se repite cada (días)' ) ); ?></label></th><td><input type="number" min="0" id="szs_recurrencia_dias" name="szs_recurrencia_dias" class="small-text" value="<?php echo esc_attr( (string) ( $valores['recurrencia_dias'] ?? '' ) ); ?>"> <span class="description"><?php echo esc_html( szs_t( 'Vacío = tarea puntual. Al marcarla hecha se crea la siguiente.' ) ); ?></span></td></tr>
+				<tr><th><label for="szs_coste"><?php echo esc_html( szs_t( 'Coste (€)' ) ); ?></label></th><td><input type="text" id="szs_coste" name="szs_coste" class="small-text" value="<?php echo esc_attr( null === $valores['coste_centimos'] ? '' : number_format( $valores['coste_centimos'] / 100, 2, ',', '' ) ); ?>"></td></tr>
 			</table>
-			<?php submit_button( null === $tarea ? 'Crear tarea' : 'Guardar cambios' ); ?>
-			<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS ) ); ?>">Volver al listado</a>
+			<?php submit_button( null === $tarea ? szs_t( 'Crear tarea' ) : szs_t( 'Guardar cambios' ) ); ?>
+			<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS ) ); ?>"><?php echo esc_html( szs_t( 'Volver al listado' ) ); ?></a>
 		</form>
 	</div>
 	<?php

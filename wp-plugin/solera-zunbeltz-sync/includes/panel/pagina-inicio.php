@@ -167,29 +167,29 @@ function szs_resumen_inicio( array $tareas, array $peticiones, array $avisos, ar
 function szs_pendientes_inicio( array $resumen ): array {
 	$pendientes = array();
 	if ( $resumen['avisos']['alarmas'] > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d alarma(s) abierta(s)', $resumen['avisos']['alarmas'] ), 'pagina' => SZS_PAGINA_AVISOS, 'argumentos' => array(), 'nivel' => 'alarma' );
+		$pendientes[] = array( 'texto' => szs_t( '%d alarma(s) abierta(s)', $resumen['avisos']['alarmas'] ), 'pagina' => SZS_PAGINA_AVISOS, 'argumentos' => array(), 'nivel' => 'alarma' );
 	}
 	if ( $resumen['peticiones']['urgentes'] > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d petición(es) urgente(s) sin responder', $resumen['peticiones']['urgentes'] ), 'pagina' => SZS_PAGINA_PETICIONES, 'argumentos' => array(), 'nivel' => 'alarma' );
+		$pendientes[] = array( 'texto' => szs_t( '%d petición(es) urgente(s) sin responder', $resumen['peticiones']['urgentes'] ), 'pagina' => SZS_PAGINA_PETICIONES, 'argumentos' => array(), 'nivel' => 'alarma' );
 	}
 	if ( $resumen['tareas']['vencidas'] > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d tarea(s) vencida(s)', $resumen['tareas']['vencidas'] ), 'pagina' => SZS_PAGINA_TAREAS, 'argumentos' => array( 'vencidas' => '1' ), 'nivel' => 'aviso' );
+		$pendientes[] = array( 'texto' => szs_t( '%d tarea(s) vencida(s)', $resumen['tareas']['vencidas'] ), 'pagina' => SZS_PAGINA_TAREAS, 'argumentos' => array( 'vencidas' => '1' ), 'nivel' => 'aviso' );
 	}
 	$peticiones_normales = $resumen['peticiones']['pendientes'] - $resumen['peticiones']['urgentes'];
 	if ( $peticiones_normales > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d petición(es) de tarea pendiente(s)', $peticiones_normales ), 'pagina' => SZS_PAGINA_PETICIONES, 'argumentos' => array(), 'nivel' => 'aviso' );
+		$pendientes[] = array( 'texto' => szs_t( '%d petición(es) de tarea pendiente(s)', $peticiones_normales ), 'pagina' => SZS_PAGINA_PETICIONES, 'argumentos' => array(), 'nivel' => 'aviso' );
 	}
 	if ( $resumen['tareas']['bloqueadas'] > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d tarea(s) bloqueada(s)', $resumen['tareas']['bloqueadas'] ), 'pagina' => SZS_PAGINA_TAREAS, 'argumentos' => array( 'estado' => 'bloqueada' ), 'nivel' => 'aviso' );
+		$pendientes[] = array( 'texto' => szs_t( '%d tarea(s) bloqueada(s)', $resumen['tareas']['bloqueadas'] ), 'pagina' => SZS_PAGINA_TAREAS, 'argumentos' => array( 'estado' => 'bloqueada' ), 'nivel' => 'aviso' );
 	}
 	if ( $resumen['tareas']['sin_asignar'] > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d tarea(s) abierta(s) sin responsable', $resumen['tareas']['sin_asignar'] ), 'pagina' => SZS_PAGINA_TAREAS, 'argumentos' => array( 'responsable' => 'sin_asignar' ), 'nivel' => 'info' );
+		$pendientes[] = array( 'texto' => szs_t( '%d tarea(s) abierta(s) sin responsable', $resumen['tareas']['sin_asignar'] ), 'pagina' => SZS_PAGINA_TAREAS, 'argumentos' => array( 'responsable' => 'sin_asignar' ), 'nivel' => 'info' );
 	}
 	if ( $resumen['proyectos']['sin_tester'] > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d proyecto(s) abierto(s) sin persona tester', $resumen['proyectos']['sin_tester'] ), 'pagina' => SZS_PAGINA_PROYECTOS, 'argumentos' => array(), 'nivel' => 'info' );
+		$pendientes[] = array( 'texto' => szs_t( '%d proyecto(s) abierto(s) sin persona tester', $resumen['proyectos']['sin_tester'] ), 'pagina' => SZS_PAGINA_PROYECTOS, 'argumentos' => array(), 'nivel' => 'info' );
 	}
 	if ( $resumen['avisos']['abiertos'] - $resumen['avisos']['alarmas'] > 0 ) {
-		$pendientes[] = array( 'texto' => sprintf( '%d aviso(s) abierto(s)', $resumen['avisos']['abiertos'] - $resumen['avisos']['alarmas'] ), 'pagina' => SZS_PAGINA_AVISOS, 'argumentos' => array(), 'nivel' => 'info' );
+		$pendientes[] = array( 'texto' => szs_t( '%d aviso(s) abierto(s)', $resumen['avisos']['abiertos'] - $resumen['avisos']['alarmas'] ), 'pagina' => SZS_PAGINA_AVISOS, 'argumentos' => array(), 'nivel' => 'info' );
 	}
 	return $pendientes;
 }
@@ -202,33 +202,33 @@ function szs_pendientes_inicio( array $resumen ): array {
  */
 function szs_apartados_inicio(): array {
 	$apartados = array(
-		'El día a día' => array(
-			array( 'pagina' => SZS_PAGINA_TAREAS, 'nombre' => 'Tareas', 'para_que' => 'El tablero de la oficina: alta, edición, filtros por finca y responsable, exportación a Excel.' ),
-			array( 'pagina' => SZS_PAGINA_PETICIONES, 'nombre' => 'Peticiones', 'para_que' => 'Lo que las testers piden que se haga. Se convierten en tarea o se descartan con un motivo.' ),
-			array( 'pagina' => SZS_PAGINA_AVISOS, 'nombre' => 'Avisos', 'para_que' => 'Alarmas e incidencias del espacio y noticias que coordinación publica para todos los móviles.' ),
-			array( 'pagina' => SZS_PAGINA_ACTIVIDAD, 'nombre' => 'Actividad', 'para_que' => 'Registro de lo que cada persona ha hecho, desde la app o desde esta oficina.' ),
+		szs_t( 'El día a día' ) => array(
+			array( 'pagina' => SZS_PAGINA_TAREAS, 'nombre' => szs_t( 'Tareas' ), 'para_que' => szs_t( 'El tablero de la oficina: alta, edición, filtros por finca y responsable, exportación a Excel.' ) ),
+			array( 'pagina' => SZS_PAGINA_PETICIONES, 'nombre' => szs_t( 'Peticiones' ), 'para_que' => szs_t( 'Lo que las testers piden que se haga. Se convierten en tarea o se descartan con un motivo.' ) ),
+			array( 'pagina' => SZS_PAGINA_AVISOS, 'nombre' => szs_t( 'Avisos' ), 'para_que' => szs_t( 'Alarmas e incidencias del espacio y noticias que coordinación publica para todos los móviles.' ) ),
+			array( 'pagina' => SZS_PAGINA_ACTIVIDAD, 'nombre' => szs_t( 'Actividad' ), 'para_que' => szs_t( 'Registro de lo que cada persona ha hecho, desde la app o desde esta oficina.' ) ),
 		),
-		'Proyectos de test' => array(
-			array( 'pagina' => SZS_PAGINA_PROYECTOS, 'nombre' => 'Proyectos', 'para_que' => 'Asignar tester, cerrar o reabrir, ver las cuentas y bajar la alimentación por días.' ),
-			array( 'pagina' => SZS_PAGINA_GANADO, 'nombre' => 'Ganado', 'para_que' => 'Los rebaños que apuntan los móviles: dónde está cada uno, cabezas, UGM, supresión y tratamientos en ecológico; censo, movimientos y tratamientos en Excel.' ),
-			array( 'pagina' => SZS_PAGINA_CONVENIO, 'nombre' => 'Convenio', 'para_que' => 'Cargar y editar el convenio de cada proyecto: fechas y reparto, presupuesto, fianza, acompañamiento e incidencias.' ),
-			array( 'pagina' => SZS_PAGINA_INVENTARIO, 'nombre' => 'Inventario', 'para_que' => 'Bienes amortizables del espacio y qué parte de su cuota se imputa a cada proyecto.' ),
-			array( 'pagina' => SZS_PAGINA_RENDIMIENTOS, 'nombre' => 'Rendimientos', 'para_que' => 'Rendimientos de referencia (peso vivo → canal → producto) para la calculadora de transformación, con su fuente.' ),
-			array( 'pagina' => SZS_PAGINA_CONTACTOS, 'nombre' => 'Contactos', 'para_que' => 'Agenda compartida: mataderos, veterinarias, clientes, proveedores.' ),
+		szs_t( 'Proyectos de test' ) => array(
+			array( 'pagina' => SZS_PAGINA_PROYECTOS, 'nombre' => szs_t( 'Proyectos' ), 'para_que' => szs_t( 'Asignar tester, cerrar o reabrir, ver las cuentas y bajar la alimentación por días.' ) ),
+			array( 'pagina' => SZS_PAGINA_GANADO, 'nombre' => szs_t( 'Ganado' ), 'para_que' => szs_t( 'Los rebaños que apuntan los móviles: dónde está cada uno, cabezas, UGM, supresión y tratamientos en ecológico; censo, movimientos y tratamientos en Excel.' ) ),
+			array( 'pagina' => SZS_PAGINA_CONVENIO, 'nombre' => szs_t( 'Convenio' ), 'para_que' => szs_t( 'Cargar y editar el convenio de cada proyecto: fechas y reparto, presupuesto, fianza, acompañamiento e incidencias.' ) ),
+			array( 'pagina' => SZS_PAGINA_INVENTARIO, 'nombre' => szs_t( 'Inventario' ), 'para_que' => szs_t( 'Bienes amortizables del espacio y qué parte de su cuota se imputa a cada proyecto.' ) ),
+			array( 'pagina' => SZS_PAGINA_RENDIMIENTOS, 'nombre' => szs_t( 'Rendimientos' ), 'para_que' => szs_t( 'Rendimientos de referencia (peso vivo → canal → producto) para la calculadora de transformación, con su fuente.' ) ),
+			array( 'pagina' => SZS_PAGINA_CONTACTOS, 'nombre' => szs_t( 'Contactos' ), 'para_que' => szs_t( 'Agenda compartida: mataderos, veterinarias, clientes, proveedores.' ) ),
 		),
-		'Personas y acceso' => array(
-			array( 'pagina' => SZS_PAGINA_PERSONAS, 'nombre' => 'Personas', 'para_que' => 'Quién entra en el espacio, con qué rol y con qué token; enlazar con usuarios de WordPress.' ),
-			array( 'pagina' => SZS_PAGINA_ANDROID, 'nombre' => 'App Android', 'para_que' => 'Dónde descargar la app y, si hace falta, subir un APK a mano.' ),
-			array( 'pagina' => '', 'url' => szs_url_app_web(), 'nombre' => 'Abrir la app web ↗', 'para_que' => 'La misma app, en el navegador, para la oficina y para probarla sin instalar nada.' ),
+		szs_t( 'Personas y acceso' ) => array(
+			array( 'pagina' => SZS_PAGINA_PERSONAS, 'nombre' => szs_t( 'Personas' ), 'para_que' => szs_t( 'Quién entra en el espacio, con qué rol y con qué clave de usuario; enlazar con usuarios de WordPress.' ) ),
+			array( 'pagina' => SZS_PAGINA_ANDROID, 'nombre' => szs_t( 'App Android' ), 'para_que' => szs_t( 'Dónde descargar la app y, si hace falta, subir un APK a mano.' ) ),
+			array( 'pagina' => '', 'url' => szs_url_app_web(), 'nombre' => szs_t( 'Abrir la app web ↗' ), 'para_que' => szs_t( 'La misma app, en el navegador, para la oficina y para probarla sin instalar nada.' ) ),
 		),
-		'Comunicación y web' => array(
-			array( 'pagina' => SZS_PAGINA_NOTICIAS, 'nombre' => 'Noticias del sector', 'para_que' => 'Canales RSS que el servidor lee cada 3 horas y la app enseña en Hoy.' ),
-			array( 'pagina' => SZS_PAGINA_AYUDA, 'nombre' => 'Ayuda de la app', 'para_que' => 'Cambiar los textos de la ayuda de la app y del manual imprimible (/manual/), en castellano y euskera.' ),
-			array( 'pagina' => SZS_PAGINA_LOGOS_ENTIDADES, 'nombre' => 'Entidades y logos', 'para_que' => 'Quién impulsa, apoya, colabora y financia: los logos del pie de la web, de la app y de Acerca de.' ),
+		szs_t( 'Comunicación y web' ) => array(
+			array( 'pagina' => SZS_PAGINA_NOTICIAS, 'nombre' => szs_t( 'Noticias del sector' ), 'para_que' => szs_t( 'Canales RSS que el servidor lee cada 3 horas y la app enseña en Hoy.' ) ),
+			array( 'pagina' => SZS_PAGINA_AYUDA, 'nombre' => szs_t( 'Ayuda de la app' ), 'para_que' => szs_t( 'Cambiar los textos de la ayuda de la app y del manual imprimible (/manual/), en castellano y euskera.' ) ),
+			array( 'pagina' => SZS_PAGINA_LOGOS_ENTIDADES, 'nombre' => szs_t( 'Entidades y logos' ), 'para_que' => szs_t( 'Quién impulsa, apoya, colabora y financia: los logos del pie de la web, de la app y de Acerca de.' ) ),
 		),
 	);
 	if ( current_user_can( 'manage_options' ) ) {
-		$apartados['Comunicación y web'][] = array( 'pagina' => SZS_PAGINA_DATOS_DEMO, 'nombre' => 'Datos demo', 'para_que' => 'Sembrar o retirar datos de ejemplo. Solo para administración de WordPress.' );
+		$apartados[ szs_t( 'Comunicación y web' ) ][] = array( 'pagina' => SZS_PAGINA_DATOS_DEMO, 'nombre' => szs_t( 'Datos demo' ), 'para_que' => szs_t( 'Sembrar o retirar datos de ejemplo. Solo para administración de WordPress.' ) );
 	}
 	return $apartados;
 }
@@ -241,13 +241,13 @@ function szs_url_apartado_inicio( array $apartado ): string {
 function szs_hace_cuanto( int $momento_ms, int $ahora_ms ): string {
 	$segundos = max( 0, intdiv( $ahora_ms - $momento_ms, 1000 ) );
 	if ( $segundos < 3600 ) {
-		return sprintf( 'hace %d min', max( 1, intdiv( $segundos, 60 ) ) );
+		return szs_t( 'hace %d min', max( 1, intdiv( $segundos, 60 ) ) );
 	}
 	if ( $segundos < 86400 ) {
-		return sprintf( 'hace %d h', intdiv( $segundos, 3600 ) );
+		return szs_t( 'hace %d h', intdiv( $segundos, 3600 ) );
 	}
 	$dias = intdiv( $segundos, 86400 );
-	return 1 === $dias ? 'ayer' : sprintf( 'hace %d días', $dias );
+	return 1 === $dias ? szs_t( 'ayer' ) : szs_t( 'hace %d días', $dias );
 }
 
 function szs_pagina_inicio(): void {
@@ -337,14 +337,14 @@ function szs_pagina_inicio(): void {
 		.szs-inicio .szs-pie { color: #50575e; font-size: 12px; margin-top: 18px; }
 	</style>
 	<div class="wrap szs-inicio">
-		<h1>Solera Zunbeltz · Inicio</h1>
-		<p>Resumen del espacio a <?php echo esc_html( szs_fecha_ms( $ahora_ms, 'd/m/Y H:i' ) ); ?>. Cada cifra lleva a su apartado.</p>
+		<h1>Solera Zunbeltz · <?php echo esc_html( szs_t( 'Inicio' ) ); ?></h1>
+		<p><?php echo esc_html( szs_t( 'Resumen del espacio a %s. Cada cifra lleva a su apartado.', szs_fecha_ms( $ahora_ms, 'd/m/Y H:i' ) ) ); ?></p>
 
 		<div class="szs-bloques">
 			<div class="szs-bloque">
-				<h2>Pide atención</h2>
+				<h2><?php echo esc_html( szs_t( 'Pide atención' ) ); ?></h2>
 				<?php if ( empty( $pendientes ) ) : ?>
-					<p class="szs-todo-en-orden">Nada urgente: sin alarmas, sin peticiones pendientes y sin tareas vencidas.</p>
+					<p class="szs-todo-en-orden"><?php echo esc_html( szs_t( 'Nada urgente: sin alarmas, sin peticiones pendientes y sin tareas vencidas.' ) ); ?></p>
 				<?php else : ?>
 					<ul class="szs-pendientes">
 						<?php foreach ( $pendientes as $pendiente ) : ?>
@@ -355,66 +355,66 @@ function szs_pagina_inicio(): void {
 			</div>
 
 			<div class="szs-bloque">
-				<h2>Tareas <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS ) ); ?>">ver tablero →</a></h2>
+				<h2><?php echo esc_html( szs_t( 'Tareas' ) ); ?> <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS ) ); ?>"><?php echo esc_html( szs_t( 'ver tablero →' ) ); ?></a></h2>
 				<div class="szs-cifras">
 					<?php
-					$cifra( 'abiertas', $resumen['tareas']['abiertas'], SZS_PAGINA_TAREAS );
-					$cifra( 'vencidas', $resumen['tareas']['vencidas'], SZS_PAGINA_TAREAS, array( 'vencidas' => '1' ), $resumen['tareas']['vencidas'] > 0 ? 'szs-mal' : '' );
-					$cifra( 'para hoy', $resumen['tareas']['hoy'], SZS_PAGINA_TAREAS );
-					$cifra( 'próximos 7 días', $resumen['tareas']['proximas'], SZS_PAGINA_TAREAS );
-					$cifra( 'sin responsable', $resumen['tareas']['sin_asignar'], SZS_PAGINA_TAREAS, array( 'responsable' => 'sin_asignar' ), $resumen['tareas']['sin_asignar'] > 0 ? 'szs-ojo' : '' );
-					$cifra( 'periódicas', $resumen['tareas']['periodicas'], SZS_PAGINA_TAREAS );
-					$cifra( 'hechas en 30 días', $resumen['tareas']['hechas_30_dias'], SZS_PAGINA_TAREAS, array( 'estado' => 'hecha' ) );
+					$cifra( szs_t( 'abiertas' ), $resumen['tareas']['abiertas'], SZS_PAGINA_TAREAS );
+					$cifra( szs_t( 'vencidas' ), $resumen['tareas']['vencidas'], SZS_PAGINA_TAREAS, array( 'vencidas' => '1' ), $resumen['tareas']['vencidas'] > 0 ? 'szs-mal' : '' );
+					$cifra( szs_t( 'para hoy' ), $resumen['tareas']['hoy'], SZS_PAGINA_TAREAS );
+					$cifra( szs_t( 'próximos 7 días' ), $resumen['tareas']['proximas'], SZS_PAGINA_TAREAS );
+					$cifra( szs_t( 'sin responsable' ), $resumen['tareas']['sin_asignar'], SZS_PAGINA_TAREAS, array( 'responsable' => 'sin_asignar' ), $resumen['tareas']['sin_asignar'] > 0 ? 'szs-ojo' : '' );
+					$cifra( szs_t( 'periódicas' ), $resumen['tareas']['periodicas'], SZS_PAGINA_TAREAS );
+					$cifra( szs_t( 'hechas en 30 días' ), $resumen['tareas']['hechas_30_dias'], SZS_PAGINA_TAREAS, array( 'estado' => 'hecha' ) );
 					?>
 				</div>
 			</div>
 
 			<div class="szs-bloque">
-				<h2>Peticiones y avisos</h2>
+				<h2><?php echo esc_html( szs_t( 'Peticiones y avisos' ) ); ?></h2>
 				<div class="szs-cifras">
 					<?php
-					$cifra( 'peticiones pendientes', $resumen['peticiones']['pendientes'], SZS_PAGINA_PETICIONES, array(), $resumen['peticiones']['pendientes'] > 0 ? 'szs-ojo' : '' );
-					$cifra( 'urgentes', $resumen['peticiones']['urgentes'], SZS_PAGINA_PETICIONES, array(), $resumen['peticiones']['urgentes'] > 0 ? 'szs-mal' : '' );
-					$cifra( 'avisos abiertos', $resumen['avisos']['abiertos'], SZS_PAGINA_AVISOS );
-					$cifra( 'alarmas', $resumen['avisos']['alarmas'], SZS_PAGINA_AVISOS, array(), $resumen['avisos']['alarmas'] > 0 ? 'szs-mal' : '' );
+					$cifra( szs_t( 'peticiones pendientes' ), $resumen['peticiones']['pendientes'], SZS_PAGINA_PETICIONES, array(), $resumen['peticiones']['pendientes'] > 0 ? 'szs-ojo' : '' );
+					$cifra( szs_t( 'urgentes' ), $resumen['peticiones']['urgentes'], SZS_PAGINA_PETICIONES, array(), $resumen['peticiones']['urgentes'] > 0 ? 'szs-mal' : '' );
+					$cifra( szs_t( 'avisos abiertos' ), $resumen['avisos']['abiertos'], SZS_PAGINA_AVISOS );
+					$cifra( szs_t( 'alarmas' ), $resumen['avisos']['alarmas'], SZS_PAGINA_AVISOS, array(), $resumen['avisos']['alarmas'] > 0 ? 'szs-mal' : '' );
 					?>
 				</div>
 			</div>
 
 			<div class="szs-bloque">
-				<h2>Proyectos de test <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_PROYECTOS ) ); ?>">ver →</a></h2>
+				<h2><?php echo esc_html( szs_t( 'Proyectos de test' ) ); ?> <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_PROYECTOS ) ); ?>"><?php echo esc_html( szs_t( 'ver →' ) ); ?></a></h2>
 				<div class="szs-cifras">
 					<?php
-					$cifra( 'abiertos', $resumen['proyectos']['abiertos'], SZS_PAGINA_PROYECTOS );
-					$cifra( 'sin tester', $resumen['proyectos']['sin_tester'], SZS_PAGINA_PROYECTOS, array(), $resumen['proyectos']['sin_tester'] > 0 ? 'szs-ojo' : '' );
-					$cifra( 'cerrados', $resumen['proyectos']['cerrados'], SZS_PAGINA_PROYECTOS );
+					$cifra( szs_t( 'abiertos' ), $resumen['proyectos']['abiertos'], SZS_PAGINA_PROYECTOS );
+					$cifra( szs_t( 'sin tester' ), $resumen['proyectos']['sin_tester'], SZS_PAGINA_PROYECTOS, array(), $resumen['proyectos']['sin_tester'] > 0 ? 'szs-ojo' : '' );
+					$cifra( szs_t( 'cerrados' ), $resumen['proyectos']['cerrados'], SZS_PAGINA_PROYECTOS );
 					?>
 				</div>
 			</div>
 
 			<div class="szs-bloque">
-				<h2>Espacio y ganado</h2>
+				<h2><?php echo esc_html( szs_t( 'Espacio y ganado' ) ); ?></h2>
 				<div class="szs-cifras">
 					<?php
-					$cifra( 'fincas', count( $fincas ) );
-					$cifra( 'zonas', $zonas );
-					$cifra( 'puntos', $puntos );
-					$cifra( 'lotes', $resumen['ganado']['lotes'] );
-					$cifra( 'animales en alta', $resumen['ganado']['animales_en_alta'] );
-					$cifra( 'cabezas sin crotal', $resumen['ganado']['cabezas_sin_identificar'] );
+					$cifra( szs_t( 'fincas' ), count( $fincas ) );
+					$cifra( szs_t( 'zonas' ), $zonas );
+					$cifra( szs_t( 'puntos' ), $puntos );
+					$cifra( szs_t( 'rebaños' ), $resumen['ganado']['lotes'] );
+					$cifra( szs_t( 'animales en alta' ), $resumen['ganado']['animales_en_alta'] );
+					$cifra( szs_t( 'cabezas sin crotal' ), $resumen['ganado']['cabezas_sin_identificar'] );
 					?>
 				</div>
-				<p class="description" style="margin-top:8px;">Fincas, zonas, puntos y ganado se editan desde la app; aquí solo se cuentan.</p>
+				<p class="description" style="margin-top:8px;"><?php echo esc_html( szs_t( 'Fincas, zonas, puntos y ganado se editan desde la app; aquí solo se cuentan.' ) ); ?></p>
 			</div>
 
 			<div class="szs-bloque">
-				<h2>Personas <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_PERSONAS ) ); ?>">gestionar →</a></h2>
+				<h2><?php echo esc_html( szs_t( 'Personas' ) ); ?> <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_PERSONAS ) ); ?>"><?php echo esc_html( szs_t( 'gestionar →' ) ); ?></a></h2>
 				<div class="szs-cifras" style="margin-bottom:10px;">
 					<?php
-					$cifra( 'activas', $resumen['personas']['activas'], SZS_PAGINA_PERSONAS );
-					$cifra( 'coordinación', $resumen['personas']['coordinacion'], SZS_PAGINA_PERSONAS );
-					$cifra( 'testers', $resumen['personas']['testers'], SZS_PAGINA_PERSONAS );
-					$cifra( 'sin actividad aún', $resumen['personas']['sin_token_usado'], SZS_PAGINA_PERSONAS, array(), $resumen['personas']['sin_token_usado'] > 0 ? 'szs-ojo' : '' );
+					$cifra( szs_t( 'activas' ), $resumen['personas']['activas'], SZS_PAGINA_PERSONAS );
+					$cifra( szs_t( 'coordinación' ), $resumen['personas']['coordinacion'], SZS_PAGINA_PERSONAS );
+					$cifra( szs_t( 'testers' ), $resumen['personas']['testers'], SZS_PAGINA_PERSONAS );
+					$cifra( szs_t( 'sin actividad aún' ), $resumen['personas']['sin_token_usado'], SZS_PAGINA_PERSONAS, array(), $resumen['personas']['sin_token_usado'] > 0 ? 'szs-ojo' : '' );
 					?>
 				</div>
 				<?php if ( ! empty( $personas ) ) : ?>
@@ -422,8 +422,8 @@ function szs_pagina_inicio(): void {
 					<?php foreach ( $personas as $persona ) : ?>
 						<?php $ultima = $resumen['ultima_actividad_por_persona'][ $persona['uid'] ] ?? 0; ?>
 						<tr>
-							<td><?php echo esc_html( $persona['nombre'] ); ?> <span class="description">· <?php echo esc_html( szs_etiqueta_rol( (string) $persona['rol'] ) ); ?></span></td>
-							<td class="szs-cuando"><?php echo 0 === $ultima ? 'sin actividad' : esc_html( szs_hace_cuanto( $ultima, $ahora_ms ) ); ?></td>
+							<td><?php echo esc_html( $persona['nombre'] ); ?> <span class="description">· <?php echo esc_html( szs_t( szs_etiqueta_rol( (string) $persona['rol'] ) ) ); ?></span></td>
+							<td class="szs-cuando"><?php echo esc_html( 0 === $ultima ? szs_t( 'sin actividad' ) : szs_hace_cuanto( $ultima, $ahora_ms ) ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 				</table>
@@ -431,16 +431,16 @@ function szs_pagina_inicio(): void {
 			</div>
 
 			<div class="szs-bloque">
-				<h2>Actividad reciente <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_ACTIVIDAD ) ); ?>">todo →</a></h2>
+				<h2><?php echo esc_html( szs_t( 'Actividad reciente' ) ); ?> <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_ACTIVIDAD ) ); ?>"><?php echo esc_html( szs_t( 'todo →' ) ); ?></a></h2>
 				<div class="szs-cifras" style="margin-bottom:10px;">
 					<?php
-					$cifra( 'cambios en 7 días', $resumen['actividad']['ultimos_7_dias'], SZS_PAGINA_ACTIVIDAD );
-					$cifra( 'desde la app', $resumen['actividad']['desde_app'], SZS_PAGINA_ACTIVIDAD );
-					$cifra( 'desde la oficina', $resumen['actividad']['desde_oficina'], SZS_PAGINA_ACTIVIDAD );
+					$cifra( szs_t( 'cambios en 7 días' ), $resumen['actividad']['ultimos_7_dias'], SZS_PAGINA_ACTIVIDAD );
+					$cifra( szs_t( 'desde la app' ), $resumen['actividad']['desde_app'], SZS_PAGINA_ACTIVIDAD );
+					$cifra( szs_t( 'desde la oficina' ), $resumen['actividad']['desde_oficina'], SZS_PAGINA_ACTIVIDAD );
 					?>
 				</div>
 				<?php if ( empty( $ultimas ) ) : ?>
-					<p class="description">Todavía no hay actividad.</p>
+					<p class="description"><?php echo esc_html( szs_t( 'Todavía no hay actividad.' ) ); ?></p>
 				<?php else : ?>
 				<table class="szs-tabla-compacta">
 					<?php foreach ( $ultimas as $entrada ) : ?>
@@ -454,13 +454,13 @@ function szs_pagina_inicio(): void {
 			</div>
 
 			<div class="szs-bloque">
-				<h2>La app y el servidor</h2>
+				<h2><?php echo esc_html( szs_t( 'La app y el servidor' ) ); ?></h2>
 				<table class="szs-tabla-compacta">
-					<tr><td>Plugin</td><td><?php echo esc_html( SZS_VERSION ); ?> · esquema <?php echo esc_html( (string) SZS_VERSION_ESQUEMA ); ?></td></tr>
-					<tr><td>App web</td><td><a href="<?php echo esc_url( szs_url_app_web() ); ?>" target="_blank" rel="noopener"><?php echo esc_html( szs_url_app_web() ); ?></a></td></tr>
-					<tr><td>APK en el panel</td><td><?php echo null === $apk ? 'ninguno subido (se sirve el de la última release de GitHub)' : esc_html( ( '' === $apk['version'] ? 'sin versión' : 'versión ' . $apk['version'] ) . ', subido el ' . wp_date( 'd/m/Y', $apk['fecha'] ) ); ?> · <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_ANDROID ) ); ?>">App Android</a></td></tr>
-					<tr><td>Sincronización</td><td>revisión <?php echo esc_html( (string) szs_revision_actual() ); ?> · <code><?php echo esc_html( rest_url( 'solera-zunbeltz/v1/sync' ) ); ?></code></td></tr>
-					<tr><td>Noticias del sector</td><td><?php echo esc_html( (string) count( $canales ) ); ?> canal(es) activo(s) · <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_NOTICIAS ) ); ?>">gestionar</a></td></tr>
+					<tr><td><?php echo esc_html( szs_t( 'Plugin' ) ); ?></td><td><?php echo esc_html( SZS_VERSION ); ?> · <?php echo esc_html( szs_t( 'esquema %d', (int) SZS_VERSION_ESQUEMA ) ); ?></td></tr>
+					<tr><td><?php echo esc_html( szs_t( 'App web' ) ); ?></td><td><a href="<?php echo esc_url( szs_url_app_web() ); ?>" target="_blank" rel="noopener"><?php echo esc_html( szs_url_app_web() ); ?></a></td></tr>
+					<tr><td><?php echo esc_html( szs_t( 'APK en el panel' ) ); ?></td><td><?php echo esc_html( null === $apk ? szs_t( 'ninguno subido (se sirve el de la última release de GitHub)' ) : szs_t( '%1$s, subido el %2$s', '' === $apk['version'] ? szs_t( 'sin versión' ) : szs_t( 'versión %s', $apk['version'] ), wp_date( 'd/m/Y', $apk['fecha'] ) ) ); ?> · <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_ANDROID ) ); ?>"><?php echo esc_html( szs_t( 'App Android' ) ); ?></a></td></tr>
+					<tr><td><?php echo esc_html( szs_t( 'Sincronización' ) ); ?></td><td><?php echo esc_html( szs_t( 'revisión %d', (int) szs_revision_actual() ) ); ?> · <code><?php echo esc_html( rest_url( 'solera-zunbeltz/v1/sync' ) ); ?></code></td></tr>
+					<tr><td><?php echo esc_html( szs_t( 'Noticias del sector' ) ); ?></td><td><?php echo esc_html( szs_t( '%d canal(es) activo(s)', count( $canales ) ) ); ?> · <a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_NOTICIAS ) ); ?>"><?php echo esc_html( szs_t( 'gestionar' ) ); ?></a></td></tr>
 				</table>
 			</div>
 		</div>
@@ -477,7 +477,7 @@ function szs_pagina_inicio(): void {
 			</div>
 		<?php endforeach; ?>
 
-		<p class="szs-pie">Las cifras salen de lo que el servidor tiene ahora; lo que haya en un móvil sin sincronizar no cuenta hasta que sincronice. La actividad «por persona» es la última huella que dejó al sincronizar o al usar esta oficina.</p>
+		<p class="szs-pie"><?php echo esc_html( szs_t( 'Las cifras salen de lo que el servidor tiene ahora; lo que haya en un móvil sin sincronizar no cuenta hasta que sincronice. La actividad «por persona» es la última huella que dejó al sincronizar o al usar esta oficina.' ) ); ?></p>
 	</div>
 	<?php
 }

@@ -193,7 +193,7 @@ function szs_bloquear_actualizacion_tema_enlazado( $respuesta, $paquete, $actual
 	if ( SZS_TEMA_ZUNBELTZ !== ( $extra['theme'] ?? '' ) ) {
 		return $respuesta;
 	}
-	return new WP_Error( 'szs_tema_enlazado', 'Este tema es un enlace simbólico (desarrollo): actualizarlo desde aquí borraría la carpeta enlazada.' );
+	return new WP_Error( 'szs_tema_enlazado', szs_t( 'Este tema es un enlace simbólico (desarrollo): actualizarlo desde aquí borraría la carpeta enlazada.' ) );
 }
 
 /**
@@ -205,5 +205,5 @@ function szs_bloquear_actualizacion_enlazada( $respuesta, $paquete, $actualizado
 	if ( 'solera-zunbeltz-sync/solera-zunbeltz-sync.php' !== ( $extra['plugin'] ?? '' ) ) {
 		return $respuesta;
 	}
-	return new WP_Error( 'szs_plugin_enlazado', 'Este plugin es un enlace simbólico (desarrollo): actualizarlo desde aquí borraría la carpeta enlazada.' );
+	return new WP_Error( 'szs_plugin_enlazado', szs_t( 'Este plugin es un enlace simbólico (desarrollo): actualizarlo desde aquí borraría la carpeta enlazada.' ) );
 }

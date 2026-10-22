@@ -105,7 +105,7 @@ function szs_campo_csv( $valor ): string {
  * CSV para Excel (UTF-8 con BOM, separador `;`).
  */
 function szs_tareas_a_csv( array $tareas ): string {
-	$lineas = array( 'Tarea;Finca;Responsable;Prioridad;Estado;Fecha objetivo;Coste (€);Cada (días)' );
+	$lineas = array( szs_t( 'Tarea;Finca;Responsable;Prioridad;Estado;Fecha objetivo;Coste (€);Cada (días)' ) );
 	foreach ( $tareas as $tarea ) {
 		$lineas[] = implode(
 			';',
@@ -302,25 +302,25 @@ function szs_resumen_correo_diario( array $tareas, array $peticiones, array $ala
 	$partes_asunto = array();
 	$cuerpo        = array();
 	if ( ! empty( $alarmas ) ) {
-		$partes_asunto[] = count( $alarmas ) . ( 1 === count( $alarmas ) ? ' alarma abierta' : ' alarmas abiertas' );
-		$cuerpo[]        = "Alarmas abiertas:\n" . implode( "\n", array_map( static fn( $titulo ) => "  - {$titulo}", $alarmas ) );
+		$partes_asunto[] = szs_tn( '%d alarma abierta', '%d alarmas abiertas', count( $alarmas ), count( $alarmas ) );
+		$cuerpo[]        = szs_t( 'Alarmas abiertas:' ) . "\n" . implode( "\n", array_map( static fn( $titulo ) => "  - {$titulo}", $alarmas ) );
 	}
 	if ( ! empty( $vencidas ) ) {
-		$partes_asunto[] = count( $vencidas ) . ( 1 === count( $vencidas ) ? ' tarea vencida' : ' tareas vencidas' );
+		$partes_asunto[] = szs_tn( '%d tarea vencida', '%d tareas vencidas', count( $vencidas ), count( $vencidas ) );
 		$lineas          = array();
 		foreach ( $vencidas as $tarea ) {
-			$quien    = '' === $tarea['responsable'] ? 'sin asignar' : $tarea['responsable'];
+			$quien    = '' === $tarea['responsable'] ? szs_t( 'sin asignar' ) : $tarea['responsable'];
 			$fecha    = szs_fecha_local( (int) $tarea['fecha_objetivo_ms'] );
-			$lineas[] = "  - {$tarea['titulo']} ({$tarea['finca_nombre']}, {$quien}, desde el {$fecha})";
+			$lineas[] = '  - ' . szs_t( '%1$s (%2$s, %3$s, desde el %4$s)', $tarea['titulo'], $tarea['finca_nombre'], $quien, $fecha );
 		}
-		$cuerpo[] = "Tareas vencidas:\n" . implode( "\n", $lineas );
+		$cuerpo[] = szs_t( 'Tareas vencidas:' ) . "\n" . implode( "\n", $lineas );
 	}
 	if ( ! empty( $peticiones ) ) {
-		$partes_asunto[] = count( $peticiones ) . ( 1 === count( $peticiones ) ? ' petición pendiente' : ' peticiones pendientes' );
-		$cuerpo[]        = "Peticiones de tarea pendientes:\n" . implode( "\n", array_map( static fn( $titulo ) => "  - {$titulo}", $peticiones ) );
+		$partes_asunto[] = szs_tn( '%d petición pendiente', '%d peticiones pendientes', count( $peticiones ), count( $peticiones ) );
+		$cuerpo[]        = szs_t( 'Peticiones de tarea pendientes:' ) . "\n" . implode( "\n", array_map( static fn( $titulo ) => "  - {$titulo}", $peticiones ) );
 	}
 	return array(
-		'asunto' => 'Larrea Zunbeltz: ' . implode( ', ', $partes_asunto ),
+		'asunto' => szs_t( 'Larrea Zunbeltz: %s', implode( ', ', $partes_asunto ) ),
 		'cuerpo' => implode( "\n\n", $cuerpo ) . "\n",
 	);
 }
@@ -361,14 +361,14 @@ function szs_alimentacion_por_dias( array $registros, string $zona_horaria ): ar
 /** CSV para Excel (BOM, `;`, coma decimal) con fila de total. Pura. */
 function szs_alimentacion_a_csv( array $filas ): string {
 	$numero = static fn( float $kg ): string => rtrim( rtrim( number_format( $kg, 3, ',', '' ), '0' ), ',' );
-	$lineas = array( 'Fecha;Lote;Kg' );
+	$lineas = array( szs_t( 'Fecha;Lote;Kg' ) );
 	$total  = 0.0;
 	foreach ( $filas as $fila ) {
 		$fecha    = DateTimeImmutable::createFromFormat( 'Y-m-d', $fila['dia'] );
 		$lineas[] = implode( ';', array( false === $fecha ? $fila['dia'] : $fecha->format( 'd/m/Y' ), szs_campo_csv( $fila['lote'] ), $numero( $fila['kg'] ) ) );
 		$total   += $fila['kg'];
 	}
-	$lineas[] = 'Total;;' . $numero( $total );
+	$lineas[] = szs_t( 'Total' ) . ';;' . $numero( $total );
 	return "\u{FEFF}" . implode( "\r\n", $lineas ) . "\r\n";
 }
 

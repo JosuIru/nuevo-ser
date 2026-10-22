@@ -22,7 +22,7 @@ add_action( 'admin_menu', 'szs_registrar_pagina_ganado', 12 );
 add_action( 'admin_init', 'szs_exportar_ganado_csv' );
 
 function szs_registrar_pagina_ganado(): void {
-	add_submenu_page( SZS_PAGINA_INICIO, 'Ganado', 'Ganado', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_GANADO, 'szs_pagina_ganado' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Ganado' ), szs_t( 'Ganado' ), SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_GANADO, 'szs_pagina_ganado' );
 }
 
 /**
@@ -77,7 +77,7 @@ function szs_texto_ubicacion( ?array $ubicacion, array $zonas ): string {
 		return '—';
 	}
 	if ( isset( $ubicacion['fuera'] ) ) {
-		return 'Fuera del espacio' . ( '' !== $ubicacion['fuera'] ? ': ' . $ubicacion['fuera'] : '' );
+		return '' !== $ubicacion['fuera'] ? szs_t( 'Fuera del espacio: %s', $ubicacion['fuera'] ) : szs_t( 'Fuera del espacio' );
 	}
 	return $zonas[ $ubicacion['zona_uid'] ] ?? '—';
 }
@@ -87,7 +87,8 @@ function szs_texto_supresion( array $supresion ): string {
 	$partes = array();
 	foreach ( array( 'carne', 'leche' ) as $de ) {
 		if ( null !== $supresion[ $de ] ) {
-			$partes[] = $de . ': libre el ' . DateTimeImmutable::createFromFormat( 'Y-m-d', $supresion[ $de ] )->format( 'd/m/Y' );
+			$fecha    = DateTimeImmutable::createFromFormat( 'Y-m-d', $supresion[ $de ] )->format( 'd/m/Y' );
+			$partes[] = 'carne' === $de ? szs_t( 'carne: libre el %s', $fecha ) : szs_t( 'leche: libre el %s', $fecha );
 		}
 	}
 	return implode( ' · ', $partes );
@@ -100,7 +101,7 @@ function szs_numero_es( float $numero, int $decimales = 2 ): string {
 /** «Pasillo → Los Avellanos». */
 function szs_trayecto_movimiento( array $movimiento, array $zonas ): string {
 	$datos   = $movimiento['datos'];
-	$externo = '' !== (string) ( $datos['destino_externo'] ?? '' ) ? (string) $datos['destino_externo'] : 'fuera del espacio';
+	$externo = '' !== (string) ( $datos['destino_externo'] ?? '' ) ? (string) $datos['destino_externo'] : szs_t( 'fuera del espacio' );
 	$origen  = 'entrada' === ( $datos['tipo'] ?? '' ) ? $externo : ( $zonas[ $datos['zona_origen_uid'] ?? '' ] ?? '—' );
 	$destino = 'salida' === ( $datos['tipo'] ?? '' ) ? $externo : ( $zonas[ $datos['zona_destino_uid'] ?? '' ] ?? '—' );
 	return $origen . ' → ' . $destino;
@@ -115,7 +116,7 @@ function szs_exportar_ganado_csv(): void {
 		return;
 	}
 	if ( ! szs_puede_usar_panel() ) {
-		wp_die( 'Sin permiso.' );
+		wp_die( esc_html( szs_t( 'Sin permiso.' ) ) );
 	}
 	check_admin_referer( 'szs_exportar_ganado' );
 	$que   = sanitize_key( szs_campo_get( 'exportar' ) );
@@ -135,7 +136,7 @@ function szs_exportar_ganado_csv(): void {
 
 	switch ( $que ) {
 		case 'censo':
-			$cabecera = array( 'Crotal', 'Nombre', 'Especie', 'Raza', 'Sexo', 'Nacimiento', 'Madre', 'Rebaño', 'Estado', 'Fecha de baja', 'UGM' );
+			$cabecera = array( szs_t( 'Crotal' ), szs_t( 'Nombre' ), szs_t( 'Especie' ), szs_t( 'Raza' ), szs_t( 'Sexo' ), szs_t( 'Nacimiento' ), szs_t( 'Madre' ), szs_t( 'Rebaño' ), szs_t( 'Estado' ), szs_t( 'Fecha de baja' ), 'UGM' );
 			$filas    = array();
 			foreach ( $datos['animales'] as $animal ) {
 				$a       = $animal['datos'];
@@ -146,13 +147,13 @@ function szs_exportar_ganado_csv(): void {
 				$filas[] = array(
 					(string) ( $a['identificacion'] ?? '' ),
 					(string) ( $a['nombre'] ?? '' ),
-					SZS_ESPECIES_GANADO[ $especie ] ?? $especie,
+					isset( SZS_ESPECIES_GANADO[ $especie ] ) ? szs_t( SZS_ESPECIES_GANADO[ $especie ] ) : $especie,
 					(string) ( $a['raza'] ?? '' ),
-					SZS_SEXOS_ANIMAL[ $a['sexo'] ?? '' ] ?? '',
+					szs_t( SZS_SEXOS_ANIMAL[ $a['sexo'] ?? '' ] ?? '' ),
 					$dia( $a['fecha_nacimiento_ms'] ?? null ),
 					(string) ( $a['madre'] ?? '' ),
 					$nombre_lote( (string) ( $a['lote_uid'] ?? '' ) ),
-					SZS_ESTADOS_ANIMAL[ $a['estado'] ?? 'activo' ] ?? '',
+					szs_t( SZS_ESTADOS_ANIMAL[ $a['estado'] ?? 'activo' ] ?? '' ),
 					$dia( $a['fecha_baja_ms'] ?? null ),
 					szs_animal_activo( $animal ) ? szs_numero_es( szs_ugm_por_cabeza( $especie, (string) ( $a['sexo'] ?? '' ), isset( $a['fecha_nacimiento_ms'] ) ? (int) $a['fecha_nacimiento_ms'] : null, $ahora, $zona ) ) : '',
 				);
@@ -160,7 +161,7 @@ function szs_exportar_ganado_csv(): void {
 			break;
 
 		case 'movimientos':
-			$cabecera = array( 'Fecha', 'Rebaño', 'Tipo', 'Origen → destino', 'Cabezas', 'Guía', 'Notas' );
+			$cabecera = array( szs_t( 'Fecha' ), szs_t( 'Rebaño' ), szs_t( 'Tipo' ), szs_t( 'Origen → destino' ), szs_t( 'Cabezas' ), szs_t( 'Guía' ), szs_t( 'Notas' ) );
 			$filas    = array();
 			$lista    = $datos['movimientos'];
 			usort( $lista, static fn( array $a, array $b ): int => ( $a['datos']['fecha_ms'] ?? 0 ) <=> ( $b['datos']['fecha_ms'] ?? 0 ) );
@@ -169,7 +170,7 @@ function szs_exportar_ganado_csv(): void {
 				$filas[] = array(
 					$dia( $m['fecha_ms'] ?? null ),
 					$nombre_lote( (string) ( $m['lote_uid'] ?? '' ) ),
-					SZS_TIPOS_MOVIMIENTO_GANADO[ $m['tipo'] ?? '' ] ?? '',
+					szs_t( SZS_TIPOS_MOVIMIENTO_GANADO[ $m['tipo'] ?? '' ] ?? '' ),
 					szs_trayecto_movimiento( $movimiento, $datos['zonas'] ),
 					(string) ( $m['cabezas'] ?? '' ),
 					(string) ( $m['guia'] ?? '' ),
@@ -179,7 +180,7 @@ function szs_exportar_ganado_csv(): void {
 			break;
 
 		case 'tratamientos':
-			$cabecera = array( 'Fecha', 'Animal / rebaño', 'Tipo', 'Sustancia activa', 'Clase', 'Dosis', 'Espera carne (días)', 'Espera leche (días)', 'Espera eco carne', 'Espera eco leche', 'Veterinario/a', 'Receta' );
+			$cabecera = array( szs_t( 'Fecha' ), szs_t( 'Animal / rebaño' ), szs_t( 'Tipo' ), szs_t( 'Sustancia activa' ), szs_t( 'Clase' ), szs_t( 'Dosis' ), szs_t( 'Espera carne (días)' ), szs_t( 'Espera leche (días)' ), szs_t( 'Espera eco carne' ), szs_t( 'Espera eco leche' ), szs_t( 'Veterinario/a' ), szs_t( 'Receta' ) );
 			$filas    = array();
 			$lista    = array_values( array_filter( $datos['eventos'], static fn( array $e ): bool => in_array( $e['datos']['tipo'] ?? '', SZS_TIPOS_EVENTO_CON_MEDICAMENTO, true ) ) );
 			usort( $lista, static fn( array $a, array $b ): int => ( $a['datos']['fecha_ms'] ?? 0 ) <=> ( $b['datos']['fecha_ms'] ?? 0 ) );
@@ -194,9 +195,9 @@ function szs_exportar_ganado_csv(): void {
 				$filas[]   = array(
 					$dia( $e['fecha_ms'] ?? null ),
 					null !== $animal ? (string) ( $animal['datos']['identificacion'] ?? '' ) : $nombre_lote( $lote_uid ),
-					SZS_TIPOS_EVENTO_GANADO[ $e['tipo'] ?? '' ] ?? '',
+					szs_t( SZS_TIPOS_EVENTO_GANADO[ $e['tipo'] ?? '' ] ?? '' ),
 					(string) ( $e['sustancia_activa'] ?? '' ),
-					SZS_CLASES_MEDICAMENTO[ $clase ] ?? '',
+					szs_t( SZS_CLASES_MEDICAMENTO[ $clase ] ?? '' ),
 					(string) ( $e['dosis'] ?? '' ),
 					(string) $carne,
 					(string) $leche,
@@ -287,19 +288,19 @@ function szs_listado_ganado( array $datos ): void {
 	usort( $filas, static fn( array $a, array $b ): int => array( $a['activo'] ? 0 : 1, szs_etiqueta_entidad( $a['lote'] ) ) <=> array( $b['activo'] ? 0 : 1, szs_etiqueta_entidad( $b['lote'] ) ) );
 	?>
 	<div class="wrap">
-		<h1>Ganado</h1>
-		<p>Los rebaños tal como llegan de los móviles: el ganado se apunta en la app (pestaña Ganado), también sin cobertura. Aquí se consulta y se saca a Excel. Las UGM son orientativas (<?php echo esc_html( SZS_FUENTE_UGM ); ?>); las reglas de ecológico, PROVISIONALES hasta que las revise CPAEN/NNPEK.</p>
+		<h1><?php echo esc_html( szs_t( 'Ganado' ) ); ?></h1>
+		<p><?php echo esc_html( szs_t( 'Los rebaños tal como llegan de los móviles: el ganado se apunta en la app (pestaña Ganado), también sin cobertura. Aquí se consulta y se saca a Excel. Las UGM son orientativas (%s); las reglas de ecológico, PROVISIONALES hasta que las revise CPAEN/NNPEK.', szs_t( SZS_FUENTE_UGM ) ) ); ?></p>
 		<p>
-			<a class="button" href="<?php echo esc_url( szs_url_exportar_ganado( 'censo' ) ); ?>">Censo (Excel)</a>
-			<a class="button" href="<?php echo esc_url( szs_url_exportar_ganado( 'movimientos' ) ); ?>">Movimientos (Excel)</a>
-			<a class="button" href="<?php echo esc_url( szs_url_exportar_ganado( 'tratamientos' ) ); ?>">Tratamientos (Excel)</a>
+			<a class="button" href="<?php echo esc_url( szs_url_exportar_ganado( 'censo' ) ); ?>"><?php echo esc_html( szs_t( 'Censo (Excel)' ) ); ?></a>
+			<a class="button" href="<?php echo esc_url( szs_url_exportar_ganado( 'movimientos' ) ); ?>"><?php echo esc_html( szs_t( 'Movimientos (Excel)' ) ); ?></a>
+			<a class="button" href="<?php echo esc_url( szs_url_exportar_ganado( 'tratamientos' ) ); ?>"><?php echo esc_html( szs_t( 'Tratamientos (Excel)' ) ); ?></a>
 		</p>
 		<form method="get" style="margin:12px 0;">
 			<input type="hidden" name="page" value="<?php echo esc_attr( SZS_PAGINA_GANADO ); ?>">
-			<label for="szs_crotal">Buscar un animal por crotal</label>
+			<label for="szs_crotal"><?php echo esc_html( szs_t( 'Buscar un animal por crotal' ) ); ?></label>
 			<input type="search" id="szs_crotal" name="crotal" value="<?php echo esc_attr( $crotal ); ?>" placeholder="ES0123…">
-			<button class="button">Buscar</button>
-			<label style="margin-left:16px;"><input type="checkbox" name="cerrados" value="1" <?php checked( $ver_todos ); ?> onchange="this.form.submit()"> Ver también los rebaños cerrados</label>
+			<button class="button"><?php echo esc_html( szs_t( 'Buscar' ) ); ?></button>
+			<label style="margin-left:16px;"><input type="checkbox" name="cerrados" value="1" <?php checked( $ver_todos ); ?> onchange="this.form.submit()"> <?php echo esc_html( szs_t( 'Ver también los rebaños cerrados' ) ); ?></label>
 		</form>
 
 		<?php if ( '' !== $crotal ) : ?>
@@ -310,12 +311,12 @@ function szs_listado_ganado( array $datos ): void {
 				$lotes[ $l['uid'] ] = $l;
 			}
 			?>
-			<h2>Animales con «<?php echo esc_html( $crotal ); ?>»</h2>
+			<h2><?php echo esc_html( szs_t( 'Animales con «%s»', $crotal ) ); ?></h2>
 			<?php if ( empty( $encontrados ) ) : ?>
-				<p>Ninguno.</p>
+				<p><?php echo esc_html( szs_t( 'Ninguno.' ) ); ?></p>
 			<?php else : ?>
 				<table class="widefat striped" style="max-width:900px;">
-					<thead><tr><th>Crotal</th><th>Nombre</th><th>Rebaño</th><th>Estado</th></tr></thead>
+					<thead><tr><th><?php echo esc_html( szs_t( 'Crotal' ) ); ?></th><th><?php echo esc_html( szs_t( 'Nombre' ) ); ?></th><th><?php echo esc_html( szs_t( 'Rebaño' ) ); ?></th><th><?php echo esc_html( szs_t( 'Estado' ) ); ?></th></tr></thead>
 					<tbody>
 					<?php foreach ( $encontrados as $animal ) : ?>
 						<?php $lote_uid = (string) ( $animal['datos']['lote_uid'] ?? '' ); ?>
@@ -323,7 +324,7 @@ function szs_listado_ganado( array $datos ): void {
 							<td><?php echo esc_html( (string) ( $animal['datos']['identificacion'] ?? '' ) ); ?></td>
 							<td><?php echo esc_html( (string) ( $animal['datos']['nombre'] ?? '' ) ); ?></td>
 							<td><?php if ( isset( $lotes[ $lote_uid ] ) ) : ?><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_GANADO, array( 'lote' => $lote_uid ) ) ); ?>"><?php echo esc_html( szs_etiqueta_entidad( $lotes[ $lote_uid ] ) ); ?></a><?php else : ?>—<?php endif; ?></td>
-							<td><?php echo esc_html( SZS_ESTADOS_ANIMAL[ $animal['datos']['estado'] ?? 'activo' ] ?? '' ); ?></td>
+							<td><?php echo esc_html( szs_t( SZS_ESTADOS_ANIMAL[ $animal['datos']['estado'] ?? 'activo' ] ?? '' ) ); ?></td>
 						</tr>
 					<?php endforeach; ?>
 					</tbody>
@@ -331,13 +332,13 @@ function szs_listado_ganado( array $datos ): void {
 			<?php endif; ?>
 		<?php endif; ?>
 
-		<h2>Rebaños</h2>
-		<p><?php echo esc_html( sprintf( '%d cabezas · %s UGM en el espacio.', $total_cabezas, szs_numero_es( $total_ugm ) ) ); ?></p>
+		<h2><?php echo esc_html( szs_t( 'Rebaños' ) ); ?></h2>
+		<p><?php echo esc_html( szs_t( '%d cabezas · %s UGM en el espacio.', $total_cabezas, szs_numero_es( $total_ugm ) ) ); ?></p>
 		<table class="widefat striped">
-			<thead><tr><th>Rebaño</th><th>Especie</th><th>De quién</th><th>Dónde está</th><th>Cabezas</th><th>UGM</th><th>Supresión</th><th>Ecológico</th><th>Último movimiento</th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Rebaño' ) ); ?></th><th><?php echo esc_html( szs_t( 'Especie' ) ); ?></th><th><?php echo esc_html( szs_t( 'De quién' ) ); ?></th><th><?php echo esc_html( szs_t( 'Dónde está' ) ); ?></th><th><?php echo esc_html( szs_t( 'Cabezas' ) ); ?></th><th>UGM</th><th><?php echo esc_html( szs_t( 'Supresión' ) ); ?></th><th><?php echo esc_html( szs_t( 'Ecológico' ) ); ?></th><th><?php echo esc_html( szs_t( 'Último movimiento' ) ); ?></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $filas ) ) : ?>
-				<tr><td colspan="9">Todavía no ha llegado ningún rebaño de los móviles.</td></tr>
+				<tr><td colspan="9"><?php echo esc_html( szs_t( 'Todavía no ha llegado ningún rebaño de los móviles.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $filas as $fila ) : ?>
 				<?php
@@ -345,9 +346,9 @@ function szs_listado_ganado( array $datos ): void {
 				$eco = $fila['eco'];
 				?>
 				<tr<?php echo $fila['activo'] ? '' : ' style="opacity:.6"'; ?>>
-					<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_GANADO, array( 'lote' => $fila['lote']['uid'] ) ) ); ?>"><strong><?php echo esc_html( szs_etiqueta_entidad( $fila['lote'] ) ); ?></strong></a><?php echo $fila['activo'] ? '' : ' (cerrado)'; ?></td>
-					<td><?php echo esc_html( SZS_ESPECIES_GANADO[ $d['especie'] ?? '' ] ?? '' ); ?></td>
-					<td><?php echo esc_html( '' === (string) ( $d['titular_uid'] ?? '' ) ? 'Del espacio' : ( $personas[ $d['titular_uid'] ] ?? '—' ) ); ?></td>
+					<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_GANADO, array( 'lote' => $fila['lote']['uid'] ) ) ); ?>"><strong><?php echo esc_html( szs_etiqueta_entidad( $fila['lote'] ) ); ?></strong></a><?php echo $fila['activo'] ? '' : esc_html( ' ' . szs_t( '(cerrado)' ) ); ?></td>
+					<td><?php echo esc_html( szs_t( SZS_ESPECIES_GANADO[ $d['especie'] ?? '' ] ?? '' ) ); ?></td>
+					<td><?php echo esc_html( '' === (string) ( $d['titular_uid'] ?? '' ) ? szs_t( 'Del espacio' ) : ( $personas[ $d['titular_uid'] ] ?? '—' ) ); ?></td>
 					<td><?php echo esc_html( $fila['ubicacion'] ); ?></td>
 					<td><?php echo esc_html( (string) $fila['cabezas'] ); ?></td>
 					<td><?php echo esc_html( szs_numero_es( $fila['ugm'] ) ); ?></td>
@@ -356,7 +357,7 @@ function szs_listado_ganado( array $datos ): void {
 						<?php if ( null === $eco ) : ?>
 							—
 						<?php else : ?>
-							<span style="<?php echo $eco['superado'] ? 'color:#b8402a;font-weight:600;' : ( $eco['en_limite'] ? 'color:#a36a00;font-weight:600;' : '' ); ?>"><?php echo esc_html( sprintf( '%d de %d tratamientos', $eco['tratamientos'], $eco['limite'] ) . ( $eco['superado'] ? ' · superado' : ( $eco['en_limite'] ? ' · en el límite' : '' ) ) ); ?></span>
+							<span style="<?php echo $eco['superado'] ? 'color:#b8402a;font-weight:600;' : ( $eco['en_limite'] ? 'color:#a36a00;font-weight:600;' : '' ); ?>"><?php echo esc_html( szs_t( '%d de %d tratamientos', $eco['tratamientos'], $eco['limite'] ) . ( $eco['superado'] ? ' · ' . szs_t( 'superado' ) : ( $eco['en_limite'] ? ' · ' . szs_t( 'en el límite' ) : '' ) ) ); ?></span>
 						<?php endif; ?>
 					</td>
 					<td><?php echo null === $fila['ultimo'] ? '—' : esc_html( szs_fecha_ms( (int) ( $fila['ultimo']['datos']['fecha_ms'] ?? 0 ) ) ); ?></td>
@@ -366,9 +367,9 @@ function szs_listado_ganado( array $datos ): void {
 		</table>
 
 		<?php if ( ! empty( $ugm_por_zona ) ) : ?>
-			<h2>Carga por pieza</h2>
+			<h2><?php echo esc_html( szs_t( 'Carga por pieza' ) ); ?></h2>
 			<table class="widefat striped" style="max-width:700px;">
-				<thead><tr><th>Pieza</th><th>Superficie</th><th>UGM</th><th>UGM/ha</th></tr></thead>
+				<thead><tr><th><?php echo esc_html( szs_t( 'Pieza' ) ); ?></th><th><?php echo esc_html( szs_t( 'Superficie' ) ); ?></th><th>UGM</th><th>UGM/ha</th></tr></thead>
 				<tbody>
 				<?php
 				arsort( $ugm_por_zona );
@@ -407,7 +408,7 @@ function szs_ficha_lote_panel( array $lote, array $datos ): void {
 	usort( $eventos, static fn( array $a, array $b ): int => ( $b['datos']['fecha_ms'] ?? 0 ) <=> ( $a['datos']['fecha_ms'] ?? 0 ) );
 	?>
 	<div class="wrap">
-		<p><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_GANADO ) ); ?>">← Todo el ganado</a></p>
+		<p><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_GANADO ) ); ?>"><?php echo esc_html( szs_t( '← Todo el ganado' ) ); ?></a></p>
 		<h1><?php echo esc_html( szs_etiqueta_entidad( $lote ) ); ?></h1>
 		<p>
 			<?php
@@ -416,14 +417,14 @@ function szs_ficha_lote_panel( array $lote, array $datos ): void {
 					' · ',
 					array_filter(
 						array(
-							SZS_ESPECIES_GANADO[ $d['especie'] ?? '' ] ?? '',
-							'' === (string) ( $d['titular_uid'] ?? '' ) ? 'Del espacio' : ( $personas[ $d['titular_uid'] ] ?? '' ),
+							szs_t( SZS_ESPECIES_GANADO[ $d['especie'] ?? '' ] ?? '' ),
+							'' === (string) ( $d['titular_uid'] ?? '' ) ? szs_t( 'Del espacio' ) : ( $personas[ $d['titular_uid'] ] ?? '' ),
 							szs_texto_ubicacion( szs_ubicacion_lote( $movimientos ), $datos['zonas'] ),
-							szs_cabezas_de_lote( $lote, $animales ) . ' cabezas',
-							(int) ( $d['cabezas_sin_identificar'] ?? 0 ) > 0 ? (int) $d['cabezas_sin_identificar'] . ' sin crotal' : '',
+							szs_t( '%d cabezas', szs_cabezas_de_lote( $lote, $animales ) ),
+							(int) ( $d['cabezas_sin_identificar'] ?? 0 ) > 0 ? szs_t( '%d sin crotal', (int) $d['cabezas_sin_identificar'] ) : '',
 							szs_numero_es( szs_ugm_de_lote( $lote, $animales, $ahora, $zona ) ) . ' UGM',
-							$ecologico ? 'Ecológico' . ( ! empty( $d['ciclo_corto'] ) ? ' (vida productiva menor de un año)' : '' ) : '',
-							'cerrado' === ( $d['estado'] ?? 'activo' ) ? 'Cerrado' : '',
+							$ecologico ? ( ! empty( $d['ciclo_corto'] ) ? szs_t( 'Ecológico (vida productiva menor de un año)' ) : szs_t( 'Ecológico' ) ) : '',
+							'cerrado' === ( $d['estado'] ?? 'activo' ) ? szs_t( 'Cerrado' ) : '',
 						)
 					)
 				)
@@ -431,26 +432,26 @@ function szs_ficha_lote_panel( array $lote, array $datos ): void {
 			?>
 		</p>
 		<?php if ( '' !== $supresion ) : ?>
-			<div class="notice notice-error inline"><p><strong>En plazo de supresión</strong> — <?php echo esc_html( $supresion ); ?><?php echo $ecologico ? esc_html( ' (plazo doble por ser ecológico)' ) : ''; ?></p></div>
+			<div class="notice notice-error inline"><p><strong><?php echo esc_html( szs_t( 'En plazo de supresión' ) ); ?></strong> — <?php echo esc_html( $supresion ); ?><?php echo $ecologico ? esc_html( ' ' . szs_t( '(plazo doble por ser ecológico)' ) ) : ''; ?></p></div>
 		<?php endif; ?>
 		<?php if ( $ecologico ) : ?>
 			<?php $eco = szs_estado_tratamientos_ecologico( array_filter( $eventos, static fn( array $e ): bool => '' === (string) ( $e['datos']['animal_uid'] ?? '' ) ), $ahora, $zona, ! empty( $d['ciclo_corto'] ) ); ?>
 			<div class="notice <?php echo $eco['superado'] ? 'notice-error' : ( $eco['en_limite'] ? 'notice-warning' : 'notice-info' ); ?> inline">
-				<p><strong><?php echo esc_html( sprintf( 'Ecológico: %d de %d tratamientos alopáticos en 12 meses (los del rebaño entero).', $eco['tratamientos'], $eco['limite'] ) ); ?></strong>
-				<?php if ( $eco['superado'] ) : ?>Ha superado el límite: no se puede vender como ecológico y vuelve a conversión. Hay que comunicarlo a CPAEN/NNPEK.<?php elseif ( $eco['en_limite'] ) : ?>Está en el límite: uno más y pierde la condición ecológica.<?php endif; ?>
-				No cuentan vacunas, antiparasitarios ni saneamiento. Los animales con tratamientos propios se cuentan aparte, abajo.</p>
+				<p><strong><?php echo esc_html( szs_t( 'Ecológico: %d de %d tratamientos alopáticos en 12 meses (los del rebaño entero).', $eco['tratamientos'], $eco['limite'] ) ); ?></strong>
+				<?php if ( $eco['superado'] ) : ?><?php echo esc_html( szs_t( 'Ha superado el límite: no se puede vender como ecológico y vuelve a conversión. Hay que comunicarlo a CPAEN/NNPEK.' ) ); ?><?php elseif ( $eco['en_limite'] ) : ?><?php echo esc_html( szs_t( 'Está en el límite: uno más y pierde la condición ecológica.' ) ); ?><?php endif; ?>
+				<?php echo esc_html( szs_t( 'No cuentan vacunas, antiparasitarios ni saneamiento. Los animales con tratamientos propios se cuentan aparte, abajo.' ) ); ?></p>
 			</div>
 		<?php endif; ?>
 		<?php if ( '' !== (string) ( $d['notas'] ?? '' ) ) : ?>
 			<p><em><?php echo esc_html( (string) $d['notas'] ); ?></em></p>
 		<?php endif; ?>
 
-		<h2>Animales con crotal</h2>
+		<h2><?php echo esc_html( szs_t( 'Animales con crotal' ) ); ?></h2>
 		<table class="widefat striped">
-			<thead><tr><th>Crotal</th><th>Nombre</th><th>Raza</th><th>Sexo</th><th>Nacimiento</th><th>Madre</th><th>Estado</th><th>UGM</th><?php echo $ecologico ? '<th>Tratamientos (eco)</th>' : ''; ?></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Crotal' ) ); ?></th><th><?php echo esc_html( szs_t( 'Nombre' ) ); ?></th><th><?php echo esc_html( szs_t( 'Raza' ) ); ?></th><th><?php echo esc_html( szs_t( 'Sexo' ) ); ?></th><th><?php echo esc_html( szs_t( 'Nacimiento' ) ); ?></th><th><?php echo esc_html( szs_t( 'Madre' ) ); ?></th><th><?php echo esc_html( szs_t( 'Estado' ) ); ?></th><th>UGM</th><?php echo $ecologico ? '<th>' . esc_html( szs_t( 'Tratamientos (eco)' ) ) . '</th>' : ''; ?></tr></thead>
 			<tbody>
 			<?php if ( empty( $animales ) ) : ?>
-				<tr><td colspan="9">Ninguno.</td></tr>
+				<tr><td colspan="9"><?php echo esc_html( szs_t( 'Ninguno.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $animales as $animal ) : ?>
 				<?php
@@ -462,35 +463,35 @@ function szs_ficha_lote_panel( array $lote, array $datos ): void {
 					<td><?php echo esc_html( (string) ( $a['identificacion'] ?? '' ) ); ?></td>
 					<td><?php echo esc_html( (string) ( $a['nombre'] ?? '' ) ); ?></td>
 					<td><?php echo esc_html( (string) ( $a['raza'] ?? '' ) ); ?></td>
-					<td><?php echo esc_html( SZS_SEXOS_ANIMAL[ $a['sexo'] ?? '' ] ?? '' ); ?></td>
+					<td><?php echo esc_html( szs_t( SZS_SEXOS_ANIMAL[ $a['sexo'] ?? '' ] ?? '' ) ); ?></td>
 					<td><?php echo esc_html( szs_fecha_ms( isset( $a['fecha_nacimiento_ms'] ) ? (int) $a['fecha_nacimiento_ms'] : null ) ); ?></td>
 					<td><?php echo esc_html( (string) ( $a['madre'] ?? '' ) ); ?></td>
-					<td><?php echo esc_html( ( SZS_ESTADOS_ANIMAL[ $a['estado'] ?? 'activo' ] ?? '' ) . ( $activo ? '' : ' ' . szs_fecha_ms( isset( $a['fecha_baja_ms'] ) ? (int) $a['fecha_baja_ms'] : null ) ) ); ?></td>
+					<td><?php echo esc_html( szs_t( SZS_ESTADOS_ANIMAL[ $a['estado'] ?? 'activo' ] ?? '' ) . ( $activo ? '' : ' ' . szs_fecha_ms( isset( $a['fecha_baja_ms'] ) ? (int) $a['fecha_baja_ms'] : null ) ) ); ?></td>
 					<td><?php echo $activo ? esc_html( szs_numero_es( szs_ugm_por_cabeza( $especie, (string) ( $a['sexo'] ?? '' ), isset( $a['fecha_nacimiento_ms'] ) ? (int) $a['fecha_nacimiento_ms'] : null, $ahora, $zona ) ) ) : ''; ?></td>
 					<?php if ( $ecologico ) : ?>
 						<?php
 						$propios = array_filter( $eventos, static fn( array $e ): bool => '' === (string) ( $e['datos']['animal_uid'] ?? '' ) || ( $e['datos']['animal_uid'] ?? '' ) === $animal['uid'] );
 						$eco_a   = szs_estado_tratamientos_ecologico( $propios, $ahora, $zona, ! empty( $d['ciclo_corto'] ) );
 						?>
-						<td style="<?php echo $eco_a['superado'] ? 'color:#b8402a;font-weight:600;' : ''; ?>"><?php echo esc_html( $eco_a['tratamientos'] . ' de ' . $eco_a['limite'] . ( $eco_a['superado'] ? ' · superado' : '' ) ); ?></td>
+						<td style="<?php echo $eco_a['superado'] ? 'color:#b8402a;font-weight:600;' : ''; ?>"><?php echo esc_html( szs_t( '%d de %d', $eco_a['tratamientos'], $eco_a['limite'] ) . ( $eco_a['superado'] ? ' · ' . szs_t( 'superado' ) : '' ) ); ?></td>
 					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
 		</table>
 
-		<h2>Movimientos</h2>
+		<h2><?php echo esc_html( szs_t( 'Movimientos' ) ); ?></h2>
 		<table class="widefat striped">
-			<thead><tr><th>Fecha</th><th>Tipo</th><th>Origen → destino</th><th>Cabezas</th><th>Guía</th><th>Notas</th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Fecha' ) ); ?></th><th><?php echo esc_html( szs_t( 'Tipo' ) ); ?></th><th><?php echo esc_html( szs_t( 'Origen → destino' ) ); ?></th><th><?php echo esc_html( szs_t( 'Cabezas' ) ); ?></th><th><?php echo esc_html( szs_t( 'Guía' ) ); ?></th><th><?php echo esc_html( szs_t( 'Notas' ) ); ?></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $movimientos ) ) : ?>
-				<tr><td colspan="6">Ninguno.</td></tr>
+				<tr><td colspan="6"><?php echo esc_html( szs_t( 'Ninguno.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $movimientos as $movimiento ) : ?>
 				<?php $m = $movimiento['datos']; ?>
 				<tr>
 					<td><?php echo esc_html( szs_fecha_ms( (int) ( $m['fecha_ms'] ?? 0 ) ) ); ?></td>
-					<td><?php echo esc_html( SZS_TIPOS_MOVIMIENTO_GANADO[ $m['tipo'] ?? '' ] ?? '' ); ?></td>
+					<td><?php echo esc_html( szs_t( SZS_TIPOS_MOVIMIENTO_GANADO[ $m['tipo'] ?? '' ] ?? '' ) ); ?></td>
 					<td><?php echo esc_html( szs_trayecto_movimiento( $movimiento, $datos['zonas'] ) ); ?></td>
 					<td><?php echo esc_html( (string) ( $m['cabezas'] ?? '' ) ); ?></td>
 					<td><?php echo esc_html( (string) ( $m['guia'] ?? '' ) ); ?></td>
@@ -500,12 +501,12 @@ function szs_ficha_lote_panel( array $lote, array $datos ): void {
 			</tbody>
 		</table>
 
-		<h2>Curas, tratamientos y manejo</h2>
+		<h2><?php echo esc_html( szs_t( 'Curas, tratamientos y manejo' ) ); ?></h2>
 		<table class="widefat striped">
-			<thead><tr><th>Fecha</th><th>A quién</th><th>Tipo</th><th>Sustancia · clase · dosis</th><th>Espera carne / leche (días)</th><th>Veterinario/a · receta</th><th>Notas</th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Fecha' ) ); ?></th><th><?php echo esc_html( szs_t( 'A quién' ) ); ?></th><th><?php echo esc_html( szs_t( 'Tipo' ) ); ?></th><th><?php echo esc_html( szs_t( 'Sustancia · clase · dosis' ) ); ?></th><th><?php echo esc_html( szs_t( 'Espera carne / leche (días)' ) ); ?></th><th><?php echo esc_html( szs_t( 'Veterinario/a · receta' ) ); ?></th><th><?php echo esc_html( szs_t( 'Notas' ) ); ?></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $eventos ) ) : ?>
-				<tr><td colspan="7">Ninguno.</td></tr>
+				<tr><td colspan="7"><?php echo esc_html( szs_t( 'Ninguno.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $eventos as $evento ) : ?>
 				<?php
@@ -516,17 +517,17 @@ function szs_ficha_lote_panel( array $lote, array $datos ): void {
 				$espera = static function ( string $de ) use ( $e, $clase, $ecologico ): string {
 					$legal    = (int) ( $e[ "plazo_supresion_{$de}_dias" ] ?? 0 );
 					$efectiva = szs_plazo_efectivo_dias( $legal, $ecologico, $clase );
-					return $efectiva === $legal ? (string) $legal : "{$legal} (eco {$efectiva})";
+					return $efectiva === $legal ? (string) $legal : szs_t( '%1$d (eco %2$d)', $legal, $efectiva );
 				};
 				?>
 				<tr>
 					<td><?php echo esc_html( szs_fecha_ms( (int) ( $e['fecha_ms'] ?? 0 ) ) ); ?></td>
-					<td><?php echo esc_html( null !== $animal ? (string) ( $animal['datos']['identificacion'] ?? '' ) : 'Todo el rebaño' . ( (int) ( $e['cabezas'] ?? 0 ) > 0 ? ' (' . (int) $e['cabezas'] . ' cab.)' : '' ) ); ?></td>
-					<td><?php echo esc_html( SZS_TIPOS_EVENTO_GANADO[ $e['tipo'] ?? '' ] ?? '' ); ?></td>
-					<td><?php echo $med ? esc_html( implode( ' · ', array_filter( array( (string) ( $e['sustancia_activa'] ?? '' ), SZS_CLASES_MEDICAMENTO[ $clase ] ?? '', (string) ( $e['dosis'] ?? '' ) ) ) ) ) : ''; ?></td>
+					<td><?php echo esc_html( null !== $animal ? (string) ( $animal['datos']['identificacion'] ?? '' ) : ( (int) ( $e['cabezas'] ?? 0 ) > 0 ? szs_t( 'Todo el rebaño (%d cab.)', (int) $e['cabezas'] ) : szs_t( 'Todo el rebaño' ) ) ); ?></td>
+					<td><?php echo esc_html( szs_t( SZS_TIPOS_EVENTO_GANADO[ $e['tipo'] ?? '' ] ?? '' ) ); ?></td>
+					<td><?php echo $med ? esc_html( implode( ' · ', array_filter( array( (string) ( $e['sustancia_activa'] ?? '' ), szs_t( SZS_CLASES_MEDICAMENTO[ $clase ] ?? '' ), (string) ( $e['dosis'] ?? '' ) ) ) ) ) : ''; ?></td>
 					<td><?php echo $med ? esc_html( $espera( 'carne' ) . ' / ' . $espera( 'leche' ) ) : ''; ?></td>
 					<td><?php echo $med ? esc_html( implode( ' · ', array_filter( array( (string) ( $e['veterinario'] ?? '' ), (string) ( $e['receta'] ?? '' ) ) ) ) ) : ''; ?></td>
-					<td><?php echo esc_html( implode( ' · ', array_filter( array( (string) ( $e['descripcion'] ?? '' ), isset( $e['peso_kg'] ) && (float) $e['peso_kg'] > 0 ? szs_numero_es( (float) $e['peso_kg'], 1 ) . ' kg' : '', (int) ( $e['crias'] ?? 0 ) > 0 ? (int) $e['crias'] . ' crías' : '' ) ) ) ); ?></td>
+					<td><?php echo esc_html( implode( ' · ', array_filter( array( (string) ( $e['descripcion'] ?? '' ), isset( $e['peso_kg'] ) && (float) $e['peso_kg'] > 0 ? szs_numero_es( (float) $e['peso_kg'], 1 ) . ' kg' : '', (int) ( $e['crias'] ?? 0 ) > 0 ? szs_t( '%d crías', (int) $e['crias'] ) : '' ) ) ) ); ?></td>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>

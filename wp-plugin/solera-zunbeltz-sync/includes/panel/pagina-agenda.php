@@ -33,15 +33,15 @@ add_action( 'admin_menu', 'szs_registrar_paginas_agenda', 15 );
 add_action( 'admin_init', 'szs_exportar_alimentacion_csv' );
 
 function szs_registrar_paginas_agenda(): void {
-	add_submenu_page( SZS_PAGINA_INICIO, 'Contactos', 'Contactos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_CONTACTOS, 'szs_pagina_contactos' );
-	add_submenu_page( SZS_PAGINA_INICIO, 'Rendimientos de referencia', 'Rendimientos', SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_RENDIMIENTOS, 'szs_pagina_rendimientos' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Contactos' ), szs_t( 'Contactos' ), SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_CONTACTOS, 'szs_pagina_contactos' );
+	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Rendimientos de referencia' ), szs_t( 'Rendimientos' ), SZS_CAPACIDAD_WP_PANEL, SZS_PAGINA_RENDIMIENTOS, 'szs_pagina_rendimientos' );
 }
 
 /** Lápida de una entidad desde el panel (llega como borrado a los móviles). */
 function szs_borrar_entidad_desde_panel( string $tipo, string $uid ): bool {
 	// Sin candado no se escribe: es la carrera que el candado evita.
 	if ( ! szs_tomar_candado_espacio() ) {
-		wp_die( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.', 'Solera Zunbeltz', array( 'back_link' => true ) );
+		wp_die( esc_html( szs_t( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.' ) ), 'Solera Zunbeltz', array( 'back_link' => true ) );
 	}
 	try {
 		return szs_borrar_entidad_desde_panel_con_candado( $tipo, $uid );
@@ -81,12 +81,12 @@ function szs_pagina_contactos(): void {
 		$accion = sanitize_key( wp_unslash( $_POST['szs_accion'] ) );
 		$uid    = szs_campo_post( 'szs_uid' );
 		if ( 'borrar' === $accion && szs_borrar_entidad_desde_panel( 'contacto', $uid ) ) {
-			$aviso = array( 'success', 'Contacto borrado.' );
+			$aviso = array( 'success', szs_t( 'Contacto borrado.' ) );
 		}
 		if ( 'guardar' === $accion ) {
 			$nombre = szs_campo_post( 'szs_nombre' );
 			if ( '' === $nombre ) {
-				$aviso = array( 'error', 'Falta el nombre.' );
+				$aviso = array( 'error', szs_t( 'Falta el nombre.' ) );
 			} else {
 				$tipo = sanitize_key( szs_campo_post( 'szs_tipo', 'otro' ) );
 				szs_guardar_entidad_desde_panel(
@@ -101,7 +101,7 @@ function szs_pagina_contactos(): void {
 						'notas'     => szs_texto_largo_post( 'szs_notas' ),
 					)
 				);
-				$aviso = array( 'success', 'Contacto guardado. Llegará a los móviles al sincronizar.' );
+				$aviso = array( 'success', szs_t( 'Contacto guardado. Llegará a los móviles al sincronizar.' ) );
 			}
 		}
 	}
@@ -119,26 +119,26 @@ function szs_pagina_contactos(): void {
 	$nombres  = szs_nombres_personas();
 	?>
 	<div class="wrap">
-		<h1>Contactos del espacio</h1>
-		<p>La agenda compartida: mataderos, veterinaria, personas expertas, compradores… La ve todo el equipo en la app. Cualquiera puede añadir contactos; aquí se editan todos.</p>
+		<h1><?php echo esc_html( szs_t( 'Contactos del espacio' ) ); ?></h1>
+		<p><?php echo esc_html( szs_t( 'La agenda compartida: mataderos, veterinaria, personas expertas, compradores… La ve todo el equipo en la app. Cualquiera puede añadir contactos; aquí se editan todos.' ) ); ?></p>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 		<form method="get" style="margin:12px 0;display:flex;gap:8px;align-items:center;">
 			<input type="hidden" name="page" value="<?php echo esc_attr( SZS_PAGINA_CONTACTOS ); ?>">
-			<?php szs_selector( 'tipo', SZS_TIPOS_CONTACTO, $filtro, 'Todos los tipos' ); ?>
-			<button class="button">Filtrar</button>
+			<?php szs_selector( 'tipo', szs_t_opciones( SZS_TIPOS_CONTACTO ), $filtro, szs_t( 'Todos los tipos' ) ); ?>
+			<button class="button"><?php echo esc_html( szs_t( 'Filtrar' ) ); ?></button>
 		</form>
 		<table class="widefat striped">
-			<thead><tr><th>Nombre</th><th>Tipo</th><th>Teléfono</th><th>Correo</th><th>Localidad</th><th>Añadido por</th><th></th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Nombre' ) ); ?></th><th><?php echo esc_html( szs_t( 'Tipo' ) ); ?></th><th><?php echo esc_html( szs_t( 'Teléfono' ) ); ?></th><th><?php echo esc_html( szs_t( 'Correo' ) ); ?></th><th><?php echo esc_html( szs_t( 'Localidad' ) ); ?></th><th><?php echo esc_html( szs_t( 'Añadido por' ) ); ?></th><th></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $contactos ) ) : ?>
-				<tr><td colspan="7">Todavía no hay contactos.</td></tr>
+				<tr><td colspan="7"><?php echo esc_html( szs_t( 'Todavía no hay contactos.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $contactos as $contacto ) : ?>
 				<?php $datos = $contacto['datos']; ?>
 				<tr>
 					<td><a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_CONTACTOS, array( 'uid' => $contacto['uid'] ) ) ); ?>"><strong><?php echo esc_html( (string) ( $datos['nombre'] ?? '' ) ); ?></strong></a>
 						<?php if ( '' !== (string) ( $datos['notas'] ?? '' ) ) : ?><br><small><?php echo esc_html( (string) $datos['notas'] ); ?></small><?php endif; ?></td>
-					<td><?php echo esc_html( SZS_TIPOS_CONTACTO[ $datos['tipo'] ?? '' ] ?? '—' ); ?></td>
+					<td><?php echo esc_html( isset( SZS_TIPOS_CONTACTO[ $datos['tipo'] ?? '' ] ) ? szs_t( SZS_TIPOS_CONTACTO[ $datos['tipo'] ] ) : '—' ); ?></td>
 					<td><?php echo esc_html( (string) ( $datos['telefono'] ?? '' ) ); ?></td>
 					<td><?php echo esc_html( (string) ( $datos['correo'] ?? '' ) ); ?></td>
 					<td><?php echo esc_html( (string) ( $datos['localidad'] ?? '' ) ); ?></td>
@@ -148,7 +148,7 @@ function szs_pagina_contactos(): void {
 							<?php wp_nonce_field( 'szs_contactos' ); ?>
 							<input type="hidden" name="szs_accion" value="borrar">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $contacto['uid'] ); ?>">
-							<button class="button button-small button-link-delete" onclick="return confirm('¿Borrar el contacto? Desaparecerá también de los móviles.');">Borrar</button>
+							<button class="button button-small button-link-delete" onclick="return confirm('<?php echo esc_js( szs_t( '¿Borrar el contacto? Desaparecerá también de los móviles.' ) ); ?>');"><?php echo esc_html( szs_t( 'Borrar' ) ); ?></button>
 						</form>
 					</td>
 				</tr>
@@ -156,20 +156,20 @@ function szs_pagina_contactos(): void {
 			</tbody>
 		</table>
 
-		<h2><?php echo null === $editando ? 'Añadir contacto' : 'Editar contacto'; ?></h2>
+		<h2><?php echo esc_html( null === $editando ? szs_t( 'Añadir contacto' ) : szs_t( 'Editar contacto' ) ); ?></h2>
 		<form method="post" action="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_CONTACTOS ) ); ?>">
 			<?php wp_nonce_field( 'szs_contactos' ); ?>
 			<input type="hidden" name="szs_accion" value="guardar">
 			<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $editando['uid'] ?? '' ); ?>">
 			<table class="form-table" role="presentation">
-				<tr><th><label for="szs_nombre">Nombre</label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text" required value="<?php echo esc_attr( (string) ( $valores['nombre'] ?? '' ) ); ?>"></td></tr>
-				<tr><th><label for="szs_tipo">Tipo</label></th><td><?php szs_selector( 'szs_tipo', SZS_TIPOS_CONTACTO, (string) ( $valores['tipo'] ?? 'otro' ) ); ?></td></tr>
-				<tr><th><label for="szs_telefono">Teléfono</label></th><td><input type="tel" id="szs_telefono" name="szs_telefono" value="<?php echo esc_attr( (string) ( $valores['telefono'] ?? '' ) ); ?>"></td></tr>
-				<tr><th><label for="szs_correo">Correo</label></th><td><input type="email" id="szs_correo" name="szs_correo" class="regular-text" value="<?php echo esc_attr( (string) ( $valores['correo'] ?? '' ) ); ?>"></td></tr>
-				<tr><th><label for="szs_localidad">Localidad</label></th><td><input type="text" id="szs_localidad" name="szs_localidad" value="<?php echo esc_attr( (string) ( $valores['localidad'] ?? '' ) ); ?>"></td></tr>
-				<tr><th><label for="szs_notas">Notas</label></th><td><textarea id="szs_notas" name="szs_notas" rows="2" class="large-text"><?php echo esc_textarea( (string) ( $valores['notas'] ?? '' ) ); ?></textarea></td></tr>
+				<tr><th><label for="szs_nombre"><?php echo esc_html( szs_t( 'Nombre' ) ); ?></label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text" required value="<?php echo esc_attr( (string) ( $valores['nombre'] ?? '' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_tipo"><?php echo esc_html( szs_t( 'Tipo' ) ); ?></label></th><td><?php szs_selector( 'szs_tipo', szs_t_opciones( SZS_TIPOS_CONTACTO ), (string) ( $valores['tipo'] ?? 'otro' ) ); ?></td></tr>
+				<tr><th><label for="szs_telefono"><?php echo esc_html( szs_t( 'Teléfono' ) ); ?></label></th><td><input type="tel" id="szs_telefono" name="szs_telefono" value="<?php echo esc_attr( (string) ( $valores['telefono'] ?? '' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_correo"><?php echo esc_html( szs_t( 'Correo' ) ); ?></label></th><td><input type="email" id="szs_correo" name="szs_correo" class="regular-text" value="<?php echo esc_attr( (string) ( $valores['correo'] ?? '' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_localidad"><?php echo esc_html( szs_t( 'Localidad' ) ); ?></label></th><td><input type="text" id="szs_localidad" name="szs_localidad" value="<?php echo esc_attr( (string) ( $valores['localidad'] ?? '' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_notas"><?php echo esc_html( szs_t( 'Notas' ) ); ?></label></th><td><textarea id="szs_notas" name="szs_notas" rows="2" class="large-text"><?php echo esc_textarea( (string) ( $valores['notas'] ?? '' ) ); ?></textarea></td></tr>
 			</table>
-			<?php submit_button( null === $editando ? 'Añadir' : 'Guardar cambios' ); ?>
+			<?php submit_button( null === $editando ? szs_t( 'Añadir' ) : szs_t( 'Guardar cambios' ) ); ?>
 		</form>
 	</div>
 	<?php
@@ -187,14 +187,14 @@ function szs_pagina_rendimientos(): void {
 		$accion = sanitize_key( wp_unslash( $_POST['szs_accion'] ) );
 		$uid    = szs_campo_post( 'szs_uid' );
 		if ( 'borrar' === $accion && szs_borrar_entidad_desde_panel( 'rendimiento', $uid ) ) {
-			$aviso = array( 'success', 'Rendimiento borrado.' );
+			$aviso = array( 'success', szs_t( 'Rendimiento borrado.' ) );
 		}
 		if ( 'guardar' === $accion ) {
 			$nombre   = szs_campo_post( 'szs_nombre' );
 			$canal    = (float) str_replace( ',', '.', szs_campo_post( 'szs_rendimiento_canal' ) );
 			$producto = (float) str_replace( ',', '.', szs_campo_post( 'szs_rendimiento_producto', '100' ) );
 			if ( '' === $nombre || $canal <= 0 || $canal > 100 || $producto <= 0 || $producto > 100 ) {
-				$aviso = array( 'error', 'Faltan el nombre o los porcentajes (entre 0 y 100).' );
+				$aviso = array( 'error', szs_t( 'Faltan el nombre o los porcentajes (entre 0 y 100).' ) );
 			} else {
 				szs_guardar_entidad_desde_panel(
 					'rendimiento',
@@ -206,7 +206,7 @@ function szs_pagina_rendimientos(): void {
 						'fuente'               => szs_texto_largo_post( 'szs_fuente' ),
 					)
 				);
-				$aviso = array( 'success', 'Guardado. La calculadora de la app lo ofrecerá al sincronizar.' );
+				$aviso = array( 'success', szs_t( 'Guardado. La calculadora de la app lo ofrecerá al sincronizar.' ) );
 			}
 		}
 	}
@@ -216,18 +216,18 @@ function szs_pagina_rendimientos(): void {
 	$valores  = $editando['datos'] ?? array();
 	?>
 	<div class="wrap">
-		<h1>Rendimientos de referencia</h1>
-		<p>Los porcentajes que la <strong>calculadora de transformación</strong> de la app ofrece como punto de partida (cada proyecto puede ajustarlos). La app no trae ninguno de serie: los pone coordinación, con su fuente.</p>
+		<h1><?php echo esc_html( szs_t( 'Rendimientos de referencia' ) ); ?></h1>
+		<p><?php echo szs_t( 'Los porcentajes que la <strong>calculadora de transformación</strong> de la app ofrece como punto de partida (cada proyecto puede ajustarlos). La app no trae ninguno de serie: los pone coordinación, con su fuente.' ); // phpcs:ignore WordPress.Security.EscapeOutput -- texto propio. ?></p>
 		<ul style="list-style:disc;padding-left:20px;max-width:760px;">
-			<li><strong>Rendimiento a canal</strong>: kg de canal por cada 100 kg de peso vivo.</li>
-			<li><strong>Producto vendible</strong>: kg de producto (piezas, carne envasada…) por cada 100 kg de canal. 100 % si se vende la canal entera.</li>
+			<li><?php echo szs_t( '<strong>Rendimiento a canal</strong>: kg de canal por cada 100 kg de peso vivo.' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></li>
+			<li><?php echo szs_t( '<strong>Producto vendible</strong>: kg de producto (piezas, carne envasada…) por cada 100 kg de canal. 100 % si se vende la canal entera.' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></li>
 		</ul>
 		<?php szs_mostrar_aviso_panel( $aviso ); ?>
 		<table class="widefat striped" style="max-width:960px;">
-			<thead><tr><th>Nombre</th><th>A canal</th><th>Producto vendible</th><th>Fuente</th><th></th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Nombre' ) ); ?></th><th><?php echo esc_html( szs_t( 'A canal' ) ); ?></th><th><?php echo esc_html( szs_t( 'Producto vendible' ) ); ?></th><th><?php echo esc_html( szs_t( 'Fuente' ) ); ?></th><th></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $rendimientos ) ) : ?>
-				<tr><td colspan="5">Todavía no hay ninguno.</td></tr>
+				<tr><td colspan="5"><?php echo esc_html( szs_t( 'Todavía no hay ninguno.' ) ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $rendimientos as $rendimiento ) : ?>
 				<?php $datos = $rendimiento['datos']; ?>
@@ -241,7 +241,7 @@ function szs_pagina_rendimientos(): void {
 							<?php wp_nonce_field( 'szs_rendimientos' ); ?>
 							<input type="hidden" name="szs_accion" value="borrar">
 							<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $rendimiento['uid'] ); ?>">
-							<button class="button button-small button-link-delete">Borrar</button>
+							<button class="button button-small button-link-delete"><?php echo esc_html( szs_t( 'Borrar' ) ); ?></button>
 						</form>
 					</td>
 				</tr>
@@ -249,18 +249,18 @@ function szs_pagina_rendimientos(): void {
 			</tbody>
 		</table>
 
-		<h2><?php echo null === $editando ? 'Añadir rendimiento' : 'Editar rendimiento'; ?></h2>
+		<h2><?php echo esc_html( null === $editando ? szs_t( 'Añadir rendimiento' ) : szs_t( 'Editar rendimiento' ) ); ?></h2>
 		<form method="post" action="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_RENDIMIENTOS ) ); ?>">
 			<?php wp_nonce_field( 'szs_rendimientos' ); ?>
 			<input type="hidden" name="szs_accion" value="guardar">
 			<input type="hidden" name="szs_uid" value="<?php echo esc_attr( $editando['uid'] ?? '' ); ?>">
 			<table class="form-table" role="presentation">
-				<tr><th><label for="szs_nombre">Nombre</label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text" required placeholder="Cordero lechal — despiece" value="<?php echo esc_attr( (string) ( $valores['nombre'] ?? '' ) ); ?>"></td></tr>
-				<tr><th><label for="szs_rendimiento_canal">Rendimiento a canal (%)</label></th><td><input type="text" id="szs_rendimiento_canal" name="szs_rendimiento_canal" class="small-text" required value="<?php echo esc_attr( (string) ( $valores['rendimiento_canal'] ?? '' ) ); ?>"></td></tr>
-				<tr><th><label for="szs_rendimiento_producto">Producto vendible sobre canal (%)</label></th><td><input type="text" id="szs_rendimiento_producto" name="szs_rendimiento_producto" class="small-text" value="<?php echo esc_attr( (string) ( $valores['rendimiento_producto'] ?? '100' ) ); ?>"></td></tr>
-				<tr><th><label for="szs_fuente">Fuente</label></th><td><textarea id="szs_fuente" name="szs_fuente" rows="2" class="large-text" placeholder="De dónde sale el dato (matadero, asesoría, datos propios…)"><?php echo esc_textarea( (string) ( $valores['fuente'] ?? '' ) ); ?></textarea></td></tr>
+				<tr><th><label for="szs_nombre"><?php echo esc_html( szs_t( 'Nombre' ) ); ?></label></th><td><input type="text" id="szs_nombre" name="szs_nombre" class="regular-text" required placeholder="<?php echo esc_attr( szs_t( 'Cordero lechal — despiece' ) ); ?>" value="<?php echo esc_attr( (string) ( $valores['nombre'] ?? '' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_rendimiento_canal"><?php echo esc_html( szs_t( 'Rendimiento a canal (%)' ) ); ?></label></th><td><input type="text" id="szs_rendimiento_canal" name="szs_rendimiento_canal" class="small-text" required value="<?php echo esc_attr( (string) ( $valores['rendimiento_canal'] ?? '' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_rendimiento_producto"><?php echo esc_html( szs_t( 'Producto vendible sobre canal (%)' ) ); ?></label></th><td><input type="text" id="szs_rendimiento_producto" name="szs_rendimiento_producto" class="small-text" value="<?php echo esc_attr( (string) ( $valores['rendimiento_producto'] ?? '100' ) ); ?>"></td></tr>
+				<tr><th><label for="szs_fuente"><?php echo esc_html( szs_t( 'Fuente' ) ); ?></label></th><td><textarea id="szs_fuente" name="szs_fuente" rows="2" class="large-text" placeholder="<?php echo esc_attr( szs_t( 'De dónde sale el dato (matadero, asesoría, datos propios…)' ) ); ?>"><?php echo esc_textarea( (string) ( $valores['fuente'] ?? '' ) ); ?></textarea></td></tr>
 			</table>
-			<?php submit_button( null === $editando ? 'Añadir' : 'Guardar cambios' ); ?>
+			<?php submit_button( null === $editando ? szs_t( 'Añadir' ) : szs_t( 'Guardar cambios' ) ); ?>
 		</form>
 	</div>
 	<?php
@@ -289,7 +289,7 @@ function szs_exportar_alimentacion_csv(): void {
 	check_admin_referer( 'szs_exportar_alimentacion' );
 	$proyecto = szs_obtener_entidad( 'proyecto', szs_campo_get( 'proyecto' ) );
 	if ( null === $proyecto ) {
-		wp_die( 'Proyecto no encontrado.' );
+		wp_die( esc_html( szs_t( 'Proyecto no encontrado.' ) ) );
 	}
 	$filas  = szs_alimentacion_por_dias( szs_listar_entidades_tipo( 'registro_actividad', $proyecto['uid'] ), wp_timezone_string() );
 	$nombre = sanitize_file_name( 'alimentacion-' . szs_etiqueta_entidad( $proyecto ) . '-' . wp_date( 'Y-m-d' ) . '.csv' );

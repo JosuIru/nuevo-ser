@@ -11,6 +11,10 @@
  * Usa `wp_mail`: el WordPress de Zunbeltz tiene que poder enviar correo
  * (SMTP configurado en el hosting o con un plugin de SMTP).
  *
+ * Idioma: cada destinatario lo recibe en el de su usuario de WordPress
+ * enlazado (o en el del sitio), con `szs_correos_coordinacion_por_idioma()`
+ * y `szs_con_idioma()`: un correo por idioma.
+ *
  * @package SoleraZunbeltzSync
  */
 
@@ -62,8 +66,8 @@ function szs_desprogramar_correo_diario(): void {
  * @return bool true si se envió (había algo que contar y destinatarios).
  */
 function szs_enviar_correo_diario(): bool {
-	$destinatarios = szs_correos_coordinacion();
-	if ( empty( $destinatarios ) ) {
+	$destinatarios_por_idioma = szs_correos_coordinacion_por_idioma();
+	if ( empty( $destinatarios_por_idioma ) ) {
 		return false;
 	}
 	$peticiones = array();
@@ -78,12 +82,22 @@ function szs_enviar_correo_diario(): bool {
 			$alarmas[] = szs_etiqueta_entidad( $aviso );
 		}
 	}
-	$resumen = szs_resumen_correo_diario( szs_listar_todas_las_tareas(), $peticiones, $alarmas, szs_inicio_de_hoy_ms() );
-	if ( null === $resumen ) {
-		return false;
+	$tareas  = szs_listar_todas_las_tareas();
+	$enviado = false;
+	foreach ( $destinatarios_por_idioma as $idioma => $destinatarios ) {
+		$enviado = szs_con_idioma(
+			$idioma,
+			static function () use ( $tareas, $peticiones, $alarmas, $destinatarios ): bool {
+				$resumen = szs_resumen_correo_diario( $tareas, $peticiones, $alarmas, szs_inicio_de_hoy_ms() );
+				if ( null === $resumen ) {
+					return false;
+				}
+				$pie = "\n—\n" . szs_t( 'Panel de coordinación: %s', admin_url( 'admin.php?page=' . SZS_PAGINA_TAREAS ) ) . "\n";
+				return wp_mail( $destinatarios, $resumen['asunto'], $resumen['cuerpo'] . $pie );
+			}
+		) || $enviado;
 	}
-	$pie = "\n—\nPanel de coordinación: " . admin_url( 'admin.php?page=' . SZS_PAGINA_TAREAS ) . "\n";
-	return wp_mail( $destinatarios, $resumen['asunto'], $resumen['cuerpo'] . $pie );
+	return $enviado;
 }
 
 /**
@@ -96,14 +110,14 @@ function szs_avisar_por_correo_al_momento( array $entidad, ?array $existente, ar
 	$datos  = $entidad['datos'];
 	$titulo = szs_etiqueta_entidad( $entidad );
 	if ( 'aviso' === $entidad['tipo'] && 'alarma' === ( $datos['gravedad'] ?? '' ) ) {
-		$asunto = "Larrea Zunbeltz: alarma — {$titulo}";
+		$asunto_en = static fn() => szs_t( 'Larrea Zunbeltz: alarma — %s', $titulo );
 	} elseif ( 'peticion' === $entidad['tipo'] && ! empty( $datos['urgente'] ) ) {
-		$asunto = "Larrea Zunbeltz: petición urgente — {$titulo}";
+		$asunto_en = static fn() => szs_t( 'Larrea Zunbeltz: petición urgente — %s', $titulo );
 	} else {
 		return;
 	}
-	$destinatarios = szs_correos_coordinacion();
-	if ( empty( $destinatarios ) ) {
+	$destinatarios_por_idioma = szs_correos_coordinacion_por_idioma();
+	if ( empty( $destinatarios_por_idioma ) ) {
 		return;
 	}
 	// Una sincronización con muchas urgentes de golpe no debe mandar
@@ -114,15 +128,22 @@ function szs_avisar_por_correo_al_momento( array $entidad, ?array $existente, ar
 		return;
 	}
 	set_transient( 'szs_correos_al_momento', $enviados_esta_hora + 1, HOUR_IN_SECONDS );
-	$cuerpo = sprintf(
-		"%s\n\n%s\n\nLo envía: %s\n",
-		$titulo,
-		(string) ( $datos['descripcion'] ?? '' ),
-		(string) ( $persona['nombre'] ?? '' )
-	);
-	// Se envía al terminar la petición, ya soltado el candado del espacio:
-	// un SMTP lento no debe dejar al resto de móviles esperando.
-	szs_encolar_correo( $destinatarios, $asunto, $cuerpo );
+	foreach ( $destinatarios_por_idioma as $idioma => $destinatarios ) {
+		szs_con_idioma(
+			$idioma,
+			static function () use ( $destinatarios, $asunto_en, $titulo, $datos, $persona ): void {
+				$cuerpo = sprintf(
+					"%s\n\n%s\n\n%s\n",
+					$titulo,
+					(string) ( $datos['descripcion'] ?? '' ),
+					szs_t( 'Lo envía: %s', (string) ( $persona['nombre'] ?? '' ) )
+				);
+				// Se envía al terminar la petición, ya soltado el candado del
+				// espacio: un SMTP lento no debe dejar al resto de móviles esperando.
+				szs_encolar_correo( $destinatarios, $asunto_en(), $cuerpo );
+			}
+		);
+	}
 }
 
 /** @var array<int, array{0: string[], 1: string, 2: string}> */

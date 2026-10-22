@@ -63,6 +63,9 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^4.0.0
+  # BD SQLite real en los tests de src/datos/copia_seguridad.dart (el
+  # core no depende de sqflite: cada app abre su BD).
+  sqflite_common_ffi: ^2.3.3
   flutter_test:
     sdk: flutter
 

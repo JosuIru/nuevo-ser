@@ -1,8 +1,9 @@
 // Subido al core el 2026-10-22: era idéntico en solera-apicola,
 // solera-viticultura, fósiles y naturaleza.
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
+
+import '../ia/cliente_claude.dart';
 
 enum ProveedorChat { claude, deepseek }
 
@@ -48,11 +49,15 @@ class ServicioChat {
   final String modeloClaude;
   final String modeloDeepseek;
 
+  /// Cliente HTTP para la parte de Claude (tests); null = el de por defecto.
+  final http.Client? clienteHttpClaude;
+
   ServicioChat({
     required this.apiKeyClaude,
     required this.apiKeyDeepseek,
-    this.modeloClaude = 'claude-haiku-4-5',
+    this.modeloClaude = modeloClaudeRapido,
     this.modeloDeepseek = 'deepseek-chat',
+    this.clienteHttpClaude,
   });
 
   Future<String> enviarMensaje(
@@ -79,63 +84,37 @@ class ServicioChat {
     String? sistemaPrompt,
     String? rutaImagen,
   }) async {
-    final mensajes = <Map<String, dynamic>>[];
-    for (final m in (historial ?? const [])) {
-      mensajes.add({
-        'role': m.esUsuario ? 'user' : 'assistant',
-        'content': m.texto,
-      });
+    final mensajes = <MensajeClaude>[
+      for (final mensajeAnterior in (historial ?? const <MensajeChat>[]))
+        mensajeAnterior.esUsuario
+            ? MensajeClaude.usuario(mensajeAnterior.texto)
+            : MensajeClaude.asistente(mensajeAnterior.texto),
+      MensajeClaude.usuario(
+        mensaje,
+        imagenes: rutaImagen != null
+            ? [await ImagenClaude.desdeFichero(rutaImagen)]
+            : const [],
+      ),
+    ];
+
+    final clienteClaude = ClienteClaude(
+      claveApi: apiKeyClaude,
+      cliente: clienteHttpClaude,
+      timeout: const Duration(seconds: 60),
+    );
+    try {
+      // El razonamiento cuenta en max_tokens: margen holgado y esfuerzo bajo.
+      return await clienteClaude.pedirTexto(
+        modelo: modeloClaudeActual(modeloClaude),
+        mensajes: mensajes,
+        sistema: sistemaPrompt ?? _sistemaPromptFosiles,
+        maxTokens: 2048,
+        esfuerzo: EsfuerzoClaude.bajo,
+      );
+    } on ErrorClaude catch (errorClaude) {
+      // Mismo contrato que antes: Exception con el mensaje.
+      throw Exception(errorClaude.mensaje);
     }
-
-    // Construir el contenido del mensaje actual (puede incluir imagen)
-    dynamic contenidoUsuario;
-    if (rutaImagen != null) {
-      final bytes = await File(rutaImagen).readAsBytes();
-      final base64 = base64Encode(bytes);
-      final ext = rutaImagen.split('.').last.toLowerCase();
-      final mediaType = ext == 'png' ? 'image/png' : 'image/jpeg';
-      contenidoUsuario = [
-        {
-          'type': 'image',
-          'source': {
-            'type': 'base64',
-            'media_type': mediaType,
-            'data': base64,
-          },
-        },
-        if (mensaje.isNotEmpty)
-          {'type': 'text', 'text': mensaje},
-      ];
-    } else {
-      contenidoUsuario = mensaje;
-    }
-    mensajes.add({'role': 'user', 'content': contenidoUsuario});
-
-    final body = {
-      'model': modeloClaude,
-      'max_tokens': 1024,
-      'system': sistemaPrompt ?? _sistemaPromptFosiles,
-      'messages': mensajes,
-    };
-
-    final respuesta = await http.post(
-      Uri.parse('https://api.anthropic.com/v1/messages'),
-      headers: {
-        'x-api-key': apiKeyClaude,
-        'anthropic-version': '2023-06-01',
-        'content-type': 'application/json',
-      },
-      body: jsonEncode(body),
-    ).timeout(const Duration(seconds: 45));
-
-    if (respuesta.statusCode != 200) {
-      final err = jsonDecode(respuesta.body);
-      throw Exception(err['error']?['message'] ?? 'Error ${respuesta.statusCode}');
-    }
-
-    final json = jsonDecode(respuesta.body) as Map<String, dynamic>;
-    final content = (json['content'] as List).first as Map<String, dynamic>;
-    return content['text'] as String;
   }
 
   Future<String> _enviarADeepseek(

@@ -46,6 +46,12 @@ export 'src/utiles/validadores_numero.dart';
 export 'src/servicios/servicio_chat.dart';
 export 'src/servicios/auto_backup.dart';
 export 'src/servicios/servicio_meteo_agro.dart';
+export 'src/ia/cliente_claude.dart';
+export 'src/ia/estado_clave_anthropic.dart';
+export 'src/ia/pantalla_clave_anthropic.dart';
+export 'src/facturacion/factura.dart';
+export 'src/facturacion/generador_factura_pdf.dart';
+export 'src/datos/copia_seguridad.dart';
 // Nota: el módulo `calibration/` se expone por path explícito desde
 // los juegos que lo necesitan, no desde este barrel — `NivelConfianza`
 // es un nombre que otros juegos (p. ej. el-cuaderno) usan para

@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     0.9.7
+ * Version:     0.9.8
  * Author:      Gailu Sare - Solera
  * Author URI:  https://gailu.net/
  * License:     GPL-2.0-or-later
@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '0.9.7' );
+define( 'SZS_VERSION', '0.9.8' );
 define( 'SZS_VERSION_ESQUEMA', 7 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
@@ -76,6 +76,7 @@ require_once __DIR__ . '/includes/roles.php';
 require_once __DIR__ . '/includes/politica-tareas.php';
 require_once __DIR__ . '/includes/entidades.php';
 require_once __DIR__ . '/includes/panel/logica.php';
+require_once __DIR__ . '/includes/panel/logica-ganado.php';
 require_once __DIR__ . '/includes/personas.php';
 require_once __DIR__ . '/includes/actividad.php';
 require_once __DIR__ . '/includes/sync-entidades.php';
@@ -83,6 +84,7 @@ require_once __DIR__ . '/includes/admin.php';
 require_once __DIR__ . '/includes/panel/comun.php';
 require_once __DIR__ . '/includes/plantillas-tarea.php';
 require_once __DIR__ . '/includes/catalogos-convenio.php';
+require_once __DIR__ . '/includes/catalogos-ganado.php';
 require_once __DIR__ . '/includes/textos-ayuda.php';
 require_once __DIR__ . '/includes/ayuda.php';
 require_once __DIR__ . '/includes/panel/pagina-inicio.php';
@@ -91,6 +93,7 @@ require_once __DIR__ . '/includes/panel/pagina-comunicacion.php';
 require_once __DIR__ . '/includes/panel/pagina-seguimiento.php';
 require_once __DIR__ . '/includes/panel/pagina-inventario.php';
 require_once __DIR__ . '/includes/panel/pagina-convenio.php';
+require_once __DIR__ . '/includes/panel/pagina-ganado.php';
 require_once __DIR__ . '/includes/panel/pagina-android.php';
 require_once __DIR__ . '/includes/panel/pagina-agenda.php';
 require_once __DIR__ . '/includes/correo.php';

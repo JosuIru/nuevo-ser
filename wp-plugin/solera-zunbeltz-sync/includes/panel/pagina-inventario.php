@@ -17,15 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 const SZS_PAGINA_INVENTARIO = 'solera-zunbeltz-inventario';
-const SZS_ESPECIES_GANADO   = array(
-	'vacuno'  => 'Vacuno',
-	'ovino'   => 'Ovino',
-	'caprino' => 'Caprino',
-	'porcino' => 'Porcino',
-	'aves'    => 'Aves',
-	'equino'  => 'Equino',
-	'varias'  => 'Varias / sin ganado',
-);
+// SZS_ESPECIES_GANADO viene de includes/catalogos-ganado.php (generado desde la app).
 const SZS_GRUPOS_BIEN       = array(
 	'instalaciones'     => 'Instalaciones',
 	'material_ganadero' => 'Material ganadero',

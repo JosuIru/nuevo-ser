@@ -112,12 +112,12 @@ function szs_normalizar_entidad( array $entidad ): array {
  * `categoria: []`, y el panel fallaría con un error de PHP al pintarlo.
  */
 function szs_sanear_datos_entidad( array $datos ): array {
-	$campos_texto = array( 'categoria', 'partida', 'grupo', 'especie', 'modo_calculo', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion', 'color', 'identificacion', 'sexo' );
+	$campos_texto = array( 'categoria', 'partida', 'grupo', 'especie', 'modo_calculo', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion', 'color', 'identificacion', 'sexo', 'clase_medicamento' );
 	foreach ( $datos as $clave => $valor ) {
 		if ( null === $valor ) {
 			continue;
 		}
-		if ( preg_match( '/(_ms|_centimos|_porcentaje|_dias|_meses)$/', (string) $clave ) || in_array( $clave, array( 'unidades', 'cantidad', 'cabezas', 'dias', 'cabezas_sin_identificar', 'crias', 'peso_kg' ), true ) ) {
+		if ( preg_match( '/(_ms|_centimos|_porcentaje|_dias|_meses)$/', (string) $clave ) || in_array( $clave, array( 'unidades', 'cantidad', 'cabezas', 'dias', 'cabezas_sin_identificar', 'crias', 'peso_kg', 'ecologico', 'ciclo_corto' ), true ) ) {
 			$datos[ $clave ] = is_numeric( $valor ) ? $valor + 0 : 0;
 		} elseif ( str_ends_with( (string) $clave, '_uid' ) || in_array( $clave, $campos_texto, true ) ) {
 			$datos[ $clave ] = is_scalar( $valor ) ? (string) $valor : '';

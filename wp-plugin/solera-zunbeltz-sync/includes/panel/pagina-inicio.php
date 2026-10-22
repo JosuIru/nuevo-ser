@@ -210,6 +210,7 @@ function szs_apartados_inicio(): array {
 		),
 		'Proyectos de test' => array(
 			array( 'pagina' => SZS_PAGINA_PROYECTOS, 'nombre' => 'Proyectos', 'para_que' => 'Asignar tester, cerrar o reabrir, ver las cuentas y bajar la alimentación por días.' ),
+			array( 'pagina' => SZS_PAGINA_GANADO, 'nombre' => 'Ganado', 'para_que' => 'Los rebaños que apuntan los móviles: dónde está cada uno, cabezas, UGM, supresión y tratamientos en ecológico; censo, movimientos y tratamientos en Excel.' ),
 			array( 'pagina' => SZS_PAGINA_CONVENIO, 'nombre' => 'Convenio', 'para_que' => 'Cargar y editar el convenio de cada proyecto: fechas y reparto, presupuesto, fianza, acompañamiento e incidencias.' ),
 			array( 'pagina' => SZS_PAGINA_INVENTARIO, 'nombre' => 'Inventario', 'para_que' => 'Bienes amortizables del espacio y qué parte de su cuota se imputa a cada proyecto.' ),
 			array( 'pagina' => SZS_PAGINA_RENDIMIENTOS, 'nombre' => 'Rendimientos', 'para_que' => 'Rendimientos de referencia (peso vivo → canal → producto) para la calculadora de transformación, con su fuente.' ),

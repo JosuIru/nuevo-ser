@@ -5,13 +5,14 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import 'datos/base_datos.dart';
 import 'pantallas/pantalla_ajustes.dart';
-import 'pantallas/pantalla_guia.dart';
 import 'pantallas/pantalla_hoy.dart';
 import 'pantallas/pantalla_lista_colmenas.dart';
 import 'pantallas/pantalla_mapa.dart';
 // pantalla_meteo_apicola.dart se invoca desde la tarjeta resumen de
 // PantallaHoy (push) en lugar de ocupar una pestaña del NavigationBar.
 import 'pantallas/pantalla_onboarding.dart';
+import 'pantallas/pantalla_registros.dart';
+import 'servicios/copia_seguridad_apicola.dart';
 
 final _autoBackupApicola = AutoBackup(
   nombreApp: 'solera_apicola',
@@ -25,6 +26,14 @@ Future<void> main() async {
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
+  // Antes del primer acceso a la BD: si una restauración se quedó a
+  // medias (la app murió mientras cambiaba ficheros), se deshace.
+  try {
+    await servicioCopiaSeguridadApicola.recuperarRestauracionInterrumpida();
+  } catch (_) {
+    // Si no se puede, la app arranca igual; la carpeta de trabajo sigue
+    // ahí para el siguiente intento.
+  }
   unawaited(_autoBackupApicola.restaurarSiProcede());
   runApp(const SoleraApicolaApp());
 }
@@ -124,14 +133,14 @@ class PantallaPrincipal extends StatefulWidget {
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
   int _indice = 1;
 
-  // Meteo se ha movido a la pantalla Hoy (tarjeta resumen que abre
-  // `PantallaMeteoApicola` en push) para reducir el número de iconos
-  // del NavigationBar.
+  // Meteo está en Hoy (tarjeta resumen que abre `PantallaMeteoApicola`)
+  // y la Guía, en el icono de libro de la barra de Hoy: abajo quedan
+  // Hoy · Mapa · Colmenas · Registros · Ajustes.
   final _pantallas = const <Widget>[
     PantallaHoy(),
     PantallaMapa(),
     PantallaListaColmenas(),
-    PantallaGuia(),
+    PantallaRegistros(),
     PantallaAjustes(),
   ];
 
@@ -159,9 +168,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             label: 'Colmenas',
           ),
           NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: 'Guía',
+            icon: Icon(Icons.folder_outlined),
+            selectedIcon: Icon(Icons.folder),
+            label: 'Registros',
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),

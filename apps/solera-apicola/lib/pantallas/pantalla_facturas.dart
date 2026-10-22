@@ -10,8 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
-import '../modelos/factura.dart';
-import '../servicios/generador_factura_pdf.dart';
 
 const _claveEmailBackup = 'solera_apicola.facturas.email_backup';
 
@@ -86,17 +84,22 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     }
   }
 
-  Future<void> _verPdf(Factura f) async {
+  /// Datos del apicultor titular como emisor de la factura.
+  Future<DatosEmisorFactura> _datosEmisor({String nombreSiVacio = 'Apicultor'}) async {
     final apicultor = await _bd.obtenerApicultor();
+    return DatosEmisorFactura(
+      nombre: apicultor.nombre.isNotEmpty ? apicultor.nombre : nombreSiVacio,
+      nif: apicultor.nif,
+      direccion: apicultor.direccion,
+      telefono: apicultor.telefono,
+      email: apicultor.email,
+    );
+  }
+
+  Future<void> _verPdf(Factura f) async {
     final doc = await _generador.generar(
       factura: f,
-      emisorNombre: apicultor.nombre.isNotEmpty
-          ? apicultor.nombre
-          : 'Apicultor (sin configurar)',
-      emisorNif: apicultor.nif,
-      emisorDireccion: apicultor.direccion,
-      emisorTelefono: apicultor.telefono,
-      emisorEmail: apicultor.email,
+      emisor: await _datosEmisor(nombreSiVacio: 'Apicultor (sin configurar)'),
     );
     await Printing.sharePdf(
       bytes: await doc.save(),
@@ -105,13 +108,9 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
   }
 
   Future<void> _compartirFactura(Factura f) async {
-    final apicultor = await _bd.obtenerApicultor();
     final doc = await _generador.generar(
       factura: f,
-      emisorNombre:
-          apicultor.nombre.isNotEmpty ? apicultor.nombre : 'Apicultor',
-      emisorNif: apicultor.nif,
-      emisorDireccion: apicultor.direccion,
+      emisor: await _datosEmisor(),
     );
     final pdfBytes = await doc.save();
     final tmp = await getTemporaryDirectory();

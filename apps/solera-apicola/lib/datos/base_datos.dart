@@ -15,6 +15,13 @@ import '../modelos/revision.dart';
 import '../modelos/tercero.dart';
 import '../modelos/tratamiento_varroa.dart';
 
+/// Nombre del fichero de la base de datos (en la carpeta de documentos).
+const String nombreFicheroBaseDatosApicola = 'solera_apicola.db';
+
+/// Versión del esquema que abre la app (`version:` de openDatabase). La
+/// usa también la copia de seguridad para rechazar copias más nuevas.
+const int versionEsquemaBaseDatosApicola = 2;
+
 /// Acceso a la base de datos local de Solera Apícola. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
 ///
@@ -39,10 +46,10 @@ class BaseDatosSoleraApicola {
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
     final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, 'solera_apicola.db');
+    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosApicola);
     _basedatos = await openDatabase(
       ruta,
-      version: 2,
+      version: versionEsquemaBaseDatosApicola,
       onConfigure: (db) async {
         await db.execute('PRAGMA foreign_keys = ON');
       },

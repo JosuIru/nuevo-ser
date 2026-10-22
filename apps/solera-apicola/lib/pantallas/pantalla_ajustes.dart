@@ -4,17 +4,30 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'pantalla_acerca.dart';
 import 'pantalla_apicultor.dart';
 import 'pantalla_backup.dart';
-import 'pantalla_facturas.dart';
-import 'pantalla_clave_anthropic.dart';
 import 'pantalla_configuracion_fiscal.dart';
 import 'pantalla_gestion_apiarios.dart';
-import 'pantalla_libro_economico.dart';
-import 'pantalla_libro_rega.dart';
 import 'pantalla_terceros.dart';
+import '../servicios/cliente_anthropic.dart';
+
+/// Pantalla común de la clave de Anthropic con los textos de Solera
+/// Apícola (la usan Ajustes y el asistente).
+Widget pantallaClaveAnthropicApicola() => PantallaClaveAnthropic(
+      estado: estadoClaveAnthropicApicola,
+      nombreApp: 'Solera Apícola',
+      titulo: 'Identificación con IA',
+      queIdentifica: 'Identifica varroa, nosema, loque y otras patologías por foto',
+      descripcion:
+          'Solera Apícola puede usar Claude AI de Anthropic para analizar la foto que adjuntas '
+          'a una incidencia y proponer un diagnóstico, severidad y manejo cultural. Si detecta '
+          'una patología de declaración obligatoria (loque americana, vespa velutina, escarabajo '
+          'de las colmenas) lo destaca con banner rojo. La misma clave sirve para el asistente '
+          '(chat) de la pantalla Hoy.',
+      probarClave: probarClaveAnthropic,
+    );
 
 /// Pantalla agregadora de ajustes, ordenada por secciones: explotación,
-/// registros y documentos, IA, preferencias, datos y aplicación.
-/// El Libro REGA y los Apiarios siguen también en el menú del mapa.
+/// IA, preferencias, datos y aplicación. Los libros y documentos están
+/// en la pestaña Registros; los Apiarios, aquí y en el menú del mapa.
 class PantallaAjustes extends StatelessWidget {
   const PantallaAjustes({super.key});
 
@@ -47,37 +60,18 @@ class PantallaAjustes extends StatelessWidget {
             subtitle: Text('Terceros con NIF · alimentan el modelo 347'),
             onTap: () => _abrir(context, PantallaTerceros()),
           ),
-          CabeceraSeccionAjustes(SoleraL10n.t('seccion_registros')),
-          ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Libro REGA'),
-            subtitle: Text('Registro oficial de la explotación en PDF'),
-            onTap: () => _abrir(context, const PantallaLibroRega()),
-          ),
           ListTile(
             leading: Icon(Icons.hub),
             title: Text('Apiarios'),
-            subtitle: Text('Asentamientos y sus colmenas'),
+            subtitle: Text('Asentamientos, código SITRAN y sus colmenas'),
             onTap: () => _abrir(context, const PantallaGestionApiarios()),
-          ),
-          ListTile(
-            leading: Icon(Icons.receipt),
-            title: Text(SoleraL10n.t('facturas')),
-            subtitle: Text(SoleraL10n.t('emision_pdf_y_envio')),
-            onTap: () => _abrir(context, PantallaFacturas()),
-          ),
-          ListTile(
-            leading: Icon(Icons.menu_book),
-            title: Text(SoleraL10n.t('libro_economico')),
-            subtitle: Text('Ingresos, gastos y extracto anual · provisional'),
-            onTap: () => _abrir(context, PantallaLibroEconomico()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
-            subtitle: Text('Configura tu clave Anthropic (Claude vision)'),
-            onTap: () => _abrir(context, PantallaClaveAnthropic()),
+            subtitle: Text('Clave de Anthropic para la foto y el asistente'),
+            onTap: () => _abrir(context, pantallaClaveAnthropicApicola()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_preferencias')),
           Padding(
@@ -89,7 +83,7 @@ class PantallaAjustes extends StatelessWidget {
             leading: Icon(Icons.backup),
             title: Text('Copia de seguridad'),
             subtitle: Text('Empaqueta BD + fotos como zip, y restaura'),
-            onTap: () => _abrir(context, PantallaBackup()),
+            onTap: () => _abrir(context, const PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),
           ListTile(

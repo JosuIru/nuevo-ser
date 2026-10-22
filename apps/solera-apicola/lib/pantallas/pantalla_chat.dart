@@ -1,38 +1,34 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import 'package:image_picker/image_picker.dart';
-import '../datos/configuracion.dart';
 
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+
+import '../servicios/cliente_anthropic.dart';
+import 'pantalla_ajustes.dart';
+
+/// Asistente de apicultura por chat (Claude Haiku 5.5 con la clave de
+/// Anthropic de la app, vía `ServicioChat` del core). Admite una foto por
+/// mensaje. Se abre desde Hoy.
+///
+/// Mismos límites que la identificación por foto: sin marcas comerciales
+/// de medicamentos zoosanitarios y siempre derivando al veterinario
+/// asesor para tratamientos.
 class PantallaChat extends StatefulWidget {
-  final String? contextoInicial;
+  const PantallaChat({super.key, this.sistemaPrompt = sistemaApicola});
+
   final String sistemaPrompt;
 
-  const PantallaChat({super.key, this.contextoInicial, this.sistemaPrompt = sistemaFosiles});
-
-  static const sistemaFosiles =
-      'Eres un asistente especializado en paleontología y geología para aficionados. '
-      'Ayudas a identificar fósiles, interpretar formaciones geológicas, entender la '
-      'cronoestratigrafía y dar consejos prácticos de campo. '
-      'Hablas con precisión científica pero en tono accesible y entusiasta. '
-      'Cuando no estés seguro de algo, lo dices claramente y sugieres consultar '
-      'a un geólogo profesional o a un museo. '
-      'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
-
-  static const sistemaNaturaleza =
-      'Eres un asistente especializado en naturaleza, fauna, flora y biodiversidad. '
-      'Ayudas a identificar especies animales y vegetales, entender ecosistemas, '
-      'dar consejos de observación responsable y buenas prácticas de campo. '
-      'Hablas con precisión científica pero en tono accesible y entusiasta. '
-      'Cuando no estés seguro de algo, lo dices claramente. '
-      'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
-
-  static const sistemaSolera =
-      'Eres un asistente especializado en agricultura, viticultura y apicultura. '
-      'Ayudas a identificar plagas y enfermedades, interpretar síntomas, sugerir '
-      'tratamientos (siempre mencionando que consultes a un técnico antes de aplicar), '
-      'y dar consejos de manejo agronómico. Hablas con precisión técnica pero en tono '
-      'accesible. Cuando no estés seguro, lo dices y sugieres consultar a un especialista. '
+  static const sistemaApicola =
+      'Eres un asistente para apicultores profesionales y aficionados de la península ibérica '
+      '(*Apis mellifera*): manejo de colmenas, calendario apícola, trashumancia, cosecha, '
+      'sanidad (varroa, nosema, loques, vespa velutina…), libro de explotación REGA y buenas prácticas. '
+      'Hablas con precisión técnica pero en tono accesible. '
+      'NUNCA recomiendas medicamentos zoosanitarios por marca comercial: como mucho hablas de '
+      'manejo y recuerdas que todo tratamiento necesita la receta del veterinario asesor. '
+      'Si algo apunta a una patología de declaración obligatoria (loque americana, escarabajo de '
+      'las colmenas, vespa velutina), lo dices claramente y recuerdas notificarlo a los Servicios '
+      'Veterinarios oficiales. Cuando no estés seguro, lo dices. '
       'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
 
   @override
@@ -41,44 +37,20 @@ class PantallaChat extends StatefulWidget {
 
 class _PantallaChatState extends State<PantallaChat> {
   final _controladorMensaje = TextEditingController();
-  final _scrollController = ScrollController();
+  final _controladorDesplazamiento = ScrollController();
   final _selectorImagen = ImagePicker();
   final List<MensajeChat> _mensajes = [];
-  bool _enviando = false;
-  ProveedorChat _proveedor = ProveedorChat.deepseek;
-  ServicioChat? _servicio;
-  String? _imagenAdjunta;
 
-  @override
-  void initState() {
-    super.initState();
-    _inicializarServicio();
-    if (widget.contextoInicial != null && widget.contextoInicial!.isNotEmpty) {
-      _mensajes.add(MensajeChat(
-        texto: widget.contextoInicial!,
-        esUsuario: false,
-      ));
-    }
-  }
+  /// Mensajes de error que se enseñan pero no se mandan como historial.
+  final Set<MensajeChat> _mensajesDeError = {};
+  bool _enviando = false;
+  String? _imagenAdjunta;
 
   @override
   void dispose() {
     _controladorMensaje.dispose();
-    _scrollController.dispose();
+    _controladorDesplazamiento.dispose();
     super.dispose();
-  }
-
-  Future<void> _inicializarServicio() async {
-    final apiKeyClaude = await Configuracion.obtenerApiKey();
-    final apiKeyDeepseek = await Configuracion.obtenerApiKeyDeepseek();
-    final modeloClaude = await Configuracion.obtenerModelo();
-    setState(() {
-      _servicio = ServicioChat(
-        apiKeyClaude: apiKeyClaude,
-        apiKeyDeepseek: apiKeyDeepseek,
-        modeloClaude: modeloClaude,
-      );
-    });
   }
 
   Future<void> _hacerFoto() async {
@@ -91,81 +63,67 @@ class _PantallaChatState extends State<PantallaChat> {
     if (foto != null) setState(() => _imagenAdjunta = foto.path);
   }
 
+  void _anadirError(String texto) {
+    final mensajeError = MensajeChat(texto: texto, esUsuario: false);
+    _mensajesDeError.add(mensajeError);
+    _mensajes.add(mensajeError);
+  }
+
   Future<void> _enviar() async {
     final texto = _controladorMensaje.text.trim();
     final imagen = _imagenAdjunta;
-    if (texto.isEmpty && imagen == null || _enviando) return;
-    _controladorMensaje.clear();
+    if ((texto.isEmpty && imagen == null) || _enviando) return;
 
-    // Si hay imagen, forzar Claude
-    final proveedor = imagen != null ? ProveedorChat.claude : _proveedor;
-
-    final clave = proveedor == ProveedorChat.claude
-        ? await Configuracion.obtenerApiKey()
-        : await Configuracion.obtenerApiKeyDeepseek();
-
-    if (clave.isEmpty) {
-      final nombre = proveedor == ProveedorChat.claude ? 'Claude' : 'DeepSeek';
-      setState(() {
-        _mensajes.add(MensajeChat(
-          texto: 'Necesitas configurar tu API key de $nombre en Ajustes.',
-          esUsuario: false,
-          proveedor: proveedor,
-        ));
-      });
+    final clave = await estadoClaveAnthropicApicola.cargar();
+    if (!mounted) return;
+    if (clave == null || !estadoClaveAnthropicApicola.pareceValida(clave)) {
+      setState(() => _anadirError(
+          'Falta la clave de Anthropic. Añádela en Ajustes → Identificación con IA.'));
+      _bajarAlFinal();
       return;
     }
+    _controladorMensaje.clear();
 
+    final historial = _mensajes.where((mensaje) => !_mensajesDeError.contains(mensaje)).toList();
+    final textoAEnviar = texto.isNotEmpty ? texto : '¿Qué ves en esta imagen?';
     setState(() {
-      _mensajes.add(MensajeChat(
-        texto: texto.isNotEmpty ? texto : '¿Qué ves en esta imagen?',
-        esUsuario: true,
-        rutaImagen: imagen,
-      ));
+      _mensajes.add(MensajeChat(texto: textoAEnviar, esUsuario: true, rutaImagen: imagen));
       _imagenAdjunta = null;
       _enviando = true;
     });
-    _scrollAbajo();
+    _bajarAlFinal();
 
     try {
-      final respuesta = await _servicio!.enviarMensaje(
-        texto.isNotEmpty ? texto : '¿Qué ves en esta imagen? Identifícala por favor.',
-        proveedor: proveedor,
-        historial: _mensajes.length > 1
-            ? _mensajes.sublist(0, _mensajes.length - 1)
-            : null,
+      final servicio = ServicioChat(apiKeyClaude: clave, apiKeyDeepseek: '');
+      final respuesta = await servicio.enviarMensaje(
+        textoAEnviar,
+        proveedor: ProveedorChat.claude,
+        historial: historial.isEmpty ? null : historial,
         sistemaPrompt: widget.sistemaPrompt,
         rutaImagen: imagen,
       );
       if (!mounted) return;
       setState(() {
-        _mensajes.add(MensajeChat(
-          texto: respuesta,
-          esUsuario: false,
-          proveedor: proveedor,
-        ));
+        _mensajes.add(MensajeChat(texto: respuesta, esUsuario: false, proveedor: ProveedorChat.claude));
         _enviando = false;
       });
-      _scrollAbajo();
-    } catch (e) {
+    } catch (error) {
       if (!mounted) return;
+      // ServicioChat devuelve el mensaje de ErrorClaude dentro de un Exception.
+      final mensaje = error.toString().replaceFirst('Exception: ', '');
       setState(() {
-        _mensajes.add(MensajeChat(
-          texto: 'Error: $e',
-          esUsuario: false,
-          proveedor: proveedor,
-        ));
+        _anadirError(mensaje);
         _enviando = false;
       });
-      _scrollAbajo();
     }
+    _bajarAlFinal();
   }
 
-  void _scrollAbajo() {
+  void _bajarAlFinal() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
+      if (_controladorDesplazamiento.hasClients) {
+        _controladorDesplazamiento.animateTo(
+          _controladorDesplazamiento.position.maxScrollExtent,
           duration: const Duration(milliseconds: 200),
           curve: Curves.easeOut,
         );
@@ -179,29 +137,15 @@ class _PantallaChatState extends State<PantallaChat> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Chat'),
+        title: const Text('Asistente (chat)'),
         actions: [
-          SegmentedButton<ProveedorChat>(
-            segments: const [
-              ButtonSegment(
-                value: ProveedorChat.deepseek,
-                label: Text('DeepSeek', style: TextStyle(fontSize: 11)),
-                icon: Icon(Icons.bolt, size: 16),
-              ),
-              ButtonSegment(
-                value: ProveedorChat.claude,
-                label: Text('Claude', style: TextStyle(fontSize: 11)),
-                icon: Icon(Icons.auto_awesome, size: 16),
-              ),
-            ],
-            selected: {_proveedor},
-            onSelectionChanged: (s) => setState(() => _proveedor = s.first),
-            style: ButtonStyle(
-              visualDensity: VisualDensity.compact,
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          IconButton(
+            icon: const Icon(Icons.key_outlined),
+            tooltip: 'Clave de Anthropic',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => pantallaClaveAnthropicApicola()),
             ),
           ),
-          const SizedBox(width: 8),
         ],
       ),
       body: Column(children: [
@@ -216,7 +160,8 @@ class _PantallaChatState extends State<PantallaChat> {
                         Icon(Icons.chat_bubble_outline, size: 64, color: esquema.primary.withValues(alpha: 0.3)),
                         const SizedBox(height: 16),
                         const Text(
-                          'Pregúntame lo que quieras sobre fósiles,\ngeología, identificación, yacimientos…',
+                          'Pregunta sobre manejo, calendario, sanidad o el libro REGA.\n'
+                          'Puedes adjuntar una foto. Usa tu clave de Anthropic.',
                           textAlign: TextAlign.center,
                           style: TextStyle(color: Colors.grey),
                         ),
@@ -225,66 +170,54 @@ class _PantallaChatState extends State<PantallaChat> {
                   ),
                 )
               : ListView.builder(
-                  controller: _scrollController,
+                  controller: _controladorDesplazamiento,
                   padding: const EdgeInsets.all(12),
                   itemCount: _mensajes.length + (_enviando ? 1 : 0),
-                  itemBuilder: (_, i) {
-                    if (i >= _mensajes.length) {
+                  itemBuilder: (_, indice) {
+                    if (indice >= _mensajes.length) {
                       return const Padding(
                         padding: EdgeInsets.only(top: 8),
                         child: LinearProgressIndicator(),
                       );
                     }
-                    final m = _mensajes[i];
-                    final esUsuario = m.esUsuario;
+                    final mensaje = _mensajes[indice];
+                    final esUsuario = mensaje.esUsuario;
+                    final esError = _mensajesDeError.contains(mensaje);
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 12),
-                      child: Column(
-                        crossAxisAlignment:
-                            esUsuario ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            constraints: BoxConstraints(
-                              maxWidth: MediaQuery.of(context).size.width * 0.82,
-                            ),
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: esUsuario
-                                  ? esquema.primary.withValues(alpha: 0.1)
-                                  : esquema.surfaceContainerHighest,
-                              borderRadius: BorderRadius.circular(12).copyWith(
-                                bottomRight: esUsuario ? Radius.zero : null,
-                                bottomLeft: esUsuario ? null : Radius.zero,
-                              ),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                if (m.tieneImagen)
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 8),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.file(File(m.rutaImagen!),
-                                          height: 200,
-                                          width: double.infinity,
-                                          fit: BoxFit.cover),
-                                    ),
-                                  ),
-                                if (m.texto.isNotEmpty)
-                                  Text(m.texto, style: const TextStyle(fontSize: 14, height: 1.4)),
-                              ],
+                      child: Align(
+                        alignment: esUsuario ? Alignment.centerRight : Alignment.centerLeft,
+                        child: Container(
+                          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.82),
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                            color: esError
+                                ? esquema.errorContainer
+                                : esUsuario
+                                    ? esquema.primary.withValues(alpha: 0.1)
+                                    : esquema.surfaceContainerHighest,
+                            borderRadius: BorderRadius.circular(12).copyWith(
+                              bottomRight: esUsuario ? Radius.zero : null,
+                              bottomLeft: esUsuario ? null : Radius.zero,
                             ),
                           ),
-                          if (m.proveedor != null && !esUsuario)
-                            Padding(
-                              padding: const EdgeInsets.only(top: 2, left: 4),
-                              child: Text(
-                                'vía ${m.proveedor == ProveedorChat.claude ? 'Claude' : 'DeepSeek'}',
-                                style: TextStyle(fontSize: 10, color: Colors.grey[400]),
-                              ),
-                            ),
-                        ],
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (mensaje.tieneImagen)
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.file(File(mensaje.rutaImagen!),
+                                        height: 200, width: double.infinity, fit: BoxFit.cover),
+                                  ),
+                                ),
+                              if (mensaje.texto.isNotEmpty)
+                                SelectableText(mensaje.texto, style: const TextStyle(fontSize: 14, height: 1.4)),
+                            ],
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -305,18 +238,18 @@ class _PantallaChatState extends State<PantallaChat> {
                   child: Row(children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(6),
-                      child: Image.file(File(_imagenAdjunta!),
-                          height: 48, width: 48, fit: BoxFit.cover),
+                      child: Image.file(File(_imagenAdjunta!), height: 48, width: 48, fit: BoxFit.cover),
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Imagen adjunta — se enviará a Claude',
+                        'Foto adjunta: se enviará con el mensaje',
                         style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                       ),
                     ),
                     IconButton(
                       icon: const Icon(Icons.close, size: 18),
+                      tooltip: 'Quitar la foto',
                       onPressed: () => setState(() => _imagenAdjunta = null),
                       visualDensity: VisualDensity.compact,
                     ),
@@ -349,6 +282,7 @@ class _PantallaChatState extends State<PantallaChat> {
                   ),
                   const SizedBox(width: 8),
                   IconButton.filled(
+                    tooltip: 'Enviar',
                     onPressed: _enviando ? null : _enviar,
                     icon: _enviando
                         ? const SizedBox(

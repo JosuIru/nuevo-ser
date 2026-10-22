@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_calendario_apicola.dart';
+import 'pantalla_chat.dart';
+import 'pantalla_guia.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
 
 const _diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
@@ -56,7 +58,18 @@ class _PantallaHoyState extends State<PantallaHoy> {
     final fechaHoy = _fechaHoyEs(hoy);
     final proximas = tareasProximas(zona: _zona, fecha: hoy, limite: 6);
     return Scaffold(
-      appBar: AppBar(title: const Text('Hoy')),
+      appBar: AppBar(
+        title: const Text('Hoy'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu_book_outlined),
+            tooltip: 'Guía (razas, plagas, sustancias, calendario)',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const PantallaGuia()),
+            ),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(12),
         children: [
@@ -67,6 +80,18 @@ class _PantallaHoyState extends State<PantallaHoy> {
             margen: const EdgeInsets.only(bottom: 12),
           ),
           const TarjetaResumenMeteo(),
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: const Icon(Icons.chat_bubble_outline),
+              title: const Text('Asistente (chat)'),
+              subtitle: const Text('Pregunta sobre manejo, sanidad o el libro REGA · usa tu clave de Anthropic'),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const PantallaChat()),
+              ),
+            ),
+          ),
           const SizedBox(height: 12),
           Card(
             child: Padding(

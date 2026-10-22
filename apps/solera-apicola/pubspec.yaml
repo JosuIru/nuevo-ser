@@ -1,7 +1,7 @@
 name: solera_apicola
 description: "Solera Apícola — gestor para apicultores profesionales y semi-pro. Censo de colmenas con matrícula, libro oficial REGA, gestión de varroa, identificación IA."
 publish_to: 'none'
-version: 0.1.4+5
+version: 0.1.5+6
 
 environment:
   sdk: ^3.5.0

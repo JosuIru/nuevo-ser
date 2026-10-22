@@ -1,7 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 /// Resultado del análisis de una foto de arbolado urbano por Claude
 /// vision. Salida estructurada para que la app pueda pre-rellenar el
@@ -44,11 +43,39 @@ class ResultadoAnalisisIA {
   });
 }
 
+/// Error propio de la app antes de llamar a Claude (p. ej. foto demasiado
+/// grande). Los de la API llegan como [ErrorClaude].
 class ErrorIA implements Exception {
   final String mensaje;
   ErrorIA(this.mensaje);
   @override
   String toString() => 'ErrorIA: $mensaje';
+}
+
+/// Prefijo de las preferencias de la app (la clave de Anthropic vive en
+/// `solera_arbolado_urbano.anthropic.clave`, como siempre).
+const String prefijoPreferenciasArbolado = 'solera_arbolado_urbano';
+
+/// Clave de Anthropic de esta app (instancia única).
+final EstadoClaveAnthropic estadoClaveAnthropic =
+    EstadoClaveAnthropic.paraApp(prefijoPreferenciasArbolado);
+
+/// Prueba [clave] con una llamada mínima a Claude. Devuelve null si
+/// funciona o el mensaje del error si no.
+Future<String?> probarClaveAnthropic(String clave,
+    {ClienteClaude? clienteClaude}) async {
+  final cliente = clienteClaude ?? ClienteClaude(claveApi: clave);
+  try {
+    await cliente.pedirTexto(
+      modelo: modeloClaudeRapido,
+      mensajes: [MensajeClaude.usuario('Responde solo: ok')],
+      maxTokens: 1024,
+      esfuerzo: EsfuerzoClaude.bajo,
+    );
+    return null;
+  } on ErrorClaude catch (error) {
+    return error.mensaje;
+  }
 }
 
 /// Modo de análisis de la foto. La cámara apícola es una sola foto y un
@@ -57,93 +84,48 @@ class ErrorIA implements Exception {
 /// diagnosticar una **plaga** (al levantar una incidencia).
 enum ModoAnalisisIA { identificarEspecie, diagnosticarPlaga }
 
-/// Cliente de la API Messages de Anthropic con vision. Identifica
-/// especies arbóreas urbanas habituales en Iberia o diagnostica plagas
-/// y enfermedades. Responde JSON estricto que la app parsea a
-/// `ResultadoAnalisisIA`.
+/// Análisis de fotos de arbolado urbano con Claude (visión). Identifica
+/// especies arbóreas urbanas habituales en Iberia o diagnostica plagas y
+/// enfermedades. El transporte (petición, imagen, errores) es el
+/// [ClienteClaude] del core; aquí quedan el prompt y la lectura del JSON a
+/// [ResultadoAnalisisIA]. Los fallos de la API llegan como [ErrorClaude],
+/// con su mensaje ya listo para enseñar.
 class ClienteAnthropic {
-  static const _modelo = 'claude-haiku-4-5';
-  static const _endpoint = 'https://api.anthropic.com/v1/messages';
-  static const _version = '2023-06-01';
+  ClienteAnthropic(String claveApi, {ClienteClaude? clienteClaude})
+      : _clienteClaude = clienteClaude ?? ClienteClaude(claveApi: claveApi);
 
-  final String claveApi;
-  ClienteAnthropic(this.claveApi);
+  final ClienteClaude _clienteClaude;
+
+  /// Tope de tamaño de la foto que acepta la API.
+  static const int tamanoMaximoFotoBytes = 5 * 1024 * 1024;
 
   Future<ResultadoAnalisisIA> analizarFoto({
     required File foto,
     required ModoAnalisisIA modo,
     String observacionesUsuario = '',
   }) async {
-    final bytes = await foto.readAsBytes();
-    if (bytes.length > 5 * 1024 * 1024) {
+    final imagen = await ImagenClaude.desdeFichero(foto.path);
+    if (imagen.bytes.length > tamanoMaximoFotoBytes) {
       throw ErrorIA(
         'La foto pesa más de 5 MB y la API la rechazará. '
         'Reduce el tamaño antes de enviarla.',
       );
     }
-    final base64Foto = base64Encode(bytes);
-    final mediaType = _detectarTipoMedia(foto.path);
-    final promptUsuario = _construirPrompt(modo, observacionesUsuario);
-    final promptSistema =
-        modo == ModoAnalisisIA.identificarEspecie ? _promptEspecies : _promptPlagas;
-
-    final cuerpo = jsonEncode({
-      'model': _modelo,
-      'max_tokens': 1024,
-      'system': promptSistema,
-      'messages': [
-        {
-          'role': 'user',
-          'content': [
-            {
-              'type': 'image',
-              'source': {
-                'type': 'base64',
-                'media_type': mediaType,
-                'data': base64Foto,
-              },
-            },
-            {
-              'type': 'text',
-              'text': promptUsuario,
-            },
-          ],
-        },
+    final json = await _clienteClaude.pedirJson(
+      modelo: modeloClaudeRapido,
+      sistema: modo == ModoAnalisisIA.identificarEspecie
+          ? _promptEspecies
+          : _promptPlagas,
+      mensajes: [
+        MensajeClaude.usuario(
+          _construirPrompt(modo, observacionesUsuario),
+          imagenes: [imagen],
+        ),
       ],
-    });
-
-    final respuesta = await http.post(
-      Uri.parse(_endpoint),
-      headers: {
-        'x-api-key': claveApi,
-        'anthropic-version': _version,
-        'content-type': 'application/json',
-      },
-      body: cuerpo,
-    ).timeout(const Duration(seconds: 60));
-
-    if (respuesta.statusCode == 401) {
-      throw ErrorIA('Clave Anthropic inválida o caducada. Revisa Ajustes.');
-    }
-    if (respuesta.statusCode == 429) {
-      throw ErrorIA('Rate limit alcanzado en Anthropic. Espera unos minutos.');
-    }
-    if (respuesta.statusCode != 200) {
-      throw ErrorIA('Error HTTP ${respuesta.statusCode}: ${respuesta.body}');
-    }
-
-    final json = jsonDecode(utf8.decode(respuesta.bodyBytes)) as Map<String, dynamic>;
-    final contenido = (json['content'] as List?) ?? const [];
-    String texto = '';
-    for (final bloque in contenido) {
-      if (bloque is Map && bloque['type'] == 'text') {
-        texto += bloque['text']?.toString() ?? '';
-      }
-    }
-    if (texto.isEmpty) {
-      throw ErrorIA('Respuesta vacía de la IA.');
-    }
-    return _parsearJson(texto, modo);
+      maxTokens: 4096,
+      esfuerzo: EsfuerzoClaude.bajo,
+    );
+    return resultadoDesdeJson(json, modo);
   }
 }
 
@@ -225,49 +207,39 @@ String _construirPrompt(ModoAnalisisIA modo, String observaciones) {
   return ctx.toString();
 }
 
-ResultadoAnalisisIA _parsearJson(String texto, ModoAnalisisIA modo) {
-  var limpio = texto.trim();
-  if (limpio.startsWith('```')) {
-    final primerSalto = limpio.indexOf('\n');
-    if (primerSalto != -1) limpio = limpio.substring(primerSalto + 1);
-    if (limpio.endsWith('```')) {
-      limpio = limpio.substring(0, limpio.length - 3).trim();
-    }
+/// Lee el JSON que devuelve Claude a un [ResultadoAnalisisIA]. Tolera
+/// campos ausentes o de tipo inesperado.
+ResultadoAnalisisIA resultadoDesdeJson(
+    Map<String, dynamic> json, ModoAnalisisIA modo) {
+  String texto(String clave) {
+    final valor = json[clave];
+    return valor is String ? valor : '';
   }
-  try {
-    final json = jsonDecode(limpio) as Map<String, dynamic>;
-    if (modo == ModoAnalisisIA.identificarEspecie) {
-      return ResultadoAnalisisIA(
-        tipoAnalisis: 'especie',
-        especieNombreComun: (json['especie_nombre_comun'] as String?) ?? '',
-        especieNombreCientifico: (json['especie_nombre_cientifico'] as String?) ?? '',
-        confianza: ((json['confianza'] as num?)?.toDouble() ?? 0).clamp(0, 1).toDouble(),
-        advertencia: (json['advertencia'] as String?) ?? '',
-      );
-    }
-    return ResultadoAnalisisIA(
-      tipoAnalisis: 'plaga',
-      plagaNombreComun: (json['plaga_nombre_comun'] as String?) ?? '',
-      plagaNombreCientifico: (json['plaga_nombre_cientifico'] as String?) ?? '',
-      tipoPlaga: (json['tipo_plaga'] as String?) ?? 'indeterminado',
-      severidad: (json['severidad'] as num?)?.toInt(),
-      confianza: ((json['confianza'] as num?)?.toDouble() ?? 0).clamp(0, 1).toDouble(),
-      manejoCultural: (json['manejo_cultural'] as String?) ?? '',
-      declaracionOficialSugerida:
-          (json['declaracion_oficial_sugerida'] as bool?) ?? false,
-      riesgoSanitarioPublicoSugerido:
-          (json['riesgo_sanitario_publico_sugerido'] as bool?) ?? false,
-      advertencia: (json['advertencia'] as String?) ?? '',
-    );
-  } catch (e) {
-    throw ErrorIA('La respuesta de la IA no era JSON válido: $e\nTexto recibido: $limpio');
-  }
-}
 
-String _detectarTipoMedia(String ruta) {
-  final lower = ruta.toLowerCase();
-  if (lower.endsWith('.png')) return 'image/png';
-  if (lower.endsWith('.gif')) return 'image/gif';
-  if (lower.endsWith('.webp')) return 'image/webp';
-  return 'image/jpeg';
+  bool booleano(String clave) => json[clave] == true;
+  final confianza =
+      ((json['confianza'] as num?)?.toDouble() ?? 0).clamp(0, 1).toDouble();
+  final severidad = json['severidad'];
+  if (modo == ModoAnalisisIA.identificarEspecie) {
+    return ResultadoAnalisisIA(
+      tipoAnalisis: 'especie',
+      especieNombreComun: texto('especie_nombre_comun'),
+      especieNombreCientifico: texto('especie_nombre_cientifico'),
+      confianza: confianza,
+      advertencia: texto('advertencia'),
+    );
+  }
+  final tipoPlaga = texto('tipo_plaga');
+  return ResultadoAnalisisIA(
+    tipoAnalisis: 'plaga',
+    plagaNombreComun: texto('plaga_nombre_comun'),
+    plagaNombreCientifico: texto('plaga_nombre_cientifico'),
+    tipoPlaga: tipoPlaga.isEmpty ? 'indeterminado' : tipoPlaga,
+    severidad: severidad is num ? severidad.toInt() : null,
+    confianza: confianza,
+    manejoCultural: texto('manejo_cultural'),
+    declaracionOficialSugerida: booleano('declaracion_oficial_sugerida'),
+    riesgoSanitarioPublicoSugerido: booleano('riesgo_sanitario_publico_sugerido'),
+    advertencia: texto('advertencia'),
+  );
 }

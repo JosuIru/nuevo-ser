@@ -4,15 +4,13 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'pantalla_acerca.dart';
 import 'pantalla_ayuntamiento.dart';
 import 'pantalla_backup.dart';
-import 'pantalla_clave_anthropic.dart';
-import 'pantalla_facturas.dart';
-import 'pantalla_generar_qr.dart';
-import 'pantalla_informe_municipal.dart';
+import '../servicios/cliente_anthropic.dart';
 import 'pantalla_tecnicos.dart';
 
 /// Pantalla agregadora de ajustes, por secciones como el resto de la
-/// suite: Ayuntamiento (titular y técnicos) · Registros y documentos ·
-/// Inteligencia artificial · Preferencias · Datos · Aplicación.
+/// suite: Ayuntamiento (titular y técnicos) · Inteligencia artificial ·
+/// Preferencias · Datos · Aplicación. Los documentos (informe municipal,
+/// QR, facturas) están en la pestaña Registros.
 class PantallaAjustes extends StatelessWidget {
   PantallaAjustes({super.key});
 
@@ -40,38 +38,23 @@ class PantallaAjustes extends StatelessWidget {
               MaterialPageRoute(builder: (_) => PantallaTecnicos()),
             ),
           ),
-          CabeceraSeccionAjustes(SoleraL10n.t('seccion_registros')),
-          ListTile(
-            leading: Icon(Icons.qr_code_2),
-            title: Text('Generar QR'),
-            subtitle: Text('Códigos QR para chapas de árboles'),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => PantallaGenerarQr()),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.receipt),
-            title: Text(SoleraL10n.t('facturas')),
-            subtitle: Text(SoleraL10n.t('emision_pdf_y_envio')),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => PantallaFacturas()),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Informe municipal'),
-            subtitle: Text('Actuaciones de una campaña en PDF'),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => PantallaInformeMunicipal()),
-            ),
-          ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
             subtitle: Text('Configura tu clave Anthropic (Claude vision)'),
             onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => PantallaClaveAnthropic()),
+              MaterialPageRoute(
+                builder: (_) => PantallaClaveAnthropic(
+                  estado: estadoClaveAnthropic,
+                  nombreApp: 'Solera Arbolado Urbano',
+                  titulo: SoleraL10n.t('identificacion_con_ia'),
+                  queIdentifica: 'Identifica especies y plagas urbanas por foto',
+                  descripcion:
+                      'Solera Arbolado Urbano puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico fitosanitario, severidad y manejo cultural. Si detecta una plaga de declaración obligatoria (picudo rojo, fuego bacteriano) o riesgo sanitario público (procesionaria, lagarta peluda) lo destaca con banner. Cuidado con la privacidad ciudadana: las fotos pueden capturar transeúntes; encuadra al árbol.',
+                  probarClave: probarClaveAnthropic,
+                ),
+              ),
             ),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_preferencias')),

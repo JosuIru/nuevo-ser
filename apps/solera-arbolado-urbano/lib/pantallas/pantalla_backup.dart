@@ -28,39 +28,37 @@ class _PantallaBackupState extends State<PantallaBackup> {
   }
 
   Future<void> _cargarUltimoBackup() async {
-    final u = await BackupServicio.ultimoBackup();
+    final u = await servicioCopiaSeguridad.ultimaCopia();
     if (mounted) setState(() => _ultimoBackup = u);
   }
 
   Future<void> _crearYCompartir() async {
     setState(() => _trabajando = true);
     try {
-      final fichero = await BackupServicio.crearZip();
+      final fichero = await servicioCopiaSeguridad.crearCopia();
       await _cargarUltimoBackup();
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
         subject: 'Backup Solera Arbolado Urbano',
       );
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(SoleraL10n.t('error_creando_backup:_$e'))));
+    } on ErrorCopiaSeguridad catch (error) {
+      _avisar('No se pudo crear el backup. ${textoErrorCopiaSeguridad(error)}');
+    } catch (error) {
+      _avisar('No se pudo crear el backup: $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
   }
 
-  Future<void> _restaurar() async {
-    final aviso = await DialogoConfirmacion.mostrar(
-      context,
-      titulo: 'Restaurar desde un backup',
-      mensaje: 'Esta acción sustituye la base de datos y las fotos por las del zip elegido.\n\n'
-          'Antes de hacerlo, se creará automáticamente un backup del estado actual por seguridad.',
-      textoConfirmar: 'Continuar',
-      textoCancelar: 'Cancelar',
-      icono: Icons.restore,
+  void _avisar(String texto) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(duration: const Duration(seconds: 8), content: Text(texto)),
     );
-    if (aviso != true) return;
+  }
+
+  Future<void> _restaurar() async {
     final resultado = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: const ['zip'],
@@ -68,24 +66,52 @@ class _PantallaBackupState extends State<PantallaBackup> {
     if (resultado == null || resultado.files.isEmpty) return;
     final ruta = resultado.files.first.path;
     if (ruta == null) return;
+    final copia = File(ruta);
+
+    // Primero se comprueba la copia sin tocar nada, para enseñar de
+    // cuándo es y pedir confirmación.
+    setState(() => _trabajando = true);
+    InformeCopiaSeguridad informe;
+    try {
+      informe = await servicioCopiaSeguridad.validarCopia(copia);
+    } on ErrorCopiaSeguridad catch (error) {
+      _avisar('No se puede restaurar esta copia. ${textoErrorCopiaSeguridad(error)}');
+      return;
+    } catch (error) {
+      _avisar('No se puede leer esta copia: $error');
+      return;
+    } finally {
+      if (mounted) setState(() => _trabajando = false);
+    }
+    if (!mounted) return;
+
+    final fecha = informe.fechaCreacion;
+    final textoFecha = fecha == null
+        ? 'de fecha desconocida (formato antiguo)'
+        : 'del ${DateFormat("d/MM/yyyy 'a las' HH:mm").format(fecha)}';
+    final confirmado = await DialogoConfirmacion.mostrar(
+      context,
+      titulo: 'Restaurar desde un backup',
+      mensaje: 'La copia elegida es $textoFecha.\n\n'
+          'Sustituye la base de datos actual por la de la copia y añade sus fotos.\n\n'
+          'Antes se guarda automáticamente una copia del estado actual por si quieres deshacerlo.',
+      textoConfirmar: 'Restaurar',
+      textoCancelar: 'Cancelar',
+      icono: Icons.restore,
+    );
+    if (confirmado != true) return;
+
     setState(() => _trabajando = true);
     try {
-      final preRestore = await BackupServicio.restaurarZip(File(ruta));
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: Duration(seconds: 8),
-          content: Text('Restaurado. Se guardó tu estado anterior en ${preRestore.path.split('/').last}'),
-        ),
-      );
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          duration: Duration(seconds: 8),
-          content: Text('Error restaurando: $e\nTu BD original NO se ha tocado.'),
-        ),
-      );
+      final restauracion = await servicioCopiaSeguridad.restaurarCopia(copia);
+      final respaldo = restauracion.respaldoPrevio;
+      _avisar(respaldo == null
+          ? 'Restaurado.'
+          : 'Restaurado. Tu estado anterior se guardó en ${respaldo.path.split('/').last}');
+    } on ErrorCopiaSeguridad catch (error) {
+      _avisar('No se pudo restaurar. ${textoErrorCopiaSeguridad(error)}');
+    } catch (error) {
+      _avisar('No se pudo restaurar: $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -151,8 +177,8 @@ class _PantallaBackupState extends State<PantallaBackup> {
             Text('Restaurar desde backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Sustituye la base de datos y fotos actuales por las del zip. Antes se hace un backup del '
-              'estado actual por si quieres deshacer.',
+              'Sustituye la base de datos actual por la del zip y añade sus fotos. Antes se comprueba '
+              'la copia y se guarda una del estado actual por si quieres deshacer.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),

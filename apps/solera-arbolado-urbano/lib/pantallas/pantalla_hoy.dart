@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_calendario_arbolado.dart';
+import 'pantalla_guia.dart';
 
 const _diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
 const _mesesEs = [
@@ -52,10 +54,27 @@ class _PantallaHoyState extends State<PantallaHoy> {
     final fechaHoy = _fechaHoyEs(hoy);
     final proximas = tareasProximas(zona: _zona, fecha: hoy, limite: 6);
     return Scaffold(
-      appBar: AppBar(title: const Text('Hoy')),
+      appBar: AppBar(
+        title: const Text('Hoy'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.menu_book),
+            tooltip: 'Guía de plagas',
+            onPressed: () => Navigator.of(context).push<void>(
+              MaterialPageRoute(builder: (_) => PantallaGuia()),
+            ),
+          ),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(12),
         children: [
+          // Aviso de versión nueva (no ocupa sitio si no hay).
+          AvisoActualizaciones(
+            config: configActualizacionesMonorepo('solera-arbolado-urbano'),
+            nombreApp: 'Solera Arbolado Urbano',
+            margen: const EdgeInsets.only(bottom: 8),
+          ),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(16),

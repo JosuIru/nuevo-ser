@@ -1,96 +1,88 @@
-import 'dart:io';
-
-import 'package:archive/archive_io.dart';
-import 'package:intl/intl.dart';
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../datos/base_datos.dart';
 
-/// Empaqueta la BD (`solera_arbolado_urbano.db`) y la carpeta de fotos
-/// (`<documents>/fotos/...`) en un zip listo para compartir o guardar
-/// fuera del dispositivo. Restauración con safety pre-restore.
-class BackupServicio {
-  static const _claveUltimoBackupMs = 'solera_arbolado_urbano.backup.ultimo_ms';
-  static const _nombreBd = 'solera_arbolado_urbano.db';
+/// Configuración de la copia de seguridad de Solera Arbolado Urbano:
+/// la BD (`solera_arbolado_urbano.db`) y la carpeta de fotos en un ZIP.
+///
+/// El identificador es el prefijo de preferencias de siempre, así la
+/// fecha de «último backup» (`solera_arbolado_urbano.backup.ultimo_ms`)
+/// se conserva, y el nombre del ZIP sigue empezando por
+/// `solera-arbolado-backup`. Lee también los ZIP de versiones anteriores.
+final ConfiguracionCopiaSeguridad configuracionCopiaSeguridadArbolado =
+    ConfiguracionCopiaSeguridad(
+  identificadorApp: 'solera_arbolado_urbano',
+  nombreApp: 'Solera Arbolado Urbano',
+  nombreFicheroBaseDatos: nombreFicheroBaseDatosArbolado,
+  prefijoNombreCopia: 'solera-arbolado-backup',
+  versionEsquemaActual: versionEsquemaArbolado,
+  cerrarBaseDatos: () => BaseDatosSoleraArbolado.instancia.cerrar(),
+  reabrirBaseDatos: () async {
+    await BaseDatosSoleraArbolado.instancia.basedatos;
+  },
+  comprobarIntegridad: comprobarIntegridadBaseDatos,
+);
 
-  static Future<File> crearZip() async {
-    final docs = await getApplicationDocumentsDirectory();
-    final tmp = await getTemporaryDirectory();
-    final ahora = DateTime.now();
-    final marcaTemporal = DateFormat('yyyyMMdd-HHmm').format(ahora);
-    final destino = File(path_lib.join(tmp.path, 'solera-arbolado-backup-$marcaTemporal.zip'));
+/// Servicio de copia de seguridad de la app (instancia única).
+final ServicioCopiaSeguridad servicioCopiaSeguridad =
+    ServicioCopiaSeguridad(configuracionCopiaSeguridadArbolado);
 
-    await BaseDatosSoleraArbolado.instancia.cerrar();
-
-    final encoder = ZipFileEncoder();
-    encoder.create(destino.path);
-    try {
-      for (final nombre in [_nombreBd, '$_nombreBd-wal', '$_nombreBd-shm']) {
-        final f = File(path_lib.join(docs.path, nombre));
-        if (await f.exists()) {
-          encoder.addFile(f, nombre);
-        }
-      }
-      final dirFotos = Directory(path_lib.join(docs.path, 'fotos'));
-      if (await dirFotos.exists()) {
-        encoder.addDirectory(dirFotos, includeDirName: true);
-      }
-    } finally {
-      encoder.close();
-    }
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_claveUltimoBackupMs, ahora.millisecondsSinceEpoch);
-    return destino;
+/// Abre la BD de una copia en solo lectura y pasa `PRAGMA integrity_check`.
+Future<bool> comprobarIntegridadBaseDatos(String rutaBaseDatos) async {
+  Database? baseDatos;
+  try {
+    baseDatos = await openReadOnlyDatabase(rutaBaseDatos);
+    final filas = await baseDatos.rawQuery('PRAGMA integrity_check');
+    return filas.length == 1 && filas.first.values.first == 'ok';
+  } catch (_) {
+    return false;
+  } finally {
+    await baseDatos?.close();
   }
+}
 
-  static Future<File> restaurarZip(File zipOrigen) async {
-    if (!await zipOrigen.exists()) {
-      throw Exception('El fichero de backup no existe: ${zipOrigen.path}');
-    }
-
-    final bytes = await zipOrigen.readAsBytes();
-    final archive = ZipDecoder().decodeBytes(bytes);
-    final tieneBd = archive.any((f) => f.name == _nombreBd);
-    if (!tieneBd) {
-      throw Exception(
-        'El zip no contiene $_nombreBd — no parece un backup de Solera Arbolado Urbano.',
-      );
-    }
-
-    final preRestore = await crearZip();
-
-    await BaseDatosSoleraArbolado.instancia.cerrar();
-    final docs = await getApplicationDocumentsDirectory();
-    for (final nombre in [_nombreBd, '$_nombreBd-wal', '$_nombreBd-shm']) {
-      final f = File(path_lib.join(docs.path, nombre));
-      if (await f.exists()) await f.delete();
-    }
-    for (final entrada in archive) {
-      if (!entrada.isFile) continue;
-      final destino = File(path_lib.join(docs.path, entrada.name));
-      await destino.parent.create(recursive: true);
-      final contenido = entrada.content as List<int>;
-      await destino.writeAsBytes(contenido);
-    }
-    return preRestore;
+/// Texto para la persona según el motivo del error. Solo dice que los
+/// datos no se han tocado cuando es verdad ([ErrorCopiaSeguridad.datosIntactos]).
+String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error) {
+  final String explicacion;
+  switch (error.motivo) {
+    case MotivoErrorCopiaSeguridad.ficheroNoExiste:
+      explicacion = 'El fichero elegido ya no existe.';
+    case MotivoErrorCopiaSeguridad.noEsZip:
+      explicacion = 'El fichero no es un ZIP válido o está dañado.';
+    case MotivoErrorCopiaSeguridad.manifiestoNoValido:
+      explicacion = 'La copia está incompleta o dañada.';
+    case MotivoErrorCopiaSeguridad.formatoMasNuevo:
+    case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
+      explicacion =
+          'La copia es de una versión más nueva de la app. Actualiza la app y vuelve a intentarlo.';
+    case MotivoErrorCopiaSeguridad.deOtraApp:
+    case MotivoErrorCopiaSeguridad.sinBaseDatos:
+      explicacion = 'La copia no es de Solera Arbolado Urbano.';
+    case MotivoErrorCopiaSeguridad.baseDatosNoValida:
+    case MotivoErrorCopiaSeguridad.integridadFallida:
+      explicacion = 'La base de datos de la copia está dañada.';
+    case MotivoErrorCopiaSeguridad.rutaPeligrosa:
+      explicacion = 'La copia contiene rutas no permitidas.';
+    case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
+      explicacion =
+          'No se pudo guardar antes una copia del estado actual, así que no se ha restaurado nada.';
+    case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
+      explicacion = 'Todavía no hay datos que copiar.';
+    case MotivoErrorCopiaSeguridad.restauracionRevertida:
+      explicacion =
+          'La restauración falló a mitad y se ha vuelto al estado anterior.';
+    case MotivoErrorCopiaSeguridad.reversionFallida:
+      final respaldo = error.respaldoPrevio;
+      explicacion =
+          'La restauración falló y no se pudo volver del todo al estado anterior. '
+          '${respaldo != null ? 'Tu estado anterior está guardado en ${respaldo.path}. ' : ''}'
+          'No borres la app y pide ayuda antes de seguir.';
   }
-
-  static Future<DateTime?> ultimoBackup() async {
-    final prefs = await SharedPreferences.getInstance();
-    final ms = prefs.getInt(_claveUltimoBackupMs);
-    if (ms == null) return null;
-    return DateTime.fromMillisecondsSinceEpoch(ms);
+  if (error.datosIntactos &&
+      error.motivo != MotivoErrorCopiaSeguridad.sinDatosQueCopiar) {
+    return '$explicacion Tus datos no se han tocado.';
   }
-
-  static Future<bool> tocaSugerir({Duration intervaloAviso = const Duration(days: 7)}) async {
-    final ultimo = await ultimoBackup();
-    if (ultimo == null) return true;
-    return DateTime.now().difference(ultimo) > intervaloAviso;
-  }
-
-  static Future<Database> reabrirBaseDatos() => BaseDatosSoleraArbolado.instancia.basedatos;
+  return explicacion;
 }

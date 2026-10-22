@@ -7,8 +7,13 @@ import '../modelos/zona.dart';
 import 'pantalla_ficha_arbol.dart';
 
 /// Lista filtrable de árboles por identificador, especie, estado o zona.
+/// Es la pestaña «Árboles» de la barra inferior.
 class PantallaListaArboles extends StatefulWidget {
-  const PantallaListaArboles({super.key});
+  const PantallaListaArboles({super.key, this.avisoRecarga});
+
+  /// Si se da, la lista se relee cada vez que avisa (al volver a la
+  /// pestaña tras dar de alta un árbol en el mapa, por ejemplo).
+  final Listenable? avisoRecarga;
 
   @override
   State<PantallaListaArboles> createState() => _PantallaListaArbolesState();
@@ -23,7 +28,14 @@ class _PantallaListaArbolesState extends State<PantallaListaArboles> {
   @override
   void initState() {
     super.initState();
+    widget.avisoRecarga?.addListener(_cargar);
     _cargar();
+  }
+
+  @override
+  void dispose() {
+    widget.avisoRecarga?.removeListener(_cargar);
+    super.dispose();
   }
 
   Future<void> _cargar() async {

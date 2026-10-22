@@ -5,7 +5,6 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../datos/catalogos_generados/catalogo_plagas_urbanas.dart';
 import '../../datos/catalogos_generados/flag_revision.dart';
-import '../../estado/clave_anthropic.dart';
 import '../../servicios/cliente_anthropic.dart';
 
 /// Resultado que devuelve el modal cuando el usuario confirma. La
@@ -51,7 +50,7 @@ class BotonIdentificarIA extends StatefulWidget {
 }
 
 class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
-  final _persistencia = ClaveAnthropic();
+  final _persistencia = estadoClaveAnthropic;
   bool _comprobando = true;
   bool _hayClave = false;
   bool _ejecutando = false;
@@ -77,7 +76,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
     if (clave == null || clave.isEmpty) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No hay clave Anthropic configurada. Ve al menú → IA.')),
+        const SnackBar(content: Text('No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.')),
       );
       return;
     }
@@ -103,6 +102,12 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
       if (aceptado != null) {
         widget.alAceptar(aceptado);
       }
+    } on ErrorClaude catch (e) {
+      if (!mounted) return;
+      setState(() => _ejecutando = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.mensaje), duration: const Duration(seconds: 6)),
+      );
     } on ErrorIA catch (e) {
       if (!mounted) return;
       setState(() => _ejecutando = false);

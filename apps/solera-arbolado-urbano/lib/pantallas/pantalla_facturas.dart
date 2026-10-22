@@ -10,8 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
-import '../modelos/factura.dart';
-import '../servicios/generador_factura_pdf.dart';
 
 const _claveEmailBackup = 'solera_arbolado_urbano.facturas.email_backup';
 
@@ -86,17 +84,24 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     }
   }
 
-  Future<void> _verPdf(Factura f) async {
+  /// Emisor de la factura: el ayuntamiento configurado en Ajustes.
+  Future<DatosEmisorFactura> _datosEmisor() async {
     final ayuntamiento = await _bd.obtenerAyuntamiento();
-    final doc = await _generador.generar(
-      factura: f,
-      emisorNombre: ayuntamiento.nombre.isNotEmpty
+    return DatosEmisorFactura(
+      nombre: ayuntamiento.nombre.isNotEmpty
           ? ayuntamiento.nombre
           : 'Ayuntamiento (sin configurar)',
-      emisorNif: ayuntamiento.cif,
-      emisorDireccion: ayuntamiento.direccion,
-      emisorTelefono: ayuntamiento.telefono,
-      emisorEmail: ayuntamiento.email,
+      nif: ayuntamiento.cif,
+      direccion: ayuntamiento.direccion,
+      telefono: ayuntamiento.telefono,
+      email: ayuntamiento.email,
+    );
+  }
+
+  Future<void> _verPdf(Factura f) async {
+    final doc = await _generador.generar(
+      factura: f,
+      emisor: await _datosEmisor(),
     );
     await Printing.sharePdf(
       bytes: await doc.save(),
@@ -105,12 +110,9 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
   }
 
   Future<void> _compartirFactura(Factura f) async {
-    final ayuntamiento = await _bd.obtenerAyuntamiento();
     final doc = await _generador.generar(
       factura: f,
-      emisorNombre: ayuntamiento.nombre,
-      emisorNif: ayuntamiento.cif,
-      emisorDireccion: ayuntamiento.direccion,
+      emisor: await _datosEmisor(),
     );
     final pdfBytes = await doc.save();
     final tmp = await getTemporaryDirectory();

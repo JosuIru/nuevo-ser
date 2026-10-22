@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show cargarIdiomaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 
-import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_onboarding.dart';
+import 'pantallas/pantalla_principal.dart';
+import 'servicios/backup_servicio.dart';
 
 Future<void> main() async {
   // `DateFormat('d MMM yyyy', 'es_ES')` que usa pantalla_facturas (y
@@ -14,6 +15,13 @@ Future<void> main() async {
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
+  // Si la app murió a mitad de una restauración, deshacerla antes de que
+  // nada abra la base de datos.
+  try {
+    await servicioCopiaSeguridad.recuperarRestauracionInterrumpida();
+  } catch (error) {
+    debugPrint('No se pudo revisar una restauración interrumpida: $error');
+  }
   runApp(const SoleraArboladoUrbanoApp());
 }
 
@@ -40,7 +48,7 @@ class SoleraArboladoUrbanoApp extends StatelessWidget {
 }
 
 /// Decide qué pantalla mostrar al arrancar — onboarding la primera vez,
-/// PantallaMapa a partir de la segunda. El flag se persiste en
+/// PantallaPrincipal (pestaña Mapa) a partir de la segunda. El flag se persiste en
 /// SharedPreferences (`solera_arbolado_urbano.onboarding.visto`).
 class _OrquestadorArranque extends StatefulWidget {
   const _OrquestadorArranque();
@@ -74,6 +82,6 @@ class _OrquestadorArranqueState extends State<_OrquestadorArranque> {
         alTerminar: () => setState(() => _onboardingVisto = true),
       );
     }
-    return const PantallaMapa();
+    return const PantallaPrincipal();
   }
 }

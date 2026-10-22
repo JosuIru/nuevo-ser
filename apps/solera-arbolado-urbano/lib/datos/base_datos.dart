@@ -10,6 +10,13 @@ import '../modelos/tecnico.dart';
 import '../modelos/tratamiento.dart';
 import '../modelos/zona.dart';
 
+/// Nombre del fichero de la base de datos (en la carpeta de documentos).
+const String nombreFicheroBaseDatosArbolado = 'solera_arbolado_urbano.db';
+
+/// Versión del esquema que abre la app (`version:` de openDatabase). La
+/// usa también la copia de seguridad para rechazar copias más nuevas.
+const int versionEsquemaArbolado = 2;
+
 /// Acceso a la base de datos local de Solera Arbolado Urbano. Singleton
 /// con inicialización perezosa: la primera lectura crea la BD.
 ///
@@ -30,10 +37,10 @@ class BaseDatosSoleraArbolado {
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
     final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, 'solera_arbolado_urbano.db');
+    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosArbolado);
     _basedatos = await openDatabase(
       ruta,
-      version: 2,
+      version: versionEsquemaArbolado,
       onConfigure: (db) async {
         await db.execute('PRAGMA foreign_keys = ON');
       },

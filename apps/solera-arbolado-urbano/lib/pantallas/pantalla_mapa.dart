@@ -10,16 +10,9 @@ import '../estado/zona_activa.dart';
 import '../modelos/arbol.dart';
 import '../modelos/zona.dart';
 import '../utiles/permisos_gps.dart';
-import 'pantalla_ajustes.dart';
-import 'pantalla_guia.dart';
-import 'pantalla_hoy.dart';
 import 'pantalla_escaner_qr.dart';
 import 'pantalla_ficha_arbol.dart';
-import 'pantalla_informe_municipal.dart';
-import 'pantalla_lista_arboles.dart';
 import 'pantalla_nuevo_arbol.dart';
-
-enum _AccionMenu { hoy, guia, informeMunicipal, ajustes }
 
 /// Capa de fondo del mapa: callejero (OSM) o foto aérea (Esri).
 enum _CapaMapa { callejero, satelite }
@@ -32,9 +25,13 @@ const _urlCapaSatelite =
 /// app y ve los árboles del municipio sobre el mapa filtrados por zona.
 /// Tap en un árbol → ficha. FAB principal "Nuevo árbol" con captura
 /// GPS. Botón cámara abre escáner QR para localizar un árbol existente
-/// por su chapa.
+/// por su chapa. Es la pestaña con la que arranca la app.
 class PantallaMapa extends StatefulWidget {
-  const PantallaMapa({super.key});
+  const PantallaMapa({super.key, this.avisoRecarga});
+
+  /// Si se da, el mapa relee zonas y árboles cada vez que avisa (al
+  /// volver a la pestaña desde la lista, por ejemplo).
+  final Listenable? avisoRecarga;
 
   @override
   State<PantallaMapa> createState() => _PantallaMapaState();
@@ -54,8 +51,15 @@ class _PantallaMapaState extends State<PantallaMapa> {
   @override
   void initState() {
     super.initState();
+    widget.avisoRecarga?.addListener(_cargarTodo);
     _cargarTodo();
     _resolverCentroInicial();
+  }
+
+  @override
+  void dispose() {
+    widget.avisoRecarga?.removeListener(_cargarTodo);
+    super.dispose();
   }
 
   Future<void> _resolverCentroInicial() async {
@@ -309,87 +313,10 @@ class _PantallaMapaState extends State<PantallaMapa> {
             tooltip: 'Buscar por QR',
             onPressed: _alEscanearQr,
           ),
-          IconButton(
-            icon: Icon(Icons.list),
-            tooltip: 'Lista de árboles',
-            onPressed: () async {
-              final cambio = await Navigator.of(context).push<bool>(
-                MaterialPageRoute(builder: (_) => PantallaListaArboles()),
-              );
-              if (cambio == true) _cargarTodo();
-            },
-          ),
-          PopupMenuButton<_AccionMenu>(
-            tooltip: 'Más',
-            onSelected: (a) async {
-              switch (a) {
-                case _AccionMenu.hoy:
-                  await Navigator.of(context).push<void>(
-                    MaterialPageRoute(builder: (_) => PantallaHoy()),
-                  );
-                  break;
-                case _AccionMenu.guia:
-                  await Navigator.of(context).push<void>(
-                    MaterialPageRoute(builder: (_) => PantallaGuia()),
-                  );
-                  break;
-                case _AccionMenu.informeMunicipal:
-                  await Navigator.of(context).push<void>(
-                    MaterialPageRoute(builder: (_) => PantallaInformeMunicipal()),
-                  );
-                  break;
-                case _AccionMenu.ajustes:
-                  await Navigator.of(context).push<void>(
-                    MaterialPageRoute(builder: (_) => PantallaAjustes()),
-                  );
-                  break;
-              }
-            },
-            itemBuilder: (_) => [
-              const PopupMenuItem(
-                value: _AccionMenu.hoy,
-                child: ListTile(
-                  leading: Icon(Icons.today),
-                  title: Text('Hoy'),
-                  contentPadding: EdgeInsets.zero,
-                ),
-              ),
-              const PopupMenuItem(
-                value: _AccionMenu.guia,
-                child: ListTile(
-                  leading: Icon(Icons.menu_book),
-                  title: Text('Guía de plagas'),
-                  contentPadding: EdgeInsets.zero,
-                ),
-              ),
-              const PopupMenuItem(
-                value: _AccionMenu.informeMunicipal,
-                child: ListTile(
-                  leading: Icon(Icons.description),
-                  title: Text('Informe municipal'),
-                  contentPadding: EdgeInsets.zero,
-                ),
-              ),
-              PopupMenuItem(
-                value: _AccionMenu.ajustes,
-                child: ListTile(
-                  leading: const Icon(Icons.settings),
-                  title: Text(SoleraL10n.t('ajustes')),
-                  contentPadding: EdgeInsets.zero,
-                ),
-              ),
-            ],
-          ),
         ],
       ),
-      // Aviso de versión nueva encima del mapa (no ocupa sitio si no hay).
       body: Column(
         children: [
-          AvisoActualizaciones(
-            config: configActualizacionesMonorepo('solera-arbolado-urbano'),
-            nombreApp: 'Solera Arbolado Urbano',
-            margen: const EdgeInsets.all(8),
-          ),
           Expanded(
             child: Stack(
               children: [

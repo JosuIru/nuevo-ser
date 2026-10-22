@@ -9,6 +9,7 @@ import '../datos/catalogos_generados/catalogo_especies_arboreas.dart';
 import '../datos/catalogos_generados/catalogo_sustratos_alcorque.dart';
 import '../modelos/arbol.dart';
 import '../utiles/permisos_gps.dart';
+import '../utiles/numeros_formulario.dart';
 import 'pantalla_escaner_qr.dart';
 
 /// Alta o edición de árbol. Modo alta: `arbolExistente == null`.
@@ -195,8 +196,8 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
         'especie_id': idEspecie,
         'edad_estimada_anos': int.tryParse(_controladorEdad.text.trim()),
         'fecha_plantacion_ms': _fechaPlantacion?.millisecondsSinceEpoch,
-        'perimetro_tronco_cm': double.tryParse(_controladorPerimetro.text.replaceAll(',', '.')),
-        'altura_estimada_metros': double.tryParse(_controladorAltura.text.replaceAll(',', '.')),
+        'perimetro_tronco_cm': medidaDesdeTexto(_controladorPerimetro.text),
+        'altura_estimada_metros': medidaDesdeTexto(_controladorAltura.text),
         'riesgo_vta': _riesgoVta,
         'estado': _estadoString(_estado),
         'tipo_alcorque_id': idAlcorque,
@@ -223,8 +224,8 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
         especieId: idEspecie,
         edadEstimadaAnos: int.tryParse(_controladorEdad.text.trim()),
         fechaPlantacionMs: _fechaPlantacion?.millisecondsSinceEpoch,
-        perimetroTroncoCm: double.tryParse(_controladorPerimetro.text.replaceAll(',', '.')),
-        alturaEstimadaMetros: double.tryParse(_controladorAltura.text.replaceAll(',', '.')),
+        perimetroTroncoCm: medidaDesdeTexto(_controladorPerimetro.text),
+        alturaEstimadaMetros: medidaDesdeTexto(_controladorAltura.text),
         riesgoVta: _riesgoVta,
         estado: _estado,
         tipoAlcorqueId: idAlcorque,
@@ -304,6 +305,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
                 Expanded(
                   child: TextFormField(
                     controller: _controladorPerimetro,
+                    validator: validarMedidaOpcional,
                     decoration: const InputDecoration(
                       labelText: 'Perímetro tronco (cm)',
                       border: OutlineInputBorder(),
@@ -316,6 +318,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
                 Expanded(
                   child: TextFormField(
                     controller: _controladorAltura,
+                    validator: validarMedidaOpcional,
                     decoration: const InputDecoration(
                       labelText: 'Altura (m)',
                       border: OutlineInputBorder(),

@@ -147,6 +147,7 @@ Future<File> generarInformeMunicipal({
     ..sort((a, b) => int.parse(b[1]).compareTo(int.parse(a[1])));
 
   return generarInformePeriodicoPdf(
+    tema: await temaPdfSolera(),
     tituloCabecera: tituloCabecera,
     subtituloCabecera: subtituloCabecera,
     bulletsResumen: bullets,

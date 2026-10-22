@@ -1,7 +1,7 @@
 name: solera_arbolado_urbano
 description: "Solera Arbolado Urbano — inventario y gestión sanitaria de árboles urbanos para ayuntamientos y empresas de jardinería. QR municipal, partes de poda, libro municipal."
 publish_to: 'none'
-version: 0.1.2+3
+version: 0.1.3+4
 
 environment:
   sdk: ^3.5.0

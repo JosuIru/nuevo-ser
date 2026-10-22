@@ -362,9 +362,27 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
 
   void _anadirLinea() {
     final desc = _descCtrl.text.trim();
-    final cant = int.tryParse(_cantCtrl.text) ?? 1;
-    final precio = double.tryParse(_precioCtrl.text) ?? 0;
     if (desc.isEmpty) return;
+    // Vacío = 1 unidad / 0 €; lo escrito que no se entienda, se avisa
+    // en vez de guardarlo como 0 (p. ej. «1.200,50» ya no da 0 €).
+    final textoCantidad = _cantCtrl.text.trim();
+    final textoPrecio = _precioCtrl.text.trim();
+    final cantidadLeida =
+        textoCantidad.isEmpty ? 1.0 : leerNumero(textoCantidad, nullSiAmbiguo: true);
+    final precioLeido =
+        textoPrecio.isEmpty ? 0.0 : leerNumero(textoPrecio, puntoDeMillares: true);
+    if (cantidadLeida == null || precioLeido == null) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(cantidadLeida == null
+              ? 'Cantidad no válida. Escríbela como 2 o 2,5.'
+              : 'Precio no válido. Escríbelo como 1.200,50.')));
+      return;
+    }
+    // Las cantidades enteras se guardan como int, como hasta ahora.
+    final num cant = cantidadLeida == cantidadLeida.roundToDouble()
+        ? cantidadLeida.round()
+        : cantidadLeida;
+    final precio = precioLeido;
     setState(() {
       _lineas.add({
         'descripcion': desc,

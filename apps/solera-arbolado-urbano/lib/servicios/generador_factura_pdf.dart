@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -17,7 +18,7 @@ class GeneradorFacturaPdf {
     String emisorTelefono = '',
     String emisorEmail = '',
   }) async {
-    final doc = pw.Document();
+    final doc = pw.Document(theme: await temaPdfSolera());
     final lineas = jsonDecode(factura.lineasJson) as List<dynamic>;
 
     doc.addPage(
@@ -75,7 +76,7 @@ class GeneradorFacturaPdf {
                 <String>['Descripción', 'Cantidad', 'Precio', 'Importe'],
                 ...lineas.map((l) => [
                       (l['descripcion'] as String?) ?? '',
-                      (l['cantidad'] as num?)?.toStringAsFixed(0) ?? '1',
+                      _textoCantidad(l['cantidad'] as num?),
                       '${(l['precioUnitario'] as num?)?.toStringAsFixed(2) ?? "0.00"}€',
                       '${(l['importe'] as num?)?.toStringAsFixed(2) ?? "0.00"}€',
                     ]),
@@ -118,5 +119,13 @@ class GeneradorFacturaPdf {
       ),
     );
     return doc;
+  }
+
+  /// Cantidad de una línea: entera sin decimales («2»); con decimales,
+  /// a la española («2,5»), que antes se redondeaba.
+  String _textoCantidad(num? cantidad) {
+    if (cantidad == null) return '1';
+    if (cantidad == cantidad.roundToDouble()) return cantidad.toStringAsFixed(0);
+    return cantidad.toString().replaceAll('.', ',');
   }
 }

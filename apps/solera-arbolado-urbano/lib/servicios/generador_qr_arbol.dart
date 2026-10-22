@@ -1,3 +1,4 @@
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
@@ -13,7 +14,7 @@ class GeneradorQrArbol {
     required String municipio,
     String? calidadImagen, // Sin uso directo; mantenemos compatibilidad
   }) async {
-    final doc = pw.Document();
+    final doc = pw.Document(theme: await temaPdfSolera());
 
     // Generar cada QR como imagen inline usando el widget PdfQrCode
     for (final arbol in arboles) {

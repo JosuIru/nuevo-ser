@@ -84,9 +84,10 @@ class ActualizacionDisponible {
       );
 }
 
-/// Tiempo entre dos comprobaciones contra GitHub. 24h evita gastar la
-/// cuota anónima (60 req/h por IP) y respeta al usuario en datos.
-const Duration _ttlCache = Duration(hours: 24);
+/// Tiempo entre dos comprobaciones contra GitHub. 3 h: una versión nueva
+/// se ve el mismo día sin gastar la cuota anónima (60 req/h por IP); la
+/// respuesta pesa unos pocos KB.
+const Duration _ttlCache = Duration(hours: 3);
 
 const String _claveTimestampPrefijo =
     'nuevo_ser_core.actualizaciones.ts.';
@@ -95,7 +96,7 @@ const String _claveResultadoPrefijo =
 
 /// Comprueba si hay una versión nueva disponible.
 ///
-/// - Cachea el resultado 24h en `SharedPreferences` (clave dependiente
+/// - Cachea el resultado 3 h en `SharedPreferences` (clave dependiente
 ///   de la config para que cada app tenga el suyo).
 /// - Si la última comprobación es reciente, devuelve el resultado
 ///   cacheado sin tocar la red. `forzarRefresco: true` salta el caché.

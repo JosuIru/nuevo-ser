@@ -196,7 +196,7 @@ class _Fila extends StatelessWidget {
 }
 
 /// Aviso para la pantalla de inicio de cada app: comprueba al arrancar
-/// (con la caché de 24 h) y, si hay versión nueva, enseña el banner. Al
+/// (con la caché de 3 h) y, si hay versión nueva, enseña el banner. Al
 /// tocarlo abre [PantallaEstadoActualizaciones]. Si no hay nada, no ocupa
 /// sitio.
 class AvisoActualizaciones extends StatefulWidget {

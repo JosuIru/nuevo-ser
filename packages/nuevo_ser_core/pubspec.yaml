@@ -15,6 +15,10 @@ dependencies:
   # nuevo-ser-core: register/login/sync/account/audio).
   http: ^1.2.0
 
+  # Coordenadas del buscador de lugares (src/mapa/); las apps con mapa ya
+  # la usan por flutter_map.
+  latlong2: ^0.9.1
+
   # Persistencia local de perfiles y progreso. shared_preferences es la
   # solución de v0.x; v1.5 migrará a Isar.
   shared_preferences: ^2.2.2

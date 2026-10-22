@@ -41,6 +41,7 @@ export 'src/pdf/informe_periodico.dart';
 export 'src/pdf/widgets_pdf.dart';
 export 'src/pdf/tema_pdf.dart';
 export 'src/utiles/numeros.dart';
+export 'src/mapa/buscador_lugares.dart';
 // Nota: el módulo `calibration/` se expone por path explícito desde
 // los juegos que lo necesitan, no desde este barrel — `NivelConfianza`
 // es un nombre que otros juegos (p. ej. el-cuaderno) usan para

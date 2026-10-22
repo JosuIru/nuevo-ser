@@ -49,9 +49,9 @@ Cuando los docs de este repo dicen "la Colección" sin más, se refieren a Kids.
 
 ## Apps del operador — extraídas a `cuadernos-de-campo/`
 
-`fosiles` y `naturaleza` (apps de operador para adulto aficionado) se separaron de este monorepo el **2026-05-19** y viven ahora en el repo sibling `~/Projects/games/cuadernos-de-campo/`. Mantienen su historia git completa vía `git subtree split`.
+`fosiles` y `naturaleza` (apps de operador para adulto aficionado) se separaron de este monorepo el **2026-05-19** y viven ahora en el repo `~/Projects/juegos/cuadernos-de-campo/` (también accesible por el enlace `~/Projects/games`). Mantienen su historia git completa vía `git subtree split`.
 
-**Dependencia que sigue viva**: ambas apps importan `packages/nuevo_ser_core` de ESTE repo vía `path: ../../../nuevo-ser/packages/nuevo_ser_core` en sus pubspec.yaml. Cuando se actualiza `nuevo_ser_core` aquí, las apps del otro repo lo recogen al hacer `flutter pub get`.
+**Dependencia que sigue viva**: ambas apps importan `packages/nuevo_ser_core` de ESTE repo vía `path: ../../../nuevo-ser/packages/nuevo_ser_core` en sus pubspec.yaml; esa ruta resuelve por el enlace `~/Projects/juegos/nuevo-ser → ~/Projects/monorepo-nuevo-ser` (creado el 2026-10-22: sin él no compilan). Cuando se actualiza `nuevo_ser_core` aquí, las apps del otro repo lo recogen al hacer `flutter pub get`.
 
 **Backend de Fósiles Comunidad**: el wp-plugin (`wp-plugin/nuevo-ser-core/`, clases `class-ns-fosiles-comunidad.php` y `class-ns-fosiles-admin.php`) y el seed JSON (`wp-plugin/nuevo-ser-core/seeds/fosiles_formaciones.json`) **siguen en este repo**, ride sobre la infraestructura compartida del plugin (NS_Esquema, NS_Activacion, NS_Auth_Adulto). El cliente Flutter del módulo está en cuadernos-de-campo, el servidor aquí.
 

@@ -1,6 +1,6 @@
 # Las Versiones — CLAUDE.md
 
-Cerebro persistente del proyecto. Se lee al inicio de cada sesión. Se mantiene corto. Para detalle: docs canónicos en `~/Projects/games/coleccion-nuevo-ser-paquete-documental-v0.2/coleccion-nuevo-ser/las-versiones/`.
+Cerebro persistente del proyecto. Se lee al inicio de cada sesión. Se mantiene corto. Para detalle: docs canónicos en `~/Projects/nuevo-ser/coleccion-nuevo-ser-paquete-documental-v0.2/coleccion-nuevo-ser/las-versiones/`.
 
 ## Encuadre del programa
 
@@ -70,7 +70,7 @@ Cuando el código toque alguna de estas áreas, el PR queda **pendiente de valid
 
 ## Documentos de diseño
 
-En `~/Projects/games/coleccion-nuevo-ser-paquete-documental-v0.2/coleccion-nuevo-ser/las-versiones/`. Al empezar tarea → solo los relevantes:
+En `~/Projects/nuevo-ser/coleccion-nuevo-ser-paquete-documental-v0.2/coleccion-nuevo-ser/las-versiones/`. Al empezar tarea → solo los relevantes:
 
 - `01-biblia.md` — espíritu del juego (v0.2, Maren provisional pero ya cerrada en doc 14).
 - `02-mapa-habilidades-atomicas.md` — 65 habilidades del MVP.

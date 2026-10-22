@@ -230,7 +230,7 @@ uno-roto/
 ## Comandos habituales
 
 ```bash
-# Desde apps/uno-roto/ del monorepo (raíz: /home/josu/Projects/games/nuevo-ser/):
+# Desde apps/uno-roto/ del monorepo (raíz: /home/josu/Projects/monorepo-nuevo-ser/):
 flutter analyze
 flutter test
 flutter run -d linux        # desktop debug

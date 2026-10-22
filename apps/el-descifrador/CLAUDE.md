@@ -30,7 +30,7 @@ Sin mecánica. Sin contenido. Sin assets. Sin motor. Sin corpus. La producción 
 
 ## Documentos de diseño (paquete v0.1)
 
-Vive fuera del monorepo en `~/Projects/games/el-descifrador-paquete-documental-v0.1/`. Doce documentos canónicos + catálogo seminal de muestra + propuesta de Fase 1.
+Vive fuera del monorepo en `~/Projects/juegos/el-descifrador-paquete-documental-v0.1/`. Doce documentos canónicos + catálogo seminal de muestra + propuesta de Fase 1.
 
 Al empezar tarea → solo los relevantes (contexto limitado):
 
@@ -103,7 +103,7 @@ Heredadas del monorepo (`/CLAUDE.md`) + las del manifiesto Kids + las de este ju
 ## Comandos habituales
 
 ```bash
-# Desde apps/el-descifrador/ del monorepo (raíz: /home/josu/Projects/games/nuevo-ser/):
+# Desde apps/el-descifrador/ del monorepo (raíz: /home/josu/Projects/monorepo-nuevo-ser/):
 flutter analyze
 flutter test
 flutter run -d linux        # desktop debug

@@ -107,7 +107,8 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
           child: Padding(
             padding: EdgeInsets.all(24),
             child: Text(
-              'No hay ninguna campaña abierta. Crea una desde Ajustes '
+              'No hay ninguna campaña abierta. Crea una en Registros → '
+              'Campañas de recolección '
               'antes de registrar partidas.',
               textAlign: TextAlign.center,
             ),

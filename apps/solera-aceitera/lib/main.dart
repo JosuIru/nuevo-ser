@@ -7,9 +7,9 @@
 //          ├── Hoy        — dashboard de la campaña activa
 //          ├── Mapa       — flutter_map con parcelas que tienen coords
 //          ├── Parcelas   — listado + ficha + alta + tratamientos
-//          ├── Lotes      — listado + ficha (con movimientos y analíticas)
-//          ├── Libro      — vista cronológica del libro de movimientos
-//          └── Ajustes    — titular, olivar y gestión de campañas
+//          ├── Registros  — libro de movimientos del aceite, lotes,
+//          │                campañas, cuaderno PAC y libro económico
+//          └── Ajustes    — titular, olivar, IA, idioma, copia de seguridad
 //
 // Detalle de fase y diferenciadores en `CLAUDE.md` del paquete.
 
@@ -20,17 +20,24 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'branding.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_hoy.dart';
-import 'pantallas/pantalla_libro_aceite.dart';
-import 'pantallas/pantalla_lista_lotes.dart';
 import 'pantallas/pantalla_lista_parcelas.dart';
 import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_onboarding.dart';
+import 'pantallas/pantalla_registros.dart';
+import 'servicios/copia_seguridad_aceitera.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
   await initializeDateFormatting('es_ES', null);
+  // Si la app murió a mitad de restaurar una copia, deshacerlo antes de
+  // abrir la base de datos por primera vez.
+  try {
+    await servicioCopiaSeguridadAceitera.recuperarRestauracionInterrumpida();
+  } catch (error) {
+    debugPrint('No se pudo revisar una restauración interrumpida: $error');
+  }
   runApp(const AppSoleraAceitera());
 }
 
@@ -87,7 +94,12 @@ class _OrquestadorState extends State<_Orquestador> {
         alTerminar: () => setState(() => _mostrarOnboarding = false),
       );
     }
-    return const PantallaPrincipal();
+    // Tras restaurar una copia se reconstruye todo con datos nuevos.
+    return ValueListenableBuilder<int>(
+      valueListenable: generacionDatosAceitera,
+      builder: (_, generacion, __) =>
+          PantallaPrincipal(key: ValueKey(generacion)),
+    );
   }
 }
 
@@ -105,8 +117,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     PantallaHoy(),
     PantallaMapa(),
     PantallaListaParcelas(),
-    PantallaListaLotes(),
-    PantallaLibroAceite(),
+    PantallaRegistros(),
     PantallaAjustes(),
   ];
 
@@ -134,14 +145,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             label: 'Parcelas',
           ),
           NavigationDestination(
-            icon: Icon(Icons.water_drop_outlined),
-            selectedIcon: Icon(Icons.water_drop),
-            label: 'Lotes',
-          ),
-          NavigationDestination(
             icon: Icon(Icons.menu_book_outlined),
             selectedIcon: Icon(Icons.menu_book),
-            label: 'Libro',
+            label: 'Registros',
           ),
           NavigationDestination(
             icon: Icon(Icons.settings_outlined),

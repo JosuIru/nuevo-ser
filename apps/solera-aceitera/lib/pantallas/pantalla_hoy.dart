@@ -6,6 +6,9 @@ import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
 import '../modelos/lote_aceite.dart';
 import '../modelos/olivar.dart';
+import 'pantalla_campanias.dart';
+import 'pantalla_ficha_lote.dart';
+import 'pantalla_lista_lotes.dart';
 import 'widgets/banner_catalogos_provisionales.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
 
@@ -24,6 +27,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
   Olivar? _olivar;
   Campania? _campaniaActiva;
   List<LoteAceite> _ultimosLotes = const [];
+  int _conteoLotes = 0;
   int _conteoParcelas = 0;
 
   @override
@@ -48,8 +52,16 @@ class _PantallaHoyState extends State<PantallaHoy> {
       _olivar = olivar;
       _campaniaActiva = activa;
       _ultimosLotes = lotes.take(5).toList(growable: false);
+      _conteoLotes = lotes.length;
       _conteoParcelas = parcelas.length;
     });
+  }
+
+  /// Abre una pantalla encima y, al volver, recarga el resumen.
+  Future<void> _abrir(WidgetBuilder construirPantalla) async {
+    await Navigator.of(context)
+        .push(MaterialPageRoute(builder: construirPantalla));
+    if (mounted) await _cargar();
   }
 
   @override
@@ -73,16 +85,28 @@ class _PantallaHoyState extends State<PantallaHoy> {
             _TarjetaCampania(
               campania: _campaniaActiva,
               formatoFecha: _formatoFecha,
+              alPulsar: () => _abrir((_) => const PantallaCampanias()),
             ),
             const SizedBox(height: 12),
             _TarjetaConteos(
               parcelas: _conteoParcelas,
-              lotes: _ultimosLotes.length,
+              lotes: _conteoLotes,
             ),
             const SizedBox(height: 24),
-            const Text(
-              'Últimos lotes',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            Row(
+              children: [
+                const Expanded(
+                  child: Text(
+                    'Últimos lotes',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => _abrir((_) => const PantallaListaLotes()),
+                  child: const Text('Ver todos'),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
             if (_ultimosLotes.isEmpty)
@@ -90,7 +114,8 @@ class _PantallaHoyState extends State<PantallaHoy> {
                 child: Padding(
                   padding: EdgeInsets.all(16),
                   child: Text(
-                    'Todavía no hay lotes de aceite. Crea uno desde "Lotes".',
+                    'Todavía no hay lotes de aceite. Nacen al molturar una '
+                    'partida: Registros → Lotes de aceite.',
                   ),
                 ),
               )
@@ -104,6 +129,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                       trailing: Text(_formatoFecha
                           .format(DateTime.fromMillisecondsSinceEpoch(
                               l.fechaCreacionMs))),
+                      onTap: () => _abrir((_) => PantallaFichaLote(lote: l)),
                     ),
                   )),
           ],
@@ -116,17 +142,25 @@ class _PantallaHoyState extends State<PantallaHoy> {
 class _TarjetaCampania extends StatelessWidget {
   final Campania? campania;
   final DateFormat formatoFecha;
+  final VoidCallback alPulsar;
 
-  const _TarjetaCampania({required this.campania, required this.formatoFecha});
+  const _TarjetaCampania({
+    required this.campania,
+    required this.formatoFecha,
+    required this.alPulsar,
+  });
 
   @override
   Widget build(BuildContext context) {
     if (campania == null) {
-      return const Card(
+      return Card(
         child: ListTile(
-          leading: Icon(Icons.calendar_today, color: Color(0xFF5C6B3A)),
-          title: Text('Sin campaña abierta'),
-          subtitle: Text('Crea una desde Ajustes para empezar a registrar.'),
+          leading: const Icon(Icons.calendar_today, color: Color(0xFF5C6B3A)),
+          title: const Text('Sin campaña abierta'),
+          subtitle: const Text('Toca para abrir una (también en Registros → '
+              'Campañas de recolección).'),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: alPulsar,
         ),
       );
     }
@@ -140,6 +174,8 @@ class _TarjetaCampania extends StatelessWidget {
           'Inicio: ${formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(c.fechaInicioMs))}'
           ' · Rendimiento medio: ${c.rendimientoMedioPorcentaje.toStringAsFixed(1)} %',
         ),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: alPulsar,
       ),
     );
   }

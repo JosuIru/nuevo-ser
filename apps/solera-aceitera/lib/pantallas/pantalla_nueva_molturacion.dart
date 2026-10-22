@@ -119,7 +119,8 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
           child: Padding(
             padding: EdgeInsets.all(24),
             child: Text(
-              'No hay ninguna campaña abierta. Crea una desde Ajustes.',
+              'No hay ninguna campaña abierta. Crea una en Registros → '
+              'Campañas de recolección.',
               textAlign: TextAlign.center,
             ),
           ),

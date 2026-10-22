@@ -1,7 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_plagas_olivo.dart';
 import '../datos/catalogos_generados/catalogo_variedades_olivo.dart';
@@ -69,14 +68,9 @@ class ResultadoIdentificacionVariedad {
   bool get validadoPorCatalogo => idCatalogo.isNotEmpty;
 }
 
-class ErrorIA implements Exception {
-  final String mensaje;
-  ErrorIA(this.mensaje);
-  @override
-  String toString() => 'ErrorIA: $mensaje';
-}
-
-/// Cliente de la API Messages de Anthropic con vision para olivar.
+/// Identificación por foto en el olivar con Claude (Haiku 5.5). El
+/// transporte (petición, imagen, errores) es el `ClienteClaude` común
+/// del core; aquí quedan los prompts y el cruce con los catálogos.
 /// Dos modos:
 ///
 ///   * `diagnosticarPlaga` — la foto muestra hoja, aceituna, brote o
@@ -95,24 +89,25 @@ class ErrorIA implements Exception {
 /// **Hard limit**: la IA NUNCA recomienda productos comerciales por
 /// marca. Sólo manejo cultural + sustancias activas autorizadas en
 /// olivar. Restringido a nivel de system prompt.
+///
+/// Los fallos llegan como [ErrorClaude], con el mensaje para la persona
+/// (clave no válida, sin conexión, negativa por los filtros…).
 class ClienteAnthropic {
-  static const _modelo = 'claude-haiku-4-5';
-  static const _endpoint = 'https://api.anthropic.com/v1/messages';
-  static const _version = '2023-06-01';
+  final ClienteClaude _clienteClaude;
 
-  final String claveApi;
-  ClienteAnthropic(this.claveApi);
+  ClienteAnthropic(String claveApi)
+      : _clienteClaude = ClienteClaude(claveApi: claveApi);
 
   Future<ResultadoDiagnosticoPlaga> diagnosticarPlaga({
     required File foto,
     String observacionesUsuario = '',
   }) async {
-    final texto = await _enviar(
+    final json = await _pedirJsonConFoto(
       foto: foto,
       promptSistema: _promptSistemaPlaga,
       promptUsuario: _construirPromptPlaga(observacionesUsuario),
     );
-    final base = parsearDiagnosticoPlaga(texto);
+    final base = diagnosticoPlagaDesdeJson(json);
     return base.copyConCatalogo(
       idCatalogo: matchearPlagaConCatalogo(
         nombreComun: base.nombreComun,
@@ -125,92 +120,30 @@ class ClienteAnthropic {
     required File foto,
     String observacionesUsuario = '',
   }) async {
-    final texto = await _enviar(
+    final json = await _pedirJsonConFoto(
       foto: foto,
       promptSistema: _promptSistemaVariedad,
       promptUsuario: _construirPromptVariedad(observacionesUsuario),
     );
-    final base = parsearIdentificacionVariedad(texto);
+    final base = identificacionVariedadDesdeJson(json);
     return base.copyConCatalogo(
       idCatalogo: matchearVariedadConCatalogo(base.nombreCanonico),
     );
   }
 
-  Future<String> _enviar({
+  Future<Map<String, dynamic>> _pedirJsonConFoto({
     required File foto,
     required String promptSistema,
     required String promptUsuario,
   }) async {
-    final bytes = await foto.readAsBytes();
-    if (bytes.length > 5 * 1024 * 1024) {
-      throw ErrorIA(
-        'La foto pesa más de 5 MB y la API la rechazará. '
-        'Reduce el tamaño antes de enviarla.',
-      );
-    }
-    final base64Foto = base64Encode(bytes);
-    final mediaType = detectarTipoMedia(foto.path);
-
-    final cuerpo = jsonEncode({
-      'model': _modelo,
-      'max_tokens': 1024,
-      'system': promptSistema,
-      'messages': [
-        {
-          'role': 'user',
-          'content': [
-            {
-              'type': 'image',
-              'source': {
-                'type': 'base64',
-                'media_type': mediaType,
-                'data': base64Foto,
-              },
-            },
-            {
-              'type': 'text',
-              'text': promptUsuario,
-            },
-          ],
-        },
-      ],
-    });
-
-    final respuesta = await http.post(
-      Uri.parse(_endpoint),
-      headers: {
-        'x-api-key': claveApi,
-        'anthropic-version': _version,
-        'content-type': 'application/json',
-      },
-      body: cuerpo,
-    ).timeout(const Duration(seconds: 60));
-
-    if (respuesta.statusCode == 401) {
-      throw ErrorIA('Clave Anthropic inválida o caducada. Revisa Ajustes.');
-    }
-    if (respuesta.statusCode == 429) {
-      throw ErrorIA(
-          'Rate limit alcanzado en Anthropic. Espera unos minutos.');
-    }
-    if (respuesta.statusCode != 200) {
-      throw ErrorIA('Error HTTP ${respuesta.statusCode}: ${respuesta.body}');
-    }
-
-    final json = jsonDecode(utf8.decode(respuesta.bodyBytes))
-        as Map<String, dynamic>;
-    final contenido = (json['content'] as List?) ?? const [];
-    final buffer = StringBuffer();
-    for (final bloque in contenido) {
-      if (bloque is Map && bloque['type'] == 'text') {
-        buffer.write(bloque['text']?.toString() ?? '');
-      }
-    }
-    final texto = buffer.toString();
-    if (texto.isEmpty) {
-      throw ErrorIA('Respuesta vacía de la IA.');
-    }
-    return texto;
+    final imagen = await ImagenClaude.desdeFichero(foto.path);
+    return _clienteClaude.pedirJson(
+      modelo: modeloClaudeRapido,
+      sistema: promptSistema,
+      mensajes: [MensajeClaude.usuario(promptUsuario, imagenes: [imagen])],
+      maxTokens: 4096,
+      esfuerzo: EsfuerzoClaude.bajo,
+    );
   }
 }
 
@@ -325,46 +258,54 @@ String _construirPromptVariedad(String observaciones) {
 // ────────────────────── Parsing y matching ──────────────────────
 
 /// Expone el parser de la respuesta de plagas como función pública
-/// para que los tests puedan ejercerlo sin hacer HTTP.
-ResultadoDiagnosticoPlaga parsearDiagnosticoPlaga(String texto) {
-  final limpio = _limpiarMarkdown(texto);
-  try {
-    final json = jsonDecode(limpio) as Map<String, dynamic>;
-    return ResultadoDiagnosticoPlaga(
-      nombreComun: (json['nombre_comun'] as String?) ?? 'Sin diagnóstico',
-      nombreCientifico: (json['nombre_cientifico'] as String?) ?? '',
-      tipo: (json['tipo'] as String?) ?? 'indeterminado',
-      severidad: (json['severidad'] as num?)?.toInt(),
-      confianza: ((json['confianza'] as num?)?.toDouble() ?? 0)
-          .clamp(0, 1)
-          .toDouble(),
-      manejoCultural: (json['manejo_cultural'] as String?) ?? '',
-      advertencia: (json['advertencia'] as String?) ?? '',
+/// para que los tests puedan ejercerlo sin hacer HTTP. Tolera vallas
+/// ```json``` y texto alrededor; si no hay objeto JSON lanza
+/// [ErrorClaude] (`respuestaRara`).
+ResultadoDiagnosticoPlaga parsearDiagnosticoPlaga(String texto) =>
+    diagnosticoPlagaDesdeJson(_objetoJsonDe(texto));
+
+/// Diagnóstico a partir del objeto JSON ya leído.
+ResultadoDiagnosticoPlaga diagnosticoPlagaDesdeJson(
+        Map<String, dynamic> json) =>
+    ResultadoDiagnosticoPlaga(
+      nombreComun: _textoDe(json['nombre_comun'], 'Sin diagnóstico'),
+      nombreCientifico: _textoDe(json['nombre_cientifico'], ''),
+      tipo: _textoDe(json['tipo'], 'indeterminado'),
+      severidad: (json['severidad'] is num)
+          ? (json['severidad'] as num).toInt()
+          : null,
+      confianza: _confianzaDe(json['confianza']),
+      manejoCultural: _textoDe(json['manejo_cultural'], ''),
+      advertencia: _textoDe(json['advertencia'], ''),
     );
-  } catch (e) {
-    throw ErrorIA(
-        'La respuesta de la IA no era JSON válido: $e\nTexto recibido: $limpio');
-  }
-}
 
 /// Parser de la respuesta de identificación de variedades.
-ResultadoIdentificacionVariedad parsearIdentificacionVariedad(String texto) {
-  final limpio = _limpiarMarkdown(texto);
-  try {
-    final json = jsonDecode(limpio) as Map<String, dynamic>;
-    return ResultadoIdentificacionVariedad(
-      nombreCanonico:
-          (json['nombre_canonico'] as String?) ?? 'indeterminado',
-      confianza: ((json['confianza'] as num?)?.toDouble() ?? 0)
-          .clamp(0, 1)
-          .toDouble(),
-      advertencia: (json['advertencia'] as String?) ?? '',
+ResultadoIdentificacionVariedad parsearIdentificacionVariedad(String texto) =>
+    identificacionVariedadDesdeJson(_objetoJsonDe(texto));
+
+/// Identificación de variedad a partir del objeto JSON ya leído.
+ResultadoIdentificacionVariedad identificacionVariedadDesdeJson(
+        Map<String, dynamic> json) =>
+    ResultadoIdentificacionVariedad(
+      nombreCanonico: _textoDe(json['nombre_canonico'], 'indeterminado'),
+      confianza: _confianzaDe(json['confianza']),
+      advertencia: _textoDe(json['advertencia'], ''),
     );
-  } catch (e) {
-    throw ErrorIA(
-        'La respuesta de la IA no era JSON válido: $e\nTexto recibido: $limpio');
+
+Map<String, dynamic> _objetoJsonDe(String texto) {
+  final objeto = ClienteClaude.extraerObjetoJson(texto);
+  if (objeto == null) {
+    throw ErrorClaude(MotivoErrorClaude.respuestaRara,
+        'Claude no ha devuelto los datos en el formato esperado. Inténtalo de nuevo.');
   }
+  return objeto;
 }
+
+String _textoDe(Object? valor, String porDefecto) =>
+    valor is String ? valor : porDefecto;
+
+double _confianzaDe(Object? valor) =>
+    (valor is num ? valor.toDouble() : 0.0).clamp(0, 1).toDouble();
 
 /// Devuelve el `id` de la plaga del catálogo que mejor case con los
 /// nombres devueltos por la IA, o cadena vacía si no encuentra ninguna.
@@ -425,26 +366,6 @@ String matchearVariedadConCatalogo(String nombreCanonico) {
     }
   }
   return '';
-}
-
-String detectarTipoMedia(String ruta) {
-  final lower = ruta.toLowerCase();
-  if (lower.endsWith('.png')) return 'image/png';
-  if (lower.endsWith('.gif')) return 'image/gif';
-  if (lower.endsWith('.webp')) return 'image/webp';
-  return 'image/jpeg';
-}
-
-String _limpiarMarkdown(String texto) {
-  var limpio = texto.trim();
-  if (limpio.startsWith('```')) {
-    final primerSalto = limpio.indexOf('\n');
-    if (primerSalto != -1) limpio = limpio.substring(primerSalto + 1);
-    if (limpio.endsWith('```')) {
-      limpio = limpio.substring(0, limpio.length - 3).trim();
-    }
-  }
-  return limpio;
 }
 
 String _normalizar(String texto) {

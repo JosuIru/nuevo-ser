@@ -7,7 +7,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 /// Formulario rápido para registrar una recolección sobre una parcela
 /// concreta. Requiere una campaña abierta — si no hay, redirige al
-/// usuario a Ajustes para crearla.
+/// usuario a Registros → Campañas para crearla.
 class PantallaNuevaRecoleccion extends StatefulWidget {
   final int parcelaId;
 
@@ -81,7 +81,8 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
           child: Padding(
             padding: EdgeInsets.all(24),
             child: Text(
-              'No hay ninguna campaña abierta. Crea una desde Ajustes '
+              'No hay ninguna campaña abierta. Crea una en Registros → '
+              'Campañas de recolección '
               'antes de registrar recolecciones.',
               textAlign: TextAlign.center,
             ),

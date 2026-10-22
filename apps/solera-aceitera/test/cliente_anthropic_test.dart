@@ -1,9 +1,10 @@
 // Tests del cliente Anthropic — solo lógica pura (parsing JSON +
-// matching contra catálogo + detección de media type). El método
+// matching contra catálogo + tipo de medio de la foto). El método
 // que hace HTTP no se ejerce aquí; en F2 entrará un test de
 // integración con clave de pruebas o un mock-server.
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:solera_aceitera/servicios/cliente_anthropic.dart';
 
 void main() {
@@ -50,10 +51,10 @@ void main() {
       expect(r.advertencia, contains('sombra'));
     });
 
-    test('Lanza ErrorIA si el JSON es inválido', () {
+    test('Lanza ErrorClaude si no hay JSON', () {
       expect(
         () => parsearDiagnosticoPlaga('no es json'),
-        throwsA(isA<ErrorIA>()),
+        throwsA(isA<ErrorClaude>().having((e) => e.motivo, 'motivo', MotivoErrorClaude.respuestaRara)),
       );
     });
 
@@ -141,18 +142,18 @@ void main() {
     });
   });
 
-  group('detectarTipoMedia', () {
+  group('tipo de medio de la foto (core)', () {
     test('Reconoce las extensiones canónicas', () {
-      expect(detectarTipoMedia('foto.jpg'), equals('image/jpeg'));
-      expect(detectarTipoMedia('foto.jpeg'), equals('image/jpeg'));
-      expect(detectarTipoMedia('foto.png'), equals('image/png'));
-      expect(detectarTipoMedia('foto.gif'), equals('image/gif'));
-      expect(detectarTipoMedia('foto.webp'), equals('image/webp'));
+      expect(ImagenClaude.tipoMediaPorExtension('foto.jpg'), equals('image/jpeg'));
+      expect(ImagenClaude.tipoMediaPorExtension('foto.jpeg'), equals('image/jpeg'));
+      expect(ImagenClaude.tipoMediaPorExtension('foto.png'), equals('image/png'));
+      expect(ImagenClaude.tipoMediaPorExtension('foto.gif'), equals('image/gif'));
+      expect(ImagenClaude.tipoMediaPorExtension('foto.webp'), equals('image/webp'));
     });
 
     test('Cae a jpeg si la extensión es desconocida', () {
-      expect(detectarTipoMedia('foto.heic'), equals('image/jpeg'));
-      expect(detectarTipoMedia('foto'), equals('image/jpeg'));
+      expect(ImagenClaude.tipoMediaPorExtension('foto.heic'), equals('image/jpeg'));
+      expect(ImagenClaude.tipoMediaPorExtension('foto'), equals('image/jpeg'));
     });
   });
 

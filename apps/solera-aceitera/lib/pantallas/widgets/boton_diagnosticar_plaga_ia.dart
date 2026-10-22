@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-import '../../estado/clave_anthropic.dart';
+import '../../estado/clave_anthropic_aceitera.dart';
 import '../../servicios/cliente_anthropic.dart';
-import '../pantalla_clave_anthropic.dart';
 
 /// Botón "Identificar plaga con IA" para usar dentro de un formulario.
 /// Pide foto + observaciones, llama a Claude Vision, muestra el
@@ -14,7 +14,7 @@ import '../pantalla_clave_anthropic.dart';
 /// campos pertinentes (típicamente plaga objetivo y/o observaciones).
 ///
 /// Si la clave Anthropic no está configurada, abre la pantalla
-/// `PantallaClaveAnthropic` directamente.
+/// la pantalla común de la clave directamente.
 class BotonDiagnosticarPlagaIa extends StatefulWidget {
   /// Callback ejecutado cuando el usuario pulsa "Aceptar y pre-rellenar"
   /// en el diálogo de diagnóstico. El formulario usa el resultado para
@@ -37,7 +37,7 @@ class BotonDiagnosticarPlagaIa extends StatefulWidget {
 }
 
 class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
-  final _claveEstado = ClaveAnthropic();
+  final _claveEstado = estadoClaveAnthropicAceitera;
   final _selectorFotos = ImagePicker();
   bool _analizando = false;
 
@@ -45,7 +45,8 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
     if (!await _claveEstado.tieneClave()) {
       if (!mounted) return;
       await Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => const PantallaClaveAnthropic()),
+        MaterialPageRoute(
+            builder: (_) => construirPantallaClaveAnthropicAceitera()),
       );
       if (!await _claveEstado.tieneClave()) return;
     }
@@ -68,10 +69,12 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
       );
       if (!mounted) return;
       await _mostrarResultado(resultado);
-    } on ErrorIA catch (e) {
+    } on ErrorClaude catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.mensaje)));
+          .showSnackBar(SnackBar(
+              duration: const Duration(seconds: 8),
+              content: Text(e.mensaje)));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)

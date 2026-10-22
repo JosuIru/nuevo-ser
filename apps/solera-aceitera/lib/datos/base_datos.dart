@@ -21,6 +21,14 @@ import '../modelos/titular.dart';
 import '../modelos/tratamiento.dart';
 import '../modelos/venta.dart';
 
+/// Nombre del fichero de la BD en la carpeta de documentos. También es
+/// el nombre de la entrada en las copias de seguridad: no cambiarlo.
+const String nombreFicheroBaseDatosAceitera = 'solera_aceitera.db';
+
+/// Versión del esquema que abre la app (`version:` de `openDatabase`).
+/// La copia de seguridad rechaza copias con un esquema más nuevo.
+const int versionEsquemaSoleraAceitera = 2;
+
 /// Acceso a la base de datos local de Solera Aceitera. Singleton con
 /// inicialización perezosa: la primera lectura crea/migra la BD.
 ///
@@ -46,10 +54,10 @@ class BaseDatosSoleraAceitera {
   Future<Database> get basedatos async {
     if (_basedatos != null) return _basedatos!;
     final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, 'solera_aceitera.db');
+    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosAceitera);
     _basedatos = await openDatabase(
       ruta,
-      version: 2,
+      version: versionEsquemaSoleraAceitera,
       onConfigure: (db) async {
         // Activar Foreign Keys. SQLite las desactiva por defecto en cada
         // conexión — sin esto, las cascadas FK no se respetan.
@@ -752,7 +760,8 @@ class BaseDatosSoleraAceitera {
     return filas.map(ApunteGasto.fromMap).toList(growable: false);
   }
 
-  /// Cierra la conexión. Usado por tests para forzar reapertura.
+  /// Cierra la conexión; el siguiente acceso la reabre. Lo usan los
+  /// tests y la copia de seguridad al restaurar.
   Future<void> cerrar() async {
     await _basedatos?.close();
     _basedatos = null;

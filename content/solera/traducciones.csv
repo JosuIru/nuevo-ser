@@ -260,3 +260,18 @@ volumen_(litros),Volumen (litros),,,
 volumen_total_de_leche_(l),Volumen total de leche (L),,,
 zona_de_produccion,Zona de producción,,,
 ⚠️_datos_provisionales_antes_de_usar_par,⚠️ Datos provisionales. Antes de usar para ,,,
+numero_no_valido,"Número no válido (p. ej. 12,5)","Zenbaki okerra (adib. 12,5)","Número no vàlid (p. ex. 12,5)","Número non válido (p. ex. 12,5)"
+importe_no_valido,"Importe no válido (p. ej. 1.200,50)","Zenbateko okerra (adib. 1.200,50)","Import no vàlid (p. ex. 1.200,50)","Importe non válido (p. ex. 1.200,50)"
+no_puede_ser_negativo,No puede ser negativo,Ezin da negatiboa izan,No pot ser negatiu,Non pode ser negativo
+importe_obligatorio,Importe obligatorio,Zenbatekoa derrigorrezkoa da,Import obligatori,Importe obrigatorio
+mayor_que_cero,Tiene que ser mayor que cero,Zero baino handiagoa izan behar du,Ha de ser més gran que zero,Ten que ser maior que cero
+numero_entero_no_valido,Escribe un número entero (p. ej. 12),Idatzi zenbaki oso bat (adib. 12),Escriu un nombre enter (p. ex. 12),Escribe un número enteiro (p. ex. 12)
+seccion_explotacion,Explotación,Ustiapena,Explotació,Explotación
+seccion_registros,Registros y documentos,Erregistroak eta dokumentuak,Registres i documents,Rexistros e documentos
+seccion_integraciones,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
+identificacion_con_ia,Identificación con IA,AA bidezko identifikazioa,Identificació amb IA,Identificación con IA
+seccion_preferencias,Preferencias,Hobespenak,Preferències,Preferencias
+seccion_datos,Datos,Datuak,Dades,Datos
+seccion_aplicacion,Aplicación,Aplikazioa,Aplicació,Aplicación
+comprobar_actualizaciones,Comprobar actualizaciones,Eguneraketak egiaztatu,Comprovar actualitzacions,Comprobar actualizacións
+acerca_de,Acerca de,Honi buruz,Quant a,Acerca de

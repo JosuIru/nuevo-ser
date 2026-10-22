@@ -42,6 +42,10 @@ export 'src/pdf/widgets_pdf.dart';
 export 'src/pdf/tema_pdf.dart';
 export 'src/utiles/numeros.dart';
 export 'src/mapa/buscador_lugares.dart';
+export 'src/utiles/validadores_numero.dart';
+export 'src/servicios/servicio_chat.dart';
+export 'src/servicios/auto_backup.dart';
+export 'src/servicios/servicio_meteo_agro.dart';
 // Nota: el módulo `calibration/` se expone por path explícito desde
 // los juegos que lo necesitan, no desde este barrel — `NivelConfianza`
 // es un nombre que otros juegos (p. ej. el-cuaderno) usan para
@@ -93,6 +97,7 @@ export 'src/ui/galeria_imagenes.dart';
 export 'src/ui/indicador_estado.dart';
 export 'src/ui/selector_fotos.dart';
 export 'src/ui/selector_idioma.dart';
+export 'src/ui/cabecera_seccion_ajustes.dart';
 export 'src/ui/tarjeta_observacion.dart';
 export 'src/ui/tarjeta_resumen.dart';
 export 'src/actualizaciones/banner_actualizacion.dart';

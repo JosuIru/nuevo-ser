@@ -27,6 +27,21 @@ class SoleraL10n {
 
   static String _tEs(String c) {
     switch (c) {
+      case 'seccion_explotacion': return 'Explotación';
+      case 'seccion_registros': return 'Registros y documentos';
+      case 'seccion_integraciones': return 'Inteligencia artificial';
+      case 'identificacion_con_ia': return 'Identificación con IA';
+      case 'seccion_preferencias': return 'Preferencias';
+      case 'seccion_datos': return 'Datos';
+      case 'seccion_aplicacion': return 'Aplicación';
+      case 'comprobar_actualizaciones': return 'Comprobar actualizaciones';
+      case 'acerca_de': return 'Acerca de';
+      case 'numero_no_valido': return 'Número no válido (p. ej. 12,5)';
+      case 'importe_no_valido': return 'Importe no válido (p. ej. 1.200,50)';
+      case 'no_puede_ser_negativo': return 'No puede ser negativo';
+      case 'importe_obligatorio': return 'Importe obligatorio';
+      case 'mayor_que_cero': return 'Tiene que ser mayor que cero';
+      case 'numero_entero_no_valido': return 'Escribe un número entero (p. ej. 12)';
       case '\$_numproveedores_registrados': return '\$_numProveedores registrados';
       case '\$_numrecetas_registradas': return '\$_numRecetas registradas';
       case '1_seleccionar_elemento_para_simular': return '1. Seleccionar elemento para simular';
@@ -259,6 +274,21 @@ class SoleraL10n {
 
   static String _tEu(String c) {
     switch (c) {
+      case 'seccion_explotacion': return 'Ustiapena';
+      case 'seccion_registros': return 'Erregistroak eta dokumentuak';
+      case 'seccion_integraciones': return 'Adimen artifiziala';
+      case 'identificacion_con_ia': return 'AA bidezko identifikazioa';
+      case 'seccion_preferencias': return 'Hobespenak';
+      case 'seccion_datos': return 'Datuak';
+      case 'seccion_aplicacion': return 'Aplikazioa';
+      case 'comprobar_actualizaciones': return 'Eguneraketak egiaztatu';
+      case 'acerca_de': return 'Honi buruz';
+      case 'numero_no_valido': return 'Zenbaki okerra (adib. 12,5)';
+      case 'importe_no_valido': return 'Zenbateko okerra (adib. 1.200,50)';
+      case 'no_puede_ser_negativo': return 'Ezin da negatiboa izan';
+      case 'importe_obligatorio': return 'Zenbatekoa derrigorrezkoa da';
+      case 'mayor_que_cero': return 'Zero baino handiagoa izan behar du';
+      case 'numero_entero_no_valido': return 'Idatzi zenbaki oso bat (adib. 12)';
       case '1_seleccionar_elemento_para_simular': return '1. Simulatzeko elementua hautatu';
       case '2_resultado_de_la_trazabilidad': return '2. Trazabilitatearen emaitza';
       case '3_verificacion_de_la_cadena': return '3. Katearen egiaztapena';
@@ -416,6 +446,21 @@ class SoleraL10n {
 
   static String _tCa(String c) {
     switch (c) {
+      case 'seccion_explotacion': return 'Explotació';
+      case 'seccion_registros': return 'Registres i documents';
+      case 'seccion_integraciones': return 'Intel·ligència artificial';
+      case 'identificacion_con_ia': return 'Identificació amb IA';
+      case 'seccion_preferencias': return 'Preferències';
+      case 'seccion_datos': return 'Dades';
+      case 'seccion_aplicacion': return 'Aplicació';
+      case 'comprobar_actualizaciones': return 'Comprovar actualitzacions';
+      case 'acerca_de': return 'Quant a';
+      case 'numero_no_valido': return 'Número no vàlid (p. ex. 12,5)';
+      case 'importe_no_valido': return 'Import no vàlid (p. ex. 1.200,50)';
+      case 'no_puede_ser_negativo': return 'No pot ser negatiu';
+      case 'importe_obligatorio': return 'Import obligatori';
+      case 'mayor_que_cero': return 'Ha de ser més gran que zero';
+      case 'numero_entero_no_valido': return 'Escriu un nombre enter (p. ex. 12)';
       case '1_seleccionar_elemento_para_simular': return '1. Seleccionar element per simular';
       case '2_resultado_de_la_trazabilidad': return '2. Resultat de la traçabilitat';
       case '3_verificacion_de_la_cadena': return '3. Verificació de la cadena';
@@ -573,6 +618,21 @@ class SoleraL10n {
 
   static String _tGl(String c) {
     switch (c) {
+      case 'seccion_explotacion': return 'Explotación';
+      case 'seccion_registros': return 'Rexistros e documentos';
+      case 'seccion_integraciones': return 'Intelixencia artificial';
+      case 'identificacion_con_ia': return 'Identificación con IA';
+      case 'seccion_preferencias': return 'Preferencias';
+      case 'seccion_datos': return 'Datos';
+      case 'seccion_aplicacion': return 'Aplicación';
+      case 'comprobar_actualizaciones': return 'Comprobar actualizacións';
+      case 'acerca_de': return 'Acerca de';
+      case 'numero_no_valido': return 'Número non válido (p. ex. 12,5)';
+      case 'importe_no_valido': return 'Importe non válido (p. ex. 1.200,50)';
+      case 'no_puede_ser_negativo': return 'Non pode ser negativo';
+      case 'importe_obligatorio': return 'Importe obrigatorio';
+      case 'mayor_que_cero': return 'Ten que ser maior que cero';
+      case 'numero_entero_no_valido': return 'Escribe un número enteiro (p. ex. 12)';
       case '1_seleccionar_elemento_para_simular': return '1. Seleccionar elemento para simular';
       case '2_resultado_de_la_trazabilidad': return '2. Resultado da trazabilidade';
       case '3_verificacion_de_la_cadena': return '3. Verificación da cadea';

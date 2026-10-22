@@ -1787,7 +1787,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaIdiomaDatosB.
   ///
   /// In es, this message translates to:
-  /// **'• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu propio móvil.\n• En Hoy o en Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo, la sincronización y las actualizaciones. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.'**
+  /// **'• Cambia entre castellano y euskera en Ajustes → Idioma.\n• Las fotos se guardan en tu móvil. Con la sincronización, además, viajan al resto del equipo: suben y bajan solo con wifi, reducidas para que pesen poco.\n• En Hoy o en Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.\n• Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.\n» Todo funciona sin internet menos el tiempo, la sincronización y las actualizaciones. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.'**
   String get ayudaIdiomaDatosB;
 
   /// No description provided for @ayudaFincasT.
@@ -1991,7 +1991,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaSyncB.
   ///
   /// In es, this message translates to:
-  /// **'Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.\n» Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.'**
+  /// **'Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.\n1. Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.\n2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.\n3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.\n» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos (de puntos, zonas, fincas y tareas) suben y bajan solo con wifi, para no gastar datos; mientras tanto, una foto de otra persona sale como «Sin descargar» y se puede bajar tocándola.\n» Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.'**
   String get ayudaSyncB;
 
   /// No description provided for @ayudaRolesT.
@@ -5743,6 +5743,54 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Lo del rebaño (movimientos y manejo) se cuenta desde que nació el animal: los cambios de rebaño no se apuntan, así que si entró más tarde también sale lo anterior.'**
   String get ganHistNotaRebano;
+
+  /// Marcador de una foto sincronizada de otro móvil que aún no se ha bajado.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin descargar'**
+  String get fotoSinDescargar;
+
+  /// No description provided for @fotoSinDescargarDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta foto la hizo otra persona y aún no ha bajado a este móvil (las fotos bajan solas con wifi). Tócala para bajarla ahora.'**
+  String get fotoSinDescargarDetalle;
+
+  /// No description provided for @fotoNoSeHaPodidoBajar.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido bajar la foto. Puede que quien la hizo aún no la haya subido (las fotos suben con wifi). Prueba más tarde.'**
+  String get fotoNoSeHaPodidoBajar;
+
+  /// No description provided for @fotoBajando.
+  ///
+  /// In es, this message translates to:
+  /// **'Bajando la foto…'**
+  String get fotoBajando;
+
+  /// No description provided for @fotoAnadir.
+  ///
+  /// In es, this message translates to:
+  /// **'Foto'**
+  String get fotoAnadir;
+
+  /// No description provided for @fotoDesdeCamara.
+  ///
+  /// In es, this message translates to:
+  /// **'Cámara'**
+  String get fotoDesdeCamara;
+
+  /// No description provided for @fotoDesdeGaleria.
+  ///
+  /// In es, this message translates to:
+  /// **'Galería'**
+  String get fotoDesdeGaleria;
+
+  /// No description provided for @fotoQuitar.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar la foto'**
+  String get fotoQuitar;
 }
 
 class _AppLocalizationsDelegate

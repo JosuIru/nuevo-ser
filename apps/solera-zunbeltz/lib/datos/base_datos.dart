@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show kIsWeb, visibleForTesting;
 import 'package:latlong2/latlong.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -20,6 +21,7 @@ import '../modelos/convenio.dart';
 import '../modelos/finca.dart';
 import '../modelos/ganado.dart';
 import '../modelos/peticion_tarea.dart';
+import '../utiles/fotos_sincronizadas.dart';
 import '../utiles/geodesia.dart';
 import 'espacio_generado.dart';
 import 'esquema_sincronizable.dart';
@@ -39,6 +41,7 @@ part 'base_datos_agenda.dart';
 part 'base_datos_convenio.dart';
 part 'base_datos_ganado.dart';
 part 'base_datos_sync.dart';
+part 'base_datos_fotos.dart';
 
 /// Acceso a la base de datos local de Solera Zunbeltz. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
@@ -108,7 +111,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 17;
+  static const int versionEsquema = 18;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -129,6 +132,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 15) await aplicarMigracionV15(db);
     if (anterior < 16) await aplicarMigracionV16(db);
     if (anterior < 17) await aplicarMigracionV17(db);
+    if (anterior < 18) await aplicarMigracionV18(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -756,6 +760,31 @@ class BaseDatosSoleraZunbeltz {
         "ALTER TABLE eventos_ganado ADD COLUMN clase_medicamento TEXT NOT NULL DEFAULT ''");
   }
 
+  /// v18: fotos sincronizadas. `fotos_sync` guarda, por hash SHA-256 de la
+  /// copia reducida, el fichero que se ve en este móvil, la copia pendiente
+  /// de subir y los intentos; `rutas_fotos`, el hash de cada fichero local
+  /// (ver `base_datos_fotos.dart` y `utiles/fotos_sincronizadas.dart`). Las
+  /// columnas `rutas_fotos_*` no cambian: admiten rutas y referencias
+  /// `foto:<hash>`. Aditiva.
+  static Future<void> aplicarMigracionV18(Database db) async {
+    await db.execute('''
+      CREATE TABLE fotos_sync (
+        hash TEXT PRIMARY KEY,
+        ruta_local TEXT NOT NULL DEFAULT '',
+        ruta_subida TEXT NOT NULL DEFAULT '',
+        subida INTEGER NOT NULL DEFAULT 0,
+        intentos INTEGER NOT NULL DEFAULT 0,
+        ultimo_intento_ms INTEGER NOT NULL DEFAULT 0
+      )
+    ''');
+    await db.execute('''
+      CREATE TABLE rutas_fotos (
+        ruta TEXT PRIMARY KEY,
+        hash TEXT NOT NULL
+      )
+    ''');
+  }
+
   static Future<void> aplicarMigracionV16(Database db) async {
     await db.execute('ALTER TABLE peticiones ADD COLUMN zona_id INTEGER');
     await db.execute('CREATE INDEX idx_peticiones_zona ON peticiones(zona_id)');
@@ -1202,12 +1231,23 @@ class BaseDatosSoleraZunbeltz {
   /// Con [anclajeDelServidor] el punto y la zona de [remota] (ya resueltos a
   /// ids locales por `uid`) mandan; sin él (servidor anterior a la v0.3,
   /// que no los manda) se conserva el anclaje local.
+  ///
+  /// [fotosAntesJson] y [fotosDespuesJson]: las fotos que manda el servidor
+  /// (lista JSON de entradas locales, ver `fotos_sincronizadas.dart`), o
+  /// `null` si no las manda: entonces se conservan las de este móvil.
   Future<void> upsertTareaRemota(TareaMantenimiento remota,
-      {bool forzar = false, bool anclajeDelServidor = false}) async {
+      {bool forzar = false,
+      bool anclajeDelServidor = false,
+      String? fotosAntesJson,
+      String? fotosDespuesJson}) async {
     final db = await basedatos;
     final existente = await db.query('tareas_mantenimiento',
         where: 'uid = ?', whereArgs: [remota.uid], limit: 1);
     final mapa = remota.toMap()..remove('id');
+    if (fotosAntesJson != null) mapa['rutas_fotos_antes_json'] = fotosAntesJson;
+    if (fotosDespuesJson != null) {
+      mapa['rutas_fotos_despues_json'] = fotosDespuesJson;
+    }
     if (existente.isEmpty) {
       await db.insert('tareas_mantenimiento', mapa);
       return;
@@ -1220,10 +1260,13 @@ class BaseDatosSoleraZunbeltz {
         ..['punto_id'] = local.puntoId
         ..['zona_id'] = local.zonaId;
     }
-    // Las fotos no viajan: se conservan las de este móvil.
+    // Fotos: las del servidor si las manda (ya traducidas a entradas
+    // locales por quien llama); si no (plugin anterior), las de este móvil.
     mapa
-      ..['rutas_fotos_antes_json'] = local.rutasFotosAntesJson
-      ..['rutas_fotos_despues_json'] = local.rutasFotosDespuesJson;
+      ..['rutas_fotos_antes_json'] =
+          fotosAntesJson ?? local.rutasFotosAntesJson
+      ..['rutas_fotos_despues_json'] =
+          fotosDespuesJson ?? local.rutasFotosDespuesJson;
     await db.update('tareas_mantenimiento', mapa,
         where: 'uid = ?', whereArgs: [remota.uid]);
   }

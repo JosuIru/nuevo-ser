@@ -13,7 +13,10 @@ import 'formularios_ganado.dart';
 import 'nueva_peticion.dart';
 import 'nueva_tarea.dart';
 import 'pantalla_ganado.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
+
 import 'widgets/acciones_tarea.dart';
+import 'widgets/fotos_sincronizadas.dart';
 import 'widgets/tile_tarea.dart';
 import '../estado/datos_notificador.dart';
 
@@ -261,6 +264,8 @@ class _FichaZonaState extends State<FichaZona> {
                     padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
                     child: Text(zona.notas),
                   ),
+                GaleriaFotos(
+                    entradas: GestorFotos.decodificar(zona.rutasFotosJson)),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 8, 0),

@@ -3,30 +3,114 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../../utiles/fotos_sincronizadas.dart';
+import 'fotos_sincronizadas.dart';
 
-/// [SelectorFotos] del core, salvo en el navegador: allí no hay sistema de
-/// ficheros donde copiar las fotos, así que se avisa de que se añaden
-/// desde el móvil. Las rutas que ya tenga el registro se conservan.
+/// Selector de fotos de los formularios: como el [SelectorFotos] del core
+/// (botón «+» para añadir de la cámara o la galería, cruz para quitar),
+/// pero entiende las fotos sincronizadas de otros móviles (`foto:<hash>`),
+/// que salen como «Sin descargar» hasta que bajan (ver [MiniaturaFoto]).
+///
+/// En el navegador no hay sistema de ficheros donde copiar las fotos: se
+/// avisa de que se añaden desde el móvil y las que ya tenga el registro
+/// se conservan tal cual.
 class SelectorFotosApp extends StatelessWidget {
   final List<String> rutas;
   final ValueChanged<List<String>> alCambiar;
+  final double altura;
 
   const SelectorFotosApp({
     super.key,
     required this.rutas,
     required this.alCambiar,
+    this.altura = 96,
   });
+
+  Future<void> _anadir(BuildContext context) async {
+    final textos = AppLocalizations.of(context);
+    final fuente = await showModalBottomSheet<FuenteFoto>(
+      context: context,
+      builder: (contextoHoja) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_camera),
+              title: Text(textos.fotoDesdeCamara),
+              onTap: () => Navigator.pop(contextoHoja, FuenteFoto.camara),
+            ),
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: Text(textos.fotoDesdeGaleria),
+              onTap: () => Navigator.pop(contextoHoja, FuenteFoto.galeria),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (fuente == null) return;
+    final nuevas = await GestorFotos.tomarOSeleccionar(fuente: fuente);
+    if (nuevas.isEmpty) return;
+    alCambiar([...rutas, ...nuevas]);
+  }
+
+  void _quitar(int indice) {
+    final entrada = rutas[indice];
+    // Una foto hecha aquí se borra del móvil, como hace el core; una de
+    // otro móvil (referencia o ya bajada) se deja: puede usarla otra ficha.
+    if (!esReferenciaFoto(entrada) && !entrada.contains('/fotos_sync/')) {
+      GestorFotos.borrarSiExiste(entrada);
+    }
+    alCambiar([...rutas]..removeAt(indice));
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (!kIsWeb) {
-      return SelectorFotos(rutas: rutas, alCambiar: alCambiar);
+    final textos = AppLocalizations.of(context);
+    if (kIsWeb) {
+      final tema = Theme.of(context);
+      return Text(
+        textos.fotosSoloEnMovil,
+        style: tema.textTheme.bodySmall
+            ?.copyWith(color: tema.colorScheme.onSurfaceVariant),
+      );
     }
-    final tema = Theme.of(context);
-    return Text(
-      AppLocalizations.of(context).fotosSoloEnMovil,
-      style: tema.textTheme.bodySmall
-          ?.copyWith(color: tema.colorScheme.onSurfaceVariant),
+    return SizedBox(
+      height: altura,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: rutas.length + 1,
+        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        itemBuilder: (context, indice) {
+          if (indice == rutas.length) {
+            return InkWell(
+              onTap: () => _anadir(context),
+              child: Container(
+                width: altura,
+                height: altura,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Theme.of(context).dividerColor),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(Icons.add_a_photo, size: 24),
+                    const SizedBox(height: 4),
+                    Text(textos.fotoAnadir,
+                        style: Theme.of(context).textTheme.labelSmall),
+                  ],
+                ),
+              ),
+            );
+          }
+          return MiniaturaFoto(
+            entrada: rutas[indice],
+            tamano: altura,
+            alQuitar: () => _quitar(indice),
+          );
+        },
+      ),
     );
   }
 }

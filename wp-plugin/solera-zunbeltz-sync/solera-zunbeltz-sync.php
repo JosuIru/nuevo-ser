@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     1.0.1
+ * Version:     1.0.2
  * Author:      Gailu Sare - Solera
  * Author URI:  https://gailu.net/
  * License:     GPL-2.0-or-later
@@ -34,6 +34,8 @@
  * - Registro de actividad (`includes/actividad.php`) de todo cambio
  *   aceptado, venga de la app o del panel.
  * - Panel de coordinación (`includes/panel/`) y correos (`includes/correo.php`).
+ * - Fotos (`includes/fotos.php`): `POST/GET /fotos/<hash>`, guardadas una
+ *   vez por hash en una carpeta privada de uploads.
  * - La app web servida en `/app/` (`includes/app-web.php`, ficheros en `app-web/`).
  * - La presentación del proyecto en `/presentacion/` (`includes/presentacion.php`).
  * - Datos de demostración para desarrollo (`includes/datos-demo.php`): se
@@ -59,8 +61,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '1.0.1' );
-define( 'SZS_VERSION_ESQUEMA', 7 );
+define( 'SZS_VERSION', '1.0.2' );
+define( 'SZS_VERSION_ESQUEMA', 8 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
 define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
@@ -81,6 +83,7 @@ require_once __DIR__ . '/includes/panel/logica-ganado.php';
 require_once __DIR__ . '/includes/personas.php';
 require_once __DIR__ . '/includes/actividad.php';
 require_once __DIR__ . '/includes/sync-entidades.php';
+require_once __DIR__ . '/includes/fotos.php';
 require_once __DIR__ . '/includes/admin.php';
 require_once __DIR__ . '/includes/panel/comun.php';
 require_once __DIR__ . '/includes/plantillas-tarea.php';
@@ -151,6 +154,8 @@ function szs_instalar_esquema(): void {
 		fecha_objetivo_ms BIGINT NULL,
 		coste_centimos BIGINT NULL,
 		recurrencia_dias INT NULL,
+		fotos_antes TEXT NULL,
+		fotos_despues TEXT NULL,
 		fecha_creacion_ms BIGINT NOT NULL DEFAULT 0,
 		actualizado_ms BIGINT NOT NULL DEFAULT 0,
 		recibido_en DATETIME NOT NULL,
@@ -572,6 +577,11 @@ function szs_guardar_tarea( string $tabla, array $datos, bool $es_nueva ): array
 
 	$fila                = $datos;
 	$fila['recibido_en'] = gmdate( 'Y-m-d H:i:s' );
+	// Las fotos van en la fila como JSON (lista de hashes).
+	foreach ( SZS_CAMPOS_FOTOS_TAREA as $campo ) {
+		$datos[ $campo ] = szs_normalizar_lista_fotos( $datos[ $campo ] ?? array() );
+		$fila[ $campo ]  = wp_json_encode( $datos[ $campo ] );
+	}
 	if ( $es_nueva ) {
 		$wpdb->insert( $tabla, $fila );
 	} else {

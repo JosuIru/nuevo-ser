@@ -225,6 +225,7 @@ function szs_procesar_entidades_entrantes( array $persona, array $items, string 
 	$rechazos = array();
 	foreach ( $entrantes as $entrante ) {
 		$existente  = szs_obtener_entidad( $entrante['tipo'], $entrante['uid'] );
+		$entrante   = szs_conservar_fotos_si_faltan( $existente, $entrante );
 		$proyecto   = 'proyecto' === $entrante['tipo'] ? null : szs_obtener_entidad( 'proyecto', $entrante['proyecto_uid'] );
 		$proyecto   = ( null !== $proyecto && ! $proyecto['borrado'] ) ? $proyecto : null;
 		$resolucion = szs_resolver_entidad_entrante( $existente, $entrante, $persona_uid, $capacidades, $proyecto );

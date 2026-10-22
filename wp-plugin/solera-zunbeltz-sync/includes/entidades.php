@@ -46,8 +46,11 @@ const SZS_AMBITO_GANADO = 'ganado';
  */
 const SZS_CAMPOS_ANIMAL_MANEJO = array( 'lote_uid', 'estado', 'fecha_baja_ms', 'notas' );
 
-/** Campos de un punto que puede cambiar quien solo tiene `anadir_puntos`. */
-const SZS_CAMPOS_PUNTO_MOVIBLES = array( 'latitud', 'longitud', 'estado', 'notas' );
+/**
+ * Campos de un punto que puede cambiar quien solo tiene `anadir_puntos`:
+ * recolocarlo, su estado, notas y fotos (lo que se ve en el campo).
+ */
+const SZS_CAMPOS_PUNTO_MOVIBLES = array( 'latitud', 'longitud', 'estado', 'notas', 'fotos' );
 
 /**
  * Catálogo de tipos. `tester_registra`: en los hijos de proyecto, si la
@@ -114,6 +117,11 @@ function szs_normalizar_entidad( array $entidad ): array {
 function szs_sanear_datos_entidad( array $datos ): array {
 	$campos_texto = array( 'categoria', 'partida', 'grupo', 'especie', 'modo_calculo', 'tipo', 'estado', 'gravedad', 'nivel', 'asumido_por', 'asistencia', 'canal', 'titulo', 'nombre', 'concepto', 'producto', 'descripcion', 'color', 'identificacion', 'sexo', 'clase_medicamento' );
 	foreach ( $datos as $clave => $valor ) {
+		if ( 'fotos' === $clave ) {
+			// Solo hashes (ver fotos.php): nunca rutas ni otra cosa.
+			$datos[ $clave ] = function_exists( 'szs_normalizar_lista_fotos' ) ? szs_normalizar_lista_fotos( $valor ) : array();
+			continue;
+		}
 		if ( null === $valor ) {
 			continue;
 		}

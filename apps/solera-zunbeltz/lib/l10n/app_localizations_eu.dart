@@ -906,7 +906,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaIdiomaDatosB =>
-      '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.\n• Argazkiak zure mugikorrean bertan gordetzen dira.\n• Gaur edo Finkak pantailan, hodeiaren ikonoak (goian) finkako eguraldia irekitzen du: orain nola dagoen, hurrengo 24 orduak, ura (egindako euria, aurreikusitako euria eta lurrak eta larreak galtzen dutena) eta hurrengo 7 egunak. Ukitu egun bat xehetasun gehiago ikusteko.\n• Abisuak: izotza, elurra, ekaitza, euria, haize bortitza, beroa, abereen bero-estresa eta maneiurako egun onak.\n» Dena internetik gabe dabil, eguraldia, sinkronizazioa eta eguneraketak izan ezik. Estaldurarik gabe, eguraldiak deskargatutako azken iragarpena erakusten du, eta noizkoa den adierazten du.';
+      '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.\n• Argazkiak zure mugikorrean gordetzen dira. Sinkronizazioarekin, gainera, taldeko besteengana iristen dira: wifiarekin bakarrik igotzen eta jaisten dira, txikituta, gutxi pisa dezaten.\n• Gaur edo Finkak pantailan, hodeiaren ikonoak (goian) finkako eguraldia irekitzen du: orain nola dagoen, hurrengo 24 orduak, ura (egindako euria, aurreikusitako euria eta lurrak eta larreak galtzen dutena) eta hurrengo 7 egunak. Ukitu egun bat xehetasun gehiago ikusteko.\n• Abisuak: izotza, elurra, ekaitza, euria, haize bortitza, beroa, abereen bero-estresa eta maneiurako egun onak.\n» Dena internetik gabe dabil, eguraldia, sinkronizazioa eta eguneraketak izan ezik. Estaldurarik gabe, eguraldiak deskargatutako azken iragarpena erakusten du, eta noizkoa den adierazten du.';
 
   @override
   String get ayudaFincasT => 'Puntu bat markatu mapan';
@@ -1027,7 +1027,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaSyncB =>
-      'Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.\n1. Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.\n2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.\n3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.\n» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.\n» Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.';
+      'Sinkronizazioarekin, talde osoak gune bera partekatzen du: finkak, puntuak, eremuak, zereginak, proiektuak, eskaerak eta abisuak.\n1. Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.\n2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.\n3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.\n» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak (puntuenak, eremuenak, finkenak eta zereginenak) wifiarekin bakarrik igotzen eta jaisten dira, daturik ez gastatzeko; bitartean, beste norbaiten argazkia «Deskargatu gabe» ageri da eta ukituta jaits daiteke.\n» Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.';
 
   @override
   String get ayudaRolesT => 'Nork zer egin dezakeen';
@@ -3296,4 +3296,30 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ganHistNotaRebano =>
       'Taldearena (mugimenduak eta maneiua) animalia jaio zenetik kontatzen da: talde-aldaketak ez dira idazten, beraz geroago sartu bazen, aurrekoa ere agertzen da.';
+
+  @override
+  String get fotoSinDescargar => 'Deskargatu gabe';
+
+  @override
+  String get fotoSinDescargarDetalle =>
+      'Argazki hau beste pertsona batek atera zuen eta oraindik ez da mugikor honetara jaitsi (argazkiak wifiarekin jaisten dira berez). Ukitu orain jaisteko.';
+
+  @override
+  String get fotoNoSeHaPodidoBajar =>
+      'Ezin izan da argazkia jaitsi. Agian atera zuenak oraindik ez du igo (argazkiak wifiarekin igotzen dira). Saiatu geroago.';
+
+  @override
+  String get fotoBajando => 'Argazkia jaisten…';
+
+  @override
+  String get fotoAnadir => 'Argazkia';
+
+  @override
+  String get fotoDesdeCamara => 'Kamera';
+
+  @override
+  String get fotoDesdeGaleria => 'Galeria';
+
+  @override
+  String get fotoQuitar => 'Kendu argazkia';
 }

@@ -45,9 +45,11 @@ Future<String> _phpEsperado() async {
           'tipo': entidad['tipo'],
           'uid': entidad['uid'],
           // La fecha de alta es la de cada siembra: se conserva la del
-          // servidor.
+          // servidor. Lo sembrado no trae fotos: las que se pongan después
+          // son de quien las pone, y no hay que tocarlas.
           'datos': Map.of(entidad['datos'] as Map<String, Object?>)
-            ..remove('fecha_creacion_ms'),
+            ..remove('fecha_creacion_ms')
+            ..remove('fotos'),
         },
   ];
   final retirados = _retirados();

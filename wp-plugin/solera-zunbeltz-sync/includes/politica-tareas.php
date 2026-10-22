@@ -15,8 +15,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** Campos que cambia quien ejecuta la tarea. */
-const SZS_CAMPOS_EJECUCION = array( 'estado', 'coste_centimos' );
+/**
+ * Campos que cambia quien ejecuta la tarea. Las fotos de antes y de
+ * después las pone quien la hace (o quien la creó).
+ */
+const SZS_CAMPOS_EJECUCION = array( 'estado', 'coste_centimos', 'fotos_antes', 'fotos_despues' );
+
+/**
+ * Listas de hashes de fotos (ver `fotos.php`). `null` en una tarea recibida
+ * = la app no las manda (anterior a las fotos): se conservan las guardadas.
+ */
+const SZS_CAMPOS_FOTOS_TAREA = array( 'fotos_antes', 'fotos_despues' );
 
 /** Campos que describen la tarea. */
 const SZS_CAMPOS_CONTENIDO = array(
@@ -58,6 +67,8 @@ function szs_normalizar_tarea( array $tarea ): array {
 		'fecha_objetivo_ms' => szs_entero_o_null( $tarea['fecha_objetivo_ms'] ?? null ),
 		'coste_centimos'    => szs_entero_o_null( $tarea['coste_centimos'] ?? null ),
 		'recurrencia_dias'  => szs_entero_o_null( $tarea['recurrencia_dias'] ?? null ),
+		'fotos_antes'       => szs_lista_fotos_o_null( $tarea['fotos_antes'] ?? null ),
+		'fotos_despues'     => szs_lista_fotos_o_null( $tarea['fotos_despues'] ?? null ),
 		'fecha_creacion_ms' => (int) ( $tarea['fecha_creacion_ms'] ?? 0 ),
 		'actualizado_ms'    => (int) ( $tarea['actualizado_ms'] ?? 0 ),
 	);
@@ -81,6 +92,16 @@ function szs_normalizar_tarea( array $tarea ): array {
  */
 function szs_resolver_tarea_entrante( ?array $existente, array $entrante, string $persona_uid, array $capacidades ): array {
 	$puede = static fn( string $capacidad ): bool => in_array( $capacidad, $capacidades, true );
+
+	// Una app sin fotos no las manda: valen las guardadas (o ninguna).
+	foreach ( SZS_CAMPOS_FOTOS_TAREA as $campo ) {
+		if ( null === $entrante[ $campo ] ) {
+			$entrante[ $campo ] = null === $existente ? array() : ( $existente[ $campo ] ?? array() );
+		}
+		if ( null !== $existente && null === $existente[ $campo ] ) {
+			$existente[ $campo ] = array();
+		}
+	}
 
 	if ( null === $existente ) {
 		if ( ! $puede( SZS_CAPACIDAD_CREAR_TAREAS ) ) {
@@ -194,6 +215,19 @@ function szs_tarea_visible( array $tarea, string $persona_uid, array $capacidade
 	return '' === $tarea['responsable_uid']
 		|| $tarea['responsable_uid'] === $persona_uid
 		|| $tarea['creado_por_uid'] === $persona_uid;
+}
+
+/**
+ * Lista de hashes de fotos de una tarea, o `null` si no viene (columna sin
+ * valor o app anterior a las fotos).
+ *
+ * @return string[]|null
+ */
+function szs_lista_fotos_o_null( $valor ): ?array {
+	if ( null === $valor ) {
+		return null;
+	}
+	return function_exists( 'szs_normalizar_lista_fotos' ) ? szs_normalizar_lista_fotos( $valor ) : array();
 }
 
 function szs_entero_o_null( $valor ): ?int {

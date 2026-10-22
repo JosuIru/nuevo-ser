@@ -9,7 +9,10 @@ import '../modelos/tarea_mantenimiento.dart';
 import '../utiles/estilos_tarea.dart';
 import 'nueva_peticion.dart';
 import 'nueva_tarea.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
+
 import 'widgets/acciones_tarea.dart';
+import 'widgets/fotos_sincronizadas.dart';
 import 'widgets/tile_tarea.dart';
 import '../estado/datos_notificador.dart';
 
@@ -179,6 +182,8 @@ class _FichaPuntoState extends State<FichaPunto> {
                     padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
                     child: Text(punto.notas),
                   ),
+                GaleriaFotos(
+                    entradas: GestorFotos.decodificar(punto.rutasFotosJson)),
                 const Divider(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),

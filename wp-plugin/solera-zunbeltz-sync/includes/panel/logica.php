@@ -161,6 +161,9 @@ function szs_siguiente_tarea_periodica( array $tarea, int $ahora_ms, string $uid
 			'uid'               => $uid_nuevo,
 			'estado'            => 'pendiente',
 			'coste_centimos'    => null,
+			// Las fotos son de esta vez, no de la siguiente.
+			'fotos_antes'       => array(),
+			'fotos_despues'     => array(),
 			'fecha_objetivo_ms' => $objetivo->getTimestamp() * 1000 + $base_ms % 1000,
 			'fecha_creacion_ms' => $ahora_ms,
 			'actualizado_ms'    => $ahora_ms,

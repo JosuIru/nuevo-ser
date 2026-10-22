@@ -55,7 +55,7 @@ En Hoy, los iconos de arriba abren los contactos, el tiempo y esta ayuda.
 Para volver atrás, usa la flecha de arriba a la izquierda.',
 		'ayudaIdiomaDatosT' => 'Idioma, fotos, tiempo e internet',
 		'ayudaIdiomaDatosB' => '• Cambia entre castellano y euskera en Ajustes → Idioma.
-• Las fotos se guardan en tu propio móvil.
+• Las fotos se guardan en tu móvil. Con la sincronización, además, viajan al resto del equipo: suben y bajan solo con wifi, reducidas para que pesen poco.
 • En Hoy o en Fincas, el icono de la nube (arriba) abre el tiempo de la finca: cómo está ahora, las próximas 24 horas, el agua (lluvia caída, lluvia prevista y lo que pierden suelo y pasto) y los próximos 7 días. Toca un día para ver más detalle.
 • Avisos: helada, nieve, tormenta, lluvia, viento fuerte, calor, estrés por calor del ganado y días buenos para el manejo.
 » Todo funciona sin internet menos el tiempo, la sincronización y las actualizaciones. Sin cobertura, el tiempo muestra la última previsión que se descargó y avisa de cuándo es.',
@@ -236,7 +236,7 @@ En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:
 1. Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.
 2. En Ajustes → Sincronización, pon la dirección del WordPress de Zunbeltz y tu clave de usuario.
 3. La app sincroniza sola al abrirla, al volver a ella y cada 10 minutos si hay cobertura. También puedes pulsar el botón de sincronizar en Hoy.
-» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos se quedan en tu móvil.
+» Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos (de puntos, zonas, fincas y tareas) suben y bajan solo con wifi, para no gastar datos; mientras tanto, una foto de otra persona sale como «Sin descargar» y se puede bajar tocándola.
 » Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.',
 		'ayudaWebT' => 'Usar la app en el ordenador',
 		'ayudaWebB' => 'La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.
@@ -300,7 +300,7 @@ Gaur pantailan, goiko ikonoek kontaktuak, eguraldia eta laguntza hau irekitzen d
 Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 		'ayudaIdiomaDatosT' => 'Hizkuntza, argazkiak, eguraldia eta internet',
 		'ayudaIdiomaDatosB' => '• Aldatu gaztelania eta euskara artean Ezarpenak → Hizkuntza atalean.
-• Argazkiak zure mugikorrean bertan gordetzen dira.
+• Argazkiak zure mugikorrean gordetzen dira. Sinkronizazioarekin, gainera, taldeko besteengana iristen dira: wifiarekin bakarrik igotzen eta jaisten dira, txikituta, gutxi pisa dezaten.
 • Gaur edo Finkak pantailan, hodeiaren ikonoak (goian) finkako eguraldia irekitzen du: orain nola dagoen, hurrengo 24 orduak, ura (egindako euria, aurreikusitako euria eta lurrak eta larreak galtzen dutena) eta hurrengo 7 egunak. Ukitu egun bat xehetasun gehiago ikusteko.
 • Abisuak: izotza, elurra, ekaitza, euria, haize bortitza, beroa, abereen bero-estresa eta maneiurako egun onak.
 » Dena internetik gabe dabil, eguraldia, sinkronizazioa eta eguneraketak izan ezik. Estaldurarik gabe, eguraldiak deskargatutako azken iragarpena erakusten du, eta noizkoa den adierazten du.',
@@ -481,7 +481,7 @@ Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:
 1. Eskatu koordinazioari zure erabiltzaile-gako pertsonala. Zure giltza da: pertsona bakoitzak berea du eta ez da partekatzen.
 2. Ezarpenak → Sinkronizazioa atalean, jarri Zunbeltzen WordPressaren helbidea eta zure erabiltzaile-gakoa.
 3. Aplikazioak berak sinkronizatzen du irekitzean, itzultzean eta 10 minuturo estaldura badago. Gaur pantailako sinkronizazio-botoia ere saka dezakezu.
-» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak zure mugikorrean geratzen dira.
+» Estaldurarik gabe lanean jarrai dezakezu: egiten duzuna konexioa itzultzean igotzen da. Argazkiak (puntuenak, eremuenak, finkenak eta zereginenak) wifiarekin bakarrik igotzen eta jaisten dira, daturik ez gastatzeko; bitartean, beste norbaiten argazkia «Deskargatu gabe» ageri da eta ukituta jaits daiteke.
 » Urrats hauek koordinazioarekin informazioa partekatzen duten Zunbeltzeko pertsona testerrentzat dira. App-a zure kabuz erabiltzen baduzu, ez duzu sinkronizazioa konfiguratu behar, ezta erabiltzaile-gakorik eskatu ere.',
 		'ayudaWebT' => 'Aplikazioa ordenagailuan erabili',
 		'ayudaWebB' => 'Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.

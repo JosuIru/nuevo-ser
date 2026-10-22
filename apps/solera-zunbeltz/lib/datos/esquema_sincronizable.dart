@@ -47,6 +47,7 @@ class TablaSincronizable {
     this.columnaProyecto,
     this.proyectoObligatorio = false,
     this.columnasLocales = const [],
+    this.columnasFotos = const {},
   });
 
   /// Nombre del tipo en el API (`punto`).
@@ -59,9 +60,32 @@ class TablaSincronizable {
   final String? columnaProyecto;
   final bool proyectoObligatorio;
 
-  /// Columnas que no viajan (rutas de fotos, que son ficheros del móvil).
+  /// Columnas que no viajan tal cual (rutas de fotos, que son ficheros del
+  /// móvil).
   final List<String> columnasLocales;
+
+  /// Columnas de fotos (de [columnasLocales]) que viajan traducidas a
+  /// hashes, con la clave de `datos` en que van: `rutas_fotos_json` →
+  /// `fotos`. Ver `utiles/fotos_sincronizadas.dart`.
+  final Map<String, String> columnasFotos;
 }
+
+/// Las fotos de una entidad viajan en `datos.fotos` como hashes.
+const Map<String, String> _fotosDeEntidad = {'rutas_fotos_json': 'fotos'};
+
+/// Tablas locales con columnas de fotos (listas JSON de entradas), también
+/// las tareas, que no están en [tablasSincronizables]. Sirve para buscar
+/// las fotos que hay que preparar, subir o bajar.
+const Map<String, List<String>> columnasFotosPorTabla = {
+  'fincas': ['rutas_fotos_json'],
+  'zonas_finca': ['rutas_fotos_json'],
+  'puntos_infraestructura': ['rutas_fotos_json'],
+  'tareas_mantenimiento': ['rutas_fotos_antes_json', 'rutas_fotos_despues_json'],
+};
+
+/// Claves con que viajan las fotos de una tarea en el API de tareas.
+const String claveFotosAntesTarea = 'fotos_antes';
+const String claveFotosDespuesTarea = 'fotos_despues';
 
 const _refFinca = ReferenciaSincronizable('finca_id', 'fincas',
     obligatoria: true, alBorrar: AlBorrarReferencia.cascada);
@@ -88,17 +112,22 @@ TablaSincronizable _hijoDeProyecto(String tipo, String tabla) =>
 /// En orden de dependencias: lo referenciado antes que lo que referencia.
 final List<TablaSincronizable> tablasSincronizables = [
   const TablaSincronizable(
-      tipo: 'finca', tabla: 'fincas', columnasLocales: ['rutas_fotos_json']),
+      tipo: 'finca',
+      tabla: 'fincas',
+      columnasLocales: ['rutas_fotos_json'],
+      columnasFotos: _fotosDeEntidad),
   const TablaSincronizable(
       tipo: 'zona',
       tabla: 'zonas_finca',
       referencias: [_refFinca],
-      columnasLocales: ['rutas_fotos_json']),
+      columnasLocales: ['rutas_fotos_json'],
+      columnasFotos: _fotosDeEntidad),
   const TablaSincronizable(
       tipo: 'punto',
       tabla: 'puntos_infraestructura',
       referencias: [_refFinca],
-      columnasLocales: ['rutas_fotos_json']),
+      columnasLocales: ['rutas_fotos_json'],
+      columnasFotos: _fotosDeEntidad),
   const TablaSincronizable(
       tipo: 'proyecto',
       tabla: 'proyectos_test',

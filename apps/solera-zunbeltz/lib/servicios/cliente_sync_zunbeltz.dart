@@ -8,6 +8,7 @@ import '../modelos/entrada_actividad.dart';
 import '../modelos/constantes.dart';
 import '../modelos/persona_espacio.dart';
 import '../modelos/tarea_mantenimiento.dart';
+import '../utiles/fotos_sincronizadas.dart';
 
 /// Por qué ha fallado la conexión, para mostrarlo traducido en la app.
 enum MotivoErrorSync {
@@ -32,6 +33,41 @@ class ErrorSyncZunbeltz implements Exception {
       {this.motivo = MotivoErrorSync.respuestaInesperada, this.codigoHttp});
   @override
   String toString() => 'ErrorSyncZunbeltz: $mensaje';
+}
+
+/// Qué ha pasado al subir una foto (`POST /fotos/<hash>`).
+enum ResultadoSubidaFoto {
+  /// El servidor la tiene (recién subida o ya estaba).
+  subida,
+
+  /// El plugin no tiene el endpoint (anterior a las fotos): queda pendiente
+  /// hasta que se actualice, sin contar como fallo.
+  sinEndpoint,
+
+  /// El servidor no la acepta (tamaño, tipo, sin espacio…) o no contesta:
+  /// se reintenta más tarde, cada vez más espaciado.
+  fallo,
+}
+
+/// Lo que devuelve `GET /fotos/<hash>`.
+class ResultadoBajadaFoto {
+  const ResultadoBajadaFoto._(this.bytes, this.sinEndpoint);
+  const ResultadoBajadaFoto.bajada(List<int> bytes) : this._(bytes, false);
+  const ResultadoBajadaFoto.sinEndpoint() : this._(null, true);
+  const ResultadoBajadaFoto.fallo() : this._(null, false);
+
+  /// Los bytes de la foto (ya comprobados contra su hash), o `null`.
+  final List<int>? bytes;
+
+  /// El plugin no tiene el endpoint de fotos.
+  final bool sinEndpoint;
+}
+
+/// Subir y bajar fotos por hash. Lo implementa [ClienteSyncZunbeltz]; los
+/// tests usan uno falso.
+abstract interface class TransporteFotos {
+  Future<ResultadoSubidaFoto> subirFoto(String hash, List<int> bytes);
+  Future<ResultadoBajadaFoto> bajarFoto(String hash);
 }
 
 /// Quién es la persona dueña del token y quiénes forman el espacio, tal
@@ -120,7 +156,7 @@ class ResultadoSyncZunbeltz {
 /// **Auth**: token personal (`X-Zunbeltz-Token`) que la coordinación crea
 /// para cada persona en el admin de WordPress. El servidor aplica los
 /// permisos y devuelve en `forzar` lo que hay que deshacer en el móvil.
-class ClienteSyncZunbeltz {
+class ClienteSyncZunbeltz implements TransporteFotos {
   ClienteSyncZunbeltz({required this.urlBase, required this.token});
 
   final String urlBase;
@@ -216,6 +252,54 @@ class ClienteSyncZunbeltz {
 
   static String _sinBarraFinal(String url) =>
       url.endsWith('/') ? url.substring(0, url.length - 1) : url;
+
+  /// Un plugin sin la ruta responde 404 con `rest_no_route`; un 404 de la
+  /// ruta de fotos es que esa foto no está.
+  static bool _sinRuta(http.Response respuesta) =>
+      respuesta.statusCode == 404 && respuesta.body.contains('rest_no_route');
+
+  /// Sube la copia reducida de una foto (`POST /fotos/<hash>`, cuerpo en
+  /// crudo). El servidor comprueba que el hash corresponde a los bytes.
+  @override
+  Future<ResultadoSubidaFoto> subirFoto(String hash, List<int> bytes) async {
+    final tipo = tipoMimeDeImagen(bytes);
+    if (tipo == null || !esHashFotoValido(hash)) return ResultadoSubidaFoto.fallo;
+    try {
+      final respuesta = await http
+          .post(_ruta('fotos/$hash'),
+              headers: {..._cabeceras, 'content-type': tipo}, body: bytes)
+          .timeout(const Duration(seconds: 60));
+      if (respuesta.statusCode == 200 || respuesta.statusCode == 201) {
+        return ResultadoSubidaFoto.subida;
+      }
+      if (_sinRuta(respuesta)) return ResultadoSubidaFoto.sinEndpoint;
+      return ResultadoSubidaFoto.fallo;
+    } catch (_) {
+      return ResultadoSubidaFoto.fallo;
+    }
+  }
+
+  /// Baja una foto por su hash (`GET /fotos/<hash>`). Lo recibido se
+  /// comprueba: tiene que ser una imagen y dar el mismo hash.
+  @override
+  Future<ResultadoBajadaFoto> bajarFoto(String hash) async {
+    if (!esHashFotoValido(hash)) return const ResultadoBajadaFoto.fallo();
+    try {
+      final respuesta = await http
+          .get(_ruta('fotos/$hash'),
+              headers: {..._cabeceras, 'accept': 'image/*, application/json'})
+          .timeout(const Duration(seconds: 60));
+      if (_sinRuta(respuesta)) return const ResultadoBajadaFoto.sinEndpoint();
+      if (respuesta.statusCode != 200) return const ResultadoBajadaFoto.fallo();
+      final bytes = respuesta.bodyBytes;
+      if (tipoMimeDeImagen(bytes) == null || hashFoto(bytes) != hash) {
+        return const ResultadoBajadaFoto.fallo();
+      }
+      return ResultadoBajadaFoto.bajada(bytes);
+    } catch (_) {
+      return const ResultadoBajadaFoto.fallo();
+    }
+  }
 
   /// Sube lo cambiado en este móvil y aplica lo que llega del servidor. Lanza
   /// [ErrorSyncZunbeltz] si la configuración o la respuesta no son válidas.
@@ -458,6 +542,8 @@ class ClienteSyncZunbeltz {
     return tareaAJson(
       tarea,
       finca?.nombre ?? '',
+      fotosAntes: await bd.hashesFotoDeColumna(tarea.rutasFotosAntesJson),
+      fotosDespues: await bd.hashesFotoDeColumna(tarea.rutasFotosDespuesJson),
       fincaUid: await bd.uidDeFila('fincas', tarea.fincaId) ?? '',
       puntoUid: tarea.puntoId == null
           ? ''
@@ -508,8 +594,20 @@ class ClienteSyncZunbeltz {
       );
       final forzar = uidsForzados.contains(remota.uid);
       final antes = await bd.obtenerTareaPorUid(remota.uid);
+      // Un plugin anterior a las fotos no las manda: se quedan las locales.
+      final fotosAntes = mapa[claveFotosAntesTarea];
+      final fotosDespues = mapa[claveFotosDespuesTarea];
       await bd.upsertTareaRemota(remota,
-          forzar: forzar, anclajeDelServidor: traeAnclaje);
+          forzar: forzar,
+          anclajeDelServidor: traeAnclaje,
+          fotosAntesJson: fotosAntes is List
+              ? await bd.columnaFotoDeHashes(fotosAntes,
+                  columnaActual: antes?.rutasFotosAntesJson)
+              : null,
+          fotosDespuesJson: fotosDespues is List
+              ? await bd.columnaFotoDeHashes(fotosDespues,
+                  columnaActual: antes?.rutasFotosDespuesJson)
+              : null);
       if (forzar ||
           antes == null ||
           antes.actualizadoMs < remota.actualizadoMs) {
@@ -548,6 +646,8 @@ class ClienteSyncZunbeltz {
     String fincaUid = '',
     String puntoUid = '',
     String zonaUid = '',
+    List<String> fotosAntes = const [],
+    List<String> fotosDespues = const [],
   }) =>
       {
         'uid': tarea.uid,
@@ -567,6 +667,8 @@ class ClienteSyncZunbeltz {
         'recurrencia_dias': tarea.recurrenciaDias,
         'fecha_creacion_ms': tarea.fechaCreacionMs,
         'actualizado_ms': tarea.actualizadoMs,
+        claveFotosAntesTarea: fotosAntes,
+        claveFotosDespuesTarea: fotosDespues,
       };
 
   /// Reconstruye una tarea a partir de un ítem recibido del servidor, con

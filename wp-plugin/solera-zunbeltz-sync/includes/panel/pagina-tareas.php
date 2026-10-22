@@ -326,6 +326,10 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 				<tr><th><label for="szs_fecha"><?php echo esc_html( szs_t( 'Fecha objetivo' ) ); ?></label></th><td><input type="date" id="szs_fecha" name="szs_fecha" value="<?php echo esc_attr( null === $valores['fecha_objetivo_ms'] ? '' : wp_date( 'Y-m-d', intdiv( $valores['fecha_objetivo_ms'], 1000 ) ) ); ?>"></td></tr>
 				<tr><th><label for="szs_recurrencia_dias"><?php echo esc_html( szs_t( 'Se repite cada (días)' ) ); ?></label></th><td><input type="number" min="0" id="szs_recurrencia_dias" name="szs_recurrencia_dias" class="small-text" value="<?php echo esc_attr( (string) ( $valores['recurrencia_dias'] ?? '' ) ); ?>"> <span class="description"><?php echo esc_html( szs_t( 'Vacío = tarea puntual. Al marcarla hecha se crea la siguiente.' ) ); ?></span></td></tr>
 				<tr><th><label for="szs_coste"><?php echo esc_html( szs_t( 'Coste (€)' ) ); ?></label></th><td><input type="text" id="szs_coste" name="szs_coste" class="small-text" value="<?php echo esc_attr( null === $valores['coste_centimos'] ? '' : number_format( $valores['coste_centimos'] / 100, 2, ',', '' ) ); ?>"></td></tr>
+				<?php if ( null !== $tarea ) : ?>
+					<tr><th><?php echo esc_html( szs_t( 'Fotos de antes' ) ); ?></th><td><?php szs_pintar_fotos_panel( $tarea['fotos_antes'] ?? array() ); ?></td></tr>
+					<tr><th><?php echo esc_html( szs_t( 'Fotos de después' ) ); ?></th><td><?php szs_pintar_fotos_panel( $tarea['fotos_despues'] ?? array() ); ?><p class="description"><?php echo esc_html( szs_t( 'Las fotos se añaden desde la app del móvil.' ) ); ?></p></td></tr>
+				<?php endif; ?>
 			</table>
 			<?php submit_button( null === $tarea ? szs_t( 'Crear tarea' ) : szs_t( 'Guardar cambios' ) ); ?>
 			<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS ) ); ?>"><?php echo esc_html( szs_t( 'Volver al listado' ) ); ?></a>

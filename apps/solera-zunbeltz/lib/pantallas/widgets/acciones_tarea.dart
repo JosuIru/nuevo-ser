@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
 
 import '../../datos/base_datos.dart';
 import '../../estado/sesion_espacio.dart';
@@ -11,6 +12,7 @@ import '../../modelos/tarea_mantenimiento.dart';
 import '../../utiles/estilos_tarea.dart';
 import '../../estado/datos_notificador.dart';
 import '../nuevo_apunte.dart';
+import 'fotos_sincronizadas.dart';
 
 enum _AccionTarea { asignarme, soltar, apuntarGasto }
 
@@ -30,8 +32,16 @@ Future<bool> mostrarAccionesTarea(
   final puedeApuntarGasto = (tarea.costeCentimos ?? 0) > 0 &&
       politicaEspacioActual.puedeGestionarProyectos;
 
+  // Sin nada que hacer con ella, la hoja solo sale si hay fotos que ver.
+  final tieneFotos =
+      GestorFotos.decodificar(tarea.rutasFotosAntesJson).isNotEmpty ||
+          GestorFotos.decodificar(tarea.rutasFotosDespuesJson).isNotEmpty;
   if (id == null ||
-      !(puedeEjecutar || puedeCogerse || puedeSoltar || puedeApuntarGasto)) {
+      !(puedeEjecutar ||
+          puedeCogerse ||
+          puedeSoltar ||
+          puedeApuntarGasto ||
+          tieneFotos)) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(textos.tareaSinPermiso)));
     return false;
@@ -50,6 +60,12 @@ Future<bool> mostrarAccionesTarea(
             child: Text(tarea.titulo,
                 style: Theme.of(contextoHoja).textTheme.titleMedium),
           ),
+          GaleriaFotos(
+              titulo: textos.tareaFotosAntes,
+              entradas: GestorFotos.decodificar(tarea.rutasFotosAntesJson)),
+          GaleriaFotos(
+              titulo: textos.tareaFotosDespues,
+              entradas: GestorFotos.decodificar(tarea.rutasFotosDespuesJson)),
           if (puedeEjecutar) ...[
             ListTile(
               dense: true,

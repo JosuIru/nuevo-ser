@@ -840,4 +840,11 @@ return array(
 	'No se pudo guardar el APK.' => 'Ezin izan da APKa gorde.',
 	'Este tema es un enlace simbólico (desarrollo): actualizarlo desde aquí borraría la carpeta enlazada.' => 'Gai hau esteka sinboliko bat da (garapena): hemendik eguneratzeak estekatutako karpeta ezabatuko luke.',
 	'Este plugin es un enlace simbólico (desarrollo): actualizarlo desde aquí borraría la carpeta enlazada.' => 'Plugin hau esteka sinboliko bat da (garapena): hemendik eguneratzeak estekatutako karpeta ezabatuko luke.',
+	// Fotos sincronizadas (fotos.php, pagina-tareas.php).
+	'Sin fotos.' => 'Argazkirik ez.',
+	'Aún no ha llegado (se sube con wifi)' => 'Oraindik ez da iritsi (wifiarekin igotzen da)',
+	'Foto' => 'Argazkia',
+	'Fotos de antes' => 'Aurreko argazkiak',
+	'Fotos de después' => 'Ondorengo argazkiak',
+	'Las fotos se añaden desde la app del móvil.' => 'Argazkiak mugikorreko aplikaziotik gehitzen dira.',
 );

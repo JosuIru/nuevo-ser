@@ -288,6 +288,15 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
     for (final columna in descriptor.columnasLocales) {
       datos.remove(columna);
     }
+    // Fotos: hashes, nunca rutas de este móvil.
+    if (descriptor.columnasFotos.isNotEmpty) {
+      final hashPorRuta = await _hashPorRutaFoto(db);
+      for (final MapEntry(key: columna, value: clave)
+          in descriptor.columnasFotos.entries) {
+        datos[clave] = hashesDeEntradasFoto(
+            GestorFotos.decodificar(fila[columna] as String?), hashPorRuta);
+      }
+    }
     for (final referencia in descriptor.referencias) {
       final idReferido = datos.remove(referencia.columna) as int?;
       datos[referencia.claveUid] = idReferido == null
@@ -388,6 +397,16 @@ extension SincronizacionBaseDatos on BaseDatosSoleraZunbeltz {
           continue;
         }
         fila[entrada.key] = _valorSqlite(entrada.value);
+      }
+    }
+    // Fotos: solo si el servidor las manda (una entidad subida por una app
+    // anterior no lleva la clave y se conservan las de este móvil).
+    for (final MapEntry(key: columna, value: clave)
+        in descriptor.columnasFotos.entries) {
+      final hashes = datos[clave];
+      if (hashes is List && columnas.contains(columna)) {
+        fila[columna] = await _columnaFotoDeHashes(
+            db, hashes, existente?[columna] as String?);
       }
     }
     if (columnas.contains('autor_uid')) {

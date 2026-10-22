@@ -6,6 +6,7 @@ import '../estado/ajustes_sincronizacion.dart';
 import '../estado/datos_notificador.dart';
 import '../estado/sesion_espacio.dart';
 import 'cliente_sync_zunbeltz.dart';
+import 'servicio_fotos_sync.dart';
 import 'sincronizacion_segundo_plano.dart' show claveUltimaSincronizacion;
 
 /// `true` mientras hay una sincronización en marcha (para que la interfaz
@@ -37,6 +38,14 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
   sincronizandoEspacio.value = true;
   try {
     final cliente = ClienteSyncZunbeltz(urlBase: url, token: token);
+    final fotos = await _servicioFotos(bd, cliente);
+    // Las fotos nuevas se reducen y se les calcula el hash antes de subir
+    // los datos, que viajan con hashes (sin red: se hace siempre).
+    try {
+      await fotos?.prepararFotosLocales();
+    } catch (_) {
+      // Una foto ilegible no puede parar la sincronización de datos.
+    }
     var resultado = await cliente.sincronizar(bd, completa: completa);
     // Proyecto asignado o retirado, o cambio de rol: la completa ya, para
     // no esperar a la próxima vuelta con datos que no tocan.
@@ -49,7 +58,7 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
         // Lo de la primera ya está en la BD: hay que acabar de procesarlo
         // (sesión, avisos). La completa sigue pedida y se hará en la
         // siguiente vuelta.
-        return await _terminarSincronizacion(primera);
+        return await _terminarSincronizacion(primera, fotos);
       }
       // Lo recibido en la primera también tiene que avisar (alarmas…).
       resultado = ResultadoSyncZunbeltz(
@@ -69,7 +78,7 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
         ],
       );
     }
-    return await _terminarSincronizacion(resultado);
+    return await _terminarSincronizacion(resultado, fotos);
   } finally {
     sincronizandoEspacio.value = false;
     try {
@@ -80,10 +89,38 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
   }
 }
 
+Future<ServicioFotosSync?> _servicioFotos(
+    BaseDatosSoleraZunbeltz bd, ClienteSyncZunbeltz cliente) async {
+  // En web no hay fotos (no hay ficheros donde guardarlas).
+  if (kIsWeb) return null;
+  try {
+    return ServicioFotosSync(
+        bd: bd, transporte: cliente, directorioFotos: await directorioFotosSync());
+  } catch (_) {
+    return null;
+  }
+}
+
+/// Sube y baja fotos solo con wifi o cable; con datos móviles quedan
+/// pendientes para la próxima. Nunca falla.
+Future<void> _transferirFotosSiHayWifi(ServicioFotosSync? fotos) async {
+  if (fotos == null) return;
+  try {
+    if (!await hayRedSinMedir()) return;
+    final resumen = await fotos.transferir();
+    if (resumen.bajadas > 0) avisarCambioDatos();
+  } catch (_) {
+    // Se reintenta en la próxima sincronización.
+  }
+}
+
 /// Lo que se hace tras una sincronización correcta: sesión refrescada,
 /// pantallas avisadas y oyentes (notificaciones).
+///
+/// Al final, con wifi, las fotos (después de avisar: los datos no esperan
+/// a las fotos).
 Future<ResultadoSyncZunbeltz> _terminarSincronizacion(
-    ResultadoSyncZunbeltz resultado) async {
+    ResultadoSyncZunbeltz resultado, ServicioFotosSync? fotos) async {
   await guardarSesionEspacio(
       resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
   // La comparte la tarea en segundo plano para no sincronizar a la vez.
@@ -93,6 +130,7 @@ Future<ResultadoSyncZunbeltz> _terminarSincronizacion(
   for (final oyente in List.of(oyentesSincronizacion)) {
     await oyente(resultado);
   }
+  await _transferirFotosSiHayWifi(fotos);
   return resultado;
 }
 

@@ -4781,7 +4781,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaGanadoLotesB.
   ///
   /// In es, this message translates to:
-  /// **'El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.'**
+  /// **'El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.\n» El libro de explotación (icono del libro, arriba en Ganado) saca en PDF el censo, los animales, los movimientos y los tratamientos, con las UGM de cada rebaño. Cada movimiento tiene su hoja en PDF para acompañar el traslado. No sustituyen al libro oficial ni a la guía de SITRAN.'**
   String get ayudaGanadoLotesB;
 
   /// No description provided for @ayudaGanadoMoverT.
@@ -4805,7 +4805,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaGanadoManejoB.
   ///
   /// In es, this message translates to:
-  /// **'1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.'**
+  /// **'1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.\n» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.'**
   String get ayudaGanadoManejoB;
 
   /// No description provided for @ganCabezas.
@@ -4963,6 +4963,408 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Larrea Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.'**
   String get ayudaWidgetB;
+
+  /// No description provided for @ganEcologico.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado ecológico'**
+  String get ganEcologico;
+
+  /// No description provided for @ganEcologicoAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Certificado o en conversión. Los medicamentos alopáticos doblan el plazo de espera (como mínimo 48 horas) y cuentan para el límite anual de tratamientos.'**
+  String get ganEcologicoAyuda;
+
+  /// No description provided for @ganCicloCorto.
+  ///
+  /// In es, this message translates to:
+  /// **'Vida productiva menor de un año'**
+  String get ganCicloCorto;
+
+  /// No description provided for @ganCicloCortoAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Cebo, corderos, aves de carne: en ecológico el límite es de un tratamiento al año en vez de tres.'**
+  String get ganCicloCortoAyuda;
+
+  /// No description provided for @ganClaseMedicamento.
+  ///
+  /// In es, this message translates to:
+  /// **'Clase de medicamento'**
+  String get ganClaseMedicamento;
+
+  /// No description provided for @ganClaseSinIndicar.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin indicar'**
+  String get ganClaseSinIndicar;
+
+  /// No description provided for @ganAvisoEcologicoPlazo.
+  ///
+  /// In es, this message translates to:
+  /// **'Rebaño ecológico: para venderlo como ecológico vale el doble del plazo de la receta, y como mínimo 48 horas. La app ya lo cuenta así.'**
+  String get ganAvisoEcologicoPlazo;
+
+  /// No description provided for @ganEcoTratamientos.
+  ///
+  /// In es, this message translates to:
+  /// **'Ecológico: {n} de {limite} tratamientos alopáticos en 12 meses'**
+  String ganEcoTratamientos(int n, int limite);
+
+  /// No description provided for @ganEcoSuperado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ha superado el límite de tratamientos: no se puede vender como ecológico y vuelve a conversión. Hay que comunicarlo a CPAEN/NNPEK.'**
+  String get ganEcoSuperado;
+
+  /// No description provided for @ganEcoEnLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'Está en el límite: un tratamiento alopático más y pierde la condición ecológica.'**
+  String get ganEcoEnLimite;
+
+  /// No description provided for @ganEcoNoCuentan.
+  ///
+  /// In es, this message translates to:
+  /// **'No cuentan vacunas, antiparasitarios ni saneamiento. PROVISIONAL hasta que lo revise CPAEN/NNPEK.'**
+  String get ganEcoNoCuentan;
+
+  /// No description provided for @ganUgm.
+  ///
+  /// In es, this message translates to:
+  /// **'{valor} UGM'**
+  String ganUgm(String valor);
+
+  /// No description provided for @ganUgmPorHa.
+  ///
+  /// In es, this message translates to:
+  /// **'{valor} UGM/ha'**
+  String ganUgmPorHa(String valor);
+
+  /// No description provided for @libroTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Libro de explotación'**
+  String get libroTitulo;
+
+  /// No description provided for @libroSubtitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Censo, movimientos y tratamientos del ganado'**
+  String get libroSubtitulo;
+
+  /// No description provided for @libroProvisional.
+  ///
+  /// In es, this message translates to:
+  /// **'DOCUMENTO PROVISIONAL — no sustituye al libro de registro oficial de la explotación. Formato pendiente de validar con el veterinario/a y el Gobierno de Navarra.'**
+  String get libroProvisional;
+
+  /// No description provided for @libroUgmFuente.
+  ///
+  /// In es, this message translates to:
+  /// **'UGM orientativas, según la {fuente}. Para un trámite vale la tabla de ese trámite.'**
+  String libroUgmFuente(String fuente);
+
+  /// No description provided for @libroResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'{rebanos} rebaños · {cabezas} cabezas · {ugm} UGM'**
+  String libroResumen(int rebanos, int cabezas, String ugm);
+
+  /// No description provided for @libroCenso.
+  ///
+  /// In es, this message translates to:
+  /// **'Censo por rebaño'**
+  String get libroCenso;
+
+  /// No description provided for @libroAnimales.
+  ///
+  /// In es, this message translates to:
+  /// **'Animales identificados'**
+  String get libroAnimales;
+
+  /// No description provided for @libroMovimientos.
+  ///
+  /// In es, this message translates to:
+  /// **'Movimientos'**
+  String get libroMovimientos;
+
+  /// No description provided for @libroTratamientos.
+  ///
+  /// In es, this message translates to:
+  /// **'Tratamientos y saneamiento'**
+  String get libroTratamientos;
+
+  /// No description provided for @libroEcologico.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganado ecológico: tratamientos alopáticos en 12 meses'**
+  String get libroEcologico;
+
+  /// No description provided for @libroColRebano.
+  ///
+  /// In es, this message translates to:
+  /// **'Rebaño'**
+  String get libroColRebano;
+
+  /// No description provided for @libroColEspecie.
+  ///
+  /// In es, this message translates to:
+  /// **'Especie'**
+  String get libroColEspecie;
+
+  /// No description provided for @libroColPieza.
+  ///
+  /// In es, this message translates to:
+  /// **'Dónde está'**
+  String get libroColPieza;
+
+  /// No description provided for @libroColCabezas.
+  ///
+  /// In es, this message translates to:
+  /// **'Cabezas'**
+  String get libroColCabezas;
+
+  /// No description provided for @libroColSinCrotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin crotal'**
+  String get libroColSinCrotal;
+
+  /// No description provided for @libroColUgm.
+  ///
+  /// In es, this message translates to:
+  /// **'UGM'**
+  String get libroColUgm;
+
+  /// No description provided for @libroColEco.
+  ///
+  /// In es, this message translates to:
+  /// **'Ecológico'**
+  String get libroColEco;
+
+  /// No description provided for @libroColCrotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Crotal'**
+  String get libroColCrotal;
+
+  /// No description provided for @libroColNombre.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get libroColNombre;
+
+  /// No description provided for @libroColRaza.
+  ///
+  /// In es, this message translates to:
+  /// **'Raza'**
+  String get libroColRaza;
+
+  /// No description provided for @libroColSexo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sexo'**
+  String get libroColSexo;
+
+  /// No description provided for @libroColNacimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Nacimiento'**
+  String get libroColNacimiento;
+
+  /// No description provided for @libroColMadre.
+  ///
+  /// In es, this message translates to:
+  /// **'Madre'**
+  String get libroColMadre;
+
+  /// No description provided for @libroColEstado.
+  ///
+  /// In es, this message translates to:
+  /// **'Estado'**
+  String get libroColEstado;
+
+  /// No description provided for @libroColFecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get libroColFecha;
+
+  /// No description provided for @libroColTipo.
+  ///
+  /// In es, this message translates to:
+  /// **'Tipo'**
+  String get libroColTipo;
+
+  /// No description provided for @libroColTrayecto.
+  ///
+  /// In es, this message translates to:
+  /// **'Origen → destino'**
+  String get libroColTrayecto;
+
+  /// No description provided for @libroColGuia.
+  ///
+  /// In es, this message translates to:
+  /// **'Guía'**
+  String get libroColGuia;
+
+  /// No description provided for @libroColAQuien.
+  ///
+  /// In es, this message translates to:
+  /// **'Animal / rebaño'**
+  String get libroColAQuien;
+
+  /// No description provided for @libroColSustancia.
+  ///
+  /// In es, this message translates to:
+  /// **'Sustancia activa'**
+  String get libroColSustancia;
+
+  /// No description provided for @libroColClase.
+  ///
+  /// In es, this message translates to:
+  /// **'Clase'**
+  String get libroColClase;
+
+  /// No description provided for @libroColDosis.
+  ///
+  /// In es, this message translates to:
+  /// **'Dosis'**
+  String get libroColDosis;
+
+  /// No description provided for @libroColEsperaCarne.
+  ///
+  /// In es, this message translates to:
+  /// **'Espera carne (días)'**
+  String get libroColEsperaCarne;
+
+  /// No description provided for @libroColEsperaLeche.
+  ///
+  /// In es, this message translates to:
+  /// **'Espera leche (días)'**
+  String get libroColEsperaLeche;
+
+  /// No description provided for @libroColVeterinario.
+  ///
+  /// In es, this message translates to:
+  /// **'Veterinario/a'**
+  String get libroColVeterinario;
+
+  /// No description provided for @libroColReceta.
+  ///
+  /// In es, this message translates to:
+  /// **'Receta'**
+  String get libroColReceta;
+
+  /// No description provided for @libroColTratamientos.
+  ///
+  /// In es, this message translates to:
+  /// **'Tratamientos'**
+  String get libroColTratamientos;
+
+  /// No description provided for @libroColLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'Límite'**
+  String get libroColLimite;
+
+  /// No description provided for @libroColSituacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Situación'**
+  String get libroColSituacion;
+
+  /// No description provided for @libroSi.
+  ///
+  /// In es, this message translates to:
+  /// **'Sí'**
+  String get libroSi;
+
+  /// No description provided for @libroNo.
+  ///
+  /// In es, this message translates to:
+  /// **'No'**
+  String get libroNo;
+
+  /// No description provided for @libroEcoSuperado.
+  ///
+  /// In es, this message translates to:
+  /// **'Superado: no vendible como ecológico'**
+  String get libroEcoSuperado;
+
+  /// No description provided for @libroEcoEnLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'En el límite'**
+  String get libroEcoEnLimite;
+
+  /// No description provided for @libroEcoBien.
+  ///
+  /// In es, this message translates to:
+  /// **'Dentro del límite'**
+  String get libroEcoBien;
+
+  /// No description provided for @libroEsperaEco.
+  ///
+  /// In es, this message translates to:
+  /// **'{legal} (eco {efectiva})'**
+  String libroEsperaEco(int legal, int efectiva);
+
+  /// No description provided for @libroGenerar.
+  ///
+  /// In es, this message translates to:
+  /// **'Libro de explotación (PDF)'**
+  String get libroGenerar;
+
+  /// No description provided for @libroHoja.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoja de movimiento (PDF)'**
+  String get libroHoja;
+
+  /// No description provided for @hojaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoja de movimiento'**
+  String get hojaTitulo;
+
+  /// No description provided for @hojaSubtitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'{rebano} · {fecha}'**
+  String hojaSubtitulo(String rebano, String fecha);
+
+  /// No description provided for @hojaNoGuia.
+  ///
+  /// In es, this message translates to:
+  /// **'No sustituye a la guía oficial de movimiento pecuario, que emite la oficina comarcal (SITRAN). Sirve para acompañar el traslado y archivarlo.'**
+  String get hojaNoGuia;
+
+  /// No description provided for @hojaDatos.
+  ///
+  /// In es, this message translates to:
+  /// **'Datos del movimiento'**
+  String get hojaDatos;
+
+  /// No description provided for @hojaAnimales.
+  ///
+  /// In es, this message translates to:
+  /// **'Animales con crotal del rebaño'**
+  String get hojaAnimales;
+
+  /// No description provided for @hojaColDato.
+  ///
+  /// In es, this message translates to:
+  /// **'Dato'**
+  String get hojaColDato;
+
+  /// No description provided for @hojaColValor.
+  ///
+  /// In es, this message translates to:
+  /// **'Valor'**
+  String get hojaColValor;
 }
 
 class _AppLocalizationsDelegate

@@ -2650,7 +2650,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaGanadoLotesB =>
-      'Abereak taldeka eramaten dira, estentsiboan maneiatzen diren bezala: artalde bat, behi-talde bat, gizentzeko txerriak…\n1. Sartu Abereak fitxan eta sakatu «Talde berria».\n2. Jarri izena, espeziea eta norena den (espaziokoa edo tester batena). Banan-banan eramaten ez diren animaliak badaude (hegaztiak, gizentzeko txerriak), jarri zenbat diren «Krotalik gabeko buruak» atalean.\n3. Aukeratu orain zein sailetan dagoen eta gorde.\n4. Krotaldun animalientzat, ireki taldea eta sakatu «Animalia gehitu»: krotala, izena baldin badu, arraza, sexua, jaiotza eta ama.\n» Animaliak fitxan edozein animalia bilatzen da bere krotalaren bidez.\n» Krotalaren ondoko kamera-ikonoak (alta ematean eta bilaketan) DIBaren barra-kodea irakurri eta zenbakia berez betetzen du. Linux edo Windows duen ordenagailuan ez dago.';
+      'Abereak taldeka eramaten dira, estentsiboan maneiatzen diren bezala: artalde bat, behi-talde bat, gizentzeko txerriak…\n1. Sartu Abereak fitxan eta sakatu «Talde berria».\n2. Jarri izena, espeziea eta norena den (espaziokoa edo tester batena). Banan-banan eramaten ez diren animaliak badaude (hegaztiak, gizentzeko txerriak), jarri zenbat diren «Krotalik gabeko buruak» atalean.\n3. Aukeratu orain zein sailetan dagoen eta gorde.\n4. Krotaldun animalientzat, ireki taldea eta sakatu «Animalia gehitu»: krotala, izena baldin badu, arraza, sexua, jaiotza eta ama.\n» Animaliak fitxan edozein animalia bilatzen da bere krotalaren bidez.\n» Krotalaren ondoko kamera-ikonoak (alta ematean eta bilaketan) DIBaren barra-kodea irakurri eta zenbakia berez betetzen du. Linux edo Windows duen ordenagailuan ez dago.\n» Ustiategi-liburuak (liburuaren ikonoa, goian Abereak atalean) errolda, animaliak, mugimenduak eta tratamenduak ateratzen ditu PDFn, artalde bakoitzaren ALUekin. Mugimendu bakoitzak bere PDF orria du lekualdaketarekin batera eramateko. Ez dute ordezkatzen liburu ofiziala ezta SITRANeko gida ere.';
 
   @override
   String get ayudaGanadoMoverT => 'Abereak sailez mugitu';
@@ -2665,7 +2665,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaGanadoManejoB =>
-      '1. Ireki taldea (talde osoarentzat bada) edo animalia eta sakatu «Sendaketa, pisaketa, erditzea…».\n2. Aukeratu zer egin den eta data.\n3. Sendaketa edo tratamendu batean, idatzi errezetan dagoena: substantzia aktiboa, dosia, haragiaren eta esnearen kentze-egunak, albaitaria eta errezeta-zenbakia. Aplikazioak ez du sendagairik gomendatzen.\n4. Gorde. Epeak irauten duen bitartean, taldea edo animalia «Kentze-epean» markatuta agertzen da, libre geratzen den egunarekin.\n» Animalia bati baja emateko (salmenta, hilketa, heriotza), erabili «Baja eman» bere fitxan: ez da ezabatzen, bere historia gordetzen da.';
+      '1. Ireki taldea (talde osoarentzat bada) edo animalia eta sakatu «Sendaketa, pisaketa, erditzea…».\n2. Aukeratu zer egin den eta data.\n3. Sendaketa edo tratamendu batean, idatzi errezetan dagoena: substantzia aktiboa, dosia, haragiaren eta esnearen kentze-egunak, albaitaria eta errezeta-zenbakia. Aplikazioak ez du sendagairik gomendatzen.\n4. Gorde. Epeak irauten duen bitartean, taldea edo animalia «Kentze-epean» markatuta agertzen da, libre geratzen den egunarekin.\n» Animalia bati baja emateko (salmenta, hilketa, heriotza), erabili «Baja eman» bere fitxan: ez da ezabatzen, bere historia gordetzen da.\n» Ekologiko gisa markatutako artalde batean, adierazi sendagai mota: alopatikoek itxaronaldia bikoizten dute (gutxienez 48 ordu) eta fitxak abisatzen du urteko tratamendu-mugara hurbiltzen denean edo gainditzen denean. BEHIN-BEHINEKOA CPAEN/NNPEKek berrikusi arte.';
 
   @override
   String ganCabezas(int n) {
@@ -2815,4 +2815,228 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ayudaWidgetB =>
       'Android-en, mugikorraren hasierako pantailan Gaur-en laburpen bat jar dezakezu aplikazioa ireki gabe: alarma irekiak, zure zeregin iraungiak eta gaurkoak, kentze-epean dauden taldeak (eta lehena noiz geratzen den libre) eta finkako gaurko eguraldia.\n1. Eutsi sakatuta hasierako pantailako hutsune bat eta aukeratu «Widgetak».\n2. Bilatu «Larrea Zunbeltz» eta arrastatu «Gaur Zunbeltzen» pantailara.\n3. Nahi baduzu, eutsi sakatuta handiago edo txikiago egiteko: leku gutxirekin, lehenik eguraldia kentzen da eta gero kentze-epea.\n» Bere botoiek aplikazioa zuzenean irekitzen dute abisu bat emateko, talde bat mugitzeko edo sendaketa bat idazteko (taldea aukeratuta). Zure profilak erabil ditzakeenak bakarrik agertzen dira.\n» Aplikazioan zerbait aldatzean eguneratzen da eta, aplikazioa itxita dagoela, 15 minutuz behin gutxi gorabehera (Android-ek erabakitzen du noiz). Goiko orduak azken aldia noiz izan zen dio.\n» Web bertsioan eta ordenagailuan ez dago widgetik.';
+
+  @override
+  String get ganEcologico => 'Abeltzaintza ekologikoa';
+
+  @override
+  String get ganEcologicoAyuda =>
+      'Ziurtatua edo bihurtzen ari dena. Sendagai alopatikoek itxaronaldia bikoizten dute (gutxienez 48 ordu) eta urteko tratamendu-mugan zenbatzen dira.';
+
+  @override
+  String get ganCicloCorto => 'Urtebete baino gutxiagoko bizitza produktiboa';
+
+  @override
+  String get ganCicloCortoAyuda =>
+      'Gizentzekoak, bildotsak, haragitarako hegaztiak: ekologikoan muga urteko tratamendu bat da, ez hiru.';
+
+  @override
+  String get ganClaseMedicamento => 'Sendagai mota';
+
+  @override
+  String get ganClaseSinIndicar => 'Adierazi gabe';
+
+  @override
+  String get ganAvisoEcologicoPlazo =>
+      'Artalde ekologikoa: ekologiko gisa saltzeko, errezetako epearen bikoitza balio du, eta gutxienez 48 ordu. App-ak horrela kontatzen du jada.';
+
+  @override
+  String ganEcoTratamientos(int n, int limite) {
+    return 'Ekologikoa: $n/$limite tratamendu alopatiko 12 hilabetean';
+  }
+
+  @override
+  String get ganEcoSuperado =>
+      'Tratamendu-muga gainditu du: ezin da ekologiko gisa saldu eta bihurtzera itzultzen da. CPAEN/NNPEKi jakinarazi behar zaio.';
+
+  @override
+  String get ganEcoEnLimite =>
+      'Mugan dago: tratamendu alopatiko bat gehiago eta ekologiko izaera galtzen du.';
+
+  @override
+  String get ganEcoNoCuentan =>
+      'Ez dira zenbatzen txertoak, antiparasitarioak eta saneamendua. BEHIN-BEHINEKOA CPAEN/NNPEKek berrikusi arte.';
+
+  @override
+  String ganUgm(String valor) {
+    return '$valor ALU';
+  }
+
+  @override
+  String ganUgmPorHa(String valor) {
+    return '$valor ALU/ha';
+  }
+
+  @override
+  String get libroTitulo => 'Ustiategi-liburua';
+
+  @override
+  String get libroSubtitulo => 'Abereen errolda, mugimenduak eta tratamenduak';
+
+  @override
+  String get libroProvisional =>
+      'BEHIN-BEHINEKO DOKUMENTUA — ez du ordezkatzen ustiategiaren erregistro-liburu ofiziala. Formatua albaitariarekin eta Nafarroako Gobernuarekin baliozkotzeko dago.';
+
+  @override
+  String libroUgmFuente(String fuente) {
+    return 'ALU orientagarriak, $fuente taularen arabera. Izapide baterako, izapide horren taulak balio du.';
+  }
+
+  @override
+  String libroResumen(int rebanos, int cabezas, String ugm) {
+    return '$rebanos artalde · $cabezas buru · $ugm ALU';
+  }
+
+  @override
+  String get libroCenso => 'Errolda artaldeka';
+
+  @override
+  String get libroAnimales => 'Identifikatutako animaliak';
+
+  @override
+  String get libroMovimientos => 'Mugimenduak';
+
+  @override
+  String get libroTratamientos => 'Tratamenduak eta saneamendua';
+
+  @override
+  String get libroEcologico =>
+      'Abeltzaintza ekologikoa: tratamendu alopatikoak 12 hilabetean';
+
+  @override
+  String get libroColRebano => 'Artaldea';
+
+  @override
+  String get libroColEspecie => 'Espeziea';
+
+  @override
+  String get libroColPieza => 'Non dago';
+
+  @override
+  String get libroColCabezas => 'Buruak';
+
+  @override
+  String get libroColSinCrotal => 'Krotalik gabe';
+
+  @override
+  String get libroColUgm => 'ALU';
+
+  @override
+  String get libroColEco => 'Ekologikoa';
+
+  @override
+  String get libroColCrotal => 'Krotala';
+
+  @override
+  String get libroColNombre => 'Izena';
+
+  @override
+  String get libroColRaza => 'Arraza';
+
+  @override
+  String get libroColSexo => 'Sexua';
+
+  @override
+  String get libroColNacimiento => 'Jaiotza';
+
+  @override
+  String get libroColMadre => 'Ama';
+
+  @override
+  String get libroColEstado => 'Egoera';
+
+  @override
+  String get libroColFecha => 'Data';
+
+  @override
+  String get libroColTipo => 'Mota';
+
+  @override
+  String get libroColTrayecto => 'Jatorria → helmuga';
+
+  @override
+  String get libroColGuia => 'Gida';
+
+  @override
+  String get libroColAQuien => 'Animalia / artaldea';
+
+  @override
+  String get libroColSustancia => 'Substantzia aktiboa';
+
+  @override
+  String get libroColClase => 'Mota';
+
+  @override
+  String get libroColDosis => 'Dosia';
+
+  @override
+  String get libroColEsperaCarne => 'Haragi-itxaronaldia (egun)';
+
+  @override
+  String get libroColEsperaLeche => 'Esne-itxaronaldia (egun)';
+
+  @override
+  String get libroColVeterinario => 'Albaitaria';
+
+  @override
+  String get libroColReceta => 'Errezeta';
+
+  @override
+  String get libroColTratamientos => 'Tratamenduak';
+
+  @override
+  String get libroColLimite => 'Muga';
+
+  @override
+  String get libroColSituacion => 'Egoera';
+
+  @override
+  String get libroSi => 'Bai';
+
+  @override
+  String get libroNo => 'Ez';
+
+  @override
+  String get libroEcoSuperado => 'Gaindituta: ezin da ekologiko gisa saldu';
+
+  @override
+  String get libroEcoEnLimite => 'Mugan';
+
+  @override
+  String get libroEcoBien => 'Mugaren barruan';
+
+  @override
+  String libroEsperaEco(int legal, int efectiva) {
+    return '$legal (eko $efectiva)';
+  }
+
+  @override
+  String get libroGenerar => 'Ustiategi-liburua (PDF)';
+
+  @override
+  String get libroHoja => 'Mugimendu-orria (PDF)';
+
+  @override
+  String get hojaTitulo => 'Mugimendu-orria';
+
+  @override
+  String hojaSubtitulo(String rebano, String fecha) {
+    return '$rebano · $fecha';
+  }
+
+  @override
+  String get hojaNoGuia =>
+      'Ez du ordezkatzen eskualdeko bulegoak (SITRAN) ematen duen abere-mugimenduko gida ofiziala. Lekualdaketarekin batera eramateko eta artxibatzeko balio du.';
+
+  @override
+  String get hojaDatos => 'Mugimenduaren datuak';
+
+  @override
+  String get hojaAnimales => 'Artaldeko krotaldun animaliak';
+
+  @override
+  String get hojaColDato => 'Datua';
+
+  @override
+  String get hojaColValor => 'Balioa';
 }

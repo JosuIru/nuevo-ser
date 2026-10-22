@@ -1197,11 +1197,11 @@
   "tipoEntidadGanado": "el ganado",
   "ayudaGrupoGanado": "Ganado y movimientos",
   "ayudaGanadoLotesT": "Rebaños y animales",
-  "ayudaGanadoLotesB": "El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.",
+  "ayudaGanadoLotesB": "El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.\n» El libro de explotación (icono del libro, arriba en Ganado) saca en PDF el censo, los animales, los movimientos y los tratamientos, con las UGM de cada rebaño. Cada movimiento tiene su hoja en PDF para acompañar el traslado. No sustituyen al libro oficial ni a la guía de SITRAN.",
   "ayudaGanadoMoverT": "Mover el ganado de pieza",
   "ayudaGanadoMoverB": "1. Abre el rebaño y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un rebaño»).\n2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».\n3. Si el movimiento lleva guía, apunta su número.\n» También desde el mapa: toca una pieza y, en «Ganado en esta pieza», pulsa «Traer un rebaño».\n» En la ficha de cada pieza se ve qué rebaños hay, cuántas cabezas y cuántas por hectárea. El historial del rebaño guarda todos sus movimientos.\n» Un animal suelto se cambia de rebaño desde su ficha («Cambiar de rebaño»).",
   "ayudaGanadoManejoT": "Curas, tratamientos, pesajes y partos",
-  "ayudaGanadoManejoB": "1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.",
+  "ayudaGanadoManejoB": "1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.\n» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.",
   "ganCabezas": "{n, plural, =1{1 cabeza} other{{n} cabezas}}",
   "@ganCabezas": {
     "placeholders": {
@@ -1378,5 +1378,136 @@
   "widgetBotonMover": "Mover rebaño",
   "widgetBotonCura": "Cura",
   "ayudaWidgetT": "El widget de la pantalla de inicio (Android)",
-  "ayudaWidgetB": "En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Larrea Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget."
+  "ayudaWidgetB": "En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Larrea Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.",
+  "ganEcologico": "Ganado ecológico",
+  "ganEcologicoAyuda": "Certificado o en conversión. Los medicamentos alopáticos doblan el plazo de espera (como mínimo 48 horas) y cuentan para el límite anual de tratamientos.",
+  "ganCicloCorto": "Vida productiva menor de un año",
+  "ganCicloCortoAyuda": "Cebo, corderos, aves de carne: en ecológico el límite es de un tratamiento al año en vez de tres.",
+  "ganClaseMedicamento": "Clase de medicamento",
+  "ganClaseSinIndicar": "Sin indicar",
+  "ganAvisoEcologicoPlazo": "Rebaño ecológico: para venderlo como ecológico vale el doble del plazo de la receta, y como mínimo 48 horas. La app ya lo cuenta así.",
+  "ganEcoTratamientos": "Ecológico: {n} de {limite} tratamientos alopáticos en 12 meses",
+  "@ganEcoTratamientos": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "limite": {
+        "type": "int"
+      }
+    }
+  },
+  "ganEcoSuperado": "Ha superado el límite de tratamientos: no se puede vender como ecológico y vuelve a conversión. Hay que comunicarlo a CPAEN/NNPEK.",
+  "ganEcoEnLimite": "Está en el límite: un tratamiento alopático más y pierde la condición ecológica.",
+  "ganEcoNoCuentan": "No cuentan vacunas, antiparasitarios ni saneamiento. PROVISIONAL hasta que lo revise CPAEN/NNPEK.",
+  "ganUgm": "{valor} UGM",
+  "@ganUgm": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "ganUgmPorHa": "{valor} UGM/ha",
+  "@ganUgmPorHa": {
+    "placeholders": {
+      "valor": {
+        "type": "String"
+      }
+    }
+  },
+  "libroTitulo": "Libro de explotación",
+  "libroSubtitulo": "Censo, movimientos y tratamientos del ganado",
+  "libroProvisional": "DOCUMENTO PROVISIONAL — no sustituye al libro de registro oficial de la explotación. Formato pendiente de validar con el veterinario/a y el Gobierno de Navarra.",
+  "libroUgmFuente": "UGM orientativas, según la {fuente}. Para un trámite vale la tabla de ese trámite.",
+  "@libroUgmFuente": {
+    "placeholders": {
+      "fuente": {
+        "type": "String"
+      }
+    }
+  },
+  "libroResumen": "{rebanos} rebaños · {cabezas} cabezas · {ugm} UGM",
+  "@libroResumen": {
+    "placeholders": {
+      "rebanos": {
+        "type": "int"
+      },
+      "cabezas": {
+        "type": "int"
+      },
+      "ugm": {
+        "type": "String"
+      }
+    }
+  },
+  "libroCenso": "Censo por rebaño",
+  "libroAnimales": "Animales identificados",
+  "libroMovimientos": "Movimientos",
+  "libroTratamientos": "Tratamientos y saneamiento",
+  "libroEcologico": "Ganado ecológico: tratamientos alopáticos en 12 meses",
+  "libroColRebano": "Rebaño",
+  "libroColEspecie": "Especie",
+  "libroColPieza": "Dónde está",
+  "libroColCabezas": "Cabezas",
+  "libroColSinCrotal": "Sin crotal",
+  "libroColUgm": "UGM",
+  "libroColEco": "Ecológico",
+  "libroColCrotal": "Crotal",
+  "libroColNombre": "Nombre",
+  "libroColRaza": "Raza",
+  "libroColSexo": "Sexo",
+  "libroColNacimiento": "Nacimiento",
+  "libroColMadre": "Madre",
+  "libroColEstado": "Estado",
+  "libroColFecha": "Fecha",
+  "libroColTipo": "Tipo",
+  "libroColTrayecto": "Origen → destino",
+  "libroColGuia": "Guía",
+  "libroColAQuien": "Animal / rebaño",
+  "libroColSustancia": "Sustancia activa",
+  "libroColClase": "Clase",
+  "libroColDosis": "Dosis",
+  "libroColEsperaCarne": "Espera carne (días)",
+  "libroColEsperaLeche": "Espera leche (días)",
+  "libroColVeterinario": "Veterinario/a",
+  "libroColReceta": "Receta",
+  "libroColTratamientos": "Tratamientos",
+  "libroColLimite": "Límite",
+  "libroColSituacion": "Situación",
+  "libroSi": "Sí",
+  "libroNo": "No",
+  "libroEcoSuperado": "Superado: no vendible como ecológico",
+  "libroEcoEnLimite": "En el límite",
+  "libroEcoBien": "Dentro del límite",
+  "libroEsperaEco": "{legal} (eco {efectiva})",
+  "@libroEsperaEco": {
+    "placeholders": {
+      "legal": {
+        "type": "int"
+      },
+      "efectiva": {
+        "type": "int"
+      }
+    }
+  },
+  "libroGenerar": "Libro de explotación (PDF)",
+  "libroHoja": "Hoja de movimiento (PDF)",
+  "hojaTitulo": "Hoja de movimiento",
+  "hojaSubtitulo": "{rebano} · {fecha}",
+  "@hojaSubtitulo": {
+    "placeholders": {
+      "rebano": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "hojaNoGuia": "No sustituye a la guía oficial de movimiento pecuario, que emite la oficina comarcal (SITRAN). Sirve para acompañar el traslado y archivarlo.",
+  "hojaDatos": "Datos del movimiento",
+  "hojaAnimales": "Animales con crotal del rebaño",
+  "hojaColDato": "Dato",
+  "hojaColValor": "Valor"
 }

@@ -184,7 +184,11 @@ class _FichaAnimalState extends State<FichaAnimal> {
     final puedeManejar = politica.puedeManejarAnimales && animal.activo;
     final formato = DateFormat('dd/MM/yyyy', idioma);
     final supresion = describirSupresion(
-        supresionVigente(_eventos, DateTime.now()), textos, idioma);
+        supresionVigente(_eventos, DateTime.now(),
+            ecologico: _lote?.ecologico ?? false),
+        textos,
+        idioma);
+    final ecologico = tarjetaEcologico(context, _lote, _eventos, textos);
     String fecha(int? ms) => ms == null
         ? '—'
         : formato.format(DateTime.fromMillisecondsSinceEpoch(ms));
@@ -237,6 +241,7 @@ class _FichaAnimalState extends State<FichaAnimal> {
                 ? null
                 : () => _tras(_ir(FichaLote(loteId: _lote!.id!))),
           ),
+          if (ecologico != null) ecologico,
           if (supresion != null)
             Card(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),

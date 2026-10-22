@@ -2647,7 +2647,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaGanadoLotesB =>
-      'El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.';
+      'El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…\n1. Entra en la pestaña Ganado y pulsa «Nuevo rebaño».\n2. Ponle nombre, especie y de quién es (del espacio o de una persona tester). Si hay animales que no se llevan uno a uno (aves, cerdos de cebo), pon cuántos en «Cabezas sin crotal».\n3. Elige en qué pieza está ahora y guarda.\n4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.\n» En la pestaña Animales se busca cualquier animal por su crotal.\n» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.\n» El libro de explotación (icono del libro, arriba en Ganado) saca en PDF el censo, los animales, los movimientos y los tratamientos, con las UGM de cada rebaño. Cada movimiento tiene su hoja en PDF para acompañar el traslado. No sustituyen al libro oficial ni a la guía de SITRAN.';
 
   @override
   String get ayudaGanadoMoverT => 'Mover el ganado de pieza';
@@ -2661,7 +2661,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaGanadoManejoB =>
-      '1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.';
+      '1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.\n» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.';
 
   @override
   String ganCabezas(int n) {
@@ -2811,4 +2811,228 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ayudaWidgetB =>
       'En Android puedes poner en la pantalla de inicio del móvil un resumen de Hoy sin abrir la app: las alarmas abiertas, tus tareas vencidas y las de hoy, los rebaños en plazo de supresión (y cuándo queda libre el primero) y el tiempo de hoy en la finca.\n1. Mantén pulsado un hueco de la pantalla de inicio y elige «Widgets».\n2. Busca «Larrea Zunbeltz» y arrastra «Hoy en Zunbeltz» a la pantalla.\n3. Si quieres, mantenlo pulsado para hacerlo más grande o más pequeño: con poco sitio se quitan primero el tiempo y luego la supresión.\n» Sus botones abren la app directamente para dar un aviso, mover un rebaño o apuntar una cura (eligiendo el rebaño). Solo salen los que tu perfil puede usar.\n» Se pone al día al cambiar algo en la app y, con la app cerrada, cada 15 minutos más o menos (Android decide cuándo). La hora de arriba dice cuándo fue la última vez.\n» En la versión web y en el ordenador no hay widget.';
+
+  @override
+  String get ganEcologico => 'Ganado ecológico';
+
+  @override
+  String get ganEcologicoAyuda =>
+      'Certificado o en conversión. Los medicamentos alopáticos doblan el plazo de espera (como mínimo 48 horas) y cuentan para el límite anual de tratamientos.';
+
+  @override
+  String get ganCicloCorto => 'Vida productiva menor de un año';
+
+  @override
+  String get ganCicloCortoAyuda =>
+      'Cebo, corderos, aves de carne: en ecológico el límite es de un tratamiento al año en vez de tres.';
+
+  @override
+  String get ganClaseMedicamento => 'Clase de medicamento';
+
+  @override
+  String get ganClaseSinIndicar => 'Sin indicar';
+
+  @override
+  String get ganAvisoEcologicoPlazo =>
+      'Rebaño ecológico: para venderlo como ecológico vale el doble del plazo de la receta, y como mínimo 48 horas. La app ya lo cuenta así.';
+
+  @override
+  String ganEcoTratamientos(int n, int limite) {
+    return 'Ecológico: $n de $limite tratamientos alopáticos en 12 meses';
+  }
+
+  @override
+  String get ganEcoSuperado =>
+      'Ha superado el límite de tratamientos: no se puede vender como ecológico y vuelve a conversión. Hay que comunicarlo a CPAEN/NNPEK.';
+
+  @override
+  String get ganEcoEnLimite =>
+      'Está en el límite: un tratamiento alopático más y pierde la condición ecológica.';
+
+  @override
+  String get ganEcoNoCuentan =>
+      'No cuentan vacunas, antiparasitarios ni saneamiento. PROVISIONAL hasta que lo revise CPAEN/NNPEK.';
+
+  @override
+  String ganUgm(String valor) {
+    return '$valor UGM';
+  }
+
+  @override
+  String ganUgmPorHa(String valor) {
+    return '$valor UGM/ha';
+  }
+
+  @override
+  String get libroTitulo => 'Libro de explotación';
+
+  @override
+  String get libroSubtitulo => 'Censo, movimientos y tratamientos del ganado';
+
+  @override
+  String get libroProvisional =>
+      'DOCUMENTO PROVISIONAL — no sustituye al libro de registro oficial de la explotación. Formato pendiente de validar con el veterinario/a y el Gobierno de Navarra.';
+
+  @override
+  String libroUgmFuente(String fuente) {
+    return 'UGM orientativas, según la $fuente. Para un trámite vale la tabla de ese trámite.';
+  }
+
+  @override
+  String libroResumen(int rebanos, int cabezas, String ugm) {
+    return '$rebanos rebaños · $cabezas cabezas · $ugm UGM';
+  }
+
+  @override
+  String get libroCenso => 'Censo por rebaño';
+
+  @override
+  String get libroAnimales => 'Animales identificados';
+
+  @override
+  String get libroMovimientos => 'Movimientos';
+
+  @override
+  String get libroTratamientos => 'Tratamientos y saneamiento';
+
+  @override
+  String get libroEcologico =>
+      'Ganado ecológico: tratamientos alopáticos en 12 meses';
+
+  @override
+  String get libroColRebano => 'Rebaño';
+
+  @override
+  String get libroColEspecie => 'Especie';
+
+  @override
+  String get libroColPieza => 'Dónde está';
+
+  @override
+  String get libroColCabezas => 'Cabezas';
+
+  @override
+  String get libroColSinCrotal => 'Sin crotal';
+
+  @override
+  String get libroColUgm => 'UGM';
+
+  @override
+  String get libroColEco => 'Ecológico';
+
+  @override
+  String get libroColCrotal => 'Crotal';
+
+  @override
+  String get libroColNombre => 'Nombre';
+
+  @override
+  String get libroColRaza => 'Raza';
+
+  @override
+  String get libroColSexo => 'Sexo';
+
+  @override
+  String get libroColNacimiento => 'Nacimiento';
+
+  @override
+  String get libroColMadre => 'Madre';
+
+  @override
+  String get libroColEstado => 'Estado';
+
+  @override
+  String get libroColFecha => 'Fecha';
+
+  @override
+  String get libroColTipo => 'Tipo';
+
+  @override
+  String get libroColTrayecto => 'Origen → destino';
+
+  @override
+  String get libroColGuia => 'Guía';
+
+  @override
+  String get libroColAQuien => 'Animal / rebaño';
+
+  @override
+  String get libroColSustancia => 'Sustancia activa';
+
+  @override
+  String get libroColClase => 'Clase';
+
+  @override
+  String get libroColDosis => 'Dosis';
+
+  @override
+  String get libroColEsperaCarne => 'Espera carne (días)';
+
+  @override
+  String get libroColEsperaLeche => 'Espera leche (días)';
+
+  @override
+  String get libroColVeterinario => 'Veterinario/a';
+
+  @override
+  String get libroColReceta => 'Receta';
+
+  @override
+  String get libroColTratamientos => 'Tratamientos';
+
+  @override
+  String get libroColLimite => 'Límite';
+
+  @override
+  String get libroColSituacion => 'Situación';
+
+  @override
+  String get libroSi => 'Sí';
+
+  @override
+  String get libroNo => 'No';
+
+  @override
+  String get libroEcoSuperado => 'Superado: no vendible como ecológico';
+
+  @override
+  String get libroEcoEnLimite => 'En el límite';
+
+  @override
+  String get libroEcoBien => 'Dentro del límite';
+
+  @override
+  String libroEsperaEco(int legal, int efectiva) {
+    return '$legal (eco $efectiva)';
+  }
+
+  @override
+  String get libroGenerar => 'Libro de explotación (PDF)';
+
+  @override
+  String get libroHoja => 'Hoja de movimiento (PDF)';
+
+  @override
+  String get hojaTitulo => 'Hoja de movimiento';
+
+  @override
+  String hojaSubtitulo(String rebano, String fecha) {
+    return '$rebano · $fecha';
+  }
+
+  @override
+  String get hojaNoGuia =>
+      'No sustituye a la guía oficial de movimiento pecuario, que emite la oficina comarcal (SITRAN). Sirve para acompañar el traslado y archivarlo.';
+
+  @override
+  String get hojaDatos => 'Datos del movimiento';
+
+  @override
+  String get hojaAnimales => 'Animales con crotal del rebaño';
+
+  @override
+  String get hojaColDato => 'Dato';
+
+  @override
+  String get hojaColValor => 'Valor';
 }

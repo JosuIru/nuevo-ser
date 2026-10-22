@@ -6,6 +6,7 @@ import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/ganado.dart';
+import '../modelos/ganado_ecologico.dart';
 import '../utiles/numeros.dart';
 import 'pantalla_escaner_crotal.dart';
 import 'widgets/cuerpo_responsivo.dart';
@@ -133,6 +134,8 @@ class _FormularioLoteState extends State<FormularioLote>
   late String _especie = widget.lote?.especie ?? 'ovino';
   late String _titular = widget.lote?.titularUid ?? '';
   late bool _activo = widget.lote?.activo ?? true;
+  late bool _ecologico = widget.lote?.ecologico ?? false;
+  late bool _cicloCorto = widget.lote?.cicloCorto ?? false;
   List<(int, String)> _zonas = const [];
   int? _zonaInicial;
   DateTime _fechaEntrada = DateTime.now();
@@ -176,6 +179,8 @@ class _FormularioLoteState extends State<FormularioLote>
       'cabezas_sin_identificar': sinIdentificar,
       'estado': _activo ? estadoLoteActivo : estadoLoteCerrado,
       'notas': _notas.text.trim(),
+      'ecologico': _ecologico ? 1 : 0,
+      'ciclo_corto': _cicloCorto ? 1 : 0,
     };
     if (_esAlta) {
       final loteId = await _bd
@@ -267,6 +272,21 @@ class _FormularioLoteState extends State<FormularioLote>
                 subtitle: Text(textos.ganLoteActivoAyuda),
                 value: _activo,
                 onChanged: (valor) => setState(() => _activo = valor),
+              ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(textos.ganEcologico),
+              subtitle: Text(textos.ganEcologicoAyuda),
+              value: _ecologico,
+              onChanged: (valor) => setState(() => _ecologico = valor),
+            ),
+            if (_ecologico)
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(textos.ganCicloCorto),
+                subtitle: Text(textos.ganCicloCortoAyuda),
+                value: _cicloCorto,
+                onChanged: (valor) => setState(() => _cicloCorto = valor),
               ),
             const SizedBox(height: 12),
             TextField(
@@ -707,9 +727,27 @@ class _FormularioEventoGanadoState extends State<FormularioEventoGanado>
   final _crias = TextEditingController();
   final _cabezas = TextEditingController();
   String _tipo = tipoEventoTratamiento;
+  String _clase = '';
   DateTime _fecha = DateTime.now();
 
+  /// El rebaño (el del animal, o el propio) es ecológico.
+  bool _ecologico = false;
+
   bool get _esDeLote => widget.animalId == null;
+
+  @override
+  void initState() {
+    super.initState();
+    _cargarSiEsEcologico();
+  }
+
+  Future<void> _cargarSiEsEcologico() async {
+    var loteId = widget.loteId;
+    final animalId = widget.animalId;
+    if (animalId != null) loteId = (await _bd.obtenerAnimal(animalId))?.loteId;
+    final lote = loteId == null ? null : await _bd.obtenerLote(loteId);
+    if (mounted && lote != null) setState(() => _ecologico = lote.ecologico);
+  }
 
   @override
   void dispose() {
@@ -770,6 +808,7 @@ class _FormularioEventoGanadoState extends State<FormularioEventoGanado>
       crias: _tipo == tipoEventoParto ? crias : 0,
       cabezas: _esDeLote ? cabezas : 0,
       autorUid: _miUid,
+      claseMedicamento: conMedicamento ? _clase : '',
     ));
     if (!mounted) return;
     avisar(textos.ganGuardado);
@@ -811,11 +850,37 @@ class _FormularioEventoGanadoState extends State<FormularioEventoGanado>
                       style: Theme.of(context).textTheme.bodySmall),
                 ),
               ),
+              if (_ecologico) ...[
+                const SizedBox(height: 8),
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Text(textos.ganAvisoEcologicoPlazo,
+                        style: Theme.of(context).textTheme.bodySmall),
+                  ),
+                ),
+              ],
               const SizedBox(height: 12),
               TextField(
                   controller: _sustancia,
                   decoration:
                       InputDecoration(labelText: textos.ganSustanciaActiva)),
+              const SizedBox(height: 12),
+              DropdownButtonFormField<String>(
+                isExpanded: true,
+                initialValue: _clase,
+                decoration:
+                    InputDecoration(labelText: textos.ganClaseMedicamento),
+                items: [
+                  DropdownMenuItem(
+                      value: '', child: Text(textos.ganClaseSinIndicar)),
+                  for (final clase in clasesMedicamento)
+                    DropdownMenuItem(
+                        value: clase.codigo,
+                        child: Text(clase.etiqueta(idioma))),
+                ],
+                onChanged: (valor) => setState(() => _clase = valor ?? ''),
+              ),
               const SizedBox(height: 12),
               TextField(
                   controller: _dosis,

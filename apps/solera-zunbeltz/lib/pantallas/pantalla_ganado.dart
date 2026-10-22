@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:printing/printing.dart';
 
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
@@ -7,6 +8,8 @@ import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/ganado.dart';
+import '../modelos/ganado_ecologico.dart';
+import '../servicios/generador_libro_explotacion.dart';
 import 'ficha_animal.dart';
 import 'ficha_lote.dart';
 import 'formularios_ganado.dart';
@@ -46,6 +49,37 @@ String describirUbicacion(MovimientoGanado? ultimo, Map<int, String> zonas,
 }
 
 /// «Carne: libre desde el 25/10 · Leche: libre desde el 19/10».
+/// Un número con coma decimal y [decimales] cifras: «1,25».
+String numeroConComa(double valor, {int decimales = 2}) =>
+    valor.toStringAsFixed(decimales).replaceAll('.', ',');
+
+/// Tarjeta con los tratamientos que cuentan en ecológico (12 meses) y si
+/// está en el límite o lo ha superado. Null si el rebaño no es ecológico.
+Widget? tarjetaEcologico(BuildContext context, LoteGanado? lote,
+    Iterable<EventoGanado> eventos, AppLocalizations textos) {
+  if (lote == null || !lote.ecologico) return null;
+  final estado = estadoTratamientosEcologico(eventos, DateTime.now(),
+      cicloCorto: lote.cicloCorto);
+  final esquema = Theme.of(context).colorScheme;
+  final alerta = estado.superado || estado.enElLimite;
+  return Card(
+    margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+    color: estado.superado ? esquema.error : null,
+    child: ListTile(
+      textColor: estado.superado ? esquema.onError : null,
+      iconColor: estado.superado ? esquema.onError : null,
+      leading: Icon(alerta ? Icons.warning_amber_outlined : Icons.eco_outlined),
+      title:
+          Text(textos.ganEcoTratamientos(estado.tratamientos, estado.limite)),
+      subtitle: Text([
+        if (estado.superado) textos.ganEcoSuperado,
+        if (estado.enElLimite) textos.ganEcoEnLimite,
+        textos.ganEcoNoCuentan,
+      ].join('\n')),
+    ),
+  );
+}
+
 String? describirSupresion(
     SupresionVigente supresion, AppLocalizations textos, String idioma) {
   if (!supresion.hayAlguna) return null;
@@ -99,6 +133,33 @@ class _PantallaGanadoState extends State<PantallaGanado>
     super.dispose();
   }
 
+  bool _generandoLibro = false;
+
+  /// El libro de explotación con todo el ganado de este móvil.
+  Future<void> _libroExplotacion() async {
+    final textos = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
+    setState(() => _generandoLibro = true);
+    try {
+      final documento = await generarLibroExplotacionPdf(
+        textos: textos,
+        idioma: idioma,
+        datos: DatosGanado(
+          lotes: await _bd.listarLotes(),
+          animales: await _bd.listarAnimales(),
+          movimientos: await _bd.listarMovimientos(),
+          eventos: await _bd.listarEventosGanado(),
+          zonas: await nombresDeZonas(_bd),
+        ),
+        definitivo: politicaEspacioActual.documentoDefinitivo(),
+      );
+      await Printing.sharePdf(
+          bytes: documento.bytes, filename: documento.nombreFichero);
+    } finally {
+      if (mounted) setState(() => _generandoLibro = false);
+    }
+  }
+
   Future<void> _cargar() async {
     try {
       final lotes = await _bd.listarResumenLotes(soloActivos: !_verCerrados);
@@ -111,8 +172,9 @@ class _PantallaGanadoState extends State<PantallaGanado>
       for (final resumen in lotes) {
         final id = resumen.lote.id;
         if (id == null) continue;
-        supresion[id] =
-            supresionVigente(await _bd.listarEventosGanado(loteId: id), ahora);
+        supresion[id] = supresionVigente(
+            await _bd.listarEventosGanado(loteId: id), ahora,
+            ecologico: resumen.lote.ecologico);
       }
       if (!mounted) return;
       setState(() {
@@ -183,6 +245,18 @@ class _PantallaGanadoState extends State<PantallaGanado>
     return Scaffold(
       appBar: AppBar(
         title: Text(textos.ganTitulo),
+        actions: [
+          IconButton(
+            tooltip: textos.libroGenerar,
+            icon: _generandoLibro
+                ? const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2))
+                : const Icon(Icons.menu_book_outlined),
+            onPressed: _generandoLibro ? null : _libroExplotacion,
+          ),
+        ],
         bottom: TabBar(
           controller: _pestanas,
           tabs: [

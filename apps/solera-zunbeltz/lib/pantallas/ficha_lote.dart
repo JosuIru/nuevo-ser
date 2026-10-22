@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:printing/printing.dart';
 
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
@@ -7,6 +8,7 @@ import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/constantes.dart';
 import '../modelos/ganado.dart';
+import '../servicios/generador_libro_explotacion.dart';
 import 'ficha_animal.dart';
 import 'formularios_ganado.dart';
 import 'pantalla_ganado.dart';
@@ -96,6 +98,23 @@ class FichaLote extends StatefulWidget {
 }
 
 class _FichaLoteState extends State<FichaLote> {
+  /// La hoja de un movimiento para acompañar el traslado.
+  Future<void> _hojaMovimiento(
+      LoteGanado lote, MovimientoGanado movimiento) async {
+    final textos = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
+    final documento = await generarHojaMovimientoPdf(
+      textos: textos,
+      idioma: idioma,
+      movimiento: movimiento,
+      lote: lote,
+      animalesDelLote: _animales,
+      zonas: _zonas,
+    );
+    await Printing.sharePdf(
+        bytes: documento.bytes, filename: documento.nombreFichero);
+  }
+
   final _bd = BaseDatosSoleraZunbeltz();
   LoteGanado? _lote;
   List<Animal> _animales = const [];
@@ -164,7 +183,11 @@ class _FichaLoteState extends State<FichaLote> {
     final activos = _animales.where((animal) => animal.activo).toList();
     final cabezas = cabezasDeLote(lote, _animales);
     final supresion = describirSupresion(
-        supresionVigente(_eventos, DateTime.now()), textos, idioma);
+        supresionVigente(_eventos, DateTime.now(), ecologico: lote.ecologico),
+        textos,
+        idioma);
+    final ugm = ugmDeLote(lote, _animales, DateTime.now());
+    final ecologico = tarjetaEcologico(context, lote, _eventos, textos);
     final titular = lote.titularUid.isEmpty
         ? textos.ganTitularEspacio
         : personasEspacio.value
@@ -179,6 +202,11 @@ class _FichaLoteState extends State<FichaLote> {
           movimiento.fechaMs,
           ListTile(
             leading: Icon(iconoMovimiento(movimiento.tipo)),
+            trailing: IconButton(
+              tooltip: textos.libroHoja,
+              icon: const Icon(Icons.picture_as_pdf_outlined),
+              onPressed: () => _hojaMovimiento(lote, movimiento),
+            ),
             title: Text(trayectoMovimiento(movimiento, _zonas, textos)),
             subtitle: Text([
               formato.format(
@@ -251,6 +279,8 @@ class _FichaLoteState extends State<FichaLote> {
               textos.ganCabezas(cabezas),
               if (lote.cabezasSinIdentificar > 0)
                 textos.ganDeEllasSinCrotal(lote.cabezasSinIdentificar),
+              if (ugm > 0) textos.ganUgm(numeroConComa(ugm)),
+              if (lote.ecologico) textos.ganEcologico,
               titular,
               if (!lote.activo) textos.ganLoteCerrado,
             ].join(' · ')),
@@ -267,6 +297,7 @@ class _FichaLoteState extends State<FichaLote> {
                 subtitle: Text(supresion),
               ),
             ),
+          if (ecologico != null) ecologico,
           if (lote.notas.isNotEmpty)
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),

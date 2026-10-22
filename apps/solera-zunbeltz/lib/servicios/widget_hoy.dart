@@ -123,8 +123,9 @@ List<DateTime> lotesEnSupresion({
   final libres = <DateTime>[];
   for (final lote in lotes) {
     if (lote.id == null || lote.estado == estadoLoteCerrado) continue;
-    final supresion =
-        supresionVigente(eventosPorLote[lote.id] ?? const [], ahora);
+    final supresion = supresionVigente(
+        eventosPorLote[lote.id] ?? const [], ahora,
+        ecologico: lote.ecologico);
     if (!supresion.hayAlguna) continue;
     final carne = supresion.carneHasta;
     final leche = supresion.lecheHasta;

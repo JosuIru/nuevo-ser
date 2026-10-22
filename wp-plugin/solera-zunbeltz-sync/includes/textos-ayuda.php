@@ -165,7 +165,8 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 3. Elige en qué pieza está ahora y guarda.
 4. Para los animales con crotal, abre el rebaño y pulsa «Añadir animal»: crotal, nombre si lo tiene, raza, sexo, nacimiento y madre.
 » En la pestaña Animales se busca cualquier animal por su crotal.
-» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.',
+» El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.
+» El libro de explotación (icono del libro, arriba en Ganado) saca en PDF el censo, los animales, los movimientos y los tratamientos, con las UGM de cada rebaño. Cada movimiento tiene su hoja en PDF para acompañar el traslado. No sustituyen al libro oficial ni a la guía de SITRAN.',
 		'ayudaGanadoMoverT' => 'Mover el ganado de pieza',
 		'ayudaGanadoMoverB' => '1. Abre el rebaño y pulsa «Mover» (o, en la pestaña Movimientos, «Mover un rebaño»).
 2. Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige «Salida del espacio» y escribe adónde va; cuando vuelva, «Entrada en el espacio».
@@ -178,7 +179,8 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 2. Elige qué se ha hecho y la fecha.
 3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.
 4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.
-» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.',
+» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.
+» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.',
 		'ayudaGrupoProyectos' => 'Tu proyecto de test',
 		'ayudaProyectosT' => 'Crear tu proyecto',
 		'ayudaProyectosB' => 'Los proyectos los crea coordinación, y cada uno es de una persona tester.
@@ -399,7 +401,8 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 3. Aukeratu orain zein sailetan dagoen eta gorde.
 4. Krotaldun animalientzat, ireki taldea eta sakatu «Animalia gehitu»: krotala, izena baldin badu, arraza, sexua, jaiotza eta ama.
 » Animaliak fitxan edozein animalia bilatzen da bere krotalaren bidez.
-» Krotalaren ondoko kamera-ikonoak (alta ematean eta bilaketan) DIBaren barra-kodea irakurri eta zenbakia berez betetzen du. Linux edo Windows duen ordenagailuan ez dago.',
+» Krotalaren ondoko kamera-ikonoak (alta ematean eta bilaketan) DIBaren barra-kodea irakurri eta zenbakia berez betetzen du. Linux edo Windows duen ordenagailuan ez dago.
+» Ustiategi-liburuak (liburuaren ikonoa, goian Abereak atalean) errolda, animaliak, mugimenduak eta tratamenduak ateratzen ditu PDFn, artalde bakoitzaren ALUekin. Mugimendu bakoitzak bere PDF orria du lekualdaketarekin batera eramateko. Ez dute ordezkatzen liburu ofiziala ezta SITRANeko gida ere.',
 		'ayudaGanadoMoverT' => 'Abereak sailez mugitu',
 		'ayudaGanadoMoverB' => '1. Ireki taldea eta sakatu «Mugitu» (edo, Mugimenduak fitxan, «Talde bat mugitu»).
 2. Aukeratu zein sailetara doan eta data. Espaziotik ateratzen bada (mendira, beste ustiategi batera, hiltegira), aukeratu «Espaziotik irteera» eta idatzi nora doan; itzultzen denean, «Espaziora sarrera».
@@ -412,7 +415,8 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 2. Aukeratu zer egin den eta data.
 3. Sendaketa edo tratamendu batean, idatzi errezetan dagoena: substantzia aktiboa, dosia, haragiaren eta esnearen kentze-egunak, albaitaria eta errezeta-zenbakia. Aplikazioak ez du sendagairik gomendatzen.
 4. Gorde. Epeak irauten duen bitartean, taldea edo animalia «Kentze-epean» markatuta agertzen da, libre geratzen den egunarekin.
-» Animalia bati baja emateko (salmenta, hilketa, heriotza), erabili «Baja eman» bere fitxan: ez da ezabatzen, bere historia gordetzen da.',
+» Animalia bati baja emateko (salmenta, hilketa, heriotza), erabili «Baja eman» bere fitxan: ez da ezabatzen, bere historia gordetzen da.
+» Ekologiko gisa markatutako artalde batean, adierazi sendagai mota: alopatikoek itxaronaldia bikoizten dute (gutxienez 48 ordu) eta fitxak abisatzen du urteko tratamendu-mugara hurbiltzen denean edo gainditzen denean. BEHIN-BEHINEKOA CPAEN/NNPEKek berrikusi arte.',
 		'ayudaGrupoProyectos' => 'Zure test-proiektua',
 		'ayudaProyectosT' => 'Zure proiektua sortu',
 		'ayudaProyectosB' => 'Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da.

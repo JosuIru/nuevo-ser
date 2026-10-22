@@ -296,6 +296,11 @@ class _FichaZonaState extends State<FichaZona> {
                               (resumen.cabezas / zona.superficieHa)
                                   .toStringAsFixed(1)
                                   .replaceAll('.', ',')),
+                        if (resumen.ugm > 0)
+                          textos.ganUgm(numeroConComa(resumen.ugm)),
+                        if (zona.superficieHa > 0 && resumen.ugm > 0)
+                          textos.ganUgmPorHa(
+                              numeroConComa(resumen.ugm / zona.superficieHa)),
                       ].join(' · ')),
                       trailing: const Icon(Icons.chevron_right),
                       onTap: () => _abrirLote(resumen.lote.id!),

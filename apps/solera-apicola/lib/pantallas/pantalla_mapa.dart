@@ -86,6 +86,14 @@ class _PantallaMapaState extends State<PantallaMapa> {
     }
   }
 
+  /// Abre el buscador de lugares del core y lleva el mapa al resultado.
+  Future<void> _buscarLugar() async {
+    final lugarEncontrado =
+        await buscarLugarEnMapa(context, identificacion: 'Solera Apicola');
+    if (lugarEncontrado == null || !mounted) return;
+    _aplicarCentro(lugarEncontrado, 15);
+  }
+
   Future<void> _cargarTodo() async {
     final apiarios = await BaseDatosSoleraApicola.instancia.listarApiarios();
     final apiarioActivoId = await _persistenciaApiario.cargar();
@@ -339,6 +347,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
       appBar: AppBar(
         title: const Text('Solera Apícola'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Buscar un lugar',
+            onPressed: _buscarLugar,
+          ),
           PopupMenuButton<_AccionMenu>(
             tooltip: 'Más',
             onSelected: (a) async {

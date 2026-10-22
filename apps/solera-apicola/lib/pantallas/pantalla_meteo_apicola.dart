@@ -7,7 +7,6 @@ import '../datos/base_datos.dart';
 import '../estado/apiario_activo.dart';
 import '../modelos/apiario.dart';
 import '../modelos/colmena.dart';
-import '../servicios/servicio_meteo_agro.dart';
 import '../utiles/permisos_gps.dart';
 
 class PantallaMeteoApicola extends StatefulWidget {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-import '../utiles/numeros_formulario.dart';
 import '../datos/base_datos.dart';
 import '../modelos/apiario.dart';
 import '../modelos/apunte_gasto.dart';
@@ -245,7 +244,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ),
               validator: (v) {
                 if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
-                if (centimosDesdeTexto(v!) == null) return textoNumeroNoValido;
+                if (centimosDesdeTexto(v!) == null) return SoleraL10n.t('numero_no_valido');
                 if (_parsearCentimos(v) <= 0) return 'Mayor que cero';
                 return null;
               },

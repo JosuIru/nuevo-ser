@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../datos/base_datos.dart';
 import '../../estado/apiario_activo.dart';
 import '../../modelos/apiario.dart';
 import '../../modelos/colmena.dart';
-import '../../servicios/servicio_meteo_agro.dart';
 import '../../utiles/permisos_gps.dart';
 import '../pantalla_meteo_apicola.dart';
 

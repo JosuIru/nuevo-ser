@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-import '../utiles/numeros_formulario.dart';
 import '../datos/base_datos.dart';
 import '../modelos/apiario.dart';
 import '../modelos/apunte_ingreso.dart';
@@ -254,7 +253,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                   labelText: 'Cantidad (${_tipoActual.unidad})',
                   border: OutlineInputBorder(),
                 ),
-                validator: validarCantidadOpcional,
+                validator: (texto) =>
+                validarNumeroOpcional(texto, nullSiAmbiguo: true),
               ),
             if (_tipoActual.unidad.isNotEmpty) SizedBox(height: 12),
             TextFormField(
@@ -268,7 +268,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               ),
               validator: (v) {
                 if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
-                if (centimosDesdeTexto(v!) == null) return textoNumeroNoValido;
+                if (centimosDesdeTexto(v!) == null) return SoleraL10n.t('numero_no_valido');
                 if (_parsearCentimos(v) <= 0) return 'Mayor que cero';
                 return null;
               },

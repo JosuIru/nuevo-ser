@@ -9,7 +9,6 @@ import 'package:printing/printing.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../utiles/numeros_formulario.dart';
 import '../datos/base_datos.dart';
 import '../modelos/factura.dart';
 import '../servicios/generador_factura_pdf.dart';
@@ -373,8 +372,8 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
     if (cant == null || precio == null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(cant == null
-            ? 'Cantidad: $textoNumeroNoValido'
-            : 'Precio: $textoNumeroNoValido'),
+            ? 'Cantidad: ${SoleraL10n.t('numero_entero_no_valido')}'
+            : 'Precio: ${SoleraL10n.t('numero_no_valido')}'),
       ));
       return;
     }

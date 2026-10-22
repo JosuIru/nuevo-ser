@@ -2,6 +2,8 @@
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
+> **2026-10-22 (0.1.3)**: los tres PDF (factura, libro PAC, extracto económico) usan `temaPdfSolera()` del core (letra Archivo incrustada: Helvetica dejaba «€» y «—» en blanco). Los números de los formularios se leen a la española con `leerNumero`/`centimosDesdeTexto` del core (gasto, ingreso, evento, línea de factura) y avisan si no se entienden (`utiles/validadores_numero.dart`) en vez de guardar 0.
+
 ## Encuadre
 
 Primer fork de la **Suite Solera** dentro del monorepo. Producto comercial dirigido a **bodegas pequeñas y medianas** (5-30 ha). Hermana técnica de `apps/agro` (Solera generalista) y futura `apps/solera-apicola` y `apps/solera-arbolado-urbano`.

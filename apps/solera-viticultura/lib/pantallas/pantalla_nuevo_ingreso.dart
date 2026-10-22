@@ -7,6 +7,7 @@ import '../modelos/apunte_ingreso.dart';
 import '../modelos/configuracion_fiscal.dart';
 import '../modelos/tercero.dart';
 import '../modelos/vinedo.dart';
+import '../utiles/validadores_numero.dart';
 
 /// Formulario de apunte de ingreso para viticultor/bodega. La
 /// diferencia clave vs agro es que aquí distinguimos venta de UVA
@@ -119,12 +120,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
     return (centimos / 100).toStringAsFixed(2);
   }
 
-  int _parsearCentimos(String texto) {
-    final limpio = texto.trim().replaceAll(',', '.');
-    if (limpio.isEmpty) return 0;
-    final v = double.tryParse(limpio) ?? 0.0;
-    return (v * 100).round();
-  }
+  /// Vacío o ilegible → 0; el validador del campo avisa si no se entiende.
+  int _parsearCentimos(String texto) => centimosDesdeTexto(texto) ?? 0;
 
   _Opcion get _tipoActual =>
       _opcionesTipo.firstWhere((o) => o.codigo == _tipoIngreso,
@@ -177,8 +174,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
   Future<void> _guardar() async {
     if (!(_claveFormulario.currentState?.validate() ?? false)) return;
     setState(() => _guardando = true);
-    final cantidadValor =
-        double.tryParse(_cantidad.text.trim().replaceAll(',', '.'));
+    final cantidadValor = leerNumero(_cantidad.text, nullSiAmbiguo: true);
     final apunte = ApunteIngreso(
       id: widget.existente?.id,
       fechaMs: _fecha.millisecondsSinceEpoch,
@@ -275,6 +271,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                   labelText: 'Cantidad (${_tipoActual.unidad})',
                   border: OutlineInputBorder(),
                 ),
+                validator: validarCantidadOpcional,
               ),
             if (_tipoActual.unidad.isNotEmpty) SizedBox(height: 12),
             TextFormField(
@@ -288,6 +285,9 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               ),
               validator: (v) {
                 if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
+                if (validarImporteOpcional(v) != null) {
+                  return textoNumeroNoValido;
+                }
                 if (_parsearCentimos(v!) <= 0) return 'Mayor que cero';
                 return null;
               },
@@ -319,6 +319,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     labelText: 'Compensación REAGP (€)',
                     border: OutlineInputBorder(),
                   ),
+                  validator: validarImporteOpcional,
                 ),
               if (!(_esVentaUva && _configFiscal.regimenIva == 'reagp'))
                 TextFormField(
@@ -330,6 +331,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     labelText: 'IVA repercutido (€)',
                     border: OutlineInputBorder(),
                   ),
+                  validator: validarImporteOpcional,
                 ),
               if (_configFiscal.regimenIva == 'sin_elegir')
                 Container(

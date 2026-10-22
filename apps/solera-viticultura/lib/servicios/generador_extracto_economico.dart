@@ -236,6 +236,7 @@ Future<File> generarExtractoEconomico({
   ];
 
   return generarInformePeriodicoPdf(
+    tema: await temaPdfSolera(),
     tituloCabecera: 'Extracto económico · $ano',
     subtituloCabecera:
         'Viticultura · Libro registro provisional · Asesor fiscal pendiente',

@@ -7,6 +7,7 @@ import '../modelos/apunte_gasto.dart';
 import '../modelos/configuracion_fiscal.dart';
 import '../modelos/tercero.dart';
 import '../modelos/vinedo.dart';
+import '../utiles/validadores_numero.dart';
 
 /// Formulario de apunte de gasto del viticultor/bodega. Categorías
 /// específicas del ciclo vitivinícola (vendimia, embotellado,
@@ -118,12 +119,8 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
     return (centimos / 100).toStringAsFixed(2);
   }
 
-  int _parsearCentimos(String texto) {
-    final limpio = texto.trim().replaceAll(',', '.');
-    if (limpio.isEmpty) return 0;
-    final v = double.tryParse(limpio) ?? 0.0;
-    return (v * 100).round();
-  }
+  /// Vacío o ilegible → 0; el validador del campo avisa si no se entiende.
+  int _parsearCentimos(String texto) => centimosDesdeTexto(texto) ?? 0;
 
   void _recalcular() {
     if (!_autocalcular) return;
@@ -263,6 +260,9 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ),
               validator: (v) {
                 if ((v ?? '').trim().isEmpty) return 'Importe obligatorio';
+                if (validarImporteOpcional(v) != null) {
+                  return textoNumeroNoValido;
+                }
                 if (_parsearCentimos(v!) <= 0) return 'Mayor que cero';
                 return null;
               },
@@ -292,6 +292,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 labelText: 'IVA soportado (€)',
                 border: OutlineInputBorder(),
               ),
+              validator: validarImporteOpcional,
             ),
             if (_configFiscal.regimenIva == 'reagp')
               Padding(

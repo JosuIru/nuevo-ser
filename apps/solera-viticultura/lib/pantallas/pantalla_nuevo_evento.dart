@@ -9,6 +9,7 @@ import '../modelos/cosecha.dart';
 import '../modelos/incidencia.dart';
 import '../modelos/observacion.dart';
 import '../modelos/tratamiento.dart';
+import '../utiles/validadores_numero.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 /// Tipo de evento que crea esta pantalla. Se elige antes de abrirla
@@ -176,7 +177,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         await db.guardarCosecha(Cosecha(
           cepaId: widget.cepaId,
           fechaMs: fechaMs,
-          kilos: double.tryParse(_controladorKilos.text.replaceAll(',', '.')),
+          kilos: leerNumero(_controladorKilos.text, nullSiAmbiguo: true),
           unidades: int.tryParse(_controladorUnidades.text),
           calidad: _calidad,
           rutasFotosJson: fotosJson,
@@ -227,7 +228,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           numeroRegistroFitosanitario: _controladorNumRegistro.text.trim(),
           nifAplicador: _controladorNifAplicador.text.trim(),
           superficieTratadaHectareas:
-              double.tryParse(_controladorSuperficieTratada.text.replaceAll(',', '.')),
+              leerNumero(_controladorSuperficieTratada.text),
         ));
         break;
     }
@@ -294,6 +295,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             decoration: InputDecoration(labelText: 'Kilos', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
+            validator: validarCantidadOpcional,
           ),
           SizedBox(height: 12),
           TextFormField(
@@ -446,6 +448,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               ),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
               inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
+              validator: validarMedidaOpcional,
             ),
           ],
         ];

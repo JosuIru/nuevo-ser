@@ -89,6 +89,7 @@ Future<File> generarLibroPac({
   ];
 
   return generarInformePeriodicoPdf(
+    tema: await temaPdfSolera(),
     tituloCabecera: tituloCabecera,
     subtituloCabecera: subtituloCabecera,
     bulletsResumen: bullets,

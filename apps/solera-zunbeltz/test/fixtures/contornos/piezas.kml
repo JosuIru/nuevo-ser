@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+<Placemark><name>Parque de cerdos</name><Polygon><outerBoundaryIs><LinearRing><coordinates>
+-2.0300,42.8200,0 -2.0290,42.8200,0 -2.0290,42.8210,0 -2.0300,42.8210,0 -2.0300,42.8200,0
+</coordinates></LinearRing></outerBoundaryIs><innerBoundaryIs><LinearRing><coordinates>-2.0296,42.8204 -2.0294,42.8204 -2.0294,42.8206 -2.0296,42.8204</coordinates></LinearRing></innerBoundaryIs></Polygon></Placemark>
+<Placemark><name>Cierre a mano</name><LineString><coordinates>-2.031,42.822 -2.030,42.822 -2.030,42.823 -2.031,42.8230 -2.03100,42.82201</coordinates></LineString></Placemark>
+<Placemark><name>Camino</name><LineString><coordinates>-2.031,42.822 -2.020,42.830</coordinates></LineString></Placemark>
+<Placemark><name>Punto</name><Point><coordinates>-2.03,42.82</coordinates></Point></Placemark>
+</Document></kml>

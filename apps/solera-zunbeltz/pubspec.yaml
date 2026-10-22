@@ -65,6 +65,10 @@ dependencies:
   workmanager: ^0.10.10
   home_widget: ^0.10.0
   mobile_scanner: ^7.4.2
+  file_picker: ^10.2.4
+  xml: ^6.6.1
+  archive: ^3.6.1
+  proj4dart: ^2.1.0
 
 dev_dependencies:
   flutter_test:

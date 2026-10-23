@@ -113,7 +113,7 @@
   "segTodasFincas": "Todas las fincas",
   "segAlimentacion": "Alimentación (kg)",
   "segPariciones": "Pariciones",
-  "segProductos": "Productos comercializados",
+  "segProductos": "Productos obtenidos",
   "segIngresos": "Ingresos",
   "segGastos": "Gastos",
   "segBalance": "Balance",
@@ -183,7 +183,7 @@
   "proyectoNuevo": "Nuevo proyecto",
   "proyectoNombre": "Nombre del proyecto",
   "proyectoPersona": "Persona tester",
-  "proyectoActividad": "Actividad / vertical",
+  "proyectoActividad": "Actividad productiva",
   "proyectoFinca": "Finca (apoyo)",
   "proyectoSinFinca": "Sin finca",
   "proyectoFechaInicio": "Inicio",
@@ -380,9 +380,9 @@
   "ayudaRecurrentesTesterT": "Tareas que se repiten",
   "ayudaRecurrentesTesterB": "Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…\n1. En Fincas, pulsa «Tareas» para ver las actuaciones previstas.\n2. Las que se repiten llevan el símbolo de repetir.\n3. Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.\n» No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.",
   "ayudaTableroT": "Llevar las tareas al día",
-  "ayudaTableroB": "1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.",
+  "ayudaTableroB": "1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».",
   "ayudaTableroTesterT": "Consultar y llevar las tareas al día",
-  "ayudaTableroTesterB": "En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso o hechas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.",
+  "ayudaTableroTesterB": "En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.",
   "ayudaProyectosT": "Crear tu proyecto",
   "ayudaProyectosB": "Los proyectos los crea coordinación, y cada uno es de una persona tester.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).",
   "ayudaApuntarT": "Apuntar tu día a día",
@@ -1729,5 +1729,6 @@
   "tareaAnadirFotosDespues": "Añadir fotos de después",
   "tareaPreguntaFotoDespues": "¿Haces una foto de cómo ha quedado?",
   "fotoAhoraNo": "Ahora no",
-  "tareaFotosAnadidas": "Fotos añadidas a la tarea"
+  "tareaFotosAnadidas": "Fotos añadidas a la tarea",
+  "proyectoActividadEjemplo": "p. ej. ovino de leche, vacuno de carne, huerta"
 }

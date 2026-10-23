@@ -92,7 +92,7 @@
   "segTodasFincas": "Finka guztiak",
   "segAlimentacion": "Elikadura (kg)",
   "segPariciones": "Erditzeak",
-  "segProductos": "Merkaturatutako produktuak",
+  "segProductos": "Lortutako produktuak",
   "segIngresos": "Sarrerak",
   "segGastos": "Gastuak",
   "segBalance": "Balantzea",
@@ -152,7 +152,7 @@
   "proyectoNuevo": "Proiektu berria",
   "proyectoNombre": "Proiektuaren izena",
   "proyectoPersona": "Tester pertsona",
-  "proyectoActividad": "Jarduera / bertikala",
+  "proyectoActividad": "Ekoizpen-jarduera",
   "proyectoFinca": "Finka (laguntza)",
   "proyectoSinFinca": "Finkarik gabe",
   "proyectoFechaInicio": "Hasiera",
@@ -339,9 +339,9 @@
   "ayudaRecurrentesTesterT": "Errepikatzen diren zereginak",
   "ayudaRecurrentesTesterB": "Zeregin batzuk aldiro egiten dira: askak bete, hesia berrikusi, instalazioak egiaztatu…\n1. Finketan, sakatu «Zereginak» aurreikusitako jarduerak ikusteko.\n2. Errepikatzen direnek errepikatzeko ikurra dute.\n3. Ohiko zereginen bat falta bada edo beste maiztasun batekin egin beharko balitz, jakinarazi koordinazioari.\n» Ez dago jada programatuta dagoen zeregin periodiko bat aldi bakoitzean eskatu beharrik. Eginda gisa markatzean, app-ak berak prestatzen du hurrengoa.",
   "ayudaTableroT": "Zereginak egunean eraman",
-  "ayudaTableroB": "1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.",
+  "ayudaTableroB": "1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.",
   "ayudaTableroTesterT": "Zereginak kontsultatu eta egunean eraman",
-  "ayudaTableroTesterB": "App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten edo eginda.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.",
+  "ayudaTableroTesterB": "App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.",
   "ayudaProyectosT": "Zure proiektua sortu",
   "ayudaProyectosB": "Proiektuak koordinazioak sortzen ditu, eta bakoitza pertsona tester batena da.\n1. Proiektuetan, sakatu + (koordinazioak bakarrik).\n2. Jarri izena, jarduera eta aukeratu pertsona testerra. Nahi baduzu, finka eta datak ere bai.\n3. Sakatu Gorde.\n» Pertsona tester bakoitzak bere proiektua bakarrik ikusten du. Koordinazioak denak ikusten ditu eta, testa amaitzean, proiektuaren menutik ixten du (⋮ → Proiektua itxi).",
   "ayudaApuntarT": "Zure egunerokoa apuntatu",
@@ -1055,5 +1055,6 @@
   "tareaAnadirFotosDespues": "Ondorengo argazkiak gehitu",
   "tareaPreguntaFotoDespues": "Nola geratu den argazki bat atera nahi duzu?",
   "fotoAhoraNo": "Orain ez",
-  "tareaFotosAnadidas": "Argazkiak zereginari gehituta"
+  "tareaFotosAnadidas": "Argazkiak zereginari gehituta",
+  "proyectoActividadEjemplo": "adib. esne-ardiak, haragitarako behiak, baratzea"
 }

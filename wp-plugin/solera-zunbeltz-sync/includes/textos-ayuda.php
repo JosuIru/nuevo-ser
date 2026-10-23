@@ -157,14 +157,16 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.
 3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.
 4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.
-5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.',
+5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.
+» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».',
 		'ayudaTableroTesterT' => 'Consultar y llevar las tareas al día',
-		'ayudaTableroTesterB' => 'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso o hechas.
+		'ayudaTableroTesterB' => 'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.
 1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.
 2. Filtra por finca o por estado para encontrar las que te interesan.
 3. «Mis tareas» deja solo las que tienes asignadas.
 4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.
 5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.
+» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».
 » Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.',
 		'ayudaGrupoGanado' => 'Ganado y movimientos',
 		'ayudaGanadoLotesT' => 'Rebaños y animales',
@@ -402,14 +404,16 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.
 3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.
 4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.
-5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.',
+5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.
+» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.',
 		'ayudaTableroTesterT' => 'Zereginak kontsultatu eta egunean eraman',
-		'ayudaTableroTesterB' => 'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten edo eginda.
+		'ayudaTableroTesterB' => 'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.
 1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.
 2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.
 3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.
 4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.
 5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.
+» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.
 » Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.',
 		'ayudaGrupoGanado' => 'Abereak eta mugimenduak',
 		'ayudaGanadoLotesT' => 'Taldeak eta animaliak',

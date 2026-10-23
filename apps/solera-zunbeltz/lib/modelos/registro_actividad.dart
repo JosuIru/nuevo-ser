@@ -1,7 +1,7 @@
 import 'constantes.dart';
 
 /// Un registro de actividad del seguimiento del testaje: alimentación (kg),
-/// pariciones (nº) o productos comercializados (uds/kg). Modelo ligero —
+/// pariciones (nº) o producto obtenido (uds/kg). Modelo ligero —
 /// el cuaderno ganadero completo (animales con crotal/DIB) es una fase
 /// posterior. El lote/rebaño es texto libre por ahora.
 class RegistroActividad {

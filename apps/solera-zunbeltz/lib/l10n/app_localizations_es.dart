@@ -305,7 +305,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get segPariciones => 'Pariciones';
 
   @override
-  String get segProductos => 'Productos comercializados';
+  String get segProductos => 'Productos obtenidos';
 
   @override
   String get segIngresos => 'Ingresos';
@@ -492,7 +492,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get proyectoPersona => 'Persona tester';
 
   @override
-  String get proyectoActividad => 'Actividad / vertical';
+  String get proyectoActividad => 'Actividad productiva';
 
   @override
   String get proyectoFinca => 'Finca (apoyo)';
@@ -983,14 +983,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaTableroB =>
-      '1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.';
+      '1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».';
 
   @override
   String get ayudaTableroTesterT => 'Consultar y llevar las tareas al día';
 
   @override
   String get ayudaTableroTesterB =>
-      'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso o hechas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.';
+      'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.';
 
   @override
   String get ayudaProyectosT => 'Crear tu proyecto';
@@ -3332,4 +3332,8 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tareaFotosAnadidas => 'Fotos añadidas a la tarea';
+
+  @override
+  String get proyectoActividadEjemplo =>
+      'p. ej. ovino de leche, vacuno de carne, huerta';
 }

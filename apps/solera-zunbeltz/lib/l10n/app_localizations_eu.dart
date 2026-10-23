@@ -305,7 +305,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get segPariciones => 'Erditzeak';
 
   @override
-  String get segProductos => 'Merkaturatutako produktuak';
+  String get segProductos => 'Lortutako produktuak';
 
   @override
   String get segIngresos => 'Sarrerak';
@@ -492,7 +492,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get proyectoPersona => 'Tester pertsona';
 
   @override
-  String get proyectoActividad => 'Jarduera / bertikala';
+  String get proyectoActividad => 'Ekoizpen-jarduera';
 
   @override
   String get proyectoFinca => 'Finka (laguntza)';
@@ -985,14 +985,14 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaTableroB =>
-      '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.';
+      '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.';
 
   @override
   String get ayudaTableroTesterT => 'Zereginak kontsultatu eta egunean eraman';
 
   @override
   String get ayudaTableroTesterB =>
-      'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten edo eginda.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.';
+      'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.';
 
   @override
   String get ayudaProyectosT => 'Zure proiektua sortu';
@@ -3335,4 +3335,8 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get tareaFotosAnadidas => 'Argazkiak zereginari gehituta';
+
+  @override
+  String get proyectoActividadEjemplo =>
+      'adib. esne-ardiak, haragitarako behiak, baratzea';
 }

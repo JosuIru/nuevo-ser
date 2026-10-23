@@ -180,7 +180,9 @@ class _NuevoProyectoState extends State<NuevoProyecto> {
             TextField(
                 controller: _actividad,
                 decoration:
-                    InputDecoration(labelText: textos.proyectoActividad)),
+                    InputDecoration(
+                        labelText: textos.proyectoActividad,
+                        hintText: textos.proyectoActividadEjemplo)),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
               isExpanded: true,

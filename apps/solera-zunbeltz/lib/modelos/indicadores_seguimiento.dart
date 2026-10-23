@@ -1,5 +1,5 @@
 /// Indicadores agregados del seguimiento de un periodo: lo que pide el
-/// testaje (kg de alimentación, pariciones, productos comercializados,
+/// testaje (kg de alimentación, pariciones, producto obtenido,
 /// ingresos, gastos y balance).
 class IndicadoresSeguimiento {
   const IndicadoresSeguimiento({

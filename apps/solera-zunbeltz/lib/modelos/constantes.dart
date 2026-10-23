@@ -177,7 +177,7 @@ const List<OpcionCatalogo> tiposActividad = [
   OpcionCatalogo('alimentacion', 'Alimentación', 'Elikadura'),
   OpcionCatalogo('paricion', 'Pariciones', 'Erditzeak'),
   OpcionCatalogo(
-      'producto', 'Producto comercializado', 'Merkaturatutako produktua'),
+      'producto', 'Producto obtenido', 'Lortutako produktua'),
 ];
 
 /// Unidad de la cantidad según el tipo de actividad.

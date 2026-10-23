@@ -22,6 +22,12 @@ function sanitize_text_field( $texto ) {
 function sanitize_textarea_field( $texto ) {
 	return trim( (string) $texto );
 }
+function wp_parse_url( $url, $componente = -1 ) {
+	return parse_url( $url, $componente );
+}
+function home_url( $ruta = '' ) {
+	return 'https://app.zunbeltz.com' . $ruta;
+}
 
 require_once __DIR__ . '/../solera-zunbeltz-sync.php';
 
@@ -269,6 +275,15 @@ afirmar( false, $indicadores['soporte_integral'], 'indicadores: sin asesoramient
 afirmar( true, $indicadores['seguimiento'], 'indicadores: una reunión y una visita en un mes cumplen el seguimiento' );
 afirmar( false, $indicadores['difusion'], 'indicadores: difusión pide visita recibida, mercado y medio' );
 afirmar( true, $indicadores['venta'], 'indicadores: un mercado basta para venta' );
+
+// --- correo al momento: con contexto, enlace, pie e idioma ---
+$cuerpo = szs_cuerpo_correo_al_momento( 'Han pedido una tarea urgente.', 'Revisión de crías', '', 'Tester', 'https://app.zunbeltz.com/wp-admin/admin.php?page=solera-zunbeltz-peticiones' );
+afirmar( true, str_starts_with( $cuerpo, "Han pedido una tarea urgente.\n\n«Revisión de crías»\n\nLo envía: Tester\n" ), 'correo al momento: qué pasa, título, quién (sin descripción vacía)' );
+afirmar( true, str_contains( $cuerpo, 'Para verlo y responder: https://app.zunbeltz.com/wp-admin/' ), 'correo al momento: enlace al panel' );
+afirmar( true, str_contains( $cuerpo, 'Larrea Zunbeltz · app.zunbeltz.com' ), 'correo al momento: pie con el sitio' );
+afirmar( true, str_contains( szs_cuerpo_correo_al_momento( 'x', 't', "  Falta agua  \n", '', 'u' ), "«t»\nFalta agua\n" ), 'correo al momento: la descripción va tras el título' );
+afirmar( array( 'Content-Type: text/plain; charset=UTF-8', 'Content-Language: eu' ), szs_cabeceras_correo( 'eu' ), 'cabeceras: texto plano UTF-8 y su idioma' );
+afirmar( 'Content-Language: es', szs_cabeceras_correo( 'fr' )[1], 'cabeceras: idioma desconocido, castellano' );
 
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );

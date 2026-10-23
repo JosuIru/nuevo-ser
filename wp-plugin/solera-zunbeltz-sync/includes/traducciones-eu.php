@@ -195,6 +195,10 @@ return array(
 	'Larrea Zunbeltz: alarma — %s' => 'Larrea Zunbeltz: alarma — %s',
 	'Larrea Zunbeltz: petición urgente — %s' => 'Larrea Zunbeltz: premiazko eskaera — %s',
 	'Lo envía: %s' => 'Bidaltzailea: %s',
+	'Han dado una alarma en el espacio.' => 'Alarma bat eman dute gunean.',
+	'Han pedido una tarea urgente.' => 'Zeregin premiazko bat eskatu dute.',
+	'Para verlo y responder: %s' => 'Ikusi eta erantzuteko: %s',
+	'Te llega porque coordinas el espacio en Larrea Zunbeltz.' => 'Larrea Zunbeltzen gunea koordinatzen duzulako jasotzen duzu.',
 
 	// --- Inicio, Tareas, Peticiones, Avisos, App Android
 	// (panel/pagina-inicio.php, pagina-tareas.php, pagina-comunicacion.php,

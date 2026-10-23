@@ -87,13 +87,13 @@ function szs_enviar_correo_diario(): bool {
 	foreach ( $destinatarios_por_idioma as $idioma => $destinatarios ) {
 		$enviado = szs_con_idioma(
 			$idioma,
-			static function () use ( $tareas, $peticiones, $alarmas, $destinatarios ): bool {
+			static function () use ( $tareas, $peticiones, $alarmas, $destinatarios, $idioma ): bool {
 				$resumen = szs_resumen_correo_diario( $tareas, $peticiones, $alarmas, szs_inicio_de_hoy_ms() );
 				if ( null === $resumen ) {
 					return false;
 				}
-				$pie = "\n—\n" . szs_t( 'Panel de coordinación: %s', admin_url( 'admin.php?page=' . SZS_PAGINA_TAREAS ) ) . "\n";
-				return wp_mail( $destinatarios, $resumen['asunto'], $resumen['cuerpo'] . $pie );
+				$pie = "\n" . szs_t( 'Panel de coordinación: %s', admin_url( 'admin.php?page=' . SZS_PAGINA_TAREAS ) ) . "\n" . szs_pie_correo();
+				return szs_enviar_correo( $destinatarios, $resumen['asunto'], $resumen['cuerpo'] . $pie, $idioma );
 			}
 		) || $enviado;
 	}
@@ -110,9 +110,13 @@ function szs_avisar_por_correo_al_momento( array $entidad, ?array $existente, ar
 	$datos  = $entidad['datos'];
 	$titulo = szs_etiqueta_entidad( $entidad );
 	if ( 'aviso' === $entidad['tipo'] && 'alarma' === ( $datos['gravedad'] ?? '' ) ) {
-		$asunto_en = static fn() => szs_t( 'Larrea Zunbeltz: alarma — %s', $titulo );
+		$asunto_en      = static fn() => szs_t( 'Larrea Zunbeltz: alarma — %s', $titulo );
+		$introduccion_en = static fn() => szs_t( 'Han dado una alarma en el espacio.' );
+		$pagina         = SZS_PAGINA_AVISOS;
 	} elseif ( 'peticion' === $entidad['tipo'] && ! empty( $datos['urgente'] ) ) {
-		$asunto_en = static fn() => szs_t( 'Larrea Zunbeltz: petición urgente — %s', $titulo );
+		$asunto_en      = static fn() => szs_t( 'Larrea Zunbeltz: petición urgente — %s', $titulo );
+		$introduccion_en = static fn() => szs_t( 'Han pedido una tarea urgente.' );
+		$pagina         = SZS_PAGINA_PETICIONES;
 	} else {
 		return;
 	}
@@ -131,35 +135,91 @@ function szs_avisar_por_correo_al_momento( array $entidad, ?array $existente, ar
 	foreach ( $destinatarios_por_idioma as $idioma => $destinatarios ) {
 		szs_con_idioma(
 			$idioma,
-			static function () use ( $destinatarios, $asunto_en, $titulo, $datos, $persona ): void {
-				$cuerpo = sprintf(
-					"%s\n\n%s\n\n%s\n",
+			static function () use ( $destinatarios, $asunto_en, $introduccion_en, $pagina, $titulo, $datos, $persona, $idioma ): void {
+				$cuerpo = szs_cuerpo_correo_al_momento(
+					$introduccion_en(),
 					$titulo,
 					(string) ( $datos['descripcion'] ?? '' ),
-					szs_t( 'Lo envía: %s', (string) ( $persona['nombre'] ?? '' ) )
+					(string) ( $persona['nombre'] ?? '' ),
+					admin_url( 'admin.php?page=' . $pagina )
 				);
 				// Se envía al terminar la petición, ya soltado el candado del
 				// espacio: un SMTP lento no debe dejar al resto de móviles esperando.
-				szs_encolar_correo( $destinatarios, $asunto_en(), $cuerpo );
+				szs_encolar_correo( $destinatarios, $asunto_en(), $cuerpo, $idioma );
 			}
 		);
 	}
 }
 
-/** @var array<int, array{0: string[], 1: string, 2: string}> */
+/**
+ * Cuerpo del correo de una alarma o petición urgente: qué ha pasado, el
+ * texto, quién lo manda y dónde verlo. Un cuerpo de dos líneas sin
+ * contexto es de lo que los filtros de correo desconfían.
+ */
+function szs_cuerpo_correo_al_momento( string $introduccion, string $titulo, string $descripcion, string $nombre, string $enlace ): string {
+	$lineas = array( $introduccion, '', '«' . $titulo . '»' );
+	if ( '' !== trim( $descripcion ) ) {
+		$lineas[] = trim( $descripcion );
+	}
+	$lineas[] = '';
+	if ( '' !== trim( $nombre ) ) {
+		$lineas[] = szs_t( 'Lo envía: %s', $nombre );
+	}
+	$lineas[] = szs_t( 'Para verlo y responder: %s', $enlace );
+	return implode( "\n", $lineas ) . "\n" . szs_pie_correo();
+}
+
+/** Pie común: de dónde viene y por qué le llega. */
+function szs_pie_correo(): string {
+	return "\n—\nLarrea Zunbeltz · " . wp_parse_url( home_url(), PHP_URL_HOST ) . "\n"
+		. szs_t( 'Te llega porque coordinas el espacio en Larrea Zunbeltz.' ) . "\n";
+}
+
+/**
+ * Cabeceras de los correos: texto plano en UTF-8 y con su idioma (sin él,
+ * Gmail tomaba por inglés un correo corto en castellano).
+ *
+ * @return string[]
+ */
+function szs_cabeceras_correo( string $idioma ): array {
+	return array(
+		'Content-Type: text/plain; charset=UTF-8',
+		'Content-Language: ' . ( 'eu' === $idioma ? 'eu' : 'es' ),
+	);
+}
+
+/** Nombre del remitente de los correos del plugin (no el de todo WordPress). */
+function szs_nombre_remitente_correo(): string {
+	return 'Larrea Zunbeltz';
+}
+
+/**
+ * `wp_mail` con nuestras cabeceras y «Larrea Zunbeltz» como remitente en
+ * lugar de «WordPress». La dirección la pone WordPress o el plugin de SMTP.
+ */
+function szs_enviar_correo( array $destinatarios, string $asunto, string $cuerpo, string $idioma ): bool {
+	add_filter( 'wp_mail_from_name', 'szs_nombre_remitente_correo' );
+	try {
+		return wp_mail( $destinatarios, $asunto, $cuerpo, szs_cabeceras_correo( $idioma ) );
+	} finally {
+		remove_filter( 'wp_mail_from_name', 'szs_nombre_remitente_correo' );
+	}
+}
+
+/** @var array<int, array{0: string[], 1: string, 2: string, 3: string}> */
 $GLOBALS['szs_correos_pendientes'] = array();
 
-function szs_encolar_correo( array $destinatarios, string $asunto, string $cuerpo ): void {
+function szs_encolar_correo( array $destinatarios, string $asunto, string $cuerpo, string $idioma = 'es' ): void {
 	if ( empty( $GLOBALS['szs_correos_pendientes'] ) ) {
 		add_action( 'shutdown', 'szs_enviar_correos_pendientes' );
 	}
-	$GLOBALS['szs_correos_pendientes'][] = array( $destinatarios, $asunto, $cuerpo );
+	$GLOBALS['szs_correos_pendientes'][] = array( $destinatarios, $asunto, $cuerpo, $idioma );
 }
 
 function szs_enviar_correos_pendientes(): void {
 	$pendientes                        = $GLOBALS['szs_correos_pendientes'];
 	$GLOBALS['szs_correos_pendientes'] = array();
-	foreach ( $pendientes as list( $destinatarios, $asunto, $cuerpo ) ) {
-		wp_mail( $destinatarios, $asunto, $cuerpo );
+	foreach ( $pendientes as list( $destinatarios, $asunto, $cuerpo, $idioma ) ) {
+		szs_enviar_correo( $destinatarios, $asunto, $cuerpo, $idioma );
 	}
 }

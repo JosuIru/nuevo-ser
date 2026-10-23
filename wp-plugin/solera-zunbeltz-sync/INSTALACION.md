@@ -7,6 +7,7 @@ Guía para poner en marcha el servidor de la app en el **WordPress propio de Zun
 - **PHP 8.1 o superior** y **MySQL 5.7+ / MariaDB 10.3+** (lo normal en cualquier hosting actual).
 - Poder **crear un subdominio** y su **certificado HTTPS** (Let's Encrypt, gratuito en casi todos los paneles). Sin HTTPS los tokens viajarían en claro: **no se pone en marcha sin HTTPS**.
 - **Envío de correo** desde el WordPress (SMTP del hosting o un plugin de SMTP como *WP Mail SMTP*) para el resumen diario y las alarmas.
+  - **Para que no vaya a spam** (pasó el 2026-10-23 en `app.zunbeltz.com`): sin SMTP, WordPress envía como `wordpress@app.zunbeltz.com`, y el subdominio no tiene SPF ni DKIM (el dominio `zunbeltz.com` sí: SPF `a mx` y DKIM `default`). Crear un buzón en `zunbeltz.com` (p. ej. `avisos@zunbeltz.com`) y configurar un plugin de SMTP con él (servidor `mail.zunbeltz.com`, autenticado), forzando ese remitente: así el correo sale firmado con el DKIM del dominio. Comprobar en Gmail → «Mostrar original» que SPF, DKIM y DMARC dicen PASS.
 - Recomendable: una **tarea cron** del sistema que llame a `wp-cron.php` cada 15 minutos, para que el correo de las 8:00 salga aunque nadie visite la web:
   `*/15 * * * * curl -s https://app.zunbeltz.com/wp-cron.php?doing_wp_cron >/dev/null`
   y en `wp-config.php`: `define( 'DISABLE_WP_CRON', true );`

@@ -3320,4 +3320,16 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fotoQuitar => 'Quitar la foto';
+
+  @override
+  String get tareaAnadirFotosDespues => 'Añadir fotos de después';
+
+  @override
+  String get tareaPreguntaFotoDespues => '¿Haces una foto de cómo ha quedado?';
+
+  @override
+  String get fotoAhoraNo => 'Ahora no';
+
+  @override
+  String get tareaFotosAnadidas => 'Fotos añadidas a la tarea';
 }

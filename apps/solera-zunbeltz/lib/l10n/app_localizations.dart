@@ -5791,6 +5791,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Quitar la foto'**
   String get fotoQuitar;
+
+  /// No description provided for @tareaAnadirFotosDespues.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir fotos de después'**
+  String get tareaAnadirFotosDespues;
+
+  /// No description provided for @tareaPreguntaFotoDespues.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Haces una foto de cómo ha quedado?'**
+  String get tareaPreguntaFotoDespues;
+
+  /// No description provided for @fotoAhoraNo.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora no'**
+  String get fotoAhoraNo;
+
+  /// No description provided for @tareaFotosAnadidas.
+  ///
+  /// In es, this message translates to:
+  /// **'Fotos añadidas a la tarea'**
+  String get tareaFotosAnadidas;
 }
 
 class _AppLocalizationsDelegate

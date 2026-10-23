@@ -1725,5 +1725,9 @@
   "fotoQuitar": "Quitar la foto",
   "@fotoSinDescargar": {
     "description": "Marcador de una foto sincronizada de otro móvil que aún no se ha bajado."
-  }
+  },
+  "tareaAnadirFotosDespues": "Añadir fotos de después",
+  "tareaPreguntaFotoDespues": "¿Haces una foto de cómo ha quedado?",
+  "fotoAhoraNo": "Ahora no",
+  "tareaFotosAnadidas": "Fotos añadidas a la tarea"
 }

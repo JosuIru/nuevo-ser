@@ -31,7 +31,7 @@ Decisiones que requieren a una persona (equipo de Zunbeltz Elkartea, asesor téc
 32. **Personal de Andía**: no hay rol propio todavía. ¿Coordinación, solo lectura u otro?
 33. **Euskera de todos los textos nuevos** (Hoy, avisos, peticiones, convenio, notificaciones, ayuda, panel): borrador pendiente de revisión nativa, como el resto. El **panel de WordPress está solo en castellano**.
 34. **Hosting**: el servidor de Zunbeltz lo gestiona Josu (2026-10-07): instalación y mantenimiento por nuestra parte. Falta fijar el subdominio y confirmar PHP ≥ 8.1, HTTPS y SMTP.
-35. **Fotos** — sincronizadas desde el 2026-10-23 (app 0.7.3, plugin 1.0.2): reducidas a 1600 px, solo con wifi, carpeta privada en el servidor, 2 MB por foto y 1 GB en total. A validar: quién puede poner fotos (hoy, en tareas quien la ejecuta o la creó; en puntos, también testers), si 1 GB basta, si hace falta limpiar fotos que ya nadie usa y si quieren añadir fotos «de después» al cerrar una tarea. Confirmar que en `app.zunbeltz.com` la carpeta quedó fuera de la raíz web.
+35. **Fotos** — sincronizadas desde el 2026-10-23 (app 0.7.3, plugin 1.0.2): reducidas a 1600 px, solo con wifi, carpeta privada en el servidor, 2 MB por foto y 1 GB en total. A validar: quién puede poner fotos (hoy, en tareas quien la ejecuta o la creó; en puntos, también testers), si 1 GB basta y si hace falta limpiar fotos que ya nadie usa. Las fotos «de después» al cerrar una tarea se añadieron sin preguntar (0.7.4, decisión de Josu). Confirmar que en `app.zunbeltz.com` la carpeta quedó fuera de la raíz web.
 
 ## B. Compliance ganadero (asesor veterinario + técnico OCA + decreto foral Navarra)
 

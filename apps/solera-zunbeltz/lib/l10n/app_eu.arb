@@ -1051,5 +1051,9 @@
   "fotoAnadir": "Argazkia",
   "fotoDesdeCamara": "Kamera",
   "fotoDesdeGaleria": "Galeria",
-  "fotoQuitar": "Kendu argazkia"
+  "fotoQuitar": "Kendu argazkia",
+  "tareaAnadirFotosDespues": "Ondorengo argazkiak gehitu",
+  "tareaPreguntaFotoDespues": "Nola geratu den argazki bat atera nahi duzu?",
+  "fotoAhoraNo": "Orain ez",
+  "tareaFotosAnadidas": "Argazkiak zereginari gehituta"
 }

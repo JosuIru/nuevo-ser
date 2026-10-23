@@ -20,6 +20,8 @@ import 'package:solera_zunbeltz/modelos/tarea_mantenimiento.dart';
 import 'package:solera_zunbeltz/modelos/validacion_producto.dart';
 import 'package:solera_zunbeltz/modelos/zona_finca.dart';
 
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
+
 import 'bd_en_memoria.dart';
 import 'package:solera_zunbeltz/utiles/tarea_periodica.dart';
 
@@ -1112,5 +1114,26 @@ void main() {
     expect(local.estado, 'hecha');
     expect(local.puntoId, puntoId);
     expect(local.rutasFotosAntesJson, '["antes.jpg"]');
+  });
+
+  test('fotos de después se suman a las que ya tiene la tarea en la BD',
+      () async {
+    final bd = await abrirBdEnMemoria();
+    final fincaId = await bd.guardarFinca(Finca(nombre: 'Zunbeltz'));
+    final tareaId = await bd.guardarTarea(TareaMantenimiento(
+      fincaId: fincaId,
+      titulo: 'Tensar alambrada',
+      estado: 'pendiente',
+      rutasFotosDespuesJson: '["foto:aaa"]',
+    ));
+    final antes = (await bd.listarTareas()).single.actualizadoMs;
+    await Future<void>.delayed(const Duration(milliseconds: 2));
+    await bd.anadirFotosDespuesTarea(tareaId, ['/fotos/nueva.jpg']);
+    await bd.anadirFotosDespuesTarea(tareaId, const []);
+    final tarea = (await bd.listarTareas()).single;
+    expect(GestorFotos.decodificar(tarea.rutasFotosDespuesJson),
+        ['foto:aaa', '/fotos/nueva.jpg']);
+    expect(tarea.actualizadoMs, greaterThan(antes),
+        reason: 'lleva marca nueva para que sincronice');
   });
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
 
@@ -13,8 +14,9 @@ import '../../utiles/estilos_tarea.dart';
 import '../../estado/datos_notificador.dart';
 import '../nuevo_apunte.dart';
 import 'fotos_sincronizadas.dart';
+import 'selector_fotos_app.dart';
 
-enum _AccionTarea { asignarme, soltar, apuntarGasto }
+enum _AccionTarea { asignarme, soltar, apuntarGasto, fotosDespues }
 
 /// Hoja con lo que la persona conectada puede hacer con una tarea según su
 /// rol (ver `PoliticaTareas`): cambiar el estado, cogérsela o soltarla.
@@ -82,6 +84,13 @@ Future<bool> mostrarAccionesTarea(
                     : null,
                 onTap: () => Navigator.pop(contextoHoja, estado.codigo),
               ),
+            if (!kIsWeb)
+              ListTile(
+                leading: const Icon(Icons.add_a_photo_outlined),
+                title: Text(textos.tareaAnadirFotosDespues),
+                onTap: () =>
+                    Navigator.pop(contextoHoja, _AccionTarea.fotosDespues),
+              ),
             const Divider(),
           ],
           if (puedeCogerse)
@@ -116,6 +125,11 @@ Future<bool> mostrarAccionesTarea(
       // Pasa por marcarTareaHecha para generar la siguiente si es periódica.
       await bd.marcarTareaHecha(id);
       avisarCambioDatos();
+      // Al cerrarla, la foto de cómo ha quedado (se puede decir que no).
+      if (context.mounted) {
+        await _anadirFotosDespues(context, id,
+            pregunta: textos.tareaPreguntaFotoDespues);
+      }
       return true;
     case String estado:
       if (estado == tarea.estado) return false;
@@ -131,11 +145,29 @@ Future<bool> mostrarAccionesTarea(
       await bd.actualizarTarea(id, {'responsable_uid': '', 'responsable': ''});
       avisarCambioDatos();
       return true;
+    case _AccionTarea.fotosDespues:
+      return context.mounted && await _anadirFotosDespues(context, id);
     case _AccionTarea.apuntarGasto:
       if (context.mounted) await _apuntarComoGasto(context, tarea);
       return false;
   }
   return false;
+}
+
+/// Hace o elige fotos y las suma a las «después» de la tarea. `true` si
+/// se añadió alguna.
+Future<bool> _anadirFotosDespues(BuildContext context, int id,
+    {String? pregunta}) async {
+  final textos = AppLocalizations.of(context);
+  final nuevas = await pedirFotos(context, pregunta: pregunta);
+  if (nuevas.isEmpty) return false;
+  await BaseDatosSoleraZunbeltz().anadirFotosDespuesTarea(id, nuevas);
+  avisarCambioDatos();
+  if (context.mounted) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(textos.tareaFotosAnadidas)));
+  }
+  return true;
 }
 
 /// Lleva el coste de la tarea a las cuentas de un proyecto abierto, con

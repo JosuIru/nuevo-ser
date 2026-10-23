@@ -27,29 +27,7 @@ class SelectorFotosApp extends StatelessWidget {
   });
 
   Future<void> _anadir(BuildContext context) async {
-    final textos = AppLocalizations.of(context);
-    final fuente = await showModalBottomSheet<FuenteFoto>(
-      context: context,
-      builder: (contextoHoja) => SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: const Icon(Icons.photo_camera),
-              title: Text(textos.fotoDesdeCamara),
-              onTap: () => Navigator.pop(contextoHoja, FuenteFoto.camara),
-            ),
-            ListTile(
-              leading: const Icon(Icons.photo_library),
-              title: Text(textos.fotoDesdeGaleria),
-              onTap: () => Navigator.pop(contextoHoja, FuenteFoto.galeria),
-            ),
-          ],
-        ),
-      ),
-    );
-    if (fuente == null) return;
-    final nuevas = await GestorFotos.tomarOSeleccionar(fuente: fuente);
+    final nuevas = await pedirFotos(context);
     if (nuevas.isEmpty) return;
     alCambiar([...rutas, ...nuevas]);
   }
@@ -113,4 +91,46 @@ class SelectorFotosApp extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Pregunta de dónde sacar las fotos (cámara o galería) y las trae. Con
+/// [pregunta], la hoja la enseña arriba y ofrece «Ahora no». Lista vacía si
+/// se cancela o en el navegador.
+Future<List<String>> pedirFotos(BuildContext context, {String? pregunta}) async {
+  if (kIsWeb) return const [];
+  final textos = AppLocalizations.of(context);
+  final fuente = await showModalBottomSheet<FuenteFoto>(
+    context: context,
+    builder: (contextoHoja) => SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (pregunta != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
+              child: Text(pregunta,
+                  style: Theme.of(contextoHoja).textTheme.titleMedium),
+            ),
+          ListTile(
+            leading: const Icon(Icons.photo_camera),
+            title: Text(textos.fotoDesdeCamara),
+            onTap: () => Navigator.pop(contextoHoja, FuenteFoto.camara),
+          ),
+          ListTile(
+            leading: const Icon(Icons.photo_library),
+            title: Text(textos.fotoDesdeGaleria),
+            onTap: () => Navigator.pop(contextoHoja, FuenteFoto.galeria),
+          ),
+          if (pregunta != null)
+            ListTile(
+              leading: const Icon(Icons.close),
+              title: Text(textos.fotoAhoraNo),
+              onTap: () => Navigator.pop(contextoHoja),
+            ),
+        ],
+      ),
+    ),
+  );
+  if (fuente == null) return const [];
+  return GestorFotos.tomarOSeleccionar(fuente: fuente);
 }

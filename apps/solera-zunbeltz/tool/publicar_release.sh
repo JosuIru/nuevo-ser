@@ -16,6 +16,11 @@ if gh release view "$tag" -R JosuIru/nuevo-ser >/dev/null 2>&1 </dev/null; then
   exit 1
 fi
 ../../scripts/comprobar_orden_release.sh solera-zunbeltz- "$tag"
+version_en_ajustes="$(grep -o "versionAppZunbeltz = '[^']*'" lib/pantallas/pantalla_ajustes.dart | sed "s/.*'\(.*\)'/\1/")"
+if [ "$version_en_ajustes" != "${version%%+*}" ]; then
+  echo "versionAppZunbeltz ($version_en_ajustes) no coincide con pubspec (${version%%+*})" >&2
+  exit 1
+fi
 flutter build apk --release </dev/null
 temporal="$(mktemp -d)"
 trap 'rm -rf "$temporal"' EXIT

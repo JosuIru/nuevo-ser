@@ -3322,4 +3322,17 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get fotoQuitar => 'Kendu argazkia';
+
+  @override
+  String get tareaAnadirFotosDespues => 'Ondorengo argazkiak gehitu';
+
+  @override
+  String get tareaPreguntaFotoDespues =>
+      'Nola geratu den argazki bat atera nahi duzu?';
+
+  @override
+  String get fotoAhoraNo => 'Orain ez';
+
+  @override
+  String get tareaFotosAnadidas => 'Argazkiak zereginari gehituta';
 }

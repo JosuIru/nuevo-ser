@@ -1052,6 +1052,25 @@ class BaseDatosSoleraZunbeltz {
         where: 'id = ?', whereArgs: [id]);
   }
 
+  /// Añade [nuevas] a las fotos «después» de la tarea, leyendo las que
+  /// tiene en la BD (no las de una copia en memoria que puede ser vieja:
+  /// otra sincronización pudo traer más mientras se hacía la foto).
+  Future<void> anadirFotosDespuesTarea(int id, List<String> nuevas) async {
+    if (nuevas.isEmpty) return;
+    final db = await basedatos;
+    final filas = await db.query('tareas_mantenimiento',
+        columns: ['rutas_fotos_despues_json'],
+        where: 'id = ?',
+        whereArgs: [id],
+        limit: 1);
+    if (filas.isEmpty) return;
+    final actuales = GestorFotos.decodificar(
+        (filas.first['rutas_fotos_despues_json'] as String?) ?? '[]');
+    await actualizarTarea(id, {
+      'rutas_fotos_despues_json': GestorFotos.codificar([...actuales, ...nuevas]),
+    });
+  }
+
   /// Lista tareas con filtros opcionales acumulables (finca, punto, zona,
   /// estado, responsable por nombre o por uid). Sin filtros devuelve todas, las más recientes primero.
   Future<List<TareaMantenimiento>> listarTareas({

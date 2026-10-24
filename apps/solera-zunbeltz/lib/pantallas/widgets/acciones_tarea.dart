@@ -148,10 +148,7 @@ Future<bool> mostrarAccionesTarea(
       await bd.marcarTareaHecha(id);
       avisarCambioDatos();
       // Al cerrarla, la foto de cómo ha quedado (se puede decir que no).
-      if (context.mounted) {
-        await _anadirFotosDespues(context, id,
-            pregunta: textos.tareaPreguntaFotoDespues);
-      }
+      if (context.mounted) await ofrecerFotoDespuesAlCerrar(context, id);
       return true;
     case String estado:
       if (estado == tarea.estado) return false;
@@ -184,6 +181,14 @@ Future<bool> mostrarAccionesTarea(
       return false;
   }
   return false;
+}
+
+/// Tras cerrar una tarea (también con el atajo de la marca de la lista):
+/// ofrece la foto de cómo ha quedado, que se puede saltar con «Ahora no».
+Future<void> ofrecerFotoDespuesAlCerrar(BuildContext context, int id) async {
+  if (kIsWeb) return;
+  await _anadirFotosDespues(context, id,
+      pregunta: AppLocalizations.of(context).tareaPreguntaFotoDespues);
 }
 
 /// Hace o elige fotos y las suma a las «después» de la tarea. `true` si

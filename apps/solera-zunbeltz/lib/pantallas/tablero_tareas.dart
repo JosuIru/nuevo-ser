@@ -87,6 +87,9 @@ class _TableroTareasState extends State<TableroTareas> {
         content: Text(generoSiguiente
             ? textos.tareaSiguienteGenerada
             : textos.tareaGuardada)));
+    // La foto de cómo ha quedado, igual que al cerrarla desde su hoja.
+    await ofrecerFotoDespuesAlCerrar(context, id);
+    if (mounted) await _cargar();
   }
 
   Future<void> _accionesTarea(TareaMantenimiento tarea) async {

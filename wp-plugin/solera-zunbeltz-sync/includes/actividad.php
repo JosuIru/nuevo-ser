@@ -27,7 +27,7 @@ function szs_accion_tarea( ?array $antes, array $despues ): array {
 	if ( $antes['estado'] !== $despues['estado'] ) {
 		return array( 'estado', $despues['estado'] );
 	}
-	if ( $antes['responsable_uid'] !== $despues['responsable_uid'] ) {
+	if ( szs_responsables_de_tarea( $antes ) !== szs_responsables_de_tarea( $despues ) ) {
 		return array( 'asignar', $despues['responsable'] );
 	}
 	return array( 'editar', '' );

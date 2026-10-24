@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kIsWeb, listEquals;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
 
@@ -7,6 +7,7 @@ import '../../estado/sesion_espacio.dart';
 import '../../l10n/app_localizations.dart';
 import '../../modelos/apunte_economico.dart';
 import '../../modelos/constantes.dart';
+import '../../modelos/persona_espacio.dart';
 import '../../modelos/plantillas_tarea.dart';
 import '../../modelos/proyecto_test.dart';
 import '../../modelos/tarea_mantenimiento.dart';
@@ -15,11 +16,20 @@ import '../../estado/datos_notificador.dart';
 import '../nuevo_apunte.dart';
 import 'fotos_sincronizadas.dart';
 import 'selector_fotos_app.dart';
+import 'selector_responsables.dart';
+import '../../utiles/responsables_tarea.dart';
 
-enum _AccionTarea { asignarme, soltar, apuntarGasto, fotosDespues }
+enum _AccionTarea {
+  asignarme,
+  soltar,
+  cambiarResponsables,
+  apuntarGasto,
+  fotosDespues,
+}
 
 /// Hoja con lo que la persona conectada puede hacer con una tarea según su
-/// rol (ver `PoliticaTareas`): cambiar el estado, cogérsela o soltarla.
+/// rol (ver `PoliticaTareas`): cambiar el estado, cogérsela, soltarla o
+/// (coordinación) cambiar sus responsables.
 /// Devuelve `true` si ha cambiado algo, para que la pantalla recargue.
 Future<bool> mostrarAccionesTarea(
     BuildContext context, TareaMantenimiento tarea) async {
@@ -29,6 +39,7 @@ Future<bool> mostrarAccionesTarea(
   final puedeEjecutar = politica.puedeEjecutar(tarea);
   final puedeCogerse = politica.puedeCogerse(tarea);
   final puedeSoltar = politica.puedeSoltar(tarea);
+  final puedeCambiarResponsables = politica.puedeCambiarResponsables(tarea);
   final id = tarea.id;
   // Una compra con coste se puede llevar a las cuentas de un proyecto.
   final puedeApuntarGasto = (tarea.costeCentimos ?? 0) > 0 &&
@@ -42,6 +53,7 @@ Future<bool> mostrarAccionesTarea(
       !(puedeEjecutar ||
           puedeCogerse ||
           puedeSoltar ||
+          puedeCambiarResponsables ||
           puedeApuntarGasto ||
           tieneFotos)) {
     ScaffoldMessenger.of(context)
@@ -105,6 +117,16 @@ Future<bool> mostrarAccionesTarea(
               title: Text(textos.tareaSoltar),
               onTap: () => Navigator.pop(contextoHoja, _AccionTarea.soltar),
             ),
+          if (puedeCambiarResponsables)
+            ListTile(
+              leading: const Icon(Icons.group_outlined),
+              title: Text(textos.tareaCambiarResponsables),
+              subtitle: tarea.responsable.isEmpty
+                  ? null
+                  : Text(tarea.responsable),
+              onTap: () => Navigator.pop(
+                  contextoHoja, _AccionTarea.cambiarResponsables),
+            ),
           if (puedeApuntarGasto)
             ListTile(
               leading: const Icon(Icons.euro_outlined),
@@ -137,14 +159,24 @@ Future<bool> mostrarAccionesTarea(
       avisarCambioDatos();
       return true;
     case _AccionTarea.asignarme when persona != null:
+      // Se suma a la lista (en una general, queda ella sola).
       await bd.actualizarTarea(
-          id, {'responsable_uid': persona.uid, 'responsable': persona.nombre});
+          id,
+          columnasResponsables(politica.responsablesAlCogerse(tarea),
+              _personasConmigo(persona)));
       avisarCambioDatos();
       return true;
     case _AccionTarea.soltar:
-      await bd.actualizarTarea(id, {'responsable_uid': '', 'responsable': ''});
+      // Sale solo ella; en una compartida las demás siguen.
+      await bd.actualizarTarea(
+          id,
+          columnasResponsables(
+              politica.responsablesAlSoltar(tarea), personasEspacio.value));
       avisarCambioDatos();
       return true;
+    case _AccionTarea.cambiarResponsables:
+      if (!context.mounted) return false;
+      return _cambiarResponsables(context, tarea, id);
     case _AccionTarea.fotosDespues:
       return context.mounted && await _anadirFotosDespues(context, id);
     case _AccionTarea.apuntarGasto:
@@ -216,4 +248,56 @@ Future<void> _apuntarComoGasto(
       ),
     ),
   ));
+}
+
+/// Las personas del espacio con la de la sesión aunque la lista aún no
+/// haya llegado, para poner bien su nombre.
+List<PersonaEspacio> _personasConmigo(PersonaEspacio persona) => [
+      ...personasEspacio.value.where((otra) => otra.uid != persona.uid),
+      persona,
+    ];
+
+/// Coordinación cambia a quién está asignada una tarea que ya existe. Con
+/// varias personas queda compartida (no se trocea). `true` si cambió.
+Future<bool> _cambiarResponsables(
+    BuildContext context, TareaMantenimiento tarea, int id) async {
+  final textos = AppLocalizations.of(context);
+  var elegidas = tarea.uidsResponsables;
+  final guardar = await showDialog<bool>(
+    context: context,
+    builder: (contexto) => StatefulBuilder(
+      builder: (contexto, cambiarEstado) => AlertDialog(
+        title: Text(textos.tareaCambiarResponsables),
+        content: SingleChildScrollView(
+          child: SelectorResponsables(
+            personas: personasEspacio.value,
+            elegidas: elegidas,
+            ayuda: textos.tareaCambiarResponsablesAyuda,
+            alCambiar: (nuevas) => cambiarEstado(() => elegidas = nuevas),
+          ),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(contexto, false),
+              child: Text(textos.comunCancelar)),
+          FilledButton(
+              onPressed: () => Navigator.pop(contexto, true),
+              child: Text(textos.comunGuardar)),
+        ],
+      ),
+    ),
+  );
+  if (guardar != true ||
+      listEquals(elegidas, tarea.uidsResponsables) ||
+      !context.mounted) {
+    return false;
+  }
+  await BaseDatosSoleraZunbeltz().actualizarTarea(
+      id, columnasResponsables(elegidas, personasEspacio.value));
+  avisarCambioDatos();
+  if (context.mounted) {
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(textos.tareaResponsablesCambiadas)));
+  }
+  return true;
 }

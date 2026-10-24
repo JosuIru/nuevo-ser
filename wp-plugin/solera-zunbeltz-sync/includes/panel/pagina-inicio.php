@@ -60,7 +60,7 @@ function szs_resumen_inicio( array $tareas, array $peticiones, array $avisos, ar
 			continue;
 		}
 		$resumen['tareas']['abiertas']++;
-		if ( '' === $tarea['responsable_uid'] ) {
+		if ( array() === szs_responsables_de_tarea( $tarea ) ) {
 			$resumen['tareas']['sin_asignar']++;
 		}
 		if ( 'bloqueada' === $tarea['estado'] ) {

@@ -1,3 +1,5 @@
+import 'dart:convert' show jsonEncode;
+
 import 'package:flutter/foundation.dart' show kIsWeb, visibleForTesting;
 import 'package:latlong2/latlong.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
@@ -70,6 +72,8 @@ part 'base_datos_fotos.dart';
 /// actividad recibida; y crea las tablas de la economía del convenio
 /// (presupuesto, fianza), el acompañamiento, las incidencias de
 /// cumplimiento, las peticiones y los avisos de campo.
+/// v19 permite varias responsables por tarea (`responsables_uids`, lista
+/// JSON; `responsable_uid` sigue siendo la primera).
 class BaseDatosSoleraZunbeltz {
   static final BaseDatosSoleraZunbeltz instancia =
       BaseDatosSoleraZunbeltz._interno();
@@ -111,7 +115,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 18;
+  static const int versionEsquema = 19;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -133,6 +137,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 16) await aplicarMigracionV16(db);
     if (anterior < 17) await aplicarMigracionV17(db);
     if (anterior < 18) await aplicarMigracionV18(db);
+    if (anterior < 19) await aplicarMigracionV19(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -785,6 +790,26 @@ class BaseDatosSoleraZunbeltz {
     ''');
   }
 
+  /// Migración v18 → v19: varias responsables por tarea. Aditiva: cada
+  /// tarea pasa a tener la lista con la responsable que ya tenía.
+  @visibleForTesting
+  static Future<void> aplicarMigracionV19(Database db) async {
+    await db.execute(
+        "ALTER TABLE tareas_mantenimiento ADD COLUMN responsables_uids TEXT NOT NULL DEFAULT '[]'");
+    final filas = await db.query('tareas_mantenimiento',
+        columns: ['id', 'responsable_uid'], where: "responsable_uid != ''");
+    for (final fila in filas) {
+      await db.update(
+          'tareas_mantenimiento',
+          {
+            'responsables_uids':
+                jsonEncode([fila['responsable_uid'] as String]),
+          },
+          where: 'id = ?',
+          whereArgs: [fila['id']]);
+    }
+  }
+
   static Future<void> aplicarMigracionV16(Database db) async {
     await db.execute('ALTER TABLE peticiones ADD COLUMN zona_id INTEGER');
     await db.execute('CREATE INDEX idx_peticiones_zona ON peticiones(zona_id)');
@@ -1105,8 +1130,11 @@ class BaseDatosSoleraZunbeltz {
       args.add(responsable);
     }
     if (responsableUid != null) {
-      condiciones.add('responsable_uid = ?');
-      args.add(responsableUid);
+      // También las compartidas en las que está (lista JSON de uids).
+      condiciones.add('(responsable_uid = ? OR responsables_uids LIKE ?)');
+      args
+        ..add(responsableUid)
+        ..add('%"$responsableUid"%');
     }
     final filas = await db.query(
       'tareas_mantenimiento',
@@ -1207,6 +1235,8 @@ class BaseDatosSoleraZunbeltz {
       descripcion: tarea.descripcion,
       responsable: tarea.responsable,
       responsableUid: tarea.responsableUid,
+      // Una compartida sigue compartida con las mismas personas.
+      responsablesUids: tarea.uidsResponsables,
       creadoPorUid: tarea.creadoPorUid,
       prioridad: tarea.prioridad,
       estado: estadoTareaPorDefecto,

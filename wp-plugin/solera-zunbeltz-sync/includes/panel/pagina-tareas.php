@@ -115,8 +115,12 @@ function szs_procesar_accion_tareas(): ?array {
 			if ( '' === $titulo || ! isset( $fincas[ $finca ] ) ) {
 				return array( 'error', szs_t( 'Faltan el título o la finca.' ) );
 			}
-			$recurrencia = (int) szs_campo_post( 'szs_recurrencia_dias' );
-			$datos       = array_merge(
+			$recurrencia  = (int) szs_campo_post( 'szs_recurrencia_dias' );
+			$responsables = szs_ordenar_responsables_elegidas(
+				null === $existente ? array() : szs_responsables_de_tarea( $existente ),
+				szs_lista_uids_o_null( isset( $_POST['szs_responsables_uids'] ) ? array_map( 'sanitize_text_field', (array) wp_unslash( $_POST['szs_responsables_uids'] ) ) : array() ) ?? array() // phpcs:ignore WordPress.Security.NonceVerification
+			);
+			$datos        = array_merge(
 				$existente ?? array( 'uid' => szs_nuevo_uid() ),
 				array(
 					'titulo'            => $titulo,
@@ -125,7 +129,8 @@ function szs_procesar_accion_tareas(): ?array {
 					'finca_nombre'      => $fincas[ $finca ],
 					'punto_uid'         => szs_campo_post( 'szs_punto_uid' ),
 					'zona_uid'          => szs_campo_post( 'szs_zona_uid' ),
-					'responsable_uid'   => szs_campo_post( 'szs_responsable_uid' ),
+					'responsables_uids' => $responsables,
+					'responsable_uid'   => $responsables[0] ?? '',
 					'prioridad'         => sanitize_key( szs_campo_post( 'szs_prioridad', 'media' ) ),
 					'estado'            => sanitize_key( szs_campo_post( 'szs_estado', 'pendiente' ) ),
 					'fecha_objetivo_ms' => szs_ms_desde_fecha( szs_campo_post( 'szs_fecha' ) ),
@@ -133,10 +138,16 @@ function szs_procesar_accion_tareas(): ?array {
 					'recurrencia_dias'  => $recurrencia > 0 ? $recurrencia : null,
 				)
 			);
-			if ( '' === $datos['responsable_uid'] ) {
+			if ( array() === $responsables ) {
 				$datos['responsable'] = '';
 			}
-			$guardada = szs_guardar_tarea_desde_panel( $datos, $existente );
+			// Alta con varias personas: una compartida o una para cada una.
+			// Al editar, cambiar las personas deja la tarea compartida.
+			$repartos = null === $existente && 'cada_persona' === szs_campo_post( 'szs_reparto' )
+				? szs_tareas_para_cada_responsable( $datos, 'szs_nuevo_uid' )
+				: array( $datos );
+			$guardadas = array_map( static fn( array $reparto ): array => szs_guardar_tarea_desde_panel( $reparto, $existente ), $repartos );
+			$guardada  = $guardadas[0];
 
 			// Si viene de una petición, la petición queda aceptada y enlazada.
 			$peticion_uid = szs_campo_post( 'szs_peticion_uid' );
@@ -149,6 +160,9 @@ function szs_procesar_accion_tareas(): ?array {
 						'tarea_uid' => $guardada['uid'],
 					)
 				);
+			}
+			if ( count( $guardadas ) > 1 ) {
+				return array( 'success', szs_t( 'Creadas %d tareas, una para cada persona. Llegarán a los móviles al sincronizar.', count( $guardadas ) ) );
 			}
 			return array( 'success', null === $existente ? szs_t( 'Tarea creada. Llegará a los móviles al sincronizar.' ) : szs_t( 'Tarea guardada.' ) );
 	}
@@ -201,7 +215,7 @@ function szs_pagina_tareas(): void {
 		</form>
 
 		<table class="widefat striped">
-			<thead><tr><th><?php echo esc_html( szs_t( 'Tarea' ) ); ?></th><th><?php echo esc_html( szs_t( 'Finca' ) ); ?></th><th><?php echo esc_html( szs_t( 'Responsable' ) ); ?></th><th><?php echo esc_html( szs_t( 'Prioridad' ) ); ?></th><th><?php echo esc_html( szs_t( 'Fecha' ) ); ?></th><th><?php echo esc_html( szs_t( 'Estado' ) ); ?></th><th></th></tr></thead>
+			<thead><tr><th><?php echo esc_html( szs_t( 'Tarea' ) ); ?></th><th><?php echo esc_html( szs_t( 'Finca' ) ); ?></th><th><?php echo esc_html( szs_t( 'Responsables' ) ); ?></th><th><?php echo esc_html( szs_t( 'Prioridad' ) ); ?></th><th><?php echo esc_html( szs_t( 'Fecha' ) ); ?></th><th><?php echo esc_html( szs_t( 'Estado' ) ); ?></th><th></th></tr></thead>
 			<tbody>
 			<?php if ( empty( $tareas ) ) : ?>
 				<tr><td colspan="7"><?php echo esc_html( szs_t( 'No hay tareas con estos filtros.' ) ); ?></td></tr>
@@ -276,10 +290,13 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 			'prioridad'   => ! empty( $peticion['datos']['urgente'] ) ? 'alta' : 'media',
 		)
 	);
-	// Responsable ya desactivada: sin esta opción el desplegable mostraría
-	// «Sin asignar» y, al guardar, la tarea perdería su responsable.
-	if ( '' !== $valores['responsable_uid'] && ! isset( $personas[ $valores['responsable_uid'] ] ) ) {
-		$personas[ $valores['responsable_uid'] ] = ( '' !== $valores['responsable'] ? $valores['responsable'] : $valores['responsable_uid'] ) . ' (' . szs_t( 'desactivada' ) . ')';
+	// Responsable ya desactivada: sin su casilla, al guardar la tarea la
+	// perdería sin que nadie lo hubiera decidido.
+	$elegidas = szs_responsables_de_tarea( $valores );
+	foreach ( $elegidas as $uid_elegida ) {
+		if ( ! isset( $personas[ $uid_elegida ] ) ) {
+			$personas[ $uid_elegida ] = ( 1 === count( $elegidas ) && '' !== $valores['responsable'] ? $valores['responsable'] : $uid_elegida ) . ' (' . szs_t( 'desactivada' ) . ')';
+		}
 	}
 	?>
 	<div class="wrap">
@@ -320,7 +337,7 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 				<tr><th><label for="szs_finca_uid"><?php echo esc_html( szs_t( 'Finca' ) ); ?></label></th><td><?php szs_selector( 'szs_finca_uid', $fincas, $valores['finca_uid'], szs_t( '— Elige —' ) ); ?></td></tr>
 				<tr><th><label for="szs_zona_uid"><?php echo esc_html( szs_t( 'Pieza (opcional)' ) ); ?></label></th><td><?php szs_selector( 'szs_zona_uid', $zonas, $valores['zona_uid'] ?? '', szs_t( 'Toda la finca' ) ); ?> <span class="description"><?php echo esc_html( szs_t( 'La parcela, el parque o el cercado donde se hace.' ) ); ?></span></td></tr>
 				<tr><th><label for="szs_punto_uid"><?php echo esc_html( szs_t( 'Punto (opcional)' ) ); ?></label></th><td><?php szs_selector( 'szs_punto_uid', $puntos, $valores['punto_uid'], szs_t( 'Ninguno' ) ); ?></td></tr>
-				<tr><th><label for="szs_responsable_uid"><?php echo esc_html( szs_t( 'Responsable' ) ); ?></label></th><td><?php szs_selector( 'szs_responsable_uid', $personas, $valores['responsable_uid'], szs_t( 'Sin asignar (tarea general)' ) ); ?></td></tr>
+				<tr><th><?php echo esc_html( szs_t( 'Responsables' ) ); ?></th><td><?php szs_casillas_responsables( $personas, $elegidas, null === $tarea ); ?></td></tr>
 				<tr><th><label for="szs_prioridad"><?php echo esc_html( szs_t( 'Prioridad' ) ); ?></label></th><td><?php szs_selector( 'szs_prioridad', szs_t_opciones( SZS_PRIORIDADES_TAREA ), $valores['prioridad'] ); ?></td></tr>
 				<tr><th><label for="szs_estado"><?php echo esc_html( szs_t( 'Estado' ) ); ?></label></th><td><?php szs_selector( 'szs_estado', szs_t_opciones( SZS_ESTADOS_TAREA ), $valores['estado'] ); ?></td></tr>
 				<tr><th><label for="szs_fecha"><?php echo esc_html( szs_t( 'Fecha objetivo' ) ); ?></label></th><td><input type="date" id="szs_fecha" name="szs_fecha" value="<?php echo esc_attr( null === $valores['fecha_objetivo_ms'] ? '' : wp_date( 'Y-m-d', intdiv( $valores['fecha_objetivo_ms'], 1000 ) ) ); ?>"></td></tr>
@@ -335,5 +352,49 @@ function szs_formulario_tarea( ?array $tarea, string $peticion_uid ): void {
 			<a href="<?php echo esc_url( szs_url_pagina( SZS_PAGINA_TAREAS ) ); ?>"><?php echo esc_html( szs_t( 'Volver al listado' ) ); ?></a>
 		</form>
 	</div>
+	<?php
+}
+
+/**
+ * Casillas para elegir una o varias responsables. En un alta, con dos o
+ * más marcadas aparece la pregunta: una tarea compartida o una para cada
+ * persona.
+ *
+ * @param array<string, string> $personas uid => nombre.
+ * @param string[]              $elegidas
+ */
+function szs_casillas_responsables( array $personas, array $elegidas, bool $es_alta ): void {
+	?>
+	<fieldset id="szs_responsables">
+		<?php if ( empty( $personas ) ) : ?>
+			<em><?php echo esc_html( szs_t( 'Todavía no hay personas en el espacio.' ) ); ?></em>
+		<?php endif; ?>
+		<?php foreach ( $personas as $uid => $nombre ) : ?>
+			<label style="display:inline-block;margin:0 16px 6px 0;"><input type="checkbox" name="szs_responsables_uids[]" value="<?php echo esc_attr( (string) $uid ); ?>" <?php checked( in_array( (string) $uid, $elegidas, true ) ); ?>> <?php echo esc_html( $nombre ); ?></label>
+		<?php endforeach; ?>
+	</fieldset>
+	<p class="description"><?php echo esc_html( szs_t( 'Sin marcar a nadie, la tarea es general: la ven todas las testers y cualquiera se la puede coger.' ) ); ?></p>
+	<?php if ( $es_alta ) : ?>
+		<fieldset id="szs_reparto" style="margin-top:10px;padding:8px 12px;border-left:4px solid #b8402a;background:#f6f7f7;">
+			<p style="margin:0 0 6px;"><strong><?php echo esc_html( szs_t( 'Has elegido varias personas. ¿Cómo la creo?' ) ); ?></strong></p>
+			<label><input type="radio" name="szs_reparto" value="compartida" checked> <?php echo esc_html( szs_t( 'Una tarea compartida' ) ); ?></label>
+			<p class="description" style="margin:0 0 6px 24px;"><?php echo esc_html( szs_t( 'Una sola tarea: la ven todas en «Mis tareas», cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.' ) ); ?></p>
+			<label><input type="radio" name="szs_reparto" value="cada_persona"> <?php echo esc_html( szs_t( 'Una para cada persona' ) ); ?></label>
+			<p class="description" style="margin:0 0 0 24px;"><?php echo esc_html( szs_t( 'Una tarea igual para cada una (mismo sitio, fecha, prioridad y periodicidad), cada una con su propio estado.' ) ); ?></p>
+		</fieldset>
+		<script>
+		( function () {
+			const reparto = document.getElementById( 'szs_reparto' );
+			const casillas = document.querySelectorAll( '#szs_responsables input[type=checkbox]' );
+			const actualizar = function () {
+				reparto.style.display = Array.from( casillas ).filter( ( casilla ) => casilla.checked ).length >= 2 ? '' : 'none';
+			};
+			casillas.forEach( ( casilla ) => casilla.addEventListener( 'change', actualizar ) );
+			actualizar();
+		} )();
+		</script>
+	<?php else : ?>
+		<p class="description"><?php echo esc_html( szs_t( 'Con varias personas marcadas la tarea es compartida: una sola, con un único estado para todas.' ) ); ?></p>
+	<?php endif; ?>
 	<?php
 }

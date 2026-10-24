@@ -46,10 +46,12 @@ function szs_filtrar_tareas_panel( array $tareas, array $filtros, int $inicio_de
 				if ( '' !== $estado && 'abiertas' !== $estado && $tarea['estado'] !== $estado ) {
 					return false;
 				}
-				if ( 'sin_asignar' === $responsable && '' !== $tarea['responsable_uid'] ) {
+				$responsables = szs_responsables_de_tarea( $tarea );
+				if ( 'sin_asignar' === $responsable && array() !== $responsables ) {
 					return false;
 				}
-				if ( '' !== $responsable && 'sin_asignar' !== $responsable && $tarea['responsable_uid'] !== $responsable ) {
+				// Una tarea compartida sale en el filtro de cada una de sus responsables.
+				if ( '' !== $responsable && 'sin_asignar' !== $responsable && ! in_array( $responsable, $responsables, true ) ) {
 					return false;
 				}
 				return ! $vencidas || szs_tarea_vencida( $tarea, $inicio_de_hoy_ms );
@@ -125,6 +127,52 @@ function szs_tareas_a_csv( array $tareas ): string {
 		);
 	}
 	return "\u{FEFF}" . implode( "\r\n", $lineas ) . "\r\n";
+}
+
+/**
+ * Responsables elegidas en el formulario, conservando el orden que ya
+ * tenían (la primera es la que ven las apps antiguas) y con las nuevas
+ * detrás.
+ *
+ * @param string[] $antes
+ * @param string[] $marcadas
+ * @return string[]
+ */
+function szs_ordenar_responsables_elegidas( array $antes, array $marcadas ): array {
+	return array_values(
+		array_merge(
+			array_intersect( $antes, $marcadas ),
+			array_diff( $marcadas, $antes )
+		)
+	);
+}
+
+/**
+ * «Una para cada persona»: la misma tarea repetida con una sola
+ * responsable cada vez. La primera conserva el uid de `$datos`; las demás
+ * llevan uno nuevo. Sin dos o más responsables, la tarea tal cual.
+ *
+ * @param callable(): string $nuevo_uid
+ * @return array<int, array>
+ */
+function szs_tareas_para_cada_responsable( array $datos, callable $nuevo_uid ): array {
+	$responsables = szs_responsables_de_tarea( $datos );
+	if ( count( $responsables ) < 2 ) {
+		return array( $datos );
+	}
+	$tareas = array();
+	foreach ( $responsables as $indice => $uid ) {
+		$tareas[] = array_merge(
+			$datos,
+			array(
+				'uid'               => 0 === $indice ? $datos['uid'] : $nuevo_uid(),
+				'responsables_uids' => array( $uid ),
+				'responsable_uid'   => $uid,
+				'responsable'       => '',
+			)
+		);
+	}
+	return $tareas;
 }
 
 /**

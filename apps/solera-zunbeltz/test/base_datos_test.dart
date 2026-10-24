@@ -614,6 +614,7 @@ void main() {
           ..remove('uid')
           ..remove('actualizado_ms')
           ..remove('responsable_uid')
+          ..remove('responsables_uids')
           ..remove('creado_por_uid'));
     await v4.close();
 
@@ -679,6 +680,7 @@ void main() {
           ..remove('uid')
           ..remove('actualizado_ms')
           ..remove('responsable_uid')
+          ..remove('responsables_uids')
           ..remove('creado_por_uid'));
     await v5.close();
 
@@ -858,6 +860,7 @@ void main() {
           ..remove('uid')
           ..remove('actualizado_ms')
           ..remove('responsable_uid')
+          ..remove('responsables_uids')
           ..remove('creado_por_uid'));
     await v6.close();
 

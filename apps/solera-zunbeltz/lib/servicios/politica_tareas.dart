@@ -20,8 +20,9 @@ class PoliticaTareas {
 
   bool _puede(String capacidad) => sesion?.puede(capacidad) ?? true;
 
+  /// Está entre las responsables (sola o en una tarea compartida).
   bool esResponsable(TareaMantenimiento tarea) =>
-      !modoLocal && _miUid.isNotEmpty && tarea.responsableUid == _miUid;
+      !modoLocal && tarea.tieneResponsable(_miUid);
 
   bool esCreadora(TareaMantenimiento tarea) =>
       !modoLocal && _miUid.isNotEmpty && tarea.creadoPorUid == _miUid;
@@ -34,15 +35,17 @@ class PoliticaTareas {
 
   bool get puedeVerTodas => _puede(capacidadVerTodasTareas);
 
-  /// Sin ver todas: las asignadas, las creadas y las generales (sin
-  /// responsable). Mismo criterio que `szs_tarea_visible` en el servidor.
+  /// Sin ver todas: las asignadas (también las compartidas), las creadas y
+  /// las generales (sin responsable). Mismo criterio que
+  /// `szs_tarea_visible` en el servidor.
   bool tareaVisible(TareaMantenimiento tarea) =>
       puedeVerTodas ||
-      tarea.responsableUid.isEmpty ||
+      tarea.sinResponsables ||
       esResponsable(tarea) ||
       esCreadora(tarea);
 
-  /// Estado y coste: quien la tiene asignada o la creó.
+  /// Estado y coste: quien la tiene asignada (cualquiera de las
+  /// responsables de una compartida) o la creó.
   bool puedeEjecutar(TareaMantenimiento tarea) =>
       _puede(capacidadEditarCualquierTarea) ||
       esResponsable(tarea) ||
@@ -52,10 +55,27 @@ class PoliticaTareas {
   bool puedeEditarContenido(TareaMantenimiento tarea) =>
       _puede(capacidadEditarCualquierTarea) || esCreadora(tarea);
 
-  /// Cogerse una tarea que no tiene a nadie asignado.
+  /// Cogerse una tarea: una general (sin nadie) o, quien puede asignar,
+  /// sumarse a una que ya tiene responsables. Se añade a la lista
+  /// ([responsablesAlCogerse]).
   bool puedeCogerse(TareaMantenimiento tarea) =>
-      !modoLocal && tarea.responsableUid.isEmpty;
+      !modoLocal &&
+      !esResponsable(tarea) &&
+      (tarea.sinResponsables || puedeAsignarAOtras);
 
-  /// Soltar una tarea propia para que quede libre.
+  /// Soltar una tarea propia. Sale solo quien suelta: en una compartida
+  /// las demás siguen ([responsablesAlSoltar]); si era la única, queda
+  /// general.
   bool puedeSoltar(TareaMantenimiento tarea) => esResponsable(tarea);
+
+  /// Cambiar a quién está asignada una tarea que ya existe (la deja
+  /// compartida entre las elegidas, no la trocea).
+  bool puedeCambiarResponsables(TareaMantenimiento tarea) =>
+      !modoLocal && puedeAsignarAOtras;
+
+  List<String> responsablesAlCogerse(TareaMantenimiento tarea) =>
+      [...tarea.uidsResponsables.where((uid) => uid != _miUid), _miUid];
+
+  List<String> responsablesAlSoltar(TareaMantenimiento tarea) =>
+      tarea.uidsResponsables.where((uid) => uid != _miUid).toList();
 }

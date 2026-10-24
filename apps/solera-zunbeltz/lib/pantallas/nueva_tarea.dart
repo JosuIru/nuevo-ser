@@ -10,6 +10,8 @@ import '../modelos/constantes.dart';
 import '../modelos/tarea_mantenimiento.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/selector_plantilla_tarea.dart';
+import 'widgets/selector_responsables.dart';
+import '../utiles/responsables_tarea.dart';
 import 'widgets/relleno_seguro.dart';
 import '../estado/datos_notificador.dart';
 
@@ -19,6 +21,11 @@ import '../estado/datos_notificador.dart';
 /// Con [tituloInicial]/[descripcionInicial] llega rellena (p. ej. desde una
 /// petición) y con [guardar] se sustituye el guardado normal (aceptar la
 /// petición y crear la tarea en una sola operación).
+///
+/// Con sesión se eligen una o varias responsables; con dos o más se
+/// pregunta si es una tarea compartida o una para cada persona (ver
+/// [RepartoTarea]). En «una para cada persona» [guardar] recibe la primera
+/// y las demás se guardan aparte.
 class NuevaTarea extends StatefulWidget {
   const NuevaTarea({
     super.key,
@@ -68,9 +75,9 @@ class _NuevaTareaState extends State<NuevaTarea> {
   List<String> _fotosAntes = const [];
   List<String> _fotosDespues = const [];
 
-  /// Con sesión, el responsable se elige de las personas del espacio
-  /// (`''` = sin asignar); en modo local se escribe en [_responsable].
-  String _responsableUid = '';
+  /// Con sesión, las responsables se eligen de las personas del espacio
+  /// (vacía = tarea general); en modo local se escribe en [_responsable].
+  List<String> _responsablesUids = const [];
 
   /// Tipo del punto al que va la tarea, para sugerir tareas tipo.
   String? _tipoPunto;
@@ -135,19 +142,24 @@ class _NuevaTareaState extends State<NuevaTarea> {
       return;
     }
     final sesion = sesionEspacio.value;
-    final responsableElegido = personasEspacio.value
-        .where((persona) => persona.uid == _responsableUid)
-        .firstOrNull;
-    final tarea = TareaMantenimiento(
+    final personas = personasEspacio.value;
+    final conocidas = {for (final persona in personas) persona.uid};
+    final responsables = sesion == null
+        ? const <String>[]
+        : _responsablesUids.where(conocidas.contains).toList();
+    var reparto = RepartoTarea.compartida;
+    if (responsables.length >= 2) {
+      final elegido = await preguntarRepartoTarea(context, responsables.length);
+      if (elegido == null || !mounted) return;
+      reparto = elegido;
+    }
+    final base = TareaMantenimiento(
       fincaId: widget.fincaId,
       puntoId: widget.puntoId,
       zonaId: widget.zonaId,
       titulo: _titulo.text.trim(),
       descripcion: _descripcion.text.trim(),
-      responsable: sesion == null
-          ? _responsable.text.trim()
-          : (responsableElegido?.nombre ?? ''),
-      responsableUid: responsableElegido?.uid ?? '',
+      responsable: sesion == null ? _responsable.text.trim() : '',
       creadoPorUid: sesion?.persona.uid ?? '',
       prioridad: _prioridad,
       estado: _estado,
@@ -158,21 +170,28 @@ class _NuevaTareaState extends State<NuevaTarea> {
       fechaCreacionMs: DateTime.now().millisecondsSinceEpoch,
       recurrenciaDias: _recurrenciaDias,
     );
+    final tareas = sesion == null
+        ? [base]
+        : tareasDelAlta(base, responsables, personas, reparto);
     final guardar = widget.guardar;
-    if (guardar == null) {
-      await _bd.guardarTarea(tarea);
-    } else {
-      await guardar(tarea);
+    for (final (indice, tarea) in tareas.indexed) {
+      if (guardar != null && indice == 0) {
+        await guardar(tarea);
+      } else {
+        await _bd.guardarTarea(tarea);
+      }
     }
     avisarCambioDatos();
     if (!mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(textos.tareaGuardada)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(tareas.length > 1
+            ? textos.tareasCreadasUnaPorPersona(tareas.length)
+            : textos.tareaGuardada)));
     Navigator.of(context).pop(true);
   }
 
-  /// En modo local, texto libre. Con sesión, lista de personas del espacio;
-  /// sin permiso para asignar a otras, sólo "sin asignar" o una misma.
+  /// En modo local, texto libre. Con sesión, casillas con las personas del
+  /// espacio; sin permiso para asignar a otras, sólo una misma (o nadie).
   Widget _campoResponsable(AppLocalizations textos) {
     final sesion = sesionEspacio.value;
     if (sesion == null) {
@@ -181,29 +200,17 @@ class _NuevaTareaState extends State<NuevaTarea> {
         decoration: InputDecoration(labelText: textos.tareaResponsable),
       );
     }
-    final personasElegibles = politicaTareasActual.puedeAsignarAOtras
+    final puedeAsignarAOtras = politicaTareasActual.puedeAsignarAOtras;
+    final personasElegibles = puedeAsignarAOtras
         ? personasEspacio.value
         : personasEspacio.value
             .where((persona) => persona.uid == sesion.persona.uid)
             .toList();
-    return DropdownButtonFormField<String>(
-      // «Nombre · Rol» no cabe en un móvil estrecho sin recortar.
-      isExpanded: true,
-      initialValue: _responsableUid,
-      decoration: InputDecoration(labelText: textos.tareaResponsable),
-      items: [
-        DropdownMenuItem(value: '', child: Text(textos.tareaSinAsignar)),
-        for (final persona in personasElegibles)
-          DropdownMenuItem(
-            value: persona.uid,
-            child: Text(
-                persona.etiquetaRol.isEmpty
-                    ? persona.nombre
-                    : '${persona.nombre} · ${persona.etiquetaRol}',
-                overflow: TextOverflow.ellipsis),
-          ),
-      ],
-      onChanged: (valor) => setState(() => _responsableUid = valor ?? ''),
+    return SelectorResponsables(
+      personas: personasElegibles,
+      elegidas: _responsablesUids,
+      ayuda: puedeAsignarAOtras ? null : textos.tareaResponsablesSoloTu,
+      alCambiar: (elegidas) => setState(() => _responsablesUids = elegidas),
     );
   }
 

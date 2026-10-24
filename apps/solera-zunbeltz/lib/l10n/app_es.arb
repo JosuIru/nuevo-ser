@@ -372,7 +372,7 @@
   "ayudaCierresT": "Un abrevadero o un cierre nuevo",
   "ayudaCierresB": "Un abrevadero, un bebedero o una manga son un punto: se marcan como en «Marcar un punto en el mapa», con su tipo.\nUn cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de una de estas dos maneras:\n1. Si importa un tramo o una puerta concreta (para tensarlo, revisarlo o arreglarlo), marca un punto en ese sitio con el tipo «Cierre / alambrada», «Pastor eléctrico» o «Puerta / portillo», y di en el nombre o en las notas qué tramo es.\n2. Si importa el recinto que cierra, dibújalo como zona («Dibujar zona»). Si es un cierre que se pone y se quita, elige el tipo «Cercado provisional».\n» Las tareas del cierre se anclan a ese punto o a esa zona.\n» Si necesitáis ver el trazado del cierre en el mapa, decídnoslo: sería una función nueva.",
   "ayudaTareasT": "Apuntar una tarea de mantenimiento",
-  "ayudaTareasB": "1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.",
+  "ayudaTareasB": "1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar. Si has elegido a dos o más responsables, la app pregunta: «Una tarea compartida» (una sola; la ven todas en «Mis tareas» y, cuando una la marca hecha, queda hecha para todas) o «Una para cada persona» (una tarea igual para cada una, con su propio estado).\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.",
   "ayudaTareasTesterT": "Pedir una tarea de mantenimiento",
   "ayudaTareasTesterB": "Si ves algo que hay que arreglar, revisar o mantener en la finca, puedes pedir que se haga una tarea.\n1. Entra en Fincas y localiza el punto o la zona donde hace falta.\n2. En su ficha, pulsa «Pedir una tarea» y explica qué pasa y qué hace falta hacer. Si puedes, añade una foto para que se entienda mejor.\n3. Coordinación revisará la petición y organizará la tarea.\n» Pedir una tarea no significa que tengas que hacerla tú. Coordinación valora la petición y decide cómo organizar el trabajo.\n» Cuanto más clara sea la descripción del problema y su ubicación, más fácil será organizar la actuación.",
   "ayudaRecurrentesT": "Tareas que se repiten",
@@ -380,9 +380,9 @@
   "ayudaRecurrentesTesterT": "Tareas que se repiten",
   "ayudaRecurrentesTesterB": "Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…\n1. En Fincas, pulsa «Tareas» para ver las actuaciones previstas.\n2. Las que se repiten llevan el símbolo de repetir.\n3. Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.\n» No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.",
   "ayudaTableroT": "Llevar las tareas al día",
-  "ayudaTableroB": "1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».",
+  "ayudaTableroB": "1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además «Cambiar responsables»: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».",
   "ayudaTableroTesterT": "Consultar y llevar las tareas al día",
-  "ayudaTableroTesterB": "En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.",
+  "ayudaTableroTesterB": "En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.",
   "ayudaProyectosT": "Crear tu proyecto",
   "ayudaProyectosB": "Los proyectos los crea coordinación, y cada uno es de una persona tester.\n1. En Proyectos, pulsa + (solo coordinación).\n2. Pon el nombre, la actividad y elige la persona tester. Si quieres, también la finca y las fechas.\n3. Pulsa Guardar.\n» Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).",
   "ayudaApuntarT": "Apuntar tu día a día",
@@ -513,6 +513,40 @@
   "tareaSinPermiso": "Tu rol no permite cambiar esta tarea.",
   "tareaNoPuedesCrear": "Tu rol no permite crear tareas.",
   "tableroMisTareas": "Mis tareas",
+  "tareaResponsables": "Responsables",
+  "tareaResponsablesAyudaGeneral": "Sin elegir a nadie, la tarea es general: la ven todas y cualquiera se la puede coger.",
+  "tareaResponsablesSoloTu": "Tu rol solo permite asignártela a ti o dejarla general.",
+  "tareaRepartoTitulo": "Has elegido {n} personas",
+  "@tareaRepartoTitulo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tareaRepartoPregunta": "¿Cómo creo la tarea?",
+  "tareaRepartoCompartida": "Una tarea compartida",
+  "tareaRepartoCompartidaDetalle": "Una sola tarea: la ven todas en «Mis tareas», cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.",
+  "tareaRepartoCadaPersona": "Una para cada persona",
+  "tareaRepartoCadaPersonaDetalle": "Se crean {n} tareas iguales (mismo sitio, fecha, prioridad, periodicidad y fotos de antes), cada una con una responsable y su propio estado.",
+  "@tareaRepartoCadaPersonaDetalle": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tareasCreadasUnaPorPersona": "Creadas {n} tareas, una para cada persona",
+  "@tareasCreadasUnaPorPersona": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "tareaCambiarResponsables": "Cambiar responsables",
+  "tareaCambiarResponsablesAyuda": "Con varias personas la tarea queda compartida: una sola, con un único estado para todas.",
+  "tareaResponsablesCambiadas": "Responsables cambiadas",
   "meteoAhora": "Ahora",
   "meteoSensacion": "Sensación",
   "meteoHumedad": "Humedad",

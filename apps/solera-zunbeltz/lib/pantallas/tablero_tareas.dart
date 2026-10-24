@@ -98,7 +98,9 @@ class _TableroTareasState extends State<TableroTareas> {
     return _tareas.where((t) {
       if (_filtroFincaId != null && t.fincaId != _filtroFincaId) return false;
       if (_filtroEstado != null && t.estado != _filtroEstado) return false;
-      if (_soloMias && miUid != null && t.responsableUid != miUid) return false;
+      if (_soloMias && miUid != null && !t.tieneResponsable(miUid)) {
+        return false;
+      }
       return true;
     }).toList(growable: false);
   }

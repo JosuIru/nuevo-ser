@@ -8,7 +8,7 @@
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     1.0.3
+ * Version:     1.0.4
  * Author:      Gailu Sare - Solera
  * Author URI:  https://gailu.net/
  * License:     GPL-2.0-or-later
@@ -61,8 +61,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '1.0.3' );
-define( 'SZS_VERSION_ESQUEMA', 8 );
+define( 'SZS_VERSION', '1.0.4' );
+define( 'SZS_VERSION_ESQUEMA', 9 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
 define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
@@ -148,6 +148,7 @@ function szs_instalar_esquema(): void {
 		descripcion TEXT NULL,
 		responsable VARCHAR(255) NOT NULL DEFAULT '',
 		responsable_uid VARCHAR(64) NOT NULL DEFAULT '',
+		responsables_uids TEXT NULL,
 		creado_por_uid VARCHAR(64) NOT NULL DEFAULT '',
 		prioridad VARCHAR(32) NOT NULL DEFAULT 'media',
 		estado VARCHAR(32) NOT NULL DEFAULT 'pendiente',
@@ -230,6 +231,10 @@ function szs_instalar_esquema(): void {
 	) {$charset_collate};"
 	);
 
+	// Esquema 9: varias responsables por tarea. Las tareas de antes pasan a
+	// tener la lista con su única responsable.
+	szs_rellenar_lista_responsables( $tabla_tareas );
+
 	// El token compartido de la v0.1 daba acceso total sin identificar a
 	// nadie: se retira para que no quede un secreto huérfano.
 	delete_option( SZS_OPCION_TOKEN_COMPARTIDO_V1 );
@@ -240,6 +245,20 @@ function szs_instalar_esquema(): void {
 		szs_corregir_fincas_del_espacio();
 	}
 	update_option( SZS_OPCION_VERSION_ESQUEMA, SZS_VERSION_ESQUEMA );
+}
+
+/** Rellena `responsables_uids` en las tareas que aún no la tienen. */
+function szs_rellenar_lista_responsables( string $tabla_tareas ): void {
+	global $wpdb;
+	$filas = (array) $wpdb->get_results( "SELECT uid, responsable_uid FROM {$tabla_tareas} WHERE responsables_uids IS NULL", ARRAY_A );
+	foreach ( $filas as $fila ) {
+		$responsable = (string) $fila['responsable_uid'];
+		$wpdb->update(
+			$tabla_tareas,
+			array( 'responsables_uids' => wp_json_encode( '' === $responsable ? array() : array( $responsable ) ) ),
+			array( 'uid' => $fila['uid'] )
+		);
+	}
 }
 
 // ============================================================
@@ -435,7 +454,10 @@ function szs_procesar_tareas_entrantes( array $persona, array $tareas_entrantes,
 		$ajustada = $resolucion['ajustada'];
 		if ( in_array( $resolucion['accion'], array( 'insertar', 'actualizar' ), true ) ) {
 			$guardada = szs_guardar_tarea( $tabla, $resolucion['datos'], 'insertar' === $resolucion['accion'] );
-			$ajustada = $ajustada || $guardada['responsable'] !== $entrante['responsable'];
+			$ajustada = $ajustada || $guardada['responsable'] !== $entrante['responsable']
+				// Una app con la lista recibe la del servidor si se ha quedado
+				// sin alguna persona (desactivada o inexistente).
+				|| ( null !== $entrante['responsables_uids'] && $guardada['responsables_uids'] !== $entrante['responsables_uids'] );
 			szs_registrar_actividad_tarea( $persona, $existente, $guardada, $origen );
 			// Si la cierra una tester (que no puede crear tareas), la
 			// siguiente la genera el servidor.
@@ -528,9 +550,10 @@ function szs_generar_siguiente_periodica_si_toca( string $tabla, array $persona,
 
 /**
  * Todas las tareas que ve una persona, normalizadas, de la más reciente a
- * la más antigua. El filtro va en SQL (misma regla que
- * `szs_tarea_visible`) y sin límite: la respuesta tiene que ser la lista
- * completa para que el dispositivo pueda retirar las que ya no ve.
+ * la más antigua. La SQL descarta a grandes rasgos y `szs_tarea_visible`
+ * decide (una tarea compartida lleva a la persona dentro de la lista), sin
+ * límite: la respuesta tiene que ser la lista completa para que el
+ * dispositivo pueda retirar las que ya no ve.
  *
  * @param string[] $capacidades
  * @return array<int, array>
@@ -545,37 +568,48 @@ function szs_listar_tareas_visibles( string $persona_uid, array $capacidades ): 
 		$filas = $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT * FROM {$tabla}
-				WHERE responsable_uid = '' OR responsable_uid = %s OR creado_por_uid = %s
+				WHERE responsable_uid = '' OR responsable_uid = %s OR creado_por_uid = %s OR responsables_uids LIKE %s
 				ORDER BY actualizado_ms DESC",
 				$persona_uid,
-				$persona_uid
+				$persona_uid,
+				'%' . $wpdb->esc_like( '"' . $persona_uid . '"' ) . '%'
 			),
 			ARRAY_A
 		);
 	}
-	return array_map( 'szs_normalizar_tarea', (array) $filas );
+	$tareas = array_map( static fn( array $fila ): array => szs_completar_responsables( szs_normalizar_tarea( $fila ) ), (array) $filas );
+	return array_values( array_filter( $tareas, static fn( array $tarea ): bool => szs_tarea_visible( $tarea, $persona_uid, $capacidades ) ) );
 }
 
 /**
- * Escribe una tarea ya resuelta y devuelve lo que ha quedado guardado. El
- * nombre del responsable lo pone el servidor a partir de la persona, para
- * que no dependa de lo que escriba cada dispositivo.
+ * Escribe una tarea ya resuelta y devuelve lo que ha quedado guardado. Los
+ * nombres de las responsables los pone el servidor a partir de las
+ * personas, para que no dependan de lo que escriba cada dispositivo.
  */
 function szs_guardar_tarea( string $tabla, array $datos, bool $es_nueva ): array {
 	global $wpdb;
 
-	if ( '' !== $datos['responsable_uid'] ) {
-		$nombre = szs_nombre_persona( $datos['responsable_uid'] );
-		if ( null === $nombre ) {
-			// Persona inexistente: la tarea queda sin asignar.
-			$datos['responsable_uid'] = '';
-			$datos['responsable']     = '';
-		} else {
-			$datos['responsable'] = $nombre;
+	$pedidas      = szs_responsables_de_tarea( $datos );
+	$responsables = array();
+	$nombres      = array();
+	foreach ( $pedidas as $uid ) {
+		$nombre = szs_nombre_persona( $uid );
+		// Persona inexistente: sale de la lista (sin nadie, tarea general).
+		if ( null !== $nombre ) {
+			$responsables[] = $uid;
+			$nombres[]      = $nombre;
 		}
 	}
+	$datos['responsables_uids'] = $responsables;
+	$datos['responsable_uid']   = $responsables[0] ?? '';
+	if ( array() !== $pedidas ) {
+		// Sin ninguna pedida se respeta el nombre en texto libre de las
+		// tareas de la v0.1.
+		$datos['responsable'] = szs_unir_nombres_responsables( $nombres );
+	}
 
-	$fila                = $datos;
+	$fila                      = $datos;
+	$fila['responsables_uids'] = wp_json_encode( $responsables );
 	$fila['recibido_en'] = gmdate( 'Y-m-d H:i:s' );
 	// Las fotos van en la fila como JSON (lista de hashes).
 	foreach ( SZS_CAMPOS_FOTOS_TAREA as $campo ) {

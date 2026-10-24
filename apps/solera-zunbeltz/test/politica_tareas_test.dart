@@ -102,6 +102,63 @@ void main() {
         isFalse);
   });
 
+  group('varias responsables (espejo de test_sync.php)', () {
+    final compartida = TareaMantenimiento(
+      fincaId: 1,
+      titulo: 'Alimentar',
+      responsableUid: 'ane',
+      responsablesUids: const ['ane', 'mikel'],
+      creadoPorUid: 'coord',
+    );
+    final mikel = sesion('mikel', const {});
+
+    test('la ven y la ejecutan todas sus responsables, nadie más', () {
+      expect(PoliticaTareas(ane).tareaVisible(compartida), isTrue);
+      expect(PoliticaTareas(mikel).tareaVisible(compartida), isTrue,
+          reason: 'aunque no sea la primera');
+      expect(PoliticaTareas(jon).tareaVisible(compartida), isFalse);
+      expect(PoliticaTareas(mikel).puedeEjecutar(compartida), isTrue);
+      expect(PoliticaTareas(jon).puedeEjecutar(compartida), isFalse);
+      expect(PoliticaTareas(mikel).puedeEditarContenido(compartida), isFalse);
+    });
+
+    test('soltar quita solo a quien suelta', () {
+      final deMikel = PoliticaTareas(mikel);
+      expect(deMikel.puedeSoltar(compartida), isTrue);
+      expect(deMikel.responsablesAlSoltar(compartida), ['ane']);
+      expect(PoliticaTareas(ane).responsablesAlSoltar(compartida), ['mikel'],
+          reason: 'si suelta la primera, la siguiente pasa a primera');
+      expect(PoliticaTareas(ane).responsablesAlSoltar(tareaDeAne), isEmpty,
+          reason: 'la única que suelta deja la tarea general');
+    });
+
+    test('una tester no se suma a una tarea ya asignada; coordinación sí', () {
+      expect(PoliticaTareas(jon).puedeCogerse(compartida), isFalse);
+      expect(PoliticaTareas(jon).responsablesAlCogerse(tareaLibre), ['jon']);
+      final deCoordinacion = PoliticaTareas(coordinacion);
+      expect(deCoordinacion.puedeCogerse(compartida), isTrue);
+      expect(deCoordinacion.responsablesAlCogerse(compartida),
+          ['ane', 'mikel', 'coord'],
+          reason: '«asignármela» se añade a la lista');
+      expect(PoliticaTareas(ane).puedeCogerse(compartida), isFalse,
+          reason: 'ya está dentro');
+    });
+
+    test('cambiar responsables de una tarea existente: quien asigna', () {
+      expect(PoliticaTareas(coordinacion).puedeCambiarResponsables(compartida),
+          isTrue);
+      expect(PoliticaTareas(ane).puedeCambiarResponsables(compartida), isFalse);
+      expect(const PoliticaTareas(null).puedeCambiarResponsables(compartida),
+          isFalse,
+          reason: 'en modo local no hay personas');
+    });
+
+    test('datos sin lista: vale responsable_uid', () {
+      expect(tareaDeAne.uidsResponsables, ['ane']);
+      expect(PoliticaTareas(ane).esResponsable(tareaDeAne), isTrue);
+    });
+  });
+
   test('SesionEspacio ida y vuelta por JSON', () {
     final json = SesionEspacio.fromJson({
       'uid': 'ane',

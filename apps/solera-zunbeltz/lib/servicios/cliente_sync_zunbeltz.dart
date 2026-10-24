@@ -658,7 +658,10 @@ class ClienteSyncZunbeltz implements TransporteFotos {
         'titulo': tarea.titulo,
         'descripcion': tarea.descripcion,
         'responsable': tarea.responsable,
-        'responsable_uid': tarea.responsableUid,
+        // La primera responsable va también sola: un plugin anterior a las
+        // responsables múltiples solo entiende esa.
+        'responsable_uid': tarea.uidsResponsables.firstOrNull ?? '',
+        'responsables_uids': tarea.uidsResponsables,
         'creado_por_uid': tarea.creadoPorUid,
         'prioridad': tarea.prioridad,
         'estado': tarea.estado,
@@ -686,6 +689,8 @@ class ClienteSyncZunbeltz implements TransporteFotos {
         descripcion: (json['descripcion'] as String?) ?? '',
         responsable: (json['responsable'] as String?) ?? '',
         responsableUid: (json['responsable_uid'] as String?) ?? '',
+        // Un plugin anterior no la manda: queda la de `responsable_uid`.
+        responsablesUids: decodificarUidsResponsables(json['responsables_uids']),
         creadoPorUid: (json['creado_por_uid'] as String?) ?? '',
         prioridad: (json['prioridad'] as String?) ?? prioridadTareaPorDefecto,
         estado: (json['estado'] as String?) ?? estadoTareaPorDefecto,

@@ -180,6 +180,77 @@ afirmar( true, szs_tarea_visible( tarea_base( array( 'responsable_uid' => 'jon',
 afirmar( true, szs_tarea_visible( $libre, 'jon', $tester ), 'tester ve las generales (sin responsable)' );
 afirmar( true, szs_tarea_visible( $existente, 'jon', $coordinacion ), 'coordinación ve todas' );
 
+// --- varias responsables (espejo de `politica_tareas_test.dart`) ---
+$compartida = tarea_base( array( 'responsables_uids' => array( 'ane', 'mikel' ), 'responsable' => 'Ane, Mikel' ) );
+afirmar( 'ane', $compartida['responsable_uid'], 'la primera de la lista va en responsable_uid' );
+afirmar( array( 'ane', 'mikel' ), szs_lista_uids_o_null( '["ane","mikel","ane",""]' ), 'la lista se lee de JSON sin repetidas ni vacías' );
+afirmar( null, szs_lista_uids_o_null( null ), 'sin lista = null (app o fila antigua)' );
+afirmar( array( 'ane' ), szs_responsables_de_tarea( tarea_base() ), 'sin lista vale responsable_uid' );
+afirmar( array(), szs_responsables_de_tarea( $libre ), 'sin nadie, lista vacía' );
+
+afirmar( true, szs_tarea_visible( $compartida, 'mikel', $tester ), 'la ve una responsable que no es la primera' );
+afirmar( true, szs_tarea_visible( $compartida, 'ane', $tester ), 'y la primera' );
+afirmar( false, szs_tarea_visible( $compartida, 'jon', $tester ), 'nadie más (sin ver todas)' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array( 'ane', 'mikel' ), 'estado' => 'hecha', 'actualizado_ms' => 200 ) ), 'mikel', $tester );
+afirmar( 'actualizar', $r['accion'], 'cualquier responsable de una compartida cambia el estado' );
+afirmar( 'hecha', $r['datos']['estado'], '… y queda hecha para todas' );
+afirmar( false, $r['ajustada'], '… sin ajustes' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array( 'ane', 'mikel' ), 'estado' => 'hecha', 'actualizado_ms' => 200 ) ), 'jon', $tester );
+afirmar( 'rechazar', $r['accion'], 'quien no está en la lista no la ejecuta' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array( 'ane' ), 'responsable' => 'Ane', 'actualizado_ms' => 200 ) ), 'mikel', $tester );
+afirmar( array( 'ane' ), $r['datos']['responsables_uids'] ?? null, 'soltar quita solo a quien suelta' );
+afirmar( 'ane', $r['datos']['responsable_uid'] ?? null, '… y la primera sigue' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array( 'mikel' ), 'responsable' => 'Mikel', 'actualizado_ms' => 200 ) ), 'ane', $tester );
+afirmar( array( 'mikel' ), $r['datos']['responsables_uids'] ?? null, 'si suelta la primera, la siguiente pasa a primera' );
+afirmar( 'mikel', $r['datos']['responsable_uid'] ?? null, '… también en responsable_uid' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array(), 'responsable' => '', 'actualizado_ms' => 200 ) ), 'mikel', $tester );
+afirmar( 'rechazar', $r['accion'], 'una responsable no quita a las demás' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array( 'ane', 'mikel', 'jon' ), 'actualizado_ms' => 200 ) ), 'jon', $tester );
+afirmar( 'rechazar', $r['accion'], 'una tester no se suma a una tarea ya asignada' );
+
+$r = szs_resolver_tarea_entrante( $libre, tarea_base( array( 'responsables_uids' => array( 'jon' ), 'actualizado_ms' => 200 ) ), 'jon', $tester );
+afirmar( array( 'jon' ), $r['datos']['responsables_uids'] ?? null, 'una tester se coge una general (queda ella sola)' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array( 'ane', 'mikel', 'coord' ), 'actualizado_ms' => 200 ) ), 'coord', $coordinacion );
+afirmar( array( 'ane', 'mikel', 'coord' ), $r['datos']['responsables_uids'] ?? null, 'coordinación se suma («asignármela» añade a la lista)' );
+
+$r = szs_resolver_tarea_entrante( null, tarea_base( array( 'responsables_uids' => array( 'ane', 'mikel' ) ) ), 'coord', $coordinacion );
+afirmar( array( 'ane', 'mikel' ), $r['datos']['responsables_uids'], 'coordinación crea una compartida' );
+
+$r = szs_resolver_tarea_entrante( null, tarea_base( array( 'creado_por_uid' => 'ane', 'responsables_uids' => array( 'ane', 'jon' ) ) ), 'ane', $crea_sin_asignar );
+afirmar( array(), $r['datos']['responsables_uids'], 'quien no asigna no crea una compartida con otras: entra general' );
+afirmar( true, $r['ajustada'], '… y se ajusta' );
+
+$r = szs_resolver_tarea_entrante( $compartida, tarea_base( array( 'responsables_uids' => array( 'ane', 'mikel' ), 'responsable' => 'Ane,Mikel', 'estado' => 'en_curso', 'actualizado_ms' => 200 ) ), 'mikel', $tester );
+afirmar( false, $r['ajustada'], 'los nombres escritos de otra manera no cuentan como cambio' );
+
+// App anterior a la lista (no manda `responsables_uids`): funciona con la
+// primera sin perder a las demás.
+$sin_lista = static fn( array $cambios ): array => array_merge( tarea_base( $cambios ), array( 'responsables_uids' => null ) );
+$r = szs_resolver_tarea_entrante( $compartida, $sin_lista( array( 'responsable_uid' => 'ane', 'responsable' => 'Ane, Mikel', 'estado' => 'hecha', 'actualizado_ms' => 200 ) ), 'ane', $tester );
+afirmar( 'actualizar', $r['accion'], 'app antigua: la primera responsable cierra una compartida' );
+afirmar( array( 'ane', 'mikel' ), $r['datos']['responsables_uids'], '… y la lista se conserva' );
+afirmar( false, $r['ajustada'], '… sin forzar nada' );
+
+$r = szs_resolver_tarea_entrante( $compartida, $sin_lista( array( 'responsable_uid' => '', 'responsable' => '', 'actualizado_ms' => 200 ) ), 'ane', $tester );
+afirmar( array( 'mikel' ), $r['datos']['responsables_uids'] ?? null, 'app antigua: la primera suelta y las demás siguen' );
+
+$r = szs_resolver_tarea_entrante( $libre, $sin_lista( array( 'responsable_uid' => 'jon', 'responsable' => 'Jon', 'actualizado_ms' => 200 ) ), 'jon', $tester );
+afirmar( array( 'jon' ), $r['datos']['responsables_uids'] ?? null, 'app antigua: se coge una general' );
+
+$r = szs_resolver_tarea_entrante( null, $sin_lista( array( 'responsable_uid' => 'ane' ) ), 'coord', $coordinacion );
+afirmar( array( 'ane' ), $r['datos']['responsables_uids'], 'app antigua: el alta con una responsable lleva su lista' );
+
+afirmar( array( 'jon', 'mikel' ), szs_responsables_desde_app_antigua( $compartida, array_merge( $compartida, array( 'responsable_uid' => 'jon' ) ) ), 'app antigua que cambia la primera: la sustituye y las demás siguen' );
+afirmar( array( 'mikel' ), szs_responsables_desde_app_antigua( $compartida, array_merge( $compartida, array( 'responsable_uid' => 'mikel' ) ) ), '… sin duplicar a quien ya estaba' );
+afirmar( 'Ane, Mikel', szs_unir_nombres_responsables( array( 'Ane', 'Mikel' ) ), 'nombres unidos como en la app' );
+
 if ( $fallos > 0 ) {
 	fwrite( STDERR, "\n{$fallos} test(s) fallidos.\n" );
 	exit( 1 );

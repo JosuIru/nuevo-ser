@@ -154,8 +154,8 @@ int contarTareasDeHoy(List<TareaMantenimiento> tareas, DateTime ahora,
     }
     return politica.modoLocal ||
         politica.puedeGestionarProyectos ||
-        tarea.responsableUid.isEmpty ||
-        tarea.responsableUid == politica.miUid;
+        tarea.sinResponsables ||
+        tarea.tieneResponsable(politica.miUid);
   }).length;
 }
 

@@ -131,7 +131,7 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 		'ayudaTareasT' => 'Apuntar una tarea de mantenimiento',
 		'ayudaTareasB' => '1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».
 2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.
-3. Pulsa Guardar.
+3. Pulsa Guardar. Si has elegido a dos o más responsables, la app pregunta: «Una tarea compartida» (una sola; la ven todas en «Mis tareas» y, cuando una la marca hecha, queda hecha para todas) o «Una para cada persona» (una tarea igual para cada una, con su propio estado).
 » Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».
 » La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.',
 		'ayudaTareasTesterT' => 'Pedir una tarea de mantenimiento',
@@ -156,14 +156,14 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 		'ayudaTableroB' => '1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.
 2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.
 3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.
-4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.
+4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además «Cambiar responsables»: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.
 5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.
 » «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».',
 		'ayudaTableroTesterT' => 'Consultar y llevar las tareas al día',
 		'ayudaTableroTesterB' => 'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.
 1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.
 2. Filtra por finca o por estado para encontrar las que te interesan.
-3. «Mis tareas» deja solo las que tienes asignadas.
+3. «Mis tareas» deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.
 4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.
 5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.
 » «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».
@@ -378,7 +378,7 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 		'ayudaTareasT' => 'Mantentze-zeregin bat apuntatu',
 		'ayudaTareasB' => '1. Ireki puntu edo eremu baten fitxa eta sakatu «Zeregin berria».
 2. Idatzi zer egin behar den edo sakatu «Ohiko zeregin bat aukeratu»: Zunbeltzeko ohikoak agertzen dira (elikadura, hesiaren berrikuspena, erosketak…) iradokitako maiztasunarekin, eta goian puntu horri dagozkionak. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.
-3. Sakatu Gorde.
+3. Sakatu Gorde. Bi arduradun edo gehiago aukeratu badituzu, app-ak galdetzen du: «Zeregin partekatu bat» (bakarra; denek ikusten dute «Nire zereginak» atalean eta, batek eginda markatzen duenean, denentzat geratzen da eginda) edo «Pertsona bakoitzeko bat» (zeregin berdin bat bakoitzarentzat, bere egoerarekin).
 » Zereginak kostua badu, koordinazioak proiektu baten kontuetara eraman dezake zereginetik bertatik: «Proiektu baten gastu gisa apuntatu».
 » Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.',
 		'ayudaTareasTesterT' => 'Mantentze-zeregin bat eskatu',
@@ -403,14 +403,14 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 		'ayudaTableroB' => '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.
 2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.
 3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.
-4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.
+4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko. Koordinazioak, gainera, «Arduradunak aldatu» dezake: hainbatekin, zeregina partekatua geratzen da. Partekatu bat askatzen baduzu, zu ateratzen zara eta besteek jarraitzen dute.
 5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.
 » «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.',
 		'ayudaTableroTesterT' => 'Zereginak kontsultatu eta egunean eraman',
 		'ayudaTableroTesterB' => 'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.
 1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.
 2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.
-3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.
+3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu, baita beste pertsona batzuekin partekatzen dituzunak ere: horietan, edozeinek alda dezake egoera eta, batek eginda markatzen duenean, denentzat geratzen da eginda.
 4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.
 5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.
 » «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.

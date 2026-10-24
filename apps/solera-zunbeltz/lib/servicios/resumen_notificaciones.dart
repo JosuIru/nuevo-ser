@@ -104,8 +104,8 @@ int contarTareasVencidas(
     }
     return politica.modoLocal ||
         politica.puedeGestionarProyectos ||
-        tarea.responsableUid.isEmpty ||
-        tarea.responsableUid == politica.miUid;
+        tarea.sinResponsables ||
+        tarea.tieneResponsable(politica.miUid);
   }).length;
 }
 

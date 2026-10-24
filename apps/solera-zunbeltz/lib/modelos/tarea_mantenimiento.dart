@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'constantes.dart';
 import '../utiles/uid.dart';
 
@@ -16,6 +18,7 @@ class TareaMantenimiento {
     this.descripcion = '',
     this.responsable = '',
     this.responsableUid = '',
+    List<String> responsablesUids = const [],
     this.creadoPorUid = '',
     this.prioridad = prioridadTareaPorDefecto,
     this.estado = estadoTareaPorDefecto,
@@ -27,6 +30,7 @@ class TareaMantenimiento {
     this.recurrenciaDias,
     int? actualizadoMs,
   })  : uid = (uid == null || uid.isEmpty) ? generarUid() : uid,
+        responsablesUids = _sinRepetir(responsablesUids),
         actualizadoMs = actualizadoMs ?? fechaCreacionMs;
 
   final int? id;
@@ -60,6 +64,25 @@ class TareaMantenimiento {
   /// `uid` de la persona del espacio asignada (ver `PersonaEspacio`). Vacío
   /// = sin asignar o responsable en texto libre (modo local).
   final String responsableUid;
+
+  /// Todas las personas asignadas (`uid`), en orden: una tarea compartida
+  /// tiene varias, la ven todas en «Mis tareas» y cualquiera cambia su
+  /// estado. Vacía en datos anteriores a la lista: entonces vale
+  /// [responsableUid] (ver [uidsResponsables]). Al guardar, la primera va
+  /// también en `responsable_uid` y [responsable] lleva los nombres unidos,
+  /// para que una app o un plugin anteriores sigan con la primera.
+  final List<String> responsablesUids;
+
+  /// Responsables efectivas: la lista o, si no la hay, [responsableUid].
+  List<String> get uidsResponsables => responsablesUids.isNotEmpty
+      ? responsablesUids
+      : (responsableUid.isEmpty ? const [] : [responsableUid]);
+
+  /// Tarea general: sin nadie asignado.
+  bool get sinResponsables => uidsResponsables.isEmpty;
+
+  bool tieneResponsable(String personaUid) =>
+      personaUid.isNotEmpty && uidsResponsables.contains(personaUid);
 
   /// `uid` de la persona que creó la tarea. Da derecho a editarla aunque no
   /// se tengan permisos de coordinación (ver `PoliticaTareas`). Vacío en
@@ -104,7 +127,8 @@ class TareaMantenimiento {
         'titulo': titulo,
         'descripcion': descripcion,
         'responsable': responsable,
-        'responsable_uid': responsableUid,
+        'responsable_uid': uidsResponsables.firstOrNull ?? responsableUid,
+        'responsables_uids': jsonEncode(uidsResponsables),
         'creado_por_uid': creadoPorUid,
         'prioridad': prioridad,
         'estado': estado,
@@ -128,6 +152,7 @@ class TareaMantenimiento {
         descripcion: (mapa['descripcion'] as String?) ?? '',
         responsable: (mapa['responsable'] as String?) ?? '',
         responsableUid: (mapa['responsable_uid'] as String?) ?? '',
+        responsablesUids: decodificarUidsResponsables(mapa['responsables_uids']),
         creadoPorUid: (mapa['creado_por_uid'] as String?) ?? '',
         prioridad: (mapa['prioridad'] as String?) ?? prioridadTareaPorDefecto,
         estado: (mapa['estado'] as String?) ?? estadoTareaPorDefecto,
@@ -143,6 +168,7 @@ class TareaMantenimiento {
 
   TareaMantenimiento copiarCon({
     int? id,
+    String? uid,
     int? fincaId,
     int? puntoId,
     int? zonaId,
@@ -150,6 +176,7 @@ class TareaMantenimiento {
     String? descripcion,
     String? responsable,
     String? responsableUid,
+    List<String>? responsablesUids,
     String? creadoPorUid,
     String? prioridad,
     String? estado,
@@ -164,7 +191,7 @@ class TareaMantenimiento {
   }) =>
       TareaMantenimiento(
         id: id ?? this.id,
-        uid: uid,
+        uid: uid ?? this.uid,
         fincaId: fincaId ?? this.fincaId,
         puntoId: puntoId ?? this.puntoId,
         zonaId: zonaId ?? this.zonaId,
@@ -172,6 +199,7 @@ class TareaMantenimiento {
         descripcion: descripcion ?? this.descripcion,
         responsable: responsable ?? this.responsable,
         responsableUid: responsableUid ?? this.responsableUid,
+        responsablesUids: responsablesUids ?? this.responsablesUids,
         creadoPorUid: creadoPorUid ?? this.creadoPorUid,
         prioridad: prioridad ?? this.prioridad,
         estado: estado ?? this.estado,
@@ -187,3 +215,34 @@ class TareaMantenimiento {
         actualizadoMs: actualizadoMs ?? this.actualizadoMs,
       );
 }
+
+List<String> _sinRepetir(List<String> uids) {
+  final vistos = <String>{};
+  return List.unmodifiable(
+      uids.where((uid) => uid.isNotEmpty && vistos.add(uid)));
+}
+
+/// Lista de uids guardada como JSON (`responsables_uids`) o recibida como
+/// lista. Vacía si no viene o no se entiende: los datos anteriores a las
+/// responsables múltiples no la tienen.
+List<String> decodificarUidsResponsables(Object? valor) {
+  Object? lista = valor;
+  if (valor is String) {
+    if (valor.trim().isEmpty) return const [];
+    try {
+      lista = jsonDecode(valor);
+    } on FormatException {
+      return const [];
+    }
+  }
+  if (lista is! List) return const [];
+  return [
+    for (final uid in lista)
+      if (uid is String && uid.isNotEmpty) uid,
+  ];
+}
+
+/// Nombres de las responsables tal como van en `responsable` («Ane,
+/// Mikel»). El servidor une igual (`szs_unir_nombres_responsables`).
+String unirNombresResponsables(Iterable<String> nombres) =>
+    nombres.where((nombre) => nombre.isNotEmpty).join(', ');

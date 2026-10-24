@@ -59,6 +59,30 @@ afirmar( array( 'a' ), $uids( szs_filtrar_tareas_panel( $tareas, array( 'respons
 afirmar( true, szs_tarea_vencida( $tareas[0], $hoy_ms ), 'una tarea de ayer sin hacer está vencida' );
 afirmar( false, szs_tarea_vencida( $tareas[3], $hoy_ms ), 'sin fecha no vence' );
 
+// --- varias responsables ---
+$compartida = szs_normalizar_tarea( array( 'uid' => 'k', 'titulo' => 'Alimentar', 'estado' => 'pendiente', 'finca_nombre' => 'Zunbeltz', 'responsables_uids' => array( 'ane', 'mikel' ) ) );
+$con_compartida = array_merge( $tareas, array( $compartida ) );
+afirmar( array( 'a', 'k' ), $uids( szs_filtrar_tareas_panel( $con_compartida, array( 'responsable' => 'ane' ), $hoy_ms ) ), 'una compartida sale en el filtro de su primera responsable' );
+afirmar( array( 'k' ), $uids( szs_filtrar_tareas_panel( $con_compartida, array( 'responsable' => 'mikel' ), $hoy_ms ) ), '… y en el de las demás' );
+afirmar( false, in_array( 'k', $uids( szs_filtrar_tareas_panel( $con_compartida, array( 'responsable' => 'sin_asignar' ), $hoy_ms ) ), true ), 'una compartida no es general' );
+$repartidas = szs_tareas_para_cada_responsable(
+	array_merge( $compartida, array( 'responsables_uids' => array( 'ane', 'mikel', 'jon' ), 'responsable' => 'Ane, Mikel, Jon', 'punto_uid' => 'manga', 'recurrencia_dias' => 7 ) ),
+	static function (): string {
+		static $n = 0;
+		return 'nuevo-' . ( ++$n );
+	}
+);
+afirmar( array( 'k', 'nuevo-1', 'nuevo-2' ), $uids( $repartidas ), 'una para cada persona: la primera conserva el uid y las demás llevan uno nuevo' );
+afirmar( array( array( 'ane' ), array( 'mikel' ), array( 'jon' ) ), array_column( $repartidas, 'responsables_uids' ), '… con una responsable cada una' );
+afirmar( array( 'manga', 'manga', 'manga' ), array_column( $repartidas, 'punto_uid' ), '… en el mismo punto' );
+afirmar( array( 7, 7, 7 ), array_column( $repartidas, 'recurrencia_dias' ), '… y con la misma periodicidad' );
+afirmar( 1, count( szs_tareas_para_cada_responsable( $tareas[0], static fn(): string => 'x' ) ), 'con una sola responsable no se reparte' );
+afirmar( array( 'mikel', 'ane', 'jon' ), szs_ordenar_responsables_elegidas( array( 'mikel', 'ane' ), array( 'ane', 'jon', 'mikel' ) ), 'al editar se conserva el orden y las nuevas van detrás' );
+afirmar( array( 'jon' ), szs_ordenar_responsables_elegidas( array( 'mikel' ), array( 'jon' ) ), 'al editar se quitan las desmarcadas' );
+$siguiente = szs_siguiente_tarea_periodica( szs_normalizar_tarea( array( 'uid' => 'p2', 'recurrencia_dias' => 7, 'responsables_uids' => array( 'ane', 'mikel' ) ) ), $hoy_ms, 'sig' );
+afirmar( array( 'ane', 'mikel' ), $siguiente['responsables_uids'], 'la siguiente periódica hereda la lista' );
+afirmar( array( 'asignar', 'Mikel' ), szs_accion_tarea( $compartida, array_merge( $compartida, array( 'responsables_uids' => array( 'mikel' ), 'responsable_uid' => 'mikel', 'responsable' => 'Mikel' ) ) ), 'actividad: quitar a una de la lista es «asignar»' );
+
 // --- orden: vencidas primero, luego por fecha, sin fecha al final ---
 $ordenadas = szs_ordenar_tareas_panel( array( $tareas[3], $tareas[2], $tareas[0] ), $hoy_ms );
 afirmar( array( 'a', 'c', 'd' ), $uids( $ordenadas ), 'orden del panel' );

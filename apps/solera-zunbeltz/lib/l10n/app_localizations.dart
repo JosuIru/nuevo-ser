@@ -1871,7 +1871,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaTareasB.
   ///
   /// In es, this message translates to:
-  /// **'1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar.\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.'**
+  /// **'1. Abre la ficha de un punto o de una zona y pulsa «Nueva tarea».\n2. Escribe qué hay que hacer o pulsa «Elegir una tarea tipo»: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.\n3. Pulsa Guardar. Si has elegido a dos o más responsables, la app pregunta: «Una tarea compartida» (una sola; la ven todas en «Mis tareas» y, cuando una la marca hecha, queda hecha para todas) o «Una para cada persona» (una tarea igual para cada una, con su propio estado).\n» Si la tarea tiene coste, coordinación puede llevarlo a las cuentas de un proyecto desde la tarea: «Apuntar como gasto de un proyecto».\n» La tarea queda unida a ese punto o zona: la verás en su ficha y en el tablero de tareas.'**
   String get ayudaTareasB;
 
   /// No description provided for @ayudaTareasTesterT.
@@ -1919,7 +1919,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaTableroB.
   ///
   /// In es, this message translates to:
-  /// **'1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».'**
+  /// **'1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además «Cambiar responsables»: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».'**
   String get ayudaTableroB;
 
   /// No description provided for @ayudaTableroTesterT.
@@ -1931,7 +1931,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaTableroTesterB.
   ///
   /// In es, this message translates to:
-  /// **'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.'**
+  /// **'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.'**
   String get ayudaTableroTesterB;
 
   /// No description provided for @ayudaProyectosT.
@@ -2407,6 +2407,84 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Mis tareas'**
   String get tableroMisTareas;
+
+  /// No description provided for @tareaResponsables.
+  ///
+  /// In es, this message translates to:
+  /// **'Responsables'**
+  String get tareaResponsables;
+
+  /// No description provided for @tareaResponsablesAyudaGeneral.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin elegir a nadie, la tarea es general: la ven todas y cualquiera se la puede coger.'**
+  String get tareaResponsablesAyudaGeneral;
+
+  /// No description provided for @tareaResponsablesSoloTu.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu rol solo permite asignártela a ti o dejarla general.'**
+  String get tareaResponsablesSoloTu;
+
+  /// No description provided for @tareaRepartoTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Has elegido {n} personas'**
+  String tareaRepartoTitulo(int n);
+
+  /// No description provided for @tareaRepartoPregunta.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cómo creo la tarea?'**
+  String get tareaRepartoPregunta;
+
+  /// No description provided for @tareaRepartoCompartida.
+  ///
+  /// In es, this message translates to:
+  /// **'Una tarea compartida'**
+  String get tareaRepartoCompartida;
+
+  /// No description provided for @tareaRepartoCompartidaDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'Una sola tarea: la ven todas en «Mis tareas», cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.'**
+  String get tareaRepartoCompartidaDetalle;
+
+  /// No description provided for @tareaRepartoCadaPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Una para cada persona'**
+  String get tareaRepartoCadaPersona;
+
+  /// No description provided for @tareaRepartoCadaPersonaDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'Se crean {n} tareas iguales (mismo sitio, fecha, prioridad, periodicidad y fotos de antes), cada una con una responsable y su propio estado.'**
+  String tareaRepartoCadaPersonaDetalle(int n);
+
+  /// No description provided for @tareasCreadasUnaPorPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Creadas {n} tareas, una para cada persona'**
+  String tareasCreadasUnaPorPersona(int n);
+
+  /// No description provided for @tareaCambiarResponsables.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar responsables'**
+  String get tareaCambiarResponsables;
+
+  /// No description provided for @tareaCambiarResponsablesAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Con varias personas la tarea queda compartida: una sola, con un único estado para todas.'**
+  String get tareaCambiarResponsablesAyuda;
+
+  /// No description provided for @tareaResponsablesCambiadas.
+  ///
+  /// In es, this message translates to:
+  /// **'Responsables cambiadas'**
+  String get tareaResponsablesCambiadas;
 
   /// No description provided for @meteoAhora.
   ///

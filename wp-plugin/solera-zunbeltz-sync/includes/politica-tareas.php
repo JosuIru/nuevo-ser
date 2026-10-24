@@ -41,17 +41,22 @@ const SZS_CAMPOS_CONTENIDO = array(
 );
 
 /**
- * A quién está asignada. `responsable` (nombre) acompaña a
- * `responsable_uid` y lo rellena el servidor a partir de la persona.
+ * A quién está asignada. Una tarea puede tener varias responsables
+ * (`responsables_uids`, tarea compartida); `responsable_uid` es siempre la
+ * primera de la lista y `responsable` sus nombres unidos («Ane, Mikel»),
+ * que rellena el servidor a partir de las personas. Los dos campos de
+ * siempre se mantienen para las apps anteriores a la lista, que funcionan
+ * con la primera responsable.
  */
-const SZS_CAMPOS_ASIGNACION = array( 'responsable_uid', 'responsable' );
+const SZS_CAMPOS_ASIGNACION = array( 'responsables_uids', 'responsable_uid', 'responsable' );
 
 /**
  * Deja una tarea (fila de BD o JSON recibido) con los campos y tipos
  * canónicos, para poder comparar versiones campo a campo.
  */
 function szs_normalizar_tarea( array $tarea ): array {
-	return array(
+	$responsables = szs_lista_uids_o_null( $tarea['responsables_uids'] ?? null );
+	$normalizada  = array(
 		'uid'               => szs_recortar( $tarea['uid'] ?? '', 64 ),
 		'finca_nombre'      => szs_recortar( $tarea['finca_nombre'] ?? '', 255 ),
 		'finca_uid'         => szs_recortar( $tarea['finca_uid'] ?? '', 64 ),
@@ -61,6 +66,10 @@ function szs_normalizar_tarea( array $tarea ): array {
 		'descripcion'       => sanitize_textarea_field( (string) ( $tarea['descripcion'] ?? '' ) ),
 		'responsable'       => szs_recortar( $tarea['responsable'] ?? '', 255 ),
 		'responsable_uid'   => szs_recortar( $tarea['responsable_uid'] ?? '', 64 ),
+		// `null` = no viene (app o fila anteriores a las responsables
+		// múltiples): se deduce de `responsable_uid`, ver
+		// `szs_responsables_de_tarea`.
+		'responsables_uids' => $responsables,
 		'creado_por_uid'    => szs_recortar( $tarea['creado_por_uid'] ?? '', 64 ),
 		'prioridad'         => szs_recortar( $tarea['prioridad'] ?? 'media', 32 ),
 		'estado'            => szs_recortar( $tarea['estado'] ?? 'pendiente', 32 ),
@@ -72,6 +81,95 @@ function szs_normalizar_tarea( array $tarea ): array {
 		'fecha_creacion_ms' => (int) ( $tarea['fecha_creacion_ms'] ?? 0 ),
 		'actualizado_ms'    => (int) ( $tarea['actualizado_ms'] ?? 0 ),
 	);
+	if ( null !== $responsables ) {
+		// La primera de la lista manda sobre lo que diga `responsable_uid`.
+		$normalizada['responsable_uid'] = $responsables[0] ?? '';
+	}
+	return $normalizada;
+}
+
+/**
+ * Lista de uids de personas (array o JSON), sin vacíos ni repetidas y en
+ * su orden; `null` si no viene.
+ *
+ * @return string[]|null
+ */
+function szs_lista_uids_o_null( $valor ): ?array {
+	if ( is_string( $valor ) ) {
+		$valor = '' === trim( $valor ) ? null : json_decode( $valor, true );
+	}
+	if ( ! is_array( $valor ) ) {
+		return null;
+	}
+	$uids = array();
+	foreach ( $valor as $uid ) {
+		if ( ! is_string( $uid ) && ! is_int( $uid ) ) {
+			continue;
+		}
+		$uid = szs_recortar( $uid, 64 );
+		if ( '' !== $uid && ! in_array( $uid, $uids, true ) ) {
+			$uids[] = $uid;
+		}
+	}
+	return $uids;
+}
+
+/**
+ * Responsables de una tarea normalizada: su lista o, si no la tiene (datos
+ * anteriores a las responsables múltiples), la de `responsable_uid`.
+ *
+ * @return string[]
+ */
+function szs_responsables_de_tarea( array $tarea ): array {
+	if ( isset( $tarea['responsables_uids'] ) && is_array( $tarea['responsables_uids'] ) ) {
+		return $tarea['responsables_uids'];
+	}
+	$uid = (string) ( $tarea['responsable_uid'] ?? '' );
+	return '' === $uid ? array() : array( $uid );
+}
+
+/**
+ * Nombres de las responsables tal como se guardan en `responsable` (lo que
+ * enseñan las apps antiguas, el correo y el CSV). La app une igual
+ * (`unirNombresResponsables`).
+ *
+ * @param string[] $nombres
+ */
+function szs_unir_nombres_responsables( array $nombres ): string {
+	return szs_recortar( implode( ', ', $nombres ), 255 );
+}
+
+/** La tarea con su lista de responsables siempre presente. */
+function szs_completar_responsables( array $tarea ): array {
+	$tarea['responsables_uids'] = szs_responsables_de_tarea( $tarea );
+	$tarea['responsable_uid']   = $tarea['responsables_uids'][0] ?? '';
+	return $tarea;
+}
+
+/**
+ * Lista de responsables de una tarea que sube una app anterior a la lista
+ * (`responsables_uids` = null): solo conoce la primera responsable, así que
+ * lo que cambie en `responsable_uid` se aplica a la lista guardada sin
+ * perder a las demás. Cogerse una tarea general la añade; soltarla quita
+ * solo a la primera; cambiarla, la sustituye.
+ *
+ * @return string[]
+ */
+function szs_responsables_desde_app_antigua( ?array $existente, array $entrante ): array {
+	$nueva = $entrante['responsable_uid'];
+	if ( null === $existente ) {
+		return '' === $nueva ? array() : array( $nueva );
+	}
+	$lista   = szs_responsables_de_tarea( $existente );
+	$antigua = $existente['responsable_uid'];
+	if ( $nueva === $antigua ) {
+		return $lista;
+	}
+	$sin_antigua = array_values( array_filter( $lista, static fn( string $uid ): bool => $uid !== $antigua ) );
+	if ( '' === $nueva ) {
+		return $sin_antigua;
+	}
+	return array_values( array_unique( array_merge( array( $nueva ), $sin_antigua ) ) );
 }
 
 /**
@@ -103,6 +201,19 @@ function szs_resolver_tarea_entrante( ?array $existente, array $entrante, string
 		}
 	}
 
+	if ( null !== $existente ) {
+		$existente = szs_completar_responsables( $existente );
+	}
+	if ( null === $entrante['responsables_uids'] ) {
+		$entrante['responsables_uids'] = szs_responsables_desde_app_antigua( $existente, $entrante );
+	}
+	$entrante['responsable_uid'] = $entrante['responsables_uids'][0] ?? '';
+	if ( null !== $existente && $entrante['responsables_uids'] === $existente['responsables_uids'] ) {
+		// Los nombres los pone el servidor: con las mismas personas no son
+		// un cambio aunque el dispositivo los escriba de otra manera.
+		$entrante['responsable'] = $existente['responsable'];
+	}
+
 	if ( null === $existente ) {
 		if ( ! $puede( SZS_CAPACIDAD_CREAR_TAREAS ) ) {
 			return szs_resolucion( 'rechazar', array(), true, 'sin_permiso_crear' );
@@ -111,12 +222,13 @@ function szs_resolver_tarea_entrante( ?array $existente, array $entrante, string
 		$datos['creado_por_uid'] = $persona_uid;
 		$ajustada                = $entrante['creado_por_uid'] !== $persona_uid;
 		$motivo                  = '';
-		$responsable_valido      = in_array( $datos['responsable_uid'], array( '', $persona_uid ), true );
+		$responsable_valido      = array() === $datos['responsables_uids'] || array( $persona_uid ) === $datos['responsables_uids'];
 		if ( ! $puede( SZS_CAPACIDAD_ASIGNAR_TAREAS ) && ! $responsable_valido ) {
 			// Sin permiso para asignar a otras personas: la tarea entra sin
 			// asignar y la coordinación decide.
-			$datos['responsable_uid'] = '';
-			$datos['responsable']     = '';
+			$datos['responsables_uids'] = array();
+			$datos['responsable_uid']   = '';
+			$datos['responsable']       = '';
 			$ajustada                 = true;
 			$motivo                   = 'sin_permiso_asignar';
 		}
@@ -174,7 +286,8 @@ function szs_campos_editables( array $existente, array $entrante, string $person
 		return array_merge( SZS_CAMPOS_EJECUCION, SZS_CAMPOS_CONTENIDO, SZS_CAMPOS_ASIGNACION );
 	}
 
-	$es_responsable = '' !== $persona_uid && $existente['responsable_uid'] === $persona_uid;
+	$responsables   = szs_responsables_de_tarea( $existente );
+	$es_responsable = '' !== $persona_uid && in_array( $persona_uid, $responsables, true );
 	$es_creador     = '' !== $persona_uid && $existente['creado_por_uid'] === $persona_uid;
 
 	$campos = array();
@@ -186,8 +299,12 @@ function szs_campos_editables( array $existente, array $entrante, string $person
 	}
 
 	$puede_asignar = in_array( SZS_CAPACIDAD_ASIGNAR_TAREAS, $capacidades, true );
-	$se_la_coge    = '' === $existente['responsable_uid'] && $entrante['responsable_uid'] === $persona_uid;
-	$la_suelta     = $es_responsable && '' === $entrante['responsable_uid'];
+	$entrantes     = szs_responsables_de_tarea( $entrante );
+	// Cogerse una general: queda solo ella. Soltar: sale solo quien suelta
+	// y las demás responsables siguen.
+	$se_la_coge = array() === $responsables && array( $persona_uid ) === $entrantes;
+	$la_suelta  = $es_responsable
+		&& array_values( array_filter( $responsables, static fn( string $uid ): bool => $uid !== $persona_uid ) ) === $entrantes;
 	if ( $puede_asignar || $se_la_coge || $la_suelta ) {
 		$campos = array_merge( $campos, SZS_CAMPOS_ASIGNACION );
 	}
@@ -205,15 +322,16 @@ function szs_resolucion( string $accion, array $datos, bool $ajustada, string $m
 
 /**
  * ¿Puede esta persona ver esta tarea? Sin `ver_todas_tareas`: las que
- * tiene asignadas, las que creó y las generales (sin responsable). Es la
- * misma regla que aplica en SQL `szs_listar_tareas_visibles`.
+ * tiene asignadas (sola o con otras), las que creó y las generales (sin
+ * responsable). La aplica `szs_listar_tareas_visibles`.
  */
 function szs_tarea_visible( array $tarea, string $persona_uid, array $capacidades ): bool {
 	if ( in_array( SZS_CAPACIDAD_VER_TODAS_TAREAS, $capacidades, true ) ) {
 		return true;
 	}
-	return '' === $tarea['responsable_uid']
-		|| $tarea['responsable_uid'] === $persona_uid
+	$responsables = szs_responsables_de_tarea( $tarea );
+	return array() === $responsables
+		|| in_array( $persona_uid, $responsables, true )
 		|| $tarea['creado_por_uid'] === $persona_uid;
 }
 

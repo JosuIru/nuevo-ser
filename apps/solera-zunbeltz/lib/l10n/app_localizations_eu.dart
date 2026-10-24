@@ -957,7 +957,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaTareasB =>
-      '1. Ireki puntu edo eremu baten fitxa eta sakatu «Zeregin berria».\n2. Idatzi zer egin behar den edo sakatu «Ohiko zeregin bat aukeratu»: Zunbeltzeko ohikoak agertzen dira (elikadura, hesiaren berrikuspena, erosketak…) iradokitako maiztasunarekin, eta goian puntu horri dagozkionak. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.\n3. Sakatu Gorde.\n» Zereginak kostua badu, koordinazioak proiektu baten kontuetara eraman dezake zereginetik bertatik: «Proiektu baten gastu gisa apuntatu».\n» Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.';
+      '1. Ireki puntu edo eremu baten fitxa eta sakatu «Zeregin berria».\n2. Idatzi zer egin behar den edo sakatu «Ohiko zeregin bat aukeratu»: Zunbeltzeko ohikoak agertzen dira (elikadura, hesiaren berrikuspena, erosketak…) iradokitako maiztasunarekin, eta goian puntu horri dagozkionak. Nahi baduzu, gehitu arduraduna, lehentasuna, helburu-data, aurreko eta ondorengo argazkiak eta kostua.\n3. Sakatu Gorde. Bi arduradun edo gehiago aukeratu badituzu, app-ak galdetzen du: «Zeregin partekatu bat» (bakarra; denek ikusten dute «Nire zereginak» atalean eta, batek eginda markatzen duenean, denentzat geratzen da eginda) edo «Pertsona bakoitzeko bat» (zeregin berdin bat bakoitzarentzat, bere egoerarekin).\n» Zereginak kostua badu, koordinazioak proiektu baten kontuetara eraman dezake zereginetik bertatik: «Proiektu baten gastu gisa apuntatu».\n» Zeregina puntu edo eremu horri lotuta geratzen da: haren fitxan eta zereginen taulan ikusiko duzu.';
 
   @override
   String get ayudaTareasTesterT => 'Mantentze-zeregin bat eskatu';
@@ -985,14 +985,14 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaTableroB =>
-      '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.';
+      '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko. Koordinazioak, gainera, «Arduradunak aldatu» dezake: hainbatekin, zeregina partekatua geratzen da. Partekatu bat askatzen baduzu, zu ateratzen zara eta besteek jarraitzen dute.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.';
 
   @override
   String get ayudaTableroTesterT => 'Zereginak kontsultatu eta egunean eraman';
 
   @override
   String get ayudaTableroTesterB =>
-      'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.';
+      'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu, baita beste pertsona batzuekin partekatzen dituzunak ere: horietan, edozeinek alda dezake egoera eta, batek eginda markatzen duenean, denentzat geratzen da eginda.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.';
 
   @override
   String get ayudaProyectosT => 'Zure proiektua sortu';
@@ -1277,6 +1277,55 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get tableroMisTareas => 'Nire zereginak';
+
+  @override
+  String get tareaResponsables => 'Arduradunak';
+
+  @override
+  String get tareaResponsablesAyudaGeneral =>
+      'Inor aukeratu gabe, zeregina orokorra da: denek ikusten dute eta edonork har dezake.';
+
+  @override
+  String get tareaResponsablesSoloTu =>
+      'Zure rolak zuri esleitzea edo orokor uztea baino ez du uzten.';
+
+  @override
+  String tareaRepartoTitulo(int n) {
+    return '$n pertsona aukeratu dituzu';
+  }
+
+  @override
+  String get tareaRepartoPregunta => 'Nola sortu zeregina?';
+
+  @override
+  String get tareaRepartoCompartida => 'Zeregin partekatu bat';
+
+  @override
+  String get tareaRepartoCompartidaDetalle =>
+      'Zeregin bakarra: denek ikusten dute «Nire zereginak» atalean, edozeinek alda dezake egoera eta, batek eginda markatzen duenean, denentzat geratzen da eginda.';
+
+  @override
+  String get tareaRepartoCadaPersona => 'Pertsona bakoitzeko bat';
+
+  @override
+  String tareaRepartoCadaPersonaDetalle(int n) {
+    return '$n zeregin berdin sortzen dira (leku, data, lehentasun, maiztasun eta aurreko argazki berberekin), bakoitza arduradun batekin eta bere egoerarekin.';
+  }
+
+  @override
+  String tareasCreadasUnaPorPersona(int n) {
+    return '$n zeregin sortuta, pertsona bakoitzeko bat';
+  }
+
+  @override
+  String get tareaCambiarResponsables => 'Arduradunak aldatu';
+
+  @override
+  String get tareaCambiarResponsablesAyuda =>
+      'Hainbat pertsonarekin zeregina partekatua geratzen da: bakarra, egoera bakarrarekin denentzat.';
+
+  @override
+  String get tareaResponsablesCambiadas => 'Arduradunak aldatuta';
 
   @override
   String get meteoAhora => 'Orain';

@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /** Grupo → claves de sus apartados (cada uno con T título y B cuerpo). */
 const SZS_AYUDA_INDICE = array(
 	'ayudaGrupoEmpezar' => array( 'ayudaQueEs', 'ayudaPestanas', 'ayudaIdiomaDatos', 'ayudaHoyAvisos', 'ayudaWidget', 'ayudaActualizaciones' ),
-	'ayudaGrupoFincas' => array( 'ayudaFincas', 'ayudaZonas', 'ayudaEditarMapa', 'ayudaImportar', 'ayudaCierres', 'ayudaTareas', 'ayudaRecurrentes', 'ayudaTablero' ),
+	'ayudaGrupoFincas' => array( 'ayudaFincas', 'ayudaMapaSinCobertura', 'ayudaZonas', 'ayudaEditarMapa', 'ayudaImportar', 'ayudaCierres', 'ayudaTareas', 'ayudaRecurrentes', 'ayudaTablero' ),
 	'ayudaGrupoGanado' => array( 'ayudaGanadoLotes', 'ayudaGanadoMover', 'ayudaGanadoManejo' ),
 	'ayudaGrupoProyectos' => array( 'ayudaProyectos', 'ayudaApuntar', 'ayudaNumeros', 'ayudaConvenio', 'ayudaCalculadora', 'ayudaInformes' ),
 	'ayudaGrupoEquipo' => array( 'ayudaSync', 'ayudaWeb', 'ayudaRoles', 'ayudaPeticiones', 'ayudaContactos', 'ayudaNotificaciones' ),
@@ -88,6 +88,13 @@ Para volver atrás, usa la flecha de arriba a la izquierda.',
 3. Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.
 4. Pulsa Guardar.
 » El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón «GPS» centra el mapa en ti y «Capas» cambia entre mapa y satélite.',
+		'ayudaMapaSinCoberturaT' => 'El mapa sin cobertura',
+		'ayudaMapaSinCoberturaB' => 'En el monte muchas veces no hay cobertura. Los datos (puntos, zonas, tareas) están siempre en el móvil; la foto aérea, solo si se ha guardado antes.
+1. Lo que miras en el mapa se guarda solo (hasta unos 200 MB; lo más antiguo se borra).
+2. Para llevar las fincas enteras, con wifi: Fincas → icono de la nube con flecha (abajo, junto a «GPS») → «Descargar el mapa de las fincas». Te dice cuánto ocupa antes de empezar.
+3. Mientras baja puedes usar la app; si la cancelas o se va la wifi, al volver a descargar sigue por donde iba.
+4. En Ajustes → «Mapa sin cobertura» ves cuánto ocupa y puedes borrarlo.
+» Solo se descarga la ortofoto del IGN. El callejero solo se guarda según lo vas viendo.',
 		'ayudaZonasT' => 'Dibujar una zona (parcela, cercado…)',
 		'ayudaZonasB' => '1. En Fincas, pulsa «Dibujar zona».
 2. Toca en el mapa las esquinas de la zona, una detrás de otra. Si te equivocas, pulsa «Deshacer».
@@ -335,6 +342,13 @@ Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 3. Aukeratu mota eta egoera, jarri izena eta, nahi baduzu, gehitu argazkiak.
 4. Sakatu Gorde.
 » Puntuaren koloreak egoera adierazten du: berdea, operatiboa; okrea, berrikusteke; gorrixka, matxuratuta. «GPS» botoiak mapa zugan zentratzen du, eta «Geruzak» botoiak mapa eta satelitea txandakatzen ditu.',
+		'ayudaMapaSinCoberturaT' => 'Mapa estaldurarik gabe',
+		'ayudaMapaSinCoberturaB' => 'Mendian askotan ez dago estaldurarik. Datuak (puntuak, eremuak, zereginak) beti daude mugikorrean; aireko argazkia, aurretik gorde bada bakarrik.
+1. Mapan begiratzen duzuna berez gordetzen da (200 MB inguru arte; zaharrena ezabatzen da).
+2. Finka osoak eramateko, wifiarekin: Finkak → gezidun hodeiaren ikonoa (behean, «GPS»aren ondoan) → «Finketako mapa deskargatu». Hasi aurretik zenbat hartzen duen esaten dizu.
+3. Jaisten ari den bitartean aplikazioa erabil dezakezu; bertan behera uzten baduzu edo wifia joaten bada, berriz deskargatzean utzitako lekutik jarraituko du.
+4. Ezarpenak → «Mapa estaldurarik gabe» atalean zenbat hartzen duen ikusi eta ezaba dezakezu.
+» IGNren ortoargazkia bakarrik deskargatzen da. Kale-mapa ikusi ahala bakarrik gordetzen da.',
 		'ayudaZonasT' => 'Eremu bat marraztu (saila, hesitua…)',
 		'ayudaZonasB' => '1. Finketan, sakatu «Eremua marraztu».
 2. Ukitu mapan eremuaren izkinak, bata bestearen atzetik. Oker bazabiltza, sakatu «Desegin».

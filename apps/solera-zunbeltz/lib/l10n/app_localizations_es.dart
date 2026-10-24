@@ -3385,4 +3385,111 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get proyectoActividadEjemplo =>
       'p. ej. ovino de leche, vacuno de carne, huerta';
+
+  @override
+  String get mapaSinCobertura => 'Mapa sin cobertura';
+
+  @override
+  String get mapaDescargarFincas => 'Descargar el mapa de las fincas';
+
+  @override
+  String get mapaSinCoberturaExplicacion =>
+      'Lo que ves en el mapa se guarda en el móvil y se vuelve a ver sin cobertura. Para llevar la foto aérea de las fincas entera, con todo el detalle, descárgala con wifi antes de subir.';
+
+  @override
+  String get mapaCallejeroSoloVisto =>
+      'El callejero solo se guarda según lo vas viendo.';
+
+  @override
+  String get mapaDescargaConfirmarTitulo => '¿Descargar el mapa?';
+
+  @override
+  String mapaDescargaConfirmar(
+      String fincas, int zoomMinimo, int zoomMaximo, int teselas, int megas) {
+    return 'Se bajará la ortofoto del PNOA (IGN) de $fincas, del zoom $zoomMinimo al $zoomMaximo: $teselas teselas, unos $megas MB. Solo con wifi o cable. Puedes seguir usando la app mientras tanto.';
+  }
+
+  @override
+  String mapaDescargaYaBajadas(int teselas) {
+    return 'Otras $teselas ya estaban descargadas.';
+  }
+
+  @override
+  String get mapaDescargaBoton => 'Descargar';
+
+  @override
+  String get mapaDescargaNadaQueBajar =>
+      'El mapa de las fincas ya está descargado.';
+
+  @override
+  String get mapaDescargaSinFincas =>
+      'No hay ninguna finca con ubicación para descargar.';
+
+  @override
+  String mapaDescargaSinWifi(int megas) {
+    return 'Para descargar el mapa (unos $megas MB) conéctate a una wifi o a un cable.';
+  }
+
+  @override
+  String mapaDescargando(int hechas, int total) {
+    return 'Descargando el mapa: $hechas de $total';
+  }
+
+  @override
+  String get mapaDescargaCompletada => 'Mapa de las fincas descargado.';
+
+  @override
+  String mapaDescargaConFallos(int fallidas) {
+    return 'Mapa descargado, pero $fallidas teselas no se pudieron bajar. Vuelve a descargar para reintentarlo.';
+  }
+
+  @override
+  String get mapaDescargaCancelada =>
+      'Descarga cancelada. Lo bajado se queda: al volver a descargar se sigue por donde iba.';
+
+  @override
+  String get mapaDescargaParadaSinWifi =>
+      'Descarga parada: ya no hay wifi. Al volver a descargar se sigue por donde iba.';
+
+  @override
+  String get mapaDescargaParadaFallos =>
+      'Descarga parada: el servidor del IGN no responde. Prueba más tarde; se seguirá por donde iba.';
+
+  @override
+  String mapaDescargado(int teselas, String tamano) {
+    return 'Descargado: $teselas teselas · $tamano';
+  }
+
+  @override
+  String get mapaDescargadoNada => 'Aún no hay mapa descargado.';
+
+  @override
+  String get mapaBorrarDescargado => 'Borrar el mapa descargado';
+
+  @override
+  String get mapaBorrarDescargadoConfirmar =>
+      'Se borra la ortofoto descargada. Sin cobertura solo se verá lo que hayas mirado últimamente. Se puede volver a descargar.';
+
+  @override
+  String mapaCacheVista(String tamano, String tope) {
+    return 'Guardado según se ve: $tamano (como mucho $tope; lo más antiguo se borra solo)';
+  }
+
+  @override
+  String get mapaVaciarCacheVista => 'Vaciar lo guardado según se ve';
+
+  @override
+  String get mapaAtribucionPnoa =>
+      'Ortofoto: PNOA © Instituto Geográfico Nacional (IGN). Respaldo: Esri World Imagery. Callejero: © OpenStreetMap.';
+
+  @override
+  String get mapaSinCoberturaNoWeb =>
+      'En el navegador el mapa usa la caché del propio navegador: la descarga es solo para la app del móvil.';
+
+  @override
+  String get ayudaMapaSinCoberturaT => 'El mapa sin cobertura';
+
+  @override
+  String get ayudaMapaSinCoberturaB =>
+      'En el monte muchas veces no hay cobertura. Los datos (puntos, zonas, tareas) están siempre en el móvil; la foto aérea, solo si se ha guardado antes.\n1. Lo que miras en el mapa se guarda solo (hasta unos 200 MB; lo más antiguo se borra).\n2. Para llevar las fincas enteras, con wifi: Fincas → icono de la nube con flecha (abajo, junto a «GPS») → «Descargar el mapa de las fincas». Te dice cuánto ocupa antes de empezar.\n3. Mientras baja puedes usar la app; si la cancelas o se va la wifi, al volver a descargar sigue por donde iba.\n4. En Ajustes → «Mapa sin cobertura» ves cuánto ocupa y puedes borrarlo.\n» Solo se descarga la ortofoto del IGN. El callejero solo se guarda según lo vas viendo.';
 }

@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
@@ -18,6 +18,7 @@ import '../l10n/app_localizations.dart';
 import '../utiles/traductor_actualizaciones.dart';
 import 'pantalla_acerca_espacio_test.dart';
 import 'pantalla_entidades.dart';
+import 'pantalla_mapa_sin_cobertura.dart';
 import 'pantalla_ayuda.dart';
 import '../utiles/texto_error_sync.dart';
 import '../servicios/servicio_logos_entidades.dart';
@@ -28,7 +29,7 @@ import 'widgets/liberar_al_cerrar.dart';
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
 /// falla si no coinciden.
-const String versionAppZunbeltz = '0.7.5';
+const String versionAppZunbeltz = '0.7.6';
 
 /// Pestaña "Ajustes": idioma y acerca de.
 class PantallaAjustes extends StatefulWidget {
@@ -346,6 +347,15 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.ios_share),
             onTap: _exportarEspacio,
           ),
+          if (!kIsWeb)
+            ListTile(
+              leading: const Icon(Icons.cloud_download_outlined),
+              title: Text(textos.mapaSinCobertura),
+              subtitle: Text(textos.mapaCallejeroSoloVisto),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => const PantallaMapaSinCobertura())),
+            ),
           const Divider(),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),

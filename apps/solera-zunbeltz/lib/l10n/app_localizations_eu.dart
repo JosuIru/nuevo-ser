@@ -3388,4 +3388,111 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get proyectoActividadEjemplo =>
       'adib. esne-ardiak, haragitarako behiak, baratzea';
+
+  @override
+  String get mapaSinCobertura => 'Mapa estaldurarik gabe';
+
+  @override
+  String get mapaDescargarFincas => 'Finketako mapa deskargatu';
+
+  @override
+  String get mapaSinCoberturaExplicacion =>
+      'Mapan ikusten duzuna mugikorrean gordetzen da, eta estaldurarik gabe ere berriz ikusten da. Finketako aireko argazki osoa xehetasun guztiekin eramateko, deskargatu wifiarekin igo aurretik.';
+
+  @override
+  String get mapaCallejeroSoloVisto =>
+      'Kale-mapa ikusi ahala bakarrik gordetzen da.';
+
+  @override
+  String get mapaDescargaConfirmarTitulo => 'Mapa deskargatu?';
+
+  @override
+  String mapaDescargaConfirmar(
+      String fincas, int zoomMinimo, int zoomMaximo, int teselas, int megas) {
+    return 'PNOAren (IGN) ortoargazkia jaitsiko da ($fincas), $zoomMinimo. zoometik $zoomMaximo.era: $teselas lauza, $megas MB inguru. Wifiarekin edo kablearekin bakarrik. Bitartean aplikazioa erabiltzen jarrai dezakezu.';
+  }
+
+  @override
+  String mapaDescargaYaBajadas(int teselas) {
+    return 'Beste $teselas lehendik deskargatuta zeuden.';
+  }
+
+  @override
+  String get mapaDescargaBoton => 'Deskargatu';
+
+  @override
+  String get mapaDescargaNadaQueBajar =>
+      'Finketako mapa deskargatuta dago jada.';
+
+  @override
+  String get mapaDescargaSinFincas =>
+      'Ez dago deskargatzeko kokapena duen finkarik.';
+
+  @override
+  String mapaDescargaSinWifi(int megas) {
+    return 'Mapa deskargatzeko ($megas MB inguru) konektatu wifi batera edo kable batera.';
+  }
+
+  @override
+  String mapaDescargando(int hechas, int total) {
+    return 'Mapa deskargatzen: $hechas / $total';
+  }
+
+  @override
+  String get mapaDescargaCompletada => 'Finketako mapa deskargatuta.';
+
+  @override
+  String mapaDescargaConFallos(int fallidas) {
+    return 'Mapa deskargatuta, baina $fallidas lauza ezin izan dira jaitsi. Deskargatu berriz saiatzeko.';
+  }
+
+  @override
+  String get mapaDescargaCancelada =>
+      'Deskarga bertan behera utzita. Jaitsitakoa gordeta geratzen da: berriz deskargatzean utzitako lekutik jarraituko du.';
+
+  @override
+  String get mapaDescargaParadaSinWifi =>
+      'Deskarga geldituta: ez dago wifirik. Berriz deskargatzean utzitako lekutik jarraituko du.';
+
+  @override
+  String get mapaDescargaParadaFallos =>
+      'Deskarga geldituta: IGNren zerbitzariak ez du erantzuten. Saiatu geroago; utzitako lekutik jarraituko du.';
+
+  @override
+  String mapaDescargado(int teselas, String tamano) {
+    return 'Deskargatuta: $teselas lauza · $tamano';
+  }
+
+  @override
+  String get mapaDescargadoNada => 'Oraindik ez dago maparik deskargatuta.';
+
+  @override
+  String get mapaBorrarDescargado => 'Deskargatutako mapa ezabatu';
+
+  @override
+  String get mapaBorrarDescargadoConfirmar =>
+      'Deskargatutako ortoargazkia ezabatzen da. Estaldurarik gabe azkenaldian begiratutakoa bakarrik ikusiko da. Berriz deskarga daiteke.';
+
+  @override
+  String mapaCacheVista(String tamano, String tope) {
+    return 'Ikusi ahala gordeta: $tamano (gehienez $tope; zaharrena berez ezabatzen da)';
+  }
+
+  @override
+  String get mapaVaciarCacheVista => 'Ikusi ahala gordetakoa hustu';
+
+  @override
+  String get mapaAtribucionPnoa =>
+      'Ortoargazkia: PNOA © Instituto Geográfico Nacional (IGN). Ordezkoa: Esri World Imagery. Kale-mapa: © OpenStreetMap.';
+
+  @override
+  String get mapaSinCoberturaNoWeb =>
+      'Nabigatzailean mapak nabigatzailearen beraren cachea erabiltzen du: deskarga mugikorreko aplikaziorako bakarrik da.';
+
+  @override
+  String get ayudaMapaSinCoberturaT => 'Mapa estaldurarik gabe';
+
+  @override
+  String get ayudaMapaSinCoberturaB =>
+      'Mendian askotan ez dago estaldurarik. Datuak (puntuak, eremuak, zereginak) beti daude mugikorrean; aireko argazkia, aurretik gorde bada bakarrik.\n1. Mapan begiratzen duzuna berez gordetzen da (200 MB inguru arte; zaharrena ezabatzen da).\n2. Finka osoak eramateko, wifiarekin: Finkak → gezidun hodeiaren ikonoa (behean, «GPS»aren ondoan) → «Finketako mapa deskargatu». Hasi aurretik zenbat hartzen duen esaten dizu.\n3. Jaisten ari den bitartean aplikazioa erabil dezakezu; bertan behera uzten baduzu edo wifia joaten bada, berriz deskargatzean utzitako lekutik jarraituko du.\n4. Ezarpenak → «Mapa estaldurarik gabe» atalean zenbat hartzen duen ikusi eta ezaba dezakezu.\n» IGNren ortoargazkia bakarrik deskargatzen da. Kale-mapa ikusi ahala bakarrik gordetzen da.';
 }

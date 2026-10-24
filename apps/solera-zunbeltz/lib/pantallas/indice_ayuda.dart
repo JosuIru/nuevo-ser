@@ -19,6 +19,7 @@ const Map<String, List<String>> indiceAyuda = {
   ],
   'ayudaGrupoFincas': [
     'ayudaFincas',
+    'ayudaMapaSinCobertura',
     'ayudaZonas',
     'ayudaEditarMapa',
     'ayudaImportar',

@@ -79,7 +79,7 @@ section ul li::marker{color:var(--pasto)}
 <main class="hoja">
   <header class="cab">
     <h1>Manual de uso</h1>
-    <p class="sub">Larrea Zunbeltz · versión 0.7.4</p>
+    <p class="sub">Larrea Zunbeltz · versión 0.7.5</p>
   </header>
   <div class="cuerpo">
     <p class="intro">Una guía paso a paso para usar la app.</p>
@@ -96,37 +96,38 @@ section ul li::marker{color:var(--pasto)}
 </ol></li>
 <li><span class="grupo-indice">Fincas y tareas</span><ol>
 <li><a href="#a7">Marcar un punto en el mapa</a></li>
-<li><a href="#a8">Dibujar una zona (parcela, cercado…)</a></li>
-<li><a href="#a9">Mover o borrar un punto o una zona</a></li>
-<li><a href="#a10">Zonas desde el catastro o desde un fichero</a></li>
-<li><a href="#a11">Un abrevadero o un cierre nuevo</a></li>
-<li><a href="#a12">Apuntar una tarea de mantenimiento</a></li>
-<li><a href="#a13">Tareas que se repiten</a></li>
-<li><a href="#a14">Llevar las tareas al día</a></li>
+<li><a href="#a8">El mapa sin cobertura</a></li>
+<li><a href="#a9">Dibujar una zona (parcela, cercado…)</a></li>
+<li><a href="#a10">Mover o borrar un punto o una zona</a></li>
+<li><a href="#a11">Zonas desde el catastro o desde un fichero</a></li>
+<li><a href="#a12">Un abrevadero o un cierre nuevo</a></li>
+<li><a href="#a13">Apuntar una tarea de mantenimiento</a></li>
+<li><a href="#a14">Tareas que se repiten</a></li>
+<li><a href="#a15">Llevar las tareas al día</a></li>
 </ol></li>
 <li><span class="grupo-indice">Ganado y movimientos</span><ol>
-<li><a href="#a15">Rebaños y animales</a></li>
-<li><a href="#a16">Mover el ganado de pieza</a></li>
-<li><a href="#a17">Curas, tratamientos, pesajes y partos</a></li>
+<li><a href="#a16">Rebaños y animales</a></li>
+<li><a href="#a17">Mover el ganado de pieza</a></li>
+<li><a href="#a18">Curas, tratamientos, pesajes y partos</a></li>
 </ol></li>
 <li><span class="grupo-indice">Tu proyecto de test</span><ol>
-<li><a href="#a18">Crear tu proyecto</a></li>
-<li><a href="#a19">Apuntar tu día a día</a></li>
-<li><a href="#a20">Entender tus números</a></li>
-<li><a href="#a21">El convenio: cuentas, fianza y acompañamiento</a></li>
-<li><a href="#a22">Calculadora de transformación y Excel de alimentación</a></li>
-<li><a href="#a23">Sacar informes y enviarlos</a></li>
+<li><a href="#a19">Crear tu proyecto</a></li>
+<li><a href="#a20">Apuntar tu día a día</a></li>
+<li><a href="#a21">Entender tus números</a></li>
+<li><a href="#a22">El convenio: cuentas, fianza y acompañamiento</a></li>
+<li><a href="#a23">Calculadora de transformación y Excel de alimentación</a></li>
+<li><a href="#a24">Sacar informes y enviarlos</a></li>
 </ol></li>
 <li><span class="grupo-indice">Trabajar en equipo</span><ol>
-<li><a href="#a24">Compartir el espacio con el equipo</a></li>
-<li><a href="#a25">Usar la app en el ordenador</a></li>
-<li><a href="#a26">Quién puede hacer qué</a></li>
-<li><a href="#a27">Pedir una tarea</a></li>
-<li><a href="#a28">Contactos del espacio</a></li>
-<li><a href="#a29">Notificaciones</a></li>
+<li><a href="#a25">Compartir el espacio con el equipo</a></li>
+<li><a href="#a26">Usar la app en el ordenador</a></li>
+<li><a href="#a27">Quién puede hacer qué</a></li>
+<li><a href="#a28">Pedir una tarea</a></li>
+<li><a href="#a29">Contactos del espacio</a></li>
+<li><a href="#a30">Notificaciones</a></li>
 </ol></li>
 <li><span class="grupo-indice">Si algo falla</span><ol>
-<li><a href="#a30">Problemas frecuentes</a></li>
+<li><a href="#a31">Problemas frecuentes</a></li>
 </ol></li>
       </ol>
     </nav>
@@ -205,7 +206,18 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón <span class="ui">GPS</span> centra el mapa en ti y <span class="ui">Capas</span> cambia entre mapa y satélite.</p>
 </section>
 <section id="a8">
-<h3><span class="n">8</span>Dibujar una zona (parcela, cercado…)</h3>
+<h3><span class="n">8</span>El mapa sin cobertura</h3>
+<p>En el monte muchas veces no hay cobertura. Los datos (puntos, zonas, tareas) están siempre en el móvil; la foto aérea, solo si se ha guardado antes.</p>
+<ol class="pasos">
+<li>Lo que miras en el mapa se guarda solo (hasta unos 200 MB; lo más antiguo se borra).</li>
+<li>Para llevar las fincas enteras, con wifi: Fincas → icono de la nube con flecha (abajo, junto a <span class="ui">GPS</span>) → <span class="ui">Descargar el mapa de las fincas</span>. Te dice cuánto ocupa antes de empezar.</li>
+<li>Mientras baja puedes usar la app; si la cancelas o se va la wifi, al volver a descargar sigue por donde iba.</li>
+<li>En Ajustes → <span class="ui">Mapa sin cobertura</span> ves cuánto ocupa y puedes borrarlo.</li>
+</ol>
+<p class="nota"><b>Bueno saber.</b> Solo se descarga la ortofoto del IGN. El callejero solo se guarda según lo vas viendo.</p>
+</section>
+<section id="a9">
+<h3><span class="n">9</span>Dibujar una zona (parcela, cercado…)</h3>
 <ol class="pasos">
 <li>En Fincas, pulsa <span class="ui">Dibujar zona</span>.</li>
 <li>Toca en el mapa las esquinas de la zona, una detrás de otra. Si te equivocas, pulsa <span class="ui">Deshacer</span>.</li>
@@ -222,8 +234,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Bueno saber.</b> Las personas tester pueden consultar las zonas, pero no dibujar nuevas ni modificar sus límites. Esos cambios los hace coordinación.</p>
 </section>
-<section id="a9">
-<h3><span class="n">9</span>Mover o borrar un punto o una zona</h3>
+<section id="a10">
+<h3><span class="n">10</span>Mover o borrar un punto o una zona</h3>
 <ol class="pasos">
 <li>Toca el punto o la zona en el mapa para abrir su ficha.</li>
 <li>Para mover un punto: pulsa <span class="ui">Recolocar en el mapa</span> (arriba) y toca el sitio nuevo.</li>
@@ -240,8 +252,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> Los puntos móviles (un corral, un bidón) sí los puedes añadir y mover tú: pulsa <span class="ui">Recolocar en el mapa</span> en su ficha.</p>
 <p class="nota"><b>Bueno saber.</b> No necesitas modificar el mapa. Coordinación actualiza los puntos, las zonas y sus datos con la información que recibe.</p>
 </section>
-<section id="a10">
-<h3><span class="n">10</span>Zonas desde el catastro o desde un fichero</h3>
+<section id="a11">
+<h3><span class="n">11</span>Zonas desde el catastro o desde un fichero</h3>
 <p>No hace falta dibujar a mano una parcela que ya está medida.</p>
 <ol class="pasos">
 <li>En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.</li>
@@ -257,8 +269,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.</p>
 <p class="nota"><b>Bueno saber.</b> La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.</p>
 </section>
-<section id="a11">
-<h3><span class="n">11</span>Un abrevadero o un cierre nuevo</h3>
+<section id="a12">
+<h3><span class="n">12</span>Un abrevadero o un cierre nuevo</h3>
 <p>Un abrevadero, un bebedero o una manga son un punto: se marcan como en <span class="ui">Marcar un punto en el mapa</span>, con su tipo.</p>
 <p>Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de una de estas dos maneras:</p>
 <ol class="pasos">
@@ -268,8 +280,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> Las tareas del cierre se anclan a ese punto o a esa zona.</p>
 <p class="nota"><b>Bueno saber.</b> Si necesitáis ver el trazado del cierre en el mapa, decídnoslo: sería una función nueva.</p>
 </section>
-<section id="a12">
-<h3><span class="n">12</span>Apuntar una tarea de mantenimiento</h3>
+<section id="a13">
+<h3><span class="n">13</span>Apuntar una tarea de mantenimiento</h3>
 <ol class="pasos">
 <li>Abre la ficha de un punto o de una zona y pulsa <span class="ui">Nueva tarea</span>.</li>
 <li>Escribe qué hay que hacer o pulsa <span class="ui">Elegir una tarea tipo</span>: salen las habituales de Zunbeltz (alimentación, revisión del vallado, compras…) con su periodicidad sugerida, y arriba las que encajan con ese punto. Si quieres, añade responsable, prioridad, fecha objetivo, fotos de antes y después y el coste.</li>
@@ -287,8 +299,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> Pedir una tarea no significa que tengas que hacerla tú. Coordinación valora la petición y decide cómo organizar el trabajo.</p>
 <p class="nota"><b>Bueno saber.</b> Cuanto más clara sea la descripción del problema y su ubicación, más fácil será organizar la actuación.</p>
 </section>
-<section id="a13">
-<h3><span class="n">13</span>Tareas que se repiten</h3>
+<section id="a14">
+<h3><span class="n">14</span>Tareas que se repiten</h3>
 <p>Lo que se hace siempre (rellenar comederos, revisar el vallado…) no hace falta apuntarlo cada vez.</p>
 <ol class="pasos">
 <li>Al crear la tarea, elige una <span class="ui">Periodicidad</span>: diaria, semanal, quincenal, mensual o trimestral.</li>
@@ -304,8 +316,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Bueno saber.</b> No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.</p>
 </section>
-<section id="a14">
-<h3><span class="n">14</span>Llevar las tareas al día</h3>
+<section id="a15">
+<h3><span class="n">15</span>Llevar las tareas al día</h3>
 <ol class="pasos">
 <li>En Fincas, pulsa <span class="ui">Tareas</span> (arriba) para ver el tablero con todas.</li>
 <li>Filtra por finca y por estado. Si sincronizas con el equipo, <span class="ui">Mis tareas</span> deja solo las que tienes asignadas.</li>
@@ -327,8 +339,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.</p>
 </section>
 <h2>Ganado y movimientos</h2>
-<section id="a15">
-<h3><span class="n">15</span>Rebaños y animales</h3>
+<section id="a16">
+<h3><span class="n">16</span>Rebaños y animales</h3>
 <p>El ganado se lleva por rebaños, como se maneja en extensivo: un rebaño de ovejas, un rebaño de vacas, los cerdos de cebo…</p>
 <ol class="pasos">
 <li>Entra en la pestaña Ganado y pulsa <span class="ui">Nuevo rebaño</span>.</li>
@@ -340,8 +352,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> El icono de la cámara junto al crotal (en el alta y en la búsqueda) lee el código de barras del DIB y rellena el número solo. En el ordenador con Linux o Windows no está.</p>
 <p class="nota"><b>Bueno saber.</b> El libro de explotación (icono del libro, arriba en Ganado) saca en PDF el censo, los animales, los movimientos y los tratamientos, con las UGM de cada rebaño. Cada movimiento tiene su hoja en PDF para acompañar el traslado. No sustituyen al libro oficial ni a la guía de SITRAN.</p>
 </section>
-<section id="a16">
-<h3><span class="n">16</span>Mover el ganado de pieza</h3>
+<section id="a17">
+<h3><span class="n">17</span>Mover el ganado de pieza</h3>
 <ol class="pasos">
 <li>Abre el rebaño y pulsa <span class="ui">Mover</span> (o, en la pestaña Movimientos, <span class="ui">Mover un rebaño</span>).</li>
 <li>Elige la pieza a la que va y la fecha. Si sale del espacio (a la sierra, a otra explotación, al matadero), elige <span class="ui">Salida del espacio</span> y escribe adónde va; cuando vuelva, <span class="ui">Entrada en el espacio</span>.</li>
@@ -351,8 +363,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> En la ficha de cada pieza se ve qué rebaños hay, cuántas cabezas y cuántas por hectárea. El historial del rebaño guarda todos sus movimientos.</p>
 <p class="nota"><b>Bueno saber.</b> Un animal suelto se cambia de rebaño desde su ficha (<span class="ui">Cambiar de rebaño</span>).</p>
 </section>
-<section id="a17">
-<h3><span class="n">17</span>Curas, tratamientos, pesajes y partos</h3>
+<section id="a18">
+<h3><span class="n">18</span>Curas, tratamientos, pesajes y partos</h3>
 <ol class="pasos">
 <li>Abre el rebaño (si es para todo el rebaño) o el animal y pulsa <span class="ui">Cura, pesaje, parto…</span>.</li>
 <li>Elige qué se ha hecho y la fecha.</li>
@@ -363,8 +375,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.</p>
 </section>
 <h2>Tu proyecto de test</h2>
-<section id="a18">
-<h3><span class="n">18</span>Crear tu proyecto</h3>
+<section id="a19">
+<h3><span class="n">19</span>Crear tu proyecto</h3>
 <p>Los proyectos los crea coordinación, y cada uno es de una persona tester.</p>
 <ol class="pasos">
 <li>En Proyectos, pulsa + (solo coordinación).</li>
@@ -373,8 +385,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Bueno saber.</b> Cada persona tester ve solo su proyecto. Coordinación ve todos y, al terminar el test, lo cierra desde el menú del proyecto (⋮ → Cerrar proyecto).</p>
 </section>
-<section id="a19">
-<h3><span class="n">19</span>Apuntar tu día a día</h3>
+<section id="a20">
+<h3><span class="n">20</span>Apuntar tu día a día</h3>
 <p>Dentro del proyecto hay cuatro pestañas: Producción, Comercialización, Validación y Económico.</p>
 <ol class="pasos">
 <li>Ve a la pestaña de lo que quieras apuntar.</li>
@@ -383,8 +395,8 @@ section ul li::marker{color:var(--pasto)}
 <li>Guarda. Los números de arriba se actualizan solos.</li>
 </ol>
 </section>
-<section id="a20">
-<h3><span class="n">20</span>Entender tus números</h3>
+<section id="a21">
+<h3><span class="n">21</span>Entender tus números</h3>
 <p>Arriba del proyecto ves la rentabilidad: ventas, otros ingresos, gastos, balance, margen y la proyección a un año.</p>
 <ul>
 <li>Con el filtro <span class="ui">Periodo</span> (arriba) lo miras para todo, este año, este trimestre o el trimestre anterior.</li>
@@ -392,8 +404,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 <p class="nota"><b>Bueno saber.</b> El IVA es un cálculo orientativo, no una declaración fiscal: el régimen lo decide vuestro asesor.</p>
 </section>
-<section id="a21">
-<h3><span class="n">21</span>El convenio: cuentas, fianza y acompañamiento</h3>
+<section id="a22">
+<h3><span class="n">22</span>El convenio: cuentas, fianza y acompañamiento</h3>
 <p class="nota"><b>Bueno saber.</b> Esta información es orientativa y sirve como modelo general. Cada proyecto de test tiene sus propias condiciones, que se negocian y acuerdan entre la persona tester y Zunbeltz antes de empezar: los gastos, el reparto económico, la fianza y el resto del convenio.</p>
 <p>En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:</p>
 <ul>
@@ -406,8 +418,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 <p class="nota"><b>Bueno saber.</b> Al apuntar un gasto, indica quién lo asume. Las amortizaciones van en el bloque VI. Coordinación lleva el resto.</p>
 </section>
-<section id="a22">
-<h3><span class="n">22</span>Calculadora de transformación y Excel de alimentación</h3>
+<section id="a23">
+<h3><span class="n">23</span>Calculadora de transformación y Excel de alimentación</h3>
 <p>En tu proyecto, el botón de la calculadora (arriba):</p>
 <ol class="pasos">
 <li>Elige un rendimiento de referencia (los pone coordinación) o escribe los porcentajes.</li>
@@ -416,8 +428,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Bueno saber.</b> En el botón de compartir del proyecto, <span class="ui">Alimentación por días (Excel)</span> saca los kg suministrados cada día y por rebaño.</p>
 </section>
-<section id="a23">
-<h3><span class="n">23</span>Sacar informes y enviarlos</h3>
+<section id="a24">
+<h3><span class="n">24</span>Sacar informes y enviarlos</h3>
 <ul>
 <li>En tu proyecto, el botón de compartir (arriba) saca el <span class="ui">Informe del proyecto (PDF)</span>, lo exporta a CSV (se abre con Excel) o lo manda con <span class="ui">Enviar al coordinador</span>. El correo al que se manda se pone en Ajustes → <span class="ui">Coordinador (envío de informes)</span>.</li>
 <li>El informe incluye las cuentas del convenio: balance del test y del proyecto, reparto, fianza, acompañamiento e incidencias.</li>
@@ -427,8 +439,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 </section>
 <h2>Trabajar en equipo</h2>
-<section id="a24">
-<h3><span class="n">24</span>Compartir el espacio con el equipo</h3>
+<section id="a25">
+<h3><span class="n">25</span>Compartir el espacio con el equipo</h3>
 <p>Con la sincronización, todo el equipo comparte el mismo espacio: fincas, puntos, zonas, tareas, proyectos, peticiones y avisos.</p>
 <ol class="pasos">
 <li>Pide a coordinación tu clave de usuario. Es personal: cada cual tiene la suya y no se comparte.</li>
@@ -438,8 +450,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> Sin cobertura puedes seguir trabajando: lo que hagas sube en cuanto vuelva la conexión. Las fotos (de puntos, zonas, fincas y tareas) suben y bajan solo con wifi, para no gastar datos; mientras tanto, una foto de otra persona sale como <span class="ui">Sin descargar</span> y se puede bajar tocándola.</p>
 <p class="nota"><b>Bueno saber.</b> Estos pasos son para las personas tester de Zunbeltz que comparten la información con coordinación. Si usas la app por tu cuenta, no necesitas configurar la sincronización ni pedir una clave de usuario.</p>
 </section>
-<section id="a25">
-<h3><span class="n">25</span>Usar la app en el ordenador</h3>
+<section id="a26">
+<h3><span class="n">26</span>Usar la app en el ordenador</h3>
 <p>La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.</p>
 <ol class="pasos">
 <li>Abre la dirección web de la aplicación en el navegador de tu ordenador.</li>
@@ -449,8 +461,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.</p>
 <p class="nota"><b>Bueno saber.</b> En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja <span class="ui">Versión de prueba</span>, es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.</p>
 </section>
-<section id="a26">
-<h3><span class="n">26</span>Quién puede hacer qué</h3>
+<section id="a27">
+<h3><span class="n">27</span>Quién puede hacer qué</h3>
 <p>Cada persona tiene un rol, que le da coordinación.</p>
 <ul>
 <li>Coordinación: crea, reparte y cierra tareas; gestiona fincas, zonas, puntos y todos los proyectos; acepta o descarta peticiones; ve lo que pasa en el espacio.</li>
@@ -458,8 +470,8 @@ section ul li::marker{color:var(--pasto)}
 </ul>
 <p class="nota"><b>Bueno saber.</b> En Ajustes ves con qué nombre y rol estás conectada. Sin sincronización estás en <span class="ui">Modo local</span> y puedes editarlo todo.</p>
 </section>
-<section id="a27">
-<h3><span class="n">27</span>Pedir una tarea</h3>
+<section id="a28">
+<h3><span class="n">28</span>Pedir una tarea</h3>
 <p>Si ves que hace falta algo (comprar pienso, arreglar una cancela…), pídeselo a coordinación:</p>
 <ol class="pasos">
 <li>Desde Hoy, o desde la ficha del punto, pulsa <span class="ui">Pedir una tarea</span>.</li>
@@ -468,8 +480,8 @@ section ul li::marker{color:var(--pasto)}
 </ol>
 <p class="nota"><b>Bueno saber.</b> Tus peticiones y su respuesta están en Fincas → Tareas → botón de peticiones (arriba).</p>
 </section>
-<section id="a28">
-<h3><span class="n">28</span>Contactos del espacio</h3>
+<section id="a29">
+<h3><span class="n">29</span>Contactos del espacio</h3>
 <p>La agenda compartida: mataderos, veterinaria, personas expertas, compradores…</p>
 <ol class="pasos">
 <li>En Hoy, pulsa el icono de contactos (arriba).</li>
@@ -477,8 +489,8 @@ section ul li::marker{color:var(--pasto)}
 <li>Para añadir uno, pulsa <span class="ui">Añadir contacto</span>. Puedes corregir los que añadas tú; coordinación los gestiona todos, también desde la oficina.</li>
 </ol>
 </section>
-<section id="a29">
-<h3><span class="n">29</span>Notificaciones</h3>
+<section id="a30">
+<h3><span class="n">30</span>Notificaciones</h3>
 <p>La app te avisa en el móvil:</p>
 <ul>
 <li>Cuando llega una alarma de otra persona.</li>
@@ -488,8 +500,8 @@ section ul li::marker{color:var(--pasto)}
 <p class="nota"><b>Bueno saber.</b> Acepta el permiso de notificaciones la primera vez que lo pida la app. Con la app cerrada, el móvil Android comprueba si hay novedades cada 15 minutos más o menos cuando hay conexión; con el móvil en reposo puede tardar algo más. Si tu móvil corta las apps en segundo plano para ahorrar batería, quita a Larrea Zunbeltz de esa lista.</p>
 </section>
 <h2>Si algo falla</h2>
-<section id="a30">
-<h3><span class="n">30</span>Problemas frecuentes</h3>
+<section id="a31">
+<h3><span class="n">31</span>Problemas frecuentes</h3>
 <ul>
 <li><span class="ui">Tu rol no permite…</span>: eso no te toca. Una tarea, cógela si está sin asignar o pide a coordinación que te la asigne.</li>
 <li><span class="ui">… cambios revertidos: tu rol no los permite</span> al sincronizar: tocaste algo que tu rol no permite y se ha dejado como estaba.</li>

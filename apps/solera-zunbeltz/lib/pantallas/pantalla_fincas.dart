@@ -17,7 +17,10 @@ import '../utiles/estilos_tarea.dart';
 import '../utiles/edicion_contorno.dart';
 import '../utiles/geodesia.dart';
 import '../utiles/permisos_gps.dart';
+import '../servicios/mapa_sin_cobertura.dart';
+import '../servicios/proveedor_teselas_cacheadas.dart';
 import 'crear_zonas_importadas.dart';
+import 'pantalla_mapa_sin_cobertura.dart';
 import 'ficha_punto.dart';
 import 'ficha_zona.dart';
 import 'nueva_zona.dart';
@@ -29,10 +32,19 @@ import 'widgets/liberar_al_cerrar.dart';
 
 enum _EstiloMapa { calle, satelite }
 
-const String _urlOrtofotoPnoa = 'https://www.ign.es/wmts/pnoa-ma?'
-    'request=GetTile&service=WMTS&VERSION=1.0.0&Layer=OI.OrthoimageCoverage'
-    '&Style=default&Format=image/jpeg&TileMatrixSet=GoogleMapsCompatible'
-    '&TileMatrix={z}&TileRow={y}&TileCol={x}';
+/// Teselas guardadas en disco (ver `servicios/cache_teselas.dart`): sin
+/// cobertura se ve lo ya visto y lo descargado. En web, null: el
+/// `NetworkTileProvider` de siempre, con la caché del navegador.
+final TileProvider? _proveedorOrtofoto = MapaSinCobertura.instancia == null
+    ? null
+    : ProveedorTeselasCacheadas(
+        obtenedor: MapaSinCobertura.instancia!.obtenedor,
+        capa: capaPnoa,
+        capaRespaldo: capaEsri);
+final TileProvider? _proveedorCallejero = MapaSinCobertura.instancia == null
+    ? null
+    : ProveedorTeselasCacheadas(
+        obtenedor: MapaSinCobertura.instancia!.obtenedor, capa: capaOsm);
 
 /// Halo blanco de los nombres de zona: se leen sobre cualquier fondo.
 const List<Shadow> _haloEtiqueta = [
@@ -985,12 +997,18 @@ class _PantallaFincasState extends State<PantallaFincas> {
               // España, o si el IGN no responde, la de Esri.
               TileLayer(
                 urlTemplate: _estiloMapa == _EstiloMapa.calle
-                    ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-                    : _urlOrtofotoPnoa,
-                fallbackUrl: _estiloMapa == _EstiloMapa.calle
-                    ? null
-                    : 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-                userAgentPackageName: 'com.coleccionnuevoser.solera_zunbeltz',
+                    ? urlCallejeroOsm
+                    : urlOrtofotoPnoa,
+                fallbackUrl:
+                    _estiloMapa == _EstiloMapa.calle ? null : urlOrtofotoEsri,
+                tileProvider: _estiloMapa == _EstiloMapa.calle
+                    ? _proveedorCallejero
+                    : _proveedorOrtofoto,
+                // Una tesela que no llegó (sin red y sin guardar) se vuelve
+                // a pedir cuando sale de la vista, no se queda en blanco.
+                evictErrorTileStrategy:
+                    EvictErrorTileStrategy.notVisibleRespectMargin,
+                userAgentPackageName: paqueteAgenteUsuario,
                 maxZoom: 22,
                 maxNativeZoom: 19,
               ),
@@ -1164,6 +1182,14 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 ),
               ),
             ),
+          // Progreso de «Descargar el mapa de las fincas», debajo de los
+          // avisos de arriba (y de la capa de edición, si se edita).
+          Positioned(
+            left: 16,
+            right: 16,
+            top: (_dibujando || _ajustando) ? 144 : 52,
+            child: const FranjaDescargaMapa(),
+          ),
         ],
       ),
       bottomNavigationBar: SafeArea(
@@ -1243,6 +1269,28 @@ class _PantallaFincasState extends State<PantallaFincas> {
                             label: Text(textos.mapaGps),
                           ),
                         ),
+                        // Mapa sin cobertura (no en web: allí manda la
+                        // caché del navegador).
+                        if (MapaSinCobertura.instancia != null) ...[
+                          const SizedBox(width: 8),
+                          PopupMenuButton<int>(
+                            tooltip: textos.mapaSinCobertura,
+                            icon: const Icon(Icons.cloud_download_outlined),
+                            onSelected: (opcion) => opcion == 0
+                                ? descargarMapaFincas(context)
+                                : Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) =>
+                                        const PantallaMapaSinCobertura())),
+                            itemBuilder: (_) => [
+                              PopupMenuItem(
+                                  value: 0,
+                                  child: Text(textos.mapaDescargarFincas)),
+                              PopupMenuItem(
+                                  value: 1,
+                                  child: Text(textos.mapaSinCobertura)),
+                            ],
+                          ),
+                        ],
                       ],
                     ),
         ),

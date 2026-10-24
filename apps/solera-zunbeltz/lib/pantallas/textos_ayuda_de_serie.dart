@@ -30,6 +30,8 @@ Map<String, String> textosAyudaDeSerie(AppLocalizations t) => {
       'ayudaGrupoFincas': t.ayudaGrupoFincas,
       'ayudaFincasT': t.ayudaFincasT,
       'ayudaFincasB': t.ayudaFincasB,
+      'ayudaMapaSinCoberturaT': t.ayudaMapaSinCoberturaT,
+      'ayudaMapaSinCoberturaB': t.ayudaMapaSinCoberturaB,
       'ayudaZonasT': t.ayudaZonasT,
       'ayudaZonasB': t.ayudaZonasB,
       'ayudaZonasTesterT': t.ayudaZonasTesterT,

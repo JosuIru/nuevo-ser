@@ -27,5 +27,6 @@ flutter build web --release \
   --base-href "$ruta_base" \
   --dart-define=SOLERA_DEMO=true \
   --dart-define=SOLERA_DEMO_SERVIDOR="$servidor_noticias"
+dart run tool/preparar_web_sin_conexion.dart build/web
 
 echo "Demo web lista en $directorio_app/build/web (base: $ruta_base)"

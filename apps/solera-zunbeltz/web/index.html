@@ -21,7 +21,7 @@
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Solera Zunbeltz">
+  <meta name="apple-mobile-web-app-title" content="Larrea Zunbeltz">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
@@ -112,6 +112,31 @@
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
   <script src="flutter_bootstrap.js" async=""></script>
+  <script>
+    // Abrirse sin cobertura: sw_zunbeltz.js guarda la app en el navegador.
+    // Se le dice además lo que ya se ha cargado (la primera vez aún no
+    // controlaba la página), y se pide que los datos no se borren solos.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw_zunbeltz.js').catch(function (error) {
+          console.warn('Sin service worker:', error);
+        });
+        navigator.serviceWorker.ready.then(function (registro) {
+          var avisarDeLoCargado = function () {
+            var urls = performance.getEntriesByType('resource').map(function (entrada) {
+              return entrada.name;
+            });
+            if (registro.active) registro.active.postMessage({ tipo: 'guardar', urls: urls });
+          };
+          avisarDeLoCargado();
+          setTimeout(avisarDeLoCargado, 15000);
+        });
+      });
+    }
+    if (navigator.storage && navigator.storage.persist) {
+      navigator.storage.persist().catch(function () {});
+    }
+  </script>
 
 
 </body></html>

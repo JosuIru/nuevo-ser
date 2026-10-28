@@ -16,4 +16,6 @@ flutter build web --release \
   --no-web-resources-cdn \
   --base-href "$ruta_base" \
   -o "$plugin/app-web"
+# Para que se abra sin cobertura (service worker con la lista de ficheros).
+dart run tool/preparar_web_sin_conexion.dart "$plugin/app-web"
 echo "App web lista en $plugin/app-web (se sirve en $ruta_base)"

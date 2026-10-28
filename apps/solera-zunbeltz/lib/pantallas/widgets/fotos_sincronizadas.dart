@@ -6,13 +6,15 @@ import 'package:flutter/material.dart';
 import '../../datos/base_datos.dart';
 import '../../l10n/app_localizations.dart';
 import '../../servicios/servicio_fotos_sync.dart';
+import '../../servicios/servicio_fotos_web.dart';
 import '../../utiles/fotos_sincronizadas.dart';
 
 /// Miniatura de una entrada de fotos (ver `utiles/fotos_sincronizadas.dart`):
 /// una ruta de este móvil se ve tal cual; una referencia `foto:<hash>`, si
 /// ya bajó, también; si no, sale el marcador «Sin descargar» y al tocarlo
 /// se baja (con la red que haya: la persona lo ha pedido). Una foto que ya
-/// se ve se abre a pantalla completa.
+/// se ve se abre a pantalla completa. En el navegador las fotos están en la
+/// BD (`servicio_fotos_web.dart`), no en ficheros.
 class MiniaturaFoto extends StatefulWidget {
   const MiniaturaFoto({
     super.key,
@@ -32,7 +34,7 @@ class MiniaturaFoto extends StatefulWidget {
 }
 
 class _MiniaturaFotoState extends State<MiniaturaFoto> {
-  String? _ruta;
+  ImageProvider? _imagen;
   bool _resuelta = false;
   bool _bajando = false;
 
@@ -50,20 +52,26 @@ class _MiniaturaFotoState extends State<MiniaturaFoto> {
 
   Future<void> _resolver() async {
     final hash = hashDeReferencia(widget.entrada);
-    String? ruta;
+    ImageProvider? imagen;
     if (hash == null) {
-      ruta = widget.entrada;
+      // Una ruta de fichero (en el navegador no hay).
+      if (!kIsWeb) imagen = FileImage(File(widget.entrada));
+    } else if (kIsWeb) {
+      final bytes = await bytesFotoWebGuardada(hash);
+      if (bytes != null) imagen = MemoryImage(bytes);
     } else {
       try {
         final local = await BaseDatosSoleraZunbeltz().rutaLocalDeFoto(hash);
-        if (local != null && await File(local).exists()) ruta = local;
+        if (local != null && await File(local).exists()) {
+          imagen = FileImage(File(local));
+        }
       } catch (_) {
-        ruta = null;
+        imagen = null;
       }
     }
     if (!mounted) return;
     setState(() {
-      _ruta = ruta;
+      _imagen = imagen;
       _resuelta = true;
     });
   }
@@ -71,19 +79,26 @@ class _MiniaturaFotoState extends State<MiniaturaFoto> {
   Future<void> _bajar(String hash) async {
     if (_bajando) return;
     setState(() => _bajando = true);
-    final ruta = await bajarFotoAhora(hash);
+    final ImageProvider? imagen;
+    if (kIsWeb) {
+      final bytes = await bajarFotoWebAhora(hash);
+      imagen = bytes == null ? null : MemoryImage(bytes);
+    } else {
+      final ruta = await bajarFotoAhora(hash);
+      imagen = ruta == null ? null : FileImage(File(ruta));
+    }
     if (!mounted) return;
     setState(() {
       _bajando = false;
-      if (ruta != null) _ruta = ruta;
+      if (imagen != null) _imagen = imagen;
     });
-    if (ruta == null) {
+    if (imagen == null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text(AppLocalizations.of(context).fotoNoSeHaPodidoBajar)));
     }
   }
 
-  void _verEnGrande(String ruta) {
+  void _verEnGrande(ImageProvider imagen) {
     showDialog<void>(
       context: context,
       builder: (contexto) => Dialog.fullscreen(
@@ -92,7 +107,7 @@ class _MiniaturaFotoState extends State<MiniaturaFoto> {
           children: [
             Positioned.fill(
               child: InteractiveViewer(
-                child: Image.file(File(ruta), fit: BoxFit.contain),
+                child: Image(image: imagen, fit: BoxFit.contain),
               ),
             ),
             Positioned(
@@ -120,20 +135,19 @@ class _MiniaturaFotoState extends State<MiniaturaFoto> {
     final tema = Theme.of(context);
     final tamano = widget.tamano;
     final hash = hashDeReferencia(widget.entrada);
-    final ruta = _ruta;
+    final imagen = _imagen;
 
     final Widget contenido;
     if (!_resuelta) {
       contenido = SizedBox(width: tamano, height: tamano);
-    } else if (ruta != null) {
+    } else if (imagen != null) {
       contenido = InkWell(
-        onTap: () => _verEnGrande(ruta),
-        child: Image.file(
-          File(ruta),
+        onTap: () => _verEnGrande(imagen),
+        child: Image(
+          image: ResizeImage.resizeIfNeeded((tamano * 3).round(), null, imagen),
           width: tamano,
           height: tamano,
           fit: BoxFit.cover,
-          cacheWidth: (tamano * 3).round(),
           errorBuilder: (_, __, ___) =>
               _hueco(tema, const Icon(Icons.broken_image)),
         ),
@@ -215,8 +229,7 @@ class _MiniaturaFotoState extends State<MiniaturaFoto> {
       );
 }
 
-/// Tira de fotos de solo lectura (fichas). No ocupa nada si no hay fotos,
-/// ni en el navegador, donde las fotos no se ven.
+/// Tira de fotos de solo lectura (fichas). No ocupa nada si no hay fotos.
 class GaleriaFotos extends StatelessWidget {
   const GaleriaFotos({
     super.key,
@@ -231,7 +244,7 @@ class GaleriaFotos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kIsWeb || entradas.isEmpty) return const SizedBox.shrink();
+    if (entradas.isEmpty) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
       child: Column(

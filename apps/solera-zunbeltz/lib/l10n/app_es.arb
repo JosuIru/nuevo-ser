@@ -633,10 +633,6 @@
   "actualizacionesErrorDescarga": "No se ha podido descargar. Comprueba la conexión y vuelve a probar.",
   "actualizacionesErrorInstalador": "Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.",
   "ajustesActualizacionesSubtitulo": "Versión instalada y última publicada",
-  "fotosSoloEnMovil": "Las fotos se añaden desde la app del móvil.",
-  "@fotosSoloEnMovil": {
-    "description": "En la versión web no se pueden adjuntar fotos (no hay sistema de ficheros)."
-  },
   "demoFranja": "Versión de prueba: los datos se guardan solo en este navegador y no se comparten con nadie.",
   "@demoFranja": {
     "description": "Franja superior de la versión web de demostración."
@@ -1081,7 +1077,7 @@
   "ayudaActualizacionesT": "Instalar una versión nueva",
   "ayudaActualizacionesB": "Cuando sale una versión nueva, la app te avisa al abrirla («Versión disponible»). Pulsa «Actualizar», o «Descartar por ahora» si te viene mal.\n1. También puedes mirarlo en Ajustes → Actualizaciones: ves la versión instalada, la última publicada y qué trae. «Buscar ahora» lo vuelve a comprobar.\n2. Pulsa «Descargar e instalar» y confirma en el instalador del móvil.\n3. Vuelve a abrir la app.\n» La primera vez, Android puede pedir que permitas «instalar apps desconocidas» para Larrea Zunbeltz. Tus datos se conservan al actualizar.",
   "ayudaWebT": "Usar la app en el ordenador",
-  "ayudaWebB": "La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.",
+  "ayudaWebB": "La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador también se pueden hacer y añadir fotos. Se guardan en el navegador, ya reducidas, y suben al sincronizar con cualquier conexión (no solo con wifi).\n» En el iPhone: abre la dirección en Safari, toca Compartir → «Añadir a pantalla de inicio» y ábrela siempre desde ese icono. Ábrela una vez con cobertura: a partir de ahí se abre también sin ella. Lo que apuntes sin cobertura se guarda y sube en la siguiente sincronización.\n» Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.",
   "noticiasSectorTitulo": "Noticias del sector",
   "noticiasSectorVerTodas": "Ver todas ({n})",
   "@noticiasSectorVerTodas": {

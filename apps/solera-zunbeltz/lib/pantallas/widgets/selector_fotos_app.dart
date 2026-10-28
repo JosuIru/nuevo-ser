@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../l10n/app_localizations.dart';
+import '../../servicios/servicio_fotos_web.dart';
 import '../../utiles/fotos_sincronizadas.dart';
 import 'fotos_sincronizadas.dart';
 
@@ -11,9 +12,8 @@ import 'fotos_sincronizadas.dart';
 /// pero entiende las fotos sincronizadas de otros móviles (`foto:<hash>`),
 /// que salen como «Sin descargar» hasta que bajan (ver [MiniaturaFoto]).
 ///
-/// En el navegador no hay sistema de ficheros donde copiar las fotos: se
-/// avisa de que se añaden desde el móvil y las que ya tenga el registro
-/// se conservan tal cual.
+/// En el navegador no hay ficheros: las fotos se guardan en la BD y se
+/// apuntan directamente como `foto:<hash>` (`servicio_fotos_web.dart`).
 class SelectorFotosApp extends StatelessWidget {
   final List<String> rutas;
   final ValueChanged<List<String>> alCambiar;
@@ -45,14 +45,6 @@ class SelectorFotosApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
-    if (kIsWeb) {
-      final tema = Theme.of(context);
-      return Text(
-        textos.fotosSoloEnMovil,
-        style: tema.textTheme.bodySmall
-            ?.copyWith(color: tema.colorScheme.onSurfaceVariant),
-      );
-    }
     return SizedBox(
       height: altura,
       child: ListView.separated(
@@ -95,9 +87,9 @@ class SelectorFotosApp extends StatelessWidget {
 
 /// Pregunta de dónde sacar las fotos (cámara o galería) y las trae. Con
 /// [pregunta], la hoja la enseña arriba y ofrece «Ahora no». Lista vacía si
-/// se cancela o en el navegador.
-Future<List<String>> pedirFotos(BuildContext context, {String? pregunta}) async {
-  if (kIsWeb) return const [];
+/// se cancela. En el navegador devuelve referencias `foto:<hash>`.
+Future<List<String>> pedirFotos(BuildContext context,
+    {String? pregunta}) async {
   final textos = AppLocalizations.of(context);
   final fuente = await showModalBottomSheet<FuenteFoto>(
     context: context,
@@ -132,5 +124,6 @@ Future<List<String>> pedirFotos(BuildContext context, {String? pregunta}) async 
     ),
   );
   if (fuente == null) return const [];
+  if (kIsWeb) return tomarFotosWeb(fuente);
   return GestorFotos.tomarOSeleccionar(fuente: fuente);
 }

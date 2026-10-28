@@ -1502,10 +1502,6 @@ class AppLocalizationsEu extends AppLocalizations {
       'Instalatutako bertsioa eta argitaratutako azkena';
 
   @override
-  String get fotosSoloEnMovil =>
-      'Argazkiak mugikorreko aplikaziotik gehitzen dira.';
-
-  @override
   String get demoFranja =>
       'Proba-bertsioa: datuak nabigatzaile honetan bakarrik gordetzen dira eta ez dira inorekin partekatzen.';
 
@@ -2297,7 +2293,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaWebB =>
-      'Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.\n1. Ireki aplikazioaren web-helbidea zure ordenagailuko nabigatzailean.\n2. App-a zure kabuz erabiltzen baduzu, zuzenean has zaitezke lanean, zerbitzaririk konfiguratu gabe eta erabiltzaile-gakorik jarri gabe.\n3. Hortik aurrera mugikorrean bezala dabil.\n» Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.\n» Nabigatzailean ezin da argazkirik gehitu: mugikorretik gehitzen dira. Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.';
+      'Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.\n1. Ireki aplikazioaren web-helbidea zure ordenagailuko nabigatzailean.\n2. App-a zure kabuz erabiltzen baduzu, zuzenean has zaitezke lanean, zerbitzaririk konfiguratu gabe eta erabiltzaile-gakorik jarri gabe.\n3. Hortik aurrera mugikorrean bezala dabil.\n» Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.\n» Nabigatzailean ere argazkiak atera eta gehi daitezke. Nabigatzailean gordetzen dira, txikituta, eta sinkronizatzean igotzen dira edozein konexiorekin (ez wifiarekin bakarrik).\n» iPhonean: ireki helbidea Safarin, sakatu Partekatu → «Gehitu hasierako pantailan» eta ireki beti ikono horretatik. Ireki behin estaldurarekin: hortik aurrera estaldurarik gabe ere irekitzen da. Estaldurarik gabe idazten duzuna gorde egiten da eta hurrengo sinkronizazioan igotzen da.\n» Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.';
 
   @override
   String get noticiasSectorTitulo => 'Sektoreko berriak';

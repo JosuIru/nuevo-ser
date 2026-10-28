@@ -2798,12 +2798,6 @@ abstract class AppLocalizations {
   /// **'Versión instalada y última publicada'**
   String get ajustesActualizacionesSubtitulo;
 
-  /// En la versión web no se pueden adjuntar fotos (no hay sistema de ficheros).
-  ///
-  /// In es, this message translates to:
-  /// **'Las fotos se añaden desde la app del móvil.'**
-  String get fotosSoloEnMovil;
-
   /// Franja superior de la versión web de demostración.
   ///
   /// In es, this message translates to:
@@ -4127,7 +4121,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaWebB.
   ///
   /// In es, this message translates to:
-  /// **'La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.'**
+  /// **'La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador también se pueden hacer y añadir fotos. Se guardan en el navegador, ya reducidas, y suben al sincronizar con cualquier conexión (no solo con wifi).\n» En el iPhone: abre la dirección en Safari, toca Compartir → «Añadir a pantalla de inicio» y ábrela siempre desde ese icono. Ábrela una vez con cobertura: a partir de ahí se abre también sin ella. Lo que apuntes sin cobertura se guarda y sube en la siguiente sincronización.\n» Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.'**
   String get ayudaWebB;
 
   /// No description provided for @noticiasSectorTitulo.

@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb, listEquals;
+import 'package:flutter/foundation.dart' show listEquals;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
 
@@ -96,13 +96,12 @@ Future<bool> mostrarAccionesTarea(
                     : null,
                 onTap: () => Navigator.pop(contextoHoja, estado.codigo),
               ),
-            if (!kIsWeb)
-              ListTile(
-                leading: const Icon(Icons.add_a_photo_outlined),
-                title: Text(textos.tareaAnadirFotosDespues),
-                onTap: () =>
-                    Navigator.pop(contextoHoja, _AccionTarea.fotosDespues),
-              ),
+            ListTile(
+              leading: const Icon(Icons.add_a_photo_outlined),
+              title: Text(textos.tareaAnadirFotosDespues),
+              onTap: () =>
+                  Navigator.pop(contextoHoja, _AccionTarea.fotosDespues),
+            ),
             const Divider(),
           ],
           if (puedeCogerse)
@@ -121,11 +120,10 @@ Future<bool> mostrarAccionesTarea(
             ListTile(
               leading: const Icon(Icons.group_outlined),
               title: Text(textos.tareaCambiarResponsables),
-              subtitle: tarea.responsable.isEmpty
-                  ? null
-                  : Text(tarea.responsable),
-              onTap: () => Navigator.pop(
-                  contextoHoja, _AccionTarea.cambiarResponsables),
+              subtitle:
+                  tarea.responsable.isEmpty ? null : Text(tarea.responsable),
+              onTap: () =>
+                  Navigator.pop(contextoHoja, _AccionTarea.cambiarResponsables),
             ),
           if (puedeApuntarGasto)
             ListTile(
@@ -186,7 +184,6 @@ Future<bool> mostrarAccionesTarea(
 /// Tras cerrar una tarea (también con el atajo de la marca de la lista):
 /// ofrece la foto de cómo ha quedado, que se puede saltar con «Ahora no».
 Future<void> ofrecerFotoDespuesAlCerrar(BuildContext context, int id) async {
-  if (kIsWeb) return;
   await _anadirFotosDespues(context, id,
       pregunta: AppLocalizations.of(context).tareaPreguntaFotoDespues);
 }

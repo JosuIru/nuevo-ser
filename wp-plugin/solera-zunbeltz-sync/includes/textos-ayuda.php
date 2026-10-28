@@ -253,7 +253,9 @@ En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:
 2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.
 3. A partir de ahí funciona igual que en el móvil.
 » Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.
-» En el navegador no se pueden añadir fotos: se añaden desde el móvil. Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.',
+» En el navegador también se pueden hacer y añadir fotos. Se guardan en el navegador, ya reducidas, y suben al sincronizar con cualquier conexión (no solo con wifi).
+» En el iPhone: abre la dirección en Safari, toca Compartir → «Añadir a pantalla de inicio» y ábrela siempre desde ese icono. Ábrela una vez con cobertura: a partir de ahí se abre también sin ella. Lo que apuntes sin cobertura se guarda y sube en la siguiente sincronización.
+» Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.',
 		'ayudaRolesT' => 'Quién puede hacer qué',
 		'ayudaRolesB' => 'Cada persona tiene un rol, que le da coordinación.
 • Coordinación: crea, reparte y cierra tareas; gestiona fincas, zonas, puntos y todos los proyectos; acepta o descarta peticiones; ve lo que pasa en el espacio.
@@ -507,7 +509,9 @@ Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:
 2. App-a zure kabuz erabiltzen baduzu, zuzenean has zaitezke lanean, zerbitzaririk konfiguratu gabe eta erabiltzaile-gakorik jarri gabe.
 3. Hortik aurrera mugikorrean bezala dabil.
 » Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.
-» Nabigatzailean ezin da argazkirik gehitu: mugikorretik gehitzen dira. Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.',
+» Nabigatzailean ere argazkiak atera eta gehi daitezke. Nabigatzailean gordetzen dira, txikituta, eta sinkronizatzean igotzen dira edozein konexiorekin (ez wifiarekin bakarrik).
+» iPhonean: ireki helbidea Safarin, sakatu Partekatu → «Gehitu hasierako pantailan» eta ireki beti ikono horretatik. Ireki behin estaldurarekin: hortik aurrera estaldurarik gabe ere irekitzen da. Estaldurarik gabe idazten duzuna gorde egiten da eta hurrengo sinkronizazioan igotzen da.
+» Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.',
 		'ayudaRolesT' => 'Nork zer egin dezakeen',
 		'ayudaRolesB' => 'Pertsona bakoitzak rol bat du, koordinazioak ematen diona.
 • Koordinazioa: zereginak sortu, banatu eta ixten ditu; finkak, eremuak, puntuak eta proiektu guztiak kudeatzen ditu; eskaerak onartu edo baztertzen ditu; gunean gertatzen dena ikusten du.

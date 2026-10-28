@@ -178,3 +178,36 @@ Uint8List? reducirFotoParaSubir(Uint8List original,
   imagen.exif = img.ExifData();
   return img.encodeJpg(imagen, quality: calidad);
 }
+
+/// Tamaño a partir del cual una foto de la versión web se vuelve a reducir
+/// en Dart aunque ya sea JPEG (el servidor no acepta más de 2 MB).
+const int maximoBytesFotoWebSinReducir = 1500 * 1024;
+
+/// ¿Se puede subir tal cual una foto elegida en el navegador? El selector
+/// del navegador ya la reduce (1600 px, JPEG 80, sin EXIF) dibujándola en
+/// un canvas; si eso falla, devuelve el original, que puede ser enorme,
+/// no ser JPEG (PNG de una captura) o llevar EXIF con la posición GPS.
+/// Entonces hay que pasarla por [reducirFotoParaSubir].
+bool fotoWebListaParaSubir(List<int> bytes) =>
+    tipoMimeDeImagen(bytes) == 'image/jpeg' &&
+    bytes.length <= maximoBytesFotoWebSinReducir &&
+    !_llevaExif(bytes);
+
+/// ¿Trae el JPEG un bloque EXIF (`APP1` con `Exif\0\0`)? Recorre los
+/// segmentos de la cabecera hasta el comienzo de la imagen.
+bool _llevaExif(List<int> bytes) {
+  var posicion = 2;
+  while (posicion + 4 <= bytes.length && bytes[posicion] == 0xFF) {
+    final marcador = bytes[posicion + 1];
+    if (marcador == 0xDA || marcador == 0xD9) return false;
+    final largo = (bytes[posicion + 2] << 8) | bytes[posicion + 3];
+    if (marcador == 0xE1 &&
+        posicion + 10 <= bytes.length &&
+        String.fromCharCodes(bytes.sublist(posicion + 4, posicion + 8)) ==
+            'Exif') {
+      return true;
+    }
+    posicion += 2 + largo;
+  }
+  return false;
+}

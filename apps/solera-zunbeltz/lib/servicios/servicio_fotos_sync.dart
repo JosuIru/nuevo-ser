@@ -30,6 +30,18 @@ class ResumenFotosSync {
   final bool servidorSinFotos;
 }
 
+/// Lo que la sincronización pide a las fotos: en el móvil
+/// [ServicioFotosSync] (ficheros); en el navegador `ServicioFotosWeb`
+/// (`servicio_fotos_web.dart`, la BD).
+abstract interface class SincronizadorFotos {
+  /// Deja listas para subir las fotos nuevas. Devuelve cuántas.
+  Future<int> prepararFotosLocales();
+
+  /// Sube lo pendiente y baja lo que falta, hasta agotar [presupuesto].
+  Future<ResumenFotosSync> transferir(
+      {Duration presupuesto = const Duration(seconds: 90)});
+}
+
 /// Mueve las fotos entre este móvil y el WordPress de Zunbeltz (ver
 /// `utiles/fotos_sincronizadas.dart`):
 ///
@@ -44,7 +56,7 @@ class ResumenFotosSync {
 ///
 /// Nada de esto puede tumbar la sincronización de datos: quien llama lo
 /// envuelve en try/catch.
-class ServicioFotosSync {
+class ServicioFotosSync implements SincronizadorFotos {
   ServicioFotosSync({
     required this.bd,
     required this.transporte,
@@ -67,6 +79,7 @@ class ServicioFotosSync {
 
   /// Prepara (reduce y calcula el hash de) las fotos de este móvil que aún
   /// no lo están. Devuelve cuántas.
+  @override
   Future<int> prepararFotosLocales() async {
     var preparadas = 0;
     for (final ruta in await bd.rutasFotoSinPreparar()) {
@@ -92,7 +105,7 @@ class ServicioFotosSync {
     return preparadas;
   }
 
-  /// Sube lo pendiente y baja lo que falta, hasta agotar [presupuesto].
+  @override
   Future<ResumenFotosSync> transferir(
       {Duration presupuesto = const Duration(seconds: 90)}) async {
     final inicio = reloj();

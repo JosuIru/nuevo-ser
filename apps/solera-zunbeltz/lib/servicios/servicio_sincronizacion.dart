@@ -7,6 +7,7 @@ import '../estado/datos_notificador.dart';
 import '../estado/sesion_espacio.dart';
 import 'cliente_sync_zunbeltz.dart';
 import 'servicio_fotos_sync.dart';
+import 'servicio_fotos_web.dart';
 import 'sincronizacion_segundo_plano.dart' show claveUltimaSincronizacion;
 
 /// `true` mientras hay una sincronización en marcha (para que la interfaz
@@ -89,24 +90,27 @@ Future<ResultadoSyncZunbeltz?> sincronizarEspacio(
   }
 }
 
-Future<ServicioFotosSync?> _servicioFotos(
+Future<SincronizadorFotos?> _servicioFotos(
     BaseDatosSoleraZunbeltz bd, ClienteSyncZunbeltz cliente) async {
-  // En web no hay fotos (no hay ficheros donde guardarlas).
-  if (kIsWeb) return null;
+  // En web no hay ficheros: las fotos van dentro de la BD.
+  if (kIsWeb) return ServicioFotosWeb(bd: bd, transporte: cliente);
   try {
     return ServicioFotosSync(
-        bd: bd, transporte: cliente, directorioFotos: await directorioFotosSync());
+        bd: bd,
+        transporte: cliente,
+        directorioFotos: await directorioFotosSync());
   } catch (_) {
     return null;
   }
 }
 
 /// Sube y baja fotos solo con wifi o cable; con datos móviles quedan
-/// pendientes para la próxima. Nunca falla.
-Future<void> _transferirFotosSiHayWifi(ServicioFotosSync? fotos) async {
+/// pendientes para la próxima. En el navegador no se sabe qué red hay: van
+/// con cualquiera (ya están reducidas). Nunca falla.
+Future<void> _transferirFotosSiHayWifi(SincronizadorFotos? fotos) async {
   if (fotos == null) return;
   try {
-    if (!await hayRedSinMedir()) return;
+    if (!kIsWeb && !await hayRedSinMedir()) return;
     final resumen = await fotos.transferir();
     if (resumen.bajadas > 0) avisarCambioDatos();
   } catch (_) {
@@ -120,12 +124,12 @@ Future<void> _transferirFotosSiHayWifi(ServicioFotosSync? fotos) async {
 /// Al final, con wifi, las fotos (después de avisar: los datos no esperan
 /// a las fotos).
 Future<ResultadoSyncZunbeltz> _terminarSincronizacion(
-    ResultadoSyncZunbeltz resultado, ServicioFotosSync? fotos) async {
+    ResultadoSyncZunbeltz resultado, SincronizadorFotos? fotos) async {
   await guardarSesionEspacio(
       resultado.sesionRemota.sesion, resultado.sesionRemota.personas);
   // La comparte la tarea en segundo plano para no sincronizar a la vez.
-  await (await SharedPreferences.getInstance()).setInt(
-      claveUltimaSincronizacion, DateTime.now().millisecondsSinceEpoch);
+  await (await SharedPreferences.getInstance())
+      .setInt(claveUltimaSincronizacion, DateTime.now().millisecondsSinceEpoch);
   avisarCambioDatos();
   for (final oyente in List.of(oyentesSincronizacion)) {
     await oyente(resultado);

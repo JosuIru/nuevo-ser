@@ -28,6 +28,17 @@ class FotoPorBajar {
   final int ultimoIntentoMs;
 }
 
+/// Una foto de la versión web, guardada en la BD, que el servidor aún no
+/// tiene.
+class FotoWebPorSubir {
+  const FotoWebPorSubir(
+      {required this.hash, this.intentos = 0, this.ultimoIntentoMs = 0});
+
+  final String hash;
+  final int intentos;
+  final int ultimoIntentoMs;
+}
+
 /// Correspondencia entre fotos (por hash) y ficheros de este móvil, y la
 /// cola de lo que falta subir o bajar. Ver `utiles/fotos_sincronizadas.dart`
 /// y `servicios/servicio_fotos_sync.dart`.
@@ -183,14 +194,19 @@ extension FotosBaseDatos on BaseDatosSoleraZunbeltz {
     });
   }
 
-  /// Referencias `foto:<hash>` sin fichero en este móvil.
+  /// Referencias `foto:<hash>` sin fichero en este móvil (ni guardadas en
+  /// la BD, en la versión web).
   Future<List<FotoPorBajar>> listarFotosPorBajar() async {
     final db = await basedatos;
-    final conFichero = await _rutaLocalPorHashFoto(db);
+    final conFichero = {
+      ...(await _rutaLocalPorHashFoto(db)).keys,
+      for (final fila in await db.query('fotos_web', columns: ['hash']))
+        fila['hash'] as String,
+    };
     final hashes = <String>{
       for (final entrada in await _entradasFotoGuardadas(db))
         if (hashDeReferencia(entrada) case final hash?)
-          if (!conFichero.containsKey(hash)) hash,
+          if (!conFichero.contains(hash)) hash,
     };
     if (hashes.isEmpty) return const [];
     final intentosPorHash = {
@@ -252,5 +268,79 @@ extension FotosBaseDatos on BaseDatosSoleraZunbeltz {
         });
       }
     });
+  }
+
+  // --- Versión web: las fotos viven en la tabla `fotos_web` ---
+
+  /// Guarda la foto [bytes] (ya reducida) con su [hash]. [subida]: el
+  /// servidor ya la tiene (bajada de él). Si ya estaba, no se toca, salvo
+  /// para apuntar que ya está subida.
+  Future<void> guardarFotoWeb(String hash, List<int> bytes,
+      {bool subida = false}) async {
+    final db = await basedatos;
+    await db.insert(
+        'fotos_web',
+        {
+          'hash': hash,
+          'bytes': Uint8List.fromList(bytes),
+          'subida': subida ? 1 : 0,
+        },
+        conflictAlgorithm: ConflictAlgorithm.ignore);
+    if (subida) {
+      await db.update('fotos_web', {'subida': 1},
+          where: 'hash = ?', whereArgs: [hash]);
+    }
+  }
+
+  /// Bytes de la foto [hash] guardada en la BD, o `null`.
+  Future<Uint8List?> bytesFotoWeb(String hash) async {
+    final db = await basedatos;
+    final filas = await db.query('fotos_web',
+        columns: ['bytes'], where: 'hash = ?', whereArgs: [hash], limit: 1);
+    if (filas.isEmpty) return null;
+    final bytes = filas.first['bytes'];
+    return bytes is Uint8List
+        ? bytes
+        : Uint8List.fromList((bytes as List).cast<int>());
+  }
+
+  /// Fotos guardadas en la BD que el servidor aún no tiene.
+  Future<List<FotoWebPorSubir>> listarFotosWebPorSubir() async {
+    final db = await basedatos;
+    final filas = await db.query('fotos_web',
+        columns: ['hash', 'intentos', 'ultimo_intento_ms'],
+        where: 'subida = 0',
+        orderBy: 'intentos ASC');
+    return [
+      for (final fila in filas)
+        FotoWebPorSubir(
+          hash: fila['hash'] as String,
+          intentos: fila['intentos'] as int,
+          ultimoIntentoMs: fila['ultimo_intento_ms'] as int,
+        ),
+    ];
+  }
+
+  Future<void> marcarFotoWebSubida(String hash) async {
+    final db = await basedatos;
+    await db.update(
+        'fotos_web', {'subida': 1, 'intentos': 0, 'ultimo_intento_ms': 0},
+        where: 'hash = ?', whereArgs: [hash]);
+  }
+
+  Future<void> anotarFalloSubidaFotoWeb(String hash, {int? ahoraMs}) async {
+    final db = await basedatos;
+    await db.rawUpdate(
+        'UPDATE fotos_web SET intentos = intentos + 1, '
+        'ultimo_intento_ms = ? WHERE hash = ?',
+        [ahoraMs ?? DateTime.now().millisecondsSinceEpoch, hash]);
+  }
+
+  /// Cuántas fotos de la BD quedan por subir (para avisar en Ajustes).
+  Future<int> contarFotosWebPorSubir() async {
+    final db = await basedatos;
+    return Sqflite.firstIntValue(await db
+            .rawQuery('SELECT COUNT(*) FROM fotos_web WHERE subida = 0')) ??
+        0;
   }
 }

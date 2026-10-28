@@ -1,4 +1,5 @@
 import 'dart:convert' show jsonEncode;
+import 'dart:typed_data' show Uint8List;
 
 import 'package:flutter/foundation.dart' show kIsWeb, visibleForTesting;
 import 'package:latlong2/latlong.dart';
@@ -74,6 +75,8 @@ part 'base_datos_fotos.dart';
 /// cumplimiento, las peticiones y los avisos de campo.
 /// v19 permite varias responsables por tarea (`responsables_uids`, lista
 /// JSON; `responsable_uid` sigue siendo la primera).
+/// v20 guarda las fotos de la versión web dentro de la BD (`fotos_web`): en
+/// el navegador no hay ficheros.
 class BaseDatosSoleraZunbeltz {
   static final BaseDatosSoleraZunbeltz instancia =
       BaseDatosSoleraZunbeltz._interno();
@@ -115,7 +118,7 @@ class BaseDatosSoleraZunbeltz {
     return _basedatos!;
   }
 
-  static const int versionEsquema = 19;
+  static const int versionEsquema = 20;
 
   /// Aplica en orden las migraciones posteriores a [anterior]. Lo usan la
   /// apertura de la BD (alta y subida de versión) y los tests.
@@ -138,6 +141,7 @@ class BaseDatosSoleraZunbeltz {
     if (anterior < 17) await aplicarMigracionV17(db);
     if (anterior < 18) await aplicarMigracionV18(db);
     if (anterior < 19) await aplicarMigracionV19(db);
+    if (anterior < 20) await aplicarMigracionV20(db);
   }
 
   /// Crea el esquema v1. Público y estático para reutilizarlo en tests con
@@ -808,6 +812,23 @@ class BaseDatosSoleraZunbeltz {
           where: 'id = ?',
           whereArgs: [fila['id']]);
     }
+  }
+
+  /// v20: fotos de la versión web. En el navegador no hay ficheros, así que
+  /// cada foto (ya reducida, por su hash) se guarda aquí, con lo que falte
+  /// por subir; las columnas de fotos de las entidades llevan siempre
+  /// referencias `foto:<hash>` (ver `base_datos_fotos.dart`). En el móvil
+  /// la tabla queda vacía. Aditiva.
+  static Future<void> aplicarMigracionV20(Database db) async {
+    await db.execute('''
+      CREATE TABLE fotos_web (
+        hash TEXT PRIMARY KEY,
+        bytes BLOB NOT NULL,
+        subida INTEGER NOT NULL DEFAULT 0,
+        intentos INTEGER NOT NULL DEFAULT 0,
+        ultimo_intento_ms INTEGER NOT NULL DEFAULT 0
+      )
+    ''');
   }
 
   static Future<void> aplicarMigracionV16(Database db) async {

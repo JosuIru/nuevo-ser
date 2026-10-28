@@ -29,7 +29,7 @@ import 'widgets/liberar_al_cerrar.dart';
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
 /// falla si no coinciden.
-const String versionAppZunbeltz = '0.7.7';
+const String versionAppZunbeltz = '0.7.8';
 
 /// Pestaña "Ajustes": idioma y acerca de.
 class PantallaAjustes extends StatefulWidget {

@@ -79,16 +79,21 @@ function szs_registrar_actividad_tarea( array $persona, ?array $antes, array $de
 }
 
 /**
- * Entradas posteriores a `$desde_id`, de la más antigua a la más reciente
- * (así el dispositivo avanza su cursor al último id recibido).
+ * Las `$limite` entradas más recientes posteriores a `$desde_id`, de la más
+ * antigua a la más reciente (así el dispositivo avanza su cursor al último
+ * id recibido).
  *
  * @return array<int, array>
  */
 function szs_listar_actividad( int $desde_id, int $limite = 500 ): array {
 	global $wpdb;
 	$tabla = $wpdb->prefix . SZS_TABLA_ACTIVIDAD;
+	// Las más recientes, no las más antiguas: un dispositivo nuevo (cursor
+	// 0) o que lleva tiempo sin sincronizar recibía las 500 primeras del
+	// espacio y enseñaba eso como «lo último». Lo que queda entre medias
+	// se salta: la app solo enseña las últimas.
 	$filas = (array) $wpdb->get_results(
-		$wpdb->prepare( "SELECT * FROM {$tabla} WHERE id > %d ORDER BY id ASC LIMIT %d", $desde_id, $limite ),
+		$wpdb->prepare( "SELECT * FROM (SELECT * FROM {$tabla} WHERE id > %d ORDER BY id DESC LIMIT %d) AS ultimas ORDER BY id ASC", $desde_id, $limite ),
 		ARRAY_A
 	);
 	return array_map( 'szs_actividad_a_json', $filas );

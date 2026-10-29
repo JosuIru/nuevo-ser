@@ -119,6 +119,18 @@
     // Se le dice además lo que ya se ha cargado (la primera vez aún no
     // controlaba la página), y se pide que los datos no se borren solos.
     if ('serviceWorker' in navigator) {
+      // Versión nueva: el service worker nuevo se instala en segundo plano y
+      // toma el control. Si eso pasa nada más abrir, se recarga una vez para
+      // enseñarla ya; más tarde no, que se perdería lo que se esté
+      // escribiendo (se verá al abrirla la próxima vez).
+      var habiaVersionGuardada = !!navigator.serviceWorker.controller;
+      var momentoDeApertura = Date.now();
+      var recargando = false;
+      navigator.serviceWorker.addEventListener('controllerchange', function () {
+        if (!habiaVersionGuardada || recargando || Date.now() - momentoDeApertura > 20000) return;
+        recargando = true;
+        window.location.reload();
+      });
       window.addEventListener('load', function () {
         navigator.serviceWorker.register('sw_zunbeltz.js').catch(function (error) {
           console.warn('Sin service worker:', error);

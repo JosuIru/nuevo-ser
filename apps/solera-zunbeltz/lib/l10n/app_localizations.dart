@@ -968,12 +968,6 @@ abstract class AppLocalizations {
   /// **'Zunbeltz sale adelante gracias a las instituciones, fundaciones y redes que lo impulsan, lo apoyan y colaboran con él.'**
   String get entidadesIntro;
 
-  /// No description provided for @entidadesFranja.
-  ///
-  /// In es, this message translates to:
-  /// **'Con el apoyo de'**
-  String get entidadesFranja;
-
   /// No description provided for @navProyectos.
   ///
   /// In es, this message translates to:
@@ -2059,6 +2053,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Sincronizar ahora'**
   String get ajustesSyncAhora;
+
+  /// No description provided for @avisosPushTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Avisos al momento en este dispositivo'**
+  String get avisosPushTitulo;
+
+  /// No description provided for @avisosPushActivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Activados: alarmas, peticiones y tareas para ti, aunque la app esté cerrada'**
+  String get avisosPushActivo;
+
+  /// No description provided for @avisosPushInactivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Actívalos para enterarte de las alarmas, peticiones y tareas para ti aunque la app esté cerrada'**
+  String get avisosPushInactivo;
+
+  /// No description provided for @avisosPushDenegado.
+  ///
+  /// In es, this message translates to:
+  /// **'El navegador los tiene bloqueados: permítelos en sus ajustes para este sitio'**
+  String get avisosPushDenegado;
+
+  /// No description provided for @avisosPushInstalar.
+  ///
+  /// In es, this message translates to:
+  /// **'En el iPhone, primero añade la app a la pantalla de inicio (Compartir → «Añadir a pantalla de inicio») y ábrela desde allí'**
+  String get avisosPushInstalar;
+
+  /// No description provided for @avisosPushNoCompatible.
+  ///
+  /// In es, this message translates to:
+  /// **'Este navegador no puede recibirlos'**
+  String get avisosPushNoCompatible;
+
+  /// No description provided for @avisosPushError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se han podido activar: comprueba la conexión. Si sigue igual, el servidor necesita la última versión del plugin'**
+  String get avisosPushError;
 
   /// No description provided for @ajustesSyncResultado.
   ///
@@ -4121,7 +4157,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaWebB.
   ///
   /// In es, this message translates to:
-  /// **'La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador también se pueden hacer y añadir fotos. Se guardan en el navegador, ya reducidas, y suben al sincronizar con cualquier conexión (no solo con wifi).\n» En el iPhone: abre la dirección en Safari, toca Compartir → «Añadir a pantalla de inicio» y ábrela siempre desde ese icono. Ábrela una vez con cobertura: a partir de ahí se abre también sin ella. Lo que apuntes sin cobertura se guarda y sube en la siguiente sincronización.\n» Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.'**
+  /// **'La app también funciona en el navegador, sin instalar nada. Es útil para trabajar desde la oficina o con una pantalla más grande.\n1. Abre la dirección web de la aplicación en el navegador de tu ordenador.\n2. Si usas la app por tu cuenta, puedes empezar a trabajar directamente, sin configurar un servidor ni poner una clave de usuario.\n3. A partir de ahí funciona igual que en el móvil.\n» Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.\n» En el navegador también se pueden hacer y añadir fotos. Se guardan en el navegador, ya reducidas, y suben al sincronizar con cualquier conexión (no solo con wifi).\n» En el iPhone: abre la dirección en Safari, toca Compartir → «Añadir a pantalla de inicio» y ábrela siempre desde ese icono. Ábrela una vez con cobertura: a partir de ahí se abre también sin ella. Lo que apuntes sin cobertura se guarda y sube en la siguiente sincronización.\n» Avisos al momento: en Ajustes → Sincronización, activa «Avisos al momento en este dispositivo» y acepta el permiso del navegador. Te llegan las alarmas, las peticiones (a coordinación) y las tareas que te asignan, aunque la app esté cerrada. En el iPhone solo funciona con la app añadida a la pantalla de inicio (iOS 16.4 o posterior) y abierta desde ese icono.\n» Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.'**
   String get ayudaWebB;
 
   /// No description provided for @noticiasSectorTitulo.

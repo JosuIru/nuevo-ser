@@ -470,9 +470,6 @@ class AppLocalizationsEu extends AppLocalizations {
       'Zunbeltz aurrera doa bultzatzen, babesten eta laguntzen duten erakunde, fundazio eta sareei esker.';
 
   @override
-  String get entidadesFranja => 'Hauen laguntzarekin';
-
-  @override
   String get navProyectos => 'Proiektuak';
 
   @override
@@ -1064,6 +1061,32 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ajustesSyncAhora => 'Sinkronizatu orain';
+
+  @override
+  String get avisosPushTitulo => 'Berehalako abisuak gailu honetan';
+
+  @override
+  String get avisosPushActivo =>
+      'Aktibatuta: alarmak, eskaerak eta zuretzako zereginak, aplikazioa itxita egonda ere';
+
+  @override
+  String get avisosPushInactivo =>
+      'Aktibatu itzazu alarmen, eskaeren eta zuretzako zereginen berri izateko, aplikazioa itxita egonda ere';
+
+  @override
+  String get avisosPushDenegado =>
+      'Nabigatzaileak blokeatuta ditu: baimendu itzazu gune honetarako ezarpenetan';
+
+  @override
+  String get avisosPushInstalar =>
+      'iPhonean, lehenik gehitu aplikazioa hasierako pantailara (Partekatu → «Gehitu hasierako pantailan») eta ireki handik';
+
+  @override
+  String get avisosPushNoCompatible => 'Nabigatzaile honek ezin ditu jaso';
+
+  @override
+  String get avisosPushError =>
+      'Ezin izan dira aktibatu: egiaztatu konexioa. Berdin jarraitzen badu, zerbitzariak pluginaren azken bertsioa behar du';
 
   @override
   String ajustesSyncResultado(int enviados, int recibidos, int retirados) {
@@ -2293,7 +2316,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaWebB =>
-      'Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.\n1. Ireki aplikazioaren web-helbidea zure ordenagailuko nabigatzailean.\n2. App-a zure kabuz erabiltzen baduzu, zuzenean has zaitezke lanean, zerbitzaririk konfiguratu gabe eta erabiltzaile-gakorik jarri gabe.\n3. Hortik aurrera mugikorrean bezala dabil.\n» Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.\n» Nabigatzailean ere argazkiak atera eta gehi daitezke. Nabigatzailean gordetzen dira, txikituta, eta sinkronizatzean igotzen dira edozein konexiorekin (ez wifiarekin bakarrik).\n» iPhonean: ireki helbidea Safarin, sakatu Partekatu → «Gehitu hasierako pantailan» eta ireki beti ikono horretatik. Ireki behin estaldurarekin: hortik aurrera estaldurarik gabe ere irekitzen da. Estaldurarik gabe idazten duzuna gorde egiten da eta hurrengo sinkronizazioan igotzen da.\n» Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.';
+      'Aplikazioak nabigatzailean ere funtzionatzen du, ezer instalatu gabe. Erabilgarria da bulegotik edo pantaila handiago batekin lan egiteko.\n1. Ireki aplikazioaren web-helbidea zure ordenagailuko nabigatzailean.\n2. App-a zure kabuz erabiltzen baduzu, zuzenean has zaitezke lanean, zerbitzaririk konfiguratu gabe eta erabiltzaile-gakorik jarri gabe.\n3. Hortik aurrera mugikorrean bezala dabil.\n» Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.\n» Nabigatzailean ere argazkiak atera eta gehi daitezke. Nabigatzailean gordetzen dira, txikituta, eta sinkronizatzean igotzen dira edozein konexiorekin (ez wifiarekin bakarrik).\n» iPhonean: ireki helbidea Safarin, sakatu Partekatu → «Gehitu hasierako pantailan» eta ireki beti ikono horretatik. Ireki behin estaldurarekin: hortik aurrera estaldurarik gabe ere irekitzen da. Estaldurarik gabe idazten duzuna gorde egiten da eta hurrengo sinkronizazioan igotzen da.\n» Berehalako abisuak: Ezarpenak → Sinkronizazioa atalean, aktibatu «Berehalako abisuak gailu honetan» eta onartu nabigatzailearen baimena. Alarmak, eskaerak (koordinazioari) eta esleitzen dizkizuten zereginak iristen zaizkizu, aplikazioa itxita egonda ere. iPhonean, aplikazioa hasierako pantailan gehituta (iOS 16.4 edo berriagoa) eta ikono horretatik irekita bakarrik dabil.\n» Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.';
 
   @override
   String get noticiasSectorTitulo => 'Sektoreko berriak';

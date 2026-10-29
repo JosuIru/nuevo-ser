@@ -5,7 +5,7 @@
  *
  * Índice de la ayuda, apartados con versión para tester y textos de
  * serie en castellano y euskera. Coordinación los cambia en
- * Solera Zunbeltz → Ayuda (includes/ayuda.php).
+ * Larrea Zunbeltz → Ayuda (includes/ayuda.php).
  *
  * @package SoleraZunbeltzSync
  */
@@ -255,6 +255,7 @@ En tu proyecto, el botón del apretón de manos (arriba) abre el Convenio:
 » Si eres persona tester de Zunbeltz, coordinación te da la dirección web (la del WordPress de Zunbeltz, terminada en /app/) y tu clave de usuario para compartir la información con el equipo. La dirección del servidor ya viene puesta: en Ajustes → Sincronización solo tienes que poner tu clave.
 » En el navegador también se pueden hacer y añadir fotos. Se guardan en el navegador, ya reducidas, y suben al sincronizar con cualquier conexión (no solo con wifi).
 » En el iPhone: abre la dirección en Safari, toca Compartir → «Añadir a pantalla de inicio» y ábrela siempre desde ese icono. Ábrela una vez con cobertura: a partir de ahí se abre también sin ella. Lo que apuntes sin cobertura se guarda y sube en la siguiente sincronización.
+» Avisos al momento: en Ajustes → Sincronización, activa «Avisos al momento en este dispositivo» y acepta el permiso del navegador. Te llegan las alarmas, las peticiones (a coordinación) y las tareas que te asignan, aunque la app esté cerrada. En el iPhone solo funciona con la app añadida a la pantalla de inicio (iOS 16.4 o posterior) y abierta desde ese icono.
 » Si arriba ves la franja «Versión de prueba», es la demostración: lo que apuntes ahí se queda en ese navegador y no lo ve nadie más.',
 		'ayudaRolesT' => 'Quién puede hacer qué',
 		'ayudaRolesB' => 'Cada persona tiene un rol, que le da coordinación.
@@ -511,6 +512,7 @@ Zure proiektuan, esku-emate botoiak (goian) Hitzarmena irekitzen du:
 » Zunbeltzeko pertsona testerra bazara, koordinazioak web-helbidea (Zunbeltzen WordPressarena, /app/ amaieran duena) eta zure erabiltzaile-gakoa emango dizkizu, informazioa taldearekin partekatzeko. Zerbitzariaren helbidea jarrita dator: Ezarpenak → Sinkronizazioa atalean zure gakoa baino ez duzu jarri behar.
 » Nabigatzailean ere argazkiak atera eta gehi daitezke. Nabigatzailean gordetzen dira, txikituta, eta sinkronizatzean igotzen dira edozein konexiorekin (ez wifiarekin bakarrik).
 » iPhonean: ireki helbidea Safarin, sakatu Partekatu → «Gehitu hasierako pantailan» eta ireki beti ikono horretatik. Ireki behin estaldurarekin: hortik aurrera estaldurarik gabe ere irekitzen da. Estaldurarik gabe idazten duzuna gorde egiten da eta hurrengo sinkronizazioan igotzen da.
+» Berehalako abisuak: Ezarpenak → Sinkronizazioa atalean, aktibatu «Berehalako abisuak gailu honetan» eta onartu nabigatzailearen baimena. Alarmak, eskaerak (koordinazioari) eta esleitzen dizkizuten zereginak iristen zaizkizu, aplikazioa itxita egonda ere. iPhonean, aplikazioa hasierako pantailan gehituta (iOS 16.4 edo berriagoa) eta ikono horretatik irekita bakarrik dabil.
 » Goian «Proba-bertsioa» zerrenda ikusten baduzu, erakustaldia da: bertan idazten duzuna nabigatzaile horretan geratzen da eta beste inork ez du ikusten.',
 		'ayudaRolesT' => 'Nork zer egin dezakeen',
 		'ayudaRolesB' => 'Pertsona bakoitzak rol bat du, koordinazioak ematen diona.

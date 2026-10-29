@@ -1,4 +1,4 @@
-/// Traducciones para la suite Solera.
+/// Traducciones para la suite Larrea.
 /// Cada app usa `SoleraL10n.t(context, key)` para acceder a los textos.
 library;
 

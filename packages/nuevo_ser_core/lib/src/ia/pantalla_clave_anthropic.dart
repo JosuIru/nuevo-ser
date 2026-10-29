@@ -26,7 +26,7 @@ class PantallaClaveAnthropic extends StatefulWidget {
   /// Dónde se guarda la clave (cada app con su clave de almacenamiento).
   final EstadoClaveAnthropic estado;
 
-  /// Nombre visible de la app, para los textos («Solera Apícola puede…»).
+  /// Nombre visible de la app, para los textos («Larrea Apícola puede…»).
   final String nombreApp;
 
   /// Título de la barra superior.

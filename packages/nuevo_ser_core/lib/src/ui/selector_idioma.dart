@@ -32,7 +32,7 @@ Future<void> _guardarIdiomaSolera(String codigo) async {
   }
 }
 
-/// Selector de idioma para la suite Solera.
+/// Selector de idioma para la suite Larrea.
 /// Muestra los 4 idiomas disponibles (es, eu, ca, gl) como chips.
 ///
 /// Uso:

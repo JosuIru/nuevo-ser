@@ -1,5 +1,5 @@
 /// Factura emitida — conforme al Reglamento de Facturación
-/// (RD 1619/2012) español. Modelo común de la Suite Solera (agro,
+/// (RD 1619/2012) español. Modelo común de la Suite Larrea (agro,
 /// viticultura, apícola, arbolado urbano y quesera tenían copias
 /// idénticas en `lib/modelos/factura.dart`).
 ///

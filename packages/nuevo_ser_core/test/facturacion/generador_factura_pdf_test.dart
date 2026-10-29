@@ -37,7 +37,7 @@ void main() {
     final generador = GeneradorFacturaPdf(
       marca: 'SOLERA QUESERA',
       tituloDocumento: 'Factura Simplificada',
-      nombreAplicacion: 'Solera Quesera',
+      nombreAplicacion: 'Larrea Quesera',
     );
     final bytes = await generador.generarBytes(
       factura: factura,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Wrapper sobre `RawAutocomplete<T>` + `TextFormField` que mantiene la
-/// API esperada por las apps de la **suite Solera** (Viticultura,
+/// API esperada por las apps de la **suite Larrea** (Viticultura,
 /// Apícola, Arbolado Urbano):
 ///
 /// - `TextEditingController` externo: la pantalla anfitriona controla

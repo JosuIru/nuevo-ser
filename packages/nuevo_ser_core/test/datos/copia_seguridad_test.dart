@@ -9,7 +9,7 @@ import 'package:path/path.dart' as path_lib;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-/// Imita el singleton de BD de una app Solera, sobre un fichero SQLite
+/// Imita el singleton de BD de una app Larrea, sobre un fichero SQLite
 /// real en una carpeta temporal.
 class _AppDePrueba {
   _AppDePrueba(this.directorioDatos, this.nombreFicheroBaseDatos, {this.versionEsquema = 2});

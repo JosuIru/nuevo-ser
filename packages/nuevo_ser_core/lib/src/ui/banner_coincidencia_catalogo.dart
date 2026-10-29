@@ -21,7 +21,7 @@ enum CoincidenciaCatalogo { validado, provisional, libre }
 ///    criterio.
 ///
 /// La pantalla anfitriona decide el estado vía `coincidencia` y pasa
-/// el `nombreCatalogo` (p. ej. "Solera Viticultura") y opcionalmente
+/// el `nombreCatalogo` (p. ej. "Larrea Viticultura") y opcionalmente
 /// el nombre del item coincidente para mostrarlo en el banner.
 ///
 /// Los textos están parametrizados por `mensajeLibre`, `mensajeProvisional`

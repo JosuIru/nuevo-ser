@@ -51,7 +51,7 @@ class SoleraL10n {
       case '3_verificacion_de_la_cadena': return '3. Verificación de la cadena';
       case '4%_(tipo_reducido)': return '4% (tipo reducido)';
       case '4_archivar_simulacion': return '4. Archivar simulación';
-      case 'acerca_de_solera_quesera': return 'Acerca de Solera Quesera';
+      case 'acerca_de_solera_quesera': return 'Acerca de Larrea Quesera';
       case 'activa_el_perfil_de_tu_denominacion_de_o': return 'Activa el perfil de tu Denominación de Origen y la app valida';
       case 'activa_las_do_a_las_que_pertenece_tu_que': return 'Activa las DO a las que pertenece tu quesería.';
       case 'activa_las_do_de_tu_queseria_para_valida': return 'Activa las DO de tu quesería para validar';
@@ -293,7 +293,7 @@ class SoleraL10n {
       case '2_resultado_de_la_trazabilidad': return '2. Trazabilitatearen emaitza';
       case '3_verificacion_de_la_cadena': return '3. Katearen egiaztapena';
       case '4_archivar_simulacion': return '4. Simulazioa artxibatu';
-      case 'acerca_de_solera_quesera': return 'Solera Queserari buruz';
+      case 'acerca_de_solera_quesera': return 'Larrea Queserari buruz';
       case 'activado_si_es_tu_propia_explotacion': return 'Zure ustiapena bada aktibatzen da';
       case 'afinando': return 'Ontzen';
       case 'ajustes': return 'Ezarpenak';
@@ -465,7 +465,7 @@ class SoleraL10n {
       case '2_resultado_de_la_trazabilidad': return '2. Resultat de la traçabilitat';
       case '3_verificacion_de_la_cadena': return '3. Verificació de la cadena';
       case '4_archivar_simulacion': return '4. Arxivar simulació';
-      case 'acerca_de_solera_quesera': return 'Sobre Solera Quesera';
+      case 'acerca_de_solera_quesera': return 'Sobre Larrea Quesera';
       case 'activado_si_es_tu_propia_explotacion': return 'Activat si és la teva pròpia explotació';
       case 'afinando': return 'Afinant';
       case 'ajustes': return 'Configuració';
@@ -637,7 +637,7 @@ class SoleraL10n {
       case '2_resultado_de_la_trazabilidad': return '2. Resultado da trazabilidade';
       case '3_verificacion_de_la_cadena': return '3. Verificación da cadea';
       case '4_archivar_simulacion': return '4. Arquivar simulación';
-      case 'acerca_de_solera_quesera': return 'Sobre Solera Quesera';
+      case 'acerca_de_solera_quesera': return 'Sobre Larrea Quesera';
       case 'activado_si_es_tu_propia_explotacion': return 'Activado se é a túa propia explotación';
       case 'afinando': return 'Afinando';
       case 'ajustes': return 'Axustes';

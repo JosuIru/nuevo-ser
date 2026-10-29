@@ -17,7 +17,7 @@ import 'package:path_provider/path_provider.dart';
 /// carpeta — ralentiza listados del filesystem en algunos Android
 /// antiguos a partir de ~5.000 entradas y complica el backup.
 ///
-/// Extraído de `apps/agro` para uso compartido por la suite Solera
+/// Extraído de `apps/agro` para uso compartido por la suite Larrea
 /// (agro, viticultura, apícola, arbolado) y otras apps del monorepo.
 class GestorFotos {
   static final _picker = ImagePicker();

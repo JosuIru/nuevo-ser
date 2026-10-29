@@ -7,7 +7,7 @@ import '../foto/gestor_fotos.dart';
 /// Selector horizontal de fotos para formularios — botón "+" al final
 /// para añadir desde cámara o galería, miniaturas con botón borrar.
 ///
-/// Genérico en la suite Solera (Viticultura, Apícola, Arbolado Urbano)
+/// Genérico en la suite Larrea (Viticultura, Apícola, Arbolado Urbano)
 /// y candidato a usarlo cualquier otra app del monorepo que necesite
 /// adjuntar fotos a entidades.
 ///

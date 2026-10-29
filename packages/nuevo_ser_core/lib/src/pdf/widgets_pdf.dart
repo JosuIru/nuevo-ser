@@ -2,7 +2,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 /// Piezas componibles para construir informes PDF con un estilo
-/// visual consistente en toda la suite Solera (agro, viticultura,
+/// visual consistente en toda la suite Larrea (agro, viticultura,
 /// apícola, arbolado) y en cualquier app del monorepo que necesite
 /// generar informes.
 ///

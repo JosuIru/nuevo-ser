@@ -1,4 +1,4 @@
-/// Copia de seguridad común de la Suite Solera: empaqueta la base de
+/// Copia de seguridad común de la Suite Larrea: empaqueta la base de
 /// datos SQLite de la app, sus carpetas de ficheros (fotos) y, si se
 /// pide, parte de sus preferencias en un ZIP; y restaura ese ZIP sin
 /// arriesgar los datos que ya hay en el dispositivo.
@@ -145,7 +145,7 @@ class ConfiguracionCopiaSeguridad {
   /// reconocerse como de esta app.
   final String identificadorApp;
 
-  /// Nombre para personas, p. ej. «Solera Apícola» (mensajes de error).
+  /// Nombre para personas, p. ej. «Larrea Apícola» (mensajes de error).
   final String nombreApp;
 
   /// Nombre del fichero de BD dentro de la carpeta de datos, p. ej.

@@ -30,7 +30,7 @@ dependencies:
 
   # Usados por src/foto/gestor_fotos.dart — captura de fotos desde
   # cámara/galería y persistencia bajo el directorio de documentos
-  # de la app. Consumido por la suite Solera (agro, viticultura,
+  # de la app. Consumido por la suite Larrea (agro, viticultura,
   # apícola, arbolado urbano) y por uno-roto (avatares).
   image_picker: ^1.1.2
   path: ^1.9.0
@@ -50,7 +50,7 @@ dependencies:
 
   # Usado por src/pdf/ — plantillas reutilizables de informes
   # periódicos (cabecera + bullets resumen + tablas + paginación)
-  # consumidas por la suite Solera para sus PDFs de campaña, libro
+  # consumidas por la suite Larrea para sus PDFs de campaña, libro
   # oficial de tratamientos PAC, libro REGA apícola, etc.
   # `printing` se queda en cada app (lanza el visor del SO).
   pdf: ^3.11.1

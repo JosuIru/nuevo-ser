@@ -15,7 +15,7 @@
 /// El módulo es agnóstico al dominio: produce/consume `List<String>`
 /// y la app que lo use mapea a sus propios modelos. Extraído de
 /// `apps/agro/lib/servicios/csv_plantas.dart` para uso compartido por
-/// la suite Solera (agro, viticultura, apícola, arbolado).
+/// la suite Larrea (agro, viticultura, apícola, arbolado).
 library;
 
 /// Resultado de parsear un fichero CSV crudo: cabecera y filas, sin

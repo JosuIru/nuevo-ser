@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// Indicador de estado coloreado con icono.
-/// Reutilizable en todas las apps Solera para mostrar estados de
+/// Reutilizable en todas las apps Larrea para mostrar estados de
 /// lotes, plantas, colmenas, árboles, etc.
 ///
 /// Uso:

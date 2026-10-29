@@ -1,4 +1,4 @@
-/// (Movido desde solera-zunbeltz: se usa en toda la suite Solera.)
+/// (Movido desde solera-zunbeltz: se usa en toda la suite Larrea.)
 /// Lectura de números escritos a mano en los formularios, a la española:
 /// coma decimal y punto de millares («1.200,50»), aunque también vale el
 /// punto decimal («12.5»). Devuelve `null` si el texto está vacío o no se

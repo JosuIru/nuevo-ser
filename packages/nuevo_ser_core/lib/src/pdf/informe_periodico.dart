@@ -42,9 +42,9 @@ class TablaInforme {
 /// una o varias tablas + footer con paginación + guardado a
 /// directorio temporal.
 ///
-/// El layout cubre los informes de Solera (campaña por finca),
-/// Solera Viticultura (libro PAC anual), Solera Apícola (libro
-/// REGA), Solera Arbolado (informe de podas planificadas)...
+/// El layout cubre los informes de Larrea (campaña por finca),
+/// Larrea Viticultura (libro PAC anual), Larrea Apícola (libro
+/// REGA), Larrea Arbolado (informe de podas planificadas)...
 /// Cada app construye sus listas de bullets y de tablas; el módulo
 /// se encarga del estilo, la cabecera/footer y el guardado.
 ///

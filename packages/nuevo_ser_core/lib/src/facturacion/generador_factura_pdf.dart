@@ -57,7 +57,7 @@ class GeneradorFacturaPdf {
     this.marca = 'SOLERA',
     this.colorMarca = PdfColors.amber,
     this.tituloDocumento = 'Factura',
-    this.nombreAplicacion = 'Solera',
+    this.nombreAplicacion = 'Larrea',
     this.textoLegal = 'Factura electrónica válida conforme RD 1619/2012.',
   });
 

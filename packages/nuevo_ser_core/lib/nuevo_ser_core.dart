@@ -89,7 +89,7 @@ export 'src/storage/repositorio_idioma_app.dart';
 export 'src/storage/repositorio_preferencias_audio.dart';
 export 'src/sync/cliente_api.dart';
 export 'src/sync/fecha_mysql.dart';
-// Widgets UI compartidos por la suite Solera (Viticultura, Apícola,
+// Widgets UI compartidos por la suite Larrea (Viticultura, Apícola,
 // Arbolado Urbano) y candidatos a otras apps que necesiten formularios
 // con catálogo + IA.
 export 'src/ui/accesos_directos.dart';

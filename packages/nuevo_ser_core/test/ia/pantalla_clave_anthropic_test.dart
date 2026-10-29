@@ -22,7 +22,7 @@ void main() {
     await montar(
         tester,
         PantallaClaveAnthropic(
-            estado: estado, nombreApp: 'Solera', titulo: 'IA de prueba'));
+            estado: estado, nombreApp: 'Larrea', titulo: 'IA de prueba'));
 
     expect(find.text('IA de prueba'), findsOneWidget);
     expect(find.text('Probar la clave'), findsNothing);

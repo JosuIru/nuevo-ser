@@ -51,7 +51,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
         // Aviso de versión nueva: si no la hay, no ocupa sitio.
         AvisoActualizaciones(
           config: configActualizacionesMonorepo('solera-quesera'),
-          nombreApp: 'Solera Quesera',
+          nombreApp: 'Larrea Quesera',
           margen: const EdgeInsets.only(bottom: 12),
         ),
         TarjetaResumen(titulo: 'Partidas de leche hoy', valor: '$_partidasHoy', subtitulo: '${_litrosHoy.toStringAsFixed(1)} litros', icono: Icons.water_drop, color: theme.colorScheme.primary),

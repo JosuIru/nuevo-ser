@@ -1,5 +1,5 @@
 name: solera_quesera
-description: "Solera Quesera — gestor para queserías artesanales. Trazabilidad de leche a queso, gestión de afinado por pieza, libro oficial de trazabilidad APPCC, cumplimiento de DO, identificación IA de defectos."
+description: "Larrea Quesera — gestor para queserías artesanales. Trazabilidad de leche a queso, gestión de afinado por pieza, libro oficial de trazabilidad APPCC, cumplimiento de DO, identificación IA de defectos."
 publish_to: 'none'
 version: 0.1.5+6
 

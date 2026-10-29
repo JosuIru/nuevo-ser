@@ -1,4 +1,4 @@
-# BLOQUEOS-PENDIENTES — Solera Quesera
+# BLOQUEOS-PENDIENTES — Larrea Quesera
 
 Decisiones humanas y verificaciones externas necesarias antes de cada hito. Inspirado en el registro de bloqueos de `solera-viticultura` y `solera-apicola`.
 
@@ -58,4 +58,4 @@ Decisiones humanas y verificaciones externas necesarias antes de cada hito. Insp
 - [ ] ¿Multi-quesería (varios establecimientos bajo la misma cuenta) en F2?
 - [ ] ¿Sincronización con el Consejo Regulador para declaraciones de producción (DO)?
 - [ ] ¿Sincronización con el MAPA para el libro de trazabilidad digital oficial?
-- [ ] La app se llama "quesera" pero el sector lácteo artesanal incluye yogur, cuajada, requesón. ¿Ampliar a "Solera Láctea" o mantener el foco en queso?
+- [ ] La app se llama "quesera" pero el sector lácteo artesanal incluye yogur, cuajada, requesón. ¿Ampliar a "Larrea Láctea" o mantener el foco en queso?

@@ -1,5 +1,5 @@
 /// Quesería — establecimiento quesero con identidad persistente.
-/// Entidad análoga a Finca/Viñedo/Apiario en las otras Solera.
+/// Entidad análoga a Finca/Viñedo/Apiario en las otras Larrea.
 ///
 /// Single-row en v0.1 (una quesería por dispositivo). Multi-quesería
 /// llega con backend multi-operador (F4).

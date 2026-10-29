@@ -1,4 +1,4 @@
-/// Lote de producción — la entidad central de Solera Quesera.
+/// Lote de producción — la entidad central de Larrea Quesera.
 /// Cada lote = una hornada de queso fabricada un día, con trazabilidad
 /// completa de partidas de leche usadas, ingredientes y rendimiento.
 ///

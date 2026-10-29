@@ -32,8 +32,8 @@ const int versionEsquemaSoleraQuesera = 4;
 /// Nombre del fichero de la BD en la carpeta de documentos.
 const String nombreFicheroBaseDatosSoleraQuesera = 'solera_quesera.db';
 
-/// Acceso a la base de datos local de Solera Quesera. Singleton con
-/// inicialización perezosa siguiendo el patrón de la suite Solera.
+/// Acceso a la base de datos local de Larrea Quesera. Singleton con
+/// inicialización perezosa siguiendo el patrón de la suite Larrea.
 ///
 /// v1 arranca con esquema completo (15 tablas + FK + índices).
 /// Migraciones nunca destructivas — una quesería en producción lleva

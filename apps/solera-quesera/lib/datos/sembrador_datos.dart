@@ -14,7 +14,7 @@ import '../modelos/queseria.dart';
 import '../modelos/receta.dart';
 import '../modelos/venta.dart';
 
-/// Sembrador de datos de demostración para Solera Quesera.
+/// Sembrador de datos de demostración para Larrea Quesera.
 ///
 /// Inserta una quesería ficticia con 2 proveedores, 2 recetas,
 /// 10 partidas de leche, 4 lotes de producción con sus piezas,

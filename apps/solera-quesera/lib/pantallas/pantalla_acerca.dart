@@ -45,7 +45,7 @@ class PantallaAcerca extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Solera Quesera',
+                  'Larrea Quesera',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -58,7 +58,7 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Solera Quesera es un gestor para queserías artesanas: '
+            'Larrea Quesera es un gestor para queserías artesanas: '
             'recepción de leche por proveedor, lotes de producción, '
             'afinado pieza a pieza en la cava, controles APPCC, perfiles '
             'de Denominación de Origen, identificación de defectos por '
@@ -68,7 +68,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Compromisos legales'),
           const _Bullet(
-            'Solera no recomienda fermentos, cuajos ni aditivos '
+            'Larrea no recomienda fermentos, cuajos ni aditivos '
             'comerciales por marca: el catálogo recoge tipos, no '
             'productos. Consulta a tu técnico o proveedor.',
           ),
@@ -92,12 +92,12 @@ class PantallaAcerca extends StatelessWidget {
           const _Seccion('Catálogos'),
           const _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Solera'),
+          const _Seccion('Familia Larrea'),
           const Text(
-            'Solera Quesera es parte de la suite Solera de la Colección '
-            'Nuevo Ser. Apps hermanas: Solera (fincas agrícolas), Solera '
-            'Viticultura, Solera Apícola, Solera Arbolado Urbano y '
-            'Solera Aceitera.',
+            'Larrea Quesera es parte de la suite Larrea de la Colección '
+            'Nuevo Ser. Apps hermanas: Larrea (fincas agrícolas), Larrea '
+            'Viticultura, Larrea Apícola, Larrea Arbolado Urbano y '
+            'Larrea Aceitera.',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),

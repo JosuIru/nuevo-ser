@@ -46,7 +46,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       await _cargar();
       if (mounted) {
         await Share.shareXFiles([XFile(copia.path)],
-            subject: 'Copia de seguridad de Solera Quesera');
+            subject: 'Copia de seguridad de Larrea Quesera');
       }
     } on ErrorCopiaSeguridad catch (error) {
       _avisar('No se ha podido crear la copia. ${textoErrorCopia(error)}');

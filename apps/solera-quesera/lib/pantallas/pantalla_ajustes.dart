@@ -118,7 +118,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               MaterialPageRoute(
                 builder: (_) => PantallaEstadoActualizaciones(
                   config: configActualizacionesMonorepo('solera-quesera'),
-                  nombreApp: 'Solera Quesera',
+                  nombreApp: 'Larrea Quesera',
                 ),
               ),
             ),

@@ -212,7 +212,7 @@ class GeneradorInformeSimulacion {
           pw.SizedBox(height: 60),
           pw.Paragraph(
             text:
-                'Documento generado por Solera Quesera. '
+                'Documento generado por Larrea Quesera. '
                 'Este informe no sustituye la documentación APPCC oficial '
                 'sino que complementa el registro de ejercicios de trazabilidad '
                 'exigido por el Reglamento CE 178/2002.',

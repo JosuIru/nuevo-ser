@@ -20,7 +20,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
   final _gen = GeneradorFacturaPdf(
     marca: 'SOLERA QUESERA',
     tituloDocumento: 'Factura Simplificada',
-    nombreAplicacion: 'Solera Quesera',
+    nombreAplicacion: 'Larrea Quesera',
     textoLegal: 'Factura generada electrónicamente. Válida como justificante fiscal conforme al RD 1619/2012.',
   );
   final _f = DateFormat('d MMM yyyy', 'es_ES');
@@ -57,7 +57,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     // social todavía, se firma como la app, como antes.
     final queseria = await _bd.obtenerQueseria();
     final emisor = DatosEmisorFactura(
-      nombre: queseria.razonSocial.trim().isNotEmpty ? queseria.razonSocial : 'Solera Quesera',
+      nombre: queseria.razonSocial.trim().isNotEmpty ? queseria.razonSocial : 'Larrea Quesera',
       nif: queseria.nif,
       direccion: queseria.direccion,
       telefono: queseria.telefono,

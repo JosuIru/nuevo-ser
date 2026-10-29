@@ -1,6 +1,6 @@
 /// Pieza de queso — cada rueda o porción individual con trazabilidad
 /// propia. Entidad persistente análoga a Cepa/Colmena/Arbol en las
-/// otras Solera.
+/// otras Larrea.
 ///
 /// `numeroPieza` se autogenera como AAAAMMDD-NNN-NN (lote + secuencia
 /// dentro del lote). `ubicacionActual` es texto libre (nombre de cava,

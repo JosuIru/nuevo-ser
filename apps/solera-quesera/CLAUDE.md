@@ -1,4 +1,4 @@
-# Solera Quesera — CLAUDE.md
+# Larrea Quesera — CLAUDE.md
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
@@ -10,14 +10,14 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 ## Encuadre
 
-Cuarto fork de la **Suite Solera** dentro del monorepo. Producto comercial dirigido a **queserías artesanales pequeñas y medianas** (1-10 empleados, 20-500 piezas en afinado) en toda España. Hermana técnica de `apps/agro` (Solera generalista), `apps/solera-viticultura`, `apps/solera-apicola` y `apps/solera-arbolado-urbano`.
+Cuarto fork de la **Suite Larrea** dentro del monorepo. Producto comercial dirigido a **queserías artesanales pequeñas y medianas** (1-10 empleados, 20-500 piezas en afinado) en toda España. Hermana técnica de `apps/agro` (Larrea generalista), `apps/solera-viticultura`, `apps/solera-apicola` y `apps/solera-arbolado-urbano`.
 
 Modelo de negocio: suscripción **€10-25/mes por quesería**. Comprador identificable: quesero artesanal que hoy lleva la trazabilidad en Excel + cuaderno de papel + etiquetas a mano. El proyecto **SMART GAZTA** (2022-2023, Consejo Regulador Idiazabal) ya demostró la necesidad de digitalización en este sector.
 
 ## Posicionamiento — diferenciadores
 
 1. **Libro de Trazabilidad APPCC**: PDF inspeccionable con 7 secciones (recepción leche, producción, curación, analíticas, incidencias, ventas, controles APPCC). Adiós al estrés pre-inspección. **F1-4.**
-2. **Gestión de afinado por pieza individual**: cada rueda de queso es una entidad con historia, peso, ubicación en cava, volteos. Como las cepas/colmenas/árboles de las otras Solera. **F1-3.**
+2. **Gestión de afinado por pieza individual**: cada rueda de queso es una entidad con historia, peso, ubicación en cava, volteos. Como las cepas/colmenas/árboles de las otras Larrea. **F1-3.**
 3. **Verticalización por DO**: activas el perfil de tu Denominación de Origen (Idiazabal, Manchego, Cabrales, Roncal, Mahón…) y la app valida los requisitos del pliego de condiciones (raza, curación mínima, zona, métodos). **F1-5.**
 4. **IA por foto Claude Vision**: identificación de defectos en corte y corteza (ojos anormales, moho, grietas, ácaros). Mismo patrón que la IA de plagas en viticultura/apícola. **F1-6.**
 5. **Catálogos curados por asesor quesero** en CSVs editables (tipos de queso, razas lecheras, DO, defectos, analíticas). **F1-4.**
@@ -25,7 +25,7 @@ Modelo de negocio: suscripción **€10-25/mes por quesería**. Comprador identi
 
 ## Stack
 
-Heredado de la suite Solera. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io`, `informe_periodico_pdf`.
+Heredado de la suite Larrea. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io`, `informe_periodico_pdf`.
 
 ## Estructura
 
@@ -93,7 +93,7 @@ tool/compilar_catalogos.dart  Lee los 5 CSVs, skipea líneas #,
 | F1-6 Perfiles DO | ⏳ pendiente catálogos | Activar perfil DO → validación de raza, zona, curación mínima, etiquetado. Checklist de cumplimiento por DO. |
 | F1-7 IA Claude Vision | pendiente | BYO key Claude Haiku, identificación de defectos en corte/corteza, contraste contra catálogo, pre-relleno de incidencia |
 | F1-8 Backup + pulido | pendiente | Backup ZIP de BD, onboarding pulido, pantalla acerca legal |
-| F1-9 Libro ingresos/gastos | pendiente | Mismo patrón F3.5/F1-12 del resto de Solera: Ingresos (venta queso, ferias, suscripción, subvención DO), Gastos (leche, fermentos, energía cavas, cuota DO, analíticas) |
+| F1-9 Libro ingresos/gastos | pendiente | Mismo patrón F3.5/F1-12 del resto de Larrea: Ingresos (venta queso, ferias, suscripción, subvención DO), Gastos (leche, fermentos, energía cavas, cuota DO, analíticas) |
 | F1-10 Catálogos pre-curados | pendiente | Revisión por asesor quesero + fuentes públicas (BOE DO, MAPA, AESAN) |
 | F2 Lanzamiento | pendiente | Stores, web, primeros suscriptores |
 

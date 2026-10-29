@@ -35,7 +35,7 @@ class SoleraQueseraApp extends StatelessWidget {
       brightness: Brightness.light,
     );
     return MaterialApp(
-      title: 'Solera Quesera',
+      title: 'Larrea Quesera',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: esquemaColores,

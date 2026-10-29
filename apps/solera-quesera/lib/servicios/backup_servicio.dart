@@ -12,12 +12,12 @@ const String identificadorCopiaSoleraQuesera = 'solera_quesera';
 /// servicio común (`solera-quesera-backup-<fecha>.zip`).
 const String prefijoNombreCopiaSoleraQuesera = 'solera-quesera-backup';
 
-/// Configuración de la copia de seguridad de Solera Quesera: la BD
+/// Configuración de la copia de seguridad de Larrea Quesera: la BD
 /// `solera_quesera.db` y la carpeta `fotos/`.
 ConfiguracionCopiaSeguridad configuracionCopiaSoleraQuesera() =>
     ConfiguracionCopiaSeguridad(
       identificadorApp: identificadorCopiaSoleraQuesera,
-      nombreApp: 'Solera Quesera',
+      nombreApp: 'Larrea Quesera',
       nombreFicheroBaseDatos: nombreFicheroBaseDatosSoleraQuesera,
       prefijoNombreCopia: prefijoNombreCopiaSoleraQuesera,
       versionEsquemaActual: versionEsquemaSoleraQuesera,
@@ -42,7 +42,7 @@ Future<bool> comprobarIntegridadBaseDatos(String rutaBaseDatos) async {
   }
 }
 
-/// Copia de seguridad de Solera Quesera sobre el servicio común del core
+/// Copia de seguridad de Larrea Quesera sobre el servicio común del core
 /// (valida antes de tocar nada, respalda el estado actual y revierte si
 /// algo falla). Una sola instancia para toda la app.
 class BackupServicioQuesera {
@@ -69,14 +69,14 @@ String textoErrorCopia(ErrorCopiaSeguridad error) {
       break;
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      causa = 'La copia la hizo una versión más nueva de Solera Quesera. '
+      causa = 'La copia la hizo una versión más nueva de Larrea Quesera. '
           'Actualiza la app y vuelve a intentarlo.';
       break;
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      causa = 'La copia es de otra aplicación, no de Solera Quesera.';
+      causa = 'La copia es de otra aplicación, no de Larrea Quesera.';
       break;
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      causa = 'El ZIP no contiene una base de datos de Solera Quesera.';
+      causa = 'El ZIP no contiene una base de datos de Larrea Quesera.';
       break;
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:

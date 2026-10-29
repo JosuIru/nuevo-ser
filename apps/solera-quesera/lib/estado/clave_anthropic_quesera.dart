@@ -5,7 +5,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 /// `solera_quesera.anthropic.clave`, la misma de siempre.
 const String prefijoPreferenciasSoleraQuesera = 'solera_quesera';
 
-/// Clave de Anthropic de Solera Quesera (solo en el dispositivo).
+/// Clave de Anthropic de Larrea Quesera (solo en el dispositivo).
 final EstadoClaveAnthropic estadoClaveAnthropicQuesera =
     EstadoClaveAnthropic.paraApp(prefijoPreferenciasSoleraQuesera);
 
@@ -28,10 +28,10 @@ Future<String?> probarClaveAnthropicQuesera(String clave) async {
 /// Pantalla común de la clave con los textos de la quesería.
 Widget pantallaClaveAnthropicQuesera() => PantallaClaveAnthropic(
       estado: estadoClaveAnthropicQuesera,
-      nombreApp: 'Solera Quesera',
+      nombreApp: 'Larrea Quesera',
       titulo: SoleraL10n.t('identificacion_con_ia'),
       queIdentifica: 'Identifica defectos en el corte y la corteza del queso',
-      descripcion: 'Con tu propia clave de Anthropic, Solera Quesera puede '
+      descripcion: 'Con tu propia clave de Anthropic, Larrea Quesera puede '
           'analizar la foto de un queso (corte o corteza) y señalar posibles '
           'defectos de textura, corteza, color o hinchazón, con su causa '
           'probable y qué revisar. La herramienta está en Lotes → Cava. '

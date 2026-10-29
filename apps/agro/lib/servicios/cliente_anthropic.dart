@@ -21,7 +21,7 @@ import '../datos/catalogo_plagas.dart';
 /// `coincidenciaCatalogo` se rellena por la app post-llamada cruzando
 /// el `nombreCientifico` o `nombreComun` con `catalogo_plagas`. Si
 /// hay match, la incidencia se etiqueta como "validada por catálogo
-/// Solera"; si no, advertencia visible al usuario.
+/// Larrea"; si no, advertencia visible al usuario.
 class ResultadoAnalisisIA {
   final String nombreComun;
   final String nombreCientifico;
@@ -44,7 +44,7 @@ class ResultadoAnalisisIA {
   });
 }
 
-/// Clave de Anthropic de Solera: la misma preferencia de siempre
+/// Clave de Anthropic de Larrea: la misma preferencia de siempre
 /// (`agro.anthropic.clave`), ahora con el estado común del core.
 final EstadoClaveAnthropic estadoClaveAnthropicAgro = EstadoClaveAnthropic.paraApp('agro');
 
@@ -69,7 +69,7 @@ const int tamanoMaximoFotoBytes = 5 * 1024 * 1024;
 
 /// Diagnóstico por foto con Claude (Haiku). El transporte (petición,
 /// imagen, errores) es el `ClienteClaude` común; aquí quedan el prompt
-/// agronómico y el cruce con el catálogo de plagas de Solera.
+/// agronómico y el cruce con el catálogo de plagas de Larrea.
 class AnalizadorFotoCultivo {
   AnalizadorFotoCultivo({required String claveApi, ClienteClaude? cliente})
       : _cliente = cliente ?? ClienteClaude(claveApi: claveApi);
@@ -169,10 +169,10 @@ String _construirPrompt(Cultivo cultivo, String observaciones) {
   return ctx.toString();
 }
 
-/// Busca una plaga en el catálogo curado de Solera por matching de
+/// Busca una plaga en el catálogo curado de Larrea por matching de
 /// nombre científico (preferente) o nombre común. Si encuentra,
 /// devuelve el id; si no, null. Esto permite a la UI marcar el
-/// diagnóstico como "validado por catálogo Solera" cuando coincide
+/// diagnóstico como "validado por catálogo Larrea" cuando coincide
 /// con una plaga conocida y avisar cuando es un diagnóstico libre.
 String? _buscarCoincidenciaCatalogo(String nombreCientifico, String nombreComun) {
   final cientificoNorm = _normalizar(nombreCientifico);

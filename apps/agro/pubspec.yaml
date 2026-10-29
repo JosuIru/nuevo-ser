@@ -1,5 +1,5 @@
 name: agro
-description: "Solera — gestor de fincas agrícolas. Frutales, trufas, olivar, pistacho, dehesa."
+description: "Larrea — gestor de fincas agrícolas. Frutales, trufas, olivar, pistacho, dehesa."
 publish_to: 'none'
 version: 0.3.5+8
 
@@ -55,9 +55,9 @@ dependencies:
   pdf: ^3.11.1
   printing: ^5.13.4
 
-  # Plataforma compartida del monorepo. Solera consume el core para
+  # Plataforma compartida del monorepo. Larrea consume el core para
   # reutilizar GestorFotos, CsvGenerico y PlantillaPdf — la base sobre
-  # la que se forkean Solera Viticultura, Solera Apícola y Solera
+  # la que se forkean Larrea Viticultura, Larrea Apícola y Larrea
   # Arbolado Urbano. Path local en monorepo Melos.
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
@@ -70,7 +70,7 @@ dev_dependencies:
   # sea una pantalla en blanco.
   flutter_native_splash: ^2.4.1
 
-# Splash nativo Android: verde oscuro Solera sobre fondo crema —
+# Splash nativo Android: verde oscuro Larrea sobre fondo crema —
 # sin imagen porque agro todavía no tiene logo en assets/.
 flutter_native_splash:
   color: "#2D3A2E"

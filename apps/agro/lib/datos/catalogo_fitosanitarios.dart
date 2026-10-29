@@ -6,7 +6,7 @@
 ///
 /// 1. **Es semilla curada, no exhaustiva.** Cubre productos
 ///    extendidos en agricultura ecológica/integrada de los cultivos
-///    prioritarios de Solera (frutales, olivar, vid, pistacho,
+///    prioritarios de Larrea (frutales, olivar, vid, pistacho,
 ///    truficultura, dehesa). El registro oficial tiene **miles** de
 ///    productos comerciales — cada principio activo se vende bajo
 ///    decenas de marcas con sus propios números de registro.
@@ -22,7 +22,7 @@
 ///    expansión requiere consulta al hermano truficultor + agrónomo.
 ///
 /// 4. **Sólo productos de bajo riesgo o ecológicos en v1.** Coherente
-///    con el hard limit de Solera de no recomendar productos
+///    con el hard limit de Larrea de no recomendar productos
 ///    convencionales sin validación + BBDD MAPA viva (F4 backend).
 class ProductoFitosanitario {
   final String id;

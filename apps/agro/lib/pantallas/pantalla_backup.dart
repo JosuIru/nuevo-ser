@@ -21,11 +21,11 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error, {bool alRestaurar = t
       causa = 'El backup está incompleto o dañado.';
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      causa = 'El backup es de una versión más nueva de Solera. Actualiza la app y vuelve a intentarlo.';
+      causa = 'El backup es de una versión más nueva de Larrea. Actualiza la app y vuelve a intentarlo.';
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      causa = 'El backup es de otra aplicación, no de Solera.';
+      causa = 'El backup es de otra aplicación, no de Larrea.';
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      causa = 'El zip no contiene la base de datos de Solera (agro.db).';
+      causa = 'El zip no contiene la base de datos de Larrea (agro.db).';
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
       causa = 'La base de datos del backup está dañada.';
@@ -84,7 +84,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       final fichero = await servicioCopiaSeguridadAgro.crearCopia();
       await _cargarUltimoBackup();
       if (!mounted) return;
-      await Share.shareXFiles([XFile(fichero.path)], subject: 'Backup Solera');
+      await Share.shareXFiles([XFile(fichero.path)], subject: 'Backup Larrea');
     } on ErrorCopiaSeguridad catch (error) {
       if (!mounted) return;
       _avisar(textoErrorCopiaSeguridad(error, alRestaurar: false), segundos: 8);
@@ -131,7 +131,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final fechaCopia = informe.fechaCreacion;
     final descripcionCopia = fechaCopia != null
         ? 'Backup del ${DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(fechaCopia)}'
-        : 'Backup sin fecha (hecho con una versión anterior de Solera; '
+        : 'Backup sin fecha (hecho con una versión anterior de Larrea; '
             'fecha del fichero: ${DateFormat('d/M/yyyy HH:mm', 'es_ES').format(copia.lastModifiedSync())})';
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
@@ -219,7 +219,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
             Text('Restaurar desde backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Sustituye la base de datos y fotos actuales por las del zip. Antes se comprueba que el zip es un backup válido de Solera y se guarda una copia automática del estado actual.',
+              'Sustituye la base de datos y fotos actuales por las del zip. Antes se comprueba que el zip es un backup válido de Larrea y se guarda una copia automática del estado actual.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),

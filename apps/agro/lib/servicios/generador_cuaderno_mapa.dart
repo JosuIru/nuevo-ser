@@ -418,7 +418,7 @@ pw.Widget _seccionIncidencias(
 }
 
 /// Si el diagnóstico de la incidencia coincide con una entrada del
-/// catálogo curado de Solera, añade el nombre científico en
+/// catálogo curado de Larrea, añade el nombre científico en
 /// paréntesis. Esto facilita a la inspección reconocer la plaga sin
 /// tener que cruzarlo con la BBDD MAPA.
 String _diagnosticoConCatalogo(String diagnosticoLibre) {
@@ -445,7 +445,7 @@ pw.Widget _bloqueLegal() => pw.Container(
               style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold)),
           pw.SizedBox(height: 2),
           pw.Text(
-            'Este documento es una vista del Cuaderno de Explotación generada por la app Solera con los datos '
+            'Este documento es una vista del Cuaderno de Explotación generada por la app Larrea con los datos '
             'introducidos por el titular en su dispositivo. La responsabilidad sobre la veracidad y completitud de '
             'la información mostrada recae en el titular firmante. La app no envía estos datos a ningún servidor en v1.',
             style: const pw.TextStyle(fontSize: 8, color: PdfColors.grey700),

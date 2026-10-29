@@ -7,7 +7,7 @@ import '../modelos/finca.dart';
 import '../utiles/permisos_gps.dart';
 
 /// Onboarding del primer arranque. Cuatro pasos:
-/// 1) Bienvenida con qué hace Solera.
+/// 1) Bienvenida con qué hace Larrea.
 /// 2) Selección de cultivos prioritarios (chips multi-selección,
 ///    opcional — el catálogo está siempre disponible aunque no se
 ///    seleccione nada).
@@ -82,7 +82,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bienvenido a Solera'),
+        title: const Text('Bienvenido a Larrea'),
         actions: [
           TextButton(onPressed: _saltar, child: const Text('Saltar')),
         ],
@@ -117,7 +117,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 FilledButton.icon(
                   icon: Icon(_pagina == 3 ? Icons.check : Icons.arrow_forward),
                   onPressed: _avanzar,
-                  label: Text(_pagina == 3 ? 'Empezar a usar Solera' : 'Siguiente'),
+                  label: Text(_pagina == 3 ? 'Empezar a usar Larrea' : 'Siguiente'),
                 ),
               ],
             ),
@@ -144,7 +144,7 @@ class _PaginaBienvenida extends StatelessWidget {
           Text('Tu cuaderno de campo digital', style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 12),
           const Text(
-            'Solera te ayuda a llevar el control de tus árboles, viñas, truferas, olivar o pistacho.\n\n'
+            'Larrea te ayuda a llevar el control de tus árboles, viñas, truferas, olivar o pistacho.\n\n'
             '· Marca cada planta en el mapa con un punto GPS.\n'
             '· Apunta cosechas, observaciones, plagas y tratamientos.\n'
             '· Consulta una guía con cultivos y plagas frecuentes.\n'
@@ -278,7 +278,7 @@ class _PaginaPermisosState extends State<_PaginaPermisos> {
           Text('Permisos', style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 12),
           const Text(
-            'Solera necesita ubicación para situar tus plantas en el mapa y grabar recorridos GPS de inspección. Las notificaciones permiten mantener viva la grabación cuando bloqueas la pantalla.',
+            'Larrea necesita ubicación para situar tus plantas en el mapa y grabar recorridos GPS de inspección. Las notificaciones permiten mantener viva la grabación cuando bloqueas la pantalla.',
             style: TextStyle(fontSize: 14, color: Colors.grey),
           ),
           const SizedBox(height: 16),

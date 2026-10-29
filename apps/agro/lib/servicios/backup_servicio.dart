@@ -4,14 +4,14 @@ import 'package:sqflite/sqflite.dart';
 
 import '../datos/base_datos.dart';
 
-/// Configuración de la copia de seguridad de Solera (agro): la BD
+/// Configuración de la copia de seguridad de Larrea (agro): la BD
 /// `agro.db` y la carpeta `fotos/`. El identificador `agro` es el
 /// prefijo de preferencias de siempre, así se conserva la fecha de la
 /// «última copia» (`agro.backup.ultimo_ms`), y el nombre del ZIP sigue
 /// empezando por `solera-backup`. Lee también los ZIP hechos antes.
 final ConfiguracionCopiaSeguridad configuracionCopiaSeguridadAgro = ConfiguracionCopiaSeguridad(
   identificadorApp: 'agro',
-  nombreApp: 'Solera',
+  nombreApp: 'Larrea',
   nombreFicheroBaseDatos: nombreFicheroBaseDatosAgro,
   cerrarBaseDatos: () => BaseDatosAgro.instancia.cerrar(),
   reabrirBaseDatos: () async {

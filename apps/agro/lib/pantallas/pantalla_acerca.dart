@@ -12,7 +12,7 @@ import '../datos/fenologia.dart';
 /// verdad está instalada se ve en «Comprobar actualizaciones».
 const versionVisibleAgro = '0.3.5';
 
-/// Pantalla «Acerca de»: qué es Solera, sus compromisos legales, el estado
+/// Pantalla «Acerca de»: qué es Larrea, sus compromisos legales, el estado
 /// de los catálogos y de dónde viene la app.
 class PantallaAcerca extends StatelessWidget {
   const PantallaAcerca({super.key});
@@ -43,7 +43,7 @@ class PantallaAcerca extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Solera',
+                  'Larrea',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -56,7 +56,7 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Solera es un gestor de fincas agrícolas: frutales, trufas, '
+            'Larrea es un gestor de fincas agrícolas: frutales, trufas, '
             'olivar, pistacho y dehesa. Cada planta tiene su ficha con GPS '
             'e historial de cosechas, observaciones, incidencias y '
             'tratamientos; recorridos de inspección, identificación de '
@@ -67,7 +67,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Compromisos legales'),
           const _Vineta(
-            'Solera no recomienda productos fitosanitarios comerciales. '
+            'Larrea no recomienda productos fitosanitarios comerciales. '
             'Consulta siempre a tu técnico, cooperativa o asesor antes '
             'de aplicar.',
           ),
@@ -89,12 +89,12 @@ class PantallaAcerca extends StatelessWidget {
           const _Seccion('Catálogos'),
           const _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Solera'),
+          const _Seccion('Familia Larrea'),
           const Text(
-            'Solera forma parte de la suite Solera de la Colección Nuevo '
-            'Ser, con apps hermanas especializadas: Solera Viticultura, '
-            'Solera Apícola, Solera Arbolado Urbano, Solera Quesera y '
-            'Solera Aceitera.',
+            'Larrea forma parte de la suite Larrea de la Colección Nuevo '
+            'Ser, con apps hermanas especializadas: Larrea Viticultura, '
+            'Larrea Apícola, Larrea Arbolado Urbano, Larrea Quesera y '
+            'Larrea Aceitera.',
             style: TextStyle(fontSize: 13, height: 1.5),
           ),
           const SizedBox(height: 24),

@@ -78,7 +78,7 @@ ResumenCosechas agruparCosechasPorPlanta({
 ///
 /// La maquetación (cabecera, footer paginación, tabla con estilo
 /// consistente) la pone `generarInformePeriodicoPdf` del core. Aquí
-/// va el dominio: consulta a la BD de Solera + construcción de las
+/// va el dominio: consulta a la BD de Larrea + construcción de las
 /// listas de bullets y filas.
 Future<File> generarPdfCampana({
   Finca? finca,

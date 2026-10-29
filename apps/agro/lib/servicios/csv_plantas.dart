@@ -57,7 +57,7 @@ class FilaInvalida {
   FilaInvalida(this.numeroLinea, this.motivo);
 }
 
-/// Parsea el contenido de un CSV exportado de Solera. Cabeceras
+/// Parsea el contenido de un CSV exportado de Larrea. Cabeceras
 /// esperadas (en cualquier orden, case-insensitive): cultivo_id,
 /// variedad, latitud, longitud, etiqueta, finca, fecha_plantacion
 /// (formato YYYY-MM-DD), patron, notas.

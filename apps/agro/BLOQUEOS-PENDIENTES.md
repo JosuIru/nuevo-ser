@@ -1,4 +1,4 @@
-# Solera (agro) — Bloqueos pendientes (decisión humana)
+# Larrea (agro) — Bloqueos pendientes (decisión humana)
 
 Tracker de decisiones humanas que bloquean el cierre a producción de cada fase. Mantener actualizado: añadir cada vez que aparezca un bloqueo, marcar resuelto cuando entre el dato/asesoramiento.
 
@@ -56,6 +56,6 @@ Convenciones:
 - **Validación del PDF del cuaderno MAPA** por inspector real (técnico de Conselleria/Junta) — el formato cubre los apartados del RD 1311/2012 pero conviene confirmar lo que esperan ver en una visita real.
 - **Export XML SIEX/CUE oficial**: validar la spec XSD vigente con el MAPA o asesor antes de implementar.
 - **F4 Backend nube**: 3 decisiones humanas pendientes (stack / auth / monetización) — registradas en CLAUDE.md.
-- **Logo y branding visual** definitivo para "Solera".
+- **Logo y branding visual** definitivo para "Larrea".
 - **`applicationId` final** (`com.josu.agro` actual vs rebrand a `com.josu.solera` antes de Play Store).
 - **Marketplace fitosanitarios** (v2 — necesita alianzas).

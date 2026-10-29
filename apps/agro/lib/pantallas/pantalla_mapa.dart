@@ -547,7 +547,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Future<void> _buscarLugar() async {
     final lugarEncontrado = await buscarLugarEnMapa(
       context,
-      identificacion: 'Solera (agro)',
+      identificacion: 'Larrea (agro)',
     );
     if (lugarEncontrado == null || !mounted) return;
     _controlador.move(lugarEncontrado, 15);

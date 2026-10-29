@@ -10,7 +10,7 @@ import 'pantalla_terceros.dart';
 import 'pantalla_titular.dart';
 
 /// Ajustes ordenados por secciones, en el mismo orden que el resto de la
-/// suite Solera: explotación, inteligencia artificial, preferencias,
+/// suite Larrea: explotación, inteligencia artificial, preferencias,
 /// datos y aplicación. Los documentos y libros están en la pestaña
 /// Registros (`PantallaRegistros`).
 class PantallaAjustes extends StatelessWidget {
@@ -61,10 +61,10 @@ class PantallaAjustes extends StatelessWidget {
             alPulsar: () => abrir(
               () => PantallaClaveAnthropic(
                 estado: estadoClaveAnthropicAgro,
-                nombreApp: 'Solera',
+                nombreApp: 'Larrea',
                 titulo: SoleraL10n.t('identificacion_con_ia'),
                 queIdentifica: 'Identifica plagas y enfermedades por foto',
-                descripcion: 'Solera puede usar Claude AI de Anthropic para analizar la foto '
+                descripcion: 'Larrea puede usar Claude AI de Anthropic para analizar la foto '
                     'que adjuntas a una incidencia y proponer un diagnóstico, severidad y '
                     'recomendaciones de manejo cultural.',
                 probarClave: probarClaveAnthropic,
@@ -91,7 +91,7 @@ class PantallaAjustes extends StatelessWidget {
             alPulsar: () => abrir(
               () => PantallaEstadoActualizaciones(
                 config: configActualizacionesMonorepo('agro'),
-                nombreApp: 'Solera',
+                nombreApp: 'Larrea',
               ),
             ),
           ),

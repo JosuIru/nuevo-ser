@@ -271,8 +271,8 @@ class _ModalResultadoIA extends StatelessWidget {
                     Expanded(
                       child: Text(
                         plagaCatalogo != null
-                            ? 'Diagnóstico coincide con catálogo Solera: ${plagaCatalogo.nombreComun}'
-                            : 'Diagnóstico coincide con catálogo Solera',
+                            ? 'Diagnóstico coincide con catálogo Larrea: ${plagaCatalogo.nombreComun}'
+                            : 'Diagnóstico coincide con catálogo Larrea',
                         style: TextStyle(fontSize: 13, color: Colors.green.shade900),
                       ),
                     ),
@@ -293,7 +293,7 @@ class _ModalResultadoIA extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Diagnóstico libre — no coincide con el catálogo curado de Solera. Revisa con criterio antes de aceptar.',
+                        'Diagnóstico libre — no coincide con el catálogo curado de Larrea. Revisa con criterio antes de aceptar.',
                         style: TextStyle(fontSize: 13, color: Colors.orange.shade900),
                       ),
                     ),
@@ -388,7 +388,7 @@ class _ModalResultadoIA extends StatelessWidget {
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'La IA sugiere — tú decides. Antes de aplicar productos fitosanitarios, consulta a tu técnico de cooperativa o ATRIA. Solera no recomienda productos comerciales en v1.',
+                      'La IA sugiere — tú decides. Antes de aplicar productos fitosanitarios, consulta a tu técnico de cooperativa o ATRIA. Larrea no recomienda productos comerciales en v1.',
                       style: TextStyle(fontSize: 11, color: Colors.grey),
                     ),
                   ),

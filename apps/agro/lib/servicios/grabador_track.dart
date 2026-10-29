@@ -15,8 +15,8 @@ import '../modelos/track.dart';
 ///
 /// Patrón heredado de naturaleza (`apps/naturaleza/.../grabador_track`),
 /// el campo de uso es prácticamente el mismo (caminar registrando
-/// posición, parar y guardar). Diferencias para Solera: el texto de la
-/// notificación menciona Solera en lugar de Naturaleza, todo lo demás
+/// posición, parar y guardar). Diferencias para Larrea: el texto de la
+/// notificación menciona Larrea en lugar de Naturaleza, todo lo demás
 /// es código equivalente.
 class GrabadorTrack {
   static final GrabadorTrack instancia = GrabadorTrack._interno();
@@ -42,7 +42,7 @@ class GrabadorTrack {
             distanceFilter: 5,
             foregroundNotificationConfig: const ForegroundNotificationConfig(
               notificationTitle: 'Grabando recorrido',
-              notificationText: 'Solera está registrando tu inspección',
+              notificationText: 'Larrea está registrando tu inspección',
               enableWakeLock: true,
               setOngoing: true,
             ),

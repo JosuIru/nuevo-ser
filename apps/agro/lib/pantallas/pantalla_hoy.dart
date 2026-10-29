@@ -122,7 +122,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
             // Aviso de versión nueva (no ocupa sitio si no hay).
             AvisoActualizaciones(
               config: configActualizacionesMonorepo('agro'),
-              nombreApp: 'Solera',
+              nombreApp: 'Larrea',
               margen: const EdgeInsets.only(bottom: 12),
             ),
             Text(

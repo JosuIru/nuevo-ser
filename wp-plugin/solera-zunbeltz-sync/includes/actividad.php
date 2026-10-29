@@ -74,6 +74,8 @@ function szs_registrar_actividad( array $persona, string $accion, string $tipo, 
 function szs_registrar_actividad_tarea( array $persona, ?array $antes, array $despues, string $origen ): void {
 	list( $accion, $detalle ) = szs_accion_tarea( $antes, $despues );
 	szs_registrar_actividad( $persona, $accion, 'tarea', $despues['uid'], $despues['titulo'], $despues['finca_nombre'], $detalle, $origen );
+	// Toda tarea guardada (app o panel) pasa por aquí: avisos al momento.
+	do_action( 'szs_tarea_guardada', $despues, $antes, $persona );
 }
 
 /**

@@ -147,7 +147,7 @@ return array(
 	'Persona reactivada.' => 'Pertsona berriro aktibatu da.',
 	'Persona desactivada: su clave de usuario deja de funcionar.' => 'Pertsona desaktibatu da: haren erabiltzaile-gakoak ez du gehiago balio.',
 	'Su usuario de WordPress aún no tiene acceso al panel: tiene que dárselo una persona administradora del WordPress (volviendo a guardar el enlace).' => 'Haren WordPresseko erabiltzaileak oraindik ez du panelerako sarbiderik: WordPresseko administratzaile batek eman behar dio (lotura berriro gordez).',
-	'Solera Zunbeltz — Personas del espacio' => 'Solera Zunbeltz — Guneko pertsonak',
+	'Larrea Zunbeltz — Personas del espacio' => 'Larrea Zunbeltz — Guneko pertsonak',
 	'Cada persona que usa la app tiene su <strong>clave de usuario</strong> personal y un <strong>rol</strong>. En la app, en <strong>Ajustes → Sincronización</strong>, se configura la dirección de este WordPress y la clave de usuario de esa persona.' => 'App-a erabiltzen duen pertsona bakoitzak bere <strong>erabiltzaile-gako</strong> pertsonala eta <strong>rol</strong> bat ditu. App-an, <strong>Ezarpenak → Sinkronizazioa</strong> atalean, WordPress honen helbidea eta pertsona horren erabiltzaile-gakoa konfiguratzen dira.',
 	'Una persona de coordinación enlazada con su <strong>usuario de WordPress</strong> puede entrar a este panel aunque no sea administradora del WordPress, y lo que haga aquí queda a su nombre. Su <strong>correo</strong> recibe el resumen diario y las alarmas.' => 'Bere <strong>WordPresseko erabiltzailearekin</strong> lotutako koordinazioko pertsona batek panel honetan sar daiteke WordPresseko administratzailea ez bada ere, eta hemen egiten duena haren izenean geratzen da. Haren <strong>helbide elektronikoak</strong> eguneko laburpena eta alarmak jasotzen ditu.',
 	'Solo una persona administradora del WordPress puede enlazar a alguien con un usuario de WordPress, cambiar ese enlace o dar y quitar el acceso al panel. Tú puedes dar de alta personas, cambiar su rol y su correo, generar su clave de usuario y desactivarlas.' => 'WordPresseko administratzaile batek bakarrik lot dezake norbait WordPresseko erabiltzaile batekin, lotura hori aldatu edo panelerako sarbidea eman eta kendu. Zuk pertsonak alta eman ditzakezu, haien rola eta helbide elektronikoa aldatu, haien erabiltzaile-gakoa sortu eta desaktibatu.',
@@ -861,4 +861,9 @@ return array(
 	'Fotos de antes' => 'Aurreko argazkiak',
 	'Fotos de después' => 'Ondorengo argazkiak',
 	'Las fotos se añaden desde la app del móvil.' => 'Argazkiak mugikorreko aplikaziotik gehitzen dira.',
+	// Avisos al momento de la app web (push-web.php).
+	'Alarma en el espacio' => 'Alarma gunean',
+	'Petición urgente' => 'Eskaera presazkoa',
+	'Petición nueva' => 'Eskaera berria',
+	'Tarea para ti' => 'Zuretzako zeregina',
 );

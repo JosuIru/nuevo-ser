@@ -1,15 +1,15 @@
 <?php
 /**
- * Plugin Name: Solera Zunbeltz — Espacio Test
+ * Plugin Name: Larrea Zunbeltz — Espacio Test
  * Plugin URI:  https://gailu.net/
- * Description: Servidor de la app Solera Zunbeltz para el Espacio Test
+ * Description: Servidor de la app Larrea Zunbeltz para el Espacio Test
  *              Agrario Zunbeltz: sincroniza entre los móviles del equipo las
  *              fincas, los puntos, las tareas, los proyectos de test y su
  *              seguimiento, las peticiones y los avisos; gestiona personas,
  *              roles y tokens; y ofrece el panel de coordinación de la
  *              oficina y los avisos por correo.
- * Version:     1.0.6
- * Author:      Gailu Sare - Solera
+ * Version:     1.0.7
+ * Author:      Gailu Sare
  * Author URI:  https://gailu.net/
  * License:     GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -34,6 +34,8 @@
  * - Registro de actividad (`includes/actividad.php`) de todo cambio
  *   aceptado, venga de la app o del panel.
  * - Panel de coordinación (`includes/panel/`) y correos (`includes/correo.php`).
+ * - Avisos al momento en la app web (`includes/push-web.php`): Web Push con
+ *   claves VAPID propias, sin cuentas de terceros.
  * - Fotos (`includes/fotos.php`): `POST/GET /fotos/<hash>`, guardadas una
  *   vez por hash en una carpeta privada de uploads.
  * - La app web servida en `/app/` (`includes/app-web.php`, ficheros en `app-web/`).
@@ -61,8 +63,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SZS_VERSION', '1.0.6' );
-define( 'SZS_VERSION_ESQUEMA', 9 );
+define( 'SZS_VERSION', '1.0.7' );
+define( 'SZS_VERSION_ESQUEMA', 10 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
 define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
@@ -70,6 +72,7 @@ define( 'SZS_TABLA_REVISIONES', 'solera_zunbeltz_revisiones' );
 define( 'SZS_TABLA_ACTIVIDAD', 'solera_zunbeltz_actividad' );
 /** uids de tareas borradas, para que una copia vieja no las resucite. */
 define( 'SZS_TABLA_TAREAS_BORRADAS', 'solera_zunbeltz_tareas_borradas' );
+define( 'SZS_TABLA_SUSCRIPCIONES_PUSH', 'solera_zunbeltz_suscripciones_push' );
 define( 'SZS_OPCION_VERSION_ESQUEMA', 'solera_zunbeltz_sync_esquema' );
 /** Token compartido de la v0.1, retirado en la v0.2. */
 define( 'SZS_OPCION_TOKEN_COMPARTIDO_V1', 'solera_zunbeltz_sync_token' );
@@ -101,6 +104,7 @@ require_once __DIR__ . '/includes/panel/pagina-ganado.php';
 require_once __DIR__ . '/includes/panel/pagina-android.php';
 require_once __DIR__ . '/includes/panel/pagina-agenda.php';
 require_once __DIR__ . '/includes/correo.php';
+require_once __DIR__ . '/includes/push-web.php';
 require_once __DIR__ . '/includes/app-web.php';
 require_once __DIR__ . '/includes/apk-github.php';
 require_once __DIR__ . '/includes/presentacion.php';
@@ -222,6 +226,8 @@ function szs_instalar_esquema(): void {
 	) {$charset_collate};"
 	);
 	szs_instalar_esquema_noticias( $charset_collate );
+	// Esquema 10: suscripciones a los avisos al momento de la app web.
+	szs_instalar_esquema_push_web( $charset_collate );
 	$tabla_tareas_borradas = $wpdb->prefix . SZS_TABLA_TAREAS_BORRADAS;
 	dbDelta(
 		"CREATE TABLE {$tabla_tareas_borradas} (

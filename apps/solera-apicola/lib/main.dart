@@ -72,7 +72,7 @@ class _SoleraApicolaAppState extends State<SoleraApicolaApp> with WidgetsBinding
       brightness: Brightness.light,
     );
     return MaterialApp(
-      title: 'Solera Apícola',
+      title: 'Larrea Apícola',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: esquemaColores,

@@ -1,4 +1,4 @@
-# Solera Apícola — Bloqueos pendientes (decisión humana)
+# Larrea Apícola — Bloqueos pendientes (decisión humana)
 
 Tracker de decisiones humanas que bloquean el cierre a producción de cada fase.
 

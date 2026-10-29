@@ -9,15 +9,15 @@ import 'pantalla_gestion_apiarios.dart';
 import 'pantalla_terceros.dart';
 import '../servicios/cliente_anthropic.dart';
 
-/// Pantalla común de la clave de Anthropic con los textos de Solera
+/// Pantalla común de la clave de Anthropic con los textos de Larrea
 /// Apícola (la usan Ajustes y el asistente).
 Widget pantallaClaveAnthropicApicola() => PantallaClaveAnthropic(
       estado: estadoClaveAnthropicApicola,
-      nombreApp: 'Solera Apícola',
+      nombreApp: 'Larrea Apícola',
       titulo: 'Identificación con IA',
       queIdentifica: 'Identifica varroa, nosema, loque y otras patologías por foto',
       descripcion:
-          'Solera Apícola puede usar Claude AI de Anthropic para analizar la foto que adjuntas '
+          'Larrea Apícola puede usar Claude AI de Anthropic para analizar la foto que adjuntas '
           'a una incidencia y proponer un diagnóstico, severidad y manejo cultural. Si detecta '
           'una patología de declaración obligatoria (loque americana, vespa velutina, escarabajo '
           'de las colmenas) lo destaca con banner rojo. La misma clave sirve para el asistente '
@@ -95,7 +95,7 @@ class PantallaAjustes extends StatelessWidget {
               context,
               PantallaEstadoActualizaciones(
                 config: configActualizacionesMonorepo('solera-apicola'),
-                nombreApp: 'Solera Apícola',
+                nombreApp: 'Larrea Apícola',
               ),
             ),
           ),

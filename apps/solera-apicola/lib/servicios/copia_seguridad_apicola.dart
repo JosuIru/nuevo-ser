@@ -3,14 +3,14 @@ import 'package:sqflite/sqflite.dart';
 
 import '../datos/base_datos.dart';
 
-/// Configuración de la copia de seguridad de Solera Apícola. Mantiene
+/// Configuración de la copia de seguridad de Larrea Apícola. Mantiene
 /// el identificador `solera_apicola` (la fecha de la última copia sigue
 /// en `solera_apicola.backup.ultimo_ms`) y el nombre de los ZIP de antes
 /// (`solera-apicola-backup-…`), así que las copias ya hechas se leen.
 ConfiguracionCopiaSeguridad configuracionCopiaSeguridadApicola() {
   return ConfiguracionCopiaSeguridad(
     identificadorApp: 'solera_apicola',
-    nombreApp: 'Solera Apícola',
+    nombreApp: 'Larrea Apícola',
     nombreFicheroBaseDatos: nombreFicheroBaseDatosApicola,
     prefijoNombreCopia: 'solera-apicola-backup',
     versionEsquemaActual: versionEsquemaBaseDatosApicola,

@@ -36,7 +36,7 @@ class DatosIncidenciaIA {
 ///
 /// **Diagnóstico libre v0.1**: hasta que el catálogo curado de plagas
 /// apícolas (F1A-4) tenga validación veterinaria, todo diagnóstico se
-/// marca explícitamente como "no validado por catálogo Solera" en el
+/// marca explícitamente como "no validado por catálogo Larrea" en el
 /// modal — el apicultor decide si lo acepta.
 class BotonIdentificarIA extends StatefulWidget {
   final List<String> rutasFotos;
@@ -271,10 +271,10 @@ class _ModalResultadoIA extends StatelessWidget {
               coincidencia: _estadoCoincidencia(coincidencia),
               nombreItemCoincidente: coincidencia?.nombreComun,
               mensajeLibre:
-                  'Diagnóstico libre — no coincide con el catálogo curado de Solera Apícola. Revisa con criterio antes de aceptar.',
+                  'Diagnóstico libre — no coincide con el catálogo curado de Larrea Apícola. Revisa con criterio antes de aceptar.',
               mensajeProvisional:
                   'Coincide con catálogo provisional. El catálogo aún no ha sido validado por veterinario apícola — usa criterio.',
-              mensajeValidado: 'Diagnóstico coincide con catálogo Solera',
+              mensajeValidado: 'Diagnóstico coincide con catálogo Larrea',
             ),
             const SizedBox(height: 16),
             _FilaInfo(etiqueta: 'Nombre común', valor: resultado.nombreComun),
@@ -351,7 +351,7 @@ class _ModalResultadoIA extends StatelessWidget {
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'La IA sugiere — tú decides. Antes de aplicar cualquier tratamiento sanitario, consulta con tu veterinario asesor; cualquier medicamento zoosanitario requiere receta. Solera Apícola no recomienda medicamentos comerciales en v0.1.',
+                      'La IA sugiere — tú decides. Antes de aplicar cualquier tratamiento sanitario, consulta con tu veterinario asesor; cualquier medicamento zoosanitario requiere receta. Larrea Apícola no recomienda medicamentos comerciales en v0.1.',
                       style: TextStyle(fontSize: 11, color: Colors.grey),
                     ),
                   ),

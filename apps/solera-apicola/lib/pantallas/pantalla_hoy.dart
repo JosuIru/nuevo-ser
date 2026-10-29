@@ -76,7 +76,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
           // Aviso de versión nueva (no ocupa sitio si no hay).
           AvisoActualizaciones(
             config: configActualizacionesMonorepo('solera-apicola'),
-            nombreApp: 'Solera Apícola',
+            nombreApp: 'Larrea Apícola',
             margen: const EdgeInsets.only(bottom: 12),
           ),
           const TarjetaResumenMeteo(),

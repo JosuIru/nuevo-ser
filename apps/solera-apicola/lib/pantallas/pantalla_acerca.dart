@@ -43,7 +43,7 @@ class PantallaAcerca extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Solera Apícola',
+                  'Larrea Apícola',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -55,7 +55,7 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Solera Apícola es un gestor para apicultores profesionales y semi-profesionales: '
+            'Larrea Apícola es un gestor para apicultores profesionales y semi-profesionales: '
             'censo de colmenas con matrícula y GPS, registro de revisiones, cosechas, '
             'tratamientos sanitarios e incidencias, gestión de trashumancia, '
             'identificación de patologías por foto con IA y libro oficial REGA en PDF '
@@ -65,7 +65,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Compromisos legales'),
           const _Bullet(
-            'Solera no recomienda medicamentos zoosanitarios comerciales '
+            'Larrea no recomienda medicamentos zoosanitarios comerciales '
             '(Apivar, ApiBioxal, Polyvar…). Sólo lista sustancias activas '
             'autorizadas. Cualquier tratamiento sanitario requiere receta '
             'del veterinario asesor.',
@@ -97,12 +97,12 @@ class PantallaAcerca extends StatelessWidget {
           const _Seccion('Catálogos curados'),
           _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Solera'),
+          const _Seccion('Familia Larrea'),
           const Text(
-            'Solera Apícola es parte de la suite Solera del monorepo '
-            'Colección Nuevo Ser. Otras apps hermanas: Solera Viticultura '
-            '(libro PAC en bodegas), Solera (general — frutales, trufa, '
-            'olivar), Solera Arbolado Urbano (B2B municipal — en desarrollo).',
+            'Larrea Apícola es parte de la suite Larrea del monorepo '
+            'Colección Nuevo Ser. Otras apps hermanas: Larrea Viticultura '
+            '(libro PAC en bodegas), Larrea (general — frutales, trufa, '
+            'olivar), Larrea Arbolado Urbano (B2B municipal — en desarrollo).',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),

@@ -9,7 +9,7 @@ import '../modelos/tercero.dart';
 /// Genera el extracto económico anual del apicultor (libro registro
 /// de ingresos y gastos para el asesor fiscal). Reusa la plantilla
 /// `informe_periodico_pdf` del core para mantener cabecera/footer/
-/// tablas consistentes con el resto de la suite Solera.
+/// tablas consistentes con el resto de la suite Larrea.
 ///
 /// Contenido del extracto:
 ///  1. Cabecera con datos del titular + régimen fiscal del año.

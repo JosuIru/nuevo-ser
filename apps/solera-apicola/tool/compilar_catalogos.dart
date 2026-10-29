@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
-// Compilador de catálogos curados de Solera Apícola.
+// Compilador de catálogos curados de Larrea Apícola.
 //
 // Lee los 5 CSVs de `content/apicola/` y genera los ficheros
 // `.dart` en `lib/datos/catalogos_generados/`. Reproduce inline el
@@ -73,7 +73,7 @@ const _rutaContent = '../../content/apicola';
 const _rutaSalida = 'lib/datos/catalogos_generados';
 
 void main() async {
-  print('Compilando catálogos de Solera Apícola…\n');
+  print('Compilando catálogos de Larrea Apícola…\n');
   await _compilarRazasAbeja();
   await _compilarTiposColmena();
   await _compilarSustanciasVarroa();

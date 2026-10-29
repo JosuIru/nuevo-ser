@@ -12,7 +12,7 @@ import '../modelos/colmena.dart';
 /// Genera el libro oficial de explotación apícola (REGA / SITRAN-AP) en PDF
 /// firmable. Usa la plantilla `informe_periodico` del core para mantener
 /// cabecera, footer y tablas consistentes con el resto de informes de la
-/// suite Solera.
+/// suite Larrea.
 ///
 /// **Limitación v0.1**: el formato exacto vigente del libro REGA cambia
 /// con cada actualización del MAPA + decretos autonómicos (Andalucía,

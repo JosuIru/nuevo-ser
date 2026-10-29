@@ -1,10 +1,10 @@
-# Solera Apícola — CLAUDE.md
+# Larrea Apícola — CLAUDE.md
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 ## Encuadre
 
-Segundo fork de la **Suite Solera** dentro del monorepo. Producto comercial dirigido a **apicultores profesionales y semi-profesionales** (20-200 colmenas) en la península ibérica. Hermana técnica de `apps/agro` (Solera generalista) y `apps/solera-viticultura` (primera vertical especializada).
+Segundo fork de la **Suite Larrea** dentro del monorepo. Producto comercial dirigido a **apicultores profesionales y semi-profesionales** (20-200 colmenas) en la península ibérica. Hermana técnica de `apps/agro` (Larrea generalista) y `apps/solera-viticultura` (primera vertical especializada).
 
 Modelo de negocio: suscripción **€8-20/mes por explotación**. Comprador identificable: apicultor que hoy lleva el libro oficial en papel o Excel y se le acumulan multas por desfases en SITRAN apícola. Ticket bajo, volumen alto, mercado muy concreto.
 
@@ -18,7 +18,7 @@ Modelo de negocio: suscripción **€8-20/mes por explotación**. Comprador iden
 
 ## Stack
 
-Heredado de la suite Solera. Dependencias en `pubspec.yaml`. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io`, `informe_periodico_pdf` y todas las primitivas reutilizables.
+Heredado de la suite Larrea. Dependencias en `pubspec.yaml`. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io`, `informe_periodico_pdf` y todas las primitivas reutilizables.
 
 ## Estructura
 

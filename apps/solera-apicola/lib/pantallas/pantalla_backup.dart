@@ -22,20 +22,20 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error) {
       break;
     case MotivoErrorCopiaSeguridad.manifiestoNoValido:
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
-      explicacion = 'La copia la hizo una versión más nueva de la app o no se entiende. Actualiza Solera Apícola y vuelve a probar.';
+      explicacion = 'La copia la hizo una versión más nueva de la app o no se entiende. Actualiza Larrea Apícola y vuelve a probar.';
       break;
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      explicacion = 'La copia es de otra app, no de Solera Apícola.';
+      explicacion = 'La copia es de otra app, no de Larrea Apícola.';
       break;
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      explicacion = 'El ZIP no trae la base de datos de Solera Apícola.';
+      explicacion = 'El ZIP no trae la base de datos de Larrea Apícola.';
       break;
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
       explicacion = 'La base de datos de la copia está dañada.';
       break;
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      explicacion = 'La copia es de una versión más nueva de la app. Actualiza Solera Apícola antes de restaurarla.';
+      explicacion = 'La copia es de una versión más nueva de la app. Actualiza Larrea Apícola antes de restaurarla.';
       break;
     case MotivoErrorCopiaSeguridad.rutaPeligrosa:
       explicacion = 'La copia intenta escribir fuera de la carpeta de la app y se ha rechazado.';
@@ -99,7 +99,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        subject: 'Copia de seguridad de Solera Apícola',
+        subject: 'Copia de seguridad de Larrea Apícola',
       );
     } on ErrorCopiaSeguridad catch (error) {
       if (mounted) _avisar('No se ha podido crear la copia. ${textoErrorCopiaSeguridad(error)}');

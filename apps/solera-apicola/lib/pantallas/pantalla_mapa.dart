@@ -21,7 +21,7 @@ enum _EstiloMapa { calle, satelite }
 
 enum _OrigenAltaMapa { gps, centroMapa }
 
-/// Pantalla principal de Solera Apícola — el apicultor abre la app y
+/// Pantalla principal de Larrea Apícola — el apicultor abre la app y
 /// ve sus apiarios y colmenas sobre el mapa. Tap en una colmena →
 /// ficha. FAB → nueva colmena con captura GPS.
 class PantallaMapa extends StatefulWidget {
@@ -89,7 +89,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   /// Abre el buscador de lugares del core y lleva el mapa al resultado.
   Future<void> _buscarLugar() async {
     final lugarEncontrado =
-        await buscarLugarEnMapa(context, identificacion: 'Solera Apicola');
+        await buscarLugarEnMapa(context, identificacion: 'Larrea Apicola');
     if (lugarEncontrado == null || !mounted) return;
     _aplicarCentro(lugarEncontrado, 15);
   }
@@ -345,7 +345,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Solera Apícola'),
+        title: const Text('Larrea Apícola'),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),

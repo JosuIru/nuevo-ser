@@ -22,7 +22,7 @@ const String nombreFicheroBaseDatosApicola = 'solera_apicola.db';
 /// usa también la copia de seguridad para rechazar copias más nuevas.
 const int versionEsquemaBaseDatosApicola = 2;
 
-/// Acceso a la base de datos local de Solera Apícola. Singleton con
+/// Acceso a la base de datos local de Larrea Apícola. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
 ///
 /// Convención del monorepo: las migraciones nunca son destructivas.

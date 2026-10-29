@@ -114,11 +114,12 @@ Future<ActualizacionDisponible?> comprobarActualizacionDisponible(
   final claveRes = _claveResultadoPrefijo + config.claveCache;
   final ahora = DateTime.now().millisecondsSinceEpoch;
   final ultimoCheckMs = prefs.getInt(claveTs) ?? 0;
+  final versionInstalada = _formatearVersionInstalada(await PackageInfo.fromPlatform());
 
   // Cache hit: devuelve la última respuesta (sea positiva o negativa).
   if (!forzarRefresco &&
       ahora - ultimoCheckMs < _ttlCache.inMilliseconds) {
-    return _leerCache(prefs, claveRes);
+    return _leerCache(prefs, claveRes, versionInstalada);
   }
 
   final cliente = clienteHttp ?? http.Client();
@@ -132,12 +133,10 @@ Future<ActualizacionDisponible?> comprobarActualizacionDisponible(
       // Marca el timestamp para no martillear si la API está caída,
       // pero conserva el último resultado positivo si lo había.
       await prefs.setInt(claveTs, ahora);
-      return _leerCache(prefs, claveRes);
+      return _leerCache(prefs, claveRes, versionInstalada);
     }
     final lista = jsonDecode(respuesta.body) as List<dynamic>;
     final releaseValido = _elegirReleaseAplicable(lista, config);
-    final paquete = await PackageInfo.fromPlatform();
-    final versionInstalada = _formatearVersionInstalada(paquete);
 
     if (releaseValido == null) {
       await prefs.setInt(claveTs, ahora);
@@ -187,7 +186,7 @@ Future<ActualizacionDisponible?> comprobarActualizacionDisponible(
     // Fallo de red / timeout / JSON inválido: no marcamos timestamp
     // (queremos reintentar en el próximo arranque), pero devolvemos
     // lo último que tuviéramos cacheado por si quedó positivo.
-    return _leerCache(prefs, claveRes);
+    return _leerCache(prefs, claveRes, versionInstalada);
   } finally {
     if (clienteHttp == null) cliente.close();
   }
@@ -297,16 +296,32 @@ Future<void> limpiarCacheActualizaciones(ConfigActualizaciones config) async {
   await prefs.remove(_claveResultadoPrefijo + config.claveCache);
 }
 
+/// El aviso cacheado, contrastado con lo que hay instalado ahora: si
+/// entretanto se instaló esa versión (o una más nueva) ya no hay aviso, y
+/// si se instaló una intermedia el aviso dice la que hay de verdad.
 ActualizacionDisponible? _leerCache(
-    SharedPreferences prefs, String clave) {
+    SharedPreferences prefs, String clave, String versionInstalada) {
   final json = prefs.getString(clave);
   if (json == null || json.isEmpty) return null;
+  final ActualizacionDisponible cacheada;
   try {
-    return ActualizacionDisponible.fromJson(
+    cacheada = ActualizacionDisponible.fromJson(
         jsonDecode(json) as Map<String, dynamic>);
   } catch (_) {
     return null;
   }
+  if (compararVersiones(versionInstalada, cacheada.versionDisponible) >= 0) {
+    prefs.remove(clave);
+    return null;
+  }
+  return ActualizacionDisponible(
+    versionInstalada: versionInstalada,
+    versionDisponible: cacheada.versionDisponible,
+    tagRelease: cacheada.tagRelease,
+    urlAsset: cacheada.urlAsset,
+    notas: cacheada.notas,
+    publicadoMs: cacheada.publicadoMs,
+  );
 }
 
 Map<String, dynamic>? _elegirReleaseAplicable(

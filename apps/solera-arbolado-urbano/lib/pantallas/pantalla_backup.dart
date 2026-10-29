@@ -40,7 +40,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        subject: 'Backup Solera Arbolado Urbano',
+        subject: 'Backup Larrea Arbolado Urbano',
       );
     } on ErrorCopiaSeguridad catch (error) {
       _avisar('No se pudo crear el backup. ${textoErrorCopiaSeguridad(error)}');

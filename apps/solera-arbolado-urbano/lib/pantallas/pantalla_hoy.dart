@@ -72,7 +72,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
           // Aviso de versión nueva (no ocupa sitio si no hay).
           AvisoActualizaciones(
             config: configActualizacionesMonorepo('solera-arbolado-urbano'),
-            nombreApp: 'Solera Arbolado Urbano',
+            nombreApp: 'Larrea Arbolado Urbano',
             margen: const EdgeInsets.only(bottom: 8),
           ),
           Card(

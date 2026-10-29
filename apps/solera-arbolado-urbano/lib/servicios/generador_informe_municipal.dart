@@ -14,7 +14,7 @@ import '../modelos/zona.dart';
 /// Genera el informe municipal de actuaciones sobre arbolado urbano en
 /// PDF firmable. Usa la plantilla `informe_periodico` del core para
 /// mantener cabecera, footer y tablas consistentes con el resto de la
-/// suite Solera.
+/// suite Larrea.
 ///
 /// **Limitación v0.1**: el formato exacto del parte municipal varía
 /// entre ayuntamientos (Madrid, Barcelona, Vitoria, Iruña… cada uno

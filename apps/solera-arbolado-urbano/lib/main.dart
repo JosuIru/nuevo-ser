@@ -35,7 +35,7 @@ class SoleraArboladoUrbanoApp extends StatelessWidget {
       brightness: Brightness.light,
     );
     return MaterialApp(
-      title: 'Solera Arbolado Urbano',
+      title: 'Larrea Arbolado Urbano',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: esquemaColores,

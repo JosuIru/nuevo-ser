@@ -9,7 +9,7 @@
     <!-- Para instalar la versión nueva desde la propia app (pantalla Actualizaciones). -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <application
-        android:label="solera_arbolado_urbano"
+        android:label="Larrea Arbolado Urbano"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

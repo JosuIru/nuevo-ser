@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../datos/base_datos.dart';
 
-/// Configuración de la copia de seguridad de Solera Arbolado Urbano:
+/// Configuración de la copia de seguridad de Larrea Arbolado Urbano:
 /// la BD (`solera_arbolado_urbano.db`) y la carpeta de fotos en un ZIP.
 ///
 /// El identificador es el prefijo de preferencias de siempre, así la
@@ -13,7 +13,7 @@ import '../datos/base_datos.dart';
 final ConfiguracionCopiaSeguridad configuracionCopiaSeguridadArbolado =
     ConfiguracionCopiaSeguridad(
   identificadorApp: 'solera_arbolado_urbano',
-  nombreApp: 'Solera Arbolado Urbano',
+  nombreApp: 'Larrea Arbolado Urbano',
   nombreFicheroBaseDatos: nombreFicheroBaseDatosArbolado,
   prefijoNombreCopia: 'solera-arbolado-backup',
   versionEsquemaActual: versionEsquemaArbolado,
@@ -59,7 +59,7 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error) {
           'La copia es de una versión más nueva de la app. Actualiza la app y vuelve a intentarlo.';
     case MotivoErrorCopiaSeguridad.deOtraApp:
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      explicacion = 'La copia no es de Solera Arbolado Urbano.';
+      explicacion = 'La copia no es de Larrea Arbolado Urbano.';
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
       explicacion = 'La base de datos de la copia está dañada.';

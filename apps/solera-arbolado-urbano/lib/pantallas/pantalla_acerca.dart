@@ -42,7 +42,7 @@ class PantallaAcerca extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Solera Arbolado Urbano',
+                  'Larrea Arbolado Urbano',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -54,7 +54,7 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Solera Arbolado Urbano es un gestor para ayuntamientos pequeños y '
+            'Larrea Arbolado Urbano es un gestor para ayuntamientos pequeños y '
             'medianos + empresas de jardinería que cuidan el arbolado público: '
             'inventario por chapa QR, ficha individual de cada árbol con timeline, '
             'partes de poda con fotos antes/después, identificación de plagas con '
@@ -64,7 +64,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Compromisos legales'),
           const _Bullet(
-            'Solera no recomienda productos fitosanitarios comerciales. '
+            'Larrea no recomienda productos fitosanitarios comerciales. '
             'Los tratamientos requieren carnet de aplicador y se registran '
             'con sustancia activa, dosis, lote y factura para auditoría '
             'municipal.',
@@ -98,12 +98,12 @@ class PantallaAcerca extends StatelessWidget {
           const _Seccion('Catálogos curados'),
           _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Solera'),
+          const _Seccion('Familia Larrea'),
           const Text(
-            'Solera Arbolado Urbano es parte de la suite Solera del monorepo '
-            'Colección Nuevo Ser. Otras apps hermanas: Solera Viticultura '
-            '(libro PAC en bodegas), Solera Apícola (libro REGA en '
-            'apicultura), Solera (general — frutales, trufa, olivar).',
+            'Larrea Arbolado Urbano es parte de la suite Larrea del monorepo '
+            'Colección Nuevo Ser. Otras apps hermanas: Larrea Viticultura '
+            '(libro PAC en bodegas), Larrea Apícola (libro REGA en '
+            'apicultura), Larrea (general — frutales, trufa, olivar).',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),

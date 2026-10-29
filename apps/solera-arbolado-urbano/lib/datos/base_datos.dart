@@ -17,7 +17,7 @@ const String nombreFicheroBaseDatosArbolado = 'solera_arbolado_urbano.db';
 /// usa también la copia de seguridad para rechazar copias más nuevas.
 const int versionEsquemaArbolado = 2;
 
-/// Acceso a la base de datos local de Solera Arbolado Urbano. Singleton
+/// Acceso a la base de datos local de Larrea Arbolado Urbano. Singleton
 /// con inicialización perezosa: la primera lectura crea la BD.
 ///
 /// Convención del monorepo: las migraciones nunca son destructivas. Un

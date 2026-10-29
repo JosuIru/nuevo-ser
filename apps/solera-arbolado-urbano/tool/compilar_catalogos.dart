@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
-// Compilador de catálogos curados de Solera Arbolado Urbano.
+// Compilador de catálogos curados de Larrea Arbolado Urbano.
 //
 // Lee los 5 CSVs de `content/arbolado-urbano/` y genera los ficheros
 // `.dart` en `lib/datos/catalogos_generados/`. Reproduce inline el
@@ -73,7 +73,7 @@ const _rutaContent = '../../content/arbolado-urbano';
 const _rutaSalida = 'lib/datos/catalogos_generados';
 
 void main() async {
-  print('Compilando catálogos de Solera Arbolado Urbano…\n');
+  print('Compilando catálogos de Larrea Arbolado Urbano…\n');
   await _compilarEspeciesArboreas();
   await _compilarPlagasUrbanas();
   await _compilarTiposPoda();

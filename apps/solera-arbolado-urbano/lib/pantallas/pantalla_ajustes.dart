@@ -47,11 +47,11 @@ class PantallaAjustes extends StatelessWidget {
               MaterialPageRoute(
                 builder: (_) => PantallaClaveAnthropic(
                   estado: estadoClaveAnthropic,
-                  nombreApp: 'Solera Arbolado Urbano',
+                  nombreApp: 'Larrea Arbolado Urbano',
                   titulo: SoleraL10n.t('identificacion_con_ia'),
                   queIdentifica: 'Identifica especies y plagas urbanas por foto',
                   descripcion:
-                      'Solera Arbolado Urbano puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico fitosanitario, severidad y manejo cultural. Si detecta una plaga de declaración obligatoria (picudo rojo, fuego bacteriano) o riesgo sanitario público (procesionaria, lagarta peluda) lo destaca con banner. Cuidado con la privacidad ciudadana: las fotos pueden capturar transeúntes; encuadra al árbol.',
+                      'Larrea Arbolado Urbano puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico fitosanitario, severidad y manejo cultural. Si detecta una plaga de declaración obligatoria (picudo rojo, fuego bacteriano) o riesgo sanitario público (procesionaria, lagarta peluda) lo destaca con banner. Cuidado con la privacidad ciudadana: las fotos pueden capturar transeúntes; encuadra al árbol.',
                   probarClave: probarClaveAnthropic,
                 ),
               ),
@@ -81,7 +81,7 @@ class PantallaAjustes extends StatelessWidget {
               MaterialPageRoute(
                 builder: (_) => PantallaEstadoActualizaciones(
                   config: configActualizacionesMonorepo('solera-arbolado-urbano'),
-                  nombreApp: 'Solera Arbolado Urbano',
+                  nombreApp: 'Larrea Arbolado Urbano',
                 ),
               ),
             ),

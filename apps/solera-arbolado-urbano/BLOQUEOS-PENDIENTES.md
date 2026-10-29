@@ -1,4 +1,4 @@
-# Solera Arbolado Urbano — Bloqueos pendientes (decisión humana)
+# Larrea Arbolado Urbano — Bloqueos pendientes (decisión humana)
 
 Tracker de decisiones humanas que bloquean el cierre a producción de cada fase.
 

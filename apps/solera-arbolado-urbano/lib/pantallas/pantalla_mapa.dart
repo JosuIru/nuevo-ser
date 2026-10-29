@@ -21,7 +21,7 @@ const _urlCapaCallejero = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const _urlCapaSatelite =
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
-/// Pantalla principal de Solera Arbolado Urbano — el operario abre la
+/// Pantalla principal de Larrea Arbolado Urbano — el operario abre la
 /// app y ve los árboles del municipio sobre el mapa filtrados por zona.
 /// Tap en un árbol → ficha. FAB principal "Nuevo árbol" con captura
 /// GPS. Botón cámara abre escáner QR para localizar un árbol existente
@@ -103,7 +103,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Future<void> _alBuscarLugar() async {
     final lugar = await buscarLugarEnMapa(
       context,
-      identificacion: 'Solera Arbolado Urbano',
+      identificacion: 'Larrea Arbolado Urbano',
     );
     if (lugar == null || !mounted) return;
     // Movemos siempre: el GPS inicial ya no debe pisar lo buscado.
@@ -301,7 +301,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Solera Arbolado Urbano'),
+        title: Text('Larrea Arbolado Urbano'),
         actions: [
           IconButton(
             icon: Icon(Icons.search),
@@ -385,7 +385,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                     ),
                   ),
                 ),
-                // Selector de capa: callejero ↔ satélite, como en Solera.
+                // Selector de capa: callejero ↔ satélite, como en Larrea.
                 Positioned(
                   top: 8,
                   right: 8,

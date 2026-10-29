@@ -39,7 +39,7 @@ class DatosIncidenciaIA {
 /// **Diagnóstico libre v0.1**: hasta que entre el catálogo curado de
 /// plagas/enfermedades vid (F1-5, decisión humana con asesor
 /// agronómico), todo diagnóstico se marca explícitamente como "no
-/// validado por catálogo Solera" en el modal — el viticultor decide
+/// validado por catálogo Larrea" en el modal — el viticultor decide
 /// si lo acepta.
 class BotonIdentificarIA extends StatefulWidget {
   final List<String> rutasFotos;
@@ -257,10 +257,10 @@ class _ModalResultadoIA extends StatelessWidget {
               coincidencia: _estadoCoincidencia(coincidencia),
               nombreItemCoincidente: coincidencia?.nombreComun,
               mensajeLibre:
-                  'Diagnóstico libre — no coincide con el catálogo curado de Solera Viticultura. Revisa con criterio antes de aceptar.',
+                  'Diagnóstico libre — no coincide con el catálogo curado de Larrea Viticultura. Revisa con criterio antes de aceptar.',
               mensajeProvisional:
                   'Coincide con catálogo provisional. El catálogo aún no ha sido validado agronómicamente — usa criterio.',
-              mensajeValidado: 'Diagnóstico coincide con catálogo Solera',
+              mensajeValidado: 'Diagnóstico coincide con catálogo Larrea',
             ),
             const SizedBox(height: 16),
             _FilaInfo(etiqueta: 'Nombre común', valor: resultado.nombreComun),
@@ -332,7 +332,7 @@ class _ModalResultadoIA extends StatelessWidget {
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'La IA sugiere — tú decides. Antes de aplicar productos fitosanitarios, consulta con tu técnico de cooperativa, ATRIA o asesor enológico. Solera Viticultura no recomienda productos comerciales en v0.1.',
+                      'La IA sugiere — tú decides. Antes de aplicar productos fitosanitarios, consulta con tu técnico de cooperativa, ATRIA o asesor enológico. Larrea Viticultura no recomienda productos comerciales en v0.1.',
                       style: TextStyle(fontSize: 11, color: Colors.grey),
                     ),
                   ),

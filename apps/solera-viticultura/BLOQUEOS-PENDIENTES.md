@@ -1,4 +1,4 @@
-# Solera Viticultura — Bloqueos pendientes (decisión humana)
+# Larrea Viticultura — Bloqueos pendientes (decisión humana)
 
 Tracker de decisiones humanas que bloquean el cierre de fases concretas a producción. Mantener actualizado: añadir cada vez que aparezca un bloqueo, marcar resuelto cuando entre el dato/asesoramiento.
 
@@ -112,7 +112,7 @@ El banner rojo `BannerDeclaracionObligatoria` se enciende automáticamente cuand
 
 ## Pendientes diferidos (no bloquean v0.1)
 
-- **Sondas físicas** (humedad, estación meteo): pospuesto a F2 igual que en Solera generalista.
+- **Sondas físicas** (humedad, estación meteo): pospuesto a F2 igual que en Larrea generalista.
 - **Multi-operador con roles** (enólogo + capataz + jornaleros): pospuesto a F2 con backend.
 - **Marketplace fitosanitarios**: pospuesto a v2.
-- **Tracks GPS de inspección**: heredables de la suite Solera; pendiente de validar si para vid son útiles (la cepa ya está geolocalizada; el track sólo añadiría valor si el viticultor recorre el viñedo a pie con frecuencia).
+- **Tracks GPS de inspección**: heredables de la suite Larrea; pendiente de validar si para vid son útiles (la cepa ya está geolocalizada; el track sólo añadiría valor si el viticultor recorre el viñedo a pie con frecuencia).

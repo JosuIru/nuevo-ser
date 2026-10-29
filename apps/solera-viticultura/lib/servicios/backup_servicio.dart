@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 import '../datos/base_datos.dart';
 import '../estado/clave_ia.dart';
 
-/// Configuración de la copia de seguridad de Solera Viticultura sobre el
+/// Configuración de la copia de seguridad de Larrea Viticultura sobre el
 /// servicio común del core.
 ///
 /// - `identificadorApp` es el prefijo de preferencias de siempre, así la
@@ -17,7 +17,7 @@ import '../estado/clave_ia.dart';
 ConfiguracionCopiaSeguridad configuracionCopiaSeguridadViticultura() {
   return ConfiguracionCopiaSeguridad(
     identificadorApp: prefijoPreferenciasViticultura,
-    nombreApp: 'Solera Viticultura',
+    nombreApp: 'Larrea Viticultura',
     nombreFicheroBaseDatos: nombreFicheroBaseDatosViticultura,
     prefijoNombreCopia: 'solera-viticultura-backup',
     versionEsquemaActual: versionEsquemaBaseDatosViticultura,

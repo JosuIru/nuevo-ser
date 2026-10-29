@@ -22,11 +22,11 @@ const String nombreFicheroBaseDatosViticultura = 'solera_viticultura.db';
 /// migración: la copia de seguridad rechaza copias más nuevas que esto.
 const int versionEsquemaBaseDatosViticultura = 3;
 
-/// Acceso a la base de datos local de Solera Viticultura. Singleton
+/// Acceso a la base de datos local de Larrea Viticultura. Singleton
 /// con inicialización perezosa: la primera lectura crea la BD.
 ///
 /// **Convención**: las migraciones nunca son destructivas (heredada
-/// de la suite Solera). Cualquier viticultor en campo lleva años de
+/// de la suite Larrea). Cualquier viticultor en campo lleva años de
 /// cosechas, tratamientos y observaciones — perder un dato por una
 /// actualización es inaceptable. Cada subida de versión es un paso
 /// aditivo en `_aplicarMigraciones`.

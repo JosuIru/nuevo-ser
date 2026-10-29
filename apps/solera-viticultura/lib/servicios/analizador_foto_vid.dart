@@ -98,7 +98,7 @@ class AnalizadorFotoVid {
 /// enfermedades y trastornos esperables en *Vitis vinifera* en
 /// climas peninsulares. Cuando entre el catálogo curado de F1-5
 /// con asesor agronómico, esta lista se contrastará automáticamente
-/// para distinguir "diagnóstico validado por catálogo Solera" del
+/// para distinguir "diagnóstico validado por catálogo Larrea" del
 /// "diagnóstico libre de la IA" — patrón análogo al de agro.
 const String _promptSistema = '''
 Eres un agrónomo experto en viticultura, especializado en *Vitis vinifera* en climas peninsulares (España, Portugal, sur de Francia). Te paso una foto de una cepa, hoja, racimo o sarmiento con un posible problema sanitario y debes diagnosticarlo.

@@ -56,12 +56,12 @@ class PantallaAjustes extends StatelessWidget {
               context,
               () => PantallaClaveAnthropic(
                 estado: estadoClaveAnthropicViticultura,
-                nombreApp: 'Solera Viticultura',
+                nombreApp: 'Larrea Viticultura',
                 titulo: 'Identificación con IA',
                 queIdentifica:
                     'Identifica mildiu, oídio, botritis y otras incidencias por foto',
                 descripcion:
-                    'Solera Viticultura puede usar Claude, de Anthropic, para analizar la foto que adjuntas '
+                    'Larrea Viticultura puede usar Claude, de Anthropic, para analizar la foto que adjuntas '
                     'a una incidencia y proponer un diagnóstico, severidad y recomendaciones de manejo '
                     'cultural. Con la misma clave funciona el asistente (chat) de la pantalla Hoy. '
                     'Tú pagas el uso a Anthropic con tu clave; sin clave la app funciona igual, '
@@ -100,7 +100,7 @@ class PantallaAjustes extends StatelessWidget {
               context,
               () => PantallaEstadoActualizaciones(
                 config: configActualizacionesMonorepo('solera-viticultura'),
-                nombreApp: 'Solera Viticultura',
+                nombreApp: 'Larrea Viticultura',
               ),
             ),
           ),

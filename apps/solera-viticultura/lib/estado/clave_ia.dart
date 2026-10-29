@@ -1,6 +1,6 @@
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-/// Prefijo de las preferencias de Solera Viticultura. La clave de
+/// Prefijo de las preferencias de Larrea Viticultura. La clave de
 /// Anthropic vive en `solera_viticultura.anthropic.clave` desde la v0.1:
 /// no cambiarlo o se perdería la clave ya guardada.
 const String prefijoPreferenciasViticultura = 'solera_viticultura';

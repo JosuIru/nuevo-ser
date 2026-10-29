@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
-// Compilador de catálogos curados de Solera Viticultura.
+// Compilador de catálogos curados de Larrea Viticultura.
 //
 // Lee los 5 CSVs de `content/viticultura/` y genera los ficheros
 // `.dart` en `lib/datos/catalogos_generados/`. Reusa el módulo
@@ -77,7 +77,7 @@ const _rutaContent = '../../content/viticultura';
 const _rutaSalida = 'lib/datos/catalogos_generados';
 
 void main() async {
-  print('Compilando catálogos de Solera Viticultura…\n');
+  print('Compilando catálogos de Larrea Viticultura…\n');
   await _compilarVariedades();
   await _compilarPortainjertos();
   await _compilarPlagas();

@@ -110,7 +110,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
           // Aviso de versión nueva (no ocupa sitio si no hay).
           AvisoActualizaciones(
             config: configActualizacionesMonorepo('solera-viticultura'),
-            nombreApp: 'Solera Viticultura',
+            nombreApp: 'Larrea Viticultura',
             margen: const EdgeInsets.only(bottom: 12),
           ),
           const TarjetaResumenMeteo(),

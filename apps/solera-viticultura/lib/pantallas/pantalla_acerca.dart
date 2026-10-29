@@ -43,7 +43,7 @@ class PantallaAcerca extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Solera Viticultura',
+                  'Larrea Viticultura',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -55,7 +55,7 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Solera Viticultura es un gestor para bodegas pequeñas y '
+            'Larrea Viticultura es un gestor para bodegas pequeñas y '
             'medianas: censo de cepas con GPS, anotación de cosechas, '
             'observaciones, incidencias y tratamientos, identificación '
             'de plagas por foto con IA y libro oficial PAC en PDF '
@@ -65,7 +65,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Compromisos legales'),
           const _Bullet(
-            'Solera no recomienda productos fitosanitarios comerciales. '
+            'Larrea no recomienda productos fitosanitarios comerciales. '
             'Consulta siempre a tu técnico de cooperativa, ATRIA o '
             'asesor enológico antes de aplicar.',
           ),
@@ -83,12 +83,12 @@ class PantallaAcerca extends StatelessWidget {
           const _Seccion('Catálogos curados'),
           _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Solera'),
+          const _Seccion('Familia Larrea'),
           const Text(
-            'Solera Viticultura es parte de la suite Solera del monorepo '
+            'Larrea Viticultura es parte de la suite Larrea del monorepo '
             'Colección Nuevo Ser. Otras apps hermanas en desarrollo: '
-            'Solera (general — frutales, trufa, olivar), Solera Apícola '
-            '(libro REGA), Solera Arbolado Urbano (B2B municipal).',
+            'Larrea (general — frutales, trufa, olivar), Larrea Apícola '
+            '(libro REGA), Larrea Arbolado Urbano (B2B municipal).',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),

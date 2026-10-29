@@ -17,7 +17,7 @@ import 'pantalla_nuevo_evento.dart';
 /// Ficha de una cepa: cabecera con datos fijos (variedad,
 /// portainjerto, viñedo, coords, fecha plantación) + foto principal +
 /// timeline cronológico que mezcla cosechas, observaciones,
-/// incidencias y tratamientos. Patrón heredado de la suite Solera.
+/// incidencias y tratamientos. Patrón heredado de la suite Larrea.
 class PantallaFichaCepa extends StatefulWidget {
   final int cepaId;
   PantallaFichaCepa({super.key, required this.cepaId});

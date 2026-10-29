@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// sueltos); si tiene valor, sólo las de ese viñedo.
 ///
 /// Está separado del modelo `Vinedo` porque es estado de UI/preferencia,
-/// no un dato del dominio. Patrón heredado de la suite Solera.
+/// no un dato del dominio. Patrón heredado de la suite Larrea.
 class VinedoActivoPersistido {
   static const _clave = 'solera_viticultura.vinedo_activo.id';
 

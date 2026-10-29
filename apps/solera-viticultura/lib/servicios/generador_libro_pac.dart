@@ -11,7 +11,7 @@ import '../modelos/vinedo.dart';
 /// Genera el libro oficial de tratamientos fitosanitarios (PAC,
 /// RD 1311/2012) en PDF firmable. Usa la plantilla `informe_periodico`
 /// del core para mantener cabecera, footer y tablas consistentes con
-/// el resto de informes de la suite Solera.
+/// el resto de informes de la suite Larrea.
 ///
 /// **Limitación v0.1**: el formato exacto vigente del libro PAC
 /// cambia con cada actualización del MAPA. Hasta validar con la
@@ -124,7 +124,7 @@ String _etiquetaCepa(Cepa? cepa) {
 
 /// Histórico completo del viñedo (sin filtro de fechas). Recolecta
 /// tratamientos por cepa y los agrega. N+1 consultas — comportamiento
-/// heredado de la suite Solera, aceptable para volúmenes de <10k cepas.
+/// heredado de la suite Larrea, aceptable para volúmenes de <10k cepas.
 Future<List<Tratamiento>> _listarTratamientosHistoricoDelVinedo(
   BaseDatosSoleraViticultura db,
   int? vinedoId,

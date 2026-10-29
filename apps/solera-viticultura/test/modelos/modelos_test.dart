@@ -16,12 +16,12 @@ void main() {
     test('round-trip mínimo', () {
       final original = Vinedo(
         id: 1,
-        nombre: 'Pago La Solera',
+        nombre: 'Pago La Larrea',
         colorEntero: 0xFF7D2A2A,
         fechaCreacionMs: 1700000000000,
       );
       final ida = Vinedo.fromMap(original.toMap());
-      expect(ida.nombre, 'Pago La Solera');
+      expect(ida.nombre, 'Pago La Larrea');
       expect(ida.colorEntero, 0xFF7D2A2A);
       expect(ida.fechaCreacionMs, 1700000000000);
       expect(ida.referenciaSigpac, '');
@@ -156,7 +156,7 @@ void main() {
       final original = Titular(
         nif: '12345678Z',
         nombre: 'Antonio Beltrán',
-        direccion: 'Bodega Pago La Solera, Logroño',
+        direccion: 'Bodega Pago La Larrea, Logroño',
         numeroRegepa: 'REG-26-2025-0042',
         telefono: '600123456',
         email: 'antonio@bodegasolera.es',

@@ -23,11 +23,11 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error) {
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
       explicacion =
-          'La copia es de una versión más nueva de Solera Viticultura. Actualiza la app y vuelve a intentarlo.';
+          'La copia es de una versión más nueva de Larrea Viticultura. Actualiza la app y vuelve a intentarlo.';
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      explicacion = 'La copia es de otra aplicación, no de Solera Viticultura.';
+      explicacion = 'La copia es de otra aplicación, no de Larrea Viticultura.';
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      explicacion = 'El ZIP no contiene datos de Solera Viticultura.';
+      explicacion = 'El ZIP no contiene datos de Larrea Viticultura.';
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
       explicacion = 'La base de datos de la copia está dañada.';
@@ -89,7 +89,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        subject: 'Copia de seguridad de Solera Viticultura',
+        subject: 'Copia de seguridad de Larrea Viticultura',
       );
     } on ErrorCopiaSeguridad catch (errorCopia) {
       if (mounted) _avisar('No se pudo crear la copia. ${textoErrorCopiaSeguridad(errorCopia)}');

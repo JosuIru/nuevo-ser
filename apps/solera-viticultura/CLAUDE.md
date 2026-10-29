@@ -1,4 +1,4 @@
-# Solera Viticultura — CLAUDE.md
+# Larrea Viticultura — CLAUDE.md
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
@@ -10,9 +10,9 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 ## Encuadre
 
-Primer fork de la **Suite Solera** dentro del monorepo. Producto comercial dirigido a **bodegas pequeñas y medianas** (5-30 ha). Hermana técnica de `apps/agro` (Solera generalista) y futura `apps/solera-apicola` y `apps/solera-arbolado-urbano`.
+Primer fork de la **Suite Larrea** dentro del monorepo. Producto comercial dirigido a **bodegas pequeñas y medianas** (5-30 ha). Hermana técnica de `apps/agro` (Larrea generalista) y futura `apps/solera-apicola` y `apps/solera-arbolado-urbano`.
 
-Modelo de negocio: suscripción **€15-40/mes por finca**. Comprador identificable (viticultor/enólogo de bodega pequeña que hoy lleva el cuaderno PAC en Excel). Hueco de mercado claro frente a Vintia/AgroOptima — éstos son ERP pesados de oficina; Solera Viticultura va en el móvil al campo.
+Modelo de negocio: suscripción **€15-40/mes por finca**. Comprador identificable (viticultor/enólogo de bodega pequeña que hoy lleva el cuaderno PAC en Excel). Hueco de mercado claro frente a Vintia/AgroOptima — éstos son ERP pesados de oficina; Larrea Viticultura va en el móvil al campo.
 
 ## Posicionamiento — diferenciadores
 
@@ -24,7 +24,7 @@ Modelo de negocio: suscripción **€15-40/mes por finca**. Comprador identifica
 
 ## Stack
 
-Heredado de la suite Solera. Dependencias en `pubspec.yaml`. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io` (parser/escape de CSV), `informe_periodico_pdf` (plantilla PDF con cabecera/footer/tabla consistentes).
+Heredado de la suite Larrea. Dependencias en `pubspec.yaml`. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io` (parser/escape de CSV), `informe_periodico_pdf` (plantilla PDF con cabecera/footer/tabla consistentes).
 
 ## Catálogos curados — flujo de validación
 
@@ -99,7 +99,7 @@ Forkeado de agro con renombrados:
 | F1-5 Catálogo plagas/enfermedades vid | ✅ con datos provisionales | 19 plagas + 19 materias activas en `plagas_vid.csv` y `materias_activas.csv`. Autocomplete cableado en PantallaNuevoEvento (incidencia). Matching fuzzy en modal IA con 3 estados (verde validado / amarillo provisional / naranja libre). **Datos provisionales sin validar agronómicamente** — esperando asesor + descarga registro MAPA vigente. |
 | F1-6 Calendario fenológico BBCH | ✅ con datos provisionales | 72 estados en `calendario_bbch.csv` (8 zona-variedades × 9 estados principales). Helpers `calendarioDe()` y `estadoEsperadoEn()` listos para "qué toca esta semana" cuando entre la pantalla. **Datos provisionales** — esperando asesor enológico para confirmar décadas por DO. |
 | F1-7 Cuaderno PAC | ✅ | PantallaTitular (datos del titular + asesor + aplicador), PantallaLibroPac (selector viñedo + campaña, generar y compartir / abrir en visor del SO), `generador_libro_pac.dart` que usa la plantilla `informe_periodico` del core. **Limitación**: el formato exacto vigente del MAPA debe validarse antes de inspección oficial — registrado en BLOQUEOS-PENDIENTES.md. |
-| F1-8 IA Claude Vision vid-específica | ✅ con caveat | BYO key Claude Haiku 4.5, prompt curado vid-específico (lista canónica de 14 incidencias comunes en *Vitis vinifera*: mildiu, oídio, botritis, polilla del racimo, mildiu falso, black-rot, eutipiosis, yesca, etc.). Botón "Identificar con IA" en formulario de incidencia, modal con diagnóstico + severidad + manejo cultural + advertencias, "Aceptar y pre-rellenar" → rellena formulario con notas auto antepuestas. Hard limit: NO recomienda productos comerciales. **Caveat**: hasta F1-5 todo diagnóstico se marca como "diagnóstico libre, no validado por catálogo Solera" (cuando entre el catálogo curado, se valida automáticamente como en agro) |
+| F1-8 IA Claude Vision vid-específica | ✅ con caveat | BYO key Claude Haiku 4.5, prompt curado vid-específico (lista canónica de 14 incidencias comunes en *Vitis vinifera*: mildiu, oídio, botritis, polilla del racimo, mildiu falso, black-rot, eutipiosis, yesca, etc.). Botón "Identificar con IA" en formulario de incidencia, modal con diagnóstico + severidad + manejo cultural + advertencias, "Aceptar y pre-rellenar" → rellena formulario con notas auto antepuestas. Hard limit: NO recomienda productos comerciales. **Caveat**: hasta F1-5 todo diagnóstico se marca como "diagnóstico libre, no validado por catálogo Larrea" (cuando entre el catálogo curado, se valida automáticamente como en agro) |
 | F1-9 Pulido | ✅ con caveat | Onboarding 3 cards primer arranque (PageView con flag persistido), backup ZIP de BD+fotos con safety pre-restore (heredado patrón agro), pantalla acerca con compromisos legales explícitos, pantalla ajustes consolidando Titular + IA + Backup + Acerca, menú overflow del mapa simplificado a "Libro PAC" + "Ajustes". **Caveat**: branding visual definitivo (logo, splash, paleta extendida más allá de burdeos+crema) sigue siendo decisión humana — registrado en BLOQUEOS-PENDIENTES.md. |
 | F1-10 Branding + refactor al core | ✅ | Logo cabecera (`assets/icono-log-viticultura.png` — hoja de vid en acuarela burdeos), iconos lanzador Android adaptive (5 mipmap-* + adaptive icon Android 8+ via `flutter_launcher_icons`), splash screen Android (incluye Android 12+ via `flutter_native_splash`) sobre fondo crema `#F6E8D2`. **Refactor**: `CampoAutocompleteCatalogo<T>`, `SelectorFotos`, `BannerCoincidenciaCatalogo`/`BannerDeclaracionObligatoria`/`BannerRiesgoSanitarioPublico` extraídos al `nuevo_ser_core` (`src/ui/`) — la app pasa a consumirlos por barrel y elimina los widgets locales duplicados (compartidos con apícola y arbolado). Banner declaración obligatoria cableado en `pantalla_nuevo_evento.dart` por columna `declaracion_oficial` del CSV de plagas — listo para encenderse cuando el agrónomo asesor añada plagas reguladas (Xylella, Flavescencia dorada). |
 | F1-11 Catálogos pre-curados con fuente pública | ✅ | Las 5 CSVs marcadas con `revisado_por=fuente_pública` (MAPA Registro Variedades Vid 2026, IMIDA + ENTAV-INRA, Boletines fitosanitarios CCAA, Registro Fitosanitario MAPA 2026, Eichhorn-Lorenz / Lorenz et al. 1995). **Añadidas 2 plagas cuarentenarias UE** con `declaracion_oficial=si` (Xylella - síndrome de Pierce, Flavescencia dorada) — banner rojo automático al teclear el diagnóstico. Generador libro PAC verificado conforme RD 285/2021 vigente. CUE digital (RD 34/2025, vigor 2027) anotado en BLOQUEOS para F1.1. `catalogosCompletamenteRevisados=true` — el banner "datos provisionales" queda desactivado. **Pendiente auditoría humana**: enólogo + agrónomo asesores firman y sustituyen `revisado_por` por su nombre + nº colegiado. |

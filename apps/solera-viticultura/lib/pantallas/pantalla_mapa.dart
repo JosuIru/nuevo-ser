@@ -20,7 +20,7 @@ enum _EstiloMapa { calle, satelite }
 
 enum _OrigenAltaMapa { gps, centroMapa }
 
-/// Pantalla principal de Solera Viticultura — el viticultor abre la
+/// Pantalla principal de Larrea Viticultura — el viticultor abre la
 /// app y ve sus cepas sobre el mapa. Tap en una cepa → ficha. FAB →
 /// nueva cepa en la posición GPS actual. Filtro por viñedo activo
 /// con bottom sheet.
@@ -343,7 +343,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Future<void> _buscarLugar() async {
     final lugarElegido = await buscarLugarEnMapa(
       context,
-      identificacion: 'Solera Viticultura',
+      identificacion: 'Larrea Viticultura',
     );
     if (lugarElegido == null || !mounted) return;
     _controlador.move(lugarElegido, 15);
@@ -353,7 +353,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Solera Viticultura'),
+        title: const Text('Larrea Viticultura'),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),

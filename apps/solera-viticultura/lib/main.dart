@@ -71,7 +71,7 @@ class _SoleraViticulturaAppState extends State<SoleraViticulturaApp> with Widget
       brightness: Brightness.light,
     );
     return MaterialApp(
-      title: 'Solera Viticultura',
+      title: 'Larrea Viticultura',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: esquemaColores,

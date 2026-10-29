@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 /// Imagen de Wikimedia Commons con metadatos de licencia y atribución.
-/// Solera la mostrará SIEMPRE con su pie de atribución visible
+/// Larrea la mostrará SIEMPRE con su pie de atribución visible
 /// (autor + licencia) — esa es la condición que las licencias CC y
 /// equivalentes exigen para uso comercial.
 class ImagenCommons {

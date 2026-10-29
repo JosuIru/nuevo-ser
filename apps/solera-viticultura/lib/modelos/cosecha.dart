@@ -1,7 +1,7 @@
 /// Registro de cosecha asociado a una cepa. En vid se mide casi
 /// siempre en kilos (vendimia mecánica o manual a granel); las
 /// unidades se mantienen como campo opcional por simetría con la
-/// suite Solera y por si algún operador las quiere usar (p. ej.
+/// suite Larrea y por si algún operador las quiere usar (p. ej.
 /// ensayos de cabezas/racimos por cepa).
 ///
 /// `calidad` opcional 1..5 (libre interpretación por el operador —

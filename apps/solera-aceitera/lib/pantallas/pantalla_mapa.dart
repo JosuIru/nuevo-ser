@@ -104,7 +104,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
 
   Future<void> _buscarLugar() async {
     final lugar =
-        await buscarLugarEnMapa(context, identificacion: 'Solera Aceitera');
+        await buscarLugarEnMapa(context, identificacion: 'Larrea Aceitera');
     if (lugar == null || !mounted) return;
     _aplicarCentro(lugar, 15);
   }

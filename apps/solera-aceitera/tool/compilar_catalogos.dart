@@ -1,12 +1,12 @@
 // ignore_for_file: avoid_print, prefer_interpolation_to_compose_strings
-// Compilador de catálogos curados de Solera Aceitera.
+// Compilador de catálogos curados de Larrea Aceitera.
 //
 // Lee los 5 CSVs de `content/aceitera/` y genera los ficheros `.dart`
 // en `lib/datos/catalogos_generados/`. El parser CSV está inline para
 // que el script sea ejecutable con `dart run` sin resolver las
 // dependencias Flutter del core — la lógica es la misma que
 // `nuevo_ser_core/lib/src/csv/csv_io.dart` y la análoga de los demás
-// forks Solera (viticultura/apícola/arbolado/quesera).
+// forks Larrea (viticultura/apícola/arbolado/quesera).
 //
 // Ejecución:
 //   cd apps/solera-aceitera
@@ -76,7 +76,7 @@ const _rutaContent = '../../content/aceitera';
 const _rutaSalida = 'lib/datos/catalogos_generados';
 
 void main() async {
-  print('Compilando catálogos de Solera Aceitera…\n');
+  print('Compilando catálogos de Larrea Aceitera…\n');
   await _compilarVariedades();
   await _compilarPlagas();
   await _compilarFitosanitarios();

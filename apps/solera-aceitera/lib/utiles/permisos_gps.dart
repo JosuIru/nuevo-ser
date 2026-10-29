@@ -4,7 +4,7 @@ import 'package:permission_handler/permission_handler.dart';
 /// Asegura que la ubicación esté habilitada y que el usuario haya
 /// concedido el permiso. Devuelve `true` si se puede pedir posición.
 ///
-/// Patrón compartido con el resto de la suite Solera. Si el servicio
+/// Patrón compartido con el resto de la suite Larrea. Si el servicio
 /// del dispositivo está apagado o el usuario deniega permanentemente
 /// el permiso, el caller debe avisar y dejar que el operador rellene
 /// las coordenadas a mano.

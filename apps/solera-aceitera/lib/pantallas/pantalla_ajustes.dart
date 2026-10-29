@@ -151,13 +151,13 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           subtitulo: 'Versión instalada y última publicada',
           construirPantalla: (_) => PantallaEstadoActualizaciones(
             config: configActualizacionesMonorepo('solera-aceitera'),
-            nombreApp: 'Solera Aceitera',
+            nombreApp: 'Larrea Aceitera',
           ),
         ),
         _entradaQueAbre(
           icono: Icons.info_outline,
           titulo: SoleraL10n.t('acerca_de'),
-          subtitulo: 'Qué es Solera Aceitera, compromisos y catálogos',
+          subtitulo: 'Qué es Larrea Aceitera, compromisos y catálogos',
           construirPantalla: (_) => const PantallaAcerca(),
         ),
       ];

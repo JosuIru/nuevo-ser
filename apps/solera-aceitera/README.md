@@ -2,7 +2,7 @@
 
 Gestor de explotación olivarera y almazara para almazaras pequeñas y medianas (100-2000 hl/campaña).
 
-Sexto fork de la **Suite Solera** dentro del monorepo `nuevo-ser/`. Hermana técnica de `apps/agro`, `apps/solera-viticultura`, `apps/solera-apicola`, `apps/solera-arbolado-urbano` y `apps/solera-quesera`.
+Sexto fork de la **Suite Larrea** dentro del monorepo `nuevo-ser/`. Hermana técnica de `apps/agro`, `apps/solera-viticultura`, `apps/solera-apicola`, `apps/solera-arbolado-urbano` y `apps/solera-quesera`.
 
 Detalle de fase y diferenciadores en `CLAUDE.md`. Bloqueantes humanos en `BLOQUEOS-PENDIENTES.md`.
 

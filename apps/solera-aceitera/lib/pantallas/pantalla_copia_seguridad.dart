@@ -49,7 +49,7 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(copia.path)],
-        subject: 'Copia de seguridad de Solera Aceitera',
+        subject: 'Copia de seguridad de Larrea Aceitera',
       );
     } on ErrorCopiaSeguridad catch (error) {
       if (mounted) _avisar(textoErrorCopiaAceitera(error));
@@ -185,7 +185,7 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
             const SizedBox(height: 4),
             const Text(
               'Sustituye los datos de este dispositivo por los de un ZIP de '
-              'Solera Aceitera. Primero se comprueba la copia y se te enseña '
+              'Larrea Aceitera. Primero se comprueba la copia y se te enseña '
               'de cuándo es; si algo falla al restaurar, se vuelve al estado '
               'anterior.',
               style: estiloExplicacion,

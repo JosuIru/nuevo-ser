@@ -67,7 +67,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(_olivar?.nombre ?? 'Solera Aceitera')),
+      appBar: AppBar(title: Text(_olivar?.nombre ?? 'Larrea Aceitera')),
       body: RefreshIndicator(
         onRefresh: _cargar,
         child: ListView(
@@ -76,7 +76,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
             // Aviso de versión nueva: si no la hay, no ocupa sitio.
             AvisoActualizaciones(
               config: configActualizacionesMonorepo('solera-aceitera'),
-              nombreApp: 'Solera Aceitera',
+              nombreApp: 'Larrea Aceitera',
               margen: const EdgeInsets.only(bottom: 12),
             ),
             const BannerCatalogosProvisionales(),

@@ -1,5 +1,5 @@
 /// Olivar — explotación olivarera con identidad persistente. Entidad
-/// análoga a Queseria/Apiario/Viñedo en las otras Solera. Single-row
+/// análoga a Queseria/Apiario/Viñedo en las otras Larrea. Single-row
 /// en v0.1 (un olivar por dispositivo). Multi-olivar llega con backend
 /// multi-operador (F4) — sobre todo para cooperativas que gestionan
 /// varios socios.

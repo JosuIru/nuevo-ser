@@ -43,7 +43,7 @@ class PantallaAcerca extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Solera Aceitera',
+                  'Larrea Aceitera',
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -53,7 +53,7 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Solera Aceitera es un gestor para almazaras pequeñas y '
+            'Larrea Aceitera es un gestor para almazaras pequeñas y '
             'medianas: parcelas de olivar con GPS, recolecciones y '
             'tratamientos, recepción de partidas, molturación y lotes de '
             'aceite, libro de movimientos del aceite, cuaderno PAC del '
@@ -64,7 +64,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Compromisos legales'),
           const _Bullet(
-            'Solera no recomienda productos fitosanitarios comerciales por '
+            'Larrea no recomienda productos fitosanitarios comerciales por '
             'marca: el catálogo recoge sustancias activas. Consulta siempre '
             'a tu técnico de OCA o asesor agrónomo antes de aplicar.',
           ),
@@ -84,12 +84,12 @@ class PantallaAcerca extends StatelessWidget {
           const _Seccion('Catálogos'),
           const _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Solera'),
+          const _Seccion('Familia Larrea'),
           const Text(
-            'Solera Aceitera es parte de la suite Solera de la Colección '
-            'Nuevo Ser. Apps hermanas: Solera (general — frutales, trufa, '
-            'olivar), Solera Viticultura, Solera Apícola, Solera Arbolado '
-            'Urbano y Solera Quesera.',
+            'Larrea Aceitera es parte de la suite Larrea de la Colección '
+            'Nuevo Ser. Apps hermanas: Larrea (general — frutales, trufa, '
+            'olivar), Larrea Viticultura, Larrea Apícola, Larrea Arbolado '
+            'Urbano y Larrea Quesera.',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),

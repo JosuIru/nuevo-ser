@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-/// Prefijo de las preferencias de Solera Aceitera. La clave de Anthropic
+/// Prefijo de las preferencias de Larrea Aceitera. La clave de Anthropic
 /// vive en `solera_aceitera.anthropic.clave` desde la primera versión:
 /// no cambiarlo o la gente perdería la clave guardada.
 const String prefijoPreferenciasAceitera = 'solera_aceitera';
@@ -30,14 +30,14 @@ Future<String?> probarClaveAnthropicAceitera(String clave) async {
 /// Pantalla común de la clave con los textos del olivar.
 Widget construirPantallaClaveAnthropicAceitera() => PantallaClaveAnthropic(
       estado: estadoClaveAnthropicAceitera,
-      nombreApp: 'Solera Aceitera',
+      nombreApp: 'Larrea Aceitera',
       titulo: 'Identificación con IA',
       queIdentifica: 'Identifica plagas y variedades del olivar por foto',
       descripcion:
           'La identificación visual de plagas, enfermedades y variedades '
           'del olivar usa Claude, de Anthropic. Pega aquí tu clave '
           'personal: se guarda sólo en este dispositivo y nunca pasa por '
-          'un servidor de Solera; las fotos van directas a Anthropic.\n\n'
+          'un servidor de Larrea; las fotos van directas a Anthropic.\n\n'
           'Las consultas se cobran en tu cuenta de Anthropic (unas décimas '
           'de céntimo cada una con Claude Haiku). El resultado es una '
           'ayuda: contrástalo con tu técnico.',

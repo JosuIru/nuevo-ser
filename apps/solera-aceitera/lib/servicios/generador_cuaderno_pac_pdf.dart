@@ -21,7 +21,7 @@ import '../modelos/titular.dart';
 ///
 /// La plantilla `informe_periodico` del core mantiene cabecera,
 /// footer y tablas en el mismo estilo que el resto de la suite
-/// Solera. Si `parcela` es null se genera el cuaderno global
+/// Larrea. Si `parcela` es null se genera el cuaderno global
 /// (todas las parcelas del olivar).
 ///
 /// **Limitación PROVISIONAL v0.1**: el formato exacto vigente del

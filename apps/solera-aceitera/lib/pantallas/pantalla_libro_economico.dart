@@ -93,7 +93,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        text: 'Extracto económico $_anyo · Solera Aceitera',
+        text: 'Extracto económico $_anyo · Larrea Aceitera',
       );
     } catch (e) {
       if (!mounted) return;

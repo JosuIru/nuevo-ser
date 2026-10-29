@@ -1,4 +1,4 @@
-# Solera Aceitera — Bloqueos pendientes
+# Larrea Aceitera — Bloqueos pendientes
 
 Decisiones humanas que bloquean fases concretas del roadmap. Cada bloqueo
 declara la fase afectada, qué pieza queda colgada y qué interlocutor

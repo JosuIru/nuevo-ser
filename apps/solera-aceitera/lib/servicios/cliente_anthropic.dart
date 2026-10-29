@@ -35,7 +35,7 @@ class ResultadoDiagnosticoPlaga {
   });
 
   /// `true` cuando el diagnóstico coincide con una plaga del catálogo
-  /// Solera (validada o provisional). La pantalla cliente muestra un
+  /// Larrea (validada o provisional). La pantalla cliente muestra un
   /// chip distinto según este flag.
   bool get validadoPorCatalogo => idCatalogo.isNotEmpty;
 

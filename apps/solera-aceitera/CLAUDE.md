@@ -1,4 +1,4 @@
-# Solera Aceitera — CLAUDE.md
+# Larrea Aceitera — CLAUDE.md
 
 Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
@@ -10,7 +10,7 @@ Cerebro persistente del proyecto. Se lee al inicio de cada sesión.
 
 ## Encuadre
 
-Sexto fork de la **Suite Solera** dentro del monorepo. Producto comercial dirigido a **almazaras pequeñas y medianas** (1-15 empleados, 100-2000 hl/campaña) en España. Hermana técnica de `apps/agro` (Solera generalista), `apps/solera-viticultura`, `apps/solera-apicola`, `apps/solera-arbolado-urbano` y `apps/solera-quesera`.
+Sexto fork de la **Suite Larrea** dentro del monorepo. Producto comercial dirigido a **almazaras pequeñas y medianas** (1-15 empleados, 100-2000 hl/campaña) en España. Hermana técnica de `apps/agro` (Larrea generalista), `apps/solera-viticultura`, `apps/solera-apicola`, `apps/solera-arbolado-urbano` y `apps/solera-quesera`.
 
 Modelo de negocio: suscripción **€15-30/mes por almazara** + opción cooperativa B2B con licencia anual cuando hay >50 socios. Comprador identificable: el maestro almazarero o el técnico responsable de una cooperativa pequeña/mediana que hoy lleva el cuaderno de campo PAC en papel + Excel del aceite + libro de movimientos del aceite que reclama la Junta de Andalucía / DGOOPP MAPA. El sector está infradigitalizado fuera de las grandes cooperativas (Dcoop, Olipe…) y ahí está la competencia (Olibu, Agroptima vertical aceite), pero ninguno cubre el ciclo completo "olivar → almazara → libro fiscal REAGP" en una sola herramienta.
 
@@ -26,7 +26,7 @@ Modelo de negocio: suscripción **€15-30/mes por almazara** + opción cooperat
 
 ## Stack
 
-Heredado de la suite Solera. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io`, `informe_periodico_pdf`, `CampoAutocompleteCatalogo`, `SelectorFotos`, `BannerCoincidenciaCatalogo`, `BannerDeclaracionObligatoria`.
+Heredado de la suite Larrea. Consume `nuevo_ser_core` por path local para `GestorFotos`, `csv_io`, `informe_periodico_pdf`, `CampoAutocompleteCatalogo`, `SelectorFotos`, `BannerCoincidenciaCatalogo`, `BannerDeclaracionObligatoria`.
 
 ## Estructura
 
@@ -114,7 +114,7 @@ Ver `BLOQUEOS-PENDIENTES.md`.
 - Validación del catálogo de variedades + plagas + DOPs por **asesor agrónomo olivarero** (formación IFAPA o equivalente, idealmente con experiencia en cooperativa).
 - Formato exacto del Cuaderno de Explotación PAC olivar y del Libro de Movimientos del Aceite — conforme RD 1311/2012, RD 285/2021, RD 760/2021 y normativa AICA vigente — validar con técnico OCA real.
 - Logo y branding visual definitivo (verde oliva oscuro + crema, evitar colisión con verde-hoja del arbolado).
-- `applicationId` final: fijado en `com.coleccionnuevoser.solera_aceitera` desde F1-A11 (consistente con el resto de la suite Solera) — confirmar antes del primer envío a Play Store.
+- `applicationId` final: fijado en `com.coleccionnuevoser.solera_aceitera` desde F1-A11 (consistente con el resto de la suite Larrea) — confirmar antes del primer envío a Play Store.
 - **F1-A9 Libro ingresos/gastos — asesor fiscal humano** antes de quitar provisional. El olivar tiene reglas REAGP peculiares (aceituna a almazara, aceite a envasador, aceite a destino final) que conviene cerrar con un fiscalista agroalimentario.
 - Decidir si la app cubre también **subproductos de la almazara** (alperujo a extractora, orujo graso, hueso de aceituna como biomasa) o se queda en aceite virgen + virgen extra.
 - Decisión de monetización para cooperativas: suscripción por almazara, por socio cooperativista, o licencia anual a la cooperativa con n socios incluidos.

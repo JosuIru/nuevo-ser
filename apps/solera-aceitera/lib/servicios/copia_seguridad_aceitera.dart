@@ -13,14 +13,14 @@ const String identificadorCopiaSoleraAceitera = prefijoPreferenciasAceitera;
 /// Prefijo del nombre del ZIP (`solera-aceitera-copia-<fecha>.zip`).
 const String prefijoNombreCopiaSoleraAceitera = 'solera-aceitera-copia';
 
-/// Configuración de la copia de seguridad de Solera Aceitera: la BD
+/// Configuración de la copia de seguridad de Larrea Aceitera: la BD
 /// `solera_aceitera.db` y, si existe, la carpeta `fotos/`. No lleva
 /// preferencias: así la clave de Anthropic nunca sale en un ZIP que se
 /// comparte por correo o mensajería.
 ConfiguracionCopiaSeguridad configuracionCopiaSoleraAceitera() =>
     ConfiguracionCopiaSeguridad(
       identificadorApp: identificadorCopiaSoleraAceitera,
-      nombreApp: 'Solera Aceitera',
+      nombreApp: 'Larrea Aceitera',
       nombreFicheroBaseDatos: nombreFicheroBaseDatosAceitera,
       prefijoNombreCopia: prefijoNombreCopiaSoleraAceitera,
       versionEsquemaActual: versionEsquemaSoleraAceitera,
@@ -45,7 +45,7 @@ Future<bool> comprobarIntegridadBaseDatosAceitera(String rutaBaseDatos) async {
   }
 }
 
-/// Copia de seguridad de Solera Aceitera sobre el servicio común del core
+/// Copia de seguridad de Larrea Aceitera sobre el servicio común del core
 /// (valida antes de tocar nada, respalda el estado actual y revierte si
 /// algo falla). Una sola instancia para toda la app.
 final ServicioCopiaSeguridad servicioCopiaSeguridadAceitera =
@@ -65,12 +65,12 @@ String textoErrorCopiaAceitera(ErrorCopiaSeguridad error) {
       causa = 'La copia está incompleta o no se entiende.';
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      causa = 'La copia la hizo una versión más nueva de Solera Aceitera. '
+      causa = 'La copia la hizo una versión más nueva de Larrea Aceitera. '
           'Actualiza la app y vuelve a intentarlo.';
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      causa = 'La copia es de otra aplicación, no de Solera Aceitera.';
+      causa = 'La copia es de otra aplicación, no de Larrea Aceitera.';
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      causa = 'El ZIP no contiene una base de datos de Solera Aceitera.';
+      causa = 'El ZIP no contiene una base de datos de Larrea Aceitera.';
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
       causa = 'La base de datos de la copia está dañada.';

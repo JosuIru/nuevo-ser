@@ -1,4 +1,4 @@
-// Solera Aceitera — F1-A3 con navegación principal completa.
+// Larrea Aceitera — F1-A3 con navegación principal completa.
 //
 // Arranque:
 //   main() → AppSoleraAceitera → _Orquestador
@@ -47,7 +47,7 @@ class AppSoleraAceitera extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Solera Aceitera',
+      title: 'Larrea Aceitera',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,

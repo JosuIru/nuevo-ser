@@ -1,5 +1,5 @@
 /// Parcela del olivar. Entidad análoga a Vinedo/Apiario/Zona en las
-/// otras Solera. Cada parcela tiene su polígono SIGPAC, superficie,
+/// otras Larrea. Cada parcela tiene su polígono SIGPAC, superficie,
 /// variedad mayoritaria y régimen de riego.
 ///
 /// El marco de plantación es texto libre porque va desde "7x7" o "8x6"

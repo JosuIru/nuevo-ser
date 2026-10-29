@@ -65,7 +65,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Bienvenido a Solera Aceitera')),
+      appBar: AppBar(title: const Text('Bienvenido a Larrea Aceitera')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Form(

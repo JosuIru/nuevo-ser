@@ -29,11 +29,11 @@ const String nombreFicheroBaseDatosAceitera = 'solera_aceitera.db';
 /// La copia de seguridad rechaza copias con un esquema más nuevo.
 const int versionEsquemaSoleraAceitera = 2;
 
-/// Acceso a la base de datos local de Solera Aceitera. Singleton con
+/// Acceso a la base de datos local de Larrea Aceitera. Singleton con
 /// inicialización perezosa: la primera lectura crea/migra la BD.
 ///
 /// **Convención**: las migraciones nunca son destructivas (heredada
-/// de la suite Solera). Cualquier almazara en campaña lleva años de
+/// de la suite Larrea). Cualquier almazara en campaña lleva años de
 /// recolecciones, molturaciones y lotes de aceite registrados —
 /// perder un dato por una actualización es inaceptable y, en el caso
 /// del libro de movimientos, ilegal por AICA. Cada subida de versión

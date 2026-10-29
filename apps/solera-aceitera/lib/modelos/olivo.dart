@@ -1,5 +1,5 @@
 /// Pie individual de olivo. Entidad análoga a Cepa/Colmena/Arbol en
-/// las otras Solera, pero su granularidad solo tiene sentido para
+/// las otras Larrea, pero su granularidad solo tiene sentido para
 /// olivares **superintensivos** (donde cada pie produce kg medibles)
 /// o para **olivos monumentales catalogados** (donde el pie es
 /// patrimonio en sí). La mayoría de explotaciones trabajan a nivel de

@@ -1,4 +1,4 @@
-// Tests POJO de los 14 modelos de Solera Aceitera (F1-A2).
+// Tests POJO de los 14 modelos de Larrea Aceitera (F1-A2).
 // Round-trip toMap/fromMap por cada modelo + lógica derivada
 // (getters calculados). NO ejercita sqflite — esos llegan en F1-A3
 // cuando entren las pantallas o cuando se incorpore sqflite_common_ffi

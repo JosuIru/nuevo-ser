@@ -26,7 +26,7 @@ import '../modelos/titular.dart';
 ///
 /// La plantilla `informe_periodico` del core mantiene cabecera,
 /// footer y tablas en el mismo estilo que el resto de la suite
-/// Solera. Si `lote` es null se genera el libro completo de la
+/// Larrea. Si `lote` es null se genera el libro completo de la
 /// campaña; si se pasa un lote concreto, se reduce a las tablas de
 /// ese lote (útil para presentar el ciclo de vida individual ante
 /// AICA cuando la inspección pregunta por una referencia concreta).

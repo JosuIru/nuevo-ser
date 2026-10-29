@@ -1,4 +1,4 @@
-# Análisis estático para Solera Aceitera. Comparte la base con el resto
+# Análisis estático para Larrea Aceitera. Comparte la base con el resto
 # del monorepo: reglas recomendadas de flutter_lints + desactivación de
 # `avoid_renaming_method_parameters` porque el proyecto usa nombres de
 # parámetros en castellano (regla del CLAUDE.md raíz).

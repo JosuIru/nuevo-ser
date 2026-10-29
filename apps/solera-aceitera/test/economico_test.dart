@@ -1,4 +1,4 @@
-// Tests del módulo libro económico de Solera Aceitera (F1-A9).
+// Tests del módulo libro económico de Larrea Aceitera (F1-A9).
 // Cubren round-trip POJO y la lógica derivada de IVA/compensación
 // REAGP. No tocan sqflite — el contrato del CRUD se valida cuando
 // entre la pantalla de configuración y los formularios.

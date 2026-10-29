@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-/// Paleta y assets de Solera Aceitera. Consolidados en un único punto
+/// Paleta y assets de Larrea Aceitera. Consolidados en un único punto
 /// para que el ilustrador de F1-A10 (branding visual definitivo) pueda
 /// sustituirlos sin tocar el árbol de widgets.
 ///
-/// La paleta sigue el patrón de la suite Solera (color principal +
+/// La paleta sigue el patrón de la suite Larrea (color principal +
 /// crema cálida) — verde oliva oscuro evita la colisión con el verde
 /// hoja del arbolado urbano y con el burdeos de viticultura.
 

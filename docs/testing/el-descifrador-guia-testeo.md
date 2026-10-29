@@ -10,7 +10,7 @@ gallego). El niño los identifica, marca palabras, propone hipótesis y
 decide qué hacer con ellos.
 
 > **Aviso importante para el tester**: el juego está en una fase muy
-> temprana. Hay menos que testear que en Fósiles o Solera. El
+> temprana. Hay menos que testear que en Fósiles o Larrea. El
 > prototipo actual aburre — eso lo sabemos. Por eso necesitamos sobre
 > todo **feedback honesto sobre la sensación**: qué te transmite el
 > puerto, qué te hace sentir abrir un papel, dónde te aburres,

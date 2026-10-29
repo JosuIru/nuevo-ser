@@ -14,7 +14,7 @@ CPTs + shortcodes para convertir cualquier WordPress en un **portfolio + hub de 
 ### Dos shortcodes
 
 - `[gxare_proyectos]` — grid de proyectos con tarjetas. Atributos opcionales:
-  - `marca` — filtra por línea ("Cuadernos de Campo", "Solera", "Flavor")
+  - `marca` — filtra por línea ("Cuadernos de Campo", "Larrea", "Flavor")
   - `tipo` — filtra por tipo (`app`, `plugin`, `theme`, `servicio`, `libreria`)
   - `destacado` — `1` para mostrar solo destacados
   - `limite` — número máximo (`-1` = todos)
@@ -27,7 +27,7 @@ CPTs + shortcodes para convertir cualquier WordPress en un **portfolio + hub de 
 
 Al activar el plugin se publican automáticamente:
 
-- **11 proyectos**: Fósiles + Naturaleza (Cuadernos de Campo) · agro + 5 verticales (Solera) · Flavor Platform + News Hub + Chat IA.
+- **11 proyectos**: Fósiles + Naturaleza (Cuadernos de Campo) · agro + 5 verticales (Larrea) · Flavor Platform + News Hub + Chat IA.
 - **4 descargas**: Fósiles 1.0.14+15, Naturaleza 1.0, Flavor Platform 3.5.13, Flavor News Hub 0.16.6.
 
 Idempotente vía meta `gxare_seed_id`: si los borras a mano y los reactivas no duplica nada salvo que rebajes el meta.

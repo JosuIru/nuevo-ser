@@ -2,7 +2,7 @@
 # Fuente orientativa: Registro Fitosanitario MAPA (sólo sustancias activas).
 # La app NO recomienda productos comerciales por marca — el catálogo recoge
 # únicamente sustancias activas + tipo de acción, en línea con los hard limits
-# de la suite Solera.
+# de la suite Larrea.
 # Hasta que un agrónomo olivarero firme `revisado_por`, los datos son orientativos.
 # Columnas:
 #   id                          snake_case ASCII de la sustancia activa.

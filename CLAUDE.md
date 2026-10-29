@@ -17,12 +17,12 @@ Cuando los docs de este repo dicen "la Colección" sin más, se refieren a Kids.
 │   ├── las-versiones/    juego de pensamiento histórico 10-14 (Kids, Fase 10)
 │   ├── el-cuaderno/      cuaderno de campo digital 9-13 (Kids, Bloque B)
 │   ├── el-descifrador/   juego de oficio civil para descifrar documentos 11-14 (Kids, esqueleto v0.1.0)
-│   ├── agro/             Solera — gestor de fincas (producto comercial)
-│   ├── solera-viticultura/   Solera Viticultura (bodegas pequeñas/medias)
-│   ├── solera-apicola/       Solera Apícola (apicultores 20-200 colmenas)
-│   ├── solera-arbolado-urbano/ Solera Arbolado Urbano (B2B ayuntamientos)
-│   ├── solera-quesera/       Solera Quesera (queserías artesanas, F1-5)
-│   └── solera-aceitera/      Solera Aceitera (almazaras pequeñas, F1-A1 esqueleto)
+│   ├── agro/             Larrea — gestor de fincas (producto comercial)
+│   ├── solera-viticultura/   Larrea Viticultura (bodegas pequeñas/medias)
+│   ├── solera-apicola/       Larrea Apícola (apicultores 20-200 colmenas)
+│   ├── solera-arbolado-urbano/ Larrea Arbolado Urbano (B2B ayuntamientos)
+│   ├── solera-quesera/       Larrea Quesera (queserías artesanas, F1-5)
+│   └── solera-aceitera/      Larrea Aceitera (almazaras pequeñas, F1-A1 esqueleto)
 │
 ├── packages/
 │   ├── nuevo_ser_core/        plataforma compartida (motor maestría, sync, audio, cinemáticas)
@@ -57,13 +57,13 @@ Cuando los docs de este repo dicen "la Colección" sin más, se refieren a Kids.
 
 **Si actualizas el catálogo de formaciones** desde cuadernos-de-campo (regenerar JSON), el path relativo del test escribe a `../../../nuevo-ser/wp-plugin/...` — para que el seed siga sincronizado.
 
-## Producto comercial — Solera (apps/agro)
+## Producto comercial — Larrea (apps/agro)
 
-`apps/agro/` es **producto comercial general** (no Kids, no operador). Branded como **Solera**: gestor de fincas agrícolas para Iberia. Modelo: planta con identidad persistente. Estado: F0+F1 cerrado, F1.A en curso, F1.B-F4 pendientes. Diferenciador: modo trufas único en mercado + cuaderno MAPA. Detalle en `apps/agro/CLAUDE.md`.
+`apps/agro/` es **producto comercial general** (no Kids, no operador). Branded como **Larrea**: gestor de fincas agrícolas para Iberia. Modelo: planta con identidad persistente. Estado: F0+F1 cerrado, F1.A en curso, F1.B-F4 pendientes. Diferenciador: modo trufas único en mercado + cuaderno MAPA. Detalle en `apps/agro/CLAUDE.md`.
 
-## Suite Solera — verticales especializadas
+## Suite Larrea — verticales especializadas
 
-Cinco forks de Solera por vertical. Comparten widgets (`CampoAutocompleteCatalogo`, `SelectorFotos`, banners) y servicios (`gestor_fotos`, `csv_io`, `informe_periodico_pdf`) en `nuevo_ser_core/src/ui/`. Catálogos en CSVs en `content/<vertical>/` compilados a Dart.
+Cinco forks de Larrea por vertical. Comparten widgets (`CampoAutocompleteCatalogo`, `SelectorFotos`, banners) y servicios (`gestor_fotos`, `csv_io`, `informe_periodico_pdf`) en `nuevo_ser_core/src/ui/`. Catálogos en CSVs en `content/<vertical>/` compilados a Dart.
 
 - **`apps/solera-viticultura/`** — bodegas 5-30 ha. Cuaderno PAC móvil (RD 1311/2012) + IA vid. F1-1 a F1-10 cerradas (provisional). Branding burdeos+crema.
 - **`apps/solera-apicola/`** — apicultores 20-200 colmenas. Libro REGA + gestión varroa + IA apícola. F1A-1 a F1A-8 cerradas (provisional). Branding ámbar+crema.
@@ -75,7 +75,7 @@ Detalle de cada una en su `CLAUDE.md` + `BLOQUEOS-PENDIENTES.md`.
 
 **Contabilidad**: planificado por vertical (agro/viticultura/apícola como gastos REAGP, arbolado como facturación B2B Facturae). Bloqueado por asesor fiscal humano.
 
-**Deuda técnica conocida — refactor BD compartida (auditoría 2026-05-12 R5)**: las 5 apps Solera (`agro` + 4 verticales) tienen `lib/datos/base_datos.dart` con **patrón estructural idéntico** (singleton lazy, openDatabase con `_v<N>.db`, migraciones aditivas en `_aplicarMigraciones`) pero **tablas distintas** (cepas/colmenas/árboles/piezas/cultivos). Cada cambio en el patrón base obliga a editar 5 archivos sincronizados a mano. Refactor planificado: extraer una clase `BaseDatosSolera` abstracta a `nuevo_ser_core/src/datos/` con plantilla del singleton + framework de migraciones, y dejar a cada vertical solo el bloque "esquema y migraciones". Bloqueado por: necesidad de tests CRUD que cubran el contrato antes de mover el patrón. Ver `docs/auditoria-2026-05-12.md` riesgo R5.
+**Deuda técnica conocida — refactor BD compartida (auditoría 2026-05-12 R5)**: las 5 apps Larrea (`agro` + 4 verticales) tienen `lib/datos/base_datos.dart` con **patrón estructural idéntico** (singleton lazy, openDatabase con `_v<N>.db`, migraciones aditivas en `_aplicarMigraciones`) pero **tablas distintas** (cepas/colmenas/árboles/piezas/cultivos). Cada cambio en el patrón base obliga a editar 5 archivos sincronizados a mano. Refactor planificado: extraer una clase `BaseDatosSolera` abstracta a `nuevo_ser_core/src/datos/` con plantilla del singleton + framework de migraciones, y dejar a cada vertical solo el bloque "esquema y migraciones". Bloqueado por: necesidad de tests CRUD que cubran el contrato antes de mover el patrón. Ver `docs/auditoria-2026-05-12.md` riesgo R5.
 
 ## Decisiones cerradas
 
@@ -121,4 +121,4 @@ Cada app mantiene su propio cerebro persistente:
 
 - `apps/uno-roto/CLAUDE.md` — estado actual del juego en producción (fase, mecánicas implementadas, gap frente a doc 03, backlog).
 - `apps/las-versiones/CLAUDE.md` — encuadre, mapa de habilidades, hard limits, decisiones, estado actual.
-- `apps/agro/CLAUDE.md` — Solera: encuadre, posicionamiento, modelo de datos, roadmap por fases.
+- `apps/agro/CLAUDE.md` — Larrea: encuadre, posicionamiento, modelo de datos, roadmap por fases.

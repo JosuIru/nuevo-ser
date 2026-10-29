@@ -1,4 +1,4 @@
-# Catálogos curados de Solera Arbolado Urbano
+# Catálogos curados de Larrea Arbolado Urbano
 
 > ⚠️ **DATOS PROVISIONALES SIN VALIDAR POR INGENIERO TÉCNICO FORESTAL.**
 > Pre-rellenados a partir de bibliografía pública (manuales de jardinería urbana, pliegos técnicos de ayuntamientos, boletines fitosanitarios autonómicos) como punto de partida. **Antes de pasar a producción comercial deben ser validados por un ingeniero técnico forestal o de jardinería con experiencia urbana + descarga del Registro de Productos Fitosanitarios vigente del MAPA.**

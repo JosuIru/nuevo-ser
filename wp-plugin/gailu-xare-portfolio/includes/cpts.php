@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function gxare_cpts_registrar(): void {
 
 	// Taxonomía "colección" — agrupa los proyectos en líneas
-	// editoriales (Cuadernos de Campo, Nuevo Ser Kids, Solera, Flavor).
+	// editoriales (Cuadernos de Campo, Nuevo Ser Kids, Larrea, Flavor).
 	register_taxonomy(
 		'gxare_coleccion',
 		array( 'gxare_proyecto' ),

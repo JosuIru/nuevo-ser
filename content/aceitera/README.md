@@ -1,6 +1,6 @@
 # content/aceitera/
 
-Catálogos curados de Solera Aceitera. CSVs editables (UTF-8, delim
+Catálogos curados de Larrea Aceitera. CSVs editables (UTF-8, delim
 `,`). Cada CSV lleva una columna `revisado_por`: cuando el asesor
 agrónomo olivarero la rellena en todas las filas, el flag global
 `catalogosCompletamenteRevisados` pasa a `true` y la app desactiva

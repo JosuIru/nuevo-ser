@@ -39,7 +39,7 @@ function gxare_metaboxes_defs(): array {
 					),
 					'desc' => 'Categoriza el proyecto.' ),
 				array( 'key' => 'gxare_proyecto_tech',     'label' => 'Tech stack (separado por comas)', 'tipo' => 'text', 'desc' => 'Ej. "Flutter, sqflite, IGME WMS"' ),
-				array( 'key' => 'gxare_proyecto_marca',    'label' => 'Marca / línea', 'tipo' => 'text', 'desc' => 'Ej. "Cuadernos de Campo", "Solera", "Flavor". Se usa como etiqueta superior.' ),
+				array( 'key' => 'gxare_proyecto_marca',    'label' => 'Marca / línea', 'tipo' => 'text', 'desc' => 'Ej. "Cuadernos de Campo", "Larrea", "Flavor". Se usa como etiqueta superior.' ),
 				array( 'key' => 'gxare_proyecto_url_web',  'label' => 'URL · landing / web', 'tipo' => 'url' ),
 				array( 'key' => 'gxare_proyecto_url_repo', 'label' => 'URL · repositorio (GitHub, etc.)', 'tipo' => 'url' ),
 				array( 'key' => 'gxare_proyecto_url_demo', 'label' => 'URL · demo / prototipo', 'tipo' => 'url' ),

@@ -1,4 +1,4 @@
-# Catálogos curados de Solera Apícola
+# Catálogos curados de Larrea Apícola
 
 > ⚠️ **DATOS PROVISIONALES SIN VALIDAR POR VETERINARIO APÍCOLA NI APICULTOR ASESOR.**
 > Pre-rellenados a partir de bibliografía pública (textos sanitarios apícolas, manuales clásicos, boletines de organismos oficiales y de cooperativas) como punto de partida. **Antes de pasar a producción comercial deben ser validados por un veterinario apícola + un apicultor experimentado + descarga del Registro de Productos Zoosanitarios vigente del MAPA.**

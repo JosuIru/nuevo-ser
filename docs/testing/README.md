@@ -22,7 +22,7 @@ de cada app.
 - **`fosiles-guia-testeo.md`** — guía detallada de testeo de la app **Fósiles**
   (cuaderno de campo paleontológico, adulto aficionado). Incluye una sección
   extra para perfil geólogo profesional.
-- **`agro-guia-testeo.md`** — guía detallada de testeo de la app **Solera**
+- **`agro-guia-testeo.md`** — guía detallada de testeo de la app **Larrea**
   (gestor de fincas agrícolas).
 - **`plantilla-informe-bug.md`** — formato estándar para reportar incidencias.
 

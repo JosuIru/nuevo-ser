@@ -1,4 +1,4 @@
-# Catálogos curados — Solera Quesera
+# Catálogos curados — Larrea Quesera
 
 CSVs editables por el asesor quesero. Compilados a Dart mediante `tool/compilar_catalogos.dart`.
 

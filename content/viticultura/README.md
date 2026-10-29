@@ -1,4 +1,4 @@
-# Catálogos curados de Solera Viticultura
+# Catálogos curados de Larrea Viticultura
 
 > ⚠️ **DATOS PROVISIONALES SIN VALIDAR AGRONÓMICA/ENOLÓGICAMENTE.**
 > Pre-rellenados a partir de fuentes públicas (MAPA, OIVE, FAO BBCH, manuales de viticultura) como punto de partida. **Antes de pasar a producción comercial deben ser validados por un enólogo + un agrónomo + descarga del Registro Oficial vigente del MAPA.**

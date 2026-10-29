@@ -1,4 +1,4 @@
-# Guía de testeo — Solera (agro)
+# Guía de testeo — Larrea (agro)
 
 Gestor de fincas agrícolas para Iberia. Modelo de **planta con identidad
 persistente**: cada árbol, cepa o planta es una entidad con historia

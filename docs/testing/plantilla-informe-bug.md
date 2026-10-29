@@ -87,16 +87,16 @@ que reabres la pantalla.
 
 ---
 
-## [Solera 0.3.1] La meteo no carga si Open-Meteo va lento
+## [Larrea 0.3.1] La meteo no carga si Open-Meteo va lento
 
 **Severidad**: media
 **Reportado por**: Juan Tester
 **Fecha**: 2026-05-14
-**Bloque**: Solera · Bloque 1 · Pantalla Hoy
+**Bloque**: Larrea · Bloque 1 · Pantalla Hoy
 
 ### Pasos para reproducir
 
-1. Abrir Solera con red lenta (3G o Wi-Fi débil).
+1. Abrir Larrea con red lenta (3G o Wi-Fi débil).
 2. Esperar 30 segundos.
 
 ### Resultado esperado

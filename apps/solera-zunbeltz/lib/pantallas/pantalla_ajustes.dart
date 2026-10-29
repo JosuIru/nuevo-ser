@@ -24,12 +24,13 @@ import '../utiles/texto_error_sync.dart';
 import '../servicios/servicio_logos_entidades.dart';
 import '../servicios/servicio_textos_ayuda.dart';
 import '../servicios/servicio_noticias_sector.dart';
+import 'widgets/avisos_push_web.dart';
 import 'widgets/liberar_al_cerrar.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
 /// del `pubspec.yaml` (campo antes del `+`); `test/version_app_test.dart`
 /// falla si no coinciden.
-const String versionAppZunbeltz = '0.7.8';
+const String versionAppZunbeltz = '0.7.9';
 
 /// Pestaña "Ajustes": idioma y acerca de.
 class PantallaAjustes extends StatefulWidget {
@@ -403,6 +404,11 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                 ? null
                 : _sincronizarAhora,
           ),
+          if (kIsWeb && _syncUrl.isNotEmpty && _syncToken.isNotEmpty)
+            InterruptorAvisosPushWeb(
+                key: ValueKey('$_syncUrl|$_syncToken'),
+                url: _syncUrl,
+                token: _syncToken),
           if (_syncUrl.isNotEmpty && _syncToken.isNotEmpty)
             ListTile(
               leading: const Icon(Icons.restart_alt),

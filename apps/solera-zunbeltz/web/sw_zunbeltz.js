@@ -5,6 +5,10 @@
 // sincronizar. La API del WordPress, las teselas del mapa y lo demás
 // pasan sin tocar.
 //
+// También enseña los avisos al momento (Web Push) que manda el WordPress
+// (includes/push-web.php del plugin): llegan cifrados y el navegador los
+// descifra antes de dárselos aquí.
+//
 // La versión y la lista los pone tool/preparar_web_sin_conexion.dart tras
 // compilar; sin ellos no se instala.
 
@@ -124,5 +128,37 @@ self.addEventListener('message', (evento) => {
         // Sin red: ya se guardará la próxima vez.
       }
     }
+  })());
+});
+
+// Aviso al momento: {titulo, texto, etiqueta}. Siempre se enseña (Safari
+// retira el permiso a quien recibe avisos sin enseñarlos).
+self.addEventListener('push', (evento) => {
+  let aviso = {};
+  try {
+    aviso = evento.data ? evento.data.json() : {};
+  } catch (_) {
+    // Un aviso que no se entiende sale con el texto genérico.
+  }
+  evento.waitUntil(self.registration.showNotification(aviso.titulo || 'Larrea Zunbeltz', {
+    body: aviso.texto || '',
+    tag: aviso.etiqueta || 'zunbeltz',
+    renotify: true,
+    icon: urlDe('icons/Icon-192.png'),
+    badge: urlDe('icons/Icon-192.png'),
+    lang: 'es',
+  }));
+});
+
+// Al tocarlo, a la app: la ventana que ya esté abierta o una nueva. Al
+// volver a ella, la app sincroniza y enseña lo nuevo.
+self.addEventListener('notificationclick', (evento) => {
+  evento.notification.close();
+  evento.waitUntil((async () => {
+    const ventanas = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const ventana of ventanas) {
+      if (ventana.url.startsWith(ambito) && 'focus' in ventana) return ventana.focus();
+    }
+    return self.clients.openWindow(ambito);
   })());
 });

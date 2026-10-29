@@ -35,6 +35,7 @@ import 'pantallas/pantalla_ganado.dart';
 import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_onboarding.dart';
 import 'pantallas/pantalla_proyectos.dart';
+import 'servicios/avisos_push_web.dart';
 import 'servicios/servicio_notificaciones.dart';
 import 'servicios/sincronizacion_segundo_plano.dart';
 import 'servicios/servicio_sincronizacion.dart';
@@ -175,6 +176,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     sincronizarEspacioEnSilencio();
+    if (kIsWeb) {
+      renovarAvisosPush(idioma: localeAppZunbeltz.value?.languageCode ?? 'es');
+    }
     _temporizadorSincronizacion = Timer.periodic(
         _intervaloSincronizacion, (_) => sincronizarEspacioEnSilencio());
     _escucharWidget();

@@ -1,7 +1,7 @@
 <?php
 /**
  * Textos de la ayuda de la app, editables por coordinación en
- * **Solera Zunbeltz → Ayuda**.
+ * **Larrea Zunbeltz → Ayuda**.
  *
  * - Los de serie vienen de la app (`includes/textos-ayuda.php`, generado).
  * - Lo que coordinación cambia se guarda en la opción `szs_ayuda_textos`

@@ -1,4 +1,4 @@
-# Solera Zunbeltz — instalación del servidor
+# Larrea Zunbeltz — instalación del servidor
 
 Guía para poner en marcha el servidor de la app en el **WordPress propio de Zunbeltz**, en un subdominio de su servidor (por ejemplo `app.zunbeltz.com`). El WordPress solo sirve a la app y al panel de la oficina: no es la web pública.
 
@@ -27,13 +27,13 @@ el `.sql.gz` y `admin.txt` con una contraseña de admin nueva. En el servidor: i
 en una base vacía, `$table_prefix = 'wp_'` en `wp-config.php`, y copiar de Local `wp-content/plugins`
 (WPML y WPML String Translation; el nuestro, desde el `.zip`), `wp-content/themes/zunbeltz-espacio`
 y `wp-content/languages`. Después, Ajustes → Enlaces permanentes → Guardar, registrar el dominio
-nuevo en la cuenta de WPML y la APK ya no hace falta subirla: desde la 0.8.2, «Descargar para Android» lleva al APK de la última release de la app en GitHub (Solera Zunbeltz → App Android dice cuál; el APK subido ahí solo se ofrece si GitHub no responde).
+nuevo en la cuenta de WPML y la APK ya no hace falta subirla: desde la 0.8.2, «Descargar para Android» lleva al APK de la última release de la app en GitHub (Larrea Zunbeltz → App Android dice cuál; el APK subido ahí solo se ofrece si GitHub no responde).
 
 ## 3. Instalar el plugin
 
 1. Generar el paquete: `wp-plugin/solera-zunbeltz-sync/dev/empaquetar.sh` (crea `solera-zunbeltz-sync-<versión>.zip`).
 2. En el WordPress: Plugins → Añadir nuevo → Subir plugin → el `.zip` → Activar.
-3. Aparece el menú **Solera Zunbeltz**. Su portada, **Inicio**, resume el espacio (lo que pide atención, tareas, peticiones, proyectos, personas, ganado, actividad reciente) y enlaza a todos los apartados: Tareas, Peticiones, Avisos, Proyectos, Ganado (rebaños, dónde está cada uno, UGM, supresión, tratamientos en ecológico y Excel del censo, movimientos y tratamientos), Convenio (condiciones, presupuesto, fianza, acompañamiento e incidencias de cada proyecto, que la persona tester ve en la app), Actividad, Personas, Contactos, Rendimientos, Inventario, Noticias del sector, Ayuda de la app (los textos de la ayuda y del manual imprimible en `/manual/`, editables en castellano y euskera), Entidades y logos, App Android.
+3. Aparece el menú **Larrea Zunbeltz**. Su portada, **Inicio**, resume el espacio (lo que pide atención, tareas, peticiones, proyectos, personas, ganado, actividad reciente) y enlaza a todos los apartados: Tareas, Peticiones, Avisos, Proyectos, Ganado (rebaños, dónde está cada uno, UGM, supresión, tratamientos en ecológico y Excel del censo, movimientos y tratamientos), Convenio (condiciones, presupuesto, fianza, acompañamiento e incidencias de cada proyecto, que la persona tester ve en la app), Actividad, Personas, Contactos, Rendimientos, Inventario, Noticias del sector, Ayuda de la app (los textos de la ayuda y del manual imprimible en `/manual/`, editables en castellano y euskera), Entidades y logos, App Android.
 
 Actualizar: desde la 0.8.1, WordPress avisa en **Plugins** cuando hay versión nueva y se actualiza con «Actualizar ahora», como cualquier plugin. Las busca en las releases de GitHub del repo (`plugin-solera-zunbeltz-sync-<versión>`, que publica `dev/publicar_release.sh`); para comprobarlo al momento, «Comprobar actualizaciones» bajo el nombre del plugin. Para pasar de la 0.8.0 o anterior a la 0.8.1 hay que subir el `.zip` una vez a mano (WordPress ofrece reemplazar la versión instalada). Las tablas se actualizan solas y no se pierde nada. Al actualizar, el plugin pone también al día las zonas y puntos de Zunbeltz que sembró la app (nombres, contornos, los que sobran), salvo los que alguien haya editado.
 
@@ -41,7 +41,7 @@ Actualizar: desde la 0.8.1, WordPress avisa en **Plugins** cuando hay versión n
 
 ## 4. Personas y tokens
 
-En **Solera Zunbeltz → Personas**:
+En **Larrea Zunbeltz → Personas**:
 
 1. Crear primero las personas de **coordinación** (dinamizador, responsable de finca…). Al crear cada una se muestra su **token una sola vez**: entregárselo en mano o por un canal seguro.
 2. **Enlazar** cada persona de coordinación con su **usuario de WordPress** y poner su **correo**. Así puede entrar al panel de la oficina sin ser administradora del WordPress, lo que haga queda a su nombre y recibe los correos.
@@ -59,11 +59,12 @@ App → **Ajustes → Sincronización**:
 
 ## 6. La app web, en el mismo WordPress
 
-El plugin sirve también la **versión web de la app** en `https://app.zunbeltz.com/app/` (menú Solera Zunbeltz → «Abrir la app»). Sirve para la oficina (desde el PC) y para que las testers la prueben sin instalar nada.
+El plugin sirve también la **versión web de la app** en `https://app.zunbeltz.com/app/` (menú Larrea Zunbeltz → «Abrir la app»). Sirve para la oficina (desde el PC) y para que las testers la prueben sin instalar nada.
 
 - Va dentro del `.zip` si se compiló antes de empaquetar: `dev/construir_app_web.sh` y luego `dev/empaquetar.sh`.
 - Al abrirla desde `/app/`, la app ya sabe cuál es su servidor: en Ajustes → Sincronización solo hay que poner el **token**.
-- Los datos se guardan en el navegador y se sincronizan con el servidor como en el móvil. Las fotos no se pueden adjuntar desde la web.
+- Los datos se guardan en el navegador y se sincronizan con el servidor como en el móvil, también las fotos. Se abre sin cobertura (en el iPhone, añadida a la pantalla de inicio).
+- **Avisos al momento** (Web Push): cada persona los activa en Ajustes → Sincronización. Llegan alarmas, peticiones (a coordinación) y tareas asignadas aunque la app esté cerrada. No hace falta ninguna cuenta: el servidor crea sus claves VAPID la primera vez (opción `szs_push_web_vapid`; si se borra, hay que volver a activarlos en cada dispositivo). El servidor tiene que poder hacer peticiones HTTPS salientes a los servicios de push (Google, Mozilla, Apple, Microsoft). En el iPhone, iOS 16.4 o posterior y la app añadida a la pantalla de inicio.
 - Si el WordPress está en una subcarpeta (p. ej. `/espacio`), compilar con `dev/construir_app_web.sh /espacio/app/`.
 
 Para una **demo sin servidor** (datos de ejemplo, solo en ese navegador) está `apps/solera-zunbeltz/tool/construir_demo_web.sh`.
@@ -89,13 +90,13 @@ La entrada del WordPress es el tema **Zunbeltz Espacio** (`wp-theme/zunbeltz-esp
 
 ## 9. Datos de demostración (solo en desarrollo)
 
-En un WordPress de pruebas (`WP_ENVIRONMENT_TYPE` distinto de `production`, como el de Local) aparece **Solera Zunbeltz → Datos demo**: crea personas (una de coordinación y dos tester, con sus tokens), puntos fijos y móviles, zonas, tareas en todos los estados, tres proyectos con todo su seguimiento y convenio, peticiones, avisos, contactos, rendimientos y actividad. **Retirar datos de demostración** lo quita todo, también de los móviles ya sincronizados. Lo mismo desde la consola: `wp solera-zunbeltz demo sembrar | vaciar | estado`.
+En un WordPress de pruebas (`WP_ENVIRONMENT_TYPE` distinto de `production`, como el de Local) aparece **Larrea Zunbeltz → Datos demo**: crea personas (una de coordinación y dos tester, con sus tokens), puntos fijos y móviles, zonas, tareas en todos los estados, tres proyectos con todo su seguimiento y convenio, peticiones, avisos, contactos, rendimientos y actividad. **Retirar datos de demostración** lo quita todo, también de los móviles ya sincronizados. Lo mismo desde la consola: `wp solera-zunbeltz demo sembrar | vaciar | estado`.
 
 En producción no aparece. Para forzarlo (o esconderlo en pruebas): `define( 'SZS_DATOS_DEMO', true );` (o `false`) en `wp-config.php`.
 
 ## 10. Noticias del sector (canales RSS)
 
-**Solera Zunbeltz → Noticias del sector**: coordinación da de alta canales RSS/Atom (nombre, dirección del feed, idioma y, opcionalmente, palabras clave para filtrar medios generalistas). El servidor los lee **cada tres horas** con el cron de WordPress y la app los muestra en Hoy → Noticias, debajo de lo que publica el espacio. Se guarda solo titular, entradilla corta y enlace; las noticias de más de 90 días se borran solas (salvo las fijadas). Desde la misma página se puede fijar u ocultar cada noticia y forzar la lectura.
+**Larrea Zunbeltz → Noticias del sector**: coordinación da de alta canales RSS/Atom (nombre, dirección del feed, idioma y, opcionalmente, palabras clave para filtrar medios generalistas). El servidor los lee **cada tres horas** con el cron de WordPress y la app los muestra en Hoy → Noticias, debajo de lo que publica el espacio. Se guarda solo titular, entradilla corta y enlace; las noticias de más de 90 días se borran solas (salvo las fijadas). Desde la misma página se puede fijar u ocultar cada noticia y forzar la lectura.
 
 - El cron de WordPress solo corre cuando alguien visita la web. Si el subdominio tiene poco tráfico, conviene un cron real del servidor: `*/15 * * * * curl -s https://app.zunbeltz.com/wp-cron.php > /dev/null`.
 - Canales comprobados el 2026-10-08: UAGN (`https://www.uagn.es/feed/`), Red de Espacios Test Agrarios (`https://www.espaciostestagrarios.org/feed/`), EFEAgro (`https://www.efeagro.com/feed/`, con palabras clave). Sin RSS útil encontrado: INTIA, Gobierno de Navarra, Diario de Navarra, Berria. EHNE Nafarroa no respondió.

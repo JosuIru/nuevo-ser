@@ -24,4 +24,4 @@ zip="$(dev/empaquetar.sh "$temporal")"
 notas=(--notes "Plugin solera-zunbeltz-sync $version.")
 [ -n "$notas_fichero" ] && notas=(--notes-file "$notas_fichero")
 gh release create "$tag" "$zip" -R JosuIru/nuevo-ser --target main \
-  --title "Plugin Solera Zunbeltz $version" "${notas[@]}"
+  --title "Plugin Larrea Zunbeltz $version" "${notas[@]}"

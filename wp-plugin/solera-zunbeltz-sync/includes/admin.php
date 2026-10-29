@@ -88,7 +88,7 @@ function szs_pagina_admin(): void {
 	$puede_dar_acceso = szs_puede_dar_acceso_panel();
 	?>
 	<div class="wrap">
-		<h1><?php echo esc_html( szs_t( 'Solera Zunbeltz — Personas del espacio' ) ); ?></h1>
+		<h1><?php echo esc_html( szs_t( 'Larrea Zunbeltz — Personas del espacio' ) ); ?></h1>
 		<p><?php echo szs_t( 'Cada persona que usa la app tiene su <strong>clave de usuario</strong> personal y un <strong>rol</strong>. En la app, en <strong>Ajustes → Sincronización</strong>, se configura la dirección de este WordPress y la clave de usuario de esa persona.' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 		<p><?php echo szs_t( 'Una persona de coordinación enlazada con su <strong>usuario de WordPress</strong> puede entrar a este panel aunque no sea administradora del WordPress, y lo que haga aquí queda a su nombre. Su <strong>correo</strong> recibe el resumen diario y las alarmas.' ); // phpcs:ignore WordPress.Security.EscapeOutput ?></p>
 		<?php if ( ! $puede_dar_acceso ) : ?>

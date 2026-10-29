@@ -274,7 +274,7 @@ function szs_tabla_noticias(): string {
 function szs_intervalo_lectura_canales( array $intervalos ): array {
 	$intervalos[ SZS_INTERVALO_LEER_CANALES ] = array(
 		'interval' => 3 * HOUR_IN_SECONDS,
-		'display'  => 'Cada tres horas (Solera Zunbeltz)',
+		'display'  => 'Cada tres horas (Larrea Zunbeltz)',
 	);
 	return $intervalos;
 }
@@ -390,7 +390,7 @@ function szs_descargar_items_feed( string $url ) {
 			'redirection'         => 3,
 			// Un feed enorme (o malicioso) no debe cargarse entero en memoria.
 			'limit_response_size' => 2 * MB_IN_BYTES,
-			'user-agent'          => 'SoleraZunbeltz/' . SZS_VERSION . ' (lector de noticias; ' . home_url() . ')',
+			'user-agent'          => 'LarreaZunbeltz/' . SZS_VERSION . ' (lector de noticias; ' . home_url() . ')',
 		)
 	);
 	if ( is_wp_error( $respuesta ) ) {

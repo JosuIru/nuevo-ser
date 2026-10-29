@@ -179,7 +179,7 @@ function szs_descargar_apk(): void {
 	$apk_github = szs_apk_github();
 	if ( null !== $apk_github ) {
 		nocache_headers();
-		wp_redirect( $apk_github['url'], 302, 'Solera Zunbeltz' );
+		wp_redirect( $apk_github['url'], 302, 'Larrea Zunbeltz' );
 		exit;
 	}
 	$apk = szs_apk_publicado();

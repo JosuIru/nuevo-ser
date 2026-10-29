@@ -653,7 +653,7 @@ if ( defined( 'WP_CLI' ) && WP_CLI ) {
 	WP_CLI::add_command(
 		'solera-zunbeltz demo',
 		/**
-		 * Datos de demostración de Solera Zunbeltz.
+		 * Datos de demostración de Larrea Zunbeltz.
 		 *
 		 * ## OPTIONS
 		 *

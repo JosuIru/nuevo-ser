@@ -238,7 +238,7 @@ function szs_directorio_fotos(): string {
 function szs_proteger_directorio_fotos( string $directorio ): void {
 	$htaccess = $directorio . '/.htaccess';
 	if ( ! file_exists( $htaccess ) ) {
-		file_put_contents( $htaccess, "# Solera Zunbeltz: fotos privadas, solo por la API.\n<IfModule mod_authz_core.c>\n\tRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\n\tOrder allow,deny\n\tDeny from all\n</IfModule>\n" );
+		file_put_contents( $htaccess, "# Larrea Zunbeltz: fotos privadas, solo por la API.\n<IfModule mod_authz_core.c>\n\tRequire all denied\n</IfModule>\n<IfModule !mod_authz_core.c>\n\tOrder allow,deny\n\tDeny from all\n</IfModule>\n" );
 	}
 	$indice = $directorio . '/index.php';
 	if ( ! file_exists( $indice ) ) {

@@ -2,7 +2,7 @@
 /**
  * Logos de las entidades que impulsan, apoyan y colaboran con el espacio
  * (los del pie de zunbeltz.com), editables por coordinación en
- * **Solera Zunbeltz → Entidades y logos**.
+ * **Larrea Zunbeltz → Entidades y logos**.
  *
  * - Se guardan en una opción (`szs_logos_entidades`): son pocas y no se
  *   sincronizan como entidades. Mientras nadie la edite, vale la lista de
@@ -317,7 +317,7 @@ function szs_registrar_bloque_logos_entidades(): void {
 		array(
 			'api_version'     => 3,
 			'title'           => 'Entidades y logos',
-			'description'     => 'Los logos de las entidades que impulsan, apoyan y colaboran (Solera Zunbeltz → Entidades y logos).',
+			'description'     => 'Los logos de las entidades que impulsan, apoyan y colaboran (Larrea Zunbeltz → Entidades y logos).',
 			'category'        => 'widgets',
 			'icon'            => 'groups',
 			'editor_script'   => 'szs-bloque-entidades',

@@ -41,7 +41,7 @@ function szs_registrar_paginas_agenda(): void {
 function szs_borrar_entidad_desde_panel( string $tipo, string $uid ): bool {
 	// Sin candado no se escribe: es la carrera que el candado evita.
 	if ( ! szs_tomar_candado_espacio() ) {
-		wp_die( esc_html( szs_t( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.' ) ), 'Solera Zunbeltz', array( 'back_link' => true ) );
+		wp_die( esc_html( szs_t( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.' ) ), 'Larrea Zunbeltz', array( 'back_link' => true ) );
 	}
 	try {
 		return szs_borrar_entidad_desde_panel_con_candado( $tipo, $uid );

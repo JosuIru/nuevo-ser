@@ -75,38 +75,36 @@ class LogosEntidadesPorGrupo extends StatelessWidget {
       builder: (contexto, entidades, _) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          for (final grupo in GrupoEntidades.values)
-            if (entidades.any((entidad) => entidad.grupo == grupo.codigo)) ...[
-              const SizedBox(height: 12),
-              Text(tituloGrupoEntidades(textos, grupo.codigo),
-                  style: Theme.of(context).textTheme.titleSmall),
-              const SizedBox(height: 10),
-              Wrap(
-                spacing: 20,
-                runSpacing: 14,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  for (final entidad in entidades
-                      .where((entidad) => entidad.grupo == grupo.codigo))
-                    Tooltip(
-                      message: entidad.nombre,
-                      child: entidad.enlace.isEmpty
-                          ? LogoEntidad(entidad, altura: 40)
-                          : InkWell(
-                              onTap: () => _abrirEnlace(entidad.enlace),
-                              child: LogoEntidad(entidad, altura: 40),
-                            ),
-                    ),
-                ],
-              ),
-            ],
+          for (final (grupo, delGrupo) in entidadesPorGrupo(entidades)) ...[
+            const SizedBox(height: 12),
+            Text(tituloGrupoEntidades(textos, grupo.codigo),
+                style: Theme.of(context).textTheme.titleSmall),
+            const SizedBox(height: 10),
+            Wrap(
+              spacing: 20,
+              runSpacing: 14,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                for (final entidad in delGrupo)
+                  Tooltip(
+                    message: entidad.nombre,
+                    child: entidad.enlace.isEmpty
+                        ? LogoEntidad(entidad, altura: 40)
+                        : InkWell(
+                            onTap: () => _abrirEnlace(entidad.enlace),
+                            child: LogoEntidad(entidad, altura: 40),
+                          ),
+                  ),
+              ],
+            ),
+          ],
         ],
       ),
     );
   }
 }
 
-/// Franja discreta con todos los logos, para el final de Hoy. Al tocarla
+/// Franja discreta con todos los logos por grupo, para el final de Hoy. Al tocarla
 /// se abre la pantalla de entidades.
 class FranjaLogosEntidades extends StatelessWidget {
   const FranjaLogosEntidades({super.key, required this.alPulsar});
@@ -127,18 +125,24 @@ class FranjaLogosEntidades extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(textos.entidadesFranja,
-                    style: Theme.of(context).textTheme.labelMedium),
-                const SizedBox(height: 10),
-                Wrap(
-                  spacing: 16,
-                  runSpacing: 10,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    for (final entidad in entidades)
-                      LogoEntidad(entidad, altura: 28),
-                  ],
-                ),
+                for (final (grupo, delGrupo)
+                    in entidadesPorGrupo(entidades)) ...[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6, bottom: 8),
+                    child: Text(tituloGrupoEntidades(textos, grupo.codigo),
+                        style: Theme.of(context).textTheme.labelMedium),
+                  ),
+                  Wrap(
+                    spacing: 16,
+                    runSpacing: 10,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      for (final entidad in delGrupo)
+                        LogoEntidad(entidad, altura: 28),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                ],
               ],
             ),
           ),

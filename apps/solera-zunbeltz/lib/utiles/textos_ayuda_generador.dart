@@ -58,7 +58,7 @@ String textosAyudaComoPhp(
     ..writeln(
         ' * Índice de la ayuda, apartados con versión para tester y textos de')
     ..writeln(' * serie en castellano y euskera. Coordinación los cambia en')
-    ..writeln(' * Solera Zunbeltz → Ayuda (includes/ayuda.php).')
+    ..writeln(' * Larrea Zunbeltz → Ayuda (includes/ayuda.php).')
     ..writeln(' *')
     ..writeln(' * @package SoleraZunbeltzSync')
     ..writeln(' */')

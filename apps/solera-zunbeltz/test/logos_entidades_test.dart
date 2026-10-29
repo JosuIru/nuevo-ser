@@ -69,6 +69,77 @@ void main() {
         ['carasso', 'gobierno_navarra']);
   });
 
+  test('la lista de partida y el pie de los PDF van en el orden de los grupos',
+      () {
+    final ordenDeGrupos = GrupoEntidades.values.map((grupo) => grupo.codigo);
+    int posicion(String grupo) => ordenDeGrupos.toList().indexOf(grupo);
+    final posiciones =
+        entidadesDePartida.map((entidad) => posicion(entidad.grupo)).toList();
+    expect(posiciones, [...posiciones]..sort());
+    final grupoDe = {
+      for (final entidad in entidadesDePartida) entidad.clave: entidad.grupo
+    };
+    final posicionesPie =
+        ficherosLogosPiePdf.map((clave) => posicion(grupoDe[clave]!)).toList();
+    expect(posicionesPie, [...posicionesPie]..sort());
+  });
+
+  test('entidadesPorGrupo ordena por grupo aunque la lista venga revuelta', () {
+    EntidadColaboradora entidad(String clave, String grupo) =>
+        EntidadColaboradora(clave: clave, nombre: clave, grupo: grupo);
+    final repartidas = entidadesPorGrupo([
+      entidad('reta', 'miembro_de'),
+      entidad('carasso', 'financian'),
+      entidad('rara', 'grupo_nuevo'),
+      entidad('andia', 'impulsan'),
+      entidad('upna', 'colaboran'),
+      entidad('yerri', 'impulsan'),
+    ]);
+    expect([
+      for (final (grupo, delGrupo) in repartidas)
+        '${grupo.codigo}: ${delGrupo.map((entidad) => entidad.clave).join(' ')}'
+    ], [
+      'impulsan: andia yerri',
+      'financian: carasso',
+      'colaboran: rara upna',
+      'miembro_de: reta',
+    ]);
+  });
+
+  testWidgets('la franja de Hoy rotula cada grupo, en su orden',
+      (tester) async {
+    ServicioLogosEntidades.actuales.value = [
+      EntidadColaboradora.desdeJson(_entidad('reta', grupo: 'miembro_de'))!,
+      EntidadColaboradora.desdeJson(_entidad('carasso', grupo: 'financian'))!,
+      EntidadColaboradora.desdeJson(_entidad('andia', grupo: 'impulsan'))!,
+    ];
+    await tester.pumpWidget(MaterialApp(
+      locale: const Locale('es'),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('es'), Locale('eu')],
+      home: Scaffold(
+          body: SingleChildScrollView(
+              child: FranjaLogosEntidades(alPulsar: () {}))),
+    ));
+
+    final rotulos = [
+      'Impulsan el proyecto',
+      'Con el apoyo económico de',
+      'Miembro de',
+    ];
+    final alturas = [
+      for (final rotulo in rotulos) tester.getTopLeft(find.text(rotulo)).dy
+    ];
+    expect(alturas, [...alturas]..sort());
+    expect(find.text('Colaboran'), findsNothing);
+    ServicioLogosEntidades.actuales.value = entidadesDePartida;
+  });
+
   group('ServicioLogosEntidades', () {
     late List<http.Request> peticiones;
     late http.Response Function() responder;

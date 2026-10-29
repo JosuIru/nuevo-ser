@@ -39,7 +39,7 @@ function szs_registrar_menu_panel(): void {
 
 	// La portada (Inicio) es la página del menú principal; el resto cuelga
 	// de ella. Las URL de cada apartado no cambian: siguen siendo su slug.
-	add_menu_page( 'Solera Zunbeltz', 'Solera Zunbeltz' . $burbuja, $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio', 'dashicons-location-alt', 80 );
+	add_menu_page( 'Larrea Zunbeltz', 'Larrea Zunbeltz' . $burbuja, $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio', 'dashicons-location-alt', 80 );
 	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Inicio' ), szs_t( 'Inicio' ), $capacidad, SZS_PAGINA_INICIO, 'szs_pagina_inicio' );
 	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Tareas' ), szs_t( 'Tareas' ), $capacidad, SZS_PAGINA_TAREAS, 'szs_pagina_tareas' );
 	add_submenu_page( SZS_PAGINA_INICIO, szs_t( 'Peticiones de tarea' ), szs_t( 'Peticiones' ) . $burbuja, $capacidad, SZS_PAGINA_PETICIONES, 'szs_pagina_peticiones' );
@@ -187,7 +187,7 @@ function szs_nombres_fincas(): array {
 function szs_guardar_entidad_desde_panel( string $tipo, string $uid, array $datos, string $proyecto_uid = '' ): array {
 	// Sin candado no se escribe: es la carrera que el candado evita.
 	if ( ! szs_tomar_candado_espacio() ) {
-		wp_die( esc_html( szs_t( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.' ) ), 'Solera Zunbeltz', array( 'back_link' => true ) );
+		wp_die( esc_html( szs_t( 'El espacio está ocupado sincronizando con los móviles. Vuelve atrás e inténtalo de nuevo en unos segundos.' ) ), 'Larrea Zunbeltz', array( 'back_link' => true ) );
 	}
 	try {
 		return szs_guardar_entidad_desde_panel_con_candado( $tipo, $uid, $datos, $proyecto_uid );

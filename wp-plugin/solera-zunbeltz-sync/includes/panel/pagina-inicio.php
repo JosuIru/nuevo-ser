@@ -1,6 +1,6 @@
 <?php
 /**
- * Panel · Inicio: la portada del menú «Solera Zunbeltz». De un vistazo, lo
+ * Panel · Inicio: la portada del menú «Larrea Zunbeltz». De un vistazo, lo
  * que pide atención hoy (alarmas, peticiones pendientes, tareas vencidas),
  * las cifras del espacio (tareas, proyectos, personas, ganado) y quién ha
  * estado activo últimamente; y debajo, un índice con todos los apartados
@@ -337,7 +337,7 @@ function szs_pagina_inicio(): void {
 		.szs-inicio .szs-pie { color: #50575e; font-size: 12px; margin-top: 18px; }
 	</style>
 	<div class="wrap szs-inicio">
-		<h1>Solera Zunbeltz · <?php echo esc_html( szs_t( 'Inicio' ) ); ?></h1>
+		<h1>Larrea Zunbeltz · <?php echo esc_html( szs_t( 'Inicio' ) ); ?></h1>
 		<p><?php echo esc_html( szs_t( 'Resumen del espacio a %s. Cada cifra lleva a su apartado.', szs_fecha_ms( $ahora_ms, 'd/m/Y H:i' ) ) ); ?></p>
 
 		<div class="szs-bloques">

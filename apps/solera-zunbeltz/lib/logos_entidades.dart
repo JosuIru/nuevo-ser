@@ -5,7 +5,7 @@
 /// oficial.
 ///
 /// Esta es la lista **de partida**, la que va dentro de la app. Coordinación
-/// la cambia en el panel de WordPress (Solera Zunbeltz → Entidades y logos)
+/// la cambia en el panel de WordPress (Larrea Zunbeltz → Entidades y logos)
 /// y la app baja la suya con `ServicioLogosEntidades`. Los logos de
 /// partida se buscan por la clave en `assets/logos/<clave>.png`: así se ven
 /// sin cobertura aunque la lista venga del servidor.
@@ -62,16 +62,8 @@ const Set<String> clavesLogosEmpaquetados = {
 
 String rutaLogoEmpaquetado(String clave) => 'assets/logos/$clave.png';
 
+/// En el orden de los grupos ([GrupoEntidades]).
 const List<EntidadColaboradora> entidadesDePartida = [
-  // Con apoyo económico (Zunbeltz, 2026-10-16), con su logo oficial en color.
-  EntidadColaboradora(
-      clave: 'carasso',
-      nombre: 'Fundación Daniel y Nina Carasso',
-      grupo: 'financian'),
-  EntidadColaboradora(
-      clave: 'gobierno_navarra',
-      nombre: 'Gobierno de Navarra',
-      grupo: 'financian'),
   EntidadColaboradora(
       clave: 'andia', nombre: 'Mancomunidad de Andía', grupo: 'impulsan'),
   EntidadColaboradora(
@@ -86,6 +78,15 @@ const List<EntidadColaboradora> entidadesDePartida = [
       clave: 'salinas',
       nombre: 'Ayuntamiento de Salinas de Oro',
       grupo: 'impulsan'),
+  // Con apoyo económico (Zunbeltz, 2026-10-16), con su logo oficial en color.
+  EntidadColaboradora(
+      clave: 'carasso',
+      nombre: 'Fundación Daniel y Nina Carasso',
+      grupo: 'financian'),
+  EntidadColaboradora(
+      clave: 'gobierno_navarra',
+      nombre: 'Gobierno de Navarra',
+      grupo: 'financian'),
   EntidadColaboradora(
       clave: 'ue_feader', nombre: 'Unión Europea · FEADER', grupo: 'colaboran'),
   EntidadColaboradora(
@@ -123,10 +124,30 @@ const List<EntidadColaboradora> entidadesDePartida = [
 /// Los que van al pie de los informes PDF: quien gestiona las fincas, la
 /// administración y los fondos públicos, el principal apoyo privado y la
 /// red. Todos los grupos no caben en una franja legible.
+/// En el orden de los grupos.
 const List<String> ficherosLogosPiePdf = [
   'andia',
+  'carasso',
   'gobierno_navarra',
   'ue_feader',
-  'carasso',
   'reta',
 ];
+
+/// Las entidades repartidas en sus grupos, en el orden de [GrupoEntidades]
+/// y, dentro de cada uno, en el de la lista. Un grupo que no se conoce va
+/// con «colaboran», que es como se rotula. Los grupos vacíos no salen.
+List<(GrupoEntidades, List<EntidadColaboradora>)> entidadesPorGrupo(
+    List<EntidadColaboradora> entidades) {
+  final porGrupo = {
+    for (final grupo in GrupoEntidades.values) grupo: <EntidadColaboradora>[]
+  };
+  for (final entidad in entidades) {
+    porGrupo[GrupoEntidades.desdeCodigo(entidad.grupo) ??
+            GrupoEntidades.colaboran]!
+        .add(entidad);
+  }
+  return [
+    for (final MapEntry(key: grupo, value: delGrupo) in porGrupo.entries)
+      if (delGrupo.isNotEmpty) (grupo, delGrupo),
+  ];
+}

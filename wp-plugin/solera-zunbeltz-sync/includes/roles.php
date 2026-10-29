@@ -1,6 +1,6 @@
 <?php
 /**
- * Roles y capacidades de Solera Zunbeltz.
+ * Roles y capacidades de Larrea Zunbeltz.
  *
  * La app **no conoce los roles**: sólo recibe la lista de capacidades de la
  * persona conectada (ver `GET /yo`) y decide la interfaz a partir de ellas.

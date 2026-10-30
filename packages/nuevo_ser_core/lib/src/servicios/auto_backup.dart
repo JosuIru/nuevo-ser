@@ -24,13 +24,20 @@ class AutoBackup {
     return dir;
   }
 
-  Future<void> respaldarAhora() async {
+  /// Copias diarias con fecha que se conservan además de la última.
+  static const diasConCopiaFechada = 5;
+
+  Future<void> respaldarAhora({DateTime? ahora}) async {
     try {
+      // Una BD vacía nunca pisa una copia: si la app arrancó sin datos
+      // (reinstalación, fallo al abrir), la copia buena es lo único que queda.
+      if (await estaVacia() && await existeRespaldo()) return;
       final rutaDb = await obtenerRutaDb();
       final dirBackup = await _directorioBackup();
       final ficheroDb = File(rutaDb);
       if (await ficheroDb.exists()) {
         await ficheroDb.copy(path_lib.join(dirBackup.path, '${nombreApp}_auto.db'));
+        await _guardarCopiaFechada(ficheroDb, dirBackup, ahora ?? DateTime.now());
       }
       final docs = await getApplicationDocumentsDirectory();
       final dirFotos = Directory(path_lib.join(docs.path, 'fotos'));
@@ -40,6 +47,26 @@ class AutoBackup {
         await _copiarDirectorio(dirFotos, dirFotosBackup);
       }
     } catch (_) {}
+  }
+
+  /// Una copia por día (`<app>_auto_AAAA-MM-DD.db`); se borran las más
+  /// antiguas para quedarse con [diasConCopiaFechada].
+  Future<void> _guardarCopiaFechada(File ficheroDb, Directory dirBackup, DateTime ahora) async {
+    final dia = '${ahora.year.toString().padLeft(4, '0')}-'
+        '${ahora.month.toString().padLeft(2, '0')}-'
+        '${ahora.day.toString().padLeft(2, '0')}';
+    await ficheroDb.copy(path_lib.join(dirBackup.path, '${nombreApp}_auto_$dia.db'));
+    final copiasFechadas = <File>[];
+    final patronCopiaFechada = RegExp('^${RegExp.escape(nombreApp)}_auto_\\d{4}-\\d{2}-\\d{2}\\.db\$');
+    await for (final entidad in dirBackup.list()) {
+      if (entidad is File && patronCopiaFechada.hasMatch(path_lib.basename(entidad.path))) {
+        copiasFechadas.add(entidad);
+      }
+    }
+    copiasFechadas.sort((a, b) => b.path.compareTo(a.path));
+    for (final copiaSobrante in copiasFechadas.skip(diasConCopiaFechada)) {
+      try { await copiaSobrante.delete(); } catch (_) {}
+    }
   }
 
   Future<bool> existeRespaldo() async {

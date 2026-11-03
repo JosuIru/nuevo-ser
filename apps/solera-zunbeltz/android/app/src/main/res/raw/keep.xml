@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Las notificaciones piden estos recursos por nombre desde Dart: que la
+     reducción de recursos del build release no los quite. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_notificacion,@mipmap/ic_launcher" />

@@ -73,6 +73,11 @@ dependencies:
   # se suben solo con wifi o red no medida.
   image: ^4.3.0
   connectivity_plus: ^6.1.5
+  # Avisos al momento en Android (FCM): el servidor manda un mensaje de
+  # datos y la app lo enseña. Proyecto de Firebase «larrea-zunbeltz»;
+  # configuración en android/app/google-services.json. No en web ni escritorio.
+  firebase_core: ^5.1.0
+  firebase_messaging: ^17.0.1
 
 dev_dependencies:
   flutter_test:

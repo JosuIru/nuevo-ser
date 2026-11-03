@@ -17,8 +17,8 @@ import 'widget_hoy.dart';
 /// el widget de la pantalla de inicio (`widget_hoy.dart`).
 ///
 /// No es instantáneo: Android agrupa estas tareas para ahorrar batería y,
-/// con el móvil en reposo, puede retrasarlas. Para avisos al instante haría
-/// falta push (Firebase): decisión pendiente, ver BLOQUEOS 28.
+/// con el móvil en reposo, puede retrasarlas. Los avisos al instante van
+/// por FCM cuando el servidor lo tiene configurado (`servicio_avisos_fcm.dart`).
 const String _nombreTarea = 'zunbeltz.sincronizar';
 const Duration _frecuencia = Duration(minutes: 15);
 

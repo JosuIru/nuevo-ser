@@ -11,6 +11,7 @@ import '../datos/base_datos.dart';
 import '../estado/idioma_app.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
+import 'aviso_al_momento.dart';
 import 'cliente_sync_zunbeltz.dart';
 import 'resumen_notificaciones.dart';
 import 'servicio_sincronizacion.dart';
@@ -30,10 +31,13 @@ import '../estado/datos_notificador.dart';
 ///
 /// Con la app cerrada, en Android, la sincronización en segundo plano
 /// (`sincronizacion_segundo_plano.dart`) trae las alarmas en unos 15
-/// minutos. Sin push: nada es instantáneo (ver BLOQUEOS 28, Firebase).
-/// En web no se usan.
+/// minutos. Si el servidor tiene Firebase configurado, las alarmas, las
+/// peticiones y las tareas asignadas llegan antes por FCM
+/// (`servicio_avisos_fcm.dart` → [mostrarAvisoAlMomento]), y lo avisado así
+/// no se repite al sincronizar. En web no se usan.
 final _plugin = FlutterLocalNotificationsPlugin();
 bool _notificacionesListas = false;
+bool _pluginIniciado = false;
 
 const _idAlarmas = 1;
 const _idPeticiones = 2;
@@ -46,14 +50,7 @@ const _claveYaNotificadas = 'zunbeltz.notificadas';
 Future<void> iniciarNotificaciones({bool pedirPermiso = true}) async {
   if (kIsWeb || _notificacionesListas) return;
   try {
-    datos_zonas_horarias.initializeTimeZones();
-    zona_horaria.setLocalLocation(zona_horaria.getLocation('Europe/Madrid'));
-    await _plugin.initialize(
-      settings: const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-        linux: LinuxInitializationSettings(defaultActionName: 'Abrir'),
-      ),
-    );
+    await _iniciarPlugin();
     if (pedirPermiso) {
       await _plugin
           .resolvePlatformSpecificImplementation<
@@ -69,6 +66,52 @@ Future<void> iniciarNotificaciones({bool pedirPermiso = true}) async {
   } catch (_) {
     // Plataforma sin notificaciones (tests, escritorio sin demonio…): la
     // app funciona igual.
+  }
+}
+
+/// Silueta del logo (Android pinta el icono pequeño solo con su
+/// transparencia), generada con `tool/generar_icono_notificacion.py`; al
+/// lado, el logo en color, y el verde del logo como acento.
+const _iconoNotificacion = 'ic_notificacion';
+const _logoEnColor = DrawableResourceAndroidBitmap('@mipmap/ic_launcher');
+const _verdeLogoZunbeltz = Color(0xFF004332);
+
+Future<void> _iniciarPlugin() async {
+  if (_pluginIniciado) return;
+  datos_zonas_horarias.initializeTimeZones();
+  zona_horaria.setLocalLocation(zona_horaria.getLocation('Europe/Madrid'));
+  await _plugin.initialize(
+    settings: const InitializationSettings(
+      android: AndroidInitializationSettings(_iconoNotificacion),
+      linux: LinuxInitializationSettings(defaultActionName: 'Abrir'),
+    ),
+  );
+  _pluginIniciado = true;
+}
+
+/// Enseña un aviso llegado por FCM y apunta su clave como ya notificada.
+/// Vale también en segundo plano (otro isolate, sin pantalla): no pide
+/// permiso ni engancha nada a la sincronización.
+Future<void> mostrarAvisoAlMomento(AvisoAlMomento aviso) async {
+  if (kIsWeb) return;
+  try {
+    await _iniciarPlugin();
+    await _plugin.show(
+      id: aviso.idNotificacion,
+      title: aviso.titulo,
+      body: aviso.texto.isEmpty ? null : aviso.texto,
+      notificationDetails: _detalles(alarma: aviso.urgente),
+    );
+    if (aviso.clave.isEmpty) return;
+    final preferencias = await SharedPreferences.getInstance();
+    await preferencias.reload();
+    final ya = preferencias.getStringList(_claveYaNotificadas) ?? const [];
+    if (ya.contains(aviso.clave)) return;
+    final todas = [...ya, aviso.clave];
+    await preferencias.setStringList(_claveYaNotificadas,
+        todas.skip(todas.length > 300 ? todas.length - 300 : 0).toList());
+  } catch (_) {
+    // Un aviso que no se puede enseñar llega igual con la sincronización.
   }
 }
 
@@ -101,8 +144,15 @@ NotificationDetails _detalles({required bool alarma}) {
   return NotificationDetails(
     android: alarma
         ? AndroidNotificationDetails('alarmas', textos.notificacionCanalAlarmas,
-            importance: Importance.high, priority: Priority.high)
-        : AndroidNotificationDetails('avisos', textos.notificacionCanalAvisos),
+            importance: Importance.high,
+            priority: Priority.high,
+            icon: _iconoNotificacion,
+            largeIcon: _logoEnColor,
+            color: _verdeLogoZunbeltz)
+        : AndroidNotificationDetails('avisos', textos.notificacionCanalAvisos,
+            icon: _iconoNotificacion,
+            largeIcon: _logoEnColor,
+            color: _verdeLogoZunbeltz),
     linux: const LinuxNotificationDetails(),
   );
 }
@@ -111,6 +161,8 @@ Future<void> _alSincronizar(ResultadoSyncZunbeltz resultado) async {
   if (!_notificacionesListas) return;
   try {
     final preferencias = await SharedPreferences.getInstance();
+    // Un aviso por FCM puede haberse apuntado en otro isolate.
+    await preferencias.reload();
     final yaNotificadas =
         (preferencias.getStringList(_claveYaNotificadas) ?? const []).toSet();
     final resumen = resumirParaNotificar(resultado, politicaEspacioActual,

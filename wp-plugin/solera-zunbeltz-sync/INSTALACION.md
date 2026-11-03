@@ -65,6 +65,13 @@ El plugin sirve también la **versión web de la app** en `https://app.zunbeltz.
 - Al abrirla desde `/app/`, la app ya sabe cuál es su servidor: en Ajustes → Sincronización solo hay que poner el **token**.
 - Los datos se guardan en el navegador y se sincronizan con el servidor como en el móvil, también las fotos. Se abre sin cobertura (en el iPhone, añadida a la pantalla de inicio).
 - **Avisos al momento** (Web Push): cada persona los activa en Ajustes → Sincronización. Llegan alarmas, peticiones (a coordinación) y tareas asignadas aunque la app esté cerrada. No hace falta ninguna cuenta: el servidor crea sus claves VAPID la primera vez (opción `szs_push_web_vapid`; si se borra, hay que volver a activarlos en cada dispositivo). El servidor tiene que poder hacer peticiones HTTPS salientes a los servicios de push (Google, Mozilla, Apple, Microsoft). En el iPhone, iOS 16.4 o posterior y la app añadida a la pantalla de inicio.
+- **Avisos al momento en la app de Android** (FCM, desde el esquema 11): los mismos avisos que el Web Push, enviados por Firebase Cloud Messaging al móvil aunque la app esté cerrada. Hace falta la **clave de la cuenta de servicio** del proyecto de Firebase `larrea-zunbeltz` (Firebase → Configuración del proyecto → Cuentas de servicio → Generar nueva clave privada). Súbela **fuera de la raíz web**, con permisos solo para el usuario de PHP (`chmod 600`), y pon su ruta en `wp-config.php`:
+
+  ```php
+  define( 'SZS_FCM_CREDENCIALES', '/home/<usuario>/privado/larrea-fcm.json' );
+  ```
+
+  Sin la constante, los móviles se registran igual (`POST /push/fcm`) pero no se les envía nada y siguen con la sincronización de cada ~15 min. El servidor tiene que poder llamar por HTTPS a `oauth2.googleapis.com` y `fcm.googleapis.com`. Si la clave se filtra, se borra en esa misma pantalla de Firebase y se genera otra.
 - Si el WordPress está en una subcarpeta (p. ej. `/espacio`), compilar con `dev/construir_app_web.sh /espacio/app/`.
 
 Para una **demo sin servidor** (datos de ejemplo, solo en ese navegador) está `apps/solera-zunbeltz/tool/construir_demo_web.sh`.

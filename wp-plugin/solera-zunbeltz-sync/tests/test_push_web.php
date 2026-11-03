@@ -157,6 +157,7 @@ afirmar(
 	array(
 		'clase'         => 'alarma',
 		'titulo'        => 'Vaca suelta',
+		'clave'         => 'aviso|a1',
 		'destinatarios' => array( 'coord', 'mikel' ),
 	),
 	szs_aviso_push_de_entidad( $alarma, null, 'ane', $personas ),
@@ -186,6 +187,7 @@ afirmar(
 	array(
 		'clase'         => 'peticion_urgente',
 		'titulo'        => 'Arreglar el bebedero',
+		'clave'         => 'peticion|p1',
 		'destinatarios' => array( 'coord' ),
 	),
 	szs_aviso_push_de_entidad( $peticion, null, 'ane', $personas ),
@@ -206,6 +208,7 @@ afirmar(
 	array(
 		'clase'         => 'tarea',
 		'titulo'        => 'Revisar el pastor eléctrico',
+		'clave'         => 'tarea|t1',
 		'destinatarios' => array( 'ane', 'mikel' ),
 	),
 	szs_aviso_push_de_tarea( $tarea, null, 'coord' ),

@@ -64,7 +64,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 define( 'SZS_VERSION', '1.0.8' );
-define( 'SZS_VERSION_ESQUEMA', 10 );
+define( 'SZS_VERSION_ESQUEMA', 11 );
 define( 'SZS_TABLA', 'solera_zunbeltz_tareas' );
 define( 'SZS_TABLA_PERSONAS', 'solera_zunbeltz_personas' );
 define( 'SZS_TABLA_ENTIDADES', 'solera_zunbeltz_entidades' );
@@ -73,6 +73,7 @@ define( 'SZS_TABLA_ACTIVIDAD', 'solera_zunbeltz_actividad' );
 /** uids de tareas borradas, para que una copia vieja no las resucite. */
 define( 'SZS_TABLA_TAREAS_BORRADAS', 'solera_zunbeltz_tareas_borradas' );
 define( 'SZS_TABLA_SUSCRIPCIONES_PUSH', 'solera_zunbeltz_suscripciones_push' );
+define( 'SZS_TABLA_TOKENS_FCM', 'solera_zunbeltz_tokens_fcm' );
 define( 'SZS_OPCION_VERSION_ESQUEMA', 'solera_zunbeltz_sync_esquema' );
 /** Token compartido de la v0.1, retirado en la v0.2. */
 define( 'SZS_OPCION_TOKEN_COMPARTIDO_V1', 'solera_zunbeltz_sync_token' );
@@ -105,6 +106,7 @@ require_once __DIR__ . '/includes/panel/pagina-android.php';
 require_once __DIR__ . '/includes/panel/pagina-agenda.php';
 require_once __DIR__ . '/includes/correo.php';
 require_once __DIR__ . '/includes/push-web.php';
+require_once __DIR__ . '/includes/push-fcm.php';
 require_once __DIR__ . '/includes/app-web.php';
 require_once __DIR__ . '/includes/apk-github.php';
 require_once __DIR__ . '/includes/presentacion.php';
@@ -228,6 +230,8 @@ function szs_instalar_esquema(): void {
 	szs_instalar_esquema_noticias( $charset_collate );
 	// Esquema 10: suscripciones a los avisos al momento de la app web.
 	szs_instalar_esquema_push_web( $charset_collate );
+	// Esquema 11: tokens de los móviles Android para los avisos por FCM.
+	szs_instalar_esquema_push_fcm( $charset_collate );
 	$tabla_tareas_borradas = $wpdb->prefix . SZS_TABLA_TAREAS_BORRADAS;
 	dbDelta(
 		"CREATE TABLE {$tabla_tareas_borradas} (

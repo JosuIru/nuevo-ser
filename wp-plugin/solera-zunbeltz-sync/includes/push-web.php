@@ -213,7 +213,7 @@ function szs_cifrar_push( string $mensaje, string $p256dh, string $auth ): strin
  * petición nueva, a quien gestiona peticiones. Nunca a quien lo ha hecho.
  *
  * @param array<int, array{uid: string, rol: string}> $personas Activas.
- * @return array{clase: string, titulo: string, destinatarios: string[]}|null
+ * @return array{clase: string, titulo: string, clave: string, destinatarios: string[]}|null
  */
 function szs_aviso_push_de_entidad( array $entidad, ?array $existente, string $autor_uid, array $personas ): ?array {
 	if ( ! empty( $entidad['borrado'] ) ) {
@@ -242,6 +242,8 @@ function szs_aviso_push_de_entidad( array $entidad, ?array $existente, string $a
 	return empty( $destinatarios ) ? null : array(
 		'clase'         => $clase,
 		'titulo'        => szs_etiqueta_entidad( $entidad ),
+		// La app de Android apunta `tipo|uid` como ya avisado.
+		'clave'         => $entidad['tipo'] . '|' . $entidad['uid'],
 		'destinatarios' => $destinatarios,
 	);
 }
@@ -250,7 +252,7 @@ function szs_aviso_push_de_entidad( array $entidad, ?array $existente, string $a
  * Una tarea con responsables nuevas (al crearla o al cambiarlas), para
  * ellas, salvo quien la ha guardado. Las hechas no avisan.
  *
- * @return array{clase: string, titulo: string, destinatarios: string[]}|null
+ * @return array{clase: string, titulo: string, clave: string, destinatarios: string[]}|null
  */
 function szs_aviso_push_de_tarea( array $tarea, ?array $antes, string $autor_uid ): ?array {
 	if ( 'hecha' === ( $tarea['estado'] ?? '' ) ) {
@@ -264,6 +266,7 @@ function szs_aviso_push_de_tarea( array $tarea, ?array $antes, string $autor_uid
 	return empty( $nuevas ) ? null : array(
 		'clase'         => 'tarea',
 		'titulo'        => (string) $tarea['titulo'],
+		'clave'         => 'tarea|' . (string) ( $tarea['uid'] ?? '' ),
 		'destinatarios' => array_values( $nuevas ),
 	);
 }
@@ -452,6 +455,8 @@ function szs_enviar_push_pendientes(): void {
 		foreach ( $suscripciones as $suscripcion ) {
 			szs_enviar_push( $suscripcion, szs_mensaje_push( $aviso['clase'], $aviso['titulo'], (string) $suscripcion['idioma'] ) );
 		}
+		// Y a los móviles con la app de Android (`push-fcm.php`).
+		szs_enviar_fcm_aviso( $aviso );
 	}
 }
 

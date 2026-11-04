@@ -52,7 +52,7 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(SoleraL10n.t('error:_$e'))),
+          SnackBar(content: Text('${SoleraL10n.t('error')}: $e')),
         );
       }
     } finally {

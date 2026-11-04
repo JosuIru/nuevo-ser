@@ -1,277 +1,78 @@
 clave,es,eu,ca,gl
-$_numproveedores_registrados,$_numProveedores registrados,,,
-$_numrecetas_registradas,$_numRecetas registradas,,,
-10%_(alimento),10% (alimento),,,
-1_seleccionar_elemento_para_simular,1. Seleccionar elemento para simular,1. Simulatzeko elementua hautatu,1. Seleccionar element per simular,1. Seleccionar elemento para simular
-21%_(general),21% (general),,,
-2_resultado_de_la_trazabilidad,2. Resultado de la trazabilidad,2. Trazabilitatearen emaitza,2. Resultat de la traçabilitat,2. Resultado da trazabilidade
-3_verificacion_de_la_cadena,3. Verificación de la cadena,3. Katearen egiaztapena,3. Verificació de la cadena,3. Verificación da cadea
-4%_(tipo_reducido),4% (tipo reducido),,,
-4_archivar_simulacion,4. Archivar simulación,4. Simulazioa artxibatu,4. Arxivar simulació,4. Arquivar simulación
-acerca_de_solera_quesera,Acerca de Larrea Quesera,Larrea Queserari buruz,Sobre Larrea Quesera,Sobre Larrea Quesera
-activa_el_perfil_de_tu_denominacion_de_o,Activa el perfil de tu Denominación de Origen y la app valida ,,,
-activa_las_do_a_las_que_pertenece_tu_que,Activa las DO a las que pertenece tu quesería. ,,,
-activa_las_do_de_tu_queseria_para_valida,Activa las DO de tu quesería para validar ,,,
-activado_si_es_tu_propia_explotacion,Activado si es tu propia explotación,Zure ustiapena bada aktibatzen da,Activat si és la teva pròpia explotació,Activado se é a túa propia explotación
-afinando,Afinando,Ontzen,Afinant,Afinando
-ahumado_permitido,Ahumado permitido,,,
+10%_(alimento),10% (alimentos),% 10 (elikagaiak),10% (aliments),10% (alimentos)
+21%_(general),21% (general),% 21 (orokorra),21% (general),21% (xeral)
+4%_(tipo_reducido),4% (superreducido),% 4 (supermurriztua),4% (superreduït),4% (superreducido)
+acerca_de,Acerca de,Honi buruz,Quant a,Acerca de
 ajustes,Ajustes,Ezarpenak,Configuració,Axustes
-al_crear_una_factura_podras_enviar_una_c,"Al crear una factura, podrás enviar una copia ",,,
 anadir_proveedor,Añadir proveedor,Hornitzailea gehitu,Afegir proveïdor,Engadir provedor
-analitica_registrada,Analítica registrada,Analitika erregistratua,Analítica registrada,Analítica rexistrada
-analiticas,Analíticas,Analitikak,Analítiques,Analíticas
-animal_(cordero),Animal (cordero),Animalia (arkumea),Animal (xai),Animal (cordeiro)
 antibioticos_positivos,Antibióticos positivos,Antibiotiko positiboak,Antibiòtics positius,Antibióticos positivos
-anular,Anular,Deuseztatu,Anul·lar,Anular
 anular_factura,Anular factura,Faktura deuseztatu,Anul·lar factura,Anular factura
 aun_no_hay_lotes,Aún no hay lotes,Oraindik ez dago loterik,Encara no hi ha lots,Aínda non hai lotes
-aves,Aves,Hegaztiak,Aus,Aves
-backup,Backup,Segurtasun-kopia,Còpia de seguretat,Copia de seguridade
-backup_de_datos,Backup de datos,Datuen segurtasun-kopia,Còpia de seguretat de dades,Copia de seguridade de datos
-baja,Baja,Baxua,Baixa,Baixa
+backup,Copia de seguridad,Segurtasun-kopia,Còpia de seguretat,Copia de seguridade
+baja,Baja,Baja emanda,Baixa,Baixa
 borrar,Borrar,Ezabatu,Esborrar,Borrar
 borrar_proveedor,Borrar proveedor,Hornitzailea ezabatu,Esborrar proveïdor,Borrar provedor
 borrar_receta,Borrar receta,Errezeta ezabatu,Esborrar recepta,Borrar receita
-cabra,Cabra,Ahuntza,Cabra,Cabra
-camara,Cámara,Kamara,Càmera,Cámara
-camara_/_cava,Cámara / cava,,,
 cancelar,Cancelar,Utzi,Cancel·lar,Cancelar
-cargar_datos_de_demostracion,Cargar datos de demostración,Demoa kargatu,Carregar dades de demostració,Cargar datos de demostración
-cargar_demo,Cargar demo,Demoa kargatu,Carregar demo,Cargar demo
-cava_($totalpiezas_piezas),Cava ($totalPiezas piezas),,,
-cava_/_cámara,Cava / cámara,,,
-clave_api_anthropic,Clave API Anthropic,Anthropic API Giltza,Clau API Anthropic,Clave API Anthropic
-comenzar,Comenzar,,,
 compartir,Compartir,Partekatu,Compartir,Compartir
-compensacion_reagp_12%,Compensación REAGP 12%,REAGP konpentsazioa %12,Compensació REAGP 12%,Compensación REAGP 12%
+comprobar_actualizaciones,Comprobar actualizaciones,Eguneraketak egiaztatu,Comprovar actualitzacions,Comprobar actualizacións
 configuracion_fiscal,Configuración fiscal,Konfigurazio fiskala,Configuració fiscal,Configuración fiscal
-configurar_dos_activas,Configurar DOs activas,JA aktiboak konfiguratu,Configurar DOs actives,Configurar DOs activas
-conforme,Conforme,Conforme,Conforme,Conforme
-continuar,Continuar,,,
-control_de_plagas_registrado,Control de plagas registrado,Izurrien kontrola erregistratua,Control de plagues registrat,Control de pragas rexistrado
-controla_cada_pieza_individualmente:_vol,"Controla cada pieza individualmente: volteos, temperatura, ",,,
 copia_de_seguridad,Copia de seguridad,Segurtasun-kopia,Còpia de seguretat,Copia de seguridade
 crear_primer_lote,Crear primer lote,Lehen lotea sortu,Crear primer lot,Crear primeiro lote
 crear_primera_receta,Crear primera receta,Lehen errezeta sortu,Crear primera recepta,Crear primeira receita
-crear_y_compartir_backup,Crear y compartir backup,Segurtasun-kopia sortu eta partekatu,Crear i compartir còpia de seguretat,Crear e compartir copia de seguridade
-cumplimiento_de_do,Cumplimiento de DO,JAren betetzea,Compliment de la DO,Cumprimento da DO
-curacion_minima,Curación mínima,,,
-dar_de_baja,Dar de baja,Baxa eman,Donar de baixa,Dar de baixa
-datos_del_emisor,Datos del emisor,,,
-datos_del_receptor,Datos del receptor,,,
-denominaciones_de_origen,Denominaciones de Origen,Jatorrizko Deiturak,Denominacions d'Origen,Denominacións de Orixe
-denominaciones_de_origen_activas,Denominaciones de Origen activas,Jatorrizko Deitura aktiboak,Denominacions d'Origen actives,Denominacións de Orixe activas
-diagnostico,Diagnóstico,Diagnostikoa,Diagnòstic,Diagnóstico
-distribuidor,Distribuidor,,,
-documentacion,Documentación,Dokumentazioa,Documentació,Documentación
+crear_y_compartir_backup,Crear y compartir copia,Segurtasun-kopia sortu eta partekatu,Crear i compartir còpia de seguretat,Crear e compartir copia de seguridade
+denominaciones_de_origen,Denominaciones de origen,Jatorri-deiturak,Denominacions d'origen,Denominacións de orixe
 editar,Editar,Editatu,Editar,Editar
-editar_queseria,Editar quesería,Gaztategia editatu,Editar formatgeria,Editar queixaría
-ejercicio_de_simulacion,Ejercicio de simulación,,,
-el_inspector_selecciona_un_producto_term,El inspector selecciona un producto terminado al azar ,,,
-elemento_simulado,Elemento simulado,,,
-email_de_respaldo,Email de respaldo,,,
+email_de_respaldo,Correo para la copia,Kopiarako helbide elektronikoa,Correu per a la còpia,Correo para a copia
 emision_pdf_y_envio,"Emisión, PDF y envío","Jaulkipena, PDFa eta bidalketa","Emissió, PDF i enviament","Emisión, PDF e envío"
 emitir_factura,Emitir factura,Faktura jaulki,Emetre factura,Emitir factura
 emitir_primera_factura,Emitir primera factura,Lehen faktura jaulki,Emetre primera factura,Emitir primeira factura
 en_curacion,En curación,Ontzen,En curació,En curación
-envases,Envases,Ontziak,Envasos,Envases
-error:_$e,Error: $e,,,
-error_al_generar_pdf:_$e,Error al generar PDF: $e,,,
-error_creando_backup:_$e,Error creando backup: $e,,,
-error_restaurando:_$e,Error restaurando: $e,,,
-est_directa_normal,Est. directa normal,Zuz. estim. normala,Est. directa normal,Est. directa normal
-est_directa_simplificada,Est. directa simplificada,Zuz. estim. sinplifikatua,Est. directa simplificada,Est. directa simplificada
+error,Error,Errorea,Error,Erro
 estado_de_cavas,Estado de cavas,Upeltegi-egoera,Estat de les caves,Estado das cavas
-este_ejercicio_reproduce_lo_que_haria_un,Este ejercicio reproduce lo que haría un inspector ,,,
-etiquetado,Etiquetado / envases,,,
-etiquetado_/_envases,Etiquetado / envases,,,
-expedida,Expedida,Bidalia,Expedida,Expedida
-exportar_/_importar_base_de_datos,Exportar / importar base de datos,Datu-basea esportatu/inportatu,Exportar / importar base de dades,Exportar / importar base de datos
 facturas,Facturas,Fakturak,Factures,Facturas
-fecha_del_ejercicio,Fecha del ejercicio,,,
-fecha_del_lote,Fecha del lote,,,
-feria,Ferias / mercados,,,
-fermento,Fermento,,,
-fermentos_y_cuajo,Fermentos y cuajo,,,
-ficha_de_lote,Ficha de lote,Lotearen fitxa,Fitxa de lot,Ficha do lote
-firma_del_responsable,Firma del responsable,,,
-formacion_registrada,Formación registrada,Prestakuntza erregistratua,Formació registrada,Formación rexistrada
 fresca,Fresca,Freskoa,Fresca,Fresca
-galeria,Galería,Galeria,Galeria,Galería
-gastos_por_categoria,Gastos por categoría,Gastuak kategorien arabera,Despeses per categoria,Gastos por categoría
-genera_el_pdf_de_trazabilidad_que_te_pid,Genera el PDF de trazabilidad que te pide el inspector. ,,,
-general,General,Orokorra,General,Xeral
-gestion_de_la_cava,Gestión de la cava,Upeltegiaren kudeaketa,Gestió de la cava,Xestión da cava
-gestionar_proveedores,Gestionar proveedores,Hornitzaileak kudeatu,Gestionar proveïdors,Xestionar provedores
-gestionar_recetas,Gestionar recetas,Errezetak kudeatu,Gestionar receptes,Xestionar receitas
-gestionar_registros_appcc,Gestionar registros APPCC,,,
-grano_fino,Grano fino,Ale fina,Gra fi,Grao fino
-grano_grueso,Grano grueso,Ale lodia,Gra gruixut,Grao groso
-grano_medio,Grano medio,Ale ertaina,Gra mitjà,Grao medio
-grasa_(%),Grasa (%),,,
 guardar,Guardar,Gorde,Desar,Gardar
-guardar_lote,Guardar lote,Lotea gorde,Desar lot,Gardar lote
 guardar_partida,Guardar partida,Partida gorde,Desar partida,Gardar partida
-historial,Historial,,,
-historial_de_simulaciones,Historial de simulaciones,Simulazioen historia,Historial de simulacions,Historial de simulacións
-humedad_(%),Humedad (%),,,
-humedad_peso_y_tiempos_de_curacion,"humedad, peso y tiempos de curación.",,,
-ia_—_defectos_en_queso,IA — Defectos en queso,AA — Gazta-akatsak,IA — Defectes en formatge,IA — Defectos en queixo
-identificar_defectos_con_claude_vision,Identificar defectos con Claude Vision,Akatsak identifikatu Claude Vision-ekin,Identificar defectes amb Claude Vision,Identificar defectos con Claude Vision
-idioma_/_language,Idioma / Language,,,
-incidencias,Incidencias,Gorabeherak,Incidències,Incidencias
-ingredientes,Ingredientes,,,
-ingredientes_y_trazabilidad,Ingredientes y trazabilidad,Osagaiak eta trazabilitatea,Ingredients i traçabilitat,Ingredientes e trazabilidade
-ingresos_gastos_y_resumen_fiscal,"Ingresos, gastos y resumen fiscal","Sarrerak, gastuak eta fiskal-laburpena","Ingressos, despeses i resum fiscal","Ingresos, gastos e resumo fiscal"
-ingresos_por_categoria,Ingresos por categoría,Sarrerak kategorien arabera,Ingressos per categoria,Ingresos por categoría
-iniciar_simulacion,Iniciar simulación,Simulazioa hasi,Iniciar simulació,Iniciar simulación
-insectos,Insectos,Intsektuak,Insectes,Insectos
-inspeccionado_por,Inspeccionado por,,,
-introduce_temperatura_y_humedad,Introduce temperatura y humedad,,,
+identificacion_con_ia,Identificación con IA,AA bidezko identifikazioa,Identificació amb IA,Identificación con IA
+importe_no_valido,"Importe no válido (p. ej. 1.200,50)","Zenbateko okerra (adib. 1.200,50)","Import no vàlid (p. ex. 1.200,50)","Importe non válido (p. ex. 1.200,50)"
+importe_obligatorio,Importe obligatorio,Zenbatekoa derrigorrezkoa da,Import obligatori,Importe obrigatorio
 inventario_de_cava,Inventario de cava,Upeltegiaren inbentarioa,Inventari de la cava,Inventario da cava
-leche,Leche,,,
-leche_(proveedores),Leche,,,
-leche_de_cabra,Leche de cabra,Ahuntz-esnea,Llet de cabra,Leite de cabra
-leche_de_oveja,Leche de oveja,Ardi-esnea,Llet d'ovella,Leite de ovella
-leche_de_vaca,Leche de vaca,Behi-esnea,Llet de vaca,Leite de vaca
-libro_de_trazabilidad_appcc,Libro de trazabilidad APPCC,,,
+libro_de_trazabilidad_appcc,Libro de trazabilidad APPCC,APPCC trazabilitate-liburua,Llibre de traçabilitat APPCC,Libro de rastrexabilidade APPCC
 libro_economico,Libro económico,Liburu ekonomikoa,Llibre econòmic,Libro económico
-limpieza_registrada,Limpieza registrada,Garbiketa erregistratua,Neteja registrada,Limpeza rexistrada
-lineas_de_factura,Líneas de factura,Faktura-lerroak,Línies de factura,Liñas de factura
 lista,Lista,Prest,Llest,Lista
-listo,Listo,Prest,Llest,Listo
-los_requisitos:_razas_curacion_minima_zo,"los requisitos: razas, curación mínima, zona, etiquetado.",,,
-lote_$numerolote_creado_($numpiezas_piez,Lote $numeroLote creado ($numPiezas piezas),,,
-lote_de_cuajo_comercial,Lote de cuajo comercial,,,
-lote_de_fermento_comercial,Lote de fermento comercial,,,
-lote_no_encontrado,Lote no encontrado,Lotea ez da aurkitu,Lot no trobat,Lote non atopado
 lotes_de_produccion,Lotes de producción,Ekoizpen-loteak,Lots de producció,Lotes de produción
 mapa,Mapa,Mapa,Mapa,Mapa
-marcar_como_listo,Marcar como listo,,,
-marcar_pagada,Marcar pagada,Ordainduta markatu,Marcar com a pagada,Marcar como pagada
-metodo_de_seleccion,Método de selección,,,
-mezcla,Mezcla,Nahasketa,Barreja,Mestura
-microbiano,Microbiano,Mikrobianoa,Microbià,Microbiano
-ninguna_do_activa,Ninguna DO activa,JA aktiborik ez,Cap DO activa,Ningunha DO activa
-no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
-no_hay_lotes_registrados_anade_datos_pri,No hay lotes registrados. Añade datos primero.,,,
-no_hay_piezas_en_afinado,No hay piezas en afinado,Ez dago ontzen ari den piezarik,No hi ha peces en afinament,Non hai pezas en afinado
-no_hay_piezas_listas,No hay piezas listas,Ez dago pieza prestrik,No hi ha peces llestes,Non hai pezas listas
-no_hay_proveedores,No hay proveedores,,,
-no_hay_recetas,No hay recetas,Ez dago errezetarik,No hi ha receptes,Non hai receitas
-nombre_del_cliente_requerido,Nombre del cliente requerido,Bezeroaren izena beharrezkoa,Nom del client requerit,Nome do cliente requirido
-nueva_analitica,Nueva analítica,,,
-nueva_factura,Nueva factura,Faktura berria,Factura nova,Factura nova
-nueva_formacion,Nueva formación,,,
-nueva_partida_de_leche,Nueva partida de leche,Esne-partida berria,Partida de llet nova,Partida de leite nova
-nuevo_lote,Nuevo lote,Lote berria,Lot nou,Lote novo
-nuevo_registro,Nuevo registro,Erregistro berria,Registre nou,Rexistro novo
-número_de_piezas,Número de piezas,,,
-o_anade_lotes_desde_la_pestana_lotes,o añade lotes desde la pestaña Lotes,,,
-observaciones_(opcional),Observaciones (opcional),,,
-organismo_de_control,Organismo de control,Kontrol-organismoa,Organisme de control,Organismo de control
-otras,Otras,Besteak,Altres,Outras
-otros,Otros,,,
-oveja,Oveja,Ardia,Ovella,Ovella
-parametros_de_proceso,Parámetros de proceso,Prozesu-parametroak,Paràmetres de procés,Parámetros de proceso
-parametros_de_produccion,Parámetros de producción,Ekoizpen-parametroak,Paràmetres de producció,Parámetros de produción
-partida_registrada,Partida registrada,Partida erregistratua,Partida registrada,Partida rexistrada
-partidas_de_leche_produccion_afinado_y_e,"Partidas de leche, producción, afinado y expedición en una sola app.",,,
-partidas_de_leche_usadas,Partidas de leche usadas,Erabilitako esne-partidak,Partides de llet utilitzades,Partidas de leite usadas
-pdf_inspeccionable_con_7_secciones:_rece,PDF inspeccionable con 7 secciones: recepción de ,,,
-pendiente_de_firma,Pendiente de firma,,,
-pendientes_hoy,Pendientes hoy,Gaurko zereginak,Pendents d'avui,Pendentes de hoxe
-perfil_do,Perfil DO,,,
-perfiles_do,Perfiles DO,JA Profilak,Perfils DO,Perfís DO
-peso_actual,Peso actual,,,
-peso_inicial,Peso inicial,,,
-peso_total_obtenido_(kg),Peso total obtenido (kg),,,
-ph_de_la_cuajada_(opcional),pH de la cuajada (opcional),,,
-proteína_(%),Proteína (%),,,
-proveedor,Proveedor,,,
-proveedores_de_leche,Proveedores de leche,Esne-hornitzaileak,Proveïdors de llet,Provedores de leite
-provisional_—_validar_con_asesor_fiscal,PROVISIONAL — validar con asesor fiscal,PROBISIONALA — aholkulari fiskalarekin egiaztatu,PROVISIONAL — validar amb assessor fiscal,PROVISIONAL — validar con asesor fiscal
-queseria,Quesería,Gaztategia,Formatgeria,Queixaría
-razas_permitidas,Razas permitidas,Baimendutako arrazak,Raçes permeses,Razas permitidas
-razon_social,Razón social,Sozietate-izena,Raó social,Razón social
-reagp,REAGP,REAGP,REAGP,REAGP
-realizado_por,Realizado por,Egilea,Realitzat per,Realizado por
-rebano_propio,Rebaño propio,Berezko artaldea,Ramat propi,Raño propio
-receta,Receta,,,
-recetas,Recetas,Errezetak,Receptes,Receitas
-registra_cada_lote_desde_la_leche_hasta_,Registra cada lote desde la leche hasta la venta. ,,,
-registrar,Registrar,Erregistratu,Registrar,Rexistrar
-registrar_partida_de_leche,Registrar partida de leche,,,
-registro_de_temperatura,Registro de temperatura,Tenperaturaren erregistroa,Registre de temperatura,Rexistro de temperatura
-registros_appcc,Registros APPCC,APPCC Erregistroak,Registres APPCC,Rexistros APPCC
-rellena_los_datos_del_ejercicio_y_archiv,Rellena los datos del ejercicio y archívalo. ,,,
-rendimiento_esperado:_$_rendimientoesper,Rendimiento esperado: $_rendimientoEsperado L/kg,,,
-rendimiento_y_curacion,Rendimiento y curación,Etekina eta ontzea,Rendiment i curació,Rendemento e curación
-reproduce_una_inspeccion_real:_seleccion,Reproduce una inspección real: selecciona un lote ,,,
-requiere_lotes_registrados_con_trazabili,Requiere lotes registrados con trazabilidad completa,Trazabilitate osoa duten loteak behar ditu,Requereix lots registrats amb traçabilitat completa,Require lotes rexistrados con trazabilidade completa
-restaurar_desde_un_backup,Restaurar desde un backup,Segurtasun-kopia batetik berreskuratu,Restaurar des d'una còpia de seguretat,Restaurar desde unha copia de seguridade
-restaurar_desde_zip,Restaurar desde zip,Ziptik berreskuratu,Restaurar des de zip,Restaurar desde zip
-resumen,Resumen,Laburpena,Resum,Resumo
-resumen:,Resumen:,,,
-roedores,Roedores,Karraskariak,Rosegadors,Roedores
-sal_/_lote,Sal / lote,,,
-sala_de_degustacion,Sala de degustación,Dastatze-gela,Sala de degustació,Sala de degustación
-sala_de_produccion,Sala de producción,Ekoizpen-gela,Sala de producció,Sala de produción
-seguros,Seguros,,,
-selecciona_las_do_de_tu_queseria_para_ac,Selecciona las DO de tu quesería para activar ,,,
-selecciona_un_proveedor,Selecciona un proveedor,Hautatu hornitzaile bat,Selecciona un proveïdor,Selecciona un provedor
-seleccionar_lote_al_azar,Seleccionar lote al azar,Lotea ausaz hautatu,Seleccionar lot a l'atzar,Seleccionar lote ao azar
-severidad:_,Severidad: ,Larritasuna:,Severitat:,Severidade:
-siguiente,Siguiente,Hurrengoa,Següent,Seguinte
-simulacion_#$id_archivada,Simulación #$id archivada,,,
-simulacion_de_inspeccion,Simulación de inspección,Ikuskapen-simulazioa,Simulació d'inspecció,Simulación de inspección
-simulacion_de_trazabilidad,Simulación de trazabilidad,,,
-sin_configurar,Sin configurar,Konfiguratu gabe,Sense configurar,Sen configurar
-sin_resultados_para_,Sin resultados para ,,,
-sk-ant-...,sk-ant-...,,,
-solera_queseraonboardingvisto,solera_quesera.onboarding.visto,,,
-subvención_do,Subvención DO,,,
-suscripción,Suscripción / socio,,,
-sustituye_la_bd_y_fotos_por_las_del_zip_,Sustituye la BD y fotos por las del zip. ,,,
-temperatura_(°c),Temperatura (°C),,,
-temperatura_de_coagulación_(°c),Temperatura de coagulación (°C),,,
-temperatura_limpieza_plagas_analiticas_y,"Temperatura, limpieza, plagas, analíticas y ",,,
-temperatura_recepción_(°c),Temperatura recepción (°C),,,
-temperatura_registrada,Temperatura registrada,Tenperatura erregistratua,Temperatura registrada,Temperatura rexistrada
-tiempo_de_coagulación_(min),Tiempo de coagulación (min),,,
-tiempo_de_resolucion,Tiempo de resolución,,,
-tipo_de_cuajo,Tipo de cuajo,,,
-tipo_de_leche,Tipo de leche,,,
-tipo_de_queso,Tipo de queso,,,
-toda_la_documentacion_al_dia_siempre,"Toda la documentación al día, siempre.",,,
-todos,Todos,Denak,Tots,Todos
-total_lotes,Total,,,
-transporte,Transporte,,,
-transporte_/_logística,Transporte / logística,,,
-trazabilidad_de_tu_queso,Trazabilidad de tu queso,Zure gaztaren trazabilitatea,Trazabilitat del teu formatge,Trazabilidade do teu queixo
-ultimos_registros,Últimos registros,Azken erregistroak,Últims registres,Últimos rexistros
-utensilios,Utensilios,Tresnak,Utensilis,Útiles
-vaca,Vaca,Behia,Vaca,Vaca
-vegetal_(cardo),Vegetal (cardo),Landarea (kardua),Vegetal (card),Vexetal (cardo)
-ver_pdf,Ver PDF,PDF ikusi,Veure PDF,Ver PDF
-verificacion_de_la_cadena,Verificación de la cadena,,,
-verificado,Verificado,Egiaztatua,Verificat,Verificado
-volumen_(litros),Volumen (litros),,,
-volumen_total_de_leche_(l),Volumen total de leche (L),,,
-zona_de_produccion,Zona de producción,,,
-⚠️_datos_provisionales_antes_de_usar_par,⚠️ Datos provisionales. Antes de usar para ,,,
-numero_no_valido,"Número no válido (p. ej. 12,5)","Zenbaki okerra (adib. 12,5)","Número no vàlid (p. ex. 12,5)","Número non válido (p. ex. 12,5)"
-importe_no_valido,"Importe no válido (p. ej. 1.200,50)","Zenbateko okerra (adib. 1.200,50)","Import no vàlid (p. ex. 1.200,50)","Importe non válido (p. ex. 1.200,50)"
-no_puede_ser_negativo,No puede ser negativo,Ezin da negatiboa izan,No pot ser negatiu,Non pode ser negativo
-importe_obligatorio,Importe obligatorio,Zenbatekoa derrigorrezkoa da,Import obligatori,Importe obrigatorio
 mayor_que_cero,Tiene que ser mayor que cero,Zero baino handiagoa izan behar du,Ha de ser més gran que zero,Ten que ser maior que cero
+no_hay_recetas,No hay recetas,Ez dago errezetarik,No hi ha receptes,Non hai receitas
+no_puede_ser_negativo,No puede ser negativo,Ezin da negatiboa izan,No pot ser negatiu,Non pode ser negativo
+nombre_del_cliente_requerido,Falta el nombre del cliente,Bezeroaren izena falta da,Falta el nom del client,Falta o nome do cliente
+nueva_factura,Nueva factura,Faktura berria,Factura nova,Factura nova
+nueva_partida_de_leche,Nueva partida de leche,Esne-partida berria,Partida de llet nova,Partida de leite nova
 numero_entero_no_valido,Escribe un número entero (p. ej. 12),Idatzi zenbaki oso bat (adib. 12),Escriu un nombre enter (p. ex. 12),Escribe un número enteiro (p. ex. 12)
-seccion_explotacion,Explotación,Ustiapena,Explotació,Explotación
-seccion_registros,Registros y documentos,Erregistroak eta dokumentuak,Registres i documents,Rexistros e documentos
-seccion_integraciones,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
-identificacion_con_ia,Identificación con IA,AA bidezko identifikazioa,Identificació amb IA,Identificación con IA
-seccion_preferencias,Preferencias,Hobespenak,Preferències,Preferencias
-seccion_datos,Datos,Datuak,Dades,Datos
+numero_no_valido,"Número no válido (p. ej. 12,5)","Zenbaki okerra (adib. 12,5)","Número no vàlid (p. ex. 12,5)","Número non válido (p. ex. 12,5)"
+partida_registrada,Partida registrada,Partida erregistratua,Partida registrada,Partida rexistrada
+pendientes_hoy,Pendientes hoy,Gaurko zereginak,Pendents d'avui,Pendentes de hoxe
+perfiles_do,Perfiles DO,JD profilak,Perfils DO,Perfís DO
+proveedor,Proveedor,Hornitzailea,Proveïdor,Provedor
+proveedores,Proveedores,Hornitzaileak,Proveïdors,Provedores
+proveedores_de_leche,Proveedores de leche,Esne-hornitzaileak,Proveïdors de llet,Provedores de leite
+provisional___validar_con_asesor_fiscal,Provisional: valídalo con tu asesor fiscal,Behin-behinekoa: egiaztatu zure aholkulari fiskalarekin,Provisional: valida-ho amb el teu assessor fiscal,Provisional: valídao co teu asesor fiscal
+queseria,Quesería,Gaztategia,Formatgeria,Queixaría
+rebano_propio,Rebaño propio,Artalde propioa,Ramat propi,Raño propio
+recetas,Recetas,Errezetak,Receptes,Receitas
+registrar_partida_de_leche,Registrar partida de leche,Esne-partida erregistratu,Registrar partida de llet,Rexistrar partida de leite
+registros_appcc,Registros APPCC,APPCC erregistroak,Registres APPCC,Rexistros APPCC
+restaurar_desde_zip,Restaurar desde ZIP,ZIP fitxategitik leheneratu,Restaurar des de ZIP,Restaurar desde ZIP
 seccion_aplicacion,Aplicación,Aplikazioa,Aplicació,Aplicación
-comprobar_actualizaciones,Comprobar actualizaciones,Eguneraketak egiaztatu,Comprovar actualitzacions,Comprobar actualizacións
-acerca_de,Acerca de,Honi buruz,Quant a,Acerca de
+seccion_datos,Datos,Datuak,Dades,Datos
+seccion_explotacion,Explotación,Ustiapena,Explotació,Explotación
+seccion_integraciones,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
+seccion_preferencias,Preferencias,Hobespenak,Preferències,Preferencias
+selecciona_un_proveedor,Selecciona un proveedor,Hautatu hornitzaile bat,Selecciona un proveïdor,Selecciona un provedor
+simulacion_de_trazabilidad,Simulación de trazabilidad,Trazabilitate-simulazioa,Simulació de traçabilitat,Simulación de rastrexabilidade
+sin_configurar,Sin configurar,Konfiguratu gabe,Sense configurar,Sen configurar
+sin_proveedores,Todavía no hay proveedores,Oraindik ez dago hornitzailerik,Encara no hi ha proveïdors,Aínda non hai provedores
+temperatura_registrada,Temperatura registrada,Tenperatura erregistratua,Temperatura registrada,Temperatura rexistrada
+todos,Todos,Denak,Tots,Todos
+ver_pdf,Ver PDF,PDF ikusi,Veure PDF,Ver PDF

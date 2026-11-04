@@ -23,6 +23,19 @@ Future<void> cargarIdiomaSolera() async {
   }
 }
 
+/// Vuelve a pintar toda la app tras cambiar de idioma. Los textos salen de
+/// [SoleraL10n.t], que no depende del `context`, así que Flutter no sabe que
+/// han cambiado: sin esto ni el propio selector marcaba el idioma nuevo (es
+/// `StatelessWidget`) y las pantallas abiertas seguían en el anterior.
+void _reconstruirTodaLaApp() {
+  void marcarParaReconstruir(Element elemento) {
+    elemento.markNeedsBuild();
+    elemento.visitChildren(marcarParaReconstruir);
+  }
+
+  WidgetsBinding.instance.rootElement?.visitChildren(marcarParaReconstruir);
+}
+
 Future<void> _guardarIdiomaSolera(String codigo) async {
   try {
     final preferencias = await SharedPreferences.getInstance();
@@ -66,6 +79,7 @@ class SelectorIdioma extends StatelessWidget {
             onSelected: (_) {
               SoleraL10n.idioma = idioma.codigo;
               _guardarIdiomaSolera(idioma.codigo);
+              _reconstruirTodaLaApp();
               onCambio?.call();
             },
           ),

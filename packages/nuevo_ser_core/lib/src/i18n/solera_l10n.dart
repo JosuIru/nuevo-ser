@@ -251,6 +251,7 @@ class SoleraL10n {
     'acei.estimacion_directa_simplificada',
     'acei.estimacion_normal_ayuda',
     'acei.estimacion_simplificada_ayuda',
+    'acei.etiqueta_nif_cif',
     'acei.exportar_libro_aica',
     'acei.exportar_pdf_aica',
     'acei.extracto_compartir_texto',
@@ -368,6 +369,7 @@ class SoleraL10n {
     'acei.municipio',
     'acei.necesitas_campania_cuaderno_pac',
     'acei.necesitas_campania_libro_aica',
+    'acei.nif_valor',
     'acei.no_se_pudo_cargar_prevision',
     'acei.no_se_pudo_cargar_prevision_reintentar',
     'acei.no_se_pudo_obtener_gps',
@@ -1681,6 +1683,9 @@ class SoleraL10n {
     'api.severidad',
     'api.severidad_abreviada_n',
     'api.si',
+    'api.sigla_irpf',
+    'api.sigla_iva',
+    'api.sigla_nif',
     'api.siguiente',
     'api.sin_coincidencias',
     'api.sin_colmenas_todavia',
@@ -2093,6 +2098,8 @@ class SoleraL10n {
     'arb.seleccionar_todos',
     'arb.severidad',
     'arb.severidad_abreviada',
+    'arb.sigla_cif',
+    'arb.sigla_nif',
     'arb.siguiente',
     'arb.sin_arboles_inventariados',
     'arb.sin_ayuntamiento_configurado',
@@ -2903,6 +2910,9 @@ class SoleraL10n {
     'viti.ingresos_vacio',
     'viti.ingresos_vino_ayuda',
     'viti.ingresos_y_gastos_provisional',
+    'viti.irpf',
+    'viti.iva',
+    'viti.iva_porcentaje',
     'viti.iva_repercutido',
     'viti.iva_repercutido_en_vino',
     'viti.iva_repercutido_euros',
@@ -3349,6 +3359,7 @@ class SoleraL10n {
           'acei.estimacion_directa_simplificada',
           'acei.estimacion_normal_ayuda',
           'acei.estimacion_simplificada_ayuda',
+          'acei.etiqueta_nif_cif',
           'acei.exportar_libro_aica',
           'acei.exportar_pdf_aica',
           'acei.extracto_compartir_texto',
@@ -3466,6 +3477,7 @@ class SoleraL10n {
           'acei.municipio',
           'acei.necesitas_campania_cuaderno_pac',
           'acei.necesitas_campania_libro_aica',
+          'acei.nif_valor',
           'acei.no_se_pudo_cargar_prevision',
           'acei.no_se_pudo_cargar_prevision_reintentar',
           'acei.no_se_pudo_obtener_gps',
@@ -4779,6 +4791,9 @@ class SoleraL10n {
           'api.severidad',
           'api.severidad_abreviada_n',
           'api.si',
+          'api.sigla_irpf',
+          'api.sigla_iva',
+          'api.sigla_nif',
           'api.siguiente',
           'api.sin_coincidencias',
           'api.sin_colmenas_todavia',
@@ -5191,6 +5206,8 @@ class SoleraL10n {
           'arb.seleccionar_todos',
           'arb.severidad',
           'arb.severidad_abreviada',
+          'arb.sigla_cif',
+          'arb.sigla_nif',
           'arb.siguiente',
           'arb.sin_arboles_inventariados',
           'arb.sin_ayuntamiento_configurado',
@@ -6001,6 +6018,9 @@ class SoleraL10n {
           'viti.ingresos_vacio',
           'viti.ingresos_vino_ayuda',
           'viti.ingresos_y_gastos_provisional',
+          'viti.irpf',
+          'viti.iva',
+          'viti.iva_porcentaje',
           'viti.iva_repercutido',
           'viti.iva_repercutido_en_vino',
           'viti.iva_repercutido_euros',
@@ -6444,6 +6464,7 @@ class SoleraL10n {
           'acei.estimacion_directa_simplificada',
           'acei.estimacion_normal_ayuda',
           'acei.estimacion_simplificada_ayuda',
+          'acei.etiqueta_nif_cif',
           'acei.exportar_libro_aica',
           'acei.exportar_pdf_aica',
           'acei.extracto_compartir_texto',
@@ -6561,6 +6582,7 @@ class SoleraL10n {
           'acei.municipio',
           'acei.necesitas_campania_cuaderno_pac',
           'acei.necesitas_campania_libro_aica',
+          'acei.nif_valor',
           'acei.no_se_pudo_cargar_prevision',
           'acei.no_se_pudo_cargar_prevision_reintentar',
           'acei.no_se_pudo_obtener_gps',
@@ -7874,6 +7896,9 @@ class SoleraL10n {
           'api.severidad',
           'api.severidad_abreviada_n',
           'api.si',
+          'api.sigla_irpf',
+          'api.sigla_iva',
+          'api.sigla_nif',
           'api.siguiente',
           'api.sin_coincidencias',
           'api.sin_colmenas_todavia',
@@ -8286,6 +8311,8 @@ class SoleraL10n {
           'arb.seleccionar_todos',
           'arb.severidad',
           'arb.severidad_abreviada',
+          'arb.sigla_cif',
+          'arb.sigla_nif',
           'arb.siguiente',
           'arb.sin_arboles_inventariados',
           'arb.sin_ayuntamiento_configurado',
@@ -9096,6 +9123,9 @@ class SoleraL10n {
           'viti.ingresos_vacio',
           'viti.ingresos_vino_ayuda',
           'viti.ingresos_y_gastos_provisional',
+          'viti.irpf',
+          'viti.iva',
+          'viti.iva_porcentaje',
           'viti.iva_repercutido',
           'viti.iva_repercutido_en_vino',
           'viti.iva_repercutido_euros',
@@ -9539,6 +9569,7 @@ class SoleraL10n {
           'acei.estimacion_directa_simplificada',
           'acei.estimacion_normal_ayuda',
           'acei.estimacion_simplificada_ayuda',
+          'acei.etiqueta_nif_cif',
           'acei.exportar_libro_aica',
           'acei.exportar_pdf_aica',
           'acei.extracto_compartir_texto',
@@ -9656,6 +9687,7 @@ class SoleraL10n {
           'acei.municipio',
           'acei.necesitas_campania_cuaderno_pac',
           'acei.necesitas_campania_libro_aica',
+          'acei.nif_valor',
           'acei.no_se_pudo_cargar_prevision',
           'acei.no_se_pudo_cargar_prevision_reintentar',
           'acei.no_se_pudo_obtener_gps',
@@ -10969,6 +11001,9 @@ class SoleraL10n {
           'api.severidad',
           'api.severidad_abreviada_n',
           'api.si',
+          'api.sigla_irpf',
+          'api.sigla_iva',
+          'api.sigla_nif',
           'api.siguiente',
           'api.sin_coincidencias',
           'api.sin_colmenas_todavia',
@@ -11381,6 +11416,8 @@ class SoleraL10n {
           'arb.seleccionar_todos',
           'arb.severidad',
           'arb.severidad_abreviada',
+          'arb.sigla_cif',
+          'arb.sigla_nif',
           'arb.siguiente',
           'arb.sin_arboles_inventariados',
           'arb.sin_ayuntamiento_configurado',
@@ -12191,6 +12228,9 @@ class SoleraL10n {
           'viti.ingresos_vacio',
           'viti.ingresos_vino_ayuda',
           'viti.ingresos_y_gastos_provisional',
+          'viti.irpf',
+          'viti.iva',
+          'viti.iva_porcentaje',
           'viti.iva_repercutido',
           'viti.iva_repercutido_en_vino',
           'viti.iva_repercutido_euros',
@@ -12657,6 +12697,7 @@ class SoleraL10n {
       case 'acei.estimacion_directa_simplificada': return 'Estimación directa simplificada';
       case 'acei.estimacion_normal_ayuda': return 'Cuando la simplificada no aplica por límites de facturación.';
       case 'acei.estimacion_simplificada_ayuda': return 'La más común si llevas contabilidad mínima al día.';
+      case 'acei.etiqueta_nif_cif': return 'NIF / CIF';
       case 'acei.exportar_libro_aica': return 'Exportar libro AICA';
       case 'acei.exportar_pdf_aica': return 'Exportar PDF AICA';
       case 'acei.extracto_compartir_texto': return 'Extracto económico {anyo} · Larrea Aceitera';
@@ -12774,6 +12815,7 @@ class SoleraL10n {
       case 'acei.municipio': return 'Municipio';
       case 'acei.necesitas_campania_cuaderno_pac': return 'Necesitas una campaña abierta para generar el cuaderno PAC.';
       case 'acei.necesitas_campania_libro_aica': return 'Necesitas una campaña para generar el libro AICA.';
+      case 'acei.nif_valor': return 'NIF: {nif}';
       case 'acei.no_se_pudo_cargar_prevision': return 'No se pudo cargar la previsión.';
       case 'acei.no_se_pudo_cargar_prevision_reintentar': return 'No se pudo cargar la previsión. Toca para reintentar.';
       case 'acei.no_se_pudo_obtener_gps': return 'No se pudo obtener el GPS actual.';
@@ -14087,6 +14129,9 @@ class SoleraL10n {
       case 'api.severidad': return 'Severidad';
       case 'api.severidad_abreviada_n': return 'sev. {n}';
       case 'api.si': return 'Sí';
+      case 'api.sigla_irpf': return 'IRPF';
+      case 'api.sigla_iva': return 'IVA';
+      case 'api.sigla_nif': return 'NIF';
       case 'api.siguiente': return 'Siguiente';
       case 'api.sin_coincidencias': return 'Sin coincidencias.';
       case 'api.sin_colmenas_todavia': return 'Sin colmenas registradas todavía.';
@@ -14499,6 +14544,8 @@ class SoleraL10n {
       case 'arb.seleccionar_todos': return 'Seleccionar todos';
       case 'arb.severidad': return 'Severidad';
       case 'arb.severidad_abreviada': return 'sev. {n}';
+      case 'arb.sigla_cif': return 'CIF';
+      case 'arb.sigla_nif': return 'NIF';
       case 'arb.siguiente': return 'Siguiente';
       case 'arb.sin_arboles_inventariados': return 'Sin árboles inventariados todavía.';
       case 'arb.sin_ayuntamiento_configurado': return 'Sin ayuntamiento configurado';
@@ -15309,6 +15356,9 @@ class SoleraL10n {
       case 'viti.ingresos_vacio': return 'Aún no hay ingresos en este año. Pulsa «Nuevo ingreso» para registrar una venta de uva, vino en botella o a granel, alquiler de terreno o ayuda PAC.';
       case 'viti.ingresos_vino_ayuda': return 'Botella y granel (siempre 21 % IVA general)';
       case 'viti.ingresos_y_gastos_provisional': return 'Ingresos y gastos · provisional';
+      case 'viti.irpf': return 'IRPF';
+      case 'viti.iva': return 'IVA';
+      case 'viti.iva_porcentaje': return 'IVA {porcentaje} %';
       case 'viti.iva_repercutido': return 'IVA repercutido';
       case 'viti.iva_repercutido_en_vino': return 'IVA repercutido en vino';
       case 'viti.iva_repercutido_euros': return 'IVA repercutido (€)';
@@ -15614,7 +15664,7 @@ class SoleraL10n {
       case 'acei.ajustes_acerca_sub': return 'Zer den Larrea Aceitera, konpromisoak eta katalogoak';
       case 'acei.ajustes_actualizaciones_sub': return 'Instalatutako bertsioa eta argitaratutako azkena';
       case 'acei.ajustes_copia_sub': return 'Datu guztiak ZIP batean gorde edo bat leheneratu';
-      case 'acei.ajustes_fiscal_sub': return 'IRPF + IVA araubidea + ekitaldi fiskal aktiboa';
+      case 'acei.ajustes_fiscal_sub': return 'PFEZ + BEZ araubidea + ekitaldi fiskal aktiboa';
       case 'acei.ajustes_ia_sub': return 'Izurriak eta barietateak argazki bidez Claude-rekin · Anthropic gako propioa, gailuan bakarrik gordea';
       case 'acei.ajustes_terceros_sub': return 'Idazpenei eta 347 ereduari lotzeko datu fiskalak';
       case 'acei.altitud_gps_m': return 'GPS alt. {m} m';
@@ -15630,7 +15680,7 @@ class SoleraL10n {
       case 'acei.aviso_corto_helada': return 'Izozte-arriskua · begiratu olibondo gazteak';
       case 'acei.aviso_corto_mosca': return 'Olibondoaren eulia hegaldi aktiboan';
       case 'acei.aviso_corto_tratamientos': return 'Tratamendu delikatuak (haizea edo euria)';
-      case 'acei.aviso_fiscal_provisional': return 'BEHIN-BEHINEKOA nekazaritza eta elikagaietako aholkulari fiskal batek balioztatu arte. Lehenetsitako IVA arauak olibondo-sektorearen ohiko interpretazioan oinarritzen dira; idazpen bakoitzean IVA jasanarazia eskuz alda dezakezu.';
+      case 'acei.aviso_fiscal_provisional': return 'BEHIN-BEHINEKOA nekazaritza eta elikagaietako aholkulari fiskal batek balioztatu arte. Lehenetsitako BEZ arauak olibondo-sektorearen ohiko interpretazioan oinarritzen dira; idazpen bakoitzean BEZ jasanarazia eskuz alda dezakezu.';
       case 'acei.base_importe': return 'oinarria {importe}';
       case 'acei.batidora_referencia': return 'Irabiagailua (erreferentzia)';
       case 'acei.bienvenida': return 'Ongi etorri Larrea Aceiterara';
@@ -15674,7 +15724,7 @@ class SoleraL10n {
       case 'acei.compromisos_legales': return 'Lege-konpromisoak';
       case 'acei.concepto': return 'Kontzeptua';
       case 'acei.confianza_valor': return 'Konfiantza: % {confianza}';
-      case 'acei.configura_titular_primero': return 'Konfiguratu lehenik titularraren izen soziala eta NIF Ezarpenetan.';
+      case 'acei.configura_titular_primero': return 'Konfiguratu lehenik titularraren izen soziala eta IFZ Ezarpenetan.';
       case 'acei.configuracion_fiscal_guardada': return 'Konfigurazio fiskala gorde da.';
       case 'acei.consejo_estres_hidrico_texto': return 'ET0 altua edo lurrun-presioaren defizit handia. Tantakako ureztatzea baduzu, programatu laguntza-ureztatzea; lehorrean, saihestu estresa areagotzen duten lanak.';
       case 'acei.consejo_estres_hidrico_titulo': return 'Ur-eskari handia';
@@ -15756,6 +15806,7 @@ class SoleraL10n {
       case 'acei.estimacion_directa_simplificada': return 'Zuzeneko zenbatespen erraztua';
       case 'acei.estimacion_normal_ayuda': return 'Erraztua fakturazio-mugengatik aplikatzen ez denean.';
       case 'acei.estimacion_simplificada_ayuda': return 'Ohikoena, gutxieneko kontabilitatea egunean baduzu.';
+      case 'acei.etiqueta_nif_cif': return 'IFZ / IFK';
       case 'acei.exportar_libro_aica': return 'AICA liburua esportatu';
       case 'acei.exportar_pdf_aica': return 'AICA PDFa esportatu';
       case 'acei.extracto_compartir_texto': return '{anyo}ko laburpen ekonomikoa · Larrea Aceitera';
@@ -15808,7 +15859,7 @@ class SoleraL10n {
       case 'acei.identificador_del_lote': return 'Lotearen identifikatzailea';
       case 'acei.identificar_plaga_con_ia': return 'Izurria AArekin identifikatu';
       case 'acei.importe_base_euros': return 'Oinarrizko zenbatekoa (€)';
-      case 'acei.importe_base_sin_iva': return 'Oinarrizko zenbatekoa (€, IVArik gabe)';
+      case 'acei.importe_base_sin_iva': return 'Oinarrizko zenbatekoa (€, BEZik gabe)';
       case 'acei.importe_no_valido_corto': return 'Zenbateko okerra';
       case 'acei.imputacion': return 'Egozpena';
       case 'acei.imputacion_general': return 'Ustiategi osoarena';
@@ -15824,15 +15875,15 @@ class SoleraL10n {
       case 'acei.ingreso_venta_aceituna': return 'Oliba-salmenta';
       case 'acei.ingresos': return 'Diru-sarrerak';
       case 'acei.inicio_fecha': return 'Hasiera: {fecha}';
-      case 'acei.irpf_normal': return 'IRPF: zuzeneko zenbatespen arrunta';
-      case 'acei.irpf_simplificada': return 'IRPF: zuzeneko zenbatespen erraztua';
-      case 'acei.irpf_sin_elegir': return 'IRPF: aukeratu gabe';
-      case 'acei.iva_general': return 'IVA: araubide orokorra';
-      case 'acei.iva_reagp': return 'IVA: REAGP (% 12ko konpentsazioa olibetan)';
-      case 'acei.iva_repercutido_euros': return 'IVA jasanarazia (€)';
-      case 'acei.iva_sin_elegir': return 'IVA: aukeratu gabe';
-      case 'acei.iva_soportado_ayuda': return 'Irakurri fakturako IVA kuota.';
-      case 'acei.iva_soportado_euros': return 'IVA jasana (€)';
+      case 'acei.irpf_normal': return 'PFEZ: zuzeneko zenbatespen arrunta';
+      case 'acei.irpf_simplificada': return 'PFEZ: zuzeneko zenbatespen erraztua';
+      case 'acei.irpf_sin_elegir': return 'PFEZ: aukeratu gabe';
+      case 'acei.iva_general': return 'BEZ: araubide orokorra';
+      case 'acei.iva_reagp': return 'BEZ: REAGP (% 12ko konpentsazioa olibetan)';
+      case 'acei.iva_repercutido_euros': return 'BEZ jasanarazia (€)';
+      case 'acei.iva_sin_elegir': return 'BEZ: aukeratu gabe';
+      case 'acei.iva_soportado_ayuda': return 'Irakurri fakturako BEZ kuota.';
+      case 'acei.iva_soportado_euros': return 'BEZ jasana (€)';
       case 'acei.kilos_estimados': return 'Kalkulatutako kiloak';
       case 'acei.kilos_molturados': return 'Ehotako kiloak';
       case 'acei.kilos_netos_bascula': return 'Kilo garbiak (baskula)';
@@ -15873,6 +15924,7 @@ class SoleraL10n {
       case 'acei.municipio': return 'Udalerria';
       case 'acei.necesitas_campania_cuaderno_pac': return 'Kanpaina ireki bat behar duzu PAC koadernoa sortzeko.';
       case 'acei.necesitas_campania_libro_aica': return 'Kanpaina bat behar duzu AICA liburua sortzeko.';
+      case 'acei.nif_valor': return 'IFZ: {nif}';
       case 'acei.no_se_pudo_cargar_prevision': return 'Ezin izan da iragarpena kargatu.';
       case 'acei.no_se_pudo_cargar_prevision_reintentar': return 'Ezin izan da iragarpena kargatu. Sakatu berriro saiatzeko.';
       case 'acei.no_se_pudo_obtener_gps': return 'Ezin izan da uneko GPSa lortu.';
@@ -15931,16 +15983,16 @@ class SoleraL10n {
       case 'acei.provincia': return 'Probintzia';
       case 'acei.pulsa_mas_primero': return 'Sakatu + lehena gehitzeko.';
       case 'acei.razon_social': return 'Izen soziala';
-      case 'acei.recalcular_iva_compensacion': return 'IVA / konpentsazioa berriro kalkulatu';
+      case 'acei.recalcular_iva_compensacion': return 'BEZ / konpentsazioa berriro kalkulatu';
       case 'acei.recoleccion': return 'Bilketa';
       case 'acei.recolecciones': return 'Bilketak';
       case 'acei.regimen': return 'Araubidea';
       case 'acei.regimen_general': return 'Araubide orokorra';
-      case 'acei.regimen_general_ayuda': return '% 4ko IVA jasanarazia olibetan eta olioan (oinarrizko elikagaia). Gastuetan jasandako IVA kengarria da.';
-      case 'acei.regimen_irpf': return 'IRPF araubidea';
-      case 'acei.regimen_iva': return 'IVA araubidea';
+      case 'acei.regimen_general_ayuda': return '% 4ko BEZ jasanarazia olibetan eta olioan (oinarrizko elikagaia). Gastuetan jasandako BEZa kengarria da.';
+      case 'acei.regimen_irpf': return 'PFEZ araubidea';
+      case 'acei.regimen_iva': return 'BEZ araubidea';
       case 'acei.regimen_reagp': return 'REAGP (% 12ko konpentsazioa olibetan)';
-      case 'acei.regimen_reagp_ayuda': return 'Nekazaritzako araubide berezia. Erosleak % 12ko REAGP konpentsazioa ordaintzen du olibak saltzean; titularrak ez du IVArik jasanarazten bere nekazaritza-salmentetan.';
+      case 'acei.regimen_reagp_ayuda': return 'Nekazaritzako araubide berezia. Erosleak % 12ko REAGP konpentsazioa ordaintzen du olibak saltzean; titularrak ez du BEZik jasanarazten bere nekazaritza-salmentetan.';
       case 'acei.registrar': return 'Erregistratu';
       case 'acei.registros': return 'Erregistroak';
       case 'acei.registros_campanias_sub': return 'Aurtengo kanpaina ireki eta aurrekoak ikusi';
@@ -15959,7 +16011,7 @@ class SoleraL10n {
       case 'acei.resultado_bruto_anyo': return 'Urteko emaitza gordina';
       case 'acei.resultado_bruto_formula': return '(oinarrizko diru-sarrerak − oinarrizko gastuak)';
       case 'acei.resumen': return 'Laburpena';
-      case 'acei.resumen_provisional': return 'BEHIN-BEHINEKO laburpena, aholkulari fiskal batek balioztatu arte. Olibondo-sektoreko IVA eta REAGP arauak berresteke daude.';
+      case 'acei.resumen_provisional': return 'BEHIN-BEHINEKO laburpena, aholkulari fiskal batek balioztatu arte. Olibondo-sektoreko BEZ eta REAGP arauak berresteke daude.';
       case 'acei.riego_aspersion': return 'Aspertsioa';
       case 'acei.riego_goteo': return 'Tantaka';
       case 'acei.riego_mixto': return 'Mistoa';
@@ -16012,18 +16064,18 @@ class SoleraL10n {
       case 'acei.tipo_de_gasto': return 'Gastu mota';
       case 'acei.tipo_de_ingreso': return 'Diru-sarrera mota';
       case 'acei.tipo_valor': return 'Mota: {tipo}';
-      case 'acei.titular_nif': return 'Titularra · NIF: {nif}';
+      case 'acei.titular_nif': return 'Titularra · IFZ: {nif}';
       case 'acei.titular_sin_configurar': return 'Titularra konfiguratu gabe';
-      case 'acei.titular_sin_configurar_cuaderno': return 'Koaderno ofizialak titularraren izen soziala eta NIF behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.';
-      case 'acei.titular_sin_configurar_libro_aica': return 'AICA liburuak titularraren izen soziala, NIF eta AICA zk. behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.';
+      case 'acei.titular_sin_configurar_cuaderno': return 'Koaderno ofizialak titularraren izen soziala eta IFZ behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.';
+      case 'acei.titular_sin_configurar_libro_aica': return 'AICA liburuak titularraren izen soziala, IFZ eta AICA zk. behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.';
       case 'acei.todas_las_parcelas': return 'Lursail guztiak';
       case 'acei.todas_parcelas_con_coordenadas': return 'Lursail guztiek dituzte koordenatuak.';
       case 'acei.todos_los_lotes_campania': return 'Kanpainako lote guztiak';
       case 'acei.total_compensacion_reagp': return 'REAGP konpentsazioa guztira';
       case 'acei.total_gastos_base': return 'Gastuak guztira (oinarria)';
       case 'acei.total_ingresos_base': return 'Diru-sarrerak guztira (oinarria)';
-      case 'acei.total_iva_repercutido': return 'IVA jasanarazia guztira';
-      case 'acei.total_iva_soportado': return 'IVA jasana guztira';
+      case 'acei.total_iva_repercutido': return 'BEZ jasanarazia guztira';
+      case 'acei.total_iva_soportado': return 'BEZ jasana guztira';
       case 'acei.tratamiento': return 'Tratamendua';
       case 'acei.tratamientos': return 'Tratamenduak';
       case 'acei.ubicacion_del_deposito': return 'Biltegiaren kokapena';
@@ -16115,7 +16167,7 @@ class SoleraL10n {
       case 'agro.buenos_dias': return 'Egun on';
       case 'agro.buscar_cultivo': return 'Bilatu laborea';
       case 'agro.buscar_por_etiqueta_variedad_cultivo_finca': return 'Bilatu etiketa, barietate, labore edo finkaren arabera';
-      case 'agro.buscar_por_nombre_o_nif': return 'Bilatu izenaren edo NIFaren arabera';
+      case 'agro.buscar_por_nombre_o_nif': return 'Bilatu izenaren edo IFZaren arabera';
       case 'agro.buscar_un_lugar': return 'Leku bat bilatu';
       case 'agro.calendario': return 'Egutegia';
       case 'agro.calendario_orientativo_iberia': return 'Iberiarako egutegi orientagarria. Egokitu zure eremuaren eta urtearen arabera.';
@@ -16155,7 +16207,7 @@ class SoleraL10n {
       case 'agro.cliente_y_proveedor': return 'Bezeroa eta hornitzailea';
       case 'agro.cliente_y_proveedor_minuscula': return 'bezeroa eta hornitzailea';
       case 'agro.clientes_y_proveedores': return 'Bezeroak eta hornitzaileak';
-      case 'agro.clientes_y_proveedores_sub': return 'NIFa duten hirugarrenak · 347 eredua elikatzen dute';
+      case 'agro.clientes_y_proveedores_sub': return 'IFZa duten hirugarrenak · 347 eredua elikatzen dute';
       case 'agro.codigo_ine_abreviado': return 'INE kodea';
       case 'agro.combustible': return 'Erregaia';
       case 'agro.compartido_entre_parcelas_cultivo': return 'Labore hori duten partzela guztien artean banatua';
@@ -16177,12 +16229,12 @@ class SoleraL10n {
       case 'agro.configura_regimen_iva_calculo': return 'Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, aplikazioak konpentsazioa edo BEZ jasanarazia kalkula dezan.';
       case 'agro.configura_regimen_iva_en_ajustes': return 'Konfiguratu BEZ erregimena Ezarpenetan';
       case 'agro.configura_regimen_iva_resumen': return 'Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, laburpenak REAGP eta erregimen orokorra bereiz ditzan.';
-      case 'agro.configuracion_fiscal_sub': return 'IRPF + BEZ araubidea · behin-behinekoa';
+      case 'agro.configuracion_fiscal_sub': return 'PFEZ + BEZ araubidea · behin-behinekoa';
       case 'agro.configurar_correo_respaldo': return 'Kopiarako helbidea konfiguratu';
       case 'agro.configurar_titular': return 'Titularra konfiguratu';
       case 'agro.confirmar_anular_factura': return '{numero} deuseztatu? Ez da ezabatzen; deuseztatutzat erregistratuta geratzen da.';
       case 'agro.confirmar_borrar_recorrido': return 'Ibilbide hau ezabatu?';
-      case 'agro.confirmar_borrar_tercero': return '«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio, oraindik aitortzeko dagoen urte batekoa bada.';
+      case 'agro.confirmar_borrar_tercero': return '«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina IFZaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio, oraindik aitortzeko dagoen urte batekoa bada.';
       case 'agro.copia_aviso_sustitucion': return 'Uneko datu-basea eta argazkiak kopiakoekin ordeztuko dira. Aurretik, uneko egoeraren kopia bat gordetzen da automatikoki gailuan.';
       case 'agro.copia_con_n_fotos': return '{descripcion}, {n} argazkirekin.';
       case 'agro.copia_datos_intactos': return 'Zure datuak ez dira ukitu.';
@@ -16216,7 +16268,7 @@ class SoleraL10n {
       case 'agro.crear': return 'Sortu';
       case 'agro.crear_copia': return 'Kopia sortu';
       case 'agro.crear_copia_explicacion': return 'Datu-basea eta argazki guztiak ZIP batean biltzen ditu; WhatsApp, Drive edo posta bidez parteka dezakezu, edo ordenagailura kopiatu. Aplikazioa berriro instalatzen baduzu edo mugikorra aldatzen baduzu, hemendik leheneratu ahal izango duzu.';
-      case 'agro.criterio_trimestres': return 'Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: laguntzak bereiz, 303 eredua erregimenaren arabera eta 347 eredua NIFaren arabera.';
+      case 'agro.criterio_trimestres': return 'Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: laguntzak bereiz, 303 eredua erregimenaren arabera eta 347 eredua IFZaren arabera.';
       case 'agro.csv_cultivo_id_vacio': return 'cultivo_id hutsik';
       case 'agro.csv_faltan_columnas': return 'Derrigorrezko zutabeak falta dira: cultivo_id, latitud, longitud.';
       case 'agro.csv_lat_lon_fuera_rango': return 'latitud/longitud tartetik kanpo';
@@ -16235,7 +16287,7 @@ class SoleraL10n {
       case 'agro.cultivos_afectados': return 'Kaltetutako laboreak';
       case 'agro.dano_abiotico': return 'Kalte abiotikoa';
       case 'agro.datos_del_titular': return 'Titularraren datuak';
-      case 'agro.datos_del_titular_sub': return 'NIF, REGEPA, aholkularia, aplikatzailea (MAPA koadernorako)';
+      case 'agro.datos_del_titular_sub': return 'IFZ, REGEPA, aholkularia, aplikatzailea (MAPA koadernorako)';
       case 'agro.datos_obligatorios_tratamiento_cuaderno': return 'Datu hauek derrigorrezkoak dira tratamendua koadernoan ager dadin.';
       case 'agro.datos_sigpac_guardados': return 'SIGPAC datuak gordeta.';
       case 'agro.datos_sigpac_y_superficie': return 'SIGPAC datuak eta azalera';
@@ -16325,7 +16377,7 @@ class SoleraL10n {
       case 'agro.extracto_incluye_ingresos_mes': return 'Diru-sarreren hileko taula (uzta, PAC laguntzak, BEZa, REAGP konpentsazioa).';
       case 'agro.extracto_incluye_modelo_347': return '347 eredua: ekitaldian 3.005,06 € baino gehiago dituzten hirugarrenak.';
       case 'agro.extracto_incluye_resumen': return 'Ekitaldiko guztizkoen laburpena.';
-      case 'agro.extracto_incluye_sin_nif': return '347 ereduan sartzen ez diren NIF gabeko idatzoharrak.';
+      case 'agro.extracto_incluye_sin_nif': return '347 ereduan sartzen ez diren IFZ gabeko idatzoharrak.';
       case 'agro.extracto_nota_cultivo_general': return '«Labore orokorra»ri egotzitako gastuak zenbateko osoarekin zerrendatzen dira: labore hori duten partzelen arteko hektareako banaketa proportzionala aholkulari fiskal batek metodoa baliozkotu arte dago zain.';
       case 'agro.factura_estado_anulada': return 'deuseztatuta';
       case 'agro.factura_estado_emitida': return 'jaulkita';
@@ -16406,7 +16458,7 @@ class SoleraL10n {
       case 'agro.ingreso_guardado': return 'Diru-sarrera gorde da.';
       case 'agro.ingresos': return 'Diru-sarrerak';
       case 'agro.ingresos_ordinarios': return 'Diru-sarrera arruntak';
-      case 'agro.ingresos_sin_nif_n': return '{n} diru-sarrera NIF gabe: ez dira 347 ereduan sartzen';
+      case 'agro.ingresos_sin_nif_n': return '{n} diru-sarrera IFZ gabe: ez dira 347 ereduan sartzen';
       case 'agro.insumos': return 'Intsumoak';
       case 'agro.iva': return 'BEZ';
       case 'agro.iva_porcentaje': return 'BEZ % {n}';
@@ -16437,13 +16489,13 @@ class SoleraL10n {
       case 'agro.municipio': return 'Udalerria';
       case 'agro.n_puntos': return '{n} puntu';
       case 'agro.n_unidades_abreviado': return '{n} ale';
-      case 'agro.nif': return 'NIF';
-      case 'agro.nif_aplicador_si_distinto': return 'Aplikatzailearen NIFa (titularra ez bada)';
-      case 'agro.nif_asesor_aplicador': return 'NIF, aholkularia, aplikatzailea';
-      case 'agro.nif_cif_obligatorio': return 'NIF / IFK *';
-      case 'agro.nif_del_aplicador': return 'Aplikatzailearen NIFa';
-      case 'agro.nif_del_asesor': return 'Aholkulariaren NIFa';
-      case 'agro.nif_opcional': return 'NIF (aukerakoa)';
+      case 'agro.nif': return 'IFZ';
+      case 'agro.nif_aplicador_si_distinto': return 'Aplikatzailearen IFZa (titularra ez bada)';
+      case 'agro.nif_asesor_aplicador': return 'IFZ, aholkularia, aplikatzailea';
+      case 'agro.nif_cif_obligatorio': return 'IFZ / IFK *';
+      case 'agro.nif_del_aplicador': return 'Aplikatzailearen IFZa';
+      case 'agro.nif_del_asesor': return 'Aholkulariaren IFZa';
+      case 'agro.nif_opcional': return 'IFZ (aukerakoa)';
       case 'agro.nif_vacio_si_venta_informal': return 'Hutsik, fakturarik gabeko salmenta informala bada';
       case 'agro.nivel_del_carnet': return 'Txartelaren maila';
       case 'agro.no_hay_facturas': return 'Ez dago fakturarik';
@@ -16594,7 +16646,7 @@ class SoleraL10n {
       case 'agro.sin_ingresos_este_ano': return 'Oraindik ez dago diru-sarrerarik urte honetan. Sakatu «Diru-sarrera berria» uzta, egur edo lur-alokairu salmenta bat edo PAC laguntza bat erregistratzeko.';
       case 'agro.sin_iva': return 'BEZik gabe';
       case 'agro.sin_iva_ni_compensacion': return 'BEZik eta konpentsaziorik gabe';
-      case 'agro.sin_nif': return 'NIF gabe';
+      case 'agro.sin_nif': return 'IFZ gabe';
       case 'agro.sin_nombre_parentesis': return '(izenik gabe)';
       case 'agro.sin_plagas_catalogadas_cultivo': return 'Ez dago izurriterik katalogatuta labore honetarako v1ean. Katalogoa balidazio agronomikoarekin zabalduko da v2an.';
       case 'agro.sin_posicion': return 'Posiziorik gabe';
@@ -16609,7 +16661,7 @@ class SoleraL10n {
       case 'agro.superficie_no_valida_texto': return 'Azalera baliogabea: «{texto}». Erabili zenbakiak soilik (adib. 4,7).';
       case 'agro.superficie_tratada_ha': return 'Tratatutako azalera (ha)';
       case 'agro.telefono': return 'Telefonoa';
-      case 'agro.terceros_vacio': return 'Oraindik ez dago bezero edo hornitzailerik gordeta. Gehitu bezeroak (kooperatibak, olio-errotak, ostalaritza, banatzaileak) eta hornitzaileak (intsumoak, fitosanitarioak, makineria); bakoitzaren NIFari esker 347 eredua sor daiteke ekitaldiaren itxieran.';
+      case 'agro.terceros_vacio': return 'Oraindik ez dago bezero edo hornitzailerik gordeta. Gehitu bezeroak (kooperatibak, olio-errotak, ostalaritza, banatzaileak) eta hornitzaileak (intsumoak, fitosanitarioak, makineria); bakoitzaren IFZari esker 347 eredua sor daiteke ekitaldiaren itxieran.';
       case 'agro.tipo': return 'Mota';
       case 'agro.tipo_de_gasto': return 'Gastu mota';
       case 'agro.tipo_de_ingreso': return 'Diru-sarrera mota';
@@ -16996,10 +17048,10 @@ class SoleraL10n {
       case 'api.fac_estado_pagada': return 'ordaindua';
       case 'api.fac_estado_vencida': return 'iraungia';
       case 'api.fac_explicacion_email_respaldo': return 'Faktura bat sortzean, kopia bat bidali ahal izango duzu helbide honetara babeskopia gisa.';
-      case 'api.fac_iva_porcentaje': return 'IVA % {porcentaje}';
+      case 'api.fac_iva_porcentaje': return 'BEZ % {porcentaje}';
       case 'api.fac_lineas_de_factura': return 'Fakturaren lerroak';
       case 'api.fac_marcar_pagada': return 'Ordaindutzat jo';
-      case 'api.fac_nif_opcional': return 'NIF (aukerakoa)';
+      case 'api.fac_nif_opcional': return 'IFZ (aukerakoa)';
       case 'api.fac_no_hay_facturas': return 'Ez dago fakturarik';
       case 'api.fac_numero_factura': return 'Faktura-zenbakia';
       case 'api.fac_precio': return 'Prezioa';
@@ -17020,8 +17072,8 @@ class SoleraL10n {
       case 'api.fis_aviso_provisional': return 'Behin-behinekoa. Liburuaren eta laburpenaren formatua aholkulari fiskal batek baliozkotzeko dago. Aitorpen batean ezer aurkeztu aurretik, egiaztatu zure aholkulariarekin.';
       case 'api.fis_estimacion_directa_normal': return 'Zuzeneko zenbatespen arrunta';
       case 'api.fis_estimacion_directa_simplificada': return 'Zuzeneko zenbatespen erraztua';
-      case 'api.fis_explicacion_reagp': return 'REAGPn ez duzu IVArik jasanarazten eztiaren salmentan. Erosleak oinarriaren gaineko % 12ko konpentsazioa ordaintzen dizu. Erosketetan jasandako IVA ez da berreskuragarria: kostu handiago gisa egozten da.';
-      case 'api.fis_explicacion_regimen_general': return 'Araubide orokorrean % 4ko IVA jasanarazten duzu eztiaren salmentan (oinarrizko elikagaia, LIVAren 91.1.1.1. art.), eta erosketetan jasandako IVA berreskuragarria da.';
+      case 'api.fis_explicacion_reagp': return 'REAGPn ez duzu BEZik jasanarazten eztiaren salmentan. Erosleak oinarriaren gaineko % 12ko konpentsazioa ordaintzen dizu. Erosketetan jasandako BEZa ez da berreskuragarria: kostu handiago gisa egozten da.';
+      case 'api.fis_explicacion_regimen_general': return 'Araubide orokorrean % 4ko BEZa jasanarazten duzu eztiaren salmentan (oinarrizko elikagaia, LIVAren 91.1.1.1. art.), eta erosketetan jasandako BEZa berreskuragarria da.';
       case 'api.fis_modulos_no_disponible': return 'Moduluen araubidea ez dago erabilgarri v1 bertsioan: aholkulari fiskalarekin baliozkotu behar da gehitu aurretik.';
       case 'api.fis_reagp_descripcion': return 'REAGP — nekazaritza, abeltzaintza eta arrantzaren araubide berezia';
       case 'api.fis_regimen_general': return 'Araubide orokorra';
@@ -17112,7 +17164,7 @@ class SoleraL10n {
       case 'api.motivo_venta': return 'Salmenta';
       case 'api.movimiento': return 'Mugimendua';
       case 'api.n_colmenas': return '{n} erlauntz';
-      case 'api.nif_veterinario': return 'Albaitariaren NIFa';
+      case 'api.nif_veterinario': return 'Albaitariaren IFZa';
       case 'api.ninguno_alta_captura_compra': return '— bat ere ez (alta/harrapaketa/erosketa) —';
       case 'api.ninguno_baja_venta': return '— bat ere ez (baja/salmenta) —';
       case 'api.no': return 'Ez';
@@ -17166,7 +17218,7 @@ class SoleraL10n {
       case 'api.razas': return 'Arrazak';
       case 'api.recapturar': return 'Berriz hartu';
       case 'api.recuento_en_24_h': return '24 orduko zenbaketa';
-      case 'api.regimen_irpf_iva_provisional': return 'IRPF + IVA araubidea · behin-behinekoa';
+      case 'api.regimen_irpf_iva_provisional': return 'PFEZ + BEZ araubidea · behin-behinekoa';
       case 'api.registros': return 'Erregistroak';
       case 'api.reina': return 'Ama-erlea';
       case 'api.reina_ano_color': return 'Ama-erlea {ano} ({color})';
@@ -17186,6 +17238,9 @@ class SoleraL10n {
       case 'api.severidad': return 'Larritasuna';
       case 'api.severidad_abreviada_n': return 'larr. {n}';
       case 'api.si': return 'Bai';
+      case 'api.sigla_irpf': return 'PFEZ';
+      case 'api.sigla_iva': return 'BEZ';
+      case 'api.sigla_nif': return 'IFZ';
       case 'api.siguiente': return 'Hurrengoa';
       case 'api.sin_coincidencias': return 'Ez dago bat datorrenik.';
       case 'api.sin_colmenas_todavia': return 'Oraindik ez dago erlauntzarik erregistratuta.';
@@ -17208,10 +17263,10 @@ class SoleraL10n {
       case 'api.telefono': return 'Telefonoa';
       case 'api.telefono_veterinario': return 'Albaitariaren telefonoa';
       case 'api.ter_borrar_tercero': return 'Hirugarrena ezabatu';
-      case 'api.ter_buscar_nombre_nif': return 'Bilatu izenaren edo NIFaren arabera';
+      case 'api.ter_buscar_nombre_nif': return 'Bilatu izenaren edo IFZaren arabera';
       case 'api.ter_cliente_y_proveedor': return 'Bezeroa eta hornitzailea';
       case 'api.ter_clientes_y_proveedores': return 'Bezeroak eta hornitzaileak';
-      case 'api.ter_confirmar_borrado': return '«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio oraindik aitortu gabeko urte batekoa bada.';
+      case 'api.ter_confirmar_borrado': return '«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina IFZaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio oraindik aitortu gabeko urte batekoa bada.';
       case 'api.ter_correo': return 'Helbide elektronikoa';
       case 'api.ter_crear': return 'Sortu';
       case 'api.ter_direccion': return 'Helbidea';
@@ -17221,14 +17276,14 @@ class SoleraL10n {
       case 'api.ter_nombre_razon_social': return 'Izena edo sozietatearen izena *';
       case 'api.ter_nuevo': return 'Berria';
       case 'api.ter_nuevo_tercero': return 'Hirugarren berria';
-      case 'api.ter_sin_nif': return 'NIFik gabe';
+      case 'api.ter_sin_nif': return 'IFZrik gabe';
       case 'api.ter_sin_nombre': return '(izenik gabe)';
-      case 'api.ter_sin_terceros': return 'Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (ontziratzaileak, kooperatibak, ostalaritza) eta hornitzaileak (hornigaiak, albaitaria, garraioa); bakoitzaren NIFari esker 347 eredua sor daiteke ekitaldiaren itxieran.';
+      case 'api.ter_sin_terceros': return 'Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (ontziratzaileak, kooperatibak, ostalaritza) eta hornitzaileak (hornigaiak, albaitaria, garraioa); bakoitzaren IFZari esker 347 eredua sor daiteke ekitaldiaren itxieran.';
       case 'api.ter_telefono': return 'Telefonoa';
       case 'api.ter_tipo_ambos': return 'bezeroa eta hornitzailea';
       case 'api.ter_tipo_cliente': return 'bezeroa';
       case 'api.ter_tipo_proveedor': return 'hornitzailea';
-      case 'api.terceros_ayuda': return 'NIFa duten hirugarrenak · 347 eredua elikatzen dute';
+      case 'api.terceros_ayuda': return 'IFZa duten hirugarrenak · 347 eredua elikatzen dute';
       case 'api.tipo': return 'Mota';
       case 'api.tipo_de_colmena': return 'Erlauntz mota';
       case 'api.tipo_plaga_abiotico': return 'Abiotikoa';
@@ -17238,7 +17293,7 @@ class SoleraL10n {
       case 'api.tipo_plaga_parasito': return 'Parasitoa';
       case 'api.tipos_de_colmena': return 'Erlauntz motak';
       case 'api.titular_explotacion': return 'Ustiapenaren titularra';
-      case 'api.titular_explotacion_ayuda': return 'NIF, REGA zk., kontaktua eta albaitari aholkularia';
+      case 'api.titular_explotacion_ayuda': return 'IFZ, REGA zk., kontaktua eta albaitari aholkularia';
       case 'api.titular_sin_configurar': return 'Titularra konfiguratu gabe';
       case 'api.todas': return 'Denak';
       case 'api.todas_las_colmenas': return 'Erlauntz guztiak';
@@ -17598,6 +17653,8 @@ class SoleraL10n {
       case 'arb.seleccionar_todos': return 'Denak hautatu';
       case 'arb.severidad': return 'Larritasuna';
       case 'arb.severidad_abreviada': return 'larr. {n}';
+      case 'arb.sigla_cif': return 'IFK';
+      case 'arb.sigla_nif': return 'IFZ';
       case 'arb.siguiente': return 'Hurrengoa';
       case 'arb.sin_arboles_inventariados': return 'Oraindik ez dago zuhaitzik inbentarioan.';
       case 'arb.sin_ayuntamiento_configurado': return 'Udalik konfiguratu gabe';
@@ -18111,16 +18168,16 @@ class SoleraL10n {
       case 'viti.asistente_chat': return 'Laguntzailea (txata)';
       case 'viti.asistente_chat_ayuda': return 'Galdetu Claudeari sintomei, fenologiari edo maneiuari buruz. Zure Anthropic gakoa erabiltzen du.';
       case 'viti.asunto_factura': return '{numero} faktura — {cliente}';
-      case 'viti.autocalcular_iva': return 'Kalkulatu IVA automatikoki';
-      case 'viti.autocalcular_iva_compensacion': return 'Kalkulatu automatikoki IVA / konpentsazioa';
+      case 'viti.autocalcular_iva': return 'Kalkulatu BEZ automatikoki';
+      case 'viti.autocalcular_iva_compensacion': return 'Kalkulatu automatikoki BEZ / konpentsazioa';
       case 'viti.autocalculo_alquiler': return 'Nekazaritzako alokairua, salbuetsia (% 21era igarotzen da erabilera ez bada nekazaritzakoa)';
-      case 'viti.autocalculo_general': return '% 21eko IVA orokorra';
-      case 'viti.autocalculo_general_uva': return 'Araubide orokorra: % 4ko IVA mahatsari (oinarrizko elikagaia)';
-      case 'viti.autocalculo_insumos': return '% 4ko IVA super-murriztua (nekazaritzako intsumoa)';
-      case 'viti.autocalculo_mano_obra': return 'Nekazaritzako eskulana: normalean IVArik gabe';
+      case 'viti.autocalculo_general': return '% 21eko BEZ orokorra';
+      case 'viti.autocalculo_general_uva': return 'Araubide orokorra: % 4ko BEZ mahatsari (oinarrizko elikagaia)';
+      case 'viti.autocalculo_insumos': return '% 4ko BEZ super-murriztua (nekazaritzako intsumoa)';
+      case 'viti.autocalculo_mano_obra': return 'Nekazaritzako eskulana: normalean BEZik gabe';
       case 'viti.autocalculo_reagp_uva': return 'REAGP: oinarriaren % 12, mahastizainarentzako konpentsazio gisa';
-      case 'viti.autocalculo_seguros': return 'IVAtik salbuetsia (LIVAren 20. art.)';
-      case 'viti.autocalculo_vino': return 'Ardo-salmenta: % 21eko IVA orokorra (edari alkoholduna)';
+      case 'viti.autocalculo_seguros': return 'BEZetik salbuetsia (LIVAren 20. art.)';
+      case 'viti.autocalculo_vino': return 'Ardo-salmenta: % 21eko BEZ orokorra (edari alkoholduna)';
       case 'viti.autorizada_ecologico': return 'Ekologikoan baimendua';
       case 'viti.aviso_decadas_orientativas': return 'Hamarrekoak gutxi gorabeherakoak dira (±2 hamarreko, urtearen, mikroklimaren eta altueraren arabera). Egiaztatu tokiko abisu fitosanitarioen buletinarekin tratamenduak planifikatu aurretik.';
       case 'viti.aviso_fiscal_provisional': return 'Behin-behinekoa. Liburuaren eta laburpenaren formatua zerga-aholkulari batek baliozkotzeko dago. Aitorpen batean ezer aurkeztu aurretik, egiaztatu zure aholkulariarekin.';
@@ -18160,12 +18217,12 @@ class SoleraL10n {
       case 'viti.backup_restaurar_una_copia': return 'Leheneratu kopia bat';
       case 'viti.backup_ultima_copia': return 'Azken kopia';
       case 'viti.base_imponible': return 'Zerga-oinarria';
-      case 'viti.base_imponible_sin_iva_soportado': return 'Zerga-oinarria (jasandako IVArik gabe)';
+      case 'viti.base_imponible_sin_iva_soportado': return 'Zerga-oinarria (jasandako BEZik gabe)';
       case 'viti.borrar_tercero': return 'Ezabatu hirugarrena';
-      case 'viti.borrar_tercero_aviso': return '«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute — 347 ereduaren laburpenean eragina izango du oraindik aitortu gabeko urte batekoa bada.';
+      case 'viti.borrar_tercero_aviso': return '«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina IFZren erreferentzia galduko dute — 347 ereduaren laburpenean eragina izango du oraindik aitortu gabeko urte batekoa bada.';
       case 'viti.buscar_cepas_ayuda': return 'Bilatu (etiketa, barietatea, txertaka, oharrak)';
       case 'viti.buscar_plagas_ayuda': return 'Bilatu: mildiu, oídio, Xylella…';
-      case 'viti.buscar_por_nombre_o_nif': return 'Bilatu izenaren edo NIFaren arabera';
+      case 'viti.buscar_por_nombre_o_nif': return 'Bilatu izenaren edo IFZren arabera';
       case 'viti.buscar_un_lugar': return 'Bilatu leku bat';
       case 'viti.buscar_variedades_ayuda': return 'Bilatu: tempranillo, albariño…';
       case 'viti.calidad': return 'Kalitatea';
@@ -18216,9 +18273,9 @@ class SoleraL10n {
       case 'viti.confianza': return 'Konfiantza';
       case 'viti.configura_clave_anthropic': return 'Konfiguratu zure Anthropic gakoa (Claude)';
       case 'viti.configura_primero_titular': return 'Konfiguratu lehenik ustiategiaren titularra.';
-      case 'viti.configura_regimen_iva': return 'Konfiguratu IVA araubidea Ezarpenetan';
-      case 'viti.configura_regimen_iva_calculo': return 'Konfiguratu IVA araubidea Ezarpenak → Konfigurazio fiskala atalean, aplikazioak konpentsazioa edo jasanarazitako IVA kalkula dezan.';
-      case 'viti.configura_regimen_iva_resumen': return 'Konfiguratu IVA araubidea Ezarpenak → Konfigurazio fiskala atalean, laburpenak REAGP eta araubide orokorra bereiz ditzan.';
+      case 'viti.configura_regimen_iva': return 'Konfiguratu BEZ araubidea Ezarpenetan';
+      case 'viti.configura_regimen_iva_calculo': return 'Konfiguratu BEZ araubidea Ezarpenak → Konfigurazio fiskala atalean, aplikazioak konpentsazioa edo jasanarazitako BEZa kalkula dezan.';
+      case 'viti.configura_regimen_iva_resumen': return 'Konfiguratu BEZ araubidea Ezarpenak → Konfigurazio fiskala atalean, laburpenak REAGP eta araubide orokorra bereiz ditzan.';
       case 'viti.configurar_correo_respaldo': return 'Konfiguratu babeskopiarako posta';
       case 'viti.coordenadas': return 'Koordenatuak';
       case 'viti.copia_para': return 'Kopia honentzat: {email}';
@@ -18256,7 +18313,7 @@ class SoleraL10n {
       case 'viti.dia_viernes': return 'ostirala';
       case 'viti.diagnostico': return 'Diagnostikoa';
       case 'viti.diagnostico_rellenado': return 'Diagnostikoa beteta. Berrikusi eta gorde.';
-      case 'viti.diferencia_iva': return 'IVA aldea';
+      case 'viti.diferencia_iva': return 'BEZ aldea';
       case 'viti.diferencia_ordinaria': return 'Ohiko aldea';
       case 'viti.diferencia_ordinaria_ayuda': return 'Ohiko diru-sarrerak − gastuak. PAC eta diru-laguntzak aparte.';
       case 'viti.direccion': return 'Helbidea';
@@ -18293,8 +18350,8 @@ class SoleraL10n {
       case 'viti.etiqueta_ayuda': return 'F3-12 (3. ilara, 12. landarea)';
       case 'viti.etiquetas_observacion_ayuda': return 'kimu-ateratzea, loraldia, mahats-ondua, mahats-bilketa…';
       case 'viti.etiquetas_separadas_comas': return 'Etiketak (komaz bereizita)';
-      case 'viti.explicacion_reagp': return 'REAGPn ez duzu IVArik jasanarazten mahats-salmentan. Erosleak % 12ko konpentsazioa ordaintzen dizu. Ardo-salmentak beti % 21 orokorra du: ardoa upeltegiak eraldatutako produktua da eta REAGPtik kanpo geratzen da. Erosketetan jasandako IVA ez da berreskuragarria: kostu handiago gisa egozten da.';
-      case 'viti.explicacion_regimen_general': return 'Araubide orokorrean % 4 jasanarazten duzu mahatsean (oinarrizko elikagaia) eta % 21 ardoan (edari alkoholduna). Erosketetan jasandako IVA berreskuragarria da.';
+      case 'viti.explicacion_reagp': return 'REAGPn ez duzu BEZik jasanarazten mahats-salmentan. Erosleak % 12ko konpentsazioa ordaintzen dizu. Ardo-salmentak beti % 21 orokorra du: ardoa upeltegiak eraldatutako produktua da eta REAGPtik kanpo geratzen da. Erosketetan jasandako BEZa ez da berreskuragarria: kostu handiago gisa egozten da.';
+      case 'viti.explicacion_regimen_general': return 'Araubide orokorrean % 4 jasanarazten duzu mahatsean (oinarrizko elikagaia) eta % 21 ardoan (edari alkoholduna). Erosketetan jasandako BEZa berreskuragarria da.';
       case 'viti.extracto_anual': return 'Urteko laburpena';
       case 'viti.extracto_anual_desde_icono': return 'Hileko xehetasuna eta 347 eredua dituen urteko laburpena goiburuko PDF ikonotik dago eskuragarri.';
       case 'viti.extracto_aviso_provisional': return 'BEHIN-BEHINEKOA. Laburpen hau zerga-aholkulariarentzako laguntza-tresna bat da — erregistro-liburuaren eta 347 ereduaren formatu zehatza zerga-aholkulari batek baliozkotzeko dago, aitorpen batean ezer aurkeztu aurretik.';
@@ -18304,10 +18361,10 @@ class SoleraL10n {
       case 'viti.extracto_incluye_347': return '347 eredua — ekitaldian 3.005,06 € baino gehiagoko batura duten hirugarrenak.';
       case 'viti.extracto_incluye_detalle_gastos': return 'Gastuen xehetasun kronologikoa, egozpenarekin.';
       case 'viti.extracto_incluye_detalle_ingresos': return 'Diru-sarreren xehetasun kronologikoa, barietatearekin eta lotearekin.';
-      case 'viti.extracto_incluye_gastos': return 'Gastuen hileko taula (oinarria, jasandako IVA, guztira).';
-      case 'viti.extracto_incluye_ingresos': return 'Diru-sarreren hileko taula (mahatsa, ardoa, PAC laguntzak, IVA, REAGP konpentsazioa).';
+      case 'viti.extracto_incluye_gastos': return 'Gastuen hileko taula (oinarria, jasandako BEZ, guztira).';
+      case 'viti.extracto_incluye_ingresos': return 'Diru-sarreren hileko taula (mahatsa, ardoa, PAC laguntzak, BEZ, REAGP konpentsazioa).';
       case 'viti.extracto_incluye_resumen': return 'Ekitaldiko guztizkoen laburpena.';
-      case 'viti.extracto_incluye_sin_nif': return '347 ereduan sartzen ez diren NIFik gabeko idazpenak.';
+      case 'viti.extracto_incluye_sin_nif': return '347 ereduan sartzen ez diren IFZrik gabeko idazpenak.';
       case 'viti.extracto_variedad_general': return '«Barietate orokorra»ri egotzitako gastuak bere horretan zerrendatzen dira, zenbateko osoarekin — barietate hori duten lursailen arteko azaleraren araberako banaketa proportzionalaren metodoa zerga-aholkulari batek baliozkotzeko dago.';
       case 'viti.factura_anulada': return 'baliogabetuta';
       case 'viti.factura_emitida': return 'igorrita';
@@ -18403,20 +18460,23 @@ class SoleraL10n {
       case 'viti.ingresos_por_uva_ano': return 'Mahatsaren diru-sarrerak {ano}';
       case 'viti.ingresos_por_vino': return 'Ardoaren diru-sarrerak';
       case 'viti.ingresos_por_vino_ano': return 'Ardoaren diru-sarrerak {ano}';
-      case 'viti.ingresos_sin_nif_347': return '{n} diru-sarrera NIFik gabe — ez dira 347 ereduan sartzen';
-      case 'viti.ingresos_uva_ayuda': return 'Mahats-salmenta (% 4 IVA / % 12 REAGP konpentsazioa)';
+      case 'viti.ingresos_sin_nif_347': return '{n} diru-sarrera IFZrik gabe — ez dira 347 ereduan sartzen';
+      case 'viti.ingresos_uva_ayuda': return 'Mahats-salmenta (% 4 BEZ / % 12 REAGP konpentsazioa)';
       case 'viti.ingresos_vacio': return 'Oraindik ez dago diru-sarrerarik urte honetan. Sakatu «Diru-sarrera berria» mahats-salmenta, ardo botilaratu edo solteko salmenta, lurren alokairua edo PAC laguntza erregistratzeko.';
-      case 'viti.ingresos_vino_ayuda': return 'Botila eta soltean (beti % 21 IVA orokorra)';
+      case 'viti.ingresos_vino_ayuda': return 'Botila eta soltean (beti % 21 BEZ orokorra)';
       case 'viti.ingresos_y_gastos_provisional': return 'Diru-sarrerak eta gastuak · behin-behinekoa';
-      case 'viti.iva_repercutido': return 'Jasanarazitako IVA';
-      case 'viti.iva_repercutido_en_vino': return 'Ardoan jasanarazitako IVA';
-      case 'viti.iva_repercutido_euros': return 'Jasanarazitako IVA (€)';
-      case 'viti.iva_repercutido_venta_vino': return 'Ardo-salmentan jasanarazitako IVA';
-      case 'viti.iva_soportado': return 'Jasandako IVA';
-      case 'viti.iva_soportado_deducible': return 'Jasandako IVA kengarria';
-      case 'viti.iva_soportado_en_compras': return 'Erosketetan jasandako IVA';
-      case 'viti.iva_soportado_euros': return 'Jasandako IVA (€)';
-      case 'viti.iva_y_compensaciones': return 'IVA eta konpentsazioak';
+      case 'viti.irpf': return 'PFEZ';
+      case 'viti.iva': return 'BEZ';
+      case 'viti.iva_porcentaje': return 'BEZ % {porcentaje}';
+      case 'viti.iva_repercutido': return 'Jasanarazitako BEZ';
+      case 'viti.iva_repercutido_en_vino': return 'Ardoan jasanarazitako BEZ';
+      case 'viti.iva_repercutido_euros': return 'Jasanarazitako BEZ (€)';
+      case 'viti.iva_repercutido_venta_vino': return 'Ardo-salmentan jasanarazitako BEZ';
+      case 'viti.iva_soportado': return 'Jasandako BEZ';
+      case 'viti.iva_soportado_deducible': return 'Jasandako BEZ kengarria';
+      case 'viti.iva_soportado_en_compras': return 'Erosketetan jasandako BEZ';
+      case 'viti.iva_soportado_euros': return 'Jasandako BEZ (€)';
+      case 'viti.iva_y_compensaciones': return 'BEZ eta konpentsazioak';
       case 'viti.kilos': return 'Kiloak';
       case 'viti.libro_economico_ano': return 'Liburu ekonomikoa · {ano}';
       case 'viti.libro_economico_aviso_provisional': return 'Behin-behineko liburu ekonomikoa. Zerga-aholkulari batek baliozkotzeko dago aitorpen batean ezer aurkeztu aurretik. Bitartean, egiaztatu idazpen bakoitza zure aholkulariarekin.';
@@ -18440,13 +18500,13 @@ class SoleraL10n {
       case 'viti.motivo_ayuda': return 'Mildiuaren prebentziozko kontrola…';
       case 'viti.n_fotos': return '{n} argazki.';
       case 'viti.n_unidades_abreviado': return '{n} unit.';
-      case 'viti.nif': return 'NIF';
-      case 'viti.nif_del_aplicador': return 'Aplikatzailearen NIF';
-      case 'viti.nif_del_asesor': return 'Aholkulariaren NIF';
-      case 'viti.nif_obligatorio_etiqueta': return 'NIF *';
-      case 'viti.nif_opcional': return 'NIF (aukerakoa)';
+      case 'viti.nif': return 'IFZ';
+      case 'viti.nif_del_aplicador': return 'Aplikatzailearen IFZ';
+      case 'viti.nif_del_asesor': return 'Aholkulariaren IFZ';
+      case 'viti.nif_obligatorio_etiqueta': return 'IFZ *';
+      case 'viti.nif_opcional': return 'IFZ (aukerakoa)';
       case 'viti.nif_vacio_venta_directa': return 'Hutsik, fakturarik gabeko salmenta zuzena bada';
-      case 'viti.nif_valor': return 'NIF {nif}';
+      case 'viti.nif_valor': return 'IFZ {nif}';
       case 'viti.nivel_carnet_aplicador': return 'Aplikatzaile-txartelaren maila';
       case 'viti.no': return 'Ez';
       case 'viti.no_hay_facturas': return 'Ez dago fakturarik';
@@ -18506,13 +18566,13 @@ class SoleraL10n {
       case 'viti.proximos_hitos_fenologicos': return 'Hurrengo mugarri fenologikoak';
       case 'viti.puede_ser_distinto_del_titular': return 'Titularra ez den beste bat izan daiteke';
       case 'viti.punto_suelto': return 'Puntu solte';
-      case 'viti.reagp_iva_soportado_no_recuperable': return 'REAGPn jasandako IVA ez da berreskuragarria: kostu handiago gisa zenbatzen da laburpenean.';
+      case 'viti.reagp_iva_soportado_no_recuperable': return 'REAGPn jasandako BEZa ez da berreskuragarria: kostu handiago gisa zenbatzen da laburpenean.';
       case 'viti.reagp_no_recuperable_corto': return 'REAGPn ez da berreskuragarria: kostu handiago gisa zenbatzen da.';
       case 'viti.recapturar': return 'Berriro hartu';
       case 'viti.recuperable_contra_repercutido': return 'Jasanarazitakoaren kontra berreskuragarria';
       case 'viti.regepa_ayuda': return 'Nekazaritza Ekoizpenaren Erregistro Orokorra';
       case 'viti.regimen_general': return 'Araubide orokorra';
-      case 'viti.regimen_irpf_iva_provisional': return 'IRPF + IVA araubidea · behin-behinekoa';
+      case 'viti.regimen_irpf_iva_provisional': return 'PFEZ + BEZ araubidea · behin-behinekoa';
       case 'viti.regimen_reagp': return 'REAGP — nekazaritza/abeltzaintza/arrantzako araubide berezia';
       case 'viti.registros': return 'Erregistroak';
       case 'viti.reintentar': return 'Saiatu berriro';
@@ -18527,8 +18587,8 @@ class SoleraL10n {
       case 'viti.resumen_anual_pdf_provisional': return 'Urteko laburpena PDFn · behin-behinekoa';
       case 'viti.resumen_catalogos': return '{total} errenkada 5 katalogotan: {variedades} barietate, {portainjertos} txertaka, {plagas} izurrite/gaixotasun, {materias} substantzia aktibo, {bbch} BBCH egoera.';
       case 'viti.resumen_fiscal_trimestral': return 'Hiruhileko zerga-laburpena';
-      case 'viti.resumen_trimestral_ayuda': return 'Hiruhileko guztizkoak kutxa, IVA eta aldea berrikusteko zerga-itxiera aurretik. Urteko laburpena PDFn dago eskuragarri.';
-      case 'viti.resumen_trimestral_criterio': return 'Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: mahatsa ardotik bereizita, laguntzak aparte eta 347 eredua NIFaren arabera.';
+      case 'viti.resumen_trimestral_ayuda': return 'Hiruhileko guztizkoak kutxa, BEZ eta aldea berrikusteko zerga-itxiera aurretik. Urteko laburpena PDFn dago eskuragarri.';
+      case 'viti.resumen_trimestral_criterio': return 'Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: mahatsa ardotik bereizita, laguntzak aparte eta 347 eredua IFZren arabera.';
       case 'viti.riesgo_de_helada': return 'Izotz-arriskua';
       case 'viti.riesgo_helada_detalle': return 'Zaindu kimu-ateratzea, loraldia, landare gazteak eta sakonuneak.';
       case 'viti.ropo_equivalente': return 'ROPO/baliokidea';
@@ -18548,9 +18608,9 @@ class SoleraL10n {
       case 'viti.sin_elegir': return 'Aukeratu gabe';
       case 'viti.sin_eventos_todavia': return 'Oraindik ez dago gertaerarik erregistratuta.';
       case 'viti.sin_fecha_plantacion': return 'Landatze-datarik gabe';
-      case 'viti.sin_iva': return 'IVArik gabe';
-      case 'viti.sin_iva_ni_compensacion': return 'IVArik eta konpentsaziorik gabe';
-      case 'viti.sin_nif': return 'NIFik gabe';
+      case 'viti.sin_iva': return 'BEZik gabe';
+      case 'viti.sin_iva_ni_compensacion': return 'BEZik eta konpentsaziorik gabe';
+      case 'viti.sin_nif': return 'IFZrik gabe';
       case 'viti.sin_nombre_parentesis': return '(izenik gabe)';
       case 'viti.sin_resultados': return 'Ez dago emaitzarik.';
       case 'viti.sin_titular_configurado': return 'Titularrik konfiguratu gabe';
@@ -18561,8 +18621,8 @@ class SoleraL10n {
       case 'viti.suelo_temperatura_humedad': return 'Lurzorua {temperatura} °C · {humedad}';
       case 'viti.superficie_tratada_ha': return 'Tratatutako azalera (ha)';
       case 'viti.telefono': return 'Telefonoa';
-      case 'viti.terceros_ayuda_347': return 'NIFdun hirugarrenak · 347 eredurako';
-      case 'viti.terceros_vacio': return 'Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (banatzaileak, ostalaritza, esportazioa, fakturadun partikularrak) eta hornitzaileak (intsumoak, fitosanitarioak, barrikak, botilaratzea) — bakoitzaren NIFa 347 eredura doa ekitaldiaren itxieran.';
+      case 'viti.terceros_ayuda_347': return 'IFZdun hirugarrenak · 347 eredurako';
+      case 'viti.terceros_vacio': return 'Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (banatzaileak, ostalaritza, esportazioa, fakturadun partikularrak) eta hornitzaileak (intsumoak, fitosanitarioak, barrikak, botilaratzea) — bakoitzaren IFZa 347 eredura doa ekitaldiaren itxieran.';
       case 'viti.tipo': return 'Mota';
       case 'viti.tipo_de_accion': return 'Ekintza mota';
       case 'viti.tipo_de_gasto': return 'Gastu mota';
@@ -18578,7 +18638,7 @@ class SoleraL10n {
       case 'viti.tipo_tratamiento_riego': return 'Ureztatzea';
       case 'viti.titular_ayuda': return 'PAC liburu ofizialak eskatzen dituen datuak';
       case 'viti.titular_de_la_explotacion': return 'Ustiategiaren titularra';
-      case 'viti.titular_requerido_libro': return 'Liburu ofizialak titularraren datuak behar ditu (NIF, izena, helbidea, REGEPA…). Konfiguratu itzazu sortu aurretik.';
+      case 'viti.titular_requerido_libro': return 'Liburu ofizialak titularraren datuak behar ditu (IFZ, izena, helbidea, REGEPA…). Konfiguratu itzazu sortu aurretik.';
       case 'viti.titular_sin_configurar': return 'Titularra konfiguratu gabe';
       case 'viti.todas': return 'Guztiak';
       case 'viti.todas_las_cepas': return 'Mahatsondo guztiak';
@@ -18855,6 +18915,7 @@ class SoleraL10n {
       case 'acei.estimacion_directa_simplificada': return 'Estimació directa simplificada';
       case 'acei.estimacion_normal_ayuda': return 'Quan la simplificada no s\'aplica pels límits de facturació.';
       case 'acei.estimacion_simplificada_ayuda': return 'La més habitual si portes una comptabilitat mínima al dia.';
+      case 'acei.etiqueta_nif_cif': return 'NIF / CIF';
       case 'acei.exportar_libro_aica': return 'Exportar llibre AICA';
       case 'acei.exportar_pdf_aica': return 'Exportar PDF AICA';
       case 'acei.extracto_compartir_texto': return 'Extracte econòmic {anyo} · Larrea Aceitera';
@@ -18972,6 +19033,7 @@ class SoleraL10n {
       case 'acei.municipio': return 'Municipi';
       case 'acei.necesitas_campania_cuaderno_pac': return 'Necessites una campanya oberta per generar el quadern PAC.';
       case 'acei.necesitas_campania_libro_aica': return 'Necessites una campanya per generar el llibre AICA.';
+      case 'acei.nif_valor': return 'NIF: {nif}';
       case 'acei.no_se_pudo_cargar_prevision': return 'No s\'ha pogut carregar la previsió.';
       case 'acei.no_se_pudo_cargar_prevision_reintentar': return 'No s\'ha pogut carregar la previsió. Toca per tornar-ho a provar.';
       case 'acei.no_se_pudo_obtener_gps': return 'No s\'ha pogut obtenir el GPS actual.';
@@ -20285,6 +20347,9 @@ class SoleraL10n {
       case 'api.severidad': return 'Gravetat';
       case 'api.severidad_abreviada_n': return 'grav. {n}';
       case 'api.si': return 'Sí';
+      case 'api.sigla_irpf': return 'IRPF';
+      case 'api.sigla_iva': return 'IVA';
+      case 'api.sigla_nif': return 'NIF';
       case 'api.siguiente': return 'Següent';
       case 'api.sin_coincidencias': return 'Sense coincidències.';
       case 'api.sin_colmenas_todavia': return 'Encara no hi ha ruscs registrats.';
@@ -20697,6 +20762,8 @@ class SoleraL10n {
       case 'arb.seleccionar_todos': return 'Seleccionar-los tots';
       case 'arb.severidad': return 'Severitat';
       case 'arb.severidad_abreviada': return 'sev. {n}';
+      case 'arb.sigla_cif': return 'CIF';
+      case 'arb.sigla_nif': return 'NIF';
       case 'arb.siguiente': return 'Següent';
       case 'arb.sin_arboles_inventariados': return 'Encara no hi ha arbres inventariats.';
       case 'arb.sin_ayuntamiento_configurado': return 'Cap ajuntament configurat';
@@ -21507,6 +21574,9 @@ class SoleraL10n {
       case 'viti.ingresos_vacio': return 'Encara no hi ha ingressos aquest any. Prem «Ingrés nou» per registrar una venda de raïm, vi en ampolla o a granel, lloguer de terreny o ajut PAC.';
       case 'viti.ingresos_vino_ayuda': return 'Ampolla i granel (sempre 21 % IVA general)';
       case 'viti.ingresos_y_gastos_provisional': return 'Ingressos i despeses · provisional';
+      case 'viti.irpf': return 'IRPF';
+      case 'viti.iva': return 'IVA';
+      case 'viti.iva_porcentaje': return 'IVA {porcentaje} %';
       case 'viti.iva_repercutido': return 'IVA repercutit';
       case 'viti.iva_repercutido_en_vino': return 'IVA repercutit en vi';
       case 'viti.iva_repercutido_euros': return 'IVA repercutit (€)';
@@ -21812,7 +21882,7 @@ class SoleraL10n {
       case 'acei.ajustes_acerca_sub': return 'Que é Larrea Aceitera, compromisos e catálogos';
       case 'acei.ajustes_actualizaciones_sub': return 'Versión instalada e última publicada';
       case 'acei.ajustes_copia_sub': return 'Gardar todos os datos nun ZIP ou restaurar un';
-      case 'acei.ajustes_fiscal_sub': return 'Réxime IRPF + IVA + ano fiscal activo';
+      case 'acei.ajustes_fiscal_sub': return 'Réxime IRPF + IVE + ano fiscal activo';
       case 'acei.ajustes_ia_sub': return 'Pragas e variedades por foto con Claude · clave de Anthropic propia, gardada só no dispositivo';
       case 'acei.ajustes_terceros_sub': return 'Datos fiscais para asociar aos apuntamentos e ao modelo 347';
       case 'acei.altitud_gps_m': return 'Alt. GPS {m} m';
@@ -21828,7 +21898,7 @@ class SoleraL10n {
       case 'acei.aviso_corto_helada': return 'Risco de xeada · revisa as oliveiras novas';
       case 'acei.aviso_corto_mosca': return 'Voo activo da mosca da oliveira';
       case 'acei.aviso_corto_tratamientos': return 'Tratamentos delicados (vento ou chuvia)';
-      case 'acei.aviso_fiscal_provisional': return 'PROVISIONAL ata que o valide un asesor fiscal agroalimentario. As regras de IVA por defecto baséanse na interpretación habitual do olival; en cada apuntamento podes sobrescribir o IVA repercutido manualmente.';
+      case 'acei.aviso_fiscal_provisional': return 'PROVISIONAL ata que o valide un asesor fiscal agroalimentario. As regras de IVE por defecto baséanse na interpretación habitual do olival; en cada apuntamento podes sobrescribir o IVE repercutido manualmente.';
       case 'acei.base_importe': return 'base {importe}';
       case 'acei.batidora_referencia': return 'Batedora (referencia)';
       case 'acei.bienvenida': return 'Benvido a Larrea Aceitera';
@@ -21954,6 +22024,7 @@ class SoleraL10n {
       case 'acei.estimacion_directa_simplificada': return 'Estimación directa simplificada';
       case 'acei.estimacion_normal_ayuda': return 'Cando a simplificada non se aplica polos límites de facturación.';
       case 'acei.estimacion_simplificada_ayuda': return 'A máis común se levas unha contabilidade mínima ao día.';
+      case 'acei.etiqueta_nif_cif': return 'NIF / CIF';
       case 'acei.exportar_libro_aica': return 'Exportar libro AICA';
       case 'acei.exportar_pdf_aica': return 'Exportar PDF AICA';
       case 'acei.extracto_compartir_texto': return 'Extracto económico {anyo} · Larrea Aceitera';
@@ -22006,7 +22077,7 @@ class SoleraL10n {
       case 'acei.identificador_del_lote': return 'Identificador do lote';
       case 'acei.identificar_plaga_con_ia': return 'Identificar praga con IA';
       case 'acei.importe_base_euros': return 'Importe base (€)';
-      case 'acei.importe_base_sin_iva': return 'Importe base (€, sen IVA)';
+      case 'acei.importe_base_sin_iva': return 'Importe base (€, sen IVE)';
       case 'acei.importe_no_valido_corto': return 'Importe non válido';
       case 'acei.imputacion': return 'Imputación';
       case 'acei.imputacion_general': return 'Xeral da explotación';
@@ -22025,12 +22096,12 @@ class SoleraL10n {
       case 'acei.irpf_normal': return 'IRPF: estimación directa normal';
       case 'acei.irpf_simplificada': return 'IRPF: estimación directa simplificada';
       case 'acei.irpf_sin_elegir': return 'IRPF: sen escoller';
-      case 'acei.iva_general': return 'IVA: réxime xeral';
-      case 'acei.iva_reagp': return 'IVA: REAGP (compensación do 12 % na oliva)';
-      case 'acei.iva_repercutido_euros': return 'IVA repercutido (€)';
-      case 'acei.iva_sin_elegir': return 'IVA: sen escoller';
-      case 'acei.iva_soportado_ayuda': return 'Le a cota de IVA da factura.';
-      case 'acei.iva_soportado_euros': return 'IVA soportado (€)';
+      case 'acei.iva_general': return 'IVE: réxime xeral';
+      case 'acei.iva_reagp': return 'IVE: REAGP (compensación do 12 % na oliva)';
+      case 'acei.iva_repercutido_euros': return 'IVE repercutido (€)';
+      case 'acei.iva_sin_elegir': return 'IVE: sen escoller';
+      case 'acei.iva_soportado_ayuda': return 'Le a cota de IVE da factura.';
+      case 'acei.iva_soportado_euros': return 'IVE soportado (€)';
       case 'acei.kilos_estimados': return 'Quilos estimados';
       case 'acei.kilos_molturados': return 'Quilos moídos';
       case 'acei.kilos_netos_bascula': return 'Quilos netos (báscula)';
@@ -22071,6 +22142,7 @@ class SoleraL10n {
       case 'acei.municipio': return 'Concello';
       case 'acei.necesitas_campania_cuaderno_pac': return 'Necesitas unha campaña aberta para xerar o caderno PAC.';
       case 'acei.necesitas_campania_libro_aica': return 'Necesitas unha campaña para xerar o libro AICA.';
+      case 'acei.nif_valor': return 'NIF: {nif}';
       case 'acei.no_se_pudo_cargar_prevision': return 'Non se puido cargar a previsión.';
       case 'acei.no_se_pudo_cargar_prevision_reintentar': return 'Non se puido cargar a previsión. Toca para tentalo de novo.';
       case 'acei.no_se_pudo_obtener_gps': return 'Non se puido obter o GPS actual.';
@@ -22129,16 +22201,16 @@ class SoleraL10n {
       case 'acei.provincia': return 'Provincia';
       case 'acei.pulsa_mas_primero': return 'Preme + para engadir o primeiro.';
       case 'acei.razon_social': return 'Razón social';
-      case 'acei.recalcular_iva_compensacion': return 'Recalcular IVA / compensación';
+      case 'acei.recalcular_iva_compensacion': return 'Recalcular IVE / compensación';
       case 'acei.recoleccion': return 'Colleita';
       case 'acei.recolecciones': return 'Colleitas';
       case 'acei.regimen': return 'Réxime';
       case 'acei.regimen_general': return 'Réxime xeral';
-      case 'acei.regimen_general_ayuda': return 'IVA repercutido do 4 % na oliva e no aceite (alimento básico). O IVA soportado nos gastos é deducible.';
+      case 'acei.regimen_general_ayuda': return 'IVE repercutido do 4 % na oliva e no aceite (alimento básico). O IVE soportado nos gastos é deducible.';
       case 'acei.regimen_irpf': return 'Réxime IRPF';
-      case 'acei.regimen_iva': return 'Réxime IVA';
+      case 'acei.regimen_iva': return 'Réxime IVE';
       case 'acei.regimen_reagp': return 'REAGP (compensación do 12 % na oliva)';
-      case 'acei.regimen_reagp_ayuda': return 'Réxime especial da agricultura. O comprador paga unha compensación REAGP do 12 % na venda de oliva; o titular non repercute IVA nas súas vendas agrarias.';
+      case 'acei.regimen_reagp_ayuda': return 'Réxime especial da agricultura. O comprador paga unha compensación REAGP do 12 % na venda de oliva; o titular non repercute IVE nas súas vendas agrarias.';
       case 'acei.registrar': return 'Rexistrar';
       case 'acei.registros': return 'Rexistros';
       case 'acei.registros_campanias_sub': return 'Abrir a campaña deste ano e ver as anteriores';
@@ -22157,7 +22229,7 @@ class SoleraL10n {
       case 'acei.resultado_bruto_anyo': return 'Resultado bruto do ano';
       case 'acei.resultado_bruto_formula': return '(ingresos base − gastos base)';
       case 'acei.resumen': return 'Resumo';
-      case 'acei.resumen_provisional': return 'Resumo PROVISIONAL ata que o valide un asesor fiscal. As regras de IVA e REAGP do olival están suxeitas a confirmación.';
+      case 'acei.resumen_provisional': return 'Resumo PROVISIONAL ata que o valide un asesor fiscal. As regras de IVE e REAGP do olival están suxeitas a confirmación.';
       case 'acei.riego_aspersion': return 'Aspersión';
       case 'acei.riego_goteo': return 'Pinga a pinga';
       case 'acei.riego_mixto': return 'Mixto';
@@ -22220,8 +22292,8 @@ class SoleraL10n {
       case 'acei.total_compensacion_reagp': return 'Total compensación REAGP';
       case 'acei.total_gastos_base': return 'Total gastos (base)';
       case 'acei.total_ingresos_base': return 'Total ingresos (base)';
-      case 'acei.total_iva_repercutido': return 'Total IVA repercutido';
-      case 'acei.total_iva_soportado': return 'Total IVA soportado';
+      case 'acei.total_iva_repercutido': return 'Total IVE repercutido';
+      case 'acei.total_iva_soportado': return 'Total IVE soportado';
       case 'acei.tratamiento': return 'Tratamento';
       case 'acei.tratamientos': return 'Tratamentos';
       case 'acei.ubicacion_del_deposito': return 'Localización do depósito';
@@ -23194,7 +23266,7 @@ class SoleraL10n {
       case 'api.fac_estado_pagada': return 'pagada';
       case 'api.fac_estado_vencida': return 'vencida';
       case 'api.fac_explicacion_email_respaldo': return 'Ao crear unha factura, poderás enviar unha copia a este enderezo como respaldo.';
-      case 'api.fac_iva_porcentaje': return 'IVA {porcentaje} %';
+      case 'api.fac_iva_porcentaje': return 'IVE {porcentaje} %';
       case 'api.fac_lineas_de_factura': return 'Liñas da factura';
       case 'api.fac_marcar_pagada': return 'Marcar como pagada';
       case 'api.fac_nif_opcional': return 'NIF (opcional)';
@@ -23218,8 +23290,8 @@ class SoleraL10n {
       case 'api.fis_aviso_provisional': return 'Provisional. O formato do libro e do extracto está pendente de validación por un asesor fiscal. Antes de presentar nada nunha declaración, contrástao co teu asesor.';
       case 'api.fis_estimacion_directa_normal': return 'Estimación directa normal';
       case 'api.fis_estimacion_directa_simplificada': return 'Estimación directa simplificada';
-      case 'api.fis_explicacion_reagp': return 'No REAGP non repercutes IVA na venda de mel. O comprador págache a compensación do 12 % sobre a base. O IVA soportado nas compras non é recuperable: impútase como maior custo.';
-      case 'api.fis_explicacion_regimen_general': return 'En réxime xeral repercutes o 4 % de IVA na venda de mel (alimento de primeira necesidade, art. 91.1.1.1.º LIVA) e o IVA soportado nas compras é recuperable.';
+      case 'api.fis_explicacion_reagp': return 'No REAGP non repercutes IVE na venda de mel. O comprador págache a compensación do 12 % sobre a base. O IVE soportado nas compras non é recuperable: impútase como maior custo.';
+      case 'api.fis_explicacion_regimen_general': return 'En réxime xeral repercutes o 4 % de IVE na venda de mel (alimento de primeira necesidade, art. 91.1.1.1.º LIVA) e o IVE soportado nas compras é recuperable.';
       case 'api.fis_modulos_no_disponible': return 'O réxime de módulos non está dispoñible na v1: pendente de validación cun asesor fiscal antes de engadilo.';
       case 'api.fis_reagp_descripcion': return 'REAGP — réxime especial agricultura, gandaría e pesca';
       case 'api.fis_regimen_general': return 'Réxime xeral';
@@ -23364,7 +23436,7 @@ class SoleraL10n {
       case 'api.razas': return 'Razas';
       case 'api.recapturar': return 'Volver capturar';
       case 'api.recuento_en_24_h': return 'Reconto en 24 h';
-      case 'api.regimen_irpf_iva_provisional': return 'Réxime IRPF + IVA · provisional';
+      case 'api.regimen_irpf_iva_provisional': return 'Réxime IRPF + IVE · provisional';
       case 'api.registros': return 'Rexistros';
       case 'api.reina': return 'Raíña';
       case 'api.reina_ano_color': return 'Raíña {ano} ({color})';
@@ -23384,6 +23456,9 @@ class SoleraL10n {
       case 'api.severidad': return 'Gravidade';
       case 'api.severidad_abreviada_n': return 'sev. {n}';
       case 'api.si': return 'Si';
+      case 'api.sigla_irpf': return 'IRPF';
+      case 'api.sigla_iva': return 'IVE';
+      case 'api.sigla_nif': return 'NIF';
       case 'api.siguiente': return 'Seguinte';
       case 'api.sin_coincidencias': return 'Sen coincidencias.';
       case 'api.sin_colmenas_todavia': return 'Aínda non hai colmeas rexistradas.';
@@ -23796,6 +23871,8 @@ class SoleraL10n {
       case 'arb.seleccionar_todos': return 'Seleccionar todas';
       case 'arb.severidad': return 'Severidade';
       case 'arb.severidad_abreviada': return 'sev. {n}';
+      case 'arb.sigla_cif': return 'CIF';
+      case 'arb.sigla_nif': return 'NIF';
       case 'arb.siguiente': return 'Seguinte';
       case 'arb.sin_arboles_inventariados': return 'Aínda non hai árbores inventariadas.';
       case 'arb.sin_ayuntamiento_configurado': return 'Sen concello configurado';
@@ -24309,16 +24386,16 @@ class SoleraL10n {
       case 'viti.asistente_chat': return 'Asistente (chat)';
       case 'viti.asistente_chat_ayuda': return 'Pregúntalle a Claude por síntomas, fenoloxía ou manexo. Usa a túa clave de Anthropic.';
       case 'viti.asunto_factura': return 'Factura {numero} — {cliente}';
-      case 'viti.autocalcular_iva': return 'Calcular o IVA automaticamente';
-      case 'viti.autocalcular_iva_compensacion': return 'Calcular automaticamente IVA / compensación';
+      case 'viti.autocalcular_iva': return 'Calcular o IVE automaticamente';
+      case 'viti.autocalcular_iva_compensacion': return 'Calcular automaticamente IVE / compensación';
       case 'viti.autocalculo_alquiler': return 'Aluguer agrícola exento (pasa ao 21 % se o uso non é agrícola)';
-      case 'viti.autocalculo_general': return '21 % IVA xeral';
-      case 'viti.autocalculo_general_uva': return 'Réxime xeral: 4 % de IVA sobre a uva (alimento de primeira necesidade)';
-      case 'viti.autocalculo_insumos': return '4 % IVA superreducido (insumo agrario)';
-      case 'viti.autocalculo_mano_obra': return 'Man de obra agrícola: normalmente sen IVA';
+      case 'viti.autocalculo_general': return '21 % IVE xeral';
+      case 'viti.autocalculo_general_uva': return 'Réxime xeral: 4 % de IVE sobre a uva (alimento de primeira necesidade)';
+      case 'viti.autocalculo_insumos': return '4 % IVE superreducido (insumo agrario)';
+      case 'viti.autocalculo_mano_obra': return 'Man de obra agrícola: normalmente sen IVE';
       case 'viti.autocalculo_reagp_uva': return 'REAGP: 12 % sobre a base como compensación ao viticultor';
-      case 'viti.autocalculo_seguros': return 'Exento de IVA (art. 20 LIVA)';
-      case 'viti.autocalculo_vino': return 'Venda de viño: 21 % IVA xeral (bebida alcohólica)';
+      case 'viti.autocalculo_seguros': return 'Exento de IVE (art. 20 LIVA)';
+      case 'viti.autocalculo_vino': return 'Venda de viño: 21 % IVE xeral (bebida alcohólica)';
       case 'viti.autorizada_ecologico': return 'Autorizada en ecolóxico';
       case 'viti.aviso_decadas_orientativas': return 'As décadas son orientativas (±2 décadas segundo o ano, o microclima e a altitude). Compróbao co boletín de avisos fitosanitarios local antes de planificar tratamentos.';
       case 'viti.aviso_fiscal_provisional': return 'Provisional. O formato do libro e do extracto está pendente de validación por un asesor fiscal. Antes de presentar nada nunha declaración, contrástao co teu asesor.';
@@ -24358,7 +24435,7 @@ class SoleraL10n {
       case 'viti.backup_restaurar_una_copia': return 'Restaurar unha copia';
       case 'viti.backup_ultima_copia': return 'Última copia';
       case 'viti.base_imponible': return 'Base impoñible';
-      case 'viti.base_imponible_sin_iva_soportado': return 'Base impoñible (sen IVA soportado)';
+      case 'viti.base_imponible_sin_iva_soportado': return 'Base impoñible (sen IVE soportado)';
       case 'viti.borrar_tercero': return 'Borrar terceiro';
       case 'viti.borrar_tercero_aviso': return 'Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perden a referencia ao NIF — afectará ao extracto do modelo 347 se é dun ano aínda por declarar.';
       case 'viti.buscar_cepas_ayuda': return 'Buscar (etiqueta, variedade, portaenxerto, notas)';
@@ -24414,9 +24491,9 @@ class SoleraL10n {
       case 'viti.confianza': return 'Confianza';
       case 'viti.configura_clave_anthropic': return 'Configura a túa clave de Anthropic (Claude)';
       case 'viti.configura_primero_titular': return 'Configura primeiro o titular da explotación.';
-      case 'viti.configura_regimen_iva': return 'Configura o réxime de IVA en Axustes';
-      case 'viti.configura_regimen_iva_calculo': return 'Configura o réxime de IVA en Axustes → Configuración fiscal para que a app calcule a compensación ou o IVA repercutido.';
-      case 'viti.configura_regimen_iva_resumen': return 'Configura o réxime de IVA en Axustes → Configuración fiscal para que o resumo distinga REAGP de réxime xeral.';
+      case 'viti.configura_regimen_iva': return 'Configura o réxime de IVE en Axustes';
+      case 'viti.configura_regimen_iva_calculo': return 'Configura o réxime de IVE en Axustes → Configuración fiscal para que a app calcule a compensación ou o IVE repercutido.';
+      case 'viti.configura_regimen_iva_resumen': return 'Configura o réxime de IVE en Axustes → Configuración fiscal para que o resumo distinga REAGP de réxime xeral.';
       case 'viti.configurar_correo_respaldo': return 'Configurar o correo de respaldo';
       case 'viti.coordenadas': return 'Coordenadas';
       case 'viti.copia_para': return 'Copia para: {email}';
@@ -24454,7 +24531,7 @@ class SoleraL10n {
       case 'viti.dia_viernes': return 'venres';
       case 'viti.diagnostico': return 'Diagnóstico';
       case 'viti.diagnostico_rellenado': return 'Diagnóstico enchido. Revísao e garda.';
-      case 'viti.diferencia_iva': return 'Diferenza IVA';
+      case 'viti.diferencia_iva': return 'Diferenza IVE';
       case 'viti.diferencia_ordinaria': return 'Diferenza ordinaria';
       case 'viti.diferencia_ordinaria_ayuda': return 'Ingresos ordinarios − gastos. PAC e subvencións á parte.';
       case 'viti.direccion': return 'Enderezo';
@@ -24491,8 +24568,8 @@ class SoleraL10n {
       case 'viti.etiqueta_ayuda': return 'F3-12 (fila 3, planta 12)';
       case 'viti.etiquetas_observacion_ayuda': return 'abrollamento, floración, pintado, vindima…';
       case 'viti.etiquetas_separadas_comas': return 'Etiquetas (separadas por comas)';
-      case 'viti.explicacion_reagp': return 'En REAGP non repercutes IVA na venda de uva. O comprador págache a compensación do 12 %. A venda de viño sempre vai ao 21 % xeral: o viño é un produto transformado pola adega e queda fóra do REAGP. O IVA soportado en compras non é recuperable: impútase como maior custo.';
-      case 'viti.explicacion_regimen_general': return 'En réxime xeral repercutes o 4 % na uva (alimento de primeira necesidade) e o 21 % no viño (bebida alcohólica). O IVA soportado en compras é recuperable.';
+      case 'viti.explicacion_reagp': return 'En REAGP non repercutes IVE na venda de uva. O comprador págache a compensación do 12 %. A venda de viño sempre vai ao 21 % xeral: o viño é un produto transformado pola adega e queda fóra do REAGP. O IVE soportado en compras non é recuperable: impútase como maior custo.';
+      case 'viti.explicacion_regimen_general': return 'En réxime xeral repercutes o 4 % na uva (alimento de primeira necesidade) e o 21 % no viño (bebida alcohólica). O IVE soportado en compras é recuperable.';
       case 'viti.extracto_anual': return 'Extracto anual';
       case 'viti.extracto_anual_desde_icono': return 'O extracto anual con detalle por mes e modelo 347 está dispoñible desde a icona PDF da cabeceira.';
       case 'viti.extracto_aviso_provisional': return 'PROVISIONAL. Este extracto é unha ferramenta de apoio para o asesor fiscal — o formato exacto do libro rexistro e do modelo 347 está pendente de que o valide un asesor fiscal antes de presentar nada nunha declaración.';
@@ -24502,8 +24579,8 @@ class SoleraL10n {
       case 'viti.extracto_incluye_347': return 'Modelo 347 — terceiros cunha suma >3.005,06 € no exercicio.';
       case 'viti.extracto_incluye_detalle_gastos': return 'Detalle cronolóxico de gastos con imputación.';
       case 'viti.extracto_incluye_detalle_ingresos': return 'Detalle cronolóxico de ingresos con variedade e lote.';
-      case 'viti.extracto_incluye_gastos': return 'Táboa mensual de gastos (base, IVA soportado, total).';
-      case 'viti.extracto_incluye_ingresos': return 'Táboa mensual de ingresos (uva, viño, axudas PAC, IVA, compensación REAGP).';
+      case 'viti.extracto_incluye_gastos': return 'Táboa mensual de gastos (base, IVE soportado, total).';
+      case 'viti.extracto_incluye_ingresos': return 'Táboa mensual de ingresos (uva, viño, axudas PAC, IVE, compensación REAGP).';
       case 'viti.extracto_incluye_resumen': return 'Resumo cos totais do exercicio.';
       case 'viti.extracto_incluye_sin_nif': return 'Apuntamentos sen NIF que non entran no modelo 347.';
       case 'viti.extracto_variedad_general': return 'Os gastos imputados a «variedade xeral» lístanse tal cal co importe íntegro — o reparto proporcional por superficie entre parcelas con esa variedade está pendente de validación do método por un asesor fiscal.';
@@ -24602,19 +24679,22 @@ class SoleraL10n {
       case 'viti.ingresos_por_vino': return 'Ingresos por viño';
       case 'viti.ingresos_por_vino_ano': return 'Ingresos por viño {ano}';
       case 'viti.ingresos_sin_nif_347': return '{n} ingreso(s) sen NIF — non entran no modelo 347';
-      case 'viti.ingresos_uva_ayuda': return 'Venda de uva (4 % IVA / 12 % compensación REAGP)';
+      case 'viti.ingresos_uva_ayuda': return 'Venda de uva (4 % IVE / 12 % compensación REAGP)';
       case 'viti.ingresos_vacio': return 'Aínda non hai ingresos neste ano. Preme «Novo ingreso» para rexistrar unha venda de uva, viño en botella ou a granel, aluguer de terreo ou axuda PAC.';
-      case 'viti.ingresos_vino_ayuda': return 'Botella e granel (sempre 21 % IVA xeral)';
+      case 'viti.ingresos_vino_ayuda': return 'Botella e granel (sempre 21 % IVE xeral)';
       case 'viti.ingresos_y_gastos_provisional': return 'Ingresos e gastos · provisional';
-      case 'viti.iva_repercutido': return 'IVA repercutido';
-      case 'viti.iva_repercutido_en_vino': return 'IVA repercutido no viño';
-      case 'viti.iva_repercutido_euros': return 'IVA repercutido (€)';
-      case 'viti.iva_repercutido_venta_vino': return 'IVA repercutido na venda de viño';
-      case 'viti.iva_soportado': return 'IVA soportado';
-      case 'viti.iva_soportado_deducible': return 'IVA soportado deducible';
-      case 'viti.iva_soportado_en_compras': return 'IVA soportado en compras';
-      case 'viti.iva_soportado_euros': return 'IVA soportado (€)';
-      case 'viti.iva_y_compensaciones': return 'IVA e compensacións';
+      case 'viti.irpf': return 'IRPF';
+      case 'viti.iva': return 'IVE';
+      case 'viti.iva_porcentaje': return 'IVE {porcentaje} %';
+      case 'viti.iva_repercutido': return 'IVE repercutido';
+      case 'viti.iva_repercutido_en_vino': return 'IVE repercutido no viño';
+      case 'viti.iva_repercutido_euros': return 'IVE repercutido (€)';
+      case 'viti.iva_repercutido_venta_vino': return 'IVE repercutido na venda de viño';
+      case 'viti.iva_soportado': return 'IVE soportado';
+      case 'viti.iva_soportado_deducible': return 'IVE soportado deducible';
+      case 'viti.iva_soportado_en_compras': return 'IVE soportado en compras';
+      case 'viti.iva_soportado_euros': return 'IVE soportado (€)';
+      case 'viti.iva_y_compensaciones': return 'IVE e compensacións';
       case 'viti.kilos': return 'Quilos';
       case 'viti.libro_economico_ano': return 'Libro económico · {ano}';
       case 'viti.libro_economico_aviso_provisional': return 'Libro económico provisional. Pendente de validación por un asesor fiscal antes de presentar nada nunha declaración. Mentres tanto, contrasta cada apuntamento co teu asesor.';
@@ -24704,13 +24784,13 @@ class SoleraL10n {
       case 'viti.proximos_hitos_fenologicos': return 'Próximos fitos fenolóxicos';
       case 'viti.puede_ser_distinto_del_titular': return 'Pode ser distinto do titular';
       case 'viti.punto_suelto': return 'Punto solto';
-      case 'viti.reagp_iva_soportado_no_recuperable': return 'En REAGP o IVA soportado non é recuperable: computa como maior custo no extracto.';
+      case 'viti.reagp_iva_soportado_no_recuperable': return 'En REAGP o IVE soportado non é recuperable: computa como maior custo no extracto.';
       case 'viti.reagp_no_recuperable_corto': return 'En REAGP non é recuperable: computa como maior custo.';
       case 'viti.recapturar': return 'Volver capturar';
       case 'viti.recuperable_contra_repercutido': return 'Recuperable contra o repercutido';
       case 'viti.regepa_ayuda': return 'Rexistro Xeral da Produción Agrícola';
       case 'viti.regimen_general': return 'Réxime xeral';
-      case 'viti.regimen_irpf_iva_provisional': return 'Réxime IRPF + IVA · provisional';
+      case 'viti.regimen_irpf_iva_provisional': return 'Réxime IRPF + IVE · provisional';
       case 'viti.regimen_reagp': return 'REAGP — réxime especial agricultura/gandaría/pesca';
       case 'viti.registros': return 'Rexistros';
       case 'viti.reintentar': return 'Tentar de novo';
@@ -24725,7 +24805,7 @@ class SoleraL10n {
       case 'viti.resumen_anual_pdf_provisional': return 'Resumo do ano en PDF · provisional';
       case 'viti.resumen_catalogos': return '{total} filas en 5 catálogos: {variedades} variedades, {portainjertos} portaenxertos, {plagas} pragas/enfermidades, {materias} materias activas, {bbch} estados BBCH.';
       case 'viti.resumen_fiscal_trimestral': return 'Resumo fiscal trimestral';
-      case 'viti.resumen_trimestral_ayuda': return 'Totais por trimestre para revisar caixa, IVA e diferenza antes do peche fiscal. O extracto anual segue dispoñible no PDF.';
+      case 'viti.resumen_trimestral_ayuda': return 'Totais por trimestre para revisar caixa, IVE e diferenza antes do peche fiscal. O extracto anual segue dispoñible no PDF.';
       case 'viti.resumen_trimestral_criterio': return 'Os trimestres usan o mesmo criterio que o resumo anual: uva separada do viño, axudas á parte e modelo 347 por NIF.';
       case 'viti.riesgo_de_helada': return 'Risco de xeada';
       case 'viti.riesgo_helada_detalle': return 'Vixía o abrollamento, a floración, as plantas novas e as valgadas.';
@@ -24746,8 +24826,8 @@ class SoleraL10n {
       case 'viti.sin_elegir': return 'Sen escoller';
       case 'viti.sin_eventos_todavia': return 'Aínda non hai eventos rexistrados.';
       case 'viti.sin_fecha_plantacion': return 'Sen data de plantación';
-      case 'viti.sin_iva': return 'Sen IVA';
-      case 'viti.sin_iva_ni_compensacion': return 'Sen IVA nin compensación';
+      case 'viti.sin_iva': return 'Sen IVE';
+      case 'viti.sin_iva_ni_compensacion': return 'Sen IVE nin compensación';
       case 'viti.sin_nif': return 'sen NIF';
       case 'viti.sin_nombre_parentesis': return '(sen nome)';
       case 'viti.sin_resultados': return 'Sen resultados.';

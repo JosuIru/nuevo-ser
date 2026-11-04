@@ -71,7 +71,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
           Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(SoleraL10n.t('ques.parametros_de_produccion'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Divider(),
             _Campo(SoleraL10n.t('ques.volumen_de_leche'), '${l.volumenLecheTotal} L'), _Campo(SoleraL10n.t('ques.peso_obtenido'), '${l.pesoTotalObtenido} kg'),
-            _Campo(SoleraL10n.t('ques.rendimiento'), '${l.rendimientoReal.toStringAsFixed(2)} L/kg'), _Campo(SoleraL10n.t('ques.numero_de_piezas'), '${l.numPiezasProducidas}'),
+            _Campo(SoleraL10n.t('ques.rendimiento'), '${formatearNumero(l.rendimientoReal, decimales: 2)} L/kg'), _Campo(SoleraL10n.t('ques.numero_de_piezas'), '${l.numPiezasProducidas}'),
             _Campo(SoleraL10n.t('ques.temp_coagulacion'), '${l.tempCoagulacion} °C'), _Campo(SoleraL10n.t('ques.tiempo_coag'), '${l.tiempoCoagMinutos} min'),
           ]))),
           const SizedBox(height: 12),
@@ -81,7 +81,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
           ]))),
           const SizedBox(height: 12),
           Text(SoleraL10n.tf('ques.piezas_entre_parentesis_n', {'n': d.piezas.length}), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-          ...d.piezas.map((p) => Card(child: ListTile(dense: true, title: Text(p.numeroPieza), subtitle: Text('${p.pesoActual?.toStringAsFixed(2) ?? p.pesoInicial.toStringAsFixed(2)} kg · ${p.ubicacionActual}'), trailing: _IconoPieza(p.estado)))),
+          ...d.piezas.map((p) => Card(child: ListTile(dense: true, title: Text(p.numeroPieza), subtitle: Text('${formatearNumero(p.pesoActual ?? p.pesoInicial, decimales: 2)} kg · ${p.ubicacionActual}'), trailing: _IconoPieza(p.estado)))),
           if (d.analiticas.isNotEmpty) ...[const SizedBox(height: 12), Text(SoleraL10n.t('ques.analiticas'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), ...d.analiticas.map((a) => Card(child: ListTile(dense: true, leading: Icon(a.conforme ? Icons.check_circle : Icons.warning, color: a.conforme ? Colors.green : Colors.red), title: Text(textoTipoAnalitica(a.tipo)))))],
           if (d.incidencias.isNotEmpty) ...[const SizedBox(height: 12), Text(SoleraL10n.t('ques.incidencias'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), ...d.incidencias.map((i) => Card(child: ListTile(dense: true, leading: Icon(i.cerrada ? Icons.check_circle_outline : Icons.error_outline, color: i.cerrada ? Colors.green : Colors.red), title: Text(textoTipoIncidencia(i.tipo)), subtitle: Text(i.descripcion))))],
         ]));

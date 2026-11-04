@@ -87,13 +87,13 @@ class _PantallaCavaState extends State<PantallaCava> {
         Text(SoleraL10n.tf('ques.afinando_n', {'n': _piezasAfinando.length}), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
         const SizedBox(height: 8),
         if (_piezasAfinando.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.no_hay_piezas_en_afinado'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
-        else ..._piezasAfinando.map((p) => Card(child: ListTile(dense: true, title: Text(p.numeroPieza), subtitle: Text('${p.pesoActual?.toStringAsFixed(2) ?? p.pesoInicial.toStringAsFixed(2)} kg · ${_edad(p.edadDias)} · ${p.ubicacionActual}'),
+        else ..._piezasAfinando.map((p) => Card(child: ListTile(dense: true, title: Text(p.numeroPieza), subtitle: Text('${formatearNumero(p.pesoActual ?? p.pesoInicial, decimales: 2)} kg · ${_edad(p.edadDias)} · ${p.ubicacionActual}'),
           trailing: Row(mainAxisSize: MainAxisSize.min, children: [IconButton(icon: const Icon(Icons.flip, size: 20), tooltip: SoleraL10n.t('ques.registrar_volteo'), onPressed: () => _volteo(p)), IconButton(icon: const Icon(Icons.check, size: 20, color: Colors.green), tooltip: SoleraL10n.t('ques.marcar_como_lista'), onPressed: () => _marcarLista(p))])))),
         const SizedBox(height: 16),
         Text(SoleraL10n.tf('ques.listas_para_vender_n', {'n': _piezasListas.length}), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
         const SizedBox(height: 8),
         if (_piezasListas.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.no_hay_piezas_listas'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
-        else ..._piezasListas.map((p) => Card(child: ListTile(dense: true, title: Text(p.numeroPieza), subtitle: Text('${p.pesoActual?.toStringAsFixed(2) ?? p.pesoInicial.toStringAsFixed(2)} kg · ${_edad(p.edadDias)}'), trailing: const Icon(Icons.check_circle, color: Colors.green)))),
+        else ..._piezasListas.map((p) => Card(child: ListTile(dense: true, title: Text(p.numeroPieza), subtitle: Text('${formatearNumero(p.pesoActual ?? p.pesoInicial, decimales: 2)} kg · ${_edad(p.edadDias)}'), trailing: const Icon(Icons.check_circle, color: Colors.green)))),
       ])),
     );
   }

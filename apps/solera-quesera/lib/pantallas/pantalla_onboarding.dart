@@ -27,6 +27,15 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
     final theme = Theme.of(context);
     return Scaffold(
       body: SafeArea(child: Column(children: [
+        // Elegir idioma desde la primera pantalla (se puede cambiar luego
+        // en Ajustes).
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: SelectorIdioma(onCambio: () => setState(() {})),
+          ),
+        ),
         Expanded(child: PageView(controller: _ctrl, onPageChanged: (i) => setState(() => _pagina = i), children: [
           _card(theme, Icons.inventory_2, SoleraL10n.t('ques.onb_trazabilidad_titulo'), SoleraL10n.t('ques.onb_trazabilidad_texto')),
           _card(theme, Icons.kitchen, SoleraL10n.t('ques.onb_cava_titulo'), SoleraL10n.t('ques.onb_cava_texto')),

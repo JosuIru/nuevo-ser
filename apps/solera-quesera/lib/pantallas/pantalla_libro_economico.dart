@@ -61,18 +61,18 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
     );
   }
 
-  Widget _totalCard(ThemeData t, String tit, double v, Color c) => Card(color: c.withAlpha(15), child: Padding(padding: const EdgeInsets.all(16), child: Row(children: [Text(tit, style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Text('${v.toStringAsFixed(2)} €', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: c))])));
+  Widget _totalCard(ThemeData t, String tit, double v, Color c) => Card(color: c.withAlpha(15), child: Padding(padding: const EdgeInsets.all(16), child: Row(children: [Text(tit, style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Text(formatearEuros(v), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: c))])));
 
   Widget _listaIng(ThemeData t, double tot) => ListView(padding: const EdgeInsets.all(16), children: [
     _totalCard(t, SoleraL10n.tf('ques.ingresos_anyo', {'anyo': _anyo}), tot, Colors.green),
     if (_ingresos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.sin_ingresos'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
-    else ..._ingresos.map((i) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.green.withAlpha(30), child: const Icon(Icons.arrow_downward, color: Colors.green, size: 18)), title: Text('${textoCategoriaApunte(i.categoria)} · ${i.total.toStringAsFixed(2)} €', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs))} · ${i.numeroFactura}', style: const TextStyle(fontSize: 11))))),
+    else ..._ingresos.map((i) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.green.withAlpha(30), child: const Icon(Icons.arrow_downward, color: Colors.green, size: 18)), title: Text('${textoCategoriaApunte(i.categoria)} · ${formatearEuros(i.total)}', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs))} · ${i.numeroFactura}', style: const TextStyle(fontSize: 11))))),
   ]);
 
   Widget _listaGas(ThemeData t, double tot) => ListView(padding: const EdgeInsets.all(16), children: [
     _totalCard(t, SoleraL10n.tf('ques.gastos_anyo', {'anyo': _anyo}), tot, Colors.red),
     if (_gastos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.sin_gastos'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
-    else ..._gastos.map((g) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.red.withAlpha(30), child: const Icon(Icons.arrow_upward, color: Colors.red, size: 18)), title: Text('${textoCategoriaApunte(g.categoria)} · ${g.total.toStringAsFixed(2)} €', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(g.fechaMs))} · ${g.numeroFactura}', style: const TextStyle(fontSize: 11))))),
+    else ..._gastos.map((g) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.red.withAlpha(30), child: const Icon(Icons.arrow_upward, color: Colors.red, size: 18)), title: Text('${textoCategoriaApunte(g.categoria)} · ${formatearEuros(g.total)}', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(g.fechaMs))} · ${g.numeroFactura}', style: const TextStyle(fontSize: 11))))),
   ]);
 
   Widget _resumen(ThemeData t, double bal, double ti, double tg) => ListView(padding: const EdgeInsets.all(16), children: [
@@ -132,7 +132,7 @@ class _NuevoApunteState extends State<_NuevoApunte> {
         onChanged: (v) => setState(() => _cat = v ?? _cat)),
       const SizedBox(height: 12),
       Row(children: [Expanded(child: TextFormField(decoration: InputDecoration(labelText: SoleraL10n.t('ques.base_imponible_eur'), border: const OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: validarImporteOpcional, onChanged: (v) { _base = leerNumero(v, puntoDeMillares: true) ?? 0; _calc(); })), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'IVA %', border: OutlineInputBorder(), isDense: true), initialValue: '10', keyboardType: TextInputType.number, validator: validarNumeroOpcional, onChanged: (v) { _iva = leerNumero(v) ?? 10; _calc(); }))]),
-      Text('${SoleraL10n.t('ques.total')}: ${_tot.toStringAsFixed(2)} €', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+      Text('${SoleraL10n.t('ques.total')}: ${formatearEuros(_tot)}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
       TextFormField(controller: _facC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.numero_factura'), border: const OutlineInputBorder(), isDense: true)),
       TextFormField(controller: _notasC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.notas'), border: const OutlineInputBorder(), isDense: true), maxLines: 2),
       const SizedBox(height: 24),

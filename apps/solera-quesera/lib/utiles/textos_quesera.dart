@@ -146,6 +146,6 @@ String textoEdadPieza(int dias) {
 /// «12,5 °C / 85 % HR» para el último control de una cava.
 String textoTemperaturaHumedad(double temperatura, double humedad) =>
     SoleraL10n.tf('ques.temp_y_humedad', {
-      'temp': temperatura.toStringAsFixed(1),
-      'hr': humedad.toStringAsFixed(0),
+      'temp': formatearNumero(temperatura, decimales: 1),
+      'hr': formatearNumero(humedad),
     });

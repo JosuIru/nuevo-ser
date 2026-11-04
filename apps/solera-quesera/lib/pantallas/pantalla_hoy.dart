@@ -57,7 +57,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
           nombreApp: 'Larrea Quesera',
           margen: const EdgeInsets.only(bottom: 12),
         ),
-        TarjetaResumen(titulo: SoleraL10n.t('ques.partidas_de_leche_hoy'), valor: '$_partidasHoy', subtitulo: SoleraL10n.tf('ques.litros_n', {'n': _litrosHoy.toStringAsFixed(1)}), icono: Icons.water_drop, color: theme.colorScheme.primary),
+        TarjetaResumen(titulo: SoleraL10n.t('ques.partidas_de_leche_hoy'), valor: '$_partidasHoy', subtitulo: SoleraL10n.tf('ques.litros_n', {'n': formatearNumero(_litrosHoy, decimales: 1)}), icono: Icons.water_drop, color: theme.colorScheme.primary),
         SizedBox(height: 12),
         if (_tempCavas.isNotEmpty) ...[
           Text(SoleraL10n.t('estado_de_cavas'), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),

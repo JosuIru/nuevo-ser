@@ -64,7 +64,8 @@ class ClienteAnthropicQuesero {
     }
     final json = await _clienteClaude.pedirJson(
       modelo: modeloClaudeRapido,
-      sistema: _promptSistema,
+      // Los textos del diagnóstico, en el idioma elegido en la app.
+      sistema: '$_promptSistema\n${instruccionIdiomaRespuestaClaude()}',
       mensajes: [
         MensajeClaude.usuario(construirPromptAnalisis(observaciones),
             imagenes: [imagen]),
@@ -91,7 +92,7 @@ REGLAS ESTRICTAS:
 1. Responde SOLO con JSON, sin texto antes ni después.
 2. Estructura del JSON:
 {
-  "nombre_defecto": "nombre del defecto en español",
+  "nombre_defecto": "nombre del defecto",
   "tipo": "textura" | "corteza" | "color" | "sabor" | "hinchazon" | "otro",
   "severidad": número entero 1-5 (1=sutil, 5=masivo/impropio para consumo),
   "confianza": número decimal 0.0-1.0,

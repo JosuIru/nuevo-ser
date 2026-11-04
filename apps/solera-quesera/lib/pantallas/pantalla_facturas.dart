@@ -83,7 +83,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             return Card(child: ListTile(
               leading: CircleAvatar(backgroundColor: c.withAlpha(30), child: Icon(f.estado == 'pagada' ? Icons.check_circle : f.estado == 'vencida' ? Icons.error : Icons.pending, color: c, size: 20)),
               title: Text('${f.numeroFactura} — ${f.clienteNombre}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-              subtitle: Text('${_f.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · ${f.total.toStringAsFixed(2)} € · ${textoEstadoFactura(f.estado)}', style: const TextStyle(fontSize: 12)),
+              subtitle: Text('${_f.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · ${formatearEuros(f.total)} · ${textoEstadoFactura(f.estado)}', style: const TextStyle(fontSize: 12)),
               trailing: PopupMenuButton<String>(onSelected: (a) async {
                 if (a == 'pdf') await _verPdf(f);
                 if (a == 'pagada' && f.id != null) { final db = await _bd.basedatos; await db.update('facturas', {'estado': 'pagada', 'fecha_pago_ms': DateTime.now().millisecondsSinceEpoch}, where: 'id = ?', whereArgs: [f.id]); await _recargar(); }
@@ -170,7 +170,7 @@ class _NuevaFacturaState extends State<_NuevaFactura> {
       const SizedBox(height: 16),
       DropdownButtonFormField<double>(decoration: const InputDecoration(labelText: 'IVA', border: OutlineInputBorder()), initialValue: _iva, items: [DropdownMenuItem(value: 4.0, child: Text(SoleraL10n.t('ques.iva_4_superreducido'))), DropdownMenuItem(value: 10.0, child: Text(SoleraL10n.t('ques.iva_10_reducido'))), DropdownMenuItem(value: 21.0, child: Text(SoleraL10n.t('21%_(general)')))], onChanged: (v) => setState(() => _iva = v ?? 10)),
       const SizedBox(height: 16),
-      Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(children: [Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text(SoleraL10n.t('ques.base_imponible')), Text('${_base.toStringAsFixed(2)} €')]), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('IVA ${_iva.toStringAsFixed(0)} %'), Text('${(_base * _iva / 100).toStringAsFixed(2)} €')]), const Divider(), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text(SoleraL10n.t('ques.total').toUpperCase(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)), Text('${_tot.toStringAsFixed(2)} €', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16))])]))),
+      Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(children: [Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text(SoleraL10n.t('ques.base_imponible')), Text('${formatearEuros(_base)}')]), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('IVA ${formatearNumero(_iva)} %'), Text('${formatearEuros(_base * _iva / 100)}')]), const Divider(), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text(SoleraL10n.t('ques.total').toUpperCase(), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)), Text('${formatearEuros(_tot)}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16))])]))),
       const SizedBox(height: 16),
       FilledButton(onPressed: _emitir, child: Text(SoleraL10n.t('emitir_factura'))),
     ])),

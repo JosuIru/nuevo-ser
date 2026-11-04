@@ -462,7 +462,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                           horizontal: 12, vertical: 10),
                       child: Text(_altitudGps == null
                           ? SoleraL10n.tf('ques.altitud_gps', {'m': '--'})
-                          : SoleraL10n.tf('ques.altitud_gps', {'m': '${_altitudGps!.toStringAsFixed(0)} m'})),
+                          : SoleraL10n.tf('ques.altitud_gps', {'m': '${formatearNumero(_altitudGps!)} m'})),
                     ),
                   ),
                 ],

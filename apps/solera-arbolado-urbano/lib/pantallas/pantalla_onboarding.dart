@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Onboarding del primer arranque. 3 cards con beneficios + CTA "Empezar".
@@ -71,18 +72,22 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 controller: _pageController,
                 onPageChanged: (i) => setState(() => _pagina = i),
                 itemCount: _paginas.length,
-                itemBuilder: (_, i) => _PaginaOnboarding(datos: _paginas[i], paleta: paleta),
+                itemBuilder: (_, i) =>
+                    _PaginaOnboarding(datos: _paginas[i], paleta: paleta),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(_paginas.length, (i) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
                   width: i == _pagina ? 18 : 8,
                   height: 8,
                   decoration: BoxDecoration(
-                    color: i == _pagina ? paleta.primary : paleta.primary.withValues(alpha: 0.3),
+                    color: i == _pagina
+                        ? paleta.primary
+                        : paleta.primary.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 );
@@ -94,7 +99,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 children: [
                   TextButton(
                     onPressed: esUltima ? null : _terminar,
-                    child: Text(esUltima ? '' : 'Saltar'),
+                    child: Text(esUltima ? '' : SoleraL10n.t('arb.saltar')),
                   ),
                   const Spacer(),
                   FilledButton(
@@ -108,7 +113,9 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                         );
                       }
                     },
-                    child: Text(esUltima ? 'Empezar' : 'Siguiente'),
+                    child: Text(esUltima
+                        ? SoleraL10n.t('arb.empezar')
+                        : SoleraL10n.t('arb.siguiente')),
                   ),
                 ],
               ),
@@ -127,30 +134,24 @@ class _DatosPagina {
   const _DatosPagina(this.icono, this.titulo, this.texto);
 }
 
-const _paginas = <_DatosPagina>[
-  _DatosPagina(
-    Icons.qr_code_scanner,
-    'Inventario por chapa QR',
-    'Cada árbol lleva una chapa QR municipal. Escanéala para ver todo su historial '
-        'al instante: edad, especie, podas, tratamientos, incidencias. La inspección '
-        'pasa de horas a 30 segundos por árbol.',
-  ),
-  _DatosPagina(
-    Icons.auto_awesome,
-    'Diagnóstico con IA por foto',
-    'Hazle una foto a un árbol, una rama o una hoja con síntomas y la IA propone un diagnóstico '
-        '(procesionaria, picudo rojo, antracnosis, fuego bacteriano…). Las plagas '
-        'de declaración obligatoria y las que tienen riesgo sanitario público se '
-        'destacan automáticamente.',
-  ),
-  _DatosPagina(
-    Icons.description,
-    'Informes municipales firmables',
-    'Cierra la campaña con un informe consolidado para la concejalía: censo por especie, '
-        'todas las inspecciones, podas, tratamientos e incidencias del periodo, con '
-        'firma del técnico responsable. PDF listo para presentar.',
-  ),
-];
+/// Getter (no constante) para que los textos salgan en el idioma actual.
+List<_DatosPagina> get _paginas => <_DatosPagina>[
+      _DatosPagina(
+        Icons.qr_code_scanner,
+        SoleraL10n.t('arb.onboarding_inventario_titulo'),
+        SoleraL10n.t('arb.onboarding_inventario_texto'),
+      ),
+      _DatosPagina(
+        Icons.auto_awesome,
+        SoleraL10n.t('arb.onboarding_ia_titulo'),
+        SoleraL10n.t('arb.onboarding_ia_texto'),
+      ),
+      _DatosPagina(
+        Icons.description,
+        SoleraL10n.t('arb.onboarding_informes_titulo'),
+        SoleraL10n.t('arb.onboarding_informes_texto'),
+      ),
+    ];
 
 class _PaginaOnboarding extends StatelessWidget {
   final _DatosPagina datos;
@@ -159,39 +160,43 @@ class _PaginaOnboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              color: paleta.primaryContainer,
-              shape: BoxShape.circle,
+    // Desplazable: en euskera o catalán el texto es más largo y en
+    // pantallas bajas no cabría.
+    return Center(
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                color: paleta.primaryContainer,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(datos.icono, size: 56, color: paleta.primary),
             ),
-            child: Icon(datos.icono, size: 56, color: paleta.primary),
-          ),
-          const SizedBox(height: 32),
-          Text(
-            datos.titulo,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: paleta.primary,
-                ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            datos.texto,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey.shade800,
-                  height: 1.5,
-                ),
-          ),
-        ],
+            const SizedBox(height: 32),
+            Text(
+              datos.titulo,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: paleta.primary,
+                  ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              datos.texto,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.grey.shade800,
+                    height: 1.5,
+                  ),
+            ),
+          ],
+        ),
       ),
     );
   }

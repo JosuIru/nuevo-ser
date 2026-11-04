@@ -12,6 +12,7 @@ import '../modelos/inspeccion.dart';
 import '../modelos/poda.dart';
 import '../modelos/tecnico.dart';
 import '../modelos/tratamiento.dart';
+import '../utiles/etiquetas_l10n.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 /// Tipo de evento que crea esta pantalla. 4 tipos: arbolado urbano no
@@ -103,13 +104,13 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
   String get _titulo {
     switch (widget.tipo) {
       case TipoEventoNuevo.inspeccion:
-        return 'Nueva inspección';
+        return SoleraL10n.t('arb.nueva_inspeccion');
       case TipoEventoNuevo.poda:
-        return 'Nueva poda';
+        return SoleraL10n.t('arb.nueva_poda');
       case TipoEventoNuevo.tratamiento:
-        return 'Nuevo tratamiento';
+        return SoleraL10n.t('arb.nuevo_tratamiento');
       case TipoEventoNuevo.incidencia:
-        return 'Nueva incidencia';
+        return SoleraL10n.t('arb.nueva_incidencia');
     }
   }
 
@@ -254,18 +255,18 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               contentPadding: EdgeInsets.zero,
               leading: Icon(Icons.event),
               title: Text(formatoFecha.format(_fecha)),
-              trailing: TextButton(onPressed: _elegirFecha, child: Text('Cambiar')),
+              trailing: TextButton(onPressed: _elegirFecha, child: Text(SoleraL10n.t('arb.cambiar'))),
             ),
             DropdownButtonFormField<int?>(
               initialValue: _tecnicoId,
               decoration: InputDecoration(
-                labelText: 'Técnico que firma',
+                labelText: SoleraL10n.t('arb.tecnico_que_firma'),
                 border: OutlineInputBorder(),
               ),
               items: [
-                const DropdownMenuItem<int?>(
+                DropdownMenuItem<int?>(
                   value: null,
-                  child: Text('— sin firmar (rellenar antes de la inspección) —'),
+                  child: Text(SoleraL10n.t('arb.sin_firmar_opcion')),
                 ),
                 for (final t in _tecnicosDisponibles)
                   DropdownMenuItem<int?>(
@@ -283,7 +284,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNotas,
               decoration: InputDecoration(
-                labelText: 'Notas',
+                labelText: SoleraL10n.t('arb.notas'),
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
@@ -312,20 +313,18 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           DropdownButtonFormField<String>(
             initialValue: _estadoInspeccion,
             decoration: InputDecoration(
-              labelText: 'Estado observado',
+              labelText: SoleraL10n.t('arb.estado_observado'),
               border: OutlineInputBorder(),
             ),
-            items: const [
-              DropdownMenuItem(value: 'sano', child: Text('Sano')),
-              DropdownMenuItem(value: 'observacion', child: Text('Observación')),
-              DropdownMenuItem(value: 'riesgo', child: Text('Riesgo')),
-              DropdownMenuItem(value: 'caido', child: Text('Caído / eliminado')),
+            items: [
+              for (final estado in const ['sano', 'observacion', 'riesgo', 'caido'])
+                DropdownMenuItem(value: estado, child: Text(etiquetaEstadoInspeccion(estado))),
             ],
             onChanged: (v) => setState(() => _estadoInspeccion = v ?? 'sano'),
           ),
           SizedBox(height: 12),
           _selectorNumero1A5(
-            'Riesgo VTA',
+            SoleraL10n.t('arb.riesgo_vta'),
             _riesgoVtaInspeccion,
             (v) => setState(() => _riesgoVtaInspeccion = v),
           ),
@@ -333,13 +332,13 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorFenologia,
             decoration: InputDecoration(
-              labelText: 'Fenología',
-              hintText: 'en hoja, en flor, desnudo, con frutos…',
+              labelText: SoleraL10n.t('arb.fenologia'),
+              hintText: SoleraL10n.t('arb.fenologia_hint'),
               border: OutlineInputBorder(),
             ),
           ),
           SizedBox(height: 12),
-          Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(SoleraL10n.t('arb.fotos'), style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 4),
           SelectorFotos(
             rutas: _rutasFotosInspeccion,
@@ -350,8 +349,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           CampoAutocompleteCatalogo<TipoPoda>(
             controlador: _controladorTipoPoda,
-            labelText: 'Tipo de poda',
-            hintText: 'mantenimiento, saneamiento, refaldado…',
+            labelText: SoleraL10n.t('arb.tipo_de_poda'),
+            hintText: SoleraL10n.t('arb.tipo_de_poda_hint'),
             opcionesCompletas: catalogoTiposPoda,
             buscar: buscarTiposPoda,
             displayStringForOption: (t) =>
@@ -375,8 +374,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Tipo de poda controvertido, con debate técnico abierto. '
-                      'Justifica la elección en las notas para inspección.',
+                      SoleraL10n.t('arb.poda_controvertida_aviso'),
                       style: TextStyle(fontSize: 13, color: Colors.amber.shade900),
                     ),
                   ),
@@ -389,7 +387,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             controller: _controladorVolumenRestos,
             validator: validarNumeroOpcional,
             decoration: InputDecoration(
-              labelText: 'Volumen estimado de restos (m³)',
+              labelText: SoleraL10n.t('arb.volumen_restos_m3'),
               border: OutlineInputBorder(),
             ),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -399,20 +397,20 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorMotivoPoda,
             decoration: InputDecoration(
-              labelText: 'Motivo',
-              hintText: 'limpieza anual, rama caída, despeje vial…',
+              labelText: SoleraL10n.t('arb.motivo'),
+              hintText: SoleraL10n.t('arb.motivo_poda_hint'),
               border: OutlineInputBorder(),
             ),
           ),
           SizedBox(height: 12),
-          Text('Fotos antes', style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(SoleraL10n.t('arb.fotos_antes'), style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 4),
           SelectorFotos(
             rutas: _rutasFotosAntes,
             alCambiar: (r) => setState(() => _rutasFotosAntes = r),
           ),
           SizedBox(height: 12),
-          Text('Fotos después', style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(SoleraL10n.t('arb.fotos_despues'), style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 4),
           SelectorFotos(
             rutas: _rutasFotosDespues,
@@ -424,8 +422,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorSustancia,
             decoration: InputDecoration(
-              labelText: 'Sustancia activa',
-              hintText: 'Bacillus thuringiensis, abamectina…',
+              labelText: SoleraL10n.t('arb.sustancia_activa'),
+              hintText: SoleraL10n.t('arb.sustancia_activa_hint'),
               border: OutlineInputBorder(),
             ),
           ),
@@ -433,16 +431,16 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorDosis,
             decoration: InputDecoration(
-              labelText: 'Dosis',
-              hintText: '1 L/ha, 2 ml/árbol…',
+              labelText: SoleraL10n.t('arb.dosis'),
+              hintText: SoleraL10n.t('arb.dosis_hint'),
               border: OutlineInputBorder(),
             ),
           ),
           SizedBox(height: 12),
           CampoAutocompleteCatalogo<PlagaUrbana>(
             controlador: _controladorMotivoPlaga,
-            labelText: 'Plaga / enfermedad objetivo',
-            hintText: 'procesionaria, picudo, antracnosis…',
+            labelText: SoleraL10n.t('arb.plaga_objetivo'),
+            hintText: SoleraL10n.t('arb.plaga_objetivo_hint'),
             opcionesCompletas: catalogoPlagasUrbanas,
             buscar: buscarPlagasUrbanas,
             displayStringForOption: (p) => p.nombreComun,
@@ -450,16 +448,15 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           if (_consultarPlagaDeclaracionObligatoria(_controladorMotivoPlaga.text)) ...[
             SizedBox(height: 8),
             BannerDeclaracionObligatoria(
-              texto:
-                  'Esta plaga es de declaración obligatoria al servicio fitosanitario oficial.',
+              texto: SoleraL10n.t('arb.plaga_declaracion_obligatoria_aviso'),
             ),
           ],
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorLote,
             decoration: InputDecoration(
-              labelText: 'Lote del producto',
-              hintText: 'Trazabilidad fitosanitaria',
+              labelText: SoleraL10n.t('arb.lote_del_producto'),
+              hintText: SoleraL10n.t('arb.trazabilidad_fitosanitaria'),
               border: OutlineInputBorder(),
             ),
           ),
@@ -467,7 +464,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorFactura,
             decoration: InputDecoration(
-              labelText: 'N.º de factura',
+              labelText: SoleraL10n.t('arb.numero_de_factura'),
               border: OutlineInputBorder(),
             ),
           ),
@@ -475,14 +472,14 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
-              labelText: 'Plazo de seguridad (días)',
+              labelText: SoleraL10n.t('arb.plazo_seguridad_dias'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
           SizedBox(height: 12),
-          Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(SoleraL10n.t('arb.fotos'), style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 4),
           SelectorFotos(
             rutas: _rutasFotosTratamiento,
@@ -493,15 +490,10 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           DropdownButtonFormField<String>(
             initialValue: _tipoIncidencia,
-            decoration: InputDecoration(labelText: 'Tipo', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'golpe_vehiculo', child: Text('Golpe de vehículo')),
-              DropdownMenuItem(value: 'vandalismo', child: Text('Vandalismo')),
-              DropdownMenuItem(value: 'temporal', child: Text('Temporal / viento')),
-              DropdownMenuItem(value: 'alcorque_danado', child: Text('Alcorque dañado')),
-              DropdownMenuItem(value: 'raices_acera', child: Text('Raíces en acera')),
-              DropdownMenuItem(value: 'riesgo_caida', child: Text('Riesgo de caída')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('arb.tipo'), border: OutlineInputBorder()),
+            items: [
+              for (final tipo in tiposIncidencia)
+                DropdownMenuItem(value: tipo, child: Text(etiquetaTipoIncidencia(tipo))),
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
           ),
@@ -509,11 +501,11 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorDescripcion,
             decoration: InputDecoration(
-              labelText: 'Descripción',
-              hintText: 'Rama caída por viento sur, golpe de furgoneta…',
+              labelText: SoleraL10n.t('arb.descripcion'),
+              hintText: SoleraL10n.t('arb.descripcion_incidencia_hint'),
               border: OutlineInputBorder(),
             ),
-            validator: (v) => (v ?? '').trim().isEmpty ? 'Describe la incidencia' : null,
+            validator: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('arb.describe_la_incidencia') : null,
           ),
           SizedBox(height: 8),
           BotonIdentificarIA(
@@ -535,12 +527,12 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           ),
           SizedBox(height: 12),
           _selectorNumero1A5(
-            'Severidad',
+            SoleraL10n.t('arb.severidad'),
             _severidadIncidencia,
             (v) => setState(() => _severidadIncidencia = v),
           ),
           SizedBox(height: 12),
-          Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(SoleraL10n.t('arb.fotos'), style: TextStyle(fontWeight: FontWeight.bold)),
           SizedBox(height: 4),
           SelectorFotos(
             rutas: _rutasFotosIncidencia,

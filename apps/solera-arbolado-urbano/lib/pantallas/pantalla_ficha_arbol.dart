@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:intl/intl.dart';
 
 import '../datos/base_datos.dart';
@@ -8,6 +9,7 @@ import '../modelos/inspeccion.dart';
 import '../modelos/poda.dart';
 import '../modelos/tratamiento.dart';
 import '../modelos/zona.dart';
+import '../utiles/etiquetas_l10n.dart';
 import 'pantalla_nuevo_arbol.dart';
 import 'pantalla_nuevo_evento.dart';
 
@@ -108,32 +110,32 @@ class _PantallaFichaArbolState extends State<PantallaFichaArbol> {
               FilledButton.icon(
                 onPressed: () => _crearEvento(TipoEventoNuevo.inspeccion),
                 icon: const Icon(Icons.search),
-                label: const Text('Inspección'),
+                label: Text(SoleraL10n.t('arb.inspeccion')),
               ),
               FilledButton.icon(
                 onPressed: () => _crearEvento(TipoEventoNuevo.poda),
                 icon: const Icon(Icons.content_cut),
-                label: const Text('Poda'),
+                label: Text(SoleraL10n.t('arb.poda')),
               ),
               FilledButton.icon(
                 onPressed: () => _crearEvento(TipoEventoNuevo.tratamiento),
                 icon: const Icon(Icons.science),
-                label: const Text('Tratamiento'),
+                label: Text(SoleraL10n.t('arb.tratamiento')),
               ),
               FilledButton.icon(
                 onPressed: () => _crearEvento(TipoEventoNuevo.incidencia),
                 icon: const Icon(Icons.warning_amber),
-                label: const Text('Incidencia'),
+                label: Text(SoleraL10n.t('arb.incidencia')),
               ),
             ],
           ),
           const SizedBox(height: 24),
-          const Text('Histórico', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          Text(SoleraL10n.t('arb.historico'), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           const Divider(),
           if (_timeline.isEmpty)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 24),
-              child: Center(child: Text('Sin eventos registrados todavía.')),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24),
+              child: Center(child: Text(SoleraL10n.t('arb.sin_eventos_registrados'))),
             )
           else
             ..._timeline.map((e) => _FilaTimeline(entrada: e, formatoFecha: formatoFecha)),
@@ -150,20 +152,9 @@ class _BloqueDescriptivo extends StatelessWidget {
   const _BloqueDescriptivo(
       {required this.arbol, required this.zona, required this.formatoFecha});
 
-  String _estadoVisible(EstadoArbol e) {
-    switch (e) {
-      case EstadoArbol.sano:
-        return 'Sano';
-      case EstadoArbol.observacion:
-        return 'Observación';
-      case EstadoArbol.riesgo:
-        return 'Riesgo';
-      case EstadoArbol.caido:
-        return 'Caído / eliminado';
-      case EstadoArbol.sustituido:
-        return 'Sustituido';
-    }
-  }
+  String _estadoVisible(EstadoArbol e) => e == EstadoArbol.caido
+      ? SoleraL10n.t('arb.estado_caido_eliminado')
+      : etiquetaEstadoArbol(e);
 
   Color _colorEstado(EstadoArbol e, ColorScheme paleta) {
     switch (e) {
@@ -202,7 +193,7 @@ class _BloqueDescriptivo extends StatelessWidget {
                     children: [
                       Text(arbol.identificadorMunicipal,
                           style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                      Text('${zona?.nombre ?? "Sin zona"} · ${_estadoVisible(arbol.estado)}'),
+                      Text('${zona?.nombre ?? SoleraL10n.t('arb.sin_zona')} · ${_estadoVisible(arbol.estado)}'),
                     ],
                   ),
                 ),
@@ -210,29 +201,31 @@ class _BloqueDescriptivo extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             if (arbol.especieId.isNotEmpty)
-              _Linea(etiqueta: 'Especie', valor: arbol.especieId),
+              _Linea(etiqueta: SoleraL10n.t('arb.especie'), valor: arbol.especieId),
             if (arbol.qrPayload.isNotEmpty)
-              _Linea(etiqueta: 'QR de la chapa', valor: arbol.qrPayload),
+              _Linea(etiqueta: SoleraL10n.t('arb.qr_de_la_chapa'), valor: arbol.qrPayload),
             if (arbol.edadEstimadaAnos != null)
-              _Linea(etiqueta: 'Edad', valor: '${arbol.edadEstimadaAnos} años'),
+              _Linea(
+                  etiqueta: SoleraL10n.t('arb.edad'),
+                  valor: SoleraL10n.tf('arb.n_anos', {'n': arbol.edadEstimadaAnos})),
             if (arbol.fechaPlantacionMs != null)
               _Linea(
-                etiqueta: 'Plantación',
+                etiqueta: SoleraL10n.t('arb.plantacion'),
                 valor: formatoFecha.format(
                     DateTime.fromMillisecondsSinceEpoch(arbol.fechaPlantacionMs!)),
               ),
             if (arbol.perimetroTroncoCm != null)
               _Linea(
-                  etiqueta: 'Perímetro',
+                  etiqueta: SoleraL10n.t('arb.perimetro'),
                   valor: '${arbol.perimetroTroncoCm!.toStringAsFixed(1)} cm'),
             if (arbol.alturaEstimadaMetros != null)
               _Linea(
-                  etiqueta: 'Altura',
+                  etiqueta: SoleraL10n.t('arb.altura'),
                   valor: '${arbol.alturaEstimadaMetros!.toStringAsFixed(1)} m'),
             if (arbol.riesgoVta != null)
-              _Linea(etiqueta: 'Riesgo VTA', valor: '${arbol.riesgoVta} / 5'),
+              _Linea(etiqueta: SoleraL10n.t('arb.riesgo_vta'), valor: '${arbol.riesgoVta} / 5'),
             if (arbol.tipoAlcorqueId.isNotEmpty)
-              _Linea(etiqueta: 'Alcorque', valor: arbol.tipoAlcorqueId),
+              _Linea(etiqueta: SoleraL10n.t('arb.alcorque'), valor: arbol.tipoAlcorqueId),
             if (arbol.latitud != null && arbol.longitud != null)
               _Linea(
                   etiqueta: 'GPS',
@@ -265,12 +258,13 @@ class _Linea extends StatelessWidget {
 }
 
 /// Una entrada genérica de la timeline. Mantiene el tipo + un resumen
-/// para que el render no tenga que abrir el switch.
+/// para que el render no tenga que abrir el switch. Tipo y resumen son
+/// funciones para que salgan en el idioma vigente al repintar.
 class _EntradaTimeline {
   final IconData icono;
-  final String tipo;
+  final String Function() tipo;
   final int fechaMs;
-  final String resumen;
+  final String Function() resumen;
   final String detalle;
 
   _EntradaTimeline._({
@@ -282,16 +276,16 @@ class _EntradaTimeline {
   });
 
   factory _EntradaTimeline.inspeccion(Inspeccion i) {
-    final detalles = <String>[
-      i.estado,
-      if (i.riesgoVta != null) 'VTA ${i.riesgoVta}',
-      if (i.fenologia.isNotEmpty) i.fenologia,
-    ];
+    List<String> detalles() => <String>[
+          etiquetaEstadoInspeccion(i.estado),
+          if (i.riesgoVta != null) 'VTA ${i.riesgoVta}',
+          if (i.fenologia.isNotEmpty) i.fenologia,
+        ];
     return _EntradaTimeline._(
       icono: Icons.search,
-      tipo: 'Inspección',
+      tipo: () => SoleraL10n.t('arb.inspeccion'),
       fechaMs: i.fechaMs,
-      resumen: detalles.join(' · '),
+      resumen: () => detalles().join(' · '),
       detalle: i.notas,
     );
   }
@@ -304,39 +298,43 @@ class _EntradaTimeline {
     ];
     return _EntradaTimeline._(
       icono: Icons.content_cut,
-      tipo: 'Poda',
+      tipo: () => SoleraL10n.t('arb.poda'),
       fechaMs: p.fechaMs,
-      resumen: detalles.isEmpty ? 'Sin detalles' : detalles.join(' · '),
+      resumen: () => detalles.isEmpty ? SoleraL10n.t('arb.sin_detalles') : detalles.join(' · '),
       detalle: p.notas,
     );
   }
 
   factory _EntradaTimeline.tratamiento(Tratamiento t) {
-    final detalles = <String>[
-      if (t.sustanciaActivaId.isNotEmpty) t.sustanciaActivaId,
-      if (t.dosis.isNotEmpty) t.dosis,
-      if (t.motivoIdPlaga.isNotEmpty) 'contra ${t.motivoIdPlaga}',
-    ];
+    List<String> detalles() => <String>[
+          if (t.sustanciaActivaId.isNotEmpty) t.sustanciaActivaId,
+          if (t.dosis.isNotEmpty) t.dosis,
+          if (t.motivoIdPlaga.isNotEmpty)
+            SoleraL10n.tf('arb.contra_plaga', {'plaga': t.motivoIdPlaga}),
+        ];
     return _EntradaTimeline._(
       icono: Icons.science,
-      tipo: 'Tratamiento',
+      tipo: () => SoleraL10n.t('arb.tratamiento'),
       fechaMs: t.fechaMs,
-      resumen: detalles.isEmpty ? 'Sin detalles' : detalles.join(' · '),
+      resumen: () {
+        final lista = detalles();
+        return lista.isEmpty ? SoleraL10n.t('arb.sin_detalles') : lista.join(' · ');
+      },
       detalle: t.notas,
     );
   }
 
   factory _EntradaTimeline.incidencia(Incidencia i) {
-    final detalles = <String>[
-      i.tipo,
-      if (i.severidad != null) 'sev. ${i.severidad}',
-      if (i.resuelta) 'resuelta' else 'abierta',
-    ];
+    List<String> detalles() => <String>[
+          etiquetaTipoIncidencia(i.tipo),
+          if (i.severidad != null) SoleraL10n.tf('arb.severidad_abreviada', {'n': i.severidad}),
+          if (i.resuelta) SoleraL10n.t('arb.resuelta') else SoleraL10n.t('arb.abierta'),
+        ];
     return _EntradaTimeline._(
       icono: Icons.warning_amber,
-      tipo: 'Incidencia',
+      tipo: () => SoleraL10n.t('arb.incidencia'),
       fechaMs: i.fechaMs,
-      resumen: '${i.descripcion.isEmpty ? "—" : i.descripcion} · ${detalles.join(" · ")}',
+      resumen: () => '${i.descripcion.isEmpty ? "—" : i.descripcion} · ${detalles().join(" · ")}',
       detalle: i.notas,
     );
   }
@@ -352,7 +350,7 @@ class _FilaTimeline extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: Icon(entrada.icono),
-      title: Text('${entrada.tipo} · ${entrada.resumen}'),
+      title: Text('${entrada.tipo()} · ${entrada.resumen()}'),
       subtitle: Text(
         '${formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(entrada.fechaMs))}'
         '${entrada.detalle.isEmpty ? "" : "\n${entrada.detalle}"}',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../datos/catalogos_generados/catalogo_calendario_arbolado.dart';
@@ -24,7 +25,7 @@ class PantallaAcerca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Acerca de')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acerca_de'))),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
@@ -53,62 +54,29 @@ class PantallaAcerca extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Larrea Arbolado Urbano es un gestor para ayuntamientos pequeños y '
-            'medianos y empresas de jardinería que cuidan el arbolado público: '
-            'inventario por chapa QR, ficha individual de cada árbol con su historial, '
-            'partes de poda con fotos antes/después, identificación de plagas con '
-            'IA y exportación de informes municipales en PDF.',
+          Text(
+            SoleraL10n.t('arb.acerca_descripcion'),
             style: TextStyle(fontSize: 14, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Compromisos legales'),
-          const _Bullet(
-            'Larrea no recomienda productos fitosanitarios comerciales. '
-            'Los tratamientos requieren carnet de aplicador y se registran '
-            'con sustancia activa, dosis, lote y factura para auditoría '
-            'municipal.',
-          ),
-          const _Bullet(
-            'Las plagas de declaración obligatoria (picudo rojo, fuego '
-            'bacteriano…) deben notificarse a los servicios fitosanitarios '
-            'oficiales de tu comunidad autónoma.',
-          ),
-          const _Bullet(
-            'Las plagas con riesgo sanitario público (procesionaria del '
-            'pino, lagarta peluda) se priorizan en zonas escolares y '
-            'paseos peatonales.',
-          ),
-          const _Bullet(
-            'El riesgo VTA (Visual Tree Assessment) es responsabilidad '
-            'del técnico cualificado. La app facilita el registro, pero no '
-            'emite dictámenes: la decisión de talar es siempre humana y '
-            'firmada.',
-          ),
-          const _Bullet(
-            'Privacidad ciudadana: las fotos pueden capturar transeúntes. '
-            'Encuadra al árbol; las imágenes solo se envían a Anthropic '
-            'cuando usas el botón de IA y por elección explícita del operario.',
-          ),
-          const _Bullet(
-            'El formato del informe municipal varía entre ayuntamientos. '
-            'Verifica el pliego técnico antes de presentar.',
-          ),
+          _Seccion(SoleraL10n.t('arb.compromisos_legales')),
+          _Bullet(SoleraL10n.t('arb.compromiso_fitosanitarios')),
+          _Bullet(SoleraL10n.t('arb.compromiso_declaracion_obligatoria')),
+          _Bullet(SoleraL10n.t('arb.compromiso_riesgo_sanitario')),
+          _Bullet(SoleraL10n.t('arb.compromiso_vta')),
+          _Bullet(SoleraL10n.t('arb.compromiso_privacidad')),
+          _Bullet(SoleraL10n.t('arb.compromiso_formato_informe')),
           const SizedBox(height: 24),
-          const _Seccion('Catálogos curados'),
+          _Seccion(SoleraL10n.t('arb.catalogos_curados')),
           _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Larrea'),
-          const Text(
-            'Larrea Arbolado Urbano forma parte de la suite Larrea, de la '
-            'Colección Nuevo Ser. Apps hermanas: Larrea Viticultura (libro '
-            'PAC en bodegas), Larrea Apícola (libro REGA en apicultura), '
-            'Larrea (general — frutales, trufa, olivar), Larrea Quesera y '
-            'Larrea Aceitera.',
-            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
+          _Seccion(SoleraL10n.t('arb.familia_larrea')),
+          Text(
+            SoleraL10n.t('arb.familia_larrea_texto'),
+            style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Enlaces'),
+          _Seccion(SoleraL10n.t('arb.enlaces')),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.public),
@@ -132,8 +100,8 @@ class _TarjetaCatalogos extends StatelessWidget {
     final color = catalogosCompletamenteRevisados ? Colors.green : Colors.amber;
     final icono = catalogosCompletamenteRevisados ? Icons.verified : Icons.fact_check;
     final etiqueta = catalogosCompletamenteRevisados
-        ? 'Validados por ingeniero técnico forestal'
-        : 'PROVISIONALES — sin validar todavía';
+        ? SoleraL10n.t('arb.catalogos_validados')
+        : SoleraL10n.t('arb.catalogos_provisionales');
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -161,23 +129,21 @@ class _TarjetaCatalogos extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '$totalFilas filas en 5 catálogos: '
-            '${catalogoEspeciesArboreas.length} especies, '
-            '${catalogoPlagasUrbanas.length} plagas/patologías, '
-            '${catalogoTiposPoda.length} tipos de poda, '
-            '${catalogoSustratosAlcorque.length} sustratos, '
-            '${calendarioArbolado.length} tareas de calendario.',
+            SoleraL10n.tf('arb.resumen_catalogos', {
+              'total': totalFilas,
+              'especies': catalogoEspeciesArboreas.length,
+              'plagas': catalogoPlagasUrbanas.length,
+              'podas': catalogoTiposPoda.length,
+              'sustratos': catalogoSustratosAlcorque.length,
+              'tareas': calendarioArbolado.length,
+            }),
             style: const TextStyle(fontSize: 13, height: 1.5),
           ),
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
-            const Text(
-              'Rellenados a partir de fuentes públicas (manuales de '
-              'jardinería urbana, pliegos de ayuntamientos, boletines '
-              'fitosanitarios autonómicos). Antes de pasar a producción '
-              'comercial deben ser validados por un ingeniero técnico '
-              'forestal o de jardinería con experiencia urbana.',
-              style: TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
+            Text(
+              SoleraL10n.t('arb.catalogos_provisionales_explicacion'),
+              style: const TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
             ),
           ],
         ],

@@ -13,30 +13,30 @@ class PantallaRegistros extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registros')),
+      appBar: AppBar(title: Text(SoleraL10n.t('arb.registros'))),
       body: ListView(
         children: [
-          const CabeceraSeccionAjustes('Informes'),
+          CabeceraSeccionAjustes(SoleraL10n.t('arb.informes')),
           ListTile(
             leading: const Icon(Icons.description),
-            title: const Text('Informe municipal'),
-            subtitle: const Text('Actuaciones de una campaña en PDF'),
+            title: Text(SoleraL10n.t('arb.informe_municipal')),
+            subtitle: Text(SoleraL10n.t('arb.actuaciones_campana_pdf')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaInformeMunicipal()),
             ),
           ),
-          const CabeceraSeccionAjustes('Chapas'),
+          CabeceraSeccionAjustes(SoleraL10n.t('arb.chapas')),
           ListTile(
             leading: const Icon(Icons.qr_code_2),
-            title: const Text('Generar QR'),
-            subtitle: const Text('Códigos QR para chapas de árboles'),
+            title: Text(SoleraL10n.t('arb.generar_qr')),
+            subtitle: Text(SoleraL10n.t('arb.codigos_qr_chapas')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaGenerarQr()),
             ),
           ),
-          const CabeceraSeccionAjustes('Facturación'),
+          CabeceraSeccionAjustes(SoleraL10n.t('arb.facturacion')),
           ListTile(
             leading: const Icon(Icons.receipt),
             title: Text(SoleraL10n.t('facturas')),

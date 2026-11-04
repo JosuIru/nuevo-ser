@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:intl/intl.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/arbol.dart';
 import '../modelos/zona.dart';
+import '../utiles/etiquetas_l10n.dart';
 import 'pantalla_ficha_arbol.dart';
 
 /// Lista filtrable de árboles por identificador, especie, estado o zona.
@@ -61,21 +63,6 @@ class _PantallaListaArbolesState extends State<PantallaListaArboles> {
     }).toList();
   }
 
-  String _etiquetaEstado(EstadoArbol e) {
-    switch (e) {
-      case EstadoArbol.sano:
-        return 'Sano';
-      case EstadoArbol.observacion:
-        return 'Observación';
-      case EstadoArbol.riesgo:
-        return 'Riesgo';
-      case EstadoArbol.caido:
-        return 'Caído';
-      case EstadoArbol.sustituido:
-        return 'Sustituido';
-    }
-  }
-
   Color _colorEstado(EstadoArbol e, ColorScheme paleta) {
     switch (e) {
       case EstadoArbol.sano:
@@ -98,15 +85,15 @@ class _PantallaListaArbolesState extends State<PantallaListaArboles> {
     final paleta = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Árboles'),
+        title: Text(SoleraL10n.t('arb.arboles')),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(56),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
             child: TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 isDense: true,
-                hintText: 'Buscar (id, especie, QR, notas)',
+                hintText: SoleraL10n.t('arb.buscar_arboles_hint'),
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
                 fillColor: Colors.white,
@@ -123,8 +110,8 @@ class _PantallaListaArbolesState extends State<PantallaListaArboles> {
               ? Center(
                   child: Text(
                     _arboles.isEmpty
-                        ? 'Sin árboles inventariados todavía.'
-                        : 'Sin resultados.',
+                        ? SoleraL10n.t('arb.sin_arboles_inventariados')
+                        : SoleraL10n.t('arb.sin_resultados'),
                     style: TextStyle(color: Colors.grey.shade600),
                   ),
                 )
@@ -144,11 +131,11 @@ class _PantallaListaArbolesState extends State<PantallaListaArboles> {
                       ),
                       title: Text(a.identificadorMunicipal),
                       subtitle: Text([
-                        zona?.nombre ?? 'Sin zona',
+                        zona?.nombre ?? SoleraL10n.t('arb.sin_zona'),
                         if (a.especieId.isNotEmpty) a.especieId,
-                        _etiquetaEstado(a.estado),
+                        etiquetaEstadoArbol(a.estado),
                         if (a.riesgoVta != null) 'VTA ${a.riesgoVta}',
-                        'Alta $fechaCreacion',
+                        SoleraL10n.tf('arb.alta_fecha', {'fecha': fechaCreacion}),
                       ].join(' · ')),
                       onTap: () async {
                         final cambio = await Navigator.of(context).push<bool>(

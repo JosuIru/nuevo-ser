@@ -172,9 +172,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!mounted) return;
     if (latitud == null || longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(
-          'GPS no disponible — captura la ubicación desde el formulario.',
-        )),
+        SnackBar(content: Text(SoleraL10n.t('arb.gps_no_disponible_formulario'))),
       );
     }
     await _abrirNuevoArbol(latitud: latitud, longitud: longitud);
@@ -198,15 +196,15 @@ class _PantallaMapaState extends State<PantallaMapa> {
       final crear = await showDialog<bool>(
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('QR no reconocido'),
+          title: Text(SoleraL10n.t('arb.qr_no_reconocido')),
           content: Text(
-            'No hay ningún árbol con el QR «$payload» en el inventario.\n\n'
-            '¿Quieres dar de alta uno nuevo con este QR?',
+            '${SoleraL10n.tf('arb.ningun_arbol_con_qr', {'qr': payload})}\n\n'
+            '${SoleraL10n.t('arb.dar_de_alta_con_qr_pregunta')}',
           ),
           actions: [
             TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
             FilledButton(
-                onPressed: () => Navigator.pop(context, true), child: Text('Dar de alta')),
+                onPressed: () => Navigator.pop(context, true), child: Text(SoleraL10n.t('arb.dar_de_alta'))),
           ],
         ),
       );
@@ -226,7 +224,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
           children: [
             ListTile(
               leading: Icon(Icons.public),
-              title: Text('Todo el municipio'),
+              title: Text(SoleraL10n.t('arb.todo_el_municipio')),
               trailing: activo == null ? Icon(Icons.check) : null,
               onTap: () => Navigator.pop(context, null),
             ),
@@ -292,9 +290,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
   }
 
   String _tituloFiltro() {
-    if (_zonaActivaId == null) return 'Todo el municipio';
+    if (_zonaActivaId == null) return SoleraL10n.t('arb.todo_el_municipio');
     final z = _zonas.where((z) => z.id == _zonaActivaId).firstOrNull;
-    return z?.nombre ?? 'Zona';
+    return z?.nombre ?? SoleraL10n.t('arb.zona');
   }
 
   @override
@@ -305,12 +303,12 @@ class _PantallaMapaState extends State<PantallaMapa> {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            tooltip: 'Buscar un lugar',
+            tooltip: SoleraL10n.t('arb.buscar_un_lugar'),
             onPressed: _alBuscarLugar,
           ),
           IconButton(
             icon: Icon(Icons.qr_code_scanner),
-            tooltip: 'Buscar por QR',
+            tooltip: SoleraL10n.t('arb.buscar_por_qr'),
             onPressed: _alEscanearQr,
           ),
         ],
@@ -411,8 +409,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             ),
                             SizedBox(width: 6),
                             Text(_capaMapa == _CapaMapa.callejero
-                                ? 'Satélite'
-                                : 'Callejero'),
+                                ? SoleraL10n.t('arb.satelite')
+                                : SoleraL10n.t('arb.callejero')),
                           ],
                         ),
                       ),
@@ -431,7 +429,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                         child: Text(
-                          'Esri satélite',
+                          SoleraL10n.t('arb.esri_satelite'),
                           style: TextStyle(color: Colors.white, fontSize: 11),
                         ),
                       ),
@@ -445,7 +443,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _alAnadirAqui,
         icon: Icon(Icons.add_location),
-        label: Text('Nuevo árbol'),
+        label: Text(SoleraL10n.t('arb.nuevo_arbol')),
       ),
     );
   }

@@ -8,6 +8,7 @@ import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_especies_arboreas.dart';
 import '../datos/catalogos_generados/catalogo_sustratos_alcorque.dart';
 import '../modelos/arbol.dart';
+import '../utiles/etiquetas_l10n.dart';
 import '../utiles/permisos_gps.dart';
 import 'pantalla_escaner_qr.dart';
 
@@ -116,7 +117,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
       if (!mounted) return;
       setState(() => _capturandoGps = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta permiso de ubicación o GPS desactivado.')),
+        SnackBar(content: Text(SoleraL10n.t('arb.falta_permiso_ubicacion'))),
       );
       return;
     }
@@ -212,7 +213,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
         if (!mounted) return;
         setState(() => _guardando = false);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Ya existe un árbol con identificador ${existente.identificadorMunicipal}.')),
+          SnackBar(content: Text(SoleraL10n.tf('arb.ya_existe_arbol_identificador', {'identificador': existente.identificadorMunicipal}))),
         );
         return;
       }
@@ -258,7 +259,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
   Widget build(BuildContext context) {
     final formatoFecha = DateFormat('dd/MM/yyyy');
     return Scaffold(
-      appBar: AppBar(title: Text(widget.esEdicion ? 'Editar árbol' : 'Nuevo árbol')),
+      appBar: AppBar(title: Text(widget.esEdicion ? SoleraL10n.t('arb.editar_arbol') : SoleraL10n.t('arb.nuevo_arbol'))),
       body: Form(
         key: _claveFormulario,
         child: ListView(
@@ -266,25 +267,24 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
           children: [
             TextFormField(
               controller: _controladorIdentificador,
-              decoration: const InputDecoration(
-                labelText: 'Identificador municipal *',
+              decoration: InputDecoration(
+                labelText: '${SoleraL10n.t('arb.identificador_municipal')} *',
                 hintText: 'IRU-2024-PASEO-042',
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
-              validator: (v) =>
-                  (v ?? '').trim().isEmpty ? 'Identificador obligatorio' : null,
+              validator: validadorObligatorio(SoleraL10n.t('arb.identificador')),
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _controladorQr,
               decoration: InputDecoration(
-                labelText: 'Contenido del QR de la chapa',
+                labelText: SoleraL10n.t('arb.contenido_qr_chapa'),
                 hintText: 'IRU:2024-PASEO-042',
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
                   icon: const Icon(Icons.qr_code_scanner),
-                  tooltip: 'Escanear chapa',
+                  tooltip: SoleraL10n.t('arb.escanear_chapa'),
                   onPressed: _escanearQr,
                 ),
               ),
@@ -292,8 +292,8 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
             const SizedBox(height: 12),
             CampoAutocompleteCatalogo<EspecieArborea>(
               controlador: _controladorEspecie,
-              labelText: 'Especie',
-              hintText: 'Plátano de sombra, tilo, fresno…',
+              labelText: SoleraL10n.t('arb.especie'),
+              hintText: SoleraL10n.t('arb.especie_hint'),
               opcionesCompletas: catalogoEspeciesArboreas,
               buscar: buscarEspecies,
               displayStringForOption: (e) => e.nombreCanonico,
@@ -305,9 +305,9 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
                   child: TextFormField(
                     controller: _controladorPerimetro,
                     validator: validarNumeroOpcional,
-                    decoration: const InputDecoration(
-                      labelText: 'Perímetro del tronco (cm)',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: SoleraL10n.t('arb.perimetro_tronco_cm'),
+                      border: const OutlineInputBorder(),
                     ),
                     keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
@@ -318,9 +318,9 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
                   child: TextFormField(
                     controller: _controladorAltura,
                     validator: validarNumeroOpcional,
-                    decoration: const InputDecoration(
-                      labelText: 'Altura (m)',
-                      border: OutlineInputBorder(),
+                    decoration: InputDecoration(
+                      labelText: SoleraL10n.t('arb.altura_m'),
+                      border: const OutlineInputBorder(),
                     ),
                     keyboardType: const TextInputType.numberWithOptions(decimal: true),
                     inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
@@ -331,9 +331,9 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _controladorEdad,
-              decoration: const InputDecoration(
-                labelText: 'Edad estimada (años)',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('arb.edad_estimada_anos'),
+                border: const OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -341,8 +341,8 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
             const SizedBox(height: 12),
             CampoAutocompleteCatalogo<SustratoAlcorque>(
               controlador: _controladorAlcorque,
-              labelText: 'Tipo de alcorque',
-              hintText: 'Alcorque mineral, sellado con asfalto…',
+              labelText: SoleraL10n.t('arb.tipo_de_alcorque'),
+              hintText: SoleraL10n.t('arb.tipo_de_alcorque_hint'),
               opcionesCompletas: catalogoSustratosAlcorque,
               buscar: buscarSustratosAlcorque,
               displayStringForOption: (s) => s.nombreCanonico,
@@ -350,16 +350,18 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
             const SizedBox(height: 12),
             DropdownButtonFormField<EstadoArbol>(
               initialValue: _estado,
-              decoration: const InputDecoration(
-                labelText: 'Estado',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('arb.estado'),
+                border: const OutlineInputBorder(),
               ),
-              items: const [
-                DropdownMenuItem(value: EstadoArbol.sano, child: Text('Sano')),
-                DropdownMenuItem(value: EstadoArbol.observacion, child: Text('Observación')),
-                DropdownMenuItem(value: EstadoArbol.riesgo, child: Text('Riesgo')),
-                DropdownMenuItem(value: EstadoArbol.caido, child: Text('Caído / eliminado')),
-                DropdownMenuItem(value: EstadoArbol.sustituido, child: Text('Sustituido')),
+              items: [
+                for (final estado in EstadoArbol.values)
+                  DropdownMenuItem(
+                    value: estado,
+                    child: Text(estado == EstadoArbol.caido
+                        ? SoleraL10n.t('arb.estado_caido_eliminado')
+                        : etiquetaEstadoArbol(estado)),
+                  ),
               ],
               onChanged: (v) => setState(() => _estado = v ?? EstadoArbol.sano),
             ),
@@ -372,7 +374,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.gps_fixed),
               title: Text(_latitud == null
-                  ? 'Sin ubicación'
+                  ? SoleraL10n.t('arb.sin_ubicacion')
                   : '${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}'),
               trailing: _capturandoGps
                   ? const SizedBox(
@@ -381,30 +383,30 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
                       child: CircularProgressIndicator(strokeWidth: 2))
                   : TextButton(
                       onPressed: _capturarGps,
-                      child: Text(_latitud == null ? 'Capturar' : 'Recapturar'),
+                      child: Text(_latitud == null ? SoleraL10n.t('arb.capturar') : SoleraL10n.t('arb.recapturar')),
                     ),
             ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.event),
               title: Text(_fechaPlantacion == null
-                  ? 'Sin fecha de plantación'
-                  : 'Plantado ${formatoFecha.format(_fechaPlantacion!)}'),
+                  ? SoleraL10n.t('arb.sin_fecha_plantacion')
+                  : SoleraL10n.tf('arb.plantado_fecha', {'fecha': formatoFecha.format(_fechaPlantacion!)})),
               trailing: TextButton(
                 onPressed: _elegirFechaPlantacion,
-                child: Text(_fechaPlantacion == null ? 'Elegir' : 'Cambiar'),
+                child: Text(_fechaPlantacion == null ? SoleraL10n.t('arb.elegir') : SoleraL10n.t('arb.cambiar')),
               ),
             ),
             const SizedBox(height: 8),
-            const Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(SoleraL10n.t('arb.fotos'), style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 4),
             SelectorFotos(rutas: _rutasFotos, alCambiar: (r) => setState(() => _rutasFotos = r)),
             const SizedBox(height: 12),
             TextFormField(
               controller: _controladorNotas,
-              decoration: const InputDecoration(
-                labelText: 'Notas',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('arb.notas'),
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
@@ -417,7 +419,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
                       height: 16,
                       child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                   : const Icon(Icons.check),
-              label: Text(widget.esEdicion ? 'Guardar cambios' : 'Guardar árbol'),
+              label: Text(widget.esEdicion ? SoleraL10n.t('arb.guardar_cambios') : SoleraL10n.t('arb.guardar_arbol')),
             ),
           ],
         ),
@@ -440,7 +442,7 @@ class _SelectorRiesgoVta extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
         children: [
-          const SizedBox(width: 130, child: Text('Riesgo VTA')),
+          SizedBox(width: 130, child: Text(SoleraL10n.t('arb.riesgo_vta'))),
           Expanded(
             child: SegmentedButton<int?>(
               segments: const [

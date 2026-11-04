@@ -2,11 +2,11 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../servicios/backup_servicio.dart';
+import '../utiles/etiquetas_l10n.dart';
 
 /// Pantalla de backup/restore. Operaciones lentas (segundos) y
 /// destructivas — UI explícita con confirmaciones.
@@ -40,12 +40,12 @@ class _PantallaBackupState extends State<PantallaBackup> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        subject: 'Copia de seguridad de Larrea Arbolado Urbano',
+        subject: SoleraL10n.t('arb.asunto_copia_seguridad'),
       );
     } on ErrorCopiaSeguridad catch (error) {
-      _avisar('No se pudo crear la copia de seguridad. ${textoErrorCopiaSeguridad(error)}');
+      _avisar('${SoleraL10n.t('arb.no_se_pudo_crear_copia')}. ${textoErrorCopiaSeguridad(error)}');
     } catch (error) {
-      _avisar('No se pudo crear la copia de seguridad: $error');
+      _avisar('${SoleraL10n.t('arb.no_se_pudo_crear_copia')}: $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -75,10 +75,10 @@ class _PantallaBackupState extends State<PantallaBackup> {
     try {
       informe = await servicioCopiaSeguridad.validarCopia(copia);
     } on ErrorCopiaSeguridad catch (error) {
-      _avisar('No se puede restaurar esta copia. ${textoErrorCopiaSeguridad(error)}');
+      _avisar('${SoleraL10n.t('arb.no_se_puede_restaurar_copia')}. ${textoErrorCopiaSeguridad(error)}');
       return;
     } catch (error) {
-      _avisar('No se puede leer esta copia: $error');
+      _avisar('${SoleraL10n.t('arb.no_se_puede_leer_copia')}: $error');
       return;
     } finally {
       if (mounted) setState(() => _trabajando = false);
@@ -87,16 +87,16 @@ class _PantallaBackupState extends State<PantallaBackup> {
 
     final fecha = informe.fechaCreacion;
     final textoFecha = fecha == null
-        ? 'de fecha desconocida (formato antiguo)'
-        : 'del ${DateFormat("d/MM/yyyy 'a las' HH:mm").format(fecha)}';
+        ? SoleraL10n.t('arb.copia_fecha_desconocida')
+        : SoleraL10n.tf('arb.copia_del_momento', {'momento': fechaYHoraTraducida(fecha)});
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
-      titulo: 'Restaurar una copia de seguridad',
-      mensaje: 'La copia elegida es $textoFecha.\n\n'
-          'Sustituye la base de datos actual por la de la copia y añade sus fotos.\n\n'
-          'Antes se guarda automáticamente una copia del estado actual por si quieres deshacerlo.',
-      textoConfirmar: 'Restaurar',
-      textoCancelar: 'Cancelar',
+      titulo: SoleraL10n.t('arb.restaurar_copia_seguridad'),
+      mensaje: '${SoleraL10n.tf('arb.copia_elegida_es', {'fecha': textoFecha})}\n\n'
+          '${SoleraL10n.t('arb.restaurar_sustituye_bd')}\n\n'
+          '${SoleraL10n.t('arb.restaurar_guarda_estado_actual')}',
+      textoConfirmar: SoleraL10n.t('arb.restaurar'),
+      textoCancelar: SoleraL10n.t('cancelar'),
       icono: Icons.restore,
     );
     if (confirmado != true) return;
@@ -106,12 +106,12 @@ class _PantallaBackupState extends State<PantallaBackup> {
       final restauracion = await servicioCopiaSeguridad.restaurarCopia(copia);
       final respaldo = restauracion.respaldoPrevio;
       _avisar(respaldo == null
-          ? 'Restaurado.'
-          : 'Restaurado. Tu estado anterior se guardó en ${respaldo.path.split('/').last}');
+          ? SoleraL10n.t('arb.restaurado')
+          : SoleraL10n.tf('arb.restaurado_estado_anterior_en', {'fichero': respaldo.path.split('/').last}));
     } on ErrorCopiaSeguridad catch (error) {
-      _avisar('No se pudo restaurar. ${textoErrorCopiaSeguridad(error)}');
+      _avisar('${SoleraL10n.t('arb.no_se_pudo_restaurar')}. ${textoErrorCopiaSeguridad(error)}');
     } catch (error) {
-      _avisar('No se pudo restaurar: $error');
+      _avisar('${SoleraL10n.t('arb.no_se_pudo_restaurar')}: $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -122,7 +122,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final ultimo = _ultimoBackup;
     final hace = ultimo == null ? null : DateTime.now().difference(ultimo);
     return Scaffold(
-      appBar: AppBar(title: Text('Copia de seguridad')),
+      appBar: AppBar(title: Text(SoleraL10n.t('copia_de_seguridad'))),
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
@@ -146,11 +146,11 @@ class _PantallaBackupState extends State<PantallaBackup> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Última copia', style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(SoleraL10n.t('arb.ultima_copia'), style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(
                             ultimo == null
-                                ? 'Nunca. Te recomendamos hacer una antes del cierre de campaña.'
-                                : DateFormat("d/MM/yyyy 'a las' HH:mm").format(ultimo),
+                                ? SoleraL10n.t('arb.nunca_recomendamos_copia')
+                                : fechaYHoraTraducida(ultimo),
                           ),
                         ],
                       ),
@@ -160,32 +160,30 @@ class _PantallaBackupState extends State<PantallaBackup> {
               ),
             ),
             SizedBox(height: 12),
-            Text('Crear copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('arb.crear_copia'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por correo, '
-              'Drive o copiar al servidor del ayuntamiento. Útil para migraciones de equipo o fin de campaña.',
+              SoleraL10n.t('arb.crear_copia_explicacion'),
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),
             FilledButton.icon(
               icon: Icon(Icons.archive),
               onPressed: _trabajando ? null : _crearYCompartir,
-              label: Text(_trabajando ? 'Empaquetando…' : 'Crear copia y compartir'),
+              label: Text(_trabajando ? SoleraL10n.t('arb.empaquetando') : SoleraL10n.t('crear_y_compartir_backup')),
             ),
             Divider(height: 32),
-            Text('Restaurar una copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('arb.restaurar_una_copia'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Sustituye la base de datos actual por la del ZIP y añade sus fotos. Antes se comprueba '
-              'la copia y se guarda una del estado actual por si quieres deshacer.',
+              SoleraL10n.t('arb.restaurar_copia_explicacion'),
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),
             OutlinedButton.icon(
               icon: Icon(Icons.restore),
               onPressed: _trabajando ? null : _restaurar,
-              label: Text('Restaurar ZIP'),
+              label: Text(SoleraL10n.t('arb.restaurar_zip')),
             ),
           ],
         ),

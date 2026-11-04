@@ -53,16 +53,14 @@ class _PantallaTecnicosState extends State<PantallaTecnicos> {
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-      appBar: AppBar(title: Text('Técnicos / operarios')),
+      appBar: AppBar(title: Text(SoleraL10n.t('arb.tecnicos_operarios'))),
       body: _tecnicos.isEmpty
           ? Center(
               child: Padding(
                 padding: EdgeInsets.all(32),
                 child: Text(
-                  'Aún no hay técnicos registrados.\n\n'
-                  'Pulsa el botón flotante para añadir el primero. '
-                  'Cada actuación llevará la firma del técnico que la realiza, '
-                  'imprescindible para la trazabilidad municipal.',
+                  '${SoleraL10n.t('arb.aun_no_hay_tecnicos')}\n\n'
+                  '${SoleraL10n.t('arb.aun_no_hay_tecnicos_explicacion')}',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.grey),
                 ),
@@ -83,7 +81,7 @@ class _PantallaTecnicosState extends State<PantallaTecnicos> {
                     if (t.nif.isNotEmpty) 'NIF ${t.nif}',
                     if (t.empresaContratista.isNotEmpty) t.empresaContratista,
                     if (t.puedeAplicarFitosanitarios)
-                      'Carnet ${t.nivelCarnetAplicador}',
+                      SoleraL10n.tf('arb.carnet_nivel', {'nivel': _etiquetaNivelCarnet(t.nivelCarnetAplicador)}),
                   ].join(' · ')),
                   trailing: PopupMenuButton<String>(
                     onSelected: (v) {
@@ -94,7 +92,7 @@ class _PantallaTecnicosState extends State<PantallaTecnicos> {
                       PopupMenuItem(value: 'editar', child: Text(SoleraL10n.t('editar'))),
                       PopupMenuItem(
                           value: 'alternar',
-                          child: Text(t.activo ? 'Desactivar' : 'Reactivar')),
+                          child: Text(t.activo ? SoleraL10n.t('arb.desactivar') : SoleraL10n.t('arb.reactivar'))),
                     ],
                   ),
                   onTap: () => _editar(existente: t),
@@ -104,9 +102,28 @@ class _PantallaTecnicosState extends State<PantallaTecnicos> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _editar(),
         icon: Icon(Icons.person_add),
-        label: Text('Nuevo técnico'),
+        label: Text(SoleraL10n.t('arb.nuevo_tecnico')),
       ),
     );
+  }
+}
+
+/// Valores guardados en BD del nivel de carnet de aplicador.
+const _nivelesCarnet = ['basico', 'cualificado', 'fumigador', 'piloto'];
+
+/// Nombre visible de un nivel de carnet; si no es uno conocido, tal cual.
+String _etiquetaNivelCarnet(String nivel) {
+  switch (nivel) {
+    case 'basico':
+      return SoleraL10n.t('arb.carnet_basico');
+    case 'cualificado':
+      return SoleraL10n.t('arb.carnet_cualificado');
+    case 'fumigador':
+      return SoleraL10n.t('arb.carnet_fumigador');
+    case 'piloto':
+      return SoleraL10n.t('arb.carnet_piloto_aplicador');
+    default:
+      return nivel;
   }
 }
 
@@ -202,33 +219,31 @@ class _DialogoEditarTecnicoState extends State<_DialogoEditarTecnico> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.existente == null ? 'Nuevo técnico' : 'Editar técnico'),
+      title: Text(widget.existente == null ? SoleraL10n.t('arb.nuevo_tecnico') : SoleraL10n.t('arb.editar_tecnico')),
       content: SingleChildScrollView(
         child: Form(
           key: _claveFormulario,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _campo(_nombre, 'Nombre *', validador: (v) => (v ?? '').trim().isEmpty ? 'Obligatorio' : null),
-              _campo(_nif, 'NIF *', validador: (v) => (v ?? '').trim().isEmpty ? 'Obligatorio' : null),
-              _campo(_empresa, 'Empresa contratista', hint: 'Vacío si es personal del propio ayuntamiento'),
-              _campo(_cifEmpresa, 'CIF de la empresa'),
-              _campo(_telefono, 'Teléfono', tipo: TextInputType.phone),
-              _campo(_email, 'Email', tipo: TextInputType.emailAddress),
+              _campo(_nombre, '${SoleraL10n.t('arb.nombre')} *', validador: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('arb.obligatorio') : null),
+              _campo(_nif, 'NIF *', validador: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('arb.obligatorio') : null),
+              _campo(_empresa, SoleraL10n.t('arb.empresa_contratista'), hint: SoleraL10n.t('arb.empresa_contratista_hint')),
+              _campo(_cifEmpresa, SoleraL10n.t('arb.cif_de_la_empresa')),
+              _campo(_telefono, SoleraL10n.t('arb.telefono'), tipo: TextInputType.phone),
+              _campo(_email, SoleraL10n.t('arb.email'), tipo: TextInputType.emailAddress),
               SizedBox(height: 8),
-              _campo(_carnet, 'Carnet de aplicador',
-                  hint: 'Necesario para firmar tratamientos fitosanitarios'),
+              _campo(_carnet, SoleraL10n.t('arb.carnet_de_aplicador'),
+                  hint: SoleraL10n.t('arb.carnet_de_aplicador_hint')),
               DropdownButtonFormField<String>(
                 initialValue: _nivelCarnet.isEmpty ? null : _nivelCarnet,
                 decoration: InputDecoration(
-                  labelText: 'Nivel del carnet',
+                  labelText: SoleraL10n.t('arb.nivel_del_carnet'),
                   border: OutlineInputBorder(),
                 ),
-                items: const [
-                  DropdownMenuItem(value: 'basico', child: Text('Básico')),
-                  DropdownMenuItem(value: 'cualificado', child: Text('Cualificado')),
-                  DropdownMenuItem(value: 'fumigador', child: Text('Fumigador')),
-                  DropdownMenuItem(value: 'piloto', child: Text('Piloto aplicador')),
+                items: [
+                  for (final nivel in _nivelesCarnet)
+                    DropdownMenuItem(value: nivel, child: Text(_etiquetaNivelCarnet(nivel))),
                 ],
                 onChanged: (v) => setState(() => _nivelCarnet = v ?? ''),
               ),

@@ -1,0 +1,366 @@
+clave,es,eu,ca,gl
+arb.abierta,abierta,irekita,oberta,aberta
+arb.aceptar_y_rellenar,Aceptar y rellenar,Onartu eta bete,Acceptar i emplenar,Aceptar e cubrir
+arb.acerca_descripcion,"Larrea Arbolado Urbano es un gestor para ayuntamientos pequeños y medianos y empresas de jardinería que cuidan el arbolado público: inventario por chapa QR, ficha individual de cada árbol con su historial, partes de poda con fotos antes/después, identificación de plagas con IA y exportación de informes municipales en PDF.","Larrea Arbolado Urbano zuhaitz publikoak zaintzen dituzten udal txiki eta ertainentzako eta lorezaintza-enpresentzako kudeatzailea da: QR plaka bidezko inbentarioa, zuhaitz bakoitzaren fitxa bere historiarekin, inausketa-agiriak aurreko/osteko argazkiekin, izurriteen identifikazioa AA bidez eta udal-txostenak PDFra esportatzea.","Larrea Arbolado Urbano és un gestor per a ajuntaments petits i mitjans i empreses de jardineria que tenen cura de l'arbrat públic: inventari per placa QR, fitxa individual de cada arbre amb el seu historial, parts de poda amb fotos abans/després, identificació de plagues amb IA i exportació d'informes municipals en PDF.","Larrea Arbolado Urbano é un xestor para concellos pequenos e medianos e empresas de xardinaría que coidan o arboredo público: inventario por chapa QR, ficha individual de cada árbore co seu historial, partes de poda con fotos antes/despois, identificación de pragas con IA e exportación de informes municipais en PDF."
+arb.actuaciones_campana_pdf,Actuaciones de una campaña en PDF,Kanpaina bateko jarduketak PDFan,Actuacions d'una campanya en PDF,Actuacións dunha campaña en PDF
+arb.adjunta_foto_para_ia,Adjunta una foto para activar la identificación con IA.,Erantsi argazki bat AA bidezko identifikazioa aktibatzeko.,Adjunta una foto per activar la identificació amb IA.,Achega unha foto para activar a identificación con IA.
+arb.alcorque,Alcorque,Zuhaitz-zuloa,Escocell,Alcorque
+arb.alta_fecha,Alta {fecha},Alta: {fecha},Alta {fecha},Alta {fecha}
+arb.altura,Altura,Altuera,Alçada,Altura
+arb.altura_m,Altura (m),Altuera (m),Alçada (m),Altura (m)
+arb.anade_arboles_desde_mapa,Añade árboles desde el mapa primero,Gehitu zuhaitzak mapatik lehenik,Afegeix primer arbres des del mapa,Engade primeiro árbores desde o mapa
+arb.analizando_foto,Analizando foto…,Argazkia aztertzen…,Analitzant la foto…,Analizando a foto…
+arb.anular,Anular,Deuseztatu,Anul·lar,Anular
+arb.anular_factura_pregunta,"¿Anular {numero}? No se elimina, queda registrada como anulada.",{numero} deuseztatu? Ez da ezabatzen; deuseztatu gisa erregistratuta geratzen da.,Vols anul·lar {numero}? No s'elimina; queda registrada com a anul·lada.,Anular {numero}? Non se elimina; queda rexistrada como anulada.
+arb.apunta_qr_chapa,Apunta al QR de la chapa municipal del árbol. La cámara lo detecta automáticamente.,Enfokatu zuhaitzaren udal-plakako QR kodea. Kamerak automatikoki hautematen du.,Apunta al QR de la placa municipal de l'arbre. La càmera el detecta automàticament.,Apunta ao QR da chapa municipal da árbore. A cámara detéctao automaticamente.
+arb.arboles,Árboles,Zuhaitzak,Arbres,Árbores
+arb.asunto_copia_seguridad,Copia de seguridad de Larrea Arbolado Urbano,Larrea Arbolado Urbanoren segurtasun-kopia,Còpia de seguretat de Larrea Arbolado Urbano,Copia de seguridade de Larrea Arbolado Urbano
+arb.asunto_factura,Factura {numero} — {cliente},{numero} faktura — {cliente},Factura {numero} — {cliente},Factura {numero} — {cliente}
+arb.aun_no_hay_tecnicos,Aún no hay técnicos registrados.,Oraindik ez dago teknikaririk erregistratuta.,Encara no hi ha tècnics registrats.,Aínda non hai técnicos rexistrados.
+arb.aun_no_hay_tecnicos_explicacion,"Pulsa el botón flotante para añadir el primero. Cada actuación llevará la firma del técnico que la realiza, imprescindible para la trazabilidad municipal.","Sakatu botoi mugikorra lehena gehitzeko. Jarduketa bakoitzak egiten duen teknikariaren sinadura izango du, ezinbestekoa udal-trazabilitaterako.","Prem el botó flotant per afegir-ne el primer. Cada actuació portarà la signatura del tècnic que la fa, imprescindible per a la traçabilitat municipal.","Preme o botón flotante para engadir o primeiro. Cada actuación levará a sinatura do técnico que a realiza, imprescindible para a rastrexabilidade municipal."
+arb.aviso_decadas_orientativas,"Las décadas son orientativas (±2 semanas según año, microclima y altitud). Verifica con el pliego técnico de tu ayuntamiento antes de programar actuaciones.","Hamarraldiak gutxi gorabeherakoak dira (±2 aste, urtearen, mikroklimaren eta altitudearen arabera). Egiaztatu zure udalaren baldintza-agiri teknikoarekin jarduketak programatu aurretik.","Les dècades són orientatives (±2 setmanes segons l'any, el microclima i l'altitud). Comprova-ho amb el plec tècnic del teu ajuntament abans de programar actuacions.","As décadas son orientativas (±2 semanas segundo o ano, o microclima e a altitude). Compróbao co prego técnico do teu concello antes de programar actuacións."
+arb.ayuntamiento,Ayuntamiento,Udala,Ajuntament,Concello
+arb.ayuntamiento_sin_configurar,Ayuntamiento sin configurar,Udala konfiguratu gabe,Ajuntament sense configurar,Concello sen configurar
+arb.backup_bd_danada,La base de datos de la copia está dañada.,Kopiaren datu-basea hondatuta dago.,La base de dades de la còpia està malmesa.,A base de datos da copia está danada.
+arb.backup_datos_intactos,Tus datos no se han tocado.,Zure datuak ez dira ukitu.,No s'han tocat les teves dades.,Os teus datos non se tocaron.
+arb.backup_de_otra_app,La copia no es de Larrea Arbolado Urbano.,Kopia ez da Larrea Arbolado Urbanorena.,La còpia no és de Larrea Arbolado Urbano.,A copia non é de Larrea Arbolado Urbano.
+arb.backup_estado_anterior_en,Tu estado anterior está guardado en {ruta}.,Aurreko egoera hemen dago gordeta: {ruta}.,L'estat anterior està desat a {ruta}.,O teu estado anterior está gardado en {ruta}.
+arb.backup_fichero_no_existe,El fichero elegido ya no existe.,Aukeratutako fitxategia jada ez dago.,El fitxer triat ja no existeix.,O ficheiro escollido xa non existe.
+arb.backup_incompleta,La copia está incompleta o dañada.,Kopia osatu gabe edo hondatuta dago.,La còpia és incompleta o està malmesa.,A copia está incompleta ou danada.
+arb.backup_no_borres_app,No borres la app y pide ayuda antes de seguir.,"Ez ezabatu aplikazioa, eta eskatu laguntza jarraitu aurretik.",No esborris l'app i demana ajuda abans de continuar.,Non borres a app e pide axuda antes de seguir.
+arb.backup_no_es_zip,El fichero no es un ZIP válido o está dañado.,Fitxategia ez da baliozko ZIP bat edo hondatuta dago.,El fitxer no és un ZIP vàlid o està malmès.,O ficheiro non é un ZIP válido ou está danado.
+arb.backup_respaldo_previo_fallido,"No se pudo guardar antes una copia del estado actual, así que no se ha restaurado nada.","Ezin izan da aurretik uneko egoeraren kopiarik gorde; beraz, ez da ezer leheneratu.","No s'ha pogut desar abans una còpia de l'estat actual, així que no s'ha restaurat res.","Non se puido gardar antes unha copia do estado actual, así que non se restaurou nada."
+arb.backup_restauracion_revertida,La restauración falló a mitad y se ha vuelto al estado anterior.,"Leheneratzeak huts egin du erdibidean, eta aurreko egoerara itzuli da.",La restauració ha fallat a mitges i s'ha tornat a l'estat anterior.,A restauración fallou á metade e volveuse ao estado anterior.
+arb.backup_reversion_fallida,La restauración falló y no se pudo volver del todo al estado anterior.,"Leheneratzeak huts egin du, eta ezin izan da erabat itzuli aurreko egoerara.",La restauració ha fallat i no s'ha pogut tornar del tot a l'estat anterior.,A restauración fallou e non se puido volver de todo ao estado anterior.
+arb.backup_rutas_no_permitidas,La copia contiene rutas no permitidas.,Kopiak baimendu gabeko bideak ditu.,La còpia conté rutes no permeses.,A copia contén rutas non permitidas.
+arb.backup_sin_datos,Todavía no hay datos que copiar.,Oraindik ez dago kopiatzeko daturik.,Encara no hi ha dades per copiar.,Aínda non hai datos que copiar.
+arb.backup_version_mas_nueva,La copia es de una versión más nueva de la app. Actualiza la app y vuelve a intentarlo.,Kopia aplikazioaren bertsio berriago batekoa da. Eguneratu aplikazioa eta saiatu berriro.,La còpia és d'una versió més nova de l'app. Actualitza l'app i torna-ho a provar.,A copia é dunha versión máis nova da app. Actualiza a app e téntao de novo.
+arb.base_imponible,Base imponible,Zerga-oinarria,Base imposable,Base impoñible
+arb.buscar_arboles_hint,"Buscar (id, especie, QR, notas)","Bilatu (id, espeziea, QR, oharrak)","Cerca (id, espècie, QR, notes)","Buscar (id, especie, QR, notas)"
+arb.buscar_especies_hint,"Buscar plátano, palmera, jacarandá…","Bilatu platanoa, palmondoa, jakaranda…","Cerca plàtan, palmera, jacaranda…","Buscar plátano, palmeira, xacarandá…"
+arb.buscar_plagas_hint,"Buscar procesionaria, picudo, antracnosis…","Bilatu prozesionaria, kakalardo gorria, antraknosia…","Cerca processionària, morrut, antracnosi…","Buscar procesionaria, picudo, antracnose…"
+arb.buscar_por_qr,Buscar por QR,QR bidez bilatu,Cercar per QR,Buscar por QR
+arb.buscar_un_lugar,Buscar un lugar,Leku bat bilatu,Cercar un lloc,Buscar un lugar
+arb.callejero,Callejero,Kale-mapa,Carrerer,Rueiro
+arb.cambiar,Cambiar,Aldatu,Canviar,Cambiar
+arb.cambiar_camara,Cambiar cámara,Kamera aldatu,Canviar de càmera,Cambiar de cámara
+arb.campana,Campaña,Kanpaina,Campanya,Campaña
+arb.campo_obligatorio,{campo} obligatorio,{campo}: derrigorrezkoa,{campo}: obligatori,{campo}: obrigatorio
+arb.cantidad,Cantidad,Kopurua,Quantitat,Cantidade
+arb.cantidad_no_valida,"Cantidad no válida. Escríbela como 2 o 2,5.","Kopuru okerra. Idatzi 2 edo 2,5 bezala.","Quantitat no vàlida. Escriu-la com 2 o 2,5.","Cantidade non válida. Escríbea como 2 ou 2,5."
+arb.capturar,Capturar,Hartu,Capturar,Capturar
+arb.carnet_basico,Básico,Oinarrizkoa,Bàsic,Básico
+arb.carnet_cualificado,Cualificado,Kualifikatua,Qualificat,Cualificado
+arb.carnet_de_aplicador,Carnet de aplicador,Aplikatzaile-txartela,Carnet d'aplicador,Carné de aplicador
+arb.carnet_de_aplicador_hint,Necesario para firmar tratamientos fitosanitarios,Tratamendu fitosanitarioak sinatzeko beharrezkoa,Necessari per signar tractaments fitosanitaris,Necesario para asinar tratamentos fitosanitarios
+arb.carnet_fumigador,Fumigador,Fumigatzailea,Fumigador,Fumigador
+arb.carnet_nivel,Carnet {nivel},Txartela: {nivel},Carnet {nivel},Carné {nivel}
+arb.carnet_piloto_aplicador,Piloto aplicador,Pilotu aplikatzailea,Pilot aplicador,Piloto aplicador
+arb.catalogo_provisional_aviso,Catálogo provisional con fuente pública trazable. Pendiente de la firma del ingeniero técnico forestal asesor.,"Behin-behineko katalogoa, iturri publiko trazagarriarekin. Aholkulari den baso-ingeniari teknikoaren sinaduraren zain.",Catàleg provisional amb font pública traçable. Pendent de la signatura de l'enginyer tècnic forestal assessor.,Catálogo provisional con fonte pública rastrexable. Pendente da sinatura do enxeñeiro técnico forestal asesor.
+arb.catalogos_curados,Catálogos curados,Landutako katalogoak,Catàlegs curats,Catálogos revisados
+arb.catalogos_provisionales,PROVISIONALES — sin validar todavía,BEHIN-BEHINEKOAK — oraindik balidatu gabe,PROVISIONALS — encara sense validar,PROVISIONAIS — aínda sen validar
+arb.catalogos_provisionales_explicacion,"Rellenados a partir de fuentes públicas (manuales de jardinería urbana, pliegos de ayuntamientos, boletines fitosanitarios autonómicos). Antes de pasar a producción comercial deben ser validados por un ingeniero técnico forestal o de jardinería con experiencia urbana.","Iturri publikoetatik abiatuta beteak (hiri-lorezaintzako eskuliburuak, udalen baldintza-agiriak, autonomia-erkidegoetako buletin fitosanitarioak). Ekoizpen komertzialera pasatu aurretik, hiri-esperientzia duen baso- edo lorezaintza-ingeniari tekniko batek balidatu behar ditu.","Emplenats a partir de fonts públiques (manuals de jardineria urbana, plecs d'ajuntaments, butlletins fitosanitaris autonòmics). Abans de passar a producció comercial els ha de validar un enginyer tècnic forestal o de jardineria amb experiència urbana.","Cubertos a partir de fontes públicas (manuais de xardinaría urbana, pregos de concellos, boletíns fitosanitarios autonómicos). Antes de pasar a produción comercial deben ser validados por un enxeñeiro técnico forestal ou de xardinaría con experiencia urbana."
+arb.catalogos_validados,Validados por ingeniero técnico forestal,Baso-ingeniari teknikoak balidatuak,Validats per un enginyer tècnic forestal,Validados por enxeñeiro técnico forestal
+arb.chapas,Chapas,Plakak,Plaques,Chapas
+arb.cif_de_la_empresa,CIF de la empresa,Enpresaren IFK,CIF de l'empresa,CIF da empresa
+arb.cliente,Cliente,Bezeroa,Client,Cliente
+arb.codigo_postal,Código postal,Posta-kodea,Codi postal,Código postal
+arb.codigos_qr_chapas,Códigos QR para chapas de árboles,Zuhaitzen plaketarako QR kodeak,Codis QR per a plaques d'arbres,Códigos QR para chapas de árbores
+arb.compromiso_declaracion_obligatoria,"Las plagas de declaración obligatoria (picudo rojo, fuego bacteriano…) deben notificarse a los servicios fitosanitarios oficiales de tu comunidad autónoma.","Derrigorrez jakinarazi beharreko izurriteak (kakalardo gorria, su bakteriala…) zure autonomia-erkidegoko zerbitzu fitosanitario ofizialei jakinarazi behar zaizkie.","Les plagues de declaració obligatòria (morrut roig, foc bacterià…) s'han de notificar als serveis fitosanitaris oficials de la teva comunitat autònoma.","As pragas de declaración obrigatoria (picudo vermello, lume bacteriano…) deben notificarse aos servizos fitosanitarios oficiais da túa comunidade autónoma."
+arb.compromiso_fitosanitarios,"Larrea no recomienda productos fitosanitarios comerciales. Los tratamientos requieren carnet de aplicador y se registran con sustancia activa, dosis, lote y factura para auditoría municipal.","Larreak ez du produktu fitosanitario komertzialik gomendatzen. Tratamenduek aplikatzaile-txartela behar dute, eta substantzia aktiboarekin, dosiarekin, lotearekin eta fakturarekin erregistratzen dira udal-auditoriarako.","Larrea no recomana productes fitosanitaris comercials. Els tractaments requereixen carnet d'aplicador i es registren amb substància activa, dosi, lot i factura per a l'auditoria municipal.","Larrea non recomenda produtos fitosanitarios comerciais. Os tratamentos requiren carné de aplicador e rexístranse con substancia activa, dose, lote e factura para a auditoría municipal."
+arb.compromiso_formato_informe,El formato del informe municipal varía entre ayuntamientos. Verifica el pliego técnico antes de presentar.,Udal-txostenaren formatua aldatu egiten da udal batetik bestera. Egiaztatu baldintza-agiri teknikoa aurkeztu aurretik.,El format de l'informe municipal varia segons l'ajuntament. Comprova el plec tècnic abans de presentar-lo.,O formato do informe municipal varía entre concellos. Comproba o prego técnico antes de presentalo.
+arb.compromiso_privacidad,Privacidad ciudadana: las fotos pueden capturar transeúntes. Encuadra al árbol; las imágenes solo se envían a Anthropic cuando usas el botón de IA y por elección explícita del operario.,Herritarren pribatutasuna: argazkietan oinezkoak ager daitezke. Enkoadratu zuhaitza; irudiak AA botoia erabiltzen duzunean eta langileak berariaz hala aukeratuta bakarrik bidaltzen dira Anthropicera.,Privacitat ciutadana: les fotos poden captar vianants. Enquadra l'arbre; les imatges només s'envien a Anthropic quan fas servir el botó d'IA i per elecció explícita de l'operari.,Privacidade cidadá: as fotos poden capturar viandantes. Encadra a árbore; as imaxes só se envían a Anthropic cando usas o botón de IA e por elección explícita do operario.
+arb.compromiso_riesgo_sanitario,"Las plagas con riesgo sanitario público (procesionaria del pino, lagarta peluda) se priorizan en zonas escolares y paseos peatonales.","Osasun publikorako arriskua duten izurriteei (pinuaren prozesionaria, lagarta iletsua) lehentasuna ematen zaie eskola-inguruetan eta oinezkoentzako pasealekuetan.","Les plagues amb risc sanitari públic (processionària del pi, lagarta peluda) es prioritzen en zones escolars i passejos de vianants.","As pragas con risco sanitario público (procesionaria do piñeiro, lagarta peluda) priorízanse en zonas escolares e paseos peonís."
+arb.compromiso_vta,"El riesgo VTA (Visual Tree Assessment) es responsabilidad del técnico cualificado. La app facilita el registro, pero no emite dictámenes: la decisión de talar es siempre humana y firmada.","VTA arriskua (Visual Tree Assessment) teknikari kualifikatuaren erantzukizuna da. Aplikazioak erregistroa errazten du, baina ez du irizpenik ematen: zuhaitza botatzeko erabakia beti da gizakiarena eta sinatua.","El risc VTA (Visual Tree Assessment) és responsabilitat del tècnic qualificat. L'app facilita el registre, però no emet dictàmens: la decisió de talar és sempre humana i signada.","O risco VTA (Visual Tree Assessment) é responsabilidade do técnico cualificado. A app facilita o rexistro, pero non emite ditames: a decisión de talar é sempre humana e asinada."
+arb.compromisos_legales,Compromisos legales,Lege-konpromisoak,Compromisos legals,Compromisos legais
+arb.concejalia,Concejalía,Zinegotzigoa,Regidoria,Concellaría
+arb.concejalia_hint,"Medio Ambiente, Parques y Jardines…","Ingurumena, Parkeak eta Lorategiak…","Medi Ambient, Parcs i Jardins…","Medio Ambiente, Parques e Xardíns…"
+arb.concejalia_responsable,Concejalía responsable,Arduradun den zinegotzigoa,Regidoria responsable,Concellaría responsable
+arb.confianza,Confianza,Konfiantza,Confiança,Confianza
+arb.configura_clave_anthropic,Configura tu clave de Anthropic (Claude Vision),Konfiguratu zure Anthropic gakoa (Claude Vision),Configura la teva clau d'Anthropic (Claude Vision),Configura a túa clave de Anthropic (Claude Vision)
+arb.configura_primero_ayuntamiento,Configura primero los datos del ayuntamiento.,Konfiguratu lehenik udalaren datuak.,Configura primer les dades de l'ajuntament.,Configura primeiro os datos do concello.
+arb.configurar_correo_respaldo,Configurar correo de respaldo,Babeskopiarako posta konfiguratu,Configurar el correu de còpia,Configurar o correo de respaldo
+arb.contenido_qr_chapa,Contenido del QR de la chapa,Plakako QR kodearen edukia,Contingut del QR de la placa,Contido do QR da chapa
+arb.contra_plaga,contra {plaga},{plaga}ren aurka,contra {plaga},contra {plaga}
+arb.copia_del_momento,del {momento},{momento}koa,del {momento},do {momento}
+arb.copia_elegida_es,La copia elegida es {fecha}.,Aukeratutako kopia: {fecha}.,La còpia triada és {fecha}.,A copia escollida é {fecha}.
+arb.copia_fecha_desconocida,de fecha desconocida (formato antiguo),data ezezagunekoa (formatu zaharra),de data desconeguda (format antic),de data descoñecida (formato antigo)
+arb.copia_para_email,Copia para: {email},Kopia honentzat: {email},Còpia per a: {email},Copia para: {email}
+arb.crear_copia,Crear copia,Kopia sortu,Crear còpia,Crear copia
+arb.crear_copia_explicacion,"Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por correo, Drive o copiar al servidor del ayuntamiento. Útil para migraciones de equipo o fin de campaña.","Datu-basea eta argazki guztiak ZIP batean biltzen ditu; posta elektronikoz edo Drive bidez parteka dezakezu, edo udalaren zerbitzarira kopiatu. Erabilgarria gailuz aldatzean edo kanpaina amaitzean.","Empaqueta la base de dades i totes les fotos en un ZIP que pots compartir per correu, Drive o copiar al servidor de l'ajuntament. Útil per a migracions d'equip o final de campanya.","Empaqueta a base de datos e todas as fotos nun ZIP que podes compartir por correo, Drive ou copiar ao servidor do concello. Útil para migracións de equipo ou fin de campaña."
+arb.dar_de_alta,Dar de alta,Alta eman,Donar d'alta,Dar de alta
+arb.dar_de_alta_con_qr_pregunta,¿Quieres dar de alta uno nuevo con este QR?,QR kode honekin zuhaitz berri bat erregistratu nahi duzu?,Vols donar-ne d'alta un de nou amb aquest QR?,Queres dar de alta unha nova con este QR?
+arb.datos_del_ayuntamiento,Datos del ayuntamiento,Udalaren datuak,Dades de l'ajuntament,Datos do concello
+arb.datos_titular_informe,Datos del titular para el informe municipal,Udal-txostenerako titularraren datuak,Dades del titular per a l'informe municipal,Datos do titular para o informe municipal
+arb.de_mes_1,de enero,urtarrileko,de gener,de xaneiro
+arb.de_mes_10,de octubre,urriko,d'octubre,de outubro
+arb.de_mes_11,de noviembre,azaroko,de novembre,de novembro
+arb.de_mes_12,de diciembre,abenduko,de desembre,de decembro
+arb.de_mes_2,de febrero,otsaileko,de febrer,de febreiro
+arb.de_mes_3,de marzo,martxoko,de març,de marzo
+arb.de_mes_4,de abril,apirileko,d'abril,de abril
+arb.de_mes_5,de mayo,maiatzeko,de maig,de maio
+arb.de_mes_6,de junio,ekaineko,de juny,de xuño
+arb.de_mes_7,de julio,uztaileko,de juliol,de xullo
+arb.de_mes_8,de agosto,abuztuko,d'agost,de agosto
+arb.de_mes_9,de septiembre,iraileko,de setembre,de setembro
+arb.decada_de_mes,{n}.ª década {de_mes},{de_mes} {n}. hamarraldia,{n}a dècada {de_mes},{n}.ª década {de_mes}
+arb.desactivar,Desactivar,Desaktibatu,Desactivar,Desactivar
+arb.descartar,Descartar,Baztertu,Descartar,Descartar
+arb.describe_la_incidencia,Describe la incidencia,Deskribatu intzidentzia,Descriu la incidència,Describe a incidencia
+arb.descripcion,Descripción,Deskribapena,Descripció,Descrición
+arb.descripcion_incidencia_hint,"Rama caída por viento sur, golpe de furgoneta…","Hego-haizeak botatako adarra, furgoneta-kolpea…","Branca caiguda pel vent del sud, cop de furgoneta…","Póla caída polo vento sur, golpe de furgoneta…"
+arb.deseleccionar,Deseleccionar,Hautaketa kendu,Desseleccionar,Desmarcar
+arb.dia_semana_1,lunes,astelehena,dilluns,luns
+arb.dia_semana_2,martes,asteartea,dimarts,martes
+arb.dia_semana_3,miércoles,asteazkena,dimecres,mércores
+arb.dia_semana_4,jueves,osteguna,dijous,xoves
+arb.dia_semana_5,viernes,ostirala,divendres,venres
+arb.dia_semana_6,sábado,larunbata,dissabte,sábado
+arb.dia_semana_7,domingo,igandea,diumenge,domingo
+arb.direccion,Dirección,Helbidea,Adreça,Enderezo
+arb.direccion_opcional,Dirección (opcional),Helbidea (aukerakoa),Adreça (opcional),Enderezo (opcional)
+arb.dosis,Dosis,Dosia,Dosi,Dose
+arb.dosis_hint,"1 L/ha, 2 ml/árbol…","1 L/ha, 2 ml/zuhaitz…","1 L/ha, 2 ml/arbre…","1 L/ha, 2 ml/árbore…"
+arb.edad,Edad,Adina,Edat,Idade
+arb.edad_estimada_anos,Edad estimada (años),Adin estimatua (urteak),Edat estimada (anys),Idade estimada (anos)
+arb.editar_arbol,Editar árbol,Zuhaitza editatu,Editar arbre,Editar árbore
+arb.editar_tecnico,Editar técnico,Teknikaria editatu,Editar tècnic,Editar técnico
+arb.elegir,Elegir,Aukeratu,Triar,Escoller
+arb.email,Email,Helbide elektronikoa,Correu electrònic,Correo electrónico
+arb.email_ejemplo,tucorreo@ejemplo.com,zurehelbidea@adibidea.eus,elteucorreu@exemple.cat,oteucorreo@exemplo.gal
+arb.email_respaldo_explicacion,"Al crear una factura, podrás enviar una copia a esta dirección como respaldo.","Faktura bat sortzean, kopia bat bidali ahal izango duzu helbide honetara babeskopia gisa.","En crear una factura, podràs enviar-ne una còpia a aquesta adreça com a còpia de seguretat.","Ao crear unha factura, poderás enviar unha copia a este enderezo como respaldo."
+arb.empaqueta_bd_fotos_zip,Empaqueta la base de datos y las fotos en un ZIP,Datu-basea eta argazkiak ZIP batean biltzen ditu,Empaqueta la base de dades i les fotos en un ZIP,Empaqueta a base de datos e as fotos nun ZIP
+arb.empaquetando,Empaquetando…,Biltzen…,Empaquetant…,Empaquetando…
+arb.empezar,Empezar,Hasi,Comença,Comezar
+arb.empresa_contratista,Empresa contratista,Enpresa kontratista,Empresa contractista,Empresa contratista
+arb.empresa_contratista_hint,Vacío si es personal del propio ayuntamiento,"Hutsik, udaleko langilea bada",Buit si és personal del mateix ajuntament,Baleiro se é persoal do propio concello
+arb.enlaces,Enlaces,Estekak,Enllaços,Ligazóns
+arb.epoca_recomendada,Época recomendada,Gomendatutako garaia,Època recomanada,Época recomendada
+arb.error_abrir_pdf,Error al abrir el PDF: {error},Errorea PDFa irekitzean: {error},Error en obrir el PDF: {error},Erro ao abrir o PDF: {error}
+arb.error_generar_pdf,Error al generar el PDF: {error},Errorea PDFa sortzean: {error},Error en generar el PDF: {error},Erro ao xerar o PDF: {error}
+arb.error_inesperado,Error inesperado: {error},Ustekabeko errorea: {error},Error inesperat: {error},Erro inesperado: {error}
+arb.escanear_chapa,Escanear chapa,Plaka eskaneatu,Escanejar placa,Escanear chapa
+arb.escanear_chapa_qr,Escanear chapa QR,Plakaren QR kodea eskaneatu,Escanejar placa QR,Escanear chapa QR
+arb.especie,Especie,Espeziea,Espècie,Especie
+arb.especie_hint,"Plátano de sombra, tilo, fresno…","Platanoa, ezkia, lizarra…","Plàtan, til·ler, freixe…","Plátano de sombra, tileiro, freixo…"
+arb.especies,Especies,Espezieak,Espècies,Especies
+arb.especies_objetivo,Especies objetivo,Xede diren espezieak,Espècies objectiu,Especies obxectivo
+arb.esri_satelite,Esri satélite,Esri satelitea,Esri satèl·lit,Esri satélite
+arb.estado,Estado,Egoera,Estat,Estado
+arb.estado_caido,Caído,Erorita,Caigut,Caída
+arb.estado_caido_eliminado,Caído / eliminado,Erorita / kenduta,Caigut / eliminat,Caída / eliminada
+arb.estado_observacion,Observación,Behaketan,En observació,En observación
+arb.estado_observado,Estado observado,Ikusitako egoera,Estat observat,Estado observado
+arb.estado_riesgo,Riesgo,Arriskua,Risc,Risco
+arb.estado_sano,Sano,Osasuntsua,Sa,Sa
+arb.estado_sustituido,Sustituido,Ordezkatua,Substituït,Substituída
+arb.facilidad_de_riego,Facilidad de riego,Ureztatzeko erraztasuna,Facilitat de reg,Facilidade de rega
+arb.factura_anulada,anulada,deuseztatuta,anul·lada,anulada
+arb.factura_emitida,emitida,jaulkia,emesa,emitida
+arb.factura_pagada,pagada,ordainduta,pagada,pagada
+arb.factura_vencida,vencida,epea igarota,vençuda,vencida
+arb.facturacion,Facturación,Fakturazioa,Facturació,Facturación
+arb.falta_permiso_ubicacion,Falta permiso de ubicación o GPS desactivado.,Kokapen-baimena falta da edo GPSa desaktibatuta dago.,Falta el permís d'ubicació o el GPS està desactivat.,Falta o permiso de localización ou o GPS está desactivado.
+arb.familia,Familia,Familia,Família,Familia
+arb.familia_caducifolio,Caducifolio,Hostogalkorra,Caducifoli,Caducifolio
+arb.familia_conifera,Conífera,Konifera,Conífera,Conífera
+arb.familia_larrea,Familia Larrea,Larrea familia,Família Larrea,Familia Larrea
+arb.familia_larrea_texto,"Larrea Arbolado Urbano forma parte de la suite Larrea, de la Colección Nuevo Ser. Apps hermanas: Larrea Viticultura (libro PAC en bodegas), Larrea Apícola (libro REGA en apicultura), Larrea (general — frutales, trufa, olivar), Larrea Quesera y Larrea Aceitera.","Larrea Arbolado Urbano Larrea suitearen parte da, Colección Nuevo Ser bildumakoa. Aplikazio ahizpak: Larrea Viticultura (NPBko liburua upeltegietan), Larrea Apícola (REGA liburua erlezaintzan), Larrea (orokorra — fruta-arbolak, boilurra, olibondoa), Larrea Quesera eta Larrea Aceitera.","Larrea Arbolado Urbano forma part de la suite Larrea, de la Colección Nuevo Ser. Apps germanes: Larrea Viticultura (llibre PAC als cellers), Larrea Apícola (llibre REGA en apicultura), Larrea (general — fruiters, tòfona, olivera), Larrea Quesera i Larrea Aceitera.","Larrea Arbolado Urbano forma parte da suite Larrea, da Colección Nuevo Ser. Apps irmás: Larrea Viticultura (libro PAC en adegas), Larrea Apícola (libro REGA en apicultura), Larrea (xeral — froiteiras, trufa, oliveiral), Larrea Quesera e Larrea Aceitera."
+arb.familia_palmera,Palmera,Palmondoa,Palmera,Palmeira
+arb.familia_perenne,Perenne,Hosto iraunkorra,Perennifoli,Perennifolio
+arb.familia_semicaduco,Semi-caduco,Erdi-hostogalkorra,Semicaducifoli,Semicaducifolio
+arb.fecha_a_las_hora,{fecha} a las {hora},"{fecha}, {hora}",{fecha} a les {hora},{fecha} ás {hora}
+arb.fecha_hoy,{dia_semana} {dia} {de_mes},"{dia_semana}, {de_mes} {dia}a",{dia_semana} {dia} {de_mes},{dia_semana} {dia} {de_mes}
+arb.fenologia,Fenología,Fenologia,Fenologia,Fenoloxía
+arb.fenologia_hint,"en hoja, en flor, desnudo, con frutos…","hostoduna, loretan, hosto gabe, fruituekin…","amb fulla, en flor, nu, amb fruits…","con folla, en flor, espido, con froitos…"
+arb.foto_adjunta_no_existe,La foto adjunta ya no existe en el dispositivo.,Erantsitako argazkia jada ez dago gailuan.,La foto adjunta ja no existeix al dispositiu.,A foto achegada xa non existe no dispositivo.
+arb.fotos,Fotos,Argazkiak,Fotos,Fotos
+arb.fotos_antes,Fotos antes,Aurreko argazkiak,Fotos abans,Fotos antes
+arb.fotos_despues,Fotos después,Osteko argazkiak,Fotos després,Fotos despois
+arb.generando,Generando…,Sortzen…,Generant…,Xerando…
+arb.generar_pdf_n,Generar PDF ({n}),PDFa sortu ({n}),Generar PDF ({n}),Xerar PDF ({n})
+arb.generar_qr,Generar QR,QR kodeak sortu,Generar QR,Xerar QR
+arb.generar_qr_explicacion,"Se genera un PDF con los QR de los árboles seleccionados, listo para imprimir y colocar como chapa.","Hautatutako zuhaitzen QR kodeekin PDF bat sortzen da, inprimatu eta plaka gisa jartzeko prest.","Es genera un PDF amb els QR dels arbres seleccionats, a punt per imprimir i col·locar com a placa.","Xérase un PDF cos QR das árbores seleccionadas, listo para imprimir e colocar como chapa."
+arb.generar_y_abrir,Generar y abrir,Sortu eta ireki,Generar i obrir,Xerar e abrir
+arb.generar_y_compartir,Generar y compartir,Sortu eta partekatu,Generar i compartir,Xerar e compartir
+arb.gps_no_disponible_formulario,GPS no disponible — captura la ubicación desde el formulario.,GPSa ez dago erabilgarri — hartu kokapena formulariotik.,GPS no disponible — captura la ubicació des del formulari.,GPS non dispoñible — captura a localización desde o formulario.
+arb.guardar_arbol,Guardar árbol,Zuhaitza gorde,Desar l'arbre,Gardar a árbore
+arb.guardar_cambios,Guardar cambios,Aldaketak gorde,Desar els canvis,Gardar os cambios
+arb.guia,Guía,Gida,Guia,Guía
+arb.guia_de_plagas,Guía de plagas,Izurriteen gida,Guia de plagues,Guía de pragas
+arb.historico,Histórico,Historia,Historial,Historial
+arb.hoy,Hoy,Gaur,Avui,Hoxe
+arb.ia_coincide_catalogo_provisional,Coincide con el catálogo provisional. El catálogo aún no lo ha validado un ingeniero técnico forestal: usa tu criterio.,Behin-behineko katalogoarekin bat dator. Baso-ingeniari tekniko batek oraindik ez du katalogoa balidatu: erabili zure irizpidea.,Coincideix amb el catàleg provisional. Un enginyer tècnic forestal encara no ha validat el catàleg: fes servir el teu criteri.,Coincide co catálogo provisional. Ningún enxeñeiro técnico forestal validou aínda o catálogo: usa o teu criterio.
+arb.ia_coincide_catalogo_validado,El diagnóstico coincide con el catálogo de Larrea,Diagnostikoa Larrearen katalogoarekin bat dator,El diagnòstic coincideix amb el catàleg de Larrea,O diagnóstico coincide co catálogo de Larrea
+arb.ia_declaracion_obligatoria_banner,"PLAGA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los servicios fitosanitarios oficiales de tu comunidad autónoma.","DERRIGORREZ JAKINARAZI BEHARREKO IZURRITEA. Diagnostikoa berresten baduzu, zure autonomia-erkidegoko zerbitzu fitosanitario ofizialei jakinarazi behar diezu.","PLAGA DE DECLARACIÓ OBLIGATÒRIA. Si confirmes el diagnòstic, l'has de notificar als serveis fitosanitaris oficials de la teva comunitat autònoma.","PRAGA DE DECLARACIÓN OBRIGATORIA. Se confirmas o diagnóstico, debes notificalo aos servizos fitosanitarios oficiais da túa comunidade autónoma."
+arb.ia_descripcion,"Larrea Arbolado Urbano puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico fitosanitario, la severidad y el manejo cultural. Si detecta una plaga de declaración obligatoria (picudo rojo, fuego bacteriano) o riesgo sanitario público (procesionaria, lagarta peluda), lo destaca con un aviso. Cuidado con la privacidad ciudadana: las fotos pueden capturar transeúntes; encuadra al árbol.","Larrea Arbolado Urbanok Anthropic-en Claude AI erabil dezake intzidentzia bati eransten diozun argazkia aztertzeko eta diagnostiko fitosanitarioa, larritasuna eta kultura-maneiua proposatzeko. Derrigorrez jakinarazi beharreko izurriterik (kakalardo gorria, su bakteriala) edo osasun publikorako arriskurik (prozesionaria, lagarta iletsua) hautematen badu, abisu batekin nabarmentzen du. Kontuz herritarren pribatutasunarekin: argazkietan oinezkoak ager daitezke; enkoadratu zuhaitza.","Larrea Arbolado Urbano pot fer servir Claude AI d'Anthropic per analitzar la foto que adjuntes a una incidència i proposar un diagnòstic fitosanitari, la severitat i el maneig cultural. Si detecta una plaga de declaració obligatòria (morrut roig, foc bacterià) o un risc sanitari públic (processionària, lagarta peluda), ho destaca amb un avís. Compte amb la privacitat ciutadana: les fotos poden captar vianants; enquadra l'arbre.","Larrea Arbolado Urbano pode usar Claude AI de Anthropic para analizar a foto que achegas a unha incidencia e propor un diagnóstico fitosanitario, a severidade e o manexo cultural. Se detecta unha praga de declaración obrigatoria (picudo vermello, lume bacteriano) ou risco sanitario público (procesionaria, lagarta peluda), destácao cun aviso. Coidado coa privacidade cidadá: as fotos poden capturar viandantes; encadra a árbore."
+arb.ia_diagnostico_libre,Diagnóstico libre — no coincide con el catálogo curado de Larrea Arbolado Urbano. Revisa con criterio antes de aceptar.,Diagnostiko librea — ez dator bat Larrea Arbolado Urbanoren katalogo landuarekin. Berrikusi irizpidez onartu aurretik.,Diagnòstic lliure — no coincideix amb el catàleg curat de Larrea Arbolado Urbano. Revisa-ho amb criteri abans d'acceptar.,Diagnóstico libre — non coincide co catálogo revisado de Larrea Arbolado Urbano. Revisa con criterio antes de aceptar.
+arb.ia_que_identifica,Identifica especies y plagas urbanas por foto,Hiriko espezieak eta izurriteak argazki bidez identifikatzen ditu,Identifica espècies i plagues urbanes per foto,Identifica especies e pragas urbanas por foto
+arb.ia_sugiere_tu_decides,"La IA sugiere — tú decides. Antes de aplicar fitosanitarios, consulta los pliegos técnicos de tu ayuntamiento y el carnet de aplicador requerido. Larrea Arbolado Urbano no recomienda productos comerciales en v0.1.","AAk iradokitzen du — zuk erabakitzen duzu. Fitosanitarioak aplikatu aurretik, kontsultatu zure udalaren baldintza-agiri teknikoak eta behar den aplikatzaile-txartela. Larrea Arbolado Urbanok ez du produktu komertzialik gomendatzen v0.1 bertsioan.","La IA suggereix — tu decideixes. Abans d'aplicar fitosanitaris, consulta els plecs tècnics del teu ajuntament i el carnet d'aplicador requerit. Larrea Arbolado Urbano no recomana productes comercials a la v0.1.","A IA suxire — ti decides. Antes de aplicar fitosanitarios, consulta os pregos técnicos do teu concello e o carné de aplicador requirido. Larrea Arbolado Urbano non recomenda produtos comerciais na v0.1."
+arb.identificador,Identificador,Identifikatzailea,Identificador,Identificador
+arb.identificador_municipal,Identificador municipal,Udal-identifikatzailea,Identificador municipal,Identificador municipal
+arb.identificar_con_ia,Identificar con IA,AA bidez identifikatu,Identificar amb IA,Identificar con IA
+arb.incidencia,Incidencia,Intzidentzia,Incidència,Incidencia
+arb.incidencia_alcorque_danado,Alcorque dañado,Zuhaitz-zulo kaltetua,Escocell malmès,Alcorque danado
+arb.incidencia_golpe_vehiculo,Golpe de vehículo,Ibilgailu-kolpea,Cop de vehicle,Golpe de vehículo
+arb.incidencia_otro,Otro,Bestelakoa,Altres,Outro
+arb.incidencia_raices_acera,Raíces en acera,Sustraiak espaloian,Arrels a la vorera,Raíces na beirarrúa
+arb.incidencia_riesgo_caida,Riesgo de caída,Erortzeko arriskua,Risc de caiguda,Risco de caída
+arb.incidencia_temporal,Temporal / viento,Ekaitza / haizea,Temporal / vent,Temporal / vento
+arb.incidencia_vandalismo,Vandalismo,Bandalismoa,Vandalisme,Vandalismo
+arb.informe_municipal,Informe municipal,Udal-txostena,Informe municipal,Informe municipal
+arb.informe_recoge,"El informe recoge censo por especie, inspecciones, podas, tratamientos fitosanitarios e incidencias del periodo.","Txostenak aldiko espezieen araberako errolda, ikuskapenak, inausketak, tratamendu fitosanitarioak eta intzidentziak biltzen ditu.","L'informe recull el cens per espècie, inspeccions, podes, tractaments fitosanitaris i incidències del període.","O informe recolle o censo por especie, inspeccións, podas, tratamentos fitosanitarios e incidencias do período."
+arb.informe_requiere_datos_ayuntamiento,"El informe municipal requiere los datos del ayuntamiento (nombre, CIF, municipio, concejalía…). Configúralos antes de generar.","Udal-txostenak udalaren datuak behar ditu (izena, IFK, udalerria, zinegotzigoa…). Konfiguratu itzazu sortu aurretik.","L'informe municipal requereix les dades de l'ajuntament (nom, CIF, municipi, regidoria…). Configura-les abans de generar-lo.","O informe municipal require os datos do concello (nome, CIF, municipio, concellaría…). Configúraos antes de xeralo."
+arb.informe_verifica_formato,Verifica el formato exigido por el pliego técnico de tu ayuntamiento antes de presentar el documento — la regulación varía entre municipios.,Egiaztatu zure udalaren baldintza-agiri teknikoak eskatzen duen formatua dokumentua aurkeztu aurretik — araudia aldatu egiten da udalerri batetik bestera.,Comprova el format que exigeix el plec tècnic del teu ajuntament abans de presentar el document — la regulació varia segons el municipi.,Comproba o formato que esixe o prego técnico do teu concello antes de presentar o documento — a regulación varía entre municipios.
+arb.informes,Informes,Txostenak,Informes,Informes
+arb.inspeccion,Inspección,Ikuskapena,Inspecció,Inspección
+arb.intensidad_valor,Intensidad: {intensidad},Intentsitatea: {intensidad},Intensitat: {intensidad},Intensidade: {intensidad}
+arb.iva,IVA,BEZ,IVA,IVE
+arb.iva_porcentaje,IVA {porcentaje} %,BEZ % {porcentaje},IVA {porcentaje} %,IVE {porcentaje} %
+arb.lineas_de_factura,Líneas de factura,Faktura-lerroak,Línies de factura,Liñas de factura
+arb.linterna,Linterna,Linterna,Llanterna,Lanterna
+arb.lote_del_producto,Lote del producto,Produktuaren lotea,Lot del producte,Lote do produto
+arb.manejo_cultural,Manejo cultural,Kultura-maneiua,Maneig cultural,Manexo cultural
+arb.manejo_cultural_sugerido,Manejo cultural sugerido,Iradokitako kultura-maneiua,Maneig cultural suggerit,Manexo cultural suxerido
+arb.marcar_pagada,Marcar pagada,Ordaindutzat markatu,Marcar com a pagada,Marcar como pagada
+arb.motivo,Motivo,Arrazoia,Motiu,Motivo
+arb.motivo_poda_hint,"limpieza anual, rama caída, despeje vial…","urteko garbiketa, adar erori bat, bidea garbitzea…","neteja anual, branca caiguda, alliberament de via…","limpeza anual, póla caída, despexe viario…"
+arb.municipio,Municipio,Udalerria,Municipi,Municipio
+arb.municipio_valor,Municipio: {municipio},Udalerria: {municipio},Municipi: {municipio},Municipio: {municipio}
+arb.n_anos,{n} años,{n} urte,{n} anys,{n} anos
+arb.nif_opcional,NIF (opcional),IFZ (aukerakoa),NIF (opcional),NIF (opcional)
+arb.ningun_arbol_con_qr,No hay ningún árbol con el QR «{qr}» en el inventario.,Inbentarioan ez dago «{qr}» QR kodea duen zuhaitzik.,No hi ha cap arbre amb el QR «{qr}» a l'inventari.,Non hai ningunha árbore co QR «{qr}» no inventario.
+arb.nivel_alta,Alta,Altua,Alta,Alta
+arb.nivel_baja,Baja,Baxua,Baixa,Baixa
+arb.nivel_del_carnet,Nivel del carnet,Txartelaren maila,Nivell del carnet,Nivel do carné
+arb.nivel_media,Media,Ertaina,Mitjana,Media
+arb.nivel_muy_alta,Muy alta,Oso altua,Molt alta,Moi alta
+arb.nivel_nula,Nula,Hutsa,Nul·la,Nula
+arb.nivel_variable,Variable,Aldakorra,Variable,Variable
+arb.no_hay_arboles,No hay árboles,Ez dago zuhaitzik,No hi ha arbres,Non hai árbores
+arb.no_hay_clave_anthropic,No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.,Ez dago Anthropic gakorik konfiguratuta. Joan Ezarpenak → AA bidezko identifikazioa atalera.,No hi ha cap clau d'Anthropic configurada. Ves a Configuració → Identificació amb IA.,Non hai ningunha clave de Anthropic configurada. Vai a Axustes → Identificación con IA.
+arb.no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
+arb.no_se_pudo_crear_copia,No se pudo crear la copia de seguridad,Ezin izan da segurtasun-kopia sortu,No s'ha pogut crear la còpia de seguretat,Non se puido crear a copia de seguridade
+arb.no_se_pudo_restaurar,No se pudo restaurar,Ezin izan da leheneratu,No s'ha pogut restaurar,Non se puido restaurar
+arb.no_se_puede_leer_copia,No se puede leer esta copia,Ezin da kopia hau irakurri,No es pot llegir aquesta còpia,Non se pode ler esta copia
+arb.no_se_puede_restaurar_copia,No se puede restaurar esta copia,Ezin da kopia hau leheneratu,No es pot restaurar aquesta còpia,Non se pode restaurar esta copia
+arb.nombre,Nombre,Izena,Nom,Nome
+arb.nombre_cientifico,Nombre científico,Izen zientifikoa,Nom científic,Nome científico
+arb.nombre_comun,Nombre común,Izen arrunta,Nom comú,Nome común
+arb.nombre_concejal_responsable,Nombre del concejal/a responsable,Zinegotzi arduradunaren izena,Nom del regidor/a responsable,Nome do concelleiro/a responsable
+arb.nombre_del_ayuntamiento,Nombre del ayuntamiento,Udalaren izena,Nom de l'ajuntament,Nome do concello
+arb.nota_declaracion_obligatoria,Plaga de declaración obligatoria: hay que notificarla a los servicios fitosanitarios oficiales.,Derrigorrez jakinarazi beharreko izurritea: zerbitzu fitosanitario ofizialei jakinarazi behar zaie.,Plaga de declaració obligatòria: cal notificar-la als serveis fitosanitaris oficials.,Praga de declaración obrigatoria: hai que notificala aos servizos fitosanitarios oficiais.
+arb.nota_diagnostico_sugerido,Diagnóstico sugerido por Claude AI (confianza {confianza}),Claude AIk iradokitako diagnostikoa (konfiantza: {confianza}),Diagnòstic suggerit per Claude AI (confiança {confianza}),Diagnóstico suxerido por Claude AI (confianza {confianza})
+arb.nota_riesgo_sanitario,Riesgo sanitario público: vigilar zonas escolares y peatonales.,Osasun publikorako arriskua: zaindu eskola-inguruak eta oinezkoen guneak.,Risc sanitari públic: vigilar zones escolars i de vianants.,Risco sanitario público: vixiar zonas escolares e peonís.
+arb.notas,Notas,Oharrak,Notes,Notas
+arb.nueva_incidencia,Nueva incidencia,Intzidentzia berria,Incidència nova,Nova incidencia
+arb.nueva_inspeccion,Nueva inspección,Ikuskapen berria,Inspecció nova,Nova inspección
+arb.nueva_poda,Nueva poda,Inausketa berria,Poda nova,Nova poda
+arb.nuevo_arbol,Nuevo árbol,Zuhaitz berria,Arbre nou,Nova árbore
+arb.nuevo_tecnico,Nuevo técnico,Teknikari berria,Tècnic nou,Novo técnico
+arb.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Tractament nou,Novo tratamento
+arb.numero_de_factura,N.º de factura,Faktura-zk.,Núm. de factura,N.º de factura
+arb.nunca_recomendamos_copia,Nunca. Te recomendamos hacer una antes del cierre de campaña.,Inoiz ez. Kanpaina itxi aurretik bat egitea gomendatzen dizugu.,Mai. Et recomanem fer-ne una abans del tancament de campanya.,Nunca. Recomendámosche facer unha antes do peche de campaña.
+arb.obligatorio,Obligatorio,Derrigorrezkoa,Obligatori,Obrigatorio
+arb.onboarding_ia_texto,"Hazle una foto a un árbol, una rama o una hoja con síntomas y la IA propone un diagnóstico (procesionaria, picudo rojo, antracnosis, fuego bacteriano…). Las plagas de declaración obligatoria y las que tienen riesgo sanitario público se destacan automáticamente.","Atera argazki bat sintomak dituen zuhaitz, adar edo hosto bati, eta AAk diagnostiko bat proposatuko du (prozesionaria, kakalardo gorria, antraknosia, su bakteriala…). Derrigorrez jakinarazi beharreko izurriteak eta osasun publikorako arriskua dutenak automatikoki nabarmentzen dira.","Fes una foto a un arbre, una branca o una fulla amb símptomes i la IA proposa un diagnòstic (processionària, morrut roig, antracnosi, foc bacterià…). Les plagues de declaració obligatòria i les que comporten risc sanitari públic es destaquen automàticament.","Fai unha foto a unha árbore, unha póla ou unha folla con síntomas e a IA propón un diagnóstico (procesionaria, picudo vermello, antracnose, lume bacteriano…). As pragas de declaración obrigatoria e as que teñen risco sanitario público destácanse automaticamente."
+arb.onboarding_ia_titulo,Diagnóstico con IA por foto,AA bidezko diagnostikoa argazkitik,Diagnòstic amb IA per foto,Diagnóstico con IA por foto
+arb.onboarding_informes_texto,"Cierra la campaña con un informe consolidado para la concejalía: censo por especie, todas las inspecciones, podas, tratamientos e incidencias del periodo, con firma del técnico responsable. PDF listo para presentar.","Itxi kanpaina zinegotzigoarentzako txosten bateratu batekin: espezieen araberako errolda, aldiko ikuskapen, inausketa, tratamendu eta intzidentzia guztiak, teknikari arduradunaren sinadurarekin. PDFa aurkezteko prest.","Tanca la campanya amb un informe consolidat per a la regidoria: cens per espècie, totes les inspeccions, podes, tractaments i incidències del període, amb la signatura del tècnic responsable. PDF a punt per presentar.","Pecha a campaña cun informe consolidado para a concellaría: censo por especie, todas as inspeccións, podas, tratamentos e incidencias do período, coa sinatura do técnico responsable. PDF listo para presentar."
+arb.onboarding_informes_titulo,Informes municipales firmables,Sina daitezkeen udal-txostenak,Informes municipals signables,Informes municipais asinables
+arb.onboarding_inventario_texto,"Cada árbol lleva una chapa QR municipal. Escanéala para ver todo su historial al instante: edad, especie, podas, tratamientos, incidencias. La inspección pasa de horas a 30 segundos por árbol.","Zuhaitz bakoitzak udal-plaka bat darama QR kodearekin. Eskaneatu haren historia osoa berehala ikusteko: adina, espeziea, inausketak, tratamenduak, intzidentziak. Ikuskapena ordu batzuetatik 30 segundora pasatzen da zuhaitz bakoitzeko.","Cada arbre porta una placa QR municipal. Escaneja-la per veure'n tot l'historial a l'instant: edat, espècie, podes, tractaments, incidències. La inspecció passa d'hores a 30 segons per arbre.","Cada árbore leva unha chapa QR municipal. Escanéaa para ver todo o seu historial ao instante: idade, especie, podas, tratamentos, incidencias. A inspección pasa de horas a 30 segundos por árbore."
+arb.onboarding_inventario_titulo,Inventario por chapa QR,Inbentarioa QR plaka bidez,Inventari per placa QR,Inventario por chapa QR
+arb.perimetro,Perímetro,Perimetroa,Perímetre,Perímetro
+arb.perimetro_tronco_cm,Perímetro del tronco (cm),Enborraren perimetroa (cm),Perímetre del tronc (cm),Perímetro do tronco (cm)
+arb.permeabilidad_valor,Permeabilidad: {permeabilidad},Iragazkortasuna: {permeabilidad},Permeabilitat: {permeabilidad},Permeabilidade: {permeabilidad}
+arb.personas_autorizadas_firmar,Personas autorizadas a firmar partes,Jarduketa-agiriak sinatzeko baimena duten pertsonak,Persones autoritzades a signar parts,Persoas autorizadas para asinar partes
+arb.plaga_declaracion_obligatoria_aviso,Esta plaga es de declaración obligatoria al servicio fitosanitario oficial.,Izurrite hau derrigorrez jakinarazi behar zaio zerbitzu fitosanitario ofizialari.,Aquesta plaga és de declaració obligatòria al servei fitosanitari oficial.,Esta praga é de declaración obrigatoria ao servizo fitosanitario oficial.
+arb.plaga_declaracion_obligatoria_banner,PLAGA DE DECLARACIÓN OBLIGATORIA al servicio fitosanitario oficial.,DERRIGORREZ JAKINARAZI BEHARREKO IZURRITEA zerbitzu fitosanitario ofizialari.,PLAGA DE DECLARACIÓ OBLIGATÒRIA al servei fitosanitari oficial.,PRAGA DE DECLARACIÓN OBRIGATORIA ao servizo fitosanitario oficial.
+arb.plaga_objetivo,Plaga / enfermedad objetivo,Izurrite / gaixotasun xedea,Plaga / malaltia objectiu,Praga / enfermidade obxectivo
+arb.plaga_objetivo_hint,"procesionaria, picudo, antracnosis…","prozesionaria, kakalardo gorria, antraknosia…","processionària, morrut, antracnosi…","procesionaria, picudo, antracnose…"
+arb.plagas,Plagas,Izurriteak,Plagues,Pragas
+arb.plantacion,Plantación,Landaketa,Plantació,Plantación
+arb.plantado_fecha,Plantado {fecha},Landatua: {fecha},Plantat el {fecha},Plantada o {fecha}
+arb.plazo_seguridad_dias,Plazo de seguridad (días),Segurtasun-epea (egunak),Termini de seguretat (dies),Prazo de seguridade (días)
+arb.poda,Poda,Inausketa,Poda,Poda
+arb.poda_controvertida_aviso,"Tipo de poda controvertido, con debate técnico abierto. Justifica la elección en las notas para inspección.","Inausketa-mota eztabaidagarria, eztabaida tekniko irekiarekin. Justifikatu aukera oharretan, ikuskapenerako.","Tipus de poda controvertit, amb debat tècnic obert. Justifica l'elecció a les notes per a la inspecció.","Tipo de poda controvertido, con debate técnico aberto. Xustifica a elección nas notas para a inspección."
+arb.poda_controvertida_guia,"Tipo de poda controvertido, con debate técnico abierto. Justifica la elección por escrito ante una inspección.","Inausketa-mota eztabaidagarria, eztabaida tekniko irekiarekin. Justifikatu aukera idatziz ikuskapen baten aurrean.","Tipus de poda controvertit, amb debat tècnic obert. Justifica l'elecció per escrit davant d'una inspecció.","Tipo de poda controvertido, con debate técnico aberto. Xustifica a elección por escrito ante unha inspección."
+arb.precio_eur,Precio (€),Prezioa (€),Preu (€),Prezo (€)
+arb.precio_no_valido,"Precio no válido. Escríbelo como 1.200,50.","Prezio okerra. Idatzi 1.200,50 bezala.","Preu no vàlid. Escriu-lo com 1.200,50.","Prezo non válido. Escríbeo como 1.200,50."
+arb.provincia,Provincia,Probintzia,Província,Provincia
+arb.proximas_actuaciones_en_zona,Próximas actuaciones en zona {zona}.,"Hurrengo jarduketak, {zona} eremuan.",Properes actuacions a la zona {zona}.,Próximas actuacións na zona {zona}.
+arb.qr_de_la_chapa,QR de la chapa,Plakaren QR kodea,QR de la placa,QR da chapa
+arb.qr_no_reconocido,QR no reconocido,QR kodea ez da ezagutu,QR no reconegut,QR non recoñecido
+arb.reactivar,Reactivar,Berriz aktibatu,Reactivar,Reactivar
+arb.recapturar,Recapturar,Berriz hartu,Tornar a capturar,Volver capturar
+arb.registros,Registros,Erregistroak,Registres,Rexistros
+arb.requerido,Requerido,Beharrezkoa,Obligatori,Obrigatorio
+arb.respaldo_email,Respaldo: {email},Babeskopia: {email},Còpia: {email},Respaldo: {email}
+arb.restaurado,Restaurado.,Leheneratuta.,Restaurat.,Restaurado.
+arb.restaurado_estado_anterior_en,Restaurado. Tu estado anterior se guardó en {fichero},Leheneratuta. Aurreko egoera hemen gorde da: {fichero},Restaurat. L'estat anterior s'ha desat a {fichero},Restaurado. O teu estado anterior gardouse en {fichero}
+arb.restaurar,Restaurar,Leheneratu,Restaurar,Restaurar
+arb.restaurar_copia_explicacion,Sustituye la base de datos actual por la del ZIP y añade sus fotos. Antes se comprueba la copia y se guarda una del estado actual por si quieres deshacer.,"Uneko datu-basea ZIPekoarekin ordezten du eta haren argazkiak gehitzen ditu. Aurretik, kopia egiaztatzen da eta uneko egoeraren kopia bat gordetzen da, desegin nahi baduzu ere.",Substitueix la base de dades actual per la del ZIP i n'afegeix les fotos. Abans es comprova la còpia i se'n desa una de l'estat actual per si vols desfer.,Substitúe a base de datos actual pola do ZIP e engade as súas fotos. Antes compróbase a copia e gárdase unha do estado actual por se queres desfacer.
+arb.restaurar_copia_seguridad,Restaurar una copia de seguridad,Segurtasun-kopia bat leheneratu,Restaurar una còpia de seguretat,Restaurar unha copia de seguridade
+arb.restaurar_guarda_estado_actual,Antes se guarda automáticamente una copia del estado actual por si quieres deshacerlo.,"Aurretik, uneko egoeraren kopia bat gordetzen da automatikoki, desegin nahi baduzu ere.",Abans es desa automàticament una còpia de l'estat actual per si ho vols desfer.,Antes gárdase automaticamente unha copia do estado actual por se queres desfacelo.
+arb.restaurar_sustituye_bd,Sustituye la base de datos actual por la de la copia y añade sus fotos.,Uneko datu-basea kopiakoarekin ordezten du eta haren argazkiak gehitzen ditu.,Substitueix la base de dades actual per la de la còpia i n'afegeix les fotos.,Substitúe a base de datos actual pola da copia e engade as súas fotos.
+arb.restaurar_una_copia,Restaurar una copia,Kopia bat leheneratu,Restaurar una còpia,Restaurar unha copia
+arb.restaurar_zip,Restaurar ZIP,ZIPa leheneratu,Restaurar ZIP,Restaurar ZIP
+arb.resuelta,resuelta,konponduta,resolta,resolta
+arb.resultado_de_la_ia,Resultado de la IA,AAren emaitza,Resultat de la IA,Resultado da IA
+arb.resumen_catalogos,"{total} filas en 5 catálogos: {especies} especies, {plagas} plagas/patologías, {podas} tipos de poda, {sustratos} sustratos, {tareas} tareas de calendario.","{total} errenkada 5 katalogotan: {especies} espezie, {plagas} izurrite/patologia, {podas} inausketa-mota, {sustratos} substratu, {tareas} egutegiko zeregin.","{total} files en 5 catàlegs: {especies} espècies, {plagas} plagues/patologies, {podas} tipus de poda, {sustratos} substrats, {tareas} tasques de calendari.","{total} filas en 5 catálogos: {especies} especies, {plagas} pragas/patoloxías, {podas} tipos de poda, {sustratos} substratos, {tareas} tarefas de calendario."
+arb.riego_dificil,Riego difícil,Ureztatze zaila,Reg difícil,Rega difícil
+arb.riego_directo,Riego directo,Ureztatze zuzena,Reg directe,Rega directa
+arb.riego_indirecto,Riego indirecto,Zeharkako ureztatzea,Reg indirecte,Rega indirecta
+arb.riesgo_vta,Riesgo VTA,VTA arriskua,Risc VTA,Risco VTA
+arb.saltar,Saltar,Saltatu,Omet,Omitir
+arb.satelite,Satélite,Satelitea,Satèl·lit,Satélite
+arb.seleccionar_todos,Seleccionar todos,Denak hautatu,Seleccionar-los tots,Seleccionar todas
+arb.severidad,Severidad,Larritasuna,Severitat,Severidade
+arb.severidad_abreviada,sev. {n},larr. {n},sev. {n},sev. {n}
+arb.siguiente,Siguiente,Hurrengoa,Següent,Seguinte
+arb.sin_arboles_inventariados,Sin árboles inventariados todavía.,Oraindik ez dago zuhaitzik inbentarioan.,Encara no hi ha arbres inventariats.,Aínda non hai árbores inventariadas.
+arb.sin_ayuntamiento_configurado,Sin ayuntamiento configurado,Udalik konfiguratu gabe,Cap ajuntament configurat,Sen concello configurado
+arb.sin_coincidencias,Sin coincidencias.,Ez dago bat-etortzerik.,Sense coincidències.,Sen coincidencias.
+arb.sin_detalles,Sin detalles,Xehetasunik gabe,Sense detalls,Sen detalles
+arb.sin_eventos_registrados,Sin eventos registrados todavía.,Oraindik ez dago gertaerarik erregistratuta.,Encara no hi ha esdeveniments registrats.,Aínda non hai eventos rexistrados.
+arb.sin_fecha_plantacion,Sin fecha de plantación,Landatze-datarik gabe,Sense data de plantació,Sen data de plantación
+arb.sin_firmar_opcion,— sin firmar (rellenar antes de la inspección) —,— sinatu gabe (bete ikuskapenaren aurretik) —,— sense signar (cal omplir-ho abans de la inspecció) —,— sen asinar (cubrir antes da inspección) —
+arb.sin_resultados,Sin resultados.,Ez dago emaitzarik.,Sense resultats.,Sen resultados.
+arb.sin_tareas_calendario_zona,Sin tareas en el calendario para esta zona.,Eremu honetarako ez dago zereginik egutegian.,No hi ha tasques al calendari per a aquesta zona.,Non hai tarefas no calendario para esta zona.
+arb.sin_ubicacion,Sin ubicación,Kokapenik gabe,Sense ubicació,Sen localización
+arb.sin_zona,Sin zona,Eremurik gabe,Sense zona,Sen zona
+arb.sintomas,Síntomas,Sintomak,Símptomes,Síntomas
+arb.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+arb.sustancia_activa_hint,"Bacillus thuringiensis, abamectina…","Bacillus thuringiensis, abamektina…","Bacillus thuringiensis, abamectina…","Bacillus thuringiensis, abamectina…"
+arb.sustratos,Sustratos,Substratuak,Substrats,Substratos
+arb.tecnico_que_firma,Técnico que firma,Sinatzen duen teknikaria,Tècnic que signa,Técnico que asina
+arb.tecnicos_operarios,Técnicos / operarios,Teknikariak / langileak,Tècnics / operaris,Técnicos / operarios
+arb.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+arb.texto_compartir_informe,Informe municipal de arbolado urbano · campaña {ano},Hiri-zuhaiztiaren udal-txostena · {ano}ko kanpaina,Informe municipal d'arbrat urbà · campanya {ano},Informe municipal de arboredo urbano · campaña {ano}
+arb.tipo,Tipo,Mota,Tipus,Tipo
+arb.tipo_de_alcorque,Tipo de alcorque,Zuhaitz-zulo mota,Tipus d'escocell,Tipo de alcorque
+arb.tipo_de_alcorque_hint,"Alcorque mineral, sellado con asfalto…","Zulo minerala, asfaltoz zigilatua…","Escocell mineral, segellat amb asfalt…","Alcorque mineral, selado con asfalto…"
+arb.tipo_de_poda,Tipo de poda,Inausketa-mota,Tipus de poda,Tipo de poda
+arb.tipo_de_poda_hint,"mantenimiento, saneamiento, refaldado…","mantentzea, saneamendua, beheko adarrak kentzea…","manteniment, sanejament, aclarida de la part baixa…","mantemento, saneamento, refaldado…"
+arb.tipo_plaga_abiotico,Abiótico,Abiotikoa,Abiòtic,Abiótico
+arb.tipo_plaga_bacteria,Bacteria,Bakterioa,Bacteri,Bacteria
+arb.tipo_plaga_hongo,Hongo,Onddoa,Fong,Fungo
+arb.tipo_plaga_insecto,Insecto,Intsektua,Insecte,Insecto
+arb.tipo_plaga_invasora,Invasora,Inbaditzailea,Invasora,Invasora
+arb.tipos_de_poda,Tipos de poda,Inausketa-motak,Tipus de poda,Tipos de poda
+arb.todas,Todas,Denak,Totes,Todas
+arb.todo_el_municipio,Todo el municipio,Udalerri osoa,Tot el municipi,Todo o municipio
+arb.tolerancia_a_poda,Tolerancia a poda,Inausketarekiko tolerantzia,Tolerància a la poda,Tolerancia á poda
+arb.total_mayusculas,TOTAL,GUZTIRA,TOTAL,TOTAL
+arb.tratamiento,Tratamiento,Tratamendua,Tractament,Tratamento
+arb.trazabilidad_fitosanitaria,Trazabilidad fitosanitaria,Trazabilitate fitosanitarioa,Traçabilitat fitosanitària,Rastrexabilidade fitosanitaria
+arb.ultima_copia,Última copia,Azken kopia,Última còpia,Última copia
+arb.uso_urbano,Uso urbano,Hiri-erabilera,Ús urbà,Uso urbano
+arb.ventana_de_aviso,Ventana de aviso,Abisu-leihoa,Finestra d'avís,Xanela de aviso
+arb.version_creditos_compromisos,"Versión, créditos, compromisos legales","Bertsioa, kredituak, lege-konpromisoak","Versió, crèdits, compromisos legals","Versión, créditos, compromisos legais"
+arb.version_instalada_publicada,Versión instalada y última publicada,Instalatutako bertsioa eta argitaratutako azkena,Versió instal·lada i última publicada,Versión instalada e última publicada
+arb.volumen_restos_m3,Volumen estimado de restos (m³),Hondakinen bolumen estimatua (m³),Volum estimat de restes (m³),Volume estimado de restos (m³)
+arb.ya_existe_arbol_identificador,Ya existe un árbol con identificador {identificador}.,Badago {identificador} identifikatzailea duen zuhaitz bat.,Ja existeix un arbre amb l'identificador {identificador}.,Xa existe unha árbore co identificador {identificador}.
+arb.zona,Zona,Eremua,Zona,Zona
+arb.zona_centro_meseta,Centro (meseta),Erdialdea (meseta),Centre (Meseta),Centro (meseta)
+arb.zona_norte_atlantica,Norte (atlántica),Iparraldea (atlantikoa),Nord (atlàntica),Norte (atlántica)
+arb.zona_sur_mediterranea,Sur (mediterránea),Hegoaldea (mediterraneoa),Sud (mediterrània),Sur (mediterránea)

@@ -3,6 +3,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/tecnico.dart';
+import '../utiles/etiquetas_l10n.dart';
 
 /// Datos del ayuntamiento titular de la instancia. Required por el
 /// informe municipal — sin estos datos el PDF que se genera queda
@@ -98,27 +99,28 @@ class _PantallaAyuntamientoState extends State<PantallaAyuntamiento> {
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-      appBar: AppBar(title: Text('Ayuntamiento')),
+      appBar: AppBar(title: Text(SoleraL10n.t('arb.ayuntamiento'))),
       body: Form(
         key: _claveFormulario,
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            _Cabecera('Datos del ayuntamiento'),
-            _campo(_nombre, 'Nombre del ayuntamiento *',
-                validador: _obligatorio('Nombre')),
-            _campo(_cif, 'CIF *', validador: _obligatorio('CIF')),
-            _campo(_municipio, 'Municipio *', validador: _obligatorio('Municipio')),
-            _campo(_provincia, 'Provincia'),
-            _campo(_direccion, 'Dirección'),
-            _campo(_codigoPostal, 'Código postal'),
-            _campo(_email, 'Email', tipo: TextInputType.emailAddress),
-            _campo(_telefono, 'Teléfono', tipo: TextInputType.phone),
+            _Cabecera(SoleraL10n.t('arb.datos_del_ayuntamiento')),
+            _campo(_nombre, '${SoleraL10n.t('arb.nombre_del_ayuntamiento')} *',
+                validador: validadorObligatorio(SoleraL10n.t('arb.nombre'))),
+            _campo(_cif, 'CIF *', validador: validadorObligatorio('CIF')),
+            _campo(_municipio, '${SoleraL10n.t('arb.municipio')} *',
+                validador: validadorObligatorio(SoleraL10n.t('arb.municipio'))),
+            _campo(_provincia, SoleraL10n.t('arb.provincia')),
+            _campo(_direccion, SoleraL10n.t('arb.direccion')),
+            _campo(_codigoPostal, SoleraL10n.t('arb.codigo_postal')),
+            _campo(_email, SoleraL10n.t('arb.email'), tipo: TextInputType.emailAddress),
+            _campo(_telefono, SoleraL10n.t('arb.telefono'), tipo: TextInputType.phone),
             SizedBox(height: 16),
-            _Cabecera('Concejalía responsable'),
-            _campo(_concejalia, 'Concejalía',
-                hint: 'Medio Ambiente, Parques y Jardines…'),
-            _campo(_nombreConcejal, 'Nombre del concejal/a responsable'),
+            _Cabecera(SoleraL10n.t('arb.concejalia_responsable')),
+            _campo(_concejalia, SoleraL10n.t('arb.concejalia'),
+                hint: SoleraL10n.t('arb.concejalia_hint')),
+            _campo(_nombreConcejal, SoleraL10n.t('arb.nombre_concejal_responsable')),
             SizedBox(height: 24),
             FilledButton.icon(
               onPressed: _guardando ? null : _guardar,
@@ -158,8 +160,6 @@ class _PantallaAyuntamientoState extends State<PantallaAyuntamiento> {
     );
   }
 
-  String? Function(String?) _obligatorio(String campo) =>
-      (v) => (v ?? '').trim().isEmpty ? '$campo obligatorio' : null;
 }
 
 class _Cabecera extends StatelessWidget {

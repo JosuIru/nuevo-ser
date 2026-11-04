@@ -4,6 +4,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import '../datos/base_datos.dart';
 import '../modelos/arbol.dart';
 import '../servicios/generador_qr_arbol.dart';
+import '../utiles/etiquetas_l10n.dart';
 
 /// Pantalla para generar e imprimir códigos QR de los árboles.
 /// Permite seleccionar árboles individuales o generar por zonas.
@@ -65,7 +66,7 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Generar QR'),
+        title: Text(SoleraL10n.t('arb.generar_qr')),
         actions: [
           if (_arboles.isNotEmpty)
             Text('${_seleccionados.length}/${_arboles.length}',
@@ -80,9 +81,9 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
                   Icon(Icons.qr_code_2_outlined,
                       size: 64, color: theme.colorScheme.outline),
                   SizedBox(height: 16),
-                  Text('No hay árboles', style: theme.textTheme.titleMedium),
+                  Text(SoleraL10n.t('arb.no_hay_arboles'), style: theme.textTheme.titleMedium),
                   SizedBox(height: 8),
-                  Text('Añade árboles desde el mapa primero',
+                  Text(SoleraL10n.t('arb.anade_arboles_desde_mapa'),
                       style: TextStyle(color: Colors.grey)),
                 ],
               ),
@@ -96,13 +97,12 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Municipio: $_municipio',
+                        Text(SoleraL10n.tf('arb.municipio_valor', {'municipio': _municipio}),
                             style: theme.textTheme.titleSmall
                                 ?.copyWith(fontWeight: FontWeight.bold)),
                         SizedBox(height: 4),
                         Text(
-                          'Se genera un PDF con los QR de los árboles seleccionados, '
-                          'listo para imprimir y colocar como chapa.',
+                          SoleraL10n.t('arb.generar_qr_explicacion'),
                           style: TextStyle(fontSize: 12, color: Colors.grey),
                         ),
                         SizedBox(height: 12),
@@ -112,7 +112,7 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
                               child: OutlinedButton(
                                 onPressed: () =>
                                     setState(() => _seleccionados = List.from(_arboles)),
-                                child: Text('Seleccionar todos'),
+                                child: Text(SoleraL10n.t('arb.seleccionar_todos')),
                               ),
                             ),
                             SizedBox(width: 8),
@@ -120,7 +120,7 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
                               child: OutlinedButton(
                                 onPressed: () =>
                                     setState(() => _seleccionados.clear()),
-                                child: Text('Deseleccionar'),
+                                child: Text(SoleraL10n.t('arb.deseleccionar')),
                               ),
                             ),
                           ],
@@ -141,7 +141,7 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
                         title: Text(a.identificadorMunicipal,
                             style: TextStyle(fontSize: 13)),
                         subtitle: Text(
-                          '${a.especieId} · ${a.estado.toString().split('.').last}',
+                          '${a.especieId} · ${etiquetaEstadoArbol(a.estado)}',
                           style: TextStyle(fontSize: 11),
                         ),
                         onChanged: (v) {
@@ -170,8 +170,8 @@ class _PantallaGenerarQrState extends State<PantallaGenerarQr> {
                       child: CircularProgressIndicator(strokeWidth: 2))
                   : Icon(Icons.picture_as_pdf),
               label: Text(_generando
-                  ? 'Generando…'
-                  : 'Generar PDF (${_seleccionados.length})'),
+                  ? SoleraL10n.t('arb.generando')
+                  : SoleraL10n.tf('arb.generar_pdf_n', {'n': _seleccionados.length})),
             ),
     );
   }

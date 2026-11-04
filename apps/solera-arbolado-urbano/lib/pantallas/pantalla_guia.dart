@@ -19,26 +19,25 @@ class PantallaGuia extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Guía'),
-          bottom: const TabBar(
+          title: Text(SoleraL10n.t('arb.guia')),
+          bottom: TabBar(
             isScrollable: true,
             tabs: [
-              Tab(icon: Icon(Icons.bug_report), text: 'Plagas'),
-              Tab(icon: Icon(Icons.park), text: 'Especies'),
-              Tab(icon: Icon(Icons.content_cut), text: 'Tipos de poda'),
-              Tab(icon: Icon(Icons.terrain), text: 'Sustratos'),
+              Tab(icon: const Icon(Icons.bug_report), text: SoleraL10n.t('arb.plagas')),
+              Tab(icon: const Icon(Icons.park), text: SoleraL10n.t('arb.especies')),
+              Tab(icon: const Icon(Icons.content_cut), text: SoleraL10n.t('arb.tipos_de_poda')),
+              Tab(icon: const Icon(Icons.terrain), text: SoleraL10n.t('arb.sustratos')),
             ],
           ),
         ),
         body: Column(
           children: [
             if (!catalogosCompletamenteRevisados)
-              const Padding(
-                padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
                 child: BannerCoincidenciaCatalogo(
                   coincidencia: CoincidenciaCatalogo.provisional,
-                  mensajeProvisional:
-                      'Catálogo provisional con fuente pública trazable. Pendiente de la firma del ingeniero técnico forestal asesor.',
+                  mensajeProvisional: SoleraL10n.t('arb.catalogo_provisional_aviso'),
                   mensajeValidado: '',
                   mensajeLibre: '',
                 ),
@@ -83,15 +82,15 @@ class _TabPlagasState extends State<_TabPlagas> {
   String _etiquetaTipo(TipoPlagaUrbana t) {
     switch (t) {
       case TipoPlagaUrbana.plagaInsecto:
-        return 'Insecto';
+        return SoleraL10n.t('arb.tipo_plaga_insecto');
       case TipoPlagaUrbana.enfermedadFungica:
-        return 'Hongo';
+        return SoleraL10n.t('arb.tipo_plaga_hongo');
       case TipoPlagaUrbana.enfermedadBacteriana:
-        return 'Bacteria';
+        return SoleraL10n.t('arb.tipo_plaga_bacteria');
       case TipoPlagaUrbana.plagaInvasora:
-        return 'Invasora';
+        return SoleraL10n.t('arb.tipo_plaga_invasora');
       case TipoPlagaUrbana.trastornoAbiotico:
-        return 'Abiótico';
+        return SoleraL10n.t('arb.tipo_plaga_abiotico');
     }
   }
 
@@ -118,9 +117,9 @@ class _TabPlagasState extends State<_TabPlagas> {
         Padding(
           padding: const EdgeInsets.all(12),
           child: TextField(
-            decoration: const InputDecoration(
-              hintText: 'Buscar procesionaria, picudo, antracnosis…',
-              prefixIcon: Icon(Icons.search),
+            decoration: InputDecoration(
+              hintText: SoleraL10n.t('arb.buscar_plagas_hint'),
+              prefixIcon: const Icon(Icons.search),
               border: OutlineInputBorder(),
             ),
             onChanged: (v) => setState(() => _consulta = v),
@@ -132,7 +131,7 @@ class _TabPlagasState extends State<_TabPlagas> {
             spacing: 8,
             children: [
               FilterChip(
-                label: const Text('Todas'),
+                label: Text(SoleraL10n.t('arb.todas')),
                 selected: _filtroTipo == null,
                 onSelected: (_) => setState(() => _filtroTipo = null),
               ),
@@ -148,7 +147,7 @@ class _TabPlagasState extends State<_TabPlagas> {
         const SizedBox(height: 8),
         Expanded(
           child: lista.isEmpty
-              ? const Center(child: Text('Sin coincidencias.'))
+              ? Center(child: Text(SoleraL10n.t('arb.sin_coincidencias')))
               : ListView.separated(
                   itemCount: lista.length,
                   separatorBuilder: (_, __) => const Divider(height: 1),
@@ -185,9 +184,8 @@ class _TabPlagasState extends State<_TabPlagas> {
                       expandedCrossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (p.declaracionOficial) ...[
-                          const BannerDeclaracionObligatoria(
-                            texto:
-                                'PLAGA DE DECLARACIÓN OBLIGATORIA al servicio fitosanitario oficial.',
+                          BannerDeclaracionObligatoria(
+                            texto: SoleraL10n.t('arb.plaga_declaracion_obligatoria_banner'),
                           ),
                           const SizedBox(height: 12),
                         ],
@@ -196,23 +194,23 @@ class _TabPlagasState extends State<_TabPlagas> {
                           const SizedBox(height: 12),
                         ],
                         if (p.especiesObjetivo.isNotEmpty) ...[
-                          _Seccion('Especies objetivo',
+                          _Seccion(SoleraL10n.t('arb.especies_objetivo'),
                               p.especiesObjetivo.join(', ')),
                           const SizedBox(height: 8),
                         ],
                         if (p.sintomas.isNotEmpty) ...[
-                          _Seccion('Síntomas', p.sintomas),
+                          _Seccion(SoleraL10n.t('arb.sintomas'), p.sintomas),
                           const SizedBox(height: 8),
                         ],
                         if (p.ventanaAviso.isNotEmpty) ...[
-                          _Seccion('Ventana de aviso', p.ventanaAviso),
+                          _Seccion(SoleraL10n.t('arb.ventana_de_aviso'), p.ventanaAviso),
                           const SizedBox(height: 8),
                         ],
                         if (p.manejoCultural.isNotEmpty) ...[
-                          _Seccion('Manejo cultural', p.manejoCultural),
+                          _Seccion(SoleraL10n.t('arb.manejo_cultural'), p.manejoCultural),
                           const SizedBox(height: 8),
                         ],
-                        if (p.notas.isNotEmpty) _Seccion('Notas', p.notas),
+                        if (p.notas.isNotEmpty) _Seccion(SoleraL10n.t('arb.notas'), p.notas),
                       ],
                     );
                   },
@@ -246,26 +244,26 @@ class _TabEspeciesState extends State<_TabEspecies> {
   String _etiquetaFamilia(FamiliaEspecieArborea f) {
     switch (f) {
       case FamiliaEspecieArborea.caducifolio:
-        return 'Caducifolio';
+        return SoleraL10n.t('arb.familia_caducifolio');
       case FamiliaEspecieArborea.perenneCaducifolio:
-        return 'Semi-caduco';
+        return SoleraL10n.t('arb.familia_semicaduco');
       case FamiliaEspecieArborea.perenne:
-        return 'Perenne';
+        return SoleraL10n.t('arb.familia_perenne');
       case FamiliaEspecieArborea.palmacea:
-        return 'Palmera';
+        return SoleraL10n.t('arb.familia_palmera');
       case FamiliaEspecieArborea.conifera:
-        return 'Conífera';
+        return SoleraL10n.t('arb.familia_conifera');
     }
   }
 
   String _etiquetaTolerancia(ToleranciaPoda t) {
     switch (t) {
       case ToleranciaPoda.alta:
-        return 'Alta';
+        return SoleraL10n.t('arb.nivel_alta');
       case ToleranciaPoda.media:
-        return 'Media';
+        return SoleraL10n.t('arb.nivel_media');
       case ToleranciaPoda.baja:
-        return 'Baja';
+        return SoleraL10n.t('arb.nivel_baja');
     }
   }
 
@@ -277,9 +275,9 @@ class _TabEspeciesState extends State<_TabEspecies> {
         Padding(
           padding: const EdgeInsets.all(12),
           child: TextField(
-            decoration: const InputDecoration(
-              hintText: 'Buscar plátano, palmera, jacarandá…',
-              prefixIcon: Icon(Icons.search),
+            decoration: InputDecoration(
+              hintText: SoleraL10n.t('arb.buscar_especies_hint'),
+              prefixIcon: const Icon(Icons.search),
               border: OutlineInputBorder(),
             ),
             onChanged: (v) => setState(() => _consulta = v),
@@ -291,7 +289,7 @@ class _TabEspeciesState extends State<_TabEspecies> {
             spacing: 8,
             children: [
               FilterChip(
-                label: const Text('Todas'),
+                label: Text(SoleraL10n.t('arb.todas')),
                 selected: _filtroFamilia == null,
                 onSelected: (_) => setState(() => _filtroFamilia = null),
               ),
@@ -307,7 +305,7 @@ class _TabEspeciesState extends State<_TabEspecies> {
         const SizedBox(height: 8),
         Expanded(
           child: lista.isEmpty
-              ? const Center(child: Text('Sin coincidencias.'))
+              ? Center(child: Text(SoleraL10n.t('arb.sin_coincidencias')))
               : ListView.separated(
                   itemCount: lista.length,
                   separatorBuilder: (_, __) => const Divider(height: 1),
@@ -325,19 +323,19 @@ class _TabEspeciesState extends State<_TabEspecies> {
                           const EdgeInsets.fromLTRB(16, 0, 16, 16),
                       expandedCrossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _Seccion('Familia', _etiquetaFamilia(e.familia)),
+                        _Seccion(SoleraL10n.t('arb.familia'), _etiquetaFamilia(e.familia)),
                         const SizedBox(height: 8),
                         _Seccion(
-                          'Tolerancia a poda',
+                          SoleraL10n.t('arb.tolerancia_a_poda'),
                           _etiquetaTolerancia(e.toleranciaPoda),
                         ),
                         if (e.usoUrbanoTipico.isNotEmpty) ...[
                           const SizedBox(height: 8),
-                          _Seccion('Uso urbano', e.usoUrbanoTipico),
+                          _Seccion(SoleraL10n.t('arb.uso_urbano'), e.usoUrbanoTipico),
                         ],
                         if (e.notas.isNotEmpty) ...[
                           const SizedBox(height: 8),
-                          _Seccion('Notas', e.notas),
+                          _Seccion(SoleraL10n.t('arb.notas'), e.notas),
                         ],
                       ],
                     );
@@ -355,15 +353,15 @@ class _TabTiposPoda extends StatelessWidget {
   String _etiquetaIntensidad(IntensidadPoda i) {
     switch (i) {
       case IntensidadPoda.baja:
-        return 'Baja';
+        return SoleraL10n.t('arb.nivel_baja');
       case IntensidadPoda.media:
-        return 'Media';
+        return SoleraL10n.t('arb.nivel_media');
       case IntensidadPoda.alta:
-        return 'Alta';
+        return SoleraL10n.t('arb.nivel_alta');
       case IntensidadPoda.muyAlta:
-        return 'Muy alta';
+        return SoleraL10n.t('arb.nivel_muy_alta');
       case IntensidadPoda.variable:
-        return 'Variable';
+        return SoleraL10n.t('arb.nivel_variable');
     }
   }
 
@@ -388,7 +386,7 @@ class _TabTiposPoda extends StatelessWidget {
             ],
           ),
           subtitle: Text(
-            'Intensidad: ${_etiquetaIntensidad(t.intensidad)} · ${t.epocaRecomendada}',
+            '${SoleraL10n.tf('arb.intensidad_valor', {'intensidad': _etiquetaIntensidad(t.intensidad)})} · ${t.epocaRecomendada}',
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
@@ -408,7 +406,7 @@ class _TabTiposPoda extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Tipo de poda controvertido, con debate técnico abierto. Justifica la elección por escrito ante una inspección.',
+                        SoleraL10n.t('arb.poda_controvertida_guia'),
                         style: TextStyle(fontSize: 13, color: Colors.amber.shade900),
                       ),
                     ),
@@ -417,12 +415,12 @@ class _TabTiposPoda extends StatelessWidget {
               ),
               const SizedBox(height: 12),
             ],
-            _Seccion('Descripción', t.descripcion),
+            _Seccion(SoleraL10n.t('arb.descripcion'), t.descripcion),
             const SizedBox(height: 8),
-            _Seccion('Época recomendada', t.epocaRecomendada),
+            _Seccion(SoleraL10n.t('arb.epoca_recomendada'), t.epocaRecomendada),
             if (t.notas.isNotEmpty) ...[
               const SizedBox(height: 8),
-              _Seccion('Notas', t.notas),
+              _Seccion(SoleraL10n.t('arb.notas'), t.notas),
             ],
           ],
         );
@@ -437,24 +435,24 @@ class _TabSustratos extends StatelessWidget {
   String _etiquetaPermeabilidad(PermeabilidadAlcorque p) {
     switch (p) {
       case PermeabilidadAlcorque.alta:
-        return 'Alta';
+        return SoleraL10n.t('arb.nivel_alta');
       case PermeabilidadAlcorque.media:
-        return 'Media';
+        return SoleraL10n.t('arb.nivel_media');
       case PermeabilidadAlcorque.baja:
-        return 'Baja';
+        return SoleraL10n.t('arb.nivel_baja');
       case PermeabilidadAlcorque.nula:
-        return 'Nula';
+        return SoleraL10n.t('arb.nivel_nula');
     }
   }
 
   String _etiquetaRiego(FacilidadRiego r) {
     switch (r) {
       case FacilidadRiego.directa:
-        return 'Riego directo';
+        return SoleraL10n.t('arb.riego_directo');
       case FacilidadRiego.indirecta:
-        return 'Riego indirecto';
+        return SoleraL10n.t('arb.riego_indirecto');
       case FacilidadRiego.dificil:
-        return 'Riego difícil';
+        return SoleraL10n.t('arb.riego_dificil');
     }
   }
 
@@ -469,16 +467,16 @@ class _TabSustratos extends StatelessWidget {
           leading: const Icon(Icons.terrain),
           title: Text(s.nombreCanonico),
           subtitle: Text(
-            'Permeabilidad: ${_etiquetaPermeabilidad(s.permeabilidad)}',
+            SoleraL10n.tf('arb.permeabilidad_valor', {'permeabilidad': _etiquetaPermeabilidad(s.permeabilidad)}),
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _Seccion('Facilidad de riego',
+            _Seccion(SoleraL10n.t('arb.facilidad_de_riego'),
                 _etiquetaRiego(s.facilidadRiego)),
             if (s.notas.isNotEmpty) ...[
               const SizedBox(height: 8),
-              _Seccion('Notas', s.notas),
+              _Seccion(SoleraL10n.t('arb.notas'), s.notas),
             ],
           ],
         );

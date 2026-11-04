@@ -21,19 +21,19 @@ class PantallaAjustes extends StatelessWidget {
       body: ListView(
         children: [
           // «Explotación» no encaja en un ayuntamiento: título literal.
-          CabeceraSeccionAjustes('Ayuntamiento'),
+          CabeceraSeccionAjustes(SoleraL10n.t('arb.ayuntamiento')),
           ListTile(
             leading: Icon(Icons.account_balance),
-            title: Text('Ayuntamiento'),
-            subtitle: Text('Datos del titular para el informe municipal'),
+            title: Text(SoleraL10n.t('arb.ayuntamiento')),
+            subtitle: Text(SoleraL10n.t('arb.datos_titular_informe')),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaAyuntamiento()),
             ),
           ),
           ListTile(
             leading: Icon(Icons.people),
-            title: Text('Técnicos / operarios'),
-            subtitle: Text('Personas autorizadas a firmar partes'),
+            title: Text(SoleraL10n.t('arb.tecnicos_operarios')),
+            subtitle: Text(SoleraL10n.t('arb.personas_autorizadas_firmar')),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaTecnicos()),
             ),
@@ -42,16 +42,15 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
-            subtitle: Text('Configura tu clave de Anthropic (Claude Vision)'),
+            subtitle: Text(SoleraL10n.t('arb.configura_clave_anthropic')),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => PantallaClaveAnthropic(
                   estado: estadoClaveAnthropic,
                   nombreApp: 'Larrea Arbolado Urbano',
                   titulo: SoleraL10n.t('identificacion_con_ia'),
-                  queIdentifica: 'Identifica especies y plagas urbanas por foto',
-                  descripcion:
-                      'Larrea Arbolado Urbano puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico fitosanitario, la severidad y el manejo cultural. Si detecta una plaga de declaración obligatoria (picudo rojo, fuego bacteriano) o riesgo sanitario público (procesionaria, lagarta peluda), lo destaca con un aviso. Cuidado con la privacidad ciudadana: las fotos pueden capturar transeúntes; encuadra al árbol.',
+                  queIdentifica: SoleraL10n.t('arb.ia_que_identifica'),
+                  descripcion: SoleraL10n.t('arb.ia_descripcion'),
                   probarClave: probarClaveAnthropic,
                 ),
               ),
@@ -65,8 +64,8 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
           ListTile(
             leading: Icon(Icons.backup),
-            title: Text('Copia de seguridad'),
-            subtitle: Text('Empaqueta la base de datos y las fotos en un ZIP'),
+            title: Text(SoleraL10n.t('copia_de_seguridad')),
+            subtitle: Text(SoleraL10n.t('arb.empaqueta_bd_fotos_zip')),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaBackup()),
             ),
@@ -75,7 +74,7 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.system_update),
             title: Text(SoleraL10n.t('comprobar_actualizaciones')),
-            subtitle: Text('Versión instalada y última publicada'),
+            subtitle: Text(SoleraL10n.t('arb.version_instalada_publicada')),
             trailing: Icon(Icons.chevron_right),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
@@ -89,7 +88,7 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.info_outline),
             title: Text(SoleraL10n.t('acerca_de')),
-            subtitle: Text('Versión, créditos, compromisos legales'),
+            subtitle: Text(SoleraL10n.t('arb.version_creditos_compromisos')),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaAcerca()),
             ),

@@ -57,25 +57,25 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         selectedIndex: _indicePestana,
         onDestinationSelected: _seleccionarPestana,
         destinations: [
-          const NavigationDestination(
-            icon: Icon(Icons.today_outlined),
-            selectedIcon: Icon(Icons.today),
-            label: 'Hoy',
+          NavigationDestination(
+            icon: const Icon(Icons.today_outlined),
+            selectedIcon: const Icon(Icons.today),
+            label: SoleraL10n.t('arb.hoy'),
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.map_outlined),
-            selectedIcon: Icon(Icons.map),
-            label: 'Mapa',
+          NavigationDestination(
+            icon: const Icon(Icons.map_outlined),
+            selectedIcon: const Icon(Icons.map),
+            label: SoleraL10n.t('mapa'),
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.park_outlined),
-            selectedIcon: Icon(Icons.park),
-            label: 'Árboles',
+          NavigationDestination(
+            icon: const Icon(Icons.park_outlined),
+            selectedIcon: const Icon(Icons.park),
+            label: SoleraL10n.t('arb.arboles'),
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.folder_outlined),
-            selectedIcon: Icon(Icons.folder),
-            label: 'Registros',
+          NavigationDestination(
+            icon: const Icon(Icons.folder_outlined),
+            selectedIcon: const Icon(Icons.folder),
+            label: SoleraL10n.t('arb.registros'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),

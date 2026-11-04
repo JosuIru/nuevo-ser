@@ -48,41 +48,40 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error) {
   final String explicacion;
   switch (error.motivo) {
     case MotivoErrorCopiaSeguridad.ficheroNoExiste:
-      explicacion = 'El fichero elegido ya no existe.';
+      explicacion = SoleraL10n.t('arb.backup_fichero_no_existe');
     case MotivoErrorCopiaSeguridad.noEsZip:
-      explicacion = 'El fichero no es un ZIP válido o está dañado.';
+      explicacion = SoleraL10n.t('arb.backup_no_es_zip');
     case MotivoErrorCopiaSeguridad.manifiestoNoValido:
-      explicacion = 'La copia está incompleta o dañada.';
+      explicacion = SoleraL10n.t('arb.backup_incompleta');
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      explicacion =
-          'La copia es de una versión más nueva de la app. Actualiza la app y vuelve a intentarlo.';
+      explicacion = SoleraL10n.t('arb.backup_version_mas_nueva');
     case MotivoErrorCopiaSeguridad.deOtraApp:
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      explicacion = 'La copia no es de Larrea Arbolado Urbano.';
+      explicacion = SoleraL10n.t('arb.backup_de_otra_app');
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
-      explicacion = 'La base de datos de la copia está dañada.';
+      explicacion = SoleraL10n.t('arb.backup_bd_danada');
     case MotivoErrorCopiaSeguridad.rutaPeligrosa:
-      explicacion = 'La copia contiene rutas no permitidas.';
+      explicacion = SoleraL10n.t('arb.backup_rutas_no_permitidas');
     case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
-      explicacion =
-          'No se pudo guardar antes una copia del estado actual, así que no se ha restaurado nada.';
+      explicacion = SoleraL10n.t('arb.backup_respaldo_previo_fallido');
     case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
-      explicacion = 'Todavía no hay datos que copiar.';
+      explicacion = SoleraL10n.t('arb.backup_sin_datos');
     case MotivoErrorCopiaSeguridad.restauracionRevertida:
-      explicacion =
-          'La restauración falló a mitad y se ha vuelto al estado anterior.';
+      explicacion = SoleraL10n.t('arb.backup_restauracion_revertida');
     case MotivoErrorCopiaSeguridad.reversionFallida:
       final respaldo = error.respaldoPrevio;
-      explicacion =
-          'La restauración falló y no se pudo volver del todo al estado anterior. '
-          '${respaldo != null ? 'Tu estado anterior está guardado en ${respaldo.path}. ' : ''}'
-          'No borres la app y pide ayuda antes de seguir.';
+      explicacion = [
+        SoleraL10n.t('arb.backup_reversion_fallida'),
+        if (respaldo != null)
+          SoleraL10n.tf('arb.backup_estado_anterior_en', {'ruta': respaldo.path}),
+        SoleraL10n.t('arb.backup_no_borres_app'),
+      ].join(' ');
   }
   if (error.datosIntactos &&
       error.motivo != MotivoErrorCopiaSeguridad.sinDatosQueCopiar) {
-    return '$explicacion Tus datos no se han tocado.';
+    return '$explicacion ${SoleraL10n.t('arb.backup_datos_intactos')}';
   }
   return explicacion;
 }

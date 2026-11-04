@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 /// Pantalla de escaneo QR para identificar la chapa municipal del
@@ -45,16 +46,16 @@ class _PantallaEscanerQrState extends State<PantallaEscanerQr> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Escanear chapa QR'),
+        title: Text(SoleraL10n.t('arb.escanear_chapa_qr')),
         actions: [
           IconButton(
             icon: const Icon(Icons.flash_on),
-            tooltip: 'Linterna',
+            tooltip: SoleraL10n.t('arb.linterna'),
             onPressed: () => _controlador.toggleTorch(),
           ),
           IconButton(
             icon: const Icon(Icons.cameraswitch),
-            tooltip: 'Cambiar cámara',
+            tooltip: SoleraL10n.t('arb.cambiar_camara'),
             onPressed: () => _controlador.switchCamera(),
           ),
         ],
@@ -75,9 +76,9 @@ class _PantallaEscanerQrState extends State<PantallaEscanerQr> {
                 color: Colors.black.withValues(alpha: 0.6),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: const Text(
-                'Apunta al QR de la chapa municipal del árbol. La cámara lo detecta automáticamente.',
-                style: TextStyle(color: Colors.white, fontSize: 13),
+              child: Text(
+                SoleraL10n.t('arb.apunta_qr_chapa'),
+                style: const TextStyle(color: Colors.white, fontSize: 13),
               ),
             ),
           ),

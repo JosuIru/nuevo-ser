@@ -2,13 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_calendario_arbolado.dart';
+import '../utiles/etiquetas_l10n.dart';
 import 'pantalla_guia.dart';
-
-const _diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
-const _mesesEs = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
-];
 
 /// Pantalla "Hoy": muestra las próximas tareas del calendario de
 /// arbolado urbano para la zona seleccionada. Sirve como agenda rápida
@@ -27,39 +22,42 @@ class _PantallaHoyState extends State<PantallaHoy> {
   String _etiquetaZona(ZonaClimaticaArbolado z) {
     switch (z) {
       case ZonaClimaticaArbolado.norte:
-        return 'Norte (atlántica)';
+        return SoleraL10n.t('arb.zona_norte_atlantica');
       case ZonaClimaticaArbolado.centro:
-        return 'Centro (meseta)';
+        return SoleraL10n.t('arb.zona_centro_meseta');
       case ZonaClimaticaArbolado.sur:
-        return 'Sur (mediterránea)';
+        return SoleraL10n.t('arb.zona_sur_mediterranea');
     }
   }
 
   String _formatoFecha(int mes, int decada) {
-    final etiquetaDec = decada == 1
-        ? '1.ª'
-        : decada == 2
-            ? '2.ª'
-            : '3.ª';
-    return '$etiquetaDec década de ${_mesesEs[mes - 1]}';
+    return SoleraL10n.tf('arb.decada_de_mes', {
+      'n': decada.clamp(1, 3),
+      'de_mes': deMesTraducido(mes),
+    });
   }
 
-  String _fechaHoyEs(DateTime hoy) {
-    return '${_diasSemana[hoy.weekday - 1]} ${hoy.day} de ${_mesesEs[hoy.month - 1]}';
+  /// «martes 4 de noviembre» en el idioma de la app.
+  String _fechaHoyTraducida(DateTime hoy) {
+    return SoleraL10n.tf('arb.fecha_hoy', {
+      'dia_semana': diaSemanaTraducido(hoy.weekday),
+      'dia': hoy.day,
+      'de_mes': deMesTraducido(hoy.month),
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final hoy = DateTime.now();
-    final fechaHoy = _fechaHoyEs(hoy);
+    final fechaHoy = _fechaHoyTraducida(hoy);
     final proximas = tareasProximas(zona: _zona, fecha: hoy, limite: 6);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hoy'),
+        title: Text(SoleraL10n.t('arb.hoy')),
         actions: [
           IconButton(
             icon: const Icon(Icons.menu_book),
-            tooltip: 'Guía de plagas',
+            tooltip: SoleraL10n.t('arb.guia_de_plagas'),
             onPressed: () => Navigator.of(context).push<void>(
               MaterialPageRoute(builder: (_) => PantallaGuia()),
             ),
@@ -87,7 +85,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Próximas actuaciones en zona ${_etiquetaZona(_zona)}.',
+                    SoleraL10n.tf('arb.proximas_actuaciones_en_zona', {'zona': _etiquetaZona(_zona)}),
                     style: TextStyle(color: Colors.grey.shade700),
                   ),
                 ],
@@ -113,9 +111,9 @@ class _PantallaHoyState extends State<PantallaHoy> {
           ),
           const SizedBox(height: 12),
           if (proximas.isEmpty)
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('Sin tareas en el calendario para esta zona.'),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(SoleraL10n.t('arb.sin_tareas_calendario_zona')),
             )
           else
             for (final t in proximas)
@@ -141,8 +139,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
               ),
           const SizedBox(height: 16),
           Text(
-            'Las décadas son orientativas (±2 semanas según año, microclima y altitud). '
-            'Verifica con el pliego técnico de tu ayuntamiento antes de programar actuaciones.',
+            SoleraL10n.t('arb.aviso_decadas_orientativas'),
             style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
           ),
         ],

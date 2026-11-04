@@ -61,7 +61,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
   Future<void> _generarYCompartir() async {
     if (_ayuntamiento == null || !_ayuntamiento!.estaConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Configura primero los datos del ayuntamiento.')),
+        SnackBar(content: Text(SoleraL10n.t('arb.configura_primero_ayuntamiento'))),
       );
       return;
     }
@@ -78,12 +78,12 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        text: 'Informe municipal de arbolado urbano · campaña $_ano',
+        text: SoleraL10n.tf('arb.texto_compartir_informe', {'ano': _ano}),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al generar el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('arb.error_generar_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -93,7 +93,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
   Future<void> _generarYAbrir() async {
     if (_ayuntamiento == null || !_ayuntamiento!.estaConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Configura primero los datos del ayuntamiento.')),
+        SnackBar(content: Text(SoleraL10n.t('arb.configura_primero_ayuntamiento'))),
       );
       return;
     }
@@ -112,7 +112,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al abrir el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('arb.error_abrir_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -127,7 +127,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
     final aytoOk = _ayuntamiento?.estaConfigurado ?? false;
     final anoActual = DateTime.now().year;
     return Scaffold(
-      appBar: AppBar(title: Text('Informe municipal')),
+      appBar: AppBar(title: Text(SoleraL10n.t('arb.informe_municipal'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -136,11 +136,9 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
               color: Theme.of(context).colorScheme.errorContainer,
               child: ListTile(
                 leading: Icon(Icons.warning),
-                title: Text('Ayuntamiento sin configurar'),
+                title: Text(SoleraL10n.t('arb.ayuntamiento_sin_configurar')),
                 subtitle: Text(
-                  'El informe municipal requiere los datos del ayuntamiento '
-                  '(nombre, CIF, municipio, concejalía…). Configúralos antes '
-                  'de generar.',
+                  SoleraL10n.t('arb.informe_requiere_datos_ayuntamiento'),
                 ),
                 onTap: _abrirAyuntamiento,
               ),
@@ -150,7 +148,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.account_balance),
-            title: Text(aytoOk ? _ayuntamiento!.nombre : 'Sin ayuntamiento configurado'),
+            title: Text(aytoOk ? _ayuntamiento!.nombre : SoleraL10n.t('arb.sin_ayuntamiento_configurado')),
             subtitle: aytoOk
                 ? Text('CIF ${_ayuntamiento!.cif} · ${_ayuntamiento!.municipio}')
                 : null,
@@ -161,12 +159,12 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
           DropdownButtonFormField<Zona?>(
             initialValue: _zonaSeleccionada,
             decoration: InputDecoration(
-              labelText: 'Zona',
+              labelText: SoleraL10n.t('arb.zona'),
               border: OutlineInputBorder(),
             ),
             items: [
-              const DropdownMenuItem<Zona?>(
-                  value: null, child: Text('Todo el municipio')),
+              DropdownMenuItem<Zona?>(
+                  value: null, child: Text(SoleraL10n.t('arb.todo_el_municipio'))),
               for (final z in _zonas)
                 DropdownMenuItem<Zona?>(value: z, child: Text(z.nombre)),
             ],
@@ -176,7 +174,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
           DropdownButtonFormField<int>(
             initialValue: _ano,
             decoration: InputDecoration(
-              labelText: 'Campaña',
+              labelText: SoleraL10n.t('arb.campana'),
               border: OutlineInputBorder(),
             ),
             items: [
@@ -194,13 +192,13 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
                     height: 16,
                     child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                 : Icon(Icons.share),
-            label: Text('Generar y compartir'),
+            label: Text(SoleraL10n.t('arb.generar_y_compartir')),
           ),
           SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: _generando ? null : _generarYAbrir,
             icon: Icon(Icons.print),
-            label: Text('Generar y abrir'),
+            label: Text(SoleraL10n.t('arb.generar_y_abrir')),
           ),
           SizedBox(height: 24),
           Container(
@@ -211,11 +209,8 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
               border: Border.all(color: Colors.grey.shade300),
             ),
             child: Text(
-              'El informe recoge censo por especie, inspecciones, podas, '
-              'tratamientos fitosanitarios e incidencias del periodo.\n\n'
-              'Verifica el formato exigido por el pliego técnico de tu '
-              'ayuntamiento antes de presentar el documento — la regulación '
-              'varía entre municipios.',
+              '${SoleraL10n.t('arb.informe_recoge')}\n\n'
+              '${SoleraL10n.t('arb.informe_verifica_formato')}',
               style: TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),

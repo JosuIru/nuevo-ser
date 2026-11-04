@@ -265,14 +265,14 @@ class _ListaIngresos extends StatelessWidget {
               Text(a.concepto.isEmpty ? _textoTipo(a.tipoIngreso) : a.concepto),
           subtitle: Text(
             '${fecha.day}/${fecha.month}/$_anoCorto · '
-            '${(a.importeTotalCentimos / 100).toStringAsFixed(2)} €'
+            '${formatearEuros(a.importeTotalCentimos / 100)}'
             '${tercero != null ? ' · ${tercero.nombre}' : ''}',
             style: const TextStyle(fontSize: 12),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Text(
-            '${(a.importeBaseCentimos / 100).toStringAsFixed(2)} €',
+            formatearEuros(a.importeBaseCentimos / 100),
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         );
@@ -363,7 +363,7 @@ class _ListaGastos extends StatelessWidget {
               Text(a.concepto.isEmpty ? _textoTipo(a.tipoGasto) : a.concepto),
           subtitle: Text(
             '${fecha.day}/${fecha.month} · '
-            '${(a.importeTotalCentimos / 100).toStringAsFixed(2)} €'
+            '${formatearEuros(a.importeTotalCentimos / 100)}'
             '${tercero != null ? ' · ${tercero.nombre}' : ''}'
             '${a.tieneRepartoProporcional ? ' · ${SoleraL10n.t('api.eco_reparto_corto')}' : ''}',
             style: const TextStyle(fontSize: 12),
@@ -371,7 +371,7 @@ class _ListaGastos extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Text(
-            '${(a.importeBaseCentimos / 100).toStringAsFixed(2)} €',
+            formatearEuros(a.importeBaseCentimos / 100),
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         );
@@ -683,7 +683,7 @@ class _ResumenLineaApicola extends StatelessWidget {
         children: [
           Expanded(child: Text(label, style: const TextStyle(fontSize: 12))),
           Text(
-            '${(value / 100).toStringAsFixed(2)} €',
+            formatearEuros(value / 100),
             style: TextStyle(
                 fontSize: 12, fontWeight: FontWeight.bold, color: color),
           ),
@@ -878,7 +878,7 @@ class _Card extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             Text(
-              '${(importeCentimos / 100).toStringAsFixed(2)} €',
+              formatearEuros(importeCentimos / 100),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

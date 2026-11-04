@@ -54,8 +54,18 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
       body: SafeArea(
         child: Column(
           children: [
+            // Elegir idioma desde la primera pantalla (se puede cambiar luego
+            // en Ajustes). Con scroll horizontal para que no desborde en
+            // pantallas estrechas.
             Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SelectorIdioma(onCambio: () => setState(() {})),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Image.asset(
@@ -71,18 +81,22 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 controller: _pageController,
                 onPageChanged: (i) => setState(() => _pagina = i),
                 itemCount: _paginas.length,
-                itemBuilder: (_, i) => _PaginaOnboarding(datos: _paginas[i], paleta: paleta),
+                itemBuilder: (_, i) =>
+                    _PaginaOnboarding(datos: _paginas[i], paleta: paleta),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(_paginas.length, (i) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
                   width: i == _pagina ? 18 : 8,
                   height: 8,
                   decoration: BoxDecoration(
-                    color: i == _pagina ? paleta.primary : paleta.primary.withValues(alpha: 0.3),
+                    color: i == _pagina
+                        ? paleta.primary
+                        : paleta.primary.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 );
@@ -108,7 +122,9 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                         );
                       }
                     },
-                    child: Text(esUltima ? SoleraL10n.t('api.empezar') : SoleraL10n.t('api.siguiente')),
+                    child: Text(esUltima
+                        ? SoleraL10n.t('api.empezar')
+                        : SoleraL10n.t('api.siguiente')),
                   ),
                 ],
               ),
@@ -153,39 +169,48 @@ class _PaginaOnboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              color: paleta.primaryContainer,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(datos.icono, size: 56, color: paleta.primary),
+    // Con scroll vertical: en pantallas bajas (o con el selector de idioma
+    // encima) el texto no cabe y se desbordaría.
+    return LayoutBuilder(
+      builder: (context, restricciones) => SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: (restricciones.maxHeight - 48).clamp(0, double.infinity),
           ),
-          const SizedBox(height: 32),
-          Text(
-            datos.titulo,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: paleta.primary,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                width: 120,
+                height: 120,
+                decoration: BoxDecoration(
+                  color: paleta.primaryContainer,
+                  shape: BoxShape.circle,
                 ),
+                child: Icon(datos.icono, size: 56, color: paleta.primary),
+              ),
+              const SizedBox(height: 32),
+              Text(
+                datos.titulo,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: paleta.primary,
+                    ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                datos.texto,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Colors.grey.shade800,
+                      height: 1.5,
+                    ),
+              ),
+            ],
           ),
-          const SizedBox(height: 16),
-          Text(
-            datos.texto,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey.shade800,
-                  height: 1.5,
-                ),
-          ),
-        ],
+        ),
       ),
     );
   }

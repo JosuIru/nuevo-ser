@@ -105,7 +105,7 @@ class _PantallaConfiguracionFiscalState
               style: TextStyle(fontSize: 12),
             ),
           ),
-          _Cabecera('IRPF'),
+          _Cabecera(SoleraL10n.t('api.sigla_irpf')),
           RadioGroup<String>(
             groupValue: _regimenIrpf,
             onChanged: (v) => setState(() => _regimenIrpf = v ?? 'sin_elegir'),
@@ -126,7 +126,7 @@ class _PantallaConfiguracionFiscalState
             ),
           ),
           SizedBox(height: 16),
-          _Cabecera('IVA'),
+          _Cabecera(SoleraL10n.t('api.sigla_iva')),
           RadioGroup<String>(
             groupValue: _regimenIva,
             onChanged: (v) => setState(() => _regimenIva = v ?? 'sin_elegir'),

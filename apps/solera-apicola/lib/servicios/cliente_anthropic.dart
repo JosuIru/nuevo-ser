@@ -94,7 +94,8 @@ class ClienteAnthropic {
     final imagen = await ImagenClaude.desdeFichero(foto.path);
     final json = await _cliente.pedirJson(
       modelo: modeloClaudeRapido,
-      sistema: _promptSistema,
+      // Los textos del diagnóstico, en el idioma elegido en la app.
+      sistema: '$_promptSistema\n${instruccionIdiomaRespuestaClaude()}',
       mensajes: [
         MensajeClaude.usuario(
           _construirPrompt(observacionesUsuario),
@@ -132,7 +133,7 @@ REGLAS ESTRICTAS:
 
 2. Estructura del JSON:
 {
-  "nombre_comun": "nombre habitual en español de la patología/plaga/trastorno",
+  "nombre_comun": "nombre habitual EN CASTELLANO de la patología/plaga/trastorno (siempre en castellano, aunque el resto de textos vaya en otro idioma: la app lo cruza con su catálogo)",
   "nombre_cientifico": "nombre científico binomial si aplica, vacío si es un trastorno abiótico",
   "tipo": "parasito" | "infeccion" | "plaga_fisica" | "depredador" | "abiotico" | "indeterminado",
   "severidad": número entero 1-5 estimado, o null si no es valorable,

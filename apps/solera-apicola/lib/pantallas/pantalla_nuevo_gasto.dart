@@ -107,7 +107,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
 
   String _formatearCentimos(int centimos) {
     if (centimos == 0) return '';
-    return (centimos / 100).toStringAsFixed(2);
+    return formatearNumero(centimos / 100, decimales: 2);
   }
 
   /// Vacío o ilegible cuenta 0 (para el autocálculo); al guardar, el

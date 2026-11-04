@@ -110,7 +110,7 @@ class _PantallaApicultorState extends State<PantallaApicultor> {
           padding: const EdgeInsets.all(16),
           children: [
             _Cabecera(SoleraL10n.t('api.datos_personales')),
-            _campo(_nif, 'NIF *', validador: _obligatorio),
+            _campo(_nif, '${SoleraL10n.t('api.sigla_nif')} *', validador: _obligatorio),
             _campo(_nombre, '${SoleraL10n.t('api.nombre_o_razon_social')} *', validador: _obligatorio),
             _campo(_direccion, SoleraL10n.t('api.direccion_explotacion')),
             _campo(_numeroRega, '${SoleraL10n.t('api.numero_rega')} *',

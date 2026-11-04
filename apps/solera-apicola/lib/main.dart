@@ -25,7 +25,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
-  await initializeDateFormatting('es_ES', null);
+  // Todos los idiomas (es, eu, ca, gl): las fechas con nombre de mes
+  // salen en el idioma elegido.
+  await initializeDateFormatting();
   // Antes del primer acceso a la BD: si una restauración se quedó a
   // medias (la app murió mientras cambiaba ficheros), se deshace.
   try {

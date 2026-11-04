@@ -75,7 +75,7 @@ Future<File> generarLibroRega({
     if (apiario != null && apiario.codigoSitran.isNotEmpty)
       'Código SITRAN del asentamiento: ${apiario.codigoSitran}',
     if (apiario != null && apiario.superficieHectareas != null)
-      'Superficie: ${apiario.superficieHectareas!.toStringAsFixed(2)} ha',
+      'Superficie: ${formatearNumero(apiario.superficieHectareas!, decimales: 2)} ha',
     'Colmenas en el ámbito del libro: ${colmenas.length}',
     'Tratamientos sanitarios registrados: ${tratamientos.length}',
     'Movimientos registrados: ${movimientos.length}',
@@ -133,10 +133,10 @@ Future<File> generarLibroRega({
       [
         formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(cm.fechaMs)),
         _matricula(indiceColmenasPorId[cm.colmenaId]),
-        cm.kilosMiel?.toStringAsFixed(2) ?? '—',
-        cm.kilosCera?.toStringAsFixed(2) ?? '—',
-        cm.kilosPolen?.toStringAsFixed(2) ?? '—',
-        cm.kilosPropoleo?.toStringAsFixed(2) ?? '—',
+        cm.kilosMiel == null ? '—' : formatearNumero(cm.kilosMiel!, decimales: 2),
+        cm.kilosCera == null ? '—' : formatearNumero(cm.kilosCera!, decimales: 2),
+        cm.kilosPolen == null ? '—' : formatearNumero(cm.kilosPolen!, decimales: 2),
+        cm.kilosPropoleo == null ? '—' : formatearNumero(cm.kilosPropoleo!, decimales: 2),
       ],
   ];
 

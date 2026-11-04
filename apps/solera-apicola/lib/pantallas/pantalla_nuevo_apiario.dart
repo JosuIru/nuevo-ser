@@ -46,7 +46,10 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
     if (existente != null) {
       _nombre.text = existente.nombre;
       _codigoSitran.text = existente.codigoSitran;
-      _superficie.text = existente.superficieHectareas?.toString() ?? '';
+      // Coma decimal; sin separador de millares para que «1200» no se
+      // relea como 1,2 ha.
+      _superficie.text =
+          existente.superficieHectareas?.toString().replaceAll('.', ',') ?? '';
       _notas.text = existente.notas;
       _latitud = existente.latitudCentroide;
       _longitud = existente.longitudCentroide;

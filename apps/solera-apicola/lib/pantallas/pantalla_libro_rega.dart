@@ -148,7 +148,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
             leading: Icon(Icons.person),
             title: Text(apicultorOk ? _apicultor!.nombre : SoleraL10n.t('api.sin_titular_configurado')),
             subtitle: apicultorOk
-                ? Text('NIF ${_apicultor!.nif} · REGA ${_apicultor!.numeroRega}')
+                ? Text('${SoleraL10n.t('api.sigla_nif')} ${_apicultor!.nif} · REGA ${_apicultor!.numeroRega}')
                 : null,
             trailing: TextButton(onPressed: _abrirApicultor, child: Text(SoleraL10n.t('editar'))),
           ),

@@ -321,10 +321,10 @@ api.fac_estado_emitida,emitida,jaulkia,emesa,emitida
 api.fac_estado_pagada,pagada,ordaindua,pagada,pagada
 api.fac_estado_vencida,vencida,iraungia,vençuda,vencida
 api.fac_explicacion_email_respaldo,"Al crear una factura, podrás enviar una copia a esta dirección como respaldo.","Faktura bat sortzean, kopia bat bidali ahal izango duzu helbide honetara babeskopia gisa.","En crear una factura, podràs enviar-ne una còpia a aquesta adreça com a còpia de seguretat.","Ao crear unha factura, poderás enviar unha copia a este enderezo como respaldo."
-api.fac_iva_porcentaje,IVA {porcentaje} %,IVA % {porcentaje},IVA {porcentaje} %,IVA {porcentaje} %
+api.fac_iva_porcentaje,IVA {porcentaje} %,BEZ % {porcentaje},IVA {porcentaje} %,IVE {porcentaje} %
 api.fac_lineas_de_factura,Líneas de factura,Fakturaren lerroak,Línies de factura,Liñas da factura
 api.fac_marcar_pagada,Marcar pagada,Ordaindutzat jo,Marca com a pagada,Marcar como pagada
-api.fac_nif_opcional,NIF (opcional),NIF (aukerakoa),NIF (opcional),NIF (opcional)
+api.fac_nif_opcional,NIF (opcional),IFZ (aukerakoa),NIF (opcional),NIF (opcional)
 api.fac_no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
 api.fac_numero_factura,N.º de factura,Faktura-zenbakia,Núm. de factura,N.º de factura
 api.fac_precio,Precio,Prezioa,Preu,Prezo
@@ -345,8 +345,8 @@ api.fis_ano_fiscal_por_defecto,Año fiscal por defecto al abrir el libro,Liburua
 api.fis_aviso_provisional,"Provisional. El formato del libro y del extracto está pendiente de validación por asesor fiscal. Antes de presentar nada en una declaración, contrasta con tu asesor.","Behin-behinekoa. Liburuaren eta laburpenaren formatua aholkulari fiskal batek baliozkotzeko dago. Aitorpen batean ezer aurkeztu aurretik, egiaztatu zure aholkulariarekin.","Provisional. El format del llibre i de l'extracte està pendent de validació per un assessor fiscal. Abans de presentar res en una declaració, contrasta-ho amb el teu assessor.","Provisional. O formato do libro e do extracto está pendente de validación por un asesor fiscal. Antes de presentar nada nunha declaración, contrástao co teu asesor."
 api.fis_estimacion_directa_normal,Estimación directa normal,Zuzeneko zenbatespen arrunta,Estimació directa normal,Estimación directa normal
 api.fis_estimacion_directa_simplificada,Estimación directa simplificada,Zuzeneko zenbatespen erraztua,Estimació directa simplificada,Estimación directa simplificada
-api.fis_explicacion_reagp,En REAGP no repercutes IVA en la venta de miel. El comprador te paga la compensación del 12 % sobre la base. El IVA soportado en compras no es recuperable: se imputa como mayor coste.,REAGPn ez duzu IVArik jasanarazten eztiaren salmentan. Erosleak oinarriaren gaineko % 12ko konpentsazioa ordaintzen dizu. Erosketetan jasandako IVA ez da berreskuragarria: kostu handiago gisa egozten da.,En el REAGP no repercuteixes IVA en la venda de mel. El comprador et paga la compensació del 12 % sobre la base. L'IVA suportat en compres no és recuperable: s'imputa com a cost més alt.,No REAGP non repercutes IVA na venda de mel. O comprador págache a compensación do 12 % sobre a base. O IVA soportado nas compras non é recuperable: impútase como maior custo.
-api.fis_explicacion_regimen_general,"En régimen general repercutes el 4 % de IVA en la venta de miel (alimento de primera necesidad, art. 91.1.1.1.º LIVA) y el IVA soportado en compras es recuperable.","Araubide orokorrean % 4ko IVA jasanarazten duzu eztiaren salmentan (oinarrizko elikagaia, LIVAren 91.1.1.1. art.), eta erosketetan jasandako IVA berreskuragarria da.","En règim general repercuteixes el 4 % d'IVA en la venda de mel (aliment de primera necessitat, art. 91.1.1.1r LIVA) i l'IVA suportat en compres és recuperable.","En réxime xeral repercutes o 4 % de IVA na venda de mel (alimento de primeira necesidade, art. 91.1.1.1.º LIVA) e o IVA soportado nas compras é recuperable."
+api.fis_explicacion_reagp,En REAGP no repercutes IVA en la venta de miel. El comprador te paga la compensación del 12 % sobre la base. El IVA soportado en compras no es recuperable: se imputa como mayor coste.,REAGPn ez duzu BEZik jasanarazten eztiaren salmentan. Erosleak oinarriaren gaineko % 12ko konpentsazioa ordaintzen dizu. Erosketetan jasandako BEZa ez da berreskuragarria: kostu handiago gisa egozten da.,En el REAGP no repercuteixes IVA en la venda de mel. El comprador et paga la compensació del 12 % sobre la base. L'IVA suportat en compres no és recuperable: s'imputa com a cost més alt.,No REAGP non repercutes IVE na venda de mel. O comprador págache a compensación do 12 % sobre a base. O IVE soportado nas compras non é recuperable: impútase como maior custo.
+api.fis_explicacion_regimen_general,"En régimen general repercutes el 4 % de IVA en la venta de miel (alimento de primera necesidad, art. 91.1.1.1.º LIVA) y el IVA soportado en compras es recuperable.","Araubide orokorrean % 4ko BEZa jasanarazten duzu eztiaren salmentan (oinarrizko elikagaia, LIVAren 91.1.1.1. art.), eta erosketetan jasandako BEZa berreskuragarria da.","En règim general repercuteixes el 4 % d'IVA en la venda de mel (aliment de primera necessitat, art. 91.1.1.1r LIVA) i l'IVA suportat en compres és recuperable.","En réxime xeral repercutes o 4 % de IVE na venda de mel (alimento de primeira necesidade, art. 91.1.1.1.º LIVA) e o IVE soportado nas compras é recuperable."
 api.fis_modulos_no_disponible,El régimen de módulos no está disponible en v1: pendiente de validación con asesor fiscal antes de añadirlo.,Moduluen araubidea ez dago erabilgarri v1 bertsioan: aholkulari fiskalarekin baliozkotu behar da gehitu aurretik.,El règim de mòduls no està disponible a la v1: pendent de validació amb un assessor fiscal abans d'afegir-lo.,O réxime de módulos non está dispoñible na v1: pendente de validación cun asesor fiscal antes de engadilo.
 api.fis_reagp_descripcion,REAGP — régimen especial agricultura/ganadería/pesca,"REAGP — nekazaritza, abeltzaintza eta arrantzaren araubide berezia","REAGP — règim especial agricultura, ramaderia i pesca","REAGP — réxime especial agricultura, gandaría e pesca"
 api.fis_regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
@@ -437,7 +437,7 @@ api.motivo_sanitario,Sanitario,Osasun-arrazoia,Sanitari,Sanitario
 api.motivo_venta,Venta,Salmenta,Venda,Venda
 api.movimiento,Movimiento,Mugimendua,Moviment,Movemento
 api.n_colmenas,{n} colmenas,{n} erlauntz,{n} ruscs,{n} colmeas
-api.nif_veterinario,NIF del veterinario,Albaitariaren NIFa,NIF del veterinari,NIF do veterinario
+api.nif_veterinario,NIF del veterinario,Albaitariaren IFZa,NIF del veterinari,NIF do veterinario
 api.ninguno_alta_captura_compra,— ninguno (alta/captura/compra) —,— bat ere ez (alta/harrapaketa/erosketa) —,— cap (alta/captura/compra) —,— ningún (alta/captura/compra) —
 api.ninguno_baja_venta,— ninguno (baja/venta) —,— bat ere ez (baja/salmenta) —,— cap (baixa/venda) —,— ningún (baixa/venda) —
 api.no,No,Ez,No,Non
@@ -491,7 +491,7 @@ api.raza_pista,"ibérica, cárnica, ligústica, buckfast…","iberiarra, karniol
 api.razas,Razas,Arrazak,Races,Razas
 api.recapturar,Recapturar,Berriz hartu,Torna a capturar,Volver capturar
 api.recuento_en_24_h,Recuento en 24 h,24 orduko zenbaketa,Recompte en 24 h,Reconto en 24 h
-api.regimen_irpf_iva_provisional,Régimen IRPF + IVA · provisional,IRPF + IVA araubidea · behin-behinekoa,Règim IRPF + IVA · provisional,Réxime IRPF + IVA · provisional
+api.regimen_irpf_iva_provisional,Régimen IRPF + IVA · provisional,PFEZ + BEZ araubidea · behin-behinekoa,Règim IRPF + IVA · provisional,Réxime IRPF + IVE · provisional
 api.registros,Registros,Erregistroak,Registres,Rexistros
 api.reina,Reina,Ama-erlea,Reina,Raíña
 api.reina_ano_color,Reina {ano} ({color}),Ama-erlea {ano} ({color}),Reina {ano} ({color}),Raíña {ano} ({color})
@@ -511,6 +511,9 @@ api.saltar,Saltar,Saltatu,Omet,Saltar
 api.severidad,Severidad,Larritasuna,Gravetat,Gravidade
 api.severidad_abreviada_n,sev. {n},larr. {n},grav. {n},sev. {n}
 api.si,Sí,Bai,Sí,Si
+api.sigla_irpf,IRPF,PFEZ,IRPF,IRPF
+api.sigla_iva,IVA,BEZ,IVA,IVE
+api.sigla_nif,NIF,IFZ,NIF,NIF
 api.siguiente,Siguiente,Hurrengoa,Següent,Seguinte
 api.sin_coincidencias,Sin coincidencias.,Ez dago bat datorrenik.,Sense coincidències.,Sen coincidencias.
 api.sin_colmenas_todavia,Sin colmenas registradas todavía.,Oraindik ez dago erlauntzarik erregistratuta.,Encara no hi ha ruscs registrats.,Aínda non hai colmeas rexistradas.
@@ -533,10 +536,10 @@ api.sustancias_contra_varroa,Sustancias contra varroa,Barroaren aurkako substant
 api.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
 api.telefono_veterinario,Teléfono del veterinario,Albaitariaren telefonoa,Telèfon del veterinari,Teléfono do veterinario
 api.ter_borrar_tercero,Borrar tercero,Hirugarrena ezabatu,Esborra el tercer,Borrar terceiro
-api.ter_buscar_nombre_nif,Buscar por nombre o NIF,Bilatu izenaren edo NIFaren arabera,Cerca per nom o NIF,Buscar por nome ou NIF
+api.ter_buscar_nombre_nif,Buscar por nombre o NIF,Bilatu izenaren edo IFZaren arabera,Cerca per nom o NIF,Buscar por nome ou NIF
 api.ter_cliente_y_proveedor,Cliente y proveedor,Bezeroa eta hornitzailea,Client i proveïdor,Cliente e provedor
 api.ter_clientes_y_proveedores,Clientes y proveedores,Bezeroak eta hornitzaileak,Clients i proveïdors,Clientes e provedores
-api.ter_confirmar_borrado,"Se borrará «{nombre}». Los apuntes asociados conservarán el importe, pero pierden la referencia al NIF — afectará al extracto del modelo 347 si es de un año aún declarado.","«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio oraindik aitortu gabeko urte batekoa bada.","S'esborrarà «{nombre}». Els assentaments associats conservaran l'import, però perdran la referència al NIF; afectarà l'extracte del model 347 si és d'un any encara per declarar.","Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perden a referencia ao NIF; afectará ao extracto do modelo 347 se é dun ano aínda por declarar."
+api.ter_confirmar_borrado,"Se borrará «{nombre}». Los apuntes asociados conservarán el importe, pero pierden la referencia al NIF — afectará al extracto del modelo 347 si es de un año aún declarado.","«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina IFZaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio oraindik aitortu gabeko urte batekoa bada.","S'esborrarà «{nombre}». Els assentaments associats conservaran l'import, però perdran la referència al NIF; afectarà l'extracte del model 347 si és d'un any encara per declarar.","Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perden a referencia ao NIF; afectará ao extracto do modelo 347 se é dun ano aínda por declarar."
 api.ter_correo,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
 api.ter_crear,Crear,Sortu,Crea,Crear
 api.ter_direccion,Dirección,Helbidea,Adreça,Enderezo
@@ -546,14 +549,14 @@ api.ter_nombre_obligatorio,Nombre obligatorio,Izena derrigorrezkoa da,Nom obliga
 api.ter_nombre_razon_social,Nombre o razón social *,Izena edo sozietatearen izena *,Nom o raó social *,Nome ou razón social *
 api.ter_nuevo,Nuevo,Berria,Nou,Novo
 api.ter_nuevo_tercero,Nuevo tercero,Hirugarren berria,Tercer nou,Novo terceiro
-api.ter_sin_nif,sin NIF,NIFik gabe,sense NIF,sen NIF
+api.ter_sin_nif,sin NIF,IFZrik gabe,sense NIF,sen NIF
 api.ter_sin_nombre,(sin nombre),(izenik gabe),(sense nom),(sen nome)
-api.ter_sin_terceros,"Aún no hay terceros guardados. Añade clientes (envasadores, cooperativas, hostelería) y proveedores (insumos, veterinario, transporte) — el NIF de cada uno permite generar el modelo 347 al cierre del ejercicio.","Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (ontziratzaileak, kooperatibak, ostalaritza) eta hornitzaileak (hornigaiak, albaitaria, garraioa); bakoitzaren NIFari esker 347 eredua sor daiteke ekitaldiaren itxieran.","Encara no hi ha tercers desats. Afegeix clients (envasadors, cooperatives, hostaleria) i proveïdors (subministraments, veterinari, transport); el NIF de cadascun permet generar el model 347 al tancament de l'exercici.","Aínda non hai terceiros gardados. Engade clientes (envasadores, cooperativas, hostalaría) e provedores (subministracións, veterinario, transporte); o NIF de cada un permite xerar o modelo 347 ao peche do exercicio."
+api.ter_sin_terceros,"Aún no hay terceros guardados. Añade clientes (envasadores, cooperativas, hostelería) y proveedores (insumos, veterinario, transporte) — el NIF de cada uno permite generar el modelo 347 al cierre del ejercicio.","Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (ontziratzaileak, kooperatibak, ostalaritza) eta hornitzaileak (hornigaiak, albaitaria, garraioa); bakoitzaren IFZari esker 347 eredua sor daiteke ekitaldiaren itxieran.","Encara no hi ha tercers desats. Afegeix clients (envasadors, cooperatives, hostaleria) i proveïdors (subministraments, veterinari, transport); el NIF de cadascun permet generar el model 347 al tancament de l'exercici.","Aínda non hai terceiros gardados. Engade clientes (envasadores, cooperativas, hostalaría) e provedores (subministracións, veterinario, transporte); o NIF de cada un permite xerar o modelo 347 ao peche do exercicio."
 api.ter_telefono,Teléfono,Telefonoa,Telèfon,Teléfono
 api.ter_tipo_ambos,cliente y proveedor,bezeroa eta hornitzailea,client i proveïdor,cliente e provedor
 api.ter_tipo_cliente,cliente,bezeroa,client,cliente
 api.ter_tipo_proveedor,proveedor,hornitzailea,proveïdor,provedor
-api.terceros_ayuda,Terceros con NIF · alimentan el modelo 347,NIFa duten hirugarrenak · 347 eredua elikatzen dute,Tercers amb NIF · alimenten el model 347,Terceiros con NIF · alimentan o modelo 347
+api.terceros_ayuda,Terceros con NIF · alimentan el modelo 347,IFZa duten hirugarrenak · 347 eredua elikatzen dute,Tercers amb NIF · alimenten el model 347,Terceiros con NIF · alimentan o modelo 347
 api.tipo,Tipo,Mota,Tipus,Tipo
 api.tipo_de_colmena,Tipo de colmena,Erlauntz mota,Tipus de rusc,Tipo de colmea
 api.tipo_plaga_abiotico,Abiótico,Abiotikoa,Abiòtic,Abiótico
@@ -563,7 +566,7 @@ api.tipo_plaga_infeccion,Infección,Infekzioa,Infecció,Infección
 api.tipo_plaga_parasito,Parásito,Parasitoa,Paràsit,Parasito
 api.tipos_de_colmena,Tipos de colmena,Erlauntz motak,Tipus de rusc,Tipos de colmea
 api.titular_explotacion,Titular de la explotación,Ustiapenaren titularra,Titular de l'explotació,Titular da explotación
-api.titular_explotacion_ayuda,"NIF, n.º REGA, contacto y veterinario asesor","NIF, REGA zk., kontaktua eta albaitari aholkularia","NIF, núm. REGA, contacte i veterinari assessor","NIF, n.º REGA, contacto e veterinario asesor"
+api.titular_explotacion_ayuda,"NIF, n.º REGA, contacto y veterinario asesor","IFZ, REGA zk., kontaktua eta albaitari aholkularia","NIF, núm. REGA, contacte i veterinari assessor","NIF, n.º REGA, contacto e veterinario asesor"
 api.titular_sin_configurar,Titular sin configurar,Titularra konfiguratu gabe,Titular sense configurar,Titular sen configurar
 api.todas,Todas,Denak,Totes,Todas
 api.todas_las_colmenas,Todas las colmenas,Erlauntz guztiak,Tots els ruscs,Todas as colmeas

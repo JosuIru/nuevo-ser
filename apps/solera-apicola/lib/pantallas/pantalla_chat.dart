@@ -29,7 +29,7 @@ class PantallaChat extends StatefulWidget {
       'Si algo apunta a una patología de declaración obligatoria (loque americana, escarabajo de '
       'las colmenas, vespa velutina), lo dices claramente y recuerdas notificarlo a los Servicios '
       'Veterinarios oficiales. Cuando no estés seguro, lo dices. '
-      'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
+      'Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
 
   @override
   State<PantallaChat> createState() => _PantallaChatState();
@@ -99,7 +99,8 @@ class _PantallaChatState extends State<PantallaChat> {
         textoAEnviar,
         proveedor: ProveedorChat.claude,
         historial: historial.isEmpty ? null : historial,
-        sistemaPrompt: widget.sistemaPrompt,
+        // Contesta en el idioma elegido en la app.
+        sistemaPrompt: '${widget.sistemaPrompt}\n${instruccionIdiomaRespuestaClaude()}',
         rutaImagen: imagen,
       );
       if (!mounted) return;

@@ -78,7 +78,9 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       _importeBase.text = _formatearCentimos(e.importeBaseCentimos);
       _ivaRepercutido.text = _formatearCentimos(e.ivaRepercutidoCentimos);
       _compensacionReagp.text = _formatearCentimos(e.compensacionReagpCentimos);
-      _cantidad.text = e.cantidad?.toString() ?? '';
+      // Coma decimal; sin separador de millares (la cantidad se relee
+      // con nullSiAmbiguo y «1.200» no se entendería).
+      _cantidad.text = e.cantidad?.toString().replaceAll('.', ',') ?? '';
       _terceroId = e.terceroId;
       _apiarioId = e.apiarioId;
       _rutaFoto = e.rutaFotoFactura;
@@ -113,7 +115,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _formatearCentimos(int centimos) {
     if (centimos == 0) return '';
-    return (centimos / 100).toStringAsFixed(2);
+    return formatearNumero(centimos / 100, decimales: 2);
   }
 
   /// Vacío o ilegible cuenta 0 (para el autocálculo); al guardar, el

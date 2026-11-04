@@ -134,7 +134,7 @@ class _PantallaGestionApiariosState extends State<PantallaGestionApiarios> {
                           if (apiario.codigoSitran.isNotEmpty)
                             apiario.codigoSitran,
                           if (apiario.superficieHectareas != null)
-                            '${apiario.superficieHectareas!.toStringAsFixed(2)} ha',
+                            '${formatearNumero(apiario.superficieHectareas!, decimales: 2)} ha',
                           SoleraL10n.tf('api.n_colmenas', {'n': totalColmenas}),
                           if (apiario.latitudCentroide != null &&
                               apiario.longitudCentroide != null)

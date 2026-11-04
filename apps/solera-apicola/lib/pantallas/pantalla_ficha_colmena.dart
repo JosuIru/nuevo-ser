@@ -260,9 +260,9 @@ class _EventoTimeline {
 
   factory _EventoTimeline.cosecha(CosechaMiel c) {
     final partes = <String>[
-      if (c.kilosMiel != null) SoleraL10n.tf('api.kg_de_miel', {'kg': c.kilosMiel!.toStringAsFixed(1)}),
-      if (c.kilosCera != null) SoleraL10n.tf('api.kg_de_cera', {'kg': c.kilosCera!.toStringAsFixed(2)}),
-      if (c.kilosPolen != null) SoleraL10n.tf('api.kg_de_polen', {'kg': c.kilosPolen!.toStringAsFixed(2)}),
+      if (c.kilosMiel != null) SoleraL10n.tf('api.kg_de_miel', {'kg': formatearNumero(c.kilosMiel!, decimales: 1)}),
+      if (c.kilosCera != null) SoleraL10n.tf('api.kg_de_cera', {'kg': formatearNumero(c.kilosCera!, decimales: 2)}),
+      if (c.kilosPolen != null) SoleraL10n.tf('api.kg_de_polen', {'kg': formatearNumero(c.kilosPolen!, decimales: 2)}),
       if (c.numeroAlza != null) SoleraL10n.tf('api.alza_n', {'n': c.numeroAlza}),
     ];
     return _EventoTimeline._(c.fechaMs, SoleraL10n.t('api.cosecha'), partes.join(' · '), Icons.water_drop);

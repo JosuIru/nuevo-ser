@@ -242,7 +242,7 @@ class _TarjetaDia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fecha = DateFormat('EEE d MMM', 'es_ES').format(dia.fecha);
+    final fecha = DateFormat('EEE d MMM', SoleraL10n.idioma).format(dia.fecha);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -290,7 +290,7 @@ class _TarjetaDia extends StatelessWidget {
   }
 
   static String _fmt(double? v, {int decimales = 1}) =>
-      v == null ? '--' : v.toStringAsFixed(decimales);
+      v == null ? '--' : formatearNumero(v, decimales: decimales);
 }
 
 class _Dato extends StatelessWidget {

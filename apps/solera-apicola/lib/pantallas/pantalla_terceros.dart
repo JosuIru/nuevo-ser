@@ -279,7 +279,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
               TextFormField(
                 controller: _nif,
                 decoration: InputDecoration(
-                  labelText: 'NIF',
+                  labelText: SoleraL10n.t('api.sigla_nif'),
                   hintText: SoleraL10n.t('api.ter_nif_ayuda'),
                   border: OutlineInputBorder(),
                 ),

@@ -96,7 +96,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
                       subtitulos.add('SIGPAC ${f.referenciaSigpac}');
                     }
                     if (f.superficieHectareas != null) {
-                      subtitulos.add('${f.superficieHectareas!.toStringAsFixed(2)} ha');
+                      subtitulos.add('${formatearNumero(f.superficieHectareas!, decimales: 2)} ha');
                     }
                     if (f.notas.isNotEmpty) subtitulos.add(f.notas);
                     return ListTile(

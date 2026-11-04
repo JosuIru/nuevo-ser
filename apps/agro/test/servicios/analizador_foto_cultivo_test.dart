@@ -18,6 +18,17 @@ void main() {
     expect(resultado.coincidenciaCatalogo, isNotNull);
   });
 
+  test('con el nombre común en otro idioma se cruza por nombre_comun_es', () {
+    final resultado = resultadoDesdeJson({
+      'nombre_comun': 'Olibondoaren eulia',
+      'nombre_comun_es': 'Mosca del olivo',
+      'nombre_cientifico': '',
+      'tipo': 'plaga',
+    });
+    expect(resultado.nombreComun, 'Olibondoaren eulia');
+    expect(resultado.coincidenciaCatalogo, isNotNull);
+  });
+
   test('un diagnóstico sin datos queda como indeterminado y sin catálogo', () {
     final resultado = resultadoDesdeJson({});
     expect(resultado.tipo, 'indeterminado');

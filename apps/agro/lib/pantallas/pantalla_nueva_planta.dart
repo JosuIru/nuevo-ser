@@ -266,7 +266,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                           _latitud == null
                               ? SoleraL10n.t('agro.sin_posicion')
                               : '${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}'
-                                  '${_precision != null ? '  ±${_precision!.toStringAsFixed(0)} m' : ''}',
+                                  '${_precision != null ? '  ±${formatearNumero(_precision!)} m' : ''}',
                         ),
                       ),
                       TextButton.icon(

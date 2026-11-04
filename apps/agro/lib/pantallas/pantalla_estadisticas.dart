@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, formatearNumero;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogo_cultivos.dart';
@@ -239,7 +239,7 @@ class _BarraCampana extends StatelessWidget {
             width: 110,
             child: Text(
               [
-                if (resumen.kilos > 0) '${resumen.kilos.toStringAsFixed(1)} kg',
+                if (resumen.kilos > 0) '${formatearNumero(resumen.kilos, decimales: 1)} kg',
                 if (resumen.unidades > 0) SoleraL10n.tf('agro.n_unidades_abreviado', {'n': resumen.unidades}),
               ].join(' · '),
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),

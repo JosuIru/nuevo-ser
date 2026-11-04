@@ -36,11 +36,12 @@ Future<void> main() async {
   } catch (error) {
     debugPrint('No se pudo revisar la restauración interrumpida: $error');
   }
-  // intl/DateFormat con locale `es_ES` (usado en lista de plantas y
-  // ficha) requiere cargar los datos de localización antes del runApp.
-  // Sin esto, cualquier build que toque DateFormat(..., 'es_ES') lanza
-  // LocaleDataException y deja la pantalla en blanco.
-  await initializeDateFormatting('es_ES', null);
+  // intl/DateFormat con locale (`es_ES` en los PDF, el idioma elegido en
+  // pantalla) requiere cargar los datos de localización antes del runApp.
+  // Sin esto, cualquier build que toque DateFormat con locale lanza
+  // LocaleDataException y deja la pantalla en blanco. Sin argumentos
+  // carga todos los idiomas (es, eu, ca, gl…).
+  await initializeDateFormatting();
   // Recupera recorridos GPS que quedaron grabándose si la app murió por
   // crash o kill OS. Sesiones con ≥2 puntos se consolidan automáticamente
   // como "Recorrido recuperado DD/MM HH:mm"; las de menos se descartan.

@@ -266,12 +266,12 @@ class _Cabecera extends StatelessWidget {
           if (planta.fechaPlantacionMs != null)
             _FilaDato(
               etiqueta: SoleraL10n.t('agro.plantada'),
-              valor: DateFormat('dd MMM yyyy', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(planta.fechaPlantacionMs!)),
+              valor: DateFormat('dd MMM yyyy', SoleraL10n.idioma).format(DateTime.fromMillisecondsSinceEpoch(planta.fechaPlantacionMs!)),
             ),
           _FilaDato(
             etiqueta: SoleraL10n.t('agro.posicion'),
             valor: '${planta.latitud.toStringAsFixed(6)}, ${planta.longitud.toStringAsFixed(6)}'
-                '${planta.precisionMetros != null ? '  ±${planta.precisionMetros!.toStringAsFixed(0)} m' : ''}',
+                '${planta.precisionMetros != null ? '  ±${formatearNumero(planta.precisionMetros!)} m' : ''}',
           ),
           if (planta.notas.isNotEmpty) ...[
             SizedBox(height: 8),
@@ -407,7 +407,7 @@ class _TarjetaEvento extends StatelessWidget {
             leading: CircleAvatar(backgroundColor: evento.color, child: Icon(evento.icono, color: Colors.white, size: 20)),
             title: Text(evento.titulo),
             subtitle: Text(
-              '${DateFormat('dd MMM yyyy', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(evento.fechaMs))}'
+              '${DateFormat('dd MMM yyyy', SoleraL10n.idioma).format(DateTime.fromMillisecondsSinceEpoch(evento.fechaMs))}'
               '${evento.subtitulo.isNotEmpty ? '  ·  ${evento.subtitulo}' : ''}',
             ),
             // Antes los 3 puntos eran un Icon decorativo y la única
@@ -529,7 +529,7 @@ class _EventoTimeline {
 
   factory _EventoTimeline.deCosecha(Cosecha c) {
     final partes = <String>[];
-    if (c.kilos != null) partes.add('${c.kilos!.toStringAsFixed(2)} kg');
+    if (c.kilos != null) partes.add('${formatearNumero(c.kilos!, decimales: 2)} kg');
     if (c.unidades != null) partes.add(SoleraL10n.tf('agro.unidades_abreviado_n', {'n': c.unidades}));
     if (c.calidad != null) partes.add(SoleraL10n.tf('agro.calidad_abreviada_n_de_5', {'n': c.calidad}));
     return _EventoTimeline(

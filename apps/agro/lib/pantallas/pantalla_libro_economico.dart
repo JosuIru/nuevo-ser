@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, formatearEuros;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogo_cultivos.dart';
@@ -271,14 +271,14 @@ class _ListaIngresos extends StatelessWidget {
           ),
           subtitle: Text(
             '${fecha.day}/${fecha.month} · '
-            '${(a.importeTotalCentimos / 100).toStringAsFixed(2)} €'
+            '${formatearEuros(a.importeTotalCentimos / 100)}'
             '${tercero != null ? ' · ${tercero.nombre}' : ''}',
             style: const TextStyle(fontSize: 12),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Text(
-            '${(a.importeBaseCentimos / 100).toStringAsFixed(2)} €',
+            formatearEuros(a.importeBaseCentimos / 100),
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         );
@@ -361,7 +361,7 @@ class _ListaGastos extends StatelessWidget {
           ),
           subtitle: Text(
             '${fecha.day}/${fecha.month} · '
-            '${(a.importeTotalCentimos / 100).toStringAsFixed(2)} €'
+            '${formatearEuros(a.importeTotalCentimos / 100)}'
             '${tercero != null ? ' · ${tercero.nombre}' : ''}'
             '${a.esCultivoGeneral ? ' · ${_nombreCultivo(a.cultivoId)}' : ''}',
             style: const TextStyle(fontSize: 12),
@@ -369,7 +369,7 @@ class _ListaGastos extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           trailing: Text(
-            '${(a.importeBaseCentimos / 100).toStringAsFixed(2)} €',
+            formatearEuros(a.importeBaseCentimos / 100),
             style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         );
@@ -697,7 +697,7 @@ class _ResumenLineaAgro extends StatelessWidget {
         children: [
           Expanded(child: Text(label, style: const TextStyle(fontSize: 12))),
           Text(
-            '${(value / 100).toStringAsFixed(2)} €',
+            formatearEuros(value / 100),
             style: TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.bold,
@@ -901,7 +901,7 @@ class _Card extends StatelessWidget {
             ),
             const SizedBox(width: 12),
             Text(
-              '${(importeCentimos / 100).toStringAsFixed(2)} €',
+              formatearEuros(importeCentimos / 100),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

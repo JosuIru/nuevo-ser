@@ -136,7 +136,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final fechaCopia = informe.fechaCreacion;
     final descripcionCopia = fechaCopia != null
         ? SoleraL10n.tf('agro.copia_del_fecha', {
-            'fecha': DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(fechaCopia),
+            'fecha': DateFormat.yMMMMd(SoleraL10n.idioma).add_Hm().format(fechaCopia),
           })
         : SoleraL10n.tf('agro.copia_sin_fecha', {
             'fecha': DateFormat('d/M/yyyy HH:mm', 'es_ES').format(copia.lastModifiedSync()),
@@ -202,7 +202,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
                           Text(
                             ultimo == null
                                 ? SoleraL10n.t('agro.nunca_copia')
-                                : DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(ultimo),
+                                : DateFormat.yMMMMd(SoleraL10n.idioma).add_Hm().format(ultimo),
                           ),
                         ],
                       ),

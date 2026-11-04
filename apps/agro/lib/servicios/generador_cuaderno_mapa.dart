@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:intl/intl.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show temaPdfSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show formatearNumero, temaPdfSolera;
 import 'package:path/path.dart' as path_lib;
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
@@ -294,7 +294,7 @@ pw.Widget _seccionParcelas(Finca? finca, List<Planta> plantas) {
           [
             finca?.nombre ?? 'Puntos sueltos',
             finca?.referenciaSigpac ?? '—',
-            finca?.superficieHectareas?.toStringAsFixed(2) ?? '—',
+            finca?.superficieHectareas == null ? '—' : formatearNumero(finca!.superficieHectareas!, decimales: 2),
             resumenCultivos.isEmpty ? '—' : resumenCultivos,
           ],
         ],
@@ -340,7 +340,7 @@ pw.Widget _seccionTratamientos(
                 t.numeroRegistroFitosanitario,
                 t.dosis,
                 t.motivo,
-                t.superficieTratadaHectareas?.toStringAsFixed(2) ?? '—',
+                t.superficieTratadaHectareas == null ? '—' : formatearNumero(t.superficieTratadaHectareas!, decimales: 2),
                 t.nifAplicador.isEmpty ? titular.nif : t.nifAplicador,
                 t.plazoSeguridadDias != null ? '${t.plazoSeguridadDias} d' : '—',
               ],

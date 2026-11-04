@@ -367,7 +367,7 @@ class _BloqueResumen extends StatelessWidget {
             Expanded(
               child: _Estadistica(
                 etiqueta: SoleraL10n.t('agro.cosecha_30_dias'),
-                valor: kilosUltimos30 == 0 ? '—' : '${kilosUltimos30.toStringAsFixed(1)} kg',
+                valor: kilosUltimos30 == 0 ? '—' : '${formatearNumero(kilosUltimos30, decimales: 1)} kg',
                 icono: Icons.shopping_basket,
                 color: const Color(0xFF689F38),
               ),

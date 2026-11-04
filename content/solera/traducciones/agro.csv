@@ -73,7 +73,7 @@ agro.buenas_tardes,Buenas tardes,Arratsalde on,Bona tarda,Boas tardes
 agro.buenos_dias,Buenos días,Egun on,Bon dia,Bos días
 agro.buscar_cultivo,Buscar cultivo,Bilatu laborea,Cerca un conreu,Buscar cultivo
 agro.buscar_por_etiqueta_variedad_cultivo_finca,"Buscar por etiqueta, variedad, cultivo o finca","Bilatu etiketa, barietate, labore edo finkaren arabera","Cerca per etiqueta, varietat, conreu o finca","Buscar por etiqueta, variedade, cultivo ou finca"
-agro.buscar_por_nombre_o_nif,Buscar por nombre o NIF,Bilatu izenaren edo NIFaren arabera,Cercar per nom o NIF,Buscar por nome ou NIF
+agro.buscar_por_nombre_o_nif,Buscar por nombre o NIF,Bilatu izenaren edo IFZaren arabera,Cercar per nom o NIF,Buscar por nome ou NIF
 agro.buscar_un_lugar,Buscar un lugar,Leku bat bilatu,Cercar un lloc,Buscar un lugar
 agro.calendario,Calendario,Egutegia,Calendari,Calendario
 agro.calendario_orientativo_iberia,Calendario orientativo para Iberia. Ajusta según tu zona y año concreto.,Iberiarako egutegi orientagarria. Egokitu zure eremuaren eta urtearen arabera.,Calendari orientatiu per a la península Ibèrica. Ajusta'l segons la teva zona i l'any concret.,Calendario orientativo para Iberia. Axústao segundo a túa zona e o ano concreto.
@@ -113,7 +113,7 @@ agro.cliente_minuscula,cliente,bezeroa,client,cliente
 agro.cliente_y_proveedor,Cliente y proveedor,Bezeroa eta hornitzailea,Client i proveïdor,Cliente e provedor
 agro.cliente_y_proveedor_minuscula,cliente y proveedor,bezeroa eta hornitzailea,client i proveïdor,cliente e provedor
 agro.clientes_y_proveedores,Clientes y proveedores,Bezeroak eta hornitzaileak,Clients i proveïdors,Clientes e provedores
-agro.clientes_y_proveedores_sub,Terceros con NIF · alimentan el modelo 347,NIFa duten hirugarrenak · 347 eredua elikatzen dute,Tercers amb NIF · alimenten el model 347,Terceiros con NIF · alimentan o modelo 347
+agro.clientes_y_proveedores_sub,Terceros con NIF · alimentan el modelo 347,IFZa duten hirugarrenak · 347 eredua elikatzen dute,Tercers amb NIF · alimenten el model 347,Terceiros con NIF · alimentan o modelo 347
 agro.codigo_ine_abreviado,Cód. INE,INE kodea,Codi INE,Cód. INE
 agro.combustible,Combustible,Erregaia,Combustible,Combustible
 agro.compartido_entre_parcelas_cultivo,Compartido entre todas las parcelas con ese cultivo,Labore hori duten partzela guztien artean banatua,Compartit entre totes les parcel·les amb aquest cultiu,Compartido entre todas as parcelas con ese cultivo
@@ -135,12 +135,12 @@ agro.confianza_valor,confianza {valor},konfiantza: {valor},confiança {valor},co
 agro.configura_regimen_iva_calculo,Configura el régimen de IVA en Ajustes → Configuración fiscal para que la app calcule la compensación o el IVA repercutido.,"Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, aplikazioak konpentsazioa edo BEZ jasanarazia kalkula dezan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè l'aplicació calculi la compensació o l'IVA repercutit.,Configura o réxime de IVE en Axustes → Configuración fiscal para que a aplicación calcule a compensación ou o IVE repercutido.
 agro.configura_regimen_iva_en_ajustes,Configura el régimen de IVA en Ajustes,Konfiguratu BEZ erregimena Ezarpenetan,Configura el règim d'IVA a Configuració,Configura o réxime de IVE en Axustes
 agro.configura_regimen_iva_resumen,Configura el régimen de IVA en Ajustes → Configuración fiscal para que el resumen distinga REAGP de régimen general.,"Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, laburpenak REAGP eta erregimen orokorra bereiz ditzan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè el resum distingeixi el REAGP del règim general.,Configura o réxime de IVE en Axustes → Configuración fiscal para que o resumo distinga o REAGP do réxime xeral.
-agro.configuracion_fiscal_sub,Régimen IRPF + IVA · provisional,IRPF + BEZ araubidea · behin-behinekoa,Règim IRPF + IVA · provisional,Réxime IRPF + IVE · provisional
+agro.configuracion_fiscal_sub,Régimen IRPF + IVA · provisional,PFEZ + BEZ araubidea · behin-behinekoa,Règim IRPF + IVA · provisional,Réxime IRPF + IVE · provisional
 agro.configurar_correo_respaldo,Configurar correo de respaldo,Kopiarako helbidea konfiguratu,Configurar el correu per a la còpia,Configurar o correo para a copia
 agro.configurar_titular,Configurar titular,Titularra konfiguratu,Configurar titular,Configurar titular
 agro.confirmar_anular_factura,"¿Anular {numero}? No se elimina, queda registrada como anulada.",{numero} deuseztatu? Ez da ezabatzen; deuseztatutzat erregistratuta geratzen da.,Vols anul·lar la {numero}? No s'elimina: queda registrada com a anul·lada.,Anular a {numero}? Non se elimina: queda rexistrada como anulada.
 agro.confirmar_borrar_recorrido,¿Borrar este recorrido?,Ibilbide hau ezabatu?,Vols esborrar aquest recorregut?,Borrar este percorrido?
-agro.confirmar_borrar_tercero,"Se borrará «{nombre}». Los apuntes asociados conservarán el importe, pero pierden la referencia al NIF — afectará al extracto del modelo 347 si es de un año aún declarado.","«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio, oraindik aitortzeko dagoen urte batekoa bada.","S'esborrarà «{nombre}». Els assentaments associats conservaran l'import, però perdran la referència al NIF: afectarà l'extracte del model 347 si és d'un any encara per declarar.","Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perderán a referencia ao NIF: afectará ao extracto do modelo 347 se é dun ano aínda por declarar."
+agro.confirmar_borrar_tercero,"Se borrará «{nombre}». Los apuntes asociados conservarán el importe, pero pierden la referencia al NIF — afectará al extracto del modelo 347 si es de un año aún declarado.","«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina IFZaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio, oraindik aitortzeko dagoen urte batekoa bada.","S'esborrarà «{nombre}». Els assentaments associats conservaran l'import, però perdran la referència al NIF: afectarà l'extracte del model 347 si és d'un any encara per declarar.","Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perderán a referencia ao NIF: afectará ao extracto do modelo 347 se é dun ano aínda por declarar."
 agro.copia_aviso_sustitucion,Se sustituirán la base de datos y las fotos actuales por las de la copia. Antes se guarda automáticamente una copia del estado actual en el dispositivo.,"Uneko datu-basea eta argazkiak kopiakoekin ordeztuko dira. Aurretik, uneko egoeraren kopia bat gordetzen da automatikoki gailuan.",Se substituiran la base de dades i les fotos actuals per les de la còpia. Abans es desa automàticament una còpia de l'estat actual al dispositiu.,Substituiranse a base de datos e as fotos actuais polas da copia. Antes gárdase automaticamente unha copia do estado actual no dispositivo.
 agro.copia_con_n_fotos,"{descripcion}, con {n} fotos.","{descripcion}, {n} argazkirekin.","{descripcion}, amb {n} fotos.","{descripcion}, con {n} fotos."
 agro.copia_datos_intactos,Tus datos no se han tocado.,Zure datuak ez dira ukitu.,Les teves dades no s'han tocat.,Os teus datos non se tocaron.
@@ -174,7 +174,7 @@ agro.cosecha_rapida,Cosecha rápida,Uzta azkarra,Collita ràpida,Colleita rápid
 agro.crear,Crear,Sortu,Crear,Crear
 agro.crear_copia,Crear copia,Kopia sortu,Crear còpia,Crear copia
 agro.crear_copia_explicacion,"Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí.","Datu-basea eta argazki guztiak ZIP batean biltzen ditu; WhatsApp, Drive edo posta bidez parteka dezakezu, edo ordenagailura kopiatu. Aplikazioa berriro instalatzen baduzu edo mugikorra aldatzen baduzu, hemendik leheneratu ahal izango duzu.","Empaqueta la base de dades i totes les fotos en un ZIP que pots compartir per WhatsApp, Drive o correu, o copiar a l'ordinador. Si reinstal·les l'aplicació o canvies de mòbil, podràs restaurar-la des d'aquí.","Empaqueta a base de datos e todas as fotos nun ZIP que podes compartir por WhatsApp, Drive ou correo, ou copiar ao PC. Se reinstalas a aplicación ou cambias de móbil, poderás restaurala desde aquí."
-agro.criterio_trimestres,"Los trimestres usan el mismo criterio que el resumen anual: ayudas aparte, modelo 303 según régimen y modelo 347 por NIF.","Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: laguntzak bereiz, 303 eredua erregimenaren arabera eta 347 eredua NIFaren arabera.","Els trimestres fan servir el mateix criteri que el resum anual: ajuts a part, model 303 segons el règim i model 347 per NIF.","Os trimestres usan o mesmo criterio que o resumo anual: axudas á parte, modelo 303 segundo o réxime e modelo 347 por NIF."
+agro.criterio_trimestres,"Los trimestres usan el mismo criterio que el resumen anual: ayudas aparte, modelo 303 según régimen y modelo 347 por NIF.","Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: laguntzak bereiz, 303 eredua erregimenaren arabera eta 347 eredua IFZaren arabera.","Els trimestres fan servir el mateix criteri que el resum anual: ajuts a part, model 303 segons el règim i model 347 per NIF.","Os trimestres usan o mesmo criterio que o resumo anual: axudas á parte, modelo 303 segundo o réxime e modelo 347 por NIF."
 agro.csv_cultivo_id_vacio,cultivo_id vacío,cultivo_id hutsik,cultivo_id buit,cultivo_id baleiro
 agro.csv_faltan_columnas,"Faltan columnas obligatorias: cultivo_id, latitud, longitud.","Derrigorrezko zutabeak falta dira: cultivo_id, latitud, longitud.","Falten columnes obligatòries: cultivo_id, latitud, longitud.","Faltan columnas obrigatorias: cultivo_id, latitud, longitud."
 agro.csv_lat_lon_fuera_rango,latitud/longitud fuera de rango,latitud/longitud tartetik kanpo,latitud/longitud fora de rang,latitud/longitud fóra de rango
@@ -193,7 +193,7 @@ agro.cultivos,Cultivos,Laboreak,Conreus,Cultivos
 agro.cultivos_afectados,Cultivos afectados,Kaltetutako laboreak,Conreus afectats,Cultivos afectados
 agro.dano_abiotico,Daño abiótico,Kalte abiotikoa,Dany abiòtic,Dano abiótico
 agro.datos_del_titular,Datos del titular,Titularraren datuak,Dades del titular,Datos do titular
-agro.datos_del_titular_sub,"NIF, REGEPA, asesor, aplicador (para cuaderno MAPA)","NIF, REGEPA, aholkularia, aplikatzailea (MAPA koadernorako)","NIF, REGEPA, assessor, aplicador (per al quadern MAPA)","NIF, REGEPA, asesor, aplicador (para o caderno MAPA)"
+agro.datos_del_titular_sub,"NIF, REGEPA, asesor, aplicador (para cuaderno MAPA)","IFZ, REGEPA, aholkularia, aplikatzailea (MAPA koadernorako)","NIF, REGEPA, assessor, aplicador (per al quadern MAPA)","NIF, REGEPA, asesor, aplicador (para o caderno MAPA)"
 agro.datos_obligatorios_tratamiento_cuaderno,Estos datos son obligatorios para que el tratamiento aparezca en el cuaderno.,Datu hauek derrigorrezkoak dira tratamendua koadernoan ager dadin.,Aquestes dades són obligatòries perquè el tractament aparegui al quadern.,Estes datos son obrigatorios para que o tratamento apareza no caderno.
 agro.datos_sigpac_guardados,Datos SIGPAC guardados.,SIGPAC datuak gordeta.,Dades SIGPAC desades.,Datos SIGPAC gardados.
 agro.datos_sigpac_y_superficie,Datos SIGPAC y superficie,SIGPAC datuak eta azalera,Dades SIGPAC i superfície,Datos SIGPAC e superficie
@@ -283,7 +283,7 @@ agro.extracto_incluye_gastos_mes,"Tabla mensual de gastos (base, IVA soportado, 
 agro.extracto_incluye_ingresos_mes,"Tabla mensual de ingresos (cosecha, ayudas PAC, IVA, compensación REAGP).","Diru-sarreren hileko taula (uzta, PAC laguntzak, BEZa, REAGP konpentsazioa).","Taula mensual d'ingressos (collita, ajuts PAC, IVA, compensació REAGP).","Táboa mensual de ingresos (colleita, axudas PAC, IVE, compensación REAGP)."
 agro.extracto_incluye_modelo_347,"Modelo 347: terceros con suma >3.005,06 € en el ejercicio.","347 eredua: ekitaldian 3.005,06 € baino gehiago dituzten hirugarrenak.","Model 347: tercers amb una suma >3.005,06 € en l'exercici.","Modelo 347: terceiros cunha suma >3.005,06 € no exercicio."
 agro.extracto_incluye_resumen,Resumen con los totales del ejercicio.,Ekitaldiko guztizkoen laburpena.,Resum amb els totals de l'exercici.,Resumo cos totais do exercicio.
-agro.extracto_incluye_sin_nif,Apuntes sin NIF que no entran en el modelo 347.,347 ereduan sartzen ez diren NIF gabeko idatzoharrak.,Assentaments sense NIF que no entren al model 347.,Apuntamentos sen NIF que non entran no modelo 347.
+agro.extracto_incluye_sin_nif,Apuntes sin NIF que no entran en el modelo 347.,347 ereduan sartzen ez diren IFZ gabeko idatzoharrak.,Assentaments sense NIF que no entren al model 347.,Apuntamentos sen NIF que non entran no modelo 347.
 agro.extracto_nota_cultivo_general,Los gastos imputados a «cultivo general» se listan tal cual con el importe íntegro: el reparto proporcional por hectárea entre parcelas con ese cultivo está pendiente de que un asesor fiscal valide el método.,«Labore orokorra»ri egotzitako gastuak zenbateko osoarekin zerrendatzen dira: labore hori duten partzelen arteko hektareako banaketa proportzionala aholkulari fiskal batek metodoa baliozkotu arte dago zain.,Les despeses imputades a «cultiu general» es llisten tal qual amb l'import íntegre: el repartiment proporcional per hectàrea entre parcel·les amb aquest cultiu està pendent que un assessor fiscal en validi el mètode.,Os gastos imputados a «cultivo xeral» lístanse tal cal co importe íntegro: o reparto proporcional por hectárea entre parcelas con ese cultivo está pendente de que un asesor fiscal valide o método.
 agro.factura_estado_anulada,anulada,deuseztatuta,anul·lada,anulada
 agro.factura_estado_emitida,emitida,jaulkita,emesa,emitida
@@ -364,7 +364,7 @@ agro.ingreso_actualizado,Ingreso actualizado.,Diru-sarrera eguneratu da.,Ingrés
 agro.ingreso_guardado,Ingreso guardado.,Diru-sarrera gorde da.,Ingrés desat.,Ingreso gardado.
 agro.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
 agro.ingresos_ordinarios,Ingresos ordinarios,Diru-sarrera arruntak,Ingressos ordinaris,Ingresos ordinarios
-agro.ingresos_sin_nif_n,{n} ingreso(s) sin NIF: no entran en el modelo 347,{n} diru-sarrera NIF gabe: ez dira 347 ereduan sartzen,{n} ingrés/ingressos sense NIF: no entren al model 347,{n} ingreso(s) sen NIF: non entran no modelo 347
+agro.ingresos_sin_nif_n,{n} ingreso(s) sin NIF: no entran en el modelo 347,{n} diru-sarrera IFZ gabe: ez dira 347 ereduan sartzen,{n} ingrés/ingressos sense NIF: no entren al model 347,{n} ingreso(s) sen NIF: non entran no modelo 347
 agro.insumos,Insumos,Intsumoak,Inputs,Insumos
 agro.iva,IVA,BEZ,IVA,IVE
 agro.iva_porcentaje,IVA {n} %,BEZ % {n},IVA {n} %,IVE {n} %
@@ -395,13 +395,13 @@ agro.motivo,Motivo,Arrazoia,Motiu,Motivo
 agro.municipio,Municipio,Udalerria,Municipi,Concello
 agro.n_puntos,{n} puntos,{n} puntu,{n} punts,{n} puntos
 agro.n_unidades_abreviado,{n} ud,{n} ale,{n} u.,{n} ud.
-agro.nif,NIF,NIF,NIF,NIF
-agro.nif_aplicador_si_distinto,NIF del aplicador (si es distinto del titular),Aplikatzailearen NIFa (titularra ez bada),NIF de l'aplicador (si és diferent del titular),NIF do aplicador (se é distinto do titular)
-agro.nif_asesor_aplicador,"NIF, asesor, aplicador","NIF, aholkularia, aplikatzailea","NIF, assessor, aplicador","NIF, asesor, aplicador"
-agro.nif_cif_obligatorio,NIF / CIF *,NIF / IFK *,NIF / CIF *,NIF / CIF *
-agro.nif_del_aplicador,NIF del aplicador,Aplikatzailearen NIFa,NIF de l'aplicador,NIF do aplicador
-agro.nif_del_asesor,NIF del asesor,Aholkulariaren NIFa,NIF de l'assessor,NIF do asesor
-agro.nif_opcional,NIF (opcional),NIF (aukerakoa),NIF (opcional),NIF (opcional)
+agro.nif,NIF,IFZ,NIF,NIF
+agro.nif_aplicador_si_distinto,NIF del aplicador (si es distinto del titular),Aplikatzailearen IFZa (titularra ez bada),NIF de l'aplicador (si és diferent del titular),NIF do aplicador (se é distinto do titular)
+agro.nif_asesor_aplicador,"NIF, asesor, aplicador","IFZ, aholkularia, aplikatzailea","NIF, assessor, aplicador","NIF, asesor, aplicador"
+agro.nif_cif_obligatorio,NIF / CIF *,IFZ / IFK *,NIF / CIF *,NIF / CIF *
+agro.nif_del_aplicador,NIF del aplicador,Aplikatzailearen IFZa,NIF de l'aplicador,NIF do aplicador
+agro.nif_del_asesor,NIF del asesor,Aholkulariaren IFZa,NIF de l'assessor,NIF do asesor
+agro.nif_opcional,NIF (opcional),IFZ (aukerakoa),NIF (opcional),NIF (opcional)
 agro.nif_vacio_si_venta_informal,Vacío si es venta informal sin factura,"Hutsik, fakturarik gabeko salmenta informala bada",Buit si és una venda informal sense factura,Baleiro se é unha venda informal sen factura
 agro.nivel_del_carnet,Nivel del carnet,Txartelaren maila,Nivell del carnet,Nivel do carné
 agro.no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
@@ -552,7 +552,7 @@ agro.sin_gastos_este_ano,"Aún no hay gastos en este año. Pulsa «Nuevo gasto»
 agro.sin_ingresos_este_ano,"Aún no hay ingresos en este año. Pulsa «Nuevo ingreso» para registrar una venta de cosecha, leña, alquiler de terreno o una ayuda PAC.","Oraindik ez dago diru-sarrerarik urte honetan. Sakatu «Diru-sarrera berria» uzta, egur edo lur-alokairu salmenta bat edo PAC laguntza bat erregistratzeko.","Encara no hi ha ingressos aquest any. Prem «Nou ingrés» per registrar una venda de collita, llenya, lloguer de terreny o un ajut PAC.","Aínda non hai ingresos neste ano. Preme «Novo ingreso» para rexistrar unha venda de colleita, leña, aluguer de terreo ou unha axuda PAC."
 agro.sin_iva,Sin IVA,BEZik gabe,Sense IVA,Sen IVE
 agro.sin_iva_ni_compensacion,Sin IVA ni compensación,BEZik eta konpentsaziorik gabe,Sense IVA ni compensació,Sen IVE nin compensación
-agro.sin_nif,sin NIF,NIF gabe,sense NIF,sen NIF
+agro.sin_nif,sin NIF,IFZ gabe,sense NIF,sen NIF
 agro.sin_nombre_parentesis,(sin nombre),(izenik gabe),(sense nom),(sen nome)
 agro.sin_plagas_catalogadas_cultivo,Sin plagas catalogadas para este cultivo en v1. El catálogo se ampliará con validación agronómica en v2.,Ez dago izurriterik katalogatuta labore honetarako v1ean. Katalogoa balidazio agronomikoarekin zabalduko da v2an.,No hi ha plagues catalogades per a aquest conreu a la v1. El catàleg s'ampliarà amb validació agronòmica a la v2.,Non hai pragas catalogadas para este cultivo na v1. O catálogo ampliarase con validación agronómica na v2.
 agro.sin_posicion,Sin posición,Posiziorik gabe,Sense posició,Sen posición
@@ -567,7 +567,7 @@ agro.superficie_no_puede_ser_negativa,La superficie no puede ser negativa.,Azale
 agro.superficie_no_valida_texto,"Superficie no válida: «{texto}». Usa solo números (p. ej. 4,7).","Azalera baliogabea: «{texto}». Erabili zenbakiak soilik (adib. 4,7).","Superfície no vàlida: «{texto}». Fes servir només números (p. ex. 4,7).","Superficie non válida: «{texto}». Usa só números (p. ex. 4,7)."
 agro.superficie_tratada_ha,Superficie tratada (ha),Tratatutako azalera (ha),Superfície tractada (ha),Superficie tratada (ha)
 agro.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
-agro.terceros_vacio,"Aún no hay terceros guardados. Añade clientes (cooperativas, almazaras, hostelería, distribuidores) y proveedores (insumos, fitosanitarios, maquinaria) — el NIF de cada uno permite generar el modelo 347 al cierre del ejercicio.","Oraindik ez dago bezero edo hornitzailerik gordeta. Gehitu bezeroak (kooperatibak, olio-errotak, ostalaritza, banatzaileak) eta hornitzaileak (intsumoak, fitosanitarioak, makineria); bakoitzaren NIFari esker 347 eredua sor daiteke ekitaldiaren itxieran.","Encara no hi ha clients ni proveïdors desats. Afegeix clients (cooperatives, almàsseres, hostaleria, distribuïdors) i proveïdors (inputs, fitosanitaris, maquinària): el NIF de cadascun permet generar el model 347 al tancament de l'exercici.","Aínda non hai clientes nin provedores gardados. Engade clientes (cooperativas, almazaras, hostalaría, distribuidores) e provedores (insumos, fitosanitarios, maquinaria): o NIF de cada un permite xerar o modelo 347 ao peche do exercicio."
+agro.terceros_vacio,"Aún no hay terceros guardados. Añade clientes (cooperativas, almazaras, hostelería, distribuidores) y proveedores (insumos, fitosanitarios, maquinaria) — el NIF de cada uno permite generar el modelo 347 al cierre del ejercicio.","Oraindik ez dago bezero edo hornitzailerik gordeta. Gehitu bezeroak (kooperatibak, olio-errotak, ostalaritza, banatzaileak) eta hornitzaileak (intsumoak, fitosanitarioak, makineria); bakoitzaren IFZari esker 347 eredua sor daiteke ekitaldiaren itxieran.","Encara no hi ha clients ni proveïdors desats. Afegeix clients (cooperatives, almàsseres, hostaleria, distribuïdors) i proveïdors (inputs, fitosanitaris, maquinària): el NIF de cadascun permet generar el model 347 al tancament de l'exercici.","Aínda non hai clientes nin provedores gardados. Engade clientes (cooperativas, almazaras, hostalaría, distribuidores) e provedores (insumos, fitosanitarios, maquinaria): o NIF de cada un permite xerar o modelo 347 ao peche do exercicio."
 agro.tipo,Tipo,Mota,Tipus,Tipo
 agro.tipo_de_gasto,Tipo de gasto,Gastu mota,Tipus de despesa,Tipo de gasto
 agro.tipo_de_ingreso,Tipo de ingreso,Diru-sarrera mota,Tipus d'ingrés,Tipo de ingreso

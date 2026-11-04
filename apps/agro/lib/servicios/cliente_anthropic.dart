@@ -9,6 +9,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
         ImagenClaude,
         MensajeClaude,
         MotivoErrorClaude,
+        instruccionIdiomaRespuestaClaude,
         modeloClaudeRapido;
 
 import '../datos/catalogo_cultivos.dart';
@@ -100,7 +101,8 @@ class AnalizadorFotoCultivo {
     final imagen = await ImagenClaude.desdeFichero(foto.path);
     final json = await _cliente.pedirJson(
       modelo: modeloClaudeRapido,
-      sistema: _promptSistema,
+      // Los textos del diagnóstico, en el idioma elegido en la app.
+      sistema: '$_promptSistema\n${instruccionIdiomaRespuestaClaude()}',
       mensajes: [
         MensajeClaude.usuario(
           _construirPrompt(cultivoContexto, observacionesUsuario),
@@ -119,6 +121,12 @@ class AnalizadorFotoCultivo {
 ResultadoAnalisisIA resultadoDesdeJson(Map<String, dynamic> json) {
   final nombreComun = (json['nombre_comun'] as String?) ?? 'Sin diagnóstico';
   final nombreCientifico = (json['nombre_cientifico'] as String?) ?? '';
+  // El nombre común llega en el idioma de la app; para cruzarlo con el
+  // catálogo (en castellano) se usa `nombre_comun_es` si viene.
+  final nombreComunCastellano =
+      (json['nombre_comun_es'] as String?)?.trim().isNotEmpty == true
+          ? json['nombre_comun_es'] as String
+          : nombreComun;
   return ResultadoAnalisisIA(
     nombreComun: nombreComun,
     nombreCientifico: nombreCientifico,
@@ -127,7 +135,7 @@ ResultadoAnalisisIA resultadoDesdeJson(Map<String, dynamic> json) {
     confianza: ((json['confianza'] as num?)?.toDouble() ?? 0).clamp(0, 1).toDouble(),
     manejoCultural: (json['manejo_cultural'] as String?) ?? '',
     advertencia: (json['advertencia'] as String?) ?? '',
-    coincidenciaCatalogo: _buscarCoincidenciaCatalogo(nombreCientifico, nombreComun),
+    coincidenciaCatalogo: _buscarCoincidenciaCatalogo(nombreCientifico, nombreComunCastellano),
   );
 }
 
@@ -140,7 +148,8 @@ REGLAS ESTRICTAS:
 
 2. Estructura del JSON:
 {
-  "nombre_comun": "nombre habitual en español de la plaga/enfermedad/trastorno",
+  "nombre_comun": "nombre habitual de la plaga/enfermedad/trastorno",
+  "nombre_comun_es": "el mismo nombre habitual, siempre en castellano (sirve para cruzarlo con el catálogo de la app)",
   "nombre_cientifico": "nombre científico binomial si aplica, vacío si es un trastorno fisiológico/abiótico",
   "tipo": "plaga" | "enfermedad" | "fisiologico" | "abiotico" | "indeterminado",
   "severidad": número entero 1-5 estimado, o null si no es valorable,

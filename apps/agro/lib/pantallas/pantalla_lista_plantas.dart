@@ -156,7 +156,7 @@ class _PantallaListaPlantasState extends State<PantallaListaPlantas> {
                           cultivo.nombreVisible,
                           if (p.variedad.isNotEmpty) p.variedad,
                           if (finca != null) finca.nombre else SoleraL10n.t('agro.punto_suelto'),
-                          DateFormat('dd MMM yyyy', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(p.fechaCreacionMs)),
+                          DateFormat('dd MMM yyyy', SoleraL10n.idioma).format(DateTime.fromMillisecondsSinceEpoch(p.fechaCreacionMs)),
                         ].join('  ·  ')),
                         onTap: () async {
                           final cambio = await Navigator.of(context).push<bool>(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SelectorIdioma, SoleraL10n;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../datos/base_datos.dart';
@@ -90,15 +90,28 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
       ),
       body: Column(
         children: [
+          // Elegir idioma desde la primera pantalla (se puede cambiar luego
+          // en Ajustes).
+          if (_pagina == 0)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SelectorIdioma(onCambio: () => setState(() {})),
+              ),
+            ),
           Expanded(
             child: PageView(
               controller: _controladorPagina,
               onPageChanged: (i) => setState(() => _pagina = i),
               children: [
-                const _PaginaBienvenida(),
+                // Sin const: al cambiar de idioma tienen que reconstruirse.
+                // ignore: prefer_const_constructors
+                _PaginaBienvenida(),
                 _PaginaCultivos(seleccionados: _cultivosSeleccionados, alCambiar: () => setState(() {})),
                 _PaginaFinca(controlador: _controladorNombreFinca),
-                const _PaginaPermisos(),
+                // ignore: prefer_const_constructors
+                _PaginaPermisos(),
               ],
             ),
           ),
@@ -134,10 +147,13 @@ class _PaginaBienvenida extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+    // Desplazable: con el selector de idioma encima, en pantallas pequeñas
+    // el texto no cabe entero.
+    return Center(
+      child: SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Icon(Icons.eco, size: 80, color: Color(0xFF558B2F)),
@@ -154,6 +170,7 @@ class _PaginaBienvenida extends StatelessWidget {
             style: const TextStyle(fontSize: 15),
           ),
         ],
+      ),
       ),
     );
   }

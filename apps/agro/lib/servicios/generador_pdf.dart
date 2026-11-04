@@ -107,7 +107,7 @@ Future<File> generarPdfCampana({
   // Bullets del resumen.
   final bullets = <String>[
     'Plantas: ${plantas.length}',
-    if (resumen.totalKilos > 0) 'Cosecha total: ${resumen.totalKilos.toStringAsFixed(2)} kg',
+    if (resumen.totalKilos > 0) 'Cosecha total: ${formatearNumero(resumen.totalKilos, decimales: 2)} kg',
     if (resumen.totalUnidades > 0) 'Unidades: ${resumen.totalUnidades}',
     if (resumen.totalCosechas > 0) 'Registros de cosecha: ${resumen.totalCosechas}',
     'Incidencias abiertas: ${incidenciasAbiertas.length}',
@@ -161,7 +161,7 @@ List<List<String>> _filasCosechasPorPlanta(List<Planta> plantas, ResumenCosechas
           p.etiqueta.isEmpty ? '#${p.id}' : p.etiqueta,
           cultivoPorId(p.cultivoId).nombreVisible,
           p.variedad,
-          resumen.porPlanta[p.id]!.kilos.toStringAsFixed(2),
+          formatearNumero(resumen.porPlanta[p.id]!.kilos, decimales: 2),
           resumen.porPlanta[p.id]!.unidades.toString(),
           resumen.porPlanta[p.id]!.numCosechas.toString(),
         ],

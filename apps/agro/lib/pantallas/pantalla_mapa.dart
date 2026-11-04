@@ -821,7 +821,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       child: Text(
                         _altitudGps == null
                             ? SoleraL10n.t('agro.altitud_gps_sin_dato')
-                            : SoleraL10n.tf('agro.altitud_gps_metros', {'metros': _altitudGps!.toStringAsFixed(0)}),
+                            : SoleraL10n.tf('agro.altitud_gps_metros', {'metros': formatearNumero(_altitudGps!)}),
                       ),
                     ),
                   ),

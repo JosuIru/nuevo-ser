@@ -298,7 +298,7 @@ class _TarjetaDiaMeteo extends StatelessWidget {
   }
 
   static String _fmt(double? v, {int decimales = 1}) =>
-      v == null ? '--' : v.toStringAsFixed(decimales);
+      v == null ? '--' : formatearNumero(v, decimales: decimales);
 }
 
 class _DatoMeteo extends StatelessWidget {

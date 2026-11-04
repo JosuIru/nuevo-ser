@@ -184,11 +184,11 @@ class _PantallaTracksState extends State<PantallaTracks> {
     final partes = <String>[];
     if (track.distanciaMetros != null) {
       final km = track.distanciaMetros! / 1000;
-      partes.add(km < 1 ? '${track.distanciaMetros!.toStringAsFixed(0)} m' : '${km.toStringAsFixed(2)} km');
+      partes.add(km < 1 ? '${formatearNumero(track.distanciaMetros!)} m' : '${formatearNumero(km, decimales: 2)} km');
     }
     if (track.duracionMs != null) {
       final mins = (track.duracionMs! / 60000).round();
-      partes.add(mins < 60 ? '$mins min' : '${(mins / 60).toStringAsFixed(1)} h');
+      partes.add(mins < 60 ? '$mins min' : '${formatearNumero(mins / 60, decimales: 1)} h');
     }
     partes.add(SoleraL10n.tf('agro.n_puntos', {'n': nPuntos}));
     return partes.join(' · ');
@@ -215,8 +215,8 @@ class _PantallaTracksState extends State<PantallaTracks> {
                   itemCount: _tracks.length,
                   itemBuilder: (_, i) {
                     final t = _tracks[i];
-                    final fecha = DateFormat('dd MMM yyyy HH:mm', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(t.fechaMs));
-                    final km = t.distanciaMetros != null ? (t.distanciaMetros! / 1000).toStringAsFixed(2) : '–';
+                    final fecha = DateFormat('dd MMM yyyy HH:mm', SoleraL10n.idioma).format(DateTime.fromMillisecondsSinceEpoch(t.fechaMs));
+                    final km = t.distanciaMetros != null ? formatearNumero(t.distanciaMetros! / 1000, decimales: 2) : '–';
                     return ListTile(
                       leading: Icon(Icons.timeline, color: Color(0xFF558B2F)),
                       title: Text(t.nombre.isEmpty ? SoleraL10n.tf('agro.recorrido_del_fecha', {'fecha': fecha}) : t.nombre),

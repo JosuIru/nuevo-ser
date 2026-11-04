@@ -33,7 +33,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
     _controladorParcela.text = widget.finca.sigpacParcela;
     _controladorRecinto.text = widget.finca.sigpacRecinto;
     if (widget.finca.superficieHectareas != null) {
-      _controladorSuperficie.text = widget.finca.superficieHectareas!.toString();
+      _controladorSuperficie.text = numeroParaEditar(widget.finca.superficieHectareas!);
     }
   }
 

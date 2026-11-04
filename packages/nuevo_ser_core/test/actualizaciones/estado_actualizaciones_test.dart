@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -36,6 +37,40 @@ void main() {
     expect(estado.urlAsset, 'https://x/uno-roto-1.0.0+25.apk');
     expect(estado.hayNueva, isTrue);
     expect(estado.notas, 'Notas de uno-roto-1.0.0+25');
+  });
+
+  test('encuentra la release de la app aunque quede en la segunda página', () async {
+    final paginasPedidas = <String>[];
+    final primeraPagina = [
+      for (var i = 0; i < 100; i++)
+        release('solera-zunbeltz-0.9.$i', ['solera-zunbeltz-0.9.$i.apk']),
+    ];
+    final segundaPagina = [release('uno-roto-1.0.0+25', ['uno-roto-1.0.0+25.apk'])];
+    final clientePaginado = MockClient((peticion) async {
+      final pagina = peticion.url.queryParameters['page'];
+      paginasPedidas.add(pagina ?? '');
+      return http.Response(
+          jsonEncode(pagina == '1' ? primeraPagina : segundaPagina), 200);
+    });
+    final estado = await consultarEstadoActualizaciones(config,
+        clienteHttp: clientePaginado, obtenerVersionInstalada: () async => '1.0.0+19');
+    expect(paginasPedidas, ['1', '2']);
+    expect(estado.versionPublicada, '1.0.0+25');
+    expect(estado.hayNueva, isTrue);
+
+    SharedPreferences.setMockInitialValues({});
+    PackageInfo.setMockInitialValues(
+      appName: 'Uno Roto',
+      packageName: 'com.coleccionnuevoser.uno_roto',
+      version: '1.0.0',
+      buildNumber: '19',
+      buildSignature: '',
+    );
+    paginasPedidas.clear();
+    final aviso = await comprobarActualizacionDisponible(config,
+        forzarRefresco: true, clienteHttp: clientePaginado);
+    expect(paginasPedidas, ['1', '2']);
+    expect(aviso?.versionDisponible, '1.0.0+25');
   });
 
   test('al día: no hay nueva pero sí se dice cuál es la última', () async {

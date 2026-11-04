@@ -124,18 +124,13 @@ Future<ActualizacionDisponible?> comprobarActualizacionDisponible(
 
   final cliente = clienteHttp ?? http.Client();
   try {
-    final url = Uri.parse(
-        'https://api.github.com/repos/${config.repoOwner}/${config.repoName}/releases?per_page=100');
-    final respuesta = await cliente
-        .get(url, headers: const {'Accept': 'application/vnd.github+json'})
-        .timeout(const Duration(seconds: 10));
-    if (respuesta.statusCode != 200) {
+    final lista = await _descargarReleases(config, cliente);
+    if (lista == null) {
       // Marca el timestamp para no martillear si la API está caída,
       // pero conserva el último resultado positivo si lo había.
       await prefs.setInt(claveTs, ahora);
       return _leerCache(prefs, claveRes, versionInstalada);
     }
-    final lista = jsonDecode(respuesta.body) as List<dynamic>;
     final releaseValido = _elegirReleaseAplicable(lista, config);
 
     if (releaseValido == null) {
@@ -249,15 +244,11 @@ Future<EstadoActualizaciones> consultarEstadoActualizaciones(
       : _formatearVersionInstalada(await PackageInfo.fromPlatform());
   final cliente = clienteHttp ?? http.Client();
   try {
-    final url = Uri.parse(
-        'https://api.github.com/repos/${config.repoOwner}/${config.repoName}/releases?per_page=100');
-    final respuesta = await cliente
-        .get(url, headers: const {'Accept': 'application/vnd.github+json'})
-        .timeout(const Duration(seconds: 10));
-    if (respuesta.statusCode != 200) {
+    final lista = await _descargarReleases(config, cliente);
+    if (lista == null) {
       return EstadoActualizaciones(versionInstalada: versionInstalada, comprobadoMs: ahora, sinConexion: true);
     }
-    final release = _elegirReleaseAplicable(jsonDecode(respuesta.body) as List<dynamic>, config);
+    final release = _elegirReleaseAplicable(lista, config);
     if (release == null) {
       return EstadoActualizaciones(versionInstalada: versionInstalada, comprobadoMs: ahora);
     }
@@ -322,6 +313,36 @@ ActualizacionDisponible? _leerCache(
     notas: cacheada.notas,
     publicadoMs: cacheada.publicadoMs,
   );
+}
+
+/// Releases por página que pide el checker (el máximo de la API).
+const releasesPorPagina = 100;
+
+/// Tope de páginas: en un repo con varias apps (Zunbeltz y su plugin
+/// publican muy a menudo) las releases de una app que publica poco caen
+/// más allá de las 100 más recientes, y sin paginar el checker diría «no
+/// hay actualización» sin avisar. Cinco páginas = 500 releases.
+const _paginasMaximas = 5;
+
+/// Todas las releases del repo (hasta [_paginasMaximas] páginas), o null si
+/// la primera página falla. Si falla una página posterior se usa lo ya
+/// descargado: las releases más recientes van primero.
+Future<List<dynamic>?> _descargarReleases(
+    ConfigActualizaciones config, http.Client cliente) async {
+  final todas = <dynamic>[];
+  for (var pagina = 1; pagina <= _paginasMaximas; pagina++) {
+    final url = Uri.parse(
+        'https://api.github.com/repos/${config.repoOwner}/${config.repoName}'
+        '/releases?per_page=$releasesPorPagina&page=$pagina');
+    final respuesta = await cliente
+        .get(url, headers: const {'Accept': 'application/vnd.github+json'})
+        .timeout(const Duration(seconds: 10));
+    if (respuesta.statusCode != 200) return pagina == 1 ? null : todas;
+    final paginaDeReleases = jsonDecode(respuesta.body) as List<dynamic>;
+    todas.addAll(paginaDeReleases);
+    if (paginaDeReleases.length < releasesPorPagina) break;
+  }
+  return todas;
 }
 
 Map<String, dynamic>? _elegirReleaseAplicable(

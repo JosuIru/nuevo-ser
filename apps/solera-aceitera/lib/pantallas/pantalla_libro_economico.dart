@@ -98,7 +98,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error generando el extracto: $e')),
+        SnackBar(content: Text('Error al generar el extracto: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -116,7 +116,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error abriendo el extracto: $e')),
+        SnackBar(content: Text('Error al abrir el extracto: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -295,8 +295,8 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  'Resumen PROVISIONAL hasta validación de asesor fiscal. '
-                  'Las reglas IVA/REAGP olivar están sujetas a confirmación.',
+                  'Resumen PROVISIONAL hasta que lo valide un asesor fiscal. '
+                  'Las reglas de IVA y REAGP del olivar están sujetas a confirmación.',
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.amber.shade900,
@@ -446,7 +446,7 @@ String _etiquetaRegimenIrpf(String regimen) {
 String _etiquetaRegimenIva(String regimen) {
   switch (regimen) {
     case 'reagp':
-      return 'IVA: REAGP (compensación 12 % aceituna)';
+      return 'IVA: REAGP (compensación del 12 % en aceituna)';
     case 'general':
       return 'IVA: régimen general';
     default:

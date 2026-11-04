@@ -58,7 +58,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             content: Text(
-                'Permiso de ubicación denegado o GPS desactivado. Activa el GPS y reintenta.'),
+                'Permiso de ubicación denegado o GPS desactivado. Activa el GPS y vuelve a intentarlo.'),
           ),
         );
         return;
@@ -81,7 +81,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error capturando GPS: $e')),
+        SnackBar(content: Text('Error al capturar el GPS: $e')),
       );
     } finally {
       if (mounted) setState(() => _capturandoGps = false);
@@ -194,7 +194,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
                 controller: _marcoCtrl,
                 decoration: const InputDecoration(
                   labelText: 'Marco de plantación',
-                  hintText: '8x6, 7x7, 1.5x4 superintensivo…',
+                  hintText: '8x6, 7x7, 1,5x4 superintensivo…',
                   border: OutlineInputBorder(),
                 ),
               ),

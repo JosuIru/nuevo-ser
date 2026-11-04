@@ -39,17 +39,17 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
   bool _guardando = false;
 
   static const _tipos = <String, String>{
-    'insumos_olivar': 'Insumos olivar (abonos, herbicidas)',
+    'insumos_olivar': 'Insumos del olivar (abonos, herbicidas)',
     'fitosanitarios': 'Fitosanitarios',
     'recoleccion': 'Recolección (jornales)',
     'molturacion_externa': 'Molturación externa',
     'envasado': 'Envasado (botellas, cápsulas, etiquetado)',
-    'analiticas': 'Analíticas (acidez, peróxidos, panel test)',
+    'analiticas': 'Analíticas (acidez, peróxidos, panel de cata)',
     'cuota_dop': 'Cuota DOP / Consejo Regulador',
     'maquinaria': 'Maquinaria (compra, mantenimiento)',
     'mano_obra': 'Mano de obra (jornales fuera de recolección)',
-    'combustible': 'Combustible (gasoil agrícola)',
-    'seguros': 'Seguros (agrario)',
+    'combustible': 'Combustible (gasóleo agrícola)',
+    'seguros': 'Seguros (agrarios)',
     'transporte': 'Transporte',
     'certificacion': 'Certificación (ecológico, integrada, DOP)',
     'otro': 'Otro gasto',
@@ -174,7 +174,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                         const TextInputType.numberWithOptions(decimal: true),
                     validator: (v) {
                       final n = centimosDesdeTexto(v ?? '');
-                      if (n == null || n < 0) return 'Importe inválido';
+                      if (n == null || n < 0) return 'Importe no válido';
                       return null;
                     },
                   ),
@@ -252,7 +252,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             TextFormField(
               controller: _facturaCtrl,
               decoration: const InputDecoration(
-                labelText: 'Nº de factura',
+                labelText: 'N.º de factura',
                 border: OutlineInputBorder(),
               ),
             ),

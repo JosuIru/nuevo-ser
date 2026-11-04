@@ -235,7 +235,7 @@ class _PantallaExportLibroAceiteState
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error generando el PDF: $e')),
+        SnackBar(content: Text('Error al generar el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -257,7 +257,7 @@ class _PantallaExportLibroAceiteState
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error abriendo el PDF: $e')),
+        SnackBar(content: Text('Error al abrir el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -283,7 +283,7 @@ class _PantallaExportLibroAceiteState
                 leading: Icon(Icons.warning),
                 title: Text('Titular sin configurar'),
                 subtitle: Text(
-                  'El libro AICA necesita razón social, NIF y nº AICA del '
+                  'El libro AICA necesita razón social, NIF y n.º AICA del '
                   'titular. Edítalos desde Ajustes antes de generar el PDF.',
                 ),
               ),
@@ -381,8 +381,7 @@ class _PantallaExportLibroAceiteState
               'y movimientos cronológicos (entradas, traslados, mezclas, '
               'envasados, ventas, autoconsumo, mermas).\n\n'
               'El subtítulo del PDF lleva el sello PROVISIONAL hasta que un '
-              'auditor AICA real audite el formato — registrado en '
-              'BLOQUEOS-PENDIENTES.md como F1-A5.',
+              'auditor de la AICA revise el formato.',
               style: TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),

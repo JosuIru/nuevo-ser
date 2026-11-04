@@ -96,7 +96,7 @@ Future<File> generarLibroMovimientosAceite({
   final ambito = lote == null
       ? 'campaña completa'
       : 'lote ${lote.identificadorLote}';
-  final tituloCabecera = 'Libro de Movimientos del Aceite · $ambito';
+  final tituloCabecera = 'Libro de movimientos del aceite · $ambito';
   final subtituloCabecera =
       'Campaña ${campania.anyoComercial}/${campania.anyoComercial + 1}'
       ' · RD 760/2021 + AICA · PROVISIONAL';
@@ -123,8 +123,8 @@ Future<File> generarLibroMovimientosAceite({
     'Lotes incluidos: ${lotesAMostrar.length}'
         ' · ${totalKgLotes.toStringAsFixed(1)} kg netos',
     'Molturaciones registradas: ${molturacionesFiltradas.length}'
-        ' · ${totalKgMolturados.toStringAsFixed(1)} kg aceituna molturados'
-        ' → ${totalAceiteObtenido.toStringAsFixed(1)} kg aceite',
+        ' · ${totalKgMolturados.toStringAsFixed(1)} kg de aceituna molturados'
+        ' → ${totalAceiteObtenido.toStringAsFixed(1)} kg de aceite',
     'Movimientos registrados: ${movimientosFiltrados.length}',
   ];
 
@@ -193,7 +193,7 @@ Future<File> generarLibroMovimientosAceite({
         headers: const [
           'Fecha',
           'Identificador',
-          'Kg netos',
+          'Kilos netos',
           'Categoría',
           'DOP',
           'Ubicación',
@@ -209,12 +209,12 @@ Future<File> generarLibroMovimientosAceite({
         titulo: 'Molturaciones',
         headers: const [
           'Fecha',
-          'Kg molturados',
+          'Kilos molturados',
           'Rend. (%)',
           'Aceite (kg)',
           'Lote generado',
           'Batidora',
-          'Decanter',
+          'Decánter',
         ],
         filas: filasMolturaciones,
         mensajeSiVacia: 'Sin molturaciones registradas en esta campaña.',
@@ -225,7 +225,7 @@ Future<File> generarLibroMovimientosAceite({
           'Fecha',
           'Lote',
           'Tipo',
-          'Kg movidos',
+          'Kilos movidos',
           'Destino',
           'Venta',
         ],

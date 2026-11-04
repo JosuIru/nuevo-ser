@@ -171,8 +171,8 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
               TextFormField(
                 controller: _carnetCtrl,
                 decoration: const InputDecoration(
-                  labelText: 'Carnet aplicador (número)',
-                  hintText: 'Obligatorio para PAC',
+                  labelText: 'N.º de carnet de aplicador',
+                  hintText: 'Obligatorio para la PAC',
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) => (v == null || v.trim().isEmpty)

@@ -53,7 +53,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Kg netos: ${l.kgNetos.toStringAsFixed(1)}'),
+                  Text('Kilos netos: ${l.kgNetos.toStringAsFixed(1)}'),
                   Text('Categoría: ${l.categoria}'),
                   if (l.dopId.isNotEmpty) Text('DOP: ${l.dopId}'),
                   if (l.ubicacionFisica.isNotEmpty)
@@ -70,9 +70,9 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
                   if (l.polifenolesMgKg != null)
                     Text('Polifenoles: ${l.polifenolesMgKg!.toStringAsFixed(0)} mg/kg'),
                   if (l.panelTestPuntuacion != null)
-                    Text('Panel test: ${l.panelTestPuntuacion!.toStringAsFixed(1)} / 9'),
+                    Text('Panel de cata: ${l.panelTestPuntuacion!.toStringAsFixed(1)} / 9'),
                   if (l.panelTestNotas.isNotEmpty)
-                    Text('Notas panel: ${l.panelTestNotas}',
+                    Text('Notas del panel de cata: ${l.panelTestNotas}',
                         style: const TextStyle(fontStyle: FontStyle.italic)),
                 ],
               ),
@@ -119,7 +119,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
                         : a.laboratorio),
                     subtitle: Text(
                       'Acidez ${a.acidez?.toStringAsFixed(2) ?? "—"} %'
-                      ' · Panel ${a.panelTestPuntuacion?.toStringAsFixed(1) ?? "—"}',
+                      ' · Panel de cata ${a.panelTestPuntuacion?.toStringAsFixed(1) ?? "—"}',
                     ),
                     trailing: Text(_formatoFecha.format(
                         DateTime.fromMillisecondsSinceEpoch(a.fechaMs))),

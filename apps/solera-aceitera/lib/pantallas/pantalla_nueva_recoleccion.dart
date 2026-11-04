@@ -102,7 +102,7 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
               TextFormField(
                 controller: _kgCtrl,
                 decoration: const InputDecoration(
-                  labelText: 'Kg estimados',
+                  labelText: 'Kilos estimados',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -110,7 +110,7 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
                   final n = leerNumero(v, nullSiAmbiguo: true);
                   if (n == null) return SoleraL10n.t('numero_no_valido');
-                  if (n <= 0) return 'Debe ser un número > 0';
+                  if (n <= 0) return 'Debe ser un número mayor que 0';
                   return null;
                 },
               ),
@@ -118,7 +118,7 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
               DropdownButtonFormField<String>(
                 initialValue: _tipoAceituna,
                 decoration: const InputDecoration(
-                  labelText: 'Tipo aceituna',
+                  labelText: 'Tipo de aceituna',
                   border: OutlineInputBorder(),
                 ),
                 items: _tiposAceituna

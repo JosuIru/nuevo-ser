@@ -217,7 +217,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                   const TextInputType.numberWithOptions(decimal: true),
               validator: (v) {
                 final n = centimosDesdeTexto(v ?? '');
-                if (n == null || n < 0) return 'Importe inválido';
+                if (n == null || n < 0) return 'Importe no válido';
                 return null;
               },
             ),
@@ -302,7 +302,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               decoration: const InputDecoration(
                 labelText: 'Cliente (opcional)',
                 border: OutlineInputBorder(),
-                helperText: 'Sin tercero, no entra al modelo 347.',
+                helperText: 'Sin tercero, no entra en el modelo 347.',
               ),
               items: [
                 const DropdownMenuItem<Tercero?>(
@@ -345,7 +345,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             TextFormField(
               controller: _facturaCtrl,
               decoration: const InputDecoration(
-                labelText: 'Nº de factura',
+                labelText: 'N.º de factura',
                 border: OutlineInputBorder(),
               ),
             ),

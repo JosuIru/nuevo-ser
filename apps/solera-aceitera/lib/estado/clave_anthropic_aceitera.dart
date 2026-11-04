@@ -36,7 +36,7 @@ Widget construirPantallaClaveAnthropicAceitera() => PantallaClaveAnthropic(
       descripcion:
           'La identificación visual de plagas, enfermedades y variedades '
           'del olivar usa Claude, de Anthropic. Pega aquí tu clave '
-          'personal: se guarda sólo en este dispositivo y nunca pasa por '
+          'personal: se guarda solo en este dispositivo y nunca pasa por '
           'un servidor de Larrea; las fotos van directas a Anthropic.\n\n'
           'Las consultas se cobran en tu cuenta de Anthropic (unas décimas '
           'de céntimo cada una con Claude Haiku). El resultado es una '

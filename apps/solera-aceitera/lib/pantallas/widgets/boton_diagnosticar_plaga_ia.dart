@@ -129,7 +129,7 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
                   icono: Icons.warning,
                   color: Colors.red,
                   texto:
-                      'Plaga de declaración obligatoria — avisa al servicio fitosanitario CCAA.',
+                      'Plaga de declaración obligatoria: avisa al servicio fitosanitario de tu comunidad autónoma.',
                 ),
               if (r.esDeclaracionObligatoria) const SizedBox(height: 8),
               Text(r.nombreComun,
@@ -193,7 +193,7 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
               widget.alAceptar(r);
               Navigator.of(ctx).pop();
             },
-            child: const Text('Aceptar y pre-rellenar'),
+            child: const Text('Aceptar y rellenar'),
           ),
         ],
       ),

@@ -69,7 +69,7 @@ Future<File> generarCuadernoPacOlivar({
   final ambito = parcela == null
       ? 'todas las parcelas'
       : (parcela.nombre.isEmpty ? 'parcela sin nombre' : parcela.nombre);
-  final tituloCabecera = 'Cuaderno de Explotación PAC olivar · $ambito';
+  final tituloCabecera = 'Cuaderno de explotación PAC olivar · $ambito';
   final subtituloCabecera =
       'Campaña ${campania.anyoComercial}/${campania.anyoComercial + 1}'
       ' · RD 1311/2012 · PROVISIONAL';
@@ -145,7 +145,7 @@ Future<File> generarCuadernoPacOlivar({
           'Parcela',
           'Producto',
           'Sustancia activa',
-          'Dosis (l/ha)',
+          'Dosis (L/ha)',
           'Plaga objetivo',
           'Aplicador',
           'Carnet',
@@ -159,8 +159,8 @@ Future<File> generarCuadernoPacOlivar({
         headers: const [
           'Fecha',
           'Parcela',
-          'Kg estimados',
-          'Tipo aceituna',
+          'Kilos estimados',
+          'Tipo de aceituna',
           'Método',
           'Cuadrilla',
         ],

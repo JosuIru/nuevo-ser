@@ -138,7 +138,7 @@ Future<File> generarExtractoEconomicoAnual({
     'Total IVA soportado: ${formatoEuros.format(totalIvaSoportado / 100)}',
     'Resultado bruto (ingresos − gastos): '
         '${formatoEuros.format((totalBaseIngresos - totalBaseGastos) / 100)}',
-    'Apuntes sin NIF (no entran al modelo 347): ${sinNifIngresos.length}',
+    'Apuntes sin NIF (no entran en el modelo 347): ${sinNifIngresos.length}',
   ];
 
   // Tabla 1: desglose por tipo de ingreso.
@@ -297,7 +297,7 @@ String _etiquetaTipoIngreso(String tipo) {
     case 'subvencion_autonomica':
       return 'Subvención autonómica';
     case 'subproducto_alperujo':
-      return 'Subproducto alperujo';
+      return 'Subproducto (alperujo)';
     default:
       return tipo;
   }
@@ -306,7 +306,7 @@ String _etiquetaTipoIngreso(String tipo) {
 String _etiquetaTipoGasto(String tipo) {
   switch (tipo) {
     case 'insumos_olivar':
-      return 'Insumos olivar';
+      return 'Insumos del olivar';
     case 'fitosanitarios':
       return 'Fitosanitarios';
     case 'recoleccion':

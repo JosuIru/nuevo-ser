@@ -117,7 +117,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           icono: Icons.auto_awesome,
           titulo: SoleraL10n.t('identificacion_con_ia'),
           subtitulo: 'Plagas y variedades por foto con Claude · clave '
-              'Anthropic propia, guardada sólo en el dispositivo',
+              'Anthropic propia, guardada solo en el dispositivo',
           construirPantalla: (_) => construirPantallaClaveAnthropicAceitera(),
         ),
       ];

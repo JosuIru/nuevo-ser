@@ -184,7 +184,7 @@ List<_ConsejoOlivar> consejosDelDia(DiaMeteoOlivar dia) {
       Icons.bug_report,
       'Vuelo activo de mosca del olivo',
       'Temperatura y humedad favorecen la actividad de Bactrocera oleae. '
-          'Revisa trampeo masivo, mosqueros y picado en aceituna en envero o ya envero.',
+          'Revisa trampeo masivo, mosqueros y picado en aceituna en envero o ya enverada.',
       Color(0xFFE65100),
     ));
   }
@@ -201,7 +201,7 @@ List<_ConsejoOlivar> consejosDelDia(DiaMeteoOlivar dia) {
     consejos.add(const _ConsejoOlivar(
       Icons.water_drop,
       'Demanda hídrica alta',
-      'ET0 elevada y/o déficit de presión de vapor alto. Si tienes goteo, '
+      'ET0 elevada o déficit de presión de vapor alto. Si tienes goteo, '
           'programa riego de apoyo; en secano evita labores que aumenten estrés.',
       Color(0xFF0277BD),
     ));
@@ -269,14 +269,14 @@ class _TarjetaDia extends StatelessWidget {
                 _Dato(
                     icono: Icons.water,
                     texto:
-                        '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)}%'),
+                        '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)} %'),
                 _Dato(
                     icono: Icons.air,
                     texto:
                         '${_fmt(dia.vientoMaxKmh)} km/h · racha ${_fmt(dia.rachaMaxKmh)}'),
                 _Dato(
                     icono: Icons.opacity,
-                    texto: 'HR ${_fmt(dia.humedadMedia)}%'),
+                    texto: 'HR ${_fmt(dia.humedadMedia)} %'),
                 _Dato(
                     icono: Icons.wb_sunny,
                     texto: 'ET0 ${_fmt(dia.et0Mm)} mm'),

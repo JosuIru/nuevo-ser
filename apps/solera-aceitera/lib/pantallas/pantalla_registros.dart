@@ -73,7 +73,7 @@ class PantallaRegistros extends StatelessWidget {
             context,
             icono: Icons.picture_as_pdf,
             titulo: 'Cuaderno PAC olivar',
-            subtitulo: 'Genera el PDF del Cuaderno de Explotación PAC '
+            subtitulo: 'Genera el PDF del cuaderno de explotación PAC '
                 '(RD 1311/2012) · sello PROVISIONAL',
             construirPantalla: (_) => const PantallaCuadernoPac(),
           ),

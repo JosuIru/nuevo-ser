@@ -86,7 +86,7 @@ class _PantallaListaParcelasState extends State<PantallaListaParcelas> {
                 ? const Center(
                     child: Text(
                       'Sin parcelas registradas todavía.\n'
-                      'Pulsa "+" para añadir la primera.',
+                      'Pulsa «+» para añadir la primera.',
                       textAlign: TextAlign.center,
                     ),
                   )

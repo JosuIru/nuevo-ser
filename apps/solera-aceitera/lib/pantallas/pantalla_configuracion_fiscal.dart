@@ -106,8 +106,8 @@ class _PantallaConfiguracionFiscalState
             groupValue: _configuracion.regimenIva,
             title: const Text('REAGP (compensación 12 % en aceituna)'),
             subtitle: const Text(
-                'Régimen especial agricultura. El comprador paga compensación '
-                'REAGP del 12 % en venta de aceituna; el titular no repercute '
+                'Régimen especial de agricultura. El comprador paga una compensación '
+                'REAGP del 12 % en la venta de aceituna; el titular no repercute '
                 'IVA en sus ventas agrícolas.'),
             onChanged: (v) => setState(() {
               _configuracion = ConfiguracionFiscal(
@@ -195,7 +195,7 @@ class _BannerProvisional extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'PROVISIONAL hasta validación de asesor fiscal agroalimentario. '
+              'PROVISIONAL hasta que lo valide un asesor fiscal agroalimentario. '
               'Las reglas de IVA por defecto se basan en la interpretación '
               'habitual del olivar; en cada apunte puedes sobrescribir el '
               'IVA repercutido manualmente.',

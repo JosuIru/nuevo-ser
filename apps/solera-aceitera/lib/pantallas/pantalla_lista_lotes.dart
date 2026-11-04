@@ -70,7 +70,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
                 padding: EdgeInsets.all(24),
                 child: Text(
                   'Sin lotes todavía.\n\n'
-                  'Pulsa "+" para registrar una recepción de aceituna en '
+                  'Pulsa «+» para registrar una recepción de aceituna en '
                   'almazara. Cuando moltures, nacerá el lote.',
                   textAlign: TextAlign.center,
                 ),

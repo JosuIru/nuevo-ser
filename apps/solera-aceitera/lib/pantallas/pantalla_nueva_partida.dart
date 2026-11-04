@@ -128,7 +128,7 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
               TextFormField(
                 controller: _kgCtrl,
                 decoration: const InputDecoration(
-                  labelText: 'Kg netos (báscula)',
+                  labelText: 'Kilos netos (báscula)',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -136,7 +136,7 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
                   final n = leerNumero(v, nullSiAmbiguo: true);
                   if (n == null) return SoleraL10n.t('numero_no_valido');
-                  if (n <= 0) return 'Debe ser un número > 0';
+                  if (n <= 0) return 'Debe ser un número mayor que 0';
                   return null;
                 },
               ),
@@ -154,7 +154,7 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
               TextFormField(
                 controller: _defectoCtrl,
                 decoration: const InputDecoration(
-                  labelText: '% aceituna defectuosa',
+                  labelText: '% de aceituna defectuosa',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType:

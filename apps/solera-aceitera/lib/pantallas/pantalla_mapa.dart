@@ -353,7 +353,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       mensajero
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          SnackBar(content: Text('Error capturando GPS: $e')),
+          SnackBar(content: Text('Error al capturar el GPS: $e')),
         );
     }
   }

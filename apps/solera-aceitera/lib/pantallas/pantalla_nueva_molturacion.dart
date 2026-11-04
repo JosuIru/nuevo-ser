@@ -102,7 +102,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
       tipo: 'entrada_molturacion',
       kgMovidos: aceiteKg,
       ubicacionDestino: _ubicacionCtrl.text.trim(),
-      notas: 'Nacimiento del lote tras molturación.',
+      notas: 'Nacimiento del lote tras la molturación.',
     ));
     if (mounted) Navigator.of(context).pop(true);
   }
@@ -150,7 +150,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
               TextFormField(
                 controller: _kgMolturadosCtrl,
                 decoration: const InputDecoration(
-                  labelText: 'Kg molturados',
+                  labelText: 'Kilos molturados',
                   border: OutlineInputBorder(),
                 ),
                 keyboardType:
@@ -159,7 +159,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
                   if (v == null || v.trim().isEmpty) return 'Obligatorio';
                   final n = leerNumero(v, nullSiAmbiguo: true);
                   if (n == null) return SoleraL10n.t('numero_no_valido');
-                  if (n <= 0) return 'Debe ser un número > 0';
+                  if (n <= 0) return 'Debe ser un número mayor que 0';
                   return null;
                 },
               ),
@@ -202,7 +202,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
               TextFormField(
                 controller: _decanterCtrl,
                 decoration: const InputDecoration(
-                  labelText: 'Decanter (referencia)',
+                  labelText: 'Decánter (referencia)',
                   border: OutlineInputBorder(),
                 ),
               ),

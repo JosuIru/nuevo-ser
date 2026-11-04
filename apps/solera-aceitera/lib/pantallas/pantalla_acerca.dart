@@ -76,7 +76,7 @@ class PantallaAcerca extends StatelessWidget {
             'presentarlos.',
           ),
           const _Bullet(
-            'Tu clave Anthropic (si la configuras para IA) se guarda sólo en '
+            'Tu clave de Anthropic (si la configuras para la IA) se guarda solo en '
             'tu dispositivo. Las fotos se envían directamente a Anthropic, '
             'sin pasar por servidores intermedios.',
           ),
@@ -86,7 +86,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Familia Larrea'),
           const Text(
-            'Larrea Aceitera es parte de la suite Larrea de la Colección '
+            'Larrea Aceitera forma parte de la suite Larrea, de la Colección '
             'Nuevo Ser. Apps hermanas: Larrea (general — frutales, trufa, '
             'olivar), Larrea Viticultura, Larrea Apícola, Larrea Arbolado '
             'Urbano y Larrea Quesera.',
@@ -163,7 +163,7 @@ class _TarjetaCatalogos extends StatelessWidget {
           const Text(
             'Fuentes: Registro de Variedades del MAPA e IFAPA, estaciones de '
             'aviso fitosanitario, Registro de Productos Fitosanitarios del '
-            'MAPA (sólo sustancias activas), BOE y reglamentos UE de las DOP. '
+            'MAPA (solo sustancias activas), BOE y reglamentos UE de las DOP. '
             'Falta la firma de un asesor agrónomo olivarero; las propuestas '
             'de la IA que coinciden con el catálogo no sustituyen a su '
             'criterio.',

@@ -84,7 +84,7 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error generando el PDF: $e')),
+        SnackBar(content: Text('Error al generar el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -106,7 +106,7 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error abriendo el PDF: $e')),
+        SnackBar(content: Text('Error al abrir el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -252,8 +252,7 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
               'campaña. El resto de eventos (podas, riegos, abonados) se '
               'añadirán cuando entren los modelos correspondientes.\n\n'
               'El subtítulo del PDF lleva el sello PROVISIONAL hasta que '
-              'un técnico OCA real audite el formato — registrado en '
-              'BLOQUEOS-PENDIENTES.md como F1-A4.',
+              'un técnico de OCA revise el formato.',
               style: TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),

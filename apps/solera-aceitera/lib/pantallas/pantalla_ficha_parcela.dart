@@ -144,7 +144,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                     subtitle: Text(
                       '${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(t.fechaMs))}'
                       ' · ${t.dosisLitrosPorHa.toStringAsFixed(2)} L/ha'
-                      '${t.plagaObjetivoId.isEmpty ? "" : " · vs ${t.plagaObjetivoId}"}',
+                      '${t.plagaObjetivoId.isEmpty ? "" : " · contra ${t.plagaObjetivoId}"}',
                     ),
                   ),
                 )),

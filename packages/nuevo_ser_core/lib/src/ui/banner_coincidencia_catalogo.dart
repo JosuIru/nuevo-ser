@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../i18n/solera_l10n.dart';
 
 /// Estado de coincidencia de un diagnóstico (de IA o entrada libre)
 /// contra un catálogo curado del juego/app.
@@ -31,20 +32,26 @@ enum CoincidenciaCatalogo { validado, provisional, libre }
 class BannerCoincidenciaCatalogo extends StatelessWidget {
   final CoincidenciaCatalogo coincidencia;
   final String? nombreItemCoincidente;
-  final String mensajeLibre;
-  final String mensajeProvisional;
-  final String mensajeValidado;
+  final String? _mensajeLibre;
+  final String? _mensajeProvisional;
+  final String? _mensajeValidado;
 
+  /// Los mensajes que no se pasen salen de [SoleraL10n].
   const BannerCoincidenciaCatalogo({
     super.key,
     required this.coincidencia,
     this.nombreItemCoincidente,
-    this.mensajeLibre =
-        'Diagnóstico libre — no coincide con el catálogo curado. Revisa con criterio antes de aceptar.',
-    this.mensajeProvisional =
-        'Coincide con catálogo provisional. El catálogo aún no ha sido validado por el asesor — usa criterio.',
-    this.mensajeValidado = 'Diagnóstico coincide con catálogo validado.',
-  });
+    String? mensajeLibre,
+    String? mensajeProvisional,
+    String? mensajeValidado,
+  })  : _mensajeLibre = mensajeLibre,
+        _mensajeProvisional = mensajeProvisional,
+        _mensajeValidado = mensajeValidado;
+
+  String get mensajeLibre => _mensajeLibre ?? SoleraL10n.t('core.diagnostico_libre');
+  String get mensajeProvisional =>
+      _mensajeProvisional ?? SoleraL10n.t('core.diagnostico_provisional');
+  String get mensajeValidado => _mensajeValidado ?? SoleraL10n.t('core.diagnostico_validado');
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +82,10 @@ class BannerCoincidenciaCatalogo extends StatelessWidget {
           colorIcono: const Color(0xFFA67C00),
           texto: nombreItemCoincidente == null
               ? mensajeProvisional
-              : 'Coincide con catálogo provisional: $nombreItemCoincidente. ${_quitarPrefijoCoincide(mensajeProvisional)}',
+              : _mensajeProvisional == null
+                  ? SoleraL10n.tf('core.diagnostico_provisional_con_nombre',
+                      {'nombre': nombreItemCoincidente})
+                  : 'Coincide con catálogo provisional: $nombreItemCoincidente. ${_quitarPrefijoCoincide(mensajeProvisional)}',
         );
     }
   }
@@ -94,13 +104,11 @@ class BannerCoincidenciaCatalogo extends StatelessWidget {
 /// obligatoria al servicio fitosanitario o veterinario oficial.
 /// Genérico — cada app le pasa el texto que aplica a su dominio.
 class BannerDeclaracionObligatoria extends StatelessWidget {
-  final String texto;
 
-  const BannerDeclaracionObligatoria({
-    super.key,
-    this.texto =
-        'PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los Servicios oficiales de tu CCAA.',
-  });
+  const BannerDeclaracionObligatoria({super.key, String? texto}) : _texto = texto;
+
+  final String? _texto;
+  String get texto => _texto ?? SoleraL10n.t('core.declaracion_obligatoria');
 
   @override
   Widget build(BuildContext context) {
@@ -136,13 +144,11 @@ class BannerDeclaracionObligatoria extends StatelessWidget {
 /// urticantes (procesionaria del pino, lagarta peluda) que requieren
 /// vigilancia priorizada en zonas escolares y peatonales.
 class BannerRiesgoSanitarioPublico extends StatelessWidget {
-  final String texto;
 
-  const BannerRiesgoSanitarioPublico({
-    super.key,
-    this.texto =
-        'RIESGO SANITARIO PÚBLICO. Plaga con pelos urticantes o similares. Prioriza la actuación si está cerca de zonas escolares o paseos peatonales.',
-  });
+  const BannerRiesgoSanitarioPublico({super.key, String? texto}) : _texto = texto;
+
+  final String? _texto;
+  String get texto => _texto ?? SoleraL10n.t('core.riesgo_sanitario_publico');
 
   @override
   Widget build(BuildContext context) {

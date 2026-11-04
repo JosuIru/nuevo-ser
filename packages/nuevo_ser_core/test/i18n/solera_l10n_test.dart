@@ -20,6 +20,13 @@ const carpetasConTextosSolera = [
 
 final _llamadaConClave = RegExp(r"SoleraL10n\.tf?\(\s*'([^']*)'");
 
+/// También las claves con prefijo de app escritas sueltas (listas de
+/// claves, mapas valor → clave): 'api.de_mes_1', 'acei.tipo_gasto_luz'…
+/// Sin un segundo punto, que es lo que distingue una clave de traducción
+/// de una de preferencias ('agro.mapa.ultimo_lat') o de la BD ('agro.db').
+final _claveSuelta =
+    RegExp(r"'((?:agro|viti|api|arb|ques|acei|core)\.(?!db')[a-z0-9_]+)'");
+
 Map<String, String> _clavesUsadas() {
   final primeraAparicion = <String, String>{};
   for (final carpeta in carpetasConTextosSolera) {
@@ -29,7 +36,10 @@ Map<String, String> _clavesUsadas() {
       if (entidad is! File || !entidad.path.endsWith('.dart')) continue;
       final lineas = entidad.readAsLinesSync();
       for (var numero = 0; numero < lineas.length; numero++) {
-        for (final coincidencia in _llamadaConClave.allMatches(lineas[numero])) {
+        for (final coincidencia in [
+          ..._llamadaConClave.allMatches(lineas[numero]),
+          ..._claveSuelta.allMatches(lineas[numero]),
+        ]) {
           primeraAparicion.putIfAbsent(
               coincidencia.group(1)!, () => '${entidad.path}:${numero + 1}');
         }

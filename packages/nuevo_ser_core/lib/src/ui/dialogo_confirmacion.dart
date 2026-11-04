@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../i18n/solera_l10n.dart';
+
 /// Diálogo de confirmación estandarizado con acciones personalizables.
 /// Devuelve `true` si el usuario confirma, `false` si cancela.
 ///
@@ -19,8 +21,8 @@ class DialogoConfirmacion {
     BuildContext context, {
     required String titulo,
     required String mensaje,
-    String textoConfirmar = 'Confirmar',
-    String textoCancelar = 'Cancelar',
+    String? textoConfirmar,
+    String? textoCancelar,
     bool esPeligroso = false,
     IconData icono = Icons.warning_amber,
   }) async {
@@ -34,14 +36,14 @@ class DialogoConfirmacion {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text(textoCancelar),
+            child: Text(textoCancelar ?? SoleraL10n.t('cancelar')),
           ),
           FilledButton(
             style: esPeligroso
                 ? FilledButton.styleFrom(backgroundColor: Colors.red)
                 : null,
             onPressed: () => Navigator.pop(context, true),
-            child: Text(textoConfirmar,
+            child: Text(textoConfirmar ?? SoleraL10n.t('core.confirmar'),
                 style: TextStyle(
                     color: esPeligroso ? Colors.white : null)),
           ),

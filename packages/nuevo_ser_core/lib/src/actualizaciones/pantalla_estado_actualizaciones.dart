@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'banner_actualizacion.dart';
 import 'checker_actualizaciones.dart';
 import 'instalador_actualizacion.dart';
+import 'traductor_actualizaciones_solera.dart';
 
 /// Traduce un texto en castellano al idioma de la app. Por defecto, lo
 /// deja igual. Las apps con euskera o catalán pasan el suyo.
 typedef TraductorActualizaciones = String Function(String textoEs);
 
-String _sinTraducir(String texto) => texto;
 
 /// Pantalla «Actualizaciones»: qué versión hay instalada, cuál es la
 /// última publicada, cuándo salió y qué trae, con un botón para buscar
@@ -25,7 +25,7 @@ class PantallaEstadoActualizaciones extends StatefulWidget {
     super.key,
     required this.config,
     required this.nombreApp,
-    this.traducir = _sinTraducir,
+    this.traducir = traducirActualizacionesSolera,
     this.consultar,
   });
 
@@ -210,7 +210,7 @@ class AvisoActualizaciones extends StatefulWidget {
     super.key,
     required this.config,
     required this.nombreApp,
-    this.traducir = _sinTraducir,
+    this.traducir = traducirActualizacionesSolera,
     this.compacto = true,
     this.margen = const EdgeInsets.fromLTRB(12, 8, 12, 0),
   });

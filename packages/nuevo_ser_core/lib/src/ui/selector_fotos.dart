@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import '../i18n/solera_l10n.dart';
+
 import '../foto/gestor_fotos.dart';
 
 /// Selector horizontal de fotos para formularios — botón "+" al final
@@ -36,12 +38,12 @@ class SelectorFotos extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.photo_camera),
-              title: const Text('Cámara'),
+              title: Text(SoleraL10n.t('core.camara')),
               onTap: () => Navigator.pop(context, FuenteFoto.camara),
             ),
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text('Galería'),
+              title: Text(SoleraL10n.t('core.galeria')),
               onTap: () => Navigator.pop(context, FuenteFoto.galeria),
             ),
           ],
@@ -79,12 +81,12 @@ class SelectorFotos extends StatelessWidget {
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.add_a_photo, size: 24),
-                    SizedBox(height: 4),
-                    Text('Foto', style: TextStyle(fontSize: 11)),
+                    const Icon(Icons.add_a_photo, size: 24),
+                    const SizedBox(height: 4),
+                    Text(SoleraL10n.t('core.foto'), style: const TextStyle(fontSize: 11)),
                   ],
                 ),
               ),

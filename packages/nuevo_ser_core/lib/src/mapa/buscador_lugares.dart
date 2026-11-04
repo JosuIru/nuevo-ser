@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import '../i18n/solera_l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:latlong2/latlong.dart';
 
@@ -150,22 +151,35 @@ List<LugarEncontrado> lugaresDesdeNominatim(String texto) {
 /// Textos del diálogo del buscador. Castellano por defecto; cada app pasa
 /// los suyos si tiene más idiomas.
 class TextosBuscadorLugares {
+  /// Lo que no se pase sale de [SoleraL10n] en el idioma elegido (en
+  /// castellano en las apps que no usan [SoleraL10n]).
   const TextosBuscadorLugares({
-    this.titulo = 'Buscar un lugar',
-    this.ayuda = 'Paraje, pueblo, calle o referencia catastral',
-    this.sinResultados = 'No se ha encontrado nada.',
-    this.sinConexion =
-        'No se ha podido consultar el buscador. Comprueba la conexión o prueba dentro de un rato.',
-    this.cancelar = 'Cancelar',
-    this.buscar = 'Buscar',
-  });
+    String? titulo,
+    String? ayuda,
+    String? sinResultados,
+    String? sinConexion,
+    String? cancelar,
+    String? buscar,
+  })  : _titulo = titulo,
+        _ayuda = ayuda,
+        _sinResultados = sinResultados,
+        _sinConexion = sinConexion,
+        _cancelar = cancelar,
+        _buscar = buscar;
 
-  final String titulo;
-  final String ayuda;
-  final String sinResultados;
-  final String sinConexion;
-  final String cancelar;
-  final String buscar;
+  final String? _titulo;
+  final String? _ayuda;
+  final String? _sinResultados;
+  final String? _sinConexion;
+  final String? _cancelar;
+  final String? _buscar;
+
+  String get titulo => _titulo ?? SoleraL10n.t('core.buscar_un_lugar');
+  String get ayuda => _ayuda ?? SoleraL10n.t('core.buscador_ayuda');
+  String get sinResultados => _sinResultados ?? SoleraL10n.t('core.buscador_sin_resultados');
+  String get sinConexion => _sinConexion ?? SoleraL10n.t('core.buscador_sin_conexion');
+  String get cancelar => _cancelar ?? SoleraL10n.t('cancelar');
+  String get buscar => _buscar ?? SoleraL10n.t('core.buscar');
 }
 
 /// Pide un lugar y devuelve dónde está (null si se cancela).

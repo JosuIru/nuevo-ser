@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'checker_actualizaciones.dart';
+import 'traductor_actualizaciones_solera.dart';
 
 /// Banner sticky para anunciar una versión disponible. Pensado para
 /// colocarse en la cabecera de las pantallas de inicio de cada app.
@@ -34,7 +35,8 @@ class BannerActualizacionDisponible extends StatelessWidget {
     this.traducir,
   });
 
-  String _t(String texto) => traducir?.call(texto) ?? texto;
+  String _t(String texto) =>
+      traducir?.call(texto) ?? traducirActualizacionesSolera(texto);
 
   Future<void> _abrirDescarga() async {
     if (alTocar != null) return alTocar!();

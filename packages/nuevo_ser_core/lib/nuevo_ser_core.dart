@@ -110,3 +110,4 @@ export 'src/actualizaciones/banner_actualizacion.dart';
 export 'src/actualizaciones/checker_actualizaciones.dart';
 export 'src/actualizaciones/instalador_actualizacion.dart';
 export 'src/actualizaciones/pantalla_estado_actualizaciones.dart';
+export 'src/actualizaciones/traductor_actualizaciones_solera.dart';

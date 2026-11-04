@@ -1,0 +1,60 @@
+clave,es,eu,ca,gl
+core.ia.clave_corta,La clave parece demasiado corta: comprueba que la copiaste entera.,Gakoa laburregia dirudi: egiaztatu osorik kopiatu duzula.,La clau sembla massa curta: comprova que l'has copiada sencera.,A clave semella demasiado curta: comproba que a copiaches enteira.
+core.ia.clave_guardada_dispositivo,Clave guardada en este dispositivo.,Gakoa gailu honetan gorde da.,Clau desada en aquest dispositiu.,Clave gardada neste dispositivo.
+core.ia.clave_borrada,Clave borrada: la identificación con IA queda desactivada.,Gakoa ezabatu da: AA bidezko identifikazioa desaktibatuta geratu da.,Clau esborrada: la identificació amb IA queda desactivada.,Clave borrada: a identificación con IA queda desactivada.
+core.ia.escribe_clave_completa,Escribe primero la clave completa.,Idatzi lehenik gako osoa.,Escriu primer la clau completa.,Escribe primeiro a clave completa.
+core.ia.no_se_pudo_probar,No se pudo probar la clave: {error},Ezin izan da gakoa probatu: {error},No s'ha pogut provar la clau: {error},Non se puido probar a clave: {error}
+core.ia.la_clave_funciona,La clave funciona.,Gakoak funtzionatzen du.,La clau funciona.,A clave funciona.
+core.ia.no_se_pudo_abrir_navegador,No se pudo abrir el navegador. Entra en console.anthropic.com.,Ezin izan da nabigatzailea ireki. Sartu console.anthropic.com helbidean.,No s'ha pogut obrir el navegador. Entra a console.anthropic.com.,Non se puido abrir o navegador. Entra en console.anthropic.com.
+core.ia.descripcion_generica,"{app} puede usar Claude, de Anthropic, para analizar la foto que adjuntas y proponer una identificación. Es una ayuda: compruébala siempre.",{app} aplikazioak Anthropic-en Claude erabil dezake erantsitako argazkia aztertu eta identifikazio bat proposatzeko. Laguntza bat da: egiaztatu beti.,"{app} pot fer servir Claude, d'Anthropic, per analitzar la foto que adjuntes i proposar una identificació. És una ajuda: comprova-la sempre.","{app} pode usar Claude, de Anthropic, para analizar a foto que achegas e propor unha identificación. É unha axuda: compróbaa sempre."
+core.ia.privacidad,Privacidad,Pribatutasuna,Privadesa,Privacidade
+core.ia.privacidad_1,Tu clave se guarda solo en este dispositivo. No se sube a ningún servidor de {app}.,Zure gakoa gailu honetan bakarrik gordetzen da. Ez da {app} aplikazioaren inongo zerbitzarira igotzen.,La teva clau només es desa en aquest dispositiu. No es puja a cap servidor de {app}.,A túa clave gárdase só neste dispositivo. Non se sobe a ningún servidor de {app}.
+core.ia.privacidad_2,"Solo se envía a api.anthropic.com, junto con la foto, cuando pides una identificación.","api.anthropic.com helbidera bakarrik bidaltzen da, argazkiarekin batera, identifikazio bat eskatzen duzunean.","Només s'envia a api.anthropic.com, juntament amb la foto, quan demanes una identificació.","Só se envía a api.anthropic.com, xunto coa foto, cando pides unha identificación."
+core.ia.privacidad_3,El uso lo pagas tú a Anthropic con tu cuenta (unas décimas de céntimo por foto con Claude Haiku).,Erabilera zuk ordaintzen diozu Anthropic-i zure kontuarekin (zentimo baten hamarren batzuk argazkiko Claude Haiku-rekin).,L'ús el pagues tu a Anthropic amb el teu compte (unes dècimes de cèntim per foto amb Claude Haiku).,O uso págalo ti a Anthropic coa túa conta (unhas décimas de céntimo por foto con Claude Haiku).
+core.ia.privacidad_4,"Es opcional: sin clave la app funciona igual, solo no aparece el botón de IA.","Aukerakoa da: gakorik gabe aplikazioak berdin funtzionatzen du, AA botoia ez da agertzen, besterik ez.","És opcional: sense clau l'app funciona igual, només no apareix el botó d'IA.","É opcional: sen clave a app funciona igual, só non aparece o botón de IA."
+core.ia.como_conseguir_clave,Cómo conseguir una clave,Nola lortu gako bat,Com aconseguir una clau,Como conseguir unha clave
+core.ia.como_conseguir_clave_texto,"En console.anthropic.com crea una cuenta, añade un método de pago y genera una «API key». Cópiala y pégala abajo.","console.anthropic.com helbidean sortu kontu bat, gehitu ordainketa-metodo bat eta sortu «API key» bat. Kopiatu eta itsatsi behean.","A console.anthropic.com crea un compte, afegeix un mètode de pagament i genera una «API key». Copia-la i enganxa-la a sota.","En console.anthropic.com crea unha conta, engade un método de pagamento e xera unha «API key». Cópiaa e pégaa abaixo."
+core.ia.abrir_consola,Abrir console.anthropic.com,Ireki console.anthropic.com,Obrir console.anthropic.com,Abrir console.anthropic.com
+core.ia.tu_clave_anthropic,Tu clave de Anthropic,Zure Anthropic gakoa,La teva clau d'Anthropic,A túa clave de Anthropic
+core.ia.mostrar_clave,Mostrar la clave,Erakutsi gakoa,Mostrar la clau,Mostrar a clave
+core.ia.ocultar_clave,Ocultar la clave,Ezkutatu gakoa,Amagar la clau,Ocultar a clave
+core.ia.guardar_clave,Guardar clave,Gorde gakoa,Desar la clau,Gardar a clave
+core.ia.probar_clave,Probar la clave,Probatu gakoa,Provar la clau,Probar a clave
+core.ia.clave_activa,Clave guardada. La identificación con IA está activa.,Gakoa gordeta. AA bidezko identifikazioa aktibo dago.,Clau desada. La identificació amb IA és activa.,Clave gardada. A identificación con IA está activa.
+core.confirmar,Confirmar,Berretsi,Confirmar,Confirmar
+core.camara,Cámara,Kamera,Càmera,Cámara
+core.galeria,Galería,Galeria,Galeria,Galería
+core.foto,Foto,Argazkia,Foto,Foto
+core.buscar_un_lugar,Buscar un lugar,Bilatu leku bat,Cercar un lloc,Buscar un lugar
+core.buscador_ayuda,"Paraje, pueblo, calle o referencia catastral","Tokia, herria, kalea edo katastro-erreferentzia","Paratge, poble, carrer o referència cadastral","Paraxe, pobo, rúa ou referencia catastral"
+core.buscador_sin_resultados,No se ha encontrado nada.,Ez da ezer aurkitu.,No s'ha trobat res.,Non se atopou nada.
+core.buscador_sin_conexion,No se ha podido consultar el buscador. Comprueba la conexión o prueba dentro de un rato.,Ezin izan da bilatzailea kontsultatu. Egiaztatu konexioa edo saiatu berriro geroago.,No s'ha pogut consultar el cercador. Comprova la connexió o torna-ho a provar d'aquí a una estona.,Non se puido consultar o buscador. Comproba a conexión ou proba dentro dun anaco.
+core.buscar,Buscar,Bilatu,Cercar,Buscar
+core.diagnostico_libre,Diagnóstico libre: no coincide con el catálogo curado. Revísalo con criterio antes de aceptar.,Diagnostiko librea: ez dator bat katalogo landuarekin. Berrikusi irizpidez onartu aurretik.,Diagnòstic lliure: no coincideix amb el catàleg revisat. Revisa'l amb criteri abans d'acceptar.,Diagnóstico libre: non coincide co catálogo revisado. Revísao con criterio antes de aceptar.
+core.diagnostico_provisional,Coincide con el catálogo provisional. El catálogo aún no lo ha validado el asesor: usa tu criterio.,Behin-behineko katalogoarekin bat dator. Aholkulariak oraindik ez du katalogoa baliozkotu: erabili zure irizpidea.,Coincideix amb el catàleg provisional. L'assessor encara no ha validat el catàleg: fes servir el teu criteri.,Coincide co catálogo provisional. O asesor aínda non validou o catálogo: usa o teu criterio.
+core.diagnostico_provisional_con_nombre,Coincide con el catálogo provisional: {nombre}. El catálogo aún no lo ha validado el asesor: usa tu criterio.,Behin-behineko katalogoarekin bat dator: {nombre}. Aholkulariak oraindik ez du katalogoa baliozkotu: erabili zure irizpidea.,Coincideix amb el catàleg provisional: {nombre}. L'assessor encara no ha validat el catàleg: fes servir el teu criteri.,Coincide co catálogo provisional: {nombre}. O asesor aínda non validou o catálogo: usa o teu criterio.
+core.diagnostico_validado,El diagnóstico coincide con el catálogo validado.,Diagnostikoa baliozkotutako katalogoarekin bat dator.,El diagnòstic coincideix amb el catàleg validat.,O diagnóstico coincide co catálogo validado.
+core.declaracion_obligatoria,"PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los servicios oficiales de tu comunidad autónoma.","NAHITAEZ JAKINARAZI BEHARREKO GAIXOTASUNA. Diagnostikoa berresten baduzu, zure autonomia-erkidegoko zerbitzu ofizialei jakinarazi behar diezu.","PATOLOGIA DE DECLARACIÓ OBLIGATÒRIA. Si confirmes el diagnòstic, l'has de notificar als serveis oficials de la teva comunitat autònoma.","PATOLOXÍA DE DECLARACIÓN OBRIGATORIA. Se confirmas o diagnóstico, debes notificalo aos servizos oficiais da túa comunidade autónoma."
+core.riesgo_sanitario_publico,RIESGO SANITARIO PÚBLICO. Plaga con pelos urticantes o similares. Prioriza la actuación si está cerca de zonas escolares o paseos peatonales.,OSASUN PUBLIKORAKO ARRISKUA. Ile erlesdunak edo antzekoak dituen izurria. Lehenetsi jarduketa eskola-guneetatik edo oinezkoen pasealekuetatik gertu badago.,RISC SANITARI PÚBLIC. Plaga amb pèls urticants o similars. Prioritza l'actuació si és a prop de zones escolars o passejos de vianants.,RISCO SANITARIO PÚBLICO. Praga con pelos urticantes ou similares. Prioriza a actuación se está preto de zonas escolares ou paseos peonís.
+core.act.titulo,Actualizaciones,Eguneraketak,Actualitzacions,Actualizacións
+core.act.version_instalada,Versión instalada,Instalatutako bertsioa,Versió instal·lada,Versión instalada
+core.act.ultima_publicada,Última publicada,Argitaratutako azkena,Última publicada,Última publicada
+core.act.sin_conexion,sin conexión,konexiorik gabe,sense connexió,sen conexión
+core.act.ninguna_todavia,ninguna todavía,oraindik bat ere ez,cap encara,ningunha aínda
+core.act.publicada_el,Publicada el,Argitaratze-data,Publicada el,Publicada o
+core.act.comprobado_el,Comprobado el,Egiaztatze-data,Comprovat el,Comprobado o
+core.act.hay_version_nueva,Hay una versión nueva.,Bertsio berri bat dago.,Hi ha una versió nova.,Hai unha versión nova.
+core.act.tienes_la_ultima,Tienes la última versión.,Azken bertsioa duzu.,Tens l'última versió.,Tes a última versión.
+core.act.que_trae,Qué trae,Zer dakarren,Què porta,Que trae
+core.act.descargando,Descargando…,Deskargatzen…,Baixant…,Descargando…
+core.act.descargar_e_instalar,Descargar e instalar,Deskargatu eta instalatu,Baixar i instal·lar,Descargar e instalar
+core.act.buscar_ahora,Buscar ahora,Bilatu orain,Cercar ara,Buscar agora
+core.act.version_disponible,Versión disponible,Bertsio eskuragarria,Versió disponible,Versión dispoñible
+core.act.tienes_instalada,Tienes instalada la,Instalatuta duzuna:,Tens instal·lada la,Tes instalada a
+core.act.toca_para_actualizar,Toca para actualizar.,Sakatu eguneratzeko.,Toca per actualitzar.,Toca para actualizar.
+core.act.actualizar,Actualizar,Eguneratu,Actualitzar,Actualizar
+core.act.descartar,Descartar por ahora,Baztertu oraingoz,Descartar de moment,Descartar polo de agora
+core.act.instalador_abierto,Se ha abierto el instalador. Confirma la actualización y vuelve a abrir la app.,Instalatzailea ireki da. Berretsi eguneraketa eta ireki berriro aplikazioa.,S'ha obert l'instal·lador. Confirma l'actualització i torna a obrir l'app.,Abriuse o instalador. Confirma a actualización e volve abrir a app.
+core.act.descarga_en_navegador,Se ha abierto la descarga en el navegador.,Deskarga nabigatzailean ireki da.,S'ha obert la baixada al navegador.,Abriuse a descarga no navegador.
+core.act.error_descarga,No se ha podido descargar. Comprueba la conexión y vuelve a probar.,Ezin izan da deskargatu. Egiaztatu konexioa eta saiatu berriro.,No s'ha pogut baixar. Comprova la connexió i torna-ho a provar.,Non se puido descargar. Comproba a conexión e volve probar.
+core.act.error_instalador,"Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.","Deskargatuta dago, baina Androidek ez du utzi instalatzailea irekitzen. Baimendu «aplikazio ezezagunak instalatzea» aplikazio honetarako mugikorraren ezarpenetan.","Baixada, però Android no ha deixat obrir l'instal·lador. Permet «instal·lar aplicacions desconegudes» per a aquesta app a la configuració del mòbil.","Descargada, pero Android non deixou abrir o instalador. Permite «instalar apps descoñecidas» para esta app nos axustes do móbil."

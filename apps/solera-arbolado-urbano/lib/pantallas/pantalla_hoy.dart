@@ -37,10 +37,10 @@ class _PantallaHoyState extends State<PantallaHoy> {
 
   String _formatoFecha(int mes, int decada) {
     final etiquetaDec = decada == 1
-        ? '1ª'
+        ? '1.ª'
         : decada == 2
-            ? '2ª'
-            : '3ª';
+            ? '2.ª'
+            : '3.ª';
     return '$etiquetaDec década de ${_mesesEs[mes - 1]}';
   }
 

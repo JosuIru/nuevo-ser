@@ -154,7 +154,7 @@ Future<File> generarInformeMunicipal({
     tablas: [
       TablaInforme(
         titulo: 'Censo por especie',
-        headers: const ['Especie', 'Nº de árboles'],
+        headers: const ['Especie', 'N.º de árboles'],
         filas: filasCenso,
         mensajeSiVacia: 'Sin árboles censados con especie identificada.',
       ),

@@ -42,7 +42,7 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
-            subtitle: Text('Configura tu clave Anthropic (Claude vision)'),
+            subtitle: Text('Configura tu clave de Anthropic (Claude Vision)'),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (_) => PantallaClaveAnthropic(
@@ -51,7 +51,7 @@ class PantallaAjustes extends StatelessWidget {
                   titulo: SoleraL10n.t('identificacion_con_ia'),
                   queIdentifica: 'Identifica especies y plagas urbanas por foto',
                   descripcion:
-                      'Larrea Arbolado Urbano puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico fitosanitario, severidad y manejo cultural. Si detecta una plaga de declaración obligatoria (picudo rojo, fuego bacteriano) o riesgo sanitario público (procesionaria, lagarta peluda) lo destaca con banner. Cuidado con la privacidad ciudadana: las fotos pueden capturar transeúntes; encuadra al árbol.',
+                      'Larrea Arbolado Urbano puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico fitosanitario, la severidad y el manejo cultural. Si detecta una plaga de declaración obligatoria (picudo rojo, fuego bacteriano) o riesgo sanitario público (procesionaria, lagarta peluda), lo destaca con un aviso. Cuidado con la privacidad ciudadana: las fotos pueden capturar transeúntes; encuadra al árbol.',
                   probarClave: probarClaveAnthropic,
                 ),
               ),
@@ -65,8 +65,8 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
           ListTile(
             leading: Icon(Icons.backup),
-            title: Text('Backup y restauración'),
-            subtitle: Text('Empaqueta BD + fotos como zip'),
+            title: Text('Copia de seguridad'),
+            subtitle: Text('Empaqueta la base de datos y las fotos en un ZIP'),
             onTap: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaBackup()),
             ),

@@ -66,7 +66,7 @@ class GeneradorQrArbol {
                       border: pw.Border.all(color: PdfColors.grey300),
                     ),
                     child: pw.Text(
-                      'Árbol inventariado · Para incidencias escanea el código',
+                      'Árbol inventariado · Para avisar de incidencias, escanea el código',
                       style: const pw.TextStyle(
                           fontSize: 8, color: PdfColors.grey),
                     ),

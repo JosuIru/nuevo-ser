@@ -62,7 +62,7 @@ class _PantallaTecnicosState extends State<PantallaTecnicos> {
                   'Aún no hay técnicos registrados.\n\n'
                   'Pulsa el botón flotante para añadir el primero. '
                   'Cada actuación llevará la firma del técnico que la realiza, '
-                  'imprescindible para la traza municipal.',
+                  'imprescindible para la trazabilidad municipal.',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.grey),
                 ),

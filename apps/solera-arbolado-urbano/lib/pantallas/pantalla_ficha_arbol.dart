@@ -212,7 +212,7 @@ class _BloqueDescriptivo extends StatelessWidget {
             if (arbol.especieId.isNotEmpty)
               _Linea(etiqueta: 'Especie', valor: arbol.especieId),
             if (arbol.qrPayload.isNotEmpty)
-              _Linea(etiqueta: 'QR chapa', valor: arbol.qrPayload),
+              _Linea(etiqueta: 'QR de la chapa', valor: arbol.qrPayload),
             if (arbol.edadEstimadaAnos != null)
               _Linea(etiqueta: 'Edad', valor: '${arbol.edadEstimadaAnos} años'),
             if (arbol.fechaPlantacionMs != null)
@@ -329,7 +329,7 @@ class _EntradaTimeline {
   factory _EntradaTimeline.incidencia(Incidencia i) {
     final detalles = <String>[
       i.tipo,
-      if (i.severidad != null) 'sev ${i.severidad}',
+      if (i.severidad != null) 'sev. ${i.severidad}',
       if (i.resuelta) 'resuelta' else 'abierta',
     ];
     return _EntradaTimeline._(

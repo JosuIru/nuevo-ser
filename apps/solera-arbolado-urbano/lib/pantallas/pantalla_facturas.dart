@@ -186,8 +186,8 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
                   : null,
             ),
             tooltip: _emailBackup != null && _emailBackup!.isNotEmpty
-                ? 'Backup: $_emailBackup'
-                : 'Configurar email de respaldo',
+                ? 'Respaldo: $_emailBackup'
+                : 'Configurar correo de respaldo',
             onPressed: _configurarEmailBackup,
           ),
         ],
@@ -232,7 +232,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
         subtitle: Text(
           '${_formatter.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · '
-          '${f.total.toStringAsFixed(2)}€ · ${f.estado}',
+          '${f.total.toStringAsFixed(2)} € · ${f.estado}',
           style: TextStyle(fontSize: 12),
         ),
         trailing: PopupMenuButton<String>(
@@ -440,7 +440,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             TextFormField(
               controller: _numCtrl,
               decoration: InputDecoration(
-                  labelText: 'Nº factura',
+                  labelText: 'N.º de factura',
                   border: OutlineInputBorder(),
                   isDense: true),
             ),
@@ -494,7 +494,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                     dense: true,
                     title: Text(l['descripcion']),
                     subtitle: Text(
-                        '${l['cantidad']} x ${l['precioUnitario']}€ = ${l['importe']}€'),
+                        '${l['cantidad']} x ${l['precioUnitario']} € = ${l['importe']} €'),
                     trailing: IconButton(
                       icon: Icon(Icons.delete, color: Colors.red, size: 18),
                       onPressed: () =>
@@ -572,7 +572,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   children: [
                     _filaTotal('Base imponible', _baseImponible),
                     _filaTotal(
-                        'IVA $_iva%', _baseImponible * _iva / 100),
+                        'IVA $_iva %', _baseImponible * _iva / 100),
                     Divider(),
                     _filaTotal('TOTAL', _total, bold: true),
                   ],
@@ -601,7 +601,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
               style: TextStyle(
                   fontWeight: bold ? FontWeight.bold : FontWeight.normal,
                   fontSize: bold ? 16 : 14)),
-          Text('${valor.toStringAsFixed(2)}€',
+          Text('${valor.toStringAsFixed(2)} €',
               style: TextStyle(
                   fontWeight: bold ? FontWeight.bold : FontWeight.normal,
                   fontSize: bold ? 16 : 14)),

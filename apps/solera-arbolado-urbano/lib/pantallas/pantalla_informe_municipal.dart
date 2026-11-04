@@ -83,7 +83,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error generando el PDF: $e')),
+        SnackBar(content: Text('Error al generar el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -112,7 +112,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error abriendo el PDF: $e')),
+        SnackBar(content: Text('Error al abrir el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);

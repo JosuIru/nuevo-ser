@@ -265,7 +265,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               items: [
                 const DropdownMenuItem<int?>(
                   value: null,
-                  child: Text('— sin firmar (rellenar antes de inspección) —'),
+                  child: Text('— sin firmar (rellenar antes de la inspección) —'),
                 ),
                 for (final t in _tecnicosDisponibles)
                   DropdownMenuItem<int?>(
@@ -375,7 +375,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                   SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Tipo de poda controvertido — debate técnico activo. '
+                      'Tipo de poda controvertido, con debate técnico abierto. '
                       'Justifica la elección en las notas para inspección.',
                       style: TextStyle(fontSize: 13, color: Colors.amber.shade900),
                     ),
@@ -434,7 +434,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             controller: _controladorDosis,
             decoration: InputDecoration(
               labelText: 'Dosis',
-              hintText: '1 L/Ha, 2 ml/árbol…',
+              hintText: '1 L/ha, 2 ml/árbol…',
               border: OutlineInputBorder(),
             ),
           ),
@@ -442,7 +442,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           CampoAutocompleteCatalogo<PlagaUrbana>(
             controlador: _controladorMotivoPlaga,
             labelText: 'Plaga / enfermedad objetivo',
-            hintText: 'procesionaria, picudo, anthracnosis…',
+            hintText: 'procesionaria, picudo, antracnosis…',
             opcionesCompletas: catalogoPlagasUrbanas,
             buscar: buscarPlagasUrbanas,
             displayStringForOption: (p) => p.nombreComun,
@@ -451,7 +451,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             SizedBox(height: 8),
             BannerDeclaracionObligatoria(
               texto:
-                  'Esta plaga es de DECLARACIÓN OBLIGATORIA al servicio fitosanitario oficial.',
+                  'Esta plaga es de declaración obligatoria al servicio fitosanitario oficial.',
             ),
           ],
           SizedBox(height: 12),
@@ -467,7 +467,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorFactura,
             decoration: InputDecoration(
-              labelText: 'Nº factura',
+              labelText: 'N.º de factura',
               border: OutlineInputBorder(),
             ),
           ),
@@ -475,7 +475,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
-              labelText: 'Plazo seguridad (días)',
+              labelText: 'Plazo de seguridad (días)',
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,

@@ -200,7 +200,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
         builder: (_) => AlertDialog(
           title: Text('QR no reconocido'),
           content: Text(
-            'No hay ningún árbol con el QR "$payload" en el inventario.\n\n'
+            'No hay ningún árbol con el QR «$payload» en el inventario.\n\n'
             '¿Quieres dar de alta uno nuevo con este QR?',
           ),
           actions: [

@@ -40,12 +40,12 @@ class _PantallaBackupState extends State<PantallaBackup> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        subject: 'Backup Larrea Arbolado Urbano',
+        subject: 'Copia de seguridad de Larrea Arbolado Urbano',
       );
     } on ErrorCopiaSeguridad catch (error) {
-      _avisar('No se pudo crear el backup. ${textoErrorCopiaSeguridad(error)}');
+      _avisar('No se pudo crear la copia de seguridad. ${textoErrorCopiaSeguridad(error)}');
     } catch (error) {
-      _avisar('No se pudo crear el backup: $error');
+      _avisar('No se pudo crear la copia de seguridad: $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -91,7 +91,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
         : 'del ${DateFormat("d/MM/yyyy 'a las' HH:mm").format(fecha)}';
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
-      titulo: 'Restaurar desde un backup',
+      titulo: 'Restaurar una copia de seguridad',
       mensaje: 'La copia elegida es $textoFecha.\n\n'
           'Sustituye la base de datos actual por la de la copia y añade sus fotos.\n\n'
           'Antes se guarda automáticamente una copia del estado actual por si quieres deshacerlo.',
@@ -122,7 +122,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final ultimo = _ultimoBackup;
     final hace = ultimo == null ? null : DateTime.now().difference(ultimo);
     return Scaffold(
-      appBar: AppBar(title: Text('Backup y restauración')),
+      appBar: AppBar(title: Text('Copia de seguridad')),
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
@@ -146,10 +146,10 @@ class _PantallaBackupState extends State<PantallaBackup> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Último backup', style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text('Última copia', style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(
                             ultimo == null
-                                ? 'Nunca — recomendado hacer uno antes del cierre de campaña.'
+                                ? 'Nunca. Te recomendamos hacer una antes del cierre de campaña.'
                                 : DateFormat("d/MM/yyyy 'a las' HH:mm").format(ultimo),
                           ),
                         ],
@@ -160,10 +160,10 @@ class _PantallaBackupState extends State<PantallaBackup> {
               ),
             ),
             SizedBox(height: 12),
-            Text('Crear backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text('Crear copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Empaqueta la base de datos y todas las fotos en un zip que puedes compartir por correo, '
+              'Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por correo, '
               'Drive o copiar al servidor del ayuntamiento. Útil para migraciones de equipo o fin de campaña.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
@@ -171,13 +171,13 @@ class _PantallaBackupState extends State<PantallaBackup> {
             FilledButton.icon(
               icon: Icon(Icons.archive),
               onPressed: _trabajando ? null : _crearYCompartir,
-              label: Text(_trabajando ? 'Empaquetando…' : 'Crear backup y compartir'),
+              label: Text(_trabajando ? 'Empaquetando…' : 'Crear copia y compartir'),
             ),
             Divider(height: 32),
-            Text('Restaurar desde backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text('Restaurar una copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Sustituye la base de datos actual por la del zip y añade sus fotos. Antes se comprueba '
+              'Sustituye la base de datos actual por la del ZIP y añade sus fotos. Antes se comprueba '
               'la copia y se guarda una del estado actual por si quieres deshacer.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
@@ -185,7 +185,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
             OutlinedButton.icon(
               icon: Icon(Icons.restore),
               onPressed: _trabajando ? null : _restaurar,
-              label: Text('Restaurar zip'),
+              label: Text('Restaurar ZIP'),
             ),
           ],
         ),

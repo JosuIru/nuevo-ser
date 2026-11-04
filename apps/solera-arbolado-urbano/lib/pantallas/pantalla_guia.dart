@@ -25,7 +25,7 @@ class PantallaGuia extends StatelessWidget {
             tabs: [
               Tab(icon: Icon(Icons.bug_report), text: 'Plagas'),
               Tab(icon: Icon(Icons.park), text: 'Especies'),
-              Tab(icon: Icon(Icons.content_cut), text: 'Tipos poda'),
+              Tab(icon: Icon(Icons.content_cut), text: 'Tipos de poda'),
               Tab(icon: Icon(Icons.terrain), text: 'Sustratos'),
             ],
           ),
@@ -38,7 +38,7 @@ class PantallaGuia extends StatelessWidget {
                 child: BannerCoincidenciaCatalogo(
                   coincidencia: CoincidenciaCatalogo.provisional,
                   mensajeProvisional:
-                      'Catálogo provisional con fuente pública trazable. Pendiente firma del ingeniero técnico forestal asesor.',
+                      'Catálogo provisional con fuente pública trazable. Pendiente de la firma del ingeniero técnico forestal asesor.',
                   mensajeValidado: '',
                   mensajeLibre: '',
                 ),
@@ -119,7 +119,7 @@ class _TabPlagasState extends State<_TabPlagas> {
           padding: const EdgeInsets.all(12),
           child: TextField(
             decoration: const InputDecoration(
-              hintText: 'Buscar procesionaria, picudo, anthracnosis…',
+              hintText: 'Buscar procesionaria, picudo, antracnosis…',
               prefixIcon: Icon(Icons.search),
               border: OutlineInputBorder(),
             ),
@@ -408,7 +408,7 @@ class _TabTiposPoda extends StatelessWidget {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Tipo de poda controvertido — debate técnico activo. Justifica la elección por escrito ante una inspección.',
+                        'Tipo de poda controvertido, con debate técnico abierto. Justifica la elección por escrito ante una inspección.',
                         style: TextStyle(fontSize: 13, color: Colors.amber.shade900),
                       ),
                     ),

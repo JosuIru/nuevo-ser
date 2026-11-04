@@ -279,7 +279,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
             TextFormField(
               controller: _controladorQr,
               decoration: InputDecoration(
-                labelText: 'Payload del QR de chapa',
+                labelText: 'Contenido del QR de la chapa',
                 hintText: 'IRU:2024-PASEO-042',
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
@@ -306,7 +306,7 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
                     controller: _controladorPerimetro,
                     validator: validarNumeroOpcional,
                     decoration: const InputDecoration(
-                      labelText: 'Perímetro tronco (cm)',
+                      labelText: 'Perímetro del tronco (cm)',
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: const TextInputType.numberWithOptions(decimal: true),

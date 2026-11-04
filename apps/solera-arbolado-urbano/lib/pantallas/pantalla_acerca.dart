@@ -55,8 +55,8 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 32),
           const Text(
             'Larrea Arbolado Urbano es un gestor para ayuntamientos pequeños y '
-            'medianos + empresas de jardinería que cuidan el arbolado público: '
-            'inventario por chapa QR, ficha individual de cada árbol con timeline, '
+            'medianos y empresas de jardinería que cuidan el arbolado público: '
+            'inventario por chapa QR, ficha individual de cada árbol con su historial, '
             'partes de poda con fotos antes/después, identificación de plagas con '
             'IA y exportación de informes municipales en PDF.',
             style: TextStyle(fontSize: 14, height: 1.5),
@@ -71,8 +71,8 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const _Bullet(
             'Las plagas de declaración obligatoria (picudo rojo, fuego '
-            'bacteriano, escarabajo de las colmenas) deben notificarse a '
-            'los Servicios Fitosanitarios oficiales de la CCAA.',
+            'bacteriano…) deben notificarse a los servicios fitosanitarios '
+            'oficiales de tu comunidad autónoma.',
           ),
           const _Bullet(
             'Las plagas con riesgo sanitario público (procesionaria del '
@@ -81,13 +81,13 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const _Bullet(
             'El riesgo VTA (Visual Tree Assessment) es responsabilidad '
-            'del técnico cualificado. La app facilita el registro pero NO '
-            'emite dictámenes — la decisión de talar es siempre humana y '
+            'del técnico cualificado. La app facilita el registro, pero no '
+            'emite dictámenes: la decisión de talar es siempre humana y '
             'firmada.',
           ),
           const _Bullet(
             'Privacidad ciudadana: las fotos pueden capturar transeúntes. '
-            'Encuadra al árbol; las imágenes sólo se envían a Anthropic '
+            'Encuadra al árbol; las imágenes solo se envían a Anthropic '
             'cuando usas el botón de IA y por elección explícita del operario.',
           ),
           const _Bullet(
@@ -100,10 +100,11 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Familia Larrea'),
           const Text(
-            'Larrea Arbolado Urbano es parte de la suite Larrea del monorepo '
-            'Colección Nuevo Ser. Otras apps hermanas: Larrea Viticultura '
-            '(libro PAC en bodegas), Larrea Apícola (libro REGA en '
-            'apicultura), Larrea (general — frutales, trufa, olivar).',
+            'Larrea Arbolado Urbano forma parte de la suite Larrea, de la '
+            'Colección Nuevo Ser. Apps hermanas: Larrea Viticultura (libro '
+            'PAC en bodegas), Larrea Apícola (libro REGA en apicultura), '
+            'Larrea (general — frutales, trufa, olivar), Larrea Quesera y '
+            'Larrea Aceitera.',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
@@ -171,7 +172,7 @@ class _TarjetaCatalogos extends StatelessWidget {
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
             const Text(
-              'Pre-rellenados a partir de fuentes públicas (manuales de '
+              'Rellenados a partir de fuentes públicas (manuales de '
               'jardinería urbana, pliegos de ayuntamientos, boletines '
               'fitosanitarios autonómicos). Antes de pasar a producción '
               'comercial deben ser validados por un ingeniero técnico '

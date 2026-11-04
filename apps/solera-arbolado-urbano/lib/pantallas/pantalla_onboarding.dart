@@ -138,15 +138,15 @@ const _paginas = <_DatosPagina>[
   _DatosPagina(
     Icons.auto_awesome,
     'Diagnóstico con IA por foto',
-    'Hazle una foto a un panel con síntomas y la IA propone diagnóstico '
-        '(procesionaria, picudo rojo, anthracnosis, fuego bacteriano…). Las plagas '
+    'Hazle una foto a un árbol, una rama o una hoja con síntomas y la IA propone un diagnóstico '
+        '(procesionaria, picudo rojo, antracnosis, fuego bacteriano…). Las plagas '
         'de declaración obligatoria y las que tienen riesgo sanitario público se '
         'destacan automáticamente.',
   ),
   _DatosPagina(
     Icons.description,
     'Informes municipales firmables',
-    'Cierra la campaña con un informe consolidado para concejalía: censo por especie, '
+    'Cierra la campaña con un informe consolidado para la concejalía: censo por especie, '
         'todas las inspecciones, podas, tratamientos e incidencias del periodo, con '
         'firma del técnico responsable. PDF listo para presentar.',
   ),

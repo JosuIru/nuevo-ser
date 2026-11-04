@@ -231,7 +231,7 @@ class _ModalResultadoIA extends StatelessWidget {
             if (declaracionObligatoria) ...[
               const BannerDeclaracionObligatoria(
                 texto:
-                    'PLAGA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los Servicios Fitosanitarios oficiales de tu CCAA.',
+                    'PLAGA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los servicios fitosanitarios oficiales de tu comunidad autónoma.',
               ),
               const SizedBox(height: 12),
             ],
@@ -245,8 +245,8 @@ class _ModalResultadoIA extends StatelessWidget {
               mensajeLibre:
                   'Diagnóstico libre — no coincide con el catálogo curado de Larrea Arbolado Urbano. Revisa con criterio antes de aceptar.',
               mensajeProvisional:
-                  'Coincide con catálogo provisional. El catálogo aún no ha sido validado por ingeniero técnico forestal — usa criterio.',
-              mensajeValidado: 'Diagnóstico coincide con catálogo Larrea',
+                  'Coincide con el catálogo provisional. El catálogo aún no lo ha validado un ingeniero técnico forestal: usa tu criterio.',
+              mensajeValidado: 'El diagnóstico coincide con el catálogo de Larrea',
             ),
             const SizedBox(height: 16),
             _FilaInfo(etiqueta: 'Nombre común', valor: resultado.plagaNombreComun),
@@ -358,11 +358,11 @@ class _ModalResultadoIA extends StatelessWidget {
                       }
                       if (declaracionObligatoria) {
                         notasAuto.write(
-                            '.\n⚠ Plaga de DECLARACIÓN OBLIGATORIA — notificar a Servicios Fitosanitarios.');
+                            '.\n⚠ Plaga de declaración obligatoria: hay que notificarla a los servicios fitosanitarios oficiales.');
                       }
                       if (riesgoSanitario) {
                         notasAuto.write(
-                            '.\n⚠ RIESGO SANITARIO PÚBLICO — vigilar zona escolar/peatonal.');
+                            '.\n⚠ Riesgo sanitario público: vigilar zonas escolares y peatonales.');
                       }
                       Navigator.of(ctx).pop(DatosIncidenciaIA(
                         tipoIncidencia: _tipoIncidenciaPorDefecto,
@@ -371,7 +371,7 @@ class _ModalResultadoIA extends StatelessWidget {
                         notasAuto: notasAuto.toString(),
                       ));
                     },
-                    label: const Text('Aceptar y pre-rellenar'),
+                    label: const Text('Aceptar y rellenar'),
                   ),
                 ),
               ],

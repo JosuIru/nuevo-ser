@@ -1,0 +1,608 @@
+clave,es,eu,ca,gl
+api.aceptar_y_rellenar,Aceptar y rellenar,Onartu eta bete,Accepta i emplena,Aceptar e cubrir
+api.acerca_de_ayuda,"Versión, créditos, compromisos legales","Bertsioa, kredituak, lege-konpromisoak","Versió, crèdits, compromisos legals","Versión, créditos, compromisos legais"
+api.acerca_descripcion,"Larrea Apícola es un gestor para apicultores profesionales y semiprofesionales: censo de colmenas con matrícula y GPS, registro de revisiones, cosechas, tratamientos sanitarios e incidencias, gestión de trashumancia, identificación de patologías por foto con IA y libro oficial REGA en PDF firmable.","Larrea Apícola erlezain profesional eta erdi-profesionalentzako kudeatzailea da: erlauntzen errolda matrikula eta GPSarekin, ikuskapenen, ezti-bilketen, tratamendu sanitarioen eta gorabeheren erregistroa, transhumantziaren kudeaketa, patologiak argazki bidez AArekin identifikatzea eta REGA liburu ofiziala PDF sinagarrian.","Larrea Apícola és un gestor per a apicultors professionals i semiprofessionals: cens de ruscs amb matrícula i GPS, registre de revisions, collites, tractaments sanitaris i incidències, gestió de la transhumància, identificació de patologies per foto amb IA i llibre oficial REGA en PDF signable.","Larrea Apícola é un xestor para apicultores profesionais e semiprofesionais: censo de colmeas con matrícula e GPS, rexistro de revisións, colleitas, tratamentos sanitarios e incidencias, xestión da transhumancia, identificación de patoloxías por foto con IA e libro oficial REGA en PDF asinable."
+api.alta,Alta,Alta,Alta,Alta
+api.alta_fecha,Alta {fecha},Alta: {fecha},Alta {fecha},Alta {fecha}
+api.altitud_gps_m,Alt. GPS {m} m,GPS alt. {m} m,Alt. GPS {m} m,Alt. GPS {m} m
+api.altitud_gps_sin_dato,Alt. GPS --,GPS alt. --,Alt. GPS --,Alt. GPS --
+api.alza_n,alza {n},{n}. gaineko kaxa,alça {n},alza {n}
+api.anadir_colmena,Añadir colmena,Erlauntza gehitu,Afegeix un rusc,Engadir colmea
+api.ano_de_la_reina,Año de la reina,Ama-erlearen urtea,Any de la reina,Ano da raíña
+api.ano_de_la_reina_pista,2024 (marca: verde),2024 (marka: berdea),2024 (marca: verd),2024 (marca: verde)
+api.ano_y_marca_reina,{ano} · marca {color},{ano} · {color} marka,{ano} · marca {color},{ano} · marca {color}
+api.apiario,Apiario,Erlategia,Apiari,Apiario
+api.apiario_destino,Apiario destino,Helmuga-erlategia,Apiari de destinació,Apiario de destino
+api.apiario_origen,Apiario origen,Jatorrizko erlategia,Apiari d'origen,Apiario de orixe
+api.apiarios,Apiarios,Erlategiak,Apiaris,Apiarios
+api.apiarios_ayuda,"Asentamientos, código SITRAN y sus colmenas","Kokalekuak, SITRAN kodea eta haien erlauntzak","Assentaments, codi SITRAN i els seus ruscs","Asentamentos, código SITRAN e as súas colmeas"
+api.apilable,apilable,pilagarria,apilable,apilable
+api.asistente_chat,Asistente (chat),Laguntzailea (txata),Assistent (xat),Asistente (chat)
+api.asistente_chat_ayuda,"Pregunta sobre manejo, sanidad o el libro REGA · usa tu clave de Anthropic","Galdetu maneiuari, osasunari edo REGA liburuari buruz · zure Anthropic gakoa erabiltzen du","Pregunta sobre maneig, sanitat o el llibre REGA · fa servir la teva clau d'Anthropic","Pregunta sobre manexo, sanidade ou o libro REGA · usa a túa clave de Anthropic"
+api.autorizada_en_ecologico,Autorizada en ecológico,Ekologikoan baimendua,Autoritzada en ecològic,Autorizada en ecolóxico
+api.aviso_decadas_orientativas,"Las décadas son orientativas (±2 semanas según año, microclima y altitud). Verifica con tu boletín apícola local antes de planificar tratamientos.","Hamarraldiak orientagarriak dira (±2 aste urtearen, mikroklimaren eta altitudearen arabera). Egiaztatu zure tokiko buletin apikolarekin tratamenduak planifikatu aurretik.","Les desenes són orientatives (±2 setmanes segons l'any, el microclima i l'altitud). Comprova-ho amb el teu butlletí apícola local abans de planificar tractaments.","As décadas son orientativas (±2 semanas segundo o ano, o microclima e a altitude). Verifícao co teu boletín apícola local antes de planificar tratamentos."
+api.borrar_apiario,Borrar apiario,Erlategia ezabatu,Esborra l'apiari,Borrar apiario
+api.borrar_apiario_aviso,Se borrará el apiario {nombre}. Las colmenas quedarán como puntos sueltos.,{nombre} erlategia ezabatuko da. Erlauntzak puntu solte gisa geratuko dira.,S'esborrarà l'apiari {nombre}. Els ruscs quedaran com a punts solts.,Borrarase o apiario {nombre}. As colmeas quedarán como puntos soltos.
+api.buscar_colmenas_pista,"Buscar (matrícula, raza, tipo, notas)","Bilatu (matrikula, arraza, mota, oharrak)","Cerca (matrícula, raça, tipus, notes)","Buscar (matrícula, raza, tipo, notas)"
+api.buscar_patologias_ejemplo,"Buscar varroa, loque, vespa velutina…","Bilatu barroa, lokea, vespa velutina…","Cerca varroa, loque, vespa velutina…","Busca varroa, loque, vespa velutina…"
+api.buscar_un_lugar,Buscar un lugar,Bilatu leku bat,Cerca un lloc,Buscar un lugar
+api.calor_fuerte,Calor fuerte,Bero handia,Calor intensa,Calor forte
+api.calor_fuerte_detalle,"Revisa agua, sombra, ventilación y alzas en apiarios expuestos.","Begiratu ura, itzala, aireztapena eta gaineko kaxak erlategi babesgabeetan.","Revisa l'aigua, l'ombra, la ventilació i les alces als apiaris exposats.","Revisa auga, sombra, ventilación e alzas nos apiarios expostos."
+api.cambiar,Cambiar,Aldatu,Canvia,Cambiar
+api.campana,Campaña,Kanpaina,Campanya,Campaña
+api.campo_obligatorio,Campo obligatorio,Derrigorrezko eremua,Camp obligatori,Campo obrigatorio
+api.cantidad,Cantidad,Kopurua,Quantitat,Cantidade
+api.capas,Capas,Geruzak,Capes,Capas
+api.captura_posicion_nueva,Captura una posición nueva del dispositivo.,Gailuaren kokapen berria hartzen du.,Captura una posició nova del dispositiu.,Captura unha posición nova do dispositivo.
+api.capturar,Capturar,Hartu,Captura,Capturar
+api.caracter,Carácter,Izaera,Caràcter,Carácter
+api.cargando_prevision_meteo,Cargando previsión meteo…,Eguraldi-iragarpena kargatzen…,Carregant la previsió meteorològica…,Cargando a previsión meteorolóxica…
+api.catalogo_provisional_aviso,Catálogo provisional con fuente pública trazable. Pendiente de la firma del veterinario apícola asesor.,"Behin-behineko katalogoa, iturri publiko trazagarriarekin. Erle-albaitari aholkulariaren sinaduraren zain.",Catàleg provisional amb font pública traçable. Pendent de la signatura del veterinari apícola assessor.,Catálogo provisional con fonte pública rastrexable. Pendente da sinatura do veterinario apícola asesor.
+api.catalogos_curados,Catálogos curados,Katalogo landuak,Catàlegs curats,Catálogos curados
+api.catalogos_provisionales,PROVISIONALES — sin validar todavía,BEHIN-BEHINEKOAK — oraindik baliozkotu gabe,PROVISIONALS — encara sense validar,PROVISIONAIS — aínda sen validar
+api.catalogos_provisionales_texto,"Rellenados a partir de fuentes públicas (textos sanitarios apícolas, MAPA, manuales de apicultura ibérica). Antes de pasar a producción comercial deben ser validados por un veterinario apícola y un apicultor experimentado. Las propuestas de la IA que coincidan con el catálogo se marcan como «provisionales», no como validadas.","Iturri publikoetatik abiatuta beteak (erleen osasunari buruzko testuak, MAPA, Iberiar erlezaintzako eskuliburuak). Ekoizpen komertzialera pasatu aurretik, erle-albaitari batek eta erlezain esperientziadun batek baliozkotu behar dituzte. Katalogoarekin bat datozen AAren proposamenak «behin-behineko» gisa markatzen dira, ez baliozkotu gisa.","Emplenats a partir de fonts públiques (textos sanitaris apícoles, MAPA, manuals d'apicultura ibèrica). Abans de passar a producció comercial els han de validar un veterinari apícola i un apicultor experimentat. Les propostes de la IA que coincideixin amb el catàleg es marquen com a «provisionals», no com a validades.","Cubertos a partir de fontes públicas (textos sanitarios apícolas, MAPA, manuais de apicultura ibérica). Antes de pasar a produción comercial deben validalos un veterinario apícola e un apicultor experimentado. As propostas da IA que coincidan co catálogo márcanse como «provisionais», non como validadas."
+api.catalogos_validados,Validados por veterinario apícola y apicultor asesor,Erle-albaitari batek eta erlezain aholkulari batek baliozkotuak,Validats per un veterinari apícola i un apicultor assessor,Validados por veterinario apícola e apicultor asesor
+api.centro_de_colmenas,centro de colmenas,erlauntzen erdigunea,centre dels ruscs,centro das colmeas
+api.centro_de_referencia,centro de referencia,erreferentziako erdigunea,centre de referència,centro de referencia
+api.centroide,Centroide,Zentroidea,Centroide,Centroide
+api.chat_vacio_foto,Puedes adjuntar una foto. Usa tu clave de Anthropic.,Argazki bat erantsi dezakezu. Zure Anthropic gakoa erabiltzen du.,Pots adjuntar una foto. Fa servir la teva clau d'Anthropic.,Podes achegar unha foto. Usa a túa clave de Anthropic.
+api.chat_vacio_pregunta,"Pregunta sobre manejo, calendario, sanidad o el libro REGA.","Galdetu maneiuari, egutegiari, osasunari edo REGA liburuari buruz.","Pregunta sobre maneig, calendari, sanitat o el llibre REGA.","Pregunta sobre manexo, calendario, sanidade ou o libro REGA."
+api.clave_anthropic_ayuda,Clave de Anthropic para la foto y el asistente,"Anthropic-en gakoa, argazkirako eta laguntzailerako",Clau d'Anthropic per a la foto i l'assistent,Clave de Anthropic para a foto e o asistente
+api.clave_de_anthropic,Clave de Anthropic,Anthropic gakoa,Clau d'Anthropic,Clave de Anthropic
+api.cliente,Cliente,Bezeroa,Client,Cliente
+api.clientes_y_proveedores,Clientes y proveedores,Bezeroak eta hornitzaileak,Clients i proveïdors,Clientes e provedores
+api.codigo_autonomico_pista,Código autonómico específico (si aplica),Autonomia-erkidegoko kode espezifikoa (badagokio),Codi autonòmic específic (si escau),Código autonómico específico (se procede)
+api.codigo_sitran,Código SITRAN,SITRAN kodea,Codi SITRAN,Código SITRAN
+api.codigo_unificado_nacional,Código unificado nacional,Estatuko kode bateratua,Codi unificat estatal,Código unificado estatal
+api.colmenas,Colmenas,Erlauntzak,Ruscs,Colmeas
+api.color,Color,Kolorea,Color,Cor
+api.color_amarillo,amarillo,horia,groc,amarelo
+api.color_azul,azul,urdina,blau,azul
+api.color_azul_mayus,Azul,Urdina,Blau,Azul
+api.color_blanco,blanco,zuria,blanc,branco
+api.color_gris,Gris,Grisa,Gris,Gris
+api.color_morado,Morado,Morea,Morat,Morado
+api.color_ocre,Ocre,Okre,Ocre,Ocre
+api.color_rojo,rojo,gorria,vermell,vermello
+api.color_rojo_mayus,Rojo,Gorria,Vermell,Vermello
+api.color_verde,verde,berdea,verd,verde
+api.color_verde_mayus,Verde,Berdea,Verd,Verde
+api.compromiso_1,"Larrea no recomienda medicamentos zoosanitarios comerciales (Apivar, ApiBioxal, Polyvar…). Solo lista sustancias activas autorizadas. Cualquier tratamiento sanitario requiere receta del veterinario asesor.","Larreak ez du animalia-osasunerako botika komertzialik gomendatzen (Apivar, ApiBioxal, Polyvar…). Baimendutako substantzia aktiboak soilik zerrendatzen ditu. Edozein tratamendu sanitariok albaitari aholkulariaren errezeta behar du.","Larrea no recomana medicaments zoosanitaris comercials (Apivar, ApiBioxal, Polyvar…). Només llista substàncies actives autoritzades. Qualsevol tractament sanitari requereix recepta del veterinari assessor.","Larrea non recomenda medicamentos zoosanitarios comerciais (Apivar, ApiBioxal, Polyvar…). Só lista substancias activas autorizadas. Calquera tratamento sanitario require receita do veterinario asesor."
+api.compromiso_2,"Las patologías de declaración obligatoria (loque americana, escarabajo de las colmenas, vespa velutina) deben notificarse a los Servicios Veterinarios oficiales de la CCAA.","Derrigorrez jakinarazi beharreko patologiak (loke amerikarra, erlauntzetako kakalardoa, vespa velutina) autonomia-erkidegoko Albaitaritza Zerbitzu ofizialei jakinarazi behar zaizkie.","Les patologies de declaració obligatòria (loque americana, escarabat dels ruscs, vespa velutina) s'han de notificar als Serveis Veterinaris oficials de la comunitat autònoma.","As patoloxías de declaración obrigatoria (loque americana, escaravello das colmeas, vespa velutina) deben notificarse aos Servizos Veterinarios oficiais da comunidade autónoma."
+api.compromiso_3,"El formato del libro oficial REGA / SITRAN-AP cambia periódicamente y tiene desarrollos autonómicos (Andalucía, Galicia, Castilla-La Mancha). Verifica el formato vigente antes de presentar el documento en inspección.","REGA / SITRAN-AP liburu ofizialaren formatua aldian-aldian aldatzen da, eta autonomia-erkidegoetako garapenak ditu (Andaluzia, Galizia, Gaztela-Mantxa). Egiaztatu indarreko formatua dokumentua ikuskapenean aurkeztu aurretik.","El format del llibre oficial REGA / SITRAN-AP canvia periòdicament i té desplegaments autonòmics (Andalusia, Galícia, Castella-la Manxa). Comprova el format vigent abans de presentar el document en una inspecció.","O formato do libro oficial REGA / SITRAN-AP cambia periodicamente e ten desenvolvementos autonómicos (Andalucía, Galicia, Castela-A Mancha). Verifica o formato vixente antes de presentar o documento nunha inspección."
+api.compromiso_4,"Tu clave de Anthropic (si la configuras para la IA) se guarda solo en tu dispositivo. Las fotos se envían directamente a Anthropic, sin pasar por servidores intermedios.","Zure Anthropic gakoa (AArako konfiguratzen baduzu) zure gailuan bakarrik gordetzen da. Argazkiak zuzenean bidaltzen zaizkio Anthropici, tarteko zerbitzaririk gabe.","La teva clau d'Anthropic (si la configures per a la IA) només es desa al teu dispositiu. Les fotos s'envien directament a Anthropic, sense passar per servidors intermedis.","A túa clave de Anthropic (se a configuras para a IA) gárdase só no teu dispositivo. As fotos envíanse directamente a Anthropic, sen pasar por servidores intermedios."
+api.compromiso_5,"El libro económico (ingresos, gastos, modelo 347, extracto anual) es PROVISIONAL hasta que un asesor fiscal valide el formato. Es una herramienta de apoyo para tu gestoría: un error en el extracto fiscal cuesta dinero con Hacienda. Contrasta cada apunte con tu asesor antes de presentar nada.","Liburu ekonomikoa (sarrerak, gastuak, 347 eredua, urteko laburpena) BEHIN-BEHINEKOA da aholkulari fiskal batek formatua baliozkotu arte. Zure gestoriarako laguntza-tresna bat da: laburpen fiskaleko akats batek dirua kosta dakizuke Ogasunarekin. Egiaztatu idazpen bakoitza zure aholkulariarekin ezer aurkeztu aurretik.","El llibre econòmic (ingressos, despeses, model 347, extracte anual) és PROVISIONAL fins que un assessor fiscal en validi el format. És una eina de suport per a la teva gestoria: un error en l'extracte fiscal costa diners amb Hisenda. Contrasta cada assentament amb el teu assessor abans de presentar res.","O libro económico (ingresos, gastos, modelo 347, extracto anual) é PROVISIONAL ata que un asesor fiscal valide o formato. É unha ferramenta de apoio para a túa xestoría: un erro no extracto fiscal custa diñeiro con Facenda. Contrasta cada apuntamento co teu asesor antes de presentar nada."
+api.compromisos_legales,Compromisos legales,Lege-konpromisoak,Compromisos legals,Compromisos legais
+api.con_postura,Con postura,Errutearekin,Amb posta,Con posta
+api.concepto,Concepto,Kontzeptua,Concepte,Concepto
+api.condiciones_favorables,Condiciones favorables,Baldintza egokiak,Condicions favorables,Condicións favorables
+api.confianza,Confianza,Konfiantza,Confiança,Confianza
+api.configura_primero_titular,Configura primero los datos del titular.,Konfiguratu lehenik titularraren datuak.,Configura primer les dades del titular.,Configura primeiro os datos do titular.
+api.copia_asunto_compartir,Copia de seguridad de Larrea Apícola,Larrea Apícolaren segurtasun-kopia,Còpia de seguretat de Larrea Apícola,Copia de seguridade de Larrea Apícola
+api.copia_crear_copia,Crear copia,Kopia sortu,Crea una còpia,Crear copia
+api.copia_datos_intactos,Tus datos no se han tocado.,Zure datuak ez dira ukitu.,No s'han tocat les teves dades.,Os teus datos non se tocaron.
+api.copia_del_fecha,Copia del {fecha},"Kopia, data: {fecha}",Còpia del {fecha},Copia do {fecha}
+api.copia_descripcion_con_fotos,"{copia}, con {n} fotos.","{copia}, {n} argazkirekin.","{copia}, amb {n} fotos.","{copia}, con {n} fotos."
+api.copia_elegir_y_restaurar,Elegir copia y restaurar,Kopia aukeratu eta leheneratu,Tria una còpia i restaura-la,Escoller copia e restaurar
+api.copia_empaquetando,Empaquetando…,Biltzen…,S'està empaquetant…,Empaquetando…
+api.copia_error_al_restaurar,Error al restaurar: {error},Errorea leheneratzean: {error},Error en restaurar: {error},Erro ao restaurar: {error}
+api.copia_error_base_datos_danada,La base de datos de la copia está dañada.,Kopiaren datu-basea hondatuta dago.,La base de dades de la còpia està malmesa.,A base de datos da copia está danada.
+api.copia_error_de_otra_app,"La copia es de otra app, no de Larrea Apícola.","Kopia beste aplikazio batena da, ez Larrea Apícolarena.","La còpia és d'una altra aplicació, no de Larrea Apícola.","A copia é doutra aplicación, non de Larrea Apícola."
+api.copia_error_esquema_mas_nuevo,La copia es de una versión más nueva de la app. Actualiza Larrea Apícola antes de restaurarla.,Kopia aplikazioaren bertsio berriago batekoa da. Eguneratu Larrea Apícola leheneratu aurretik.,La còpia és d'una versió més nova de l'aplicació. Actualitza Larrea Apícola abans de restaurar-la.,A copia é dunha versión máis nova da aplicación. Actualiza Larrea Apícola antes de restaurala.
+api.copia_error_fichero_no_existe,No se encuentra el fichero elegido.,Ez da aurkitzen aukeratutako fitxategia.,No es troba el fitxer triat.,Non se atopa o ficheiro escollido.
+api.copia_error_formato_desconocido,La copia la hizo una versión más nueva de la app o no se entiende. Actualiza Larrea Apícola y vuelve a probar.,Kopia aplikazioaren bertsio berriago batek egin zuen edo ez da ulertzen. Eguneratu Larrea Apícola eta saiatu berriro.,La còpia la va fer una versió més nova de l'aplicació o no s'entén. Actualitza Larrea Apícola i torna-ho a provar.,A copia fíxoa unha versión máis nova da aplicación ou non se entende. Actualiza Larrea Apícola e volve probar.
+api.copia_error_no_es_zip,El fichero no es un ZIP válido o está dañado.,Fitxategia ez da ZIP baliozkoa edo hondatuta dago.,El fitxer no és un ZIP vàlid o està malmès.,O ficheiro non é un ZIP válido ou está danado.
+api.copia_error_respaldo_previo_fallido,"No se ha podido guardar antes una copia del estado actual, así que no se ha restaurado nada.","Ezin izan da aurretik uneko egoeraren kopiarik gorde, beraz, ez da ezer leheneratu.","No s'ha pogut desar abans una còpia de l'estat actual, així que no s'ha restaurat res.","Non se puido gardar antes unha copia do estado actual, así que non se restaurou nada."
+api.copia_error_restauracion_revertida,La restauración ha fallado a mitad y se ha vuelto al estado anterior.,Leheneratzeak huts egin du erdibidean eta aurreko egoerara itzuli da.,La restauració ha fallat a mitges i s'ha tornat a l'estat anterior.,A restauración fallou a medias e volveuse ao estado anterior.
+api.copia_error_reversion_fallida,La restauración ha fallado y no se ha podido volver atrás del todo. No borres la app: tu estado anterior está en la copia automática y puedes restaurarla desde aquí.,Leheneratzeak huts egin du eta ezin izan da guztiz atzera egin. Ez ezabatu aplikazioa: zure aurreko egoera kopia automatikoan dago eta hemendik leheneratu dezakezu.,La restauració ha fallat i no s'ha pogut tornar enrere del tot. No esborris l'aplicació: el teu estat anterior és a la còpia automàtica i la pots restaurar des d'aquí.,A restauración fallou e non se puido volver atrás de todo. Non borres a aplicación: o teu estado anterior está na copia automática e podes restaurala desde aquí.
+api.copia_error_reversion_fallida_fichero,La restauración ha fallado y no se ha podido volver atrás del todo. No borres la app: tu estado anterior está en la copia automática ({fichero}) y puedes restaurarla desde aquí.,Leheneratzeak huts egin du eta ezin izan da guztiz atzera egin. Ez ezabatu aplikazioa: zure aurreko egoera kopia automatikoan dago ({fichero}) eta hemendik leheneratu dezakezu.,La restauració ha fallat i no s'ha pogut tornar enrere del tot. No esborris l'aplicació: el teu estat anterior és a la còpia automàtica ({fichero}) i la pots restaurar des d'aquí.,A restauración fallou e non se puido volver atrás de todo. Non borres a aplicación: o teu estado anterior está na copia automática ({fichero}) e podes restaurala desde aquí.
+api.copia_error_ruta_peligrosa,La copia intenta escribir fuera de la carpeta de la app y se ha rechazado.,Kopiak aplikazioaren karpetatik kanpo idatzi nahi du eta baztertu egin da.,La còpia intenta escriure fora de la carpeta de l'aplicació i s'ha rebutjat.,A copia tenta escribir fóra do cartafol da aplicación e rexeitouse.
+api.copia_error_sin_base_datos,El ZIP no trae la base de datos de Larrea Apícola.,ZIPak ez dakar Larrea Apícolaren datu-basea.,El ZIP no conté la base de dades de Larrea Apícola.,O ZIP non trae a base de datos de Larrea Apícola.
+api.copia_error_sin_datos,Todavía no hay datos que copiar.,Oraindik ez dago kopiatzeko daturik.,Encara no hi ha dades per copiar.,Aínda non hai datos que copiar.
+api.copia_explicacion_crear,"Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí.","Datu-basea eta argazki guztiak ZIP batean biltzen ditu, WhatsApp, Drive edo posta bidez parteka dezakezuna edo ordenagailura kopia dezakezuna. Aplikazioa berriro instalatzen baduzu edo mugikorrez aldatzen baduzu, hemendik leheneratu ahal izango duzu.","Empaqueta la base de dades i totes les fotos en un ZIP que pots compartir per WhatsApp, Drive o correu, o copiar a l'ordinador. Si reinstal·les l'aplicació o canvies de mòbil, podràs restaurar des d'aquí.","Empaqueta a base de datos e todas as fotos nun ZIP que podes compartir por WhatsApp, Drive ou correo, ou copiar ao PC. Se reinstalas a aplicación ou cambias de móbil, poderás restaurar desde aquí."
+api.copia_explicacion_restaurar,Sustituye la base de datos por la del ZIP y añade sus fotos. Antes se comprueba la copia y se guarda automáticamente el estado actual por si quieres deshacer.,Datu-basea ZIPekoarekin ordezten du eta haren argazkiak gehitzen ditu. Aurretik kopia egiaztatzen da eta uneko egoera automatikoki gordetzen da desegin nahi baduzu ere.,Substitueix la base de dades per la del ZIP i n'afegeix les fotos. Abans es comprova la còpia i es desa automàticament l'estat actual per si vols desfer-ho.,Substitúe a base de datos pola do ZIP e engade as súas fotos. Antes compróbase a copia e gárdase automaticamente o estado actual por se queres desfacelo.
+api.copia_explicacion_restaurar_dialogo,Sustituye la base de datos actual por la de la copia y añade sus fotos. Antes se guarda automáticamente una copia del estado actual.,Uneko datu-basea kopiakoarekin ordezten du eta haren argazkiak gehitzen ditu. Aurretik uneko egoeraren kopia bat gordetzen da automatikoki.,Substitueix la base de dades actual per la de la còpia i n'afegeix les fotos. Abans es desa automàticament una còpia de l'estat actual.,Substitúe a base de datos actual pola da copia e engade as súas fotos. Antes gárdase automaticamente unha copia do estado actual.
+api.copia_fecha_a_las_hora,{fecha} a las {hora},"{fecha}, {hora}",{fecha} a les {hora},{fecha} ás {hora}
+api.copia_no_se_pudo_crear,No se ha podido crear la copia.,Ezin izan da kopia sortu.,No s'ha pogut crear la còpia.,Non se puido crear a copia.
+api.copia_no_se_pudo_crear_detalle,No se ha podido crear la copia: {error},Ezin izan da kopia sortu: {error},No s'ha pogut crear la còpia: {error},Non se puido crear a copia: {error}
+api.copia_no_se_pudo_leer,No se ha podido leer la copia: {error},Ezin izan da kopia irakurri: {error},No s'ha pogut llegir la còpia: {error},Non se puido ler a copia: {error}
+api.copia_no_se_puede_restaurar,Esta copia no se puede restaurar.,Kopia hau ezin da leheneratu.,Aquesta còpia no es pot restaurar.,Esta copia non se pode restaurar.
+api.copia_nunca,Nunca. Te recomendamos hacer una antes de la próxima trashumancia.,Inoiz ez. Hurrengo transhumantziaren aurretik bat egitea gomendatzen dizugu.,Mai. Et recomanem fer-ne una abans de la propera transhumància.,Nunca. Recomendámosche facer unha antes da próxima transhumancia.
+api.copia_restaurada,Copia restaurada.,Kopia leheneratu da.,Còpia restaurada.,Copia restaurada.
+api.copia_restaurada_con_respaldo,Copia restaurada. El estado anterior se guardó en {fichero}.,Kopia leheneratu da. Aurreko egoera {fichero} fitxategian gorde da.,Còpia restaurada. L'estat anterior s'ha desat a {fichero}.,Copia restaurada. O estado anterior gardouse en {fichero}.
+api.copia_restaurar,Restaurar,Leheneratu,Restaura,Restaurar
+api.copia_restaurar_esta_copia,Restaurar esta copia,Kopia hau leheneratu,Restaura aquesta còpia,Restaurar esta copia
+api.copia_restaurar_una_copia,Restaurar una copia,Kopia bat leheneratu,Restaura una còpia,Restaurar unha copia
+api.copia_seguridad_ayuda,"Empaqueta la base de datos y las fotos en un ZIP, y las restaura","Datu-basea eta argazkiak ZIP batean biltzen ditu, eta leheneratu egiten ditu","Empaqueta la base de dades i les fotos en un ZIP, i les restaura","Empaqueta a base de datos e as fotos nun ZIP, e restáuraas"
+api.copia_sin_fecha,Copia de una versión anterior de la app (sin fecha guardada),Aplikazioaren aurreko bertsio bateko kopia (datarik gorde gabe),Còpia d'una versió anterior de l'aplicació (sense data desada),Copia dunha versión anterior da aplicación (sen data gardada)
+api.copia_ultima_copia,Última copia,Azken kopia,Darrera còpia,Última copia
+api.correo_electronico,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
+api.cosecha,Cosecha,Ezti-bilketa,Collita,Colleita
+api.crear_apiario,Crear apiario,Erlategia sortu,Crea l'apiari,Crear apiario
+api.cria_operculada,Cría operculada,Ume operkulatua,Cria operculada,Cría operculada
+api.cuadros_n,{n} cuadros,{n} marko,{n} quadres,{n} cadros
+api.datos_personales,Datos personales,Datu pertsonalak,Dades personals,Datos persoais
+api.de_mes_1,de enero,urtarrilaren,de gener,de xaneiro
+api.de_mes_10,de octubre,urriaren,d'octubre,de outubro
+api.de_mes_11,de noviembre,azaroaren,de novembre,de novembro
+api.de_mes_12,de diciembre,abenduaren,de desembre,de decembro
+api.de_mes_2,de febrero,otsailaren,de febrer,de febreiro
+api.de_mes_3,de marzo,martxoaren,de març,de marzo
+api.de_mes_4,de abril,apirilaren,d'abril,de abril
+api.de_mes_5,de mayo,maiatzaren,de maig,de maio
+api.de_mes_6,de junio,ekainaren,de juny,de xuño
+api.de_mes_7,de julio,uztailaren,de juliol,de xullo
+api.de_mes_8,de agosto,abuztuaren,d'agost,de agosto
+api.de_mes_9,de septiembre,irailaren,de setembre,de setembro
+api.decada_de_mes,{n}.ª década {de_mes},{de_mes} {n}. hamarraldia,{n}a desena {de_mes},{n}.ª década {de_mes}
+api.descartar,Descartar,Baztertu,Descarta,Descartar
+api.descripcion,Descripción,Deskribapena,Descripció,Descrición
+api.desventajas,Desventajas,Desabantailak,Desavantatges,Desvantaxes
+api.dia_semana_1,lunes,astelehena,dilluns,luns
+api.dia_semana_2,martes,asteartea,dimarts,martes
+api.dia_semana_3,miércoles,asteazkena,dimecres,mércores
+api.dia_semana_4,jueves,osteguna,dijous,xoves
+api.dia_semana_5,viernes,ostirala,divendres,venres
+api.dia_semana_6,sábado,larunbata,dissabte,sábado
+api.dia_semana_7,domingo,igandea,diumenge,domingo
+api.diagnostico,Diagnóstico,Diagnostikoa,Diagnòstic,Diagnóstico
+api.direccion_explotacion,Dirección de la explotación,Ustiapenaren helbidea,Adreça de l'explotació,Enderezo da explotación
+api.dosis,Dosis,Dosia,Dosi,Dose
+api.eco_ano_fiscal,Año fiscal,Zerga-urtea,Any fiscal,Ano fiscal
+api.eco_apuntes_de_gasto_n,Apuntes de gasto: {n},Gastu-idazpenak: {n},Assentaments de despesa: {n},Apuntamentos de gasto: {n}
+api.eco_apuntes_de_ingreso_n,Apuntes de ingreso: {n},Sarrera-idazpenak: {n},Assentaments d'ingrés: {n},Apuntamentos de ingreso: {n}
+api.eco_apuntes_ingresos_gastos,Apuntes: {ingresos} ingresos · {gastos} gastos,Idazpenak: {ingresos} sarrera · {gastos} gastu,Assentaments: {ingresos} ingressos · {gastos} despeses,Apuntamentos: {ingresos} ingresos · {gastos} gastos
+api.eco_autocalcular_iva,Autocalcular IVA,BEZa automatikoki kalkulatu,Calcula l'IVA automàticament,Calcular o IVE automaticamente
+api.eco_autocalcular_iva_compensacion,Autocalcular IVA / compensación,BEZa / konpentsazioa automatikoki kalkulatu,Calcula l'IVA / compensació automàticament,Calcular o IVE / compensación automaticamente
+api.eco_autocalculo_polinizacion,Polinización: 21 % IVA general (servicio agrícola complementario),Polinizazioa: BEZ orokorra % 21 (nekazaritzako zerbitzu osagarria),Pol·linització: 21 % d'IVA general (servei agrícola complementari),Polinización: 21 % de IVE xeral (servizo agrícola complementario)
+api.eco_autocalculo_reagp,REAGP: 12 % sobre la base como compensación al apicultor,"REAGP: oinarriaren % 12, erlezainarentzako konpentsazio gisa",REAGP: 12 % sobre la base com a compensació a l'apicultor,REAGP: 12 % sobre a base como compensación ao apicultor
+api.eco_autocalculo_regimen_general,Régimen general: 4 % de IVA en la venta de productos apícolas,Erregimen orokorra: % 4ko BEZa erle-produktuen salmentan,Règim general: 4 % d'IVA en la venda de productes apícoles,Réxime xeral: 4 % de IVE na venda de produtos apícolas
+api.eco_aviso_configura_regimen_iva,Configura el régimen de IVA en Ajustes → Configuración fiscal para que la app calcule la compensación o el IVA repercutido.,"Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, aplikazioak konpentsazioa edo jasanarazitako BEZa kalkula dezan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè l'aplicació calculi la compensació o l'IVA repercutit.,Configura o réxime de IVE en Axustes → Configuración fiscal para que a aplicación calcule a compensación ou o IVE repercutido.
+api.eco_aviso_configura_regimen_resumen,Configura el régimen de IVA en Ajustes → Configuración fiscal para que el resumen distinga REAGP de régimen general.,"Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, laburpenak REAGP eta erregimen orokorra bereiz ditzan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè el resum distingeixi el REAGP del règim general.,Configura o réxime de IVE en Axustes → Configuración fiscal para que o resumo distinga o REAGP do réxime xeral.
+api.eco_aviso_extracto_desde_icono,El extracto anual con detalle por mes y modelo 347 está disponible desde el icono PDF de la cabecera.,"Urteko laburpena, hilabeteko xehetasunarekin eta 347 ereduarekin, goiburuko PDF ikonotik eskura daiteke.",L'extracte anual amb detall per mes i model 347 és disponible des de la icona PDF de la capçalera.,O extracto anual con detalle por mes e modelo 347 está dispoñible desde a icona PDF da cabeceira.
+api.eco_aviso_extracto_provisional,PROVISIONAL. Este extracto es una herramienta de apoyo para el asesor fiscal — el formato exacto del libro registro y del modelo 347 está pendiente de que lo valide un asesor fiscal antes de presentar nada en una declaración.,"BEHIN-BEHINEKOA. Laburpen hau aholkulari fiskalarentzako laguntza-tresna da; erregistro-liburuaren eta 347 ereduaren formatu zehatza aholkulari fiskal batek baliozkotu behar du, aitorpenetan ezer aurkeztu aurretik.",PROVISIONAL. Aquest extracte és una eina de suport per a l'assessor fiscal: el format exacte del llibre registre i del model 347 l'ha de validar un assessor fiscal abans de presentar res en una declaració.,PROVISIONAL. Este extracto é unha ferramenta de apoio para o asesor fiscal: o formato exacto do libro rexistro e do modelo 347 está pendente de que o valide un asesor fiscal antes de presentar nada nunha declaración.
+api.eco_aviso_libro_provisional,"Libro económico provisional. Pendiente de validación por asesor fiscal antes de presentar nada en una declaración. Mientras tanto, contrasta cada apunte con tu asesor.","Liburu ekonomiko behin-behinekoa. Aholkulari fiskalak baliozkotu behar du aitorpenetan ezer aurkeztu aurretik. Bitartean, egiaztatu idazpen bakoitza zure aholkulariarekin.","Llibre econòmic provisional. Pendent de validació per un assessor fiscal abans de presentar res en una declaració. Mentrestant, contrasta cada assentament amb el teu assessor.","Libro económico provisional. Pendente de validación por un asesor fiscal antes de presentar nada nunha declaración. Mentres tanto, contrasta cada apuntamento co teu asesor."
+api.eco_aviso_reagp_iva_soportado,En REAGP el IVA soportado no es recuperable: se computa como mayor coste en el extracto.,REAGPn jasandako BEZa ez da berreskuragarria: laburpenean kostu handiago gisa zenbatzen da.,En el REAGP l'IVA suportat no és recuperable: es computa com a més cost a l'extracte.,No REAGP o IVE soportado non é recuperable: compútase como maior custo no extracto.
+api.eco_aviso_vinculado_tratamiento,Apunte vinculado a un tratamiento del libro REGA — el sincronizador mantiene los dos consistentes.,REGA liburuko tratamendu bati lotutako idazpena; sinkronizatzaileak biak koherente mantentzen ditu.,Assentament vinculat a un tractament del llibre REGA: el sincronitzador manté tots dos coherents.,Apuntamento vinculado a un tratamento do libro REGA: o sincronizador mantén os dous coherentes.
+api.eco_ayuda_ayudas,PAC y autonómicas: fiscalmente no son ingreso ordinario,PAC eta autonomia-erkidegokoak: fiskalki ez dira sarrera arruntak,PAC i autonòmiques: fiscalment no són ingrés ordinari,PAC e autonómicas: fiscalmente non son ingreso ordinario
+api.eco_ayuda_compensacion_reagp,12 % sobre la base — el comprador la paga al apicultor,Oinarriaren % 12; erosleak ordaintzen dio erlezainari,12 % sobre la base: el comprador la paga a l'apicultor,12 % sobre a base: o comprador págalla ao apicultor
+api.eco_ayuda_diferencia_iva,Repercutido − soportado,Jasanarazia − jasana,Repercutit − suportat,Repercutido − soportado
+api.eco_ayuda_diferencia_ordinaria,Ingresos ordinarios − gastos. Ayudas no incluidas.,Sarrera arruntak − gastuak. Laguntzak kanpo.,Ingressos ordinaris − despeses. Ajuts no inclosos.,Ingresos ordinarios − gastos. Axudas non incluídas.
+api.eco_ayuda_gastos,Base imponible (sin IVA soportado),Zerga-oinarria (jasandako BEZik gabe),Base imposable (sense IVA suportat),Base impoñible (sen IVE soportado)
+api.eco_ayuda_ingresos_ordinarios,Venta de productos y alquiler para polinización (base imponible),Produktuen salmenta eta polinizaziorako alokairua (zerga-oinarria),Venda de productes i lloguer per a pol·linització (base imposable),Venda de produtos e aluguer para polinización (base impoñible)
+api.eco_ayuda_iva_repercutido,A ingresar en Hacienda (modelo 303 trimestral),"Ogasunean sartzeko (303 eredua, hiruhilekoa)",A ingressar a Hisenda (model 303 trimestral),A ingresar en Facenda (modelo 303 trimestral)
+api.eco_ayuda_iva_soportado_deducible,Recuperable contra el repercutido,Jasanarazitakoaren kontra berreskuragarria,Recuperable contra el repercutit,Recuperable contra o repercutido
+api.eco_ayuda_iva_soportado_reagp,En REAGP no es recuperable: computa como mayor coste.,REAGPn ez da berreskuragarria: kostu handiago gisa zenbatzen da.,En el REAGP no és recuperable: computa com a més cost.,No REAGP non é recuperable: computa como maior custo.
+api.eco_ayuda_resumen_trimestral,"Totales por trimestre para revisar caja, IVA y diferencia antes del cierre fiscal. El extracto anual sigue disponible en el PDF.","Hiruhileko guztizkoak, kutxa, BEZa eta aldea ekitaldi-itxiera baino lehen berrikusteko. Urteko laburpena PDFan dago eskuragarri.","Totals per trimestre per revisar caixa, IVA i diferència abans del tancament fiscal. L'extracte anual continua disponible en el PDF.","Totais por trimestre para revisar caixa, IVE e diferenza antes do peche fiscal. O extracto anual segue dispoñible no PDF."
+api.eco_ayudas_pac_y_subvenciones,Ayudas PAC y subvenciones,PAC laguntzak eta diru-laguntzak,Ajuts PAC i subvencions,Axudas PAC e subvencións
+api.eco_ayudas_y_subvenciones,Ayudas y subvenciones,Laguntzak eta diru-laguntzak,Ajuts i subvencions,Axudas e subvencións
+api.eco_cambiar,Cambiar,Aldatu,Canvia,Cambiar
+api.eco_colmenar,Colmenar,Erlategia,Apiari,Apiario
+api.eco_compensacion_reagp_cobrada,Compensación REAGP cobrada,Kobratutako REAGP konpentsazioa,Compensació REAGP cobrada,Compensación REAGP cobrada
+api.eco_compensacion_reagp_euros,Compensación REAGP (€),REAGP konpentsazioa (€),Compensació REAGP (€),Compensación REAGP (€)
+api.eco_concepto_obligatorio,Concepto obligatorio,Kontzeptua derrigorrezkoa da,Concepte obligatori,Concepto obrigatorio
+api.eco_configura_regimen_iva_en_ajustes,Configura el régimen de IVA en Ajustes,Konfiguratu BEZ erregimena Ezarpenetan,Configura el règim d'IVA a Configuració,Configura o réxime de IVE en Axustes
+api.eco_criterio_trimestres,"Los trimestres usan el mismo criterio que el resumen anual: ayudas aparte, modelo 303 según régimen y modelo 347 por NIF.","Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: laguntzak bereiz, 303 eredua erregimenaren arabera eta 347 eredua IFZren arabera.","Els trimestres fan servir el mateix criteri que el resum anual: ajuts a part, model 303 segons el règim i model 347 per NIF.","Os trimestres usan o mesmo criterio que o resumo anual: axudas á parte, modelo 303 segundo o réxime e modelo 347 por NIF."
+api.eco_diferencia_iva,Diferencia IVA,BEZ aldea,Diferència d'IVA,Diferenza de IVE
+api.eco_diferencia_ordinaria,Diferencia ordinaria,Ohiko aldea,Diferència ordinària,Diferenza ordinaria
+api.eco_editar_gasto,Editar gasto,Gastua editatu,Edita la despesa,Editar gasto
+api.eco_editar_ingreso,Editar ingreso,Sarrera editatu,Edita l'ingrés,Editar ingreso
+api.eco_ejemplo_concepto_gasto,Ej.: Apivar 10 tiras / Gasóleo revisión de julio,Adib.: Apivar 10 zerrenda / Uztaileko ikuskapeneko gasolioa,P. ex.: Apivar 10 tires / Gasoil revisió de juliol,P. ex.: Apivar 10 tiras / Gasóleo revisión de xullo
+api.eco_ejemplo_concepto_ingreso,Ej.: 30 kg de miel de mil flores,Adib.: 30 kg milore-ezti,P. ex.: 30 kg de mel de milflors,P. ex.: 30 kg de mel multifloral
+api.eco_ejercicio_fiscal,Ejercicio fiscal,Zerga-ekitaldia,Exercici fiscal,Exercicio fiscal
+api.eco_elige_apiario_imputacion,Elige un colmenar para imputación concreta,Aukeratu erlategi bat esleipen zehatzerako,Tria un apiari per a la imputació concreta,Escolle un apiario para a imputación concreta
+api.eco_error_generar_pdf,Error al generar el PDF: {error},Errorea PDFa sortzean: {error},Error en generar el PDF: {error},Erro ao xerar o PDF: {error}
+api.eco_extracto_anual,Extracto anual,Urteko laburpena,Extracte anual,Extracto anual
+api.eco_extracto_compartir_ano,Extracto económico apícola · {ano},Erlezaintzako laburpen ekonomikoa · {ano},Extracte econòmic apícola · {ano},Extracto económico apícola · {ano}
+api.eco_extracto_economico_anual,Extracto económico anual,Urteko laburpen ekonomikoa,Extracte econòmic anual,Extracto económico anual
+api.eco_extracto_incluye,El extracto incluye:,Laburpenak hau dakar:,L'extracte inclou:,O extracto inclúe:
+api.eco_extracto_incluye_347,"Modelo 347 — terceros con suma >3.005,06 € en el ejercicio.","347 eredua: ekitaldian 3.005,06 € baino gehiagoko batura duten hirugarrenak.","Model 347: tercers amb una suma >3.005,06 € en l'exercici.","Modelo 347: terceiros cunha suma >3.005,06 € no exercicio."
+api.eco_extracto_incluye_detalle,Detalle cronológico de ingresos y de gastos.,Sarreren eta gastuen xehetasun kronologikoa.,Detall cronològic d'ingressos i de despeses.,Detalle cronolóxico de ingresos e de gastos.
+api.eco_extracto_incluye_gastos,"Tabla mensual de gastos (base, IVA soportado, total).","Gastuen hileko taula (oinarria, jasandako BEZa, guztira).","Taula mensual de despeses (base, IVA suportat, total).","Táboa mensual de gastos (base, IVE soportado, total)."
+api.eco_extracto_incluye_ingresos,"Tabla mensual de ingresos (ordinarios, ayudas, IVA, compensación REAGP).","Sarreren hileko taula (arruntak, laguntzak, BEZa, REAGP konpentsazioa).","Taula mensual d'ingressos (ordinaris, ajuts, IVA, compensació REAGP).","Táboa mensual de ingresos (ordinarios, axudas, IVE, compensación REAGP)."
+api.eco_extracto_incluye_resumen,Resumen con los totales del ejercicio.,Ekitaldiko guztizkoen laburpena.,Resum amb els totals de l'exercici.,Resumo cos totais do exercicio.
+api.eco_extracto_incluye_sin_nif,Apuntes sin NIF que no entran en el modelo 347.,347 ereduan sartzen ez diren IFZrik gabeko idazpenak.,Assentaments sense NIF que no entren al model 347.,Apuntamentos sen NIF que non entran no modelo 347.
+api.eco_extracto_reparto_pendiente,El reparto proporcional de gastos de trashumancia entre colmenares no está calculado todavía: los apuntes con esa imputación se listan tal cual con el importe íntegro.,"Transhumantzia-gastuen banaketa proportzionala erlategien artean oraindik ez dago kalkulatuta: esleipen hori duten idazpenak dauden-daudenean zerrendatzen dira, zenbateko osoarekin.",El repartiment proporcional de despeses de transhumància entre apiaris encara no està calculat: els assentaments amb aquesta imputació es llisten tal qual amb l'import íntegre.,O reparto proporcional dos gastos de transhumancia entre apiarios aínda non está calculado: os apuntamentos con esa imputación lístanse tal cal co importe íntegro.
+api.eco_fecha_de_la_factura,Fecha de la factura,Fakturaren data,Data de la factura,Data da factura
+api.eco_foto_de_la_factura,Foto de la factura,Fakturaren argazkia,Foto de la factura,Foto da factura
+api.eco_gasto_alimentacion,"Alimentación (azúcar, candy, polen)","Elikadura (azukrea, candya, polena)","Alimentació (sucre, candi, pol·len)","Alimentación (azucre, candi, pole)"
+api.eco_gasto_alimentacion_corto,Alimentación,Elikadura,Alimentació,Alimentación
+api.eco_gasto_combustible,Combustible,Erregaia,Combustible,Combustible
+api.eco_gasto_mano_obra,Mano de obra,Eskulana,Mà d'obra,Man de obra
+api.eco_gasto_material,"Material (cuadros, cera, alzas, reinas, núcleos)","Materiala (markoak, argizaria, gaineko kaxak, ama-erleak, nukleoak)","Material (quadres, cera, alces, reines, nuclis)","Material (cadros, cera, alzas, raíñas, núcleos)"
+api.eco_gasto_material_corto,Material,Materiala,Material,Material
+api.eco_gasto_otro,Otro gasto,Beste gastu bat,Una altra despesa,Outro gasto
+api.eco_gasto_sanidad_varroa,Sanidad varroa / productos veterinarios,Barroa-osasuna / albaitaritza-produktuak,Sanitat varroa / productes veterinaris,Sanidade varroa / produtos veterinarios
+api.eco_gasto_sanidad_varroa_corto,Sanidad (varroa),Osasuna (barroa),Sanitat (varroa),Sanidade (varroa)
+api.eco_gasto_seguros,Seguros,Aseguruak,Assegurances,Seguros
+api.eco_gasto_transporte_corto,Transporte,Garraioa,Transport,Transporte
+api.eco_gasto_transporte_trashumancia,Transporte / trashumancia,Garraioa / transhumantzia,Transport / transhumància,Transporte / transhumancia
+api.eco_gasto_veterinario,Veterinario,Albaitaria,Veterinari,Veterinario
+api.eco_gastos,Gastos,Gastuak,Despeses,Gastos
+api.eco_general_entre_parentesis,(general),(orokorra),(general),(xeral)
+api.eco_generar_y_abrir,Generar y abrir,Sortu eta ireki,Genera i obre,Xerar e abrir
+api.eco_generar_y_compartir,Generar y compartir,Sortu eta partekatu,Genera i comparteix,Xerar e compartir
+api.eco_importe_base_euros,Importe base (€),Oinarrizko zenbatekoa (€),Import base (€),Importe base (€)
+api.eco_imputacion_a_apiario,Imputación a colmenar,Erlategiari esleitzea,Imputació a apiari,Imputación a apiario
+api.eco_imputacion_apiario_concreto,Colmenar concreto,Erlategi zehatza,Apiari concret,Apiario concreto
+api.eco_imputacion_apiario_concreto_ayuda,Todo el gasto se imputa a uno solo,Gastu osoa bakar bati esleitzen zaio,Tota la despesa s'imputa a un de sol,Todo o gasto se imputa a un só
+api.eco_imputacion_general,General de la explotación,Ustiapen osoarena,General de l'explotació,Xeral da explotación
+api.eco_imputacion_general_ayuda,Sin asociar a un colmenar concreto,Erlategi zehatz bati lotu gabe,Sense associar a cap apiari concret,Sen asociar a un apiario concreto
+api.eco_imputacion_reparto,Reparto proporcional,Banaketa proportzionala,Repartiment proporcional,Reparto proporcional
+api.eco_imputacion_reparto_ayuda,Trashumancia compartida: el extracto reparte por n.º de colmenas,Transhumantzia partekatua: laburpenak erlauntz kopuruaren arabera banatzen du,Transhumància compartida: l'extracte reparteix pel nombre de ruscs,Transhumancia compartida: o extracto reparte polo n.º de colmeas
+api.eco_imputar_al_apiario_opcional,Imputar al colmenar (opcional),Erlategiari esleitu (aukerakoa),Imputa a l'apiari (opcional),Imputar ao apiario (opcional)
+api.eco_ingreso_alquiler_colmenas,Alquiler de colmenas,Erlauntzen alokairua,Lloguer de ruscs,Aluguer de colmeas
+api.eco_ingreso_alquiler_polinizacion,Alquiler de colmenas (polinización),Erlauntzen alokairua (polinizazioa),Lloguer de ruscs (pol·linització),Aluguer de colmeas (polinización)
+api.eco_ingreso_ayuda_pac,Ayuda PAC,PAC laguntza,Ajut PAC,Axuda PAC
+api.eco_ingreso_otro,Otro ingreso,Beste sarrera bat,Un altre ingrés,Outro ingreso
+api.eco_ingreso_subvencion,Subvención,Diru-laguntza,Subvenció,Subvención
+api.eco_ingreso_subvencion_autonomica,Subvención autonómica,Autonomia-erkidegoko diru-laguntza,Subvenció autonòmica,Subvención autonómica
+api.eco_ingreso_venta_cera,Venta de cera,Argizari-salmenta,Venda de cera,Venda de cera
+api.eco_ingreso_venta_jalea,Venta de jalea real,Errege-jalearen salmenta,Venda de gelea reial,Venda de xelea real
+api.eco_ingreso_venta_jalea_corto,Venta de jalea,Jalea-salmenta,Venda de gelea,Venda de xelea
+api.eco_ingreso_venta_miel,Venta de miel,Ezti-salmenta,Venda de mel,Venda de mel
+api.eco_ingreso_venta_polen,Venta de polen,Polen-salmenta,Venda de pol·len,Venda de pole
+api.eco_ingreso_venta_propoleo,Venta de propóleo,Propolio-salmenta,Venda de pròpolis,Venda de própole
+api.eco_ingresos,Ingresos,Sarrerak,Ingressos,Ingresos
+api.eco_ingresos_ordinarios,Ingresos ordinarios,Sarrera arruntak,Ingressos ordinaris,Ingresos ordinarios
+api.eco_ingresos_sin_nif_n,{n} ingreso(s) sin NIF — no entran en el modelo 347,IFZrik gabeko sarrerak: {n} (ez dira 347 ereduan sartzen),Ingressos sense NIF: {n} (no entren al model 347),{n} ingreso(s) sen NIF: non entran no modelo 347
+api.eco_iva_10_alimentacion_animal,10 % IVA reducido (alimentación animal),% 10eko BEZ murriztua (animalien elikadura),10 % d'IVA reduït (alimentació animal),10 % de IVE reducido (alimentación animal)
+api.eco_iva_21_general,21 % IVA general,% 21eko BEZ orokorra,21 % d'IVA general,21 % de IVE xeral
+api.eco_iva_repercutido,IVA repercutido,Jasanarazitako BEZa,IVA repercutit,IVE repercutido
+api.eco_iva_repercutido_euros,IVA repercutido (€),Jasanarazitako BEZa (€),IVA repercutit (€),IVE repercutido (€)
+api.eco_iva_soportado,IVA soportado,Jasandako BEZa,IVA suportat,IVE soportado
+api.eco_iva_soportado_deducible,IVA soportado deducible,Jasandako BEZ kengarria,IVA suportat deduïble,IVE soportado deducible
+api.eco_iva_soportado_en_compras,IVA soportado en compras,Erosketetan jasandako BEZa,IVA suportat en compres,IVE soportado en compras
+api.eco_iva_soportado_euros,IVA soportado (€),Jasandako BEZa (€),IVA suportat (€),IVE soportado (€)
+api.eco_iva_y_compensaciones,IVA y compensaciones,BEZa eta konpentsazioak,IVA i compensacions,IVE e compensacións
+api.eco_nuevo_gasto,Nuevo gasto,Gastu berria,Despesa nova,Novo gasto
+api.eco_nuevo_ingreso,Nuevo ingreso,Sarrera berria,Ingrés nou,Novo ingreso
+api.eco_numero_de_factura,N.º de factura,Faktura-zenbakia,Núm. de factura,N.º de factura
+api.eco_reparto_corto,reparto,banaketa,repartiment,reparto
+api.eco_resumen,Resumen,Laburpena,Resum,Resumo
+api.eco_resumen_fiscal_trimestral,Resumen fiscal trimestral,Hiruhileko laburpen fiskala,Resum fiscal trimestral,Resumo fiscal trimestral
+api.eco_sin_asociar,(sin asociar),(lotu gabe),(sense associar),(sen asociar)
+api.eco_sin_gastos_este_ano,"Aún no hay gastos en este año. Pulsa el botón «Nuevo gasto» para registrar alimentación, sanidad (varroa), transporte, material o cualquier otro gasto de la explotación.","Oraindik ez dago gasturik urte honetan. Sakatu «Gastu berria» botoia elikadura, osasuna (barroa), garraioa, materiala edo ustiapenaren beste edozein gastu erregistratzeko.","Encara no hi ha despeses aquest any. Prem el botó «Despesa nova» per registrar alimentació, sanitat (varroa), transport, material o qualsevol altra despesa de l'explotació.","Aínda non hai gastos este ano. Preme o botón «Novo gasto» para rexistrar alimentación, sanidade (varroa), transporte, material ou calquera outro gasto da explotación."
+api.eco_sin_ingresos_este_ano,"Aún no hay ingresos en este año. Pulsa el botón «Nuevo ingreso» para registrar una venta de miel, polen, alquiler de polinización o una ayuda PAC.","Oraindik ez dago sarrerarik urte honetan. Sakatu «Sarrera berria» botoia ezti- edo polen-salmenta bat, polinizazio-alokairu bat edo PAC laguntza bat erregistratzeko.","Encara no hi ha ingressos aquest any. Prem el botó «Ingrés nou» per registrar una venda de mel, pol·len, lloguer per a pol·linització o un ajut PAC.","Aínda non hai ingresos este ano. Preme o botón «Novo ingreso» para rexistrar unha venda de mel, pole, aluguer para polinización ou unha axuda PAC."
+api.eco_sin_iva,Sin IVA,BEZik gabe,Sense IVA,Sen IVE
+api.eco_sin_iva_ni_compensacion,Sin IVA ni compensación,BEZik eta konpentsaziorik gabe,Sense IVA ni compensació,Sen IVE nin compensación
+api.eco_sin_nif,sin NIF,IFZrik gabe,sense NIF,sen NIF
+api.eco_tipo_de_gasto,Tipo de gasto,Gastu mota,Tipus de despesa,Tipo de gasto
+api.eco_tipo_de_ingreso,Tipo de ingreso,Sarrera mota,Tipus d'ingrés,Tipo de ingreso
+api.eco_trimestre_1,ene-mar,urt-mar,gen-mar,xan-mar
+api.eco_trimestre_2,abr-jun,api-eka,abr-jun,abr-xuñ
+api.eco_trimestre_3,jul-sep,uzt-ira,jul-set,xul-set
+api.eco_trimestre_4,oct-dic,urr-abe,oct-des,out-dec
+api.eco_trimestres,Trimestres,Hiruhilekoak,Trimestres,Trimestres
+api.eco_unidad_colmenas,colmenas,erlauntza,ruscs,colmeas
+api.economia,Economía,Ekonomia,Economia,Economía
+api.editar_apiario,Editar apiario,Erlategia editatu,Edita l'apiari,Editar apiario
+api.editar_colmena,Editar colmena,Erlauntza editatu,Edita el rusc,Editar colmea
+api.editaras_apiario,Editarás el apiario {nombre}.,{nombre} erlategia editatuko duzu.,Editaràs l'apiari {nombre}.,Editarás o apiario {nombre}.
+api.eficacia_alta,Alta,Handia,Alta,Alta
+api.eficacia_baja,Baja,Txikia,Baixa,Baixa
+api.eficacia_media,Media,Ertaina,Mitjana,Media
+api.eficacia_muy_alta,Muy alta,Oso handia,Molt alta,Moi alta
+api.eficacia_orientativa,Eficacia orientativa,Gutxi gorabeherako eraginkortasuna,Eficàcia orientativa,Eficacia orientativa
+api.ejemplos_diagnostico,"varroa, nosema, loque americana, ascosferiosis…","barroa, nosema, loke amerikarra, askosferiosia…","varroa, nosema, loque americana, ascosferiosi…","varroa, nosema, loque americana, ascosferiose…"
+api.ejemplos_dosis,"2 g/colmena, 1 tira/colmena…","2 g/erlauntza, 1 zerrenda/erlauntza…","2 g/rusc, 1 tira/rusc…","2 g/colmea, 1 tira/colmea…"
+api.ejemplos_sustancia_activa,"ácido oxálico, timol, amitraz…","azido oxalikoa, timola, amitraza…","àcid oxàlic, timol, amitraz…","ácido oxálico, timol, amitraz…"
+api.elegir,Elegir,Aukeratu,Tria,Escoller
+api.elige_como_fijar_el_punto,Elige cómo fijar el punto inicial.,Aukeratu hasierako puntua nola finkatu.,Tria com fixar el punt inicial.,Escolle como fixar o punto inicial.
+api.eliminar,Eliminar,Ezabatu,Elimina,Eliminar
+api.eliminar_colmena,Eliminar colmena,Erlauntza ezabatu,Eliminar el rusc,Eliminar colmea
+api.eliminar_colmena_aviso,"Se borra la colmena y toda su historia (revisiones, cosechas, tratamientos, incidencias, movimientos). Esta acción no se puede deshacer.","Erlauntza eta haren historia osoa ezabatuko dira (ikuskapenak, ezti-bilketak, tratamenduak, gorabeherak, mugimenduak). Ekintza hau ezin da desegin.","S'esborra el rusc i tota la seva història (revisions, collites, tractaments, incidències, moviments). Aquesta acció no es pot desfer.","Bórrase a colmea e toda a súa historia (revisións, colleitas, tratamentos, incidencias, movementos). Esta acción non se pode desfacer."
+api.empezar,Empezar,Hasi,Comença,Comezar
+api.enlaces,Enlaces,Estekak,Enllaços,Ligazóns
+api.enviar,Enviar,Bidali,Envia,Enviar
+api.error_al_abrir_el_pdf,Error al abrir el PDF,Errorea PDFa irekitzean,Error en obrir el PDF,Erro ao abrir o PDF
+api.error_al_generar_el_pdf,Error al generar el PDF,Errorea PDFa sortzean,Error en generar el PDF,Erro ao xerar o PDF
+api.error_inesperado,Error inesperado: {error},Ustekabeko errorea: {error},Error inesperat: {error},Erro inesperado: {error}
+api.escribe_tu_pregunta,Escribe tu pregunta…,Idatzi zure galdera…,Escriu la teva pregunta…,Escribe a túa pregunta…
+api.esri_satelite,Esri satélite,Esri satelitea,Esri satèl·lit,Esri satélite
+api.estado,Estado,Egoera,Estat,Estado
+api.estado_descolmenada,Descolmenada,Erlerik gabe,Despoblat,Despoboada
+api.estado_enjambre_nuevo,Enjambre nuevo,Erle-saldo berria,Eixam nou,Enxame novo
+api.estado_vacia,Vacía,Hutsik,Buit,Baleira
+api.estado_viva,Viva,Bizirik,Viu,Viva
+api.extracto_economico,Extracto económico,Laburpen ekonomikoa,Extracte econòmic,Extracto económico
+api.extracto_economico_ayuda,Resumen anual en PDF · provisional,Urteko laburpena PDFan · behin-behinekoa,Resum anual en PDF · provisional,Resumo anual en PDF · provisional
+api.fac_anular,Anular,Deuseztatu,Anul·la,Anular
+api.fac_apicultor,Apicultor,Erlezaina,Apicultor,Apicultor
+api.fac_apicultor_sin_configurar,Apicultor (sin configurar),Erlezaina (konfiguratu gabe),Apicultor (sense configurar),Apicultor (sen configurar)
+api.fac_base_imponible,Base imponible,Zerga-oinarria,Base imposable,Base impoñible
+api.fac_configurar_correo_respaldo,Configurar correo de respaldo,Babeskopiako helbide elektronikoa konfiguratu,Configura el correu de còpia,Configurar correo de respaldo
+api.fac_confirmar_anular,"¿Anular {numero}? No se elimina, queda registrada como anulada.","{numero} deuseztatu? Ez da ezabatzen, deuseztatu gisa erregistratuta geratzen da.","Vols anul·lar {numero}? No s'elimina, queda registrada com a anul·lada.","Anular {numero}? Non se elimina, queda rexistrada como anulada."
+api.fac_copia_para,Copia para: {email},Kopia honentzat: {email},Còpia per a: {email},Copia para: {email}
+api.fac_direccion_opcional,Dirección (opcional),Helbidea (aukerakoa),Adreça (opcional),Enderezo (opcional)
+api.fac_ejemplo_correo,tucorreo@ejemplo.com,zurehelbidea@adibidea.eus,elteucorreu@exemple.cat,oteucorreo@exemplo.gal
+api.fac_estado_anulada,anulada,deuseztatua,anul·lada,anulada
+api.fac_estado_emitida,emitida,jaulkia,emesa,emitida
+api.fac_estado_pagada,pagada,ordaindua,pagada,pagada
+api.fac_estado_vencida,vencida,iraungia,vençuda,vencida
+api.fac_explicacion_email_respaldo,"Al crear una factura, podrás enviar una copia a esta dirección como respaldo.","Faktura bat sortzean, kopia bat bidali ahal izango duzu helbide honetara babeskopia gisa.","En crear una factura, podràs enviar-ne una còpia a aquesta adreça com a còpia de seguretat.","Ao crear unha factura, poderás enviar unha copia a este enderezo como respaldo."
+api.fac_iva_porcentaje,IVA {porcentaje} %,IVA % {porcentaje},IVA {porcentaje} %,IVA {porcentaje} %
+api.fac_lineas_de_factura,Líneas de factura,Fakturaren lerroak,Línies de factura,Liñas da factura
+api.fac_marcar_pagada,Marcar pagada,Ordaindutzat jo,Marca com a pagada,Marcar como pagada
+api.fac_nif_opcional,NIF (opcional),NIF (aukerakoa),NIF (opcional),NIF (opcional)
+api.fac_no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
+api.fac_numero_factura,N.º de factura,Faktura-zenbakia,Núm. de factura,N.º de factura
+api.fac_precio,Precio,Prezioa,Preu,Prezo
+api.fac_precio_euros,Precio (€),Prezioa (€),Preu (€),Prezo (€)
+api.fac_respaldo_email,Respaldo: {email},Babeskopia: {email},Còpia: {email},Respaldo: {email}
+api.fac_total,TOTAL,GUZTIRA,TOTAL,TOTAL
+api.falta_clave_anthropic,Falta la clave de Anthropic. Añádela en Ajustes → Identificación con IA.,Anthropic gakoa falta da. Gehitu ezazu Ezarpenak → AA bidezko identifikazioa atalean.,Falta la clau d'Anthropic. Afegeix-la a Configuració → Identificació amb IA.,Falta a clave de Anthropic. Engádea en Axustes → Identificación con IA.
+api.falta_permiso_de_ubicacion,Falta permiso de ubicación.,Kokapen-baimena falta da.,Falta el permís d'ubicació.,Falta o permiso de localización.
+api.falta_permiso_ubicacion,Falta permiso de ubicación o GPS desactivado.,Kokapen-baimena falta da edo GPSa desaktibatuta dago.,Falta el permís d'ubicació o el GPS està desactivat.,Falta o permiso de localización ou o GPS está desactivado.
+api.familia_aceite_esencial,Aceite esencial,Olio esentziala,Oli essencial,Aceite esencial
+api.familia_larrea,Familia Larrea,Larrea familia,Família Larrea,Familia Larrea
+api.familia_larrea_texto,"Larrea Apícola forma parte de la suite Larrea, de la Colección Nuevo Ser. Apps hermanas: Larrea Viticultura (libro PAC en bodegas), Larrea (general — frutales, trufa, olivar), Larrea Arbolado Urbano (B2B municipal), Larrea Quesera y Larrea Aceitera.","Larrea Apícola Larrea suitearen parte da, Colección Nuevo Ser bildumakoa. Aplikazio ahizpak: Larrea Viticultura (NPB liburua upategietan), Larrea (orokorra — fruta-arbolak, boilurra, olibondoak), Larrea Arbolado Urbano (udalentzako B2B), Larrea Quesera eta Larrea Aceitera.","Larrea Apícola forma part de la suite Larrea, de la Colección Nuevo Ser. Apps germanes: Larrea Viticultura (llibre PAC als cellers), Larrea (general — fruiters, tòfona, olivera), Larrea Arbolado Urbano (B2B municipal), Larrea Quesera i Larrea Aceitera.","Larrea Apícola forma parte da suite Larrea, da Colección Nuevo Ser. Apps irmás: Larrea Viticultura (libro PAC nas adegas), Larrea (xeral — froiteiras, trufa, oliveiral), Larrea Arbolado Urbano (B2B municipal), Larrea Quesera e Larrea Aceitera."
+api.familia_organica,Orgánica,Organikoa,Orgànica,Orgánica
+api.familia_sintetica,Sintética,Sintetikoa,Sintètica,Sintética
+api.fecha_hoy,{dia_semana} {dia} {de_mes},"{de_mes} {dia}a, {dia_semana}","{dia_semana}, {dia} {de_mes}","{dia_semana}, {dia} {de_mes}"
+api.fis_ano_fiscal,Año fiscal,Ekitaldi fiskala,Any fiscal,Ano fiscal
+api.fis_ano_fiscal_por_defecto,Año fiscal por defecto al abrir el libro,Liburua irekitzean lehenetsitako ekitaldi fiskala,Any fiscal per defecte en obrir el llibre,Ano fiscal predeterminado ao abrir o libro
+api.fis_aviso_provisional,"Provisional. El formato del libro y del extracto está pendiente de validación por asesor fiscal. Antes de presentar nada en una declaración, contrasta con tu asesor.","Behin-behinekoa. Liburuaren eta laburpenaren formatua aholkulari fiskal batek baliozkotzeko dago. Aitorpen batean ezer aurkeztu aurretik, egiaztatu zure aholkulariarekin.","Provisional. El format del llibre i de l'extracte està pendent de validació per un assessor fiscal. Abans de presentar res en una declaració, contrasta-ho amb el teu assessor.","Provisional. O formato do libro e do extracto está pendente de validación por un asesor fiscal. Antes de presentar nada nunha declaración, contrástao co teu asesor."
+api.fis_estimacion_directa_normal,Estimación directa normal,Zuzeneko zenbatespen arrunta,Estimació directa normal,Estimación directa normal
+api.fis_estimacion_directa_simplificada,Estimación directa simplificada,Zuzeneko zenbatespen erraztua,Estimació directa simplificada,Estimación directa simplificada
+api.fis_explicacion_reagp,En REAGP no repercutes IVA en la venta de miel. El comprador te paga la compensación del 12 % sobre la base. El IVA soportado en compras no es recuperable: se imputa como mayor coste.,REAGPn ez duzu IVArik jasanarazten eztiaren salmentan. Erosleak oinarriaren gaineko % 12ko konpentsazioa ordaintzen dizu. Erosketetan jasandako IVA ez da berreskuragarria: kostu handiago gisa egozten da.,En el REAGP no repercuteixes IVA en la venda de mel. El comprador et paga la compensació del 12 % sobre la base. L'IVA suportat en compres no és recuperable: s'imputa com a cost més alt.,No REAGP non repercutes IVA na venda de mel. O comprador págache a compensación do 12 % sobre a base. O IVA soportado nas compras non é recuperable: impútase como maior custo.
+api.fis_explicacion_regimen_general,"En régimen general repercutes el 4 % de IVA en la venta de miel (alimento de primera necesidad, art. 91.1.1.1.º LIVA) y el IVA soportado en compras es recuperable.","Araubide orokorrean % 4ko IVA jasanarazten duzu eztiaren salmentan (oinarrizko elikagaia, LIVAren 91.1.1.1. art.), eta erosketetan jasandako IVA berreskuragarria da.","En règim general repercuteixes el 4 % d'IVA en la venda de mel (aliment de primera necessitat, art. 91.1.1.1r LIVA) i l'IVA suportat en compres és recuperable.","En réxime xeral repercutes o 4 % de IVA na venda de mel (alimento de primeira necesidade, art. 91.1.1.1.º LIVA) e o IVA soportado nas compras é recuperable."
+api.fis_modulos_no_disponible,El régimen de módulos no está disponible en v1: pendiente de validación con asesor fiscal antes de añadirlo.,Moduluen araubidea ez dago erabilgarri v1 bertsioan: aholkulari fiskalarekin baliozkotu behar da gehitu aurretik.,El règim de mòduls no està disponible a la v1: pendent de validació amb un assessor fiscal abans d'afegir-lo.,O réxime de módulos non está dispoñible na v1: pendente de validación cun asesor fiscal antes de engadilo.
+api.fis_reagp_descripcion,REAGP — régimen especial agricultura/ganadería/pesca,"REAGP — nekazaritza, abeltzaintza eta arrantzaren araubide berezia","REAGP — règim especial agricultura, ramaderia i pesca","REAGP — réxime especial agricultura, gandaría e pesca"
+api.fis_regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
+api.fis_sin_elegir,Sin elegir,Aukeratu gabe,Sense triar,Sen escoller
+api.formato_fija_horizontal,Fija horizontal,Finko horizontala,Fixa horitzontal,Fixa horizontal
+api.formato_top_bar,Top-bar,Top-bar,Top-bar,Top-bar
+api.formato_tronco_artesanal,Tronco artesanal,Enbor artisaua,Tronc artesanal,Tronco artesanal
+api.formato_vertical_con_alzas,Vertical con alzas,"Bertikala, gaineko kaxekin",Vertical amb alces,Vertical con alzas
+api.foto_adjunta_se_enviara,Foto adjunta: se enviará con el mensaje,Erantsitako argazkia: mezuarekin batera bidaliko da,Foto adjunta: s'enviarà amb el missatge,Foto achegada: enviarase coa mensaxe
+api.foto_de,Foto,Argazkia,Foto,Foto
+api.fotos,Fotos,Argazkiak,Fotos,Fotos
+api.galeria,Galería,Galeria,Galeria,Galería
+api.generar_y_abrir,Generar y abrir,Sortu eta ireki,Genera i obre,Xerar e abrir
+api.generar_y_compartir,Generar y compartir,Sortu eta partekatu,Genera i comparteix,Xerar e compartir
+api.gps_actual,GPS actual,Uneko GPSa,GPS actual,GPS actual
+api.gps_no_disponible_formulario,GPS no disponible — captura la ubicación desde el formulario.,GPSa ez dago erabilgarri — hartu kokapena inprimakitik.,GPS no disponible — captura la ubicació des del formulari.,GPS non dispoñible — captura a localización desde o formulario.
+api.gps_reciente,GPS reciente,Azken GPSa,GPS recent,GPS recente
+api.guardar_cambios,Guardar cambios,Aldaketak gorde,Desa els canvis,Gardar cambios
+api.guardar_colmena,Guardar colmena,Erlauntza gorde,Desa el rusc,Gardar colmea
+api.guia,Guía,Gida,Guia,Guía
+api.guia_tooltip,"Guía (razas, plagas, sustancias, calendario)","Gida (arrazak, izurriak, substantziak, egutegia)","Guia (races, plagues, substàncies, calendari)","Guía (razas, pragas, substancias, calendario)"
+api.hacer_foto,Hacer foto,Argazkia atera,Fes una foto,Facer foto
+api.historia,Historia,Historia,Història,Historia
+api.hoy,Hoy,Gaur,Avui,Hoxe
+api.humedad_relativa_abrev,HR,HE,HR,HR
+api.ia_adjunta_foto,Adjunta una foto para activar la identificación con IA.,Erantsi argazki bat AA bidezko identifikazioa aktibatzeko.,Adjunta una foto per activar la identificació amb IA.,Achega unha foto para activar a identificación con IA.
+api.ia_analizando_foto,Analizando foto…,Argazkia aztertzen…,Analitzant la foto…,Analizando a foto…
+api.ia_coincide_provisional,Coincide con el catálogo provisional. El catálogo aún no lo ha validado un veterinario apícola: usa tu criterio.,Behin-behineko katalogoarekin bat dator. Erle-albaitari batek ez du oraindik katalogoa baliozkotu: erabili zure irizpidea.,Coincideix amb el catàleg provisional. Un veterinari apícola encara no ha validat el catàleg: fes servir el teu criteri.,Coincide co catálogo provisional. Un veterinario apícola aínda non validou o catálogo: usa o teu criterio.
+api.ia_coincide_validado,El diagnóstico coincide con el catálogo de Larrea,Diagnostikoa Larrearen katalogoarekin bat dator,El diagnòstic coincideix amb el catàleg de Larrea,O diagnóstico coincide co catálogo de Larrea
+api.ia_declaracion_obligatoria_banner,"PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los servicios veterinarios oficiales de tu comunidad autónoma.","DERRIGORREZ JAKINARAZI BEHARREKO PATOLOGIA. Diagnostikoa berresten baduzu, zure autonomia-erkidegoko albaitaritza-zerbitzu ofizialei jakinarazi behar diezu.","PATOLOGIA DE DECLARACIÓ OBLIGATÒRIA. Si confirmes el diagnòstic, l'has de notificar als serveis veterinaris oficials de la teva comunitat autònoma.","PATOLOXÍA DE DECLARACIÓN OBRIGATORIA. Se confirmas o diagnóstico, debes notificalo aos servizos veterinarios oficiais da túa comunidade autónoma."
+api.ia_descripcion_clave,"Larrea Apícola puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico, la severidad y el manejo cultural. Si detecta una patología de declaración obligatoria (loque americana, vespa velutina, escarabajo de las colmenas), lo destaca con un aviso en rojo. La misma clave sirve para el asistente (chat) de la pantalla Hoy.","Larrea Apícolak Anthropic-en Claude AI erabil dezake gorabehera bati eransten diozun argazkia aztertzeko eta diagnostikoa, larritasuna eta maneiu kulturala proposatzeko. Derrigorrez jakinarazi beharreko patologia bat antzematen badu (loke amerikarra, vespa velutina, erlauntzetako kakalardoa), abisu gorri batekin nabarmentzen du. Gako bera balio du Gaur pantailako laguntzailerako (txata).","Larrea Apícola pot fer servir Claude AI d'Anthropic per analitzar la foto que adjuntes a una incidència i proposar un diagnòstic, la gravetat i el maneig cultural. Si detecta una patologia de declaració obligatòria (loque americana, vespa velutina, escarabat dels ruscs), la destaca amb un avís en vermell. La mateixa clau serveix per a l'assistent (xat) de la pantalla Avui.","Larrea Apícola pode usar Claude AI de Anthropic para analizar a foto que achegas a unha incidencia e propor un diagnóstico, a severidade e o manexo cultural. Se detecta unha patoloxía de declaración obrigatoria (loque americana, vespa velutina, escaravello das colmeas), destácaa cun aviso en vermello. A mesma clave serve para o asistente (chat) da pantalla Hoxe."
+api.ia_diagnostico_libre,Diagnóstico libre — no coincide con el catálogo curado de Larrea Apícola. Revisa con criterio antes de aceptar.,Diagnostiko librea — ez dator bat Larrea Apícolaren katalogo landuarekin. Berrikusi arretaz onartu aurretik.,Diagnòstic lliure — no coincideix amb el catàleg curat de Larrea Apícola. Revisa-ho amb criteri abans d'acceptar.,Diagnóstico libre — non coincide co catálogo curado de Larrea Apícola. Revísao con criterio antes de aceptar.
+api.ia_foto_ya_no_existe,La foto adjunta ya no existe en el dispositivo.,Erantsitako argazkia jada ez dago gailuan.,La foto adjunta ja no existeix al dispositiu.,A foto achegada xa non existe no dispositivo.
+api.ia_identificar,Identificar con IA,AArekin identifikatu,Identifica amb IA,Identificar con IA
+api.ia_nota_declaracion_obligatoria,Patología de declaración obligatoria: hay que notificarla a los servicios veterinarios oficiales.,Derrigorrez jakinarazi beharreko patologia: albaitaritza-zerbitzu ofizialei jakinarazi behar zaie.,Patologia de declaració obligatòria: cal notificar-la als serveis veterinaris oficials.,Patoloxía de declaración obrigatoria: hai que notificala aos servizos veterinarios oficiais.
+api.ia_nota_diagnostico_sugerido,Diagnóstico sugerido por Claude AI (confianza {confianza}),Claude AIk iradokitako diagnostikoa (konfiantza: {confianza}),Diagnòstic suggerit per Claude AI (confiança {confianza}),Diagnóstico suxerido por Claude AI (confianza {confianza})
+api.ia_que_identifica,"Identifica varroa, nosema, loque y otras patologías por foto","Barroa, nosema, lokea eta beste patologia batzuk argazki bidez identifikatzen ditu","Identifica varroa, nosema, loque i altres patologies per foto","Identifica varroa, nosema, loque e outras patoloxías por foto"
+api.ia_resultado,Resultado de la IA,AAren emaitza,Resultat de la IA,Resultado da IA
+api.ia_sin_clave_configurada,No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.,Ez dago Anthropic gakorik konfiguratuta. Joan Ezarpenak → AA bidezko identifikazioa atalera.,No hi ha cap clau d'Anthropic configurada. Ves a Configuració → Identificació amb IA.,Non hai ningunha clave de Anthropic configurada. Vai a Axustes → Identificación con IA.
+api.ia_sugiere_tu_decides,"La IA sugiere — tú decides. Antes de aplicar cualquier tratamiento sanitario, consulta con tu veterinario asesor; cualquier medicamento zoosanitario requiere receta. Larrea Apícola no recomienda medicamentos comerciales en v0.1.","AAk iradokitzen du — zuk erabakitzen duzu. Edozein tratamendu sanitario aplikatu aurretik, galdetu zure albaitari aholkulariari; animalia-osasunerako edozein botikak errezeta behar du. Larrea Apícolak ez du botika komertzialik gomendatzen v0.1 bertsioan.","La IA suggereix — tu decideixes. Abans d'aplicar qualsevol tractament sanitari, consulta el teu veterinari assessor; qualsevol medicament zoosanitari requereix recepta. Larrea Apícola no recomana medicaments comercials a la v0.1.","A IA suxire — ti decides. Antes de aplicar calquera tratamento sanitario, consulta co teu veterinario asesor; calquera medicamento zoosanitario require receita. Larrea Apícola non recomenda medicamentos comerciais na v0.1."
+api.ia_tipo_abiotico,Abiótico,Abiotikoa,Abiòtic,Abiótico
+api.ia_tipo_depredador,Depredador,Harraparia,Depredador,Depredador
+api.ia_tipo_indeterminado,Indeterminado,Zehaztu gabea,Indeterminat,Indeterminado
+api.ia_tipo_infeccion,Infección,Infekzioa,Infecció,Infección
+api.ia_tipo_parasito,Parásito,Parasitoa,Paràsit,Parasito
+api.ia_tipo_plaga_fisica,Plaga física,Izurri fisikoa,Plaga física,Praga física
+api.incidencia,Incidencia,Gorabehera,Incidència,Incidencia
+api.incidencia_enjambrazon,Enjambrazón,Erlaldaketa,Eixamenada,Enxameado
+api.incidencia_mortalidad,Mortalidad,Hilkortasuna,Mortalitat,Mortalidade
+api.incidencia_polilla_cera,Polilla de la cera,Argizari-sitsa,Arna de la cera,Avelaíña da cera
+api.incidencia_robo,Robo,Lapurreta,Pillatge,Roubo
+api.incidencia_sanitario,Sanitario,Osasun-arazoa,Sanitària,Sanitaria
+api.incidencia_vespa_velutina,Vespa velutina,Vespa velutina,Vespa velutina,Vespa velutina
+api.indica_el_diagnostico,Indica el diagnóstico,Adierazi diagnostikoa,Indica el diagnòstic,Indica o diagnóstico
+api.ingresos_y_gastos_provisional,Ingresos y gastos · provisional,Sarrerak eta gastuak · behin-behinekoa,Ingressos i despeses · provisional,Ingresos e gastos · provisional
+api.invernada,Invernada,Neguko egonaldia,Hivernada,Invernada
+api.kg_de_cera,{kg} kg de cera,{kg} kg argizari,{kg} kg de cera,{kg} kg de cera
+api.kg_de_miel,{kg} kg de miel,{kg} kg ezti,{kg} kg de mel,{kg} kg de mel
+api.kg_de_polen,{kg} kg de polen,{kg} kg polen,{kg} kg de pol·len,{kg} kg de pole
+api.kilos_de_cera,Kilos de cera,Argizari-kiloak,Quilos de cera,Quilos de cera
+api.kilos_de_miel,Kilos de miel,Ezti-kiloak,Quilos de mel,Quilos de mel
+api.kilos_de_polen,Kilos de polen,Polen-kiloak,Quilos de pol·len,Quilos de pole
+api.kilos_de_propoleo,Kilos de propóleo,Propolio-kiloak,Quilos de pròpolis,Quilos de própole
+api.libro_rega,Libro REGA,REGA liburua,Llibre REGA,Libro REGA
+api.libro_rega_ayuda,Registro oficial de la explotación en PDF,"Ustiapenaren erregistro ofiziala, PDFan",Registre oficial de l'explotació en PDF,Rexistro oficial da explotación en PDF
+api.libro_rega_contenido,"El libro recoge tratamientos sanitarios, movimientos (trashumancia/altas/bajas), incidencias y cosechas del periodo. Las revisiones rutinarias no se incluyen en el libro oficial.","Liburuak aldiko tratamendu sanitarioak, mugimenduak (transhumantzia/altak/bajak), gorabeherak eta ezti-bilketak jasotzen ditu. Ohiko ikuskapenak ez dira liburu ofizialean sartzen.","El llibre recull els tractaments sanitaris, moviments (transhumància/altes/baixes), incidències i collites del període. Les revisions rutinàries no s'inclouen al llibre oficial.","O libro recolle os tratamentos sanitarios, movementos (transhumancia/altas/baixas), incidencias e colleitas do período. As revisións rutineiras non se inclúen no libro oficial."
+api.libro_rega_requiere_titular,"El libro oficial REGA requiere los datos del titular (NIF, nombre, N.º REGA, veterinario asesor…). Configúralos antes de generar.","REGA liburu ofizialak titularraren datuak behar ditu (IFZ, izena, REGA zk., albaitari aholkularia…). Konfiguratu itzazu sortu aurretik.","El llibre oficial REGA requereix les dades del titular (NIF, nom, núm. REGA, veterinari assessor…). Configura-les abans de generar-lo.","O libro oficial REGA require os datos do titular (NIF, nome, n.º REGA, veterinario asesor…). Configúraos antes de xeralo."
+api.libro_rega_verifica_formato,Verifica el formato vigente del MAPA y de tu comunidad autónoma antes de presentar el documento en inspección — la regulación se actualiza periódicamente.,Egiaztatu MAPAren eta zure autonomia-erkidegoaren formatu indarrekoa dokumentua ikuskapenean aurkeztu aurretik — araudia aldian-aldian eguneratzen da.,Verifica el format vigent del MAPA i de la teva comunitat autònoma abans de presentar el document en una inspecció — la regulació s'actualitza periòdicament.,Verifica o formato vixente do MAPA e da túa comunidade autónoma antes de presentar o documento nunha inspección — a regulación actualízase periodicamente.
+api.libros_oficiales,Libros oficiales,Liburu ofizialak,Llibres oficials,Libros oficiais
+api.lluvia_significativa,Lluvia significativa,Euri nabarmena,Pluja significativa,Choiva significativa
+api.lluvia_significativa_detalle,Puede reducir vuelo y dificultar accesos; revisa reservas tras varios días.,Hegaldia murriztu eta sarbideak zaildu ditzake; begiratu erreserbak zenbait egunen ondoren.,Pot reduir el vol i dificultar els accessos; revisa les reserves després de diversos dies.,Pode reducir o voo e dificultar os accesos; revisa as reservas despois de varios días.
+api.lote_del_producto,Lote del producto,Produktuaren lotea,Lot del producte,Lote do produto
+api.manejo_cultural,Manejo cultural,Maneiu kulturala,Maneig cultural,Manexo cultural
+api.manejo_cultural_sugerido,Manejo cultural sugerido,Iradokitako maneiu kulturala,Maneig cultural suggerit,Manexo cultural suxerido
+api.manejo_delicado_viento_lluvia,Manejo delicado (viento / lluvia),Maneiu delikatua (haizea / euria),Maneig delicat (vent / pluja),Manexo delicado (vento / choiva)
+api.mas,Más,Gehiago,Més,Máis
+api.matricula,Matrícula,Matrikula,Matrícula,Matrícula
+api.matricula_obligatoria,Matrícula obligatoria,Matrikula derrigorrezkoa da,Matrícula obligatòria,Matrícula obrigatoria
+api.meteo_apicola,Meteo apícola,Eguraldia erlezaintzarako,Temps apícola,Tempo apícola
+api.meteo_hoy_origen,Meteo hoy · {origen},Gaurko eguraldia · {origen},Temps d'avui · {origen},Tempo de hoxe · {origen}
+api.motivo,Motivo,Arrazoia,Motiu,Motivo
+api.motivo_alta,Alta,Alta,Alta,Alta
+api.motivo_compra,Compra,Erosketa,Compra,Compra
+api.motivo_invernada,Invernada,Neguko egonaldia,Hivernada,Invernada
+api.motivo_mielada,Mielada (trashumancia),Eztialdia (transhumantzia),Mielada (transhumància),Melada (transhumancia)
+api.motivo_recogida_enjambre,Recogida de enjambre,Erle-saldoa biltzea,Recollida d'eixam,Recollida de enxame
+api.motivo_sanitario,Sanitario,Osasun-arrazoia,Sanitari,Sanitario
+api.motivo_venta,Venta,Salmenta,Venda,Venda
+api.movimiento,Movimiento,Mugimendua,Moviment,Movemento
+api.n_colmenas,{n} colmenas,{n} erlauntz,{n} ruscs,{n} colmeas
+api.nif_veterinario,NIF del veterinario,Albaitariaren NIFa,NIF del veterinari,NIF do veterinario
+api.ninguno_alta_captura_compra,— ninguno (alta/captura/compra) —,— bat ere ez (alta/harrapaketa/erosketa) —,— cap (alta/captura/compra) —,— ningún (alta/captura/compra) —
+api.ninguno_baja_venta,— ninguno (baja/venta) —,— bat ere ez (baja/salmenta) —,— cap (baixa/venda) —,— ningún (baixa/venda) —
+api.no,No,Ez,No,Non
+api.no_se_pudo_cargar_prevision,No se pudo cargar la previsión.,Ezin izan da iragarpena kargatu.,No s'ha pogut carregar la previsió.,Non se puido cargar a previsión.
+api.no_se_pudo_obtener_gps,No se pudo obtener el GPS actual.,Ezin izan da uneko GPSa lortu.,No s'ha pogut obtenir el GPS actual.,Non se puido obter o GPS actual.
+api.nombre,Nombre,Izena,Nom,Nome
+api.nombre_cientifico,Nombre científico,Izen zientifikoa,Nom científic,Nome científico
+api.nombre_comun,Nombre común,Izen arrunta,Nom comú,Nome común
+api.nombre_o_razon_social,Nombre o razón social,Izena edo sozietatearen izena,Nom o raó social,Nome ou razón social
+api.nombre_obligatorio,Nombre obligatorio,Izena derrigorrezkoa da,Nom obligatori,Nome obrigatorio
+api.nombre_veterinario,Nombre del veterinario,Albaitariaren izena,Nom del veterinari,Nome do veterinario
+api.notas,Notas,Oharrak,Notes,Notas
+api.nueva_colmena,Nueva colmena,Erlauntz berria,Rusc nou,Nova colmea
+api.nueva_cosecha,Nueva cosecha,Ezti-bilketa berria,Collita nova,Colleita nova
+api.nueva_incidencia,Nueva incidencia,Gorabehera berria,Incidència nova,Incidencia nova
+api.nueva_revision,Nueva revisión,Ikuskapen berria,Revisió nova,Revisión nova
+api.nuevo_apiario,Nuevo apiario,Erlategi berria,Apiari nou,Novo apiario
+api.nuevo_evento,Nuevo evento,Gertaera berria,Esdeveniment nou,Novo evento
+api.nuevo_movimiento,Nuevo movimiento,Mugimendu berria,Moviment nou,Movemento novo
+api.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Tractament nou,Tratamento novo
+api.numero_alza_opcional,N.º alza (opcional),Gaineko kaxaren zk. (aukerakoa),Núm. d'alça (opcional),N.º de alza (opcional)
+api.numero_colegiado,N.º de colegiado,Elkargokide-zk.,Núm. de col·legiat,N.º de colexiado
+api.numero_de_colmenas_movidas,N.º de colmenas movidas,Mugitutako erlauntz kopurua,Nombre de ruscs moguts,N.º de colmeas movidas
+api.numero_de_factura,N.º de factura,Faktura-zenbakia,Núm. de factura,N.º de factura
+api.numero_explotacion_apicola,N.º explotación apícola,Erle-ustiapenaren zk.,Núm. d'explotació apícola,N.º de explotación apícola
+api.numero_rega,N.º REGA,REGA zk.,Núm. REGA,N.º REGA
+api.onboarding_ia_texto,"Hazle una foto a un panal o a una colmena con síntomas y la IA propone un diagnóstico (varroa, nosema, loque, vespa velutina…). Las patologías de declaración obligatoria se destacan automáticamente. Tú decides; nada se aplica sin tu revisión y receta del veterinario asesor.","Atera argazki bat sintomak dituen abaraska edo erlauntz bati, eta AAk diagnostiko bat proposatuko du (barroa, nosema, lokea, vespa velutina…). Derrigorrez jakinarazi beharreko patologiak automatikoki nabarmentzen dira. Zuk erabakitzen duzu; ez da ezer aplikatzen zuk berrikusi gabe eta albaitari aholkulariaren errezetarik gabe.","Fes una foto a una bresca o a un rusc amb símptomes i la IA proposa un diagnòstic (varroa, nosema, loque, vespa velutina…). Les patologies de declaració obligatòria es destaquen automàticament. Tu decideixes; no s'aplica res sense la teva revisió i la recepta del veterinari assessor.","Faille unha foto a un favo ou a unha colmea con síntomas e a IA propón un diagnóstico (varroa, nosema, loque, vespa velutina…). As patoloxías de declaración obrigatoria destácanse automaticamente. Ti decides; non se aplica nada sen a túa revisión e a receita do veterinario asesor."
+api.onboarding_ia_titulo,Diagnóstico con IA por foto,Argazki bidezko AA diagnostikoa,Diagnòstic amb IA per foto,Diagnóstico con IA por foto
+api.onboarding_mapa_texto,"Cataloga cada colmena con matrícula, raza, año de la reina y ubicación GPS. Trashumancia sin líos: cada colmena conserva su historia y cada traslado queda registrado con origen, destino y fecha.","Katalogatu erlauntz bakoitza matrikula, arraza, ama-erlearen urtea eta GPS kokapenarekin. Transhumantzia buruhausterik gabe: erlauntz bakoitzak bere historia gordetzen du, eta lekualdaketa bakoitza jatorri, helmuga eta datarekin erregistratzen da.","Cataloga cada rusc amb matrícula, raça, any de la reina i ubicació GPS. Transhumància sense complicacions: cada rusc conserva la seva història i cada trasllat queda registrat amb origen, destinació i data.","Cataloga cada colmea con matrícula, raza, ano da raíña e localización GPS. Transhumancia sen complicacións: cada colmea conserva a súa historia e cada traslado queda rexistrado con orixe, destino e data."
+api.onboarding_mapa_titulo,Tus colmenas en el mapa,Zure erlauntzak mapan,Els teus ruscs al mapa,As túas colmeas no mapa
+api.onboarding_rega_texto,"Registra cada tratamiento sanitario con su sustancia activa, lote, factura y plazo de seguridad. Exporta el libro oficial (REGA / SITRAN-AP) en PDF firmable para inspección.","Erregistratu tratamendu sanitario bakoitza bere substantzia aktiboa, lotea, faktura eta segurtasun-epearekin. Esportatu liburu ofiziala (REGA / SITRAN-AP) PDF sinagarrian, ikuskapenetarako.","Registra cada tractament sanitari amb la substància activa, el lot, la factura i el termini de seguretat. Exporta el llibre oficial (REGA / SITRAN-AP) en PDF signable per a inspeccions.","Rexistra cada tratamento sanitario coa súa substancia activa, lote, factura e prazo de seguridade. Exporta o libro oficial (REGA / SITRAN-AP) en PDF asinable para inspección."
+api.onboarding_rega_titulo,Libro REGA al alcance,REGA liburua eskura,Llibre REGA a l'abast,Libro REGA ao alcance
+api.otono,Otoño,Udazkena,Tardor,Outono
+api.otro,Otro,Bestelakoa,Altre,Outro
+api.patologia_declaracion_obligatoria_aviso,Esta patología es de declaración obligatoria al servicio veterinario oficial.,Patologia hau derrigorrez jakinarazi behar zaio albaitaritza-zerbitzu ofizialari.,Aquesta patologia és de declaració obligatòria al servei veterinari oficial.,Esta patoloxía é de declaración obrigatoria ao servizo veterinario oficial.
+api.patologia_declaracion_obligatoria_banner,PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Notifícala a los servicios veterinarios oficiales de tu comunidad autónoma.,DERRIGORREZ JAKINARAZI BEHARREKO PATOLOGIA. Jakinarazi zure autonomia-erkidegoko albaitaritza-zerbitzu ofizialei.,PATOLOGIA DE DECLARACIÓ OBLIGATÒRIA. Notifica-la als serveis veterinaris oficials de la teva comunitat autònoma.,PATOLOXÍA DE DECLARACIÓN OBRIGATORIA. Notifícaa aos servizos veterinarios oficiais da túa comunidade autónoma.
+api.patologias,Patologías,Patologiak,Patologies,Patoloxías
+api.plazo_de_seguridad_dias,Plazo de seguridad (días),Segurtasun-epea (egunak),Termini de seguretat (dies),Prazo de seguridade (días)
+api.plazo_dias_abrev,Plazo: {n} d,Epea: {n} e,Termini: {n} d,Prazo: {n} d
+api.postura,Postura,Errutea,Posta,Posta
+api.postura_n,postura {n},errutea {n},posta {n},posta {n}
+api.prevision_error_toca_reintentar,No se pudo cargar la previsión. Toca para reintentar.,Ezin izan da iragarpena kargatu. Sakatu berriro saiatzeko.,No s'ha pogut carregar la previsió. Toca per tornar-ho a provar.,Non se puido cargar a previsión. Toca para tentalo de novo.
+api.prevision_orientativa_apicola,"Previsión orientativa para vuelo, revisión de colmenas, trashumancia, golpes de calor y alimentación.","Gutxi gorabeherako iragarpena hegaldirako, erlauntzen ikuskapenerako, transhumantziarako, bero-kolpeetarako eta elikadurarako.","Previsió orientativa per al vol, la revisió de ruscs, la transhumància, els cops de calor i l'alimentació.","Previsión orientativa para o voo, a revisión de colmeas, a transhumancia, os golpes de calor e a alimentación."
+api.primavera,Primavera,Udaberria,Primavera,Primavera
+api.proximas_tareas_zona,Próximas tareas en zona {zona}.,Hurrengo zereginak {zona} eremuan.,Properes tasques a la zona {zona}.,Próximas tarefas na zona {zona}.
+api.punto_suelto,Punto suelto,Puntu solte,Punt solt,Punto solto
+api.quitar_la_foto,Quitar la foto,Kendu argazkia,Treu la foto,Quitar a foto
+api.racha,racha,bolada,ratxa,refacho
+api.raza,Raza,Arraza,Raça,Raza
+api.raza_pista,"ibérica, cárnica, ligústica, buckfast…","iberiarra, karniolarra, ligustika, buckfast…","ibèrica, carniola, lligústica, buckfast…","ibérica, cárnica, ligústica, buckfast…"
+api.razas,Razas,Arrazak,Races,Razas
+api.recapturar,Recapturar,Berriz hartu,Torna a capturar,Volver capturar
+api.recuento_en_24_h,Recuento en 24 h,24 orduko zenbaketa,Recompte en 24 h,Reconto en 24 h
+api.regimen_irpf_iva_provisional,Régimen IRPF + IVA · provisional,IRPF + IVA araubidea · behin-behinekoa,Règim IRPF + IVA · provisional,Réxime IRPF + IVA · provisional
+api.registros,Registros,Erregistroak,Registres,Rexistros
+api.reina,Reina,Ama-erlea,Reina,Raíña
+api.reina_ano_color,Reina {ano} ({color}),Ama-erlea {ano} ({color}),Reina {ano} ({color}),Raíña {ano} ({color})
+api.reina_ausente,Ausente,Falta da,Absent,Ausente
+api.reina_no_observada,No observada,Ez da ikusi,No observada,Non observada
+api.reina_presente,Presente,Bertan,Present,Presente
+api.reina_valor,Reina: {valor},Ama-erlea: {valor},Reina: {valor},Raíña: {valor}
+api.reintentar,Reintentar,Saiatu berriro,Torna-ho a provar,Tentar de novo
+api.reservas_de_miel,Reservas de miel,Ezti-erreserbak,Reserves de mel,Reservas de mel
+api.reservas_de_polen,Reservas de polen,Polen-erreserbak,Reserves de pol·len,Reservas de pole
+api.resuelta,resuelta,konponduta,resolta,resolta
+api.resumen_catalogos,"{total} filas en 5 catálogos: {razas} razas, {tipos} tipos de colmena, {sustancias} sustancias varroa, {plagas} plagas/patologías, {tareas} tareas de calendario.","{total} errenkada 5 katalogotan: {razas} arraza, {tipos} erlauntz mota, {sustancias} barroaren aurkako substantzia, {plagas} izurri/patologia, {tareas} egutegiko zeregin.","{total} files en 5 catàlegs: {razas} races, {tipos} tipus de rusc, {sustancias} substàncies contra la varroa, {plagas} plagues/patologies, {tareas} tasques de calendari.","{total} filas en 5 catálogos: {razas} razas, {tipos} tipos de colmea, {sustancias} substancias contra a varroa, {plagas} pragas/patoloxías, {tareas} tarefas de calendario."
+api.retirada_fecha,Retirada {fecha},Kentzea: {fecha},Retirada {fecha},Retirada {fecha}
+api.revision,Revisión,Ikuskapena,Revisió,Revisión
+api.riesgo_de_helada,Riesgo de helada,Izozte-arriskua,Risc de gelada,Risco de xeada
+api.saltar,Saltar,Saltatu,Omet,Saltar
+api.severidad,Severidad,Larritasuna,Gravetat,Gravidade
+api.severidad_abreviada_n,sev. {n},larr. {n},grav. {n},sev. {n}
+api.si,Sí,Bai,Sí,Si
+api.siguiente,Siguiente,Hurrengoa,Següent,Seguinte
+api.sin_coincidencias,Sin coincidencias.,Ez dago bat datorrenik.,Sense coincidències.,Sen coincidencias.
+api.sin_colmenas_todavia,Sin colmenas registradas todavía.,Oraindik ez dago erlauntzarik erregistratuta.,Encara no hi ha ruscs registrats.,Aínda non hai colmeas rexistradas.
+api.sin_datos_meteo_hoy,Sin datos meteo para hoy.,Ez dago gaurko eguraldi-daturik.,No hi ha dades meteorològiques per a avui.,Non hai datos meteorolóxicos para hoxe.
+api.sin_eventos_todavia,Sin eventos registrados todavía.,Oraindik ez dago gertaerarik erregistratuta.,Encara no hi ha esdeveniments registrats.,Aínda non hai eventos rexistrados.
+api.sin_fecha_de_alta,Sin fecha de alta,Alta-datarik gabe,Sense data d'alta,Sen data de alta
+api.sin_fecha_de_retirada,Sin fecha de retirada,Kentze-datarik gabe,Sense data de retirada,Sen data de retirada
+api.sin_postura,Sin postura,Errutearik gabe,Sense posta,Sen posta
+api.sin_resultados,Sin resultados.,Ez dago emaitzarik.,Sense resultats.,Sen resultados.
+api.sin_tareas_zona,Sin tareas en el calendario para esta zona.,Ez dago zereginik egutegian eremu honetarako.,No hi ha tasques al calendari per a aquesta zona.,Non hai tarefas no calendario para esta zona.
+api.sin_titular_configurado,Sin titular configurado,Titularra konfiguratu gabe,Sense titular configurat,Sen titular configurado
+api.sin_ubicacion,Sin ubicación,Kokapenik gabe,Sense ubicació,Sen localización
+api.sin_ubicacion_fijada,Sin ubicación fijada,Kokapenik finkatu gabe,Sense ubicació fixada,Sen localización fixada
+api.sinonimias,Sinonimias,Sinonimoak,Sinonímies,Sinonimias
+api.sintomas,Síntomas,Sintomak,Símptomes,Síntomas
+api.suelo,Suelo,Lurzorua,Sòl,Solo
+api.superficie_ha,Superficie (ha),Azalera (ha),Superfície (ha),Superficie (ha)
+api.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+api.sustancias_contra_varroa,Sustancias contra varroa,Barroaren aurkako substantziak,Substàncies contra la varroa,Substancias contra a varroa
+api.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+api.telefono_veterinario,Teléfono del veterinario,Albaitariaren telefonoa,Telèfon del veterinari,Teléfono do veterinario
+api.ter_borrar_tercero,Borrar tercero,Hirugarrena ezabatu,Esborra el tercer,Borrar terceiro
+api.ter_buscar_nombre_nif,Buscar por nombre o NIF,Bilatu izenaren edo NIFaren arabera,Cerca per nom o NIF,Buscar por nome ou NIF
+api.ter_cliente_y_proveedor,Cliente y proveedor,Bezeroa eta hornitzailea,Client i proveïdor,Cliente e provedor
+api.ter_clientes_y_proveedores,Clientes y proveedores,Bezeroak eta hornitzaileak,Clients i proveïdors,Clientes e provedores
+api.ter_confirmar_borrado,"Se borrará «{nombre}». Los apuntes asociados conservarán el importe, pero pierden la referencia al NIF — afectará al extracto del modelo 347 si es de un año aún declarado.","«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio oraindik aitortu gabeko urte batekoa bada.","S'esborrarà «{nombre}». Els assentaments associats conservaran l'import, però perdran la referència al NIF; afectarà l'extracte del model 347 si és d'un any encara per declarar.","Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perden a referencia ao NIF; afectará ao extracto do modelo 347 se é dun ano aínda por declarar."
+api.ter_correo,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
+api.ter_crear,Crear,Sortu,Crea,Crear
+api.ter_direccion,Dirección,Helbidea,Adreça,Enderezo
+api.ter_editar_tercero,Editar tercero,Hirugarrena editatu,Edita el tercer,Editar terceiro
+api.ter_nif_ayuda,Vacío si es venta informal sin factura,"Hutsik, fakturarik gabeko salmenta informala bada",Buit si és una venda informal sense factura,Baleiro se é venda informal sen factura
+api.ter_nombre_obligatorio,Nombre obligatorio,Izena derrigorrezkoa da,Nom obligatori,Nome obrigatorio
+api.ter_nombre_razon_social,Nombre o razón social *,Izena edo sozietatearen izena *,Nom o raó social *,Nome ou razón social *
+api.ter_nuevo,Nuevo,Berria,Nou,Novo
+api.ter_nuevo_tercero,Nuevo tercero,Hirugarren berria,Tercer nou,Novo terceiro
+api.ter_sin_nif,sin NIF,NIFik gabe,sense NIF,sen NIF
+api.ter_sin_nombre,(sin nombre),(izenik gabe),(sense nom),(sen nome)
+api.ter_sin_terceros,"Aún no hay terceros guardados. Añade clientes (envasadores, cooperativas, hostelería) y proveedores (insumos, veterinario, transporte) — el NIF de cada uno permite generar el modelo 347 al cierre del ejercicio.","Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (ontziratzaileak, kooperatibak, ostalaritza) eta hornitzaileak (hornigaiak, albaitaria, garraioa); bakoitzaren NIFari esker 347 eredua sor daiteke ekitaldiaren itxieran.","Encara no hi ha tercers desats. Afegeix clients (envasadors, cooperatives, hostaleria) i proveïdors (subministraments, veterinari, transport); el NIF de cadascun permet generar el model 347 al tancament de l'exercici.","Aínda non hai terceiros gardados. Engade clientes (envasadores, cooperativas, hostalaría) e provedores (subministracións, veterinario, transporte); o NIF de cada un permite xerar o modelo 347 ao peche do exercicio."
+api.ter_telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+api.ter_tipo_ambos,cliente y proveedor,bezeroa eta hornitzailea,client i proveïdor,cliente e provedor
+api.ter_tipo_cliente,cliente,bezeroa,client,cliente
+api.ter_tipo_proveedor,proveedor,hornitzailea,proveïdor,provedor
+api.terceros_ayuda,Terceros con NIF · alimentan el modelo 347,NIFa duten hirugarrenak · 347 eredua elikatzen dute,Tercers amb NIF · alimenten el model 347,Terceiros con NIF · alimentan o modelo 347
+api.tipo,Tipo,Mota,Tipus,Tipo
+api.tipo_de_colmena,Tipo de colmena,Erlauntz mota,Tipus de rusc,Tipo de colmea
+api.tipo_plaga_abiotico,Abiótico,Abiotikoa,Abiòtic,Abiótico
+api.tipo_plaga_depredador,Depredador,Harraparia,Depredador,Depredador
+api.tipo_plaga_fisica,Plaga física,Izurri fisikoa,Plaga física,Praga física
+api.tipo_plaga_infeccion,Infección,Infekzioa,Infecció,Infección
+api.tipo_plaga_parasito,Parásito,Parasitoa,Paràsit,Parasito
+api.tipos_de_colmena,Tipos de colmena,Erlauntz motak,Tipus de rusc,Tipos de colmea
+api.titular_explotacion,Titular de la explotación,Ustiapenaren titularra,Titular de l'explotació,Titular da explotación
+api.titular_explotacion_ayuda,"NIF, n.º REGA, contacto y veterinario asesor","NIF, REGA zk., kontaktua eta albaitari aholkularia","NIF, núm. REGA, contacte i veterinari assessor","NIF, n.º REGA, contacto e veterinario asesor"
+api.titular_sin_configurar,Titular sin configurar,Titularra konfiguratu gabe,Titular sense configurar,Titular sen configurar
+api.todas,Todas,Denak,Totes,Todas
+api.todas_las_colmenas,Todas las colmenas,Erlauntz guztiak,Tots els ruscs,Todas as colmeas
+api.todavia_no_hay_apiarios,Todavía no hay apiarios.,Oraindik ez dago erlategirik.,Encara no hi ha apiaris.,Aínda non hai apiarios.
+api.todos_los_apiarios,Todos los apiarios,Erlategi guztiak,Tots els apiaris,Todos os apiarios
+api.tomar_gps_colmenar,Tomar GPS del colmenar,Erlategiaren GPSa hartu,Pren el GPS de l'apiari,Tomar o GPS do apiario
+api.tratamiento,Tratamiento,Tratamendua,Tractament,Tratamento
+api.tratamiento_nosema,Nosema,Nosema,Nosema,Nosema
+api.tratamiento_sanitario_general,Sanitario general,Osasun-tratamendu orokorra,Sanitari general,Sanitario xeral
+api.tratamiento_varroa,Varroa,Barroa,Varroa,Varroa
+api.trazabilidad_sanitaria,Trazabilidad sanitaria,Osasun-trazabilitatea,Traçabilitat sanitària,Rastrexabilidade sanitaria
+api.ultima_ubicacion,Última ubicación,Azken kokapena,Darrera ubicació,Última localización
+api.ultimo_gps_coordenadas,Último GPS: {coordenadas},Azken GPSa: {coordenadas},Últim GPS: {coordenadas},Último GPS: {coordenadas}
+api.usar_centro_del_mapa,Usar centro del mapa,Erabili maparen erdigunea,Fes servir el centre del mapa,Usar o centro do mapa
+api.usar_gps_actual,Usar GPS actual,Erabili uneko GPSa,Fes servir el GPS actual,Usar o GPS actual
+api.uso_tradicional,Uso tradicional,Erabilera tradizionala,Ús tradicional,Uso tradicional
+api.varroa_caida_dia,Varroa caída/día (bandeja adhesiva),Eroritako barroa/eguneko (erretilu itsaskorra),Varroa caiguda/dia (safata adhesiva),Varroa caída/día (bandexa adhesiva)
+api.varroa_n_dia,varroa {n}/día,barroa {n}/egun,varroa {n}/dia,varroa {n}/día
+api.vehiculo,Vehículo,Eramailea,Vehicle,Vehículo
+api.vehiculo_goteo,Goteo,Tantaka,Degoteig,Goteo
+api.vehiculo_nebulizacion,Nebulización,Lainoztapena,Nebulització,Nebulización
+api.vehiculo_placa,Placa,Plaka,Placa,Placa
+api.vehiculo_sandwich,Sándwich,Sandwicha,Sandvitx,Sándwich
+api.vehiculo_sublimacion,Sublimación,Sublimazioa,Sublimació,Sublimación
+api.vehiculo_tira,Tira,Zerrenda,Tira,Tira
+api.vehiculo_tira_polimero,Tira de polímero,Polimerozko zerrenda,Tira de polímer,Tira de polímero
+api.ventajas,Ventajas,Abantailak,Avantatges,Vantaxes
+api.ventana_de_aplicacion,Ventana de aplicación,Aplikazio-tartea,Finestra d'aplicació,Xanela de aplicación
+api.ventana_razonable,Ventana razonable,Tarte egokia,Finestra raonable,Xanela razoable
+api.ventana_razonable_detalle,"Sin señales fuertes de frío, lluvia, viento o calor extremo.","Ez dago hotz, euri, haize edo bero handiaren seinale nabarmenik.","Sense senyals forts de fred, pluja, vent o calor extrema.","Sen sinais fortes de frío, choiva, vento ou calor extrema."
+api.version_instalada_y_ultima,Versión instalada y última publicada,Instalatutako bertsioa eta argitaratutako azkena,Versió instal·lada i darrera publicada,Versión instalada e última publicada
+api.veterinario_asesor,Veterinario asesor,Albaitari aholkularia,Veterinari assessor,Veterinario asesor
+api.veterinario_asesor_ayuda,Obligatorio para tratamientos sanitarios. El número de colegiado debe constar en cualquier receta veterinaria.,Derrigorrezkoa tratamendu sanitarioetarako. Elkargokide-zenbakiak albaitaritza-errezeta guztietan agertu behar du.,Obligatori per als tractaments sanitaris. El número de col·legiat ha de constar en qualsevol recepta veterinària.,Obrigatorio para os tratamentos sanitarios. O número de colexiado debe constar en calquera receita veterinaria.
+api.viento_manejo_transporte,Viento para manejo o transporte,Haizea maneiurako edo garraiorako,Vent per al maneig o el transport,Vento para o manexo ou o transporte
+api.viento_manejo_transporte_detalle,Evita abrir colmenas si no es necesario y asegura tapas y material.,"Ez ireki erlauntzak beharrezkoa ez bada, eta lotu ondo estalkiak eta materiala.",Evita obrir ruscs si no cal i assegura les tapes i el material.,Evita abrir colmeas se non é necesario e asegura as tapas e o material.
+api.vuelo_abejas_limitado,Vuelo de abejas limitado,Erleen hegaldia mugatua,Vol de les abelles limitat,Voo das abellas limitado
+api.vuelo_limitado,Vuelo limitado,Hegaldi mugatua,Vol limitat,Voo limitado
+api.vuelo_limitado_detalle,"Frío, lluvia o viento pueden frenar pecoreo y manejo.","Hotzak, euriak edo haizeak pekoreoa eta maneiua gelditu ditzakete.","El fred, la pluja o el vent poden frenar el pecoreig i el maneig.","O frío, a choiva ou o vento poden frear a recolección e o manexo."
+api.ya_existe_colmena_matricula,Ya existe una colmena con matrícula {matricula}.,Badago {matricula} matrikula duen erlauntz bat.,Ja existeix un rusc amb la matrícula {matricula}.,Xa existe unha colmea coa matrícula {matricula}.
+api.zona_centro,Centro (meseta),Erdialdea (mesetaria),Centre (altiplà),Centro (meseta)
+api.zona_norte,Norte (atlántica),Iparraldea (atlantikoa),Nord (atlàntica),Norte (atlántica)
+api.zona_sur,Sur (mediterránea),Hegoaldea (mediterraneoa),Sud (mediterrània),Sur (mediterránea)

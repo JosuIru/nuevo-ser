@@ -73,9 +73,9 @@ class _PantallaGestionApiariosState extends State<PantallaGestionApiarios> {
     final confirmar = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Borrar apiario'),
+        title: Text(SoleraL10n.t('api.borrar_apiario')),
         content: Text(
-          'Se borrará el apiario ${apiario.nombre}. Las colmenas quedarán como puntos sueltos.',
+          SoleraL10n.tf('api.borrar_apiario_aviso', {'nombre': apiario.nombre}),
         ),
         actions: [
           TextButton(
@@ -98,13 +98,13 @@ class _PantallaGestionApiariosState extends State<PantallaGestionApiarios> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Apiarios')),
+      appBar: AppBar(title: Text(SoleraL10n.t('api.apiarios'))),
       body: _cargando
           ? Center(child: CircularProgressIndicator())
           : _apiarios.isEmpty
               ? Center(
                   child: Text(
-                    'Todavía no hay apiarios.',
+                    SoleraL10n.t('api.todavia_no_hay_apiarios'),
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 )
@@ -135,7 +135,7 @@ class _PantallaGestionApiariosState extends State<PantallaGestionApiarios> {
                             apiario.codigoSitran,
                           if (apiario.superficieHectareas != null)
                             '${apiario.superficieHectareas!.toStringAsFixed(2)} ha',
-                          '$totalColmenas colmenas',
+                          SoleraL10n.tf('api.n_colmenas', {'n': totalColmenas}),
                           if (apiario.latitudCentroide != null &&
                               apiario.longitudCentroide != null)
                             '${apiario.latitudCentroide!.toStringAsFixed(5)}, ${apiario.longitudCentroide!.toStringAsFixed(5)}',
@@ -144,17 +144,17 @@ class _PantallaGestionApiariosState extends State<PantallaGestionApiarios> {
                           spacing: 4,
                           children: [
                             IconButton(
-                              tooltip: 'Añadir colmena',
+                              tooltip: SoleraL10n.t('api.anadir_colmena'),
                               icon: Icon(Icons.add_location_alt),
                               onPressed: () => _nuevaColmena(apiario),
                             ),
                             IconButton(
-                              tooltip: 'Editar',
+                              tooltip: SoleraL10n.t('editar'),
                               icon: Icon(Icons.edit),
                               onPressed: () => _editar(apiario),
                             ),
                             IconButton(
-                              tooltip: 'Borrar',
+                              tooltip: SoleraL10n.t('borrar'),
                               icon: Icon(Icons.delete_outline),
                               onPressed: () => _borrar(apiario),
                             ),
@@ -168,7 +168,7 @@ class _PantallaGestionApiariosState extends State<PantallaGestionApiarios> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _abrirNuevoApiario,
         icon: Icon(Icons.add_business),
-        label: Text('Nuevo apiario'),
+        label: Text(SoleraL10n.t('api.nuevo_apiario')),
       ),
     );
   }

@@ -60,7 +60,7 @@ class _PantallaMeteoApicolaState extends State<PantallaMeteoApicola> {
       final ultima = await Geolocator.getLastKnownPosition();
       if (ultima != null) {
         return _DestinoMeteo(
-          nombre: 'GPS reciente',
+          nombre: SoleraL10n.t('api.gps_reciente'),
           latitud: ultima.latitude,
           longitud: ultima.longitude,
         );
@@ -69,13 +69,13 @@ class _PantallaMeteoApicolaState extends State<PantallaMeteoApicola> {
         const Duration(seconds: 8),
       );
       return _DestinoMeteo(
-        nombre: 'GPS actual',
+        nombre: SoleraL10n.t('api.gps_actual'),
         latitud: pos.latitude,
         longitud: pos.longitude,
       );
     }
-    return const _DestinoMeteo(
-      nombre: 'centro de referencia',
+    return _DestinoMeteo(
+      nombre: SoleraL10n.t('api.centro_de_referencia'),
       latitud: 40.4,
       longitud: -3.7,
     );
@@ -93,7 +93,7 @@ class _PantallaMeteoApicolaState extends State<PantallaMeteoApicola> {
         conPosicion.map((c) => c.ultimaLongitud!).reduce((a, b) => a + b) /
             conPosicion.length;
     return _DestinoMeteo(
-      nombre: 'centro de colmenas',
+      nombre: SoleraL10n.t('api.centro_de_colmenas'),
       latitud: lat,
       longitud: lng,
     );
@@ -107,7 +107,7 @@ class _PantallaMeteoApicolaState extends State<PantallaMeteoApicola> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meteo apícola')),
+      appBar: AppBar(title: Text(SoleraL10n.t('api.meteo_apicola'))),
       body: FutureBuilder<PrevisionAgro>(
         future: _futuro,
         builder: (context, snapshot) {
@@ -159,9 +159,9 @@ class _Cabecera extends StatelessWidget {
               style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Previsión orientativa para vuelo, revisión de colmenas, trashumancia, golpes de calor y alimentación.',
-              style: TextStyle(fontSize: 12),
+            Text(
+              SoleraL10n.t('api.prevision_orientativa_apicola'),
+              style: const TextStyle(fontSize: 12),
             ),
           ],
         ),
@@ -179,36 +179,36 @@ class _PanelDecision extends StatelessWidget {
   Widget build(BuildContext context) {
     final avisos = <_Aviso>[
       if (dia.vueloAbejasLimitado)
-        const _Aviso(
+        _Aviso(
           Icons.hive,
-          'Vuelo limitado',
-          'Frío, lluvia o viento pueden frenar pecoreo y manejo.',
+          SoleraL10n.t('api.vuelo_limitado'),
+          SoleraL10n.t('api.vuelo_limitado_detalle'),
         ),
       if ((dia.tempMax ?? 0) >= 34)
-        const _Aviso(
+        _Aviso(
           Icons.thermostat,
-          'Calor fuerte',
-          'Revisa agua, sombra, ventilación y alzas en apiarios expuestos.',
+          SoleraL10n.t('api.calor_fuerte'),
+          SoleraL10n.t('api.calor_fuerte_detalle'),
         ),
       if ((dia.vientoMaxKmh ?? 0) >= 30 || (dia.rachaMaxKmh ?? 0) >= 45)
-        const _Aviso(
+        _Aviso(
           Icons.air,
-          'Viento para manejo o transporte',
-          'Evita abrir colmenas si no es necesario y asegura tapas y material.',
+          SoleraL10n.t('api.viento_manejo_transporte'),
+          SoleraL10n.t('api.viento_manejo_transporte_detalle'),
         ),
       if ((dia.lluviaMm ?? 0) >= 5)
-        const _Aviso(
+        _Aviso(
           Icons.water,
-          'Lluvia significativa',
-          'Puede reducir vuelo y dificultar accesos; revisa reservas tras varios días.',
+          SoleraL10n.t('api.lluvia_significativa'),
+          SoleraL10n.t('api.lluvia_significativa_detalle'),
         ),
     ];
     if (avisos.isEmpty) {
       avisos.add(
-        const _Aviso(
+        _Aviso(
           Icons.check_circle,
-          'Ventana razonable',
-          'Sin señales fuertes de frío, lluvia, viento o calor extremo.',
+          SoleraL10n.t('api.ventana_razonable'),
+          SoleraL10n.t('api.ventana_razonable_detalle'),
         ),
       );
     }
@@ -271,16 +271,16 @@ class _TarjetaDia extends StatelessWidget {
                 _Dato(
                     icono: Icons.air,
                     texto:
-                        '${_fmt(dia.vientoMaxKmh)} km/h · racha ${_fmt(dia.rachaMaxKmh)}'),
+                        '${_fmt(dia.vientoMaxKmh)} km/h · ${SoleraL10n.t('api.racha')} ${_fmt(dia.rachaMaxKmh)}'),
                 _Dato(
                     icono: Icons.opacity,
-                    texto: 'HR ${_fmt(dia.humedadMedia)} %'),
+                    texto: '${SoleraL10n.t('api.humedad_relativa_abrev')} ${_fmt(dia.humedadMedia)} %'),
                 _Dato(
                     icono: Icons.wb_sunny, texto: 'ET0 ${_fmt(dia.et0Mm)} mm'),
                 _Dato(
                     icono: Icons.grass,
                     texto:
-                        'Suelo ${_fmt(dia.sueloTemp6cmMedia)} °C · ${_fmt(dia.sueloHumedad3a9Media, decimales: 2)}'),
+                        '${SoleraL10n.t('api.suelo')} ${_fmt(dia.sueloTemp6cmMedia)} °C · ${_fmt(dia.sueloHumedad3a9Media, decimales: 2)}'),
               ],
             ),
           ],
@@ -324,12 +324,12 @@ class _EstadoError extends StatelessWidget {
           children: [
             const Icon(Icons.cloud_off, size: 42),
             const SizedBox(height: 12),
-            const Text('No se pudo cargar la previsión.'),
+            Text(SoleraL10n.t('api.no_se_pudo_cargar_prevision')),
             const SizedBox(height: 12),
             FilledButton.icon(
               onPressed: alReintentar,
               icon: const Icon(Icons.refresh),
-              label: const Text('Reintentar'),
+              label: Text(SoleraL10n.t('api.reintentar')),
             ),
           ],
         ),

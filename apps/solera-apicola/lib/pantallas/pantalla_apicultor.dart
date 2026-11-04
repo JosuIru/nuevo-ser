@@ -103,35 +103,35 @@ class _PantallaApicultorState extends State<PantallaApicultor> {
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-      appBar: AppBar(title: Text('Titular de la explotación')),
+      appBar: AppBar(title: Text(SoleraL10n.t('api.titular_explotacion'))),
       body: Form(
         key: _claveFormulario,
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            _Cabecera('Datos personales'),
-            _campo(_nif, 'NIF *', validador: _obligatorio('NIF')),
-            _campo(_nombre, 'Nombre o razón social *', validador: _obligatorio('Nombre')),
-            _campo(_direccion, 'Dirección de la explotación'),
-            _campo(_numeroRega, 'N.º REGA *',
-                hint: 'Código unificado nacional', validador: _obligatorio('N.º REGA')),
-            _campo(_numeroExplotacion, 'N.º explotación apícola',
-                hint: 'Código autonómico específico (si aplica)'),
-            _campo(_telefono, 'Teléfono', tipo: TextInputType.phone),
-            _campo(_email, 'Email', tipo: TextInputType.emailAddress),
+            _Cabecera(SoleraL10n.t('api.datos_personales')),
+            _campo(_nif, 'NIF *', validador: _obligatorio),
+            _campo(_nombre, '${SoleraL10n.t('api.nombre_o_razon_social')} *', validador: _obligatorio),
+            _campo(_direccion, SoleraL10n.t('api.direccion_explotacion')),
+            _campo(_numeroRega, '${SoleraL10n.t('api.numero_rega')} *',
+                hint: SoleraL10n.t('api.codigo_unificado_nacional'), validador: _obligatorio),
+            _campo(_numeroExplotacion, SoleraL10n.t('api.numero_explotacion_apicola'),
+                hint: SoleraL10n.t('api.codigo_autonomico_pista')),
+            _campo(_telefono, SoleraL10n.t('api.telefono'), tipo: TextInputType.phone),
+            _campo(_email, SoleraL10n.t('api.correo_electronico'), tipo: TextInputType.emailAddress),
             SizedBox(height: 16),
-            _Cabecera('Veterinario asesor'),
+            _Cabecera(SoleraL10n.t('api.veterinario_asesor')),
             Padding(
               padding: EdgeInsets.only(bottom: 8),
               child: Text(
-                'Obligatorio para tratamientos sanitarios. El número de colegiado debe constar en cualquier receta veterinaria.',
+                SoleraL10n.t('api.veterinario_asesor_ayuda'),
                 style: TextStyle(fontSize: 12, color: Colors.black54),
               ),
             ),
-            _campo(_nombreVeterinario, 'Nombre del veterinario'),
-            _campo(_nifVeterinario, 'NIF del veterinario'),
-            _campo(_numeroColegiado, 'N.º de colegiado'),
-            _campo(_telefonoVeterinario, 'Teléfono del veterinario',
+            _campo(_nombreVeterinario, SoleraL10n.t('api.nombre_veterinario')),
+            _campo(_nifVeterinario, SoleraL10n.t('api.nif_veterinario')),
+            _campo(_numeroColegiado, SoleraL10n.t('api.numero_colegiado')),
+            _campo(_telefonoVeterinario, SoleraL10n.t('api.telefono_veterinario'),
                 tipo: TextInputType.phone),
             SizedBox(height: 24),
             FilledButton.icon(
@@ -172,8 +172,8 @@ class _PantallaApicultorState extends State<PantallaApicultor> {
     );
   }
 
-  String? Function(String?) _obligatorio(String campo) =>
-      (v) => (v ?? '').trim().isEmpty ? '$campo obligatorio' : null;
+  String? _obligatorio(String? v) =>
+      (v ?? '').trim().isEmpty ? SoleraL10n.t('api.campo_obligatorio') : null;
 }
 
 class _Cabecera extends StatelessWidget {

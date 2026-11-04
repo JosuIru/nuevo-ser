@@ -94,7 +94,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 children: [
                   TextButton(
                     onPressed: esUltima ? null : _terminar,
-                    child: Text(esUltima ? '' : 'Saltar'),
+                    child: Text(esUltima ? '' : SoleraL10n.t('api.saltar')),
                   ),
                   const Spacer(),
                   FilledButton(
@@ -108,7 +108,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                         );
                       }
                     },
-                    child: Text(esUltima ? 'Empezar' : 'Siguiente'),
+                    child: Text(esUltima ? SoleraL10n.t('api.empezar') : SoleraL10n.t('api.siguiente')),
                   ),
                 ],
               ),
@@ -127,29 +127,24 @@ class _DatosPagina {
   const _DatosPagina(this.icono, this.titulo, this.texto);
 }
 
-const _paginas = <_DatosPagina>[
-  _DatosPagina(
-    Icons.hive,
-    'Tus colmenas en el mapa',
-    'Cataloga cada colmena con matrícula, raza, año de la reina y ubicación GPS. '
-        'Trashumancia sin líos: cada colmena conserva su historia y cada traslado '
-        'queda registrado con origen, destino y fecha.',
-  ),
-  _DatosPagina(
-    Icons.auto_awesome,
-    'Diagnóstico con IA por foto',
-    'Hazle una foto a un panal o a una colmena con síntomas y la IA propone un diagnóstico '
-        '(varroa, nosema, loque, vespa velutina…). Las patologías de declaración obligatoria '
-        'se destacan automáticamente. Tú decides; nada se aplica sin tu revisión y receta '
-        'del veterinario asesor.',
-  ),
-  _DatosPagina(
-    Icons.description,
-    'Libro REGA al alcance',
-    'Registra cada tratamiento sanitario con su sustancia activa, lote, factura y plazo de '
-        'seguridad. Exporta el libro oficial (REGA / SITRAN-AP) en PDF firmable para inspección.',
-  ),
-];
+/// Getter (no constante) para que el texto salga en el idioma actual.
+List<_DatosPagina> get _paginas => <_DatosPagina>[
+      _DatosPagina(
+        Icons.hive,
+        SoleraL10n.t('api.onboarding_mapa_titulo'),
+        SoleraL10n.t('api.onboarding_mapa_texto'),
+      ),
+      _DatosPagina(
+        Icons.auto_awesome,
+        SoleraL10n.t('api.onboarding_ia_titulo'),
+        SoleraL10n.t('api.onboarding_ia_texto'),
+      ),
+      _DatosPagina(
+        Icons.description,
+        SoleraL10n.t('api.onboarding_rega_titulo'),
+        SoleraL10n.t('api.onboarding_rega_texto'),
+      ),
+    ];
 
 class _PaginaOnboarding extends StatelessWidget {
   final _DatosPagina datos;

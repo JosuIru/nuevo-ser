@@ -25,7 +25,9 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
   final _servicio = ServicioMeteoAgro();
   final _persistenciaApiario = ApiarioActivoPersistido();
   Future<PrevisionAgro>? _futuro;
-  String _origen = 'apiario';
+  /// Nombre del apiario, o clave de traducción si [_origenEsClave].
+  String _origen = '';
+  bool _origenEsClave = false;
 
   @override
   void initState() {
@@ -36,6 +38,7 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
   Future<PrevisionAgro> _cargar() async {
     final destino = await _resolverDestino();
     _origen = destino.nombre;
+    _origenEsClave = destino.nombreEsClave;
     return _servicio.obtener(
       latitud: destino.latitud,
       longitud: destino.longitud,
@@ -65,14 +68,16 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
       final ultima = await Geolocator.getLastKnownPosition();
       if (ultima != null) {
         return _DestinoMeteo(
-          nombre: 'GPS reciente',
+          nombre: 'api.gps_reciente',
+          nombreEsClave: true,
           latitud: ultima.latitude,
           longitud: ultima.longitude,
         );
       }
     }
     return const _DestinoMeteo(
-      nombre: 'centro de referencia',
+      nombre: 'api.centro_de_referencia',
+      nombreEsClave: true,
       latitud: 40.4,
       longitud: -3.7,
     );
@@ -90,7 +95,8 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
         conPosicion.map((c) => c.ultimaLongitud!).reduce((a, b) => a + b) /
             conPosicion.length;
     return _DestinoMeteo(
-      nombre: 'centro de colmenas',
+      nombre: 'api.centro_de_colmenas',
+      nombreEsClave: true,
       latitud: lat,
       longitud: lng,
     );
@@ -114,31 +120,30 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
             future: _futuro,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
-                return const Row(
+                return Row(
                   children: [
-                    Icon(Icons.cloud_outlined, color: Color(0xFFB07A1F)),
-                    SizedBox(width: 12),
-                    Text('Cargando previsión meteo…'),
+                    const Icon(Icons.cloud_outlined, color: Color(0xFFB07A1F)),
+                    const SizedBox(width: 12),
+                    Text(SoleraL10n.t('api.cargando_prevision_meteo')),
                   ],
                 );
               }
               if (snapshot.hasError || snapshot.data == null) {
-                return const Row(
+                return Row(
                   children: [
-                    Icon(Icons.cloud_off, color: Colors.grey),
-                    SizedBox(width: 12),
+                    const Icon(Icons.cloud_off, color: Colors.grey),
+                    const SizedBox(width: 12),
                     Expanded(
-                      child: Text(
-                          'No se pudo cargar la previsión. Toca para reintentar.'),
+                      child: Text(SoleraL10n.t('api.prevision_error_toca_reintentar')),
                     ),
-                    Icon(Icons.chevron_right, color: Colors.grey),
+                    const Icon(Icons.chevron_right, color: Colors.grey),
                   ],
                 );
               }
               final prevision = snapshot.data!;
               final hoy = prevision.hoy;
               if (hoy == null) {
-                return const Text('Sin datos meteo para hoy.');
+                return Text(SoleraL10n.t('api.sin_datos_meteo_hoy'));
               }
               final avisos = _avisosClave(hoy);
               return Column(
@@ -150,7 +155,9 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Meteo hoy · $_origen',
+                          SoleraL10n.tf('api.meteo_hoy_origen', {
+                            'origen': _origenEsClave ? SoleraL10n.t(_origen) : _origen,
+                          }),
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 14),
                           overflow: TextOverflow.ellipsis,
@@ -212,15 +219,13 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
   List<_AvisoMeteo> _avisosClave(DiaMeteoAgro dia) {
     final avisos = <_AvisoMeteo>[];
     if (dia.vueloAbejasLimitado) {
-      avisos.add(const _AvisoMeteo(
-          Icons.hive, 'Vuelo de abejas limitado'));
+      avisos.add(_AvisoMeteo(Icons.hive, SoleraL10n.t('api.vuelo_abejas_limitado')));
     }
     if (dia.riesgoHelada) {
-      avisos.add(const _AvisoMeteo(Icons.ac_unit, 'Riesgo de helada'));
+      avisos.add(_AvisoMeteo(Icons.ac_unit, SoleraL10n.t('api.riesgo_de_helada')));
     }
     if (dia.malDiaTratamiento) {
-      avisos.add(const _AvisoMeteo(
-          Icons.science, 'Manejo delicado (viento / lluvia)'));
+      avisos.add(_AvisoMeteo(Icons.science, SoleraL10n.t('api.manejo_delicado_viento_lluvia')));
     }
     return avisos;
   }
@@ -253,11 +258,13 @@ class _AvisoMeteo {
 
 class _DestinoMeteo {
   final String nombre;
+  final bool nombreEsClave;
   final double latitud;
   final double longitud;
 
   const _DestinoMeteo({
     required this.nombre,
+    this.nombreEsClave = false,
     required this.latitud,
     required this.longitud,
   });

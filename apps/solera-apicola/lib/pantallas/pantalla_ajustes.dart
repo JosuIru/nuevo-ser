@@ -14,14 +14,9 @@ import '../servicios/cliente_anthropic.dart';
 Widget pantallaClaveAnthropicApicola() => PantallaClaveAnthropic(
       estado: estadoClaveAnthropicApicola,
       nombreApp: 'Larrea Apícola',
-      titulo: 'Identificación con IA',
-      queIdentifica: 'Identifica varroa, nosema, loque y otras patologías por foto',
-      descripcion:
-          'Larrea Apícola puede usar Claude AI de Anthropic para analizar la foto que adjuntas '
-          'a una incidencia y proponer un diagnóstico, la severidad y el manejo cultural. Si detecta '
-          'una patología de declaración obligatoria (loque americana, vespa velutina, escarabajo '
-          'de las colmenas), lo destaca con un aviso en rojo. La misma clave sirve para el asistente '
-          '(chat) de la pantalla Hoy.',
+      titulo: SoleraL10n.t('identificacion_con_ia'),
+      queIdentifica: SoleraL10n.t('api.ia_que_identifica'),
+      descripcion: SoleraL10n.t('api.ia_descripcion_clave'),
       probarClave: probarClaveAnthropic,
     );
 
@@ -44,33 +39,33 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_explotacion')),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text('Titular de la explotación'),
-            subtitle: Text('NIF, n.º REGA, contacto y veterinario asesor'),
+            title: Text(SoleraL10n.t('api.titular_explotacion')),
+            subtitle: Text(SoleraL10n.t('api.titular_explotacion_ayuda')),
             onTap: () => _abrir(context, PantallaApicultor()),
           ),
           ListTile(
             leading: Icon(Icons.account_balance),
             title: Text(SoleraL10n.t('configuracion_fiscal')),
-            subtitle: Text('Régimen IRPF + IVA · provisional'),
+            subtitle: Text(SoleraL10n.t('api.regimen_irpf_iva_provisional')),
             onTap: () => _abrir(context, PantallaConfiguracionFiscal()),
           ),
           ListTile(
             leading: Icon(Icons.contacts),
-            title: Text('Clientes y proveedores'),
-            subtitle: Text('Terceros con NIF · alimentan el modelo 347'),
+            title: Text(SoleraL10n.t('api.clientes_y_proveedores')),
+            subtitle: Text(SoleraL10n.t('api.terceros_ayuda')),
             onTap: () => _abrir(context, PantallaTerceros()),
           ),
           ListTile(
             leading: Icon(Icons.hub),
-            title: Text('Apiarios'),
-            subtitle: Text('Asentamientos, código SITRAN y sus colmenas'),
+            title: Text(SoleraL10n.t('api.apiarios')),
+            subtitle: Text(SoleraL10n.t('api.apiarios_ayuda')),
             onTap: () => _abrir(context, const PantallaGestionApiarios()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
-            subtitle: Text('Clave de Anthropic para la foto y el asistente'),
+            subtitle: Text(SoleraL10n.t('api.clave_anthropic_ayuda')),
             onTap: () => _abrir(context, pantallaClaveAnthropicApicola()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_preferencias')),
@@ -81,15 +76,15 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
           ListTile(
             leading: Icon(Icons.backup),
-            title: Text('Copia de seguridad'),
-            subtitle: Text('Empaqueta la base de datos y las fotos en un ZIP, y las restaura'),
+            title: Text(SoleraL10n.t('copia_de_seguridad')),
+            subtitle: Text(SoleraL10n.t('api.copia_seguridad_ayuda')),
             onTap: () => _abrir(context, const PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),
           ListTile(
             leading: Icon(Icons.system_update),
             title: Text(SoleraL10n.t('comprobar_actualizaciones')),
-            subtitle: Text('Versión instalada y última publicada'),
+            subtitle: Text(SoleraL10n.t('api.version_instalada_y_ultima')),
             trailing: Icon(Icons.chevron_right),
             onTap: () => _abrir(
               context,
@@ -102,7 +97,7 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.info_outline),
             title: Text(SoleraL10n.t('acerca_de')),
-            subtitle: Text('Versión, créditos, compromisos legales'),
+            subtitle: Text(SoleraL10n.t('api.acerca_de_ayuda')),
             onTap: () => _abrir(context, PantallaAcerca()),
           ),
         ],

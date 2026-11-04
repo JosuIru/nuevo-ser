@@ -18,18 +18,18 @@ class PantallaRegistros extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registros')),
+      appBar: AppBar(title: Text(SoleraL10n.t('api.registros'))),
       body: ListView(
         children: [
-          const CabeceraSeccionAjustes('Libros oficiales'),
+          CabeceraSeccionAjustes(SoleraL10n.t('api.libros_oficiales')),
           ListTile(
             leading: const Icon(Icons.description),
-            title: const Text('Libro REGA'),
-            subtitle: const Text('Registro oficial de la explotación en PDF'),
+            title: Text(SoleraL10n.t('api.libro_rega')),
+            subtitle: Text(SoleraL10n.t('api.libro_rega_ayuda')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(context, const PantallaLibroRega()),
           ),
-          const CabeceraSeccionAjustes('Economía'),
+          CabeceraSeccionAjustes(SoleraL10n.t('api.economia')),
           ListTile(
             leading: const Icon(Icons.receipt),
             title: Text(SoleraL10n.t('facturas')),
@@ -40,14 +40,14 @@ class PantallaRegistros extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.menu_book),
             title: Text(SoleraL10n.t('libro_economico')),
-            subtitle: const Text('Ingresos y gastos · provisional'),
+            subtitle: Text(SoleraL10n.t('api.ingresos_y_gastos_provisional')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(context, const PantallaLibroEconomico()),
           ),
           ListTile(
             leading: const Icon(Icons.summarize),
-            title: const Text('Extracto económico'),
-            subtitle: const Text('Resumen anual en PDF · provisional'),
+            title: Text(SoleraL10n.t('api.extracto_economico')),
+            subtitle: Text(SoleraL10n.t('api.extracto_economico_ayuda')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(
               context,

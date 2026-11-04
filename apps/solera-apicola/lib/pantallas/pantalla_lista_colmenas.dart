@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import '../datos/base_datos.dart';
 import '../modelos/apiario.dart';
 import '../modelos/colmena.dart';
+import '../utiles/etiquetas_visibles.dart';
 import 'pantalla_ficha_colmena.dart';
 
 /// Lista filtrable de colmenas por matrícula, raza, estado o notas.
@@ -50,19 +51,6 @@ class _PantallaListaColmenasState extends State<PantallaListaColmenas> {
     }).toList();
   }
 
-  String _etiquetaEstado(EstadoColmena e) {
-    switch (e) {
-      case EstadoColmena.viva:
-        return 'Viva';
-      case EstadoColmena.vacia:
-        return 'Vacía';
-      case EstadoColmena.descolmenada:
-        return 'Descolmenada';
-      case EstadoColmena.enjambreNuevo:
-        return 'Enjambre nuevo';
-    }
-  }
-
   Color _colorEstado(EstadoColmena e, ColorScheme paleta) {
     switch (e) {
       case EstadoColmena.viva:
@@ -82,17 +70,17 @@ class _PantallaListaColmenasState extends State<PantallaListaColmenas> {
     final paleta = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Colmenas'),
+        title: Text(SoleraL10n.t('api.colmenas')),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(56),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
             child: TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 isDense: true,
-                hintText: 'Buscar (matrícula, raza, tipo, notas)',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
+                hintText: SoleraL10n.t('api.buscar_colmenas_pista'),
+                prefixIcon: const Icon(Icons.search),
+                border: const OutlineInputBorder(),
                 fillColor: Colors.white,
                 filled: true,
               ),
@@ -106,7 +94,7 @@ class _PantallaListaColmenasState extends State<PantallaListaColmenas> {
           : filtradas.isEmpty
               ? Center(
                   child: Text(
-                    _colmenas.isEmpty ? 'Sin colmenas registradas todavía.' : 'Sin resultados.',
+                    _colmenas.isEmpty ? SoleraL10n.t('api.sin_colmenas_todavia') : SoleraL10n.t('api.sin_resultados'),
                     style: TextStyle(color: Colors.grey.shade600),
                   ),
                 )
@@ -126,11 +114,15 @@ class _PantallaListaColmenasState extends State<PantallaListaColmenas> {
                       ),
                       title: Text(c.matricula),
                       subtitle: Text([
-                        a?.nombre ?? 'Punto suelto',
+                        a?.nombre ?? SoleraL10n.t('api.punto_suelto'),
                         if (c.razaId.isNotEmpty) c.razaId,
-                        _etiquetaEstado(c.estado),
-                        if (c.anoReina != null) 'Reina ${c.anoReina} (${c.colorMarcaReina})',
-                        'Alta $fechaCreacion',
+                        etiquetaEstadoColmena(c.estado),
+                        if (c.anoReina != null)
+                          SoleraL10n.tf('api.reina_ano_color', {
+                            'ano': c.anoReina,
+                            'color': etiquetaColorMarcaReina(c.colorMarcaReina),
+                          }),
+                        SoleraL10n.tf('api.alta_fecha', {'fecha': fechaCreacion}),
                       ].join(' · ')),
                       onTap: () async {
                         final cambio = await Navigator.of(context).push<bool>(

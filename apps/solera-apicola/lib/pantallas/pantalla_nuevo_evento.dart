@@ -12,6 +12,7 @@ import '../modelos/incidencia_apicola.dart';
 import '../modelos/movimiento.dart';
 import '../modelos/revision.dart';
 import '../modelos/tratamiento_varroa.dart';
+import '../utiles/etiquetas_visibles.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 /// Tipo de evento que crea esta pantalla. Apícola tiene 5 tipos —
@@ -79,15 +80,15 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
   String get _titulo {
     switch (widget.tipo) {
       case TipoEventoNuevo.revision:
-        return 'Nueva revisión';
+        return SoleraL10n.t('api.nueva_revision');
       case TipoEventoNuevo.cosecha:
-        return 'Nueva cosecha';
+        return SoleraL10n.t('api.nueva_cosecha');
       case TipoEventoNuevo.tratamiento:
-        return 'Nuevo tratamiento';
+        return SoleraL10n.t('api.nuevo_tratamiento');
       case TipoEventoNuevo.incidencia:
-        return 'Nueva incidencia';
+        return SoleraL10n.t('api.nueva_incidencia');
       case TipoEventoNuevo.movimiento:
-        return 'Nuevo movimiento';
+        return SoleraL10n.t('api.nuevo_movimiento');
     }
   }
 
@@ -310,7 +311,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               contentPadding: EdgeInsets.zero,
               leading: Icon(Icons.event),
               title: Text(formatoFecha.format(_fecha)),
-              trailing: TextButton(onPressed: _elegirFecha, child: Text('Cambiar')),
+              trailing: TextButton(onPressed: _elegirFecha, child: Text(SoleraL10n.t('api.cambiar'))),
             ),
             Divider(),
             ..._camposEspecificos(),
@@ -318,7 +319,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             if (widget.tipo == TipoEventoNuevo.revision ||
                 widget.tipo == TipoEventoNuevo.cosecha ||
                 widget.tipo == TipoEventoNuevo.incidencia) ...[
-              Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(SoleraL10n.t('api.fotos'), style: TextStyle(fontWeight: FontWeight.bold)),
               SizedBox(height: 4),
               SelectorFotos(rutas: _rutasFotos, alCambiar: (r) => setState(() => _rutasFotos = r)),
               SizedBox(height: 12),
@@ -326,7 +327,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNotas,
               decoration: InputDecoration(
-                labelText: 'Notas',
+                labelText: SoleraL10n.t('api.notas'),
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
@@ -354,28 +355,28 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           DropdownButtonFormField<String>(
             initialValue: _presenciaReina,
-            decoration: InputDecoration(labelText: 'Reina', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'presente', child: Text('Presente')),
-              DropdownMenuItem(value: 'ausente', child: Text('Ausente')),
-              DropdownMenuItem(value: 'no_observada', child: Text('No observada')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.reina'), border: OutlineInputBorder()),
+            items: [
+              DropdownMenuItem(value: 'presente', child: Text(etiquetaPresenciaReina('presente'))),
+              DropdownMenuItem(value: 'ausente', child: Text(etiquetaPresenciaReina('ausente'))),
+              DropdownMenuItem(value: 'no_observada', child: Text(etiquetaPresenciaReina('no_observada'))),
             ],
             onChanged: (v) => setState(() => _presenciaReina = v ?? 'no_observada'),
           ),
           SizedBox(height: 12),
-          _selectorNumero1A5('Postura', _nivelPostura, (v) => setState(() => _nivelPostura = v)),
+          _selectorNumero1A5(SoleraL10n.t('api.postura'), _nivelPostura, (v) => setState(() => _nivelPostura = v)),
           SizedBox(height: 8),
-          _selectorNumero1A5('Cría operculada', _nivelCriaOperculada, (v) => setState(() => _nivelCriaOperculada = v)),
+          _selectorNumero1A5(SoleraL10n.t('api.cria_operculada'), _nivelCriaOperculada, (v) => setState(() => _nivelCriaOperculada = v)),
           SizedBox(height: 8),
-          _selectorNumero1A5('Reservas de miel', _nivelMiel, (v) => setState(() => _nivelMiel = v)),
+          _selectorNumero1A5(SoleraL10n.t('api.reservas_de_miel'), _nivelMiel, (v) => setState(() => _nivelMiel = v)),
           SizedBox(height: 8),
-          _selectorNumero1A5('Reservas de polen', _nivelPolen, (v) => setState(() => _nivelPolen = v)),
+          _selectorNumero1A5(SoleraL10n.t('api.reservas_de_polen'), _nivelPolen, (v) => setState(() => _nivelPolen = v)),
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorVarroaCaida,
             decoration: InputDecoration(
-              labelText: 'Varroa caída/día (bandeja adhesiva)',
-              hintText: 'Recuento en 24 h',
+              labelText: SoleraL10n.t('api.varroa_caida_dia'),
+              hintText: SoleraL10n.t('api.recuento_en_24_h'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -386,7 +387,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           TextFormField(
             controller: _controladorKilosMiel,
-            decoration: InputDecoration(labelText: 'Kilos de miel', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.kilos_de_miel'), border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -395,7 +396,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorKilosCera,
-            decoration: InputDecoration(labelText: 'Kilos de cera', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.kilos_de_cera'), border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -404,7 +405,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorKilosPolen,
-            decoration: InputDecoration(labelText: 'Kilos de polen', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.kilos_de_polen'), border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -413,7 +414,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorKilosPropoleo,
-            decoration: InputDecoration(labelText: 'Kilos de propóleo', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.kilos_de_propoleo'), border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -422,7 +423,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorAlza,
-            decoration: InputDecoration(labelText: 'N.º alza (opcional)', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.numero_alza_opcional'), border: OutlineInputBorder()),
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
@@ -432,20 +433,20 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           DropdownButtonFormField<String>(
             initialValue: _tipoTratamiento,
-            decoration: InputDecoration(labelText: 'Tipo', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'varroa', child: Text('Varroa')),
-              DropdownMenuItem(value: 'nosema', child: Text('Nosema')),
-              DropdownMenuItem(value: 'sanitario_general', child: Text('Sanitario general')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.tipo'), border: OutlineInputBorder()),
+            items: [
+              DropdownMenuItem(value: 'varroa', child: Text(etiquetaTipoTratamiento('varroa'))),
+              DropdownMenuItem(value: 'nosema', child: Text(etiquetaTipoTratamiento('nosema'))),
+              DropdownMenuItem(value: 'sanitario_general', child: Text(etiquetaTipoTratamiento('sanitario_general'))),
+              DropdownMenuItem(value: 'otro', child: Text(etiquetaTipoTratamiento('otro'))),
             ],
             onChanged: (v) => setState(() => _tipoTratamiento = v ?? 'otro'),
           ),
           SizedBox(height: 12),
           CampoAutocompleteCatalogo<SustanciaVarroa>(
             controlador: _controladorSustancia,
-            labelText: 'Sustancia activa',
-            hintText: 'ácido oxálico, timol, amitraz…',
+            labelText: SoleraL10n.t('api.sustancia_activa'),
+            hintText: SoleraL10n.t('api.ejemplos_sustancia_activa'),
             opcionesCompletas: catalogoSustanciasVarroa,
             buscar: buscarSustanciasVarroa,
             displayStringForOption: (s) => s.nombreCanonico,
@@ -454,22 +455,22 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorDosis,
             decoration: InputDecoration(
-              labelText: 'Dosis',
-              hintText: '2 g/colmena, 1 tira/colmena…',
+              labelText: SoleraL10n.t('api.dosis'),
+              hintText: SoleraL10n.t('api.ejemplos_dosis'),
               border: OutlineInputBorder(),
             ),
           ),
           SizedBox(height: 12),
           DropdownButtonFormField<String>(
             initialValue: _vehiculo,
-            decoration: InputDecoration(labelText: 'Vehículo', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'sublimacion', child: Text('Sublimación')),
-              DropdownMenuItem(value: 'goteo', child: Text('Goteo')),
-              DropdownMenuItem(value: 'sandwich', child: Text('Sándwich')),
-              DropdownMenuItem(value: 'tira', child: Text('Tira')),
-              DropdownMenuItem(value: 'placa', child: Text('Placa')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.vehiculo'), border: OutlineInputBorder()),
+            items: [
+              DropdownMenuItem(value: 'sublimacion', child: Text(SoleraL10n.t('api.vehiculo_sublimacion'))),
+              DropdownMenuItem(value: 'goteo', child: Text(SoleraL10n.t('api.vehiculo_goteo'))),
+              DropdownMenuItem(value: 'sandwich', child: Text(SoleraL10n.t('api.vehiculo_sandwich'))),
+              DropdownMenuItem(value: 'tira', child: Text(SoleraL10n.t('api.vehiculo_tira'))),
+              DropdownMenuItem(value: 'placa', child: Text(SoleraL10n.t('api.vehiculo_placa'))),
+              DropdownMenuItem(value: 'otro', child: Text(SoleraL10n.t('api.otro'))),
             ],
             onChanged: (v) => setState(() => _vehiculo = v ?? 'otro'),
           ),
@@ -478,17 +479,17 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.event_busy),
             title: Text(_fechaRetirada == null
-                ? 'Sin fecha de retirada'
-                : 'Retirada ${formatoFecha.format(_fechaRetirada!)}'),
+                ? SoleraL10n.t('api.sin_fecha_de_retirada')
+                : SoleraL10n.tf('api.retirada_fecha', {'fecha': formatoFecha.format(_fechaRetirada!)})),
             trailing: TextButton(
               onPressed: _elegirFechaRetirada,
-              child: Text(_fechaRetirada == null ? 'Elegir' : 'Cambiar'),
+              child: Text(_fechaRetirada == null ? SoleraL10n.t('api.elegir') : SoleraL10n.t('api.cambiar')),
             ),
           ),
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
-              labelText: 'Plazo de seguridad (días)',
+              labelText: SoleraL10n.t('api.plazo_de_seguridad_dias'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -498,8 +499,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorLote,
             decoration: InputDecoration(
-              labelText: 'Lote del producto',
-              hintText: 'Trazabilidad sanitaria',
+              labelText: SoleraL10n.t('api.lote_del_producto'),
+              hintText: SoleraL10n.t('api.trazabilidad_sanitaria'),
               border: OutlineInputBorder(),
             ),
           ),
@@ -507,7 +508,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorFactura,
             decoration: InputDecoration(
-              labelText: 'N.º de factura',
+              labelText: SoleraL10n.t('api.numero_de_factura'),
               border: OutlineInputBorder(),
             ),
           ),
@@ -516,27 +517,27 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           DropdownButtonFormField<String>(
             initialValue: _tipoIncidencia,
-            decoration: InputDecoration(labelText: 'Tipo', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'sanitario', child: Text('Sanitario')),
-              DropdownMenuItem(value: 'mortalidad', child: Text('Mortalidad')),
-              DropdownMenuItem(value: 'enjambrazon', child: Text('Enjambrazón')),
-              DropdownMenuItem(value: 'robo', child: Text('Robo')),
-              DropdownMenuItem(value: 'vespa_velutina', child: Text('Vespa velutina')),
-              DropdownMenuItem(value: 'polilla_cera', child: Text('Polilla de la cera')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.tipo'), border: OutlineInputBorder()),
+            items: [
+              DropdownMenuItem(value: 'sanitario', child: Text(etiquetaTipoIncidencia('sanitario'))),
+              DropdownMenuItem(value: 'mortalidad', child: Text(etiquetaTipoIncidencia('mortalidad'))),
+              DropdownMenuItem(value: 'enjambrazon', child: Text(etiquetaTipoIncidencia('enjambrazon'))),
+              DropdownMenuItem(value: 'robo', child: Text(etiquetaTipoIncidencia('robo'))),
+              DropdownMenuItem(value: 'vespa_velutina', child: Text(etiquetaTipoIncidencia('vespa_velutina'))),
+              DropdownMenuItem(value: 'polilla_cera', child: Text(etiquetaTipoIncidencia('polilla_cera'))),
+              DropdownMenuItem(value: 'otro', child: Text(etiquetaTipoIncidencia('otro'))),
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
           ),
           SizedBox(height: 12),
           CampoAutocompleteCatalogo<PlagaApicola>(
             controlador: _controladorDiagnostico,
-            labelText: 'Diagnóstico',
-            hintText: 'varroa, nosema, loque americana, ascosferiosis…',
+            labelText: SoleraL10n.t('api.diagnostico'),
+            hintText: SoleraL10n.t('api.ejemplos_diagnostico'),
             opcionesCompletas: catalogoPlagasApicolas,
             buscar: buscarPlagasApicolas,
             displayStringForOption: (p) => p.nombreComun,
-            validator: (v) => (v ?? '').trim().isEmpty ? 'Indica el diagnóstico' : null,
+            validator: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('api.indica_el_diagnostico') : null,
           ),
           SizedBox(height: 8),
           BotonIdentificarIA(
@@ -558,36 +559,35 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           if (_consultarDeclaracionObligatoria(_controladorDiagnostico.text)) ...[
             SizedBox(height: 8),
             BannerDeclaracionObligatoria(
-              texto:
-                  'Esta patología es de declaración obligatoria al servicio veterinario oficial.',
+              texto: SoleraL10n.t('api.patologia_declaracion_obligatoria_aviso'),
             ),
           ],
           SizedBox(height: 12),
-          _selectorNumero1A5('Severidad', _severidad, (v) => setState(() => _severidad = v)),
+          _selectorNumero1A5(SoleraL10n.t('api.severidad'), _severidad, (v) => setState(() => _severidad = v)),
         ];
       case TipoEventoNuevo.movimiento:
         return [
           DropdownButtonFormField<String>(
             initialValue: _motivoMovimiento,
-            decoration: InputDecoration(labelText: 'Motivo', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.motivo'), border: OutlineInputBorder()),
             items: [
-              const DropdownMenuItem(value: 'mielada', child: Text('Mielada (trashumancia)')),
-              const DropdownMenuItem(value: 'invernada', child: Text('Invernada')),
-              const DropdownMenuItem(value: 'sanitario', child: Text('Sanitario')),
-              const DropdownMenuItem(value: 'recogida_enjambre', child: Text('Recogida de enjambre')),
-              const DropdownMenuItem(value: 'compra', child: Text('Compra')),
-              const DropdownMenuItem(value: 'venta', child: Text('Venta')),
-              DropdownMenuItem(value: 'baja', child: Text(SoleraL10n.t('baja'))),
-              const DropdownMenuItem(value: 'otro', child: Text('Otro')),
+              DropdownMenuItem(value: 'mielada', child: Text(etiquetaMotivoMovimiento('mielada'))),
+              DropdownMenuItem(value: 'invernada', child: Text(etiquetaMotivoMovimiento('invernada'))),
+              DropdownMenuItem(value: 'sanitario', child: Text(etiquetaMotivoMovimiento('sanitario'))),
+              DropdownMenuItem(value: 'recogida_enjambre', child: Text(etiquetaMotivoMovimiento('recogida_enjambre'))),
+              DropdownMenuItem(value: 'compra', child: Text(etiquetaMotivoMovimiento('compra'))),
+              DropdownMenuItem(value: 'venta', child: Text(etiquetaMotivoMovimiento('venta'))),
+              DropdownMenuItem(value: 'baja', child: Text(etiquetaMotivoMovimiento('baja'))),
+              DropdownMenuItem(value: 'otro', child: Text(etiquetaMotivoMovimiento('otro'))),
             ],
             onChanged: (v) => setState(() => _motivoMovimiento = v ?? 'otro'),
           ),
           SizedBox(height: 12),
           DropdownButtonFormField<int?>(
             initialValue: _apiarioOrigenId,
-            decoration: InputDecoration(labelText: 'Apiario origen', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.apiario_origen'), border: OutlineInputBorder()),
             items: [
-              const DropdownMenuItem<int?>(value: null, child: Text('— ninguno (alta/captura/compra) —')),
+              DropdownMenuItem<int?>(value: null, child: Text(SoleraL10n.t('api.ninguno_alta_captura_compra'))),
               for (final a in _apiariosDisponibles)
                 DropdownMenuItem<int?>(value: a.id, child: Text(a.nombre)),
             ],
@@ -596,9 +596,9 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           DropdownButtonFormField<int?>(
             initialValue: _apiarioDestinoId,
-            decoration: InputDecoration(labelText: 'Apiario destino', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('api.apiario_destino'), border: OutlineInputBorder()),
             items: [
-              const DropdownMenuItem<int?>(value: null, child: Text('— ninguno (baja/venta) —')),
+              DropdownMenuItem<int?>(value: null, child: Text(SoleraL10n.t('api.ninguno_baja_venta'))),
               for (final a in _apiariosDisponibles)
                 DropdownMenuItem<int?>(value: a.id, child: Text(a.nombre)),
             ],
@@ -608,7 +608,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorNumeroColmenas,
             decoration: InputDecoration(
-              labelText: 'N.º de colmenas movidas',
+              labelText: SoleraL10n.t('api.numero_de_colmenas_movidas'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,

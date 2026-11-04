@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solera_apicola/main.dart';
 import 'package:solera_apicola/pantallas/pantalla_onboarding.dart';
@@ -9,8 +10,8 @@ void main() {
     await tester.pumpWidget(const SoleraApicolaApp());
     await tester.pumpAndSettle();
     // El onboarding tiene 3 páginas — la primera y al final hay CTA Siguiente.
-    expect(find.text('Tus colmenas en el mapa'), findsOneWidget);
-    expect(find.text('Siguiente'), findsOneWidget);
+    expect(find.text(SoleraL10n.t('api.onboarding_mapa_titulo')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('api.siguiente')), findsOneWidget);
   });
 
   testWidgets('Onboarding visto: arranca directamente sin onboarding', (tester) async {
@@ -22,6 +23,6 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
     // No debe quedar onboarding en árbol.
-    expect(find.text('Tus colmenas en el mapa'), findsNothing);
+    expect(find.text(SoleraL10n.t('api.onboarding_mapa_titulo')), findsNothing);
   });
 }

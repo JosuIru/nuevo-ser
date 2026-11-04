@@ -23,20 +23,22 @@ class PantallaConfiguracionFiscal extends StatefulWidget {
 
 class _PantallaConfiguracionFiscalState
     extends State<PantallaConfiguracionFiscal> {
-  static const _opcionesIrpf = <_Opcion>[
-    _Opcion('sin_elegir', 'Sin elegir'),
-    _Opcion(
-      'estimacion_directa_simplificada',
-      'Estimación directa simplificada',
-    ),
-    _Opcion('estimacion_directa_normal', 'Estimación directa normal'),
-  ];
+  // Getters (no constantes): el título se traduce al idioma actual.
+  List<_Opcion> get _opcionesIrpf => <_Opcion>[
+        _Opcion('sin_elegir', SoleraL10n.t('api.fis_sin_elegir')),
+        _Opcion(
+          'estimacion_directa_simplificada',
+          SoleraL10n.t('api.fis_estimacion_directa_simplificada'),
+        ),
+        _Opcion('estimacion_directa_normal',
+            SoleraL10n.t('api.fis_estimacion_directa_normal')),
+      ];
 
-  static const _opcionesIva = <_Opcion>[
-    _Opcion('sin_elegir', 'Sin elegir'),
-    _Opcion('reagp', 'REAGP — régimen especial agricultura/ganadería/pesca'),
-    _Opcion('general', 'Régimen general'),
-  ];
+  List<_Opcion> get _opcionesIva => <_Opcion>[
+        _Opcion('sin_elegir', SoleraL10n.t('api.fis_sin_elegir')),
+        _Opcion('reagp', SoleraL10n.t('api.fis_reagp_descripcion')),
+        _Opcion('general', SoleraL10n.t('api.fis_regimen_general')),
+      ];
 
   String _regimenIrpf = 'sin_elegir';
   String _regimenIva = 'sin_elegir';
@@ -99,9 +101,7 @@ class _PantallaConfiguracionFiscalState
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              'Provisional. El formato del libro y del extracto está pendiente de '
-              'validación por asesor fiscal. Antes de presentar nada en una '
-              'declaración, contrasta con tu asesor.',
+              SoleraL10n.t('api.fis_aviso_provisional'),
               style: TextStyle(fontSize: 12),
             ),
           ),
@@ -121,8 +121,7 @@ class _PantallaConfiguracionFiscalState
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
-              'El régimen de módulos no está disponible en v1: pendiente de validación con '
-              'asesor fiscal antes de añadirlo.',
+              SoleraL10n.t('api.fis_modulos_no_disponible'),
               style: TextStyle(fontSize: 11, color: Colors.black54),
             ),
           ),
@@ -144,9 +143,7 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En REAGP no repercutes IVA en la venta de miel. El comprador '
-                'te paga la compensación del 12 % sobre la base. El IVA soportado '
-                'en compras no es recuperable: se imputa como mayor coste.',
+                SoleraL10n.t('api.fis_explicacion_reagp'),
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
@@ -154,18 +151,16 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En régimen general repercutes el 4 % de IVA en la venta de miel '
-                '(alimento de primera necesidad, art. 91.1.1.1.º LIVA) y el IVA '
-                'soportado en compras es recuperable.',
+                SoleraL10n.t('api.fis_explicacion_regimen_general'),
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
           SizedBox(height: 16),
-          _Cabecera('Año fiscal'),
+          _Cabecera(SoleraL10n.t('api.fis_ano_fiscal')),
           DropdownButtonFormField<int>(
             initialValue: _anoFiscalActivo,
             decoration: InputDecoration(
-              labelText: 'Año fiscal por defecto al abrir el libro',
+              labelText: SoleraL10n.t('api.fis_ano_fiscal_por_defecto'),
               border: OutlineInputBorder(),
             ),
             items: List.generate(5, (i) => anoActual - 2 + i)

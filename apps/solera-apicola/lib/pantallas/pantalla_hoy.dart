@@ -6,12 +6,6 @@ import 'pantalla_chat.dart';
 import 'pantalla_guia.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
 
-const _diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
-const _mesesEs = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
-];
-
 /// Pantalla "Hoy": muestra las próximas tareas del calendario apícola
 /// para la zona seleccionada. Sirve como agenda rápida del apicultor —
 /// "qué toca esta semana / este mes" sin abrir cada apiario.
@@ -31,39 +25,54 @@ class _PantallaHoyState extends State<PantallaHoy> {
   String _etiquetaZona(ZonaClimaticaApicola z) {
     switch (z) {
       case ZonaClimaticaApicola.norte:
-        return 'Norte (atlántica)';
+        return SoleraL10n.t('api.zona_norte');
       case ZonaClimaticaApicola.centro:
-        return 'Centro (meseta)';
+        return SoleraL10n.t('api.zona_centro');
       case ZonaClimaticaApicola.sur:
-        return 'Sur (mediterránea)';
+        return SoleraL10n.t('api.zona_sur');
     }
   }
 
+  /// Claves escritas una a una (no «'api.de_mes_$mes'») para que el test
+  /// de traducciones del core las encuentre.
+  static const _clavesDeMes = [
+    'api.de_mes_1', 'api.de_mes_2', 'api.de_mes_3', 'api.de_mes_4',
+    'api.de_mes_5', 'api.de_mes_6', 'api.de_mes_7', 'api.de_mes_8',
+    'api.de_mes_9', 'api.de_mes_10', 'api.de_mes_11', 'api.de_mes_12',
+  ];
+  static const _clavesDiaSemana = [
+    'api.dia_semana_1', 'api.dia_semana_2', 'api.dia_semana_3',
+    'api.dia_semana_4', 'api.dia_semana_5', 'api.dia_semana_6',
+    'api.dia_semana_7',
+  ];
+
   String _formatoFecha(int mes, int decada) {
-    final etiquetaDec = decada == 1
-        ? '1.ª'
-        : decada == 2
-            ? '2.ª'
-            : '3.ª';
-    return '$etiquetaDec década de ${_mesesEs[mes - 1]}';
+    return SoleraL10n.tf('api.decada_de_mes', {
+      'n': decada,
+      'de_mes': SoleraL10n.t(_clavesDeMes[mes - 1]),
+    });
   }
 
-  String _fechaHoyEs(DateTime hoy) {
-    return '${_diasSemana[hoy.weekday - 1]} ${hoy.day} de ${_mesesEs[hoy.month - 1]}';
+  String _fechaHoy(DateTime hoy) {
+    return SoleraL10n.tf('api.fecha_hoy', {
+      'dia_semana': SoleraL10n.t(_clavesDiaSemana[hoy.weekday - 1]),
+      'dia': hoy.day,
+      'de_mes': SoleraL10n.t(_clavesDeMes[hoy.month - 1]),
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     final hoy = DateTime.now();
-    final fechaHoy = _fechaHoyEs(hoy);
+    final fechaHoy = _fechaHoy(hoy);
     final proximas = tareasProximas(zona: _zona, fecha: hoy, limite: 6);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hoy'),
+        title: Text(SoleraL10n.t('api.hoy')),
         actions: [
           IconButton(
             icon: const Icon(Icons.menu_book_outlined),
-            tooltip: 'Guía (razas, plagas, sustancias, calendario)',
+            tooltip: SoleraL10n.t('api.guia_tooltip'),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const PantallaGuia()),
             ),
@@ -84,8 +93,8 @@ class _PantallaHoyState extends State<PantallaHoy> {
           Card(
             child: ListTile(
               leading: const Icon(Icons.chat_bubble_outline),
-              title: const Text('Asistente (chat)'),
-              subtitle: const Text('Pregunta sobre manejo, sanidad o el libro REGA · usa tu clave de Anthropic'),
+              title: Text(SoleraL10n.t('api.asistente_chat')),
+              subtitle: Text(SoleraL10n.t('api.asistente_chat_ayuda')),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const PantallaChat()),
@@ -105,7 +114,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Próximas tareas en zona ${_etiquetaZona(_zona)}.',
+                    SoleraL10n.tf('api.proximas_tareas_zona', {'zona': _etiquetaZona(_zona)}),
                     style: TextStyle(color: Colors.grey.shade700),
                   ),
                 ],
@@ -131,9 +140,9 @@ class _PantallaHoyState extends State<PantallaHoy> {
           ),
           const SizedBox(height: 12),
           if (proximas.isEmpty)
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('Sin tareas en el calendario para esta zona.'),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(SoleraL10n.t('api.sin_tareas_zona')),
             )
           else
             for (final t in proximas)
@@ -159,8 +168,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
               ),
           const SizedBox(height: 16),
           Text(
-            'Las décadas son orientativas (±2 semanas según año, microclima y altitud). '
-            'Verifica con tu boletín apícola local antes de planificar tratamientos.',
+            SoleraL10n.t('api.aviso_decadas_orientativas'),
             style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
           ),
         ],

@@ -61,7 +61,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
   Future<void> _generarYCompartir() async {
     if (_apicultor == null || !_apicultor!.estaConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Configura primero los datos del titular.')),
+        SnackBar(content: Text(SoleraL10n.t('api.configura_primero_titular'))),
       );
       return;
     }
@@ -83,7 +83,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al generar el PDF: $e')),
+        SnackBar(content: Text('${SoleraL10n.t('api.error_al_generar_el_pdf')}: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -93,7 +93,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
   Future<void> _generarYAbrir() async {
     if (_apicultor == null || !_apicultor!.estaConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Configura primero los datos del titular.')),
+        SnackBar(content: Text(SoleraL10n.t('api.configura_primero_titular'))),
       );
       return;
     }
@@ -112,7 +112,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al abrir el PDF: $e')),
+        SnackBar(content: Text('${SoleraL10n.t('api.error_al_abrir_el_pdf')}: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -127,7 +127,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
     final apicultorOk = _apicultor?.estaConfigurado ?? false;
     final anoActual = DateTime.now().year;
     return Scaffold(
-      appBar: AppBar(title: Text('Libro REGA')),
+      appBar: AppBar(title: Text(SoleraL10n.t('api.libro_rega'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -136,12 +136,8 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
               color: Theme.of(context).colorScheme.errorContainer,
               child: ListTile(
                 leading: Icon(Icons.warning),
-                title: Text('Titular sin configurar'),
-                subtitle: Text(
-                  'El libro oficial REGA requiere los datos del titular '
-                  '(NIF, nombre, N.º REGA, veterinario asesor…). Configúralos '
-                  'antes de generar.',
-                ),
+                title: Text(SoleraL10n.t('api.titular_sin_configurar')),
+                subtitle: Text(SoleraL10n.t('api.libro_rega_requiere_titular')),
                 onTap: _abrirApicultor,
               ),
             ),
@@ -150,7 +146,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.person),
-            title: Text(apicultorOk ? _apicultor!.nombre : 'Sin titular configurado'),
+            title: Text(apicultorOk ? _apicultor!.nombre : SoleraL10n.t('api.sin_titular_configurado')),
             subtitle: apicultorOk
                 ? Text('NIF ${_apicultor!.nif} · REGA ${_apicultor!.numeroRega}')
                 : null,
@@ -161,12 +157,12 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
           DropdownButtonFormField<Apiario?>(
             initialValue: _apiarioSeleccionado,
             decoration: InputDecoration(
-              labelText: 'Apiario',
+              labelText: SoleraL10n.t('api.apiario'),
               border: OutlineInputBorder(),
             ),
             items: [
-              const DropdownMenuItem<Apiario?>(
-                  value: null, child: Text('Todos los apiarios')),
+              DropdownMenuItem<Apiario?>(
+                  value: null, child: Text(SoleraL10n.t('api.todos_los_apiarios'))),
               for (final a in _apiarios)
                 DropdownMenuItem<Apiario?>(value: a, child: Text(a.nombre)),
             ],
@@ -176,7 +172,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
           DropdownButtonFormField<int>(
             initialValue: _ano,
             decoration: InputDecoration(
-              labelText: 'Campaña',
+              labelText: SoleraL10n.t('api.campana'),
               border: OutlineInputBorder(),
             ),
             items: [
@@ -194,13 +190,13 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
                     height: 16,
                     child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                 : Icon(Icons.share),
-            label: Text('Generar y compartir'),
+            label: Text(SoleraL10n.t('api.generar_y_compartir')),
           ),
           SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: _generando ? null : _generarYAbrir,
             icon: Icon(Icons.print),
-            label: Text('Generar y abrir'),
+            label: Text(SoleraL10n.t('api.generar_y_abrir')),
           ),
           SizedBox(height: 24),
           Container(
@@ -211,12 +207,8 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
               border: Border.all(color: Colors.grey.shade300),
             ),
             child: Text(
-              'El libro recoge tratamientos sanitarios, movimientos '
-              '(trashumancia/altas/bajas), incidencias y cosechas del periodo. '
-              'Las revisiones rutinarias no se incluyen en el libro oficial.\n\n'
-              'Verifica el formato vigente del MAPA y de tu comunidad autónoma antes de '
-              'presentar el documento en inspección — la regulación se '
-              'actualiza periódicamente.',
+              '${SoleraL10n.t('api.libro_rega_contenido')}\n\n'
+              '${SoleraL10n.t('api.libro_rega_verifica_formato')}',
               style: TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),

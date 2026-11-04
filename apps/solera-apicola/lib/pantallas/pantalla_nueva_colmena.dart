@@ -8,6 +8,7 @@ import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_razas_abeja.dart';
 import '../datos/catalogos_generados/catalogo_tipos_colmena.dart';
 import '../modelos/colmena.dart';
+import '../utiles/etiquetas_visibles.dart';
 import '../utiles/permisos_gps.dart';
 
 /// Alta o edición de colmena. Modo alta: `colmenaExistente == null`.
@@ -99,7 +100,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
       if (!mounted) return;
       setState(() => _capturandoGps = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta permiso de ubicación o GPS desactivado.')),
+        SnackBar(content: Text(SoleraL10n.t('api.falta_permiso_ubicacion'))),
       );
       return;
     }
@@ -182,7 +183,9 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
         if (!mounted) return;
         setState(() => _guardando = false);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Ya existe una colmena con matrícula ${existente.matricula}.')),
+          SnackBar(
+            content: Text(SoleraL10n.tf('api.ya_existe_colmena_matricula', {'matricula': existente.matricula})),
+          ),
         );
         return;
       }
@@ -222,7 +225,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
   Widget build(BuildContext context) {
     final formatoFecha = DateFormat('dd/MM/yyyy');
     return Scaffold(
-      appBar: AppBar(title: Text(widget.esEdicion ? 'Editar colmena' : 'Nueva colmena')),
+      appBar: AppBar(title: Text(widget.esEdicion ? SoleraL10n.t('api.editar_colmena') : SoleraL10n.t('api.nueva_colmena'))),
       body: Form(
         key: _claveFormulario,
         child: ListView(
@@ -230,18 +233,18 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
           children: [
             TextFormField(
               controller: _controladorMatricula,
-              decoration: const InputDecoration(
-                labelText: 'Matrícula *',
+              decoration: InputDecoration(
+                labelText: '${SoleraL10n.t('api.matricula')} *',
                 hintText: 'IB-2024-042',
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
-              validator: (v) => (v ?? '').trim().isEmpty ? 'Matrícula obligatoria' : null,
+              validator: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('api.matricula_obligatoria') : null,
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 12),
             CampoAutocompleteCatalogo<TipoColmena>(
               controlador: _controladorTipo,
-              labelText: 'Tipo de colmena',
+              labelText: SoleraL10n.t('api.tipo_de_colmena'),
               hintText: 'Layens, Dadant, Langstroth, Warré…',
               opcionesCompletas: catalogoTiposColmena,
               buscar: buscarTiposColmena,
@@ -250,8 +253,8 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
             const SizedBox(height: 12),
             CampoAutocompleteCatalogo<RazaAbeja>(
               controlador: _controladorRaza,
-              labelText: 'Raza',
-              hintText: 'ibérica, cárnica, ligústica, buckfast…',
+              labelText: SoleraL10n.t('api.raza'),
+              hintText: SoleraL10n.t('api.raza_pista'),
               opcionesCompletas: catalogoRazasAbeja,
               buscar: buscarRazasAbeja,
               displayStringForOption: (r) => r.nombreCanonico,
@@ -259,10 +262,10 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _controladorAnoReina,
-              decoration: const InputDecoration(
-                labelText: 'Año de la reina',
-                hintText: '2024 (marca: verde)',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('api.ano_de_la_reina'),
+                hintText: SoleraL10n.t('api.ano_de_la_reina_pista'),
+                border: const OutlineInputBorder(),
               ),
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -270,15 +273,13 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
             const SizedBox(height: 12),
             DropdownButtonFormField<EstadoColmena>(
               initialValue: _estado,
-              decoration: const InputDecoration(
-                labelText: 'Estado',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('api.estado'),
+                border: const OutlineInputBorder(),
               ),
-              items: const [
-                DropdownMenuItem(value: EstadoColmena.viva, child: Text('Viva')),
-                DropdownMenuItem(value: EstadoColmena.vacia, child: Text('Vacía')),
-                DropdownMenuItem(value: EstadoColmena.descolmenada, child: Text('Descolmenada')),
-                DropdownMenuItem(value: EstadoColmena.enjambreNuevo, child: Text('Enjambre nuevo')),
+              items: [
+                for (final estado in EstadoColmena.values)
+                  DropdownMenuItem(value: estado, child: Text(etiquetaEstadoColmena(estado))),
               ],
               onChanged: (v) => setState(() => _estado = v ?? EstadoColmena.viva),
             ),
@@ -287,7 +288,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.gps_fixed),
               title: Text(_latitud == null
-                  ? 'Sin ubicación'
+                  ? SoleraL10n.t('api.sin_ubicacion')
                   : '${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}'),
               trailing: _capturandoGps
                   ? const SizedBox(
@@ -296,30 +297,30 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
                       child: CircularProgressIndicator(strokeWidth: 2))
                   : TextButton(
                       onPressed: _capturarGps,
-                      child: Text(_latitud == null ? 'Capturar' : 'Recapturar'),
+                      child: Text(_latitud == null ? SoleraL10n.t('api.capturar') : SoleraL10n.t('api.recapturar')),
                     ),
             ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.event),
               title: Text(_fechaAlta == null
-                  ? 'Sin fecha de alta'
-                  : 'Alta ${formatoFecha.format(_fechaAlta!)}'),
+                  ? SoleraL10n.t('api.sin_fecha_de_alta')
+                  : SoleraL10n.tf('api.alta_fecha', {'fecha': formatoFecha.format(_fechaAlta!)})),
               trailing: TextButton(
                 onPressed: _elegirFechaAlta,
-                child: Text(_fechaAlta == null ? 'Elegir' : 'Cambiar'),
+                child: Text(_fechaAlta == null ? SoleraL10n.t('api.elegir') : SoleraL10n.t('api.cambiar')),
               ),
             ),
             const SizedBox(height: 8),
-            const Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(SoleraL10n.t('api.fotos'), style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 4),
             SelectorFotos(rutas: _rutasFotos, alCambiar: (r) => setState(() => _rutasFotos = r)),
             const SizedBox(height: 12),
             TextFormField(
               controller: _controladorNotas,
-              decoration: const InputDecoration(
-                labelText: 'Notas',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('api.notas'),
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
@@ -332,7 +333,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
                       height: 16,
                       child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                   : const Icon(Icons.check),
-              label: Text(widget.esEdicion ? 'Guardar cambios' : 'Guardar colmena'),
+              label: Text(widget.esEdicion ? SoleraL10n.t('api.guardar_cambios') : SoleraL10n.t('api.guardar_colmena')),
             ),
           ],
         ),

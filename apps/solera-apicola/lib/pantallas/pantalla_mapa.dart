@@ -138,25 +138,25 @@ class _PantallaMapaState extends State<PantallaMapa> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const ListTile(
-              leading: Icon(Icons.add_location),
-              title: Text('Nueva colmena'),
-              subtitle: Text('Elige cómo fijar el punto inicial.'),
+            ListTile(
+              leading: const Icon(Icons.add_location),
+              title: Text(SoleraL10n.t('api.nueva_colmena')),
+              subtitle: Text(SoleraL10n.t('api.elige_como_fijar_el_punto')),
             ),
             const Divider(height: 1),
             ListTile(
               leading: const Icon(Icons.gps_fixed),
-              title: const Text('Usar GPS actual'),
+              title: Text(SoleraL10n.t('api.usar_gps_actual')),
               subtitle: Text(
                 _posicionGps == null
-                    ? 'Captura una posición nueva del dispositivo.'
-                    : 'Último GPS: ${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}',
+                    ? SoleraL10n.t('api.captura_posicion_nueva')
+                    : SoleraL10n.tf('api.ultimo_gps_coordenadas', {'coordenadas': '${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}'}),
               ),
               onTap: () => Navigator.pop(context, _OrigenAltaMapa.gps),
             ),
             ListTile(
               leading: const Icon(Icons.center_focus_strong),
-              title: const Text('Usar centro del mapa'),
+              title: Text(SoleraL10n.t('api.usar_centro_del_mapa')),
               subtitle: Text(
                 '${_centroActual.latitude.toStringAsFixed(6)}, ${_centroActual.longitude.toStringAsFixed(6)}',
               ),
@@ -201,9 +201,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!mounted) return;
     if (latitud == null || longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
             content: Text(
-          'GPS no disponible — captura la ubicación desde el formulario.',
+          SoleraL10n.t('api.gps_no_disponible_formulario'),
         )),
       );
     }
@@ -223,7 +223,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!permitido) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Falta permiso de ubicación.')),
+          SnackBar(content: Text(SoleraL10n.t('api.falta_permiso_de_ubicacion'))),
         );
       }
       return;
@@ -241,7 +241,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo obtener el GPS actual.')),
+          SnackBar(content: Text(SoleraL10n.t('api.no_se_pudo_obtener_gps'))),
         );
       }
     }
@@ -257,7 +257,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
           children: [
             ListTile(
               leading: const Icon(Icons.public),
-              title: const Text('Todas las colmenas'),
+              title: Text(SoleraL10n.t('api.todas_las_colmenas')),
               trailing: activo == null ? const Icon(Icons.check) : null,
               onTap: () => Navigator.pop(context, null),
             ),
@@ -336,9 +336,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
   }
 
   String _tituloFiltro() {
-    if (_apiarioActivoId == null) return 'Todas las colmenas';
+    if (_apiarioActivoId == null) return SoleraL10n.t('api.todas_las_colmenas');
     final a = _apiarios.where((a) => a.id == _apiarioActivoId).firstOrNull;
-    return a?.nombre ?? 'Apiario';
+    return a?.nombre ?? SoleraL10n.t('api.apiario');
   }
 
   @override
@@ -349,11 +349,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            tooltip: 'Buscar un lugar',
+            tooltip: SoleraL10n.t('api.buscar_un_lugar'),
             onPressed: _buscarLugar,
           ),
           PopupMenuButton<_AccionMenu>(
-            tooltip: 'Más',
+            tooltip: SoleraL10n.t('api.mas'),
             onSelected: (a) async {
               switch (a) {
                 case _AccionMenu.apiarios:
@@ -371,20 +371,20 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   break;
               }
             },
-            itemBuilder: (_) => const [
+            itemBuilder: (_) => [
               PopupMenuItem(
                 value: _AccionMenu.apiarios,
                 child: ListTile(
-                  leading: Icon(Icons.hub),
-                  title: Text('Apiarios'),
+                  leading: const Icon(Icons.hub),
+                  title: Text(SoleraL10n.t('api.apiarios')),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
               PopupMenuItem(
                 value: _AccionMenu.libroRega,
                 child: ListTile(
-                  leading: Icon(Icons.description),
-                  title: Text('Libro REGA'),
+                  leading: const Icon(Icons.description),
+                  title: Text(SoleraL10n.t('api.libro_rega')),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
@@ -478,11 +478,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   color: Colors.black.withValues(alpha: 0.45),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Text(
-                    'Esri satélite',
-                    style: TextStyle(color: Colors.white, fontSize: 11),
+                    SoleraL10n.t('api.esri_satelite'),
+                    style: const TextStyle(color: Colors.white, fontSize: 11),
                   ),
                 ),
               ),
@@ -522,7 +522,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? 'Capas' : 'Mapa',
+                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('api.capas') : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -548,8 +548,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       ),
                       child: Text(
                         _altitudGps == null
-                            ? 'Alt. GPS --'
-                            : 'Alt. GPS ${_altitudGps!.toStringAsFixed(0)} m',
+                            ? SoleraL10n.t('api.altitud_gps_sin_dato')
+                            : SoleraL10n.tf('api.altitud_gps_m', {'m': _altitudGps!.toStringAsFixed(0)}),
                       ),
                     ),
                   ),
@@ -562,7 +562,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _alAnadirAqui,
         icon: const Icon(Icons.add_location),
-        label: const Text('Nueva colmena'),
+        label: Text(SoleraL10n.t('api.nueva_colmena')),
       ),
     );
   }

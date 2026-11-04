@@ -29,14 +29,15 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
   bool _guardando = false;
   bool _capturandoGps = false;
 
-  static const _colores = <Map<String, Object>>[
-    {'label': 'Ocre', 'value': 0xFFB8860B},
-    {'label': 'Verde', 'value': 0xFF2E7D32},
-    {'label': 'Azul', 'value': 0xFF1565C0},
-    {'label': 'Rojo', 'value': 0xFFC62828},
-    {'label': 'Morado', 'value': 0xFF6A1B9A},
-    {'label': 'Gris', 'value': 0xFF546E7A},
-  ];
+  /// Getter para que los nombres salgan en el idioma actual.
+  static List<Map<String, Object>> get _colores => <Map<String, Object>>[
+        {'label': SoleraL10n.t('api.color_ocre'), 'value': 0xFFB8860B},
+        {'label': SoleraL10n.t('api.color_verde_mayus'), 'value': 0xFF2E7D32},
+        {'label': SoleraL10n.t('api.color_azul_mayus'), 'value': 0xFF1565C0},
+        {'label': SoleraL10n.t('api.color_rojo_mayus'), 'value': 0xFFC62828},
+        {'label': SoleraL10n.t('api.color_morado'), 'value': 0xFF6A1B9A},
+        {'label': SoleraL10n.t('api.color_gris'), 'value': 0xFF546E7A},
+      ];
 
   @override
   void initState() {
@@ -69,8 +70,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
       if (!mounted) return;
       setState(() => _capturandoGps = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Falta permiso de ubicación o GPS desactivado.')),
+        SnackBar(content: Text(SoleraL10n.t('api.falta_permiso_ubicacion'))),
       );
       return;
     }
@@ -128,7 +128,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.esEdicion ? 'Editar apiario' : 'Nuevo apiario'),
+        title: Text(widget.esEdicion ? SoleraL10n.t('api.editar_apiario') : SoleraL10n.t('api.nuevo_apiario')),
       ),
       body: Form(
         key: _formKey,
@@ -137,27 +137,27 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
           children: [
             TextFormField(
               controller: _nombre,
-              decoration: const InputDecoration(
-                labelText: 'Nombre *',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: '${SoleraL10n.t('api.nombre')} *',
+                border: const OutlineInputBorder(),
               ),
               validator: (v) =>
-                  (v ?? '').trim().isEmpty ? 'Nombre obligatorio' : null,
+                  (v ?? '').trim().isEmpty ? SoleraL10n.t('api.nombre_obligatorio') : null,
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _codigoSitran,
-              decoration: const InputDecoration(
-                labelText: 'Código SITRAN',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('api.codigo_sitran'),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _superficie,
-              decoration: const InputDecoration(
-                labelText: 'Superficie (ha)',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('api.superficie_ha'),
+                border: const OutlineInputBorder(),
               ),
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
@@ -166,9 +166,9 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
             const SizedBox(height: 12),
             DropdownButtonFormField<int>(
               initialValue: _colorEntero,
-              decoration: const InputDecoration(
-                labelText: 'Color',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('api.color'),
+                border: const OutlineInputBorder(),
               ),
               items: _colores
                   .map(
@@ -184,9 +184,9 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _notas,
-              decoration: const InputDecoration(
-                labelText: 'Notas',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('api.notas'),
+                border: const OutlineInputBorder(),
               ),
               maxLines: 4,
             ),
@@ -200,19 +200,19 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.my_location),
-              label: const Text('Tomar GPS del colmenar'),
+              label: Text(SoleraL10n.t('api.tomar_gps_colmenar')),
             ),
             const SizedBox(height: 8),
             Text(
               _latitud == null || _longitud == null
-                  ? 'Sin ubicación fijada'
-                  : 'Centroide: ${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}',
+                  ? SoleraL10n.t('api.sin_ubicacion_fijada')
+                  : '${SoleraL10n.t('api.centroide')}: ${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}',
               style: Theme.of(context).textTheme.bodySmall,
             ),
             if (widget.esEdicion) ...[
               const SizedBox(height: 12),
               Text(
-                'Editarás el apiario ${widget.apiarioExistente!.nombre}.',
+                SoleraL10n.tf('api.editaras_apiario', {'nombre': widget.apiarioExistente!.nombre}),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
@@ -231,7 +231,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
                     child: CircularProgressIndicator(strokeWidth: 2),
                   )
                 : const Icon(Icons.save),
-            label: Text(widget.esEdicion ? 'Guardar cambios' : 'Crear apiario'),
+            label: Text(widget.esEdicion ? SoleraL10n.t('api.guardar_cambios') : SoleraL10n.t('api.crear_apiario')),
           ),
         ),
       ),

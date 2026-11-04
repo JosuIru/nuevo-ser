@@ -34,8 +34,8 @@ void main() {
           MotivoErrorCopiaSeguridad.restauracionRevertida, 'x');
       const sinVuelta = ErrorCopiaSeguridad(
           MotivoErrorCopiaSeguridad.reversionFallida, 'x');
-      expect(textoErrorCopiaSeguridad(revertida), contains('no se han tocado'));
-      expect(textoErrorCopiaSeguridad(sinVuelta), isNot(contains('no se han tocado')));
+      expect(textoErrorCopiaSeguridad(revertida), contains(SoleraL10n.t('api.copia_datos_intactos')));
+      expect(textoErrorCopiaSeguridad(sinVuelta), isNot(contains(SoleraL10n.t('api.copia_datos_intactos'))));
       for (final motivo in MotivoErrorCopiaSeguridad.values) {
         expect(textoErrorCopiaSeguridad(ErrorCopiaSeguridad(motivo, 'x')), isNotEmpty);
       }
@@ -76,8 +76,8 @@ void main() {
 
   testWidgets('Registros lista los libros y documentos', (tester) async {
     await tester.pumpWidget(const MaterialApp(home: PantallaRegistros()));
-    expect(find.text('Libro REGA'), findsOneWidget);
-    expect(find.text('Extracto económico'), findsOneWidget);
+    expect(find.text(SoleraL10n.t('api.libro_rega')), findsOneWidget);
+    expect(find.text(SoleraL10n.t('api.extracto_economico')), findsOneWidget);
     expect(find.text(SoleraL10n.t('facturas')), findsOneWidget);
     expect(find.text(SoleraL10n.t('libro_economico')), findsOneWidget);
   });

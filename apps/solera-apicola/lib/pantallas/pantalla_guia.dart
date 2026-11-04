@@ -21,26 +21,25 @@ class PantallaGuia extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Guía'),
-          bottom: const TabBar(
+          title: Text(SoleraL10n.t('api.guia')),
+          bottom: TabBar(
             isScrollable: true,
             tabs: [
-              Tab(icon: Icon(Icons.coronavirus), text: 'Patologías'),
-              Tab(icon: Icon(Icons.science), text: 'Sustancias contra varroa'),
-              Tab(icon: Icon(Icons.hive), text: 'Razas'),
-              Tab(icon: Icon(Icons.dashboard), text: 'Tipos de colmena'),
+              Tab(icon: const Icon(Icons.coronavirus), text: SoleraL10n.t('api.patologias')),
+              Tab(icon: const Icon(Icons.science), text: SoleraL10n.t('api.sustancias_contra_varroa')),
+              Tab(icon: const Icon(Icons.hive), text: SoleraL10n.t('api.razas')),
+              Tab(icon: const Icon(Icons.dashboard), text: SoleraL10n.t('api.tipos_de_colmena')),
             ],
           ),
         ),
         body: Column(
           children: [
             if (!catalogosCompletamenteRevisados)
-              const Padding(
-                padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
                 child: BannerCoincidenciaCatalogo(
                   coincidencia: CoincidenciaCatalogo.provisional,
-                  mensajeProvisional:
-                      'Catálogo provisional con fuente pública trazable. Pendiente de la firma del veterinario apícola asesor.',
+                  mensajeProvisional: SoleraL10n.t('api.catalogo_provisional_aviso'),
                   mensajeValidado: '',
                   mensajeLibre: '',
                 ),
@@ -85,15 +84,15 @@ class _TabPatologiasState extends State<_TabPatologias> {
   String _etiquetaTipo(TipoPlagaApicola t) {
     switch (t) {
       case TipoPlagaApicola.parasito:
-        return 'Parásito';
+        return SoleraL10n.t('api.tipo_plaga_parasito');
       case TipoPlagaApicola.infeccion:
-        return 'Infección';
+        return SoleraL10n.t('api.tipo_plaga_infeccion');
       case TipoPlagaApicola.plagaFisica:
-        return 'Plaga física';
+        return SoleraL10n.t('api.tipo_plaga_fisica');
       case TipoPlagaApicola.depredador:
-        return 'Depredador';
+        return SoleraL10n.t('api.tipo_plaga_depredador');
       case TipoPlagaApicola.abiotico:
-        return 'Abiótico';
+        return SoleraL10n.t('api.tipo_plaga_abiotico');
     }
   }
 
@@ -120,10 +119,10 @@ class _TabPatologiasState extends State<_TabPatologias> {
         Padding(
           padding: const EdgeInsets.all(12),
           child: TextField(
-            decoration: const InputDecoration(
-              hintText: 'Buscar varroa, loque, vespa velutina…',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              hintText: SoleraL10n.t('api.buscar_patologias_ejemplo'),
+              prefixIcon: const Icon(Icons.search),
+              border: const OutlineInputBorder(),
             ),
             onChanged: (v) => setState(() => _consulta = v),
           ),
@@ -134,7 +133,7 @@ class _TabPatologiasState extends State<_TabPatologias> {
             spacing: 8,
             children: [
               FilterChip(
-                label: const Text('Todas'),
+                label: Text(SoleraL10n.t('api.todas')),
                 selected: _filtroTipo == null,
                 onSelected: (_) => setState(() => _filtroTipo = null),
               ),
@@ -150,7 +149,7 @@ class _TabPatologiasState extends State<_TabPatologias> {
         const SizedBox(height: 8),
         Expanded(
           child: lista.isEmpty
-              ? const Center(child: Text('Sin coincidencias.'))
+              ? Center(child: Text(SoleraL10n.t('api.sin_coincidencias')))
               : ListView.separated(
                   itemCount: lista.length,
                   separatorBuilder: (_, __) => const Divider(height: 1),
@@ -196,26 +195,25 @@ class _TabPatologiasState extends State<_TabPatologias> {
                             ),
                           ),
                         if (p.declaracionOficial) ...[
-                          const BannerDeclaracionObligatoria(
-                            texto:
-                                'PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Notifícala a los servicios veterinarios oficiales de tu comunidad autónoma.',
+                          BannerDeclaracionObligatoria(
+                            texto: SoleraL10n.t('api.patologia_declaracion_obligatoria_banner'),
                           ),
                           const SizedBox(height: 12),
                         ],
                         if (p.sintomas.isNotEmpty) ...[
-                          _Seccion('Síntomas', p.sintomas),
+                          _Seccion(SoleraL10n.t('api.sintomas'), p.sintomas),
                           const SizedBox(height: 8),
                         ],
                         if (p.condicionesFavorables.isNotEmpty) ...[
-                          _Seccion('Condiciones favorables',
+                          _Seccion(SoleraL10n.t('api.condiciones_favorables'),
                               p.condicionesFavorables),
                           const SizedBox(height: 8),
                         ],
                         if (p.manejoCultural.isNotEmpty) ...[
-                          _Seccion('Manejo cultural', p.manejoCultural),
+                          _Seccion(SoleraL10n.t('api.manejo_cultural'), p.manejoCultural),
                           const SizedBox(height: 8),
                         ],
-                        if (p.notas.isNotEmpty) _Seccion('Notas', p.notas),
+                        if (p.notas.isNotEmpty) _Seccion(SoleraL10n.t('api.notas'), p.notas),
                       ],
                     );
                   },
@@ -232,54 +230,54 @@ class _TabSustanciasVarroa extends StatelessWidget {
   String _etiquetaFamilia(FamiliaSustanciaVarroa f) {
     switch (f) {
       case FamiliaSustanciaVarroa.organica:
-        return 'Orgánica';
+        return SoleraL10n.t('api.familia_organica');
       case FamiliaSustanciaVarroa.sintetica:
-        return 'Sintética';
+        return SoleraL10n.t('api.familia_sintetica');
       case FamiliaSustanciaVarroa.naturalAceiteEsencial:
-        return 'Aceite esencial';
+        return SoleraL10n.t('api.familia_aceite_esencial');
     }
   }
 
   String _etiquetaVehiculo(VehiculoSustanciaVarroa v) {
     switch (v) {
       case VehiculoSustanciaVarroa.sublimacion:
-        return 'Sublimación';
+        return SoleraL10n.t('api.vehiculo_sublimacion');
       case VehiculoSustanciaVarroa.goteo:
-        return 'Goteo';
+        return SoleraL10n.t('api.vehiculo_goteo');
       case VehiculoSustanciaVarroa.sandwich:
-        return 'Sandwich';
+        return SoleraL10n.t('api.vehiculo_sandwich');
       case VehiculoSustanciaVarroa.tiraPolimero:
-        return 'Tira de polímero';
+        return SoleraL10n.t('api.vehiculo_tira_polimero');
       case VehiculoSustanciaVarroa.nebulizacion:
-        return 'Nebulización';
+        return SoleraL10n.t('api.vehiculo_nebulizacion');
     }
   }
 
   String _etiquetaEficacia(EficaciaSustanciaVarroa e) {
     switch (e) {
       case EficaciaSustanciaVarroa.baja:
-        return 'Baja';
+        return SoleraL10n.t('api.eficacia_baja');
       case EficaciaSustanciaVarroa.media:
-        return 'Media';
+        return SoleraL10n.t('api.eficacia_media');
       case EficaciaSustanciaVarroa.alta:
-        return 'Alta';
+        return SoleraL10n.t('api.eficacia_alta');
       case EficaciaSustanciaVarroa.muyAlta:
-        return 'Muy alta';
+        return SoleraL10n.t('api.eficacia_muy_alta');
     }
   }
 
   String _etiquetaVentana(VentanaAplicacionVarroa v) {
     switch (v) {
       case VentanaAplicacionVarroa.invernada:
-        return 'Invernada';
+        return SoleraL10n.t('api.invernada');
       case VentanaAplicacionVarroa.primavera:
-        return 'Primavera';
+        return SoleraL10n.t('api.primavera');
       case VentanaAplicacionVarroa.otono:
-        return 'Otoño';
+        return SoleraL10n.t('api.otono');
       case VentanaAplicacionVarroa.sinPostura:
-        return 'Sin postura';
+        return SoleraL10n.t('api.sin_postura');
       case VentanaAplicacionVarroa.conPostura:
-        return 'Con postura';
+        return SoleraL10n.t('api.con_postura');
     }
   }
 
@@ -303,24 +301,24 @@ class _TabSustanciasVarroa extends StatelessWidget {
             ],
           ),
           subtitle: Text(
-            '${_etiquetaFamilia(s.familia)} · Plazo: ${s.plazoSeguridadDias} d',
+            '${_etiquetaFamilia(s.familia)} · ${SoleraL10n.tf('api.plazo_dias_abrev', {'n': s.plazoSeguridadDias})}',
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _Seccion('Vehículo', _etiquetaVehiculo(s.vehiculoPrincipal)),
+            _Seccion(SoleraL10n.t('api.vehiculo'), _etiquetaVehiculo(s.vehiculoPrincipal)),
             const SizedBox(height: 8),
-            _Seccion('Eficacia orientativa', _etiquetaEficacia(s.eficaciaOrientativa)),
+            _Seccion(SoleraL10n.t('api.eficacia_orientativa'), _etiquetaEficacia(s.eficaciaOrientativa)),
             const SizedBox(height: 8),
-            _Seccion('Ventana de aplicación', _etiquetaVentana(s.ventanaAplicacion)),
+            _Seccion(SoleraL10n.t('api.ventana_de_aplicacion'), _etiquetaVentana(s.ventanaAplicacion)),
             const SizedBox(height: 8),
             _Seccion(
-              'Autorizada en ecológico',
-              s.autorizadaEcologico ? 'Sí' : 'No',
+              SoleraL10n.t('api.autorizada_en_ecologico'),
+              s.autorizadaEcologico ? SoleraL10n.t('api.si') : SoleraL10n.t('api.no'),
             ),
             if (s.notas.isNotEmpty) ...[
               const SizedBox(height: 8),
-              _Seccion('Notas', s.notas),
+              _Seccion(SoleraL10n.t('api.notas'), s.notas),
             ],
           ],
         );
@@ -351,14 +349,14 @@ class _TabRazas extends StatelessWidget {
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (r.sinonimias.isNotEmpty) ...[
-              _Seccion('Sinonimias', r.sinonimias.join(', ')),
+              _Seccion(SoleraL10n.t('api.sinonimias'), r.sinonimias.join(', ')),
               const SizedBox(height: 8),
             ],
             if (r.caracter.isNotEmpty) ...[
-              _Seccion('Carácter', r.caracter.join(' · ')),
+              _Seccion(SoleraL10n.t('api.caracter'), r.caracter.join(' · ')),
               const SizedBox(height: 8),
             ],
-            if (r.notas.isNotEmpty) _Seccion('Notas', r.notas),
+            if (r.notas.isNotEmpty) _Seccion(SoleraL10n.t('api.notas'), r.notas),
           ],
         );
       },
@@ -372,13 +370,13 @@ class _TabTiposColmena extends StatelessWidget {
   String _etiquetaFormato(FormatoColmena f) {
     switch (f) {
       case FormatoColmena.fijaHorizontal:
-        return 'Fija horizontal';
+        return SoleraL10n.t('api.formato_fija_horizontal');
       case FormatoColmena.verticalAlza:
-        return 'Vertical con alzas';
+        return SoleraL10n.t('api.formato_vertical_con_alzas');
       case FormatoColmena.topBar:
-        return 'Top-bar';
+        return SoleraL10n.t('api.formato_top_bar');
       case FormatoColmena.tronco:
-        return 'Tronco artesanal';
+        return SoleraL10n.t('api.formato_tronco_artesanal');
     }
   }
 
@@ -394,23 +392,23 @@ class _TabTiposColmena extends StatelessWidget {
           title: Text(t.nombreCanonico),
           subtitle: Text(
             '${_etiquetaFormato(t.formato)}'
-            '${t.numeroCuadrosCamara > 0 ? " · ${t.numeroCuadrosCamara} cuadros" : ""}'
-            '${t.apilableAlzas ? " · apilable" : ""}',
+            '${t.numeroCuadrosCamara > 0 ? " · ${SoleraL10n.tf('api.cuadros_n', {'n': t.numeroCuadrosCamara})}" : ""}'
+            '${t.apilableAlzas ? " · ${SoleraL10n.t('api.apilable')}" : ""}',
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _Seccion('Uso tradicional', t.usoTradicional),
+            _Seccion(SoleraL10n.t('api.uso_tradicional'), t.usoTradicional),
             const SizedBox(height: 8),
             if (t.ventajas.isNotEmpty) ...[
-              _Seccion('Ventajas', t.ventajas.join(' · ')),
+              _Seccion(SoleraL10n.t('api.ventajas'), t.ventajas.join(' · ')),
               const SizedBox(height: 8),
             ],
             if (t.desventajas.isNotEmpty) ...[
-              _Seccion('Desventajas', t.desventajas.join(' · ')),
+              _Seccion(SoleraL10n.t('api.desventajas'), t.desventajas.join(' · ')),
               const SizedBox(height: 8),
             ],
-            if (t.notas.isNotEmpty) _Seccion('Notas', t.notas),
+            if (t.notas.isNotEmpty) _Seccion(SoleraL10n.t('api.notas'), t.notas),
           ],
         );
       },

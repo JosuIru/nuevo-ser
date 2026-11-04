@@ -151,31 +151,31 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _indice,
         onDestinationSelected: (i) => setState(() => _indice = i),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.today_outlined),
-            selectedIcon: Icon(Icons.today),
-            label: 'Hoy',
+            icon: const Icon(Icons.today_outlined),
+            selectedIcon: const Icon(Icons.today),
+            label: SoleraL10n.t('api.hoy'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.map_outlined),
-            selectedIcon: Icon(Icons.map),
-            label: 'Mapa',
+            icon: const Icon(Icons.map_outlined),
+            selectedIcon: const Icon(Icons.map),
+            label: SoleraL10n.t('mapa'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.hive_outlined),
-            selectedIcon: Icon(Icons.hive),
-            label: 'Colmenas',
+            icon: const Icon(Icons.hive_outlined),
+            selectedIcon: const Icon(Icons.hive),
+            label: SoleraL10n.t('api.colmenas'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.folder_outlined),
-            selectedIcon: Icon(Icons.folder),
-            label: 'Registros',
+            icon: const Icon(Icons.folder_outlined),
+            selectedIcon: const Icon(Icons.folder),
+            label: SoleraL10n.t('api.registros'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Ajustes',
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: SoleraL10n.t('ajustes'),
           ),
         ],
       ),

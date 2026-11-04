@@ -25,7 +25,7 @@ class PantallaAcerca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Acerca de')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acerca_de'))),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
@@ -54,59 +54,28 @@ class PantallaAcerca extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Larrea Apícola es un gestor para apicultores profesionales y semiprofesionales: '
-            'censo de colmenas con matrícula y GPS, registro de revisiones, cosechas, '
-            'tratamientos sanitarios e incidencias, gestión de trashumancia, '
-            'identificación de patologías por foto con IA y libro oficial REGA en PDF '
-            'firmable.',
-            style: TextStyle(fontSize: 14, height: 1.5),
+          Text(
+            SoleraL10n.t('api.acerca_descripcion'),
+            style: const TextStyle(fontSize: 14, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Compromisos legales'),
-          const _Bullet(
-            'Larrea no recomienda medicamentos zoosanitarios comerciales '
-            '(Apivar, ApiBioxal, Polyvar…). Solo lista sustancias activas '
-            'autorizadas. Cualquier tratamiento sanitario requiere receta '
-            'del veterinario asesor.',
-          ),
-          const _Bullet(
-            'Las patologías de declaración obligatoria (loque americana, '
-            'escarabajo de las colmenas, vespa velutina) deben notificarse '
-            'a los Servicios Veterinarios oficiales de la CCAA.',
-          ),
-          const _Bullet(
-            'El formato del libro oficial REGA / SITRAN-AP cambia '
-            'periódicamente y tiene desarrollos autonómicos (Andalucía, '
-            'Galicia, Castilla-La Mancha). Verifica el formato vigente '
-            'antes de presentar el documento en inspección.',
-          ),
-          const _Bullet(
-            'Tu clave de Anthropic (si la configuras para la IA) se guarda solo '
-            'en tu dispositivo. Las fotos se envían directamente a '
-            'Anthropic, sin pasar por servidores intermedios.',
-          ),
-          const _Bullet(
-            'El libro económico (ingresos, gastos, modelo 347, extracto '
-            'anual) es PROVISIONAL hasta que un asesor fiscal valide el '
-            'formato. Es una herramienta de apoyo para tu gestoría: un '
-            'error en el extracto fiscal cuesta dinero con Hacienda. '
-            'Contrasta cada apunte con tu asesor antes de presentar nada.',
-          ),
+          _Seccion(SoleraL10n.t('api.compromisos_legales')),
+          _Bullet(SoleraL10n.t('api.compromiso_1')),
+          _Bullet(SoleraL10n.t('api.compromiso_2')),
+          _Bullet(SoleraL10n.t('api.compromiso_3')),
+          _Bullet(SoleraL10n.t('api.compromiso_4')),
+          _Bullet(SoleraL10n.t('api.compromiso_5')),
           const SizedBox(height: 24),
-          const _Seccion('Catálogos curados'),
+          _Seccion(SoleraL10n.t('api.catalogos_curados')),
           _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Larrea'),
-          const Text(
-            'Larrea Apícola forma parte de la suite Larrea, de la Colección '
-            'Nuevo Ser. Apps hermanas: Larrea Viticultura (libro PAC en '
-            'bodegas), Larrea (general — frutales, trufa, olivar), Larrea '
-            'Arbolado Urbano (B2B municipal), Larrea Quesera y Larrea Aceitera.',
-            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
+          _Seccion(SoleraL10n.t('api.familia_larrea')),
+          Text(
+            SoleraL10n.t('api.familia_larrea_texto'),
+            style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Enlaces'),
+          _Seccion(SoleraL10n.t('api.enlaces')),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.public),
@@ -130,8 +99,8 @@ class _TarjetaCatalogos extends StatelessWidget {
     final color = catalogosCompletamenteRevisados ? Colors.green : Colors.amber;
     final icono = catalogosCompletamenteRevisados ? Icons.verified : Icons.fact_check;
     final etiqueta = catalogosCompletamenteRevisados
-        ? 'Validados por veterinario apícola y apicultor asesor'
-        : 'PROVISIONALES — sin validar todavía';
+        ? SoleraL10n.t('api.catalogos_validados')
+        : SoleraL10n.t('api.catalogos_provisionales');
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -159,24 +128,21 @@ class _TarjetaCatalogos extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '$totalFilas filas en 5 catálogos: '
-            '${catalogoRazasAbeja.length} razas, '
-            '${catalogoTiposColmena.length} tipos de colmena, '
-            '${catalogoSustanciasVarroa.length} sustancias varroa, '
-            '${catalogoPlagasApicolas.length} plagas/patologías, '
-            '${calendarioApicola.length} tareas de calendario.',
+            SoleraL10n.tf('api.resumen_catalogos', {
+              'total': totalFilas,
+              'razas': catalogoRazasAbeja.length,
+              'tipos': catalogoTiposColmena.length,
+              'sustancias': catalogoSustanciasVarroa.length,
+              'plagas': catalogoPlagasApicolas.length,
+              'tareas': calendarioApicola.length,
+            }),
             style: TextStyle(fontSize: 13, height: 1.5, color: color.shade900),
           ),
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
-            const Text(
-              'Rellenados a partir de fuentes públicas (textos sanitarios '
-              'apícolas, MAPA, manuales de apicultura ibérica). Antes de pasar '
-              'a producción comercial deben ser validados por un veterinario '
-              'apícola y un apicultor experimentado. Las propuestas de la IA '
-              'que coincidan con el catálogo se marcan como «provisionales», '
-              'no como validadas.',
-              style: TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
+            Text(
+              SoleraL10n.t('api.catalogos_provisionales_texto'),
+              style: const TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
             ),
           ],
         ],

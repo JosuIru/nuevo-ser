@@ -78,7 +78,7 @@ class _PantallaChatState extends State<PantallaChat> {
     if (!mounted) return;
     if (clave == null || !estadoClaveAnthropicApicola.pareceValida(clave)) {
       setState(() => _anadirError(
-          'Falta la clave de Anthropic. Añádela en Ajustes → Identificación con IA.'));
+          SoleraL10n.t('api.falta_clave_anthropic')));
       _bajarAlFinal();
       return;
     }
@@ -137,11 +137,11 @@ class _PantallaChatState extends State<PantallaChat> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Asistente (chat)'),
+        title: Text(SoleraL10n.t('api.asistente_chat')),
         actions: [
           IconButton(
             icon: const Icon(Icons.key_outlined),
-            tooltip: 'Clave de Anthropic',
+            tooltip: SoleraL10n.t('api.clave_de_anthropic'),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => pantallaClaveAnthropicApicola()),
             ),
@@ -159,11 +159,11 @@ class _PantallaChatState extends State<PantallaChat> {
                       children: [
                         Icon(Icons.chat_bubble_outline, size: 64, color: esquema.primary.withValues(alpha: 0.3)),
                         const SizedBox(height: 16),
-                        const Text(
-                          'Pregunta sobre manejo, calendario, sanidad o el libro REGA.\n'
-                          'Puedes adjuntar una foto. Usa tu clave de Anthropic.',
+                        Text(
+                          '${SoleraL10n.t('api.chat_vacio_pregunta')}\n'
+                          '${SoleraL10n.t('api.chat_vacio_foto')}',
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),
@@ -243,13 +243,13 @@ class _PantallaChatState extends State<PantallaChat> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Foto adjunta: se enviará con el mensaje',
+                        SoleraL10n.t('api.foto_adjunta_se_enviara'),
                         style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                       ),
                     ),
                     IconButton(
                       icon: const Icon(Icons.close, size: 18),
-                      tooltip: 'Quitar la foto',
+                      tooltip: SoleraL10n.t('api.quitar_la_foto'),
                       onPressed: () => setState(() => _imagenAdjunta = null),
                       visualDensity: VisualDensity.compact,
                     ),
@@ -260,19 +260,19 @@ class _PantallaChatState extends State<PantallaChat> {
                 child: Row(children: [
                   IconButton(
                     icon: const Icon(Icons.camera_alt, size: 22),
-                    tooltip: 'Hacer foto',
+                    tooltip: SoleraL10n.t('api.hacer_foto'),
                     onPressed: _hacerFoto,
                   ),
                   IconButton(
                     icon: const Icon(Icons.photo_library, size: 22),
-                    tooltip: 'Galería',
+                    tooltip: SoleraL10n.t('api.galeria'),
                     onPressed: _elegirDeGaleria,
                   ),
                   Expanded(
                     child: TextField(
                       controller: _controladorMensaje,
                       decoration: InputDecoration(
-                        hintText: 'Escribe tu pregunta…',
+                        hintText: SoleraL10n.t('api.escribe_tu_pregunta'),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       ),
@@ -282,7 +282,7 @@ class _PantallaChatState extends State<PantallaChat> {
                   ),
                   const SizedBox(width: 8),
                   IconButton.filled(
-                    tooltip: 'Enviar',
+                    tooltip: SoleraL10n.t('api.enviar'),
                     onPressed: _enviando ? null : _enviar,
                     icon: _enviando
                         ? const SizedBox(

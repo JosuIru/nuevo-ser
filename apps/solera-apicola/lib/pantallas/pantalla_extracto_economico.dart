@@ -41,7 +41,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error al generar el PDF: $e')),
+          SnackBar(content: Text(SoleraL10n.tf('api.eco_error_generar_pdf', {'error': e}))),
         );
       }
       return null;
@@ -55,7 +55,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
     if (fichero == null || !mounted) return;
     await Share.shareXFiles(
       [XFile(fichero.path)],
-      text: 'Extracto económico apícola · $_ano',
+      text: SoleraL10n.tf('api.eco_extracto_compartir_ano', {'ano': _ano}),
     );
   }
 
@@ -70,7 +70,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
   Widget build(BuildContext context) {
     final anoActual = DateTime.now().year;
     return Scaffold(
-      appBar: AppBar(title: const Text('Extracto económico anual')),
+      appBar: AppBar(title: Text(SoleraL10n.t('api.eco_extracto_economico_anual'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -83,17 +83,14 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
               border: Border.all(color: Colors.amber.shade700),
             ),
             child: Text(
-              'PROVISIONAL. Este extracto es una herramienta de apoyo para el '
-              'asesor fiscal — el formato exacto del libro registro y del modelo '
-              '347 está pendiente de que lo valide un asesor fiscal antes de presentar '
-              'nada en una declaración.',
+              SoleraL10n.t('api.eco_aviso_extracto_provisional'),
               style: TextStyle(fontSize: 12, color: Colors.amber.shade900),
             ),
           ),
           DropdownButtonFormField<int>(
             initialValue: _ano,
-            decoration: const InputDecoration(
-              labelText: 'Ejercicio fiscal',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('api.eco_ejercicio_fiscal'),
               border: OutlineInputBorder(),
             ),
             items: [
@@ -112,13 +109,13 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
                     child: CircularProgressIndicator(
                         strokeWidth: 2, color: Colors.white))
                 : const Icon(Icons.share),
-            label: const Text('Generar y compartir'),
+            label: Text(SoleraL10n.t('api.eco_generar_y_compartir')),
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: _generando ? null : _generarYAbrir,
             icon: const Icon(Icons.print),
-            label: const Text('Generar y abrir'),
+            label: Text(SoleraL10n.t('api.eco_generar_y_abrir')),
           ),
           const SizedBox(height: 24),
           Container(
@@ -128,19 +125,19 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.grey.shade300),
             ),
-            child: const Text(
-              'El extracto incluye:\n'
-              '• Resumen con los totales del ejercicio.\n'
-              '• Tabla mensual de ingresos (ordinarios, ayudas, IVA, '
-              'compensación REAGP).\n'
-              '• Tabla mensual de gastos (base, IVA soportado, total).\n'
-              '• Modelo 347 — terceros con suma >3.005,06 € en el ejercicio.\n'
-              '• Apuntes sin NIF que no entran en el modelo 347.\n'
-              '• Detalle cronológico de ingresos y de gastos.\n\n'
-              'El reparto proporcional de gastos de trashumancia entre '
-              'colmenares no está calculado todavía: los apuntes con esa '
-              'imputación se listan tal cual con el importe íntegro.',
-              style: TextStyle(fontSize: 12, color: Colors.black87),
+            child: Text(
+              [
+                SoleraL10n.t('api.eco_extracto_incluye'),
+                '• ${SoleraL10n.t('api.eco_extracto_incluye_resumen')}',
+                '• ${SoleraL10n.t('api.eco_extracto_incluye_ingresos')}',
+                '• ${SoleraL10n.t('api.eco_extracto_incluye_gastos')}',
+                '• ${SoleraL10n.t('api.eco_extracto_incluye_347')}',
+                '• ${SoleraL10n.t('api.eco_extracto_incluye_sin_nif')}',
+                '• ${SoleraL10n.t('api.eco_extracto_incluye_detalle')}',
+                '',
+                SoleraL10n.t('api.eco_extracto_reparto_pendiente'),
+              ].join('\n'),
+              style: const TextStyle(fontSize: 12, color: Colors.black87),
             ),
           ),
         ],

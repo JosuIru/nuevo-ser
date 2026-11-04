@@ -29,7 +29,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
     _Opcion('venta_cera', 'Venta de cera', 'kg'),
     _Opcion('venta_propoleo', 'Venta de propóleo', 'kg'),
     _Opcion('venta_jalea', 'Venta de jalea real', 'kg'),
-    _Opcion('alquiler_polinizacion', 'Alquiler colmenas (polinización)', 'colmenas'),
+    _Opcion('alquiler_polinizacion', 'Alquiler de colmenas (polinización)', 'colmenas'),
     _Opcion('ayuda_pac', 'Ayuda PAC', ''),
     _Opcion('subvencion_autonomica', 'Subvención autonómica', ''),
     _Opcion('otro', 'Otro ingreso', ''),
@@ -237,7 +237,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               controller: _concepto,
               decoration: InputDecoration(
                 labelText: 'Concepto *',
-                hintText: 'Ej: 30 kg miel mil flores',
+                hintText: 'Ej.: 30 kg de miel de mil flores',
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
@@ -367,7 +367,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'Nº de factura',
+                labelText: 'N.º de factura',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -409,15 +409,15 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _textoAutocalculo() {
     if (_configFiscal.regimenIva == 'reagp' && !_esPolinizacion) {
-      return 'REAGP: 12% sobre la base como compensación al apicultor';
+      return 'REAGP: 12 % sobre la base como compensación al apicultor';
     }
     if (_esPolinizacion) {
-      return 'Polinización: 21% IVA general (servicio agrícola complementario)';
+      return 'Polinización: 21 % IVA general (servicio agrícola complementario)';
     }
     if (_configFiscal.regimenIva == 'general') {
-      return 'Régimen general: 4% IVA en venta de productos apícolas';
+      return 'Régimen general: 4 % de IVA en la venta de productos apícolas';
     }
-    return 'Configura régimen de IVA en Ajustes';
+    return 'Configura el régimen de IVA en Ajustes';
   }
 }
 

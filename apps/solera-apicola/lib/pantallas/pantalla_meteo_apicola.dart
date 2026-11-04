@@ -194,7 +194,7 @@ class _PanelDecision extends StatelessWidget {
         const _Aviso(
           Icons.air,
           'Viento para manejo o transporte',
-          'Evita abrir colmenas si no es necesario y asegura tapas/material.',
+          'Evita abrir colmenas si no es necesario y asegura tapas y material.',
         ),
       if ((dia.lluviaMm ?? 0) >= 5)
         const _Aviso(
@@ -267,14 +267,14 @@ class _TarjetaDia extends StatelessWidget {
                 _Dato(
                     icono: Icons.water,
                     texto:
-                        '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)}%'),
+                        '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)} %'),
                 _Dato(
                     icono: Icons.air,
                     texto:
                         '${_fmt(dia.vientoMaxKmh)} km/h · racha ${_fmt(dia.rachaMaxKmh)}'),
                 _Dato(
                     icono: Icons.opacity,
-                    texto: 'HR ${_fmt(dia.humedadMedia)}%'),
+                    texto: 'HR ${_fmt(dia.humedadMedia)} %'),
                 _Dato(
                     icono: Icons.wb_sunny, texto: 'ET0 ${_fmt(dia.et0Mm)} mm'),
                 _Dato(

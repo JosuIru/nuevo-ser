@@ -132,14 +132,14 @@ const _paginas = <_DatosPagina>[
     Icons.hive,
     'Tus colmenas en el mapa',
     'Cataloga cada colmena con matrícula, raza, año de la reina y ubicación GPS. '
-        'Trashumancia bien modelada: la colmena es identidad persistente, los movimientos '
-        'son eventos con origen, destino y fecha.',
+        'Trashumancia sin líos: cada colmena conserva su historia y cada traslado '
+        'queda registrado con origen, destino y fecha.',
   ),
   _DatosPagina(
     Icons.auto_awesome,
     'Diagnóstico con IA por foto',
-    'Hazle una foto a un panal o una colmena con síntomas y la IA propone diagnóstico '
-        '(varroa, nosema, loque, vespa velutina…). Patologías de declaración obligatoria '
+    'Hazle una foto a un panal o a una colmena con síntomas y la IA propone un diagnóstico '
+        '(varroa, nosema, loque, vespa velutina…). Las patologías de declaración obligatoria '
         'se destacan automáticamente. Tú decides; nada se aplica sin tu revisión y receta '
         'del veterinario asesor.',
   ),

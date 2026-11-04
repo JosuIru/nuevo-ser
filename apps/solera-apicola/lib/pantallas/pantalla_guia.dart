@@ -26,9 +26,9 @@ class PantallaGuia extends StatelessWidget {
             isScrollable: true,
             tabs: [
               Tab(icon: Icon(Icons.coronavirus), text: 'Patologías'),
-              Tab(icon: Icon(Icons.science), text: 'Sustancias varroa'),
+              Tab(icon: Icon(Icons.science), text: 'Sustancias contra varroa'),
               Tab(icon: Icon(Icons.hive), text: 'Razas'),
-              Tab(icon: Icon(Icons.dashboard), text: 'Tipos colmena'),
+              Tab(icon: Icon(Icons.dashboard), text: 'Tipos de colmena'),
             ],
           ),
         ),
@@ -40,7 +40,7 @@ class PantallaGuia extends StatelessWidget {
                 child: BannerCoincidenciaCatalogo(
                   coincidencia: CoincidenciaCatalogo.provisional,
                   mensajeProvisional:
-                      'Catálogo provisional con fuente pública trazable. Pendiente firma del veterinario apícola asesor.',
+                      'Catálogo provisional con fuente pública trazable. Pendiente de la firma del veterinario apícola asesor.',
                   mensajeValidado: '',
                   mensajeLibre: '',
                 ),
@@ -198,7 +198,7 @@ class _TabPatologiasState extends State<_TabPatologias> {
                         if (p.declaracionOficial) ...[
                           const BannerDeclaracionObligatoria(
                             texto:
-                                'PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Notificar a Servicios Veterinarios oficiales de tu CCAA.',
+                                'PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Notifícala a los servicios veterinarios oficiales de tu comunidad autónoma.',
                           ),
                           const SizedBox(height: 12),
                         ],
@@ -249,7 +249,7 @@ class _TabSustanciasVarroa extends StatelessWidget {
       case VehiculoSustanciaVarroa.sandwich:
         return 'Sandwich';
       case VehiculoSustanciaVarroa.tiraPolimero:
-        return 'Tira polímero';
+        return 'Tira de polímero';
       case VehiculoSustanciaVarroa.nebulizacion:
         return 'Nebulización';
     }

@@ -69,8 +69,8 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
       builder: (_) => AlertDialog(
         title: Text('Borrar tercero'),
         content: Text(
-          'Se borrará "${t.nombre}". Los apuntes asociados conservarán '
-          'el importe pero pierden la referencia al NIF — afectará al '
+          'Se borrará «${t.nombre}». Los apuntes asociados conservarán '
+          'el importe, pero pierden la referencia al NIF — afectará al '
           'extracto del modelo 347 si es de un año aún declarado.',
         ),
         actions: [

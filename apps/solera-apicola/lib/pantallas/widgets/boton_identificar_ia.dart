@@ -263,7 +263,7 @@ class _ModalResultadoIA extends StatelessWidget {
             if (declaracionObligatoria) ...[
               const BannerDeclaracionObligatoria(
                 texto:
-                    'PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los Servicios Veterinarios oficiales de tu CCAA.',
+                    'PATOLOGÍA DE DECLARACIÓN OBLIGATORIA. Si confirmas el diagnóstico, debes notificarlo a los servicios veterinarios oficiales de tu comunidad autónoma.',
               ),
               const SizedBox(height: 12),
             ],
@@ -273,8 +273,8 @@ class _ModalResultadoIA extends StatelessWidget {
               mensajeLibre:
                   'Diagnóstico libre — no coincide con el catálogo curado de Larrea Apícola. Revisa con criterio antes de aceptar.',
               mensajeProvisional:
-                  'Coincide con catálogo provisional. El catálogo aún no ha sido validado por veterinario apícola — usa criterio.',
-              mensajeValidado: 'Diagnóstico coincide con catálogo Larrea',
+                  'Coincide con el catálogo provisional. El catálogo aún no lo ha validado un veterinario apícola: usa tu criterio.',
+              mensajeValidado: 'El diagnóstico coincide con el catálogo de Larrea',
             ),
             const SizedBox(height: 16),
             _FilaInfo(etiqueta: 'Nombre común', valor: resultado.nombreComun),
@@ -383,7 +383,7 @@ class _ModalResultadoIA extends StatelessWidget {
                       }
                       if (declaracionObligatoria) {
                         notasAuto.write(
-                            '.\n⚠ Patología de DECLARACIÓN OBLIGATORIA — notificar a Servicios Veterinarios oficiales.');
+                            '.\n⚠ Patología de declaración obligatoria: hay que notificarla a los servicios veterinarios oficiales.');
                       }
                       // Si la plaga viene del catálogo usamos su id (estable);
                       // si es texto libre persistimos el nombre común que devolvió la IA.
@@ -395,7 +395,7 @@ class _ModalResultadoIA extends StatelessWidget {
                         notasAuto: notasAuto.toString(),
                       ));
                     },
-                    label: const Text('Aceptar y pre-rellenar'),
+                    label: const Text('Aceptar y rellenar'),
                   ),
                 ),
               ],

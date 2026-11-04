@@ -251,7 +251,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
             CampoAutocompleteCatalogo<RazaAbeja>(
               controlador: _controladorRaza,
               labelText: 'Raza',
-              hintText: 'ibérica, carnica, ligustica, buckfast…',
+              hintText: 'ibérica, cárnica, ligústica, buckfast…',
               opcionesCompletas: catalogoRazasAbeja,
               buscar: buscarRazasAbeja,
               displayStringForOption: (r) => r.nombreCanonico,

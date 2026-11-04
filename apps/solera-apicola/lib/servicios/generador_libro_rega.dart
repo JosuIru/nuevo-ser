@@ -66,9 +66,9 @@ Future<File> generarLibroRega({
 
   final bullets = <String>[
     'Titular: ${apicultor.nombre.isEmpty ? "—" : apicultor.nombre} · NIF ${apicultor.nif.isEmpty ? "—" : apicultor.nif}',
-    if (apicultor.numeroRega.isNotEmpty) 'Nº REGA: ${apicultor.numeroRega}',
+    if (apicultor.numeroRega.isNotEmpty) 'N.º REGA: ${apicultor.numeroRega}',
     if (apicultor.numeroExplotacionApicola.isNotEmpty)
-      'Nº explotación apícola: ${apicultor.numeroExplotacionApicola}',
+      'N.º explotación apícola: ${apicultor.numeroExplotacionApicola}',
     if (apicultor.direccion.isNotEmpty) 'Dirección: ${apicultor.direccion}',
     if (apicultor.nombreVeterinario.isNotEmpty)
       'Veterinario asesor: ${apicultor.nombreVeterinario} · NIF ${apicultor.nifVeterinario.isEmpty ? "—" : apicultor.nifVeterinario} · Colegiado ${apicultor.numeroColegiadoVeterinario.isEmpty ? "—" : apicultor.numeroColegiadoVeterinario}',
@@ -169,7 +169,7 @@ Future<File> generarLibroRega({
           'Origen',
           'Destino',
           'Motivo',
-          'Nº colmenas',
+          'N.º colmenas',
           'Notas',
         ],
         filas: filasMovimientos,

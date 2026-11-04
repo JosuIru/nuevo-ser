@@ -268,9 +268,9 @@ class _EventoTimeline {
 
   factory _EventoTimeline.cosecha(CosechaMiel c) {
     final partes = <String>[
-      if (c.kilosMiel != null) '${c.kilosMiel!.toStringAsFixed(1)} kg miel',
-      if (c.kilosCera != null) '${c.kilosCera!.toStringAsFixed(2)} kg cera',
-      if (c.kilosPolen != null) '${c.kilosPolen!.toStringAsFixed(2)} kg polen',
+      if (c.kilosMiel != null) '${c.kilosMiel!.toStringAsFixed(1)} kg de miel',
+      if (c.kilosCera != null) '${c.kilosCera!.toStringAsFixed(2)} kg de cera',
+      if (c.kilosPolen != null) '${c.kilosPolen!.toStringAsFixed(2)} kg de polen',
       if (c.numeroAlza != null) 'alza ${c.numeroAlza}',
     ];
     return _EventoTimeline._(c.fechaMs, 'Cosecha', partes.join(' · '), Icons.water_drop);
@@ -288,7 +288,7 @@ class _EventoTimeline {
   factory _EventoTimeline.incidencia(IncidenciaApicola i) {
     final partes = <String>[
       if (i.diagnostico.isNotEmpty) i.diagnostico,
-      if (i.severidad != null) 'sev ${i.severidad}',
+      if (i.severidad != null) 'sev. ${i.severidad}',
       if (i.resuelta) 'resuelta',
     ];
     return _EventoTimeline._(i.fechaMs, 'Incidencia · ${i.tipo}', partes.join(' · '), Icons.warning_amber);

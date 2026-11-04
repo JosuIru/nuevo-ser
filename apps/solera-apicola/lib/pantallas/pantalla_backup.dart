@@ -178,7 +178,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final ultimo = _ultimoBackup;
     final hace = ultimo == null ? null : DateTime.now().difference(ultimo);
     return Scaffold(
-      appBar: AppBar(title: Text('Backup y restauración')),
+      appBar: AppBar(title: Text('Copia de seguridad')),
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
@@ -202,10 +202,10 @@ class _PantallaBackupState extends State<PantallaBackup> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Último backup', style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text('Última copia', style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(
                             ultimo == null
-                                ? 'Nunca — recomendado hacer uno antes de la próxima trashumancia.'
+                                ? 'Nunca. Te recomendamos hacer una antes de la próxima trashumancia.'
                                 : DateFormat("d/MM/yyyy 'a las' HH:mm").format(ultimo),
                           ),
                         ],
@@ -216,10 +216,10 @@ class _PantallaBackupState extends State<PantallaBackup> {
               ),
             ),
             SizedBox(height: 12),
-            Text('Crear backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text('Crear copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Empaqueta la base de datos y todas las fotos en un zip que puedes compartir por WhatsApp, '
+              'Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, '
               'Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
@@ -227,13 +227,13 @@ class _PantallaBackupState extends State<PantallaBackup> {
             FilledButton.icon(
               icon: Icon(Icons.archive),
               onPressed: _trabajando ? null : _crearYCompartir,
-              label: Text(_trabajando ? 'Empaquetando…' : 'Crear backup y compartir'),
+              label: Text(_trabajando ? 'Empaquetando…' : 'Crear copia y compartir'),
             ),
             Divider(height: 32),
-            Text('Restaurar desde backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text('Restaurar una copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Sustituye la base de datos por la del zip y añade sus fotos. Antes se comprueba la copia '
+              'Sustituye la base de datos por la del ZIP y añade sus fotos. Antes se comprueba la copia '
               'y se guarda automáticamente el estado actual por si quieres deshacer.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),

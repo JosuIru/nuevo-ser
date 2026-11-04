@@ -72,7 +72,7 @@ Future<File> generarExtractoEconomico({
   final bullets = <String>[
     'PROVISIONAL — Pendiente de validación por asesor fiscal.',
     'Titular: ${apicultor.nombre.isEmpty ? "—" : apicultor.nombre} · NIF ${apicultor.nif.isEmpty ? "—" : apicultor.nif}',
-    if (apicultor.numeroRega.isNotEmpty) 'Nº REGA: ${apicultor.numeroRega}',
+    if (apicultor.numeroRega.isNotEmpty) 'N.º REGA: ${apicultor.numeroRega}',
     'Régimen IRPF: ${_etiquetaIrpf(configFiscal.regimenIrpf)}',
     'Régimen IVA: ${_etiquetaIva(configFiscal.regimenIva)}',
     'Ingresos ordinarios (base): ${_euros(ingresosOrdinarios)}',
@@ -263,7 +263,7 @@ Future<File> generarExtractoEconomico({
             'Ningún tercero supera el umbral del 347 en este ejercicio.',
       ),
       TablaInforme(
-        titulo: 'Apuntes sin NIF — NO entran al modelo 347',
+        titulo: 'Apuntes sin NIF — no entran en el modelo 347',
         headers: const ['Fecha', 'Tipo', 'Concepto', 'Importe'],
         filas: filasSinNif,
         mensajeSiVacia: 'Todos los apuntes tienen NIF asociado.',
@@ -350,7 +350,7 @@ String _etiquetaIrpf(String codigo) {
 String _etiquetaIva(String codigo) {
   switch (codigo) {
     case 'reagp':
-      return 'REAGP (compensación 12%)';
+      return 'REAGP (compensación del 12 %)';
     case 'general':
       return 'Régimen general';
     default:
@@ -392,7 +392,7 @@ String _etiquetaTipoGasto(String codigo) {
     case 'transporte_trashumancia':
       return 'Transporte';
     case 'mano_obra':
-      return 'Mano obra';
+      return 'Mano de obra';
     case 'veterinario':
       return 'Veterinario';
     case 'seguros':

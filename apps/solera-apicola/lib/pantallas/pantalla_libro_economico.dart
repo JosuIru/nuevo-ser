@@ -235,7 +235,7 @@ class _ListaIngresos extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(24),
           child: Text(
-            'Aún no hay ingresos en este año. Pulsa el botón "Nuevo ingreso" '
+            'Aún no hay ingresos en este año. Pulsa el botón «Nuevo ingreso» '
             'para registrar una venta de miel, polen, alquiler de polinización '
             'o una ayuda PAC.',
             textAlign: TextAlign.center,
@@ -312,7 +312,7 @@ class _ListaIngresos extends StatelessWidget {
       case 'venta_jalea':
         return 'Venta de jalea';
       case 'alquiler_polinizacion':
-        return 'Alquiler colmenas';
+        return 'Alquiler de colmenas';
       case 'ayuda_pac':
         return 'Ayuda PAC';
       case 'subvencion_autonomica':
@@ -340,8 +340,8 @@ class _ListaGastos extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(24),
           child: Text(
-            'Aún no hay gastos en este año. Pulsa el botón "Nuevo gasto" para '
-            'registrar alimentación, sanidad varroa, transporte, material o '
+            'Aún no hay gastos en este año. Pulsa el botón «Nuevo gasto» para '
+            'registrar alimentación, sanidad (varroa), transporte, material o '
             'cualquier otro gasto de la explotación.',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.black54),
@@ -409,7 +409,7 @@ class _ListaGastos extends StatelessWidget {
       case 'alimentacion':
         return 'Alimentación';
       case 'sanidad_varroa':
-        return 'Sanidad varroa';
+        return 'Sanidad (varroa)';
       case 'material':
         return 'Material';
       case 'transporte_trashumancia':
@@ -746,13 +746,13 @@ class _ResumenAnual extends StatelessWidget {
           importeCentimos: ingresosOrdinarios,
           color: Colors.green.shade700,
           subtitulo:
-              'Venta de productos + alquiler polinización (base imponible)',
+              'Venta de productos y alquiler para polinización (base imponible)',
         ),
         _Card(
           titulo: 'Ayudas y subvenciones $ano',
           importeCentimos: ayudas,
           color: Colors.purple.shade700,
-          subtitulo: 'PAC + autonómicas — fiscalmente NO son ingreso ordinario',
+          subtitulo: 'PAC y autonómicas: fiscalmente no son ingreso ordinario',
         ),
         _Card(
           titulo: 'Gastos $ano',
@@ -778,13 +778,13 @@ class _ResumenAnual extends StatelessWidget {
             titulo: 'Compensación REAGP cobrada',
             importeCentimos: compensacionReagp,
             color: Colors.teal.shade700,
-            subtitulo: '12% sobre la base — el comprador la paga al apicultor',
+            subtitulo: '12 % sobre la base — el comprador la paga al apicultor',
           ),
           _Card(
             titulo: 'IVA soportado en compras',
             importeCentimos: ivaSoportado,
             color: Colors.blueGrey.shade700,
-            subtitulo: 'En REAGP NO es recuperable. Computa como mayor coste.',
+            subtitulo: 'En REAGP no es recuperable: computa como mayor coste.',
           ),
         ],
         if (configFiscal.regimenIva == 'general') ...[
@@ -836,7 +836,7 @@ class _ResumenAnual extends StatelessWidget {
           _Stats(
             icono: Icons.warning_amber,
             texto:
-                '$apuntesSinNif ingreso(s) sin NIF — no entran al modelo 347',
+                '$apuntesSinNif ingreso(s) sin NIF — no entran en el modelo 347',
             color: Colors.orange.shade800,
           ),
         const SizedBox(height: 24),

@@ -367,15 +367,15 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 8),
           _selectorNumero1A5('Cría operculada', _nivelCriaOperculada, (v) => setState(() => _nivelCriaOperculada = v)),
           SizedBox(height: 8),
-          _selectorNumero1A5('Reservas miel', _nivelMiel, (v) => setState(() => _nivelMiel = v)),
+          _selectorNumero1A5('Reservas de miel', _nivelMiel, (v) => setState(() => _nivelMiel = v)),
           SizedBox(height: 8),
-          _selectorNumero1A5('Reservas polen', _nivelPolen, (v) => setState(() => _nivelPolen = v)),
+          _selectorNumero1A5('Reservas de polen', _nivelPolen, (v) => setState(() => _nivelPolen = v)),
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorVarroaCaida,
             decoration: InputDecoration(
-              labelText: 'Varroa caída/día (sticky board)',
-              hintText: 'Conteo en 24h',
+              labelText: 'Varroa caída/día (bandeja adhesiva)',
+              hintText: 'Recuento en 24 h',
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -386,7 +386,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           TextFormField(
             controller: _controladorKilosMiel,
-            decoration: InputDecoration(labelText: 'Kilos miel', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: 'Kilos de miel', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -395,7 +395,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorKilosCera,
-            decoration: InputDecoration(labelText: 'Kilos cera', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: 'Kilos de cera', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -404,7 +404,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorKilosPolen,
-            decoration: InputDecoration(labelText: 'Kilos polen', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: 'Kilos de polen', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -413,7 +413,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorKilosPropoleo,
-            decoration: InputDecoration(labelText: 'Kilos propóleo', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: 'Kilos de propóleo', border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) =>
@@ -422,7 +422,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorAlza,
-            decoration: InputDecoration(labelText: 'Nº alza (opcional)', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: 'N.º alza (opcional)', border: OutlineInputBorder()),
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
@@ -488,7 +488,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
-              labelText: 'Plazo seguridad (días)',
+              labelText: 'Plazo de seguridad (días)',
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -498,7 +498,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorLote,
             decoration: InputDecoration(
-              labelText: 'Lote producto',
+              labelText: 'Lote del producto',
               hintText: 'Trazabilidad sanitaria',
               border: OutlineInputBorder(),
             ),
@@ -507,7 +507,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorFactura,
             decoration: InputDecoration(
-              labelText: 'Nº factura',
+              labelText: 'N.º de factura',
               border: OutlineInputBorder(),
             ),
           ),
@@ -523,7 +523,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               DropdownMenuItem(value: 'enjambrazon', child: Text('Enjambrazón')),
               DropdownMenuItem(value: 'robo', child: Text('Robo')),
               DropdownMenuItem(value: 'vespa_velutina', child: Text('Vespa velutina')),
-              DropdownMenuItem(value: 'polilla_cera', child: Text('Polilla cera')),
+              DropdownMenuItem(value: 'polilla_cera', child: Text('Polilla de la cera')),
               DropdownMenuItem(value: 'otro', child: Text('Otro')),
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
@@ -559,7 +559,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             SizedBox(height: 8),
             BannerDeclaracionObligatoria(
               texto:
-                  'Esta patología es de DECLARACIÓN OBLIGATORIA al servicio veterinario oficial.',
+                  'Esta patología es de declaración obligatoria al servicio veterinario oficial.',
             ),
           ],
           SizedBox(height: 12),
@@ -608,7 +608,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorNumeroColmenas,
             decoration: InputDecoration(
-              labelText: 'Nº de colmenas movidas',
+              labelText: 'N.º de colmenas movidas',
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,

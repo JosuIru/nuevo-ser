@@ -55,7 +55,7 @@ class PantallaAcerca extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           const Text(
-            'Larrea Apícola es un gestor para apicultores profesionales y semi-profesionales: '
+            'Larrea Apícola es un gestor para apicultores profesionales y semiprofesionales: '
             'censo de colmenas con matrícula y GPS, registro de revisiones, cosechas, '
             'tratamientos sanitarios e incidencias, gestión de trashumancia, '
             'identificación de patologías por foto con IA y libro oficial REGA en PDF '
@@ -66,7 +66,7 @@ class PantallaAcerca extends StatelessWidget {
           const _Seccion('Compromisos legales'),
           const _Bullet(
             'Larrea no recomienda medicamentos zoosanitarios comerciales '
-            '(Apivar, ApiBioxal, Polyvar…). Sólo lista sustancias activas '
+            '(Apivar, ApiBioxal, Polyvar…). Solo lista sustancias activas '
             'autorizadas. Cualquier tratamiento sanitario requiere receta '
             'del veterinario asesor.',
           ),
@@ -82,14 +82,14 @@ class PantallaAcerca extends StatelessWidget {
             'antes de presentar el documento en inspección.',
           ),
           const _Bullet(
-            'Tu clave Anthropic (si la configuras para IA) se guarda sólo '
+            'Tu clave de Anthropic (si la configuras para la IA) se guarda solo '
             'en tu dispositivo. Las fotos se envían directamente a '
             'Anthropic, sin pasar por servidores intermedios.',
           ),
           const _Bullet(
             'El libro económico (ingresos, gastos, modelo 347, extracto '
             'anual) es PROVISIONAL hasta que un asesor fiscal valide el '
-            'formato. Es una herramienta de apoyo para tu gestoría — un '
+            'formato. Es una herramienta de apoyo para tu gestoría: un '
             'error en el extracto fiscal cuesta dinero con Hacienda. '
             'Contrasta cada apunte con tu asesor antes de presentar nada.',
           ),
@@ -99,10 +99,10 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Familia Larrea'),
           const Text(
-            'Larrea Apícola es parte de la suite Larrea del monorepo '
-            'Colección Nuevo Ser. Otras apps hermanas: Larrea Viticultura '
-            '(libro PAC en bodegas), Larrea (general — frutales, trufa, '
-            'olivar), Larrea Arbolado Urbano (B2B municipal — en desarrollo).',
+            'Larrea Apícola forma parte de la suite Larrea, de la Colección '
+            'Nuevo Ser. Apps hermanas: Larrea Viticultura (libro PAC en '
+            'bodegas), Larrea (general — frutales, trufa, olivar), Larrea '
+            'Arbolado Urbano (B2B municipal), Larrea Quesera y Larrea Aceitera.',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
@@ -170,11 +170,11 @@ class _TarjetaCatalogos extends StatelessWidget {
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
             const Text(
-              'Pre-rellenados a partir de fuentes públicas (textos sanitarios '
+              'Rellenados a partir de fuentes públicas (textos sanitarios '
               'apícolas, MAPA, manuales de apicultura ibérica). Antes de pasar '
               'a producción comercial deben ser validados por un veterinario '
-              'apícola + un apicultor experimentado. Las propuestas de la IA '
-              'que coincidan con el catálogo se marcan como "provisionales", '
+              'apícola y un apicultor experimentado. Las propuestas de la IA '
+              'que coincidan con el catálogo se marcan como «provisionales», '
               'no como validadas.',
               style: TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
             ),

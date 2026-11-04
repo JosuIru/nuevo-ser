@@ -41,7 +41,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error generando el PDF: $e')),
+          SnackBar(content: Text('Error al generar el PDF: $e')),
         );
       }
       return null;
@@ -85,7 +85,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
             child: Text(
               'PROVISIONAL. Este extracto es una herramienta de apoyo para el '
               'asesor fiscal — el formato exacto del libro registro y del modelo '
-              '347 está pendiente de firma de asesor fiscal antes de presentar '
+              '347 está pendiente de que lo valide un asesor fiscal antes de presentar '
               'nada en una declaración.',
               style: TextStyle(fontSize: 12, color: Colors.amber.shade900),
             ),
@@ -130,15 +130,15 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
             ),
             child: const Text(
               'El extracto incluye:\n'
-              '• Bullets resumen con totales del ejercicio.\n'
+              '• Resumen con los totales del ejercicio.\n'
               '• Tabla mensual de ingresos (ordinarios, ayudas, IVA, '
               'compensación REAGP).\n'
               '• Tabla mensual de gastos (base, IVA soportado, total).\n'
               '• Modelo 347 — terceros con suma >3.005,06 € en el ejercicio.\n'
-              '• Apuntes sin NIF que NO entran al modelo 347.\n'
+              '• Apuntes sin NIF que no entran en el modelo 347.\n'
               '• Detalle cronológico de ingresos y de gastos.\n\n'
               'El reparto proporcional de gastos de trashumancia entre '
-              'colmenares NO está calculado todavía — los apuntes con esa '
+              'colmenares no está calculado todavía: los apuntes con esa '
               'imputación se listan tal cual con el importe íntegro.',
               style: TextStyle(fontSize: 12, color: Colors.black87),
             ),

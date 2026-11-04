@@ -83,7 +83,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error generando el PDF: $e')),
+        SnackBar(content: Text('Error al generar el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -112,7 +112,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error abriendo el PDF: $e')),
+        SnackBar(content: Text('Error al abrir el PDF: $e')),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -139,7 +139,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
                 title: Text('Titular sin configurar'),
                 subtitle: Text(
                   'El libro oficial REGA requiere los datos del titular '
-                  '(NIF, nombre, Nº REGA, veterinario asesor…). Configúralos '
+                  '(NIF, nombre, N.º REGA, veterinario asesor…). Configúralos '
                   'antes de generar.',
                 ),
                 onTap: _abrirApicultor,
@@ -214,7 +214,7 @@ class _PantallaLibroRegaState extends State<PantallaLibroRega> {
               'El libro recoge tratamientos sanitarios, movimientos '
               '(trashumancia/altas/bajas), incidencias y cosechas del periodo. '
               'Las revisiones rutinarias no se incluyen en el libro oficial.\n\n'
-              'Verifica el formato vigente del MAPA + tu CCAA antes de '
+              'Verifica el formato vigente del MAPA y de tu comunidad autónoma antes de '
               'presentar el documento en inspección — la regulación se '
               'actualiza periódicamente.',
               style: TextStyle(fontSize: 13, color: Colors.black87),

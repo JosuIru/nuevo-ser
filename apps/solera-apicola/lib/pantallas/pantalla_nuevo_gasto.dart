@@ -226,7 +226,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               controller: _concepto,
               decoration: InputDecoration(
                 labelText: 'Concepto *',
-                hintText: 'Ej: Apivar 10 tiras / Diésel inspección julio',
+                hintText: 'Ej.: Apivar 10 tiras / Gasóleo revisión de julio',
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
@@ -280,7 +280,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4),
                 child: Text(
-                  'En REAGP el IVA soportado NO es recuperable — se computa '
+                  'En REAGP el IVA soportado no es recuperable: se computa '
                   'como mayor coste en el extracto.',
                   style: TextStyle(fontSize: 11, color: Colors.black54),
                 ),
@@ -307,7 +307,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                     value: 'reparto_proporcional',
                     title: Text('Reparto proporcional'),
                     subtitle: Text(
-                        'Trashumancia compartida — el extracto reparte por nº de colmenas'),
+                        'Trashumancia compartida: el extracto reparte por n.º de colmenas'),
                   ),
                 ],
               ),
@@ -349,7 +349,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'Nº de factura',
+                labelText: 'N.º de factura',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -400,9 +400,9 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
 
   String _textoAutocalculo() {
     if (_tipoGasto == 'alimentacion') {
-      return '10% IVA reducido (alimentación animal)';
+      return '10 % IVA reducido (alimentación animal)';
     }
-    return '21% IVA general';
+    return '21 % IVA general';
   }
 }
 

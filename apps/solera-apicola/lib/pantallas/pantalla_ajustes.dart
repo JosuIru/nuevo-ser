@@ -18,9 +18,9 @@ Widget pantallaClaveAnthropicApicola() => PantallaClaveAnthropic(
       queIdentifica: 'Identifica varroa, nosema, loque y otras patologías por foto',
       descripcion:
           'Larrea Apícola puede usar Claude AI de Anthropic para analizar la foto que adjuntas '
-          'a una incidencia y proponer un diagnóstico, severidad y manejo cultural. Si detecta '
+          'a una incidencia y proponer un diagnóstico, la severidad y el manejo cultural. Si detecta '
           'una patología de declaración obligatoria (loque americana, vespa velutina, escarabajo '
-          'de las colmenas) lo destaca con banner rojo. La misma clave sirve para el asistente '
+          'de las colmenas), lo destaca con un aviso en rojo. La misma clave sirve para el asistente '
           '(chat) de la pantalla Hoy.',
       probarClave: probarClaveAnthropic,
     );
@@ -45,7 +45,7 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.person),
             title: Text('Titular de la explotación'),
-            subtitle: Text('NIF, nº REGA, contacto y veterinario asesor'),
+            subtitle: Text('NIF, n.º REGA, contacto y veterinario asesor'),
             onTap: () => _abrir(context, PantallaApicultor()),
           ),
           ListTile(
@@ -82,7 +82,7 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.backup),
             title: Text('Copia de seguridad'),
-            subtitle: Text('Empaqueta BD + fotos como zip, y restaura'),
+            subtitle: Text('Empaqueta la base de datos y las fotos en un ZIP, y las restaura'),
             onTap: () => _abrir(context, const PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),

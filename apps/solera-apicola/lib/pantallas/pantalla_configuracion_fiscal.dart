@@ -121,7 +121,7 @@ class _PantallaConfiguracionFiscalState
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
-              'Módulos no está soportado en v1 — pendiente de validación con '
+              'El régimen de módulos no está disponible en v1: pendiente de validación con '
               'asesor fiscal antes de añadirlo.',
               style: TextStyle(fontSize: 11, color: Colors.black54),
             ),
@@ -145,8 +145,8 @@ class _PantallaConfiguracionFiscalState
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
                 'En REAGP no repercutes IVA en la venta de miel. El comprador '
-                'te paga la compensación del 12% sobre la base. El IVA soportado '
-                'en compras NO es recuperable — se imputa como mayor coste.',
+                'te paga la compensación del 12 % sobre la base. El IVA soportado '
+                'en compras no es recuperable: se imputa como mayor coste.',
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
@@ -154,7 +154,7 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En régimen general repercutes el 4% de IVA en la venta de miel '
+                'En régimen general repercutes el 4 % de IVA en la venta de miel '
                 '(alimento de primera necesidad, art. 91.1.1.1.º LIVA) y el IVA '
                 'soportado en compras es recuperable.',
                 style: TextStyle(fontSize: 11, color: Colors.black54),

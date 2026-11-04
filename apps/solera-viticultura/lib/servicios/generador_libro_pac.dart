@@ -66,7 +66,7 @@ Future<File> generarLibroPac({
       'Aplicador: ${titular.nombreAplicador} · NIF ${titular.nifAplicador.isEmpty ? "—" : titular.nifAplicador} · Carnet ${titular.carnetAplicador.isEmpty ? "—" : titular.carnetAplicador} (${titular.nivelCarnetAplicador.isEmpty ? "—" : titular.nivelCarnetAplicador})',
     if (vinedo != null && vinedo.referenciaSigpac.isNotEmpty) 'SIGPAC: ${vinedo.referenciaSigpac}',
     if (vinedo != null && vinedo.superficieHectareas != null)
-      'Superficie: ${vinedo.superficieHectareas!.toStringAsFixed(2)} ha',
+      'Superficie: ${formatearNumero(vinedo.superficieHectareas!, decimales: 2)} ha',
     'Tratamientos fitosanitarios registrados: ${fitosanitarios.length}',
   ];
 
@@ -83,7 +83,9 @@ Future<File> generarLibroPac({
         t.dosis,
         t.motivo,
         t.plazoSeguridadDias?.toString() ?? '—',
-        t.superficieTratadaHectareas?.toStringAsFixed(2) ?? '—',
+        t.superficieTratadaHectareas == null
+            ? '—'
+            : formatearNumero(t.superficieTratadaHectareas!, decimales: 2),
         t.nifAplicador.isEmpty ? (titular.nifAplicador.isEmpty ? '—' : titular.nifAplicador) : t.nifAplicador,
       ],
   ];

@@ -323,7 +323,7 @@ class _AcumuladoTercero {
   int gastos = 0;
 }
 
-String _euros(int centimos) => '${(centimos / 100).toStringAsFixed(2)} €';
+String _euros(int centimos) => formatearEuros(centimos / 100);
 
 String _nombreMes(int mes) {
   const nombres = [

@@ -20,7 +20,7 @@ class PantallaChat extends StatefulWidget {
       'cuaderno de explotación PAC. NUNCA recomiendes productos fitosanitarios por nombre comercial: '
       'habla de manejo cultural y, como mucho, de materias activas, y di siempre que consulte con '
       'su técnico o asesor antes de tratar. Cuando no estés seguro, lo dices. '
-      'Respondes en castellano. Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
+      'Sé conciso (máximo 3 párrafos salvo que te pidan detalle).';
 
   @override
   State<PantallaChat> createState() => _PantallaChatState();
@@ -102,7 +102,8 @@ class _PantallaChatState extends State<PantallaChat> {
         historial: _mensajes.length > 1
             ? _mensajes.sublist(0, _mensajes.length - 1)
             : null,
-        sistemaPrompt: widget.sistemaPrompt,
+        // Contesta en el idioma elegido en la app.
+        sistemaPrompt: '${widget.sistemaPrompt}\n${instruccionIdiomaRespuestaClaude()}',
         rutaImagen: imagen,
       );
       if (!mounted) return;

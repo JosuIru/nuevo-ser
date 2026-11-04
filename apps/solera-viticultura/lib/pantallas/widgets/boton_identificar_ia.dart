@@ -218,8 +218,12 @@ class _ModalResultadoIA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // El catálogo está en castellano: si la app va en otro idioma, se
+    // coteja con el nombre en castellano que también pide el prompt.
     final coincidencia = plagaPorBusquedaFuzzy(
-      resultado.nombreComun,
+      resultado.nombreComunCastellano.isNotEmpty
+          ? resultado.nombreComunCastellano
+          : resultado.nombreComun,
       resultado.nombreCientifico,
     );
     return DraggableScrollableSheet(

@@ -116,7 +116,8 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
 
   String _formatearCentimos(int centimos) {
     if (centimos == 0) return '';
-    return (centimos / 100).toStringAsFixed(2);
+    // Coma decimal; leerNumero/centimosDesdeTexto la entienden al guardar.
+    return formatearNumero(centimos / 100, decimales: 2);
   }
 
   /// Vacío o ilegible → 0; el validador del campo avisa si no se entiende.

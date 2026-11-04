@@ -242,7 +242,7 @@ class _EventoTimeline {
 
   factory _EventoTimeline.cosecha(Cosecha c) {
     String subtitulo() => <String>[
-          if (c.kilos != null) '${c.kilos!.toStringAsFixed(2)} kg',
+          if (c.kilos != null) '${formatearNumero(c.kilos!, decimales: 2)} kg',
           if (c.unidades != null) SoleraL10n.tf('viti.n_unidades_abreviado', {'n': c.unidades}),
           if (c.calidad != null) SoleraL10n.tf('viti.calidad_n', {'n': c.calidad}),
         ].join(' · ');

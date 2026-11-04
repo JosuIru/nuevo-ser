@@ -235,7 +235,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
         subtitle: Text(
           '${_formatter.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · '
-          '${f.total.toStringAsFixed(2)} € · ${_estadoVisible(f.estado)}',
+          '${formatearEuros(f.total)} · ${_estadoVisible(f.estado)}',
           style: TextStyle(fontSize: 12),
         ),
         trailing: PopupMenuButton<String>(
@@ -496,7 +496,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                     dense: true,
                     title: Text(l['descripcion']),
                     subtitle: Text(
-                        '${l['cantidad']} x ${l['precioUnitario']} € = ${l['importe']} €'),
+                        '${l['cantidad']} x ${formatearEuros(l['precioUnitario'] as num)} = ${formatearEuros(l['importe'] as num)}'),
                     trailing: IconButton(
                       icon: Icon(Icons.delete, color: Colors.red, size: 18),
                       onPressed: () =>
@@ -553,7 +553,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             // IVA
             DropdownButtonFormField<double>(
               decoration: InputDecoration(
-                  labelText: 'IVA',
+                  labelText: SoleraL10n.t('viti.iva'),
                   border: OutlineInputBorder(),
                   isDense: true),
               initialValue: _iva,
@@ -574,7 +574,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   children: [
                     _filaTotal(SoleraL10n.t('viti.base_imponible'), _baseImponible),
                     _filaTotal(
-                        'IVA $_iva %', _baseImponible * _iva / 100),
+                        SoleraL10n.tf('viti.iva_porcentaje', {'porcentaje': formatearNumero(_iva)}), _baseImponible * _iva / 100),
                     Divider(),
                     _filaTotal(SoleraL10n.t('viti.total_mayusculas'), _total, bold: true),
                   ],
@@ -603,7 +603,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
               style: TextStyle(
                   fontWeight: bold ? FontWeight.bold : FontWeight.normal,
                   fontSize: bold ? 16 : 14)),
-          Text('${valor.toStringAsFixed(2)} €',
+          Text(formatearEuros(valor),
               style: TextStyle(
                   fontWeight: bold ? FontWeight.bold : FontWeight.normal,
                   fontSize: bold ? 16 : 14)),

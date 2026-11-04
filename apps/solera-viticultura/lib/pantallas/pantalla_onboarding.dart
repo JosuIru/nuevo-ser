@@ -55,8 +55,17 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
       body: SafeArea(
         child: Column(
           children: [
+            // Elegir idioma desde la primera pantalla (se puede cambiar
+            // luego en Ajustes). Desliza en horizontal si no cabe.
             Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SelectorIdioma(onCambio: () => setState(() {})),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Image.asset(
@@ -72,18 +81,22 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 controller: _pageController,
                 onPageChanged: (i) => setState(() => _pagina = i),
                 itemCount: _paginas.length,
-                itemBuilder: (_, i) => _PaginaOnboarding(datos: _paginas[i], paleta: paleta),
+                itemBuilder: (_, i) =>
+                    _PaginaOnboarding(datos: _paginas[i], paleta: paleta),
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(_paginas.length, (i) {
                 return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 16),
                   width: i == _pagina ? 18 : 8,
                   height: 8,
                   decoration: BoxDecoration(
-                    color: i == _pagina ? paleta.primary : paleta.primary.withValues(alpha: 0.3),
+                    color: i == _pagina
+                        ? paleta.primary
+                        : paleta.primary.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(4),
                   ),
                 );
@@ -109,7 +122,9 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                         );
                       }
                     },
-                    child: Text(esUltima ? SoleraL10n.t('viti.empezar') : SoleraL10n.t('viti.siguiente')),
+                    child: Text(esUltima
+                        ? SoleraL10n.t('viti.empezar')
+                        : SoleraL10n.t('viti.siguiente')),
                   ),
                 ],
               ),
@@ -158,39 +173,48 @@ class _PaginaOnboarding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              color: paleta.primaryContainer,
-              shape: BoxShape.circle,
+    // Con scroll para que no desborde en pantallas bajas (el selector de
+    // idioma resta altura); centrado si cabe.
+    return LayoutBuilder(
+      builder: (context, restricciones) => SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: restricciones.maxHeight),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: paleta.primaryContainer,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(datos.icono, size: 56, color: paleta.primary),
+                ),
+                const SizedBox(height: 32),
+                Text(
+                  datos.titulo,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: paleta.primary,
+                      ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  datos.texto,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Colors.grey.shade800,
+                        height: 1.5,
+                      ),
+                ),
+              ],
             ),
-            child: Icon(datos.icono, size: 56, color: paleta.primary),
           ),
-          const SizedBox(height: 32),
-          Text(
-            datos.titulo,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: paleta.primary,
-                ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            datos.texto,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: Colors.grey.shade800,
-                  height: 1.5,
-                ),
-          ),
-        ],
+        ),
       ),
     );
   }

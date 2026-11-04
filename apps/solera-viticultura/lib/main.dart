@@ -33,9 +33,8 @@ Future<void> main() async {
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
   // Nombres de meses y días para los cuatro idiomas de la app.
-  for (final localeFechas in const ['es_ES', 'eu', 'ca', 'gl']) {
-    await initializeDateFormatting(localeFechas, null);
-  }
+  // Sin argumentos carga todos los locales de intl (es_ES, eu, ca, gl…).
+  await initializeDateFormatting();
   unawaited(_autoBackupViticultura.restaurarSiProcede());
   runApp(const SoleraViticulturaApp());
 }

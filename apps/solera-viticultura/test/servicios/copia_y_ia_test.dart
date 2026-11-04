@@ -75,6 +75,7 @@ void main() {
         'advertencia': '',
       });
       expect(resultado.nombreComun, 'Mildiu');
+      expect(resultado.nombreComunCastellano, '');
       expect(resultado.tipo, 'enfermedad');
       expect(resultado.severidad, 3);
       expect(resultado.confianza, 0.8);
@@ -86,6 +87,16 @@ void main() {
       expect(resultado.tipo, 'indeterminado');
       expect(resultado.severidad, 5);
       expect(resultado.confianza, 1.0);
+    });
+
+    test('lee el nombre en castellano para cotejar con el catálogo', () {
+      final resultado = ResultadoAnalisisIA.desdeJson({
+        'nombre_comun': 'Mildiua',
+        'nombre_comun_es': 'Mildiu',
+        'tipo': 'enfermedad',
+      });
+      expect(resultado.nombreComun, 'Mildiua');
+      expect(resultado.nombreComunCastellano, 'Mildiu');
     });
 
     test('el prompt incluye las observaciones', () {

@@ -7,6 +7,11 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 /// formulario de incidencia tras revisión humana.
 class ResultadoAnalisisIA {
   final String nombreComun;
+
+  /// El mismo nombre en castellano, solo para cotejar con el catálogo de
+  /// plagas (que está en castellano) cuando la app va en otro idioma.
+  /// Vacío si Claude no lo da.
+  final String nombreComunCastellano;
   final String nombreCientifico;
   final String tipo;
   final int? severidad;
@@ -16,6 +21,7 @@ class ResultadoAnalisisIA {
 
   ResultadoAnalisisIA({
     required this.nombreComun,
+    this.nombreComunCastellano = '',
     required this.nombreCientifico,
     required this.tipo,
     this.severidad,
@@ -38,6 +44,7 @@ class ResultadoAnalisisIA {
     final tipo = texto('tipo');
     return ResultadoAnalisisIA(
       nombreComun: nombreComun.isNotEmpty ? nombreComun : 'Sin diagnóstico',
+      nombreComunCastellano: texto('nombre_comun_es'),
       nombreCientifico: texto('nombre_cientifico'),
       tipo: tipo.isNotEmpty ? tipo : 'indeterminado',
       severidad: severidad is num ? severidad.round().clamp(1, 5) : null,
@@ -79,7 +86,8 @@ class AnalizadorFotoVid {
     final imagen = await ImagenClaude.desdeFichero(foto.path);
     final json = await _clienteClaude.pedirJson(
       modelo: modeloClaudeRapido,
-      sistema: _promptSistema,
+      // Los textos del diagnóstico, en el idioma elegido en la app.
+      sistema: '$_promptSistema\n${instruccionIdiomaRespuestaClaude()}',
       mensajes: [
         MensajeClaude.usuario(
           construirPromptAnalisisVid(observacionesUsuario),
@@ -113,7 +121,8 @@ REGLAS ESTRICTAS:
 
 2. Estructura del JSON:
 {
-  "nombre_comun": "nombre habitual en español de la plaga/enfermedad/trastorno",
+  "nombre_comun": "nombre habitual de la plaga/enfermedad/trastorno",
+  "nombre_comun_es": "el mismo nombre SIEMPRE en castellano, como en la lista canónica de arriba (valor cerrado: sirve para cotejar con el catálogo)",
   "nombre_cientifico": "nombre científico binomial si aplica, vacío si es un trastorno fisiológico/abiótico",
   "tipo": "plaga" | "enfermedad" | "fisiologico" | "abiotico" | "indeterminado",
   "severidad": número entero 1-5 estimado, o null si no es valorable,

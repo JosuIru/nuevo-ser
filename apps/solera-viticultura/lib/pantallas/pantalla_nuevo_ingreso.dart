@@ -80,7 +80,13 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       _importeBase.text = _formatearCentimos(e.importeBaseCentimos);
       _ivaRepercutido.text = _formatearCentimos(e.ivaRepercutidoCentimos);
       _compensacionReagp.text = _formatearCentimos(e.compensacionReagpCentimos);
-      _cantidad.text = e.cantidad?.toString() ?? '';
+      // Coma decimal sin punto de millares, para que leerNumero lo relea igual.
+      final cantidad = e.cantidad;
+      _cantidad.text = cantidad == null
+          ? ''
+          : cantidad == cantidad.roundToDouble()
+              ? cantidad.round().toString()
+              : cantidad.toString().replaceAll('.', ',');
       _terceroId = e.terceroId;
       _vinedoId = e.vinedoId;
       _variedadId = e.variedadId;
@@ -118,7 +124,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _formatearCentimos(int centimos) {
     if (centimos == 0) return '';
-    return (centimos / 100).toStringAsFixed(2);
+    // Coma decimal; leerNumero/centimosDesdeTexto la entienden al guardar.
+    return formatearNumero(centimos / 100, decimales: 2);
   }
 
   /// Vacío o ilegible → 0; el validador del campo avisa si no se entiende.

@@ -119,7 +119,7 @@ class _PantallaConfiguracionFiscalState
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
-              'Módulos no está soportado en v1 — pendiente de validación con '
+              'El régimen de módulos no está disponible en v1: pendiente de validación con '
               'asesor fiscal antes de añadirlo.',
               style: TextStyle(fontSize: 11, color: Colors.black54),
             ),
@@ -142,11 +142,11 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En REAGP no repercutes IVA en la venta de UVA. El comprador te '
-                'paga la compensación del 12%. La venta de VINO siempre va al '
-                '21% general — el vino es producto transformado por la bodega '
-                'y queda fuera del REAGP. El IVA soportado en compras NO es '
-                'recuperable, se imputa como mayor coste.',
+                'En REAGP no repercutes IVA en la venta de uva. El comprador te '
+                'paga la compensación del 12 %. La venta de vino siempre va al '
+                '21 % general: el vino es un producto transformado por la bodega '
+                'y queda fuera del REAGP. El IVA soportado en compras no es '
+                'recuperable: se imputa como mayor coste.',
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
@@ -154,8 +154,8 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En régimen general repercutes el 4% en uva (alimento de '
-                'primera necesidad) y el 21% en vino (bebida alcohólica). El '
+                'En régimen general repercutes el 4 % en uva (alimento de '
+                'primera necesidad) y el 21 % en vino (bebida alcohólica). El '
                 'IVA soportado en compras es recuperable.',
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),

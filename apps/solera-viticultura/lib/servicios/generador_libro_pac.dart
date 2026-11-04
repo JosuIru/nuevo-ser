@@ -100,7 +100,7 @@ Future<File> generarLibroPac({
           'Fecha',
           'Cepa',
           'Producto',
-          'Nº reg.',
+          'N.º reg.',
           'Dosis',
           'Motivo',
           'PS (días)',

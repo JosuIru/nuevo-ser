@@ -256,7 +256,7 @@ class _EventoTimeline {
   factory _EventoTimeline.incidencia(Incidencia i) {
     final partes = <String>[
       if (i.diagnostico.isNotEmpty) i.diagnostico,
-      if (i.severidad != null) 'sev ${i.severidad}',
+      if (i.severidad != null) 'sev. ${i.severidad}',
       if (i.resuelta) 'resuelta',
     ];
     return _EventoTimeline._(i.fechaMs, 'Incidencia · ${i.tipo}', partes.join(' · '), Icons.warning_amber);

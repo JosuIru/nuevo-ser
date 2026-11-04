@@ -132,12 +132,12 @@ const _paginas = <_DatosPagina>[
     Icons.location_on,
     'Tus cepas en el mapa',
     'Cataloga cada cepa con su ubicación GPS, variedad, portainjerto y fotos. '
-        'Localiza cualquier planta singular en segundos desde el mapa con clustering.',
+        'Localiza cualquier planta singular en segundos desde el mapa, con los puntos agrupados.',
   ),
   _DatosPagina(
     Icons.auto_awesome,
     'Diagnóstico con IA por foto',
-    'Hazle una foto a un racimo o una hoja con síntomas y la IA propone diagnóstico '
+    'Hazle una foto a un racimo o a una hoja con síntomas y la IA propone un diagnóstico '
         '(mildiu, oídio, botritis…) y manejo cultural. Tú decides; nada se aplica sin tu '
         'revisión.',
   ),

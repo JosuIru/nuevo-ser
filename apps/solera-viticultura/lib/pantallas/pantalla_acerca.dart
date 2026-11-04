@@ -75,8 +75,8 @@ class PantallaAcerca extends StatelessWidget {
             'antes de presentar el documento en inspección.',
           ),
           const _Bullet(
-            'Tu clave Anthropic (si la configuras para IA) se guarda '
-            'sólo en tu dispositivo. Las fotos se envían directamente '
+            'Tu clave de Anthropic (si la configuras para la IA) se guarda '
+            'solo en tu dispositivo. Las fotos se envían directamente '
             'a Anthropic, sin pasar por servidores intermedios.',
           ),
           const SizedBox(height: 24),
@@ -85,10 +85,11 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Familia Larrea'),
           const Text(
-            'Larrea Viticultura es parte de la suite Larrea del monorepo '
-            'Colección Nuevo Ser. Otras apps hermanas en desarrollo: '
-            'Larrea (general — frutales, trufa, olivar), Larrea Apícola '
-            '(libro REGA), Larrea Arbolado Urbano (B2B municipal).',
+            'Larrea Viticultura forma parte de la suite Larrea, de la '
+            'Colección Nuevo Ser. Apps hermanas: Larrea (general — '
+            'frutales, trufa, olivar), Larrea Apícola (libro REGA), '
+            'Larrea Arbolado Urbano (B2B municipal), Larrea Quesera y '
+            'Larrea Aceitera.',
             style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
@@ -156,11 +157,11 @@ class _TarjetaCatalogos extends StatelessWidget {
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
             const Text(
-              'Pre-rellenados a partir de fuentes públicas (MAPA, OIVE, '
+              'Rellenados a partir de fuentes públicas (MAPA, OIVE, '
               'FAO BBCH). Antes de pasar a producción comercial deben ser '
-              'validados por un enólogo + un agrónomo. Las propuestas de '
+              'validados por un enólogo y un agrónomo. Las propuestas de '
               'la IA que coincidan con el catálogo se marcan como '
-              '"provisionales", no como validadas.',
+              '«provisionales», no como validadas.',
               style: TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
             ),
           ],

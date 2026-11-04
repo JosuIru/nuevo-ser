@@ -232,7 +232,7 @@ class _ListaIngresos extends StatelessWidget {
           padding: EdgeInsets.all(24),
           child: Text(
             'Aún no hay ingresos en este año. Pulsa "Nuevo ingreso" para '
-            'registrar venta de uva, vino en botella o granel, alquiler de '
+            'registrar una venta de uva, vino en botella o a granel, alquiler de '
             'terreno o ayuda PAC.',
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.black54),
@@ -301,9 +301,9 @@ class _ListaIngresos extends StatelessWidget {
       case 'venta_uva':
         return 'Venta de uva';
       case 'venta_vino_botella':
-        return 'Venta vino (botella)';
+        return 'Venta de vino (botella)';
       case 'venta_vino_granel':
-        return 'Venta vino (granel)';
+        return 'Venta de vino (granel)';
       case 'alquiler_terreno':
         return 'Alquiler de terreno';
       case 'ayuda_pac':
@@ -415,7 +415,7 @@ class _ListaGastos extends StatelessWidget {
   static String _textoTipo(String tipo) {
     switch (tipo) {
       case 'insumos_vid':
-        return 'Insumos vid';
+        return 'Insumos de la vid';
       case 'tratamientos_fitosanitarios':
         return 'Tratamiento';
       case 'vendimia':
@@ -614,12 +614,12 @@ class _ResumenTrimestreCardViticola extends StatelessWidget {
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 8),
             _ResumenLineaViticola(
-              label: 'Ingresos uva',
+              label: 'Ingresos por uva',
               value: resumen.ingresosUva,
               color: Colors.green.shade700,
             ),
             _ResumenLineaViticola(
-              label: 'Ingresos vino',
+              label: 'Ingresos por vino',
               value: resumen.ingresosVino,
               color: Colors.deepPurple.shade700,
             ),
@@ -784,22 +784,22 @@ class _ResumenAnual extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       children: [
         _Card(
-          titulo: 'Ingresos uva $ano',
+          titulo: 'Ingresos por uva $ano',
           importeCentimos: ingresosUva,
           color: Colors.green.shade700,
-          subtitulo: 'Venta de uva (4% IVA / 12% compensación REAGP)',
+          subtitulo: 'Venta de uva (4 % IVA / 12 % compensación REAGP)',
         ),
         _Card(
-          titulo: 'Ingresos vino $ano',
+          titulo: 'Ingresos por vino $ano',
           importeCentimos: ingresosVino,
           color: Colors.deepPurple.shade700,
-          subtitulo: 'Botella + granel (21% IVA general siempre)',
+          subtitulo: 'Botella y granel (siempre 21 % IVA general)',
         ),
         _Card(
           titulo: 'Ayudas PAC y subvenciones $ano',
           importeCentimos: ayudas,
           color: Colors.purple.shade700,
-          subtitulo: 'Fiscalmente NO son ingreso ordinario',
+          subtitulo: 'Fiscalmente no son ingreso ordinario',
         ),
         _Card(
           titulo: 'Gastos $ano',
@@ -825,7 +825,7 @@ class _ResumenAnual extends StatelessWidget {
             titulo: 'Compensación REAGP cobrada',
             importeCentimos: compensacionReagp,
             color: Colors.teal.shade700,
-            subtitulo: '12% sobre la base de uva — sólo aplica a venta de uva',
+            subtitulo: '12 % sobre la base de uva — solo se aplica a la venta de uva',
           ),
           _Card(
             titulo: 'IVA repercutido en venta de vino',
@@ -837,7 +837,7 @@ class _ResumenAnual extends StatelessWidget {
             titulo: 'IVA soportado en compras',
             importeCentimos: ivaSoportado,
             color: Colors.blueGrey.shade700,
-            subtitulo: 'En REAGP NO es recuperable. Computa como mayor coste.',
+            subtitulo: 'En REAGP no es recuperable: computa como mayor coste.',
           ),
         ],
         if (configFiscal.regimenIva == 'general') ...[
@@ -889,7 +889,7 @@ class _ResumenAnual extends StatelessWidget {
           _Stats(
             icono: Icons.warning_amber,
             texto:
-                '$apuntesSinNif ingreso(s) sin NIF — no entran al modelo 347',
+                '$apuntesSinNif ingreso(s) sin NIF — no entran en el modelo 347',
             color: Colors.orange.shade800,
           ),
         const SizedBox(height: 24),

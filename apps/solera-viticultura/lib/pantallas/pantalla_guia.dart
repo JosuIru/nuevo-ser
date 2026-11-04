@@ -40,7 +40,7 @@ class PantallaGuia extends StatelessWidget {
                 child: BannerCoincidenciaCatalogo(
                   coincidencia: CoincidenciaCatalogo.provisional,
                   mensajeProvisional:
-                      'Catálogo provisional con fuente pública trazable. Pendiente firma del enólogo y agrónomo asesores.',
+                      'Catálogo provisional con fuente pública trazable. Pendiente de la firma del enólogo y del agrónomo asesores.',
                   mensajeValidado: '',
                   mensajeLibre: '',
                 ),
@@ -182,7 +182,7 @@ class _TabPortainjertos extends StatelessWidget {
           title: Text(p.nombreCanonico),
           subtitle: Text(
             'Vigor: ${p.vigor}'
-            '${caliza == null ? "" : " · Caliza activa: $caliza%"}',
+            '${caliza == null ? "" : " · Caliza activa: $caliza %"}',
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
@@ -375,7 +375,7 @@ class _TabMateriasActivas extends StatelessWidget {
             ],
           ),
           subtitle: Text(
-            'Plazo seguridad: ${m.plazoSeguridadOrientativoDias} días · ${m.tipoAccion}',
+            'Plazo de seguridad: ${m.plazoSeguridadOrientativoDias} días · ${m.tipoAccion}',
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,

@@ -24,14 +24,14 @@ class PantallaNuevoGasto extends StatefulWidget {
 
 class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
   static const _opcionesTipo = <_OpcionTipo>[
-    _OpcionTipo('insumos_vid', 'Insumos vid (fertilizantes, sulfatos, abonos)'),
+    _OpcionTipo('insumos_vid', 'Insumos de la vid (fertilizantes, sulfatos, abonos)'),
     _OpcionTipo('tratamientos_fitosanitarios', 'Tratamientos fitosanitarios'),
     _OpcionTipo('vendimia', 'Vendimia (mano de obra estacional)'),
     _OpcionTipo('embotellado', 'Embotellado (botella, corcho, cápsula)'),
     _OpcionTipo('etiquetado', 'Etiquetado'),
     _OpcionTipo('barricas', 'Barricas (compra, mantenimiento)'),
     _OpcionTipo('maquinaria', 'Maquinaria (compra, alquiler, mantenimiento)'),
-    _OpcionTipo('mano_obra', 'Mano de obra (cuadrilla resto del año)'),
+    _OpcionTipo('mano_obra', 'Mano de obra (cuadrilla el resto del año)'),
     _OpcionTipo('combustible', 'Combustible'),
     _OpcionTipo('seguros', 'Seguros (Agroseguro, responsabilidad civil)'),
     _OpcionTipo('transporte', 'Transporte'),
@@ -241,7 +241,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               controller: _concepto,
               decoration: InputDecoration(
                 labelText: 'Concepto *',
-                hintText: 'Ej: Sulfato de cobre / 8 jornales vendimia',
+                hintText: 'Ej.: Sulfato de cobre / 8 jornales de vendimia',
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
@@ -290,7 +290,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4),
                 child: Text(
-                  'En REAGP el IVA soportado NO es recuperable — se computa '
+                  'En REAGP el IVA soportado no es recuperable: se computa '
                   'como mayor coste en el extracto.',
                   style: TextStyle(fontSize: 11, color: Colors.black54),
                 ),
@@ -376,7 +376,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'Nº de factura',
+                labelText: 'N.º de factura',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -427,14 +427,14 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
   String _textoAutocalculo() {
     switch (_tipoGasto) {
       case 'insumos_vid':
-        return '4% IVA reducido (insumo agrario)';
+        return '4 % IVA superreducido (insumo agrario)';
       case 'seguros':
         return 'Exento de IVA (art. 20 LIVA)';
       case 'vendimia':
       case 'mano_obra':
         return 'Mano de obra agrícola: típicamente sin IVA';
       default:
-        return '21% IVA general';
+        return '21 % IVA general';
     }
   }
 }

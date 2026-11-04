@@ -256,7 +256,7 @@ class _PantallaChatState extends State<PantallaChat> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Imagen adjunta — se enviará a Claude',
+                        'Imagen adjunta: se enviará a Claude',
                         style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                       ),
                     ),

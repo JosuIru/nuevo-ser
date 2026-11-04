@@ -62,7 +62,7 @@ class PantallaAjustes extends StatelessWidget {
                     'Identifica mildiu, oídio, botritis y otras incidencias por foto',
                 descripcion:
                     'Larrea Viticultura puede usar Claude, de Anthropic, para analizar la foto que adjuntas '
-                    'a una incidencia y proponer un diagnóstico, severidad y recomendaciones de manejo '
+                    'a una incidencia y proponer un diagnóstico, la severidad y recomendaciones de manejo '
                     'cultural. Con la misma clave funciona el asistente (chat) de la pantalla Hoy. '
                     'Tú pagas el uso a Anthropic con tu clave; sin clave la app funciona igual, '
                     'sin el botón de IA.',
@@ -86,8 +86,8 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
           ListTile(
             leading: Icon(Icons.backup),
-            title: Text('Backup y restauración'),
-            subtitle: Text('Empaqueta BD + fotos como zip'),
+            title: Text('Copia de seguridad'),
+            subtitle: Text('Empaqueta la base de datos y las fotos en un ZIP'),
             onTap: () => _abrir(context, () => const PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),

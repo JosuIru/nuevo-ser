@@ -83,7 +83,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
       }
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Diagnóstico pre-rellenado. Revisa y guarda.')),
+      SnackBar(content: Text('Diagnóstico rellenado. Revísalo y guarda.')),
     );
   }
 
@@ -321,7 +321,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorEtiquetasObs,
             decoration: InputDecoration(
-              labelText: 'Etiquetas (coma-separadas)',
+              labelText: 'Etiquetas (separadas por comas)',
               hintText: 'brotación, floración, envero, vendimia…',
               border: OutlineInputBorder(),
             ),
@@ -361,7 +361,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             SizedBox(height: 8),
             BannerDeclaracionObligatoria(
               texto:
-                  'Esta enfermedad es de DECLARACIÓN OBLIGATORIA al servicio fitosanitario oficial.',
+                  'Esta enfermedad es de declaración obligatoria al servicio fitosanitario oficial.',
             ),
           ],
           SizedBox(height: 12),
@@ -404,7 +404,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             controller: _controladorMotivo,
             decoration: InputDecoration(
               labelText: 'Motivo',
-              hintText: 'Control mildiu preventivo…',
+              hintText: 'Control preventivo de mildiu…',
               border: OutlineInputBorder(),
             ),
           ),
@@ -412,7 +412,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
-              labelText: 'Plazo seguridad (días)',
+              labelText: 'Plazo de seguridad (días)',
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -425,7 +425,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNumRegistro,
               decoration: InputDecoration(
-                labelText: 'Nº registro fitosanitario',
+                labelText: 'N.º registro fitosanitario',
                 hintText: 'BOE/MAPA',
                 border: OutlineInputBorder(),
               ),
@@ -434,7 +434,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNifAplicador,
               decoration: InputDecoration(
-                labelText: 'NIF aplicador',
+                labelText: 'NIF del aplicador',
                 border: OutlineInputBorder(),
               ),
             ),

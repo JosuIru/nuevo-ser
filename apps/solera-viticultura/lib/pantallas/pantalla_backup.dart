@@ -196,7 +196,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
                           const Text('Última copia', style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(
                             ultimaCopia == null
-                                ? 'Nunca — recomendado hacer una antes de salir al campo.'
+                                ? 'Nunca. Te recomendamos hacer una antes de salir al campo.'
                                 : _formatoFecha.format(ultimaCopia),
                           ),
                         ],

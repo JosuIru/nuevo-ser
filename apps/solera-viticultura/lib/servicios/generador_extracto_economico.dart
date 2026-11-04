@@ -81,7 +81,7 @@ Future<File> generarExtractoEconomico({
   final bullets = <String>[
     'PROVISIONAL — Pendiente de validación por asesor fiscal.',
     'Titular: ${titular.nombre.isEmpty ? "—" : titular.nombre} · NIF ${titular.nif.isEmpty ? "—" : titular.nif}',
-    if (titular.numeroRegepa.isNotEmpty) 'Nº REGEPA: ${titular.numeroRegepa}',
+    if (titular.numeroRegepa.isNotEmpty) 'N.º REGEPA: ${titular.numeroRegepa}',
     'Régimen IRPF: ${_etiquetaIrpf(configFiscal.regimenIrpf)}',
     'Régimen IVA: ${_etiquetaIva(configFiscal.regimenIva)}',
     'Ingresos por uva (base): ${_euros(ingresosUva)}',
@@ -275,7 +275,7 @@ Future<File> generarExtractoEconomico({
             'Ningún tercero supera el umbral del 347 en este ejercicio.',
       ),
       TablaInforme(
-        titulo: 'Apuntes sin NIF — NO entran al modelo 347',
+        titulo: 'Apuntes sin NIF — no entran en el modelo 347',
         headers: const ['Fecha', 'Tipo', 'Concepto', 'Importe'],
         filas: filasSinNif,
         mensajeSiVacia: 'Todos los apuntes tienen NIF asociado.',
@@ -372,7 +372,7 @@ String _etiquetaIrpf(String codigo) {
 String _etiquetaIva(String codigo) {
   switch (codigo) {
     case 'reagp':
-      return 'REAGP (compensación 12% en uva)';
+      return 'REAGP (compensación del 12 % en uva)';
     case 'general':
       return 'Régimen general';
     default:
@@ -385,9 +385,9 @@ String _etiquetaTipoIngreso(String codigo) {
     case 'venta_uva':
       return 'Uva';
     case 'venta_vino_botella':
-      return 'Vino botella';
+      return 'Vino en botella';
     case 'venta_vino_granel':
-      return 'Vino granel';
+      return 'Vino a granel';
     case 'alquiler_terreno':
       return 'Alquiler';
     case 'ayuda_pac':
@@ -416,7 +416,7 @@ String _etiquetaTipoGasto(String codigo) {
     case 'maquinaria':
       return 'Maquinaria';
     case 'mano_obra':
-      return 'Mano obra';
+      return 'Mano de obra';
     case 'combustible':
       return 'Combustible';
     case 'seguros':

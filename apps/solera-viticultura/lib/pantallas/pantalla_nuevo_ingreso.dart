@@ -254,7 +254,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               controller: _concepto,
               decoration: InputDecoration(
                 labelText: 'Concepto *',
-                hintText: 'Ej: 2.500 kg tempranillo / 300 botellas crianza',
+                hintText: 'Ej.: 2500 kg de tempranillo / 300 botellas de crianza',
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
@@ -396,7 +396,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 controller: _loteVino,
                 decoration: InputDecoration(
                   labelText: 'Lote / añada del vino',
-                  hintText: 'Ej: L2022-CR-08 (importante para DOP/IGP)',
+                  hintText: 'Ej.: L2022-CR-08 (importante para DOP/IGP)',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -404,7 +404,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'Nº de factura',
+                labelText: 'N.º de factura',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -446,18 +446,18 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _textoAutocalculo() {
     if (_esAlquiler) {
-      return 'Alquiler agrícola exento (cambia a 21% si uso no agrícola)';
+      return 'Alquiler agrícola exento (pasa al 21 % si el uso no es agrícola)';
     }
     if (_esVentaUva && _configFiscal.regimenIva == 'reagp') {
-      return 'REAGP: 12% sobre la base como compensación al viticultor';
+      return 'REAGP: 12 % sobre la base como compensación al viticultor';
     }
     if (_esVentaUva && _configFiscal.regimenIva == 'general') {
-      return 'Régimen general: 4% IVA sobre uva (alimento 1ª necesidad)';
+      return 'Régimen general: 4 % de IVA sobre la uva (alimento de primera necesidad)';
     }
     if (_esVentaVino) {
-      return 'Venta de vino: 21% IVA general (bebida alcohólica)';
+      return 'Venta de vino: 21 % IVA general (bebida alcohólica)';
     }
-    return 'Configura régimen de IVA en Ajustes';
+    return 'Configura el régimen de IVA en Ajustes';
   }
 }
 

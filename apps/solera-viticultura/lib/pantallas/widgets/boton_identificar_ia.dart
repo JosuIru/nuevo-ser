@@ -259,8 +259,8 @@ class _ModalResultadoIA extends StatelessWidget {
               mensajeLibre:
                   'Diagnóstico libre — no coincide con el catálogo curado de Larrea Viticultura. Revisa con criterio antes de aceptar.',
               mensajeProvisional:
-                  'Coincide con catálogo provisional. El catálogo aún no ha sido validado agronómicamente — usa criterio.',
-              mensajeValidado: 'Diagnóstico coincide con catálogo Larrea',
+                  'Coincide con el catálogo provisional. El catálogo aún no se ha validado agronómicamente: usa tu criterio.',
+              mensajeValidado: 'El diagnóstico coincide con el catálogo de Larrea',
             ),
             const SizedBox(height: 16),
             _FilaInfo(etiqueta: 'Nombre común', valor: resultado.nombreComun),
@@ -369,7 +369,7 @@ class _ModalResultadoIA extends StatelessWidget {
                         notasAuto: notasAuto.toString(),
                       ));
                     },
-                    label: const Text('Aceptar y pre-rellenar'),
+                    label: const Text('Aceptar y rellenar'),
                   ),
                 ),
               ],

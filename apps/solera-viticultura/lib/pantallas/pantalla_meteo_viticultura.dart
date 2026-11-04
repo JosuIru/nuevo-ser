@@ -185,13 +185,13 @@ class _PanelDecision extends StatelessWidget {
         const _Aviso(
           Icons.water_drop,
           'Demanda hídrica alta',
-          'ET0/VPD altos: revisa riego y evita labores que aumenten estrés.',
+          'ET0 y DPV altos: revisa riego y evita labores que aumenten estrés.',
         ),
       if ((dia.humedadMedia ?? 0) >= 85 && (dia.tempMax ?? 0) >= 12)
         const _Aviso(
           Icons.bug_report,
           'Ambiente sensible a hongos',
-          'Humedad alta con temperatura templada: revisar mildiu, oidio y botritis según estado BBCH.',
+          'Humedad alta con temperatura templada: revisa mildiu, oídio y botritis según el estado BBCH.',
         ),
     ];
     if (avisos.isEmpty) {
@@ -258,14 +258,14 @@ class _TarjetaDia extends StatelessWidget {
                 _Dato(
                     icono: Icons.water,
                     texto:
-                        '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)}%'),
+                        '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)} %'),
                 _Dato(
                     icono: Icons.air,
                     texto:
                         '${_fmt(dia.vientoMaxKmh)} km/h · racha ${_fmt(dia.rachaMaxKmh)}'),
                 _Dato(
                     icono: Icons.opacity,
-                    texto: 'HR ${_fmt(dia.humedadMedia)}%'),
+                    texto: 'HR ${_fmt(dia.humedadMedia)} %'),
                 _Dato(
                     icono: Icons.wb_sunny, texto: 'ET0 ${_fmt(dia.et0Mm)} mm'),
                 _Dato(

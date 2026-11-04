@@ -360,9 +360,9 @@ class SoleraL10n {
 
   static String _tEs(String c) {
     switch (c) {
-      case '10%_(alimento)': return '10% (alimentos)';
-      case '21%_(general)': return '21% (general)';
-      case '4%_(tipo_reducido)': return '4% (superreducido)';
+      case '10%_(alimento)': return '10 % (alimentos)';
+      case '21%_(general)': return '21 % (general)';
+      case '4%_(tipo_reducido)': return '4 % (superreducido)';
       case 'acerca_de': return 'Acerca de';
       case 'ajustes': return 'Ajustes';
       case 'anadir_proveedor': return 'Añadir proveedor';

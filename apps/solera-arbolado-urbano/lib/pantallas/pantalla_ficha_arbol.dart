@@ -217,11 +217,11 @@ class _BloqueDescriptivo extends StatelessWidget {
             if (arbol.perimetroTroncoCm != null)
               _Linea(
                   etiqueta: SoleraL10n.t('arb.perimetro'),
-                  valor: '${arbol.perimetroTroncoCm!.toStringAsFixed(1)} cm'),
+                  valor: '${formatearNumero(arbol.perimetroTroncoCm!, decimales: 1)} cm'),
             if (arbol.alturaEstimadaMetros != null)
               _Linea(
                   etiqueta: SoleraL10n.t('arb.altura'),
-                  valor: '${arbol.alturaEstimadaMetros!.toStringAsFixed(1)} m'),
+                  valor: '${formatearNumero(arbol.alturaEstimadaMetros!, decimales: 1)} m'),
             if (arbol.riesgoVta != null)
               _Linea(etiqueta: SoleraL10n.t('arb.riesgo_vta'), valor: '${arbol.riesgoVta} / 5'),
             if (arbol.tipoAlcorqueId.isNotEmpty)
@@ -293,7 +293,7 @@ class _EntradaTimeline {
   factory _EntradaTimeline.poda(Poda p) {
     final detalles = <String>[
       if (p.tipoPodaId.isNotEmpty) p.tipoPodaId,
-      if (p.volumenRestosM3 != null) '${p.volumenRestosM3!.toStringAsFixed(2)} m³',
+      if (p.volumenRestosM3 != null) '${formatearNumero(p.volumenRestosM3!, decimales: 2)} m³',
       if (p.motivo.isNotEmpty) p.motivo,
     ];
     return _EntradaTimeline._(

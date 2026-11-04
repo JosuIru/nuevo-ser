@@ -113,9 +113,9 @@ class ClienteAnthropic {
     }
     final json = await _clienteClaude.pedirJson(
       modelo: modeloClaudeRapido,
-      sistema: modo == ModoAnalisisIA.identificarEspecie
-          ? _promptEspecies
-          : _promptPlagas,
+      // Los textos libres de la respuesta, en el idioma elegido en la app.
+      sistema: '${modo == ModoAnalisisIA.identificarEspecie ? _promptEspecies : _promptPlagas}\n'
+          '${instruccionIdiomaRespuestaClaude()}',
       mensajes: [
         MensajeClaude.usuario(
           _construirPrompt(modo, observacionesUsuario),
@@ -147,7 +147,7 @@ REGLAS ESTRICTAS:
 2. Estructura del JSON:
 {
   "tipo_analisis": "especie",
-  "especie_nombre_comun": "nombre habitual en español",
+  "especie_nombre_comun": "nombre común habitual",
   "especie_nombre_cientifico": "binomial latino",
   "confianza": número decimal 0.0-1.0,
   "advertencia": "vacío si confianza alta; si la foto es ambigua o sólo se ve corteza, lo dices aquí"
@@ -175,7 +175,7 @@ REGLAS ESTRICTAS:
 2. Estructura del JSON:
 {
   "tipo_analisis": "plaga",
-  "plaga_nombre_comun": "nombre habitual en español",
+  "plaga_nombre_comun": "nombre común habitual",
   "plaga_nombre_cientifico": "binomial latino o vacío para abióticos",
   "tipo_plaga": "plaga_insecto" | "enfermedad_fungica" | "enfermedad_bacteriana" | "plaga_invasora" | "trastorno_abiotico" | "indeterminado",
   "severidad": número entero 1-5 estimado (5 = mortalidad / colapso, 1 = síntomas incipientes), o null,

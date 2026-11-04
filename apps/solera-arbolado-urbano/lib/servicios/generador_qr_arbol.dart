@@ -56,8 +56,8 @@ class GeneradorQrArbol {
                   pw.SizedBox(height: 4),
                   if (arbol.alturaEstimadaMetros != null)
                     pw.Text(
-                        'Altura: ${arbol.alturaEstimadaMetros!.toStringAsFixed(1)} m · '
-                        'Perímetro: ${arbol.perimetroTroncoCm?.toStringAsFixed(0) ?? "?"} cm',
+                        'Altura: ${formatearNumero(arbol.alturaEstimadaMetros!, decimales: 1)} m · '
+                        'Perímetro: ${arbol.perimetroTroncoCm == null ? "?" : formatearNumero(arbol.perimetroTroncoCm!)} cm',
                         style: const pw.TextStyle(fontSize: 10)),
                   pw.SizedBox(height: 20),
                   pw.Container(

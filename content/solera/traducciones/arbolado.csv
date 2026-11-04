@@ -316,6 +316,8 @@ arb.satelite,Satélite,Satelitea,Satèl·lit,Satélite
 arb.seleccionar_todos,Seleccionar todos,Denak hautatu,Seleccionar-los tots,Seleccionar todas
 arb.severidad,Severidad,Larritasuna,Severitat,Severidade
 arb.severidad_abreviada,sev. {n},larr. {n},sev. {n},sev. {n}
+arb.sigla_cif,CIF,IFK,CIF,CIF
+arb.sigla_nif,NIF,IFZ,NIF,NIF
 arb.siguiente,Siguiente,Hurrengoa,Següent,Seguinte
 arb.sin_arboles_inventariados,Sin árboles inventariados todavía.,Oraindik ez dago zuhaitzik inbentarioan.,Encara no hi ha arbres inventariats.,Aínda non hai árbores inventariadas.
 arb.sin_ayuntamiento_configurado,Sin ayuntamiento configurado,Udalik konfiguratu gabe,Cap ajuntament configurat,Sen concello configurado

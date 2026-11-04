@@ -71,8 +71,8 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
       _controladorEspecie.text =
           especieCanonica?.nombreCanonico ?? existente.especieId;
       _controladorEdad.text = existente.edadEstimadaAnos?.toString() ?? '';
-      _controladorPerimetro.text = existente.perimetroTroncoCm?.toString() ?? '';
-      _controladorAltura.text = existente.alturaEstimadaMetros?.toString() ?? '';
+      _controladorPerimetro.text = _textoEditable(existente.perimetroTroncoCm);
+      _controladorAltura.text = _textoEditable(existente.alturaEstimadaMetros);
       final alcorqueCanonico = sustratoAlcorquePorId(existente.tipoAlcorqueId);
       _controladorAlcorque.text =
           alcorqueCanonico?.nombreCanonico ?? existente.tipoAlcorqueId;
@@ -462,4 +462,13 @@ class _SelectorRiesgoVta extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Número guardado, listo para editarlo en un campo de texto: con coma
+/// decimal y sin «,0» sobrante (12.0 → «12», 12.5 → «12,5»). Sin redondear,
+/// para no perder decimales al volver a guardar (`leerNumero` lo relee).
+String _textoEditable(double? valor) {
+  if (valor == null) return '';
+  if (valor == valor.roundToDouble()) return valor.round().toString();
+  return valor.toString().replaceAll('.', ',');
 }

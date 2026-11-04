@@ -150,7 +150,7 @@ class _PantallaInformeMunicipalState extends State<PantallaInformeMunicipal> {
             leading: Icon(Icons.account_balance),
             title: Text(aytoOk ? _ayuntamiento!.nombre : SoleraL10n.t('arb.sin_ayuntamiento_configurado')),
             subtitle: aytoOk
-                ? Text('CIF ${_ayuntamiento!.cif} · ${_ayuntamiento!.municipio}')
+                ? Text('${SoleraL10n.t('arb.sigla_cif')} ${_ayuntamiento!.cif} · ${_ayuntamiento!.municipio}')
                 : null,
             trailing: TextButton(onPressed: _abrirAyuntamiento, child: Text(SoleraL10n.t('editar'))),
           ),

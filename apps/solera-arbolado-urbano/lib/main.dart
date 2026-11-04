@@ -7,14 +7,15 @@ import 'pantallas/pantalla_principal.dart';
 import 'servicios/backup_servicio.dart';
 
 Future<void> main() async {
-  // `DateFormat('d MMM yyyy', 'es_ES')` que usa pantalla_facturas (y
+  // `DateFormat('d MMM yyyy', <idioma>)` que usa pantalla_facturas (y
   // otras pantallas con fechas) lanza al primer .format() si los
   // símbolos del locale no están cargados — la lista de facturas
   // reventaba al renderizar el primer item tras emitir una.
   WidgetsFlutterBinding.ensureInitialized();
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
-  await initializeDateFormatting('es_ES', null);
+  // Carga los formatos de fecha de todos los idiomas (es, eu, ca, gl).
+  await initializeDateFormatting();
   // Si la app murió a mitad de una restauración, deshacerla antes de que
   // nada abra la base de datos.
   try {

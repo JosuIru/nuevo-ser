@@ -55,8 +55,17 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
       body: SafeArea(
         child: Column(
           children: [
+            // Elegir idioma desde la primera pantalla (se puede cambiar
+            // luego en Ajustes).
             Padding(
-              padding: const EdgeInsets.only(top: 24, bottom: 8),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SelectorIdioma(onCambio: () => setState(() {})),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 8),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(16),
                 child: Image.asset(

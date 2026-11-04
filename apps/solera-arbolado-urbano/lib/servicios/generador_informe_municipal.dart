@@ -100,7 +100,7 @@ Future<File> generarInformeMunicipal({
         formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(p.fechaMs)),
         _identificadorArbol(indiceArbolesPorId[p.arbolId]),
         _nombreTipoPoda(p.tipoPodaId),
-        p.volumenRestosM3?.toStringAsFixed(2) ?? '—',
+        p.volumenRestosM3 == null ? '—' : formatearNumero(p.volumenRestosM3!, decimales: 2),
         p.motivo.isEmpty ? '—' : p.motivo,
         _firmaTecnico(p.tecnicoId, indiceTecnicosPorId),
       ],

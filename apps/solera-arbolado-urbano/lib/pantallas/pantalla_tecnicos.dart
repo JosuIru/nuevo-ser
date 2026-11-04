@@ -78,7 +78,7 @@ class _PantallaTecnicosState extends State<PantallaTecnicos> {
                   ),
                   title: Text(t.nombre),
                   subtitle: Text([
-                    if (t.nif.isNotEmpty) 'NIF ${t.nif}',
+                    if (t.nif.isNotEmpty) '${SoleraL10n.t('arb.sigla_nif')} ${t.nif}',
                     if (t.empresaContratista.isNotEmpty) t.empresaContratista,
                     if (t.puedeAplicarFitosanitarios)
                       SoleraL10n.tf('arb.carnet_nivel', {'nivel': _etiquetaNivelCarnet(t.nivelCarnetAplicador)}),
@@ -227,7 +227,7 @@ class _DialogoEditarTecnicoState extends State<_DialogoEditarTecnico> {
             mainAxisSize: MainAxisSize.min,
             children: [
               _campo(_nombre, '${SoleraL10n.t('arb.nombre')} *', validador: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('arb.obligatorio') : null),
-              _campo(_nif, 'NIF *', validador: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('arb.obligatorio') : null),
+              _campo(_nif, '${SoleraL10n.t('arb.sigla_nif')} *', validador: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('arb.obligatorio') : null),
               _campo(_empresa, SoleraL10n.t('arb.empresa_contratista'), hint: SoleraL10n.t('arb.empresa_contratista_hint')),
               _campo(_cifEmpresa, SoleraL10n.t('arb.cif_de_la_empresa')),
               _campo(_telefono, SoleraL10n.t('arb.telefono'), tipo: TextInputType.phone),

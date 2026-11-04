@@ -315,7 +315,7 @@ class _TabEspeciesState extends State<_TabEspecies> {
                       leading: const Icon(Icons.park),
                       title: Text(e.nombreCanonico),
                       subtitle: Text(
-                        '${e.nombreCientifico} · ${e.alturaMaxMetros.toStringAsFixed(0)} m',
+                        '${e.nombreCientifico} · ${formatearNumero(e.alturaMaxMetros)} m',
                         style: const TextStyle(
                             fontStyle: FontStyle.italic, fontSize: 12),
                       ),

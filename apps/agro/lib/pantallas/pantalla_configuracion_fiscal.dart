@@ -121,8 +121,8 @@ class _PantallaConfiguracionFiscalState
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
-              'Módulos no está soportado en v1 — pendiente de validación con '
-              'asesor fiscal antes de añadirlo. En agricultura módulos sigue '
+              'El régimen de módulos no está disponible en v1: pendiente de validación con '
+              'asesor fiscal antes de añadirlo. En agricultura, módulos sigue '
               'siendo más común que en otras actividades, así que es probable '
               'que el asesor lo pida.',
               style: TextStyle(fontSize: 11, color: Colors.black54),
@@ -147,8 +147,8 @@ class _PantallaConfiguracionFiscalState
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
                 'En REAGP no repercutes IVA en la venta de cosecha. El comprador '
-                'te paga la compensación del 12% sobre la base. El IVA soportado '
-                'en compras NO es recuperable — se imputa como mayor coste.',
+                'te paga la compensación del 12 % sobre la base. El IVA soportado '
+                'en compras no es recuperable: se imputa como mayor coste.',
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
@@ -156,10 +156,10 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En régimen general repercutes el 4% de IVA en venta de cosecha '
+                'En régimen general repercutes el 4 % de IVA en la venta de cosecha '
                 'de productos agrícolas (alimento de primera necesidad, art. '
-                '91.1.1.1.º LIVA). Excepciones: vino con DOP/IGP 21%, trufa 10%, '
-                'madera 21% — sobrescribe el IVA en cada apunte cuando difiera.',
+                '91.1.1.1.º LIVA). Excepciones: vino con DOP/IGP 21 %, trufa 10 %, '
+                'madera 21 % — sobrescribe el IVA en cada apunte cuando difiera.',
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),

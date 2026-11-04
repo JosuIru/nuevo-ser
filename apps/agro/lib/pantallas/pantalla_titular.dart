@@ -160,7 +160,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               controller: _controladorRegepa,
               decoration: InputDecoration(
                 labelText: 'Número REGEPA',
-                hintText: 'Registro de Explotaciones Agrarias',
+                hintText: 'Registro General de la Producción Agrícola',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -192,7 +192,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
             ),
             SizedBox(height: 24),
             SwitchListTile(
-              title: Text('Tengo asesor agronómico obligado'),
+              title: Text('Estoy obligado a tener asesor agronómico'),
               subtitle: Text('ATRIA, asesor de cooperativa, etc.'),
               value: _tieneAsesor,
               onChanged: (v) => setState(() => _tieneAsesor = v),
@@ -285,7 +285,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Text(
-                'Estos datos sólo se usan para generar el Cuaderno de Explotación '
+                'Estos datos solo se usan para generar el cuaderno de explotación '
                 'localmente en tu móvil. No se envían a ningún servidor en v1.',
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),

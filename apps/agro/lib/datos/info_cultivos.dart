@@ -34,7 +34,7 @@ const Map<String, InfoCultivo> infoCultivos = {
     exigencias:
         'Suelo calizo (pH 7,5–8,5), bien drenado, pedregoso. Altitud 600–1.500 m. Precipitación 400–900 mm/año, con verano seco e invierno suave. España (Soria, Teruel, Huesca) y Aragón concentran la mayor superficie europea.',
     calendario:
-        'Plantación: nov–marzo (planta micorrizada certificada).\nMantenimiento: poda de formación 2-4 año, riego de apoyo en verano (~25-40 L/árbol/semana sequía).\nCosecha: nov–marzo (Tuber melanosporum).',
+        'Plantación: nov–marzo (planta micorrizada certificada).\nMantenimiento: poda de formación del 2.º al 4.º año, riego de apoyo en verano (~25-40 L/árbol/semana sequía).\nCosecha: nov–marzo (Tuber melanosporum).',
     plagasNotables:
         'Trufa brumale (Tuber brumale) que coloniza el quemado y desplaza a la melanosporum si el suelo se acidifica o se humedece en exceso. Insectos: Leiodes cinnamomeus (escarabajo de la trufa). Vertebrados: jabalí, corzo. Disponible recetario detallado en v2.',
   ),
@@ -69,7 +69,7 @@ const Map<String, InfoCultivo> infoCultivos = {
   ),
   'roble-carrasqueno': InfoCultivo(
     descripcion:
-        'Quercus marcescente de hoja semi-perenne (la hoja seca persiste hasta primavera). Crece más rápido que la encina y produce trufas con menos demora desde la plantación (4–7 años vs 6–10 años en encina). Hospedero muy valorado en truficultura por su precocidad.',
+        'Quercus marcescente de hoja semi-perenne (la hoja seca persiste hasta primavera). Crece más rápido que la encina y produce trufas con menos demora desde la plantación (4–7 años frente a 6–10 años en encina). Hospedero muy valorado en truficultura por su precocidad.',
     exigencias:
         'pH 6,5–8,0. Pluviometría 500–900 mm. Soporta heladas hasta -20 °C. Suelos calizos, frescos, profundos.',
     calendario: 'Floración: abril–mayo. Bellota: octubre–noviembre.',
@@ -108,7 +108,7 @@ const Map<String, InfoCultivo> infoCultivos = {
     plagasNotables: 'Royas (Melampsora), Marssonina, defoliadores. v2.',
   ),
   'sauce': InfoCultivo(
-    descripcion: 'Frondosa rivereña de crecimiento rápido. Usado en silvicultura, restauración fluvial y como cortavientos en plantaciones intensivas.',
+    descripcion: 'Frondosa ribereña de crecimiento rápido. Usado en silvicultura, restauración fluvial y como cortavientos en plantaciones intensivas.',
     exigencias: 'Suelo fresco a encharcado. Pluviometría >700 mm o freático cercano.',
   ),
 
@@ -143,7 +143,7 @@ const Map<String, InfoCultivo> infoCultivos = {
   // ─── Frutales hueso ────────────────────────────────────
   'cerezo': InfoCultivo(
     descripcion:
-        'Frutal de hueso premium en Iberia (Jerte, Caderechas, Aragón). Variedades autocompatibles e incompatibles obligan a planificar polinizadores. Patrones modernos (Gisela 5/6) permiten plantaciones intensivas.',
+        'Frutal de hueso de alto valor en Iberia (Jerte, Caderechas, Aragón). Variedades autocompatibles e incompatibles obligan a planificar polinizadores. Patrones modernos (Gisela 5/6) permiten plantaciones intensivas.',
     exigencias:
         'pH 6,5–7,5. Necesita 800–1.200 horas-frío. Sensible al rajado de fruto por lluvia en cosecha.',
     calendario:
@@ -182,7 +182,7 @@ const Map<String, InfoCultivo> infoCultivos = {
   // ─── Frutos secos ──────────────────────────────────────
   'almendro': InfoCultivo(
     descripcion:
-        'Frutal de hueso seco, rústico y resistente a sequía. España es 2º productor mundial. Variedades autocompatibles modernas (Guara, Soleta, Lauranne, Vairo, Penta) han revolucionado el cultivo.',
+        'Frutal de hueso seco, rústico y resistente a sequía. España es el 2.º productor mundial. Variedades autocompatibles modernas (Guara, Soleta, Lauranne, Vairo, Penta) han revolucionado el cultivo.',
     exigencias:
         'pH 6,5–8,5 (tolera caliza). Pluviometría 300–600 mm. Sensible a heladas tardías en floración temprana.',
     calendario:
@@ -237,7 +237,7 @@ const Map<String, InfoCultivo> infoCultivos = {
   // ─── Vid ───────────────────────────────────────────────
   'vid': InfoCultivo(
     descripcion:
-        'Cultivo más extenso de España (~950.000 ha). DOs reguladas dictan variedades, marcos y prácticas. Patrones americanos resistentes a filoxera son obligatorios.',
+        'Cultivo más extenso de España (~950.000 ha). Las DO dictan variedades, marcos y prácticas. Patrones americanos resistentes a filoxera son obligatorios.',
     exigencias:
         'pH 6,0–8,0. Suelos pobres, drenados. Mesoclima por DO.',
     calendario:
@@ -280,7 +280,7 @@ const Map<String, InfoCultivo> infoCultivos = {
     plagasNotables: 'Cotonet (Delottococcus aberiae), pulgones, minador de hojas, mosca de la fruta (Ceratitis), HLB (cuarentena). v2.',
   ),
   'citrico-mandarino': InfoCultivo(
-    descripcion: 'Grupo de cítricos pequeños (clementinas, satsumas, hibridos como Tango, Nadorcott). Variedades sin semilla son las más demandadas.',
+    descripcion: 'Grupo de cítricos pequeños (clementinas, satsumas, híbridos como Tango, Nadorcott). Variedades sin semilla son las más demandadas.',
     exigencias: 'Idénticas al naranjo.',
     calendario: 'Cosecha: octubre–marzo según variedad.',
   ),

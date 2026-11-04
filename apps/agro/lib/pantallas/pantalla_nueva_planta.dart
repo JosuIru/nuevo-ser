@@ -116,7 +116,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
     if (!(_claveFormulario.currentState?.validate() ?? false)) return;
     if (_latitud == null || _longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta la posición — pulsa "Capturar GPS" o vuelve al mapa.')),
+        const SnackBar(content: Text('Falta la posición: pulsa «Capturar GPS» o vuelve al mapa.')),
       );
       return;
     }
@@ -222,7 +222,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
               TextFormField(
                 controller: _controladorEtiqueta,
                 decoration: const InputDecoration(
-                  labelText: 'Etiqueta corta (ej: A-17, fila 3)',
+                  labelText: 'Etiqueta corta (p. ej., A-17, fila 3)',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -282,7 +282,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
               const Text('Fotos de la planta', style: TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 4),
               const Text(
-                'Foto del árbol, tronco con etiqueta, marco visual del entorno. Útiles para identificar la planta en campo.',
+                'Foto del árbol, del tronco con la etiqueta y del entorno. Sirven para identificar la planta en campo.',
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
               const SizedBox(height: 8),

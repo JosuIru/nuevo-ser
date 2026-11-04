@@ -143,7 +143,7 @@ const List<Plaga> catalogoPlagas = [
     sintomas:
         'Hojas con minas (gen. filófaga). Inflorescencias secas (gen. antófaga). Aceitunas con orificio de salida y caída en septiembre (gen. carpófaga).',
     condicionesFavorables: 'Climas suaves. Olivos jóvenes con muchas yemas tiernas.',
-    manejoCultural: 'Monitoreo con trampas de feromona en floración para decidir umbral de tratamiento.',
+    manejoCultural: 'Seguimiento con trampas de feromona en floración para decidir umbral de tratamiento.',
   ),
 
   // ─── Almendro ──────────────────────────────────────────
@@ -202,7 +202,7 @@ const List<Plaga> catalogoPlagas = [
         'Galería desde el exterior con expulsión de excrementos. Fruto con orificio de entrada. Caída prematura.',
     condicionesFavorables: 'Veranos cálidos. Frutales bajo poda inadecuada que facilitan refugios de la larva en cortezas.',
     manejoCultural:
-        'Confusión sexual por feromonas (eficaz, ampliamente adoptado). Monitoreo con trampas. Recoger y destruir fruta caída.',
+        'Confusión sexual por feromonas (eficaz, ampliamente adoptada). Seguimiento con trampas. Recoger y destruir fruta caída.',
   ),
   Plaga(
     id: 'fuego-bacteriano',
@@ -342,9 +342,9 @@ const List<Plaga> catalogoPlagas = [
     nombreCientifico: 'Lobesia botrana',
     tipo: TipoPlaga.plaga,
     cultivoIds: ['vid'],
-    descripcion: 'Lepidóptero con 3 generaciones. La 3ª (sobre uva en envero) es la que produce daño económico.',
+    descripcion: 'Lepidóptero con 3 generaciones. La 3.ª (sobre uva en envero) es la que produce daño económico.',
     sintomas: 'Bayas con orificio de entrada y galerías. Botritis secundaria sobre el daño.',
-    manejoCultural: 'Confusión sexual con feromonas (muy adoptado en DOs). Trampas para monitoreo de vuelo.',
+    manejoCultural: 'Confusión sexual con feromonas (muy extendida en las DO). Trampas para seguir el vuelo.',
   ),
 
   // ─── Trufa ─────────────────────────────────────────────
@@ -359,9 +359,9 @@ const List<Plaga> catalogoPlagas = [
     sintomas:
         'En la cosecha aparecen trufas de carne más oscura, con vetas blancas más anchas y aroma alcanforado en lugar del afrutado característico de melanosporum.',
     condicionesFavorables:
-        'Suelos que se humedecen en exceso o se acidifican (riego mal gestionado, mulching excesivo). Altitudes bajas. Variedades de hospedero más vigorosas.',
+        'Suelos que se humedecen en exceso o se acidifican (riego mal gestionado, acolchado excesivo). Altitudes bajas. Variedades de hospedero más vigorosas.',
     manejoCultural:
-        'Riego controlado (no encharcar). Muestreo regular de trufas en cosecha — las brumale no esperar al final de campaña, retirarlas en cuanto se identifican. Encalado para mantener pH 7,8-8,2 si tiende a bajar.',
+        'Riego controlado (no encharcar). Muestreo regular de trufas en cosecha — las brumale no se dejan para el final de campaña: se retiran en cuanto se identifican. Encalado para mantener pH 7,8-8,2 si tiende a bajar.',
   ),
   Plaga(
     id: 'leiodes',
@@ -404,7 +404,7 @@ const List<Plaga> catalogoPlagas = [
     descripcion: 'Daño por temperaturas bajas en floración o cuajado, sobre todo en frutales de floración temprana.',
     sintomas: 'Flor o fruto recién cuajado con coloración marrón-acuosa. Caída en pocos días. Anillo necrótico en hueso de frutos jóvenes (señal típica).',
     condicionesFavorables: 'Marzo-abril con descenso brusco nocturno. Vaguadas y zonas bajas con acumulación de aire frío.',
-    manejoCultural: 'Variedades de floración tardía. No plantar en zonas bajas. Riego antiheladas por aspersión durante la noche fría (mantiene 0 °C por liberación de calor latente). Calefacción con velas/quemadores en plantaciones premium.',
+    manejoCultural: 'Variedades de floración tardía. No plantar en zonas bajas. Riego antiheladas por aspersión durante la noche fría (mantiene 0 °C por liberación de calor latente). Calefacción con velas/quemadores en plantaciones de alto valor.',
   ),
 ];
 

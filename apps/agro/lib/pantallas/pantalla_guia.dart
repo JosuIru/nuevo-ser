@@ -77,7 +77,7 @@ class _ListaCultivosState extends State<_ListaCultivos> {
           child: TextField(
             decoration: InputDecoration(
               labelText: 'Buscar cultivo',
-              hintText: 'Ej: olivo, almendro, trufa…',
+              hintText: 'Ej.: olivo, almendro, trufa…',
               border: const OutlineInputBorder(),
               prefixIcon: const Icon(Icons.search),
               isDense: true,
@@ -499,7 +499,7 @@ class PantallaDetallePlaga extends StatelessWidget {
             ),
             SizedBox(height: 6),
             Text(
-              'Las recomendaciones de productos fitosanitarios autorizados (BBDD del MAPA) y plazos de seguridad estarán disponibles en próximas versiones validadas por agrónomo.',
+              'Las recomendaciones de productos fitosanitarios autorizados (BBDD del MAPA) y los plazos de seguridad estarán disponibles en próximas versiones, validadas por un agrónomo.',
               style: TextStyle(fontSize: 11, color: Colors.grey.shade600, fontStyle: FontStyle.italic),
             ),
           ],

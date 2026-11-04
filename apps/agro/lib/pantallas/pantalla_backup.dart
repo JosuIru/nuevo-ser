@@ -16,21 +16,21 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error, {bool alRestaurar = t
     case MotivoErrorCopiaSeguridad.ficheroNoExiste:
       causa = 'El fichero elegido no existe.';
     case MotivoErrorCopiaSeguridad.noEsZip:
-      causa = 'El fichero no es un zip legible o está dañado.';
+      causa = 'El fichero no es un ZIP legible o está dañado.';
     case MotivoErrorCopiaSeguridad.manifiestoNoValido:
-      causa = 'El backup está incompleto o dañado.';
+      causa = 'La copia de seguridad está incompleta o dañada.';
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      causa = 'El backup es de una versión más nueva de Larrea. Actualiza la app y vuelve a intentarlo.';
+      causa = 'La copia de seguridad es de una versión más nueva de Larrea. Actualiza la app y vuelve a intentarlo.';
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      causa = 'El backup es de otra aplicación, no de Larrea.';
+      causa = 'La copia de seguridad es de otra aplicación, no de Larrea.';
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      causa = 'El zip no contiene la base de datos de Larrea (agro.db).';
+      causa = 'El ZIP no contiene la base de datos de Larrea (agro.db).';
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
-      causa = 'La base de datos del backup está dañada.';
+      causa = 'La base de datos de la copia de seguridad está dañada.';
     case MotivoErrorCopiaSeguridad.rutaPeligrosa:
-      causa = 'El zip contiene rutas no permitidas.';
+      causa = 'El ZIP contiene rutas no permitidas.';
     case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
       causa = 'No se pudo guardar antes una copia del estado actual (¿falta espacio?).';
     case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
@@ -43,7 +43,7 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error, {bool alRestaurar = t
           '${respaldo != null ? 'Tu estado anterior está en ${respaldo.path}. ' : ''}'
           'No borres la app y escríbenos. Detalle: ${error.mensaje}';
   }
-  if (!alRestaurar) return 'No se pudo crear el backup. $causa';
+  if (!alRestaurar) return 'No se pudo crear la copia de seguridad. $causa';
   return error.datosIntactos ? '$causa Tus datos no se han tocado.' : causa;
 }
 
@@ -84,13 +84,13 @@ class _PantallaBackupState extends State<PantallaBackup> {
       final fichero = await servicioCopiaSeguridadAgro.crearCopia();
       await _cargarUltimoBackup();
       if (!mounted) return;
-      await Share.shareXFiles([XFile(fichero.path)], subject: 'Backup Larrea');
+      await Share.shareXFiles([XFile(fichero.path)], subject: 'Copia de seguridad de Larrea');
     } on ErrorCopiaSeguridad catch (error) {
       if (!mounted) return;
       _avisar(textoErrorCopiaSeguridad(error, alRestaurar: false), segundos: 8);
     } catch (error) {
       if (!mounted) return;
-      _avisar('No se pudo crear el backup: $error', segundos: 8);
+      _avisar('No se pudo crear la copia de seguridad: $error', segundos: 8);
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -121,7 +121,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     } catch (error) {
       if (mounted) {
         setState(() => _trabajando = false);
-        _avisar('No se pudo leer el backup: $error. No se ha tocado nada.', segundos: 8);
+        _avisar('No se pudo leer la copia de seguridad: $error. No se ha tocado nada.', segundos: 8);
       }
       return;
     }
@@ -130,14 +130,14 @@ class _PantallaBackupState extends State<PantallaBackup> {
 
     final fechaCopia = informe.fechaCreacion;
     final descripcionCopia = fechaCopia != null
-        ? 'Backup del ${DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(fechaCopia)}'
-        : 'Backup sin fecha (hecho con una versión anterior de Larrea; '
+        ? 'Copia de seguridad del ${DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(fechaCopia)}'
+        : 'Copia de seguridad sin fecha (hecha con una versión anterior de Larrea; '
             'fecha del fichero: ${DateFormat('d/M/yyyy HH:mm', 'es_ES').format(copia.lastModifiedSync())})';
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
-      titulo: 'Restaurar desde un backup',
+      titulo: 'Restaurar una copia de seguridad',
       mensaje: '$descripcionCopia, con ${informe.numeroFicherosExtra} fotos.\n\n'
-          'Se sustituirán la base de datos y las fotos actuales por las del backup. '
+          'Se sustituirán la base de datos y las fotos actuales por las de la copia. '
           'Antes se guarda automáticamente una copia del estado actual en el dispositivo.',
       textoConfirmar: 'Restaurar',
       textoCancelar: 'Cancelar',
@@ -150,7 +150,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       await servicioCopiaSeguridadAgro.restaurarCopia(copia);
       if (!mounted) return;
       _avisar(
-        'Backup restaurado. El estado anterior queda guardado como copia automática en el dispositivo.',
+        'Copia de seguridad restaurada. El estado anterior queda guardado como copia automática en el dispositivo.',
         segundos: 8,
       );
     } on ErrorCopiaSeguridad catch (error) {
@@ -158,7 +158,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       _avisar(textoErrorCopiaSeguridad(error), segundos: 10);
     } catch (error) {
       if (!mounted) return;
-      _avisar('Error restaurando: $error', segundos: 10);
+      _avisar('Error al restaurar: $error', segundos: 10);
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -169,7 +169,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final ultimo = _ultimoBackup;
     final hace = ultimo == null ? null : DateTime.now().difference(ultimo);
     return Scaffold(
-      appBar: AppBar(title: Text('Backup y restauración')),
+      appBar: AppBar(title: Text('Copia de seguridad')),
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
@@ -189,10 +189,10 @@ class _PantallaBackupState extends State<PantallaBackup> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Último backup', style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text('Última copia', style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(
                             ultimo == null
-                                ? 'Nunca — recomendado hacer uno antes de salir al campo.'
+                                ? 'Nunca. Te recomendamos hacer una antes de salir al campo.'
                                 : DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(ultimo),
                           ),
                         ],
@@ -203,30 +203,30 @@ class _PantallaBackupState extends State<PantallaBackup> {
               ),
             ),
             SizedBox(height: 12),
-            Text('Crear backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text('Crear copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Empaqueta la base de datos y todas las fotos en un zip que puedes compartir por WhatsApp, Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí.',
+              'Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),
             FilledButton.icon(
               icon: Icon(Icons.archive),
               onPressed: _trabajando ? null : _crearYCompartir,
-              label: Text(_trabajando ? 'Empaquetando…' : 'Crear backup y compartir'),
+              label: Text(_trabajando ? 'Empaquetando…' : 'Crear copia y compartir'),
             ),
             Divider(height: 32),
-            Text('Restaurar desde backup', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text('Restaurar una copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Sustituye la base de datos y fotos actuales por las del zip. Antes se comprueba que el zip es un backup válido de Larrea y se guarda una copia automática del estado actual.',
+              'Sustituye la base de datos y fotos actuales por las del ZIP. Antes se comprueba que el ZIP es una copia válida de Larrea y se guarda una copia automática del estado actual.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),
             OutlinedButton.icon(
               icon: Icon(Icons.restore),
               onPressed: _trabajando ? null : _restaurar,
-              label: Text('Restaurar zip'),
+              label: Text('Restaurar ZIP'),
             ),
           ],
         ),

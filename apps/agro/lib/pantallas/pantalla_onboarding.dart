@@ -149,7 +149,7 @@ class _PaginaBienvenida extends StatelessWidget {
             '· Apunta cosechas, observaciones, plagas y tratamientos.\n'
             '· Consulta una guía con cultivos y plagas frecuentes.\n'
             '· Genera informes en PDF para tu asesor o cooperativa.\n\n'
-            'Todo offline en tu móvil. Tus datos no salen sin tu permiso.',
+            'Todo funciona sin conexión en tu móvil. Tus datos no salen sin tu permiso.',
             style: TextStyle(fontSize: 15),
           ),
         ],
@@ -175,7 +175,7 @@ class _PaginaCultivos extends StatelessWidget {
           Text('¿Qué cultivas?', style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 4),
           const Text(
-            'Selecciona los cultivos que ya tienes o que vas a plantar. Esto sirve para sugerir variedades y plagas en la pantalla "Hoy". Puedes cambiarlo después.',
+            'Selecciona los cultivos que ya tienes o que vas a plantar. Esto sirve para sugerir variedades y plagas en la pantalla «Hoy». Puedes cambiarlo después.',
             style: TextStyle(color: Colors.grey, fontSize: 13),
           ),
           const SizedBox(height: 16),
@@ -234,7 +234,7 @@ class _PaginaFinca extends StatelessWidget {
             controller: controlador,
             decoration: const InputDecoration(
               labelText: 'Nombre de la finca (opcional)',
-              hintText: 'Ej: La Solana, Olivar de mi padre, Trufera de Soria',
+              hintText: 'Ej.: La Solana, Olivar de mi padre, Trufera de Soria',
               border: OutlineInputBorder(),
             ),
           ),

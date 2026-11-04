@@ -41,7 +41,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _cargando = false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error cargando recorridos: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al cargar los recorridos: $e')));
     }
   }
 
@@ -51,7 +51,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
       puntos = await BaseDatosAgro.instancia.obtenerPuntosTrack(track.id!);
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error abriendo recorrido: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al abrir el recorrido: $e')));
       return;
     }
     if (!mounted) return;

@@ -168,7 +168,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
             controller: _controladorSuperficie,
             decoration: InputDecoration(
               labelText: 'Superficie (hectáreas)',
-              hintText: 'Ej: 4.7',
+              hintText: 'Ej.: 4,7',
               border: OutlineInputBorder(),
             ),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),

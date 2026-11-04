@@ -361,7 +361,7 @@ class _BloqueResumen extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: _Estadistica(
-                etiqueta: 'Cosecha 30d',
+                etiqueta: 'Cosecha 30 días',
                 valor: kilosUltimos30 == 0 ? '—' : '${kilosUltimos30.toStringAsFixed(1)} kg',
                 icono: Icons.shopping_basket,
                 color: const Color(0xFF689F38),

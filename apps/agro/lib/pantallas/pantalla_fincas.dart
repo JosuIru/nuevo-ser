@@ -57,7 +57,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('¿Borrar finca "${finca.nombre}"?'),
+        title: Text('¿Borrar la finca «${finca.nombre}»?'),
         content: Text('Las plantas de la finca se conservarán como puntos sueltos. Su historia (cosechas, observaciones, etc.) no se perderá.'),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),

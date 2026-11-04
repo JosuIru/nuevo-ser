@@ -190,7 +190,7 @@ class _PanelDecision extends StatelessWidget {
         const _AvisoMeteo(
           Icons.water_drop,
           'Alta demanda hídrica',
-          'ET0/VPD altos: prioriza riego y evita labores de estrés.',
+          'ET0 y DPV altos: prioriza riego y evita labores de estrés.',
         ),
       if (dia.vueloAbejasLimitado)
         const _AvisoMeteo(
@@ -264,7 +264,7 @@ class _TarjetaDiaMeteo extends StatelessWidget {
                 _DatoMeteo(
                   icono: Icons.water,
                   texto:
-                      '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)}%',
+                      '${_fmt(dia.lluviaMm)} mm · ${_fmt(dia.probLluviaMax)} %',
                 ),
                 _DatoMeteo(
                   icono: Icons.air,
@@ -273,7 +273,7 @@ class _TarjetaDiaMeteo extends StatelessWidget {
                 ),
                 _DatoMeteo(
                   icono: Icons.opacity,
-                  texto: 'HR ${_fmt(dia.humedadMedia)}%',
+                  texto: 'HR ${_fmt(dia.humedadMedia)} %',
                 ),
                 _DatoMeteo(
                   icono: Icons.wb_sunny,

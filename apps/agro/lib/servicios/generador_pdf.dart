@@ -117,7 +117,7 @@ Future<File> generarPdfCampana({
   final tablas = <TablaInforme>[
     TablaInforme(
       titulo: 'Plantas con cosecha en el periodo',
-      headers: const ['Etiqueta', 'Cultivo', 'Variedad', 'Kg', 'Ud', 'Nº cosechas'],
+      headers: const ['Etiqueta', 'Cultivo', 'Variedad', 'kg', 'Ud.', 'N.º cosechas'],
       filas: _filasCosechasPorPlanta(plantas, resumen),
       mensajeSiVacia: 'Sin cosechas registradas en el periodo.',
       alineamientoCeldas: const {

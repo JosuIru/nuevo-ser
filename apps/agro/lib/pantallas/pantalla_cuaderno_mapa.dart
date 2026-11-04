@@ -86,7 +86,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
     setState(() => _generando = false);
     await Share.shareXFiles(
       [XFile(fichero.path)],
-      subject: 'Cuaderno de Explotación ${_fincaSeleccionada?.nombre ?? 'Puntos sueltos'} $_ano',
+      subject: 'Cuaderno de explotación ${_fincaSeleccionada?.nombre ?? 'Puntos sueltos'} $_ano',
     );
   }
 
@@ -179,7 +179,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
     }
     final anos = List.generate(10, (i) => DateTime.now().year - i);
     return Scaffold(
-      appBar: AppBar(title: Text('Cuaderno de Explotación')),
+      appBar: AppBar(title: Text('Cuaderno de explotación')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -204,7 +204,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'Genera el PDF del Cuaderno de Explotación con tus datos de titular, '
+                    'Genera el PDF del cuaderno de explotación con tus datos de titular, '
                     'parcelas SIGPAC y tratamientos del año seleccionado. Listo para presentar '
                     'a inspección.',
                     style: TextStyle(fontSize: 13),
@@ -270,7 +270,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
-              'El export XML SIEX/CUE oficial llegará en una versión futura. '
+              'La exportación XML oficial al SIEX/CUE llegará en una versión futura. '
               'El PDF cumple el requisito de tener el cuaderno disponible para '
               'inspección presencial.',
               style: TextStyle(fontSize: 12, color: Colors.grey),

@@ -79,7 +79,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
     if (clave == null || clave.isEmpty) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No hay clave Anthropic configurada. Ve a Ajustes → Identificación con IA.')),
+        const SnackBar(content: Text('No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.')),
       );
       return;
     }
@@ -271,8 +271,8 @@ class _ModalResultadoIA extends StatelessWidget {
                     Expanded(
                       child: Text(
                         plagaCatalogo != null
-                            ? 'Diagnóstico coincide con catálogo Larrea: ${plagaCatalogo.nombreComun}'
-                            : 'Diagnóstico coincide con catálogo Larrea',
+                            ? 'El diagnóstico coincide con el catálogo de Larrea: ${plagaCatalogo.nombreComun}'
+                            : 'El diagnóstico coincide con el catálogo de Larrea',
                         style: TextStyle(fontSize: 13, color: Colors.green.shade900),
                       ),
                     ),
@@ -425,7 +425,7 @@ class _ModalResultadoIA extends StatelessWidget {
                         notasAuto: notasAuto.toString(),
                       ));
                     },
-                    label: const Text('Aceptar y pre-rellenar'),
+                    label: const Text('Aceptar y rellenar'),
                   ),
                 ),
               ],

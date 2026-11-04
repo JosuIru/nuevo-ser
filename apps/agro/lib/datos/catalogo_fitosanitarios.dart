@@ -115,7 +115,7 @@ const List<ProductoFitosanitario> catalogoFitosanitarios = [
     dosisRecomendada: '300–800 g/100 L (espolvoreo o mojable)',
     plazoSeguridadDias: 5,
     ecologico: true,
-    observaciones: 'Polvo o pulverización contra oidios. Evitar aplicar con temperaturas > 30 °C.',
+    observaciones: 'Polvo o pulverización contra oídios. Evitar aplicar con temperaturas > 30 °C.',
   ),
   ProductoFitosanitario(
     id: 'aceite_parafinico',

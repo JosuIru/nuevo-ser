@@ -50,7 +50,7 @@ class _PantallaReportesState extends State<PantallaReportes> {
       await Share.shareXFiles([XFile(fichero.path)], subject: 'Informe de campaña');
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error generando PDF: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al generar el PDF: $e')));
     } finally {
       if (mounted) setState(() => _generando = false);
     }

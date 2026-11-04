@@ -48,7 +48,7 @@ class PantallaRegistros extends StatelessWidget {
           _EntradaRegistro(
             icono: Icons.timeline,
             titulo: 'Recorridos de inspección',
-            subtitulo: 'Lista de tracks GPS grabados',
+            subtitulo: 'Lista de recorridos GPS grabados',
             alPulsar: () => abrir(() => PantallaTracks()),
           ),
           const CabeceraSeccionAjustes('Economía'),

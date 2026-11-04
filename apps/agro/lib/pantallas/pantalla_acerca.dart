@@ -81,7 +81,7 @@ class PantallaAcerca extends StatelessWidget {
             'hasta que los revise un asesor fiscal.',
           ),
           const _Vineta(
-            'Tu clave Anthropic (si la configuras para IA) se guarda sólo '
+            'Tu clave de Anthropic (si la configuras para la IA) se guarda solo '
             'en tu dispositivo. Las fotos se envían directamente a '
             'Anthropic, sin pasar por servidores intermedios.',
           ),
@@ -91,7 +91,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Familia Larrea'),
           const Text(
-            'Larrea forma parte de la suite Larrea de la Colección Nuevo '
+            'Larrea es la app general de la suite Larrea, de la Colección Nuevo '
             'Ser, con apps hermanas especializadas: Larrea Viticultura, '
             'Larrea Apícola, Larrea Arbolado Urbano, Larrea Quesera y '
             'Larrea Aceitera.',

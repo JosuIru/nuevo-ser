@@ -224,7 +224,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       setState(() => _guardando = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error guardando ingreso: $e'),
+          content: Text('Error al guardar el ingreso: $e'),
           backgroundColor: Colors.red.shade700,
           duration: const Duration(seconds: 6),
         ),
@@ -281,7 +281,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               controller: _concepto,
               decoration: InputDecoration(
                 labelText: 'Concepto *',
-                hintText: 'Ej: 2.500 kg aceituna picual',
+                hintText: 'Ej.: 2500 kg de aceituna picual',
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
@@ -422,7 +422,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'Nº de factura',
+                labelText: 'N.º de factura',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -464,18 +464,18 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _textoAutocalculo() {
     if (_esAlquilerTerreno) {
-      return 'Alquiler agrícola exento de IVA (cambia a 21% si es uso no agrícola)';
+      return 'Alquiler agrícola exento de IVA (pasa al 21 % si el uso no es agrícola)';
     }
     if (_configFiscal.regimenIva == 'reagp' && _esCosechaOLena) {
-      return 'REAGP: 12% sobre la base como compensación al agricultor';
+      return 'REAGP: 12 % sobre la base como compensación al agricultor';
     }
     if (_tipoIngreso == 'venta_lena_madera') {
-      return 'Madera: 21% IVA general';
+      return 'Madera: 21 % IVA general';
     }
     if (_configFiscal.regimenIva == 'general' && _tipoIngreso == 'venta_cosecha') {
-      return 'Régimen general: 4% IVA en venta de cosecha (alimento 1ª necesidad)';
+      return 'Régimen general: 4 % de IVA en la venta de cosecha (alimento de primera necesidad)';
     }
-    return 'Configura régimen de IVA en Ajustes';
+    return 'Configura el régimen de IVA en Ajustes';
   }
 }
 

@@ -242,7 +242,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           focusNode: foco,
           decoration: InputDecoration(
             labelText: 'Producto',
-            hintText: 'Empieza a escribir para sugerencias del catálogo',
+            hintText: 'Empieza a escribir para ver sugerencias del catálogo',
             border: OutlineInputBorder(),
           ),
         );
@@ -300,7 +300,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
       }
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Diagnóstico pre-rellenado. Revisa y guarda.')),
+      SnackBar(content: Text('Diagnóstico rellenado. Revísalo y guarda.')),
     );
   }
 
@@ -535,7 +535,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorDiagnostico,
             decoration: InputDecoration(
-              labelText: 'Diagnóstico (ej: mosca del olivo)',
+              labelText: 'Diagnóstico (p. ej., mosca del olivo)',
               border: OutlineInputBorder(),
             ),
           ),
@@ -594,7 +594,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           if (_tipoTratamiento == 'fitosanitario') ...[
             SizedBox(height: 16),
             Text(
-              'Cuaderno de Explotación MAPA',
+              'Cuaderno de explotación MAPA',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 4),
@@ -607,7 +607,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               controller: _controladorNumeroRegistroFito,
               decoration: InputDecoration(
                 labelText: 'Número de registro fitosanitario',
-                hintText: 'BBDD MAPA, ej: ES-12345',
+                hintText: 'BBDD del MAPA, p. ej.: ES-12345',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -616,7 +616,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               controller: _controladorSuperficieTratada,
               decoration: InputDecoration(
                 labelText: 'Superficie tratada (ha)',
-                hintText: 'Ej: 1,5',
+                hintText: 'Ej.: 1,5',
                 border: OutlineInputBorder(),
               ),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -627,7 +627,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNifAplicador,
               decoration: InputDecoration(
-                labelText: 'NIF del aplicador (si distinto del titular)',
+                labelText: 'NIF del aplicador (si es distinto del titular)',
                 border: OutlineInputBorder(),
               ),
             ),

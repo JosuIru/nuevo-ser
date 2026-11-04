@@ -56,7 +56,7 @@ class PantallaAjustes extends StatelessWidget {
           _EntradaAjustes(
             icono: Icons.psychology,
             titulo: SoleraL10n.t('identificacion_con_ia'),
-            subtitulo: 'Configurar clave Anthropic para identificar plagas '
+            subtitulo: 'Configurar la clave de Anthropic para identificar plagas '
                 'y enfermedades por foto',
             alPulsar: () => abrir(
               () => PantallaClaveAnthropic(
@@ -79,8 +79,8 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
           _EntradaAjustes(
             icono: Icons.archive,
-            titulo: 'Backup y restauración',
-            subtitulo: 'Empaquetar BD + fotos en zip o restaurar desde zip',
+            titulo: 'Copia de seguridad',
+            subtitulo: 'Empaquetar la base de datos y las fotos en un ZIP, o restaurar desde un ZIP',
             alPulsar: () => abrir(() => PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),

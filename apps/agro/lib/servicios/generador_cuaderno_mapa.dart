@@ -58,7 +58,7 @@ ValidacionCuadernoMapa validarDatosCuaderno({
     avisos.add('Cuaderno generado sobre puntos sueltos (sin finca). '
         'En inspección puede pedirse la referencia SIGPAC de cada parcela tratada.');
   } else if (finca.referenciaSigpac.isEmpty) {
-    errores.add('La finca "${finca.nombre}" no tiene referencia SIGPAC. '
+    errores.add('La finca «${finca.nombre}» no tiene referencia SIGPAC. '
         'Edítala en Ajustes → Fincas y rellena provincia/municipio/polígono/parcela/recinto.');
   }
 
@@ -192,7 +192,7 @@ pw.Widget _cabecera(Finca? finca, int ano) => pw.Container(
           pw.Row(
             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
             children: [
-              pw.Text('Cuaderno de Explotación',
+              pw.Text('Cuaderno de explotación',
                   style: pw.TextStyle(fontSize: 18, fontWeight: pw.FontWeight.bold)),
               pw.Text('Campaña $ano',
                   style: const pw.TextStyle(fontSize: 14, color: PdfColors.grey700)),
@@ -204,7 +204,7 @@ pw.Widget _cabecera(Finca? finca, int ano) => pw.Container(
             style: const pw.TextStyle(fontSize: 12),
           ),
           pw.Text(
-            'RD 1311/2012 sobre uso sostenible de productos fitosanitarios',
+            'RD 1311/2012 sobre el uso sostenible de productos fitosanitarios',
             style: const pw.TextStyle(fontSize: 9, color: PdfColors.grey600),
           ),
         ],
@@ -288,7 +288,7 @@ pw.Widget _seccionParcelas(Finca? finca, List<Planta> plantas) {
           'Finca',
           'Referencia SIGPAC',
           'Superficie (ha)',
-          'Cultivos / nº plantas',
+          'Cultivos / n.º plantas',
         ],
         data: [
           [
@@ -325,7 +325,7 @@ pw.Widget _seccionTratamientos(
           headers: const [
             'Fecha',
             'Producto',
-            'Nº registro MAPA',
+            'N.º registro MAPA',
             'Dosis',
             'Plaga / motivo',
             'Sup. ha',
@@ -445,7 +445,7 @@ pw.Widget _bloqueLegal() => pw.Container(
               style: pw.TextStyle(fontSize: 10, fontWeight: pw.FontWeight.bold)),
           pw.SizedBox(height: 2),
           pw.Text(
-            'Este documento es una vista del Cuaderno de Explotación generada por la app Larrea con los datos '
+            'Este documento es una vista del cuaderno de explotación generada por la app Larrea con los datos '
             'introducidos por el titular en su dispositivo. La responsabilidad sobre la veracidad y completitud de '
             'la información mostrada recae en el titular firmante. La app no envía estos datos a ningún servidor en v1.',
             style: const pw.TextStyle(fontSize: 8, color: PdfColors.grey700),

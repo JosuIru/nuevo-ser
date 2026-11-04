@@ -106,7 +106,7 @@ class _PantallaImportarCsvState extends State<PantallaImportarCsv> {
             const Text('Exportar CSV', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 4),
             const Text(
-              'Genera un CSV con todas las plantas (incluidos puntos sueltos). Útil para hacer backup, '
+              'Genera un CSV con todas las plantas (incluidos puntos sueltos). Útil para hacer una copia de seguridad, '
               'editar en hoja de cálculo y reimportar, o pasar datos a otro dispositivo.',
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),

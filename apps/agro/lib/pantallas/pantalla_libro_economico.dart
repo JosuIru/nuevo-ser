@@ -773,7 +773,7 @@ class _ResumenAnual extends StatelessWidget {
           importeCentimos: ayudas,
           color: Colors.purple.shade700,
           subtitulo:
-              'PAC + autonómicas — fiscalmente NO son ingreso ordinario, separadas en el extracto',
+              'PAC y autonómicas: fiscalmente no son ingreso ordinario; van aparte en el extracto',
         ),
         _Card(
           titulo: 'Gastos $ano',
@@ -802,13 +802,13 @@ class _ResumenAnual extends StatelessWidget {
             titulo: 'Compensación REAGP cobrada',
             importeCentimos: compensacionReagp,
             color: Colors.teal.shade700,
-            subtitulo: '12% sobre la base — el comprador la paga al agricultor',
+            subtitulo: '12 % sobre la base — el comprador la paga al agricultor',
           ),
           _Card(
             titulo: 'IVA soportado en compras',
             importeCentimos: ivaSoportado,
             color: Colors.blueGrey.shade700,
-            subtitulo: 'En REAGP NO es recuperable. Computa como mayor coste.',
+            subtitulo: 'En REAGP no es recuperable: computa como mayor coste.',
           ),
         ],
         if (configFiscal.regimenIva == 'general') ...[
@@ -860,7 +860,7 @@ class _ResumenAnual extends StatelessWidget {
           _Stats(
             icono: Icons.warning_amber,
             texto:
-                '$apuntesSinNif ingreso(s) sin NIF — no entran al modelo 347',
+                '$apuntesSinNif ingreso(s) sin NIF — no entran en el modelo 347',
             color: Colors.orange.shade800,
           ),
         const SizedBox(height: 24),

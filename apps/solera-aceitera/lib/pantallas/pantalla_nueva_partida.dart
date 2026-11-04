@@ -71,16 +71,16 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
     final iraMolturacion = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: const Text('Partida registrada'),
-        content: const Text('¿Pasamos a registrar la molturación de esta partida?'),
+        title: Text(SoleraL10n.t('partida_registrada')),
+        content: Text(SoleraL10n.t('acei.pasar_a_molturacion')),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Ahora no'),
+            child: Text(SoleraL10n.t('acei.ahora_no')),
           ),
           FilledButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Sí, molturar'),
+            child: Text(SoleraL10n.t('acei.si_molturar')),
           ),
         ],
       ),
@@ -102,14 +102,12 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
     }
     if (_campaniaActiva == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Nueva partida')),
-        body: const Center(
+        appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_partida'))),
+        body: Center(
           child: Padding(
             padding: EdgeInsets.all(24),
             child: Text(
-              'No hay ninguna campaña abierta. Crea una en Registros → '
-              'Campañas de recolección '
-              'antes de registrar partidas.',
+              SoleraL10n.t('acei.sin_campania_abierta_partidas'),
               textAlign: TextAlign.center,
             ),
           ),
@@ -117,7 +115,7 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Nueva partida de aceituna')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_partida_de_aceituna'))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -127,34 +125,34 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
             children: [
               TextFormField(
                 controller: _kgCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Kilos netos (báscula)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.kilos_netos_bascula'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
-                  if (v == null || v.trim().isEmpty) return 'Obligatorio';
+                  if (v == null || v.trim().isEmpty) return SoleraL10n.t('acei.obligatorio');
                   final n = leerNumero(v, nullSiAmbiguo: true);
                   if (n == null) return SoleraL10n.t('numero_no_valido');
-                  if (n <= 0) return 'Debe ser un número mayor que 0';
+                  if (n <= 0) return SoleraL10n.t('mayor_que_cero');
                   return null;
                 },
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _albaranCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Número de albarán',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.numero_de_albaran'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                    (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _defectoCtrl,
-                decoration: const InputDecoration(
-                  labelText: '% de aceituna defectuosa',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.porcentaje_aceituna_defectuosa'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType:
@@ -164,8 +162,8 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _catadorCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Catador',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.catador'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -173,15 +171,15 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
               SwitchListTile(
                 value: _origenEsSocio,
                 onChanged: (v) => setState(() => _origenEsSocio = v),
-                title: const Text('Procede de socio cooperativista externo'),
+                title: Text(SoleraL10n.t('acei.procede_de_socio_externo')),
                 contentPadding: EdgeInsets.zero,
               ),
               if (_origenEsSocio) ...[
                 const SizedBox(height: 4),
                 TextFormField(
                   controller: _socioCtrl,
-                  decoration: const InputDecoration(
-                    labelText: 'Nombre del socio',
+                  decoration: InputDecoration(
+                    labelText: SoleraL10n.t('acei.nombre_del_socio'),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -194,7 +192,7 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
                         width: 20,
                         height: 20,
                         child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Text('Guardar partida'),
+                    : Text(SoleraL10n.t('guardar_partida')),
               ),
             ],
           ),

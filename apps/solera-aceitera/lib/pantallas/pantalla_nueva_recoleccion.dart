@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utiles/textos_visibles.dart';
+
 import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
 import '../modelos/recoleccion.dart';
@@ -76,14 +78,12 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
     }
     if (_campaniaActiva == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Nueva recolección')),
-        body: const Center(
+        appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_recoleccion'))),
+        body: Center(
           child: Padding(
             padding: EdgeInsets.all(24),
             child: Text(
-              'No hay ninguna campaña abierta. Crea una en Registros → '
-              'Campañas de recolección '
-              'antes de registrar recolecciones.',
+              SoleraL10n.t('acei.sin_campania_abierta_recolecciones'),
               textAlign: TextAlign.center,
             ),
           ),
@@ -91,7 +91,7 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Nueva recolección')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_recoleccion'))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -101,56 +101,56 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
             children: [
               TextFormField(
                 controller: _kgCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Kilos estimados',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.kilos_estimados'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
-                  if (v == null || v.trim().isEmpty) return 'Obligatorio';
+                  if (v == null || v.trim().isEmpty) return SoleraL10n.t('acei.obligatorio');
                   final n = leerNumero(v, nullSiAmbiguo: true);
                   if (n == null) return SoleraL10n.t('numero_no_valido');
-                  if (n <= 0) return 'Debe ser un número mayor que 0';
+                  if (n <= 0) return SoleraL10n.t('mayor_que_cero');
                   return null;
                 },
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
                 initialValue: _tipoAceituna,
-                decoration: const InputDecoration(
-                  labelText: 'Tipo de aceituna',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.tipo_de_aceituna'),
                   border: OutlineInputBorder(),
                 ),
                 items: _tiposAceituna
-                    .map((t) => DropdownMenuItem(value: t, child: Text(t)))
+                    .map((t) => DropdownMenuItem(value: t, child: Text(nombreTipoAceituna(t))))
                     .toList(),
                 onChanged: (v) => setState(() => _tipoAceituna = v ?? 'envero'),
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
                 initialValue: _metodo,
-                decoration: const InputDecoration(
-                  labelText: 'Método',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.metodo'),
                   border: OutlineInputBorder(),
                 ),
                 items: _metodos
-                    .map((m) => DropdownMenuItem(value: m, child: Text(m)))
+                    .map((m) => DropdownMenuItem(value: m, child: Text(nombreMetodoRecoleccion(m))))
                     .toList(),
                 onChanged: (v) => setState(() => _metodo = v ?? 'vibrador'),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _cuadrillaCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Cuadrilla',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.cuadrilla'),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _notasCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Notas',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.notas'),
                   border: OutlineInputBorder(),
                 ),
                 maxLines: 3,
@@ -163,7 +163,7 @@ class _PantallaNuevaRecoleccionState extends State<PantallaNuevaRecoleccion> {
                         width: 20,
                         height: 20,
                         child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Text('Guardar recolección'),
+                    : Text(SoleraL10n.t('acei.guardar_recoleccion')),
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:intl/intl.dart';
 
 import '../servicios/servicio_meteo_aceitera.dart';
@@ -20,7 +21,7 @@ class PantallaMeteoAceitera extends StatefulWidget {
 class _PantallaMeteoAceiteraState extends State<PantallaMeteoAceitera> {
   final _servicio = ServicioMeteoAceitera();
   Future<PrevisionAceitera>? _futuro;
-  String _origen = 'olivar';
+  String _origen = '';
 
   @override
   void initState() {
@@ -30,7 +31,7 @@ class _PantallaMeteoAceiteraState extends State<PantallaMeteoAceitera> {
 
   Future<PrevisionAceitera> _cargar() async {
     final destino = await resolverDestinoMeteoAceitera();
-    _origen = destino.nombre;
+    _origen = destino.claveNombre ?? destino.nombre;
     return _servicio.obtener(
       latitud: destino.latitud,
       longitud: destino.longitud,
@@ -45,7 +46,7 @@ class _PantallaMeteoAceiteraState extends State<PantallaMeteoAceitera> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meteo olivar')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.meteo_olivar'))),
       body: FutureBuilder<PrevisionAceitera>(
         future: _futuro,
         builder: (context, snapshot) {
@@ -69,9 +70,7 @@ class _PantallaMeteoAceiteraState extends State<PantallaMeteoAceitera> {
                 ],
                 const SizedBox(height: 8),
                 Text(
-                  'Datos de Open-Meteo (modelos ECMWF/GFS) — orientativos. '
-                  'Para decisiones de tratamiento o recolección verifica con '
-                  'la Estación de Avisos Fitosanitarios y AEMET de tu zona.',
+                  SoleraL10n.t('acei.meteo_fuente_datos'),
                   style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
                 ),
               ],
@@ -97,17 +96,16 @@ class _Cabecera extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(origen, style: Theme.of(context).textTheme.titleLarge),
+            Text(nombreDestinoMeteoVisible(origen), style: Theme.of(context).textTheme.titleLarge),
             const SizedBox(height: 4),
             Text(
               '${prevision.latitud.toStringAsFixed(5)}, ${prevision.longitud.toStringAsFixed(5)}',
               style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Previsión orientativa para tratamientos, heladas, mosca del olivo, '
-              'golpe de calor en aceituna, riego y ventanas de recolección.',
-              style: TextStyle(fontSize: 12),
+            Text(
+              SoleraL10n.t('acei.meteo_cabecera_texto'),
+              style: const TextStyle(fontSize: 12),
             ),
           ],
         ),
@@ -162,75 +160,67 @@ class _ConsejoOlivar {
 List<_ConsejoOlivar> consejosDelDia(DiaMeteoOlivar dia) {
   final consejos = <_ConsejoOlivar>[];
   if (dia.riesgoHelada) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.ac_unit,
-      'Riesgo de helada',
-      'Olivos jóvenes y plantaciones de altura sufren con temperatura ≤0 °C. '
-          'Vigila brotes y hojas amarillentas en los próximos días.',
-      Color(0xFF1976D2),
+      SoleraL10n.t('acei.consejo_riesgo_helada_titulo'),
+      SoleraL10n.t('acei.consejo_riesgo_helada_texto'),
+      const Color(0xFF1976D2),
     ));
   }
   if (dia.golpeCalorAceituna) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.local_fire_department,
-      'Golpe de calor en aceituna',
-      'Temperatura ≥38 °C en envero provoca arrugado, mancha jabonosa y caída '
-          'de fruto. Si tienes goteo, programa pulso largo nocturno.',
-      Color(0xFFD84315),
+      SoleraL10n.t('acei.consejo_golpe_calor_titulo'),
+      SoleraL10n.t('acei.consejo_golpe_calor_texto'),
+      const Color(0xFFD84315),
     ));
   }
   if (dia.vueloMoscaOlivoActivo) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.bug_report,
-      'Vuelo activo de mosca del olivo',
-      'Temperatura y humedad favorecen la actividad de Bactrocera oleae. '
-          'Revisa trampeo masivo, mosqueros y picado en aceituna en envero o ya enverada.',
-      Color(0xFFE65100),
+      SoleraL10n.t('acei.consejo_mosca_titulo'),
+      SoleraL10n.t('acei.consejo_mosca_texto'),
+      const Color(0xFFE65100),
     ));
   }
   if (dia.malDiaTratamiento) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.science,
-      'Tratamiento poco favorable',
-      'Viento ≥18 km/h o lluvia (real o probable) provocan deriva, lavado y '
-          'baja eficacia. Considera aplazar la aplicación con turboatomizador.',
-      Color(0xFFE65100),
+      SoleraL10n.t('acei.consejo_tratamiento_titulo'),
+      SoleraL10n.t('acei.consejo_tratamiento_texto'),
+      const Color(0xFFE65100),
     ));
   }
   if (dia.estresHidrico) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.water_drop,
-      'Demanda hídrica alta',
-      'ET0 elevada o déficit de presión de vapor alto. Si tienes goteo, '
-          'programa riego de apoyo; en secano evita labores que aumenten estrés.',
-      Color(0xFF0277BD),
+      SoleraL10n.t('acei.consejo_estres_hidrico_titulo'),
+      SoleraL10n.t('acei.consejo_estres_hidrico_texto'),
+      const Color(0xFF0277BD),
     ));
   }
   if (dia.floracionEnRiesgo) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.local_florist,
-      'Floración en riesgo',
-      'Humedad alta o lluvia durante la floración perjudica el cuajado. '
-          'Controla repilo y prepara seguimiento del cuajado en próximas semanas.',
-      Color(0xFFE65100),
+      SoleraL10n.t('acei.consejo_floracion_titulo'),
+      SoleraL10n.t('acei.consejo_floracion_texto'),
+      const Color(0xFFE65100),
     ));
   }
   if (dia.buenDiaRecoleccion && dia.fecha.month >= 10 && dia.fecha.month <= 2) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.agriculture,
-      'Día apto para recolección',
-      'Sin lluvia significativa, viento moderado y temperatura por encima de '
-          '5 °C. Buena ventana para vareo, vibrador o paraguas invertido.',
-      Color(0xFF2E7D32),
+      SoleraL10n.t('acei.consejo_recoleccion_titulo'),
+      SoleraL10n.t('acei.consejo_recoleccion_texto'),
+      const Color(0xFF2E7D32),
     ));
   }
   if (consejos.isEmpty) {
-    consejos.add(const _ConsejoOlivar(
+    consejos.add(_ConsejoOlivar(
       Icons.check_circle,
-      'Ventana razonable',
-      'Sin señales fuertes de helada, golpe de calor, mosca, deriva ni estrés '
-          'hídrico. Día apto para labores normales en olivar.',
-      Color(0xFF2E7D32),
+      SoleraL10n.t('acei.consejo_ventana_razonable_titulo'),
+      SoleraL10n.t('acei.consejo_ventana_razonable_texto'),
+      const Color(0xFF2E7D32),
     ));
   }
   return consejos;
@@ -243,7 +233,7 @@ class _TarjetaDia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fecha = DateFormat('EEE d MMM', 'es_ES').format(dia.fecha);
+    final fecha = DateFormat('EEE d MMM', SoleraL10n.idioma == 'es' ? 'es_ES' : SoleraL10n.idioma).format(dia.fecha);
     final avisos = avisosClaveOlivar(dia);
     return Card(
       child: Padding(
@@ -273,17 +263,17 @@ class _TarjetaDia extends StatelessWidget {
                 _Dato(
                     icono: Icons.air,
                     texto:
-                        '${_fmt(dia.vientoMaxKmh)} km/h · racha ${_fmt(dia.rachaMaxKmh)}'),
+                        SoleraL10n.tf('acei.viento_racha', {'viento': _fmt(dia.vientoMaxKmh), 'racha': _fmt(dia.rachaMaxKmh)})),
                 _Dato(
                     icono: Icons.opacity,
-                    texto: 'HR ${_fmt(dia.humedadMedia)} %'),
+                    texto: SoleraL10n.tf('acei.humedad_relativa_corta', {'hr': _fmt(dia.humedadMedia)})),
                 _Dato(
                     icono: Icons.wb_sunny,
                     texto: 'ET0 ${_fmt(dia.et0Mm)} mm'),
                 _Dato(
                     icono: Icons.grass,
                     texto:
-                        'Suelo ${_fmt(dia.sueloTemp6cmMedia)} °C · ${_fmt(dia.sueloHumedad3a9Media, decimales: 2)}'),
+                        SoleraL10n.tf('acei.suelo_temp_humedad', {'temp': _fmt(dia.sueloTemp6cmMedia), 'humedad': _fmt(dia.sueloHumedad3a9Media, decimales: 2)})),
               ],
             ),
             if (avisos.isNotEmpty) ...[
@@ -346,12 +336,12 @@ class _EstadoError extends StatelessWidget {
           children: [
             const Icon(Icons.cloud_off, size: 42),
             const SizedBox(height: 12),
-            const Text('No se pudo cargar la previsión.'),
+            Text(SoleraL10n.t('acei.no_se_pudo_cargar_prevision')),
             const SizedBox(height: 12),
             FilledButton.icon(
               onPressed: alReintentar,
               icon: const Icon(Icons.refresh),
-              label: const Text('Reintentar'),
+              label: Text(SoleraL10n.t('acei.reintentar')),
             ),
           ],
         ),

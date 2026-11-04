@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../datos/catalogos_generados/flag_revision.dart';
 
@@ -40,7 +41,7 @@ class BannerCatalogosProvisionales extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Catálogos provisionales',
+                  SoleraL10n.t('acei.catalogos_provisionales'),
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
@@ -49,10 +50,7 @@ class BannerCatalogosProvisionales extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Las variedades de olivo, plagas, fitosanitarios y DOP '
-                  'que ves todavía no han sido validadas por un asesor '
-                  'agrónomo olivarero. Úsalas con criterio profesional '
-                  'hasta que entren los datos definitivos.',
+                  SoleraL10n.t('acei.catalogos_provisionales_texto'),
                   style: TextStyle(
                     fontSize: 12,
                     height: 1.4,

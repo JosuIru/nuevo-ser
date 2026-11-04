@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import '../utiles/textos_visibles.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../datos/base_datos.dart';
@@ -56,9 +58,9 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
       if (!permiso) {
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
-                'Permiso de ubicación denegado o GPS desactivado. Activa el GPS y vuelve a intentarlo.'),
+                SoleraL10n.t('acei.permiso_gps_denegado')),
           ),
         );
         return;
@@ -75,13 +77,17 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-              'GPS capturado: ${posicion.latitude.toStringAsFixed(5)}, ${posicion.longitude.toStringAsFixed(5)} (precisión ±${posicion.accuracy.toStringAsFixed(0)} m)'),
+              SoleraL10n.tf('acei.gps_capturado', {
+                'lat': posicion.latitude.toStringAsFixed(5),
+                'lon': posicion.longitude.toStringAsFixed(5),
+                'precision': posicion.accuracy.toStringAsFixed(0),
+              })),
         ),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al capturar el GPS: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('acei.error_capturar_gps', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _capturandoGps = false);
@@ -122,7 +128,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nueva parcela')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_parcela'))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -132,27 +138,27 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
             children: [
               TextFormField(
                 controller: _nombreCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Nombre de la parcela',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.nombre_de_la_parcela'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                    (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _sigpacCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Código SIGPAC',
-                  hintText: 'Ej. 23:077:001:00074:0001:WX',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.codigo_sigpac'),
+                  hintText: SoleraL10n.t('acei.ejemplo_sigpac'),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _superficieCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Superficie (ha)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.superficie_ha'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -174,12 +180,12 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
                   return TextFormField(
                     controller: controlador,
                     focusNode: foco,
-                    decoration: const InputDecoration(
-                      labelText: 'Variedad mayoritaria',
-                      hintText: 'picual, hojiblanca, arbequina…',
+                    decoration: InputDecoration(
+                      labelText: SoleraL10n.t('acei.variedad_mayoritaria'),
+                      hintText: SoleraL10n.t('acei.ejemplo_variedades'),
                       border: OutlineInputBorder(),
                       helperText:
-                          'Sugerencias del catálogo provisional (texto libre admitido)',
+                          SoleraL10n.t('acei.sugerencias_catalogo_provisional'),
                     ),
                     onChanged: (texto) {
                       // Si el usuario escribe texto libre que no coincide
@@ -192,17 +198,17 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _marcoCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Marco de plantación',
-                  hintText: '8x6, 7x7, 1,5x4 superintensivo…',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.marco_de_plantacion'),
+                  hintText: SoleraL10n.t('acei.ejemplo_marco'),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _edadCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Edad media (años)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.edad_media_anyos'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
@@ -211,12 +217,12 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
                 initialValue: _sistemaRiego,
-                decoration: const InputDecoration(
-                  labelText: 'Sistema de riego',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.sistema_de_riego'),
                   border: OutlineInputBorder(),
                 ),
                 items: _opcionesRiego
-                    .map((r) => DropdownMenuItem(value: r, child: Text(r)))
+                    .map((r) => DropdownMenuItem(value: r, child: Text(nombreSistemaRiego(r))))
                     .toList(),
                 onChanged: (v) =>
                     setState(() => _sistemaRiego = v ?? 'secano'),
@@ -238,7 +244,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
                       Expanded(
                         child: Text(
                           _latitud == null
-                              ? 'Sin coordenadas (opcional)'
+                              ? SoleraL10n.t('acei.sin_coordenadas_opcional')
                               : 'GPS: ${_latitud!.toStringAsFixed(5)}, ${_longitud!.toStringAsFixed(5)}',
                           style: const TextStyle(fontSize: 13),
                         ),
@@ -253,7 +259,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
                                     CircularProgressIndicator(strokeWidth: 2),
                               )
                             : const Icon(Icons.my_location),
-                        label: const Text('Capturar GPS'),
+                        label: Text(SoleraL10n.t('acei.capturar_gps')),
                       ),
                     ],
                   ),
@@ -268,7 +274,7 @@ class _PantallaNuevaParcelaState extends State<PantallaNuevaParcela> {
                         height: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Guardar parcela'),
+                    : Text(SoleraL10n.t('acei.guardar_parcela')),
               ),
             ],
           ),

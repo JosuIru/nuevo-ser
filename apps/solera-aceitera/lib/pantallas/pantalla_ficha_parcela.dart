@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+
+import '../utiles/textos_visibles.dart';
 import 'package:intl/intl.dart';
 
 import '../datos/base_datos.dart';
@@ -53,12 +56,12 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
           children: [
             ListTile(
               leading: const Icon(Icons.agriculture),
-              title: const Text('Recolección'),
+              title: Text(SoleraL10n.t('acei.recoleccion')),
               onTap: () => Navigator.of(context).pop('recoleccion'),
             ),
             ListTile(
               leading: const Icon(Icons.bug_report),
-              title: const Text('Tratamiento'),
+              title: Text(SoleraL10n.t('acei.tratamiento')),
               onTap: () => Navigator.of(context).pop('tratamiento'),
             ),
           ],
@@ -83,7 +86,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
     final p = widget.parcela;
     return Scaffold(
       appBar: AppBar(
-          title: Text(p.nombre.isEmpty ? '(parcela sin nombre)' : p.nombre)),
+          title: Text(p.nombre.isEmpty ? SoleraL10n.t('acei.parcela_sin_nombre') : p.nombre)),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -93,11 +96,11 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Superficie: ${p.superficieHa.toStringAsFixed(2)} ha'),
-                  Text('Variedad: ${p.variedadMayoritariaId.isEmpty ? "(sin definir)" : p.variedadMayoritariaId}'),
-                  Text('Marco: ${p.marcoPlantacion.isEmpty ? "(sin definir)" : p.marcoPlantacion}'),
-                  Text('Edad media: ${p.edadMediaAnyos} años'),
-                  Text('Riego: ${p.sistemaRiego}'),
+                  Text(SoleraL10n.tf('acei.superficie_valor', {'ha': p.superficieHa.toStringAsFixed(2)})),
+                  Text(SoleraL10n.tf('acei.variedad_valor', {'variedad': p.variedadMayoritariaId.isEmpty ? SoleraL10n.t('acei.sin_definir') : p.variedadMayoritariaId})),
+                  Text(SoleraL10n.tf('acei.marco_valor', {'marco': p.marcoPlantacion.isEmpty ? SoleraL10n.t('acei.sin_definir') : p.marcoPlantacion})),
+                  Text(SoleraL10n.tf('acei.edad_media_valor', {'anyos': p.edadMediaAnyos})),
+                  Text(SoleraL10n.tf('acei.riego_valor', {'riego': nombreSistemaRiego(p.sistemaRiego)})),
                   if (p.codigoSigpac.isNotEmpty)
                     Text('SIGPAC: ${p.codigoSigpac}'),
                 ],
@@ -105,12 +108,12 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
             ),
           ),
           const SizedBox(height: 16),
-          const Text('Recolecciones',
+          Text(SoleraL10n.t('acei.recolecciones'),
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
           if (_recolecciones.isEmpty)
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 8),
-              child: Text('Sin recolecciones registradas todavía.'),
+              child: Text(SoleraL10n.t('acei.sin_recolecciones')),
             )
           else
             ..._recolecciones.map((r) => Card(
@@ -118,20 +121,20 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                     leading: const Icon(Icons.agriculture,
                         color: Color(0xFF5C6B3A)),
                     title: Text(
-                      '${r.kgEstimados.toStringAsFixed(0)} kg · ${r.tipoAceituna}',
+                      '${r.kgEstimados.toStringAsFixed(0)} kg · ${nombreTipoAceituna(r.tipoAceituna)}',
                     ),
                     subtitle: Text(
-                      '${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(r.fechaMs))} · ${r.metodo}',
+                      '${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(r.fechaMs))} · ${nombreMetodoRecoleccion(r.metodo)}',
                     ),
                   ),
                 )),
           const SizedBox(height: 16),
-          const Text('Tratamientos',
+          Text(SoleraL10n.t('acei.tratamientos'),
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
           if (_tratamientos.isEmpty)
-            const Padding(
+            Padding(
               padding: EdgeInsets.symmetric(vertical: 8),
-              child: Text('Sin tratamientos registrados todavía.'),
+              child: Text(SoleraL10n.t('acei.sin_tratamientos')),
             )
           else
             ..._tratamientos.map((t) => Card(
@@ -139,12 +142,12 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                     leading:
                         const Icon(Icons.bug_report, color: Color(0xFF5C6B3A)),
                     title: Text(t.sustanciaActivaId.isEmpty
-                        ? '(sustancia activa no indicada)'
+                        ? SoleraL10n.t('acei.sustancia_no_indicada')
                         : t.sustanciaActivaId),
                     subtitle: Text(
                       '${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(t.fechaMs))}'
                       ' · ${t.dosisLitrosPorHa.toStringAsFixed(2)} L/ha'
-                      '${t.plagaObjetivoId.isEmpty ? "" : " · contra ${t.plagaObjetivoId}"}',
+                      '${t.plagaObjetivoId.isEmpty ? "" : " · ${SoleraL10n.tf('acei.contra_plaga', {'plaga': t.plagaObjetivoId})}"}',
                     ),
                   ),
                 )),
@@ -153,7 +156,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _registrarEvento,
         icon: const Icon(Icons.add),
-        label: const Text('Registrar'),
+        label: Text(SoleraL10n.t('acei.registrar')),
       ),
     );
   }

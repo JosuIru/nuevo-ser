@@ -52,7 +52,7 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Nuevo tratamiento')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.nuevo_tratamiento'))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -93,18 +93,18 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
                   return TextFormField(
                     controller: controlador,
                     focusNode: foco,
-                    decoration: const InputDecoration(
-                      labelText: 'Sustancia activa',
-                      hintText: 'deltametrina, spinosad, cobre…',
+                    decoration: InputDecoration(
+                      labelText: SoleraL10n.t('acei.sustancia_activa'),
+                      hintText: SoleraL10n.t('acei.ejemplo_sustancias'),
                       border: OutlineInputBorder(),
                       helperText:
-                          'Sugerencias del catálogo provisional (texto libre admitido)',
+                          SoleraL10n.t('acei.sugerencias_catalogo_provisional'),
                     ),
                     onChanged: (texto) {
                       _sustanciaCtrl.text = texto.trim();
                     },
                     validator: (v) => (v == null || v.trim().isEmpty)
-                        ? 'Obligatorio'
+                        ? SoleraL10n.t('acei.obligatorio')
                         : null,
                   );
                 },
@@ -112,16 +112,16 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _productoCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Producto comercial (referencia)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.producto_comercial_referencia'),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _dosisCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Dosis (L/ha)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.dosis_l_ha'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType:
@@ -144,12 +144,12 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
                   return TextFormField(
                     controller: controlador,
                     focusNode: foco,
-                    decoration: const InputDecoration(
-                      labelText: 'Plaga objetivo',
-                      hintText: 'mosca, prays, repilo, verticilosis…',
+                    decoration: InputDecoration(
+                      labelText: SoleraL10n.t('acei.plaga_objetivo'),
+                      hintText: SoleraL10n.t('acei.ejemplo_plagas'),
                       border: OutlineInputBorder(),
                       helperText:
-                          'Sugerencias del catálogo provisional (texto libre admitido)',
+                          SoleraL10n.t('acei.sugerencias_catalogo_provisional'),
                     ),
                     onChanged: (texto) {
                       _plagaCtrl.text = texto.trim();
@@ -160,30 +160,30 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _aplicadorCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Aplicador (nombre)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.aplicador_nombre'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                    (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _carnetCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'N.º de carnet de aplicador',
-                  hintText: 'Obligatorio para la PAC',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.numero_carnet_aplicador'),
+                  hintText: SoleraL10n.t('acei.obligatorio_para_pac'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) => (v == null || v.trim().isEmpty)
-                    ? 'Obligatorio para que el cuaderno PAC sea válido'
+                    ? SoleraL10n.t('acei.obligatorio_cuaderno_pac_valido')
                     : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _observacionesCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Observaciones',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.observaciones'),
                   border: OutlineInputBorder(),
                 ),
                 maxLines: 3,
@@ -196,7 +196,7 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
                         width: 20,
                         height: 20,
                         child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Text('Guardar tratamiento'),
+                    : Text(SoleraL10n.t('acei.guardar_tratamiento')),
               ),
             ],
           ),

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+
+import '../utiles/textos_visibles.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/parcela.dart';
@@ -47,7 +50,7 @@ class _PantallaListaParcelasState extends State<PantallaListaParcelas> {
     if (!mounted) return;
     if (olivar?.id == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta crear el olivar primero.')),
+        SnackBar(content: Text(SoleraL10n.t('acei.falta_crear_olivar'))),
       );
       return;
     }
@@ -67,15 +70,15 @@ class _PantallaListaParcelasState extends State<PantallaListaParcelas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Parcelas')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.parcelas'))),
       body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(12),
             child: TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
-                hintText: 'Buscar por nombre, SIGPAC o variedad',
+                hintText: SoleraL10n.t('acei.buscar_parcelas'),
                 border: OutlineInputBorder(),
               ),
               onChanged: (v) => setState(() => _filtro = v),
@@ -83,10 +86,10 @@ class _PantallaListaParcelasState extends State<PantallaListaParcelas> {
           ),
           Expanded(
             child: _filtradas.isEmpty
-                ? const Center(
+                ? Center(
                     child: Text(
-                      'Sin parcelas registradas todavía.\n'
-                      'Pulsa «+» para añadir la primera.',
+                      '${SoleraL10n.t('acei.sin_parcelas')}\n'
+                      '${SoleraL10n.t('acei.sin_parcelas_ayuda')}',
                       textAlign: TextAlign.center,
                     ),
                   )
@@ -101,12 +104,12 @@ class _PantallaListaParcelasState extends State<PantallaListaParcelas> {
                             leading: const Icon(Icons.park,
                                 color: Color(0xFF5C6B3A)),
                             title: Text(p.nombre.isEmpty
-                                ? '(sin nombre)'
+                                ? SoleraL10n.t('acei.sin_nombre')
                                 : p.nombre),
                             subtitle: Text(
                               '${p.superficieHa.toStringAsFixed(2)} ha · '
-                              '${p.variedadMayoritariaId.isEmpty ? "variedad sin definir" : p.variedadMayoritariaId} · '
-                              '${p.sistemaRiego}',
+                              '${p.variedadMayoritariaId.isEmpty ? SoleraL10n.t('acei.variedad_sin_definir') : p.variedadMayoritariaId} · '
+                              '${nombreSistemaRiego(p.sistemaRiego)}',
                             ),
                             onTap: () => _abrirFicha(p),
                           ),

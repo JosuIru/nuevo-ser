@@ -76,9 +76,9 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             child: ListTile(
               leading: const Icon(Icons.person, color: _colorIconos),
               title: Text(_titular!.razonSocial.isEmpty
-                  ? '(sin razón social)'
+                  ? SoleraL10n.t('acei.sin_razon_social')
                   : _titular!.razonSocial),
-              subtitle: Text('Titular · NIF: ${_titular!.nif}'),
+              subtitle: Text(SoleraL10n.tf('acei.titular_nif', {'nif': _titular!.nif})),
             ),
           ),
         if (_olivar != null)
@@ -87,10 +87,10 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             child: ListTile(
               leading: const Icon(Icons.eco, color: _colorIconos),
               title: Text(
-                  _olivar!.nombre.isEmpty ? '(sin nombre)' : _olivar!.nombre),
+                  _olivar!.nombre.isEmpty ? SoleraL10n.t('acei.sin_nombre') : _olivar!.nombre),
               subtitle: Text(
                 [
-                  'Olivar',
+                  SoleraL10n.t('acei.olivar'),
                   _olivar!.municipio,
                   _olivar!.provincia,
                 ].where((s) => s.isNotEmpty).join(' · '),
@@ -99,14 +99,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ),
         _entradaQueAbre(
           icono: Icons.account_balance,
-          titulo: 'Configuración fiscal',
-          subtitulo: 'Régimen IRPF + IVA + año fiscal activo',
+          titulo: SoleraL10n.t('configuracion_fiscal'),
+          subtitulo: SoleraL10n.t('acei.ajustes_fiscal_sub'),
           construirPantalla: (_) => const PantallaConfiguracionFiscal(),
         ),
         _entradaQueAbre(
           icono: Icons.people_outline,
-          titulo: 'Terceros (clientes / proveedores)',
-          subtitulo: 'Datos fiscales para asociar a apuntes y al modelo 347',
+          titulo: SoleraL10n.t('acei.terceros_clientes_proveedores'),
+          subtitulo: SoleraL10n.t('acei.ajustes_terceros_sub'),
           construirPantalla: (_) => const PantallaTerceros(),
         ),
       ];
@@ -116,8 +116,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         _entradaQueAbre(
           icono: Icons.auto_awesome,
           titulo: SoleraL10n.t('identificacion_con_ia'),
-          subtitulo: 'Plagas y variedades por foto con Claude · clave '
-              'Anthropic propia, guardada solo en el dispositivo',
+          subtitulo: SoleraL10n.t('acei.ajustes_ia_sub'),
           construirPantalla: (_) => construirPantallaClaveAnthropicAceitera(),
         ),
       ];
@@ -138,7 +137,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         _entradaQueAbre(
           icono: Icons.backup_outlined,
           titulo: SoleraL10n.t('copia_de_seguridad'),
-          subtitulo: 'Guardar todos los datos en un ZIP o restaurar uno',
+          subtitulo: SoleraL10n.t('acei.ajustes_copia_sub'),
           construirPantalla: (_) => const PantallaCopiaSeguridad(),
         ),
       ];
@@ -148,7 +147,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         _entradaQueAbre(
           icono: Icons.system_update,
           titulo: SoleraL10n.t('comprobar_actualizaciones'),
-          subtitulo: 'Versión instalada y última publicada',
+          subtitulo: SoleraL10n.t('acei.ajustes_actualizaciones_sub'),
           construirPantalla: (_) => PantallaEstadoActualizaciones(
             config: configActualizacionesMonorepo('solera-aceitera'),
             nombreApp: 'Larrea Aceitera',
@@ -157,7 +156,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         _entradaQueAbre(
           icono: Icons.info_outline,
           titulo: SoleraL10n.t('acerca_de'),
-          subtitulo: 'Qué es Larrea Aceitera, compromisos y catálogos',
+          subtitulo: SoleraL10n.t('acei.ajustes_acerca_sub'),
           construirPantalla: (_) => const PantallaAcerca(),
         ),
       ];

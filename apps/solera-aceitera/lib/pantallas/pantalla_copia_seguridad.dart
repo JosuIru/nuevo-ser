@@ -20,7 +20,13 @@ class PantallaCopiaSeguridad extends StatefulWidget {
 }
 
 class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
-  final _formatoFecha = DateFormat("d/MM/yyyy 'a las' HH:mm", 'es_ES');
+  final _formatoDia = DateFormat('d/MM/yyyy');
+  final _formatoHora = DateFormat('HH:mm');
+
+  String _fechaYHora(DateTime momento) => SoleraL10n.tf(
+        'acei.fecha_a_las_hora',
+        {'fecha': _formatoDia.format(momento), 'hora': _formatoHora.format(momento)},
+      );
   bool _trabajando = false;
   DateTime? _ultimaCopia;
 
@@ -49,12 +55,12 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(copia.path)],
-        subject: 'Copia de seguridad de Larrea Aceitera',
+        subject: SoleraL10n.t('acei.copia_asunto'),
       );
     } on ErrorCopiaSeguridad catch (error) {
       if (mounted) _avisar(textoErrorCopiaAceitera(error));
     } catch (error) {
-      if (mounted) _avisar('No se ha podido crear la copia: $error');
+      if (mounted) _avisar(SoleraL10n.tf('acei.copia_no_se_pudo_crear', {'error': error}));
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -82,8 +88,7 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
     } catch (error) {
       if (mounted) {
         setState(() => _trabajando = false);
-        _avisar('No se ha podido leer la copia: $error. '
-            'Tus datos no se han tocado.');
+        _avisar(SoleraL10n.tf('acei.copia_no_se_pudo_leer', {'error': error}));
       }
       return;
     }
@@ -92,16 +97,13 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
 
     final fecha = informe.fechaCreacion;
     final deCuando = fecha == null
-        ? 'Es una copia de una versión anterior de la app y no indica la fecha.'
-        : 'La copia es del ${_formatoFecha.format(fecha.toLocal())}.';
+        ? SoleraL10n.t('acei.copia_sin_fecha')
+        : SoleraL10n.tf('acei.copia_es_del', {'fecha': _fechaYHora(fecha.toLocal())});
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
-      titulo: 'Restaurar esta copia',
-      mensaje: '$deCuando\n\n'
-          'Los datos de este dispositivo se sustituirán por los de la copia. '
-          'Antes se guarda automáticamente una copia del estado actual por '
-          'si hay que volver atrás.',
-      textoConfirmar: 'Restaurar',
+      titulo: SoleraL10n.t('acei.restaurar_esta_copia'),
+      mensaje: '$deCuando\n\n${SoleraL10n.t('acei.restaurar_aviso')}',
+      textoConfirmar: SoleraL10n.t('acei.restaurar'),
       esPeligroso: true,
       icono: Icons.restore,
     );
@@ -115,13 +117,14 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
       if (!mounted) return;
       final respaldo = resultado.respaldoPrevio;
       _avisar(respaldo == null
-          ? 'Copia restaurada.'
-          : 'Copia restaurada. El estado anterior quedó guardado en '
-              '${respaldo.path.split(Platform.pathSeparator).last}.');
+          ? SoleraL10n.t('acei.copia_restaurada')
+          : SoleraL10n.tf('acei.copia_restaurada_respaldo', {
+              'fichero': respaldo.path.split(Platform.pathSeparator).last,
+            }));
     } on ErrorCopiaSeguridad catch (error) {
       if (mounted) _avisar(textoErrorCopiaAceitera(error));
     } catch (error) {
-      if (mounted) _avisar('No se ha podido restaurar la copia: $error');
+      if (mounted) _avisar(SoleraL10n.tf('acei.copia_no_se_pudo_restaurar', {'error': error}));
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -154,10 +157,10 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
                       ? Colors.orange
                       : (estaAlDia ? Colors.green : Colors.red),
                 ),
-                title: const Text('Última copia'),
+                title: Text(SoleraL10n.t('acei.ultima_copia')),
                 subtitle: Text(ultima == null
-                    ? 'Nunca. Conviene hacer una antes de la campaña.'
-                    : _formatoFecha.format(ultima)),
+                    ? SoleraL10n.t('acei.ultima_copia_nunca')
+                    : _fechaYHora(ultima)),
               ),
             ),
             if (_trabajando) ...[
@@ -165,36 +168,30 @@ class _PantallaCopiaSeguridadState extends State<PantallaCopiaSeguridad> {
               const LinearProgressIndicator(),
             ],
             const SizedBox(height: 16),
-            const Text('Crear una copia', style: estiloApartado),
+            Text(SoleraL10n.t('acei.crear_una_copia'), style: estiloApartado),
             const SizedBox(height: 4),
-            const Text(
-              'Guarda la base de datos (parcelas, campañas, lotes, libro de '
-              'movimientos, cuentas…) en un ZIP que puedes enviarte por '
-              'correo, guardar en la nube o pasar al ordenador. La clave de '
-              'Anthropic no va en la copia.',
+            Text(
+              SoleraL10n.t('acei.crear_una_copia_texto'),
               style: estiloExplicacion,
             ),
             const SizedBox(height: 12),
             FilledButton.icon(
               icon: const Icon(Icons.archive_outlined),
               onPressed: _trabajando ? null : _crearYCompartir,
-              label: const Text('Crear copia y compartir'),
+              label: Text(SoleraL10n.t('crear_y_compartir_backup')),
             ),
             const Divider(height: 32),
-            const Text('Restaurar una copia', style: estiloApartado),
+            Text(SoleraL10n.t('acei.restaurar_una_copia'), style: estiloApartado),
             const SizedBox(height: 4),
-            const Text(
-              'Sustituye los datos de este dispositivo por los de un ZIP de '
-              'Larrea Aceitera. Primero se comprueba la copia y se te enseña '
-              'de cuándo es; si algo falla al restaurar, se vuelve al estado '
-              'anterior.',
+            Text(
+              SoleraL10n.t('acei.restaurar_una_copia_texto'),
               style: estiloExplicacion,
             ),
             const SizedBox(height: 12),
             OutlinedButton.icon(
               icon: const Icon(Icons.restore),
               onPressed: _trabajando ? null : _restaurar,
-              label: const Text('Elegir un ZIP y restaurar'),
+              label: Text(SoleraL10n.t('acei.elegir_zip_y_restaurar')),
             ),
           ],
         ),

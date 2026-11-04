@@ -114,13 +114,12 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
     }
     if (_campaniaActiva == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Nueva molturación')),
-        body: const Center(
+        appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_molturacion'))),
+        body: Center(
           child: Padding(
             padding: EdgeInsets.all(24),
             child: Text(
-              'No hay ninguna campaña abierta. Crea una en Registros → '
-              'Campañas de recolección.',
+              SoleraL10n.t('acei.sin_campania_abierta_crear'),
               textAlign: TextAlign.center,
             ),
           ),
@@ -128,7 +127,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Nueva molturación')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_molturacion'))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -138,43 +137,43 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
             children: [
               TextFormField(
                 controller: _identificadorLoteCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Identificador del lote',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.identificador_del_lote'),
                   hintText: '2026-001',
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                    (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _kgMolturadosCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Kilos molturados',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.kilos_molturados'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
-                  if (v == null || v.trim().isEmpty) return 'Obligatorio';
+                  if (v == null || v.trim().isEmpty) return SoleraL10n.t('acei.obligatorio');
                   final n = leerNumero(v, nullSiAmbiguo: true);
                   if (n == null) return SoleraL10n.t('numero_no_valido');
-                  if (n <= 0) return 'Debe ser un número mayor que 0';
+                  if (n <= 0) return SoleraL10n.t('mayor_que_cero');
                   return null;
                 },
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _rendimientoCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Rendimiento (%)',
-                  hintText: 'Típico 18-22',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.rendimiento_porcentaje'),
+                  hintText: SoleraL10n.t('acei.rendimiento_tipico'),
                   border: OutlineInputBorder(),
                 ),
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 validator: (v) {
-                  if (v == null || v.trim().isEmpty) return 'Obligatorio';
+                  if (v == null || v.trim().isEmpty) return SoleraL10n.t('acei.obligatorio');
                   final n = leerNumero(v);
                   if (n == null) return SoleraL10n.t('numero_no_valido');
                   if (n < 0 || n > 100) return '0-100';
@@ -184,25 +183,25 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _ubicacionCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Ubicación del depósito',
-                  hintText: 'depósito D-3',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.ubicacion_del_deposito'),
+                  hintText: SoleraL10n.t('acei.ejemplo_deposito'),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _batidoraCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Batidora (referencia)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.batidora_referencia'),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _decanterCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Decánter (referencia)',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.decanter_referencia'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -214,7 +213,7 @@ class _PantallaNuevaMolturacionState extends State<PantallaNuevaMolturacion> {
                         width: 20,
                         height: 20,
                         child: CircularProgressIndicator(strokeWidth: 2))
-                    : const Text('Guardar molturación'),
+                    : Text(SoleraL10n.t('acei.guardar_molturacion')),
               ),
             ],
           ),

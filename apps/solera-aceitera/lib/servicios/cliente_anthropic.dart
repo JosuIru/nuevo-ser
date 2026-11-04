@@ -296,7 +296,7 @@ Map<String, dynamic> _objetoJsonDe(String texto) {
   final objeto = ClienteClaude.extraerObjetoJson(texto);
   if (objeto == null) {
     throw ErrorClaude(MotivoErrorClaude.respuestaRara,
-        'Claude no ha devuelto los datos en el formato esperado. Inténtalo de nuevo.');
+        SoleraL10n.t('acei.ia_formato_inesperado'));
   }
   return objeto;
 }

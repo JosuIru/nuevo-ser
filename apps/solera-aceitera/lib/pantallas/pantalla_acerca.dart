@@ -52,48 +52,26 @@ class PantallaAcerca extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Larrea Aceitera es un gestor para almazaras pequeñas y '
-            'medianas: parcelas de olivar con GPS, recolecciones y '
-            'tratamientos, recepción de partidas, molturación y lotes de '
-            'aceite, libro de movimientos del aceite, cuaderno PAC del '
-            'olivar en PDF, libro económico e identificación de plagas y '
-            'variedades por foto con IA.',
-            style: TextStyle(fontSize: 14, height: 1.5),
+          Text(
+            SoleraL10n.t('acei.acerca_intro'),
+            style: const TextStyle(fontSize: 14, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Compromisos legales'),
-          const _Bullet(
-            'Larrea no recomienda productos fitosanitarios comerciales por '
-            'marca: el catálogo recoge sustancias activas. Consulta siempre '
-            'a tu técnico de OCA o asesor agrónomo antes de aplicar.',
-          ),
-          const _Bullet(
-            'El formato del cuaderno de explotación PAC (RD 1311/2012) y del '
-            'libro de movimientos del aceite (RD 760/2021) cambia '
-            'periódicamente. Los PDF llevan sello PROVISIONAL hasta su '
-            'revisión profesional: verifica el formato vigente antes de '
-            'presentarlos.',
-          ),
-          const _Bullet(
-            'Tu clave de Anthropic (si la configuras para la IA) se guarda solo en '
-            'tu dispositivo. Las fotos se envían directamente a Anthropic, '
-            'sin pasar por servidores intermedios.',
-          ),
+          _Seccion(SoleraL10n.t('acei.compromisos_legales')),
+          _Bullet(SoleraL10n.t('acei.compromiso_fitosanitarios')),
+          _Bullet(SoleraL10n.t('acei.compromiso_formato_pdf')),
+          _Bullet(SoleraL10n.t('acei.compromiso_clave_anthropic')),
           const SizedBox(height: 24),
-          const _Seccion('Catálogos'),
+          _Seccion(SoleraL10n.t('acei.catalogos')),
           const _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Larrea'),
-          const Text(
-            'Larrea Aceitera forma parte de la suite Larrea, de la Colección '
-            'Nuevo Ser. Apps hermanas: Larrea (general — frutales, trufa, '
-            'olivar), Larrea Viticultura, Larrea Apícola, Larrea Arbolado '
-            'Urbano y Larrea Quesera.',
-            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
+          _Seccion(SoleraL10n.t('acei.familia_larrea')),
+          Text(
+            SoleraL10n.t('acei.familia_larrea_texto'),
+            style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Enlaces'),
+          _Seccion(SoleraL10n.t('acei.enlaces')),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.public),
@@ -122,8 +100,8 @@ class _TarjetaCatalogos extends StatelessWidget {
     // «Revisados» aquí es revisión documental contra fuente pública, no
     // firma de un asesor agrónomo colegiado (ver CLAUDE.md, F1-A10).
     final etiqueta = catalogosCompletamenteRevisados
-        ? 'Revisados contra fuente pública'
-        : 'PROVISIONALES — sin revisar todavía';
+        ? SoleraL10n.t('acei.catalogos_revisados')
+        : SoleraL10n.t('acei.catalogos_provisionales_sin_revisar');
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -151,23 +129,20 @@ class _TarjetaCatalogos extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '$totalFilas filas en 5 catálogos: '
-            '${catalogoVariedadesOlivo.length} variedades de olivo, '
-            '${catalogoPlagasOlivo.length} plagas y enfermedades, '
-            '${catalogoFitosanitariosOlivar.length} sustancias activas, '
-            '${catalogoDopAceite.length} denominaciones de origen, '
-            '${calendarioOlivar.length} labores del calendario.',
+            SoleraL10n.tf('acei.catalogos_resumen', {
+              'total': totalFilas,
+              'variedades': catalogoVariedadesOlivo.length,
+              'plagas': catalogoPlagasOlivo.length,
+              'sustancias': catalogoFitosanitariosOlivar.length,
+              'dop': catalogoDopAceite.length,
+              'labores': calendarioOlivar.length,
+            }),
             style: TextStyle(fontSize: 13, height: 1.5, color: color.shade900),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Fuentes: Registro de Variedades del MAPA e IFAPA, estaciones de '
-            'aviso fitosanitario, Registro de Productos Fitosanitarios del '
-            'MAPA (solo sustancias activas), BOE y reglamentos UE de las DOP. '
-            'Falta la firma de un asesor agrónomo olivarero; las propuestas '
-            'de la IA que coinciden con el catálogo no sustituyen a su '
-            'criterio.',
-            style: TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
+          Text(
+            SoleraL10n.t('acei.catalogos_fuentes'),
+            style: const TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
           ),
         ],
       ),

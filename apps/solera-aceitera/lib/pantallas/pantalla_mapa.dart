@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show buscarLugarEnMapa;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, buscarLugarEnMapa;
 
 import '../datos/base_datos.dart';
 import '../modelos/parcela.dart';
@@ -126,7 +126,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!mounted) return;
     if (olivar?.id == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta crear el olivar primero.')),
+        SnackBar(content: Text(SoleraL10n.t('acei.falta_crear_olivar'))),
       );
       return;
     }
@@ -147,25 +147,28 @@ class _PantallaMapaState extends State<PantallaMapa> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const ListTile(
+            ListTile(
               leading: Icon(Icons.add_location),
-              title: Text('Nueva parcela'),
-              subtitle: Text('Elige cómo fijar el punto inicial.'),
+              title: Text(SoleraL10n.t('acei.nueva_parcela')),
+              subtitle: Text(SoleraL10n.t('acei.elige_punto_inicial')),
             ),
             const Divider(height: 1),
             ListTile(
               leading: const Icon(Icons.gps_fixed),
-              title: const Text('Usar GPS actual'),
+              title: Text(SoleraL10n.t('acei.usar_gps_actual')),
               subtitle: Text(
                 _posicionGps == null
-                    ? 'Captura una posición nueva del dispositivo.'
-                    : 'Último GPS: ${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}',
+                    ? SoleraL10n.t('acei.captura_posicion_nueva')
+                    : SoleraL10n.tf('acei.ultimo_gps', {
+                        'lat': _posicionGps!.latitude.toStringAsFixed(6),
+                        'lon': _posicionGps!.longitude.toStringAsFixed(6),
+                      }),
               ),
               onTap: () => Navigator.pop(context, _OrigenAltaMapa.gps),
             ),
             ListTile(
               leading: const Icon(Icons.center_focus_strong),
-              title: const Text('Usar centro del mapa'),
+              title: Text(SoleraL10n.t('acei.usar_centro_mapa')),
               subtitle: Text(
                 '${_centroActual.latitude.toStringAsFixed(6)}, ${_centroActual.longitude.toStringAsFixed(6)}',
               ),
@@ -207,9 +210,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!mounted) return;
     if (latitud == null || longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
-            'GPS no disponible — captura la ubicación desde el formulario.',
+            SoleraL10n.t('acei.gps_no_disponible_formulario'),
           ),
         ),
       );
@@ -230,7 +233,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!permitido) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Falta permiso de ubicación.')),
+          SnackBar(content: Text(SoleraL10n.t('acei.falta_permiso_ubicacion'))),
         );
       }
       return;
@@ -248,7 +251,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo obtener el GPS actual.')),
+          SnackBar(content: Text(SoleraL10n.t('acei.no_se_pudo_obtener_gps'))),
         );
       }
     }
@@ -307,7 +310,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     Navigator.of(context).pop();
     final mensajero = ScaffoldMessenger.of(context);
     mensajero.showSnackBar(
-      const SnackBar(content: Text('Capturando GPS…')),
+      SnackBar(content: Text(SoleraL10n.t('acei.capturando_gps'))),
     );
     try {
       final permiso = await asegurarPermisoUbicacion();
@@ -316,10 +319,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
         mensajero
           ..hideCurrentSnackBar()
           ..showSnackBar(
-            const SnackBar(
+            SnackBar(
               content: Text(
-                'GPS no disponible. Revisa que la ubicación esté '
-                'encendida y los permisos concedidos.',
+                SoleraL10n.t('acei.gps_no_disponible_revisa'),
               ),
             ),
           );
@@ -341,9 +343,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
         ..showSnackBar(
           SnackBar(
             content: Text(
-              'GPS asignado a ${p.nombre}: '
-              '${pos.latitude.toStringAsFixed(5)}, '
-              '${pos.longitude.toStringAsFixed(5)}',
+              SoleraL10n.tf('acei.gps_asignado_a', {
+                'parcela': p.nombre,
+                'lat': pos.latitude.toStringAsFixed(5),
+                'lon': pos.longitude.toStringAsFixed(5),
+              }),
             ),
           ),
         );
@@ -353,7 +357,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       mensajero
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          SnackBar(content: Text('Error al capturar el GPS: $e')),
+          SnackBar(content: Text(SoleraL10n.tf('acei.error_capturar_gps', {'error': e}))),
         );
     }
   }
@@ -361,7 +365,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
   void _mostrarSinCoords() {
     if (_sinCoords.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Todas las parcelas tienen coordenadas.')),
+        SnackBar(content: Text(SoleraL10n.t('acei.todas_parcelas_con_coordenadas'))),
       );
       return;
     }
@@ -374,7 +378,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                'Parcelas sin coordenadas (${_sinCoords.length})',
+                SoleraL10n.tf('acei.parcelas_sin_coordenadas_n', {'n': _sinCoords.length}),
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
@@ -386,7 +390,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       : null,
                   trailing: TextButton.icon(
                     icon: const Icon(Icons.my_location),
-                    label: const Text('Asignar GPS'),
+                    label: Text(SoleraL10n.t('acei.asignar_gps')),
                     onPressed: () => _asignarGpsActual(p),
                   ),
                   onTap: () => Navigator.of(context).push(
@@ -405,22 +409,22 @@ class _PantallaMapaState extends State<PantallaMapa> {
   Widget build(BuildContext context) {
     if (_cargando) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Mapa')),
+        appBar: AppBar(title: Text(SoleraL10n.t('mapa'))),
         body: const Center(child: CircularProgressIndicator()),
       );
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mapa'),
+        title: Text(SoleraL10n.t('mapa')),
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            tooltip: 'Buscar un lugar',
+            tooltip: SoleraL10n.t('acei.buscar_un_lugar'),
             onPressed: _buscarLugar,
           ),
           IconButton(
-            tooltip: 'Parcelas sin coordenadas',
+            tooltip: SoleraL10n.t('acei.parcelas_sin_coordenadas'),
             onPressed: _mostrarSinCoords,
             icon: _sinCoords.isEmpty
                 ? const Icon(Icons.location_off_outlined)
@@ -495,10 +499,10 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   color: Colors.black.withValues(alpha: 0.45),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Text(
-                    'Esri satélite',
+                    SoleraL10n.t('acei.esri_satelite'),
                     style: TextStyle(color: Colors.white, fontSize: 11),
                   ),
                 ),
@@ -539,7 +543,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? 'Capas' : 'Mapa',
+                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('acei.capas') : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -563,8 +567,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 10),
                       child: Text(_altitudGps == null
-                          ? 'Alt. GPS --'
-                          : 'Alt. GPS ${_altitudGps!.toStringAsFixed(0)} m'),
+                          ? SoleraL10n.t('acei.altitud_gps_vacia')
+                          : SoleraL10n.tf('acei.altitud_gps_m', {'m': _altitudGps!.toStringAsFixed(0)})),
                     ),
                   ),
                 ],
@@ -576,7 +580,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _alAnadirAqui,
         icon: const Icon(Icons.add_location),
-        label: const Text('Nueva parcela'),
+        label: Text(SoleraL10n.t('acei.nueva_parcela')),
       ),
     );
   }

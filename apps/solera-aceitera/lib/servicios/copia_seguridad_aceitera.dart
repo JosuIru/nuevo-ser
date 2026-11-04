@@ -58,40 +58,38 @@ String textoErrorCopiaAceitera(ErrorCopiaSeguridad error) {
   final String causa;
   switch (error.motivo) {
     case MotivoErrorCopiaSeguridad.ficheroNoExiste:
-      causa = 'No se encuentra el fichero elegido.';
+      causa = SoleraL10n.t('acei.copia_error_fichero_no_existe');
     case MotivoErrorCopiaSeguridad.noEsZip:
-      causa = 'El fichero no es un ZIP válido o está dañado.';
+      causa = SoleraL10n.t('acei.copia_error_no_es_zip');
     case MotivoErrorCopiaSeguridad.manifiestoNoValido:
-      causa = 'La copia está incompleta o no se entiende.';
+      causa = SoleraL10n.t('acei.copia_error_manifiesto');
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      causa = 'La copia la hizo una versión más nueva de Larrea Aceitera. '
-          'Actualiza la app y vuelve a intentarlo.';
+      causa = SoleraL10n.t('acei.copia_error_version_mas_nueva');
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      causa = 'La copia es de otra aplicación, no de Larrea Aceitera.';
+      causa = SoleraL10n.t('acei.copia_error_otra_app');
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      causa = 'El ZIP no contiene una base de datos de Larrea Aceitera.';
+      causa = SoleraL10n.t('acei.copia_error_sin_base_datos');
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
-      causa = 'La base de datos de la copia está dañada.';
+      causa = SoleraL10n.t('acei.copia_error_base_datos_danada');
     case MotivoErrorCopiaSeguridad.rutaPeligrosa:
-      causa = 'La copia contiene rutas no permitidas y se ha rechazado.';
+      causa = SoleraL10n.t('acei.copia_error_ruta_peligrosa');
     case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
-      causa = 'No se ha podido guardar antes una copia de los datos '
-          'actuales, así que no se ha restaurado nada.';
+      causa = SoleraL10n.t('acei.copia_error_respaldo_previo');
     case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
-      causa = 'Todavía no hay datos que copiar.';
+      causa = SoleraL10n.t('acei.copia_error_sin_datos');
     case MotivoErrorCopiaSeguridad.restauracionRevertida:
-      causa = 'La restauración ha fallado a mitad y se ha vuelto al '
-          'estado anterior.';
+      causa = SoleraL10n.t('acei.copia_error_restauracion_revertida');
     case MotivoErrorCopiaSeguridad.reversionFallida:
       final respaldo = error.respaldoPrevio;
-      causa = 'La restauración ha fallado y no se ha podido volver del '
-          'todo al estado anterior. No borres nada y pide ayuda'
-          '${respaldo != null ? ': tus datos anteriores están en ${respaldo.path}' : ''}.';
+      causa = respaldo != null
+          ? SoleraL10n.tf('acei.copia_error_reversion_fallida_ruta',
+              {'ruta': respaldo.path})
+          : SoleraL10n.t('acei.copia_error_reversion_fallida');
   }
   if (!error.datosIntactos) return causa;
-  return '$causa Tus datos no se han tocado.';
+  return '$causa ${SoleraL10n.t('acei.copia_datos_no_tocados')}';
 }
 
 /// Se incrementa tras restaurar una copia: la pantalla principal se

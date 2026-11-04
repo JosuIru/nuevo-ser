@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+
+import '../utiles/textos_visibles.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
@@ -93,12 +96,12 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        text: 'Extracto económico $_anyo · Larrea Aceitera',
+        text: SoleraL10n.tf('acei.extracto_compartir_texto', {'anyo': _anyo}),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al generar el extracto: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('acei.error_generar_extracto', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -116,7 +119,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al abrir el extracto: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('acei.error_abrir_extracto', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -146,7 +149,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Libro económico'),
+          title: Text(SoleraL10n.t('libro_economico')),
           actions: [
             DropdownButton<int>(
               value: _anyo,
@@ -164,11 +167,11 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
             ),
             const SizedBox(width: 8),
           ],
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.trending_up), text: 'Ingresos'),
-              Tab(icon: Icon(Icons.trending_down), text: 'Gastos'),
-              Tab(icon: Icon(Icons.summarize), text: 'Resumen'),
+              Tab(icon: Icon(Icons.trending_up), text: SoleraL10n.t('acei.ingresos')),
+              Tab(icon: Icon(Icons.trending_down), text: SoleraL10n.t('acei.gastos')),
+              Tab(icon: Icon(Icons.summarize), text: SoleraL10n.t('acei.resumen')),
             ],
           ),
         ),
@@ -198,12 +201,12 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
 
   Widget _construirListaIngresos() {
     if (_ingresos.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
           padding: EdgeInsets.all(24),
           child: Text(
-            'Sin ingresos registrados este año.\n'
-            'Pulsa + para añadir el primero.',
+            '${SoleraL10n.t('acei.sin_ingresos_anyo')}\n'
+            '${SoleraL10n.t('acei.pulsa_mas_primero')}',
             textAlign: TextAlign.center,
           ),
         ),
@@ -223,9 +226,9 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
             ' · ${a.concepto}',
           ),
           subtitle: Text(
-            '${a.tipoIngreso} · '
-            'base ${_formatoEuros.format(a.importeBaseCentimos / 100)}'
-            '${a.compensacionReagpCentimos > 0 ? " · comp. REAGP ${_formatoEuros.format(a.compensacionReagpCentimos / 100)}" : ""}',
+            '${nombreTipoIngreso(a.tipoIngreso)} · '
+            '${SoleraL10n.tf('acei.base_importe', {'importe': _formatoEuros.format(a.importeBaseCentimos / 100)})}'
+            '${a.compensacionReagpCentimos > 0 ? " · ${SoleraL10n.tf('acei.compensacion_reagp_corta', {'importe': _formatoEuros.format(a.compensacionReagpCentimos / 100)})}" : ""}',
           ),
           trailing: Text(
             _formatoEuros.format(a.importeTotalCentimos / 100),
@@ -238,12 +241,12 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
 
   Widget _construirListaGastos() {
     if (_gastos.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
           padding: EdgeInsets.all(24),
           child: Text(
-            'Sin gastos registrados este año.\n'
-            'Pulsa + para añadir el primero.',
+            '${SoleraL10n.t('acei.sin_gastos_anyo')}\n'
+            '${SoleraL10n.t('acei.pulsa_mas_primero')}',
             textAlign: TextAlign.center,
           ),
         ),
@@ -263,9 +266,9 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
             ' · ${a.concepto}',
           ),
           subtitle: Text(
-            '${a.tipoGasto} · '
-            'base ${_formatoEuros.format(a.importeBaseCentimos / 100)}'
-            '${a.esParcelaConcreta ? " · parcela #${a.parcelaId}" : ""}',
+            '${nombreTipoGasto(a.tipoGasto)} · '
+            '${SoleraL10n.tf('acei.base_importe', {'importe': _formatoEuros.format(a.importeBaseCentimos / 100)})}'
+            '${a.esParcelaConcreta ? " · ${SoleraL10n.tf('acei.parcela_numero', {'id': a.parcelaId}).toLowerCase()}" : ""}',
           ),
           trailing: Text(
             _formatoEuros.format(a.importeTotalCentimos / 100),
@@ -295,8 +298,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  'Resumen PROVISIONAL hasta que lo valide un asesor fiscal. '
-                  'Las reglas de IVA y REAGP del olivar están sujetas a confirmación.',
+                  SoleraL10n.t('acei.resumen_provisional'),
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.amber.shade900,
@@ -310,35 +312,35 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
         const SizedBox(height: 16),
         _BloqueResumen(
           icono: Icons.account_balance,
-          etiqueta: 'Régimen',
+          etiqueta: SoleraL10n.t('acei.regimen'),
           valor: '${_etiquetaRegimenIrpf(_configuracion.regimenIrpf)}\n'
               '${_etiquetaRegimenIva(_configuracion.regimenIva)}',
         ),
         const SizedBox(height: 12),
         _BloqueResumen(
           icono: Icons.trending_up,
-          etiqueta: 'Total ingresos (base)',
+          etiqueta: SoleraL10n.t('acei.total_ingresos_base'),
           valor: _formatoEuros.format(_totalBaseIngresos / 100),
         ),
         _BloqueResumen(
           icono: Icons.add_box,
-          etiqueta: 'Total IVA repercutido',
+          etiqueta: SoleraL10n.t('acei.total_iva_repercutido'),
           valor: _formatoEuros.format(_totalIvaRepercutido / 100),
         ),
         if (_totalCompensacionReagp > 0)
           _BloqueResumen(
             icono: Icons.savings,
-            etiqueta: 'Total compensación REAGP',
+            etiqueta: SoleraL10n.t('acei.total_compensacion_reagp'),
             valor: _formatoEuros.format(_totalCompensacionReagp / 100),
           ),
         _BloqueResumen(
           icono: Icons.trending_down,
-          etiqueta: 'Total gastos (base)',
+          etiqueta: SoleraL10n.t('acei.total_gastos_base'),
           valor: _formatoEuros.format(_totalBaseGastos / 100),
         ),
         _BloqueResumen(
           icono: Icons.remove_circle_outline,
-          etiqueta: 'Total IVA soportado',
+          etiqueta: SoleraL10n.t('acei.total_iva_soportado'),
           valor: _formatoEuros.format(_totalIvaSoportado / 100),
         ),
         const SizedBox(height: 12),
@@ -354,7 +356,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
               color: resultadoBruto >= 0 ? Colors.green : Colors.red,
             ),
             title: Text(
-              'Resultado bruto del año',
+              SoleraL10n.t('acei.resultado_bruto_anyo'),
               style: TextStyle(
                 color: resultadoBruto >= 0
                     ? Colors.green.shade900
@@ -362,7 +364,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
               ),
             ),
             subtitle: Text(
-              '(ingresos base − gastos base)',
+              SoleraL10n.t('acei.resultado_bruto_formula'),
               style: TextStyle(
                 color: resultadoBruto >= 0
                     ? Colors.green.shade700
@@ -392,13 +394,13 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
                       strokeWidth: 2, color: Colors.white),
                 )
               : const Icon(Icons.share),
-          label: const Text('Generar extracto PDF y compartir'),
+          label: Text(SoleraL10n.t('acei.generar_extracto_y_compartir')),
         ),
         const SizedBox(height: 12),
         OutlinedButton.icon(
           onPressed: _generando ? null : _imprimirExtracto,
           icon: const Icon(Icons.print),
-          label: const Text('Generar y abrir'),
+          label: Text(SoleraL10n.t('acei.generar_y_abrir')),
         ),
       ],
     );
@@ -435,21 +437,21 @@ class _BloqueResumen extends StatelessWidget {
 String _etiquetaRegimenIrpf(String regimen) {
   switch (regimen) {
     case 'estimacion_directa_simplificada':
-      return 'IRPF: estimación directa simplificada';
+      return SoleraL10n.t('acei.irpf_simplificada');
     case 'estimacion_directa_normal':
-      return 'IRPF: estimación directa normal';
+      return SoleraL10n.t('acei.irpf_normal');
     default:
-      return 'IRPF: sin elegir';
+      return SoleraL10n.t('acei.irpf_sin_elegir');
   }
 }
 
 String _etiquetaRegimenIva(String regimen) {
   switch (regimen) {
     case 'reagp':
-      return 'IVA: REAGP (compensación del 12 % en aceituna)';
+      return SoleraL10n.t('acei.iva_reagp');
     case 'general':
-      return 'IVA: régimen general';
+      return SoleraL10n.t('acei.iva_general');
     default:
-      return 'IVA: sin elegir';
+      return SoleraL10n.t('acei.iva_sin_elegir');
   }
 }

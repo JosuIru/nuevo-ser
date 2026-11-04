@@ -37,12 +37,13 @@ void main() {
     test('solo dice que los datos están intactos cuando lo están', () {
       final rechazada = textoErrorCopiaAceitera(const ErrorCopiaSeguridad(
           MotivoErrorCopiaSeguridad.deOtraApp, 'otra app'));
-      expect(rechazada, contains('no se han tocado'));
+      expect(rechazada, contains(SoleraL10n.t('acei.copia_datos_no_tocados')));
 
       final sinVolver = textoErrorCopiaAceitera(const ErrorCopiaSeguridad(
           MotivoErrorCopiaSeguridad.reversionFallida, 'a medias'));
-      expect(sinVolver, isNot(contains('no se han tocado')));
-      expect(sinVolver, contains('pide ayuda'));
+      expect(sinVolver,
+          isNot(contains(SoleraL10n.t('acei.copia_datos_no_tocados'))));
+      expect(sinVolver, SoleraL10n.t('acei.copia_error_reversion_fallida'));
     });
   });
 

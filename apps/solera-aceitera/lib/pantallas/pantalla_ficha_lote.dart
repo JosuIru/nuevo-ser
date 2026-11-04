@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:intl/intl.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/analitica.dart';
 import '../modelos/lote_aceite.dart';
 import '../modelos/movimiento.dart';
+import '../utiles/textos_visibles.dart';
 
 /// Ficha de un lote de aceite: datos analíticos + libro de movimientos
 /// del lote + analíticas históricas si hay más de una.
@@ -43,7 +45,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
   Widget build(BuildContext context) {
     final l = widget.lote;
     return Scaffold(
-      appBar: AppBar(title: Text('Lote ${l.identificadorLote}')),
+      appBar: AppBar(title: Text(SoleraL10n.tf('acei.lote_id', {'lote': l.identificadorLote}))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -53,45 +55,45 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Kilos netos: ${l.kgNetos.toStringAsFixed(1)}'),
-                  Text('Categoría: ${l.categoria}'),
+                  Text(SoleraL10n.tf('acei.kilos_netos_valor', {'kg': l.kgNetos.toStringAsFixed(1)})),
+                  Text(SoleraL10n.tf('acei.categoria_valor', {'categoria': nombreCategoriaAceite(l.categoria)})),
                   if (l.dopId.isNotEmpty) Text('DOP: ${l.dopId}'),
                   if (l.ubicacionFisica.isNotEmpty)
-                    Text('Ubicación: ${l.ubicacionFisica}'),
+                    Text(SoleraL10n.tf('acei.ubicacion_valor', {'ubicacion': l.ubicacionFisica})),
                   const Divider(),
                   if (l.acidez != null)
-                    Text('Acidez: ${l.acidez!.toStringAsFixed(2)} %'),
+                    Text(SoleraL10n.tf('acei.acidez_valor', {'acidez': l.acidez!.toStringAsFixed(2)})),
                   if (l.peroxidos != null)
-                    Text('Peróxidos: ${l.peroxidos!.toStringAsFixed(1)}'),
+                    Text(SoleraL10n.tf('acei.peroxidos_valor', {'peroxidos': l.peroxidos!.toStringAsFixed(1)})),
                   if (l.k232 != null)
                     Text('K232: ${l.k232!.toStringAsFixed(2)}'),
                   if (l.k270 != null)
                     Text('K270: ${l.k270!.toStringAsFixed(2)}'),
                   if (l.polifenolesMgKg != null)
-                    Text('Polifenoles: ${l.polifenolesMgKg!.toStringAsFixed(0)} mg/kg'),
+                    Text(SoleraL10n.tf('acei.polifenoles_valor', {'polifenoles': l.polifenolesMgKg!.toStringAsFixed(0)})),
                   if (l.panelTestPuntuacion != null)
-                    Text('Panel de cata: ${l.panelTestPuntuacion!.toStringAsFixed(1)} / 9'),
+                    Text(SoleraL10n.tf('acei.panel_cata_valor', {'puntuacion': l.panelTestPuntuacion!.toStringAsFixed(1)})),
                   if (l.panelTestNotas.isNotEmpty)
-                    Text('Notas del panel de cata: ${l.panelTestNotas}',
+                    Text(SoleraL10n.tf('acei.notas_panel_cata_valor', {'notas': l.panelTestNotas}),
                         style: const TextStyle(fontStyle: FontStyle.italic)),
                 ],
               ),
             ),
           ),
           const SizedBox(height: 16),
-          const Text('Movimientos del lote',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          Text(SoleraL10n.t('acei.movimientos_del_lote'),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
           if (_movimientos.isEmpty)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              child: Text('Sin movimientos registrados.'),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(SoleraL10n.t('acei.sin_movimientos_registrados')),
             )
           else
             ..._movimientos.map((m) => Card(
                   child: ListTile(
                     leading: const Icon(Icons.swap_horiz,
                         color: Color(0xFF5C6B3A)),
-                    title: Text(m.tipo),
+                    title: Text(nombreTipoMovimiento(m.tipo)),
                     subtitle: Text(
                       '${m.kgMovidos.toStringAsFixed(1)} kg'
                       '${m.ubicacionDestino.isEmpty ? "" : " · ${m.ubicacionDestino}"}',
@@ -103,23 +105,25 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
                   ),
                 )),
           const SizedBox(height: 16),
-          const Text('Analíticas',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          Text(SoleraL10n.t('acei.analiticas'),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
           if (_analiticas.isEmpty)
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              child: Text('Sin analíticas registradas.'),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Text(SoleraL10n.t('acei.sin_analiticas_registradas')),
             )
           else
             ..._analiticas.map((a) => Card(
                   child: ListTile(
                     leading: const Icon(Icons.science, color: Color(0xFF5C6B3A)),
                     title: Text(a.laboratorio.isEmpty
-                        ? '(laboratorio sin indicar)'
+                        ? SoleraL10n.t('acei.laboratorio_sin_indicar')
                         : a.laboratorio),
                     subtitle: Text(
-                      'Acidez ${a.acidez?.toStringAsFixed(2) ?? "—"} %'
-                      ' · Panel de cata ${a.panelTestPuntuacion?.toStringAsFixed(1) ?? "—"}',
+                      SoleraL10n.tf('acei.acidez_y_panel', {
+                        'acidez': a.acidez?.toStringAsFixed(2) ?? '—',
+                        'panel': a.panelTestPuntuacion?.toStringAsFixed(1) ?? '—',
+                      }),
                     ),
                     trailing: Text(_formatoFecha.format(
                         DateTime.fromMillisecondsSinceEpoch(a.fechaMs))),

@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+
+import '../../utiles/textos_visibles.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
@@ -78,7 +80,7 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error inesperado: $e')));
+          .showSnackBar(SnackBar(content: Text(SoleraL10n.tf('acei.error_inesperado', {'error': e}))));
     } finally {
       if (mounted) setState(() => _analizando = false);
     }
@@ -90,23 +92,23 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
     final resultado = await showDialog<String>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Observaciones para la IA'),
+        title: Text(SoleraL10n.t('acei.observaciones_para_ia')),
         content: TextField(
           controller: ctrl,
           maxLines: 3,
-          decoration: const InputDecoration(
-            hintText: 'Síntomas, parcela, fecha aproximada… (opcional)',
+          decoration: InputDecoration(
+            hintText: SoleraL10n.t('acei.observaciones_para_ia_ayuda'),
             border: OutlineInputBorder(),
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(null),
-            child: const Text('Cancelar'),
+            child: Text(SoleraL10n.t('cancelar')),
           ),
           FilledButton(
             onPressed: () => Navigator.of(ctx).pop(ctrl.text.trim()),
-            child: const Text('Diagnosticar'),
+            child: Text(SoleraL10n.t('acei.diagnosticar')),
           ),
         ],
       ),
@@ -118,7 +120,7 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
     await showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Diagnóstico de Claude'),
+        title: Text(SoleraL10n.t('acei.diagnostico_de_claude')),
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +131,7 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
                   icono: Icons.warning,
                   color: Colors.red,
                   texto:
-                      'Plaga de declaración obligatoria: avisa al servicio fitosanitario de tu comunidad autónoma.',
+                      SoleraL10n.t('acei.plaga_declaracion_obligatoria'),
                 ),
               if (r.esDeclaracionObligatoria) const SizedBox(height: 8),
               Text(r.nombreComun,
@@ -142,33 +144,32 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  Chip(label: Text('Tipo: ${r.tipo}')),
+                  Chip(label: Text(SoleraL10n.tf('acei.tipo_valor', {'tipo': nombreTipoProblemaIa(r.tipo)}))),
                   const SizedBox(width: 8),
                   if (r.severidad != null)
-                    Chip(label: Text('Severidad: ${r.severidad}/5')),
+                    Chip(label: Text(SoleraL10n.tf('acei.severidad_valor', {'severidad': r.severidad}))),
                 ],
               ),
               const SizedBox(height: 4),
-              Text('Confianza: ${(r.confianza * 100).toStringAsFixed(0)} %'),
+              Text(SoleraL10n.tf('acei.confianza_valor', {'confianza': (r.confianza * 100).toStringAsFixed(0)})),
               const SizedBox(height: 4),
               if (r.validadoPorCatalogo)
                 _ChipBanner(
                   icono: Icons.verified,
                   color: Colors.green,
                   texto:
-                      'Coincide con el catálogo (id: ${r.idCatalogo}). '
-                      'Catálogo todavía provisional.',
+                      SoleraL10n.tf('acei.coincide_con_catalogo', {'id': r.idCatalogo}),
                 )
               else
                 _ChipBanner(
                   icono: Icons.help_outline,
                   color: Colors.amber,
                   texto:
-                      'Diagnóstico libre — no coincide con el catálogo. Contrasta con un técnico.',
+                      SoleraL10n.t('acei.diagnostico_libre'),
                 ),
               const SizedBox(height: 12),
               if (r.manejoCultural.isNotEmpty) ...[
-                const Text('Manejo cultural sugerido',
+                Text(SoleraL10n.t('acei.manejo_cultural_sugerido'),
                     style: TextStyle(fontWeight: FontWeight.w600)),
                 const SizedBox(height: 4),
                 Text(r.manejoCultural),
@@ -186,14 +187,14 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text('Cerrar'),
+            child: Text(SoleraL10n.t('acei.cerrar')),
           ),
           FilledButton(
             onPressed: () {
               widget.alAceptar(r);
               Navigator.of(ctx).pop();
             },
-            child: const Text('Aceptar y rellenar'),
+            child: Text(SoleraL10n.t('acei.aceptar_y_rellenar')),
           ),
         ],
       ),
@@ -211,7 +212,7 @@ class _BotonDiagnosticarPlagaIaState extends State<BotonDiagnosticarPlagaIa> {
               child: CircularProgressIndicator(strokeWidth: 2),
             )
           : const Icon(Icons.auto_awesome),
-      label: const Text('Identificar plaga con IA'),
+      label: Text(SoleraL10n.t('acei.identificar_plaga_con_ia')),
     );
   }
 }

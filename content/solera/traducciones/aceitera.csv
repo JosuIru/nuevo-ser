@@ -1,0 +1,442 @@
+clave,es,eu,ca,gl
+acei.abierta,Abierta,Irekita,Oberta,Aberta
+acei.abierta_minuscula,abierta,irekita,oberta,aberta
+acei.aceite_y_almazara,Aceite y almazara,Olioa eta olio-errota,Oli i molí d'oli,Aceite e almazara
+acei.aceituna_envero,Envero,Koloreztatzen,Verolada,Envero
+acei.aceituna_negra,Negra,Beltza,Negra,Negra
+acei.aceituna_verde,Verde,Berdea,Verda,Verde
+acei.aceptar_y_rellenar,Aceptar y rellenar,Onartu eta bete,Accepta i omple,Aceptar e encher
+acei.acerca_intro,"Larrea Aceitera es un gestor para almazaras pequeñas y medianas: parcelas de olivar con GPS, recolecciones y tratamientos, recepción de partidas, molturación y lotes de aceite, libro de movimientos del aceite, cuaderno PAC del olivar en PDF, libro económico e identificación de plagas y variedades por foto con IA.","Larrea Aceitera olio-errota txiki eta ertainentzako kudeatzailea da: olibondo-sailetako lursailak GPSarekin, bilketak eta tratamenduak, partiden harrera, ehoketa eta olio-loteak, olio-mugimenduen liburua, olibondoaren PAC koadernoa PDFan, liburu ekonomikoa eta izurrien eta barietateen identifikazioa argazki bidez AArekin.","Larrea Aceitera és un gestor per a molins d'oli petits i mitjans: parcel·les d'oliverar amb GPS, collites i tractaments, recepció de partides, molturació i lots d'oli, llibre de moviments de l'oli, quadern PAC de l'oliverar en PDF, llibre econòmic i identificació de plagues i varietats per foto amb IA.","Larrea Aceitera é un xestor para almazaras pequenas e medianas: parcelas de olival con GPS, colleitas e tratamentos, recepción de partidas, moenda e lotes de aceite, libro de movementos do aceite, caderno PAC do olival en PDF, libro económico e identificación de pragas e variedades por foto con IA."
+acei.acidez_valor,Acidez: {acidez} %,Azidotasuna: % {acidez},Acidesa: {acidez} %,Acidez: {acidez} %
+acei.acidez_y_panel,Acidez {acidez} % · Panel de cata {panel},Azidotasuna % {acidez} · Dastatze-panela {panel},Acidesa {acidez} % · Panell de tast {panel},Acidez {acidez} % · Panel de cata {panel}
+acei.ahora_no,Ahora no,Orain ez,Ara no,Agora non
+acei.ajustes_acerca_sub,"Qué es Larrea Aceitera, compromisos y catálogos","Zer den Larrea Aceitera, konpromisoak eta katalogoak","Què és Larrea Aceitera, compromisos i catàlegs","Que é Larrea Aceitera, compromisos e catálogos"
+acei.ajustes_actualizaciones_sub,Versión instalada y última publicada,Instalatutako bertsioa eta argitaratutako azkena,Versió instal·lada i darrera publicada,Versión instalada e última publicada
+acei.ajustes_copia_sub,Guardar todos los datos en un ZIP o restaurar uno,Datu guztiak ZIP batean gorde edo bat leheneratu,Desar totes les dades en un ZIP o restaurar-ne un,Gardar todos os datos nun ZIP ou restaurar un
+acei.ajustes_fiscal_sub,Régimen IRPF + IVA + año fiscal activo,IRPF + IVA araubidea + ekitaldi fiskal aktiboa,Règim IRPF + IVA + any fiscal actiu,Réxime IRPF + IVA + ano fiscal activo
+acei.ajustes_ia_sub,"Plagas y variedades por foto con Claude · clave Anthropic propia, guardada solo en el dispositivo","Izurriak eta barietateak argazki bidez Claude-rekin · Anthropic gako propioa, gailuan bakarrik gordea","Plagues i varietats per foto amb Claude · clau d'Anthropic pròpia, desada només al dispositiu","Pragas e variedades por foto con Claude · clave de Anthropic propia, gardada só no dispositivo"
+acei.ajustes_terceros_sub,Datos fiscales para asociar a apuntes y al modelo 347,Idazpenei eta 347 ereduari lotzeko datu fiskalak,Dades fiscals per associar als apunts i al model 347,Datos fiscais para asociar aos apuntamentos e ao modelo 347
+acei.altitud_gps_m,Alt. GPS {m} m,GPS alt. {m} m,Alt. GPS {m} m,Alt. GPS {m} m
+acei.altitud_gps_vacia,Alt. GPS --,GPS alt. --,Alt. GPS --,Alt. GPS --
+acei.analiticas,Analíticas,Analisiak,Analítiques,Analíticas
+acei.anyo_fiscal_activo,Año fiscal activo,Ekitaldi fiskal aktiboa,Any fiscal actiu,Ano fiscal activo
+acei.anyo_fiscal_activo_ayuda,Año por defecto que se abre en el libro económico.,Liburu ekonomikoan lehenetsita irekitzen den urtea.,Any que s'obre per defecte al llibre econòmic.,Ano que se abre por defecto no libro económico.
+acei.aplicador_nombre,Aplicador (nombre),Aplikatzailea (izena),Aplicador (nom),Aplicador (nome)
+acei.asignar_gps,Asignar GPS,GPSa esleitu,Assignar GPS,Asignar GPS
+acei.aviso_corto_estres_hidrico,Demanda hídrica alta · activa riego,Ur-eskari handia · aktibatu ureztatzea,Demanda hídrica alta · activa el reg,Demanda hídrica alta · activa a rega
+acei.aviso_corto_floracion,Floración en condiciones de mal cuajado,Loraldia gatzatze txarreko baldintzetan,Floració en condicions de mal quallat,Floración en condicións de mal callado
+acei.aviso_corto_golpe_calor,Golpe de calor en aceituna (>38 °C),Bero-kolpea olibetan (>38 °C),Cop de calor a l'oliva (>38 °C),Golpe de calor na oliva (>38 °C)
+acei.aviso_corto_helada,Riesgo de helada · revisa olivos jóvenes,Izozte-arriskua · begiratu olibondo gazteak,Risc de gelada · revisa les oliveres joves,Risco de xeada · revisa as oliveiras novas
+acei.aviso_corto_mosca,Vuelo activo de mosca del olivo,Olibondoaren eulia hegaldi aktiboan,Vol actiu de mosca de l'olivera,Voo activo da mosca da oliveira
+acei.aviso_corto_tratamientos,Tratamientos delicados (viento o lluvia),Tratamendu delikatuak (haizea edo euria),Tractaments delicats (vent o pluja),Tratamentos delicados (vento ou chuvia)
+acei.aviso_fiscal_provisional,PROVISIONAL hasta que lo valide un asesor fiscal agroalimentario. Las reglas de IVA por defecto se basan en la interpretación habitual del olivar; en cada apunte puedes sobrescribir el IVA repercutido manualmente.,BEHIN-BEHINEKOA nekazaritza eta elikagaietako aholkulari fiskal batek balioztatu arte. Lehenetsitako IVA arauak olibondo-sektorearen ohiko interpretazioan oinarritzen dira; idazpen bakoitzean IVA jasanarazia eskuz alda dezakezu.,PROVISIONAL fins que ho validi un assessor fiscal agroalimentari. Les regles d'IVA per defecte es basen en la interpretació habitual de l'oliverar; a cada apunt pots sobreescriure l'IVA repercutit manualment.,PROVISIONAL ata que o valide un asesor fiscal agroalimentario. As regras de IVA por defecto baséanse na interpretación habitual do olival; en cada apuntamento podes sobrescribir o IVA repercutido manualmente.
+acei.base_importe,base {importe},oinarria {importe},base {importe},base {importe}
+acei.batidora_referencia,Batidora (referencia),Irabiagailua (erreferentzia),Batedora (referència),Batedora (referencia)
+acei.bienvenida,Bienvenido a Larrea Aceitera,Ongi etorri Larrea Aceiterara,Benvingut a Larrea Aceitera,Benvido a Larrea Aceitera
+acei.buscar_parcelas,"Buscar por nombre, SIGPAC o variedad","Bilatu izenaren, SIGPACen edo barietatearen arabera","Cerca per nom, SIGPAC o varietat","Buscar por nome, SIGPAC ou variedade"
+acei.buscar_un_lugar,Buscar un lugar,Leku bat bilatu,Cerca un lloc,Buscar un lugar
+acei.cambiar,Cambiar,Aldatu,Canvia,Cambiar
+acei.campania,Campaña,Kanpaina,Campanya,Campaña
+acei.campania_anyos,Campaña {inicio}/{fin},{inicio}/{fin} kanpaina,Campanya {inicio}/{fin},Campaña {inicio}/{fin}
+acei.campania_inicio_rendimiento,Inicio: {fecha} · Rendimiento medio: {rendimiento} %,Hasiera: {fecha} · Batez besteko etekina: % {rendimiento},Inici: {fecha} · Rendiment mitjà: {rendimiento} %,Inicio: {fecha} · Rendemento medio: {rendimiento} %
+acei.campanias_de_recoleccion,Campañas de recolección,Oliba-bilketako kanpainak,Campanyes de collita,Campañas de colleita
+acei.cantidad,Cantidad,Kopurua,Quantitat,Cantidade
+acei.capas,Capas,Geruzak,Capes,Capas
+acei.captura_posicion_nueva,Captura una posición nueva del dispositivo.,Gailuaren posizio berri bat hartzen du.,Captura una posició nova del dispositiu.,Captura unha posición nova do dispositivo.
+acei.capturando_gps,Capturando GPS…,GPSa hartzen…,Capturant el GPS…,Capturando o GPS…
+acei.capturar_gps,Capturar GPS,GPSa hartu,Capturar GPS,Capturar GPS
+acei.cargando_prevision_meteo,Cargando previsión meteo…,Eguraldi-iragarpena kargatzen…,Carregant la previsió meteorològica…,Cargando a previsión meteorolóxica…
+acei.catador,Catador,Dastatzailea,Tastador,Catador
+acei.catalogos,Catálogos,Katalogoak,Catàlegs,Catálogos
+acei.catalogos_fuentes,"Fuentes: Registro de Variedades del MAPA e IFAPA, estaciones de aviso fitosanitario, Registro de Productos Fitosanitarios del MAPA (solo sustancias activas), BOE y reglamentos UE de las DOP. Falta la firma de un asesor agrónomo olivarero; las propuestas de la IA que coinciden con el catálogo no sustituyen a su criterio.","Iturriak: MAPAren eta IFAPAren Barietate Erregistroa, abisu fitosanitarioko estazioak, MAPAren Produktu Fitosanitarioen Erregistroa (substantzia aktiboak bakarrik), BOE eta DOPen EBko araudiak. Olibondoetan aditua den aholkulari agronomo baten sinadura falta da; katalogoarekin bat datozen AAren proposamenek ez dute haren irizpidea ordezten.","Fonts: Registre de Varietats del MAPA i IFAPA, estacions d'avisos fitosanitaris, Registre de Productes Fitosanitaris del MAPA (només substàncies actives), BOE i reglaments UE de les DOP. Falta la signatura d'un assessor agrònom especialista en olivera; les propostes de la IA que coincideixen amb el catàleg no substitueixen el seu criteri.","Fontes: Rexistro de Variedades do MAPA e IFAPA, estacións de aviso fitosanitario, Rexistro de Produtos Fitosanitarios do MAPA (só substancias activas), BOE e regulamentos UE das DOP. Falta a sinatura dun asesor agrónomo olivareiro; as propostas da IA que coinciden co catálogo non substitúen o seu criterio."
+acei.catalogos_provisionales,Catálogos provisionales,Behin-behineko katalogoak,Catàlegs provisionals,Catálogos provisionais
+acei.catalogos_provisionales_sin_revisar,PROVISIONALES — sin revisar todavía,BEHIN-BEHINEKOAK — oraindik berrikusi gabe,PROVISIONALS — encara sense revisar,PROVISIONAIS — aínda sen revisar
+acei.catalogos_provisionales_texto,"Las variedades de olivo, plagas, fitosanitarios y DOP que ves todavía no han sido validadas por un asesor agrónomo olivarero. Úsalas con criterio profesional hasta que entren los datos definitivos.","Ikusten dituzun olibondo-barietateak, izurriak, fitosanitarioak eta DOPak ez ditu oraindik olibondoetan aditua den aholkulari agronomo batek balioztatu. Erabili irizpide profesionalez behin betiko datuak iritsi arte.","Les varietats d'olivera, plagues, fitosanitaris i DOP que veus encara no les ha validades cap assessor agrònom especialista en olivera. Fes-les servir amb criteri professional fins que arribin les dades definitives.","As variedades de oliveira, pragas, fitosanitarios e DOP que ves aínda non foron validadas por un asesor agrónomo olivareiro. Úsaas con criterio profesional ata que entren os datos definitivos."
+acei.catalogos_resumen,"{total} filas en 5 catálogos: {variedades} variedades de olivo, {plagas} plagas y enfermedades, {sustancias} sustancias activas, {dop} denominaciones de origen, {labores} labores del calendario.","{total} errenkada 5 katalogotan: {variedades} olibondo-barietate, {plagas} izurri eta gaixotasun, {sustancias} substantzia aktibo, {dop} jatorri-deitura, {labores} egutegiko lan.","{total} files en 5 catàlegs: {variedades} varietats d'olivera, {plagas} plagues i malalties, {sustancias} substàncies actives, {dop} denominacions d'origen, {labores} feines del calendari.","{total} filas en 5 catálogos: {variedades} variedades de oliveira, {plagas} pragas e enfermidades, {sustancias} substancias activas, {dop} denominacións de orixe, {labores} labores do calendario."
+acei.catalogos_revisados,Revisados contra fuente pública,Iturri publikoarekin berrikusiak,Revisats amb font pública,Revisados contra fonte pública
+acei.categoria_lampante,Lampante,Lanpantea,Llampant,Lampante
+acei.categoria_por_clasificar,Por clasificar,Sailkatu gabe,Per classificar,Por clasificar
+acei.categoria_valor,Categoría: {categoria},Kategoria: {categoria},Categoria: {categoria},Categoría: {categoria}
+acei.categoria_virgen,Virgen,Birjina,Verge,Virxe
+acei.categoria_virgen_extra,Virgen extra,Birjina estra,Verge extra,Virxe extra
+acei.centro_de_parcelas,centro de parcelas,lursailen erdigunea,centre de les parcel·les,centro das parcelas
+acei.centro_olivar_peninsular,centro del olivar peninsular,penintsulako olibondo-eremuaren erdigunea,centre de l'oliverar peninsular,centro do olival peninsular
+acei.cerrar,Cerrar,Itxi,Tanca,Pechar
+acei.cliente_opcional,Cliente (opcional),Bezeroa (aukerakoa),Client (opcional),Cliente (opcional)
+acei.codigo_sigpac,Código SIGPAC,SIGPAC kodea,Codi SIGPAC,Código SIGPAC
+acei.coincide_con_catalogo,Coincide con el catálogo (id: {id}). Catálogo todavía provisional.,Katalogoarekin bat dator (id: {id}). Katalogoa oraindik behin-behinekoa da.,Coincideix amb el catàleg (id: {id}). Catàleg encara provisional.,Coincide co catálogo (id: {id}). Catálogo aínda provisional.
+acei.compensacion_reagp_corta,comp. REAGP {importe},REAGP konp. {importe},comp. REAGP {importe},comp. REAGP {importe}
+acei.compensacion_reagp_euros,Compensación REAGP (€),REAGP konpentsazioa (€),Compensació REAGP (€),Compensación REAGP (€)
+acei.compromiso_clave_anthropic,"Tu clave de Anthropic (si la configuras para la IA) se guarda solo en tu dispositivo. Las fotos se envían directamente a Anthropic, sin pasar por servidores intermedios.","Zure Anthropic gakoa (AArako konfiguratzen baduzu) zure gailuan bakarrik gordetzen da. Argazkiak zuzenean bidaltzen dira Anthropic-era, tarteko zerbitzaririk gabe.","La teva clau d'Anthropic (si la configures per a la IA) només es desa al teu dispositiu. Les fotos s'envien directament a Anthropic, sense passar per servidors intermediaris.","A túa clave de Anthropic (se a configuras para a IA) gárdase só no teu dispositivo. As fotos envíanse directamente a Anthropic, sen pasar por servidores intermedios."
+acei.compromiso_fitosanitarios,Larrea no recomienda productos fitosanitarios comerciales por marca: el catálogo recoge sustancias activas. Consulta siempre a tu técnico de OCA o asesor agrónomo antes de aplicar.,"Larreak ez du produktu fitosanitario komertzialik gomendatzen markaren arabera: katalogoak substantzia aktiboak jasotzen ditu. Aplikatu aurretik, galdetu beti zure OCAko teknikariari edo aholkulari agronomoari.",Larrea no recomana productes fitosanitaris comercials per marca: el catàleg recull substàncies actives. Consulta sempre el teu tècnic de l'OCA o assessor agrònom abans d'aplicar.,Larrea non recomenda produtos fitosanitarios comerciais por marca: o catálogo recolle substancias activas. Consulta sempre o teu técnico da OCA ou asesor agrónomo antes de aplicar.
+acei.compromiso_formato_pdf,El formato del cuaderno de explotación PAC (RD 1311/2012) y del libro de movimientos del aceite (RD 760/2021) cambia periódicamente. Los PDF llevan sello PROVISIONAL hasta su revisión profesional: verifica el formato vigente antes de presentarlos.,PAC ustiategi-koadernoaren (1311/2012 ED) eta olio-mugimenduen liburuaren (760/2021 ED) formatua aldian-aldian aldatzen da. PDFek BEHIN-BEHINEKO zigilua daramate profesional batek berrikusi arte: egiaztatu indarrean dagoen formatua aurkeztu aurretik.,El format del quadern d'explotació PAC (RD 1311/2012) i del llibre de moviments de l'oli (RD 760/2021) canvia periòdicament. Els PDF porten el segell PROVISIONAL fins a la revisió professional: verifica el format vigent abans de presentar-los.,O formato do caderno de explotación PAC (RD 1311/2012) e do libro de movementos do aceite (RD 760/2021) cambia periodicamente. Os PDF levan selo PROVISIONAL ata a súa revisión profesional: verifica o formato vixente antes de presentalos.
+acei.compromisos_legales,Compromisos legales,Lege-konpromisoak,Compromisos legals,Compromisos legais
+acei.concepto,Concepto,Kontzeptua,Concepte,Concepto
+acei.confianza_valor,Confianza: {confianza} %,Konfiantza: % {confianza},Confiança: {confianza} %,Confianza: {confianza} %
+acei.configura_titular_primero,Configura primero la razón social y el NIF del titular en Ajustes.,Konfiguratu lehenik titularraren izen soziala eta NIF Ezarpenetan.,Configura primer la raó social i el NIF del titular a Configuració.,Configura primeiro a razón social e o NIF do titular en Axustes.
+acei.configuracion_fiscal_guardada,Configuración fiscal guardada.,Konfigurazio fiskala gorde da.,Configuració fiscal desada.,Configuración fiscal gardada.
+acei.consejo_estres_hidrico_texto,"ET0 elevada o déficit de presión de vapor alto. Si tienes goteo, programa riego de apoyo; en secano evita labores que aumenten estrés.","ET0 altua edo lurrun-presioaren defizit handia. Tantakako ureztatzea baduzu, programatu laguntza-ureztatzea; lehorrean, saihestu estresa areagotzen duten lanak.","ET0 elevada o dèficit de pressió de vapor alt. Si tens degoteig, programa un reg de suport; en secà evita feines que augmentin l'estrès.","ET0 elevada ou déficit de presión de vapor alto. Se tes pinga a pinga, programa unha rega de apoio; en secaño evita labores que aumenten o estrés."
+acei.consejo_estres_hidrico_titulo,Demanda hídrica alta,Ur-eskari handia,Demanda hídrica alta,Demanda hídrica alta
+acei.consejo_floracion_texto,Humedad alta o lluvia durante la floración perjudica el cuajado. Controla repilo y prepara seguimiento del cuajado en próximas semanas.,Loraldian hezetasun handiak edo euriak gatzatzea kaltetzen du. Kontrolatu repiloa eta prestatu gatzatzearen jarraipena hurrengo asteetan.,La humitat alta o la pluja durant la floració perjudica el quallat. Controla l'ull de gall i prepara el seguiment del quallat les properes setmanes.,A humidade alta ou a chuvia durante a floración prexudica o callado. Controla o repilo e prepara o seguimento do callado nas próximas semanas.
+acei.consejo_floracion_titulo,Floración en riesgo,Loraldia arriskuan,Floració en risc,Floración en risco
+acei.consejo_golpe_calor_texto,"Temperatura ≥38 °C en envero provoca arrugado, mancha jabonosa y caída de fruto. Si tienes goteo, programa pulso largo nocturno.","≥38 °C-ko tenperaturak koloreztatzean zimurdura, orban xaboitsua eta fruitu-erorketa eragiten ditu. Tantakako ureztatzea baduzu, programatu gaueko pultsu luzea.","Temperatures ≥38 °C durant el verolat provoquen arrugament, taca sabonosa i caiguda de fruit. Si tens degoteig, programa un pols llarg nocturn.","Temperaturas ≥38 °C no envero provocan engurrado, mancha xabonosa e caída de froito. Se tes pinga a pinga, programa un pulso longo nocturno."
+acei.consejo_golpe_calor_titulo,Golpe de calor en aceituna,Bero-kolpea olibetan,Cop de calor a l'oliva,Golpe de calor na oliva
+acei.consejo_mosca_texto,"Temperatura y humedad favorecen la actividad de Bactrocera oleae. Revisa trampeo masivo, mosqueros y picado en aceituna en envero o ya enverada.","Tenperaturak eta hezetasunak Bactrocera oleae-ren jarduera errazten dute. Berrikusi tranpa masiboak, euli-tranpak eta oliben ziztadak koloreztatzen ari diren edo koloreztatuta dauden olibetan.","La temperatura i la humitat afavoreixen l'activitat de Bactrocera oleae. Revisa el trampeig massiu, els mosquers i les picades a l'oliva en verolat o ja verolada.","A temperatura e a humidade favorecen a actividade de Bactrocera oleae. Revisa o trampeo masivo, os mosqueiros e o picado na oliva en envero ou xa enverada."
+acei.consejo_mosca_titulo,Vuelo activo de mosca del olivo,Olibondoaren eulia hegaldi aktiboan,Vol actiu de mosca de l'olivera,Voo activo da mosca da oliveira
+acei.consejo_recoleccion_texto,"Sin lluvia significativa, viento moderado y temperatura por encima de 5 °C. Buena ventana para vareo, vibrador o paraguas invertido.","Euri nabarmenik gabe, haize moderatua eta 5 °C-tik gorako tenperatura. Leiho ona makilaz astintzeko, bibragailuarekin edo aterki alderantzikatuarekin biltzeko.","Sense pluja significativa, vent moderat i temperatura per sobre de 5 °C. Bona finestra per a la batuda, el vibrador o el paraigua invertit.","Sen chuvia significativa, vento moderado e temperatura por riba de 5 °C. Boa xanela para varear, vibrador ou paraugas invertido."
+acei.consejo_recoleccion_titulo,Día apto para recolección,Bilketarako egun egokia,Dia apte per a la collita,Día apto para a colleita
+acei.consejo_riesgo_helada_texto,Olivos jóvenes y plantaciones de altura sufren con temperatura ≤0 °C. Vigila brotes y hojas amarillentas en los próximos días.,Olibondo gazteek eta goi-mailako landaketek kalte egiten dute ≤0 °C-ko tenperaturarekin. Zaindu kimuak eta hosto horixkak hurrengo egunetan.,Les oliveres joves i les plantacions d'altura pateixen amb temperatures ≤0 °C. Vigila els brots i les fulles groguenques els propers dies.,As oliveiras novas e as plantacións de altura sofren con temperaturas ≤0 °C. Vixía gromos e follas amareladas nos próximos días.
+acei.consejo_riesgo_helada_titulo,Riesgo de helada,Izozte-arriskua,Risc de gelada,Risco de xeada
+acei.consejo_tratamiento_texto,"Viento ≥18 km/h o lluvia (real o probable) provocan deriva, lavado y baja eficacia. Considera aplazar la aplicación con turboatomizador.","≥18 km/h-ko haizeak edo euriak (benetakoa edo litekeena) deriba, garbiketa eta eraginkortasun txikia eragiten dituzte. Pentsatu turboatomizagailuarekiko aplikazioa atzeratzea.","Vent ≥18 km/h o pluja (real o probable) provoquen deriva, rentat i poca eficàcia. Planteja't ajornar l'aplicació amb turboatomitzador.","Vento ≥18 km/h ou chuvia (real ou probable) provocan deriva, lavado e baixa eficacia. Considera adiar a aplicación con turboatomizador."
+acei.consejo_tratamiento_titulo,Tratamiento poco favorable,Tratamendurako egun txarra,Tractament poc favorable,Tratamento pouco favorable
+acei.consejo_ventana_razonable_texto,"Sin señales fuertes de helada, golpe de calor, mosca, deriva ni estrés hídrico. Día apto para labores normales en olivar.","Ez dago izozte, bero-kolpe, euli, deriba edo ur-estresaren seinale sendorik. Olibondo-sailean ohiko lanak egiteko egun egokia.","Sense senyals forts de gelada, cop de calor, mosca, deriva ni estrès hídric. Dia apte per a les feines habituals a l'oliverar.","Sen sinais fortes de xeada, golpe de calor, mosca, deriva nin estrés hídrico. Día apto para labores normais no olival."
+acei.consejo_ventana_razonable_titulo,Ventana razonable,Leiho egokia,Finestra raonable,Xanela razoable
+acei.contra_plaga,contra {plaga},aurka: {plaga},contra {plaga},contra {plaga}
+acei.copia_asunto,Copia de seguridad de Larrea Aceitera,Larrea Aceiteraren segurtasun-kopia,Còpia de seguretat de Larrea Aceitera,Copia de seguridade de Larrea Aceitera
+acei.copia_datos_no_tocados,Tus datos no se han tocado.,Zure datuak ez dira ukitu.,No s'han tocat les teves dades.,Os teus datos non se tocaron.
+acei.copia_error_base_datos_danada,La base de datos de la copia está dañada.,Kopiaren datu-basea hondatuta dago.,La base de dades de la còpia està malmesa.,A base de datos da copia está danada.
+acei.copia_error_fichero_no_existe,No se encuentra el fichero elegido.,Ez da aurkitu aukeratutako fitxategia.,No es troba el fitxer triat.,Non se atopa o ficheiro escollido.
+acei.copia_error_manifiesto,La copia está incompleta o no se entiende.,Kopia osatu gabe dago edo ez da ulertzen.,La còpia està incompleta o no s'entén.,A copia está incompleta ou non se entende.
+acei.copia_error_no_es_zip,El fichero no es un ZIP válido o está dañado.,Fitxategia ez da baliozko ZIP bat edo hondatuta dago.,El fitxer no és un ZIP vàlid o està malmès.,O ficheiro non é un ZIP válido ou está danado.
+acei.copia_error_otra_app,"La copia es de otra aplicación, no de Larrea Aceitera.","Kopia beste aplikazio batena da, ez Larrea Aceiterarena.","La còpia és d'una altra aplicació, no de Larrea Aceitera.","A copia é doutra aplicación, non de Larrea Aceitera."
+acei.copia_error_respaldo_previo,"No se ha podido guardar antes una copia de los datos actuales, así que no se ha restaurado nada.","Ezin izan da aurretik uneko datuen kopiarik gorde; beraz, ez da ezer leheneratu.","No s'ha pogut desar abans una còpia de les dades actuals, així que no s'ha restaurat res.","Non se puido gardar antes unha copia dos datos actuais, así que non se restaurou nada."
+acei.copia_error_restauracion_revertida,La restauración ha fallado a mitad y se ha vuelto al estado anterior.,Leheneratzeak huts egin du erdibidean eta aurreko egoerara itzuli da.,La restauració ha fallat a mig camí i s'ha tornat a l'estat anterior.,A restauración fallou a metade e volveuse ao estado anterior.
+acei.copia_error_reversion_fallida,La restauración ha fallado y no se ha podido volver del todo al estado anterior. No borres nada y pide ayuda.,Leheneratzeak huts egin du eta ezin izan da guztiz aurreko egoerara itzuli. Ez ezabatu ezer eta eskatu laguntza.,La restauració ha fallat i no s'ha pogut tornar del tot a l'estat anterior. No esborris res i demana ajuda.,A restauración fallou e non se puido volver de todo ao estado anterior. Non borres nada e pide axuda.
+acei.copia_error_reversion_fallida_ruta,La restauración ha fallado y no se ha podido volver del todo al estado anterior. No borres nada y pide ayuda: tus datos anteriores están en {ruta}.,Leheneratzeak huts egin du eta ezin izan da guztiz aurreko egoerara itzuli. Ez ezabatu ezer eta eskatu laguntza: zure aurreko datuak hemen daude: {ruta}.,La restauració ha fallat i no s'ha pogut tornar del tot a l'estat anterior. No esborris res i demana ajuda: les teves dades anteriors són a {ruta}.,A restauración fallou e non se puido volver de todo ao estado anterior. Non borres nada e pide axuda: os teus datos anteriores están en {ruta}.
+acei.copia_error_ruta_peligrosa,La copia contiene rutas no permitidas y se ha rechazado.,Kopiak baimendu gabeko bideak ditu eta baztertu egin da.,La còpia conté rutes no permeses i s'ha rebutjat.,A copia contén rutas non permitidas e rexeitouse.
+acei.copia_error_sin_base_datos,El ZIP no contiene una base de datos de Larrea Aceitera.,ZIPak ez du Larrea Aceiteraren datu-baserik.,El ZIP no conté cap base de dades de Larrea Aceitera.,O ZIP non contén unha base de datos de Larrea Aceitera.
+acei.copia_error_sin_datos,Todavía no hay datos que copiar.,Oraindik ez dago kopiatzeko daturik.,Encara no hi ha dades per copiar.,Aínda non hai datos que copiar.
+acei.copia_error_version_mas_nueva,La copia la hizo una versión más nueva de Larrea Aceitera. Actualiza la app y vuelve a intentarlo.,Larrea Aceiteraren bertsio berriago batek egin zuen kopia. Eguneratu aplikazioa eta saiatu berriro.,La còpia la va fer una versió més nova de Larrea Aceitera. Actualitza l'app i torna-ho a provar.,A copia fíxoa unha versión máis nova de Larrea Aceitera. Actualiza a app e téntao de novo.
+acei.copia_es_del,La copia es del {fecha}.,Kopiaren data: {fecha}.,La còpia és del {fecha}.,A copia é do {fecha}.
+acei.copia_no_se_pudo_crear,No se ha podido crear la copia: {error},Ezin izan da kopia sortu: {error},No s'ha pogut crear la còpia: {error},Non se puido crear a copia: {error}
+acei.copia_no_se_pudo_leer,No se ha podido leer la copia: {error}. Tus datos no se han tocado.,Ezin izan da kopia irakurri: {error}. Zure datuak ez dira ukitu.,No s'ha pogut llegir la còpia: {error}. No s'han tocat les teves dades.,Non se puido ler a copia: {error}. Os teus datos non se tocaron.
+acei.copia_no_se_pudo_restaurar,No se ha podido restaurar la copia: {error},Ezin izan da kopia leheneratu: {error},No s'ha pogut restaurar la còpia: {error},Non se puido restaurar a copia: {error}
+acei.copia_restaurada,Copia restaurada.,Kopia leheneratu da.,Còpia restaurada.,Copia restaurada.
+acei.copia_restaurada_respaldo,Copia restaurada. El estado anterior quedó guardado en {fichero}.,Kopia leheneratu da. Aurreko egoera hemen gorde da: {fichero}.,Còpia restaurada. L'estat anterior s'ha desat a {fichero}.,Copia restaurada. O estado anterior quedou gardado en {fichero}.
+acei.copia_sin_fecha,Es una copia de una versión anterior de la app y no indica la fecha.,Aplikazioaren aurreko bertsio bateko kopia da eta ez du datarik adierazten.,És una còpia d'una versió anterior de l'app i no indica la data.,É unha copia dunha versión anterior da app e non indica a data.
+acei.crear_una_copia,Crear una copia,Kopia bat sortu,Crear una còpia,Crear unha copia
+acei.crear_una_copia_texto,"Guarda la base de datos (parcelas, campañas, lotes, libro de movimientos, cuentas…) en un ZIP que puedes enviarte por correo, guardar en la nube o pasar al ordenador. La clave de Anthropic no va en la copia.","Gorde datu-basea (lursailak, kanpainak, loteak, mugimenduen liburua, kontuak…) ZIP batean, posta bidez bidali, hodeian gorde edo ordenagailura pasatzeko. Anthropic gakoa ez doa kopian.","Desa la base de dades (parcel·les, campanyes, lots, llibre de moviments, comptes…) en un ZIP que pots enviar-te per correu, desar al núvol o passar a l'ordinador. La clau d'Anthropic no va a la còpia.","Garda a base de datos (parcelas, campañas, lotes, libro de movementos, contas…) nun ZIP que podes enviarte por correo, gardar na nube ou pasar ao ordenador. A clave de Anthropic non vai na copia."
+acei.cuaderno_pac_compartir_texto,Cuaderno PAC olivar · campaña {inicio}/{fin},Olibondoaren PAC koadernoa · {inicio}/{fin} kanpaina,Quadern PAC oliverar · campanya {inicio}/{fin},Caderno PAC olival · campaña {inicio}/{fin}
+acei.cuaderno_pac_explicacion_1,"El cuaderno PAC olivar v0.1 incluye dos secciones: tratamientos fitosanitarios y partes de recolección de la campaña. El resto de eventos (podas, riegos, abonados) se añadirán cuando entren los modelos correspondientes.","Olibondoaren PAC koadernoaren v0.1 bertsioak bi atal ditu: tratamendu fitosanitarioak eta kanpainako bilketa-txostenak. Gainerako gertaerak (inausketak, ureztatzeak, ongarritzeak) dagozkien ereduak sartzen direnean gehituko dira.","El quadern PAC oliverar v0.1 inclou dues seccions: tractaments fitosanitaris i parts de collita de la campanya. La resta d'esdeveniments (podes, regs, adobaments) s'afegiran quan entrin els models corresponents.","O caderno PAC olival v0.1 inclúe dúas seccións: tratamentos fitosanitarios e partes de colleita da campaña. O resto de eventos (podas, regas, abonados) engadiranse cando entren os modelos correspondentes."
+acei.cuaderno_pac_explicacion_2,El subtítulo del PDF lleva el sello PROVISIONAL hasta que un técnico de OCA revise el formato.,PDFaren azpitituluak BEHIN-BEHINEKO zigilua darama OCAko teknikari batek formatua berrikusi arte.,El subtítol del PDF porta el segell PROVISIONAL fins que un tècnic de l'OCA en revisi el format.,O subtítulo do PDF leva o selo PROVISIONAL ata que un técnico da OCA revise o formato.
+acei.cuaderno_pac_olivar,Cuaderno PAC olivar,Olibondoaren PAC koadernoa,Quadern PAC oliverar,Caderno PAC olival
+acei.cuadrilla,Cuadrilla,Koadrila,Colla,Cuadrilla
+acei.datos_del_olivar,Datos del olivar,Olibondo-sailaren datuak,Dades de l'oliverar,Datos do olival
+acei.datos_del_titular,Datos del titular,Titularraren datuak,Dades del titular,Datos do titular
+acei.decanter_referencia,Decánter (referencia),Dekantagailua (erreferentzia),Decantador (referència),Decantador (referencia)
+acei.diagnosticar,Diagnosticar,Diagnostikatu,Diagnosticar,Diagnosticar
+acei.diagnostico_de_claude,Diagnóstico de Claude,Clauderen diagnostikoa,Diagnòstic de Claude,Diagnóstico de Claude
+acei.diagnostico_libre,Diagnóstico libre — no coincide con el catálogo. Contrasta con un técnico.,Diagnostiko librea — ez dator bat katalogoarekin. Egiaztatu teknikari batekin.,Diagnòstic lliure — no coincideix amb el catàleg. Contrasta-ho amb un tècnic.,Diagnóstico libre — non coincide co catálogo. Contrástao cun técnico.
+acei.direccion,Dirección,Helbidea,Adreça,Enderezo
+acei.dosis_l_ha,Dosis (L/ha),Dosia (L/ha),Dosi (L/ha),Dose (L/ha)
+acei.edad_media_anyos,Edad media (años),Batez besteko adina (urteak),Edat mitjana (anys),Idade media (anos)
+acei.edad_media_valor,Edad media: {anyos} años,Batez besteko adina: {anyos} urte,Edat mitjana: {anyos} anys,Idade media: {anyos} anos
+acei.editar_tercero,Editar tercero,Hirugarrena editatu,Editar tercer,Editar terceiro
+acei.ejemplo_concepto_ingreso,"Aceituna picual a cooperativa, etc.","Picual oliba kooperatibari, etab.","Oliva picual a la cooperativa, etc.","Oliva picual á cooperativa, etc."
+acei.ejemplo_deposito,depósito D-3,D-3 biltegia,dipòsit D-3,depósito D-3
+acei.ejemplo_marco,"8x6, 7x7, 1,5x4 superintensivo…","8x6, 7x7, 1,5x4 superintentsiboa…","8x6, 7x7, 1,5x4 superintensiu…","8x6, 7x7, 1,5x4 superintensivo…"
+acei.ejemplo_plagas,"mosca, prays, repilo, verticilosis…","eulia, prays, repiloa, verticilosia…","mosca, prays, ull de gall, verticil·losi…","mosca, prays, repilo, verticilose…"
+acei.ejemplo_sigpac,Ej. 23:077:001:00074:0001:WX,Adib. 23:077:001:00074:0001:WX,P. ex. 23:077:001:00074:0001:WX,P. ex. 23:077:001:00074:0001:WX
+acei.ejemplo_sustancias,"deltametrina, spinosad, cobre…","deltametrina, spinosad, kobrea…","deltametrina, spinosad, coure…","deltametrina, spinosad, cobre…"
+acei.ejemplo_variedades,"picual, hojiblanca, arbequina…","picual, hojiblanca, arbequina…","picual, hojiblanca, arbequina…","picual, hojiblanca, arbequina…"
+acei.elegir_zip_y_restaurar,Elegir un ZIP y restaurar,ZIP bat aukeratu eta leheneratu,Triar un ZIP i restaurar,Escoller un ZIP e restaurar
+acei.elige_punto_inicial,Elige cómo fijar el punto inicial.,Aukeratu hasierako puntua nola finkatu.,Tria com fixar el punt inicial.,Escolle como fixar o punto inicial.
+acei.email,Email,Helbide elektronikoa,Correu electrònic,Correo electrónico
+acei.empezar,Empezar,Hasi,Començar,Comezar
+acei.enlaces,Enlaces,Estekak,Enllaços,Ligazóns
+acei.error_abrir_extracto,Error al abrir el extracto: {error},Errorea laburpena irekitzean: {error},Error en obrir l'extracte: {error},Erro ao abrir o extracto: {error}
+acei.error_abrir_pdf,Error al abrir el PDF: {error},Errorea PDFa irekitzean: {error},Error en obrir el PDF: {error},Erro ao abrir o PDF: {error}
+acei.error_capturar_gps,Error al capturar el GPS: {error},Errorea GPSa hartzean: {error},Error en capturar el GPS: {error},Erro ao capturar o GPS: {error}
+acei.error_generar_extracto,Error al generar el extracto: {error},Errorea laburpena sortzean: {error},Error en generar l'extracte: {error},Erro ao xerar o extracto: {error}
+acei.error_generar_pdf,Error al generar el PDF: {error},Errorea PDFa sortzean: {error},Error en generar el PDF: {error},Erro ao xerar o PDF: {error}
+acei.error_inesperado,Error inesperado: {error},Ustekabeko errorea: {error},Error inesperat: {error},Erro inesperado: {error}
+acei.esri_satelite,Esri satélite,Esri satelitea,Esri satèl·lit,Esri satélite
+acei.estimacion_directa_normal,Estimación directa normal,Zuzeneko zenbatespen arrunta,Estimació directa normal,Estimación directa normal
+acei.estimacion_directa_simplificada,Estimación directa simplificada,Zuzeneko zenbatespen erraztua,Estimació directa simplificada,Estimación directa simplificada
+acei.estimacion_normal_ayuda,Cuando la simplificada no aplica por límites de facturación.,Erraztua fakturazio-mugengatik aplikatzen ez denean.,Quan la simplificada no s'aplica pels límits de facturació.,Cando a simplificada non se aplica polos límites de facturación.
+acei.estimacion_simplificada_ayuda,La más común si llevas contabilidad mínima al día.,"Ohikoena, gutxieneko kontabilitatea egunean baduzu.",La més habitual si portes una comptabilitat mínima al dia.,A máis común se levas unha contabilidade mínima ao día.
+acei.exportar_libro_aica,Exportar libro AICA,AICA liburua esportatu,Exportar llibre AICA,Exportar libro AICA
+acei.exportar_pdf_aica,Exportar PDF AICA,AICA PDFa esportatu,Exportar PDF AICA,Exportar PDF AICA
+acei.extracto_compartir_texto,Extracto económico {anyo} · Larrea Aceitera,{anyo}ko laburpen ekonomikoa · Larrea Aceitera,Extracte econòmic {anyo} · Larrea Aceitera,Extracto económico {anyo} · Larrea Aceitera
+acei.falta_crear_olivar,Falta crear el olivar primero.,Lehenik olibondo-saila sortu behar da.,Primer cal crear l'oliverar.,Primeiro hai que crear o olival.
+acei.falta_permiso_ubicacion,Falta permiso de ubicación.,Kokapen-baimena falta da.,Falta el permís d'ubicació.,Falta o permiso de localización.
+acei.familia_larrea,Familia Larrea,Larrea familia,Família Larrea,Familia Larrea
+acei.familia_larrea_texto,"Larrea Aceitera forma parte de la suite Larrea, de la Colección Nuevo Ser. Apps hermanas: Larrea (general — frutales, trufa, olivar), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano y Larrea Quesera.","Larrea Aceitera Larrea suitearen parte da, Colección Nuevo Ser bildumakoa. Aplikazio ahizpak: Larrea (orokorra — fruta-arbolak, boilurra, olibondoak), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano eta Larrea Quesera.","Larrea Aceitera forma part de la suite Larrea, de la Colección Nuevo Ser. Apps germanes: Larrea (general — fruiters, tòfona, oliverar), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano i Larrea Quesera.","Larrea Aceitera forma parte da suite Larrea, da Colección Nuevo Ser. Apps irmás: Larrea (xeral — froiteiras, trufa, olival), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano e Larrea Quesera."
+acei.fecha_a_las_hora,{fecha} a las {hora},"{fecha}, {hora}",{fecha} a les {hora},{fecha} ás {hora}
+acei.fecha_valor,Fecha: {fecha},Data: {fecha},Data: {fecha},Data: {fecha}
+acei.gasto_analiticas,"Analíticas (acidez, peróxidos, panel de cata)","Analisiak (azidotasuna, peroxidoak, dastatze-panela)","Analítiques (acidesa, peròxids, panell de tast)","Analíticas (acidez, peróxidos, panel de cata)"
+acei.gasto_certificacion,"Certificación (ecológico, integrada, DOP)","Ziurtapena (ekologikoa, integratua, DOP)","Certificació (ecològica, integrada, DOP)","Certificación (ecolóxica, integrada, DOP)"
+acei.gasto_combustible,Combustible (gasóleo agrícola),Erregaia (nekazaritzako gasolioa),Combustible (gasoli agrícola),Combustible (gasóleo agrícola)
+acei.gasto_cuota_dop,Cuota DOP / Consejo Regulador,DOP kuota / Kontseilu Arautzailea,Quota DOP / Consell Regulador,Cota DOP / Consello Regulador
+acei.gasto_envasado,"Envasado (botellas, cápsulas, etiquetado)","Ontziratzea (botilak, kapsulak, etiketatzea)","Envasament (ampolles, càpsules, etiquetatge)","Envasado (botellas, cápsulas, etiquetaxe)"
+acei.gasto_fitosanitarios,Fitosanitarios,Fitosanitarioak,Fitosanitaris,Fitosanitarios
+acei.gasto_insumos_olivar,"Insumos del olivar (abonos, herbicidas)","Olibondo-sailerako intsumoak (ongarriak, herbizidak)","Inputs de l'oliverar (adobs, herbicides)","Insumos do olival (abonos, herbicidas)"
+acei.gasto_mano_obra,Mano de obra (jornales fuera de recolección),Eskulana (bilketatik kanpoko eguneko soldatak),Mà d'obra (jornals fora de la collita),Man de obra (xornais fóra da colleita)
+acei.gasto_maquinaria,"Maquinaria (compra, mantenimiento)","Makineria (erosketa, mantentzea)","Maquinària (compra, manteniment)","Maquinaria (compra, mantemento)"
+acei.gasto_molturacion_externa,Molturación externa,Kanpoko ehoketa,Molturació externa,Moenda externa
+acei.gasto_otro,Otro gasto,Beste gastu bat,Una altra despesa,Outro gasto
+acei.gasto_recoleccion,Recolección (jornales),Bilketa (eguneko soldatak),Collita (jornals),Colleita (xornais)
+acei.gasto_seguros,Seguros (agrarios),Aseguruak (nekazaritzakoak),Assegurances (agràries),Seguros (agrarios)
+acei.gasto_transporte,Transporte,Garraioa,Transport,Transporte
+acei.gastos,Gastos,Gastuak,Despeses,Gastos
+acei.general_sin_imputar,(general — sin imputar a parcela),(orokorra — lursailari egotzi gabe),(general — sense imputar a parcel·la),(xeral — sen imputar a parcela)
+acei.generar_extracto_y_compartir,Generar extracto PDF y compartir,PDF laburpena sortu eta partekatu,Generar extracte PDF i compartir,Xerar extracto PDF e compartir
+acei.generar_y_abrir,Generar y abrir,Sortu eta ireki,Generar i obrir,Xerar e abrir
+acei.generar_y_compartir,Generar y compartir,Sortu eta partekatu,Generar i compartir,Xerar e compartir
+acei.gps_actual,GPS actual,Uneko GPSa,GPS actual,GPS actual
+acei.gps_asignado_a,"GPS asignado a {parcela}: {lat}, {lon}","GPSa esleitu zaio {parcela} lursailari: {lat}, {lon}","GPS assignat a {parcela}: {lat}, {lon}","GPS asignado a {parcela}: {lat}, {lon}"
+acei.gps_capturado,"GPS capturado: {lat}, {lon} (precisión ±{precision} m)","GPSa hartuta: {lat}, {lon} (zehaztasuna ±{precision} m)","GPS capturat: {lat}, {lon} (precisió ±{precision} m)","GPS capturado: {lat}, {lon} (precisión ±{precision} m)"
+acei.gps_no_disponible_formulario,GPS no disponible — captura la ubicación desde el formulario.,GPSa ez dago erabilgarri — hartu kokapena formulariotik.,GPS no disponible — captura la ubicació des del formulari.,GPS non dispoñible — captura a localización desde o formulario.
+acei.gps_no_disponible_revisa,GPS no disponible. Revisa que la ubicación esté encendida y los permisos concedidos.,GPSa ez dago erabilgarri. Egiaztatu kokapena piztuta dagoela eta baimenak emanda daudela.,GPS no disponible. Comprova que la ubicació estigui activada i els permisos concedits.,GPS non dispoñible. Revisa que a localización estea acendida e os permisos concedidos.
+acei.gps_reciente,GPS reciente,Azken GPSa,GPS recent,GPS recente
+acei.guardar_configuracion,Guardar configuración,Konfigurazioa gorde,Desar configuració,Gardar configuración
+acei.guardar_gasto,Guardar gasto,Gastua gorde,Desar despesa,Gardar gasto
+acei.guardar_ingreso,Guardar ingreso,Diru-sarrera gorde,Desar ingrés,Gardar ingreso
+acei.guardar_molturacion,Guardar molturación,Ehoketa gorde,Desar molturació,Gardar moenda
+acei.guardar_parcela,Guardar parcela,Lursaila gorde,Desar parcel·la,Gardar parcela
+acei.guardar_recoleccion,Guardar recolección,Bilketa gorde,Desar collita,Gardar colleita
+acei.guardar_tercero,Guardar tercero,Hirugarrena gorde,Desar tercer,Gardar terceiro
+acei.guardar_tratamiento,Guardar tratamiento,Tratamendua gorde,Desar tractament,Gardar tratamento
+acei.hoy,Hoy,Gaur,Avui,Hoxe
+acei.hoy_sin_lotes,Todavía no hay lotes de aceite. Nacen al molturar una partida: Registros → Lotes de aceite.,Oraindik ez dago olio-loterik. Partida bat ehotzean sortzen dira: Erregistroak → Olio-loteak.,Encara no hi ha lots d'oli. Neixen en molturar una partida: Registres → Lots d'oli.,Aínda non hai lotes de aceite. Nacen ao moer unha partida: Rexistros → Lotes de aceite.
+acei.humedad_relativa_corta,HR {hr} %,HE % {hr},HR {hr} %,HR {hr} %
+acei.ia_descripcion_1,"La identificación visual de plagas, enfermedades y variedades del olivar usa Claude, de Anthropic. Pega aquí tu clave personal: se guarda solo en este dispositivo y nunca pasa por un servidor de Larrea; las fotos van directas a Anthropic.","Olibondoaren izurriak, gaixotasunak eta barietateak ikusmen bidez identifikatzeko Anthropic-en Claude erabiltzen da. Itsatsi hemen zure gako pertsonala: gailu honetan bakarrik gordetzen da eta ez da inoiz Larrearen zerbitzari batetik igarotzen; argazkiak zuzenean doaz Anthropic-era.","La identificació visual de plagues, malalties i varietats de l'olivera fa servir Claude, d'Anthropic. Enganxa aquí la teva clau personal: només es desa en aquest dispositiu i mai no passa per cap servidor de Larrea; les fotos van directament a Anthropic.","A identificación visual de pragas, enfermidades e variedades da oliveira usa Claude, de Anthropic. Pega aquí a túa clave persoal: gárdase só neste dispositivo e nunca pasa por un servidor de Larrea; as fotos van directas a Anthropic."
+acei.ia_descripcion_2,Las consultas se cobran en tu cuenta de Anthropic (unas décimas de céntimo cada una con Claude Haiku). El resultado es una ayuda: contrástalo con tu técnico.,Kontsultak zure Anthropic kontuan kobratzen dira (zentimo baten hamarren batzuk bakoitza Claude Haikurekin). Emaitza laguntza bat da: egiaztatu zure teknikariarekin.,Les consultes es cobren al teu compte d'Anthropic (unes dècimes de cèntim cadascuna amb Claude Haiku). El resultat és una ajuda: contrasta'l amb el teu tècnic.,As consultas cóbranse na túa conta de Anthropic (unhas décimas de céntimo cada unha con Claude Haiku). O resultado é unha axuda: contrástao co teu técnico.
+acei.ia_formato_inesperado,Claude no ha devuelto los datos en el formato esperado. Inténtalo de nuevo.,Claudek ez ditu datuak espero zen formatuan itzuli. Saiatu berriro.,Claude no ha retornat les dades en el format esperat. Torna-ho a provar.,Claude non devolveu os datos no formato esperado. Téntao de novo.
+acei.ia_que_identifica,Identifica plagas y variedades del olivar por foto,Olibondoaren izurriak eta barietateak argazki bidez identifikatzen ditu,Identifica plagues i varietats de l'olivera per foto,Identifica pragas e variedades da oliveira por foto
+acei.identificador_del_lote,Identificador del lote,Lotearen identifikatzailea,Identificador del lot,Identificador do lote
+acei.identificar_plaga_con_ia,Identificar plaga con IA,Izurria AArekin identifikatu,Identificar plaga amb IA,Identificar praga con IA
+acei.importe_base_euros,Importe base (€),Oinarrizko zenbatekoa (€),Import base (€),Importe base (€)
+acei.importe_base_sin_iva,"Importe base (€, sin IVA)","Oinarrizko zenbatekoa (€, IVArik gabe)","Import base (€, sense IVA)","Importe base (€, sen IVA)"
+acei.importe_no_valido_corto,Importe no válido,Zenbateko okerra,Import no vàlid,Importe non válido
+acei.imputacion,Imputación,Egozpena,Imputació,Imputación
+acei.imputacion_general,General de la explotación,Ustiategi osoarena,General de l'explotació,Xeral da explotación
+acei.imputacion_parcela,A una parcela concreta,Lursail jakin bati,A una parcel·la concreta,A unha parcela concreta
+acei.imputar_ingreso_parcela,Para imputar el ingreso a una parcela concreta.,Diru-sarrera lursail jakin bati egozteko.,Per imputar l'ingrés a una parcel·la concreta.,Para imputar o ingreso a unha parcela concreta.
+acei.ingreso_alquiler_terreno,Alquiler de terreno agrícola,Nekazaritza-lurraren alokairua,Lloguer de terreny agrícola,Aluguer de terreo agrícola
+acei.ingreso_ayuda_pac,Ayuda PAC,PAC laguntza,Ajut PAC,Axuda PAC
+acei.ingreso_otro,Otro ingreso,Beste diru-sarrera bat,Un altre ingrés,Outro ingreso
+acei.ingreso_subproducto_alperujo,Venta de alperujo,Oliba-orujoaren salmenta,Venda de pinyolada,Venda de bagazo de oliva
+acei.ingreso_subvencion_autonomica,Subvención autonómica,Autonomia-erkidegoko dirulaguntza,Subvenció autonòmica,Subvención autonómica
+acei.ingreso_venta_aceite_envasado,Venta de aceite envasado,Olio ontziratuaren salmenta,Venda d'oli envasat,Venda de aceite envasado
+acei.ingreso_venta_aceite_granel,Venta de aceite a granel,Ontziratu gabeko olioaren salmenta,Venda d'oli a granel,Venda de aceite a granel
+acei.ingreso_venta_aceituna,Venta de aceituna,Oliba-salmenta,Venda d'oliva,Venda de oliva
+acei.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
+acei.inicio_fecha,Inicio: {fecha},Hasiera: {fecha},Inici: {fecha},Inicio: {fecha}
+acei.irpf_normal,IRPF: estimación directa normal,IRPF: zuzeneko zenbatespen arrunta,IRPF: estimació directa normal,IRPF: estimación directa normal
+acei.irpf_simplificada,IRPF: estimación directa simplificada,IRPF: zuzeneko zenbatespen erraztua,IRPF: estimació directa simplificada,IRPF: estimación directa simplificada
+acei.irpf_sin_elegir,IRPF: sin elegir,IRPF: aukeratu gabe,IRPF: sense triar,IRPF: sen escoller
+acei.iva_general,IVA: régimen general,IVA: araubide orokorra,IVA: règim general,IVA: réxime xeral
+acei.iva_reagp,IVA: REAGP (compensación del 12 % en aceituna),IVA: REAGP (% 12ko konpentsazioa olibetan),IVA: REAGP (compensació del 12 % en l'oliva),IVA: REAGP (compensación do 12 % na oliva)
+acei.iva_repercutido_euros,IVA repercutido (€),IVA jasanarazia (€),IVA repercutit (€),IVA repercutido (€)
+acei.iva_sin_elegir,IVA: sin elegir,IVA: aukeratu gabe,IVA: sense triar,IVA: sen escoller
+acei.iva_soportado_ayuda,Lee la cuota de IVA de la factura.,Irakurri fakturako IVA kuota.,Llegeix la quota d'IVA de la factura.,Le a cota de IVA da factura.
+acei.iva_soportado_euros,IVA soportado (€),IVA jasana (€),IVA suportat (€),IVA soportado (€)
+acei.kilos_estimados,Kilos estimados,Kalkulatutako kiloak,Quilos estimats,Quilos estimados
+acei.kilos_molturados,Kilos molturados,Ehotako kiloak,Quilos molturats,Quilos moídos
+acei.kilos_netos_bascula,Kilos netos (báscula),Kilo garbiak (baskula),Quilos nets (bàscula),Quilos netos (báscula)
+acei.kilos_netos_valor,Kilos netos: {kg},Kilo garbiak: {kg},Quilos nets: {kg},Quilos netos: {kg}
+acei.laboratorio_sin_indicar,(laboratorio sin indicar),(laborategia adierazi gabe),(laboratori sense indicar),(laboratorio sen indicar)
+acei.libro_aceite_compartir_texto,Libro de movimientos del aceite · campaña {inicio}/{fin},Olio-mugimenduen liburua · {inicio}/{fin} kanpaina,Llibre de moviments de l'oli · campanya {inicio}/{fin},Libro de movementos do aceite · campaña {inicio}/{fin}
+acei.libro_aica_explicacion_1,"El libro AICA v0.1 incluye tres secciones: lotes de la campaña con parámetros analíticos, molturaciones registradas y movimientos cronológicos (entradas, traslados, mezclas, envasados, ventas, autoconsumo, mermas).","AICA liburuaren v0.1 bertsioak hiru atal ditu: kanpainako loteak parametro analitikoekin, erregistratutako ehoketak eta mugimendu kronologikoak (sarrerak, lekualdatzeak, nahasketak, ontziratzeak, salmentak, autokontsumoa, galerak).","El llibre AICA v0.1 inclou tres seccions: lots de la campanya amb paràmetres analítics, molturacions registrades i moviments cronològics (entrades, trasllats, mescles, envasaments, vendes, autoconsum, minves).","O libro AICA v0.1 inclúe tres seccións: lotes da campaña con parámetros analíticos, moendas rexistradas e movementos cronolóxicos (entradas, traslados, mesturas, envasados, vendas, autoconsumo, minguas)."
+acei.libro_aica_explicacion_2,El subtítulo del PDF lleva el sello PROVISIONAL hasta que un auditor de la AICA revise el formato.,PDFaren azpitituluak BEHIN-BEHINEKO zigilua darama AICAko auditore batek formatua berrikusi arte.,El subtítol del PDF porta el segell PROVISIONAL fins que un auditor de l'AICA en revisi el format.,O subtítulo do PDF leva o selo PROVISIONAL ata que un auditor da AICA revise o formato.
+acei.libro_economico_anual,Libro económico anual,Urteko liburu ekonomikoa,Llibre econòmic anual,Libro económico anual
+acei.libro_movimientos_aceite,Libro de movimientos del aceite,Olio-mugimenduen liburua,Llibre de moviments de l'oli,Libro de movementos do aceite
+acei.libro_sin_movimientos,Sin movimientos registrados todavía.,Oraindik ez dago mugimendurik erregistratuta.,Encara no hi ha moviments registrats.,Aínda sen movementos rexistrados.
+acei.libro_sin_movimientos_ayuda,"Cada lote nuevo aporta una entrada al libro; mezclas, envasados, ventas y autoconsumos también aparecen aquí.","Lote berri bakoitzak sarrera bat gehitzen dio liburuari; nahasketak, ontziratzeak, salmentak eta autokontsumoak ere hemen agertzen dira.","Cada lot nou aporta una entrada al llibre; mescles, envasaments, vendes i autoconsums també apareixen aquí.","Cada lote novo achega unha entrada ao libro; mesturas, envasados, vendas e autoconsumos tamén aparecen aquí."
+acei.lote_id,Lote {lote},{lote} lotea,Lot {lote},Lote {lote}
+acei.lote_opcional,Lote (opcional),Lotea (aukerakoa),Lot (opcional),Lote (opcional)
+acei.lotes,Lotes,Loteak,Lots,Lotes
+acei.lotes_de_aceite,Lotes de aceite,Olio-loteak,Lots d'oli,Lotes de aceite
+acei.manejo_cultural_sugerido,Manejo cultural sugerido,Iradokitako maneiu kulturala,Maneig cultural suggerit,Manexo cultural suxerido
+acei.marco_de_plantacion,Marco de plantación,Landaketa-markoa,Marc de plantació,Marco de plantación
+acei.marco_valor,Marco: {marco},Landaketa-markoa: {marco},Marc: {marco},Marco: {marco}
+acei.meteo_cabecera_texto,"Previsión orientativa para tratamientos, heladas, mosca del olivo, golpe de calor en aceituna, riego y ventanas de recolección.","Iragarpen orientagarria tratamenduetarako, izozteetarako, olibondoaren eulirako, olibaren bero-kolpeetarako, ureztatzerako eta bilketa-leihoetarako.","Previsió orientativa per a tractaments, gelades, mosca de l'olivera, cop de calor a l'oliva, reg i finestres de collita.","Previsión orientativa para tratamentos, xeadas, mosca da oliveira, golpe de calor na oliva, rega e xanelas de colleita."
+acei.meteo_fuente_datos,Datos de Open-Meteo (modelos ECMWF/GFS) — orientativos. Para decisiones de tratamiento o recolección verifica con la Estación de Avisos Fitosanitarios y AEMET de tu zona.,"Open-Meteoren datuak (ECMWF/GFS ereduak) — orientagarriak. Tratamendu edo bilketari buruzko erabakietarako, egiaztatu zure eremuko Abisu Fitosanitarioen Estazioarekin eta AEMETekin.","Dades d'Open-Meteo (models ECMWF/GFS) — orientatives. Per a decisions de tractament o collita, comprova-ho amb l'Estació d'Avisos Fitosanitaris i l'AEMET de la teva zona.",Datos de Open-Meteo (modelos ECMWF/GFS) — orientativos. Para decisións de tratamento ou colleita verifica coa Estación de Avisos Fitosanitarios e a AEMET da túa zona.
+acei.meteo_hoy_origen,Meteo hoy · {origen},Eguraldia gaur · {origen},Temps avui · {origen},Tempo hoxe · {origen}
+acei.meteo_olivar,Meteo olivar,Eguraldia olibondo-sailean,Temps a l'oliverar,Tempo no olival
+acei.metodo,Método,Metodoa,Mètode,Método
+acei.metodo_manual,Manual,Eskuz,Manual,Manual
+acei.metodo_paraguas,Paraguas,Aterkia,Paraigua,Paraugas
+acei.metodo_peine,Peine,Orrazia,Pinta,Peite
+acei.metodo_vareo,Vareo,Makilaz astintzea,Batuda,Vareo
+acei.metodo_vibrador,Vibrador,Bibragailua,Vibrador,Vibrador
+acei.movimiento_autoconsumo,Autoconsumo,Autokontsumoa,Autoconsum,Autoconsumo
+acei.movimiento_entrada_molturacion,Entrada por molturación,Sarrera ehoketagatik,Entrada per molturació,Entrada por moenda
+acei.movimiento_envasado,Envasado,Ontziratzea,Envasament,Envasado
+acei.movimiento_merma,Merma,Galera,Minva,Mingua
+acei.movimiento_mezcla_lotes,Mezcla de lotes,Lote-nahasketa,Mescla de lots,Mestura de lotes
+acei.movimiento_traslado_deposito,Traslado de depósito,Biltegi-aldaketa,Trasllat de dipòsit,Traslado de depósito
+acei.movimiento_venta_granel,Venta a granel,Ontziratu gabeko salmenta,Venda a granel,Venda a granel
+acei.movimientos_del_lote,Movimientos del lote,Lotearen mugimenduak,Moviments del lot,Movementos do lote
+acei.municipio,Municipio,Udalerria,Municipi,Concello
+acei.necesitas_campania_cuaderno_pac,Necesitas una campaña abierta para generar el cuaderno PAC.,Kanpaina ireki bat behar duzu PAC koadernoa sortzeko.,Necessites una campanya oberta per generar el quadern PAC.,Necesitas unha campaña aberta para xerar o caderno PAC.
+acei.necesitas_campania_libro_aica,Necesitas una campaña para generar el libro AICA.,Kanpaina bat behar duzu AICA liburua sortzeko.,Necessites una campanya per generar el llibre AICA.,Necesitas unha campaña para xerar o libro AICA.
+acei.no_se_pudo_cargar_prevision,No se pudo cargar la previsión.,Ezin izan da iragarpena kargatu.,No s'ha pogut carregar la previsió.,Non se puido cargar a previsión.
+acei.no_se_pudo_cargar_prevision_reintentar,No se pudo cargar la previsión. Toca para reintentar.,Ezin izan da iragarpena kargatu. Sakatu berriro saiatzeko.,No s'ha pogut carregar la previsió. Toca per tornar-ho a provar.,Non se puido cargar a previsión. Toca para tentalo de novo.
+acei.no_se_pudo_obtener_gps,No se pudo obtener el GPS actual.,Ezin izan da uneko GPSa lortu.,No s'ha pogut obtenir el GPS actual.,Non se puido obter o GPS actual.
+acei.nombre_de_la_parcela,Nombre de la parcela,Lursailaren izena,Nom de la parcel·la,Nome da parcela
+acei.nombre_del_olivar,Nombre del olivar,Olibondo-sailaren izena,Nom de l'oliverar,Nome do olival
+acei.nombre_del_socio,Nombre del socio,Bazkidearen izena,Nom del soci,Nome do socio
+acei.nombre_o_razon_social,Nombre o razón social,Izena edo izen soziala,Nom o raó social,Nome ou razón social
+acei.notas,Notas,Oharrak,Notes,Notas
+acei.notas_panel_cata_valor,Notas del panel de cata: {notas},Dastatze-panelaren oharrak: {notas},Notes del panell de tast: {notas},Notas do panel de cata: {notas}
+acei.nueva_campania,Nueva campaña,Kanpaina berria,Campanya nova,Nova campaña
+acei.nueva_molturacion,Nueva molturación,Ehoketa berria,Molturació nova,Nova moenda
+acei.nueva_parcela,Nueva parcela,Lursail berria,Parcel·la nova,Nova parcela
+acei.nueva_partida,Nueva partida,Partida berria,Partida nova,Nova partida
+acei.nueva_partida_de_aceituna,Nueva partida de aceituna,Oliba-partida berria,Partida nova d'oliva,Nova partida de oliva
+acei.nueva_recoleccion,Nueva recolección,Bilketa berria,Collita nova,Nova colleita
+acei.nuevo_gasto,Nuevo gasto,Gastu berria,Despesa nova,Novo gasto
+acei.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Ingrés nou,Novo ingreso
+acei.nuevo_tercero,Nuevo tercero,Hirugarren berria,Tercer nou,Novo terceiro
+acei.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Tractament nou,Novo tratamento
+acei.numero_carnet_aplicador,N.º de carnet de aplicador,Aplikatzaile-txartelaren zk.,Núm. de carnet d'aplicador,N.º de carné de aplicador
+acei.numero_de_albaran,Número de albarán,Albaran-zenbakia,Número d'albarà,Número de albará
+acei.numero_de_factura,N.º de factura,Faktura-zk.,Núm. de factura,N.º de factura
+acei.obligatorio,Obligatorio,Derrigorrezkoa,Obligatori,Obrigatorio
+acei.obligatorio_cuaderno_pac_valido,Obligatorio para que el cuaderno PAC sea válido,Derrigorrezkoa PAC koadernoa baliozkoa izan dadin,Obligatori perquè el quadern PAC sigui vàlid,Obrigatorio para que o caderno PAC sexa válido
+acei.obligatorio_modelo_347,Obligatorio para el modelo 347,Derrigorrezkoa 347 ereduarako,Obligatori per al model 347,Obrigatorio para o modelo 347
+acei.obligatorio_para_pac,Obligatorio para la PAC,Derrigorrezkoa PACerako,Obligatori per a la PAC,Obrigatorio para a PAC
+acei.observaciones,Observaciones,Oharpenak,Observacions,Observacións
+acei.observaciones_para_ia,Observaciones para la IA,AArentzako oharpenak,Observacions per a la IA,Observacións para a IA
+acei.observaciones_para_ia_ayuda,"Síntomas, parcela, fecha aproximada… (opcional)","Sintomak, lursaila, gutxi gorabeherako data… (aukerakoa)","Símptomes, parcel·la, data aproximada… (opcional)","Síntomas, parcela, data aproximada… (opcional)"
+acei.olivar,Olivar,Olibondo-saila,Oliverar,Olival
+acei.olivar_y_cuentas,Olivar y cuentas,Olibondo-saila eta kontuak,Oliverar i comptes,Olival e contas
+acei.onboarding_intro,Cuaderno de explotación olivarera y libro de movimientos del aceite para tu almazara.,Olibondo-ustiategiaren koadernoa eta olio-mugimenduen liburua zure olio-errotarako.,Quadern d'explotació olivarera i llibre de moviments de l'oli per al teu molí d'oli.,Caderno de explotación olivareira e libro de movementos do aceite para a túa almazara.
+acei.panel_cata_valor,Panel de cata: {puntuacion} / 9,Dastatze-panela: {puntuacion} / 9,Panell de tast: {puntuacion} / 9,Panel de cata: {puntuacion} / 9
+acei.parcela,Parcela,Lursaila,Parcel·la,Parcela
+acei.parcela_numero,Parcela #{id},{id}. lursaila,Parcel·la #{id},Parcela #{id}
+acei.parcela_opcional,Parcela (opcional),Lursaila (aukerakoa),Parcel·la (opcional),Parcela (opcional)
+acei.parcela_sin_nombre,(parcela sin nombre),(lursaila izenik gabe),(parcel·la sense nom),(parcela sen nome)
+acei.parcelas,Parcelas,Lursailak,Parcel·les,Parcelas
+acei.parcelas_sin_coordenadas,Parcelas sin coordenadas,Koordenaturik gabeko lursailak,Parcel·les sense coordenades,Parcelas sen coordenadas
+acei.parcelas_sin_coordenadas_n,Parcelas sin coordenadas ({n}),Koordenaturik gabeko lursailak ({n}),Parcel·les sense coordenades ({n}),Parcelas sen coordenadas ({n})
+acei.pasar_a_molturacion,¿Pasamos a registrar la molturación de esta partida?,Partida honen ehoketa erregistratzera pasatuko gara?,Passem a registrar la molturació d'aquesta partida?,Pasamos a rexistrar a moenda desta partida?
+acei.permiso_gps_denegado,Permiso de ubicación denegado o GPS desactivado. Activa el GPS y vuelve a intentarlo.,Kokapen-baimena ukatuta edo GPSa desaktibatuta. Aktibatu GPSa eta saiatu berriro.,Permís d'ubicació denegat o GPS desactivat. Activa el GPS i torna-ho a provar.,Permiso de localización denegado ou GPS desactivado. Activa o GPS e téntao de novo.
+acei.peroxidos_valor,Peróxidos: {peroxidos},Peroxidoak: {peroxidos},Peròxids: {peroxidos},Peróxidos: {peroxidos}
+acei.plaga_declaracion_obligatoria,Plaga de declaración obligatoria: avisa al servicio fitosanitario de tu comunidad autónoma.,Nahitaez jakinarazi beharreko izurria: abisatu zure autonomia-erkidegoko zerbitzu fitosanitarioari.,Plaga de declaració obligatòria: avisa el servei fitosanitari de la teva comunitat autònoma.,Praga de declaración obrigatoria: avisa o servizo fitosanitario da túa comunidade autónoma.
+acei.plaga_objetivo,Plaga objetivo,Helburuko izurria,Plaga objectiu,Praga obxectivo
+acei.polifenoles_valor,Polifenoles: {polifenoles} mg/kg,Polifenolak: {polifenoles} mg/kg,Polifenols: {polifenoles} mg/kg,Polifenois: {polifenoles} mg/kg
+acei.porcentaje_aceituna_defectuosa,% de aceituna defectuosa,Oliba akastunaren %,% d'oliva defectuosa,% de oliva defectuosa
+acei.problema_abiotico,Abiótico,Abiotikoa,Abiòtic,Abiótico
+acei.problema_enfermedad,Enfermedad,Gaixotasuna,Malaltia,Enfermidade
+acei.problema_fisiologico,Fisiológico,Fisiologikoa,Fisiològic,Fisiolóxico
+acei.problema_indeterminado,Indeterminado,Zehaztu gabea,Indeterminat,Indeterminado
+acei.problema_plaga,Plaga,Izurria,Plaga,Praga
+acei.procede_de_socio_externo,Procede de socio cooperativista externo,Kanpoko kooperatibako bazkide batena da,Prové d'un soci cooperativista extern,Procede dun socio cooperativista externo
+acei.producto_comercial_referencia,Producto comercial (referencia),Produktu komertziala (erreferentzia),Producte comercial (referència),Produto comercial (referencia)
+acei.proveedor_opcional,Proveedor (opcional),Hornitzailea (aukerakoa),Proveïdor (opcional),Provedor (opcional)
+acei.provincia,Provincia,Probintzia,Província,Provincia
+acei.pulsa_mas_primero,Pulsa + para añadir el primero.,Sakatu + lehena gehitzeko.,Prem + per afegir-ne el primer.,Preme + para engadir o primeiro.
+acei.razon_social,Razón social,Izen soziala,Raó social,Razón social
+acei.recalcular_iva_compensacion,Recalcular IVA / compensación,IVA / konpentsazioa berriro kalkulatu,Recalcula l'IVA / compensació,Recalcular IVA / compensación
+acei.recoleccion,Recolección,Bilketa,Collita,Colleita
+acei.recolecciones,Recolecciones,Bilketak,Collites,Colleitas
+acei.regimen,Régimen,Araubidea,Règim,Réxime
+acei.regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
+acei.regimen_general_ayuda,IVA repercutido 4 % en aceituna y aceite (alimento básico). El IVA soportado en gastos es deducible.,% 4ko IVA jasanarazia olibetan eta olioan (oinarrizko elikagaia). Gastuetan jasandako IVA kengarria da.,IVA repercutit del 4 % en oliva i oli (aliment bàsic). L'IVA suportat en despeses és deduïble.,IVA repercutido do 4 % na oliva e no aceite (alimento básico). O IVA soportado nos gastos é deducible.
+acei.regimen_irpf,Régimen IRPF,IRPF araubidea,Règim IRPF,Réxime IRPF
+acei.regimen_iva,Régimen IVA,IVA araubidea,Règim IVA,Réxime IVA
+acei.regimen_reagp,REAGP (compensación 12 % en aceituna),REAGP (% 12ko konpentsazioa olibetan),REAGP (compensació del 12 % en l'oliva),REAGP (compensación do 12 % na oliva)
+acei.regimen_reagp_ayuda,Régimen especial de agricultura. El comprador paga una compensación REAGP del 12 % en la venta de aceituna; el titular no repercute IVA en sus ventas agrícolas.,Nekazaritzako araubide berezia. Erosleak % 12ko REAGP konpentsazioa ordaintzen du olibak saltzean; titularrak ez du IVArik jasanarazten bere nekazaritza-salmentetan.,Règim especial de l'agricultura. El comprador paga una compensació REAGP del 12 % en la venda d'oliva; el titular no repercuteix IVA en les seves vendes agràries.,Réxime especial da agricultura. O comprador paga unha compensación REAGP do 12 % na venda de oliva; o titular non repercute IVA nas súas vendas agrarias.
+acei.registrar,Registrar,Erregistratu,Registrar,Rexistrar
+acei.registros,Registros,Erregistroak,Registres,Rexistros
+acei.registros_campanias_sub,Abrir la campaña de este año y ver las anteriores,Aurtengo kanpaina ireki eta aurrekoak ikusi,Obrir la campanya d'enguany i veure les anteriors,Abrir a campaña deste ano e ver as anteriores
+acei.registros_cuaderno_sub,Genera el PDF del cuaderno de explotación PAC (RD 1311/2012) · sello PROVISIONAL,PAC ustiategi-koadernoaren PDFa sortzen du (1311/2012 ED) · BEHIN-BEHINEKO zigilua,Genera el PDF del quadern d'explotació PAC (RD 1311/2012) · segell PROVISIONAL,Xera o PDF do caderno de explotación PAC (RD 1311/2012) · selo PROVISIONAL
+acei.registros_economico_sub,Ingresos / gastos / resumen + extracto PDF · PROVISIONAL,Diru-sarrerak / gastuak / laburpena + PDF laburpena · BEHIN-BEHINEKOA,Ingressos / despeses / resum + extracte PDF · PROVISIONAL,Ingresos / gastos / resumo + extracto PDF · PROVISIONAL
+acei.registros_libro_aceite_sub,"Entradas, salidas, mezclas y envasados por lote (AICA, RD 760/2021) · exportar PDF","Sarrerak, irteerak, nahasketak eta ontziratzeak loteka (AICA, 760/2021 ED) · PDFa esportatu","Entrades, sortides, mescles i envasaments per lot (AICA, RD 760/2021) · exportar PDF","Entradas, saídas, mesturas e envasados por lote (AICA, RD 760/2021) · exportar PDF"
+acei.registros_lotes_sub,Cada lote con sus movimientos y analíticas · registrar una partida de aceituna,Lote bakoitza bere mugimendu eta analisiekin · oliba-partida bat erregistratu,Cada lot amb els seus moviments i analítiques · registrar una partida d'oliva,Cada lote cos seus movementos e analíticas · rexistrar unha partida de oliva
+acei.reintentar,Reintentar,Saiatu berriro,Torna-ho a provar,Tentar de novo
+acei.rendimiento_porcentaje,Rendimiento (%),Etekina (%),Rendiment (%),Rendemento (%)
+acei.rendimiento_tipico,Típico 18-22,Ohikoa 18-22,Típic 18-22,Típico 18-22
+acei.restaurar,Restaurar,Leheneratu,Restaura,Restaurar
+acei.restaurar_aviso,Los datos de este dispositivo se sustituirán por los de la copia. Antes se guarda automáticamente una copia del estado actual por si hay que volver atrás.,"Gailu honetako datuak kopiakoekin ordeztuko dira. Aurretik, uneko egoeraren kopia bat gordetzen da automatikoki, atzera egin behar izanez gero.",Les dades d'aquest dispositiu se substituiran per les de la còpia. Abans es desa automàticament una còpia de l'estat actual per si cal tornar enrere.,Os datos deste dispositivo substituiranse polos da copia. Antes gárdase automaticamente unha copia do estado actual por se hai que volver atrás.
+acei.restaurar_esta_copia,Restaurar esta copia,Kopia hau leheneratu,Restaurar aquesta còpia,Restaurar esta copia
+acei.restaurar_una_copia,Restaurar una copia,Kopia bat leheneratu,Restaurar una còpia,Restaurar unha copia
+acei.restaurar_una_copia_texto,"Sustituye los datos de este dispositivo por los de un ZIP de Larrea Aceitera. Primero se comprueba la copia y se te enseña de cuándo es; si algo falla al restaurar, se vuelve al estado anterior.","Gailu honetako datuak Larrea Aceiterako ZIP batekoekin ordezten ditu. Lehenik kopia egiaztatzen da eta noizkoa den erakusten zaizu; leheneratzean zerbaitek huts egiten badu, aurreko egoerara itzultzen da.","Substitueix les dades d'aquest dispositiu per les d'un ZIP de Larrea Aceitera. Primer es comprova la còpia i se t'ensenya de quan és; si alguna cosa falla en restaurar, es torna a l'estat anterior.","Substitúe os datos deste dispositivo polos dun ZIP de Larrea Aceitera. Primeiro compróbase a copia e amósase de cando é; se algo falla ao restaurar, vólvese ao estado anterior."
+acei.resultado_bruto_anyo,Resultado bruto del año,Urteko emaitza gordina,Resultat brut de l'any,Resultado bruto do ano
+acei.resultado_bruto_formula,(ingresos base − gastos base),(oinarrizko diru-sarrerak − oinarrizko gastuak),(ingressos base − despeses base),(ingresos base − gastos base)
+acei.resumen,Resumen,Laburpena,Resum,Resumo
+acei.resumen_provisional,Resumen PROVISIONAL hasta que lo valide un asesor fiscal. Las reglas de IVA y REAGP del olivar están sujetas a confirmación.,"BEHIN-BEHINEKO laburpena, aholkulari fiskal batek balioztatu arte. Olibondo-sektoreko IVA eta REAGP arauak berresteke daude.",Resum PROVISIONAL fins que ho validi un assessor fiscal. Les regles d'IVA i REAGP de l'oliverar estan subjectes a confirmació.,Resumo PROVISIONAL ata que o valide un asesor fiscal. As regras de IVA e REAGP do olival están suxeitas a confirmación.
+acei.riego_aspersion,Aspersión,Aspertsioa,Aspersió,Aspersión
+acei.riego_goteo,Goteo,Tantaka,Degoteig,Pinga a pinga
+acei.riego_mixto,Mixto,Mistoa,Mixt,Mixto
+acei.riego_secano,Secano,Lehorra,Secà,Secaño
+acei.riego_superficial,Superficial,Azalekoa,Superficial,Superficial
+acei.riego_valor,Riego: {riego},Ureztatzea: {riego},Reg: {riego},Rega: {riego}
+acei.severidad_valor,Severidad: {severidad}/5,Larritasuna: {severidad}/5,Severitat: {severidad}/5,Severidade: {severidad}/5
+acei.si_molturar,"Sí, molturar","Bai, ehotzera","Sí, molturar","Si, moer"
+acei.sin_analiticas_registradas,Sin analíticas registradas.,Ez dago analisirik erregistratuta.,Sense analítiques registrades.,Sen analíticas rexistradas.
+acei.sin_campania_abierta,Sin campaña abierta,Kanpaina irekirik gabe,Sense campanya oberta,Sen campaña aberta
+acei.sin_campania_abierta_ayuda,Toca para abrir una (también en Registros → Campañas de recolección).,Sakatu bat irekitzeko (baita Erregistroak → Oliba-bilketako kanpainak atalean ere).,Toca per obrir-ne una (també a Registres → Campanyes de collita).,Toca para abrir unha (tamén en Rexistros → Campañas de colleita).
+acei.sin_campania_abierta_crear,No hay ninguna campaña abierta. Crea una en Registros → Campañas de recolección.,Ez dago kanpaina irekirik. Sortu bat Erregistroak → Oliba-bilketako kanpainak atalean.,No hi ha cap campanya oberta. Crea'n una a Registres → Campanyes de collita.,Non hai ningunha campaña aberta. Crea unha en Rexistros → Campañas de colleita.
+acei.sin_campania_abierta_partidas,No hay ninguna campaña abierta. Crea una en Registros → Campañas de recolección antes de registrar partidas.,Ez dago kanpaina irekirik. Sortu bat Erregistroak → Oliba-bilketako kanpainak atalean partidak erregistratu aurretik.,No hi ha cap campanya oberta. Crea'n una a Registres → Campanyes de collita abans de registrar partides.,Non hai ningunha campaña aberta. Crea unha en Rexistros → Campañas de colleita antes de rexistrar partidas.
+acei.sin_campania_abierta_recolecciones,No hay ninguna campaña abierta. Crea una en Registros → Campañas de recolección antes de registrar recolecciones.,Ez dago kanpaina irekirik. Sortu bat Erregistroak → Oliba-bilketako kanpainak atalean bilketak erregistratu aurretik.,No hi ha cap campanya oberta. Crea'n una a Registres → Campanyes de collita abans de registrar collites.,Non hai ningunha campaña aberta. Crea unha en Rexistros → Campañas de colleita antes de rexistrar colleitas.
+acei.sin_campanias,Todavía no has abierto ninguna campaña.,Oraindik ez duzu kanpainarik ireki.,Encara no has obert cap campanya.,Aínda non abriches ningunha campaña.
+acei.sin_campanias_ayuda,"Crea una para empezar a registrar recolecciones, partidas y molturaciones.","Sortu bat bilketak, partidak eta ehoketak erregistratzen hasteko.","Crea'n una per començar a registrar collites, partides i molturacions.","Crea unha para comezar a rexistrar colleitas, partidas e moendas."
+acei.sin_campanias_registradas,Sin campañas registradas,Ez dago kanpainarik erregistratuta,Sense campanyes registrades,Sen campañas rexistradas
+acei.sin_coordenadas_opcional,Sin coordenadas (opcional),Koordenaturik gabe (aukerakoa),Sense coordenades (opcional),Sen coordenadas (opcional)
+acei.sin_datos_meteo_hoy,Sin datos meteo para hoy.,Gaurko eguraldi-daturik ez.,Sense dades meteorològiques per a avui.,Sen datos meteorolóxicos para hoxe.
+acei.sin_definir,(sin definir),(zehaztu gabe),(sense definir),(sen definir)
+acei.sin_gastos_anyo,Sin gastos registrados este año.,Aurten ez dago gasturik erregistratuta.,Sense despeses registrades aquest any.,Sen gastos rexistrados este ano.
+acei.sin_ingresos_anyo,Sin ingresos registrados este año.,Aurten ez dago diru-sarrerarik erregistratuta.,Sense ingressos registrats aquest any.,Sen ingresos rexistrados este ano.
+acei.sin_lotes_ayuda,"Pulsa «+» para registrar una recepción de aceituna en almazara. Cuando moltures, nacerá el lote.","Sakatu «+» olio-errotan oliba-harrera bat erregistratzeko. Ehotzen duzunean, lotea sortuko da.","Prem «+» per registrar una recepció d'oliva al molí. Quan moltures, naixerà el lot.","Preme «+» para rexistrar unha recepción de oliva na almazara. Cando moas, nacerá o lote."
+acei.sin_lotes_todavia,Sin lotes todavía.,Oraindik loterik ez.,Encara no hi ha lots.,Aínda sen lotes.
+acei.sin_movimientos_registrados,Sin movimientos registrados.,Ez dago mugimendurik erregistratuta.,Sense moviments registrats.,Sen movementos rexistrados.
+acei.sin_nombre,(sin nombre),(izenik gabe),(sense nom),(sen nome)
+acei.sin_parcelas,Sin parcelas registradas todavía.,Oraindik ez dago lursailik erregistratuta.,Encara no hi ha parcel·les registrades.,Aínda sen parcelas rexistradas.
+acei.sin_parcelas_ayuda,Pulsa «+» para añadir la primera.,Sakatu «+» lehena gehitzeko.,Prem «+» per afegir-ne la primera.,Preme «+» para engadir a primeira.
+acei.sin_razon_social,(sin razón social),(izen sozialik gabe),(sense raó social),(sen razón social)
+acei.sin_recolecciones,Sin recolecciones registradas todavía.,Oraindik ez dago bilketarik erregistratuta.,Encara no hi ha collites registrades.,Aínda sen colleitas rexistradas.
+acei.sin_tercero,(sin tercero),(hirugarrenik gabe),(sense tercer),(sen terceiro)
+acei.sin_tercero_modelo_347,"Sin tercero, no entra en el modelo 347.","Hirugarrenik gabe, ez da 347 ereduan sartzen.","Sense tercer, no entra al model 347.","Sen terceiro, non entra no modelo 347."
+acei.sin_terceros,Aún no has registrado clientes ni proveedores.,Oraindik ez duzu bezerorik ez hornitzailerik erregistratu.,Encara no has registrat clients ni proveïdors.,Aínda non rexistraches clientes nin provedores.
+acei.sin_terceros_ayuda,Crea uno para asociarlo a tus apuntes de ingreso/gasto.,Sortu bat zure diru-sarrera/gastu idazpenei lotzeko.,Crea'n un per associar-lo als teus apunts d'ingrés/despesa.,Crea un para asocialo aos teus apuntamentos de ingreso/gasto.
+acei.sin_titular_configurado,Sin titular configurado,Titularrik konfiguratu gabe,Sense titular configurat,Sen titular configurado
+acei.sin_tratamientos,Sin tratamientos registrados todavía.,Oraindik ez dago tratamendurik erregistratuta.,Encara no hi ha tractaments registrats.,Aínda sen tratamentos rexistrados.
+acei.sistema_de_riego,Sistema de riego,Ureztatze-sistema,Sistema de reg,Sistema de rega
+acei.suelo_temp_humedad,Suelo {temp} °C · {humedad},Lurzorua {temp} °C · {humedad},Sòl {temp} °C · {humedad},Solo {temp} °C · {humedad}
+acei.sugerencias_catalogo_provisional,Sugerencias del catálogo provisional (texto libre admitido),Behin-behineko katalogoaren iradokizunak (testu librea onartzen da),Suggeriments del catàleg provisional (s'admet text lliure),Suxestións do catálogo provisional (admítese texto libre)
+acei.superficie_ha,Superficie (ha),Azalera (ha),Superfície (ha),Superficie (ha)
+acei.superficie_valor,Superficie: {ha} ha,Azalera: {ha} ha,Superfície: {ha} ha,Superficie: {ha} ha
+acei.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+acei.sustancia_no_indicada,(sustancia activa no indicada),(substantzia aktiboa adierazi gabe),(substància activa no indicada),(substancia activa non indicada)
+acei.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+acei.tercero_ambos,Cliente y proveedor,Bezeroa eta hornitzailea,Client i proveïdor,Cliente e provedor
+acei.tercero_cliente,Cliente,Bezeroa,Client,Cliente
+acei.terceros_clientes_proveedores,Terceros (clientes / proveedores),Hirugarrenak (bezeroak / hornitzaileak),Tercers (clients / proveïdors),Terceiros (clientes / provedores)
+acei.tipo,Tipo,Mota,Tipus,Tipo
+acei.tipo_de_aceituna,Tipo de aceituna,Oliba mota,Tipus d'oliva,Tipo de oliva
+acei.tipo_de_gasto,Tipo de gasto,Gastu mota,Tipus de despesa,Tipo de gasto
+acei.tipo_de_ingreso,Tipo de ingreso,Diru-sarrera mota,Tipus d'ingrés,Tipo de ingreso
+acei.tipo_valor,Tipo: {tipo},Mota: {tipo},Tipus: {tipo},Tipo: {tipo}
+acei.titular_nif,Titular · NIF: {nif},Titularra · NIF: {nif},Titular · NIF: {nif},Titular · NIF: {nif}
+acei.titular_sin_configurar,Titular sin configurar,Titularra konfiguratu gabe,Titular sense configurar,Titular sen configurar
+acei.titular_sin_configurar_cuaderno,El cuaderno oficial necesita razón social y NIF del titular. Edítalos desde Ajustes antes de generar el PDF.,Koaderno ofizialak titularraren izen soziala eta NIF behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.,El quadern oficial necessita la raó social i el NIF del titular. Edita'ls a Configuració abans de generar el PDF.,O caderno oficial necesita a razón social e o NIF do titular. Edítaos desde Axustes antes de xerar o PDF.
+acei.titular_sin_configurar_libro_aica,"El libro AICA necesita razón social, NIF y n.º AICA del titular. Edítalos desde Ajustes antes de generar el PDF.","AICA liburuak titularraren izen soziala, NIF eta AICA zk. behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.","El llibre AICA necessita la raó social, el NIF i el núm. AICA del titular. Edita'ls a Configuració abans de generar el PDF.","O libro AICA necesita a razón social, o NIF e o n.º AICA do titular. Edítaos desde Axustes antes de xerar o PDF."
+acei.todas_las_parcelas,Todas las parcelas,Lursail guztiak,Totes les parcel·les,Todas as parcelas
+acei.todas_parcelas_con_coordenadas,Todas las parcelas tienen coordenadas.,Lursail guztiek dituzte koordenatuak.,Totes les parcel·les tenen coordenades.,Todas as parcelas teñen coordenadas.
+acei.todos_los_lotes_campania,Todos los lotes de la campaña,Kanpainako lote guztiak,Tots els lots de la campanya,Todos os lotes da campaña
+acei.total_compensacion_reagp,Total compensación REAGP,REAGP konpentsazioa guztira,Total compensació REAGP,Total compensación REAGP
+acei.total_gastos_base,Total gastos (base),Gastuak guztira (oinarria),Total despeses (base),Total gastos (base)
+acei.total_ingresos_base,Total ingresos (base),Diru-sarrerak guztira (oinarria),Total ingressos (base),Total ingresos (base)
+acei.total_iva_repercutido,Total IVA repercutido,IVA jasanarazia guztira,Total IVA repercutit,Total IVA repercutido
+acei.total_iva_soportado,Total IVA soportado,IVA jasana guztira,Total IVA suportat,Total IVA soportado
+acei.tratamiento,Tratamiento,Tratamendua,Tractament,Tratamento
+acei.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
+acei.ubicacion_del_deposito,Ubicación del depósito,Biltegiaren kokapena,Ubicació del dipòsit,Localización do depósito
+acei.ubicacion_valor,Ubicación: {ubicacion},Kokapena: {ubicacion},Ubicació: {ubicacion},Localización: {ubicacion}
+acei.ultima_copia,Última copia,Azken kopia,Darrera còpia,Última copia
+acei.ultima_copia_nunca,Nunca. Conviene hacer una antes de la campaña.,Inoiz ez. Komeni da kanpaina aurretik bat egitea.,Mai. Convé fer-ne una abans de la campanya.,Nunca. Convén facer unha antes da campaña.
+acei.ultimo_gps,"Último GPS: {lat}, {lon}","Azken GPSa: {lat}, {lon}","Darrer GPS: {lat}, {lon}","Último GPS: {lat}, {lon}"
+acei.ultimos_lotes,Últimos lotes,Azken loteak,Darrers lots,Últimos lotes
+acei.unidad,Unidad,Unitatea,Unitat,Unidade
+acei.unidad_botellas,botellas,botilak,ampolles,botellas
+acei.usar_centro_mapa,Usar centro del mapa,Maparen erdigunea erabili,Fer servir el centre del mapa,Usar o centro do mapa
+acei.usar_gps_actual,Usar GPS actual,Uneko GPSa erabili,Fer servir el GPS actual,Usar o GPS actual
+acei.variedad_mayoritaria,Variedad mayoritaria,Barietate nagusia,Varietat majoritària,Variedade maioritaria
+acei.variedad_sin_definir,variedad sin definir,barietatea zehaztu gabe,varietat sense definir,variedade sen definir
+acei.variedad_valor,Variedad: {variedad},Barietatea: {variedad},Varietat: {variedad},Variedade: {variedad}
+acei.ver_todos,Ver todos,Denak ikusi,Veure-ho tot,Ver todos
+acei.viento_racha,{viento} km/h · racha {racha},{viento} km/h · bolada {racha},{viento} km/h · ratxa {racha},{viento} km/h · refacho {racha}

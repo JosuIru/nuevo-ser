@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:intl/intl.dart';
 
 import '../datos/base_datos.dart';
@@ -55,13 +56,13 @@ class _PantallaCampaniasState extends State<PantallaCampanias> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Campañas de recolección')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.campanias_de_recoleccion'))),
       floatingActionButton: _olivar?.id == null
           ? null
           : FloatingActionButton.extended(
               onPressed: _abrirNuevaCampania,
               icon: const Icon(Icons.add),
-              label: const Text('Nueva campaña'),
+              label: Text(SoleraL10n.t('acei.nueva_campania')),
             ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
@@ -71,14 +72,13 @@ class _PantallaCampaniasState extends State<PantallaCampanias> {
                 padding: const EdgeInsets.fromLTRB(0, 8, 0, 96),
                 children: [
                   if (_campanias.isEmpty)
-                    const Card(
-                      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                    Card(
+                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                       child: Padding(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: Text(
-                          'Todavía no has abierto ninguna campaña.\n'
-                          'Crea una para empezar a registrar recolecciones, '
-                          'partidas y molturaciones.',
+                          '${SoleraL10n.t('acei.sin_campanias')}\n'
+                          '${SoleraL10n.t('acei.sin_campanias_ayuda')}',
                         ),
                       ),
                     )
@@ -98,10 +98,14 @@ class _PantallaCampaniasState extends State<PantallaCampanias> {
                             title: Text(
                                 '${campania.anyoComercial}/${campania.anyoComercial + 1}'),
                             subtitle: Text(
-                              'Inicio: ${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(campania.fechaInicioMs))}',
+                              SoleraL10n.tf('acei.inicio_fecha', {
+                                'fecha': _formatoFecha.format(
+                                    DateTime.fromMillisecondsSinceEpoch(
+                                        campania.fechaInicioMs)),
+                              }),
                             ),
                             trailing: campania.estaAbierta
-                                ? const Chip(label: Text('Abierta'))
+                                ? Chip(label: Text(SoleraL10n.t('acei.abierta')))
                                 : null,
                           ),
                         )),

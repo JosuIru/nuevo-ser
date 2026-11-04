@@ -14,7 +14,7 @@
 // Detalle de fase y diferenciadores en `CLAUDE.md` del paquete.
 
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show cargarIdiomaSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, cargarIdiomaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'branding.dart';
@@ -30,7 +30,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
-  await initializeDateFormatting('es_ES', null);
+  // Todos los idiomas: los nombres de días y meses siguen al elegido.
+  await initializeDateFormatting();
   // Si la app murió a mitad de restaurar una copia, deshacerlo antes de
   // abrir la base de datos por primera vez.
   try {
@@ -128,31 +129,31 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _indice,
         onDestinationSelected: (i) => setState(() => _indice = i),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.today_outlined),
-            selectedIcon: Icon(Icons.today),
-            label: 'Hoy',
+            icon: const Icon(Icons.today_outlined),
+            selectedIcon: const Icon(Icons.today),
+            label: SoleraL10n.t('acei.hoy'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.map_outlined),
-            selectedIcon: Icon(Icons.map),
-            label: 'Mapa',
+            icon: const Icon(Icons.map_outlined),
+            selectedIcon: const Icon(Icons.map),
+            label: SoleraL10n.t('mapa'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.park_outlined),
-            selectedIcon: Icon(Icons.park),
-            label: 'Parcelas',
+            icon: const Icon(Icons.park_outlined),
+            selectedIcon: const Icon(Icons.park),
+            label: SoleraL10n.t('acei.parcelas'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.menu_book_outlined),
-            selectedIcon: Icon(Icons.menu_book),
-            label: 'Registros',
+            icon: const Icon(Icons.menu_book_outlined),
+            selectedIcon: const Icon(Icons.menu_book),
+            label: SoleraL10n.t('acei.registros'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Ajustes',
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: SoleraL10n.t('ajustes'),
           ),
         ],
       ),

@@ -11,6 +11,7 @@ import 'pantalla_ficha_lote.dart';
 import 'pantalla_lista_lotes.dart';
 import 'widgets/banner_catalogos_provisionales.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
+import '../utiles/textos_visibles.dart';
 
 /// Dashboard de "hoy". Muestra el estado de la campaña activa, el
 /// número de lotes y de parcelas, y los últimos lotes creados.
@@ -95,27 +96,26 @@ class _PantallaHoyState extends State<PantallaHoy> {
             const SizedBox(height: 24),
             Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
-                    'Últimos lotes',
+                    SoleraL10n.t('acei.ultimos_lotes'),
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                        const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                 ),
                 TextButton(
                   onPressed: () => _abrir((_) => const PantallaListaLotes()),
-                  child: const Text('Ver todos'),
+                  child: Text(SoleraL10n.t('acei.ver_todos')),
                 ),
               ],
             ),
             const SizedBox(height: 8),
             if (_ultimosLotes.isEmpty)
-              const Card(
+              Card(
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Text(
-                    'Todavía no hay lotes de aceite. Nacen al molturar una '
-                    'partida: Registros → Lotes de aceite.',
+                    SoleraL10n.t('acei.hoy_sin_lotes'),
                   ),
                 ),
               )
@@ -124,7 +124,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                     child: ListTile(
                       title: Text(l.identificadorLote),
                       subtitle: Text(
-                        '${l.kgNetos.toStringAsFixed(0)} kg · ${l.categoria}',
+                        '${l.kgNetos.toStringAsFixed(0)} kg · ${nombreCategoriaAceite(l.categoria)}',
                       ),
                       trailing: Text(_formatoFecha
                           .format(DateTime.fromMillisecondsSinceEpoch(
@@ -156,9 +156,8 @@ class _TarjetaCampania extends StatelessWidget {
       return Card(
         child: ListTile(
           leading: const Icon(Icons.calendar_today, color: Color(0xFF5C6B3A)),
-          title: const Text('Sin campaña abierta'),
-          subtitle: const Text('Toca para abrir una (también en Registros → '
-              'Campañas de recolección).'),
+          title: Text(SoleraL10n.t('acei.sin_campania_abierta')),
+          subtitle: Text(SoleraL10n.t('acei.sin_campania_abierta_ayuda')),
           trailing: const Icon(Icons.chevron_right),
           onTap: alPulsar,
         ),
@@ -169,10 +168,16 @@ class _TarjetaCampania extends StatelessWidget {
       child: ListTile(
         leading: const Icon(Icons.local_fire_department,
             color: Color(0xFF5C6B3A)),
-        title: Text('Campaña ${c.anyoComercial}/${c.anyoComercial + 1}'),
+        title: Text(SoleraL10n.tf('acei.campania_anyos', {
+          'inicio': c.anyoComercial,
+          'fin': c.anyoComercial + 1,
+        })),
         subtitle: Text(
-          'Inicio: ${formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(c.fechaInicioMs))}'
-          ' · Rendimiento medio: ${c.rendimientoMedioPorcentaje.toStringAsFixed(1)} %',
+          SoleraL10n.tf('acei.campania_inicio_rendimiento', {
+            'fecha': formatoFecha.format(
+                DateTime.fromMillisecondsSinceEpoch(c.fechaInicioMs)),
+            'rendimiento': c.rendimientoMedioPorcentaje.toStringAsFixed(1),
+          }),
         ),
         trailing: const Icon(Icons.chevron_right),
         onTap: alPulsar,
@@ -195,8 +200,8 @@ class _TarjetaConteos extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _Bloque(numero: parcelas, etiqueta: 'Parcelas'),
-            _Bloque(numero: lotes, etiqueta: 'Lotes'),
+            _Bloque(numero: parcelas, etiqueta: SoleraL10n.t('acei.parcelas')),
+            _Bloque(numero: lotes, etiqueta: SoleraL10n.t('acei.lotes')),
           ],
         ),
       ),

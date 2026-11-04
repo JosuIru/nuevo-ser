@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -78,13 +79,15 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        text:
-            'Cuaderno PAC olivar · campaña ${_campaniaSeleccionada!.anyoComercial}/${_campaniaSeleccionada!.anyoComercial + 1}',
+        text: SoleraL10n.tf('acei.cuaderno_pac_compartir_texto', {
+          'inicio': _campaniaSeleccionada!.anyoComercial,
+          'fin': _campaniaSeleccionada!.anyoComercial + 1,
+        }),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al generar el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('acei.error_generar_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -106,7 +109,7 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al abrir el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('acei.error_abrir_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -116,18 +119,18 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
   bool _validarPrecondiciones() {
     if (!_titularConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
-              'Configura primero la razón social y el NIF del titular en Ajustes.'),
+              SoleraL10n.t('acei.configura_titular_primero')),
         ),
       );
       return false;
     }
     if (_campaniaSeleccionada == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
-              'Necesitas una campaña abierta para generar el cuaderno PAC.'),
+              SoleraL10n.t('acei.necesitas_campania_cuaderno_pac')),
         ),
       );
       return false;
@@ -143,19 +146,18 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Cuaderno PAC olivar')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.cuaderno_pac_olivar'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           if (!_titularConfigurado)
             Card(
               color: Theme.of(context).colorScheme.errorContainer,
-              child: const ListTile(
+              child: ListTile(
                 leading: Icon(Icons.warning),
-                title: Text('Titular sin configurar'),
+                title: Text(SoleraL10n.t('acei.titular_sin_configurar')),
                 subtitle: Text(
-                  'El cuaderno oficial necesita razón social y NIF del titular. '
-                  'Edítalos desde Ajustes antes de generar el PDF.',
+                  SoleraL10n.t('acei.titular_sin_configurar_cuaderno'),
                 ),
               ),
             ),
@@ -166,7 +168,7 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
             title: Text(
               _titularConfigurado
                   ? _titular!.razonSocial
-                  : 'Sin titular configurado',
+                  : SoleraL10n.t('acei.sin_titular_configurado'),
             ),
             subtitle: _titularConfigurado ? Text('NIF ${_titular!.nif}') : null,
           ),
@@ -174,22 +176,22 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
           const SizedBox(height: 8),
           DropdownButtonFormField<Campania?>(
             initialValue: _campaniaSeleccionada,
-            decoration: const InputDecoration(
-              labelText: 'Campaña',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.campania'),
               border: OutlineInputBorder(),
             ),
             items: [
               if (_campanias.isEmpty)
-                const DropdownMenuItem<Campania?>(
+                DropdownMenuItem<Campania?>(
                   value: null,
-                  child: Text('Sin campañas registradas'),
+                  child: Text(SoleraL10n.t('acei.sin_campanias_registradas')),
                 ),
               for (final c in _campanias)
                 DropdownMenuItem<Campania?>(
                   value: c,
                   child: Text(
                     '${c.anyoComercial}/${c.anyoComercial + 1}'
-                    '${c.estaAbierta ? " · abierta" : ""}',
+                    '${c.estaAbierta ? " · ${SoleraL10n.t('acei.abierta_minuscula')}" : ""}',
                   ),
                 ),
             ],
@@ -198,20 +200,20 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
           const SizedBox(height: 12),
           DropdownButtonFormField<Parcela?>(
             initialValue: _parcelaSeleccionada,
-            decoration: const InputDecoration(
-              labelText: 'Parcela',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.parcela'),
               border: OutlineInputBorder(),
             ),
             items: [
-              const DropdownMenuItem<Parcela?>(
+              DropdownMenuItem<Parcela?>(
                 value: null,
-                child: Text('Todas las parcelas'),
+                child: Text(SoleraL10n.t('acei.todas_las_parcelas')),
               ),
               for (final p in _parcelas)
                 DropdownMenuItem<Parcela?>(
                   value: p,
                   child: Text(
-                    p.nombre.isEmpty ? 'Parcela #${p.id}' : p.nombre,
+                    p.nombre.isEmpty ? SoleraL10n.tf('acei.parcela_numero', {'id': p.id}) : p.nombre,
                   ),
                 ),
             ],
@@ -230,13 +232,13 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
                     ),
                   )
                 : const Icon(Icons.share),
-            label: const Text('Generar y compartir'),
+            label: Text(SoleraL10n.t('acei.generar_y_compartir')),
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: _generando ? null : _generarYAbrir,
             icon: const Icon(Icons.print),
-            label: const Text('Generar y abrir'),
+            label: Text(SoleraL10n.t('acei.generar_y_abrir')),
           ),
           const SizedBox(height: 24),
           Container(
@@ -246,13 +248,9 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.grey.shade300),
             ),
-            child: const Text(
-              'El cuaderno PAC olivar v0.1 incluye dos secciones: '
-              'tratamientos fitosanitarios y partes de recolección de la '
-              'campaña. El resto de eventos (podas, riegos, abonados) se '
-              'añadirán cuando entren los modelos correspondientes.\n\n'
-              'El subtítulo del PDF lleva el sello PROVISIONAL hasta que '
-              'un técnico de OCA revise el formato.',
+            child: Text(
+              '${SoleraL10n.t('acei.cuaderno_pac_explicacion_1')}\n\n'
+              '${SoleraL10n.t('acei.cuaderno_pac_explicacion_2')}',
               style: TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),

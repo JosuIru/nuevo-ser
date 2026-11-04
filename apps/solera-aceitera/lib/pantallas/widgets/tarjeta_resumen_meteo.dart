@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../datos/base_datos.dart';
@@ -21,7 +22,7 @@ class TarjetaResumenMeteo extends StatefulWidget {
 class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
   final _servicio = ServicioMeteoAceitera();
   Future<PrevisionAceitera>? _futuro;
-  String _origen = 'olivar';
+  String _origen = '';
 
   @override
   void initState() {
@@ -31,7 +32,7 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
 
   Future<PrevisionAceitera> _cargar() async {
     final destino = await resolverDestinoMeteoAceitera();
-    _origen = destino.nombre;
+    _origen = destino.claveNombre ?? destino.nombre;
     return _servicio.obtener(
       latitud: destino.latitud,
       longitud: destino.longitud,
@@ -56,31 +57,31 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
             future: _futuro,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
-                return const Row(
+                return Row(
                   children: [
-                    Icon(Icons.cloud_outlined, color: Color(0xFF5C6B3A)),
-                    SizedBox(width: 12),
-                    Text('Cargando previsión meteo…'),
+                    const Icon(Icons.cloud_outlined, color: Color(0xFF5C6B3A)),
+                    const SizedBox(width: 12),
+                    Text(SoleraL10n.t('acei.cargando_prevision_meteo')),
                   ],
                 );
               }
               if (snapshot.hasError || snapshot.data == null) {
-                return const Row(
+                return Row(
                   children: [
-                    Icon(Icons.cloud_off, color: Colors.grey),
-                    SizedBox(width: 12),
+                    const Icon(Icons.cloud_off, color: Colors.grey),
+                    const SizedBox(width: 12),
                     Expanded(
-                      child: Text(
-                          'No se pudo cargar la previsión. Toca para reintentar.'),
+                      child: Text(SoleraL10n.t(
+                          'acei.no_se_pudo_cargar_prevision_reintentar')),
                     ),
-                    Icon(Icons.chevron_right, color: Colors.grey),
+                    const Icon(Icons.chevron_right, color: Colors.grey),
                   ],
                 );
               }
               final prevision = snapshot.data!;
               final hoy = prevision.hoy;
               if (hoy == null) {
-                return const Text('Sin datos meteo para hoy.');
+                return Text(SoleraL10n.t('acei.sin_datos_meteo_hoy'));
               }
               final avisos = avisosClaveOlivar(hoy);
               return Column(
@@ -92,7 +93,8 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Meteo hoy · $_origen',
+                          SoleraL10n.tf('acei.meteo_hoy_origen',
+                              {'origen': nombreDestinoMeteoVisible(_origen)}),
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 14),
                           overflow: TextOverflow.ellipsis,
@@ -188,45 +190,45 @@ class AvisoOlivar {
 List<AvisoOlivar> avisosClaveOlivar(DiaMeteoOlivar dia) {
   final avisos = <AvisoOlivar>[];
   if (dia.riesgoHelada) {
-    avisos.add(const AvisoOlivar(
+    avisos.add(AvisoOlivar(
       Icons.ac_unit,
-      'Riesgo de helada · revisa olivos jóvenes',
-      Color(0xFF1976D2),
+      SoleraL10n.t('acei.aviso_corto_helada'),
+      const Color(0xFF1976D2),
     ));
   }
   if (dia.golpeCalorAceituna) {
-    avisos.add(const AvisoOlivar(
+    avisos.add(AvisoOlivar(
       Icons.local_fire_department,
-      'Golpe de calor en aceituna (>38 °C)',
-      Color(0xFFD84315),
+      SoleraL10n.t('acei.aviso_corto_golpe_calor'),
+      const Color(0xFFD84315),
     ));
   }
   if (dia.vueloMoscaOlivoActivo) {
-    avisos.add(const AvisoOlivar(
+    avisos.add(AvisoOlivar(
       Icons.bug_report,
-      'Vuelo activo de mosca del olivo',
-      Color(0xFFE65100),
+      SoleraL10n.t('acei.aviso_corto_mosca'),
+      const Color(0xFFE65100),
     ));
   }
   if (dia.malDiaTratamiento) {
-    avisos.add(const AvisoOlivar(
+    avisos.add(AvisoOlivar(
       Icons.science,
-      'Tratamientos delicados (viento o lluvia)',
-      Color(0xFFE65100),
+      SoleraL10n.t('acei.aviso_corto_tratamientos'),
+      const Color(0xFFE65100),
     ));
   }
   if (dia.estresHidrico) {
-    avisos.add(const AvisoOlivar(
+    avisos.add(AvisoOlivar(
       Icons.water_drop,
-      'Demanda hídrica alta · activa riego',
-      Color(0xFF0277BD),
+      SoleraL10n.t('acei.aviso_corto_estres_hidrico'),
+      const Color(0xFF0277BD),
     ));
   }
   if (dia.floracionEnRiesgo) {
-    avisos.add(const AvisoOlivar(
+    avisos.add(AvisoOlivar(
       Icons.local_florist,
-      'Floración en condiciones de mal cuajado',
-      Color(0xFFE65100),
+      SoleraL10n.t('acei.aviso_corto_floracion'),
+      const Color(0xFFE65100),
     ));
   }
   return avisos;
@@ -237,15 +239,26 @@ List<AvisoOlivar> avisosClaveOlivar(DiaMeteoOlivar dia) {
 /// el GPS reciente y, como fallback, hacia el centro del olivar
 /// peninsular.
 class DestinoMeteoAceitera {
+  /// Nombre propio (el del olivar) o vacío si se usa [claveNombre].
   final String nombre;
+
+  /// Clave de traducción del nombre cuando no es un nombre propio
+  /// («GPS reciente», «centro de parcelas»…).
+  final String? claveNombre;
   final double latitud;
   final double longitud;
   const DestinoMeteoAceitera({
-    required this.nombre,
+    this.nombre = '',
+    this.claveNombre,
     required this.latitud,
     required this.longitud,
   });
 }
+
+/// Texto visible del origen guardado por las pantallas de meteo: si es
+/// una clave `acei.*` la traduce; si no, es un nombre propio.
+String nombreDestinoMeteoVisible(String origen) =>
+    origen.startsWith('acei.') ? SoleraL10n.t(origen) : origen;
 
 Future<DestinoMeteoAceitera> resolverDestinoMeteoAceitera() async {
   final db = BaseDatosSoleraAceitera();
@@ -259,9 +272,10 @@ Future<DestinoMeteoAceitera> resolverDestinoMeteoAceitera() async {
         conCoords.length;
     final olivar = await db.obtenerOlivar();
     return DestinoMeteoAceitera(
-      nombre: (olivar?.nombre.isNotEmpty == true)
-          ? olivar!.nombre
-          : 'centro de parcelas',
+      nombre: olivar?.nombre ?? '',
+      claveNombre: (olivar?.nombre.isNotEmpty == true)
+          ? null
+          : 'acei.centro_de_parcelas',
       latitud: lat,
       longitud: lon,
     );
@@ -273,7 +287,7 @@ Future<DestinoMeteoAceitera> resolverDestinoMeteoAceitera() async {
       final ultima = await Geolocator.getLastKnownPosition();
       if (ultima != null) {
         return DestinoMeteoAceitera(
-          nombre: 'GPS reciente',
+          claveNombre: 'acei.gps_reciente',
           latitud: ultima.latitude,
           longitud: ultima.longitude,
         );
@@ -283,7 +297,7 @@ Future<DestinoMeteoAceitera> resolverDestinoMeteoAceitera() async {
       final pos = await Geolocator.getCurrentPosition()
           .timeout(const Duration(seconds: 8));
       return DestinoMeteoAceitera(
-        nombre: 'GPS actual',
+        claveNombre: 'acei.gps_actual',
         latitud: pos.latitude,
         longitud: pos.longitude,
       );
@@ -292,7 +306,7 @@ Future<DestinoMeteoAceitera> resolverDestinoMeteoAceitera() async {
   // Fallback: centro aproximado del olivar peninsular (Jaén — el centro
   // de masa real de la producción olivarera ibérica).
   return const DestinoMeteoAceitera(
-    nombre: 'centro del olivar peninsular',
+    claveNombre: 'acei.centro_olivar_peninsular',
     latitud: 37.78,
     longitud: -3.78,
   );

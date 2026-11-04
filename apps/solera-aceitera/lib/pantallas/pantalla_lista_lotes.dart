@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:intl/intl.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/lote_aceite.dart';
+import '../utiles/textos_visibles.dart';
 import 'pantalla_ficha_lote.dart';
 import 'pantalla_nueva_partida.dart';
 
@@ -63,15 +65,14 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Lotes de aceite')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.lotes_de_aceite'))),
       body: _lotes.isEmpty
-          ? const Center(
+          ? Center(
               child: Padding(
-                padding: EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 child: Text(
-                  'Sin lotes todavía.\n\n'
-                  'Pulsa «+» para registrar una recepción de aceituna en '
-                  'almazara. Cuando moltures, nacerá el lote.',
+                  '${SoleraL10n.t('acei.sin_lotes_todavia')}\n\n'
+                  '${SoleraL10n.t('acei.sin_lotes_ayuda')}',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -89,7 +90,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
                       title: Text(l.identificadorLote),
                       subtitle: Text(
                         '${l.kgNetos.toStringAsFixed(0)} kg · '
-                        '${l.categoria}'
+                        '${nombreCategoriaAceite(l.categoria)}'
                         '${l.dopId.isEmpty ? "" : " · DOP ${l.dopId}"}',
                       ),
                       trailing: Text(
@@ -106,7 +107,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _registrarPartida,
         icon: const Icon(Icons.add),
-        label: const Text('Nueva partida'),
+        label: Text(SoleraL10n.t('acei.nueva_partida')),
       ),
     );
   }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+
+import '../utiles/textos_visibles.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/tercero.dart';
@@ -44,21 +47,21 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Terceros (clientes / proveedores)')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.terceros_clientes_proveedores'))),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _abrirEditor(),
         icon: const Icon(Icons.add),
-        label: const Text('Nuevo tercero'),
+        label: Text(SoleraL10n.t('acei.nuevo_tercero')),
       ),
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
           : _terceros.isEmpty
-              ? const Center(
+              ? Center(
                   child: Padding(
                     padding: EdgeInsets.all(24),
                     child: Text(
-                      'Aún no has registrado clientes ni proveedores.\n'
-                      'Crea uno para asociarlo a tus apuntes de ingreso/gasto.',
+                      '${SoleraL10n.t('acei.sin_terceros')}\n'
+                      '${SoleraL10n.t('acei.sin_terceros_ayuda')}',
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -79,7 +82,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                         color: const Color(0xFF5C6B3A),
                       ),
                       title: Text(
-                        t.nombre.isEmpty ? '(sin nombre)' : t.nombre,
+                        t.nombre.isEmpty ? SoleraL10n.t('acei.sin_nombre') : t.nombre,
                       ),
                       subtitle: Text(
                         [
@@ -88,7 +91,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                           if (t.email.isNotEmpty) t.email,
                         ].where((s) => s.isNotEmpty).join(' · '),
                       ),
-                      trailing: Chip(label: Text(t.tipo)),
+                      trailing: Chip(label: Text(nombreTipoTercero(t.tipo))),
                       onTap: () => _abrirEditor(tercero: t),
                     );
                   },
@@ -180,53 +183,53 @@ class _EditorTerceroState extends State<_EditorTercero> {
         shrinkWrap: true,
         children: [
           Text(
-            widget.tercero == null ? 'Nuevo tercero' : 'Editar tercero',
+            widget.tercero == null ? SoleraL10n.t('acei.nuevo_tercero') : SoleraL10n.t('acei.editar_tercero'),
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 16),
           TextField(
             controller: _nombreCtrl,
-            decoration: const InputDecoration(
-              labelText: 'Nombre o razón social',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.nombre_o_razon_social'),
               border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 12),
           TextField(
             controller: _nifCtrl,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'NIF / CIF',
-              hintText: 'Obligatorio para el modelo 347',
+              hintText: SoleraL10n.t('acei.obligatorio_modelo_347'),
               border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 12),
           DropdownButtonFormField<String>(
             initialValue: _tipo,
-            decoration: const InputDecoration(
-              labelText: 'Tipo',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.tipo'),
               border: OutlineInputBorder(),
             ),
-            items: const [
-              DropdownMenuItem(value: 'cliente', child: Text('Cliente')),
-              DropdownMenuItem(value: 'proveedor', child: Text('Proveedor')),
-              DropdownMenuItem(value: 'ambos', child: Text('Cliente y proveedor')),
+            items: [
+              DropdownMenuItem(value: 'cliente', child: Text(SoleraL10n.t('acei.tercero_cliente'))),
+              DropdownMenuItem(value: 'proveedor', child: Text(SoleraL10n.t('proveedor'))),
+              DropdownMenuItem(value: 'ambos', child: Text(SoleraL10n.t('acei.tercero_ambos'))),
             ],
             onChanged: (v) => setState(() => _tipo = v ?? 'ambos'),
           ),
           const SizedBox(height: 12),
           TextField(
             controller: _direccionCtrl,
-            decoration: const InputDecoration(
-              labelText: 'Dirección',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.direccion'),
               border: OutlineInputBorder(),
             ),
           ),
           const SizedBox(height: 12),
           TextField(
             controller: _telefonoCtrl,
-            decoration: const InputDecoration(
-              labelText: 'Teléfono',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.telefono'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.phone,
@@ -234,8 +237,8 @@ class _EditorTerceroState extends State<_EditorTercero> {
           const SizedBox(height: 12),
           TextField(
             controller: _emailCtrl,
-            decoration: const InputDecoration(
-              labelText: 'Email',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.email'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.emailAddress,
@@ -243,8 +246,8 @@ class _EditorTerceroState extends State<_EditorTercero> {
           const SizedBox(height: 12),
           TextField(
             controller: _notasCtrl,
-            decoration: const InputDecoration(
-              labelText: 'Notas',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.notas'),
               border: OutlineInputBorder(),
             ),
             maxLines: 2,
@@ -252,7 +255,7 @@ class _EditorTerceroState extends State<_EditorTercero> {
           const SizedBox(height: 24),
           FilledButton(
             onPressed: _guardando ? null : _guardar,
-            child: const Text('Guardar tercero'),
+            child: Text(SoleraL10n.t('acei.guardar_tercero')),
           ),
         ],
       ),

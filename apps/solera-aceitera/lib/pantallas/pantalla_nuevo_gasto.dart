@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utiles/textos_visibles.dart';
+
 import '../datos/base_datos.dart';
 import '../modelos/apunte_gasto.dart';
 import '../modelos/parcela.dart';
@@ -38,22 +40,6 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
   bool _cargando = true;
   bool _guardando = false;
 
-  static const _tipos = <String, String>{
-    'insumos_olivar': 'Insumos del olivar (abonos, herbicidas)',
-    'fitosanitarios': 'Fitosanitarios',
-    'recoleccion': 'Recolección (jornales)',
-    'molturacion_externa': 'Molturación externa',
-    'envasado': 'Envasado (botellas, cápsulas, etiquetado)',
-    'analiticas': 'Analíticas (acidez, peróxidos, panel de cata)',
-    'cuota_dop': 'Cuota DOP / Consejo Regulador',
-    'maquinaria': 'Maquinaria (compra, mantenimiento)',
-    'mano_obra': 'Mano de obra (jornales fuera de recolección)',
-    'combustible': 'Combustible (gasóleo agrícola)',
-    'seguros': 'Seguros (agrarios)',
-    'transporte': 'Transporte',
-    'certificacion': 'Certificación (ecológico, integrada, DOP)',
-    'otro': 'Otro gasto',
-  };
 
   @override
   void initState() {
@@ -121,7 +107,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Nuevo gasto')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.nuevo_gasto'))),
       body: Form(
         key: _formKey,
         child: ListView(
@@ -131,34 +117,34 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.calendar_today),
               title: Text(
-                  'Fecha: ${_fecha.day}/${_fecha.month}/${_fecha.year}'),
+                  SoleraL10n.tf('acei.fecha_valor', {'fecha': '${_fecha.day}/${_fecha.month}/${_fecha.year}'})),
               trailing: TextButton(
                 onPressed: _seleccionarFecha,
-                child: const Text('Cambiar'),
+                child: Text(SoleraL10n.t('acei.cambiar')),
               ),
             ),
             const SizedBox(height: 8),
             DropdownButtonFormField<String>(
               initialValue: _tipoGasto,
-              decoration: const InputDecoration(
-                labelText: 'Tipo de gasto',
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('acei.tipo_de_gasto'),
                 border: OutlineInputBorder(),
               ),
-              items: _tipos.entries
-                  .map((e) =>
-                      DropdownMenuItem(value: e.key, child: Text(e.value)))
+              items: tiposGastoAceitera
+                  .map((tipo) => DropdownMenuItem(
+                      value: tipo, child: Text(nombreTipoGasto(tipo))))
                   .toList(),
               onChanged: (v) => setState(() => _tipoGasto = v ?? 'otro'),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _conceptoCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Concepto',
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('acei.concepto'),
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
-                  (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                  (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
             ),
             const SizedBox(height: 12),
             Row(
@@ -166,15 +152,15 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 Expanded(
                   child: TextFormField(
                     controller: _baseCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Importe base (€)',
+                    decoration: InputDecoration(
+                      labelText: SoleraL10n.t('acei.importe_base_euros'),
                       border: OutlineInputBorder(),
                     ),
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
                     validator: (v) {
                       final n = centimosDesdeTexto(v ?? '');
-                      if (n == null || n < 0) return 'Importe no válido';
+                      if (n == null || n < 0) return SoleraL10n.t('acei.importe_no_valido_corto');
                       return null;
                     },
                   ),
@@ -183,10 +169,10 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 Expanded(
                   child: TextFormField(
                     controller: _ivaCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'IVA soportado (€)',
+                    decoration: InputDecoration(
+                      labelText: SoleraL10n.t('acei.iva_soportado_euros'),
                       border: OutlineInputBorder(),
-                      helperText: 'Lee la cuota de IVA de la factura.',
+                      helperText: SoleraL10n.t('acei.iva_soportado_ayuda'),
                     ),
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
@@ -196,25 +182,25 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ],
             ),
             const SizedBox(height: 16),
-            const Text('Imputación',
+            Text(SoleraL10n.t('acei.imputacion'),
                 style: TextStyle(fontWeight: FontWeight.w600)),
             RadioListTile<String>(
               value: 'general',
               groupValue: _imputacion,
-              title: const Text('General de la explotación'),
+              title: Text(SoleraL10n.t('acei.imputacion_general')),
               onChanged: (v) => setState(() => _imputacion = v!),
             ),
             RadioListTile<String>(
               value: 'parcela_concreta',
               groupValue: _imputacion,
-              title: const Text('A una parcela concreta'),
+              title: Text(SoleraL10n.t('acei.imputacion_parcela')),
               onChanged: (v) => setState(() => _imputacion = v!),
             ),
             if (_imputacion == 'parcela_concreta')
               DropdownButtonFormField<Parcela?>(
                 initialValue: _parcelaSeleccionada,
-                decoration: const InputDecoration(
-                  labelText: 'Parcela',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.parcela'),
                   border: OutlineInputBorder(),
                 ),
                 items: [
@@ -222,7 +208,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                     DropdownMenuItem<Parcela?>(
                       value: p,
                       child: Text(
-                          p.nombre.isEmpty ? 'Parcela #${p.id}' : p.nombre),
+                          p.nombre.isEmpty ? SoleraL10n.tf('acei.parcela_numero', {'id': p.id}) : p.nombre),
                     ),
                 ],
                 onChanged: (v) => setState(() => _parcelaSeleccionada = v),
@@ -230,20 +216,20 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             const SizedBox(height: 12),
             DropdownButtonFormField<Tercero?>(
               initialValue: _terceroSeleccionado,
-              decoration: const InputDecoration(
-                labelText: 'Proveedor (opcional)',
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('acei.proveedor_opcional'),
                 border: OutlineInputBorder(),
               ),
               items: [
-                const DropdownMenuItem<Tercero?>(
+                DropdownMenuItem<Tercero?>(
                   value: null,
-                  child: Text('(sin tercero)'),
+                  child: Text(SoleraL10n.t('acei.sin_tercero')),
                 ),
                 for (final t in _terceros)
                   DropdownMenuItem<Tercero?>(
                     value: t,
                     child:
-                        Text(t.nombre.isEmpty ? '(sin nombre)' : t.nombre),
+                        Text(t.nombre.isEmpty ? SoleraL10n.t('acei.sin_nombre') : t.nombre),
                   ),
               ],
               onChanged: (v) => setState(() => _terceroSeleccionado = v),
@@ -251,16 +237,16 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _facturaCtrl,
-              decoration: const InputDecoration(
-                labelText: 'N.º de factura',
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('acei.numero_de_factura'),
                 border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 12),
             TextFormField(
               controller: _notasCtrl,
-              decoration: const InputDecoration(
-                labelText: 'Notas',
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('acei.notas'),
                 border: OutlineInputBorder(),
               ),
               maxLines: 2,
@@ -276,7 +262,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                           strokeWidth: 2, color: Colors.white),
                     )
                   : const Icon(Icons.save),
-              label: const Text('Guardar gasto'),
+              label: Text(SoleraL10n.t('acei.guardar_gasto')),
             ),
           ],
         ),

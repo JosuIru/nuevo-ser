@@ -31,15 +31,9 @@ Future<String?> probarClaveAnthropicAceitera(String clave) async {
 Widget construirPantallaClaveAnthropicAceitera() => PantallaClaveAnthropic(
       estado: estadoClaveAnthropicAceitera,
       nombreApp: 'Larrea Aceitera',
-      titulo: 'Identificación con IA',
-      queIdentifica: 'Identifica plagas y variedades del olivar por foto',
-      descripcion:
-          'La identificación visual de plagas, enfermedades y variedades '
-          'del olivar usa Claude, de Anthropic. Pega aquí tu clave '
-          'personal: se guarda solo en este dispositivo y nunca pasa por '
-          'un servidor de Larrea; las fotos van directas a Anthropic.\n\n'
-          'Las consultas se cobran en tu cuenta de Anthropic (unas décimas '
-          'de céntimo cada una con Claude Haiku). El resultado es una '
-          'ayuda: contrástalo con tu técnico.',
+      titulo: SoleraL10n.t('identificacion_con_ia'),
+      queIdentifica: SoleraL10n.t('acei.ia_que_identifica'),
+      descripcion: '${SoleraL10n.t('acei.ia_descripcion_1')}\n\n'
+          '${SoleraL10n.t('acei.ia_descripcion_2')}',
       probarClave: probarClaveAnthropicAceitera,
     );

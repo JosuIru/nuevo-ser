@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../datos/base_datos.dart';
@@ -65,7 +66,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Bienvenido a Larrea Aceitera')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.bienvenida'))),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
         child: Form(
@@ -75,25 +76,25 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
             children: [
               const Icon(Icons.eco, size: 72, color: Color(0xFF5C6B3A)),
               const SizedBox(height: 16),
-              const Text(
-                'Cuaderno de explotación olivarera y libro de movimientos del aceite para tu almazara.',
-                style: TextStyle(fontSize: 16, height: 1.4),
+              Text(
+                SoleraL10n.t('acei.onboarding_intro'),
+                style: const TextStyle(fontSize: 16, height: 1.4),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 32),
-              const Text(
-                'Datos del titular',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              Text(
+                SoleraL10n.t('acei.datos_del_titular'),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _razonSocialCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Razón social',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.razon_social'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                    (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
@@ -103,36 +104,36 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                    (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
               ),
               const SizedBox(height: 24),
-              const Text(
-                'Datos del olivar',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              Text(
+                SoleraL10n.t('acei.datos_del_olivar'),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _nombreOlivarCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Nombre del olivar',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.nombre_del_olivar'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v == null || v.trim().isEmpty) ? 'Obligatorio' : null,
+                    (v == null || v.trim().isEmpty) ? SoleraL10n.t('acei.obligatorio') : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _municipioCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Municipio',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.municipio'),
                   border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _provinciaCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Provincia',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.provincia'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -145,7 +146,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                         height: 20,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Empezar'),
+                    : Text(SoleraL10n.t('acei.empezar')),
               ),
             ],
           ),

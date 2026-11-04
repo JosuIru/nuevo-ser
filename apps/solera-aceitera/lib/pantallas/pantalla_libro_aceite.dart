@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:intl/intl.dart';
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
@@ -11,6 +12,7 @@ import '../modelos/lote_aceite.dart';
 import '../modelos/movimiento.dart';
 import '../modelos/titular.dart';
 import '../servicios/generador_libro_aceite_pdf.dart';
+import '../utiles/textos_visibles.dart';
 
 /// Libro de movimientos del aceite — tabla cronológica de todas las
 /// entradas/salidas/mezclas/envasados de cualquier lote, conforme al
@@ -64,23 +66,22 @@ class _PantallaLibroAceiteState extends State<PantallaLibroAceite> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Libro de movimientos del aceite'),
+        title: Text(SoleraL10n.t('acei.libro_movimientos_aceite')),
         actions: [
           IconButton(
-            tooltip: 'Exportar PDF AICA',
+            tooltip: SoleraL10n.t('acei.exportar_pdf_aica'),
             icon: const Icon(Icons.picture_as_pdf),
             onPressed: _abrirExportPdf,
           ),
         ],
       ),
       body: _filas.isEmpty
-          ? const Center(
+          ? Center(
               child: Padding(
-                padding: EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 child: Text(
-                  'Sin movimientos registrados todavía.\n'
-                  'Cada lote nuevo aporta una entrada al libro; mezclas, '
-                  'envasados, ventas y autoconsumos también aparecen aquí.',
+                  '${SoleraL10n.t('acei.libro_sin_movimientos')}\n'
+                  '${SoleraL10n.t('acei.libro_sin_movimientos_ayuda')}',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -98,10 +99,10 @@ class _PantallaLibroAceiteState extends State<PantallaLibroAceite> {
                         color: Color(0xFF5C6B3A)),
                     title: Text(
                       '${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(fila.movimiento.fechaMs))}'
-                      ' · Lote ${fila.lote.identificadorLote}',
+                      ' · ${SoleraL10n.tf('acei.lote_id', {'lote': fila.lote.identificadorLote})}',
                     ),
                     subtitle: Text(
-                      '${fila.movimiento.tipo} · '
+                      '${nombreTipoMovimiento(fila.movimiento.tipo)} · '
                       '${fila.movimiento.kgMovidos.toStringAsFixed(1)} kg'
                       '${fila.movimiento.ubicacionDestino.isEmpty ? "" : " → ${fila.movimiento.ubicacionDestino}"}',
                     ),
@@ -199,18 +200,16 @@ class _PantallaExportLibroAceiteState
   bool _validarPrecondiciones() {
     if (!_titularConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-              'Configura primero la razón social y el NIF del titular en Ajustes.'),
+        SnackBar(
+          content: Text(SoleraL10n.t('acei.configura_titular_primero')),
         ),
       );
       return false;
     }
     if (_campaniaSeleccionada == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-              'Necesitas una campaña para generar el libro AICA.'),
+        SnackBar(
+          content: Text(SoleraL10n.t('acei.necesitas_campania_libro_aica')),
         ),
       );
       return false;
@@ -229,13 +228,15 @@ class _PantallaExportLibroAceiteState
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        text:
-            'Libro de movimientos del aceite · campaña ${_campaniaSeleccionada!.anyoComercial}/${_campaniaSeleccionada!.anyoComercial + 1}',
+        text: SoleraL10n.tf('acei.libro_aceite_compartir_texto', {
+          'inicio': _campaniaSeleccionada!.anyoComercial,
+          'fin': _campaniaSeleccionada!.anyoComercial + 1,
+        }),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al generar el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('acei.error_generar_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -257,7 +258,7 @@ class _PantallaExportLibroAceiteState
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al abrir el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('acei.error_abrir_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -272,20 +273,17 @@ class _PantallaExportLibroAceiteState
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Exportar libro AICA')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.exportar_libro_aica'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           if (!_titularConfigurado)
             Card(
               color: Theme.of(context).colorScheme.errorContainer,
-              child: const ListTile(
-                leading: Icon(Icons.warning),
-                title: Text('Titular sin configurar'),
-                subtitle: Text(
-                  'El libro AICA necesita razón social, NIF y n.º AICA del '
-                  'titular. Edítalos desde Ajustes antes de generar el PDF.',
-                ),
+              child: ListTile(
+                leading: const Icon(Icons.warning),
+                title: Text(SoleraL10n.t('acei.titular_sin_configurar')),
+                subtitle: Text(SoleraL10n.t('acei.titular_sin_configurar_libro_aica')),
               ),
             ),
           if (!_titularConfigurado) const SizedBox(height: 12),
@@ -295,7 +293,7 @@ class _PantallaExportLibroAceiteState
             title: Text(
               _titularConfigurado
                   ? _titular!.razonSocial
-                  : 'Sin titular configurado',
+                  : SoleraL10n.t('acei.sin_titular_configurado'),
             ),
             subtitle: _titularConfigurado ? Text('NIF ${_titular!.nif}') : null,
           ),
@@ -303,22 +301,22 @@ class _PantallaExportLibroAceiteState
           const SizedBox(height: 8),
           DropdownButtonFormField<Campania?>(
             initialValue: _campaniaSeleccionada,
-            decoration: const InputDecoration(
-              labelText: 'Campaña',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.campania'),
               border: OutlineInputBorder(),
             ),
             items: [
               if (_campanias.isEmpty)
-                const DropdownMenuItem<Campania?>(
+                DropdownMenuItem<Campania?>(
                   value: null,
-                  child: Text('Sin campañas registradas'),
+                  child: Text(SoleraL10n.t('acei.sin_campanias_registradas')),
                 ),
               for (final c in _campanias)
                 DropdownMenuItem<Campania?>(
                   value: c,
                   child: Text(
                     '${c.anyoComercial}/${c.anyoComercial + 1}'
-                    '${c.estaAbierta ? " · abierta" : ""}',
+                    '${c.estaAbierta ? " · ${SoleraL10n.t('acei.abierta_minuscula')}" : ""}',
                   ),
                 ),
             ],
@@ -327,20 +325,20 @@ class _PantallaExportLibroAceiteState
           const SizedBox(height: 12),
           DropdownButtonFormField<LoteAceite?>(
             initialValue: _loteSeleccionado,
-            decoration: const InputDecoration(
-              labelText: 'Lote (opcional)',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.lote_opcional'),
               border: OutlineInputBorder(),
             ),
             items: [
-              const DropdownMenuItem<LoteAceite?>(
+              DropdownMenuItem<LoteAceite?>(
                 value: null,
-                child: Text('Todos los lotes de la campaña'),
+                child: Text(SoleraL10n.t('acei.todos_los_lotes_campania')),
               ),
               for (final l in _lotes)
                 DropdownMenuItem<LoteAceite?>(
                   value: l,
                   child: Text(
-                    '${l.identificadorLote} · ${l.categoria}',
+                    '${l.identificadorLote} · ${nombreCategoriaAceite(l.categoria)}',
                   ),
                 ),
             ],
@@ -359,13 +357,13 @@ class _PantallaExportLibroAceiteState
                     ),
                   )
                 : const Icon(Icons.share),
-            label: const Text('Generar y compartir'),
+            label: Text(SoleraL10n.t('acei.generar_y_compartir')),
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: _generando ? null : _generarYAbrir,
             icon: const Icon(Icons.print),
-            label: const Text('Generar y abrir'),
+            label: Text(SoleraL10n.t('acei.generar_y_abrir')),
           ),
           const SizedBox(height: 24),
           Container(
@@ -375,14 +373,10 @@ class _PantallaExportLibroAceiteState
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.grey.shade300),
             ),
-            child: const Text(
-              'El libro AICA v0.1 incluye tres secciones: lotes de la '
-              'campaña con parámetros analíticos, molturaciones registradas '
-              'y movimientos cronológicos (entradas, traslados, mezclas, '
-              'envasados, ventas, autoconsumo, mermas).\n\n'
-              'El subtítulo del PDF lleva el sello PROVISIONAL hasta que un '
-              'auditor de la AICA revise el formato.',
-              style: TextStyle(fontSize: 13, color: Colors.black87),
+            child: Text(
+              '${SoleraL10n.t('acei.libro_aica_explicacion_1')}\n\n'
+              '${SoleraL10n.t('acei.libro_aica_explicacion_2')}',
+              style: const TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),
         ],

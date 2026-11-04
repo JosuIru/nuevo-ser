@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/configuracion_fiscal.dart';
@@ -46,7 +47,7 @@ class _PantallaConfiguracionFiscalState
     if (!mounted) return;
     setState(() => _guardando = false);
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Configuración fiscal guardada.')),
+      SnackBar(content: Text(SoleraL10n.t('acei.configuracion_fiscal_guardada'))),
     );
     if (mounted) Navigator.of(context).pop(true);
   }
@@ -60,20 +61,20 @@ class _PantallaConfiguracionFiscalState
     }
     final anyoActual = DateTime.now().year;
     return Scaffold(
-      appBar: AppBar(title: const Text('Configuración fiscal')),
+      appBar: AppBar(title: Text(SoleraL10n.t('configuracion_fiscal'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
           _BannerProvisional(),
           const SizedBox(height: 16),
-          const Text('Régimen IRPF',
+          Text(SoleraL10n.t('acei.regimen_irpf'),
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
           RadioListTile<String>(
             value: 'estimacion_directa_simplificada',
             groupValue: _configuracion.regimenIrpf,
-            title: const Text('Estimación directa simplificada'),
-            subtitle: const Text(
-                'La más común si llevas contabilidad mínima al día.'),
+            title: Text(SoleraL10n.t('acei.estimacion_directa_simplificada')),
+            subtitle: Text(
+                SoleraL10n.t('acei.estimacion_simplificada_ayuda')),
             onChanged: (v) => setState(() {
               _configuracion = ConfiguracionFiscal(
                 id: _configuracion.id,
@@ -86,9 +87,9 @@ class _PantallaConfiguracionFiscalState
           RadioListTile<String>(
             value: 'estimacion_directa_normal',
             groupValue: _configuracion.regimenIrpf,
-            title: const Text('Estimación directa normal'),
-            subtitle: const Text(
-                'Cuando la simplificada no aplica por límites de facturación.'),
+            title: Text(SoleraL10n.t('acei.estimacion_directa_normal')),
+            subtitle: Text(
+                SoleraL10n.t('acei.estimacion_normal_ayuda')),
             onChanged: (v) => setState(() {
               _configuracion = ConfiguracionFiscal(
                 id: _configuracion.id,
@@ -99,16 +100,14 @@ class _PantallaConfiguracionFiscalState
             }),
           ),
           const Divider(),
-          const Text('Régimen IVA',
+          Text(SoleraL10n.t('acei.regimen_iva'),
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
           RadioListTile<String>(
             value: 'reagp',
             groupValue: _configuracion.regimenIva,
-            title: const Text('REAGP (compensación 12 % en aceituna)'),
-            subtitle: const Text(
-                'Régimen especial de agricultura. El comprador paga una compensación '
-                'REAGP del 12 % en la venta de aceituna; el titular no repercute '
-                'IVA en sus ventas agrícolas.'),
+            title: Text(SoleraL10n.t('acei.regimen_reagp')),
+            subtitle: Text(
+                SoleraL10n.t('acei.regimen_reagp_ayuda')),
             onChanged: (v) => setState(() {
               _configuracion = ConfiguracionFiscal(
                 id: _configuracion.id,
@@ -121,10 +120,9 @@ class _PantallaConfiguracionFiscalState
           RadioListTile<String>(
             value: 'general',
             groupValue: _configuracion.regimenIva,
-            title: const Text('Régimen general'),
-            subtitle: const Text(
-                'IVA repercutido 4 % en aceituna y aceite (alimento básico). '
-                'El IVA soportado en gastos es deducible.'),
+            title: Text(SoleraL10n.t('acei.regimen_general')),
+            subtitle: Text(
+                SoleraL10n.t('acei.regimen_general_ayuda')),
             onChanged: (v) => setState(() {
               _configuracion = ConfiguracionFiscal(
                 id: _configuracion.id,
@@ -140,11 +138,11 @@ class _PantallaConfiguracionFiscalState
             initialValue: _configuracion.anyoFiscalActivo == 0
                 ? anyoActual
                 : _configuracion.anyoFiscalActivo,
-            decoration: const InputDecoration(
-              labelText: 'Año fiscal activo',
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('acei.anyo_fiscal_activo'),
               border: OutlineInputBorder(),
               helperText:
-                  'Año por defecto que se abre en el libro económico.',
+                  SoleraL10n.t('acei.anyo_fiscal_activo_ayuda'),
             ),
             items: [
               for (var a = anyoActual + 1; a >= anyoActual - 5; a--)
@@ -170,7 +168,7 @@ class _PantallaConfiguracionFiscalState
                         strokeWidth: 2, color: Colors.white),
                   )
                 : const Icon(Icons.save),
-            label: const Text('Guardar configuración'),
+            label: Text(SoleraL10n.t('acei.guardar_configuracion')),
           ),
         ],
       ),
@@ -195,10 +193,7 @@ class _BannerProvisional extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              'PROVISIONAL hasta que lo valide un asesor fiscal agroalimentario. '
-              'Las reglas de IVA por defecto se basan en la interpretación '
-              'habitual del olivar; en cada apunte puedes sobrescribir el '
-              'IVA repercutido manualmente.',
+              SoleraL10n.t('acei.aviso_fiscal_provisional'),
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.amber.shade900,

@@ -40,49 +40,45 @@ class PantallaRegistros extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registros')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acei.registros'))),
       body: ListView(
         padding: const EdgeInsets.only(bottom: 24),
         children: [
-          const CabeceraSeccionAjustes('Aceite y almazara'),
+          CabeceraSeccionAjustes(SoleraL10n.t('acei.aceite_y_almazara')),
           _entradaQueAbre(
             context,
             icono: Icons.menu_book,
-            titulo: 'Libro de movimientos del aceite',
-            subtitulo: 'Entradas, salidas, mezclas y envasados por lote '
-                '(AICA, RD 760/2021) · exportar PDF',
+            titulo: SoleraL10n.t('acei.libro_movimientos_aceite'),
+            subtitulo: SoleraL10n.t('acei.registros_libro_aceite_sub'),
             construirPantalla: (_) => const PantallaLibroAceite(),
           ),
           _entradaQueAbre(
             context,
             icono: Icons.water_drop,
-            titulo: 'Lotes de aceite',
-            subtitulo: 'Cada lote con sus movimientos y analíticas · '
-                'registrar una partida de aceituna',
+            titulo: SoleraL10n.t('acei.lotes_de_aceite'),
+            subtitulo: SoleraL10n.t('acei.registros_lotes_sub'),
             construirPantalla: (_) => const PantallaListaLotes(),
           ),
           _entradaQueAbre(
             context,
             icono: Icons.local_fire_department,
-            titulo: 'Campañas de recolección',
-            subtitulo: 'Abrir la campaña de este año y ver las anteriores',
+            titulo: SoleraL10n.t('acei.campanias_de_recoleccion'),
+            subtitulo: SoleraL10n.t('acei.registros_campanias_sub'),
             construirPantalla: (_) => const PantallaCampanias(),
           ),
-          const CabeceraSeccionAjustes('Olivar y cuentas'),
+          CabeceraSeccionAjustes(SoleraL10n.t('acei.olivar_y_cuentas')),
           _entradaQueAbre(
             context,
             icono: Icons.picture_as_pdf,
-            titulo: 'Cuaderno PAC olivar',
-            subtitulo: 'Genera el PDF del cuaderno de explotación PAC '
-                '(RD 1311/2012) · sello PROVISIONAL',
+            titulo: SoleraL10n.t('acei.cuaderno_pac_olivar'),
+            subtitulo: SoleraL10n.t('acei.registros_cuaderno_sub'),
             construirPantalla: (_) => const PantallaCuadernoPac(),
           ),
           _entradaQueAbre(
             context,
             icono: Icons.book,
-            titulo: 'Libro económico anual',
-            subtitulo:
-                'Ingresos / gastos / resumen + extracto PDF · PROVISIONAL',
+            titulo: SoleraL10n.t('acei.libro_economico_anual'),
+            subtitulo: SoleraL10n.t('acei.registros_economico_sub'),
             construirPantalla: (_) => const PantallaLibroEconomico(),
           ),
         ],

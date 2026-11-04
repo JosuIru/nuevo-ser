@@ -1,0 +1,384 @@
+clave,es,eu,ca,gl
+ques.accion_recomendada,Acción recomendada,Gomendatutako ekintza,Acció recomanada,Acción recomendada
+ques.acerca_descripcion,"Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.","Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.","Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.","Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF."
+ques.activa_las_do,Activa las DO a las que pertenece tu quesería.,Aktibatu zure gaztategia zein JDtakoa den.,Activa les DO a les quals pertany la teva formatgeria.,Activa as DO ás que pertence a túa queixaría.
+ques.afinando_n,Afinando ({n}),Ontzen ({n}),En afinament ({n}),Afinando ({n})
+ques.ahumado,Ahumado,Ketua,Fumat,Fumado
+ques.ajustes_ia_ayuda,Clave de Anthropic para identificar defectos del queso por foto,"Anthropic gakoa, gaztaren akatsak argazki bidez identifikatzeko",Clau d'Anthropic per identificar defectes del formatge per foto,Clave de Anthropic para identificar defectos do queixo por foto
+ques.aleatorio_lote,Aleatorio: {lote},Ausazkoa: {lote},Aleatori: {lote},Aleatorio: {lote}
+ques.altitud_gps,Alt. GPS {m},GPS alt. {m},Alt. GPS {m},Alt. GPS {m}
+ques.analitica_agua,Agua,Ura,Aigua,Auga
+ques.analitica_fisico_quimica,Fisicoquímica,Fisiko-kimikoa,Fisicoquímica,Fisicoquímica
+ques.analitica_microbiologica,Microbiológica,Mikrobiologikoa,Microbiològica,Microbiolóxica
+ques.analitica_sensorial,Sensorial,Sentsoriala,Sensorial,Sensorial
+ques.analitica_superficie,Superficies,Gainazalak,Superfícies,Superficies
+ques.analiticas,Analíticas,Analisiak,Analítiques,Analíticas
+ques.analizando,Analizando…,Aztertzen…,Analitzant…,Analizando…
+ques.analizar,Analizar,Aztertu,Analitzar,Analizar
+ques.anular,Anular,Baliogabetu,Anul·lar,Anular
+ques.archivar,Archivar,Artxibatu,Arxivar,Arquivar
+ques.asunto_copia,Copia de seguridad de Larrea Quesera,Larrea Quesera-ren segurtasun-kopia,Còpia de seguretat de Larrea Quesera,Copia de seguridade de Larrea Quesera
+ques.aun_no_hay_proveedores_leche,Aún no hay proveedores de leche.,Oraindik ez dago esne-hornitzailerik.,Encara no hi ha proveïdors de llet.,Aínda non hai provedores de leite.
+ques.balance_anyo,Balance {anyo},{anyo}ko balantzea,Balanç {anyo},Balance {anyo}
+ques.base_imponible,Base imponible,Zerga-oinarria,Base imposable,Base impoñible
+ques.base_imponible_eur,Base imponible (€),Zerga-oinarria (€),Base imposable (€),Base impoñible (€)
+ques.borrar_nombre_pregunta,¿Borrar «{nombre}»?,«{nombre}» ezabatu?,Vols esborrar «{nombre}»?,Borrar «{nombre}»?
+ques.buscar_lote,Buscar lote…,Lotea bilatu…,Cerca un lot…,Buscar lote…
+ques.buscar_proveedor,Buscar proveedor…,Hornitzailea bilatu…,Cerca un proveïdor…,Buscar provedor…
+ques.buscar_un_lugar,Buscar un lugar,Leku bat bilatu,Cerca un lloc,Buscar un lugar
+ques.cabezas_n,{n} cabezas,{n} buru,{n} caps,{n} cabezas
+ques.cadena_completa,Cadena completa,Kate osoa,Cadena completa,Cadea completa
+ques.camara,Cámara,Kamera,Càmera,Cámara
+ques.cambiar,Cambiar,Aldatu,Canviar,Cambiar
+ques.cantidad,Cantidad,Kantitatea,Quantitat,Cantidade
+ques.cantidad_no_valida,Cantidad no válida: escribe un número entero (p. ej. 3),Kantitate okerra: idatzi zenbaki oso bat (adib. 3),Quantitat no vàlida: escriu un nombre enter (p. ex. 3),Cantidade non válida: escribe un número enteiro (p. ex. 3)
+ques.capas,Capas,Geruzak,Capes,Capas
+ques.cargar_datos_de_ejemplo,Cargar datos de ejemplo,Adibide-datuak kargatu,Carregar dades d'exemple,Cargar datos de exemplo
+ques.cargar_ejemplo,Cargar ejemplo,Adibidea kargatu,Carregar exemple,Cargar exemplo
+ques.cat_analiticas,Analíticas,Analisiak,Analítiques,Analíticas
+ques.cat_cuota_do,Cuota DO,JD kuota,Quota DO,Cota DO
+ques.cat_distribuidor,Distribuidor,Banatzailea,Distribuïdor,Distribuidor
+ques.cat_energia_cava,Energía de la cava,Ontze-gelaren energia,Energia de la cava,Enerxía da cava
+ques.cat_etiquetado,Etiquetado,Etiketatzea,Etiquetatge,Etiquetaxe
+ques.cat_feria,Feria,Azoka,Fira,Feira
+ques.cat_fermentos_cuajo,Fermentos y cuajo,Hartzigarriak eta gatzagia,Ferments i quall,Fermentos e callo
+ques.cat_leche,Leche,Esnea,Llet,Leite
+ques.cat_mano_obra,Mano de obra,Eskulana,Mà d'obra,Man de obra
+ques.cat_material_limpieza,Material de limpieza,Garbiketa-materiala,Material de neteja,Material de limpeza
+ques.cat_seguros,Seguros,Aseguruak,Assegurances,Seguros
+ques.cat_subvencion_do,Subvención DO,JD diru-laguntza,Subvenció DO,Subvención DO
+ques.cat_suscripcion,Suscripción,Harpidetza,Subscripció,Subscrición
+ques.cat_transporte,Transporte,Garraioa,Transport,Transporte
+ques.cat_venta_queso,Venta de queso,Gazta-salmenta,Venda de formatge,Venda de queixo
+ques.catalogos,Catálogos,Katalogoak,Catàlegs,Catálogos
+ques.catalogos_aviso_provisional,Rellenados a partir de fuentes públicas. Antes de pasar a producción comercial deben validarlos una asesoría quesera y los consejos reguladores. Las propuestas de la IA que coincidan con el catálogo se marcan como provisionales.,"Iturri publikoetatik betetakoak. Ekoizpen komertzialera igaro aurretik, gazta-aholkularitza batek eta kontseilu arautzaileek baliozkotu behar dituzte. Katalogoarekin bat datozen AAren proposamenak behin-behineko gisa markatzen dira.",Emplenats a partir de fonts públiques. Abans de passar a producció comercial els han de validar una assessoria formatgera i els consells reguladors. Les propostes de la IA que coincideixin amb el catàleg es marquen com a provisionals.,Cubertos a partir de fontes públicas. Antes de pasar a produción comercial deben validalos unha asesoría queixeira e os consellos reguladores. As propostas da IA que coincidan co catálogo márcanse como provisionais.
+ques.catalogos_provisionales,PROVISIONALES: sin validar todavía,BEHIN-BEHINEKOAK: oraindik baliozkotu gabe,PROVISIONALS: encara sense validar,PROVISIONAIS: aínda sen validar
+ques.catalogos_resumen,"{total} filas en 5 catálogos: {tipos} tipos de queso, {razas} razas lecheras, {do} denominaciones de origen, {defectos} defectos, {parametros} parámetros de analítica.","{total} errenkada 5 katalogotan: {tipos} gazta mota, {razas} arraza esnedun, {do} jatorri-deitura, {defectos} akats, {parametros} analisi-parametro.","{total} files en 5 catàlegs: {tipos} tipus de formatge, {razas} races lleteres, {do} denominacions d'origen, {defectos} defectes, {parametros} paràmetres d'analítica.","{total} filas en 5 catálogos: {tipos} tipos de queixo, {razas} razas leiteiras, {do} denominacións de orixe, {defectos} defectos, {parametros} parámetros de analítica."
+ques.catalogos_validados,Validados por asesoría quesera,Gazta-aholkularitzak baliozkotuak,Validats per una assessoria formatgera,Validados por asesoría queixeira
+ques.categoria,Categoría,Kategoria,Categoria,Categoría
+ques.causa_posible,Causa posible,Balizko kausa,Causa possible,Causa posible
+ques.cava,Cava,Ontze-gela,Cava,Cava
+ques.cava_camara,Cava / cámara,Ontze-gela / ganbera,Cava / cambra,Cava / cámara
+ques.cava_piezas_n,Cava ({n} piezas),Ontze-gela ({n} pieza),Cava ({n} peces),Cava ({n} pezas)
+ques.clave_anthropic_configurada,Clave de Anthropic configurada,Anthropic gakoa konfiguratuta,Clau d'Anthropic configurada,Clave de Anthropic configurada
+ques.cliente,Cliente,Bezeroa,Client,Cliente
+ques.coccion,Cocción,Egosketa,Cocció,Cocción
+ques.comenzar,Comenzar,Hasi,Començar,Comezar
+ques.compromiso_clave_anthropic,"Tu clave de Anthropic (si la configuras para la IA) se guarda solo en tu dispositivo. Las fotos se envían directamente a Anthropic, sin pasar por servidores intermedios.","Zure Anthropic gakoa (AArako konfiguratzen baduzu) zure gailuan bakarrik gordetzen da. Argazkiak zuzenean bidaltzen zaizkio Anthropic-i, tarteko zerbitzaririk gabe.","La teva clau d'Anthropic (si la configures per a la IA) només es desa al teu dispositiu. Les fotos s'envien directament a Anthropic, sense passar per servidors intermedis.","A túa clave de Anthropic (se a configuras para a IA) gárdase só no teu dispositivo. As fotos envíanse directamente a Anthropic, sen pasar por servidores intermedios."
+ques.compromiso_do_etiquetado,Los requisitos de cada DO salen de su pliego de condiciones. El etiquetado que genera la app no es vinculante: revísalo antes de imprimir.,JD bakoitzaren baldintzak bere baldintza-agiritik datoz. Aplikazioak sortzen duen etiketatzea ez da loteslea: berrikusi inprimatu aurretik.,Els requisits de cada DO surten del seu plec de condicions. L'etiquetatge que genera l'app no és vinculant: revisa'l abans d'imprimir.,Os requisitos de cada DO saen do seu prego de condicións. A etiquetaxe que xera a app non é vinculante: revísaa antes de imprimir.
+ques.compromiso_libro_trazabilidad,"El libro de trazabilidad debe ajustarse al RGSEAA, al Reglamento (CE) 853/2004 y a la normativa de tu comunidad autónoma. Verifica el formato con tu inspección antes de presentarlo.","Trazabilitate-liburuak RGSEAAra, 853/2004 (EE) Erregelamendura eta zure autonomia-erkidegoko araudira egokitu behar du. Egiaztatu formatua zure ikuskaritzarekin aurkeztu aurretik.","El llibre de traçabilitat s'ha d'ajustar al RGSEAA, al Reglament (CE) 853/2004 i a la normativa de la teva comunitat autònoma. Verifica el format amb la teva inspecció abans de presentar-lo.","O libro de rastrexabilidade debe axustarse ao RGSEAA, ao Regulamento (CE) 853/2004 e á normativa da túa comunidade autónoma. Verifica o formato coa túa inspección antes de presentalo."
+ques.compromiso_sin_marcas,"Larrea no recomienda fermentos, cuajos ni aditivos comerciales por marca: el catálogo recoge tipos, no productos. Consulta a tu técnico o proveedor.","Larrea-k ez du markaka hartzigarririk, gatzagirik edo gehigarri komertzialik gomendatzen: katalogoak motak biltzen ditu, ez produktuak. Galdetu zure teknikariari edo hornitzaileari.","Larrea no recomana ferments, qualls ni additius comercials per marca: el catàleg recull tipus, no productes. Consulta el teu tècnic o proveïdor.","Larrea non recomenda fermentos, callos nin aditivos comerciais por marca: o catálogo recolle tipos, non produtos. Consulta o teu técnico ou provedor."
+ques.compromisos_legales,Compromisos legales,Lege-konpromisoak,Compromisos legals,Compromisos legais
+ques.configura_clave_anthropic,Configura tu clave de Anthropic,Konfiguratu zure Anthropic gakoa,Configura la teva clau d'Anthropic,Configura a túa clave de Anthropic
+ques.configurar,Configurar,Konfiguratu,Configurar,Configurar
+ques.configurar_clave_api,Configurar la clave de API,API gakoa konfiguratu,Configurar la clau d'API,Configurar a clave de API
+ques.configurar_correo_respaldo,Configurar correo de respaldo,Babeskopiarako posta konfiguratu,Configurar el correu de còpia,Configurar correo para a copia
+ques.copia_con_fotos,"{copia}, con {n} fotos.","{copia}, {n} argazkirekin.","{copia}, amb {n} fotos.","{copia}, con {n} fotos."
+ques.copia_del,Copia del {fecha},{fecha}(e)ko kopia,Còpia del {fecha},Copia do {fecha}
+ques.copia_error_bd_danada,La base de datos de la copia está dañada.,Kopiaren datu-basea hondatuta dago.,La base de dades de la còpia està malmesa.,A base de datos da copia está danada.
+ques.copia_error_fichero_no_existe,No se encuentra el fichero elegido.,Ez da aukeratutako fitxategia aurkitzen.,No es troba el fitxer triat.,Non se atopa o ficheiro escollido.
+ques.copia_error_incompleta,La copia está incompleta o no se entiende.,Kopia osatu gabe dago edo ez da ulertzen.,La còpia és incompleta o no s'entén.,A copia está incompleta ou non se entende.
+ques.copia_error_no_es_zip,El fichero no es un ZIP válido o está dañado.,Fitxategia ez da ZIP baliodun bat edo hondatuta dago.,El fitxer no és un ZIP vàlid o està malmès.,O ficheiro non é un ZIP válido ou está danado.
+ques.copia_error_otra_app,"La copia es de otra aplicación, no de Larrea Quesera.","Kopia beste aplikazio batena da, ez Larrea Quesera-rena.","La còpia és d'una altra aplicació, no de Larrea Quesera.","A copia é doutra aplicación, non de Larrea Quesera."
+ques.copia_error_respaldo_previo,"No se ha podido guardar antes una copia de los datos actuales, así que no se ha restaurado nada.","Ezin izan da aurretik uneko datuen kopia bat gorde; beraz, ez da ezer leheneratu.","No s'ha pogut desar abans una còpia de les dades actuals, així que no s'ha restaurat res.","Non se puido gardar antes unha copia dos datos actuais, así que non se restaurou nada."
+ques.copia_error_reversion_fallida,La restauración ha fallado y no se ha podido volver del todo al estado anterior. No borres nada y pide ayuda.,Leheneratzeak huts egin du eta ezin izan da guztiz aurreko egoerara itzuli. Ez ezabatu ezer eta eskatu laguntza.,La restauració ha fallat i no s'ha pogut tornar del tot a l'estat anterior. No esborris res i demana ajuda.,A restauración fallou e non se puido volver de todo ao estado anterior. Non borres nada e pide axuda.
+ques.copia_error_reversion_fallida_ruta,La restauración ha fallado y no se ha podido volver del todo al estado anterior. No borres nada y pide ayuda: tus datos anteriores están en {ruta}.,Leheneratzeak huts egin du eta ezin izan da guztiz aurreko egoerara itzuli. Ez ezabatu ezer eta eskatu laguntza: zure aurreko datuak hemen daude: {ruta}.,La restauració ha fallat i no s'ha pogut tornar del tot a l'estat anterior. No esborris res i demana ajuda: les teves dades anteriors són a {ruta}.,A restauración fallou e non se puido volver de todo ao estado anterior. Non borres nada e pide axuda: os teus datos anteriores están en {ruta}.
+ques.copia_error_revertida,La restauración ha fallado a mitad y se ha vuelto al estado anterior.,Leheneratzeak huts egin du erdian eta aurreko egoerara itzuli da.,La restauració ha fallat a mitges i s'ha tornat a l'estat anterior.,A restauración fallou á metade e volveuse ao estado anterior.
+ques.copia_error_rutas,La copia contiene rutas no permitidas y se ha rechazado.,Kopiak baimendu gabeko bideak ditu eta baztertu egin da.,La còpia conté camins no permesos i s'ha rebutjat.,A copia contén rutas non permitidas e rexeitouse.
+ques.copia_error_sin_base_datos,El ZIP no contiene una base de datos de Larrea Quesera.,ZIPak ez du Larrea Quesera-ren datu-baserik.,El ZIP no conté cap base de dades de Larrea Quesera.,O ZIP non contén unha base de datos de Larrea Quesera.
+ques.copia_error_sin_datos,Todavía no hay datos que copiar.,Oraindik ez dago kopiatzeko daturik.,Encara no hi ha dades per copiar.,Aínda non hai datos que copiar.
+ques.copia_error_version_mas_nueva,La copia la hizo una versión más nueva de Larrea Quesera. Actualiza la app y vuelve a intentarlo.,Larrea Quesera-ren bertsio berriago batek egin zuen kopia. Eguneratu aplikazioa eta saiatu berriro.,La còpia la va fer una versió més nova de Larrea Quesera. Actualitza l'app i torna-ho a provar.,A copia fíxoa unha versión máis nova de Larrea Quesera. Actualiza a app e téntao de novo.
+ques.copia_incluye,"La copia incluye la base de datos y las fotos. Guárdala fuera del móvil (correo, nube, ordenador).","Kopiak datu-basea eta argazkiak ditu. Gorde ezazu mugikorretik kanpo (posta, hodeia, ordenagailua).","La còpia inclou la base de dades i les fotos. Desa-la fora del mòbil (correu, núvol, ordinador).","A copia inclúe a base de datos e as fotos. Gárdaa fóra do móbil (correo, nube, ordenador)."
+ques.copia_no_restaurable,Esta copia no se puede restaurar.,Kopia hau ezin da leheneratu.,Aquesta còpia no es pot restaurar.,Esta copia non se pode restaurar.
+ques.copia_restaurada,Copia restaurada. Desliza hacia abajo en cada pantalla para ver los datos recuperados.,Kopia leheneratuta. Irristatu behera pantaila bakoitzean berreskuratutako datuak ikusteko.,Còpia restaurada. Llisca cap avall a cada pantalla per veure les dades recuperades.,Copia restaurada. Desliza cara abaixo en cada pantalla para ver os datos recuperados.
+ques.copia_version_anterior,Copia de una versión anterior de la app (sin fecha),Aplikazioaren aurreko bertsio bateko kopia (datarik gabe),Còpia d'una versió anterior de l'app (sense data),Copia dunha versión anterior da app (sen data)
+ques.correo_ejemplo,tucorreo@ejemplo.com,zureposta@adibidea.eus,elteucorreu@exemple.cat,oteucorreo@exemplo.gal
+ques.correo_electronico,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
+ques.crear_proveedor,Crear proveedor,Hornitzailea sortu,Crear el proveïdor,Crear provedor
+ques.crear_receta,Crear receta,Errezeta sortu,Crear la recepta,Crear receita
+ques.cuajo,Cuajo,Gatzagia,Quall,Callo
+ques.cuajo_animal,Animal,Animalia,Animal,Animal
+ques.cuajo_animal_cordero,Animal (cordero),Animalia (bildotsa),Animal (xai),Animal (año)
+ques.cuajo_microbiano,Microbiano,Mikrobiarra,Microbià,Microbiano
+ques.cuajo_vegetal,Vegetal,Landarea,Vegetal,Vexetal
+ques.cuajo_vegetal_cardo,Vegetal (cardo),Landarea (kardua),Vegetal (card),Vexetal (cardo)
+ques.curacion_minima,Curación mínima,Gutxieneko ontzea,Curació mínima,Curado mínimo
+ques.curacion_minima_dias,Curación mínima (días),Gutxieneko ontzea (egunak),Curació mínima (dies),Curado mínimo (días)
+ques.dar_de_baja,Dar de baja,Baja eman,Donar de baixa,Dar de baixa
+ques.datos_no_tocados,Tus datos no se han tocado.,Zure datuak ez dira ukitu.,Les teves dades no s'han tocat.,Os teus datos non se tocaron.
+ques.datos_provisionales_asesor_fiscal,Datos provisionales: valídalos con tu asesor fiscal,Behin-behineko datuak: egiaztatu zure aholkulari fiskalarekin,Dades provisionals: valida-les amb el teu assessor fiscal,Datos provisionais: valídaos co teu asesor fiscal
+ques.defecto,Defecto,Akatsa,Defecte,Defecto
+ques.defecto_color,Color,Kolorea,Color,Cor
+ques.defecto_corteza,Corteza,Azala,Escorça,Codia
+ques.defecto_sabor,Sabor u olor,Zaporea edo usaina,Sabor o olor,Sabor ou cheiro
+ques.defecto_textura,Textura,Ehundura,Textura,Textura
+ques.defectos_en_queso_con_ia,Defectos en queso con IA,Gaztaren akatsak AArekin,Defectes del formatge amb IA,Defectos no queixo con IA
+ques.descripcion,Descripción,Deskribapena,Descripció,Descrición
+ques.desde_fecha,Desde: {fecha},Noiztik: {fecha},Des de: {fecha},Desde: {fecha}
+ques.diagnostico,Diagnóstico,Diagnostikoa,Diagnòstic,Diagnóstico
+ques.dias_n,{n} días,{n} egun,{n} dies,{n} días
+ques.direccion,Dirección,Helbidea,Adreça,Enderezo
+ques.direccion_opcional,Dirección (opcional),Helbidea (aukerakoa),Adreça (opcional),Enderezo (opcional)
+ques.do_activas,Denominaciones de origen activas,Jatorri-deitura aktiboak,Denominacions d'origen actives,Denominacións de orixe activas
+ques.do_ahumado_no,No permitido por el pliego de condiciones,Baldintza-agiriak ez du baimentzen,No permès pel plec de condicions,Non permitido polo prego de condicións
+ques.do_ahumado_permitido,Ahumado permitido,Ketzea baimenduta,Fumat permès,Fumado permitido
+ques.do_ahumado_si,"Permitido (haya, abedul, espino, cerezo, roble)","Baimenduta (pagoa, urkia, elorria, gerezia, haritza)","Permès (faig, bedoll, arç, cirerer, roure)","Permitido (faia, bidueiro, espiño, cerdeira, carballo)"
+ques.do_curacion_minima_dias,Curación mínima ({n} días),Gutxieneko ontzea ({n} egun),Curació mínima ({n} dies),Curado mínimo ({n} días)
+ques.do_curacion_pendiente,Pendiente: {edad} días < {minimo} requeridos ({restantes} días restantes),Zain: {edad} egun < eskatutako {minimo} ({restantes} egun falta dira),Pendent: {edad} dies < {minimo} requerits (en queden {restantes}),Pendente: {edad} días < {minimo} requiridos (quedan {restantes} días)
+ques.do_curacion_superada,Superada: {edad} días ≥ {minimo} requeridos,Gaindituta: {edad} egun ≥ eskatutako {minimo},Superada: {edad} dies ≥ {minimo} requerits,Superado: {edad} días ≥ {minimo} requiridos
+ques.do_no_especificada_pliego,No especificada en el pliego de condiciones,Ez dago zehaztuta baldintza-agirian,No especificada al plec de condicions,Non especificado no prego de condicións
+ques.do_opcional,DO (opcional),JD (aukerakoa),DO (opcional),DO (opcional)
+ques.do_organismo_de_control,Organismo de control,Kontrol-erakundea,Organisme de control,Organismo de control
+ques.do_razas_validar,{razas} (valídalas con tus proveedores),{razas} (egiaztatu zure hornitzaileekin),{razas} (valida-les amb els teus proveïdors),{razas} (valídaas cos teus provedores)
+ques.do_tipo_de_queso_dentro,Tipo de queso dentro de la DO,Gazta mota JDaren barruan,Tipus de formatge dins de la DO,Tipo de queixo dentro da DO
+ques.do_zona_de_produccion,Zona de producción,Ekoizpen-eremua,Zona de producció,Zona de produción
+ques.economia,Economía,Ekonomia,Economia,Economía
+ques.editar_proveedor,Editar proveedor,Hornitzailea editatu,Editar el proveïdor,Editar provedor
+ques.editar_queseria,Editar quesería,Gaztategia editatu,Editar la formatgeria,Editar queixaría
+ques.editar_receta,Editar receta,Errezeta editatu,Editar la recepta,Editar receita
+ques.ejecutar_trazabilidad,Ejecutar trazabilidad,Trazabilitatea exekutatu,Executar la traçabilitat,Executar rastrexabilidade
+ques.ejercicios_n,{n} ejercicios,{n} ariketa,{n} exercicis,{n} exercicios
+ques.elaboracion,Elaboración,Elaborazioa,Elaboració,Elaboración
+ques.enlaces,Enlaces,Estekak,Enllaços,Ligazóns
+ques.esri_satelite,Esri satélite,Esri satelitea,Esri satèl·lit,Esri satélite
+ques.estado_afinando,Afinando,Ontzen,En afinament,Afinando
+ques.estado_expedida,Expedida,Bidalita,Expedida,Expedida
+ques.evento_ahumado,Ahumado,Ketzea,Fumat,Fumado
+ques.evento_bano,Baño,Bainua,Bany,Baño
+ques.evento_cepillado,Cepillado,Eskuilaketa,Raspallat,Cepillado
+ques.evento_control_peso,Control de peso,Pisu-kontrola,Control de pes,Control de peso
+ques.evento_de_pieza,{evento} — pieza #{pieza},{evento} — pieza: #{pieza},{evento} — peça #{pieza},{evento} — peza #{pieza}
+ques.evento_inspeccion_visual,Inspección visual,Ikuskapen bisuala,Inspecció visual,Inspección visual
+ques.evento_volteo,Volteo,Iraulketa,Gir,Volta
+ques.eventos_de_curacion,Eventos de curación,Ontze-gertaerak,Esdeveniments de curació,Eventos de curado
+ques.explotacion_ganadera,Explotación ganadera,Abeltzaintza-ustiategia,Explotació ramadera,Explotación gandeira
+ques.exportar_importar_bd,Exportar / importar base de datos,Datu-basea esportatu / inportatu,Exportar / importar la base de dades,Exportar / importar base de datos
+ques.factura_anulada,Anulada,Baliogabetuta,Anul·lada,Anulada
+ques.factura_emitida,Emitida,Jaulkita,Emesa,Emitida
+ques.factura_pagada,Pagada,Ordainduta,Pagada,Pagada
+ques.factura_vencida,Vencida,Epez kanpo,Vençuda,Vencida
+ques.falta_permiso_ubicacion,Falta permiso de ubicación.,Kokapen-baimena falta da.,Falta el permís d'ubicació.,Falta o permiso de localización.
+ques.familia_larrea,Familia Larrea,Larrea familia,Família Larrea,Familia Larrea
+ques.familia_larrea_texto,"Larrea Quesera forma parte de la suite Larrea, de la Colección Nuevo Ser. Apps hermanas: Larrea (fincas agrícolas), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano y Larrea Aceitera.","Larrea Quesera Larrea suitearen parte da, Colección Nuevo Ser bildumakoa. Aplikazio ahizpak: Larrea (nekazaritza-lursailak), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano eta Larrea Aceitera.","Larrea Quesera forma part de la suite Larrea, de la Colección Nuevo Ser. Apps germanes: Larrea (finques agrícoles), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano i Larrea Aceitera.","Larrea Quesera forma parte da suite Larrea, da Colección Nuevo Ser. Apps irmás: Larrea (fincas agrícolas), Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano e Larrea Aceitera."
+ques.fecha,Fecha,Data,Data,Data
+ques.fermento,Fermento,Hartzigarria,Ferment,Fermento
+ques.ficha_de_lote,Ficha de lote,Lotearen fitxa,Fitxa del lot,Ficha do lote
+ques.formacion,Formación,Prestakuntza,Formació,Formación
+ques.foto_demasiado_grande,La foto pesa más de 5 MB. Reduce el tamaño antes de enviarla.,Argazkiak 5 MB baino gehiago ditu. Txikitu ezazu bidali aurretik.,La foto pesa més de 5 MB. Redueix-ne la mida abans d'enviar-la.,A foto pesa máis de 5 MB. Reduce o tamaño antes de enviala.
+ques.galeria,Galería,Galeria,Galeria,Galería
+ques.ganadero_externo,Ganadero externo,Kanpoko abeltzaina,Ramader extern,Gandeiro externo
+ques.gastos,Gastos,Gastuak,Despeses,Gastos
+ques.gastos_anyo,Gastos {anyo},{anyo}ko gastuak,Despeses {anyo},Gastos {anyo}
+ques.generando,Generando…,Sortzen…,Generant…,Xerando…
+ques.generar_y_compartir_pdf,Generar y compartir PDF,PDFa sortu eta partekatu,Generar i compartir el PDF,Xerar e compartir PDF
+ques.gestion_de_proveedores,Gestión de proveedores,Hornitzaileen kudeaketa,Gestió de proveïdors,Xestión de provedores
+ques.grano_fino,Grano fino,Ale fina,Gra fi,Gran fino
+ques.grano_grueso,Grano grueso,Ale lodia,Gra gruixut,Gran groso
+ques.grano_medio,Grano medio,Ale ertaina,Gra mitjà,Gran medio
+ques.grasa_pct,Grasa (%),Gantza (%),Greix (%),Graxa (%)
+ques.guardar_cambios,Guardar cambios,Aldaketak gorde,Desar els canvis,Gardar os cambios
+ques.guardar_gasto,Guardar gasto,Gastua gorde,Desar la despesa,Gardar gasto
+ques.guardar_ingreso,Guardar ingreso,Diru-sarrera gorde,Desar l'ingrés,Gardar ingreso
+ques.guardar_lote,Guardar lote,Lotea gorde,Desar el lot,Gardar lote
+ques.hacia_atras,Hacia atrás,Atzerantz,Cap enrere,Cara atrás
+ques.hasta_fecha,Hasta: {fecha},Noiz arte: {fecha},Fins a: {fecha},Ata: {fecha}
+ques.historial,Historial,Historia,Historial,Historial
+ques.hoy,Hoy,Gaur,Avui,Hoxe
+ques.hoy_fecha,"Hoy, {fecha}","Gaur, {fecha}","Avui, {fecha}","Hoxe, {fecha}"
+ques.humedad_pct,Humedad (%),Hezetasuna (%),Humitat (%),Humidade (%)
+ques.ia_defectos_en_queso,IA: defectos en queso,AA: gaztaren akatsak,IA: defectes del formatge,IA: defectos no queixo
+ques.ia_descripcion,"Con tu propia clave de Anthropic, Larrea Quesera puede analizar la foto de un queso (corte o corteza) y señalar posibles defectos de textura, corteza, color o hinchazón, con su causa probable y qué revisar. La herramienta está en Lotes → Cava. No sustituye a una analítica: ante la duda, deriva al laboratorio.","Zure Anthropic gakoarekin, Larrea Quesera-k gazta baten argazkia (ebakia edo azala) azter dezake eta ehundura-, azal-, kolore- edo puzte-akatsak adierazi, haien kausa probablearekin eta zer berrikusi behar den. Tresna Loteak → Ontze-gela atalean dago. Ez du analisirik ordezkatzen: zalantzarik baduzu, jo laborategira.","Amb la teva pròpia clau d'Anthropic, Larrea Quesera pot analitzar la foto d'un formatge (tall o escorça) i assenyalar possibles defectes de textura, escorça, color o inflament, amb la causa probable i què cal revisar. L'eina és a Lots → Cava. No substitueix una analítica: en cas de dubte, adreça't al laboratori.","Coa túa propia clave de Anthropic, Larrea Quesera pode analizar a foto dun queixo (corte ou codia) e sinalar posibles defectos de textura, codia, cor ou inchazo, coa súa causa probable e que revisar. A ferramenta está en Lotes → Cava. Non substitúe unha analítica: en caso de dúbida, deriva ao laboratorio."
+ques.ia_que_identifica,Identifica defectos en el corte y la corteza del queso,Gaztaren ebakiko eta azaleko akatsak identifikatzen ditu,Identifica defectes en el tall i l'escorça del formatge,Identifica defectos no corte e na codia do queixo
+ques.id_tipo_de_queso,ID del tipo de queso,Gazta motaren IDa,ID del tipus de formatge,ID do tipo de queixo
+ques.incidencia_alteracion_organoleptica,Alteración organoléptica,Aldaketa organoleptikoa,Alteració organolèptica,Alteración organoléptica
+ques.incidencia_contaminacion,Contaminación,Kutsadura,Contaminació,Contaminación
+ques.incidencia_defecto,Defecto,Akatsa,Defecte,Defecto
+ques.incidencia_hinchazon,Hinchazón,Puztea,Inflament,Inchazo
+ques.incidencia_moho_indeseado,Moho indeseado,Nahi ez den lizuna,Floridura no desitjada,Mofo non desexado
+ques.incidencia_retirada,Retirada,Erretiratzea,Retirada,Retirada
+ques.incidencia_rotura,Rotura,Haustura,Trencament,Rotura
+ques.incidencias,Incidencias,Gorabeherak,Incidències,Incidencias
+ques.ingredientes,Ingredientes,Osagaiak,Ingredients,Ingredientes
+ques.ingredientes_y_trazabilidad,Ingredientes y trazabilidad,Osagaiak eta trazabilitatea,Ingredients i traçabilitat,Ingredientes e rastrexabilidade
+ques.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
+ques.ingresos_anyo,Ingresos {anyo},{anyo}ko diru-sarrerak,Ingressos {anyo},Ingresos {anyo}
+ques.ingresos_gastos_resumen,"Ingresos, gastos y resumen fiscal","Diru-sarrerak, gastuak eta laburpen fiskala","Ingressos, despeses i resum fiscal","Ingresos, gastos e resumo fiscal"
+ques.inspector,Inspector,Ikuskatzailea,Inspector,Inspector
+ques.introduce_temperatura_y_humedad,"Introduce temperatura y humedad (p. ej. 12,5)","Idatzi tenperatura eta hezetasuna (adib. 12,5)","Introdueix la temperatura i la humitat (p. ex. 12,5)","Introduce temperatura e humidade (p. ex. 12,5)"
+ques.iva_10_reducido,10 % (tipo reducido),% 10 (tasa murriztua),10 % (tipus reduït),10 % (tipo reducido)
+ques.iva_4_superreducido,4 % (tipo superreducido),% 4 (tasa supermurriztua),4 % (tipus superreduït),4 % (tipo superreducido)
+ques.leche_cabra,Cabra,Ahuntza,Cabra,Cabra
+ques.leche_de_cabra,Leche de cabra,Ahuntz-esnea,Llet de cabra,Leite de cabra
+ques.leche_de_oveja,Leche de oveja,Ardi-esnea,Llet d'ovella,Leite de ovella
+ques.leche_de_vaca,Leche de vaca,Behi-esnea,Llet de vaca,Leite de vaca
+ques.leche_mezcla,Mezcla,Nahasketa,Barreja,Mestura
+ques.leche_oveja,Oveja,Ardia,Ovella,Ovella
+ques.leche_vaca,Vaca,Behia,Vaca,Vaca
+ques.limpieza,Limpieza,Garbiketa,Neteja,Limpeza
+ques.lineas_de_factura,Líneas de factura,Fakturaren lerroak,Línies de la factura,Liñas da factura
+ques.listas_para_vender,Listas para vender,Saltzeko prest,Llestes per vendre,Listas para vender
+ques.listas_para_vender_n,Listas para vender ({n}),Saltzeko prest ({n}),Llestes per vendre ({n}),Listas para vender ({n})
+ques.litros_n,{n} litros,{n} litro,{n} litres,{n} litros
+ques.lote_creado,Lote {lote} creado ({n} piezas),{lote} lotea sortuta ({n} pieza),Lot {lote} creat ({n} peces),Lote {lote} creado ({n} pezas)
+ques.lote_del_cuajo,Lote del cuajo,Gatzagiaren lotea,Lot del quall,Lote do callo
+ques.lote_del_fermento,Lote del fermento,Hartzigarriaren lotea,Lot del ferment,Lote do fermento
+ques.lote_no_encontrado,Lote no encontrado,Ez da lotea aurkitu,No s'ha trobat el lot,Non se atopou o lote
+ques.lotes,Lotes,Loteak,Lots,Lotes
+ques.mapa_vacio_ayuda,Da de alta los ganaderos externos y/o tu rebaño propio para que aparezcan en el mapa.,"Eman alta kanpoko abeltzainei eta/edo zure artalde propioari, mapan ager daitezen.",Dona d'alta els ramaders externs i/o el teu ramat propi perquè apareguin al mapa.,Dá de alta os gandeiros externos e/ou o teu rabaño propio para que aparezan no mapa.
+ques.marcar_como_lista,Marcar como lista,Prest gisa markatu,Marcar com a llesta,Marcar como lista
+ques.marcar_como_listo,Marcar como listo,Prest gisa markatu,Marcar com a llest,Marcar como listo
+ques.marcar_pagada,Marcar pagada,Ordainduta gisa markatu,Marcar com a pagada,Marcar como pagada
+ques.mas,Más,Gehiago,Més,Máis
+ques.meses_n,{n} meses,{n} hilabete,{n} mesos,{n} meses
+ques.meses_y_dias_n,{meses} meses {dias} días,{meses} hilabete eta {dias} egun,{meses} mesos i {dias} dies,{meses} meses e {dias} días
+ques.minimo_dias_n,Mín. {n} días,Gutx. {n} egun,Mín. {n} dies,Mín. {n} días
+ques.nif_opcional,NIF (opcional),IFZ (aukerakoa),NIF (opcional),NIF (opcional)
+ques.ninguna_copia_todavia,Todavía no has hecho ninguna copia,Oraindik ez duzu kopiarik egin,Encara no has fet cap còpia,Aínda non fixeches ningunha copia
+ques.no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
+ques.no_hay_lotes_registrados,No hay lotes registrados,Ez dago loterik erregistratuta,No hi ha lots registrats,Non hai lotes rexistrados
+ques.no_hay_piezas_en_afinado,No hay piezas en afinado,Ez dago ontzen ari den piezarik,No hi ha peces en afinament,Non hai pezas en afinado
+ques.no_hay_piezas_listas,No hay piezas listas,Ez dago pieza prestik,No hi ha peces llestes,Non hai pezas listas
+ques.no_se_ha_podido_crear_copia,No se ha podido crear la copia,Ezin izan da kopia sortu,No s'ha pogut crear la còpia,Non se puido crear a copia
+ques.no_se_ha_podido_leer_copia,No se ha podido leer la copia,Ezin izan da kopia irakurri,No s'ha pogut llegir la còpia,Non se puido ler a copia
+ques.no_se_ha_restaurado_copia,No se ha restaurado la copia,Ez da kopia leheneratu,No s'ha restaurat la còpia,Non se restaurou a copia
+ques.no_se_pudo_obtener_gps,No se pudo obtener el GPS actual.,Ezin izan da uneko GPSa lortu.,No s'ha pogut obtenir el GPS actual.,Non se puido obter o GPS actual.
+ques.nombre_de_la_receta,Nombre de la receta,Errezetaren izena,Nom de la recepta,Nome da receita
+ques.nombre_opcional,Nombre (opcional),Izena (aukerakoa),Nom (opcional),Nome (opcional)
+ques.nombre_razon_social,Nombre / razón social,Izena / sozietate-izena,Nom / raó social,Nome / razón social
+ques.nombre_receta_ejemplo,Ej.: Idiazabal semicurado,Adib.: Idiazabal erdi-ondua,P. ex.: Idiazabal semicurat,P. ex.: Idiazabal semicurado
+ques.notas,Notas,Oharrak,Notes,Notas
+ques.nueva_receta,Nueva receta,Errezeta berria,Recepta nova,Nova receita
+ques.nuevo_gasto,Nuevo gasto,Gastu berria,Despesa nova,Novo gasto
+ques.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Ingrés nou,Novo ingreso
+ques.nuevo_lote,Nuevo lote,Lote berria,Lot nou,Novo lote
+ques.nuevo_proveedor,Nuevo proveedor,Hornitzaile berria,Proveïdor nou,Novo provedor
+ques.nuevo_registro,Nuevo registro,Erregistro berria,Registre nou,Novo rexistro
+ques.numero_de_animales,Número de animales,Animalia kopurua,Nombre d'animals,Número de animais
+ques.numero_de_piezas,N.º de piezas,Pieza kopurua,Nre. de peces,N.º de pezas
+ques.numero_factura,N.º de factura,Faktura-zenbakia,Núm. de factura,N.º de factura
+ques.observaciones_ia_ayuda,"Tipo de queso, días de curación…","Gazta mota, ontze-egunak…","Tipus de formatge, dies de curació…","Tipo de queixo, días de curado…"
+ques.observaciones_opcional,Observaciones (opcional),Oharrak (aukerakoa),Observacions (opcional),Observacións (opcional)
+ques.onb_cava_texto,"Controla cada pieza individualmente: volteos, temperatura, humedad.","Kontrolatu pieza bakoitza banan-banan: iraulketak, tenperatura, hezetasuna.","Controla cada peça individualment: girs, temperatura, humitat.","Controla cada peza individualmente: voltas, temperatura, humidade."
+ques.onb_cava_titulo,Gestión de la cava,Ontze-gelaren kudeaketa,Gestió de la cava,Xestión da cava
+ques.onb_do_texto,Activa el perfil de tu denominación de origen.,Aktibatu zure jatorri-deituraren profila.,Activa el perfil de la teva denominació d'origen.,Activa o perfil da túa denominación de orixe.
+ques.onb_do_titulo,Cumplimiento de DO,JDaren betetzea,Compliment de la DO,Cumprimento da DO
+ques.onb_libro_texto,Genera el PDF de trazabilidad que te pide el inspector.,Sortu ikuskatzaileak eskatzen dizun trazabilitate-PDFa.,Genera el PDF de traçabilitat que et demana l'inspector.,Xera o PDF de rastrexabilidade que che pide o inspector.
+ques.onb_trazabilidad_texto,Registra cada lote desde la leche hasta la venta.,"Erregistratu lote bakoitza, esnetik salmentara.",Registra cada lot des de la llet fins a la venda.,Rexistra cada lote desde o leite ata a venda.
+ques.onb_trazabilidad_titulo,Trazabilidad de tu queso,Zure gaztaren trazabilitatea,Traçabilitat del teu formatge,Rastrexabilidade do teu queixo
+ques.otra,Otra,Beste bat,Altra,Outra
+ques.otro,Otro,Beste bat,Altre,Outro
+ques.parametros_de_proceso,Parámetros de proceso,Prozesuaren parametroak,Paràmetres del procés,Parámetros do proceso
+ques.parametros_de_produccion,Parámetros de producción,Ekoizpen-parametroak,Paràmetres de producció,Parámetros de produción
+ques.partida_n_litros,Partida #{id} — {litros} L,#{id} partida — {litros} L,Partida #{id} — {litros} L,Partida #{id} — {litros} L
+ques.partidas_de_leche_hoy,Partidas de leche hoy,Gaurko esne-partidak,Partides de llet d'avui,Partidas de leite hoxe
+ques.partidas_de_leche_usadas,Partidas de leche usadas,Erabilitako esne-partidak,Partides de llet utilitzades,Partidas de leite empregadas
+ques.paso_informe,Informe,Txostena,Informe,Informe
+ques.paso_seleccionar,Seleccionar,Hautatu,Seleccionar,Seleccionar
+ques.paso_trazar,Trazar,Trazatu,Traçar,Rastrexar
+ques.paso_verificar,Verificar,Egiaztatu,Verificar,Verificar
+ques.pdf_inspeccionable_7_secciones,PDF inspeccionable con 7 secciones.,7 ataleko PDF ikuskagarria.,PDF inspeccionable amb 7 seccions.,PDF inspeccionable con 7 seccións.
+ques.pdf_inspeccionable_por_periodo,PDF inspeccionable por periodo,Aldiko PDF ikuskagarria,PDF inspeccionable per període,PDF inspeccionable por período
+ques.peso_obtenido,Peso obtenido,Lortutako pisua,Pes obtingut,Peso obtido
+ques.peso_total_obtenido_kg,Peso total obtenido (kg),Lortutako pisu osoa (kg),Pes total obtingut (kg),Peso total obtido (kg)
+ques.ph_cuajada_opcional,pH de la cuajada (opcional),Mamiaren pHa (aukerakoa),pH de la quallada (opcional),pH da callada (opcional)
+ques.ph_salado,pH salado,Gazitzeko pHa,pH de salat,pH salgado
+ques.piezas,Piezas,Piezak,Peces,Pezas
+ques.piezas_entre_parentesis_n,Piezas ({n}),Piezak ({n}),Peces ({n}),Pezas ({n})
+ques.piezas_n,{n} piezas,{n} pieza,{n} peces,{n} pezas
+ques.plagas,Plagas,Izurriak,Plagues,Pragas
+ques.precio_eur,Precio (€),Prezioa (€),Preu (€),Prezo (€)
+ques.precio_no_valido,"Precio no válido (p. ej. 12,50)","Prezio okerra (adib. 12,50)","Preu no vàlid (p. ex. 12,50)","Prezo non válido (p. ex. 12,50)"
+ques.proteina_pct,Proteína (%),Proteina (%),Proteïna (%),Proteína (%)
+ques.proveedor_actualizado,Actualizado: {nombre},Eguneratuta: {nombre},Actualitzat: {nombre},Actualizado: {nombre}
+ques.proveedor_creado,Creado: {nombre},Sortuta: {nombre},Creat: {nombre},Creado: {nombre}
+ques.raza_id_catalogo,Raza (ID del catálogo),Arraza (katalogoko IDa),Raça (ID del catàleg),Raza (ID do catálogo)
+ques.razas_permitidas,Razas permitidas,Baimendutako arrazak,Races permeses,Razas permitidas
+ques.razon_social,Razón social,Sozietate-izena,Raó social,Razón social
+ques.realizado_por,Realizado por,Egilea,Fet per,Realizado por
+ques.rebano_propio_ayuda,Actívalo si es tu propia explotación,Aktibatu zure ustiategi propioa bada,Activa-ho si és la teva pròpia explotació,Actívao se é a túa propia explotación
+ques.receta,Receta,Errezeta,Recepta,Receita
+ques.receta_actualizada,Actualizada: {nombre},Eguneratuta: {nombre},Actualitzada: {nombre},Actualizada: {nombre}
+ques.receta_con_lotes,{nombre} tiene {n} lote(s) asociado(s).,{nombre} errezetak {n} lote ditu lotuta.,{nombre} té {n} lot(s) associat(s).,{nombre} ten {n} lote(s) asociado(s).
+ques.receta_creada,Creada: {nombre},Sortuta: {nombre},Creada: {nombre},Creada: {nombre}
+ques.registradas_n,{n} registradas,{n} erregistratuta,{n} registrades,{n} rexistradas
+ques.registrados_n,{n} registrados,{n} erregistratuta,{n} registrats,{n} rexistrados
+ques.registrar,Registrar,Erregistratu,Registrar,Rexistrar
+ques.registrar_volteo,Registrar volteo,Iraulketa erregistratu,Registrar gir,Rexistrar volta
+ques.registro_de_temperatura,Registro de temperatura,Tenperatura-erregistroa,Registre de temperatura,Rexistro de temperatura
+ques.registro_general_sanitario,Registro General Sanitario,Osasun Erregistro Orokorra,Registre General Sanitari,Rexistro Xeral Sanitario
+ques.registros,Registros,Erregistroak,Registres,Rexistros
+ques.registros_appcc_ayuda,"Temperatura, limpieza, plagas, analíticas y formación","Tenperatura, garbiketa, izurriak, analisiak eta prestakuntza","Temperatura, neteja, plagues, analítiques i formació","Temperatura, limpeza, pragas, analíticas e formación"
+ques.rendimiento,Rendimiento,Errendimendua,Rendiment,Rendemento
+ques.rendimiento_esperado,Rendimiento esperado: {n} L/kg,Espero den errendimendua: {n} L/kg,Rendiment esperat: {n} L/kg,Rendemento esperado: {n} L/kg
+ques.rendimiento_l_kg,Rendimiento (L/kg),Errendimendua (L/kg),Rendiment (L/kg),Rendemento (L/kg)
+ques.rendimiento_y_curacion,Rendimiento y curación,Errendimendua eta ontzea,Rendiment i curació,Rendemento e curado
+ques.requerido,Obligatorio,Derrigorrezkoa,Obligatori,Obrigatorio
+ques.respaldo_correo,Respaldo: {correo},Babeskopia: {correo},Còpia: {correo},Copia: {correo}
+ques.restaurar,Restaurar,Leheneratu,Restaurar,Restaurar
+ques.restaurar_aviso,Los datos actuales se sustituyen por los de la copia. Antes se guarda automáticamente una copia de lo que hay ahora.,"Uneko datuak kopiakoekin ordezkatuko dira. Aurretik, orain dagoenaren kopia bat gordeko da automatikoki.",Les dades actuals se substitueixen per les de la còpia. Abans es desa automàticament una còpia del que hi ha ara.,Os datos actuais substitúense polos da copia. Antes gárdase automaticamente unha copia do que hai agora.
+ques.restaurar_esta_copia,Restaurar esta copia,Kopia hau leheneratu,Restaurar aquesta còpia,Restaurar esta copia
+ques.resultado,Resultado,Emaitza,Resultat,Resultado
+ques.resumen,Resumen,Laburpena,Resum,Resumo
+ques.resumen_receta,{leche} · Cuajo: {cuajo} · Rend. {rendimiento} L/kg · Curación {dias} días,{leche} · Gatzagia: {cuajo} · Errend. {rendimiento} L/kg · Ontzea {dias} egun,{leche} · Quall: {cuajo} · Rend. {rendimiento} L/kg · Curació {dias} dies,{leche} · Callo: {cuajo} · Rend. {rendimiento} L/kg · Curado {dias} días
+ques.sal_lote,Sal / lote,Gatza / lotea,Sal / lot,Sal / lote
+ques.se_detectaron_roturas,Se detectaron roturas,Hausturak detektatu dira,S'han detectat trencaments,Detectáronse roturas
+ques.seccion_proximamente,Sección {n}: próximamente,{n}. atala: laster,Secció {n}: properament,Sección {n}: proximamente
+ques.seleccionar_elemento,1. Seleccionar elemento,1. Elementua hautatu,1. Seleccionar l'element,1. Seleccionar elemento
+ques.seleccionar_lote,Seleccionar lote,Lotea hautatu,Seleccionar el lot,Seleccionar lote
+ques.seleccionar_lote_al_azar,Seleccionar lote al azar,Ausazko lotea hautatu,Seleccionar un lot a l'atzar,Seleccionar lote ao chou
+ques.severidad,Severidad,Larritasuna,Gravetat,Gravidade
+ques.siguiente,Siguiente,Hurrengoa,Següent,Seguinte
+ques.simulacion_archivada,Simulación archivada,Simulazioa artxibatuta,Simulació arxivada,Simulación arquivada
+ques.simulacion_ayuda,"Ensaya una inspección: un lote al azar, cadena completa","Entseatu ikuskapen bat: ausazko lote bat, kate osoa","Assaja una inspecció: un lot a l'atzar, cadena completa","Ensaia unha inspección: un lote ao chou, cadea completa"
+ques.simulacion_de_inspeccion,Simulación de inspección,Ikuskapen-simulazioa,Simulació d'inspecció,Simulación de inspección
+ques.simulacion_explicacion,Reproduce una inspección real según el Reglamento (CE) 178/2002.,"Benetako ikuskapen bat erreproduzitzen du, 178/2002 (EE) Erregelamenduaren arabera.",Reprodueix una inspecció real segons el Reglament (CE) 178/2002.,Reproduce unha inspección real segundo o Regulamento (CE) 178/2002.
+ques.sin_do,Sin DO,JDrik gabe,Sense DO,Sen DO
+ques.sin_gastos,Sin gastos,Gasturik ez,Sense despeses,Sen gastos
+ques.sin_ingresos,Sin ingresos,Diru-sarrerarik ez,Sense ingressos,Sen ingresos
+ques.sin_resultados,Sin resultados,Emaitzarik ez,Sense resultats,Sen resultados
+ques.tamano_de_cuajada,Tamaño de cuajada,Mamiaren tamaina,Mida de la quallada,Tamaño da callada
+ques.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+ques.temp_coag_c,Temp. coag. (°C),Gatzatze-tenp. (°C),Temp. coag. (°C),Temp. coag. (°C)
+ques.temp_coagulacion,Temp. coagulación,Gatzatze-tenp.,Temp. de coagulació,Temp. coagulación
+ques.temp_coagulacion_c,Temp. coagulación (°C),Gatzatze-tenp. (°C),Temp. de coagulació (°C),Temp. coagulación (°C)
+ques.temp_coccion_c,Temp. cocción (°C),Egosketa-tenp. (°C),Temp. de cocció (°C),Temp. cocción (°C)
+ques.temp_y_humedad,{temp} °C / {hr} % HR,{temp} °C / % {hr} HE,{temp} °C / {hr} % HR,{temp} °C / {hr} % HR
+ques.temperatura,Temperatura,Tenperatura,Temperatura,Temperatura
+ques.temperatura_c,Temperatura (°C),Tenperatura (°C),Temperatura (°C),Temperatura (°C)
+ques.temperatura_recepcion_c,Temperatura de recepción (°C),Harrera-tenperatura (°C),Temperatura de recepció (°C),Temperatura de recepción (°C)
+ques.tiempo_coag,Tiempo coag.,Gatzatze-denbora,Temps coag.,Tempo coag.
+ques.tiempo_coag_min,Tiempo coag. (min),Gatzatze-denbora (min),Temps coag. (min),Tempo coag. (min)
+ques.tipo,Tipo,Mota,Tipus,Tipo
+ques.tipo_de_cuajo,Tipo de cuajo,Gatzagi mota,Tipus de quall,Tipo de callo
+ques.tipo_de_leche,Tipo de leche,Esne mota,Tipus de llet,Tipo de leite
+ques.tipo_de_queso,Tipo de queso,Gazta mota,Tipus de formatge,Tipo de queixo
+ques.total,Total,Guztira,Total,Total
+ques.trabajando,Trabajando…,Lanean…,Treballant…,Traballando…
+ques.trazabilidad_y_appcc,Trazabilidad y APPCC,Trazabilitatea eta APPCC,Traçabilitat i APPCC,Rastrexabilidade e APPCC
+ques.trazando,Trazando…,Trazatzen…,Traçant…,Rastrexando…
+ques.tu_nombre,Tu nombre,Zure izena,El teu nom,O teu nome
+ques.ultima_copia,Última copia: {fecha},Azken kopia: {fecha},Darrera còpia: {fecha},Última copia: {fecha}
+ques.ultimos_registros,Últimos registros,Azken erregistroak,Darrers registres,Últimos rexistros
+ques.ventas,Ventas,Salmentak,Vendes,Vendas
+ques.verif_analiticas_realizadas,Analíticas realizadas,Egindako analisiak,Analítiques fetes,Analíticas realizadas
+ques.verif_cuajo_registrado,Cuajo registrado,Gatzagia erregistratuta,Quall registrat,Callo rexistrado
+ques.verif_falta_cuajo,Falta cuajo,Gatzagia falta da,Falta el quall,Falta callo
+ques.verif_falta_fermento,Falta fermento,Hartzigarria falta da,Falta el ferment,Falta fermento
+ques.verif_faltan_piezas,Faltan piezas,Piezak falta dira,Falten peces,Faltan pezas
+ques.verif_fermento_registrado,Fermento registrado,Hartzigarria erregistratuta,Ferment registrat,Fermento rexistrado
+ques.verif_no_hay_partidas,No hay partidas,Ez dago partidarik,No hi ha partides,Non hai partidas
+ques.verif_piezas_registradas,Piezas registradas,Erregistratutako piezak,Peces registrades,Pezas rexistradas
+ques.verif_sin_analiticas,Sin analíticas,Analisirik ez,Sense analítiques,Sen analíticas
+ques.verif_sin_eventos,Sin eventos,Gertaerarik ez,Sense esdeveniments,Sen eventos
+ques.verif_sin_ventas,Sin ventas,Salmentarik ez,Sense vendes,Sen vendas
+ques.verif_trazabilidad_atras,Trazabilidad hacia atrás,Atzeranzko trazabilitatea,Traçabilitat cap enrere,Rastrexabilidade cara atrás
+ques.verif_ventas_registradas,Ventas registradas,Erregistratutako salmentak,Vendes registrades,Vendas rexistradas
+ques.verificacion,Verificación,Egiaztapena,Verificació,Verificación
+ques.version_instalada_y_ultima,Versión instalada y última publicada,Instalatutako bertsioa eta argitaratutako azkena,Versió instal·lada i darrera publicada,Versión instalada e última publicada
+ques.version_n,Versión {version},{version} bertsioa,Versió {version},Versión {version}
+ques.volteo_registrado,Volteo registrado: {pieza},Iraulketa erregistratuta: {pieza},Gir registrat: {pieza},Volta rexistrada: {pieza}
+ques.volumen_de_leche,Volumen de leche,Esne-bolumena,Volum de llet,Volume de leite
+ques.volumen_litros,Volumen (litros),Bolumena (litroak),Volum (litres),Volume (litros)
+ques.volumen_total_leche_l,Volumen total de leche (L),Esnearen bolumen osoa (L),Volum total de llet (L),Volume total de leite (L)
+ques.y_n_mas,… y {n} más,… eta beste {n},… i {n} més,… e {n} máis
+ques.zona_geografica,Zona geográfica,Eremu geografikoa,Zona geogràfica,Zona xeográfica

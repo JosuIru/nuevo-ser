@@ -60,7 +60,7 @@ class ClienteAnthropicQuesero {
     final imagen = await ImagenClaude.desdeFichero(foto.path);
     if (imagen.bytes.length > tamanoMaximoFotoBytes) {
       throw ErrorClaude(MotivoErrorClaude.peticionNoValida,
-          'La foto pesa más de 5 MB. Reduce el tamaño antes de enviarla.');
+          SoleraL10n.t('ques.foto_demasiado_grande'));
     }
     final json = await _clienteClaude.pedirJson(
       modelo: modeloClaudeRapido,

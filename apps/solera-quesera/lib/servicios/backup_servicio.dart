@@ -59,50 +59,48 @@ String textoErrorCopia(ErrorCopiaSeguridad error) {
   final String causa;
   switch (error.motivo) {
     case MotivoErrorCopiaSeguridad.ficheroNoExiste:
-      causa = 'No se encuentra el fichero elegido.';
+      causa = SoleraL10n.t('ques.copia_error_fichero_no_existe');
       break;
     case MotivoErrorCopiaSeguridad.noEsZip:
-      causa = 'El fichero no es un ZIP válido o está dañado.';
+      causa = SoleraL10n.t('ques.copia_error_no_es_zip');
       break;
     case MotivoErrorCopiaSeguridad.manifiestoNoValido:
-      causa = 'La copia está incompleta o no se entiende.';
+      causa = SoleraL10n.t('ques.copia_error_incompleta');
       break;
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      causa = 'La copia la hizo una versión más nueva de Larrea Quesera. '
-          'Actualiza la app y vuelve a intentarlo.';
+      causa = SoleraL10n.t('ques.copia_error_version_mas_nueva');
       break;
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      causa = 'La copia es de otra aplicación, no de Larrea Quesera.';
+      causa = SoleraL10n.t('ques.copia_error_otra_app');
       break;
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      causa = 'El ZIP no contiene una base de datos de Larrea Quesera.';
+      causa = SoleraL10n.t('ques.copia_error_sin_base_datos');
       break;
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
-      causa = 'La base de datos de la copia está dañada.';
+      causa = SoleraL10n.t('ques.copia_error_bd_danada');
       break;
     case MotivoErrorCopiaSeguridad.rutaPeligrosa:
-      causa = 'La copia contiene rutas no permitidas y se ha rechazado.';
+      causa = SoleraL10n.t('ques.copia_error_rutas');
       break;
     case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
-      causa = 'No se ha podido guardar antes una copia de los datos '
-          'actuales, así que no se ha restaurado nada.';
+      causa = SoleraL10n.t('ques.copia_error_respaldo_previo');
       break;
     case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
-      causa = 'Todavía no hay datos que copiar.';
+      causa = SoleraL10n.t('ques.copia_error_sin_datos');
       break;
     case MotivoErrorCopiaSeguridad.restauracionRevertida:
-      causa = 'La restauración ha fallado a mitad y se ha vuelto al '
-          'estado anterior.';
+      causa = SoleraL10n.t('ques.copia_error_revertida');
       break;
     case MotivoErrorCopiaSeguridad.reversionFallida:
       final respaldo = error.respaldoPrevio;
-      causa = 'La restauración ha fallado y no se ha podido volver del '
-          'todo al estado anterior. No borres nada y pide ayuda'
-          '${respaldo != null ? ': tus datos anteriores están en ${respaldo.path}' : ''}.';
+      causa = respaldo != null
+          ? SoleraL10n.tf('ques.copia_error_reversion_fallida_ruta',
+              {'ruta': respaldo.path})
+          : SoleraL10n.t('ques.copia_error_reversion_fallida');
       break;
   }
   if (!error.datosIntactos) return causa;
-  return '$causa Tus datos no se han tocado.';
+  return '$causa ${SoleraL10n.t('ques.datos_no_tocados')}';
 }

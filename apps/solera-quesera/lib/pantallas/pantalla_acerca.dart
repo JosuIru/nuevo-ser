@@ -57,51 +57,27 @@ class PantallaAcerca extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Larrea Quesera es un gestor para queserías artesanas: '
-            'recepción de leche por proveedor, lotes de producción, '
-            'afinado pieza a pieza en la cava, controles APPCC, perfiles '
-            'de denominación de origen, identificación de defectos por '
-            'foto con IA y libro de trazabilidad en PDF.',
-            style: TextStyle(fontSize: 14, height: 1.5),
+          Text(
+            SoleraL10n.t('ques.acerca_descripcion'),
+            style: const TextStyle(fontSize: 14, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Compromisos legales'),
-          const _Bullet(
-            'Larrea no recomienda fermentos, cuajos ni aditivos '
-            'comerciales por marca: el catálogo recoge tipos, no '
-            'productos. Consulta a tu técnico o proveedor.',
-          ),
-          const _Bullet(
-            'El libro de trazabilidad debe ajustarse al RGSEAA, al '
-            'Reglamento (CE) 853/2004 y a la normativa de tu comunidad '
-            'autónoma. Verifica el formato con tu inspección antes de '
-            'presentarlo.',
-          ),
-          const _Bullet(
-            'Los requisitos de cada DO salen de su pliego de condiciones. '
-            'El etiquetado que genera la app no es vinculante: revísalo '
-            'antes de imprimir.',
-          ),
-          const _Bullet(
-            'Tu clave de Anthropic (si la configuras para la IA) se guarda '
-            'solo en tu dispositivo. Las fotos se envían directamente '
-            'a Anthropic, sin pasar por servidores intermedios.',
-          ),
+          _Seccion(SoleraL10n.t('ques.compromisos_legales')),
+          _Bullet(SoleraL10n.t('ques.compromiso_sin_marcas')),
+          _Bullet(SoleraL10n.t('ques.compromiso_libro_trazabilidad')),
+          _Bullet(SoleraL10n.t('ques.compromiso_do_etiquetado')),
+          _Bullet(SoleraL10n.t('ques.compromiso_clave_anthropic')),
           const SizedBox(height: 24),
-          const _Seccion('Catálogos'),
+          _Seccion(SoleraL10n.t('ques.catalogos')),
           const _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Larrea'),
-          const Text(
-            'Larrea Quesera forma parte de la suite Larrea, de la Colección '
-            'Nuevo Ser. Apps hermanas: Larrea (fincas agrícolas), Larrea '
-            'Viticultura, Larrea Apícola, Larrea Arbolado Urbano y '
-            'Larrea Aceitera.',
-            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
+          _Seccion(SoleraL10n.t('ques.familia_larrea')),
+          Text(
+            SoleraL10n.t('ques.familia_larrea_texto'),
+            style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Enlaces'),
+          _Seccion(SoleraL10n.t('ques.enlaces')),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.public),
@@ -128,8 +104,8 @@ class _TarjetaCatalogos extends StatelessWidget {
     final icono =
         catalogosCompletamenteRevisados ? Icons.verified : Icons.fact_check;
     final etiqueta = catalogosCompletamenteRevisados
-        ? 'Validados por asesoría quesera'
-        : 'PROVISIONALES — sin validar todavía';
+        ? SoleraL10n.t('ques.catalogos_validados')
+        : SoleraL10n.t('ques.catalogos_provisionales');
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -157,23 +133,22 @@ class _TarjetaCatalogos extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '$totalFilas filas en 5 catálogos: '
-            '${todosTipoQuesos.length} tipos de queso, '
-            '${todosRazaLecheras.length} razas lecheras, '
-            '${todosDoQuesos.length} denominaciones de origen, '
-            '${todosDefectoQuesos.length} defectos, '
-            '${todosParametroAnaliticas.length} parámetros de analítica.',
+            SoleraL10n.tf('ques.catalogos_resumen', {
+              'total': totalFilas,
+              'tipos': todosTipoQuesos.length,
+              'razas': todosRazaLecheras.length,
+              'do': todosDoQuesos.length,
+              'defectos': todosDefectoQuesos.length,
+              'parametros': todosParametroAnaliticas.length,
+            }),
             style: TextStyle(fontSize: 13, height: 1.5, color: color.shade900),
           ),
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
-            const Text(
-              'Rellenados a partir de fuentes públicas. Antes de pasar a '
-              'producción comercial deben validarlos una asesoría quesera '
-              'y los consejos reguladores. Las propuestas de la IA que '
-              'coincidan con el catálogo se marcan como provisionales.',
-              style:
-                  TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
+            Text(
+              SoleraL10n.t('ques.catalogos_aviso_provisional'),
+              style: const TextStyle(
+                  fontSize: 12, color: Colors.black87, height: 1.5),
             ),
           ],
         ],

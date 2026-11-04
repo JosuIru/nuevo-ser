@@ -81,7 +81,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.person),
             title: Text(SoleraL10n.t('proveedores')),
-            subtitle: Text('$_numeroProveedores registrados'),
+            subtitle: Text(SoleraL10n.tf('ques.registrados_n', {'n': _numeroProveedores})),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(PantallaListaProveedores()),
           ),
@@ -89,8 +89,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.visibility),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
-            subtitle: const Text(
-                'Clave de Anthropic para identificar defectos del queso por foto'),
+            subtitle: Text(SoleraL10n.t('ques.ajustes_ia_ayuda')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(pantallaClaveAnthropicQuesera()),
           ),
@@ -103,7 +102,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.backup),
             title: Text(SoleraL10n.t('backup')),
-            subtitle: const Text('Exportar / importar base de datos'),
+            subtitle: Text(SoleraL10n.t('ques.exportar_importar_bd')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(PantallaBackup()),
           ),
@@ -111,7 +110,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.system_update),
             title: Text(SoleraL10n.t('comprobar_actualizaciones')),
-            subtitle: const Text('Versión instalada y última publicada'),
+            subtitle: Text(SoleraL10n.t('ques.version_instalada_y_ultima')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(
               context,
@@ -126,7 +125,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           ListTile(
             leading: const Icon(Icons.info_outline),
             title: Text(SoleraL10n.t('acerca_de')),
-            subtitle: const Text('Versión $versionSoleraQuesera'),
+            subtitle: Text(SoleraL10n.tf('ques.version_n', {'version': versionSoleraQuesera})),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaAcerca())),
@@ -172,12 +171,12 @@ class _PantallaEditarQueseriaState extends State<_PantallaEditarQueseria> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Editar quesería')),
+      appBar: AppBar(title: Text(SoleraL10n.t('ques.editar_queseria'))),
       body: ListView(padding: const EdgeInsets.all(16), children: [
         TextFormField(
             controller: _razonCtrl,
             decoration: InputDecoration(
-                labelText: 'Razón social', border: OutlineInputBorder())),
+                labelText: SoleraL10n.t('ques.razon_social'), border: OutlineInputBorder())),
         SizedBox(height: 12),
         TextFormField(
             controller: _nifCtrl,
@@ -189,23 +188,23 @@ class _PantallaEditarQueseriaState extends State<_PantallaEditarQueseria> {
             decoration: InputDecoration(
                 labelText: 'RGSEAA',
                 border: OutlineInputBorder(),
-                helperText: 'Registro General Sanitario')),
+                helperText: SoleraL10n.t('ques.registro_general_sanitario'))),
         SizedBox(height: 12),
         TextFormField(
             controller: _dirCtrl,
             decoration: InputDecoration(
-                labelText: 'Dirección', border: OutlineInputBorder())),
+                labelText: SoleraL10n.t('ques.direccion'), border: OutlineInputBorder())),
         SizedBox(height: 12),
         TextFormField(
             controller: _telCtrl,
             decoration: InputDecoration(
-                labelText: 'Teléfono', border: OutlineInputBorder()),
+                labelText: SoleraL10n.t('ques.telefono'), border: OutlineInputBorder()),
             keyboardType: TextInputType.phone),
         SizedBox(height: 12),
         TextFormField(
             controller: _emailCtrl,
             decoration: InputDecoration(
-                labelText: 'Email', border: OutlineInputBorder()),
+                labelText: SoleraL10n.t('ques.correo_electronico'), border: OutlineInputBorder()),
             keyboardType: TextInputType.emailAddress),
         SizedBox(height: 24),
         FilledButton(
@@ -218,7 +217,7 @@ class _PantallaEditarQueseriaState extends State<_PantallaEditarQueseria> {
                     rgseaa: _rgseaaCtrl.text,
                     telefono: _telCtrl.text,
                     email: _emailCtrl.text)),
-            child: Text('Guardar')),
+            child: Text(SoleraL10n.t('guardar'))),
       ]),
     );
   }

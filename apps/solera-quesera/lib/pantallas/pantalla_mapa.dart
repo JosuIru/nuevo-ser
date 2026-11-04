@@ -8,6 +8,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import '../datos/base_datos.dart';
 import '../modelos/proveedor_leche.dart';
 import '../utiles/permisos_gps.dart';
+import '../utiles/textos_quesera.dart';
 import 'pantalla_lista_proveedores.dart';
 
 enum _AccionMenu { proveedores }
@@ -125,7 +126,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!permitido) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Falta permiso de ubicación.')),
+          SnackBar(content: Text(SoleraL10n.t('ques.falta_permiso_ubicacion'))),
         );
       }
       return;
@@ -143,7 +144,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo obtener el GPS actual.')),
+          SnackBar(content: Text(SoleraL10n.t('ques.no_se_pudo_obtener_gps'))),
         );
       }
     }
@@ -183,9 +184,9 @@ class _PantallaMapaState extends State<PantallaMapa> {
                         Text(p.nombre,
                             style: Theme.of(context).textTheme.titleMedium),
                         Text(
-                          '${p.esPropio ? 'Rebaño propio' : 'Ganadero externo'} · '
-                          '${p.tipoLeche}'
-                          '${p.numAnimales != null ? ' · ${p.numAnimales} cabezas' : ''}',
+                          '${p.esPropio ? SoleraL10n.t('rebano_propio') : SoleraL10n.t('ques.ganadero_externo')} · '
+                          '${textoTipoLeche(p.tipoLeche)}'
+                          '${p.numAnimales != null ? ' · ${SoleraL10n.tf('ques.cabezas_n', {'n': p.numAnimales})}' : ''}',
                           style: const TextStyle(color: Colors.grey),
                         ),
                       ],
@@ -198,8 +199,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 _Fila(clave: 'REGA', valor: p.explotacionGanadera),
               if (p.nif.isNotEmpty) _Fila(clave: 'NIF', valor: p.nif),
               if (p.direccion.isNotEmpty)
-                _Fila(clave: 'Dirección', valor: p.direccion),
-              if (p.notas.isNotEmpty) _Fila(clave: 'Notas', valor: p.notas),
+                _Fila(clave: SoleraL10n.t('ques.direccion'), valor: p.direccion),
+              if (p.notas.isNotEmpty) _Fila(clave: SoleraL10n.t('ques.notas'), valor: p.notas),
               const SizedBox(height: 12),
               Align(
                 alignment: Alignment.centerRight,
@@ -209,7 +210,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                     _abrirGestionProveedores();
                   },
                   icon: const Icon(Icons.edit_outlined),
-                  label: const Text('Editar'),
+                  label: Text(SoleraL10n.t('editar')),
                 ),
               ),
             ],
@@ -280,11 +281,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            tooltip: 'Buscar un lugar',
+            tooltip: SoleraL10n.t('ques.buscar_un_lugar'),
             onPressed: _buscarLugar,
           ),
           PopupMenuButton<_AccionMenu>(
-            tooltip: 'Más',
+            tooltip: SoleraL10n.t('ques.mas'),
             onSelected: (a) async {
               switch (a) {
                 case _AccionMenu.proveedores:
@@ -302,7 +303,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                           child: const Icon(Icons.pets),
                         )
                       : const Icon(Icons.pets),
-                  title: const Text('Gestión de proveedores'),
+                  title: Text(SoleraL10n.t('ques.gestion_de_proveedores')),
                   contentPadding: EdgeInsets.zero,
                 ),
               ),
@@ -373,11 +374,11 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   color: Colors.black.withValues(alpha: 0.45),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Text(
-                    'Esri satélite',
-                    style: TextStyle(color: Colors.white, fontSize: 11),
+                    SoleraL10n.t('ques.esri_satelite'),
+                    style: const TextStyle(color: Colors.white, fontSize: 11),
                   ),
                 ),
               ),
@@ -393,22 +394,21 @@ class _PantallaMapaState extends State<PantallaMapa> {
                     children: [
                       const Icon(Icons.pets, size: 48, color: Color(0xFFC8923B)),
                       const SizedBox(height: 12),
-                      const Text(
-                        'Aún no hay proveedores de leche.',
-                        style: TextStyle(fontWeight: FontWeight.w600),
+                      Text(
+                        SoleraL10n.t('ques.aun_no_hay_proveedores_leche'),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                       const SizedBox(height: 4),
-                      const Text(
-                        'Da de alta los ganaderos externos y/o tu rebaño propio '
-                        'para que aparezcan en el mapa.',
+                      Text(
+                        SoleraL10n.t('ques.mapa_vacio_ayuda'),
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 13, color: Colors.grey),
+                        style: const TextStyle(fontSize: 13, color: Colors.grey),
                       ),
                       const SizedBox(height: 12),
                       FilledButton.icon(
                         onPressed: _abrirGestionProveedores,
                         icon: const Icon(Icons.add),
-                        label: const Text('Gestión de proveedores'),
+                        label: Text(SoleraL10n.t('ques.gestion_de_proveedores')),
                       ),
                     ],
                   ),
@@ -437,7 +437,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? 'Capas' : 'Mapa',
+                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('ques.capas') : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -461,8 +461,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 10),
                       child: Text(_altitudGps == null
-                          ? 'Alt. GPS --'
-                          : 'Alt. GPS ${_altitudGps!.toStringAsFixed(0)} m'),
+                          ? SoleraL10n.tf('ques.altitud_gps', {'m': '--'})
+                          : SoleraL10n.tf('ques.altitud_gps', {'m': '${_altitudGps!.toStringAsFixed(0)} m'})),
                     ),
                   ),
                 ],
@@ -475,7 +475,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
         heroTag: 'fab_proveedores_mapa',
         onPressed: _abrirGestionProveedores,
         icon: const Icon(Icons.pets),
-        label: const Text('Proveedores'),
+        label: Text(SoleraL10n.t('proveedores')),
       ),
     );
   }

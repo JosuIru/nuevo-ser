@@ -7,6 +7,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../servicios/backup_servicio.dart';
+import '../utiles/textos_quesera.dart';
 
 /// Crear y restaurar copias de seguridad (BD + fotos) con el servicio
 /// común del core.
@@ -18,7 +19,7 @@ class PantallaBackup extends StatefulWidget {
 
 class _PantallaBackupState extends State<PantallaBackup> {
   final _servicioCopia = BackupServicioQuesera.instancia;
-  final _formatoFecha = DateFormat('d MMM yyyy HH:mm', 'es_ES');
+  DateFormat get _formatoFecha => DateFormat('d MMM yyyy HH:mm', localeFechasQuesera());
   bool _trabajando = false;
   DateTime? _ultimaCopia;
 
@@ -46,12 +47,12 @@ class _PantallaBackupState extends State<PantallaBackup> {
       await _cargar();
       if (mounted) {
         await Share.shareXFiles([XFile(copia.path)],
-            subject: 'Copia de seguridad de Larrea Quesera');
+            subject: SoleraL10n.t('ques.asunto_copia'));
       }
     } on ErrorCopiaSeguridad catch (error) {
-      _avisar('No se ha podido crear la copia. ${textoErrorCopia(error)}');
+      _avisar('${SoleraL10n.t('ques.no_se_ha_podido_crear_copia')}. ${textoErrorCopia(error)}');
     } catch (error) {
-      _avisar('No se ha podido crear la copia: $error');
+      _avisar('${SoleraL10n.t('ques.no_se_ha_podido_crear_copia')}: $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -71,11 +72,11 @@ class _PantallaBackupState extends State<PantallaBackup> {
     try {
       informe = await _servicioCopia.validarCopia(ficheroCopia);
     } on ErrorCopiaSeguridad catch (error) {
-      _avisar('Esta copia no se puede restaurar. ${textoErrorCopia(error)}');
+      _avisar('${SoleraL10n.t('ques.copia_no_restaurable')} ${textoErrorCopia(error)}');
       if (mounted) setState(() => _trabajando = false);
       return;
     } catch (error) {
-      _avisar('No se ha podido leer la copia: $error');
+      _avisar('${SoleraL10n.t('ques.no_se_ha_podido_leer_copia')}: $error');
       if (mounted) setState(() => _trabajando = false);
       return;
     }
@@ -84,15 +85,14 @@ class _PantallaBackupState extends State<PantallaBackup> {
 
     final fechaCopia = informe.fechaCreacion;
     final descripcionCopia = fechaCopia != null
-        ? 'Copia del ${_formatoFecha.format(fechaCopia.toLocal())}'
-        : 'Copia de una versión anterior de la app (sin fecha)';
+        ? SoleraL10n.tf('ques.copia_del', {'fecha': _formatoFecha.format(fechaCopia.toLocal())})
+        : SoleraL10n.t('ques.copia_version_anterior');
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
-      titulo: 'Restaurar esta copia',
-      mensaje: '$descripcionCopia, con ${informe.numeroFicherosExtra} '
-          'fotos.\n\nLos datos actuales se sustituyen por los de la copia. '
-          'Antes se guarda automáticamente una copia de lo que hay ahora.',
-      textoConfirmar: 'Restaurar',
+      titulo: SoleraL10n.t('ques.restaurar_esta_copia'),
+      mensaje: '${SoleraL10n.tf('ques.copia_con_fotos', {'copia': descripcionCopia, 'n': informe.numeroFicherosExtra})}'
+          '\n\n${SoleraL10n.t('ques.restaurar_aviso')}',
+      textoConfirmar: SoleraL10n.t('ques.restaurar'),
       icono: Icons.restore,
     );
     if (!confirmado || !mounted) return;
@@ -101,12 +101,11 @@ class _PantallaBackupState extends State<PantallaBackup> {
     try {
       await _servicioCopia.restaurarCopia(ficheroCopia);
       await _cargar();
-      _avisar('Copia restaurada. Desliza hacia abajo en cada pantalla '
-          'para ver los datos recuperados.');
+      _avisar(SoleraL10n.t('ques.copia_restaurada'));
     } on ErrorCopiaSeguridad catch (error) {
-      _avisar('No se ha restaurado la copia. ${textoErrorCopia(error)}');
+      _avisar('${SoleraL10n.t('ques.no_se_ha_restaurado_copia')}. ${textoErrorCopia(error)}');
     } catch (error) {
-      _avisar('No se ha restaurado la copia: $error');
+      _avisar('${SoleraL10n.t('ques.no_se_ha_restaurado_copia')}: $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -124,20 +123,19 @@ class _PantallaBackupState extends State<PantallaBackup> {
             child: Column(children: [
               Icon(Icons.backup, size: 48, color: tema.colorScheme.primary),
               const SizedBox(height: 12),
-              Text('Copia de seguridad',
+              Text(SoleraL10n.t('copia_de_seguridad'),
                   style: tema.textTheme.titleMedium
                       ?.copyWith(fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
               Text(
                 _ultimaCopia != null
-                    ? 'Última copia: ${_formatoFecha.format(_ultimaCopia!)}'
-                    : 'Todavía no has hecho ninguna copia',
+                    ? SoleraL10n.tf('ques.ultima_copia', {'fecha': _formatoFecha.format(_ultimaCopia!)})
+                    : SoleraL10n.t('ques.ninguna_copia_todavia'),
                 style: const TextStyle(color: Colors.grey),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'La copia incluye la base de datos y las fotos. '
-                'Guárdala fuera del móvil (correo, nube, ordenador).',
+              Text(
+                SoleraL10n.t('ques.copia_incluye'),
                 textAlign: TextAlign.center,
               ),
             ]),
@@ -153,7 +151,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
                   child: CircularProgressIndicator(strokeWidth: 2))
               : const Icon(Icons.upload),
           label: Text(_trabajando
-              ? 'Trabajando…'
+              ? SoleraL10n.t('ques.trabajando')
               : SoleraL10n.t('crear_y_compartir_backup')),
         ),
         const SizedBox(height: 12),

@@ -4,6 +4,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/lote_produccion.dart';
+import '../utiles/textos_quesera.dart';
 import 'pantalla_ficha_lote.dart';
 import 'pantalla_nuevo_lote.dart';
 
@@ -22,7 +23,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
   List<LoteProduccion> _lotes = [];
   String? _filtroEstado;
   final _buscador = TextEditingController();
-  final _formatter = DateFormat('d MMM yyyy', 'es_ES');
+  DateFormat get _formatter => DateFormat('d MMM yyyy', localeFechasQuesera());
 
   @override
   void initState() { super.initState(); _recargar(); }
@@ -59,9 +60,9 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
         ],
       ),
       body: Column(children: [
-        if (_lotes.isNotEmpty) BarraBusqueda(controlador: _buscador, onChanged: (_) => setState(() {}), sugerencia: 'Buscar lote…'),
+        if (_lotes.isNotEmpty) BarraBusqueda(controlador: _buscador, onChanged: (_) => setState(() {}), sugerencia: SoleraL10n.t('ques.buscar_lote')),
         Expanded(child: RefreshIndicator(onRefresh: _recargar, child: filtrados.isEmpty && _lotes.isNotEmpty
-            ? Center(child: Text('Sin resultados'))
+            ? Center(child: Text(SoleraL10n.t('ques.sin_resultados')))
             : _lotes.isEmpty
                 ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [
                     Icon(Icons.inventory_2_outlined, size: 64, color: theme.colorScheme.outline),
@@ -76,7 +77,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
                     return Card(child: ListTile(
                       leading: _IconoEstado(l.estado),
                       title: Text(l.numeroLote, style: TextStyle(fontWeight: FontWeight.bold)),
-                      subtitle: Text('${l.tipoQuesoId} · ${_formatter.format(f)} · ${l.volumenLecheTotal} L → ${l.pesoTotalObtenido} kg · ${l.numPiezasProducidas} piezas'),
+                      subtitle: Text('${l.tipoQuesoId} · ${_formatter.format(f)} · ${l.volumenLecheTotal} L → ${l.pesoTotalObtenido} kg · ${SoleraL10n.tf('ques.piezas_n', {'n': l.numPiezasProducidas})}'),
                       trailing: Icon(Icons.chevron_right),
                       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => PantallaFichaLote(loteId: l.id!))),
                     ));

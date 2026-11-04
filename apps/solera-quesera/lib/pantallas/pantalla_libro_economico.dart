@@ -5,6 +5,7 @@ import '../datos/base_datos.dart';
 import '../modelos/apunte_gasto.dart';
 import '../modelos/apunte_ingreso.dart';
 import '../modelos/tercero.dart';
+import '../utiles/textos_quesera.dart';
 
 class PantallaLibroEconomico extends StatefulWidget {
   const PantallaLibroEconomico({super.key});
@@ -14,7 +15,7 @@ class PantallaLibroEconomico extends StatefulWidget {
 
 class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
   final _bd = BaseDatosSoleraQuesera.instancia;
-  final _fd = DateFormat('d MMM yyyy', 'es_ES');
+  DateFormat get _fd => DateFormat('d MMM yyyy', localeFechasQuesera());
   int _anyo = DateTime.now().year, _tab = 0;
   List<ApunteIngreso> _ingresos = []; List<ApunteGasto> _gastos = []; List<Tercero> _terceros = [];
 
@@ -51,7 +52,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
       body: Column(children: [
         Container(width: double.infinity, color: Colors.amber.withAlpha(30), padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
           child: Row(children: [const Icon(Icons.warning_amber, size: 16, color: Colors.orange), const SizedBox(width: 4), Text(SoleraL10n.t('provisional___validar_con_asesor_fiscal'), style: const TextStyle(fontSize: 11, color: Colors.orange))])),
-        TabBar(tabs: const [Tab(text: 'Ingresos'), Tab(text: 'Gastos'), Tab(text: 'Resumen')], onTap: (i) => setState(() => _tab = i)),
+        TabBar(tabs: [Tab(text: SoleraL10n.t('ques.ingresos')), Tab(text: SoleraL10n.t('ques.gastos')), Tab(text: SoleraL10n.t('ques.resumen'))], onTap: (i) => setState(() => _tab = i)),
         Expanded(child: IndexedStack(index: _tab, children: [
           _listaIng(t, ti), _listaGas(t, tg), _resumen(t, bal, ti, tg),
         ])),
@@ -60,24 +61,24 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico> {
     );
   }
 
-  Widget _totalCard(ThemeData t, String tit, double v, Color c) => Card(color: c.withAlpha(15), child: Padding(padding: const EdgeInsets.all(16), child: Row(children: [Text(tit, style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Text('${v.toStringAsFixed(2)}€', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: c))])));
+  Widget _totalCard(ThemeData t, String tit, double v, Color c) => Card(color: c.withAlpha(15), child: Padding(padding: const EdgeInsets.all(16), child: Row(children: [Text(tit, style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Text('${v.toStringAsFixed(2)} €', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: c))])));
 
   Widget _listaIng(ThemeData t, double tot) => ListView(padding: const EdgeInsets.all(16), children: [
-    _totalCard(t, 'Ingresos $_anyo', tot, Colors.green),
-    if (_ingresos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text('Sin ingresos', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey))))
-    else ..._ingresos.map((i) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.green.withAlpha(30), child: const Icon(Icons.arrow_downward, color: Colors.green, size: 18)), title: Text('${i.categoria} · ${i.total.toStringAsFixed(2)}€', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs))} · ${i.numeroFactura}', style: const TextStyle(fontSize: 11))))),
+    _totalCard(t, SoleraL10n.tf('ques.ingresos_anyo', {'anyo': _anyo}), tot, Colors.green),
+    if (_ingresos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.sin_ingresos'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
+    else ..._ingresos.map((i) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.green.withAlpha(30), child: const Icon(Icons.arrow_downward, color: Colors.green, size: 18)), title: Text('${textoCategoriaApunte(i.categoria)} · ${i.total.toStringAsFixed(2)} €', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs))} · ${i.numeroFactura}', style: const TextStyle(fontSize: 11))))),
   ]);
 
   Widget _listaGas(ThemeData t, double tot) => ListView(padding: const EdgeInsets.all(16), children: [
-    _totalCard(t, 'Gastos $_anyo', tot, Colors.red),
-    if (_gastos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text('Sin gastos', textAlign: TextAlign.center, style: TextStyle(color: Colors.grey))))
-    else ..._gastos.map((g) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.red.withAlpha(30), child: const Icon(Icons.arrow_upward, color: Colors.red, size: 18)), title: Text('${g.categoria} · ${g.total.toStringAsFixed(2)}€', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(g.fechaMs))} · ${g.numeroFactura}', style: const TextStyle(fontSize: 11))))),
+    _totalCard(t, SoleraL10n.tf('ques.gastos_anyo', {'anyo': _anyo}), tot, Colors.red),
+    if (_gastos.isEmpty) Card(child: Padding(padding: const EdgeInsets.all(24), child: Text(SoleraL10n.t('ques.sin_gastos'), textAlign: TextAlign.center, style: const TextStyle(color: Colors.grey))))
+    else ..._gastos.map((g) => Card(child: ListTile(dense: true, leading: CircleAvatar(backgroundColor: Colors.red.withAlpha(30), child: const Icon(Icons.arrow_upward, color: Colors.red, size: 18)), title: Text('${textoCategoriaApunte(g.categoria)} · ${g.total.toStringAsFixed(2)} €', style: const TextStyle(fontSize: 13)), subtitle: Text('${_fd.format(DateTime.fromMillisecondsSinceEpoch(g.fechaMs))} · ${g.numeroFactura}', style: const TextStyle(fontSize: 11))))),
   ]);
 
   Widget _resumen(ThemeData t, double bal, double ti, double tg) => ListView(padding: const EdgeInsets.all(16), children: [
-    _totalCard(t, 'Balance $_anyo', bal, bal >= 0 ? Colors.green : Colors.red),
+    _totalCard(t, SoleraL10n.tf('ques.balance_anyo', {'anyo': _anyo}), bal, bal >= 0 ? Colors.green : Colors.red),
     const Divider(),
-    Text('⚠️ Datos provisionales — validar con asesor fiscal', style: TextStyle(color: Colors.orange, fontSize: 12), textAlign: TextAlign.center),
+    Text('⚠️ ${SoleraL10n.t('ques.datos_provisionales_asesor_fiscal')}', style: const TextStyle(color: Colors.orange, fontSize: 12), textAlign: TextAlign.center),
   ]);
 }
 
@@ -124,18 +125,18 @@ class _NuevoApunteState extends State<_NuevoApunte> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(widget.tipo == 'ingreso' ? 'Nuevo ingreso' : 'Nuevo gasto')),
+    appBar: AppBar(title: Text(widget.tipo == 'ingreso' ? SoleraL10n.t('ques.nuevo_ingreso') : SoleraL10n.t('ques.nuevo_gasto'))),
     body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
-      DropdownButtonFormField<String>(decoration: const InputDecoration(labelText: 'Categoría', border: OutlineInputBorder()), initialValue: _cat,
-        items: (widget.tipo == 'ingreso' ? _catsIng : _catsGas).map((c) => DropdownMenuItem(value: c, child: Text(c))).toList(),
+      DropdownButtonFormField<String>(decoration: InputDecoration(labelText: SoleraL10n.t('ques.categoria'), border: const OutlineInputBorder()), initialValue: _cat,
+        items: (widget.tipo == 'ingreso' ? _catsIng : _catsGas).map((c) => DropdownMenuItem(value: c, child: Text(textoCategoriaApunte(c)))).toList(),
         onChanged: (v) => setState(() => _cat = v ?? _cat)),
       const SizedBox(height: 12),
-      Row(children: [Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'Base imponible (€)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: validarImporteOpcional, onChanged: (v) { _base = leerNumero(v, puntoDeMillares: true) ?? 0; _calc(); })), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'IVA %', border: OutlineInputBorder(), isDense: true), initialValue: '10', keyboardType: TextInputType.number, validator: validarNumeroOpcional, onChanged: (v) { _iva = leerNumero(v) ?? 10; _calc(); }))]),
-      Text('Total: ${_tot.toStringAsFixed(2)}€', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-      TextFormField(controller: _facC, decoration: const InputDecoration(labelText: 'Nº factura', border: OutlineInputBorder(), isDense: true)),
-      TextFormField(controller: _notasC, decoration: const InputDecoration(labelText: 'Notas', border: OutlineInputBorder(), isDense: true), maxLines: 2),
+      Row(children: [Expanded(child: TextFormField(decoration: InputDecoration(labelText: SoleraL10n.t('ques.base_imponible_eur'), border: const OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number, validator: validarImporteOpcional, onChanged: (v) { _base = leerNumero(v, puntoDeMillares: true) ?? 0; _calc(); })), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'IVA %', border: OutlineInputBorder(), isDense: true), initialValue: '10', keyboardType: TextInputType.number, validator: validarNumeroOpcional, onChanged: (v) { _iva = leerNumero(v) ?? 10; _calc(); }))]),
+      Text('${SoleraL10n.t('ques.total')}: ${_tot.toStringAsFixed(2)} €', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+      TextFormField(controller: _facC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.numero_factura'), border: const OutlineInputBorder(), isDense: true)),
+      TextFormField(controller: _notasC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.notas'), border: const OutlineInputBorder(), isDense: true), maxLines: 2),
       const SizedBox(height: 24),
-      FilledButton(onPressed: _guardando ? null : _guardar, child: Text(widget.tipo == 'ingreso' ? 'Guardar ingreso' : 'Guardar gasto')),
+      FilledButton(onPressed: _guardando ? null : _guardar, child: Text(widget.tipo == 'ingreso' ? SoleraL10n.t('ques.guardar_ingreso') : SoleraL10n.t('ques.guardar_gasto'))),
     ])),
   );
 }

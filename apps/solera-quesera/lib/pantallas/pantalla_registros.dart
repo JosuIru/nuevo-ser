@@ -57,56 +57,56 @@ class _PantallaRegistrosState extends State<PantallaRegistros> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registros')),
+      appBar: AppBar(title: Text(SoleraL10n.t('ques.registros'))),
       body: RefreshIndicator(
         onRefresh: _cargar,
         child: ListView(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.only(bottom: 24),
           children: [
-            const CabeceraSeccionAjustes('Trazabilidad y APPCC'),
+            CabeceraSeccionAjustes(SoleraL10n.t('ques.trazabilidad_y_appcc')),
             _entrada(
               icono: Icons.description,
               titulo: SoleraL10n.t('libro_de_trazabilidad_appcc'),
-              subtitulo: 'PDF inspeccionable por periodo',
+              subtitulo: SoleraL10n.t('ques.pdf_inspeccionable_por_periodo'),
               pantalla: const PantallaTrazabilidad(),
             ),
             _entrada(
               icono: Icons.assignment,
               titulo: SoleraL10n.t('registros_appcc'),
-              subtitulo: 'Temperatura, limpieza, plagas, analíticas y formación',
+              subtitulo: SoleraL10n.t('ques.registros_appcc_ayuda'),
               pantalla: const PantallaRegistroAppcc(),
             ),
             _entrada(
               icono: Icons.analytics,
               titulo: SoleraL10n.t('simulacion_de_trazabilidad'),
-              subtitulo: 'Ensaya una inspección: un lote al azar, cadena completa',
+              subtitulo: SoleraL10n.t('ques.simulacion_ayuda'),
               pantalla: const PantallaSimulacionTrazabilidad(),
             ),
-            const CabeceraSeccionAjustes('Elaboración'),
+            CabeceraSeccionAjustes(SoleraL10n.t('ques.elaboracion')),
             _entrada(
               icono: Icons.restaurant_menu,
               titulo: SoleraL10n.t('recetas'),
-              subtitulo: '$_numeroRecetas registradas',
+              subtitulo: SoleraL10n.tf('ques.registradas_n', {'n': _numeroRecetas}),
               pantalla: PantallaListaRecetas(),
             ),
             _entrada(
               icono: Icons.verified,
               titulo: SoleraL10n.t('perfiles_do'),
-              subtitulo: 'Denominaciones de origen activas',
+              subtitulo: SoleraL10n.t('ques.do_activas'),
               pantalla: const PantallaPerfilDo(),
             ),
-            const CabeceraSeccionAjustes('Economía'),
+            CabeceraSeccionAjustes(SoleraL10n.t('ques.economia')),
             _entrada(
               icono: Icons.receipt,
               titulo: SoleraL10n.t('facturas'),
-              subtitulo: 'Emisión, PDF y envío',
+              subtitulo: SoleraL10n.t('emision_pdf_y_envio'),
               pantalla: PantallaFacturas(),
             ),
             _entrada(
               icono: Icons.euro,
               titulo: SoleraL10n.t('libro_economico'),
-              subtitulo: 'Ingresos, gastos y resumen fiscal',
+              subtitulo: SoleraL10n.t('ques.ingresos_gastos_resumen'),
               pantalla: PantallaLibroEconomico(),
             ),
           ],

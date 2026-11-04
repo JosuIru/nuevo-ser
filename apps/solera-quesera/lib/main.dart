@@ -21,7 +21,8 @@ Future<void> main() async {
   }
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
-  await initializeDateFormatting('es_ES', null);
+  // Carga los formatos de fecha de todos los idiomas (es, eu, ca, gl).
+  await initializeDateFormatting();
   runApp(const SoleraQueseraApp());
 }
 
@@ -121,25 +122,25 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         selectedIndex: _indice,
         onDestinationSelected: (i) => setState(() => _indice = i),
         destinations: [
-          const NavigationDestination(
-            icon: Icon(Icons.today_outlined),
-            selectedIcon: Icon(Icons.today),
-            label: 'Hoy',
+          NavigationDestination(
+            icon: const Icon(Icons.today_outlined),
+            selectedIcon: const Icon(Icons.today),
+            label: SoleraL10n.t('ques.hoy'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.map_outlined),
             selectedIcon: const Icon(Icons.map),
             label: SoleraL10n.t('mapa'),
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.inventory_2_outlined),
-            selectedIcon: Icon(Icons.inventory_2),
-            label: 'Lotes',
+          NavigationDestination(
+            icon: const Icon(Icons.inventory_2_outlined),
+            selectedIcon: const Icon(Icons.inventory_2),
+            label: SoleraL10n.t('ques.lotes'),
           ),
-          const NavigationDestination(
-            icon: Icon(Icons.description_outlined),
-            selectedIcon: Icon(Icons.description),
-            label: 'Registros',
+          NavigationDestination(
+            icon: const Icon(Icons.description_outlined),
+            selectedIcon: const Icon(Icons.description),
+            label: SoleraL10n.t('ques.registros'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),

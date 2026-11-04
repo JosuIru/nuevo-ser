@@ -41,13 +41,16 @@ void main() {
 
   group('textoErrorCopia', () {
     test('dice que los datos no se han tocado solo si es verdad', () {
+      // Frase en el idioma activo (castellano en los tests): «Tus datos no
+      // se han tocado.»
+      final datosNoTocados = SoleraL10n.t('ques.datos_no_tocados');
       const rechazada = ErrorCopiaSeguridad(
           MotivoErrorCopiaSeguridad.deOtraApp, 'otra app');
-      expect(textoErrorCopia(rechazada), contains('no se han tocado'));
+      expect(textoErrorCopia(rechazada), contains(datosNoTocados));
 
       const rota = ErrorCopiaSeguridad(
           MotivoErrorCopiaSeguridad.reversionFallida, 'a medias');
-      expect(textoErrorCopia(rota), isNot(contains('no se han tocado')));
+      expect(textoErrorCopia(rota), isNot(contains(datosNoTocados)));
     });
 
     test('tiene texto para todos los motivos', () {

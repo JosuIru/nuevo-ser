@@ -1,3 +1,5 @@
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
+
 import '../datos/catalogos_generados/do_quesos.dart';
 import '../datos/catalogos_generados/tipos_queso.dart';
 import '../modelos/lote_produccion.dart';
@@ -12,7 +14,9 @@ extension _DoQuesoHelpers on DoQueso {
       .toList();
 }
 
-/// Resultado de validación de un lote contra una DO.
+/// Resultado de validación de un lote contra una DO. Las etiquetas y
+/// detalles salen en el idioma elegido (se enseñan en la ficha del lote);
+/// los datos del pliego (zona, razas…) son del catálogo y van tal cual.
 class ResultadoValidacionDo {
   final String doId;
   final String doNombre;
@@ -57,11 +61,11 @@ class ValidadorDo {
     if (tipoQueso != null) {
       // Si la receta define tipo de leche, comprobamos coherencia
       checks.add(CheckDo(
-        etiqueta: 'Tipo de queso dentro de la DO',
+        etiqueta: SoleraL10n.t('ques.do_tipo_de_queso_dentro'),
         correcto: doQueso.tipo_leche.contains(tipoQueso.categoria) ||
             tipoQueso.do_id == doQueso.id,
         detalle: 'DO ${doQueso.nombre}: ${doQueso.tipo_leche} · '
-            'Receta: ${tipoQueso.categoria}',
+            '${SoleraL10n.t('ques.receta')}: ${tipoQueso.categoria}',
       ));
     }
 
@@ -72,42 +76,47 @@ class ValidadorDo {
           .difference(DateTime.fromMillisecondsSinceEpoch(lote.fechaMs))
           .inDays;
       checks.add(CheckDo(
-        etiqueta: 'Curación mínima (${curacionMin} días)',
+        etiqueta: SoleraL10n.tf('ques.do_curacion_minima_dias', {'n': curacionMin}),
         correcto: edadLote >= curacionMin || lote.estado != 'lista',
         detalle: edadLote >= curacionMin
-            ? 'Superada: $edadLote días ≥ $curacionMin requeridos'
-            : 'Pendiente: $edadLote días < $curacionMin requeridos '
-                '(${curacionMin - edadLote} días restantes)',
+            ? SoleraL10n.tf('ques.do_curacion_superada',
+                {'edad': edadLote, 'minimo': curacionMin})
+            : SoleraL10n.tf('ques.do_curacion_pendiente', {
+                'edad': edadLote,
+                'minimo': curacionMin,
+                'restantes': curacionMin - edadLote,
+              }),
       ));
     } else {
       checks.add(CheckDo(
-        etiqueta: 'Curación mínima',
+        etiqueta: SoleraL10n.t('ques.curacion_minima'),
         correcto: true,
-        detalle: 'No especificada en el pliego de condiciones',
+        detalle: SoleraL10n.t('ques.do_no_especificada_pliego'),
       ));
     }
 
     // 3. Validar razas
     if (doQueso.razas.isNotEmpty) {
       checks.add(CheckDo(
-        etiqueta: 'Razas permitidas',
+        etiqueta: SoleraL10n.t('ques.razas_permitidas'),
         correcto: true,
-        detalle: '${doQueso.razas.join(", ")} (valídalas con tus proveedores)',
+        detalle: SoleraL10n.tf('ques.do_razas_validar',
+            {'razas': doQueso.razas.join(', ')}),
       ));
     }
 
     // 4. Validar ahumado
     checks.add(CheckDo(
-      etiqueta: 'Ahumado permitido',
+      etiqueta: SoleraL10n.t('ques.do_ahumado_permitido'),
       correcto: true,
       detalle: doQueso.ahumado_permitido == 'SÍ'
-          ? 'Permitido (haya, abedul, espino, cerezo, roble)'
-          : 'No permitido por el pliego de condiciones',
+          ? SoleraL10n.t('ques.do_ahumado_si')
+          : SoleraL10n.t('ques.do_ahumado_no'),
     ));
 
     // 5. Zona geográfica
     checks.add(CheckDo(
-      etiqueta: 'Zona de producción',
+      etiqueta: SoleraL10n.t('ques.do_zona_de_produccion'),
       correcto: true,
       detalle: doQueso.zona_geografica,
     ));
@@ -115,7 +124,7 @@ class ValidadorDo {
     // 6. Organismo de control
     if (doQueso.organismo_control.isNotEmpty) {
       checks.add(CheckDo(
-        etiqueta: 'Organismo de control',
+        etiqueta: SoleraL10n.t('ques.do_organismo_de_control'),
         correcto: true,
         detalle: doQueso.organismo_control,
       ));

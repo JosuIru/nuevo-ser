@@ -34,7 +34,7 @@ class _PantallaPerfilDoState extends State<PantallaPerfilDo> {
         Card(color: t.colorScheme.primaryContainer, child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [Icon(Icons.verified, color: t.colorScheme.primary), const SizedBox(width: 8), Text(SoleraL10n.t('denominaciones_de_origen'), style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))]),
           const SizedBox(height: 8),
-          const Text('Activa las DO a las que pertenece tu quesería.', style: TextStyle(color: Colors.grey)),
+          Text(SoleraL10n.t('ques.activa_las_do'), style: const TextStyle(color: Colors.grey)),
         ]))),
         const SizedBox(height: 16),
         if (_activas.isNotEmpty) Wrap(spacing: 8, runSpacing: 4, children: _activas.map((id) {
@@ -46,7 +46,7 @@ class _PantallaPerfilDoState extends State<PantallaPerfilDo> {
           return Card(child: ListTile(
             leading: CircleAvatar(backgroundColor: a ? Colors.green : t.colorScheme.outline.withAlpha(40), child: Icon(a ? Icons.check : Icons.verified_outlined, color: a ? Colors.white : Colors.grey)),
             title: Text(dq.nombre, style: TextStyle(fontWeight: a ? FontWeight.bold : FontWeight.normal)),
-            subtitle: Text('${dq.tipo} · ${dq.zona_geografica}\n${dq.tipo_leche} · Mín. ${dq.curacion_minima_dias} días', style: const TextStyle(fontSize: 11)), isThreeLine: true,
+            subtitle: Text('${dq.tipo} · ${dq.zona_geografica}\n${dq.tipo_leche} · ${SoleraL10n.tf('ques.minimo_dias_n', {'n': dq.curacion_minima_dias})}', style: const TextStyle(fontSize: 11)), isThreeLine: true,
             trailing: Switch(value: a, onChanged: (_) => _toggle(dq.id)),
             onTap: () => _detalle(dq),
           ));
@@ -58,8 +58,8 @@ class _PantallaPerfilDoState extends State<PantallaPerfilDo> {
   void _detalle(DoQueso dq) => showModalBottomSheet(context: context, isScrollControlled: true, builder: (_) => DraggableScrollableSheet(initialChildSize: 0.5, expand: false, builder: (_, s) => ListView(controller: s, padding: const EdgeInsets.all(16), children: [
     Text(dq.nombre, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
     const SizedBox(height: 4), Text(dq.tipo, style: const TextStyle(color: Colors.grey)), const Divider(),
-    _det('Zona geográfica', dq.zona_geografica), _det('Tipo de leche', dq.tipo_leche), _det('Razas permitidas', dq.razas_permitidas),
-    _det('Cocción', dq.coccion), _det('Curación mínima', '${dq.curacion_minima_dias} días'), _det('Ahumado', dq.ahumado_permitido),
+    _det(SoleraL10n.t('ques.zona_geografica'), dq.zona_geografica), _det(SoleraL10n.t('ques.tipo_de_leche'), dq.tipo_leche), _det(SoleraL10n.t('ques.razas_permitidas'), dq.razas_permitidas),
+    _det(SoleraL10n.t('ques.coccion'), dq.coccion), _det(SoleraL10n.t('ques.curacion_minima'), SoleraL10n.tf('ques.dias_n', {'n': dq.curacion_minima_dias})), _det(SoleraL10n.t('ques.ahumado'), dq.ahumado_permitido),
   ])));
 
   Widget _det(String e, String v) => Padding(padding: const EdgeInsets.symmetric(vertical: 4), child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [SizedBox(width: 130, child: Text(e, style: const TextStyle(fontWeight: FontWeight.w500, color: Colors.grey))), Expanded(child: Text(v))]));

@@ -30,11 +30,7 @@ Widget pantallaClaveAnthropicQuesera() => PantallaClaveAnthropic(
       estado: estadoClaveAnthropicQuesera,
       nombreApp: 'Larrea Quesera',
       titulo: SoleraL10n.t('identificacion_con_ia'),
-      queIdentifica: 'Identifica defectos en el corte y la corteza del queso',
-      descripcion: 'Con tu propia clave de Anthropic, Larrea Quesera puede '
-          'analizar la foto de un queso (corte o corteza) y señalar posibles '
-          'defectos de textura, corteza, color o hinchazón, con su causa '
-          'probable y qué revisar. La herramienta está en Lotes → Cava. '
-          'No sustituye a una analítica: ante la duda, deriva al laboratorio.',
+      queIdentifica: SoleraL10n.t('ques.ia_que_identifica'),
+      descripcion: SoleraL10n.t('ques.ia_descripcion'),
       probarClave: probarClaveAnthropicQuesera,
     );

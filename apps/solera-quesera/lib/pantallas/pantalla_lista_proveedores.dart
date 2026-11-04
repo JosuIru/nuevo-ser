@@ -3,6 +3,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/proveedor_leche.dart';
+import '../utiles/textos_quesera.dart';
 
 class PantallaListaProveedores extends StatefulWidget {
   PantallaListaProveedores({super.key});
@@ -38,7 +39,7 @@ class _PantallaListaProveedoresState extends State<PantallaListaProveedores> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('proveedores_de_leche')), actions: [if (_proveedores.isNotEmpty) Text('${_proveedores.length}', style: t.textTheme.bodyMedium)]),
       body: Column(children: [
-        if (_proveedores.isNotEmpty) BarraBusqueda(controlador: _buscador, onChanged: (_) => setState(() {}), sugerencia: 'Buscar proveedor…'),
+        if (_proveedores.isNotEmpty) BarraBusqueda(controlador: _buscador, onChanged: (_) => setState(() {}), sugerencia: SoleraL10n.t('ques.buscar_proveedor')),
         Expanded(child: _proveedores.isEmpty
           ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.person_outline, size: 64, color: t.colorScheme.outline), SizedBox(height: 16), Text(SoleraL10n.t('sin_proveedores'), style: t.textTheme.titleMedium), SizedBox(height: 8), FilledButton.icon(onPressed: () => _editar(null), icon: Icon(Icons.add), label: Text(SoleraL10n.t('anadir_proveedor')))]))
           : RefreshIndicator(onRefresh: _recargar, child: ListView.builder(padding: const EdgeInsets.all(8), itemCount: f.length, itemBuilder: (_, i) {
@@ -46,7 +47,7 @@ class _PantallaListaProveedoresState extends State<PantallaListaProveedores> {
               return Card(child: ListTile(
                 leading: CircleAvatar(backgroundColor: p.esPropio ? Colors.blue.withAlpha(30) : Colors.amber.withAlpha(30), child: Icon(p.esPropio ? Icons.home : Icons.person, color: p.esPropio ? Colors.blue : Colors.amber)),
                 title: Text(p.nombre, style: TextStyle(fontWeight: FontWeight.bold)),
-                subtitle: Text('${p.tipoLeche} · ${p.explotacionGanadera}', style: TextStyle(fontSize: 12)),
+                subtitle: Text('${textoTipoLeche(p.tipoLeche)} · ${p.explotacionGanadera}', style: TextStyle(fontSize: 12)),
                 trailing: PopupMenuButton<String>(onSelected: (a) { if (a == 'editar') _editar(p); else if (a == 'borrar') _borrar(p); },
                   itemBuilder: (_) => [
                     PopupMenuItem(value: 'editar', child: ListTile(leading: Icon(Icons.edit), title: Text(SoleraL10n.t('editar')))),
@@ -63,7 +64,7 @@ class _PantallaListaProveedoresState extends State<PantallaListaProveedores> {
 
   void _editar(ProveedorLeche? e) => Navigator.push(context, MaterialPageRoute(builder: (_) => _EditarProveedor(p: e, onOk: _recargar)));
   Future<void> _borrar(ProveedorLeche p) async {
-    final ok = await DialogoConfirmacion.mostrar(context, titulo: SoleraL10n.t('borrar_proveedor'), mensaje: '¿Borrar ${p.nombre}?', textoConfirmar: SoleraL10n.t('borrar'), esPeligroso: true);
+    final ok = await DialogoConfirmacion.mostrar(context, titulo: SoleraL10n.t('borrar_proveedor'), mensaje: SoleraL10n.tf('ques.borrar_nombre_pregunta', {'nombre': p.nombre}), textoConfirmar: SoleraL10n.t('borrar'), esPeligroso: true);
     if (ok && p.id != null) { await _bd.borrarProveedor(p.id!); await _recargar(); }
   }
 }
@@ -102,25 +103,25 @@ class _EditarProveedorState extends State<_EditarProveedor> {
     setState(() => _guardando = true);
     await _bd.guardarProveedor(ProveedorLeche(nombre: _nomC.text, nif: _nifC.text, direccion: _dirC.text, explotacionGanadera: _expC.text, tipoLeche: _tipoLeche, razaId: _razaId, numAnimales: _numAnimales, esPropio: _esPropio, fechaCreacionMs: widget.p?.fechaCreacionMs ?? DateTime.now().millisecondsSinceEpoch));
     widget.onOk();
-    if (mounted) { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('${widget.p == null ? "Creado" : "Actualizado"}: ${_nomC.text}'))); Navigator.pop(context); }
+    if (mounted) { ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(SoleraL10n.tf(widget.p == null ? 'ques.proveedor_creado' : 'ques.proveedor_actualizado', {'nombre': _nomC.text})))); Navigator.pop(context); }
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(widget.p != null ? 'Editar proveedor' : 'Nuevo proveedor')),
+    appBar: AppBar(title: Text(widget.p != null ? SoleraL10n.t('ques.editar_proveedor') : SoleraL10n.t('ques.nuevo_proveedor'))),
     body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
-      SwitchListTile(title: Text(SoleraL10n.t('rebano_propio')), subtitle: Text('Activado si es tu propia explotación'), value: _esPropio, onChanged: (v) => setState(() => _esPropio = v)),
-      TextFormField(controller: _nomC, decoration: InputDecoration(labelText: 'Nombre / razón social', border: OutlineInputBorder()), validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : null),
+      SwitchListTile(title: Text(SoleraL10n.t('rebano_propio')), subtitle: Text(SoleraL10n.t('ques.rebano_propio_ayuda')), value: _esPropio, onChanged: (v) => setState(() => _esPropio = v)),
+      TextFormField(controller: _nomC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.nombre_razon_social'), border: OutlineInputBorder()), validator: (v) => (v == null || v.trim().isEmpty) ? SoleraL10n.t('ques.requerido') : null),
       SizedBox(height: 12),
-      Row(children: [Expanded(child: TextFormField(controller: _nifC, decoration: InputDecoration(labelText: 'NIF', border: OutlineInputBorder(), isDense: true))), SizedBox(width: 8), Expanded(child: TextFormField(controller: _expC, decoration: InputDecoration(labelText: 'Explotación ganadera', border: OutlineInputBorder(), isDense: true)))]),
+      Row(children: [Expanded(child: TextFormField(controller: _nifC, decoration: InputDecoration(labelText: 'NIF', border: OutlineInputBorder(), isDense: true))), SizedBox(width: 8), Expanded(child: TextFormField(controller: _expC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.explotacion_ganadera'), border: OutlineInputBorder(), isDense: true)))]),
       SizedBox(height: 12),
-      DropdownButtonFormField<String>(decoration: InputDecoration(labelText: 'Tipo de leche', border: OutlineInputBorder()), initialValue: _tipoLeche, items: const [DropdownMenuItem(value: 'oveja', child: Text('Leche de oveja')), DropdownMenuItem(value: 'cabra', child: Text('Leche de cabra')), DropdownMenuItem(value: 'vaca', child: Text('Leche de vaca')), DropdownMenuItem(value: 'mixto', child: Text('Mezcla'))], onChanged: (v) => setState(() => _tipoLeche = v ?? 'oveja')),
+      DropdownButtonFormField<String>(decoration: InputDecoration(labelText: SoleraL10n.t('ques.tipo_de_leche'), border: OutlineInputBorder()), initialValue: _tipoLeche, items: [DropdownMenuItem(value: 'oveja', child: Text(SoleraL10n.t('ques.leche_de_oveja'))), DropdownMenuItem(value: 'cabra', child: Text(SoleraL10n.t('ques.leche_de_cabra'))), DropdownMenuItem(value: 'vaca', child: Text(SoleraL10n.t('ques.leche_de_vaca'))), DropdownMenuItem(value: 'mixto', child: Text(SoleraL10n.t('ques.leche_mezcla')))], onChanged: (v) => setState(() => _tipoLeche = v ?? 'oveja')),
       SizedBox(height: 12),
-      TextFormField(decoration: InputDecoration(labelText: 'Raza (ID del catálogo)', border: OutlineInputBorder(), helperText: 'latxa, carranzana, manchega…'), initialValue: _razaId, onChanged: (v) => _razaId = v),
+      TextFormField(decoration: InputDecoration(labelText: SoleraL10n.t('ques.raza_id_catalogo'), border: OutlineInputBorder(), helperText: 'latxa, carranzana, manchega…'), initialValue: _razaId, onChanged: (v) => _razaId = v),
       SizedBox(height: 12),
-      TextFormField(decoration: InputDecoration(labelText: 'Número de animales', border: OutlineInputBorder()), initialValue: _numAnimales?.toString() ?? '', keyboardType: TextInputType.number, validator: validarEnteroOpcional, onChanged: (v) => _numAnimales = leerEntero(v)),
+      TextFormField(decoration: InputDecoration(labelText: SoleraL10n.t('ques.numero_de_animales'), border: OutlineInputBorder()), initialValue: _numAnimales?.toString() ?? '', keyboardType: TextInputType.number, validator: validarEnteroOpcional, onChanged: (v) => _numAnimales = leerEntero(v)),
       SizedBox(height: 24),
-      FilledButton(onPressed: _guardando ? null : _guardar, child: _guardando ? SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Text(widget.p != null ? 'Guardar cambios' : 'Crear proveedor')),
+      FilledButton(onPressed: _guardando ? null : _guardar, child: _guardando ? SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Text(widget.p != null ? SoleraL10n.t('ques.guardar_cambios') : SoleraL10n.t('ques.crear_proveedor'))),
     ])),
   );
 }

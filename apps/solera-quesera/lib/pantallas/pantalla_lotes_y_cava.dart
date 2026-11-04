@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import 'pantalla_cava.dart';
 import 'pantalla_lista_lotes.dart';
@@ -30,13 +31,8 @@ class _PantallaLotesYCavaState extends State<PantallaLotesYCava>
     PantallaCava(barraPestanas: _barraPestanas()),
   ];
 
-  PreferredSizeWidget _barraPestanas() => TabBar(
-        controller: _controladorPestanas,
-        tabs: const [
-          Tab(icon: Icon(Icons.inventory_2_outlined), text: 'Lotes'),
-          Tab(icon: Icon(Icons.kitchen_outlined), text: 'Cava'),
-        ],
-      );
+  PreferredSizeWidget _barraPestanas() =>
+      _BarraPestanasLotesYCava(controlador: _controladorPestanas);
 
   @override
   void dispose() {
@@ -51,4 +47,28 @@ class _PantallaLotesYCavaState extends State<PantallaLotesYCava>
       children: _pantallas,
     );
   }
+}
+
+/// Pestañas Lotes · Cava. Es un widget propio (y no un `TabBar` creado
+/// una sola vez) para que los textos se vuelvan a pedir en cada build y
+/// cambien al cambiar de idioma.
+class _BarraPestanasLotesYCava extends StatelessWidget
+    implements PreferredSizeWidget {
+  const _BarraPestanasLotesYCava({required this.controlador});
+
+  final TabController controlador;
+
+  @override
+  Size get preferredSize => _construirBarra().preferredSize;
+
+  @override
+  Widget build(BuildContext context) => _construirBarra();
+
+  TabBar _construirBarra() => TabBar(
+        controller: controlador,
+        tabs: [
+          Tab(icon: const Icon(Icons.inventory_2_outlined), text: SoleraL10n.t('ques.lotes')),
+          Tab(icon: const Icon(Icons.kitchen_outlined), text: SoleraL10n.t('ques.cava')),
+        ],
+      );
 }

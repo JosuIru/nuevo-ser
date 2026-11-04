@@ -65,6 +65,8 @@ if gh release view "$tag" >/dev/null 2>&1; then
   echo "Ya existe el release $tag. Usa --subir-build para publicar una versión nueva." >&2
   exit 1
 fi
+# Que la nueva quede la primera por versión y como texto (ver el script).
+"$raiz/scripts/comprobar_orden_release.sh" "$app-" "$tag"
 
 echo "Compilando $app $version…"
 (

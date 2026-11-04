@@ -153,8 +153,21 @@ class _DialogoEditarTecnicoState extends State<_DialogoEditarTecnico> {
     super.dispose();
   }
 
+  /// Evita que un doble toque en Guardar dé de alta al técnico dos veces.
+  bool _guardando = false;
+
   Future<void> _guardar() async {
+    if (_guardando) return;
     if (!(_claveFormulario.currentState?.validate() ?? false)) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardarTecnico();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
+
+  Future<void> _guardarTecnico() async {
     final db = BaseDatosSoleraArbolado.instancia;
     final actualizado = Tecnico(
       id: widget.existente?.id,
@@ -225,7 +238,7 @@ class _DialogoEditarTecnicoState extends State<_DialogoEditarTecnico> {
       ),
       actions: [
         TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
-        FilledButton(onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
+        FilledButton(onPressed: _guardando ? null : _guardar, child: Text(SoleraL10n.t('guardar'))),
       ],
     );
   }

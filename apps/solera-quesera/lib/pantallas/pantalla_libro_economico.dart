@@ -105,11 +105,21 @@ class _NuevoApunteState extends State<_NuevoApunte> {
 
   void _calc() { setState(() => _tot = _base * (1 + _iva / 100)); }
 
+  /// Evita que un doble toque en Guardar duplique el apunte.
+  bool _guardando = false;
+
   Future<void> _guardar() async {
-    if (!_fk.currentState!.validate()) return; final a = DateTime.now().millisecondsSinceEpoch;
-    if (widget.tipo == 'ingreso') await _bd.guardarIngreso(ApunteIngreso(fechaMs: a, terceroId: _terceroId, categoria: _cat, baseImponible: _base, ivaPorcentaje: _iva, total: _tot, numeroFactura: _facC.text, notas: _notasC.text, fechaCreacionMs: a));
-    else await _bd.guardarGasto(ApunteGasto(fechaMs: a, terceroId: _terceroId, categoria: _cat, baseImponible: _base, ivaPorcentaje: _iva, total: _tot, numeroFactura: _facC.text, notas: _notasC.text, fechaCreacionMs: a));
-    if (mounted) Navigator.pop(context);
+    if (_guardando) return;
+    if (!_fk.currentState!.validate()) return;
+    setState(() => _guardando = true);
+    try {
+      final a = DateTime.now().millisecondsSinceEpoch;
+      if (widget.tipo == 'ingreso') await _bd.guardarIngreso(ApunteIngreso(fechaMs: a, terceroId: _terceroId, categoria: _cat, baseImponible: _base, ivaPorcentaje: _iva, total: _tot, numeroFactura: _facC.text, notas: _notasC.text, fechaCreacionMs: a));
+      else await _bd.guardarGasto(ApunteGasto(fechaMs: a, terceroId: _terceroId, categoria: _cat, baseImponible: _base, ivaPorcentaje: _iva, total: _tot, numeroFactura: _facC.text, notas: _notasC.text, fechaCreacionMs: a));
+      if (mounted) Navigator.pop(context);
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
   }
 
   @override
@@ -125,7 +135,7 @@ class _NuevoApunteState extends State<_NuevoApunte> {
       TextFormField(controller: _facC, decoration: const InputDecoration(labelText: 'Nº factura', border: OutlineInputBorder(), isDense: true)),
       TextFormField(controller: _notasC, decoration: const InputDecoration(labelText: 'Notas', border: OutlineInputBorder(), isDense: true), maxLines: 2),
       const SizedBox(height: 24),
-      FilledButton(onPressed: _guardar, child: Text(widget.tipo == 'ingreso' ? 'Guardar ingreso' : 'Guardar gasto')),
+      FilledButton(onPressed: _guardando ? null : _guardar, child: Text(widget.tipo == 'ingreso' ? 'Guardar ingreso' : 'Guardar gasto')),
     ])),
   );
 }

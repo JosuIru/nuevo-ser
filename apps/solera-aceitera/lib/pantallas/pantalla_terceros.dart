@@ -139,7 +139,20 @@ class _EditorTerceroState extends State<_EditorTercero> {
     super.dispose();
   }
 
+  /// Evita que un doble toque en Guardar cree el tercero dos veces.
+  bool _guardando = false;
+
   Future<void> _guardar() async {
+    if (_guardando) return;
+    setState(() => _guardando = true);
+    try {
+      await _guardarTercero();
+    } finally {
+      if (mounted) setState(() => _guardando = false);
+    }
+  }
+
+  Future<void> _guardarTercero() async {
     final t = Tercero(
       id: widget.tercero?.id,
       nombre: _nombreCtrl.text.trim(),
@@ -238,7 +251,7 @@ class _EditorTerceroState extends State<_EditorTercero> {
           ),
           const SizedBox(height: 24),
           FilledButton(
-            onPressed: _guardar,
+            onPressed: _guardando ? null : _guardar,
             child: const Text('Guardar tercero'),
           ),
         ],

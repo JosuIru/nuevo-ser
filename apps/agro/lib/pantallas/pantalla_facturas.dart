@@ -120,9 +120,10 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     await file.writeAsBytes(pdfBytes);
     await Share.shareXFiles(
       [XFile(file.path)],
-      subject: 'Factura ${f.numeroFactura} — ${f.clienteNombre}',
+      subject: SoleraL10n.tf('agro.asunto_factura',
+          {'numero': f.numeroFactura, 'cliente': f.clienteNombre}),
       text: _emailBackup != null && _emailBackup!.isNotEmpty
-          ? 'Copia para: $_emailBackup'
+          ? SoleraL10n.tf('agro.copia_para', {'email': _emailBackup})
           : '',
     );
   }
@@ -137,15 +138,14 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Al crear una factura, podrás enviar una copia '
-              'a esta dirección como respaldo.',
+              SoleraL10n.t('agro.email_respaldo_explicacion'),
               style: TextStyle(fontSize: 13),
             ),
             SizedBox(height: 12),
             TextField(
               controller: ctrl,
               decoration: InputDecoration(
-                hintText: 'tucorreo@ejemplo.com',
+                hintText: SoleraL10n.t('agro.correo_ejemplo'),
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -186,8 +186,8 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
                   : null,
             ),
             tooltip: _emailBackup != null && _emailBackup!.isNotEmpty
-                ? 'Respaldo: $_emailBackup'
-                : 'Configurar correo de respaldo',
+                ? SoleraL10n.tf('agro.respaldo_a', {'email': _emailBackup})
+                : SoleraL10n.t('agro.configurar_correo_respaldo'),
             onPressed: _configurarEmailBackup,
           ),
         ],
@@ -232,7 +232,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
         subtitle: Text(
           '${_formatter.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · '
-          '${f.total.toStringAsFixed(2)} € · ${f.estado}',
+          '${f.total.toStringAsFixed(2)} € · ${_nombreEstado(f.estado)}',
           style: TextStyle(fontSize: 12),
         ),
         trailing: PopupMenuButton<String>(
@@ -250,18 +250,34 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             if (f.estado == 'emitida')
               PopupMenuItem(value: 'pagada', child: ListTile(
                   leading: Icon(Icons.check, color: Colors.green),
-                  title: Text('Marcar pagada',
+                  title: Text(SoleraL10n.t('agro.marcar_pagada'),
                       style: TextStyle(color: Colors.green)))),
             if (f.estado != 'anulada')
               PopupMenuItem(value: 'anular', child: ListTile(
                   leading: Icon(Icons.cancel, color: Colors.red),
-                  title: Text('Anular',
+                  title: Text(SoleraL10n.t('agro.anular'),
                       style: TextStyle(color: Colors.red)))),
           ],
         ),
         onTap: () => _verPdf(f),
       ),
     );
+  }
+
+  /// Nombre visible del estado guardado en BD (emitida, pagada…).
+  String _nombreEstado(String estado) {
+    switch (estado) {
+      case 'emitida':
+        return SoleraL10n.t('agro.factura_estado_emitida');
+      case 'pagada':
+        return SoleraL10n.t('agro.factura_estado_pagada');
+      case 'vencida':
+        return SoleraL10n.t('agro.factura_estado_vencida');
+      case 'anulada':
+        return SoleraL10n.t('agro.factura_estado_anulada');
+      default:
+        return estado;
+    }
   }
 
   Future<void> _marcarPagada(Factura f) async {
@@ -279,13 +295,13 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
       context: context,
       builder: (_) => AlertDialog(
         title: Text(SoleraL10n.t('anular_factura')),
-        content: Text('¿Anular ${f.numeroFactura}? No se elimina, '
-            'queda registrada como anulada.'),
+        content: Text(SoleraL10n.tf(
+            'agro.confirmar_anular_factura', {'numero': f.numeroFactura})),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false),
               child: Text(SoleraL10n.t('cancelar'))),
           FilledButton(onPressed: () => Navigator.pop(context, true),
-              child: Text('Anular',
+              child: Text(SoleraL10n.t('agro.anular'),
                   style: TextStyle(color: Colors.red))),
         ],
       ),
@@ -305,7 +321,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
           Icon(Icons.receipt_long_outlined,
               size: 64, color: theme.colorScheme.outline),
           SizedBox(height: 16),
-          Text('No hay facturas', style: theme.textTheme.titleMedium),
+          Text(SoleraL10n.t('agro.no_hay_facturas'), style: theme.textTheme.titleMedium),
           SizedBox(height: 8),
           FilledButton.icon(
             onPressed: _nuevaFactura,
@@ -374,7 +390,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
     if (cantidadLeida == null ||
         cantidadLeida <= 0 ||
         cantidadLeida != cantidadLeida.roundToDouble()) {
-      _avisarNumeroNoValido('Cantidad', textoCantidad);
+      _avisarNumeroNoValido(SoleraL10n.t('agro.cantidad'), textoCantidad);
       return;
     }
     final cant = cantidadLeida.round();
@@ -384,7 +400,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
         ? 0.0
         : leerNumero(textoPrecio, puntoDeMillares: true);
     if (precio == null) {
-      _avisarNumeroNoValido('Precio', textoPrecio);
+      _avisarNumeroNoValido(SoleraL10n.t('agro.precio'), textoPrecio);
       return;
     }
     setState(() {
@@ -403,7 +419,8 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          '$nombreCampo no válido: "$textoEscrito". Escribe un número (p. ej. 12,50).',
+          SoleraL10n.tf('agro.campo_numero_no_valido',
+              {'campo': nombreCampo, 'texto': textoEscrito}),
         ),
       ),
     );
@@ -452,7 +469,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             TextFormField(
               controller: _numCtrl,
               decoration: InputDecoration(
-                  labelText: 'N.º de factura',
+                  labelText: SoleraL10n.t('agro.numero_de_factura'),
                   border: OutlineInputBorder(),
                   isDense: true),
             ),
@@ -462,11 +479,11 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             TextFormField(
               controller: _clienteCtrl,
               decoration: InputDecoration(
-                  labelText: 'Cliente',
+                  labelText: SoleraL10n.t('agro.cliente'),
                   border: OutlineInputBorder(),
                   isDense: true),
               validator: (v) =>
-                  v == null || v.trim().isEmpty ? 'Requerido' : null,
+                  v == null || v.trim().isEmpty ? SoleraL10n.t('agro.requerido') : null,
             ),
             SizedBox(height: 8),
             Row(
@@ -475,7 +492,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _nifCtrl,
                     decoration: InputDecoration(
-                        labelText: 'NIF (opcional)',
+                        labelText: SoleraL10n.t('agro.nif_opcional'),
                         border: OutlineInputBorder(),
                         isDense: true),
                   ),
@@ -485,7 +502,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _dirCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Dirección (opcional)',
+                        labelText: SoleraL10n.t('agro.direccion_opcional'),
                         border: OutlineInputBorder(),
                         isDense: true),
                   ),
@@ -495,7 +512,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             SizedBox(height: 16),
 
             // Líneas
-            Text('Líneas de factura',
+            Text(SoleraL10n.t('agro.lineas_de_factura'),
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall
@@ -520,7 +537,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _descCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Descripción',
+                        labelText: SoleraL10n.t('agro.descripcion'),
                         border: OutlineInputBorder(),
                         isDense: true),
                   ),
@@ -534,7 +551,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _cantCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Cantidad',
+                        labelText: SoleraL10n.t('agro.cantidad'),
                         border: OutlineInputBorder(),
                         isDense: true),
                     keyboardType: TextInputType.number,
@@ -545,7 +562,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _precioCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Precio (€)',
+                        labelText: SoleraL10n.t('agro.precio_euros'),
                         border: OutlineInputBorder(),
                         isDense: true),
                     keyboardType: TextInputType.number,
@@ -563,7 +580,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             // IVA
             DropdownButtonFormField<double>(
               decoration: InputDecoration(
-                  labelText: 'IVA',
+                  labelText: SoleraL10n.t('agro.iva'),
                   border: OutlineInputBorder(),
                   isDense: true),
               initialValue: _iva,
@@ -582,11 +599,11 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   children: [
-                    _filaTotal('Base imponible', _baseImponible),
+                    _filaTotal(SoleraL10n.t('agro.base_imponible'), _baseImponible),
                     _filaTotal(
-                        'IVA $_iva %', _baseImponible * _iva / 100),
+                        SoleraL10n.tf('agro.iva_porcentaje', {'n': _iva}), _baseImponible * _iva / 100),
                     Divider(),
-                    _filaTotal('TOTAL', _total, bold: true),
+                    _filaTotal(SoleraL10n.t('agro.total_mayusculas'), _total, bold: true),
                   ],
                 ),
               ),

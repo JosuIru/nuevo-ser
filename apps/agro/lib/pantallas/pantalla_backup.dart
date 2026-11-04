@@ -14,37 +14,42 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error, {bool alRestaurar = t
   final String causa;
   switch (error.motivo) {
     case MotivoErrorCopiaSeguridad.ficheroNoExiste:
-      causa = 'El fichero elegido no existe.';
+      causa = SoleraL10n.t('agro.copia_error_fichero_no_existe');
     case MotivoErrorCopiaSeguridad.noEsZip:
-      causa = 'El fichero no es un ZIP legible o está dañado.';
+      causa = SoleraL10n.t('agro.copia_error_no_es_zip');
     case MotivoErrorCopiaSeguridad.manifiestoNoValido:
-      causa = 'La copia de seguridad está incompleta o dañada.';
+      causa = SoleraL10n.t('agro.copia_error_incompleta');
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      causa = 'La copia de seguridad es de una versión más nueva de Larrea. Actualiza la app y vuelve a intentarlo.';
+      causa = SoleraL10n.t('agro.copia_error_version_mas_nueva');
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      causa = 'La copia de seguridad es de otra aplicación, no de Larrea.';
+      causa = SoleraL10n.t('agro.copia_error_otra_app');
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      causa = 'El ZIP no contiene la base de datos de Larrea (agro.db).';
+      causa = SoleraL10n.t('agro.copia_error_sin_base_datos');
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
-      causa = 'La base de datos de la copia de seguridad está dañada.';
+      causa = SoleraL10n.t('agro.copia_error_bd_danada');
     case MotivoErrorCopiaSeguridad.rutaPeligrosa:
-      causa = 'El ZIP contiene rutas no permitidas.';
+      causa = SoleraL10n.t('agro.copia_error_rutas_no_permitidas');
     case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
-      causa = 'No se pudo guardar antes una copia del estado actual (¿falta espacio?).';
+      causa = SoleraL10n.t('agro.copia_error_respaldo_previo');
     case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
-      causa = 'Todavía no hay datos que copiar.';
+      causa = SoleraL10n.t('agro.copia_error_sin_datos');
     case MotivoErrorCopiaSeguridad.restauracionRevertida:
-      causa = 'La restauración falló a mitad y se ha vuelto al estado anterior.';
+      causa = SoleraL10n.t('agro.copia_error_revertida');
     case MotivoErrorCopiaSeguridad.reversionFallida:
       final respaldo = error.respaldoPrevio;
-      return 'La restauración falló y no se pudo volver atrás del todo. '
-          '${respaldo != null ? 'Tu estado anterior está en ${respaldo.path}. ' : ''}'
-          'No borres la app y escríbenos. Detalle: ${error.mensaje}';
+      return [
+        SoleraL10n.t('agro.copia_error_reversion_fallida'),
+        if (respaldo != null)
+          SoleraL10n.tf('agro.copia_estado_anterior_en', {'ruta': respaldo.path}),
+        SoleraL10n.tf('agro.copia_no_borres_app', {'detalle': error.mensaje}),
+      ].join(' ');
   }
-  if (!alRestaurar) return 'No se pudo crear la copia de seguridad. $causa';
-  return error.datosIntactos ? '$causa Tus datos no se han tocado.' : causa;
+  if (!alRestaurar) return '${SoleraL10n.t('agro.copia_no_se_pudo_crear')} $causa';
+  return error.datosIntactos
+      ? '$causa ${SoleraL10n.t('agro.copia_datos_intactos')}'
+      : causa;
 }
 
 /// Pantalla de backup/restore. Operaciones lentas (segundos) y
@@ -84,13 +89,13 @@ class _PantallaBackupState extends State<PantallaBackup> {
       final fichero = await servicioCopiaSeguridadAgro.crearCopia();
       await _cargarUltimoBackup();
       if (!mounted) return;
-      await Share.shareXFiles([XFile(fichero.path)], subject: 'Copia de seguridad de Larrea');
+      await Share.shareXFiles([XFile(fichero.path)], subject: SoleraL10n.t('agro.asunto_copia_seguridad'));
     } on ErrorCopiaSeguridad catch (error) {
       if (!mounted) return;
       _avisar(textoErrorCopiaSeguridad(error, alRestaurar: false), segundos: 8);
     } catch (error) {
       if (!mounted) return;
-      _avisar('No se pudo crear la copia de seguridad: $error', segundos: 8);
+      _avisar(SoleraL10n.tf('agro.copia_no_se_pudo_crear_error', {'error': error}), segundos: 8);
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -121,7 +126,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     } catch (error) {
       if (mounted) {
         setState(() => _trabajando = false);
-        _avisar('No se pudo leer la copia de seguridad: $error. No se ha tocado nada.', segundos: 8);
+        _avisar(SoleraL10n.tf('agro.copia_no_se_pudo_leer', {'error': error}), segundos: 8);
       }
       return;
     }
@@ -130,17 +135,21 @@ class _PantallaBackupState extends State<PantallaBackup> {
 
     final fechaCopia = informe.fechaCreacion;
     final descripcionCopia = fechaCopia != null
-        ? 'Copia de seguridad del ${DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(fechaCopia)}'
-        : 'Copia de seguridad sin fecha (hecha con una versión anterior de Larrea; '
-            'fecha del fichero: ${DateFormat('d/M/yyyy HH:mm', 'es_ES').format(copia.lastModifiedSync())})';
+        ? SoleraL10n.tf('agro.copia_del_fecha', {
+            'fecha': DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(fechaCopia),
+          })
+        : SoleraL10n.tf('agro.copia_sin_fecha', {
+            'fecha': DateFormat('d/M/yyyy HH:mm', 'es_ES').format(copia.lastModifiedSync()),
+          });
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
-      titulo: 'Restaurar una copia de seguridad',
-      mensaje: '$descripcionCopia, con ${informe.numeroFicherosExtra} fotos.\n\n'
-          'Se sustituirán la base de datos y las fotos actuales por las de la copia. '
-          'Antes se guarda automáticamente una copia del estado actual en el dispositivo.',
-      textoConfirmar: 'Restaurar',
-      textoCancelar: 'Cancelar',
+      titulo: SoleraL10n.t('agro.restaurar_una_copia_de_seguridad'),
+      mensaje: '${SoleraL10n.tf('agro.copia_con_n_fotos', {
+            'descripcion': descripcionCopia,
+            'n': informe.numeroFicherosExtra,
+          })}\n\n${SoleraL10n.t('agro.copia_aviso_sustitucion')}',
+      textoConfirmar: SoleraL10n.t('agro.restaurar'),
+      textoCancelar: SoleraL10n.t('cancelar'),
       icono: Icons.restore,
     );
     if (confirmado != true || !mounted) return;
@@ -150,7 +159,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       await servicioCopiaSeguridadAgro.restaurarCopia(copia);
       if (!mounted) return;
       _avisar(
-        'Copia de seguridad restaurada. El estado anterior queda guardado como copia automática en el dispositivo.',
+        SoleraL10n.t('agro.copia_restaurada'),
         segundos: 8,
       );
     } on ErrorCopiaSeguridad catch (error) {
@@ -158,7 +167,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
       _avisar(textoErrorCopiaSeguridad(error), segundos: 10);
     } catch (error) {
       if (!mounted) return;
-      _avisar('Error al restaurar: $error', segundos: 10);
+      _avisar(SoleraL10n.tf('agro.error_al_restaurar', {'error': error}), segundos: 10);
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -169,7 +178,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final ultimo = _ultimoBackup;
     final hace = ultimo == null ? null : DateTime.now().difference(ultimo);
     return Scaffold(
-      appBar: AppBar(title: Text('Copia de seguridad')),
+      appBar: AppBar(title: Text(SoleraL10n.t('copia_de_seguridad'))),
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
@@ -189,10 +198,10 @@ class _PantallaBackupState extends State<PantallaBackup> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Última copia', style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(SoleraL10n.t('agro.ultima_copia'), style: TextStyle(fontWeight: FontWeight.bold)),
                           Text(
                             ultimo == null
-                                ? 'Nunca. Te recomendamos hacer una antes de salir al campo.'
+                                ? SoleraL10n.t('agro.nunca_copia')
                                 : DateFormat("d 'de' MMMM 'de' yyyy 'a las' HH:mm", 'es_ES').format(ultimo),
                           ),
                         ],
@@ -203,30 +212,30 @@ class _PantallaBackupState extends State<PantallaBackup> {
               ),
             ),
             SizedBox(height: 12),
-            Text('Crear copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('agro.crear_copia'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí.',
+              SoleraL10n.t('agro.crear_copia_explicacion'),
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),
             FilledButton.icon(
               icon: Icon(Icons.archive),
               onPressed: _trabajando ? null : _crearYCompartir,
-              label: Text(_trabajando ? 'Empaquetando…' : 'Crear copia y compartir'),
+              label: Text(_trabajando ? SoleraL10n.t('agro.empaquetando') : SoleraL10n.t('crear_y_compartir_backup')),
             ),
             Divider(height: 32),
-            Text('Restaurar una copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('agro.restaurar_una_copia'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             SizedBox(height: 4),
             Text(
-              'Sustituye la base de datos y fotos actuales por las del ZIP. Antes se comprueba que el ZIP es una copia válida de Larrea y se guarda una copia automática del estado actual.',
+              SoleraL10n.t('agro.restaurar_copia_explicacion'),
               style: TextStyle(color: Colors.grey, fontSize: 13),
             ),
             SizedBox(height: 12),
             OutlinedButton.icon(
               icon: Icon(Icons.restore),
               onPressed: _trabajando ? null : _restaurar,
-              label: Text('Restaurar ZIP'),
+              label: Text(SoleraL10n.t('restaurar_desde_zip')),
             ),
           ],
         ),

@@ -116,7 +116,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
     if (!(_claveFormulario.currentState?.validate() ?? false)) return;
     if (_latitud == null || _longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta la posición: pulsa «Capturar GPS» o vuelve al mapa.')),
+        SnackBar(content: Text(SoleraL10n.t('agro.falta_posicion_pulsa_gps'))),
       );
       return;
     }
@@ -164,7 +164,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
   Widget build(BuildContext context) {
     final cultivo = cultivoPorId(_cultivoId);
     return Scaffold(
-      appBar: AppBar(title: Text(_esEdicion ? 'Editar planta' : 'Nueva planta')),
+      appBar: AppBar(title: Text(_esEdicion ? SoleraL10n.t('agro.editar_planta') : SoleraL10n.t('agro.nueva_planta'))),
       body: AbsorbPointer(
         absorbing: _guardando,
         child: Form(
@@ -174,7 +174,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
             children: [
               DropdownButtonFormField<String>(
                 initialValue: _cultivoId,
-                decoration: const InputDecoration(labelText: 'Cultivo *', border: OutlineInputBorder()),
+                decoration: InputDecoration(labelText: SoleraL10n.t('agro.cultivo_obligatorio'), border: const OutlineInputBorder()),
                 items: [
                   for (final c in catalogoCultivos)
                     DropdownMenuItem(value: c.id, child: Text(c.nombreVisible)),
@@ -184,12 +184,12 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
               const SizedBox(height: 12),
               DropdownButtonFormField<int?>(
                 initialValue: _fincaId,
-                decoration: const InputDecoration(
-                  labelText: 'Finca (vacío = punto suelto)',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('agro.finca_vacio_punto_suelto'),
+                  border: const OutlineInputBorder(),
                 ),
                 items: [
-                  const DropdownMenuItem<int?>(value: null, child: Text('— Punto suelto —')),
+                  DropdownMenuItem<int?>(value: null, child: Text('— ${SoleraL10n.t('agro.punto_suelto')} —')),
                   for (final f in _fincas) DropdownMenuItem<int?>(value: f.id, child: Text(f.nombre)),
                 ],
                 onChanged: (v) => setState(() => _fincaId = v),
@@ -198,32 +198,32 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
               if (cultivo.variedadesSugeridas.isNotEmpty)
                 _AutocompleteCampo(
                   controlador: _controladorVariedad,
-                  etiqueta: 'Variedad',
+                  etiqueta: SoleraL10n.t('agro.variedad'),
                   sugerencias: cultivo.variedadesSugeridas,
                 )
               else
                 TextFormField(
                   controller: _controladorVariedad,
-                  decoration: const InputDecoration(labelText: 'Variedad', border: OutlineInputBorder()),
+                  decoration: InputDecoration(labelText: SoleraL10n.t('agro.variedad'), border: const OutlineInputBorder()),
                 ),
               const SizedBox(height: 12),
               if (cultivo.patronesSugeridos.isNotEmpty)
                 _AutocompleteCampo(
                   controlador: _controladorPatron,
-                  etiqueta: cultivo.categoria == CategoriaCultivo.micorricicoTrufa ? 'Hospedero' : 'Patrón',
+                  etiqueta: cultivo.categoria == CategoriaCultivo.micorricicoTrufa ? SoleraL10n.t('agro.hospedero') : SoleraL10n.t('agro.patron'),
                   sugerencias: cultivo.patronesSugeridos,
                 )
               else
                 TextFormField(
                   controller: _controladorPatron,
-                  decoration: const InputDecoration(labelText: 'Patrón', border: OutlineInputBorder()),
+                  decoration: InputDecoration(labelText: SoleraL10n.t('agro.patron'), border: const OutlineInputBorder()),
                 ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _controladorEtiqueta,
-                decoration: const InputDecoration(
-                  labelText: 'Etiqueta corta (p. ej., A-17, fila 3)',
-                  border: OutlineInputBorder(),
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('agro.etiqueta_corta_ejemplo'),
+                  border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 12),
@@ -231,8 +231,8 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.calendar_today),
                 title: Text(_fechaPlantacion == null
-                    ? 'Fecha de plantación (opcional)'
-                    : 'Plantada el ${_fechaPlantacion!.day}/${_fechaPlantacion!.month}/${_fechaPlantacion!.year}'),
+                    ? SoleraL10n.t('agro.fecha_plantacion_opcional')
+                    : SoleraL10n.tf('agro.plantada_el_fecha', {'fecha': '${_fechaPlantacion!.day}/${_fechaPlantacion!.month}/${_fechaPlantacion!.year}'})),
                 trailing: _fechaPlantacion == null
                     ? null
                     : IconButton(icon: const Icon(Icons.clear), onPressed: () => setState(() => _fechaPlantacion = null)),
@@ -250,7 +250,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _controladorNotas,
-                decoration: const InputDecoration(labelText: 'Notas', border: OutlineInputBorder()),
+                decoration: InputDecoration(labelText: SoleraL10n.t('agro.notas'), border: const OutlineInputBorder()),
                 maxLines: 3,
               ),
               const SizedBox(height: 16),
@@ -264,7 +264,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                       Expanded(
                         child: Text(
                           _latitud == null
-                              ? 'Sin posición'
+                              ? SoleraL10n.t('agro.sin_posicion')
                               : '${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}'
                                   '${_precision != null ? '  ±${_precision!.toStringAsFixed(0)} m' : ''}',
                         ),
@@ -279,11 +279,11 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text('Fotos de la planta', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(SoleraL10n.t('agro.fotos_de_la_planta'), style: const TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 4),
-              const Text(
-                'Foto del árbol, del tronco con la etiqueta y del entorno. Sirven para identificar la planta en campo.',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+              Text(
+                SoleraL10n.t('agro.fotos_planta_ayuda'),
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
               const SizedBox(height: 8),
               SelectorFotos(
@@ -294,7 +294,7 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
               FilledButton.icon(
                 icon: const Icon(Icons.save),
                 onPressed: _guardando ? null : _guardar,
-                label: Text(_esEdicion ? 'Guardar cambios' : 'Guardar planta'),
+                label: Text(_esEdicion ? SoleraL10n.t('agro.guardar_cambios') : SoleraL10n.t('agro.guardar_planta')),
               ),
             ],
           ),

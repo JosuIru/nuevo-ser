@@ -20,7 +20,9 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
   final _servicio = ServicioMeteoAgro();
   final _persistenciaFinca = FincaActivaPersistida();
   Future<PrevisionAgro>? _futuro;
-  String _origen = 'ubicación de trabajo';
+  _DestinoMeteo? _destino;
+  String get _origen =>
+      _destino?.nombreVisible ?? SoleraL10n.t('agro.origen_ubicacion_trabajo');
 
   @override
   void initState() {
@@ -30,7 +32,7 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
 
   Future<PrevisionAgro> _cargar() async {
     final destino = await _resolverDestino();
-    _origen = destino.nombre;
+    _destino = destino;
     return _servicio.obtener(
       latitud: destino.latitud,
       longitud: destino.longitud,
@@ -45,7 +47,7 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
         : await db.obtenerFinca(fincaActivaId);
     if (finca?.latitudCentroide != null && finca?.longitudCentroide != null) {
       return _DestinoMeteo(
-        nombre: finca!.nombre,
+        nombreFinca: finca!.nombre,
         latitud: finca.latitudCentroide!,
         longitud: finca.longitudCentroide!,
       );
@@ -59,7 +61,7 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
       final ultima = await Geolocator.getLastKnownPosition();
       if (ultima != null) {
         return _DestinoMeteo(
-          nombre: 'GPS reciente',
+          claveOrigen: 'agro.origen_gps_reciente',
           latitud: ultima.latitude,
           longitud: ultima.longitude,
         );
@@ -68,13 +70,13 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
         const Duration(seconds: 8),
       );
       return _DestinoMeteo(
-        nombre: 'GPS actual',
+        claveOrigen: 'agro.origen_gps_actual',
         latitud: pos.latitude,
         longitud: pos.longitude,
       );
     }
     return const _DestinoMeteo(
-      nombre: 'centro de referencia',
+      claveOrigen: 'agro.origen_centro_referencia',
       latitud: 40.4,
       longitud: -3.7,
     );
@@ -87,7 +89,7 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
     final lng =
         plantas.map((p) => p.longitud).reduce((a, b) => a + b) / plantas.length;
     return _DestinoMeteo(
-      nombre: 'centro de plantas',
+      claveOrigen: 'agro.origen_centro_plantas',
       latitud: lat,
       longitud: lng,
     );
@@ -101,7 +103,7 @@ class _PantallaMeteoAgroState extends State<PantallaMeteoAgro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meteo agro')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.meteo_agro'))),
       body: FutureBuilder<PrevisionAgro>(
         future: _futuro,
         builder: (context, snapshot) {
@@ -155,9 +157,9 @@ class _CabeceraMeteo extends StatelessWidget {
               style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Previsión orientativa para riego, tratamientos, labores y actividad de colmenas.',
-              style: TextStyle(fontSize: 12),
+            Text(
+              SoleraL10n.t('agro.prevision_orientativa'),
+              style: const TextStyle(fontSize: 12),
             ),
           ],
         ),
@@ -175,36 +177,36 @@ class _PanelDecision extends StatelessWidget {
   Widget build(BuildContext context) {
     final avisos = <_AvisoMeteo>[
       if (dia.riesgoHelada)
-        const _AvisoMeteo(
+        _AvisoMeteo(
           Icons.ac_unit,
-          'Riesgo de helada',
-          'Revisa floración, plantones y puntos bajos.',
+          SoleraL10n.t('agro.riesgo_de_helada'),
+          SoleraL10n.t('agro.riesgo_helada_cuerpo'),
         ),
       if (dia.malDiaTratamiento)
-        const _AvisoMeteo(
+        _AvisoMeteo(
           Icons.science,
-          'Tratamientos delicados',
-          'Viento o lluvia pueden reducir eficacia y aumentar deriva.',
+          SoleraL10n.t('agro.tratamientos_delicados'),
+          SoleraL10n.t('agro.tratamientos_delicados_cuerpo'),
         ),
       if (dia.estresHidrico)
-        const _AvisoMeteo(
+        _AvisoMeteo(
           Icons.water_drop,
-          'Alta demanda hídrica',
-          'ET0 y DPV altos: prioriza riego y evita labores de estrés.',
+          SoleraL10n.t('agro.alta_demanda_hidrica'),
+          SoleraL10n.t('agro.alta_demanda_hidrica_cuerpo'),
         ),
       if (dia.vueloAbejasLimitado)
-        const _AvisoMeteo(
+        _AvisoMeteo(
           Icons.hive,
-          'Vuelo de abejas limitado',
-          'Frío, lluvia o viento pueden frenar pecoreo y manejo.',
+          SoleraL10n.t('agro.vuelo_abejas_limitado'),
+          SoleraL10n.t('agro.vuelo_abejas_limitado_cuerpo'),
         ),
     ];
     if (avisos.isEmpty) {
       avisos.add(
-        const _AvisoMeteo(
+        _AvisoMeteo(
           Icons.check_circle,
-          'Ventana razonable',
-          'Sin señales fuertes de helada, deriva, lluvia o estrés hídrico.',
+          SoleraL10n.t('agro.ventana_razonable'),
+          SoleraL10n.t('agro.ventana_razonable_cuerpo'),
         ),
       );
     }
@@ -238,7 +240,7 @@ class _TarjetaDiaMeteo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fecha = DateFormat('EEE d MMM', 'es_ES').format(dia.fecha);
+    final fecha = DateFormat('EEE d MMM', SoleraL10n.idioma).format(dia.fecha);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -269,11 +271,11 @@ class _TarjetaDiaMeteo extends StatelessWidget {
                 _DatoMeteo(
                   icono: Icons.air,
                   texto:
-                      '${_fmt(dia.vientoMaxKmh)} km/h · racha ${_fmt(dia.rachaMaxKmh)}',
+                      '${_fmt(dia.vientoMaxKmh)} km/h · ${SoleraL10n.tf('agro.racha_n', {'n': _fmt(dia.rachaMaxKmh)})}',
                 ),
                 _DatoMeteo(
                   icono: Icons.opacity,
-                  texto: 'HR ${_fmt(dia.humedadMedia)} %',
+                  texto: SoleraL10n.tf('agro.humedad_relativa_n', {'n': _fmt(dia.humedadMedia)}),
                 ),
                 _DatoMeteo(
                   icono: Icons.wb_sunny,
@@ -282,7 +284,10 @@ class _TarjetaDiaMeteo extends StatelessWidget {
                 _DatoMeteo(
                   icono: Icons.grass,
                   texto:
-                      'Suelo ${_fmt(dia.sueloTemp6cmMedia)} °C · ${_fmt(dia.sueloHumedad3a9Media, decimales: 2)}',
+                      SoleraL10n.tf('agro.suelo_temp_humedad', {
+                        'temp': _fmt(dia.sueloTemp6cmMedia),
+                        'humedad': _fmt(dia.sueloHumedad3a9Media, decimales: 2),
+                      }),
                 ),
               ],
             ),
@@ -327,12 +332,12 @@ class _EstadoError extends StatelessWidget {
           children: [
             const Icon(Icons.cloud_off, size: 42),
             const SizedBox(height: 12),
-            const Text('No se pudo cargar la previsión.'),
+            Text(SoleraL10n.t('agro.no_se_pudo_cargar_prevision')),
             const SizedBox(height: 12),
             FilledButton.icon(
               onPressed: alReintentar,
               icon: const Icon(Icons.refresh),
-              label: const Text('Reintentar'),
+              label: Text(SoleraL10n.t('agro.reintentar')),
             ),
           ],
         ),
@@ -350,13 +355,21 @@ class _AvisoMeteo {
 }
 
 class _DestinoMeteo {
-  final String nombre;
+  /// Nombre de la finca, o null si el destino es otro origen.
+  final String? nombreFinca;
+
+  /// Clave de traducción del origen cuando no es una finca.
+  final String? claveOrigen;
   final double latitud;
   final double longitud;
 
   const _DestinoMeteo({
-    required this.nombre,
+    this.nombreFinca,
+    this.claveOrigen,
     required this.latitud,
     required this.longitud,
   });
+
+  String get nombreVisible =>
+      nombreFinca ?? SoleraL10n.t(claveOrigen ?? 'agro.origen_ubicacion_trabajo');
 }

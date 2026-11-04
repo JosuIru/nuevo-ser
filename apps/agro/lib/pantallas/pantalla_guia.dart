@@ -23,11 +23,11 @@ class PantallaGuia extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Guía'),
+          title: Text(SoleraL10n.t('agro.guia')),
           bottom: TabBar(
             tabs: [
-              Tab(icon: Icon(Icons.eco), text: 'Cultivos'),
-              Tab(icon: Icon(Icons.bug_report), text: 'Plagas y enfermedades'),
+              Tab(icon: Icon(Icons.eco), text: SoleraL10n.t('agro.cultivos')),
+              Tab(icon: Icon(Icons.bug_report), text: SoleraL10n.t('agro.plagas_y_enfermedades')),
             ],
           ),
         ),
@@ -76,8 +76,8 @@ class _ListaCultivosState extends State<_ListaCultivos> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: TextField(
             decoration: InputDecoration(
-              labelText: 'Buscar cultivo',
-              hintText: 'Ej.: olivo, almendro, trufa…',
+              labelText: SoleraL10n.t('agro.buscar_cultivo'),
+              hintText: SoleraL10n.t('agro.ejemplo_buscar_cultivo'),
               border: const OutlineInputBorder(),
               prefixIcon: const Icon(Icons.search),
               isDense: true,
@@ -97,7 +97,7 @@ class _ListaCultivosState extends State<_ListaCultivos> {
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Text(
-                      'Sin cultivos para "$_consulta".',
+                      SoleraL10n.tf('agro.sin_cultivos_para_consulta', {'consulta': _consulta}),
                       textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.grey),
                     ),
@@ -134,7 +134,7 @@ class _BloqueCategoria extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           color: Theme.of(context).colorScheme.surfaceContainerHighest,
           child: Text(
-            categoria.nombreVisible,
+            _nombreCategoriaCultivo(categoria),
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
@@ -186,27 +186,27 @@ class PantallaDetalleCultivo extends StatelessWidget {
             ),
           SizedBox(height: 4),
           Text(
-            cultivo.categoria.nombreVisible,
+            _nombreCategoriaCultivo(cultivo.categoria),
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 16),
           if (info?.descripcion.isNotEmpty == true) ...[
-            _Subtitulo('Descripción'),
+            _Subtitulo(SoleraL10n.t('agro.descripcion')),
             Text(info!.descripcion),
             SizedBox(height: 16),
           ],
           if (info?.exigencias.isNotEmpty == true) ...[
-            _Subtitulo('Exigencias agronómicas'),
+            _Subtitulo(SoleraL10n.t('agro.exigencias_agronomicas')),
             Text(info!.exigencias),
             SizedBox(height: 16),
           ],
           if (info?.calendario.isNotEmpty == true) ...[
-            _Subtitulo('Calendario'),
+            _Subtitulo(SoleraL10n.t('agro.calendario')),
             Text(info!.calendario),
             SizedBox(height: 16),
           ],
           if (cultivo.variedadesSugeridas.isNotEmpty) ...[
-            _Subtitulo('Variedades habituales'),
+            _Subtitulo(SoleraL10n.t('agro.variedades_habituales')),
             Wrap(
               spacing: 6,
               runSpacing: 6,
@@ -218,7 +218,7 @@ class PantallaDetalleCultivo extends StatelessWidget {
             SizedBox(height: 16),
           ],
           if (cultivo.patronesSugeridos.isNotEmpty) ...[
-            _Subtitulo(cultivo.categoria == CategoriaCultivo.micorricicoTrufa ? 'Hospederos habituales (texto)' : 'Patrones habituales'),
+            _Subtitulo(cultivo.categoria == CategoriaCultivo.micorricicoTrufa ? SoleraL10n.t('agro.hospederos_habituales_texto') : SoleraL10n.t('agro.patrones_habituales')),
             Wrap(
               spacing: 6,
               runSpacing: 6,
@@ -230,9 +230,9 @@ class PantallaDetalleCultivo extends StatelessWidget {
             SizedBox(height: 16),
           ],
           if (cultivo.hospederosCultivoIds.isNotEmpty) ...[
-            _Subtitulo('Árboles hospederos catalogados'),
+            _Subtitulo(SoleraL10n.t('agro.arboles_hospederos_catalogados')),
             Text(
-              'Estos árboles son los hospederos habituales de la micorrización trufera. Toca para abrir su ficha.',
+              SoleraL10n.t('agro.explicacion_arboles_hospederos'),
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             SizedBox(height: 8),
@@ -257,9 +257,9 @@ class PantallaDetalleCultivo extends StatelessWidget {
             SizedBox(height: 16),
           ],
           if (cultivo.trufasHospedables.isNotEmpty) ...[
-            _Subtitulo('Trufas que puede albergar'),
+            _Subtitulo(SoleraL10n.t('agro.trufas_que_puede_albergar')),
             Text(
-              'Este árbol puede actuar como hospedero de las siguientes trufas si se planta micorrizado y el suelo es adecuado.',
+              SoleraL10n.t('agro.explicacion_trufas_hospedables'),
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             SizedBox(height: 8),
@@ -283,10 +283,10 @@ class PantallaDetalleCultivo extends StatelessWidget {
             ),
             SizedBox(height: 16),
           ],
-          _Subtitulo('Plagas y enfermedades'),
+          _Subtitulo(SoleraL10n.t('agro.plagas_y_enfermedades')),
           if (plagas.isEmpty)
             Text(
-              'Sin plagas catalogadas para este cultivo en v1. El catálogo se ampliará con validación agronómica en v2.',
+              SoleraL10n.t('agro.sin_plagas_catalogadas_cultivo'),
               style: TextStyle(color: Colors.grey),
             )
           else
@@ -301,7 +301,7 @@ class PantallaDetalleCultivo extends StatelessWidget {
                   subtitle: Text(
                     [
                       if (p.nombreCientifico.isNotEmpty) p.nombreCientifico,
-                      p.tipo.nombreVisible,
+                      _nombreTipoPlaga(p.tipo),
                     ].join(' · '),
                     style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
                   ),
@@ -346,7 +346,7 @@ class _ListaPlagasState extends State<_ListaPlagas> {
                   initialValue: _filtroCultivo,
                   isDense: true,
                   decoration: InputDecoration(
-                    labelText: 'Cultivo',
+                    labelText: SoleraL10n.t('agro.cultivo'),
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   ),
@@ -365,14 +365,14 @@ class _ListaPlagasState extends State<_ListaPlagas> {
                   initialValue: _filtroTipo,
                   isDense: true,
                   decoration: InputDecoration(
-                    labelText: 'Tipo',
+                    labelText: SoleraL10n.t('agro.tipo'),
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   ),
                   items: [
                     DropdownMenuItem<TipoPlaga?>(value: null, child: Text(SoleraL10n.t('todos'))),
                     for (final t in TipoPlaga.values)
-                      DropdownMenuItem<TipoPlaga?>(value: t, child: Text(t.nombreVisible)),
+                      DropdownMenuItem<TipoPlaga?>(value: t, child: Text(_nombreTipoPlaga(t))),
                   ],
                   onChanged: (v) => setState(() => _filtroTipo = v),
                 ),
@@ -386,7 +386,7 @@ class _ListaPlagasState extends State<_ListaPlagas> {
                   child: Padding(
                     padding: EdgeInsets.all(24),
                     child: Text(
-                      'Sin resultados para los filtros seleccionados.',
+                      SoleraL10n.t('agro.sin_resultados_filtros'),
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -405,7 +405,7 @@ class _ListaPlagasState extends State<_ListaPlagas> {
                       subtitle: Text(
                         [
                           if (p.nombreCientifico.isNotEmpty) p.nombreCientifico,
-                          p.tipo.nombreVisible,
+                          _nombreTipoPlaga(p.tipo),
                         ].join(' · '),
                         style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
                         // Sin esto los nombres científicos largos
@@ -464,23 +464,23 @@ class PantallaDetallePlaga extends StatelessWidget {
             children: [
               Icon(plaga.tipo.icono, color: plaga.tipo.color, size: 18),
               SizedBox(width: 4),
-              Text(plaga.tipo.nombreVisible, style: TextStyle(fontWeight: FontWeight.bold, color: plaga.tipo.color)),
+              Text(_nombreTipoPlaga(plaga.tipo), style: TextStyle(fontWeight: FontWeight.bold, color: plaga.tipo.color)),
             ],
           ),
           SizedBox(height: 16),
-          _Subtitulo('Descripción'),
+          _Subtitulo(SoleraL10n.t('agro.descripcion')),
           Text(plaga.descripcion),
           SizedBox(height: 16),
-          _Subtitulo('Síntomas'),
+          _Subtitulo(SoleraL10n.t('agro.sintomas')),
           Text(plaga.sintomas),
           if (plaga.condicionesFavorables.isNotEmpty) ...[
             SizedBox(height: 16),
-            _Subtitulo('Condiciones favorables'),
+            _Subtitulo(SoleraL10n.t('agro.condiciones_favorables')),
             Text(plaga.condicionesFavorables),
           ],
           if (plaga.manejoCultural.isNotEmpty) ...[
             SizedBox(height: 16),
-            _Subtitulo('Manejo cultural'),
+            _Subtitulo(SoleraL10n.t('agro.manejo_cultural')),
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -499,12 +499,12 @@ class PantallaDetallePlaga extends StatelessWidget {
             ),
             SizedBox(height: 6),
             Text(
-              'Las recomendaciones de productos fitosanitarios autorizados (BBDD del MAPA) y los plazos de seguridad estarán disponibles en próximas versiones, validadas por un agrónomo.',
+              SoleraL10n.t('agro.aviso_recomendaciones_fitosanitarios_futuras'),
               style: TextStyle(fontSize: 11, color: Colors.grey.shade600, fontStyle: FontStyle.italic),
             ),
           ],
           SizedBox(height: 16),
-          _Subtitulo('Cultivos afectados'),
+          _Subtitulo(SoleraL10n.t('agro.cultivos_afectados')),
           Wrap(
             spacing: 6,
             runSpacing: 6,
@@ -535,6 +535,43 @@ class _Subtitulo extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4),
       child: Text(texto, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
     );
+  }
+}
+
+/// Nombre visible traducido del tipo de plaga (el de `TipoPlaga.nombreVisible`
+/// del catálogo se queda en castellano).
+String _nombreTipoPlaga(TipoPlaga tipo) {
+  switch (tipo) {
+    case TipoPlaga.plaga:
+      return SoleraL10n.t('agro.plaga');
+    case TipoPlaga.enfermedad:
+      return SoleraL10n.t('agro.enfermedad');
+    case TipoPlaga.fisiologico:
+      return SoleraL10n.t('agro.trastorno_fisiologico');
+    case TipoPlaga.abiotico:
+      return SoleraL10n.t('agro.dano_abiotico');
+  }
+}
+
+/// Nombre visible traducido de la categoría de cultivo.
+String _nombreCategoriaCultivo(CategoriaCultivo categoria) {
+  switch (categoria) {
+    case CategoriaCultivo.micorricicoTrufa:
+      return SoleraL10n.t('agro.categoria_truficultura');
+    case CategoriaCultivo.forestal:
+      return SoleraL10n.t('agro.categoria_forestal_dehesa');
+    case CategoriaCultivo.frutalPepita:
+      return SoleraL10n.t('agro.categoria_frutal_pepita');
+    case CategoriaCultivo.frutalHueso:
+      return SoleraL10n.t('agro.categoria_frutal_hueso');
+    case CategoriaCultivo.frutoSeco:
+      return SoleraL10n.t('agro.categoria_fruto_seco');
+    case CategoriaCultivo.oleoso:
+      return SoleraL10n.t('agro.categoria_cultivo_oleoso');
+    case CategoriaCultivo.vid:
+      return SoleraL10n.t('agro.categoria_vid');
+    case CategoriaCultivo.otro:
+      return SoleraL10n.t('agro.otro');
   }
 }
 

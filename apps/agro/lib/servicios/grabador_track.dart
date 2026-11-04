@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:geolocator/geolocator.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../modelos/track.dart';
@@ -40,9 +41,9 @@ class GrabadorTrack {
         ? AndroidSettings(
             accuracy: LocationAccuracy.high,
             distanceFilter: 5,
-            foregroundNotificationConfig: const ForegroundNotificationConfig(
-              notificationTitle: 'Grabando recorrido',
-              notificationText: 'Larrea está registrando tu inspección',
+            foregroundNotificationConfig: ForegroundNotificationConfig(
+              notificationTitle: SoleraL10n.t('agro.grabando_recorrido'),
+              notificationText: SoleraL10n.t('agro.larrea_registrando_inspeccion'),
               enableWakeLock: true,
               setOngoing: true,
             ),

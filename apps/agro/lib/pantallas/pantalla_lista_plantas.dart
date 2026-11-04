@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../datos/catalogo_cultivos.dart';
@@ -86,7 +87,7 @@ class _PantallaListaPlantasState extends State<PantallaListaPlantas> {
     final filtradas = _plantasFiltradas;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Plantas'),
+        title: Text(SoleraL10n.t('agro.plantas')),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: Padding(
@@ -94,7 +95,7 @@ class _PantallaListaPlantasState extends State<PantallaListaPlantas> {
             child: TextField(
               controller: _controladorBusqueda,
               decoration: InputDecoration(
-                hintText: 'Buscar por etiqueta, variedad, cultivo o finca',
+                hintText: SoleraL10n.t('agro.buscar_por_etiqueta_variedad_cultivo_finca'),
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: _consulta.isEmpty
                     ? null
@@ -116,13 +117,13 @@ class _PantallaListaPlantasState extends State<PantallaListaPlantas> {
         ),
       ),
       body: _plantas.isEmpty
-          ? const Center(
+          ? Center(
               child: Padding(
-                padding: EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 child: Text(
-                  'Aún no hay plantas registradas.\nVe al mapa y usa el botón "Añadir aquí" o el modo censo.',
+                  '${SoleraL10n.t('agro.aun_no_hay_plantas_registradas')}\n${SoleraL10n.t('agro.ayuda_anadir_planta_mapa_o_censo')}',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.grey),
                 ),
               ),
             )
@@ -131,7 +132,7 @@ class _PantallaListaPlantasState extends State<PantallaListaPlantas> {
                   child: Padding(
                     padding: const EdgeInsets.all(24),
                     child: Text(
-                      'Sin resultados para "$_consulta".',
+                      SoleraL10n.tf('agro.sin_resultados_para_consulta', {'consulta': _consulta}),
                       textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.grey),
                     ),
@@ -154,7 +155,7 @@ class _PantallaListaPlantasState extends State<PantallaListaPlantas> {
                         subtitle: Text([
                           cultivo.nombreVisible,
                           if (p.variedad.isNotEmpty) p.variedad,
-                          if (finca != null) finca.nombre else 'Punto suelto',
+                          if (finca != null) finca.nombre else SoleraL10n.t('agro.punto_suelto'),
                           DateFormat('dd MMM yyyy', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(p.fechaCreacionMs)),
                         ].join('  ·  ')),
                         onTap: () async {

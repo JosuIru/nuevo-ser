@@ -61,7 +61,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              'Superficie no válida: "$textoSup". Usa solo números (p. ej. 4,7).',
+              SoleraL10n.tf('agro.superficie_no_valida_texto', {'texto': textoSup}),
             ),
             backgroundColor: Colors.red.shade700,
           ),
@@ -70,7 +70,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
       }
       if (superficie < 0) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('La superficie no puede ser negativa.')),
+          SnackBar(content: Text(SoleraL10n.t('agro.superficie_no_puede_ser_negativa'))),
         );
         return;
       }
@@ -85,7 +85,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
     });
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Datos SIGPAC guardados.')),
+      SnackBar(content: Text(SoleraL10n.t('agro.datos_sigpac_guardados'))),
     );
     Navigator.of(context).pop(true);
   }
@@ -98,9 +98,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
         padding: const EdgeInsets.all(16),
         children: [
           Text(
-            'Identificación oficial de la parcela según el SIGPAC. Si tienes la '
-            'referencia completa la app la presentará bien formada en el cuaderno '
-            'MAPA con el formato Provincia:Municipio:Polígono:Parcela:Recinto.',
+            SoleraL10n.t('agro.sigpac_explicacion'),
             style: TextStyle(fontSize: 13, color: Colors.grey),
           ),
           SizedBox(height: 16),
@@ -110,8 +108,8 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
                 child: TextField(
                   controller: _controladorProvincia,
                   decoration: InputDecoration(
-                    labelText: 'Provincia',
-                    hintText: 'Cód. INE',
+                    labelText: SoleraL10n.t('agro.provincia'),
+                    hintText: SoleraL10n.t('agro.codigo_ine_abreviado'),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -121,8 +119,8 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
                 child: TextField(
                   controller: _controladorMunicipio,
                   decoration: InputDecoration(
-                    labelText: 'Municipio',
-                    hintText: 'Cód. INE',
+                    labelText: SoleraL10n.t('agro.municipio'),
+                    hintText: SoleraL10n.t('agro.codigo_ine_abreviado'),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -136,7 +134,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
                 child: TextField(
                   controller: _controladorPoligono,
                   decoration: InputDecoration(
-                    labelText: 'Polígono',
+                    labelText: SoleraL10n.t('agro.poligono'),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -146,7 +144,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
                 child: TextField(
                   controller: _controladorParcela,
                   decoration: InputDecoration(
-                    labelText: 'Parcela',
+                    labelText: SoleraL10n.t('agro.parcela'),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -156,7 +154,7 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
                 child: TextField(
                   controller: _controladorRecinto,
                   decoration: InputDecoration(
-                    labelText: 'Recinto',
+                    labelText: SoleraL10n.t('agro.recinto'),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -167,8 +165,8 @@ class _PantallaEditarSigpacState extends State<PantallaEditarSigpac> {
           TextField(
             controller: _controladorSuperficie,
             decoration: InputDecoration(
-              labelText: 'Superficie (hectáreas)',
-              hintText: 'Ej.: 4,7',
+              labelText: SoleraL10n.t('agro.superficie_hectareas'),
+              hintText: SoleraL10n.t('agro.ejemplo_superficie'),
               border: OutlineInputBorder(),
             ),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),

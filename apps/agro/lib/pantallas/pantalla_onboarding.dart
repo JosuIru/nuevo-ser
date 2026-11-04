@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../datos/base_datos.dart';
@@ -82,9 +83,9 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Bienvenido a Larrea'),
+        title: Text(SoleraL10n.t('agro.bienvenido_a_larrea')),
         actions: [
-          TextButton(onPressed: _saltar, child: const Text('Saltar')),
+          TextButton(onPressed: _saltar, child: Text(SoleraL10n.t('agro.saltar'))),
         ],
       ),
       body: Column(
@@ -117,7 +118,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 FilledButton.icon(
                   icon: Icon(_pagina == 3 ? Icons.check : Icons.arrow_forward),
                   onPressed: _avanzar,
-                  label: Text(_pagina == 3 ? 'Empezar a usar Larrea' : 'Siguiente'),
+                  label: Text(_pagina == 3 ? SoleraL10n.t('agro.empezar_a_usar_larrea') : SoleraL10n.t('agro.siguiente')),
                 ),
               ],
             ),
@@ -141,16 +142,16 @@ class _PaginaBienvenida extends StatelessWidget {
         children: [
           const Icon(Icons.eco, size: 80, color: Color(0xFF558B2F)),
           const SizedBox(height: 16),
-          Text('Tu cuaderno de campo digital', style: Theme.of(context).textTheme.headlineSmall),
+          Text(SoleraL10n.t('agro.tu_cuaderno_de_campo_digital'), style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 12),
-          const Text(
-            'Larrea te ayuda a llevar el control de tus árboles, viñas, truferas, olivar o pistacho.\n\n'
-            '· Marca cada planta en el mapa con un punto GPS.\n'
-            '· Apunta cosechas, observaciones, plagas y tratamientos.\n'
-            '· Consulta una guía con cultivos y plagas frecuentes.\n'
-            '· Genera informes en PDF para tu asesor o cooperativa.\n\n'
-            'Todo funciona sin conexión en tu móvil. Tus datos no salen sin tu permiso.',
-            style: TextStyle(fontSize: 15),
+          Text(
+            '${SoleraL10n.t('agro.onboarding_intro')}\n\n'
+            '· ${SoleraL10n.t('agro.onboarding_punto_mapa')}\n'
+            '· ${SoleraL10n.t('agro.onboarding_apunta')}\n'
+            '· ${SoleraL10n.t('agro.onboarding_guia')}\n'
+            '· ${SoleraL10n.t('agro.onboarding_informes')}\n\n'
+            '${SoleraL10n.t('agro.onboarding_sin_conexion')}',
+            style: const TextStyle(fontSize: 15),
           ),
         ],
       ),
@@ -172,11 +173,11 @@ class _PaginaCultivos extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 8),
-          Text('¿Qué cultivas?', style: Theme.of(context).textTheme.headlineSmall),
+          Text(SoleraL10n.t('agro.que_cultivas'), style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 4),
-          const Text(
-            'Selecciona los cultivos que ya tienes o que vas a plantar. Esto sirve para sugerir variedades y plagas en la pantalla «Hoy». Puedes cambiarlo después.',
-            style: TextStyle(color: Colors.grey, fontSize: 13),
+          Text(
+            SoleraL10n.t('agro.onboarding_cultivos_texto'),
+            style: const TextStyle(color: Colors.grey, fontSize: 13),
           ),
           const SizedBox(height: 16),
           Expanded(
@@ -223,19 +224,19 @@ class _PaginaFinca extends StatelessWidget {
         children: [
           const Icon(Icons.agriculture, size: 60, color: Color(0xFF558B2F)),
           const SizedBox(height: 16),
-          Text('Tu primera finca', style: Theme.of(context).textTheme.headlineSmall),
+          Text(SoleraL10n.t('agro.tu_primera_finca'), style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 12),
-          const Text(
-            'Si quieres agrupar tus plantas en una finca con nombre, escríbelo aquí. Si tienes árboles dispersos sin agrupación clara, déjalo en blanco — funcionarán como puntos sueltos.',
-            style: TextStyle(fontSize: 14, color: Colors.grey),
+          Text(
+            SoleraL10n.t('agro.onboarding_finca_texto'),
+            style: const TextStyle(fontSize: 14, color: Colors.grey),
           ),
           const SizedBox(height: 16),
           TextField(
             controller: controlador,
-            decoration: const InputDecoration(
-              labelText: 'Nombre de la finca (opcional)',
-              hintText: 'Ej.: La Solana, Olivar de mi padre, Trufera de Soria',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('agro.nombre_finca_opcional'),
+              hintText: SoleraL10n.t('agro.nombre_finca_ejemplo'),
+              border: const OutlineInputBorder(),
             ),
           ),
         ],
@@ -275,31 +276,31 @@ class _PaginaPermisosState extends State<_PaginaPermisos> {
         children: [
           const Icon(Icons.gps_fixed, size: 60, color: Color(0xFF558B2F)),
           const SizedBox(height: 16),
-          Text('Permisos', style: Theme.of(context).textTheme.headlineSmall),
+          Text(SoleraL10n.t('agro.permisos'), style: Theme.of(context).textTheme.headlineSmall),
           const SizedBox(height: 12),
-          const Text(
-            'Larrea necesita ubicación para situar tus plantas en el mapa y grabar recorridos GPS de inspección. Las notificaciones permiten mantener viva la grabación cuando bloqueas la pantalla.',
-            style: TextStyle(fontSize: 14, color: Colors.grey),
+          Text(
+            SoleraL10n.t('agro.onboarding_permisos_texto'),
+            style: const TextStyle(fontSize: 14, color: Colors.grey),
           ),
           const SizedBox(height: 16),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.location_on, color: _gpsConcedido ? Colors.green : Colors.grey),
-            title: const Text('Ubicación GPS'),
-            subtitle: Text(_gpsConcedido ? 'Concedido' : 'Pendiente'),
+            title: Text(SoleraL10n.t('agro.ubicacion_gps')),
+            subtitle: Text(_gpsConcedido ? SoleraL10n.t('agro.concedido') : SoleraL10n.t('agro.pendiente')),
             trailing: TextButton(
               onPressed: _gpsConcedido ? null : _pedirGps,
-              child: const Text('Conceder'),
+              child: Text(SoleraL10n.t('agro.conceder')),
             ),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.notifications, color: _notificacionesConcedidas ? Colors.green : Colors.grey),
-            title: const Text('Notificaciones'),
-            subtitle: Text(_notificacionesConcedidas ? 'Concedidas' : 'Pendiente (opcional)'),
+            title: Text(SoleraL10n.t('agro.notificaciones')),
+            subtitle: Text(_notificacionesConcedidas ? SoleraL10n.t('agro.concedidas') : SoleraL10n.t('agro.pendiente_opcional')),
             trailing: TextButton(
               onPressed: _notificacionesConcedidas ? null : _pedirNotificaciones,
-              child: const Text('Conceder'),
+              child: Text(SoleraL10n.t('agro.conceder')),
             ),
           ),
         ],

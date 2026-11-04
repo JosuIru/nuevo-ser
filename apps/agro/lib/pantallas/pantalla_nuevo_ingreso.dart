@@ -24,12 +24,12 @@ class PantallaNuevoIngreso extends StatefulWidget {
 
 class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
   static const _opcionesTipo = <_Opcion>[
-    _Opcion('venta_cosecha', 'Venta de cosecha', 'kg'),
-    _Opcion('venta_lena_madera', 'Venta de leña / madera', 'm3'),
-    _Opcion('alquiler_terreno', 'Alquiler de terreno', 'ha'),
-    _Opcion('ayuda_pac', 'Ayuda PAC', ''),
-    _Opcion('subvencion_autonomica', 'Subvención autonómica', ''),
-    _Opcion('otro', 'Otro ingreso', ''),
+    _Opcion('venta_cosecha', 'agro.venta_de_cosecha', 'kg'),
+    _Opcion('venta_lena_madera', 'agro.venta_de_lena_madera', 'm3'),
+    _Opcion('alquiler_terreno', 'agro.alquiler_de_terreno', 'ha'),
+    _Opcion('ayuda_pac', 'agro.ayuda_pac', ''),
+    _Opcion('subvencion_autonomica', 'agro.subvencion_autonomica', ''),
+    _Opcion('otro', 'agro.otro_ingreso', ''),
   ];
 
   final _claveFormulario = GlobalKey<FormState>();
@@ -176,10 +176,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
     // guardan" justo por esto: el flujo terminaba sin feedback.
     if (!(_claveFormulario.currentState?.validate() ?? false)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Faltan datos obligatorios — revisa los campos marcados en rojo.',
-          ),
+        SnackBar(
+          content: Text(SoleraL10n.t('agro.faltan_datos_obligatorios')),
         ),
       );
       return;
@@ -215,7 +213,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(apunte.id == null ? 'Ingreso guardado.' : 'Ingreso actualizado.'),
+          content: Text(SoleraL10n.t(apunte.id == null ? 'agro.ingreso_guardado' : 'agro.ingreso_actualizado')),
         ),
       );
       Navigator.of(context).pop(true);
@@ -224,7 +222,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       setState(() => _guardando = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error al guardar el ingreso: $e'),
+          content: Text('${SoleraL10n.t('agro.error_al_guardar_el_ingreso')}: $e'),
           backgroundColor: Colors.red.shade700,
           duration: const Duration(seconds: 6),
         ),
@@ -239,7 +237,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.existente == null ? 'Nuevo ingreso' : 'Editar ingreso'),
+        title: Text(SoleraL10n.t(widget.existente == null ? 'agro.nuevo_ingreso' : 'agro.editar_ingreso')),
       ),
       body: Form(
         key: _claveFormulario,
@@ -249,12 +247,12 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<String>(
               initialValue: _tipoIngreso,
               decoration: InputDecoration(
-                labelText: 'Tipo de ingreso',
+                labelText: SoleraL10n.t('agro.tipo_de_ingreso'),
                 border: OutlineInputBorder(),
               ),
               items: _opcionesTipo
                   .map((o) =>
-                      DropdownMenuItem(value: o.codigo, child: Text(o.titulo)))
+                      DropdownMenuItem(value: o.codigo, child: Text(SoleraL10n.t(o.claveTitulo))))
                   .toList(),
               onChanged: (v) {
                 setState(() {
@@ -271,21 +269,21 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               leading: Icon(Icons.event),
               title: Text(
                   '${_fecha.day}/${_fecha.month}/${_fecha.year}'),
-              subtitle: Text('Fecha de la factura'),
+              subtitle: Text(SoleraL10n.t('agro.fecha_de_la_factura')),
               trailing: TextButton(
                 onPressed: _elegirFecha,
-                child: Text('Cambiar'),
+                child: Text(SoleraL10n.t('agro.cambiar')),
               ),
             ),
             TextFormField(
               controller: _concepto,
               decoration: InputDecoration(
-                labelText: 'Concepto *',
-                hintText: 'Ej.: 2500 kg de aceituna picual',
+                labelText: '${SoleraL10n.t('agro.concepto')} *',
+                hintText: SoleraL10n.t('agro.ejemplo_concepto_ingreso'),
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
-                  (v ?? '').trim().isEmpty ? 'Concepto obligatorio' : null,
+                  (v ?? '').trim().isEmpty ? SoleraL10n.t('agro.concepto_obligatorio') : null,
             ),
             SizedBox(height: 12),
             if (_tipoActual.unidad.isNotEmpty)
@@ -294,7 +292,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
-                  labelText: 'Cantidad (${_tipoActual.unidad})',
+                  labelText: SoleraL10n.tf('agro.cantidad_unidad', {'unidad': _tipoActual.unidad}),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) => validarNumeroOpcional(v, nullSiAmbiguo: true),
@@ -305,8 +303,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
-                labelText: 'Importe base (€) *',
-                hintText: 'Sin IVA ni compensación',
+                labelText: '${SoleraL10n.t('agro.importe_base_euros')} *',
+                hintText: SoleraL10n.t('agro.sin_iva_ni_compensacion'),
                 border: OutlineInputBorder(),
               ),
               validator: validarImporteObligatorio,
@@ -320,7 +318,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 value: _autocalcular,
-                title: Text('Autocalcular IVA / compensación'),
+                title: Text(SoleraL10n.t('agro.autocalcular_iva_compensacion')),
                 subtitle: Text(_textoAutocalculo()),
                 onChanged: (v) {
                   setState(() => _autocalcular = v);
@@ -335,7 +333,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                       const TextInputType.numberWithOptions(decimal: true),
                   enabled: !_autocalcular,
                   decoration: InputDecoration(
-                    labelText: 'Compensación REAGP (€)',
+                    labelText: SoleraL10n.t('agro.compensacion_reagp_euros'),
                     border: OutlineInputBorder(),
                   ),
                   validator: validarImporteOpcional,
@@ -347,7 +345,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                       const TextInputType.numberWithOptions(decimal: true),
                   enabled: !_autocalcular,
                   decoration: InputDecoration(
-                    labelText: 'IVA repercutido (€)',
+                    labelText: SoleraL10n.t('agro.iva_repercutido_euros'),
                     border: OutlineInputBorder(),
                   ),
                   validator: validarImporteOpcional,
@@ -360,8 +358,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    'Configura el régimen de IVA en Ajustes → Configuración fiscal '
-                    'para que la app calcule la compensación o el IVA repercutido.',
+                    SoleraL10n.t('agro.configura_regimen_iva_calculo'),
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
@@ -370,16 +367,16 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<int?>(
               initialValue: _terceroId,
               decoration: InputDecoration(
-                labelText: 'Cliente',
+                labelText: SoleraL10n.t('agro.cliente'),
                 border: OutlineInputBorder(),
               ),
               items: [
                 DropdownMenuItem(
-                    value: null, child: Text('(sin asociar)')),
+                    value: null, child: Text(SoleraL10n.t('agro.sin_asociar_parentesis'))),
                 ..._clientes.map((t) => DropdownMenuItem(
                       value: t.id,
                       child: Text(t.nombre +
-                          (t.tieneNif ? ' · ${t.nif}' : ' · sin NIF')),
+                          (t.tieneNif ? ' · ${t.nif}' : ' · ${SoleraL10n.t('agro.sin_nif')}')),
                     )),
               ],
               onChanged: (v) => setState(() => _terceroId = v),
@@ -388,12 +385,12 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<int?>(
               initialValue: _fincaId,
               decoration: InputDecoration(
-                labelText: 'Imputar a parcela (opcional)',
+                labelText: SoleraL10n.t('agro.imputar_a_parcela_opcional'),
                 border: OutlineInputBorder(),
               ),
               items: [
                 DropdownMenuItem(
-                    value: null, child: Text('(general)')),
+                    value: null, child: Text(SoleraL10n.t('agro.general_parentesis'))),
                 ..._fincas.map((f) => DropdownMenuItem(
                       value: f.id,
                       child: Text(f.nombre),
@@ -405,12 +402,12 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<String>(
               initialValue: _cultivoId.isEmpty ? null : _cultivoId,
               decoration: InputDecoration(
-                labelText: 'Imputar a cultivo (opcional)',
-                hintText: 'Para ver rentabilidad por cultivo',
+                labelText: SoleraL10n.t('agro.imputar_a_cultivo_opcional'),
+                hintText: SoleraL10n.t('agro.para_ver_rentabilidad_por_cultivo'),
                 border: OutlineInputBorder(),
               ),
               items: [
-                DropdownMenuItem(value: '', child: Text('(sin cultivo)')),
+                DropdownMenuItem(value: '', child: Text(SoleraL10n.t('agro.sin_cultivo_parentesis'))),
                 ...catalogoCultivos.map((c) => DropdownMenuItem(
                       value: c.id,
                       child: Text(c.nombreVisible),
@@ -422,12 +419,12 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'N.º de factura',
+                labelText: SoleraL10n.t('agro.numero_de_factura'),
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 16),
-            Text('Foto de la factura',
+            Text(SoleraL10n.t('agro.foto_de_la_factura'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
             SelectorFotos(
@@ -440,7 +437,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               controller: _notas,
               maxLines: 3,
               decoration: InputDecoration(
-                labelText: 'Notas',
+                labelText: SoleraL10n.t('agro.notas'),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -464,24 +461,25 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _textoAutocalculo() {
     if (_esAlquilerTerreno) {
-      return 'Alquiler agrícola exento de IVA (pasa al 21 % si el uso no es agrícola)';
+      return SoleraL10n.t('agro.autocalculo_alquiler_exento');
     }
     if (_configFiscal.regimenIva == 'reagp' && _esCosechaOLena) {
-      return 'REAGP: 12 % sobre la base como compensación al agricultor';
+      return SoleraL10n.t('agro.autocalculo_reagp_12');
     }
     if (_tipoIngreso == 'venta_lena_madera') {
-      return 'Madera: 21 % IVA general';
+      return SoleraL10n.t('agro.autocalculo_madera_21');
     }
     if (_configFiscal.regimenIva == 'general' && _tipoIngreso == 'venta_cosecha') {
-      return 'Régimen general: 4 % de IVA en la venta de cosecha (alimento de primera necesidad)';
+      return SoleraL10n.t('agro.autocalculo_general_cosecha_4');
     }
-    return 'Configura el régimen de IVA en Ajustes';
+    return SoleraL10n.t('agro.configura_regimen_iva_en_ajustes');
   }
 }
 
 class _Opcion {
   final String codigo;
-  final String titulo;
+  /// Clave de SoleraL10n del nombre visible (se traduce en build).
+  final String claveTitulo;
   final String unidad;
-  const _Opcion(this.codigo, this.titulo, this.unidad);
+  const _Opcion(this.codigo, this.claveTitulo, this.unidad);
 }

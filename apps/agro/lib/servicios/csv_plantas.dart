@@ -82,7 +82,7 @@ ResultadoParseoCsv parsearCsvPlantas(String contenido) {
   if (iCultivo == null || iLat == null || iLon == null) {
     return ResultadoParseoCsv(
       filasValidas: const [],
-      filasInvalidas: [FilaInvalida(1, 'Faltan columnas obligatorias: cultivo_id, latitud, longitud.')],
+      filasInvalidas: [FilaInvalida(1, SoleraL10n.t('agro.csv_faltan_columnas'))],
       nombresFincasNuevas: const [],
     );
   }
@@ -108,15 +108,15 @@ ResultadoParseoCsv parsearCsvPlantas(String contenido) {
     final lat = double.tryParse(campoEnFila(fila, iLat).replaceAll(',', '.'));
     final lon = double.tryParse(campoEnFila(fila, iLon).replaceAll(',', '.'));
     if (cultivoCrudo.isEmpty) {
-      invalidas.add(FilaInvalida(numeroLineaUsuario, 'cultivo_id vacío'));
+      invalidas.add(FilaInvalida(numeroLineaUsuario, SoleraL10n.t('agro.csv_cultivo_id_vacio')));
       continue;
     }
     if (lat == null || lon == null) {
-      invalidas.add(FilaInvalida(numeroLineaUsuario, 'latitud/longitud no son números válidos'));
+      invalidas.add(FilaInvalida(numeroLineaUsuario, SoleraL10n.t('agro.csv_lat_lon_no_numeros')));
       continue;
     }
     if (lat < -90 || lat > 90 || lon < -180 || lon > 180) {
-      invalidas.add(FilaInvalida(numeroLineaUsuario, 'latitud/longitud fuera de rango'));
+      invalidas.add(FilaInvalida(numeroLineaUsuario, SoleraL10n.t('agro.csv_lat_lon_fuera_rango')));
       continue;
     }
 

@@ -41,7 +41,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
     } catch (e) {
       if (!mounted) return;
       setState(() => _cargando = false);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al cargar los recorridos: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(SoleraL10n.tf('agro.error_cargar_recorridos', {'error': e}))));
     }
   }
 
@@ -51,13 +51,13 @@ class _PantallaTracksState extends State<PantallaTracks> {
       puntos = await BaseDatosAgro.instancia.obtenerPuntosTrack(track.id!);
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al abrir el recorrido: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(SoleraL10n.tf('agro.error_abrir_recorrido', {'error': e}))));
       return;
     }
     if (!mounted) return;
     if (puntos.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Este recorrido no tiene puntos guardados.')),
+        SnackBar(content: Text(SoleraL10n.t('agro.recorrido_sin_puntos'))),
       );
       return;
     }
@@ -115,7 +115,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      track.nombre.isEmpty ? 'Recorrido' : track.nombre,
+                      track.nombre.isEmpty ? SoleraL10n.t('agro.recorrido') : track.nombre,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     SizedBox(height: 8),
@@ -129,7 +129,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
                             onPressed: () async {
                               final fichero = await _exportarGpx(track, puntos);
                               if (!context.mounted) return;
-                              await Share.shareXFiles([XFile(fichero.path)], subject: 'Recorrido GPX');
+                              await Share.shareXFiles([XFile(fichero.path)], subject: SoleraL10n.t('agro.recorrido_gpx'));
                             },
                             label: Text('GPX'),
                           ),
@@ -143,10 +143,10 @@ class _PantallaTracksState extends State<PantallaTracks> {
                               final ok = await showDialog<bool>(
                                 context: context,
                                 builder: (_) => AlertDialog(
-                                  content: Text('¿Borrar este recorrido?'),
+                                  content: Text(SoleraL10n.t('agro.confirmar_borrar_recorrido')),
                                   actions: [
                                     TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
-                                    TextButton(onPressed: () => Navigator.pop(context, true), child: Text('Borrar', style: TextStyle(color: Colors.red))),
+                                    TextButton(onPressed: () => Navigator.pop(context, true), child: Text(SoleraL10n.t('borrar'), style: TextStyle(color: Colors.red))),
                                   ],
                                 ),
                               );
@@ -156,7 +156,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
                               navegadorSheet.pop();
                               _cargar();
                             },
-                            label: Text('Borrar', style: TextStyle(color: Colors.red)),
+                            label: Text(SoleraL10n.t('borrar'), style: TextStyle(color: Colors.red)),
                           ),
                         ),
                       ],
@@ -190,14 +190,14 @@ class _PantallaTracksState extends State<PantallaTracks> {
       final mins = (track.duracionMs! / 60000).round();
       partes.add(mins < 60 ? '$mins min' : '${(mins / 60).toStringAsFixed(1)} h');
     }
-    partes.add('$nPuntos puntos');
+    partes.add(SoleraL10n.tf('agro.n_puntos', {'n': nPuntos}));
     return partes.join(' · ');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Recorridos de inspección')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.recorridos_de_inspeccion'))),
       body: _cargando
           ? Center(child: CircularProgressIndicator())
           : _tracks.isEmpty
@@ -205,7 +205,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
                   child: Padding(
                     padding: EdgeInsets.all(24),
                     child: Text(
-                      'Aún no has grabado ningún recorrido.\nUsa el botón ⏺ del mapa para empezar.',
+                      '${SoleraL10n.t('agro.aun_no_has_grabado_recorrido')}\n${SoleraL10n.t('agro.usa_boton_grabar_mapa')}',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -219,7 +219,7 @@ class _PantallaTracksState extends State<PantallaTracks> {
                     final km = t.distanciaMetros != null ? (t.distanciaMetros! / 1000).toStringAsFixed(2) : '–';
                     return ListTile(
                       leading: Icon(Icons.timeline, color: Color(0xFF558B2F)),
-                      title: Text(t.nombre.isEmpty ? 'Recorrido del $fecha' : t.nombre),
+                      title: Text(t.nombre.isEmpty ? SoleraL10n.tf('agro.recorrido_del_fecha', {'fecha': fecha}) : t.nombre),
                       subtitle: Text('$km km · $fecha'),
                       onTap: () => _verTrack(t),
                     );

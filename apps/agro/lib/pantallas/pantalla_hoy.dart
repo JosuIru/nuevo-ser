@@ -31,7 +31,8 @@ class PantallaHoy extends StatefulWidget {
 class _PantallaHoyState extends State<PantallaHoy> {
   final _persistenciaFinca = FincaActivaPersistida();
   bool _cargando = true;
-  String _nombreFincaActiva = 'todas las fincas';
+  /// Nombre de la finca activa; null = todas las fincas.
+  String? _nombreFincaActiva;
   List<Incidencia> _incidenciasAbiertas = [];
   Map<String, int> _conteoPorCultivo = {};
   double _kilosUltimos30Dias = 0;
@@ -71,7 +72,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
       final fincaActiva = fincas.where((f) => f.id == fincaActivaId).firstOrNull;
       if (!mounted) return;
       setState(() {
-        _nombreFincaActiva = fincaActiva?.nombre ?? 'todas las fincas';
+        _nombreFincaActiva = fincaActiva?.nombre;
         _incidenciasAbiertas = incidencias;
         _conteoPorCultivo = conteo;
         _kilosUltimos30Dias = kilos;
@@ -107,7 +108,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
         actions: [
           IconButton(
             icon: const Icon(Icons.menu_book_outlined),
-            tooltip: 'Guía de cultivos y plagas',
+            tooltip: SoleraL10n.t('agro.guia_cultivos_plagas'),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const PantallaGuia()),
             ),
@@ -126,14 +127,18 @@ class _PantallaHoyState extends State<PantallaHoy> {
               margen: const EdgeInsets.only(bottom: 12),
             ),
             Text(
-              DateFormat("EEEE d 'de' MMMM 'de' yyyy", 'es_ES').format(ahora).replaceFirstMapped(
+              DateFormat.yMMMMEEEEd(SoleraL10n.idioma).format(ahora).replaceFirstMapped(
                     RegExp(r'^.'),
                     (m) => m.group(0)!.toUpperCase(),
                   ),
               style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 4),
-            Text('en $_nombreFincaActiva', style: const TextStyle(color: Colors.grey, fontSize: 12)),
+            Text(
+                _nombreFincaActiva == null
+                    ? SoleraL10n.t('agro.en_todas_las_fincas')
+                    : SoleraL10n.tf('agro.en_finca', {'finca': _nombreFincaActiva}),
+                style: const TextStyle(color: Colors.grey, fontSize: 12)),
             const SizedBox(height: 16),
             const TarjetaResumenMeteo(),
             const SizedBox(height: 12),
@@ -153,13 +158,13 @@ class _PantallaHoyState extends State<PantallaHoy> {
               numCosechasUltimos30: _numCosechasUltimos30Dias,
             ),
             if (_conteoPorCultivo.isEmpty)
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Center(
                   child: Text(
-                    'Aún no has registrado plantas.\nVe al mapa y usa el botón "Añadir aquí".',
+                    '${SoleraL10n.t('agro.aun_no_hay_plantas')}\n${SoleraL10n.t('agro.ve_al_mapa_anadir_aqui')}',
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.grey),
+                    style: const TextStyle(color: Colors.grey),
                   ),
                 ),
               ),
@@ -170,10 +175,10 @@ class _PantallaHoyState extends State<PantallaHoy> {
   }
 
   String _saludo(int hora) {
-    if (hora < 6) return 'Madrugada';
-    if (hora < 12) return 'Buenos días';
-    if (hora < 19) return 'Buenas tardes';
-    return 'Buenas noches';
+    if (hora < 6) return SoleraL10n.t('agro.madrugada');
+    if (hora < 12) return SoleraL10n.t('agro.buenos_dias');
+    if (hora < 19) return SoleraL10n.t('agro.buenas_tardes');
+    return SoleraL10n.t('agro.buenas_noches');
   }
 }
 
@@ -195,7 +200,7 @@ class _BloqueIncidencias extends StatelessWidget {
                 const Icon(Icons.warning_amber, color: Color(0xFFE65100)),
                 const SizedBox(width: 8),
                 Text(
-                  'Incidencias abiertas: ${incidencias.length}',
+                  SoleraL10n.tf('agro.incidencias_abiertas_n', {'n': incidencias.length}),
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ],
@@ -206,10 +211,10 @@ class _BloqueIncidencias extends StatelessWidget {
                 contentPadding: EdgeInsets.zero,
                 dense: true,
                 leading: const Icon(Icons.bug_report, color: Color(0xFFE65100)),
-                title: Text(i.diagnostico.isEmpty ? i.tipo.toUpperCase() : i.diagnostico),
+                title: Text(i.diagnostico.isEmpty ? _nombreTipoIncidencia(i.tipo).toUpperCase() : i.diagnostico),
                 subtitle: Text([
-                  DateFormat('dd MMM', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs)),
-                  if (i.severidad != null) 'Sev. ${i.severidad}/5',
+                  DateFormat('dd MMM', SoleraL10n.idioma).format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs)),
+                  if (i.severidad != null) SoleraL10n.tf('agro.severidad_abrev_n', {'n': i.severidad}),
                 ].join(' · ')),
                 onTap: () => Navigator.of(context).push(
                   MaterialPageRoute(builder: (_) => PantallaFichaPlanta(plantaId: i.plantaId)),
@@ -218,7 +223,7 @@ class _BloqueIncidencias extends StatelessWidget {
             if (incidencias.length > 5)
               Padding(
                 padding: const EdgeInsets.only(top: 4),
-                child: Text('… y ${incidencias.length - 5} más', style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                child: Text(SoleraL10n.tf('agro.y_n_mas', {'n': incidencias.length - 5}), style: const TextStyle(color: Colors.grey, fontSize: 12)),
               ),
           ],
         ),
@@ -240,7 +245,7 @@ class _BloqueQueToca extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final nombreMes = DateFormat('MMMM', 'es_ES').format(DateTime(2000, mes, 1));
+    final nombreMes = DateFormat('LLLL', SoleraL10n.idioma).format(DateTime(2000, mes, 1));
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -252,15 +257,15 @@ class _BloqueQueToca extends StatelessWidget {
                 const Icon(Icons.calendar_month, color: Color(0xFF558B2F)),
                 const SizedBox(width: 8),
                 Text(
-                  'Qué toca en ${nombreMes[0].toUpperCase()}${nombreMes.substring(1)}',
+                  SoleraL10n.tf('agro.que_toca_en_mes', {'mes': '${nombreMes[0].toUpperCase()}${nombreMes.substring(1)}'}),
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                 ),
               ],
             ),
             const SizedBox(height: 4),
-            const Text(
-              'Calendario orientativo para Iberia. Ajusta según tu zona y año concreto.',
-              style: TextStyle(fontSize: 11, color: Colors.grey, fontStyle: FontStyle.italic),
+            Text(
+              SoleraL10n.t('agro.calendario_orientativo_iberia'),
+              style: const TextStyle(fontSize: 11, color: Colors.grey, fontStyle: FontStyle.italic),
             ),
             const SizedBox(height: 12),
             for (final entrada in tareasPorCultivo.entries) ...[
@@ -308,7 +313,7 @@ class _BloqueCultivoTareas extends StatelessWidget {
               const SizedBox(width: 6),
               Expanded(
                 child: Text(
-                  '${cultivo.nombreVisible} · $numPlantas planta${numPlantas == 1 ? '' : 's'}',
+                  '${cultivo.nombreVisible} · ${numPlantas == 1 ? SoleraL10n.t('agro.una_planta') : SoleraL10n.tf('agro.plantas_n', {'n': numPlantas})}',
                   style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                 ),
               ),
@@ -352,7 +357,7 @@ class _BloqueResumen extends StatelessWidget {
           children: [
             Expanded(
               child: _Estadistica(
-                etiqueta: 'Plantas',
+                etiqueta: SoleraL10n.t('agro.plantas'),
                 valor: '$totalPlantas',
                 icono: Icons.eco,
                 color: Colors.green,
@@ -361,7 +366,7 @@ class _BloqueResumen extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: _Estadistica(
-                etiqueta: 'Cosecha 30 días',
+                etiqueta: SoleraL10n.t('agro.cosecha_30_dias'),
                 valor: kilosUltimos30 == 0 ? '—' : '${kilosUltimos30.toStringAsFixed(1)} kg',
                 icono: Icons.shopping_basket,
                 color: const Color(0xFF689F38),
@@ -370,7 +375,7 @@ class _BloqueResumen extends StatelessWidget {
             const SizedBox(width: 8),
             Expanded(
               child: _Estadistica(
-                etiqueta: 'Registros',
+                etiqueta: SoleraL10n.t('agro.registros'),
                 valor: '$numCosechasUltimos30',
                 icono: Icons.format_list_numbered,
                 color: Colors.blueGrey,
@@ -403,3 +408,14 @@ class _Estadistica extends StatelessWidget {
     );
   }
 }
+
+/// Nombre visible del tipo de incidencia guardado en BD
+/// ('plaga' | 'enfermedad' | 'estres' | 'fisiologico' | 'otro').
+String _nombreTipoIncidencia(String tipo) => switch (tipo) {
+      'plaga' => SoleraL10n.t('agro.tipo_incidencia_plaga'),
+      'enfermedad' => SoleraL10n.t('agro.tipo_incidencia_enfermedad'),
+      'estres' => SoleraL10n.t('agro.tipo_incidencia_estres'),
+      'fisiologico' => SoleraL10n.t('agro.tipo_incidencia_fisiologico'),
+      'otro' => SoleraL10n.t('agro.tipo_incidencia_otro'),
+      _ => tipo,
+    };

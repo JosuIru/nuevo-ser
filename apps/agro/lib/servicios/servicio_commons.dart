@@ -203,7 +203,9 @@ ImagenCommons? _construirDesdeImagenInfo(Map info, String tituloArchivo) {
   if (urlThumb == null || urlThumb.isEmpty) return null;
   if (_pareceMapaDistribucion(urlThumb)) return null;
   if (_pareceLogo(urlThumb)) return null;
-  final autor = _extraerTextoPlano(extmetadata['Artist']) ?? 'Autor desconocido';
+  // Vacío si Commons no da autor: el widget pone «Autor desconocido» en el
+  // idioma actual (esta imagen se guarda en caché y no debe fijar idioma).
+  final autor = _extraerTextoPlano(extmetadata['Artist']) ?? '';
   final urlLicencia = (extmetadata['LicenseUrl'] as Map?)?['value']?.toString();
   return ImagenCommons(
     urlThumb: urlThumb,

@@ -30,43 +30,40 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_explotacion')),
           _EntradaAjustes(
             icono: Icons.person_outline,
-            titulo: 'Datos del titular',
-            subtitulo: 'NIF, REGEPA, asesor, aplicador (para cuaderno MAPA)',
+            titulo: SoleraL10n.t('agro.datos_del_titular'),
+            subtitulo: SoleraL10n.t('agro.datos_del_titular_sub'),
             alPulsar: () => abrir(() => PantallaTitular()),
           ),
           _EntradaAjustes(
             icono: Icons.agriculture,
-            titulo: 'Fincas',
-            subtitulo: 'Crear, renombrar y borrar fincas',
+            titulo: SoleraL10n.t('agro.fincas'),
+            subtitulo: SoleraL10n.t('agro.fincas_sub'),
             alPulsar: () => abrir(() => PantallaFincas()),
           ),
           _EntradaAjustes(
             icono: Icons.account_balance,
             titulo: SoleraL10n.t('configuracion_fiscal'),
-            subtitulo: 'Régimen IRPF + IVA · provisional',
+            subtitulo: SoleraL10n.t('agro.configuracion_fiscal_sub'),
             alPulsar: () => abrir(() => PantallaConfiguracionFiscal()),
           ),
           _EntradaAjustes(
             icono: Icons.contacts,
-            titulo: 'Clientes y proveedores',
-            subtitulo: 'Terceros con NIF · alimentan el modelo 347',
+            titulo: SoleraL10n.t('agro.clientes_y_proveedores'),
+            subtitulo: SoleraL10n.t('agro.clientes_y_proveedores_sub'),
             alPulsar: () => abrir(() => PantallaTerceros()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           _EntradaAjustes(
             icono: Icons.psychology,
             titulo: SoleraL10n.t('identificacion_con_ia'),
-            subtitulo: 'Configurar la clave de Anthropic para identificar plagas '
-                'y enfermedades por foto',
+            subtitulo: SoleraL10n.t('agro.clave_anthropic_sub'),
             alPulsar: () => abrir(
               () => PantallaClaveAnthropic(
                 estado: estadoClaveAnthropicAgro,
                 nombreApp: 'Larrea',
                 titulo: SoleraL10n.t('identificacion_con_ia'),
-                queIdentifica: 'Identifica plagas y enfermedades por foto',
-                descripcion: 'Larrea puede usar Claude AI de Anthropic para analizar la foto '
-                    'que adjuntas a una incidencia y proponer un diagnóstico, severidad y '
-                    'recomendaciones de manejo cultural.',
+                queIdentifica: SoleraL10n.t('agro.identifica_plagas_por_foto'),
+                descripcion: SoleraL10n.t('agro.clave_anthropic_descripcion'),
                 probarClave: probarClaveAnthropic,
               ),
             ),
@@ -79,15 +76,15 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
           _EntradaAjustes(
             icono: Icons.archive,
-            titulo: 'Copia de seguridad',
-            subtitulo: 'Empaquetar la base de datos y las fotos en un ZIP, o restaurar desde un ZIP',
+            titulo: SoleraL10n.t('copia_de_seguridad'),
+            subtitulo: SoleraL10n.t('agro.copia_de_seguridad_sub'),
             alPulsar: () => abrir(() => PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),
           _EntradaAjustes(
             icono: Icons.system_update,
             titulo: SoleraL10n.t('comprobar_actualizaciones'),
-            subtitulo: 'Versión instalada y última publicada',
+            subtitulo: SoleraL10n.t('agro.version_instalada_y_ultima'),
             alPulsar: () => abrir(
               () => PantallaEstadoActualizaciones(
                 config: configActualizacionesMonorepo('agro'),

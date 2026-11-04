@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogo_cultivos.dart';
@@ -90,7 +91,7 @@ class _PantallaEstadisticasState extends State<PantallaEstadisticas> {
             isDense: true,
             onChanged: _cambiarFincaActiva,
             items: [
-              const DropdownMenuItem<int?>(value: null, child: Text('Todas las fincas')),
+              DropdownMenuItem<int?>(value: null, child: Text(SoleraL10n.t('agro.todas_las_fincas'))),
               for (final f in _fincas) DropdownMenuItem<int?>(value: f.id, child: Text(f.nombre)),
             ],
           ),
@@ -102,23 +103,23 @@ class _PantallaEstadisticasState extends State<PantallaEstadisticas> {
           padding: const EdgeInsets.all(16),
           children: [
             _Tarjeta(
-              titulo: 'Total de plantas',
+              titulo: SoleraL10n.t('agro.total_de_plantas'),
               valor: '$totalPlantas',
               color: Colors.green,
               icono: Icons.eco,
             ),
             const SizedBox(height: 12),
             _Tarjeta(
-              titulo: 'Incidencias abiertas',
+              titulo: SoleraL10n.t('agro.incidencias_abiertas'),
               valor: '$_incidenciasAbiertas',
               color: _incidenciasAbiertas == 0 ? Colors.grey : Colors.orange,
               icono: Icons.warning_amber,
             ),
             const SizedBox(height: 24),
-            const Text('Plantas por cultivo', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('agro.plantas_por_cultivo'), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 8),
             if (_conteoPorCultivo.isEmpty)
-              const Text('Aún no hay plantas registradas.', style: TextStyle(color: Colors.grey))
+              Text(SoleraL10n.t('agro.aun_no_hay_plantas_registradas'), style: const TextStyle(color: Colors.grey))
             else
               for (final entrada in _conteoPorCultivo.entries.toList()
                 ..sort((a, b) => b.value.compareTo(a.value)))
@@ -128,10 +129,10 @@ class _PantallaEstadisticasState extends State<PantallaEstadisticas> {
                   maxConteo: maxConteo,
                 ),
             const SizedBox(height: 24),
-            const Text('Cosecha por campaña', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('agro.cosecha_por_campana'), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 8),
             if (anosOrdenados.isEmpty)
-              const Text('Aún no hay cosechas registradas.', style: TextStyle(color: Colors.grey))
+              Text(SoleraL10n.t('agro.aun_no_hay_cosechas_registradas'), style: const TextStyle(color: Colors.grey))
             else
               for (final ano in anosOrdenados)
                 _BarraCampana(
@@ -239,7 +240,7 @@ class _BarraCampana extends StatelessWidget {
             child: Text(
               [
                 if (resumen.kilos > 0) '${resumen.kilos.toStringAsFixed(1)} kg',
-                if (resumen.unidades > 0) '${resumen.unidades} ud',
+                if (resumen.unidades > 0) SoleraL10n.tf('agro.n_unidades_abreviado', {'n': resumen.unidades}),
               ].join(' · '),
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
               textAlign: TextAlign.right,

@@ -28,17 +28,17 @@ class PantallaNuevoGasto extends StatefulWidget {
 
 class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
   static const _opcionesTipo = <_OpcionTipo>[
-    _OpcionTipo('insumos', 'Insumos (semillas, plantones, fertilizantes, abonos)'),
-    _OpcionTipo('tratamientos_fitosanitarios', 'Tratamientos fitosanitarios'),
-    _OpcionTipo('maquinaria', 'Maquinaria (compra, alquiler, mantenimiento)'),
-    _OpcionTipo('mano_obra', 'Mano de obra'),
-    _OpcionTipo('combustible', 'Combustible'),
-    _OpcionTipo('seguros', 'Seguros (Agroseguro, responsabilidad civil)'),
-    _OpcionTipo('riego_agua', 'Riego / agua (canon, electricidad de bombeo)'),
-    _OpcionTipo('transporte', 'Transporte'),
-    _OpcionTipo('veterinario_animal', 'Veterinario animal (ganado en dehesa)'),
-    _OpcionTipo('certificacion', 'Certificación (DOP, IGP, ecológico)'),
-    _OpcionTipo('otro', 'Otro gasto'),
+    _OpcionTipo('insumos', 'agro.tipo_gasto_insumos'),
+    _OpcionTipo('tratamientos_fitosanitarios', 'agro.tratamientos_fitosanitarios'),
+    _OpcionTipo('maquinaria', 'agro.tipo_gasto_maquinaria'),
+    _OpcionTipo('mano_obra', 'agro.mano_de_obra'),
+    _OpcionTipo('combustible', 'agro.combustible'),
+    _OpcionTipo('seguros', 'agro.tipo_gasto_seguros'),
+    _OpcionTipo('riego_agua', 'agro.tipo_gasto_riego_agua'),
+    _OpcionTipo('transporte', 'agro.transporte'),
+    _OpcionTipo('veterinario_animal', 'agro.tipo_gasto_veterinario_animal'),
+    _OpcionTipo('certificacion', 'agro.tipo_gasto_certificacion'),
+    _OpcionTipo('otro', 'agro.otro_gasto'),
   ];
 
   final _claveFormulario = GlobalKey<FormState>();
@@ -170,23 +170,21 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
     // pasado nada.
     if (!(_claveFormulario.currentState?.validate() ?? false)) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text(
-            'Faltan datos obligatorios — revisa los campos marcados en rojo.',
-          ),
+        SnackBar(
+          content: Text(SoleraL10n.t('agro.faltan_datos_obligatorios')),
         ),
       );
       return;
     }
     if (_imputacion == 'finca_concreta' && _fincaId == null) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Elige una parcela para imputación concreta'),
+        content: Text(SoleraL10n.t('agro.elige_parcela_imputacion_concreta')),
       ));
       return;
     }
     if (_imputacion == 'cultivo_general' && _cultivoId.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Elige un cultivo para imputación general por cultivo'),
+        content: Text(SoleraL10n.t('agro.elige_cultivo_imputacion_general')),
       ));
       return;
     }
@@ -217,7 +215,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(apunte.id == null ? 'Gasto guardado.' : 'Gasto actualizado.'),
+          content: Text(SoleraL10n.t(apunte.id == null ? 'agro.gasto_guardado' : 'agro.gasto_actualizado')),
         ),
       );
       Navigator.of(context).pop(true);
@@ -226,7 +224,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
       setState(() => _guardando = false);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error al guardar el gasto: $e'),
+          content: Text('${SoleraL10n.t('agro.error_al_guardar_el_gasto')}: $e'),
           backgroundColor: Colors.red.shade700,
           duration: const Duration(seconds: 6),
         ),
@@ -241,7 +239,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.existente == null ? 'Nuevo gasto' : 'Editar gasto'),
+        title: Text(SoleraL10n.t(widget.existente == null ? 'agro.nuevo_gasto' : 'agro.editar_gasto')),
       ),
       body: Form(
         key: _claveFormulario,
@@ -251,12 +249,12 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             DropdownButtonFormField<String>(
               initialValue: _tipoGasto,
               decoration: InputDecoration(
-                labelText: 'Tipo de gasto',
+                labelText: SoleraL10n.t('agro.tipo_de_gasto'),
                 border: OutlineInputBorder(),
               ),
               items: _opcionesTipo
                   .map((o) =>
-                      DropdownMenuItem(value: o.codigo, child: Text(o.titulo)))
+                      DropdownMenuItem(value: o.codigo, child: Text(SoleraL10n.t(o.claveTitulo))))
                   .toList(),
               onChanged: (v) {
                 setState(() {
@@ -273,21 +271,21 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               leading: Icon(Icons.event),
               title: Text(
                   '${_fecha.day}/${_fecha.month}/${_fecha.year}'),
-              subtitle: Text('Fecha de la factura'),
+              subtitle: Text(SoleraL10n.t('agro.fecha_de_la_factura')),
               trailing: TextButton(
                 onPressed: _elegirFecha,
-                child: Text('Cambiar'),
+                child: Text(SoleraL10n.t('agro.cambiar')),
               ),
             ),
             TextFormField(
               controller: _concepto,
               decoration: InputDecoration(
-                labelText: 'Concepto *',
-                hintText: 'Ej.: Sulfato de cobre 5 kg / Gasóleo cosechadora',
+                labelText: '${SoleraL10n.t('agro.concepto')} *',
+                hintText: SoleraL10n.t('agro.ejemplo_concepto_gasto'),
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
-                  (v ?? '').trim().isEmpty ? 'Concepto obligatorio' : null,
+                  (v ?? '').trim().isEmpty ? SoleraL10n.t('agro.concepto_obligatorio') : null,
             ),
             SizedBox(height: 12),
             TextFormField(
@@ -295,8 +293,8 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
-                labelText: 'Importe base (€) *',
-                hintText: 'Sin IVA',
+                labelText: '${SoleraL10n.t('agro.importe_base_euros')} *',
+                hintText: SoleraL10n.t('agro.sin_iva'),
                 border: OutlineInputBorder(),
               ),
               validator: validarImporteObligatorio,
@@ -309,7 +307,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               value: _autocalcular,
-              title: Text('Autocalcular IVA'),
+              title: Text(SoleraL10n.t('agro.autocalcular_iva')),
               subtitle: Text(_textoAutocalculo()),
               onChanged: (v) {
                 setState(() => _autocalcular = v);
@@ -323,7 +321,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                   const TextInputType.numberWithOptions(decimal: true),
               enabled: !_autocalcular,
               decoration: InputDecoration(
-                labelText: 'IVA soportado (€)',
+                labelText: SoleraL10n.t('agro.iva_soportado_euros'),
                 border: OutlineInputBorder(),
               ),
               validator: validarImporteOpcional,
@@ -332,13 +330,12 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 4),
                 child: Text(
-                  'En REAGP el IVA soportado no es recuperable: se computa '
-                  'como mayor coste en el extracto.',
+                  SoleraL10n.t('agro.aviso_iva_soportado_reagp_extracto'),
                   style: TextStyle(fontSize: 11, color: Colors.black54),
                 ),
               ),
             SizedBox(height: 16),
-            Text('Imputación a parcela / cultivo',
+            Text(SoleraL10n.t('agro.imputacion_a_parcela_cultivo'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
             RadioGroup<String>(
               groupValue: _imputacion,
@@ -347,19 +344,19 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 children: [
                   RadioListTile<String>(
                     value: 'general',
-                    title: Text('General de la explotación'),
-                    subtitle: Text('Sin asociar a parcela ni cultivo concreto'),
+                    title: Text(SoleraL10n.t('agro.general_de_la_explotacion')),
+                    subtitle: Text(SoleraL10n.t('agro.sin_asociar_parcela_ni_cultivo')),
                   ),
                   RadioListTile<String>(
                     value: 'finca_concreta',
-                    title: Text('Parcela concreta'),
-                    subtitle: Text('Todo el gasto se imputa a una sola finca'),
+                    title: Text(SoleraL10n.t('agro.parcela_concreta')),
+                    subtitle: Text(SoleraL10n.t('agro.gasto_imputado_a_una_finca')),
                   ),
                   RadioListTile<String>(
                     value: 'cultivo_general',
-                    title: Text('Cultivo general'),
+                    title: Text(SoleraL10n.t('agro.cultivo_general')),
                     subtitle: Text(
-                        'Compartido entre todas las parcelas con ese cultivo'),
+                        SoleraL10n.t('agro.compartido_entre_parcelas_cultivo')),
                   ),
                 ],
               ),
@@ -369,7 +366,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               DropdownButtonFormField<int?>(
                 initialValue: _fincaId,
                 decoration: InputDecoration(
-                  labelText: 'Parcela *',
+                  labelText: '${SoleraL10n.t('agro.parcela')} *',
                   border: OutlineInputBorder(),
                 ),
                 items: _fincas
@@ -384,7 +381,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               DropdownButtonFormField<String>(
                 initialValue: _cultivoId.isEmpty ? null : _cultivoId,
                 decoration: InputDecoration(
-                  labelText: 'Cultivo *',
+                  labelText: '${SoleraL10n.t('agro.cultivo')} *',
                   border: OutlineInputBorder(),
                 ),
                 items: catalogoCultivos
@@ -400,16 +397,16 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             DropdownButtonFormField<int?>(
               initialValue: _terceroId,
               decoration: InputDecoration(
-                labelText: 'Proveedor',
+                labelText: SoleraL10n.t('proveedor'),
                 border: OutlineInputBorder(),
               ),
               items: [
                 DropdownMenuItem(
-                    value: null, child: Text('(sin asociar)')),
+                    value: null, child: Text(SoleraL10n.t('agro.sin_asociar_parentesis'))),
                 ..._proveedores.map((t) => DropdownMenuItem(
                       value: t.id,
                       child: Text(t.nombre +
-                          (t.tieneNif ? ' · ${t.nif}' : ' · sin NIF')),
+                          (t.tieneNif ? ' · ${t.nif}' : ' · ${SoleraL10n.t('agro.sin_nif')}')),
                     )),
               ],
               onChanged: (v) => setState(() => _terceroId = v),
@@ -418,7 +415,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'N.º de factura',
+                labelText: SoleraL10n.t('agro.numero_de_factura'),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -426,13 +423,12 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8),
                 child: Text(
-                  'Apunte vinculado a un tratamiento del cuaderno MAPA — el '
-                  'sincronizador mantiene los dos consistentes.',
+                  SoleraL10n.t('agro.apunte_vinculado_tratamiento_mapa'),
                   style: TextStyle(fontSize: 11, color: Colors.black54),
                 ),
               ),
             SizedBox(height: 16),
-            Text('Foto de la factura',
+            Text(SoleraL10n.t('agro.foto_de_la_factura'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
             SelectorFotos(
@@ -445,7 +441,7 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               controller: _notas,
               maxLines: 3,
               decoration: InputDecoration(
-                labelText: 'Notas',
+                labelText: SoleraL10n.t('agro.notas'),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -470,21 +466,22 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
   String _textoAutocalculo() {
     switch (_tipoGasto) {
       case 'insumos':
-        return '4 % IVA superreducido (insumo agrario)';
+        return SoleraL10n.t('agro.autocalculo_insumos_4');
       case 'seguros':
-        return 'Exento de IVA (art. 20 LIVA)';
+        return SoleraL10n.t('agro.autocalculo_seguros_exento');
       case 'mano_obra':
-        return 'Mano de obra agrícola: típicamente sin IVA';
+        return SoleraL10n.t('agro.autocalculo_mano_obra');
       case 'riego_agua':
-        return '10 % IVA reducido (suministro de agua para riego)';
+        return SoleraL10n.t('agro.autocalculo_riego_10');
       default:
-        return '21 % IVA general';
+        return SoleraL10n.t('agro.autocalculo_general_21');
     }
   }
 }
 
 class _OpcionTipo {
   final String codigo;
-  final String titulo;
-  const _OpcionTipo(this.codigo, this.titulo);
+  /// Clave de SoleraL10n del nombre visible (se traduce en build).
+  final String claveTitulo;
+  const _OpcionTipo(this.codigo, this.claveTitulo);
 }

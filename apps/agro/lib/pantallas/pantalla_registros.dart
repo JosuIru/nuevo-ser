@@ -23,39 +23,39 @@ class PantallaRegistros extends StatelessWidget {
         );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Registros')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.registros'))),
       body: ListView(
         children: [
-          const CabeceraSeccionAjustes('Cuaderno e informes'),
+          CabeceraSeccionAjustes(SoleraL10n.t('agro.cuaderno_e_informes')),
           _EntradaRegistro(
             icono: Icons.description,
-            titulo: 'Cuaderno de explotación digital (MAPA)',
-            subtitulo: 'Genera PDF conforme RD 1311/2012 por finca y campaña',
+            titulo: SoleraL10n.t('agro.cuaderno_explotacion_mapa'),
+            subtitulo: SoleraL10n.t('agro.cuaderno_explotacion_mapa_sub'),
             alPulsar: () => abrir(() => PantallaCuadernoMapa()),
           ),
           _EntradaRegistro(
             icono: Icons.picture_as_pdf,
-            titulo: 'Informe de campaña (PDF)',
-            subtitulo: 'Generar y compartir PDF por finca y año',
+            titulo: SoleraL10n.t('agro.informe_campana_pdf'),
+            subtitulo: SoleraL10n.t('agro.informe_campana_sub'),
             alPulsar: () => abrir(() => const PantallaReportes()),
           ),
           _EntradaRegistro(
             icono: Icons.bar_chart,
-            titulo: 'Estadísticas',
-            subtitulo: 'Plantas por cultivo, cosecha por campaña',
+            titulo: SoleraL10n.t('agro.estadisticas'),
+            subtitulo: SoleraL10n.t('agro.estadisticas_sub'),
             alPulsar: () => abrir(() => const PantallaEstadisticas()),
           ),
           _EntradaRegistro(
             icono: Icons.timeline,
-            titulo: 'Recorridos de inspección',
-            subtitulo: 'Lista de recorridos GPS grabados',
+            titulo: SoleraL10n.t('agro.recorridos_inspeccion'),
+            subtitulo: SoleraL10n.t('agro.recorridos_inspeccion_sub'),
             alPulsar: () => abrir(() => PantallaTracks()),
           ),
-          const CabeceraSeccionAjustes('Economía'),
+          CabeceraSeccionAjustes(SoleraL10n.t('agro.economia')),
           _EntradaRegistro(
             icono: Icons.menu_book,
             titulo: SoleraL10n.t('libro_economico'),
-            subtitulo: 'Ingresos, gastos y extracto anual · provisional',
+            subtitulo: SoleraL10n.t('agro.libro_economico_sub'),
             alPulsar: () => abrir(() => const PantallaLibroEconomico()),
           ),
           _EntradaRegistro(
@@ -64,11 +64,11 @@ class PantallaRegistros extends StatelessWidget {
             subtitulo: SoleraL10n.t('emision_pdf_y_envio'),
             alPulsar: () => abrir(() => PantallaFacturas()),
           ),
-          const CabeceraSeccionAjustes('Importar y exportar'),
+          CabeceraSeccionAjustes(SoleraL10n.t('agro.importar_y_exportar')),
           _EntradaRegistro(
             icono: Icons.upload_file,
-            titulo: 'Importar / exportar plantas (CSV)',
-            subtitulo: 'Alta masiva desde hoja de cálculo o exportación completa',
+            titulo: SoleraL10n.t('agro.importar_exportar_plantas_csv'),
+            subtitulo: SoleraL10n.t('agro.importar_exportar_plantas_csv_sub'),
             alPulsar: () => abrir(() => const PantallaImportarCsv()),
           ),
           const SizedBox(height: 24),

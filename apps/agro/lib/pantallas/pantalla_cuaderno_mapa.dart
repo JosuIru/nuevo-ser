@@ -86,7 +86,10 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
     setState(() => _generando = false);
     await Share.shareXFiles(
       [XFile(fichero.path)],
-      subject: 'Cuaderno de explotación ${_fincaSeleccionada?.nombre ?? 'Puntos sueltos'} $_ano',
+      subject: SoleraL10n.tf('agro.asunto_cuaderno', {
+        'finca': _fincaSeleccionada?.nombre ?? SoleraL10n.t('agro.puntos_sueltos'),
+        'ano': _ano,
+      }),
     );
   }
 
@@ -94,7 +97,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
     return showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Faltan datos para el cuaderno'),
+        title: Text(SoleraL10n.t('agro.faltan_datos_cuaderno')),
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +120,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: Text('Cerrar'),
+            child: Text(SoleraL10n.t('agro.cerrar')),
           ),
           if (v.errores.any((e) => e.contains('titular')))
             TextButton(
@@ -127,7 +130,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
                   MaterialPageRoute(builder: (_) => PantallaTitular()),
                 );
               },
-              child: Text('Configurar titular'),
+              child: Text(SoleraL10n.t('agro.configurar_titular')),
             ),
         ],
       ),
@@ -138,7 +141,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
     return showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Avisos'),
+        title: Text(SoleraL10n.t('agro.avisos')),
         content: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,7 +168,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
           ),
           FilledButton(
             onPressed: () => Navigator.pop(ctx, true),
-            child: Text('Generar igualmente'),
+            child: Text(SoleraL10n.t('agro.generar_igualmente')),
           ),
         ],
       ),
@@ -179,7 +182,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
     }
     final anos = List.generate(10, (i) => DateTime.now().year - i);
     return Scaffold(
-      appBar: AppBar(title: Text('Cuaderno de explotación')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.cuaderno_de_explotacion'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -196,7 +199,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
                       SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Cuaderno conforme RD 1311/2012',
+                          SoleraL10n.t('agro.cuaderno_conforme_rd'),
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -204,9 +207,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
                   ),
                   SizedBox(height: 6),
                   Text(
-                    'Genera el PDF del cuaderno de explotación con tus datos de titular, '
-                    'parcelas SIGPAC y tratamientos del año seleccionado. Listo para presentar '
-                    'a inspección.',
+                    SoleraL10n.t('agro.cuaderno_explicacion'),
                     style: TextStyle(fontSize: 13),
                   ),
                 ],
@@ -216,8 +217,8 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
           SizedBox(height: 16),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text('Datos del titular'),
-            subtitle: Text('NIF, asesor, aplicador'),
+            title: Text(SoleraL10n.t('agro.datos_del_titular')),
+            subtitle: Text(SoleraL10n.t('agro.nif_asesor_aplicador')),
             trailing: Icon(Icons.chevron_right),
             contentPadding: EdgeInsets.zero,
             onTap: () => Navigator.of(context).push(
@@ -229,11 +230,11 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
           DropdownButtonFormField<Finca?>(
             initialValue: _fincaSeleccionada,
             decoration: InputDecoration(
-              labelText: 'Finca',
+              labelText: SoleraL10n.t('agro.finca'),
               border: OutlineInputBorder(),
             ),
             items: [
-              const DropdownMenuItem<Finca?>(value: null, child: Text('Puntos sueltos (sin finca)')),
+              DropdownMenuItem<Finca?>(value: null, child: Text(SoleraL10n.t('agro.puntos_sueltos_sin_finca'))),
               for (final f in _fincas)
                 DropdownMenuItem<Finca?>(
                   value: f,
@@ -246,7 +247,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
           DropdownButtonFormField<int>(
             initialValue: _ano,
             decoration: InputDecoration(
-              labelText: 'Campaña',
+              labelText: SoleraL10n.t('agro.campana'),
               border: OutlineInputBorder(),
             ),
             items: [
@@ -260,7 +261,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
                 ? SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
                 : Icon(Icons.picture_as_pdf),
             onPressed: _generando ? null : _generar,
-            label: Text(_generando ? 'Generando…' : 'Generar y compartir'),
+            label: Text(_generando ? SoleraL10n.t('agro.generando') : SoleraL10n.t('agro.generar_y_compartir')),
           ),
           SizedBox(height: 16),
           Container(
@@ -270,9 +271,7 @@ class _PantallaCuadernoMapaState extends State<PantallaCuadernoMapa> {
               borderRadius: BorderRadius.circular(6),
             ),
             child: Text(
-              'La exportación XML oficial al SIEX/CUE llegará en una versión futura. '
-              'El PDF cumple el requisito de tener el cuaderno disponible para '
-              'inspección presencial.',
+              SoleraL10n.t('agro.siex_version_futura'),
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
           ),

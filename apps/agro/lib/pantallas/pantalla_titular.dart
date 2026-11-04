@@ -110,7 +110,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
     await BaseDatosAgro.instancia.guardarTitular(titular);
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Datos del titular guardados.')),
+      SnackBar(content: Text(SoleraL10n.t('agro.datos_titular_guardados'))),
     );
     Navigator.of(context).pop(true);
   }
@@ -121,36 +121,36 @@ class _PantallaTitularState extends State<PantallaTitular> {
       return Scaffold(body: Center(child: CircularProgressIndicator()));
     }
     return Scaffold(
-      appBar: AppBar(title: Text('Datos del titular')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.datos_del_titular'))),
       body: Form(
         key: _formulario,
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            _Seccion('Titular de la explotación'),
+            _Seccion(SoleraL10n.t('agro.titular_de_la_explotacion')),
             TextFormField(
               controller: _controladorNombre,
               decoration: InputDecoration(
-                labelText: 'Nombre o razón social *',
+                labelText: SoleraL10n.t('agro.nombre_o_razon_social_obligatorio'),
                 border: OutlineInputBorder(),
               ),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido por MAPA' : null,
+              validator: (v) => (v == null || v.trim().isEmpty) ? SoleraL10n.t('agro.requerido_por_mapa') : null,
             ),
             SizedBox(height: 12),
             TextFormField(
               controller: _controladorNif,
               decoration: InputDecoration(
-                labelText: 'NIF / CIF *',
+                labelText: SoleraL10n.t('agro.nif_cif_obligatorio'),
                 hintText: '12345678A',
                 border: OutlineInputBorder(),
               ),
-              validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido por MAPA' : null,
+              validator: (v) => (v == null || v.trim().isEmpty) ? SoleraL10n.t('agro.requerido_por_mapa') : null,
             ),
             SizedBox(height: 12),
             TextFormField(
               controller: _controladorDireccion,
               decoration: InputDecoration(
-                labelText: 'Dirección',
+                labelText: SoleraL10n.t('agro.direccion'),
                 border: OutlineInputBorder(),
               ),
               maxLines: 2,
@@ -159,8 +159,8 @@ class _PantallaTitularState extends State<PantallaTitular> {
             TextFormField(
               controller: _controladorRegepa,
               decoration: InputDecoration(
-                labelText: 'Número REGEPA',
-                hintText: 'Registro General de la Producción Agrícola',
+                labelText: SoleraL10n.t('agro.numero_regepa'),
+                hintText: SoleraL10n.t('agro.regepa_nombre_completo'),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -171,7 +171,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                   child: TextFormField(
                     controller: _controladorTelefono,
                     decoration: InputDecoration(
-                      labelText: 'Teléfono',
+                      labelText: SoleraL10n.t('agro.telefono'),
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.phone,
@@ -182,7 +182,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                   child: TextFormField(
                     controller: _controladorEmail,
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: SoleraL10n.t('agro.email'),
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.emailAddress,
@@ -192,8 +192,8 @@ class _PantallaTitularState extends State<PantallaTitular> {
             ),
             SizedBox(height: 24),
             SwitchListTile(
-              title: Text('Estoy obligado a tener asesor agronómico'),
-              subtitle: Text('ATRIA, asesor de cooperativa, etc.'),
+              title: Text(SoleraL10n.t('agro.obligado_asesor_agronomico')),
+              subtitle: Text(SoleraL10n.t('agro.ejemplos_asesor')),
               value: _tieneAsesor,
               onChanged: (v) => setState(() => _tieneAsesor = v),
             ),
@@ -202,7 +202,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               TextFormField(
                 controller: _controladorNombreAsesor,
                 decoration: InputDecoration(
-                  labelText: 'Nombre del asesor',
+                  labelText: SoleraL10n.t('agro.nombre_del_asesor'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -210,7 +210,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               TextFormField(
                 controller: _controladorNifAsesor,
                 decoration: InputDecoration(
-                  labelText: 'NIF del asesor',
+                  labelText: SoleraL10n.t('agro.nif_del_asesor'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -218,15 +218,15 @@ class _PantallaTitularState extends State<PantallaTitular> {
               TextFormField(
                 controller: _controladorRegistroAsesor,
                 decoration: InputDecoration(
-                  labelText: 'Número de registro del asesor',
+                  labelText: SoleraL10n.t('agro.numero_registro_asesor'),
                   border: OutlineInputBorder(),
                 ),
               ),
             ],
             SizedBox(height: 24),
             SwitchListTile(
-              title: Text('El aplicador es distinto del titular'),
-              subtitle: Text('Peón, empresa de servicios, etc.'),
+              title: Text(SoleraL10n.t('agro.aplicador_distinto_del_titular')),
+              subtitle: Text(SoleraL10n.t('agro.ejemplos_aplicador')),
               value: _aplicadorDistinto,
               onChanged: (v) => setState(() => _aplicadorDistinto = v),
             ),
@@ -235,7 +235,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               TextFormField(
                 controller: _controladorNombreAplicador,
                 decoration: InputDecoration(
-                  labelText: 'Nombre del aplicador',
+                  labelText: SoleraL10n.t('agro.nombre_del_aplicador'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -243,7 +243,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               TextFormField(
                 controller: _controladorNifAplicador,
                 decoration: InputDecoration(
-                  labelText: 'NIF del aplicador',
+                  labelText: SoleraL10n.t('agro.nif_del_aplicador'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -251,7 +251,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
               TextFormField(
                 controller: _controladorCarnetAplicador,
                 decoration: InputDecoration(
-                  labelText: 'Número de carnet de manipulador',
+                  labelText: SoleraL10n.t('agro.numero_carnet_manipulador'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -259,14 +259,14 @@ class _PantallaTitularState extends State<PantallaTitular> {
               DropdownButtonFormField<String>(
                 initialValue: _nivelCarnet.isEmpty ? null : _nivelCarnet,
                 decoration: InputDecoration(
-                  labelText: 'Nivel del carnet',
+                  labelText: SoleraL10n.t('agro.nivel_del_carnet'),
                   border: OutlineInputBorder(),
                 ),
-                items: const [
-                  DropdownMenuItem(value: 'basico', child: Text('Básico')),
-                  DropdownMenuItem(value: 'cualificado', child: Text('Cualificado')),
-                  DropdownMenuItem(value: 'fumigador', child: Text('Fumigador')),
-                  DropdownMenuItem(value: 'piloto', child: Text('Piloto aplicador')),
+                items: [
+                  DropdownMenuItem(value: 'basico', child: Text(SoleraL10n.t('agro.carnet_basico'))),
+                  DropdownMenuItem(value: 'cualificado', child: Text(SoleraL10n.t('agro.carnet_cualificado'))),
+                  DropdownMenuItem(value: 'fumigador', child: Text(SoleraL10n.t('agro.carnet_fumigador'))),
+                  DropdownMenuItem(value: 'piloto', child: Text(SoleraL10n.t('agro.carnet_piloto_aplicador'))),
                 ],
                 onChanged: (v) => setState(() => _nivelCarnet = v ?? ''),
               ),
@@ -285,8 +285,7 @@ class _PantallaTitularState extends State<PantallaTitular> {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Text(
-                'Estos datos solo se usan para generar el cuaderno de explotación '
-                'localmente en tu móvil. No se envían a ningún servidor en v1.',
+                SoleraL10n.t('agro.titular_datos_solo_locales'),
                 style: TextStyle(fontSize: 12, color: Colors.grey),
               ),
             ),

@@ -24,20 +24,22 @@ class PantallaConfiguracionFiscal extends StatefulWidget {
 
 class _PantallaConfiguracionFiscalState
     extends State<PantallaConfiguracionFiscal> {
-  static const _opcionesIrpf = <_Opcion>[
-    _Opcion('sin_elegir', 'Sin elegir'),
-    _Opcion(
-      'estimacion_directa_simplificada',
-      'Estimación directa simplificada',
-    ),
-    _Opcion('estimacion_directa_normal', 'Estimación directa normal'),
-  ];
+  // Getters (no constantes) para que el texto siga al idioma elegido.
+  static List<_Opcion> get _opcionesIrpf => <_Opcion>[
+        _Opcion('sin_elegir', SoleraL10n.t('agro.sin_elegir')),
+        _Opcion(
+          'estimacion_directa_simplificada',
+          SoleraL10n.t('agro.estimacion_directa_simplificada'),
+        ),
+        _Opcion('estimacion_directa_normal',
+            SoleraL10n.t('agro.estimacion_directa_normal')),
+      ];
 
-  static const _opcionesIva = <_Opcion>[
-    _Opcion('sin_elegir', 'Sin elegir'),
-    _Opcion('reagp', 'REAGP — régimen especial agricultura/ganadería/pesca'),
-    _Opcion('general', 'Régimen general'),
-  ];
+  static List<_Opcion> get _opcionesIva => <_Opcion>[
+        _Opcion('sin_elegir', SoleraL10n.t('agro.sin_elegir')),
+        _Opcion('reagp', SoleraL10n.t('agro.reagp_regimen_especial')),
+        _Opcion('general', SoleraL10n.t('agro.regimen_general')),
+      ];
 
   String _regimenIrpf = 'sin_elegir';
   String _regimenIva = 'sin_elegir';
@@ -99,9 +101,7 @@ class _PantallaConfiguracionFiscalState
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              'Provisional. El formato del libro y del extracto está pendiente '
-              'de validación por asesor fiscal. Antes de presentar nada en una '
-              'declaración, contrasta con tu asesor.',
+              SoleraL10n.t('agro.aviso_provisional_fiscal'),
               style: TextStyle(fontSize: 12),
             ),
           ),
@@ -121,15 +121,12 @@ class _PantallaConfiguracionFiscalState
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
-              'El régimen de módulos no está disponible en v1: pendiente de validación con '
-              'asesor fiscal antes de añadirlo. En agricultura, módulos sigue '
-              'siendo más común que en otras actividades, así que es probable '
-              'que el asesor lo pida.',
+              SoleraL10n.t('agro.modulos_no_disponible'),
               style: TextStyle(fontSize: 11, color: Colors.black54),
             ),
           ),
           SizedBox(height: 16),
-          _Cabecera('IVA'),
+          _Cabecera(SoleraL10n.t('agro.iva')),
           RadioGroup<String>(
             groupValue: _regimenIva,
             onChanged: (v) => setState(() => _regimenIva = v ?? 'sin_elegir'),
@@ -146,9 +143,7 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En REAGP no repercutes IVA en la venta de cosecha. El comprador '
-                'te paga la compensación del 12 % sobre la base. El IVA soportado '
-                'en compras no es recuperable: se imputa como mayor coste.',
+                SoleraL10n.t('agro.explicacion_iva_reagp'),
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
@@ -156,19 +151,16 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En régimen general repercutes el 4 % de IVA en la venta de cosecha '
-                'de productos agrícolas (alimento de primera necesidad, art. '
-                '91.1.1.1.º LIVA). Excepciones: vino con DOP/IGP 21 %, trufa 10 %, '
-                'madera 21 % — sobrescribe el IVA en cada apunte cuando difiera.',
+                SoleraL10n.t('agro.explicacion_iva_general'),
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
           SizedBox(height: 16),
-          _Cabecera('Año fiscal'),
+          _Cabecera(SoleraL10n.t('agro.ano_fiscal')),
           DropdownButtonFormField<int>(
             initialValue: _anoFiscalActivo,
             decoration: InputDecoration(
-              labelText: 'Año fiscal por defecto al abrir el libro',
+              labelText: SoleraL10n.t('agro.ano_fiscal_por_defecto'),
               border: OutlineInputBorder(),
             ),
             items: List.generate(5, (i) => anoActual - 2 + i)

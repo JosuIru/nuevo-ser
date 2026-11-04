@@ -89,7 +89,7 @@ class _PantallaFichaPlantaState extends State<PantallaFichaPlanta> {
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
-            tooltip: 'Editar planta',
+            tooltip: SoleraL10n.t('agro.editar_planta'),
             onPressed: () async {
               final cambio = await Navigator.of(context).push<bool>(
                 MaterialPageRoute(
@@ -101,16 +101,16 @@ class _PantallaFichaPlantaState extends State<PantallaFichaPlanta> {
           ),
           IconButton(
             icon: Icon(Icons.delete_outline),
-            tooltip: 'Borrar planta',
+            tooltip: SoleraL10n.t('agro.borrar_planta'),
             onPressed: () async {
               final ok = await showDialog<bool>(
                 context: context,
                 builder: (_) => AlertDialog(
-                  title: Text('¿Borrar planta?'),
-                  content: Text('Se borrará la planta y toda su historia (cosechas, observaciones, incidencias, tratamientos). Esta acción no se puede deshacer.'),
+                  title: Text(SoleraL10n.t('agro.pregunta_borrar_planta')),
+                  content: Text(SoleraL10n.t('agro.se_borrara_planta_y_su_historia')),
                   actions: [
                     TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
-                    TextButton(onPressed: () => Navigator.pop(context, true), child: Text('Borrar', style: TextStyle(color: Colors.red))),
+                    TextButton(onPressed: () => Navigator.pop(context, true), child: Text(SoleraL10n.t('borrar'), style: TextStyle(color: Colors.red))),
                   ],
                 ),
               );
@@ -131,7 +131,7 @@ class _PantallaFichaPlantaState extends State<PantallaFichaPlanta> {
               padding: EdgeInsets.all(32),
               child: Center(
                 child: Text(
-                  'Aún no hay eventos.\nUsa el botón ➕ para añadir cosechas, observaciones,\nincidencias o tratamientos.\nMantén pulsado un evento existente para editarlo o borrarlo.',
+                  '${SoleraL10n.t('agro.aun_no_hay_eventos_ayuda_1')}\n${SoleraL10n.t('agro.aun_no_hay_eventos_ayuda_2')}\n${SoleraL10n.t('agro.aun_no_hay_eventos_ayuda_3')}',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.grey),
                 ),
@@ -153,22 +153,22 @@ class _PantallaFichaPlantaState extends State<PantallaFichaPlanta> {
                 children: [
                   ListTile(
                     leading: Icon(Icons.shopping_basket, color: Color(0xFF689F38)),
-                    title: Text('Cosecha'),
+                    title: Text(SoleraL10n.t('agro.cosecha')),
                     onTap: () => Navigator.pop(context, TipoEventoNuevo.cosecha),
                   ),
                   ListTile(
                     leading: Icon(Icons.visibility, color: Color(0xFF1976D2)),
-                    title: Text('Observación'),
+                    title: Text(SoleraL10n.t('agro.observacion')),
                     onTap: () => Navigator.pop(context, TipoEventoNuevo.observacion),
                   ),
                   ListTile(
                     leading: Icon(Icons.warning_amber, color: Color(0xFFE65100)),
-                    title: Text('Incidencia (plaga, enfermedad)'),
+                    title: Text(SoleraL10n.t('agro.incidencia_plaga_enfermedad')),
                     onTap: () => Navigator.pop(context, TipoEventoNuevo.incidencia),
                   ),
                   ListTile(
                     leading: Icon(Icons.medical_services, color: Color(0xFF6A1B9A)),
-                    title: Text('Tratamiento'),
+                    title: Text(SoleraL10n.t('agro.tratamiento')),
                     onTap: () => Navigator.pop(context, TipoEventoNuevo.tratamiento),
                   ),
                 ],
@@ -256,20 +256,20 @@ class _Cabecera extends StatelessWidget {
             ),
           ],
           SizedBox(height: 12),
-          if (finca != null) _FilaDato(etiqueta: 'Finca', valor: finca!.nombre),
-          if (finca == null) _FilaDato(etiqueta: 'Finca', valor: 'Punto suelto'),
+          if (finca != null) _FilaDato(etiqueta: SoleraL10n.t('agro.finca'), valor: finca!.nombre),
+          if (finca == null) _FilaDato(etiqueta: SoleraL10n.t('agro.finca'), valor: SoleraL10n.t('agro.punto_suelto')),
           if (planta.patron.isNotEmpty)
             _FilaDato(
-              etiqueta: cultivo.categoria == CategoriaCultivo.micorricicoTrufa ? 'Hospedero' : 'Patrón',
+              etiqueta: cultivo.categoria == CategoriaCultivo.micorricicoTrufa ? SoleraL10n.t('agro.hospedero') : SoleraL10n.t('agro.patron'),
               valor: planta.patron,
             ),
           if (planta.fechaPlantacionMs != null)
             _FilaDato(
-              etiqueta: 'Plantada',
+              etiqueta: SoleraL10n.t('agro.plantada'),
               valor: DateFormat('dd MMM yyyy', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(planta.fechaPlantacionMs!)),
             ),
           _FilaDato(
-            etiqueta: 'Posición',
+            etiqueta: SoleraL10n.t('agro.posicion'),
             valor: '${planta.latitud.toStringAsFixed(6)}, ${planta.longitud.toStringAsFixed(6)}'
                 '${planta.precisionMetros != null ? '  ±${planta.precisionMetros!.toStringAsFixed(0)} m' : ''}',
           ),
@@ -326,12 +326,12 @@ class _TarjetaEvento extends StatelessWidget {
             if (evento.tipo == TipoEventoNuevo.incidencia)
               ListTile(
                 leading: Icon(evento.incidenciaResuelta == true ? Icons.refresh : Icons.check_circle),
-                title: Text(evento.incidenciaResuelta == true ? 'Reabrir incidencia' : 'Cerrar incidencia (resuelta)'),
+                title: Text(evento.incidenciaResuelta == true ? SoleraL10n.t('agro.reabrir_incidencia') : SoleraL10n.t('agro.cerrar_incidencia_resuelta')),
                 onTap: () => Navigator.pop(context, _AccionEvento.toggleResuelta),
               ),
             ListTile(
               leading: Icon(Icons.delete_outline, color: Colors.red),
-              title: Text('Borrar', style: TextStyle(color: Colors.red)),
+              title: Text(SoleraL10n.t('borrar'), style: TextStyle(color: Colors.red)),
               onTap: () => Navigator.pop(context, _AccionEvento.borrar),
             ),
           ],
@@ -366,11 +366,11 @@ class _TarjetaEvento extends StatelessWidget {
         final ok = await showDialog<bool>(
           context: context,
           builder: (_) => AlertDialog(
-            title: Text('¿Borrar ${evento.titulo.toLowerCase()}?'),
-            content: Text('Esta acción no se puede deshacer.'),
+            title: Text(SoleraL10n.tf('agro.pregunta_borrar_evento', {'evento': evento.titulo.toLowerCase()})),
+            content: Text(SoleraL10n.t('agro.accion_no_se_puede_deshacer')),
             actions: [
               TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
-              TextButton(onPressed: () => Navigator.pop(context, true), child: Text('Borrar', style: TextStyle(color: Colors.red))),
+              TextButton(onPressed: () => Navigator.pop(context, true), child: Text(SoleraL10n.t('borrar'), style: TextStyle(color: Colors.red))),
             ],
           ),
         );
@@ -417,7 +417,7 @@ class _TarjetaEvento extends StatelessWidget {
             // el mismo menú que el long press.
             trailing: IconButton(
               icon: const Icon(Icons.more_vert),
-              tooltip: 'Acciones',
+              tooltip: SoleraL10n.t('agro.acciones'),
               onPressed: () => _alLongPress(context),
             ),
             onTap: () => _alLongPress(context),
@@ -473,6 +473,27 @@ class _TarjetaEvento extends StatelessWidget {
   }
 }
 
+/// Nombre visible del tipo de incidencia guardado en BD (el valor
+/// guardado no cambia; si no se reconoce se enseña tal cual).
+String _nombreTipoIncidencia(String tipo) => switch (tipo) {
+      'plaga' => SoleraL10n.t('agro.tipo_incidencia_plaga'),
+      'enfermedad' => SoleraL10n.t('agro.tipo_incidencia_enfermedad'),
+      'estres' => SoleraL10n.t('agro.tipo_incidencia_estres'),
+      'fisiologico' => SoleraL10n.t('agro.tipo_incidencia_fisiologico'),
+      'otro' => SoleraL10n.t('agro.tipo_otro'),
+      _ => tipo,
+    };
+
+/// Nombre visible del tipo de tratamiento guardado en BD.
+String _nombreTipoTratamiento(String tipo) => switch (tipo) {
+      'fitosanitario' => SoleraL10n.t('agro.tipo_tratamiento_fitosanitario'),
+      'abono' => SoleraL10n.t('agro.tipo_tratamiento_abono'),
+      'riego' => SoleraL10n.t('agro.tipo_tratamiento_riego'),
+      'poda' => SoleraL10n.t('agro.tipo_tratamiento_poda'),
+      'otro' => SoleraL10n.t('agro.tipo_otro'),
+      _ => tipo,
+    };
+
 /// Item del timeline unificado. Cuatro tipos de eventos colapsados a
 /// una representación visual compartida (icono + color + título +
 /// subtítulo + fecha) para que el agricultor lea de un vistazo el
@@ -509,15 +530,15 @@ class _EventoTimeline {
   factory _EventoTimeline.deCosecha(Cosecha c) {
     final partes = <String>[];
     if (c.kilos != null) partes.add('${c.kilos!.toStringAsFixed(2)} kg');
-    if (c.unidades != null) partes.add('${c.unidades} ud');
-    if (c.calidad != null) partes.add('Cal. ${c.calidad}/5');
+    if (c.unidades != null) partes.add(SoleraL10n.tf('agro.unidades_abreviado_n', {'n': c.unidades}));
+    if (c.calidad != null) partes.add(SoleraL10n.tf('agro.calidad_abreviada_n_de_5', {'n': c.calidad}));
     return _EventoTimeline(
       eventoId: c.id!,
       tipo: TipoEventoNuevo.cosecha,
       fechaMs: c.fechaMs,
       icono: Icons.shopping_basket,
       color: Color(0xFF689F38),
-      titulo: 'Cosecha',
+      titulo: SoleraL10n.t('agro.cosecha'),
       subtitulo: partes.join(' · '),
       rutasFotos: GestorFotos.decodificar(c.rutasFotosJson),
     );
@@ -525,7 +546,7 @@ class _EventoTimeline {
 
   factory _EventoTimeline.deObservacion(Observacion o) {
     final partes = <String>[];
-    if (o.salud != null) partes.add('Salud ${o.salud}/5');
+    if (o.salud != null) partes.add(SoleraL10n.tf('agro.salud_n_de_5', {'n': o.salud}));
     if (o.notas.isNotEmpty) partes.add(o.notas);
     return _EventoTimeline(
       eventoId: o.id!,
@@ -533,7 +554,7 @@ class _EventoTimeline {
       fechaMs: o.fechaMs,
       icono: Icons.visibility,
       color: Color(0xFF1976D2),
-      titulo: 'Observación',
+      titulo: SoleraL10n.t('agro.observacion'),
       subtitulo: partes.join(' · '),
       rutasFotos: GestorFotos.decodificar(o.rutasFotosJson),
     );
@@ -541,10 +562,10 @@ class _EventoTimeline {
 
   factory _EventoTimeline.deIncidencia(Incidencia i) {
     final partes = <String>[
-      i.tipo.toUpperCase(),
+      _nombreTipoIncidencia(i.tipo).toUpperCase(),
       if (i.diagnostico.isNotEmpty) i.diagnostico,
-      if (i.severidad != null) 'Sev. ${i.severidad}/5',
-      if (i.resuelta) 'resuelta',
+      if (i.severidad != null) SoleraL10n.tf('agro.severidad_abreviada_n_de_5', {'n': i.severidad}),
+      if (i.resuelta) SoleraL10n.t('agro.resuelta_minuscula'),
     ];
     return _EventoTimeline(
       eventoId: i.id!,
@@ -552,7 +573,7 @@ class _EventoTimeline {
       fechaMs: i.fechaMs,
       icono: Icons.warning_amber,
       color: i.resuelta ? Colors.grey : Color(0xFFE65100),
-      titulo: 'Incidencia',
+      titulo: SoleraL10n.t('agro.incidencia'),
       subtitulo: partes.join(' · '),
       rutasFotos: GestorFotos.decodificar(i.rutasFotosJson),
       incidenciaResuelta: i.resuelta,
@@ -561,7 +582,7 @@ class _EventoTimeline {
 
   factory _EventoTimeline.deTratamiento(Tratamiento t) {
     final partes = <String>[
-      t.tipo.toUpperCase(),
+      _nombreTipoTratamiento(t.tipo).toUpperCase(),
       if (t.producto.isNotEmpty) t.producto,
       if (t.dosis.isNotEmpty) t.dosis,
     ];
@@ -571,7 +592,7 @@ class _EventoTimeline {
       fechaMs: t.fechaMs,
       icono: Icons.medical_services,
       color: Color(0xFF6A1B9A),
-      titulo: 'Tratamiento',
+      titulo: SoleraL10n.t('agro.tratamiento'),
       subtitulo: partes.join(' · '),
     );
   }

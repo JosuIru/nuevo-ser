@@ -67,11 +67,9 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
     final confirmado = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Borrar tercero'),
+        title: Text(SoleraL10n.t('agro.borrar_tercero')),
         content: Text(
-          'Se borrará «${t.nombre}». Los apuntes asociados conservarán '
-          'el importe, pero pierden la referencia al NIF — afectará al '
-          'extracto del modelo 347 si es de un año aún declarado.',
+          SoleraL10n.tf('agro.confirmar_borrar_tercero', {'nombre': t.nombre}),
         ),
         actions: [
           TextButton(
@@ -95,11 +93,11 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Clientes y proveedores')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.clientes_y_proveedores'))),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _editar(null),
         icon: Icon(Icons.add),
-        label: Text('Nuevo'),
+        label: Text(SoleraL10n.t('agro.nuevo')),
       ),
       body: _cargando
           ? Center(child: CircularProgressIndicator())
@@ -111,7 +109,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                     controller: _busqueda,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
-                      hintText: 'Buscar por nombre o NIF',
+                      hintText: SoleraL10n.t('agro.buscar_por_nombre_o_nif'),
                       border: OutlineInputBorder(),
                     ),
                     onChanged: (_) => setState(() {}),
@@ -123,12 +121,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                           child: Padding(
                             padding: EdgeInsets.all(24),
                             child: Text(
-                              'Aún no hay terceros guardados. Añade clientes '
-                              '(cooperativas, almazaras, hostelería, '
-                              'distribuidores) y proveedores (insumos, '
-                              'fitosanitarios, maquinaria) — el NIF de cada uno '
-                              'permite generar el modelo 347 al cierre del '
-                              'ejercicio.',
+                              SoleraL10n.t('agro.terceros_vacio'),
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.black54),
                             ),
@@ -141,7 +134,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                             final t = _filtrados[i];
                             return ListTile(
                               leading: Icon(_iconoTipo(t.tipo)),
-                              title: Text(t.nombre.isEmpty ? '(sin nombre)' : t.nombre),
+                              title: Text(t.nombre.isEmpty ? SoleraL10n.t('agro.sin_nombre_parentesis') : t.nombre),
                               subtitle: Text(_subtitulo(t)),
                               trailing: IconButton(
                                 icon: Icon(Icons.delete_outline),
@@ -173,17 +166,17 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
     if (t.tieneNif) {
       partes.add(t.nif);
     } else {
-      partes.add('sin NIF');
+      partes.add(SoleraL10n.t('agro.sin_nif'));
     }
     switch (t.tipo) {
       case 'cliente':
-        partes.add('cliente');
+        partes.add(SoleraL10n.t('agro.cliente_minuscula'));
         break;
       case 'proveedor':
-        partes.add('proveedor');
+        partes.add(SoleraL10n.t('agro.proveedor_minuscula'));
         break;
       default:
-        partes.add('cliente y proveedor');
+        partes.add(SoleraL10n.t('agro.cliente_y_proveedor_minuscula'));
     }
     return partes.join(' · ');
   }
@@ -269,25 +262,27 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
             shrinkWrap: true,
             children: [
               Text(
-                esNuevo ? 'Nuevo tercero' : 'Editar tercero',
+                esNuevo
+                    ? SoleraL10n.t('agro.nuevo_tercero')
+                    : SoleraL10n.t('agro.editar_tercero'),
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 16),
               TextFormField(
                 controller: _nombre,
                 decoration: InputDecoration(
-                  labelText: 'Nombre o razón social *',
+                  labelText: SoleraL10n.t('agro.nombre_o_razon_social_obligatorio'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v ?? '').trim().isEmpty ? 'Nombre obligatorio' : null,
+                    (v ?? '').trim().isEmpty ? SoleraL10n.t('agro.nombre_obligatorio') : null,
               ),
               SizedBox(height: 12),
               TextFormField(
                 controller: _nif,
                 decoration: InputDecoration(
-                  labelText: 'NIF',
-                  hintText: 'Vacío si es venta informal sin factura',
+                  labelText: SoleraL10n.t('agro.nif'),
+                  hintText: SoleraL10n.t('agro.nif_vacio_si_venta_informal'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -295,14 +290,14 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
               DropdownButtonFormField<String>(
                 initialValue: _tipo,
                 decoration: InputDecoration(
-                  labelText: 'Tipo',
+                  labelText: SoleraL10n.t('agro.tipo'),
                   border: OutlineInputBorder(),
                 ),
                 items: [
-                  const DropdownMenuItem(value: 'cliente', child: Text('Cliente')),
+                  DropdownMenuItem(value: 'cliente', child: Text(SoleraL10n.t('agro.cliente'))),
                   DropdownMenuItem(value: 'proveedor', child: Text(SoleraL10n.t('proveedor'))),
-                  const DropdownMenuItem(
-                      value: 'ambos', child: Text('Cliente y proveedor')),
+                  DropdownMenuItem(
+                      value: 'ambos', child: Text(SoleraL10n.t('agro.cliente_y_proveedor'))),
                 ],
                 onChanged: (v) => setState(() => _tipo = v ?? 'ambos'),
               ),
@@ -310,7 +305,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
               TextFormField(
                 controller: _direccion,
                 decoration: InputDecoration(
-                  labelText: 'Dirección',
+                  labelText: SoleraL10n.t('agro.direccion'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -322,7 +317,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                       controller: _telefono,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
-                        labelText: 'Teléfono',
+                        labelText: SoleraL10n.t('agro.telefono'),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -333,7 +328,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                       controller: _email,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        labelText: 'Email',
+                        labelText: SoleraL10n.t('agro.email'),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -345,7 +340,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                 controller: _notas,
                 maxLines: 2,
                 decoration: InputDecoration(
-                  labelText: 'Notas',
+                  labelText: SoleraL10n.t('agro.notas'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -360,7 +355,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                             strokeWidth: 2, color: Colors.white),
                       )
                     : Icon(Icons.check),
-                label: Text(esNuevo ? 'Crear' : 'Guardar'),
+                label: Text(esNuevo ? SoleraL10n.t('agro.crear') : SoleraL10n.t('guardar')),
               ),
               SizedBox(height: 8),
             ],

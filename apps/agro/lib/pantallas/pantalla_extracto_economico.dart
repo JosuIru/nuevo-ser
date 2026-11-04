@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 import 'package:printing/printing.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -40,7 +41,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error al generar el PDF: $e')),
+          SnackBar(content: Text('${SoleraL10n.t('agro.error_al_generar_el_pdf')}: $e')),
         );
       }
       return null;
@@ -54,7 +55,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
     if (fichero == null || !mounted) return;
     await Share.shareXFiles(
       [XFile(fichero.path)],
-      text: 'Extracto económico agrícola · $_ano',
+      text: '${SoleraL10n.t('agro.extracto_economico_agricola')} · $_ano',
     );
   }
 
@@ -69,7 +70,7 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
   Widget build(BuildContext context) {
     final anoActual = DateTime.now().year;
     return Scaffold(
-      appBar: AppBar(title: const Text('Extracto económico anual')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.extracto_economico_anual'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -81,19 +82,16 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.amber.shade700),
             ),
-            child: const Text(
-              'PROVISIONAL. Este extracto es una herramienta de apoyo para el '
-              'asesor fiscal — el formato exacto del libro registro y del modelo '
-              '347 está pendiente de que lo valide un asesor fiscal antes de presentar '
-              'nada en una declaración.',
-              style: TextStyle(fontSize: 12),
+            child: Text(
+              SoleraL10n.t('agro.aviso_extracto_provisional'),
+              style: const TextStyle(fontSize: 12),
             ),
           ),
           DropdownButtonFormField<int>(
             initialValue: _ano,
-            decoration: const InputDecoration(
-              labelText: 'Ejercicio fiscal',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              labelText: SoleraL10n.t('agro.ejercicio_fiscal'),
+              border: const OutlineInputBorder(),
             ),
             items: [
               for (var a = anoActual; a >= anoActual - 9; a--)
@@ -111,13 +109,13 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
                     child: CircularProgressIndicator(
                         strokeWidth: 2, color: Colors.white))
                 : const Icon(Icons.share),
-            label: const Text('Generar y compartir'),
+            label: Text(SoleraL10n.t('agro.generar_y_compartir')),
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: _generando ? null : _generarYAbrir,
             icon: const Icon(Icons.print),
-            label: const Text('Generar y abrir'),
+            label: Text(SoleraL10n.t('agro.generar_y_abrir')),
           ),
           const SizedBox(height: 24),
           Container(
@@ -127,20 +125,19 @@ class _PantallaExtractoEconomicoState extends State<PantallaExtractoEconomico> {
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.grey.shade300),
             ),
-            child: const Text(
-              'El extracto incluye:\n'
-              '• Resumen con los totales del ejercicio.\n'
-              '• Tabla mensual de ingresos (cosecha, ayudas PAC, IVA, '
-              'compensación REAGP).\n'
-              '• Tabla mensual de gastos (base, IVA soportado, total).\n'
-              '• Modelo 347 — terceros con suma >3.005,06 € en el ejercicio.\n'
-              '• Apuntes sin NIF que no entran en el modelo 347.\n'
-              '• Detalle cronológico de ingresos y de gastos.\n\n'
-              'Los gastos imputados a "cultivo general" se listan tal cual con '
-              'el importe íntegro — el reparto proporcional por hectárea entre '
-              'parcelas con ese cultivo está pendiente de validación de método '
-              'por asesor fiscal.',
-              style: TextStyle(fontSize: 12, color: Colors.black87),
+            child: Text(
+              [
+                SoleraL10n.t('agro.extracto_incluye'),
+                '• ${SoleraL10n.t('agro.extracto_incluye_resumen')}',
+                '• ${SoleraL10n.t('agro.extracto_incluye_ingresos_mes')}',
+                '• ${SoleraL10n.t('agro.extracto_incluye_gastos_mes')}',
+                '• ${SoleraL10n.t('agro.extracto_incluye_modelo_347')}',
+                '• ${SoleraL10n.t('agro.extracto_incluye_sin_nif')}',
+                '• ${SoleraL10n.t('agro.extracto_incluye_detalle')}',
+                '',
+                SoleraL10n.t('agro.extracto_nota_cultivo_general'),
+              ].join('\n'),
+              style: const TextStyle(fontSize: 12, color: Colors.black87),
             ),
           ),
         ],

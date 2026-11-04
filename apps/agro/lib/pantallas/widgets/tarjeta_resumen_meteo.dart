@@ -25,7 +25,9 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
   final _servicio = ServicioMeteoAgro();
   final _persistenciaFinca = FincaActivaPersistida();
   Future<PrevisionAgro>? _futuro;
-  String _origen = 'ubicación de trabajo';
+  _DestinoMeteo? _destino;
+  String get _origen =>
+      _destino?.nombreVisible ?? SoleraL10n.t('agro.origen_ubicacion_trabajo');
 
   @override
   void initState() {
@@ -35,7 +37,7 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
 
   Future<PrevisionAgro> _cargar() async {
     final destino = await _resolverDestino();
-    _origen = destino.nombre;
+    _destino = destino;
     return _servicio.obtener(
       latitud: destino.latitud,
       longitud: destino.longitud,
@@ -50,7 +52,7 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
         : await db.obtenerFinca(fincaActivaId);
     if (finca?.latitudCentroide != null && finca?.longitudCentroide != null) {
       return _DestinoMeteo(
-        nombre: finca!.nombre,
+        nombreFinca: finca!.nombre,
         latitud: finca.latitudCentroide!,
         longitud: finca.longitudCentroide!,
       );
@@ -64,14 +66,14 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
       final ultima = await Geolocator.getLastKnownPosition();
       if (ultima != null) {
         return _DestinoMeteo(
-          nombre: 'GPS reciente',
+          claveOrigen: 'agro.origen_gps_reciente',
           latitud: ultima.latitude,
           longitud: ultima.longitude,
         );
       }
     }
     return const _DestinoMeteo(
-      nombre: 'centro de referencia',
+      claveOrigen: 'agro.origen_centro_referencia',
       latitud: 40.4,
       longitud: -3.7,
     );
@@ -84,7 +86,7 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
     final lng =
         plantas.map((p) => p.longitud).reduce((a, b) => a + b) / plantas.length;
     return _DestinoMeteo(
-      nombre: 'centro de plantas',
+      claveOrigen: 'agro.origen_centro_plantas',
       latitud: lat,
       longitud: lng,
     );
@@ -108,32 +110,32 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
             future: _futuro,
             builder: (context, snapshot) {
               if (snapshot.connectionState != ConnectionState.done) {
-                return const Row(
+                return Row(
                   children: [
-                    Icon(Icons.cloud_outlined, color: Color(0xFF558B2F)),
-                    SizedBox(width: 12),
-                    Text('Cargando previsión meteo…'),
+                    const Icon(Icons.cloud_outlined, color: Color(0xFF558B2F)),
+                    const SizedBox(width: 12),
+                    Text(SoleraL10n.t('agro.cargando_prevision_meteo')),
                   ],
                 );
               }
               if (snapshot.hasError || snapshot.data == null) {
-                return const Row(
+                return Row(
                   children: [
-                    Icon(Icons.cloud_off, color: Colors.grey),
-                    SizedBox(width: 12),
+                    const Icon(Icons.cloud_off, color: Colors.grey),
+                    const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'No se pudo cargar la previsión. Toca para reintentar.',
+                        SoleraL10n.t('agro.prevision_error_toca_reintentar'),
                       ),
                     ),
-                    Icon(Icons.chevron_right, color: Colors.grey),
+                    const Icon(Icons.chevron_right, color: Colors.grey),
                   ],
                 );
               }
               final prevision = snapshot.data!;
               final hoy = prevision.hoy;
               if (hoy == null) {
-                return const Text('Sin datos meteo para hoy.');
+                return Text(SoleraL10n.t('agro.sin_datos_meteo_hoy'));
               }
               final avisos = _avisosClave(hoy);
               return Column(
@@ -145,7 +147,7 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          'Meteo hoy · $_origen',
+                          SoleraL10n.tf('agro.meteo_hoy_origen', {'origen': _origen}),
                           style: const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 14),
                           overflow: TextOverflow.ellipsis,
@@ -208,15 +210,15 @@ class _TarjetaResumenMeteoState extends State<TarjetaResumenMeteo> {
   List<_AvisoMeteo> _avisosClave(DiaMeteoAgro dia) {
     final avisos = <_AvisoMeteo>[];
     if (dia.riesgoHelada) {
-      avisos.add(const _AvisoMeteo(Icons.ac_unit, 'Riesgo de helada'));
+      avisos.add(_AvisoMeteo(Icons.ac_unit, SoleraL10n.t('agro.riesgo_de_helada')));
     }
     if (dia.malDiaTratamiento) {
-      avisos.add(const _AvisoMeteo(
-          Icons.science, 'Tratamientos delicados (viento / lluvia)'));
+      avisos.add(_AvisoMeteo(
+          Icons.science, SoleraL10n.t('agro.tratamientos_delicados_viento_lluvia')));
     }
     if (dia.estresHidrico) {
-      avisos.add(const _AvisoMeteo(
-          Icons.water_drop, 'Alta demanda hídrica'));
+      avisos.add(_AvisoMeteo(
+          Icons.water_drop, SoleraL10n.t('agro.alta_demanda_hidrica')));
     }
     return avisos;
   }
@@ -248,13 +250,21 @@ class _AvisoMeteo {
 }
 
 class _DestinoMeteo {
-  final String nombre;
+  /// Nombre de la finca, o null si el destino es otro origen.
+  final String? nombreFinca;
+
+  /// Clave de traducción del origen cuando no es una finca.
+  final String? claveOrigen;
   final double latitud;
   final double longitud;
 
   const _DestinoMeteo({
-    required this.nombre,
+    this.nombreFinca,
+    this.claveOrigen,
     required this.latitud,
     required this.longitud,
   });
+
+  String get nombreVisible =>
+      nombreFinca ?? SoleraL10n.t(claveOrigen ?? 'agro.origen_ubicacion_trabajo');
 }

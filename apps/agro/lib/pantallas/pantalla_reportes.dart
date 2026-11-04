@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
@@ -47,10 +48,10 @@ class _PantallaReportesState extends State<PantallaReportes> {
         operador: _controladorOperador.text.trim(),
       );
       if (!mounted) return;
-      await Share.shareXFiles([XFile(fichero.path)], subject: 'Informe de campaña');
+      await Share.shareXFiles([XFile(fichero.path)], subject: SoleraL10n.t('agro.informe_de_campana'));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Error al generar el PDF: $e')));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(SoleraL10n.tf('agro.error_al_generar_pdf', {'error': e}))));
     } finally {
       if (mounted) setState(() => _generando = false);
     }
@@ -61,7 +62,7 @@ class _PantallaReportesState extends State<PantallaReportes> {
     final anoActual = DateTime.now().year;
     final anosDisponibles = [for (var a = anoActual; a >= anoActual - 10; a--) a];
     return Scaffold(
-      appBar: AppBar(title: const Text('Informe de campaña')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.informe_de_campana'))),
       body: AbsorbPointer(
         absorbing: _generando,
         child: ListView(
@@ -69,12 +70,12 @@ class _PantallaReportesState extends State<PantallaReportes> {
           children: [
             DropdownButtonFormField<Finca?>(
               initialValue: _fincaSeleccionada,
-              decoration: const InputDecoration(
-                labelText: 'Finca',
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('agro.finca'),
                 border: OutlineInputBorder(),
               ),
               items: [
-                const DropdownMenuItem<Finca?>(value: null, child: Text('Todas las fincas (incluye puntos sueltos)')),
+                DropdownMenuItem<Finca?>(value: null, child: Text(SoleraL10n.t('agro.todas_las_fincas_con_sueltos'))),
                 for (final f in _fincas) DropdownMenuItem<Finca?>(value: f, child: Text(f.nombre)),
               ],
               onChanged: (v) => setState(() => _fincaSeleccionada = v),
@@ -82,12 +83,12 @@ class _PantallaReportesState extends State<PantallaReportes> {
             const SizedBox(height: 16),
             DropdownButtonFormField<int?>(
               initialValue: _ano,
-              decoration: const InputDecoration(
-                labelText: 'Campaña',
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('agro.campana'),
                 border: OutlineInputBorder(),
               ),
               items: [
-                const DropdownMenuItem<int?>(value: null, child: Text('Histórico (todas las campañas)')),
+                DropdownMenuItem<int?>(value: null, child: Text(SoleraL10n.t('agro.historico_todas_campanas'))),
                 for (final a in anosDisponibles) DropdownMenuItem<int?>(value: a, child: Text('$a')),
               ],
               onChanged: (v) => setState(() => _ano = v),
@@ -95,17 +96,17 @@ class _PantallaReportesState extends State<PantallaReportes> {
             const SizedBox(height: 16),
             TextFormField(
               controller: _controladorOperador,
-              decoration: const InputDecoration(
-                labelText: 'Nombre del operador (opcional)',
-                hintText: 'Tu nombre / nombre del agrónomo',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('agro.nombre_operador_opcional'),
+                hintText: SoleraL10n.t('agro.nombre_operador_ayuda'),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 24),
             FilledButton.icon(
               icon: const Icon(Icons.picture_as_pdf),
               onPressed: _generando ? null : _generarYCompartir,
-              label: Text(_generando ? 'Generando…' : 'Generar y compartir PDF'),
+              label: Text(_generando ? SoleraL10n.t('agro.generando') : SoleraL10n.t('agro.generar_y_compartir_pdf')),
             ),
           ],
         ),

@@ -55,50 +55,27 @@ class PantallaAcerca extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Larrea es un gestor de fincas agrícolas: frutales, trufas, '
-            'olivar, pistacho y dehesa. Cada planta tiene su ficha con GPS '
-            'e historial de cosechas, observaciones, incidencias y '
-            'tratamientos; recorridos de inspección, identificación de '
-            'plagas por foto con IA, cuaderno de explotación MAPA en PDF, '
-            'facturas y libro económico.',
-            style: TextStyle(fontSize: 14, height: 1.5),
+          Text(
+            SoleraL10n.t('agro.acerca_descripcion'),
+            style: const TextStyle(fontSize: 14, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Compromisos legales'),
-          const _Vineta(
-            'Larrea no recomienda productos fitosanitarios comerciales. '
-            'Consulta siempre a tu técnico, cooperativa o asesor antes '
-            'de aplicar.',
-          ),
-          const _Vineta(
-            'El formato del cuaderno de explotación (RD 1311/2012) cambia '
-            'periódicamente. Verifica el formato vigente del MAPA antes de '
-            'presentar el documento en una inspección.',
-          ),
-          const _Vineta(
-            'La configuración fiscal y el libro económico son PROVISIONALES '
-            'hasta que los revise un asesor fiscal.',
-          ),
-          const _Vineta(
-            'Tu clave de Anthropic (si la configuras para la IA) se guarda solo '
-            'en tu dispositivo. Las fotos se envían directamente a '
-            'Anthropic, sin pasar por servidores intermedios.',
-          ),
+          _Seccion(SoleraL10n.t('agro.compromisos_legales')),
+          _Vineta(SoleraL10n.t('agro.compromiso_fitosanitarios')),
+          _Vineta(SoleraL10n.t('agro.compromiso_formato_cuaderno')),
+          _Vineta(SoleraL10n.t('agro.compromiso_fiscal_provisional')),
+          _Vineta(SoleraL10n.t('agro.compromiso_clave_anthropic')),
           const SizedBox(height: 24),
-          const _Seccion('Catálogos'),
+          _Seccion(SoleraL10n.t('agro.catalogos')),
           const _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Larrea'),
-          const Text(
-            'Larrea es la app general de la suite Larrea, de la Colección Nuevo '
-            'Ser, con apps hermanas especializadas: Larrea Viticultura, '
-            'Larrea Apícola, Larrea Arbolado Urbano, Larrea Quesera y '
-            'Larrea Aceitera.',
-            style: TextStyle(fontSize: 13, height: 1.5),
+          _Seccion(SoleraL10n.t('agro.familia_larrea')),
+          Text(
+            SoleraL10n.t('agro.familia_larrea_texto'),
+            style: const TextStyle(fontSize: 13, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Enlaces'),
+          _Seccion(SoleraL10n.t('agro.enlaces')),
           const ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.public),
@@ -132,7 +109,7 @@ class _TarjetaCatalogos extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  'PROVISIONALES — sin validar todavía',
+                  SoleraL10n.t('agro.catalogos_provisionales_sin_validar'),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: colorAviso.shade900,
@@ -143,21 +120,19 @@ class _TarjetaCatalogos extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '${catalogoCultivos.length} cultivos, '
-            '${catalogoPlagas.length} plagas y enfermedades, '
-            '${catalogoFitosanitarios.length} productos fitosanitarios '
-            'de referencia y calendario fenológico de '
-            '${calendarioFenologico.length} cultivos.',
+            SoleraL10n.tf('agro.catalogos_resumen', {
+              'cultivos': catalogoCultivos.length,
+              'plagas': catalogoPlagas.length,
+              'productos': catalogoFitosanitarios.length,
+              'calendario': calendarioFenologico.length,
+            }),
             style: TextStyle(
                 fontSize: 13, height: 1.5, color: colorAviso.shade900),
           ),
           const SizedBox(height: 8),
-          const Text(
-            'Semilla curada a partir de fuentes públicas (MAPA y otras). '
-            'Antes de pasar a producción comercial deben revisarla un '
-            'agrónomo y un técnico; los números de registro de los '
-            'productos son de ejemplo: comprueba siempre el del envase.',
-            style: TextStyle(fontSize: 12, height: 1.5),
+          Text(
+            SoleraL10n.t('agro.catalogos_semilla_aviso'),
+            style: const TextStyle(fontSize: 12, height: 1.5),
           ),
         ],
       ),

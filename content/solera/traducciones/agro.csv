@@ -1,0 +1,634 @@
+clave,es,eu,ca,gl
+agro.abiotico,Abiótico,Abiotikoa,Abiòtic,Abiótico
+agro.abono,Abono,Ongarria,Adob,Abono
+agro.abrir_ficha_completa,Abrir ficha completa,Fitxa osoa ireki,Obrir la fitxa completa,Abrir a ficha completa
+agro.accion_no_se_puede_deshacer,Esta acción no se puede deshacer.,Ekintza hau ezin da desegin.,Aquesta acció no es pot desfer.,Esta acción non se pode desfacer.
+agro.acciones,Acciones,Ekintzak,Accions,Accións
+agro.aceptar_y_rellenar,Aceptar y rellenar,Onartu eta bete,Accepta i emplena,Aceptar e cubrir
+agro.acerca_descripcion,"Larrea es un gestor de fincas agrícolas: frutales, trufas, olivar, pistacho y dehesa. Cada planta tiene su ficha con GPS e historial de cosechas, observaciones, incidencias y tratamientos; recorridos de inspección, identificación de plagas por foto con IA, cuaderno de explotación MAPA en PDF, facturas y libro económico.","Larrea nekazaritza-finken kudeatzailea da: fruta-arbolak, boilurrak, olibondoak, pistatxondoak eta larre-basoak. Landare bakoitzak bere fitxa du, GPSarekin eta uzten, behaketen, gorabeheren eta tratamenduen historiarekin; gainera, ikuskapen-ibilbideak, izurriteak argazki bidez AArekin identifikatzea, MAPA ustiategi-koadernoa PDFn, fakturak eta liburu ekonomikoa.","Larrea és un gestor de finques agrícoles: fruiters, tòfones, olivera, pistatxer i devesa. Cada planta té la seva fitxa amb GPS i historial de collites, observacions, incidències i tractaments; recorreguts d'inspecció, identificació de plagues per foto amb IA, quadern d'explotació MAPA en PDF, factures i llibre econòmic.","Larrea é un xestor de fincas agrícolas: froiteiras, trufas, olival, pistacho e devesa. Cada planta ten a súa ficha con GPS e historial de colleitas, observacións, incidencias e tratamentos; percorridos de inspección, identificación de pragas por foto con IA, caderno de explotación MAPA en PDF, facturas e libro económico."
+agro.activar_modo_censo,Activar modo censo,Errolda modua aktibatu,Activar el mode cens,Activar o modo censo
+agro.adjunta_foto_para_ia,Adjunta una foto para activar la identificación con IA.,Erantsi argazki bat AA bidezko identifikazioa aktibatzeko.,Adjunta una foto per activar la identificació amb IA.,Achega unha foto para activar a identificación con IA.
+agro.alquiler_de_terreno,Alquiler de terreno,Lur-alokairua,Lloguer de terreny,Aluguer de terreo
+agro.alta_demanda_hidrica,Alta demanda hídrica,Ur-eskari handia,Alta demanda hídrica,Alta demanda hídrica
+agro.alta_demanda_hidrica_cuerpo,ET0 y DPV altos: prioriza riego y evita labores de estrés.,ET0 eta DPV altuak: lehenetsi ureztatzea eta saihestu landareak estresatzen dituzten lanak.,ET0 i DPV alts: prioritza el reg i evita feines que estressin les plantes.,ET0 e DPV altos: prioriza a rega e evita labores de estrés.
+agro.altitud_gps_metros,Alt. GPS {metros} m,GPS alt. {metros} m,Alt. GPS {metros} m,Alt. GPS {metros} m
+agro.altitud_gps_sin_dato,Alt. GPS --,GPS alt. --,Alt. GPS --,Alt. GPS --
+agro.anadir_aqui,Añadir aquí,Hemen gehitu,Afegir aquí,Engadir aquí
+agro.anadir_planta,Añadir planta,Landarea gehitu,Afegir planta,Engadir planta
+agro.analizando_foto,Analizando foto…,Argazkia aztertzen…,S'està analitzant la foto…,Analizando a foto…
+agro.ano_fiscal,Año fiscal,Ekitaldi fiskala,Any fiscal,Ano fiscal
+agro.ano_fiscal_por_defecto,Año fiscal por defecto al abrir el libro,Liburua irekitzean lehenetsitako zerga-urtea,Exercici fiscal per defecte en obrir el llibre,Ano fiscal predeterminado ao abrir o libro
+agro.anular,Anular,Deuseztatu,Anul·lar,Anular
+agro.aplicador_distinto_del_titular,El aplicador es distinto del titular,Aplikatzailea ez da titularra,L'aplicador és diferent del titular,O aplicador é distinto do titular
+agro.apunte_vinculado_tratamiento_mapa,Apunte vinculado a un tratamiento del cuaderno MAPA: el sincronizador mantiene los dos coherentes.,MAPA koadernoko tratamendu bati lotutako idatzoharra: sinkronizatzaileak biak koherente mantentzen ditu.,Assentament vinculat a un tractament del quadern MAPA: el sincronitzador manté tots dos coherents.,Apuntamento vinculado a un tratamento do caderno MAPA: o sincronizador mantén os dous coherentes.
+agro.apuntes_de_gasto_n,Apuntes de gasto: {n},Gastu idatzoharrak: {n},Assentaments de despesa: {n},Apuntamentos de gasto: {n}
+agro.apuntes_de_ingreso_n,Apuntes de ingreso: {n},Diru-sarrera idatzoharrak: {n},Assentaments d'ingrés: {n},Apuntamentos de ingreso: {n}
+agro.apuntes_ingresos_gastos_n,Apuntes: {ingresos} ingresos · {gastos} gastos,Idatzoharrak: {ingresos} diru-sarrera · {gastos} gastu,Assentaments: {ingresos} ingressos · {gastos} despeses,Apuntamentos: {ingresos} ingresos · {gastos} gastos
+agro.arboles_hospederos_catalogados,Árboles hospederos catalogados,Katalogatutako zuhaitz ostalariak,Arbres hoste catalogats,Árbores hospedeiras catalogadas
+agro.asunto_copia_seguridad,Copia de seguridad de Larrea,Larrearen segurtasun-kopia,Còpia de seguretat de Larrea,Copia de seguridade de Larrea
+agro.asunto_cuaderno,Cuaderno de explotación {finca} {ano},Ustiategiko koadernoa {finca} {ano},Quadern d'explotació {finca} {ano},Caderno de explotación {finca} {ano}
+agro.asunto_factura,Factura {numero} — {cliente},{numero} faktura — {cliente},Factura {numero} — {cliente},Factura {numero} — {cliente}
+agro.aun_no_has_grabado_recorrido,Aún no has grabado ningún recorrido.,Oraindik ez duzu ibilbiderik grabatu.,Encara no has gravat cap recorregut.,Aínda non gravaches ningún percorrido.
+agro.aun_no_hay_cosechas_registradas,Aún no hay cosechas registradas.,Oraindik ez dago uztarik erregistratuta.,Encara no hi ha collites registrades.,Aínda non hai colleitas rexistradas.
+agro.aun_no_hay_eventos_ayuda_1,Aún no hay eventos.,Oraindik ez dago gertaerarik.,Encara no hi ha esdeveniments.,Aínda non hai eventos.
+agro.aun_no_hay_eventos_ayuda_2,"Usa el botón ➕ para añadir cosechas, observaciones, incidencias o tratamientos.","Erabili ➕ botoia uztak, behaketak, gorabeherak edo tratamenduak gehitzeko.","Fes servir el botó ➕ per afegir collites, observacions, incidències o tractaments.","Usa o botón ➕ para engadir colleitas, observacións, incidencias ou tratamentos."
+agro.aun_no_hay_eventos_ayuda_3,Mantén pulsado un evento existente para editarlo o borrarlo.,Eduki sakatuta lehendik dagoen gertaera bat editatzeko edo ezabatzeko.,Mantén premut un esdeveniment existent per editar-lo o esborrar-lo.,Mantén premido un evento existente para editalo ou borralo.
+agro.aun_no_hay_fincas_ayuda_1,Aún no has creado ninguna finca.,Oraindik ez duzu finkarik sortu.,Encara no has creat cap finca.,Aínda non creaches ningunha finca.
+agro.aun_no_hay_fincas_ayuda_2,Puedes registrar plantas como puntos sueltos o crear una finca primero.,Landareak puntu solte gisa erregistra ditzakezu edo lehenik finka bat sortu.,Pots registrar plantes com a punts solts o crear primer una finca.,Podes rexistrar plantas como puntos soltos ou crear primeiro unha finca.
+agro.aun_no_hay_plantas,Aún no has registrado plantas.,Oraindik ez duzu landarerik erregistratu.,Encara no has registrat cap planta.,Aínda non rexistraches plantas.
+agro.aun_no_hay_plantas_registradas,Aún no hay plantas registradas.,Oraindik ez dago landarerik erregistratuta.,Encara no hi ha plantes registrades.,Aínda non hai plantas rexistradas.
+agro.autocalcular_iva,Autocalcular IVA,Kalkulatu BEZa automatikoki,Calcula l'IVA automàticament,Calcular o IVE automaticamente
+agro.autocalcular_iva_compensacion,Autocalcular IVA / compensación,Kalkulatu BEZa / konpentsazioa automatikoki,Calcula l'IVA / compensació automàticament,Calcular automaticamente IVE / compensación
+agro.autocalculo_alquiler_exento,Alquiler agrícola exento de IVA (pasa al 21 % si el uso no es agrícola),Nekazaritza-alokairua BEZetik salbuetsita (% 21era igotzen da erabilera ez bada nekazaritzakoa),Lloguer agrícola exempt d'IVA (passa al 21 % si l'ús no és agrícola),Aluguer agrícola exento de IVE (pasa ao 21 % se o uso non é agrícola)
+agro.autocalculo_general_21,21 % IVA general,% 21eko BEZ orokorra,21 % d'IVA general,21 % de IVE xeral
+agro.autocalculo_general_cosecha_4,Régimen general: 4 % de IVA en la venta de cosecha (alimento de primera necesidad),Erregimen orokorra: % 4ko BEZa uzta-salmentan (lehen mailako elikagaia),Règim general: 4 % d'IVA en la venda de collita (aliment de primera necessitat),Réxime xeral: 4 % de IVE na venda de colleita (alimento de primeira necesidade)
+agro.autocalculo_insumos_4,4 % IVA superreducido (insumo agrario),% 4ko BEZ super-murriztua (nekazaritza-intsumoa),4 % d'IVA superreduït (input agrari),4 % de IVE superreducido (insumo agrario)
+agro.autocalculo_madera_21,Madera: 21 % IVA general,Egurra: % 21eko BEZ orokorra,Fusta: 21 % d'IVA general,Madeira: 21 % de IVE xeral
+agro.autocalculo_mano_obra,Mano de obra agrícola: típicamente sin IVA,Nekazaritzako eskulana: normalean BEZik gabe,Mà d'obra agrícola: normalment sense IVA,Man de obra agrícola: normalmente sen IVE
+agro.autocalculo_reagp_12,REAGP: 12 % sobre la base como compensación al agricultor,"REAGP: % 12 oinarriaren gainean, nekazariarentzako konpentsazio gisa",REAGP: 12 % sobre la base com a compensació a l'agricultor,REAGP: 12 % sobre a base como compensación ao agricultor
+agro.autocalculo_riego_10,10 % IVA reducido (suministro de agua para riego),% 10eko BEZ murriztua (ureztatzeko ur-hornidura),10 % d'IVA reduït (subministrament d'aigua per a reg),10 % de IVE reducido (subministración de auga para rega)
+agro.autocalculo_seguros_exento,Exento de IVA (art. 20 LIVA),"BEZetik salbuetsia (BEZaren Legea, 20. art.)",Exempt d'IVA (art. 20 LIVA),Exento de IVE (art. 20 da Lei do IVE)
+agro.autor_desconocido,Autor desconocido,Egile ezezaguna,Autor desconegut,Autor descoñecido
+agro.aviso_cultivo_no_autorizado_producto,Aviso: el cultivo de la planta no figura en los autorizados de este producto — verifica antes de aplicar.,Kontuz: landarearen laborea ez dago produktu honen baimendutakoen artean — egiaztatu aplikatu aurretik.,Avís: el conreu de la planta no figura entre els autoritzats d'aquest producte — comprova-ho abans d'aplicar-lo.,Aviso: o cultivo da planta non figura entre os autorizados deste produto — compróbao antes de aplicalo.
+agro.aviso_extracto_provisional,PROVISIONAL. Este extracto es una herramienta de apoyo para el asesor fiscal: el formato exacto del libro registro y del modelo 347 está pendiente de que lo valide un asesor fiscal antes de presentar nada en una declaración.,BEHIN-BEHINEKOA. Laburpen hau aholkulari fiskalarentzako laguntza-tresna bat da: erregistro-liburuaren eta 347 ereduaren formatu zehatza aholkulari fiskal batek baliozkotu behar du aitorpenetan ezer aurkeztu aurretik.,PROVISIONAL. Aquest extracte és una eina de suport per a l'assessor fiscal: el format exacte del llibre registre i del model 347 està pendent que el validi un assessor fiscal abans de presentar res en una declaració.,PROVISIONAL. Este extracto é unha ferramenta de apoio para o asesor fiscal: o formato exacto do libro rexistro e do modelo 347 está pendente de que o valide un asesor fiscal antes de presentar nada nunha declaración.
+agro.aviso_ia_sugiere_tu_decides,"La IA sugiere — tú decides. Antes de aplicar productos fitosanitarios, consulta a tu técnico de cooperativa o ATRIA. Larrea no recomienda productos comerciales en v1.","AAk iradokitzen du — zuk erabakitzen duzu. Produktu fitosanitarioak aplikatu aurretik, galdetu zure kooperatibako edo ATRIAko teknikariari. Larreak ez du produktu komertzialik gomendatzen v1ean.","La IA suggereix — tu decideixes. Abans d'aplicar productes fitosanitaris, consulta el tècnic de la teva cooperativa o ATRIA. Larrea no recomana productes comercials a la v1.","A IA suxire — ti decides. Antes de aplicar produtos fitosanitarios, consulta co técnico da túa cooperativa ou ATRIA. Larrea non recomenda produtos comerciais na v1."
+agro.aviso_iva_soportado_reagp_extracto,En REAGP el IVA soportado no es recuperable: se computa como mayor coste en el extracto.,REAGPn jasandako BEZa ez da berreskuragarria: kostu handiago gisa zenbatzen da laburpenean.,En el REAGP l'IVA suportat no és recuperable: es computa com a cost més alt en l'extracte.,No REAGP o IVE soportado non é recuperable: computa como maior custo no extracto.
+agro.aviso_libro_economico_provisional,"Libro económico provisional. Pendiente de validación por asesor fiscal antes de presentar nada en una declaración. Mientras tanto, contrasta cada apunte con tu asesor.","Behin-behineko liburu ekonomikoa. Aholkulari fiskal batek baliozkotu behar du aitorpenetan ezer aurkeztu aurretik. Bitartean, egiaztatu idatzoharra bakoitza zure aholkulariarekin.","Llibre econòmic provisional. Pendent de validació per un assessor fiscal abans de presentar res en una declaració. Mentrestant, contrasta cada assentament amb el teu assessor.","Libro económico provisional. Pendente de validación por un asesor fiscal antes de presentar nada nunha declaración. Mentres tanto, contrasta cada apuntamento co teu asesor."
+agro.aviso_provisional_fiscal,"Provisional. El formato del libro y del extracto está pendiente de validación por asesor fiscal. Antes de presentar nada en una declaración, contrasta con tu asesor.","Behin-behinekoa. Liburuaren eta laburpenaren formatua zerga-aholkulari batek baliozkotzeko dago. Aitorpen batean ezer aurkeztu aurretik, egiaztatu zure aholkulariarekin.","Provisional. El format del llibre i de l'extracte està pendent de validació per un assessor fiscal. Abans de presentar res en una declaració, contrasta-ho amb el teu assessor.","Provisional. O formato do libro e do extracto está pendente de validación por un asesor fiscal. Antes de presentar nada nunha declaración, contrástao co teu asesor."
+agro.aviso_recomendaciones_fitosanitarios_futuras,"Las recomendaciones de productos fitosanitarios autorizados (BBDD del MAPA) y los plazos de seguridad estarán disponibles en próximas versiones, validadas por un agrónomo.","Baimendutako produktu fitosanitarioen gomendioak (MAPAren datu-basea) eta segurtasun-epeak hurrengo bertsioetan egongo dira eskuragarri, agronomo batek balidatuta.","Les recomanacions de productes fitosanitaris autoritzats (BD del MAPA) i els terminis de seguretat estaran disponibles en properes versions, validades per un agrònom.","As recomendacións de produtos fitosanitarios autorizados (BD do MAPA) e os prazos de seguridade estarán dispoñibles en próximas versións, validadas por un agrónomo."
+agro.avisos,Avisos,Abisuak,Avisos,Avisos
+agro.ayuda_anadir_planta_mapa_o_censo,Ve al mapa y usa el botón «Añadir aquí» o el modo censo.,Joan mapara eta erabili «Hemen gehitu» botoia edo errolda modua.,Vés al mapa i fes servir el botó «Afegir aquí» o el mode cens.,Vai ao mapa e usa o botón «Engadir aquí» ou o modo censo.
+agro.ayuda_numero_registro_fitosanitario,"BBDD del MAPA, p. ej.: ES-12345","MAPAren datu-basea, adib.: ES-12345","BD del MAPA, p. ex.: ES-12345","BD do MAPA, p. ex.: ES-12345"
+agro.ayuda_pac,Ayuda PAC,PAC laguntza,Ajut PAC,Axuda PAC
+agro.ayuda_producto_catalogo,Empieza a escribir para ver sugerencias del catálogo,Hasi idazten katalogoko iradokizunak ikusteko,Comença a escriure per veure suggeriments del catàleg,Comeza a escribir para ver suxestións do catálogo
+agro.ayudas_pac_y_subvenciones,Ayudas PAC y subvenciones,PAC laguntzak eta diru-laguntzak,Ajuts PAC i subvencions,Axudas PAC e subvencións
+agro.base_imponible,Base imponible,Zerga-oinarria,Base imposable,Base impoñible
+agro.base_imponible_sin_iva_soportado,Base imponible (sin IVA soportado),Zerga-oinarria (BEZ jasana gabe),Base imposable (sense IVA suportat),Base impoñible (sen IVE soportado)
+agro.bienvenido_a_larrea,Bienvenido a Larrea,Ongi etorri Larreara,Benvingut a Larrea,Benvido a Larrea
+agro.borrar_finca_plantas_quedan_sueltas,"Las plantas de la finca se conservarán como puntos sueltos. Su historia (cosechas, observaciones, etc.) no se perderá.","Finkako landareak puntu solte gisa gordeko dira. Haien historia (uztak, behaketak, etab.) ez da galduko.","Les plantes de la finca es conservaran com a punts solts. La seva història (collites, observacions, etc.) no es perdrà.","As plantas da finca conservaranse como puntos soltos. A súa historia (colleitas, observacións, etc.) non se perderá."
+agro.borrar_planta,Borrar planta,Landarea ezabatu,Esborrar la planta,Borrar planta
+agro.borrar_tercero,Borrar tercero,Hirugarrena ezabatu,Esborrar tercer,Borrar terceiro
+agro.buenas_noches,Buenas noches,Gabon,Bona nit,Boas noites
+agro.buenas_tardes,Buenas tardes,Arratsalde on,Bona tarda,Boas tardes
+agro.buenos_dias,Buenos días,Egun on,Bon dia,Bos días
+agro.buscar_cultivo,Buscar cultivo,Bilatu laborea,Cerca un conreu,Buscar cultivo
+agro.buscar_por_etiqueta_variedad_cultivo_finca,"Buscar por etiqueta, variedad, cultivo o finca","Bilatu etiketa, barietate, labore edo finkaren arabera","Cerca per etiqueta, varietat, conreu o finca","Buscar por etiqueta, variedade, cultivo ou finca"
+agro.buscar_por_nombre_o_nif,Buscar por nombre o NIF,Bilatu izenaren edo NIFaren arabera,Cercar per nom o NIF,Buscar por nome ou NIF
+agro.buscar_un_lugar,Buscar un lugar,Leku bat bilatu,Cercar un lloc,Buscar un lugar
+agro.calendario,Calendario,Egutegia,Calendari,Calendario
+agro.calendario_orientativo_iberia,Calendario orientativo para Iberia. Ajusta según tu zona y año concreto.,Iberiarako egutegi orientagarria. Egokitu zure eremuaren eta urtearen arabera.,Calendari orientatiu per a la península Ibèrica. Ajusta'l segons la teva zona i l'any concret.,Calendario orientativo para Iberia. Axústao segundo a túa zona e o ano concreto.
+agro.calidad,Calidad,Kalitatea,Qualitat,Calidade
+agro.calidad_abreviada_n_de_5,Cal. {n}/5,Kal. {n}/5,Qual. {n}/5,Cal. {n}/5
+agro.cambiar,Cambiar,Aldatu,Canvia,Cambiar
+agro.cambiar_csv,Cambiar CSV ({fichero}),CSVa aldatu ({fichero}),Canviar CSV ({fichero}),Cambiar CSV ({fichero})
+agro.campana,Campaña,Kanpaina,Campanya,Campaña
+agro.campo_numero_no_valido,"{campo} no válido: ""{texto}"". Escribe un número (p. ej. 12,50).","{campo} ez da baliozkoa: ""{texto}"". Idatzi zenbaki bat (adib. 12,50).","{campo} no vàlid: ""{texto}"". Escriu un número (p. ex. 12,50).","{campo} non válido: ""{texto}"". Escribe un número (p. ex. 12,50)."
+agro.cantidad,Cantidad,Kopurua,Quantitat,Cantidade
+agro.cantidad_unidad,Cantidad ({unidad}),Kopurua ({unidad}),Quantitat ({unidad}),Cantidade ({unidad})
+agro.capas,Capas,Geruzak,Capes,Capas
+agro.captura_posicion_nueva_dispositivo,Captura una posición nueva del dispositivo.,Gailuaren posizio berri bat hartzen du.,Captura una posició nova del dispositiu.,Captura unha posición nova do dispositivo.
+agro.cargando_prevision_meteo,Cargando previsión meteo…,Eguraldi-iragarpena kargatzen…,Carregant la previsió meteorològica…,Cargando a previsión meteorolóxica…
+agro.carnet_basico,Básico,Oinarrizkoa,Bàsic,Básico
+agro.carnet_cualificado,Cualificado,Kualifikatua,Qualificat,Cualificado
+agro.carnet_fumigador,Fumigador,Fumigatzailea,Fumigador,Fumigador
+agro.carnet_piloto_aplicador,Piloto aplicador,Pilotu aplikatzailea,Pilot aplicador,Piloto aplicador
+agro.catalogos,Catálogos,Katalogoak,Catàlegs,Catálogos
+agro.catalogos_provisionales_sin_validar,PROVISIONALES — sin validar todavía,BEHIN-BEHINEKOAK — oraindik balioztatu gabe,PROVISIONALS — encara sense validar,PROVISIONAIS — aínda sen validar
+agro.catalogos_resumen,"{cultivos} cultivos, {plagas} plagas y enfermedades, {productos} productos fitosanitarios de referencia y calendario fenológico de {calendario} cultivos.","{cultivos} labore, {plagas} izurrite eta gaixotasun, erreferentziako {productos} produktu fitosanitario eta {calendario} laboreren egutegi fenologikoa.","{cultivos} conreus, {plagas} plagues i malalties, {productos} productes fitosanitaris de referència i calendari fenològic de {calendario} conreus.","{cultivos} cultivos, {plagas} pragas e enfermidades, {productos} produtos fitosanitarios de referencia e calendario fenolóxico de {calendario} cultivos."
+agro.catalogos_semilla_aviso,Semilla curada a partir de fuentes públicas (MAPA y otras). Antes de pasar a producción comercial deben revisarla un agrónomo y un técnico; los números de registro de los productos son de ejemplo: comprueba siempre el del envase.,Iturri publikoetatik (MAPA eta beste batzuk) landutako hasierako datuak. Ekoizpen komertzialera pasatu aurretik agronomo batek eta teknikari batek berrikusi behar dituzte; produktuen erregistro-zenbakiak adibideak dira: egiaztatu beti ontzikoa.,Llavor curada a partir de fonts públiques (MAPA i altres). Abans de passar a producció comercial l'han de revisar un agrònom i un tècnic; els números de registre dels productes són d'exemple: comprova sempre el de l'envàs.,Semente curada a partir de fontes públicas (MAPA e outras). Antes de pasar a produción comercial deben revisala un agrónomo e un técnico; os números de rexistro dos produtos son de exemplo: comproba sempre o do envase.
+agro.categoria_cultivo_oleoso,Cultivo oleoso,Labore oliotsua,Conreu oleaginós,Cultivo oleaxinoso
+agro.categoria_forestal_dehesa,Forestal / dehesa,Basogintza / larre-basoa,Forestal / devesa,Forestal / devesa
+agro.categoria_frutal_hueso,Frutal de hueso,Hezur-fruitudun fruta-arbola,Fruiter de pinyol,Froiteira de óso
+agro.categoria_frutal_pepita,Frutal de pepita,Hazi-fruitudun fruta-arbola,Fruiter de llavor,Froiteira de pebida
+agro.categoria_fruto_seco,Fruto seco,Fruitu lehorra,Fruita seca,Froito seco
+agro.categoria_truficultura,Truficultura,Boilur-laborantza,Tofonicultura,Truficultura
+agro.categoria_vid,Vid,Mahatsondoa,Vinya,Vide
+agro.cerrar,Cerrar,Itxi,Tancar,Pechar
+agro.cerrar_incidencia_resuelta,Cerrar incidencia (resuelta),Gorabehera itxi (konponduta),Tancar la incidència (resolta),Pechar a incidencia (resolta)
+agro.certificacion,Certificación,Ziurtapena,Certificació,Certificación
+agro.clave_anthropic_descripcion,"Larrea puede usar Claude AI de Anthropic para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico, severidad y recomendaciones de manejo cultural.","Larreak Anthropic-en Claude AI erabil dezake gorabehera bati eransten diozun argazkia aztertzeko eta diagnostikoa, larritasuna eta maneiu kulturalerako gomendioak proposatzeko.","Larrea pot fer servir Claude AI d'Anthropic per analitzar la foto que adjuntes a una incidència i proposar un diagnòstic, una severitat i recomanacions de maneig cultural.","Larrea pode usar Claude AI de Anthropic para analizar a foto que achegas a unha incidencia e propor un diagnóstico, severidade e recomendacións de manexo cultural."
+agro.clave_anthropic_sub,Configurar la clave de Anthropic para identificar plagas y enfermedades por foto,Anthropic-en gakoa konfiguratu izurriteak eta gaixotasunak argazki bidez identifikatzeko,Configurar la clau d'Anthropic per identificar plagues i malalties per foto,Configurar a chave de Anthropic para identificar pragas e enfermidades por foto
+agro.cliente,Cliente,Bezeroa,Client,Cliente
+agro.cliente_minuscula,cliente,bezeroa,client,cliente
+agro.cliente_y_proveedor,Cliente y proveedor,Bezeroa eta hornitzailea,Client i proveïdor,Cliente e provedor
+agro.cliente_y_proveedor_minuscula,cliente y proveedor,bezeroa eta hornitzailea,client i proveïdor,cliente e provedor
+agro.clientes_y_proveedores,Clientes y proveedores,Bezeroak eta hornitzaileak,Clients i proveïdors,Clientes e provedores
+agro.clientes_y_proveedores_sub,Terceros con NIF · alimentan el modelo 347,NIFa duten hirugarrenak · 347 eredua elikatzen dute,Tercers amb NIF · alimenten el model 347,Terceiros con NIF · alimentan o modelo 347
+agro.codigo_ine_abreviado,Cód. INE,INE kodea,Codi INE,Cód. INE
+agro.combustible,Combustible,Erregaia,Combustible,Combustible
+agro.compartido_entre_parcelas_cultivo,Compartido entre todas las parcelas con ese cultivo,Labore hori duten partzela guztien artean banatua,Compartit entre totes les parcel·les amb aquest cultiu,Compartido entre todas as parcelas con ese cultivo
+agro.compensacion_reagp_cobrada,Compensación REAGP cobrada,Kobratutako REAGP konpentsazioa,Compensació REAGP cobrada,Compensación REAGP cobrada
+agro.compensacion_reagp_euros,Compensación REAGP (€),REAGP konpentsazioa (€),Compensació REAGP (€),Compensación REAGP (€)
+agro.compromiso_clave_anthropic,"Tu clave de Anthropic (si la configuras para la IA) se guarda solo en tu dispositivo. Las fotos se envían directamente a Anthropic, sin pasar por servidores intermedios.","Zure Anthropic gakoa (AArako konfiguratzen baduzu) zure gailuan bakarrik gordetzen da. Argazkiak zuzenean bidaltzen zaizkio Anthropic-i, tarteko zerbitzaririk gabe.","La teva clau d'Anthropic (si la configures per a la IA) només es desa al teu dispositiu. Les fotos s'envien directament a Anthropic, sense passar per servidors intermedis.","A túa chave de Anthropic (se a configuras para a IA) gárdase só no teu dispositivo. As fotos envíanse directamente a Anthropic, sen pasar por servidores intermedios."
+agro.compromiso_fiscal_provisional,La configuración fiscal y el libro económico son PROVISIONALES hasta que los revise un asesor fiscal.,Konfigurazio fiskala eta liburu ekonomikoa BEHIN-BEHINEKOAK dira aholkulari fiskal batek berrikusi arte.,La configuració fiscal i el llibre econòmic són PROVISIONALS fins que els revisi un assessor fiscal.,A configuración fiscal e o libro económico son PROVISIONAIS ata que os revise un asesor fiscal.
+agro.compromiso_fitosanitarios,"Larrea no recomienda productos fitosanitarios comerciales. Consulta siempre a tu técnico, cooperativa o asesor antes de aplicar.","Larreak ez du produktu fitosanitario komertzialik gomendatzen. Galdetu beti zure teknikariari, kooperatibari edo aholkulariari aplikatu aurretik.","Larrea no recomana productes fitosanitaris comercials. Consulta sempre el teu tècnic, cooperativa o assessor abans d'aplicar-los.","Larrea non recomenda produtos fitosanitarios comerciais. Consulta sempre o teu técnico, cooperativa ou asesor antes de aplicar."
+agro.compromiso_formato_cuaderno,El formato del cuaderno de explotación (RD 1311/2012) cambia periódicamente. Verifica el formato vigente del MAPA antes de presentar el documento en una inspección.,Ustiategi-koadernoaren formatua (RD 1311/2012) aldizka aldatzen da. Egiaztatu MAPAren formatu indarduna dokumentua ikuskapen batean aurkeztu aurretik.,El format del quadern d'explotació (RD 1311/2012) canvia periòdicament. Verifica el format vigent del MAPA abans de presentar el document en una inspecció.,O formato do caderno de explotación (RD 1311/2012) cambia periodicamente. Verifica o formato vixente do MAPA antes de presentar o documento nunha inspección.
+agro.compromisos_legales,Compromisos legales,Lege-konpromisoak,Compromisos legals,Compromisos legais
+agro.conceder,Conceder,Eman,Concedeix,Conceder
+agro.concedidas,Concedidas,Emanda,Concedides,Concedidas
+agro.concedido,Concedido,Emanda,Concedit,Concedido
+agro.concepto,Concepto,Kontzeptua,Concepte,Concepto
+agro.concepto_obligatorio,Concepto obligatorio,Kontzeptua derrigorrezkoa da,Concepte obligatori,Concepto obrigatorio
+agro.condiciones_favorables,Condiciones favorables,Baldintza egokiak,Condicions favorables,Condicións favorables
+agro.confianza,Confianza,Konfiantza,Confiança,Confianza
+agro.confianza_valor,confianza {valor},konfiantza: {valor},confiança {valor},confianza {valor}
+agro.configura_regimen_iva_calculo,Configura el régimen de IVA en Ajustes → Configuración fiscal para que la app calcule la compensación o el IVA repercutido.,"Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, aplikazioak konpentsazioa edo BEZ jasanarazia kalkula dezan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè l'aplicació calculi la compensació o l'IVA repercutit.,Configura o réxime de IVE en Axustes → Configuración fiscal para que a aplicación calcule a compensación ou o IVE repercutido.
+agro.configura_regimen_iva_en_ajustes,Configura el régimen de IVA en Ajustes,Konfiguratu BEZ erregimena Ezarpenetan,Configura el règim d'IVA a Configuració,Configura o réxime de IVE en Axustes
+agro.configura_regimen_iva_resumen,Configura el régimen de IVA en Ajustes → Configuración fiscal para que el resumen distinga REAGP de régimen general.,"Konfiguratu BEZ erregimena Ezarpenak → Konfigurazio fiskala atalean, laburpenak REAGP eta erregimen orokorra bereiz ditzan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè el resum distingeixi el REAGP del règim general.,Configura o réxime de IVE en Axustes → Configuración fiscal para que o resumo distinga o REAGP do réxime xeral.
+agro.configuracion_fiscal_sub,Régimen IRPF + IVA · provisional,IRPF + BEZ araubidea · behin-behinekoa,Règim IRPF + IVA · provisional,Réxime IRPF + IVE · provisional
+agro.configurar_correo_respaldo,Configurar correo de respaldo,Kopiarako helbidea konfiguratu,Configurar el correu per a la còpia,Configurar o correo para a copia
+agro.configurar_titular,Configurar titular,Titularra konfiguratu,Configurar titular,Configurar titular
+agro.confirmar_anular_factura,"¿Anular {numero}? No se elimina, queda registrada como anulada.",{numero} deuseztatu? Ez da ezabatzen; deuseztatutzat erregistratuta geratzen da.,Vols anul·lar la {numero}? No s'elimina: queda registrada com a anul·lada.,Anular a {numero}? Non se elimina: queda rexistrada como anulada.
+agro.confirmar_borrar_recorrido,¿Borrar este recorrido?,Ibilbide hau ezabatu?,Vols esborrar aquest recorregut?,Borrar este percorrido?
+agro.confirmar_borrar_tercero,"Se borrará «{nombre}». Los apuntes asociados conservarán el importe, pero pierden la referencia al NIF — afectará al extracto del modelo 347 si es de un año aún declarado.","«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute; 347 ereduaren laburpenari eragingo dio, oraindik aitortzeko dagoen urte batekoa bada.","S'esborrarà «{nombre}». Els assentaments associats conservaran l'import, però perdran la referència al NIF: afectarà l'extracte del model 347 si és d'un any encara per declarar.","Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perderán a referencia ao NIF: afectará ao extracto do modelo 347 se é dun ano aínda por declarar."
+agro.copia_aviso_sustitucion,Se sustituirán la base de datos y las fotos actuales por las de la copia. Antes se guarda automáticamente una copia del estado actual en el dispositivo.,"Uneko datu-basea eta argazkiak kopiakoekin ordeztuko dira. Aurretik, uneko egoeraren kopia bat gordetzen da automatikoki gailuan.",Se substituiran la base de dades i les fotos actuals per les de la còpia. Abans es desa automàticament una còpia de l'estat actual al dispositiu.,Substituiranse a base de datos e as fotos actuais polas da copia. Antes gárdase automaticamente unha copia do estado actual no dispositivo.
+agro.copia_con_n_fotos,"{descripcion}, con {n} fotos.","{descripcion}, {n} argazkirekin.","{descripcion}, amb {n} fotos.","{descripcion}, con {n} fotos."
+agro.copia_datos_intactos,Tus datos no se han tocado.,Zure datuak ez dira ukitu.,Les teves dades no s'han tocat.,Os teus datos non se tocaron.
+agro.copia_de_seguridad_sub,"Empaquetar la base de datos y las fotos en un ZIP, o restaurar desde un ZIP","Datu-basea eta argazkiak ZIP batean bildu, edo ZIP batetik leheneratu","Empaquetar la base de dades i les fotos en un ZIP, o restaurar des d'un ZIP","Empaquetar a base de datos e as fotos nun ZIP, ou restaurar desde un ZIP"
+agro.copia_del_fecha,Copia de seguridad del {fecha},{fecha} eguneko segurtasun-kopia,Còpia de seguretat del {fecha},Copia de seguridade do {fecha}
+agro.copia_error_bd_danada,La base de datos de la copia de seguridad está dañada.,Segurtasun-kopiako datu-basea hondatuta dago.,La base de dades de la còpia de seguretat està malmesa.,A base de datos da copia de seguridade está danada.
+agro.copia_error_fichero_no_existe,El fichero elegido no existe.,Aukeratutako fitxategia ez dago.,El fitxer triat no existeix.,O ficheiro escollido non existe.
+agro.copia_error_incompleta,La copia de seguridad está incompleta o dañada.,Segurtasun-kopia osatu gabe edo hondatuta dago.,La còpia de seguretat està incompleta o malmesa.,A copia de seguridade está incompleta ou danada.
+agro.copia_error_no_es_zip,El fichero no es un ZIP legible o está dañado.,"Fitxategia ez da irakur daitekeen ZIP bat, edo hondatuta dago.",El fitxer no és un ZIP llegible o està malmès.,O ficheiro non é un ZIP lexible ou está danado.
+agro.copia_error_otra_app,"La copia de seguridad es de otra aplicación, no de Larrea.","Segurtasun-kopia beste aplikazio batekoa da, ez Larrearena.","La còpia de seguretat és d'una altra aplicació, no de Larrea.","A copia de seguridade é doutra aplicación, non de Larrea."
+agro.copia_error_respaldo_previo,No se pudo guardar antes una copia del estado actual (¿falta espacio?).,Ezin izan da aurretik uneko egoeraren kopia bat gorde (lekurik ez?).,No s'ha pogut desar abans una còpia de l'estat actual (falta espai?).,Non se puido gardar antes unha copia do estado actual (falta espazo?).
+agro.copia_error_reversion_fallida,La restauración falló y no se pudo volver atrás del todo.,"Leheneratzeak huts egin du, eta ezin izan da guztiz atzera egin.",La restauració ha fallat i no s'ha pogut tornar del tot enrere.,A restauración fallou e non se puido volver atrás de todo.
+agro.copia_error_revertida,La restauración falló a mitad y se ha vuelto al estado anterior.,"Leheneratzeak huts egin du erdian, eta aurreko egoerara itzuli da.",La restauració ha fallat a mig camí i s'ha tornat a l'estat anterior.,A restauración fallou a medias e volveuse ao estado anterior.
+agro.copia_error_rutas_no_permitidas,El ZIP contiene rutas no permitidas.,ZIPak baimendu gabeko bideak ditu.,El ZIP conté rutes no permeses.,O ZIP contén rutas non permitidas.
+agro.copia_error_sin_base_datos,El ZIP no contiene la base de datos de Larrea (agro.db).,ZIPak ez du Larrearen datu-basea (agro.db).,El ZIP no conté la base de dades de Larrea (agro.db).,O ZIP non contén a base de datos de Larrea (agro.db).
+agro.copia_error_sin_datos,Todavía no hay datos que copiar.,Oraindik ez dago kopiatzeko daturik.,Encara no hi ha dades per copiar.,Aínda non hai datos que copiar.
+agro.copia_error_version_mas_nueva,La copia de seguridad es de una versión más nueva de Larrea. Actualiza la app y vuelve a intentarlo.,Segurtasun-kopia Larrearen bertsio berriago batekoa da. Eguneratu aplikazioa eta saiatu berriro.,La còpia de seguretat és d'una versió més nova de Larrea. Actualitza l'aplicació i torna-ho a provar.,A copia de seguridade é dunha versión máis nova de Larrea. Actualiza a aplicación e téntao de novo.
+agro.copia_estado_anterior_en,Tu estado anterior está en {ruta}.,Zure aurreko egoera hemen dago: {ruta}.,El teu estat anterior és a {ruta}.,O teu estado anterior está en {ruta}.
+agro.copia_no_borres_app,No borres la app y escríbenos. Detalle: {detalle},Ez ezabatu aplikazioa eta idatzi iezaguzu. Xehetasuna: {detalle},No esborris l'aplicació i escriu-nos. Detall: {detalle},Non borres a aplicación e escríbenos. Detalle: {detalle}
+agro.copia_no_se_pudo_crear,No se pudo crear la copia de seguridad.,Ezin izan da segurtasun-kopia sortu.,No s'ha pogut crear la còpia de seguretat.,Non se puido crear a copia de seguridade.
+agro.copia_no_se_pudo_crear_error,No se pudo crear la copia de seguridad: {error},Ezin izan da segurtasun-kopia sortu: {error},No s'ha pogut crear la còpia de seguretat: {error},Non se puido crear a copia de seguridade: {error}
+agro.copia_no_se_pudo_leer,No se pudo leer la copia de seguridad: {error}. No se ha tocado nada.,Ezin izan da segurtasun-kopia irakurri: {error}. Ez da ezer ukitu.,No s'ha pogut llegir la còpia de seguretat: {error}. No s'ha tocat res.,Non se puido ler a copia de seguridade: {error}. Non se tocou nada.
+agro.copia_para,Copia para: {email},Kopia honi: {email},Còpia per a: {email},Copia para: {email}
+agro.copia_restaurada,Copia de seguridad restaurada. El estado anterior queda guardado como copia automática en el dispositivo.,Segurtasun-kopia leheneratu da. Aurreko egoera kopia automatiko gisa gordeta geratzen da gailuan.,Còpia de seguretat restaurada. L'estat anterior queda desat com a còpia automàtica al dispositiu.,Copia de seguridade restaurada. O estado anterior queda gardado como copia automática no dispositivo.
+agro.copia_sin_fecha,Copia de seguridad sin fecha (hecha con una versión anterior de Larrea; fecha del fichero: {fecha}),Datarik gabeko segurtasun-kopia (Larrearen aurreko bertsio batekin egina; fitxategiaren data: {fecha}),Còpia de seguretat sense data (feta amb una versió anterior de Larrea; data del fitxer: {fecha}),Copia de seguridade sen data (feita cunha versión anterior de Larrea; data do ficheiro: {fecha})
+agro.correo_ejemplo,tucorreo@ejemplo.com,zurehelbidea@adibidea.eus,elteucorreu@exemple.cat,oteucorreo@exemplo.gal
+agro.cosecha,Cosecha,Uzta,Collita,Colleita
+agro.cosecha_30_dias,Cosecha 30 días,Uzta 30 egun,Collita 30 dies,Colleita 30 días
+agro.cosecha_por_campana,Cosecha por campaña,Uzta kanpainaka,Collita per campanya,Colleita por campaña
+agro.cosecha_rapida,Cosecha rápida,Uzta azkarra,Collita ràpida,Colleita rápida
+agro.crear,Crear,Sortu,Crear,Crear
+agro.crear_copia,Crear copia,Kopia sortu,Crear còpia,Crear copia
+agro.crear_copia_explicacion,"Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí.","Datu-basea eta argazki guztiak ZIP batean biltzen ditu; WhatsApp, Drive edo posta bidez parteka dezakezu, edo ordenagailura kopiatu. Aplikazioa berriro instalatzen baduzu edo mugikorra aldatzen baduzu, hemendik leheneratu ahal izango duzu.","Empaqueta la base de dades i totes les fotos en un ZIP que pots compartir per WhatsApp, Drive o correu, o copiar a l'ordinador. Si reinstal·les l'aplicació o canvies de mòbil, podràs restaurar-la des d'aquí.","Empaqueta a base de datos e todas as fotos nun ZIP que podes compartir por WhatsApp, Drive ou correo, ou copiar ao PC. Se reinstalas a aplicación ou cambias de móbil, poderás restaurala desde aquí."
+agro.criterio_trimestres,"Los trimestres usan el mismo criterio que el resumen anual: ayudas aparte, modelo 303 según régimen y modelo 347 por NIF.","Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: laguntzak bereiz, 303 eredua erregimenaren arabera eta 347 eredua NIFaren arabera.","Els trimestres fan servir el mateix criteri que el resum anual: ajuts a part, model 303 segons el règim i model 347 per NIF.","Os trimestres usan o mesmo criterio que o resumo anual: axudas á parte, modelo 303 segundo o réxime e modelo 347 por NIF."
+agro.csv_cultivo_id_vacio,cultivo_id vacío,cultivo_id hutsik,cultivo_id buit,cultivo_id baleiro
+agro.csv_faltan_columnas,"Faltan columnas obligatorias: cultivo_id, latitud, longitud.","Derrigorrezko zutabeak falta dira: cultivo_id, latitud, longitud.","Falten columnes obligatòries: cultivo_id, latitud, longitud.","Faltan columnas obrigatorias: cultivo_id, latitud, longitud."
+agro.csv_lat_lon_fuera_rango,latitud/longitud fuera de rango,latitud/longitud tartetik kanpo,latitud/longitud fora de rang,latitud/longitud fóra de rango
+agro.csv_lat_lon_no_numeros,latitud/longitud no son números válidos,latitud/longitud ez dira baliozko zenbakiak,latitud/longitud no són números vàlids,latitud/longitud non son números válidos
+agro.cuaderno_conforme_rd,Cuaderno conforme RD 1311/2012,1311/2012 ED-ren araberako koadernoa,Quadern conforme al RD 1311/2012,Caderno conforme ao RD 1311/2012
+agro.cuaderno_de_explotacion,Cuaderno de explotación,Ustiategiko koadernoa,Quadern d'explotació,Caderno de explotación
+agro.cuaderno_e_informes,Cuaderno e informes,Koadernoa eta txostenak,Quadern i informes,Caderno e informes
+agro.cuaderno_explicacion,"Genera el PDF del cuaderno de explotación con tus datos de titular, parcelas SIGPAC y tratamientos del año seleccionado. Listo para presentar a inspección.","Ustiategiko koadernoaren PDFa sortzen du titularraren datuekin, SIGPAC partzelekin eta hautatutako urteko tratamenduekin. Ikuskapenean aurkezteko prest.","Genera el PDF del quadern d'explotació amb les teves dades de titular, parcel·les SIGPAC i tractaments de l'any seleccionat. A punt per presentar-lo a inspecció.","Xera o PDF do caderno de explotación cos teus datos de titular, parcelas SIGPAC e tratamentos do ano seleccionado. Listo para presentar á inspección."
+agro.cuaderno_explotacion_mapa,Cuaderno de explotación digital (MAPA),Ustiategiaren koaderno digitala (MAPA),Quadern d'explotació digital (MAPA),Caderno de explotación dixital (MAPA)
+agro.cuaderno_explotacion_mapa_corto,Cuaderno de explotación MAPA,MAPAren ustiategi-koadernoa,Quadern d'explotació MAPA,Caderno de explotación MAPA
+agro.cuaderno_explotacion_mapa_sub,Genera PDF conforme RD 1311/2012 por finca y campaña,"PDFa sortzen du RD 1311/2012 arauaren arabera, finkaka eta kanpainaka",Genera un PDF conforme al RD 1311/2012 per finca i campanya,Xera un PDF conforme ao RD 1311/2012 por finca e campaña
+agro.cultivo,Cultivo,Laborea,Conreu,Cultivo
+agro.cultivo_general,Cultivo general,Labore orokorra,Cultiu general,Cultivo xeral
+agro.cultivo_obligatorio,Cultivo *,Laborea *,Conreu *,Cultivo *
+agro.cultivos,Cultivos,Laboreak,Conreus,Cultivos
+agro.cultivos_afectados,Cultivos afectados,Kaltetutako laboreak,Conreus afectats,Cultivos afectados
+agro.dano_abiotico,Daño abiótico,Kalte abiotikoa,Dany abiòtic,Dano abiótico
+agro.datos_del_titular,Datos del titular,Titularraren datuak,Dades del titular,Datos do titular
+agro.datos_del_titular_sub,"NIF, REGEPA, asesor, aplicador (para cuaderno MAPA)","NIF, REGEPA, aholkularia, aplikatzailea (MAPA koadernorako)","NIF, REGEPA, assessor, aplicador (per al quadern MAPA)","NIF, REGEPA, asesor, aplicador (para o caderno MAPA)"
+agro.datos_obligatorios_tratamiento_cuaderno,Estos datos son obligatorios para que el tratamiento aparezca en el cuaderno.,Datu hauek derrigorrezkoak dira tratamendua koadernoan ager dadin.,Aquestes dades són obligatòries perquè el tractament aparegui al quadern.,Estes datos son obrigatorios para que o tratamento apareza no caderno.
+agro.datos_sigpac_guardados,Datos SIGPAC guardados.,SIGPAC datuak gordeta.,Dades SIGPAC desades.,Datos SIGPAC gardados.
+agro.datos_sigpac_y_superficie,Datos SIGPAC y superficie,SIGPAC datuak eta azalera,Dades SIGPAC i superfície,Datos SIGPAC e superficie
+agro.datos_titular_guardados,Datos del titular guardados.,Titularraren datuak gorde dira.,S'han desat les dades del titular.,Gardáronse os datos do titular.
+agro.descartar,Descartar,Baztertu,Descartar,Descartar
+agro.descripcion,Descripción,Deskribapena,Descripció,Descrición
+agro.detalle_ayudas_pac,PAC y autonómicas: fiscalmente no son ingreso ordinario; van aparte en el extracto,PAC eta autonomikoak: fiskalki ez dira diru-sarrera arrunta; laburpenean bereiz doaz,PAC i autonòmiques: fiscalment no són ingrés ordinari; van a part en l'extracte,PAC e autonómicas: fiscalmente non son ingreso ordinario; van á parte no extracto
+agro.detalle_compensacion_reagp,12 % sobre la base: el comprador la paga al agricultor,% 12 oinarriaren gainean: erosleak ordaintzen dio nekazariari,12 % sobre la base: el comprador la paga a l'agricultor,12 % sobre a base: o comprador págalla ao agricultor
+agro.detalle_diferencia_iva,Repercutido − soportado,Jasanarazia − jasana,Repercutit − suportat,Repercutido − soportado
+agro.detalle_diferencia_ordinaria,Ingresos ordinarios − gastos. PAC y subvenciones no incluidas.,Diru-sarrera arruntak − gastuak. PAC eta diru-laguntzak ez daude barne.,Ingressos ordinaris − despeses. PAC i subvencions no incloses.,Ingresos ordinarios − gastos. PAC e subvencións non incluídas.
+agro.detalle_ingresos_ordinarios,"Venta de cosecha, leña/madera, alquiler de terreno (base imponible)","Uzta-salmenta, egurra, lur-alokairua (zerga-oinarria)","Venda de collita, llenya/fusta, lloguer de terreny (base imposable)","Venda de colleita, leña/madeira, aluguer de terreo (base impoñible)"
+agro.detalle_iva_repercutido,A ingresar en Hacienda (modelo 303 trimestral),Ogasunari ordaindu beharrekoa (hiruhileko 303 eredua),A ingressar a Hisenda (model 303 trimestral),A ingresar en Facenda (modelo 303 trimestral)
+agro.detalle_iva_soportado_deducible,Recuperable contra el repercutido,Jasanarazitakoaren kontra berreskura daiteke,Recuperable contra el repercutit,Recuperable contra o repercutido
+agro.detalle_iva_soportado_reagp,En REAGP no es recuperable: computa como mayor coste.,REAGPn ez da berreskuragarria: kostu handiago gisa zenbatzen da.,En el REAGP no és recuperable: computa com a cost més alt.,No REAGP non é recuperable: computa como maior custo.
+agro.detener_recorrido,Detener recorrido,Ibilbidea gelditu,Aturar el recorregut,Deter o percorrido
+agro.diagnostico_coincide_catalogo,El diagnóstico coincide con el catálogo de Larrea,Diagnostikoa Larrearen katalogoarekin bat dator,El diagnòstic coincideix amb el catàleg de Larrea,O diagnóstico coincide co catálogo de Larrea
+agro.diagnostico_coincide_catalogo_con_nombre,El diagnóstico coincide con el catálogo de Larrea: {nombre},Diagnostikoa Larrearen katalogoarekin bat dator: {nombre},El diagnòstic coincideix amb el catàleg de Larrea: {nombre},O diagnóstico coincide co catálogo de Larrea: {nombre}
+agro.diagnostico_ejemplo,"Diagnóstico (p. ej., mosca del olivo)","Diagnostikoa (adib., olibondoaren eulia)","Diagnòstic (p. ex., mosca de l'olivera)","Diagnóstico (p. ex., mosca da oliveira)"
+agro.diagnostico_libre_no_coincide_catalogo,Diagnóstico libre — no coincide con el catálogo curado de Larrea. Revisa con criterio antes de aceptar.,Diagnostiko librea — ez dator bat Larrearen katalogo berrikusiarekin. Berrikusi arretaz onartu aurretik.,Diagnòstic lliure — no coincideix amb el catàleg revisat de Larrea. Revisa'l amb criteri abans d'acceptar-lo.,Diagnóstico libre — non coincide co catálogo revisado de Larrea. Revísao con criterio antes de aceptalo.
+agro.diagnostico_rellenado_revisa,Diagnóstico rellenado. Revísalo y guarda.,Diagnostikoa beteta. Berrikusi eta gorde.,Diagnòstic emplenat. Revisa'l i desa.,Diagnóstico cuberto. Revísao e garda.
+agro.diagnostico_sugerido_por_claude,Diagnóstico sugerido por Claude AI,Claude AIk iradokitako diagnostikoa,Diagnòstic suggerit per Claude AI,Diagnóstico suxerido por Claude AI
+agro.diferencia_iva,Diferencia IVA,BEZ aldea,Diferència d'IVA,Diferenza de IVE
+agro.diferencia_ordinaria,Diferencia ordinaria,Alde arrunta,Diferència ordinària,Diferenza ordinaria
+agro.direccion,Dirección,Helbidea,Adreça,Enderezo
+agro.direccion_opcional,Dirección (opcional),Helbidea (aukerakoa),Adreça (opcional),Enderezo (opcional)
+agro.dosis,Dosis,Dosia,Dosi,Dose
+agro.ecologico,Ecológico,Ekologikoa,Ecològic,Ecolóxico
+agro.economia,Economía,Ekonomia,Economia,Economía
+agro.editar_cosecha,Editar cosecha,Editatu uzta,Edita la collita,Editar colleita
+agro.editar_gasto,Editar gasto,Editatu gastua,Edita la despesa,Editar gasto
+agro.editar_incidencia,Editar incidencia,Editatu gorabehera,Edita la incidència,Editar incidencia
+agro.editar_ingreso,Editar ingreso,Editatu diru-sarrera,Edita l'ingrés,Editar ingreso
+agro.editar_observacion,Editar observación,Editatu behaketa,Edita l'observació,Editar observación
+agro.editar_planta,Editar planta,Landarea editatu,Editar la planta,Editar planta
+agro.editar_tercero,Editar cliente o proveedor,Bezeroa edo hornitzailea editatu,Editar client o proveïdor,Editar cliente ou provedor
+agro.editar_tratamiento,Editar tratamiento,Editatu tratamendua,Edita el tractament,Editar tratamento
+agro.ejemplo_buscar_cultivo,"Ej.: olivo, almendro, trufa…","Adib.: olibondoa, almendrondoa, boilurra…","P. ex.: olivera, ametller, tòfona…","Ex.: oliveira, amendoeira, trufa…"
+agro.ejemplo_concepto_gasto,Ej.: Sulfato de cobre 5 kg / Gasóleo cosechadora,Adib.: Kobre sulfatoa 5 kg / Uzta-makinaren gasolioa,P. ex.: Sulfat de coure 5 kg / Gasoil de la recol·lectora,Ex.: Sulfato de cobre 5 kg / Gasóleo da colleitadora
+agro.ejemplo_concepto_ingreso,Ej.: 2500 kg de aceituna picual,Adib.: 2500 kg picual oliba,P. ex.: 2500 kg d'oliva picual,Ex.: 2500 kg de oliva picual
+agro.ejemplo_superficie,"Ej.: 4,7","Adib.: 4,7","Ex.: 4,7","Ex.: 4,7"
+agro.ejemplo_superficie_ha,"Ej.: 1,5","Adib.: 1,5","P. ex.: 1,5","Ex.: 1,5"
+agro.ejemplos_aplicador,"Peón, empresa de servicios, etc.","Langilea, zerbitzu-enpresa, etab.","Peó, empresa de serveis, etc.","Peón, empresa de servizos, etc."
+agro.ejemplos_asesor,"ATRIA, asesor de cooperativa, etc.","ATRIA, kooperatibako aholkularia, etab.","ATRIA, assessor de cooperativa, etc.","ATRIA, asesor de cooperativa, etc."
+agro.ejercicio_fiscal,Ejercicio fiscal,Zerga-ekitaldia,Exercici fiscal,Exercicio fiscal
+agro.elige_como_fijar_punto_inicial,Elige cómo fijar el punto inicial.,Aukeratu hasierako puntua nola finkatu.,Tria com fixar el punt inicial.,Escolle como fixar o punto inicial.
+agro.elige_cultivo_imputacion_general,Elige un cultivo para imputación general por cultivo,Aukeratu labore bat laborearen araberako egozpen orokorrerako,Tria un cultiu per a la imputació general per cultiu,Escolle un cultivo para a imputación xeral por cultivo
+agro.elige_parcela_imputacion_concreta,Elige una parcela para imputación concreta,Aukeratu partzela bat egozpen zehatzerako,Tria una parcel·la per a la imputació concreta,Escolle unha parcela para a imputación concreta
+agro.email,Email,Posta elektronikoa,Correu electrònic,Correo electrónico
+agro.email_respaldo_explicacion,"Al crear una factura, podrás enviar una copia a esta dirección como respaldo.","Faktura bat sortzean, kopia bat bidali ahal izango duzu helbide honetara, babes gisa.","Quan creïs una factura, podràs enviar-ne una còpia a aquesta adreça com a reserva.","Ao crear unha factura, poderás enviar unha copia a este enderezo como respaldo."
+agro.empaquetando,Empaquetando…,Biltzen…,S'està empaquetant…,Empaquetando…
+agro.empezar_a_usar_larrea,Empezar a usar Larrea,Hasi Larrea erabiltzen,Comença a fer servir Larrea,Comezar a usar Larrea
+agro.en_finca,en {finca},Finka: {finca},a {finca},en {finca}
+agro.en_todas_las_fincas,en todas las fincas,finka guztietan,a totes les finques,en todas as fincas
+agro.enfermedad,Enfermedad,Gaixotasuna,Malaltia,Enfermidade
+agro.enlaces,Enlaces,Estekak,Enllaços,Ligazóns
+agro.error_abrir_recorrido,Error al abrir el recorrido: {error},Errorea ibilbidea irekitzean: {error},Error en obrir el recorregut: {error},Erro ao abrir o percorrido: {error}
+agro.error_al_generar_el_pdf,Error al generar el PDF,Errorea PDFa sortzean,Error en generar el PDF,Erro ao xerar o PDF
+agro.error_al_generar_pdf,Error al generar el PDF: {error},Errorea PDFa sortzean: {error},Error en generar el PDF: {error},Erro ao xerar o PDF: {error}
+agro.error_al_guardar_el_gasto,Error al guardar el gasto,Errorea gastua gordetzean,Error en desar la despesa,Erro ao gardar o gasto
+agro.error_al_guardar_el_ingreso,Error al guardar el ingreso,Errorea diru-sarrera gordetzean,Error en desar l'ingrés,Erro ao gardar o ingreso
+agro.error_al_restaurar,Error al restaurar: {error},Errorea leheneratzean: {error},Error en restaurar: {error},Erro ao restaurar: {error}
+agro.error_cargar_recorridos,Error al cargar los recorridos: {error},Errorea ibilbideak kargatzean: {error},Error en carregar els recorreguts: {error},Erro ao cargar os percorridos: {error}
+agro.error_inesperado,Error inesperado: {error},Ustekabeko errorea: {error},Error inesperat: {error},Erro inesperado: {error}
+agro.esri_satelite,Esri satélite,Esri satelitea,Esri satèl·lit,Esri satélite
+agro.estadisticas,Estadísticas,Estatistikak,Estadístiques,Estatísticas
+agro.estadisticas_sub,"Plantas por cultivo, cosecha por campaña","Landareak laboreka, uzta kanpainaka","Plantes per conreu, collita per campanya","Plantas por cultivo, colleita por campaña"
+agro.estimacion_directa_normal,Estimación directa normal,Zuzeneko zenbatespen arrunta,Estimació directa normal,Estimación directa normal
+agro.estimacion_directa_simplificada,Estimación directa simplificada,Zuzeneko zenbatespen erraztua,Estimació directa simplificada,Estimación directa simplificada
+agro.estres_hidrico_termico,"Estrés (hídrico, térmico…)","Estresa (hidrikoa, termikoa…)","Estrès (hídric, tèrmic…)","Estrés (hídrico, térmico…)"
+agro.etiqueta_corta_ejemplo,"Etiqueta corta (p. ej., A-17, fila 3)","Etiketa laburra (adib., A-17, 3. ilara)","Etiqueta curta (p. ex., A-17, fila 3)","Etiqueta curta (p. ex., A-17, fila 3)"
+agro.exigencias_agronomicas,Exigencias agronómicas,Eskakizun agronomikoak,Exigències agronòmiques,Esixencias agronómicas
+agro.explicacion_arboles_hospederos,Estos árboles son los hospederos habituales de la micorrización trufera. Toca para abrir su ficha.,Zuhaitz hauek dira boilur-mikorrizazioaren ohiko ostalariak. Ukitu fitxa irekitzeko.,Aquests arbres són els hostes habituals de la micorrització tofonera. Toca per obrir-ne la fitxa.,Estas árbores son as hospedeiras habituais da micorrización trufeira. Toca para abrir a súa ficha.
+agro.explicacion_iva_general,"En régimen general repercutes el 4 % de IVA en la venta de cosecha de productos agrícolas (alimento de primera necesidad, art. 91.1.1.1.º LIVA). Excepciones: vino con DOP/IGP 21 %, trufa 10 %, madera 21 % — sobrescribe el IVA en cada apunte cuando difiera.","Araubide orokorrean, nekazaritza-produktuen uztaren salmentan % 4ko BEZa jasanarazten duzu (lehen beharrizaneko elikagaia, BEZaren Legearen 91.1.1.1. art.). Salbuespenak: DOP/IGP duen ardoa % 21, trufa % 10, egurra % 21; idazpen bakoitzean BEZa aldatu, desberdina denean.","En el règim general repercuteixes el 4% d'IVA en la venda de la collita de productes agrícoles (aliment de primera necessitat, art. 91.1.1.1r LIVA). Excepcions: vi amb DOP/IGP 21%, tòfona 10%, fusta 21%: sobreescriu l'IVA en cada assentament quan sigui diferent.","No réxime xeral repercutes o 4% de IVE na venda da colleita de produtos agrícolas (alimento de primeira necesidade, art. 91.1.1.1.º da Lei do IVE). Excepcións: viño con DOP/IGP 21%, trufa 10%, madeira 21%: sobrescribe o IVE en cada apuntamento cando difira."
+agro.explicacion_iva_reagp,En REAGP no repercutes IVA en la venta de cosecha. El comprador te paga la compensación del 12 % sobre la base. El IVA soportado en compras no es recuperable: se imputa como mayor coste.,REAGPn ez duzu BEZik jasanarazten uztaren salmentan. Erosleak oinarriaren gaineko % 12ko konpentsazioa ordaintzen dizu. Erosketetan jasandako BEZa ezin da berreskuratu: kostu handiago gisa egozten da.,En el REAGP no repercuteixes IVA en la venda de la collita. El comprador et paga la compensació del 12% sobre la base. L'IVA suportat en les compres no és recuperable: s'imputa com a més cost.,No REAGP non repercutes IVE na venda da colleita. O comprador págache a compensación do 12% sobre a base. O IVE soportado nas compras non é recuperable: impútase como maior custo.
+agro.explicacion_resumen_trimestral,"Totales por trimestre para revisar caja, IVA y diferencia antes del cierre fiscal. El extracto anual sigue disponible en el PDF.","Hiruhilekoen guztizkoak, kutxa, BEZa eta aldea ekitaldi-itxiera baino lehen berrikusteko. Urteko laburpena PDFan dago eskuragarri.","Totals per trimestre per revisar caixa, IVA i diferència abans del tancament fiscal. L'extracte anual continua disponible en el PDF.","Totais por trimestre para revisar caixa, IVE e diferenza antes do peche fiscal. O extracto anual segue dispoñible no PDF."
+agro.explicacion_trufas_hospedables,Este árbol puede actuar como hospedero de las siguientes trufas si se planta micorrizado y el suelo es adecuado.,"Zuhaitz hau honako boilur hauen ostalari izan daiteke, mikorrizatuta landatzen bada eta lurzorua egokia bada.",Aquest arbre pot fer d'hoste de les tòfones següents si es planta micorritzat i el sòl és adequat.,Esta árbore pode actuar como hospedeira das seguintes trufas se se planta micorrizada e o solo é axeitado.
+agro.exportar_csv,Exportar CSV,CSVa esportatu,Exportar CSV,Exportar CSV
+agro.exportar_csv_explicacion,"Genera un CSV con todas las plantas (incluidos puntos sueltos). Útil para hacer una copia de seguridad, editar en hoja de cálculo y reimportar, o pasar datos a otro dispositivo.","Landare guztiekin CSV bat sortzen du (puntu solteak barne). Erabilgarria da segurtasun-kopia egiteko, kalkulu-orri batean editatu eta berriro inportatzeko, edo datuak beste gailu batera eramateko.","Genera un CSV amb totes les plantes (inclosos els punts solts). Útil per fer una còpia de seguretat, editar-lo en un full de càlcul i tornar-lo a importar, o passar dades a un altre dispositiu.","Xera un CSV con todas as plantas (incluídos os puntos soltos). Útil para facer unha copia de seguridade, editar nunha folla de cálculo e reimportar, ou pasar datos a outro dispositivo."
+agro.exportar_y_compartir,Exportar y compartir,Esportatu eta partekatu,Exportar i compartir,Exportar e compartir
+agro.extracto_anual,Extracto anual,Urteko laburpena,Extracte anual,Extracto anual
+agro.extracto_desde_icono_pdf,El extracto anual con detalle por mes y modelo 347 está disponible desde el icono PDF de la cabecera.,Hilabeteko xehetasuna eta 347 eredua dituen urteko laburpena goiburuko PDF ikonotik dago eskuragarri.,L'extracte anual amb detall per mes i model 347 està disponible des de la icona PDF de la capçalera.,O extracto anual con detalle por mes e modelo 347 está dispoñible desde a icona PDF da cabeceira.
+agro.extracto_economico_agricola,Extracto económico agrícola,Nekazaritzako laburpen ekonomikoa,Extracte econòmic agrícola,Extracto económico agrícola
+agro.extracto_economico_anual,Extracto económico anual,Urteko laburpen ekonomikoa,Extracte econòmic anual,Extracto económico anual
+agro.extracto_incluye,El extracto incluye:,Laburpenak hau dakar:,L'extracte inclou:,O extracto inclúe:
+agro.extracto_incluye_detalle,Detalle cronológico de ingresos y de gastos.,Diru-sarreren eta gastuen xehetasun kronologikoa.,Detall cronològic d'ingressos i de despeses.,Detalle cronolóxico de ingresos e de gastos.
+agro.extracto_incluye_gastos_mes,"Tabla mensual de gastos (base, IVA soportado, total).","Gastuen hileko taula (oinarria, BEZ jasana, guztira).","Taula mensual de despeses (base, IVA suportat, total).","Táboa mensual de gastos (base, IVE soportado, total)."
+agro.extracto_incluye_ingresos_mes,"Tabla mensual de ingresos (cosecha, ayudas PAC, IVA, compensación REAGP).","Diru-sarreren hileko taula (uzta, PAC laguntzak, BEZa, REAGP konpentsazioa).","Taula mensual d'ingressos (collita, ajuts PAC, IVA, compensació REAGP).","Táboa mensual de ingresos (colleita, axudas PAC, IVE, compensación REAGP)."
+agro.extracto_incluye_modelo_347,"Modelo 347: terceros con suma >3.005,06 € en el ejercicio.","347 eredua: ekitaldian 3.005,06 € baino gehiago dituzten hirugarrenak.","Model 347: tercers amb una suma >3.005,06 € en l'exercici.","Modelo 347: terceiros cunha suma >3.005,06 € no exercicio."
+agro.extracto_incluye_resumen,Resumen con los totales del ejercicio.,Ekitaldiko guztizkoen laburpena.,Resum amb els totals de l'exercici.,Resumo cos totais do exercicio.
+agro.extracto_incluye_sin_nif,Apuntes sin NIF que no entran en el modelo 347.,347 ereduan sartzen ez diren NIF gabeko idatzoharrak.,Assentaments sense NIF que no entren al model 347.,Apuntamentos sen NIF que non entran no modelo 347.
+agro.extracto_nota_cultivo_general,Los gastos imputados a «cultivo general» se listan tal cual con el importe íntegro: el reparto proporcional por hectárea entre parcelas con ese cultivo está pendiente de que un asesor fiscal valide el método.,«Labore orokorra»ri egotzitako gastuak zenbateko osoarekin zerrendatzen dira: labore hori duten partzelen arteko hektareako banaketa proportzionala aholkulari fiskal batek metodoa baliozkotu arte dago zain.,Les despeses imputades a «cultiu general» es llisten tal qual amb l'import íntegre: el repartiment proporcional per hectàrea entre parcel·les amb aquest cultiu està pendent que un assessor fiscal en validi el mètode.,Os gastos imputados a «cultivo xeral» lístanse tal cal co importe íntegro: o reparto proporcional por hectárea entre parcelas con ese cultivo está pendente de que un asesor fiscal valide o método.
+agro.factura_estado_anulada,anulada,deuseztatuta,anul·lada,anulada
+agro.factura_estado_emitida,emitida,jaulkita,emesa,emitida
+agro.factura_estado_pagada,pagada,ordainduta,pagada,pagada
+agro.factura_estado_vencida,vencida,epez kanpo,vençuda,vencida
+agro.falta_permiso_ubicacion,Falta permiso de ubicación.,Kokapen-baimena falta da.,Falta el permís d'ubicació.,Falta o permiso de localización.
+agro.falta_permiso_ubicacion_o_gps_desactivado,Falta permiso de ubicación o GPS desactivado.,Kokapen-baimena falta da edo GPSa desaktibatuta dago.,Falta el permís d'ubicació o el GPS està desactivat.,Falta o permiso de localización ou o GPS está desactivado.
+agro.falta_posicion_pulsa_gps,Falta la posición: pulsa «GPS» o vuelve al mapa.,Posizioa falta da: sakatu «GPS» edo itzuli mapara.,Falta la posició: prem «GPS» o torna al mapa.,Falta a posición: preme «GPS» ou volve ao mapa.
+agro.faltan_datos_cuaderno,Faltan datos para el cuaderno,Koadernorako datuak falta dira,Falten dades per al quadern,Faltan datos para o caderno
+agro.faltan_datos_obligatorios,Faltan datos obligatorios: revisa los campos marcados en rojo.,Derrigorrezko datuak falta dira: berrikusi gorriz markatutako eremuak.,Falten dades obligatòries: revisa els camps marcats en vermell.,Faltan datos obrigatorios: revisa os campos marcados en vermello.
+agro.familia_larrea,Familia Larrea,Larrea familia,Família Larrea,Familia Larrea
+agro.familia_larrea_texto,"Larrea es la app general de la suite Larrea, de la Colección Nuevo Ser, con apps hermanas especializadas: Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano, Larrea Quesera y Larrea Aceitera.","Larrea Larrea suiteko aplikazio orokorra da, Colección Nuevo Ser bildumakoa, eta aplikazio ahizpa espezializatuak ditu: Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano, Larrea Quesera eta Larrea Aceitera.","Larrea és l'app general de la suite Larrea, de la Colección Nuevo Ser, amb apps germanes especialitzades: Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano, Larrea Quesera i Larrea Aceitera.","Larrea é a app xeral da suite Larrea, da Colección Nuevo Ser, con apps irmás especializadas: Larrea Viticultura, Larrea Apícola, Larrea Arbolado Urbano, Larrea Quesera e Larrea Aceitera."
+agro.fecha_de_la_factura,Fecha de la factura,Fakturaren data,Data de la factura,Data da factura
+agro.fecha_plantacion_opcional,Fecha de plantación (opcional),Landatze-data (aukerakoa),Data de plantació (opcional),Data de plantación (opcional)
+agro.fecha_valor,Fecha: {fecha},Data: {fecha},Data: {fecha},Data: {fecha}
+agro.filas_con_error,Filas con error:,Erroredun errenkadak:,Files amb error:,Filas con erro:
+agro.filas_con_error_n,Con error: {n},Erroredunak: {n},Amb error: {n},Con erro: {n}
+agro.filas_validas_n,Válidas: {n},Baliozkoak: {n},Vàlides: {n},Válidas: {n}
+agro.finca,Finca,Finka,Finca,Finca
+agro.finca_vacio_punto_suelto,Finca (vacío = punto suelto),Finka (hutsik = puntu soltea),Finca (buit = punt solt),Finca (baleiro = punto solto)
+agro.fincas,Fincas,Finkak,Finques,Fincas
+agro.fincas_nuevas_que_se_crearan,Fincas nuevas que se crearán:,Sortuko diren finka berriak:,Finques noves que es crearan:,Fincas novas que se crearán:
+agro.fincas_sub,"Crear, renombrar y borrar fincas","Finkak sortu, berrizendatu eta ezabatu","Crear, reanomenar i esborrar finques","Crear, renomear e borrar fincas"
+agro.fitosanitario,Fitosanitario,Fitosanitarioa,Fitosanitari,Fitosanitario
+agro.foto_adjunta_ya_no_existe,La foto adjunta ya no existe en el dispositivo.,Erantsitako argazkia jada ez dago gailuan.,La foto adjunta ja no existeix al dispositiu.,A foto achegada xa non existe no dispositivo.
+agro.foto_de_la_factura,Foto de la factura,Fakturaren argazkia,Foto de la factura,Foto da factura
+agro.fotos,Fotos,Argazkiak,Fotos,Fotos
+agro.fotos_de_la_planta,Fotos de la planta,Landarearen argazkiak,Fotos de la planta,Fotos da planta
+agro.fotos_planta_ayuda,"Foto del árbol, del tronco con la etiqueta y del entorno. Sirven para identificar la planta en campo.","Zuhaitzaren, etiketadun enborraren eta inguruaren argazkiak. Landarea soroan identifikatzeko balio dute.","Foto de l'arbre, del tronc amb l'etiqueta i de l'entorn. Serveixen per identificar la planta al camp.","Foto da árbore, do tronco coa etiqueta e do contorno. Serven para identificar a planta no campo."
+agro.gasto_actualizado,Gasto actualizado.,Gastua eguneratu da.,Despesa actualitzada.,Gasto actualizado.
+agro.gasto_guardado,Gasto guardado.,Gastua gorde da.,Despesa desada.,Gasto gardado.
+agro.gasto_imputado_a_una_finca,Todo el gasto se imputa a una sola finca,Gastu osoa finka bakar bati egozten zaio,Tota la despesa s'imputa a una sola finca,Todo o gasto impútase a unha soa finca
+agro.gastos,Gastos,Gastuak,Despeses,Gastos
+agro.general_de_la_explotacion,General de la explotación,Ustiategi osoarena,General de l'explotació,Xeral da explotación
+agro.general_parentesis,(general),(orokorra),(general),(xeral)
+agro.generando,Generando…,Sortzen…,S'està generant…,Xerando…
+agro.generar_igualmente,Generar igualmente,Sortu hala ere,Generar igualment,Xerar igualmente
+agro.generar_y_abrir,Generar y abrir,Sortu eta ireki,Genera i obre,Xerar e abrir
+agro.generar_y_compartir,Generar y compartir,Sortu eta partekatu,Genera i comparteix,Xerar e compartir
+agro.generar_y_compartir_pdf,Generar y compartir PDF,PDFa sortu eta partekatu,Generar i compartir PDF,Xerar e compartir PDF
+agro.grabando_recorrido,Grabando recorrido,Ibilbidea grabatzen,Enregistrant el recorregut,Gravando o percorrido
+agro.grabando_recorrido_puedes_bloquear,"Grabando recorrido. Puedes bloquear la pantalla, sigue activo.","Ibilbidea grabatzen. Pantaila blokea dezakezu, aktibo jarraituko du.","S'està enregistrant el recorregut. Pots bloquejar la pantalla, continua actiu.","Gravando o percorrido. Podes bloquear a pantalla, segue activo."
+agro.grabar_recorrido_gps,Grabar recorrido GPS,GPS ibilbidea grabatu,Enregistrar recorregut GPS,Gravar percorrido GPS
+agro.guardar_cambios,Guardar cambios,Aldaketak gorde,Desar els canvis,Gardar os cambios
+agro.guardar_planta,Guardar planta,Landarea gorde,Desar la planta,Gardar a planta
+agro.guia,Guía,Gida,Guia,Guía
+agro.guia_cultivos_plagas,Guía de cultivos y plagas,Laboreen eta izurriteen gida,Guia de conreus i plagues,Guía de cultivos e pragas
+agro.historico_todas_campanas,Histórico (todas las campañas),Historikoa (kanpaina guztiak),Històric (totes les campanyes),Histórico (todas as campañas)
+agro.hospedero,Hospedero,Ostalaria,Hoste,Hospedeiro
+agro.hospederos_habituales_texto,Hospederos habituales (texto),Ohiko ostalariak (testua),Hostes habituals (text),Hospedeiros habituais (texto)
+agro.hoy,Hoy,Gaur,Avui,Hoxe
+agro.humedad_relativa_n,HR {n} %,HR % {n},HR {n} %,HR {n} %
+agro.identifica_plagas_por_foto,Identifica plagas y enfermedades por foto,Izurriteak eta gaixotasunak argazki bidez identifikatzen ditu,Identifica plagues i malalties per foto,Identifica pragas e enfermidades por foto
+agro.identificar_con_ia,Identificar con IA,Identifikatu AArekin,Identifica amb IA,Identificar con IA
+agro.importadas_n_plantas,Importadas {n} plantas.,{n} landare inportatu dira.,S'han importat {n} plantes.,Importáronse {n} plantas.
+agro.importar_csv,Importar CSV,CSVa inportatu,Importar CSV,Importar CSV
+agro.importar_csv_columnas,"Columnas esperadas: cultivo_id, variedad, latitud, longitud, etiqueta, finca, fecha_plantacion (YYYY-MM-DD), patron, notas. Solo cultivo_id, latitud y longitud son obligatorios.","Espero diren zutabeak: cultivo_id, variedad, latitud, longitud, etiqueta, finca, fecha_plantacion (YYYY-MM-DD), patron, notas. cultivo_id, latitud eta longitud baino ez dira derrigorrezkoak.","Columnes esperades: cultivo_id, variedad, latitud, longitud, etiqueta, finca, fecha_plantacion (YYYY-MM-DD), patron, notas. Només cultivo_id, latitud i longitud són obligatòries.","Columnas esperadas: cultivo_id, variedad, latitud, longitud, etiqueta, finca, fecha_plantacion (YYYY-MM-DD), patron, notas. Só cultivo_id, latitud e longitud son obrigatorias."
+agro.importar_exportar_plantas,Importar / exportar plantas,Landareak inportatu / esportatu,Importar / exportar plantes,Importar / exportar plantas
+agro.importar_exportar_plantas_csv,Importar / exportar plantas (CSV),Landareak inportatu / esportatu (CSV),Importar / exportar plantes (CSV),Importar / exportar plantas (CSV)
+agro.importar_exportar_plantas_csv_sub,Alta masiva desde hoja de cálculo o exportación completa,"Kalkulu-orri batetik masiboki gehitu, edo dena esportatu",Alta massiva des d'un full de càlcul o exportació completa,Alta masiva desde folla de cálculo ou exportación completa
+agro.importar_n_plantas,Importar {n} plantas,{n} landare inportatu,Importar {n} plantes,Importar {n} plantas
+agro.importar_una_planta,Importar 1 planta,Landare 1 inportatu,Importar 1 planta,Importar 1 planta
+agro.importar_y_exportar,Importar y exportar,Inportatu eta esportatu,Importar i exportar,Importar e exportar
+agro.importe_base_euros,Importe base (€),Oinarrizko zenbatekoa (€),Import base (€),Importe base (€)
+agro.imputacion_a_parcela_cultivo,Imputación a parcela / cultivo,Partzelari / laboreari egoztea,Imputació a parcel·la / cultiu,Imputación a parcela / cultivo
+agro.imputar_a_cultivo_opcional,Imputar a cultivo (opcional),Laboreari egotzi (aukerakoa),Imputa a un cultiu (opcional),Imputar a cultivo (opcional)
+agro.imputar_a_parcela_opcional,Imputar a parcela (opcional),Partzelari egotzi (aukerakoa),Imputa a una parcel·la (opcional),Imputar a parcela (opcional)
+agro.incidencia,Incidencia,Gorabehera,Incidència,Incidencia
+agro.incidencia_plaga_enfermedad,"Incidencia (plaga, enfermedad)","Gorabehera (izurritea, gaixotasuna)","Incidència (plaga, malaltia)","Incidencia (praga, enfermidade)"
+agro.incidencia_rapida,Incidencia rápida,Gorabehera azkarra,Incidència ràpida,Incidencia rápida
+agro.incidencias_abiertas,Incidencias abiertas,Gorabehera irekiak,Incidències obertes,Incidencias abertas
+agro.incidencias_abiertas_n,Incidencias abiertas: {n},Gorabehera irekiak: {n},Incidències obertes: {n},Incidencias abertas: {n}
+agro.indeterminado,Indeterminado,Zehaztugabea,Indeterminat,Indeterminado
+agro.informe_campana_pdf,Informe de campaña (PDF),Kanpainako txostena (PDF),Informe de campanya (PDF),Informe de campaña (PDF)
+agro.informe_campana_sub,Generar y compartir PDF por finca y año,"PDFa sortu eta partekatu, finkaka eta urteka",Generar i compartir el PDF per finca i any,Xerar e compartir PDF por finca e ano
+agro.informe_de_campana,Informe de campaña,Kanpainaren txostena,Informe de campanya,Informe de campaña
+agro.ingreso_actualizado,Ingreso actualizado.,Diru-sarrera eguneratu da.,Ingrés actualitzat.,Ingreso actualizado.
+agro.ingreso_guardado,Ingreso guardado.,Diru-sarrera gorde da.,Ingrés desat.,Ingreso gardado.
+agro.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
+agro.ingresos_ordinarios,Ingresos ordinarios,Diru-sarrera arruntak,Ingressos ordinaris,Ingresos ordinarios
+agro.ingresos_sin_nif_n,{n} ingreso(s) sin NIF: no entran en el modelo 347,{n} diru-sarrera NIF gabe: ez dira 347 ereduan sartzen,{n} ingrés/ingressos sense NIF: no entren al model 347,{n} ingreso(s) sen NIF: non entran no modelo 347
+agro.insumos,Insumos,Intsumoak,Inputs,Insumos
+agro.iva,IVA,BEZ,IVA,IVE
+agro.iva_porcentaje,IVA {n} %,BEZ % {n},IVA {n} %,IVE {n} %
+agro.iva_repercutido,IVA repercutido,BEZ jasanarazia,IVA repercutit,IVE repercutido
+agro.iva_repercutido_euros,IVA repercutido (€),BEZ jasanarazia (€),IVA repercutit (€),IVE repercutido (€)
+agro.iva_soportado,IVA soportado,BEZ jasana,IVA suportat,IVE soportado
+agro.iva_soportado_deducible,IVA soportado deducible,BEZ jasan kengarria,IVA suportat deduïble,IVE soportado deducible
+agro.iva_soportado_en_compras,IVA soportado en compras,Erosketetan jasandako BEZa,IVA suportat en compres,IVE soportado en compras
+agro.iva_soportado_euros,IVA soportado (€),BEZ jasana (€),IVA suportat (€),IVE soportado (€)
+agro.iva_y_compensaciones,IVA y compensaciones,BEZa eta konpentsazioak,IVA i compensacions,IVE e compensacións
+agro.kilos,Kilos,Kiloak,Quilos,Quilos
+agro.larrea_registrando_inspeccion,Larrea está registrando tu inspección,Larrea zure ikuskapena erregistratzen ari da,Larrea està registrant la teva inspecció,Larrea está rexistrando a túa inspección
+agro.libro_economico_sub,"Ingresos, gastos y extracto anual · provisional","Diru-sarrerak, gastuak eta urteko laburpena · behin-behinekoa","Ingressos, despeses i extracte anual · provisional","Ingresos, gastos e extracto anual · provisional"
+agro.linea_motivo,Línea {n}: {motivo},{n}. lerroa: {motivo},Línia {n}: {motivo},Liña {n}: {motivo}
+agro.lineas_de_factura,Líneas de factura,Fakturaren lerroak,Línies de la factura,Liñas da factura
+agro.madrugada,Madrugada,Goizaldea,Matinada,Madrugada
+agro.manejo_cultural,Manejo cultural,Kudeaketa kulturala,Maneig cultural,Manexo cultural
+agro.manejo_cultural_sugerido,Manejo cultural sugerido,Iradokitako kudeaketa kulturala,Maneig cultural suggerit,Manexo cultural suxerido
+agro.mano_de_obra,Mano de obra,Eskulana,Mà d'obra,Man de obra
+agro.maquinaria,Maquinaria,Makineria,Maquinària,Maquinaria
+agro.marcar_pagada,Marcar pagada,Ordaindutzat jo,Marcar com a pagada,Marcar como pagada
+agro.meteo_agro,Meteo agro,Nekazaritza-eguraldia,Meteo agrària,Meteo agraria
+agro.meteo_hoy_origen,Meteo hoy · {origen},Eguraldia gaur · {origen},Meteo avui · {origen},Meteo hoxe · {origen}
+agro.modo_censo_activo_toca_mapa,Modo censo activo (toca el mapa para añadir),Errolda modua aktibo (ukitu mapa gehitzeko),Mode cens actiu (toca el mapa per afegir),Modo censo activo (toca o mapa para engadir)
+agro.modo_censo_toca_mapa_para_anadir_planta,Modo censo: toca el mapa para añadir una planta en ese punto.,Errolda modua: ukitu mapa puntu horretan landare bat gehitzeko.,Mode cens: toca el mapa per afegir una planta en aquest punt.,Modo censo: toca o mapa para engadir unha planta nese punto.
+agro.modulos_no_disponible,"El régimen de módulos no está disponible en v1: pendiente de validación con asesor fiscal antes de añadirlo. En agricultura, módulos sigue siendo más común que en otras actividades, así que es probable que el asesor lo pida.","Moduluen araubidea ez dago erabilgarri v1 bertsioan: zerga-aholkulariarekin baliozkotu behar da gehitu aurretik. Nekazaritzan moduluak beste jarduera batzuetan baino ohikoagoak dira oraindik, eta litekeena da aholkulariak eskatzea.","El règim de mòduls no està disponible a la v1: cal validar-lo amb un assessor fiscal abans d'afegir-lo. En agricultura, els mòduls continuen sent més habituals que en altres activitats, així que és probable que l'assessor ho demani.","O réxime de módulos non está dispoñible na v1: está pendente de validación cun asesor fiscal antes de engadilo. Na agricultura, os módulos seguen sendo máis comúns ca noutras actividades, así que é probable que o asesor o pida."
+agro.motivo,Motivo,Arrazoia,Motiu,Motivo
+agro.municipio,Municipio,Udalerria,Municipi,Concello
+agro.n_puntos,{n} puntos,{n} puntu,{n} punts,{n} puntos
+agro.n_unidades_abreviado,{n} ud,{n} ale,{n} u.,{n} ud.
+agro.nif,NIF,NIF,NIF,NIF
+agro.nif_aplicador_si_distinto,NIF del aplicador (si es distinto del titular),Aplikatzailearen NIFa (titularra ez bada),NIF de l'aplicador (si és diferent del titular),NIF do aplicador (se é distinto do titular)
+agro.nif_asesor_aplicador,"NIF, asesor, aplicador","NIF, aholkularia, aplikatzailea","NIF, assessor, aplicador","NIF, asesor, aplicador"
+agro.nif_cif_obligatorio,NIF / CIF *,NIF / IFK *,NIF / CIF *,NIF / CIF *
+agro.nif_del_aplicador,NIF del aplicador,Aplikatzailearen NIFa,NIF de l'aplicador,NIF do aplicador
+agro.nif_del_asesor,NIF del asesor,Aholkulariaren NIFa,NIF de l'assessor,NIF do asesor
+agro.nif_opcional,NIF (opcional),NIF (aukerakoa),NIF (opcional),NIF (opcional)
+agro.nif_vacio_si_venta_informal,Vacío si es venta informal sin factura,"Hutsik, fakturarik gabeko salmenta informala bada",Buit si és una venda informal sense factura,Baleiro se é unha venda informal sen factura
+agro.nivel_del_carnet,Nivel del carnet,Txartelaren maila,Nivell del carnet,Nivel do carné
+agro.no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
+agro.no_se_pudo_cargar_prevision,No se pudo cargar la previsión.,Ezin izan da iragarpena kargatu.,No s'ha pogut carregar la previsió.,Non se puido cargar a previsión.
+agro.no_se_pudo_obtener_gps_actual,No se pudo obtener el GPS actual.,Ezin izan da uneko GPS kokapena lortu.,No s'ha pogut obtenir el GPS actual.,Non se puido obter o GPS actual.
+agro.nombre,Nombre,Izena,Nom,Nome
+agro.nombre_cientifico,Nombre científico,Izen zientifikoa,Nom científic,Nome científico
+agro.nombre_comun,Nombre común,Izen arrunta,Nom comú,Nome común
+agro.nombre_del_aplicador,Nombre del aplicador,Aplikatzailearen izena,Nom de l'aplicador,Nome do aplicador
+agro.nombre_del_asesor,Nombre del asesor,Aholkulariaren izena,Nom de l'assessor,Nome do asesor
+agro.nombre_finca_ejemplo,"Ej.: La Solana, Olivar de mi padre, Trufera de Soria","Adib.: Goikoetxe, Aitaren olibadia, Soriako boilur-landa","P. ex.: La Solana, L'olivar del pare, Tofonera de Sòria","Ex.: A Solana, O olival do meu pai, Trufeira de Soria"
+agro.nombre_finca_opcional,Nombre de la finca (opcional),Finkaren izena (aukerakoa),Nom de la finca (opcional),Nome da finca (opcional)
+agro.nombre_o_razon_social_obligatorio,Nombre o razón social *,Izena edo sozietate-izena *,Nom o raó social *,Nome ou razón social *
+agro.nombre_obligatorio,Nombre obligatorio,Izena derrigorrezkoa da,Cal indicar el nom,O nome é obrigatorio
+agro.nombre_opcional,Nombre (opcional),Izena (aukerakoa),Nom (opcional),Nome (opcional)
+agro.nombre_operador_ayuda,Tu nombre / nombre del agrónomo,Zure izena / agronomoaren izena,El teu nom / nom de l'agrònom,O teu nome / nome do agrónomo
+agro.nombre_operador_opcional,Nombre del operador (opcional),Operadorearen izena (aukerakoa),Nom de l'operador (opcional),Nome do operador (opcional)
+agro.notas,Notas,Oharrak,Notes,Notas
+agro.notificaciones,Notificaciones,Jakinarazpenak,Notificacions,Notificacións
+agro.nueva_cosecha,Nueva cosecha,Uzta berria,Nova collita,Nova colleita
+agro.nueva_finca,Nueva finca,Finka berria,Finca nova,Nova finca
+agro.nueva_incidencia,Nueva incidencia,Gorabehera berria,Nova incidència,Nova incidencia
+agro.nueva_observacion,Nueva observación,Behaketa berria,Nova observació,Nova observación
+agro.nueva_planta,Nueva planta,Landare berria,Planta nova,Nova planta
+agro.nuevo,Nuevo,Berria,Nou,Novo
+agro.nuevo_gasto,Nuevo gasto,Gastu berria,Nova despesa,Novo gasto
+agro.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Nou ingrés,Novo ingreso
+agro.nuevo_tercero,Nuevo cliente o proveedor,Bezero edo hornitzaile berria,Nou client o proveïdor,Novo cliente ou provedor
+agro.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Nou tractament,Novo tratamento
+agro.numero_carnet_manipulador,Número de carnet de manipulador,Manipulatzaile-txartelaren zenbakia,Número de carnet de manipulador,Número de carné de manipulador
+agro.numero_de_factura,N.º de factura,Faktura-zk.,Núm. de factura,N.º de factura
+agro.numero_regepa,Número REGEPA,REGEPA zenbakia,Número REGEPA,Número REGEPA
+agro.numero_registro_asesor,Número de registro del asesor,Aholkulariaren erregistro-zenbakia,Número de registre de l'assessor,Número de rexistro do asesor
+agro.numero_registro_fitosanitario,Número de registro fitosanitario,Fitosanitarioaren erregistro-zenbakia,Número de registre fitosanitari,Número de rexistro fitosanitario
+agro.nunca_copia,Nunca. Te recomendamos hacer una antes de salir al campo.,Inoiz ez. Landara irten aurretik bat egitea gomendatzen dizugu.,Mai. Et recomanem fer-ne una abans de sortir al camp.,Nunca. Recomendámosche facer unha antes de saír ao campo.
+agro.obligado_asesor_agronomico,Estoy obligado a tener asesor agronómico,Aholkulari agronomoa izatera behartuta nago,Estic obligat a tenir assessor agronòmic,Estou obrigado a ter asesor agronómico
+agro.observacion,Observación,Behaketa,Observació,Observación
+agro.observacion_rapida,Observación rápida,Behaketa azkarra,Observació ràpida,Observación rápida
+agro.onboarding_apunta,"Apunta cosechas, observaciones, plagas y tratamientos.","Idatzi uztak, behaketak, izurriteak eta tratamenduak.","Apunta collites, observacions, plagues i tractaments.","Anota colleitas, observacións, pragas e tratamentos."
+agro.onboarding_cultivos_texto,Selecciona los cultivos que ya tienes o que vas a plantar. Esto sirve para sugerir variedades y plagas en la pantalla «Hoy». Puedes cambiarlo después.,Hautatu dagoeneko dituzun edo landatuko dituzun laboreak. «Gaur» pantailan barietateak eta izurriteak iradokitzeko balio du. Gero alda dezakezu.,Selecciona els conreus que ja tens o que plantaràs. Serveix per suggerir varietats i plagues a la pantalla «Avui». Ho pots canviar després.,Selecciona os cultivos que xa tes ou que vas plantar. Isto serve para suxerir variedades e pragas na pantalla «Hoxe». Podes cambialo despois.
+agro.onboarding_finca_texto,"Si quieres agrupar tus plantas en una finca con nombre, escríbelo aquí. Si tienes árboles dispersos sin agrupación clara, déjalo en blanco — funcionarán como puntos sueltos.","Zure landareak izena duen finka batean multzokatu nahi badituzu, idatzi izena hemen. Zuhaitzak sakabanatuta badituzu multzokatze argirik gabe, utzi hutsik — puntu solte gisa funtzionatuko dute.","Si vols agrupar les teves plantes en una finca amb nom, escriu-lo aquí. Si tens arbres dispersos sense una agrupació clara, deixa-ho en blanc — funcionaran com a punts solts.","Se queres agrupar as túas plantas nunha finca con nome, escríbeo aquí. Se tes árbores dispersas sen agrupación clara, déixao en branco — funcionarán como puntos soltos."
+agro.onboarding_guia,Consulta una guía con cultivos y plagas frecuentes.,Kontsultatu ohiko laboreen eta izurriteen gida.,Consulta una guia amb conreus i plagues freqüents.,Consulta unha guía con cultivos e pragas frecuentes.
+agro.onboarding_informes,Genera informes en PDF para tu asesor o cooperativa.,Sortu PDF txostenak zure aholkulariarentzat edo kooperatibarentzat.,Genera informes en PDF per al teu assessor o cooperativa.,Xera informes en PDF para o teu asesor ou cooperativa.
+agro.onboarding_intro,"Larrea te ayuda a llevar el control de tus árboles, viñas, truferas, olivar o pistacho.","Larreak zure zuhaitzen, mahastien, boilur-landen, olibondoen edo pistatxondoen kontrola eramaten laguntzen dizu.","Larrea t'ajuda a portar el control dels teus arbres, vinyes, tofoneres, olivera o pistatxers.","Larrea axúdache a levar o control das túas árbores, viñas, trufeiras, olival ou pistacho."
+agro.onboarding_permisos_texto,Larrea necesita ubicación para situar tus plantas en el mapa y grabar recorridos GPS de inspección. Las notificaciones permiten mantener viva la grabación cuando bloqueas la pantalla.,"Larreak kokapena behar du zure landareak mapan kokatzeko eta ikuskapeneko GPS ibilbideak grabatzeko. Jakinarazpenei esker, grabazioak martxan jarraitzen du pantaila blokeatzen duzunean.",Larrea necessita la ubicació per situar les teves plantes al mapa i enregistrar recorreguts GPS d'inspecció. Les notificacions permeten mantenir activa la gravació quan bloqueges la pantalla.,Larrea necesita a localización para situar as túas plantas no mapa e gravar percorridos GPS de inspección. As notificacións permiten manter activa a gravación cando bloqueas a pantalla.
+agro.onboarding_punto_mapa,Marca cada planta en el mapa con un punto GPS.,Markatu landare bakoitza mapan GPS puntu batekin.,Marca cada planta al mapa amb un punt GPS.,Marca cada planta no mapa cun punto GPS.
+agro.onboarding_sin_conexion,Todo funciona sin conexión en tu móvil. Tus datos no salen sin tu permiso.,Dena dabil konexiorik gabe zure mugikorrean. Zure datuak ez dira zure baimenik gabe ateratzen.,Tot funciona sense connexió al teu mòbil. Les teves dades no surten sense el teu permís.,Todo funciona sen conexión no teu móbil. Os teus datos non saen sen o teu permiso.
+agro.origen_centro_plantas,centro de plantas,landareen erdigunea,centre de les plantes,centro das plantas
+agro.origen_centro_referencia,centro de referencia,erreferentziako erdigunea,centre de referència,centro de referencia
+agro.origen_gps_actual,GPS actual,Uneko GPSa,GPS actual,GPS actual
+agro.origen_gps_reciente,GPS reciente,Azken GPSa,GPS recent,GPS recente
+agro.origen_ubicacion_trabajo,ubicación de trabajo,lan-kokapena,ubicació de treball,localización de traballo
+agro.otro,Otro,Bestelakoa,Altres,Outro
+agro.otro_gasto,Otro gasto,Beste gastu bat,Altra despesa,Outro gasto
+agro.otro_ingreso,Otro ingreso,Beste diru-sarrera bat,Altre ingrés,Outro ingreso
+agro.para_ver_rentabilidad_por_cultivo,Para ver rentabilidad por cultivo,Laborearen araberako errentagarritasuna ikusteko,Per veure la rendibilitat per cultiu,Para ver a rendibilidade por cultivo
+agro.parcela,Parcela,Partzela,Parcel·la,Parcela
+agro.parcela_concreta,Parcela concreta,Partzela zehatza,Parcel·la concreta,Parcela concreta
+agro.patron,Patrón,Txertoina,Portaempelt,Patrón
+agro.patrones_habituales,Patrones habituales,Ohiko txertakaiak,Portaempelts habituals,Portaenxertos habituais
+agro.pendiente,Pendiente,Zain,Pendent,Pendente
+agro.pendiente_opcional,Pendiente (opcional),Zain (aukerakoa),Pendent (opcional),Pendente (opcional)
+agro.permisos,Permisos,Baimenak,Permisos,Permisos
+agro.pie_foto_commons,Foto: {autor} · {licencia} · Wikimedia Commons,Argazkia: {autor} · {licencia} · Wikimedia Commons,Foto: {autor} · {licencia} · Wikimedia Commons,Foto: {autor} · {licencia} · Wikimedia Commons
+agro.plaga,Plaga,Izurritea,Plaga,Praga
+agro.plagas_y_enfermedades,Plagas y enfermedades,Izurriteak eta gaixotasunak,Plagues i malalties,Pragas e enfermidades
+agro.plantada,Plantada,Landatua,Plantada,Plantada
+agro.plantada_el_fecha,Plantada el {fecha},Landatze-data: {fecha},Plantada el {fecha},Plantada o {fecha}
+agro.plantas,Plantas,Landareak,Plantes,Plantas
+agro.plantas_exportadas,Plantas exportadas,Esportatutako landareak,Plantes exportades,Plantas exportadas
+agro.plantas_n,{n} plantas,{n} landare,{n} plantes,{n} plantas
+agro.plantas_por_cultivo,Plantas por cultivo,Landareak laboreka,Plantes per conreu,Plantas por cultivo
+agro.plazo_seguridad_dias,Plazo de seguridad (días),Segurtasun-epea (egunak),Termini de seguretat (dies),Prazo de seguridade (días)
+agro.poda,Poda,Inausketa,Poda,Poda
+agro.poligono,Polígono,Poligonoa,Polígon,Polígono
+agro.posicion,Posición,Posizioa,Posició,Posición
+agro.precio,Precio,Prezioa,Preu,Prezo
+agro.precio_euros,Precio (€),Prezioa (€),Preu (€),Prezo (€)
+agro.pregunta_borrar_evento,¿Borrar {evento}?,{evento} ezabatu?,Vols esborrar: {evento}?,Borrar {evento}?
+agro.pregunta_borrar_finca,¿Borrar la finca «{nombre}»?,«{nombre}» finka ezabatu?,Vols esborrar la finca «{nombre}»?,Borrar a finca «{nombre}»?
+agro.pregunta_borrar_planta,¿Borrar planta?,Landarea ezabatu?,Vols esborrar la planta?,Borrar a planta?
+agro.prevision_error_toca_reintentar,No se pudo cargar la previsión. Toca para reintentar.,Ezin izan da iragarpena kargatu. Ukitu berriro saiatzeko.,No s'ha pogut carregar la previsió. Toca per tornar-ho a provar.,Non se puido cargar a previsión. Toca para tentalo de novo.
+agro.prevision_orientativa,"Previsión orientativa para riego, tratamientos, labores y actividad de colmenas.","Ureztatzeko, tratamenduetarako, lanetarako eta erlauntzen jarduerarako iragarpen orientagarria.","Previsió orientativa per a reg, tractaments, feines i activitat dels ruscos.","Previsión orientativa para rega, tratamentos, labores e actividade das colmeas."
+agro.producto,Producto,Produktua,Producte,Produto
+agro.producto_del_catalogo_seleccionado,Producto del catálogo seleccionado.,Katalogoko produktua hautatuta.,Producte del catàleg seleccionat.,Produto do catálogo seleccionado.
+agro.proveedor_minuscula,proveedor,hornitzailea,proveïdor,provedor
+agro.provincia,Provincia,Probintzia,Província,Provincia
+agro.punto_suelto,Punto suelto,Puntu soltea,Punt solt,Punto solto
+agro.puntos_sueltos,Puntos sueltos,Puntu solteak,Punts solts,Puntos soltos
+agro.puntos_sueltos_sin_finca,Puntos sueltos (sin finca),Puntu solteak (finkarik gabe),Punts solts (sense finca),Puntos soltos (sen finca)
+agro.que_cultivas,¿Qué cultivas?,Zer lantzen duzu?,Què conreues?,Que cultivas?
+agro.que_toca_en_mes,Qué toca en {mes},{mes}: zer egin,{mes}: què toca,Que toca en {mes}
+agro.racha_n,racha {n},bolada {n},ratxa {n},refacho {n}
+agro.reabrir_incidencia,Reabrir incidencia,Gorabehera berriro ireki,Reobrir la incidència,Reabrir a incidencia
+agro.reagp_regimen_especial,REAGP — régimen especial agricultura/ganadería/pesca,"REAGP — nekazaritza, abeltzaintza eta arrantzako araubide berezia","REAGP — règim especial de l'agricultura, ramaderia i pesca","REAGP — réxime especial da agricultura, gandaría e pesca"
+agro.recinto,Recinto,Barrutia,Recinte,Recinto
+agro.recorrido,Recorrido,Ibilbidea,Recorregut,Percorrido
+agro.recorrido_del_fecha,Recorrido del {fecha},Ibilbidea: {fecha},Recorregut del {fecha},Percorrido do {fecha}
+agro.recorrido_gpx,Recorrido GPX,GPX ibilbidea,Recorregut GPX,Percorrido GPX
+agro.recorrido_guardado_n_puntos,Recorrido guardado ({n} puntos).,Ibilbidea gordeta ({n} puntu).,Recorregut desat ({n} punts).,Percorrido gardado ({n} puntos).
+agro.recorrido_sin_puntos,Este recorrido no tiene puntos guardados.,Ibilbide honek ez du punturik gordeta.,Aquest recorregut no té punts desats.,Este percorrido non ten puntos gardados.
+agro.recorridos_de_inspeccion,Recorridos de inspección,Ikuskapen-ibilbideak,Recorreguts d'inspecció,Percorridos de inspección
+agro.recorridos_guardados,Recorridos guardados,Gordetako ibilbideak,Recorreguts desats,Percorridos gardados
+agro.recorridos_inspeccion,Recorridos de inspección,Ikuskapen-ibilbideak,Recorreguts d'inspecció,Percorridos de inspección
+agro.recorridos_inspeccion_sub,Lista de recorridos GPS grabados,Grabatutako GPS ibilbideen zerrenda,Llista de recorreguts GPS enregistrats,Lista de percorridos GPS gravados
+agro.regepa_nombre_completo,Registro General de la Producción Agrícola,Nekazaritza Ekoizpenaren Erregistro Orokorra,Registre General de la Producció Agrícola,Rexistro Xeral da Produción Agrícola
+agro.regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
+agro.registros,Registros,Erregistroak,Registres,Rexistros
+agro.reintentar,Reintentar,Saiatu berriro,Torna-ho a provar,Tentar de novo
+agro.renombrar,Renombrar,Izena aldatu,Canviar el nom,Renomear
+agro.renombrar_finca,Renombrar finca,Finkari izena aldatu,Canviar el nom de la finca,Renomear a finca
+agro.requerido,Requerido,Beharrezkoa,Obligatori,Obrigatorio
+agro.requerido_por_mapa,Requerido por MAPA,MAPAk eskatzen du,Obligatori per al MAPA,Obrigatorio para o MAPA
+agro.respaldo_a,Respaldo: {email},Kopia: {email},Còpia a: {email},Copia a: {email}
+agro.restaurar,Restaurar,Leheneratu,Restaurar,Restaurar
+agro.restaurar_copia_explicacion,Sustituye la base de datos y fotos actuales por las del ZIP. Antes se comprueba que el ZIP es una copia válida de Larrea y se guarda una copia automática del estado actual.,"Uneko datu-basea eta argazkiak ZIPekoekin ordezten ditu. Aurretik egiaztatzen da ZIPa Larrearen baliozko kopia dela, eta uneko egoeraren kopia automatiko bat gordetzen da.",Substitueix la base de dades i les fotos actuals per les del ZIP. Abans es comprova que el ZIP és una còpia vàlida de Larrea i es desa una còpia automàtica de l'estat actual.,Substitúe a base de datos e as fotos actuais polas do ZIP. Antes compróbase que o ZIP é unha copia válida de Larrea e gárdase unha copia automática do estado actual.
+agro.restaurar_una_copia,Restaurar una copia,Kopia bat leheneratu,Restaurar una còpia,Restaurar unha copia
+agro.restaurar_una_copia_de_seguridad,Restaurar una copia de seguridad,Segurtasun-kopia bat leheneratu,Restaurar una còpia de seguretat,Restaurar unha copia de seguridade
+agro.resuelta_minuscula,resuelta,konponduta,resolta,resolta
+agro.resultado_de_la_ia,Resultado de la IA,AAren emaitza,Resultat de la IA,Resultado da IA
+agro.resumen,Resumen,Laburpena,Resum,Resumo
+agro.resumen_del_csv,Resumen del CSV,CSVaren laburpena,Resum del CSV,Resumo do CSV
+agro.resumen_fiscal_trimestral,Resumen fiscal trimestral,Hiruhileko laburpen fiskala,Resum fiscal trimestral,Resumo fiscal trimestral
+agro.riego,Riego,Ureztatzea,Reg,Rega
+agro.riego_agua,Riego / agua,Ureztatzea / ura,Reg / aigua,Rega / auga
+agro.riesgo_de_helada,Riesgo de helada,Izozte-arriskua,Risc de gelada,Risco de xeada
+agro.riesgo_helada_cuerpo,"Revisa floración, plantones y puntos bajos.","Begiratu loraldia, landare gazteak eta gune baxuak.","Revisa la floració, els plançons i els punts baixos.","Revisa a floración, os plantóns e os puntos baixos."
+agro.saltar,Saltar,Saltatu,Omet,Saltar
+agro.salud,Salud,Osasuna,Salut,Saúde
+agro.salud_n_de_5,Salud {n}/5,Osasuna {n}/5,Salut {n}/5,Saúde {n}/5
+agro.se_borrara_planta_y_su_historia,"Se borrará la planta y toda su historia (cosechas, observaciones, incidencias, tratamientos). Esta acción no se puede deshacer.","Landarea eta haren historia osoa ezabatuko dira (uztak, behaketak, gorabeherak, tratamenduak). Ekintza hau ezin da desegin.","S'esborrarà la planta i tota la seva història (collites, observacions, incidències, tractaments). Aquesta acció no es pot desfer.","Borrarase a planta e toda a súa historia (colleitas, observacións, incidencias, tratamentos). Esta acción non se pode desfacer."
+agro.seguros,Seguros,Aseguruak,Assegurances,Seguros
+agro.seleccionar_csv,Seleccionar CSV,CSVa hautatu,Seleccionar CSV,Seleccionar CSV
+agro.severidad,Severidad,Larritasuna,Gravetat,Gravidade
+agro.severidad_abrev_n,Sev. {n}/5,Larr. {n}/5,Sev. {n}/5,Sev. {n}/5
+agro.severidad_abreviada_n_de_5,Sev. {n}/5,Lark. {n}/5,Sev. {n}/5,Sev. {n}/5
+agro.siex_version_futura,La exportación XML oficial al SIEX/CUE llegará en una versión futura. El PDF cumple el requisito de tener el cuaderno disponible para inspección presencial.,SIEX/CUE sistemara XML ofiziala esportatzeko aukera etorkizuneko bertsio batean iritsiko da. PDFak betetzen du koadernoa aurrez aurreko ikuskapenerako eskuragarri izateko baldintza.,L'exportació XML oficial al SIEX/CUE arribarà en una versió futura. El PDF compleix el requisit de tenir el quadern disponible per a la inspecció presencial.,A exportación XML oficial ao SIEX/CUE chegará nunha versión futura. O PDF cumpre o requisito de ter o caderno dispoñible para a inspección presencial.
+agro.sigpac_explicacion,"Identificación oficial de la parcela según el SIGPAC. Si tienes la referencia completa, la app la presentará bien formada en el cuaderno MAPA con el formato Provincia:Municipio:Polígono:Parcela:Recinto.","Partzelaren identifikazio ofiziala, SIGPACen arabera. Erreferentzia osoa baduzu, aplikazioak ondo osatuta aurkeztuko du MAPA koadernoan, formatu honekin: Probintzia:Udalerria:Poligonoa:Partzela:Barrutia.","Identificació oficial de la parcel·la segons el SIGPAC. Si tens la referència completa, l'app la presentarà ben formada al quadern MAPA amb el format Província:Municipi:Polígon:Parcel·la:Recinte.","Identificación oficial da parcela segundo o SIGPAC. Se tes a referencia completa, a app presentaraa ben formada no caderno MAPA co formato Provincia:Concello:Polígono:Parcela:Recinto."
+agro.siguiente,Siguiente,Hurrengoa,Següent,Seguinte
+agro.sin_asociar_parcela_ni_cultivo,Sin asociar a parcela ni cultivo concreto,Partzela edo labore zehatz bati lotu gabe,Sense associar a cap parcel·la ni cultiu concret,Sen asociar a parcela nin cultivo concreto
+agro.sin_asociar_parentesis,(sin asociar),(lotu gabe),(sense associar),(sen asociar)
+agro.sin_clave_anthropic_ve_a_ajustes,No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.,Ez dago Anthropic gakorik konfiguratuta. Joan Ezarpenak → AA bidezko identifikazioa atalera.,No hi ha cap clau d'Anthropic configurada. Ves a Configuració → Identificació amb IA.,Non hai ningunha clave de Anthropic configurada. Vai a Axustes → Identificación con IA.
+agro.sin_cultivo_parentesis,(sin cultivo),(laborerik gabe),(sense cultiu),(sen cultivo)
+agro.sin_cultivos_para_consulta,Sin cultivos para «{consulta}».,Ez dago laborerik «{consulta}» bilaketarako.,No hi ha conreus per a «{consulta}».,Non hai cultivos para «{consulta}».
+agro.sin_datos_meteo_hoy,Sin datos meteo para hoy.,Ez dago gaurko eguraldi-daturik.,Sense dades meteorològiques per a avui.,Sen datos meteorolóxicos para hoxe.
+agro.sin_elegir,Sin elegir,Aukeratu gabe,Sense triar,Sen escoller
+agro.sin_gastos_este_ano,"Aún no hay gastos en este año. Pulsa «Nuevo gasto» para registrar insumos, tratamientos, maquinaria, mano de obra, seguros o cualquier otro gasto de la explotación.","Oraindik ez dago gasturik urte honetan. Sakatu «Gastu berria» intsumoak, tratamenduak, makineria, eskulana, aseguruak edo ustiategiko beste edozein gastu erregistratzeko.","Encara no hi ha despeses aquest any. Prem «Nova despesa» per registrar inputs, tractaments, maquinària, mà d'obra, assegurances o qualsevol altra despesa de l'explotació.","Aínda non hai gastos neste ano. Preme «Novo gasto» para rexistrar insumos, tratamentos, maquinaria, man de obra, seguros ou calquera outro gasto da explotación."
+agro.sin_ingresos_este_ano,"Aún no hay ingresos en este año. Pulsa «Nuevo ingreso» para registrar una venta de cosecha, leña, alquiler de terreno o una ayuda PAC.","Oraindik ez dago diru-sarrerarik urte honetan. Sakatu «Diru-sarrera berria» uzta, egur edo lur-alokairu salmenta bat edo PAC laguntza bat erregistratzeko.","Encara no hi ha ingressos aquest any. Prem «Nou ingrés» per registrar una venda de collita, llenya, lloguer de terreny o un ajut PAC.","Aínda non hai ingresos neste ano. Preme «Novo ingreso» para rexistrar unha venda de colleita, leña, aluguer de terreo ou unha axuda PAC."
+agro.sin_iva,Sin IVA,BEZik gabe,Sense IVA,Sen IVE
+agro.sin_iva_ni_compensacion,Sin IVA ni compensación,BEZik eta konpentsaziorik gabe,Sense IVA ni compensació,Sen IVE nin compensación
+agro.sin_nif,sin NIF,NIF gabe,sense NIF,sen NIF
+agro.sin_nombre_parentesis,(sin nombre),(izenik gabe),(sense nom),(sen nome)
+agro.sin_plagas_catalogadas_cultivo,Sin plagas catalogadas para este cultivo en v1. El catálogo se ampliará con validación agronómica en v2.,Ez dago izurriterik katalogatuta labore honetarako v1ean. Katalogoa balidazio agronomikoarekin zabalduko da v2an.,No hi ha plagues catalogades per a aquest conreu a la v1. El catàleg s'ampliarà amb validació agronòmica a la v2.,Non hai pragas catalogadas para este cultivo na v1. O catálogo ampliarase con validación agronómica na v2.
+agro.sin_posicion,Sin posición,Posiziorik gabe,Sense posició,Sen posición
+agro.sin_resultados_filtros,Sin resultados para los filtros seleccionados.,Ez dago emaitzarik hautatutako iragazkiekin.,No hi ha resultats per als filtres seleccionats.,Non hai resultados para os filtros seleccionados.
+agro.sin_resultados_para_consulta,Sin resultados para «{consulta}».,Ez dago emaitzarik «{consulta}» bilaketarako.,Cap resultat per a «{consulta}».,Sen resultados para «{consulta}».
+agro.sintomas,Síntomas,Sintomak,Símptomes,Síntomas
+agro.subvencion,Subvención,Diru-laguntza,Subvenció,Subvención
+agro.subvencion_autonomica,Subvención autonómica,Diru-laguntza autonomikoa,Subvenció autonòmica,Subvención autonómica
+agro.suelo_temp_humedad,Suelo {temp} °C · {humedad},Lurzorua {temp} °C · {humedad},Sòl {temp} °C · {humedad},Solo {temp} °C · {humedad}
+agro.superficie_hectareas,Superficie (hectáreas),Azalera (hektareak),Superfície (hectàrees),Superficie (hectáreas)
+agro.superficie_no_puede_ser_negativa,La superficie no puede ser negativa.,Azalera ezin da negatiboa izan.,La superfície no pot ser negativa.,A superficie non pode ser negativa.
+agro.superficie_no_valida_texto,"Superficie no válida: «{texto}». Usa solo números (p. ej. 4,7).","Azalera baliogabea: «{texto}». Erabili zenbakiak soilik (adib. 4,7).","Superfície no vàlida: «{texto}». Fes servir només números (p. ex. 4,7).","Superficie non válida: «{texto}». Usa só números (p. ex. 4,7)."
+agro.superficie_tratada_ha,Superficie tratada (ha),Tratatutako azalera (ha),Superfície tractada (ha),Superficie tratada (ha)
+agro.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+agro.terceros_vacio,"Aún no hay terceros guardados. Añade clientes (cooperativas, almazaras, hostelería, distribuidores) y proveedores (insumos, fitosanitarios, maquinaria) — el NIF de cada uno permite generar el modelo 347 al cierre del ejercicio.","Oraindik ez dago bezero edo hornitzailerik gordeta. Gehitu bezeroak (kooperatibak, olio-errotak, ostalaritza, banatzaileak) eta hornitzaileak (intsumoak, fitosanitarioak, makineria); bakoitzaren NIFari esker 347 eredua sor daiteke ekitaldiaren itxieran.","Encara no hi ha clients ni proveïdors desats. Afegeix clients (cooperatives, almàsseres, hostaleria, distribuïdors) i proveïdors (inputs, fitosanitaris, maquinària): el NIF de cadascun permet generar el model 347 al tancament de l'exercici.","Aínda non hai clientes nin provedores gardados. Engade clientes (cooperativas, almazaras, hostalaría, distribuidores) e provedores (insumos, fitosanitarios, maquinaria): o NIF de cada un permite xerar o modelo 347 ao peche do exercicio."
+agro.tipo,Tipo,Mota,Tipus,Tipo
+agro.tipo_de_gasto,Tipo de gasto,Gastu mota,Tipus de despesa,Tipo de gasto
+agro.tipo_de_ingreso,Tipo de ingreso,Diru-sarrera mota,Tipus d'ingrés,Tipo de ingreso
+agro.tipo_gasto_certificacion,"Certificación (DOP, IGP, ecológico)","Ziurtapena (DOP, IGP, ekologikoa)","Certificació (DOP, IGP, ecològic)","Certificación (DOP, IGP, ecolóxico)"
+agro.tipo_gasto_insumos,"Insumos (semillas, plantones, fertilizantes, abonos)","Intsumoak (haziak, landareak, ongarriak, simaurrak)","Inputs (llavors, planters, fertilitzants, adobs)","Insumos (sementes, plantóns, fertilizantes, abonos)"
+agro.tipo_gasto_maquinaria,"Maquinaria (compra, alquiler, mantenimiento)","Makineria (erosketa, alokairua, mantentze-lanak)","Maquinària (compra, lloguer, manteniment)","Maquinaria (compra, aluguer, mantemento)"
+agro.tipo_gasto_riego_agua,"Riego / agua (canon, electricidad de bombeo)","Ureztatzea / ura (kanona, ponpaketako elektrizitatea)","Reg / aigua (cànon, electricitat de bombament)","Rega / auga (canon, electricidade de bombeo)"
+agro.tipo_gasto_seguros,"Seguros (Agroseguro, responsabilidad civil)","Aseguruak (Agroseguro, erantzukizun zibila)","Assegurances (Agroseguro, responsabilitat civil)","Seguros (Agroseguro, responsabilidade civil)"
+agro.tipo_gasto_veterinario_animal,Veterinario animal (ganado en dehesa),Albaitaritza (larre-basoko abereak),Veterinari animal (bestiar a la devesa),Veterinario animal (gando en devesa)
+agro.tipo_incidencia_enfermedad,Enfermedad,Gaixotasuna,Malaltia,Enfermidade
+agro.tipo_incidencia_estres,Estrés,Estresa,Estrès,Estrés
+agro.tipo_incidencia_fisiologico,Fisiológico,Fisiologikoa,Fisiològic,Fisiolóxico
+agro.tipo_incidencia_otro,Otro,Bestelakoa,Altre,Outro
+agro.tipo_incidencia_plaga,Plaga,Izurritea,Plaga,Praga
+agro.tipo_obligatorio,Tipo *,Mota *,Tipus *,Tipo *
+agro.tipo_otro,Otro,Bestelakoa,Altre,Outro
+agro.tipo_tratamiento_abono,Abono,Ongarria,Adob,Abono
+agro.tipo_tratamiento_fitosanitario,Fitosanitario,Fitosanitarioa,Fitosanitari,Fitosanitario
+agro.tipo_tratamiento_poda,Poda,Inausketa,Poda,Poda
+agro.tipo_tratamiento_riego,Riego,Ureztatzea,Reg,Rega
+agro.titular_datos_solo_locales,Estos datos solo se usan para generar el cuaderno de explotación localmente en tu móvil. No se envían a ningún servidor en v1.,Datu hauek ustiategiko koadernoa zure mugikorrean sortzeko soilik erabiltzen dira. v1 bertsioan ez zaizkio inongo zerbitzariri bidaltzen.,Aquestes dades només s'utilitzen per generar el quadern d'explotació localment al teu mòbil. A la v1 no s'envien a cap servidor.,Estes datos só se usan para xerar o caderno de explotación localmente no teu móbil. Na v1 non se envían a ningún servidor.
+agro.titular_de_la_explotacion,Titular de la explotación,Ustiategiaren titularra,Titular de l'explotació,Titular da explotación
+agro.todas_las_fincas,Todas las fincas,Finka guztiak,Totes les finques,Todas as fincas
+agro.todas_las_fincas_con_sueltos,Todas las fincas (incluye puntos sueltos),Finka guztiak (puntu solteak barne),Totes les finques (inclou punts solts),Todas as fincas (inclúe puntos soltos)
+agro.total_de_plantas,Total de plantas,Landareak guztira,Total de plantes,Total de plantas
+agro.total_filas_leidas,Total de filas leídas: {n},Irakurritako errenkadak guztira: {n},Total de files llegides: {n},Total de filas lidas: {n}
+agro.total_mayusculas,TOTAL,GUZTIRA,TOTAL,TOTAL
+agro.transporte,Transporte,Garraioa,Transport,Transporte
+agro.trastorno_fisiologico,Trastorno fisiológico,Nahaste fisiologikoa,Trastorn fisiològic,Trastorno fisiolóxico
+agro.tratamiento,Tratamiento,Tratamendua,Tractament,Tratamento
+agro.tratamientos_delicados,Tratamientos delicados,Tratamendu delikatuak,Tractaments delicats,Tratamentos delicados
+agro.tratamientos_delicados_cuerpo,Viento o lluvia pueden reducir eficacia y aumentar deriva.,Haizeak edo euriak eraginkortasuna murriztu eta deriba handitu dezakete.,El vent o la pluja poden reduir l'eficàcia i augmentar la deriva.,O vento ou a choiva poden reducir a eficacia e aumentar a deriva.
+agro.tratamientos_delicados_viento_lluvia,Tratamientos delicados (viento / lluvia),Tratamendu delikatuak (haizea / euria),Tractaments delicats (vent / pluja),Tratamentos delicados (vento / choiva)
+agro.tratamientos_fitosanitarios,Tratamientos fitosanitarios,Tratamendu fitosanitarioak,Tractaments fitosanitaris,Tratamentos fitosanitarios
+agro.trimestre_abr_jun,abr-jun,api-eka,abr-juny,abr-xuñ
+agro.trimestre_abreviado_n,T{n},{n}H,T{n},T{n}
+agro.trimestre_ene_mar,ene-mar,urt-mar,gen-març,xan-mar
+agro.trimestre_jul_sep,jul-sep,uzt-ira,jul-set,xul-set
+agro.trimestre_oct_dic,oct-dic,urr-abe,oct-des,out-dec
+agro.trimestres,Trimestres,Hiruhilekoak,Trimestres,Trimestres
+agro.trufas_que_puede_albergar,Trufas que puede albergar,Har ditzakeen boilurrak,Tòfones que pot acollir,Trufas que pode albergar
+agro.tu_cuaderno_de_campo_digital,Tu cuaderno de campo digital,Zure landa-koaderno digitala,El teu quadern de camp digital,O teu caderno de campo dixital
+agro.tu_primera_finca,Tu primera finca,Zure lehen finka,La teva primera finca,A túa primeira finca
+agro.ubicacion_gps,Ubicación GPS,GPS kokapena,Ubicació GPS,Localización GPS
+agro.ultima_copia,Última copia,Azken kopia,Darrera còpia,Última copia
+agro.ultimo_gps_coordenadas,Último GPS: {coordenadas},Azken GPSa: {coordenadas},Darrer GPS: {coordenadas},Último GPS: {coordenadas}
+agro.una_planta,1 planta,Landare 1,1 planta,1 planta
+agro.unidades,Unidades,Unitateak,Unitats,Unidades
+agro.unidades_abreviado_n,{n} ud,{n} ale,{n} u.,{n} ud.
+agro.usa_boton_grabar_mapa,Usa el botón ⏺ del mapa para empezar.,Erabili maparen ⏺ botoia hasteko.,Fes servir el botó ⏺ del mapa per començar.,Usa o botón ⏺ do mapa para comezar.
+agro.usar_centro_del_mapa,Usar centro del mapa,Maparen erdigunea erabili,Fer servir el centre del mapa,Usar o centro do mapa
+agro.usar_gps_actual,Usar GPS actual,Uneko GPSa erabili,Fer servir el GPS actual,Usar o GPS actual
+agro.variedad,Variedad,Barietatea,Varietat,Variedade
+agro.variedades_habituales,Variedades habituales,Ohiko barietateak,Varietats habituals,Variedades habituais
+agro.ve_al_mapa_anadir_aqui,Ve al mapa y usa el botón «Añadir aquí».,Joan mapara eta erabili «Hemen gehitu» botoia.,Vés al mapa i fes servir el botó «Afegir aquí».,Vai ao mapa e usa o botón «Engadir aquí».
+agro.venta_de_cosecha,Venta de cosecha,Uzta-salmenta,Venda de collita,Venda de colleita
+agro.venta_de_lena_madera,Venta de leña / madera,Egur-salmenta,Venda de llenya / fusta,Venda de leña / madeira
+agro.ventana_razonable,Ventana razonable,Leiho egokia,Finestra raonable,Xanela razoable
+agro.ventana_razonable_cuerpo,"Sin señales fuertes de helada, deriva, lluvia o estrés hídrico.","Ez dago izozte, deriba, euri edo ur-estresaren seinale nabarmenik.","Sense senyals forts de gelada, deriva, pluja o estrès hídric.","Sen sinais fortes de xeada, deriva, choiva ou estrés hídrico."
+agro.version_instalada_y_ultima,Versión instalada y última publicada,Instalatutako bertsioa eta argitaratutako azkena,Versió instal·lada i última publicada,Versión instalada e última publicada
+agro.veterinario,Veterinario,Albaitaria,Veterinari,Veterinario
+agro.vuelo_abejas_limitado,Vuelo de abejas limitado,Erleen hegaldia mugatua,Vol d'abelles limitat,Voo de abellas limitado
+agro.vuelo_abejas_limitado_cuerpo,"Frío, lluvia o viento pueden frenar pecoreo y manejo.","Hotzak, euriak edo haizeak pecoreoa eta maneiua gelditu ditzakete.","El fred, la pluja o el vent poden frenar el pecoreig i el maneig.","O frío, a choiva ou o vento poden frear o pecoreo e o manexo."
+agro.y_n_mas,… y {n} más,… eta beste {n},… i {n} més,… e {n} máis

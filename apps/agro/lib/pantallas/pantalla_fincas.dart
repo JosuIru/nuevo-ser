@@ -32,7 +32,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   }
 
   Future<void> _alAnadir() async {
-    final nombre = await _pedirNombre(context: context, titulo: 'Nueva finca');
+    final nombre = await _pedirNombre(context: context, titulo: SoleraL10n.t('agro.nueva_finca'));
     if (nombre == null || nombre.trim().isEmpty) return;
     await BaseDatosAgro.instancia.guardarFinca(Finca(
       nombre: nombre.trim(),
@@ -45,7 +45,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   Future<void> _alRenombrar(Finca finca) async {
     final nuevoNombre = await _pedirNombre(
       context: context,
-      titulo: 'Renombrar finca',
+      titulo: SoleraL10n.t('agro.renombrar_finca'),
       valorInicial: finca.nombre,
     );
     if (nuevoNombre == null || nuevoNombre.trim().isEmpty) return;
@@ -57,11 +57,11 @@ class _PantallaFincasState extends State<PantallaFincas> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('¿Borrar la finca «${finca.nombre}»?'),
-        content: Text('Las plantas de la finca se conservarán como puntos sueltos. Su historia (cosechas, observaciones, etc.) no se perderá.'),
+        title: Text(SoleraL10n.tf('agro.pregunta_borrar_finca', {'nombre': finca.nombre})),
+        content: Text(SoleraL10n.t('agro.borrar_finca_plantas_quedan_sueltas')),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
-          TextButton(onPressed: () => Navigator.pop(context, true), child: Text('Borrar', style: TextStyle(color: Colors.red))),
+          TextButton(onPressed: () => Navigator.pop(context, true), child: Text(SoleraL10n.t('borrar'), style: TextStyle(color: Colors.red))),
         ],
       ),
     );
@@ -73,7 +73,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Fincas')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.fincas'))),
       body: _cargando
           ? Center(child: CircularProgressIndicator())
           : _fincas.isEmpty
@@ -81,7 +81,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
                   child: Padding(
                     padding: EdgeInsets.all(24),
                     child: Text(
-                      'Aún no has creado ninguna finca.\nPuedes registrar plantas como puntos sueltos\no crear una finca primero.',
+                      '${SoleraL10n.t('agro.aun_no_hay_fincas_ayuda_1')}\n${SoleraL10n.t('agro.aun_no_hay_fincas_ayuda_2')}',
                       textAlign: TextAlign.center,
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -120,8 +120,8 @@ class _PantallaFincasState extends State<PantallaFincas> {
                           if (op == 'borrar') _alBorrar(f);
                         },
                         itemBuilder: (_) => [
-                          const PopupMenuItem(value: 'renombrar', child: Text('Renombrar')),
-                          const PopupMenuItem(value: 'sigpac', child: Text('Datos SIGPAC y superficie')),
+                          PopupMenuItem(value: 'renombrar', child: Text(SoleraL10n.t('agro.renombrar'))),
+                          PopupMenuItem(value: 'sigpac', child: Text(SoleraL10n.t('agro.datos_sigpac_y_superficie'))),
                           PopupMenuItem(value: 'borrar', child: Text(SoleraL10n.t('borrar'))),
                         ],
                       ),
@@ -149,7 +149,7 @@ Future<String?> _pedirNombre({
       content: TextField(
         controller: controlador,
         autofocus: true,
-        decoration: InputDecoration(labelText: 'Nombre'),
+        decoration: InputDecoration(labelText: SoleraL10n.t('agro.nombre')),
       ),
       actions: [
         TextButton(onPressed: () => Navigator.pop(context), child: Text(SoleraL10n.t('cancelar'))),

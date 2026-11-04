@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../servicios/csv_plantas.dart';
@@ -55,7 +56,7 @@ class _PantallaImportarCsvState extends State<PantallaImportarCsv> {
       _nombreFichero = null;
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Importadas $insertadas plantas.')),
+      SnackBar(content: Text(SoleraL10n.tf('agro.importadas_n_plantas', {'n': insertadas}))),
     );
   }
 
@@ -64,7 +65,7 @@ class _PantallaImportarCsvState extends State<PantallaImportarCsv> {
     try {
       final fichero = await exportarPlantasACsv();
       if (!mounted) return;
-      await Share.shareXFiles([XFile(fichero.path)], subject: 'Plantas exportadas');
+      await Share.shareXFiles([XFile(fichero.path)], subject: SoleraL10n.t('agro.plantas_exportadas'));
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -73,24 +74,25 @@ class _PantallaImportarCsvState extends State<PantallaImportarCsv> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Importar / exportar plantas')),
+      appBar: AppBar(title: Text(SoleraL10n.t('agro.importar_exportar_plantas'))),
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            const Text('Importar CSV', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('agro.importar_csv'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 4),
-            const Text(
-              'Columnas esperadas: cultivo_id, variedad, latitud, longitud, etiqueta, finca, '
-              'fecha_plantacion (YYYY-MM-DD), patron, notas. Solo cultivo_id, latitud y longitud son obligatorios.',
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+            Text(
+              SoleraL10n.t('agro.importar_csv_columnas'),
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
             ),
             const SizedBox(height: 12),
             FilledButton.tonalIcon(
               icon: const Icon(Icons.upload_file),
               onPressed: _seleccionarCsv,
-              label: Text(_nombreFichero == null ? 'Seleccionar CSV' : 'Cambiar CSV ($_nombreFichero)'),
+              label: Text(_nombreFichero == null
+                  ? SoleraL10n.t('agro.seleccionar_csv')
+                  : SoleraL10n.tf('agro.cambiar_csv', {'fichero': _nombreFichero})),
             ),
             if (_parseo != null) ...[
               const SizedBox(height: 16),
@@ -99,22 +101,23 @@ class _PantallaImportarCsvState extends State<PantallaImportarCsv> {
               FilledButton.icon(
                 icon: const Icon(Icons.check),
                 onPressed: _parseo!.filasValidas.isEmpty || _trabajando ? null : _confirmarImport,
-                label: Text('Importar ${_parseo!.filasValidas.length} planta${_parseo!.filasValidas.length == 1 ? '' : 's'}'),
+                label: Text(_parseo!.filasValidas.length == 1
+                    ? SoleraL10n.t('agro.importar_una_planta')
+                    : SoleraL10n.tf('agro.importar_n_plantas', {'n': _parseo!.filasValidas.length})),
               ),
             ],
             const Divider(height: 32),
-            const Text('Exportar CSV', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('agro.exportar_csv'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 4),
-            const Text(
-              'Genera un CSV con todas las plantas (incluidos puntos sueltos). Útil para hacer una copia de seguridad, '
-              'editar en hoja de cálculo y reimportar, o pasar datos a otro dispositivo.',
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+            Text(
+              SoleraL10n.t('agro.exportar_csv_explicacion'),
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
             ),
             const SizedBox(height: 12),
             OutlinedButton.icon(
               icon: const Icon(Icons.download),
               onPressed: _trabajando ? null : _exportar,
-              label: const Text('Exportar y compartir'),
+              label: Text(SoleraL10n.t('agro.exportar_y_compartir')),
             ),
           ],
         ),
@@ -135,23 +138,23 @@ class _PreviewParseo extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Resumen del CSV', style: Theme.of(context).textTheme.titleSmall),
+            Text(SoleraL10n.t('agro.resumen_del_csv'), style: Theme.of(context).textTheme.titleSmall),
             const SizedBox(height: 8),
-            Text('Total de filas leídas: ${parseo.total}'),
-            Text('  · Válidas: ${parseo.filasValidas.length}', style: const TextStyle(color: Colors.green)),
-            Text('  · Con error: ${parseo.filasInvalidas.length}', style: TextStyle(color: parseo.filasInvalidas.isEmpty ? Colors.grey : Colors.red)),
+            Text(SoleraL10n.tf('agro.total_filas_leidas', {'n': parseo.total})),
+            Text('  · ${SoleraL10n.tf('agro.filas_validas_n', {'n': parseo.filasValidas.length})}', style: const TextStyle(color: Colors.green)),
+            Text('  · ${SoleraL10n.tf('agro.filas_con_error_n', {'n': parseo.filasInvalidas.length})}', style: TextStyle(color: parseo.filasInvalidas.isEmpty ? Colors.grey : Colors.red)),
             if (parseo.nombresFincasNuevas.isNotEmpty) ...[
               const SizedBox(height: 8),
-              const Text('Fincas nuevas que se crearán:', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(SoleraL10n.t('agro.fincas_nuevas_que_se_crearan'), style: const TextStyle(fontWeight: FontWeight.bold)),
               for (final n in parseo.nombresFincasNuevas) Text('  · $n'),
             ],
             if (parseo.filasInvalidas.isNotEmpty) ...[
               const SizedBox(height: 8),
-              const Text('Filas con error:', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(SoleraL10n.t('agro.filas_con_error'), style: const TextStyle(fontWeight: FontWeight.bold)),
               for (final inv in parseo.filasInvalidas.take(20))
-                Text('  · Línea ${inv.numeroLinea}: ${inv.motivo}', style: const TextStyle(color: Colors.red)),
+                Text('  · ${SoleraL10n.tf('agro.linea_motivo', {'n': inv.numeroLinea, 'motivo': inv.motivo})}', style: const TextStyle(color: Colors.red)),
               if (parseo.filasInvalidas.length > 20)
-                Text('  · …y ${parseo.filasInvalidas.length - 20} más', style: const TextStyle(color: Colors.red)),
+                Text('  · ${SoleraL10n.tf('agro.y_n_mas', {'n': parseo.filasInvalidas.length - 20})}', style: const TextStyle(color: Colors.red)),
             ],
           ],
         ),

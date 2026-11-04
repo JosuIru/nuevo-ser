@@ -195,23 +195,23 @@ class _PantallaMapaState extends State<PantallaMapa> {
           children: [
             ListTile(
               leading: Icon(Icons.add_location),
-              title: Text('Añadir planta'),
-              subtitle: Text('Elige cómo fijar el punto inicial.'),
+              title: Text(SoleraL10n.t('agro.anadir_planta')),
+              subtitle: Text(SoleraL10n.t('agro.elige_como_fijar_punto_inicial')),
             ),
             Divider(height: 1),
             ListTile(
               leading: Icon(Icons.gps_fixed),
-              title: Text('Usar GPS actual'),
+              title: Text(SoleraL10n.t('agro.usar_gps_actual')),
               subtitle: Text(
                 _posicionGps == null
-                    ? 'Captura una posición nueva del dispositivo.'
-                    : 'Último GPS: ${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}',
+                    ? SoleraL10n.t('agro.captura_posicion_nueva_dispositivo')
+                    : SoleraL10n.tf('agro.ultimo_gps_coordenadas', {'coordenadas': '${_posicionGps!.latitude.toStringAsFixed(6)}, ${_posicionGps!.longitude.toStringAsFixed(6)}'}),
               ),
               onTap: () => Navigator.pop(context, _OrigenAltaMapa.gps),
             ),
             ListTile(
               leading: Icon(Icons.center_focus_strong),
-              title: Text('Usar centro del mapa'),
+              title: Text(SoleraL10n.t('agro.usar_centro_del_mapa')),
               subtitle: Text(
                 '${_centroActual.latitude.toStringAsFixed(6)}, ${_centroActual.longitude.toStringAsFixed(6)}',
               ),
@@ -235,7 +235,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Falta permiso de ubicación o GPS desactivado.'),
+          content: Text(SoleraL10n.t('agro.falta_permiso_ubicacion_o_gps_desactivado')),
         ),
       );
       return;
@@ -289,7 +289,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     if (!permitido) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Falta permiso de ubicación.')),
+          SnackBar(content: Text(SoleraL10n.t('agro.falta_permiso_ubicacion'))),
         );
       }
       return;
@@ -307,7 +307,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('No se pudo obtener el GPS actual.')),
+          SnackBar(content: Text(SoleraL10n.t('agro.no_se_pudo_obtener_gps_actual'))),
         );
       }
     }
@@ -414,12 +414,12 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 Icons.shopping_basket,
                 color: Color(0xFF689F38),
               ),
-              title: Text('Cosecha rápida'),
+              title: Text(SoleraL10n.t('agro.cosecha_rapida')),
               onTap: () => Navigator.pop(context, _AccionMarcador.cosecha),
             ),
             ListTile(
               leading: Icon(Icons.visibility, color: Color(0xFF1976D2)),
-              title: Text('Observación rápida'),
+              title: Text(SoleraL10n.t('agro.observacion_rapida')),
               onTap: () => Navigator.pop(context, _AccionMarcador.observacion),
             ),
             ListTile(
@@ -427,13 +427,13 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 Icons.warning_amber,
                 color: Color(0xFFE65100),
               ),
-              title: Text('Incidencia rápida'),
+              title: Text(SoleraL10n.t('agro.incidencia_rapida')),
               onTap: () => Navigator.pop(context, _AccionMarcador.incidencia),
             ),
             Divider(height: 1),
             ListTile(
               leading: Icon(Icons.open_in_new),
-              title: Text('Abrir ficha completa'),
+              title: Text(SoleraL10n.t('agro.abrir_ficha_completa')),
               onTap: () => Navigator.pop(context, _AccionMarcador.abrirFicha),
             ),
           ],
@@ -479,16 +479,16 @@ class _PantallaMapaState extends State<PantallaMapa> {
       final guardar = await showDialog<bool>(
         context: context,
         builder: (_) => AlertDialog(
-          title: Text('Detener recorrido'),
+          title: Text(SoleraL10n.t('agro.detener_recorrido')),
           content: TextField(
             controller: controlador,
-            decoration: InputDecoration(labelText: 'Nombre (opcional)'),
+            decoration: InputDecoration(labelText: SoleraL10n.t('agro.nombre_opcional')),
             autofocus: true,
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: Text('Descartar'),
+              child: Text(SoleraL10n.t('agro.descartar')),
             ),
             FilledButton(
               onPressed: () => Navigator.pop(context, true),
@@ -509,7 +509,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                  'Recorrido guardado (${r.puntos.length} puntos).',
+                  SoleraL10n.tf('agro.recorrido_guardado_n_puntos', {'n': r.puntos.length}),
                 ),
               ),
             );
@@ -523,7 +523,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       if (!permitido) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Falta permiso de ubicación.')),
+            SnackBar(content: Text(SoleraL10n.t('agro.falta_permiso_ubicacion'))),
           );
         }
         return;
@@ -534,7 +534,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              '🔴 Grabando recorrido. Puedes bloquear la pantalla, sigue activo.',
+              '🔴 ${SoleraL10n.t('agro.grabando_recorrido_puedes_bloquear')}',
             ),
           ),
         );
@@ -589,7 +589,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
         actions: [
           IconButton(
             icon: const Icon(Icons.search),
-            tooltip: 'Buscar un lugar',
+            tooltip: SoleraL10n.t('agro.buscar_un_lugar'),
             onPressed: _buscarLugar,
           ),
           IconButton(
@@ -600,13 +600,13 @@ class _PantallaMapaState extends State<PantallaMapa> {
             ),
             color: GrabadorTrack.instancia.grabando ? Colors.red : null,
             tooltip: GrabadorTrack.instancia.grabando
-                ? 'Detener recorrido'
-                : 'Grabar recorrido GPS',
+                ? SoleraL10n.t('agro.detener_recorrido')
+                : SoleraL10n.t('agro.grabar_recorrido_gps'),
             onPressed: _alternarGrabacionTrack,
           ),
           IconButton(
             icon: const Icon(Icons.route),
-            tooltip: 'Recorridos guardados',
+            tooltip: SoleraL10n.t('agro.recorridos_guardados'),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => PantallaTracks()),
             ),
@@ -619,8 +619,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
             ),
             color: _modoCenso ? Colors.amber : null,
             tooltip: _modoCenso
-                ? 'Modo censo activo (toca el mapa para añadir)'
-                : 'Activar modo censo',
+                ? SoleraL10n.t('agro.modo_censo_activo_toca_mapa')
+                : SoleraL10n.t('agro.activar_modo_censo'),
             onPressed: () => setState(() => _modoCenso = !_modoCenso),
           ),
         ],
@@ -735,7 +735,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                   child: Text(
-                    'Esri satélite',
+                    SoleraL10n.t('agro.esri_satelite'),
                     style: TextStyle(color: Colors.white, fontSize: 11),
                   ),
                 ),
@@ -764,7 +764,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Text(
-                    'Modo censo: toca el mapa para añadir una planta en ese punto.',
+                    SoleraL10n.t('agro.modo_censo_toca_mapa_para_anadir_planta'),
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -793,7 +793,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                             : Icons.map_outlined,
                       ),
                       label: Text(
-                        _estiloMapa == _EstiloMapa.calle ? 'Capas' : 'Mapa',
+                        _estiloMapa == _EstiloMapa.calle ? SoleraL10n.t('agro.capas') : SoleraL10n.t('mapa'),
                       ),
                     ),
                   ),
@@ -820,8 +820,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       ),
                       child: Text(
                         _altitudGps == null
-                            ? 'Alt. GPS --'
-                            : 'Alt. GPS ${_altitudGps!.toStringAsFixed(0)} m',
+                            ? SoleraL10n.t('agro.altitud_gps_sin_dato')
+                            : SoleraL10n.tf('agro.altitud_gps_metros', {'metros': _altitudGps!.toStringAsFixed(0)}),
                       ),
                     ),
                   ),
@@ -834,7 +834,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _alAnadirAqui,
         icon: Icon(Icons.add_location),
-        label: Text('Añadir aquí'),
+        label: Text(SoleraL10n.t('agro.anadir_aqui')),
       ),
     );
   }
@@ -856,13 +856,13 @@ class _SelectorFincaActiva extends StatelessWidget {
     return DropdownButtonHideUnderline(
       child: DropdownButton<int?>(
         value: fincaActivaId,
-        hint: Text('Todas las fincas'),
+        hint: Text(SoleraL10n.t('agro.todas_las_fincas')),
         isDense: true,
         onChanged: alCambiar,
         items: [
-          const DropdownMenuItem<int?>(
+          DropdownMenuItem<int?>(
             value: null,
-            child: Text('Todas las fincas'),
+            child: Text(SoleraL10n.t('agro.todas_las_fincas')),
           ),
           for (final finca in fincas)
             DropdownMenuItem<int?>(value: finca.id, child: Text(finca.nombre)),

@@ -175,17 +175,15 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
   }
 
   String get _titulo {
-    final prefijo = _esEdicion ? 'Editar' : 'Nueva';
-    final prefijoTratamiento = _esEdicion ? 'Editar' : 'Nuevo';
     switch (widget.tipo) {
       case TipoEventoNuevo.cosecha:
-        return '$prefijo cosecha';
+        return SoleraL10n.t(_esEdicion ? 'agro.editar_cosecha' : 'agro.nueva_cosecha');
       case TipoEventoNuevo.observacion:
-        return '$prefijo observación';
+        return SoleraL10n.t(_esEdicion ? 'agro.editar_observacion' : 'agro.nueva_observacion');
       case TipoEventoNuevo.incidencia:
-        return '$prefijo incidencia';
+        return SoleraL10n.t(_esEdicion ? 'agro.editar_incidencia' : 'agro.nueva_incidencia');
       case TipoEventoNuevo.tratamiento:
-        return '$prefijoTratamiento tratamiento';
+        return SoleraL10n.t(_esEdicion ? 'agro.editar_tratamiento' : 'agro.nuevo_tratamiento');
     }
   }
 
@@ -205,9 +203,9 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         _controladorPlazoSeguridad.text = p.plazoSeguridadDias.toString();
       }
     });
-    final mensaje = StringBuffer('Producto del catálogo seleccionado.');
+    final mensaje = StringBuffer(SoleraL10n.t('agro.producto_del_catalogo_seleccionado'));
     if (!p.autorizadoParaCultivo(_cultivoIdPlanta)) {
-      mensaje.write(' Aviso: el cultivo de la planta no figura en los autorizados de este producto — verifica antes de aplicar.');
+      mensaje.write(' ${SoleraL10n.t('agro.aviso_cultivo_no_autorizado_producto')}');
     }
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(mensaje.toString()), duration: Duration(seconds: 5)),
@@ -241,8 +239,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           controller: controlador,
           focusNode: foco,
           decoration: InputDecoration(
-            labelText: 'Producto',
-            hintText: 'Empieza a escribir para ver sugerencias del catálogo',
+            labelText: SoleraL10n.t('agro.producto'),
+            hintText: SoleraL10n.t('agro.ayuda_producto_catalogo'),
             border: OutlineInputBorder(),
           ),
         );
@@ -266,7 +264,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     subtitle: Text(
                       '${p.materiaActiva} · ${p.tipo.etiqueta}'
-                      '${p.ecologico ? " · Ecológico" : ""}',
+                      '${p.ecologico ? " · ${SoleraL10n.t('agro.ecologico')}" : ""}',
                       style: TextStyle(fontSize: 12),
                     ),
                     trailing: autorizado
@@ -300,7 +298,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
       }
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Diagnóstico rellenado. Revísalo y guarda.')),
+      SnackBar(content: Text(SoleraL10n.t('agro.diagnostico_rellenado_revisa'))),
     );
   }
 
@@ -435,7 +433,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: Icon(Icons.calendar_today),
-                title: Text('Fecha: ${_fecha.day}/${_fecha.month}/${_fecha.year}'),
+                title: Text(SoleraL10n.tf('agro.fecha_valor', {'fecha': '${_fecha.day}/${_fecha.month}/${_fecha.year}'})),
                 onTap: () async {
                   final pick = await showDatePicker(
                     context: context,
@@ -450,7 +448,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               ..._camposEspecificos(),
               if (widget.tipo != TipoEventoNuevo.tratamiento) ...[
                 SizedBox(height: 16),
-                Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(SoleraL10n.t('agro.fotos'), style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 8),
                 SelectorFotos(
                   rutas: _rutasFotos,
@@ -460,7 +458,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               SizedBox(height: 12),
               TextFormField(
                 controller: _controladorNotas,
-                decoration: InputDecoration(labelText: 'Notas', border: OutlineInputBorder()),
+                decoration: InputDecoration(labelText: SoleraL10n.t('agro.notas'), border: OutlineInputBorder()),
                 maxLines: 3,
               ),
               SizedBox(height: 16),
@@ -485,7 +483,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               Expanded(
                 child: TextFormField(
                   controller: _controladorKilos,
-                  decoration: InputDecoration(labelText: 'Kilos', border: OutlineInputBorder()),
+                  decoration: InputDecoration(labelText: SoleraL10n.t('agro.kilos'), border: OutlineInputBorder()),
                   keyboardType: const TextInputType.numberWithOptions(decimal: true),
                   inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[\d.,]'))],
                   validator: (v) => validarNumeroOpcional(v, nullSiAmbiguo: true),
@@ -495,7 +493,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               Expanded(
                 child: TextFormField(
                   controller: _controladorUnidades,
-                  decoration: InputDecoration(labelText: 'Unidades', border: OutlineInputBorder()),
+                  decoration: InputDecoration(labelText: SoleraL10n.t('agro.unidades'), border: OutlineInputBorder()),
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 ),
@@ -504,7 +502,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           ),
           SizedBox(height: 12),
           _SelectorPuntuacion(
-            etiqueta: 'Calidad',
+            etiqueta: SoleraL10n.t('agro.calidad'),
             valor: _calidad,
             alCambiar: (v) => setState(() => _calidad = v),
           ),
@@ -512,7 +510,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
       case TipoEventoNuevo.observacion:
         return [
           _SelectorPuntuacion(
-            etiqueta: 'Salud',
+            etiqueta: SoleraL10n.t('agro.salud'),
             valor: _salud,
             alCambiar: (v) => setState(() => _salud = v),
           ),
@@ -521,13 +519,13 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           DropdownButtonFormField<String>(
             initialValue: _tipoIncidencia,
-            decoration: InputDecoration(labelText: 'Tipo *', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'plaga', child: Text('Plaga')),
-              DropdownMenuItem(value: 'enfermedad', child: Text('Enfermedad')),
-              DropdownMenuItem(value: 'estres', child: Text('Estrés (hídrico, térmico…)')),
-              DropdownMenuItem(value: 'fisiologico', child: Text('Trastorno fisiológico')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('agro.tipo_obligatorio'), border: OutlineInputBorder()),
+            items: [
+              DropdownMenuItem(value: 'plaga', child: Text(SoleraL10n.t('agro.plaga'))),
+              DropdownMenuItem(value: 'enfermedad', child: Text(SoleraL10n.t('agro.enfermedad'))),
+              DropdownMenuItem(value: 'estres', child: Text(SoleraL10n.t('agro.estres_hidrico_termico'))),
+              DropdownMenuItem(value: 'fisiologico', child: Text(SoleraL10n.t('agro.trastorno_fisiologico'))),
+              DropdownMenuItem(value: 'otro', child: Text(SoleraL10n.t('agro.otro'))),
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
           ),
@@ -535,13 +533,13 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorDiagnostico,
             decoration: InputDecoration(
-              labelText: 'Diagnóstico (p. ej., mosca del olivo)',
+              labelText: SoleraL10n.t('agro.diagnostico_ejemplo'),
               border: OutlineInputBorder(),
             ),
           ),
           SizedBox(height: 12),
           _SelectorPuntuacion(
-            etiqueta: 'Severidad',
+            etiqueta: SoleraL10n.t('agro.severidad'),
             valor: _severidad,
             alCambiar: (v) => setState(() => _severidad = v),
           ),
@@ -559,13 +557,13 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           DropdownButtonFormField<String>(
             initialValue: _tipoTratamiento,
-            decoration: InputDecoration(labelText: 'Tipo *', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'fitosanitario', child: Text('Fitosanitario')),
-              DropdownMenuItem(value: 'abono', child: Text('Abono')),
-              DropdownMenuItem(value: 'riego', child: Text('Riego')),
-              DropdownMenuItem(value: 'poda', child: Text('Poda')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('agro.tipo_obligatorio'), border: OutlineInputBorder()),
+            items: [
+              DropdownMenuItem(value: 'fitosanitario', child: Text(SoleraL10n.t('agro.fitosanitario'))),
+              DropdownMenuItem(value: 'abono', child: Text(SoleraL10n.t('agro.abono'))),
+              DropdownMenuItem(value: 'riego', child: Text(SoleraL10n.t('agro.riego'))),
+              DropdownMenuItem(value: 'poda', child: Text(SoleraL10n.t('agro.poda'))),
+              DropdownMenuItem(value: 'otro', child: Text(SoleraL10n.t('agro.otro'))),
             ],
             onChanged: (v) => setState(() => _tipoTratamiento = v ?? 'otro'),
           ),
@@ -574,18 +572,18 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorDosis,
-            decoration: InputDecoration(labelText: 'Dosis', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('agro.dosis'), border: OutlineInputBorder()),
           ),
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorMotivo,
-            decoration: InputDecoration(labelText: 'Motivo', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('agro.motivo'), border: OutlineInputBorder()),
           ),
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
-              labelText: 'Plazo de seguridad (días)',
+              labelText: SoleraL10n.t('agro.plazo_seguridad_dias'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -594,20 +592,20 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           if (_tipoTratamiento == 'fitosanitario') ...[
             SizedBox(height: 16),
             Text(
-              'Cuaderno de explotación MAPA',
+              SoleraL10n.t('agro.cuaderno_explotacion_mapa_corto'),
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 4),
             Text(
-              'Estos datos son obligatorios para que el tratamiento aparezca en el cuaderno.',
+              SoleraL10n.t('agro.datos_obligatorios_tratamiento_cuaderno'),
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
             SizedBox(height: 8),
             TextFormField(
               controller: _controladorNumeroRegistroFito,
               decoration: InputDecoration(
-                labelText: 'Número de registro fitosanitario',
-                hintText: 'BBDD del MAPA, p. ej.: ES-12345',
+                labelText: SoleraL10n.t('agro.numero_registro_fitosanitario'),
+                hintText: SoleraL10n.t('agro.ayuda_numero_registro_fitosanitario'),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -615,8 +613,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorSuperficieTratada,
               decoration: InputDecoration(
-                labelText: 'Superficie tratada (ha)',
-                hintText: 'Ej.: 1,5',
+                labelText: SoleraL10n.t('agro.superficie_tratada_ha'),
+                hintText: SoleraL10n.t('agro.ejemplo_superficie_ha'),
                 border: OutlineInputBorder(),
               ),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -627,7 +625,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNifAplicador,
               decoration: InputDecoration(
-                labelText: 'NIF del aplicador (si es distinto del titular)',
+                labelText: SoleraL10n.t('agro.nif_aplicador_si_distinto'),
                 border: OutlineInputBorder(),
               ),
             ),

@@ -29,7 +29,7 @@ emitir_factura,Emitir factura,Faktura jaulki,Emetre factura,Emitir factura
 emitir_primera_factura,Emitir primera factura,Lehen faktura jaulki,Emetre primera factura,Emitir primeira factura
 en_curacion,En curación,Ontzen,En curació,En curación
 error,Error,Errorea,Error,Erro
-estado_de_cavas,Estado de cavas,Upeltegi-egoera,Estat de les caves,Estado das cavas
+estado_de_cavas,Estado de cavas,Ontze-gelen egoera,Estat de les caves,Estado das cavas
 facturas,Facturas,Fakturak,Factures,Facturas
 fresca,Fresca,Freskoa,Fresca,Fresca
 guardar,Guardar,Gorde,Desar,Gardar
@@ -37,7 +37,7 @@ guardar_partida,Guardar partida,Partida gorde,Desar partida,Gardar partida
 identificacion_con_ia,Identificación con IA,AA bidezko identifikazioa,Identificació amb IA,Identificación con IA
 importe_no_valido,"Importe no válido (p. ej. 1.200,50)","Zenbateko okerra (adib. 1.200,50)","Import no vàlid (p. ex. 1.200,50)","Importe non válido (p. ex. 1.200,50)"
 importe_obligatorio,Importe obligatorio,Zenbatekoa derrigorrezkoa da,Import obligatori,Importe obrigatorio
-inventario_de_cava,Inventario de cava,Upeltegiaren inbentarioa,Inventari de la cava,Inventario da cava
+inventario_de_cava,Inventario de cava,Ontze-gelaren inbentarioa,Inventari de la cava,Inventario da cava
 libro_de_trazabilidad_appcc,Libro de trazabilidad APPCC,APPCC trazabilitate-liburua,Llibre de traçabilitat APPCC,Libro de rastrexabilidade APPCC
 libro_economico,Libro económico,Liburu ekonomikoa,Llibre econòmic,Libro económico
 lista,Lista,Prest,Llest,Lista

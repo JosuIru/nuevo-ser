@@ -15553,7 +15553,7 @@ class SoleraL10n {
       case 'emitir_primera_factura': return 'Lehen faktura jaulki';
       case 'en_curacion': return 'Ontzen';
       case 'error': return 'Errorea';
-      case 'estado_de_cavas': return 'Upeltegi-egoera';
+      case 'estado_de_cavas': return 'Ontze-gelen egoera';
       case 'facturas': return 'Fakturak';
       case 'fresca': return 'Freskoa';
       case 'guardar': return 'Gorde';
@@ -15561,7 +15561,7 @@ class SoleraL10n {
       case 'identificacion_con_ia': return 'AA bidezko identifikazioa';
       case 'importe_no_valido': return 'Zenbateko okerra (adib. 1.200,50)';
       case 'importe_obligatorio': return 'Zenbatekoa derrigorrezkoa da';
-      case 'inventario_de_cava': return 'Upeltegiaren inbentarioa';
+      case 'inventario_de_cava': return 'Ontze-gelaren inbentarioa';
       case 'libro_de_trazabilidad_appcc': return 'APPCC trazabilitate-liburua';
       case 'libro_economico': return 'Liburu ekonomikoa';
       case 'lista': return 'Prest';

@@ -408,6 +408,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                 maxZoom: 22,
                 maxNativeZoom: 19,
               ),
+              // Las condiciones de uso de OSM y Esri piden citarlos.
+              SimpleAttributionWidget(source: Text(_estiloMapa == _EstiloMapa.calle ? 'OpenStreetMap' : 'Esri')),
               MarkerClusterLayerWidget(
                 options: MarkerClusterLayerOptions(
                   maxClusterRadius: 42,

@@ -336,6 +336,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                   keepBuffer: 4,
                   panBuffer: 1,
                 ),
+                // Las condiciones de uso de OSM y Esri piden citarlos.
+                SimpleAttributionWidget(source: Text(_estiloMapa == _EstiloMapa.calle ? 'OpenStreetMap' : 'Esri')),
                 MarkerClusterLayerWidget(
                   options: MarkerClusterLayerOptions(
                     maxClusterRadius: 42,

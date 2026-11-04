@@ -95,6 +95,8 @@ class _PantallaTracksState extends State<PantallaTracks> {
                       userAgentPackageName: 'com.josu.agro',
                       maxZoom: 19,
                     ),
+                    // Las condiciones de uso de OSM y Esri piden citarlos.
+                    SimpleAttributionWidget(source: const Text('OpenStreetMap')),
                     if (puntosLatLng.length >= 2)
                       PolylineLayer(polylines: [
                         Polyline(points: puntosLatLng, color: Color(0xFF558B2F), strokeWidth: 4),

@@ -336,6 +336,8 @@ class _PantallaMapaState extends State<PantallaMapa> {
                       userAgentPackageName: 'com.coleccionnuevoser.solera_arbolado_urbano',
                       maxNativeZoom: 19,
                     ),
+                    // Las condiciones de uso de OSM y Esri piden citarlos.
+                    SimpleAttributionWidget(source: Text(_capaMapa == _CapaMapa.callejero ? 'OpenStreetMap' : 'Esri')),
                     MarkerClusterLayerWidget(
                       options: MarkerClusterLayerOptions(
                         maxClusterRadius: 60,

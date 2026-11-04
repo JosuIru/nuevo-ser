@@ -74,13 +74,6 @@ class PantallaAcerca extends StatelessWidget {
             SoleraL10n.t('agro.familia_larrea_texto'),
             style: const TextStyle(fontSize: 13, height: 1.5),
           ),
-          const SizedBox(height: 24),
-          _Seccion(SoleraL10n.t('agro.enlaces')),
-          const ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Icon(Icons.public),
-            title: SelectableText('https://coleccion-nuevo-ser.com/'),
-          ),
         ],
       ),
     );

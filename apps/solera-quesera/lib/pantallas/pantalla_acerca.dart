@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../datos/catalogos_generados/defectos_queso.dart';
 import '../datos/catalogos_generados/do_quesos.dart';
@@ -17,12 +16,6 @@ const versionSoleraQuesera = '0.1.7';
 class PantallaAcerca extends StatelessWidget {
   const PantallaAcerca({super.key});
 
-  Future<void> _abrirUrl(String url) async {
-    final uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,14 +68,6 @@ class PantallaAcerca extends StatelessWidget {
           Text(
             SoleraL10n.t('ques.familia_larrea_texto'),
             style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
-          ),
-          const SizedBox(height: 24),
-          _Seccion(SoleraL10n.t('ques.enlaces')),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.public),
-            title: const Text('coleccion-nuevo-ser.com'),
-            onTap: () => _abrirUrl('https://coleccion-nuevo-ser.com/'),
           ),
         ],
       ),

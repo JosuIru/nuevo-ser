@@ -18,8 +18,8 @@ class PantallaFacturas extends StatefulWidget {
 class _PantallaFacturasState extends State<PantallaFacturas> {
   final _bd = BaseDatosSoleraQuesera.instancia;
   final _gen = GeneradorFacturaPdf(
-    marca: 'SOLERA QUESERA',
-    tituloDocumento: 'Factura Simplificada',
+    marca: 'LARREA QUESERA',
+    tituloDocumento: 'Factura simplificada',
     nombreAplicacion: 'Larrea Quesera',
     textoLegal: 'Factura generada electrónicamente. Válida como justificante fiscal conforme al RD 1619/2012.',
   );
@@ -73,7 +73,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('facturas')), actions: [
         IconButton(icon: Icon(Icons.email, color: _emailBackup != null ? Colors.green : null),
-          tooltip: _emailBackup != null ? 'Backup: $_emailBackup' : 'Configurar email', onPressed: _configEmail),
+          tooltip: _emailBackup != null ? 'Respaldo: $_emailBackup' : 'Configurar correo de respaldo', onPressed: _configEmail),
       ]),
       body: _facturas.isEmpty
         ? Center(child: Column(mainAxisSize: MainAxisSize.min, children: [Icon(Icons.receipt_long_outlined, size: 64, color: t.colorScheme.outline), const SizedBox(height: 16), Text('No hay facturas', style: t.textTheme.titleMedium), const SizedBox(height: 8), FilledButton.icon(onPressed: _nueva, icon: const Icon(Icons.add), label: const Text('Emitir primera factura'))]))
@@ -82,7 +82,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             return Card(child: ListTile(
               leading: CircleAvatar(backgroundColor: c.withAlpha(30), child: Icon(f.estado == 'pagada' ? Icons.check_circle : f.estado == 'vencida' ? Icons.error : Icons.pending, color: c, size: 20)),
               title: Text('${f.numeroFactura} — ${f.clienteNombre}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
-              subtitle: Text('${_f.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · ${f.total.toStringAsFixed(2)}€ · ${f.estado}', style: const TextStyle(fontSize: 12)),
+              subtitle: Text('${_f.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · ${f.total.toStringAsFixed(2)} € · ${f.estado}', style: const TextStyle(fontSize: 12)),
               trailing: PopupMenuButton<String>(onSelected: (a) async {
                 if (a == 'pdf') await _verPdf(f);
                 if (a == 'pagada' && f.id != null) { final db = await _bd.basedatos; await db.update('facturas', {'estado': 'pagada', 'fecha_pago_ms': DateTime.now().millisecondsSinceEpoch}, where: 'id = ?', whereArgs: [f.id]); await _recargar(); }
@@ -101,7 +101,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
 
   void _configEmail() async {
     final c = TextEditingController(text: _emailBackup ?? '');
-    final r = await showDialog<String>(context: context, builder: (_) => AlertDialog(title: const Text('Email de respaldo'), content: TextField(controller: c, decoration: const InputDecoration(hintText: 'tucorreo@ejemplo.com', border: OutlineInputBorder()), keyboardType: TextInputType.emailAddress), actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')), TextButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: const Text('Guardar'))]));
+    final r = await showDialog<String>(context: context, builder: (_) => AlertDialog(title: const Text('Correo de respaldo'), content: TextField(controller: c, decoration: const InputDecoration(hintText: 'tucorreo@ejemplo.com', border: OutlineInputBorder()), keyboardType: TextInputType.emailAddress), actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancelar')), TextButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: const Text('Guardar'))]));
     if (r != null) { (await SharedPreferences.getInstance()).setString(_claveEmail, r); setState(() => _emailBackup = r.isNotEmpty ? r : null); }
   }
 }
@@ -155,21 +155,21 @@ class _NuevaFacturaState extends State<_NuevaFactura> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: const Text('Nueva factura')),
     body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
-      TextFormField(controller: _numC, decoration: const InputDecoration(labelText: 'Nº factura', border: OutlineInputBorder(), isDense: true)),
+      TextFormField(controller: _numC, decoration: const InputDecoration(labelText: 'N.º de factura', border: OutlineInputBorder(), isDense: true)),
       const SizedBox(height: 12),
       TextFormField(controller: _cliC, decoration: const InputDecoration(labelText: 'Cliente', border: OutlineInputBorder()), validator: (v) => v == null || v.isEmpty ? 'Requerido' : null),
       const SizedBox(height: 8),
       Row(children: [Expanded(child: TextFormField(controller: _nifC, decoration: const InputDecoration(labelText: 'NIF (opcional)', border: OutlineInputBorder(), isDense: true))), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _dirC, decoration: const InputDecoration(labelText: 'Dirección (opcional)', border: OutlineInputBorder(), isDense: true)))]),
       const SizedBox(height: 16),
       Text('Líneas de factura', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
-      ..._lineas.map((l) => Card(child: ListTile(dense: true, title: Text(l['descripcion']), subtitle: Text('${l['cantidad']} x ${l['precioUnitario']}€ = ${l['importe']}€'), trailing: IconButton(icon: const Icon(Icons.delete, color: Colors.red, size: 18), onPressed: () => setState(() => _lineas.remove(l)))))),
+      ..._lineas.map((l) => Card(child: ListTile(dense: true, title: Text(l['descripcion']), subtitle: Text('${l['cantidad']} x ${l['precioUnitario']} € = ${l['importe']} €'), trailing: IconButton(icon: const Icon(Icons.delete, color: Colors.red, size: 18), onPressed: () => setState(() => _lineas.remove(l)))))),
       Row(children: [Expanded(child: TextFormField(controller: _descC, decoration: const InputDecoration(labelText: 'Descripción', border: OutlineInputBorder(), isDense: true)))]),
       const SizedBox(height: 8),
       Row(children: [Expanded(child: TextFormField(controller: _cantC, decoration: const InputDecoration(labelText: 'Cantidad', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number)), const SizedBox(width: 8), Expanded(child: TextFormField(controller: _precioC, decoration: const InputDecoration(labelText: 'Precio (€)', border: OutlineInputBorder(), isDense: true), keyboardType: TextInputType.number)), const SizedBox(width: 8), FilledButton(onPressed: _addLinea, child: const Text('+'))]),
       const SizedBox(height: 16),
-      DropdownButtonFormField<double>(decoration: const InputDecoration(labelText: 'IVA', border: OutlineInputBorder()), initialValue: _iva, items: const [DropdownMenuItem(value: 4.0, child: Text('4% (tipo reducido)')), DropdownMenuItem(value: 10.0, child: Text('10% (alimento)')), DropdownMenuItem(value: 21.0, child: Text('21% (general)'))], onChanged: (v) => setState(() => _iva = v ?? 10)),
+      DropdownButtonFormField<double>(decoration: const InputDecoration(labelText: 'IVA', border: OutlineInputBorder()), initialValue: _iva, items: const [DropdownMenuItem(value: 4.0, child: Text('4 % (tipo superreducido)')), DropdownMenuItem(value: 10.0, child: Text('10 % (tipo reducido)')), DropdownMenuItem(value: 21.0, child: Text('21 % (general)'))], onChanged: (v) => setState(() => _iva = v ?? 10)),
       const SizedBox(height: 16),
-      Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(children: [Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('Base imponible'), Text('${_base.toStringAsFixed(2)}€')]), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('IVA $_iva%'), Text('${(_base * _iva / 100).toStringAsFixed(2)}€')]), const Divider(), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('TOTAL', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)), Text('${_tot.toStringAsFixed(2)}€', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16))])]))),
+      Card(child: Padding(padding: const EdgeInsets.all(12), child: Column(children: [Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('Base imponible'), Text('${_base.toStringAsFixed(2)} €')]), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('IVA ${_iva.toStringAsFixed(0)} %'), Text('${(_base * _iva / 100).toStringAsFixed(2)} €')]), const Divider(), Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [const Text('TOTAL', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)), Text('${_tot.toStringAsFixed(2)} €', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16))])]))),
       const SizedBox(height: 16),
       FilledButton(onPressed: _emitir, child: const Text('Emitir factura')),
     ])),

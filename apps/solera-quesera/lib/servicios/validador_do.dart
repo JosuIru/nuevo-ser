@@ -72,7 +72,7 @@ class ValidadorDo {
           .difference(DateTime.fromMillisecondsSinceEpoch(lote.fechaMs))
           .inDays;
       checks.add(CheckDo(
-        etiqueta: 'Curación mínima (${curacionMin}d)',
+        etiqueta: 'Curación mínima (${curacionMin} días)',
         correcto: edadLote >= curacionMin || lote.estado != 'lista',
         detalle: edadLote >= curacionMin
             ? 'Superada: $edadLote días ≥ $curacionMin requeridos'
@@ -92,7 +92,7 @@ class ValidadorDo {
       checks.add(CheckDo(
         etiqueta: 'Razas permitidas',
         correcto: true,
-        detalle: '${doQueso.razas.join(", ")} (validar con proveedor/es)',
+        detalle: '${doQueso.razas.join(", ")} (valídalas con tus proveedores)',
       ));
     }
 
@@ -101,7 +101,7 @@ class ValidadorDo {
       etiqueta: 'Ahumado permitido',
       correcto: true,
       detalle: doQueso.ahumado_permitido == 'SÍ'
-          ? 'Sí permitido (haya, abedul, espino, cerezo, roble)'
+          ? 'Permitido (haya, abedul, espino, cerezo, roble)'
           : 'No permitido por el pliego de condiciones',
     ));
 

@@ -76,7 +76,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
                     return Card(child: ListTile(
                       leading: _IconoEstado(l.estado),
                       title: Text(l.numeroLote, style: TextStyle(fontWeight: FontWeight.bold)),
-                      subtitle: Text('${l.tipoQuesoId} · ${_formatter.format(f)} · ${l.volumenLecheTotal}L → ${l.pesoTotalObtenido}kg · ${l.numPiezasProducidas} piezas'),
+                      subtitle: Text('${l.tipoQuesoId} · ${_formatter.format(f)} · ${l.volumenLecheTotal} L → ${l.pesoTotalObtenido} kg · ${l.numPiezasProducidas} piezas'),
                       trailing: Icon(Icons.chevron_right),
                       onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => PantallaFichaLote(loteId: l.id!))),
                     ));

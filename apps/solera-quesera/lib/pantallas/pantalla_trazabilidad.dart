@@ -36,7 +36,7 @@ class _PantallaTrazabilidadState extends State<PantallaTrazabilidad> {
       appBar: AppBar(title: Text(SoleraL10n.t('libro_de_trazabilidad_appcc'))),
       body: ListView(padding: const EdgeInsets.all(16), children: [
         Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(children: [Icon(Icons.description, color: t.colorScheme.primary), const SizedBox(width: 8), Text('Libro de Trazabilidad APPCC', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))]),
+          Row(children: [Icon(Icons.description, color: t.colorScheme.primary), const SizedBox(width: 8), Text('Libro de trazabilidad APPCC', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))]),
           const Text('PDF inspeccionable con 7 secciones.', style: TextStyle(color: Colors.grey)),
           const SizedBox(height: 12),
           Row(children: [Expanded(child: OutlinedButton(onPressed: () async { final p = await showDatePicker(context: context, initialDate: _desde, firstDate: DateTime(2020), lastDate: DateTime.now()); if (p != null) setState(() => _desde = p); }, child: Text('Desde: ${_f.format(_desde)}'))), const SizedBox(width: 12), Expanded(child: OutlinedButton(onPressed: () async { final p = await showDatePicker(context: context, initialDate: _hasta, firstDate: DateTime(2020), lastDate: DateTime.now()); if (p != null) setState(() => _hasta = p); }, child: Text('Hasta: ${_f.format(_hasta)}')))]),

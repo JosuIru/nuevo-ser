@@ -41,7 +41,7 @@ class GeneradorInformeSimulacion {
             child: pw.Column(
               mainAxisAlignment: pw.MainAxisAlignment.center,
               children: [
-                pw.Text('SOLERA QUESERA',
+                pw.Text('LARREA QUESERA',
                     style: pw.TextStyle(
                       fontSize: 24,
                       fontWeight: pw.FontWeight.bold,
@@ -53,7 +53,7 @@ class GeneradorInformeSimulacion {
                         fontSize: 16,
                         fontWeight: pw.FontWeight.bold)),
                 pw.SizedBox(height: 8),
-                pw.Text('Reglamento CE 178/2002 — Artículo 18',
+                pw.Text('Reglamento (CE) 178/2002 — artículo 18',
                     style:
                         pw.TextStyle(fontSize: 10, color: PdfColors.grey)),
                 pw.SizedBox(height: 40),
@@ -215,7 +215,7 @@ class GeneradorInformeSimulacion {
                 'Documento generado por Larrea Quesera. '
                 'Este informe no sustituye la documentación APPCC oficial '
                 'sino que complementa el registro de ejercicios de trazabilidad '
-                'exigido por el Reglamento CE 178/2002.',
+                'exigido por el Reglamento (CE) 178/2002.',
             style: pw.TextStyle(fontSize: 8, color: PdfColors.grey),
           ),
         ],
@@ -336,7 +336,7 @@ class GeneradorInformeSimulacion {
                 (v['cliente'] as String?) ?? '',
                 ((v['fecha'] as String?) ?? '').substring(0, 10),
                 (v['factura'] as String?) ?? '',
-                '${v['total']}€',
+                '${v['total']} €',
               ]),
         ],
       ),

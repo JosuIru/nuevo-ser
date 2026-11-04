@@ -30,7 +30,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
           _card(theme, Icons.inventory_2, 'Trazabilidad de tu queso', 'Registra cada lote desde la leche hasta la venta.'),
           _card(theme, Icons.kitchen, 'Gestión de la cava', 'Controla cada pieza individualmente: volteos, temperatura, humedad.'),
           _card(theme, Icons.description, 'Libro de trazabilidad APPCC', 'Genera el PDF de trazabilidad que te pide el inspector.'),
-          _card(theme, Icons.verified, 'Cumplimiento de DO', 'Activa el perfil de tu Denominación de Origen.'),
+          _card(theme, Icons.verified, 'Cumplimiento de DO', 'Activa el perfil de tu denominación de origen.'),
         ])),
         Row(mainAxisAlignment: MainAxisAlignment.center, children: List.generate(4, (i) => AnimatedContainer(duration: Duration(milliseconds: 200), margin: const EdgeInsets.symmetric(horizontal: 4), width: _pagina == i ? 24 : 8, height: 8, decoration: BoxDecoration(color: _pagina == i ? theme.colorScheme.primary : theme.colorScheme.primary.withAlpha(80), borderRadius: BorderRadius.circular(4))))),
         SizedBox(height: 24),

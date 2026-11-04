@@ -37,7 +37,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
     if (!mounted) return;
     setState(() {
       _partidasHoy = p.length; _litrosHoy = l; _piezasPorEstado = pe;
-      _tempCavas = tc.map((k, v) => MapEntry(k, '${v.temperatura.toStringAsFixed(1)}°C / ${v.humedadRelativa.toStringAsFixed(0)}% HR'));
+      _tempCavas = tc.map((k, v) => MapEntry(k, '${v.temperatura.toStringAsFixed(1)} °C / ${v.humedadRelativa.toStringAsFixed(0)} % HR'));
       _pendientes = ev.map((e) => _TareaPendiente('${e.tipo} — pieza #${e.piezaId}', DateFormat('HH:mm', 'es_ES').format(DateTime.fromMillisecondsSinceEpoch(e.fechaMs)))).toList();
     });
   }

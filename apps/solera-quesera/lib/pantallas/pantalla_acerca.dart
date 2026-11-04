@@ -61,7 +61,7 @@ class PantallaAcerca extends StatelessWidget {
             'Larrea Quesera es un gestor para queserías artesanas: '
             'recepción de leche por proveedor, lotes de producción, '
             'afinado pieza a pieza en la cava, controles APPCC, perfiles '
-            'de Denominación de Origen, identificación de defectos por '
+            'de denominación de origen, identificación de defectos por '
             'foto con IA y libro de trazabilidad en PDF.',
             style: TextStyle(fontSize: 14, height: 1.5),
           ),
@@ -84,8 +84,8 @@ class PantallaAcerca extends StatelessWidget {
             'antes de imprimir.',
           ),
           const _Bullet(
-            'Tu clave Anthropic (si la configuras para IA) se guarda '
-            'sólo en tu dispositivo. Las fotos se envían directamente '
+            'Tu clave de Anthropic (si la configuras para la IA) se guarda '
+            'solo en tu dispositivo. Las fotos se envían directamente '
             'a Anthropic, sin pasar por servidores intermedios.',
           ),
           const SizedBox(height: 24),
@@ -94,7 +94,7 @@ class PantallaAcerca extends StatelessWidget {
           const SizedBox(height: 24),
           const _Seccion('Familia Larrea'),
           const Text(
-            'Larrea Quesera es parte de la suite Larrea de la Colección '
+            'Larrea Quesera forma parte de la suite Larrea, de la Colección '
             'Nuevo Ser. Apps hermanas: Larrea (fincas agrícolas), Larrea '
             'Viticultura, Larrea Apícola, Larrea Arbolado Urbano y '
             'Larrea Aceitera.',
@@ -168,7 +168,7 @@ class _TarjetaCatalogos extends StatelessWidget {
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
             const Text(
-              'Pre-rellenados a partir de fuentes públicas. Antes de pasar a '
+              'Rellenados a partir de fuentes públicas. Antes de pasar a '
               'producción comercial deben validarlos una asesoría quesera '
               'y los consejos reguladores. Las propuestas de la IA que '
               'coincidan con el catálogo se marcan como provisionales.',

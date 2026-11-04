@@ -302,7 +302,7 @@ class SembradorDatos {
         tipo: 'defecto',
         loteProduccionId: lotes[0].id,
         descripcion:
-            'Peso inferior al esperado en 2 piezas del lote (-150g cada una)',
+            'Peso inferior al esperado en 2 piezas del lote (−150 g cada una)',
         causa: 'Exceso de desuerado en el molde',
         accionCorrectiva: 'Ajustar tiempo de prensado',
         cerrada: true,
@@ -331,7 +331,7 @@ class SembradorDatos {
 
     await _bd.guardarVenta(Venta(
       fechaMs: hoy.subtract(const Duration(days: 5)).millisecondsSinceEpoch,
-      clienteNombre: 'Tienda Gozo Gastronomia',
+      clienteNombre: 'Tienda Gozo Gastronomía',
       clienteNif: 'F87654321',
       tipo: 'tienda',
       lineasJson:

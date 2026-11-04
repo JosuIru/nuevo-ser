@@ -68,14 +68,14 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
           const SizedBox(height: 12),
           Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text('Parámetros de producción', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Divider(),
-            _Campo('Volumen leche', '${l.volumenLecheTotal} L'), _Campo('Peso obtenido', '${l.pesoTotalObtenido} kg'),
-            _Campo('Rendimiento', '${l.rendimientoReal.toStringAsFixed(2)} L/kg'), _Campo('Nº piezas', '${l.numPiezasProducidas}'),
-            _Campo('Temp coagulación', '${l.tempCoagulacion}°C'), _Campo('Tiempo coag', '${l.tiempoCoagMinutos} min'),
+            _Campo('Volumen de leche', '${l.volumenLecheTotal} L'), _Campo('Peso obtenido', '${l.pesoTotalObtenido} kg'),
+            _Campo('Rendimiento', '${l.rendimientoReal.toStringAsFixed(2)} L/kg'), _Campo('N.º de piezas', '${l.numPiezasProducidas}'),
+            _Campo('Temp. coagulación', '${l.tempCoagulacion} °C'), _Campo('Tiempo coag.', '${l.tiempoCoagMinutos} min'),
           ]))),
           const SizedBox(height: 12),
           Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text('Ingredientes y trazabilidad', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Divider(),
-            _Campo('Fermento', l.fermentoNombre), _Campo('Lote fermento', l.fermentoLoteComercial), _Campo('Cuajo', l.cuajoTipo), _Campo('Lote cuajo', l.cuajoLoteComercial),
+            _Campo('Fermento', l.fermentoNombre), _Campo('Lote del fermento', l.fermentoLoteComercial), _Campo('Cuajo', l.cuajoTipo), _Campo('Lote del cuajo', l.cuajoLoteComercial),
           ]))),
           const SizedBox(height: 12),
           Text('Piezas (${d.piezas.length})', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),

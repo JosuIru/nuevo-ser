@@ -59,7 +59,7 @@ class _PantallaIaQuesoState extends State<PantallaIaQueso> {
     final t = Theme.of(context);
     final tk = _claveApi != null && _claveApi!.isNotEmpty;
     return Scaffold(
-      appBar: AppBar(title: const Text('IA — Defectos en queso'), actions: [IconButton(icon: const Icon(Icons.key), tooltip: 'Configurar clave API', onPressed: _configClave)]),
+      appBar: AppBar(title: const Text('IA — Defectos en queso'), actions: [IconButton(icon: const Icon(Icons.key), tooltip: 'Configurar la clave de API', onPressed: _configClave)]),
       body: ListView(padding: const EdgeInsets.all(16), children: [
         Card(color: tk ? Colors.green.withAlpha(15) : Colors.orange.withAlpha(15), child: Padding(padding: const EdgeInsets.all(12), child: Row(children: [
           Icon(tk ? Icons.check_circle : Icons.warning, color: tk ? Colors.green : Colors.orange),
@@ -75,7 +75,7 @@ class _PantallaIaQuesoState extends State<PantallaIaQueso> {
         FilledButton.icon(onPressed: (_foto == null || !tk || _analizando) ? null : _analizar, icon: _analizando ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(Icons.visibility), label: Text(_analizando ? 'Analizando…' : 'Analizar')),
         if (_error != null) Card(color: Colors.red.withAlpha(15), child: Padding(padding: const EdgeInsets.all(12), child: Row(children: [const Icon(Icons.error, color: Colors.red), const SizedBox(width: 8), Expanded(child: Text(_error!))]))),
         if (_resultado != null) Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Row(children: [Icon(Icons.search, color: t.colorScheme.primary), const SizedBox(width: 8), Text('Diagnóstico', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Chip(label: Text('${(_resultado!.confianza * 100).toStringAsFixed(0)}%'), avatar: const Icon(Icons.science, size: 14))]),
+          Row(children: [Icon(Icons.search, color: t.colorScheme.primary), const SizedBox(width: 8), Text('Diagnóstico', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)), const Spacer(), Chip(label: Text('${(_resultado!.confianza * 100).toStringAsFixed(0)} %'), avatar: const Icon(Icons.science, size: 14))]),
           const Divider(),
           _campo('Defecto', _resultado!.nombreDefecto),
           _campo('Tipo', _resultado!.tipo),

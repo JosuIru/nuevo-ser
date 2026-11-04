@@ -93,7 +93,7 @@ class _PantallaRegistrosState extends State<PantallaRegistros> {
             _entrada(
               icono: Icons.verified,
               titulo: SoleraL10n.t('perfiles_do'),
-              subtitulo: 'Denominaciones de Origen activas',
+              subtitulo: 'Denominaciones de origen activas',
               pantalla: const PantallaPerfilDo(),
             ),
             const CabeceraSeccionAjustes('Economía'),

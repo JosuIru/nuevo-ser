@@ -86,7 +86,7 @@ class _PantallaSimulacionTrazabilidadState extends State<PantallaSimulacionTraza
     final t = Theme.of(context);
     return Scaffold(
       appBar: AppBar(title: const Text('Simulación de inspección'),
-        actions: [TextButton(onPressed: _lotes.isEmpty ? _sembrar : null, child: _sembrando ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : const Text('Cargar demo'))],
+        actions: [TextButton(onPressed: _lotes.isEmpty ? _sembrar : null, child: _sembrando ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : const Text('Cargar ejemplo'))],
       ),
       body: _lotes.isEmpty
         ? _empty(t)
@@ -104,9 +104,9 @@ class _PantallaSimulacionTrazabilidadState extends State<PantallaSimulacionTraza
     const SizedBox(height: 16),
     const Text('Simulación de trazabilidad', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
     const SizedBox(height: 12),
-    const Text('Reproduce una inspección real según CE 178/2002.', textAlign: TextAlign.center),
+    const Text('Reproduce una inspección real según el Reglamento (CE) 178/2002.', textAlign: TextAlign.center),
     const SizedBox(height: 24),
-    FilledButton.icon(onPressed: _sembrar, icon: const Icon(Icons.download), label: const Text('Cargar datos demo')),
+    FilledButton.icon(onPressed: _sembrar, icon: const Icon(Icons.download), label: const Text('Cargar datos de ejemplo')),
   ])));
 
   Widget _pasoInd(ThemeData t) => Row(children: ['Seleccionar', 'Trazar', 'Verificar', 'Informe'].asMap().entries.map((e) => Expanded(child: Column(children: [
@@ -131,9 +131,9 @@ class _PantallaSimulacionTrazabilidadState extends State<PantallaSimulacionTraza
       Text('${_loteSel!.numeroLote} · ${_tSeg}s', style: t.textTheme.bodySmall),
       _secRes('Hacia atrás', (r['partidas_leche'] as List?) ?? [], (x) => Text('#${x['partida_id']} · ${x['proveedor']} · ${x['volumen']}L', style: const TextStyle(fontSize: 12))),
       _secRes('Piezas', (r['piezas'] as List?) ?? [], (x) => Text('${x['numero']} · ${x['estado']}', style: const TextStyle(fontSize: 12))),
-      _secRes('Eventos curación', (r['eventos_curacion'] as List?) ?? [], (x) => Text('${x['tipo']} · ${x['pieza']}', style: const TextStyle(fontSize: 12))),
+      _secRes('Eventos de curación', (r['eventos_curacion'] as List?) ?? [], (x) => Text('${x['tipo']} · ${x['pieza']}', style: const TextStyle(fontSize: 12))),
       _secRes('Analíticas', (r['analiticas'] as List?) ?? [], (x) => Text('${x['tipo']}: ${x['conforme'] == true ? "✅" : "❌"}', style: const TextStyle(fontSize: 12))),
-      _secRes('Ventas', (r['ventas'] as List?) ?? [], (x) => Text('${x['cliente']} · ${x['total']}€', style: const TextStyle(fontSize: 12))),
+      _secRes('Ventas', (r['ventas'] as List?) ?? [], (x) => Text('${x['cliente']} · ${x['total']} €', style: const TextStyle(fontSize: 12))),
     ])));
   }
 
@@ -155,7 +155,7 @@ class _PantallaSimulacionTrazabilidadState extends State<PantallaSimulacionTraza
   Widget _archivo(ThemeData t) => Card(child: Padding(padding: const EdgeInsets.all(16), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
     Row(children: [Icon(Icons.description_outlined, color: t.colorScheme.primary), const SizedBox(width: 8), Text('Archivar', style: t.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold))]),
     TextFormField(controller: _realC, decoration: const InputDecoration(labelText: 'Realizado por', border: OutlineInputBorder(), isDense: true, hintText: 'Tu nombre')),
-    const SizedBox(height: 8), TextFormField(controller: _inspC, decoration: const InputDecoration(labelText: 'Inspector', border: OutlineInputBorder(), isDense: true, hintText: 'Nombre opcional')),
+    const SizedBox(height: 8), TextFormField(controller: _inspC, decoration: const InputDecoration(labelText: 'Inspector', border: OutlineInputBorder(), isDense: true, hintText: 'Nombre (opcional)')),
     const SizedBox(height: 8), TextFormField(controller: _notasC, decoration: const InputDecoration(labelText: 'Notas', border: OutlineInputBorder(), isDense: true), maxLines: 2),
     const SizedBox(height: 16),
     FilledButton.icon(onPressed: _guardarSim, icon: Icon(Icons.save), label: Text("Guardar")),

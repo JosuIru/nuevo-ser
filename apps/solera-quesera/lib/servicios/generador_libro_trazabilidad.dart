@@ -46,14 +46,14 @@ class GeneradorLibroTrazabilidad {
             child: pw.Column(
               mainAxisAlignment: pw.MainAxisAlignment.center,
               children: [
-                pw.Text('SOLERA QUESERA',
+                pw.Text('LARREA QUESERA',
                     style: pw.TextStyle(
                       fontSize: 28,
                       fontWeight: pw.FontWeight.bold,
                       color: PdfColors.amber,
                     )),
                 pw.SizedBox(height: 8),
-                pw.Text('Libro de Trazabilidad APPCC',
+                pw.Text('Libro de trazabilidad APPCC',
                     style: pw.TextStyle(
                         fontSize: 18, fontWeight: pw.FontWeight.bold)),
                 pw.SizedBox(height: 40),
@@ -112,7 +112,7 @@ class GeneradorLibroTrazabilidad {
               headerAlignment: pw.Alignment.centerLeft,
               data: [
                 <String>[
-                  'Fecha', 'Proveedor', 'Vol (L)', 'T°C', 'pH',
+                  'Fecha', 'Proveedor', 'Vol. (L)', 'T°C', 'pH',
                   'Grasa%', 'Prot%', 'Antib.'
                 ],
                 ...partidas.map((p) => [
@@ -150,7 +150,7 @@ class GeneradorLibroTrazabilidad {
               headerAlignment: pw.Alignment.centerLeft,
               data: [
                 <String>[
-                  'Lote', 'Fecha', 'Tipo', 'Vol (L)', 'Peso (kg)',
+                  'Lote', 'Fecha', 'Tipo', 'Vol. (L)', 'Peso (kg)',
                   'Rend', 'Piezas', 'Estado'
                 ],
                 ...lotesFiltrados.map((l) => [
@@ -265,7 +265,7 @@ class GeneradorLibroTrazabilidad {
               data: [
                 <String>[
                   'Fecha', 'Tipo', 'Descripción', 'Causa',
-                  'C. Correctiva', 'Estado'
+                  'Acc. correctiva', 'Estado'
                 ],
                 ...incidencias.map((i) => [
                       _formatter.format(
@@ -320,15 +320,15 @@ class GeneradorLibroTrazabilidad {
                           : v.clienteNombre,
                       v.tipo,
                       v.numeroFactura,
-                      '${v.baseImponible.toStringAsFixed(2)}€',
-                      '${v.ivaPorcentaje.toStringAsFixed(0)}%',
-                      '${v.total.toStringAsFixed(2)}€',
+                      '${v.baseImponible.toStringAsFixed(2)} €',
+                      '${v.ivaPorcentaje.toStringAsFixed(0)} %',
+                      '${v.total.toStringAsFixed(2)} €',
                     ]),
               ],
             ),
           pw.SizedBox(height: 16),
           pw.Paragraph(
-            text: 'Total ingresos período: ${totalIngresos.toStringAsFixed(2)}€',
+            text: 'Total ingresos período: ${totalIngresos.toStringAsFixed(2)} €',
             style: pw.TextStyle(
                 fontWeight: pw.FontWeight.bold, fontSize: 11),
           ),

@@ -31,7 +31,7 @@ class _PantallaCavaState extends State<PantallaCava> {
     final li = await _bd.listarPiezas(estado: 'lista');
     final tc = await _bd.ultimaTemperaturaPorCava();
     if (mounted) setState(() { _piezasAfinando = af; _piezasListas = li;
-      _tempsCava = tc.map((k, v) => MapEntry(k, '${v.temperatura.toStringAsFixed(1)}°C / ${v.humedadRelativa.toStringAsFixed(0)}% HR')); });
+      _tempsCava = tc.map((k, v) => MapEntry(k, '${v.temperatura.toStringAsFixed(1)} °C / ${v.humedadRelativa.toStringAsFixed(0)} % HR')); });
   }
 
   Future<void> _regTemp() async {

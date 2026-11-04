@@ -20,7 +20,7 @@ class _PantallaListaRecetasState extends State<PantallaListaRecetas> {
     if (r.id == null) return;
     final lotes = await _bd.listarLotesPorReceta(r.id!);
     final ok = await DialogoConfirmacion.mostrar(context, titulo: SoleraL10n.t('borrar_receta'),
-      mensaje: lotes.isNotEmpty ? '${r.nombre} tiene ${lotes.length} lote(s) asociado(s).' : '¿Borrar "${r.nombre}"?',
+      mensaje: lotes.isNotEmpty ? '${r.nombre} tiene ${lotes.length} lote(s) asociado(s).' : '¿Borrar «${r.nombre}»?',
       textoConfirmar: SoleraL10n.t('borrar'), esPeligroso: true);
     if (ok) { await _bd.borrarReceta(r.id!); await _recargar(); }
   }
@@ -36,7 +36,7 @@ class _PantallaListaRecetasState extends State<PantallaListaRecetas> {
             return Card(child: ListTile(
               leading: CircleAvatar(backgroundColor: r.doId != null ? Colors.green.withAlpha(30) : t.colorScheme.primary.withAlpha(30), child: Icon(Icons.restaurant_menu, color: r.doId != null ? Colors.green : t.colorScheme.primary)),
               title: Text(r.nombre, style: const TextStyle(fontWeight: FontWeight.bold)),
-              subtitle: Text('${r.tipoLeche} · Cuajo ${r.tipoCuajo} · Rend. ${r.rendimientoEsperado} L/kg · Curación ${r.curacionMinimaDias}d${r.doId != null ? " · DO: ${r.doId}" : ""}', style: const TextStyle(fontSize: 12)),
+              subtitle: Text('${r.tipoLeche} · Cuajo ${r.tipoCuajo} · Rend. ${r.rendimientoEsperado} L/kg · Curación ${r.curacionMinimaDias} días${r.doId != null ? " · DO: ${r.doId}" : ""}', style: const TextStyle(fontSize: 12)),
               trailing: PopupMenuButton<String>(onSelected: (a) { if (a == 'editar') _editar(r); else if (a == 'borrar') _borrar(r); },
                 itemBuilder: (_) => [const PopupMenuItem(value: 'editar', child: ListTile(leading: Icon(Icons.edit), title: Text('Editar'))), const PopupMenuItem(value: 'borrar', child: ListTile(leading: Icon(Icons.delete, color: Colors.red), title: Text('Borrar', style: TextStyle(color: Colors.red))))]),
               onTap: () => _editar(r),
@@ -89,9 +89,9 @@ class _EditarRecetaState extends State<_EditarReceta> {
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(widget.r != null ? 'Editar receta' : 'Nueva receta')),
     body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
-      TextFormField(controller: _nomC, decoration: const InputDecoration(labelText: 'Nombre de la receta', border: OutlineInputBorder(), hintText: 'Ej: Idiazabal semicurado'), validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : null),
+      TextFormField(controller: _nomC, decoration: const InputDecoration(labelText: 'Nombre de la receta', border: OutlineInputBorder(), hintText: 'Ej.: Idiazabal semicurado'), validator: (v) => (v == null || v.trim().isEmpty) ? 'Requerido' : null),
       const SizedBox(height: 12),
-      Row(children: [Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'ID tipo de queso', border: OutlineInputBorder(), helperText: 'idiazabal_semicurado…'), initialValue: _tipoQuesoId, onChanged: (v) => _tipoQuesoId = v)), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'DO (opcional)', border: OutlineInputBorder(), helperText: 'idiazabal…'), initialValue: _doId, onChanged: (v) => _doId = v))]),
+      Row(children: [Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'ID del tipo de queso', border: OutlineInputBorder(), helperText: 'idiazabal_semicurado…'), initialValue: _tipoQuesoId, onChanged: (v) => _tipoQuesoId = v)), const SizedBox(width: 8), Expanded(child: TextFormField(decoration: const InputDecoration(labelText: 'DO (opcional)', border: OutlineInputBorder(), helperText: 'idiazabal…'), initialValue: _doId, onChanged: (v) => _doId = v))]),
       const SizedBox(height: 16),
       Text('Tipo de leche', style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold)),
       const SizedBox(height: 4),

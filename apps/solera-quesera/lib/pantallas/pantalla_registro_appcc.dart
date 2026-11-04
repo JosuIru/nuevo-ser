@@ -61,7 +61,7 @@ class _PantallaRegistroAppccState extends State<PantallaRegistroAppcc> {
     ..._temps.map((x) => Card(
       child: ListTile(dense: true,
         leading: CircleAvatar(backgroundColor: x.temperatura > 16 ? Colors.red.withAlpha(30) : Colors.green.withAlpha(30), child: Icon(Icons.thermostat, color: x.temperatura > 16 ? Colors.red : Colors.green, size: 18)),
-        title: Text('${x.cavaId}: ${x.temperatura.toStringAsFixed(1)}°C / ${x.humedadRelativa.toStringAsFixed(0)}% HR'),
+        title: Text('${x.cavaId}: ${x.temperatura.toStringAsFixed(1)} °C / ${x.humedadRelativa.toStringAsFixed(0)} % HR'),
         subtitle: Text(_fd.format(DateTime.fromMillisecondsSinceEpoch(x.fechaMs))),
       ),
     )),

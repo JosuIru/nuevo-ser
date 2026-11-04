@@ -6,8 +6,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../tool/compilar_traducciones_solera.dart';
 
-/// Carpetas cuyo código usa `SoleraL10n.t('…')`: las seis apps Larrea y el
-/// core. (Zunbeltz tiene su propio sistema de idioma.)
+/// Carpetas cuyo código usa `SoleraL10n.t('…')`: las seis apps Larrea, el
+/// core, Fósiles y Naturaleza. (Zunbeltz tiene su propio sistema de idioma.)
 const carpetasConTextosSolera = [
   '../../apps/agro/lib',
   '../../apps/solera-viticultura/lib',
@@ -16,6 +16,11 @@ const carpetasConTextosSolera = [
   '../../apps/solera-quesera/lib',
   '../../apps/solera-aceitera/lib',
   'lib',
+  // Fósiles y Naturaleza viven en el repo cuadernos-de-campo pero usan
+  // estas mismas traducciones del core. Si el repo no está al lado, se
+  // saltan.
+  '../../../juegos/cuadernos-de-campo/apps/fosiles/lib',
+  '../../../juegos/cuadernos-de-campo/apps/naturaleza/lib',
 ];
 
 final _llamadaConClave = RegExp(r"SoleraL10n\.tf?\(\s*'([^']*)'");
@@ -25,7 +30,7 @@ final _llamadaConClave = RegExp(r"SoleraL10n\.tf?\(\s*'([^']*)'");
 /// Sin un segundo punto, que es lo que distingue una clave de traducción
 /// de una de preferencias ('agro.mapa.ultimo_lat') o de la BD ('agro.db').
 final _claveSuelta =
-    RegExp(r"'((?:agro|viti|api|arb|ques|acei|core)\.(?!db')[a-z0-9_]+)'");
+    RegExp(r"'((?:agro|viti|api|arb|ques|acei|core|fos|nat)\.(?!db')[a-z0-9_]+)'");
 
 Map<String, String> _clavesUsadas() {
   final primeraAparicion = <String, String>{};

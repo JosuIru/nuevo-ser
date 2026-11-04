@@ -1,0 +1,92 @@
+clave,es,eu,ca,gl
+nat.mapa_notificacion_registrando_ruta,Naturaleza está registrando tu ruta,Naturaleza zure ibilbidea erregistratzen ari da,Naturaleza està registrant la teva ruta,Naturaleza está rexistrando a túa ruta
+nat.mapa_lugar_miradores,Miradores,Begiratokiak,Miradors,Miradoiros
+nat.mapa_lugar_miradores_aves,Miradores de aves,Hegazti-begiratokiak,Observatoris d'ocells,Observatorios de aves
+nat.mapa_lugar_reservas_naturales,Reservas naturales,Natura-erreserbak,Reserves naturals,Reservas naturais
+nat.mapa_lugar_cuevas,Cuevas,Kobazuloak,Coves,Covas
+nat.mapa_lugar_humedales,Charcas y humedales,Putzuak eta hezeguneak,Basses i aiguamolls,Charcas e zonas húmidas
+nat.mapa_lugar_arboles_singulares,Árboles singulares,Zuhaitz bereziak,Arbres singulars,Árbores singulares
+nat.mapa_lugar_refugios,Refugios,Aterpeak,Refugis,Refuxios
+nat.mapa_lugar_manantiales,Manantiales y fuentes,Iturburuak eta iturriak,Deus i fonts,Mananciais e fontes
+nat.mapa_lugar_centros_visitantes,Centros de visitantes,Bisitarien zentroak,Centres de visitants,Centros de visitantes
+nat.mapa_falta_permiso_ubicacion,Falta permiso de ubicación.,Kokapen-baimena falta da.,Falta el permís d'ubicació.,Falta o permiso de localización.
+nat.mapa_sin_lugares_zona,Sin lugares de interés en esta zona.,Ez dago leku interesgarririk eremu honetan.,No hi ha llocs d'interès en aquesta zona.,Non hai lugares de interese nesta zona.
+nat.mapa_gestor,Gestor: {gestor},Kudeatzailea: {gestor},Gestor: {gestor},Xestor: {gestor}
+nat.mapa_sin_gbif_zona,Sin observaciones GBIF en esta zona.,Ez dago GBIF behaketarik eremu honetan.,No hi ha observacions GBIF en aquesta zona.,Non hai observacións GBIF nesta zona.
+nat.mapa_gbif_cargadas,{n} observaciones de la comunidad cargadas.,Komunitatearen {n} behaketa kargatu dira.,S'han carregat {n} observacions de la comunitat.,Cargáronse {n} observacións da comunidade.
+nat.mapa_ocultar,Ocultar,Ezkutatu,Amagar,Ocultar
+nat.mapa_track_guardado_puntos,Track guardado ({n} puntos).,Ibilbidea gordeta ({n} puntu).,Traça desada ({n} punts).,Traxecto gardado ({n} puntos).
+nat.mapa_observacion_gbif,Observación GBIF,GBIF behaketa,Observació GBIF,Observación GBIF
+nat.mapa_familia,Familia: {familia},Familia: {familia},Família: {familia},Familia: {familia}
+nat.mapa_localidad,Localidad: {localidad},Herria: {localidad},Localitat: {localidad},Localidade: {localidad}
+nat.mapa_observacion,Hallazgo,Aurkikuntza,Troballa,Achado
+nat.mapa_categoria,Categoría,Kategoria,Categoria,Categoría
+nat.mapa_habitat,Hábitat,Habitata,Hàbitat,Hábitat
+nat.mapa_taxonomia,Taxonomía,Taxonomia,Taxonomia,Taxonomía
+nat.mapa_borrar_observacion_pregunta,¿Borrar este hallazgo?,Aurkikuntza hau ezabatu?,Vols esborrar aquesta troballa?,Borrar este achado?
+nat.mapa_mapas_offline_menu,Mapas offline…,Lineaz kanpoko mapak…,Mapes fora de línia…,Mapas sen conexión…
+nat.mapa_lugares_interes_activos,Lugares de interés (activos)…,Leku interesgarriak (aktibo)…,Llocs d'interès (actius)…,Lugares de interese (activos)…
+nat.mapa_lugares_interes_menu,Lugares de interés…,Leku interesgarriak…,Llocs d'interès…,Lugares de interese…
+nat.mapa_recargar_lugares,Recargar lugares en la vista,Kargatu berriro ikuspegiko lekuak,Recarregar els llocs de la vista,Recargar os lugares da vista
+nat.mapa_gbif_cerca,Observaciones GBIF cerca,Inguruko GBIF behaketak,Observacions GBIF a prop,Observacións GBIF próximas
+nat.mapa_ocultar_gbif,Ocultar observaciones GBIF,Ezkutatu GBIF behaketak,Amagar les observacions GBIF,Ocultar as observacións GBIF
+nat.mapa_centrar_ubicacion,Centrar en mi ubicación,Zentratu nire kokapenean,Centrar en la meva ubicació,Centrar na miña localización
+nat.mapa_detener_grabacion,Detener grabación de track,Gelditu ibilbidearen grabazioa,Aturar l'enregistrament de la traça,Deter a gravación do traxecto
+nat.mapa_grabar_track,Grabar track,Grabatu ibilbidea,Enregistrar la traça,Gravar o traxecto
+nat.mapa_tooltip_capas,"Capas del mapa, mapas offline y tracks guardados","Maparen geruzak, lineaz kanpoko mapak eta gordetako ibilbideak","Capes del mapa, mapes fora de línia i traces desades","Capas do mapa, mapas sen conexión e traxectos gardados"
+nat.mapa_tooltip_datos,Lugares de interés y observaciones,Leku interesgarriak eta behaketak,Llocs d'interès i observacions,Lugares de interese e observacións
+nat.mapa_capas_lugares,Capas de lugares de interés,Leku interesgarrien geruzak,Capes de llocs d'interès,Capas de lugares de interese
+nat.mapa_capas_lugares_ayuda,Datos de OpenStreetMap. Las capas se cargan en la vista visible del mapa.,OpenStreetMap-eko datuak. Geruzak maparen ikuspegi ikusgaian kargatzen dira.,Dades d'OpenStreetMap. Les capes es carreguen a la vista visible del mapa.,Datos de OpenStreetMap. As capas cárganse na vista visible do mapa.
+nat.mapa_quitar_todas,Quitar todas,Kendu guztiak,Treure-les totes,Quitar todas
+nat.mapa_aplicar,Aplicar,Aplikatu,Aplicar,Aplicar
+nat.mapa_nueva_salida,Nueva salida,Irteera berria,Nova sortida,Nova saída
+nat.mapa_titulo_opcional,Título (opcional),Izenburua (aukerakoa),Títol (opcional),Título (opcional)
+nat.mapa_titulo_ejemplo,p. ej. Encinares del Pirulén,adib. Pirulengo artadiak,p. ex. Alzinars del Pirulén,p. ex. Aciñeirais do Pirulén
+nat.mapa_zona_opcional,Zona (opcional),Eremua (aukerakoa),Zona (opcional),Zona (opcional)
+nat.mapa_zona_ejemplo,"comarca, paraje, sierra…","eskualdea, tokia, mendilerroa…","comarca, paratge, serra…","comarca, paraxe, serra…"
+nat.mapa_hipotesis_opcional,Hipótesis de jornada (opcional),Eguneko hipotesia (aukerakoa),Hipòtesi de la jornada (opcional),Hipótese da xornada (opcional)
+nat.mapa_hipotesis_ejemplo,¿qué vienes a buscar?,zer bilatzera zatoz?,què véns a buscar?,que vés buscar?
+nat.mapa_arrancar_track,Arrancar también un track GPS,Hasi GPS ibilbide bat ere,Iniciar també una traça GPS,Iniciar tamén un traxecto GPS
+nat.mapa_salida_explicacion,"Mientras esté abierta, los hallazgos que crees se asociarán automáticamente a esta salida. Si arrancas también el track GPS, quedará atado a la salida al detenerlo. Podrás desactivar la auto-asociación en cada hallazgo si lo prefieres.","Irekita dagoen bitartean, sortzen dituzun aurkikuntzak automatikoki lotuko zaizkio irteera honi. GPS ibilbidea ere hasten baduzu, irteerari lotuta geratuko da gelditzean. Nahiago baduzu, lotura automatikoa aurkikuntza bakoitzean desaktibatu ahal izango duzu.","Mentre estigui oberta, les troballes que creïs s'associaran automàticament a aquesta sortida. Si també inicies la traça GPS, quedarà lligada a la sortida quan l'aturis. Si ho prefereixes, podràs desactivar l'associació automàtica a cada troballa.","Mentres estea aberta, os achados que crees asociaranse automaticamente a esta saída. Se tamén inicias o traxecto GPS, quedará ligado á saída ao detelo. Se o prefires, poderás desactivar a asociación automática en cada achado."
+nat.mapa_iniciar,Iniciar,Hasi,Iniciar,Iniciar
+nat.mapa_sin_permiso_track,No se pudo arrancar el track: falta permiso de ubicación.,Ezin izan da ibilbidea hasi: kokapen-baimena falta da.,No s'ha pogut iniciar la traça: falta el permís d'ubicació.,Non se puido iniciar o traxecto: falta o permiso de localización.
+nat.mapa_salidas,Salidas,Irteerak,Sortides,Saídas
+nat.mapa_iniciar_salida,Iniciar salida,Hasi irteera,Iniciar una sortida,Iniciar unha saída
+nat.mapa_sin_salidas,Aún no has registrado ninguna salida,Oraindik ez duzu irteerarik erregistratu,Encara no has registrat cap sortida,Aínda non rexistraches ningunha saída
+nat.mapa_sin_salidas_ayuda,"Una salida agrupa los hallazgos, el track GPS, la meteorología y las notas de una jornada de campo.","Irteera batek landa-egun bateko aurkikuntzak, GPS ibilbidea, eguraldia eta oharrak biltzen ditu.","Una sortida agrupa les troballes, la traça GPS, la meteorologia i les notes d'una jornada de camp.","Unha saída agrupa os achados, o traxecto GPS, a meteoroloxía e as notas dunha xornada de campo."
+nat.mapa_salida_sin_titulo,Salida sin título,Izenbururik gabeko irteera,Sortida sense títol,Saída sen título
+nat.mapa_en_curso,EN CURSO,MARTXAN,EN CURS,EN CURSO
+nat.mapa_una_observacion,1 hallazgo,Aurkikuntza 1,1 troballa,1 achado
+nat.mapa_n_observaciones,{n} hallazgos,{n} aurkikuntza,{n} troballes,{n} achados
+nat.mapa_cabecera_salida,Cabecera de la salida,Irteeraren goiburua,Capçalera de la sortida,Cabeceira da saída
+nat.mapa_titulo,Título,Izenburua,Títol,Título
+nat.mapa_zona,Zona,Eremua,Zona,Zona
+nat.mapa_meteo_resumen,Meteo (resumen),Eguraldia (laburpena),Meteo (resum),Meteo (resumo)
+nat.mapa_altitud_m,Altitud (m),Altitudea (m),Altitud (m),Altitude (m)
+nat.mapa_hipotesis_jornada,Hipótesis de jornada,Eguneko hipotesia,Hipòtesi de la jornada,Hipótese da xornada
+nat.mapa_notas_generales,Notas generales,Ohar orokorrak,Notes generals,Notas xerais
+nat.mapa_anotacion_margen,Anotación al margen,Marjinako oharra,Anotació al marge,Anotación á marxe
+nat.mapa_anotacion_explicacion,"Esto es para lo que escribes al revisar la salida días después: dudas, correcciones, conexiones con otra jornada.","Irteera egun batzuk geroago berrikustean idazten duzunerako da: zalantzak, zuzenketak, beste egun batekiko loturak.","Això és per al que escrius en revisar la sortida dies després: dubtes, correccions, connexions amb una altra jornada.","Isto é para o que escribes ao revisar a saída días despois: dúbidas, correccións, conexións con outra xornada."
+nat.mapa_texto,Texto,Testua,Text,Texto
+nat.mapa_anotacion_ejemplo,"p. ej. al final era hembra, no macho","adib. azkenean emea zen, ez arra","p. ex. al final era una femella, no un mascle","p. ex. ao final era femia, non macho"
+nat.mapa_borrar_anotacion,Borrar anotación,Ezabatu oharra,Esborrar l'anotació,Borrar a anotación
+nat.mapa_borrar_anotacion_texto,Se borrará esta anotación al margen. La salida y los hallazgos se mantienen.,Marjinako ohar hau ezabatu egingo da. Irteerak eta aurkikuntzek bere horretan jarraituko dute.,S'esborrarà aquesta anotació al marge. La sortida i les troballes es mantenen.,Borrarase esta anotación á marxe. A saída e os achados mantéñense.
+nat.mapa_cerrar_salida,Cerrar salida,Itxi irteera,Tancar la sortida,Pechar a saída
+nat.mapa_cerrar_salida_texto,Al cerrar la salida ya no se asociarán hallazgos nuevos a ella automáticamente. Puedes seguir añadiendo anotaciones al margen después.,"Irteera ixten duzunean, aurkikuntza berriak ez zaizkio automatikoki lotuko. Geroago marjinako oharrak gehitzen jarrai dezakezu.","En tancar la sortida, ja no s'hi associaran automàticament troballes noves. Després pots continuar afegint-hi anotacions al marge.",Ao pechar a saída xa non se lle asociarán automaticamente achados novos. Despois podes seguir engadindo anotacións á marxe.
+nat.mapa_detener_track_tambien,Detener también el track GPS en curso,Gelditu martxan dagoen GPS ibilbidea ere,Aturar també la traça GPS en curs,Deter tamén o traxecto GPS en curso
+nat.mapa_seguir_abierta,Seguir abierta,Utzi irekita,Mantenir-la oberta,Mantela aberta
+nat.mapa_borrar_salida,Borrar salida,Ezabatu irteera,Esborrar la sortida,Borrar a saída
+nat.mapa_borrar_salida_texto,"Se borrará el contenedor de la salida y sus anotaciones al margen. Los hallazgos y el track quedarán como sueltos, sin borrarse.","Irteeraren edukiontzia eta bere marjinako oharrak ezabatuko dira. Aurkikuntzak eta ibilbidea solte geratuko dira, ezabatu gabe.","S'esborrarà el contenidor de la sortida i les seves anotacions al marge. Les troballes i la traça quedaran soltes, sense esborrar-se.","Borrarase o contedor da saída e as súas anotacións á marxe. Os achados e o traxecto quedarán soltos, sen borrarse."
+nat.mapa_salida_no_encontrada,Salida no encontrada,Ez da irteera aurkitu,No s'ha trobat la sortida,Non se atopou a saída
+nat.mapa_salida_del_dia,Salida del día,Eguneko irteera,Sortida del dia,Saída do día
+nat.mapa_editar_cabecera,Editar cabecera,Editatu goiburua,Editar la capçalera,Editar a cabeceira
+nat.mapa_anotar_margen,Anotar al margen,Idatzi marjinan,Anotar al marge,Anotar á marxe
+nat.mapa_altitud_aprox,{n} m aprox.,{n} m inguru,{n} m aprox.,{n} m aprox.
+nat.mapa_track_en_curso,Track GPS en curso,GPS ibilbidea martxan,Traça GPS en curs,Traxecto GPS en curso
+nat.mapa_track_de_salida,Track GPS de la salida,Irteeraren GPS ibilbidea,Traça GPS de la sortida,Traxecto GPS da saída
+nat.mapa_track_puntos_asociara,{n} puntos · se asociará a la salida al detenerlo,{n} puntu · irteerari lotuko zaio gelditzean,{n} punts · s'associarà a la sortida quan l'aturis,{n} puntos · asociarase á saída ao detelo
+nat.mapa_observaciones_de_salida,Hallazgos de la salida ({n}),Irteerako aurkikuntzak ({n}),Troballes de la sortida ({n}),Achados da saída ({n})
+nat.mapa_sin_observaciones_salida,"Todavía no hay hallazgos en esta salida. Mientras esté abierta, los que registres se asociarán automáticamente.","Oraindik ez dago aurkikuntzarik irteera honetan. Irekita dagoen bitartean, erregistratzen dituzunak automatikoki lotuko zaizkio.","Encara no hi ha troballes en aquesta sortida. Mentre estigui oberta, les que registris s'hi associaran automàticament.","Aínda non hai achados nesta saída. Mentres estea aberta, os que rexistres asociaranse automaticamente."
+nat.mapa_sin_especie,Sin especie,Espezierik gabe,Sense espècie,Sen especie
+nat.mapa_anotaciones_margen,Anotaciones al margen,Marjinako oharrak,Anotacions al marge,Anotacións á marxe
+nat.mapa_sin_anotaciones,"Sin anotaciones todavía. Úsalas para revisar la salida días después: dudas, correcciones, conexiones.","Oraindik ez dago oharrik. Erabili irteera egun batzuk geroago berrikusteko: zalantzak, zuzenketak, loturak.","Encara no hi ha anotacions. Fes-les servir per revisar la sortida dies després: dubtes, correccions, connexions.","Aínda non hai anotacións. Úsaas para revisar a saída días despois: dúbidas, correccións, conexións."

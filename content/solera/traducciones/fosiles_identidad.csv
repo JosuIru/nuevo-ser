@@ -1,0 +1,133 @@
+clave,es,eu,ca,gl
+fos.iden_huella_copiada,Huella copiada al portapapeles,Hatz-marka arbelean kopiatu da,Empremta copiada al porta-retalls,Pegada copiada no portapapeis
+fos.iden_clave_publica_copiada,Clave pública copiada al portapapeles,Gako publikoa arbelean kopiatu da,Clau pública copiada al porta-retalls,Clave pública copiada no portapapeis
+fos.iden_regenerar_titulo,Regenerar identidad criptográfica,Identitate kriptografikoa birsortu,Regenerar la identitat criptogràfica,Rexenerar a identidade criptográfica
+fos.iden_regenerar_aviso,"Esto crea un par de claves nuevo. Los hallazgos firmados con tu clave anterior seguirán existiendo pero ya no podrán verificarse como tuyos criptográficamente. Tu nombre y email no cambian. Sólo deberías hacer esto si crees que tu clave se ha comprometido (por ejemplo, tras restaurar un backup en un dispositivo prestado).","Gako-bikote berri bat sortuko da. Aurreko gakoarekin sinatutako aurkikuntzek bere horretan jarraituko dute, baina ezingo da kriptografikoki egiaztatu zureak direnik. Zure izena eta posta elektronikoa ez dira aldatuko. Zure gakoa arriskuan egon dela uste baduzu bakarrik egin hau (adibidez, segurtasun-kopia bat mailegatutako gailu batean leheneratu ondoren).","Això crea un parell de claus nou. Les troballes signades amb la teva clau anterior continuaran existint, però ja no es podrà verificar criptogràficament que són teves. El teu nom i el teu correu no canvien. Només hauries de fer-ho si creus que la teva clau s'ha vist compromesa (per exemple, després de restaurar una còpia de seguretat en un dispositiu prestat).","Isto crea un par de claves novo. Os achados asinados coa túa clave anterior seguirán existindo, pero xa non se poderá verificar criptograficamente que son teus. O teu nome e o teu correo non cambian. Só deberías facelo se cres que a túa clave quedou comprometida (por exemplo, despois de restaurar unha copia de seguranza nun dispositivo emprestado)."
+fos.iden_regenerar,Regenerar,Birsortu,Regenera,Rexenerar
+fos.iden_identidad_regenerada,Identidad regenerada,Identitatea birsortu da,Identitat regenerada,Identidade rexenerada
+fos.iden_mi_identidad,Mi identidad,Nire identitatea,La meva identitat,A miña identidade
+fos.iden_datos_declarados,Datos declarados,Adierazitako datuak,Dades declarades,Datos declarados
+fos.iden_datos_declarados_ayuda,"Estos datos los rellenas tú en Ajustes → Perfil e identidad. Acompañan a la firma cuando compartes una card o un certificado, pero no están autenticados contra una autoridad externa: cualquiera puede decir que se llama como quiera. Lo que sí es único y permanente es tu clave criptográfica.","Datu hauek zuk betetzen dituzu Ezarpenak → Profila eta identitatea atalean. Txartel bat edo ziurtagiri bat partekatzean sinadurarekin batera doaz, baina ez dira kanpoko agintaritza batekin autentifikatzen: edonork esan dezake nahi duen izena duela. Bakarra eta iraunkorra zure gako kriptografikoa da.","Aquestes dades les omples tu a Configuració → Perfil i identitat. Acompanyen la signatura quan comparteixes una targeta o un certificat, però no estan autenticades per cap autoritat externa: qualsevol pot dir que es diu com vulgui. El que sí que és únic i permanent és la teva clau criptogràfica.","Estes datos enchémolos ti en Axustes → Perfil e identidade. Acompañan a sinatura cando compartes unha tarxeta ou un certificado, pero non están autenticados por ningunha autoridade externa: calquera pode dicir que se chama como queira. O que si é único e permanente é a túa clave criptográfica."
+fos.iden_nombre,Nombre,Izena,Nom,Nome
+fos.iden_email,Email,Posta elektronikoa,Correu electrònic,Correo electrónico
+fos.iden_organizacion,Organización,Erakundea,Organització,Organización
+fos.iden_sin_rellenar,(sin rellenar),(bete gabe),(sense omplir),(sen encher)
+fos.iden_huella_criptografica,Huella criptográfica,Hatz-marka kriptografikoa,Empremta criptogràfica,Pegada criptográfica
+fos.iden_huella_ayuda,"Esta huella se deriva de tu clave pública. Es única, permanente y se genera la primera vez que abriste Fósiles. Cuando alguien recibe un hallazgo firmado por ti, puede verificar que la firma coincide con esta huella.","Hatz-marka hau zure gako publikotik eratortzen da. Bakarra eta iraunkorra da, eta Fosilak lehen aldiz ireki zenuenean sortu zen. Norbaitek zuk sinatutako aurkikuntza bat jasotzen duenean, sinadura hatz-marka honekin bat datorrela egiazta dezake.","Aquesta empremta deriva de la teva clau pública. És única i permanent, i es va generar la primera vegada que vas obrir Fòssils. Quan algú rep una troballa signada per tu, pot verificar que la signatura coincideix amb aquesta empremta.","Esta pegada derívase da túa clave pública. É única e permanente, e xerouse a primeira vez que abriches Fósiles. Cando alguén recibe un achado asinado por ti, pode verificar que a sinatura coincide con esta pegada."
+fos.iden_copiar_huella,Copiar huella,Kopiatu hatz-marka,Copia l'empremta,Copiar a pegada
+fos.iden_ver_clave_publica,Ver clave pública completa,Ikusi gako publiko osoa,Mostra la clau pública completa,Ver a clave pública completa
+fos.iden_copiar_clave_publica,Copiar clave pública,Kopiatu gako publikoa,Copia la clau pública,Copiar a clave pública
+fos.iden_operaciones_avanzadas,Operaciones avanzadas,Eragiketa aurreratuak,Operacions avançades,Operacións avanzadas
+fos.iden_operaciones_avanzadas_ayuda,Tu clave privada se guarda cifrada en el almacenamiento seguro de Android (no sale del dispositivo). El backup .zip cifrado que generas desde Ajustes la incluye para que puedas recuperarla si cambias de móvil.,"Zure gako pribatua zifratuta gordetzen da Androiden biltegiratze seguruan (ez da gailutik ateratzen). Ezarpenetan sortzen duzun .zip segurtasun-kopia zifratuak barne hartzen du, mugikorrez aldatzen baduzu berreskuratu ahal izateko.",La teva clau privada es desa xifrada a l'emmagatzematge segur d'Android (no surt del dispositiu). La còpia de seguretat .zip xifrada que generes des de Configuració la inclou perquè la puguis recuperar si canvies de mòbil.,A túa clave privada gárdase cifrada no almacenamento seguro de Android (non sae do dispositivo). A copia de seguranza .zip cifrada que xeras desde Axustes inclúea para que a poidas recuperar se cambias de móbil.
+fos.iden_regenerar_identidad,Regenerar identidad,Birsortu identitatea,Regenera la identitat,Rexenerar a identidade
+fos.iden_perfil_guardado,Perfil guardado,Profila gorde da,Perfil desat,Perfil gardado
+fos.iden_perfil_e_identidad,Perfil e identidad,Profila eta identitatea,Perfil i identitat,Perfil e identidade
+fos.iden_perfil_descubridor,Perfil del descubridor,Aurkitzailearen profila,Perfil del descobridor,Perfil do descubridor
+fos.iden_perfil_ayuda,Tu nombre se incluirá en los certificados de hallazgo. El email y la organización son opcionales. Estos datos se guardan solo en tu teléfono.,Zure izena aurkikuntza-ziurtagirietan agertuko da. Posta elektronikoa eta erakundea aukerakoak dira. Datu hauek zure telefonoan bakarrik gordetzen dira.,El teu nom s'inclourà als certificats de troballa. El correu i l'organització són opcionals. Aquestes dades només es desen al teu telèfon.,O teu nome incluirase nos certificados de achado. O correo e a organización son opcionais. Estes datos só se gardan no teu teléfono.
+fos.iden_nombre_obligatorio,Nombre (obligatorio para certificados),Izena (derrigorrezkoa ziurtagirietarako),Nom (obligatori per als certificats),Nome (obrigatorio para os certificados)
+fos.iden_nombre_ejemplo,Ej: María González,Adib.: María González,Ex.: María González,Ex.: María González
+fos.iden_email_opcional,Email (opcional),Posta elektronikoa (aukerakoa),Correu electrònic (opcional),Correo electrónico (opcional)
+fos.iden_email_ejemplo,contacto@ejemplo.com,kontaktua@adibidea.eus,contacte@exemple.cat,contacto@exemplo.gal
+fos.iden_organizacion_opcional,Organización / afiliación (opcional),Erakundea / afiliazioa (aukerakoa),Organització / afiliació (opcional),Organización / afiliación (opcional)
+fos.iden_organizacion_ejemplo,"Ej: UPV/EHU, Sociedad de Ciencias Aranzadi…","Adib.: UPV/EHU, Aranzadi Zientzia Elkartea…","Ex.: UPV/EHU, Societat de Ciències Aranzadi…","Ex.: UPV/EHU, Sociedade de Ciencias Aranzadi…"
+fos.iden_guardar_perfil,Guardar perfil,Gorde profila,Desa el perfil,Gardar o perfil
+fos.iden_identidad_y_certificados,Identidad y certificados,Identitatea eta ziurtagiriak,Identitat i certificats,Identidade e certificados
+fos.iden_mi_identidad_criptografica,Mi identidad criptográfica,Nire identitate kriptografikoa,La meva identitat criptogràfica,A miña identidade criptográfica
+fos.iden_verificar_un_certificado,Verificar un certificado,Egiaztatu ziurtagiri bat,Verifica un certificat,Verificar un certificado
+fos.iden_modo_experto_autoridades,Modo Experto (autoridades certificadoras),Aditu modua (ziurtapen-agintaritzak),Mode Expert (autoritats certificadores),Modo Experto (autoridades certificadoras)
+fos.iden_card_certificada_asunto,Card certificada — {autoridad},Txartel ziurtatua — {autoridad},Targeta certificada — {autoridad},Tarxeta certificada — {autoridad}
+fos.iden_card_certificada_texto,Card revisada y certificada por la autoridad. Importa este archivo en tu app Fósiles para ver el sello.,Agintaritzak berrikusi eta ziurtatutako txartela. Inportatu fitxategi hau zure Fosilak aplikazioan zigilua ikusteko.,Targeta revisada i certificada per l'autoritat. Importa aquest fitxer a la teva app Fòssils per veure el segell.,Tarxeta revisada e certificada pola autoridade. Importa este ficheiro na túa app Fósiles para ver o selo.
+fos.iden_error_firmando,Error al firmar,Errorea sinatzean,Error en signar,Erro ao asinar
+fos.iden_certificar_hallazgo,Certificar hallazgo,Ziurtatu aurkikuntza,Certifica la troballa,Certificar o achado
+fos.iden_descubridor_valor,Descubridor: {nombre},Aurkitzailea: {nombre},Descobridor: {nombre},Descubridor: {nombre}
+fos.iden_coords,Coords,Koord.,Coord.,Coord.
+fos.iden_difuminadas,(difuminadas),(lausotuak),(difuminades),(difuminadas)
+fos.iden_fotos,Fotos,Argazkiak,Fotos,Fotos
+fos.iden_revisa_campos,"Revisa o corrige los campos. Lo que dejes en cada caja entrará en la certificación firmada. Si un campo ya está correcto, déjalo como está.","Berrikusi edo zuzendu eremuak. Kutxa bakoitzean uzten duzuna sinatutako ziurtapenean sartuko da. Eremu bat zuzena bada, utzi dagoen bezala.","Revisa o corregeix els camps. El que deixis a cada casella entrarà a la certificació signada. Si un camp ja és correcte, deixa'l com està.","Revisa ou corrixe os campos. O que deixes en cada caixa entrará na certificación asinada. Se un campo xa está correcto, déixao como está."
+fos.iden_especie_determinacion,Especie / determinación,Espeziea / determinazioa,Espècie / determinació,Especie / determinación
+fos.iden_edad_epoca,Edad / época geológica,Adina / garai geologikoa,Edat / època geològica,Idade / época xeolóxica
+fos.iden_formacion_geologica,Formación geológica,Formazio geologikoa,Formació geològica,Formación xeolóxica
+fos.iden_comentarios_experto,Comentarios del experto,Adituaren iruzkinak,Comentaris de l'expert,Comentarios do experto
+fos.iden_comentarios_ejemplo,"Ej: pieza relevante para colección regional, recomiendo enviar a museo X para depósito",Adib.: eskualdeko bildumarako pieza garrantzitsua; X museora gordetzeko bidaltzea gomendatzen dut,Ex.: peça rellevant per a una col·lecció regional; recomano enviar-la al museu X en dipòsit,Ex.: peza relevante para unha colección rexional; recomendo envíala ao museo X en depósito
+fos.iden_firmar_y_devolver,Firmar y devolver al descubridor,Sinatu eta itzuli aurkitzaileari,Signa i retorna al descobridor,Asinar e devolver ao descubridor
+fos.iden_no_es_certificado,El fichero no es un certificado de Fósiles.,Fitxategia ez da Fosilak aplikazioaren ziurtagiri bat.,El fitxer no és un certificat de Fòssils.,O ficheiro non é un certificado de Fósiles.
+fos.iden_error_leer_fichero,Error al leer el fichero,Errorea fitxategia irakurtzean,Error en llegir el fitxer,Erro ao ler o ficheiro
+fos.iden_verificar_certificado,Verificar certificado,Egiaztatu ziurtagiria,Verifica el certificat,Verificar certificado
+fos.iden_verificar_ayuda,Selecciona un fichero .json de certificado para verificar su autenticidad.,Hautatu ziurtagiri-fitxategi bat (.json) benetakoa den egiaztatzeko.,Selecciona un fitxer .json de certificat per verificar-ne l'autenticitat.,Selecciona un ficheiro .json de certificado para verificar a súa autenticidade.
+fos.iden_seleccionar_certificado,Seleccionar certificado,Hautatu ziurtagiria,Selecciona el certificat,Seleccionar certificado
+fos.iden_certificado_verificado,Certificado verificado,Ziurtagiria egiaztatuta,Certificat verificat,Certificado verificado
+fos.iden_certificado_no_valido,Certificado NO válido,Ziurtagiria EZ da baliozkoa,Certificat NO vàlid,Certificado NON válido
+fos.iden_hash_no_coincide,El hash no coincide. El certificado ha sido alterado.,Hasha ez dator bat. Ziurtagiria aldatu egin da.,El hash no coincideix. El certificat ha estat alterat.,O hash non coincide. O certificado foi alterado.
+fos.iden_especie,Especie,Espeziea,Espècie,Especie
+fos.iden_edad,Edad,Adina,Edat,Idade
+fos.iden_formacion,Formación,Formazioa,Formació,Formación
+fos.iden_fecha_descubrimiento,Fecha descubrimiento,Aurkikuntza-data,Data del descobriment,Data do descubrimento
+fos.iden_descubridor,Descubridor,Aurkitzailea,Descobridor,Descubridor
+fos.iden_email_descubridor,Email descubridor,Aurkitzailearen posta,Correu del descobridor,Correo do descubridor
+fos.iden_fecha_certificacion,Fecha certificación,Ziurtapen-data,Data de certificació,Data da certificación
+fos.iden_error_importando,Error al importar,Errorea inportatzean,Error en importar,Erro ao importar
+fos.iden_importar_card_recibida,Importar card recibida,Inportatu jasotako txartela,Importa la targeta rebuda,Importar a tarxeta recibida
+fos.iden_no_se_pudo_abrir,No se pudo abrir el archivo,Ezin izan da fitxategia ireki,No s'ha pogut obrir el fitxer,Non se puido abrir o ficheiro
+fos.iden_card_importada,Card importada,Txartela inportatu da,Targeta importada,Tarxeta importada
+fos.iden_aparece_en_compartidas,Aparece en la pestaña «Compartidas» de tu lista de hallazgos.,Zure aurkikuntzen zerrendako «Partekatuak» fitxan agertzen da.,Apareix a la pestanya «Compartides» de la teva llista de troballes.,Aparece na lapela «Compartidos» da túa lista de achados.
+fos.iden_importar_a_mi_coleccion,Importar a mi colección,Inportatu nire bildumara,Importa a la meva col·lecció,Importar á miña colección
+fos.iden_hecho,Hecho,Eginda,Fet,Feito
+fos.iden_modo_experto_aviso,Estás en Modo Experto. Esta card se procesa para revisión — no entra en tu colección personal.,Aditu moduan zaude. Txartel hau berrikusteko prozesatzen da: ez da zure bilduma pertsonalean sartzen.,Ets en Mode Expert. Aquesta targeta es processa per revisar-la: no entra a la teva col·lecció personal.,Estás en Modo Experto. Esta tarxeta procésase para revisión: non entra na túa colección persoal.
+fos.iden_certificar,Certificar,Ziurtatu,Certifica,Certificar
+fos.iden_acusar_recibo,Acusar recibo (revisaré más tarde),Jaso dela adierazi (geroago berrikusiko dut),Confirma la recepció (ho revisaré més tard),Acusar recibo (revisarei máis tarde)
+fos.iden_descartar,Descartar (no es de interés científico),Baztertu (ez du interes zientifikorik),Descarta (no té interès científic),Descartar (non ten interese científico)
+fos.iden_acuse_de_recibo,Acuse de recibo,Jasotze-agiria,Justificant de recepció,Acuse de recibo
+fos.iden_descarte,Descarte,Baztertzea,Descart,Descarte
+fos.iden_devolucion_firmada,Devolución firmada por la autoridad.,Agintaritzak sinatutako itzulketa.,Retorn signat per l'autoritat.,Devolución asinada pola autoridade.
+fos.iden_firma_valida,Firma criptográfica válida — los datos vienen tal cual los firmó el remitente.,Sinadura kriptografiko baliozkoa: datuak igorleak sinatu zituen bezalaxe datoz.,Signatura criptogràfica vàlida: les dades arriben tal com les va signar el remitent.,Sinatura criptográfica válida: os datos chegan tal como os asinou o remitente.
+fos.iden_firma_invalida,FIRMA INVÁLIDA — los datos del archivo NO coinciden con la firma del remitente. Podrían haber sido modificados.,SINADURA BALIOGABEA: fitxategiko datuak EZ datoz bat igorlearen sinadurarekin. Aldatuta egon litezke.,SIGNATURA NO VÀLIDA: les dades del fitxer NO coincideixen amb la signatura del remitent. Podrien haver estat modificades.,SINATURA NON VÁLIDA: os datos do ficheiro NON coinciden coa sinatura do remitente. Poderían ter sido modificados.
+fos.iden_remitente,Remitente,Igorlea,Remitent,Remitente
+fos.iden_nombre_declarado,Nombre declarado,Adierazitako izena,Nom declarat,Nome declarado
+fos.iden_huella,Huella,Hatz-marka,Empremta,Pegada
+fos.iden_hallazgo,Hallazgo,Aurkikuntza,Troballa,Achado
+fos.iden_tipo,Tipo,Mota,Tipus,Tipo
+fos.iden_fecha,Fecha,Data,Data,Data
+fos.iden_coordenadas,Coordenadas,Koordenatuak,Coordenades,Coordenadas
+fos.iden_estrato,Estrato,Estratua,Estrat,Estrato
+fos.iden_notas,Notas,Oharrak,Notes,Notas
+fos.iden_tipo_fosil,Fósil,Fosila,Fòssil,Fósil
+fos.iden_tipo_mineral,Mineral,Minerala,Mineral,Mineral
+fos.iden_error_sin_manifest,No es un .fos-card válido (sin manifest),Ez da baliozko .fos-card fitxategia (manifestik gabe),No és un .fos-card vàlid (sense manifest),Non é un .fos-card válido (sen manifest)
+fos.iden_error_formato_desconocido,Formato desconocido: {formato},Formatu ezezaguna: {formato},Format desconegut: {formato},Formato descoñecido: {formato}
+fos.iden_error_falta_hallazgo,Falta hallazgo.json,hallazgo.json falta da,Falta hallazgo.json,Falta hallazgo.json
+fos.iden_error_version_desconocida,Versión de hallazgo desconocida: {version},Aurkikuntzaren bertsio ezezaguna: {version},Versió de troballa desconeguda: {version},Versión de achado descoñecida: {version}
+fos.iden_error_sin_autoridad,Modo Experto no activo: no hay autoridad para firmar.,Aditu modua ez dago aktibo: ez dago sinatzeko agintaritzarik.,El Mode Expert no està actiu: no hi ha cap autoritat per signar.,O Modo Experto non está activo: non hai autoridade para asinar.
+fos.iden_error_sin_clave_autoridad,Modo Experto no activo: no hay clave de autoridad.,Aditu modua ez dago aktibo: ez dago agintaritza-gakorik.,El Mode Expert no està actiu: no hi ha clau d'autoritat.,O Modo Experto non está activo: non hai clave de autoridade.
+fos.iden_com_falta_consentimiento,Falta consentimiento explícito.,Berariazko baimena falta da.,Falta el consentiment explícit.,Falta o consentimento explícito.
+fos.iden_com_limite_diario,Has alcanzado el límite diario de subidas. Inténtalo mañana.,Eguneko igoera-mugara iritsi zara. Saiatu bihar.,Has arribat al límit diari de pujades. Torna-ho a provar demà.,Alcanzaches o límite diario de subidas. Téntao mañá.
+fos.iden_com_servidor_rechazo,El servidor rechazó la subida (HTTP {codigo}).,Zerbitzariak igoera baztertu du (HTTP {codigo}).,El servidor ha rebutjat la pujada (HTTP {codigo}).,O servidor rexeitou a subida (HTTP {codigo}).
+fos.iden_com_tiempo_agotado,El servidor tardó demasiado en responder. Revisa la conexión.,Zerbitzariak gehiegi behar izan du erantzuteko. Egiaztatu konexioa.,El servidor ha trigat massa a respondre. Revisa la connexió.,O servidor tardou demasiado en responder. Revisa a conexión.
+fos.iden_com_sin_conexion,No hay conexión con el servidor. Inténtalo más tarde.,Ez dago zerbitzariarekin konexiorik. Saiatu geroago.,No hi ha connexió amb el servidor. Torna-ho a provar més tard.,Non hai conexión co servidor. Téntao máis tarde.
+fos.iden_com_no_pudo_procesar,El servidor no pudo procesar la solicitud (HTTP {codigo}).,Zerbitzariak ezin izan du eskaera prozesatu (HTTP {codigo}).,El servidor no ha pogut processar la sol·licitud (HTTP {codigo}).,O servidor non puido procesar a solicitude (HTTP {codigo}).
+fos.iden_com_inactiva,La función «comunidad» no está activada en esta versión.,«Komunitatea» funtzioa ez dago aktibatuta bertsio honetan.,La funció «comunitat» no està activada en aquesta versió.,A función «comunidade» non está activada nesta versión.
+fos.iden_com_sin_fotos,Este hallazgo no tiene fotos. Edítalo y añade una.,Aurkikuntza honek ez du argazkirik. Editatu eta gehitu bat.,Aquesta troballa no té fotos. Edita-la i afegeix-n'hi una.,Este achado non ten fotos. Edítao e engade unha.
+fos.iden_com_enviada,"Enviada (#{id}). Si se aprueba, te avisaremos.","Bidalita (#{id}). Onartzen bada, jakinaraziko dizugu.","Enviada (#{id}). Si s'aprova, t'avisarem.","Enviada (#{id}). Se se aproba, avisarémoste."
+fos.iden_com_error_inesperado,Error inesperado,Ustekabeko errorea,Error inesperat,Erro inesperado
+fos.iden_com_compartir_titulo,Compartir con la comunidad,Partekatu komunitatearekin,Comparteix amb la comunitat,Compartir coa comunidade
+fos.iden_com_intro,"Un geólogo revisará tu aportación. Si la aprueba, aparecerá en la app asociada a esta formación geológica, para que otros aficionados puedan ver lo que se encuentra aquí.","Geologo batek zure ekarpena berrikusiko du. Onartzen badu, aplikazioan agertuko da formazio geologiko honi lotuta, beste zaletu batzuek hemen zer aurkitzen den ikus dezaten.","Un geòleg revisarà la teva aportació. Si l'aprova, apareixerà a l'app associada a aquesta formació geològica, perquè altres aficionats puguin veure què s'hi troba.","Un xeólogo revisará a túa achega. Se a aproba, aparecerá na app asociada a esta formación xeolóxica, para que outros afeccionados poidan ver o que se atopa aquí."
+fos.iden_com_se_envia,Se envía:,Bidaltzen da:,S'envia:,Envíase:
+fos.iden_com_foto_principal,Foto principal del hallazgo,Aurkikuntzaren argazki nagusia,Foto principal de la troballa,Foto principal do achado
+fos.iden_com_tipo_valor,Tipo ({tipo}),Mota ({tipo}),Tipus ({tipo}),Tipo ({tipo})
+fos.iden_com_especie_declarada,Especie/grupo declarado: {valor},Adierazitako espeziea/taldea: {valor},Espècie/grup declarat: {valor},Especie/grupo declarado: {valor}
+fos.iden_com_edad_declarada,Edad declarada: {valor},Adierazitako adina: {valor},Edat declarada: {valor},Idade declarada: {valor}
+fos.iden_com_formacion_declarada,Formación declarada: {valor},Adierazitako formazioa: {valor},Formació declarada: {valor},Formación declarada: {valor}
+fos.iden_com_tus_notas,Tus notas,Zure oharrak,Les teves notes,As túas notas
+fos.iden_com_no_se_envia,NO se envía:,EZ da bidaltzen:,NO s'envia:,NON se envía:
+fos.iden_com_nombre_autor,Tu nombre como autor visible,Zure izena egile ikusgai gisa,El teu nom com a autor visible,O teu nome como autor visible
+fos.iden_com_identidad_cripto,Tu identidad criptográfica del hallazgo,Aurkikuntzako zure identitate kriptografikoa,La teva identitat criptogràfica de la troballa,A túa identidade criptográfica do achado
+fos.iden_com_email_no_valido,Email no válido,Posta elektroniko baliogabea,Correu electrònic no vàlid,Correo electrónico non válido
+fos.iden_com_email_contacto,Email de contacto,Harremanetarako posta elektronikoa,Correu de contacte,Correo de contacto
+fos.iden_com_email_ayuda,Para avisarte si la foto se aprueba o rechaza. NUNCA se publica.,Argazkia onartu edo baztertzen den jakinarazteko. EZ da INOIZ argitaratzen.,Per avisar-te si la foto s'aprova o es rebutja. MAI no es publica.,Para avisarte se a foto se aproba ou se rexeita. NUNCA se publica.
+fos.iden_com_tu_nombre_opcional,Tu nombre (opcional),Zure izena (aukerakoa),El teu nom (opcional),O teu nome (opcional)
+fos.iden_com_nombre_ayuda,Solo lo verá el curador. Nunca aparece en la app.,Kontserbatzaileak bakarrik ikusiko du. Ez da inoiz aplikazioan agertzen.,Només el veurà el curador. Mai no apareix a l'app.,Só o verá o curador. Nunca aparece na app.
+fos.iden_com_consentimiento,Acepto la política de privacidad y entiendo que la app no es un canal oficial para reportar patrimonio paleontológico — para hallazgos importantes contacta también con el servicio de Patrimonio de tu CCAA.,"Pribatutasun-politika onartzen dut, eta ulertzen dut aplikazioa ez dela ondare paleontologikoa jakinarazteko bide ofiziala; aurkikuntza garrantzitsuetarako, jarri harremanetan zure autonomia-erkidegoko Ondare zerbitzuarekin ere.","Accepto la política de privadesa i entenc que l'app no és un canal oficial per comunicar patrimoni paleontològic; per a troballes importants, contacta també amb el servei de Patrimoni de la teva comunitat autònoma.","Acepto a política de privacidade e entendo que a app non é unha canle oficial para comunicar patrimonio paleontolóxico; para achados importantes, contacta tamén co servizo de Patrimonio da túa comunidade autónoma."
+fos.iden_com_enviar_revision,Enviar para revisión,Bidali berrikusteko,Envia per revisar,Enviar para revisión
+fos.iden_com_formacion_codigo,Formación · {codigo},Formazioa · {codigo},Formació · {codigo},Formación · {codigo}
+fos.iden_com_fotos_comunidad,Fotos de la comunidad,Komunitatearen argazkiak,Fotos de la comunitat,Fotos da comunidade
+fos.iden_com_sin_fotos_formacion,"Aún no hay fotos de la comunidad para esta formación. Si encuentras algo aquí, puedes ser el primero — comparte tu hallazgo desde la pestaña Lista.","Oraindik ez dago komunitatearen argazkirik formazio honetarako. Hemen zerbait aurkitzen baduzu, lehena izan zaitezke: partekatu zure aurkikuntza Zerrenda fitxatik.","Encara no hi ha fotos de la comunitat per a aquesta formació. Si hi trobes alguna cosa, pots ser el primer: comparteix la teva troballa des de la pestanya Llista.","Aínda non hai fotos da comunidade para esta formación. Se atopas algo aquí, podes ser o primeiro: comparte o teu achado desde a lapela Lista."
+fos.iden_com_sin_especie,(sin especie),(espezierik gabe),(sense espècie),(sen especie)

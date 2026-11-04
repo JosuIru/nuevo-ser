@@ -1,0 +1,129 @@
+clave,es,eu,ca,gl
+fos.hall_alternativas,Alternativas,Beste aukera batzuk,Alternatives,Alternativas
+fos.hall_anadir,Añadir,Gehitu,Afegir,Engadir
+fos.hall_anadir_evento,Añadir evento,Gertaera gehitu,Afegir un esdeveniment,Engadir evento
+fos.hall_anadir_evento_trazabilidad,Añadir evento de trazabilidad,Trazabilitate-gertaera gehitu,Afegir un esdeveniment de traçabilitat,Engadir un evento de rastrexabilidade
+fos.hall_anadir_trazabilidad,Añadir trazabilidad,Trazabilitatea gehitu,Afegir traçabilitat,Engadir rastrexabilidade
+fos.hall_anotar_foto,Anotar foto,Argazkia markatu,Anotar la foto,Anotar a foto
+fos.hall_aplicar_formulario,Aplicar al formulario,Formularioan aplikatu,Aplicar al formulari,Aplicar ao formulario
+fos.hall_asunto_certificado,Certificado de hallazgo: {especie},Aurkikuntza-ziurtagiria: {especie},Certificat de troballa: {especie},Certificado de achado: {especie}
+fos.hall_asunto_exportacion,Hallazgos de fósiles,Fosil-aurkikuntzak,Troballes de fòssils,Achados de fósiles
+fos.hall_asunto_hallazgo,Hallazgo: {especie},Aurkikuntza: {especie},Troballa: {especie},Achado: {especie}
+fos.hall_aun_no_hay_hallazgos,Aún no hay hallazgos.,Oraindik ez dago aurkikuntzarik.,Encara no hi ha troballes.,Aínda non hai achados.
+fos.hall_autor_evento,Autor del evento,Gertaeraren egilea,Autor de l'esdeveniment,Autor do evento
+fos.hall_borrar_medida,Borrar medida,Neurketa ezabatu,Esborrar la mesura,Borrar a medida
+fos.hall_buscar,Buscar…,Bilatu…,Cerca…,Buscar…
+fos.hall_buscar_hint,"Buscar por nombre, edad, notas…","Bilatu izenaren, adinaren edo oharren arabera…","Cerca per nom, edat, notes…","Buscar por nome, idade, notas…"
+fos.hall_certificado_texto,Certificado verificable de hallazgo fósil.,Fosil-aurkikuntza baten ziurtagiri egiaztagarria.,Certificat verificable de troballa fòssil.,Certificado verificable de achado fósil.
+fos.hall_certificado_verificable,Certificado verificable,Ziurtagiri egiaztagarria,Certificat verificable,Certificado verificable
+fos.hall_como_confirmar,Cómo confirmar,Nola baieztatu,Com confirmar-ho,Como confirmalo
+fos.hall_compartir_comunidad,Compartir con la comunidad,Komunitatearekin partekatu,Compartir amb la comunitat,Compartir coa comunidade
+fos.hall_compartir_texto,Compartir texto,Testua partekatu,Compartir el text,Compartir texto
+fos.hall_con_foto,Con foto,Argazkiarekin,Amb foto,Con foto
+fos.hall_confianza,Confianza {nivel},Konfiantza {nivel},Confiança {nivel},Confianza {nivel}
+fos.hall_confianza_alta,alta,altua,alta,alta
+fos.hall_confianza_baja,baja,baxua,baixa,baixa
+fos.hall_confianza_media,media,ertaina,mitjana,media
+fos.hall_configura_api_key,Configura primero tu API key en Ajustes → Inteligencia artificial.,Konfiguratu lehenik zure API gakoa Ezarpenak → Adimen artifiziala atalean.,Configura primer la teva clau d'API a Configuració → Intel·ligència artificial.,Configura primeiro a túa clave de API en Axustes → Intelixencia artificial.
+fos.hall_configura_nombre,Configura primero tu nombre en Ajustes → Perfil del descubridor.,Konfiguratu lehenik zure izena Ezarpenak → Aurkitzailearen profila atalean.,Configura primer el teu nom a Configuració → Perfil del descobridor.,Configura primeiro o teu nome en Axustes → Perfil do descubridor.
+fos.hall_confirmar_borrar,¿Borrar este hallazgo?,Aurkikuntza hau ezabatu?,Vols esborrar aquesta troballa?,Borrar este achado?
+fos.hall_consultando_igme,Consultando IGME…,IGME kontsultatzen…,Consultant l'IGME…,Consultando o IGME…
+fos.hall_contexto_geologico,Contexto geológico,Testuinguru geologikoa,Context geològic,Contexto xeolóxico
+fos.hall_coordenadas,Coordenadas,Koordenatuak,Coordenades,Coordenadas
+fos.hall_cronologia,Cronología,Kronologia,Cronologia,Cronoloxía
+fos.hall_descartar,Descartar,Baztertu,Descartar,Descartar
+fos.hall_descripcion,Descripción,Deskribapena,Descripció,Descrición
+fos.hall_descubridor,Descubridor,Aurkitzailea,Descobridor,Descubridor
+fos.hall_desde_galeria,Desde galería,Galeriatik,Des de la galeria,Desde a galería
+fos.hall_deshacer,Deshacer,Desegin,Desfer,Desfacer
+fos.hall_detectado_mineral,Detectado como mineral,Mineral gisa detektatua,Detectat com a mineral,Detectado como mineral
+fos.hall_dias_activo,Días activo,Egun aktiboak,Dies d'activitat,Días de actividade
+fos.hall_dureza_mohs,Dureza Mohs,Mohs gogortasuna,Duresa de Mohs,Dureza Mohs
+fos.hall_dureza_mohs_estimada,Dureza Mohs estimada,Gutxi gorabeherako Mohs gogortasuna,Duresa de Mohs estimada,Dureza Mohs estimada
+fos.hall_edad,Edad,Adina,Edat,Idade
+fos.hall_edad_periodo,Edad / periodo,Adina / aldia,Edat / període,Idade / período
+fos.hall_editar_hallazgo,Editar hallazgo,Aurkikuntza editatu,Editar la troballa,Editar o achado
+fos.hall_ejemplo_autor,Ej: Dra. López (UPV/EHU),Adib.: López doktorea (UPV/EHU),P. ex.: Dra. López (UPV/EHU),Ex.: Dra. López (UPV/EHU)
+fos.hall_ejemplo_descripcion,Ej: Depositado en el Museo de Ciencias Naturales de Álava,Adib.: Arabako Natur Zientzien Museoan gordailatua,P. ex.: Dipositat al Museu de Ciències Naturals d'Àlaba,Ex.: Depositado no Museo de Ciencias Naturais de Álava
+fos.hall_error_codificar_imagen,No se pudo codificar la imagen,Ezin izan da irudia kodetu,No s'ha pogut codificar la imatge,Non se puido codificar a imaxe
+fos.hall_error_exportando,Error exportando: {error},Errorea esportatzean: {error},Error en exportar: {error},Erro ao exportar: {error}
+fos.hall_error_generar_zip,No se pudo generar el ZIP.,Ezin izan da ZIPa sortu.,No s'ha pogut generar el ZIP.,Non se puido xerar o ZIP.
+fos.hall_error_gps,Error GPS: {error},GPS errorea: {error},Error de GPS: {error},Erro de GPS: {error}
+fos.hall_error_guardando,Error guardando: {error},Errorea gordetzean: {error},Error en desar: {error},Erro ao gardar: {error}
+fos.hall_error_identificando,Error identificando: {error},Errorea identifikatzean: {error},Error en identificar: {error},Erro ao identificar: {error}
+fos.hall_error_sin_id,Error: el hallazgo no tiene ID.,Errorea: aurkikuntzak ez du IDrik.,Error: la troballa no té ID.,Erro: o achado non ten ID.
+fos.hall_error_tarjeta,Error generando tarjeta: {error},Errorea txartela sortzean: {error},Error en generar la targeta: {error},Erro ao xerar a tarxeta: {error}
+fos.hall_especie,Especie,Espeziea,Espècie,Especie
+fos.hall_especie_tentativa,Especie / nombre tentativo,Espeziea / behin-behineko izena,Espècie / nom provisional,Especie / nome provisional
+fos.hall_especies,Especies,Espezieak,Espècies,Especies
+fos.hall_esperando_gps,Esperando posición GPS…,GPS kokapenaren zain…,Esperant la posició GPS…,Agardando a posición GPS…
+fos.hall_estadisticas,Estadísticas,Estatistikak,Estadístiques,Estatísticas
+fos.hall_estrato,Estrato,Estratua,Estrat,Estrato
+fos.hall_evento_anadido,Evento añadido al historial.,Gertaera historian gehitu da.,Esdeveniment afegit a l'historial.,Evento engadido ao historial.
+fos.hall_exportar_zip,Exportar ZIP,ZIPa esportatu,Exportar en ZIP,Exportar ZIP
+fos.hall_fecha,Fecha,Data,Data,Data
+fos.hall_formacion,Formación,Formazioa,Formació,Formación
+fos.hall_formacion_geologica,Formación geológica,Formazio geologikoa,Formació geològica,Formación xeolóxica
+fos.hall_fosil,Fósil,Fosila,Fòssil,Fósil
+fos.hall_fosiles,Fósiles,Fosilak,Fòssils,Fósiles
+fos.hall_fosiles_probables,Fósiles probables · {periodo},Fosil probableak · {periodo},Fòssils probables · {periodo},Fósiles probables · {periodo}
+fos.hall_guia,Guía,Gida,Guia,Guía
+fos.hall_hallazgo_de_fosil,Hallazgo de fósil,Fosil-aurkikuntza,Troballa de fòssil,Achado de fósil
+fos.hall_historial_trazabilidad,Historial de trazabilidad,Trazabilitate-historia,Historial de traçabilitat,Historial de rastrexabilidade
+fos.hall_identificando,Identificando…,Identifikatzen…,Identificant…,Identificando…
+fos.hall_identificar_claude,Identificar con Claude,Claudekin identifikatu,Identificar amb Claude,Identificar con Claude
+fos.hall_incoherencia_detalle,Claude propone {claude} pero el afloramiento IGME es {igme}. Revisa la identificación o la posición.,"Claudek {claude} proposatzen du, baina IGMEren azaleratzea {igme} da. Berrikusi identifikazioa edo kokapena.","Claude proposa {claude}, però l'aflorament de l'IGME és {igme}. Revisa la identificació o la posició.","Claude propón {claude}, pero o afloramento do IGME é {igme}. Revisa a identificación ou a posición."
+fos.hall_incoherencia_geologica,Posible incoherencia geológica,Balizko inkoherentzia geologikoa,Possible incoherència geològica,Posible incoherencia xeolóxica
+fos.hall_limpiar,Limpiar,Garbitu,Netejar,Limpar
+fos.hall_linea_tiempo,Línea del tiempo,Denbora-lerroa,Línia del temps,Liña do tempo
+fos.hall_medir,Medir,Neurtu,Mesurar,Medir
+fos.hall_mineral,Mineral,Minerala,Mineral,Mineral
+fos.hall_minerales,Minerales,Mineralak,Minerals,Minerais
+fos.hall_mixto,Mixto,Nahasia,Mixt,Mixto
+fos.hall_modelo,Modelo: {modelo},Eredua: {modelo},Model: {modelo},Modelo: {modelo}
+fos.hall_moneda_en_foto,Moneda en foto:,Txanpona argazkian:,Moneda a la foto:,Moeda na foto:
+fos.hall_n_de_total_desliza,{actual} / {total} · desliza ← → para cambiar,{actual} / {total} · irristatu ← → aldatzeko,{actual} / {total} · llisca ← → per canviar,{actual} / {total} · despraza ← → para cambiar
+fos.hall_n_exportados,{n} hallazgos exportados.,{n} aurkikuntza esportatu dira.,{n} troballes exportades.,{n} achados exportados.
+fos.hall_n_fosiles,{n} fósiles,{n} fosil,{n} fòssils,{n} fósiles
+fos.hall_ninguno_coincide,Ningún hallazgo coincide con la búsqueda.,Ez dago bilaketarekin bat datorren aurkikuntzarik.,Cap troballa no coincideix amb la cerca.,Ningún achado coincide coa busca.
+fos.hall_ninguno_recibido_coincide,Ningún hallazgo recibido coincide con la búsqueda.,Jasotako aurkikuntzetatik bat ere ez dator bat bilaketarekin.,Cap troballa rebuda no coincideix amb la cerca.,Ningún achado recibido coincide coa busca.
+fos.hall_no,No,Ez,No,Non
+fos.hall_nombre_mineral,Nombre del mineral,Mineralaren izena,Nom del mineral,Nome do mineral
+fos.hall_notas,Notas,Oharrak,Notes,Notas
+fos.hall_nuevo_hallazgo,Nuevo hallazgo,Aurkikuntza berria,Nova troballa,Novo achado
+fos.hall_o_desde_galeria,o desde galería,edo galeriatik,o des de la galeria,ou desde a galería
+fos.hall_obteniendo_gps,Obteniendo GPS…,GPSa lortzen…,Obtenint el GPS…,Obtendo o GPS…
+fos.hall_orientacion_sin_medir,Orientación del estrato: sin medir,Estratuaren orientazioa: neurtu gabe,Orientació de l'estrat: sense mesurar,Orientación do estrato: sen medir
+fos.hall_periodo,Periodo,Aldia,Període,Período
+fos.hall_permiso_ubicacion_denegado,Permiso de ubicación denegado.,Kokapen-baimena ukatu da.,S'ha denegat el permís d'ubicació.,Permiso de localización denegado.
+fos.hall_pie_tarjeta,Fósiles · cuaderno de campo,Fosilak · landa-koadernoa,Fòssils · quadern de camp,Fósiles · caderno de campo
+fos.hall_primer_hallazgo,Primer hallazgo,Lehen aurkikuntza,Primera troballa,Primeiro achado
+fos.hall_punto_marcado_mapa,Punto marcado en mapa,Mapan markatutako puntua,Punt marcat al mapa,Punto marcado no mapa
+fos.hall_quiz,Quiz,Galdetegia,Qüestionari,Cuestionario
+fos.hall_quiz_identificacion,Quiz de identificación,Identifikazio-galdetegia,Qüestionari d'identificació,Cuestionario de identificación
+fos.hall_razonamiento,Razonamiento,Arrazoiketa,Raonament,Razoamento
+fos.hall_recibida,recibida,jasoa,rebuda,recibido
+fos.hall_remedir,Re-medir,Berriz neurtu,Tornar a mesurar,Volver medir
+fos.hall_sin_clasificar,Sin clasificar,Sailkatu gabe,Sense classificar,Sen clasificar
+fos.hall_sin_fosiles_periodo,Sin fósiles en la guía para este período.,Gidan ez dago aldi honetako fosilik.,No hi ha fòssils a la guia per a aquest període.,Non hai fósiles na guía para este período.
+fos.hall_sin_hallazgos_analizar,Aún no hay hallazgos para analizar.,Oraindik ez dago aztertzeko aurkikuntzarik.,Encara no hi ha troballes per analitzar.,Aínda non hai achados para analizar.
+fos.hall_sin_nombre,Sin nombre,Izenik gabe,Sense nom,Sen nome
+fos.hall_tab_compartidas,Compartidas ({n}),Partekatuak ({n}),Compartides ({n}),Compartidos ({n})
+fos.hall_tab_mias,Mías ({n}),Nireak ({n}),Meves ({n}),Meus ({n})
+fos.hall_tamano_estimado,Tamaño estimado,Gutxi gorabeherako tamaina,Mida estimada,Tamaño estimado
+fos.hall_tarjeta,Tarjeta,Txartela,Targeta,Tarxeta
+fos.hall_tipo_deposito_museo,Depositado en museo / colección,Museoan / bilduman gordailatua,Dipositat en museu / col·lecció,Depositado en museo / colección
+fos.hall_tipo_estudio,Estudiado por,Aztertua,Estudiat per,Estudado por
+fos.hall_tipo_evento,Tipo de evento,Gertaera mota,Tipus d'esdeveniment,Tipo de evento
+fos.hall_tipo_otro,Otro evento,Beste gertaera bat,Un altre esdeveniment,Outro evento
+fos.hall_tipo_prestamo,Préstamo / consulta,Mailegua / kontsulta,Préstec / consulta,Préstamo / consulta
+fos.hall_tipo_publicacion,Citado en publicación,Argitalpen batean aipatua,Citat en una publicació,Citado nunha publicación
+fos.hall_titulo,Hallazgos,Aurkikuntzak,Troballes,Achados
+fos.hall_toca_mas_primero,Toca el + para registrar el primero.,Sakatu + lehenengoa erregistratzeko.,Toca el + per registrar-ne la primera.,Toca o + para rexistrar o primeiro.
+fos.hall_tomar_foto,Tomar foto,Argazkia atera,Fer una foto,Sacar unha foto
+fos.hall_top_especies,Top especies,Espezie ohikoenak,Espècies més freqüents,Especies máis frecuentes
+fos.hall_top_formaciones,Top formaciones,Formazio ohikoenak,Formacions més freqüents,Formacións máis frecuentes
+fos.hall_ubicacion,Ubicación,Kokapena,Ubicació,Localización
+fos.hall_ultimo_hallazgo,Último hallazgo,Azken aurkikuntza,Última troballa,Último achado
+fos.hall_ver_en_mapa,Ver en el mapa,Mapan ikusi,Veure al mapa,Ver no mapa
+fos.hall_ver_ficha,Ver ficha,Fitxa ikusi,Veure la fitxa,Ver a ficha

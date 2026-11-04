@@ -1,0 +1,246 @@
+clave,es,eu,ca,gl
+fos.mapa_capa_callejero,Callejero,Kale-mapa,Carrerer,Rueiro
+fos.mapa_capa_satelite,Satélite,Satelitea,Satèl·lit,Satélite
+fos.mapa_capa_topografico,Topográfico,Topografikoa,Topogràfic,Topográfico
+fos.mapa_capa_edades_1m,Edades 1M,Adinak 1M,Edats 1M,Idades 1M
+fos.mapa_capa_litologias_1m,Litologías 1M,Litologiak 1M,Litologies 1M,Litoloxías 1M
+fos.mapa_capa_geode_desc,"Recomendada · continuo geológico nacional. Cada polígono lleva edad, formación y litología; lo que ves y lo que la app sugiere para fósiles van siempre coordinados.","Gomendatua · estatuko jarraitu geologikoa. Poligono bakoitzak adina, formazioa eta litologia ditu; ikusten duzuna eta aplikazioak fosiletarako iradokitzen duena beti bat datoz.","Recomanada · continu geològic nacional. Cada polígon porta edat, formació i litologia; el que veus i el que l'app suggereix per als fòssils van sempre coordinats.","Recomendada · continuo xeolóxico nacional. Cada polígono leva idade, formación e litoloxía; o que ves e o que a app suxire para fósiles van sempre coordinados."
+fos.mapa_capa_magna_desc,"Color por litología (tipo de roca: caliza, arcilla, granito…). Máximo detalle 1:50.000. Útil para ""qué tipo de roca piso"", NO para ver edades de un vistazo.","Kolorea litologiaren arabera (arroka mota: kareharria, buztina, granitoa…). Gehieneko xehetasuna 1:50.000. Erabilgarria «zer arroka motaren gainean nago» jakiteko, EZ adinak begirada batean ikusteko.","Color per litologia (tipus de roca: calcària, argila, granit…). Detall màxim 1:50.000. Útil per saber «quin tipus de roca trepitjo», NO per veure edats d'un cop d'ull.","Cor por litoloxía (tipo de rocha: calcaria, arxila, granito…). Detalle máximo 1:50.000. Útil para saber «que tipo de rocha piso», NON para ver idades dunha ollada."
+fos.mapa_capa_edades_desc,"Color directo por edad geológica (era/período). Lo mejor para ver eras de un vistazo. Resolución 1:1.000.000 — más baja, sirve para escala regional.","Kolorea zuzenean adin geologikoaren arabera (aroa/aldia). Aroak begirada batean ikusteko onena. 1:1.000.000 bereizmena — baxuagoa, eskualde-eskalarako balio du.","Color directe per edat geològica (era/període). El millor per veure eres d'un cop d'ull. Resolució 1:1.000.000 — més baixa, serveix per a escala regional.","Cor directa por idade xeolóxica (era/período). O mellor para ver eras dunha ollada. Resolución 1:1.000.000 — máis baixa, serve para escala rexional."
+fos.mapa_capa_litologias_desc,Litología general (versión simplificada de MAGNA). Resolución 1:1.000.000. Para escala regional cuando MAGNA está demasiado denso.,"Litologia orokorra (MAGNAren bertsio sinplifikatua). 1:1.000.000 bereizmena. Eskualde-eskalarako, MAGNA trinkoegia denean.",Litologia general (versió simplificada de MAGNA). Resolució 1:1.000.000. Per a escala regional quan MAGNA és massa dens.,Litoloxía xeral (versión simplificada de MAGNA). Resolución 1:1.000.000. Para escala rexional cando MAGNA é demasiado denso.
+fos.mapa_lig_sin_nombre,LIG sin nombre,Izenik gabeko LIG,LIG sense nom,LIG sen nome
+fos.mapa_rosa_vientos,"N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSO,SO,OSO,O,ONO,NO,NNO","I,IIE,IE,EIE,E,EHE,HE,HHE,H,HHM,HM,MHM,M,MIM,IM,IIM","N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSO,SO,OSO,O,ONO,NO,NNO","N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSO,SO,OSO,O,ONO,NO,NNO"
+fos.mapa_estas_en,{emoji} Estás en {nombre}. Toca para ver qué buscar.,{emoji} {nombre} lekuan zaude. Ukitu zer bilatu ikusteko.,{emoji} Ets a {nombre}. Toca per veure què cal buscar.,{emoji} Estás en {nombre}. Toca para ver que buscar.
+fos.mapa_ver_ficha,Ver ficha,Ikusi fitxa,Veure la fitxa,Ver ficha
+fos.mapa_esperando_gps,Esperando GPS para calcular distancia.,GPSaren zain distantzia kalkulatzeko.,S'espera el GPS per calcular la distància.,Agardando o GPS para calcular a distancia.
+fos.mapa_distancia_y_rumbo,Distancia y rumbo,Distantzia eta norabidea,Distància i rumb,Distancia e rumbo
+fos.mapa_desde_tu_posicion,Desde tu posición a {coordenadas},Zure kokapenetik {coordenadas} punturaino,Des de la teva posició fins a {coordenadas},Desde a túa posición ata {coordenadas}
+fos.mapa_detener_track,Detener track,Gelditu ibilbidea,Aturar la traça,Deter o traxecto
+fos.mapa_iniciar_track,Iniciar track,Hasi ibilbidea grabatzen,Iniciar la traça,Iniciar o traxecto
+fos.mapa_nombre_opcional,Nombre (opcional),Izena (aukerakoa),Nom (opcional),Nome (opcional)
+fos.mapa_descartar,Descartar,Baztertu,Descartar,Descartar
+fos.mapa_track_guardado,Track guardado,Ibilbidea gordeta,Traça desada,Traxecto gardado
+fos.mapa_grabando_track_aviso,🔴 Grabando track. Puedes bloquear la pantalla; el track sigue corriendo.,🔴 Ibilbidea grabatzen. Pantaila blokea dezakezu; grabazioak aurrera jarraituko du.,🔴 S'està enregistrant la traça. Pots bloquejar la pantalla; l'enregistrament continua.,🔴 Gravando o traxecto. Podes bloquear a pantalla; a gravación continúa.
+fos.mapa_acercate_monumentos,🗿 Acércate más (zoom ≥ 9) para cargar monumentos.,🗿 Hurbildu gehiago (zoom ≥ 9) monumentuak kargatzeko.,🗿 Apropa't més (zoom ≥ 9) per carregar monuments.,🗿 Achégate máis (zoom ≥ 9) para cargar monumentos.
+fos.mapa_sin_monumentos,🗿 Sin monumentos OSM en esta vista. Prueba a desplazar el mapa.,🗿 Ez dago OSM monumenturik ikuspegi honetan. Saiatu mapa mugitzen.,🗿 No hi ha monuments OSM en aquesta vista. Prova de desplaçar el mapa.,🗿 Non hai monumentos OSM nesta vista. Proba a desprazar o mapa.
+fos.mapa_monumentos_cargados,🗿 {n} monumentos cargados.,🗿 {n} monumentu kargatuta.,🗿 {n} monuments carregats.,🗿 {n} monumentos cargados.
+fos.mapa_error_monumentos,Error monumentos: {error},Errorea monumentuetan: {error},Error en els monuments: {error},Erro nos monumentos: {error}
+fos.mapa_acercate_cuevas,🦇 Acércate más (zoom ≥ 10) para cargar cuevas.,🦇 Hurbildu gehiago (zoom ≥ 10) kobazuloak kargatzeko.,🦇 Apropa't més (zoom ≥ 10) per carregar coves.,🦇 Achégate máis (zoom ≥ 10) para cargar covas.
+fos.mapa_sin_cuevas,🦇 Sin cuevas OSM en esta vista. Prueba a desplazar el mapa.,🦇 Ez dago OSM kobazulorik ikuspegi honetan. Saiatu mapa mugitzen.,🦇 No hi ha coves OSM en aquesta vista. Prova de desplaçar el mapa.,🦇 Non hai covas OSM nesta vista. Proba a desprazar o mapa.
+fos.mapa_cuevas_cargadas,🦇 {n} cuevas cargadas.,🦇 {n} kobazulo kargatuta.,🦇 {n} coves carregades.,🦇 {n} covas cargadas.
+fos.mapa_error_cuevas,Error cuevas: {error},Errorea kobazuloetan: {error},Error en les coves: {error},Erro nas covas: {error}
+fos.mapa_que_buscar,Qué buscar,Zer bilatu,Què cal buscar,Que buscar
+fos.mapa_como_llegar,Cómo llegar,Nola iritsi,Com arribar-hi,Como chegar
+fos.mapa_marcar_hallazgo_aqui,Marcar hallazgo aquí,Markatu aurkikuntza hemen,Marcar la troballa aquí,Marcar achado aquí
+fos.mapa_fuente,Fuente: {fuente},Iturria: {fuente},Font: {fuente},Fonte: {fuente}
+fos.mapa_cronologia,Cronología: {valor},Kronologia: {valor},Cronologia: {valor},Cronoloxía: {valor}
+fos.mapa_ver_en_osm,Ver en OpenStreetMap,Ikusi OpenStreetMap-en,Veure a OpenStreetMap,Ver en OpenStreetMap
+fos.mapa_especie,Especie,Espeziea,Espècie,Especie
+fos.mapa_edad,Edad,Adina,Edat,Idade
+fos.mapa_formacion,Formación,Formazioa,Formació,Formación
+fos.mapa_fecha,Fecha,Data,Data,Data
+fos.mapa_coordenadas,Coordenadas,Koordenatuak,Coordenades,Coordenadas
+fos.mapa_estrato,Estrato,Estratua,Estrat,Estrato
+fos.mapa_notas,Notas,Oharrak,Notes,Notas
+fos.mapa_borrar_hallazgo_pregunta,¿Borrar este hallazgo?,Aurkikuntza hau ezabatu?,Vols esborrar aquesta troballa?,Borrar este achado?
+fos.mapa_compartir_texto,Compartir texto,Partekatu testua,Compartir el text,Compartir texto
+fos.mapa_tarjeta,Tarjeta,Txartela,Targeta,Tarxeta
+fos.mapa_certificado_verificable,Certificado verificable,Ziurtagiri egiaztagarria,Certificat verificable,Certificado verificable
+fos.mapa_enviar_otra_app,Enviar a otra app Fósiles,Bidali beste Fósiles aplikazio batera,Enviar a una altra app Fósiles,Enviar a outra app Fósiles
+fos.mapa_historial_trazabilidad,Historial de trazabilidad,Trazabilitate-historia,Historial de traçabilitat,Historial de trazabilidade
+fos.mapa_evento_anadido,Evento añadido al historial.,Gertaera historian gehitu da.,Esdeveniment afegit a l'historial.,Evento engadido ao historial.
+fos.mapa_anadir_trazabilidad,Añadir trazabilidad,Gehitu trazabilitatea,Afegir traçabilitat,Engadir trazabilidade
+fos.mapa_anadir_evento,Añadir evento,Gehitu gertaera,Afegir esdeveniment,Engadir evento
+fos.mapa_compartir_titulo,Hallazgo de fósil,Fosil-aurkikuntza,Troballa de fòssil,Achado de fósil
+fos.mapa_asunto_hallazgo,Hallazgo: {especie},Aurkikuntza: {especie},Troballa: {especie},Achado: {especie}
+fos.mapa_error_tarjeta,Error generando tarjeta: {error},Errorea txartela sortzean: {error},Error en generar la targeta: {error},Erro ao xerar a tarxeta: {error}
+fos.mapa_precision_coordenadas,Precisión de las coordenadas,Koordenatuen zehaztasuna,Precisió de les coordenades,Precisión das coordenadas
+fos.mapa_precision_explicacion,"Las coordenadas precisas pueden facilitar el saqueo de yacimientos. Para colegas de confianza o el Instituto, manda precisas; para aficionados desconocidos o público en general, difuminadas (precisión ~1 km).","Koordenatu zehatzek aztarnategien espoliazioa erraztu dezakete. Konfiantzazko lankideei edo Institutuari, bidali zehatzak; zaletu ezezagunei edo publiko orokorrari, lausotuak (~1 km-ko zehaztasuna).","Les coordenades precises poden facilitar l'espoli de jaciments. Per a col·legues de confiança o l'Institut, envia-les precises; per a aficionats desconeguts o el públic en general, difuminades (precisió ~1 km).","As coordenadas precisas poden facilitar o saqueo de xacementos. Para colegas de confianza ou o Instituto, mándaas precisas; para afeccionados descoñecidos ou o público en xeral, difuminadas (precisión ~1 km)."
+fos.mapa_difuminadas_recomendado,Difuminadas (~1 km)  ·  recomendado,Lausotuak (~1 km)  ·  gomendatua,Difuminades (~1 km)  ·  recomanat,Difuminadas (~1 km)  ·  recomendado
+fos.mapa_precisas,Precisas (~11 cm),Zehatzak (~11 cm),Precises (~11 cm),Precisas (~11 cm)
+fos.mapa_asunto_card,Card de hallazgo: {especie},Aurkikuntzaren card-a: {especie},Card de la troballa: {especie},Card do achado: {especie}
+fos.mapa_sin_especie,(sin especie),(espezierik gabe),(sense espècie),(sen especie)
+fos.mapa_texto_card,"Card de Fósiles ({mb} MB · {fotos} fotos · {modo}). Para importarlo, abre el archivo en otra instalación de la app Fósiles.","Fósiles card-a ({mb} MB · {fotos} argazki · {modo}). Inportatzeko, ireki fitxategia Fósiles aplikazioaren beste instalazio batean.","Card de Fósiles ({mb} MB · {fotos} fotos · {modo}). Per importar-la, obre el fitxer en una altra instal·lació de l'app Fósiles.","Card de Fósiles ({mb} MB · {fotos} fotos · {modo}). Para importala, abre o ficheiro noutra instalación da app Fósiles."
+fos.mapa_coords_difuminadas,coords difuminadas,koordenatu lausotuak,coords difuminades,coords difuminadas
+fos.mapa_coords_precisas,coords precisas,koordenatu zehatzak,coords precises,coords precisas
+fos.mapa_error_card,Error generando card: {error},Errorea card-a sortzean: {error},Error en generar la card: {error},Erro ao xerar a card: {error}
+fos.mapa_configura_nombre,Configura primero tu nombre en Ajustes → Perfil e identidad.,Konfiguratu lehenik zure izena Ezarpenak → Profila eta identitatea atalean.,Configura primer el teu nom a Configuració → Perfil i identitat.,Configura primeiro o teu nome en Axustes → Perfil e identidade.
+fos.mapa_profundidad,Profundidad: {n} m,Sakonera: {n} m,Profunditat: {n} m,Profundidade: {n} m
+fos.mapa_longitud,Longitud: {n} m,Luzera: {n} m,Longitud: {n} m,Lonxitude: {n} m
+fos.mapa_tipo,Tipo: {tipo},Mota: {tipo},Tipus: {tipo},Tipo: {tipo}
+fos.mapa_sin_datos,Sin datos,Daturik ez,Sense dades,Sen datos
+fos.mapa_igme_sin_info,El IGME no devuelve información en este punto.,IGMEk ez du informaziorik ematen puntu honetan.,L'IGME no retorna informació en aquest punt.,O IGME non devolve información neste punto.
+fos.mapa_geologia_en_punto,Geología en este punto,Geologia puntu honetan,Geologia en aquest punt,Xeoloxía neste punto
+fos.mapa_antiguedad,Antigüedad,Antzinatasuna,Antiguitat,Antigüidade
+fos.mapa_era_periodo,Era / Período,Aroa / Aldia,Era / Període,Era / Período
+fos.mapa_litologia,Litología,Litologia,Litologia,Litoloxía
+fos.mapa_lig_cerca,Lugares de Interés Geológico cerca,Interes Geologikoko Lekuak inguruan,Llocs d'Interès Geològic a prop,Lugares de Interese Xeolóxico preto
+fos.mapa_yacimientos_cercanos,Yacimientos curados cercanos,Aztarnategi hautatuak inguruan,Jaciments seleccionats a prop,Xacementos seleccionados próximos
+fos.mapa_fosiles_probables,Fósiles probables aquí · {periodo},Hemen egon litezkeen fosilak · {periodo},Fòssils probables aquí · {periodo},Fósiles probables aquí · {periodo}
+fos.mapa_sin_fosiles_edad,No hay fósiles asociados en la guía para esta edad.,Gidak ez du adin honi lotutako fosilik.,La guia no té fòssils associats a aquesta edat.,Non hai fósiles asociados na guía para esta idade.
+fos.mapa_minerales_probables,💎 Minerales probables aquí,💎 Hemen egon litezkeen mineralak,💎 Minerals probables aquí,💎 Minerais probables aquí
+fos.mapa_fotos_comunidad,Fotos de la comunidad en {formacion},Komunitatearen argazkiak: {formacion},Fotos de la comunitat a {formacion},Fotos da comunidade en {formacion}
+fos.mapa_interes_principal,Interés principal,Interes nagusia,Interès principal,Interese principal
+fos.mapa_descripcion,Descripción,Deskribapena,Descripció,Descrición
+fos.mapa_a_distancia_km,a {km} km,{km} km-ra,a {km} km,a {km} km
+fos.mapa_capa_base,Capa base,Oinarrizko geruza,Capa base,Capa base
+fos.mapa_capa_geologica,Capa geológica,Geruza geologikoa,Capa geològica,Capa xeolóxica
+fos.mapa_sin_geologia,Sin geología,Geologiarik gabe,Sense geologia,Sen xeoloxía
+fos.mapa_mas_capas,Más capas y opciones,Geruza eta aukera gehiago,Més capes i opcions,Máis capas e opcións
+fos.mapa_lig,Lugares de Interés Geológico,Interes Geologikoko Lekuak,Llocs d'Interès Geològic,Lugares de Interese Xeolóxico
+fos.mapa_relieve_sombreado,Relieve sombreado,Erliebe itzaleztatua,Relleu ombrejat,Relevo sombreado
+fos.mapa_mapa_de_calor,Hallazgos como mapa de calor,Aurkikuntzak bero-mapa gisa,Troballes com a mapa de calor,Achados como mapa de calor
+fos.mapa_yacimientos_curados,Yacimientos curados,Aztarnategi hautatuak,Jaciments seleccionats,Xacementos seleccionados
+fos.mapa_tracks_guardados,Tracks guardados,Gordetako ibilbideak,Traces desades,Traxectos gardados
+fos.mapa_como_leer_mapa,Cómo leer el mapa,Nola irakurri mapa,Com llegir el mapa,Como ler o mapa
+fos.mapa_sin_conexion_cache,Sin conexión — usando datos en caché,Konexiorik gabe — cacheko datuak erabiltzen,Sense connexió — s'usen dades de la memòria cau,Sen conexión — usando datos da caché
+fos.mapa_toca_marcar,👆 Toca el mapa para marcar el hallazgo,👆 Ukitu mapa aurkikuntza markatzeko,👆 Toca el mapa per marcar la troballa,👆 Toca o mapa para marcar o achado
+fos.mapa_toca_geologia,👆 Toca el mapa para ver la geología,👆 Ukitu mapa geologia ikusteko,👆 Toca el mapa per veure'n la geologia,👆 Toca o mapa para ver a xeoloxía
+fos.mapa_asistente_sin_conexion,El asistente IGME necesita conexión,IGME laguntzaileak konexioa behar du,L'assistent IGME necessita connexió,O asistente IGME precisa conexión
+fos.mapa_consultando_igme,Consultando IGME…,IGME kontsultatzen…,Consultant l'IGME…,Consultando o IGME…
+fos.mapa_sin_datos_igme_centro,Sin datos del IGME en el centro del mapa,Ez dago IGMEren daturik maparen erdian,No hi ha dades de l'IGME al centre del mapa,Sen datos do IGME no centro do mapa
+fos.mapa_marcar_punto,Marcar punto,Markatu puntua,Marcar un punt,Marcar punto
+fos.mapa_explorar_geologia,Explorar geología,Arakatu geologia,Explorar la geologia,Explorar a xeoloxía
+fos.mapa_cargando,Cargando…,Kargatzen…,Carregant…,Cargando…
+fos.mapa_cuevas,Cuevas,Kobazuloak,Coves,Covas
+fos.mapa_megalitos,Megalitos,Megalitoak,Megàlits,Megálitos
+fos.mapa_asistente_activo,Asistente activo,Laguntzailea aktibo,Assistent actiu,Asistente activo
+fos.mapa_asistente,Asistente,Laguntzailea,Assistent,Asistente
+fos.mapa_cerrar,Cerrar,Itxi,Tancar,Pechar
+fos.mapa_mareas,Mareas,Itsasaldiak,Marees,Mareas
+fos.mapa_bajamar_hora,Bajamar: {hora},Itsasbehera: {hora},Baixamar: {hora},Baixamar: {hora}
+fos.mapa_bajamar,Bajamar,Itsasbehera,Baixamar,Baixamar
+fos.mapa_pleamar,Pleamar,Itsasgora,Plenamar,Preamar
+fos.mapa_hoy_minusculas,hoy,gaur,avui,hoxe
+fos.mapa_manana_minusculas,mañana,bihar,demà,mañá
+fos.mapa_firmado_por_ti,✓ Firmado por ti,✓ Zuk sinatua,✓ Signat per tu,✓ Asinado por ti
+fos.mapa_firmado_por_otra,Firmado por otra persona,Beste pertsona batek sinatua,Signat per una altra persona,Asinado por outra persoa
+fos.mapa_sin_firma,Sin firma criptográfica,Sinadura kriptografikorik gabe,Sense signatura criptogràfica,Sen sinatura criptográfica
+fos.mapa_firma_rota,✗ Firma rota — los datos han sido modificados,✗ Sinadura hautsia — datuak aldatu dira,✗ Signatura trencada — les dades s'han modificat,✗ Sinatura rota — os datos foron modificados
+fos.mapa_verificando_certificacion,Verificando certificación…,Ziurtapena egiaztatzen…,Verificant la certificació…,Verificando a certificación…
+fos.mapa_cadena_invalida,Cadena de certificación inválida — al menos un eslabón está roto.,Ziurtapen-kate baliogabea — gutxienez katebegi bat hautsita dago.,Cadena de certificació no vàlida — almenys una baula està trencada.,Cadea de certificación non válida — polo menos un elo está roto.
+fos.mapa_certificada_por,Certificada por {autoridad},Ziurtatzailea: {autoridad},Certificada per {autoridad},Certificada por {autoridad}
+fos.mapa_firmada_una,Firmada {fecha} · 1 certificación,Sinatua: {fecha} · ziurtapen 1,Signada el {fecha} · 1 certificació,Asinada o {fecha} · 1 certificación
+fos.mapa_firmada_varias,Firmada {fecha} · {n} certificaciones,Sinatua: {fecha} · {n} ziurtapen,Signada el {fecha} · {n} certificacions,Asinada o {fecha} · {n} certificacións
+fos.mapa_selecciona_capa,Selecciona al menos una capa.,Hautatu geruza bat gutxienez.,Selecciona almenys una capa.,Selecciona polo menos unha capa.
+fos.mapa_confirmar_descarga,Vas a descargar {n} teselas (~{mb} MB). ¿Continuar?,{n} tesela deskargatuko dituzu (~{mb} MB). Jarraitu?,Baixaràs {n} tessel·les (~{mb} MB). Vols continuar?,Vas descargar {n} teselas (~{mb} MB). Continuar?
+fos.mapa_descargar,Descargar,Deskargatu,Baixar,Descargar
+fos.mapa_teselas_en_cache,✅ {n} teselas en caché ({fallidas} fallidas).,✅ {n} tesela cachean ({fallidas} hutsegite).,✅ {n} tessel·les a la memòria cau ({fallidas} fallides).,✅ {n} teselas na caché ({fallidas} fallidas).
+fos.mapa_descargar_mapas_offline,Descargar mapas offline,Deskargatu mapak konexiorik gabe erabiltzeko,Baixar mapes fora de línia,Descargar mapas sen conexión
+fos.mapa_centra_zona,Centra y haz zoom en el mapa de arriba sobre la zona donde vayas a estar.,"Zentratu eta egin zoom goiko mapan, egongo zaren eremuaren gainean.",Centra i fes zoom al mapa de dalt sobre la zona on seràs.,Centra e fai zoom no mapa de arriba sobre a zona onde vaias estar.
+fos.mapa_zoom_minimo,Zoom mínimo: {n},Gutxieneko zooma: {n},Zoom mínim: {n},Zoom mínimo: {n}
+fos.mapa_zoom_maximo,Zoom máximo: {n},Gehieneko zooma: {n},Zoom màxim: {n},Zoom máximo: {n}
+fos.mapa_capa_geologica_igme_opcional,Capa geológica IGME (opcional),IGME geruza geologikoa (aukerakoa),Capa geològica IGME (opcional),Capa xeolóxica IGME (opcional)
+fos.mapa_ninguna,Ninguna,Bat ere ez,Cap,Ningunha
+fos.mapa_resumen_teselas,{n} teselas (~{mb} MB) en {capas} capas,{n} tesela (~{mb} MB) {capas} geruzatan,{n} tessel·les (~{mb} MB) en {capas} capes,{n} teselas (~{mb} MB) en {capas} capas
+fos.mapa_descargando,Descargando…,Deskargatzen…,Baixant…,Descargando…
+fos.mapa_descargar_ahora,Descargar ahora,Deskargatu orain,Baixar ara,Descargar agora
+fos.mapa_progreso_descarga,{descargadas}/{total} ({fallidas} fallidas) · {mb} MB,{descargadas}/{total} ({fallidas} hutsegite) · {mb} MB,{descargadas}/{total} ({fallidas} fallides) · {mb} MB,{descargadas}/{total} ({fallidas} fallidas) · {mb} MB
+fos.mapa_track,Track,Ibilbidea,Traça,Traxecto
+fos.mapa_tracks,Tracks,Ibilbideak,Traces,Traxectos
+fos.mapa_error_cargando_tracks,Error cargando tracks: {error},Errorea ibilbideak kargatzean: {error},Error en carregar les traces: {error},Erro ao cargar os traxectos: {error}
+fos.mapa_error_abriendo_track,Error abriendo track: {error},Errorea ibilbidea irekitzean: {error},Error en obrir la traça: {error},Erro ao abrir o traxecto: {error}
+fos.mapa_track_sin_puntos,Este track no tiene puntos guardados (la grabación se detuvo antes del primer fix GPS).,Ibilbide honek ez du gordetako punturik (grabazioa GPSaren lehen kokapena lortu aurretik gelditu zen).,Aquesta traça no té punts desats (l'enregistrament es va aturar abans de la primera posició GPS).,Este traxecto non ten puntos gardados (a gravación detívose antes da primeira posición GPS).
+fos.mapa_asunto_gpx,Track GPX,GPX ibilbidea,Traça GPX,Traxecto GPX
+fos.mapa_informe_pdf,Informe PDF,PDF txostena,Informe PDF,Informe PDF
+fos.mapa_borrar_track_pregunta,¿Borrar este track?,Ibilbide hau ezabatu?,Vols esborrar aquesta traça?,Borrar este traxecto?
+fos.mapa_asunto_informe_salida,Informe de salida,Irteeraren txostena,Informe de la sortida,Informe da saída
+fos.mapa_error_pdf,Error generando PDF: {error},Errorea PDFa sortzean: {error},Error en generar el PDF: {error},Erro ao xerar o PDF: {error}
+fos.mapa_n_puntos,{n} puntos,{n} puntu,{n} punts,{n} puntos
+fos.mapa_gpx_sin_puntos,El GPX no contiene puntos de track.,GPXak ez du ibilbide-punturik.,El GPX no conté punts de traça.,O GPX non contén puntos de traxecto.
+fos.mapa_importado,Importado: {nombre} ({n} puntos),Inportatuta: {nombre} ({n} puntu),Importat: {nombre} ({n} punts),Importado: {nombre} ({n} puntos)
+fos.mapa_error_importando_gpx,Error importando GPX: {error},Errorea GPXa inportatzean: {error},Error en importar el GPX: {error},Erro ao importar o GPX: {error}
+fos.mapa_importar_gpx,Importar GPX,Inportatu GPXa,Importar GPX,Importar GPX
+fos.mapa_sin_tracks,Aún no has grabado ningún track.,Oraindik ez duzu ibilbiderik grabatu.,Encara no has enregistrat cap traça.,Aínda non gravaches ningún traxecto.
+fos.mapa_sin_tracks_ayuda,Usa el botón ⏺ del mapa para empezar.,Erabili maparen ⏺ botoia hasteko.,Fes servir el botó ⏺ del mapa per començar.,Usa o botón ⏺ do mapa para comezar.
+fos.mapa_track_del,Track del {fecha},{fecha} eguneko ibilbidea,Traça del {fecha},Traxecto do {fecha}
+fos.mapa_notificacion_grabando,Grabando track,Ibilbidea grabatzen,S'està enregistrant la traça,Gravando o traxecto
+fos.mapa_notificacion_registrando_ruta,Fósiles está registrando tu ruta,Fósiles zure ibilbidea erregistratzen ari da,Fósiles està registrant la teva ruta,Fósiles está rexistrando a túa ruta
+fos.mapa_track_recuperado,Track recuperado {fecha},Berreskuratutako ibilbidea {fecha},Traça recuperada {fecha},Traxecto recuperado {fecha}
+fos.mapa_track_importado,Track importado,Inportatutako ibilbidea,Traça importada,Traxecto importado
+fos.mapa_overpass_fallaron,Todos los servidores Overpass fallaron · último: {error},Overpass zerbitzari guztiek huts egin dute · azkena: {error},Tots els servidors Overpass han fallat · darrer: {error},Fallaron todos os servidores Overpass · último: {error}
+fos.mapa_monumento_megalito,Megalito (dolmen / cromlech / harrespil),Megalitoa (trikuharria / kromletxa / harrespila),Megàlit (dolmen / cromlec / harrespil),Megálito (dolmen / crómlech / harrespil)
+fos.mapa_monumento_dolmen,Dolmen,Trikuharria,Dolmen,Dolmen
+fos.mapa_monumento_tumulo,Túmulo,Tumulua,Túmul,Túmulo
+fos.mapa_monumento_fondo_cabana,Fondo de cabaña,Txabola-hondoa,Fons de cabana,Fondo de cabana
+fos.mapa_monumento_fortificacion,Fortificación / castro,Gotorlekua / kastroa,Fortificació / castre,Fortificación / castro
+fos.mapa_monumento_castillo,Castillo,Gaztelua,Castell,Castelo
+fos.mapa_monumento_poblado,Poblado / asentamiento,Herrixka / kokalekua,Poblat / assentament,Poboado / asentamento
+fos.mapa_monumento_menhir,Menhir,Zutarria,Menhir,Menhir
+fos.mapa_monumento_piedra_antigua,Piedra antigua,Harri zaharra,Pedra antiga,Pedra antiga
+fos.mapa_monumento_circulo_piedras,Círculo de piedras,Harrizko zirkulua,Cercle de pedres,Círculo de pedras
+fos.mapa_monumento_tumba,Tumba,Hilobia,Tomba,Tumba
+fos.mapa_monumento_ruinas,Ruinas,Hondakinak,Ruïnes,Ruínas
+fos.mapa_monumento_monumento,Monumento,Monumentua,Monument,Monumento
+fos.mapa_monumento_memorial,Memorial,Oroigarria,Memorial,Memorial
+fos.mapa_monumento_crucero,Crucero / cruz de caminos,Bidegurutzeko gurutzea,Creu de terme,Cruceiro
+fos.mapa_monumento_yacimiento,Yacimiento arqueológico,Aztarnategi arkeologikoa,Jaciment arqueològic,Xacemento arqueolóxico
+fos.mapa_sin_nombre,Sin nombre,Izenik gabe,Sense nom,Sen nome
+fos.mapa_ayuda_capas_titulo,Capas geológicas del mapa,Maparen geruza geologikoak,Capes geològiques del mapa,Capas xeolóxicas do mapa
+fos.mapa_ayuda_capas_texto,"En la barra superior del mapa, el icono de la montaña abre el desplegable de capas geológicas del IGME. La app arranca con la primera de la lista (GEODE 50). Para qué sirve cada una:","Maparen goiko barran, mendiaren ikonoak IGMEren geruza geologikoen zerrenda irekitzen du. Aplikazioa zerrendako lehenengoarekin abiatzen da (GEODE 50). Bakoitza zertarako den:","A la barra superior del mapa, la icona de la muntanya obre el desplegable de capes geològiques de l'IGME. L'app s'inicia amb la primera de la llista (GEODE 50). Per a què serveix cadascuna:","Na barra superior do mapa, a icona da montaña abre o despregable de capas xeolóxicas do IGME. A app arranca coa primeira da lista (GEODE 50). Para que serve cada unha:"
+fos.mapa_ayuda_capas_nota,"Las sugerencias de fósiles y minerales del asistente y del explorador SIEMPRE consultan GEODE 50 internamente, sin importar qué capa esté pintada — así cambiar de capa visual no hace bailar la lista de fósiles probables.","Laguntzailearen eta esploratzailearen fosil- eta mineral-iradokizunek BETI GEODE 50 kontsultatzen dute barnean, edozein geruza margotuta egonda ere — horrela, ikusizko geruza aldatzeak ez du fosil probableen zerrenda nahasten.","Els suggeriments de fòssils i minerals de l'assistent i de l'explorador SEMPRE consulten GEODE 50 internament, sigui quina sigui la capa pintada — així canviar de capa visual no fa ballar la llista de fòssils probables.","As suxestións de fósiles e minerais do asistente e do explorador SEMPRE consultan GEODE 50 internamente, sen importar que capa estea pintada — así cambiar de capa visual non fai bailar a lista de fósiles probables."
+fos.mapa_ayuda_otras_titulo,Otras capas y filtros,Beste geruza eta iragazki batzuk,Altres capes i filtres,Outras capas e filtros
+fos.mapa_ayuda_menu_superior,En el menú «⋮» de la barra superior del mapa:,Maparen goiko barrako «⋮» menuan:,Al menú «⋮» de la barra superior del mapa:,No menú «⋮» da barra superior do mapa:
+fos.mapa_ayuda_item_lig,⭐ LIG — Lugares de Interés Geológico declarados por el IGME.,⭐ LIG — IGMEk izendatutako Interes Geologikoko Lekuak.,⭐ LIG — Llocs d'Interès Geològic declarats per l'IGME.,⭐ LIG — Lugares de Interese Xeolóxico declarados polo IGME.
+fos.mapa_ayuda_item_relieve,⛰️ Relieve sombreado (hillshade) para ver topografía.,⛰️ Erliebe itzaleztatua (hillshade) topografia ikusteko.,⛰️ Relleu ombrejat (hillshade) per veure la topografia.,⛰️ Relevo sombreado (hillshade) para ver a topografía.
+fos.mapa_ayuda_item_calor,🔥 Hallazgos como mapa de calor.,🔥 Aurkikuntzak bero-mapa gisa.,🔥 Troballes com a mapa de calor.,🔥 Achados como mapa de calor.
+fos.mapa_ayuda_item_yacimientos,"🏛️ Yacimientos curados — selección manual con fichas, aparecen también como pista de ""yacimientos cercanos"" cuando pinchas a menos de 5 km.",🏛️ Aztarnategi hautatuak — fitxadun eskuzko hautaketa; «aztarnategi hurbilak» pista gisa ere agertzen dira 5 km baino gutxiagora sakatzen duzunean.,🏛️ Jaciments seleccionats — selecció manual amb fitxes; també apareixen com a pista de «jaciments propers» quan toques a menys de 5 km.,🏛️ Xacementos seleccionados — selección manual con fichas; aparecen tamén como pista de «xacementos próximos» cando premes a menos de 5 km.
+fos.mapa_ayuda_boton_capas,En el botón de capas de abajo a la izquierda del mapa:,Maparen beheko ezkerreko geruzen botoian:,Al botó de capes de la part inferior esquerra del mapa:,No botón de capas de abaixo á esquerda do mapa:
+fos.mapa_ayuda_item_cuevas,"🦇 Cuevas (OpenStreetMap, requiere zoom ≥ 10).","🦇 Kobazuloak (OpenStreetMap, zoom ≥ 10 behar da).","🦇 Coves (OpenStreetMap, cal zoom ≥ 10).","🦇 Covas (OpenStreetMap, require zoom ≥ 10)."
+fos.mapa_ayuda_item_megalitos,"🗿 Megalitos y monumentos arqueológicos (OSM, zoom ≥ 9).","🗿 Megalitoak eta monumentu arkeologikoak (OSM, zoom ≥ 9).","🗿 Megàlits i monuments arqueològics (OSM, zoom ≥ 9).","🗿 Megálitos e monumentos arqueolóxicos (OSM, zoom ≥ 9)."
+fos.mapa_ayuda_sugerencias_titulo,Sugerencias de fósiles y minerales,Fosil- eta mineral-iradokizunak,Suggeriments de fòssils i minerals,Suxestións de fósiles e minerais
+fos.mapa_ayuda_sugerencias_intro,"Al pinchar un punto (modo Explorar geología) o con el asistente activado en el centro del mapa, la app cruza la respuesta del IGME con sus catálogos locales:","Puntu bat sakatzean (Arakatu geologia modua) edo laguntzailea maparen erdian aktibatuta dagoenean, aplikazioak IGMEren erantzuna bere tokiko katalogoekin gurutzatzen du:","En tocar un punt (mode Explorar la geologia) o amb l'assistent activat al centre del mapa, l'app creua la resposta de l'IGME amb els seus catàlegs locals:","Ao premer un punto (modo Explorar a xeoloxía) ou co asistente activado no centro do mapa, a app cruza a resposta do IGME cos seus catálogos locais:"
+fos.mapa_ayuda_sugerencias_formacion,"Si la formación que devuelve GEODE coincide con el catálogo de formaciones ibéricas, se sugieren los fósiles característicos de esa formación (sello PENDIENTE_VALIDACION paleontológica hasta auditoría de comité científico).","GEODEk itzultzen duen formazioa formazio iberiarren katalogoarekin bat badator, formazio horretako fosil bereizgarriak iradokitzen dira (PENDIENTE_VALIDACION zigilu paleontologikoa, batzorde zientifikoaren ikuskaritza egin arte).","Si la formació que retorna GEODE coincideix amb el catàleg de formacions ibèriques, se suggereixen els fòssils característics d'aquella formació (segell PENDIENTE_VALIDACION paleontològica fins a l'auditoria del comitè científic).","Se a formación que devolve GEODE coincide co catálogo de formacións ibéricas, suxírense os fósiles característicos desa formación (selo PENDIENTE_VALIDACION paleontolóxica ata a auditoría do comité científico)."
+fos.mapa_ayuda_sugerencias_periodo,"Si no, se sugieren fósiles del período inferido y filtrados por el ambiente sedimentario probable de la litología (p. ej. granito o basalto → sin fósiles; caliza → marinos).","Bestela, ondorioztatutako aldiko fosilak iradokitzen dira, litologiaren ingurune sedimentario probablearen arabera iragazita (adib. granitoa edo basaltoa → fosilik ez; kareharria → itsastarrak).","Si no, se suggereixen fòssils del període inferit i filtrats per l'ambient sedimentari probable de la litologia (p. ex. granit o basalt → sense fòssils; calcària → marins).","Se non, suxírense fósiles do período inferido e filtrados polo ambiente sedimentario probable da litoloxía (p. ex. granito ou basalto → sen fósiles; calcaria → mariños)."
+fos.mapa_ayuda_sugerencias_minerales,"Los minerales se ponderan por litología: cada grupo (granítico, carbonático, basáltico, evaporítico, metamórfico…) tiene su propio set probable.","Mineralak litologiaren arabera haztatzen dira: talde bakoitzak (granitikoa, karbonatikoa, basaltikoa, ebaporitikoa, metamorfikoa…) bere multzo probablea du.","Els minerals es ponderen per litologia: cada grup (granític, carbonàtic, basàltic, evaporític, metamòrfic…) té el seu propi conjunt probable.","Os minerais pondéranse por litoloxía: cada grupo (granítico, carbonático, basáltico, evaporítico, metamórfico…) ten o seu propio conxunto probable."
+fos.mapa_orientacion_estrato,Orientación del estrato,Estratuaren orientazioa,Orientació de l'estrat,Orientación do estrato
+fos.mapa_orientacion_instrucciones,"Apoya el teléfono plano sobre la superficie de la capa rocosa, pantalla hacia arriba. Mantén estable y pulsa Capturar.","Jarri telefonoa etzanda arroka-geruzaren gainazalean, pantaila gorantz. Eutsi geldi eta sakatu Hartu.","Recolza el telèfon pla sobre la superfície de la capa rocosa, amb la pantalla cap amunt. Mantén-lo estable i prem Capturar.","Apoia o teléfono plano sobre a superficie da capa rochosa, coa pantalla cara arriba. Mantenno estable e preme Capturar."
+fos.mapa_strike,Strike (rumbo),Strike (direkzioa),Strike (direcció),Strike (rumbo)
+fos.mapa_strike_ayuda,Línea horizontal de la capa,Geruzaren lerro horizontala,Línia horitzontal de la capa,Liña horizontal da capa
+fos.mapa_dip,Dip (buzamiento),Dip (makurdura),Dip (cabussament),Dip (buzamento)
+fos.mapa_dip_ayuda,Inclinación desde la horizontal,Horizontalarekiko inklinazioa,Inclinació respecte de l'horitzontal,Inclinación desde a horizontal
+fos.mapa_direccion_dip,Dirección de dip,Dip-aren noranzkoa,Direcció del dip,Dirección do dip
+fos.mapa_direccion_dip_ayuda,Hacia dónde cae la capa,Geruza nora makurtzen den,Cap a on cau la capa,Cara a onde cae a capa
+fos.mapa_brujula,Brújula (top del móvil),Iparrorratza (mugikorraren goialdea),Brúixola (part superior del mòbil),Compás (parte superior do móbil)
+fos.mapa_solo_referencia,Sólo referencia,Erreferentzia soilik,Només de referència,Só referencia
+fos.mapa_aviso_casi_horizontal,⚠ La superficie está casi horizontal — el rumbo será impreciso.,⚠ Gainazala ia horizontala da — direkzioa ez da zehatza izango.,⚠ La superfície és gairebé horitzontal — la direcció serà imprecisa.,⚠ A superficie está case horizontal — o rumbo será impreciso.
+fos.mapa_aviso_casi_vertical,⚠ Capa casi vertical — usa otra cara para medir mejor.,⚠ Geruza ia bertikala — erabili beste aurpegi bat hobeto neurtzeko.,⚠ Capa gairebé vertical — fes servir una altra cara per mesurar millor.,⚠ Capa case vertical — usa outra cara para medir mellor.
+fos.mapa_capturar,Capturar,Hartu,Capturar,Capturar
+fos.mapa_permiso_bloqueado,Permiso de ubicación bloqueado,Kokapen-baimena blokeatuta,Permís d'ubicació bloquejat,Permiso de localización bloqueado
+fos.mapa_permiso_bloqueado_texto,Has denegado el permiso de forma permanente. Para usar el GPS tienes que activarlo manualmente desde Ajustes del sistema.,"Baimena behin betiko ukatu duzu. GPSa erabiltzeko, eskuz aktibatu behar duzu sistemaren ezarpenetan.",Has denegat el permís de manera permanent. Per fer servir el GPS l'has d'activar manualment des de la configuració del sistema.,Denegaches o permiso de forma permanente. Para usar o GPS tes que activalo manualmente desde os axustes do sistema.
+fos.mapa_activa_gps,Activa el GPS del teléfono y vuelve a intentarlo.,Aktibatu telefonoaren GPSa eta saiatu berriro.,Activa el GPS del telèfon i torna-ho a provar.,Activa o GPS do teléfono e téntao de novo.
+fos.mapa_necesito_permiso,Necesito permiso de ubicación para esta acción.,Kokapen-baimena behar dut ekintza honetarako.,Necessito permís d'ubicació per a aquesta acció.,Necesito permiso de localización para esta acción.
+fos.mapa_abrir_ajustes,Abrir Ajustes,Ireki ezarpenak,Obrir la configuració,Abrir os axustes
+fos.mapa_ubicacion_seleccionada,Ubicación seleccionada,Hautatutako kokapena,Ubicació seleccionada,Localización seleccionada
+fos.mapa_meteo_sin_ubicacion,No se pudo obtener la ubicación. Activa el GPS.,Ezin izan da kokapena lortu. Aktibatu GPSa.,No s'ha pogut obtenir la ubicació. Activa el GPS.,Non se puido obter a localización. Activa o GPS.
+fos.mapa_meteorologia,Meteorología,Meteorologia,Meteorologia,Meteoroloxía
+fos.mapa_buscar_lugar,Buscar lugar…,Bilatu lekua…,Cercar un lloc…,Buscar lugar…
+fos.mapa_usar_mi_ubicacion,Usar mi ubicación,Erabili nire kokapena,Usar la meva ubicació,Usar a miña localización
+fos.mapa_meteo_vacio,Busca un lugar o pulsa el botón de ubicación para ver la previsión meteorológica,Bilatu leku bat edo sakatu kokapen-botoia eguraldi-iragarpena ikusteko,Cerca un lloc o prem el botó d'ubicació per veure la previsió meteorològica,Busca un lugar ou preme o botón de localización para ver a previsión meteorolóxica
+fos.mapa_proximas_horas,Próximas horas,Hurrengo orduak,Properes hores,Próximas horas
+fos.mapa_ahora,Ahora,Orain,Ara,Agora
+fos.mapa_proximos_dias,Próximos días,Hurrengo egunak,Propers dies,Próximos días
+fos.mapa_hoy,Hoy,Gaur,Avui,Hoxe
+fos.mapa_datos_open_meteo,"Datos: Open-Meteo (gratuito, sin API key)","Datuak: Open-Meteo (doakoa, API gakorik gabe)","Dades: Open-Meteo (gratuït, sense clau d'API)","Datos: Open-Meteo (gratuíto, sen clave de API)"
+fos.mapa_meteo_despejado,Despejado,Oskarbi,Serè,Despexado
+fos.mapa_meteo_mayormente_despejado,Mayormente despejado,Oskarbi gehienbat,Majoritàriament serè,Maiormente despexado
+fos.mapa_meteo_parcialmente_nublado,Parcialmente nublado,Hodei gutxi,Parcialment ennuvolat,Parcialmente nubrado
+fos.mapa_meteo_nublado,Nublado,Hodeitsu,Ennuvolat,Nubrado
+fos.mapa_meteo_niebla,Niebla,Lainoa,Boira,Néboa
+fos.mapa_meteo_llovizna_ligera,Llovizna ligera,Zirimiri arina,Plugim feble,Babuxa lixeira
+fos.mapa_meteo_llovizna_moderada,Llovizna moderada,Zirimiri moderatua,Plugim moderat,Babuxa moderada
+fos.mapa_meteo_llovizna_densa,Llovizna densa,Zirimiri trinkoa,Plugim dens,Babuxa densa
+fos.mapa_meteo_lluvia_ligera,Lluvia ligera,Euri arina,Pluja feble,Choiva lixeira
+fos.mapa_meteo_lluvia_moderada,Lluvia moderada,Euri moderatua,Pluja moderada,Choiva moderada
+fos.mapa_meteo_lluvia_fuerte,Lluvia fuerte,Euri handia,Pluja forta,Choiva forte
+fos.mapa_meteo_nevada_ligera,Nevada ligera,Elurte arina,Nevada feble,Nevarada lixeira
+fos.mapa_meteo_nevada_moderada,Nevada moderada,Elurte moderatua,Nevada moderada,Nevarada moderada
+fos.mapa_meteo_nevada_fuerte,Nevada fuerte,Elurte handia,Nevada forta,Nevarada forte
+fos.mapa_meteo_chubascos_ligeros,Chubascos ligeros,Zaparrada arinak,Ruixats febles,Chuvascos lixeiros
+fos.mapa_meteo_chubascos_moderados,Chubascos moderados,Zaparrada moderatuak,Ruixats moderats,Chuvascos moderados
+fos.mapa_meteo_chubascos_fuertes,Chubascos fuertes,Zaparrada handiak,Ruixats forts,Chuvascos fortes
+fos.mapa_meteo_tormenta,Tormenta,Ekaitza,Tempesta,Treboada
+fos.mapa_meteo_tormenta_granizo,Tormenta con granizo,Ekaitza txingorrarekin,Tempesta amb calamarsa,Treboada con sarabia
+fos.mapa_meteo_desconocido,Desconocido,Ezezaguna,Desconegut,Descoñecido
+fos.mapa_cueva_sin_nombre,Cueva sin nombre,Izenik gabeko haitzuloa,Cova sense nom,Cova sen nome
+fos.mapa_bocamina_sin_nombre,Bocamina sin nombre,Izenik gabeko meategi-ahoa,Bocamina sense nom,Bocamina sen nome

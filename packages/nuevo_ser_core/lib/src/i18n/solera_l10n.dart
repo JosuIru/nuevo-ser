@@ -95,6 +95,11 @@ class SoleraL10n {
     'temperatura_registrada',
     'todos',
     'ver_pdf',
+    'camara',
+    'continuar',
+    'error_restaurando',
+    'galeria',
+    'siguiente',
     'acei.abierta',
     'acei.abierta_minuscula',
     'acei.aceite_y_almazara',
@@ -2207,6 +2212,1016 @@ class SoleraL10n {
     'core.act.descarga_en_navegador',
     'core.act.error_descarga',
     'core.act.error_instalador',
+    'fos.ajus_calculando',
+    'fos.ajus_resumen_cache',
+    'fos.ajus_backup_asunto',
+    'fos.ajus_backup_texto',
+    'fos.ajus_error_backup',
+    'fos.ajus_restaurar_titulo',
+    'fos.ajus_restaurar_aviso',
+    'fos.ajus_restaurados',
+    'fos.ajus_avisos_reactivados',
+    'fos.ajus_prueba_aviso',
+    'fos.ajus_borrar_aportaciones',
+    'fos.ajus_borrar_aportaciones_texto',
+    'fos.ajus_email',
+    'fos.ajus_enviar',
+    'fos.ajus_solicitud_enviada',
+    'fos.ajus_vaciar_cache_pregunta',
+    'fos.ajus_vaciar',
+    'fos.ajus_sec_general',
+    'fos.ajus_idioma',
+    'fos.ajus_claves_modelo',
+    'fos.ajus_claves_modelo_sub',
+    'fos.ajus_sec_perfil',
+    'fos.ajus_perfil_titulo',
+    'fos.ajus_perfil_sub',
+    'fos.ajus_sec_mapas_datos',
+    'fos.ajus_mapas_sin_conexion',
+    'fos.ajus_mapas_explicacion',
+    'fos.ajus_descargar_zona',
+    'fos.ajus_backup_explicacion',
+    'fos.ajus_hacer_copia',
+    'fos.ajus_restaurar_copia',
+    'fos.ajus_asistente_campo',
+    'fos.ajus_asistente_explicacion',
+    'fos.ajus_reactivar_avisos',
+    'fos.ajus_probar_aviso',
+    'fos.ajus_sec_privacidad',
+    'fos.ajus_tus_aportaciones',
+    'fos.ajus_aportaciones_explicacion',
+    'fos.ajus_como_leer_mapa',
+    'fos.ajus_como_leer_mapa_sub',
+    'fos.ajus_ver_tour',
+    'fos.ajus_sobre_app',
+    'fos.ajus_sobre_app_texto',
+    'fos.ajus_apoyar',
+    'fos.ajus_apoyar_texto',
+    'fos.ajus_gracias',
+    'fos.ajus_ver_formas_apoyar',
+    'fos.ajus_datos_fuentes',
+    'fos.ajus_datos_fuentes_texto',
+    'fos.ajus_ia_guardados',
+    'fos.ajus_no_abrir_navegador',
+    'fos.ajus_ia_explicacion',
+    'fos.ajus_conseguir_anthropic',
+    'fos.ajus_conseguir_deepseek',
+    'fos.ajus_api_anthropic',
+    'fos.ajus_api_deepseek',
+    'fos.ajus_modelo_claude',
+    'fos.ajus_modelo_precio',
+    'fos.ajus_modelo_opus_desc',
+    'fos.ajus_modelo_sonnet_desc',
+    'fos.ajus_modelo_haiku_desc',
+    'fos.ajus_cabecera_titulo',
+    'fos.ajus_cabecera_sub',
+    'fos.ajus_explorar_mapa',
+    'fos.ajus_explorar_mapa_sub',
+    'fos.ajus_meteo',
+    'fos.ajus_meteo_sub',
+    'fos.ajus_chat_ia',
+    'fos.ajus_chat_ia_sub',
+    'fos.ajus_etica_titulo',
+    'fos.ajus_etica_sub',
+    'fos.ajus_etica1_titulo',
+    'fos.ajus_etica1_texto',
+    'fos.ajus_etica2_titulo',
+    'fos.ajus_etica2_texto',
+    'fos.ajus_etica3_titulo',
+    'fos.ajus_etica3_texto',
+    'fos.ajus_etica4_titulo',
+    'fos.ajus_etica4_texto',
+    'fos.ajus_etica5_titulo',
+    'fos.ajus_etica5_texto',
+    'fos.ajus_como_usar',
+    'fos.ajus_paso1_titulo',
+    'fos.ajus_paso1_texto',
+    'fos.ajus_paso2_titulo',
+    'fos.ajus_paso2_texto',
+    'fos.ajus_paso3_titulo',
+    'fos.ajus_paso3_texto',
+    'fos.ajus_paso4_titulo',
+    'fos.ajus_paso4_texto',
+    'fos.ajus_paso5_titulo',
+    'fos.ajus_paso5_texto',
+    'fos.ajus_saltar',
+    'fos.ajus_empezar',
+    'fos.ajus_onb1_titulo',
+    'fos.ajus_onb1_texto',
+    'fos.ajus_onb2_titulo',
+    'fos.ajus_onb2_texto',
+    'fos.ajus_onb3_titulo',
+    'fos.ajus_onb3_texto',
+    'fos.ajus_datos_restaurados',
+    'fos.ajus_nav_inicio',
+    'fos.ajus_nav_lista',
+    'fos.ajus_nav_guia',
+    'fos.ajus_chat',
+    'fos.ajus_falta_clave_chat',
+    'fos.ajus_que_ves',
+    'fos.ajus_que_ves_identifica',
+    'fos.ajus_chat_vacio',
+    'fos.ajus_via',
+    'fos.ajus_imagen_adjunta',
+    'fos.ajus_hacer_foto',
+    'fos.ajus_escribe_pregunta',
+    'fos.ajus_falta_api_anthropic',
+    'fos.ajus_desconocido',
+    'fos.ajus_sin_identificacion',
+    'fos.ajus_nombre_autoridad',
+    'fos.ajus_ej_autoridad',
+    'fos.ajus_generar',
+    'fos.ajus_codigo_activacion',
+    'fos.ajus_para_nombre',
+    'fos.ajus_codigo_mandalo',
+    'fos.ajus_copiar',
+    'fos.ajus_codigo_copiado',
+    'fos.ajus_compartir_codigo',
+    'fos.ajus_asunto_experto',
+    'fos.ajus_desactivar_titulo',
+    'fos.ajus_desactivar_texto',
+    'fos.ajus_desactivar',
+    'fos.ajus_modo_experto',
+    'fos.ajus_experto_intro',
+    'fos.ajus_activar_autoridad',
+    'fos.ajus_activar_autoridad_texto',
+    'fos.ajus_pegar_codigo',
+    'fos.ajus_admin_generar',
+    'fos.ajus_admin_texto',
+    'fos.ajus_generar_codigo_autoridad',
+    'fos.ajus_experto_activo',
+    'fos.ajus_huella_institucional',
+    'fos.ajus_huella_texto',
+    'fos.ajus_codigo_nombre_obligatorios',
+    'fos.ajus_codigo_no_valido',
+    'fos.ajus_activar_autoridad_titulo',
+    'fos.ajus_pega_codigo_hint',
+    'fos.ajus_colegiacion',
+    'fos.ajus_ej_colegiacion',
+    'fos.ajus_activar',
+    'fos.ajus_kofi_sub',
+    'fos.ajus_paypal_sub',
+    'fos.ajus_mensaje_compartir',
+    'fos.ajus_ecosistema_texto',
+    'fos.ajus_copiar_direccion',
+    'fos.ajus_direccion_copiada',
+    'fos.ajus_compartir_app',
+    'fos.ajus_compartir_app_texto',
+    'fos.ajus_otras_formas',
+    'fos.ajus_valorar',
+    'fos.ajus_reportar',
+    'fos.ajus_ayudar_traducciones',
+    'fos.ajus_contribuir_codigo',
+    'fos.ajus_fichero_no_valido',
+    'fos.ajus_version_desconocida',
+    'fos.ajus_nav_ajustes',
+    'fos.ficha_distintivos',
+    'fos.ficha_donde_encontrarlo',
+    'fos.ficha_leer_wikipedia',
+    'fos.ficha_reintentar',
+    'fos.ficha_raya',
+    'fos.ficha_brillo',
+    'fos.ficha_color_tipico',
+    'fos.hall_alternativas',
+    'fos.hall_anadir',
+    'fos.hall_anadir_evento',
+    'fos.hall_anadir_evento_trazabilidad',
+    'fos.hall_anadir_trazabilidad',
+    'fos.hall_anotar_foto',
+    'fos.hall_aplicar_formulario',
+    'fos.hall_asunto_certificado',
+    'fos.hall_asunto_exportacion',
+    'fos.hall_asunto_hallazgo',
+    'fos.hall_aun_no_hay_hallazgos',
+    'fos.hall_autor_evento',
+    'fos.hall_borrar_medida',
+    'fos.hall_buscar',
+    'fos.hall_buscar_hint',
+    'fos.hall_certificado_texto',
+    'fos.hall_certificado_verificable',
+    'fos.hall_como_confirmar',
+    'fos.hall_compartir_comunidad',
+    'fos.hall_compartir_texto',
+    'fos.hall_con_foto',
+    'fos.hall_confianza',
+    'fos.hall_confianza_alta',
+    'fos.hall_confianza_baja',
+    'fos.hall_confianza_media',
+    'fos.hall_configura_api_key',
+    'fos.hall_configura_nombre',
+    'fos.hall_confirmar_borrar',
+    'fos.hall_consultando_igme',
+    'fos.hall_contexto_geologico',
+    'fos.hall_coordenadas',
+    'fos.hall_cronologia',
+    'fos.hall_descartar',
+    'fos.hall_descripcion',
+    'fos.hall_descubridor',
+    'fos.hall_desde_galeria',
+    'fos.hall_deshacer',
+    'fos.hall_detectado_mineral',
+    'fos.hall_dias_activo',
+    'fos.hall_dureza_mohs',
+    'fos.hall_dureza_mohs_estimada',
+    'fos.hall_edad',
+    'fos.hall_edad_periodo',
+    'fos.hall_editar_hallazgo',
+    'fos.hall_ejemplo_autor',
+    'fos.hall_ejemplo_descripcion',
+    'fos.hall_error_codificar_imagen',
+    'fos.hall_error_exportando',
+    'fos.hall_error_generar_zip',
+    'fos.hall_error_gps',
+    'fos.hall_error_guardando',
+    'fos.hall_error_identificando',
+    'fos.hall_error_sin_id',
+    'fos.hall_error_tarjeta',
+    'fos.hall_especie',
+    'fos.hall_especie_tentativa',
+    'fos.hall_especies',
+    'fos.hall_esperando_gps',
+    'fos.hall_estadisticas',
+    'fos.hall_estrato',
+    'fos.hall_evento_anadido',
+    'fos.hall_exportar_zip',
+    'fos.hall_fecha',
+    'fos.hall_formacion',
+    'fos.hall_formacion_geologica',
+    'fos.hall_fosil',
+    'fos.hall_fosiles',
+    'fos.hall_fosiles_probables',
+    'fos.hall_guia',
+    'fos.hall_hallazgo_de_fosil',
+    'fos.hall_historial_trazabilidad',
+    'fos.hall_identificando',
+    'fos.hall_identificar_claude',
+    'fos.hall_incoherencia_detalle',
+    'fos.hall_incoherencia_geologica',
+    'fos.hall_limpiar',
+    'fos.hall_linea_tiempo',
+    'fos.hall_medir',
+    'fos.hall_mineral',
+    'fos.hall_minerales',
+    'fos.hall_mixto',
+    'fos.hall_modelo',
+    'fos.hall_moneda_en_foto',
+    'fos.hall_n_de_total_desliza',
+    'fos.hall_n_exportados',
+    'fos.hall_n_fosiles',
+    'fos.hall_ninguno_coincide',
+    'fos.hall_ninguno_recibido_coincide',
+    'fos.hall_no',
+    'fos.hall_nombre_mineral',
+    'fos.hall_notas',
+    'fos.hall_nuevo_hallazgo',
+    'fos.hall_o_desde_galeria',
+    'fos.hall_obteniendo_gps',
+    'fos.hall_orientacion_sin_medir',
+    'fos.hall_periodo',
+    'fos.hall_permiso_ubicacion_denegado',
+    'fos.hall_pie_tarjeta',
+    'fos.hall_primer_hallazgo',
+    'fos.hall_punto_marcado_mapa',
+    'fos.hall_quiz',
+    'fos.hall_quiz_identificacion',
+    'fos.hall_razonamiento',
+    'fos.hall_recibida',
+    'fos.hall_remedir',
+    'fos.hall_sin_clasificar',
+    'fos.hall_sin_fosiles_periodo',
+    'fos.hall_sin_hallazgos_analizar',
+    'fos.hall_sin_nombre',
+    'fos.hall_tab_compartidas',
+    'fos.hall_tab_mias',
+    'fos.hall_tamano_estimado',
+    'fos.hall_tarjeta',
+    'fos.hall_tipo_deposito_museo',
+    'fos.hall_tipo_estudio',
+    'fos.hall_tipo_evento',
+    'fos.hall_tipo_otro',
+    'fos.hall_tipo_prestamo',
+    'fos.hall_tipo_publicacion',
+    'fos.hall_titulo',
+    'fos.hall_toca_mas_primero',
+    'fos.hall_tomar_foto',
+    'fos.hall_top_especies',
+    'fos.hall_top_formaciones',
+    'fos.hall_ubicacion',
+    'fos.hall_ultimo_hallazgo',
+    'fos.hall_ver_en_mapa',
+    'fos.hall_ver_ficha',
+    'fos.iden_huella_copiada',
+    'fos.iden_clave_publica_copiada',
+    'fos.iden_regenerar_titulo',
+    'fos.iden_regenerar_aviso',
+    'fos.iden_regenerar',
+    'fos.iden_identidad_regenerada',
+    'fos.iden_mi_identidad',
+    'fos.iden_datos_declarados',
+    'fos.iden_datos_declarados_ayuda',
+    'fos.iden_nombre',
+    'fos.iden_email',
+    'fos.iden_organizacion',
+    'fos.iden_sin_rellenar',
+    'fos.iden_huella_criptografica',
+    'fos.iden_huella_ayuda',
+    'fos.iden_copiar_huella',
+    'fos.iden_ver_clave_publica',
+    'fos.iden_copiar_clave_publica',
+    'fos.iden_operaciones_avanzadas',
+    'fos.iden_operaciones_avanzadas_ayuda',
+    'fos.iden_regenerar_identidad',
+    'fos.iden_perfil_guardado',
+    'fos.iden_perfil_e_identidad',
+    'fos.iden_perfil_descubridor',
+    'fos.iden_perfil_ayuda',
+    'fos.iden_nombre_obligatorio',
+    'fos.iden_nombre_ejemplo',
+    'fos.iden_email_opcional',
+    'fos.iden_email_ejemplo',
+    'fos.iden_organizacion_opcional',
+    'fos.iden_organizacion_ejemplo',
+    'fos.iden_guardar_perfil',
+    'fos.iden_identidad_y_certificados',
+    'fos.iden_mi_identidad_criptografica',
+    'fos.iden_verificar_un_certificado',
+    'fos.iden_modo_experto_autoridades',
+    'fos.iden_card_certificada_asunto',
+    'fos.iden_card_certificada_texto',
+    'fos.iden_error_firmando',
+    'fos.iden_certificar_hallazgo',
+    'fos.iden_descubridor_valor',
+    'fos.iden_coords',
+    'fos.iden_difuminadas',
+    'fos.iden_fotos',
+    'fos.iden_revisa_campos',
+    'fos.iden_especie_determinacion',
+    'fos.iden_edad_epoca',
+    'fos.iden_formacion_geologica',
+    'fos.iden_comentarios_experto',
+    'fos.iden_comentarios_ejemplo',
+    'fos.iden_firmar_y_devolver',
+    'fos.iden_no_es_certificado',
+    'fos.iden_error_leer_fichero',
+    'fos.iden_verificar_certificado',
+    'fos.iden_verificar_ayuda',
+    'fos.iden_seleccionar_certificado',
+    'fos.iden_certificado_verificado',
+    'fos.iden_certificado_no_valido',
+    'fos.iden_hash_no_coincide',
+    'fos.iden_especie',
+    'fos.iden_edad',
+    'fos.iden_formacion',
+    'fos.iden_fecha_descubrimiento',
+    'fos.iden_descubridor',
+    'fos.iden_email_descubridor',
+    'fos.iden_fecha_certificacion',
+    'fos.iden_error_importando',
+    'fos.iden_importar_card_recibida',
+    'fos.iden_no_se_pudo_abrir',
+    'fos.iden_card_importada',
+    'fos.iden_aparece_en_compartidas',
+    'fos.iden_importar_a_mi_coleccion',
+    'fos.iden_hecho',
+    'fos.iden_modo_experto_aviso',
+    'fos.iden_certificar',
+    'fos.iden_acusar_recibo',
+    'fos.iden_descartar',
+    'fos.iden_acuse_de_recibo',
+    'fos.iden_descarte',
+    'fos.iden_devolucion_firmada',
+    'fos.iden_firma_valida',
+    'fos.iden_firma_invalida',
+    'fos.iden_remitente',
+    'fos.iden_nombre_declarado',
+    'fos.iden_huella',
+    'fos.iden_hallazgo',
+    'fos.iden_tipo',
+    'fos.iden_fecha',
+    'fos.iden_coordenadas',
+    'fos.iden_estrato',
+    'fos.iden_notas',
+    'fos.iden_tipo_fosil',
+    'fos.iden_tipo_mineral',
+    'fos.iden_error_sin_manifest',
+    'fos.iden_error_formato_desconocido',
+    'fos.iden_error_falta_hallazgo',
+    'fos.iden_error_version_desconocida',
+    'fos.iden_error_sin_autoridad',
+    'fos.iden_error_sin_clave_autoridad',
+    'fos.iden_com_falta_consentimiento',
+    'fos.iden_com_limite_diario',
+    'fos.iden_com_servidor_rechazo',
+    'fos.iden_com_tiempo_agotado',
+    'fos.iden_com_sin_conexion',
+    'fos.iden_com_no_pudo_procesar',
+    'fos.iden_com_inactiva',
+    'fos.iden_com_sin_fotos',
+    'fos.iden_com_enviada',
+    'fos.iden_com_error_inesperado',
+    'fos.iden_com_compartir_titulo',
+    'fos.iden_com_intro',
+    'fos.iden_com_se_envia',
+    'fos.iden_com_foto_principal',
+    'fos.iden_com_tipo_valor',
+    'fos.iden_com_especie_declarada',
+    'fos.iden_com_edad_declarada',
+    'fos.iden_com_formacion_declarada',
+    'fos.iden_com_tus_notas',
+    'fos.iden_com_no_se_envia',
+    'fos.iden_com_nombre_autor',
+    'fos.iden_com_identidad_cripto',
+    'fos.iden_com_email_no_valido',
+    'fos.iden_com_email_contacto',
+    'fos.iden_com_email_ayuda',
+    'fos.iden_com_tu_nombre_opcional',
+    'fos.iden_com_nombre_ayuda',
+    'fos.iden_com_consentimiento',
+    'fos.iden_com_enviar_revision',
+    'fos.iden_com_formacion_codigo',
+    'fos.iden_com_fotos_comunidad',
+    'fos.iden_com_sin_fotos_formacion',
+    'fos.iden_com_sin_especie',
+    'fos.mapa_capa_callejero',
+    'fos.mapa_capa_satelite',
+    'fos.mapa_capa_topografico',
+    'fos.mapa_capa_edades_1m',
+    'fos.mapa_capa_litologias_1m',
+    'fos.mapa_capa_geode_desc',
+    'fos.mapa_capa_magna_desc',
+    'fos.mapa_capa_edades_desc',
+    'fos.mapa_capa_litologias_desc',
+    'fos.mapa_lig_sin_nombre',
+    'fos.mapa_rosa_vientos',
+    'fos.mapa_estas_en',
+    'fos.mapa_ver_ficha',
+    'fos.mapa_esperando_gps',
+    'fos.mapa_distancia_y_rumbo',
+    'fos.mapa_desde_tu_posicion',
+    'fos.mapa_detener_track',
+    'fos.mapa_iniciar_track',
+    'fos.mapa_nombre_opcional',
+    'fos.mapa_descartar',
+    'fos.mapa_track_guardado',
+    'fos.mapa_grabando_track_aviso',
+    'fos.mapa_acercate_monumentos',
+    'fos.mapa_sin_monumentos',
+    'fos.mapa_monumentos_cargados',
+    'fos.mapa_error_monumentos',
+    'fos.mapa_acercate_cuevas',
+    'fos.mapa_sin_cuevas',
+    'fos.mapa_cuevas_cargadas',
+    'fos.mapa_error_cuevas',
+    'fos.mapa_que_buscar',
+    'fos.mapa_como_llegar',
+    'fos.mapa_marcar_hallazgo_aqui',
+    'fos.mapa_fuente',
+    'fos.mapa_cronologia',
+    'fos.mapa_ver_en_osm',
+    'fos.mapa_especie',
+    'fos.mapa_edad',
+    'fos.mapa_formacion',
+    'fos.mapa_fecha',
+    'fos.mapa_coordenadas',
+    'fos.mapa_estrato',
+    'fos.mapa_notas',
+    'fos.mapa_borrar_hallazgo_pregunta',
+    'fos.mapa_compartir_texto',
+    'fos.mapa_tarjeta',
+    'fos.mapa_certificado_verificable',
+    'fos.mapa_enviar_otra_app',
+    'fos.mapa_historial_trazabilidad',
+    'fos.mapa_evento_anadido',
+    'fos.mapa_anadir_trazabilidad',
+    'fos.mapa_anadir_evento',
+    'fos.mapa_compartir_titulo',
+    'fos.mapa_asunto_hallazgo',
+    'fos.mapa_error_tarjeta',
+    'fos.mapa_precision_coordenadas',
+    'fos.mapa_precision_explicacion',
+    'fos.mapa_difuminadas_recomendado',
+    'fos.mapa_precisas',
+    'fos.mapa_asunto_card',
+    'fos.mapa_sin_especie',
+    'fos.mapa_texto_card',
+    'fos.mapa_coords_difuminadas',
+    'fos.mapa_coords_precisas',
+    'fos.mapa_error_card',
+    'fos.mapa_configura_nombre',
+    'fos.mapa_profundidad',
+    'fos.mapa_longitud',
+    'fos.mapa_tipo',
+    'fos.mapa_sin_datos',
+    'fos.mapa_igme_sin_info',
+    'fos.mapa_geologia_en_punto',
+    'fos.mapa_antiguedad',
+    'fos.mapa_era_periodo',
+    'fos.mapa_litologia',
+    'fos.mapa_lig_cerca',
+    'fos.mapa_yacimientos_cercanos',
+    'fos.mapa_fosiles_probables',
+    'fos.mapa_sin_fosiles_edad',
+    'fos.mapa_minerales_probables',
+    'fos.mapa_fotos_comunidad',
+    'fos.mapa_interes_principal',
+    'fos.mapa_descripcion',
+    'fos.mapa_a_distancia_km',
+    'fos.mapa_capa_base',
+    'fos.mapa_capa_geologica',
+    'fos.mapa_sin_geologia',
+    'fos.mapa_mas_capas',
+    'fos.mapa_lig',
+    'fos.mapa_relieve_sombreado',
+    'fos.mapa_mapa_de_calor',
+    'fos.mapa_yacimientos_curados',
+    'fos.mapa_tracks_guardados',
+    'fos.mapa_como_leer_mapa',
+    'fos.mapa_sin_conexion_cache',
+    'fos.mapa_toca_marcar',
+    'fos.mapa_toca_geologia',
+    'fos.mapa_asistente_sin_conexion',
+    'fos.mapa_consultando_igme',
+    'fos.mapa_sin_datos_igme_centro',
+    'fos.mapa_marcar_punto',
+    'fos.mapa_explorar_geologia',
+    'fos.mapa_cargando',
+    'fos.mapa_cuevas',
+    'fos.mapa_megalitos',
+    'fos.mapa_asistente_activo',
+    'fos.mapa_asistente',
+    'fos.mapa_cerrar',
+    'fos.mapa_mareas',
+    'fos.mapa_bajamar_hora',
+    'fos.mapa_bajamar',
+    'fos.mapa_pleamar',
+    'fos.mapa_hoy_minusculas',
+    'fos.mapa_manana_minusculas',
+    'fos.mapa_firmado_por_ti',
+    'fos.mapa_firmado_por_otra',
+    'fos.mapa_sin_firma',
+    'fos.mapa_firma_rota',
+    'fos.mapa_verificando_certificacion',
+    'fos.mapa_cadena_invalida',
+    'fos.mapa_certificada_por',
+    'fos.mapa_firmada_una',
+    'fos.mapa_firmada_varias',
+    'fos.mapa_selecciona_capa',
+    'fos.mapa_confirmar_descarga',
+    'fos.mapa_descargar',
+    'fos.mapa_teselas_en_cache',
+    'fos.mapa_descargar_mapas_offline',
+    'fos.mapa_centra_zona',
+    'fos.mapa_zoom_minimo',
+    'fos.mapa_zoom_maximo',
+    'fos.mapa_capa_geologica_igme_opcional',
+    'fos.mapa_ninguna',
+    'fos.mapa_resumen_teselas',
+    'fos.mapa_descargando',
+    'fos.mapa_descargar_ahora',
+    'fos.mapa_progreso_descarga',
+    'fos.mapa_track',
+    'fos.mapa_tracks',
+    'fos.mapa_error_cargando_tracks',
+    'fos.mapa_error_abriendo_track',
+    'fos.mapa_track_sin_puntos',
+    'fos.mapa_asunto_gpx',
+    'fos.mapa_informe_pdf',
+    'fos.mapa_borrar_track_pregunta',
+    'fos.mapa_asunto_informe_salida',
+    'fos.mapa_error_pdf',
+    'fos.mapa_n_puntos',
+    'fos.mapa_gpx_sin_puntos',
+    'fos.mapa_importado',
+    'fos.mapa_error_importando_gpx',
+    'fos.mapa_importar_gpx',
+    'fos.mapa_sin_tracks',
+    'fos.mapa_sin_tracks_ayuda',
+    'fos.mapa_track_del',
+    'fos.mapa_notificacion_grabando',
+    'fos.mapa_notificacion_registrando_ruta',
+    'fos.mapa_track_recuperado',
+    'fos.mapa_track_importado',
+    'fos.mapa_overpass_fallaron',
+    'fos.mapa_monumento_megalito',
+    'fos.mapa_monumento_dolmen',
+    'fos.mapa_monumento_tumulo',
+    'fos.mapa_monumento_fondo_cabana',
+    'fos.mapa_monumento_fortificacion',
+    'fos.mapa_monumento_castillo',
+    'fos.mapa_monumento_poblado',
+    'fos.mapa_monumento_menhir',
+    'fos.mapa_monumento_piedra_antigua',
+    'fos.mapa_monumento_circulo_piedras',
+    'fos.mapa_monumento_tumba',
+    'fos.mapa_monumento_ruinas',
+    'fos.mapa_monumento_monumento',
+    'fos.mapa_monumento_memorial',
+    'fos.mapa_monumento_crucero',
+    'fos.mapa_monumento_yacimiento',
+    'fos.mapa_sin_nombre',
+    'fos.mapa_ayuda_capas_titulo',
+    'fos.mapa_ayuda_capas_texto',
+    'fos.mapa_ayuda_capas_nota',
+    'fos.mapa_ayuda_otras_titulo',
+    'fos.mapa_ayuda_menu_superior',
+    'fos.mapa_ayuda_item_lig',
+    'fos.mapa_ayuda_item_relieve',
+    'fos.mapa_ayuda_item_calor',
+    'fos.mapa_ayuda_item_yacimientos',
+    'fos.mapa_ayuda_boton_capas',
+    'fos.mapa_ayuda_item_cuevas',
+    'fos.mapa_ayuda_item_megalitos',
+    'fos.mapa_ayuda_sugerencias_titulo',
+    'fos.mapa_ayuda_sugerencias_intro',
+    'fos.mapa_ayuda_sugerencias_formacion',
+    'fos.mapa_ayuda_sugerencias_periodo',
+    'fos.mapa_ayuda_sugerencias_minerales',
+    'fos.mapa_orientacion_estrato',
+    'fos.mapa_orientacion_instrucciones',
+    'fos.mapa_strike',
+    'fos.mapa_strike_ayuda',
+    'fos.mapa_dip',
+    'fos.mapa_dip_ayuda',
+    'fos.mapa_direccion_dip',
+    'fos.mapa_direccion_dip_ayuda',
+    'fos.mapa_brujula',
+    'fos.mapa_solo_referencia',
+    'fos.mapa_aviso_casi_horizontal',
+    'fos.mapa_aviso_casi_vertical',
+    'fos.mapa_capturar',
+    'fos.mapa_permiso_bloqueado',
+    'fos.mapa_permiso_bloqueado_texto',
+    'fos.mapa_activa_gps',
+    'fos.mapa_necesito_permiso',
+    'fos.mapa_abrir_ajustes',
+    'fos.mapa_ubicacion_seleccionada',
+    'fos.mapa_meteo_sin_ubicacion',
+    'fos.mapa_meteorologia',
+    'fos.mapa_buscar_lugar',
+    'fos.mapa_usar_mi_ubicacion',
+    'fos.mapa_meteo_vacio',
+    'fos.mapa_proximas_horas',
+    'fos.mapa_ahora',
+    'fos.mapa_proximos_dias',
+    'fos.mapa_hoy',
+    'fos.mapa_datos_open_meteo',
+    'fos.mapa_meteo_despejado',
+    'fos.mapa_meteo_mayormente_despejado',
+    'fos.mapa_meteo_parcialmente_nublado',
+    'fos.mapa_meteo_nublado',
+    'fos.mapa_meteo_niebla',
+    'fos.mapa_meteo_llovizna_ligera',
+    'fos.mapa_meteo_llovizna_moderada',
+    'fos.mapa_meteo_llovizna_densa',
+    'fos.mapa_meteo_lluvia_ligera',
+    'fos.mapa_meteo_lluvia_moderada',
+    'fos.mapa_meteo_lluvia_fuerte',
+    'fos.mapa_meteo_nevada_ligera',
+    'fos.mapa_meteo_nevada_moderada',
+    'fos.mapa_meteo_nevada_fuerte',
+    'fos.mapa_meteo_chubascos_ligeros',
+    'fos.mapa_meteo_chubascos_moderados',
+    'fos.mapa_meteo_chubascos_fuertes',
+    'fos.mapa_meteo_tormenta',
+    'fos.mapa_meteo_tormenta_granizo',
+    'fos.mapa_meteo_desconocido',
+    'fos.mapa_cueva_sin_nombre',
+    'fos.mapa_bocamina_sin_nombre',
+    'nat.ajus_cabecera_titulo',
+    'nat.ajus_cabecera_sub',
+    'nat.ajus_explorar_mapa_sub',
+    'nat.ajus_meteo_sub',
+    'nat.ajus_chat_ia_sub',
+    'nat.ajus_salidas_campo',
+    'nat.ajus_salidas_campo_sub',
+    'nat.ajus_etica_titulo',
+    'nat.ajus_etica_sub',
+    'nat.ajus_etica1_titulo',
+    'nat.ajus_etica1_texto',
+    'nat.ajus_etica2_titulo',
+    'nat.ajus_etica2_texto',
+    'nat.ajus_etica3_titulo',
+    'nat.ajus_etica3_texto',
+    'nat.ajus_etica4_titulo',
+    'nat.ajus_etica4_texto',
+    'nat.ajus_etica5_titulo',
+    'nat.ajus_etica5_texto',
+    'nat.ajus_como_usar',
+    'nat.ajus_paso1_texto',
+    'nat.ajus_paso2_texto',
+    'nat.ajus_paso3_titulo',
+    'nat.ajus_paso3_texto',
+    'nat.ajus_paso4_titulo',
+    'nat.ajus_paso4_texto',
+    'nat.ajus_paso5_titulo',
+    'nat.ajus_paso5_texto',
+    'nat.ajus_salida_sin_titulo',
+    'nat.ajus_salida_en_curso',
+    'nat.ajus_backup_asunto',
+    'nat.ajus_backup_texto',
+    'nat.ajus_restaurados',
+    'nat.ajus_claves_modelo_sub',
+    'nat.ajus_backup_explicacion',
+    'nat.ajus_sobre_app_texto',
+    'nat.ajus_sobre_app_fuentes',
+    'nat.ajus_mensaje_compartir',
+    'nat.ajus_chat_vacio',
+    'nat.ajus_identificacion_claude',
+    'nat.ajus_ia_explicacion',
+    'nat.ajus_plantnet_titulo',
+    'nat.ajus_plantnet_explicacion',
+    'nat.ajus_conseguir_plantnet',
+    'nat.ajus_api_plantnet',
+    'nat.ajus_chat_deepseek',
+    'nat.ajus_plantnet_falta_clave',
+    'nat.ajus_foto_no_existe',
+    'nat.ajus_plantnet_clave_rechazada',
+    'nat.ajus_plantnet_cuota_agotada',
+    'nat.ajus_servicio_devolvio',
+    'nat.cat_mamiferos',
+    'nat.cat_aves',
+    'nat.cat_reptiles',
+    'nat.cat_anfibios',
+    'nat.cat_peces',
+    'nat.cat_insectos',
+    'nat.cat_plantas',
+    'nat.cat_setas',
+    'nat.cat_otros_animales',
+    'nat.uso_medicinal',
+    'nat.uso_comestible',
+    'nat.uso_aromatica',
+    'nat.uso_melifera',
+    'nat.uso_ornamental',
+    'nat.uso_toxica',
+    'nat.uso_urticante',
+    'nat.uso_protegida',
+    'nat.uso_invasora',
+    'nat.uso_endemica',
+    'nat.hall_alternativas_dos_puntos',
+    'nat.hall_altura_aprox_cm',
+    'nat.hall_anade_foto_primero',
+    'nat.hall_anotacion_al_margen',
+    'nat.hall_anotacion_hint',
+    'nat.hall_anotaciones_al_margen',
+    'nat.hall_asunto_exportacion',
+    'nat.hall_asunto_hallazgo',
+    'nat.hall_badge_confirmada',
+    'nat.hall_badge_corregida',
+    'nat.hall_badge_sin_validar',
+    'nat.hall_borrar_anotacion',
+    'nat.hall_buscar_en_inaturalist',
+    'nat.hall_buscar_hint',
+    'nat.hall_calibracion_por_confianza',
+    'nat.hall_candidatos_plantnet',
+    'nat.hall_categoria',
+    'nat.hall_color_sombrero',
+    'nat.hall_como_confirmar_texto',
+    'nat.hall_comportamiento',
+    'nat.hall_confianza_etiqueta',
+    'nat.hall_confianza_probable',
+    'nat.hall_confianza_segura',
+    'nat.hall_confianza_sin_marcar',
+    'nat.hall_confianza_tentativa',
+    'nat.hall_configura_clave_plantnet',
+    'nat.hall_confirmada_check',
+    'nat.hall_confirmadas',
+    'nat.hall_confirmar_borrar_anotacion',
+    'nat.hall_corregida_a',
+    'nat.hall_corregidas',
+    'nat.hall_corregir',
+    'nat.hall_corregir_identificacion',
+    'nat.hall_cuando_dijiste_probable',
+    'nat.hall_cuando_dijiste_segura',
+    'nat.hall_cuando_dijiste_tentativa',
+    'nat.hall_de_acierto_global',
+    'nat.hall_descarga_fallo',
+    'nat.hall_detalles_de',
+    'nat.hall_dia_n',
+    'nat.hall_diametro_sombrero_cm',
+    'nat.hall_dias_antes',
+    'nat.hall_dias_despues',
+    'nat.hall_en_fecha',
+    'nat.hall_entrara_en_salida',
+    'nat.hall_error_conectar_archivos',
+    'nat.hall_error_descargar_foto',
+    'nat.hall_error_guardar_hallazgo',
+    'nat.hall_escribe_dos_letras',
+    'nat.hall_escribe_especie_para_buscar',
+    'nat.hall_especie_real',
+    'nat.hall_especie_real_hint',
+    'nat.hall_estadio',
+    'nat.hall_evidencia_avistamiento',
+    'nat.hall_evidencia_excremento',
+    'nat.hall_evidencia_huella',
+    'nat.hall_evidencia_interaccion',
+    'nat.hall_evidencia_marca_corteza',
+    'nat.hall_evidencia_nido_vacio',
+    'nat.hall_evidencia_pluma',
+    'nat.hall_evidencia_refugio',
+    'nat.hall_evidencia_restos_alimentacion',
+    'nat.hall_evidencia_sonido',
+    'nat.hall_explicacion_evidencia',
+    'nat.hall_explicacion_fenologia',
+    'nat.hall_explicacion_fenologia_vacia',
+    'nat.hall_explicacion_hipotesis',
+    'nat.hall_explicacion_tasa_vacia',
+    'nat.hall_explicacion_validar',
+    'nat.hall_falta_posicion_gps',
+    'nat.hall_foto_de_archivo',
+    'nat.hall_foto_referencia_inaturalist',
+    'nat.hall_guia_anade_entradas',
+    'nat.hall_guia_sin_especies',
+    'nat.hall_habitat',
+    'nat.hall_hallazgo_de_naturaleza',
+    'nat.hall_hipotesis',
+    'nat.hall_hipotesis_hint',
+    'nat.hall_identificacion_actual',
+    'nat.hall_identificacion_fallo',
+    'nat.hall_identificar_plantnet_gratis',
+    'nat.hall_limpiar_busqueda',
+    'nat.hall_mi_fenologia',
+    'nat.hall_mi_fenologia_subtitulo',
+    'nat.hall_n_de_total_hallazgos',
+    'nat.hall_n_exportados',
+    'nat.hall_n_hallazgos',
+    'nat.hall_n_sin_revisar',
+    'nat.hall_nombre_cientifico_binomial',
+    'nat.hall_nombre_comun_o_cientifico',
+    'nat.hall_nombre_con_confianza',
+    'nat.hall_numero_ejemplares',
+    'nat.hall_numero_individuos',
+    'nat.hall_op_adulto',
+    'nat.hall_op_amarillo',
+    'nat.hall_op_arbol',
+    'nat.hall_op_arbusto',
+    'nat.hall_op_avistamiento',
+    'nat.hall_op_bajo_conifera',
+    'nat.hall_op_bajo_planifolio',
+    'nat.hall_op_blanco_crema',
+    'nat.hall_op_excremento',
+    'nat.hall_op_flor',
+    'nat.hall_op_fruto',
+    'nat.hall_op_gris_negruzco',
+    'nat.hall_op_herbacea',
+    'nat.hall_op_huella',
+    'nat.hall_op_huevo',
+    'nat.hall_op_larva',
+    'nat.hall_op_madera_muerta',
+    'nat.hall_op_mata',
+    'nat.hall_op_naranja_rojizo',
+    'nat.hall_op_nido_o_madriguera',
+    'nat.hall_op_ninfa',
+    'nat.hall_op_otro',
+    'nat.hall_op_pardo_marron',
+    'nat.hall_op_pluma_o_pelo',
+    'nat.hall_op_pradera_herbazal',
+    'nat.hall_op_pupa',
+    'nat.hall_op_rojo_escarlata',
+    'nat.hall_op_semilla',
+    'nat.hall_op_senescente',
+    'nat.hall_op_suculenta',
+    'nat.hall_op_suelo_hojarasca',
+    'nat.hall_op_tocon',
+    'nat.hall_op_trepadora',
+    'nat.hall_op_vegetativa',
+    'nat.hall_op_verde_oliva',
+    'nat.hall_op_violaceo',
+    'nat.hall_op_vocalizacion',
+    'nat.hall_organo_corteza',
+    'nat.hall_organo_flor',
+    'nat.hall_organo_fruto',
+    'nat.hall_organo_habito',
+    'nat.hall_organo_hoja',
+    'nat.hall_organo_otro',
+    'nat.hall_pie_tarjeta',
+    'nat.hall_planta_hospedadora',
+    'nat.hall_plantnet_fallo',
+    'nat.hall_plantnet_quedan_hoy',
+    'nat.hall_plantnet_sin_candidatos',
+    'nat.hall_por_categoria',
+    'nat.hall_porte',
+    'nat.hall_pregunta_calibracion',
+    'nat.hall_pulsa_el_que_mejor_se_ajuste',
+    'nat.hall_que_organo_se_ve',
+    'nat.hall_quiz_anade_entradas',
+    'nat.hall_quiz_faltan_especies',
+    'nat.hall_quiz_modo_cientifico_a_comun',
+    'nat.hall_quiz_modo_comun_a_cientifico',
+    'nat.hall_quiz_modo_por_descripcion',
+    'nat.hall_quiz_pocas_especies_categoria',
+    'nat.hall_quiz_pregunta_cientifico',
+    'nat.hall_quiz_pregunta_comun',
+    'nat.hall_quiz_que_especie_es',
+    'nat.hall_salida_sin_titulo',
+    'nat.hall_se_guardara_suelto',
+    'nat.hall_sin_anotaciones',
+    'nat.hall_sin_fenologia',
+    'nat.hall_sin_fotos_licencia_abierta',
+    'nat.hall_sin_revisar',
+    'nat.hall_sin_validaciones',
+    'nat.hall_sustrato',
+    'nat.hall_tasa_acierto',
+    'nat.hall_tasa_acierto_subtitulo',
+    'nat.hall_taxonomia',
+    'nat.hall_texto',
+    'nat.hall_tipo_evidencia',
+    'nat.hall_top_habitats',
+    'nat.hall_tu_hipotesis',
+    'nat.hall_un_hallazgo',
+    'nat.hall_un_sin_revisar',
+    'nat.hall_validar_identificacion',
+    'nat.hall_volver_a_sin_revisar',
+    'nat.mapa_notificacion_registrando_ruta',
+    'nat.mapa_lugar_miradores',
+    'nat.mapa_lugar_miradores_aves',
+    'nat.mapa_lugar_reservas_naturales',
+    'nat.mapa_lugar_cuevas',
+    'nat.mapa_lugar_humedales',
+    'nat.mapa_lugar_arboles_singulares',
+    'nat.mapa_lugar_refugios',
+    'nat.mapa_lugar_manantiales',
+    'nat.mapa_lugar_centros_visitantes',
+    'nat.mapa_falta_permiso_ubicacion',
+    'nat.mapa_sin_lugares_zona',
+    'nat.mapa_gestor',
+    'nat.mapa_sin_gbif_zona',
+    'nat.mapa_gbif_cargadas',
+    'nat.mapa_ocultar',
+    'nat.mapa_track_guardado_puntos',
+    'nat.mapa_observacion_gbif',
+    'nat.mapa_familia',
+    'nat.mapa_localidad',
+    'nat.mapa_observacion',
+    'nat.mapa_categoria',
+    'nat.mapa_habitat',
+    'nat.mapa_taxonomia',
+    'nat.mapa_borrar_observacion_pregunta',
+    'nat.mapa_mapas_offline_menu',
+    'nat.mapa_lugares_interes_activos',
+    'nat.mapa_lugares_interes_menu',
+    'nat.mapa_recargar_lugares',
+    'nat.mapa_gbif_cerca',
+    'nat.mapa_ocultar_gbif',
+    'nat.mapa_centrar_ubicacion',
+    'nat.mapa_detener_grabacion',
+    'nat.mapa_grabar_track',
+    'nat.mapa_tooltip_capas',
+    'nat.mapa_tooltip_datos',
+    'nat.mapa_capas_lugares',
+    'nat.mapa_capas_lugares_ayuda',
+    'nat.mapa_quitar_todas',
+    'nat.mapa_aplicar',
+    'nat.mapa_nueva_salida',
+    'nat.mapa_titulo_opcional',
+    'nat.mapa_titulo_ejemplo',
+    'nat.mapa_zona_opcional',
+    'nat.mapa_zona_ejemplo',
+    'nat.mapa_hipotesis_opcional',
+    'nat.mapa_hipotesis_ejemplo',
+    'nat.mapa_arrancar_track',
+    'nat.mapa_salida_explicacion',
+    'nat.mapa_iniciar',
+    'nat.mapa_sin_permiso_track',
+    'nat.mapa_salidas',
+    'nat.mapa_iniciar_salida',
+    'nat.mapa_sin_salidas',
+    'nat.mapa_sin_salidas_ayuda',
+    'nat.mapa_salida_sin_titulo',
+    'nat.mapa_en_curso',
+    'nat.mapa_una_observacion',
+    'nat.mapa_n_observaciones',
+    'nat.mapa_cabecera_salida',
+    'nat.mapa_titulo',
+    'nat.mapa_zona',
+    'nat.mapa_meteo_resumen',
+    'nat.mapa_altitud_m',
+    'nat.mapa_hipotesis_jornada',
+    'nat.mapa_notas_generales',
+    'nat.mapa_anotacion_margen',
+    'nat.mapa_anotacion_explicacion',
+    'nat.mapa_texto',
+    'nat.mapa_anotacion_ejemplo',
+    'nat.mapa_borrar_anotacion',
+    'nat.mapa_borrar_anotacion_texto',
+    'nat.mapa_cerrar_salida',
+    'nat.mapa_cerrar_salida_texto',
+    'nat.mapa_detener_track_tambien',
+    'nat.mapa_seguir_abierta',
+    'nat.mapa_borrar_salida',
+    'nat.mapa_borrar_salida_texto',
+    'nat.mapa_salida_no_encontrada',
+    'nat.mapa_salida_del_dia',
+    'nat.mapa_editar_cabecera',
+    'nat.mapa_anotar_margen',
+    'nat.mapa_altitud_aprox',
+    'nat.mapa_track_en_curso',
+    'nat.mapa_track_de_salida',
+    'nat.mapa_track_puntos_asociara',
+    'nat.mapa_observaciones_de_salida',
+    'nat.mapa_sin_observaciones_salida',
+    'nat.mapa_sin_especie',
+    'nat.mapa_anotaciones_margen',
+    'nat.mapa_sin_anotaciones',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -3203,6 +4218,11 @@ class SoleraL10n {
           'temperatura_registrada',
           'todos',
           'ver_pdf',
+          'camara',
+          'continuar',
+          'error_restaurando',
+          'galeria',
+          'siguiente',
           'acei.abierta',
           'acei.abierta_minuscula',
           'acei.aceite_y_almazara',
@@ -5315,6 +6335,1016 @@ class SoleraL10n {
           'core.act.descarga_en_navegador',
           'core.act.error_descarga',
           'core.act.error_instalador',
+          'fos.ajus_calculando',
+          'fos.ajus_resumen_cache',
+          'fos.ajus_backup_asunto',
+          'fos.ajus_backup_texto',
+          'fos.ajus_error_backup',
+          'fos.ajus_restaurar_titulo',
+          'fos.ajus_restaurar_aviso',
+          'fos.ajus_restaurados',
+          'fos.ajus_avisos_reactivados',
+          'fos.ajus_prueba_aviso',
+          'fos.ajus_borrar_aportaciones',
+          'fos.ajus_borrar_aportaciones_texto',
+          'fos.ajus_email',
+          'fos.ajus_enviar',
+          'fos.ajus_solicitud_enviada',
+          'fos.ajus_vaciar_cache_pregunta',
+          'fos.ajus_vaciar',
+          'fos.ajus_sec_general',
+          'fos.ajus_idioma',
+          'fos.ajus_claves_modelo',
+          'fos.ajus_claves_modelo_sub',
+          'fos.ajus_sec_perfil',
+          'fos.ajus_perfil_titulo',
+          'fos.ajus_perfil_sub',
+          'fos.ajus_sec_mapas_datos',
+          'fos.ajus_mapas_sin_conexion',
+          'fos.ajus_mapas_explicacion',
+          'fos.ajus_descargar_zona',
+          'fos.ajus_backup_explicacion',
+          'fos.ajus_hacer_copia',
+          'fos.ajus_restaurar_copia',
+          'fos.ajus_asistente_campo',
+          'fos.ajus_asistente_explicacion',
+          'fos.ajus_reactivar_avisos',
+          'fos.ajus_probar_aviso',
+          'fos.ajus_sec_privacidad',
+          'fos.ajus_tus_aportaciones',
+          'fos.ajus_aportaciones_explicacion',
+          'fos.ajus_como_leer_mapa',
+          'fos.ajus_como_leer_mapa_sub',
+          'fos.ajus_ver_tour',
+          'fos.ajus_sobre_app',
+          'fos.ajus_sobre_app_texto',
+          'fos.ajus_apoyar',
+          'fos.ajus_apoyar_texto',
+          'fos.ajus_gracias',
+          'fos.ajus_ver_formas_apoyar',
+          'fos.ajus_datos_fuentes',
+          'fos.ajus_datos_fuentes_texto',
+          'fos.ajus_ia_guardados',
+          'fos.ajus_no_abrir_navegador',
+          'fos.ajus_ia_explicacion',
+          'fos.ajus_conseguir_anthropic',
+          'fos.ajus_conseguir_deepseek',
+          'fos.ajus_api_anthropic',
+          'fos.ajus_api_deepseek',
+          'fos.ajus_modelo_claude',
+          'fos.ajus_modelo_precio',
+          'fos.ajus_modelo_opus_desc',
+          'fos.ajus_modelo_sonnet_desc',
+          'fos.ajus_modelo_haiku_desc',
+          'fos.ajus_cabecera_titulo',
+          'fos.ajus_cabecera_sub',
+          'fos.ajus_explorar_mapa',
+          'fos.ajus_explorar_mapa_sub',
+          'fos.ajus_meteo',
+          'fos.ajus_meteo_sub',
+          'fos.ajus_chat_ia',
+          'fos.ajus_chat_ia_sub',
+          'fos.ajus_etica_titulo',
+          'fos.ajus_etica_sub',
+          'fos.ajus_etica1_titulo',
+          'fos.ajus_etica1_texto',
+          'fos.ajus_etica2_titulo',
+          'fos.ajus_etica2_texto',
+          'fos.ajus_etica3_titulo',
+          'fos.ajus_etica3_texto',
+          'fos.ajus_etica4_titulo',
+          'fos.ajus_etica4_texto',
+          'fos.ajus_etica5_titulo',
+          'fos.ajus_etica5_texto',
+          'fos.ajus_como_usar',
+          'fos.ajus_paso1_titulo',
+          'fos.ajus_paso1_texto',
+          'fos.ajus_paso2_titulo',
+          'fos.ajus_paso2_texto',
+          'fos.ajus_paso3_titulo',
+          'fos.ajus_paso3_texto',
+          'fos.ajus_paso4_titulo',
+          'fos.ajus_paso4_texto',
+          'fos.ajus_paso5_titulo',
+          'fos.ajus_paso5_texto',
+          'fos.ajus_saltar',
+          'fos.ajus_empezar',
+          'fos.ajus_onb1_titulo',
+          'fos.ajus_onb1_texto',
+          'fos.ajus_onb2_titulo',
+          'fos.ajus_onb2_texto',
+          'fos.ajus_onb3_titulo',
+          'fos.ajus_onb3_texto',
+          'fos.ajus_datos_restaurados',
+          'fos.ajus_nav_inicio',
+          'fos.ajus_nav_lista',
+          'fos.ajus_nav_guia',
+          'fos.ajus_chat',
+          'fos.ajus_falta_clave_chat',
+          'fos.ajus_que_ves',
+          'fos.ajus_que_ves_identifica',
+          'fos.ajus_chat_vacio',
+          'fos.ajus_via',
+          'fos.ajus_imagen_adjunta',
+          'fos.ajus_hacer_foto',
+          'fos.ajus_escribe_pregunta',
+          'fos.ajus_falta_api_anthropic',
+          'fos.ajus_desconocido',
+          'fos.ajus_sin_identificacion',
+          'fos.ajus_nombre_autoridad',
+          'fos.ajus_ej_autoridad',
+          'fos.ajus_generar',
+          'fos.ajus_codigo_activacion',
+          'fos.ajus_para_nombre',
+          'fos.ajus_codigo_mandalo',
+          'fos.ajus_copiar',
+          'fos.ajus_codigo_copiado',
+          'fos.ajus_compartir_codigo',
+          'fos.ajus_asunto_experto',
+          'fos.ajus_desactivar_titulo',
+          'fos.ajus_desactivar_texto',
+          'fos.ajus_desactivar',
+          'fos.ajus_modo_experto',
+          'fos.ajus_experto_intro',
+          'fos.ajus_activar_autoridad',
+          'fos.ajus_activar_autoridad_texto',
+          'fos.ajus_pegar_codigo',
+          'fos.ajus_admin_generar',
+          'fos.ajus_admin_texto',
+          'fos.ajus_generar_codigo_autoridad',
+          'fos.ajus_experto_activo',
+          'fos.ajus_huella_institucional',
+          'fos.ajus_huella_texto',
+          'fos.ajus_codigo_nombre_obligatorios',
+          'fos.ajus_codigo_no_valido',
+          'fos.ajus_activar_autoridad_titulo',
+          'fos.ajus_pega_codigo_hint',
+          'fos.ajus_colegiacion',
+          'fos.ajus_ej_colegiacion',
+          'fos.ajus_activar',
+          'fos.ajus_kofi_sub',
+          'fos.ajus_paypal_sub',
+          'fos.ajus_mensaje_compartir',
+          'fos.ajus_ecosistema_texto',
+          'fos.ajus_copiar_direccion',
+          'fos.ajus_direccion_copiada',
+          'fos.ajus_compartir_app',
+          'fos.ajus_compartir_app_texto',
+          'fos.ajus_otras_formas',
+          'fos.ajus_valorar',
+          'fos.ajus_reportar',
+          'fos.ajus_ayudar_traducciones',
+          'fos.ajus_contribuir_codigo',
+          'fos.ajus_fichero_no_valido',
+          'fos.ajus_version_desconocida',
+          'fos.ajus_nav_ajustes',
+          'fos.ficha_distintivos',
+          'fos.ficha_donde_encontrarlo',
+          'fos.ficha_leer_wikipedia',
+          'fos.ficha_reintentar',
+          'fos.ficha_raya',
+          'fos.ficha_brillo',
+          'fos.ficha_color_tipico',
+          'fos.hall_alternativas',
+          'fos.hall_anadir',
+          'fos.hall_anadir_evento',
+          'fos.hall_anadir_evento_trazabilidad',
+          'fos.hall_anadir_trazabilidad',
+          'fos.hall_anotar_foto',
+          'fos.hall_aplicar_formulario',
+          'fos.hall_asunto_certificado',
+          'fos.hall_asunto_exportacion',
+          'fos.hall_asunto_hallazgo',
+          'fos.hall_aun_no_hay_hallazgos',
+          'fos.hall_autor_evento',
+          'fos.hall_borrar_medida',
+          'fos.hall_buscar',
+          'fos.hall_buscar_hint',
+          'fos.hall_certificado_texto',
+          'fos.hall_certificado_verificable',
+          'fos.hall_como_confirmar',
+          'fos.hall_compartir_comunidad',
+          'fos.hall_compartir_texto',
+          'fos.hall_con_foto',
+          'fos.hall_confianza',
+          'fos.hall_confianza_alta',
+          'fos.hall_confianza_baja',
+          'fos.hall_confianza_media',
+          'fos.hall_configura_api_key',
+          'fos.hall_configura_nombre',
+          'fos.hall_confirmar_borrar',
+          'fos.hall_consultando_igme',
+          'fos.hall_contexto_geologico',
+          'fos.hall_coordenadas',
+          'fos.hall_cronologia',
+          'fos.hall_descartar',
+          'fos.hall_descripcion',
+          'fos.hall_descubridor',
+          'fos.hall_desde_galeria',
+          'fos.hall_deshacer',
+          'fos.hall_detectado_mineral',
+          'fos.hall_dias_activo',
+          'fos.hall_dureza_mohs',
+          'fos.hall_dureza_mohs_estimada',
+          'fos.hall_edad',
+          'fos.hall_edad_periodo',
+          'fos.hall_editar_hallazgo',
+          'fos.hall_ejemplo_autor',
+          'fos.hall_ejemplo_descripcion',
+          'fos.hall_error_codificar_imagen',
+          'fos.hall_error_exportando',
+          'fos.hall_error_generar_zip',
+          'fos.hall_error_gps',
+          'fos.hall_error_guardando',
+          'fos.hall_error_identificando',
+          'fos.hall_error_sin_id',
+          'fos.hall_error_tarjeta',
+          'fos.hall_especie',
+          'fos.hall_especie_tentativa',
+          'fos.hall_especies',
+          'fos.hall_esperando_gps',
+          'fos.hall_estadisticas',
+          'fos.hall_estrato',
+          'fos.hall_evento_anadido',
+          'fos.hall_exportar_zip',
+          'fos.hall_fecha',
+          'fos.hall_formacion',
+          'fos.hall_formacion_geologica',
+          'fos.hall_fosil',
+          'fos.hall_fosiles',
+          'fos.hall_fosiles_probables',
+          'fos.hall_guia',
+          'fos.hall_hallazgo_de_fosil',
+          'fos.hall_historial_trazabilidad',
+          'fos.hall_identificando',
+          'fos.hall_identificar_claude',
+          'fos.hall_incoherencia_detalle',
+          'fos.hall_incoherencia_geologica',
+          'fos.hall_limpiar',
+          'fos.hall_linea_tiempo',
+          'fos.hall_medir',
+          'fos.hall_mineral',
+          'fos.hall_minerales',
+          'fos.hall_mixto',
+          'fos.hall_modelo',
+          'fos.hall_moneda_en_foto',
+          'fos.hall_n_de_total_desliza',
+          'fos.hall_n_exportados',
+          'fos.hall_n_fosiles',
+          'fos.hall_ninguno_coincide',
+          'fos.hall_ninguno_recibido_coincide',
+          'fos.hall_no',
+          'fos.hall_nombre_mineral',
+          'fos.hall_notas',
+          'fos.hall_nuevo_hallazgo',
+          'fos.hall_o_desde_galeria',
+          'fos.hall_obteniendo_gps',
+          'fos.hall_orientacion_sin_medir',
+          'fos.hall_periodo',
+          'fos.hall_permiso_ubicacion_denegado',
+          'fos.hall_pie_tarjeta',
+          'fos.hall_primer_hallazgo',
+          'fos.hall_punto_marcado_mapa',
+          'fos.hall_quiz',
+          'fos.hall_quiz_identificacion',
+          'fos.hall_razonamiento',
+          'fos.hall_recibida',
+          'fos.hall_remedir',
+          'fos.hall_sin_clasificar',
+          'fos.hall_sin_fosiles_periodo',
+          'fos.hall_sin_hallazgos_analizar',
+          'fos.hall_sin_nombre',
+          'fos.hall_tab_compartidas',
+          'fos.hall_tab_mias',
+          'fos.hall_tamano_estimado',
+          'fos.hall_tarjeta',
+          'fos.hall_tipo_deposito_museo',
+          'fos.hall_tipo_estudio',
+          'fos.hall_tipo_evento',
+          'fos.hall_tipo_otro',
+          'fos.hall_tipo_prestamo',
+          'fos.hall_tipo_publicacion',
+          'fos.hall_titulo',
+          'fos.hall_toca_mas_primero',
+          'fos.hall_tomar_foto',
+          'fos.hall_top_especies',
+          'fos.hall_top_formaciones',
+          'fos.hall_ubicacion',
+          'fos.hall_ultimo_hallazgo',
+          'fos.hall_ver_en_mapa',
+          'fos.hall_ver_ficha',
+          'fos.iden_huella_copiada',
+          'fos.iden_clave_publica_copiada',
+          'fos.iden_regenerar_titulo',
+          'fos.iden_regenerar_aviso',
+          'fos.iden_regenerar',
+          'fos.iden_identidad_regenerada',
+          'fos.iden_mi_identidad',
+          'fos.iden_datos_declarados',
+          'fos.iden_datos_declarados_ayuda',
+          'fos.iden_nombre',
+          'fos.iden_email',
+          'fos.iden_organizacion',
+          'fos.iden_sin_rellenar',
+          'fos.iden_huella_criptografica',
+          'fos.iden_huella_ayuda',
+          'fos.iden_copiar_huella',
+          'fos.iden_ver_clave_publica',
+          'fos.iden_copiar_clave_publica',
+          'fos.iden_operaciones_avanzadas',
+          'fos.iden_operaciones_avanzadas_ayuda',
+          'fos.iden_regenerar_identidad',
+          'fos.iden_perfil_guardado',
+          'fos.iden_perfil_e_identidad',
+          'fos.iden_perfil_descubridor',
+          'fos.iden_perfil_ayuda',
+          'fos.iden_nombre_obligatorio',
+          'fos.iden_nombre_ejemplo',
+          'fos.iden_email_opcional',
+          'fos.iden_email_ejemplo',
+          'fos.iden_organizacion_opcional',
+          'fos.iden_organizacion_ejemplo',
+          'fos.iden_guardar_perfil',
+          'fos.iden_identidad_y_certificados',
+          'fos.iden_mi_identidad_criptografica',
+          'fos.iden_verificar_un_certificado',
+          'fos.iden_modo_experto_autoridades',
+          'fos.iden_card_certificada_asunto',
+          'fos.iden_card_certificada_texto',
+          'fos.iden_error_firmando',
+          'fos.iden_certificar_hallazgo',
+          'fos.iden_descubridor_valor',
+          'fos.iden_coords',
+          'fos.iden_difuminadas',
+          'fos.iden_fotos',
+          'fos.iden_revisa_campos',
+          'fos.iden_especie_determinacion',
+          'fos.iden_edad_epoca',
+          'fos.iden_formacion_geologica',
+          'fos.iden_comentarios_experto',
+          'fos.iden_comentarios_ejemplo',
+          'fos.iden_firmar_y_devolver',
+          'fos.iden_no_es_certificado',
+          'fos.iden_error_leer_fichero',
+          'fos.iden_verificar_certificado',
+          'fos.iden_verificar_ayuda',
+          'fos.iden_seleccionar_certificado',
+          'fos.iden_certificado_verificado',
+          'fos.iden_certificado_no_valido',
+          'fos.iden_hash_no_coincide',
+          'fos.iden_especie',
+          'fos.iden_edad',
+          'fos.iden_formacion',
+          'fos.iden_fecha_descubrimiento',
+          'fos.iden_descubridor',
+          'fos.iden_email_descubridor',
+          'fos.iden_fecha_certificacion',
+          'fos.iden_error_importando',
+          'fos.iden_importar_card_recibida',
+          'fos.iden_no_se_pudo_abrir',
+          'fos.iden_card_importada',
+          'fos.iden_aparece_en_compartidas',
+          'fos.iden_importar_a_mi_coleccion',
+          'fos.iden_hecho',
+          'fos.iden_modo_experto_aviso',
+          'fos.iden_certificar',
+          'fos.iden_acusar_recibo',
+          'fos.iden_descartar',
+          'fos.iden_acuse_de_recibo',
+          'fos.iden_descarte',
+          'fos.iden_devolucion_firmada',
+          'fos.iden_firma_valida',
+          'fos.iden_firma_invalida',
+          'fos.iden_remitente',
+          'fos.iden_nombre_declarado',
+          'fos.iden_huella',
+          'fos.iden_hallazgo',
+          'fos.iden_tipo',
+          'fos.iden_fecha',
+          'fos.iden_coordenadas',
+          'fos.iden_estrato',
+          'fos.iden_notas',
+          'fos.iden_tipo_fosil',
+          'fos.iden_tipo_mineral',
+          'fos.iden_error_sin_manifest',
+          'fos.iden_error_formato_desconocido',
+          'fos.iden_error_falta_hallazgo',
+          'fos.iden_error_version_desconocida',
+          'fos.iden_error_sin_autoridad',
+          'fos.iden_error_sin_clave_autoridad',
+          'fos.iden_com_falta_consentimiento',
+          'fos.iden_com_limite_diario',
+          'fos.iden_com_servidor_rechazo',
+          'fos.iden_com_tiempo_agotado',
+          'fos.iden_com_sin_conexion',
+          'fos.iden_com_no_pudo_procesar',
+          'fos.iden_com_inactiva',
+          'fos.iden_com_sin_fotos',
+          'fos.iden_com_enviada',
+          'fos.iden_com_error_inesperado',
+          'fos.iden_com_compartir_titulo',
+          'fos.iden_com_intro',
+          'fos.iden_com_se_envia',
+          'fos.iden_com_foto_principal',
+          'fos.iden_com_tipo_valor',
+          'fos.iden_com_especie_declarada',
+          'fos.iden_com_edad_declarada',
+          'fos.iden_com_formacion_declarada',
+          'fos.iden_com_tus_notas',
+          'fos.iden_com_no_se_envia',
+          'fos.iden_com_nombre_autor',
+          'fos.iden_com_identidad_cripto',
+          'fos.iden_com_email_no_valido',
+          'fos.iden_com_email_contacto',
+          'fos.iden_com_email_ayuda',
+          'fos.iden_com_tu_nombre_opcional',
+          'fos.iden_com_nombre_ayuda',
+          'fos.iden_com_consentimiento',
+          'fos.iden_com_enviar_revision',
+          'fos.iden_com_formacion_codigo',
+          'fos.iden_com_fotos_comunidad',
+          'fos.iden_com_sin_fotos_formacion',
+          'fos.iden_com_sin_especie',
+          'fos.mapa_capa_callejero',
+          'fos.mapa_capa_satelite',
+          'fos.mapa_capa_topografico',
+          'fos.mapa_capa_edades_1m',
+          'fos.mapa_capa_litologias_1m',
+          'fos.mapa_capa_geode_desc',
+          'fos.mapa_capa_magna_desc',
+          'fos.mapa_capa_edades_desc',
+          'fos.mapa_capa_litologias_desc',
+          'fos.mapa_lig_sin_nombre',
+          'fos.mapa_rosa_vientos',
+          'fos.mapa_estas_en',
+          'fos.mapa_ver_ficha',
+          'fos.mapa_esperando_gps',
+          'fos.mapa_distancia_y_rumbo',
+          'fos.mapa_desde_tu_posicion',
+          'fos.mapa_detener_track',
+          'fos.mapa_iniciar_track',
+          'fos.mapa_nombre_opcional',
+          'fos.mapa_descartar',
+          'fos.mapa_track_guardado',
+          'fos.mapa_grabando_track_aviso',
+          'fos.mapa_acercate_monumentos',
+          'fos.mapa_sin_monumentos',
+          'fos.mapa_monumentos_cargados',
+          'fos.mapa_error_monumentos',
+          'fos.mapa_acercate_cuevas',
+          'fos.mapa_sin_cuevas',
+          'fos.mapa_cuevas_cargadas',
+          'fos.mapa_error_cuevas',
+          'fos.mapa_que_buscar',
+          'fos.mapa_como_llegar',
+          'fos.mapa_marcar_hallazgo_aqui',
+          'fos.mapa_fuente',
+          'fos.mapa_cronologia',
+          'fos.mapa_ver_en_osm',
+          'fos.mapa_especie',
+          'fos.mapa_edad',
+          'fos.mapa_formacion',
+          'fos.mapa_fecha',
+          'fos.mapa_coordenadas',
+          'fos.mapa_estrato',
+          'fos.mapa_notas',
+          'fos.mapa_borrar_hallazgo_pregunta',
+          'fos.mapa_compartir_texto',
+          'fos.mapa_tarjeta',
+          'fos.mapa_certificado_verificable',
+          'fos.mapa_enviar_otra_app',
+          'fos.mapa_historial_trazabilidad',
+          'fos.mapa_evento_anadido',
+          'fos.mapa_anadir_trazabilidad',
+          'fos.mapa_anadir_evento',
+          'fos.mapa_compartir_titulo',
+          'fos.mapa_asunto_hallazgo',
+          'fos.mapa_error_tarjeta',
+          'fos.mapa_precision_coordenadas',
+          'fos.mapa_precision_explicacion',
+          'fos.mapa_difuminadas_recomendado',
+          'fos.mapa_precisas',
+          'fos.mapa_asunto_card',
+          'fos.mapa_sin_especie',
+          'fos.mapa_texto_card',
+          'fos.mapa_coords_difuminadas',
+          'fos.mapa_coords_precisas',
+          'fos.mapa_error_card',
+          'fos.mapa_configura_nombre',
+          'fos.mapa_profundidad',
+          'fos.mapa_longitud',
+          'fos.mapa_tipo',
+          'fos.mapa_sin_datos',
+          'fos.mapa_igme_sin_info',
+          'fos.mapa_geologia_en_punto',
+          'fos.mapa_antiguedad',
+          'fos.mapa_era_periodo',
+          'fos.mapa_litologia',
+          'fos.mapa_lig_cerca',
+          'fos.mapa_yacimientos_cercanos',
+          'fos.mapa_fosiles_probables',
+          'fos.mapa_sin_fosiles_edad',
+          'fos.mapa_minerales_probables',
+          'fos.mapa_fotos_comunidad',
+          'fos.mapa_interes_principal',
+          'fos.mapa_descripcion',
+          'fos.mapa_a_distancia_km',
+          'fos.mapa_capa_base',
+          'fos.mapa_capa_geologica',
+          'fos.mapa_sin_geologia',
+          'fos.mapa_mas_capas',
+          'fos.mapa_lig',
+          'fos.mapa_relieve_sombreado',
+          'fos.mapa_mapa_de_calor',
+          'fos.mapa_yacimientos_curados',
+          'fos.mapa_tracks_guardados',
+          'fos.mapa_como_leer_mapa',
+          'fos.mapa_sin_conexion_cache',
+          'fos.mapa_toca_marcar',
+          'fos.mapa_toca_geologia',
+          'fos.mapa_asistente_sin_conexion',
+          'fos.mapa_consultando_igme',
+          'fos.mapa_sin_datos_igme_centro',
+          'fos.mapa_marcar_punto',
+          'fos.mapa_explorar_geologia',
+          'fos.mapa_cargando',
+          'fos.mapa_cuevas',
+          'fos.mapa_megalitos',
+          'fos.mapa_asistente_activo',
+          'fos.mapa_asistente',
+          'fos.mapa_cerrar',
+          'fos.mapa_mareas',
+          'fos.mapa_bajamar_hora',
+          'fos.mapa_bajamar',
+          'fos.mapa_pleamar',
+          'fos.mapa_hoy_minusculas',
+          'fos.mapa_manana_minusculas',
+          'fos.mapa_firmado_por_ti',
+          'fos.mapa_firmado_por_otra',
+          'fos.mapa_sin_firma',
+          'fos.mapa_firma_rota',
+          'fos.mapa_verificando_certificacion',
+          'fos.mapa_cadena_invalida',
+          'fos.mapa_certificada_por',
+          'fos.mapa_firmada_una',
+          'fos.mapa_firmada_varias',
+          'fos.mapa_selecciona_capa',
+          'fos.mapa_confirmar_descarga',
+          'fos.mapa_descargar',
+          'fos.mapa_teselas_en_cache',
+          'fos.mapa_descargar_mapas_offline',
+          'fos.mapa_centra_zona',
+          'fos.mapa_zoom_minimo',
+          'fos.mapa_zoom_maximo',
+          'fos.mapa_capa_geologica_igme_opcional',
+          'fos.mapa_ninguna',
+          'fos.mapa_resumen_teselas',
+          'fos.mapa_descargando',
+          'fos.mapa_descargar_ahora',
+          'fos.mapa_progreso_descarga',
+          'fos.mapa_track',
+          'fos.mapa_tracks',
+          'fos.mapa_error_cargando_tracks',
+          'fos.mapa_error_abriendo_track',
+          'fos.mapa_track_sin_puntos',
+          'fos.mapa_asunto_gpx',
+          'fos.mapa_informe_pdf',
+          'fos.mapa_borrar_track_pregunta',
+          'fos.mapa_asunto_informe_salida',
+          'fos.mapa_error_pdf',
+          'fos.mapa_n_puntos',
+          'fos.mapa_gpx_sin_puntos',
+          'fos.mapa_importado',
+          'fos.mapa_error_importando_gpx',
+          'fos.mapa_importar_gpx',
+          'fos.mapa_sin_tracks',
+          'fos.mapa_sin_tracks_ayuda',
+          'fos.mapa_track_del',
+          'fos.mapa_notificacion_grabando',
+          'fos.mapa_notificacion_registrando_ruta',
+          'fos.mapa_track_recuperado',
+          'fos.mapa_track_importado',
+          'fos.mapa_overpass_fallaron',
+          'fos.mapa_monumento_megalito',
+          'fos.mapa_monumento_dolmen',
+          'fos.mapa_monumento_tumulo',
+          'fos.mapa_monumento_fondo_cabana',
+          'fos.mapa_monumento_fortificacion',
+          'fos.mapa_monumento_castillo',
+          'fos.mapa_monumento_poblado',
+          'fos.mapa_monumento_menhir',
+          'fos.mapa_monumento_piedra_antigua',
+          'fos.mapa_monumento_circulo_piedras',
+          'fos.mapa_monumento_tumba',
+          'fos.mapa_monumento_ruinas',
+          'fos.mapa_monumento_monumento',
+          'fos.mapa_monumento_memorial',
+          'fos.mapa_monumento_crucero',
+          'fos.mapa_monumento_yacimiento',
+          'fos.mapa_sin_nombre',
+          'fos.mapa_ayuda_capas_titulo',
+          'fos.mapa_ayuda_capas_texto',
+          'fos.mapa_ayuda_capas_nota',
+          'fos.mapa_ayuda_otras_titulo',
+          'fos.mapa_ayuda_menu_superior',
+          'fos.mapa_ayuda_item_lig',
+          'fos.mapa_ayuda_item_relieve',
+          'fos.mapa_ayuda_item_calor',
+          'fos.mapa_ayuda_item_yacimientos',
+          'fos.mapa_ayuda_boton_capas',
+          'fos.mapa_ayuda_item_cuevas',
+          'fos.mapa_ayuda_item_megalitos',
+          'fos.mapa_ayuda_sugerencias_titulo',
+          'fos.mapa_ayuda_sugerencias_intro',
+          'fos.mapa_ayuda_sugerencias_formacion',
+          'fos.mapa_ayuda_sugerencias_periodo',
+          'fos.mapa_ayuda_sugerencias_minerales',
+          'fos.mapa_orientacion_estrato',
+          'fos.mapa_orientacion_instrucciones',
+          'fos.mapa_strike',
+          'fos.mapa_strike_ayuda',
+          'fos.mapa_dip',
+          'fos.mapa_dip_ayuda',
+          'fos.mapa_direccion_dip',
+          'fos.mapa_direccion_dip_ayuda',
+          'fos.mapa_brujula',
+          'fos.mapa_solo_referencia',
+          'fos.mapa_aviso_casi_horizontal',
+          'fos.mapa_aviso_casi_vertical',
+          'fos.mapa_capturar',
+          'fos.mapa_permiso_bloqueado',
+          'fos.mapa_permiso_bloqueado_texto',
+          'fos.mapa_activa_gps',
+          'fos.mapa_necesito_permiso',
+          'fos.mapa_abrir_ajustes',
+          'fos.mapa_ubicacion_seleccionada',
+          'fos.mapa_meteo_sin_ubicacion',
+          'fos.mapa_meteorologia',
+          'fos.mapa_buscar_lugar',
+          'fos.mapa_usar_mi_ubicacion',
+          'fos.mapa_meteo_vacio',
+          'fos.mapa_proximas_horas',
+          'fos.mapa_ahora',
+          'fos.mapa_proximos_dias',
+          'fos.mapa_hoy',
+          'fos.mapa_datos_open_meteo',
+          'fos.mapa_meteo_despejado',
+          'fos.mapa_meteo_mayormente_despejado',
+          'fos.mapa_meteo_parcialmente_nublado',
+          'fos.mapa_meteo_nublado',
+          'fos.mapa_meteo_niebla',
+          'fos.mapa_meteo_llovizna_ligera',
+          'fos.mapa_meteo_llovizna_moderada',
+          'fos.mapa_meteo_llovizna_densa',
+          'fos.mapa_meteo_lluvia_ligera',
+          'fos.mapa_meteo_lluvia_moderada',
+          'fos.mapa_meteo_lluvia_fuerte',
+          'fos.mapa_meteo_nevada_ligera',
+          'fos.mapa_meteo_nevada_moderada',
+          'fos.mapa_meteo_nevada_fuerte',
+          'fos.mapa_meteo_chubascos_ligeros',
+          'fos.mapa_meteo_chubascos_moderados',
+          'fos.mapa_meteo_chubascos_fuertes',
+          'fos.mapa_meteo_tormenta',
+          'fos.mapa_meteo_tormenta_granizo',
+          'fos.mapa_meteo_desconocido',
+          'fos.mapa_cueva_sin_nombre',
+          'fos.mapa_bocamina_sin_nombre',
+          'nat.ajus_cabecera_titulo',
+          'nat.ajus_cabecera_sub',
+          'nat.ajus_explorar_mapa_sub',
+          'nat.ajus_meteo_sub',
+          'nat.ajus_chat_ia_sub',
+          'nat.ajus_salidas_campo',
+          'nat.ajus_salidas_campo_sub',
+          'nat.ajus_etica_titulo',
+          'nat.ajus_etica_sub',
+          'nat.ajus_etica1_titulo',
+          'nat.ajus_etica1_texto',
+          'nat.ajus_etica2_titulo',
+          'nat.ajus_etica2_texto',
+          'nat.ajus_etica3_titulo',
+          'nat.ajus_etica3_texto',
+          'nat.ajus_etica4_titulo',
+          'nat.ajus_etica4_texto',
+          'nat.ajus_etica5_titulo',
+          'nat.ajus_etica5_texto',
+          'nat.ajus_como_usar',
+          'nat.ajus_paso1_texto',
+          'nat.ajus_paso2_texto',
+          'nat.ajus_paso3_titulo',
+          'nat.ajus_paso3_texto',
+          'nat.ajus_paso4_titulo',
+          'nat.ajus_paso4_texto',
+          'nat.ajus_paso5_titulo',
+          'nat.ajus_paso5_texto',
+          'nat.ajus_salida_sin_titulo',
+          'nat.ajus_salida_en_curso',
+          'nat.ajus_backup_asunto',
+          'nat.ajus_backup_texto',
+          'nat.ajus_restaurados',
+          'nat.ajus_claves_modelo_sub',
+          'nat.ajus_backup_explicacion',
+          'nat.ajus_sobre_app_texto',
+          'nat.ajus_sobre_app_fuentes',
+          'nat.ajus_mensaje_compartir',
+          'nat.ajus_chat_vacio',
+          'nat.ajus_identificacion_claude',
+          'nat.ajus_ia_explicacion',
+          'nat.ajus_plantnet_titulo',
+          'nat.ajus_plantnet_explicacion',
+          'nat.ajus_conseguir_plantnet',
+          'nat.ajus_api_plantnet',
+          'nat.ajus_chat_deepseek',
+          'nat.ajus_plantnet_falta_clave',
+          'nat.ajus_foto_no_existe',
+          'nat.ajus_plantnet_clave_rechazada',
+          'nat.ajus_plantnet_cuota_agotada',
+          'nat.ajus_servicio_devolvio',
+          'nat.cat_mamiferos',
+          'nat.cat_aves',
+          'nat.cat_reptiles',
+          'nat.cat_anfibios',
+          'nat.cat_peces',
+          'nat.cat_insectos',
+          'nat.cat_plantas',
+          'nat.cat_setas',
+          'nat.cat_otros_animales',
+          'nat.uso_medicinal',
+          'nat.uso_comestible',
+          'nat.uso_aromatica',
+          'nat.uso_melifera',
+          'nat.uso_ornamental',
+          'nat.uso_toxica',
+          'nat.uso_urticante',
+          'nat.uso_protegida',
+          'nat.uso_invasora',
+          'nat.uso_endemica',
+          'nat.hall_alternativas_dos_puntos',
+          'nat.hall_altura_aprox_cm',
+          'nat.hall_anade_foto_primero',
+          'nat.hall_anotacion_al_margen',
+          'nat.hall_anotacion_hint',
+          'nat.hall_anotaciones_al_margen',
+          'nat.hall_asunto_exportacion',
+          'nat.hall_asunto_hallazgo',
+          'nat.hall_badge_confirmada',
+          'nat.hall_badge_corregida',
+          'nat.hall_badge_sin_validar',
+          'nat.hall_borrar_anotacion',
+          'nat.hall_buscar_en_inaturalist',
+          'nat.hall_buscar_hint',
+          'nat.hall_calibracion_por_confianza',
+          'nat.hall_candidatos_plantnet',
+          'nat.hall_categoria',
+          'nat.hall_color_sombrero',
+          'nat.hall_como_confirmar_texto',
+          'nat.hall_comportamiento',
+          'nat.hall_confianza_etiqueta',
+          'nat.hall_confianza_probable',
+          'nat.hall_confianza_segura',
+          'nat.hall_confianza_sin_marcar',
+          'nat.hall_confianza_tentativa',
+          'nat.hall_configura_clave_plantnet',
+          'nat.hall_confirmada_check',
+          'nat.hall_confirmadas',
+          'nat.hall_confirmar_borrar_anotacion',
+          'nat.hall_corregida_a',
+          'nat.hall_corregidas',
+          'nat.hall_corregir',
+          'nat.hall_corregir_identificacion',
+          'nat.hall_cuando_dijiste_probable',
+          'nat.hall_cuando_dijiste_segura',
+          'nat.hall_cuando_dijiste_tentativa',
+          'nat.hall_de_acierto_global',
+          'nat.hall_descarga_fallo',
+          'nat.hall_detalles_de',
+          'nat.hall_dia_n',
+          'nat.hall_diametro_sombrero_cm',
+          'nat.hall_dias_antes',
+          'nat.hall_dias_despues',
+          'nat.hall_en_fecha',
+          'nat.hall_entrara_en_salida',
+          'nat.hall_error_conectar_archivos',
+          'nat.hall_error_descargar_foto',
+          'nat.hall_error_guardar_hallazgo',
+          'nat.hall_escribe_dos_letras',
+          'nat.hall_escribe_especie_para_buscar',
+          'nat.hall_especie_real',
+          'nat.hall_especie_real_hint',
+          'nat.hall_estadio',
+          'nat.hall_evidencia_avistamiento',
+          'nat.hall_evidencia_excremento',
+          'nat.hall_evidencia_huella',
+          'nat.hall_evidencia_interaccion',
+          'nat.hall_evidencia_marca_corteza',
+          'nat.hall_evidencia_nido_vacio',
+          'nat.hall_evidencia_pluma',
+          'nat.hall_evidencia_refugio',
+          'nat.hall_evidencia_restos_alimentacion',
+          'nat.hall_evidencia_sonido',
+          'nat.hall_explicacion_evidencia',
+          'nat.hall_explicacion_fenologia',
+          'nat.hall_explicacion_fenologia_vacia',
+          'nat.hall_explicacion_hipotesis',
+          'nat.hall_explicacion_tasa_vacia',
+          'nat.hall_explicacion_validar',
+          'nat.hall_falta_posicion_gps',
+          'nat.hall_foto_de_archivo',
+          'nat.hall_foto_referencia_inaturalist',
+          'nat.hall_guia_anade_entradas',
+          'nat.hall_guia_sin_especies',
+          'nat.hall_habitat',
+          'nat.hall_hallazgo_de_naturaleza',
+          'nat.hall_hipotesis',
+          'nat.hall_hipotesis_hint',
+          'nat.hall_identificacion_actual',
+          'nat.hall_identificacion_fallo',
+          'nat.hall_identificar_plantnet_gratis',
+          'nat.hall_limpiar_busqueda',
+          'nat.hall_mi_fenologia',
+          'nat.hall_mi_fenologia_subtitulo',
+          'nat.hall_n_de_total_hallazgos',
+          'nat.hall_n_exportados',
+          'nat.hall_n_hallazgos',
+          'nat.hall_n_sin_revisar',
+          'nat.hall_nombre_cientifico_binomial',
+          'nat.hall_nombre_comun_o_cientifico',
+          'nat.hall_nombre_con_confianza',
+          'nat.hall_numero_ejemplares',
+          'nat.hall_numero_individuos',
+          'nat.hall_op_adulto',
+          'nat.hall_op_amarillo',
+          'nat.hall_op_arbol',
+          'nat.hall_op_arbusto',
+          'nat.hall_op_avistamiento',
+          'nat.hall_op_bajo_conifera',
+          'nat.hall_op_bajo_planifolio',
+          'nat.hall_op_blanco_crema',
+          'nat.hall_op_excremento',
+          'nat.hall_op_flor',
+          'nat.hall_op_fruto',
+          'nat.hall_op_gris_negruzco',
+          'nat.hall_op_herbacea',
+          'nat.hall_op_huella',
+          'nat.hall_op_huevo',
+          'nat.hall_op_larva',
+          'nat.hall_op_madera_muerta',
+          'nat.hall_op_mata',
+          'nat.hall_op_naranja_rojizo',
+          'nat.hall_op_nido_o_madriguera',
+          'nat.hall_op_ninfa',
+          'nat.hall_op_otro',
+          'nat.hall_op_pardo_marron',
+          'nat.hall_op_pluma_o_pelo',
+          'nat.hall_op_pradera_herbazal',
+          'nat.hall_op_pupa',
+          'nat.hall_op_rojo_escarlata',
+          'nat.hall_op_semilla',
+          'nat.hall_op_senescente',
+          'nat.hall_op_suculenta',
+          'nat.hall_op_suelo_hojarasca',
+          'nat.hall_op_tocon',
+          'nat.hall_op_trepadora',
+          'nat.hall_op_vegetativa',
+          'nat.hall_op_verde_oliva',
+          'nat.hall_op_violaceo',
+          'nat.hall_op_vocalizacion',
+          'nat.hall_organo_corteza',
+          'nat.hall_organo_flor',
+          'nat.hall_organo_fruto',
+          'nat.hall_organo_habito',
+          'nat.hall_organo_hoja',
+          'nat.hall_organo_otro',
+          'nat.hall_pie_tarjeta',
+          'nat.hall_planta_hospedadora',
+          'nat.hall_plantnet_fallo',
+          'nat.hall_plantnet_quedan_hoy',
+          'nat.hall_plantnet_sin_candidatos',
+          'nat.hall_por_categoria',
+          'nat.hall_porte',
+          'nat.hall_pregunta_calibracion',
+          'nat.hall_pulsa_el_que_mejor_se_ajuste',
+          'nat.hall_que_organo_se_ve',
+          'nat.hall_quiz_anade_entradas',
+          'nat.hall_quiz_faltan_especies',
+          'nat.hall_quiz_modo_cientifico_a_comun',
+          'nat.hall_quiz_modo_comun_a_cientifico',
+          'nat.hall_quiz_modo_por_descripcion',
+          'nat.hall_quiz_pocas_especies_categoria',
+          'nat.hall_quiz_pregunta_cientifico',
+          'nat.hall_quiz_pregunta_comun',
+          'nat.hall_quiz_que_especie_es',
+          'nat.hall_salida_sin_titulo',
+          'nat.hall_se_guardara_suelto',
+          'nat.hall_sin_anotaciones',
+          'nat.hall_sin_fenologia',
+          'nat.hall_sin_fotos_licencia_abierta',
+          'nat.hall_sin_revisar',
+          'nat.hall_sin_validaciones',
+          'nat.hall_sustrato',
+          'nat.hall_tasa_acierto',
+          'nat.hall_tasa_acierto_subtitulo',
+          'nat.hall_taxonomia',
+          'nat.hall_texto',
+          'nat.hall_tipo_evidencia',
+          'nat.hall_top_habitats',
+          'nat.hall_tu_hipotesis',
+          'nat.hall_un_hallazgo',
+          'nat.hall_un_sin_revisar',
+          'nat.hall_validar_identificacion',
+          'nat.hall_volver_a_sin_revisar',
+          'nat.mapa_notificacion_registrando_ruta',
+          'nat.mapa_lugar_miradores',
+          'nat.mapa_lugar_miradores_aves',
+          'nat.mapa_lugar_reservas_naturales',
+          'nat.mapa_lugar_cuevas',
+          'nat.mapa_lugar_humedales',
+          'nat.mapa_lugar_arboles_singulares',
+          'nat.mapa_lugar_refugios',
+          'nat.mapa_lugar_manantiales',
+          'nat.mapa_lugar_centros_visitantes',
+          'nat.mapa_falta_permiso_ubicacion',
+          'nat.mapa_sin_lugares_zona',
+          'nat.mapa_gestor',
+          'nat.mapa_sin_gbif_zona',
+          'nat.mapa_gbif_cargadas',
+          'nat.mapa_ocultar',
+          'nat.mapa_track_guardado_puntos',
+          'nat.mapa_observacion_gbif',
+          'nat.mapa_familia',
+          'nat.mapa_localidad',
+          'nat.mapa_observacion',
+          'nat.mapa_categoria',
+          'nat.mapa_habitat',
+          'nat.mapa_taxonomia',
+          'nat.mapa_borrar_observacion_pregunta',
+          'nat.mapa_mapas_offline_menu',
+          'nat.mapa_lugares_interes_activos',
+          'nat.mapa_lugares_interes_menu',
+          'nat.mapa_recargar_lugares',
+          'nat.mapa_gbif_cerca',
+          'nat.mapa_ocultar_gbif',
+          'nat.mapa_centrar_ubicacion',
+          'nat.mapa_detener_grabacion',
+          'nat.mapa_grabar_track',
+          'nat.mapa_tooltip_capas',
+          'nat.mapa_tooltip_datos',
+          'nat.mapa_capas_lugares',
+          'nat.mapa_capas_lugares_ayuda',
+          'nat.mapa_quitar_todas',
+          'nat.mapa_aplicar',
+          'nat.mapa_nueva_salida',
+          'nat.mapa_titulo_opcional',
+          'nat.mapa_titulo_ejemplo',
+          'nat.mapa_zona_opcional',
+          'nat.mapa_zona_ejemplo',
+          'nat.mapa_hipotesis_opcional',
+          'nat.mapa_hipotesis_ejemplo',
+          'nat.mapa_arrancar_track',
+          'nat.mapa_salida_explicacion',
+          'nat.mapa_iniciar',
+          'nat.mapa_sin_permiso_track',
+          'nat.mapa_salidas',
+          'nat.mapa_iniciar_salida',
+          'nat.mapa_sin_salidas',
+          'nat.mapa_sin_salidas_ayuda',
+          'nat.mapa_salida_sin_titulo',
+          'nat.mapa_en_curso',
+          'nat.mapa_una_observacion',
+          'nat.mapa_n_observaciones',
+          'nat.mapa_cabecera_salida',
+          'nat.mapa_titulo',
+          'nat.mapa_zona',
+          'nat.mapa_meteo_resumen',
+          'nat.mapa_altitud_m',
+          'nat.mapa_hipotesis_jornada',
+          'nat.mapa_notas_generales',
+          'nat.mapa_anotacion_margen',
+          'nat.mapa_anotacion_explicacion',
+          'nat.mapa_texto',
+          'nat.mapa_anotacion_ejemplo',
+          'nat.mapa_borrar_anotacion',
+          'nat.mapa_borrar_anotacion_texto',
+          'nat.mapa_cerrar_salida',
+          'nat.mapa_cerrar_salida_texto',
+          'nat.mapa_detener_track_tambien',
+          'nat.mapa_seguir_abierta',
+          'nat.mapa_borrar_salida',
+          'nat.mapa_borrar_salida_texto',
+          'nat.mapa_salida_no_encontrada',
+          'nat.mapa_salida_del_dia',
+          'nat.mapa_editar_cabecera',
+          'nat.mapa_anotar_margen',
+          'nat.mapa_altitud_aprox',
+          'nat.mapa_track_en_curso',
+          'nat.mapa_track_de_salida',
+          'nat.mapa_track_puntos_asociara',
+          'nat.mapa_observaciones_de_salida',
+          'nat.mapa_sin_observaciones_salida',
+          'nat.mapa_sin_especie',
+          'nat.mapa_anotaciones_margen',
+          'nat.mapa_sin_anotaciones',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -6308,6 +8338,11 @@ class SoleraL10n {
           'temperatura_registrada',
           'todos',
           'ver_pdf',
+          'camara',
+          'continuar',
+          'error_restaurando',
+          'galeria',
+          'siguiente',
           'acei.abierta',
           'acei.abierta_minuscula',
           'acei.aceite_y_almazara',
@@ -8420,6 +10455,1016 @@ class SoleraL10n {
           'core.act.descarga_en_navegador',
           'core.act.error_descarga',
           'core.act.error_instalador',
+          'fos.ajus_calculando',
+          'fos.ajus_resumen_cache',
+          'fos.ajus_backup_asunto',
+          'fos.ajus_backup_texto',
+          'fos.ajus_error_backup',
+          'fos.ajus_restaurar_titulo',
+          'fos.ajus_restaurar_aviso',
+          'fos.ajus_restaurados',
+          'fos.ajus_avisos_reactivados',
+          'fos.ajus_prueba_aviso',
+          'fos.ajus_borrar_aportaciones',
+          'fos.ajus_borrar_aportaciones_texto',
+          'fos.ajus_email',
+          'fos.ajus_enviar',
+          'fos.ajus_solicitud_enviada',
+          'fos.ajus_vaciar_cache_pregunta',
+          'fos.ajus_vaciar',
+          'fos.ajus_sec_general',
+          'fos.ajus_idioma',
+          'fos.ajus_claves_modelo',
+          'fos.ajus_claves_modelo_sub',
+          'fos.ajus_sec_perfil',
+          'fos.ajus_perfil_titulo',
+          'fos.ajus_perfil_sub',
+          'fos.ajus_sec_mapas_datos',
+          'fos.ajus_mapas_sin_conexion',
+          'fos.ajus_mapas_explicacion',
+          'fos.ajus_descargar_zona',
+          'fos.ajus_backup_explicacion',
+          'fos.ajus_hacer_copia',
+          'fos.ajus_restaurar_copia',
+          'fos.ajus_asistente_campo',
+          'fos.ajus_asistente_explicacion',
+          'fos.ajus_reactivar_avisos',
+          'fos.ajus_probar_aviso',
+          'fos.ajus_sec_privacidad',
+          'fos.ajus_tus_aportaciones',
+          'fos.ajus_aportaciones_explicacion',
+          'fos.ajus_como_leer_mapa',
+          'fos.ajus_como_leer_mapa_sub',
+          'fos.ajus_ver_tour',
+          'fos.ajus_sobre_app',
+          'fos.ajus_sobre_app_texto',
+          'fos.ajus_apoyar',
+          'fos.ajus_apoyar_texto',
+          'fos.ajus_gracias',
+          'fos.ajus_ver_formas_apoyar',
+          'fos.ajus_datos_fuentes',
+          'fos.ajus_datos_fuentes_texto',
+          'fos.ajus_ia_guardados',
+          'fos.ajus_no_abrir_navegador',
+          'fos.ajus_ia_explicacion',
+          'fos.ajus_conseguir_anthropic',
+          'fos.ajus_conseguir_deepseek',
+          'fos.ajus_api_anthropic',
+          'fos.ajus_api_deepseek',
+          'fos.ajus_modelo_claude',
+          'fos.ajus_modelo_precio',
+          'fos.ajus_modelo_opus_desc',
+          'fos.ajus_modelo_sonnet_desc',
+          'fos.ajus_modelo_haiku_desc',
+          'fos.ajus_cabecera_titulo',
+          'fos.ajus_cabecera_sub',
+          'fos.ajus_explorar_mapa',
+          'fos.ajus_explorar_mapa_sub',
+          'fos.ajus_meteo',
+          'fos.ajus_meteo_sub',
+          'fos.ajus_chat_ia',
+          'fos.ajus_chat_ia_sub',
+          'fos.ajus_etica_titulo',
+          'fos.ajus_etica_sub',
+          'fos.ajus_etica1_titulo',
+          'fos.ajus_etica1_texto',
+          'fos.ajus_etica2_titulo',
+          'fos.ajus_etica2_texto',
+          'fos.ajus_etica3_titulo',
+          'fos.ajus_etica3_texto',
+          'fos.ajus_etica4_titulo',
+          'fos.ajus_etica4_texto',
+          'fos.ajus_etica5_titulo',
+          'fos.ajus_etica5_texto',
+          'fos.ajus_como_usar',
+          'fos.ajus_paso1_titulo',
+          'fos.ajus_paso1_texto',
+          'fos.ajus_paso2_titulo',
+          'fos.ajus_paso2_texto',
+          'fos.ajus_paso3_titulo',
+          'fos.ajus_paso3_texto',
+          'fos.ajus_paso4_titulo',
+          'fos.ajus_paso4_texto',
+          'fos.ajus_paso5_titulo',
+          'fos.ajus_paso5_texto',
+          'fos.ajus_saltar',
+          'fos.ajus_empezar',
+          'fos.ajus_onb1_titulo',
+          'fos.ajus_onb1_texto',
+          'fos.ajus_onb2_titulo',
+          'fos.ajus_onb2_texto',
+          'fos.ajus_onb3_titulo',
+          'fos.ajus_onb3_texto',
+          'fos.ajus_datos_restaurados',
+          'fos.ajus_nav_inicio',
+          'fos.ajus_nav_lista',
+          'fos.ajus_nav_guia',
+          'fos.ajus_chat',
+          'fos.ajus_falta_clave_chat',
+          'fos.ajus_que_ves',
+          'fos.ajus_que_ves_identifica',
+          'fos.ajus_chat_vacio',
+          'fos.ajus_via',
+          'fos.ajus_imagen_adjunta',
+          'fos.ajus_hacer_foto',
+          'fos.ajus_escribe_pregunta',
+          'fos.ajus_falta_api_anthropic',
+          'fos.ajus_desconocido',
+          'fos.ajus_sin_identificacion',
+          'fos.ajus_nombre_autoridad',
+          'fos.ajus_ej_autoridad',
+          'fos.ajus_generar',
+          'fos.ajus_codigo_activacion',
+          'fos.ajus_para_nombre',
+          'fos.ajus_codigo_mandalo',
+          'fos.ajus_copiar',
+          'fos.ajus_codigo_copiado',
+          'fos.ajus_compartir_codigo',
+          'fos.ajus_asunto_experto',
+          'fos.ajus_desactivar_titulo',
+          'fos.ajus_desactivar_texto',
+          'fos.ajus_desactivar',
+          'fos.ajus_modo_experto',
+          'fos.ajus_experto_intro',
+          'fos.ajus_activar_autoridad',
+          'fos.ajus_activar_autoridad_texto',
+          'fos.ajus_pegar_codigo',
+          'fos.ajus_admin_generar',
+          'fos.ajus_admin_texto',
+          'fos.ajus_generar_codigo_autoridad',
+          'fos.ajus_experto_activo',
+          'fos.ajus_huella_institucional',
+          'fos.ajus_huella_texto',
+          'fos.ajus_codigo_nombre_obligatorios',
+          'fos.ajus_codigo_no_valido',
+          'fos.ajus_activar_autoridad_titulo',
+          'fos.ajus_pega_codigo_hint',
+          'fos.ajus_colegiacion',
+          'fos.ajus_ej_colegiacion',
+          'fos.ajus_activar',
+          'fos.ajus_kofi_sub',
+          'fos.ajus_paypal_sub',
+          'fos.ajus_mensaje_compartir',
+          'fos.ajus_ecosistema_texto',
+          'fos.ajus_copiar_direccion',
+          'fos.ajus_direccion_copiada',
+          'fos.ajus_compartir_app',
+          'fos.ajus_compartir_app_texto',
+          'fos.ajus_otras_formas',
+          'fos.ajus_valorar',
+          'fos.ajus_reportar',
+          'fos.ajus_ayudar_traducciones',
+          'fos.ajus_contribuir_codigo',
+          'fos.ajus_fichero_no_valido',
+          'fos.ajus_version_desconocida',
+          'fos.ajus_nav_ajustes',
+          'fos.ficha_distintivos',
+          'fos.ficha_donde_encontrarlo',
+          'fos.ficha_leer_wikipedia',
+          'fos.ficha_reintentar',
+          'fos.ficha_raya',
+          'fos.ficha_brillo',
+          'fos.ficha_color_tipico',
+          'fos.hall_alternativas',
+          'fos.hall_anadir',
+          'fos.hall_anadir_evento',
+          'fos.hall_anadir_evento_trazabilidad',
+          'fos.hall_anadir_trazabilidad',
+          'fos.hall_anotar_foto',
+          'fos.hall_aplicar_formulario',
+          'fos.hall_asunto_certificado',
+          'fos.hall_asunto_exportacion',
+          'fos.hall_asunto_hallazgo',
+          'fos.hall_aun_no_hay_hallazgos',
+          'fos.hall_autor_evento',
+          'fos.hall_borrar_medida',
+          'fos.hall_buscar',
+          'fos.hall_buscar_hint',
+          'fos.hall_certificado_texto',
+          'fos.hall_certificado_verificable',
+          'fos.hall_como_confirmar',
+          'fos.hall_compartir_comunidad',
+          'fos.hall_compartir_texto',
+          'fos.hall_con_foto',
+          'fos.hall_confianza',
+          'fos.hall_confianza_alta',
+          'fos.hall_confianza_baja',
+          'fos.hall_confianza_media',
+          'fos.hall_configura_api_key',
+          'fos.hall_configura_nombre',
+          'fos.hall_confirmar_borrar',
+          'fos.hall_consultando_igme',
+          'fos.hall_contexto_geologico',
+          'fos.hall_coordenadas',
+          'fos.hall_cronologia',
+          'fos.hall_descartar',
+          'fos.hall_descripcion',
+          'fos.hall_descubridor',
+          'fos.hall_desde_galeria',
+          'fos.hall_deshacer',
+          'fos.hall_detectado_mineral',
+          'fos.hall_dias_activo',
+          'fos.hall_dureza_mohs',
+          'fos.hall_dureza_mohs_estimada',
+          'fos.hall_edad',
+          'fos.hall_edad_periodo',
+          'fos.hall_editar_hallazgo',
+          'fos.hall_ejemplo_autor',
+          'fos.hall_ejemplo_descripcion',
+          'fos.hall_error_codificar_imagen',
+          'fos.hall_error_exportando',
+          'fos.hall_error_generar_zip',
+          'fos.hall_error_gps',
+          'fos.hall_error_guardando',
+          'fos.hall_error_identificando',
+          'fos.hall_error_sin_id',
+          'fos.hall_error_tarjeta',
+          'fos.hall_especie',
+          'fos.hall_especie_tentativa',
+          'fos.hall_especies',
+          'fos.hall_esperando_gps',
+          'fos.hall_estadisticas',
+          'fos.hall_estrato',
+          'fos.hall_evento_anadido',
+          'fos.hall_exportar_zip',
+          'fos.hall_fecha',
+          'fos.hall_formacion',
+          'fos.hall_formacion_geologica',
+          'fos.hall_fosil',
+          'fos.hall_fosiles',
+          'fos.hall_fosiles_probables',
+          'fos.hall_guia',
+          'fos.hall_hallazgo_de_fosil',
+          'fos.hall_historial_trazabilidad',
+          'fos.hall_identificando',
+          'fos.hall_identificar_claude',
+          'fos.hall_incoherencia_detalle',
+          'fos.hall_incoherencia_geologica',
+          'fos.hall_limpiar',
+          'fos.hall_linea_tiempo',
+          'fos.hall_medir',
+          'fos.hall_mineral',
+          'fos.hall_minerales',
+          'fos.hall_mixto',
+          'fos.hall_modelo',
+          'fos.hall_moneda_en_foto',
+          'fos.hall_n_de_total_desliza',
+          'fos.hall_n_exportados',
+          'fos.hall_n_fosiles',
+          'fos.hall_ninguno_coincide',
+          'fos.hall_ninguno_recibido_coincide',
+          'fos.hall_no',
+          'fos.hall_nombre_mineral',
+          'fos.hall_notas',
+          'fos.hall_nuevo_hallazgo',
+          'fos.hall_o_desde_galeria',
+          'fos.hall_obteniendo_gps',
+          'fos.hall_orientacion_sin_medir',
+          'fos.hall_periodo',
+          'fos.hall_permiso_ubicacion_denegado',
+          'fos.hall_pie_tarjeta',
+          'fos.hall_primer_hallazgo',
+          'fos.hall_punto_marcado_mapa',
+          'fos.hall_quiz',
+          'fos.hall_quiz_identificacion',
+          'fos.hall_razonamiento',
+          'fos.hall_recibida',
+          'fos.hall_remedir',
+          'fos.hall_sin_clasificar',
+          'fos.hall_sin_fosiles_periodo',
+          'fos.hall_sin_hallazgos_analizar',
+          'fos.hall_sin_nombre',
+          'fos.hall_tab_compartidas',
+          'fos.hall_tab_mias',
+          'fos.hall_tamano_estimado',
+          'fos.hall_tarjeta',
+          'fos.hall_tipo_deposito_museo',
+          'fos.hall_tipo_estudio',
+          'fos.hall_tipo_evento',
+          'fos.hall_tipo_otro',
+          'fos.hall_tipo_prestamo',
+          'fos.hall_tipo_publicacion',
+          'fos.hall_titulo',
+          'fos.hall_toca_mas_primero',
+          'fos.hall_tomar_foto',
+          'fos.hall_top_especies',
+          'fos.hall_top_formaciones',
+          'fos.hall_ubicacion',
+          'fos.hall_ultimo_hallazgo',
+          'fos.hall_ver_en_mapa',
+          'fos.hall_ver_ficha',
+          'fos.iden_huella_copiada',
+          'fos.iden_clave_publica_copiada',
+          'fos.iden_regenerar_titulo',
+          'fos.iden_regenerar_aviso',
+          'fos.iden_regenerar',
+          'fos.iden_identidad_regenerada',
+          'fos.iden_mi_identidad',
+          'fos.iden_datos_declarados',
+          'fos.iden_datos_declarados_ayuda',
+          'fos.iden_nombre',
+          'fos.iden_email',
+          'fos.iden_organizacion',
+          'fos.iden_sin_rellenar',
+          'fos.iden_huella_criptografica',
+          'fos.iden_huella_ayuda',
+          'fos.iden_copiar_huella',
+          'fos.iden_ver_clave_publica',
+          'fos.iden_copiar_clave_publica',
+          'fos.iden_operaciones_avanzadas',
+          'fos.iden_operaciones_avanzadas_ayuda',
+          'fos.iden_regenerar_identidad',
+          'fos.iden_perfil_guardado',
+          'fos.iden_perfil_e_identidad',
+          'fos.iden_perfil_descubridor',
+          'fos.iden_perfil_ayuda',
+          'fos.iden_nombre_obligatorio',
+          'fos.iden_nombre_ejemplo',
+          'fos.iden_email_opcional',
+          'fos.iden_email_ejemplo',
+          'fos.iden_organizacion_opcional',
+          'fos.iden_organizacion_ejemplo',
+          'fos.iden_guardar_perfil',
+          'fos.iden_identidad_y_certificados',
+          'fos.iden_mi_identidad_criptografica',
+          'fos.iden_verificar_un_certificado',
+          'fos.iden_modo_experto_autoridades',
+          'fos.iden_card_certificada_asunto',
+          'fos.iden_card_certificada_texto',
+          'fos.iden_error_firmando',
+          'fos.iden_certificar_hallazgo',
+          'fos.iden_descubridor_valor',
+          'fos.iden_coords',
+          'fos.iden_difuminadas',
+          'fos.iden_fotos',
+          'fos.iden_revisa_campos',
+          'fos.iden_especie_determinacion',
+          'fos.iden_edad_epoca',
+          'fos.iden_formacion_geologica',
+          'fos.iden_comentarios_experto',
+          'fos.iden_comentarios_ejemplo',
+          'fos.iden_firmar_y_devolver',
+          'fos.iden_no_es_certificado',
+          'fos.iden_error_leer_fichero',
+          'fos.iden_verificar_certificado',
+          'fos.iden_verificar_ayuda',
+          'fos.iden_seleccionar_certificado',
+          'fos.iden_certificado_verificado',
+          'fos.iden_certificado_no_valido',
+          'fos.iden_hash_no_coincide',
+          'fos.iden_especie',
+          'fos.iden_edad',
+          'fos.iden_formacion',
+          'fos.iden_fecha_descubrimiento',
+          'fos.iden_descubridor',
+          'fos.iden_email_descubridor',
+          'fos.iden_fecha_certificacion',
+          'fos.iden_error_importando',
+          'fos.iden_importar_card_recibida',
+          'fos.iden_no_se_pudo_abrir',
+          'fos.iden_card_importada',
+          'fos.iden_aparece_en_compartidas',
+          'fos.iden_importar_a_mi_coleccion',
+          'fos.iden_hecho',
+          'fos.iden_modo_experto_aviso',
+          'fos.iden_certificar',
+          'fos.iden_acusar_recibo',
+          'fos.iden_descartar',
+          'fos.iden_acuse_de_recibo',
+          'fos.iden_descarte',
+          'fos.iden_devolucion_firmada',
+          'fos.iden_firma_valida',
+          'fos.iden_firma_invalida',
+          'fos.iden_remitente',
+          'fos.iden_nombre_declarado',
+          'fos.iden_huella',
+          'fos.iden_hallazgo',
+          'fos.iden_tipo',
+          'fos.iden_fecha',
+          'fos.iden_coordenadas',
+          'fos.iden_estrato',
+          'fos.iden_notas',
+          'fos.iden_tipo_fosil',
+          'fos.iden_tipo_mineral',
+          'fos.iden_error_sin_manifest',
+          'fos.iden_error_formato_desconocido',
+          'fos.iden_error_falta_hallazgo',
+          'fos.iden_error_version_desconocida',
+          'fos.iden_error_sin_autoridad',
+          'fos.iden_error_sin_clave_autoridad',
+          'fos.iden_com_falta_consentimiento',
+          'fos.iden_com_limite_diario',
+          'fos.iden_com_servidor_rechazo',
+          'fos.iden_com_tiempo_agotado',
+          'fos.iden_com_sin_conexion',
+          'fos.iden_com_no_pudo_procesar',
+          'fos.iden_com_inactiva',
+          'fos.iden_com_sin_fotos',
+          'fos.iden_com_enviada',
+          'fos.iden_com_error_inesperado',
+          'fos.iden_com_compartir_titulo',
+          'fos.iden_com_intro',
+          'fos.iden_com_se_envia',
+          'fos.iden_com_foto_principal',
+          'fos.iden_com_tipo_valor',
+          'fos.iden_com_especie_declarada',
+          'fos.iden_com_edad_declarada',
+          'fos.iden_com_formacion_declarada',
+          'fos.iden_com_tus_notas',
+          'fos.iden_com_no_se_envia',
+          'fos.iden_com_nombre_autor',
+          'fos.iden_com_identidad_cripto',
+          'fos.iden_com_email_no_valido',
+          'fos.iden_com_email_contacto',
+          'fos.iden_com_email_ayuda',
+          'fos.iden_com_tu_nombre_opcional',
+          'fos.iden_com_nombre_ayuda',
+          'fos.iden_com_consentimiento',
+          'fos.iden_com_enviar_revision',
+          'fos.iden_com_formacion_codigo',
+          'fos.iden_com_fotos_comunidad',
+          'fos.iden_com_sin_fotos_formacion',
+          'fos.iden_com_sin_especie',
+          'fos.mapa_capa_callejero',
+          'fos.mapa_capa_satelite',
+          'fos.mapa_capa_topografico',
+          'fos.mapa_capa_edades_1m',
+          'fos.mapa_capa_litologias_1m',
+          'fos.mapa_capa_geode_desc',
+          'fos.mapa_capa_magna_desc',
+          'fos.mapa_capa_edades_desc',
+          'fos.mapa_capa_litologias_desc',
+          'fos.mapa_lig_sin_nombre',
+          'fos.mapa_rosa_vientos',
+          'fos.mapa_estas_en',
+          'fos.mapa_ver_ficha',
+          'fos.mapa_esperando_gps',
+          'fos.mapa_distancia_y_rumbo',
+          'fos.mapa_desde_tu_posicion',
+          'fos.mapa_detener_track',
+          'fos.mapa_iniciar_track',
+          'fos.mapa_nombre_opcional',
+          'fos.mapa_descartar',
+          'fos.mapa_track_guardado',
+          'fos.mapa_grabando_track_aviso',
+          'fos.mapa_acercate_monumentos',
+          'fos.mapa_sin_monumentos',
+          'fos.mapa_monumentos_cargados',
+          'fos.mapa_error_monumentos',
+          'fos.mapa_acercate_cuevas',
+          'fos.mapa_sin_cuevas',
+          'fos.mapa_cuevas_cargadas',
+          'fos.mapa_error_cuevas',
+          'fos.mapa_que_buscar',
+          'fos.mapa_como_llegar',
+          'fos.mapa_marcar_hallazgo_aqui',
+          'fos.mapa_fuente',
+          'fos.mapa_cronologia',
+          'fos.mapa_ver_en_osm',
+          'fos.mapa_especie',
+          'fos.mapa_edad',
+          'fos.mapa_formacion',
+          'fos.mapa_fecha',
+          'fos.mapa_coordenadas',
+          'fos.mapa_estrato',
+          'fos.mapa_notas',
+          'fos.mapa_borrar_hallazgo_pregunta',
+          'fos.mapa_compartir_texto',
+          'fos.mapa_tarjeta',
+          'fos.mapa_certificado_verificable',
+          'fos.mapa_enviar_otra_app',
+          'fos.mapa_historial_trazabilidad',
+          'fos.mapa_evento_anadido',
+          'fos.mapa_anadir_trazabilidad',
+          'fos.mapa_anadir_evento',
+          'fos.mapa_compartir_titulo',
+          'fos.mapa_asunto_hallazgo',
+          'fos.mapa_error_tarjeta',
+          'fos.mapa_precision_coordenadas',
+          'fos.mapa_precision_explicacion',
+          'fos.mapa_difuminadas_recomendado',
+          'fos.mapa_precisas',
+          'fos.mapa_asunto_card',
+          'fos.mapa_sin_especie',
+          'fos.mapa_texto_card',
+          'fos.mapa_coords_difuminadas',
+          'fos.mapa_coords_precisas',
+          'fos.mapa_error_card',
+          'fos.mapa_configura_nombre',
+          'fos.mapa_profundidad',
+          'fos.mapa_longitud',
+          'fos.mapa_tipo',
+          'fos.mapa_sin_datos',
+          'fos.mapa_igme_sin_info',
+          'fos.mapa_geologia_en_punto',
+          'fos.mapa_antiguedad',
+          'fos.mapa_era_periodo',
+          'fos.mapa_litologia',
+          'fos.mapa_lig_cerca',
+          'fos.mapa_yacimientos_cercanos',
+          'fos.mapa_fosiles_probables',
+          'fos.mapa_sin_fosiles_edad',
+          'fos.mapa_minerales_probables',
+          'fos.mapa_fotos_comunidad',
+          'fos.mapa_interes_principal',
+          'fos.mapa_descripcion',
+          'fos.mapa_a_distancia_km',
+          'fos.mapa_capa_base',
+          'fos.mapa_capa_geologica',
+          'fos.mapa_sin_geologia',
+          'fos.mapa_mas_capas',
+          'fos.mapa_lig',
+          'fos.mapa_relieve_sombreado',
+          'fos.mapa_mapa_de_calor',
+          'fos.mapa_yacimientos_curados',
+          'fos.mapa_tracks_guardados',
+          'fos.mapa_como_leer_mapa',
+          'fos.mapa_sin_conexion_cache',
+          'fos.mapa_toca_marcar',
+          'fos.mapa_toca_geologia',
+          'fos.mapa_asistente_sin_conexion',
+          'fos.mapa_consultando_igme',
+          'fos.mapa_sin_datos_igme_centro',
+          'fos.mapa_marcar_punto',
+          'fos.mapa_explorar_geologia',
+          'fos.mapa_cargando',
+          'fos.mapa_cuevas',
+          'fos.mapa_megalitos',
+          'fos.mapa_asistente_activo',
+          'fos.mapa_asistente',
+          'fos.mapa_cerrar',
+          'fos.mapa_mareas',
+          'fos.mapa_bajamar_hora',
+          'fos.mapa_bajamar',
+          'fos.mapa_pleamar',
+          'fos.mapa_hoy_minusculas',
+          'fos.mapa_manana_minusculas',
+          'fos.mapa_firmado_por_ti',
+          'fos.mapa_firmado_por_otra',
+          'fos.mapa_sin_firma',
+          'fos.mapa_firma_rota',
+          'fos.mapa_verificando_certificacion',
+          'fos.mapa_cadena_invalida',
+          'fos.mapa_certificada_por',
+          'fos.mapa_firmada_una',
+          'fos.mapa_firmada_varias',
+          'fos.mapa_selecciona_capa',
+          'fos.mapa_confirmar_descarga',
+          'fos.mapa_descargar',
+          'fos.mapa_teselas_en_cache',
+          'fos.mapa_descargar_mapas_offline',
+          'fos.mapa_centra_zona',
+          'fos.mapa_zoom_minimo',
+          'fos.mapa_zoom_maximo',
+          'fos.mapa_capa_geologica_igme_opcional',
+          'fos.mapa_ninguna',
+          'fos.mapa_resumen_teselas',
+          'fos.mapa_descargando',
+          'fos.mapa_descargar_ahora',
+          'fos.mapa_progreso_descarga',
+          'fos.mapa_track',
+          'fos.mapa_tracks',
+          'fos.mapa_error_cargando_tracks',
+          'fos.mapa_error_abriendo_track',
+          'fos.mapa_track_sin_puntos',
+          'fos.mapa_asunto_gpx',
+          'fos.mapa_informe_pdf',
+          'fos.mapa_borrar_track_pregunta',
+          'fos.mapa_asunto_informe_salida',
+          'fos.mapa_error_pdf',
+          'fos.mapa_n_puntos',
+          'fos.mapa_gpx_sin_puntos',
+          'fos.mapa_importado',
+          'fos.mapa_error_importando_gpx',
+          'fos.mapa_importar_gpx',
+          'fos.mapa_sin_tracks',
+          'fos.mapa_sin_tracks_ayuda',
+          'fos.mapa_track_del',
+          'fos.mapa_notificacion_grabando',
+          'fos.mapa_notificacion_registrando_ruta',
+          'fos.mapa_track_recuperado',
+          'fos.mapa_track_importado',
+          'fos.mapa_overpass_fallaron',
+          'fos.mapa_monumento_megalito',
+          'fos.mapa_monumento_dolmen',
+          'fos.mapa_monumento_tumulo',
+          'fos.mapa_monumento_fondo_cabana',
+          'fos.mapa_monumento_fortificacion',
+          'fos.mapa_monumento_castillo',
+          'fos.mapa_monumento_poblado',
+          'fos.mapa_monumento_menhir',
+          'fos.mapa_monumento_piedra_antigua',
+          'fos.mapa_monumento_circulo_piedras',
+          'fos.mapa_monumento_tumba',
+          'fos.mapa_monumento_ruinas',
+          'fos.mapa_monumento_monumento',
+          'fos.mapa_monumento_memorial',
+          'fos.mapa_monumento_crucero',
+          'fos.mapa_monumento_yacimiento',
+          'fos.mapa_sin_nombre',
+          'fos.mapa_ayuda_capas_titulo',
+          'fos.mapa_ayuda_capas_texto',
+          'fos.mapa_ayuda_capas_nota',
+          'fos.mapa_ayuda_otras_titulo',
+          'fos.mapa_ayuda_menu_superior',
+          'fos.mapa_ayuda_item_lig',
+          'fos.mapa_ayuda_item_relieve',
+          'fos.mapa_ayuda_item_calor',
+          'fos.mapa_ayuda_item_yacimientos',
+          'fos.mapa_ayuda_boton_capas',
+          'fos.mapa_ayuda_item_cuevas',
+          'fos.mapa_ayuda_item_megalitos',
+          'fos.mapa_ayuda_sugerencias_titulo',
+          'fos.mapa_ayuda_sugerencias_intro',
+          'fos.mapa_ayuda_sugerencias_formacion',
+          'fos.mapa_ayuda_sugerencias_periodo',
+          'fos.mapa_ayuda_sugerencias_minerales',
+          'fos.mapa_orientacion_estrato',
+          'fos.mapa_orientacion_instrucciones',
+          'fos.mapa_strike',
+          'fos.mapa_strike_ayuda',
+          'fos.mapa_dip',
+          'fos.mapa_dip_ayuda',
+          'fos.mapa_direccion_dip',
+          'fos.mapa_direccion_dip_ayuda',
+          'fos.mapa_brujula',
+          'fos.mapa_solo_referencia',
+          'fos.mapa_aviso_casi_horizontal',
+          'fos.mapa_aviso_casi_vertical',
+          'fos.mapa_capturar',
+          'fos.mapa_permiso_bloqueado',
+          'fos.mapa_permiso_bloqueado_texto',
+          'fos.mapa_activa_gps',
+          'fos.mapa_necesito_permiso',
+          'fos.mapa_abrir_ajustes',
+          'fos.mapa_ubicacion_seleccionada',
+          'fos.mapa_meteo_sin_ubicacion',
+          'fos.mapa_meteorologia',
+          'fos.mapa_buscar_lugar',
+          'fos.mapa_usar_mi_ubicacion',
+          'fos.mapa_meteo_vacio',
+          'fos.mapa_proximas_horas',
+          'fos.mapa_ahora',
+          'fos.mapa_proximos_dias',
+          'fos.mapa_hoy',
+          'fos.mapa_datos_open_meteo',
+          'fos.mapa_meteo_despejado',
+          'fos.mapa_meteo_mayormente_despejado',
+          'fos.mapa_meteo_parcialmente_nublado',
+          'fos.mapa_meteo_nublado',
+          'fos.mapa_meteo_niebla',
+          'fos.mapa_meteo_llovizna_ligera',
+          'fos.mapa_meteo_llovizna_moderada',
+          'fos.mapa_meteo_llovizna_densa',
+          'fos.mapa_meteo_lluvia_ligera',
+          'fos.mapa_meteo_lluvia_moderada',
+          'fos.mapa_meteo_lluvia_fuerte',
+          'fos.mapa_meteo_nevada_ligera',
+          'fos.mapa_meteo_nevada_moderada',
+          'fos.mapa_meteo_nevada_fuerte',
+          'fos.mapa_meteo_chubascos_ligeros',
+          'fos.mapa_meteo_chubascos_moderados',
+          'fos.mapa_meteo_chubascos_fuertes',
+          'fos.mapa_meteo_tormenta',
+          'fos.mapa_meteo_tormenta_granizo',
+          'fos.mapa_meteo_desconocido',
+          'fos.mapa_cueva_sin_nombre',
+          'fos.mapa_bocamina_sin_nombre',
+          'nat.ajus_cabecera_titulo',
+          'nat.ajus_cabecera_sub',
+          'nat.ajus_explorar_mapa_sub',
+          'nat.ajus_meteo_sub',
+          'nat.ajus_chat_ia_sub',
+          'nat.ajus_salidas_campo',
+          'nat.ajus_salidas_campo_sub',
+          'nat.ajus_etica_titulo',
+          'nat.ajus_etica_sub',
+          'nat.ajus_etica1_titulo',
+          'nat.ajus_etica1_texto',
+          'nat.ajus_etica2_titulo',
+          'nat.ajus_etica2_texto',
+          'nat.ajus_etica3_titulo',
+          'nat.ajus_etica3_texto',
+          'nat.ajus_etica4_titulo',
+          'nat.ajus_etica4_texto',
+          'nat.ajus_etica5_titulo',
+          'nat.ajus_etica5_texto',
+          'nat.ajus_como_usar',
+          'nat.ajus_paso1_texto',
+          'nat.ajus_paso2_texto',
+          'nat.ajus_paso3_titulo',
+          'nat.ajus_paso3_texto',
+          'nat.ajus_paso4_titulo',
+          'nat.ajus_paso4_texto',
+          'nat.ajus_paso5_titulo',
+          'nat.ajus_paso5_texto',
+          'nat.ajus_salida_sin_titulo',
+          'nat.ajus_salida_en_curso',
+          'nat.ajus_backup_asunto',
+          'nat.ajus_backup_texto',
+          'nat.ajus_restaurados',
+          'nat.ajus_claves_modelo_sub',
+          'nat.ajus_backup_explicacion',
+          'nat.ajus_sobre_app_texto',
+          'nat.ajus_sobre_app_fuentes',
+          'nat.ajus_mensaje_compartir',
+          'nat.ajus_chat_vacio',
+          'nat.ajus_identificacion_claude',
+          'nat.ajus_ia_explicacion',
+          'nat.ajus_plantnet_titulo',
+          'nat.ajus_plantnet_explicacion',
+          'nat.ajus_conseguir_plantnet',
+          'nat.ajus_api_plantnet',
+          'nat.ajus_chat_deepseek',
+          'nat.ajus_plantnet_falta_clave',
+          'nat.ajus_foto_no_existe',
+          'nat.ajus_plantnet_clave_rechazada',
+          'nat.ajus_plantnet_cuota_agotada',
+          'nat.ajus_servicio_devolvio',
+          'nat.cat_mamiferos',
+          'nat.cat_aves',
+          'nat.cat_reptiles',
+          'nat.cat_anfibios',
+          'nat.cat_peces',
+          'nat.cat_insectos',
+          'nat.cat_plantas',
+          'nat.cat_setas',
+          'nat.cat_otros_animales',
+          'nat.uso_medicinal',
+          'nat.uso_comestible',
+          'nat.uso_aromatica',
+          'nat.uso_melifera',
+          'nat.uso_ornamental',
+          'nat.uso_toxica',
+          'nat.uso_urticante',
+          'nat.uso_protegida',
+          'nat.uso_invasora',
+          'nat.uso_endemica',
+          'nat.hall_alternativas_dos_puntos',
+          'nat.hall_altura_aprox_cm',
+          'nat.hall_anade_foto_primero',
+          'nat.hall_anotacion_al_margen',
+          'nat.hall_anotacion_hint',
+          'nat.hall_anotaciones_al_margen',
+          'nat.hall_asunto_exportacion',
+          'nat.hall_asunto_hallazgo',
+          'nat.hall_badge_confirmada',
+          'nat.hall_badge_corregida',
+          'nat.hall_badge_sin_validar',
+          'nat.hall_borrar_anotacion',
+          'nat.hall_buscar_en_inaturalist',
+          'nat.hall_buscar_hint',
+          'nat.hall_calibracion_por_confianza',
+          'nat.hall_candidatos_plantnet',
+          'nat.hall_categoria',
+          'nat.hall_color_sombrero',
+          'nat.hall_como_confirmar_texto',
+          'nat.hall_comportamiento',
+          'nat.hall_confianza_etiqueta',
+          'nat.hall_confianza_probable',
+          'nat.hall_confianza_segura',
+          'nat.hall_confianza_sin_marcar',
+          'nat.hall_confianza_tentativa',
+          'nat.hall_configura_clave_plantnet',
+          'nat.hall_confirmada_check',
+          'nat.hall_confirmadas',
+          'nat.hall_confirmar_borrar_anotacion',
+          'nat.hall_corregida_a',
+          'nat.hall_corregidas',
+          'nat.hall_corregir',
+          'nat.hall_corregir_identificacion',
+          'nat.hall_cuando_dijiste_probable',
+          'nat.hall_cuando_dijiste_segura',
+          'nat.hall_cuando_dijiste_tentativa',
+          'nat.hall_de_acierto_global',
+          'nat.hall_descarga_fallo',
+          'nat.hall_detalles_de',
+          'nat.hall_dia_n',
+          'nat.hall_diametro_sombrero_cm',
+          'nat.hall_dias_antes',
+          'nat.hall_dias_despues',
+          'nat.hall_en_fecha',
+          'nat.hall_entrara_en_salida',
+          'nat.hall_error_conectar_archivos',
+          'nat.hall_error_descargar_foto',
+          'nat.hall_error_guardar_hallazgo',
+          'nat.hall_escribe_dos_letras',
+          'nat.hall_escribe_especie_para_buscar',
+          'nat.hall_especie_real',
+          'nat.hall_especie_real_hint',
+          'nat.hall_estadio',
+          'nat.hall_evidencia_avistamiento',
+          'nat.hall_evidencia_excremento',
+          'nat.hall_evidencia_huella',
+          'nat.hall_evidencia_interaccion',
+          'nat.hall_evidencia_marca_corteza',
+          'nat.hall_evidencia_nido_vacio',
+          'nat.hall_evidencia_pluma',
+          'nat.hall_evidencia_refugio',
+          'nat.hall_evidencia_restos_alimentacion',
+          'nat.hall_evidencia_sonido',
+          'nat.hall_explicacion_evidencia',
+          'nat.hall_explicacion_fenologia',
+          'nat.hall_explicacion_fenologia_vacia',
+          'nat.hall_explicacion_hipotesis',
+          'nat.hall_explicacion_tasa_vacia',
+          'nat.hall_explicacion_validar',
+          'nat.hall_falta_posicion_gps',
+          'nat.hall_foto_de_archivo',
+          'nat.hall_foto_referencia_inaturalist',
+          'nat.hall_guia_anade_entradas',
+          'nat.hall_guia_sin_especies',
+          'nat.hall_habitat',
+          'nat.hall_hallazgo_de_naturaleza',
+          'nat.hall_hipotesis',
+          'nat.hall_hipotesis_hint',
+          'nat.hall_identificacion_actual',
+          'nat.hall_identificacion_fallo',
+          'nat.hall_identificar_plantnet_gratis',
+          'nat.hall_limpiar_busqueda',
+          'nat.hall_mi_fenologia',
+          'nat.hall_mi_fenologia_subtitulo',
+          'nat.hall_n_de_total_hallazgos',
+          'nat.hall_n_exportados',
+          'nat.hall_n_hallazgos',
+          'nat.hall_n_sin_revisar',
+          'nat.hall_nombre_cientifico_binomial',
+          'nat.hall_nombre_comun_o_cientifico',
+          'nat.hall_nombre_con_confianza',
+          'nat.hall_numero_ejemplares',
+          'nat.hall_numero_individuos',
+          'nat.hall_op_adulto',
+          'nat.hall_op_amarillo',
+          'nat.hall_op_arbol',
+          'nat.hall_op_arbusto',
+          'nat.hall_op_avistamiento',
+          'nat.hall_op_bajo_conifera',
+          'nat.hall_op_bajo_planifolio',
+          'nat.hall_op_blanco_crema',
+          'nat.hall_op_excremento',
+          'nat.hall_op_flor',
+          'nat.hall_op_fruto',
+          'nat.hall_op_gris_negruzco',
+          'nat.hall_op_herbacea',
+          'nat.hall_op_huella',
+          'nat.hall_op_huevo',
+          'nat.hall_op_larva',
+          'nat.hall_op_madera_muerta',
+          'nat.hall_op_mata',
+          'nat.hall_op_naranja_rojizo',
+          'nat.hall_op_nido_o_madriguera',
+          'nat.hall_op_ninfa',
+          'nat.hall_op_otro',
+          'nat.hall_op_pardo_marron',
+          'nat.hall_op_pluma_o_pelo',
+          'nat.hall_op_pradera_herbazal',
+          'nat.hall_op_pupa',
+          'nat.hall_op_rojo_escarlata',
+          'nat.hall_op_semilla',
+          'nat.hall_op_senescente',
+          'nat.hall_op_suculenta',
+          'nat.hall_op_suelo_hojarasca',
+          'nat.hall_op_tocon',
+          'nat.hall_op_trepadora',
+          'nat.hall_op_vegetativa',
+          'nat.hall_op_verde_oliva',
+          'nat.hall_op_violaceo',
+          'nat.hall_op_vocalizacion',
+          'nat.hall_organo_corteza',
+          'nat.hall_organo_flor',
+          'nat.hall_organo_fruto',
+          'nat.hall_organo_habito',
+          'nat.hall_organo_hoja',
+          'nat.hall_organo_otro',
+          'nat.hall_pie_tarjeta',
+          'nat.hall_planta_hospedadora',
+          'nat.hall_plantnet_fallo',
+          'nat.hall_plantnet_quedan_hoy',
+          'nat.hall_plantnet_sin_candidatos',
+          'nat.hall_por_categoria',
+          'nat.hall_porte',
+          'nat.hall_pregunta_calibracion',
+          'nat.hall_pulsa_el_que_mejor_se_ajuste',
+          'nat.hall_que_organo_se_ve',
+          'nat.hall_quiz_anade_entradas',
+          'nat.hall_quiz_faltan_especies',
+          'nat.hall_quiz_modo_cientifico_a_comun',
+          'nat.hall_quiz_modo_comun_a_cientifico',
+          'nat.hall_quiz_modo_por_descripcion',
+          'nat.hall_quiz_pocas_especies_categoria',
+          'nat.hall_quiz_pregunta_cientifico',
+          'nat.hall_quiz_pregunta_comun',
+          'nat.hall_quiz_que_especie_es',
+          'nat.hall_salida_sin_titulo',
+          'nat.hall_se_guardara_suelto',
+          'nat.hall_sin_anotaciones',
+          'nat.hall_sin_fenologia',
+          'nat.hall_sin_fotos_licencia_abierta',
+          'nat.hall_sin_revisar',
+          'nat.hall_sin_validaciones',
+          'nat.hall_sustrato',
+          'nat.hall_tasa_acierto',
+          'nat.hall_tasa_acierto_subtitulo',
+          'nat.hall_taxonomia',
+          'nat.hall_texto',
+          'nat.hall_tipo_evidencia',
+          'nat.hall_top_habitats',
+          'nat.hall_tu_hipotesis',
+          'nat.hall_un_hallazgo',
+          'nat.hall_un_sin_revisar',
+          'nat.hall_validar_identificacion',
+          'nat.hall_volver_a_sin_revisar',
+          'nat.mapa_notificacion_registrando_ruta',
+          'nat.mapa_lugar_miradores',
+          'nat.mapa_lugar_miradores_aves',
+          'nat.mapa_lugar_reservas_naturales',
+          'nat.mapa_lugar_cuevas',
+          'nat.mapa_lugar_humedales',
+          'nat.mapa_lugar_arboles_singulares',
+          'nat.mapa_lugar_refugios',
+          'nat.mapa_lugar_manantiales',
+          'nat.mapa_lugar_centros_visitantes',
+          'nat.mapa_falta_permiso_ubicacion',
+          'nat.mapa_sin_lugares_zona',
+          'nat.mapa_gestor',
+          'nat.mapa_sin_gbif_zona',
+          'nat.mapa_gbif_cargadas',
+          'nat.mapa_ocultar',
+          'nat.mapa_track_guardado_puntos',
+          'nat.mapa_observacion_gbif',
+          'nat.mapa_familia',
+          'nat.mapa_localidad',
+          'nat.mapa_observacion',
+          'nat.mapa_categoria',
+          'nat.mapa_habitat',
+          'nat.mapa_taxonomia',
+          'nat.mapa_borrar_observacion_pregunta',
+          'nat.mapa_mapas_offline_menu',
+          'nat.mapa_lugares_interes_activos',
+          'nat.mapa_lugares_interes_menu',
+          'nat.mapa_recargar_lugares',
+          'nat.mapa_gbif_cerca',
+          'nat.mapa_ocultar_gbif',
+          'nat.mapa_centrar_ubicacion',
+          'nat.mapa_detener_grabacion',
+          'nat.mapa_grabar_track',
+          'nat.mapa_tooltip_capas',
+          'nat.mapa_tooltip_datos',
+          'nat.mapa_capas_lugares',
+          'nat.mapa_capas_lugares_ayuda',
+          'nat.mapa_quitar_todas',
+          'nat.mapa_aplicar',
+          'nat.mapa_nueva_salida',
+          'nat.mapa_titulo_opcional',
+          'nat.mapa_titulo_ejemplo',
+          'nat.mapa_zona_opcional',
+          'nat.mapa_zona_ejemplo',
+          'nat.mapa_hipotesis_opcional',
+          'nat.mapa_hipotesis_ejemplo',
+          'nat.mapa_arrancar_track',
+          'nat.mapa_salida_explicacion',
+          'nat.mapa_iniciar',
+          'nat.mapa_sin_permiso_track',
+          'nat.mapa_salidas',
+          'nat.mapa_iniciar_salida',
+          'nat.mapa_sin_salidas',
+          'nat.mapa_sin_salidas_ayuda',
+          'nat.mapa_salida_sin_titulo',
+          'nat.mapa_en_curso',
+          'nat.mapa_una_observacion',
+          'nat.mapa_n_observaciones',
+          'nat.mapa_cabecera_salida',
+          'nat.mapa_titulo',
+          'nat.mapa_zona',
+          'nat.mapa_meteo_resumen',
+          'nat.mapa_altitud_m',
+          'nat.mapa_hipotesis_jornada',
+          'nat.mapa_notas_generales',
+          'nat.mapa_anotacion_margen',
+          'nat.mapa_anotacion_explicacion',
+          'nat.mapa_texto',
+          'nat.mapa_anotacion_ejemplo',
+          'nat.mapa_borrar_anotacion',
+          'nat.mapa_borrar_anotacion_texto',
+          'nat.mapa_cerrar_salida',
+          'nat.mapa_cerrar_salida_texto',
+          'nat.mapa_detener_track_tambien',
+          'nat.mapa_seguir_abierta',
+          'nat.mapa_borrar_salida',
+          'nat.mapa_borrar_salida_texto',
+          'nat.mapa_salida_no_encontrada',
+          'nat.mapa_salida_del_dia',
+          'nat.mapa_editar_cabecera',
+          'nat.mapa_anotar_margen',
+          'nat.mapa_altitud_aprox',
+          'nat.mapa_track_en_curso',
+          'nat.mapa_track_de_salida',
+          'nat.mapa_track_puntos_asociara',
+          'nat.mapa_observaciones_de_salida',
+          'nat.mapa_sin_observaciones_salida',
+          'nat.mapa_sin_especie',
+          'nat.mapa_anotaciones_margen',
+          'nat.mapa_sin_anotaciones',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -9413,6 +12458,11 @@ class SoleraL10n {
           'temperatura_registrada',
           'todos',
           'ver_pdf',
+          'camara',
+          'continuar',
+          'error_restaurando',
+          'galeria',
+          'siguiente',
           'acei.abierta',
           'acei.abierta_minuscula',
           'acei.aceite_y_almazara',
@@ -11525,6 +14575,1016 @@ class SoleraL10n {
           'core.act.descarga_en_navegador',
           'core.act.error_descarga',
           'core.act.error_instalador',
+          'fos.ajus_calculando',
+          'fos.ajus_resumen_cache',
+          'fos.ajus_backup_asunto',
+          'fos.ajus_backup_texto',
+          'fos.ajus_error_backup',
+          'fos.ajus_restaurar_titulo',
+          'fos.ajus_restaurar_aviso',
+          'fos.ajus_restaurados',
+          'fos.ajus_avisos_reactivados',
+          'fos.ajus_prueba_aviso',
+          'fos.ajus_borrar_aportaciones',
+          'fos.ajus_borrar_aportaciones_texto',
+          'fos.ajus_email',
+          'fos.ajus_enviar',
+          'fos.ajus_solicitud_enviada',
+          'fos.ajus_vaciar_cache_pregunta',
+          'fos.ajus_vaciar',
+          'fos.ajus_sec_general',
+          'fos.ajus_idioma',
+          'fos.ajus_claves_modelo',
+          'fos.ajus_claves_modelo_sub',
+          'fos.ajus_sec_perfil',
+          'fos.ajus_perfil_titulo',
+          'fos.ajus_perfil_sub',
+          'fos.ajus_sec_mapas_datos',
+          'fos.ajus_mapas_sin_conexion',
+          'fos.ajus_mapas_explicacion',
+          'fos.ajus_descargar_zona',
+          'fos.ajus_backup_explicacion',
+          'fos.ajus_hacer_copia',
+          'fos.ajus_restaurar_copia',
+          'fos.ajus_asistente_campo',
+          'fos.ajus_asistente_explicacion',
+          'fos.ajus_reactivar_avisos',
+          'fos.ajus_probar_aviso',
+          'fos.ajus_sec_privacidad',
+          'fos.ajus_tus_aportaciones',
+          'fos.ajus_aportaciones_explicacion',
+          'fos.ajus_como_leer_mapa',
+          'fos.ajus_como_leer_mapa_sub',
+          'fos.ajus_ver_tour',
+          'fos.ajus_sobre_app',
+          'fos.ajus_sobre_app_texto',
+          'fos.ajus_apoyar',
+          'fos.ajus_apoyar_texto',
+          'fos.ajus_gracias',
+          'fos.ajus_ver_formas_apoyar',
+          'fos.ajus_datos_fuentes',
+          'fos.ajus_datos_fuentes_texto',
+          'fos.ajus_ia_guardados',
+          'fos.ajus_no_abrir_navegador',
+          'fos.ajus_ia_explicacion',
+          'fos.ajus_conseguir_anthropic',
+          'fos.ajus_conseguir_deepseek',
+          'fos.ajus_api_anthropic',
+          'fos.ajus_api_deepseek',
+          'fos.ajus_modelo_claude',
+          'fos.ajus_modelo_precio',
+          'fos.ajus_modelo_opus_desc',
+          'fos.ajus_modelo_sonnet_desc',
+          'fos.ajus_modelo_haiku_desc',
+          'fos.ajus_cabecera_titulo',
+          'fos.ajus_cabecera_sub',
+          'fos.ajus_explorar_mapa',
+          'fos.ajus_explorar_mapa_sub',
+          'fos.ajus_meteo',
+          'fos.ajus_meteo_sub',
+          'fos.ajus_chat_ia',
+          'fos.ajus_chat_ia_sub',
+          'fos.ajus_etica_titulo',
+          'fos.ajus_etica_sub',
+          'fos.ajus_etica1_titulo',
+          'fos.ajus_etica1_texto',
+          'fos.ajus_etica2_titulo',
+          'fos.ajus_etica2_texto',
+          'fos.ajus_etica3_titulo',
+          'fos.ajus_etica3_texto',
+          'fos.ajus_etica4_titulo',
+          'fos.ajus_etica4_texto',
+          'fos.ajus_etica5_titulo',
+          'fos.ajus_etica5_texto',
+          'fos.ajus_como_usar',
+          'fos.ajus_paso1_titulo',
+          'fos.ajus_paso1_texto',
+          'fos.ajus_paso2_titulo',
+          'fos.ajus_paso2_texto',
+          'fos.ajus_paso3_titulo',
+          'fos.ajus_paso3_texto',
+          'fos.ajus_paso4_titulo',
+          'fos.ajus_paso4_texto',
+          'fos.ajus_paso5_titulo',
+          'fos.ajus_paso5_texto',
+          'fos.ajus_saltar',
+          'fos.ajus_empezar',
+          'fos.ajus_onb1_titulo',
+          'fos.ajus_onb1_texto',
+          'fos.ajus_onb2_titulo',
+          'fos.ajus_onb2_texto',
+          'fos.ajus_onb3_titulo',
+          'fos.ajus_onb3_texto',
+          'fos.ajus_datos_restaurados',
+          'fos.ajus_nav_inicio',
+          'fos.ajus_nav_lista',
+          'fos.ajus_nav_guia',
+          'fos.ajus_chat',
+          'fos.ajus_falta_clave_chat',
+          'fos.ajus_que_ves',
+          'fos.ajus_que_ves_identifica',
+          'fos.ajus_chat_vacio',
+          'fos.ajus_via',
+          'fos.ajus_imagen_adjunta',
+          'fos.ajus_hacer_foto',
+          'fos.ajus_escribe_pregunta',
+          'fos.ajus_falta_api_anthropic',
+          'fos.ajus_desconocido',
+          'fos.ajus_sin_identificacion',
+          'fos.ajus_nombre_autoridad',
+          'fos.ajus_ej_autoridad',
+          'fos.ajus_generar',
+          'fos.ajus_codigo_activacion',
+          'fos.ajus_para_nombre',
+          'fos.ajus_codigo_mandalo',
+          'fos.ajus_copiar',
+          'fos.ajus_codigo_copiado',
+          'fos.ajus_compartir_codigo',
+          'fos.ajus_asunto_experto',
+          'fos.ajus_desactivar_titulo',
+          'fos.ajus_desactivar_texto',
+          'fos.ajus_desactivar',
+          'fos.ajus_modo_experto',
+          'fos.ajus_experto_intro',
+          'fos.ajus_activar_autoridad',
+          'fos.ajus_activar_autoridad_texto',
+          'fos.ajus_pegar_codigo',
+          'fos.ajus_admin_generar',
+          'fos.ajus_admin_texto',
+          'fos.ajus_generar_codigo_autoridad',
+          'fos.ajus_experto_activo',
+          'fos.ajus_huella_institucional',
+          'fos.ajus_huella_texto',
+          'fos.ajus_codigo_nombre_obligatorios',
+          'fos.ajus_codigo_no_valido',
+          'fos.ajus_activar_autoridad_titulo',
+          'fos.ajus_pega_codigo_hint',
+          'fos.ajus_colegiacion',
+          'fos.ajus_ej_colegiacion',
+          'fos.ajus_activar',
+          'fos.ajus_kofi_sub',
+          'fos.ajus_paypal_sub',
+          'fos.ajus_mensaje_compartir',
+          'fos.ajus_ecosistema_texto',
+          'fos.ajus_copiar_direccion',
+          'fos.ajus_direccion_copiada',
+          'fos.ajus_compartir_app',
+          'fos.ajus_compartir_app_texto',
+          'fos.ajus_otras_formas',
+          'fos.ajus_valorar',
+          'fos.ajus_reportar',
+          'fos.ajus_ayudar_traducciones',
+          'fos.ajus_contribuir_codigo',
+          'fos.ajus_fichero_no_valido',
+          'fos.ajus_version_desconocida',
+          'fos.ajus_nav_ajustes',
+          'fos.ficha_distintivos',
+          'fos.ficha_donde_encontrarlo',
+          'fos.ficha_leer_wikipedia',
+          'fos.ficha_reintentar',
+          'fos.ficha_raya',
+          'fos.ficha_brillo',
+          'fos.ficha_color_tipico',
+          'fos.hall_alternativas',
+          'fos.hall_anadir',
+          'fos.hall_anadir_evento',
+          'fos.hall_anadir_evento_trazabilidad',
+          'fos.hall_anadir_trazabilidad',
+          'fos.hall_anotar_foto',
+          'fos.hall_aplicar_formulario',
+          'fos.hall_asunto_certificado',
+          'fos.hall_asunto_exportacion',
+          'fos.hall_asunto_hallazgo',
+          'fos.hall_aun_no_hay_hallazgos',
+          'fos.hall_autor_evento',
+          'fos.hall_borrar_medida',
+          'fos.hall_buscar',
+          'fos.hall_buscar_hint',
+          'fos.hall_certificado_texto',
+          'fos.hall_certificado_verificable',
+          'fos.hall_como_confirmar',
+          'fos.hall_compartir_comunidad',
+          'fos.hall_compartir_texto',
+          'fos.hall_con_foto',
+          'fos.hall_confianza',
+          'fos.hall_confianza_alta',
+          'fos.hall_confianza_baja',
+          'fos.hall_confianza_media',
+          'fos.hall_configura_api_key',
+          'fos.hall_configura_nombre',
+          'fos.hall_confirmar_borrar',
+          'fos.hall_consultando_igme',
+          'fos.hall_contexto_geologico',
+          'fos.hall_coordenadas',
+          'fos.hall_cronologia',
+          'fos.hall_descartar',
+          'fos.hall_descripcion',
+          'fos.hall_descubridor',
+          'fos.hall_desde_galeria',
+          'fos.hall_deshacer',
+          'fos.hall_detectado_mineral',
+          'fos.hall_dias_activo',
+          'fos.hall_dureza_mohs',
+          'fos.hall_dureza_mohs_estimada',
+          'fos.hall_edad',
+          'fos.hall_edad_periodo',
+          'fos.hall_editar_hallazgo',
+          'fos.hall_ejemplo_autor',
+          'fos.hall_ejemplo_descripcion',
+          'fos.hall_error_codificar_imagen',
+          'fos.hall_error_exportando',
+          'fos.hall_error_generar_zip',
+          'fos.hall_error_gps',
+          'fos.hall_error_guardando',
+          'fos.hall_error_identificando',
+          'fos.hall_error_sin_id',
+          'fos.hall_error_tarjeta',
+          'fos.hall_especie',
+          'fos.hall_especie_tentativa',
+          'fos.hall_especies',
+          'fos.hall_esperando_gps',
+          'fos.hall_estadisticas',
+          'fos.hall_estrato',
+          'fos.hall_evento_anadido',
+          'fos.hall_exportar_zip',
+          'fos.hall_fecha',
+          'fos.hall_formacion',
+          'fos.hall_formacion_geologica',
+          'fos.hall_fosil',
+          'fos.hall_fosiles',
+          'fos.hall_fosiles_probables',
+          'fos.hall_guia',
+          'fos.hall_hallazgo_de_fosil',
+          'fos.hall_historial_trazabilidad',
+          'fos.hall_identificando',
+          'fos.hall_identificar_claude',
+          'fos.hall_incoherencia_detalle',
+          'fos.hall_incoherencia_geologica',
+          'fos.hall_limpiar',
+          'fos.hall_linea_tiempo',
+          'fos.hall_medir',
+          'fos.hall_mineral',
+          'fos.hall_minerales',
+          'fos.hall_mixto',
+          'fos.hall_modelo',
+          'fos.hall_moneda_en_foto',
+          'fos.hall_n_de_total_desliza',
+          'fos.hall_n_exportados',
+          'fos.hall_n_fosiles',
+          'fos.hall_ninguno_coincide',
+          'fos.hall_ninguno_recibido_coincide',
+          'fos.hall_no',
+          'fos.hall_nombre_mineral',
+          'fos.hall_notas',
+          'fos.hall_nuevo_hallazgo',
+          'fos.hall_o_desde_galeria',
+          'fos.hall_obteniendo_gps',
+          'fos.hall_orientacion_sin_medir',
+          'fos.hall_periodo',
+          'fos.hall_permiso_ubicacion_denegado',
+          'fos.hall_pie_tarjeta',
+          'fos.hall_primer_hallazgo',
+          'fos.hall_punto_marcado_mapa',
+          'fos.hall_quiz',
+          'fos.hall_quiz_identificacion',
+          'fos.hall_razonamiento',
+          'fos.hall_recibida',
+          'fos.hall_remedir',
+          'fos.hall_sin_clasificar',
+          'fos.hall_sin_fosiles_periodo',
+          'fos.hall_sin_hallazgos_analizar',
+          'fos.hall_sin_nombre',
+          'fos.hall_tab_compartidas',
+          'fos.hall_tab_mias',
+          'fos.hall_tamano_estimado',
+          'fos.hall_tarjeta',
+          'fos.hall_tipo_deposito_museo',
+          'fos.hall_tipo_estudio',
+          'fos.hall_tipo_evento',
+          'fos.hall_tipo_otro',
+          'fos.hall_tipo_prestamo',
+          'fos.hall_tipo_publicacion',
+          'fos.hall_titulo',
+          'fos.hall_toca_mas_primero',
+          'fos.hall_tomar_foto',
+          'fos.hall_top_especies',
+          'fos.hall_top_formaciones',
+          'fos.hall_ubicacion',
+          'fos.hall_ultimo_hallazgo',
+          'fos.hall_ver_en_mapa',
+          'fos.hall_ver_ficha',
+          'fos.iden_huella_copiada',
+          'fos.iden_clave_publica_copiada',
+          'fos.iden_regenerar_titulo',
+          'fos.iden_regenerar_aviso',
+          'fos.iden_regenerar',
+          'fos.iden_identidad_regenerada',
+          'fos.iden_mi_identidad',
+          'fos.iden_datos_declarados',
+          'fos.iden_datos_declarados_ayuda',
+          'fos.iden_nombre',
+          'fos.iden_email',
+          'fos.iden_organizacion',
+          'fos.iden_sin_rellenar',
+          'fos.iden_huella_criptografica',
+          'fos.iden_huella_ayuda',
+          'fos.iden_copiar_huella',
+          'fos.iden_ver_clave_publica',
+          'fos.iden_copiar_clave_publica',
+          'fos.iden_operaciones_avanzadas',
+          'fos.iden_operaciones_avanzadas_ayuda',
+          'fos.iden_regenerar_identidad',
+          'fos.iden_perfil_guardado',
+          'fos.iden_perfil_e_identidad',
+          'fos.iden_perfil_descubridor',
+          'fos.iden_perfil_ayuda',
+          'fos.iden_nombre_obligatorio',
+          'fos.iden_nombre_ejemplo',
+          'fos.iden_email_opcional',
+          'fos.iden_email_ejemplo',
+          'fos.iden_organizacion_opcional',
+          'fos.iden_organizacion_ejemplo',
+          'fos.iden_guardar_perfil',
+          'fos.iden_identidad_y_certificados',
+          'fos.iden_mi_identidad_criptografica',
+          'fos.iden_verificar_un_certificado',
+          'fos.iden_modo_experto_autoridades',
+          'fos.iden_card_certificada_asunto',
+          'fos.iden_card_certificada_texto',
+          'fos.iden_error_firmando',
+          'fos.iden_certificar_hallazgo',
+          'fos.iden_descubridor_valor',
+          'fos.iden_coords',
+          'fos.iden_difuminadas',
+          'fos.iden_fotos',
+          'fos.iden_revisa_campos',
+          'fos.iden_especie_determinacion',
+          'fos.iden_edad_epoca',
+          'fos.iden_formacion_geologica',
+          'fos.iden_comentarios_experto',
+          'fos.iden_comentarios_ejemplo',
+          'fos.iden_firmar_y_devolver',
+          'fos.iden_no_es_certificado',
+          'fos.iden_error_leer_fichero',
+          'fos.iden_verificar_certificado',
+          'fos.iden_verificar_ayuda',
+          'fos.iden_seleccionar_certificado',
+          'fos.iden_certificado_verificado',
+          'fos.iden_certificado_no_valido',
+          'fos.iden_hash_no_coincide',
+          'fos.iden_especie',
+          'fos.iden_edad',
+          'fos.iden_formacion',
+          'fos.iden_fecha_descubrimiento',
+          'fos.iden_descubridor',
+          'fos.iden_email_descubridor',
+          'fos.iden_fecha_certificacion',
+          'fos.iden_error_importando',
+          'fos.iden_importar_card_recibida',
+          'fos.iden_no_se_pudo_abrir',
+          'fos.iden_card_importada',
+          'fos.iden_aparece_en_compartidas',
+          'fos.iden_importar_a_mi_coleccion',
+          'fos.iden_hecho',
+          'fos.iden_modo_experto_aviso',
+          'fos.iden_certificar',
+          'fos.iden_acusar_recibo',
+          'fos.iden_descartar',
+          'fos.iden_acuse_de_recibo',
+          'fos.iden_descarte',
+          'fos.iden_devolucion_firmada',
+          'fos.iden_firma_valida',
+          'fos.iden_firma_invalida',
+          'fos.iden_remitente',
+          'fos.iden_nombre_declarado',
+          'fos.iden_huella',
+          'fos.iden_hallazgo',
+          'fos.iden_tipo',
+          'fos.iden_fecha',
+          'fos.iden_coordenadas',
+          'fos.iden_estrato',
+          'fos.iden_notas',
+          'fos.iden_tipo_fosil',
+          'fos.iden_tipo_mineral',
+          'fos.iden_error_sin_manifest',
+          'fos.iden_error_formato_desconocido',
+          'fos.iden_error_falta_hallazgo',
+          'fos.iden_error_version_desconocida',
+          'fos.iden_error_sin_autoridad',
+          'fos.iden_error_sin_clave_autoridad',
+          'fos.iden_com_falta_consentimiento',
+          'fos.iden_com_limite_diario',
+          'fos.iden_com_servidor_rechazo',
+          'fos.iden_com_tiempo_agotado',
+          'fos.iden_com_sin_conexion',
+          'fos.iden_com_no_pudo_procesar',
+          'fos.iden_com_inactiva',
+          'fos.iden_com_sin_fotos',
+          'fos.iden_com_enviada',
+          'fos.iden_com_error_inesperado',
+          'fos.iden_com_compartir_titulo',
+          'fos.iden_com_intro',
+          'fos.iden_com_se_envia',
+          'fos.iden_com_foto_principal',
+          'fos.iden_com_tipo_valor',
+          'fos.iden_com_especie_declarada',
+          'fos.iden_com_edad_declarada',
+          'fos.iden_com_formacion_declarada',
+          'fos.iden_com_tus_notas',
+          'fos.iden_com_no_se_envia',
+          'fos.iden_com_nombre_autor',
+          'fos.iden_com_identidad_cripto',
+          'fos.iden_com_email_no_valido',
+          'fos.iden_com_email_contacto',
+          'fos.iden_com_email_ayuda',
+          'fos.iden_com_tu_nombre_opcional',
+          'fos.iden_com_nombre_ayuda',
+          'fos.iden_com_consentimiento',
+          'fos.iden_com_enviar_revision',
+          'fos.iden_com_formacion_codigo',
+          'fos.iden_com_fotos_comunidad',
+          'fos.iden_com_sin_fotos_formacion',
+          'fos.iden_com_sin_especie',
+          'fos.mapa_capa_callejero',
+          'fos.mapa_capa_satelite',
+          'fos.mapa_capa_topografico',
+          'fos.mapa_capa_edades_1m',
+          'fos.mapa_capa_litologias_1m',
+          'fos.mapa_capa_geode_desc',
+          'fos.mapa_capa_magna_desc',
+          'fos.mapa_capa_edades_desc',
+          'fos.mapa_capa_litologias_desc',
+          'fos.mapa_lig_sin_nombre',
+          'fos.mapa_rosa_vientos',
+          'fos.mapa_estas_en',
+          'fos.mapa_ver_ficha',
+          'fos.mapa_esperando_gps',
+          'fos.mapa_distancia_y_rumbo',
+          'fos.mapa_desde_tu_posicion',
+          'fos.mapa_detener_track',
+          'fos.mapa_iniciar_track',
+          'fos.mapa_nombre_opcional',
+          'fos.mapa_descartar',
+          'fos.mapa_track_guardado',
+          'fos.mapa_grabando_track_aviso',
+          'fos.mapa_acercate_monumentos',
+          'fos.mapa_sin_monumentos',
+          'fos.mapa_monumentos_cargados',
+          'fos.mapa_error_monumentos',
+          'fos.mapa_acercate_cuevas',
+          'fos.mapa_sin_cuevas',
+          'fos.mapa_cuevas_cargadas',
+          'fos.mapa_error_cuevas',
+          'fos.mapa_que_buscar',
+          'fos.mapa_como_llegar',
+          'fos.mapa_marcar_hallazgo_aqui',
+          'fos.mapa_fuente',
+          'fos.mapa_cronologia',
+          'fos.mapa_ver_en_osm',
+          'fos.mapa_especie',
+          'fos.mapa_edad',
+          'fos.mapa_formacion',
+          'fos.mapa_fecha',
+          'fos.mapa_coordenadas',
+          'fos.mapa_estrato',
+          'fos.mapa_notas',
+          'fos.mapa_borrar_hallazgo_pregunta',
+          'fos.mapa_compartir_texto',
+          'fos.mapa_tarjeta',
+          'fos.mapa_certificado_verificable',
+          'fos.mapa_enviar_otra_app',
+          'fos.mapa_historial_trazabilidad',
+          'fos.mapa_evento_anadido',
+          'fos.mapa_anadir_trazabilidad',
+          'fos.mapa_anadir_evento',
+          'fos.mapa_compartir_titulo',
+          'fos.mapa_asunto_hallazgo',
+          'fos.mapa_error_tarjeta',
+          'fos.mapa_precision_coordenadas',
+          'fos.mapa_precision_explicacion',
+          'fos.mapa_difuminadas_recomendado',
+          'fos.mapa_precisas',
+          'fos.mapa_asunto_card',
+          'fos.mapa_sin_especie',
+          'fos.mapa_texto_card',
+          'fos.mapa_coords_difuminadas',
+          'fos.mapa_coords_precisas',
+          'fos.mapa_error_card',
+          'fos.mapa_configura_nombre',
+          'fos.mapa_profundidad',
+          'fos.mapa_longitud',
+          'fos.mapa_tipo',
+          'fos.mapa_sin_datos',
+          'fos.mapa_igme_sin_info',
+          'fos.mapa_geologia_en_punto',
+          'fos.mapa_antiguedad',
+          'fos.mapa_era_periodo',
+          'fos.mapa_litologia',
+          'fos.mapa_lig_cerca',
+          'fos.mapa_yacimientos_cercanos',
+          'fos.mapa_fosiles_probables',
+          'fos.mapa_sin_fosiles_edad',
+          'fos.mapa_minerales_probables',
+          'fos.mapa_fotos_comunidad',
+          'fos.mapa_interes_principal',
+          'fos.mapa_descripcion',
+          'fos.mapa_a_distancia_km',
+          'fos.mapa_capa_base',
+          'fos.mapa_capa_geologica',
+          'fos.mapa_sin_geologia',
+          'fos.mapa_mas_capas',
+          'fos.mapa_lig',
+          'fos.mapa_relieve_sombreado',
+          'fos.mapa_mapa_de_calor',
+          'fos.mapa_yacimientos_curados',
+          'fos.mapa_tracks_guardados',
+          'fos.mapa_como_leer_mapa',
+          'fos.mapa_sin_conexion_cache',
+          'fos.mapa_toca_marcar',
+          'fos.mapa_toca_geologia',
+          'fos.mapa_asistente_sin_conexion',
+          'fos.mapa_consultando_igme',
+          'fos.mapa_sin_datos_igme_centro',
+          'fos.mapa_marcar_punto',
+          'fos.mapa_explorar_geologia',
+          'fos.mapa_cargando',
+          'fos.mapa_cuevas',
+          'fos.mapa_megalitos',
+          'fos.mapa_asistente_activo',
+          'fos.mapa_asistente',
+          'fos.mapa_cerrar',
+          'fos.mapa_mareas',
+          'fos.mapa_bajamar_hora',
+          'fos.mapa_bajamar',
+          'fos.mapa_pleamar',
+          'fos.mapa_hoy_minusculas',
+          'fos.mapa_manana_minusculas',
+          'fos.mapa_firmado_por_ti',
+          'fos.mapa_firmado_por_otra',
+          'fos.mapa_sin_firma',
+          'fos.mapa_firma_rota',
+          'fos.mapa_verificando_certificacion',
+          'fos.mapa_cadena_invalida',
+          'fos.mapa_certificada_por',
+          'fos.mapa_firmada_una',
+          'fos.mapa_firmada_varias',
+          'fos.mapa_selecciona_capa',
+          'fos.mapa_confirmar_descarga',
+          'fos.mapa_descargar',
+          'fos.mapa_teselas_en_cache',
+          'fos.mapa_descargar_mapas_offline',
+          'fos.mapa_centra_zona',
+          'fos.mapa_zoom_minimo',
+          'fos.mapa_zoom_maximo',
+          'fos.mapa_capa_geologica_igme_opcional',
+          'fos.mapa_ninguna',
+          'fos.mapa_resumen_teselas',
+          'fos.mapa_descargando',
+          'fos.mapa_descargar_ahora',
+          'fos.mapa_progreso_descarga',
+          'fos.mapa_track',
+          'fos.mapa_tracks',
+          'fos.mapa_error_cargando_tracks',
+          'fos.mapa_error_abriendo_track',
+          'fos.mapa_track_sin_puntos',
+          'fos.mapa_asunto_gpx',
+          'fos.mapa_informe_pdf',
+          'fos.mapa_borrar_track_pregunta',
+          'fos.mapa_asunto_informe_salida',
+          'fos.mapa_error_pdf',
+          'fos.mapa_n_puntos',
+          'fos.mapa_gpx_sin_puntos',
+          'fos.mapa_importado',
+          'fos.mapa_error_importando_gpx',
+          'fos.mapa_importar_gpx',
+          'fos.mapa_sin_tracks',
+          'fos.mapa_sin_tracks_ayuda',
+          'fos.mapa_track_del',
+          'fos.mapa_notificacion_grabando',
+          'fos.mapa_notificacion_registrando_ruta',
+          'fos.mapa_track_recuperado',
+          'fos.mapa_track_importado',
+          'fos.mapa_overpass_fallaron',
+          'fos.mapa_monumento_megalito',
+          'fos.mapa_monumento_dolmen',
+          'fos.mapa_monumento_tumulo',
+          'fos.mapa_monumento_fondo_cabana',
+          'fos.mapa_monumento_fortificacion',
+          'fos.mapa_monumento_castillo',
+          'fos.mapa_monumento_poblado',
+          'fos.mapa_monumento_menhir',
+          'fos.mapa_monumento_piedra_antigua',
+          'fos.mapa_monumento_circulo_piedras',
+          'fos.mapa_monumento_tumba',
+          'fos.mapa_monumento_ruinas',
+          'fos.mapa_monumento_monumento',
+          'fos.mapa_monumento_memorial',
+          'fos.mapa_monumento_crucero',
+          'fos.mapa_monumento_yacimiento',
+          'fos.mapa_sin_nombre',
+          'fos.mapa_ayuda_capas_titulo',
+          'fos.mapa_ayuda_capas_texto',
+          'fos.mapa_ayuda_capas_nota',
+          'fos.mapa_ayuda_otras_titulo',
+          'fos.mapa_ayuda_menu_superior',
+          'fos.mapa_ayuda_item_lig',
+          'fos.mapa_ayuda_item_relieve',
+          'fos.mapa_ayuda_item_calor',
+          'fos.mapa_ayuda_item_yacimientos',
+          'fos.mapa_ayuda_boton_capas',
+          'fos.mapa_ayuda_item_cuevas',
+          'fos.mapa_ayuda_item_megalitos',
+          'fos.mapa_ayuda_sugerencias_titulo',
+          'fos.mapa_ayuda_sugerencias_intro',
+          'fos.mapa_ayuda_sugerencias_formacion',
+          'fos.mapa_ayuda_sugerencias_periodo',
+          'fos.mapa_ayuda_sugerencias_minerales',
+          'fos.mapa_orientacion_estrato',
+          'fos.mapa_orientacion_instrucciones',
+          'fos.mapa_strike',
+          'fos.mapa_strike_ayuda',
+          'fos.mapa_dip',
+          'fos.mapa_dip_ayuda',
+          'fos.mapa_direccion_dip',
+          'fos.mapa_direccion_dip_ayuda',
+          'fos.mapa_brujula',
+          'fos.mapa_solo_referencia',
+          'fos.mapa_aviso_casi_horizontal',
+          'fos.mapa_aviso_casi_vertical',
+          'fos.mapa_capturar',
+          'fos.mapa_permiso_bloqueado',
+          'fos.mapa_permiso_bloqueado_texto',
+          'fos.mapa_activa_gps',
+          'fos.mapa_necesito_permiso',
+          'fos.mapa_abrir_ajustes',
+          'fos.mapa_ubicacion_seleccionada',
+          'fos.mapa_meteo_sin_ubicacion',
+          'fos.mapa_meteorologia',
+          'fos.mapa_buscar_lugar',
+          'fos.mapa_usar_mi_ubicacion',
+          'fos.mapa_meteo_vacio',
+          'fos.mapa_proximas_horas',
+          'fos.mapa_ahora',
+          'fos.mapa_proximos_dias',
+          'fos.mapa_hoy',
+          'fos.mapa_datos_open_meteo',
+          'fos.mapa_meteo_despejado',
+          'fos.mapa_meteo_mayormente_despejado',
+          'fos.mapa_meteo_parcialmente_nublado',
+          'fos.mapa_meteo_nublado',
+          'fos.mapa_meteo_niebla',
+          'fos.mapa_meteo_llovizna_ligera',
+          'fos.mapa_meteo_llovizna_moderada',
+          'fos.mapa_meteo_llovizna_densa',
+          'fos.mapa_meteo_lluvia_ligera',
+          'fos.mapa_meteo_lluvia_moderada',
+          'fos.mapa_meteo_lluvia_fuerte',
+          'fos.mapa_meteo_nevada_ligera',
+          'fos.mapa_meteo_nevada_moderada',
+          'fos.mapa_meteo_nevada_fuerte',
+          'fos.mapa_meteo_chubascos_ligeros',
+          'fos.mapa_meteo_chubascos_moderados',
+          'fos.mapa_meteo_chubascos_fuertes',
+          'fos.mapa_meteo_tormenta',
+          'fos.mapa_meteo_tormenta_granizo',
+          'fos.mapa_meteo_desconocido',
+          'fos.mapa_cueva_sin_nombre',
+          'fos.mapa_bocamina_sin_nombre',
+          'nat.ajus_cabecera_titulo',
+          'nat.ajus_cabecera_sub',
+          'nat.ajus_explorar_mapa_sub',
+          'nat.ajus_meteo_sub',
+          'nat.ajus_chat_ia_sub',
+          'nat.ajus_salidas_campo',
+          'nat.ajus_salidas_campo_sub',
+          'nat.ajus_etica_titulo',
+          'nat.ajus_etica_sub',
+          'nat.ajus_etica1_titulo',
+          'nat.ajus_etica1_texto',
+          'nat.ajus_etica2_titulo',
+          'nat.ajus_etica2_texto',
+          'nat.ajus_etica3_titulo',
+          'nat.ajus_etica3_texto',
+          'nat.ajus_etica4_titulo',
+          'nat.ajus_etica4_texto',
+          'nat.ajus_etica5_titulo',
+          'nat.ajus_etica5_texto',
+          'nat.ajus_como_usar',
+          'nat.ajus_paso1_texto',
+          'nat.ajus_paso2_texto',
+          'nat.ajus_paso3_titulo',
+          'nat.ajus_paso3_texto',
+          'nat.ajus_paso4_titulo',
+          'nat.ajus_paso4_texto',
+          'nat.ajus_paso5_titulo',
+          'nat.ajus_paso5_texto',
+          'nat.ajus_salida_sin_titulo',
+          'nat.ajus_salida_en_curso',
+          'nat.ajus_backup_asunto',
+          'nat.ajus_backup_texto',
+          'nat.ajus_restaurados',
+          'nat.ajus_claves_modelo_sub',
+          'nat.ajus_backup_explicacion',
+          'nat.ajus_sobre_app_texto',
+          'nat.ajus_sobre_app_fuentes',
+          'nat.ajus_mensaje_compartir',
+          'nat.ajus_chat_vacio',
+          'nat.ajus_identificacion_claude',
+          'nat.ajus_ia_explicacion',
+          'nat.ajus_plantnet_titulo',
+          'nat.ajus_plantnet_explicacion',
+          'nat.ajus_conseguir_plantnet',
+          'nat.ajus_api_plantnet',
+          'nat.ajus_chat_deepseek',
+          'nat.ajus_plantnet_falta_clave',
+          'nat.ajus_foto_no_existe',
+          'nat.ajus_plantnet_clave_rechazada',
+          'nat.ajus_plantnet_cuota_agotada',
+          'nat.ajus_servicio_devolvio',
+          'nat.cat_mamiferos',
+          'nat.cat_aves',
+          'nat.cat_reptiles',
+          'nat.cat_anfibios',
+          'nat.cat_peces',
+          'nat.cat_insectos',
+          'nat.cat_plantas',
+          'nat.cat_setas',
+          'nat.cat_otros_animales',
+          'nat.uso_medicinal',
+          'nat.uso_comestible',
+          'nat.uso_aromatica',
+          'nat.uso_melifera',
+          'nat.uso_ornamental',
+          'nat.uso_toxica',
+          'nat.uso_urticante',
+          'nat.uso_protegida',
+          'nat.uso_invasora',
+          'nat.uso_endemica',
+          'nat.hall_alternativas_dos_puntos',
+          'nat.hall_altura_aprox_cm',
+          'nat.hall_anade_foto_primero',
+          'nat.hall_anotacion_al_margen',
+          'nat.hall_anotacion_hint',
+          'nat.hall_anotaciones_al_margen',
+          'nat.hall_asunto_exportacion',
+          'nat.hall_asunto_hallazgo',
+          'nat.hall_badge_confirmada',
+          'nat.hall_badge_corregida',
+          'nat.hall_badge_sin_validar',
+          'nat.hall_borrar_anotacion',
+          'nat.hall_buscar_en_inaturalist',
+          'nat.hall_buscar_hint',
+          'nat.hall_calibracion_por_confianza',
+          'nat.hall_candidatos_plantnet',
+          'nat.hall_categoria',
+          'nat.hall_color_sombrero',
+          'nat.hall_como_confirmar_texto',
+          'nat.hall_comportamiento',
+          'nat.hall_confianza_etiqueta',
+          'nat.hall_confianza_probable',
+          'nat.hall_confianza_segura',
+          'nat.hall_confianza_sin_marcar',
+          'nat.hall_confianza_tentativa',
+          'nat.hall_configura_clave_plantnet',
+          'nat.hall_confirmada_check',
+          'nat.hall_confirmadas',
+          'nat.hall_confirmar_borrar_anotacion',
+          'nat.hall_corregida_a',
+          'nat.hall_corregidas',
+          'nat.hall_corregir',
+          'nat.hall_corregir_identificacion',
+          'nat.hall_cuando_dijiste_probable',
+          'nat.hall_cuando_dijiste_segura',
+          'nat.hall_cuando_dijiste_tentativa',
+          'nat.hall_de_acierto_global',
+          'nat.hall_descarga_fallo',
+          'nat.hall_detalles_de',
+          'nat.hall_dia_n',
+          'nat.hall_diametro_sombrero_cm',
+          'nat.hall_dias_antes',
+          'nat.hall_dias_despues',
+          'nat.hall_en_fecha',
+          'nat.hall_entrara_en_salida',
+          'nat.hall_error_conectar_archivos',
+          'nat.hall_error_descargar_foto',
+          'nat.hall_error_guardar_hallazgo',
+          'nat.hall_escribe_dos_letras',
+          'nat.hall_escribe_especie_para_buscar',
+          'nat.hall_especie_real',
+          'nat.hall_especie_real_hint',
+          'nat.hall_estadio',
+          'nat.hall_evidencia_avistamiento',
+          'nat.hall_evidencia_excremento',
+          'nat.hall_evidencia_huella',
+          'nat.hall_evidencia_interaccion',
+          'nat.hall_evidencia_marca_corteza',
+          'nat.hall_evidencia_nido_vacio',
+          'nat.hall_evidencia_pluma',
+          'nat.hall_evidencia_refugio',
+          'nat.hall_evidencia_restos_alimentacion',
+          'nat.hall_evidencia_sonido',
+          'nat.hall_explicacion_evidencia',
+          'nat.hall_explicacion_fenologia',
+          'nat.hall_explicacion_fenologia_vacia',
+          'nat.hall_explicacion_hipotesis',
+          'nat.hall_explicacion_tasa_vacia',
+          'nat.hall_explicacion_validar',
+          'nat.hall_falta_posicion_gps',
+          'nat.hall_foto_de_archivo',
+          'nat.hall_foto_referencia_inaturalist',
+          'nat.hall_guia_anade_entradas',
+          'nat.hall_guia_sin_especies',
+          'nat.hall_habitat',
+          'nat.hall_hallazgo_de_naturaleza',
+          'nat.hall_hipotesis',
+          'nat.hall_hipotesis_hint',
+          'nat.hall_identificacion_actual',
+          'nat.hall_identificacion_fallo',
+          'nat.hall_identificar_plantnet_gratis',
+          'nat.hall_limpiar_busqueda',
+          'nat.hall_mi_fenologia',
+          'nat.hall_mi_fenologia_subtitulo',
+          'nat.hall_n_de_total_hallazgos',
+          'nat.hall_n_exportados',
+          'nat.hall_n_hallazgos',
+          'nat.hall_n_sin_revisar',
+          'nat.hall_nombre_cientifico_binomial',
+          'nat.hall_nombre_comun_o_cientifico',
+          'nat.hall_nombre_con_confianza',
+          'nat.hall_numero_ejemplares',
+          'nat.hall_numero_individuos',
+          'nat.hall_op_adulto',
+          'nat.hall_op_amarillo',
+          'nat.hall_op_arbol',
+          'nat.hall_op_arbusto',
+          'nat.hall_op_avistamiento',
+          'nat.hall_op_bajo_conifera',
+          'nat.hall_op_bajo_planifolio',
+          'nat.hall_op_blanco_crema',
+          'nat.hall_op_excremento',
+          'nat.hall_op_flor',
+          'nat.hall_op_fruto',
+          'nat.hall_op_gris_negruzco',
+          'nat.hall_op_herbacea',
+          'nat.hall_op_huella',
+          'nat.hall_op_huevo',
+          'nat.hall_op_larva',
+          'nat.hall_op_madera_muerta',
+          'nat.hall_op_mata',
+          'nat.hall_op_naranja_rojizo',
+          'nat.hall_op_nido_o_madriguera',
+          'nat.hall_op_ninfa',
+          'nat.hall_op_otro',
+          'nat.hall_op_pardo_marron',
+          'nat.hall_op_pluma_o_pelo',
+          'nat.hall_op_pradera_herbazal',
+          'nat.hall_op_pupa',
+          'nat.hall_op_rojo_escarlata',
+          'nat.hall_op_semilla',
+          'nat.hall_op_senescente',
+          'nat.hall_op_suculenta',
+          'nat.hall_op_suelo_hojarasca',
+          'nat.hall_op_tocon',
+          'nat.hall_op_trepadora',
+          'nat.hall_op_vegetativa',
+          'nat.hall_op_verde_oliva',
+          'nat.hall_op_violaceo',
+          'nat.hall_op_vocalizacion',
+          'nat.hall_organo_corteza',
+          'nat.hall_organo_flor',
+          'nat.hall_organo_fruto',
+          'nat.hall_organo_habito',
+          'nat.hall_organo_hoja',
+          'nat.hall_organo_otro',
+          'nat.hall_pie_tarjeta',
+          'nat.hall_planta_hospedadora',
+          'nat.hall_plantnet_fallo',
+          'nat.hall_plantnet_quedan_hoy',
+          'nat.hall_plantnet_sin_candidatos',
+          'nat.hall_por_categoria',
+          'nat.hall_porte',
+          'nat.hall_pregunta_calibracion',
+          'nat.hall_pulsa_el_que_mejor_se_ajuste',
+          'nat.hall_que_organo_se_ve',
+          'nat.hall_quiz_anade_entradas',
+          'nat.hall_quiz_faltan_especies',
+          'nat.hall_quiz_modo_cientifico_a_comun',
+          'nat.hall_quiz_modo_comun_a_cientifico',
+          'nat.hall_quiz_modo_por_descripcion',
+          'nat.hall_quiz_pocas_especies_categoria',
+          'nat.hall_quiz_pregunta_cientifico',
+          'nat.hall_quiz_pregunta_comun',
+          'nat.hall_quiz_que_especie_es',
+          'nat.hall_salida_sin_titulo',
+          'nat.hall_se_guardara_suelto',
+          'nat.hall_sin_anotaciones',
+          'nat.hall_sin_fenologia',
+          'nat.hall_sin_fotos_licencia_abierta',
+          'nat.hall_sin_revisar',
+          'nat.hall_sin_validaciones',
+          'nat.hall_sustrato',
+          'nat.hall_tasa_acierto',
+          'nat.hall_tasa_acierto_subtitulo',
+          'nat.hall_taxonomia',
+          'nat.hall_texto',
+          'nat.hall_tipo_evidencia',
+          'nat.hall_top_habitats',
+          'nat.hall_tu_hipotesis',
+          'nat.hall_un_hallazgo',
+          'nat.hall_un_sin_revisar',
+          'nat.hall_validar_identificacion',
+          'nat.hall_volver_a_sin_revisar',
+          'nat.mapa_notificacion_registrando_ruta',
+          'nat.mapa_lugar_miradores',
+          'nat.mapa_lugar_miradores_aves',
+          'nat.mapa_lugar_reservas_naturales',
+          'nat.mapa_lugar_cuevas',
+          'nat.mapa_lugar_humedales',
+          'nat.mapa_lugar_arboles_singulares',
+          'nat.mapa_lugar_refugios',
+          'nat.mapa_lugar_manantiales',
+          'nat.mapa_lugar_centros_visitantes',
+          'nat.mapa_falta_permiso_ubicacion',
+          'nat.mapa_sin_lugares_zona',
+          'nat.mapa_gestor',
+          'nat.mapa_sin_gbif_zona',
+          'nat.mapa_gbif_cargadas',
+          'nat.mapa_ocultar',
+          'nat.mapa_track_guardado_puntos',
+          'nat.mapa_observacion_gbif',
+          'nat.mapa_familia',
+          'nat.mapa_localidad',
+          'nat.mapa_observacion',
+          'nat.mapa_categoria',
+          'nat.mapa_habitat',
+          'nat.mapa_taxonomia',
+          'nat.mapa_borrar_observacion_pregunta',
+          'nat.mapa_mapas_offline_menu',
+          'nat.mapa_lugares_interes_activos',
+          'nat.mapa_lugares_interes_menu',
+          'nat.mapa_recargar_lugares',
+          'nat.mapa_gbif_cerca',
+          'nat.mapa_ocultar_gbif',
+          'nat.mapa_centrar_ubicacion',
+          'nat.mapa_detener_grabacion',
+          'nat.mapa_grabar_track',
+          'nat.mapa_tooltip_capas',
+          'nat.mapa_tooltip_datos',
+          'nat.mapa_capas_lugares',
+          'nat.mapa_capas_lugares_ayuda',
+          'nat.mapa_quitar_todas',
+          'nat.mapa_aplicar',
+          'nat.mapa_nueva_salida',
+          'nat.mapa_titulo_opcional',
+          'nat.mapa_titulo_ejemplo',
+          'nat.mapa_zona_opcional',
+          'nat.mapa_zona_ejemplo',
+          'nat.mapa_hipotesis_opcional',
+          'nat.mapa_hipotesis_ejemplo',
+          'nat.mapa_arrancar_track',
+          'nat.mapa_salida_explicacion',
+          'nat.mapa_iniciar',
+          'nat.mapa_sin_permiso_track',
+          'nat.mapa_salidas',
+          'nat.mapa_iniciar_salida',
+          'nat.mapa_sin_salidas',
+          'nat.mapa_sin_salidas_ayuda',
+          'nat.mapa_salida_sin_titulo',
+          'nat.mapa_en_curso',
+          'nat.mapa_una_observacion',
+          'nat.mapa_n_observaciones',
+          'nat.mapa_cabecera_salida',
+          'nat.mapa_titulo',
+          'nat.mapa_zona',
+          'nat.mapa_meteo_resumen',
+          'nat.mapa_altitud_m',
+          'nat.mapa_hipotesis_jornada',
+          'nat.mapa_notas_generales',
+          'nat.mapa_anotacion_margen',
+          'nat.mapa_anotacion_explicacion',
+          'nat.mapa_texto',
+          'nat.mapa_anotacion_ejemplo',
+          'nat.mapa_borrar_anotacion',
+          'nat.mapa_borrar_anotacion_texto',
+          'nat.mapa_cerrar_salida',
+          'nat.mapa_cerrar_salida_texto',
+          'nat.mapa_detener_track_tambien',
+          'nat.mapa_seguir_abierta',
+          'nat.mapa_borrar_salida',
+          'nat.mapa_borrar_salida_texto',
+          'nat.mapa_salida_no_encontrada',
+          'nat.mapa_salida_del_dia',
+          'nat.mapa_editar_cabecera',
+          'nat.mapa_anotar_margen',
+          'nat.mapa_altitud_aprox',
+          'nat.mapa_track_en_curso',
+          'nat.mapa_track_de_salida',
+          'nat.mapa_track_puntos_asociara',
+          'nat.mapa_observaciones_de_salida',
+          'nat.mapa_sin_observaciones_salida',
+          'nat.mapa_sin_especie',
+          'nat.mapa_anotaciones_margen',
+          'nat.mapa_sin_anotaciones',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -12541,6 +16601,11 @@ class SoleraL10n {
       case 'temperatura_registrada': return 'Temperatura registrada';
       case 'todos': return 'Todos';
       case 'ver_pdf': return 'Ver PDF';
+      case 'camara': return 'Cámara';
+      case 'continuar': return 'Continuar';
+      case 'error_restaurando': return 'Error al restaurar';
+      case 'galeria': return 'Galería';
+      case 'siguiente': return 'Siguiente';
       case 'acei.abierta': return 'Abierta';
       case 'acei.abierta_minuscula': return 'abierta';
       case 'acei.aceite_y_almazara': return 'Aceite y almazara';
@@ -14653,6 +18718,1016 @@ class SoleraL10n {
       case 'core.act.descarga_en_navegador': return 'Se ha abierto la descarga en el navegador.';
       case 'core.act.error_descarga': return 'No se ha podido descargar. Comprueba la conexión y vuelve a probar.';
       case 'core.act.error_instalador': return 'Descargada, pero Android no ha dejado abrir el instalador. Permite «instalar apps desconocidas» para esta app en los ajustes del móvil.';
+      case 'fos.ajus_calculando': return 'Calculando…';
+      case 'fos.ajus_resumen_cache': return '{n} teselas en caché · {mb} MB';
+      case 'fos.ajus_backup_asunto': return 'Copia de seguridad de Fósiles';
+      case 'fos.ajus_backup_texto': return 'Copia de seguridad de Fósiles ({kb} KB)';
+      case 'fos.ajus_error_backup': return 'Error al hacer la copia';
+      case 'fos.ajus_restaurar_titulo': return 'Restaurar copia de seguridad';
+      case 'fos.ajus_restaurar_aviso': return 'Esto reemplazará TODOS tus hallazgos, tracks y fotos actuales por los del fichero. ¿Continuar?';
+      case 'fos.ajus_restaurados': return '✅ Restaurados {hallazgos} hallazgos y {fotos} fotos. Reinicia la app para ver los cambios.';
+      case 'fos.ajus_avisos_reactivados': return 'Avisos reactivados. Volverán a sonar al entrar en cada yacimiento.';
+      case 'fos.ajus_prueba_aviso': return '{emoji} (Prueba) Estás en {nombre}.';
+      case 'fos.ajus_borrar_aportaciones': return 'Borrar mis aportaciones';
+      case 'fos.ajus_borrar_aportaciones_texto': return 'Introduce el email con el que enviaste las aportaciones. Te mandaremos un enlace; al pulsarlo se borrarán todas tus fotos (pendientes y aprobadas).';
+      case 'fos.ajus_email': return 'Email';
+      case 'fos.ajus_enviar': return 'Enviar';
+      case 'fos.ajus_solicitud_enviada': return 'Solicitud enviada. Revisa tu email para confirmar el borrado.';
+      case 'fos.ajus_vaciar_cache_pregunta': return '¿Vaciar la caché de mapas offline? Tendrás que volver a descargar para usar sin conexión.';
+      case 'fos.ajus_vaciar': return 'Vaciar';
+      case 'fos.ajus_sec_general': return 'General';
+      case 'fos.ajus_idioma': return 'Idioma / Language';
+      case 'fos.ajus_claves_modelo': return 'Claves y modelo';
+      case 'fos.ajus_claves_modelo_sub': return 'Anthropic para identificar por foto, DeepSeek para el chat';
+      case 'fos.ajus_sec_perfil': return 'Perfil e identidad';
+      case 'fos.ajus_perfil_titulo': return 'Perfil del descubridor e identidad';
+      case 'fos.ajus_perfil_sub': return 'Nombre para los certificados, identidad criptográfica, verificar certificados y Modo Experto';
+      case 'fos.ajus_sec_mapas_datos': return 'Mapas y datos';
+      case 'fos.ajus_mapas_sin_conexion': return 'Mapas sin conexión';
+      case 'fos.ajus_mapas_explicacion': return 'Las teselas que veas en el mapa se guardan automáticamente en caché. Para precachear una zona entera (vista actual del mapa), usa el botón de descarga.';
+      case 'fos.ajus_descargar_zona': return 'Descargar zona';
+      case 'fos.ajus_backup_explicacion': return 'Exporta toda tu base (hallazgos + tracks + fotos) en un fichero único .fosbackup. Guárdalo en Drive/USB/correo. Para restaurar, selecciona el .fosbackup; reemplazará los datos actuales.';
+      case 'fos.ajus_hacer_copia': return 'Hacer copia';
+      case 'fos.ajus_restaurar_copia': return 'Restaurar copia';
+      case 'fos.ajus_asistente_campo': return 'Asistente de campo';
+      case 'fos.ajus_asistente_explicacion': return 'Cuando el GPS detecta que estás dentro de un radio de 250 m de un yacimiento curado, aparece un aviso en el mapa con el botón "Ver ficha". Cada yacimiento te avisa una sola vez por sesión.';
+      case 'fos.ajus_reactivar_avisos': return 'Reactivar avisos';
+      case 'fos.ajus_probar_aviso': return 'Probar aviso';
+      case 'fos.ajus_sec_privacidad': return 'Privacidad';
+      case 'fos.ajus_tus_aportaciones': return 'Tus aportaciones a la comunidad';
+      case 'fos.ajus_aportaciones_explicacion': return 'Si has compartido fotos con la comunidad puedes pedir su borrado en cualquier momento (RGPD). Te llegará un enlace al email indicado; haciendo click se borrarán todas tus aportaciones, incluso las que ya estén publicadas.';
+      case 'fos.ajus_como_leer_mapa': return 'Cómo leer el mapa';
+      case 'fos.ajus_como_leer_mapa_sub': return 'Capas geológicas, otras capas y sugerencias de fósiles';
+      case 'fos.ajus_ver_tour': return 'Ver tour de presentación';
+      case 'fos.ajus_sobre_app': return 'Sobre la app';
+      case 'fos.ajus_sobre_app_texto': return 'Cuaderno de campo de fósiles para adulto aficionado. Anota hallazgos georreferenciados con foto, edad, formación, strike/dip del estrato; consulta el contexto geológico del IGME en el punto donde pinches; y guarda una guía local de fósiles y minerales por período.';
+      case 'fos.ajus_apoyar': return 'Apoyar el proyecto';
+      case 'fos.ajus_apoyar_texto': return 'La app es y seguirá siendo gratuita y abierta para todos. Si te ha sido útil y puedes permitírtelo, una pequeña aportación voluntaria ayuda al mantenimiento, soporte y actualizaciones.';
+      case 'fos.ajus_gracias': return 'Gracias.';
+      case 'fos.ajus_ver_formas_apoyar': return 'Ver formas de apoyar';
+      case 'fos.ajus_datos_fuentes': return 'Datos y fuentes';
+      case 'fos.ajus_datos_fuentes_texto': return 'Datos geológicos: IGME (GEODE 50, MAGNA 50, Edades 1M, Litologías 1M, IELIG). Mapa base: OpenStreetMap, ESRI, OpenTopoMap. Cuevas y megalitos: OpenStreetMap (Overpass). Imágenes y descripciones complementarias: Wikipedia (CC-BY-SA). Versión Flutter para Android.';
+      case 'fos.ajus_ia_guardados': return '✅ Ajustes de IA guardados';
+      case 'fos.ajus_no_abrir_navegador': return 'No se pudo abrir el navegador. Entra en {direccion}';
+      case 'fos.ajus_ia_explicacion': return 'Para identificar fósiles automáticamente, introduce tu API key de Anthropic. Se guarda solo en tu teléfono y se envía únicamente a api.anthropic.com. Consigue una en console.anthropic.com. La de DeepSeek es para el chat.';
+      case 'fos.ajus_conseguir_anthropic': return 'Conseguir clave de Anthropic';
+      case 'fos.ajus_conseguir_deepseek': return 'Conseguir clave de DeepSeek';
+      case 'fos.ajus_api_anthropic': return 'API key de Anthropic';
+      case 'fos.ajus_api_deepseek': return 'API key de DeepSeek (para chat)';
+      case 'fos.ajus_modelo_claude': return 'Modelo de Claude';
+      case 'fos.ajus_modelo_precio': return '{descripcion} ~{precio} céntimos por foto.';
+      case 'fos.ajus_modelo_opus_desc': return 'Máxima precisión. Recomendado.';
+      case 'fos.ajus_modelo_sonnet_desc': return 'Buen equilibrio precisión/coste.';
+      case 'fos.ajus_modelo_haiku_desc': return 'Mucho más barato. Aciertos algo menores.';
+      case 'fos.ajus_cabecera_titulo': return 'Cuaderno de campo de fósiles';
+      case 'fos.ajus_cabecera_sub': return 'Para el aficionado a la paleontología';
+      case 'fos.ajus_explorar_mapa': return 'Explorar mapa';
+      case 'fos.ajus_explorar_mapa_sub': return 'Yacimientos y geología';
+      case 'fos.ajus_meteo': return 'Meteorología';
+      case 'fos.ajus_meteo_sub': return 'Previsión para tu excursión';
+      case 'fos.ajus_chat_ia': return 'Chat IA';
+      case 'fos.ajus_chat_ia_sub': return 'Resuelve dudas, identifica hallazgos, pide consejos de campo';
+      case 'fos.ajus_etica_titulo': return 'Explora, descubre y comparte';
+      case 'fos.ajus_etica_sub': return 'Unas pautas para que tu afición sume y deje huella solo en el conocimiento.';
+      case 'fos.ajus_etica1_titulo': return 'Tu hallazgo puede ser importante';
+      case 'fos.ajus_etica1_texto': return 'Cada fósil cuenta una historia. Si encuentras algo que te parezca especial, compártelo con un museo, una universidad o una sociedad geológica. Ellos sabrán valorarlo y tú formarás parte del descubrimiento. La app te ayuda a documentarlo con certificado verificable.';
+      case 'fos.ajus_etica2_titulo': return 'Primero observa y fotografía';
+      case 'fos.ajus_etica2_texto': return 'El contexto es tan valioso como la pieza. Fotografía el fósil en su capa, mide la orientación del estrato, registra la formación. Una buena documentación multiplica el valor científico de lo que encuentras. Y muchas veces la foto es suficiente: no siempre hace falta recoger.';
+      case 'fos.ajus_etica3_titulo': return 'Infórmate para disfrutar más';
+      case 'fos.ajus_etica3_texto': return 'Cada comunidad autónoma tiene sus propias normas de protección del patrimonio. Conocerlas te convierte en mejor aficionado: sabrás dónde puedes recoger y dónde es mejor solo fotografiar. Ante la duda, disfruta del hallazgo in situ.';
+      case 'fos.ajus_etica4_titulo': return 'Deja el lugar como te gustaría encontrarlo';
+      case 'fos.ajus_etica4_texto': return 'No excaves sin permiso del propietario. No dañes afloramientos. Cierra las cancelas. Llévate tu basura… y quizá alguna ajena. Cada persona que pasa después de ti merece la misma emoción del descubrimiento.';
+      case 'fos.ajus_etica5_titulo': return 'Comparte para que la ciencia avance';
+      case 'fos.ajus_etica5_texto': return 'Usa el certificado verificable de la app para compartir tus hallazgos. Cada registro documentado ayuda a completar el mapa paleontológico de tu región. Tu contribución, sumada a la de otros aficionados, es ciencia ciudadana real.';
+      case 'fos.ajus_como_usar': return 'Cómo usar Fósiles';
+      case 'fos.ajus_paso1_titulo': return 'Explora el mapa';
+      case 'fos.ajus_paso1_texto': return 'Activa las capas geológicas (MAGNA, GEODE) para ver qué edad tiene el suelo que pisas.';
+      case 'fos.ajus_paso2_titulo': return 'Registra un hallazgo';
+      case 'fos.ajus_paso2_texto': return 'Toca + para añadir un fósil con foto, coordenadas, edad y formación. La app consulta al IGME automáticamente.';
+      case 'fos.ajus_paso3_titulo': return 'Identifica con Claude';
+      case 'fos.ajus_paso3_texto': return 'Con tu API key de Anthropic, la app identifica el fósil por imagen y te da pistas para confirmar.';
+      case 'fos.ajus_paso4_titulo': return 'Genera un certificado';
+      case 'fos.ajus_paso4_texto': return 'Cada hallazgo recibe un hash SHA-256 verificable. Compártelo con quien quieras; nadie podrá alterarlo.';
+      case 'fos.ajus_paso5_titulo': return 'Registra su trazabilidad';
+      case 'fos.ajus_paso5_texto': return 'Si el fósil acaba en un museo o lo estudia un geólogo, añade eventos a su historial.';
+      case 'fos.ajus_saltar': return 'Saltar';
+      case 'fos.ajus_empezar': return 'Empezar';
+      case 'fos.ajus_onb1_titulo': return 'Mapa geológico nacional';
+      case 'fos.ajus_onb1_texto': return 'La app arranca con la capa GEODE 50 del IGME pintada sobre el mapa. Desde el icono de la montaña en la barra superior puedes alternar entre GEODE, MAGNA, Edades 1M, Litologías 1M y otras capas IGME. La primera vez que paneas una zona el mosaico tarda un poco en cargar mientras se descargan las teselas; después se queda en caché.';
+      case 'fos.ajus_onb2_titulo': return 'Tus hallazgos';
+      case 'fos.ajus_onb2_texto': return 'Con el botón "+" de la barra inferior marcas un hallazgo en la posición actual: foto, edad, formación, strike/dip de la capa y notas. El hallazgo queda guardado localmente, aparece en la lista y se pinta como marcador en el mapa para que puedas volver a él.';
+      case 'fos.ajus_onb3_titulo': return 'Qué hay bajo tus pies';
+      case 'fos.ajus_onb3_texto': return 'Hay un asistente geológico en el centro del mapa que va contándote la geología del punto al panear. Si activas el modo "Explorar geología" puedes pinchar cualquier punto y consultar formación, edad y litología. Las sugerencias de fósiles y minerales se cruzan con el catálogo local de formaciones ibéricas.';
+      case 'fos.ajus_datos_restaurados': return 'Datos restaurados desde copia de seguridad.';
+      case 'fos.ajus_nav_inicio': return 'Inicio';
+      case 'fos.ajus_nav_lista': return 'Lista';
+      case 'fos.ajus_nav_guia': return 'Guía';
+      case 'fos.ajus_chat': return 'Chat';
+      case 'fos.ajus_falta_clave_chat': return 'Necesitas configurar tu API key de {nombre} en Ajustes → Inteligencia artificial.';
+      case 'fos.ajus_que_ves': return '¿Qué ves en esta imagen?';
+      case 'fos.ajus_que_ves_identifica': return '¿Qué ves en esta imagen? Identifícala por favor.';
+      case 'fos.ajus_chat_vacio': return 'Pregúntame lo que quieras sobre fósiles, geología, identificación, yacimientos…';
+      case 'fos.ajus_via': return 'vía {proveedor}';
+      case 'fos.ajus_imagen_adjunta': return 'Imagen adjunta — se enviará a Claude';
+      case 'fos.ajus_hacer_foto': return 'Hacer foto';
+      case 'fos.ajus_escribe_pregunta': return 'Escribe tu pregunta…';
+      case 'fos.ajus_falta_api_anthropic': return 'Falta la API key de Anthropic. Configúrala en Ajustes → Inteligencia artificial.';
+      case 'fos.ajus_desconocido': return 'Desconocido';
+      case 'fos.ajus_sin_identificacion': return 'Sin identificación';
+      case 'fos.ajus_nombre_autoridad': return 'Nombre de la autoridad';
+      case 'fos.ajus_ej_autoridad': return 'Ej: Instituto Nacional de Geología';
+      case 'fos.ajus_generar': return 'Generar';
+      case 'fos.ajus_codigo_activacion': return 'Código de activación';
+      case 'fos.ajus_para_nombre': return 'Para: {nombre}';
+      case 'fos.ajus_codigo_mandalo': return 'Mándalo por email institucional al experto. Sólo le sirve a la primera persona que lo use — no se puede reusar.';
+      case 'fos.ajus_copiar': return 'Copiar';
+      case 'fos.ajus_codigo_copiado': return 'Código copiado al portapapeles';
+      case 'fos.ajus_compartir_codigo': return 'Código de activación para {nombre}:';
+      case 'fos.ajus_asunto_experto': return 'Modo Experto — Fósiles';
+      case 'fos.ajus_desactivar_titulo': return 'Desactivar modo Experto';
+      case 'fos.ajus_desactivar_texto': return 'La clave de la autoridad se borrará de este dispositivo. Las cards que ya certificaste siguen siendo válidas, pero esta instalación no podrá firmar nuevas certificaciones hasta que vuelvas a activar con un código nuevo.';
+      case 'fos.ajus_desactivar': return 'Desactivar';
+      case 'fos.ajus_modo_experto': return 'Modo Experto';
+      case 'fos.ajus_experto_intro': return 'El Modo Experto permite a una autoridad firmante (Instituto Nacional de Geología, museo, sociedad científica) revisar y certificar cards compartidas por los descubridores.';
+      case 'fos.ajus_activar_autoridad': return 'Activar como autoridad';
+      case 'fos.ajus_activar_autoridad_texto': return 'Si has recibido un código de activación por email institucional, pégalo aquí para empezar a recibir cards para revisión.';
+      case 'fos.ajus_pegar_codigo': return 'Pegar código de activación';
+      case 'fos.ajus_admin_generar': return 'Administrador: generar código';
+      case 'fos.ajus_admin_texto': return 'Si tú gestionas Fósiles y quieres preautorizar a una autoridad para que pueda certificar cards, genera un código y mándaselo por email institucional. Sólo le sirve a la primera persona que lo use.';
+      case 'fos.ajus_generar_codigo_autoridad': return 'Generar código para una autoridad';
+      case 'fos.ajus_experto_activo': return 'Modo Experto activo';
+      case 'fos.ajus_huella_institucional': return 'Huella institucional';
+      case 'fos.ajus_huella_texto': return 'Esta huella criptográfica viaja en cada certificación que firmas. Los descubridores la verán al recibir sus cards de vuelta.';
+      case 'fos.ajus_codigo_nombre_obligatorios': return 'Código y nombre son obligatorios.';
+      case 'fos.ajus_codigo_no_valido': return 'Código no válido. Pídele al administrador uno nuevo.';
+      case 'fos.ajus_activar_autoridad_titulo': return 'Activar autoridad';
+      case 'fos.ajus_pega_codigo_hint': return 'Pega aquí el código del email institucional';
+      case 'fos.ajus_colegiacion': return 'Persona responsable / colegiación (opcional)';
+      case 'fos.ajus_ej_colegiacion': return 'Ej: Dra. X. Y. (col. nº 1234)';
+      case 'fos.ajus_activar': return 'Activar';
+      case 'fos.ajus_kofi_sub': return 'Pago puntual o mensual con tarjeta';
+      case 'fos.ajus_paypal_sub': return 'Donación con tu cuenta PayPal';
+      case 'fos.ajus_mensaje_compartir': return 'Fósiles — cuaderno de campo digital para anotar hallazgos con georreferencia, edad estratigráfica, orientación del estrato y guía de identificación de fósiles y minerales. Cartografía geológica IGME y mapas offline. Libre, gratuita, sin anuncios ni seguimiento. Descarga el APK para Android en {url}';
+      case 'fos.ajus_ecosistema_texto': return 'Esta app forma parte del ecosistema. Conoce el resto de proyectos.';
+      case 'fos.ajus_copiar_direccion': return 'Copiar dirección';
+      case 'fos.ajus_direccion_copiada': return 'Dirección copiada al portapapeles.';
+      case 'fos.ajus_compartir_app': return 'Compartir la app';
+      case 'fos.ajus_compartir_app_texto': return 'Recomendarla a alguien también ayuda. Es donar tiempo en lugar de dinero.';
+      case 'fos.ajus_otras_formas': return 'Otras formas de ayudar';
+      case 'fos.ajus_valorar': return 'Valorar la app con cinco estrellas si te ha gustado.';
+      case 'fos.ajus_reportar': return 'Reportar un fallo o sugerir mejoras.';
+      case 'fos.ajus_ayudar_traducciones': return 'Ayudar con traducciones o textos.';
+      case 'fos.ajus_contribuir_codigo': return 'Contribuir con código o ideas de funciones.';
+      case 'fos.ajus_fichero_no_valido': return 'No es un fichero de copia válido';
+      case 'fos.ajus_version_desconocida': return 'Versión de copia desconocida';
+      case 'fos.ajus_nav_ajustes': return 'Ajustes';
+      case 'fos.ficha_distintivos': return 'Distintivos para reconocerlo';
+      case 'fos.ficha_donde_encontrarlo': return 'Dónde encontrarlo';
+      case 'fos.ficha_leer_wikipedia': return 'Leer más en Wikipedia';
+      case 'fos.ficha_reintentar': return 'Reintentar';
+      case 'fos.ficha_raya': return 'Raya';
+      case 'fos.ficha_brillo': return 'Brillo';
+      case 'fos.ficha_color_tipico': return 'Color típico';
+      case 'fos.hall_alternativas': return 'Alternativas';
+      case 'fos.hall_anadir': return 'Añadir';
+      case 'fos.hall_anadir_evento': return 'Añadir evento';
+      case 'fos.hall_anadir_evento_trazabilidad': return 'Añadir evento de trazabilidad';
+      case 'fos.hall_anadir_trazabilidad': return 'Añadir trazabilidad';
+      case 'fos.hall_anotar_foto': return 'Anotar foto';
+      case 'fos.hall_aplicar_formulario': return 'Aplicar al formulario';
+      case 'fos.hall_asunto_certificado': return 'Certificado de hallazgo: {especie}';
+      case 'fos.hall_asunto_exportacion': return 'Hallazgos de fósiles';
+      case 'fos.hall_asunto_hallazgo': return 'Hallazgo: {especie}';
+      case 'fos.hall_aun_no_hay_hallazgos': return 'Aún no hay hallazgos.';
+      case 'fos.hall_autor_evento': return 'Autor del evento';
+      case 'fos.hall_borrar_medida': return 'Borrar medida';
+      case 'fos.hall_buscar': return 'Buscar…';
+      case 'fos.hall_buscar_hint': return 'Buscar por nombre, edad, notas…';
+      case 'fos.hall_certificado_texto': return 'Certificado verificable de hallazgo fósil.';
+      case 'fos.hall_certificado_verificable': return 'Certificado verificable';
+      case 'fos.hall_como_confirmar': return 'Cómo confirmar';
+      case 'fos.hall_compartir_comunidad': return 'Compartir con la comunidad';
+      case 'fos.hall_compartir_texto': return 'Compartir texto';
+      case 'fos.hall_con_foto': return 'Con foto';
+      case 'fos.hall_confianza': return 'Confianza {nivel}';
+      case 'fos.hall_confianza_alta': return 'alta';
+      case 'fos.hall_confianza_baja': return 'baja';
+      case 'fos.hall_confianza_media': return 'media';
+      case 'fos.hall_configura_api_key': return 'Configura primero tu API key en Ajustes → Inteligencia artificial.';
+      case 'fos.hall_configura_nombre': return 'Configura primero tu nombre en Ajustes → Perfil del descubridor.';
+      case 'fos.hall_confirmar_borrar': return '¿Borrar este hallazgo?';
+      case 'fos.hall_consultando_igme': return 'Consultando IGME…';
+      case 'fos.hall_contexto_geologico': return 'Contexto geológico';
+      case 'fos.hall_coordenadas': return 'Coordenadas';
+      case 'fos.hall_cronologia': return 'Cronología';
+      case 'fos.hall_descartar': return 'Descartar';
+      case 'fos.hall_descripcion': return 'Descripción';
+      case 'fos.hall_descubridor': return 'Descubridor';
+      case 'fos.hall_desde_galeria': return 'Desde galería';
+      case 'fos.hall_deshacer': return 'Deshacer';
+      case 'fos.hall_detectado_mineral': return 'Detectado como mineral';
+      case 'fos.hall_dias_activo': return 'Días activo';
+      case 'fos.hall_dureza_mohs': return 'Dureza Mohs';
+      case 'fos.hall_dureza_mohs_estimada': return 'Dureza Mohs estimada';
+      case 'fos.hall_edad': return 'Edad';
+      case 'fos.hall_edad_periodo': return 'Edad / periodo';
+      case 'fos.hall_editar_hallazgo': return 'Editar hallazgo';
+      case 'fos.hall_ejemplo_autor': return 'Ej: Dra. López (UPV/EHU)';
+      case 'fos.hall_ejemplo_descripcion': return 'Ej: Depositado en el Museo de Ciencias Naturales de Álava';
+      case 'fos.hall_error_codificar_imagen': return 'No se pudo codificar la imagen';
+      case 'fos.hall_error_exportando': return 'Error exportando: {error}';
+      case 'fos.hall_error_generar_zip': return 'No se pudo generar el ZIP.';
+      case 'fos.hall_error_gps': return 'Error GPS: {error}';
+      case 'fos.hall_error_guardando': return 'Error guardando: {error}';
+      case 'fos.hall_error_identificando': return 'Error identificando: {error}';
+      case 'fos.hall_error_sin_id': return 'Error: el hallazgo no tiene ID.';
+      case 'fos.hall_error_tarjeta': return 'Error generando tarjeta: {error}';
+      case 'fos.hall_especie': return 'Especie';
+      case 'fos.hall_especie_tentativa': return 'Especie / nombre tentativo';
+      case 'fos.hall_especies': return 'Especies';
+      case 'fos.hall_esperando_gps': return 'Esperando posición GPS…';
+      case 'fos.hall_estadisticas': return 'Estadísticas';
+      case 'fos.hall_estrato': return 'Estrato';
+      case 'fos.hall_evento_anadido': return 'Evento añadido al historial.';
+      case 'fos.hall_exportar_zip': return 'Exportar ZIP';
+      case 'fos.hall_fecha': return 'Fecha';
+      case 'fos.hall_formacion': return 'Formación';
+      case 'fos.hall_formacion_geologica': return 'Formación geológica';
+      case 'fos.hall_fosil': return 'Fósil';
+      case 'fos.hall_fosiles': return 'Fósiles';
+      case 'fos.hall_fosiles_probables': return 'Fósiles probables · {periodo}';
+      case 'fos.hall_guia': return 'Guía';
+      case 'fos.hall_hallazgo_de_fosil': return 'Hallazgo de fósil';
+      case 'fos.hall_historial_trazabilidad': return 'Historial de trazabilidad';
+      case 'fos.hall_identificando': return 'Identificando…';
+      case 'fos.hall_identificar_claude': return 'Identificar con Claude';
+      case 'fos.hall_incoherencia_detalle': return 'Claude propone {claude} pero el afloramiento IGME es {igme}. Revisa la identificación o la posición.';
+      case 'fos.hall_incoherencia_geologica': return 'Posible incoherencia geológica';
+      case 'fos.hall_limpiar': return 'Limpiar';
+      case 'fos.hall_linea_tiempo': return 'Línea del tiempo';
+      case 'fos.hall_medir': return 'Medir';
+      case 'fos.hall_mineral': return 'Mineral';
+      case 'fos.hall_minerales': return 'Minerales';
+      case 'fos.hall_mixto': return 'Mixto';
+      case 'fos.hall_modelo': return 'Modelo: {modelo}';
+      case 'fos.hall_moneda_en_foto': return 'Moneda en foto:';
+      case 'fos.hall_n_de_total_desliza': return '{actual} / {total} · desliza ← → para cambiar';
+      case 'fos.hall_n_exportados': return '{n} hallazgos exportados.';
+      case 'fos.hall_n_fosiles': return '{n} fósiles';
+      case 'fos.hall_ninguno_coincide': return 'Ningún hallazgo coincide con la búsqueda.';
+      case 'fos.hall_ninguno_recibido_coincide': return 'Ningún hallazgo recibido coincide con la búsqueda.';
+      case 'fos.hall_no': return 'No';
+      case 'fos.hall_nombre_mineral': return 'Nombre del mineral';
+      case 'fos.hall_notas': return 'Notas';
+      case 'fos.hall_nuevo_hallazgo': return 'Nuevo hallazgo';
+      case 'fos.hall_o_desde_galeria': return 'o desde galería';
+      case 'fos.hall_obteniendo_gps': return 'Obteniendo GPS…';
+      case 'fos.hall_orientacion_sin_medir': return 'Orientación del estrato: sin medir';
+      case 'fos.hall_periodo': return 'Periodo';
+      case 'fos.hall_permiso_ubicacion_denegado': return 'Permiso de ubicación denegado.';
+      case 'fos.hall_pie_tarjeta': return 'Fósiles · cuaderno de campo';
+      case 'fos.hall_primer_hallazgo': return 'Primer hallazgo';
+      case 'fos.hall_punto_marcado_mapa': return 'Punto marcado en mapa';
+      case 'fos.hall_quiz': return 'Quiz';
+      case 'fos.hall_quiz_identificacion': return 'Quiz de identificación';
+      case 'fos.hall_razonamiento': return 'Razonamiento';
+      case 'fos.hall_recibida': return 'recibida';
+      case 'fos.hall_remedir': return 'Re-medir';
+      case 'fos.hall_sin_clasificar': return 'Sin clasificar';
+      case 'fos.hall_sin_fosiles_periodo': return 'Sin fósiles en la guía para este período.';
+      case 'fos.hall_sin_hallazgos_analizar': return 'Aún no hay hallazgos para analizar.';
+      case 'fos.hall_sin_nombre': return 'Sin nombre';
+      case 'fos.hall_tab_compartidas': return 'Compartidas ({n})';
+      case 'fos.hall_tab_mias': return 'Mías ({n})';
+      case 'fos.hall_tamano_estimado': return 'Tamaño estimado';
+      case 'fos.hall_tarjeta': return 'Tarjeta';
+      case 'fos.hall_tipo_deposito_museo': return 'Depositado en museo / colección';
+      case 'fos.hall_tipo_estudio': return 'Estudiado por';
+      case 'fos.hall_tipo_evento': return 'Tipo de evento';
+      case 'fos.hall_tipo_otro': return 'Otro evento';
+      case 'fos.hall_tipo_prestamo': return 'Préstamo / consulta';
+      case 'fos.hall_tipo_publicacion': return 'Citado en publicación';
+      case 'fos.hall_titulo': return 'Hallazgos';
+      case 'fos.hall_toca_mas_primero': return 'Toca el + para registrar el primero.';
+      case 'fos.hall_tomar_foto': return 'Tomar foto';
+      case 'fos.hall_top_especies': return 'Top especies';
+      case 'fos.hall_top_formaciones': return 'Top formaciones';
+      case 'fos.hall_ubicacion': return 'Ubicación';
+      case 'fos.hall_ultimo_hallazgo': return 'Último hallazgo';
+      case 'fos.hall_ver_en_mapa': return 'Ver en el mapa';
+      case 'fos.hall_ver_ficha': return 'Ver ficha';
+      case 'fos.iden_huella_copiada': return 'Huella copiada al portapapeles';
+      case 'fos.iden_clave_publica_copiada': return 'Clave pública copiada al portapapeles';
+      case 'fos.iden_regenerar_titulo': return 'Regenerar identidad criptográfica';
+      case 'fos.iden_regenerar_aviso': return 'Esto crea un par de claves nuevo. Los hallazgos firmados con tu clave anterior seguirán existiendo pero ya no podrán verificarse como tuyos criptográficamente. Tu nombre y email no cambian. Sólo deberías hacer esto si crees que tu clave se ha comprometido (por ejemplo, tras restaurar un backup en un dispositivo prestado).';
+      case 'fos.iden_regenerar': return 'Regenerar';
+      case 'fos.iden_identidad_regenerada': return 'Identidad regenerada';
+      case 'fos.iden_mi_identidad': return 'Mi identidad';
+      case 'fos.iden_datos_declarados': return 'Datos declarados';
+      case 'fos.iden_datos_declarados_ayuda': return 'Estos datos los rellenas tú en Ajustes → Perfil e identidad. Acompañan a la firma cuando compartes una card o un certificado, pero no están autenticados contra una autoridad externa: cualquiera puede decir que se llama como quiera. Lo que sí es único y permanente es tu clave criptográfica.';
+      case 'fos.iden_nombre': return 'Nombre';
+      case 'fos.iden_email': return 'Email';
+      case 'fos.iden_organizacion': return 'Organización';
+      case 'fos.iden_sin_rellenar': return '(sin rellenar)';
+      case 'fos.iden_huella_criptografica': return 'Huella criptográfica';
+      case 'fos.iden_huella_ayuda': return 'Esta huella se deriva de tu clave pública. Es única, permanente y se genera la primera vez que abriste Fósiles. Cuando alguien recibe un hallazgo firmado por ti, puede verificar que la firma coincide con esta huella.';
+      case 'fos.iden_copiar_huella': return 'Copiar huella';
+      case 'fos.iden_ver_clave_publica': return 'Ver clave pública completa';
+      case 'fos.iden_copiar_clave_publica': return 'Copiar clave pública';
+      case 'fos.iden_operaciones_avanzadas': return 'Operaciones avanzadas';
+      case 'fos.iden_operaciones_avanzadas_ayuda': return 'Tu clave privada se guarda cifrada en el almacenamiento seguro de Android (no sale del dispositivo). El backup .zip cifrado que generas desde Ajustes la incluye para que puedas recuperarla si cambias de móvil.';
+      case 'fos.iden_regenerar_identidad': return 'Regenerar identidad';
+      case 'fos.iden_perfil_guardado': return 'Perfil guardado';
+      case 'fos.iden_perfil_e_identidad': return 'Perfil e identidad';
+      case 'fos.iden_perfil_descubridor': return 'Perfil del descubridor';
+      case 'fos.iden_perfil_ayuda': return 'Tu nombre se incluirá en los certificados de hallazgo. El email y la organización son opcionales. Estos datos se guardan solo en tu teléfono.';
+      case 'fos.iden_nombre_obligatorio': return 'Nombre (obligatorio para certificados)';
+      case 'fos.iden_nombre_ejemplo': return 'Ej: María González';
+      case 'fos.iden_email_opcional': return 'Email (opcional)';
+      case 'fos.iden_email_ejemplo': return 'contacto@ejemplo.com';
+      case 'fos.iden_organizacion_opcional': return 'Organización / afiliación (opcional)';
+      case 'fos.iden_organizacion_ejemplo': return 'Ej: UPV/EHU, Sociedad de Ciencias Aranzadi…';
+      case 'fos.iden_guardar_perfil': return 'Guardar perfil';
+      case 'fos.iden_identidad_y_certificados': return 'Identidad y certificados';
+      case 'fos.iden_mi_identidad_criptografica': return 'Mi identidad criptográfica';
+      case 'fos.iden_verificar_un_certificado': return 'Verificar un certificado';
+      case 'fos.iden_modo_experto_autoridades': return 'Modo Experto (autoridades certificadoras)';
+      case 'fos.iden_card_certificada_asunto': return 'Card certificada — {autoridad}';
+      case 'fos.iden_card_certificada_texto': return 'Card revisada y certificada por la autoridad. Importa este archivo en tu app Fósiles para ver el sello.';
+      case 'fos.iden_error_firmando': return 'Error al firmar';
+      case 'fos.iden_certificar_hallazgo': return 'Certificar hallazgo';
+      case 'fos.iden_descubridor_valor': return 'Descubridor: {nombre}';
+      case 'fos.iden_coords': return 'Coords';
+      case 'fos.iden_difuminadas': return '(difuminadas)';
+      case 'fos.iden_fotos': return 'Fotos';
+      case 'fos.iden_revisa_campos': return 'Revisa o corrige los campos. Lo que dejes en cada caja entrará en la certificación firmada. Si un campo ya está correcto, déjalo como está.';
+      case 'fos.iden_especie_determinacion': return 'Especie / determinación';
+      case 'fos.iden_edad_epoca': return 'Edad / época geológica';
+      case 'fos.iden_formacion_geologica': return 'Formación geológica';
+      case 'fos.iden_comentarios_experto': return 'Comentarios del experto';
+      case 'fos.iden_comentarios_ejemplo': return 'Ej: pieza relevante para colección regional, recomiendo enviar a museo X para depósito';
+      case 'fos.iden_firmar_y_devolver': return 'Firmar y devolver al descubridor';
+      case 'fos.iden_no_es_certificado': return 'El fichero no es un certificado de Fósiles.';
+      case 'fos.iden_error_leer_fichero': return 'Error al leer el fichero';
+      case 'fos.iden_verificar_certificado': return 'Verificar certificado';
+      case 'fos.iden_verificar_ayuda': return 'Selecciona un fichero .json de certificado para verificar su autenticidad.';
+      case 'fos.iden_seleccionar_certificado': return 'Seleccionar certificado';
+      case 'fos.iden_certificado_verificado': return 'Certificado verificado';
+      case 'fos.iden_certificado_no_valido': return 'Certificado NO válido';
+      case 'fos.iden_hash_no_coincide': return 'El hash no coincide. El certificado ha sido alterado.';
+      case 'fos.iden_especie': return 'Especie';
+      case 'fos.iden_edad': return 'Edad';
+      case 'fos.iden_formacion': return 'Formación';
+      case 'fos.iden_fecha_descubrimiento': return 'Fecha descubrimiento';
+      case 'fos.iden_descubridor': return 'Descubridor';
+      case 'fos.iden_email_descubridor': return 'Email descubridor';
+      case 'fos.iden_fecha_certificacion': return 'Fecha certificación';
+      case 'fos.iden_error_importando': return 'Error al importar';
+      case 'fos.iden_importar_card_recibida': return 'Importar card recibida';
+      case 'fos.iden_no_se_pudo_abrir': return 'No se pudo abrir el archivo';
+      case 'fos.iden_card_importada': return 'Card importada';
+      case 'fos.iden_aparece_en_compartidas': return 'Aparece en la pestaña «Compartidas» de tu lista de hallazgos.';
+      case 'fos.iden_importar_a_mi_coleccion': return 'Importar a mi colección';
+      case 'fos.iden_hecho': return 'Hecho';
+      case 'fos.iden_modo_experto_aviso': return 'Estás en Modo Experto. Esta card se procesa para revisión — no entra en tu colección personal.';
+      case 'fos.iden_certificar': return 'Certificar';
+      case 'fos.iden_acusar_recibo': return 'Acusar recibo (revisaré más tarde)';
+      case 'fos.iden_descartar': return 'Descartar (no es de interés científico)';
+      case 'fos.iden_acuse_de_recibo': return 'Acuse de recibo';
+      case 'fos.iden_descarte': return 'Descarte';
+      case 'fos.iden_devolucion_firmada': return 'Devolución firmada por la autoridad.';
+      case 'fos.iden_firma_valida': return 'Firma criptográfica válida — los datos vienen tal cual los firmó el remitente.';
+      case 'fos.iden_firma_invalida': return 'FIRMA INVÁLIDA — los datos del archivo NO coinciden con la firma del remitente. Podrían haber sido modificados.';
+      case 'fos.iden_remitente': return 'Remitente';
+      case 'fos.iden_nombre_declarado': return 'Nombre declarado';
+      case 'fos.iden_huella': return 'Huella';
+      case 'fos.iden_hallazgo': return 'Hallazgo';
+      case 'fos.iden_tipo': return 'Tipo';
+      case 'fos.iden_fecha': return 'Fecha';
+      case 'fos.iden_coordenadas': return 'Coordenadas';
+      case 'fos.iden_estrato': return 'Estrato';
+      case 'fos.iden_notas': return 'Notas';
+      case 'fos.iden_tipo_fosil': return 'Fósil';
+      case 'fos.iden_tipo_mineral': return 'Mineral';
+      case 'fos.iden_error_sin_manifest': return 'No es un .fos-card válido (sin manifest)';
+      case 'fos.iden_error_formato_desconocido': return 'Formato desconocido: {formato}';
+      case 'fos.iden_error_falta_hallazgo': return 'Falta hallazgo.json';
+      case 'fos.iden_error_version_desconocida': return 'Versión de hallazgo desconocida: {version}';
+      case 'fos.iden_error_sin_autoridad': return 'Modo Experto no activo: no hay autoridad para firmar.';
+      case 'fos.iden_error_sin_clave_autoridad': return 'Modo Experto no activo: no hay clave de autoridad.';
+      case 'fos.iden_com_falta_consentimiento': return 'Falta consentimiento explícito.';
+      case 'fos.iden_com_limite_diario': return 'Has alcanzado el límite diario de subidas. Inténtalo mañana.';
+      case 'fos.iden_com_servidor_rechazo': return 'El servidor rechazó la subida (HTTP {codigo}).';
+      case 'fos.iden_com_tiempo_agotado': return 'El servidor tardó demasiado en responder. Revisa la conexión.';
+      case 'fos.iden_com_sin_conexion': return 'No hay conexión con el servidor. Inténtalo más tarde.';
+      case 'fos.iden_com_no_pudo_procesar': return 'El servidor no pudo procesar la solicitud (HTTP {codigo}).';
+      case 'fos.iden_com_inactiva': return 'La función «comunidad» no está activada en esta versión.';
+      case 'fos.iden_com_sin_fotos': return 'Este hallazgo no tiene fotos. Edítalo y añade una.';
+      case 'fos.iden_com_enviada': return 'Enviada (#{id}). Si se aprueba, te avisaremos.';
+      case 'fos.iden_com_error_inesperado': return 'Error inesperado';
+      case 'fos.iden_com_compartir_titulo': return 'Compartir con la comunidad';
+      case 'fos.iden_com_intro': return 'Un geólogo revisará tu aportación. Si la aprueba, aparecerá en la app asociada a esta formación geológica, para que otros aficionados puedan ver lo que se encuentra aquí.';
+      case 'fos.iden_com_se_envia': return 'Se envía:';
+      case 'fos.iden_com_foto_principal': return 'Foto principal del hallazgo';
+      case 'fos.iden_com_tipo_valor': return 'Tipo ({tipo})';
+      case 'fos.iden_com_especie_declarada': return 'Especie/grupo declarado: {valor}';
+      case 'fos.iden_com_edad_declarada': return 'Edad declarada: {valor}';
+      case 'fos.iden_com_formacion_declarada': return 'Formación declarada: {valor}';
+      case 'fos.iden_com_tus_notas': return 'Tus notas';
+      case 'fos.iden_com_no_se_envia': return 'NO se envía:';
+      case 'fos.iden_com_nombre_autor': return 'Tu nombre como autor visible';
+      case 'fos.iden_com_identidad_cripto': return 'Tu identidad criptográfica del hallazgo';
+      case 'fos.iden_com_email_no_valido': return 'Email no válido';
+      case 'fos.iden_com_email_contacto': return 'Email de contacto';
+      case 'fos.iden_com_email_ayuda': return 'Para avisarte si la foto se aprueba o rechaza. NUNCA se publica.';
+      case 'fos.iden_com_tu_nombre_opcional': return 'Tu nombre (opcional)';
+      case 'fos.iden_com_nombre_ayuda': return 'Solo lo verá el curador. Nunca aparece en la app.';
+      case 'fos.iden_com_consentimiento': return 'Acepto la política de privacidad y entiendo que la app no es un canal oficial para reportar patrimonio paleontológico — para hallazgos importantes contacta también con el servicio de Patrimonio de tu CCAA.';
+      case 'fos.iden_com_enviar_revision': return 'Enviar para revisión';
+      case 'fos.iden_com_formacion_codigo': return 'Formación · {codigo}';
+      case 'fos.iden_com_fotos_comunidad': return 'Fotos de la comunidad';
+      case 'fos.iden_com_sin_fotos_formacion': return 'Aún no hay fotos de la comunidad para esta formación. Si encuentras algo aquí, puedes ser el primero — comparte tu hallazgo desde la pestaña Lista.';
+      case 'fos.iden_com_sin_especie': return '(sin especie)';
+      case 'fos.mapa_capa_callejero': return 'Callejero';
+      case 'fos.mapa_capa_satelite': return 'Satélite';
+      case 'fos.mapa_capa_topografico': return 'Topográfico';
+      case 'fos.mapa_capa_edades_1m': return 'Edades 1M';
+      case 'fos.mapa_capa_litologias_1m': return 'Litologías 1M';
+      case 'fos.mapa_capa_geode_desc': return 'Recomendada · continuo geológico nacional. Cada polígono lleva edad, formación y litología; lo que ves y lo que la app sugiere para fósiles van siempre coordinados.';
+      case 'fos.mapa_capa_magna_desc': return 'Color por litología (tipo de roca: caliza, arcilla, granito…). Máximo detalle 1:50.000. Útil para "qué tipo de roca piso", NO para ver edades de un vistazo.';
+      case 'fos.mapa_capa_edades_desc': return 'Color directo por edad geológica (era/período). Lo mejor para ver eras de un vistazo. Resolución 1:1.000.000 — más baja, sirve para escala regional.';
+      case 'fos.mapa_capa_litologias_desc': return 'Litología general (versión simplificada de MAGNA). Resolución 1:1.000.000. Para escala regional cuando MAGNA está demasiado denso.';
+      case 'fos.mapa_lig_sin_nombre': return 'LIG sin nombre';
+      case 'fos.mapa_rosa_vientos': return 'N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSO,SO,OSO,O,ONO,NO,NNO';
+      case 'fos.mapa_estas_en': return '{emoji} Estás en {nombre}. Toca para ver qué buscar.';
+      case 'fos.mapa_ver_ficha': return 'Ver ficha';
+      case 'fos.mapa_esperando_gps': return 'Esperando GPS para calcular distancia.';
+      case 'fos.mapa_distancia_y_rumbo': return 'Distancia y rumbo';
+      case 'fos.mapa_desde_tu_posicion': return 'Desde tu posición a {coordenadas}';
+      case 'fos.mapa_detener_track': return 'Detener track';
+      case 'fos.mapa_iniciar_track': return 'Iniciar track';
+      case 'fos.mapa_nombre_opcional': return 'Nombre (opcional)';
+      case 'fos.mapa_descartar': return 'Descartar';
+      case 'fos.mapa_track_guardado': return 'Track guardado';
+      case 'fos.mapa_grabando_track_aviso': return '🔴 Grabando track. Puedes bloquear la pantalla; el track sigue corriendo.';
+      case 'fos.mapa_acercate_monumentos': return '🗿 Acércate más (zoom ≥ 9) para cargar monumentos.';
+      case 'fos.mapa_sin_monumentos': return '🗿 Sin monumentos OSM en esta vista. Prueba a desplazar el mapa.';
+      case 'fos.mapa_monumentos_cargados': return '🗿 {n} monumentos cargados.';
+      case 'fos.mapa_error_monumentos': return 'Error monumentos: {error}';
+      case 'fos.mapa_acercate_cuevas': return '🦇 Acércate más (zoom ≥ 10) para cargar cuevas.';
+      case 'fos.mapa_sin_cuevas': return '🦇 Sin cuevas OSM en esta vista. Prueba a desplazar el mapa.';
+      case 'fos.mapa_cuevas_cargadas': return '🦇 {n} cuevas cargadas.';
+      case 'fos.mapa_error_cuevas': return 'Error cuevas: {error}';
+      case 'fos.mapa_que_buscar': return 'Qué buscar';
+      case 'fos.mapa_como_llegar': return 'Cómo llegar';
+      case 'fos.mapa_marcar_hallazgo_aqui': return 'Marcar hallazgo aquí';
+      case 'fos.mapa_fuente': return 'Fuente: {fuente}';
+      case 'fos.mapa_cronologia': return 'Cronología: {valor}';
+      case 'fos.mapa_ver_en_osm': return 'Ver en OpenStreetMap';
+      case 'fos.mapa_especie': return 'Especie';
+      case 'fos.mapa_edad': return 'Edad';
+      case 'fos.mapa_formacion': return 'Formación';
+      case 'fos.mapa_fecha': return 'Fecha';
+      case 'fos.mapa_coordenadas': return 'Coordenadas';
+      case 'fos.mapa_estrato': return 'Estrato';
+      case 'fos.mapa_notas': return 'Notas';
+      case 'fos.mapa_borrar_hallazgo_pregunta': return '¿Borrar este hallazgo?';
+      case 'fos.mapa_compartir_texto': return 'Compartir texto';
+      case 'fos.mapa_tarjeta': return 'Tarjeta';
+      case 'fos.mapa_certificado_verificable': return 'Certificado verificable';
+      case 'fos.mapa_enviar_otra_app': return 'Enviar a otra app Fósiles';
+      case 'fos.mapa_historial_trazabilidad': return 'Historial de trazabilidad';
+      case 'fos.mapa_evento_anadido': return 'Evento añadido al historial.';
+      case 'fos.mapa_anadir_trazabilidad': return 'Añadir trazabilidad';
+      case 'fos.mapa_anadir_evento': return 'Añadir evento';
+      case 'fos.mapa_compartir_titulo': return 'Hallazgo de fósil';
+      case 'fos.mapa_asunto_hallazgo': return 'Hallazgo: {especie}';
+      case 'fos.mapa_error_tarjeta': return 'Error generando tarjeta: {error}';
+      case 'fos.mapa_precision_coordenadas': return 'Precisión de las coordenadas';
+      case 'fos.mapa_precision_explicacion': return 'Las coordenadas precisas pueden facilitar el saqueo de yacimientos. Para colegas de confianza o el Instituto, manda precisas; para aficionados desconocidos o público en general, difuminadas (precisión ~1 km).';
+      case 'fos.mapa_difuminadas_recomendado': return 'Difuminadas (~1 km)  ·  recomendado';
+      case 'fos.mapa_precisas': return 'Precisas (~11 cm)';
+      case 'fos.mapa_asunto_card': return 'Card de hallazgo: {especie}';
+      case 'fos.mapa_sin_especie': return '(sin especie)';
+      case 'fos.mapa_texto_card': return 'Card de Fósiles ({mb} MB · {fotos} fotos · {modo}). Para importarlo, abre el archivo en otra instalación de la app Fósiles.';
+      case 'fos.mapa_coords_difuminadas': return 'coords difuminadas';
+      case 'fos.mapa_coords_precisas': return 'coords precisas';
+      case 'fos.mapa_error_card': return 'Error generando card: {error}';
+      case 'fos.mapa_configura_nombre': return 'Configura primero tu nombre en Ajustes → Perfil e identidad.';
+      case 'fos.mapa_profundidad': return 'Profundidad: {n} m';
+      case 'fos.mapa_longitud': return 'Longitud: {n} m';
+      case 'fos.mapa_tipo': return 'Tipo: {tipo}';
+      case 'fos.mapa_sin_datos': return 'Sin datos';
+      case 'fos.mapa_igme_sin_info': return 'El IGME no devuelve información en este punto.';
+      case 'fos.mapa_geologia_en_punto': return 'Geología en este punto';
+      case 'fos.mapa_antiguedad': return 'Antigüedad';
+      case 'fos.mapa_era_periodo': return 'Era / Período';
+      case 'fos.mapa_litologia': return 'Litología';
+      case 'fos.mapa_lig_cerca': return 'Lugares de Interés Geológico cerca';
+      case 'fos.mapa_yacimientos_cercanos': return 'Yacimientos curados cercanos';
+      case 'fos.mapa_fosiles_probables': return 'Fósiles probables aquí · {periodo}';
+      case 'fos.mapa_sin_fosiles_edad': return 'No hay fósiles asociados en la guía para esta edad.';
+      case 'fos.mapa_minerales_probables': return '💎 Minerales probables aquí';
+      case 'fos.mapa_fotos_comunidad': return 'Fotos de la comunidad en {formacion}';
+      case 'fos.mapa_interes_principal': return 'Interés principal';
+      case 'fos.mapa_descripcion': return 'Descripción';
+      case 'fos.mapa_a_distancia_km': return 'a {km} km';
+      case 'fos.mapa_capa_base': return 'Capa base';
+      case 'fos.mapa_capa_geologica': return 'Capa geológica';
+      case 'fos.mapa_sin_geologia': return 'Sin geología';
+      case 'fos.mapa_mas_capas': return 'Más capas y opciones';
+      case 'fos.mapa_lig': return 'Lugares de Interés Geológico';
+      case 'fos.mapa_relieve_sombreado': return 'Relieve sombreado';
+      case 'fos.mapa_mapa_de_calor': return 'Hallazgos como mapa de calor';
+      case 'fos.mapa_yacimientos_curados': return 'Yacimientos curados';
+      case 'fos.mapa_tracks_guardados': return 'Tracks guardados';
+      case 'fos.mapa_como_leer_mapa': return 'Cómo leer el mapa';
+      case 'fos.mapa_sin_conexion_cache': return 'Sin conexión — usando datos en caché';
+      case 'fos.mapa_toca_marcar': return '👆 Toca el mapa para marcar el hallazgo';
+      case 'fos.mapa_toca_geologia': return '👆 Toca el mapa para ver la geología';
+      case 'fos.mapa_asistente_sin_conexion': return 'El asistente IGME necesita conexión';
+      case 'fos.mapa_consultando_igme': return 'Consultando IGME…';
+      case 'fos.mapa_sin_datos_igme_centro': return 'Sin datos del IGME en el centro del mapa';
+      case 'fos.mapa_marcar_punto': return 'Marcar punto';
+      case 'fos.mapa_explorar_geologia': return 'Explorar geología';
+      case 'fos.mapa_cargando': return 'Cargando…';
+      case 'fos.mapa_cuevas': return 'Cuevas';
+      case 'fos.mapa_megalitos': return 'Megalitos';
+      case 'fos.mapa_asistente_activo': return 'Asistente activo';
+      case 'fos.mapa_asistente': return 'Asistente';
+      case 'fos.mapa_cerrar': return 'Cerrar';
+      case 'fos.mapa_mareas': return 'Mareas';
+      case 'fos.mapa_bajamar_hora': return 'Bajamar: {hora}';
+      case 'fos.mapa_bajamar': return 'Bajamar';
+      case 'fos.mapa_pleamar': return 'Pleamar';
+      case 'fos.mapa_hoy_minusculas': return 'hoy';
+      case 'fos.mapa_manana_minusculas': return 'mañana';
+      case 'fos.mapa_firmado_por_ti': return '✓ Firmado por ti';
+      case 'fos.mapa_firmado_por_otra': return 'Firmado por otra persona';
+      case 'fos.mapa_sin_firma': return 'Sin firma criptográfica';
+      case 'fos.mapa_firma_rota': return '✗ Firma rota — los datos han sido modificados';
+      case 'fos.mapa_verificando_certificacion': return 'Verificando certificación…';
+      case 'fos.mapa_cadena_invalida': return 'Cadena de certificación inválida — al menos un eslabón está roto.';
+      case 'fos.mapa_certificada_por': return 'Certificada por {autoridad}';
+      case 'fos.mapa_firmada_una': return 'Firmada {fecha} · 1 certificación';
+      case 'fos.mapa_firmada_varias': return 'Firmada {fecha} · {n} certificaciones';
+      case 'fos.mapa_selecciona_capa': return 'Selecciona al menos una capa.';
+      case 'fos.mapa_confirmar_descarga': return 'Vas a descargar {n} teselas (~{mb} MB). ¿Continuar?';
+      case 'fos.mapa_descargar': return 'Descargar';
+      case 'fos.mapa_teselas_en_cache': return '✅ {n} teselas en caché ({fallidas} fallidas).';
+      case 'fos.mapa_descargar_mapas_offline': return 'Descargar mapas offline';
+      case 'fos.mapa_centra_zona': return 'Centra y haz zoom en el mapa de arriba sobre la zona donde vayas a estar.';
+      case 'fos.mapa_zoom_minimo': return 'Zoom mínimo: {n}';
+      case 'fos.mapa_zoom_maximo': return 'Zoom máximo: {n}';
+      case 'fos.mapa_capa_geologica_igme_opcional': return 'Capa geológica IGME (opcional)';
+      case 'fos.mapa_ninguna': return 'Ninguna';
+      case 'fos.mapa_resumen_teselas': return '{n} teselas (~{mb} MB) en {capas} capas';
+      case 'fos.mapa_descargando': return 'Descargando…';
+      case 'fos.mapa_descargar_ahora': return 'Descargar ahora';
+      case 'fos.mapa_progreso_descarga': return '{descargadas}/{total} ({fallidas} fallidas) · {mb} MB';
+      case 'fos.mapa_track': return 'Track';
+      case 'fos.mapa_tracks': return 'Tracks';
+      case 'fos.mapa_error_cargando_tracks': return 'Error cargando tracks: {error}';
+      case 'fos.mapa_error_abriendo_track': return 'Error abriendo track: {error}';
+      case 'fos.mapa_track_sin_puntos': return 'Este track no tiene puntos guardados (la grabación se detuvo antes del primer fix GPS).';
+      case 'fos.mapa_asunto_gpx': return 'Track GPX';
+      case 'fos.mapa_informe_pdf': return 'Informe PDF';
+      case 'fos.mapa_borrar_track_pregunta': return '¿Borrar este track?';
+      case 'fos.mapa_asunto_informe_salida': return 'Informe de salida';
+      case 'fos.mapa_error_pdf': return 'Error generando PDF: {error}';
+      case 'fos.mapa_n_puntos': return '{n} puntos';
+      case 'fos.mapa_gpx_sin_puntos': return 'El GPX no contiene puntos de track.';
+      case 'fos.mapa_importado': return 'Importado: {nombre} ({n} puntos)';
+      case 'fos.mapa_error_importando_gpx': return 'Error importando GPX: {error}';
+      case 'fos.mapa_importar_gpx': return 'Importar GPX';
+      case 'fos.mapa_sin_tracks': return 'Aún no has grabado ningún track.';
+      case 'fos.mapa_sin_tracks_ayuda': return 'Usa el botón ⏺ del mapa para empezar.';
+      case 'fos.mapa_track_del': return 'Track del {fecha}';
+      case 'fos.mapa_notificacion_grabando': return 'Grabando track';
+      case 'fos.mapa_notificacion_registrando_ruta': return 'Fósiles está registrando tu ruta';
+      case 'fos.mapa_track_recuperado': return 'Track recuperado {fecha}';
+      case 'fos.mapa_track_importado': return 'Track importado';
+      case 'fos.mapa_overpass_fallaron': return 'Todos los servidores Overpass fallaron · último: {error}';
+      case 'fos.mapa_monumento_megalito': return 'Megalito (dolmen / cromlech / harrespil)';
+      case 'fos.mapa_monumento_dolmen': return 'Dolmen';
+      case 'fos.mapa_monumento_tumulo': return 'Túmulo';
+      case 'fos.mapa_monumento_fondo_cabana': return 'Fondo de cabaña';
+      case 'fos.mapa_monumento_fortificacion': return 'Fortificación / castro';
+      case 'fos.mapa_monumento_castillo': return 'Castillo';
+      case 'fos.mapa_monumento_poblado': return 'Poblado / asentamiento';
+      case 'fos.mapa_monumento_menhir': return 'Menhir';
+      case 'fos.mapa_monumento_piedra_antigua': return 'Piedra antigua';
+      case 'fos.mapa_monumento_circulo_piedras': return 'Círculo de piedras';
+      case 'fos.mapa_monumento_tumba': return 'Tumba';
+      case 'fos.mapa_monumento_ruinas': return 'Ruinas';
+      case 'fos.mapa_monumento_monumento': return 'Monumento';
+      case 'fos.mapa_monumento_memorial': return 'Memorial';
+      case 'fos.mapa_monumento_crucero': return 'Crucero / cruz de caminos';
+      case 'fos.mapa_monumento_yacimiento': return 'Yacimiento arqueológico';
+      case 'fos.mapa_sin_nombre': return 'Sin nombre';
+      case 'fos.mapa_ayuda_capas_titulo': return 'Capas geológicas del mapa';
+      case 'fos.mapa_ayuda_capas_texto': return 'En la barra superior del mapa, el icono de la montaña abre el desplegable de capas geológicas del IGME. La app arranca con la primera de la lista (GEODE 50). Para qué sirve cada una:';
+      case 'fos.mapa_ayuda_capas_nota': return 'Las sugerencias de fósiles y minerales del asistente y del explorador SIEMPRE consultan GEODE 50 internamente, sin importar qué capa esté pintada — así cambiar de capa visual no hace bailar la lista de fósiles probables.';
+      case 'fos.mapa_ayuda_otras_titulo': return 'Otras capas y filtros';
+      case 'fos.mapa_ayuda_menu_superior': return 'En el menú «⋮» de la barra superior del mapa:';
+      case 'fos.mapa_ayuda_item_lig': return '⭐ LIG — Lugares de Interés Geológico declarados por el IGME.';
+      case 'fos.mapa_ayuda_item_relieve': return '⛰️ Relieve sombreado (hillshade) para ver topografía.';
+      case 'fos.mapa_ayuda_item_calor': return '🔥 Hallazgos como mapa de calor.';
+      case 'fos.mapa_ayuda_item_yacimientos': return '🏛️ Yacimientos curados — selección manual con fichas, aparecen también como pista de "yacimientos cercanos" cuando pinchas a menos de 5 km.';
+      case 'fos.mapa_ayuda_boton_capas': return 'En el botón de capas de abajo a la izquierda del mapa:';
+      case 'fos.mapa_ayuda_item_cuevas': return '🦇 Cuevas (OpenStreetMap, requiere zoom ≥ 10).';
+      case 'fos.mapa_ayuda_item_megalitos': return '🗿 Megalitos y monumentos arqueológicos (OSM, zoom ≥ 9).';
+      case 'fos.mapa_ayuda_sugerencias_titulo': return 'Sugerencias de fósiles y minerales';
+      case 'fos.mapa_ayuda_sugerencias_intro': return 'Al pinchar un punto (modo Explorar geología) o con el asistente activado en el centro del mapa, la app cruza la respuesta del IGME con sus catálogos locales:';
+      case 'fos.mapa_ayuda_sugerencias_formacion': return 'Si la formación que devuelve GEODE coincide con el catálogo de formaciones ibéricas, se sugieren los fósiles característicos de esa formación (sello PENDIENTE_VALIDACION paleontológica hasta auditoría de comité científico).';
+      case 'fos.mapa_ayuda_sugerencias_periodo': return 'Si no, se sugieren fósiles del período inferido y filtrados por el ambiente sedimentario probable de la litología (p. ej. granito o basalto → sin fósiles; caliza → marinos).';
+      case 'fos.mapa_ayuda_sugerencias_minerales': return 'Los minerales se ponderan por litología: cada grupo (granítico, carbonático, basáltico, evaporítico, metamórfico…) tiene su propio set probable.';
+      case 'fos.mapa_orientacion_estrato': return 'Orientación del estrato';
+      case 'fos.mapa_orientacion_instrucciones': return 'Apoya el teléfono plano sobre la superficie de la capa rocosa, pantalla hacia arriba. Mantén estable y pulsa Capturar.';
+      case 'fos.mapa_strike': return 'Strike (rumbo)';
+      case 'fos.mapa_strike_ayuda': return 'Línea horizontal de la capa';
+      case 'fos.mapa_dip': return 'Dip (buzamiento)';
+      case 'fos.mapa_dip_ayuda': return 'Inclinación desde la horizontal';
+      case 'fos.mapa_direccion_dip': return 'Dirección de dip';
+      case 'fos.mapa_direccion_dip_ayuda': return 'Hacia dónde cae la capa';
+      case 'fos.mapa_brujula': return 'Brújula (top del móvil)';
+      case 'fos.mapa_solo_referencia': return 'Sólo referencia';
+      case 'fos.mapa_aviso_casi_horizontal': return '⚠ La superficie está casi horizontal — el rumbo será impreciso.';
+      case 'fos.mapa_aviso_casi_vertical': return '⚠ Capa casi vertical — usa otra cara para medir mejor.';
+      case 'fos.mapa_capturar': return 'Capturar';
+      case 'fos.mapa_permiso_bloqueado': return 'Permiso de ubicación bloqueado';
+      case 'fos.mapa_permiso_bloqueado_texto': return 'Has denegado el permiso de forma permanente. Para usar el GPS tienes que activarlo manualmente desde Ajustes del sistema.';
+      case 'fos.mapa_activa_gps': return 'Activa el GPS del teléfono y vuelve a intentarlo.';
+      case 'fos.mapa_necesito_permiso': return 'Necesito permiso de ubicación para esta acción.';
+      case 'fos.mapa_abrir_ajustes': return 'Abrir Ajustes';
+      case 'fos.mapa_ubicacion_seleccionada': return 'Ubicación seleccionada';
+      case 'fos.mapa_meteo_sin_ubicacion': return 'No se pudo obtener la ubicación. Activa el GPS.';
+      case 'fos.mapa_meteorologia': return 'Meteorología';
+      case 'fos.mapa_buscar_lugar': return 'Buscar lugar…';
+      case 'fos.mapa_usar_mi_ubicacion': return 'Usar mi ubicación';
+      case 'fos.mapa_meteo_vacio': return 'Busca un lugar o pulsa el botón de ubicación para ver la previsión meteorológica';
+      case 'fos.mapa_proximas_horas': return 'Próximas horas';
+      case 'fos.mapa_ahora': return 'Ahora';
+      case 'fos.mapa_proximos_dias': return 'Próximos días';
+      case 'fos.mapa_hoy': return 'Hoy';
+      case 'fos.mapa_datos_open_meteo': return 'Datos: Open-Meteo (gratuito, sin API key)';
+      case 'fos.mapa_meteo_despejado': return 'Despejado';
+      case 'fos.mapa_meteo_mayormente_despejado': return 'Mayormente despejado';
+      case 'fos.mapa_meteo_parcialmente_nublado': return 'Parcialmente nublado';
+      case 'fos.mapa_meteo_nublado': return 'Nublado';
+      case 'fos.mapa_meteo_niebla': return 'Niebla';
+      case 'fos.mapa_meteo_llovizna_ligera': return 'Llovizna ligera';
+      case 'fos.mapa_meteo_llovizna_moderada': return 'Llovizna moderada';
+      case 'fos.mapa_meteo_llovizna_densa': return 'Llovizna densa';
+      case 'fos.mapa_meteo_lluvia_ligera': return 'Lluvia ligera';
+      case 'fos.mapa_meteo_lluvia_moderada': return 'Lluvia moderada';
+      case 'fos.mapa_meteo_lluvia_fuerte': return 'Lluvia fuerte';
+      case 'fos.mapa_meteo_nevada_ligera': return 'Nevada ligera';
+      case 'fos.mapa_meteo_nevada_moderada': return 'Nevada moderada';
+      case 'fos.mapa_meteo_nevada_fuerte': return 'Nevada fuerte';
+      case 'fos.mapa_meteo_chubascos_ligeros': return 'Chubascos ligeros';
+      case 'fos.mapa_meteo_chubascos_moderados': return 'Chubascos moderados';
+      case 'fos.mapa_meteo_chubascos_fuertes': return 'Chubascos fuertes';
+      case 'fos.mapa_meteo_tormenta': return 'Tormenta';
+      case 'fos.mapa_meteo_tormenta_granizo': return 'Tormenta con granizo';
+      case 'fos.mapa_meteo_desconocido': return 'Desconocido';
+      case 'fos.mapa_cueva_sin_nombre': return 'Cueva sin nombre';
+      case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sin nombre';
+      case 'nat.ajus_cabecera_titulo': return 'Cuaderno de campo de naturaleza';
+      case 'nat.ajus_cabecera_sub': return 'Observa, aprende y convive con la biodiversidad que te rodea';
+      case 'nat.ajus_explorar_mapa_sub': return 'Especies y observaciones';
+      case 'nat.ajus_meteo_sub': return 'Previsión para tu salida';
+      case 'nat.ajus_chat_ia_sub': return 'Resuelve dudas, identifica especies, pide consejos de observación';
+      case 'nat.ajus_salidas_campo': return 'Salidas de campo';
+      case 'nat.ajus_salidas_campo_sub': return 'Agrupa hallazgos, track y meteorología de una jornada en una sola unidad narrativa';
+      case 'nat.ajus_etica_titulo': return 'Explora, observa y convive';
+      case 'nat.ajus_etica_sub': return 'Unas pautas para disfrutar de la naturaleza sumando, sin restar.';
+      case 'nat.ajus_etica1_titulo': return 'Observa con curiosidad y respeto';
+      case 'nat.ajus_etica1_texto': return 'Acércate a los animales con calma, mantén la distancia y disfruta viendo cómo se comportan cuando no se sienten amenazados. Unos prismáticos o el zoom de la cámara te darán mejores recuerdos que intentar tocarlos. Si se van, es que estabas demasiado cerca.';
+      case 'nat.ajus_etica2_titulo': return 'Las plantas también son protagonistas';
+      case 'nat.ajus_etica2_texto': return 'Muchas especies son frágiles y tardan años en florecer. Fotografíalas en su sitio: la imagen dura para siempre y la planta sigue viva. Quédate en los senderos en zonas sensibles; las raíces y los brotes te lo agradecerán.';
+      case 'nat.ajus_etica3_titulo': return 'Cada observación tuya suma';
+      case 'nat.ajus_etica3_texto': return 'Tus registros ayudan a científicas y conservacionistas a entender cómo se mueven, cuándo florecen o dónde anidan las especies. La app te permite identificar y geolocalizar. Es ciencia ciudadana: tú exploras, la ciencia avanza.';
+      case 'nat.ajus_etica4_titulo': return 'Disfruta con seguridad';
+      case 'nat.ajus_etica4_texto': return 'Lleva agua, protección solar y calzado cómodo. Consulta la previsión meteorológica antes de salir — la app te la da. Comparte tu ruta con alguien si vas a zonas sin cobertura. Una buena excursión es la que termina con una sonrisa.';
+      case 'nat.ajus_etica5_titulo': return 'Que tu paso sea invisible';
+      case 'nat.ajus_etica5_texto': return 'Llévate tu basura… y alguna más si la encuentras. No hagas fuego. Deja piedras, plumas y restos donde estaban: forman parte del paisaje y del ciclo de la vida. La naturaleza no necesita recuerdos; tú ya te llevas la experiencia.';
+      case 'nat.ajus_como_usar': return 'Cómo usar Naturaleza';
+      case 'nat.ajus_paso1_texto': return 'Activa los lugares de interés (miradores, humedales, reservas) y consulta observaciones GBIF cercanas.';
+      case 'nat.ajus_paso2_texto': return 'Toca + para añadir una especie con foto, coordenadas y categoría (animal, insecto, planta).';
+      case 'nat.ajus_paso3_titulo': return 'Identifica con IA';
+      case 'nat.ajus_paso3_texto': return 'La app identifica la especie por imagen usando Claude o Pl@ntNet.';
+      case 'nat.ajus_paso4_titulo': return 'Consulta la guía';
+      case 'nat.ajus_paso4_texto': return 'Accede a la guía de especies con fotos de Wikipedia, distintivos, hábitat y usos.';
+      case 'nat.ajus_paso5_titulo': return 'Haz el quiz';
+      case 'nat.ajus_paso5_texto': return 'Pon a prueba tus conocimientos con el quiz de identificación por imagen.';
+      case 'nat.ajus_salida_sin_titulo': return 'Salida sin título';
+      case 'nat.ajus_salida_en_curso': return 'Salida en curso · desde {hora}';
+      case 'nat.ajus_backup_asunto': return 'Copia de seguridad de Naturaleza';
+      case 'nat.ajus_backup_texto': return 'Copia de seguridad ({kb} KB)';
+      case 'nat.ajus_restaurados': return 'Restaurados {hallazgos} hallazgos y {fotos} fotos. Reinicia la app para ver los cambios.';
+      case 'nat.ajus_claves_modelo_sub': return 'Claude para identificar, Pl@ntNet para plantas y DeepSeek para el chat';
+      case 'nat.ajus_backup_explicacion': return 'Exporta toda tu base (hallazgos + tracks + fotos) en un fichero único .natbackup. Guárdalo en Drive/USB/correo. Para restaurar, selecciona el .natbackup; reemplazará los datos actuales.';
+      case 'nat.ajus_sobre_app_texto': return 'Naturaleza — Cuaderno de campo (animales, insectos y plantas). Versión Flutter para Android.';
+      case 'nat.ajus_sobre_app_fuentes': return 'Mapa base: OpenStreetMap, ESRI, OpenTopoMap. Identificación: Claude (Anthropic). Taxonomía y referencias: iNaturalist y GBIF.';
+      case 'nat.ajus_mensaje_compartir': return 'Naturaleza — cuaderno de campo digital para anotar fauna y flora con georreferencia y guía de identificación. App libre, sin anuncios ni tracking. Pruébala: {url}';
+      case 'nat.ajus_chat_vacio': return 'Pregúntame lo que quieras sobre especies, fauna, flora, identificación, observación…';
+      case 'nat.ajus_identificacion_claude': return 'Identificación con Claude';
+      case 'nat.ajus_ia_explicacion': return 'Para identificar especies automáticamente, introduce tu API key de Anthropic. Se guarda solo en tu teléfono y se envía únicamente a api.anthropic.com. Consigue una en console.anthropic.com.';
+      case 'nat.ajus_plantnet_titulo': return 'Identificación de plantas con Pl@ntNet (gratis)';
+      case 'nat.ajus_plantnet_explicacion': return 'Pl@ntNet identifica plantas con una foto y devuelve un ranking de candidatas. El plan gratuito da 500 identificaciones al día. Regístrate en my.plantnet.org y pega aquí tu clave. La foto se envía solo cuando pulses el botón "Identificar planta" en la ficha de un hallazgo.';
+      case 'nat.ajus_conseguir_plantnet': return 'Conseguir clave de Pl@ntNet';
+      case 'nat.ajus_api_plantnet': return 'Clave API de Pl@ntNet';
+      case 'nat.ajus_chat_deepseek': return 'Chat con DeepSeek';
+      case 'nat.ajus_plantnet_falta_clave': return 'Falta la clave API de Pl@ntNet.';
+      case 'nat.ajus_foto_no_existe': return 'La foto no existe en disco: {ruta}';
+      case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet rechazó la clave (HTTP {codigo}). Comprueba la clave en Ajustes → Inteligencia artificial.';
+      case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet devolvió cuota agotada para hoy (HTTP 429).';
+      case 'nat.ajus_servicio_devolvio': return '{servicio} devolvió {codigo}';
+      case 'nat.cat_mamiferos': return 'Mamíferos';
+      case 'nat.cat_aves': return 'Aves';
+      case 'nat.cat_reptiles': return 'Reptiles';
+      case 'nat.cat_anfibios': return 'Anfibios';
+      case 'nat.cat_peces': return 'Peces';
+      case 'nat.cat_insectos': return 'Insectos y artrópodos';
+      case 'nat.cat_plantas': return 'Plantas';
+      case 'nat.cat_setas': return 'Setas y hongos';
+      case 'nat.cat_otros_animales': return 'Otros animales';
+      case 'nat.uso_medicinal': return 'Medicinal';
+      case 'nat.uso_comestible': return 'Comestible';
+      case 'nat.uso_aromatica': return 'Aromática / culinaria';
+      case 'nat.uso_melifera': return 'Melífera';
+      case 'nat.uso_ornamental': return 'Ornamental';
+      case 'nat.uso_toxica': return 'Tóxica';
+      case 'nat.uso_urticante': return 'Urticante / irritante';
+      case 'nat.uso_protegida': return 'Protegida';
+      case 'nat.uso_invasora': return 'Invasora';
+      case 'nat.uso_endemica': return 'Endémica';
+      case 'nat.hall_alternativas_dos_puntos': return 'Alternativas:';
+      case 'nat.hall_altura_aprox_cm': return 'Altura aprox. (cm)';
+      case 'nat.hall_anade_foto_primero': return 'Añade una foto primero.';
+      case 'nat.hall_anotacion_al_margen': return 'Anotación al margen';
+      case 'nat.hall_anotacion_hint': return 'p. ej. al final era hembra, no macho';
+      case 'nat.hall_anotaciones_al_margen': return 'Anotaciones al margen';
+      case 'nat.hall_asunto_exportacion': return 'Hallazgos de naturaleza';
+      case 'nat.hall_asunto_hallazgo': return 'Hallazgo: {titulo}';
+      case 'nat.hall_badge_confirmada': return '✓ Confirmada';
+      case 'nat.hall_badge_corregida': return '→ Corregida';
+      case 'nat.hall_badge_sin_validar': return '? Sin validar';
+      case 'nat.hall_borrar_anotacion': return 'Borrar anotación';
+      case 'nat.hall_buscar_en_inaturalist': return 'Buscar en iNaturalist';
+      case 'nat.hall_buscar_hint': return 'Buscar por nombre, taxonomía, hábitat, notas…';
+      case 'nat.hall_calibracion_por_confianza': return 'Calibración por confianza';
+      case 'nat.hall_candidatos_plantnet': return 'Candidatos de Pl@ntNet';
+      case 'nat.hall_categoria': return 'Categoría';
+      case 'nat.hall_color_sombrero': return 'Color del sombrero';
+      case 'nat.hall_como_confirmar_texto': return 'Cómo confirmar: {texto}';
+      case 'nat.hall_comportamiento': return 'Comportamiento';
+      case 'nat.hall_confianza_etiqueta': return 'Confianza: {nivel}';
+      case 'nat.hall_confianza_probable': return 'Probable';
+      case 'nat.hall_confianza_segura': return 'Segura';
+      case 'nat.hall_confianza_sin_marcar': return 'Sin marcar';
+      case 'nat.hall_confianza_tentativa': return 'Tentativa';
+      case 'nat.hall_configura_clave_plantnet': return 'Configura tu clave de Pl@ntNet en Ajustes → Inteligencia artificial.';
+      case 'nat.hall_confirmada_check': return 'Confirmada ✓';
+      case 'nat.hall_confirmadas': return 'Confirmadas';
+      case 'nat.hall_confirmar_borrar_anotacion': return 'Se borrará esta anotación al margen. El hallazgo y otras anotaciones se mantienen.';
+      case 'nat.hall_corregida_a': return 'Corregida a';
+      case 'nat.hall_corregidas': return 'Corregidas';
+      case 'nat.hall_corregir': return 'Corregir';
+      case 'nat.hall_corregir_identificacion': return 'Corregir identificación';
+      case 'nat.hall_cuando_dijiste_probable': return 'Cuando dijiste "probable"';
+      case 'nat.hall_cuando_dijiste_segura': return 'Cuando dijiste "segura"';
+      case 'nat.hall_cuando_dijiste_tentativa': return 'Cuando dijiste "tentativa"';
+      case 'nat.hall_de_acierto_global': return 'de acierto global';
+      case 'nat.hall_descarga_fallo': return 'Descarga falló ({codigo})';
+      case 'nat.hall_detalles_de': return 'Detalles de {categoria}';
+      case 'nat.hall_dia_n': return 'día {n}';
+      case 'nat.hall_diametro_sombrero_cm': return 'Diámetro sombrero (cm)';
+      case 'nat.hall_dias_antes': return '↑ {n}d antes';
+      case 'nat.hall_dias_despues': return '↓ {n}d después';
+      case 'nat.hall_en_fecha': return 'en fecha';
+      case 'nat.hall_entrara_en_salida': return 'Esta observación entrará en la salida';
+      case 'nat.hall_error_conectar_archivos': return 'No se pudo conectar a los archivos. Comprueba conexión.';
+      case 'nat.hall_error_descargar_foto': return 'No se pudo descargar la foto: {error}';
+      case 'nat.hall_error_guardar_hallazgo': return 'No se pudo guardar el hallazgo: {error}';
+      case 'nat.hall_escribe_dos_letras': return 'Escribe al menos dos letras y pulsa Buscar.';
+      case 'nat.hall_escribe_especie_para_buscar': return 'Escribe primero la especie o el nombre común para buscar.';
+      case 'nat.hall_especie_real': return 'Especie real';
+      case 'nat.hall_especie_real_hint': return 'nombre científico o común';
+      case 'nat.hall_estadio': return 'Estadio';
+      case 'nat.hall_evidencia_avistamiento': return 'Avistamiento';
+      case 'nat.hall_evidencia_excremento': return 'Excremento';
+      case 'nat.hall_evidencia_huella': return 'Huella';
+      case 'nat.hall_evidencia_interaccion': return 'Interacción';
+      case 'nat.hall_evidencia_marca_corteza': return 'Marca en corteza';
+      case 'nat.hall_evidencia_nido_vacio': return 'Nido vacío';
+      case 'nat.hall_evidencia_pluma': return 'Pluma';
+      case 'nat.hall_evidencia_refugio': return 'Refugio o madriguera';
+      case 'nat.hall_evidencia_restos_alimentacion': return 'Restos de alimentación';
+      case 'nat.hall_evidencia_sonido': return 'Sonido o canto';
+      case 'nat.hall_explicacion_evidencia': return 'Si no viste el bicho, no pasa nada. Una huella, una pluma o un canto son hallazgo de pleno derecho.';
+      case 'nat.hall_explicacion_fenologia': return 'Para cada especie con observaciones en al menos dos años, el primer avistamiento de cada año. La desviación compara el año actual con la media de los anteriores.';
+      case 'nat.hall_explicacion_fenologia_vacia': return 'La fenología compara el primer avistamiento de cada especie entre años distintos. Cuando lleves dos primaveras anotando la misma especie, verás aquí si llegó antes o después.';
+      case 'nat.hall_explicacion_hipotesis': return 'Lo que crees que es y por qué. Útil para revisar después qué pistas usaste y cuándo aciertas.';
+      case 'nat.hall_explicacion_tasa_vacia': return 'Cuando empieces a validar identificaciones desde la ficha de cada hallazgo, esta pantalla irá calculando tu tasa de acierto a lo largo del tiempo.';
+      case 'nat.hall_explicacion_validar': return 'Tras revisar fotos o bibliografía, marca si era correcta o anota la especie real. Sirve para calcular tu tasa de acierto en el tiempo.';
+      case 'nat.hall_falta_posicion_gps': return 'Falta la posición GPS.';
+      case 'nat.hall_foto_de_archivo': return 'Foto de archivo';
+      case 'nat.hall_foto_referencia_inaturalist': return 'Foto de referencia (iNaturalist)';
+      case 'nat.hall_guia_anade_entradas': return 'Añade entradas en lib/datos/datos_guia.dart';
+      case 'nat.hall_guia_sin_especies': return 'Sin especies en la guía de {categoria}';
+      case 'nat.hall_habitat': return 'Hábitat';
+      case 'nat.hall_hallazgo_de_naturaleza': return 'Hallazgo de naturaleza';
+      case 'nat.hall_hipotesis': return 'Hipótesis';
+      case 'nat.hall_hipotesis_hint': return 'creo que es X porque…  (vuelo, canto, hábitat…)';
+      case 'nat.hall_identificacion_actual': return 'Identificación actual: {especie}';
+      case 'nat.hall_identificacion_fallo': return 'Identificación falló: {error}';
+      case 'nat.hall_identificar_plantnet_gratis': return 'Identificar planta con Pl@ntNet (gratis)';
+      case 'nat.hall_limpiar_busqueda': return 'Limpiar búsqueda';
+      case 'nat.hall_mi_fenologia': return 'Mi fenología';
+      case 'nat.hall_mi_fenologia_subtitulo': return 'Primer registro de cada especie por año';
+      case 'nat.hall_n_de_total_hallazgos': return '{n} de {total} hallazgos';
+      case 'nat.hall_n_exportados': return '{n} hallazgos exportados.';
+      case 'nat.hall_n_hallazgos': return '{n} hallazgos';
+      case 'nat.hall_n_sin_revisar': return 'Tienes {n} hallazgos sin revisar. Abre cualquiera desde la lista y pulsa "Confirmar" o "Corregir" tras revisar fotos o consultar bibliografía.';
+      case 'nat.hall_nombre_cientifico_binomial': return 'Nombre científico (binomial)';
+      case 'nat.hall_nombre_comun_o_cientifico': return 'Nombre común o científico…';
+      case 'nat.hall_nombre_con_confianza': return '{nombre} (confianza: {confianza})';
+      case 'nat.hall_numero_ejemplares': return 'Número de ejemplares';
+      case 'nat.hall_numero_individuos': return 'Número de individuos';
+      case 'nat.hall_op_adulto': return 'adulto';
+      case 'nat.hall_op_amarillo': return 'amarillo';
+      case 'nat.hall_op_arbol': return 'árbol';
+      case 'nat.hall_op_arbusto': return 'arbusto';
+      case 'nat.hall_op_avistamiento': return 'avistamiento';
+      case 'nat.hall_op_bajo_conifera': return 'bajo conífera';
+      case 'nat.hall_op_bajo_planifolio': return 'bajo planifolio';
+      case 'nat.hall_op_blanco_crema': return 'blanco / crema';
+      case 'nat.hall_op_excremento': return 'excremento';
+      case 'nat.hall_op_flor': return 'flor';
+      case 'nat.hall_op_fruto': return 'fruto';
+      case 'nat.hall_op_gris_negruzco': return 'gris / negruzco';
+      case 'nat.hall_op_herbacea': return 'herbácea';
+      case 'nat.hall_op_huella': return 'huella';
+      case 'nat.hall_op_huevo': return 'huevo';
+      case 'nat.hall_op_larva': return 'larva';
+      case 'nat.hall_op_madera_muerta': return 'madera muerta';
+      case 'nat.hall_op_mata': return 'mata';
+      case 'nat.hall_op_naranja_rojizo': return 'naranja / rojizo';
+      case 'nat.hall_op_nido_o_madriguera': return 'nido o madriguera';
+      case 'nat.hall_op_ninfa': return 'ninfa';
+      case 'nat.hall_op_otro': return 'otro';
+      case 'nat.hall_op_pardo_marron': return 'pardo / marrón';
+      case 'nat.hall_op_pluma_o_pelo': return 'pluma o pelo';
+      case 'nat.hall_op_pradera_herbazal': return 'pradera / herbazal';
+      case 'nat.hall_op_pupa': return 'pupa';
+      case 'nat.hall_op_rojo_escarlata': return 'rojo escarlata';
+      case 'nat.hall_op_semilla': return 'semilla';
+      case 'nat.hall_op_senescente': return 'senescente';
+      case 'nat.hall_op_suculenta': return 'suculenta';
+      case 'nat.hall_op_suelo_hojarasca': return 'suelo / hojarasca';
+      case 'nat.hall_op_tocon': return 'tocón';
+      case 'nat.hall_op_trepadora': return 'trepadora';
+      case 'nat.hall_op_vegetativa': return 'vegetativa';
+      case 'nat.hall_op_verde_oliva': return 'verde oliva';
+      case 'nat.hall_op_violaceo': return 'violáceo';
+      case 'nat.hall_op_vocalizacion': return 'vocalización';
+      case 'nat.hall_organo_corteza': return 'Corteza';
+      case 'nat.hall_organo_flor': return 'Flor';
+      case 'nat.hall_organo_fruto': return 'Fruto';
+      case 'nat.hall_organo_habito': return 'Hábito (planta entera)';
+      case 'nat.hall_organo_hoja': return 'Hoja';
+      case 'nat.hall_organo_otro': return 'Otro / no estoy seguro';
+      case 'nat.hall_pie_tarjeta': return 'Naturaleza · cuaderno de campo';
+      case 'nat.hall_planta_hospedadora': return 'Planta hospedadora';
+      case 'nat.hall_plantnet_fallo': return 'Pl@ntNet falló: {error}';
+      case 'nat.hall_plantnet_quedan_hoy': return 'Pl@ntNet: te quedan {n} identificaciones hoy.';
+      case 'nat.hall_plantnet_sin_candidatos': return 'Pl@ntNet no encontró candidatos. Prueba con otra foto u otro órgano.';
+      case 'nat.hall_por_categoria': return 'Por categoría';
+      case 'nat.hall_porte': return 'Porte';
+      case 'nat.hall_pregunta_calibracion': return '¿Te ajustas a tu propia confianza, o eres demasiado optimista (o demasiado modesto)?';
+      case 'nat.hall_pulsa_el_que_mejor_se_ajuste': return 'Pulsa el que mejor se ajuste para rellenar la ficha.';
+      case 'nat.hall_que_organo_se_ve': return '¿Qué órgano se ve mejor en la foto?';
+      case 'nat.hall_quiz_anade_entradas': return 'Añade más entradas en lib/datos/datos_guia.dart';
+      case 'nat.hall_quiz_faltan_especies': return 'Hacen falta al menos 3 especies para el quiz';
+      case 'nat.hall_quiz_modo_cientifico_a_comun': return 'Cient.→Común';
+      case 'nat.hall_quiz_modo_comun_a_cientifico': return 'Común→Cient.';
+      case 'nat.hall_quiz_modo_por_descripcion': return 'Por descripción';
+      case 'nat.hall_quiz_pocas_especies_categoria': return 'Esta categoría tiene menos de 3 especies. Cambia a "Todos" o añade más entradas a la guía.';
+      case 'nat.hall_quiz_pregunta_cientifico': return '¿Cuál es el nombre científico de "{nombre}"?';
+      case 'nat.hall_quiz_pregunta_comun': return '¿Cuál es el nombre común de "{nombre}"?';
+      case 'nat.hall_quiz_que_especie_es': return '¿Qué especie es?';
+      case 'nat.hall_salida_sin_titulo': return 'Salida sin título';
+      case 'nat.hall_se_guardara_suelto': return 'Se guardará como hallazgo suelto';
+      case 'nat.hall_sin_anotaciones': return 'Sin anotaciones. Úsalas para revisar dudas, conexiones con otra salida, correcciones de detalle.';
+      case 'nat.hall_sin_fenologia': return 'Aún no hay fenología que mostrar';
+      case 'nat.hall_sin_fotos_licencia_abierta': return 'No se encontraron fotos con licencia abierta para esta especie. Prueba con el nombre científico exacto o con el nombre común.';
+      case 'nat.hall_sin_revisar': return 'Sin revisar';
+      case 'nat.hall_sin_validaciones': return 'Aún no has validado identificaciones';
+      case 'nat.hall_sustrato': return 'Sustrato';
+      case 'nat.hall_tasa_acierto': return 'Tasa de acierto';
+      case 'nat.hall_tasa_acierto_subtitulo': return 'Tu calibración tras validar identificaciones';
+      case 'nat.hall_taxonomia': return 'Taxonomía';
+      case 'nat.hall_texto': return 'Texto';
+      case 'nat.hall_tipo_evidencia': return 'Tipo de evidencia';
+      case 'nat.hall_top_habitats': return 'Top hábitats';
+      case 'nat.hall_tu_hipotesis': return 'Tu hipótesis';
+      case 'nat.hall_un_hallazgo': return '1 hallazgo';
+      case 'nat.hall_un_sin_revisar': return 'Tienes 1 hallazgo sin revisar. Abre cualquiera desde la lista y pulsa "Confirmar" o "Corregir" tras revisar fotos o consultar bibliografía.';
+      case 'nat.hall_validar_identificacion': return 'Validar identificación';
+      case 'nat.hall_volver_a_sin_revisar': return 'Volver a sin revisar';
+      case 'nat.mapa_notificacion_registrando_ruta': return 'Naturaleza está registrando tu ruta';
+      case 'nat.mapa_lugar_miradores': return 'Miradores';
+      case 'nat.mapa_lugar_miradores_aves': return 'Miradores de aves';
+      case 'nat.mapa_lugar_reservas_naturales': return 'Reservas naturales';
+      case 'nat.mapa_lugar_cuevas': return 'Cuevas';
+      case 'nat.mapa_lugar_humedales': return 'Charcas y humedales';
+      case 'nat.mapa_lugar_arboles_singulares': return 'Árboles singulares';
+      case 'nat.mapa_lugar_refugios': return 'Refugios';
+      case 'nat.mapa_lugar_manantiales': return 'Manantiales y fuentes';
+      case 'nat.mapa_lugar_centros_visitantes': return 'Centros de visitantes';
+      case 'nat.mapa_falta_permiso_ubicacion': return 'Falta permiso de ubicación.';
+      case 'nat.mapa_sin_lugares_zona': return 'Sin lugares de interés en esta zona.';
+      case 'nat.mapa_gestor': return 'Gestor: {gestor}';
+      case 'nat.mapa_sin_gbif_zona': return 'Sin observaciones GBIF en esta zona.';
+      case 'nat.mapa_gbif_cargadas': return '{n} observaciones de la comunidad cargadas.';
+      case 'nat.mapa_ocultar': return 'Ocultar';
+      case 'nat.mapa_track_guardado_puntos': return 'Track guardado ({n} puntos).';
+      case 'nat.mapa_observacion_gbif': return 'Observación GBIF';
+      case 'nat.mapa_familia': return 'Familia: {familia}';
+      case 'nat.mapa_localidad': return 'Localidad: {localidad}';
+      case 'nat.mapa_observacion': return 'Hallazgo';
+      case 'nat.mapa_categoria': return 'Categoría';
+      case 'nat.mapa_habitat': return 'Hábitat';
+      case 'nat.mapa_taxonomia': return 'Taxonomía';
+      case 'nat.mapa_borrar_observacion_pregunta': return '¿Borrar este hallazgo?';
+      case 'nat.mapa_mapas_offline_menu': return 'Mapas offline…';
+      case 'nat.mapa_lugares_interes_activos': return 'Lugares de interés (activos)…';
+      case 'nat.mapa_lugares_interes_menu': return 'Lugares de interés…';
+      case 'nat.mapa_recargar_lugares': return 'Recargar lugares en la vista';
+      case 'nat.mapa_gbif_cerca': return 'Observaciones GBIF cerca';
+      case 'nat.mapa_ocultar_gbif': return 'Ocultar observaciones GBIF';
+      case 'nat.mapa_centrar_ubicacion': return 'Centrar en mi ubicación';
+      case 'nat.mapa_detener_grabacion': return 'Detener grabación de track';
+      case 'nat.mapa_grabar_track': return 'Grabar track';
+      case 'nat.mapa_tooltip_capas': return 'Capas del mapa, mapas offline y tracks guardados';
+      case 'nat.mapa_tooltip_datos': return 'Lugares de interés y observaciones';
+      case 'nat.mapa_capas_lugares': return 'Capas de lugares de interés';
+      case 'nat.mapa_capas_lugares_ayuda': return 'Datos de OpenStreetMap. Las capas se cargan en la vista visible del mapa.';
+      case 'nat.mapa_quitar_todas': return 'Quitar todas';
+      case 'nat.mapa_aplicar': return 'Aplicar';
+      case 'nat.mapa_nueva_salida': return 'Nueva salida';
+      case 'nat.mapa_titulo_opcional': return 'Título (opcional)';
+      case 'nat.mapa_titulo_ejemplo': return 'p. ej. Encinares del Pirulén';
+      case 'nat.mapa_zona_opcional': return 'Zona (opcional)';
+      case 'nat.mapa_zona_ejemplo': return 'comarca, paraje, sierra…';
+      case 'nat.mapa_hipotesis_opcional': return 'Hipótesis de jornada (opcional)';
+      case 'nat.mapa_hipotesis_ejemplo': return '¿qué vienes a buscar?';
+      case 'nat.mapa_arrancar_track': return 'Arrancar también un track GPS';
+      case 'nat.mapa_salida_explicacion': return 'Mientras esté abierta, los hallazgos que crees se asociarán automáticamente a esta salida. Si arrancas también el track GPS, quedará atado a la salida al detenerlo. Podrás desactivar la auto-asociación en cada hallazgo si lo prefieres.';
+      case 'nat.mapa_iniciar': return 'Iniciar';
+      case 'nat.mapa_sin_permiso_track': return 'No se pudo arrancar el track: falta permiso de ubicación.';
+      case 'nat.mapa_salidas': return 'Salidas';
+      case 'nat.mapa_iniciar_salida': return 'Iniciar salida';
+      case 'nat.mapa_sin_salidas': return 'Aún no has registrado ninguna salida';
+      case 'nat.mapa_sin_salidas_ayuda': return 'Una salida agrupa los hallazgos, el track GPS, la meteorología y las notas de una jornada de campo.';
+      case 'nat.mapa_salida_sin_titulo': return 'Salida sin título';
+      case 'nat.mapa_en_curso': return 'EN CURSO';
+      case 'nat.mapa_una_observacion': return '1 hallazgo';
+      case 'nat.mapa_n_observaciones': return '{n} hallazgos';
+      case 'nat.mapa_cabecera_salida': return 'Cabecera de la salida';
+      case 'nat.mapa_titulo': return 'Título';
+      case 'nat.mapa_zona': return 'Zona';
+      case 'nat.mapa_meteo_resumen': return 'Meteo (resumen)';
+      case 'nat.mapa_altitud_m': return 'Altitud (m)';
+      case 'nat.mapa_hipotesis_jornada': return 'Hipótesis de jornada';
+      case 'nat.mapa_notas_generales': return 'Notas generales';
+      case 'nat.mapa_anotacion_margen': return 'Anotación al margen';
+      case 'nat.mapa_anotacion_explicacion': return 'Esto es para lo que escribes al revisar la salida días después: dudas, correcciones, conexiones con otra jornada.';
+      case 'nat.mapa_texto': return 'Texto';
+      case 'nat.mapa_anotacion_ejemplo': return 'p. ej. al final era hembra, no macho';
+      case 'nat.mapa_borrar_anotacion': return 'Borrar anotación';
+      case 'nat.mapa_borrar_anotacion_texto': return 'Se borrará esta anotación al margen. La salida y los hallazgos se mantienen.';
+      case 'nat.mapa_cerrar_salida': return 'Cerrar salida';
+      case 'nat.mapa_cerrar_salida_texto': return 'Al cerrar la salida ya no se asociarán hallazgos nuevos a ella automáticamente. Puedes seguir añadiendo anotaciones al margen después.';
+      case 'nat.mapa_detener_track_tambien': return 'Detener también el track GPS en curso';
+      case 'nat.mapa_seguir_abierta': return 'Seguir abierta';
+      case 'nat.mapa_borrar_salida': return 'Borrar salida';
+      case 'nat.mapa_borrar_salida_texto': return 'Se borrará el contenedor de la salida y sus anotaciones al margen. Los hallazgos y el track quedarán como sueltos, sin borrarse.';
+      case 'nat.mapa_salida_no_encontrada': return 'Salida no encontrada';
+      case 'nat.mapa_salida_del_dia': return 'Salida del día';
+      case 'nat.mapa_editar_cabecera': return 'Editar cabecera';
+      case 'nat.mapa_anotar_margen': return 'Anotar al margen';
+      case 'nat.mapa_altitud_aprox': return '{n} m aprox.';
+      case 'nat.mapa_track_en_curso': return 'Track GPS en curso';
+      case 'nat.mapa_track_de_salida': return 'Track GPS de la salida';
+      case 'nat.mapa_track_puntos_asociara': return '{n} puntos · se asociará a la salida al detenerlo';
+      case 'nat.mapa_observaciones_de_salida': return 'Hallazgos de la salida ({n})';
+      case 'nat.mapa_sin_observaciones_salida': return 'Todavía no hay hallazgos en esta salida. Mientras esté abierta, los que registres se asociarán automáticamente.';
+      case 'nat.mapa_sin_especie': return 'Sin especie';
+      case 'nat.mapa_anotaciones_margen': return 'Anotaciones al margen';
+      case 'nat.mapa_sin_anotaciones': return 'Sin anotaciones todavía. Úsalas para revisar la salida días después: dudas, correcciones, conexiones.';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -15650,6 +20725,11 @@ class SoleraL10n {
       case 'temperatura_registrada': return 'Tenperatura erregistratua';
       case 'todos': return 'Denak';
       case 'ver_pdf': return 'PDF ikusi';
+      case 'camara': return 'Kamara';
+      case 'continuar': return 'Jarraitu';
+      case 'error_restaurando': return 'Errorea leheneratzean';
+      case 'galeria': return 'Galeria';
+      case 'siguiente': return 'Hurrengoa';
       case 'acei.abierta': return 'Irekita';
       case 'acei.abierta_minuscula': return 'irekita';
       case 'acei.aceite_y_almazara': return 'Olioa eta olio-errota';
@@ -17762,6 +22842,1016 @@ class SoleraL10n {
       case 'core.act.descarga_en_navegador': return 'Deskarga nabigatzailean ireki da.';
       case 'core.act.error_descarga': return 'Ezin izan da deskargatu. Egiaztatu konexioa eta saiatu berriro.';
       case 'core.act.error_instalador': return 'Deskargatuta dago, baina Androidek ez du utzi instalatzailea irekitzen. Baimendu «aplikazio ezezagunak instalatzea» aplikazio honetarako mugikorraren ezarpenetan.';
+      case 'fos.ajus_calculando': return 'Kalkulatzen…';
+      case 'fos.ajus_resumen_cache': return '{n} lauza cachean · {mb} MB';
+      case 'fos.ajus_backup_asunto': return 'Fósiles-en segurtasun-kopia';
+      case 'fos.ajus_backup_texto': return 'Fósiles-en segurtasun-kopia ({kb} KB)';
+      case 'fos.ajus_error_backup': return 'Errorea kopia egitean';
+      case 'fos.ajus_restaurar_titulo': return 'Leheneratu segurtasun-kopia';
+      case 'fos.ajus_restaurar_aviso': return 'Honek zure aurkikuntza, ibilbide eta argazki GUZTIAK ordeztuko ditu fitxategikoekin. Jarraitu?';
+      case 'fos.ajus_restaurados': return '✅ {hallazgos} aurkikuntza eta {fotos} argazki leheneratu dira. Berrabiarazi aplikazioa aldaketak ikusteko.';
+      case 'fos.ajus_avisos_reactivados': return 'Abisuak berriro aktibatu dira. Aztarnategi bakoitzean sartzean berriro joko dute.';
+      case 'fos.ajus_prueba_aviso': return '{emoji} (Proba) Hemen zaude: {nombre}.';
+      case 'fos.ajus_borrar_aportaciones': return 'Ezabatu nire ekarpenak';
+      case 'fos.ajus_borrar_aportaciones_texto': return 'Idatzi ekarpenak bidaltzeko erabili zenuen helbide elektronikoa. Esteka bat bidaliko dizugu; sakatzean, zure argazki guztiak ezabatuko dira (zain daudenak eta onartuak).';
+      case 'fos.ajus_email': return 'Helbide elektronikoa';
+      case 'fos.ajus_enviar': return 'Bidali';
+      case 'fos.ajus_solicitud_enviada': return 'Eskaera bidali da. Begiratu zure posta ezabatzea berresteko.';
+      case 'fos.ajus_vaciar_cache_pregunta': return 'Lineaz kanpoko mapen cachea hustu? Berriro deskargatu beharko dituzu konexiorik gabe erabiltzeko.';
+      case 'fos.ajus_vaciar': return 'Hustu';
+      case 'fos.ajus_sec_general': return 'Orokorra';
+      case 'fos.ajus_idioma': return 'Hizkuntza / Language';
+      case 'fos.ajus_claves_modelo': return 'Gakoak eta eredua';
+      case 'fos.ajus_claves_modelo_sub': return 'Anthropic argazkiz identifikatzeko, DeepSeek txaterako';
+      case 'fos.ajus_sec_perfil': return 'Profila eta identitatea';
+      case 'fos.ajus_perfil_titulo': return 'Aurkitzailearen profila eta identitatea';
+      case 'fos.ajus_perfil_sub': return 'Ziurtagirietarako izena, identitate kriptografikoa, ziurtagiriak egiaztatzea eta Aditu modua';
+      case 'fos.ajus_sec_mapas_datos': return 'Mapak eta datuak';
+      case 'fos.ajus_mapas_sin_conexion': return 'Konexiorik gabeko mapak';
+      case 'fos.ajus_mapas_explicacion': return 'Mapan ikusten dituzun lauzak automatikoki gordetzen dira cachean. Eremu oso bat aldez aurretik gordetzeko (mapako uneko ikuspegia), erabili deskarga-botoia.';
+      case 'fos.ajus_descargar_zona': return 'Deskargatu eremua';
+      case 'fos.ajus_backup_explicacion': return 'Esportatu zure datu guztiak (aurkikuntzak + ibilbideak + argazkiak) .fosbackup fitxategi bakar batean. Gorde Driven, USB batean edo posta elektronikoan. Leheneratzeko, hautatu .fosbackup fitxategia; uneko datuak ordeztuko ditu.';
+      case 'fos.ajus_hacer_copia': return 'Egin kopia';
+      case 'fos.ajus_restaurar_copia': return 'Leheneratu kopia';
+      case 'fos.ajus_asistente_campo': return 'Landa-laguntzailea';
+      case 'fos.ajus_asistente_explicacion': return 'GPSak aztarnategi katalogatu batetik 250 m baino gutxiagora zaudela hautematen duenean, abisu bat agertzen da mapan, "Ikusi fitxa" botoiarekin. Aztarnategi bakoitzak behin bakarrik abisatzen dizu saio bakoitzean.';
+      case 'fos.ajus_reactivar_avisos': return 'Aktibatu berriro abisuak';
+      case 'fos.ajus_probar_aviso': return 'Probatu abisua';
+      case 'fos.ajus_sec_privacidad': return 'Pribatutasuna';
+      case 'fos.ajus_tus_aportaciones': return 'Zure ekarpenak komunitateari';
+      case 'fos.ajus_aportaciones_explicacion': return 'Komunitatearekin argazkiak partekatu badituzu, noiznahi eska dezakezu ezabatzea (DBEO). Adierazitako helbidera esteka bat iritsiko zaizu; sakatzen baduzu, zure ekarpen guztiak ezabatuko dira, baita argitaratuta daudenak ere.';
+      case 'fos.ajus_como_leer_mapa': return 'Nola irakurri mapa';
+      case 'fos.ajus_como_leer_mapa_sub': return 'Geruza geologikoak, beste geruza batzuk eta fosil-iradokizunak';
+      case 'fos.ajus_ver_tour': return 'Ikusi aurkezpena';
+      case 'fos.ajus_sobre_app': return 'Aplikazioari buruz';
+      case 'fos.ajus_sobre_app_texto': return 'Fosilen landa-koadernoa, zale helduentzat. Idatzi aurkikuntza georreferentziatuak argazkiarekin, adinarekin, formazioarekin eta estratuaren direkzio eta makurdurarekin (strike/dip); kontsultatu IGMEren testuinguru geologikoa sakatzen duzun puntuan; eta gorde fosil eta mineralen tokiko gida bat, aldika.';
+      case 'fos.ajus_apoyar': return 'Lagundu proiektuari';
+      case 'fos.ajus_apoyar_texto': return 'Aplikazioa doakoa eta irekia da guztientzat, eta hala izango da. Erabilgarria izan bazaizu eta aukera baduzu, borondatezko ekarpen txiki batek mantentze-lanak, laguntza teknikoa eta eguneraketak egiten laguntzen du.';
+      case 'fos.ajus_gracias': return 'Eskerrik asko.';
+      case 'fos.ajus_ver_formas_apoyar': return 'Ikusi laguntzeko moduak';
+      case 'fos.ajus_datos_fuentes': return 'Datuak eta iturriak';
+      case 'fos.ajus_datos_fuentes_texto': return 'Datu geologikoak: IGME (GEODE 50, MAGNA 50, Edades 1M, Litologías 1M, IELIG). Oinarrizko mapa: OpenStreetMap, ESRI, OpenTopoMap. Kobazuloak eta megalitoak: OpenStreetMap (Overpass). Irudi eta deskribapen osagarriak: Wikipedia (CC-BY-SA). Androiderako Flutter bertsioa.';
+      case 'fos.ajus_ia_guardados': return '✅ IAren ezarpenak gorde dira';
+      case 'fos.ajus_no_abrir_navegador': return 'Ezin izan da nabigatzailea ireki. Sartu hemen: {direccion}';
+      case 'fos.ajus_ia_explicacion': return 'Fosilak automatikoki identifikatzeko, idatzi zure Anthropic API gakoa. Zure telefonoan bakarrik gordetzen da, eta api.anthropic.com helbidera bakarrik bidaltzen da. Lortu bat console.anthropic.com webgunean. DeepSeek-en gakoa txaterako da.';
+      case 'fos.ajus_conseguir_anthropic': return 'Lortu Anthropic gakoa';
+      case 'fos.ajus_conseguir_deepseek': return 'Lortu DeepSeek gakoa';
+      case 'fos.ajus_api_anthropic': return 'Anthropic API gakoa';
+      case 'fos.ajus_api_deepseek': return 'DeepSeek API gakoa (txaterako)';
+      case 'fos.ajus_modelo_claude': return 'Claude eredua';
+      case 'fos.ajus_modelo_precio': return '{descripcion} ~{precio} zentimo argazkiko.';
+      case 'fos.ajus_modelo_opus_desc': return 'Zehaztasun handiena. Gomendatua.';
+      case 'fos.ajus_modelo_sonnet_desc': return 'Zehaztasunaren eta kostuaren arteko oreka ona.';
+      case 'fos.ajus_modelo_haiku_desc': return 'Askoz merkeagoa. Asmatze-tasa apur bat txikiagoa.';
+      case 'fos.ajus_cabecera_titulo': return 'Fosilen landa-koadernoa';
+      case 'fos.ajus_cabecera_sub': return 'Paleontologiazaleentzat';
+      case 'fos.ajus_explorar_mapa': return 'Arakatu mapa';
+      case 'fos.ajus_explorar_mapa_sub': return 'Aztarnategiak eta geologia';
+      case 'fos.ajus_meteo': return 'Meteorologia';
+      case 'fos.ajus_meteo_sub': return 'Zure irteerarako iragarpena';
+      case 'fos.ajus_chat_ia': return 'IA txata';
+      case 'fos.ajus_chat_ia_sub': return 'Argitu zalantzak, identifikatu aurkikuntzak, eskatu landa-aholkuak';
+      case 'fos.ajus_etica_titulo': return 'Esploratu, aurkitu eta partekatu';
+      case 'fos.ajus_etica_sub': return 'Jarraibide batzuk, zure zaletasunak ekarpena egin dezan eta ezagutzan bakarrik utz dezan arrastoa.';
+      case 'fos.ajus_etica1_titulo': return 'Zure aurkikuntza garrantzitsua izan daiteke';
+      case 'fos.ajus_etica1_texto': return 'Fosil bakoitzak istorio bat kontatzen du. Berezia iruditzen zaizun zerbait aurkitzen baduzu, partekatu museo, unibertsitate edo elkarte geologiko batekin. Haiek jakingo dute baloratzen, eta zu aurkikuntzaren parte izango zara. Aplikazioak ziurtagiri egiaztagarri batekin dokumentatzen laguntzen dizu.';
+      case 'fos.ajus_etica2_titulo': return 'Lehenik, behatu eta atera argazkia';
+      case 'fos.ajus_etica2_texto': return 'Testuingurua pieza bera bezain baliotsua da. Atera argazkia fosilari bere geruzan, neurtu estratuaren orientazioa, erregistratu formazioa. Dokumentazio onak biderkatu egiten du aurkitzen duzunaren balio zientifikoa. Eta askotan argazkia nahikoa da: ez da beti jaso behar.';
+      case 'fos.ajus_etica3_titulo': return 'Informatu gehiago gozatzeko';
+      case 'fos.ajus_etica3_texto': return 'Autonomia-erkidego bakoitzak ondarea babesteko bere arauak ditu. Horiek ezagutzeak zale hobea egiten zaitu: jakingo duzu non jaso dezakezun eta non den hobe argazkia ateratzea soilik. Zalantzarik baduzu, gozatu aurkikuntzaz in situ.';
+      case 'fos.ajus_etica4_titulo': return 'Utzi lekua aurkitu nahiko zenukeen bezala';
+      case 'fos.ajus_etica4_texto': return 'Ez egin indusketarik jabearen baimenik gabe. Ez kaltetu azaleramenduak. Itxi langak. Eraman zure zaborra… eta agian besteren bat ere. Zure ondoren pasatzen den pertsona orok merezi du aurkikuntzaren zirrara bera.';
+      case 'fos.ajus_etica5_titulo': return 'Partekatu, zientziak aurrera egin dezan';
+      case 'fos.ajus_etica5_texto': return 'Erabili aplikazioaren ziurtagiri egiaztagarria zure aurkikuntzak partekatzeko. Dokumentatutako erregistro bakoitzak zure eskualdeko mapa paleontologikoa osatzen laguntzen du. Zure ekarpena, beste zale batzuenarekin batera, benetako herritar-zientzia da.';
+      case 'fos.ajus_como_usar': return 'Nola erabili Fósiles';
+      case 'fos.ajus_paso1_titulo': return 'Esploratu mapa';
+      case 'fos.ajus_paso1_texto': return 'Aktibatu geruza geologikoak (MAGNA, GEODE) zapaltzen duzun lurrak zer adin duen ikusteko.';
+      case 'fos.ajus_paso2_titulo': return 'Erregistratu aurkikuntza bat';
+      case 'fos.ajus_paso2_texto': return 'Sakatu + fosil bat gehitzeko argazkiarekin, koordenatuekin, adinarekin eta formazioarekin. Aplikazioak automatikoki kontsultatzen dio IGMEri.';
+      case 'fos.ajus_paso3_titulo': return 'Identifikatu Clauderekin';
+      case 'fos.ajus_paso3_texto': return 'Zure Anthropic API gakoarekin, aplikazioak fosila irudiaren bidez identifikatzen du eta berresteko pistak ematen dizkizu.';
+      case 'fos.ajus_paso4_titulo': return 'Sortu ziurtagiri bat';
+      case 'fos.ajus_paso4_texto': return 'Aurkikuntza bakoitzak SHA-256 hash egiaztagarri bat jasotzen du. Partekatu nahi duzunarekin; inork ezin izango du aldatu.';
+      case 'fos.ajus_paso5_titulo': return 'Erregistratu haren trazabilitatea';
+      case 'fos.ajus_paso5_texto': return 'Fosila museo batean amaitzen bada edo geologo batek aztertzen badu, gehitu gertaerak haren historiara.';
+      case 'fos.ajus_saltar': return 'Saltatu';
+      case 'fos.ajus_empezar': return 'Hasi';
+      case 'fos.ajus_onb1_titulo': return 'Estatuko mapa geologikoa';
+      case 'fos.ajus_onb1_texto': return 'Aplikazioa IGMEren GEODE 50 geruza mapan margotuta duela abiarazten da. Goiko barrako mendiaren ikonotik GEODE, MAGNA, Edades 1M, Litologías 1M eta IGMEren beste geruza batzuen artean alda dezakezu. Eremu bat lehen aldiz mugitzean, mosaikoak pixka bat behar du kargatzeko lauzak deskargatzen diren bitartean; gero cachean geratzen da.';
+      case 'fos.ajus_onb2_titulo': return 'Zure aurkikuntzak';
+      case 'fos.ajus_onb2_texto': return 'Beheko barrako "+" botoiarekin aurkikuntza bat markatzen duzu uneko posizioan: argazkia, adina, formazioa, geruzaren direkzioa eta makurdura (strike/dip) eta oharrak. Aurkikuntza gailuan gordetzen da, zerrendan agertzen da eta mapan markatzaile gisa margotzen da, hara itzuli ahal izateko.';
+      case 'fos.ajus_onb3_titulo': return 'Zer dagoen zure oinen azpian';
+      case 'fos.ajus_onb3_texto': return 'Maparen erdian laguntzaile geologiko bat dago, mapa mugitu ahala puntu horretako geologia kontatzen dizuna. "Esploratu geologia" modua aktibatzen baduzu, edozein puntu saka dezakezu eta formazioa, adina eta litologia kontsultatu. Fosil eta mineralen iradokizunak Iberiako formazioen tokiko katalogoarekin gurutzatzen dira.';
+      case 'fos.ajus_datos_restaurados': return 'Datuak segurtasun-kopiatik leheneratu dira.';
+      case 'fos.ajus_nav_inicio': return 'Hasiera';
+      case 'fos.ajus_nav_lista': return 'Zerrenda';
+      case 'fos.ajus_nav_guia': return 'Gida';
+      case 'fos.ajus_chat': return 'Txata';
+      case 'fos.ajus_falta_clave_chat': return '{nombre} API gakoa konfiguratu behar duzu Ezarpenak → Adimen artifiziala atalean.';
+      case 'fos.ajus_que_ves': return 'Zer ikusten duzu irudi honetan?';
+      case 'fos.ajus_que_ves_identifica': return 'Zer ikusten duzu irudi honetan? Identifika ezazu, mesedez.';
+      case 'fos.ajus_chat_vacio': return 'Galdetu nahi duzuna fosilei, geologiari, identifikazioari, aztarnategiei… buruz';
+      case 'fos.ajus_via': return '{proveedor} bidez';
+      case 'fos.ajus_imagen_adjunta': return 'Irudia erantsita — Claude-ri bidaliko zaio';
+      case 'fos.ajus_hacer_foto': return 'Atera argazkia';
+      case 'fos.ajus_escribe_pregunta': return 'Idatzi zure galdera…';
+      case 'fos.ajus_falta_api_anthropic': return 'Anthropic API gakoa falta da. Konfiguratu Ezarpenak → Adimen artifiziala atalean.';
+      case 'fos.ajus_desconocido': return 'Ezezaguna';
+      case 'fos.ajus_sin_identificacion': return 'Identifikaziorik gabe';
+      case 'fos.ajus_nombre_autoridad': return 'Agintaritzaren izena';
+      case 'fos.ajus_ej_autoridad': return 'Adib.: Geologiako Institutu Nazionala';
+      case 'fos.ajus_generar': return 'Sortu';
+      case 'fos.ajus_codigo_activacion': return 'Aktibazio-kodea';
+      case 'fos.ajus_para_nombre': return 'Norentzat: {nombre}';
+      case 'fos.ajus_codigo_mandalo': return 'Bidali adituari posta elektroniko instituzionalaren bidez. Erabiltzen duen lehen pertsonari bakarrik balio dio — ezin da berrerabili.';
+      case 'fos.ajus_copiar': return 'Kopiatu';
+      case 'fos.ajus_codigo_copiado': return 'Kodea arbelean kopiatu da';
+      case 'fos.ajus_compartir_codigo': return 'Aktibazio-kodea ({nombre}):';
+      case 'fos.ajus_asunto_experto': return 'Aditu modua — Fósiles';
+      case 'fos.ajus_desactivar_titulo': return 'Desaktibatu Aditu modua';
+      case 'fos.ajus_desactivar_texto': return 'Agintaritzaren gakoa gailu honetatik ezabatuko da. Dagoeneko ziurtatu dituzun txartelek baliozkoak izaten jarraituko dute, baina instalazio honek ezin izango du ziurtagiri berririk sinatu kode berri batekin berriro aktibatu arte.';
+      case 'fos.ajus_desactivar': return 'Desaktibatu';
+      case 'fos.ajus_modo_experto': return 'Aditu modua';
+      case 'fos.ajus_experto_intro': return 'Aditu moduari esker, agintaritza sinatzaile batek (Geologiako Institutu Nazionala, museo bat, elkarte zientifiko bat) aurkitzaileek partekatutako txartelak berrikusi eta ziurta ditzake.';
+      case 'fos.ajus_activar_autoridad': return 'Aktibatu agintaritza gisa';
+      case 'fos.ajus_activar_autoridad_texto': return 'Posta elektroniko instituzionalaren bidez aktibazio-kode bat jaso baduzu, itsatsi hemen, berrikusteko txartelak jasotzen hasteko.';
+      case 'fos.ajus_pegar_codigo': return 'Itsatsi aktibazio-kodea';
+      case 'fos.ajus_admin_generar': return 'Administratzailea: sortu kodea';
+      case 'fos.ajus_admin_texto': return 'Fósiles kudeatzen baduzu eta agintaritza bati aldez aurretik baimena eman nahi badiozu txartelak ziurta ditzan, sortu kode bat eta bidali posta elektroniko instituzionalaren bidez. Erabiltzen duen lehen pertsonari bakarrik balio dio.';
+      case 'fos.ajus_generar_codigo_autoridad': return 'Sortu kode bat agintaritza batentzat';
+      case 'fos.ajus_experto_activo': return 'Aditu modua aktibo';
+      case 'fos.ajus_huella_institucional': return 'Aztarna instituzionala';
+      case 'fos.ajus_huella_texto': return 'Aztarna kriptografiko hau sinatzen duzun ziurtagiri bakoitzarekin doa. Aurkitzaileek ikusiko dute beren txartelak itzultzen zaizkienean.';
+      case 'fos.ajus_codigo_nombre_obligatorios': return 'Kodea eta izena derrigorrezkoak dira.';
+      case 'fos.ajus_codigo_no_valido': return 'Kode baliogabea. Eskatu beste bat administratzaileari.';
+      case 'fos.ajus_activar_autoridad_titulo': return 'Aktibatu agintaritza';
+      case 'fos.ajus_pega_codigo_hint': return 'Itsatsi hemen posta instituzionaleko kodea';
+      case 'fos.ajus_colegiacion': return 'Arduraduna / elkargokide-zenbakia (aukerakoa)';
+      case 'fos.ajus_ej_colegiacion': return 'Adib.: X. Y. dk. (elkargokide-zk. 1234)';
+      case 'fos.ajus_activar': return 'Aktibatu';
+      case 'fos.ajus_kofi_sub': return 'Ordainketa puntuala edo hilerokoa txartelarekin';
+      case 'fos.ajus_paypal_sub': return 'Dohaintza zure PayPal kontuarekin';
+      case 'fos.ajus_mensaje_compartir': return 'Fósiles — landa-koaderno digitala, aurkikuntzak georreferentziarekin, adin estratigrafikoarekin eta estratuaren orientazioarekin idazteko, fosilak eta mineralak identifikatzeko gida batekin. IGMEren kartografia geologikoa eta lineaz kanpoko mapak. Librea, doakoa, iragarkirik eta jarraipenik gabe. Deskargatu Androiderako APKa hemen: {url}';
+      case 'fos.ajus_ecosistema_texto': return 'Aplikazio hau ekosistemaren parte da. Ezagutu gainerako proiektuak.';
+      case 'fos.ajus_copiar_direccion': return 'Kopiatu helbidea';
+      case 'fos.ajus_direccion_copiada': return 'Helbidea arbelean kopiatu da.';
+      case 'fos.ajus_compartir_app': return 'Partekatu aplikazioa';
+      case 'fos.ajus_compartir_app_texto': return 'Norbaiti gomendatzeak ere laguntzen du. Dirua eman beharrean, denbora ematea da.';
+      case 'fos.ajus_otras_formas': return 'Laguntzeko beste modu batzuk';
+      case 'fos.ajus_valorar': return 'Baloratu aplikazioa bost izarrekin, gustatu bazaizu.';
+      case 'fos.ajus_reportar': return 'Akatsen berri eman edo hobekuntzak iradoki.';
+      case 'fos.ajus_ayudar_traducciones': return 'Itzulpenekin edo testuekin lagundu.';
+      case 'fos.ajus_contribuir_codigo': return 'Kodearekin edo funtzio-ideiekin lagundu.';
+      case 'fos.ajus_fichero_no_valido': return 'Ez da kopia-fitxategi baliozkoa';
+      case 'fos.ajus_version_desconocida': return 'Kopiaren bertsio ezezaguna';
+      case 'fos.ajus_nav_ajustes': return 'Ezarpenak';
+      case 'fos.ficha_distintivos': return 'Ezagutzeko ezaugarriak';
+      case 'fos.ficha_donde_encontrarlo': return 'Non aurkitu';
+      case 'fos.ficha_leer_wikipedia': return 'Irakurri gehiago Wikipedian';
+      case 'fos.ficha_reintentar': return 'Saiatu berriro';
+      case 'fos.ficha_raya': return 'Marra';
+      case 'fos.ficha_brillo': return 'Distira';
+      case 'fos.ficha_color_tipico': return 'Ohiko kolorea';
+      case 'fos.hall_alternativas': return 'Beste aukera batzuk';
+      case 'fos.hall_anadir': return 'Gehitu';
+      case 'fos.hall_anadir_evento': return 'Gertaera gehitu';
+      case 'fos.hall_anadir_evento_trazabilidad': return 'Trazabilitate-gertaera gehitu';
+      case 'fos.hall_anadir_trazabilidad': return 'Trazabilitatea gehitu';
+      case 'fos.hall_anotar_foto': return 'Argazkia markatu';
+      case 'fos.hall_aplicar_formulario': return 'Formularioan aplikatu';
+      case 'fos.hall_asunto_certificado': return 'Aurkikuntza-ziurtagiria: {especie}';
+      case 'fos.hall_asunto_exportacion': return 'Fosil-aurkikuntzak';
+      case 'fos.hall_asunto_hallazgo': return 'Aurkikuntza: {especie}';
+      case 'fos.hall_aun_no_hay_hallazgos': return 'Oraindik ez dago aurkikuntzarik.';
+      case 'fos.hall_autor_evento': return 'Gertaeraren egilea';
+      case 'fos.hall_borrar_medida': return 'Neurketa ezabatu';
+      case 'fos.hall_buscar': return 'Bilatu…';
+      case 'fos.hall_buscar_hint': return 'Bilatu izenaren, adinaren edo oharren arabera…';
+      case 'fos.hall_certificado_texto': return 'Fosil-aurkikuntza baten ziurtagiri egiaztagarria.';
+      case 'fos.hall_certificado_verificable': return 'Ziurtagiri egiaztagarria';
+      case 'fos.hall_como_confirmar': return 'Nola baieztatu';
+      case 'fos.hall_compartir_comunidad': return 'Komunitatearekin partekatu';
+      case 'fos.hall_compartir_texto': return 'Testua partekatu';
+      case 'fos.hall_con_foto': return 'Argazkiarekin';
+      case 'fos.hall_confianza': return 'Konfiantza {nivel}';
+      case 'fos.hall_confianza_alta': return 'altua';
+      case 'fos.hall_confianza_baja': return 'baxua';
+      case 'fos.hall_confianza_media': return 'ertaina';
+      case 'fos.hall_configura_api_key': return 'Konfiguratu lehenik zure API gakoa Ezarpenak → Adimen artifiziala atalean.';
+      case 'fos.hall_configura_nombre': return 'Konfiguratu lehenik zure izena Ezarpenak → Aurkitzailearen profila atalean.';
+      case 'fos.hall_confirmar_borrar': return 'Aurkikuntza hau ezabatu?';
+      case 'fos.hall_consultando_igme': return 'IGME kontsultatzen…';
+      case 'fos.hall_contexto_geologico': return 'Testuinguru geologikoa';
+      case 'fos.hall_coordenadas': return 'Koordenatuak';
+      case 'fos.hall_cronologia': return 'Kronologia';
+      case 'fos.hall_descartar': return 'Baztertu';
+      case 'fos.hall_descripcion': return 'Deskribapena';
+      case 'fos.hall_descubridor': return 'Aurkitzailea';
+      case 'fos.hall_desde_galeria': return 'Galeriatik';
+      case 'fos.hall_deshacer': return 'Desegin';
+      case 'fos.hall_detectado_mineral': return 'Mineral gisa detektatua';
+      case 'fos.hall_dias_activo': return 'Egun aktiboak';
+      case 'fos.hall_dureza_mohs': return 'Mohs gogortasuna';
+      case 'fos.hall_dureza_mohs_estimada': return 'Gutxi gorabeherako Mohs gogortasuna';
+      case 'fos.hall_edad': return 'Adina';
+      case 'fos.hall_edad_periodo': return 'Adina / aldia';
+      case 'fos.hall_editar_hallazgo': return 'Aurkikuntza editatu';
+      case 'fos.hall_ejemplo_autor': return 'Adib.: López doktorea (UPV/EHU)';
+      case 'fos.hall_ejemplo_descripcion': return 'Adib.: Arabako Natur Zientzien Museoan gordailatua';
+      case 'fos.hall_error_codificar_imagen': return 'Ezin izan da irudia kodetu';
+      case 'fos.hall_error_exportando': return 'Errorea esportatzean: {error}';
+      case 'fos.hall_error_generar_zip': return 'Ezin izan da ZIPa sortu.';
+      case 'fos.hall_error_gps': return 'GPS errorea: {error}';
+      case 'fos.hall_error_guardando': return 'Errorea gordetzean: {error}';
+      case 'fos.hall_error_identificando': return 'Errorea identifikatzean: {error}';
+      case 'fos.hall_error_sin_id': return 'Errorea: aurkikuntzak ez du IDrik.';
+      case 'fos.hall_error_tarjeta': return 'Errorea txartela sortzean: {error}';
+      case 'fos.hall_especie': return 'Espeziea';
+      case 'fos.hall_especie_tentativa': return 'Espeziea / behin-behineko izena';
+      case 'fos.hall_especies': return 'Espezieak';
+      case 'fos.hall_esperando_gps': return 'GPS kokapenaren zain…';
+      case 'fos.hall_estadisticas': return 'Estatistikak';
+      case 'fos.hall_estrato': return 'Estratua';
+      case 'fos.hall_evento_anadido': return 'Gertaera historian gehitu da.';
+      case 'fos.hall_exportar_zip': return 'ZIPa esportatu';
+      case 'fos.hall_fecha': return 'Data';
+      case 'fos.hall_formacion': return 'Formazioa';
+      case 'fos.hall_formacion_geologica': return 'Formazio geologikoa';
+      case 'fos.hall_fosil': return 'Fosila';
+      case 'fos.hall_fosiles': return 'Fosilak';
+      case 'fos.hall_fosiles_probables': return 'Fosil probableak · {periodo}';
+      case 'fos.hall_guia': return 'Gida';
+      case 'fos.hall_hallazgo_de_fosil': return 'Fosil-aurkikuntza';
+      case 'fos.hall_historial_trazabilidad': return 'Trazabilitate-historia';
+      case 'fos.hall_identificando': return 'Identifikatzen…';
+      case 'fos.hall_identificar_claude': return 'Claudekin identifikatu';
+      case 'fos.hall_incoherencia_detalle': return 'Claudek {claude} proposatzen du, baina IGMEren azaleratzea {igme} da. Berrikusi identifikazioa edo kokapena.';
+      case 'fos.hall_incoherencia_geologica': return 'Balizko inkoherentzia geologikoa';
+      case 'fos.hall_limpiar': return 'Garbitu';
+      case 'fos.hall_linea_tiempo': return 'Denbora-lerroa';
+      case 'fos.hall_medir': return 'Neurtu';
+      case 'fos.hall_mineral': return 'Minerala';
+      case 'fos.hall_minerales': return 'Mineralak';
+      case 'fos.hall_mixto': return 'Nahasia';
+      case 'fos.hall_modelo': return 'Eredua: {modelo}';
+      case 'fos.hall_moneda_en_foto': return 'Txanpona argazkian:';
+      case 'fos.hall_n_de_total_desliza': return '{actual} / {total} · irristatu ← → aldatzeko';
+      case 'fos.hall_n_exportados': return '{n} aurkikuntza esportatu dira.';
+      case 'fos.hall_n_fosiles': return '{n} fosil';
+      case 'fos.hall_ninguno_coincide': return 'Ez dago bilaketarekin bat datorren aurkikuntzarik.';
+      case 'fos.hall_ninguno_recibido_coincide': return 'Jasotako aurkikuntzetatik bat ere ez dator bat bilaketarekin.';
+      case 'fos.hall_no': return 'Ez';
+      case 'fos.hall_nombre_mineral': return 'Mineralaren izena';
+      case 'fos.hall_notas': return 'Oharrak';
+      case 'fos.hall_nuevo_hallazgo': return 'Aurkikuntza berria';
+      case 'fos.hall_o_desde_galeria': return 'edo galeriatik';
+      case 'fos.hall_obteniendo_gps': return 'GPSa lortzen…';
+      case 'fos.hall_orientacion_sin_medir': return 'Estratuaren orientazioa: neurtu gabe';
+      case 'fos.hall_periodo': return 'Aldia';
+      case 'fos.hall_permiso_ubicacion_denegado': return 'Kokapen-baimena ukatu da.';
+      case 'fos.hall_pie_tarjeta': return 'Fosilak · landa-koadernoa';
+      case 'fos.hall_primer_hallazgo': return 'Lehen aurkikuntza';
+      case 'fos.hall_punto_marcado_mapa': return 'Mapan markatutako puntua';
+      case 'fos.hall_quiz': return 'Galdetegia';
+      case 'fos.hall_quiz_identificacion': return 'Identifikazio-galdetegia';
+      case 'fos.hall_razonamiento': return 'Arrazoiketa';
+      case 'fos.hall_recibida': return 'jasoa';
+      case 'fos.hall_remedir': return 'Berriz neurtu';
+      case 'fos.hall_sin_clasificar': return 'Sailkatu gabe';
+      case 'fos.hall_sin_fosiles_periodo': return 'Gidan ez dago aldi honetako fosilik.';
+      case 'fos.hall_sin_hallazgos_analizar': return 'Oraindik ez dago aztertzeko aurkikuntzarik.';
+      case 'fos.hall_sin_nombre': return 'Izenik gabe';
+      case 'fos.hall_tab_compartidas': return 'Partekatuak ({n})';
+      case 'fos.hall_tab_mias': return 'Nireak ({n})';
+      case 'fos.hall_tamano_estimado': return 'Gutxi gorabeherako tamaina';
+      case 'fos.hall_tarjeta': return 'Txartela';
+      case 'fos.hall_tipo_deposito_museo': return 'Museoan / bilduman gordailatua';
+      case 'fos.hall_tipo_estudio': return 'Aztertua';
+      case 'fos.hall_tipo_evento': return 'Gertaera mota';
+      case 'fos.hall_tipo_otro': return 'Beste gertaera bat';
+      case 'fos.hall_tipo_prestamo': return 'Mailegua / kontsulta';
+      case 'fos.hall_tipo_publicacion': return 'Argitalpen batean aipatua';
+      case 'fos.hall_titulo': return 'Aurkikuntzak';
+      case 'fos.hall_toca_mas_primero': return 'Sakatu + lehenengoa erregistratzeko.';
+      case 'fos.hall_tomar_foto': return 'Argazkia atera';
+      case 'fos.hall_top_especies': return 'Espezie ohikoenak';
+      case 'fos.hall_top_formaciones': return 'Formazio ohikoenak';
+      case 'fos.hall_ubicacion': return 'Kokapena';
+      case 'fos.hall_ultimo_hallazgo': return 'Azken aurkikuntza';
+      case 'fos.hall_ver_en_mapa': return 'Mapan ikusi';
+      case 'fos.hall_ver_ficha': return 'Fitxa ikusi';
+      case 'fos.iden_huella_copiada': return 'Hatz-marka arbelean kopiatu da';
+      case 'fos.iden_clave_publica_copiada': return 'Gako publikoa arbelean kopiatu da';
+      case 'fos.iden_regenerar_titulo': return 'Identitate kriptografikoa birsortu';
+      case 'fos.iden_regenerar_aviso': return 'Gako-bikote berri bat sortuko da. Aurreko gakoarekin sinatutako aurkikuntzek bere horretan jarraituko dute, baina ezingo da kriptografikoki egiaztatu zureak direnik. Zure izena eta posta elektronikoa ez dira aldatuko. Zure gakoa arriskuan egon dela uste baduzu bakarrik egin hau (adibidez, segurtasun-kopia bat mailegatutako gailu batean leheneratu ondoren).';
+      case 'fos.iden_regenerar': return 'Birsortu';
+      case 'fos.iden_identidad_regenerada': return 'Identitatea birsortu da';
+      case 'fos.iden_mi_identidad': return 'Nire identitatea';
+      case 'fos.iden_datos_declarados': return 'Adierazitako datuak';
+      case 'fos.iden_datos_declarados_ayuda': return 'Datu hauek zuk betetzen dituzu Ezarpenak → Profila eta identitatea atalean. Txartel bat edo ziurtagiri bat partekatzean sinadurarekin batera doaz, baina ez dira kanpoko agintaritza batekin autentifikatzen: edonork esan dezake nahi duen izena duela. Bakarra eta iraunkorra zure gako kriptografikoa da.';
+      case 'fos.iden_nombre': return 'Izena';
+      case 'fos.iden_email': return 'Posta elektronikoa';
+      case 'fos.iden_organizacion': return 'Erakundea';
+      case 'fos.iden_sin_rellenar': return '(bete gabe)';
+      case 'fos.iden_huella_criptografica': return 'Hatz-marka kriptografikoa';
+      case 'fos.iden_huella_ayuda': return 'Hatz-marka hau zure gako publikotik eratortzen da. Bakarra eta iraunkorra da, eta Fosilak lehen aldiz ireki zenuenean sortu zen. Norbaitek zuk sinatutako aurkikuntza bat jasotzen duenean, sinadura hatz-marka honekin bat datorrela egiazta dezake.';
+      case 'fos.iden_copiar_huella': return 'Kopiatu hatz-marka';
+      case 'fos.iden_ver_clave_publica': return 'Ikusi gako publiko osoa';
+      case 'fos.iden_copiar_clave_publica': return 'Kopiatu gako publikoa';
+      case 'fos.iden_operaciones_avanzadas': return 'Eragiketa aurreratuak';
+      case 'fos.iden_operaciones_avanzadas_ayuda': return 'Zure gako pribatua zifratuta gordetzen da Androiden biltegiratze seguruan (ez da gailutik ateratzen). Ezarpenetan sortzen duzun .zip segurtasun-kopia zifratuak barne hartzen du, mugikorrez aldatzen baduzu berreskuratu ahal izateko.';
+      case 'fos.iden_regenerar_identidad': return 'Birsortu identitatea';
+      case 'fos.iden_perfil_guardado': return 'Profila gorde da';
+      case 'fos.iden_perfil_e_identidad': return 'Profila eta identitatea';
+      case 'fos.iden_perfil_descubridor': return 'Aurkitzailearen profila';
+      case 'fos.iden_perfil_ayuda': return 'Zure izena aurkikuntza-ziurtagirietan agertuko da. Posta elektronikoa eta erakundea aukerakoak dira. Datu hauek zure telefonoan bakarrik gordetzen dira.';
+      case 'fos.iden_nombre_obligatorio': return 'Izena (derrigorrezkoa ziurtagirietarako)';
+      case 'fos.iden_nombre_ejemplo': return 'Adib.: María González';
+      case 'fos.iden_email_opcional': return 'Posta elektronikoa (aukerakoa)';
+      case 'fos.iden_email_ejemplo': return 'kontaktua@adibidea.eus';
+      case 'fos.iden_organizacion_opcional': return 'Erakundea / afiliazioa (aukerakoa)';
+      case 'fos.iden_organizacion_ejemplo': return 'Adib.: UPV/EHU, Aranzadi Zientzia Elkartea…';
+      case 'fos.iden_guardar_perfil': return 'Gorde profila';
+      case 'fos.iden_identidad_y_certificados': return 'Identitatea eta ziurtagiriak';
+      case 'fos.iden_mi_identidad_criptografica': return 'Nire identitate kriptografikoa';
+      case 'fos.iden_verificar_un_certificado': return 'Egiaztatu ziurtagiri bat';
+      case 'fos.iden_modo_experto_autoridades': return 'Aditu modua (ziurtapen-agintaritzak)';
+      case 'fos.iden_card_certificada_asunto': return 'Txartel ziurtatua — {autoridad}';
+      case 'fos.iden_card_certificada_texto': return 'Agintaritzak berrikusi eta ziurtatutako txartela. Inportatu fitxategi hau zure Fosilak aplikazioan zigilua ikusteko.';
+      case 'fos.iden_error_firmando': return 'Errorea sinatzean';
+      case 'fos.iden_certificar_hallazgo': return 'Ziurtatu aurkikuntza';
+      case 'fos.iden_descubridor_valor': return 'Aurkitzailea: {nombre}';
+      case 'fos.iden_coords': return 'Koord.';
+      case 'fos.iden_difuminadas': return '(lausotuak)';
+      case 'fos.iden_fotos': return 'Argazkiak';
+      case 'fos.iden_revisa_campos': return 'Berrikusi edo zuzendu eremuak. Kutxa bakoitzean uzten duzuna sinatutako ziurtapenean sartuko da. Eremu bat zuzena bada, utzi dagoen bezala.';
+      case 'fos.iden_especie_determinacion': return 'Espeziea / determinazioa';
+      case 'fos.iden_edad_epoca': return 'Adina / garai geologikoa';
+      case 'fos.iden_formacion_geologica': return 'Formazio geologikoa';
+      case 'fos.iden_comentarios_experto': return 'Adituaren iruzkinak';
+      case 'fos.iden_comentarios_ejemplo': return 'Adib.: eskualdeko bildumarako pieza garrantzitsua; X museora gordetzeko bidaltzea gomendatzen dut';
+      case 'fos.iden_firmar_y_devolver': return 'Sinatu eta itzuli aurkitzaileari';
+      case 'fos.iden_no_es_certificado': return 'Fitxategia ez da Fosilak aplikazioaren ziurtagiri bat.';
+      case 'fos.iden_error_leer_fichero': return 'Errorea fitxategia irakurtzean';
+      case 'fos.iden_verificar_certificado': return 'Egiaztatu ziurtagiria';
+      case 'fos.iden_verificar_ayuda': return 'Hautatu ziurtagiri-fitxategi bat (.json) benetakoa den egiaztatzeko.';
+      case 'fos.iden_seleccionar_certificado': return 'Hautatu ziurtagiria';
+      case 'fos.iden_certificado_verificado': return 'Ziurtagiria egiaztatuta';
+      case 'fos.iden_certificado_no_valido': return 'Ziurtagiria EZ da baliozkoa';
+      case 'fos.iden_hash_no_coincide': return 'Hasha ez dator bat. Ziurtagiria aldatu egin da.';
+      case 'fos.iden_especie': return 'Espeziea';
+      case 'fos.iden_edad': return 'Adina';
+      case 'fos.iden_formacion': return 'Formazioa';
+      case 'fos.iden_fecha_descubrimiento': return 'Aurkikuntza-data';
+      case 'fos.iden_descubridor': return 'Aurkitzailea';
+      case 'fos.iden_email_descubridor': return 'Aurkitzailearen posta';
+      case 'fos.iden_fecha_certificacion': return 'Ziurtapen-data';
+      case 'fos.iden_error_importando': return 'Errorea inportatzean';
+      case 'fos.iden_importar_card_recibida': return 'Inportatu jasotako txartela';
+      case 'fos.iden_no_se_pudo_abrir': return 'Ezin izan da fitxategia ireki';
+      case 'fos.iden_card_importada': return 'Txartela inportatu da';
+      case 'fos.iden_aparece_en_compartidas': return 'Zure aurkikuntzen zerrendako «Partekatuak» fitxan agertzen da.';
+      case 'fos.iden_importar_a_mi_coleccion': return 'Inportatu nire bildumara';
+      case 'fos.iden_hecho': return 'Eginda';
+      case 'fos.iden_modo_experto_aviso': return 'Aditu moduan zaude. Txartel hau berrikusteko prozesatzen da: ez da zure bilduma pertsonalean sartzen.';
+      case 'fos.iden_certificar': return 'Ziurtatu';
+      case 'fos.iden_acusar_recibo': return 'Jaso dela adierazi (geroago berrikusiko dut)';
+      case 'fos.iden_descartar': return 'Baztertu (ez du interes zientifikorik)';
+      case 'fos.iden_acuse_de_recibo': return 'Jasotze-agiria';
+      case 'fos.iden_descarte': return 'Baztertzea';
+      case 'fos.iden_devolucion_firmada': return 'Agintaritzak sinatutako itzulketa.';
+      case 'fos.iden_firma_valida': return 'Sinadura kriptografiko baliozkoa: datuak igorleak sinatu zituen bezalaxe datoz.';
+      case 'fos.iden_firma_invalida': return 'SINADURA BALIOGABEA: fitxategiko datuak EZ datoz bat igorlearen sinadurarekin. Aldatuta egon litezke.';
+      case 'fos.iden_remitente': return 'Igorlea';
+      case 'fos.iden_nombre_declarado': return 'Adierazitako izena';
+      case 'fos.iden_huella': return 'Hatz-marka';
+      case 'fos.iden_hallazgo': return 'Aurkikuntza';
+      case 'fos.iden_tipo': return 'Mota';
+      case 'fos.iden_fecha': return 'Data';
+      case 'fos.iden_coordenadas': return 'Koordenatuak';
+      case 'fos.iden_estrato': return 'Estratua';
+      case 'fos.iden_notas': return 'Oharrak';
+      case 'fos.iden_tipo_fosil': return 'Fosila';
+      case 'fos.iden_tipo_mineral': return 'Minerala';
+      case 'fos.iden_error_sin_manifest': return 'Ez da baliozko .fos-card fitxategia (manifestik gabe)';
+      case 'fos.iden_error_formato_desconocido': return 'Formatu ezezaguna: {formato}';
+      case 'fos.iden_error_falta_hallazgo': return 'hallazgo.json falta da';
+      case 'fos.iden_error_version_desconocida': return 'Aurkikuntzaren bertsio ezezaguna: {version}';
+      case 'fos.iden_error_sin_autoridad': return 'Aditu modua ez dago aktibo: ez dago sinatzeko agintaritzarik.';
+      case 'fos.iden_error_sin_clave_autoridad': return 'Aditu modua ez dago aktibo: ez dago agintaritza-gakorik.';
+      case 'fos.iden_com_falta_consentimiento': return 'Berariazko baimena falta da.';
+      case 'fos.iden_com_limite_diario': return 'Eguneko igoera-mugara iritsi zara. Saiatu bihar.';
+      case 'fos.iden_com_servidor_rechazo': return 'Zerbitzariak igoera baztertu du (HTTP {codigo}).';
+      case 'fos.iden_com_tiempo_agotado': return 'Zerbitzariak gehiegi behar izan du erantzuteko. Egiaztatu konexioa.';
+      case 'fos.iden_com_sin_conexion': return 'Ez dago zerbitzariarekin konexiorik. Saiatu geroago.';
+      case 'fos.iden_com_no_pudo_procesar': return 'Zerbitzariak ezin izan du eskaera prozesatu (HTTP {codigo}).';
+      case 'fos.iden_com_inactiva': return '«Komunitatea» funtzioa ez dago aktibatuta bertsio honetan.';
+      case 'fos.iden_com_sin_fotos': return 'Aurkikuntza honek ez du argazkirik. Editatu eta gehitu bat.';
+      case 'fos.iden_com_enviada': return 'Bidalita (#{id}). Onartzen bada, jakinaraziko dizugu.';
+      case 'fos.iden_com_error_inesperado': return 'Ustekabeko errorea';
+      case 'fos.iden_com_compartir_titulo': return 'Partekatu komunitatearekin';
+      case 'fos.iden_com_intro': return 'Geologo batek zure ekarpena berrikusiko du. Onartzen badu, aplikazioan agertuko da formazio geologiko honi lotuta, beste zaletu batzuek hemen zer aurkitzen den ikus dezaten.';
+      case 'fos.iden_com_se_envia': return 'Bidaltzen da:';
+      case 'fos.iden_com_foto_principal': return 'Aurkikuntzaren argazki nagusia';
+      case 'fos.iden_com_tipo_valor': return 'Mota ({tipo})';
+      case 'fos.iden_com_especie_declarada': return 'Adierazitako espeziea/taldea: {valor}';
+      case 'fos.iden_com_edad_declarada': return 'Adierazitako adina: {valor}';
+      case 'fos.iden_com_formacion_declarada': return 'Adierazitako formazioa: {valor}';
+      case 'fos.iden_com_tus_notas': return 'Zure oharrak';
+      case 'fos.iden_com_no_se_envia': return 'EZ da bidaltzen:';
+      case 'fos.iden_com_nombre_autor': return 'Zure izena egile ikusgai gisa';
+      case 'fos.iden_com_identidad_cripto': return 'Aurkikuntzako zure identitate kriptografikoa';
+      case 'fos.iden_com_email_no_valido': return 'Posta elektroniko baliogabea';
+      case 'fos.iden_com_email_contacto': return 'Harremanetarako posta elektronikoa';
+      case 'fos.iden_com_email_ayuda': return 'Argazkia onartu edo baztertzen den jakinarazteko. EZ da INOIZ argitaratzen.';
+      case 'fos.iden_com_tu_nombre_opcional': return 'Zure izena (aukerakoa)';
+      case 'fos.iden_com_nombre_ayuda': return 'Kontserbatzaileak bakarrik ikusiko du. Ez da inoiz aplikazioan agertzen.';
+      case 'fos.iden_com_consentimiento': return 'Pribatutasun-politika onartzen dut, eta ulertzen dut aplikazioa ez dela ondare paleontologikoa jakinarazteko bide ofiziala; aurkikuntza garrantzitsuetarako, jarri harremanetan zure autonomia-erkidegoko Ondare zerbitzuarekin ere.';
+      case 'fos.iden_com_enviar_revision': return 'Bidali berrikusteko';
+      case 'fos.iden_com_formacion_codigo': return 'Formazioa · {codigo}';
+      case 'fos.iden_com_fotos_comunidad': return 'Komunitatearen argazkiak';
+      case 'fos.iden_com_sin_fotos_formacion': return 'Oraindik ez dago komunitatearen argazkirik formazio honetarako. Hemen zerbait aurkitzen baduzu, lehena izan zaitezke: partekatu zure aurkikuntza Zerrenda fitxatik.';
+      case 'fos.iden_com_sin_especie': return '(espezierik gabe)';
+      case 'fos.mapa_capa_callejero': return 'Kale-mapa';
+      case 'fos.mapa_capa_satelite': return 'Satelitea';
+      case 'fos.mapa_capa_topografico': return 'Topografikoa';
+      case 'fos.mapa_capa_edades_1m': return 'Adinak 1M';
+      case 'fos.mapa_capa_litologias_1m': return 'Litologiak 1M';
+      case 'fos.mapa_capa_geode_desc': return 'Gomendatua · estatuko jarraitu geologikoa. Poligono bakoitzak adina, formazioa eta litologia ditu; ikusten duzuna eta aplikazioak fosiletarako iradokitzen duena beti bat datoz.';
+      case 'fos.mapa_capa_magna_desc': return 'Kolorea litologiaren arabera (arroka mota: kareharria, buztina, granitoa…). Gehieneko xehetasuna 1:50.000. Erabilgarria «zer arroka motaren gainean nago» jakiteko, EZ adinak begirada batean ikusteko.';
+      case 'fos.mapa_capa_edades_desc': return 'Kolorea zuzenean adin geologikoaren arabera (aroa/aldia). Aroak begirada batean ikusteko onena. 1:1.000.000 bereizmena — baxuagoa, eskualde-eskalarako balio du.';
+      case 'fos.mapa_capa_litologias_desc': return 'Litologia orokorra (MAGNAren bertsio sinplifikatua). 1:1.000.000 bereizmena. Eskualde-eskalarako, MAGNA trinkoegia denean.';
+      case 'fos.mapa_lig_sin_nombre': return 'Izenik gabeko LIG';
+      case 'fos.mapa_rosa_vientos': return 'I,IIE,IE,EIE,E,EHE,HE,HHE,H,HHM,HM,MHM,M,MIM,IM,IIM';
+      case 'fos.mapa_estas_en': return '{emoji} {nombre} lekuan zaude. Ukitu zer bilatu ikusteko.';
+      case 'fos.mapa_ver_ficha': return 'Ikusi fitxa';
+      case 'fos.mapa_esperando_gps': return 'GPSaren zain distantzia kalkulatzeko.';
+      case 'fos.mapa_distancia_y_rumbo': return 'Distantzia eta norabidea';
+      case 'fos.mapa_desde_tu_posicion': return 'Zure kokapenetik {coordenadas} punturaino';
+      case 'fos.mapa_detener_track': return 'Gelditu ibilbidea';
+      case 'fos.mapa_iniciar_track': return 'Hasi ibilbidea grabatzen';
+      case 'fos.mapa_nombre_opcional': return 'Izena (aukerakoa)';
+      case 'fos.mapa_descartar': return 'Baztertu';
+      case 'fos.mapa_track_guardado': return 'Ibilbidea gordeta';
+      case 'fos.mapa_grabando_track_aviso': return '🔴 Ibilbidea grabatzen. Pantaila blokea dezakezu; grabazioak aurrera jarraituko du.';
+      case 'fos.mapa_acercate_monumentos': return '🗿 Hurbildu gehiago (zoom ≥ 9) monumentuak kargatzeko.';
+      case 'fos.mapa_sin_monumentos': return '🗿 Ez dago OSM monumenturik ikuspegi honetan. Saiatu mapa mugitzen.';
+      case 'fos.mapa_monumentos_cargados': return '🗿 {n} monumentu kargatuta.';
+      case 'fos.mapa_error_monumentos': return 'Errorea monumentuetan: {error}';
+      case 'fos.mapa_acercate_cuevas': return '🦇 Hurbildu gehiago (zoom ≥ 10) kobazuloak kargatzeko.';
+      case 'fos.mapa_sin_cuevas': return '🦇 Ez dago OSM kobazulorik ikuspegi honetan. Saiatu mapa mugitzen.';
+      case 'fos.mapa_cuevas_cargadas': return '🦇 {n} kobazulo kargatuta.';
+      case 'fos.mapa_error_cuevas': return 'Errorea kobazuloetan: {error}';
+      case 'fos.mapa_que_buscar': return 'Zer bilatu';
+      case 'fos.mapa_como_llegar': return 'Nola iritsi';
+      case 'fos.mapa_marcar_hallazgo_aqui': return 'Markatu aurkikuntza hemen';
+      case 'fos.mapa_fuente': return 'Iturria: {fuente}';
+      case 'fos.mapa_cronologia': return 'Kronologia: {valor}';
+      case 'fos.mapa_ver_en_osm': return 'Ikusi OpenStreetMap-en';
+      case 'fos.mapa_especie': return 'Espeziea';
+      case 'fos.mapa_edad': return 'Adina';
+      case 'fos.mapa_formacion': return 'Formazioa';
+      case 'fos.mapa_fecha': return 'Data';
+      case 'fos.mapa_coordenadas': return 'Koordenatuak';
+      case 'fos.mapa_estrato': return 'Estratua';
+      case 'fos.mapa_notas': return 'Oharrak';
+      case 'fos.mapa_borrar_hallazgo_pregunta': return 'Aurkikuntza hau ezabatu?';
+      case 'fos.mapa_compartir_texto': return 'Partekatu testua';
+      case 'fos.mapa_tarjeta': return 'Txartela';
+      case 'fos.mapa_certificado_verificable': return 'Ziurtagiri egiaztagarria';
+      case 'fos.mapa_enviar_otra_app': return 'Bidali beste Fósiles aplikazio batera';
+      case 'fos.mapa_historial_trazabilidad': return 'Trazabilitate-historia';
+      case 'fos.mapa_evento_anadido': return 'Gertaera historian gehitu da.';
+      case 'fos.mapa_anadir_trazabilidad': return 'Gehitu trazabilitatea';
+      case 'fos.mapa_anadir_evento': return 'Gehitu gertaera';
+      case 'fos.mapa_compartir_titulo': return 'Fosil-aurkikuntza';
+      case 'fos.mapa_asunto_hallazgo': return 'Aurkikuntza: {especie}';
+      case 'fos.mapa_error_tarjeta': return 'Errorea txartela sortzean: {error}';
+      case 'fos.mapa_precision_coordenadas': return 'Koordenatuen zehaztasuna';
+      case 'fos.mapa_precision_explicacion': return 'Koordenatu zehatzek aztarnategien espoliazioa erraztu dezakete. Konfiantzazko lankideei edo Institutuari, bidali zehatzak; zaletu ezezagunei edo publiko orokorrari, lausotuak (~1 km-ko zehaztasuna).';
+      case 'fos.mapa_difuminadas_recomendado': return 'Lausotuak (~1 km)  ·  gomendatua';
+      case 'fos.mapa_precisas': return 'Zehatzak (~11 cm)';
+      case 'fos.mapa_asunto_card': return 'Aurkikuntzaren card-a: {especie}';
+      case 'fos.mapa_sin_especie': return '(espezierik gabe)';
+      case 'fos.mapa_texto_card': return 'Fósiles card-a ({mb} MB · {fotos} argazki · {modo}). Inportatzeko, ireki fitxategia Fósiles aplikazioaren beste instalazio batean.';
+      case 'fos.mapa_coords_difuminadas': return 'koordenatu lausotuak';
+      case 'fos.mapa_coords_precisas': return 'koordenatu zehatzak';
+      case 'fos.mapa_error_card': return 'Errorea card-a sortzean: {error}';
+      case 'fos.mapa_configura_nombre': return 'Konfiguratu lehenik zure izena Ezarpenak → Profila eta identitatea atalean.';
+      case 'fos.mapa_profundidad': return 'Sakonera: {n} m';
+      case 'fos.mapa_longitud': return 'Luzera: {n} m';
+      case 'fos.mapa_tipo': return 'Mota: {tipo}';
+      case 'fos.mapa_sin_datos': return 'Daturik ez';
+      case 'fos.mapa_igme_sin_info': return 'IGMEk ez du informaziorik ematen puntu honetan.';
+      case 'fos.mapa_geologia_en_punto': return 'Geologia puntu honetan';
+      case 'fos.mapa_antiguedad': return 'Antzinatasuna';
+      case 'fos.mapa_era_periodo': return 'Aroa / Aldia';
+      case 'fos.mapa_litologia': return 'Litologia';
+      case 'fos.mapa_lig_cerca': return 'Interes Geologikoko Lekuak inguruan';
+      case 'fos.mapa_yacimientos_cercanos': return 'Aztarnategi hautatuak inguruan';
+      case 'fos.mapa_fosiles_probables': return 'Hemen egon litezkeen fosilak · {periodo}';
+      case 'fos.mapa_sin_fosiles_edad': return 'Gidak ez du adin honi lotutako fosilik.';
+      case 'fos.mapa_minerales_probables': return '💎 Hemen egon litezkeen mineralak';
+      case 'fos.mapa_fotos_comunidad': return 'Komunitatearen argazkiak: {formacion}';
+      case 'fos.mapa_interes_principal': return 'Interes nagusia';
+      case 'fos.mapa_descripcion': return 'Deskribapena';
+      case 'fos.mapa_a_distancia_km': return '{km} km-ra';
+      case 'fos.mapa_capa_base': return 'Oinarrizko geruza';
+      case 'fos.mapa_capa_geologica': return 'Geruza geologikoa';
+      case 'fos.mapa_sin_geologia': return 'Geologiarik gabe';
+      case 'fos.mapa_mas_capas': return 'Geruza eta aukera gehiago';
+      case 'fos.mapa_lig': return 'Interes Geologikoko Lekuak';
+      case 'fos.mapa_relieve_sombreado': return 'Erliebe itzaleztatua';
+      case 'fos.mapa_mapa_de_calor': return 'Aurkikuntzak bero-mapa gisa';
+      case 'fos.mapa_yacimientos_curados': return 'Aztarnategi hautatuak';
+      case 'fos.mapa_tracks_guardados': return 'Gordetako ibilbideak';
+      case 'fos.mapa_como_leer_mapa': return 'Nola irakurri mapa';
+      case 'fos.mapa_sin_conexion_cache': return 'Konexiorik gabe — cacheko datuak erabiltzen';
+      case 'fos.mapa_toca_marcar': return '👆 Ukitu mapa aurkikuntza markatzeko';
+      case 'fos.mapa_toca_geologia': return '👆 Ukitu mapa geologia ikusteko';
+      case 'fos.mapa_asistente_sin_conexion': return 'IGME laguntzaileak konexioa behar du';
+      case 'fos.mapa_consultando_igme': return 'IGME kontsultatzen…';
+      case 'fos.mapa_sin_datos_igme_centro': return 'Ez dago IGMEren daturik maparen erdian';
+      case 'fos.mapa_marcar_punto': return 'Markatu puntua';
+      case 'fos.mapa_explorar_geologia': return 'Arakatu geologia';
+      case 'fos.mapa_cargando': return 'Kargatzen…';
+      case 'fos.mapa_cuevas': return 'Kobazuloak';
+      case 'fos.mapa_megalitos': return 'Megalitoak';
+      case 'fos.mapa_asistente_activo': return 'Laguntzailea aktibo';
+      case 'fos.mapa_asistente': return 'Laguntzailea';
+      case 'fos.mapa_cerrar': return 'Itxi';
+      case 'fos.mapa_mareas': return 'Itsasaldiak';
+      case 'fos.mapa_bajamar_hora': return 'Itsasbehera: {hora}';
+      case 'fos.mapa_bajamar': return 'Itsasbehera';
+      case 'fos.mapa_pleamar': return 'Itsasgora';
+      case 'fos.mapa_hoy_minusculas': return 'gaur';
+      case 'fos.mapa_manana_minusculas': return 'bihar';
+      case 'fos.mapa_firmado_por_ti': return '✓ Zuk sinatua';
+      case 'fos.mapa_firmado_por_otra': return 'Beste pertsona batek sinatua';
+      case 'fos.mapa_sin_firma': return 'Sinadura kriptografikorik gabe';
+      case 'fos.mapa_firma_rota': return '✗ Sinadura hautsia — datuak aldatu dira';
+      case 'fos.mapa_verificando_certificacion': return 'Ziurtapena egiaztatzen…';
+      case 'fos.mapa_cadena_invalida': return 'Ziurtapen-kate baliogabea — gutxienez katebegi bat hautsita dago.';
+      case 'fos.mapa_certificada_por': return 'Ziurtatzailea: {autoridad}';
+      case 'fos.mapa_firmada_una': return 'Sinatua: {fecha} · ziurtapen 1';
+      case 'fos.mapa_firmada_varias': return 'Sinatua: {fecha} · {n} ziurtapen';
+      case 'fos.mapa_selecciona_capa': return 'Hautatu geruza bat gutxienez.';
+      case 'fos.mapa_confirmar_descarga': return '{n} tesela deskargatuko dituzu (~{mb} MB). Jarraitu?';
+      case 'fos.mapa_descargar': return 'Deskargatu';
+      case 'fos.mapa_teselas_en_cache': return '✅ {n} tesela cachean ({fallidas} hutsegite).';
+      case 'fos.mapa_descargar_mapas_offline': return 'Deskargatu mapak konexiorik gabe erabiltzeko';
+      case 'fos.mapa_centra_zona': return 'Zentratu eta egin zoom goiko mapan, egongo zaren eremuaren gainean.';
+      case 'fos.mapa_zoom_minimo': return 'Gutxieneko zooma: {n}';
+      case 'fos.mapa_zoom_maximo': return 'Gehieneko zooma: {n}';
+      case 'fos.mapa_capa_geologica_igme_opcional': return 'IGME geruza geologikoa (aukerakoa)';
+      case 'fos.mapa_ninguna': return 'Bat ere ez';
+      case 'fos.mapa_resumen_teselas': return '{n} tesela (~{mb} MB) {capas} geruzatan';
+      case 'fos.mapa_descargando': return 'Deskargatzen…';
+      case 'fos.mapa_descargar_ahora': return 'Deskargatu orain';
+      case 'fos.mapa_progreso_descarga': return '{descargadas}/{total} ({fallidas} hutsegite) · {mb} MB';
+      case 'fos.mapa_track': return 'Ibilbidea';
+      case 'fos.mapa_tracks': return 'Ibilbideak';
+      case 'fos.mapa_error_cargando_tracks': return 'Errorea ibilbideak kargatzean: {error}';
+      case 'fos.mapa_error_abriendo_track': return 'Errorea ibilbidea irekitzean: {error}';
+      case 'fos.mapa_track_sin_puntos': return 'Ibilbide honek ez du gordetako punturik (grabazioa GPSaren lehen kokapena lortu aurretik gelditu zen).';
+      case 'fos.mapa_asunto_gpx': return 'GPX ibilbidea';
+      case 'fos.mapa_informe_pdf': return 'PDF txostena';
+      case 'fos.mapa_borrar_track_pregunta': return 'Ibilbide hau ezabatu?';
+      case 'fos.mapa_asunto_informe_salida': return 'Irteeraren txostena';
+      case 'fos.mapa_error_pdf': return 'Errorea PDFa sortzean: {error}';
+      case 'fos.mapa_n_puntos': return '{n} puntu';
+      case 'fos.mapa_gpx_sin_puntos': return 'GPXak ez du ibilbide-punturik.';
+      case 'fos.mapa_importado': return 'Inportatuta: {nombre} ({n} puntu)';
+      case 'fos.mapa_error_importando_gpx': return 'Errorea GPXa inportatzean: {error}';
+      case 'fos.mapa_importar_gpx': return 'Inportatu GPXa';
+      case 'fos.mapa_sin_tracks': return 'Oraindik ez duzu ibilbiderik grabatu.';
+      case 'fos.mapa_sin_tracks_ayuda': return 'Erabili maparen ⏺ botoia hasteko.';
+      case 'fos.mapa_track_del': return '{fecha} eguneko ibilbidea';
+      case 'fos.mapa_notificacion_grabando': return 'Ibilbidea grabatzen';
+      case 'fos.mapa_notificacion_registrando_ruta': return 'Fósiles zure ibilbidea erregistratzen ari da';
+      case 'fos.mapa_track_recuperado': return 'Berreskuratutako ibilbidea {fecha}';
+      case 'fos.mapa_track_importado': return 'Inportatutako ibilbidea';
+      case 'fos.mapa_overpass_fallaron': return 'Overpass zerbitzari guztiek huts egin dute · azkena: {error}';
+      case 'fos.mapa_monumento_megalito': return 'Megalitoa (trikuharria / kromletxa / harrespila)';
+      case 'fos.mapa_monumento_dolmen': return 'Trikuharria';
+      case 'fos.mapa_monumento_tumulo': return 'Tumulua';
+      case 'fos.mapa_monumento_fondo_cabana': return 'Txabola-hondoa';
+      case 'fos.mapa_monumento_fortificacion': return 'Gotorlekua / kastroa';
+      case 'fos.mapa_monumento_castillo': return 'Gaztelua';
+      case 'fos.mapa_monumento_poblado': return 'Herrixka / kokalekua';
+      case 'fos.mapa_monumento_menhir': return 'Zutarria';
+      case 'fos.mapa_monumento_piedra_antigua': return 'Harri zaharra';
+      case 'fos.mapa_monumento_circulo_piedras': return 'Harrizko zirkulua';
+      case 'fos.mapa_monumento_tumba': return 'Hilobia';
+      case 'fos.mapa_monumento_ruinas': return 'Hondakinak';
+      case 'fos.mapa_monumento_monumento': return 'Monumentua';
+      case 'fos.mapa_monumento_memorial': return 'Oroigarria';
+      case 'fos.mapa_monumento_crucero': return 'Bidegurutzeko gurutzea';
+      case 'fos.mapa_monumento_yacimiento': return 'Aztarnategi arkeologikoa';
+      case 'fos.mapa_sin_nombre': return 'Izenik gabe';
+      case 'fos.mapa_ayuda_capas_titulo': return 'Maparen geruza geologikoak';
+      case 'fos.mapa_ayuda_capas_texto': return 'Maparen goiko barran, mendiaren ikonoak IGMEren geruza geologikoen zerrenda irekitzen du. Aplikazioa zerrendako lehenengoarekin abiatzen da (GEODE 50). Bakoitza zertarako den:';
+      case 'fos.mapa_ayuda_capas_nota': return 'Laguntzailearen eta esploratzailearen fosil- eta mineral-iradokizunek BETI GEODE 50 kontsultatzen dute barnean, edozein geruza margotuta egonda ere — horrela, ikusizko geruza aldatzeak ez du fosil probableen zerrenda nahasten.';
+      case 'fos.mapa_ayuda_otras_titulo': return 'Beste geruza eta iragazki batzuk';
+      case 'fos.mapa_ayuda_menu_superior': return 'Maparen goiko barrako «⋮» menuan:';
+      case 'fos.mapa_ayuda_item_lig': return '⭐ LIG — IGMEk izendatutako Interes Geologikoko Lekuak.';
+      case 'fos.mapa_ayuda_item_relieve': return '⛰️ Erliebe itzaleztatua (hillshade) topografia ikusteko.';
+      case 'fos.mapa_ayuda_item_calor': return '🔥 Aurkikuntzak bero-mapa gisa.';
+      case 'fos.mapa_ayuda_item_yacimientos': return '🏛️ Aztarnategi hautatuak — fitxadun eskuzko hautaketa; «aztarnategi hurbilak» pista gisa ere agertzen dira 5 km baino gutxiagora sakatzen duzunean.';
+      case 'fos.mapa_ayuda_boton_capas': return 'Maparen beheko ezkerreko geruzen botoian:';
+      case 'fos.mapa_ayuda_item_cuevas': return '🦇 Kobazuloak (OpenStreetMap, zoom ≥ 10 behar da).';
+      case 'fos.mapa_ayuda_item_megalitos': return '🗿 Megalitoak eta monumentu arkeologikoak (OSM, zoom ≥ 9).';
+      case 'fos.mapa_ayuda_sugerencias_titulo': return 'Fosil- eta mineral-iradokizunak';
+      case 'fos.mapa_ayuda_sugerencias_intro': return 'Puntu bat sakatzean (Arakatu geologia modua) edo laguntzailea maparen erdian aktibatuta dagoenean, aplikazioak IGMEren erantzuna bere tokiko katalogoekin gurutzatzen du:';
+      case 'fos.mapa_ayuda_sugerencias_formacion': return 'GEODEk itzultzen duen formazioa formazio iberiarren katalogoarekin bat badator, formazio horretako fosil bereizgarriak iradokitzen dira (PENDIENTE_VALIDACION zigilu paleontologikoa, batzorde zientifikoaren ikuskaritza egin arte).';
+      case 'fos.mapa_ayuda_sugerencias_periodo': return 'Bestela, ondorioztatutako aldiko fosilak iradokitzen dira, litologiaren ingurune sedimentario probablearen arabera iragazita (adib. granitoa edo basaltoa → fosilik ez; kareharria → itsastarrak).';
+      case 'fos.mapa_ayuda_sugerencias_minerales': return 'Mineralak litologiaren arabera haztatzen dira: talde bakoitzak (granitikoa, karbonatikoa, basaltikoa, ebaporitikoa, metamorfikoa…) bere multzo probablea du.';
+      case 'fos.mapa_orientacion_estrato': return 'Estratuaren orientazioa';
+      case 'fos.mapa_orientacion_instrucciones': return 'Jarri telefonoa etzanda arroka-geruzaren gainazalean, pantaila gorantz. Eutsi geldi eta sakatu Hartu.';
+      case 'fos.mapa_strike': return 'Strike (direkzioa)';
+      case 'fos.mapa_strike_ayuda': return 'Geruzaren lerro horizontala';
+      case 'fos.mapa_dip': return 'Dip (makurdura)';
+      case 'fos.mapa_dip_ayuda': return 'Horizontalarekiko inklinazioa';
+      case 'fos.mapa_direccion_dip': return 'Dip-aren noranzkoa';
+      case 'fos.mapa_direccion_dip_ayuda': return 'Geruza nora makurtzen den';
+      case 'fos.mapa_brujula': return 'Iparrorratza (mugikorraren goialdea)';
+      case 'fos.mapa_solo_referencia': return 'Erreferentzia soilik';
+      case 'fos.mapa_aviso_casi_horizontal': return '⚠ Gainazala ia horizontala da — direkzioa ez da zehatza izango.';
+      case 'fos.mapa_aviso_casi_vertical': return '⚠ Geruza ia bertikala — erabili beste aurpegi bat hobeto neurtzeko.';
+      case 'fos.mapa_capturar': return 'Hartu';
+      case 'fos.mapa_permiso_bloqueado': return 'Kokapen-baimena blokeatuta';
+      case 'fos.mapa_permiso_bloqueado_texto': return 'Baimena behin betiko ukatu duzu. GPSa erabiltzeko, eskuz aktibatu behar duzu sistemaren ezarpenetan.';
+      case 'fos.mapa_activa_gps': return 'Aktibatu telefonoaren GPSa eta saiatu berriro.';
+      case 'fos.mapa_necesito_permiso': return 'Kokapen-baimena behar dut ekintza honetarako.';
+      case 'fos.mapa_abrir_ajustes': return 'Ireki ezarpenak';
+      case 'fos.mapa_ubicacion_seleccionada': return 'Hautatutako kokapena';
+      case 'fos.mapa_meteo_sin_ubicacion': return 'Ezin izan da kokapena lortu. Aktibatu GPSa.';
+      case 'fos.mapa_meteorologia': return 'Meteorologia';
+      case 'fos.mapa_buscar_lugar': return 'Bilatu lekua…';
+      case 'fos.mapa_usar_mi_ubicacion': return 'Erabili nire kokapena';
+      case 'fos.mapa_meteo_vacio': return 'Bilatu leku bat edo sakatu kokapen-botoia eguraldi-iragarpena ikusteko';
+      case 'fos.mapa_proximas_horas': return 'Hurrengo orduak';
+      case 'fos.mapa_ahora': return 'Orain';
+      case 'fos.mapa_proximos_dias': return 'Hurrengo egunak';
+      case 'fos.mapa_hoy': return 'Gaur';
+      case 'fos.mapa_datos_open_meteo': return 'Datuak: Open-Meteo (doakoa, API gakorik gabe)';
+      case 'fos.mapa_meteo_despejado': return 'Oskarbi';
+      case 'fos.mapa_meteo_mayormente_despejado': return 'Oskarbi gehienbat';
+      case 'fos.mapa_meteo_parcialmente_nublado': return 'Hodei gutxi';
+      case 'fos.mapa_meteo_nublado': return 'Hodeitsu';
+      case 'fos.mapa_meteo_niebla': return 'Lainoa';
+      case 'fos.mapa_meteo_llovizna_ligera': return 'Zirimiri arina';
+      case 'fos.mapa_meteo_llovizna_moderada': return 'Zirimiri moderatua';
+      case 'fos.mapa_meteo_llovizna_densa': return 'Zirimiri trinkoa';
+      case 'fos.mapa_meteo_lluvia_ligera': return 'Euri arina';
+      case 'fos.mapa_meteo_lluvia_moderada': return 'Euri moderatua';
+      case 'fos.mapa_meteo_lluvia_fuerte': return 'Euri handia';
+      case 'fos.mapa_meteo_nevada_ligera': return 'Elurte arina';
+      case 'fos.mapa_meteo_nevada_moderada': return 'Elurte moderatua';
+      case 'fos.mapa_meteo_nevada_fuerte': return 'Elurte handia';
+      case 'fos.mapa_meteo_chubascos_ligeros': return 'Zaparrada arinak';
+      case 'fos.mapa_meteo_chubascos_moderados': return 'Zaparrada moderatuak';
+      case 'fos.mapa_meteo_chubascos_fuertes': return 'Zaparrada handiak';
+      case 'fos.mapa_meteo_tormenta': return 'Ekaitza';
+      case 'fos.mapa_meteo_tormenta_granizo': return 'Ekaitza txingorrarekin';
+      case 'fos.mapa_meteo_desconocido': return 'Ezezaguna';
+      case 'fos.mapa_cueva_sin_nombre': return 'Izenik gabeko haitzuloa';
+      case 'fos.mapa_bocamina_sin_nombre': return 'Izenik gabeko meategi-ahoa';
+      case 'nat.ajus_cabecera_titulo': return 'Naturako landa-koadernoa';
+      case 'nat.ajus_cabecera_sub': return 'Behatu, ikasi eta bizi zure inguruko biodibertsitatearekin batera';
+      case 'nat.ajus_explorar_mapa_sub': return 'Espezieak eta behaketak';
+      case 'nat.ajus_meteo_sub': return 'Zure irteerarako iragarpena';
+      case 'nat.ajus_chat_ia_sub': return 'Argitu zalantzak, identifikatu espezieak, eskatu behaketarako aholkuak';
+      case 'nat.ajus_salidas_campo': return 'Landa-irteerak';
+      case 'nat.ajus_salidas_campo_sub': return 'Bildu egun bateko aurkikuntzak, ibilbidea eta eguraldia kontakizun bakar batean';
+      case 'nat.ajus_etica_titulo': return 'Esploratu, behatu eta bizi elkarrekin';
+      case 'nat.ajus_etica_sub': return 'Natura gozatzeko jarraibide batzuk: gehitu, kendu gabe.';
+      case 'nat.ajus_etica1_titulo': return 'Behatu jakin-minez eta errespetuz';
+      case 'nat.ajus_etica1_texto': return 'Hurbildu animaliengana lasai, gorde distantzia eta gozatu mehatxatuta sentitzen ez direnean nola jokatzen duten ikusten. Prismatikoek edo kameraren zoomak oroitzapen hobeak emango dizkizute haiek ukitzen saiatzeak baino. Alde egiten badute, gertuegi zeundelako da.';
+      case 'nat.ajus_etica2_titulo': return 'Landareak ere protagonistak dira';
+      case 'nat.ajus_etica2_texto': return 'Espezie asko hauskorrak dira eta urteak behar dituzte loratzeko. Atera argazkia bere lekuan: irudiak betiko irauten du eta landareak bizirik jarraitzen du. Eremu sentikorretan, ez atera bidezidorretatik; sustraiek eta kimuek eskertuko dizute.';
+      case 'nat.ajus_etica3_titulo': return 'Zure behaketa bakoitzak gehitzen du';
+      case 'nat.ajus_etica3_texto': return 'Zure erregistroek zientzialariei eta kontserbazionistei laguntzen diete ulertzen espezieak nola mugitzen diren, noiz loratzen diren edo non egiten duten habia. Aplikazioarekin identifikatu eta geokokatu dezakezu. Herritarren zientzia da: zuk esploratzen duzu, zientziak aurrera egiten du.';
+      case 'nat.ajus_etica4_titulo': return 'Gozatu segurtasunez';
+      case 'nat.ajus_etica4_texto': return 'Eraman ura, eguzkitako babesa eta oinetako erosoak. Begiratu eguraldi-iragarpena irten aurretik — aplikazioak ematen dizu. Estaldurarik gabeko eremuetara bazoaz, partekatu zure ibilbidea norbaitekin. Txango ona irribarre batekin amaitzen dena da.';
+      case 'nat.ajus_etica5_titulo': return 'Zure igarotzea ikusezina izan dadila';
+      case 'nat.ajus_etica5_texto': return 'Eraman zure zaborra… eta beste piskat aurkitzen baduzu. Ez egin surik. Utzi harriak, lumak eta hondarrak zeuden lekuan: paisaiaren eta bizitzaren zikloaren parte dira. Naturak ez du oroigarririk behar; zuk esperientzia daramazu dagoeneko.';
+      case 'nat.ajus_como_usar': return 'Nola erabili Naturaleza';
+      case 'nat.ajus_paso1_texto': return 'Aktibatu interesguneak (begiratokiak, hezeguneak, erreserbak) eta kontsultatu inguruko GBIF behaketak.';
+      case 'nat.ajus_paso2_texto': return 'Sakatu + espezie bat gehitzeko argazkiarekin, koordenatuekin eta kategoriarekin (animalia, intsektua, landarea).';
+      case 'nat.ajus_paso3_titulo': return 'Identifikatu AArekin';
+      case 'nat.ajus_paso3_texto': return 'Aplikazioak espeziea irudiaren bidez identifikatzen du, Claude edo Pl@ntNet erabiliz.';
+      case 'nat.ajus_paso4_titulo': return 'Kontsultatu gida';
+      case 'nat.ajus_paso4_texto': return 'Sartu espezieen gidan: Wikipediako argazkiak, ezaugarri bereizgarriak, habitata eta erabilerak.';
+      case 'nat.ajus_paso5_titulo': return 'Egin galdetegia';
+      case 'nat.ajus_paso5_texto': return 'Jarri proban zure ezagutzak irudi bidezko identifikazio-galdetegiarekin.';
+      case 'nat.ajus_salida_sin_titulo': return 'Izenbururik gabeko irteera';
+      case 'nat.ajus_salida_en_curso': return 'Irteera abian · hasiera: {hora}';
+      case 'nat.ajus_backup_asunto': return 'Naturaleza-ren segurtasun-kopia';
+      case 'nat.ajus_backup_texto': return 'Segurtasun-kopia ({kb} KB)';
+      case 'nat.ajus_restaurados': return '{hallazgos} aurkikuntza eta {fotos} argazki leheneratu dira. Berrabiarazi aplikazioa aldaketak ikusteko.';
+      case 'nat.ajus_claves_modelo_sub': return 'Claude identifikatzeko, Pl@ntNet landareetarako eta DeepSeek txaterako';
+      case 'nat.ajus_backup_explicacion': return 'Esportatu zure datu guztiak (aurkikuntzak + ibilbideak + argazkiak) .natbackup fitxategi bakar batean. Gorde Driven, USB batean edo posta elektronikoan. Leheneratzeko, hautatu .natbackup fitxategia; uneko datuak ordeztuko ditu.';
+      case 'nat.ajus_sobre_app_texto': return 'Naturaleza — Landa-koadernoa (animaliak, intsektuak eta landareak). Androiderako Flutter bertsioa.';
+      case 'nat.ajus_sobre_app_fuentes': return 'Oinarrizko mapa: OpenStreetMap, ESRI, OpenTopoMap. Identifikazioa: Claude (Anthropic). Taxonomia eta erreferentziak: iNaturalist eta GBIF.';
+      case 'nat.ajus_mensaje_compartir': return 'Naturaleza — landa-koaderno digitala, fauna eta flora georreferentziarekin idazteko, identifikazio-gida batekin. Aplikazio librea, iragarkirik eta jarraipenik gabe. Probatu: {url}';
+      case 'nat.ajus_chat_vacio': return 'Galdetu nahi duzuna espezieei, faunari, florari, identifikazioari, behaketari… buruz';
+      case 'nat.ajus_identificacion_claude': return 'Claude bidezko identifikazioa';
+      case 'nat.ajus_ia_explicacion': return 'Espezieak automatikoki identifikatzeko, idatzi zure Anthropic API gakoa. Zure telefonoan bakarrik gordetzen da, eta api.anthropic.com helbidera bakarrik bidaltzen da. Lortu bat console.anthropic.com webgunean.';
+      case 'nat.ajus_plantnet_titulo': return 'Landareen identifikazioa Pl@ntNet bidez (doan)';
+      case 'nat.ajus_plantnet_explicacion': return 'Pl@ntNet-ek argazki batekin identifikatzen ditu landareak eta hautagaien sailkapen bat itzultzen du. Doako planak 500 identifikazio ematen ditu eguneko. Erregistratu my.plantnet.org webgunean eta itsatsi hemen zure gakoa. Argazkia aurkikuntza baten fitxan "Identifikatu landarea" botoia sakatzen duzunean bakarrik bidaltzen da.';
+      case 'nat.ajus_conseguir_plantnet': return 'Lortu Pl@ntNet gakoa';
+      case 'nat.ajus_api_plantnet': return 'Pl@ntNet API gakoa';
+      case 'nat.ajus_chat_deepseek': return 'DeepSeek-ekin txateatu';
+      case 'nat.ajus_plantnet_falta_clave': return 'Pl@ntNet API gakoa falta da.';
+      case 'nat.ajus_foto_no_existe': return 'Argazkia ez dago diskoan: {ruta}';
+      case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet-ek gakoa baztertu du (HTTP {codigo}). Egiaztatu gakoa Ezarpenak → Adimen artifiziala atalean.';
+      case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet-ek gaurko kuota agortu dela adierazi du (HTTP 429).';
+      case 'nat.ajus_servicio_devolvio': return '{servicio} zerbitzuak {codigo} itzuli du';
+      case 'nat.cat_mamiferos': return 'Ugaztunak';
+      case 'nat.cat_aves': return 'Hegaztiak';
+      case 'nat.cat_reptiles': return 'Narrastiak';
+      case 'nat.cat_anfibios': return 'Anfibioak';
+      case 'nat.cat_peces': return 'Arrainak';
+      case 'nat.cat_insectos': return 'Intsektuak eta artropodoak';
+      case 'nat.cat_plantas': return 'Landareak';
+      case 'nat.cat_setas': return 'Perretxikoak eta onddoak';
+      case 'nat.cat_otros_animales': return 'Beste animalia batzuk';
+      case 'nat.uso_medicinal': return 'Sendagarria';
+      case 'nat.uso_comestible': return 'Jangarria';
+      case 'nat.uso_aromatica': return 'Usaintsua / sukaldekoa';
+      case 'nat.uso_melifera': return 'Eztigilea';
+      case 'nat.uso_ornamental': return 'Apaingarria';
+      case 'nat.uso_toxica': return 'Toxikoa';
+      case 'nat.uso_urticante': return 'Azkura-eragilea / narritagarria';
+      case 'nat.uso_protegida': return 'Babestua';
+      case 'nat.uso_invasora': return 'Inbaditzailea';
+      case 'nat.uso_endemica': return 'Endemikoa';
+      case 'nat.hall_alternativas_dos_puntos': return 'Beste aukera batzuk:';
+      case 'nat.hall_altura_aprox_cm': return 'Gutxi gorabeherako altuera (cm)';
+      case 'nat.hall_anade_foto_primero': return 'Gehitu argazki bat lehenik.';
+      case 'nat.hall_anotacion_al_margen': return 'Ertzeko oharra';
+      case 'nat.hall_anotacion_hint': return 'adib. azkenean emea zen, ez arra';
+      case 'nat.hall_anotaciones_al_margen': return 'Ertzeko oharrak';
+      case 'nat.hall_asunto_exportacion': return 'Natura-aurkikuntzak';
+      case 'nat.hall_asunto_hallazgo': return 'Aurkikuntza: {titulo}';
+      case 'nat.hall_badge_confirmada': return '✓ Baieztatua';
+      case 'nat.hall_badge_corregida': return '→ Zuzendua';
+      case 'nat.hall_badge_sin_validar': return '? Baieztatu gabe';
+      case 'nat.hall_borrar_anotacion': return 'Oharra ezabatu';
+      case 'nat.hall_buscar_en_inaturalist': return 'iNaturalist-en bilatu';
+      case 'nat.hall_buscar_hint': return 'Bilatu izenaren, taxonomiaren, habitataren edo oharren arabera…';
+      case 'nat.hall_calibracion_por_confianza': return 'Kalibrazioa konfiantzaren arabera';
+      case 'nat.hall_candidatos_plantnet': return 'Pl@ntNet-en hautagaiak';
+      case 'nat.hall_categoria': return 'Kategoria';
+      case 'nat.hall_color_sombrero': return 'Txapelaren kolorea';
+      case 'nat.hall_como_confirmar_texto': return 'Nola baieztatu: {texto}';
+      case 'nat.hall_comportamiento': return 'Portaera';
+      case 'nat.hall_confianza_etiqueta': return 'Konfiantza: {nivel}';
+      case 'nat.hall_confianza_probable': return 'Litekeena';
+      case 'nat.hall_confianza_segura': return 'Ziurra';
+      case 'nat.hall_confianza_sin_marcar': return 'Markatu gabe';
+      case 'nat.hall_confianza_tentativa': return 'Zalantzazkoa';
+      case 'nat.hall_configura_clave_plantnet': return 'Konfiguratu zure Pl@ntNet gakoa Ezarpenak → Adimen artifiziala atalean.';
+      case 'nat.hall_confirmada_check': return 'Baieztatua ✓';
+      case 'nat.hall_confirmadas': return 'Baieztatuak';
+      case 'nat.hall_confirmar_borrar_anotacion': return 'Ertzeko ohar hau ezabatuko da. Aurkikuntza eta gainerako oharrak mantendu egingo dira.';
+      case 'nat.hall_corregida_a': return 'Zuzenketa';
+      case 'nat.hall_corregidas': return 'Zuzenduak';
+      case 'nat.hall_corregir': return 'Zuzendu';
+      case 'nat.hall_corregir_identificacion': return 'Identifikazioa zuzendu';
+      case 'nat.hall_cuando_dijiste_probable': return '"Litekeena" esan zenuenean';
+      case 'nat.hall_cuando_dijiste_segura': return '"Ziurra" esan zenuenean';
+      case 'nat.hall_cuando_dijiste_tentativa': return '"Zalantzazkoa" esan zenuenean';
+      case 'nat.hall_de_acierto_global': return 'asmatze-tasa orokorra';
+      case 'nat.hall_descarga_fallo': return 'Deskargak huts egin du ({codigo})';
+      case 'nat.hall_detalles_de': return 'Xehetasunak: {categoria}';
+      case 'nat.hall_dia_n': return '{n}. eguna';
+      case 'nat.hall_diametro_sombrero_cm': return 'Txapelaren diametroa (cm)';
+      case 'nat.hall_dias_antes': return '↑ {n}e lehenago';
+      case 'nat.hall_dias_despues': return '↓ {n}e beranduago';
+      case 'nat.hall_en_fecha': return 'garaiz';
+      case 'nat.hall_entrara_en_salida': return 'Behaketa hau irteeran sartuko da';
+      case 'nat.hall_error_conectar_archivos': return 'Ezin izan da artxiboetara konektatu. Egiaztatu konexioa.';
+      case 'nat.hall_error_descargar_foto': return 'Ezin izan da argazkia deskargatu: {error}';
+      case 'nat.hall_error_guardar_hallazgo': return 'Ezin izan da aurkikuntza gorde: {error}';
+      case 'nat.hall_escribe_dos_letras': return 'Idatzi gutxienez bi letra eta sakatu Bilatu.';
+      case 'nat.hall_escribe_especie_para_buscar': return 'Idatzi lehenik espeziea edo izen arrunta bilatzeko.';
+      case 'nat.hall_especie_real': return 'Benetako espeziea';
+      case 'nat.hall_especie_real_hint': return 'izen zientifikoa edo arrunta';
+      case 'nat.hall_estadio': return 'Fasea';
+      case 'nat.hall_evidencia_avistamiento': return 'Behaketa';
+      case 'nat.hall_evidencia_excremento': return 'Gorotza';
+      case 'nat.hall_evidencia_huella': return 'Aztarna';
+      case 'nat.hall_evidencia_interaccion': return 'Elkarreragina';
+      case 'nat.hall_evidencia_marca_corteza': return 'Azaleko marka';
+      case 'nat.hall_evidencia_nido_vacio': return 'Habia hutsa';
+      case 'nat.hall_evidencia_pluma': return 'Luma';
+      case 'nat.hall_evidencia_refugio': return 'Babeslekua edo gordelekua';
+      case 'nat.hall_evidencia_restos_alimentacion': return 'Janari-hondarrak';
+      case 'nat.hall_evidencia_sonido': return 'Soinua edo kantua';
+      case 'nat.hall_explicacion_evidencia': return 'Animalia ikusi ez baduzu, ez da ezer gertatzen. Aztarna, luma edo kantu bat ere aurkikuntza osoa da.';
+      case 'nat.hall_explicacion_fenologia': return 'Gutxienez bi urtetan behaketak dituen espezie bakoitzeko, urte bakoitzeko lehen behaketa. Desbideratzeak aurtengo urtea aurrekoen batez bestekoarekin alderatzen du.';
+      case 'nat.hall_explicacion_fenologia_vacia': return 'Fenologiak espezie bakoitzaren lehen behaketa alderatzen du urte batetik bestera. Espezie bera bi udaberritan idatzi ondoren, hemen ikusiko duzu lehenago ala beranduago iritsi den.';
+      case 'nat.hall_explicacion_hipotesis': return 'Zer dela uste duzun eta zergatik. Gero zer pista erabili zenituen eta noiz asmatzen duzun berrikusteko balio du.';
+      case 'nat.hall_explicacion_tasa_vacia': return 'Aurkikuntza bakoitzaren fitxatik identifikazioak baieztatzen hasten zarenean, pantaila honek zure asmatze-tasa kalkulatuko du denboran zehar.';
+      case 'nat.hall_explicacion_validar': return 'Argazkiak edo bibliografia berrikusi ondoren, markatu zuzena zen ala ez, edo idatzi benetako espeziea. Denboran zehar zure asmatze-tasa kalkulatzeko balio du.';
+      case 'nat.hall_falta_posicion_gps': return 'GPS kokapena falta da.';
+      case 'nat.hall_foto_de_archivo': return 'Artxiboko argazkia';
+      case 'nat.hall_foto_referencia_inaturalist': return 'Erreferentziako argazkia (iNaturalist)';
+      case 'nat.hall_guia_anade_entradas': return 'Gehitu sarrerak lib/datos/datos_guia.dart fitxategian';
+      case 'nat.hall_guia_sin_especies': return 'Gidan ez dago espezierik: {categoria}';
+      case 'nat.hall_habitat': return 'Habitata';
+      case 'nat.hall_hallazgo_de_naturaleza': return 'Natura-aurkikuntza';
+      case 'nat.hall_hipotesis': return 'Hipotesia';
+      case 'nat.hall_hipotesis_hint': return 'X dela uste dut, zeren…  (hegaldia, kantua, habitata…)';
+      case 'nat.hall_identificacion_actual': return 'Oraingo identifikazioa: {especie}';
+      case 'nat.hall_identificacion_fallo': return 'Identifikazioak huts egin du: {error}';
+      case 'nat.hall_identificar_plantnet_gratis': return 'Landarea Pl@ntNet-ekin identifikatu (doan)';
+      case 'nat.hall_limpiar_busqueda': return 'Bilaketa garbitu';
+      case 'nat.hall_mi_fenologia': return 'Nire fenologia';
+      case 'nat.hall_mi_fenologia_subtitulo': return 'Espezie bakoitzaren lehen erregistroa urteko';
+      case 'nat.hall_n_de_total_hallazgos': return '{n} / {total} aurkikuntza';
+      case 'nat.hall_n_exportados': return '{n} aurkikuntza esportatu dira.';
+      case 'nat.hall_n_hallazgos': return '{n} aurkikuntza';
+      case 'nat.hall_n_sin_revisar': return 'Berrikusi gabeko {n} aurkikuntza dituzu. Ireki edozein zerrendatik eta sakatu "Berretsi" edo "Zuzendu" argazkiak berrikusi edo bibliografia kontsultatu ondoren.';
+      case 'nat.hall_nombre_cientifico_binomial': return 'Izen zientifikoa (binomiala)';
+      case 'nat.hall_nombre_comun_o_cientifico': return 'Izen arrunta edo zientifikoa…';
+      case 'nat.hall_nombre_con_confianza': return '{nombre} (konfiantza: {confianza})';
+      case 'nat.hall_numero_ejemplares': return 'Ale kopurua';
+      case 'nat.hall_numero_individuos': return 'Ale kopurua';
+      case 'nat.hall_op_adulto': return 'heldua';
+      case 'nat.hall_op_amarillo': return 'horia';
+      case 'nat.hall_op_arbol': return 'zuhaitza';
+      case 'nat.hall_op_arbusto': return 'zuhaixka';
+      case 'nat.hall_op_avistamiento': return 'behaketa';
+      case 'nat.hall_op_bajo_conifera': return 'koniferen azpian';
+      case 'nat.hall_op_bajo_planifolio': return 'hostozabalen azpian';
+      case 'nat.hall_op_blanco_crema': return 'zuria / krema';
+      case 'nat.hall_op_excremento': return 'gorotza';
+      case 'nat.hall_op_flor': return 'lorea';
+      case 'nat.hall_op_fruto': return 'fruitua';
+      case 'nat.hall_op_gris_negruzco': return 'grisa / beltzaxka';
+      case 'nat.hall_op_herbacea': return 'belarkara';
+      case 'nat.hall_op_huella': return 'aztarna';
+      case 'nat.hall_op_huevo': return 'arrautza';
+      case 'nat.hall_op_larva': return 'larba';
+      case 'nat.hall_op_madera_muerta': return 'egur hila';
+      case 'nat.hall_op_mata': return 'zuhaixka txikia';
+      case 'nat.hall_op_naranja_rojizo': return 'laranja / gorrixka';
+      case 'nat.hall_op_nido_o_madriguera': return 'habia edo gordelekua';
+      case 'nat.hall_op_ninfa': return 'ninfa';
+      case 'nat.hall_op_otro': return 'beste bat';
+      case 'nat.hall_op_pardo_marron': return 'arrea / marroia';
+      case 'nat.hall_op_pluma_o_pelo': return 'luma edo ilea';
+      case 'nat.hall_op_pradera_herbazal': return 'larrea / belardia';
+      case 'nat.hall_op_pupa': return 'pupa';
+      case 'nat.hall_op_rojo_escarlata': return 'gorri eskarlata';
+      case 'nat.hall_op_semilla': return 'hazia';
+      case 'nat.hall_op_senescente': return 'zimeltzen';
+      case 'nat.hall_op_suculenta': return 'mamitsua';
+      case 'nat.hall_op_suelo_hojarasca': return 'lurra / orbela';
+      case 'nat.hall_op_tocon': return 'zuhaitz-ondoa';
+      case 'nat.hall_op_trepadora': return 'igokaria';
+      case 'nat.hall_op_vegetativa': return 'begetatiboa';
+      case 'nat.hall_op_verde_oliva': return 'oliba-berdea';
+      case 'nat.hall_op_violaceo': return 'morea';
+      case 'nat.hall_op_vocalizacion': return 'ahots-deia';
+      case 'nat.hall_organo_corteza': return 'Azala';
+      case 'nat.hall_organo_flor': return 'Lorea';
+      case 'nat.hall_organo_fruto': return 'Fruitua';
+      case 'nat.hall_organo_habito': return 'Itxura (landare osoa)';
+      case 'nat.hall_organo_hoja': return 'Hostoa';
+      case 'nat.hall_organo_otro': return 'Beste bat / ez nago ziur';
+      case 'nat.hall_pie_tarjeta': return 'Natura · landa-koadernoa';
+      case 'nat.hall_planta_hospedadora': return 'Landare ostalaria';
+      case 'nat.hall_plantnet_fallo': return 'Pl@ntNet-ek huts egin du: {error}';
+      case 'nat.hall_plantnet_quedan_hoy': return 'Pl@ntNet: gaur {n} identifikazio geratzen zaizkizu.';
+      case 'nat.hall_plantnet_sin_candidatos': return 'Pl@ntNet-ek ez du hautagairik aurkitu. Saiatu beste argazki edo organo batekin.';
+      case 'nat.hall_por_categoria': return 'Kategoriaka';
+      case 'nat.hall_porte': return 'Itxura';
+      case 'nat.hall_pregunta_calibracion': return 'Zure konfiantzarekin bat zatoz, ala baikorregia (edo apalegia) zara?';
+      case 'nat.hall_pulsa_el_que_mejor_se_ajuste': return 'Sakatu hobekien egokitzen dena fitxa betetzeko.';
+      case 'nat.hall_que_organo_se_ve': return 'Zein organo ikusten da hobekien argazkian?';
+      case 'nat.hall_quiz_anade_entradas': return 'Gehitu sarrera gehiago lib/datos/datos_guia.dart fitxategian';
+      case 'nat.hall_quiz_faltan_especies': return 'Galdetegirako gutxienez 3 espezie behar dira';
+      case 'nat.hall_quiz_modo_cientifico_a_comun': return 'Zient.→Arrunta';
+      case 'nat.hall_quiz_modo_comun_a_cientifico': return 'Arrunta→Zient.';
+      case 'nat.hall_quiz_modo_por_descripcion': return 'Deskribapenaren arabera';
+      case 'nat.hall_quiz_pocas_especies_categoria': return 'Kategoria honek 3 espezie baino gutxiago ditu. Aldatu "Denak" aukerara edo gehitu sarrera gehiago gidan.';
+      case 'nat.hall_quiz_pregunta_cientifico': return 'Zein da "{nombre}" espeziearen izen zientifikoa?';
+      case 'nat.hall_quiz_pregunta_comun': return 'Zein da "{nombre}" espeziearen izen arrunta?';
+      case 'nat.hall_quiz_que_especie_es': return 'Zein espezie da?';
+      case 'nat.hall_salida_sin_titulo': return 'Izenbururik gabeko irteera';
+      case 'nat.hall_se_guardara_suelto': return 'Aurkikuntza solte gisa gordeko da';
+      case 'nat.hall_sin_anotaciones': return 'Oharrik ez. Erabili zalantzak berrikusteko, beste irteera batekiko loturak edo xehetasun-zuzenketak idazteko.';
+      case 'nat.hall_sin_fenologia': return 'Oraindik ez dago fenologiarik erakusteko';
+      case 'nat.hall_sin_fotos_licencia_abierta': return 'Ez da espezie honen lizentzia irekiko argazkirik aurkitu. Saiatu izen zientifiko zehatzarekin edo izen arruntarekin.';
+      case 'nat.hall_sin_revisar': return 'Berrikusi gabe';
+      case 'nat.hall_sin_validaciones': return 'Oraindik ez duzu identifikaziorik baieztatu';
+      case 'nat.hall_sustrato': return 'Substratua';
+      case 'nat.hall_tasa_acierto': return 'Asmatze-tasa';
+      case 'nat.hall_tasa_acierto_subtitulo': return 'Zure kalibrazioa identifikazioak baieztatu ondoren';
+      case 'nat.hall_taxonomia': return 'Taxonomia';
+      case 'nat.hall_texto': return 'Testua';
+      case 'nat.hall_tipo_evidencia': return 'Zantzu mota';
+      case 'nat.hall_top_habitats': return 'Habitat ohikoenak';
+      case 'nat.hall_tu_hipotesis': return 'Zure hipotesia';
+      case 'nat.hall_un_hallazgo': return 'Aurkikuntza 1';
+      case 'nat.hall_un_sin_revisar': return 'Berrikusi gabeko aurkikuntza 1 duzu. Ireki zerrendatik eta sakatu "Berretsi" edo "Zuzendu" argazkiak berrikusi edo bibliografia kontsultatu ondoren.';
+      case 'nat.hall_validar_identificacion': return 'Identifikazioa baieztatu';
+      case 'nat.hall_volver_a_sin_revisar': return 'Berrikusi gabe utzi';
+      case 'nat.mapa_notificacion_registrando_ruta': return 'Naturaleza zure ibilbidea erregistratzen ari da';
+      case 'nat.mapa_lugar_miradores': return 'Begiratokiak';
+      case 'nat.mapa_lugar_miradores_aves': return 'Hegazti-begiratokiak';
+      case 'nat.mapa_lugar_reservas_naturales': return 'Natura-erreserbak';
+      case 'nat.mapa_lugar_cuevas': return 'Kobazuloak';
+      case 'nat.mapa_lugar_humedales': return 'Putzuak eta hezeguneak';
+      case 'nat.mapa_lugar_arboles_singulares': return 'Zuhaitz bereziak';
+      case 'nat.mapa_lugar_refugios': return 'Aterpeak';
+      case 'nat.mapa_lugar_manantiales': return 'Iturburuak eta iturriak';
+      case 'nat.mapa_lugar_centros_visitantes': return 'Bisitarien zentroak';
+      case 'nat.mapa_falta_permiso_ubicacion': return 'Kokapen-baimena falta da.';
+      case 'nat.mapa_sin_lugares_zona': return 'Ez dago leku interesgarririk eremu honetan.';
+      case 'nat.mapa_gestor': return 'Kudeatzailea: {gestor}';
+      case 'nat.mapa_sin_gbif_zona': return 'Ez dago GBIF behaketarik eremu honetan.';
+      case 'nat.mapa_gbif_cargadas': return 'Komunitatearen {n} behaketa kargatu dira.';
+      case 'nat.mapa_ocultar': return 'Ezkutatu';
+      case 'nat.mapa_track_guardado_puntos': return 'Ibilbidea gordeta ({n} puntu).';
+      case 'nat.mapa_observacion_gbif': return 'GBIF behaketa';
+      case 'nat.mapa_familia': return 'Familia: {familia}';
+      case 'nat.mapa_localidad': return 'Herria: {localidad}';
+      case 'nat.mapa_observacion': return 'Aurkikuntza';
+      case 'nat.mapa_categoria': return 'Kategoria';
+      case 'nat.mapa_habitat': return 'Habitata';
+      case 'nat.mapa_taxonomia': return 'Taxonomia';
+      case 'nat.mapa_borrar_observacion_pregunta': return 'Aurkikuntza hau ezabatu?';
+      case 'nat.mapa_mapas_offline_menu': return 'Lineaz kanpoko mapak…';
+      case 'nat.mapa_lugares_interes_activos': return 'Leku interesgarriak (aktibo)…';
+      case 'nat.mapa_lugares_interes_menu': return 'Leku interesgarriak…';
+      case 'nat.mapa_recargar_lugares': return 'Kargatu berriro ikuspegiko lekuak';
+      case 'nat.mapa_gbif_cerca': return 'Inguruko GBIF behaketak';
+      case 'nat.mapa_ocultar_gbif': return 'Ezkutatu GBIF behaketak';
+      case 'nat.mapa_centrar_ubicacion': return 'Zentratu nire kokapenean';
+      case 'nat.mapa_detener_grabacion': return 'Gelditu ibilbidearen grabazioa';
+      case 'nat.mapa_grabar_track': return 'Grabatu ibilbidea';
+      case 'nat.mapa_tooltip_capas': return 'Maparen geruzak, lineaz kanpoko mapak eta gordetako ibilbideak';
+      case 'nat.mapa_tooltip_datos': return 'Leku interesgarriak eta behaketak';
+      case 'nat.mapa_capas_lugares': return 'Leku interesgarrien geruzak';
+      case 'nat.mapa_capas_lugares_ayuda': return 'OpenStreetMap-eko datuak. Geruzak maparen ikuspegi ikusgaian kargatzen dira.';
+      case 'nat.mapa_quitar_todas': return 'Kendu guztiak';
+      case 'nat.mapa_aplicar': return 'Aplikatu';
+      case 'nat.mapa_nueva_salida': return 'Irteera berria';
+      case 'nat.mapa_titulo_opcional': return 'Izenburua (aukerakoa)';
+      case 'nat.mapa_titulo_ejemplo': return 'adib. Pirulengo artadiak';
+      case 'nat.mapa_zona_opcional': return 'Eremua (aukerakoa)';
+      case 'nat.mapa_zona_ejemplo': return 'eskualdea, tokia, mendilerroa…';
+      case 'nat.mapa_hipotesis_opcional': return 'Eguneko hipotesia (aukerakoa)';
+      case 'nat.mapa_hipotesis_ejemplo': return 'zer bilatzera zatoz?';
+      case 'nat.mapa_arrancar_track': return 'Hasi GPS ibilbide bat ere';
+      case 'nat.mapa_salida_explicacion': return 'Irekita dagoen bitartean, sortzen dituzun aurkikuntzak automatikoki lotuko zaizkio irteera honi. GPS ibilbidea ere hasten baduzu, irteerari lotuta geratuko da gelditzean. Nahiago baduzu, lotura automatikoa aurkikuntza bakoitzean desaktibatu ahal izango duzu.';
+      case 'nat.mapa_iniciar': return 'Hasi';
+      case 'nat.mapa_sin_permiso_track': return 'Ezin izan da ibilbidea hasi: kokapen-baimena falta da.';
+      case 'nat.mapa_salidas': return 'Irteerak';
+      case 'nat.mapa_iniciar_salida': return 'Hasi irteera';
+      case 'nat.mapa_sin_salidas': return 'Oraindik ez duzu irteerarik erregistratu';
+      case 'nat.mapa_sin_salidas_ayuda': return 'Irteera batek landa-egun bateko aurkikuntzak, GPS ibilbidea, eguraldia eta oharrak biltzen ditu.';
+      case 'nat.mapa_salida_sin_titulo': return 'Izenbururik gabeko irteera';
+      case 'nat.mapa_en_curso': return 'MARTXAN';
+      case 'nat.mapa_una_observacion': return 'Aurkikuntza 1';
+      case 'nat.mapa_n_observaciones': return '{n} aurkikuntza';
+      case 'nat.mapa_cabecera_salida': return 'Irteeraren goiburua';
+      case 'nat.mapa_titulo': return 'Izenburua';
+      case 'nat.mapa_zona': return 'Eremua';
+      case 'nat.mapa_meteo_resumen': return 'Eguraldia (laburpena)';
+      case 'nat.mapa_altitud_m': return 'Altitudea (m)';
+      case 'nat.mapa_hipotesis_jornada': return 'Eguneko hipotesia';
+      case 'nat.mapa_notas_generales': return 'Ohar orokorrak';
+      case 'nat.mapa_anotacion_margen': return 'Marjinako oharra';
+      case 'nat.mapa_anotacion_explicacion': return 'Irteera egun batzuk geroago berrikustean idazten duzunerako da: zalantzak, zuzenketak, beste egun batekiko loturak.';
+      case 'nat.mapa_texto': return 'Testua';
+      case 'nat.mapa_anotacion_ejemplo': return 'adib. azkenean emea zen, ez arra';
+      case 'nat.mapa_borrar_anotacion': return 'Ezabatu oharra';
+      case 'nat.mapa_borrar_anotacion_texto': return 'Marjinako ohar hau ezabatu egingo da. Irteerak eta aurkikuntzek bere horretan jarraituko dute.';
+      case 'nat.mapa_cerrar_salida': return 'Itxi irteera';
+      case 'nat.mapa_cerrar_salida_texto': return 'Irteera ixten duzunean, aurkikuntza berriak ez zaizkio automatikoki lotuko. Geroago marjinako oharrak gehitzen jarrai dezakezu.';
+      case 'nat.mapa_detener_track_tambien': return 'Gelditu martxan dagoen GPS ibilbidea ere';
+      case 'nat.mapa_seguir_abierta': return 'Utzi irekita';
+      case 'nat.mapa_borrar_salida': return 'Ezabatu irteera';
+      case 'nat.mapa_borrar_salida_texto': return 'Irteeraren edukiontzia eta bere marjinako oharrak ezabatuko dira. Aurkikuntzak eta ibilbidea solte geratuko dira, ezabatu gabe.';
+      case 'nat.mapa_salida_no_encontrada': return 'Ez da irteera aurkitu';
+      case 'nat.mapa_salida_del_dia': return 'Eguneko irteera';
+      case 'nat.mapa_editar_cabecera': return 'Editatu goiburua';
+      case 'nat.mapa_anotar_margen': return 'Idatzi marjinan';
+      case 'nat.mapa_altitud_aprox': return '{n} m inguru';
+      case 'nat.mapa_track_en_curso': return 'GPS ibilbidea martxan';
+      case 'nat.mapa_track_de_salida': return 'Irteeraren GPS ibilbidea';
+      case 'nat.mapa_track_puntos_asociara': return '{n} puntu · irteerari lotuko zaio gelditzean';
+      case 'nat.mapa_observaciones_de_salida': return 'Irteerako aurkikuntzak ({n})';
+      case 'nat.mapa_sin_observaciones_salida': return 'Oraindik ez dago aurkikuntzarik irteera honetan. Irekita dagoen bitartean, erregistratzen dituzunak automatikoki lotuko zaizkio.';
+      case 'nat.mapa_sin_especie': return 'Espezierik gabe';
+      case 'nat.mapa_anotaciones_margen': return 'Marjinako oharrak';
+      case 'nat.mapa_sin_anotaciones': return 'Oraindik ez dago oharrik. Erabili irteera egun batzuk geroago berrikusteko: zalantzak, zuzenketak, loturak.';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -18759,6 +24849,11 @@ class SoleraL10n {
       case 'temperatura_registrada': return 'Temperatura registrada';
       case 'todos': return 'Tots';
       case 'ver_pdf': return 'Veure PDF';
+      case 'camara': return 'Càmera';
+      case 'continuar': return 'Continuar';
+      case 'error_restaurando': return 'Error en restaurar';
+      case 'galeria': return 'Galeria';
+      case 'siguiente': return 'Següent';
       case 'acei.abierta': return 'Oberta';
       case 'acei.abierta_minuscula': return 'oberta';
       case 'acei.aceite_y_almazara': return 'Oli i molí d\'oli';
@@ -20871,6 +26966,1016 @@ class SoleraL10n {
       case 'core.act.descarga_en_navegador': return 'S\'ha obert la baixada al navegador.';
       case 'core.act.error_descarga': return 'No s\'ha pogut baixar. Comprova la connexió i torna-ho a provar.';
       case 'core.act.error_instalador': return 'Baixada, però Android no ha deixat obrir l\'instal·lador. Permet «instal·lar aplicacions desconegudes» per a aquesta app a la configuració del mòbil.';
+      case 'fos.ajus_calculando': return 'Calculant…';
+      case 'fos.ajus_resumen_cache': return '{n} tessel·les a la memòria cau · {mb} MB';
+      case 'fos.ajus_backup_asunto': return 'Còpia de seguretat de Fósiles';
+      case 'fos.ajus_backup_texto': return 'Còpia de seguretat de Fósiles ({kb} KB)';
+      case 'fos.ajus_error_backup': return 'Error en fer la còpia';
+      case 'fos.ajus_restaurar_titulo': return 'Restaurar la còpia de seguretat';
+      case 'fos.ajus_restaurar_aviso': return 'Això substituirà TOTES les teves troballes, recorreguts i fotos actuals per les del fitxer. Vols continuar?';
+      case 'fos.ajus_restaurados': return '✅ S\'han restaurat {hallazgos} troballes i {fotos} fotos. Reinicia l\'app per veure els canvis.';
+      case 'fos.ajus_avisos_reactivados': return 'Avisos reactivats. Tornaran a sonar quan entris a cada jaciment.';
+      case 'fos.ajus_prueba_aviso': return '{emoji} (Prova) Ets a {nombre}.';
+      case 'fos.ajus_borrar_aportaciones': return 'Esborrar les meves aportacions';
+      case 'fos.ajus_borrar_aportaciones_texto': return 'Introdueix el correu electrònic amb què vas enviar les aportacions. T\'enviarem un enllaç; en prémer-lo s\'esborraran totes les teves fotos (pendents i aprovades).';
+      case 'fos.ajus_email': return 'Correu electrònic';
+      case 'fos.ajus_enviar': return 'Enviar';
+      case 'fos.ajus_solicitud_enviada': return 'Sol·licitud enviada. Revisa el correu per confirmar l\'esborrament.';
+      case 'fos.ajus_vaciar_cache_pregunta': return 'Vols buidar la memòria cau dels mapes fora de línia? Hauràs de tornar-los a baixar per fer-los servir sense connexió.';
+      case 'fos.ajus_vaciar': return 'Buidar';
+      case 'fos.ajus_sec_general': return 'General';
+      case 'fos.ajus_idioma': return 'Idioma / Language';
+      case 'fos.ajus_claves_modelo': return 'Claus i model';
+      case 'fos.ajus_claves_modelo_sub': return 'Anthropic per identificar per foto, DeepSeek per al xat';
+      case 'fos.ajus_sec_perfil': return 'Perfil i identitat';
+      case 'fos.ajus_perfil_titulo': return 'Perfil del descobridor i identitat';
+      case 'fos.ajus_perfil_sub': return 'Nom per als certificats, identitat criptogràfica, verificació de certificats i Mode Expert';
+      case 'fos.ajus_sec_mapas_datos': return 'Mapes i dades';
+      case 'fos.ajus_mapas_sin_conexion': return 'Mapes sense connexió';
+      case 'fos.ajus_mapas_explicacion': return 'Les tessel·les que vegis al mapa es desen automàticament a la memòria cau. Per desar per endavant una zona sencera (vista actual del mapa), fes servir el botó de baixada.';
+      case 'fos.ajus_descargar_zona': return 'Baixar la zona';
+      case 'fos.ajus_backup_explicacion': return 'Exporta tota la teva base (troballes + recorreguts + fotos) en un únic fitxer .fosbackup. Desa\'l a Drive, en un USB o al correu. Per restaurar, selecciona el .fosbackup; substituirà les dades actuals.';
+      case 'fos.ajus_hacer_copia': return 'Fer una còpia';
+      case 'fos.ajus_restaurar_copia': return 'Restaurar la còpia';
+      case 'fos.ajus_asistente_campo': return 'Assistent de camp';
+      case 'fos.ajus_asistente_explicacion': return 'Quan el GPS detecta que ets dins d\'un radi de 250 m d\'un jaciment catalogat, apareix un avís al mapa amb el botó "Veure fitxa". Cada jaciment t\'avisa una sola vegada per sessió.';
+      case 'fos.ajus_reactivar_avisos': return 'Reactivar els avisos';
+      case 'fos.ajus_probar_aviso': return 'Provar l\'avís';
+      case 'fos.ajus_sec_privacidad': return 'Privadesa';
+      case 'fos.ajus_tus_aportaciones': return 'Les teves aportacions a la comunitat';
+      case 'fos.ajus_aportaciones_explicacion': return 'Si has compartit fotos amb la comunitat, pots demanar-ne l\'esborrament en qualsevol moment (RGPD). Rebràs un enllaç al correu indicat; si el prems, s\'esborraran totes les teves aportacions, fins i tot les que ja estiguin publicades.';
+      case 'fos.ajus_como_leer_mapa': return 'Com llegir el mapa';
+      case 'fos.ajus_como_leer_mapa_sub': return 'Capes geològiques, altres capes i suggeriments de fòssils';
+      case 'fos.ajus_ver_tour': return 'Veure la presentació';
+      case 'fos.ajus_sobre_app': return 'Sobre l\'app';
+      case 'fos.ajus_sobre_app_texto': return 'Quadern de camp de fòssils per a adults aficionats. Anota troballes georeferenciades amb foto, edat, formació i direcció i cabussament (strike/dip) de l\'estrat; consulta el context geològic de l\'IGME al punt on toquis; i desa una guia local de fòssils i minerals per període.';
+      case 'fos.ajus_apoyar': return 'Donar suport al projecte';
+      case 'fos.ajus_apoyar_texto': return 'L\'app és i continuarà sent gratuïta i oberta per a tothom. Si t\'ha estat útil i t\'ho pots permetre, una petita aportació voluntària ajuda al manteniment, el suport i les actualitzacions.';
+      case 'fos.ajus_gracias': return 'Gràcies.';
+      case 'fos.ajus_ver_formas_apoyar': return 'Veure maneres de donar suport';
+      case 'fos.ajus_datos_fuentes': return 'Dades i fonts';
+      case 'fos.ajus_datos_fuentes_texto': return 'Dades geològiques: IGME (GEODE 50, MAGNA 50, Edades 1M, Litologías 1M, IELIG). Mapa base: OpenStreetMap, ESRI, OpenTopoMap. Coves i megàlits: OpenStreetMap (Overpass). Imatges i descripcions complementàries: Viquipèdia (CC-BY-SA). Versió Flutter per a Android.';
+      case 'fos.ajus_ia_guardados': return '✅ S\'ha desat la configuració d\'IA';
+      case 'fos.ajus_no_abrir_navegador': return 'No s\'ha pogut obrir el navegador. Entra a {direccion}';
+      case 'fos.ajus_ia_explicacion': return 'Per identificar fòssils automàticament, introdueix la teva clau d\'API d\'Anthropic. Només es desa al teu telèfon i només s\'envia a api.anthropic.com. Aconsegueix-ne una a console.anthropic.com. La de DeepSeek és per al xat.';
+      case 'fos.ajus_conseguir_anthropic': return 'Aconseguir una clau d\'Anthropic';
+      case 'fos.ajus_conseguir_deepseek': return 'Aconseguir una clau de DeepSeek';
+      case 'fos.ajus_api_anthropic': return 'Clau d\'API d\'Anthropic';
+      case 'fos.ajus_api_deepseek': return 'Clau d\'API de DeepSeek (per al xat)';
+      case 'fos.ajus_modelo_claude': return 'Model de Claude';
+      case 'fos.ajus_modelo_precio': return '{descripcion} ~{precio} cèntims per foto.';
+      case 'fos.ajus_modelo_opus_desc': return 'Màxima precisió. Recomanat.';
+      case 'fos.ajus_modelo_sonnet_desc': return 'Bon equilibri entre precisió i cost.';
+      case 'fos.ajus_modelo_haiku_desc': return 'Molt més barat. Encerta una mica menys.';
+      case 'fos.ajus_cabecera_titulo': return 'Quadern de camp de fòssils';
+      case 'fos.ajus_cabecera_sub': return 'Per als aficionats a la paleontologia';
+      case 'fos.ajus_explorar_mapa': return 'Explorar el mapa';
+      case 'fos.ajus_explorar_mapa_sub': return 'Jaciments i geologia';
+      case 'fos.ajus_meteo': return 'Meteorologia';
+      case 'fos.ajus_meteo_sub': return 'Previsió per a la teva sortida';
+      case 'fos.ajus_chat_ia': return 'Xat IA';
+      case 'fos.ajus_chat_ia_sub': return 'Resol dubtes, identifica troballes, demana consells de camp';
+      case 'fos.ajus_etica_titulo': return 'Explora, descobreix i comparteix';
+      case 'fos.ajus_etica_sub': return 'Unes pautes perquè la teva afició sumi i només deixi empremta en el coneixement.';
+      case 'fos.ajus_etica1_titulo': return 'La teva troballa pot ser important';
+      case 'fos.ajus_etica1_texto': return 'Cada fòssil explica una història. Si trobes alguna cosa que et sembli especial, comparteix-la amb un museu, una universitat o una societat geològica. Ells la sabran valorar i tu formaràs part del descobriment. L\'app t\'ajuda a documentar-la amb un certificat verificable.';
+      case 'fos.ajus_etica2_titulo': return 'Primer observa i fotografia';
+      case 'fos.ajus_etica2_texto': return 'El context és tan valuós com la peça. Fotografia el fòssil a la seva capa, mesura l\'orientació de l\'estrat, registra la formació. Una bona documentació multiplica el valor científic del que trobes. I moltes vegades la foto és suficient: no sempre cal recollir.';
+      case 'fos.ajus_etica3_titulo': return 'Informa\'t per gaudir-ne més';
+      case 'fos.ajus_etica3_texto': return 'Cada comunitat autònoma té les seves pròpies normes de protecció del patrimoni. Conèixer-les et fa millor aficionat: sabràs on pots recollir i on és millor només fotografiar. En cas de dubte, gaudeix de la troballa in situ.';
+      case 'fos.ajus_etica4_titulo': return 'Deixa el lloc com t\'agradaria trobar-lo';
+      case 'fos.ajus_etica4_texto': return 'No excavis sense permís del propietari. No malmetis els afloraments. Tanca les portelles. Emporta\'t les teves deixalles… i potser alguna d\'aliena. Cada persona que passa després de tu mereix la mateixa emoció del descobriment.';
+      case 'fos.ajus_etica5_titulo': return 'Comparteix perquè la ciència avanci';
+      case 'fos.ajus_etica5_texto': return 'Fes servir el certificat verificable de l\'app per compartir les teves troballes. Cada registre documentat ajuda a completar el mapa paleontològic de la teva regió. La teva contribució, sumada a la d\'altres aficionats, és ciència ciutadana real.';
+      case 'fos.ajus_como_usar': return 'Com fer servir Fósiles';
+      case 'fos.ajus_paso1_titulo': return 'Explora el mapa';
+      case 'fos.ajus_paso1_texto': return 'Activa les capes geològiques (MAGNA, GEODE) per veure quina edat té el sòl que trepitges.';
+      case 'fos.ajus_paso2_titulo': return 'Registra una troballa';
+      case 'fos.ajus_paso2_texto': return 'Toca + per afegir un fòssil amb foto, coordenades, edat i formació. L\'app consulta l\'IGME automàticament.';
+      case 'fos.ajus_paso3_titulo': return 'Identifica amb Claude';
+      case 'fos.ajus_paso3_texto': return 'Amb la teva clau d\'API d\'Anthropic, l\'app identifica el fòssil per la imatge i et dona pistes per confirmar-ho.';
+      case 'fos.ajus_paso4_titulo': return 'Genera un certificat';
+      case 'fos.ajus_paso4_texto': return 'Cada troballa rep un hash SHA-256 verificable. Comparteix-lo amb qui vulguis; ningú no el podrà alterar.';
+      case 'fos.ajus_paso5_titulo': return 'Registra la seva traçabilitat';
+      case 'fos.ajus_paso5_texto': return 'Si el fòssil acaba en un museu o l\'estudia un geòleg, afegeix esdeveniments al seu historial.';
+      case 'fos.ajus_saltar': return 'Ometre';
+      case 'fos.ajus_empezar': return 'Començar';
+      case 'fos.ajus_onb1_titulo': return 'Mapa geològic estatal';
+      case 'fos.ajus_onb1_texto': return 'L\'app s\'obre amb la capa GEODE 50 de l\'IGME pintada sobre el mapa. Des de la icona de la muntanya de la barra superior pots alternar entre GEODE, MAGNA, Edades 1M, Litologías 1M i altres capes de l\'IGME. La primera vegada que desplaces una zona, el mosaic triga una mica a carregar mentre es baixen les tessel·les; després queda a la memòria cau.';
+      case 'fos.ajus_onb2_titulo': return 'Les teves troballes';
+      case 'fos.ajus_onb2_texto': return 'Amb el botó "+" de la barra inferior marques una troballa a la posició actual: foto, edat, formació, direcció i cabussament (strike/dip) de la capa i notes. La troballa es desa al dispositiu, apareix a la llista i es pinta com a marcador al mapa perquè hi puguis tornar.';
+      case 'fos.ajus_onb3_titulo': return 'Què hi ha sota els teus peus';
+      case 'fos.ajus_onb3_texto': return 'Al centre del mapa hi ha un assistent geològic que et va explicant la geologia del punt a mesura que desplaces el mapa. Si actives el mode "Explorar geologia" pots tocar qualsevol punt i consultar formació, edat i litologia. Els suggeriments de fòssils i minerals es creuen amb el catàleg local de formacions ibèriques.';
+      case 'fos.ajus_datos_restaurados': return 'Dades restaurades des de la còpia de seguretat.';
+      case 'fos.ajus_nav_inicio': return 'Inici';
+      case 'fos.ajus_nav_lista': return 'Llista';
+      case 'fos.ajus_nav_guia': return 'Guia';
+      case 'fos.ajus_chat': return 'Xat';
+      case 'fos.ajus_falta_clave_chat': return 'Has de configurar la teva clau d\'API de {nombre} a Configuració → Intel·ligència artificial.';
+      case 'fos.ajus_que_ves': return 'Què veus en aquesta imatge?';
+      case 'fos.ajus_que_ves_identifica': return 'Què veus en aquesta imatge? Identifica-la, si us plau.';
+      case 'fos.ajus_chat_vacio': return 'Pregunta\'m el que vulguis sobre fòssils, geologia, identificació, jaciments…';
+      case 'fos.ajus_via': return 'via {proveedor}';
+      case 'fos.ajus_imagen_adjunta': return 'Imatge adjunta — s\'enviarà a Claude';
+      case 'fos.ajus_hacer_foto': return 'Fer una foto';
+      case 'fos.ajus_escribe_pregunta': return 'Escriu la teva pregunta…';
+      case 'fos.ajus_falta_api_anthropic': return 'Falta la clau d\'API d\'Anthropic. Configura-la a Configuració → Intel·ligència artificial.';
+      case 'fos.ajus_desconocido': return 'Desconegut';
+      case 'fos.ajus_sin_identificacion': return 'Sense identificació';
+      case 'fos.ajus_nombre_autoridad': return 'Nom de l\'autoritat';
+      case 'fos.ajus_ej_autoridad': return 'P. ex.: Institut Nacional de Geologia';
+      case 'fos.ajus_generar': return 'Generar';
+      case 'fos.ajus_codigo_activacion': return 'Codi d\'activació';
+      case 'fos.ajus_para_nombre': return 'Per a: {nombre}';
+      case 'fos.ajus_codigo_mandalo': return 'Envia\'l a l\'expert pel correu institucional. Només serveix a la primera persona que el faci servir — no es pot reutilitzar.';
+      case 'fos.ajus_copiar': return 'Copiar';
+      case 'fos.ajus_codigo_copiado': return 'Codi copiat al porta-retalls';
+      case 'fos.ajus_compartir_codigo': return 'Codi d\'activació per a {nombre}:';
+      case 'fos.ajus_asunto_experto': return 'Mode Expert — Fósiles';
+      case 'fos.ajus_desactivar_titulo': return 'Desactivar el mode Expert';
+      case 'fos.ajus_desactivar_texto': return 'La clau de l\'autoritat s\'esborrarà d\'aquest dispositiu. Les targetes que ja has certificat continuen sent vàlides, però aquesta instal·lació no podrà signar noves certificacions fins que tornis a activar-la amb un codi nou.';
+      case 'fos.ajus_desactivar': return 'Desactivar';
+      case 'fos.ajus_modo_experto': return 'Mode Expert';
+      case 'fos.ajus_experto_intro': return 'El Mode Expert permet que una autoritat signant (Institut Nacional de Geologia, museu, societat científica) revisi i certifiqui les targetes compartides pels descobridors.';
+      case 'fos.ajus_activar_autoridad': return 'Activar com a autoritat';
+      case 'fos.ajus_activar_autoridad_texto': return 'Si has rebut un codi d\'activació pel correu institucional, enganxa\'l aquí per començar a rebre targetes per revisar.';
+      case 'fos.ajus_pegar_codigo': return 'Enganxar el codi d\'activació';
+      case 'fos.ajus_admin_generar': return 'Administrador: generar codi';
+      case 'fos.ajus_admin_texto': return 'Si gestiones Fósiles i vols preautoritzar una autoritat perquè pugui certificar targetes, genera un codi i envia-l\'hi pel correu institucional. Només serveix a la primera persona que el faci servir.';
+      case 'fos.ajus_generar_codigo_autoridad': return 'Generar un codi per a una autoritat';
+      case 'fos.ajus_experto_activo': return 'Mode Expert actiu';
+      case 'fos.ajus_huella_institucional': return 'Empremta institucional';
+      case 'fos.ajus_huella_texto': return 'Aquesta empremta criptogràfica viatja en cada certificació que signes. Els descobridors la veuran quan rebin les seves targetes de tornada.';
+      case 'fos.ajus_codigo_nombre_obligatorios': return 'El codi i el nom són obligatoris.';
+      case 'fos.ajus_codigo_no_valido': return 'Codi no vàlid. Demana\'n un de nou a l\'administrador.';
+      case 'fos.ajus_activar_autoridad_titulo': return 'Activar l\'autoritat';
+      case 'fos.ajus_pega_codigo_hint': return 'Enganxa aquí el codi del correu institucional';
+      case 'fos.ajus_colegiacion': return 'Persona responsable / col·legiació (opcional)';
+      case 'fos.ajus_ej_colegiacion': return 'P. ex.: Dra. X. Y. (col. núm. 1234)';
+      case 'fos.ajus_activar': return 'Activar';
+      case 'fos.ajus_kofi_sub': return 'Pagament puntual o mensual amb targeta';
+      case 'fos.ajus_paypal_sub': return 'Donació amb el teu compte de PayPal';
+      case 'fos.ajus_mensaje_compartir': return 'Fósiles — quadern de camp digital per anotar troballes amb georeferència, edat estratigràfica, orientació de l\'estrat i guia d\'identificació de fòssils i minerals. Cartografia geològica de l\'IGME i mapes fora de línia. Lliure, gratuïta, sense anuncis ni seguiment. Baixa l\'APK per a Android a {url}';
+      case 'fos.ajus_ecosistema_texto': return 'Aquesta app forma part de l\'ecosistema. Coneix la resta de projectes.';
+      case 'fos.ajus_copiar_direccion': return 'Copiar l\'adreça';
+      case 'fos.ajus_direccion_copiada': return 'Adreça copiada al porta-retalls.';
+      case 'fos.ajus_compartir_app': return 'Compartir l\'app';
+      case 'fos.ajus_compartir_app_texto': return 'Recomanar-la a algú també ajuda. És donar temps en lloc de diners.';
+      case 'fos.ajus_otras_formas': return 'Altres maneres d\'ajudar';
+      case 'fos.ajus_valorar': return 'Valorar l\'app amb cinc estrelles si t\'ha agradat.';
+      case 'fos.ajus_reportar': return 'Informar d\'un error o suggerir millores.';
+      case 'fos.ajus_ayudar_traducciones': return 'Ajudar amb traduccions o textos.';
+      case 'fos.ajus_contribuir_codigo': return 'Contribuir amb codi o idees de funcions.';
+      case 'fos.ajus_fichero_no_valido': return 'No és un fitxer de còpia vàlid';
+      case 'fos.ajus_version_desconocida': return 'Versió de còpia desconeguda';
+      case 'fos.ajus_nav_ajustes': return 'Ajustos';
+      case 'fos.ficha_distintivos': return 'Trets per reconèixer-lo';
+      case 'fos.ficha_donde_encontrarlo': return 'On trobar-lo';
+      case 'fos.ficha_leer_wikipedia': return 'Llegeix-ne més a la Viquipèdia';
+      case 'fos.ficha_reintentar': return 'Torna-ho a provar';
+      case 'fos.ficha_raya': return 'Ratlla';
+      case 'fos.ficha_brillo': return 'Lluentor';
+      case 'fos.ficha_color_tipico': return 'Color típic';
+      case 'fos.hall_alternativas': return 'Alternatives';
+      case 'fos.hall_anadir': return 'Afegir';
+      case 'fos.hall_anadir_evento': return 'Afegir un esdeveniment';
+      case 'fos.hall_anadir_evento_trazabilidad': return 'Afegir un esdeveniment de traçabilitat';
+      case 'fos.hall_anadir_trazabilidad': return 'Afegir traçabilitat';
+      case 'fos.hall_anotar_foto': return 'Anotar la foto';
+      case 'fos.hall_aplicar_formulario': return 'Aplicar al formulari';
+      case 'fos.hall_asunto_certificado': return 'Certificat de troballa: {especie}';
+      case 'fos.hall_asunto_exportacion': return 'Troballes de fòssils';
+      case 'fos.hall_asunto_hallazgo': return 'Troballa: {especie}';
+      case 'fos.hall_aun_no_hay_hallazgos': return 'Encara no hi ha troballes.';
+      case 'fos.hall_autor_evento': return 'Autor de l\'esdeveniment';
+      case 'fos.hall_borrar_medida': return 'Esborrar la mesura';
+      case 'fos.hall_buscar': return 'Cerca…';
+      case 'fos.hall_buscar_hint': return 'Cerca per nom, edat, notes…';
+      case 'fos.hall_certificado_texto': return 'Certificat verificable de troballa fòssil.';
+      case 'fos.hall_certificado_verificable': return 'Certificat verificable';
+      case 'fos.hall_como_confirmar': return 'Com confirmar-ho';
+      case 'fos.hall_compartir_comunidad': return 'Compartir amb la comunitat';
+      case 'fos.hall_compartir_texto': return 'Compartir el text';
+      case 'fos.hall_con_foto': return 'Amb foto';
+      case 'fos.hall_confianza': return 'Confiança {nivel}';
+      case 'fos.hall_confianza_alta': return 'alta';
+      case 'fos.hall_confianza_baja': return 'baixa';
+      case 'fos.hall_confianza_media': return 'mitjana';
+      case 'fos.hall_configura_api_key': return 'Configura primer la teva clau d\'API a Configuració → Intel·ligència artificial.';
+      case 'fos.hall_configura_nombre': return 'Configura primer el teu nom a Configuració → Perfil del descobridor.';
+      case 'fos.hall_confirmar_borrar': return 'Vols esborrar aquesta troballa?';
+      case 'fos.hall_consultando_igme': return 'Consultant l\'IGME…';
+      case 'fos.hall_contexto_geologico': return 'Context geològic';
+      case 'fos.hall_coordenadas': return 'Coordenades';
+      case 'fos.hall_cronologia': return 'Cronologia';
+      case 'fos.hall_descartar': return 'Descartar';
+      case 'fos.hall_descripcion': return 'Descripció';
+      case 'fos.hall_descubridor': return 'Descobridor';
+      case 'fos.hall_desde_galeria': return 'Des de la galeria';
+      case 'fos.hall_deshacer': return 'Desfer';
+      case 'fos.hall_detectado_mineral': return 'Detectat com a mineral';
+      case 'fos.hall_dias_activo': return 'Dies d\'activitat';
+      case 'fos.hall_dureza_mohs': return 'Duresa de Mohs';
+      case 'fos.hall_dureza_mohs_estimada': return 'Duresa de Mohs estimada';
+      case 'fos.hall_edad': return 'Edat';
+      case 'fos.hall_edad_periodo': return 'Edat / període';
+      case 'fos.hall_editar_hallazgo': return 'Editar la troballa';
+      case 'fos.hall_ejemplo_autor': return 'P. ex.: Dra. López (UPV/EHU)';
+      case 'fos.hall_ejemplo_descripcion': return 'P. ex.: Dipositat al Museu de Ciències Naturals d\'Àlaba';
+      case 'fos.hall_error_codificar_imagen': return 'No s\'ha pogut codificar la imatge';
+      case 'fos.hall_error_exportando': return 'Error en exportar: {error}';
+      case 'fos.hall_error_generar_zip': return 'No s\'ha pogut generar el ZIP.';
+      case 'fos.hall_error_gps': return 'Error de GPS: {error}';
+      case 'fos.hall_error_guardando': return 'Error en desar: {error}';
+      case 'fos.hall_error_identificando': return 'Error en identificar: {error}';
+      case 'fos.hall_error_sin_id': return 'Error: la troballa no té ID.';
+      case 'fos.hall_error_tarjeta': return 'Error en generar la targeta: {error}';
+      case 'fos.hall_especie': return 'Espècie';
+      case 'fos.hall_especie_tentativa': return 'Espècie / nom provisional';
+      case 'fos.hall_especies': return 'Espècies';
+      case 'fos.hall_esperando_gps': return 'Esperant la posició GPS…';
+      case 'fos.hall_estadisticas': return 'Estadístiques';
+      case 'fos.hall_estrato': return 'Estrat';
+      case 'fos.hall_evento_anadido': return 'Esdeveniment afegit a l\'historial.';
+      case 'fos.hall_exportar_zip': return 'Exportar en ZIP';
+      case 'fos.hall_fecha': return 'Data';
+      case 'fos.hall_formacion': return 'Formació';
+      case 'fos.hall_formacion_geologica': return 'Formació geològica';
+      case 'fos.hall_fosil': return 'Fòssil';
+      case 'fos.hall_fosiles': return 'Fòssils';
+      case 'fos.hall_fosiles_probables': return 'Fòssils probables · {periodo}';
+      case 'fos.hall_guia': return 'Guia';
+      case 'fos.hall_hallazgo_de_fosil': return 'Troballa de fòssil';
+      case 'fos.hall_historial_trazabilidad': return 'Historial de traçabilitat';
+      case 'fos.hall_identificando': return 'Identificant…';
+      case 'fos.hall_identificar_claude': return 'Identificar amb Claude';
+      case 'fos.hall_incoherencia_detalle': return 'Claude proposa {claude}, però l\'aflorament de l\'IGME és {igme}. Revisa la identificació o la posició.';
+      case 'fos.hall_incoherencia_geologica': return 'Possible incoherència geològica';
+      case 'fos.hall_limpiar': return 'Netejar';
+      case 'fos.hall_linea_tiempo': return 'Línia del temps';
+      case 'fos.hall_medir': return 'Mesurar';
+      case 'fos.hall_mineral': return 'Mineral';
+      case 'fos.hall_minerales': return 'Minerals';
+      case 'fos.hall_mixto': return 'Mixt';
+      case 'fos.hall_modelo': return 'Model: {modelo}';
+      case 'fos.hall_moneda_en_foto': return 'Moneda a la foto:';
+      case 'fos.hall_n_de_total_desliza': return '{actual} / {total} · llisca ← → per canviar';
+      case 'fos.hall_n_exportados': return '{n} troballes exportades.';
+      case 'fos.hall_n_fosiles': return '{n} fòssils';
+      case 'fos.hall_ninguno_coincide': return 'Cap troballa no coincideix amb la cerca.';
+      case 'fos.hall_ninguno_recibido_coincide': return 'Cap troballa rebuda no coincideix amb la cerca.';
+      case 'fos.hall_no': return 'No';
+      case 'fos.hall_nombre_mineral': return 'Nom del mineral';
+      case 'fos.hall_notas': return 'Notes';
+      case 'fos.hall_nuevo_hallazgo': return 'Nova troballa';
+      case 'fos.hall_o_desde_galeria': return 'o des de la galeria';
+      case 'fos.hall_obteniendo_gps': return 'Obtenint el GPS…';
+      case 'fos.hall_orientacion_sin_medir': return 'Orientació de l\'estrat: sense mesurar';
+      case 'fos.hall_periodo': return 'Període';
+      case 'fos.hall_permiso_ubicacion_denegado': return 'S\'ha denegat el permís d\'ubicació.';
+      case 'fos.hall_pie_tarjeta': return 'Fòssils · quadern de camp';
+      case 'fos.hall_primer_hallazgo': return 'Primera troballa';
+      case 'fos.hall_punto_marcado_mapa': return 'Punt marcat al mapa';
+      case 'fos.hall_quiz': return 'Qüestionari';
+      case 'fos.hall_quiz_identificacion': return 'Qüestionari d\'identificació';
+      case 'fos.hall_razonamiento': return 'Raonament';
+      case 'fos.hall_recibida': return 'rebuda';
+      case 'fos.hall_remedir': return 'Tornar a mesurar';
+      case 'fos.hall_sin_clasificar': return 'Sense classificar';
+      case 'fos.hall_sin_fosiles_periodo': return 'No hi ha fòssils a la guia per a aquest període.';
+      case 'fos.hall_sin_hallazgos_analizar': return 'Encara no hi ha troballes per analitzar.';
+      case 'fos.hall_sin_nombre': return 'Sense nom';
+      case 'fos.hall_tab_compartidas': return 'Compartides ({n})';
+      case 'fos.hall_tab_mias': return 'Meves ({n})';
+      case 'fos.hall_tamano_estimado': return 'Mida estimada';
+      case 'fos.hall_tarjeta': return 'Targeta';
+      case 'fos.hall_tipo_deposito_museo': return 'Dipositat en museu / col·lecció';
+      case 'fos.hall_tipo_estudio': return 'Estudiat per';
+      case 'fos.hall_tipo_evento': return 'Tipus d\'esdeveniment';
+      case 'fos.hall_tipo_otro': return 'Un altre esdeveniment';
+      case 'fos.hall_tipo_prestamo': return 'Préstec / consulta';
+      case 'fos.hall_tipo_publicacion': return 'Citat en una publicació';
+      case 'fos.hall_titulo': return 'Troballes';
+      case 'fos.hall_toca_mas_primero': return 'Toca el + per registrar-ne la primera.';
+      case 'fos.hall_tomar_foto': return 'Fer una foto';
+      case 'fos.hall_top_especies': return 'Espècies més freqüents';
+      case 'fos.hall_top_formaciones': return 'Formacions més freqüents';
+      case 'fos.hall_ubicacion': return 'Ubicació';
+      case 'fos.hall_ultimo_hallazgo': return 'Última troballa';
+      case 'fos.hall_ver_en_mapa': return 'Veure al mapa';
+      case 'fos.hall_ver_ficha': return 'Veure la fitxa';
+      case 'fos.iden_huella_copiada': return 'Empremta copiada al porta-retalls';
+      case 'fos.iden_clave_publica_copiada': return 'Clau pública copiada al porta-retalls';
+      case 'fos.iden_regenerar_titulo': return 'Regenerar la identitat criptogràfica';
+      case 'fos.iden_regenerar_aviso': return 'Això crea un parell de claus nou. Les troballes signades amb la teva clau anterior continuaran existint, però ja no es podrà verificar criptogràficament que són teves. El teu nom i el teu correu no canvien. Només hauries de fer-ho si creus que la teva clau s\'ha vist compromesa (per exemple, després de restaurar una còpia de seguretat en un dispositiu prestat).';
+      case 'fos.iden_regenerar': return 'Regenera';
+      case 'fos.iden_identidad_regenerada': return 'Identitat regenerada';
+      case 'fos.iden_mi_identidad': return 'La meva identitat';
+      case 'fos.iden_datos_declarados': return 'Dades declarades';
+      case 'fos.iden_datos_declarados_ayuda': return 'Aquestes dades les omples tu a Configuració → Perfil i identitat. Acompanyen la signatura quan comparteixes una targeta o un certificat, però no estan autenticades per cap autoritat externa: qualsevol pot dir que es diu com vulgui. El que sí que és únic i permanent és la teva clau criptogràfica.';
+      case 'fos.iden_nombre': return 'Nom';
+      case 'fos.iden_email': return 'Correu electrònic';
+      case 'fos.iden_organizacion': return 'Organització';
+      case 'fos.iden_sin_rellenar': return '(sense omplir)';
+      case 'fos.iden_huella_criptografica': return 'Empremta criptogràfica';
+      case 'fos.iden_huella_ayuda': return 'Aquesta empremta deriva de la teva clau pública. És única i permanent, i es va generar la primera vegada que vas obrir Fòssils. Quan algú rep una troballa signada per tu, pot verificar que la signatura coincideix amb aquesta empremta.';
+      case 'fos.iden_copiar_huella': return 'Copia l\'empremta';
+      case 'fos.iden_ver_clave_publica': return 'Mostra la clau pública completa';
+      case 'fos.iden_copiar_clave_publica': return 'Copia la clau pública';
+      case 'fos.iden_operaciones_avanzadas': return 'Operacions avançades';
+      case 'fos.iden_operaciones_avanzadas_ayuda': return 'La teva clau privada es desa xifrada a l\'emmagatzematge segur d\'Android (no surt del dispositiu). La còpia de seguretat .zip xifrada que generes des de Configuració la inclou perquè la puguis recuperar si canvies de mòbil.';
+      case 'fos.iden_regenerar_identidad': return 'Regenera la identitat';
+      case 'fos.iden_perfil_guardado': return 'Perfil desat';
+      case 'fos.iden_perfil_e_identidad': return 'Perfil i identitat';
+      case 'fos.iden_perfil_descubridor': return 'Perfil del descobridor';
+      case 'fos.iden_perfil_ayuda': return 'El teu nom s\'inclourà als certificats de troballa. El correu i l\'organització són opcionals. Aquestes dades només es desen al teu telèfon.';
+      case 'fos.iden_nombre_obligatorio': return 'Nom (obligatori per als certificats)';
+      case 'fos.iden_nombre_ejemplo': return 'Ex.: María González';
+      case 'fos.iden_email_opcional': return 'Correu electrònic (opcional)';
+      case 'fos.iden_email_ejemplo': return 'contacte@exemple.cat';
+      case 'fos.iden_organizacion_opcional': return 'Organització / afiliació (opcional)';
+      case 'fos.iden_organizacion_ejemplo': return 'Ex.: UPV/EHU, Societat de Ciències Aranzadi…';
+      case 'fos.iden_guardar_perfil': return 'Desa el perfil';
+      case 'fos.iden_identidad_y_certificados': return 'Identitat i certificats';
+      case 'fos.iden_mi_identidad_criptografica': return 'La meva identitat criptogràfica';
+      case 'fos.iden_verificar_un_certificado': return 'Verifica un certificat';
+      case 'fos.iden_modo_experto_autoridades': return 'Mode Expert (autoritats certificadores)';
+      case 'fos.iden_card_certificada_asunto': return 'Targeta certificada — {autoridad}';
+      case 'fos.iden_card_certificada_texto': return 'Targeta revisada i certificada per l\'autoritat. Importa aquest fitxer a la teva app Fòssils per veure el segell.';
+      case 'fos.iden_error_firmando': return 'Error en signar';
+      case 'fos.iden_certificar_hallazgo': return 'Certifica la troballa';
+      case 'fos.iden_descubridor_valor': return 'Descobridor: {nombre}';
+      case 'fos.iden_coords': return 'Coord.';
+      case 'fos.iden_difuminadas': return '(difuminades)';
+      case 'fos.iden_fotos': return 'Fotos';
+      case 'fos.iden_revisa_campos': return 'Revisa o corregeix els camps. El que deixis a cada casella entrarà a la certificació signada. Si un camp ja és correcte, deixa\'l com està.';
+      case 'fos.iden_especie_determinacion': return 'Espècie / determinació';
+      case 'fos.iden_edad_epoca': return 'Edat / època geològica';
+      case 'fos.iden_formacion_geologica': return 'Formació geològica';
+      case 'fos.iden_comentarios_experto': return 'Comentaris de l\'expert';
+      case 'fos.iden_comentarios_ejemplo': return 'Ex.: peça rellevant per a una col·lecció regional; recomano enviar-la al museu X en dipòsit';
+      case 'fos.iden_firmar_y_devolver': return 'Signa i retorna al descobridor';
+      case 'fos.iden_no_es_certificado': return 'El fitxer no és un certificat de Fòssils.';
+      case 'fos.iden_error_leer_fichero': return 'Error en llegir el fitxer';
+      case 'fos.iden_verificar_certificado': return 'Verifica el certificat';
+      case 'fos.iden_verificar_ayuda': return 'Selecciona un fitxer .json de certificat per verificar-ne l\'autenticitat.';
+      case 'fos.iden_seleccionar_certificado': return 'Selecciona el certificat';
+      case 'fos.iden_certificado_verificado': return 'Certificat verificat';
+      case 'fos.iden_certificado_no_valido': return 'Certificat NO vàlid';
+      case 'fos.iden_hash_no_coincide': return 'El hash no coincideix. El certificat ha estat alterat.';
+      case 'fos.iden_especie': return 'Espècie';
+      case 'fos.iden_edad': return 'Edat';
+      case 'fos.iden_formacion': return 'Formació';
+      case 'fos.iden_fecha_descubrimiento': return 'Data del descobriment';
+      case 'fos.iden_descubridor': return 'Descobridor';
+      case 'fos.iden_email_descubridor': return 'Correu del descobridor';
+      case 'fos.iden_fecha_certificacion': return 'Data de certificació';
+      case 'fos.iden_error_importando': return 'Error en importar';
+      case 'fos.iden_importar_card_recibida': return 'Importa la targeta rebuda';
+      case 'fos.iden_no_se_pudo_abrir': return 'No s\'ha pogut obrir el fitxer';
+      case 'fos.iden_card_importada': return 'Targeta importada';
+      case 'fos.iden_aparece_en_compartidas': return 'Apareix a la pestanya «Compartides» de la teva llista de troballes.';
+      case 'fos.iden_importar_a_mi_coleccion': return 'Importa a la meva col·lecció';
+      case 'fos.iden_hecho': return 'Fet';
+      case 'fos.iden_modo_experto_aviso': return 'Ets en Mode Expert. Aquesta targeta es processa per revisar-la: no entra a la teva col·lecció personal.';
+      case 'fos.iden_certificar': return 'Certifica';
+      case 'fos.iden_acusar_recibo': return 'Confirma la recepció (ho revisaré més tard)';
+      case 'fos.iden_descartar': return 'Descarta (no té interès científic)';
+      case 'fos.iden_acuse_de_recibo': return 'Justificant de recepció';
+      case 'fos.iden_descarte': return 'Descart';
+      case 'fos.iden_devolucion_firmada': return 'Retorn signat per l\'autoritat.';
+      case 'fos.iden_firma_valida': return 'Signatura criptogràfica vàlida: les dades arriben tal com les va signar el remitent.';
+      case 'fos.iden_firma_invalida': return 'SIGNATURA NO VÀLIDA: les dades del fitxer NO coincideixen amb la signatura del remitent. Podrien haver estat modificades.';
+      case 'fos.iden_remitente': return 'Remitent';
+      case 'fos.iden_nombre_declarado': return 'Nom declarat';
+      case 'fos.iden_huella': return 'Empremta';
+      case 'fos.iden_hallazgo': return 'Troballa';
+      case 'fos.iden_tipo': return 'Tipus';
+      case 'fos.iden_fecha': return 'Data';
+      case 'fos.iden_coordenadas': return 'Coordenades';
+      case 'fos.iden_estrato': return 'Estrat';
+      case 'fos.iden_notas': return 'Notes';
+      case 'fos.iden_tipo_fosil': return 'Fòssil';
+      case 'fos.iden_tipo_mineral': return 'Mineral';
+      case 'fos.iden_error_sin_manifest': return 'No és un .fos-card vàlid (sense manifest)';
+      case 'fos.iden_error_formato_desconocido': return 'Format desconegut: {formato}';
+      case 'fos.iden_error_falta_hallazgo': return 'Falta hallazgo.json';
+      case 'fos.iden_error_version_desconocida': return 'Versió de troballa desconeguda: {version}';
+      case 'fos.iden_error_sin_autoridad': return 'El Mode Expert no està actiu: no hi ha cap autoritat per signar.';
+      case 'fos.iden_error_sin_clave_autoridad': return 'El Mode Expert no està actiu: no hi ha clau d\'autoritat.';
+      case 'fos.iden_com_falta_consentimiento': return 'Falta el consentiment explícit.';
+      case 'fos.iden_com_limite_diario': return 'Has arribat al límit diari de pujades. Torna-ho a provar demà.';
+      case 'fos.iden_com_servidor_rechazo': return 'El servidor ha rebutjat la pujada (HTTP {codigo}).';
+      case 'fos.iden_com_tiempo_agotado': return 'El servidor ha trigat massa a respondre. Revisa la connexió.';
+      case 'fos.iden_com_sin_conexion': return 'No hi ha connexió amb el servidor. Torna-ho a provar més tard.';
+      case 'fos.iden_com_no_pudo_procesar': return 'El servidor no ha pogut processar la sol·licitud (HTTP {codigo}).';
+      case 'fos.iden_com_inactiva': return 'La funció «comunitat» no està activada en aquesta versió.';
+      case 'fos.iden_com_sin_fotos': return 'Aquesta troballa no té fotos. Edita-la i afegeix-n\'hi una.';
+      case 'fos.iden_com_enviada': return 'Enviada (#{id}). Si s\'aprova, t\'avisarem.';
+      case 'fos.iden_com_error_inesperado': return 'Error inesperat';
+      case 'fos.iden_com_compartir_titulo': return 'Comparteix amb la comunitat';
+      case 'fos.iden_com_intro': return 'Un geòleg revisarà la teva aportació. Si l\'aprova, apareixerà a l\'app associada a aquesta formació geològica, perquè altres aficionats puguin veure què s\'hi troba.';
+      case 'fos.iden_com_se_envia': return 'S\'envia:';
+      case 'fos.iden_com_foto_principal': return 'Foto principal de la troballa';
+      case 'fos.iden_com_tipo_valor': return 'Tipus ({tipo})';
+      case 'fos.iden_com_especie_declarada': return 'Espècie/grup declarat: {valor}';
+      case 'fos.iden_com_edad_declarada': return 'Edat declarada: {valor}';
+      case 'fos.iden_com_formacion_declarada': return 'Formació declarada: {valor}';
+      case 'fos.iden_com_tus_notas': return 'Les teves notes';
+      case 'fos.iden_com_no_se_envia': return 'NO s\'envia:';
+      case 'fos.iden_com_nombre_autor': return 'El teu nom com a autor visible';
+      case 'fos.iden_com_identidad_cripto': return 'La teva identitat criptogràfica de la troballa';
+      case 'fos.iden_com_email_no_valido': return 'Correu electrònic no vàlid';
+      case 'fos.iden_com_email_contacto': return 'Correu de contacte';
+      case 'fos.iden_com_email_ayuda': return 'Per avisar-te si la foto s\'aprova o es rebutja. MAI no es publica.';
+      case 'fos.iden_com_tu_nombre_opcional': return 'El teu nom (opcional)';
+      case 'fos.iden_com_nombre_ayuda': return 'Només el veurà el curador. Mai no apareix a l\'app.';
+      case 'fos.iden_com_consentimiento': return 'Accepto la política de privadesa i entenc que l\'app no és un canal oficial per comunicar patrimoni paleontològic; per a troballes importants, contacta també amb el servei de Patrimoni de la teva comunitat autònoma.';
+      case 'fos.iden_com_enviar_revision': return 'Envia per revisar';
+      case 'fos.iden_com_formacion_codigo': return 'Formació · {codigo}';
+      case 'fos.iden_com_fotos_comunidad': return 'Fotos de la comunitat';
+      case 'fos.iden_com_sin_fotos_formacion': return 'Encara no hi ha fotos de la comunitat per a aquesta formació. Si hi trobes alguna cosa, pots ser el primer: comparteix la teva troballa des de la pestanya Llista.';
+      case 'fos.iden_com_sin_especie': return '(sense espècie)';
+      case 'fos.mapa_capa_callejero': return 'Carrerer';
+      case 'fos.mapa_capa_satelite': return 'Satèl·lit';
+      case 'fos.mapa_capa_topografico': return 'Topogràfic';
+      case 'fos.mapa_capa_edades_1m': return 'Edats 1M';
+      case 'fos.mapa_capa_litologias_1m': return 'Litologies 1M';
+      case 'fos.mapa_capa_geode_desc': return 'Recomanada · continu geològic nacional. Cada polígon porta edat, formació i litologia; el que veus i el que l\'app suggereix per als fòssils van sempre coordinats.';
+      case 'fos.mapa_capa_magna_desc': return 'Color per litologia (tipus de roca: calcària, argila, granit…). Detall màxim 1:50.000. Útil per saber «quin tipus de roca trepitjo», NO per veure edats d\'un cop d\'ull.';
+      case 'fos.mapa_capa_edades_desc': return 'Color directe per edat geològica (era/període). El millor per veure eres d\'un cop d\'ull. Resolució 1:1.000.000 — més baixa, serveix per a escala regional.';
+      case 'fos.mapa_capa_litologias_desc': return 'Litologia general (versió simplificada de MAGNA). Resolució 1:1.000.000. Per a escala regional quan MAGNA és massa dens.';
+      case 'fos.mapa_lig_sin_nombre': return 'LIG sense nom';
+      case 'fos.mapa_rosa_vientos': return 'N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSO,SO,OSO,O,ONO,NO,NNO';
+      case 'fos.mapa_estas_en': return '{emoji} Ets a {nombre}. Toca per veure què cal buscar.';
+      case 'fos.mapa_ver_ficha': return 'Veure la fitxa';
+      case 'fos.mapa_esperando_gps': return 'S\'espera el GPS per calcular la distància.';
+      case 'fos.mapa_distancia_y_rumbo': return 'Distància i rumb';
+      case 'fos.mapa_desde_tu_posicion': return 'Des de la teva posició fins a {coordenadas}';
+      case 'fos.mapa_detener_track': return 'Aturar la traça';
+      case 'fos.mapa_iniciar_track': return 'Iniciar la traça';
+      case 'fos.mapa_nombre_opcional': return 'Nom (opcional)';
+      case 'fos.mapa_descartar': return 'Descartar';
+      case 'fos.mapa_track_guardado': return 'Traça desada';
+      case 'fos.mapa_grabando_track_aviso': return '🔴 S\'està enregistrant la traça. Pots bloquejar la pantalla; l\'enregistrament continua.';
+      case 'fos.mapa_acercate_monumentos': return '🗿 Apropa\'t més (zoom ≥ 9) per carregar monuments.';
+      case 'fos.mapa_sin_monumentos': return '🗿 No hi ha monuments OSM en aquesta vista. Prova de desplaçar el mapa.';
+      case 'fos.mapa_monumentos_cargados': return '🗿 {n} monuments carregats.';
+      case 'fos.mapa_error_monumentos': return 'Error en els monuments: {error}';
+      case 'fos.mapa_acercate_cuevas': return '🦇 Apropa\'t més (zoom ≥ 10) per carregar coves.';
+      case 'fos.mapa_sin_cuevas': return '🦇 No hi ha coves OSM en aquesta vista. Prova de desplaçar el mapa.';
+      case 'fos.mapa_cuevas_cargadas': return '🦇 {n} coves carregades.';
+      case 'fos.mapa_error_cuevas': return 'Error en les coves: {error}';
+      case 'fos.mapa_que_buscar': return 'Què cal buscar';
+      case 'fos.mapa_como_llegar': return 'Com arribar-hi';
+      case 'fos.mapa_marcar_hallazgo_aqui': return 'Marcar la troballa aquí';
+      case 'fos.mapa_fuente': return 'Font: {fuente}';
+      case 'fos.mapa_cronologia': return 'Cronologia: {valor}';
+      case 'fos.mapa_ver_en_osm': return 'Veure a OpenStreetMap';
+      case 'fos.mapa_especie': return 'Espècie';
+      case 'fos.mapa_edad': return 'Edat';
+      case 'fos.mapa_formacion': return 'Formació';
+      case 'fos.mapa_fecha': return 'Data';
+      case 'fos.mapa_coordenadas': return 'Coordenades';
+      case 'fos.mapa_estrato': return 'Estrat';
+      case 'fos.mapa_notas': return 'Notes';
+      case 'fos.mapa_borrar_hallazgo_pregunta': return 'Vols esborrar aquesta troballa?';
+      case 'fos.mapa_compartir_texto': return 'Compartir el text';
+      case 'fos.mapa_tarjeta': return 'Targeta';
+      case 'fos.mapa_certificado_verificable': return 'Certificat verificable';
+      case 'fos.mapa_enviar_otra_app': return 'Enviar a una altra app Fósiles';
+      case 'fos.mapa_historial_trazabilidad': return 'Historial de traçabilitat';
+      case 'fos.mapa_evento_anadido': return 'Esdeveniment afegit a l\'historial.';
+      case 'fos.mapa_anadir_trazabilidad': return 'Afegir traçabilitat';
+      case 'fos.mapa_anadir_evento': return 'Afegir esdeveniment';
+      case 'fos.mapa_compartir_titulo': return 'Troballa de fòssil';
+      case 'fos.mapa_asunto_hallazgo': return 'Troballa: {especie}';
+      case 'fos.mapa_error_tarjeta': return 'Error en generar la targeta: {error}';
+      case 'fos.mapa_precision_coordenadas': return 'Precisió de les coordenades';
+      case 'fos.mapa_precision_explicacion': return 'Les coordenades precises poden facilitar l\'espoli de jaciments. Per a col·legues de confiança o l\'Institut, envia-les precises; per a aficionats desconeguts o el públic en general, difuminades (precisió ~1 km).';
+      case 'fos.mapa_difuminadas_recomendado': return 'Difuminades (~1 km)  ·  recomanat';
+      case 'fos.mapa_precisas': return 'Precises (~11 cm)';
+      case 'fos.mapa_asunto_card': return 'Card de la troballa: {especie}';
+      case 'fos.mapa_sin_especie': return '(sense espècie)';
+      case 'fos.mapa_texto_card': return 'Card de Fósiles ({mb} MB · {fotos} fotos · {modo}). Per importar-la, obre el fitxer en una altra instal·lació de l\'app Fósiles.';
+      case 'fos.mapa_coords_difuminadas': return 'coords difuminades';
+      case 'fos.mapa_coords_precisas': return 'coords precises';
+      case 'fos.mapa_error_card': return 'Error en generar la card: {error}';
+      case 'fos.mapa_configura_nombre': return 'Configura primer el teu nom a Configuració → Perfil i identitat.';
+      case 'fos.mapa_profundidad': return 'Profunditat: {n} m';
+      case 'fos.mapa_longitud': return 'Longitud: {n} m';
+      case 'fos.mapa_tipo': return 'Tipus: {tipo}';
+      case 'fos.mapa_sin_datos': return 'Sense dades';
+      case 'fos.mapa_igme_sin_info': return 'L\'IGME no retorna informació en aquest punt.';
+      case 'fos.mapa_geologia_en_punto': return 'Geologia en aquest punt';
+      case 'fos.mapa_antiguedad': return 'Antiguitat';
+      case 'fos.mapa_era_periodo': return 'Era / Període';
+      case 'fos.mapa_litologia': return 'Litologia';
+      case 'fos.mapa_lig_cerca': return 'Llocs d\'Interès Geològic a prop';
+      case 'fos.mapa_yacimientos_cercanos': return 'Jaciments seleccionats a prop';
+      case 'fos.mapa_fosiles_probables': return 'Fòssils probables aquí · {periodo}';
+      case 'fos.mapa_sin_fosiles_edad': return 'La guia no té fòssils associats a aquesta edat.';
+      case 'fos.mapa_minerales_probables': return '💎 Minerals probables aquí';
+      case 'fos.mapa_fotos_comunidad': return 'Fotos de la comunitat a {formacion}';
+      case 'fos.mapa_interes_principal': return 'Interès principal';
+      case 'fos.mapa_descripcion': return 'Descripció';
+      case 'fos.mapa_a_distancia_km': return 'a {km} km';
+      case 'fos.mapa_capa_base': return 'Capa base';
+      case 'fos.mapa_capa_geologica': return 'Capa geològica';
+      case 'fos.mapa_sin_geologia': return 'Sense geologia';
+      case 'fos.mapa_mas_capas': return 'Més capes i opcions';
+      case 'fos.mapa_lig': return 'Llocs d\'Interès Geològic';
+      case 'fos.mapa_relieve_sombreado': return 'Relleu ombrejat';
+      case 'fos.mapa_mapa_de_calor': return 'Troballes com a mapa de calor';
+      case 'fos.mapa_yacimientos_curados': return 'Jaciments seleccionats';
+      case 'fos.mapa_tracks_guardados': return 'Traces desades';
+      case 'fos.mapa_como_leer_mapa': return 'Com llegir el mapa';
+      case 'fos.mapa_sin_conexion_cache': return 'Sense connexió — s\'usen dades de la memòria cau';
+      case 'fos.mapa_toca_marcar': return '👆 Toca el mapa per marcar la troballa';
+      case 'fos.mapa_toca_geologia': return '👆 Toca el mapa per veure\'n la geologia';
+      case 'fos.mapa_asistente_sin_conexion': return 'L\'assistent IGME necessita connexió';
+      case 'fos.mapa_consultando_igme': return 'Consultant l\'IGME…';
+      case 'fos.mapa_sin_datos_igme_centro': return 'No hi ha dades de l\'IGME al centre del mapa';
+      case 'fos.mapa_marcar_punto': return 'Marcar un punt';
+      case 'fos.mapa_explorar_geologia': return 'Explorar la geologia';
+      case 'fos.mapa_cargando': return 'Carregant…';
+      case 'fos.mapa_cuevas': return 'Coves';
+      case 'fos.mapa_megalitos': return 'Megàlits';
+      case 'fos.mapa_asistente_activo': return 'Assistent actiu';
+      case 'fos.mapa_asistente': return 'Assistent';
+      case 'fos.mapa_cerrar': return 'Tancar';
+      case 'fos.mapa_mareas': return 'Marees';
+      case 'fos.mapa_bajamar_hora': return 'Baixamar: {hora}';
+      case 'fos.mapa_bajamar': return 'Baixamar';
+      case 'fos.mapa_pleamar': return 'Plenamar';
+      case 'fos.mapa_hoy_minusculas': return 'avui';
+      case 'fos.mapa_manana_minusculas': return 'demà';
+      case 'fos.mapa_firmado_por_ti': return '✓ Signat per tu';
+      case 'fos.mapa_firmado_por_otra': return 'Signat per una altra persona';
+      case 'fos.mapa_sin_firma': return 'Sense signatura criptogràfica';
+      case 'fos.mapa_firma_rota': return '✗ Signatura trencada — les dades s\'han modificat';
+      case 'fos.mapa_verificando_certificacion': return 'Verificant la certificació…';
+      case 'fos.mapa_cadena_invalida': return 'Cadena de certificació no vàlida — almenys una baula està trencada.';
+      case 'fos.mapa_certificada_por': return 'Certificada per {autoridad}';
+      case 'fos.mapa_firmada_una': return 'Signada el {fecha} · 1 certificació';
+      case 'fos.mapa_firmada_varias': return 'Signada el {fecha} · {n} certificacions';
+      case 'fos.mapa_selecciona_capa': return 'Selecciona almenys una capa.';
+      case 'fos.mapa_confirmar_descarga': return 'Baixaràs {n} tessel·les (~{mb} MB). Vols continuar?';
+      case 'fos.mapa_descargar': return 'Baixar';
+      case 'fos.mapa_teselas_en_cache': return '✅ {n} tessel·les a la memòria cau ({fallidas} fallides).';
+      case 'fos.mapa_descargar_mapas_offline': return 'Baixar mapes fora de línia';
+      case 'fos.mapa_centra_zona': return 'Centra i fes zoom al mapa de dalt sobre la zona on seràs.';
+      case 'fos.mapa_zoom_minimo': return 'Zoom mínim: {n}';
+      case 'fos.mapa_zoom_maximo': return 'Zoom màxim: {n}';
+      case 'fos.mapa_capa_geologica_igme_opcional': return 'Capa geològica IGME (opcional)';
+      case 'fos.mapa_ninguna': return 'Cap';
+      case 'fos.mapa_resumen_teselas': return '{n} tessel·les (~{mb} MB) en {capas} capes';
+      case 'fos.mapa_descargando': return 'Baixant…';
+      case 'fos.mapa_descargar_ahora': return 'Baixar ara';
+      case 'fos.mapa_progreso_descarga': return '{descargadas}/{total} ({fallidas} fallides) · {mb} MB';
+      case 'fos.mapa_track': return 'Traça';
+      case 'fos.mapa_tracks': return 'Traces';
+      case 'fos.mapa_error_cargando_tracks': return 'Error en carregar les traces: {error}';
+      case 'fos.mapa_error_abriendo_track': return 'Error en obrir la traça: {error}';
+      case 'fos.mapa_track_sin_puntos': return 'Aquesta traça no té punts desats (l\'enregistrament es va aturar abans de la primera posició GPS).';
+      case 'fos.mapa_asunto_gpx': return 'Traça GPX';
+      case 'fos.mapa_informe_pdf': return 'Informe PDF';
+      case 'fos.mapa_borrar_track_pregunta': return 'Vols esborrar aquesta traça?';
+      case 'fos.mapa_asunto_informe_salida': return 'Informe de la sortida';
+      case 'fos.mapa_error_pdf': return 'Error en generar el PDF: {error}';
+      case 'fos.mapa_n_puntos': return '{n} punts';
+      case 'fos.mapa_gpx_sin_puntos': return 'El GPX no conté punts de traça.';
+      case 'fos.mapa_importado': return 'Importat: {nombre} ({n} punts)';
+      case 'fos.mapa_error_importando_gpx': return 'Error en importar el GPX: {error}';
+      case 'fos.mapa_importar_gpx': return 'Importar GPX';
+      case 'fos.mapa_sin_tracks': return 'Encara no has enregistrat cap traça.';
+      case 'fos.mapa_sin_tracks_ayuda': return 'Fes servir el botó ⏺ del mapa per començar.';
+      case 'fos.mapa_track_del': return 'Traça del {fecha}';
+      case 'fos.mapa_notificacion_grabando': return 'S\'està enregistrant la traça';
+      case 'fos.mapa_notificacion_registrando_ruta': return 'Fósiles està registrant la teva ruta';
+      case 'fos.mapa_track_recuperado': return 'Traça recuperada {fecha}';
+      case 'fos.mapa_track_importado': return 'Traça importada';
+      case 'fos.mapa_overpass_fallaron': return 'Tots els servidors Overpass han fallat · darrer: {error}';
+      case 'fos.mapa_monumento_megalito': return 'Megàlit (dolmen / cromlec / harrespil)';
+      case 'fos.mapa_monumento_dolmen': return 'Dolmen';
+      case 'fos.mapa_monumento_tumulo': return 'Túmul';
+      case 'fos.mapa_monumento_fondo_cabana': return 'Fons de cabana';
+      case 'fos.mapa_monumento_fortificacion': return 'Fortificació / castre';
+      case 'fos.mapa_monumento_castillo': return 'Castell';
+      case 'fos.mapa_monumento_poblado': return 'Poblat / assentament';
+      case 'fos.mapa_monumento_menhir': return 'Menhir';
+      case 'fos.mapa_monumento_piedra_antigua': return 'Pedra antiga';
+      case 'fos.mapa_monumento_circulo_piedras': return 'Cercle de pedres';
+      case 'fos.mapa_monumento_tumba': return 'Tomba';
+      case 'fos.mapa_monumento_ruinas': return 'Ruïnes';
+      case 'fos.mapa_monumento_monumento': return 'Monument';
+      case 'fos.mapa_monumento_memorial': return 'Memorial';
+      case 'fos.mapa_monumento_crucero': return 'Creu de terme';
+      case 'fos.mapa_monumento_yacimiento': return 'Jaciment arqueològic';
+      case 'fos.mapa_sin_nombre': return 'Sense nom';
+      case 'fos.mapa_ayuda_capas_titulo': return 'Capes geològiques del mapa';
+      case 'fos.mapa_ayuda_capas_texto': return 'A la barra superior del mapa, la icona de la muntanya obre el desplegable de capes geològiques de l\'IGME. L\'app s\'inicia amb la primera de la llista (GEODE 50). Per a què serveix cadascuna:';
+      case 'fos.mapa_ayuda_capas_nota': return 'Els suggeriments de fòssils i minerals de l\'assistent i de l\'explorador SEMPRE consulten GEODE 50 internament, sigui quina sigui la capa pintada — així canviar de capa visual no fa ballar la llista de fòssils probables.';
+      case 'fos.mapa_ayuda_otras_titulo': return 'Altres capes i filtres';
+      case 'fos.mapa_ayuda_menu_superior': return 'Al menú «⋮» de la barra superior del mapa:';
+      case 'fos.mapa_ayuda_item_lig': return '⭐ LIG — Llocs d\'Interès Geològic declarats per l\'IGME.';
+      case 'fos.mapa_ayuda_item_relieve': return '⛰️ Relleu ombrejat (hillshade) per veure la topografia.';
+      case 'fos.mapa_ayuda_item_calor': return '🔥 Troballes com a mapa de calor.';
+      case 'fos.mapa_ayuda_item_yacimientos': return '🏛️ Jaciments seleccionats — selecció manual amb fitxes; també apareixen com a pista de «jaciments propers» quan toques a menys de 5 km.';
+      case 'fos.mapa_ayuda_boton_capas': return 'Al botó de capes de la part inferior esquerra del mapa:';
+      case 'fos.mapa_ayuda_item_cuevas': return '🦇 Coves (OpenStreetMap, cal zoom ≥ 10).';
+      case 'fos.mapa_ayuda_item_megalitos': return '🗿 Megàlits i monuments arqueològics (OSM, zoom ≥ 9).';
+      case 'fos.mapa_ayuda_sugerencias_titulo': return 'Suggeriments de fòssils i minerals';
+      case 'fos.mapa_ayuda_sugerencias_intro': return 'En tocar un punt (mode Explorar la geologia) o amb l\'assistent activat al centre del mapa, l\'app creua la resposta de l\'IGME amb els seus catàlegs locals:';
+      case 'fos.mapa_ayuda_sugerencias_formacion': return 'Si la formació que retorna GEODE coincideix amb el catàleg de formacions ibèriques, se suggereixen els fòssils característics d\'aquella formació (segell PENDIENTE_VALIDACION paleontològica fins a l\'auditoria del comitè científic).';
+      case 'fos.mapa_ayuda_sugerencias_periodo': return 'Si no, se suggereixen fòssils del període inferit i filtrats per l\'ambient sedimentari probable de la litologia (p. ex. granit o basalt → sense fòssils; calcària → marins).';
+      case 'fos.mapa_ayuda_sugerencias_minerales': return 'Els minerals es ponderen per litologia: cada grup (granític, carbonàtic, basàltic, evaporític, metamòrfic…) té el seu propi conjunt probable.';
+      case 'fos.mapa_orientacion_estrato': return 'Orientació de l\'estrat';
+      case 'fos.mapa_orientacion_instrucciones': return 'Recolza el telèfon pla sobre la superfície de la capa rocosa, amb la pantalla cap amunt. Mantén-lo estable i prem Capturar.';
+      case 'fos.mapa_strike': return 'Strike (direcció)';
+      case 'fos.mapa_strike_ayuda': return 'Línia horitzontal de la capa';
+      case 'fos.mapa_dip': return 'Dip (cabussament)';
+      case 'fos.mapa_dip_ayuda': return 'Inclinació respecte de l\'horitzontal';
+      case 'fos.mapa_direccion_dip': return 'Direcció del dip';
+      case 'fos.mapa_direccion_dip_ayuda': return 'Cap a on cau la capa';
+      case 'fos.mapa_brujula': return 'Brúixola (part superior del mòbil)';
+      case 'fos.mapa_solo_referencia': return 'Només de referència';
+      case 'fos.mapa_aviso_casi_horizontal': return '⚠ La superfície és gairebé horitzontal — la direcció serà imprecisa.';
+      case 'fos.mapa_aviso_casi_vertical': return '⚠ Capa gairebé vertical — fes servir una altra cara per mesurar millor.';
+      case 'fos.mapa_capturar': return 'Capturar';
+      case 'fos.mapa_permiso_bloqueado': return 'Permís d\'ubicació bloquejat';
+      case 'fos.mapa_permiso_bloqueado_texto': return 'Has denegat el permís de manera permanent. Per fer servir el GPS l\'has d\'activar manualment des de la configuració del sistema.';
+      case 'fos.mapa_activa_gps': return 'Activa el GPS del telèfon i torna-ho a provar.';
+      case 'fos.mapa_necesito_permiso': return 'Necessito permís d\'ubicació per a aquesta acció.';
+      case 'fos.mapa_abrir_ajustes': return 'Obrir la configuració';
+      case 'fos.mapa_ubicacion_seleccionada': return 'Ubicació seleccionada';
+      case 'fos.mapa_meteo_sin_ubicacion': return 'No s\'ha pogut obtenir la ubicació. Activa el GPS.';
+      case 'fos.mapa_meteorologia': return 'Meteorologia';
+      case 'fos.mapa_buscar_lugar': return 'Cercar un lloc…';
+      case 'fos.mapa_usar_mi_ubicacion': return 'Usar la meva ubicació';
+      case 'fos.mapa_meteo_vacio': return 'Cerca un lloc o prem el botó d\'ubicació per veure la previsió meteorològica';
+      case 'fos.mapa_proximas_horas': return 'Properes hores';
+      case 'fos.mapa_ahora': return 'Ara';
+      case 'fos.mapa_proximos_dias': return 'Propers dies';
+      case 'fos.mapa_hoy': return 'Avui';
+      case 'fos.mapa_datos_open_meteo': return 'Dades: Open-Meteo (gratuït, sense clau d\'API)';
+      case 'fos.mapa_meteo_despejado': return 'Serè';
+      case 'fos.mapa_meteo_mayormente_despejado': return 'Majoritàriament serè';
+      case 'fos.mapa_meteo_parcialmente_nublado': return 'Parcialment ennuvolat';
+      case 'fos.mapa_meteo_nublado': return 'Ennuvolat';
+      case 'fos.mapa_meteo_niebla': return 'Boira';
+      case 'fos.mapa_meteo_llovizna_ligera': return 'Plugim feble';
+      case 'fos.mapa_meteo_llovizna_moderada': return 'Plugim moderat';
+      case 'fos.mapa_meteo_llovizna_densa': return 'Plugim dens';
+      case 'fos.mapa_meteo_lluvia_ligera': return 'Pluja feble';
+      case 'fos.mapa_meteo_lluvia_moderada': return 'Pluja moderada';
+      case 'fos.mapa_meteo_lluvia_fuerte': return 'Pluja forta';
+      case 'fos.mapa_meteo_nevada_ligera': return 'Nevada feble';
+      case 'fos.mapa_meteo_nevada_moderada': return 'Nevada moderada';
+      case 'fos.mapa_meteo_nevada_fuerte': return 'Nevada forta';
+      case 'fos.mapa_meteo_chubascos_ligeros': return 'Ruixats febles';
+      case 'fos.mapa_meteo_chubascos_moderados': return 'Ruixats moderats';
+      case 'fos.mapa_meteo_chubascos_fuertes': return 'Ruixats forts';
+      case 'fos.mapa_meteo_tormenta': return 'Tempesta';
+      case 'fos.mapa_meteo_tormenta_granizo': return 'Tempesta amb calamarsa';
+      case 'fos.mapa_meteo_desconocido': return 'Desconegut';
+      case 'fos.mapa_cueva_sin_nombre': return 'Cova sense nom';
+      case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sense nom';
+      case 'nat.ajus_cabecera_titulo': return 'Quadern de camp de natura';
+      case 'nat.ajus_cabecera_sub': return 'Observa, aprèn i conviu amb la biodiversitat que t\'envolta';
+      case 'nat.ajus_explorar_mapa_sub': return 'Espècies i observacions';
+      case 'nat.ajus_meteo_sub': return 'Previsió per a la teva sortida';
+      case 'nat.ajus_chat_ia_sub': return 'Resol dubtes, identifica espècies, demana consells d\'observació';
+      case 'nat.ajus_salidas_campo': return 'Sortides de camp';
+      case 'nat.ajus_salidas_campo_sub': return 'Agrupa les troballes, la traça i la meteorologia d\'una jornada en una sola unitat narrativa';
+      case 'nat.ajus_etica_titulo': return 'Explora, observa i conviu';
+      case 'nat.ajus_etica_sub': return 'Unes pautes per gaudir de la natura sumant, sense restar.';
+      case 'nat.ajus_etica1_titulo': return 'Observa amb curiositat i respecte';
+      case 'nat.ajus_etica1_texto': return 'Acosta\'t als animals amb calma, mantén la distància i gaudeix veient com es comporten quan no se senten amenaçats. Uns prismàtics o el zoom de la càmera et donaran millors records que intentar tocar-los. Si se\'n van, és que eres massa a prop.';
+      case 'nat.ajus_etica2_titulo': return 'Les plantes també són protagonistes';
+      case 'nat.ajus_etica2_texto': return 'Moltes espècies són fràgils i tarden anys a florir. Fotografia-les al seu lloc: la imatge dura per sempre i la planta continua viva. Queda\'t als senders a les zones sensibles; les arrels i els brots t\'ho agrairan.';
+      case 'nat.ajus_etica3_titulo': return 'Cada observació teva suma';
+      case 'nat.ajus_etica3_texto': return 'Els teus registres ajuden científiques i conservacionistes a entendre com es mouen, quan floreixen o on nien les espècies. L\'app et permet identificar i geolocalitzar. És ciència ciutadana: tu explores, la ciència avança.';
+      case 'nat.ajus_etica4_titulo': return 'Gaudeix amb seguretat';
+      case 'nat.ajus_etica4_texto': return 'Porta aigua, protecció solar i calçat còmode. Consulta la previsió meteorològica abans de sortir — l\'app te la dona. Comparteix la teva ruta amb algú si vas a zones sense cobertura. Una bona excursió és la que acaba amb un somriure.';
+      case 'nat.ajus_etica5_titulo': return 'Que el teu pas sigui invisible';
+      case 'nat.ajus_etica5_texto': return 'Emporta\'t les teves deixalles… i alguna més si en trobes. No facis foc. Deixa pedres, plomes i restes on eren: formen part del paisatge i del cicle de la vida. La natura no necessita records; tu ja te n\'emportes l\'experiència.';
+      case 'nat.ajus_como_usar': return 'Com fer servir Naturaleza';
+      case 'nat.ajus_paso1_texto': return 'Activa els llocs d\'interès (miradors, aiguamolls, reserves) i consulta observacions GBIF properes.';
+      case 'nat.ajus_paso2_texto': return 'Toca + per afegir una espècie amb foto, coordenades i categoria (animal, insecte, planta).';
+      case 'nat.ajus_paso3_titulo': return 'Identifica amb IA';
+      case 'nat.ajus_paso3_texto': return 'L\'app identifica l\'espècie per la imatge amb Claude o Pl@ntNet.';
+      case 'nat.ajus_paso4_titulo': return 'Consulta la guia';
+      case 'nat.ajus_paso4_texto': return 'Accedeix a la guia d\'espècies amb fotos de Wikipedia, trets distintius, hàbitat i usos.';
+      case 'nat.ajus_paso5_titulo': return 'Fes el qüestionari';
+      case 'nat.ajus_paso5_texto': return 'Posa a prova els teus coneixements amb el qüestionari d\'identificació per imatge.';
+      case 'nat.ajus_salida_sin_titulo': return 'Sortida sense títol';
+      case 'nat.ajus_salida_en_curso': return 'Sortida en curs · des de les {hora}';
+      case 'nat.ajus_backup_asunto': return 'Còpia de seguretat de Naturaleza';
+      case 'nat.ajus_backup_texto': return 'Còpia de seguretat ({kb} KB)';
+      case 'nat.ajus_restaurados': return 'S\'han restaurat {hallazgos} troballes i {fotos} fotos. Reinicia l\'app per veure els canvis.';
+      case 'nat.ajus_claves_modelo_sub': return 'Claude per identificar, Pl@ntNet per a plantes i DeepSeek per al xat';
+      case 'nat.ajus_backup_explicacion': return 'Exporta tota la teva base (troballes + traces + fotos) en un únic fitxer .natbackup. Desa\'l a Drive, en un USB o al correu. Per restaurar, selecciona el .natbackup; substituirà les dades actuals.';
+      case 'nat.ajus_sobre_app_texto': return 'Naturaleza — Quadern de camp (animals, insectes i plantes). Versió Flutter per a Android.';
+      case 'nat.ajus_sobre_app_fuentes': return 'Mapa base: OpenStreetMap, ESRI, OpenTopoMap. Identificació: Claude (Anthropic). Taxonomia i referències: iNaturalist i GBIF.';
+      case 'nat.ajus_mensaje_compartir': return 'Naturaleza — quadern de camp digital per anotar fauna i flora amb georeferència i guia d\'identificació. App lliure, sense anuncis ni seguiment. Prova-la: {url}';
+      case 'nat.ajus_chat_vacio': return 'Pregunta\'m el que vulguis sobre espècies, fauna, flora, identificació, observació…';
+      case 'nat.ajus_identificacion_claude': return 'Identificació amb Claude';
+      case 'nat.ajus_ia_explicacion': return 'Per identificar espècies automàticament, introdueix la teva clau d\'API d\'Anthropic. Només es desa al teu telèfon i només s\'envia a api.anthropic.com. Aconsegueix-ne una a console.anthropic.com.';
+      case 'nat.ajus_plantnet_titulo': return 'Identificació de plantes amb Pl@ntNet (gratis)';
+      case 'nat.ajus_plantnet_explicacion': return 'Pl@ntNet identifica plantes amb una foto i retorna un rànquing de candidates. El pla gratuït dona 500 identificacions al dia. Registra\'t a my.plantnet.org i enganxa aquí la teva clau. La foto només s\'envia quan prems el botó "Identificar planta" a la fitxa d\'una troballa.';
+      case 'nat.ajus_conseguir_plantnet': return 'Aconseguir clau de Pl@ntNet';
+      case 'nat.ajus_api_plantnet': return 'Clau d\'API de Pl@ntNet';
+      case 'nat.ajus_chat_deepseek': return 'Xat amb DeepSeek';
+      case 'nat.ajus_plantnet_falta_clave': return 'Falta la clau d\'API de Pl@ntNet.';
+      case 'nat.ajus_foto_no_existe': return 'La foto no existeix al disc: {ruta}';
+      case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet ha rebutjat la clau (HTTP {codigo}). Comprova la clau a Configuració → Intel·ligència artificial.';
+      case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet indica que la quota d\'avui s\'ha esgotat (HTTP 429).';
+      case 'nat.ajus_servicio_devolvio': return '{servicio} ha retornat {codigo}';
+      case 'nat.cat_mamiferos': return 'Mamífers';
+      case 'nat.cat_aves': return 'Ocells';
+      case 'nat.cat_reptiles': return 'Rèptils';
+      case 'nat.cat_anfibios': return 'Amfibis';
+      case 'nat.cat_peces': return 'Peixos';
+      case 'nat.cat_insectos': return 'Insectes i artròpodes';
+      case 'nat.cat_plantas': return 'Plantes';
+      case 'nat.cat_setas': return 'Bolets i fongs';
+      case 'nat.cat_otros_animales': return 'Altres animals';
+      case 'nat.uso_medicinal': return 'Medicinal';
+      case 'nat.uso_comestible': return 'Comestible';
+      case 'nat.uso_aromatica': return 'Aromàtica / culinària';
+      case 'nat.uso_melifera': return 'Mel·lífera';
+      case 'nat.uso_ornamental': return 'Ornamental';
+      case 'nat.uso_toxica': return 'Tòxica';
+      case 'nat.uso_urticante': return 'Urticant / irritant';
+      case 'nat.uso_protegida': return 'Protegida';
+      case 'nat.uso_invasora': return 'Invasora';
+      case 'nat.uso_endemica': return 'Endèmica';
+      case 'nat.hall_alternativas_dos_puntos': return 'Alternatives:';
+      case 'nat.hall_altura_aprox_cm': return 'Alçada aprox. (cm)';
+      case 'nat.hall_anade_foto_primero': return 'Afegeix primer una foto.';
+      case 'nat.hall_anotacion_al_margen': return 'Anotació al marge';
+      case 'nat.hall_anotacion_hint': return 'p. ex. al final era una femella, no un mascle';
+      case 'nat.hall_anotaciones_al_margen': return 'Anotacions al marge';
+      case 'nat.hall_asunto_exportacion': return 'Troballes de natura';
+      case 'nat.hall_asunto_hallazgo': return 'Troballa: {titulo}';
+      case 'nat.hall_badge_confirmada': return '✓ Confirmada';
+      case 'nat.hall_badge_corregida': return '→ Corregida';
+      case 'nat.hall_badge_sin_validar': return '? Sense validar';
+      case 'nat.hall_borrar_anotacion': return 'Esborrar l\'anotació';
+      case 'nat.hall_buscar_en_inaturalist': return 'Cercar a iNaturalist';
+      case 'nat.hall_buscar_hint': return 'Cerca per nom, taxonomia, hàbitat, notes…';
+      case 'nat.hall_calibracion_por_confianza': return 'Calibració per confiança';
+      case 'nat.hall_candidatos_plantnet': return 'Candidats de Pl@ntNet';
+      case 'nat.hall_categoria': return 'Categoria';
+      case 'nat.hall_color_sombrero': return 'Color del barret';
+      case 'nat.hall_como_confirmar_texto': return 'Com confirmar-ho: {texto}';
+      case 'nat.hall_comportamiento': return 'Comportament';
+      case 'nat.hall_confianza_etiqueta': return 'Confiança: {nivel}';
+      case 'nat.hall_confianza_probable': return 'Probable';
+      case 'nat.hall_confianza_segura': return 'Segura';
+      case 'nat.hall_confianza_sin_marcar': return 'Sense marcar';
+      case 'nat.hall_confianza_tentativa': return 'Temptativa';
+      case 'nat.hall_configura_clave_plantnet': return 'Configura la teva clau de Pl@ntNet a Configuració → Intel·ligència artificial.';
+      case 'nat.hall_confirmada_check': return 'Confirmada ✓';
+      case 'nat.hall_confirmadas': return 'Confirmades';
+      case 'nat.hall_confirmar_borrar_anotacion': return 'S\'esborrarà aquesta anotació al marge. La troballa i les altres anotacions es mantenen.';
+      case 'nat.hall_corregida_a': return 'Corregida a';
+      case 'nat.hall_corregidas': return 'Corregides';
+      case 'nat.hall_corregir': return 'Corregir';
+      case 'nat.hall_corregir_identificacion': return 'Corregir la identificació';
+      case 'nat.hall_cuando_dijiste_probable': return 'Quan vas dir «probable»';
+      case 'nat.hall_cuando_dijiste_segura': return 'Quan vas dir «segura»';
+      case 'nat.hall_cuando_dijiste_tentativa': return 'Quan vas dir «temptativa»';
+      case 'nat.hall_de_acierto_global': return 'd\'encert global';
+      case 'nat.hall_descarga_fallo': return 'La baixada ha fallat ({codigo})';
+      case 'nat.hall_detalles_de': return 'Detalls: {categoria}';
+      case 'nat.hall_dia_n': return 'dia {n}';
+      case 'nat.hall_diametro_sombrero_cm': return 'Diàmetre del barret (cm)';
+      case 'nat.hall_dias_antes': return '↑ {n}d abans';
+      case 'nat.hall_dias_despues': return '↓ {n}d després';
+      case 'nat.hall_en_fecha': return 'en data';
+      case 'nat.hall_entrara_en_salida': return 'Aquesta observació entrarà a la sortida';
+      case 'nat.hall_error_conectar_archivos': return 'No s\'ha pogut connectar amb els arxius. Comprova la connexió.';
+      case 'nat.hall_error_descargar_foto': return 'No s\'ha pogut baixar la foto: {error}';
+      case 'nat.hall_error_guardar_hallazgo': return 'No s\'ha pogut desar la troballa: {error}';
+      case 'nat.hall_escribe_dos_letras': return 'Escriu almenys dues lletres i prem Cercar.';
+      case 'nat.hall_escribe_especie_para_buscar': return 'Escriu primer l\'espècie o el nom comú per cercar.';
+      case 'nat.hall_especie_real': return 'Espècie real';
+      case 'nat.hall_especie_real_hint': return 'nom científic o comú';
+      case 'nat.hall_estadio': return 'Estadi';
+      case 'nat.hall_evidencia_avistamiento': return 'Observació';
+      case 'nat.hall_evidencia_excremento': return 'Excrement';
+      case 'nat.hall_evidencia_huella': return 'Petjada';
+      case 'nat.hall_evidencia_interaccion': return 'Interacció';
+      case 'nat.hall_evidencia_marca_corteza': return 'Marca a l\'escorça';
+      case 'nat.hall_evidencia_nido_vacio': return 'Niu buit';
+      case 'nat.hall_evidencia_pluma': return 'Ploma';
+      case 'nat.hall_evidencia_refugio': return 'Refugi o cau';
+      case 'nat.hall_evidencia_restos_alimentacion': return 'Restes d\'alimentació';
+      case 'nat.hall_evidencia_sonido': return 'So o cant';
+      case 'nat.hall_explicacion_evidencia': return 'Si no has vist l\'animal, no passa res. Una petjada, una ploma o un cant també són una troballa de ple dret.';
+      case 'nat.hall_explicacion_fenologia': return 'Per a cada espècie amb observacions en almenys dos anys, la primera observació de cada any. La desviació compara l\'any actual amb la mitjana dels anteriors.';
+      case 'nat.hall_explicacion_fenologia_vacia': return 'La fenologia compara la primera observació de cada espècie entre anys diferents. Quan portis dues primaveres anotant la mateixa espècie, veuràs aquí si ha arribat abans o després.';
+      case 'nat.hall_explicacion_hipotesis': return 'El que creus que és i per què. Útil per revisar després quines pistes vas fer servir i quan l\'encertes.';
+      case 'nat.hall_explicacion_tasa_vacia': return 'Quan comencis a validar identificacions des de la fitxa de cada troballa, aquesta pantalla anirà calculant la teva taxa d\'encert al llarg del temps.';
+      case 'nat.hall_explicacion_validar': return 'Després de revisar fotos o bibliografia, marca si era correcta o anota l\'espècie real. Serveix per calcular la teva taxa d\'encert al llarg del temps.';
+      case 'nat.hall_falta_posicion_gps': return 'Falta la posició GPS.';
+      case 'nat.hall_foto_de_archivo': return 'Foto d\'arxiu';
+      case 'nat.hall_foto_referencia_inaturalist': return 'Foto de referència (iNaturalist)';
+      case 'nat.hall_guia_anade_entradas': return 'Afegeix entrades a lib/datos/datos_guia.dart';
+      case 'nat.hall_guia_sin_especies': return 'No hi ha espècies a la guia de {categoria}';
+      case 'nat.hall_habitat': return 'Hàbitat';
+      case 'nat.hall_hallazgo_de_naturaleza': return 'Troballa de natura';
+      case 'nat.hall_hipotesis': return 'Hipòtesi';
+      case 'nat.hall_hipotesis_hint': return 'crec que és X perquè…  (vol, cant, hàbitat…)';
+      case 'nat.hall_identificacion_actual': return 'Identificació actual: {especie}';
+      case 'nat.hall_identificacion_fallo': return 'La identificació ha fallat: {error}';
+      case 'nat.hall_identificar_plantnet_gratis': return 'Identificar la planta amb Pl@ntNet (gratis)';
+      case 'nat.hall_limpiar_busqueda': return 'Netejar la cerca';
+      case 'nat.hall_mi_fenologia': return 'La meva fenologia';
+      case 'nat.hall_mi_fenologia_subtitulo': return 'Primer registre de cada espècie per any';
+      case 'nat.hall_n_de_total_hallazgos': return '{n} de {total} troballes';
+      case 'nat.hall_n_exportados': return '{n} troballes exportades.';
+      case 'nat.hall_n_hallazgos': return '{n} troballes';
+      case 'nat.hall_n_sin_revisar': return 'Tens {n} troballes sense revisar. Obre\'n qualsevol des de la llista i prem «Confirmar» o «Corregir» després de revisar fotos o consultar bibliografia.';
+      case 'nat.hall_nombre_cientifico_binomial': return 'Nom científic (binomial)';
+      case 'nat.hall_nombre_comun_o_cientifico': return 'Nom comú o científic…';
+      case 'nat.hall_nombre_con_confianza': return '{nombre} (confiança: {confianza})';
+      case 'nat.hall_numero_ejemplares': return 'Nombre d\'exemplars';
+      case 'nat.hall_numero_individuos': return 'Nombre d\'individus';
+      case 'nat.hall_op_adulto': return 'adult';
+      case 'nat.hall_op_amarillo': return 'groc';
+      case 'nat.hall_op_arbol': return 'arbre';
+      case 'nat.hall_op_arbusto': return 'arbust';
+      case 'nat.hall_op_avistamiento': return 'observació';
+      case 'nat.hall_op_bajo_conifera': return 'sota coníferes';
+      case 'nat.hall_op_bajo_planifolio': return 'sota planifolis';
+      case 'nat.hall_op_blanco_crema': return 'blanc / crema';
+      case 'nat.hall_op_excremento': return 'excrement';
+      case 'nat.hall_op_flor': return 'flor';
+      case 'nat.hall_op_fruto': return 'fruit';
+      case 'nat.hall_op_gris_negruzco': return 'gris / negrós';
+      case 'nat.hall_op_herbacea': return 'herbàcia';
+      case 'nat.hall_op_huella': return 'petjada';
+      case 'nat.hall_op_huevo': return 'ou';
+      case 'nat.hall_op_larva': return 'larva';
+      case 'nat.hall_op_madera_muerta': return 'fusta morta';
+      case 'nat.hall_op_mata': return 'mata';
+      case 'nat.hall_op_naranja_rojizo': return 'taronja / vermellós';
+      case 'nat.hall_op_nido_o_madriguera': return 'niu o cau';
+      case 'nat.hall_op_ninfa': return 'nimfa';
+      case 'nat.hall_op_otro': return 'un altre';
+      case 'nat.hall_op_pardo_marron': return 'bru / marró';
+      case 'nat.hall_op_pluma_o_pelo': return 'ploma o pèl';
+      case 'nat.hall_op_pradera_herbazal': return 'prat / herbassar';
+      case 'nat.hall_op_pupa': return 'pupa';
+      case 'nat.hall_op_rojo_escarlata': return 'vermell escarlata';
+      case 'nat.hall_op_semilla': return 'llavor';
+      case 'nat.hall_op_senescente': return 'senescent';
+      case 'nat.hall_op_suculenta': return 'suculenta';
+      case 'nat.hall_op_suelo_hojarasca': return 'sòl / fullaraca';
+      case 'nat.hall_op_tocon': return 'soca';
+      case 'nat.hall_op_trepadora': return 'enfiladissa';
+      case 'nat.hall_op_vegetativa': return 'vegetativa';
+      case 'nat.hall_op_verde_oliva': return 'verd oliva';
+      case 'nat.hall_op_violaceo': return 'violaci';
+      case 'nat.hall_op_vocalizacion': return 'vocalització';
+      case 'nat.hall_organo_corteza': return 'Escorça';
+      case 'nat.hall_organo_flor': return 'Flor';
+      case 'nat.hall_organo_fruto': return 'Fruit';
+      case 'nat.hall_organo_habito': return 'Port (planta sencera)';
+      case 'nat.hall_organo_hoja': return 'Fulla';
+      case 'nat.hall_organo_otro': return 'Un altre / no n\'estic segur';
+      case 'nat.hall_pie_tarjeta': return 'Natura · quadern de camp';
+      case 'nat.hall_planta_hospedadora': return 'Planta hoste';
+      case 'nat.hall_plantnet_fallo': return 'Pl@ntNet ha fallat: {error}';
+      case 'nat.hall_plantnet_quedan_hoy': return 'Pl@ntNet: avui et queden {n} identificacions.';
+      case 'nat.hall_plantnet_sin_candidatos': return 'Pl@ntNet no ha trobat candidats. Prova-ho amb una altra foto o un altre òrgan.';
+      case 'nat.hall_por_categoria': return 'Per categoria';
+      case 'nat.hall_porte': return 'Port';
+      case 'nat.hall_pregunta_calibracion': return 'T\'ajustes a la teva pròpia confiança, o ets massa optimista (o massa modest)?';
+      case 'nat.hall_pulsa_el_que_mejor_se_ajuste': return 'Prem el que s\'ajusti millor per omplir la fitxa.';
+      case 'nat.hall_que_organo_se_ve': return 'Quin òrgan es veu millor a la foto?';
+      case 'nat.hall_quiz_anade_entradas': return 'Afegeix més entrades a lib/datos/datos_guia.dart';
+      case 'nat.hall_quiz_faltan_especies': return 'Calen almenys 3 espècies per al qüestionari';
+      case 'nat.hall_quiz_modo_cientifico_a_comun': return 'Cient.→Comú';
+      case 'nat.hall_quiz_modo_comun_a_cientifico': return 'Comú→Cient.';
+      case 'nat.hall_quiz_modo_por_descripcion': return 'Per descripció';
+      case 'nat.hall_quiz_pocas_especies_categoria': return 'Aquesta categoria té menys de 3 espècies. Canvia a «Tots» o afegeix més entrades a la guia.';
+      case 'nat.hall_quiz_pregunta_cientifico': return 'Quin és el nom científic de «{nombre}»?';
+      case 'nat.hall_quiz_pregunta_comun': return 'Quin és el nom comú de «{nombre}»?';
+      case 'nat.hall_quiz_que_especie_es': return 'Quina espècie és?';
+      case 'nat.hall_salida_sin_titulo': return 'Sortida sense títol';
+      case 'nat.hall_se_guardara_suelto': return 'Es desarà com a troballa solta';
+      case 'nat.hall_sin_anotaciones': return 'Sense anotacions. Fes-les servir per revisar dubtes, connexions amb una altra sortida o correccions de detall.';
+      case 'nat.hall_sin_fenologia': return 'Encara no hi ha fenologia per mostrar';
+      case 'nat.hall_sin_fotos_licencia_abierta': return 'No s\'han trobat fotos amb llicència oberta per a aquesta espècie. Prova-ho amb el nom científic exacte o amb el nom comú.';
+      case 'nat.hall_sin_revisar': return 'Sense revisar';
+      case 'nat.hall_sin_validaciones': return 'Encara no has validat cap identificació';
+      case 'nat.hall_sustrato': return 'Substrat';
+      case 'nat.hall_tasa_acierto': return 'Taxa d\'encert';
+      case 'nat.hall_tasa_acierto_subtitulo': return 'La teva calibració després de validar identificacions';
+      case 'nat.hall_taxonomia': return 'Taxonomia';
+      case 'nat.hall_texto': return 'Text';
+      case 'nat.hall_tipo_evidencia': return 'Tipus d\'indici';
+      case 'nat.hall_top_habitats': return 'Hàbitats més freqüents';
+      case 'nat.hall_tu_hipotesis': return 'La teva hipòtesi';
+      case 'nat.hall_un_hallazgo': return '1 troballa';
+      case 'nat.hall_un_sin_revisar': return 'Tens 1 troballa sense revisar. Obre-la des de la llista i prem «Confirmar» o «Corregir» després de revisar fotos o consultar bibliografia.';
+      case 'nat.hall_validar_identificacion': return 'Validar la identificació';
+      case 'nat.hall_volver_a_sin_revisar': return 'Tornar a sense revisar';
+      case 'nat.mapa_notificacion_registrando_ruta': return 'Naturaleza està registrant la teva ruta';
+      case 'nat.mapa_lugar_miradores': return 'Miradors';
+      case 'nat.mapa_lugar_miradores_aves': return 'Observatoris d\'ocells';
+      case 'nat.mapa_lugar_reservas_naturales': return 'Reserves naturals';
+      case 'nat.mapa_lugar_cuevas': return 'Coves';
+      case 'nat.mapa_lugar_humedales': return 'Basses i aiguamolls';
+      case 'nat.mapa_lugar_arboles_singulares': return 'Arbres singulars';
+      case 'nat.mapa_lugar_refugios': return 'Refugis';
+      case 'nat.mapa_lugar_manantiales': return 'Deus i fonts';
+      case 'nat.mapa_lugar_centros_visitantes': return 'Centres de visitants';
+      case 'nat.mapa_falta_permiso_ubicacion': return 'Falta el permís d\'ubicació.';
+      case 'nat.mapa_sin_lugares_zona': return 'No hi ha llocs d\'interès en aquesta zona.';
+      case 'nat.mapa_gestor': return 'Gestor: {gestor}';
+      case 'nat.mapa_sin_gbif_zona': return 'No hi ha observacions GBIF en aquesta zona.';
+      case 'nat.mapa_gbif_cargadas': return 'S\'han carregat {n} observacions de la comunitat.';
+      case 'nat.mapa_ocultar': return 'Amagar';
+      case 'nat.mapa_track_guardado_puntos': return 'Traça desada ({n} punts).';
+      case 'nat.mapa_observacion_gbif': return 'Observació GBIF';
+      case 'nat.mapa_familia': return 'Família: {familia}';
+      case 'nat.mapa_localidad': return 'Localitat: {localidad}';
+      case 'nat.mapa_observacion': return 'Troballa';
+      case 'nat.mapa_categoria': return 'Categoria';
+      case 'nat.mapa_habitat': return 'Hàbitat';
+      case 'nat.mapa_taxonomia': return 'Taxonomia';
+      case 'nat.mapa_borrar_observacion_pregunta': return 'Vols esborrar aquesta troballa?';
+      case 'nat.mapa_mapas_offline_menu': return 'Mapes fora de línia…';
+      case 'nat.mapa_lugares_interes_activos': return 'Llocs d\'interès (actius)…';
+      case 'nat.mapa_lugares_interes_menu': return 'Llocs d\'interès…';
+      case 'nat.mapa_recargar_lugares': return 'Recarregar els llocs de la vista';
+      case 'nat.mapa_gbif_cerca': return 'Observacions GBIF a prop';
+      case 'nat.mapa_ocultar_gbif': return 'Amagar les observacions GBIF';
+      case 'nat.mapa_centrar_ubicacion': return 'Centrar en la meva ubicació';
+      case 'nat.mapa_detener_grabacion': return 'Aturar l\'enregistrament de la traça';
+      case 'nat.mapa_grabar_track': return 'Enregistrar la traça';
+      case 'nat.mapa_tooltip_capas': return 'Capes del mapa, mapes fora de línia i traces desades';
+      case 'nat.mapa_tooltip_datos': return 'Llocs d\'interès i observacions';
+      case 'nat.mapa_capas_lugares': return 'Capes de llocs d\'interès';
+      case 'nat.mapa_capas_lugares_ayuda': return 'Dades d\'OpenStreetMap. Les capes es carreguen a la vista visible del mapa.';
+      case 'nat.mapa_quitar_todas': return 'Treure-les totes';
+      case 'nat.mapa_aplicar': return 'Aplicar';
+      case 'nat.mapa_nueva_salida': return 'Nova sortida';
+      case 'nat.mapa_titulo_opcional': return 'Títol (opcional)';
+      case 'nat.mapa_titulo_ejemplo': return 'p. ex. Alzinars del Pirulén';
+      case 'nat.mapa_zona_opcional': return 'Zona (opcional)';
+      case 'nat.mapa_zona_ejemplo': return 'comarca, paratge, serra…';
+      case 'nat.mapa_hipotesis_opcional': return 'Hipòtesi de la jornada (opcional)';
+      case 'nat.mapa_hipotesis_ejemplo': return 'què véns a buscar?';
+      case 'nat.mapa_arrancar_track': return 'Iniciar també una traça GPS';
+      case 'nat.mapa_salida_explicacion': return 'Mentre estigui oberta, les troballes que creïs s\'associaran automàticament a aquesta sortida. Si també inicies la traça GPS, quedarà lligada a la sortida quan l\'aturis. Si ho prefereixes, podràs desactivar l\'associació automàtica a cada troballa.';
+      case 'nat.mapa_iniciar': return 'Iniciar';
+      case 'nat.mapa_sin_permiso_track': return 'No s\'ha pogut iniciar la traça: falta el permís d\'ubicació.';
+      case 'nat.mapa_salidas': return 'Sortides';
+      case 'nat.mapa_iniciar_salida': return 'Iniciar una sortida';
+      case 'nat.mapa_sin_salidas': return 'Encara no has registrat cap sortida';
+      case 'nat.mapa_sin_salidas_ayuda': return 'Una sortida agrupa les troballes, la traça GPS, la meteorologia i les notes d\'una jornada de camp.';
+      case 'nat.mapa_salida_sin_titulo': return 'Sortida sense títol';
+      case 'nat.mapa_en_curso': return 'EN CURS';
+      case 'nat.mapa_una_observacion': return '1 troballa';
+      case 'nat.mapa_n_observaciones': return '{n} troballes';
+      case 'nat.mapa_cabecera_salida': return 'Capçalera de la sortida';
+      case 'nat.mapa_titulo': return 'Títol';
+      case 'nat.mapa_zona': return 'Zona';
+      case 'nat.mapa_meteo_resumen': return 'Meteo (resum)';
+      case 'nat.mapa_altitud_m': return 'Altitud (m)';
+      case 'nat.mapa_hipotesis_jornada': return 'Hipòtesi de la jornada';
+      case 'nat.mapa_notas_generales': return 'Notes generals';
+      case 'nat.mapa_anotacion_margen': return 'Anotació al marge';
+      case 'nat.mapa_anotacion_explicacion': return 'Això és per al que escrius en revisar la sortida dies després: dubtes, correccions, connexions amb una altra jornada.';
+      case 'nat.mapa_texto': return 'Text';
+      case 'nat.mapa_anotacion_ejemplo': return 'p. ex. al final era una femella, no un mascle';
+      case 'nat.mapa_borrar_anotacion': return 'Esborrar l\'anotació';
+      case 'nat.mapa_borrar_anotacion_texto': return 'S\'esborrarà aquesta anotació al marge. La sortida i les troballes es mantenen.';
+      case 'nat.mapa_cerrar_salida': return 'Tancar la sortida';
+      case 'nat.mapa_cerrar_salida_texto': return 'En tancar la sortida, ja no s\'hi associaran automàticament troballes noves. Després pots continuar afegint-hi anotacions al marge.';
+      case 'nat.mapa_detener_track_tambien': return 'Aturar també la traça GPS en curs';
+      case 'nat.mapa_seguir_abierta': return 'Mantenir-la oberta';
+      case 'nat.mapa_borrar_salida': return 'Esborrar la sortida';
+      case 'nat.mapa_borrar_salida_texto': return 'S\'esborrarà el contenidor de la sortida i les seves anotacions al marge. Les troballes i la traça quedaran soltes, sense esborrar-se.';
+      case 'nat.mapa_salida_no_encontrada': return 'No s\'ha trobat la sortida';
+      case 'nat.mapa_salida_del_dia': return 'Sortida del dia';
+      case 'nat.mapa_editar_cabecera': return 'Editar la capçalera';
+      case 'nat.mapa_anotar_margen': return 'Anotar al marge';
+      case 'nat.mapa_altitud_aprox': return '{n} m aprox.';
+      case 'nat.mapa_track_en_curso': return 'Traça GPS en curs';
+      case 'nat.mapa_track_de_salida': return 'Traça GPS de la sortida';
+      case 'nat.mapa_track_puntos_asociara': return '{n} punts · s\'associarà a la sortida quan l\'aturis';
+      case 'nat.mapa_observaciones_de_salida': return 'Troballes de la sortida ({n})';
+      case 'nat.mapa_sin_observaciones_salida': return 'Encara no hi ha troballes en aquesta sortida. Mentre estigui oberta, les que registris s\'hi associaran automàticament.';
+      case 'nat.mapa_sin_especie': return 'Sense espècie';
+      case 'nat.mapa_anotaciones_margen': return 'Anotacions al marge';
+      case 'nat.mapa_sin_anotaciones': return 'Encara no hi ha anotacions. Fes-les servir per revisar la sortida dies després: dubtes, correccions, connexions.';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -21868,6 +28973,11 @@ class SoleraL10n {
       case 'temperatura_registrada': return 'Temperatura rexistrada';
       case 'todos': return 'Todos';
       case 'ver_pdf': return 'Ver PDF';
+      case 'camara': return 'Cámara';
+      case 'continuar': return 'Continuar';
+      case 'error_restaurando': return 'Erro ao restaurar';
+      case 'galeria': return 'Galería';
+      case 'siguiente': return 'Seguinte';
       case 'acei.abierta': return 'Aberta';
       case 'acei.abierta_minuscula': return 'aberta';
       case 'acei.aceite_y_almazara': return 'Aceite e almazara';
@@ -23980,6 +31090,1016 @@ class SoleraL10n {
       case 'core.act.descarga_en_navegador': return 'Abriuse a descarga no navegador.';
       case 'core.act.error_descarga': return 'Non se puido descargar. Comproba a conexión e volve probar.';
       case 'core.act.error_instalador': return 'Descargada, pero Android non deixou abrir o instalador. Permite «instalar apps descoñecidas» para esta app nos axustes do móbil.';
+      case 'fos.ajus_calculando': return 'Calculando…';
+      case 'fos.ajus_resumen_cache': return '{n} teselas na caché · {mb} MB';
+      case 'fos.ajus_backup_asunto': return 'Copia de seguridade de Fósiles';
+      case 'fos.ajus_backup_texto': return 'Copia de seguridade de Fósiles ({kb} KB)';
+      case 'fos.ajus_error_backup': return 'Erro ao facer a copia';
+      case 'fos.ajus_restaurar_titulo': return 'Restaurar a copia de seguridade';
+      case 'fos.ajus_restaurar_aviso': return 'Isto substituirá TODOS os teus achados, percorridos e fotos actuais polos do ficheiro. Continuar?';
+      case 'fos.ajus_restaurados': return '✅ Restauráronse {hallazgos} achados e {fotos} fotos. Reinicia a app para ver os cambios.';
+      case 'fos.ajus_avisos_reactivados': return 'Avisos reactivados. Volverán soar ao entrar en cada xacemento.';
+      case 'fos.ajus_prueba_aviso': return '{emoji} (Proba) Estás en {nombre}.';
+      case 'fos.ajus_borrar_aportaciones': return 'Borrar as miñas achegas';
+      case 'fos.ajus_borrar_aportaciones_texto': return 'Introduce o correo electrónico co que enviaches as achegas. Mandarémosche unha ligazón; ao premela borraranse todas as túas fotos (pendentes e aprobadas).';
+      case 'fos.ajus_email': return 'Correo electrónico';
+      case 'fos.ajus_enviar': return 'Enviar';
+      case 'fos.ajus_solicitud_enviada': return 'Solicitude enviada. Revisa o correo para confirmar o borrado.';
+      case 'fos.ajus_vaciar_cache_pregunta': return 'Baleirar a caché de mapas sen conexión? Terás que volver descargalos para usalos sen conexión.';
+      case 'fos.ajus_vaciar': return 'Baleirar';
+      case 'fos.ajus_sec_general': return 'Xeral';
+      case 'fos.ajus_idioma': return 'Idioma / Language';
+      case 'fos.ajus_claves_modelo': return 'Claves e modelo';
+      case 'fos.ajus_claves_modelo_sub': return 'Anthropic para identificar por foto, DeepSeek para o chat';
+      case 'fos.ajus_sec_perfil': return 'Perfil e identidade';
+      case 'fos.ajus_perfil_titulo': return 'Perfil do descubridor e identidade';
+      case 'fos.ajus_perfil_sub': return 'Nome para os certificados, identidade criptográfica, verificar certificados e Modo Experto';
+      case 'fos.ajus_sec_mapas_datos': return 'Mapas e datos';
+      case 'fos.ajus_mapas_sin_conexion': return 'Mapas sen conexión';
+      case 'fos.ajus_mapas_explicacion': return 'As teselas que vexas no mapa gárdanse automaticamente na caché. Para gardar previamente unha zona enteira (vista actual do mapa), usa o botón de descarga.';
+      case 'fos.ajus_descargar_zona': return 'Descargar zona';
+      case 'fos.ajus_backup_explicacion': return 'Exporta toda a túa base (achados + percorridos + fotos) nun único ficheiro .fosbackup. Gárdao en Drive, nun USB ou no correo. Para restaurar, selecciona o .fosbackup; substituirá os datos actuais.';
+      case 'fos.ajus_hacer_copia': return 'Facer copia';
+      case 'fos.ajus_restaurar_copia': return 'Restaurar copia';
+      case 'fos.ajus_asistente_campo': return 'Asistente de campo';
+      case 'fos.ajus_asistente_explicacion': return 'Cando o GPS detecta que estás dentro dun radio de 250 m dun xacemento catalogado, aparece un aviso no mapa co botón "Ver ficha". Cada xacemento avísate unha soa vez por sesión.';
+      case 'fos.ajus_reactivar_avisos': return 'Reactivar avisos';
+      case 'fos.ajus_probar_aviso': return 'Probar aviso';
+      case 'fos.ajus_sec_privacidad': return 'Privacidade';
+      case 'fos.ajus_tus_aportaciones': return 'As túas achegas á comunidade';
+      case 'fos.ajus_aportaciones_explicacion': return 'Se compartiches fotos coa comunidade, podes pedir o seu borrado en calquera momento (RXPD). Chegarache unha ligazón ao correo indicado; se a premes, borraranse todas as túas achegas, mesmo as que xa estean publicadas.';
+      case 'fos.ajus_como_leer_mapa': return 'Como ler o mapa';
+      case 'fos.ajus_como_leer_mapa_sub': return 'Capas xeolóxicas, outras capas e suxestións de fósiles';
+      case 'fos.ajus_ver_tour': return 'Ver a presentación';
+      case 'fos.ajus_sobre_app': return 'Sobre a app';
+      case 'fos.ajus_sobre_app_texto': return 'Caderno de campo de fósiles para adultos afeccionados. Anota achados xeorreferenciados con foto, idade, formación e dirección e buzamento (strike/dip) do estrato; consulta o contexto xeolóxico do IGME no punto onde premas; e garda unha guía local de fósiles e minerais por período.';
+      case 'fos.ajus_apoyar': return 'Apoiar o proxecto';
+      case 'fos.ajus_apoyar_texto': return 'A app é e seguirá sendo gratuíta e aberta para todos. Se che foi útil e podes permitilo, unha pequena achega voluntaria axuda ao mantemento, ao soporte e ás actualizacións.';
+      case 'fos.ajus_gracias': return 'Grazas.';
+      case 'fos.ajus_ver_formas_apoyar': return 'Ver formas de apoiar';
+      case 'fos.ajus_datos_fuentes': return 'Datos e fontes';
+      case 'fos.ajus_datos_fuentes_texto': return 'Datos xeolóxicos: IGME (GEODE 50, MAGNA 50, Edades 1M, Litologías 1M, IELIG). Mapa base: OpenStreetMap, ESRI, OpenTopoMap. Covas e megálitos: OpenStreetMap (Overpass). Imaxes e descricións complementarias: Wikipedia (CC-BY-SA). Versión Flutter para Android.';
+      case 'fos.ajus_ia_guardados': return '✅ Axustes de IA gardados';
+      case 'fos.ajus_no_abrir_navegador': return 'Non se puido abrir o navegador. Entra en {direccion}';
+      case 'fos.ajus_ia_explicacion': return 'Para identificar fósiles automaticamente, introduce a túa clave de API de Anthropic. Gárdase só no teu teléfono e envíase unicamente a api.anthropic.com. Consegue unha en console.anthropic.com. A de DeepSeek é para o chat.';
+      case 'fos.ajus_conseguir_anthropic': return 'Conseguir clave de Anthropic';
+      case 'fos.ajus_conseguir_deepseek': return 'Conseguir clave de DeepSeek';
+      case 'fos.ajus_api_anthropic': return 'Clave de API de Anthropic';
+      case 'fos.ajus_api_deepseek': return 'Clave de API de DeepSeek (para o chat)';
+      case 'fos.ajus_modelo_claude': return 'Modelo de Claude';
+      case 'fos.ajus_modelo_precio': return '{descripcion} ~{precio} céntimos por foto.';
+      case 'fos.ajus_modelo_opus_desc': return 'Máxima precisión. Recomendado.';
+      case 'fos.ajus_modelo_sonnet_desc': return 'Bo equilibrio entre precisión e custo.';
+      case 'fos.ajus_modelo_haiku_desc': return 'Moito máis barato. Acerta algo menos.';
+      case 'fos.ajus_cabecera_titulo': return 'Caderno de campo de fósiles';
+      case 'fos.ajus_cabecera_sub': return 'Para os afeccionados á paleontoloxía';
+      case 'fos.ajus_explorar_mapa': return 'Explorar o mapa';
+      case 'fos.ajus_explorar_mapa_sub': return 'Xacementos e xeoloxía';
+      case 'fos.ajus_meteo': return 'Meteoroloxía';
+      case 'fos.ajus_meteo_sub': return 'Previsión para a túa excursión';
+      case 'fos.ajus_chat_ia': return 'Chat IA';
+      case 'fos.ajus_chat_ia_sub': return 'Resolve dúbidas, identifica achados, pide consellos de campo';
+      case 'fos.ajus_etica_titulo': return 'Explora, descobre e comparte';
+      case 'fos.ajus_etica_sub': return 'Unhas pautas para que a túa afección sume e deixe pegada só no coñecemento.';
+      case 'fos.ajus_etica1_titulo': return 'O teu achado pode ser importante';
+      case 'fos.ajus_etica1_texto': return 'Cada fósil conta unha historia. Se atopas algo que che pareza especial, compárteo cun museo, unha universidade ou unha sociedade xeolóxica. Eles saberán valoralo e ti formarás parte do descubrimento. A app axúdache a documentalo cun certificado verificable.';
+      case 'fos.ajus_etica2_titulo': return 'Primeiro observa e fotografa';
+      case 'fos.ajus_etica2_texto': return 'O contexto é tan valioso coma a peza. Fotografa o fósil na súa capa, mide a orientación do estrato, rexistra a formación. Unha boa documentación multiplica o valor científico do que atopas. E moitas veces a foto é suficiente: non sempre cómpre recoller.';
+      case 'fos.ajus_etica3_titulo': return 'Infórmate para gozar máis';
+      case 'fos.ajus_etica3_texto': return 'Cada comunidade autónoma ten as súas propias normas de protección do patrimonio. Coñecelas fai de ti un mellor afeccionado: saberás onde podes recoller e onde é mellor só fotografar. Ante a dúbida, goza do achado in situ.';
+      case 'fos.ajus_etica4_titulo': return 'Deixa o lugar como che gustaría atopalo';
+      case 'fos.ajus_etica4_texto': return 'Non escaves sen permiso do propietario. Non danes os afloramentos. Pecha as cancelas. Leva o teu lixo… e quizais algún alleo. Cada persoa que pasa despois de ti merece a mesma emoción do descubrimento.';
+      case 'fos.ajus_etica5_titulo': return 'Comparte para que a ciencia avance';
+      case 'fos.ajus_etica5_texto': return 'Usa o certificado verificable da app para compartir os teus achados. Cada rexistro documentado axuda a completar o mapa paleontolóxico da túa rexión. A túa contribución, sumada á doutros afeccionados, é ciencia cidadá real.';
+      case 'fos.ajus_como_usar': return 'Como usar Fósiles';
+      case 'fos.ajus_paso1_titulo': return 'Explora o mapa';
+      case 'fos.ajus_paso1_texto': return 'Activa as capas xeolóxicas (MAGNA, GEODE) para ver que idade ten o chan que pisas.';
+      case 'fos.ajus_paso2_titulo': return 'Rexistra un achado';
+      case 'fos.ajus_paso2_texto': return 'Toca + para engadir un fósil con foto, coordenadas, idade e formación. A app consulta o IGME automaticamente.';
+      case 'fos.ajus_paso3_titulo': return 'Identifica con Claude';
+      case 'fos.ajus_paso3_texto': return 'Coa túa clave de API de Anthropic, a app identifica o fósil pola imaxe e dáche pistas para confirmalo.';
+      case 'fos.ajus_paso4_titulo': return 'Xera un certificado';
+      case 'fos.ajus_paso4_texto': return 'Cada achado recibe un hash SHA-256 verificable. Compárteo con quen queiras; ninguén poderá alteralo.';
+      case 'fos.ajus_paso5_titulo': return 'Rexistra a súa trazabilidade';
+      case 'fos.ajus_paso5_texto': return 'Se o fósil acaba nun museo ou o estuda un xeólogo, engade eventos ao seu historial.';
+      case 'fos.ajus_saltar': return 'Saltar';
+      case 'fos.ajus_empezar': return 'Comezar';
+      case 'fos.ajus_onb1_titulo': return 'Mapa xeolóxico estatal';
+      case 'fos.ajus_onb1_texto': return 'A app arrinca coa capa GEODE 50 do IGME pintada sobre o mapa. Desde a icona da montaña na barra superior podes alternar entre GEODE, MAGNA, Edades 1M, Litologías 1M e outras capas do IGME. A primeira vez que desprazas unha zona, o mosaico tarda un pouco en cargar mentres se descargan as teselas; despois queda na caché.';
+      case 'fos.ajus_onb2_titulo': return 'Os teus achados';
+      case 'fos.ajus_onb2_texto': return 'Co botón "+" da barra inferior marcas un achado na posición actual: foto, idade, formación, dirección e buzamento (strike/dip) da capa e notas. O achado queda gardado no dispositivo, aparece na lista e píntase como marcador no mapa para que poidas volver a el.';
+      case 'fos.ajus_onb3_titulo': return 'Que hai baixo os teus pés';
+      case 'fos.ajus_onb3_texto': return 'No centro do mapa hai un asistente xeolóxico que che vai contando a xeoloxía do punto ao desprazar o mapa. Se activas o modo "Explorar xeoloxía" podes premer calquera punto e consultar formación, idade e litoloxía. As suxestións de fósiles e minerais crúzanse co catálogo local de formacións ibéricas.';
+      case 'fos.ajus_datos_restaurados': return 'Datos restaurados desde a copia de seguridade.';
+      case 'fos.ajus_nav_inicio': return 'Inicio';
+      case 'fos.ajus_nav_lista': return 'Lista';
+      case 'fos.ajus_nav_guia': return 'Guía';
+      case 'fos.ajus_chat': return 'Chat';
+      case 'fos.ajus_falta_clave_chat': return 'Tes que configurar a túa clave de API de {nombre} en Axustes → Intelixencia artificial.';
+      case 'fos.ajus_que_ves': return 'Que ves nesta imaxe?';
+      case 'fos.ajus_que_ves_identifica': return 'Que ves nesta imaxe? Identifícaa, por favor.';
+      case 'fos.ajus_chat_vacio': return 'Pregúntame o que queiras sobre fósiles, xeoloxía, identificación, xacementos…';
+      case 'fos.ajus_via': return 'vía {proveedor}';
+      case 'fos.ajus_imagen_adjunta': return 'Imaxe anexa — enviarase a Claude';
+      case 'fos.ajus_hacer_foto': return 'Facer foto';
+      case 'fos.ajus_escribe_pregunta': return 'Escribe a túa pregunta…';
+      case 'fos.ajus_falta_api_anthropic': return 'Falta a clave de API de Anthropic. Configúraa en Axustes → Intelixencia artificial.';
+      case 'fos.ajus_desconocido': return 'Descoñecido';
+      case 'fos.ajus_sin_identificacion': return 'Sen identificación';
+      case 'fos.ajus_nombre_autoridad': return 'Nome da autoridade';
+      case 'fos.ajus_ej_autoridad': return 'Ex.: Instituto Nacional de Xeoloxía';
+      case 'fos.ajus_generar': return 'Xerar';
+      case 'fos.ajus_codigo_activacion': return 'Código de activación';
+      case 'fos.ajus_para_nombre': return 'Para: {nombre}';
+      case 'fos.ajus_codigo_mandalo': return 'Mándallo ao experto polo correo institucional. Só lle serve á primeira persoa que o use — non se pode reutilizar.';
+      case 'fos.ajus_copiar': return 'Copiar';
+      case 'fos.ajus_codigo_copiado': return 'Código copiado no portapapeis';
+      case 'fos.ajus_compartir_codigo': return 'Código de activación para {nombre}:';
+      case 'fos.ajus_asunto_experto': return 'Modo Experto — Fósiles';
+      case 'fos.ajus_desactivar_titulo': return 'Desactivar o modo Experto';
+      case 'fos.ajus_desactivar_texto': return 'A clave da autoridade borrarase deste dispositivo. As tarxetas que xa certificaches seguen sendo válidas, pero esta instalación non poderá asinar novas certificacións ata que volvas activala cun código novo.';
+      case 'fos.ajus_desactivar': return 'Desactivar';
+      case 'fos.ajus_modo_experto': return 'Modo Experto';
+      case 'fos.ajus_experto_intro': return 'O Modo Experto permite que unha autoridade asinante (Instituto Nacional de Xeoloxía, museo, sociedade científica) revise e certifique as tarxetas compartidas polos descubridores.';
+      case 'fos.ajus_activar_autoridad': return 'Activar como autoridade';
+      case 'fos.ajus_activar_autoridad_texto': return 'Se recibiches un código de activación polo correo institucional, pégao aquí para comezar a recibir tarxetas para revisar.';
+      case 'fos.ajus_pegar_codigo': return 'Pegar o código de activación';
+      case 'fos.ajus_admin_generar': return 'Administrador: xerar código';
+      case 'fos.ajus_admin_texto': return 'Se xestionas Fósiles e queres autorizar previamente unha autoridade para que poida certificar tarxetas, xera un código e envíallo polo correo institucional. Só lle serve á primeira persoa que o use.';
+      case 'fos.ajus_generar_codigo_autoridad': return 'Xerar un código para unha autoridade';
+      case 'fos.ajus_experto_activo': return 'Modo Experto activo';
+      case 'fos.ajus_huella_institucional': return 'Pegada institucional';
+      case 'fos.ajus_huella_texto': return 'Esta pegada criptográfica viaxa en cada certificación que asinas. Os descubridores verana ao recibir as súas tarxetas de volta.';
+      case 'fos.ajus_codigo_nombre_obligatorios': return 'O código e o nome son obrigatorios.';
+      case 'fos.ajus_codigo_no_valido': return 'Código non válido. Pídelle un novo ao administrador.';
+      case 'fos.ajus_activar_autoridad_titulo': return 'Activar autoridade';
+      case 'fos.ajus_pega_codigo_hint': return 'Pega aquí o código do correo institucional';
+      case 'fos.ajus_colegiacion': return 'Persoa responsable / colexiación (opcional)';
+      case 'fos.ajus_ej_colegiacion': return 'Ex.: Dra. X. Y. (col. n.º 1234)';
+      case 'fos.ajus_activar': return 'Activar';
+      case 'fos.ajus_kofi_sub': return 'Pagamento puntual ou mensual con tarxeta';
+      case 'fos.ajus_paypal_sub': return 'Doazón coa túa conta de PayPal';
+      case 'fos.ajus_mensaje_compartir': return 'Fósiles — caderno de campo dixital para anotar achados con xeorreferencia, idade estratigráfica, orientación do estrato e guía de identificación de fósiles e minerais. Cartografía xeolóxica do IGME e mapas sen conexión. Libre, gratuíta, sen anuncios nin seguimento. Descarga o APK para Android en {url}';
+      case 'fos.ajus_ecosistema_texto': return 'Esta app forma parte do ecosistema. Coñece o resto de proxectos.';
+      case 'fos.ajus_copiar_direccion': return 'Copiar o enderezo';
+      case 'fos.ajus_direccion_copiada': return 'Enderezo copiado no portapapeis.';
+      case 'fos.ajus_compartir_app': return 'Compartir a app';
+      case 'fos.ajus_compartir_app_texto': return 'Recomendala a alguén tamén axuda. É doar tempo en lugar de diñeiro.';
+      case 'fos.ajus_otras_formas': return 'Outras formas de axudar';
+      case 'fos.ajus_valorar': return 'Valorar a app con cinco estrelas se che gustou.';
+      case 'fos.ajus_reportar': return 'Informar dun erro ou suxerir melloras.';
+      case 'fos.ajus_ayudar_traducciones': return 'Axudar con traducións ou textos.';
+      case 'fos.ajus_contribuir_codigo': return 'Contribuír con código ou ideas de funcións.';
+      case 'fos.ajus_fichero_no_valido': return 'Non é un ficheiro de copia válido';
+      case 'fos.ajus_version_desconocida': return 'Versión de copia descoñecida';
+      case 'fos.ajus_nav_ajustes': return 'Axustes';
+      case 'fos.ficha_distintivos': return 'Trazos para recoñecelo';
+      case 'fos.ficha_donde_encontrarlo': return 'Onde atopalo';
+      case 'fos.ficha_leer_wikipedia': return 'Ler máis na Wikipedia';
+      case 'fos.ficha_reintentar': return 'Tentar de novo';
+      case 'fos.ficha_raya': return 'Raia';
+      case 'fos.ficha_brillo': return 'Brillo';
+      case 'fos.ficha_color_tipico': return 'Cor típica';
+      case 'fos.hall_alternativas': return 'Alternativas';
+      case 'fos.hall_anadir': return 'Engadir';
+      case 'fos.hall_anadir_evento': return 'Engadir evento';
+      case 'fos.hall_anadir_evento_trazabilidad': return 'Engadir un evento de rastrexabilidade';
+      case 'fos.hall_anadir_trazabilidad': return 'Engadir rastrexabilidade';
+      case 'fos.hall_anotar_foto': return 'Anotar a foto';
+      case 'fos.hall_aplicar_formulario': return 'Aplicar ao formulario';
+      case 'fos.hall_asunto_certificado': return 'Certificado de achado: {especie}';
+      case 'fos.hall_asunto_exportacion': return 'Achados de fósiles';
+      case 'fos.hall_asunto_hallazgo': return 'Achado: {especie}';
+      case 'fos.hall_aun_no_hay_hallazgos': return 'Aínda non hai achados.';
+      case 'fos.hall_autor_evento': return 'Autor do evento';
+      case 'fos.hall_borrar_medida': return 'Borrar a medida';
+      case 'fos.hall_buscar': return 'Buscar…';
+      case 'fos.hall_buscar_hint': return 'Buscar por nome, idade, notas…';
+      case 'fos.hall_certificado_texto': return 'Certificado verificable de achado fósil.';
+      case 'fos.hall_certificado_verificable': return 'Certificado verificable';
+      case 'fos.hall_como_confirmar': return 'Como confirmalo';
+      case 'fos.hall_compartir_comunidad': return 'Compartir coa comunidade';
+      case 'fos.hall_compartir_texto': return 'Compartir texto';
+      case 'fos.hall_con_foto': return 'Con foto';
+      case 'fos.hall_confianza': return 'Confianza {nivel}';
+      case 'fos.hall_confianza_alta': return 'alta';
+      case 'fos.hall_confianza_baja': return 'baixa';
+      case 'fos.hall_confianza_media': return 'media';
+      case 'fos.hall_configura_api_key': return 'Configura primeiro a túa clave de API en Axustes → Intelixencia artificial.';
+      case 'fos.hall_configura_nombre': return 'Configura primeiro o teu nome en Axustes → Perfil do descubridor.';
+      case 'fos.hall_confirmar_borrar': return 'Borrar este achado?';
+      case 'fos.hall_consultando_igme': return 'Consultando o IGME…';
+      case 'fos.hall_contexto_geologico': return 'Contexto xeolóxico';
+      case 'fos.hall_coordenadas': return 'Coordenadas';
+      case 'fos.hall_cronologia': return 'Cronoloxía';
+      case 'fos.hall_descartar': return 'Descartar';
+      case 'fos.hall_descripcion': return 'Descrición';
+      case 'fos.hall_descubridor': return 'Descubridor';
+      case 'fos.hall_desde_galeria': return 'Desde a galería';
+      case 'fos.hall_deshacer': return 'Desfacer';
+      case 'fos.hall_detectado_mineral': return 'Detectado como mineral';
+      case 'fos.hall_dias_activo': return 'Días de actividade';
+      case 'fos.hall_dureza_mohs': return 'Dureza Mohs';
+      case 'fos.hall_dureza_mohs_estimada': return 'Dureza Mohs estimada';
+      case 'fos.hall_edad': return 'Idade';
+      case 'fos.hall_edad_periodo': return 'Idade / período';
+      case 'fos.hall_editar_hallazgo': return 'Editar o achado';
+      case 'fos.hall_ejemplo_autor': return 'Ex.: Dra. López (UPV/EHU)';
+      case 'fos.hall_ejemplo_descripcion': return 'Ex.: Depositado no Museo de Ciencias Naturais de Álava';
+      case 'fos.hall_error_codificar_imagen': return 'Non se puido codificar a imaxe';
+      case 'fos.hall_error_exportando': return 'Erro ao exportar: {error}';
+      case 'fos.hall_error_generar_zip': return 'Non se puido xerar o ZIP.';
+      case 'fos.hall_error_gps': return 'Erro de GPS: {error}';
+      case 'fos.hall_error_guardando': return 'Erro ao gardar: {error}';
+      case 'fos.hall_error_identificando': return 'Erro ao identificar: {error}';
+      case 'fos.hall_error_sin_id': return 'Erro: o achado non ten ID.';
+      case 'fos.hall_error_tarjeta': return 'Erro ao xerar a tarxeta: {error}';
+      case 'fos.hall_especie': return 'Especie';
+      case 'fos.hall_especie_tentativa': return 'Especie / nome provisional';
+      case 'fos.hall_especies': return 'Especies';
+      case 'fos.hall_esperando_gps': return 'Agardando a posición GPS…';
+      case 'fos.hall_estadisticas': return 'Estatísticas';
+      case 'fos.hall_estrato': return 'Estrato';
+      case 'fos.hall_evento_anadido': return 'Evento engadido ao historial.';
+      case 'fos.hall_exportar_zip': return 'Exportar ZIP';
+      case 'fos.hall_fecha': return 'Data';
+      case 'fos.hall_formacion': return 'Formación';
+      case 'fos.hall_formacion_geologica': return 'Formación xeolóxica';
+      case 'fos.hall_fosil': return 'Fósil';
+      case 'fos.hall_fosiles': return 'Fósiles';
+      case 'fos.hall_fosiles_probables': return 'Fósiles probables · {periodo}';
+      case 'fos.hall_guia': return 'Guía';
+      case 'fos.hall_hallazgo_de_fosil': return 'Achado de fósil';
+      case 'fos.hall_historial_trazabilidad': return 'Historial de rastrexabilidade';
+      case 'fos.hall_identificando': return 'Identificando…';
+      case 'fos.hall_identificar_claude': return 'Identificar con Claude';
+      case 'fos.hall_incoherencia_detalle': return 'Claude propón {claude}, pero o afloramento do IGME é {igme}. Revisa a identificación ou a posición.';
+      case 'fos.hall_incoherencia_geologica': return 'Posible incoherencia xeolóxica';
+      case 'fos.hall_limpiar': return 'Limpar';
+      case 'fos.hall_linea_tiempo': return 'Liña do tempo';
+      case 'fos.hall_medir': return 'Medir';
+      case 'fos.hall_mineral': return 'Mineral';
+      case 'fos.hall_minerales': return 'Minerais';
+      case 'fos.hall_mixto': return 'Mixto';
+      case 'fos.hall_modelo': return 'Modelo: {modelo}';
+      case 'fos.hall_moneda_en_foto': return 'Moeda na foto:';
+      case 'fos.hall_n_de_total_desliza': return '{actual} / {total} · despraza ← → para cambiar';
+      case 'fos.hall_n_exportados': return '{n} achados exportados.';
+      case 'fos.hall_n_fosiles': return '{n} fósiles';
+      case 'fos.hall_ninguno_coincide': return 'Ningún achado coincide coa busca.';
+      case 'fos.hall_ninguno_recibido_coincide': return 'Ningún achado recibido coincide coa busca.';
+      case 'fos.hall_no': return 'Non';
+      case 'fos.hall_nombre_mineral': return 'Nome do mineral';
+      case 'fos.hall_notas': return 'Notas';
+      case 'fos.hall_nuevo_hallazgo': return 'Novo achado';
+      case 'fos.hall_o_desde_galeria': return 'ou desde a galería';
+      case 'fos.hall_obteniendo_gps': return 'Obtendo o GPS…';
+      case 'fos.hall_orientacion_sin_medir': return 'Orientación do estrato: sen medir';
+      case 'fos.hall_periodo': return 'Período';
+      case 'fos.hall_permiso_ubicacion_denegado': return 'Permiso de localización denegado.';
+      case 'fos.hall_pie_tarjeta': return 'Fósiles · caderno de campo';
+      case 'fos.hall_primer_hallazgo': return 'Primeiro achado';
+      case 'fos.hall_punto_marcado_mapa': return 'Punto marcado no mapa';
+      case 'fos.hall_quiz': return 'Cuestionario';
+      case 'fos.hall_quiz_identificacion': return 'Cuestionario de identificación';
+      case 'fos.hall_razonamiento': return 'Razoamento';
+      case 'fos.hall_recibida': return 'recibido';
+      case 'fos.hall_remedir': return 'Volver medir';
+      case 'fos.hall_sin_clasificar': return 'Sen clasificar';
+      case 'fos.hall_sin_fosiles_periodo': return 'Non hai fósiles na guía para este período.';
+      case 'fos.hall_sin_hallazgos_analizar': return 'Aínda non hai achados para analizar.';
+      case 'fos.hall_sin_nombre': return 'Sen nome';
+      case 'fos.hall_tab_compartidas': return 'Compartidos ({n})';
+      case 'fos.hall_tab_mias': return 'Meus ({n})';
+      case 'fos.hall_tamano_estimado': return 'Tamaño estimado';
+      case 'fos.hall_tarjeta': return 'Tarxeta';
+      case 'fos.hall_tipo_deposito_museo': return 'Depositado en museo / colección';
+      case 'fos.hall_tipo_estudio': return 'Estudado por';
+      case 'fos.hall_tipo_evento': return 'Tipo de evento';
+      case 'fos.hall_tipo_otro': return 'Outro evento';
+      case 'fos.hall_tipo_prestamo': return 'Préstamo / consulta';
+      case 'fos.hall_tipo_publicacion': return 'Citado nunha publicación';
+      case 'fos.hall_titulo': return 'Achados';
+      case 'fos.hall_toca_mas_primero': return 'Toca o + para rexistrar o primeiro.';
+      case 'fos.hall_tomar_foto': return 'Sacar unha foto';
+      case 'fos.hall_top_especies': return 'Especies máis frecuentes';
+      case 'fos.hall_top_formaciones': return 'Formacións máis frecuentes';
+      case 'fos.hall_ubicacion': return 'Localización';
+      case 'fos.hall_ultimo_hallazgo': return 'Último achado';
+      case 'fos.hall_ver_en_mapa': return 'Ver no mapa';
+      case 'fos.hall_ver_ficha': return 'Ver a ficha';
+      case 'fos.iden_huella_copiada': return 'Pegada copiada no portapapeis';
+      case 'fos.iden_clave_publica_copiada': return 'Clave pública copiada no portapapeis';
+      case 'fos.iden_regenerar_titulo': return 'Rexenerar a identidade criptográfica';
+      case 'fos.iden_regenerar_aviso': return 'Isto crea un par de claves novo. Os achados asinados coa túa clave anterior seguirán existindo, pero xa non se poderá verificar criptograficamente que son teus. O teu nome e o teu correo non cambian. Só deberías facelo se cres que a túa clave quedou comprometida (por exemplo, despois de restaurar unha copia de seguranza nun dispositivo emprestado).';
+      case 'fos.iden_regenerar': return 'Rexenerar';
+      case 'fos.iden_identidad_regenerada': return 'Identidade rexenerada';
+      case 'fos.iden_mi_identidad': return 'A miña identidade';
+      case 'fos.iden_datos_declarados': return 'Datos declarados';
+      case 'fos.iden_datos_declarados_ayuda': return 'Estes datos enchémolos ti en Axustes → Perfil e identidade. Acompañan a sinatura cando compartes unha tarxeta ou un certificado, pero non están autenticados por ningunha autoridade externa: calquera pode dicir que se chama como queira. O que si é único e permanente é a túa clave criptográfica.';
+      case 'fos.iden_nombre': return 'Nome';
+      case 'fos.iden_email': return 'Correo electrónico';
+      case 'fos.iden_organizacion': return 'Organización';
+      case 'fos.iden_sin_rellenar': return '(sen encher)';
+      case 'fos.iden_huella_criptografica': return 'Pegada criptográfica';
+      case 'fos.iden_huella_ayuda': return 'Esta pegada derívase da túa clave pública. É única e permanente, e xerouse a primeira vez que abriches Fósiles. Cando alguén recibe un achado asinado por ti, pode verificar que a sinatura coincide con esta pegada.';
+      case 'fos.iden_copiar_huella': return 'Copiar a pegada';
+      case 'fos.iden_ver_clave_publica': return 'Ver a clave pública completa';
+      case 'fos.iden_copiar_clave_publica': return 'Copiar a clave pública';
+      case 'fos.iden_operaciones_avanzadas': return 'Operacións avanzadas';
+      case 'fos.iden_operaciones_avanzadas_ayuda': return 'A túa clave privada gárdase cifrada no almacenamento seguro de Android (non sae do dispositivo). A copia de seguranza .zip cifrada que xeras desde Axustes inclúea para que a poidas recuperar se cambias de móbil.';
+      case 'fos.iden_regenerar_identidad': return 'Rexenerar a identidade';
+      case 'fos.iden_perfil_guardado': return 'Perfil gardado';
+      case 'fos.iden_perfil_e_identidad': return 'Perfil e identidade';
+      case 'fos.iden_perfil_descubridor': return 'Perfil do descubridor';
+      case 'fos.iden_perfil_ayuda': return 'O teu nome incluirase nos certificados de achado. O correo e a organización son opcionais. Estes datos só se gardan no teu teléfono.';
+      case 'fos.iden_nombre_obligatorio': return 'Nome (obrigatorio para os certificados)';
+      case 'fos.iden_nombre_ejemplo': return 'Ex.: María González';
+      case 'fos.iden_email_opcional': return 'Correo electrónico (opcional)';
+      case 'fos.iden_email_ejemplo': return 'contacto@exemplo.gal';
+      case 'fos.iden_organizacion_opcional': return 'Organización / afiliación (opcional)';
+      case 'fos.iden_organizacion_ejemplo': return 'Ex.: UPV/EHU, Sociedade de Ciencias Aranzadi…';
+      case 'fos.iden_guardar_perfil': return 'Gardar o perfil';
+      case 'fos.iden_identidad_y_certificados': return 'Identidade e certificados';
+      case 'fos.iden_mi_identidad_criptografica': return 'A miña identidade criptográfica';
+      case 'fos.iden_verificar_un_certificado': return 'Verificar un certificado';
+      case 'fos.iden_modo_experto_autoridades': return 'Modo Experto (autoridades certificadoras)';
+      case 'fos.iden_card_certificada_asunto': return 'Tarxeta certificada — {autoridad}';
+      case 'fos.iden_card_certificada_texto': return 'Tarxeta revisada e certificada pola autoridade. Importa este ficheiro na túa app Fósiles para ver o selo.';
+      case 'fos.iden_error_firmando': return 'Erro ao asinar';
+      case 'fos.iden_certificar_hallazgo': return 'Certificar o achado';
+      case 'fos.iden_descubridor_valor': return 'Descubridor: {nombre}';
+      case 'fos.iden_coords': return 'Coord.';
+      case 'fos.iden_difuminadas': return '(difuminadas)';
+      case 'fos.iden_fotos': return 'Fotos';
+      case 'fos.iden_revisa_campos': return 'Revisa ou corrixe os campos. O que deixes en cada caixa entrará na certificación asinada. Se un campo xa está correcto, déixao como está.';
+      case 'fos.iden_especie_determinacion': return 'Especie / determinación';
+      case 'fos.iden_edad_epoca': return 'Idade / época xeolóxica';
+      case 'fos.iden_formacion_geologica': return 'Formación xeolóxica';
+      case 'fos.iden_comentarios_experto': return 'Comentarios do experto';
+      case 'fos.iden_comentarios_ejemplo': return 'Ex.: peza relevante para unha colección rexional; recomendo envíala ao museo X en depósito';
+      case 'fos.iden_firmar_y_devolver': return 'Asinar e devolver ao descubridor';
+      case 'fos.iden_no_es_certificado': return 'O ficheiro non é un certificado de Fósiles.';
+      case 'fos.iden_error_leer_fichero': return 'Erro ao ler o ficheiro';
+      case 'fos.iden_verificar_certificado': return 'Verificar certificado';
+      case 'fos.iden_verificar_ayuda': return 'Selecciona un ficheiro .json de certificado para verificar a súa autenticidade.';
+      case 'fos.iden_seleccionar_certificado': return 'Seleccionar certificado';
+      case 'fos.iden_certificado_verificado': return 'Certificado verificado';
+      case 'fos.iden_certificado_no_valido': return 'Certificado NON válido';
+      case 'fos.iden_hash_no_coincide': return 'O hash non coincide. O certificado foi alterado.';
+      case 'fos.iden_especie': return 'Especie';
+      case 'fos.iden_edad': return 'Idade';
+      case 'fos.iden_formacion': return 'Formación';
+      case 'fos.iden_fecha_descubrimiento': return 'Data do descubrimento';
+      case 'fos.iden_descubridor': return 'Descubridor';
+      case 'fos.iden_email_descubridor': return 'Correo do descubridor';
+      case 'fos.iden_fecha_certificacion': return 'Data da certificación';
+      case 'fos.iden_error_importando': return 'Erro ao importar';
+      case 'fos.iden_importar_card_recibida': return 'Importar a tarxeta recibida';
+      case 'fos.iden_no_se_pudo_abrir': return 'Non se puido abrir o ficheiro';
+      case 'fos.iden_card_importada': return 'Tarxeta importada';
+      case 'fos.iden_aparece_en_compartidas': return 'Aparece na lapela «Compartidos» da túa lista de achados.';
+      case 'fos.iden_importar_a_mi_coleccion': return 'Importar á miña colección';
+      case 'fos.iden_hecho': return 'Feito';
+      case 'fos.iden_modo_experto_aviso': return 'Estás en Modo Experto. Esta tarxeta procésase para revisión: non entra na túa colección persoal.';
+      case 'fos.iden_certificar': return 'Certificar';
+      case 'fos.iden_acusar_recibo': return 'Acusar recibo (revisarei máis tarde)';
+      case 'fos.iden_descartar': return 'Descartar (non ten interese científico)';
+      case 'fos.iden_acuse_de_recibo': return 'Acuse de recibo';
+      case 'fos.iden_descarte': return 'Descarte';
+      case 'fos.iden_devolucion_firmada': return 'Devolución asinada pola autoridade.';
+      case 'fos.iden_firma_valida': return 'Sinatura criptográfica válida: os datos chegan tal como os asinou o remitente.';
+      case 'fos.iden_firma_invalida': return 'SINATURA NON VÁLIDA: os datos do ficheiro NON coinciden coa sinatura do remitente. Poderían ter sido modificados.';
+      case 'fos.iden_remitente': return 'Remitente';
+      case 'fos.iden_nombre_declarado': return 'Nome declarado';
+      case 'fos.iden_huella': return 'Pegada';
+      case 'fos.iden_hallazgo': return 'Achado';
+      case 'fos.iden_tipo': return 'Tipo';
+      case 'fos.iden_fecha': return 'Data';
+      case 'fos.iden_coordenadas': return 'Coordenadas';
+      case 'fos.iden_estrato': return 'Estrato';
+      case 'fos.iden_notas': return 'Notas';
+      case 'fos.iden_tipo_fosil': return 'Fósil';
+      case 'fos.iden_tipo_mineral': return 'Mineral';
+      case 'fos.iden_error_sin_manifest': return 'Non é un .fos-card válido (sen manifest)';
+      case 'fos.iden_error_formato_desconocido': return 'Formato descoñecido: {formato}';
+      case 'fos.iden_error_falta_hallazgo': return 'Falta hallazgo.json';
+      case 'fos.iden_error_version_desconocida': return 'Versión de achado descoñecida: {version}';
+      case 'fos.iden_error_sin_autoridad': return 'O Modo Experto non está activo: non hai autoridade para asinar.';
+      case 'fos.iden_error_sin_clave_autoridad': return 'O Modo Experto non está activo: non hai clave de autoridade.';
+      case 'fos.iden_com_falta_consentimiento': return 'Falta o consentimento explícito.';
+      case 'fos.iden_com_limite_diario': return 'Alcanzaches o límite diario de subidas. Téntao mañá.';
+      case 'fos.iden_com_servidor_rechazo': return 'O servidor rexeitou a subida (HTTP {codigo}).';
+      case 'fos.iden_com_tiempo_agotado': return 'O servidor tardou demasiado en responder. Revisa a conexión.';
+      case 'fos.iden_com_sin_conexion': return 'Non hai conexión co servidor. Téntao máis tarde.';
+      case 'fos.iden_com_no_pudo_procesar': return 'O servidor non puido procesar a solicitude (HTTP {codigo}).';
+      case 'fos.iden_com_inactiva': return 'A función «comunidade» non está activada nesta versión.';
+      case 'fos.iden_com_sin_fotos': return 'Este achado non ten fotos. Edítao e engade unha.';
+      case 'fos.iden_com_enviada': return 'Enviada (#{id}). Se se aproba, avisarémoste.';
+      case 'fos.iden_com_error_inesperado': return 'Erro inesperado';
+      case 'fos.iden_com_compartir_titulo': return 'Compartir coa comunidade';
+      case 'fos.iden_com_intro': return 'Un xeólogo revisará a túa achega. Se a aproba, aparecerá na app asociada a esta formación xeolóxica, para que outros afeccionados poidan ver o que se atopa aquí.';
+      case 'fos.iden_com_se_envia': return 'Envíase:';
+      case 'fos.iden_com_foto_principal': return 'Foto principal do achado';
+      case 'fos.iden_com_tipo_valor': return 'Tipo ({tipo})';
+      case 'fos.iden_com_especie_declarada': return 'Especie/grupo declarado: {valor}';
+      case 'fos.iden_com_edad_declarada': return 'Idade declarada: {valor}';
+      case 'fos.iden_com_formacion_declarada': return 'Formación declarada: {valor}';
+      case 'fos.iden_com_tus_notas': return 'As túas notas';
+      case 'fos.iden_com_no_se_envia': return 'NON se envía:';
+      case 'fos.iden_com_nombre_autor': return 'O teu nome como autor visible';
+      case 'fos.iden_com_identidad_cripto': return 'A túa identidade criptográfica do achado';
+      case 'fos.iden_com_email_no_valido': return 'Correo electrónico non válido';
+      case 'fos.iden_com_email_contacto': return 'Correo de contacto';
+      case 'fos.iden_com_email_ayuda': return 'Para avisarte se a foto se aproba ou se rexeita. NUNCA se publica.';
+      case 'fos.iden_com_tu_nombre_opcional': return 'O teu nome (opcional)';
+      case 'fos.iden_com_nombre_ayuda': return 'Só o verá o curador. Nunca aparece na app.';
+      case 'fos.iden_com_consentimiento': return 'Acepto a política de privacidade e entendo que a app non é unha canle oficial para comunicar patrimonio paleontolóxico; para achados importantes, contacta tamén co servizo de Patrimonio da túa comunidade autónoma.';
+      case 'fos.iden_com_enviar_revision': return 'Enviar para revisión';
+      case 'fos.iden_com_formacion_codigo': return 'Formación · {codigo}';
+      case 'fos.iden_com_fotos_comunidad': return 'Fotos da comunidade';
+      case 'fos.iden_com_sin_fotos_formacion': return 'Aínda non hai fotos da comunidade para esta formación. Se atopas algo aquí, podes ser o primeiro: comparte o teu achado desde a lapela Lista.';
+      case 'fos.iden_com_sin_especie': return '(sen especie)';
+      case 'fos.mapa_capa_callejero': return 'Rueiro';
+      case 'fos.mapa_capa_satelite': return 'Satélite';
+      case 'fos.mapa_capa_topografico': return 'Topográfico';
+      case 'fos.mapa_capa_edades_1m': return 'Idades 1M';
+      case 'fos.mapa_capa_litologias_1m': return 'Litoloxías 1M';
+      case 'fos.mapa_capa_geode_desc': return 'Recomendada · continuo xeolóxico nacional. Cada polígono leva idade, formación e litoloxía; o que ves e o que a app suxire para fósiles van sempre coordinados.';
+      case 'fos.mapa_capa_magna_desc': return 'Cor por litoloxía (tipo de rocha: calcaria, arxila, granito…). Detalle máximo 1:50.000. Útil para saber «que tipo de rocha piso», NON para ver idades dunha ollada.';
+      case 'fos.mapa_capa_edades_desc': return 'Cor directa por idade xeolóxica (era/período). O mellor para ver eras dunha ollada. Resolución 1:1.000.000 — máis baixa, serve para escala rexional.';
+      case 'fos.mapa_capa_litologias_desc': return 'Litoloxía xeral (versión simplificada de MAGNA). Resolución 1:1.000.000. Para escala rexional cando MAGNA é demasiado denso.';
+      case 'fos.mapa_lig_sin_nombre': return 'LIG sen nome';
+      case 'fos.mapa_rosa_vientos': return 'N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSO,SO,OSO,O,ONO,NO,NNO';
+      case 'fos.mapa_estas_en': return '{emoji} Estás en {nombre}. Toca para ver que buscar.';
+      case 'fos.mapa_ver_ficha': return 'Ver ficha';
+      case 'fos.mapa_esperando_gps': return 'Agardando o GPS para calcular a distancia.';
+      case 'fos.mapa_distancia_y_rumbo': return 'Distancia e rumbo';
+      case 'fos.mapa_desde_tu_posicion': return 'Desde a túa posición ata {coordenadas}';
+      case 'fos.mapa_detener_track': return 'Deter o traxecto';
+      case 'fos.mapa_iniciar_track': return 'Iniciar o traxecto';
+      case 'fos.mapa_nombre_opcional': return 'Nome (opcional)';
+      case 'fos.mapa_descartar': return 'Descartar';
+      case 'fos.mapa_track_guardado': return 'Traxecto gardado';
+      case 'fos.mapa_grabando_track_aviso': return '🔴 Gravando o traxecto. Podes bloquear a pantalla; a gravación continúa.';
+      case 'fos.mapa_acercate_monumentos': return '🗿 Achégate máis (zoom ≥ 9) para cargar monumentos.';
+      case 'fos.mapa_sin_monumentos': return '🗿 Non hai monumentos OSM nesta vista. Proba a desprazar o mapa.';
+      case 'fos.mapa_monumentos_cargados': return '🗿 {n} monumentos cargados.';
+      case 'fos.mapa_error_monumentos': return 'Erro nos monumentos: {error}';
+      case 'fos.mapa_acercate_cuevas': return '🦇 Achégate máis (zoom ≥ 10) para cargar covas.';
+      case 'fos.mapa_sin_cuevas': return '🦇 Non hai covas OSM nesta vista. Proba a desprazar o mapa.';
+      case 'fos.mapa_cuevas_cargadas': return '🦇 {n} covas cargadas.';
+      case 'fos.mapa_error_cuevas': return 'Erro nas covas: {error}';
+      case 'fos.mapa_que_buscar': return 'Que buscar';
+      case 'fos.mapa_como_llegar': return 'Como chegar';
+      case 'fos.mapa_marcar_hallazgo_aqui': return 'Marcar achado aquí';
+      case 'fos.mapa_fuente': return 'Fonte: {fuente}';
+      case 'fos.mapa_cronologia': return 'Cronoloxía: {valor}';
+      case 'fos.mapa_ver_en_osm': return 'Ver en OpenStreetMap';
+      case 'fos.mapa_especie': return 'Especie';
+      case 'fos.mapa_edad': return 'Idade';
+      case 'fos.mapa_formacion': return 'Formación';
+      case 'fos.mapa_fecha': return 'Data';
+      case 'fos.mapa_coordenadas': return 'Coordenadas';
+      case 'fos.mapa_estrato': return 'Estrato';
+      case 'fos.mapa_notas': return 'Notas';
+      case 'fos.mapa_borrar_hallazgo_pregunta': return 'Borrar este achado?';
+      case 'fos.mapa_compartir_texto': return 'Compartir texto';
+      case 'fos.mapa_tarjeta': return 'Tarxeta';
+      case 'fos.mapa_certificado_verificable': return 'Certificado verificable';
+      case 'fos.mapa_enviar_otra_app': return 'Enviar a outra app Fósiles';
+      case 'fos.mapa_historial_trazabilidad': return 'Historial de trazabilidade';
+      case 'fos.mapa_evento_anadido': return 'Evento engadido ao historial.';
+      case 'fos.mapa_anadir_trazabilidad': return 'Engadir trazabilidade';
+      case 'fos.mapa_anadir_evento': return 'Engadir evento';
+      case 'fos.mapa_compartir_titulo': return 'Achado de fósil';
+      case 'fos.mapa_asunto_hallazgo': return 'Achado: {especie}';
+      case 'fos.mapa_error_tarjeta': return 'Erro ao xerar a tarxeta: {error}';
+      case 'fos.mapa_precision_coordenadas': return 'Precisión das coordenadas';
+      case 'fos.mapa_precision_explicacion': return 'As coordenadas precisas poden facilitar o saqueo de xacementos. Para colegas de confianza ou o Instituto, mándaas precisas; para afeccionados descoñecidos ou o público en xeral, difuminadas (precisión ~1 km).';
+      case 'fos.mapa_difuminadas_recomendado': return 'Difuminadas (~1 km)  ·  recomendado';
+      case 'fos.mapa_precisas': return 'Precisas (~11 cm)';
+      case 'fos.mapa_asunto_card': return 'Card do achado: {especie}';
+      case 'fos.mapa_sin_especie': return '(sen especie)';
+      case 'fos.mapa_texto_card': return 'Card de Fósiles ({mb} MB · {fotos} fotos · {modo}). Para importala, abre o ficheiro noutra instalación da app Fósiles.';
+      case 'fos.mapa_coords_difuminadas': return 'coords difuminadas';
+      case 'fos.mapa_coords_precisas': return 'coords precisas';
+      case 'fos.mapa_error_card': return 'Erro ao xerar a card: {error}';
+      case 'fos.mapa_configura_nombre': return 'Configura primeiro o teu nome en Axustes → Perfil e identidade.';
+      case 'fos.mapa_profundidad': return 'Profundidade: {n} m';
+      case 'fos.mapa_longitud': return 'Lonxitude: {n} m';
+      case 'fos.mapa_tipo': return 'Tipo: {tipo}';
+      case 'fos.mapa_sin_datos': return 'Sen datos';
+      case 'fos.mapa_igme_sin_info': return 'O IGME non devolve información neste punto.';
+      case 'fos.mapa_geologia_en_punto': return 'Xeoloxía neste punto';
+      case 'fos.mapa_antiguedad': return 'Antigüidade';
+      case 'fos.mapa_era_periodo': return 'Era / Período';
+      case 'fos.mapa_litologia': return 'Litoloxía';
+      case 'fos.mapa_lig_cerca': return 'Lugares de Interese Xeolóxico preto';
+      case 'fos.mapa_yacimientos_cercanos': return 'Xacementos seleccionados próximos';
+      case 'fos.mapa_fosiles_probables': return 'Fósiles probables aquí · {periodo}';
+      case 'fos.mapa_sin_fosiles_edad': return 'Non hai fósiles asociados na guía para esta idade.';
+      case 'fos.mapa_minerales_probables': return '💎 Minerais probables aquí';
+      case 'fos.mapa_fotos_comunidad': return 'Fotos da comunidade en {formacion}';
+      case 'fos.mapa_interes_principal': return 'Interese principal';
+      case 'fos.mapa_descripcion': return 'Descrición';
+      case 'fos.mapa_a_distancia_km': return 'a {km} km';
+      case 'fos.mapa_capa_base': return 'Capa base';
+      case 'fos.mapa_capa_geologica': return 'Capa xeolóxica';
+      case 'fos.mapa_sin_geologia': return 'Sen xeoloxía';
+      case 'fos.mapa_mas_capas': return 'Máis capas e opcións';
+      case 'fos.mapa_lig': return 'Lugares de Interese Xeolóxico';
+      case 'fos.mapa_relieve_sombreado': return 'Relevo sombreado';
+      case 'fos.mapa_mapa_de_calor': return 'Achados como mapa de calor';
+      case 'fos.mapa_yacimientos_curados': return 'Xacementos seleccionados';
+      case 'fos.mapa_tracks_guardados': return 'Traxectos gardados';
+      case 'fos.mapa_como_leer_mapa': return 'Como ler o mapa';
+      case 'fos.mapa_sin_conexion_cache': return 'Sen conexión — usando datos da caché';
+      case 'fos.mapa_toca_marcar': return '👆 Toca o mapa para marcar o achado';
+      case 'fos.mapa_toca_geologia': return '👆 Toca o mapa para ver a xeoloxía';
+      case 'fos.mapa_asistente_sin_conexion': return 'O asistente IGME precisa conexión';
+      case 'fos.mapa_consultando_igme': return 'Consultando o IGME…';
+      case 'fos.mapa_sin_datos_igme_centro': return 'Sen datos do IGME no centro do mapa';
+      case 'fos.mapa_marcar_punto': return 'Marcar punto';
+      case 'fos.mapa_explorar_geologia': return 'Explorar a xeoloxía';
+      case 'fos.mapa_cargando': return 'Cargando…';
+      case 'fos.mapa_cuevas': return 'Covas';
+      case 'fos.mapa_megalitos': return 'Megálitos';
+      case 'fos.mapa_asistente_activo': return 'Asistente activo';
+      case 'fos.mapa_asistente': return 'Asistente';
+      case 'fos.mapa_cerrar': return 'Pechar';
+      case 'fos.mapa_mareas': return 'Mareas';
+      case 'fos.mapa_bajamar_hora': return 'Baixamar: {hora}';
+      case 'fos.mapa_bajamar': return 'Baixamar';
+      case 'fos.mapa_pleamar': return 'Preamar';
+      case 'fos.mapa_hoy_minusculas': return 'hoxe';
+      case 'fos.mapa_manana_minusculas': return 'mañá';
+      case 'fos.mapa_firmado_por_ti': return '✓ Asinado por ti';
+      case 'fos.mapa_firmado_por_otra': return 'Asinado por outra persoa';
+      case 'fos.mapa_sin_firma': return 'Sen sinatura criptográfica';
+      case 'fos.mapa_firma_rota': return '✗ Sinatura rota — os datos foron modificados';
+      case 'fos.mapa_verificando_certificacion': return 'Verificando a certificación…';
+      case 'fos.mapa_cadena_invalida': return 'Cadea de certificación non válida — polo menos un elo está roto.';
+      case 'fos.mapa_certificada_por': return 'Certificada por {autoridad}';
+      case 'fos.mapa_firmada_una': return 'Asinada o {fecha} · 1 certificación';
+      case 'fos.mapa_firmada_varias': return 'Asinada o {fecha} · {n} certificacións';
+      case 'fos.mapa_selecciona_capa': return 'Selecciona polo menos unha capa.';
+      case 'fos.mapa_confirmar_descarga': return 'Vas descargar {n} teselas (~{mb} MB). Continuar?';
+      case 'fos.mapa_descargar': return 'Descargar';
+      case 'fos.mapa_teselas_en_cache': return '✅ {n} teselas na caché ({fallidas} fallidas).';
+      case 'fos.mapa_descargar_mapas_offline': return 'Descargar mapas sen conexión';
+      case 'fos.mapa_centra_zona': return 'Centra e fai zoom no mapa de arriba sobre a zona onde vaias estar.';
+      case 'fos.mapa_zoom_minimo': return 'Zoom mínimo: {n}';
+      case 'fos.mapa_zoom_maximo': return 'Zoom máximo: {n}';
+      case 'fos.mapa_capa_geologica_igme_opcional': return 'Capa xeolóxica IGME (opcional)';
+      case 'fos.mapa_ninguna': return 'Ningunha';
+      case 'fos.mapa_resumen_teselas': return '{n} teselas (~{mb} MB) en {capas} capas';
+      case 'fos.mapa_descargando': return 'Descargando…';
+      case 'fos.mapa_descargar_ahora': return 'Descargar agora';
+      case 'fos.mapa_progreso_descarga': return '{descargadas}/{total} ({fallidas} fallidas) · {mb} MB';
+      case 'fos.mapa_track': return 'Traxecto';
+      case 'fos.mapa_tracks': return 'Traxectos';
+      case 'fos.mapa_error_cargando_tracks': return 'Erro ao cargar os traxectos: {error}';
+      case 'fos.mapa_error_abriendo_track': return 'Erro ao abrir o traxecto: {error}';
+      case 'fos.mapa_track_sin_puntos': return 'Este traxecto non ten puntos gardados (a gravación detívose antes da primeira posición GPS).';
+      case 'fos.mapa_asunto_gpx': return 'Traxecto GPX';
+      case 'fos.mapa_informe_pdf': return 'Informe PDF';
+      case 'fos.mapa_borrar_track_pregunta': return 'Borrar este traxecto?';
+      case 'fos.mapa_asunto_informe_salida': return 'Informe da saída';
+      case 'fos.mapa_error_pdf': return 'Erro ao xerar o PDF: {error}';
+      case 'fos.mapa_n_puntos': return '{n} puntos';
+      case 'fos.mapa_gpx_sin_puntos': return 'O GPX non contén puntos de traxecto.';
+      case 'fos.mapa_importado': return 'Importado: {nombre} ({n} puntos)';
+      case 'fos.mapa_error_importando_gpx': return 'Erro ao importar o GPX: {error}';
+      case 'fos.mapa_importar_gpx': return 'Importar GPX';
+      case 'fos.mapa_sin_tracks': return 'Aínda non gravaches ningún traxecto.';
+      case 'fos.mapa_sin_tracks_ayuda': return 'Usa o botón ⏺ do mapa para comezar.';
+      case 'fos.mapa_track_del': return 'Traxecto do {fecha}';
+      case 'fos.mapa_notificacion_grabando': return 'Gravando o traxecto';
+      case 'fos.mapa_notificacion_registrando_ruta': return 'Fósiles está rexistrando a túa ruta';
+      case 'fos.mapa_track_recuperado': return 'Traxecto recuperado {fecha}';
+      case 'fos.mapa_track_importado': return 'Traxecto importado';
+      case 'fos.mapa_overpass_fallaron': return 'Fallaron todos os servidores Overpass · último: {error}';
+      case 'fos.mapa_monumento_megalito': return 'Megálito (dolmen / crómlech / harrespil)';
+      case 'fos.mapa_monumento_dolmen': return 'Dolmen';
+      case 'fos.mapa_monumento_tumulo': return 'Túmulo';
+      case 'fos.mapa_monumento_fondo_cabana': return 'Fondo de cabana';
+      case 'fos.mapa_monumento_fortificacion': return 'Fortificación / castro';
+      case 'fos.mapa_monumento_castillo': return 'Castelo';
+      case 'fos.mapa_monumento_poblado': return 'Poboado / asentamento';
+      case 'fos.mapa_monumento_menhir': return 'Menhir';
+      case 'fos.mapa_monumento_piedra_antigua': return 'Pedra antiga';
+      case 'fos.mapa_monumento_circulo_piedras': return 'Círculo de pedras';
+      case 'fos.mapa_monumento_tumba': return 'Tumba';
+      case 'fos.mapa_monumento_ruinas': return 'Ruínas';
+      case 'fos.mapa_monumento_monumento': return 'Monumento';
+      case 'fos.mapa_monumento_memorial': return 'Memorial';
+      case 'fos.mapa_monumento_crucero': return 'Cruceiro';
+      case 'fos.mapa_monumento_yacimiento': return 'Xacemento arqueolóxico';
+      case 'fos.mapa_sin_nombre': return 'Sen nome';
+      case 'fos.mapa_ayuda_capas_titulo': return 'Capas xeolóxicas do mapa';
+      case 'fos.mapa_ayuda_capas_texto': return 'Na barra superior do mapa, a icona da montaña abre o despregable de capas xeolóxicas do IGME. A app arranca coa primeira da lista (GEODE 50). Para que serve cada unha:';
+      case 'fos.mapa_ayuda_capas_nota': return 'As suxestións de fósiles e minerais do asistente e do explorador SEMPRE consultan GEODE 50 internamente, sen importar que capa estea pintada — así cambiar de capa visual non fai bailar a lista de fósiles probables.';
+      case 'fos.mapa_ayuda_otras_titulo': return 'Outras capas e filtros';
+      case 'fos.mapa_ayuda_menu_superior': return 'No menú «⋮» da barra superior do mapa:';
+      case 'fos.mapa_ayuda_item_lig': return '⭐ LIG — Lugares de Interese Xeolóxico declarados polo IGME.';
+      case 'fos.mapa_ayuda_item_relieve': return '⛰️ Relevo sombreado (hillshade) para ver a topografía.';
+      case 'fos.mapa_ayuda_item_calor': return '🔥 Achados como mapa de calor.';
+      case 'fos.mapa_ayuda_item_yacimientos': return '🏛️ Xacementos seleccionados — selección manual con fichas; aparecen tamén como pista de «xacementos próximos» cando premes a menos de 5 km.';
+      case 'fos.mapa_ayuda_boton_capas': return 'No botón de capas de abaixo á esquerda do mapa:';
+      case 'fos.mapa_ayuda_item_cuevas': return '🦇 Covas (OpenStreetMap, require zoom ≥ 10).';
+      case 'fos.mapa_ayuda_item_megalitos': return '🗿 Megálitos e monumentos arqueolóxicos (OSM, zoom ≥ 9).';
+      case 'fos.mapa_ayuda_sugerencias_titulo': return 'Suxestións de fósiles e minerais';
+      case 'fos.mapa_ayuda_sugerencias_intro': return 'Ao premer un punto (modo Explorar a xeoloxía) ou co asistente activado no centro do mapa, a app cruza a resposta do IGME cos seus catálogos locais:';
+      case 'fos.mapa_ayuda_sugerencias_formacion': return 'Se a formación que devolve GEODE coincide co catálogo de formacións ibéricas, suxírense os fósiles característicos desa formación (selo PENDIENTE_VALIDACION paleontolóxica ata a auditoría do comité científico).';
+      case 'fos.mapa_ayuda_sugerencias_periodo': return 'Se non, suxírense fósiles do período inferido e filtrados polo ambiente sedimentario probable da litoloxía (p. ex. granito ou basalto → sen fósiles; calcaria → mariños).';
+      case 'fos.mapa_ayuda_sugerencias_minerales': return 'Os minerais pondéranse por litoloxía: cada grupo (granítico, carbonático, basáltico, evaporítico, metamórfico…) ten o seu propio conxunto probable.';
+      case 'fos.mapa_orientacion_estrato': return 'Orientación do estrato';
+      case 'fos.mapa_orientacion_instrucciones': return 'Apoia o teléfono plano sobre a superficie da capa rochosa, coa pantalla cara arriba. Mantenno estable e preme Capturar.';
+      case 'fos.mapa_strike': return 'Strike (rumbo)';
+      case 'fos.mapa_strike_ayuda': return 'Liña horizontal da capa';
+      case 'fos.mapa_dip': return 'Dip (buzamento)';
+      case 'fos.mapa_dip_ayuda': return 'Inclinación desde a horizontal';
+      case 'fos.mapa_direccion_dip': return 'Dirección do dip';
+      case 'fos.mapa_direccion_dip_ayuda': return 'Cara a onde cae a capa';
+      case 'fos.mapa_brujula': return 'Compás (parte superior do móbil)';
+      case 'fos.mapa_solo_referencia': return 'Só referencia';
+      case 'fos.mapa_aviso_casi_horizontal': return '⚠ A superficie está case horizontal — o rumbo será impreciso.';
+      case 'fos.mapa_aviso_casi_vertical': return '⚠ Capa case vertical — usa outra cara para medir mellor.';
+      case 'fos.mapa_capturar': return 'Capturar';
+      case 'fos.mapa_permiso_bloqueado': return 'Permiso de localización bloqueado';
+      case 'fos.mapa_permiso_bloqueado_texto': return 'Denegaches o permiso de forma permanente. Para usar o GPS tes que activalo manualmente desde os axustes do sistema.';
+      case 'fos.mapa_activa_gps': return 'Activa o GPS do teléfono e téntao de novo.';
+      case 'fos.mapa_necesito_permiso': return 'Necesito permiso de localización para esta acción.';
+      case 'fos.mapa_abrir_ajustes': return 'Abrir os axustes';
+      case 'fos.mapa_ubicacion_seleccionada': return 'Localización seleccionada';
+      case 'fos.mapa_meteo_sin_ubicacion': return 'Non se puido obter a localización. Activa o GPS.';
+      case 'fos.mapa_meteorologia': return 'Meteoroloxía';
+      case 'fos.mapa_buscar_lugar': return 'Buscar lugar…';
+      case 'fos.mapa_usar_mi_ubicacion': return 'Usar a miña localización';
+      case 'fos.mapa_meteo_vacio': return 'Busca un lugar ou preme o botón de localización para ver a previsión meteorolóxica';
+      case 'fos.mapa_proximas_horas': return 'Próximas horas';
+      case 'fos.mapa_ahora': return 'Agora';
+      case 'fos.mapa_proximos_dias': return 'Próximos días';
+      case 'fos.mapa_hoy': return 'Hoxe';
+      case 'fos.mapa_datos_open_meteo': return 'Datos: Open-Meteo (gratuíto, sen clave de API)';
+      case 'fos.mapa_meteo_despejado': return 'Despexado';
+      case 'fos.mapa_meteo_mayormente_despejado': return 'Maiormente despexado';
+      case 'fos.mapa_meteo_parcialmente_nublado': return 'Parcialmente nubrado';
+      case 'fos.mapa_meteo_nublado': return 'Nubrado';
+      case 'fos.mapa_meteo_niebla': return 'Néboa';
+      case 'fos.mapa_meteo_llovizna_ligera': return 'Babuxa lixeira';
+      case 'fos.mapa_meteo_llovizna_moderada': return 'Babuxa moderada';
+      case 'fos.mapa_meteo_llovizna_densa': return 'Babuxa densa';
+      case 'fos.mapa_meteo_lluvia_ligera': return 'Choiva lixeira';
+      case 'fos.mapa_meteo_lluvia_moderada': return 'Choiva moderada';
+      case 'fos.mapa_meteo_lluvia_fuerte': return 'Choiva forte';
+      case 'fos.mapa_meteo_nevada_ligera': return 'Nevarada lixeira';
+      case 'fos.mapa_meteo_nevada_moderada': return 'Nevarada moderada';
+      case 'fos.mapa_meteo_nevada_fuerte': return 'Nevarada forte';
+      case 'fos.mapa_meteo_chubascos_ligeros': return 'Chuvascos lixeiros';
+      case 'fos.mapa_meteo_chubascos_moderados': return 'Chuvascos moderados';
+      case 'fos.mapa_meteo_chubascos_fuertes': return 'Chuvascos fortes';
+      case 'fos.mapa_meteo_tormenta': return 'Treboada';
+      case 'fos.mapa_meteo_tormenta_granizo': return 'Treboada con sarabia';
+      case 'fos.mapa_meteo_desconocido': return 'Descoñecido';
+      case 'fos.mapa_cueva_sin_nombre': return 'Cova sen nome';
+      case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sen nome';
+      case 'nat.ajus_cabecera_titulo': return 'Caderno de campo de natureza';
+      case 'nat.ajus_cabecera_sub': return 'Observa, aprende e convive coa biodiversidade que te rodea';
+      case 'nat.ajus_explorar_mapa_sub': return 'Especies e observacións';
+      case 'nat.ajus_meteo_sub': return 'Previsión para a túa saída';
+      case 'nat.ajus_chat_ia_sub': return 'Resolve dúbidas, identifica especies, pide consellos de observación';
+      case 'nat.ajus_salidas_campo': return 'Saídas de campo';
+      case 'nat.ajus_salidas_campo_sub': return 'Agrupa os achados, o traxecto e a meteoroloxía dunha xornada nunha soa unidade narrativa';
+      case 'nat.ajus_etica_titulo': return 'Explora, observa e convive';
+      case 'nat.ajus_etica_sub': return 'Unhas pautas para gozar da natureza sumando, sen restar.';
+      case 'nat.ajus_etica1_titulo': return 'Observa con curiosidade e respecto';
+      case 'nat.ajus_etica1_texto': return 'Achégate aos animais con calma, mantén a distancia e goza vendo como se comportan cando non se senten ameazados. Uns prismáticos ou o zoom da cámara daranche mellores recordos ca tentar tocalos. Se marchan, é que estabas demasiado preto.';
+      case 'nat.ajus_etica2_titulo': return 'As plantas tamén son protagonistas';
+      case 'nat.ajus_etica2_texto': return 'Moitas especies son fráxiles e tardan anos en florecer. Fotografaas no seu sitio: a imaxe dura para sempre e a planta segue viva. Queda nos carreiros nas zonas sensibles; as raíces e os gromos agradecerancho.';
+      case 'nat.ajus_etica3_titulo': return 'Cada observación túa suma';
+      case 'nat.ajus_etica3_texto': return 'Os teus rexistros axudan a científicas e conservacionistas a entender como se moven, cando florecen ou onde aniñan as especies. A app permíteche identificar e xeolocalizar. É ciencia cidadá: ti exploras, a ciencia avanza.';
+      case 'nat.ajus_etica4_titulo': return 'Goza con seguridade';
+      case 'nat.ajus_etica4_texto': return 'Leva auga, protección solar e calzado cómodo. Consulta a previsión meteorolóxica antes de saír — a app dáchea. Comparte a túa ruta con alguén se vas a zonas sen cobertura. Unha boa excursión é a que remata cun sorriso.';
+      case 'nat.ajus_etica5_titulo': return 'Que o teu paso sexa invisible';
+      case 'nat.ajus_etica5_texto': return 'Leva o teu lixo… e algún máis se o atopas. Non fagas lume. Deixa pedras, plumas e restos onde estaban: forman parte da paisaxe e do ciclo da vida. A natureza non precisa recordos; ti xa levas a experiencia.';
+      case 'nat.ajus_como_usar': return 'Como usar Naturaleza';
+      case 'nat.ajus_paso1_texto': return 'Activa os lugares de interese (miradoiros, humidais, reservas) e consulta observacións GBIF próximas.';
+      case 'nat.ajus_paso2_texto': return 'Toca + para engadir unha especie con foto, coordenadas e categoría (animal, insecto, planta).';
+      case 'nat.ajus_paso3_titulo': return 'Identifica con IA';
+      case 'nat.ajus_paso3_texto': return 'A app identifica a especie pola imaxe usando Claude ou Pl@ntNet.';
+      case 'nat.ajus_paso4_titulo': return 'Consulta a guía';
+      case 'nat.ajus_paso4_texto': return 'Accede á guía de especies con fotos de Wikipedia, trazos distintivos, hábitat e usos.';
+      case 'nat.ajus_paso5_titulo': return 'Fai o cuestionario';
+      case 'nat.ajus_paso5_texto': return 'Pon a proba os teus coñecementos co cuestionario de identificación por imaxe.';
+      case 'nat.ajus_salida_sin_titulo': return 'Saída sen título';
+      case 'nat.ajus_salida_en_curso': return 'Saída en curso · desde as {hora}';
+      case 'nat.ajus_backup_asunto': return 'Copia de seguridade de Naturaleza';
+      case 'nat.ajus_backup_texto': return 'Copia de seguridade ({kb} KB)';
+      case 'nat.ajus_restaurados': return 'Restauráronse {hallazgos} achados e {fotos} fotos. Reinicia a app para ver os cambios.';
+      case 'nat.ajus_claves_modelo_sub': return 'Claude para identificar, Pl@ntNet para plantas e DeepSeek para o chat';
+      case 'nat.ajus_backup_explicacion': return 'Exporta toda a túa base (achados + traxectos + fotos) nun único ficheiro .natbackup. Gárdao en Drive, nun USB ou no correo. Para restaurar, selecciona o .natbackup; substituirá os datos actuais.';
+      case 'nat.ajus_sobre_app_texto': return 'Naturaleza — Caderno de campo (animais, insectos e plantas). Versión Flutter para Android.';
+      case 'nat.ajus_sobre_app_fuentes': return 'Mapa base: OpenStreetMap, ESRI, OpenTopoMap. Identificación: Claude (Anthropic). Taxonomía e referencias: iNaturalist e GBIF.';
+      case 'nat.ajus_mensaje_compartir': return 'Naturaleza — caderno de campo dixital para anotar fauna e flora con xeorreferencia e guía de identificación. App libre, sen anuncios nin seguimento. Próbaa: {url}';
+      case 'nat.ajus_chat_vacio': return 'Pregúntame o que queiras sobre especies, fauna, flora, identificación, observación…';
+      case 'nat.ajus_identificacion_claude': return 'Identificación con Claude';
+      case 'nat.ajus_ia_explicacion': return 'Para identificar especies automaticamente, introduce a túa clave de API de Anthropic. Gárdase só no teu teléfono e envíase unicamente a api.anthropic.com. Consegue unha en console.anthropic.com.';
+      case 'nat.ajus_plantnet_titulo': return 'Identificación de plantas con Pl@ntNet (de balde)';
+      case 'nat.ajus_plantnet_explicacion': return 'Pl@ntNet identifica plantas cunha foto e devolve unha clasificación de candidatas. O plan gratuíto dá 500 identificacións ao día. Rexístrate en my.plantnet.org e pega aquí a túa clave. A foto só se envía cando premas o botón "Identificar planta" na ficha dun achado.';
+      case 'nat.ajus_conseguir_plantnet': return 'Conseguir clave de Pl@ntNet';
+      case 'nat.ajus_api_plantnet': return 'Clave de API de Pl@ntNet';
+      case 'nat.ajus_chat_deepseek': return 'Chat con DeepSeek';
+      case 'nat.ajus_plantnet_falta_clave': return 'Falta a clave de API de Pl@ntNet.';
+      case 'nat.ajus_foto_no_existe': return 'A foto non existe no disco: {ruta}';
+      case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet rexeitou a clave (HTTP {codigo}). Comproba a clave en Axustes → Intelixencia artificial.';
+      case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet indica que a cota de hoxe está esgotada (HTTP 429).';
+      case 'nat.ajus_servicio_devolvio': return '{servicio} devolveu {codigo}';
+      case 'nat.cat_mamiferos': return 'Mamíferos';
+      case 'nat.cat_aves': return 'Aves';
+      case 'nat.cat_reptiles': return 'Réptiles';
+      case 'nat.cat_anfibios': return 'Anfibios';
+      case 'nat.cat_peces': return 'Peixes';
+      case 'nat.cat_insectos': return 'Insectos e artrópodos';
+      case 'nat.cat_plantas': return 'Plantas';
+      case 'nat.cat_setas': return 'Cogomelos e fungos';
+      case 'nat.cat_otros_animales': return 'Outros animais';
+      case 'nat.uso_medicinal': return 'Medicinal';
+      case 'nat.uso_comestible': return 'Comestible';
+      case 'nat.uso_aromatica': return 'Aromática / culinaria';
+      case 'nat.uso_melifera': return 'Melífera';
+      case 'nat.uso_ornamental': return 'Ornamental';
+      case 'nat.uso_toxica': return 'Tóxica';
+      case 'nat.uso_urticante': return 'Urticante / irritante';
+      case 'nat.uso_protegida': return 'Protexida';
+      case 'nat.uso_invasora': return 'Invasora';
+      case 'nat.uso_endemica': return 'Endémica';
+      case 'nat.hall_alternativas_dos_puntos': return 'Alternativas:';
+      case 'nat.hall_altura_aprox_cm': return 'Altura aprox. (cm)';
+      case 'nat.hall_anade_foto_primero': return 'Engade primeiro unha foto.';
+      case 'nat.hall_anotacion_al_margen': return 'Anotación á marxe';
+      case 'nat.hall_anotacion_hint': return 'p. ex. ao final era femia, non macho';
+      case 'nat.hall_anotaciones_al_margen': return 'Anotacións á marxe';
+      case 'nat.hall_asunto_exportacion': return 'Achados de natureza';
+      case 'nat.hall_asunto_hallazgo': return 'Achado: {titulo}';
+      case 'nat.hall_badge_confirmada': return '✓ Confirmada';
+      case 'nat.hall_badge_corregida': return '→ Corrixida';
+      case 'nat.hall_badge_sin_validar': return '? Sen validar';
+      case 'nat.hall_borrar_anotacion': return 'Borrar a anotación';
+      case 'nat.hall_buscar_en_inaturalist': return 'Buscar en iNaturalist';
+      case 'nat.hall_buscar_hint': return 'Buscar por nome, taxonomía, hábitat, notas…';
+      case 'nat.hall_calibracion_por_confianza': return 'Calibración por confianza';
+      case 'nat.hall_candidatos_plantnet': return 'Candidatos de Pl@ntNet';
+      case 'nat.hall_categoria': return 'Categoría';
+      case 'nat.hall_color_sombrero': return 'Cor do sombreiro';
+      case 'nat.hall_como_confirmar_texto': return 'Como confirmalo: {texto}';
+      case 'nat.hall_comportamiento': return 'Comportamento';
+      case 'nat.hall_confianza_etiqueta': return 'Confianza: {nivel}';
+      case 'nat.hall_confianza_probable': return 'Probable';
+      case 'nat.hall_confianza_segura': return 'Segura';
+      case 'nat.hall_confianza_sin_marcar': return 'Sen marcar';
+      case 'nat.hall_confianza_tentativa': return 'Tentativa';
+      case 'nat.hall_configura_clave_plantnet': return 'Configura a túa clave de Pl@ntNet en Axustes → Intelixencia artificial.';
+      case 'nat.hall_confirmada_check': return 'Confirmada ✓';
+      case 'nat.hall_confirmadas': return 'Confirmadas';
+      case 'nat.hall_confirmar_borrar_anotacion': return 'Borrarase esta anotación á marxe. O achado e as outras anotacións mantéñense.';
+      case 'nat.hall_corregida_a': return 'Corrixida a';
+      case 'nat.hall_corregidas': return 'Corrixidas';
+      case 'nat.hall_corregir': return 'Corrixir';
+      case 'nat.hall_corregir_identificacion': return 'Corrixir a identificación';
+      case 'nat.hall_cuando_dijiste_probable': return 'Cando dixeches «probable»';
+      case 'nat.hall_cuando_dijiste_segura': return 'Cando dixeches «segura»';
+      case 'nat.hall_cuando_dijiste_tentativa': return 'Cando dixeches «tentativa»';
+      case 'nat.hall_de_acierto_global': return 'de acerto global';
+      case 'nat.hall_descarga_fallo': return 'A descarga fallou ({codigo})';
+      case 'nat.hall_detalles_de': return 'Detalles: {categoria}';
+      case 'nat.hall_dia_n': return 'día {n}';
+      case 'nat.hall_diametro_sombrero_cm': return 'Diámetro do sombreiro (cm)';
+      case 'nat.hall_dias_antes': return '↑ {n}d antes';
+      case 'nat.hall_dias_despues': return '↓ {n}d despois';
+      case 'nat.hall_en_fecha': return 'na data';
+      case 'nat.hall_entrara_en_salida': return 'Esta observación entrará na saída';
+      case 'nat.hall_error_conectar_archivos': return 'Non se puido conectar cos arquivos. Comproba a conexión.';
+      case 'nat.hall_error_descargar_foto': return 'Non se puido descargar a foto: {error}';
+      case 'nat.hall_error_guardar_hallazgo': return 'Non se puido gardar o achado: {error}';
+      case 'nat.hall_escribe_dos_letras': return 'Escribe polo menos dúas letras e preme Buscar.';
+      case 'nat.hall_escribe_especie_para_buscar': return 'Escribe primeiro a especie ou o nome común para buscar.';
+      case 'nat.hall_especie_real': return 'Especie real';
+      case 'nat.hall_especie_real_hint': return 'nome científico ou común';
+      case 'nat.hall_estadio': return 'Estadio';
+      case 'nat.hall_evidencia_avistamiento': return 'Observación';
+      case 'nat.hall_evidencia_excremento': return 'Excremento';
+      case 'nat.hall_evidencia_huella': return 'Pegada';
+      case 'nat.hall_evidencia_interaccion': return 'Interacción';
+      case 'nat.hall_evidencia_marca_corteza': return 'Marca na cortiza';
+      case 'nat.hall_evidencia_nido_vacio': return 'Niño baleiro';
+      case 'nat.hall_evidencia_pluma': return 'Pluma';
+      case 'nat.hall_evidencia_refugio': return 'Refuxio ou tobo';
+      case 'nat.hall_evidencia_restos_alimentacion': return 'Restos de alimentación';
+      case 'nat.hall_evidencia_sonido': return 'Son ou canto';
+      case 'nat.hall_explicacion_evidencia': return 'Se non viches o bicho, non pasa nada. Unha pegada, unha pluma ou un canto tamén son un achado de pleno dereito.';
+      case 'nat.hall_explicacion_fenologia': return 'Para cada especie con observacións en polo menos dous anos, a primeira observación de cada ano. A desviación compara o ano actual coa media dos anteriores.';
+      case 'nat.hall_explicacion_fenologia_vacia': return 'A fenoloxía compara a primeira observación de cada especie entre anos distintos. Cando leves dúas primaveras anotando a mesma especie, verás aquí se chegou antes ou despois.';
+      case 'nat.hall_explicacion_hipotesis': return 'O que cres que é e por que. Útil para revisar despois que pistas usaches e cando acertas.';
+      case 'nat.hall_explicacion_tasa_vacia': return 'Cando empeces a validar identificacións desde a ficha de cada achado, esta pantalla irá calculando a túa taxa de acerto ao longo do tempo.';
+      case 'nat.hall_explicacion_validar': return 'Tras revisar fotos ou bibliografía, marca se era correcta ou anota a especie real. Serve para calcular a túa taxa de acerto co tempo.';
+      case 'nat.hall_falta_posicion_gps': return 'Falta a posición GPS.';
+      case 'nat.hall_foto_de_archivo': return 'Foto de arquivo';
+      case 'nat.hall_foto_referencia_inaturalist': return 'Foto de referencia (iNaturalist)';
+      case 'nat.hall_guia_anade_entradas': return 'Engade entradas en lib/datos/datos_guia.dart';
+      case 'nat.hall_guia_sin_especies': return 'Non hai especies na guía de {categoria}';
+      case 'nat.hall_habitat': return 'Hábitat';
+      case 'nat.hall_hallazgo_de_naturaleza': return 'Achado de natureza';
+      case 'nat.hall_hipotesis': return 'Hipótese';
+      case 'nat.hall_hipotesis_hint': return 'creo que é X porque…  (voo, canto, hábitat…)';
+      case 'nat.hall_identificacion_actual': return 'Identificación actual: {especie}';
+      case 'nat.hall_identificacion_fallo': return 'A identificación fallou: {error}';
+      case 'nat.hall_identificar_plantnet_gratis': return 'Identificar a planta con Pl@ntNet (de balde)';
+      case 'nat.hall_limpiar_busqueda': return 'Limpar a busca';
+      case 'nat.hall_mi_fenologia': return 'A miña fenoloxía';
+      case 'nat.hall_mi_fenologia_subtitulo': return 'Primeiro rexistro de cada especie por ano';
+      case 'nat.hall_n_de_total_hallazgos': return '{n} de {total} achados';
+      case 'nat.hall_n_exportados': return '{n} achados exportados.';
+      case 'nat.hall_n_hallazgos': return '{n} achados';
+      case 'nat.hall_n_sin_revisar': return 'Tes {n} achados sen revisar. Abre calquera desde a lista e preme «Confirmar» ou «Corrixir» tras revisar fotos ou consultar bibliografía.';
+      case 'nat.hall_nombre_cientifico_binomial': return 'Nome científico (binomial)';
+      case 'nat.hall_nombre_comun_o_cientifico': return 'Nome común ou científico…';
+      case 'nat.hall_nombre_con_confianza': return '{nombre} (confianza: {confianza})';
+      case 'nat.hall_numero_ejemplares': return 'Número de exemplares';
+      case 'nat.hall_numero_individuos': return 'Número de individuos';
+      case 'nat.hall_op_adulto': return 'adulto';
+      case 'nat.hall_op_amarillo': return 'amarelo';
+      case 'nat.hall_op_arbol': return 'árbore';
+      case 'nat.hall_op_arbusto': return 'arbusto';
+      case 'nat.hall_op_avistamiento': return 'observación';
+      case 'nat.hall_op_bajo_conifera': return 'baixo coníferas';
+      case 'nat.hall_op_bajo_planifolio': return 'baixo planifolias';
+      case 'nat.hall_op_blanco_crema': return 'branco / crema';
+      case 'nat.hall_op_excremento': return 'excremento';
+      case 'nat.hall_op_flor': return 'flor';
+      case 'nat.hall_op_fruto': return 'froito';
+      case 'nat.hall_op_gris_negruzco': return 'gris / negrexo';
+      case 'nat.hall_op_herbacea': return 'herbácea';
+      case 'nat.hall_op_huella': return 'pegada';
+      case 'nat.hall_op_huevo': return 'ovo';
+      case 'nat.hall_op_larva': return 'larva';
+      case 'nat.hall_op_madera_muerta': return 'madeira morta';
+      case 'nat.hall_op_mata': return 'mata';
+      case 'nat.hall_op_naranja_rojizo': return 'laranxa / avermellado';
+      case 'nat.hall_op_nido_o_madriguera': return 'niño ou tobo';
+      case 'nat.hall_op_ninfa': return 'ninfa';
+      case 'nat.hall_op_otro': return 'outro';
+      case 'nat.hall_op_pardo_marron': return 'pardo / marrón';
+      case 'nat.hall_op_pluma_o_pelo': return 'pluma ou pelo';
+      case 'nat.hall_op_pradera_herbazal': return 'pradaría / herbeiral';
+      case 'nat.hall_op_pupa': return 'pupa';
+      case 'nat.hall_op_rojo_escarlata': return 'vermello escarlata';
+      case 'nat.hall_op_semilla': return 'semente';
+      case 'nat.hall_op_senescente': return 'senescente';
+      case 'nat.hall_op_suculenta': return 'suculenta';
+      case 'nat.hall_op_suelo_hojarasca': return 'chan / follasca';
+      case 'nat.hall_op_tocon': return 'toco';
+      case 'nat.hall_op_trepadora': return 'rubideira';
+      case 'nat.hall_op_vegetativa': return 'vexetativa';
+      case 'nat.hall_op_verde_oliva': return 'verde oliva';
+      case 'nat.hall_op_violaceo': return 'violáceo';
+      case 'nat.hall_op_vocalizacion': return 'vocalización';
+      case 'nat.hall_organo_corteza': return 'Cortiza';
+      case 'nat.hall_organo_flor': return 'Flor';
+      case 'nat.hall_organo_fruto': return 'Froito';
+      case 'nat.hall_organo_habito': return 'Porte (planta enteira)';
+      case 'nat.hall_organo_hoja': return 'Folla';
+      case 'nat.hall_organo_otro': return 'Outro / non estou seguro';
+      case 'nat.hall_pie_tarjeta': return 'Natureza · caderno de campo';
+      case 'nat.hall_planta_hospedadora': return 'Planta hospedadora';
+      case 'nat.hall_plantnet_fallo': return 'Pl@ntNet fallou: {error}';
+      case 'nat.hall_plantnet_quedan_hoy': return 'Pl@ntNet: quédanche {n} identificacións hoxe.';
+      case 'nat.hall_plantnet_sin_candidatos': return 'Pl@ntNet non atopou candidatos. Proba con outra foto ou outro órgano.';
+      case 'nat.hall_por_categoria': return 'Por categoría';
+      case 'nat.hall_porte': return 'Porte';
+      case 'nat.hall_pregunta_calibracion': return 'Axústaste á túa propia confianza, ou es demasiado optimista (ou demasiado modesto)?';
+      case 'nat.hall_pulsa_el_que_mejor_se_ajuste': return 'Preme o que mellor se axuste para encher a ficha.';
+      case 'nat.hall_que_organo_se_ve': return 'Que órgano se ve mellor na foto?';
+      case 'nat.hall_quiz_anade_entradas': return 'Engade máis entradas en lib/datos/datos_guia.dart';
+      case 'nat.hall_quiz_faltan_especies': return 'Fan falta polo menos 3 especies para o cuestionario';
+      case 'nat.hall_quiz_modo_cientifico_a_comun': return 'Cient.→Común';
+      case 'nat.hall_quiz_modo_comun_a_cientifico': return 'Común→Cient.';
+      case 'nat.hall_quiz_modo_por_descripcion': return 'Por descrición';
+      case 'nat.hall_quiz_pocas_especies_categoria': return 'Esta categoría ten menos de 3 especies. Cambia a «Todos» ou engade máis entradas á guía.';
+      case 'nat.hall_quiz_pregunta_cientifico': return 'Cal é o nome científico de «{nombre}»?';
+      case 'nat.hall_quiz_pregunta_comun': return 'Cal é o nome común de «{nombre}»?';
+      case 'nat.hall_quiz_que_especie_es': return 'Que especie é?';
+      case 'nat.hall_salida_sin_titulo': return 'Saída sen título';
+      case 'nat.hall_se_guardara_suelto': return 'Gardarase como achado solto';
+      case 'nat.hall_sin_anotaciones': return 'Sen anotacións. Úsaas para revisar dúbidas, conexións con outra saída ou correccións de detalle.';
+      case 'nat.hall_sin_fenologia': return 'Aínda non hai fenoloxía que amosar';
+      case 'nat.hall_sin_fotos_licencia_abierta': return 'Non se atoparon fotos con licenza aberta para esta especie. Proba co nome científico exacto ou co nome común.';
+      case 'nat.hall_sin_revisar': return 'Sen revisar';
+      case 'nat.hall_sin_validaciones': return 'Aínda non validaches identificacións';
+      case 'nat.hall_sustrato': return 'Substrato';
+      case 'nat.hall_tasa_acierto': return 'Taxa de acerto';
+      case 'nat.hall_tasa_acierto_subtitulo': return 'A túa calibración tras validar identificacións';
+      case 'nat.hall_taxonomia': return 'Taxonomía';
+      case 'nat.hall_texto': return 'Texto';
+      case 'nat.hall_tipo_evidencia': return 'Tipo de indicio';
+      case 'nat.hall_top_habitats': return 'Hábitats máis frecuentes';
+      case 'nat.hall_tu_hipotesis': return 'A túa hipótese';
+      case 'nat.hall_un_hallazgo': return '1 achado';
+      case 'nat.hall_un_sin_revisar': return 'Tes 1 achado sen revisar. Ábreo desde a lista e preme «Confirmar» ou «Corrixir» tras revisar fotos ou consultar bibliografía.';
+      case 'nat.hall_validar_identificacion': return 'Validar a identificación';
+      case 'nat.hall_volver_a_sin_revisar': return 'Volver a sen revisar';
+      case 'nat.mapa_notificacion_registrando_ruta': return 'Naturaleza está rexistrando a túa ruta';
+      case 'nat.mapa_lugar_miradores': return 'Miradoiros';
+      case 'nat.mapa_lugar_miradores_aves': return 'Observatorios de aves';
+      case 'nat.mapa_lugar_reservas_naturales': return 'Reservas naturais';
+      case 'nat.mapa_lugar_cuevas': return 'Covas';
+      case 'nat.mapa_lugar_humedales': return 'Charcas e zonas húmidas';
+      case 'nat.mapa_lugar_arboles_singulares': return 'Árbores singulares';
+      case 'nat.mapa_lugar_refugios': return 'Refuxios';
+      case 'nat.mapa_lugar_manantiales': return 'Mananciais e fontes';
+      case 'nat.mapa_lugar_centros_visitantes': return 'Centros de visitantes';
+      case 'nat.mapa_falta_permiso_ubicacion': return 'Falta o permiso de localización.';
+      case 'nat.mapa_sin_lugares_zona': return 'Non hai lugares de interese nesta zona.';
+      case 'nat.mapa_gestor': return 'Xestor: {gestor}';
+      case 'nat.mapa_sin_gbif_zona': return 'Non hai observacións GBIF nesta zona.';
+      case 'nat.mapa_gbif_cargadas': return 'Cargáronse {n} observacións da comunidade.';
+      case 'nat.mapa_ocultar': return 'Ocultar';
+      case 'nat.mapa_track_guardado_puntos': return 'Traxecto gardado ({n} puntos).';
+      case 'nat.mapa_observacion_gbif': return 'Observación GBIF';
+      case 'nat.mapa_familia': return 'Familia: {familia}';
+      case 'nat.mapa_localidad': return 'Localidade: {localidad}';
+      case 'nat.mapa_observacion': return 'Achado';
+      case 'nat.mapa_categoria': return 'Categoría';
+      case 'nat.mapa_habitat': return 'Hábitat';
+      case 'nat.mapa_taxonomia': return 'Taxonomía';
+      case 'nat.mapa_borrar_observacion_pregunta': return 'Borrar este achado?';
+      case 'nat.mapa_mapas_offline_menu': return 'Mapas sen conexión…';
+      case 'nat.mapa_lugares_interes_activos': return 'Lugares de interese (activos)…';
+      case 'nat.mapa_lugares_interes_menu': return 'Lugares de interese…';
+      case 'nat.mapa_recargar_lugares': return 'Recargar os lugares da vista';
+      case 'nat.mapa_gbif_cerca': return 'Observacións GBIF próximas';
+      case 'nat.mapa_ocultar_gbif': return 'Ocultar as observacións GBIF';
+      case 'nat.mapa_centrar_ubicacion': return 'Centrar na miña localización';
+      case 'nat.mapa_detener_grabacion': return 'Deter a gravación do traxecto';
+      case 'nat.mapa_grabar_track': return 'Gravar o traxecto';
+      case 'nat.mapa_tooltip_capas': return 'Capas do mapa, mapas sen conexión e traxectos gardados';
+      case 'nat.mapa_tooltip_datos': return 'Lugares de interese e observacións';
+      case 'nat.mapa_capas_lugares': return 'Capas de lugares de interese';
+      case 'nat.mapa_capas_lugares_ayuda': return 'Datos de OpenStreetMap. As capas cárganse na vista visible do mapa.';
+      case 'nat.mapa_quitar_todas': return 'Quitar todas';
+      case 'nat.mapa_aplicar': return 'Aplicar';
+      case 'nat.mapa_nueva_salida': return 'Nova saída';
+      case 'nat.mapa_titulo_opcional': return 'Título (opcional)';
+      case 'nat.mapa_titulo_ejemplo': return 'p. ex. Aciñeirais do Pirulén';
+      case 'nat.mapa_zona_opcional': return 'Zona (opcional)';
+      case 'nat.mapa_zona_ejemplo': return 'comarca, paraxe, serra…';
+      case 'nat.mapa_hipotesis_opcional': return 'Hipótese da xornada (opcional)';
+      case 'nat.mapa_hipotesis_ejemplo': return 'que vés buscar?';
+      case 'nat.mapa_arrancar_track': return 'Iniciar tamén un traxecto GPS';
+      case 'nat.mapa_salida_explicacion': return 'Mentres estea aberta, os achados que crees asociaranse automaticamente a esta saída. Se tamén inicias o traxecto GPS, quedará ligado á saída ao detelo. Se o prefires, poderás desactivar a asociación automática en cada achado.';
+      case 'nat.mapa_iniciar': return 'Iniciar';
+      case 'nat.mapa_sin_permiso_track': return 'Non se puido iniciar o traxecto: falta o permiso de localización.';
+      case 'nat.mapa_salidas': return 'Saídas';
+      case 'nat.mapa_iniciar_salida': return 'Iniciar unha saída';
+      case 'nat.mapa_sin_salidas': return 'Aínda non rexistraches ningunha saída';
+      case 'nat.mapa_sin_salidas_ayuda': return 'Unha saída agrupa os achados, o traxecto GPS, a meteoroloxía e as notas dunha xornada de campo.';
+      case 'nat.mapa_salida_sin_titulo': return 'Saída sen título';
+      case 'nat.mapa_en_curso': return 'EN CURSO';
+      case 'nat.mapa_una_observacion': return '1 achado';
+      case 'nat.mapa_n_observaciones': return '{n} achados';
+      case 'nat.mapa_cabecera_salida': return 'Cabeceira da saída';
+      case 'nat.mapa_titulo': return 'Título';
+      case 'nat.mapa_zona': return 'Zona';
+      case 'nat.mapa_meteo_resumen': return 'Meteo (resumo)';
+      case 'nat.mapa_altitud_m': return 'Altitude (m)';
+      case 'nat.mapa_hipotesis_jornada': return 'Hipótese da xornada';
+      case 'nat.mapa_notas_generales': return 'Notas xerais';
+      case 'nat.mapa_anotacion_margen': return 'Anotación á marxe';
+      case 'nat.mapa_anotacion_explicacion': return 'Isto é para o que escribes ao revisar a saída días despois: dúbidas, correccións, conexións con outra xornada.';
+      case 'nat.mapa_texto': return 'Texto';
+      case 'nat.mapa_anotacion_ejemplo': return 'p. ex. ao final era femia, non macho';
+      case 'nat.mapa_borrar_anotacion': return 'Borrar a anotación';
+      case 'nat.mapa_borrar_anotacion_texto': return 'Borrarase esta anotación á marxe. A saída e os achados mantéñense.';
+      case 'nat.mapa_cerrar_salida': return 'Pechar a saída';
+      case 'nat.mapa_cerrar_salida_texto': return 'Ao pechar a saída xa non se lle asociarán automaticamente achados novos. Despois podes seguir engadindo anotacións á marxe.';
+      case 'nat.mapa_detener_track_tambien': return 'Deter tamén o traxecto GPS en curso';
+      case 'nat.mapa_seguir_abierta': return 'Mantela aberta';
+      case 'nat.mapa_borrar_salida': return 'Borrar a saída';
+      case 'nat.mapa_borrar_salida_texto': return 'Borrarase o contedor da saída e as súas anotacións á marxe. Os achados e o traxecto quedarán soltos, sen borrarse.';
+      case 'nat.mapa_salida_no_encontrada': return 'Non se atopou a saída';
+      case 'nat.mapa_salida_del_dia': return 'Saída do día';
+      case 'nat.mapa_editar_cabecera': return 'Editar a cabeceira';
+      case 'nat.mapa_anotar_margen': return 'Anotar á marxe';
+      case 'nat.mapa_altitud_aprox': return '{n} m aprox.';
+      case 'nat.mapa_track_en_curso': return 'Traxecto GPS en curso';
+      case 'nat.mapa_track_de_salida': return 'Traxecto GPS da saída';
+      case 'nat.mapa_track_puntos_asociara': return '{n} puntos · asociarase á saída ao detelo';
+      case 'nat.mapa_observaciones_de_salida': return 'Achados da saída ({n})';
+      case 'nat.mapa_sin_observaciones_salida': return 'Aínda non hai achados nesta saída. Mentres estea aberta, os que rexistres asociaranse automaticamente.';
+      case 'nat.mapa_sin_especie': return 'Sen especie';
+      case 'nat.mapa_anotaciones_margen': return 'Anotacións á marxe';
+      case 'nat.mapa_sin_anotaciones': return 'Aínda non hai anotacións. Úsaas para revisar a saída días despois: dúbidas, correccións, conexións.';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

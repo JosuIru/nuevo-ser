@@ -1,0 +1,175 @@
+clave,es,eu,ca,gl
+nat.hall_alternativas_dos_puntos,Alternativas:,Beste aukera batzuk:,Alternatives:,Alternativas:
+nat.hall_altura_aprox_cm,Altura aprox. (cm),Gutxi gorabeherako altuera (cm),Alçada aprox. (cm),Altura aprox. (cm)
+nat.hall_anade_foto_primero,Añade una foto primero.,Gehitu argazki bat lehenik.,Afegeix primer una foto.,Engade primeiro unha foto.
+nat.hall_anotacion_al_margen,Anotación al margen,Ertzeko oharra,Anotació al marge,Anotación á marxe
+nat.hall_anotacion_hint,"p. ej. al final era hembra, no macho","adib. azkenean emea zen, ez arra","p. ex. al final era una femella, no un mascle","p. ex. ao final era femia, non macho"
+nat.hall_anotaciones_al_margen,Anotaciones al margen,Ertzeko oharrak,Anotacions al marge,Anotacións á marxe
+nat.hall_asunto_exportacion,Hallazgos de naturaleza,Natura-aurkikuntzak,Troballes de natura,Achados de natureza
+nat.hall_asunto_hallazgo,Hallazgo: {titulo},Aurkikuntza: {titulo},Troballa: {titulo},Achado: {titulo}
+nat.hall_badge_confirmada,✓ Confirmada,✓ Baieztatua,✓ Confirmada,✓ Confirmada
+nat.hall_badge_corregida,→ Corregida,→ Zuzendua,→ Corregida,→ Corrixida
+nat.hall_badge_sin_validar,? Sin validar,? Baieztatu gabe,? Sense validar,? Sen validar
+nat.hall_borrar_anotacion,Borrar anotación,Oharra ezabatu,Esborrar l'anotació,Borrar a anotación
+nat.hall_buscar_en_inaturalist,Buscar en iNaturalist,iNaturalist-en bilatu,Cercar a iNaturalist,Buscar en iNaturalist
+nat.hall_buscar_hint,"Buscar por nombre, taxonomía, hábitat, notas…","Bilatu izenaren, taxonomiaren, habitataren edo oharren arabera…","Cerca per nom, taxonomia, hàbitat, notes…","Buscar por nome, taxonomía, hábitat, notas…"
+nat.hall_calibracion_por_confianza,Calibración por confianza,Kalibrazioa konfiantzaren arabera,Calibració per confiança,Calibración por confianza
+nat.hall_candidatos_plantnet,Candidatos de Pl@ntNet,Pl@ntNet-en hautagaiak,Candidats de Pl@ntNet,Candidatos de Pl@ntNet
+nat.hall_categoria,Categoría,Kategoria,Categoria,Categoría
+nat.hall_color_sombrero,Color del sombrero,Txapelaren kolorea,Color del barret,Cor do sombreiro
+nat.hall_como_confirmar_texto,Cómo confirmar: {texto},Nola baieztatu: {texto},Com confirmar-ho: {texto},Como confirmalo: {texto}
+nat.hall_comportamiento,Comportamiento,Portaera,Comportament,Comportamento
+nat.hall_confianza_etiqueta,Confianza: {nivel},Konfiantza: {nivel},Confiança: {nivel},Confianza: {nivel}
+nat.hall_confianza_probable,Probable,Litekeena,Probable,Probable
+nat.hall_confianza_segura,Segura,Ziurra,Segura,Segura
+nat.hall_confianza_sin_marcar,Sin marcar,Markatu gabe,Sense marcar,Sen marcar
+nat.hall_confianza_tentativa,Tentativa,Zalantzazkoa,Temptativa,Tentativa
+nat.hall_configura_clave_plantnet,Configura tu clave de Pl@ntNet en Ajustes → Inteligencia artificial.,Konfiguratu zure Pl@ntNet gakoa Ezarpenak → Adimen artifiziala atalean.,Configura la teva clau de Pl@ntNet a Configuració → Intel·ligència artificial.,Configura a túa clave de Pl@ntNet en Axustes → Intelixencia artificial.
+nat.hall_confirmada_check,Confirmada ✓,Baieztatua ✓,Confirmada ✓,Confirmada ✓
+nat.hall_confirmadas,Confirmadas,Baieztatuak,Confirmades,Confirmadas
+nat.hall_confirmar_borrar_anotacion,Se borrará esta anotación al margen. El hallazgo y otras anotaciones se mantienen.,Ertzeko ohar hau ezabatuko da. Aurkikuntza eta gainerako oharrak mantendu egingo dira.,S'esborrarà aquesta anotació al marge. La troballa i les altres anotacions es mantenen.,Borrarase esta anotación á marxe. O achado e as outras anotacións mantéñense.
+nat.hall_corregida_a,Corregida a,Zuzenketa,Corregida a,Corrixida a
+nat.hall_corregidas,Corregidas,Zuzenduak,Corregides,Corrixidas
+nat.hall_corregir,Corregir,Zuzendu,Corregir,Corrixir
+nat.hall_corregir_identificacion,Corregir identificación,Identifikazioa zuzendu,Corregir la identificació,Corrixir a identificación
+nat.hall_cuando_dijiste_probable,"Cuando dijiste ""probable""","""Litekeena"" esan zenuenean",Quan vas dir «probable»,Cando dixeches «probable»
+nat.hall_cuando_dijiste_segura,"Cuando dijiste ""segura""","""Ziurra"" esan zenuenean",Quan vas dir «segura»,Cando dixeches «segura»
+nat.hall_cuando_dijiste_tentativa,"Cuando dijiste ""tentativa""","""Zalantzazkoa"" esan zenuenean",Quan vas dir «temptativa»,Cando dixeches «tentativa»
+nat.hall_de_acierto_global,de acierto global,asmatze-tasa orokorra,d'encert global,de acerto global
+nat.hall_descarga_fallo,Descarga falló ({codigo}),Deskargak huts egin du ({codigo}),La baixada ha fallat ({codigo}),A descarga fallou ({codigo})
+nat.hall_detalles_de,Detalles de {categoria},Xehetasunak: {categoria},Detalls: {categoria},Detalles: {categoria}
+nat.hall_dia_n,día {n},{n}. eguna,dia {n},día {n}
+nat.hall_diametro_sombrero_cm,Diámetro sombrero (cm),Txapelaren diametroa (cm),Diàmetre del barret (cm),Diámetro do sombreiro (cm)
+nat.hall_dias_antes,↑ {n}d antes,↑ {n}e lehenago,↑ {n}d abans,↑ {n}d antes
+nat.hall_dias_despues,↓ {n}d después,↓ {n}e beranduago,↓ {n}d després,↓ {n}d despois
+nat.hall_en_fecha,en fecha,garaiz,en data,na data
+nat.hall_entrara_en_salida,Esta observación entrará en la salida,Behaketa hau irteeran sartuko da,Aquesta observació entrarà a la sortida,Esta observación entrará na saída
+nat.hall_error_conectar_archivos,No se pudo conectar a los archivos. Comprueba conexión.,Ezin izan da artxiboetara konektatu. Egiaztatu konexioa.,No s'ha pogut connectar amb els arxius. Comprova la connexió.,Non se puido conectar cos arquivos. Comproba a conexión.
+nat.hall_error_descargar_foto,No se pudo descargar la foto: {error},Ezin izan da argazkia deskargatu: {error},No s'ha pogut baixar la foto: {error},Non se puido descargar a foto: {error}
+nat.hall_error_guardar_hallazgo,No se pudo guardar el hallazgo: {error},Ezin izan da aurkikuntza gorde: {error},No s'ha pogut desar la troballa: {error},Non se puido gardar o achado: {error}
+nat.hall_escribe_dos_letras,Escribe al menos dos letras y pulsa Buscar.,Idatzi gutxienez bi letra eta sakatu Bilatu.,Escriu almenys dues lletres i prem Cercar.,Escribe polo menos dúas letras e preme Buscar.
+nat.hall_escribe_especie_para_buscar,Escribe primero la especie o el nombre común para buscar.,Idatzi lehenik espeziea edo izen arrunta bilatzeko.,Escriu primer l'espècie o el nom comú per cercar.,Escribe primeiro a especie ou o nome común para buscar.
+nat.hall_especie_real,Especie real,Benetako espeziea,Espècie real,Especie real
+nat.hall_especie_real_hint,nombre científico o común,izen zientifikoa edo arrunta,nom científic o comú,nome científico ou común
+nat.hall_estadio,Estadio,Fasea,Estadi,Estadio
+nat.hall_evidencia_avistamiento,Avistamiento,Behaketa,Observació,Observación
+nat.hall_evidencia_excremento,Excremento,Gorotza,Excrement,Excremento
+nat.hall_evidencia_huella,Huella,Aztarna,Petjada,Pegada
+nat.hall_evidencia_interaccion,Interacción,Elkarreragina,Interacció,Interacción
+nat.hall_evidencia_marca_corteza,Marca en corteza,Azaleko marka,Marca a l'escorça,Marca na cortiza
+nat.hall_evidencia_nido_vacio,Nido vacío,Habia hutsa,Niu buit,Niño baleiro
+nat.hall_evidencia_pluma,Pluma,Luma,Ploma,Pluma
+nat.hall_evidencia_refugio,Refugio o madriguera,Babeslekua edo gordelekua,Refugi o cau,Refuxio ou tobo
+nat.hall_evidencia_restos_alimentacion,Restos de alimentación,Janari-hondarrak,Restes d'alimentació,Restos de alimentación
+nat.hall_evidencia_sonido,Sonido o canto,Soinua edo kantua,So o cant,Son ou canto
+nat.hall_explicacion_evidencia,"Si no viste el bicho, no pasa nada. Una huella, una pluma o un canto son hallazgo de pleno derecho.","Animalia ikusi ez baduzu, ez da ezer gertatzen. Aztarna, luma edo kantu bat ere aurkikuntza osoa da.","Si no has vist l'animal, no passa res. Una petjada, una ploma o un cant també són una troballa de ple dret.","Se non viches o bicho, non pasa nada. Unha pegada, unha pluma ou un canto tamén son un achado de pleno dereito."
+nat.hall_explicacion_fenologia,"Para cada especie con observaciones en al menos dos años, el primer avistamiento de cada año. La desviación compara el año actual con la media de los anteriores.","Gutxienez bi urtetan behaketak dituen espezie bakoitzeko, urte bakoitzeko lehen behaketa. Desbideratzeak aurtengo urtea aurrekoen batez bestekoarekin alderatzen du.","Per a cada espècie amb observacions en almenys dos anys, la primera observació de cada any. La desviació compara l'any actual amb la mitjana dels anteriors.","Para cada especie con observacións en polo menos dous anos, a primeira observación de cada ano. A desviación compara o ano actual coa media dos anteriores."
+nat.hall_explicacion_fenologia_vacia,"La fenología compara el primer avistamiento de cada especie entre años distintos. Cuando lleves dos primaveras anotando la misma especie, verás aquí si llegó antes o después.","Fenologiak espezie bakoitzaren lehen behaketa alderatzen du urte batetik bestera. Espezie bera bi udaberritan idatzi ondoren, hemen ikusiko duzu lehenago ala beranduago iritsi den.","La fenologia compara la primera observació de cada espècie entre anys diferents. Quan portis dues primaveres anotant la mateixa espècie, veuràs aquí si ha arribat abans o després.","A fenoloxía compara a primeira observación de cada especie entre anos distintos. Cando leves dúas primaveras anotando a mesma especie, verás aquí se chegou antes ou despois."
+nat.hall_explicacion_hipotesis,Lo que crees que es y por qué. Útil para revisar después qué pistas usaste y cuándo aciertas.,Zer dela uste duzun eta zergatik. Gero zer pista erabili zenituen eta noiz asmatzen duzun berrikusteko balio du.,El que creus que és i per què. Útil per revisar després quines pistes vas fer servir i quan l'encertes.,O que cres que é e por que. Útil para revisar despois que pistas usaches e cando acertas.
+nat.hall_explicacion_tasa_vacia,"Cuando empieces a validar identificaciones desde la ficha de cada hallazgo, esta pantalla irá calculando tu tasa de acierto a lo largo del tiempo.","Aurkikuntza bakoitzaren fitxatik identifikazioak baieztatzen hasten zarenean, pantaila honek zure asmatze-tasa kalkulatuko du denboran zehar.","Quan comencis a validar identificacions des de la fitxa de cada troballa, aquesta pantalla anirà calculant la teva taxa d'encert al llarg del temps.","Cando empeces a validar identificacións desde a ficha de cada achado, esta pantalla irá calculando a túa taxa de acerto ao longo do tempo."
+nat.hall_explicacion_validar,"Tras revisar fotos o bibliografía, marca si era correcta o anota la especie real. Sirve para calcular tu tasa de acierto en el tiempo.","Argazkiak edo bibliografia berrikusi ondoren, markatu zuzena zen ala ez, edo idatzi benetako espeziea. Denboran zehar zure asmatze-tasa kalkulatzeko balio du.","Després de revisar fotos o bibliografia, marca si era correcta o anota l'espècie real. Serveix per calcular la teva taxa d'encert al llarg del temps.","Tras revisar fotos ou bibliografía, marca se era correcta ou anota a especie real. Serve para calcular a túa taxa de acerto co tempo."
+nat.hall_falta_posicion_gps,Falta la posición GPS.,GPS kokapena falta da.,Falta la posició GPS.,Falta a posición GPS.
+nat.hall_foto_de_archivo,Foto de archivo,Artxiboko argazkia,Foto d'arxiu,Foto de arquivo
+nat.hall_foto_referencia_inaturalist,Foto de referencia (iNaturalist),Erreferentziako argazkia (iNaturalist),Foto de referència (iNaturalist),Foto de referencia (iNaturalist)
+nat.hall_guia_anade_entradas,Añade entradas en lib/datos/datos_guia.dart,Gehitu sarrerak lib/datos/datos_guia.dart fitxategian,Afegeix entrades a lib/datos/datos_guia.dart,Engade entradas en lib/datos/datos_guia.dart
+nat.hall_guia_sin_especies,Sin especies en la guía de {categoria},Gidan ez dago espezierik: {categoria},No hi ha espècies a la guia de {categoria},Non hai especies na guía de {categoria}
+nat.hall_habitat,Hábitat,Habitata,Hàbitat,Hábitat
+nat.hall_hallazgo_de_naturaleza,Hallazgo de naturaleza,Natura-aurkikuntza,Troballa de natura,Achado de natureza
+nat.hall_hipotesis,Hipótesis,Hipotesia,Hipòtesi,Hipótese
+nat.hall_hipotesis_hint,"creo que es X porque…  (vuelo, canto, hábitat…)","X dela uste dut, zeren…  (hegaldia, kantua, habitata…)","crec que és X perquè…  (vol, cant, hàbitat…)","creo que é X porque…  (voo, canto, hábitat…)"
+nat.hall_identificacion_actual,Identificación actual: {especie},Oraingo identifikazioa: {especie},Identificació actual: {especie},Identificación actual: {especie}
+nat.hall_identificacion_fallo,Identificación falló: {error},Identifikazioak huts egin du: {error},La identificació ha fallat: {error},A identificación fallou: {error}
+nat.hall_identificar_plantnet_gratis,Identificar planta con Pl@ntNet (gratis),Landarea Pl@ntNet-ekin identifikatu (doan),Identificar la planta amb Pl@ntNet (gratis),Identificar a planta con Pl@ntNet (de balde)
+nat.hall_limpiar_busqueda,Limpiar búsqueda,Bilaketa garbitu,Netejar la cerca,Limpar a busca
+nat.hall_mi_fenologia,Mi fenología,Nire fenologia,La meva fenologia,A miña fenoloxía
+nat.hall_mi_fenologia_subtitulo,Primer registro de cada especie por año,Espezie bakoitzaren lehen erregistroa urteko,Primer registre de cada espècie per any,Primeiro rexistro de cada especie por ano
+nat.hall_n_de_total_hallazgos,{n} de {total} hallazgos,{n} / {total} aurkikuntza,{n} de {total} troballes,{n} de {total} achados
+nat.hall_n_exportados,{n} hallazgos exportados.,{n} aurkikuntza esportatu dira.,{n} troballes exportades.,{n} achados exportados.
+nat.hall_n_hallazgos,{n} hallazgos,{n} aurkikuntza,{n} troballes,{n} achados
+nat.hall_n_sin_revisar,"Tienes {n} hallazgos sin revisar. Abre cualquiera desde la lista y pulsa ""Confirmar"" o ""Corregir"" tras revisar fotos o consultar bibliografía.","Berrikusi gabeko {n} aurkikuntza dituzu. Ireki edozein zerrendatik eta sakatu ""Berretsi"" edo ""Zuzendu"" argazkiak berrikusi edo bibliografia kontsultatu ondoren.",Tens {n} troballes sense revisar. Obre'n qualsevol des de la llista i prem «Confirmar» o «Corregir» després de revisar fotos o consultar bibliografia.,Tes {n} achados sen revisar. Abre calquera desde a lista e preme «Confirmar» ou «Corrixir» tras revisar fotos ou consultar bibliografía.
+nat.hall_nombre_cientifico_binomial,Nombre científico (binomial),Izen zientifikoa (binomiala),Nom científic (binomial),Nome científico (binomial)
+nat.hall_nombre_comun_o_cientifico,Nombre común o científico…,Izen arrunta edo zientifikoa…,Nom comú o científic…,Nome común ou científico…
+nat.hall_nombre_con_confianza,{nombre} (confianza: {confianza}),{nombre} (konfiantza: {confianza}),{nombre} (confiança: {confianza}),{nombre} (confianza: {confianza})
+nat.hall_numero_ejemplares,Número de ejemplares,Ale kopurua,Nombre d'exemplars,Número de exemplares
+nat.hall_numero_individuos,Número de individuos,Ale kopurua,Nombre d'individus,Número de individuos
+nat.hall_op_adulto,adulto,heldua,adult,adulto
+nat.hall_op_amarillo,amarillo,horia,groc,amarelo
+nat.hall_op_arbol,árbol,zuhaitza,arbre,árbore
+nat.hall_op_arbusto,arbusto,zuhaixka,arbust,arbusto
+nat.hall_op_avistamiento,avistamiento,behaketa,observació,observación
+nat.hall_op_bajo_conifera,bajo conífera,koniferen azpian,sota coníferes,baixo coníferas
+nat.hall_op_bajo_planifolio,bajo planifolio,hostozabalen azpian,sota planifolis,baixo planifolias
+nat.hall_op_blanco_crema,blanco / crema,zuria / krema,blanc / crema,branco / crema
+nat.hall_op_excremento,excremento,gorotza,excrement,excremento
+nat.hall_op_flor,flor,lorea,flor,flor
+nat.hall_op_fruto,fruto,fruitua,fruit,froito
+nat.hall_op_gris_negruzco,gris / negruzco,grisa / beltzaxka,gris / negrós,gris / negrexo
+nat.hall_op_herbacea,herbácea,belarkara,herbàcia,herbácea
+nat.hall_op_huella,huella,aztarna,petjada,pegada
+nat.hall_op_huevo,huevo,arrautza,ou,ovo
+nat.hall_op_larva,larva,larba,larva,larva
+nat.hall_op_madera_muerta,madera muerta,egur hila,fusta morta,madeira morta
+nat.hall_op_mata,mata,zuhaixka txikia,mata,mata
+nat.hall_op_naranja_rojizo,naranja / rojizo,laranja / gorrixka,taronja / vermellós,laranxa / avermellado
+nat.hall_op_nido_o_madriguera,nido o madriguera,habia edo gordelekua,niu o cau,niño ou tobo
+nat.hall_op_ninfa,ninfa,ninfa,nimfa,ninfa
+nat.hall_op_otro,otro,beste bat,un altre,outro
+nat.hall_op_pardo_marron,pardo / marrón,arrea / marroia,bru / marró,pardo / marrón
+nat.hall_op_pluma_o_pelo,pluma o pelo,luma edo ilea,ploma o pèl,pluma ou pelo
+nat.hall_op_pradera_herbazal,pradera / herbazal,larrea / belardia,prat / herbassar,pradaría / herbeiral
+nat.hall_op_pupa,pupa,pupa,pupa,pupa
+nat.hall_op_rojo_escarlata,rojo escarlata,gorri eskarlata,vermell escarlata,vermello escarlata
+nat.hall_op_semilla,semilla,hazia,llavor,semente
+nat.hall_op_senescente,senescente,zimeltzen,senescent,senescente
+nat.hall_op_suculenta,suculenta,mamitsua,suculenta,suculenta
+nat.hall_op_suelo_hojarasca,suelo / hojarasca,lurra / orbela,sòl / fullaraca,chan / follasca
+nat.hall_op_tocon,tocón,zuhaitz-ondoa,soca,toco
+nat.hall_op_trepadora,trepadora,igokaria,enfiladissa,rubideira
+nat.hall_op_vegetativa,vegetativa,begetatiboa,vegetativa,vexetativa
+nat.hall_op_verde_oliva,verde oliva,oliba-berdea,verd oliva,verde oliva
+nat.hall_op_violaceo,violáceo,morea,violaci,violáceo
+nat.hall_op_vocalizacion,vocalización,ahots-deia,vocalització,vocalización
+nat.hall_organo_corteza,Corteza,Azala,Escorça,Cortiza
+nat.hall_organo_flor,Flor,Lorea,Flor,Flor
+nat.hall_organo_fruto,Fruto,Fruitua,Fruit,Froito
+nat.hall_organo_habito,Hábito (planta entera),Itxura (landare osoa),Port (planta sencera),Porte (planta enteira)
+nat.hall_organo_hoja,Hoja,Hostoa,Fulla,Folla
+nat.hall_organo_otro,Otro / no estoy seguro,Beste bat / ez nago ziur,Un altre / no n'estic segur,Outro / non estou seguro
+nat.hall_pie_tarjeta,Naturaleza · cuaderno de campo,Natura · landa-koadernoa,Natura · quadern de camp,Natureza · caderno de campo
+nat.hall_planta_hospedadora,Planta hospedadora,Landare ostalaria,Planta hoste,Planta hospedadora
+nat.hall_plantnet_fallo,Pl@ntNet falló: {error},Pl@ntNet-ek huts egin du: {error},Pl@ntNet ha fallat: {error},Pl@ntNet fallou: {error}
+nat.hall_plantnet_quedan_hoy,Pl@ntNet: te quedan {n} identificaciones hoy.,Pl@ntNet: gaur {n} identifikazio geratzen zaizkizu.,Pl@ntNet: avui et queden {n} identificacions.,Pl@ntNet: quédanche {n} identificacións hoxe.
+nat.hall_plantnet_sin_candidatos,Pl@ntNet no encontró candidatos. Prueba con otra foto u otro órgano.,Pl@ntNet-ek ez du hautagairik aurkitu. Saiatu beste argazki edo organo batekin.,Pl@ntNet no ha trobat candidats. Prova-ho amb una altra foto o un altre òrgan.,Pl@ntNet non atopou candidatos. Proba con outra foto ou outro órgano.
+nat.hall_por_categoria,Por categoría,Kategoriaka,Per categoria,Por categoría
+nat.hall_porte,Porte,Itxura,Port,Porte
+nat.hall_pregunta_calibracion,"¿Te ajustas a tu propia confianza, o eres demasiado optimista (o demasiado modesto)?","Zure konfiantzarekin bat zatoz, ala baikorregia (edo apalegia) zara?","T'ajustes a la teva pròpia confiança, o ets massa optimista (o massa modest)?","Axústaste á túa propia confianza, ou es demasiado optimista (ou demasiado modesto)?"
+nat.hall_pulsa_el_que_mejor_se_ajuste,Pulsa el que mejor se ajuste para rellenar la ficha.,Sakatu hobekien egokitzen dena fitxa betetzeko.,Prem el que s'ajusti millor per omplir la fitxa.,Preme o que mellor se axuste para encher a ficha.
+nat.hall_que_organo_se_ve,¿Qué órgano se ve mejor en la foto?,Zein organo ikusten da hobekien argazkian?,Quin òrgan es veu millor a la foto?,Que órgano se ve mellor na foto?
+nat.hall_quiz_anade_entradas,Añade más entradas en lib/datos/datos_guia.dart,Gehitu sarrera gehiago lib/datos/datos_guia.dart fitxategian,Afegeix més entrades a lib/datos/datos_guia.dart,Engade máis entradas en lib/datos/datos_guia.dart
+nat.hall_quiz_faltan_especies,Hacen falta al menos 3 especies para el quiz,Galdetegirako gutxienez 3 espezie behar dira,Calen almenys 3 espècies per al qüestionari,Fan falta polo menos 3 especies para o cuestionario
+nat.hall_quiz_modo_cientifico_a_comun,Cient.→Común,Zient.→Arrunta,Cient.→Comú,Cient.→Común
+nat.hall_quiz_modo_comun_a_cientifico,Común→Cient.,Arrunta→Zient.,Comú→Cient.,Común→Cient.
+nat.hall_quiz_modo_por_descripcion,Por descripción,Deskribapenaren arabera,Per descripció,Por descrición
+nat.hall_quiz_pocas_especies_categoria,"Esta categoría tiene menos de 3 especies. Cambia a ""Todos"" o añade más entradas a la guía.","Kategoria honek 3 espezie baino gutxiago ditu. Aldatu ""Denak"" aukerara edo gehitu sarrera gehiago gidan.",Aquesta categoria té menys de 3 espècies. Canvia a «Tots» o afegeix més entrades a la guia.,Esta categoría ten menos de 3 especies. Cambia a «Todos» ou engade máis entradas á guía.
+nat.hall_quiz_pregunta_cientifico,"¿Cuál es el nombre científico de ""{nombre}""?","Zein da ""{nombre}"" espeziearen izen zientifikoa?",Quin és el nom científic de «{nombre}»?,Cal é o nome científico de «{nombre}»?
+nat.hall_quiz_pregunta_comun,"¿Cuál es el nombre común de ""{nombre}""?","Zein da ""{nombre}"" espeziearen izen arrunta?",Quin és el nom comú de «{nombre}»?,Cal é o nome común de «{nombre}»?
+nat.hall_quiz_que_especie_es,¿Qué especie es?,Zein espezie da?,Quina espècie és?,Que especie é?
+nat.hall_salida_sin_titulo,Salida sin título,Izenbururik gabeko irteera,Sortida sense títol,Saída sen título
+nat.hall_se_guardara_suelto,Se guardará como hallazgo suelto,Aurkikuntza solte gisa gordeko da,Es desarà com a troballa solta,Gardarase como achado solto
+nat.hall_sin_anotaciones,"Sin anotaciones. Úsalas para revisar dudas, conexiones con otra salida, correcciones de detalle.","Oharrik ez. Erabili zalantzak berrikusteko, beste irteera batekiko loturak edo xehetasun-zuzenketak idazteko.","Sense anotacions. Fes-les servir per revisar dubtes, connexions amb una altra sortida o correccions de detall.","Sen anotacións. Úsaas para revisar dúbidas, conexións con outra saída ou correccións de detalle."
+nat.hall_sin_fenologia,Aún no hay fenología que mostrar,Oraindik ez dago fenologiarik erakusteko,Encara no hi ha fenologia per mostrar,Aínda non hai fenoloxía que amosar
+nat.hall_sin_fotos_licencia_abierta,No se encontraron fotos con licencia abierta para esta especie. Prueba con el nombre científico exacto o con el nombre común.,Ez da espezie honen lizentzia irekiko argazkirik aurkitu. Saiatu izen zientifiko zehatzarekin edo izen arruntarekin.,No s'han trobat fotos amb llicència oberta per a aquesta espècie. Prova-ho amb el nom científic exacte o amb el nom comú.,Non se atoparon fotos con licenza aberta para esta especie. Proba co nome científico exacto ou co nome común.
+nat.hall_sin_revisar,Sin revisar,Berrikusi gabe,Sense revisar,Sen revisar
+nat.hall_sin_validaciones,Aún no has validado identificaciones,Oraindik ez duzu identifikaziorik baieztatu,Encara no has validat cap identificació,Aínda non validaches identificacións
+nat.hall_sustrato,Sustrato,Substratua,Substrat,Substrato
+nat.hall_tasa_acierto,Tasa de acierto,Asmatze-tasa,Taxa d'encert,Taxa de acerto
+nat.hall_tasa_acierto_subtitulo,Tu calibración tras validar identificaciones,Zure kalibrazioa identifikazioak baieztatu ondoren,La teva calibració després de validar identificacions,A túa calibración tras validar identificacións
+nat.hall_taxonomia,Taxonomía,Taxonomia,Taxonomia,Taxonomía
+nat.hall_texto,Texto,Testua,Text,Texto
+nat.hall_tipo_evidencia,Tipo de evidencia,Zantzu mota,Tipus d'indici,Tipo de indicio
+nat.hall_top_habitats,Top hábitats,Habitat ohikoenak,Hàbitats més freqüents,Hábitats máis frecuentes
+nat.hall_tu_hipotesis,Tu hipótesis,Zure hipotesia,La teva hipòtesi,A túa hipótese
+nat.hall_un_hallazgo,1 hallazgo,Aurkikuntza 1,1 troballa,1 achado
+nat.hall_un_sin_revisar,"Tienes 1 hallazgo sin revisar. Abre cualquiera desde la lista y pulsa ""Confirmar"" o ""Corregir"" tras revisar fotos o consultar bibliografía.","Berrikusi gabeko aurkikuntza 1 duzu. Ireki zerrendatik eta sakatu ""Berretsi"" edo ""Zuzendu"" argazkiak berrikusi edo bibliografia kontsultatu ondoren.",Tens 1 troballa sense revisar. Obre-la des de la llista i prem «Confirmar» o «Corregir» després de revisar fotos o consultar bibliografia.,Tes 1 achado sen revisar. Ábreo desde a lista e preme «Confirmar» ou «Corrixir» tras revisar fotos ou consultar bibliografía.
+nat.hall_validar_identificacion,Validar identificación,Identifikazioa baieztatu,Validar la identificació,Validar a identificación
+nat.hall_volver_a_sin_revisar,Volver a sin revisar,Berrikusi gabe utzi,Tornar a sense revisar,Volver a sen revisar

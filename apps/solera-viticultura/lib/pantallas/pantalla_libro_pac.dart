@@ -61,7 +61,7 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
   Future<void> _generarYCompartir() async {
     if (_titular == null || !_titular!.estaConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Configura primero el titular de la explotación.')),
+        SnackBar(content: Text(SoleraL10n.t('viti.configura_primero_titular'))),
       );
       return;
     }
@@ -78,12 +78,12 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        text: 'Libro de tratamientos · campaña $_ano',
+        text: SoleraL10n.tf('viti.libro_tratamientos_campana', {'ano': _ano}),
       );
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al generar el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('viti.error_generar_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -93,7 +93,7 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
   Future<void> _generarYAbrir() async {
     if (_titular == null || !_titular!.estaConfigurado) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Configura primero el titular de la explotación.')),
+        SnackBar(content: Text(SoleraL10n.t('viti.configura_primero_titular'))),
       );
       return;
     }
@@ -112,7 +112,7 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error al abrir el PDF: $e')),
+        SnackBar(content: Text(SoleraL10n.tf('viti.error_abrir_pdf', {'error': e}))),
       );
     } finally {
       if (mounted) setState(() => _generando = false);
@@ -127,7 +127,7 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
     final titularOk = _titular?.estaConfigurado ?? false;
     final anoActual = DateTime.now().year;
     return Scaffold(
-      appBar: AppBar(title: Text('Libro de tratamientos PAC')),
+      appBar: AppBar(title: Text(SoleraL10n.t('viti.libro_tratamientos_pac'))),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
@@ -136,10 +136,9 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
               color: Theme.of(context).colorScheme.errorContainer,
               child: ListTile(
                 leading: Icon(Icons.warning),
-                title: Text('Titular sin configurar'),
+                title: Text(SoleraL10n.t('viti.titular_sin_configurar')),
                 subtitle: Text(
-                  'El libro oficial requiere los datos del titular '
-                  '(NIF, nombre, dirección, REGEPA…). Configúralos antes de generar.',
+                  SoleraL10n.t('viti.titular_requerido_libro'),
                 ),
                 onTap: _abrirTitular,
               ),
@@ -149,8 +148,8 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: Icon(Icons.person),
-            title: Text(titularOk ? _titular!.nombre : 'Sin titular configurado'),
-            subtitle: titularOk ? Text('NIF ${_titular!.nif}') : null,
+            title: Text(titularOk ? _titular!.nombre : SoleraL10n.t('viti.sin_titular_configurado')),
+            subtitle: titularOk ? Text(SoleraL10n.tf('viti.nif_valor', {'nif': _titular!.nif})) : null,
             trailing: TextButton(onPressed: _abrirTitular, child: Text(SoleraL10n.t('editar'))),
           ),
           Divider(),
@@ -158,11 +157,11 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
           DropdownButtonFormField<Vinedo?>(
             initialValue: _vinedoSeleccionado,
             decoration: InputDecoration(
-              labelText: 'Viñedo',
+              labelText: SoleraL10n.t('viti.vinedo'),
               border: OutlineInputBorder(),
             ),
             items: [
-              const DropdownMenuItem<Vinedo?>(value: null, child: Text('Todos los viñedos')),
+              DropdownMenuItem<Vinedo?>(value: null, child: Text(SoleraL10n.t('viti.todos_los_vinedos'))),
               for (final v in _vinedos) DropdownMenuItem<Vinedo?>(value: v, child: Text(v.nombre)),
             ],
             onChanged: (v) => setState(() => _vinedoSeleccionado = v),
@@ -171,7 +170,7 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
           DropdownButtonFormField<int>(
             initialValue: _ano,
             decoration: InputDecoration(
-              labelText: 'Campaña',
+              labelText: SoleraL10n.t('viti.campana'),
               border: OutlineInputBorder(),
             ),
             items: [
@@ -189,13 +188,13 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
                     height: 16,
                     child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                 : Icon(Icons.share),
-            label: Text('Generar y compartir'),
+            label: Text(SoleraL10n.t('viti.generar_y_compartir')),
           ),
           SizedBox(height: 12),
           OutlinedButton.icon(
             onPressed: _generando ? null : _generarYAbrir,
             icon: Icon(Icons.print),
-            label: Text('Generar y abrir'),
+            label: Text(SoleraL10n.t('viti.generar_y_abrir')),
           ),
           SizedBox(height: 24),
           Container(
@@ -206,12 +205,8 @@ class _PantallaLibroPacState extends State<PantallaLibroPac> {
               border: Border.all(color: Colors.grey.shade300),
             ),
             child: Text(
-              'El libro recoge únicamente los tratamientos fitosanitarios '
-              'registrados en el periodo. El manejo cultural (poda, riego, '
-              'abonado) no se incluye en el libro oficial.\n\n'
-              'Verifica el formato vigente del MAPA antes de presentar el '
-              'documento en inspección — la regulación se actualiza '
-              'periódicamente.',
+              '${SoleraL10n.t('viti.libro_pac_alcance')}\n\n'
+              '${SoleraL10n.t('viti.libro_pac_verifica_formato')}',
               style: TextStyle(fontSize: 13, color: Colors.black87),
             ),
           ),

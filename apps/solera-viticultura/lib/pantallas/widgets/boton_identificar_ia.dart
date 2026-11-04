@@ -84,7 +84,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
     if (clave == null || clave.isEmpty) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.')),
+        SnackBar(content: Text(SoleraL10n.t('viti.ia_sin_clave'))),
       );
       return;
     }
@@ -92,7 +92,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
     if (!fichero.existsSync()) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('La foto adjunta ya no existe en el dispositivo.')),
+        SnackBar(content: Text(SoleraL10n.t('viti.ia_foto_no_existe'))),
       );
       return;
     }
@@ -119,7 +119,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
       if (!mounted) return;
       setState(() => _ejecutando = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error inesperado: $e'), duration: const Duration(seconds: 6)),
+        SnackBar(content: Text(SoleraL10n.tf('viti.error_inesperado', {'error': e})), duration: const Duration(seconds: 6)),
       );
     }
   }
@@ -151,7 +151,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
             const SizedBox(width: 8),
             Expanded(
               child: Text(
-                'Adjunta una foto para activar la identificación con IA.',
+                SoleraL10n.t('viti.ia_adjunta_foto'),
                 style: TextStyle(fontSize: 13, color: Colors.amber.shade900),
               ),
             ),
@@ -164,7 +164,7 @@ class _BotonIdentificarIAState extends State<BotonIdentificarIA> {
           ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
           : const Icon(Icons.auto_awesome),
       onPressed: _ejecutando ? null : _ejecutar,
-      label: Text(_ejecutando ? 'Analizando foto…' : 'Identificar con IA'),
+      label: Text(_ejecutando ? SoleraL10n.t('viti.ia_analizando_foto') : SoleraL10n.t('viti.ia_identificar')),
     );
   }
 }
@@ -176,15 +176,15 @@ class _ModalResultadoIA extends StatelessWidget {
   String _tipoLegible(String tipo) {
     switch (tipo) {
       case 'plaga':
-        return 'Plaga';
+        return SoleraL10n.t('viti.tipo_incidencia_plaga');
       case 'enfermedad':
-        return 'Enfermedad';
+        return SoleraL10n.t('viti.tipo_incidencia_enfermedad');
       case 'fisiologico':
-        return 'Trastorno fisiológico';
+        return SoleraL10n.t('viti.ia_trastorno_fisiologico');
       case 'abiotico':
-        return 'Abiótico';
+        return SoleraL10n.t('viti.ia_abiotico');
       default:
-        return 'Indeterminado';
+        return SoleraL10n.t('viti.ia_indeterminado');
     }
   }
 
@@ -244,35 +244,33 @@ class _ModalResultadoIA extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            const Row(
+            Row(
               children: [
-                Icon(Icons.auto_awesome, color: Colors.deepPurple),
-                SizedBox(width: 8),
-                Text('Resultado de la IA',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Icon(Icons.auto_awesome, color: Colors.deepPurple),
+                const SizedBox(width: 8),
+                Text(SoleraL10n.t('viti.ia_resultado'),
+                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ],
             ),
             const SizedBox(height: 12),
             BannerCoincidenciaCatalogo(
               coincidencia: _estadoCoincidencia(coincidencia),
               nombreItemCoincidente: coincidencia?.nombreComun,
-              mensajeLibre:
-                  'Diagnóstico libre — no coincide con el catálogo curado de Larrea Viticultura. Revisa con criterio antes de aceptar.',
-              mensajeProvisional:
-                  'Coincide con el catálogo provisional. El catálogo aún no se ha validado agronómicamente: usa tu criterio.',
-              mensajeValidado: 'El diagnóstico coincide con el catálogo de Larrea',
+              mensajeLibre: SoleraL10n.t('viti.ia_diagnostico_libre'),
+              mensajeProvisional: SoleraL10n.t('viti.ia_coincide_provisional'),
+              mensajeValidado: SoleraL10n.t('viti.ia_coincide_validado'),
             ),
             const SizedBox(height: 16),
-            _FilaInfo(etiqueta: 'Nombre común', valor: resultado.nombreComun),
+            _FilaInfo(etiqueta: SoleraL10n.t('viti.nombre_comun'), valor: resultado.nombreComun),
             if (resultado.nombreCientifico.isNotEmpty)
-              _FilaInfo(etiqueta: 'Nombre científico', valor: resultado.nombreCientifico, italica: true),
-            _FilaInfo(etiqueta: 'Tipo', valor: _tipoLegible(resultado.tipo)),
+              _FilaInfo(etiqueta: SoleraL10n.t('viti.nombre_cientifico'), valor: resultado.nombreCientifico, italica: true),
+            _FilaInfo(etiqueta: SoleraL10n.t('viti.tipo'), valor: _tipoLegible(resultado.tipo)),
             if (resultado.severidad != null)
-              _FilaInfo(etiqueta: 'Severidad', valor: '${resultado.severidad} / 5'),
+              _FilaInfo(etiqueta: SoleraL10n.t('viti.severidad'), valor: '${resultado.severidad} / 5'),
             const SizedBox(height: 8),
             Row(
               children: [
-                const SizedBox(width: 110, child: Text('Confianza', style: TextStyle(color: Colors.grey))),
+                SizedBox(width: 110, child: Text(SoleraL10n.t('viti.confianza'), style: const TextStyle(color: Colors.grey))),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                   decoration: BoxDecoration(
@@ -313,8 +311,8 @@ class _ModalResultadoIA extends StatelessWidget {
             ],
             if (resultado.manejoCultural.isNotEmpty) ...[
               const SizedBox(height: 16),
-              const Text('Manejo cultural sugerido',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(SoleraL10n.t('viti.manejo_cultural_sugerido'),
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
               const SizedBox(height: 4),
               Text(resultado.manejoCultural, style: const TextStyle(fontSize: 14)),
             ],
@@ -325,15 +323,15 @@ class _ModalResultadoIA extends StatelessWidget {
                 color: Colors.grey.shade100,
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: const Row(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(Icons.gavel, size: 16, color: Colors.grey),
-                  SizedBox(width: 8),
+                  const Icon(Icons.gavel, size: 16, color: Colors.grey),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'La IA sugiere — tú decides. Antes de aplicar productos fitosanitarios, consulta con tu técnico de cooperativa, ATRIA o asesor enológico. Larrea Viticultura no recomienda productos comerciales en v0.1.',
-                      style: TextStyle(fontSize: 11, color: Colors.grey),
+                      SoleraL10n.t('viti.ia_aviso_tu_decides'),
+                      style: const TextStyle(fontSize: 11, color: Colors.grey),
                     ),
                   ),
                 ],
@@ -345,7 +343,7 @@ class _ModalResultadoIA extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => Navigator.of(ctx).pop(),
-                    child: const Text('Descartar'),
+                    child: Text(SoleraL10n.t('viti.descartar')),
                   ),
                 ),
                 const SizedBox(width: 8),
@@ -354,13 +352,14 @@ class _ModalResultadoIA extends StatelessWidget {
                     icon: const Icon(Icons.check),
                     onPressed: () {
                       final notasAuto = StringBuffer()
-                        ..write('Diagnóstico sugerido por Claude AI')
-                        ..write(' (confianza ${_formatearConfianza(resultado.confianza)})');
+                        ..write(SoleraL10n.tf('viti.ia_nota_diagnostico_sugerido', {
+                          'confianza': _formatearConfianza(resultado.confianza),
+                        }));
                       if (resultado.nombreCientifico.isNotEmpty) {
                         notasAuto.write(' — ${resultado.nombreCientifico}');
                       }
                       if (resultado.manejoCultural.isNotEmpty) {
-                        notasAuto.write('.\nManejo cultural sugerido: ${resultado.manejoCultural}');
+                        notasAuto.write('.\n${SoleraL10n.t('viti.manejo_cultural_sugerido')}: ${resultado.manejoCultural}');
                       }
                       Navigator.of(ctx).pop(DatosIncidenciaIA(
                         tipo: _tipoFormularioParaIncidencia(resultado.tipo),
@@ -369,7 +368,7 @@ class _ModalResultadoIA extends StatelessWidget {
                         notasAuto: notasAuto.toString(),
                       ));
                     },
-                    label: const Text('Aceptar y rellenar'),
+                    label: Text(SoleraL10n.t('viti.aceptar_y_rellenar')),
                   ),
                 ),
               ],

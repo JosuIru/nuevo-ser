@@ -90,7 +90,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
       if (!mounted) return;
       setState(() => _capturandoGps = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta permiso de ubicación o GPS desactivado.')),
+        SnackBar(content: Text(SoleraL10n.t('viti.falta_permiso_ubicacion'))),
       );
       return;
     }
@@ -106,7 +106,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
       if (!mounted) return;
       setState(() => _capturandoGps = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No se pudo obtener la ubicación.')),
+        SnackBar(content: Text(SoleraL10n.t('viti.no_se_pudo_obtener_ubicacion'))),
       );
     }
   }
@@ -126,7 +126,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
     if (!(_claveFormulario.currentState?.validate() ?? false)) return;
     if (_latitud == null || _longitud == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falta capturar la ubicación GPS.')),
+        SnackBar(content: Text(SoleraL10n.t('viti.falta_capturar_gps'))),
       );
       return;
     }
@@ -170,7 +170,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
   Widget build(BuildContext context) {
     final formatoFecha = DateFormat('dd/MM/yyyy');
     return Scaffold(
-      appBar: AppBar(title: Text(widget.esEdicion ? 'Editar cepa' : 'Nueva cepa')),
+      appBar: AppBar(title: Text(widget.esEdicion ? SoleraL10n.t('viti.editar_cepa') : SoleraL10n.t('viti.nueva_cepa'))),
       body: Form(
         key: _claveFormulario,
         child: ListView(
@@ -178,17 +178,17 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
           children: [
             CampoAutocompleteCatalogo<Variedad>(
               controlador: _controladorVariedad,
-              labelText: 'Variedad *',
+              labelText: SoleraL10n.t('viti.variedad_obligatoria_etiqueta'),
               hintText: 'tempranillo, garnacha, albariño…',
               opcionesCompletas: catalogoVariedades,
               buscar: buscarVariedades,
               displayStringForOption: (v) => v.nombreCanonico,
-              validator: (v) => (v ?? '').trim().isEmpty ? 'Variedad obligatoria' : null,
+              validator: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('viti.variedad_obligatoria') : null,
             ),
             const SizedBox(height: 12),
             CampoAutocompleteCatalogo<Portainjerto>(
               controlador: _controladorPortainjerto,
-              labelText: 'Portainjerto',
+              labelText: SoleraL10n.t('viti.portainjerto'),
               hintText: '110-R, SO4, 41-B…',
               opcionesCompletas: catalogoPortainjertos,
               buscar: buscarPortainjertos,
@@ -197,10 +197,10 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
             const SizedBox(height: 12),
             TextFormField(
               controller: _controladorEtiqueta,
-              decoration: const InputDecoration(
-                labelText: 'Etiqueta',
-                hintText: 'F3-12 (fila 3, planta 12)',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('viti.etiqueta'),
+                hintText: SoleraL10n.t('viti.etiqueta_ayuda'),
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 12),
@@ -208,7 +208,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.gps_fixed),
               title: Text(_latitud == null
-                  ? 'Sin ubicación'
+                  ? SoleraL10n.t('viti.sin_ubicacion')
                   : '${_latitud!.toStringAsFixed(6)}, ${_longitud!.toStringAsFixed(6)}'),
               trailing: _capturandoGps
                   ? const SizedBox(
@@ -217,30 +217,30 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
                       child: CircularProgressIndicator(strokeWidth: 2))
                   : TextButton(
                       onPressed: _capturarGps,
-                      child: Text(_latitud == null ? 'Capturar' : 'Recapturar'),
+                      child: Text(_latitud == null ? SoleraL10n.t('viti.capturar') : SoleraL10n.t('viti.recapturar')),
                     ),
             ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.event),
               title: Text(_fechaPlantacion == null
-                  ? 'Sin fecha de plantación'
-                  : 'Plantada ${formatoFecha.format(_fechaPlantacion!)}'),
+                  ? SoleraL10n.t('viti.sin_fecha_plantacion')
+                  : SoleraL10n.tf('viti.plantada_fecha', {'fecha': formatoFecha.format(_fechaPlantacion!)})),
               trailing: TextButton(
                 onPressed: _elegirFechaPlantacion,
-                child: Text(_fechaPlantacion == null ? 'Elegir' : 'Cambiar'),
+                child: Text(_fechaPlantacion == null ? SoleraL10n.t('viti.elegir') : SoleraL10n.t('viti.cambiar')),
               ),
             ),
             const SizedBox(height: 8),
-            const Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(SoleraL10n.t('viti.fotos'), style: const TextStyle(fontWeight: FontWeight.bold)),
             const SizedBox(height: 4),
             SelectorFotos(rutas: _rutasFotos, alCambiar: (r) => setState(() => _rutasFotos = r)),
             const SizedBox(height: 12),
             TextFormField(
               controller: _controladorNotas,
-              decoration: const InputDecoration(
-                labelText: 'Notas',
-                border: OutlineInputBorder(),
+              decoration: InputDecoration(
+                labelText: SoleraL10n.t('viti.notas'),
+                border: const OutlineInputBorder(),
               ),
               maxLines: 3,
             ),
@@ -253,7 +253,7 @@ class _PantallaNuevaCepaState extends State<PantallaNuevaCepa> {
                       height: 16,
                       child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                   : const Icon(Icons.check),
-              label: Text(widget.esEdicion ? 'Guardar cambios' : 'Guardar cepa'),
+              label: Text(widget.esEdicion ? SoleraL10n.t('viti.guardar_cambios') : SoleraL10n.t('viti.guardar_cepa')),
             ),
           ],
         ),

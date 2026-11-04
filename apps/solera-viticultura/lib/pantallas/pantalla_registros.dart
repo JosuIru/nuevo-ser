@@ -23,18 +23,18 @@ class PantallaRegistros extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Registros')),
+      appBar: AppBar(title: Text(SoleraL10n.t('viti.registros'))),
       body: ListView(
         children: [
-          const CabeceraSeccionAjustes('Cuaderno oficial'),
+          CabeceraSeccionAjustes(SoleraL10n.t('viti.cuaderno_oficial')),
           ListTile(
             leading: const Icon(Icons.description),
-            title: const Text('Libro PAC'),
-            subtitle: const Text('Cuaderno de explotación (RD 1311/2012)'),
+            title: Text(SoleraL10n.t('viti.libro_pac')),
+            subtitle: Text(SoleraL10n.t('viti.cuaderno_explotacion_rd')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(context, () => const PantallaLibroPac()),
           ),
-          const CabeceraSeccionAjustes('Economía'),
+          CabeceraSeccionAjustes(SoleraL10n.t('viti.economia')),
           ListTile(
             leading: const Icon(Icons.receipt),
             title: Text(SoleraL10n.t('facturas')),
@@ -45,14 +45,14 @@ class PantallaRegistros extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.menu_book),
             title: Text(SoleraL10n.t('libro_economico')),
-            subtitle: const Text('Ingresos y gastos · provisional'),
+            subtitle: Text(SoleraL10n.t('viti.ingresos_y_gastos_provisional')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(context, () => const PantallaLibroEconomico()),
           ),
           ListTile(
             leading: const Icon(Icons.summarize),
-            title: const Text('Extracto económico anual'),
-            subtitle: const Text('Resumen del año en PDF · provisional'),
+            title: Text(SoleraL10n.t('viti.extracto_economico_anual')),
+            subtitle: Text(SoleraL10n.t('viti.resumen_anual_pdf_provisional')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _abrir(
               context,

@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../servicios/servicio_commons.dart';
@@ -107,7 +108,10 @@ class _ImagenCommonsWidgetState extends State<ImagenCommonsWidget> {
                     const SizedBox(width: 4),
                     Expanded(
                       child: Text(
-                        'Foto: ${imagen.autorTexto} · ${imagen.licenciaCorta} · Wikimedia Commons',
+                        SoleraL10n.tf('viti.credito_foto_commons', {
+                          'autor': imagen.autorTexto,
+                          'licencia': imagen.licenciaCorta,
+                        }),
                         style: const TextStyle(fontSize: 11, color: Colors.grey, decoration: TextDecoration.underline),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,

@@ -75,7 +75,7 @@ class _PantallaChatState extends State<PantallaChat> {
     if (clave == null || clave.isEmpty) {
       setState(() {
         _mensajes.add(MensajeChat(
-          texto: 'Necesitas configurar tu clave de Anthropic en Ajustes → Identificación con IA.',
+          texto: SoleraL10n.t('viti.chat_sin_clave'),
           esUsuario: false,
           proveedor: proveedor,
         ));
@@ -85,7 +85,7 @@ class _PantallaChatState extends State<PantallaChat> {
 
     setState(() {
       _mensajes.add(MensajeChat(
-        texto: texto.isNotEmpty ? texto : '¿Qué ves en esta imagen?',
+        texto: texto.isNotEmpty ? texto : SoleraL10n.t('viti.chat_que_ves_imagen'),
         esUsuario: true,
         rutaImagen: imagen,
       ));
@@ -147,7 +147,7 @@ class _PantallaChatState extends State<PantallaChat> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Asistente'),
+        title: Text(SoleraL10n.t('viti.asistente')),
       ),
       body: Column(children: [
         Expanded(
@@ -160,10 +160,10 @@ class _PantallaChatState extends State<PantallaChat> {
                       children: [
                         Icon(Icons.chat_bubble_outline, size: 64, color: esquema.primary.withValues(alpha: 0.3)),
                         const SizedBox(height: 16),
-                        const Text(
-                          'Pregúntame lo que quieras sobre tus cepas,\nsíntomas, fenología, manejo o el cuaderno PAC…',
+                        Text(
+                          SoleraL10n.t('viti.chat_vacio'),
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.grey),
+                          style: const TextStyle(color: Colors.grey),
                         ),
                       ],
                     ),
@@ -225,7 +225,7 @@ class _PantallaChatState extends State<PantallaChat> {
                             Padding(
                               padding: const EdgeInsets.only(top: 2, left: 4),
                               child: Text(
-                                'vía Claude',
+                                SoleraL10n.t('viti.via_claude'),
                                 style: TextStyle(fontSize: 10, color: Colors.grey[400]),
                               ),
                             ),
@@ -256,7 +256,7 @@ class _PantallaChatState extends State<PantallaChat> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'Imagen adjunta: se enviará a Claude',
+                        SoleraL10n.t('viti.chat_imagen_adjunta'),
                         style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                       ),
                     ),
@@ -272,19 +272,19 @@ class _PantallaChatState extends State<PantallaChat> {
                 child: Row(children: [
                   IconButton(
                     icon: const Icon(Icons.camera_alt, size: 22),
-                    tooltip: 'Hacer foto',
+                    tooltip: SoleraL10n.t('viti.hacer_foto'),
                     onPressed: _hacerFoto,
                   ),
                   IconButton(
                     icon: const Icon(Icons.photo_library, size: 22),
-                    tooltip: 'Galería',
+                    tooltip: SoleraL10n.t('viti.galeria'),
                     onPressed: _elegirDeGaleria,
                   ),
                   Expanded(
                     child: TextField(
                       controller: _controladorMensaje,
                       decoration: InputDecoration(
-                        hintText: 'Escribe tu pregunta…',
+                        hintText: SoleraL10n.t('viti.escribe_tu_pregunta'),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(24)),
                         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       ),

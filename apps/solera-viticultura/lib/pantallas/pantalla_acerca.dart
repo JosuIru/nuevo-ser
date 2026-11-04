@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../datos/catalogos_generados/catalogo_bbch.dart';
@@ -25,7 +26,7 @@ class PantallaAcerca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Acerca de')),
+      appBar: AppBar(title: Text(SoleraL10n.t('acerca_de'))),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
@@ -54,46 +55,26 @@ class PantallaAcerca extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 32),
-          const Text(
-            'Larrea Viticultura es un gestor para bodegas pequeñas y '
-            'medianas: censo de cepas con GPS, anotación de cosechas, '
-            'observaciones, incidencias y tratamientos, identificación '
-            'de plagas por foto con IA y libro oficial PAC en PDF '
-            'firmable.',
-            style: TextStyle(fontSize: 14, height: 1.5),
+          Text(
+            SoleraL10n.t('viti.acerca_descripcion'),
+            style: const TextStyle(fontSize: 14, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Compromisos legales'),
-          const _Bullet(
-            'Larrea no recomienda productos fitosanitarios comerciales. '
-            'Consulta siempre a tu técnico de cooperativa, ATRIA o '
-            'asesor enológico antes de aplicar.',
-          ),
-          const _Bullet(
-            'El formato del libro oficial PAC (RD 1311/2012) cambia '
-            'periódicamente. Verifica el formato vigente del MAPA '
-            'antes de presentar el documento en inspección.',
-          ),
-          const _Bullet(
-            'Tu clave de Anthropic (si la configuras para la IA) se guarda '
-            'solo en tu dispositivo. Las fotos se envían directamente '
-            'a Anthropic, sin pasar por servidores intermedios.',
-          ),
+          _Seccion(SoleraL10n.t('viti.compromisos_legales')),
+          _Bullet(SoleraL10n.t('viti.compromiso_no_recomienda_productos')),
+          _Bullet(SoleraL10n.t('viti.compromiso_formato_pac')),
+          _Bullet(SoleraL10n.t('viti.compromiso_clave_anthropic')),
           const SizedBox(height: 24),
-          const _Seccion('Catálogos curados'),
+          _Seccion(SoleraL10n.t('viti.catalogos_curados')),
           _TarjetaCatalogos(),
           const SizedBox(height: 24),
-          const _Seccion('Familia Larrea'),
-          const Text(
-            'Larrea Viticultura forma parte de la suite Larrea, de la '
-            'Colección Nuevo Ser. Apps hermanas: Larrea (general — '
-            'frutales, trufa, olivar), Larrea Apícola (libro REGA), '
-            'Larrea Arbolado Urbano (B2B municipal), Larrea Quesera y '
-            'Larrea Aceitera.',
-            style: TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
+          _Seccion(SoleraL10n.t('viti.familia_larrea')),
+          Text(
+            SoleraL10n.t('viti.familia_larrea_texto'),
+            style: const TextStyle(fontSize: 13, color: Colors.black87, height: 1.5),
           ),
           const SizedBox(height: 24),
-          const _Seccion('Enlaces'),
+          _Seccion(SoleraL10n.t('viti.enlaces')),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.public),
@@ -117,8 +98,8 @@ class _TarjetaCatalogos extends StatelessWidget {
     final color = catalogosCompletamenteRevisados ? Colors.green : Colors.amber;
     final icono = catalogosCompletamenteRevisados ? Icons.verified : Icons.fact_check;
     final etiqueta = catalogosCompletamenteRevisados
-        ? 'Validados agronómica y enológicamente'
-        : 'PROVISIONALES — sin validar todavía';
+        ? SoleraL10n.t('viti.catalogos_validados')
+        : SoleraL10n.t('viti.catalogos_provisionales');
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -146,23 +127,21 @@ class _TarjetaCatalogos extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            '$totalFilas filas en 5 catálogos: '
-            '${catalogoVariedades.length} variedades, '
-            '${catalogoPortainjertos.length} portainjertos, '
-            '${catalogoPlagasVid.length} plagas/enfermedades, '
-            '${catalogoMateriasActivas.length} materias activas, '
-            '${calendarioFenologicoBbch.length} estados BBCH.',
+            SoleraL10n.tf('viti.resumen_catalogos', {
+              'total': totalFilas,
+              'variedades': catalogoVariedades.length,
+              'portainjertos': catalogoPortainjertos.length,
+              'plagas': catalogoPlagasVid.length,
+              'materias': catalogoMateriasActivas.length,
+              'bbch': calendarioFenologicoBbch.length,
+            }),
             style: TextStyle(fontSize: 13, height: 1.5, color: color.shade900),
           ),
           if (!catalogosCompletamenteRevisados) ...[
             const SizedBox(height: 8),
-            const Text(
-              'Rellenados a partir de fuentes públicas (MAPA, OIVE, '
-              'FAO BBCH). Antes de pasar a producción comercial deben ser '
-              'validados por un enólogo y un agrónomo. Las propuestas de '
-              'la IA que coincidan con el catálogo se marcan como '
-              '«provisionales», no como validadas.',
-              style: TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
+            Text(
+              SoleraL10n.t('viti.catalogos_provisionales_detalle'),
+              style: const TextStyle(fontSize: 12, color: Colors.black87, height: 1.5),
             ),
           ],
         ],

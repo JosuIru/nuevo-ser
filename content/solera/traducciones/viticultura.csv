@@ -1,0 +1,529 @@
+clave,es,eu,ca,gl
+viti.a_ingresar_hacienda_303,A ingresar en Hacienda (modelo 303 trimestral),"Ogasunean sartzeko (303 eredua, hiruhilekoa)",A ingressar a Hisenda (model 303 trimestral),A ingresar en Facenda (modelo 303 trimestral)
+viti.aceptar_y_rellenar,Aceptar y rellenar,Onartu eta bete,Acceptar i emplenar,Aceptar e encher
+viti.acerca_ayuda,"Versión, créditos, compromisos legales","Bertsioa, kredituak, lege-konpromisoak","Versió, crèdits, compromisos legals","Versión, créditos, compromisos legais"
+viti.acerca_descripcion,"Larrea Viticultura es un gestor para bodegas pequeñas y medianas: censo de cepas con GPS, anotación de cosechas, observaciones, incidencias y tratamientos, identificación de plagas por foto con IA y libro oficial PAC en PDF firmable.","Larrea Viticultura upeltegi txiki eta ertainentzako kudeatzailea da: mahatsondoen errolda GPSarekin, uzten, behaketen, gorabeheren eta tratamenduen erregistroa, izurriteen identifikazioa argazki bidez AArekin eta PAC liburu ofiziala PDF sinagarrian.","Larrea Viticultura és un gestor per a cellers petits i mitjans: cens de ceps amb GPS, registre de collites, observacions, incidències i tractaments, identificació de plagues per foto amb IA i llibre oficial PAC en PDF signable.","Larrea Viticultura é un xestor para adegas pequenas e medianas: censo de cepas con GPS, rexistro de colleitas, observacións, incidencias e tratamentos, identificación de pragas por foto con IA e libro oficial PAC en PDF asinable."
+viti.alta_demanda_hidrica,Alta demanda hídrica,Ur-eskari handia,Demanda hídrica alta,Alta demanda hídrica
+viti.alta_fecha,Alta {fecha},Alta: {fecha},Alta {fecha},Alta {fecha}
+viti.altitud_gps,Alt. GPS {valor},GPS alt. {valor},Alt. GPS {valor},Alt. GPS {valor}
+viti.ambiente_sensible_hongos,Ambiente sensible a hongos,Onddoetarako giro arriskutsua,Ambient sensible als fongs,Ambiente sensible aos fungos
+viti.ambiente_sensible_hongos_detalle,"Humedad alta con temperatura templada: revisa mildiu, oídio y botritis según el estado BBCH.","Hezetasun handia eta tenperatura epela: berrikusi mildiua, oidioa eta botritisa BBCH egoeraren arabera.","Humitat alta amb temperatura temperada: revisa míldiu, oïdi i botritis segons l'estat BBCH.","Humidade alta con temperatura temperada: revisa mildio, oídio e botrite segundo o estado BBCH."
+viti.ano_fiscal,Año fiscal,Zerga-urtea,Any fiscal,Ano fiscal
+viti.ano_fiscal_por_defecto,Año fiscal por defecto al abrir el libro,Liburua irekitzean lehenetsitako zerga-urtea,Any fiscal per defecte en obrir el llibre,Ano fiscal predeterminado ao abrir o libro
+viti.anular,Anular,Baliogabetu,Anul·lar,Anular
+viti.anular_factura_confirmar,"¿Anular {numero}? No se elimina, queda registrada como anulada.","{numero} baliogabetu? Ez da ezabatzen, baliogabetutzat erregistratuta geratzen da.","Vols anul·lar {numero}? No s'elimina, queda registrada com a anul·lada.","Anular {numero}? Non se elimina, queda rexistrada como anulada."
+viti.aplicador,Aplicador,Aplikatzailea,Aplicador,Aplicador
+viti.apunte_vinculado_tratamiento,Apunte vinculado a un tratamiento del libro PAC.,PAC liburuko tratamendu bati lotutako idazpena.,Assentament vinculat a un tractament del llibre PAC.,Apuntamento vinculado a un tratamento do libro PAC.
+viti.apuntes_de_gasto_n,Apuntes de gasto: {n},Gastuen idazpenak: {n},Assentaments de despesa: {n},Apuntamentos de gasto: {n}
+viti.apuntes_de_ingreso_n,Apuntes de ingreso: {n},Diru-sarreren idazpenak: {n},Assentaments d'ingrés: {n},Apuntamentos de ingreso: {n}
+viti.apuntes_ingresos_gastos,Apuntes: {ingresos} ingresos · {gastos} gastos,Idazpenak: {ingresos} diru-sarrera · {gastos} gastu,Assentaments: {ingresos} ingressos · {gastos} despeses,Apuntamentos: {ingresos} ingresos · {gastos} gastos
+viti.asesor_si_aplica,Asesor (si aplica),Aholkularia (hala badagokio),Assessor (si escau),Asesor (se procede)
+viti.asistente,Asistente,Laguntzailea,Assistent,Asistente
+viti.asistente_chat,Asistente (chat),Laguntzailea (txata),Assistent (xat),Asistente (chat)
+viti.asistente_chat_ayuda,"Pregunta a Claude por síntomas, fenología o manejo. Usa tu clave de Anthropic.","Galdetu Claudeari sintomei, fenologiari edo maneiuari buruz. Zure Anthropic gakoa erabiltzen du.","Pregunta a Claude per símptomes, fenologia o maneig. Fa servir la teva clau d'Anthropic.","Pregúntalle a Claude por síntomas, fenoloxía ou manexo. Usa a túa clave de Anthropic."
+viti.asunto_factura,Factura {numero} — {cliente},{numero} faktura — {cliente},Factura {numero} — {cliente},Factura {numero} — {cliente}
+viti.autocalcular_iva,Autocalcular IVA,Kalkulatu IVA automatikoki,Calcular l'IVA automàticament,Calcular o IVA automaticamente
+viti.autocalcular_iva_compensacion,Autocalcular IVA / compensación,Kalkulatu automatikoki IVA / konpentsazioa,Calcular automàticament IVA / compensació,Calcular automaticamente IVA / compensación
+viti.autocalculo_alquiler,Alquiler agrícola exento (pasa al 21 % si el uso no es agrícola),"Nekazaritzako alokairua, salbuetsia (% 21era igarotzen da erabilera ez bada nekazaritzakoa)",Lloguer agrícola exempt (passa al 21 % si l'ús no és agrícola),Aluguer agrícola exento (pasa ao 21 % se o uso non é agrícola)
+viti.autocalculo_general,21 % IVA general,% 21eko IVA orokorra,21 % IVA general,21 % IVA xeral
+viti.autocalculo_general_uva,Régimen general: 4 % de IVA sobre la uva (alimento de primera necesidad),Araubide orokorra: % 4ko IVA mahatsari (oinarrizko elikagaia),Règim general: 4 % d'IVA sobre el raïm (aliment de primera necessitat),Réxime xeral: 4 % de IVA sobre a uva (alimento de primeira necesidade)
+viti.autocalculo_insumos,4 % IVA superreducido (insumo agrario),% 4ko IVA super-murriztua (nekazaritzako intsumoa),4 % IVA superreduït (insum agrari),4 % IVA superreducido (insumo agrario)
+viti.autocalculo_mano_obra,Mano de obra agrícola: típicamente sin IVA,Nekazaritzako eskulana: normalean IVArik gabe,Mà d'obra agrícola: normalment sense IVA,Man de obra agrícola: normalmente sen IVA
+viti.autocalculo_reagp_uva,REAGP: 12 % sobre la base como compensación al viticultor,"REAGP: oinarriaren % 12, mahastizainarentzako konpentsazio gisa",REAGP: 12 % sobre la base com a compensació al viticultor,REAGP: 12 % sobre a base como compensación ao viticultor
+viti.autocalculo_seguros,Exento de IVA (art. 20 LIVA),IVAtik salbuetsia (LIVAren 20. art.),Exempt d'IVA (art. 20 LIVA),Exento de IVA (art. 20 LIVA)
+viti.autocalculo_vino,Venta de vino: 21 % IVA general (bebida alcohólica),Ardo-salmenta: % 21eko IVA orokorra (edari alkoholduna),Venda de vi: 21 % IVA general (beguda alcohòlica),Venda de viño: 21 % IVA xeral (bebida alcohólica)
+viti.autorizada_ecologico,Autorizada en ecológico,Ekologikoan baimendua,Autoritzada en ecològic,Autorizada en ecolóxico
+viti.aviso_decadas_orientativas,"Las décadas son orientativas (±2 décadas según año, microclima y altitud). Verifica con tu boletín de avisos fitosanitarios local antes de planificar tratamientos.","Hamarrekoak gutxi gorabeherakoak dira (±2 hamarreko, urtearen, mikroklimaren eta altueraren arabera). Egiaztatu tokiko abisu fitosanitarioen buletinarekin tratamenduak planifikatu aurretik.","Les desenes són orientatives (±2 desenes segons l'any, el microclima i l'altitud). Comprova-ho amb el butlletí d'avisos fitosanitaris local abans de planificar tractaments.","As décadas son orientativas (±2 décadas segundo o ano, o microclima e a altitude). Compróbao co boletín de avisos fitosanitarios local antes de planificar tratamentos."
+viti.aviso_fiscal_provisional,"Provisional. El formato del libro y del extracto está pendiente de validación por asesor fiscal. Antes de presentar nada en una declaración, contrasta con tu asesor.","Behin-behinekoa. Liburuaren eta laburpenaren formatua zerga-aholkulari batek baliozkotzeko dago. Aitorpen batean ezer aurkeztu aurretik, egiaztatu zure aholkulariarekin.","Provisional. El format del llibre i de l'extracte està pendent de validació per un assessor fiscal. Abans de presentar res en una declaració, contrasta-ho amb el teu assessor.","Provisional. O formato do libro e do extracto está pendente de validación por un asesor fiscal. Antes de presentar nada nunha declaración, contrástao co teu asesor."
+viti.ayudas_no_ingreso_ordinario,Fiscalmente no son ingreso ordinario,Fiskalki ez dira ohiko diru-sarrera,Fiscalment no són ingrés ordinari,Fiscalmente non son ingreso ordinario
+viti.ayudas_pac_y_subvenciones,Ayudas PAC y subvenciones,PAC laguntzak eta diru-laguntzak,Ajuts PAC i subvencions,Axudas PAC e subvencións
+viti.ayudas_pac_y_subvenciones_ano,Ayudas PAC y subvenciones {ano},PAC laguntzak eta diru-laguntzak {ano},Ajuts PAC i subvencions {ano},Axudas PAC e subvencións {ano}
+viti.backup_asunto_compartir,Copia de seguridad de Larrea Viticultura,Larrea Viticulturaren segurtasun-kopia,Còpia de seguretat de Larrea Viticultura,Copia de seguridade de Larrea Viticultura
+viti.backup_ayuda_zip,Empaqueta la base de datos y las fotos en un ZIP,Datu-basea eta argazkiak ZIP batean biltzen ditu,Empaqueta la base de dades i les fotos en un ZIP,Empaqueta a base de datos e as fotos nun ZIP
+viti.backup_copia_del,Copia del {fecha},{fecha}(e)ko kopia,Còpia del {fecha},Copia do {fecha}
+viti.backup_copia_sin_fecha,Copia de una versión anterior de la app (sin fecha guardada),Aplikazioaren aurreko bertsio bateko kopia (datarik gorde gabe),Còpia d'una versió anterior de l'app (sense data desada),Copia dunha versión anterior da app (sen data gardada)
+viti.backup_crear_copia,Crear copia,Sortu kopia,Crear una còpia,Crear copia
+viti.backup_crear_explicacion,"Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí. La clave de Anthropic no va en la copia.","Datu-basea eta argazki guztiak ZIP batean biltzen ditu, WhatsApp, Drive edo posta bidez parteka dezakezuna edo ordenagailura kopia dezakezuna. Aplikazioa berriro instalatzen baduzu edo mugikorra aldatzen baduzu, hemendik leheneratu ahal izango duzu. Anthropic gakoa ez doa kopian.","Empaqueta la base de dades i totes les fotos en un ZIP que pots compartir per WhatsApp, Drive, correu o copiar a l'ordinador. Si reinstal·les l'app o canvies de mòbil, podràs restaurar des d'aquí. La clau d'Anthropic no va a la còpia.","Empaqueta a base de datos e todas as fotos nun ZIP que podes compartir por WhatsApp, Drive, correo ou copiar ao PC. Se reinstalas a app ou cambias de móbil poderás restaurar desde aquí. A clave de Anthropic non vai na copia."
+viti.backup_datos_intactos,Tus datos no se han tocado.,Zure datuak ez dira ukitu.,Les teves dades no s'han tocat.,Os teus datos non se tocaron.
+viti.backup_elegir_y_restaurar,Elegir copia y restaurar,Aukeratu kopia eta leheneratu,Triar una còpia i restaurar,Escoller copia e restaurar
+viti.backup_error_bd_danada,La base de datos de la copia está dañada.,Kopiaren datu-basea hondatuta dago.,La base de dades de la còpia està malmesa.,A base de datos da copia está danada.
+viti.backup_error_fichero_no_existe,No se encuentra el fichero elegido.,Ez da aurkitzen aukeratutako fitxategia.,No es troba el fitxer triat.,Non se atopa o ficheiro escollido.
+viti.backup_error_manifiesto,La copia está incompleta o dañada: no se entiende su descripción.,Kopia osatu gabe edo hondatuta dago: ezin da bere deskribapena ulertu.,La còpia és incompleta o està malmesa: no se n'entén la descripció.,A copia está incompleta ou danada: non se entende a súa descrición.
+viti.backup_error_no_es_zip,El fichero no es un ZIP válido o está dañado.,Fitxategia ez da baliozko ZIP bat edo hondatuta dago.,El fitxer no és un ZIP vàlid o està malmès.,O ficheiro non é un ZIP válido ou está danado.
+viti.backup_error_otra_app,"La copia es de otra aplicación, no de Larrea Viticultura.","Kopia beste aplikazio batekoa da, ez Larrea Viticulturarena.","La còpia és d'una altra aplicació, no de Larrea Viticultura.","A copia é doutra aplicación, non de Larrea Viticultura."
+viti.backup_error_respaldo_previo,"No se pudo guardar antes una copia del estado actual, así que no se ha restaurado nada.","Ezin izan da aurretik uneko egoeraren kopia bat gorde; beraz, ez da ezer leheneratu.","No s'ha pogut desar abans una còpia de l'estat actual, així que no s'ha restaurat res.","Non se puido gardar antes unha copia do estado actual, así que non se restaurou nada."
+viti.backup_error_reversion_fallida,La restauración falló y no se pudo volver del todo al estado anterior. Tu estado anterior está guardado en la copia automática: {ruta},Leheneratzeak huts egin du eta ezin izan da guztiz itzuli aurreko egoerara. Zure aurreko egoera kopia automatikoan gordeta dago: {ruta},La restauració ha fallat i no s'ha pogut tornar del tot a l'estat anterior. El teu estat anterior està desat a la còpia automàtica: {ruta},A restauración fallou e non se puido volver de todo ao estado anterior. O teu estado anterior está gardado na copia automática: {ruta}
+viti.backup_error_revertida,La restauración falló a mitad y se ha vuelto al estado anterior.,Leheneratzeak huts egin du erdian eta aurreko egoerara itzuli da.,La restauració ha fallat a mitges i s'ha tornat a l'estat anterior.,A restauración fallou a medias e volveuse ao estado anterior.
+viti.backup_error_ruta_peligrosa,La copia contiene rutas no permitidas y se ha rechazado.,Kopiak baimendu gabeko bideak ditu eta baztertu egin da.,La còpia conté rutes no permeses i s'ha rebutjat.,A copia contén rutas non permitidas e rexeitouse.
+viti.backup_error_sin_datos,Todavía no hay datos que copiar.,Oraindik ez dago kopiatzeko daturik.,Encara no hi ha dades per copiar.,Aínda non hai datos que copiar.
+viti.backup_error_sin_datos_app,El ZIP no contiene datos de Larrea Viticultura.,ZIPak ez du Larrea Viticulturaren daturik.,El ZIP no conté dades de Larrea Viticultura.,O ZIP non contén datos de Larrea Viticultura.
+viti.backup_error_version_nueva,La copia es de una versión más nueva de Larrea Viticultura. Actualiza la app y vuelve a intentarlo.,Kopia Larrea Viticulturaren bertsio berriago batekoa da. Eguneratu aplikazioa eta saiatu berriro.,La còpia és d'una versió més nova de Larrea Viticultura. Actualitza l'app i torna-ho a provar.,A copia é dunha versión máis nova de Larrea Viticultura. Actualiza a app e téntao de novo.
+viti.backup_no_restaurable,Esa copia no se puede restaurar.,Kopia hori ezin da leheneratu.,Aquesta còpia no es pot restaurar.,Esa copia non se pode restaurar.
+viti.backup_no_se_pudo_crear,No se pudo crear la copia.,Ezin izan da kopia sortu.,No s'ha pogut crear la còpia.,Non se puido crear a copia.
+viti.backup_no_se_pudo_leer,No se pudo leer la copia: {error}. Tus datos no se han tocado.,Ezin izan da kopia irakurri: {error}. Zure datuak ez dira ukitu.,No s'ha pogut llegir la còpia: {error}. Les teves dades no s'han tocat.,Non se puido ler a copia: {error}. Os teus datos non se tocaron.
+viti.backup_no_se_pudo_restaurar,No se pudo restaurar.,Ezin izan da leheneratu.,No s'ha pogut restaurar.,Non se puido restaurar.
+viti.backup_nunca,Nunca. Te recomendamos hacer una antes de salir al campo.,Inoiz ez. Landara irten aurretik bat egitea gomendatzen dizugu.,Mai. Et recomanem fer-ne una abans de sortir al camp.,Nunca. Recomendámosche facer unha antes de saír ao campo.
+viti.backup_restaurada,Copia restaurada.,Kopia leheneratu da.,Còpia restaurada.,Copia restaurada.
+viti.backup_restaurada_con_respaldo,Copia restaurada. Tu estado anterior se guardó en {fichero}.,Kopia leheneratu da. Zure aurreko egoera hemen gorde da: {fichero}.,Còpia restaurada. El teu estat anterior s'ha desat a {fichero}.,Copia restaurada. O teu estado anterior gardouse en {fichero}.
+viti.backup_restaurar_detalle,"Primero se comprueba la copia y se te enseña de cuándo es. Si confirmas, sustituye la base de datos actual por la de la copia y añade sus fotos; antes se guarda una copia automática del estado actual. Si algo falla a mitad, se vuelve al estado anterior.","Lehenik kopia egiaztatzen da eta noizkoa den erakusten zaizu. Berresten baduzu, uneko datu-basea kopiakoarekin ordezten du eta bere argazkiak gehitzen ditu; aurretik, uneko egoeraren kopia automatiko bat gordetzen da. Zerbaitek huts egiten badu erdian, aurreko egoerara itzultzen da.","Primer es comprova la còpia i se't mostra de quan és. Si confirmes, substitueix la base de dades actual per la de la còpia i n'afegeix les fotos; abans es desa una còpia automàtica de l'estat actual. Si alguna cosa falla a mitges, es torna a l'estat anterior.","Primeiro compróbase a copia e amósasche de cando é. Se confirmas, substitúe a base de datos actual pola da copia e engade as súas fotos; antes gárdase unha copia automática do estado actual. Se algo falla a medias, vólvese ao estado anterior."
+viti.backup_restaurar_esta_copia,Restaurar esta copia,Leheneratu kopia hau,Restaurar aquesta còpia,Restaurar esta copia
+viti.backup_restaurar_explicacion,Sustituye la base de datos actual por la de la copia y añade sus fotos. Antes se guarda automáticamente una copia del estado actual.,"Uneko datu-basea kopiakoarekin ordezten du eta bere argazkiak gehitzen ditu. Aurretik, uneko egoeraren kopia bat gordetzen da automatikoki.",Substitueix la base de dades actual per la de la còpia i n'afegeix les fotos. Abans es desa automàticament una còpia de l'estat actual.,Substitúe a base de datos actual pola da copia e engade as súas fotos. Antes gárdase automaticamente unha copia do estado actual.
+viti.backup_restaurar_una_copia,Restaurar una copia,Leheneratu kopia bat,Restaurar una còpia,Restaurar unha copia
+viti.backup_ultima_copia,Última copia,Azken kopia,Última còpia,Última copia
+viti.base_imponible,Base imponible,Zerga-oinarria,Base imposable,Base impoñible
+viti.base_imponible_sin_iva_soportado,Base imponible (sin IVA soportado),Zerga-oinarria (jasandako IVArik gabe),Base imposable (sense IVA suportat),Base impoñible (sen IVA soportado)
+viti.borrar_tercero,Borrar tercero,Ezabatu hirugarrena,Esborrar el tercer,Borrar terceiro
+viti.borrar_tercero_aviso,"Se borrará «{nombre}». Los apuntes asociados conservarán el importe, pero pierden la referencia al NIF — afectará al extracto del modelo 347 si es de un año aún declarado.","«{nombre}» ezabatuko da. Lotutako idazpenek zenbatekoa gordeko dute, baina NIFaren erreferentzia galduko dute — 347 ereduaren laburpenean eragina izango du oraindik aitortu gabeko urte batekoa bada.","S'esborrarà «{nombre}». Els assentaments associats conservaran l'import, però perdran la referència al NIF — afectarà l'extracte del model 347 si és d'un any encara per declarar.","Borrarase «{nombre}». Os apuntamentos asociados conservarán o importe, pero perden a referencia ao NIF — afectará ao extracto do modelo 347 se é dun ano aínda por declarar."
+viti.buscar_cepas_ayuda,"Buscar (etiqueta, variedad, portainjerto, notas)","Bilatu (etiketa, barietatea, txertaka, oharrak)","Cerca (etiqueta, varietat, portaempelt, notes)","Buscar (etiqueta, variedade, portaenxerto, notas)"
+viti.buscar_plagas_ayuda,"Buscar mildiu, oídio, Xylella…","Bilatu: mildiu, oídio, Xylella…","Cerca mildiu, oídio, Xylella…","Buscar mildiu, oídio, Xylella…"
+viti.buscar_por_nombre_o_nif,Buscar por nombre o NIF,Bilatu izenaren edo NIFaren arabera,Cerca per nom o NIF,Buscar por nome ou NIF
+viti.buscar_un_lugar,Buscar un lugar,Bilatu leku bat,Cercar un lloc,Buscar un lugar
+viti.buscar_variedades_ayuda,"Buscar tempranillo, albariño…","Bilatu: tempranillo, albariño…","Cerca tempranillo, albariño…","Buscar tempranillo, albariño…"
+viti.calidad,Calidad,Kalitatea,Qualitat,Calidade
+viti.calidad_n,calidad {n},kalitatea {n},qualitat {n},calidade {n}
+viti.caliza_activa_valor,Caliza activa: {porcentaje} %,Kareharri aktiboa: % {porcentaje},Calcària activa: {porcentaje} %,Calcaria activa: {porcentaje} %
+viti.cambiar,Cambiar,Aldatu,Canviar,Cambiar
+viti.campana,Campaña,Kanpaina,Campanya,Campaña
+viti.campo_obligatorio,{campo} obligatorio,{campo}: derrigorrezkoa,{campo}: obligatori,{campo}: obrigatorio
+viti.cantidad,Cantidad,Kantitatea,Quantitat,Cantidade
+viti.cantidad_unidad,Cantidad ({unidad}),Kantitatea ({unidad}),Quantitat ({unidad}),Cantidade ({unidad})
+viti.capas,Capas,Geruzak,Capes,Capas
+viti.captura_posicion_nueva,Captura una posición nueva del dispositivo.,Hartu gailuaren posizio berri bat.,Captura una posició nova del dispositiu.,Captura unha posición nova do dispositivo.
+viti.capturar,Capturar,Hartu,Capturar,Capturar
+viti.cargando_prevision_meteo,Cargando previsión meteo…,Eguraldi-iragarpena kargatzen…,Carregant la previsió meteo…,Cargando a previsión meteo…
+viti.carnet_basico,Básico,Oinarrizkoa,Bàsic,Básico
+viti.carnet_cualificado,Cualificado,Kualifikatua,Qualificat,Cualificado
+viti.carnet_fumigador,Fumigador,Fumigatzailea,Fumigador,Fumigador
+viti.carnet_piloto_aplicador,Piloto aplicador,Pilotu aplikatzailea,Pilot aplicador,Piloto aplicador
+viti.catalogos_curados,Catálogos curados,Katalogo zainduak,Catàlegs curats,Catálogos curados
+viti.catalogos_provisionales,PROVISIONALES — sin validar todavía,BEHIN-BEHINEKOAK — oraindik baliozkotu gabe,PROVISIONALS — encara sense validar,PROVISIONAIS — aínda sen validar
+viti.catalogos_provisionales_detalle,"Rellenados a partir de fuentes públicas (MAPA, OIVE, FAO BBCH). Antes de pasar a producción comercial deben ser validados por un enólogo y un agrónomo. Las propuestas de la IA que coincidan con el catálogo se marcan como «provisionales», no como validadas.","Iturri publikoetatik betea (MAPA, OIVE, FAO BBCH). Ekoizpen komertzialera igaro aurretik, enologo batek eta agronomo batek baliozkotu behar dituzte. Katalogoarekin bat datozen AAren proposamenak «behin-behineko» gisa markatzen dira, ez baliozkotu gisa.","Emplenats a partir de fonts públiques (MAPA, OIVE, FAO BBCH). Abans de passar a producció comercial els ha de validar un enòleg i un agrònom. Les propostes de la IA que coincideixin amb el catàleg es marquen com a «provisionals», no com a validades.","Enchidos a partir de fontes públicas (MAPA, OIVE, FAO BBCH). Antes de pasar a produción comercial deben validalos un enólogo e un agrónomo. As propostas da IA que coincidan co catálogo márcanse como «provisionais», non como validadas."
+viti.catalogos_validados,Validados agronómica y enológicamente,Agronomikoki eta enologikoki baliozkotuak,Validats agronòmicament i enològicament,Validados agronómica e enoloxicamente
+viti.cepas,Cepas,Mahatsondoak,Ceps,Cepas
+viti.chat_imagen_adjunta,Imagen adjunta: se enviará a Claude,Irudia erantsita: Claudeari bidaliko zaio,Imatge adjunta: s'enviarà a Claude,Imaxe achegada: enviaráselle a Claude
+viti.chat_que_ves_imagen,¿Qué ves en esta imagen?,Zer ikusten duzu irudi honetan?,Què veus en aquesta imatge?,Que ves nesta imaxe?
+viti.chat_sin_clave,Necesitas configurar tu clave de Anthropic en Ajustes → Identificación con IA.,Zure Anthropic gakoa konfiguratu behar duzu Ezarpenak → AA bidezko identifikazioa atalean.,Has de configurar la teva clau d'Anthropic a Configuració → Identificació amb IA.,Tes que configurar a túa clave de Anthropic en Axustes → Identificación con IA.
+viti.chat_vacio,"Pregúntame lo que quieras sobre tus cepas, síntomas, fenología, manejo o el cuaderno PAC…","Galdetu nahi duzuna zure mahatsondoei, sintomei, fenologiari, maneiuari edo PAC koadernoari buruz…","Pregunta'm el que vulguis sobre els teus ceps, símptomes, fenologia, maneig o el quadern PAC…","Pregúntame o que queiras sobre as túas cepas, síntomas, fenoloxía, manexo ou o caderno PAC…"
+viti.cliente,Cliente,Bezeroa,Client,Cliente
+viti.cliente_minuscula,cliente,bezeroa,client,cliente
+viti.cliente_y_proveedor,Cliente y proveedor,Bezeroa eta hornitzailea,Client i proveïdor,Cliente e provedor
+viti.cliente_y_proveedor_minuscula,cliente y proveedor,bezeroa eta hornitzailea,client i proveïdor,cliente e provedor
+viti.clientes_y_proveedores,Clientes y proveedores,Bezeroak eta hornitzaileak,Clients i proveïdors,Clientes e provedores
+viti.color_blanca,Blanca,Zuria,Blanca,Branca
+viti.color_rosada,Rosada,Arrosa,Rosada,Rosada
+viti.color_tinta,Tinta,Beltza,Negra,Tinta
+viti.compensacion_reagp_ayuda,12 % sobre la base de uva — solo se aplica a la venta de uva,Mahats-oinarriaren % 12 — mahats-salmentari bakarrik aplikatzen zaio,12 % sobre la base de raïm — només s'aplica a la venda de raïm,12 % sobre a base de uva — só se aplica á venda de uva
+viti.compensacion_reagp_cobrada,Compensación REAGP cobrada,Kobratutako REAGP konpentsazioa,Compensació REAGP cobrada,Compensación REAGP cobrada
+viti.compensacion_reagp_euros,Compensación REAGP (€),REAGP konpentsazioa (€),Compensació REAGP (€),Compensación REAGP (€)
+viti.compromiso_clave_anthropic,"Tu clave de Anthropic (si la configuras para la IA) se guarda solo en tu dispositivo. Las fotos se envían directamente a Anthropic, sin pasar por servidores intermedios.","Zure Anthropic gakoa (AArako konfiguratzen baduzu) zure gailuan bakarrik gordetzen da. Argazkiak zuzenean bidaltzen zaizkio Anthropici, tarteko zerbitzaririk gabe.","La teva clau d'Anthropic (si la configures per a la IA) només es desa al teu dispositiu. Les fotos s'envien directament a Anthropic, sense passar per servidors intermedis.","A túa clave de Anthropic (se a configuras para a IA) gárdase só no teu dispositivo. As fotos envíanse directamente a Anthropic, sen pasar por servidores intermedios."
+viti.compromiso_formato_pac,El formato del libro oficial PAC (RD 1311/2012) cambia periódicamente. Verifica el formato vigente del MAPA antes de presentar el documento en inspección.,PAC liburu ofizialaren formatua (RD 1311/2012) aldizka aldatzen da. Egiaztatu MAPAren formatu indarrekoa dokumentua ikuskapenean aurkeztu aurretik.,El format del llibre oficial PAC (RD 1311/2012) canvia periòdicament. Comprova el format vigent del MAPA abans de presentar el document en una inspecció.,O formato do libro oficial PAC (RD 1311/2012) cambia periodicamente. Comproba o formato vixente do MAPA antes de presentar o documento nunha inspección.
+viti.compromiso_no_recomienda_productos,"Larrea no recomienda productos fitosanitarios comerciales. Consulta siempre a tu técnico de cooperativa, ATRIA o asesor enológico antes de aplicar.","Larreak ez du produktu fitosanitario komertzialik gomendatzen. Galdetu beti zure kooperatibako teknikariari, ATRIAri edo aholkulari enologikoari aplikatu aurretik.","Larrea no recomana productes fitosanitaris comercials. Consulta sempre el tècnic de la cooperativa, l'ATRIA o l'assessor enològic abans d'aplicar.","Larrea non recomenda produtos fitosanitarios comerciais. Consulta sempre co técnico da cooperativa, a ATRIA ou o asesor enolóxico antes de aplicar."
+viti.compromisos_legales,Compromisos legales,Lege-konpromisoak,Compromisos legals,Compromisos legais
+viti.concepto_gasto_ayuda,Ej.: Sulfato de cobre / 8 jornales de vendimia,Adib.: kobre-sulfatoa / mahats-bilketako 8 jornal,P. ex.: sulfat de coure / 8 jornals de verema,Ex.: sulfato de cobre / 8 xornais de vindima
+viti.concepto_ingreso_ayuda,Ej.: 2500 kg de tempranillo / 300 botellas de crianza,Adib.: 2500 kg tempranillo / 300 botila crianza,P. ex.: 2500 kg de tempranillo / 300 ampolles de criança,Ex.: 2500 kg de tempranillo / 300 botellas de crianza
+viti.concepto_obligatorio,Concepto obligatorio,Kontzeptua derrigorrezkoa da,El concepte és obligatori,O concepto é obrigatorio
+viti.concepto_obligatorio_etiqueta,Concepto *,Kontzeptua *,Concepte *,Concepto *
+viti.condiciones_favorables,Condiciones favorables,Baldintza egokiak,Condicions favorables,Condicións favorables
+viti.confianza,Confianza,Konfiantza,Confiança,Confianza
+viti.configura_clave_anthropic,Configura tu clave de Anthropic (Claude),Konfiguratu zure Anthropic gakoa (Claude),Configura la teva clau d'Anthropic (Claude),Configura a túa clave de Anthropic (Claude)
+viti.configura_primero_titular,Configura primero el titular de la explotación.,Konfiguratu lehenik ustiategiaren titularra.,Configura primer el titular de l'explotació.,Configura primeiro o titular da explotación.
+viti.configura_regimen_iva,Configura el régimen de IVA en Ajustes,Konfiguratu IVA araubidea Ezarpenetan,Configura el règim d'IVA a Configuració,Configura o réxime de IVA en Axustes
+viti.configura_regimen_iva_calculo,Configura el régimen de IVA en Ajustes → Configuración fiscal para que la app calcule la compensación o el IVA repercutido.,"Konfiguratu IVA araubidea Ezarpenak → Konfigurazio fiskala atalean, aplikazioak konpentsazioa edo jasanarazitako IVA kalkula dezan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè l'app calculi la compensació o l'IVA repercutit.,Configura o réxime de IVA en Axustes → Configuración fiscal para que a app calcule a compensación ou o IVA repercutido.
+viti.configura_regimen_iva_resumen,Configura el régimen de IVA en Ajustes → Configuración fiscal para que el resumen distinga REAGP de régimen general.,"Konfiguratu IVA araubidea Ezarpenak → Konfigurazio fiskala atalean, laburpenak REAGP eta araubide orokorra bereiz ditzan.",Configura el règim d'IVA a Configuració → Configuració fiscal perquè el resum distingeixi REAGP de règim general.,Configura o réxime de IVA en Axustes → Configuración fiscal para que o resumo distinga REAGP de réxime xeral.
+viti.configurar_correo_respaldo,Configurar correo de respaldo,Konfiguratu babeskopiarako posta,Configurar el correu de còpia,Configurar o correo de respaldo
+viti.coordenadas,Coordenadas,Koordenatuak,Coordenades,Coordenadas
+viti.copia_para,Copia para: {email},Kopia honentzat: {email},Còpia per a: {email},Copia para: {email}
+viti.cosecha,Cosecha,Uzta,Collita,Colleita
+viti.crear,Crear,Sortu,Crear,Crear
+viti.credito_foto_commons,Foto: {autor} · {licencia} · Wikimedia Commons,Argazkia: {autor} · {licencia} · Wikimedia Commons,Foto: {autor} · {licencia} · Wikimedia Commons,Foto: {autor} · {licencia} · Wikimedia Commons
+viti.cuaderno_explotacion_rd,Cuaderno de explotación (RD 1311/2012),Ustiategiaren koadernoa (RD 1311/2012),Quadern d'explotació (RD 1311/2012),Caderno de explotación (RD 1311/2012)
+viti.cuaderno_oficial,Cuaderno oficial,Koaderno ofiziala,Quadern oficial,Caderno oficial
+viti.datos_pac_libro_oficial,Datos PAC (libro oficial),PAC datuak (liburu ofiziala),Dades PAC (llibre oficial),Datos PAC (libro oficial)
+viti.datos_personales,Datos personales,Datu pertsonalak,Dades personals,Datos persoais
+viti.de_abril,de abril,apirilaren,d'abril,de abril
+viti.de_agosto,de agosto,abuztuaren,d'agost,de agosto
+viti.de_diciembre,de diciembre,abenduaren,de desembre,de decembro
+viti.de_enero,de enero,urtarrilaren,de gener,de xaneiro
+viti.de_febrero,de febrero,otsailaren,de febrer,de febreiro
+viti.de_julio,de julio,uztailaren,de juliol,de xullo
+viti.de_junio,de junio,ekainaren,de juny,de xuño
+viti.de_marzo,de marzo,martxoaren,de març,de marzo
+viti.de_mayo,de mayo,maiatzaren,de maig,de maio
+viti.de_noviembre,de noviembre,azaroaren,de novembre,de novembro
+viti.de_octubre,de octubre,urriaren,d'octubre,de outubro
+viti.de_septiembre,de septiembre,irailaren,de setembre,de setembro
+viti.decada_de_mes,{n}.ª década {mes_de},{mes_de} {n}. hamarrekoa,{n}a desena {mes_de},{n}.ª década {mes_de}
+viti.declaracion_obligatoria,Esta enfermedad es de declaración obligatoria al servicio fitosanitario oficial.,Gaixotasun hau derrigorrez jakinarazi behar zaio zerbitzu fitosanitario ofizialari.,Aquesta malaltia és de declaració obligatòria al servei fitosanitari oficial.,Esta enfermidade é de declaración obrigatoria ao servizo fitosanitario oficial.
+viti.demanda_hidrica_alta,Demanda hídrica alta,Ur-eskari handia,Demanda hídrica alta,Demanda hídrica alta
+viti.demanda_hidrica_alta_detalle,ET0 y DPV altos: revisa riego y evita labores que aumenten estrés.,ET0 eta DPV altuak: berrikusi ureztatzea eta saihestu estresa areagotzen duten lanak.,ET0 i DPV alts: revisa el reg i evita feines que augmentin l'estrès.,ET0 e DPV altos: revisa a rega e evita labores que aumenten o estrés.
+viti.descartar,Descartar,Baztertu,Descartar,Descartar
+viti.descripcion,Descripción,Deskribapena,Descripció,Descrición
+viti.dia_domingo,domingo,igandea,diumenge,domingo
+viti.dia_jueves,jueves,osteguna,dijous,xoves
+viti.dia_lunes,lunes,astelehena,dilluns,luns
+viti.dia_martes,martes,asteartea,dimarts,martes
+viti.dia_miercoles,miércoles,asteazkena,dimecres,mércores
+viti.dia_sabado,sábado,larunbata,dissabte,sábado
+viti.dia_viernes,viernes,ostirala,divendres,venres
+viti.diagnostico,Diagnóstico,Diagnostikoa,Diagnòstic,Diagnóstico
+viti.diagnostico_rellenado,Diagnóstico rellenado. Revísalo y guarda.,Diagnostikoa beteta. Berrikusi eta gorde.,Diagnòstic emplenat. Revisa'l i desa.,Diagnóstico enchido. Revísao e garda.
+viti.diferencia_iva,Diferencia IVA,IVA aldea,Diferència IVA,Diferenza IVA
+viti.diferencia_ordinaria,Diferencia ordinaria,Ohiko aldea,Diferència ordinària,Diferenza ordinaria
+viti.diferencia_ordinaria_ayuda,Ingresos ordinarios − gastos. PAC y subvenciones aparte.,Ohiko diru-sarrerak − gastuak. PAC eta diru-laguntzak aparte.,Ingressos ordinaris − despeses. PAC i subvencions a part.,Ingresos ordinarios − gastos. PAC e subvencións á parte.
+viti.direccion,Dirección,Helbidea,Adreça,Enderezo
+viti.direccion_de_la_explotacion,Dirección de la explotación,Ustiategiaren helbidea,Adreça de l'explotació,Enderezo da explotación
+viti.direccion_opcional,Dirección (opcional),Helbidea (aukerakoa),Adreça (opcional),Enderezo (opcional)
+viti.dosis,Dosis,Dosia,Dosi,Dose
+viti.economia,Economía,Ekonomia,Economia,Economía
+viti.editar_cepa,Editar cepa,Editatu mahatsondoa,Editar el cep,Editar cepa
+viti.editar_gasto,Editar gasto,Editatu gastua,Editar la despesa,Editar gasto
+viti.editar_ingreso,Editar ingreso,Editatu diru-sarrera,Editar l'ingrés,Editar ingreso
+viti.editar_tercero,Editar tercero,Editatu hirugarrena,Editar el tercer,Editar terceiro
+viti.ejercicio_fiscal,Ejercicio fiscal,Zerga-ekitaldia,Exercici fiscal,Exercicio fiscal
+viti.elegir,Elegir,Aukeratu,Triar,Escoller
+viti.elige_punto_inicial,Elige cómo fijar el punto inicial.,Aukeratu hasierako puntua nola finkatu.,Tria com fixar el punt inicial.,Escolle como fixar o punto inicial.
+viti.elige_variedad_imputacion,Elige una variedad para imputación general,Aukeratu barietate bat egozpen orokorrerako,Tria una varietat per a la imputació general,Escolle unha variedade para a imputación xeral
+viti.elige_vinedo_imputacion,Elige un viñedo para imputación concreta,Aukeratu mahasti bat egozpen zehatzerako,Tria una vinya per a la imputació concreta,Escolle unha viña para a imputación concreta
+viti.eliminar,Eliminar,Ezabatu,Eliminar,Eliminar
+viti.eliminar_cepa,Eliminar cepa,Ezabatu mahatsondoa,Eliminar el cep,Eliminar cepa
+viti.eliminar_cepa_aviso,"Se borra la cepa y toda su historia (cosechas, observaciones, incidencias, tratamientos). Esta acción no se puede deshacer.","Mahatsondoa eta bere historia osoa ezabatzen dira (uztak, behaketak, gorabeherak, tratamenduak). Ekintza hau ezin da desegin.","S'esborra el cep i tota la seva història (collites, observacions, incidències, tractaments). Aquesta acció no es pot desfer.","Bórrase a cepa e toda a súa historia (colleitas, observacións, incidencias, tratamentos). Esta acción non se pode desfacer."
+viti.email,Email,Posta elektronikoa,Correu electrònic,Correo electrónico
+viti.email_ejemplo,tucorreo@ejemplo.com,zurehelbidea@adibidea.eus,elteucorreu@exemple.cat,oteucorreo@exemplo.gal
+viti.email_respaldo_explicacion,"Al crear una factura, podrás enviar una copia a esta dirección como respaldo.","Faktura bat sortzean, kopia bat bidali ahal izango duzu helbide honetara babeskopia gisa.","En crear una factura, podràs enviar-ne una còpia a aquesta adreça com a còpia de seguretat.","Ao crear unha factura, poderás enviar unha copia a este enderezo como respaldo."
+viti.empezar,Empezar,Hasi,Començar,Comezar
+viti.enlaces,Enlaces,Estekak,Enllaços,Ligazóns
+viti.error_abrir_pdf,Error al abrir el PDF: {error},Errorea PDFa irekitzean: {error},Error en obrir el PDF: {error},Erro ao abrir o PDF: {error}
+viti.error_generar_pdf,Error al generar el PDF: {error},Errorea PDFa sortzean: {error},Error en generar el PDF: {error},Erro ao xerar o PDF: {error}
+viti.error_inesperado,Error inesperado: {error},Ustekabeko errorea: {error},Error inesperat: {error},Erro inesperado: {error}
+viti.escribe_tu_pregunta,Escribe tu pregunta…,Idatzi zure galdera…,Escriu la teva pregunta…,Escribe a túa pregunta…
+viti.esri_satelite,Esri satélite,Esri satelitea,Esri satèl·lit,Esri satélite
+viti.estado_fenologico_esperado,Estado fenológico esperado: {estado} (BBCH {bbch}),Espero den egoera fenologikoa: {estado} (BBCH {bbch}),Estat fenològic esperat: {estado} (BBCH {bbch}),Estado fenolóxico esperado: {estado} (BBCH {bbch})
+viti.estimacion_directa_normal,Estimación directa normal,Zuzeneko zenbatespen arrunta,Estimació directa normal,Estimación directa normal
+viti.estimacion_directa_simplificada,Estimación directa simplificada,Zuzeneko zenbatespen erraztua,Estimació directa simplificada,Estimación directa simplificada
+viti.etiqueta,Etiqueta,Etiketa,Etiqueta,Etiqueta
+viti.etiqueta_ayuda,"F3-12 (fila 3, planta 12)","F3-12 (3. ilara, 12. landarea)","F3-12 (filera 3, planta 12)","F3-12 (fila 3, planta 12)"
+viti.etiquetas_observacion_ayuda,"brotación, floración, envero, vendimia…","kimu-ateratzea, loraldia, mahats-ondua, mahats-bilketa…","brotada, floració, verol, verema…","abrollamento, floración, pintado, vindima…"
+viti.etiquetas_separadas_comas,Etiquetas (separadas por comas),Etiketak (komaz bereizita),Etiquetes (separades per comes),Etiquetas (separadas por comas)
+viti.explicacion_reagp,En REAGP no repercutes IVA en la venta de uva. El comprador te paga la compensación del 12 %. La venta de vino siempre va al 21 % general: el vino es un producto transformado por la bodega y queda fuera del REAGP. El IVA soportado en compras no es recuperable: se imputa como mayor coste.,REAGPn ez duzu IVArik jasanarazten mahats-salmentan. Erosleak % 12ko konpentsazioa ordaintzen dizu. Ardo-salmentak beti % 21 orokorra du: ardoa upeltegiak eraldatutako produktua da eta REAGPtik kanpo geratzen da. Erosketetan jasandako IVA ez da berreskuragarria: kostu handiago gisa egozten da.,En REAGP no repercuteixes IVA en la venda de raïm. El comprador et paga la compensació del 12 %. La venda de vi sempre va al 21 % general: el vi és un producte transformat pel celler i queda fora del REAGP. L'IVA suportat en compres no és recuperable: s'imputa com a cost més alt.,En REAGP non repercutes IVA na venda de uva. O comprador págache a compensación do 12 %. A venda de viño sempre vai ao 21 % xeral: o viño é un produto transformado pola adega e queda fóra do REAGP. O IVA soportado en compras non é recuperable: impútase como maior custo.
+viti.explicacion_regimen_general,En régimen general repercutes el 4 % en uva (alimento de primera necesidad) y el 21 % en vino (bebida alcohólica). El IVA soportado en compras es recuperable.,Araubide orokorrean % 4 jasanarazten duzu mahatsean (oinarrizko elikagaia) eta % 21 ardoan (edari alkoholduna). Erosketetan jasandako IVA berreskuragarria da.,En règim general repercuteixes el 4 % en raïm (aliment de primera necessitat) i el 21 % en vi (beguda alcohòlica). L'IVA suportat en compres és recuperable.,En réxime xeral repercutes o 4 % na uva (alimento de primeira necesidade) e o 21 % no viño (bebida alcohólica). O IVA soportado en compras é recuperable.
+viti.extracto_anual,Extracto anual,Urteko laburpena,Extracte anual,Extracto anual
+viti.extracto_anual_desde_icono,El extracto anual con detalle por mes y modelo 347 está disponible desde el icono PDF de la cabecera.,Hileko xehetasuna eta 347 eredua dituen urteko laburpena goiburuko PDF ikonotik dago eskuragarri.,L'extracte anual amb detall per mes i model 347 està disponible des de la icona PDF de la capçalera.,O extracto anual con detalle por mes e modelo 347 está dispoñible desde a icona PDF da cabeceira.
+viti.extracto_aviso_provisional,PROVISIONAL. Este extracto es una herramienta de apoyo para el asesor fiscal — el formato exacto del libro registro y del modelo 347 está pendiente de que lo valide un asesor fiscal antes de presentar nada en una declaración.,"BEHIN-BEHINEKOA. Laburpen hau zerga-aholkulariarentzako laguntza-tresna bat da — erregistro-liburuaren eta 347 ereduaren formatu zehatza zerga-aholkulari batek baliozkotzeko dago, aitorpen batean ezer aurkeztu aurretik.",PROVISIONAL. Aquest extracte és una eina de suport per a l'assessor fiscal — el format exacte del llibre registre i del model 347 està pendent que el validi un assessor fiscal abans de presentar res en una declaració.,PROVISIONAL. Este extracto é unha ferramenta de apoio para o asesor fiscal — o formato exacto do libro rexistro e do modelo 347 está pendente de que o valide un asesor fiscal antes de presentar nada nunha declaración.
+viti.extracto_economico_anual,Extracto económico anual,Urteko laburpen ekonomikoa,Extracte econòmic anual,Extracto económico anual
+viti.extracto_economico_compartir,Extracto económico viticultura · {ano},Mahastizaintzako laburpen ekonomikoa · {ano},Extracte econòmic viticultura · {ano},Extracto económico viticultura · {ano}
+viti.extracto_incluye,El extracto incluye:,Laburpenak hau dakar:,L'extracte inclou:,O extracto inclúe:
+viti.extracto_incluye_347,"Modelo 347 — terceros con suma >3.005,06 € en el ejercicio.","347 eredua — ekitaldian 3.005,06 € baino gehiagoko batura duten hirugarrenak.","Model 347 — tercers amb una suma >3.005,06 € a l'exercici.","Modelo 347 — terceiros cunha suma >3.005,06 € no exercicio."
+viti.extracto_incluye_detalle_gastos,Detalle cronológico de gastos con imputación.,"Gastuen xehetasun kronologikoa, egozpenarekin.",Detall cronològic de despeses amb imputació.,Detalle cronolóxico de gastos con imputación.
+viti.extracto_incluye_detalle_ingresos,Detalle cronológico de ingresos con variedad y lote.,"Diru-sarreren xehetasun kronologikoa, barietatearekin eta lotearekin.",Detall cronològic d'ingressos amb varietat i lot.,Detalle cronolóxico de ingresos con variedade e lote.
+viti.extracto_incluye_gastos,"Tabla mensual de gastos (base, IVA soportado, total).","Gastuen hileko taula (oinarria, jasandako IVA, guztira).","Taula mensual de despeses (base, IVA suportat, total).","Táboa mensual de gastos (base, IVA soportado, total)."
+viti.extracto_incluye_ingresos,"Tabla mensual de ingresos (uva, vino, ayudas PAC, IVA, compensación REAGP).","Diru-sarreren hileko taula (mahatsa, ardoa, PAC laguntzak, IVA, REAGP konpentsazioa).","Taula mensual d'ingressos (raïm, vi, ajuts PAC, IVA, compensació REAGP).","Táboa mensual de ingresos (uva, viño, axudas PAC, IVA, compensación REAGP)."
+viti.extracto_incluye_resumen,Resumen con los totales del ejercicio.,Ekitaldiko guztizkoen laburpena.,Resum amb els totals de l'exercici.,Resumo cos totais do exercicio.
+viti.extracto_incluye_sin_nif,Apuntes sin NIF que no entran en el modelo 347.,347 ereduan sartzen ez diren NIFik gabeko idazpenak.,Assentaments sense NIF que no entren al model 347.,Apuntamentos sen NIF que non entran no modelo 347.
+viti.extracto_variedad_general,Los gastos imputados a «variedad general» se listan tal cual con el importe íntegro — el reparto proporcional por superficie entre parcelas con esa variedad está pendiente de validación de método por asesor fiscal.,"«Barietate orokorra»ri egotzitako gastuak bere horretan zerrendatzen dira, zenbateko osoarekin — barietate hori duten lursailen arteko azaleraren araberako banaketa proportzionalaren metodoa zerga-aholkulari batek baliozkotzeko dago.",Les despeses imputades a «varietat general» es llisten tal qual amb l'import íntegre — el repartiment proporcional per superfície entre parcel·les amb aquesta varietat està pendent de validació del mètode per un assessor fiscal.,Os gastos imputados a «variedade xeral» lístanse tal cal co importe íntegro — o reparto proporcional por superficie entre parcelas con esa variedade está pendente de validación do método por un asesor fiscal.
+viti.factura_anulada,anulada,baliogabetuta,anul·lada,anulada
+viti.factura_emitida,emitida,igorrita,emesa,emitida
+viti.factura_pagada,pagada,ordainduta,pagada,pagada
+viti.factura_vencida,vencida,epez kanpo,vençuda,vencida
+viti.falta_capturar_gps,Falta capturar la ubicación GPS.,GPS kokapena hartu behar da.,Falta capturar la ubicació GPS.,Falta capturar a localización GPS.
+viti.falta_permiso_ubicacion,Falta permiso de ubicación o GPS desactivado.,Kokapen-baimena falta da edo GPSa desaktibatuta dago.,Falta el permís d'ubicació o el GPS està desactivat.,Falta o permiso de localización ou o GPS está desactivado.
+viti.falta_permiso_ubicacion_corto,Falta permiso de ubicación.,Kokapen-baimena falta da.,Falta el permís d'ubicació.,Falta o permiso de localización.
+viti.familia_larrea,Familia Larrea,Larrea familia,Família Larrea,Familia Larrea
+viti.familia_larrea_texto,"Larrea Viticultura forma parte de la suite Larrea, de la Colección Nuevo Ser. Apps hermanas: Larrea (general — frutales, trufa, olivar), Larrea Apícola (libro REGA), Larrea Arbolado Urbano (B2B municipal), Larrea Quesera y Larrea Aceitera.","Larrea Viticultura Larrea suitearen parte da, Colección Nuevo Ser bildumakoa. Aplikazio ahizpak: Larrea (orokorra — fruta-arbolak, boilurra, olibondoa), Larrea Apícola (REGA liburua), Larrea Arbolado Urbano (udalentzako B2B), Larrea Quesera eta Larrea Aceitera.","Larrea Viticultura forma part de la suite Larrea, de la Colección Nuevo Ser. Apps germanes: Larrea (general — fruiters, tòfona, olivera), Larrea Apícola (llibre REGA), Larrea Arbolado Urbano (B2B municipal), Larrea Quesera i Larrea Aceitera.","Larrea Viticultura forma parte da suite Larrea, da Colección Nuevo Ser. Apps irmás: Larrea (xeral — froiteiras, trufa, oliveiral), Larrea Apícola (libro REGA), Larrea Arbolado Urbano (B2B municipal), Larrea Quesera e Larrea Aceitera."
+viti.fecha_a_las_hora,{fecha} a las {hora},"{fecha}, {hora}",{fecha} a les {hora},{fecha} ás {hora}
+viti.fecha_de_la_factura,Fecha de la factura,Fakturaren data,Data de la factura,Data da factura
+viti.fecha_hoy,{dia_semana} {dia} {mes_de},"{mes_de} {dia}a, {dia_semana}",{dia_semana} {dia} {mes_de},{dia_semana} {dia} {mes_de}
+viti.foto_de_la_factura,Foto de la factura,Fakturaren argazkia,Foto de la factura,Foto da factura
+viti.fotos,Fotos,Argazkiak,Fotos,Fotos
+viti.galeria,Galería,Galeria,Galeria,Galería
+viti.gasto_barricas,Barricas,Barrikak,Barriques,Barricas
+viti.gasto_barricas_detalle,"Barricas (compra, mantenimiento)","Barrikak (erosketa, mantentze-lanak)","Barriques (compra, manteniment)","Barricas (compra, mantemento)"
+viti.gasto_certificacion,Certificación,Ziurtapena,Certificació,Certificación
+viti.gasto_certificacion_detalle,Certificación (DOP/IGP/ecológico),Ziurtapena (DOP/IGP/ekologikoa),Certificació (DOP/IGP/ecològic),Certificación (DOP/IGP/ecolóxico)
+viti.gasto_combustible,Combustible,Erregaia,Combustible,Combustible
+viti.gasto_embotellado,Embotellado,Botilaratzea,Embotellament,Embotellado
+viti.gasto_embotellado_detalle,"Embotellado (botella, corcho, cápsula)","Botilaratzea (botila, kortxoa, kapsula)","Embotellament (ampolla, suro, càpsula)","Embotellado (botella, cortiza, cápsula)"
+viti.gasto_etiquetado,Etiquetado,Etiketatzea,Etiquetatge,Etiquetaxe
+viti.gasto_insumos_vid,Insumos de la vid,Mahatsondoaren intsumoak,Insums de la vinya,Insumos da viña
+viti.gasto_insumos_vid_detalle,"Insumos de la vid (fertilizantes, sulfatos, abonos)","Mahatsondoaren intsumoak (ongarriak, sulfatoak, simaurrak)","Insums de la vinya (fertilitzants, sulfats, adobs)","Insumos da viña (fertilizantes, sulfatos, abonos)"
+viti.gasto_mano_obra,Mano de obra,Eskulana,Mà d'obra,Man de obra
+viti.gasto_mano_obra_detalle,Mano de obra (cuadrilla el resto del año),Eskulana (urteko gainerako koadrila),Mà d'obra (colla la resta de l'any),Man de obra (cuadrilla o resto do ano)
+viti.gasto_maquinaria,Maquinaria,Makineria,Maquinària,Maquinaria
+viti.gasto_maquinaria_detalle,"Maquinaria (compra, alquiler, mantenimiento)","Makineria (erosketa, alokairua, mantentze-lanak)","Maquinària (compra, lloguer, manteniment)","Maquinaria (compra, aluguer, mantemento)"
+viti.gasto_seguros,Seguros,Aseguruak,Assegurances,Seguros
+viti.gasto_seguros_detalle,"Seguros (Agroseguro, responsabilidad civil)","Aseguruak (Agroseguro, erantzukizun zibila)","Assegurances (Agroseguro, responsabilitat civil)","Seguros (Agroseguro, responsabilidade civil)"
+viti.gasto_transporte,Transporte,Garraioa,Transport,Transporte
+viti.gasto_tratamientos_fitosanitarios,Tratamientos fitosanitarios,Tratamendu fitosanitarioak,Tractaments fitosanitaris,Tratamentos fitosanitarios
+viti.gasto_vendimia,Vendimia,Mahats-bilketa,Verema,Vindima
+viti.gasto_vendimia_detalle,Vendimia (mano de obra estacional),Mahats-bilketa (sasoiko eskulana),Verema (mà d'obra estacional),Vindima (man de obra estacional)
+viti.gastos,Gastos,Gastuak,Despeses,Gastos
+viti.gastos_ano,Gastos {ano},Gastuak {ano},Despeses {ano},Gastos {ano}
+viti.gastos_vacio,"Aún no hay gastos en este año. Pulsa «Nuevo gasto» para registrar insumos, tratamientos, vendimia, embotellado, barricas o cualquier otro gasto de la explotación.","Oraindik ez dago gasturik urte honetan. Sakatu «Gastu berria» intsumoak, tratamenduak, mahats-bilketa, botilaratzea, barrikak edo ustiategiaren beste edozein gastu erregistratzeko.","Encara no hi ha despeses aquest any. Prem «Despesa nova» per registrar insums, tractaments, verema, embotellament, barriques o qualsevol altra despesa de l'explotació.","Aínda non hai gastos neste ano. Preme «Novo gasto» para rexistrar insumos, tratamentos, vindima, embotellado, barricas ou calquera outro gasto da explotación."
+viti.general_parentesis,(general),(orokorra),(general),(xeral)
+viti.generar_y_abrir,Generar y abrir,Sortu eta ireki,Generar i obrir,Xerar e abrir
+viti.generar_y_compartir,Generar y compartir,Sortu eta partekatu,Generar i compartir,Xerar e compartir
+viti.gps_no_disponible_formulario,GPS no disponible — captura la ubicación desde el formulario.,GPSa ez dago erabilgarri — hartu kokapena formulariotik.,GPS no disponible — captura la ubicació des del formulari.,GPS non dispoñible — captura a localización desde o formulario.
+viti.guardar_cambios,Guardar cambios,Gorde aldaketak,Desar els canvis,Gardar cambios
+viti.guardar_cepa,Guardar cepa,Gorde mahatsondoa,Desar el cep,Gardar cepa
+viti.guia,Guía,Gida,Guia,Guía
+viti.guia_catalogo_provisional,Catálogo provisional con fuente pública trazable. Pendiente de la firma del enólogo y del agrónomo asesores.,"Behin-behineko katalogoa, iturri publiko trazagarriarekin. Enologo eta agronomo aholkularien sinaduraren zain.",Catàleg provisional amb font pública traçable. Pendent de la signatura de l'enòleg i l'agrònom assessors.,Catálogo provisional con fonte pública rastrexable. Pendente da sinatura do enólogo e do agrónomo asesores.
+viti.guia_de_viticultura,Guía de viticultura,Mahastizaintza-gida,Guia de viticultura,Guía de viticultura
+viti.hacer_foto,Hacer foto,Atera argazkia,Fer una foto,Facer foto
+viti.historia,Historia,Historia,Història,Historia
+viti.humedad_relativa_valor,HR {valor} %,HE {valor} %,HR {valor} %,HR {valor} %
+viti.ia_abiotico,Abiótico,Abiotikoa,Abiòtic,Abiótico
+viti.ia_adjunta_foto,Adjunta una foto para activar la identificación con IA.,Erantsi argazki bat AA bidezko identifikazioa aktibatzeko.,Adjunta una foto per activar la identificació amb IA.,Achega unha foto para activar a identificación con IA.
+viti.ia_analizando_foto,Analizando foto…,Argazkia aztertzen…,Analitzant la foto…,Analizando a foto…
+viti.ia_aviso_tu_decides,"La IA sugiere — tú decides. Antes de aplicar productos fitosanitarios, consulta con tu técnico de cooperativa, ATRIA o asesor enológico. Larrea Viticultura no recomienda productos comerciales en v0.1.","AAk iradokitzen du — zuk erabakitzen duzu. Produktu fitosanitarioak aplikatu aurretik, galdetu zure kooperatibako teknikariari, ATRIAri edo aholkulari enologikoari. Larrea Viticulturak ez du produktu komertzialik gomendatzen v0.1ean.","La IA suggereix — tu decideixes. Abans d'aplicar productes fitosanitaris, consulta el tècnic de la cooperativa, l'ATRIA o l'assessor enològic. Larrea Viticultura no recomana productes comercials a la v0.1.","A IA suxire — ti decides. Antes de aplicar produtos fitosanitarios, consulta co técnico da cooperativa, a ATRIA ou o asesor enolóxico. Larrea Viticultura non recomenda produtos comerciais na v0.1."
+viti.ia_coincide_provisional,Coincide con el catálogo provisional. El catálogo aún no se ha validado agronómicamente: usa tu criterio.,Behin-behineko katalogoarekin bat dator. Katalogoa oraindik ez da agronomikoki baliozkotu: erabili zure irizpidea.,Coincideix amb el catàleg provisional. El catàleg encara no s'ha validat agronòmicament: fes servir el teu criteri.,Coincide co catálogo provisional. O catálogo aínda non se validou agronomicamente: usa o teu criterio.
+viti.ia_coincide_validado,El diagnóstico coincide con el catálogo de Larrea,Diagnostikoa Larrearen katalogoarekin bat dator,El diagnòstic coincideix amb el catàleg de Larrea,O diagnóstico coincide co catálogo de Larrea
+viti.ia_descripcion_clave,"Larrea Viticultura puede usar Claude, de Anthropic, para analizar la foto que adjuntas a una incidencia y proponer un diagnóstico, la severidad y recomendaciones de manejo cultural. Con la misma clave funciona el asistente (chat) de la pantalla Hoy. Tú pagas el uso a Anthropic con tu clave; sin clave la app funciona igual, sin el botón de IA.","Larrea Viticultura-k Anthropic-en Claude erabil dezake gorabehera bati eransten diozun argazkia aztertzeko eta diagnostikoa, larritasuna eta maneiu kulturalerako gomendioak proposatzeko. Gako berarekin dabil Gaur pantailako laguntzailea (txata). Erabilera zuk ordaintzen diozu Anthropici zure gakoarekin; gakorik gabe aplikazioak berdin funtzionatzen du, AA botoirik gabe.","Larrea Viticultura pot fer servir Claude, d'Anthropic, per analitzar la foto que adjuntes a una incidència i proposar un diagnòstic, la severitat i recomanacions de maneig cultural. Amb la mateixa clau funciona l'assistent (xat) de la pantalla Avui. L'ús el pagues tu a Anthropic amb la teva clau; sense clau l'app funciona igual, sense el botó d'IA.","Larrea Viticultura pode usar Claude, de Anthropic, para analizar a foto que achegas a unha incidencia e propor un diagnóstico, a severidade e recomendacións de manexo cultural. Coa mesma clave funciona o asistente (chat) da pantalla Hoxe. Ti págaslle o uso a Anthropic coa túa clave; sen clave a app funciona igual, sen o botón de IA."
+viti.ia_diagnostico_libre,Diagnóstico libre — no coincide con el catálogo curado de Larrea Viticultura. Revisa con criterio antes de aceptar.,Diagnostiko librea — ez dator bat Larrea Viticulturaren katalogo zainduarekin. Berrikusi arretaz onartu aurretik.,Diagnòstic lliure — no coincideix amb el catàleg curat de Larrea Viticultura. Revisa-ho amb criteri abans d'acceptar.,Diagnóstico libre — non coincide co catálogo curado de Larrea Viticultura. Revísao con criterio antes de aceptar.
+viti.ia_foto_demasiado_grande,La foto pesa más de 5 MB y la API la rechazará. Reduce el tamaño antes de enviarla.,Argazkiak 5 MB baino gehiago ditu eta APIak baztertu egingo du. Txikitu tamaina bidali aurretik.,La foto pesa més de 5 MB i l'API la rebutjarà. Redueix-ne la mida abans d'enviar-la.,A foto pesa máis de 5 MB e a API rexeitaraa. Reduce o tamaño antes de enviala.
+viti.ia_foto_no_existe,La foto adjunta ya no existe en el dispositivo.,Erantsitako argazkia jada ez dago gailuan.,La foto adjunta ja no existeix al dispositiu.,A foto achegada xa non existe no dispositivo.
+viti.ia_identificar,Identificar con IA,Identifikatu AArekin,Identificar amb IA,Identificar con IA
+viti.ia_indeterminado,Indeterminado,Zehaztu gabea,Indeterminat,Indeterminado
+viti.ia_nota_diagnostico_sugerido,Diagnóstico sugerido por Claude AI (confianza {confianza}),Claude AIk iradokitako diagnostikoa (konfiantza: {confianza}),Diagnòstic suggerit per Claude AI (confiança {confianza}),Diagnóstico suxerido por Claude AI (confianza {confianza})
+viti.ia_que_identifica,"Identifica mildiu, oídio, botritis y otras incidencias por foto","Mildiua, oidioa, botritisa eta beste gorabehera batzuk argazki bidez identifikatzen ditu","Identifica míldiu, oïdi, botritis i altres incidències per foto","Identifica mildio, oídio, botrite e outras incidencias por foto"
+viti.ia_resultado,Resultado de la IA,AAren emaitza,Resultat de la IA,Resultado da IA
+viti.ia_sin_clave,No hay clave de Anthropic configurada. Ve a Ajustes → Identificación con IA.,Ez dago Anthropic gakorik konfiguratuta. Joan Ezarpenak → AA bidezko identifikazioa atalera.,No hi ha cap clau d'Anthropic configurada. Ves a Configuració → Identificació amb IA.,Non hai ningunha clave de Anthropic configurada. Vai a Axustes → Identificación con IA.
+viti.ia_trastorno_fisiologico,Trastorno fisiológico,Nahaste fisiologikoa,Trastorn fisiològic,Trastorno fisiolóxico
+viti.idioma_language,Idioma / Language,Hizkuntza / Language,Idioma / Language,Idioma / Language
+viti.importe_base_obligatorio,Importe base (€) *,Oinarrizko zenbatekoa (€) *,Import base (€) *,Importe base (€) *
+viti.imputacion_general,General de la explotación,Ustiategiaren orokorra,General de l'explotació,Xeral da explotación
+viti.imputacion_general_ayuda,Sin asociar a viñedo ni variedad concreta,Mahasti edo barietate jakin bati lotu gabe,Sense associar a cap vinya ni varietat concreta,Sen asociar a ningunha viña nin variedade concreta
+viti.imputacion_variedad_general,Variedad general,Barietate orokorra,Varietat general,Variedade xeral
+viti.imputacion_variedad_general_ayuda,Compartido entre todas las parcelas con esa variedad,Barietate hori duten lursail guztien artean banatua,Compartida entre totes les parcel·les amb aquesta varietat,Compartido entre todas as parcelas con esa variedade
+viti.imputacion_vinedo_concreto,Viñedo concreto,Mahasti zehatza,Vinya concreta,Viña concreta
+viti.imputacion_vinedo_concreto_ayuda,Todo el gasto se imputa a un solo viñedo,Gastu osoa mahasti bakar bati egozten zaio,Tota la despesa s'imputa a una sola vinya,Todo o gasto se imputa a unha soa viña
+viti.imputacion_vinedo_variedad,Imputación a viñedo / variedad,Mahastiari / barietateari egoztea,Imputació a vinya / varietat,Imputación a viña / variedade
+viti.imputar_variedad_opcional,Imputar a variedad (opcional),Barietateari egotzi (aukerakoa),Imputar a una varietat (opcional),Imputar a variedade (opcional)
+viti.imputar_vinedo_opcional,Imputar a viñedo (opcional),Mahastiari egotzi (aukerakoa),Imputar a una vinya (opcional),Imputar a viña (opcional)
+viti.incidencia,Incidencia,Gorabehera,Incidència,Incidencia
+viti.indica_el_diagnostico,Indica el diagnóstico,Adierazi diagnostikoa,Indica el diagnòstic,Indica o diagnóstico
+viti.ingreso_alquiler_terreno,Alquiler de terreno,Lurren alokairua,Lloguer de terreny,Aluguer de terreo
+viti.ingreso_ayuda_pac,Ayuda PAC,PAC laguntza,Ajut PAC,Axuda PAC
+viti.ingreso_subvencion,Subvención,Diru-laguntza,Subvenció,Subvención
+viti.ingreso_subvencion_autonomica,Subvención autonómica,Diru-laguntza autonomikoa,Subvenció autonòmica,Subvención autonómica
+viti.ingreso_venta_uva,Venta de uva,Mahats-salmenta,Venda de raïm,Venda de uva
+viti.ingreso_venta_vino_botella,Venta de vino (botella),Ardo-salmenta (botila),Venda de vi (ampolla),Venda de viño (botella)
+viti.ingreso_venta_vino_botella_detalle,Venta de vino en botella,Ardo botilaratuaren salmenta,Venda de vi en ampolla,Venda de viño en botella
+viti.ingreso_venta_vino_granel,Venta de vino (granel),Ardo-salmenta (soltean),Venda de vi (granel),Venda de viño (granel)
+viti.ingreso_venta_vino_granel_detalle,Venta de vino a granel,Ardo solteko salmenta,Venda de vi a granel,Venda de viño a granel
+viti.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
+viti.ingresos_por_uva,Ingresos por uva,Mahatsaren diru-sarrerak,Ingressos per raïm,Ingresos por uva
+viti.ingresos_por_uva_ano,Ingresos por uva {ano},Mahatsaren diru-sarrerak {ano},Ingressos per raïm {ano},Ingresos por uva {ano}
+viti.ingresos_por_vino,Ingresos por vino,Ardoaren diru-sarrerak,Ingressos per vi,Ingresos por viño
+viti.ingresos_por_vino_ano,Ingresos por vino {ano},Ardoaren diru-sarrerak {ano},Ingressos per vi {ano},Ingresos por viño {ano}
+viti.ingresos_sin_nif_347,{n} ingreso(s) sin NIF — no entran en el modelo 347,{n} diru-sarrera NIFik gabe — ez dira 347 ereduan sartzen,{n} ingrés(sos) sense NIF — no entren al model 347,{n} ingreso(s) sen NIF — non entran no modelo 347
+viti.ingresos_uva_ayuda,Venta de uva (4 % IVA / 12 % compensación REAGP),Mahats-salmenta (% 4 IVA / % 12 REAGP konpentsazioa),Venda de raïm (4 % IVA / 12 % compensació REAGP),Venda de uva (4 % IVA / 12 % compensación REAGP)
+viti.ingresos_vacio,"Aún no hay ingresos en este año. Pulsa «Nuevo ingreso» para registrar una venta de uva, vino en botella o a granel, alquiler de terreno o ayuda PAC.","Oraindik ez dago diru-sarrerarik urte honetan. Sakatu «Diru-sarrera berria» mahats-salmenta, ardo botilaratu edo solteko salmenta, lurren alokairua edo PAC laguntza erregistratzeko.","Encara no hi ha ingressos aquest any. Prem «Ingrés nou» per registrar una venda de raïm, vi en ampolla o a granel, lloguer de terreny o ajut PAC.","Aínda non hai ingresos neste ano. Preme «Novo ingreso» para rexistrar unha venda de uva, viño en botella ou a granel, aluguer de terreo ou axuda PAC."
+viti.ingresos_vino_ayuda,Botella y granel (siempre 21 % IVA general),Botila eta soltean (beti % 21 IVA orokorra),Ampolla i granel (sempre 21 % IVA general),Botella e granel (sempre 21 % IVA xeral)
+viti.ingresos_y_gastos_provisional,Ingresos y gastos · provisional,Diru-sarrerak eta gastuak · behin-behinekoa,Ingressos i despeses · provisional,Ingresos e gastos · provisional
+viti.iva_repercutido,IVA repercutido,Jasanarazitako IVA,IVA repercutit,IVA repercutido
+viti.iva_repercutido_en_vino,IVA repercutido en vino,Ardoan jasanarazitako IVA,IVA repercutit en vi,IVA repercutido no viño
+viti.iva_repercutido_euros,IVA repercutido (€),Jasanarazitako IVA (€),IVA repercutit (€),IVA repercutido (€)
+viti.iva_repercutido_venta_vino,IVA repercutido en venta de vino,Ardo-salmentan jasanarazitako IVA,IVA repercutit en la venda de vi,IVA repercutido na venda de viño
+viti.iva_soportado,IVA soportado,Jasandako IVA,IVA suportat,IVA soportado
+viti.iva_soportado_deducible,IVA soportado deducible,Jasandako IVA kengarria,IVA suportat deduïble,IVA soportado deducible
+viti.iva_soportado_en_compras,IVA soportado en compras,Erosketetan jasandako IVA,IVA suportat en compres,IVA soportado en compras
+viti.iva_soportado_euros,IVA soportado (€),Jasandako IVA (€),IVA suportat (€),IVA soportado (€)
+viti.iva_y_compensaciones,IVA y compensaciones,IVA eta konpentsazioak,IVA i compensacions,IVA e compensacións
+viti.kilos,Kilos,Kiloak,Quilos,Quilos
+viti.libro_economico_ano,Libro económico · {ano},Liburu ekonomikoa · {ano},Llibre econòmic · {ano},Libro económico · {ano}
+viti.libro_economico_aviso_provisional,"Libro económico provisional. Pendiente de validación por asesor fiscal antes de presentar nada en una declaración. Mientras tanto, contrasta cada apunte con tu asesor.","Behin-behineko liburu ekonomikoa. Zerga-aholkulari batek baliozkotzeko dago aitorpen batean ezer aurkeztu aurretik. Bitartean, egiaztatu idazpen bakoitza zure aholkulariarekin.","Llibre econòmic provisional. Pendent de validació per un assessor fiscal abans de presentar res en una declaració. Mentrestant, contrasta cada assentament amb el teu assessor.","Libro económico provisional. Pendente de validación por un asesor fiscal antes de presentar nada nunha declaración. Mentres tanto, contrasta cada apuntamento co teu asesor."
+viti.libro_pac,Libro PAC,PAC liburua,Llibre PAC,Libro PAC
+viti.libro_pac_alcance,"El libro recoge únicamente los tratamientos fitosanitarios registrados en el periodo. El manejo cultural (poda, riego, abonado) no se incluye en el libro oficial.","Liburuak aldian erregistratutako tratamendu fitosanitarioak soilik jasotzen ditu. Maneiu kulturala (kimaketa, ureztatzea, ongarritzea) ez da liburu ofizialean sartzen.","El llibre només recull els tractaments fitosanitaris registrats en el període. El maneig cultural (poda, reg, adobament) no s'inclou al llibre oficial.","O libro recolle unicamente os tratamentos fitosanitarios rexistrados no período. O manexo cultural (poda, rega, abonado) non se inclúe no libro oficial."
+viti.libro_pac_verifica_formato,Verifica el formato vigente del MAPA antes de presentar el documento en inspección — la regulación se actualiza periódicamente.,Egiaztatu MAPAren formatu indarrekoa dokumentua ikuskapenean aurkeztu aurretik — araudia aldizka eguneratzen da.,Comprova el format vigent del MAPA abans de presentar el document en una inspecció — la regulació s'actualitza periòdicament.,Comproba o formato vixente do MAPA antes de presentar o documento nunha inspección — a regulación actualízase periodicamente.
+viti.libro_tratamientos_campana,Libro de tratamientos · campaña {ano},Tratamendu-liburua · {ano}ko kanpaina,Llibre de tractaments · campanya {ano},Libro de tratamentos · campaña {ano}
+viti.libro_tratamientos_pac,Libro de tratamientos PAC,PAC tratamendu-liburua,Llibre de tractaments PAC,Libro de tratamentos PAC
+viti.lineas_de_factura,Líneas de factura,Fakturaren lerroak,Línies de factura,Liñas de factura
+viti.lote_anada_vino,Lote / añada del vino,Ardoaren lotea / uzta-urtea,Lot / anyada del vi,Lote / colleita do viño
+viti.lote_anada_vino_ayuda,Ej.: L2022-CR-08 (importante para DOP/IGP),Adib.: L2022-CR-08 (garrantzitsua DOP/IGPrako),P. ex.: L2022-CR-08 (important per a DOP/IGP),Ex.: L2022-CR-08 (importante para DOP/IGP)
+viti.manejo_cultural,Manejo cultural,Maneiu kulturala,Maneig cultural,Manexo cultural
+viti.manejo_cultural_sugerido,Manejo cultural sugerido,Iradokitako maneiu kulturala,Maneig cultural suggerit,Manexo cultural suxerido
+viti.marcar_pagada,Marcar pagada,Markatu ordaindutzat,Marcar com a pagada,Marcar como pagada
+viti.mas,Más,Gehiago,Més,Máis
+viti.materias_activas,Materias activas,Substantzia aktiboak,Matèries actives,Materias activas
+viti.meteo_hoy_origen,Meteo hoy · {origen},Eguraldia gaur · {origen},Meteo avui · {origen},Meteo hoxe · {origen}
+viti.meteo_viticola,Meteo vitícola,Mahastiko eguraldia,Meteo vitícola,Meteo vitícola
+viti.modulos_no_disponible,El régimen de módulos no está disponible en v1: pendiente de validación con asesor fiscal antes de añadirlo.,Moduluen araubidea ez dago erabilgarri v1ean: zerga-aholkulariarekin baliozkotu behar da gehitu aurretik.,El règim de mòduls no està disponible a la v1: pendent de validació amb un assessor fiscal abans d'afegir-lo.,O réxime de módulos non está dispoñible na v1: pendente de validación cun asesor fiscal antes de engadilo.
+viti.motivo,Motivo,Arrazoia,Motiu,Motivo
+viti.motivo_ayuda,Control preventivo de mildiu…,Mildiuaren prebentziozko kontrola…,Control preventiu de míldiu…,Control preventivo do mildio…
+viti.n_fotos,{n} fotos.,{n} argazki.,{n} fotos.,{n} fotos.
+viti.n_unidades_abreviado,{n} ud,{n} unit.,{n} u.,{n} ud.
+viti.nif,NIF,NIF,NIF,NIF
+viti.nif_del_aplicador,NIF del aplicador,Aplikatzailearen NIF,NIF de l'aplicador,NIF do aplicador
+viti.nif_del_asesor,NIF del asesor,Aholkulariaren NIF,NIF de l'assessor,NIF do asesor
+viti.nif_obligatorio_etiqueta,NIF *,NIF *,NIF *,NIF *
+viti.nif_opcional,NIF (opcional),NIF (aukerakoa),NIF (opcional),NIF (opcional)
+viti.nif_vacio_venta_directa,Vacío si es venta directa sin factura,"Hutsik, fakturarik gabeko salmenta zuzena bada",Buit si és venda directa sense factura,Baleiro se é venda directa sen factura
+viti.nif_valor,NIF {nif},NIF {nif},NIF {nif},NIF {nif}
+viti.nivel_carnet_aplicador,Nivel del carnet de aplicador,Aplikatzaile-txartelaren maila,Nivell del carnet d'aplicador,Nivel do carné de aplicador
+viti.no,No,Ez,No,Non
+viti.no_hay_facturas,No hay facturas,Ez dago fakturarik,No hi ha factures,Non hai facturas
+viti.no_se_pudo_obtener_gps,No se pudo obtener el GPS actual.,Ezin izan da uneko GPSa lortu.,No s'ha pogut obtenir el GPS actual.,Non se puido obter o GPS actual.
+viti.no_se_pudo_obtener_ubicacion,No se pudo obtener la ubicación.,Ezin izan da kokapena lortu.,No s'ha pogut obtenir la ubicació.,Non se puido obter a localización.
+viti.nombre,Nombre,Izena,Nom,Nome
+viti.nombre_cientifico,Nombre científico,Izen zientifikoa,Nom científic,Nome científico
+viti.nombre_comun,Nombre común,Izen arrunta,Nom comú,Nome común
+viti.nombre_del_aplicador,Nombre del aplicador,Aplikatzailearen izena,Nom de l'aplicador,Nome do aplicador
+viti.nombre_del_asesor,Nombre del asesor,Aholkulariaren izena,Nom de l'assessor,Nome do asesor
+viti.nombre_o_razon_social_obligatorio,Nombre o razón social *,Izena edo sozietate-izena *,Nom o raó social *,Nome ou razón social *
+viti.notas,Notas,Oharrak,Notes,Notas
+viti.nueva_cepa,Nueva cepa,Mahatsondo berria,Cep nou,Nova cepa
+viti.nueva_cosecha,Nueva cosecha,Uzta berria,Collita nova,Nova colleita
+viti.nueva_incidencia,Nueva incidencia,Gorabehera berria,Incidència nova,Nova incidencia
+viti.nueva_observacion,Nueva observación,Behaketa berria,Observació nova,Nova observación
+viti.nuevo,Nuevo,Berria,Nou,Novo
+viti.nuevo_evento,Nuevo evento,Gertaera berria,Esdeveniment nou,Novo evento
+viti.nuevo_gasto,Nuevo gasto,Gastu berria,Despesa nova,Novo gasto
+viti.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Ingrés nou,Novo ingreso
+viti.nuevo_tercero,Nuevo tercero,Hirugarren berria,Tercer nou,Novo terceiro
+viti.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Tractament nou,Novo tratamento
+viti.numero_carnet_aplicador,N.º de carnet de aplicador,Aplikatzaile-txartelaren zk.,Núm. de carnet d'aplicador,N.º de carné de aplicador
+viti.numero_de_factura,N.º de factura,Faktura-zk.,Núm. de factura,N.º de factura
+viti.numero_regepa,N.º REGEPA,REGEPA zk.,Núm. REGEPA,N.º REGEPA
+viti.numero_registro_asesor,N.º de registro del asesor,Aholkulariaren erregistro-zk.,Núm. de registre de l'assessor,N.º de rexistro do asesor
+viti.numero_registro_fitosanitario,N.º registro fitosanitario,Erregistro fitosanitarioaren zk.,Núm. registre fitosanitari,N.º rexistro fitosanitario
+viti.observacion,Observación,Behaketa,Observació,Observación
+viti.onboarding_ia_texto,"Hazle una foto a un racimo o a una hoja con síntomas y la IA propone un diagnóstico (mildiu, oídio, botritis…) y manejo cultural. Tú decides; nada se aplica sin tu revisión.","Atera argazki bat sintomak dituen mahats-mordo bati edo hosto bati, eta AAk diagnostikoa (mildiua, oidioa, botritisa…) eta maneiu kulturala proposatzen ditu. Zuk erabakitzen duzu; ez da ezer aplikatzen zuk berrikusi gabe.","Fes una foto a un raïm o a una fulla amb símptomes i la IA proposa un diagnòstic (míldiu, oïdi, botritis…) i maneig cultural. Tu decideixes; no s'aplica res sense la teva revisió.","Fai unha foto a un acio ou a unha folla con síntomas e a IA propón un diagnóstico (mildio, oídio, botrite…) e manexo cultural. Ti decides; non se aplica nada sen a túa revisión."
+viti.onboarding_ia_titulo,Diagnóstico con IA por foto,AA bidezko diagnostikoa argazkitik,Diagnòstic amb IA per foto,Diagnóstico con IA por foto
+viti.onboarding_mapa_texto,"Cataloga cada cepa con su ubicación GPS, variedad, portainjerto y fotos. Localiza cualquier planta singular en segundos desde el mapa, con los puntos agrupados.","Katalogatu mahatsondo bakoitza bere GPS kokapenarekin, barietatearekin, txertakarekin eta argazkiekin. Aurkitu edozein landare berezi segundo gutxitan mapan, puntuak multzokatuta.","Cataloga cada cep amb la seva ubicació GPS, varietat, portaempelt i fotos. Localitza qualsevol planta singular en segons des del mapa, amb els punts agrupats.","Cataloga cada cepa coa súa localización GPS, variedade, portaenxerto e fotos. Localiza calquera planta singular en segundos desde o mapa, cos puntos agrupados."
+viti.onboarding_mapa_titulo,Tus cepas en el mapa,Zure mahatsondoak mapan,Els teus ceps al mapa,As túas cepas no mapa
+viti.onboarding_pac_texto,Anota cada tratamiento con sus campos PAC y exporta el libro oficial (RD 1311/2012) en PDF firmable. Adiós a la oficina los domingos.,Idatzi tratamendu bakoitza bere PAC eremuekin eta esportatu liburu ofiziala (RD 1311/2012) PDF sinagarrian. Agur igandeetako bulegoari.,Anota cada tractament amb els seus camps PAC i exporta el llibre oficial (RD 1311/2012) en PDF signable. Adeu a l'oficina els diumenges.,Anota cada tratamento cos seus campos PAC e exporta o libro oficial (RD 1311/2012) en PDF asinable. Adeus á oficina os domingos.
+viti.onboarding_pac_titulo,Libro PAC al alcance,PAC liburua eskura,Llibre PAC a l'abast,Libro PAC ao alcance
+viti.origen_centro_cepas,centro de cepas,mahatsondoen erdigunea,centre dels ceps,centro das cepas
+viti.origen_centro_referencia,centro de referencia,erreferentzia-gunea,centre de referència,centro de referencia
+viti.origen_gps_actual,GPS actual,uneko GPSa,GPS actual,GPS actual
+viti.origen_gps_reciente,GPS reciente,azken GPSa,GPS recent,GPS recente
+viti.origen_vinedo,viñedo,mahastia,vinya,viña
+viti.otro_gasto,Otro gasto,Beste gastu bat,Altres despeses,Outro gasto
+viti.otro_ingreso,Otro ingreso,Beste diru-sarrera bat,Altres ingressos,Outro ingreso
+viti.pestana_hoy,Hoy,Gaur,Avui,Hoxe
+viti.plagas,Plagas,Izurriteak,Plagues,Pragas
+viti.plagas_objetivo,Plagas/enfermedades objetivo,Helburu diren izurriteak/gaixotasunak,Plagues/malalties objectiu,Pragas/enfermidades obxectivo
+viti.plantada,Plantada,Landatua,Plantat,Plantada
+viti.plantada_fecha,Plantada {fecha},Landatua: {fecha},Plantat el {fecha},Plantada o {fecha}
+viti.plazo_seguridad_dias,Plazo de seguridad (días),Segurtasun-epea (egunak),Termini de seguretat (dies),Prazo de seguridade (días)
+viti.plazo_seguridad_dias_tipo,Plazo de seguridad: {dias} días · {tipo},Segurtasun-epea: {dias} egun · {tipo},Termini de seguretat: {dias} dies · {tipo},Prazo de seguridade: {dias} días · {tipo}
+viti.portainjerto,Portainjerto,Txertaka,Portaempelt,Portaenxerto
+viti.portainjertos,Portainjertos,Txertakak,Portaempelts,Portaenxertos
+viti.precio_euros,Precio (€),Prezioa (€),Preu (€),Prezo (€)
+viti.prevision_no_cargada,No se pudo cargar la previsión.,Ezin izan da iragarpena kargatu.,No s'ha pogut carregar la previsió.,Non se puido cargar a previsión.
+viti.prevision_no_cargada_reintentar,No se pudo cargar la previsión. Toca para reintentar.,Ezin izan da iragarpena kargatu. Sakatu berriro saiatzeko.,No s'ha pogut carregar la previsió. Toca per tornar-ho a provar.,Non se puido cargar a previsión. Toca para tentalo de novo.
+viti.prevision_orientativa_vina,"Previsión orientativa para tratamientos, heladas, riego, estrés hídrico y ventanas de trabajo en viña.","Gutxi gorabeherako iragarpena tratamenduetarako, izozteetarako, ureztatzeko, ur-estresarako eta mahastiko lan-leihoetarako.","Previsió orientativa per a tractaments, gelades, reg, estrès hídric i finestres de treball a la vinya.","Previsión orientativa para tratamentos, xeadas, rega, estrés hídrico e xanelas de traballo na viña."
+viti.producto,Producto,Produktua,Producte,Produto
+viti.proveedor_minuscula,proveedor,hornitzailea,proveïdor,provedor
+viti.proximos_hitos_fenologicos,Próximos hitos fenológicos,Hurrengo mugarri fenologikoak,Propers estadis fenològics,Próximos fitos fenolóxicos
+viti.puede_ser_distinto_del_titular,Puede ser distinto del titular,Titularra ez den beste bat izan daiteke,Pot ser diferent del titular,Pode ser distinto do titular
+viti.punto_suelto,Punto suelto,Puntu solte,Punt solt,Punto solto
+viti.reagp_iva_soportado_no_recuperable,En REAGP el IVA soportado no es recuperable: se computa como mayor coste en el extracto.,REAGPn jasandako IVA ez da berreskuragarria: kostu handiago gisa zenbatzen da laburpenean.,En REAGP l'IVA suportat no és recuperable: es computa com a cost més alt a l'extracte.,En REAGP o IVA soportado non é recuperable: computa como maior custo no extracto.
+viti.reagp_no_recuperable_corto,En REAGP no es recuperable: computa como mayor coste.,REAGPn ez da berreskuragarria: kostu handiago gisa zenbatzen da.,En REAGP no és recuperable: computa com a cost més alt.,En REAGP non é recuperable: computa como maior custo.
+viti.recapturar,Recapturar,Berriro hartu,Tornar a capturar,Volver capturar
+viti.recuperable_contra_repercutido,Recuperable contra el repercutido,Jasanarazitakoaren kontra berreskuragarria,Recuperable contra el repercutit,Recuperable contra o repercutido
+viti.regepa_ayuda,Registro General de la Producción Agrícola,Nekazaritza Ekoizpenaren Erregistro Orokorra,Registre General de la Producció Agrícola,Rexistro Xeral da Produción Agrícola
+viti.regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
+viti.regimen_irpf_iva_provisional,Régimen IRPF + IVA · provisional,IRPF + IVA araubidea · behin-behinekoa,Règim IRPF + IVA · provisional,Réxime IRPF + IVA · provisional
+viti.regimen_reagp,REAGP — régimen especial agricultura/ganadería/pesca,REAGP — nekazaritza/abeltzaintza/arrantzako araubide berezia,REAGP — règim especial agricultura/ramaderia/pesca,REAGP — réxime especial agricultura/gandaría/pesca
+viti.registros,Registros,Erregistroak,Registres,Rexistros
+viti.reintentar,Reintentar,Saiatu berriro,Tornar-ho a provar,Tentar de novo
+viti.rentabilidad_por_variedad,Para ver rentabilidad por variedad,Barietateko errentagarritasuna ikusteko,Per veure la rendibilitat per varietat,Para ver a rendibilidade por variedade
+viti.repercutido_menos_soportado,Repercutido − soportado,Jasanarazitakoa − jasandakoa,Repercutit − suportat,Repercutido − soportado
+viti.requerido,Requerido,Derrigorrezkoa,Obligatori,Obrigatorio
+viti.resistencia_sequia,Resistencia a sequía,Lehortearekiko erresistentzia,Resistència a la sequera,Resistencia á seca
+viti.respaldo_email,Respaldo: {email},Babeskopia: {email},Còpia: {email},Respaldo: {email}
+viti.restaurar,Restaurar,Leheneratu,Restaurar,Restaurar
+viti.resuelta,resuelta,konponduta,resolta,resolta
+viti.resumen,Resumen,Laburpena,Resum,Resumo
+viti.resumen_anual_pdf_provisional,Resumen del año en PDF · provisional,Urteko laburpena PDFn · behin-behinekoa,Resum de l'any en PDF · provisional,Resumo do ano en PDF · provisional
+viti.resumen_catalogos,"{total} filas en 5 catálogos: {variedades} variedades, {portainjertos} portainjertos, {plagas} plagas/enfermedades, {materias} materias activas, {bbch} estados BBCH.","{total} errenkada 5 katalogotan: {variedades} barietate, {portainjertos} txertaka, {plagas} izurrite/gaixotasun, {materias} substantzia aktibo, {bbch} BBCH egoera.","{total} files en 5 catàlegs: {variedades} varietats, {portainjertos} portaempelts, {plagas} plagues/malalties, {materias} matèries actives, {bbch} estats BBCH.","{total} filas en 5 catálogos: {variedades} variedades, {portainjertos} portaenxertos, {plagas} pragas/enfermidades, {materias} materias activas, {bbch} estados BBCH."
+viti.resumen_fiscal_trimestral,Resumen fiscal trimestral,Hiruhileko zerga-laburpena,Resum fiscal trimestral,Resumo fiscal trimestral
+viti.resumen_trimestral_ayuda,"Totales por trimestre para revisar caja, IVA y diferencia antes del cierre fiscal. El extracto anual sigue disponible en el PDF.","Hiruhileko guztizkoak kutxa, IVA eta aldea berrikusteko zerga-itxiera aurretik. Urteko laburpena PDFn dago eskuragarri.","Totals per trimestre per revisar caixa, IVA i diferència abans del tancament fiscal. L'extracte anual continua disponible en PDF.","Totais por trimestre para revisar caixa, IVA e diferenza antes do peche fiscal. O extracto anual segue dispoñible no PDF."
+viti.resumen_trimestral_criterio,"Los trimestres usan el mismo criterio que el resumen anual: uva separada de vino, ayudas aparte y modelo 347 por NIF.","Hiruhilekoek urteko laburpenaren irizpide bera erabiltzen dute: mahatsa ardotik bereizita, laguntzak aparte eta 347 eredua NIFaren arabera.","Els trimestres fan servir el mateix criteri que el resum anual: raïm separat del vi, ajuts a part i model 347 per NIF.","Os trimestres usan o mesmo criterio que o resumo anual: uva separada do viño, axudas á parte e modelo 347 por NIF."
+viti.riesgo_de_helada,Riesgo de helada,Izotz-arriskua,Risc de gelada,Risco de xeada
+viti.riesgo_helada_detalle,"Vigila brotación, floración, plantones y vaguadas.","Zaindu kimu-ateratzea, loraldia, landare gazteak eta sakonuneak.","Vigila la brotada, la floració, els plançons i les fondalades.","Vixía o abrollamento, a floración, as plantas novas e as valgadas."
+viti.ropo_equivalente,ROPO/equivalente,ROPO/baliokidea,ROPO/equivalent,ROPO/equivalente
+viti.saltar,Saltar,Saltatu,Ometre,Saltar
+viti.salud,Salud,Osasuna,Salut,Saúde
+viti.salud_n,salud {n},osasuna {n},salut {n},saúde {n}
+viti.severidad,Severidad,Larritasuna,Severitat,Severidade
+viti.severidad_abreviada_n,sev. {n},larr. {n},sev. {n},sev. {n}
+viti.si,Sí,Bai,Sí,Si
+viti.siguiente,Siguiente,Hurrengoa,Següent,Seguinte
+viti.sin_asociar,(sin asociar),(lotu gabe),(sense associar),(sen asociar)
+viti.sin_cepas_todavia,Sin cepas registradas todavía.,Oraindik ez dago mahatsondorik erregistratuta.,Encara no hi ha ceps registrats.,Aínda non hai cepas rexistradas.
+viti.sin_coincidencias,Sin coincidencias.,Ez dago bat datorrenik.,Sense coincidències.,Sen coincidencias.
+viti.sin_datos_calendario_combinacion,Sin datos en el calendario para esta combinación.,Egutegian ez dago daturik konbinazio honetarako.,No hi ha dades al calendari per a aquesta combinació.,Sen datos no calendario para esta combinación.
+viti.sin_datos_combinacion,Sin datos para esta combinación.,Ez dago daturik konbinazio honetarako.,No hi ha dades per a aquesta combinació.,Sen datos para esta combinación.
+viti.sin_datos_meteo_hoy,Sin datos meteo para hoy.,Ez dago gaurko eguraldi-daturik.,No hi ha dades meteo per a avui.,Sen datos meteo para hoxe.
+viti.sin_elegir,Sin elegir,Aukeratu gabe,Sense triar,Sen escoller
+viti.sin_eventos_todavia,Sin eventos registrados todavía.,Oraindik ez dago gertaerarik erregistratuta.,Encara no hi ha esdeveniments registrats.,Aínda non hai eventos rexistrados.
+viti.sin_fecha_plantacion,Sin fecha de plantación,Landatze-datarik gabe,Sense data de plantació,Sen data de plantación
+viti.sin_iva,Sin IVA,IVArik gabe,Sense IVA,Sen IVA
+viti.sin_iva_ni_compensacion,Sin IVA ni compensación,IVArik eta konpentsaziorik gabe,Sense IVA ni compensació,Sen IVA nin compensación
+viti.sin_nif,sin NIF,NIFik gabe,sense NIF,sen NIF
+viti.sin_nombre_parentesis,(sin nombre),(izenik gabe),(sense nom),(sen nome)
+viti.sin_resultados,Sin resultados.,Ez dago emaitzarik.,Sense resultats.,Sen resultados.
+viti.sin_titular_configurado,Sin titular configurado,Titularrik konfiguratu gabe,Sense titular configurat,Sen titular configurado
+viti.sin_ubicacion,Sin ubicación,Kokapenik gabe,Sense ubicació,Sen localización
+viti.sin_variedad,(sin variedad),(barietaterik gabe),(sense varietat),(sen variedade)
+viti.sinonimias,Sinonimias: {lista},Sinonimoak: {lista},Sinonímies: {lista},Sinonimias: {lista}
+viti.sintomas,Síntomas,Sintomak,Símptomes,Síntomas
+viti.suelo_temperatura_humedad,Suelo {temperatura} °C · {humedad},Lurzorua {temperatura} °C · {humedad},Sòl {temperatura} °C · {humedad},Solo {temperatura} °C · {humedad}
+viti.superficie_tratada_ha,Superficie tratada (ha),Tratatutako azalera (ha),Superfície tractada (ha),Superficie tratada (ha)
+viti.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+viti.terceros_ayuda_347,Terceros con NIF · alimentan el modelo 347,NIFdun hirugarrenak · 347 eredurako,Tercers amb NIF · alimenten el model 347,Terceiros con NIF · alimentan o modelo 347
+viti.terceros_vacio,"Aún no hay terceros guardados. Añade clientes (distribuidoras, hostelería, exportación, particulares con factura) y proveedores (insumos, fitosanitarios, barricas, embotellado) — el NIF de cada uno alimenta el modelo 347 al cierre del ejercicio.","Oraindik ez dago hirugarrenik gordeta. Gehitu bezeroak (banatzaileak, ostalaritza, esportazioa, fakturadun partikularrak) eta hornitzaileak (intsumoak, fitosanitarioak, barrikak, botilaratzea) — bakoitzaren NIFa 347 eredura doa ekitaldiaren itxieran.","Encara no hi ha tercers desats. Afegeix clients (distribuïdores, hostaleria, exportació, particulars amb factura) i proveïdors (insums, fitosanitaris, barriques, embotellament) — el NIF de cadascun alimenta el model 347 al tancament de l'exercici.","Aínda non hai terceiros gardados. Engade clientes (distribuidoras, hostalaría, exportación, particulares con factura) e provedores (insumos, fitosanitarios, barricas, embotellado) — o NIF de cada un alimenta o modelo 347 ao peche do exercicio."
+viti.tipo,Tipo,Mota,Tipus,Tipo
+viti.tipo_de_accion,Tipo de acción,Ekintza mota,Tipus d'acció,Tipo de acción
+viti.tipo_de_gasto,Tipo de gasto,Gastu mota,Tipus de despesa,Tipo de gasto
+viti.tipo_de_ingreso,Tipo de ingreso,Diru-sarrera mota,Tipus d'ingrés,Tipo de ingreso
+viti.tipo_incidencia_enfermedad,Enfermedad,Gaixotasuna,Malaltia,Enfermidade
+viti.tipo_incidencia_estres,Estrés,Estresa,Estrès,Estrés
+viti.tipo_incidencia_fisiologico,Fisiológico,Fisiologikoa,Fisiològic,Fisiolóxico
+viti.tipo_incidencia_plaga,Plaga,Izurritea,Plaga,Praga
+viti.tipo_otro,Otro,Bestelakoa,Altres,Outro
+viti.tipo_tratamiento_abono,Abono,Ongarria,Adob,Abono
+viti.tipo_tratamiento_fitosanitario,Fitosanitario,Fitosanitarioa,Fitosanitari,Fitosanitario
+viti.tipo_tratamiento_poda,Poda,Kimaketa,Poda,Poda
+viti.tipo_tratamiento_riego,Riego,Ureztatzea,Reg,Rega
+viti.titular_ayuda,Datos requeridos por el libro oficial PAC,PAC liburu ofizialak eskatzen dituen datuak,Dades que demana el llibre oficial PAC,Datos que require o libro oficial PAC
+viti.titular_de_la_explotacion,Titular de la explotación,Ustiategiaren titularra,Titular de l'explotació,Titular da explotación
+viti.titular_requerido_libro,"El libro oficial requiere los datos del titular (NIF, nombre, dirección, REGEPA…). Configúralos antes de generar.","Liburu ofizialak titularraren datuak behar ditu (NIF, izena, helbidea, REGEPA…). Konfiguratu itzazu sortu aurretik.","El llibre oficial requereix les dades del titular (NIF, nom, adreça, REGEPA…). Configura-les abans de generar-lo.","O libro oficial require os datos do titular (NIF, nome, enderezo, REGEPA…). Configúraos antes de xerar."
+viti.titular_sin_configurar,Titular sin configurar,Titularra konfiguratu gabe,Titular sense configurar,Titular sen configurar
+viti.todas,Todas,Guztiak,Totes,Todas
+viti.todas_las_cepas,Todas las cepas,Mahatsondo guztiak,Tots els ceps,Todas as cepas
+viti.todos_los_vinedos,Todos los viñedos,Mahasti guztiak,Totes les vinyes,Todas as viñas
+viti.total_mayusculas,TOTAL,GUZTIRA,TOTAL,TOTAL
+viti.trabajando,Trabajando…,Lanean…,Treballant…,Traballando…
+viti.tratamiento,Tratamiento,Tratamendua,Tractament,Tratamento
+viti.tratamiento_poco_favorable,Tratamiento poco favorable,Tratamendurako egun txarra,Tractament poc favorable,Tratamento pouco favorable
+viti.tratamiento_poco_favorable_detalle,"Viento o lluvia pueden provocar deriva, lavado o baja eficacia.","Haizeak edo euriak deriba, garbiketa edo eraginkortasun txikia eragin ditzakete.","El vent o la pluja poden provocar deriva, rentat o poca eficàcia.","O vento ou a choiva poden provocar deriva, lavado ou baixa eficacia."
+viti.tratamientos_delicados_viento_lluvia,Tratamientos delicados (viento / lluvia),Tratamendu delikatuak (haizea / euria),Tractaments delicats (vent / pluja),Tratamentos delicados (vento / choiva)
+viti.trimestre_1,ene-mar,urt-mar,gen-març,xan-mar
+viti.trimestre_2,abr-jun,api-eka,abr-juny,abr-xuñ
+viti.trimestre_3,jul-sep,uzt-ira,jul-set,xul-set
+viti.trimestre_4,oct-dic,urr-abe,oct-des,out-dec
+viti.trimestre_abreviado,T{n},{n}H,T{n},T{n}
+viti.trimestres,Trimestres,Hiruhilekoak,Trimestres,Trimestres
+viti.ultimo_gps,Último GPS: {coordenadas},Azken GPSa: {coordenadas},Últim GPS: {coordenadas},Último GPS: {coordenadas}
+viti.unidad_botellas,botellas,botilak,ampolles,botellas
+viti.unidades,Unidades,Unitateak,Unitats,Unidades
+viti.usar_centro_mapa,Usar centro del mapa,Erabili maparen erdigunea,Usar el centre del mapa,Usar o centro do mapa
+viti.usar_gps_actual,Usar GPS actual,Erabili uneko GPSa,Usar el GPS actual,Usar o GPS actual
+viti.variedad,Variedad,Barietatea,Varietat,Variedade
+viti.variedad_en_zona,{variedad} en zona {zona},"{variedad}, {zona} eremuan",{variedad} a la zona {zona},{variedad} na zona {zona}
+viti.variedad_obligatoria,Variedad obligatoria,Barietatea derrigorrezkoa da,La varietat és obligatòria,A variedade é obrigatoria
+viti.variedad_obligatoria_etiqueta,Variedad *,Barietatea *,Varietat *,Variedade *
+viti.variedades,Variedades,Barietateak,Varietats,Variedades
+viti.ventana_razonable,Ventana razonable,Leiho egokia,Finestra raonable,Xanela razoable
+viti.ventana_razonable_detalle,"Sin señales fuertes de helada, deriva, lluvia o estrés hídrico.","Ez dago izotz, deriba, euri edo ur-estresaren seinale handirik.","Sense senyals forts de gelada, deriva, pluja o estrès hídric.","Sen sinais fortes de xeada, deriva, choiva ou estrés hídrico."
+viti.version_instalada_y_publicada,Versión instalada y última publicada,Instalatutako bertsioa eta argitaratutako azkena,Versió instal·lada i última publicada,Versión instalada e última publicada
+viti.via_claude,vía Claude,Claude bidez,via Claude,vía Claude
+viti.viento_racha,{viento} km/h · racha {racha},{viento} km/h · bolada {racha},{viento} km/h · ratxa {racha},{viento} km/h · refacho {racha}
+viti.vigor_valor,Vigor: {vigor},Bizitasuna: {vigor},Vigor: {vigor},Vigor: {vigor}
+viti.vinedo,Viñedo,Mahastia,Vinya,Viña
+viti.vinedo_obligatorio_etiqueta,Viñedo *,Mahastia *,Vinya *,Viña *
+viti.zona,Zona,Eremua,Zona,Zona
+viti.zona_norte_atlantica,Norte (atlántica),Iparraldea (atlantikoa),Nord (atlàntica),Norte (atlántica)
+viti.zona_sur_mediterranea,Sur (mediterránea),Hegoaldea (mediterraneoa),Sud (mediterrània),Sur (mediterránea)

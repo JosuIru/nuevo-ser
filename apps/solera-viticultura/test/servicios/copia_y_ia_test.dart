@@ -40,8 +40,11 @@ void main() {
 
   group('Textos de error de la copia', () {
     test('dice que los datos no se han tocado solo si es verdad', () {
+      // La frase sale de las traducciones (en castellano por defecto:
+      // «Tus datos no se han tocado.»).
+      final avisoDatosIntactos = SoleraL10n.t('viti.backup_datos_intactos');
       const rechazada = ErrorCopiaSeguridad(MotivoErrorCopiaSeguridad.deOtraApp, 'x');
-      expect(textoErrorCopiaSeguridad(rechazada), contains('no se han tocado'));
+      expect(textoErrorCopiaSeguridad(rechazada), contains(avisoDatosIntactos));
 
       final fallidaSinVuelta = ErrorCopiaSeguridad(
         MotivoErrorCopiaSeguridad.reversionFallida,
@@ -49,7 +52,7 @@ void main() {
         respaldoPrevio: File('/datos/copias_automaticas/antes-de-restaurar.zip'),
       );
       final texto = textoErrorCopiaSeguridad(fallidaSinVuelta);
-      expect(texto, isNot(contains('no se han tocado')));
+      expect(texto, isNot(contains(avisoDatosIntactos)));
       expect(texto, contains('antes-de-restaurar.zip'));
     });
 

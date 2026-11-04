@@ -32,7 +32,10 @@ Future<void> main() async {
   }
   // Idioma elegido en Ajustes la última vez (si no, castellano).
   await cargarIdiomaSolera();
-  await initializeDateFormatting('es_ES', null);
+  // Nombres de meses y días para los cuatro idiomas de la app.
+  for (final localeFechas in const ['es_ES', 'eu', 'ca', 'gl']) {
+    await initializeDateFormatting(localeFechas, null);
+  }
   unawaited(_autoBackupViticultura.restaurarSiProcede());
   runApp(const SoleraViticulturaApp());
 }
@@ -149,31 +152,31 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       bottomNavigationBar: NavigationBar(
         selectedIndex: _indice,
         onDestinationSelected: (i) => setState(() => _indice = i),
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            icon: Icon(Icons.today_outlined),
-            selectedIcon: Icon(Icons.today),
-            label: 'Hoy',
+            icon: const Icon(Icons.today_outlined),
+            selectedIcon: const Icon(Icons.today),
+            label: SoleraL10n.t('viti.pestana_hoy'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.map_outlined),
-            selectedIcon: Icon(Icons.map),
-            label: 'Mapa',
+            icon: const Icon(Icons.map_outlined),
+            selectedIcon: const Icon(Icons.map),
+            label: SoleraL10n.t('mapa'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.grass_outlined),
-            selectedIcon: Icon(Icons.grass),
-            label: 'Cepas',
+            icon: const Icon(Icons.grass_outlined),
+            selectedIcon: const Icon(Icons.grass),
+            label: SoleraL10n.t('viti.cepas'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.folder_outlined),
-            selectedIcon: Icon(Icons.folder),
-            label: 'Registros',
+            icon: const Icon(Icons.folder_outlined),
+            selectedIcon: const Icon(Icons.folder),
+            label: SoleraL10n.t('viti.registros'),
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings_outlined),
-            selectedIcon: Icon(Icons.settings),
-            label: 'Ajustes',
+            icon: const Icon(Icons.settings_outlined),
+            selectedIcon: const Icon(Icons.settings),
+            label: SoleraL10n.t('ajustes'),
           ),
         ],
       ),

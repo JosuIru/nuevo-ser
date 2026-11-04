@@ -15,37 +15,36 @@ String textoErrorCopiaSeguridad(ErrorCopiaSeguridad error) {
   final String explicacion;
   switch (error.motivo) {
     case MotivoErrorCopiaSeguridad.ficheroNoExiste:
-      explicacion = 'No se encuentra el fichero elegido.';
+      explicacion = SoleraL10n.t('viti.backup_error_fichero_no_existe');
     case MotivoErrorCopiaSeguridad.noEsZip:
-      explicacion = 'El fichero no es un ZIP válido o está dañado.';
+      explicacion = SoleraL10n.t('viti.backup_error_no_es_zip');
     case MotivoErrorCopiaSeguridad.manifiestoNoValido:
-      explicacion = 'La copia está incompleta o dañada: no se entiende su descripción.';
+      explicacion = SoleraL10n.t('viti.backup_error_manifiesto');
     case MotivoErrorCopiaSeguridad.formatoMasNuevo:
     case MotivoErrorCopiaSeguridad.esquemaMasNuevo:
-      explicacion =
-          'La copia es de una versión más nueva de Larrea Viticultura. Actualiza la app y vuelve a intentarlo.';
+      explicacion = SoleraL10n.t('viti.backup_error_version_nueva');
     case MotivoErrorCopiaSeguridad.deOtraApp:
-      explicacion = 'La copia es de otra aplicación, no de Larrea Viticultura.';
+      explicacion = SoleraL10n.t('viti.backup_error_otra_app');
     case MotivoErrorCopiaSeguridad.sinBaseDatos:
-      explicacion = 'El ZIP no contiene datos de Larrea Viticultura.';
+      explicacion = SoleraL10n.t('viti.backup_error_sin_datos_app');
     case MotivoErrorCopiaSeguridad.baseDatosNoValida:
     case MotivoErrorCopiaSeguridad.integridadFallida:
-      explicacion = 'La base de datos de la copia está dañada.';
+      explicacion = SoleraL10n.t('viti.backup_error_bd_danada');
     case MotivoErrorCopiaSeguridad.rutaPeligrosa:
-      explicacion = 'La copia contiene rutas no permitidas y se ha rechazado.';
+      explicacion = SoleraL10n.t('viti.backup_error_ruta_peligrosa');
     case MotivoErrorCopiaSeguridad.respaldoPrevioFallido:
-      explicacion =
-          'No se pudo guardar antes una copia del estado actual, así que no se ha restaurado nada.';
+      explicacion = SoleraL10n.t('viti.backup_error_respaldo_previo');
     case MotivoErrorCopiaSeguridad.sinDatosQueCopiar:
-      explicacion = 'Todavía no hay datos que copiar.';
+      explicacion = SoleraL10n.t('viti.backup_error_sin_datos');
     case MotivoErrorCopiaSeguridad.restauracionRevertida:
-      explicacion = 'La restauración falló a mitad y se ha vuelto al estado anterior.';
+      explicacion = SoleraL10n.t('viti.backup_error_revertida');
     case MotivoErrorCopiaSeguridad.reversionFallida:
-      explicacion = 'La restauración falló y no se pudo volver del todo al estado anterior. '
-          'Tu estado anterior está guardado en la copia automática: ${error.respaldoPrevio?.path ?? error.mensaje}';
+      explicacion = SoleraL10n.tf('viti.backup_error_reversion_fallida', {
+        'ruta': error.respaldoPrevio?.path ?? error.mensaje,
+      });
   }
   if (!error.datosIntactos) return explicacion;
-  return '$explicacion Tus datos no se han tocado.';
+  return '$explicacion ${SoleraL10n.t('viti.backup_datos_intactos')}';
 }
 
 /// Pantalla de copia de seguridad y restauración. Operaciones lentas
@@ -60,7 +59,12 @@ class PantallaBackup extends StatefulWidget {
 
 class _PantallaBackupState extends State<PantallaBackup> {
   final _servicioCopia = servicioCopiaSeguridadViticultura;
-  final _formatoFecha = DateFormat("d/MM/yyyy 'a las' HH:mm");
+
+  /// «3/11/2026 a las 18:05» en el idioma actual.
+  String _fechaConHora(DateTime momento) => SoleraL10n.tf('viti.fecha_a_las_hora', {
+        'fecha': DateFormat('d/MM/yyyy').format(momento),
+        'hora': DateFormat('HH:mm').format(momento),
+      });
   bool _trabajando = false;
   DateTime? _ultimaCopia;
 
@@ -89,12 +93,12 @@ class _PantallaBackupState extends State<PantallaBackup> {
       if (!mounted) return;
       await Share.shareXFiles(
         [XFile(fichero.path)],
-        subject: 'Copia de seguridad de Larrea Viticultura',
+        subject: SoleraL10n.t('viti.backup_asunto_compartir'),
       );
     } on ErrorCopiaSeguridad catch (errorCopia) {
-      if (mounted) _avisar('No se pudo crear la copia. ${textoErrorCopiaSeguridad(errorCopia)}');
+      if (mounted) _avisar('${SoleraL10n.t('viti.backup_no_se_pudo_crear')} ${textoErrorCopiaSeguridad(errorCopia)}');
     } catch (error) {
-      if (mounted) _avisar('No se pudo crear la copia: $error');
+      if (mounted) _avisar('${SoleraL10n.t('viti.backup_no_se_pudo_crear')} $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -117,13 +121,13 @@ class _PantallaBackupState extends State<PantallaBackup> {
     } on ErrorCopiaSeguridad catch (errorCopia) {
       if (mounted) {
         setState(() => _trabajando = false);
-        _avisar('Esa copia no se puede restaurar. ${textoErrorCopiaSeguridad(errorCopia)}');
+        _avisar('${SoleraL10n.t('viti.backup_no_restaurable')} ${textoErrorCopiaSeguridad(errorCopia)}');
       }
       return;
     } catch (error) {
       if (mounted) {
         setState(() => _trabajando = false);
-        _avisar('No se pudo leer la copia: $error. Tus datos no se han tocado.');
+        _avisar(SoleraL10n.tf('viti.backup_no_se_pudo_leer', {'error': error}));
       }
       return;
     }
@@ -132,16 +136,15 @@ class _PantallaBackupState extends State<PantallaBackup> {
 
     final fechaCopia = informe.fechaCreacion;
     final descripcionFecha = fechaCopia != null
-        ? 'Copia del ${_formatoFecha.format(fechaCopia)}'
-        : 'Copia de una versión anterior de la app (sin fecha guardada)';
+        ? SoleraL10n.tf('viti.backup_copia_del', {'fecha': _fechaConHora(fechaCopia)})
+        : SoleraL10n.t('viti.backup_copia_sin_fecha');
     final confirmado = await DialogoConfirmacion.mostrar(
       context,
-      titulo: 'Restaurar esta copia',
-      mensaje: '$descripcionFecha · ${informe.numeroFicherosExtra} fotos.\n\n'
-          'Sustituye la base de datos actual por la de la copia y añade sus fotos. '
-          'Antes se guarda automáticamente una copia del estado actual.',
-      textoConfirmar: 'Restaurar',
-      textoCancelar: 'Cancelar',
+      titulo: SoleraL10n.t('viti.backup_restaurar_esta_copia'),
+      mensaje: '$descripcionFecha · ${SoleraL10n.tf('viti.n_fotos', {'n': informe.numeroFicherosExtra})}\n\n'
+          '${SoleraL10n.t('viti.backup_restaurar_explicacion')}',
+      textoConfirmar: SoleraL10n.t('viti.restaurar'),
+      textoCancelar: SoleraL10n.t('cancelar'),
       icono: Icons.restore,
     );
     if (confirmado != true || !mounted) return;
@@ -152,12 +155,14 @@ class _PantallaBackupState extends State<PantallaBackup> {
       if (!mounted) return;
       final respaldoPrevio = resultado.respaldoPrevio;
       _avisar(respaldoPrevio != null
-          ? 'Copia restaurada. Tu estado anterior se guardó en ${respaldoPrevio.path.split('/').last}.'
-          : 'Copia restaurada.');
+          ? SoleraL10n.tf('viti.backup_restaurada_con_respaldo', {
+              'fichero': respaldoPrevio.path.split('/').last,
+            })
+          : SoleraL10n.t('viti.backup_restaurada'));
     } on ErrorCopiaSeguridad catch (errorCopia) {
-      if (mounted) _avisar('No se pudo restaurar. ${textoErrorCopiaSeguridad(errorCopia)}');
+      if (mounted) _avisar('${SoleraL10n.t('viti.backup_no_se_pudo_restaurar')} ${textoErrorCopiaSeguridad(errorCopia)}');
     } catch (error) {
-      if (mounted) _avisar('No se pudo restaurar: $error');
+      if (mounted) _avisar('${SoleraL10n.t('viti.backup_no_se_pudo_restaurar')} $error');
     } finally {
       if (mounted) setState(() => _trabajando = false);
     }
@@ -169,7 +174,7 @@ class _PantallaBackupState extends State<PantallaBackup> {
     final tiempoDesdeCopia = ultimaCopia == null ? null : DateTime.now().difference(ultimaCopia);
     final copiaAntigua = tiempoDesdeCopia != null && tiempoDesdeCopia.inDays > 7;
     return Scaffold(
-      appBar: AppBar(title: const Text('Copia de seguridad')),
+      appBar: AppBar(title: Text(SoleraL10n.t('copia_de_seguridad'))),
       body: AbsorbPointer(
         absorbing: _trabajando,
         child: ListView(
@@ -193,11 +198,11 @@ class _PantallaBackupState extends State<PantallaBackup> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Última copia', style: TextStyle(fontWeight: FontWeight.bold)),
+                          Text(SoleraL10n.t('viti.backup_ultima_copia'), style: const TextStyle(fontWeight: FontWeight.bold)),
                           Text(
                             ultimaCopia == null
-                                ? 'Nunca. Te recomendamos hacer una antes de salir al campo.'
-                                : _formatoFecha.format(ultimaCopia),
+                                ? SoleraL10n.t('viti.backup_nunca')
+                                : _fechaConHora(ultimaCopia),
                           ),
                         ],
                       ),
@@ -207,34 +212,30 @@ class _PantallaBackupState extends State<PantallaBackup> {
               ),
             ),
             const SizedBox(height: 12),
-            const Text('Crear copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('viti.backup_crear_copia'), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 4),
-            const Text(
-              'Empaqueta la base de datos y todas las fotos en un ZIP que puedes compartir por WhatsApp, '
-              'Drive, correo o copiar al PC. Si reinstalas la app o cambias de móvil podrás restaurar desde aquí. '
-              'La clave de Anthropic no va en la copia.',
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+            Text(
+              SoleraL10n.t('viti.backup_crear_explicacion'),
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
             ),
             const SizedBox(height: 12),
             FilledButton.icon(
               icon: const Icon(Icons.archive),
               onPressed: _trabajando ? null : _crearYCompartir,
-              label: Text(_trabajando ? 'Trabajando…' : 'Crear copia y compartir'),
+              label: Text(_trabajando ? SoleraL10n.t('viti.trabajando') : SoleraL10n.t('crear_y_compartir_backup')),
             ),
             const Divider(height: 32),
-            const Text('Restaurar una copia', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(SoleraL10n.t('viti.backup_restaurar_una_copia'), style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 4),
-            const Text(
-              'Primero se comprueba la copia y se te enseña de cuándo es. Si confirmas, sustituye la base de datos '
-              'actual por la de la copia y añade sus fotos; antes se guarda una copia automática del estado actual. '
-              'Si algo falla a mitad, se vuelve al estado anterior.',
-              style: TextStyle(color: Colors.grey, fontSize: 13),
+            Text(
+              SoleraL10n.t('viti.backup_restaurar_detalle'),
+              style: const TextStyle(color: Colors.grey, fontSize: 13),
             ),
             const SizedBox(height: 12),
             OutlinedButton.icon(
               icon: const Icon(Icons.restore),
               onPressed: _trabajando ? null : _restaurar,
-              label: const Text('Elegir copia y restaurar'),
+              label: Text(SoleraL10n.t('viti.backup_elegir_y_restaurar')),
             ),
           ],
         ),

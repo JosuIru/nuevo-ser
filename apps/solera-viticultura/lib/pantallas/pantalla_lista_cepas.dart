@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../modelos/cepa.dart';
@@ -60,17 +61,17 @@ class _PantallaListaCepasState extends State<PantallaListaCepas> {
     final formatoFecha = DateFormat('dd/MM/yyyy');
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cepas'),
+        title: Text(SoleraL10n.t('viti.cepas')),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(56),
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
             child: TextField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 isDense: true,
-                hintText: 'Buscar (etiqueta, variedad, portainjerto, notas)',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
+                hintText: SoleraL10n.t('viti.buscar_cepas_ayuda'),
+                prefixIcon: const Icon(Icons.search),
+                border: const OutlineInputBorder(),
                 fillColor: Colors.white,
                 filled: true,
               ),
@@ -84,7 +85,9 @@ class _PantallaListaCepasState extends State<PantallaListaCepas> {
           : filtradas.isEmpty
               ? Center(
                   child: Text(
-                    _cepas.isEmpty ? 'Sin cepas registradas todavía.' : 'Sin resultados.',
+                    _cepas.isEmpty
+                        ? SoleraL10n.t('viti.sin_cepas_todavia')
+                        : SoleraL10n.t('viti.sin_resultados'),
                     style: TextStyle(color: Colors.grey.shade600),
                   ),
                 )
@@ -108,9 +111,9 @@ class _PantallaListaCepasState extends State<PantallaListaCepas> {
                       ),
                       title: Text('$etiqueta · ${c.variedadId}'),
                       subtitle: Text([
-                        if (v != null) v.nombre else 'Punto suelto',
+                        if (v != null) v.nombre else SoleraL10n.t('viti.punto_suelto'),
                         if (c.portainjertoId.isNotEmpty) c.portainjertoId,
-                        'Alta $fechaCreacion',
+                        SoleraL10n.tf('viti.alta_fecha', {'fecha': fechaCreacion}),
                       ].join(' · ')),
                       onTap: () async {
                         final cambio = await Navigator.of(context).push<bool>(

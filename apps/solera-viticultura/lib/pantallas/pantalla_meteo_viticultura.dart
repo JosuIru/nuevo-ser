@@ -7,6 +7,7 @@ import '../datos/base_datos.dart';
 import '../estado/vinedo_activo.dart';
 import '../modelos/cepa.dart';
 import '../modelos/vinedo.dart';
+import '../utiles/idioma_fechas.dart';
 import '../utiles/permisos_gps.dart';
 
 class PantallaMeteoViticultura extends StatefulWidget {
@@ -21,7 +22,15 @@ class _PantallaMeteoViticulturaState extends State<PantallaMeteoViticultura> {
   final _servicio = ServicioMeteoAgro();
   final _persistenciaVinedo = VinedoActivoPersistido();
   Future<PrevisionAgro>? _futuro;
-  String _origen = 'viñedo';
+  _DestinoMeteo? _destino;
+
+  /// Nombre visible del origen de la previsión, en el idioma actual.
+  String get _origen {
+    final destino = _destino;
+    if (destino == null) return SoleraL10n.t('viti.origen_vinedo');
+    final claveNombre = destino.claveNombre;
+    return claveNombre != null ? SoleraL10n.t(claveNombre) : destino.nombre;
+  }
 
   @override
   void initState() {
@@ -31,7 +40,7 @@ class _PantallaMeteoViticulturaState extends State<PantallaMeteoViticultura> {
 
   Future<PrevisionAgro> _cargar() async {
     final destino = await _resolverDestino();
-    _origen = destino.nombre;
+    _destino = destino;
     return _servicio.obtener(
       latitud: destino.latitud,
       longitud: destino.longitud,
@@ -59,7 +68,7 @@ class _PantallaMeteoViticulturaState extends State<PantallaMeteoViticultura> {
       final ultima = await Geolocator.getLastKnownPosition();
       if (ultima != null) {
         return _DestinoMeteo(
-          nombre: 'GPS reciente',
+          claveNombre: 'viti.origen_gps_reciente',
           latitud: ultima.latitude,
           longitud: ultima.longitude,
         );
@@ -68,13 +77,13 @@ class _PantallaMeteoViticulturaState extends State<PantallaMeteoViticultura> {
         const Duration(seconds: 8),
       );
       return _DestinoMeteo(
-        nombre: 'GPS actual',
+        claveNombre: 'viti.origen_gps_actual',
         latitud: pos.latitude,
         longitud: pos.longitude,
       );
     }
     return const _DestinoMeteo(
-      nombre: 'centro de referencia',
+      claveNombre: 'viti.origen_centro_referencia',
       latitud: 40.4,
       longitud: -3.7,
     );
@@ -87,7 +96,7 @@ class _PantallaMeteoViticulturaState extends State<PantallaMeteoViticultura> {
     final lng =
         cepas.map((c) => c.longitud).reduce((a, b) => a + b) / cepas.length;
     return _DestinoMeteo(
-        nombre: 'centro de cepas', latitud: lat, longitud: lng);
+        claveNombre: 'viti.origen_centro_cepas', latitud: lat, longitud: lng);
   }
 
   Future<void> _refrescar() async {
@@ -98,7 +107,7 @@ class _PantallaMeteoViticulturaState extends State<PantallaMeteoViticultura> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meteo vitícola')),
+      appBar: AppBar(title: Text(SoleraL10n.t('viti.meteo_viticola'))),
       body: FutureBuilder<PrevisionAgro>(
         future: _futuro,
         builder: (context, snapshot) {
@@ -150,9 +159,9 @@ class _Cabecera extends StatelessWidget {
               style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Previsión orientativa para tratamientos, heladas, riego, estrés hídrico y ventanas de trabajo en viña.',
-              style: TextStyle(fontSize: 12),
+            Text(
+              SoleraL10n.t('viti.prevision_orientativa_vina'),
+              style: const TextStyle(fontSize: 12),
             ),
           ],
         ),
@@ -170,36 +179,36 @@ class _PanelDecision extends StatelessWidget {
   Widget build(BuildContext context) {
     final avisos = <_Aviso>[
       if (dia.riesgoHelada)
-        const _Aviso(
+        _Aviso(
           Icons.ac_unit,
-          'Riesgo de helada',
-          'Vigila brotación, floración, plantones y vaguadas.',
+          SoleraL10n.t('viti.riesgo_de_helada'),
+          SoleraL10n.t('viti.riesgo_helada_detalle'),
         ),
       if (dia.malDiaTratamiento)
-        const _Aviso(
+        _Aviso(
           Icons.science,
-          'Tratamiento poco favorable',
-          'Viento o lluvia pueden provocar deriva, lavado o baja eficacia.',
+          SoleraL10n.t('viti.tratamiento_poco_favorable'),
+          SoleraL10n.t('viti.tratamiento_poco_favorable_detalle'),
         ),
       if (dia.estresHidrico)
-        const _Aviso(
+        _Aviso(
           Icons.water_drop,
-          'Demanda hídrica alta',
-          'ET0 y DPV altos: revisa riego y evita labores que aumenten estrés.',
+          SoleraL10n.t('viti.demanda_hidrica_alta'),
+          SoleraL10n.t('viti.demanda_hidrica_alta_detalle'),
         ),
       if ((dia.humedadMedia ?? 0) >= 85 && (dia.tempMax ?? 0) >= 12)
-        const _Aviso(
+        _Aviso(
           Icons.bug_report,
-          'Ambiente sensible a hongos',
-          'Humedad alta con temperatura templada: revisa mildiu, oídio y botritis según el estado BBCH.',
+          SoleraL10n.t('viti.ambiente_sensible_hongos'),
+          SoleraL10n.t('viti.ambiente_sensible_hongos_detalle'),
         ),
     ];
     if (avisos.isEmpty) {
       avisos.add(
-        const _Aviso(
+        _Aviso(
           Icons.check_circle,
-          'Ventana razonable',
-          'Sin señales fuertes de helada, deriva, lluvia o estrés hídrico.',
+          SoleraL10n.t('viti.ventana_razonable'),
+          SoleraL10n.t('viti.ventana_razonable_detalle'),
         ),
       );
     }
@@ -233,7 +242,7 @@ class _TarjetaDia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fecha = DateFormat('EEE d MMM', 'es_ES').format(dia.fecha);
+    final fecha = DateFormat('EEE d MMM', localeFechasSolera).format(dia.fecha);
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(12),
@@ -262,16 +271,22 @@ class _TarjetaDia extends StatelessWidget {
                 _Dato(
                     icono: Icons.air,
                     texto:
-                        '${_fmt(dia.vientoMaxKmh)} km/h · racha ${_fmt(dia.rachaMaxKmh)}'),
+                        SoleraL10n.tf('viti.viento_racha', {
+                      'viento': _fmt(dia.vientoMaxKmh),
+                      'racha': _fmt(dia.rachaMaxKmh),
+                    })),
                 _Dato(
                     icono: Icons.opacity,
-                    texto: 'HR ${_fmt(dia.humedadMedia)} %'),
+                    texto: SoleraL10n.tf('viti.humedad_relativa_valor', {'valor': _fmt(dia.humedadMedia)})),
                 _Dato(
                     icono: Icons.wb_sunny, texto: 'ET0 ${_fmt(dia.et0Mm)} mm'),
                 _Dato(
                     icono: Icons.grass,
                     texto:
-                        'Suelo ${_fmt(dia.sueloTemp6cmMedia)} °C · ${_fmt(dia.sueloHumedad3a9Media, decimales: 2)}'),
+                        SoleraL10n.tf('viti.suelo_temperatura_humedad', {
+                      'temperatura': _fmt(dia.sueloTemp6cmMedia),
+                      'humedad': _fmt(dia.sueloHumedad3a9Media, decimales: 2),
+                    })),
               ],
             ),
           ],
@@ -315,12 +330,12 @@ class _EstadoError extends StatelessWidget {
           children: [
             const Icon(Icons.cloud_off, size: 42),
             const SizedBox(height: 12),
-            const Text('No se pudo cargar la previsión.'),
+            Text(SoleraL10n.t('viti.prevision_no_cargada')),
             const SizedBox(height: 12),
             FilledButton.icon(
               onPressed: alReintentar,
               icon: const Icon(Icons.refresh),
-              label: const Text('Reintentar'),
+              label: Text(SoleraL10n.t('viti.reintentar')),
             ),
           ],
         ),
@@ -338,12 +353,17 @@ class _Aviso {
 }
 
 class _DestinoMeteo {
+  /// Nombre propio (el del viñedo) o vacío si se usa [claveNombre].
   final String nombre;
+
+  /// Clave de traducción del nombre genérico («GPS reciente»…).
+  final String? claveNombre;
   final double latitud;
   final double longitud;
 
   const _DestinoMeteo({
-    required this.nombre,
+    this.nombre = '',
+    this.claveNombre,
     required this.latitud,
     required this.longitud,
   });

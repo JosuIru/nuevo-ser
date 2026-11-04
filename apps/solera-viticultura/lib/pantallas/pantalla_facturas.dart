@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../datos/base_datos.dart';
+import '../utiles/idioma_fechas.dart';
 
 const _claveEmailBackup = 'solera_viticultura.facturas.email_backup';
 
@@ -25,7 +26,7 @@ class PantallaFacturas extends StatefulWidget {
 class _PantallaFacturasState extends State<PantallaFacturas> {
   final _bd = BaseDatosSoleraViticultura.instancia;
   final _generador = GeneradorFacturaPdf();
-  final _formatter = DateFormat('d MMM yyyy', 'es_ES');
+  DateFormat get _formatter => DateFormat('d MMM yyyy', localeFechasSolera);
 
   List<Factura> _facturas = [];
   String? _emailBackup;
@@ -120,9 +121,12 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
     await file.writeAsBytes(pdfBytes);
     await Share.shareXFiles(
       [XFile(file.path)],
-      subject: 'Factura ${f.numeroFactura} — ${f.clienteNombre}',
+      subject: SoleraL10n.tf('viti.asunto_factura', {
+        'numero': f.numeroFactura,
+        'cliente': f.clienteNombre,
+      }),
       text: _emailBackup != null && _emailBackup!.isNotEmpty
-          ? 'Copia para: $_emailBackup'
+          ? SoleraL10n.tf('viti.copia_para', {'email': _emailBackup})
           : '',
     );
   }
@@ -137,15 +141,14 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'Al crear una factura, podrás enviar una copia '
-              'a esta dirección como respaldo.',
+              SoleraL10n.t('viti.email_respaldo_explicacion'),
               style: TextStyle(fontSize: 13),
             ),
             SizedBox(height: 12),
             TextField(
               controller: ctrl,
               decoration: InputDecoration(
-                hintText: 'tucorreo@ejemplo.com',
+                hintText: SoleraL10n.t('viti.email_ejemplo'),
                 border: OutlineInputBorder(),
               ),
               keyboardType: TextInputType.emailAddress,
@@ -186,8 +189,8 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
                   : null,
             ),
             tooltip: _emailBackup != null && _emailBackup!.isNotEmpty
-                ? 'Respaldo: $_emailBackup'
-                : 'Configurar correo de respaldo',
+                ? SoleraL10n.tf('viti.respaldo_email', {'email': _emailBackup})
+                : SoleraL10n.t('viti.configurar_correo_respaldo'),
             onPressed: _configurarEmailBackup,
           ),
         ],
@@ -232,7 +235,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
         subtitle: Text(
           '${_formatter.format(DateTime.fromMillisecondsSinceEpoch(f.fechaEmisionMs))} · '
-          '${f.total.toStringAsFixed(2)} € · ${f.estado}',
+          '${f.total.toStringAsFixed(2)} € · ${_estadoVisible(f.estado)}',
           style: TextStyle(fontSize: 12),
         ),
         trailing: PopupMenuButton<String>(
@@ -250,12 +253,12 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
             if (f.estado == 'emitida')
               PopupMenuItem(value: 'pagada', child: ListTile(
                   leading: Icon(Icons.check, color: Colors.green),
-                  title: Text('Marcar pagada',
+                  title: Text(SoleraL10n.t('viti.marcar_pagada'),
                       style: TextStyle(color: Colors.green)))),
             if (f.estado != 'anulada')
               PopupMenuItem(value: 'anular', child: ListTile(
                   leading: Icon(Icons.cancel, color: Colors.red),
-                  title: Text('Anular',
+                  title: Text(SoleraL10n.t('viti.anular'),
                       style: TextStyle(color: Colors.red)))),
           ],
         ),
@@ -263,6 +266,15 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
       ),
     );
   }
+
+  /// Nombre visible del estado guardado de la factura.
+  String _estadoVisible(String estado) => switch (estado) {
+        'emitida' => SoleraL10n.t('viti.factura_emitida'),
+        'pagada' => SoleraL10n.t('viti.factura_pagada'),
+        'vencida' => SoleraL10n.t('viti.factura_vencida'),
+        'anulada' => SoleraL10n.t('viti.factura_anulada'),
+        _ => estado,
+      };
 
   Future<void> _marcarPagada(Factura f) async {
     if (f.id == null) return;
@@ -279,13 +291,12 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
       context: context,
       builder: (_) => AlertDialog(
         title: Text(SoleraL10n.t('anular_factura')),
-        content: Text('¿Anular ${f.numeroFactura}? No se elimina, '
-            'queda registrada como anulada.'),
+        content: Text(SoleraL10n.tf('viti.anular_factura_confirmar', {'numero': f.numeroFactura})),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false),
               child: Text(SoleraL10n.t('cancelar'))),
           FilledButton(onPressed: () => Navigator.pop(context, true),
-              child: Text('Anular',
+              child: Text(SoleraL10n.t('viti.anular'),
                   style: TextStyle(color: Colors.red))),
         ],
       ),
@@ -305,7 +316,7 @@ class _PantallaFacturasState extends State<PantallaFacturas> {
           Icon(Icons.receipt_long_outlined,
               size: 64, color: theme.colorScheme.outline),
           SizedBox(height: 16),
-          Text('No hay facturas', style: theme.textTheme.titleMedium),
+          Text(SoleraL10n.t('viti.no_hay_facturas'), style: theme.textTheme.titleMedium),
           SizedBox(height: 8),
           FilledButton.icon(
             onPressed: _nuevaFactura,
@@ -431,7 +442,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             TextFormField(
               controller: _numCtrl,
               decoration: InputDecoration(
-                  labelText: 'N.º de factura',
+                  labelText: SoleraL10n.t('viti.numero_de_factura'),
                   border: OutlineInputBorder(),
                   isDense: true),
             ),
@@ -441,11 +452,11 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             TextFormField(
               controller: _clienteCtrl,
               decoration: InputDecoration(
-                  labelText: 'Cliente',
+                  labelText: SoleraL10n.t('viti.cliente'),
                   border: OutlineInputBorder(),
                   isDense: true),
               validator: (v) =>
-                  v == null || v.trim().isEmpty ? 'Requerido' : null,
+                  v == null || v.trim().isEmpty ? SoleraL10n.t('viti.requerido') : null,
             ),
             SizedBox(height: 8),
             Row(
@@ -454,7 +465,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _nifCtrl,
                     decoration: InputDecoration(
-                        labelText: 'NIF (opcional)',
+                        labelText: SoleraL10n.t('viti.nif_opcional'),
                         border: OutlineInputBorder(),
                         isDense: true),
                   ),
@@ -464,7 +475,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _dirCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Dirección (opcional)',
+                        labelText: SoleraL10n.t('viti.direccion_opcional'),
                         border: OutlineInputBorder(),
                         isDense: true),
                   ),
@@ -474,7 +485,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
             SizedBox(height: 16),
 
             // Líneas
-            Text('Líneas de factura',
+            Text(SoleraL10n.t('viti.lineas_de_factura'),
                 style: Theme.of(context)
                     .textTheme
                     .titleSmall
@@ -499,7 +510,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _descCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Descripción',
+                        labelText: SoleraL10n.t('viti.descripcion'),
                         border: OutlineInputBorder(),
                         isDense: true),
                   ),
@@ -513,7 +524,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _cantCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Cantidad',
+                        labelText: SoleraL10n.t('viti.cantidad'),
                         border: OutlineInputBorder(),
                         isDense: true),
                     keyboardType: TextInputType.number,
@@ -524,7 +535,7 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                   child: TextFormField(
                     controller: _precioCtrl,
                     decoration: InputDecoration(
-                        labelText: 'Precio (€)',
+                        labelText: SoleraL10n.t('viti.precio_euros'),
                         border: OutlineInputBorder(),
                         isDense: true),
                     keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -561,11 +572,11 @@ class _PantallaNuevaFacturaState extends State<_PantallaNuevaFactura> {
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   children: [
-                    _filaTotal('Base imponible', _baseImponible),
+                    _filaTotal(SoleraL10n.t('viti.base_imponible'), _baseImponible),
                     _filaTotal(
                         'IVA $_iva %', _baseImponible * _iva / 100),
                     Divider(),
-                    _filaTotal('TOTAL', _total, bold: true),
+                    _filaTotal(SoleraL10n.t('viti.total_mayusculas'), _total, bold: true),
                   ],
                 ),
               ),

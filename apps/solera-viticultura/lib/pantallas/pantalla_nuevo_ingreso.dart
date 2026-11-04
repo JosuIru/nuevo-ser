@@ -24,13 +24,15 @@ class PantallaNuevoIngreso extends StatefulWidget {
 
 class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
   static const _opcionesTipo = <_Opcion>[
-    _Opcion('venta_uva', 'Venta de uva', 'kg'),
-    _Opcion('venta_vino_botella', 'Venta de vino en botella', 'botellas'),
-    _Opcion('venta_vino_granel', 'Venta de vino a granel', 'l'),
-    _Opcion('alquiler_terreno', 'Alquiler de terreno', 'ha'),
-    _Opcion('ayuda_pac', 'Ayuda PAC', ''),
-    _Opcion('subvencion_autonomica', 'Subvención autonómica', ''),
-    _Opcion('otro', 'Otro ingreso', ''),
+    // El segundo campo es la clave de traducción del texto visible; el
+    // tercero, la unidad que se guarda en BD (no se traduce).
+    _Opcion('venta_uva', 'viti.ingreso_venta_uva', 'kg'),
+    _Opcion('venta_vino_botella', 'viti.ingreso_venta_vino_botella_detalle', 'botellas'),
+    _Opcion('venta_vino_granel', 'viti.ingreso_venta_vino_granel_detalle', 'l'),
+    _Opcion('alquiler_terreno', 'viti.ingreso_alquiler_terreno', 'ha'),
+    _Opcion('ayuda_pac', 'viti.ingreso_ayuda_pac', ''),
+    _Opcion('subvencion_autonomica', 'viti.ingreso_subvencion_autonomica', ''),
+    _Opcion('otro', 'viti.otro_ingreso', ''),
   ];
 
   final _claveFormulario = GlobalKey<FormState>();
@@ -213,7 +215,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
     return Scaffold(
       appBar: AppBar(
         title:
-            Text(widget.existente == null ? 'Nuevo ingreso' : 'Editar ingreso'),
+            Text(widget.existente == null ? SoleraL10n.t('viti.nuevo_ingreso') : SoleraL10n.t('viti.editar_ingreso')),
       ),
       body: Form(
         key: _claveFormulario,
@@ -223,7 +225,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<String>(
               initialValue: _tipoIngreso,
               decoration: InputDecoration(
-                labelText: 'Tipo de ingreso',
+                labelText: SoleraL10n.t('viti.tipo_de_ingreso'),
                 border: OutlineInputBorder(),
               ),
               items: _opcionesTipo
@@ -244,21 +246,21 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               contentPadding: EdgeInsets.zero,
               leading: Icon(Icons.event),
               title: Text('${_fecha.day}/${_fecha.month}/${_fecha.year}'),
-              subtitle: Text('Fecha de la factura'),
+              subtitle: Text(SoleraL10n.t('viti.fecha_de_la_factura')),
               trailing: TextButton(
                 onPressed: _elegirFecha,
-                child: Text('Cambiar'),
+                child: Text(SoleraL10n.t('viti.cambiar')),
               ),
             ),
             TextFormField(
               controller: _concepto,
               decoration: InputDecoration(
-                labelText: 'Concepto *',
-                hintText: 'Ej.: 2500 kg de tempranillo / 300 botellas de crianza',
+                labelText: SoleraL10n.t('viti.concepto_obligatorio_etiqueta'),
+                hintText: SoleraL10n.t('viti.concepto_ingreso_ayuda'),
                 border: OutlineInputBorder(),
               ),
               validator: (v) =>
-                  (v ?? '').trim().isEmpty ? 'Concepto obligatorio' : null,
+                  (v ?? '').trim().isEmpty ? SoleraL10n.t('viti.concepto_obligatorio') : null,
             ),
             SizedBox(height: 12),
             if (_tipoActual.unidad.isNotEmpty)
@@ -267,7 +269,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
-                  labelText: 'Cantidad (${_tipoActual.unidad})',
+                  labelText: SoleraL10n.tf('viti.cantidad_unidad', {'unidad': _tipoActual.unidadVisible}),
                   border: OutlineInputBorder(),
                 ),
                 validator: (texto) => validarNumeroOpcional(texto, nullSiAmbiguo: true),
@@ -278,8 +280,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               keyboardType:
                   const TextInputType.numberWithOptions(decimal: true),
               decoration: InputDecoration(
-                labelText: 'Importe base (€) *',
-                hintText: 'Sin IVA ni compensación',
+                labelText: SoleraL10n.t('viti.importe_base_obligatorio'),
+                hintText: SoleraL10n.t('viti.sin_iva_ni_compensacion'),
                 border: OutlineInputBorder(),
               ),
               validator: validarImporteObligatorio,
@@ -293,7 +295,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 value: _autocalcular,
-                title: Text('Autocalcular IVA / compensación'),
+                title: Text(SoleraL10n.t('viti.autocalcular_iva_compensacion')),
                 subtitle: Text(_textoAutocalculo()),
                 onChanged: (v) {
                   setState(() => _autocalcular = v);
@@ -308,7 +310,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                       const TextInputType.numberWithOptions(decimal: true),
                   enabled: !_autocalcular,
                   decoration: InputDecoration(
-                    labelText: 'Compensación REAGP (€)',
+                    labelText: SoleraL10n.t('viti.compensacion_reagp_euros'),
                     border: OutlineInputBorder(),
                   ),
                   validator: validarImporteOpcional,
@@ -320,7 +322,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                       const TextInputType.numberWithOptions(decimal: true),
                   enabled: !_autocalcular,
                   decoration: InputDecoration(
-                    labelText: 'IVA repercutido (€)',
+                    labelText: SoleraL10n.t('viti.iva_repercutido_euros'),
                     border: OutlineInputBorder(),
                   ),
                   validator: validarImporteOpcional,
@@ -333,8 +335,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
-                    'Configura el régimen de IVA en Ajustes → Configuración fiscal '
-                    'para que la app calcule la compensación o el IVA repercutido.',
+                    SoleraL10n.t('viti.configura_regimen_iva_calculo'),
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
@@ -343,16 +344,16 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<int?>(
               initialValue: _terceroId,
               decoration: InputDecoration(
-                labelText: 'Cliente',
+                labelText: SoleraL10n.t('viti.cliente'),
                 border: OutlineInputBorder(),
               ),
               items: [
                 DropdownMenuItem(
-                    value: null, child: Text('(sin asociar)')),
+                    value: null, child: Text(SoleraL10n.t('viti.sin_asociar'))),
                 ..._clientes.map((t) => DropdownMenuItem(
                       value: t.id,
                       child: Text(t.nombre +
-                          (t.tieneNif ? ' · ${t.nif}' : ' · sin NIF')),
+                          (t.tieneNif ? ' · ${t.nif}' : ' · ${SoleraL10n.t('viti.sin_nif')}')),
                     )),
               ],
               onChanged: (v) => setState(() => _terceroId = v),
@@ -361,11 +362,11 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<int?>(
               initialValue: _vinedoId,
               decoration: InputDecoration(
-                labelText: 'Imputar a viñedo (opcional)',
+                labelText: SoleraL10n.t('viti.imputar_vinedo_opcional'),
                 border: OutlineInputBorder(),
               ),
               items: [
-                DropdownMenuItem(value: null, child: Text('(general)')),
+                DropdownMenuItem(value: null, child: Text(SoleraL10n.t('viti.general_parentesis'))),
                 ..._vinedos.map((v) => DropdownMenuItem(
                       value: v.id,
                       child: Text(v.nombre),
@@ -377,12 +378,12 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             DropdownButtonFormField<String>(
               initialValue: _variedadId.isEmpty ? null : _variedadId,
               decoration: InputDecoration(
-                labelText: 'Imputar a variedad (opcional)',
-                hintText: 'Para ver rentabilidad por variedad',
+                labelText: SoleraL10n.t('viti.imputar_variedad_opcional'),
+                hintText: SoleraL10n.t('viti.rentabilidad_por_variedad'),
                 border: OutlineInputBorder(),
               ),
               items: [
-                DropdownMenuItem(value: '', child: Text('(sin variedad)')),
+                DropdownMenuItem(value: '', child: Text(SoleraL10n.t('viti.sin_variedad'))),
                 ...catalogoVariedades.map((v) => DropdownMenuItem(
                       value: v.id,
                       child: Text(v.nombreCanonico),
@@ -395,8 +396,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               TextFormField(
                 controller: _loteVino,
                 decoration: InputDecoration(
-                  labelText: 'Lote / añada del vino',
-                  hintText: 'Ej.: L2022-CR-08 (importante para DOP/IGP)',
+                  labelText: SoleraL10n.t('viti.lote_anada_vino'),
+                  hintText: SoleraL10n.t('viti.lote_anada_vino_ayuda'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -404,12 +405,12 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
             TextFormField(
               controller: _numeroFactura,
               decoration: InputDecoration(
-                labelText: 'N.º de factura',
+                labelText: SoleraL10n.t('viti.numero_de_factura'),
                 border: OutlineInputBorder(),
               ),
             ),
             SizedBox(height: 16),
-            Text('Foto de la factura',
+            Text(SoleraL10n.t('viti.foto_de_la_factura'),
                 style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
             SelectorFotos(
@@ -422,7 +423,7 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
               controller: _notas,
               maxLines: 3,
               decoration: InputDecoration(
-                labelText: 'Notas',
+                labelText: SoleraL10n.t('viti.notas'),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -446,24 +447,29 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
 
   String _textoAutocalculo() {
     if (_esAlquiler) {
-      return 'Alquiler agrícola exento (pasa al 21 % si el uso no es agrícola)';
+      return SoleraL10n.t('viti.autocalculo_alquiler');
     }
     if (_esVentaUva && _configFiscal.regimenIva == 'reagp') {
-      return 'REAGP: 12 % sobre la base como compensación al viticultor';
+      return SoleraL10n.t('viti.autocalculo_reagp_uva');
     }
     if (_esVentaUva && _configFiscal.regimenIva == 'general') {
-      return 'Régimen general: 4 % de IVA sobre la uva (alimento de primera necesidad)';
+      return SoleraL10n.t('viti.autocalculo_general_uva');
     }
     if (_esVentaVino) {
-      return 'Venta de vino: 21 % IVA general (bebida alcohólica)';
+      return SoleraL10n.t('viti.autocalculo_vino');
     }
-    return 'Configura el régimen de IVA en Ajustes';
+    return SoleraL10n.t('viti.configura_regimen_iva');
   }
 }
 
 class _Opcion {
   final String codigo;
-  final String titulo;
+  final String claveTitulo;
   final String unidad;
-  const _Opcion(this.codigo, this.titulo, this.unidad);
+  const _Opcion(this.codigo, this.claveTitulo, this.unidad);
+
+  String get titulo => SoleraL10n.t(claveTitulo);
+
+  /// Unidad tal como se enseña (la guardada en BD es [unidad]).
+  String get unidadVisible => unidad == 'botellas' ? SoleraL10n.t('viti.unidad_botellas') : unidad;
 }

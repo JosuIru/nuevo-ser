@@ -22,17 +22,18 @@ class PantallaConfiguracionFiscal extends StatefulWidget {
 
 class _PantallaConfiguracionFiscalState
     extends State<PantallaConfiguracionFiscal> {
+  // El segundo campo es la clave de traducción del texto visible.
   static const _opcionesIrpf = <_Opcion>[
-    _Opcion('sin_elegir', 'Sin elegir'),
+    _Opcion('sin_elegir', 'viti.sin_elegir'),
     _Opcion('estimacion_directa_simplificada',
-        'Estimación directa simplificada'),
-    _Opcion('estimacion_directa_normal', 'Estimación directa normal'),
+        'viti.estimacion_directa_simplificada'),
+    _Opcion('estimacion_directa_normal', 'viti.estimacion_directa_normal'),
   ];
 
   static const _opcionesIva = <_Opcion>[
-    _Opcion('sin_elegir', 'Sin elegir'),
-    _Opcion('reagp', 'REAGP — régimen especial agricultura/ganadería/pesca'),
-    _Opcion('general', 'Régimen general'),
+    _Opcion('sin_elegir', 'viti.sin_elegir'),
+    _Opcion('reagp', 'viti.regimen_reagp'),
+    _Opcion('general', 'viti.regimen_general'),
   ];
 
   String _regimenIrpf = 'sin_elegir';
@@ -97,9 +98,7 @@ class _PantallaConfiguracionFiscalState
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              'Provisional. El formato del libro y del extracto está pendiente '
-              'de validación por asesor fiscal. Antes de presentar nada en una '
-              'declaración, contrasta con tu asesor.',
+              SoleraL10n.t('viti.aviso_fiscal_provisional'),
               style: TextStyle(fontSize: 12),
             ),
           ),
@@ -119,8 +118,7 @@ class _PantallaConfiguracionFiscalState
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
             child: Text(
-              'El régimen de módulos no está disponible en v1: pendiente de validación con '
-              'asesor fiscal antes de añadirlo.',
+              SoleraL10n.t('viti.modulos_no_disponible'),
               style: TextStyle(fontSize: 11, color: Colors.black54),
             ),
           ),
@@ -142,11 +140,7 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En REAGP no repercutes IVA en la venta de uva. El comprador te '
-                'paga la compensación del 12 %. La venta de vino siempre va al '
-                '21 % general: el vino es un producto transformado por la bodega '
-                'y queda fuera del REAGP. El IVA soportado en compras no es '
-                'recuperable: se imputa como mayor coste.',
+                SoleraL10n.t('viti.explicacion_reagp'),
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
@@ -154,18 +148,16 @@ class _PantallaConfiguracionFiscalState
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               child: Text(
-                'En régimen general repercutes el 4 % en uva (alimento de '
-                'primera necesidad) y el 21 % en vino (bebida alcohólica). El '
-                'IVA soportado en compras es recuperable.',
+                SoleraL10n.t('viti.explicacion_regimen_general'),
                 style: TextStyle(fontSize: 11, color: Colors.black54),
               ),
             ),
           SizedBox(height: 16),
-          _Cabecera('Año fiscal'),
+          _Cabecera(SoleraL10n.t('viti.ano_fiscal')),
           DropdownButtonFormField<int>(
             initialValue: _anoFiscalActivo,
             decoration: InputDecoration(
-              labelText: 'Año fiscal por defecto al abrir el libro',
+              labelText: SoleraL10n.t('viti.ano_fiscal_por_defecto'),
               border: OutlineInputBorder(),
             ),
             items: List.generate(5, (i) => anoActual - 2 + i)
@@ -196,8 +188,10 @@ class _PantallaConfiguracionFiscalState
 
 class _Opcion {
   final String codigo;
-  final String titulo;
-  const _Opcion(this.codigo, this.titulo);
+  final String claveTitulo;
+  const _Opcion(this.codigo, this.claveTitulo);
+
+  String get titulo => SoleraL10n.t(claveTitulo);
 }
 
 class _Cabecera extends StatelessWidget {

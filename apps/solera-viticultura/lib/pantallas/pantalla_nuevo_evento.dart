@@ -9,6 +9,7 @@ import '../modelos/cosecha.dart';
 import '../modelos/incidencia.dart';
 import '../modelos/observacion.dart';
 import '../modelos/tratamiento.dart';
+import '../utiles/nombres_visibles.dart';
 import 'widgets/boton_identificar_ia.dart';
 
 /// Tipo de evento que crea esta pantalla. Se elige antes de abrirla
@@ -83,20 +84,20 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
       }
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Diagnóstico rellenado. Revísalo y guarda.')),
+      SnackBar(content: Text(SoleraL10n.t('viti.diagnostico_rellenado'))),
     );
   }
 
   String get _titulo {
     switch (widget.tipo) {
       case TipoEventoNuevo.cosecha:
-        return 'Nueva cosecha';
+        return SoleraL10n.t('viti.nueva_cosecha');
       case TipoEventoNuevo.observacion:
-        return 'Nueva observación';
+        return SoleraL10n.t('viti.nueva_observacion');
       case TipoEventoNuevo.incidencia:
-        return 'Nueva incidencia';
+        return SoleraL10n.t('viti.nueva_incidencia');
       case TipoEventoNuevo.tratamiento:
-        return 'Nuevo tratamiento';
+        return SoleraL10n.t('viti.nuevo_tratamiento');
     }
   }
 
@@ -249,13 +250,13 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               contentPadding: EdgeInsets.zero,
               leading: Icon(Icons.event),
               title: Text(formatoFecha.format(_fecha)),
-              trailing: TextButton(onPressed: _elegirFecha, child: Text('Cambiar')),
+              trailing: TextButton(onPressed: _elegirFecha, child: Text(SoleraL10n.t('viti.cambiar'))),
             ),
             Divider(),
             ..._camposEspecificosDelTipo(),
             SizedBox(height: 12),
             if (widget.tipo != TipoEventoNuevo.tratamiento) ...[
-              Text('Fotos', style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(SoleraL10n.t('viti.fotos'), style: TextStyle(fontWeight: FontWeight.bold)),
               SizedBox(height: 4),
               SelectorFotos(rutas: _rutasFotos, alCambiar: (r) => setState(() => _rutasFotos = r)),
               SizedBox(height: 12),
@@ -263,7 +264,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNotas,
               decoration: InputDecoration(
-                labelText: 'Notas',
+                labelText: SoleraL10n.t('viti.notas'),
                 border: OutlineInputBorder(),
               ),
               maxLines: 3,
@@ -291,7 +292,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           TextFormField(
             controller: _controladorKilos,
-            decoration: InputDecoration(labelText: 'Kilos', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('viti.kilos'), border: OutlineInputBorder()),
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,.]'))],
             validator: (texto) => validarNumeroOpcional(texto, nullSiAmbiguo: true),
@@ -299,13 +300,13 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorUnidades,
-            decoration: InputDecoration(labelText: 'Unidades', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('viti.unidades'), border: OutlineInputBorder()),
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
           ),
           SizedBox(height: 12),
           _selectorNumero1A5(
-            etiqueta: 'Calidad',
+            etiqueta: SoleraL10n.t('viti.calidad'),
             valor: _calidad,
             alCambiar: (v) => setState(() => _calidad = v),
           ),
@@ -313,7 +314,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
       case TipoEventoNuevo.observacion:
         return [
           _selectorNumero1A5(
-            etiqueta: 'Salud',
+            etiqueta: SoleraL10n.t('viti.salud'),
             valor: _salud,
             alCambiar: (v) => setState(() => _salud = v),
           ),
@@ -321,8 +322,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorEtiquetasObs,
             decoration: InputDecoration(
-              labelText: 'Etiquetas (separadas por comas)',
-              hintText: 'brotación, floración, envero, vendimia…',
+              labelText: SoleraL10n.t('viti.etiquetas_separadas_comas'),
+              hintText: SoleraL10n.t('viti.etiquetas_observacion_ayuda'),
               border: OutlineInputBorder(),
             ),
           ),
@@ -337,36 +338,33 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           SizedBox(height: 12),
           DropdownButtonFormField<String>(
             initialValue: _tipoIncidencia,
-            decoration: InputDecoration(labelText: 'Tipo', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'plaga', child: Text('Plaga')),
-              DropdownMenuItem(value: 'enfermedad', child: Text('Enfermedad')),
-              DropdownMenuItem(value: 'estres', child: Text('Estrés')),
-              DropdownMenuItem(value: 'fisiologico', child: Text('Fisiológico')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('viti.tipo'), border: OutlineInputBorder()),
+            items: [
+              for (final tipo in const ['plaga', 'enfermedad', 'estres', 'fisiologico', 'otro'])
+                DropdownMenuItem(value: tipo, child: Text(nombreVisibleTipoIncidencia(tipo))),
             ],
             onChanged: (v) => setState(() => _tipoIncidencia = v ?? 'otro'),
           ),
           SizedBox(height: 12),
           CampoAutocompleteCatalogo<PlagaVid>(
             controlador: _controladorDiagnostico,
-            labelText: 'Diagnóstico',
+            labelText: SoleraL10n.t('viti.diagnostico'),
+            // Nombres tal como están en el catálogo (en castellano) para buscar.
             hintText: 'mildiu, oídio, botritis, polilla del racimo…',
             opcionesCompletas: catalogoPlagasVid,
             buscar: buscarPlagasVid,
             displayStringForOption: (p) => p.nombreComun,
-            validator: (v) => (v ?? '').trim().isEmpty ? 'Indica el diagnóstico' : null,
+            validator: (v) => (v ?? '').trim().isEmpty ? SoleraL10n.t('viti.indica_el_diagnostico') : null,
           ),
           if (_diagnosticoEsDeclaracionObligatoria()) ...[
             SizedBox(height: 8),
             BannerDeclaracionObligatoria(
-              texto:
-                  'Esta enfermedad es de declaración obligatoria al servicio fitosanitario oficial.',
+              texto: SoleraL10n.t('viti.declaracion_obligatoria'),
             ),
           ],
           SizedBox(height: 12),
           _selectorNumero1A5(
-            etiqueta: 'Severidad',
+            etiqueta: SoleraL10n.t('viti.severidad'),
             valor: _severidad,
             alCambiar: (v) => setState(() => _severidad = v),
           ),
@@ -375,26 +373,23 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
         return [
           DropdownButtonFormField<String>(
             initialValue: _tipoTratamiento,
-            decoration: InputDecoration(labelText: 'Tipo', border: OutlineInputBorder()),
-            items: const [
-              DropdownMenuItem(value: 'fitosanitario', child: Text('Fitosanitario')),
-              DropdownMenuItem(value: 'abono', child: Text('Abono')),
-              DropdownMenuItem(value: 'riego', child: Text('Riego')),
-              DropdownMenuItem(value: 'poda', child: Text('Poda')),
-              DropdownMenuItem(value: 'otro', child: Text('Otro')),
+            decoration: InputDecoration(labelText: SoleraL10n.t('viti.tipo'), border: OutlineInputBorder()),
+            items: [
+              for (final tipo in const ['fitosanitario', 'abono', 'riego', 'poda', 'otro'])
+                DropdownMenuItem(value: tipo, child: Text(nombreVisibleTipoTratamiento(tipo))),
             ],
             onChanged: (v) => setState(() => _tipoTratamiento = v ?? 'otro'),
           ),
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorProducto,
-            decoration: InputDecoration(labelText: 'Producto', border: OutlineInputBorder()),
+            decoration: InputDecoration(labelText: SoleraL10n.t('viti.producto'), border: OutlineInputBorder()),
           ),
           SizedBox(height: 12),
           TextFormField(
             controller: _controladorDosis,
             decoration: InputDecoration(
-              labelText: 'Dosis',
+              labelText: SoleraL10n.t('viti.dosis'),
               hintText: '150 g/hl, 2 L/ha…',
               border: OutlineInputBorder(),
             ),
@@ -403,8 +398,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorMotivo,
             decoration: InputDecoration(
-              labelText: 'Motivo',
-              hintText: 'Control preventivo de mildiu…',
+              labelText: SoleraL10n.t('viti.motivo'),
+              hintText: SoleraL10n.t('viti.motivo_ayuda'),
               border: OutlineInputBorder(),
             ),
           ),
@@ -412,7 +407,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           TextFormField(
             controller: _controladorPlazoSeguridad,
             decoration: InputDecoration(
-              labelText: 'Plazo de seguridad (días)',
+              labelText: SoleraL10n.t('viti.plazo_seguridad_dias'),
               border: OutlineInputBorder(),
             ),
             keyboardType: TextInputType.number,
@@ -420,12 +415,12 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
           ),
           if (_tipoTratamiento == 'fitosanitario') ...[
             SizedBox(height: 16),
-            Text('Datos PAC (libro oficial)', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(SoleraL10n.t('viti.datos_pac_libro_oficial'), style: TextStyle(fontWeight: FontWeight.bold)),
             SizedBox(height: 8),
             TextFormField(
               controller: _controladorNumRegistro,
               decoration: InputDecoration(
-                labelText: 'N.º registro fitosanitario',
+                labelText: SoleraL10n.t('viti.numero_registro_fitosanitario'),
                 hintText: 'BOE/MAPA',
                 border: OutlineInputBorder(),
               ),
@@ -434,7 +429,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorNifAplicador,
               decoration: InputDecoration(
-                labelText: 'NIF del aplicador',
+                labelText: SoleraL10n.t('viti.nif_del_aplicador'),
                 border: OutlineInputBorder(),
               ),
             ),
@@ -442,7 +437,7 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
             TextFormField(
               controller: _controladorSuperficieTratada,
               decoration: InputDecoration(
-                labelText: 'Superficie tratada (ha)',
+                labelText: SoleraL10n.t('viti.superficie_tratada_ha'),
                 border: OutlineInputBorder(),
               ),
               keyboardType: const TextInputType.numberWithOptions(decimal: true),

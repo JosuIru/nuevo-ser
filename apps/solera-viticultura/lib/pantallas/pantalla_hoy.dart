@@ -7,11 +7,32 @@ import 'pantalla_chat.dart';
 import 'pantalla_guia.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
 
-const _diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'];
-const _mesesEs = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
-];
+/// Nombre del día de la semana (1 = lunes) en el idioma actual.
+String _nombreDiaSemana(int diaSemana) => [
+      SoleraL10n.t('viti.dia_lunes'),
+      SoleraL10n.t('viti.dia_martes'),
+      SoleraL10n.t('viti.dia_miercoles'),
+      SoleraL10n.t('viti.dia_jueves'),
+      SoleraL10n.t('viti.dia_viernes'),
+      SoleraL10n.t('viti.dia_sabado'),
+      SoleraL10n.t('viti.dia_domingo')
+    ][diaSemana - 1];
+
+/// «de enero», «urtarrilaren», «d'abril»… en el idioma actual.
+String _mesConPreposicion(int mes) => [
+      SoleraL10n.t('viti.de_enero'),
+      SoleraL10n.t('viti.de_febrero'),
+      SoleraL10n.t('viti.de_marzo'),
+      SoleraL10n.t('viti.de_abril'),
+      SoleraL10n.t('viti.de_mayo'),
+      SoleraL10n.t('viti.de_junio'),
+      SoleraL10n.t('viti.de_julio'),
+      SoleraL10n.t('viti.de_agosto'),
+      SoleraL10n.t('viti.de_septiembre'),
+      SoleraL10n.t('viti.de_octubre'),
+      SoleraL10n.t('viti.de_noviembre'),
+      SoleraL10n.t('viti.de_diciembre')
+    ][mes - 1];
 
 /// Pantalla "Hoy": muestra el estado fenológico esperado de una
 /// variedad+zona y los próximos hitos del calendario BBCH. Sirve como
@@ -40,23 +61,25 @@ class _PantallaHoyState extends State<PantallaHoy> {
   String _etiquetaZona(ZonaClimaticaVid z) {
     switch (z) {
       case ZonaClimaticaVid.norte:
-        return 'Norte (atlántica)';
+        return SoleraL10n.t('viti.zona_norte_atlantica');
       case ZonaClimaticaVid.sur:
-        return 'Sur (mediterránea)';
+        return SoleraL10n.t('viti.zona_sur_mediterranea');
     }
   }
 
   String _formatoFecha(int mes, int decada) {
-    final etiquetaDec = decada == 1
-        ? '1.ª'
-        : decada == 2
-            ? '2.ª'
-            : '3.ª';
-    return '$etiquetaDec década de ${_mesesEs[mes - 1]}';
+    return SoleraL10n.tf('viti.decada_de_mes', {
+      'n': decada.clamp(1, 3),
+      'mes_de': _mesConPreposicion(mes),
+    });
   }
 
   String _fechaHoyEs(DateTime hoy) {
-    return '${_diasSemana[hoy.weekday - 1]} ${hoy.day} de ${_mesesEs[hoy.month - 1]}';
+    return SoleraL10n.tf('viti.fecha_hoy', {
+      'dia_semana': _nombreDiaSemana(hoy.weekday),
+      'dia': hoy.day,
+      'mes_de': _mesConPreposicion(hoy.month),
+    });
   }
 
   /// Próximos N estados ordenados por mes/década, con wrap-around al
@@ -93,11 +116,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hoy'),
+        title: Text(SoleraL10n.t('viti.pestana_hoy')),
         actions: [
           IconButton(
             icon: const Icon(Icons.menu_book_outlined),
-            tooltip: 'Guía de viticultura',
+            tooltip: SoleraL10n.t('viti.guia_de_viticultura'),
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(builder: (_) => const PantallaGuia()),
             ),
@@ -118,8 +141,8 @@ class _PantallaHoyState extends State<PantallaHoy> {
           Card(
             child: ListTile(
               leading: const Icon(Icons.chat_bubble_outline),
-              title: const Text('Asistente (chat)'),
-              subtitle: const Text('Pregunta a Claude por síntomas, fenología o manejo. Usa tu clave de Anthropic.'),
+              title: Text(SoleraL10n.t('viti.asistente_chat')),
+              subtitle: Text(SoleraL10n.t('viti.asistente_chat_ayuda')),
               trailing: const Icon(Icons.chevron_right),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (_) => const PantallaChat()),
@@ -140,27 +163,32 @@ class _PantallaHoyState extends State<PantallaHoy> {
                   const SizedBox(height: 8),
                   if (estadoActual != null) ...[
                     Text(
-                      'Estado fenológico esperado: ${estadoActual.nombreEstado} '
-                      '(BBCH ${estadoActual.estadoBbch})',
+                      SoleraL10n.tf('viti.estado_fenologico_esperado', {
+                        'estado': estadoActual.nombreEstado,
+                        'bbch': estadoActual.estadoBbch,
+                      }),
                       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${_etiquetaVariedad(_variedadId)} en zona ${_etiquetaZona(_zona)}',
+                      SoleraL10n.tf('viti.variedad_en_zona', {
+                        'variedad': _etiquetaVariedad(_variedadId),
+                        'zona': _etiquetaZona(_zona),
+                      }),
                       style: TextStyle(color: Colors.grey.shade700),
                     ),
                   ] else
-                    const Text('Sin datos para esta combinación.'),
+                    Text(SoleraL10n.t('viti.sin_datos_combinacion')),
                 ],
               ),
             ),
           ),
           const SizedBox(height: 12),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
-              'Variedad',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              SoleraL10n.t('viti.variedad'),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 4),
@@ -182,11 +210,11 @@ class _PantallaHoyState extends State<PantallaHoy> {
             ),
           ),
           const SizedBox(height: 12),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
-              'Zona',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              SoleraL10n.t('viti.zona'),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 4),
@@ -207,18 +235,18 @@ class _PantallaHoyState extends State<PantallaHoy> {
             ),
           ),
           const SizedBox(height: 16),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
-              'Próximos hitos fenológicos',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              SoleraL10n.t('viti.proximos_hitos_fenologicos'),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 4),
           if (proximos.isEmpty)
-            const Padding(
-              padding: EdgeInsets.all(16),
-              child: Text('Sin datos en el calendario para esta combinación.'),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Text(SoleraL10n.t('viti.sin_datos_calendario_combinacion')),
             )
           else
             for (final e in proximos)
@@ -231,8 +259,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
               ),
           const SizedBox(height: 16),
           Text(
-            'Las décadas son orientativas (±2 décadas según año, microclima y altitud). '
-            'Verifica con tu boletín de avisos fitosanitarios local antes de planificar tratamientos.',
+            SoleraL10n.t('viti.aviso_decadas_orientativas'),
             style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
           ),
         ],

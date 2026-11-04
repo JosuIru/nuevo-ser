@@ -30,42 +30,36 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_explotacion')),
           ListTile(
             leading: Icon(Icons.person),
-            title: Text('Titular de la explotación'),
-            subtitle: Text('Datos requeridos por el libro oficial PAC'),
+            title: Text(SoleraL10n.t('viti.titular_de_la_explotacion')),
+            subtitle: Text(SoleraL10n.t('viti.titular_ayuda')),
             onTap: () => _abrir(context, () => PantallaTitular()),
           ),
           ListTile(
             leading: Icon(Icons.account_balance),
             title: Text(SoleraL10n.t('configuracion_fiscal')),
-            subtitle: Text('Régimen IRPF + IVA · provisional'),
+            subtitle: Text(SoleraL10n.t('viti.regimen_irpf_iva_provisional')),
             onTap: () =>
                 _abrir(context, () => PantallaConfiguracionFiscal()),
           ),
           ListTile(
             leading: Icon(Icons.contacts),
-            title: Text('Clientes y proveedores'),
-            subtitle: Text('Terceros con NIF · alimentan el modelo 347'),
+            title: Text(SoleraL10n.t('viti.clientes_y_proveedores')),
+            subtitle: Text(SoleraL10n.t('viti.terceros_ayuda_347')),
             onTap: () => _abrir(context, () => PantallaTerceros()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_integraciones')),
           ListTile(
             leading: Icon(Icons.auto_awesome),
             title: Text(SoleraL10n.t('identificacion_con_ia')),
-            subtitle: Text('Configura tu clave de Anthropic (Claude)'),
+            subtitle: Text(SoleraL10n.t('viti.configura_clave_anthropic')),
             onTap: () => _abrir(
               context,
               () => PantallaClaveAnthropic(
                 estado: estadoClaveAnthropicViticultura,
                 nombreApp: 'Larrea Viticultura',
-                titulo: 'Identificación con IA',
-                queIdentifica:
-                    'Identifica mildiu, oídio, botritis y otras incidencias por foto',
-                descripcion:
-                    'Larrea Viticultura puede usar Claude, de Anthropic, para analizar la foto que adjuntas '
-                    'a una incidencia y proponer un diagnóstico, la severidad y recomendaciones de manejo '
-                    'cultural. Con la misma clave funciona el asistente (chat) de la pantalla Hoy. '
-                    'Tú pagas el uso a Anthropic con tu clave; sin clave la app funciona igual, '
-                    'sin el botón de IA.',
+                titulo: SoleraL10n.t('identificacion_con_ia'),
+                queIdentifica: SoleraL10n.t('viti.ia_que_identifica'),
+                descripcion: SoleraL10n.t('viti.ia_descripcion_clave'),
                 probarClave: probarClaveAnthropicViticultura,
               ),
             ),
@@ -76,7 +70,7 @@ class PantallaAjustes extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Idioma / Language',
+                Text(SoleraL10n.t('viti.idioma_language'),
                     style: Theme.of(context).textTheme.bodyMedium),
                 SizedBox(height: 8),
                 SelectorIdioma(),
@@ -86,15 +80,15 @@ class PantallaAjustes extends StatelessWidget {
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_datos')),
           ListTile(
             leading: Icon(Icons.backup),
-            title: Text('Copia de seguridad'),
-            subtitle: Text('Empaqueta la base de datos y las fotos en un ZIP'),
+            title: Text(SoleraL10n.t('copia_de_seguridad')),
+            subtitle: Text(SoleraL10n.t('viti.backup_ayuda_zip')),
             onTap: () => _abrir(context, () => const PantallaBackup()),
           ),
           CabeceraSeccionAjustes(SoleraL10n.t('seccion_aplicacion')),
           ListTile(
             leading: Icon(Icons.system_update),
             title: Text(SoleraL10n.t('comprobar_actualizaciones')),
-            subtitle: Text('Versión instalada y última publicada'),
+            subtitle: Text(SoleraL10n.t('viti.version_instalada_y_publicada')),
             trailing: Icon(Icons.chevron_right),
             onTap: () => _abrir(
               context,
@@ -107,7 +101,7 @@ class PantallaAjustes extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.info_outline),
             title: Text(SoleraL10n.t('acerca_de')),
-            subtitle: Text('Versión, créditos, compromisos legales'),
+            subtitle: Text(SoleraL10n.t('viti.acerca_ayuda')),
             onTap: () => _abrir(context, () => PantallaAcerca()),
           ),
           SizedBox(height: 16),

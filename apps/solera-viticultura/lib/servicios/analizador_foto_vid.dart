@@ -73,8 +73,7 @@ class AnalizadorFotoVid {
     if (tamanoFoto > tamanoMaximoFotoBytes) {
       throw ErrorClaude(
         MotivoErrorClaude.peticionNoValida,
-        'La foto pesa más de 5 MB y la API la rechazará. '
-        'Reduce el tamaño antes de enviarla.',
+        SoleraL10n.t('viti.ia_foto_demasiado_grande'),
       );
     }
     final imagen = await ImagenClaude.desdeFichero(foto.path);

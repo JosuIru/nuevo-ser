@@ -11,6 +11,7 @@ import '../modelos/incidencia.dart';
 import '../modelos/observacion.dart';
 import '../modelos/tratamiento.dart';
 import '../modelos/vinedo.dart';
+import '../utiles/nombres_visibles.dart';
 import 'pantalla_nueva_cepa.dart';
 import 'pantalla_nuevo_evento.dart';
 
@@ -89,17 +90,16 @@ class _PantallaFichaCepaState extends State<PantallaFichaCepa> {
     final ok = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Eliminar cepa'),
+        title: Text(SoleraL10n.t('viti.eliminar_cepa')),
         content: Text(
-          'Se borra la cepa y toda su historia (cosechas, observaciones, '
-          'incidencias, tratamientos). Esta acción no se puede deshacer.',
+          SoleraL10n.t('viti.eliminar_cepa_aviso'),
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: Text(SoleraL10n.t('cancelar'))),
           FilledButton(
             style: FilledButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () => Navigator.pop(context, true),
-            child: Text('Eliminar'),
+            child: Text(SoleraL10n.t('viti.eliminar')),
           ),
         ],
       ),
@@ -144,22 +144,22 @@ class _PantallaFichaCepaState extends State<PantallaFichaCepa> {
               ),
             ),
           if (fotos.isNotEmpty) SizedBox(height: 12),
-          _filaInfo('Variedad', cepa.variedadId),
-          if (cepa.portainjertoId.isNotEmpty) _filaInfo('Portainjerto', cepa.portainjertoId),
-          _filaInfo('Viñedo', _vinedo?.nombre ?? 'Punto suelto'),
-          _filaInfo('Coordenadas', '${cepa.latitud.toStringAsFixed(6)}, ${cepa.longitud.toStringAsFixed(6)}'),
+          _filaInfo(SoleraL10n.t('viti.variedad'), cepa.variedadId),
+          if (cepa.portainjertoId.isNotEmpty) _filaInfo(SoleraL10n.t('viti.portainjerto'), cepa.portainjertoId),
+          _filaInfo(SoleraL10n.t('viti.vinedo'), _vinedo?.nombre ?? SoleraL10n.t('viti.punto_suelto')),
+          _filaInfo(SoleraL10n.t('viti.coordenadas'), '${cepa.latitud.toStringAsFixed(6)}, ${cepa.longitud.toStringAsFixed(6)}'),
           if (cepa.fechaPlantacionMs != null)
-            _filaInfo('Plantada',
+            _filaInfo(SoleraL10n.t('viti.plantada'),
                 formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(cepa.fechaPlantacionMs!))),
-          if (cepa.notas.isNotEmpty) _filaInfo('Notas', cepa.notas),
+          if (cepa.notas.isNotEmpty) _filaInfo(SoleraL10n.t('viti.notas'), cepa.notas),
           SizedBox(height: 16),
-          Text('Historia', style: Theme.of(context).textTheme.titleMedium),
+          Text(SoleraL10n.t('viti.historia'), style: Theme.of(context).textTheme.titleMedium),
           SizedBox(height: 8),
           if (_eventos.isEmpty)
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 24),
               child: Text(
-                'Sin eventos registrados todavía.',
+                SoleraL10n.t('viti.sin_eventos_todavia'),
                 style: TextStyle(color: Colors.grey.shade600),
               ),
             )
@@ -170,7 +170,7 @@ class _PantallaFichaCepaState extends State<PantallaFichaCepa> {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _mostrarMenuNuevoEvento,
         icon: Icon(Icons.add),
-        label: Text('Nuevo evento'),
+        label: Text(SoleraL10n.t('viti.nuevo_evento')),
       ),
     );
   }
@@ -200,22 +200,22 @@ class _PantallaFichaCepaState extends State<PantallaFichaCepa> {
           children: [
             ListTile(
               leading: Icon(Icons.agriculture),
-              title: Text('Cosecha'),
+              title: Text(SoleraL10n.t('viti.cosecha')),
               onTap: () => Navigator.pop(context, TipoEventoNuevo.cosecha),
             ),
             ListTile(
               leading: Icon(Icons.visibility),
-              title: Text('Observación'),
+              title: Text(SoleraL10n.t('viti.observacion')),
               onTap: () => Navigator.pop(context, TipoEventoNuevo.observacion),
             ),
             ListTile(
               leading: Icon(Icons.warning_amber),
-              title: Text('Incidencia'),
+              title: Text(SoleraL10n.t('viti.incidencia')),
               onTap: () => Navigator.pop(context, TipoEventoNuevo.incidencia),
             ),
             ListTile(
               leading: Icon(Icons.medical_services),
-              title: Text('Tratamiento'),
+              title: Text(SoleraL10n.t('viti.tratamiento')),
               onTap: () => Navigator.pop(context, TipoEventoNuevo.tratamiento),
             ),
           ],
@@ -228,47 +228,61 @@ class _PantallaFichaCepaState extends State<PantallaFichaCepa> {
 
 /// Wrapper polimórfico para mostrar los 4 tipos de eventos en la
 /// misma timeline. Cada constructor extrae fechaMs, título, subtítulo
-/// y un icono representativo del modelo concreto.
+/// y un icono representativo del modelo concreto. Título y subtítulo se
+/// calculan al pintar para que salgan en el idioma elegido.
 class _EventoTimeline {
   final int fechaMs;
-  final String titulo;
-  final String subtitulo;
+  final String Function() _construirTitulo;
+  final String Function() _construirSubtitulo;
   final IconData icono;
-  _EventoTimeline._(this.fechaMs, this.titulo, this.subtitulo, this.icono);
+  _EventoTimeline._(this.fechaMs, this._construirTitulo, this._construirSubtitulo, this.icono);
+
+  String get titulo => _construirTitulo();
+  String get subtitulo => _construirSubtitulo();
 
   factory _EventoTimeline.cosecha(Cosecha c) {
-    final partes = <String>[
-      if (c.kilos != null) '${c.kilos!.toStringAsFixed(2)} kg',
-      if (c.unidades != null) '${c.unidades} ud',
-      if (c.calidad != null) 'calidad ${c.calidad}',
-    ];
-    return _EventoTimeline._(c.fechaMs, 'Cosecha', partes.join(' · '), Icons.agriculture);
+    String subtitulo() => <String>[
+          if (c.kilos != null) '${c.kilos!.toStringAsFixed(2)} kg',
+          if (c.unidades != null) SoleraL10n.tf('viti.n_unidades_abreviado', {'n': c.unidades}),
+          if (c.calidad != null) SoleraL10n.tf('viti.calidad_n', {'n': c.calidad}),
+        ].join(' · ');
+    return _EventoTimeline._(
+        c.fechaMs, () => SoleraL10n.t('viti.cosecha'), subtitulo, Icons.agriculture);
   }
 
   factory _EventoTimeline.observacion(Observacion o) {
-    final partes = <String>[
-      if (o.salud != null) 'salud ${o.salud}',
-      if (o.notas.isNotEmpty) o.notas,
-    ];
-    return _EventoTimeline._(o.fechaMs, 'Observación', partes.join(' · '), Icons.visibility);
+    String subtitulo() => <String>[
+          if (o.salud != null) SoleraL10n.tf('viti.salud_n', {'n': o.salud}),
+          if (o.notas.isNotEmpty) o.notas,
+        ].join(' · ');
+    return _EventoTimeline._(
+        o.fechaMs, () => SoleraL10n.t('viti.observacion'), subtitulo, Icons.visibility);
   }
 
   factory _EventoTimeline.incidencia(Incidencia i) {
-    final partes = <String>[
-      if (i.diagnostico.isNotEmpty) i.diagnostico,
-      if (i.severidad != null) 'sev. ${i.severidad}',
-      if (i.resuelta) 'resuelta',
-    ];
-    return _EventoTimeline._(i.fechaMs, 'Incidencia · ${i.tipo}', partes.join(' · '), Icons.warning_amber);
+    String subtitulo() => <String>[
+          if (i.diagnostico.isNotEmpty) i.diagnostico,
+          if (i.severidad != null) SoleraL10n.tf('viti.severidad_abreviada_n', {'n': i.severidad}),
+          if (i.resuelta) SoleraL10n.t('viti.resuelta'),
+        ].join(' · ');
+    return _EventoTimeline._(
+        i.fechaMs,
+        () => '${SoleraL10n.t('viti.incidencia')} · ${nombreVisibleTipoIncidencia(i.tipo)}',
+        subtitulo,
+        Icons.warning_amber);
   }
 
   factory _EventoTimeline.tratamiento(Tratamiento t) {
-    final partes = <String>[
-      if (t.producto.isNotEmpty) t.producto,
-      if (t.dosis.isNotEmpty) t.dosis,
-      if (t.motivo.isNotEmpty) t.motivo,
-    ];
-    return _EventoTimeline._(t.fechaMs, 'Tratamiento · ${t.tipo}', partes.join(' · '), Icons.medical_services);
+    String subtitulo() => <String>[
+          if (t.producto.isNotEmpty) t.producto,
+          if (t.dosis.isNotEmpty) t.dosis,
+          if (t.motivo.isNotEmpty) t.motivo,
+        ].join(' · ');
+    return _EventoTimeline._(
+        t.fechaMs,
+        () => '${SoleraL10n.t('viti.tratamiento')} · ${nombreVisibleTipoTratamiento(t.tipo)}',
+        subtitulo,
+        Icons.medical_services);
   }
 }
 

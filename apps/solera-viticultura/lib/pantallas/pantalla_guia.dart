@@ -21,26 +21,25 @@ class PantallaGuia extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Guía'),
-          bottom: const TabBar(
+          title: Text(SoleraL10n.t('viti.guia')),
+          bottom: TabBar(
             isScrollable: true,
             tabs: [
-              Tab(icon: Icon(Icons.local_florist), text: 'Variedades'),
-              Tab(icon: Icon(Icons.account_tree), text: 'Portainjertos'),
-              Tab(icon: Icon(Icons.bug_report), text: 'Plagas'),
-              Tab(icon: Icon(Icons.science), text: 'Materias activas'),
+              Tab(icon: const Icon(Icons.local_florist), text: SoleraL10n.t('viti.variedades')),
+              Tab(icon: const Icon(Icons.account_tree), text: SoleraL10n.t('viti.portainjertos')),
+              Tab(icon: const Icon(Icons.bug_report), text: SoleraL10n.t('viti.plagas')),
+              Tab(icon: const Icon(Icons.science), text: SoleraL10n.t('viti.materias_activas')),
             ],
           ),
         ),
         body: Column(
           children: [
             if (!catalogosCompletamenteRevisados)
-              const Padding(
-                padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 0),
                 child: BannerCoincidenciaCatalogo(
                   coincidencia: CoincidenciaCatalogo.provisional,
-                  mensajeProvisional:
-                      'Catálogo provisional con fuente pública trazable. Pendiente de la firma del enólogo y del agrónomo asesores.',
+                  mensajeProvisional: SoleraL10n.t('viti.guia_catalogo_provisional'),
                   mensajeValidado: '',
                   mensajeLibre: '',
                 ),
@@ -85,11 +84,11 @@ class _TabVariedadesState extends State<_TabVariedades> {
   String _etiquetaColor(ColorVariedad c) {
     switch (c) {
       case ColorVariedad.tinta:
-        return 'Tinta';
+        return SoleraL10n.t('viti.color_tinta');
       case ColorVariedad.blanca:
-        return 'Blanca';
+        return SoleraL10n.t('viti.color_blanca');
       case ColorVariedad.rosada:
-        return 'Rosada';
+        return SoleraL10n.t('viti.color_rosada');
     }
   }
 
@@ -112,10 +111,10 @@ class _TabVariedadesState extends State<_TabVariedades> {
         Padding(
           padding: const EdgeInsets.all(12),
           child: TextField(
-            decoration: const InputDecoration(
-              hintText: 'Buscar tempranillo, albariño…',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              hintText: SoleraL10n.t('viti.buscar_variedades_ayuda'),
+              prefixIcon: const Icon(Icons.search),
+              border: const OutlineInputBorder(),
             ),
             onChanged: (v) => setState(() => _consulta = v),
           ),
@@ -126,7 +125,7 @@ class _TabVariedadesState extends State<_TabVariedades> {
             spacing: 8,
             children: [
               FilterChip(
-                label: const Text('Todas'),
+                label: Text(SoleraL10n.t('viti.todas')),
                 selected: _filtroColor == null,
                 onSelected: (_) => setState(() => _filtroColor = null),
               ),
@@ -143,7 +142,7 @@ class _TabVariedadesState extends State<_TabVariedades> {
         const SizedBox(height: 8),
         Expanded(
           child: lista.isEmpty
-              ? const Center(child: Text('Sin coincidencias.'))
+              ? Center(child: Text(SoleraL10n.t('viti.sin_coincidencias')))
               : ListView.separated(
                   itemCount: lista.length,
                   separatorBuilder: (_, __) => const Divider(height: 1),
@@ -157,7 +156,7 @@ class _TabVariedadesState extends State<_TabVariedades> {
                       title: Text(v.nombreCanonico),
                       subtitle: v.sinonimias.isEmpty
                           ? null
-                          : Text('Sinonimias: ${v.sinonimias.join(", ")}'),
+                          : Text(SoleraL10n.tf('viti.sinonimias', {'lista': v.sinonimias.join(', ')})),
                     );
                   },
                 ),
@@ -181,16 +180,18 @@ class _TabPortainjertos extends StatelessWidget {
           leading: const Icon(Icons.account_tree),
           title: Text(p.nombreCanonico),
           subtitle: Text(
-            'Vigor: ${p.vigor}'
-            '${caliza == null ? "" : " · Caliza activa: $caliza %"}',
+            [
+              SoleraL10n.tf('viti.vigor_valor', {'vigor': p.vigor}),
+              if (caliza != null) SoleraL10n.tf('viti.caliza_activa_valor', {'porcentaje': caliza}),
+            ].join(' · '),
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _Seccion('Resistencia a sequía', p.resistenciaSequia),
+            _Seccion(SoleraL10n.t('viti.resistencia_sequia'), p.resistenciaSequia),
             if (p.notas.isNotEmpty) ...[
               const SizedBox(height: 8),
-              _Seccion('Notas', p.notas),
+              _Seccion(SoleraL10n.t('viti.notas'), p.notas),
             ],
           ],
         );
@@ -222,13 +223,13 @@ class _TabPlagasState extends State<_TabPlagas> {
   String _etiquetaTipo(TipoPlagaVid t) {
     switch (t) {
       case TipoPlagaVid.plaga:
-        return 'Plaga';
+        return SoleraL10n.t('viti.tipo_incidencia_plaga');
       case TipoPlagaVid.enfermedad:
-        return 'Enfermedad';
+        return SoleraL10n.t('viti.tipo_incidencia_enfermedad');
       case TipoPlagaVid.fisiologico:
-        return 'Fisiológico';
+        return SoleraL10n.t('viti.tipo_incidencia_fisiologico');
       case TipoPlagaVid.abiotico:
-        return 'Abiótico';
+        return SoleraL10n.t('viti.ia_abiotico');
     }
   }
 
@@ -253,10 +254,10 @@ class _TabPlagasState extends State<_TabPlagas> {
         Padding(
           padding: const EdgeInsets.all(12),
           child: TextField(
-            decoration: const InputDecoration(
-              hintText: 'Buscar mildiu, oídio, Xylella…',
-              prefixIcon: Icon(Icons.search),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              hintText: SoleraL10n.t('viti.buscar_plagas_ayuda'),
+              prefixIcon: const Icon(Icons.search),
+              border: const OutlineInputBorder(),
             ),
             onChanged: (v) => setState(() => _consulta = v),
           ),
@@ -267,7 +268,7 @@ class _TabPlagasState extends State<_TabPlagas> {
             spacing: 8,
             children: [
               FilterChip(
-                label: const Text('Todas'),
+                label: Text(SoleraL10n.t('viti.todas')),
                 selected: _filtroTipo == null,
                 onSelected: (_) => setState(() => _filtroTipo = null),
               ),
@@ -283,7 +284,7 @@ class _TabPlagasState extends State<_TabPlagas> {
         const SizedBox(height: 8),
         Expanded(
           child: lista.isEmpty
-              ? const Center(child: Text('Sin coincidencias.'))
+              ? Center(child: Text(SoleraL10n.t('viti.sin_coincidencias')))
               : ListView.separated(
                   itemCount: lista.length,
                   separatorBuilder: (_, __) => const Divider(height: 1),
@@ -333,16 +334,16 @@ class _TabPlagasState extends State<_TabPlagas> {
                           const SizedBox(height: 12),
                         ],
                         if (p.sintomas.isNotEmpty) ...[
-                          _Seccion('Síntomas', p.sintomas),
+                          _Seccion(SoleraL10n.t('viti.sintomas'), p.sintomas),
                           const SizedBox(height: 8),
                         ],
                         if (p.condicionesFavorables.isNotEmpty) ...[
-                          _Seccion('Condiciones favorables',
+                          _Seccion(SoleraL10n.t('viti.condiciones_favorables'),
                               p.condicionesFavorables),
                           const SizedBox(height: 8),
                         ],
                         if (p.manejoCultural.isNotEmpty)
-                          _Seccion('Manejo cultural', p.manejoCultural),
+                          _Seccion(SoleraL10n.t('viti.manejo_cultural'), p.manejoCultural),
                       ],
                     );
                   },
@@ -375,25 +376,28 @@ class _TabMateriasActivas extends StatelessWidget {
             ],
           ),
           subtitle: Text(
-            'Plazo de seguridad: ${m.plazoSeguridadOrientativoDias} días · ${m.tipoAccion}',
+            SoleraL10n.tf('viti.plazo_seguridad_dias_tipo', {
+              'dias': m.plazoSeguridadOrientativoDias,
+              'tipo': m.tipoAccion,
+            }),
           ),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           expandedCrossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (m.plagasObjetivo.isNotEmpty) ...[
-              _Seccion('Plagas/enfermedades objetivo',
+              _Seccion(SoleraL10n.t('viti.plagas_objetivo'),
                   m.plagasObjetivo.join(', ')),
               const SizedBox(height: 8),
             ],
-            _Seccion('Tipo de acción', m.tipoAccion),
+            _Seccion(SoleraL10n.t('viti.tipo_de_accion'), m.tipoAccion),
             const SizedBox(height: 8),
             _Seccion(
-              'Autorizada en ecológico',
-              m.autorizadaEcologico ? 'Sí' : 'No',
+              SoleraL10n.t('viti.autorizada_ecologico'),
+              m.autorizadaEcologico ? SoleraL10n.t('viti.si') : SoleraL10n.t('viti.no'),
             ),
             if (m.notas.isNotEmpty) ...[
               const SizedBox(height: 8),
-              _Seccion('Notas', m.notas),
+              _Seccion(SoleraL10n.t('viti.notas'), m.notas),
             ],
           ],
         );

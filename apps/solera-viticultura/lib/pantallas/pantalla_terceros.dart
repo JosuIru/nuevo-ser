@@ -67,11 +67,9 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
     final confirmado = await showDialog<bool>(
       context: context,
       builder: (_) => AlertDialog(
-        title: Text('Borrar tercero'),
+        title: Text(SoleraL10n.t('viti.borrar_tercero')),
         content: Text(
-          'Se borrará «${t.nombre}». Los apuntes asociados conservarán '
-          'el importe, pero pierden la referencia al NIF — afectará al '
-          'extracto del modelo 347 si es de un año aún declarado.',
+          SoleraL10n.tf('viti.borrar_tercero_aviso', {'nombre': t.nombre}),
         ),
         actions: [
           TextButton(
@@ -95,11 +93,11 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Clientes y proveedores')),
+      appBar: AppBar(title: Text(SoleraL10n.t('viti.clientes_y_proveedores'))),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _editar(null),
         icon: Icon(Icons.add),
-        label: Text('Nuevo'),
+        label: Text(SoleraL10n.t('viti.nuevo')),
       ),
       body: _cargando
           ? Center(child: CircularProgressIndicator())
@@ -111,7 +109,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                     controller: _busqueda,
                     decoration: InputDecoration(
                       prefixIcon: Icon(Icons.search),
-                      hintText: 'Buscar por nombre o NIF',
+                      hintText: SoleraL10n.t('viti.buscar_por_nombre_o_nif'),
                       border: OutlineInputBorder(),
                     ),
                     onChanged: (_) => setState(() {}),
@@ -123,12 +121,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                           child: Padding(
                             padding: EdgeInsets.all(24),
                             child: Text(
-                              'Aún no hay terceros guardados. Añade clientes '
-                              '(distribuidoras, hostelería, exportación, '
-                              'particulares con factura) y proveedores '
-                              '(insumos, fitosanitarios, barricas, embotellado) — '
-                              'el NIF de cada uno alimenta el modelo 347 al '
-                              'cierre del ejercicio.',
+                              SoleraL10n.t('viti.terceros_vacio'),
                               textAlign: TextAlign.center,
                               style: TextStyle(color: Colors.black54),
                             ),
@@ -141,7 +134,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                             final t = _filtrados[i];
                             return ListTile(
                               leading: Icon(_iconoTipo(t.tipo)),
-                              title: Text(t.nombre.isEmpty ? '(sin nombre)' : t.nombre),
+                              title: Text(t.nombre.isEmpty ? SoleraL10n.t('viti.sin_nombre_parentesis') : t.nombre),
                               subtitle: Text(_subtitulo(t)),
                               trailing: IconButton(
                                 icon: Icon(Icons.delete_outline),
@@ -173,17 +166,17 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
     if (t.tieneNif) {
       partes.add(t.nif);
     } else {
-      partes.add('sin NIF');
+      partes.add(SoleraL10n.t('viti.sin_nif'));
     }
     switch (t.tipo) {
       case 'cliente':
-        partes.add('cliente');
+        partes.add(SoleraL10n.t('viti.cliente_minuscula'));
         break;
       case 'proveedor':
-        partes.add('proveedor');
+        partes.add(SoleraL10n.t('viti.proveedor_minuscula'));
         break;
       default:
-        partes.add('cliente y proveedor');
+        partes.add(SoleraL10n.t('viti.cliente_y_proveedor_minuscula'));
     }
     return partes.join(' · ');
   }
@@ -269,7 +262,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
             shrinkWrap: true,
             children: [
               Text(
-                esNuevo ? 'Nuevo tercero' : 'Editar tercero',
+                esNuevo ? SoleraL10n.t('viti.nuevo_tercero') : SoleraL10n.t('viti.editar_tercero'),
                 style: TextStyle(
                     fontSize: 18, fontWeight: FontWeight.bold),
               ),
@@ -277,18 +270,20 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
               TextFormField(
                 controller: _nombre,
                 decoration: InputDecoration(
-                  labelText: 'Nombre o razón social *',
+                  labelText: SoleraL10n.t('viti.nombre_o_razon_social_obligatorio'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>
-                    (v ?? '').trim().isEmpty ? 'Nombre obligatorio' : null,
+                    (v ?? '').trim().isEmpty
+                        ? SoleraL10n.tf('viti.campo_obligatorio', {'campo': SoleraL10n.t('viti.nombre')})
+                        : null,
               ),
               SizedBox(height: 12),
               TextFormField(
                 controller: _nif,
                 decoration: InputDecoration(
-                  labelText: 'NIF',
-                  hintText: 'Vacío si es venta directa sin factura',
+                  labelText: SoleraL10n.t('viti.nif'),
+                  hintText: SoleraL10n.t('viti.nif_vacio_venta_directa'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -296,15 +291,15 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
               DropdownButtonFormField<String>(
                 initialValue: _tipo,
                 decoration: InputDecoration(
-                  labelText: 'Tipo',
+                  labelText: SoleraL10n.t('viti.tipo'),
                   border: OutlineInputBorder(),
                 ),
                 items: [
-                  const DropdownMenuItem(value: 'cliente', child: Text('Cliente')),
+                  DropdownMenuItem(value: 'cliente', child: Text(SoleraL10n.t('viti.cliente'))),
                   DropdownMenuItem(
                       value: 'proveedor', child: Text(SoleraL10n.t('proveedor'))),
-                  const DropdownMenuItem(
-                      value: 'ambos', child: Text('Cliente y proveedor')),
+                  DropdownMenuItem(
+                      value: 'ambos', child: Text(SoleraL10n.t('viti.cliente_y_proveedor'))),
                 ],
                 onChanged: (v) => setState(() => _tipo = v ?? 'ambos'),
               ),
@@ -312,7 +307,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
               TextFormField(
                 controller: _direccion,
                 decoration: InputDecoration(
-                  labelText: 'Dirección',
+                  labelText: SoleraL10n.t('viti.direccion'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -324,7 +319,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                       controller: _telefono,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
-                        labelText: 'Teléfono',
+                        labelText: SoleraL10n.t('viti.telefono'),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -335,7 +330,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                       controller: _email,
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
-                        labelText: 'Email',
+                        labelText: SoleraL10n.t('viti.email'),
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -347,7 +342,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                 controller: _notas,
                 maxLines: 2,
                 decoration: InputDecoration(
-                  labelText: 'Notas',
+                  labelText: SoleraL10n.t('viti.notas'),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -362,7 +357,7 @@ class _SheetEditarTerceroState extends State<_SheetEditarTercero> {
                             strokeWidth: 2, color: Colors.white),
                       )
                     : Icon(Icons.check),
-                label: Text(esNuevo ? 'Crear' : 'Guardar'),
+                label: Text(esNuevo ? SoleraL10n.t('viti.crear') : SoleraL10n.t('guardar')),
               ),
               SizedBox(height: 8),
             ],

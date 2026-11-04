@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Onboarding del primer arranque. 3 cards con beneficios + CTA
@@ -94,7 +95,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                 children: [
                   TextButton(
                     onPressed: esUltima ? null : _terminar,
-                    child: Text(esUltima ? '' : 'Saltar'),
+                    child: Text(esUltima ? '' : SoleraL10n.t('viti.saltar')),
                   ),
                   const Spacer(),
                   FilledButton(
@@ -108,7 +109,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                         );
                       }
                     },
-                    child: Text(esUltima ? 'Empezar' : 'Siguiente'),
+                    child: Text(esUltima ? SoleraL10n.t('viti.empezar') : SoleraL10n.t('viti.siguiente')),
                   ),
                 ],
               ),
@@ -120,32 +121,33 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
   }
 }
 
+/// Página del onboarding. Guarda las claves de traducción (no los textos)
+/// para que se pinten en el idioma elegido en cada momento.
 class _DatosPagina {
   final IconData icono;
-  final String titulo;
-  final String texto;
-  const _DatosPagina(this.icono, this.titulo, this.texto);
+  final String claveTitulo;
+  final String claveTexto;
+  const _DatosPagina(this.icono, this.claveTitulo, this.claveTexto);
+
+  String get titulo => SoleraL10n.t(claveTitulo);
+  String get texto => SoleraL10n.t(claveTexto);
 }
 
 const _paginas = <_DatosPagina>[
   _DatosPagina(
     Icons.location_on,
-    'Tus cepas en el mapa',
-    'Cataloga cada cepa con su ubicación GPS, variedad, portainjerto y fotos. '
-        'Localiza cualquier planta singular en segundos desde el mapa, con los puntos agrupados.',
+    'viti.onboarding_mapa_titulo',
+    'viti.onboarding_mapa_texto',
   ),
   _DatosPagina(
     Icons.auto_awesome,
-    'Diagnóstico con IA por foto',
-    'Hazle una foto a un racimo o a una hoja con síntomas y la IA propone un diagnóstico '
-        '(mildiu, oídio, botritis…) y manejo cultural. Tú decides; nada se aplica sin tu '
-        'revisión.',
+    'viti.onboarding_ia_titulo',
+    'viti.onboarding_ia_texto',
   ),
   _DatosPagina(
     Icons.description,
-    'Libro PAC al alcance',
-    'Anota cada tratamiento con sus campos PAC y exporta el libro oficial '
-        '(RD 1311/2012) en PDF firmable. Adiós a la oficina los domingos.',
+    'viti.onboarding_pac_titulo',
+    'viti.onboarding_pac_texto',
   ),
 ];
 

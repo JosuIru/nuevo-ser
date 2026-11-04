@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_variedades.dart';
@@ -77,7 +78,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico>
     final elegido = await showDialog<int>(
       context: context,
       builder: (_) => SimpleDialog(
-        title: const Text('Año fiscal'),
+        title: Text(SoleraL10n.t('viti.ano_fiscal')),
         children: List.generate(7, (i) => actual - 4 + i)
             .map((a) => SimpleDialogOption(
                   onPressed: () => Navigator.of(context).pop(a),
@@ -117,13 +118,13 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico>
         title: TextButton.icon(
           onPressed: _cambiarAno,
           icon: const Icon(Icons.calendar_month, color: Colors.white),
-          label: Text('Libro económico · $_ano',
+          label: Text(SoleraL10n.tf('viti.libro_economico_ano', {'ano': _ano}),
               style: const TextStyle(color: Colors.white, fontSize: 18)),
         ),
         actions: [
           IconButton(
             icon: const Icon(Icons.picture_as_pdf),
-            tooltip: 'Extracto anual',
+            tooltip: SoleraL10n.t('viti.extracto_anual'),
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (_) => PantallaExtractoEconomico(anoInicial: _ano),
@@ -134,11 +135,11 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico>
         bottom: TabBar(
           controller: _tabs,
           labelColor: Colors.white,
-          tabs: const [
-            Tab(text: 'Ingresos'),
-            Tab(text: 'Gastos'),
-            Tab(text: 'Trimestres'),
-            Tab(text: 'Resumen'),
+          tabs: [
+            Tab(text: SoleraL10n.t('viti.ingresos')),
+            Tab(text: SoleraL10n.t('viti.gastos')),
+            Tab(text: SoleraL10n.t('viti.trimestres')),
+            Tab(text: SoleraL10n.t('viti.resumen')),
           ],
         ),
       ),
@@ -190,9 +191,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico>
       padding: const EdgeInsets.all(8),
       color: Colors.amber.withValues(alpha: 0.18),
       child: Text(
-        'Libro económico provisional. Pendiente de validación por asesor fiscal '
-        'antes de presentar nada en una declaración. Mientras tanto, contrasta '
-        'cada apunte con tu asesor.',
+        SoleraL10n.t('viti.libro_economico_aviso_provisional'),
         style: TextStyle(fontSize: 11, color: Colors.amber.shade900),
       ),
     );
@@ -209,7 +208,7 @@ class _PantallaLibroEconomicoState extends State<PantallaLibroEconomico>
         }
       },
       icon: const Icon(Icons.add),
-      label: Text(_tabs.index == 0 ? 'Nuevo ingreso' : 'Nuevo gasto'),
+      label: Text(_tabs.index == 0 ? SoleraL10n.t('viti.nuevo_ingreso') : SoleraL10n.t('viti.nuevo_gasto')),
     );
   }
 }
@@ -227,15 +226,13 @@ class _ListaIngresos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (ingresos.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Text(
-            'Aún no hay ingresos en este año. Pulsa "Nuevo ingreso" para '
-            'registrar una venta de uva, vino en botella o a granel, alquiler de '
-            'terreno o ayuda PAC.',
+            SoleraL10n.t('viti.ingresos_vacio'),
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.black54),
+            style: const TextStyle(color: Colors.black54),
           ),
         ),
       );
@@ -299,19 +296,19 @@ class _ListaIngresos extends StatelessWidget {
   static String _textoTipo(String tipo) {
     switch (tipo) {
       case 'venta_uva':
-        return 'Venta de uva';
+        return SoleraL10n.t('viti.ingreso_venta_uva');
       case 'venta_vino_botella':
-        return 'Venta de vino (botella)';
+        return SoleraL10n.t('viti.ingreso_venta_vino_botella');
       case 'venta_vino_granel':
-        return 'Venta de vino (granel)';
+        return SoleraL10n.t('viti.ingreso_venta_vino_granel');
       case 'alquiler_terreno':
-        return 'Alquiler de terreno';
+        return SoleraL10n.t('viti.ingreso_alquiler_terreno');
       case 'ayuda_pac':
-        return 'Ayuda PAC';
+        return SoleraL10n.t('viti.ingreso_ayuda_pac');
       case 'subvencion_autonomica':
-        return 'Subvención';
+        return SoleraL10n.t('viti.ingreso_subvencion');
       default:
-        return 'Otro ingreso';
+        return SoleraL10n.t('viti.otro_ingreso');
     }
   }
 }
@@ -329,15 +326,13 @@ class _ListaGastos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (gastos.isEmpty) {
-      return const Center(
+      return Center(
         child: Padding(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: Text(
-            'Aún no hay gastos en este año. Pulsa "Nuevo gasto" para registrar '
-            'insumos, tratamientos, vendimia, embotellado, barricas o cualquier '
-            'otro gasto de la explotación.',
+            SoleraL10n.t('viti.gastos_vacio'),
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.black54),
+            style: const TextStyle(color: Colors.black54),
           ),
         ),
       );
@@ -415,31 +410,31 @@ class _ListaGastos extends StatelessWidget {
   static String _textoTipo(String tipo) {
     switch (tipo) {
       case 'insumos_vid':
-        return 'Insumos de la vid';
+        return SoleraL10n.t('viti.gasto_insumos_vid');
       case 'tratamientos_fitosanitarios':
-        return 'Tratamiento';
+        return SoleraL10n.t('viti.tratamiento');
       case 'vendimia':
-        return 'Vendimia';
+        return SoleraL10n.t('viti.gasto_vendimia');
       case 'embotellado':
-        return 'Embotellado';
+        return SoleraL10n.t('viti.gasto_embotellado');
       case 'etiquetado':
-        return 'Etiquetado';
+        return SoleraL10n.t('viti.gasto_etiquetado');
       case 'barricas':
-        return 'Barricas';
+        return SoleraL10n.t('viti.gasto_barricas');
       case 'maquinaria':
-        return 'Maquinaria';
+        return SoleraL10n.t('viti.gasto_maquinaria');
       case 'mano_obra':
-        return 'Mano de obra';
+        return SoleraL10n.t('viti.gasto_mano_obra');
       case 'combustible':
-        return 'Combustible';
+        return SoleraL10n.t('viti.gasto_combustible');
       case 'seguros':
-        return 'Seguros';
+        return SoleraL10n.t('viti.gasto_seguros');
       case 'transporte':
-        return 'Transporte';
+        return SoleraL10n.t('viti.gasto_transporte');
       case 'certificacion':
-        return 'Certificación';
+        return SoleraL10n.t('viti.gasto_certificacion');
       default:
-        return 'Otro gasto';
+        return SoleraL10n.t('viti.otro_gasto');
     }
   }
 }
@@ -474,15 +469,14 @@ class _ResumenTrimestral extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        const Text(
-          'Resumen fiscal trimestral',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        Text(
+          SoleraL10n.t('viti.resumen_fiscal_trimestral'),
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
-        const Text(
-          'Totales por trimestre para revisar caja, IVA y diferencia antes del '
-          'cierre fiscal. El extracto anual sigue disponible en el PDF.',
-          style: TextStyle(fontSize: 12, color: Colors.black54),
+        Text(
+          SoleraL10n.t('viti.resumen_trimestral_ayuda'),
+          style: const TextStyle(fontSize: 12, color: Colors.black54),
         ),
         const SizedBox(height: 12),
         for (final trimestre in trimestres) ...[
@@ -493,10 +487,9 @@ class _ResumenTrimestral extends StatelessWidget {
           const SizedBox(height: 8),
         ],
         const SizedBox(height: 8),
-        const Text(
-          'Los trimestres usan el mismo criterio que el resumen anual: '
-          'uva separada de vino, ayudas aparte y modelo 347 por NIF.',
-          style: TextStyle(fontSize: 12, color: Colors.black54),
+        Text(
+          SoleraL10n.t('viti.resumen_trimestral_criterio'),
+          style: const TextStyle(fontSize: 12, color: Colors.black54),
         ),
       ],
     );
@@ -601,7 +594,7 @@ class _ResumenTrimestreCardViticola extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final titulo =
-        'T${resumen.trimestre} · ${_nombreTrimestre(resumen.trimestre)}';
+        '${SoleraL10n.tf('viti.trimestre_abreviado', {'n': resumen.trimestre})} · ${_nombreTrimestre(resumen.trimestre)}';
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
       child: Padding(
@@ -614,27 +607,27 @@ class _ResumenTrimestreCardViticola extends StatelessWidget {
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 8),
             _ResumenLineaViticola(
-              label: 'Ingresos por uva',
+              label: SoleraL10n.t('viti.ingresos_por_uva'),
               value: resumen.ingresosUva,
               color: Colors.green.shade700,
             ),
             _ResumenLineaViticola(
-              label: 'Ingresos por vino',
+              label: SoleraL10n.t('viti.ingresos_por_vino'),
               value: resumen.ingresosVino,
               color: Colors.deepPurple.shade700,
             ),
             _ResumenLineaViticola(
-              label: 'Ayudas PAC y subvenciones',
+              label: SoleraL10n.t('viti.ayudas_pac_y_subvenciones'),
               value: resumen.ayudas,
               color: Colors.purple.shade700,
             ),
             _ResumenLineaViticola(
-              label: 'Gastos',
+              label: SoleraL10n.t('viti.gastos'),
               value: resumen.gastosBase,
               color: Colors.red.shade700,
             ),
             _ResumenLineaViticola(
-              label: 'Diferencia ordinaria',
+              label: SoleraL10n.t('viti.diferencia_ordinaria'),
               value: resumen.diferenciaOrdinaria,
               color: resumen.diferenciaOrdinaria >= 0
                   ? Colors.green.shade900
@@ -643,34 +636,34 @@ class _ResumenTrimestreCardViticola extends StatelessWidget {
             const SizedBox(height: 8),
             if (configFiscal.regimenIva == 'reagp') ...[
               _ResumenLineaViticola(
-                label: 'Compensación REAGP cobrada',
+                label: SoleraL10n.t('viti.compensacion_reagp_cobrada'),
                 value: resumen.compensacionReagp,
                 color: Colors.teal.shade700,
               ),
               _ResumenLineaViticola(
-                label: 'IVA repercutido en vino',
+                label: SoleraL10n.t('viti.iva_repercutido_en_vino'),
                 value: resumen.ivaRepercutido,
                 color: Colors.indigo.shade700,
               ),
               _ResumenLineaViticola(
-                label: 'IVA soportado',
+                label: SoleraL10n.t('viti.iva_soportado'),
                 value: resumen.ivaSoportado,
                 color: Colors.blueGrey.shade700,
               ),
             ],
             if (configFiscal.regimenIva == 'general') ...[
               _ResumenLineaViticola(
-                label: 'IVA repercutido',
+                label: SoleraL10n.t('viti.iva_repercutido'),
                 value: resumen.ivaRepercutido,
                 color: Colors.teal.shade700,
               ),
               _ResumenLineaViticola(
-                label: 'IVA soportado deducible',
+                label: SoleraL10n.t('viti.iva_soportado_deducible'),
                 value: resumen.ivaSoportado,
                 color: Colors.blueGrey.shade700,
               ),
               _ResumenLineaViticola(
-                label: 'Diferencia IVA',
+                label: SoleraL10n.t('viti.diferencia_iva'),
                 value: resumen.ivaRepercutido - resumen.ivaSoportado,
                 color: resumen.ivaRepercutido - resumen.ivaSoportado >= 0
                     ? Colors.indigo.shade700
@@ -679,7 +672,10 @@ class _ResumenTrimestreCardViticola extends StatelessWidget {
             ],
             const SizedBox(height: 8),
             Text(
-              'Apuntes: ${resumen.apuntesIngreso} ingresos · ${resumen.apuntesGasto} gastos',
+              SoleraL10n.tf('viti.apuntes_ingresos_gastos', {
+                'ingresos': resumen.apuntesIngreso,
+                'gastos': resumen.apuntesGasto,
+              }),
               style: const TextStyle(fontSize: 12, color: Colors.black54),
             ),
           ],
@@ -691,13 +687,13 @@ class _ResumenTrimestreCardViticola extends StatelessWidget {
   static String _nombreTrimestre(int trimestre) {
     switch (trimestre) {
       case 1:
-        return 'ene-mar';
+        return SoleraL10n.t('viti.trimestre_1');
       case 2:
-        return 'abr-jun';
+        return SoleraL10n.t('viti.trimestre_2');
       case 3:
-        return 'jul-sep';
+        return SoleraL10n.t('viti.trimestre_3');
       default:
-        return 'oct-dic';
+        return SoleraL10n.t('viti.trimestre_4');
     }
   }
 }
@@ -784,82 +780,82 @@ class _ResumenAnual extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       children: [
         _Card(
-          titulo: 'Ingresos por uva $ano',
+          titulo: SoleraL10n.tf('viti.ingresos_por_uva_ano', {'ano': ano}),
           importeCentimos: ingresosUva,
           color: Colors.green.shade700,
-          subtitulo: 'Venta de uva (4 % IVA / 12 % compensación REAGP)',
+          subtitulo: SoleraL10n.t('viti.ingresos_uva_ayuda'),
         ),
         _Card(
-          titulo: 'Ingresos por vino $ano',
+          titulo: SoleraL10n.tf('viti.ingresos_por_vino_ano', {'ano': ano}),
           importeCentimos: ingresosVino,
           color: Colors.deepPurple.shade700,
-          subtitulo: 'Botella y granel (siempre 21 % IVA general)',
+          subtitulo: SoleraL10n.t('viti.ingresos_vino_ayuda'),
         ),
         _Card(
-          titulo: 'Ayudas PAC y subvenciones $ano',
+          titulo: SoleraL10n.tf('viti.ayudas_pac_y_subvenciones_ano', {'ano': ano}),
           importeCentimos: ayudas,
           color: Colors.purple.shade700,
-          subtitulo: 'Fiscalmente no son ingreso ordinario',
+          subtitulo: SoleraL10n.t('viti.ayudas_no_ingreso_ordinario'),
         ),
         _Card(
-          titulo: 'Gastos $ano',
+          titulo: SoleraL10n.tf('viti.gastos_ano', {'ano': ano}),
           importeCentimos: gastosBase,
           color: Colors.red.shade700,
-          subtitulo: 'Base imponible (sin IVA soportado)',
+          subtitulo: SoleraL10n.t('viti.base_imponible_sin_iva_soportado'),
         ),
         _Card(
-          titulo: 'Diferencia ordinaria',
+          titulo: SoleraL10n.t('viti.diferencia_ordinaria'),
           importeCentimos: diferenciaOrdinaria,
           color: diferenciaOrdinaria >= 0
               ? Colors.green.shade900
               : Colors.red.shade900,
-          subtitulo: 'Ingresos ordinarios − gastos. PAC y subvenciones aparte.',
+          subtitulo: SoleraL10n.t('viti.diferencia_ordinaria_ayuda'),
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 12),
-          child: Text('IVA y compensaciones',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Text(SoleraL10n.t('viti.iva_y_compensaciones'),
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         ),
         if (configFiscal.regimenIva == 'reagp') ...[
           _Card(
-            titulo: 'Compensación REAGP cobrada',
+            titulo: SoleraL10n.t('viti.compensacion_reagp_cobrada'),
             importeCentimos: compensacionReagp,
             color: Colors.teal.shade700,
-            subtitulo: '12 % sobre la base de uva — solo se aplica a la venta de uva',
+            subtitulo: SoleraL10n.t('viti.compensacion_reagp_ayuda'),
           ),
           _Card(
-            titulo: 'IVA repercutido en venta de vino',
+            titulo: SoleraL10n.t('viti.iva_repercutido_venta_vino'),
             importeCentimos: ivaRepercutido,
             color: Colors.indigo.shade700,
-            subtitulo: 'A ingresar en Hacienda (modelo 303 trimestral)',
+            subtitulo: SoleraL10n.t('viti.a_ingresar_hacienda_303'),
           ),
           _Card(
-            titulo: 'IVA soportado en compras',
+            titulo: SoleraL10n.t('viti.iva_soportado_en_compras'),
             importeCentimos: ivaSoportado,
             color: Colors.blueGrey.shade700,
-            subtitulo: 'En REAGP no es recuperable: computa como mayor coste.',
+            subtitulo: SoleraL10n.t('viti.reagp_no_recuperable_corto'),
           ),
         ],
         if (configFiscal.regimenIva == 'general') ...[
           _Card(
-            titulo: 'IVA repercutido',
+            titulo: SoleraL10n.t('viti.iva_repercutido'),
             importeCentimos: ivaRepercutido,
             color: Colors.teal.shade700,
-            subtitulo: 'A ingresar en Hacienda (modelo 303 trimestral)',
+            subtitulo: SoleraL10n.t('viti.a_ingresar_hacienda_303'),
           ),
           _Card(
-            titulo: 'IVA soportado deducible',
+            titulo: SoleraL10n.t('viti.iva_soportado_deducible'),
             importeCentimos: ivaSoportado,
             color: Colors.blueGrey.shade700,
-            subtitulo: 'Recuperable contra el repercutido',
+            subtitulo: SoleraL10n.t('viti.recuperable_contra_repercutido'),
           ),
           _Card(
-            titulo: 'Diferencia IVA',
+            titulo: SoleraL10n.t('viti.diferencia_iva'),
             importeCentimos: ivaRepercutido - ivaSoportado,
             color: ivaRepercutido - ivaSoportado >= 0
                 ? Colors.indigo.shade700
                 : Colors.deepOrange.shade700,
-            subtitulo: 'Repercutido − soportado',
+            subtitulo: SoleraL10n.t('viti.repercutido_menos_soportado'),
           ),
         ],
         if (configFiscal.regimenIva == 'sin_elegir')
@@ -871,32 +867,29 @@ class _ResumenAnual extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
-              'Configura el régimen de IVA en Ajustes → Configuración fiscal '
-              'para que el resumen distinga REAGP de régimen general.',
+              SoleraL10n.t('viti.configura_regimen_iva_resumen'),
               style: TextStyle(fontSize: 12, color: Colors.orange.shade900),
             ),
           ),
         const SizedBox(height: 16),
         _Stats(
           icono: Icons.event_note,
-          texto: 'Apuntes de ingreso: ${ingresos.length}',
+          texto: SoleraL10n.tf('viti.apuntes_de_ingreso_n', {'n': ingresos.length}),
         ),
         _Stats(
           icono: Icons.event_note,
-          texto: 'Apuntes de gasto: ${gastos.length}',
+          texto: SoleraL10n.tf('viti.apuntes_de_gasto_n', {'n': gastos.length}),
         ),
         if (apuntesSinNif > 0)
           _Stats(
             icono: Icons.warning_amber,
-            texto:
-                '$apuntesSinNif ingreso(s) sin NIF — no entran en el modelo 347',
+            texto: SoleraL10n.tf('viti.ingresos_sin_nif_347', {'n': apuntesSinNif}),
             color: Colors.orange.shade800,
           ),
         const SizedBox(height: 24),
-        const Text(
-          'El extracto anual con detalle por mes y modelo 347 está disponible '
-          'desde el icono PDF de la cabecera.',
-          style: TextStyle(fontSize: 12, color: Colors.black54),
+        Text(
+          SoleraL10n.t('viti.extracto_anual_desde_icono'),
+          style: const TextStyle(fontSize: 12, color: Colors.black54),
         ),
       ],
     );

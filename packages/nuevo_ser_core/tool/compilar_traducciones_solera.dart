@@ -1,5 +1,10 @@
 // Genera lib/src/i18n/solera_l10n.dart a partir de
-// content/solera/traducciones.csv (columnas clave,es,eu,ca,gl).
+// content/solera/traducciones.csv (textos comunes) y de
+// content/solera/traducciones/<app>.csv (los de cada app, con claves que
+// empiezan por el prefijo de la app). Columnas: clave,es,eu,ca,gl.
+//
+// Textos con datos: marcadores {nombre} en el CSV y
+// SoleraL10n.tf('clave', {'nombre': valor}).
 //
 // Uso, desde packages/nuevo_ser_core:
 //   dart run tool/compilar_traducciones_solera.dart
@@ -19,6 +24,7 @@
 import 'dart:io';
 
 const rutaCsv = '../../content/solera/traducciones.csv';
+const carpetaCsvPorApp = '../../content/solera/traducciones';
 const rutaSalida = 'lib/src/i18n/solera_l10n.dart';
 const idiomas = ['es', 'eu', 'ca', 'gl'];
 
@@ -28,9 +34,30 @@ void main() {
     stderr.writeln('No encontrado: $rutaCsv (ejecuta desde packages/nuevo_ser_core)');
     exit(1);
   }
-  final codigo = generarCodigoSoleraL10n(fichero.readAsStringSync());
+  final codigo = generarCodigoSoleraL10n(leerCsvsDeTraducciones());
   File(rutaSalida).writeAsStringSync(codigo);
   stdout.writeln('✅ $rutaSalida generado');
+}
+
+/// El CSV común seguido de los de cada app (por orden alfabético), como un
+/// único CSV: cada fichero lleva su cabecera, que se salta al unirlos.
+String leerCsvsDeTraducciones() {
+  final ficheros = [
+    File(rutaCsv),
+    if (Directory(carpetaCsvPorApp).existsSync())
+      ...(Directory(carpetaCsvPorApp)
+              .listSync()
+              .whereType<File>()
+              .where((fichero) => fichero.path.endsWith('.csv'))
+              .toList()
+            ..sort((a, b) => a.path.compareTo(b.path))),
+  ];
+  final unido = StringBuffer();
+  for (final (indice, fichero) in ficheros.indexed) {
+    final lineas = fichero.readAsStringSync().split('\n');
+    unido.writeln((indice == 0 ? lineas : lineas.skip(1)).join('\n'));
+  }
+  return unido.toString();
 }
 
 /// El código Dart de `SoleraL10n` para el contenido del CSV.
@@ -110,6 +137,16 @@ String generarCodigoSoleraL10n(String contenidoCsv) {
     ..writeln("      case 'gl': return _tGl(clave);")
     ..writeln('      default: return _tEs(clave);')
     ..writeln('    }')
+    ..writeln('  }')
+    ..writeln()
+    ..writeln('  /// Como [t], sustituyendo los marcadores `{nombre}` por sus valores:')
+    ..writeln("  /// `tf('colmenas_n', {'n': 3})` con «{n} colmenas» da «3 colmenas».")
+    ..writeln('  static String tf(String clave, Map<String, Object?> valores, {String? idioma}) {')
+    ..writeln('    var texto = t(clave, idioma: idioma);')
+    ..writeln('    valores.forEach((nombre, valor) {')
+    ..writeln("      texto = texto.replaceAll('{\$nombre}', '\${valor ?? ''}');")
+    ..writeln('    });')
+    ..writeln('    return texto;')
     ..writeln('  }')
     ..writeln();
 

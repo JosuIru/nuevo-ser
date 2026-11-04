@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
@@ -17,7 +18,7 @@ const carpetasConTextosSolera = [
   'lib',
 ];
 
-final _llamadaConClave = RegExp(r"SoleraL10n\.t\('([^']*)'");
+final _llamadaConClave = RegExp(r"SoleraL10n\.tf?\(\s*'([^']*)'");
 
 Map<String, String> _clavesUsadas() {
   final primeraAparicion = <String, String>{};
@@ -42,7 +43,7 @@ void main() {
   tearDown(() => SoleraL10n.idioma = 'es');
 
   test('solera_l10n.dart está al día con content/solera/traducciones.csv', () {
-    final csv = File(rutaCsv).readAsStringSync();
+    final csv = leerCsvsDeTraducciones();
     final generado = File(rutaSalida).readAsStringSync();
     expect(generado, generarCodigoSoleraL10n(csv),
         reason: 'Ejecuta: dart run tool/compilar_traducciones_solera.dart');
@@ -79,6 +80,28 @@ void main() {
     expect(SoleraL10n.t('guardar', idioma: 'eu'), 'Gorde');
     expect(SoleraL10n.t('no_existe_en_euskera_xyz', idioma: 'eu'),
         SoleraL10n.t('no_existe_en_euskera_xyz', idioma: 'es'));
+  });
+
+  test('tf sustituye los marcadores en cualquier idioma', () {
+    final generado = generarCodigoSoleraL10n(
+        'clave,es,eu,ca,gl\ncolmenas_n,{n} colmenas,{n} erlauntz,{n} ruscs,{n} colmeas\n');
+    expect(generado, contains("static String tf("));
+    expect(SoleraL10n.tf('clave_inexistente_{n}', {'n': 3}), 'clave_inexistente_3');
+  });
+
+  test('los marcadores coinciden en los cuatro idiomas', () {
+    final marcador = RegExp(r'\{(\w+)\}');
+    Set<String> marcadores(String texto) =>
+        marcador.allMatches(texto).map((m) => m.group(1)!).toSet();
+    final distintos = <String>[];
+    for (final clave in SoleraL10n.clavesDisponibles) {
+      final enCastellano = marcadores(SoleraL10n.t(clave, idioma: 'es'));
+      for (final idioma in ['eu', 'ca', 'gl']) {
+        final enIdioma = marcadores(SoleraL10n.t(clave, idioma: idioma));
+        if (!setEquals(enCastellano, enIdioma)) distintos.add('$clave ($idioma)');
+      }
+    }
+    expect(distintos, isEmpty);
   });
 
   test('el CSV rechaza claves con «\$», repetidas o sin castellano', () {

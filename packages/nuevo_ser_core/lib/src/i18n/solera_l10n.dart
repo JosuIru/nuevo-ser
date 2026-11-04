@@ -348,6 +348,16 @@ class SoleraL10n {
     }
   }
 
+  /// Como [t], sustituyendo los marcadores `{nombre}` por sus valores:
+  /// `tf('colmenas_n', {'n': 3})` con «{n} colmenas» da «3 colmenas».
+  static String tf(String clave, Map<String, Object?> valores, {String? idioma}) {
+    var texto = t(clave, idioma: idioma);
+    valores.forEach((nombre, valor) {
+      texto = texto.replaceAll('{$nombre}', '${valor ?? ''}');
+    });
+    return texto;
+  }
+
   static String _tEs(String c) {
     switch (c) {
       case '10%_(alimento)': return '10% (alimentos)';

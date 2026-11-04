@@ -108,9 +108,15 @@ class ClienteAnthropic {
       promptUsuario: _construirPromptPlaga(observacionesUsuario),
     );
     final base = diagnosticoPlagaDesdeJson(json);
+    // El catálogo está en castellano: se cruza con el nombre castellano que
+    // la IA da aparte, y si no lo da, con el nombre común del diagnóstico.
+    final nombreComunCastellano =
+        _textoDe(json['nombre_comun_castellano'], '').trim();
     return base.copyConCatalogo(
       idCatalogo: matchearPlagaConCatalogo(
-        nombreComun: base.nombreComun,
+        nombreComun: nombreComunCastellano.isNotEmpty
+            ? nombreComunCastellano
+            : base.nombreComun,
         nombreCientifico: base.nombreCientifico,
       ),
     );
@@ -139,7 +145,9 @@ class ClienteAnthropic {
     final imagen = await ImagenClaude.desdeFichero(foto.path);
     return _clienteClaude.pedirJson(
       modelo: modeloClaudeRapido,
-      sistema: promptSistema,
+      // Los textos libres (nombre común, manejo, advertencia), en el idioma
+      // elegido en la app.
+      sistema: '$promptSistema\n${instruccionIdiomaRespuestaClaude()}',
       mensajes: [MensajeClaude.usuario(promptUsuario, imagenes: [imagen])],
       maxTokens: 4096,
       esfuerzo: EsfuerzoClaude.bajo,
@@ -193,7 +201,8 @@ REGLAS ESTRICTAS:
 
 2. Estructura del JSON:
 {
-  "nombre_comun": "nombre habitual en español de la plaga/enfermedad/trastorno",
+  "nombre_comun": "nombre habitual de la plaga/enfermedad/trastorno",
+  "nombre_comun_castellano": "el mismo nombre habitual, siempre en castellano (p. ej. «mosca del olivo», «repilo»), para cruzarlo con el catálogo",
   "nombre_cientifico": "nombre científico binomial si aplica, vacío si es un trastorno fisiológico/abiótico",
   "tipo": "plaga" | "enfermedad" | "fisiologico" | "abiotico" | "indeterminado",
   "severidad": número entero 1-5 estimado, o null si no es valorable,
@@ -225,7 +234,7 @@ REGLAS ESTRICTAS:
 
 2. Estructura del JSON:
 {
-  "nombre_canonico": "nombre canónico de la variedad propuesta",
+  "nombre_canonico": "nombre canónico de la variedad propuesta, tal como se escribe en la lista anterior (picual, arbequina…), sin traducir",
   "confianza": número decimal 0.0-1.0 (cuánta confianza tienes en el diagnóstico),
   "advertencia": "si la foto es de baja calidad, faltan elementos clave (no se ve la hoja con detalle, sólo la copa…) o hay confusión con variedades similares, lo dices aquí. Vacío si confianza alta."
 }

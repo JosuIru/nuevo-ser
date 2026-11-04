@@ -170,7 +170,7 @@ class _PantallaCuadernoPacState extends State<PantallaCuadernoPac> {
                   ? _titular!.razonSocial
                   : SoleraL10n.t('acei.sin_titular_configurado'),
             ),
-            subtitle: _titularConfigurado ? Text('NIF ${_titular!.nif}') : null,
+            subtitle: _titularConfigurado ? Text(SoleraL10n.tf('acei.nif_valor', {'nif': _titular!.nif})) : null,
           ),
           const Divider(),
           const SizedBox(height: 8),

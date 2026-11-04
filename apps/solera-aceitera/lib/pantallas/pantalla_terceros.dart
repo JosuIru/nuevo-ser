@@ -86,7 +86,7 @@ class _PantallaTercerosState extends State<PantallaTerceros> {
                       ),
                       subtitle: Text(
                         [
-                          if (t.tieneNif) 'NIF: ${t.nif}',
+                          if (t.tieneNif) SoleraL10n.tf('acei.nif_valor', {'nif': t.nif}),
                           if (t.telefono.isNotEmpty) t.telefono,
                           if (t.email.isNotEmpty) t.email,
                         ].where((s) => s.isNotEmpty).join(' · '),
@@ -198,7 +198,7 @@ class _EditorTerceroState extends State<_EditorTercero> {
           TextField(
             controller: _nifCtrl,
             decoration: InputDecoration(
-              labelText: 'NIF / CIF',
+              labelText: SoleraL10n.t('acei.etiqueta_nif_cif'),
               hintText: SoleraL10n.t('acei.obligatorio_modelo_347'),
               border: OutlineInputBorder(),
             ),

@@ -107,7 +107,7 @@ class _PantallaListaParcelasState extends State<PantallaListaParcelas> {
                                 ? SoleraL10n.t('acei.sin_nombre')
                                 : p.nombre),
                             subtitle: Text(
-                              '${p.superficieHa.toStringAsFixed(2)} ha · '
+                              '${formatearNumero(p.superficieHa, decimales: 2)} ha · '
                               '${p.variedadMayoritariaId.isEmpty ? SoleraL10n.t('acei.variedad_sin_definir') : p.variedadMayoritariaId} · '
                               '${nombreSistemaRiego(p.sistemaRiego)}',
                             ),

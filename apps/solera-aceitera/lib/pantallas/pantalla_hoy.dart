@@ -124,7 +124,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                     child: ListTile(
                       title: Text(l.identificadorLote),
                       subtitle: Text(
-                        '${l.kgNetos.toStringAsFixed(0)} kg · ${nombreCategoriaAceite(l.categoria)}',
+                        '${formatearNumero(l.kgNetos, decimales: 0)} kg · ${nombreCategoriaAceite(l.categoria)}',
                       ),
                       trailing: Text(_formatoFecha
                           .format(DateTime.fromMillisecondsSinceEpoch(
@@ -176,7 +176,7 @@ class _TarjetaCampania extends StatelessWidget {
           SoleraL10n.tf('acei.campania_inicio_rendimiento', {
             'fecha': formatoFecha.format(
                 DateTime.fromMillisecondsSinceEpoch(c.fechaInicioMs)),
-            'rendimiento': c.rendimientoMedioPorcentaje.toStringAsFixed(1),
+            'rendimiento': formatearNumero(c.rendimientoMedioPorcentaje, decimales: 1),
           }),
         ),
         trailing: const Icon(Icons.chevron_right),

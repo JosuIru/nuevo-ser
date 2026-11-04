@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, buscarLugarEnMapa;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, buscarLugarEnMapa, formatearNumero;
 
 import '../datos/base_datos.dart';
 import '../modelos/parcela.dart';
@@ -568,7 +568,7 @@ class _PantallaMapaState extends State<PantallaMapa> {
                           horizontal: 12, vertical: 10),
                       child: Text(_altitudGps == null
                           ? SoleraL10n.t('acei.altitud_gps_vacia')
-                          : SoleraL10n.tf('acei.altitud_gps_m', {'m': _altitudGps!.toStringAsFixed(0)})),
+                          : SoleraL10n.tf('acei.altitud_gps_m', {'m': formatearNumero(_altitudGps!, decimales: 0)})),
                     ),
                   ),
                 ],

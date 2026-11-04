@@ -94,7 +94,7 @@ Future<File> generarCuadernoPacOlivar({
     if (parcela != null && parcela.codigoSigpac.isNotEmpty)
       'SIGPAC: ${parcela.codigoSigpac}',
     if (parcela != null && parcela.superficieHa > 0)
-      'Superficie: ${parcela.superficieHa.toStringAsFixed(2)} ha',
+      'Superficie: ${formatearNumero(parcela.superficieHa, decimales: 2)} ha',
     'Recolecciones registradas en la campaña: ${recoleccionesFiltradas.length}',
     'Tratamientos fitosanitarios registrados en la campaña: ${tratamientosFiltrados.length}',
   ];
@@ -108,7 +108,7 @@ Future<File> generarCuadernoPacOlivar({
             ? '—'
             : t.productoComercialReferencia,
         t.sustanciaActivaId.isEmpty ? '—' : t.sustanciaActivaId,
-        t.dosisLitrosPorHa > 0 ? t.dosisLitrosPorHa.toStringAsFixed(2) : '—',
+        t.dosisLitrosPorHa > 0 ? formatearNumero(t.dosisLitrosPorHa, decimales: 2) : '—',
         t.plagaObjetivoId.isEmpty ? '—' : t.plagaObjetivoId,
         t.aplicadorNombre.isEmpty ? '—' : t.aplicadorNombre,
         t.carnetAplicadorNumero.isEmpty ? '—' : t.carnetAplicadorNumero,
@@ -120,7 +120,7 @@ Future<File> generarCuadernoPacOlivar({
       [
         formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(r.fechaMs)),
         _etiquetaParcela(indiceParcelasPorId[r.parcelaId]),
-        r.kgEstimados > 0 ? r.kgEstimados.toStringAsFixed(0) : '—',
+        r.kgEstimados > 0 ? formatearNumero(r.kgEstimados, decimales: 0) : '—',
         r.tipoAceituna,
         r.metodo,
         r.cuadrilla.isEmpty ? '—' : r.cuadrilla,

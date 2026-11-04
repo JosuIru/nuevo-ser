@@ -89,7 +89,7 @@ class _PantallaListaLotesState extends State<PantallaListaLotes> {
                           color: _colorCategoria(l.categoria)),
                       title: Text(l.identificadorLote),
                       subtitle: Text(
-                        '${l.kgNetos.toStringAsFixed(0)} kg · '
+                        '${formatearNumero(l.kgNetos, decimales: 0)} kg · '
                         '${nombreCategoriaAceite(l.categoria)}'
                         '${l.dopId.isEmpty ? "" : " · DOP ${l.dopId}"}',
                       ),

@@ -74,6 +74,13 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              // Elegir idioma desde la primera pantalla (se puede cambiar
+              // luego en Ajustes).
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: SelectorIdioma(onCambio: () => setState(() {})),
+              ),
+              const SizedBox(height: 16),
               const Icon(Icons.eco, size: 72, color: Color(0xFF5C6B3A)),
               const SizedBox(height: 16),
               Text(
@@ -99,8 +106,8 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
               const SizedBox(height: 12),
               TextFormField(
                 controller: _nifCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'NIF / CIF',
+                decoration: InputDecoration(
+                  labelText: SoleraL10n.t('acei.etiqueta_nif_cif'),
                   border: OutlineInputBorder(),
                 ),
                 validator: (v) =>

@@ -55,24 +55,24 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(SoleraL10n.tf('acei.kilos_netos_valor', {'kg': l.kgNetos.toStringAsFixed(1)})),
+                  Text(SoleraL10n.tf('acei.kilos_netos_valor', {'kg': formatearNumero(l.kgNetos, decimales: 1)})),
                   Text(SoleraL10n.tf('acei.categoria_valor', {'categoria': nombreCategoriaAceite(l.categoria)})),
                   if (l.dopId.isNotEmpty) Text('DOP: ${l.dopId}'),
                   if (l.ubicacionFisica.isNotEmpty)
                     Text(SoleraL10n.tf('acei.ubicacion_valor', {'ubicacion': l.ubicacionFisica})),
                   const Divider(),
                   if (l.acidez != null)
-                    Text(SoleraL10n.tf('acei.acidez_valor', {'acidez': l.acidez!.toStringAsFixed(2)})),
+                    Text(SoleraL10n.tf('acei.acidez_valor', {'acidez': formatearNumero(l.acidez!, decimales: 2)})),
                   if (l.peroxidos != null)
-                    Text(SoleraL10n.tf('acei.peroxidos_valor', {'peroxidos': l.peroxidos!.toStringAsFixed(1)})),
+                    Text(SoleraL10n.tf('acei.peroxidos_valor', {'peroxidos': formatearNumero(l.peroxidos!, decimales: 1)})),
                   if (l.k232 != null)
-                    Text('K232: ${l.k232!.toStringAsFixed(2)}'),
+                    Text('K232: ${formatearNumero(l.k232!, decimales: 2)}'),
                   if (l.k270 != null)
-                    Text('K270: ${l.k270!.toStringAsFixed(2)}'),
+                    Text('K270: ${formatearNumero(l.k270!, decimales: 2)}'),
                   if (l.polifenolesMgKg != null)
-                    Text(SoleraL10n.tf('acei.polifenoles_valor', {'polifenoles': l.polifenolesMgKg!.toStringAsFixed(0)})),
+                    Text(SoleraL10n.tf('acei.polifenoles_valor', {'polifenoles': formatearNumero(l.polifenolesMgKg!, decimales: 0)})),
                   if (l.panelTestPuntuacion != null)
-                    Text(SoleraL10n.tf('acei.panel_cata_valor', {'puntuacion': l.panelTestPuntuacion!.toStringAsFixed(1)})),
+                    Text(SoleraL10n.tf('acei.panel_cata_valor', {'puntuacion': formatearNumero(l.panelTestPuntuacion!, decimales: 1)})),
                   if (l.panelTestNotas.isNotEmpty)
                     Text(SoleraL10n.tf('acei.notas_panel_cata_valor', {'notas': l.panelTestNotas}),
                         style: const TextStyle(fontStyle: FontStyle.italic)),
@@ -95,7 +95,7 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
                         color: Color(0xFF5C6B3A)),
                     title: Text(nombreTipoMovimiento(m.tipo)),
                     subtitle: Text(
-                      '${m.kgMovidos.toStringAsFixed(1)} kg'
+                      '${formatearNumero(m.kgMovidos, decimales: 1)} kg'
                       '${m.ubicacionDestino.isEmpty ? "" : " · ${m.ubicacionDestino}"}',
                     ),
                     trailing: Text(
@@ -121,8 +121,8 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
                         : a.laboratorio),
                     subtitle: Text(
                       SoleraL10n.tf('acei.acidez_y_panel', {
-                        'acidez': a.acidez?.toStringAsFixed(2) ?? '—',
-                        'panel': a.panelTestPuntuacion?.toStringAsFixed(1) ?? '—',
+                        'acidez': a.acidez == null ? '—' : formatearNumero(a.acidez!, decimales: 2),
+                        'panel': a.panelTestPuntuacion == null ? '—' : formatearNumero(a.panelTestPuntuacion!, decimales: 1),
                       }),
                     ),
                     trailing: Text(_formatoFecha.format(

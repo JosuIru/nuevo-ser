@@ -13,7 +13,7 @@ acei.ahora_no,Ahora no,Orain ez,Ara no,Agora non
 acei.ajustes_acerca_sub,"Qué es Larrea Aceitera, compromisos y catálogos","Zer den Larrea Aceitera, konpromisoak eta katalogoak","Què és Larrea Aceitera, compromisos i catàlegs","Que é Larrea Aceitera, compromisos e catálogos"
 acei.ajustes_actualizaciones_sub,Versión instalada y última publicada,Instalatutako bertsioa eta argitaratutako azkena,Versió instal·lada i darrera publicada,Versión instalada e última publicada
 acei.ajustes_copia_sub,Guardar todos los datos en un ZIP o restaurar uno,Datu guztiak ZIP batean gorde edo bat leheneratu,Desar totes les dades en un ZIP o restaurar-ne un,Gardar todos os datos nun ZIP ou restaurar un
-acei.ajustes_fiscal_sub,Régimen IRPF + IVA + año fiscal activo,IRPF + IVA araubidea + ekitaldi fiskal aktiboa,Règim IRPF + IVA + any fiscal actiu,Réxime IRPF + IVA + ano fiscal activo
+acei.ajustes_fiscal_sub,Régimen IRPF + IVA + año fiscal activo,PFEZ + BEZ araubidea + ekitaldi fiskal aktiboa,Règim IRPF + IVA + any fiscal actiu,Réxime IRPF + IVE + ano fiscal activo
 acei.ajustes_ia_sub,"Plagas y variedades por foto con Claude · clave Anthropic propia, guardada solo en el dispositivo","Izurriak eta barietateak argazki bidez Claude-rekin · Anthropic gako propioa, gailuan bakarrik gordea","Plagues i varietats per foto amb Claude · clau d'Anthropic pròpia, desada només al dispositiu","Pragas e variedades por foto con Claude · clave de Anthropic propia, gardada só no dispositivo"
 acei.ajustes_terceros_sub,Datos fiscales para asociar a apuntes y al modelo 347,Idazpenei eta 347 ereduari lotzeko datu fiskalak,Dades fiscals per associar als apunts i al model 347,Datos fiscais para asociar aos apuntamentos e ao modelo 347
 acei.altitud_gps_m,Alt. GPS {m} m,GPS alt. {m} m,Alt. GPS {m} m,Alt. GPS {m} m
@@ -29,7 +29,7 @@ acei.aviso_corto_golpe_calor,Golpe de calor en aceituna (>38 °C),Bero-kolpea ol
 acei.aviso_corto_helada,Riesgo de helada · revisa olivos jóvenes,Izozte-arriskua · begiratu olibondo gazteak,Risc de gelada · revisa les oliveres joves,Risco de xeada · revisa as oliveiras novas
 acei.aviso_corto_mosca,Vuelo activo de mosca del olivo,Olibondoaren eulia hegaldi aktiboan,Vol actiu de mosca de l'olivera,Voo activo da mosca da oliveira
 acei.aviso_corto_tratamientos,Tratamientos delicados (viento o lluvia),Tratamendu delikatuak (haizea edo euria),Tractaments delicats (vent o pluja),Tratamentos delicados (vento ou chuvia)
-acei.aviso_fiscal_provisional,PROVISIONAL hasta que lo valide un asesor fiscal agroalimentario. Las reglas de IVA por defecto se basan en la interpretación habitual del olivar; en cada apunte puedes sobrescribir el IVA repercutido manualmente.,BEHIN-BEHINEKOA nekazaritza eta elikagaietako aholkulari fiskal batek balioztatu arte. Lehenetsitako IVA arauak olibondo-sektorearen ohiko interpretazioan oinarritzen dira; idazpen bakoitzean IVA jasanarazia eskuz alda dezakezu.,PROVISIONAL fins que ho validi un assessor fiscal agroalimentari. Les regles d'IVA per defecte es basen en la interpretació habitual de l'oliverar; a cada apunt pots sobreescriure l'IVA repercutit manualment.,PROVISIONAL ata que o valide un asesor fiscal agroalimentario. As regras de IVA por defecto baséanse na interpretación habitual do olival; en cada apuntamento podes sobrescribir o IVA repercutido manualmente.
+acei.aviso_fiscal_provisional,PROVISIONAL hasta que lo valide un asesor fiscal agroalimentario. Las reglas de IVA por defecto se basan en la interpretación habitual del olivar; en cada apunte puedes sobrescribir el IVA repercutido manualmente.,BEHIN-BEHINEKOA nekazaritza eta elikagaietako aholkulari fiskal batek balioztatu arte. Lehenetsitako BEZ arauak olibondo-sektorearen ohiko interpretazioan oinarritzen dira; idazpen bakoitzean BEZ jasanarazia eskuz alda dezakezu.,PROVISIONAL fins que ho validi un assessor fiscal agroalimentari. Les regles d'IVA per defecte es basen en la interpretació habitual de l'oliverar; a cada apunt pots sobreescriure l'IVA repercutit manualment.,PROVISIONAL ata que o valide un asesor fiscal agroalimentario. As regras de IVE por defecto baséanse na interpretación habitual do olival; en cada apuntamento podes sobrescribir o IVE repercutido manualmente.
 acei.base_importe,base {importe},oinarria {importe},base {importe},base {importe}
 acei.batidora_referencia,Batidora (referencia),Irabiagailua (erreferentzia),Batedora (referència),Batedora (referencia)
 acei.bienvenida,Bienvenido a Larrea Aceitera,Ongi etorri Larrea Aceiterara,Benvingut a Larrea Aceitera,Benvido a Larrea Aceitera
@@ -73,7 +73,7 @@ acei.compromiso_formato_pdf,El formato del cuaderno de explotación PAC (RD 1311
 acei.compromisos_legales,Compromisos legales,Lege-konpromisoak,Compromisos legals,Compromisos legais
 acei.concepto,Concepto,Kontzeptua,Concepte,Concepto
 acei.confianza_valor,Confianza: {confianza} %,Konfiantza: % {confianza},Confiança: {confianza} %,Confianza: {confianza} %
-acei.configura_titular_primero,Configura primero la razón social y el NIF del titular en Ajustes.,Konfiguratu lehenik titularraren izen soziala eta NIF Ezarpenetan.,Configura primer la raó social i el NIF del titular a Configuració.,Configura primeiro a razón social e o NIF do titular en Axustes.
+acei.configura_titular_primero,Configura primero la razón social y el NIF del titular en Ajustes.,Konfiguratu lehenik titularraren izen soziala eta IFZ Ezarpenetan.,Configura primer la raó social i el NIF del titular a Configuració.,Configura primeiro a razón social e o NIF do titular en Axustes.
 acei.configuracion_fiscal_guardada,Configuración fiscal guardada.,Konfigurazio fiskala gorde da.,Configuració fiscal desada.,Configuración fiscal gardada.
 acei.consejo_estres_hidrico_texto,"ET0 elevada o déficit de presión de vapor alto. Si tienes goteo, programa riego de apoyo; en secano evita labores que aumenten estrés.","ET0 altua edo lurrun-presioaren defizit handia. Tantakako ureztatzea baduzu, programatu laguntza-ureztatzea; lehorrean, saihestu estresa areagotzen duten lanak.","ET0 elevada o dèficit de pressió de vapor alt. Si tens degoteig, programa un reg de suport; en secà evita feines que augmentin l'estrès.","ET0 elevada ou déficit de presión de vapor alto. Se tes pinga a pinga, programa unha rega de apoio; en secaño evita labores que aumenten o estrés."
 acei.consejo_estres_hidrico_titulo,Demanda hídrica alta,Ur-eskari handia,Demanda hídrica alta,Demanda hídrica alta
@@ -155,6 +155,7 @@ acei.estimacion_directa_normal,Estimación directa normal,Zuzeneko zenbatespen a
 acei.estimacion_directa_simplificada,Estimación directa simplificada,Zuzeneko zenbatespen erraztua,Estimació directa simplificada,Estimación directa simplificada
 acei.estimacion_normal_ayuda,Cuando la simplificada no aplica por límites de facturación.,Erraztua fakturazio-mugengatik aplikatzen ez denean.,Quan la simplificada no s'aplica pels límits de facturació.,Cando a simplificada non se aplica polos límites de facturación.
 acei.estimacion_simplificada_ayuda,La más común si llevas contabilidad mínima al día.,"Ohikoena, gutxieneko kontabilitatea egunean baduzu.",La més habitual si portes una comptabilitat mínima al dia.,A máis común se levas unha contabilidade mínima ao día.
+acei.etiqueta_nif_cif,NIF / CIF,IFZ / IFK,NIF / CIF,NIF / CIF
 acei.exportar_libro_aica,Exportar libro AICA,AICA liburua esportatu,Exportar llibre AICA,Exportar libro AICA
 acei.exportar_pdf_aica,Exportar PDF AICA,AICA PDFa esportatu,Exportar PDF AICA,Exportar PDF AICA
 acei.extracto_compartir_texto,Extracto económico {anyo} · Larrea Aceitera,{anyo}ko laburpen ekonomikoa · Larrea Aceitera,Extracte econòmic {anyo} · Larrea Aceitera,Extracto económico {anyo} · Larrea Aceitera
@@ -207,7 +208,7 @@ acei.ia_que_identifica,Identifica plagas y variedades del olivar por foto,Olibon
 acei.identificador_del_lote,Identificador del lote,Lotearen identifikatzailea,Identificador del lot,Identificador do lote
 acei.identificar_plaga_con_ia,Identificar plaga con IA,Izurria AArekin identifikatu,Identificar plaga amb IA,Identificar praga con IA
 acei.importe_base_euros,Importe base (€),Oinarrizko zenbatekoa (€),Import base (€),Importe base (€)
-acei.importe_base_sin_iva,"Importe base (€, sin IVA)","Oinarrizko zenbatekoa (€, IVArik gabe)","Import base (€, sense IVA)","Importe base (€, sen IVA)"
+acei.importe_base_sin_iva,"Importe base (€, sin IVA)","Oinarrizko zenbatekoa (€, BEZik gabe)","Import base (€, sense IVA)","Importe base (€, sen IVE)"
 acei.importe_no_valido_corto,Importe no válido,Zenbateko okerra,Import no vàlid,Importe non válido
 acei.imputacion,Imputación,Egozpena,Imputació,Imputación
 acei.imputacion_general,General de la explotación,Ustiategi osoarena,General de l'explotació,Xeral da explotación
@@ -223,15 +224,15 @@ acei.ingreso_venta_aceite_granel,Venta de aceite a granel,Ontziratu gabeko olioa
 acei.ingreso_venta_aceituna,Venta de aceituna,Oliba-salmenta,Venda d'oliva,Venda de oliva
 acei.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
 acei.inicio_fecha,Inicio: {fecha},Hasiera: {fecha},Inici: {fecha},Inicio: {fecha}
-acei.irpf_normal,IRPF: estimación directa normal,IRPF: zuzeneko zenbatespen arrunta,IRPF: estimació directa normal,IRPF: estimación directa normal
-acei.irpf_simplificada,IRPF: estimación directa simplificada,IRPF: zuzeneko zenbatespen erraztua,IRPF: estimació directa simplificada,IRPF: estimación directa simplificada
-acei.irpf_sin_elegir,IRPF: sin elegir,IRPF: aukeratu gabe,IRPF: sense triar,IRPF: sen escoller
-acei.iva_general,IVA: régimen general,IVA: araubide orokorra,IVA: règim general,IVA: réxime xeral
-acei.iva_reagp,IVA: REAGP (compensación del 12 % en aceituna),IVA: REAGP (% 12ko konpentsazioa olibetan),IVA: REAGP (compensació del 12 % en l'oliva),IVA: REAGP (compensación do 12 % na oliva)
-acei.iva_repercutido_euros,IVA repercutido (€),IVA jasanarazia (€),IVA repercutit (€),IVA repercutido (€)
-acei.iva_sin_elegir,IVA: sin elegir,IVA: aukeratu gabe,IVA: sense triar,IVA: sen escoller
-acei.iva_soportado_ayuda,Lee la cuota de IVA de la factura.,Irakurri fakturako IVA kuota.,Llegeix la quota d'IVA de la factura.,Le a cota de IVA da factura.
-acei.iva_soportado_euros,IVA soportado (€),IVA jasana (€),IVA suportat (€),IVA soportado (€)
+acei.irpf_normal,IRPF: estimación directa normal,PFEZ: zuzeneko zenbatespen arrunta,IRPF: estimació directa normal,IRPF: estimación directa normal
+acei.irpf_simplificada,IRPF: estimación directa simplificada,PFEZ: zuzeneko zenbatespen erraztua,IRPF: estimació directa simplificada,IRPF: estimación directa simplificada
+acei.irpf_sin_elegir,IRPF: sin elegir,PFEZ: aukeratu gabe,IRPF: sense triar,IRPF: sen escoller
+acei.iva_general,IVA: régimen general,BEZ: araubide orokorra,IVA: règim general,IVE: réxime xeral
+acei.iva_reagp,IVA: REAGP (compensación del 12 % en aceituna),BEZ: REAGP (% 12ko konpentsazioa olibetan),IVA: REAGP (compensació del 12 % en l'oliva),IVE: REAGP (compensación do 12 % na oliva)
+acei.iva_repercutido_euros,IVA repercutido (€),BEZ jasanarazia (€),IVA repercutit (€),IVE repercutido (€)
+acei.iva_sin_elegir,IVA: sin elegir,BEZ: aukeratu gabe,IVA: sense triar,IVE: sen escoller
+acei.iva_soportado_ayuda,Lee la cuota de IVA de la factura.,Irakurri fakturako BEZ kuota.,Llegeix la quota d'IVA de la factura.,Le a cota de IVE da factura.
+acei.iva_soportado_euros,IVA soportado (€),BEZ jasana (€),IVA suportat (€),IVE soportado (€)
 acei.kilos_estimados,Kilos estimados,Kalkulatutako kiloak,Quilos estimats,Quilos estimados
 acei.kilos_molturados,Kilos molturados,Ehotako kiloak,Quilos molturats,Quilos moídos
 acei.kilos_netos_bascula,Kilos netos (báscula),Kilo garbiak (baskula),Quilos nets (bàscula),Quilos netos (báscula)
@@ -272,6 +273,7 @@ acei.movimientos_del_lote,Movimientos del lote,Lotearen mugimenduak,Moviments de
 acei.municipio,Municipio,Udalerria,Municipi,Concello
 acei.necesitas_campania_cuaderno_pac,Necesitas una campaña abierta para generar el cuaderno PAC.,Kanpaina ireki bat behar duzu PAC koadernoa sortzeko.,Necessites una campanya oberta per generar el quadern PAC.,Necesitas unha campaña aberta para xerar o caderno PAC.
 acei.necesitas_campania_libro_aica,Necesitas una campaña para generar el libro AICA.,Kanpaina bat behar duzu AICA liburua sortzeko.,Necessites una campanya per generar el llibre AICA.,Necesitas unha campaña para xerar o libro AICA.
+acei.nif_valor,NIF: {nif},IFZ: {nif},NIF: {nif},NIF: {nif}
 acei.no_se_pudo_cargar_prevision,No se pudo cargar la previsión.,Ezin izan da iragarpena kargatu.,No s'ha pogut carregar la previsió.,Non se puido cargar a previsión.
 acei.no_se_pudo_cargar_prevision_reintentar,No se pudo cargar la previsión. Toca para reintentar.,Ezin izan da iragarpena kargatu. Sakatu berriro saiatzeko.,No s'ha pogut carregar la previsió. Toca per tornar-ho a provar.,Non se puido cargar a previsión. Toca para tentalo de novo.
 acei.no_se_pudo_obtener_gps,No se pudo obtener el GPS actual.,Ezin izan da uneko GPSa lortu.,No s'ha pogut obtenir el GPS actual.,Non se puido obter o GPS actual.
@@ -330,16 +332,16 @@ acei.proveedor_opcional,Proveedor (opcional),Hornitzailea (aukerakoa),Proveïdor
 acei.provincia,Provincia,Probintzia,Província,Provincia
 acei.pulsa_mas_primero,Pulsa + para añadir el primero.,Sakatu + lehena gehitzeko.,Prem + per afegir-ne el primer.,Preme + para engadir o primeiro.
 acei.razon_social,Razón social,Izen soziala,Raó social,Razón social
-acei.recalcular_iva_compensacion,Recalcular IVA / compensación,IVA / konpentsazioa berriro kalkulatu,Recalcula l'IVA / compensació,Recalcular IVA / compensación
+acei.recalcular_iva_compensacion,Recalcular IVA / compensación,BEZ / konpentsazioa berriro kalkulatu,Recalcula l'IVA / compensació,Recalcular IVE / compensación
 acei.recoleccion,Recolección,Bilketa,Collita,Colleita
 acei.recolecciones,Recolecciones,Bilketak,Collites,Colleitas
 acei.regimen,Régimen,Araubidea,Règim,Réxime
 acei.regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
-acei.regimen_general_ayuda,IVA repercutido 4 % en aceituna y aceite (alimento básico). El IVA soportado en gastos es deducible.,% 4ko IVA jasanarazia olibetan eta olioan (oinarrizko elikagaia). Gastuetan jasandako IVA kengarria da.,IVA repercutit del 4 % en oliva i oli (aliment bàsic). L'IVA suportat en despeses és deduïble.,IVA repercutido do 4 % na oliva e no aceite (alimento básico). O IVA soportado nos gastos é deducible.
-acei.regimen_irpf,Régimen IRPF,IRPF araubidea,Règim IRPF,Réxime IRPF
-acei.regimen_iva,Régimen IVA,IVA araubidea,Règim IVA,Réxime IVA
+acei.regimen_general_ayuda,IVA repercutido 4 % en aceituna y aceite (alimento básico). El IVA soportado en gastos es deducible.,% 4ko BEZ jasanarazia olibetan eta olioan (oinarrizko elikagaia). Gastuetan jasandako BEZa kengarria da.,IVA repercutit del 4 % en oliva i oli (aliment bàsic). L'IVA suportat en despeses és deduïble.,IVE repercutido do 4 % na oliva e no aceite (alimento básico). O IVE soportado nos gastos é deducible.
+acei.regimen_irpf,Régimen IRPF,PFEZ araubidea,Règim IRPF,Réxime IRPF
+acei.regimen_iva,Régimen IVA,BEZ araubidea,Règim IVA,Réxime IVE
 acei.regimen_reagp,REAGP (compensación 12 % en aceituna),REAGP (% 12ko konpentsazioa olibetan),REAGP (compensació del 12 % en l'oliva),REAGP (compensación do 12 % na oliva)
-acei.regimen_reagp_ayuda,Régimen especial de agricultura. El comprador paga una compensación REAGP del 12 % en la venta de aceituna; el titular no repercute IVA en sus ventas agrícolas.,Nekazaritzako araubide berezia. Erosleak % 12ko REAGP konpentsazioa ordaintzen du olibak saltzean; titularrak ez du IVArik jasanarazten bere nekazaritza-salmentetan.,Règim especial de l'agricultura. El comprador paga una compensació REAGP del 12 % en la venda d'oliva; el titular no repercuteix IVA en les seves vendes agràries.,Réxime especial da agricultura. O comprador paga unha compensación REAGP do 12 % na venda de oliva; o titular non repercute IVA nas súas vendas agrarias.
+acei.regimen_reagp_ayuda,Régimen especial de agricultura. El comprador paga una compensación REAGP del 12 % en la venta de aceituna; el titular no repercute IVA en sus ventas agrícolas.,Nekazaritzako araubide berezia. Erosleak % 12ko REAGP konpentsazioa ordaintzen du olibak saltzean; titularrak ez du BEZik jasanarazten bere nekazaritza-salmentetan.,Règim especial de l'agricultura. El comprador paga una compensació REAGP del 12 % en la venda d'oliva; el titular no repercuteix IVA en les seves vendes agràries.,Réxime especial da agricultura. O comprador paga unha compensación REAGP do 12 % na venda de oliva; o titular non repercute IVE nas súas vendas agrarias.
 acei.registrar,Registrar,Erregistratu,Registrar,Rexistrar
 acei.registros,Registros,Erregistroak,Registres,Rexistros
 acei.registros_campanias_sub,Abrir la campaña de este año y ver las anteriores,Aurtengo kanpaina ireki eta aurrekoak ikusi,Obrir la campanya d'enguany i veure les anteriors,Abrir a campaña deste ano e ver as anteriores
@@ -358,7 +360,7 @@ acei.restaurar_una_copia_texto,"Sustituye los datos de este dispositivo por los 
 acei.resultado_bruto_anyo,Resultado bruto del año,Urteko emaitza gordina,Resultat brut de l'any,Resultado bruto do ano
 acei.resultado_bruto_formula,(ingresos base − gastos base),(oinarrizko diru-sarrerak − oinarrizko gastuak),(ingressos base − despeses base),(ingresos base − gastos base)
 acei.resumen,Resumen,Laburpena,Resum,Resumo
-acei.resumen_provisional,Resumen PROVISIONAL hasta que lo valide un asesor fiscal. Las reglas de IVA y REAGP del olivar están sujetas a confirmación.,"BEHIN-BEHINEKO laburpena, aholkulari fiskal batek balioztatu arte. Olibondo-sektoreko IVA eta REAGP arauak berresteke daude.",Resum PROVISIONAL fins que ho validi un assessor fiscal. Les regles d'IVA i REAGP de l'oliverar estan subjectes a confirmació.,Resumo PROVISIONAL ata que o valide un asesor fiscal. As regras de IVA e REAGP do olival están suxeitas a confirmación.
+acei.resumen_provisional,Resumen PROVISIONAL hasta que lo valide un asesor fiscal. Las reglas de IVA y REAGP del olivar están sujetas a confirmación.,"BEHIN-BEHINEKO laburpena, aholkulari fiskal batek balioztatu arte. Olibondo-sektoreko BEZ eta REAGP arauak berresteke daude.",Resum PROVISIONAL fins que ho validi un assessor fiscal. Les regles d'IVA i REAGP de l'oliverar estan subjectes a confirmació.,Resumo PROVISIONAL ata que o valide un asesor fiscal. As regras de IVE e REAGP do olival están suxeitas a confirmación.
 acei.riego_aspersion,Aspersión,Aspertsioa,Aspersió,Aspersión
 acei.riego_goteo,Goteo,Tantaka,Degoteig,Pinga a pinga
 acei.riego_mixto,Mixto,Mistoa,Mixt,Mixto
@@ -411,18 +413,18 @@ acei.tipo_de_aceituna,Tipo de aceituna,Oliba mota,Tipus d'oliva,Tipo de oliva
 acei.tipo_de_gasto,Tipo de gasto,Gastu mota,Tipus de despesa,Tipo de gasto
 acei.tipo_de_ingreso,Tipo de ingreso,Diru-sarrera mota,Tipus d'ingrés,Tipo de ingreso
 acei.tipo_valor,Tipo: {tipo},Mota: {tipo},Tipus: {tipo},Tipo: {tipo}
-acei.titular_nif,Titular · NIF: {nif},Titularra · NIF: {nif},Titular · NIF: {nif},Titular · NIF: {nif}
+acei.titular_nif,Titular · NIF: {nif},Titularra · IFZ: {nif},Titular · NIF: {nif},Titular · NIF: {nif}
 acei.titular_sin_configurar,Titular sin configurar,Titularra konfiguratu gabe,Titular sense configurar,Titular sen configurar
-acei.titular_sin_configurar_cuaderno,El cuaderno oficial necesita razón social y NIF del titular. Edítalos desde Ajustes antes de generar el PDF.,Koaderno ofizialak titularraren izen soziala eta NIF behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.,El quadern oficial necessita la raó social i el NIF del titular. Edita'ls a Configuració abans de generar el PDF.,O caderno oficial necesita a razón social e o NIF do titular. Edítaos desde Axustes antes de xerar o PDF.
-acei.titular_sin_configurar_libro_aica,"El libro AICA necesita razón social, NIF y n.º AICA del titular. Edítalos desde Ajustes antes de generar el PDF.","AICA liburuak titularraren izen soziala, NIF eta AICA zk. behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.","El llibre AICA necessita la raó social, el NIF i el núm. AICA del titular. Edita'ls a Configuració abans de generar el PDF.","O libro AICA necesita a razón social, o NIF e o n.º AICA do titular. Edítaos desde Axustes antes de xerar o PDF."
+acei.titular_sin_configurar_cuaderno,El cuaderno oficial necesita razón social y NIF del titular. Edítalos desde Ajustes antes de generar el PDF.,Koaderno ofizialak titularraren izen soziala eta IFZ behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.,El quadern oficial necessita la raó social i el NIF del titular. Edita'ls a Configuració abans de generar el PDF.,O caderno oficial necesita a razón social e o NIF do titular. Edítaos desde Axustes antes de xerar o PDF.
+acei.titular_sin_configurar_libro_aica,"El libro AICA necesita razón social, NIF y n.º AICA del titular. Edítalos desde Ajustes antes de generar el PDF.","AICA liburuak titularraren izen soziala, IFZ eta AICA zk. behar ditu. Editatu Ezarpenetan PDFa sortu aurretik.","El llibre AICA necessita la raó social, el NIF i el núm. AICA del titular. Edita'ls a Configuració abans de generar el PDF.","O libro AICA necesita a razón social, o NIF e o n.º AICA do titular. Edítaos desde Axustes antes de xerar o PDF."
 acei.todas_las_parcelas,Todas las parcelas,Lursail guztiak,Totes les parcel·les,Todas as parcelas
 acei.todas_parcelas_con_coordenadas,Todas las parcelas tienen coordenadas.,Lursail guztiek dituzte koordenatuak.,Totes les parcel·les tenen coordenades.,Todas as parcelas teñen coordenadas.
 acei.todos_los_lotes_campania,Todos los lotes de la campaña,Kanpainako lote guztiak,Tots els lots de la campanya,Todos os lotes da campaña
 acei.total_compensacion_reagp,Total compensación REAGP,REAGP konpentsazioa guztira,Total compensació REAGP,Total compensación REAGP
 acei.total_gastos_base,Total gastos (base),Gastuak guztira (oinarria),Total despeses (base),Total gastos (base)
 acei.total_ingresos_base,Total ingresos (base),Diru-sarrerak guztira (oinarria),Total ingressos (base),Total ingresos (base)
-acei.total_iva_repercutido,Total IVA repercutido,IVA jasanarazia guztira,Total IVA repercutit,Total IVA repercutido
-acei.total_iva_soportado,Total IVA soportado,IVA jasana guztira,Total IVA suportat,Total IVA soportado
+acei.total_iva_repercutido,Total IVA repercutido,BEZ jasanarazia guztira,Total IVA repercutit,Total IVE repercutido
+acei.total_iva_soportado,Total IVA soportado,BEZ jasana guztira,Total IVA suportat,Total IVE soportado
 acei.tratamiento,Tratamiento,Tratamendua,Tractament,Tratamento
 acei.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
 acei.ubicacion_del_deposito,Ubicación del depósito,Biltegiaren kokapena,Ubicació del dipòsit,Localización do depósito

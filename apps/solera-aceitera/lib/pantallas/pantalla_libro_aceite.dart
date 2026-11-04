@@ -103,7 +103,7 @@ class _PantallaLibroAceiteState extends State<PantallaLibroAceite> {
                     ),
                     subtitle: Text(
                       '${nombreTipoMovimiento(fila.movimiento.tipo)} · '
-                      '${fila.movimiento.kgMovidos.toStringAsFixed(1)} kg'
+                      '${formatearNumero(fila.movimiento.kgMovidos, decimales: 1)} kg'
                       '${fila.movimiento.ubicacionDestino.isEmpty ? "" : " → ${fila.movimiento.ubicacionDestino}"}',
                     ),
                   );
@@ -295,7 +295,7 @@ class _PantallaExportLibroAceiteState
                   ? _titular!.razonSocial
                   : SoleraL10n.t('acei.sin_titular_configurado'),
             ),
-            subtitle: _titularConfigurado ? Text('NIF ${_titular!.nif}') : null,
+            subtitle: _titularConfigurado ? Text(SoleraL10n.tf('acei.nif_valor', {'nif': _titular!.nif})) : null,
           ),
           const Divider(),
           const SizedBox(height: 8),

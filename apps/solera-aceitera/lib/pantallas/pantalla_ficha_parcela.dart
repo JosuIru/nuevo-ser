@@ -96,7 +96,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(SoleraL10n.tf('acei.superficie_valor', {'ha': p.superficieHa.toStringAsFixed(2)})),
+                  Text(SoleraL10n.tf('acei.superficie_valor', {'ha': formatearNumero(p.superficieHa, decimales: 2)})),
                   Text(SoleraL10n.tf('acei.variedad_valor', {'variedad': p.variedadMayoritariaId.isEmpty ? SoleraL10n.t('acei.sin_definir') : p.variedadMayoritariaId})),
                   Text(SoleraL10n.tf('acei.marco_valor', {'marco': p.marcoPlantacion.isEmpty ? SoleraL10n.t('acei.sin_definir') : p.marcoPlantacion})),
                   Text(SoleraL10n.tf('acei.edad_media_valor', {'anyos': p.edadMediaAnyos})),
@@ -121,7 +121,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                     leading: const Icon(Icons.agriculture,
                         color: Color(0xFF5C6B3A)),
                     title: Text(
-                      '${r.kgEstimados.toStringAsFixed(0)} kg · ${nombreTipoAceituna(r.tipoAceituna)}',
+                      '${formatearNumero(r.kgEstimados, decimales: 0)} kg · ${nombreTipoAceituna(r.tipoAceituna)}',
                     ),
                     subtitle: Text(
                       '${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(r.fechaMs))} · ${nombreMetodoRecoleccion(r.metodo)}',
@@ -146,7 +146,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                         : t.sustanciaActivaId),
                     subtitle: Text(
                       '${_formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(t.fechaMs))}'
-                      ' · ${t.dosisLitrosPorHa.toStringAsFixed(2)} L/ha'
+                      ' · ${formatearNumero(t.dosisLitrosPorHa, decimales: 2)} L/ha'
                       '${t.plagaObjetivoId.isEmpty ? "" : " · ${SoleraL10n.tf('acei.contra_plaga', {'plaga': t.plagaObjetivoId})}"}',
                     ),
                   ),

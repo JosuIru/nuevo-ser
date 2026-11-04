@@ -121,10 +121,10 @@ Future<File> generarLibroMovimientosAceite({
           '${olivar.municipio.isNotEmpty ? " · ${olivar.municipio}" : ""}'
           '${olivar.provincia.isNotEmpty ? " (${olivar.provincia})" : ""}',
     'Lotes incluidos: ${lotesAMostrar.length}'
-        ' · ${totalKgLotes.toStringAsFixed(1)} kg netos',
+        ' · ${formatearNumero(totalKgLotes, decimales: 1)} kg netos',
     'Molturaciones registradas: ${molturacionesFiltradas.length}'
-        ' · ${totalKgMolturados.toStringAsFixed(1)} kg de aceituna molturados'
-        ' → ${totalAceiteObtenido.toStringAsFixed(1)} kg de aceite',
+        ' · ${formatearNumero(totalKgMolturados, decimales: 1)} kg de aceituna molturados'
+        ' → ${formatearNumero(totalAceiteObtenido, decimales: 1)} kg de aceite',
     'Movimientos registrados: ${movimientosFiltrados.length}',
   ];
 
@@ -134,7 +134,7 @@ Future<File> generarLibroMovimientosAceite({
         formatoFecha
             .format(DateTime.fromMillisecondsSinceEpoch(l.fechaCreacionMs)),
         l.identificadorLote,
-        l.kgNetos.toStringAsFixed(1),
+        formatearNumero(l.kgNetos, decimales: 1),
         l.categoria,
         l.dopId.isEmpty ? '—' : l.dopId,
         l.ubicacionFisica.isEmpty ? '—' : l.ubicacionFisica,
@@ -149,9 +149,9 @@ Future<File> generarLibroMovimientosAceite({
     for (final m in molturacionesFiltradas)
       [
         formatoFecha.format(DateTime.fromMillisecondsSinceEpoch(m.fechaMs)),
-        m.kgMolturados.toStringAsFixed(1),
-        m.rendimientoPorcentaje.toStringAsFixed(2),
-        m.aceiteObtenidoKg.toStringAsFixed(1),
+        formatearNumero(m.kgMolturados, decimales: 1),
+        formatearNumero(m.rendimientoPorcentaje, decimales: 2),
+        formatearNumero(m.aceiteObtenidoKg, decimales: 1),
         m.loteAceiteId == null
             ? '—'
             : (indiceLotesPorId[m.loteAceiteId]?.identificadorLote ??
@@ -168,7 +168,7 @@ Future<File> generarLibroMovimientosAceite({
             DateTime.fromMillisecondsSinceEpoch(fila.movimiento.fechaMs)),
         fila.lote.identificadorLote,
         fila.movimiento.tipo,
-        fila.movimiento.kgMovidos.toStringAsFixed(1),
+        formatearNumero(fila.movimiento.kgMovidos, decimales: 1),
         fila.movimiento.ubicacionDestino.isEmpty
             ? '—'
             : fila.movimiento.ubicacionDestino,
@@ -261,7 +261,7 @@ String _etiquetaNif(Titular? titular) {
 
 String _formatoOpcional(double? valor, {int decimales = 2}) {
   if (valor == null) return '—';
-  return valor.toStringAsFixed(decimales);
+  return formatearNumero(valor, decimales: decimales);
 }
 
 String _slug(String entrada) {

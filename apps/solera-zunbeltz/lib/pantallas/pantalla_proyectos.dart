@@ -9,13 +9,13 @@ import '../estado/datos_notificador.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/amortizacion.dart';
 import '../modelos/balance_convenio.dart';
-import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/rentabilidad_proyecto.dart';
 import '../servicios/generador_comparativa_proyectos.dart';
 import '../utiles/resumen_proyecto.dart';
 import 'nuevo_proyecto.dart';
+import 'pantalla_comparativa.dart';
 import 'proyecto_detalle.dart';
 import 'widgets/proyecto_visual.dart';
 
@@ -163,14 +163,22 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
         title: Text(textos.proyectosTitulo),
         actions: [
           IconButton(
-            tooltip: textos.comparativaPdf,
+            tooltip: textos.compTitulo,
             icon: _generando
                 ? const SizedBox(
                     width: 18,
                     height: 18,
                     child: CircularProgressIndicator(strokeWidth: 2))
                 : const Icon(Icons.bar_chart),
-            onPressed: (_generando || _proyectos.isEmpty) ? null : _comparativa,
+            onPressed: (_generando || _proyectos.isEmpty)
+                ? null
+                : () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => PantallaComparativa(
+                        proyectos: _proyectos,
+                        balances: _balances,
+                        alGenerarPdf: _comparativa,
+                      ),
+                    )),
           ),
           const SizedBox(width: 4),
         ],
@@ -250,57 +258,6 @@ class _PantallaProyectosState extends State<PantallaProyectos> {
   }
 }
 
-/// Dos letras del proyecto: las de su especie si la tiene; si no, las de
-/// la actividad o el nombre.
-String _siglasProyecto(ProyectoTest proyecto, String idioma) {
-  final especie = buscarOpcion(especiesGanado, proyecto.especie);
-  final base = [
-    if (especie != null && proyecto.especie != 'varias')
-      especie.etiqueta(idioma),
-    proyecto.actividad,
-    proyecto.nombre,
-  ].firstWhere((texto) => texto.trim().length >= 2, orElse: () => '·');
-  return base
-      .trim()
-      .substring(0, base.trim().length >= 2 ? 2 : 1)
-      .toUpperCase();
-}
-
-class _AvatarProyecto extends StatelessWidget {
-  const _AvatarProyecto(
-      {required this.proyecto, this.tamano = 64, this.apagado = false});
-
-  final ProyectoTest proyecto;
-  final double tamano;
-  final bool apagado;
-
-  @override
-  Widget build(BuildContext context) {
-    final idioma = Localizations.localeOf(context).languageCode;
-    final esquema = context.esquemaZunbeltz;
-    return Container(
-      width: tamano,
-      height: tamano,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: apagado ? esquema.surfaceContainerHighest : colorCuadroEsmeralda,
-        // Esquinas alternas, como los cuadros del logotipo.
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(tamano * 0.18),
-          topRight: Radius.circular(tamano * 0.18),
-          bottomLeft: Radius.circular(tamano * 0.18),
-          bottomRight: Radius.circular(tamano * 0.4),
-        ),
-      ),
-      child: Text(_siglasProyecto(proyecto, idioma),
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              fontWeight: FontWeight.w700,
-              color:
-                  apagado ? esquema.onSurfaceVariant : colorSobreCuadroClaro)),
-    );
-  }
-}
-
 class _TarjetaProyecto extends StatelessWidget {
   const _TarjetaProyecto({
     required this.proyecto,
@@ -342,7 +299,7 @@ class _TarjetaProyecto extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(children: [
-                _AvatarProyecto(proyecto: proyecto),
+                AvatarProyecto(proyecto: proyecto),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -500,7 +457,7 @@ class _FilaProyectoCerrado extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(children: [
-            _AvatarProyecto(proyecto: proyecto, tamano: 48, apagado: true),
+            AvatarProyecto(proyecto: proyecto, tamano: 48, apagado: true),
             const SizedBox(width: 14),
             Expanded(
               child: Column(

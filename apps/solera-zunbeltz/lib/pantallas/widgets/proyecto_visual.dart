@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../branding.dart';
+import '../../modelos/constantes.dart';
+import '../../modelos/proyecto_test.dart';
 
 /// Euros enteros con separador de miles: «6.480 €».
 String eurosRedondos(int centimos) =>
@@ -126,6 +128,61 @@ class BarraPrevisto extends StatelessWidget {
         color: color,
         backgroundColor: esquema.surfaceContainerHighest,
       ),
+    );
+  }
+}
+
+/// Dos letras del proyecto: las de su especie si la tiene; si no, las de
+/// la actividad o el nombre.
+String siglasProyecto(ProyectoTest proyecto, String idioma) {
+  final especie = buscarOpcion(especiesGanado, proyecto.especie);
+  final base = [
+    if (especie != null && proyecto.especie != 'varias')
+      especie.etiqueta(idioma),
+    proyecto.actividad,
+    proyecto.nombre,
+  ].firstWhere((texto) => texto.trim().length >= 2, orElse: () => '·');
+  return base
+      .trim()
+      .substring(0, base.trim().length >= 2 ? 2 : 1)
+      .toUpperCase();
+}
+
+class AvatarProyecto extends StatelessWidget {
+  const AvatarProyecto(
+      {super.key,
+      required this.proyecto,
+      this.tamano = 64,
+      this.apagado = false});
+
+  final ProyectoTest proyecto;
+  final double tamano;
+  final bool apagado;
+
+  @override
+  Widget build(BuildContext context) {
+    final idioma = Localizations.localeOf(context).languageCode;
+    final esquema = context.esquemaZunbeltz;
+    return Container(
+      width: tamano,
+      height: tamano,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: apagado ? esquema.surfaceContainerHighest : colorCuadroEsmeralda,
+        // Esquinas alternas, como los cuadros del logotipo.
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(tamano * 0.18),
+          topRight: Radius.circular(tamano * 0.18),
+          bottomLeft: Radius.circular(tamano * 0.18),
+          bottomRight: Radius.circular(tamano * 0.4),
+        ),
+      ),
+      child: Text(siglasProyecto(proyecto, idioma),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              fontSize: tamano * 0.34,
+              fontWeight: FontWeight.w700,
+              color:
+                  apagado ? esquema.onSurfaceVariant : colorSobreCuadroClaro)),
     );
   }
 }

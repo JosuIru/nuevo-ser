@@ -282,7 +282,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Simulador de rendimiento** (pantalla 22, `pantalla_calculadora.dart`, antes «Calculadora de transformación»): embudo peso vivo → canal → producto vendible con barras proporcionales, nombre del camino en el propio formulario (vacío: «Camino N»), campos a dos columnas (rótulos acortados), bloque en pino con ingreso, margen y **margen por kg vivo** y «Guardar este camino»; **caminos guardados** ordenados por margen por kg vivo con barras; tocar uno lo carga arriba y lo resalta, mantener pulsado lo borra.
 
-**Pendiente**: comparativa (23); Imágenes en la web de la propuesta.
+- **Comparativa de proyectos** (pantalla 23, `pantalla_comparativa.dart`, desde el icono de gráfico de la lista): cada proyecto con sus siglas y meses (y si está cerrado), **balance del test por mes** en barras con signo desde un eje (para comparar duraciones distintas; con menos de un mes, el balance entero), ingresos, gastos del test y % de los gastos que asume la persona tester; abajo el botón «Comparativa (PDF)» de siempre. `AvatarProyecto` y `siglasProyecto` están ahora en `widgets/proyecto_visual.dart`.
+
+**Pendiente**: Imágenes en la web de la propuesta.
 
 ## Hard limits (heredados de la Suite Solera)
 

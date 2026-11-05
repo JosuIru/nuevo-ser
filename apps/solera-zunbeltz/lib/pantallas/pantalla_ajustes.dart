@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../branding.dart';
@@ -78,18 +79,21 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       builder: (contexto) => SimpleDialog(
         title: Text(textos.ajuTema),
         children: [
-          RadioGroup<ThemeMode>(
-            groupValue: temaAppZunbeltz.value,
-            onChanged: (valor) => Navigator.pop(contexto, valor),
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              for (final (tema, etiqueta) in [
-                (ThemeMode.system, textos.ajuTemaSistema),
-                (ThemeMode.light, textos.ajuTemaClaro),
-                (ThemeMode.dark, textos.ajuTemaOscuro),
-              ])
-                RadioListTile<ThemeMode>(value: tema, title: Text(etiqueta)),
-            ]),
-          ),
+          // Filas y no botones de radio: tocar la opción ya elegida
+          // también tiene que cerrar el diálogo.
+          for (final (tema, etiqueta) in [
+            (ThemeMode.system, textos.ajuTemaSistema),
+            (ThemeMode.light, textos.ajuTemaClaro),
+            (ThemeMode.dark, textos.ajuTemaOscuro),
+          ])
+            ListTile(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 24),
+              leading: Icon(temaAppZunbeltz.value == tema
+                  ? Icons.radio_button_checked
+                  : Icons.radio_button_unchecked),
+              title: Text(etiqueta),
+              onTap: () => Navigator.pop(contexto, tema),
+            ),
         ],
       ),
     );
@@ -382,82 +386,86 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       ThemeMode.dark => textos.ajuTemaOscuro,
       ThemeMode.system => textos.ajuTemaSistema,
     };
-    return Scaffold(
-      body: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          _cabecera(textos, localeActivo),
-          _grupo(textos.ajuPreferencias, [
-            _fila(
-              Icons.translate_outlined,
-              textos.ajustesIdioma,
-              detalle: localeActivo == 'eu'
-                  ? textos.ajustesIdiomaEuskera
-                  : textos.ajustesIdiomaCastellano,
-              final_: SegmentedButton<String>(
-                showSelectedIcon: false,
-                segments: const [
-                  ButtonSegment(value: 'es', label: Text('ES')),
-                  ButtonSegment(value: 'eu', label: Text('EU')),
+    // Iconos de la barra de estado en claro, sobre la cabecera verde.
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        body: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            _cabecera(textos, localeActivo),
+            _grupo(textos.ajuPreferencias, [
+              _fila(
+                Icons.translate_outlined,
+                textos.ajustesIdioma,
+                detalle: localeActivo == 'eu'
+                    ? textos.ajustesIdiomaEuskera
+                    : textos.ajustesIdiomaCastellano,
+                final_: SegmentedButton<String>(
+                  showSelectedIcon: false,
+                  segments: const [
+                    ButtonSegment(value: 'es', label: Text('ES')),
+                    ButtonSegment(value: 'eu', label: Text('EU')),
+                  ],
+                  selected: {localeActivo},
+                  onSelectionChanged: (elegidos) =>
+                      _cambiarIdioma(elegidos.first),
+                ),
+              ),
+              _fila(Icons.contrast, textos.ajuTema,
+                  detalle: tema, alPulsar: _elegirTema),
+            ]),
+            _grupo(textos.ajuDatosCuenta, [
+              _fila(Icons.sync_alt, textos.ajuSyncCuenta,
+                  detalle: textos.ajuSyncCuentaDetalle,
+                  alPulsar: () => _ir(const PantallaSincronizacion())),
+              _fila(Icons.outgoing_mail, textos.ajustesCoordinador,
+                  detalle: _coordinador.isEmpty
+                      ? textos.ajustesCoordinadorVacio
+                      : _coordinador,
+                  alPulsar: _editarCoordinador),
+              _fila(Icons.upload_file_outlined, textos.ajustesExportarEspacio,
+                  final_: const Icon(Icons.ios_share),
+                  alPulsar: _exportarEspacio),
+              if (!kIsWeb)
+                _fila(Icons.cloud_download_outlined, textos.mapaSinCobertura,
+                    detalle: textos.mapaCallejeroSoloVisto,
+                    alPulsar: () => _ir(const PantallaMapaSinCobertura())),
+            ]),
+            _grupo(textos.ajuLaApp, [
+              _fila(Icons.help_outline, textos.ayudaTitulo,
+                  detalle: textos.ajuAyudaDetalle,
+                  alPulsar: () => _ir(const PantallaAyuda())),
+              _fila(Icons.system_update_outlined, textos.actualizacionesTitulo,
+                  detalle: textos.ajustesActualizacionesSubtitulo,
+                  alPulsar: () => _ir(PantallaEstadoActualizaciones(
+                        config: configActualizacionesZunbeltz,
+                        nombreApp: textos.appTitulo,
+                        traducir: traductorActualizaciones(textos),
+                      ))),
+              _fila(Icons.landscape_outlined, textos.acercaTitulo,
+                  alPulsar: () => _ir(const PantallaAcercaEspacioTest())),
+              _fila(Icons.handshake_outlined, textos.entidadesTitulo,
+                  alPulsar: () => _ir(const PantallaEntidades())),
+            ]),
+            Padding(
+              padding: rellenoSobreBarraSistema(
+                  context, const EdgeInsets.fromLTRB(20, 28, 20, 28)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${textos.appTitulo} $versionAppZunbeltz',
+                      style: estilos.titleSmall
+                          ?.copyWith(fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 6),
+                  Text(textos.ajustesProvisional,
+                      style: estilos.bodySmall
+                          ?.copyWith(color: esquema.onSurfaceVariant)),
                 ],
-                selected: {localeActivo},
-                onSelectionChanged: (elegidos) =>
-                    _cambiarIdioma(elegidos.first),
               ),
             ),
-            _fila(Icons.contrast, textos.ajuTema,
-                detalle: tema, alPulsar: _elegirTema),
-          ]),
-          _grupo(textos.ajuDatosCuenta, [
-            _fila(Icons.sync_alt, textos.ajuSyncCuenta,
-                detalle: textos.ajuSyncCuentaDetalle,
-                alPulsar: () => _ir(const PantallaSincronizacion())),
-            _fila(Icons.outgoing_mail, textos.ajustesCoordinador,
-                detalle: _coordinador.isEmpty
-                    ? textos.ajustesCoordinadorVacio
-                    : _coordinador,
-                alPulsar: _editarCoordinador),
-            _fila(Icons.upload_file_outlined, textos.ajustesExportarEspacio,
-                final_: const Icon(Icons.ios_share),
-                alPulsar: _exportarEspacio),
-            if (!kIsWeb)
-              _fila(Icons.cloud_download_outlined, textos.mapaSinCobertura,
-                  detalle: textos.mapaCallejeroSoloVisto,
-                  alPulsar: () => _ir(const PantallaMapaSinCobertura())),
-          ]),
-          _grupo(textos.ajuLaApp, [
-            _fila(Icons.help_outline, textos.ayudaTitulo,
-                detalle: textos.ajuAyudaDetalle,
-                alPulsar: () => _ir(const PantallaAyuda())),
-            _fila(Icons.system_update_outlined, textos.actualizacionesTitulo,
-                detalle: textos.ajustesActualizacionesSubtitulo,
-                alPulsar: () => _ir(PantallaEstadoActualizaciones(
-                      config: configActualizacionesZunbeltz,
-                      nombreApp: textos.appTitulo,
-                      traducir: traductorActualizaciones(textos),
-                    ))),
-            _fila(Icons.landscape_outlined, textos.acercaTitulo,
-                alPulsar: () => _ir(const PantallaAcercaEspacioTest())),
-            _fila(Icons.handshake_outlined, textos.entidadesTitulo,
-                alPulsar: () => _ir(const PantallaEntidades())),
-          ]),
-          Padding(
-            padding: rellenoSobreBarraSistema(
-                context, const EdgeInsets.fromLTRB(20, 28, 20, 28)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('${textos.appTitulo} $versionAppZunbeltz',
-                    style: estilos.titleSmall
-                        ?.copyWith(fontWeight: FontWeight.w600)),
-                const SizedBox(height: 6),
-                Text(textos.ajustesProvisional,
-                    style: estilos.bodySmall
-                        ?.copyWith(color: esquema.onSurfaceVariant)),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

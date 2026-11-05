@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../branding.dart';
@@ -45,108 +46,114 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
     final parrafos = textos.acercaIntro
         .split(RegExp(r'\n\s*\n|\n'))
         .where((parrafo) => parrafo.trim().isNotEmpty);
-    return Scaffold(
-      body: ListView(
-        padding: EdgeInsets.zero,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(28),
-                bottomRight: Radius.circular(28)),
-            child: Container(
-              color: colores.cabecera,
-              child: Stack(children: [
-                Positioned.fill(
-                  child: CustomPaint(
-                    painter: CurvasDeNivel(
-                        color: colores.sobreCabecera.withValues(alpha: 0.12)),
+    // Iconos de la barra de estado en claro, sobre la cabecera verde.
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        body: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(28),
+                  bottomRight: Radius.circular(28)),
+              child: Container(
+                color: colores.cabecera,
+                child: Stack(children: [
+                  Positioned.fill(
+                    child: CustomPaint(
+                      painter: CurvasDeNivel(
+                          color: colores.sobreCabecera.withValues(alpha: 0.12)),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.fromLTRB(8, arriba + 4, 24, 28),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      BackButton(color: colores.sobreCabecera),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 16, 0, 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            ColorFiltered(
-                              colorFilter: filtroLogoClaro(
-                                  colores.sobreCabecera.withValues(alpha: 0.9)),
-                              child: Image.asset(rutaLogoZunbeltz,
-                                  height: 72, semanticLabel: 'Zunbeltz'),
-                            ),
-                            const SizedBox(height: 12),
-                            Text('Zunbeltz',
-                                style: estilos.displaySmall?.copyWith(
-                                    color: colores.sobreCabecera,
-                                    fontWeight: FontWeight.w700)),
-                            const SizedBox(height: 8),
-                            Text(textos.acercaAsociacion,
-                                style: estilos.bodyMedium?.copyWith(
-                                    color: colores.sobreCabeceraVariante)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ]),
-            ),
-          ),
-          Padding(
-            padding: rellenoSobreBarraSistema(
-                context, const EdgeInsets.fromLTRB(24, 24, 24, 24)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                for (final parrafo in parrafos)
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 14),
-                    child: Text(parrafo.trim(), style: estilos.bodyLarge),
+                    padding: EdgeInsets.fromLTRB(8, arriba + 4, 24, 28),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        BackButton(color: colores.sobreCabecera),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 16, 0, 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ColorFiltered(
+                                colorFilter: filtroLogoClaro(colores
+                                    .sobreCabecera
+                                    .withValues(alpha: 0.9)),
+                                child: Image.asset(rutaLogoZunbeltz,
+                                    height: 72, semanticLabel: 'Zunbeltz'),
+                              ),
+                              const SizedBox(height: 12),
+                              Text('Zunbeltz',
+                                  style: estilos.displaySmall?.copyWith(
+                                      color: colores.sobreCabecera,
+                                      fontWeight: FontWeight.w700)),
+                              const SizedBox(height: 8),
+                              Text(textos.acercaAsociacion,
+                                  style: estilos.bodyMedium?.copyWith(
+                                      color: colores.sobreCabeceraVariante)),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                const SizedBox(height: 12),
-                Text(textos.acercaEnlaces, style: estilos.titleLarge),
-                const SizedBox(height: 12),
-                Container(
-                  decoration: BoxDecoration(
-                    color: esquema.surfaceContainerLow,
-                    borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
-                  ),
-                  clipBehavior: Clip.antiAlias,
-                  child: Column(children: [
-                    for (var indice = 0;
-                        indice < _enlaces.length;
-                        indice++) ...[
-                      if (indice > 0)
-                        Divider(
-                            height: 1,
-                            indent: 64,
-                            endIndent: 16,
-                            color: esquema.outlineVariant),
-                      ListTile(
-                        contentPadding: const EdgeInsets.fromLTRB(20, 6, 16, 6),
-                        leading: const Icon(Icons.public),
-                        title: Text(_enlaces[indice].titulo,
-                            style: estilos.titleMedium),
-                        subtitle: Text(_sinProtocolo(_enlaces[indice].url)),
-                        trailing: const Icon(Icons.open_in_new),
-                        onTap: () => _abrir(_enlaces[indice].url),
-                      ),
-                    ],
-                  ]),
-                ),
-                const SizedBox(height: 20),
-                Text(textos.acercaFuentes,
-                    style: estilos.bodySmall
-                        ?.copyWith(color: esquema.onSurfaceVariant)),
-              ],
+                ]),
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: rellenoSobreBarraSistema(
+                  context, const EdgeInsets.fromLTRB(24, 24, 24, 24)),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (final parrafo in parrafos)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 14),
+                      child: Text(parrafo.trim(), style: estilos.bodyLarge),
+                    ),
+                  const SizedBox(height: 12),
+                  Text(textos.acercaEnlaces, style: estilos.titleLarge),
+                  const SizedBox(height: 12),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: esquema.surfaceContainerLow,
+                      borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: Column(children: [
+                      for (var indice = 0;
+                          indice < _enlaces.length;
+                          indice++) ...[
+                        if (indice > 0)
+                          Divider(
+                              height: 1,
+                              indent: 64,
+                              endIndent: 16,
+                              color: esquema.outlineVariant),
+                        ListTile(
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(20, 6, 16, 6),
+                          leading: const Icon(Icons.public),
+                          title: Text(_enlaces[indice].titulo,
+                              style: estilos.titleMedium),
+                          subtitle: Text(_sinProtocolo(_enlaces[indice].url)),
+                          trailing: const Icon(Icons.open_in_new),
+                          onTap: () => _abrir(_enlaces[indice].url),
+                        ),
+                      ],
+                    ]),
+                  ),
+                  const SizedBox(height: 20),
+                  Text(textos.acercaFuentes,
+                      style: estilos.bodySmall
+                          ?.copyWith(color: esquema.onSurfaceVariant)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

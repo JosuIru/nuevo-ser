@@ -53,11 +53,18 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('acei.nuevo_tratamiento'))),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(SoleraL10n.t('acei.guardar_tratamiento'),
+              guardando: _guardando),
+        ),
+      ]),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
-          child: Column(
+          child: CuerpoResponsivoSolera(child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               BotonDiagnosticarPlagaIa(
@@ -188,18 +195,8 @@ class _PantallaNuevoTratamientoState extends State<PantallaNuevoTratamiento> {
                 ),
                 maxLines: 3,
               ),
-              const SizedBox(height: 24),
-              FilledButton(
-                onPressed: _guardando ? null : _guardar,
-                child: _guardando
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2))
-                    : Text(SoleraL10n.t('acei.guardar_tratamiento')),
-              ),
             ],
-          ),
+          )),
         ),
       ),
     );

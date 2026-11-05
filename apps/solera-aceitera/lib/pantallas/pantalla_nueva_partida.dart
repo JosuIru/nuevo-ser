@@ -116,11 +116,18 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
     }
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('acei.nueva_partida_de_aceituna'))),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(SoleraL10n.t('guardar_partida'),
+              guardando: _guardando),
+        ),
+      ]),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: _formKey,
-          child: Column(
+          child: CuerpoResponsivoSolera(child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               TextFormField(
@@ -184,18 +191,8 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
                   ),
                 ),
               ],
-              const SizedBox(height: 24),
-              FilledButton(
-                onPressed: _guardando ? null : _guardar,
-                child: _guardando
-                    ? const SizedBox(
-                        width: 20,
-                        height: 20,
-                        child: CircularProgressIndicator(strokeWidth: 2))
-                    : Text(SoleraL10n.t('guardar_partida')),
-              ),
             ],
-          ),
+          )),
         ),
       ),
     );

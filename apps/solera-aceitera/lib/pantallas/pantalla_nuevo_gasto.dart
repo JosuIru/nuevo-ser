@@ -108,9 +108,16 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
     }
     return Scaffold(
       appBar: AppBar(title: Text(SoleraL10n.t('acei.nuevo_gasto'))),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(SoleraL10n.t('acei.guardar_gasto'),
+              guardando: _guardando),
+        ),
+      ]),
       body: Form(
         key: _formKey,
-        child: ListView(
+        child: CuerpoResponsivoSolera(child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
             ListTile(
@@ -251,21 +258,8 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
               ),
               maxLines: 2,
             ),
-            const SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: _guardando ? null : _guardar,
-              icon: _guardando
-                  ? const SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(
-                          strokeWidth: 2, color: Colors.white),
-                    )
-                  : const Icon(Icons.save),
-              label: Text(SoleraL10n.t('acei.guardar_gasto')),
-            ),
           ],
-        ),
+        )),
       ),
     );
   }

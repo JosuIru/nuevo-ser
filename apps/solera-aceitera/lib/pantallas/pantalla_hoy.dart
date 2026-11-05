@@ -5,7 +5,6 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 import '../datos/base_datos.dart';
 import '../modelos/campania.dart';
 import '../modelos/lote_aceite.dart';
-import '../modelos/olivar.dart';
 import 'pantalla_campanias.dart';
 import 'pantalla_ficha_lote.dart';
 import 'pantalla_lista_lotes.dart';
@@ -25,7 +24,6 @@ class PantallaHoy extends StatefulWidget {
 class _PantallaHoyState extends State<PantallaHoy> {
   final _formatoFecha = DateFormat('d/M/yyyy', 'es_ES');
 
-  Olivar? _olivar;
   Campania? _campaniaActiva;
   List<LoteAceite> _ultimosLotes = const [];
   int _conteoLotes = 0;
@@ -39,7 +37,6 @@ class _PantallaHoyState extends State<PantallaHoy> {
 
   Future<void> _cargar() async {
     final bd = BaseDatosSoleraAceitera();
-    final olivar = await bd.obtenerOlivar();
     final campanias = await bd.listarCampanias();
     final activa =
         campanias.where((c) => c.estaAbierta).cast<Campania?>().firstWhere(
@@ -50,7 +47,6 @@ class _PantallaHoyState extends State<PantallaHoy> {
     final parcelas = await bd.listarParcelas();
     if (!mounted) return;
     setState(() {
-      _olivar = olivar;
       _campaniaActiva = activa;
       _ultimosLotes = lotes.take(5).toList(growable: false);
       _conteoLotes = lotes.length;
@@ -65,73 +61,118 @@ class _PantallaHoyState extends State<PantallaHoy> {
     if (mounted) await _cargar();
   }
 
+  /// Fecha de hoy en el idioma de la app, con mayúscula inicial
+  /// («Jueves, 5 de noviembre»).
+  String get _fechaDeHoy {
+    final localeFechas =
+        SoleraL10n.idioma == 'es' ? 'es_ES' : SoleraL10n.idioma;
+    final texto = DateFormat.MMMMEEEEd(localeFechas).format(DateTime.now());
+    return texto.isEmpty ? texto : texto[0].toUpperCase() + texto.substring(1);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colores = context.coloresSolera;
+    final campania = _campaniaActiva;
     return Scaffold(
-      appBar: AppBar(title: Text(_olivar?.nombre ?? 'Larrea Aceitera')),
       body: RefreshIndicator(
         onRefresh: _cargar,
+        edgeOffset: MediaQuery.paddingOf(context).top,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding:
+              rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 24)),
           children: [
-            // Aviso de versión nueva: si no la hay, no ocupa sitio.
-            AvisoActualizaciones(
-              config: configActualizacionesMonorepo('solera-aceitera'),
-              nombreApp: 'Larrea Aceitera',
-              margen: const EdgeInsets.only(bottom: 12),
-            ),
-            const BannerCatalogosProvisionales(),
-            const TarjetaResumenMeteo(),
-            const SizedBox(height: 12),
-            _TarjetaCampania(
-              campania: _campaniaActiva,
-              formatoFecha: _formatoFecha,
-              alPulsar: () => _abrir((_) => const PantallaCampanias()),
-            ),
-            const SizedBox(height: 12),
-            _TarjetaConteos(
-              parcelas: _conteoParcelas,
-              lotes: _conteoLotes,
-            ),
-            const SizedBox(height: 24),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    SoleraL10n.t('acei.ultimos_lotes'),
-                    style:
-                        const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                  ),
+            CabeceraHoySolera(
+              titulo: SoleraL10n.t('acei.hoy'),
+              fecha: _fechaDeHoy,
+              cifras: [
+                CifraCabecera(
+                  valor: campania == null
+                      ? '—'
+                      : formatearNumero(campania.rendimientoMedioPorcentaje,
+                          decimales: 1),
+                  etiqueta: SoleraL10n.t('acei.rendimiento_medio_porcentaje'),
+                  detalle: campania == null
+                      ? null
+                      : SoleraL10n.tf('acei.campania_anyos', {
+                          'inicio': campania.anyoComercial,
+                          'fin': campania.anyoComercial + 1,
+                        }),
                 ),
-                TextButton(
-                  onPressed: () => _abrir((_) => const PantallaListaLotes()),
-                  child: Text(SoleraL10n.t('acei.ver_todos')),
+                CifraCabecera(
+                  valor: '$_conteoLotes',
+                  etiqueta: SoleraL10n.t('acei.lotes'),
+                ),
+                CifraCabecera(
+                  valor: '$_conteoParcelas',
+                  etiqueta: SoleraL10n.t('acei.parcelas'),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
-            if (_ultimosLotes.isEmpty)
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Text(
-                    SoleraL10n.t('acei.hoy_sin_lotes'),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Aviso de versión nueva: si no la hay, no ocupa sitio.
+                  AvisoActualizaciones(
+                    config: configActualizacionesMonorepo('solera-aceitera'),
+                    nombreApp: 'Larrea Aceitera',
+                    margen: const EdgeInsets.only(bottom: 4),
                   ),
-                ),
-              )
-            else
-              ..._ultimosLotes.map((l) => Card(
-                    child: ListTile(
-                      title: Text(l.identificadorLote),
-                      subtitle: Text(
-                        '${formatearNumero(l.kgNetos, decimales: 0)} kg · ${nombreCategoriaAceite(l.categoria)}',
-                      ),
-                      trailing: Text(_formatoFecha
-                          .format(DateTime.fromMillisecondsSinceEpoch(
-                              l.fechaCreacionMs))),
-                      onTap: () => _abrir((_) => PantallaFichaLote(lote: l)),
+                  const BannerCatalogosProvisionales(),
+                  const TarjetaResumenMeteo(),
+                  TituloBloqueSolera(SoleraL10n.t('acei.campania')),
+                  _TarjetaCampania(
+                    campania: campania,
+                    formatoFecha: _formatoFecha,
+                    alPulsar: () => _abrir((_) => const PantallaCampanias()),
+                  ),
+                  TituloBloqueSolera(SoleraL10n.t('acei.ultimos_lotes')),
+                  if (_ultimosLotes.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 24),
+                      child: Column(children: [
+                        Icon(Icons.task_alt, size: 40, color: colores.hecho),
+                        const SizedBox(height: 8),
+                        Text(SoleraL10n.t('acei.hoy_sin_lotes'),
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant)),
+                      ]),
+                    )
+                  else ...[
+                    Card(
+                      child: Column(children: [
+                        for (final lote in _ultimosLotes)
+                          ListTile(
+                            title: Text(lote.identificadorLote),
+                            subtitle: Text(
+                              '${formatearNumero(lote.kgNetos, decimales: 0)} kg · ${nombreCategoriaAceite(lote.categoria)}',
+                            ),
+                            trailing: Text(
+                                _formatoFecha.format(
+                                    DateTime.fromMillisecondsSinceEpoch(
+                                        lote.fechaCreacionMs)),
+                                style: theme.textTheme.bodySmall),
+                            onTap: () =>
+                                _abrir((_) => PantallaFichaLote(lote: lote)),
+                          ),
+                      ]),
                     ),
-                  )),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () =>
+                            _abrir((_) => const PantallaListaLotes()),
+                        child: Text(SoleraL10n.t('acei.ver_todos')),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -152,10 +193,13 @@ class _TarjetaCampania extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (campania == null) {
+    final colorIcono = Theme.of(context).colorScheme.primary;
+    final campaniaActiva = campania;
+    if (campaniaActiva == null) {
       return Card(
         child: ListTile(
-          leading: const Icon(Icons.calendar_today, color: Color(0xFF5C6B3A)),
+          leading: Icon(Icons.calendar_today,
+              color: context.coloresSolera.pendiente),
           title: Text(SoleraL10n.t('acei.sin_campania_abierta')),
           subtitle: Text(SoleraL10n.t('acei.sin_campania_abierta_ayuda')),
           trailing: const Icon(Icons.chevron_right),
@@ -163,72 +207,21 @@ class _TarjetaCampania extends StatelessWidget {
         ),
       );
     }
-    final c = campania!;
+    // El rendimiento medio ya va en la cabecera: aquí solo años e inicio.
     return Card(
       child: ListTile(
-        leading: const Icon(Icons.local_fire_department,
-            color: Color(0xFF5C6B3A)),
+        leading: Icon(Icons.local_fire_department, color: colorIcono),
         title: Text(SoleraL10n.tf('acei.campania_anyos', {
-          'inicio': c.anyoComercial,
-          'fin': c.anyoComercial + 1,
+          'inicio': campaniaActiva.anyoComercial,
+          'fin': campaniaActiva.anyoComercial + 1,
         })),
-        subtitle: Text(
-          SoleraL10n.tf('acei.campania_inicio_rendimiento', {
-            'fecha': formatoFecha.format(
-                DateTime.fromMillisecondsSinceEpoch(c.fechaInicioMs)),
-            'rendimiento': formatearNumero(c.rendimientoMedioPorcentaje, decimales: 1),
-          }),
-        ),
+        subtitle: Text(SoleraL10n.tf('acei.inicio_fecha', {
+          'fecha': formatoFecha.format(
+              DateTime.fromMillisecondsSinceEpoch(campaniaActiva.fechaInicioMs)),
+        })),
         trailing: const Icon(Icons.chevron_right),
         onTap: alPulsar,
       ),
-    );
-  }
-}
-
-class _TarjetaConteos extends StatelessWidget {
-  final int parcelas;
-  final int lotes;
-
-  const _TarjetaConteos({required this.parcelas, required this.lotes});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _Bloque(numero: parcelas, etiqueta: SoleraL10n.t('acei.parcelas')),
-            _Bloque(numero: lotes, etiqueta: SoleraL10n.t('acei.lotes')),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Bloque extends StatelessWidget {
-  final int numero;
-  final String etiqueta;
-
-  const _Bloque({required this.numero, required this.etiqueta});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          '$numero',
-          style: const TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w700,
-            color: Color(0xFF5C6B3A),
-          ),
-        ),
-        Text(etiqueta),
-      ],
     );
   }
 }

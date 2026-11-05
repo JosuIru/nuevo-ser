@@ -31,45 +31,65 @@ StrokePattern patronEstadoZona(String estado) => switch (estado) {
       _ => const StrokePattern.solid(),
     };
 
-/// Color del estado de una tarea (coherente con la leyenda de la
-/// presentación: pendiente = ocre, en curso = niebla, hecha = musgo,
-/// bloqueada = terracota).
-Color colorEstadoTarea(String codigo) {
+/// Color del estado de una tarea (roles `pending`, `progress`, `done` y
+/// `blocked` del rediseño).
+Color colorEstadoTarea(String codigo,
+    [ColoresZunbeltz colores = ColoresZunbeltz.claro]) {
   switch (codigo) {
     case 'en_curso':
-      return colorEstadoEnCurso;
+      return colores.enCurso;
     case 'hecha':
-      return colorEstadoHecha;
+      return colores.hecha;
     case 'bloqueada':
-      return colorEstadoBloqueada;
+      return colores.bloqueada;
     default:
-      return colorEstadoPendiente;
+      return colores.pendiente;
   }
 }
 
 /// Color del estado de conservación de un punto (operativo = musgo,
 /// revisar = ocre, averiado = terracota).
-Color colorEstadoPunto(String codigo) {
+Color colorEstadoPunto(String codigo,
+    [ColoresZunbeltz colores = ColoresZunbeltz.claro]) {
   switch (codigo) {
     case 'revisar':
-      return colorEstadoPendiente;
+      return colores.pendiente;
     case 'averiado':
-      return colorEstadoBloqueada;
+      return colores.bloqueada;
     default:
-      return colorEstadoHecha;
+      return colores.hecha;
   }
 }
 
 /// Color del estado de uso de una zona (en uso = pasto, en descanso =
 /// musgo, vedada = terracota). Se usa a baja opacidad para el relleno del
 /// polígono y entero para su borde.
-Color colorEstadoZona(String codigo) {
+Color colorEstadoZona(String codigo,
+    [ColoresZunbeltz colores = ColoresZunbeltz.claro]) {
   switch (codigo) {
     case 'descanso':
-      return colorEstadoPendiente;
+      return colores.pendiente;
     case 'vedada':
-      return colorEstadoBloqueada;
+      return colores.bloqueada;
     default:
-      return colorPastoZunbeltz;
+      return colores.hecha;
   }
 }
+
+/// Icono de cada tipo de punto de infraestructura, para el mapa.
+IconData iconoTipoPunto(String tipo) => switch (tipo) {
+      'abrevadero' || 'bebedero_movil' => Icons.water_drop_outlined,
+      'balsa' || 'deposito_movil' => Icons.waves_outlined,
+      'manga' || 'cargadero' => Icons.swap_horiz,
+      'cierre' || 'pastor_electrico' => Icons.fence_outlined,
+      'refugio' || 'vestuario' => Icons.cabin_outlined,
+      'cuadra' || 'aprisco' => Icons.warehouse_outlined,
+      'almacen' || 'isotermo' => Icons.inventory_2_outlined,
+      'comedero' => Icons.grass_outlined,
+      'parcela' => Icons.crop_square,
+      'corral_movil' => Icons.grid_on,
+      'placas_solares' => Icons.solar_power_outlined,
+      'molino' => Icons.wind_power_outlined,
+      'puerta' => Icons.door_front_door_outlined,
+      _ => Icons.place_outlined,
+    };

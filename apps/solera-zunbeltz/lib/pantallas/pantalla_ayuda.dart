@@ -173,8 +173,8 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
                 child: Text(
                     textoAyuda(cambiados, idioma, textosAyudaDeSerie(t),
                         'ayudaPerfilTester'),
-                    style: estilos.bodySmall
-                        ?.copyWith(color: colorTintaApagadaZunbeltz)),
+                    style: estilos.bodySmall?.copyWith(
+                        color: context.esquemaZunbeltz.onSurfaceVariant)),
               ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -302,13 +302,13 @@ class _Paso extends StatelessWidget {
           margin: const EdgeInsets.only(right: 10, top: 1),
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: colorMonteZunbeltz,
+            color: context.esquemaZunbeltz.primary,
             borderRadius: BorderRadius.circular(4),
           ),
           child: Text(
             numero,
-            style: const TextStyle(
-              color: colorPapelZunbeltz,
+            style: TextStyle(
+              color: context.esquemaZunbeltz.onPrimary,
               fontWeight: FontWeight.w700,
               fontSize: 13,
             ),
@@ -335,7 +335,7 @@ class _Vineta extends StatelessWidget {
           width: 6,
           height: 6,
           margin: const EdgeInsets.only(left: 9, right: 19, top: 9),
-          color: colorPastoZunbeltz,
+          color: context.coloresZunbeltz.hecha,
         ),
         Expanded(
             child: Text(texto, style: Theme.of(context).textTheme.bodyMedium)),
@@ -356,16 +356,19 @@ class _Nota extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
-      decoration: const BoxDecoration(
-        color: colorPapelHundidoZunbeltz,
-        border: Border(left: BorderSide(color: colorSenalZunbeltz, width: 3)),
+      decoration: BoxDecoration(
+        color: context.esquemaZunbeltz.surfaceContainer,
+        border: Border(
+            left:
+                BorderSide(color: context.coloresZunbeltz.bloqueada, width: 3)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(etiqueta,
               style: estilos.labelMedium?.copyWith(
-                  color: colorSenalZunbeltz, fontWeight: FontWeight.w700)),
+                  color: context.coloresZunbeltz.bloqueada,
+                  fontWeight: FontWeight.w700)),
           const SizedBox(height: 2),
           Text(texto, style: estilos.bodyMedium),
         ],

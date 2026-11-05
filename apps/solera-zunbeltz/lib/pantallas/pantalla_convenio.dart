@@ -260,7 +260,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
                     style: TextStyle(
                         color: (balance.realPorCategoria[categoria] ?? 0) >
                                 (balance.previstoPorCategoria[categoria] ?? 0)
-                            ? colorSenalZunbeltz
+                            ? context.coloresZunbeltz.bloqueada
                             : null),
                   ),
                 ),
@@ -287,7 +287,10 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           keyboardType: TextInputType.number,
           decoration:
               InputDecoration(labelText: textos.balancePorcentajePerdida)),
-    ], controladores: [beneficio, perdida]);
+    ], controladores: [
+      beneficio,
+      perdida
+    ]);
     if (!aceptado) return;
     int acotar(String texto, int porDefecto) =>
         (int.tryParse(texto.trim()) ?? porDefecto).clamp(0, 100);
@@ -536,7 +539,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
         Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Text(textos.amortSinFechas,
-              style: const TextStyle(color: colorSenalZunbeltz)),
+              style: TextStyle(color: context.coloresZunbeltz.bloqueada)),
         ),
       const SizedBox(height: 8),
       if (filas.isEmpty) Text(textos.amortVacio) else ...filas,
@@ -725,7 +728,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           contentPadding: EdgeInsets.zero,
           leading: Icon(
               cumple ? Icons.check_circle : Icons.radio_button_unchecked,
-              color: cumple ? colorEstadoHecha : null),
+              color: cumple ? context.coloresZunbeltz.hecha : null),
           title: Text(texto),
           trailing:
               Text(cumple ? textos.convenioCumple : textos.convenioNoCumple),
@@ -823,7 +826,10 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           keyboardType: TextInputType.number,
           decoration: InputDecoration(
               labelText: textos.acompanamientoValoracionTester)),
-    ], controladores: [zunbeltz, tester]);
+    ], controladores: [
+      zunbeltz,
+      tester
+    ]);
     if (!aceptado) return;
     int? nota(String texto) => int.tryParse(texto.trim())?.clamp(0, 10);
     await _bd.actualizarProyecto(_proyectoId, {
@@ -903,8 +909,9 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
           Card(
             child: ListTile(
               leading: Icon(Icons.report_outlined,
-                  color:
-                      incidencia.nivel == 'leve' ? null : colorSenalZunbeltz),
+                  color: incidencia.nivel == 'leve'
+                      ? null
+                      : context.coloresZunbeltz.bloqueada),
               title: Text(incidencia.descripcion.isEmpty
                   ? (buscarOpcion(nivelesIncidencia, incidencia.nivel)
                           ?.etiqueta(_idioma) ??
@@ -1038,7 +1045,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
             content: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: constructor == null ? campos : constructor(actualizar),
+                children:
+                    constructor == null ? campos : constructor(actualizar),
               ),
             ),
             actions: [

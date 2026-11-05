@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../branding.dart';
+
 import '../datos/base_datos.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
@@ -163,7 +165,8 @@ class _FichaPuntoState extends State<FichaPunto> {
                         width: 12,
                         height: 12,
                         decoration: BoxDecoration(
-                          color: colorEstadoPunto(punto.estado),
+                          color: colorEstadoPunto(
+                              punto.estado, context.coloresZunbeltz),
                           shape: BoxShape.circle,
                         ),
                       ),

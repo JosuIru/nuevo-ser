@@ -13,15 +13,19 @@ IconData iconoCategoriaAviso(String categoria) => switch (categoria) {
       _ => Icons.info_outline,
     };
 
-/// Color de cada categoría, de la paleta de la app. El rojo de marcaje se
-/// reserva para las alarmas, así que ninguna categoría lo usa.
-Color colorCategoriaAviso(String categoria) => switch (categoria) {
-      categoriaAvisoGanado => colorPastoZunbeltz,
-      categoriaAvisoInstalaciones => colorEstadoEnCurso,
-      categoriaAvisoSeguimiento => const Color(0xFF8C6A2E),
-      categoriaAvisoNoticias => colorMonteZunbeltz,
-      _ => colorTintaApagadaZunbeltz,
-    };
+/// Color de cada categoría, del tema activo. El rojo se reserva para las
+/// alarmas, así que ninguna categoría lo usa.
+Color colorCategoriaAviso(String categoria, BuildContext context) {
+  final colores = context.coloresZunbeltz;
+  final esquema = context.esquemaZunbeltz;
+  return switch (categoria) {
+    categoriaAvisoGanado => colores.hecha,
+    categoriaAvisoInstalaciones => colores.enCurso,
+    categoriaAvisoSeguimiento => colores.pendiente,
+    categoriaAvisoNoticias => esquema.primary,
+    _ => esquema.onSurfaceVariant,
+  };
+}
 
 String etiquetaCategoriaAviso(String categoria, AppLocalizations textos) =>
     switch (categoria) {

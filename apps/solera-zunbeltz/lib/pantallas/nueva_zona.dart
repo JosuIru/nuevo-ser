@@ -314,7 +314,9 @@ class _SelectorColorZona extends StatelessWidget {
                 color: relleno,
                 shape: BoxShape.circle,
                 border: Border.all(
-                  color: elegido ? colorMonteZunbeltz : Colors.black26,
+                  color: elegido
+                      ? context.esquemaZunbeltz.primary
+                      : Colors.black26,
                   width: elegido ? 3 : 1,
                 ),
               ),

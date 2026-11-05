@@ -120,9 +120,9 @@ class FranjaDescargaMapa extends StatelessWidget {
         final textos = AppLocalizations.of(context);
         return Material(
           elevation: 0,
-          shape: const RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(radioZunbeltz)),
-            side: BorderSide(color: colorLineaZunbeltz),
+            side: BorderSide(color: context.esquemaZunbeltz.outlineVariant),
           ),
           color: Theme.of(context).colorScheme.surface,
           child: Padding(

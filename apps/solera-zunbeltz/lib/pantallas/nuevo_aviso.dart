@@ -137,7 +137,7 @@ class _NuevoAvisoState extends State<NuevoAviso> {
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               secondary: Icon(Icons.notification_important_outlined,
-                  color: _alarma ? colorSenalZunbeltz : null),
+                  color: _alarma ? context.coloresZunbeltz.bloqueada : null),
               title: Text(textos.avisoEsAlarma),
               value: _alarma,
               onChanged: (valor) => setState(() => _alarma = valor),

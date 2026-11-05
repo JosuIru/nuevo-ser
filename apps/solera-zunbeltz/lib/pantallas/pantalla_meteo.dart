@@ -255,9 +255,11 @@ class _Banda extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         margin: const EdgeInsets.only(bottom: 8),
         padding: const EdgeInsets.all(12),
-        decoration: const BoxDecoration(
-          color: colorPapelHundidoZunbeltz,
-          border: Border(left: BorderSide(color: colorSenalZunbeltz, width: 3)),
+        decoration: BoxDecoration(
+          color: context.esquemaZunbeltz.surfaceContainer,
+          border: Border(
+              left: BorderSide(
+                  color: context.coloresZunbeltz.bloqueada, width: 3)),
         ),
         child: Row(
           children: [
@@ -363,7 +365,7 @@ class _TarjetaAhora extends StatelessWidget {
             Row(
               children: [
                 Icon(_iconoTiempo(actual.codigoTiempo, deDia: actual.esDeDia),
-                    size: 44, color: colorMonteZunbeltz),
+                    size: 44, color: context.esquemaZunbeltz.primary),
                 const SizedBox(width: 12),
                 Text(_num(actual.temperatura, '°'),
                     style: estilos.displaySmall
@@ -540,8 +542,8 @@ class _TarjetaAgua extends StatelessWidget {
                       : textos.meteoBalanceHumedo,
                   style: estilos.bodyMedium?.copyWith(
                       color: balanceSeco
-                          ? colorSenalZunbeltz
-                          : colorPastoZunbeltz),
+                          ? context.coloresZunbeltz.bloqueada
+                          : context.coloresZunbeltz.hecha),
                 ),
               ],
             ),
@@ -580,10 +582,12 @@ class _TarjetaDia extends StatelessWidget {
       if (dia.lluviaRelevante)
         _Aviso(textos.avisoLluvia, const Color(0xFF4E7A9B)),
       if (dia.vientoFuerte) _Aviso(textos.avisoViento, const Color(0xFF9A7A2E)),
-      if (dia.calorIntenso) _Aviso(textos.avisoCalor, colorEstadoBloqueada),
+      if (dia.calorIntenso)
+        _Aviso(textos.avisoCalor, context.coloresZunbeltz.bloqueada),
       if (dia.estresCalor && !dia.calorIntenso)
-        _Aviso(textos.avisoEstresCalor, colorEstadoBloqueada),
-      if (dia.buenDiaManejo) _Aviso(textos.avisoBuenManejo, colorPastoZunbeltz),
+        _Aviso(textos.avisoEstresCalor, context.coloresZunbeltz.bloqueada),
+      if (dia.buenDiaManejo)
+        _Aviso(textos.avisoBuenManejo, context.coloresZunbeltz.hecha),
     ];
 
     Widget detalle(String etiqueta, String valor) => Padding(
@@ -605,7 +609,7 @@ class _TarjetaDia extends StatelessWidget {
         tilePadding: const EdgeInsets.fromLTRB(14, 6, 10, 6),
         childrenPadding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
         leading: Icon(_iconoTiempo(dia.codigoTiempo),
-            size: 30, color: colorMonteZunbeltz),
+            size: 30, color: context.esquemaZunbeltz.primary),
         title: Row(
           children: [
             Expanded(

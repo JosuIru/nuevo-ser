@@ -109,7 +109,7 @@ class _NuevaValidacionState extends State<NuevaValidacion> {
                   IconButton(
                     icon:
                         Icon(i <= _valoracion ? Icons.star : Icons.star_border),
-                    color: colorSenalZunbeltz,
+                    color: context.coloresZunbeltz.bloqueada,
                     onPressed: () =>
                         setState(() => _valoracion = _valoracion == i ? 0 : i),
                   ),

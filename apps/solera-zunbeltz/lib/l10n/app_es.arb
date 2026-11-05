@@ -1990,5 +1990,10 @@
   "apuTotalConIva": "Total con IVA",
   "apuGuardarGasto": "Guardar gasto",
   "apuGuardarIngreso": "Guardar ingreso",
-  "apuCambiarIva": "Cambiar el tipo de IVA"
+  "apuCambiarIva": "Cambiar el tipo de IVA",
+  "infTitulo": "Informe del proyecto",
+  "infBorrador": "Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.",
+  "infSeEnviaA": "Se envía a",
+  "infCompartir": "Compartir",
+  "infNoSalio": "No se ha podido generar el informe."
 }

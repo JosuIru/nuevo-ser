@@ -6926,6 +6926,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Cambiar el tipo de IVA'**
   String get apuCambiarIva;
+
+  /// No description provided for @infTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Informe del proyecto'**
+  String get infTitulo;
+
+  /// No description provided for @infBorrador.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.'**
+  String get infBorrador;
+
+  /// No description provided for @infSeEnviaA.
+  ///
+  /// In es, this message translates to:
+  /// **'Se envía a'**
+  String get infSeEnviaA;
+
+  /// No description provided for @infCompartir.
+  ///
+  /// In es, this message translates to:
+  /// **'Compartir'**
+  String get infCompartir;
+
+  /// No description provided for @infNoSalio.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha podido generar el informe.'**
+  String get infNoSalio;
 }
 
 class _AppLocalizationsDelegate

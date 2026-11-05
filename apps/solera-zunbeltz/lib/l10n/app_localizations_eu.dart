@@ -4120,4 +4120,20 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get apuCambiarIva => 'BEZ mota aldatu';
+
+  @override
+  String get infTitulo => 'Proiektuaren txostena';
+
+  @override
+  String get infBorrador =>
+      'Zirriborroa: behin betiko bertsioa koordinazioak sortzen du, proiektua itxita dagoenean.';
+
+  @override
+  String get infSeEnviaA => 'Hona bidaltzen da';
+
+  @override
+  String get infCompartir => 'Partekatu';
+
+  @override
+  String get infNoSalio => 'Ezin izan da txostena sortu.';
 }

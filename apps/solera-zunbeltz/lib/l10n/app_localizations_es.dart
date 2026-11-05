@@ -4117,4 +4117,20 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get apuCambiarIva => 'Cambiar el tipo de IVA';
+
+  @override
+  String get infTitulo => 'Informe del proyecto';
+
+  @override
+  String get infBorrador =>
+      'Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.';
+
+  @override
+  String get infSeEnviaA => 'Se envía a';
+
+  @override
+  String get infCompartir => 'Compartir';
+
+  @override
+  String get infNoSalio => 'No se ha podido generar el informe.';
 }

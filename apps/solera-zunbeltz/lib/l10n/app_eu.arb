@@ -1240,5 +1240,10 @@
   "apuTotalConIva": "Guztira BEZarekin",
   "apuGuardarGasto": "Gastua gorde",
   "apuGuardarIngreso": "Sarrera gorde",
-  "apuCambiarIva": "BEZ mota aldatu"
+  "apuCambiarIva": "BEZ mota aldatu",
+  "infTitulo": "Proiektuaren txostena",
+  "infBorrador": "Zirriborroa: behin betiko bertsioa koordinazioak sortzen du, proiektua itxita dagoenean.",
+  "infSeEnviaA": "Hona bidaltzen da",
+  "infCompartir": "Partekatu",
+  "infNoSalio": "Ezin izan da txostena sortu."
 }

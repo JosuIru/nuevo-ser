@@ -17,7 +17,9 @@ import 'ficha_lote.dart';
 import 'formularios_ganado.dart';
 import 'pantalla_escaner_crotal.dart';
 import 'pantalla_importar_animales.dart';
+import 'widgets/ganado_visual.dart';
 import 'widgets/relleno_seguro.dart';
+import '../branding.dart';
 
 // ─── Textos compartidos por las pantallas del ganado ───
 
@@ -117,7 +119,10 @@ class _PantallaGanadoState extends State<PantallaGanado>
   List<MovimientoGanado> _movimientos = const [];
   Map<int, String> _zonas = const {};
   Map<int, String> _nombresLote = const {};
-  Map<int, SupresionVigente> _supresionPorLote = const {};
+  Map<int, List<EventoGanado>> _eventosPorLote = const {};
+
+  /// Solo el nombre de cada pieza («Pieza de la Puerta»), para las tarjetas.
+  Map<int, String> _nombresPieza = const {};
   bool _verCerrados = false;
   bool _cargando = true;
 
@@ -197,15 +202,16 @@ class _PantallaGanadoState extends State<PantallaGanado>
       final animales = await _bd.listarAnimales();
       final movimientos = await _bd.listarMovimientos();
       final zonas = await nombresDeZonas(_bd);
-      final ahora = DateTime.now();
-      final supresion = <int, SupresionVigente>{};
+      final eventosPorLote = <int, List<EventoGanado>>{};
       for (final resumen in lotes) {
         final id = resumen.lote.id;
         if (id == null) continue;
-        supresion[id] = supresionVigente(
-            await _bd.listarEventosGanado(loteId: id), ahora,
-            ecologico: resumen.lote.ecologico);
+        eventosPorLote[id] = await _bd.listarEventosGanado(loteId: id);
       }
+      final nombresPieza = {
+        for (final zona in await _bd.listarZonas())
+          if (zona.id != null) zona.id!: zona.nombre,
+      };
       if (!mounted) return;
       setState(() {
         _lotes = lotes;
@@ -216,7 +222,8 @@ class _PantallaGanadoState extends State<PantallaGanado>
           for (final lote in todosLosLotes)
             if (lote.id != null) lote.id!: lote.nombre
         };
-        _supresionPorLote = supresion;
+        _eventosPorLote = eventosPorLote;
+        _nombresPieza = nombresPieza;
         _cargando = false;
       });
     } catch (_) {
@@ -353,63 +360,74 @@ class _PantallaGanadoState extends State<PantallaGanado>
     );
   }
 
+  Future<void> _moverRebano(LoteGanado lote) async {
+    final guardado = await Navigator.of(context).push<bool>(
+        MaterialPageRoute(builder: (_) => FormularioMovimiento(lote: lote)));
+    if (guardado == true) {
+      avisarCambioDatos();
+      await _cargar();
+    }
+  }
+
   Widget _listaLotes(AppLocalizations textos) {
-    final idioma = Localizations.localeOf(context).languageCode;
+    final ahora = DateTime.now();
+    final enUso = _lotes.where((resumen) => resumen.lote.activo);
+    final puedeMover = politicaEspacioActual.puedeRegistrarGanado;
     return ListView(
-      padding:
-          rellenoSobreBarraSistema(context, const EdgeInsets.only(bottom: 88)),
+      padding: rellenoSobreBarraSistema(
+          context, const EdgeInsets.fromLTRB(16, 4, 16, 96)),
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
-          child: Text(textos.ganIntro,
-              style: Theme.of(context).textTheme.bodySmall),
-        ),
-        SwitchListTile(
-          title: Text(textos.ganVerCerrados),
-          value: _verCerrados,
-          onChanged: (valor) {
-            setState(() => _verCerrados = valor);
-            _cargar();
-          },
-        ),
+        Row(children: [
+          Expanded(
+            child: Text(
+                textos.ganResumenRebanos(enUso.length,
+                    enUso.fold(0, (suma, resumen) => suma + resumen.cabezas)),
+                style: Theme.of(context).textTheme.titleSmall),
+          ),
+          Text(textos.ganVerCerradosCorto,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: context.esquemaZunbeltz.onSurfaceVariant)),
+          const SizedBox(width: 8),
+          Switch(
+            value: _verCerrados,
+            onChanged: (valor) {
+              setState(() => _verCerrados = valor);
+              _cargar();
+            },
+          ),
+        ]),
         if (_lotes.isEmpty)
           Padding(
             padding: const EdgeInsets.all(24),
             child: Text(textos.ganSinLotes, textAlign: TextAlign.center),
           ),
         for (final resumen in _lotes)
-          Card(
-            margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            child: ListTile(
-              leading: const Icon(Icons.pets_outlined),
-              title: Text(resumen.lote.nombre.isEmpty
-                  ? etiquetaEspecie(resumen.lote.especie, idioma)
-                  : resumen.lote.nombre),
-              subtitle: Text([
-                [
-                  if (resumen.lote.especie.isNotEmpty)
-                    etiquetaEspecie(resumen.lote.especie, idioma),
-                  textos.ganCabezas(resumen.cabezas),
-                  if (!resumen.lote.activo) textos.ganLoteCerrado,
-                ].join(' · '),
-                describirUbicacion(
-                    resumen.ultimoMovimiento, _zonas, textos, idioma),
-                if (describirSupresion(
-                        _supresionPorLote[resumen.lote.id] ??
-                            const SupresionVigente(),
-                        textos,
-                        idioma)
-                    case final supresion?)
-                  supresion,
-              ].join('\n')),
-              isThreeLine: true,
-              trailing: (_supresionPorLote[resumen.lote.id]?.hayAlguna ?? false)
-                  ? Icon(Icons.medication_outlined,
-                      color: Theme.of(context).colorScheme.error)
-                  : const Icon(Icons.chevron_right),
-              onTap: () => _abrir(FichaLote(loteId: resumen.lote.id!)),
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: TarjetaRebano(
+              resumen: resumen,
+              animales: _animales
+                  .where((animal) => animal.loteId == resumen.lote.id)
+                  .toList(),
+              eventos: _eventosPorLote[resumen.lote.id] ?? const [],
+              nombresPieza: _nombresPieza,
+              ahora: ahora,
+              alAbrir: () => _abrir(FichaLote(loteId: resumen.lote.id!)),
+              alMover: puedeMover && resumen.lote.activo
+                  ? () => _moverRebano(resumen.lote)
+                  : null,
             ),
           ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(4, 16, 4, 0),
+          child: Text(textos.ganIntro,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: context.esquemaZunbeltz.onSurfaceVariant)),
+        ),
       ],
     );
   }

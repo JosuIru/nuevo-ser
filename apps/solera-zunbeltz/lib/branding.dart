@@ -344,10 +344,10 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
           texto.bodyMedium?.copyWith(color: esquema.onSurfaceVariant),
       shape: const RoundedRectangleBorder(borderRadius: _bordeTarjeta),
     ),
+    // Sin colores aquí: M3 ya pinta FilledButton en primary, y fijarlos
+    // dejaría los tonales (FilledButton.tonal) iguales que los rellenos.
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
-        backgroundColor: esquema.primary,
-        foregroundColor: esquema.onPrimary,
         textStyle: texto.labelLarge,
         padding: rellenoBoton,
         shape: pildora,

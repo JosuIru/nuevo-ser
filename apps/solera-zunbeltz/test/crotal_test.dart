@@ -51,4 +51,10 @@ void main() {
       expect(interpretarCodigoCrotal('').reconocido, isFalse);
     });
   });
+
+  test('el crotal se agrupa como en la etiqueta', () {
+    expect(crotalLegible('ES031101234567'), 'ES03 1101 2345 67');
+    expect(crotalLegible('es03 1101 2345 67'), 'ES03 1101 2345 67');
+    expect(crotalLegible('Txuri'), 'Txuri');
+  });
 }

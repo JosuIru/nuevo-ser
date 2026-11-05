@@ -67,3 +67,13 @@ LecturaCrotal interpretarCodigoCrotal(String codigo) {
   }
   return LecturaCrotal(identificacion: limpio, reconocido: false);
 }
+
+/// El crotal como se lee en la etiqueta: «ES03 1101 2345 67» (país y dos
+/// cifras, dos grupos de cuatro y las dos últimas). Lo que no tiene la
+/// forma oficial se deja tal cual.
+String crotalLegible(String identificacion) {
+  final limpio = identificacion.replaceAll(RegExp(r'\s'), '').toUpperCase();
+  if (!RegExp(r'^[A-Z]{2}\d{12}$').hasMatch(limpio)) return identificacion;
+  return '${limpio.substring(0, 4)} ${limpio.substring(4, 8)} '
+      '${limpio.substring(8, 12)} ${limpio.substring(12)}';
+}

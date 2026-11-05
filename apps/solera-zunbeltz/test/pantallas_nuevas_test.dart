@@ -99,7 +99,7 @@ void main() {
         (tester) async {
       await montar(tester, const PantallaGanado(), idioma: idioma);
       expect(find.textContaining('Ovejas latxas'), findsOneWidget);
-      expect(find.byIcon(Icons.medication_outlined), findsOneWidget,
+      expect(find.byIcon(Icons.hourglass_bottom), findsOneWidget,
           reason: 'el lote desparasitado sale en plazo de supresión');
       for (final pestana in [1, 2]) {
         await tester.tap(find.byType(Tab).at(pestana));
@@ -115,6 +115,10 @@ void main() {
       final lote = (await tester.runAsync(() => bd.listarLotes()))!
           .firstWhere((lote) => lote.nombre.startsWith('Vacas'));
       await montar(tester, FichaLote(loteId: lote.id!), idioma: idioma);
+      // Los animales van al final de la ficha: hay que bajar.
+      await tester.scrollUntilVisible(
+          find.textContaining('ES1001EJEMPLO'), 300,
+          scrollable: find.byType(Scrollable).first);
       expect(find.textContaining('ES1001EJEMPLO'), findsOneWidget);
       expect(tester.takeException(), isNull);
       final animal =

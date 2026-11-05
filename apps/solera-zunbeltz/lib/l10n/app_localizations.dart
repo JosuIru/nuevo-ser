@@ -7292,6 +7292,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Asociación para el Desarrollo Rural Zunbeltz · Landa Garapenerako Elkartea'**
   String get acercaAsociacion;
+
+  /// No description provided for @onboardingPie.
+  ///
+  /// In es, this message translates to:
+  /// **'Espacio Test Agrario Zunbeltz · Navarra'**
+  String get onboardingPie;
 }
 
 class _AppLocalizationsDelegate

@@ -4334,4 +4334,7 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get acercaAsociacion =>
       'Zunbeltz Landa Garapenerako Elkartea · Asociación para el Desarrollo Rural';
+
+  @override
+  String get onboardingPie => 'Zunbeltz Nekazaritza Test Gunea · Nafarroa';
 }

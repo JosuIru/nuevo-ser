@@ -543,6 +543,7 @@ class SoleraL10n {
     'acei.variedad_valor',
     'acei.ver_todos',
     'acei.viento_racha',
+    'acei.rendimiento_medio_porcentaje',
     'agro.abiotico',
     'agro.abono',
     'agro.abrir_ficha_completa',
@@ -1176,6 +1177,8 @@ class SoleraL10n {
     'agro.vuelo_abejas_limitado',
     'agro.vuelo_abejas_limitado_cuerpo',
     'agro.y_n_mas',
+    'agro.cosechas_n',
+    'agro.hoy_nada_pendiente',
     'api.aceptar_y_rellenar',
     'api.acerca_de_ayuda',
     'api.acerca_descripcion',
@@ -1786,6 +1789,9 @@ class SoleraL10n {
     'api.zona_centro',
     'api.zona_norte',
     'api.zona_sur',
+    'api.tareas_esta_decada',
+    'api.tareas_este_mes',
+    'api.proximas_tareas',
     'arb.abierta',
     'arb.aceptar_y_rellenar',
     'arb.acerca_descripcion',
@@ -2153,6 +2159,8 @@ class SoleraL10n {
     'arb.zona_centro_meseta',
     'arb.zona_norte_atlantica',
     'arb.zona_sur_mediterranea',
+    'arb.tareas_esta_decada',
+    'arb.tareas_este_mes',
     'core.ia.clave_corta',
     'core.ia.clave_guardada_dispositivo',
     'core.ia.clave_borrada',
@@ -4137,6 +4145,8 @@ class SoleraL10n {
     'viti.zona',
     'viti.zona_norte_atlantica',
     'viti.zona_sur_mediterranea',
+    'viti.cifra_estado_esperado',
+    'viti.cifra_proximo_hito',
   };
 
   /// Claves que tienen texto propio en [idioma] (para tests).
@@ -4667,6 +4677,7 @@ class SoleraL10n {
           'acei.variedad_valor',
           'acei.ver_todos',
           'acei.viento_racha',
+          'acei.rendimiento_medio_porcentaje',
           'agro.abiotico',
           'agro.abono',
           'agro.abrir_ficha_completa',
@@ -5300,6 +5311,8 @@ class SoleraL10n {
           'agro.vuelo_abejas_limitado',
           'agro.vuelo_abejas_limitado_cuerpo',
           'agro.y_n_mas',
+          'agro.cosechas_n',
+          'agro.hoy_nada_pendiente',
           'api.aceptar_y_rellenar',
           'api.acerca_de_ayuda',
           'api.acerca_descripcion',
@@ -5910,6 +5923,9 @@ class SoleraL10n {
           'api.zona_centro',
           'api.zona_norte',
           'api.zona_sur',
+          'api.tareas_esta_decada',
+          'api.tareas_este_mes',
+          'api.proximas_tareas',
           'arb.abierta',
           'arb.aceptar_y_rellenar',
           'arb.acerca_descripcion',
@@ -6277,6 +6293,8 @@ class SoleraL10n {
           'arb.zona_centro_meseta',
           'arb.zona_norte_atlantica',
           'arb.zona_sur_mediterranea',
+          'arb.tareas_esta_decada',
+          'arb.tareas_este_mes',
           'core.ia.clave_corta',
           'core.ia.clave_guardada_dispositivo',
           'core.ia.clave_borrada',
@@ -8261,6 +8279,8 @@ class SoleraL10n {
           'viti.zona',
           'viti.zona_norte_atlantica',
           'viti.zona_sur_mediterranea',
+          'viti.cifra_estado_esperado',
+          'viti.cifra_proximo_hito',
         },
         'ca' => const {
           '10%_(alimento)',
@@ -8788,6 +8808,7 @@ class SoleraL10n {
           'acei.variedad_valor',
           'acei.ver_todos',
           'acei.viento_racha',
+          'acei.rendimiento_medio_porcentaje',
           'agro.abiotico',
           'agro.abono',
           'agro.abrir_ficha_completa',
@@ -9421,6 +9442,8 @@ class SoleraL10n {
           'agro.vuelo_abejas_limitado',
           'agro.vuelo_abejas_limitado_cuerpo',
           'agro.y_n_mas',
+          'agro.cosechas_n',
+          'agro.hoy_nada_pendiente',
           'api.aceptar_y_rellenar',
           'api.acerca_de_ayuda',
           'api.acerca_descripcion',
@@ -10031,6 +10054,9 @@ class SoleraL10n {
           'api.zona_centro',
           'api.zona_norte',
           'api.zona_sur',
+          'api.tareas_esta_decada',
+          'api.tareas_este_mes',
+          'api.proximas_tareas',
           'arb.abierta',
           'arb.aceptar_y_rellenar',
           'arb.acerca_descripcion',
@@ -10398,6 +10424,8 @@ class SoleraL10n {
           'arb.zona_centro_meseta',
           'arb.zona_norte_atlantica',
           'arb.zona_sur_mediterranea',
+          'arb.tareas_esta_decada',
+          'arb.tareas_este_mes',
           'core.ia.clave_corta',
           'core.ia.clave_guardada_dispositivo',
           'core.ia.clave_borrada',
@@ -12382,6 +12410,8 @@ class SoleraL10n {
           'viti.zona',
           'viti.zona_norte_atlantica',
           'viti.zona_sur_mediterranea',
+          'viti.cifra_estado_esperado',
+          'viti.cifra_proximo_hito',
         },
         'gl' => const {
           '10%_(alimento)',
@@ -12909,6 +12939,7 @@ class SoleraL10n {
           'acei.variedad_valor',
           'acei.ver_todos',
           'acei.viento_racha',
+          'acei.rendimiento_medio_porcentaje',
           'agro.abiotico',
           'agro.abono',
           'agro.abrir_ficha_completa',
@@ -13542,6 +13573,8 @@ class SoleraL10n {
           'agro.vuelo_abejas_limitado',
           'agro.vuelo_abejas_limitado_cuerpo',
           'agro.y_n_mas',
+          'agro.cosechas_n',
+          'agro.hoy_nada_pendiente',
           'api.aceptar_y_rellenar',
           'api.acerca_de_ayuda',
           'api.acerca_descripcion',
@@ -14152,6 +14185,9 @@ class SoleraL10n {
           'api.zona_centro',
           'api.zona_norte',
           'api.zona_sur',
+          'api.tareas_esta_decada',
+          'api.tareas_este_mes',
+          'api.proximas_tareas',
           'arb.abierta',
           'arb.aceptar_y_rellenar',
           'arb.acerca_descripcion',
@@ -14519,6 +14555,8 @@ class SoleraL10n {
           'arb.zona_centro_meseta',
           'arb.zona_norte_atlantica',
           'arb.zona_sur_mediterranea',
+          'arb.tareas_esta_decada',
+          'arb.tareas_este_mes',
           'core.ia.clave_corta',
           'core.ia.clave_guardada_dispositivo',
           'core.ia.clave_borrada',
@@ -16503,6 +16541,8 @@ class SoleraL10n {
           'viti.zona',
           'viti.zona_norte_atlantica',
           'viti.zona_sur_mediterranea',
+          'viti.cifra_estado_esperado',
+          'viti.cifra_proximo_hito',
         },
         _ => clavesDisponibles,
       };
@@ -17053,6 +17093,7 @@ class SoleraL10n {
       case 'acei.variedad_valor': return 'Variedad: {variedad}';
       case 'acei.ver_todos': return 'Ver todos';
       case 'acei.viento_racha': return '{viento} km/h · racha {racha}';
+      case 'acei.rendimiento_medio_porcentaje': return 'Rendimiento medio (%)';
       case 'agro.abiotico': return 'Abiótico';
       case 'agro.abono': return 'Abono';
       case 'agro.abrir_ficha_completa': return 'Abrir ficha completa';
@@ -17686,6 +17727,8 @@ class SoleraL10n {
       case 'agro.vuelo_abejas_limitado': return 'Vuelo de abejas limitado';
       case 'agro.vuelo_abejas_limitado_cuerpo': return 'Frío, lluvia o viento pueden frenar pecoreo y manejo.';
       case 'agro.y_n_mas': return '… y {n} más';
+      case 'agro.cosechas_n': return '{n} cosechas';
+      case 'agro.hoy_nada_pendiente': return 'Nada pendiente para hoy';
       case 'api.aceptar_y_rellenar': return 'Aceptar y rellenar';
       case 'api.acerca_de_ayuda': return 'Versión, créditos, compromisos legales';
       case 'api.acerca_descripcion': return 'Larrea Apícola es un gestor para apicultores profesionales y semiprofesionales: censo de colmenas con matrícula y GPS, registro de revisiones, cosechas, tratamientos sanitarios e incidencias, gestión de trashumancia, identificación de patologías por foto con IA y libro oficial REGA en PDF firmable.';
@@ -18296,6 +18339,9 @@ class SoleraL10n {
       case 'api.zona_centro': return 'Centro (meseta)';
       case 'api.zona_norte': return 'Norte (atlántica)';
       case 'api.zona_sur': return 'Sur (mediterránea)';
+      case 'api.tareas_esta_decada': return 'Tareas esta década';
+      case 'api.tareas_este_mes': return 'Tareas este mes';
+      case 'api.proximas_tareas': return 'Próximas tareas';
       case 'arb.abierta': return 'abierta';
       case 'arb.aceptar_y_rellenar': return 'Aceptar y rellenar';
       case 'arb.acerca_descripcion': return 'Larrea Arbolado Urbano es un gestor para ayuntamientos pequeños y medianos y empresas de jardinería que cuidan el arbolado público: inventario por chapa QR, ficha individual de cada árbol con su historial, partes de poda con fotos antes/después, identificación de plagas con IA y exportación de informes municipales en PDF.';
@@ -18663,6 +18709,8 @@ class SoleraL10n {
       case 'arb.zona_centro_meseta': return 'Centro (meseta)';
       case 'arb.zona_norte_atlantica': return 'Norte (atlántica)';
       case 'arb.zona_sur_mediterranea': return 'Sur (mediterránea)';
+      case 'arb.tareas_esta_decada': return 'Tareas esta década';
+      case 'arb.tareas_este_mes': return 'Tareas este mes';
       case 'core.ia.clave_corta': return 'La clave parece demasiado corta: comprueba que la copiaste entera.';
       case 'core.ia.clave_guardada_dispositivo': return 'Clave guardada en este dispositivo.';
       case 'core.ia.clave_borrada': return 'Clave borrada: la identificación con IA queda desactivada.';
@@ -20647,6 +20695,8 @@ class SoleraL10n {
       case 'viti.zona': return 'Zona';
       case 'viti.zona_norte_atlantica': return 'Norte (atlántica)';
       case 'viti.zona_sur_mediterranea': return 'Sur (mediterránea)';
+      case 'viti.cifra_estado_esperado': return 'Estado esperado';
+      case 'viti.cifra_proximo_hito': return 'Próximo hito';
       default: return c;
     }
   }
@@ -21178,6 +21228,7 @@ class SoleraL10n {
       case 'acei.variedad_valor': return 'Barietatea: {variedad}';
       case 'acei.ver_todos': return 'Denak ikusi';
       case 'acei.viento_racha': return '{viento} km/h · bolada {racha}';
+      case 'acei.rendimiento_medio_porcentaje': return 'Batez besteko etekina (%)';
       case 'agro.abiotico': return 'Abiotikoa';
       case 'agro.abono': return 'Ongarria';
       case 'agro.abrir_ficha_completa': return 'Fitxa osoa ireki';
@@ -21811,6 +21862,8 @@ class SoleraL10n {
       case 'agro.vuelo_abejas_limitado': return 'Erleen hegaldia mugatua';
       case 'agro.vuelo_abejas_limitado_cuerpo': return 'Hotzak, euriak edo haizeak pecoreoa eta maneiua gelditu ditzakete.';
       case 'agro.y_n_mas': return '… eta beste {n}';
+      case 'agro.cosechas_n': return '{n} uzta';
+      case 'agro.hoy_nada_pendiente': return 'Gaur ez dago ezer egiteko';
       case 'api.aceptar_y_rellenar': return 'Onartu eta bete';
       case 'api.acerca_de_ayuda': return 'Bertsioa, kredituak, lege-konpromisoak';
       case 'api.acerca_descripcion': return 'Larrea Apícola erlezain profesional eta erdi-profesionalentzako kudeatzailea da: erlauntzen errolda matrikula eta GPSarekin, ikuskapenen, ezti-bilketen, tratamendu sanitarioen eta gorabeheren erregistroa, transhumantziaren kudeaketa, patologiak argazki bidez AArekin identifikatzea eta REGA liburu ofiziala PDF sinagarrian.';
@@ -22421,6 +22474,9 @@ class SoleraL10n {
       case 'api.zona_centro': return 'Erdialdea (mesetaria)';
       case 'api.zona_norte': return 'Iparraldea (atlantikoa)';
       case 'api.zona_sur': return 'Hegoaldea (mediterraneoa)';
+      case 'api.tareas_esta_decada': return 'Hamarraldi honetako zereginak';
+      case 'api.tareas_este_mes': return 'Hilabete honetako zereginak';
+      case 'api.proximas_tareas': return 'Hurrengo zereginak';
       case 'arb.abierta': return 'irekita';
       case 'arb.aceptar_y_rellenar': return 'Onartu eta bete';
       case 'arb.acerca_descripcion': return 'Larrea Arbolado Urbano zuhaitz publikoak zaintzen dituzten udal txiki eta ertainentzako eta lorezaintza-enpresentzako kudeatzailea da: QR plaka bidezko inbentarioa, zuhaitz bakoitzaren fitxa bere historiarekin, inausketa-agiriak aurreko/osteko argazkiekin, izurriteen identifikazioa AA bidez eta udal-txostenak PDFra esportatzea.';
@@ -22788,6 +22844,8 @@ class SoleraL10n {
       case 'arb.zona_centro_meseta': return 'Erdialdea (meseta)';
       case 'arb.zona_norte_atlantica': return 'Iparraldea (atlantikoa)';
       case 'arb.zona_sur_mediterranea': return 'Hegoaldea (mediterraneoa)';
+      case 'arb.tareas_esta_decada': return 'Hamarraldi honetako zereginak';
+      case 'arb.tareas_este_mes': return 'Hilabete honetako zereginak';
       case 'core.ia.clave_corta': return 'Gakoa laburregia dirudi: egiaztatu osorik kopiatu duzula.';
       case 'core.ia.clave_guardada_dispositivo': return 'Gakoa gailu honetan gorde da.';
       case 'core.ia.clave_borrada': return 'Gakoa ezabatu da: AA bidezko identifikazioa desaktibatuta geratu da.';
@@ -24772,6 +24830,8 @@ class SoleraL10n {
       case 'viti.zona': return 'Eremua';
       case 'viti.zona_norte_atlantica': return 'Iparraldea (atlantikoa)';
       case 'viti.zona_sur_mediterranea': return 'Hegoaldea (mediterraneoa)';
+      case 'viti.cifra_estado_esperado': return 'Espero den egoera';
+      case 'viti.cifra_proximo_hito': return 'Hurrengo mugarria';
       default: return _tEs(c);
     }
   }
@@ -25303,6 +25363,7 @@ class SoleraL10n {
       case 'acei.variedad_valor': return 'Varietat: {variedad}';
       case 'acei.ver_todos': return 'Veure-ho tot';
       case 'acei.viento_racha': return '{viento} km/h · ratxa {racha}';
+      case 'acei.rendimiento_medio_porcentaje': return 'Rendiment mitjà (%)';
       case 'agro.abiotico': return 'Abiòtic';
       case 'agro.abono': return 'Adob';
       case 'agro.abrir_ficha_completa': return 'Obrir la fitxa completa';
@@ -25936,6 +25997,8 @@ class SoleraL10n {
       case 'agro.vuelo_abejas_limitado': return 'Vol d\'abelles limitat';
       case 'agro.vuelo_abejas_limitado_cuerpo': return 'El fred, la pluja o el vent poden frenar el pecoreig i el maneig.';
       case 'agro.y_n_mas': return '… i {n} més';
+      case 'agro.cosechas_n': return '{n} collites';
+      case 'agro.hoy_nada_pendiente': return 'Res pendent per a avui';
       case 'api.aceptar_y_rellenar': return 'Accepta i emplena';
       case 'api.acerca_de_ayuda': return 'Versió, crèdits, compromisos legals';
       case 'api.acerca_descripcion': return 'Larrea Apícola és un gestor per a apicultors professionals i semiprofessionals: cens de ruscs amb matrícula i GPS, registre de revisions, collites, tractaments sanitaris i incidències, gestió de la transhumància, identificació de patologies per foto amb IA i llibre oficial REGA en PDF signable.';
@@ -26546,6 +26609,9 @@ class SoleraL10n {
       case 'api.zona_centro': return 'Centre (altiplà)';
       case 'api.zona_norte': return 'Nord (atlàntica)';
       case 'api.zona_sur': return 'Sud (mediterrània)';
+      case 'api.tareas_esta_decada': return 'Tasques d\'aquesta desena';
+      case 'api.tareas_este_mes': return 'Tasques d\'aquest mes';
+      case 'api.proximas_tareas': return 'Properes tasques';
       case 'arb.abierta': return 'oberta';
       case 'arb.aceptar_y_rellenar': return 'Acceptar i emplenar';
       case 'arb.acerca_descripcion': return 'Larrea Arbolado Urbano és un gestor per a ajuntaments petits i mitjans i empreses de jardineria que tenen cura de l\'arbrat públic: inventari per placa QR, fitxa individual de cada arbre amb el seu historial, parts de poda amb fotos abans/després, identificació de plagues amb IA i exportació d\'informes municipals en PDF.';
@@ -26913,6 +26979,8 @@ class SoleraL10n {
       case 'arb.zona_centro_meseta': return 'Centre (Meseta)';
       case 'arb.zona_norte_atlantica': return 'Nord (atlàntica)';
       case 'arb.zona_sur_mediterranea': return 'Sud (mediterrània)';
+      case 'arb.tareas_esta_decada': return 'Tasques d\'aquesta dècada';
+      case 'arb.tareas_este_mes': return 'Tasques d\'aquest mes';
       case 'core.ia.clave_corta': return 'La clau sembla massa curta: comprova que l\'has copiada sencera.';
       case 'core.ia.clave_guardada_dispositivo': return 'Clau desada en aquest dispositiu.';
       case 'core.ia.clave_borrada': return 'Clau esborrada: la identificació amb IA queda desactivada.';
@@ -28897,6 +28965,8 @@ class SoleraL10n {
       case 'viti.zona': return 'Zona';
       case 'viti.zona_norte_atlantica': return 'Nord (atlàntica)';
       case 'viti.zona_sur_mediterranea': return 'Sud (mediterrània)';
+      case 'viti.cifra_estado_esperado': return 'Estat esperat';
+      case 'viti.cifra_proximo_hito': return 'Proper estadi';
       default: return _tEs(c);
     }
   }
@@ -29428,6 +29498,7 @@ class SoleraL10n {
       case 'acei.variedad_valor': return 'Variedade: {variedad}';
       case 'acei.ver_todos': return 'Ver todos';
       case 'acei.viento_racha': return '{viento} km/h · refacho {racha}';
+      case 'acei.rendimiento_medio_porcentaje': return 'Rendemento medio (%)';
       case 'agro.abiotico': return 'Abiótico';
       case 'agro.abono': return 'Abono';
       case 'agro.abrir_ficha_completa': return 'Abrir a ficha completa';
@@ -30061,6 +30132,8 @@ class SoleraL10n {
       case 'agro.vuelo_abejas_limitado': return 'Voo de abellas limitado';
       case 'agro.vuelo_abejas_limitado_cuerpo': return 'O frío, a choiva ou o vento poden frear o pecoreo e o manexo.';
       case 'agro.y_n_mas': return '… e {n} máis';
+      case 'agro.cosechas_n': return '{n} colleitas';
+      case 'agro.hoy_nada_pendiente': return 'Nada pendente para hoxe';
       case 'api.aceptar_y_rellenar': return 'Aceptar e cubrir';
       case 'api.acerca_de_ayuda': return 'Versión, créditos, compromisos legais';
       case 'api.acerca_descripcion': return 'Larrea Apícola é un xestor para apicultores profesionais e semiprofesionais: censo de colmeas con matrícula e GPS, rexistro de revisións, colleitas, tratamentos sanitarios e incidencias, xestión da transhumancia, identificación de patoloxías por foto con IA e libro oficial REGA en PDF asinable.';
@@ -30671,6 +30744,9 @@ class SoleraL10n {
       case 'api.zona_centro': return 'Centro (meseta)';
       case 'api.zona_norte': return 'Norte (atlántica)';
       case 'api.zona_sur': return 'Sur (mediterránea)';
+      case 'api.tareas_esta_decada': return 'Tarefas desta década';
+      case 'api.tareas_este_mes': return 'Tarefas deste mes';
+      case 'api.proximas_tareas': return 'Próximas tarefas';
       case 'arb.abierta': return 'aberta';
       case 'arb.aceptar_y_rellenar': return 'Aceptar e cubrir';
       case 'arb.acerca_descripcion': return 'Larrea Arbolado Urbano é un xestor para concellos pequenos e medianos e empresas de xardinaría que coidan o arboredo público: inventario por chapa QR, ficha individual de cada árbore co seu historial, partes de poda con fotos antes/despois, identificación de pragas con IA e exportación de informes municipais en PDF.';
@@ -31038,6 +31114,8 @@ class SoleraL10n {
       case 'arb.zona_centro_meseta': return 'Centro (meseta)';
       case 'arb.zona_norte_atlantica': return 'Norte (atlántica)';
       case 'arb.zona_sur_mediterranea': return 'Sur (mediterránea)';
+      case 'arb.tareas_esta_decada': return 'Tarefas desta década';
+      case 'arb.tareas_este_mes': return 'Tarefas deste mes';
       case 'core.ia.clave_corta': return 'A clave semella demasiado curta: comproba que a copiaches enteira.';
       case 'core.ia.clave_guardada_dispositivo': return 'Clave gardada neste dispositivo.';
       case 'core.ia.clave_borrada': return 'Clave borrada: a identificación con IA queda desactivada.';
@@ -33022,6 +33100,8 @@ class SoleraL10n {
       case 'viti.zona': return 'Zona';
       case 'viti.zona_norte_atlantica': return 'Norte (atlántica)';
       case 'viti.zona_sur_mediterranea': return 'Sur (mediterránea)';
+      case 'viti.cifra_estado_esperado': return 'Estado esperado';
+      case 'viti.cifra_proximo_hito': return 'Próximo fito';
       default: return _tEs(c);
     }
   }

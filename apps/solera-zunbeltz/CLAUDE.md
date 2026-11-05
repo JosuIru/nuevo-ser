@@ -278,7 +278,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Inventario de bienes** (pantalla 20, `pantalla_inventario.dart`): agrupado por instalaciones / material ganadero / adecuaciones (icono en su cuadro de color), cada bien con «precio · vida útil N meses» y su cuota al mes. **Abierto desde un proyecto** (`PantallaInventario(proyecto:)`: ⋮ de la ficha y Convenio → Amortizaciones) lleva el bloque «Cuota que asume Zunbeltz» (al mes y en los meses del test) y una **casilla por bien** que crea o quita su `UsoBien` al 100 % (si el uso tenía porcentaje o meses propios, pregunta antes); sin proyecto, el inventario general de siempre. Solo marca quien puede editar el inventario.
 
-**Pendiente**: partidas (21), simulador (22), comparativa (23); Imágenes en la web de la propuesta.
+- **Partidas** (pantalla 21, `pantalla_partidas.dart`, desde «Partidas ›» de la ficha): total previsto, total imputado y un anillo con el %; los seis bloques del anexo II (también vacíos: «Sin partidas», o «Desde el inventario de bienes» el VI) desplegables, cada partida con «imputado de previsto» y su barra (`BarraPrevisto`: ámbar pasado el 85 %, roja si se pasa). Comparación pura en `utiles/comparativa_partidas.dart` (con test; cuenta apuntes y cuotas del inventario, no ingresos). El lápiz (coordinación) abre el Convenio en Presupuesto, donde se añaden y quitan.
+
+**Pendiente**: simulador (22), comparativa (23); Imágenes en la web de la propuesta.
 
 ## Hard limits (heredados de la Suite Solera)
 

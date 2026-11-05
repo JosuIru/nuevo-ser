@@ -99,7 +99,8 @@ class BarraRepartoGastos extends StatelessWidget {
   }
 }
 
-/// Barra de lo gastado frente a lo previsto (esmeralda; roja si se pasa).
+/// Barra de lo gastado frente a lo previsto: esmeralda; ámbar pasado el
+/// 85 %; roja si se pasa de lo previsto.
 class BarraPrevisto extends StatelessWidget {
   const BarraPrevisto({super.key, required this.real, required this.previsto});
 
@@ -109,15 +110,20 @@ class BarraPrevisto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final esquema = context.esquemaZunbeltz;
-    final pasado = previsto > 0 && real > previsto;
+    final proporcion = previsto <= 0 ? 0.0 : real / previsto;
+    final colores = context.coloresZunbeltz;
+    final color = proporcion > 1
+        ? colores.bloqueada
+        : proporcion > 0.85
+            ? colores.pendiente
+            : colorCuadroEsmeralda;
     return ClipRRect(
       borderRadius: BorderRadius.circular(4),
       child: LinearProgressIndicator(
         value:
             previsto <= 0 ? (real > 0 ? 1 : 0) : (real / previsto).clamp(0, 1),
         minHeight: 8,
-        color:
-            pasado ? context.coloresZunbeltz.bloqueada : colorCuadroEsmeralda,
+        color: color,
         backgroundColor: esquema.surfaceContainerHighest,
       ),
     );

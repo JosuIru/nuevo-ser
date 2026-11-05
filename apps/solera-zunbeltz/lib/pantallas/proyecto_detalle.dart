@@ -34,6 +34,7 @@ import 'pantalla_calculadora.dart';
 import 'pantalla_convenio.dart';
 import 'pantalla_informe_proyecto.dart';
 import 'pantalla_inventario.dart';
+import 'pantalla_partidas.dart';
 import '../estado/datos_notificador.dart';
 import 'widgets/confirmar_borrado.dart';
 import 'widgets/proyecto_visual.dart';
@@ -441,6 +442,12 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     await Navigator.of(context).push(MaterialPageRoute(
         builder: (_) =>
             PantallaConvenio(proyecto: _proyecto, pestanaInicial: pestana)));
+    await _cargar();
+  }
+
+  Future<void> _abrirPartidas() async {
+    await Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => PantallaPartidas(proyecto: _proyecto)));
     await _cargar();
   }
 
@@ -1087,8 +1094,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
             ],
             if (hayPresupuesto) ...[
               _titulo(textos.proyPresupuestoAnexo,
-                  enlace: textos.proyPartidas,
-                  alPulsar: () => _abrirConvenio(1)),
+                  enlace: textos.proyPartidas, alPulsar: _abrirPartidas),
               _presupuesto(textos, idioma, total),
             ],
             if (balance != null) _costeReal(textos, balance),

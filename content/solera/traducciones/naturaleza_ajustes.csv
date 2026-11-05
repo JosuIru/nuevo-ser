@@ -50,3 +50,6 @@ nat.ajus_foto_no_existe,La foto no existe en disco: {ruta},Argazkia ez dago disk
 nat.ajus_plantnet_clave_rechazada,Pl@ntNet rechazó la clave (HTTP {codigo}). Comprueba la clave en Ajustes → Inteligencia artificial.,Pl@ntNet-ek gakoa baztertu du (HTTP {codigo}). Egiaztatu gakoa Ezarpenak → Adimen artifiziala atalean.,Pl@ntNet ha rebutjat la clau (HTTP {codigo}). Comprova la clau a Configuració → Intel·ligència artificial.,Pl@ntNet rexeitou a clave (HTTP {codigo}). Comproba a clave en Axustes → Intelixencia artificial.
 nat.ajus_plantnet_cuota_agotada,Pl@ntNet devolvió cuota agotada para hoy (HTTP 429).,Pl@ntNet-ek gaurko kuota agortu dela adierazi du (HTTP 429).,Pl@ntNet indica que la quota d'avui s'ha esgotat (HTTP 429).,Pl@ntNet indica que a cota de hoxe está esgotada (HTTP 429).
 nat.ajus_servicio_devolvio,{servicio} devolvió {codigo},{servicio} zerbitzuak {codigo} itzuli du,{servicio} ha retornat {codigo},{servicio} devolveu {codigo}
+nat.ajus_cifra_especies,Especies,Espezieak,Espècies,Especies
+nat.ajus_cifra_salidas,Salidas,Irteerak,Sortides,Saídas
+nat.ajus_guia_sub,"Animales, insectos y plantas para identificar","Identifikatzeko animaliak, intsektuak eta landareak","Animals, insectes i plantes per identificar","Animais, insectos e plantas para identificar"

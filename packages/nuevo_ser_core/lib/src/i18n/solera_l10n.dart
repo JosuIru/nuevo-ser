@@ -2383,6 +2383,11 @@ class SoleraL10n {
     'fos.ajus_fichero_no_valido',
     'fos.ajus_version_desconocida',
     'fos.ajus_nav_ajustes',
+    'fos.ajus_cifra_hallazgos',
+    'fos.ajus_cifra_este_ano',
+    'fos.ajus_cifra_tracks',
+    'fos.ajus_atajos',
+    'fos.ajus_guia_sub',
     'fos.ficha_distintivos',
     'fos.ficha_donde_encontrarlo',
     'fos.ficha_leer_wikipedia',
@@ -2946,6 +2951,9 @@ class SoleraL10n {
     'nat.ajus_plantnet_clave_rechazada',
     'nat.ajus_plantnet_cuota_agotada',
     'nat.ajus_servicio_devolvio',
+    'nat.ajus_cifra_especies',
+    'nat.ajus_cifra_salidas',
+    'nat.ajus_guia_sub',
     'nat.cat_mamiferos',
     'nat.cat_aves',
     'nat.cat_reptiles',
@@ -6517,6 +6525,11 @@ class SoleraL10n {
           'fos.ajus_fichero_no_valido',
           'fos.ajus_version_desconocida',
           'fos.ajus_nav_ajustes',
+          'fos.ajus_cifra_hallazgos',
+          'fos.ajus_cifra_este_ano',
+          'fos.ajus_cifra_tracks',
+          'fos.ajus_atajos',
+          'fos.ajus_guia_sub',
           'fos.ficha_distintivos',
           'fos.ficha_donde_encontrarlo',
           'fos.ficha_leer_wikipedia',
@@ -7080,6 +7093,9 @@ class SoleraL10n {
           'nat.ajus_plantnet_clave_rechazada',
           'nat.ajus_plantnet_cuota_agotada',
           'nat.ajus_servicio_devolvio',
+          'nat.ajus_cifra_especies',
+          'nat.ajus_cifra_salidas',
+          'nat.ajus_guia_sub',
           'nat.cat_mamiferos',
           'nat.cat_aves',
           'nat.cat_reptiles',
@@ -10648,6 +10664,11 @@ class SoleraL10n {
           'fos.ajus_fichero_no_valido',
           'fos.ajus_version_desconocida',
           'fos.ajus_nav_ajustes',
+          'fos.ajus_cifra_hallazgos',
+          'fos.ajus_cifra_este_ano',
+          'fos.ajus_cifra_tracks',
+          'fos.ajus_atajos',
+          'fos.ajus_guia_sub',
           'fos.ficha_distintivos',
           'fos.ficha_donde_encontrarlo',
           'fos.ficha_leer_wikipedia',
@@ -11211,6 +11232,9 @@ class SoleraL10n {
           'nat.ajus_plantnet_clave_rechazada',
           'nat.ajus_plantnet_cuota_agotada',
           'nat.ajus_servicio_devolvio',
+          'nat.ajus_cifra_especies',
+          'nat.ajus_cifra_salidas',
+          'nat.ajus_guia_sub',
           'nat.cat_mamiferos',
           'nat.cat_aves',
           'nat.cat_reptiles',
@@ -14779,6 +14803,11 @@ class SoleraL10n {
           'fos.ajus_fichero_no_valido',
           'fos.ajus_version_desconocida',
           'fos.ajus_nav_ajustes',
+          'fos.ajus_cifra_hallazgos',
+          'fos.ajus_cifra_este_ano',
+          'fos.ajus_cifra_tracks',
+          'fos.ajus_atajos',
+          'fos.ajus_guia_sub',
           'fos.ficha_distintivos',
           'fos.ficha_donde_encontrarlo',
           'fos.ficha_leer_wikipedia',
@@ -15342,6 +15371,9 @@ class SoleraL10n {
           'nat.ajus_plantnet_clave_rechazada',
           'nat.ajus_plantnet_cuota_agotada',
           'nat.ajus_servicio_devolvio',
+          'nat.ajus_cifra_especies',
+          'nat.ajus_cifra_salidas',
+          'nat.ajus_guia_sub',
           'nat.cat_mamiferos',
           'nat.cat_aves',
           'nat.cat_reptiles',
@@ -18933,6 +18965,11 @@ class SoleraL10n {
       case 'fos.ajus_fichero_no_valido': return 'No es un fichero de copia válido';
       case 'fos.ajus_version_desconocida': return 'Versión de copia desconocida';
       case 'fos.ajus_nav_ajustes': return 'Ajustes';
+      case 'fos.ajus_cifra_hallazgos': return 'Hallazgos';
+      case 'fos.ajus_cifra_este_ano': return 'Este año';
+      case 'fos.ajus_cifra_tracks': return 'Tracks';
+      case 'fos.ajus_atajos': return 'Atajos';
+      case 'fos.ajus_guia_sub': return 'Fósiles y minerales para identificar';
       case 'fos.ficha_distintivos': return 'Distintivos para reconocerlo';
       case 'fos.ficha_donde_encontrarlo': return 'Dónde encontrarlo';
       case 'fos.ficha_leer_wikipedia': return 'Leer más en Wikipedia';
@@ -19496,6 +19533,9 @@ class SoleraL10n {
       case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet rechazó la clave (HTTP {codigo}). Comprueba la clave en Ajustes → Inteligencia artificial.';
       case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet devolvió cuota agotada para hoy (HTTP 429).';
       case 'nat.ajus_servicio_devolvio': return '{servicio} devolvió {codigo}';
+      case 'nat.ajus_cifra_especies': return 'Especies';
+      case 'nat.ajus_cifra_salidas': return 'Salidas';
+      case 'nat.ajus_guia_sub': return 'Animales, insectos y plantas para identificar';
       case 'nat.cat_mamiferos': return 'Mamíferos';
       case 'nat.cat_aves': return 'Aves';
       case 'nat.cat_reptiles': return 'Reptiles';
@@ -23068,6 +23108,11 @@ class SoleraL10n {
       case 'fos.ajus_fichero_no_valido': return 'Ez da kopia-fitxategi baliozkoa';
       case 'fos.ajus_version_desconocida': return 'Kopiaren bertsio ezezaguna';
       case 'fos.ajus_nav_ajustes': return 'Ezarpenak';
+      case 'fos.ajus_cifra_hallazgos': return 'Aurkikuntzak';
+      case 'fos.ajus_cifra_este_ano': return 'Aurten';
+      case 'fos.ajus_cifra_tracks': return 'Ibilbideak';
+      case 'fos.ajus_atajos': return 'Lasterbideak';
+      case 'fos.ajus_guia_sub': return 'Identifikatzeko fosilak eta mineralak';
       case 'fos.ficha_distintivos': return 'Ezagutzeko ezaugarriak';
       case 'fos.ficha_donde_encontrarlo': return 'Non aurkitu';
       case 'fos.ficha_leer_wikipedia': return 'Irakurri gehiago Wikipedian';
@@ -23631,6 +23676,9 @@ class SoleraL10n {
       case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet-ek gakoa baztertu du (HTTP {codigo}). Egiaztatu gakoa Ezarpenak → Adimen artifiziala atalean.';
       case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet-ek gaurko kuota agortu dela adierazi du (HTTP 429).';
       case 'nat.ajus_servicio_devolvio': return '{servicio} zerbitzuak {codigo} itzuli du';
+      case 'nat.ajus_cifra_especies': return 'Espezieak';
+      case 'nat.ajus_cifra_salidas': return 'Irteerak';
+      case 'nat.ajus_guia_sub': return 'Identifikatzeko animaliak, intsektuak eta landareak';
       case 'nat.cat_mamiferos': return 'Ugaztunak';
       case 'nat.cat_aves': return 'Hegaztiak';
       case 'nat.cat_reptiles': return 'Narrastiak';
@@ -27203,6 +27251,11 @@ class SoleraL10n {
       case 'fos.ajus_fichero_no_valido': return 'No és un fitxer de còpia vàlid';
       case 'fos.ajus_version_desconocida': return 'Versió de còpia desconeguda';
       case 'fos.ajus_nav_ajustes': return 'Ajustos';
+      case 'fos.ajus_cifra_hallazgos': return 'Troballes';
+      case 'fos.ajus_cifra_este_ano': return 'Aquest any';
+      case 'fos.ajus_cifra_tracks': return 'Traces';
+      case 'fos.ajus_atajos': return 'Dreceres';
+      case 'fos.ajus_guia_sub': return 'Fòssils i minerals per identificar';
       case 'fos.ficha_distintivos': return 'Trets per reconèixer-lo';
       case 'fos.ficha_donde_encontrarlo': return 'On trobar-lo';
       case 'fos.ficha_leer_wikipedia': return 'Llegeix-ne més a la Viquipèdia';
@@ -27766,6 +27819,9 @@ class SoleraL10n {
       case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet ha rebutjat la clau (HTTP {codigo}). Comprova la clau a Configuració → Intel·ligència artificial.';
       case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet indica que la quota d\'avui s\'ha esgotat (HTTP 429).';
       case 'nat.ajus_servicio_devolvio': return '{servicio} ha retornat {codigo}';
+      case 'nat.ajus_cifra_especies': return 'Espècies';
+      case 'nat.ajus_cifra_salidas': return 'Sortides';
+      case 'nat.ajus_guia_sub': return 'Animals, insectes i plantes per identificar';
       case 'nat.cat_mamiferos': return 'Mamífers';
       case 'nat.cat_aves': return 'Ocells';
       case 'nat.cat_reptiles': return 'Rèptils';
@@ -31338,6 +31394,11 @@ class SoleraL10n {
       case 'fos.ajus_fichero_no_valido': return 'Non é un ficheiro de copia válido';
       case 'fos.ajus_version_desconocida': return 'Versión de copia descoñecida';
       case 'fos.ajus_nav_ajustes': return 'Axustes';
+      case 'fos.ajus_cifra_hallazgos': return 'Achados';
+      case 'fos.ajus_cifra_este_ano': return 'Este ano';
+      case 'fos.ajus_cifra_tracks': return 'Traxectos';
+      case 'fos.ajus_atajos': return 'Atallos';
+      case 'fos.ajus_guia_sub': return 'Fósiles e minerais para identificar';
       case 'fos.ficha_distintivos': return 'Trazos para recoñecelo';
       case 'fos.ficha_donde_encontrarlo': return 'Onde atopalo';
       case 'fos.ficha_leer_wikipedia': return 'Ler máis na Wikipedia';
@@ -31901,6 +31962,9 @@ class SoleraL10n {
       case 'nat.ajus_plantnet_clave_rechazada': return 'Pl@ntNet rexeitou a clave (HTTP {codigo}). Comproba a clave en Axustes → Intelixencia artificial.';
       case 'nat.ajus_plantnet_cuota_agotada': return 'Pl@ntNet indica que a cota de hoxe está esgotada (HTTP 429).';
       case 'nat.ajus_servicio_devolvio': return '{servicio} devolveu {codigo}';
+      case 'nat.ajus_cifra_especies': return 'Especies';
+      case 'nat.ajus_cifra_salidas': return 'Saídas';
+      case 'nat.ajus_guia_sub': return 'Animais, insectos e plantas para identificar';
       case 'nat.cat_mamiferos': return 'Mamíferos';
       case 'nat.cat_aves': return 'Aves';
       case 'nat.cat_reptiles': return 'Réptiles';

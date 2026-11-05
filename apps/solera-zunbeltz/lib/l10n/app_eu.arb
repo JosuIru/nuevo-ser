@@ -1254,5 +1254,12 @@
   "invPrecioVidaUtil": "{precio} · bizitza erabilgarria {meses} hilabete",
   "invParte": "% {porcentaje} proiektu honentzat",
   "invLoUsa": "Proiektu honek erabiltzen du",
-  "invQuitarUso": "Ondasun hau proiektuari egozteari utzi? Zituen ehunekoa eta hilabeteak galduko dira."
+  "invQuitarUso": "Ondasun hau proiektuari egozteari utzi? Zituen ehunekoa eta hilabeteak galduko dira.",
+  "partSubtitulo": "II. eranskineko aurrekontua",
+  "partTotalImputado": "Egotzitakoa guztira",
+  "partSinPartidas": "Partidarik ez",
+  "partDesdeInventario": "Ondasunen inbentariotik",
+  "partSinPrevisto": "{real}, aurreikusi gabe",
+  "partNota": "Partidak koordinazioak gehitzen ditu. Anbarrez, aurreikusitakoaren % 85 gainditzen dutenak.",
+  "partEditar": "Partidak editatu"
 }

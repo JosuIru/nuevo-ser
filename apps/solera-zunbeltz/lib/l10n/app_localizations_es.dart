@@ -4168,4 +4168,28 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get invQuitarUso =>
       '¿Dejar de imputar este bien al proyecto? Se pierde el porcentaje y los meses que tenía puestos.';
+
+  @override
+  String get partSubtitulo => 'Presupuesto del anexo II';
+
+  @override
+  String get partTotalImputado => 'Total imputado';
+
+  @override
+  String get partSinPartidas => 'Sin partidas';
+
+  @override
+  String get partDesdeInventario => 'Desde el inventario de bienes';
+
+  @override
+  String partSinPrevisto(String real) {
+    return '$real, sin previsto';
+  }
+
+  @override
+  String get partNota =>
+      'Las partidas las añade coordinación. En ámbar, las que pasan del 85 % de lo previsto.';
+
+  @override
+  String get partEditar => 'Editar partidas';
 }

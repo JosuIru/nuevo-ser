@@ -2007,5 +2007,13 @@
   "invParte": "{porcentaje} % para este proyecto",
   "@invParte": {"placeholders": {"porcentaje": {"type": "String"}}},
   "invLoUsa": "Lo usa este proyecto",
-  "invQuitarUso": "¿Dejar de imputar este bien al proyecto? Se pierde el porcentaje y los meses que tenía puestos."
+  "invQuitarUso": "¿Dejar de imputar este bien al proyecto? Se pierde el porcentaje y los meses que tenía puestos.",
+  "partSubtitulo": "Presupuesto del anexo II",
+  "partTotalImputado": "Total imputado",
+  "partSinPartidas": "Sin partidas",
+  "partDesdeInventario": "Desde el inventario de bienes",
+  "partSinPrevisto": "{real}, sin previsto",
+  "@partSinPrevisto": {"placeholders": {"real": {"type": "String"}}},
+  "partNota": "Las partidas las añade coordinación. En ámbar, las que pasan del 85 % de lo previsto.",
+  "partEditar": "Editar partidas"
 }

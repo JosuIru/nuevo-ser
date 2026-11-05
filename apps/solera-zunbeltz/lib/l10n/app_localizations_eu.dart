@@ -4171,4 +4171,28 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get invQuitarUso =>
       'Ondasun hau proiektuari egozteari utzi? Zituen ehunekoa eta hilabeteak galduko dira.';
+
+  @override
+  String get partSubtitulo => 'II. eranskineko aurrekontua';
+
+  @override
+  String get partTotalImputado => 'Egotzitakoa guztira';
+
+  @override
+  String get partSinPartidas => 'Partidarik ez';
+
+  @override
+  String get partDesdeInventario => 'Ondasunen inbentariotik';
+
+  @override
+  String partSinPrevisto(String real) {
+    return '$real, aurreikusi gabe';
+  }
+
+  @override
+  String get partNota =>
+      'Partidak koordinazioak gehitzen ditu. Anbarrez, aurreikusitakoaren % 85 gainditzen dutenak.';
+
+  @override
+  String get partEditar => 'Partidak editatu';
 }

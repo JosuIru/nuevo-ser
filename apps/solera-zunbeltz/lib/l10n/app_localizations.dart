@@ -7010,6 +7010,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¿Dejar de imputar este bien al proyecto? Se pierde el porcentaje y los meses que tenía puestos.'**
   String get invQuitarUso;
+
+  /// No description provided for @partSubtitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Presupuesto del anexo II'**
+  String get partSubtitulo;
+
+  /// No description provided for @partTotalImputado.
+  ///
+  /// In es, this message translates to:
+  /// **'Total imputado'**
+  String get partTotalImputado;
+
+  /// No description provided for @partSinPartidas.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin partidas'**
+  String get partSinPartidas;
+
+  /// No description provided for @partDesdeInventario.
+  ///
+  /// In es, this message translates to:
+  /// **'Desde el inventario de bienes'**
+  String get partDesdeInventario;
+
+  /// No description provided for @partSinPrevisto.
+  ///
+  /// In es, this message translates to:
+  /// **'{real}, sin previsto'**
+  String partSinPrevisto(String real);
+
+  /// No description provided for @partNota.
+  ///
+  /// In es, this message translates to:
+  /// **'Las partidas las añade coordinación. En ámbar, las que pasan del 85 % de lo previsto.'**
+  String get partNota;
+
+  /// No description provided for @partEditar.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar partidas'**
+  String get partEditar;
 }
 
 class _AppLocalizationsDelegate

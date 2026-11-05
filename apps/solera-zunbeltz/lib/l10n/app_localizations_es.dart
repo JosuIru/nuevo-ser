@@ -3874,4 +3874,66 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ganVerCerradosCorto => 'Ver cerrados';
+
+  @override
+  String get ganCrotalOficial => 'Crotal oficial: dos letras y doce cifras.';
+
+  @override
+  String get ganCrotalNoOficial =>
+      'No tiene la forma oficial (dos letras y doce cifras); se guardará tal cual.';
+
+  @override
+  String get ganDelRebanoAyuda =>
+      'La especie y de quién es se toman del rebaño.';
+
+  @override
+  String get ganGuardarYOtro => 'Guardar y otro';
+
+  @override
+  String get ganMoverUnRebano => 'Mover un rebaño';
+
+  @override
+  String get ganMovEntrePiezas => 'Entre piezas';
+
+  @override
+  String get ganMovEntrada => 'Entrada';
+
+  @override
+  String get ganMovSalida => 'Salida';
+
+  @override
+  String ganRotuloAhora(String zona) {
+    return 'Ahora · $zona';
+  }
+
+  @override
+  String ganRotuloDestino(String zona) {
+    return 'Destino · $zona';
+  }
+
+  @override
+  String get ganPiezaLibre => 'libre';
+
+  @override
+  String ganPiezaConRebanos(String rebanos) {
+    return 'con $rebanos';
+  }
+
+  @override
+  String get ganGuiaOpcional => 'Guía (opcional)';
+
+  @override
+  String get ganHojaAlApuntar => 'Se genera al apuntar el movimiento.';
+
+  @override
+  String get ganApuntarMovimiento => 'Apuntar movimiento';
+
+  @override
+  String ganFechaHoy(String fecha) {
+    return 'Hoy, $fecha';
+  }
+
+  @override
+  String get ganHojaNoSalio =>
+      'El movimiento está apuntado, pero la hoja no se pudo generar.';
 }

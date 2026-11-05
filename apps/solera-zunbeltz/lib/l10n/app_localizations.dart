@@ -6530,6 +6530,108 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ver cerrados'**
   String get ganVerCerradosCorto;
+
+  /// No description provided for @ganCrotalOficial.
+  ///
+  /// In es, this message translates to:
+  /// **'Crotal oficial: dos letras y doce cifras.'**
+  String get ganCrotalOficial;
+
+  /// No description provided for @ganCrotalNoOficial.
+  ///
+  /// In es, this message translates to:
+  /// **'No tiene la forma oficial (dos letras y doce cifras); se guardará tal cual.'**
+  String get ganCrotalNoOficial;
+
+  /// No description provided for @ganDelRebanoAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'La especie y de quién es se toman del rebaño.'**
+  String get ganDelRebanoAyuda;
+
+  /// No description provided for @ganGuardarYOtro.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar y otro'**
+  String get ganGuardarYOtro;
+
+  /// No description provided for @ganMoverUnRebano.
+  ///
+  /// In es, this message translates to:
+  /// **'Mover un rebaño'**
+  String get ganMoverUnRebano;
+
+  /// No description provided for @ganMovEntrePiezas.
+  ///
+  /// In es, this message translates to:
+  /// **'Entre piezas'**
+  String get ganMovEntrePiezas;
+
+  /// No description provided for @ganMovEntrada.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrada'**
+  String get ganMovEntrada;
+
+  /// No description provided for @ganMovSalida.
+  ///
+  /// In es, this message translates to:
+  /// **'Salida'**
+  String get ganMovSalida;
+
+  /// No description provided for @ganRotuloAhora.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora · {zona}'**
+  String ganRotuloAhora(String zona);
+
+  /// No description provided for @ganRotuloDestino.
+  ///
+  /// In es, this message translates to:
+  /// **'Destino · {zona}'**
+  String ganRotuloDestino(String zona);
+
+  /// No description provided for @ganPiezaLibre.
+  ///
+  /// In es, this message translates to:
+  /// **'libre'**
+  String get ganPiezaLibre;
+
+  /// No description provided for @ganPiezaConRebanos.
+  ///
+  /// In es, this message translates to:
+  /// **'con {rebanos}'**
+  String ganPiezaConRebanos(String rebanos);
+
+  /// No description provided for @ganGuiaOpcional.
+  ///
+  /// In es, this message translates to:
+  /// **'Guía (opcional)'**
+  String get ganGuiaOpcional;
+
+  /// No description provided for @ganHojaAlApuntar.
+  ///
+  /// In es, this message translates to:
+  /// **'Se genera al apuntar el movimiento.'**
+  String get ganHojaAlApuntar;
+
+  /// No description provided for @ganApuntarMovimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar movimiento'**
+  String get ganApuntarMovimiento;
+
+  /// No description provided for @ganFechaHoy.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoy, {fecha}'**
+  String ganFechaHoy(String fecha);
+
+  /// No description provided for @ganHojaNoSalio.
+  ///
+  /// In es, this message translates to:
+  /// **'El movimiento está apuntado, pero la hoja no se pudo generar.'**
+  String get ganHojaNoSalio;
 }
 
 class _AppLocalizationsDelegate

@@ -1174,5 +1174,22 @@
   "ganEdadMeses": "{n, plural, =1{hilabete 1} other{{n} hilabete}}",
   "ganApuntarManejoCorto": "Maneiua idatzi",
   "ganMoverRebano": "Mugimendua",
-  "ganVerCerradosCorto": "Itxiak ikusi"
+  "ganVerCerradosCorto": "Itxiak ikusi",
+  "ganCrotalOficial": "Crotal ofiziala: bi letra eta hamabi zifra.",
+  "ganCrotalNoOficial": "Ez du forma ofiziala (bi letra eta hamabi zifra); dagoen bezala gordeko da.",
+  "ganDelRebanoAyuda": "Espeziea eta noren den artaldetik hartzen dira.",
+  "ganGuardarYOtro": "Gorde eta beste bat",
+  "ganMoverUnRebano": "Artalde bat mugitu",
+  "ganMovEntrePiezas": "Sailen artean",
+  "ganMovEntrada": "Sarrera",
+  "ganMovSalida": "Irteera",
+  "ganRotuloAhora": "Orain · {zona}",
+  "ganRotuloDestino": "Helmuga · {zona}",
+  "ganPiezaLibre": "hutsik",
+  "ganPiezaConRebanos": "{rebanos} bertan",
+  "ganGuiaOpcional": "Gida (aukerakoa)",
+  "ganHojaAlApuntar": "Mugimendua idaztean sortzen da.",
+  "ganApuntarMovimiento": "Mugimendua idatzi",
+  "ganFechaHoy": "Gaur, {fecha}",
+  "ganHojaNoSalio": "Mugimendua idatzita dago, baina orria ezin izan da sortu."
 }

@@ -3877,4 +3877,66 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ganVerCerradosCorto => 'Itxiak ikusi';
+
+  @override
+  String get ganCrotalOficial => 'Crotal ofiziala: bi letra eta hamabi zifra.';
+
+  @override
+  String get ganCrotalNoOficial =>
+      'Ez du forma ofiziala (bi letra eta hamabi zifra); dagoen bezala gordeko da.';
+
+  @override
+  String get ganDelRebanoAyuda =>
+      'Espeziea eta noren den artaldetik hartzen dira.';
+
+  @override
+  String get ganGuardarYOtro => 'Gorde eta beste bat';
+
+  @override
+  String get ganMoverUnRebano => 'Artalde bat mugitu';
+
+  @override
+  String get ganMovEntrePiezas => 'Sailen artean';
+
+  @override
+  String get ganMovEntrada => 'Sarrera';
+
+  @override
+  String get ganMovSalida => 'Irteera';
+
+  @override
+  String ganRotuloAhora(String zona) {
+    return 'Orain · $zona';
+  }
+
+  @override
+  String ganRotuloDestino(String zona) {
+    return 'Helmuga · $zona';
+  }
+
+  @override
+  String get ganPiezaLibre => 'hutsik';
+
+  @override
+  String ganPiezaConRebanos(String rebanos) {
+    return '$rebanos bertan';
+  }
+
+  @override
+  String get ganGuiaOpcional => 'Gida (aukerakoa)';
+
+  @override
+  String get ganHojaAlApuntar => 'Mugimendua idaztean sortzen da.';
+
+  @override
+  String get ganApuntarMovimiento => 'Mugimendua idatzi';
+
+  @override
+  String ganFechaHoy(String fecha) {
+    return 'Gaur, $fecha';
+  }
+
+  @override
+  String get ganHojaNoSalio =>
+      'Mugimendua idatzita dago, baina orria ezin izan da sortu.';
 }

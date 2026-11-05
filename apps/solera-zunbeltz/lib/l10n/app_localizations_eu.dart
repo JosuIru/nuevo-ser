@@ -4327,4 +4327,11 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get sinSincronizado => 'Sinkronizatuta';
+
+  @override
+  String get actTitulo => 'Jarduera erregistratu';
+
+  @override
+  String get acercaAsociacion =>
+      'Zunbeltz Landa Garapenerako Elkartea · Asociación para el Desarrollo Rural';
 }

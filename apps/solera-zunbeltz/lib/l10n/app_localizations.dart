@@ -7280,6 +7280,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Sincronizado'**
   String get sinSincronizado;
+
+  /// No description provided for @actTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar actividad'**
+  String get actTitulo;
+
+  /// No description provided for @acercaAsociacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Asociación para el Desarrollo Rural Zunbeltz · Landa Garapenerako Elkartea'**
+  String get acercaAsociacion;
 }
 
 class _AppLocalizationsDelegate

@@ -4323,4 +4323,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get sinSincronizado => 'Sincronizado';
+
+  @override
+  String get actTitulo => 'Registrar actividad';
+
+  @override
+  String get acercaAsociacion =>
+      'Asociación para el Desarrollo Rural Zunbeltz · Landa Garapenerako Elkartea';
 }

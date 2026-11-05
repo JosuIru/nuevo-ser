@@ -4913,7 +4913,7 @@ abstract class AppLocalizations {
   /// No description provided for @ayudaGanadoManejoB.
   ///
   /// In es, this message translates to:
-  /// **'1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.\n» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.'**
+  /// **'1. Si es para todo el rebaño, ábrelo y pulsa «Apuntar manejo» (abajo); si es para un animal, abre su ficha y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.\n» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.'**
   String get ayudaGanadoManejoB;
 
   /// No description provided for @ganCabezas.
@@ -6320,6 +6320,216 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No hay tareas abiertas con estos filtros.'**
   String get tableroSinAbiertas;
+
+  /// No description provided for @ganResumenRebanos.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 rebaño en uso} other{{n} rebaños en uso}} · {cabezas, plural, =1{1 cabeza} other{{cabezas} cabezas}}'**
+  String ganResumenRebanos(int n, int cabezas);
+
+  /// No description provided for @ganRotuloCabezas.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{cabeza} other{cabezas}}'**
+  String ganRotuloCabezas(int n);
+
+  /// No description provided for @ganDelEspacio.
+  ///
+  /// In es, this message translates to:
+  /// **'del espacio'**
+  String get ganDelEspacio;
+
+  /// No description provided for @ganDePersona.
+  ///
+  /// In es, this message translates to:
+  /// **'de {nombre}'**
+  String ganDePersona(String nombre);
+
+  /// No description provided for @ganDesdeElDia.
+  ///
+  /// In es, this message translates to:
+  /// **'desde el {fecha}'**
+  String ganDesdeElDia(String fecha);
+
+  /// No description provided for @ganConCrotalN.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} con crotal'**
+  String ganConCrotalN(int n);
+
+  /// No description provided for @ganSinCrotal.
+  ///
+  /// In es, this message translates to:
+  /// **'sin crotal'**
+  String get ganSinCrotal;
+
+  /// No description provided for @ganFueraCorto.
+  ///
+  /// In es, this message translates to:
+  /// **'Fuera: {destino}'**
+  String ganFueraCorto(String destino);
+
+  /// No description provided for @ganChipEcologico.
+  ///
+  /// In es, this message translates to:
+  /// **'Ecológico'**
+  String get ganChipEcologico;
+
+  /// No description provided for @ganChipEcologicoCicloCorto.
+  ///
+  /// In es, this message translates to:
+  /// **'Ecológico, ciclo corto'**
+  String get ganChipEcologicoCicloCorto;
+
+  /// No description provided for @ganChipTratamientos.
+  ///
+  /// In es, this message translates to:
+  /// **'Tratamientos {n} de {limite}'**
+  String ganChipTratamientos(int n, int limite);
+
+  /// No description provided for @ganChipCarneLibre.
+  ///
+  /// In es, this message translates to:
+  /// **'Carne libre el {fecha}'**
+  String ganChipCarneLibre(String fecha);
+
+  /// No description provided for @ganChipLecheLibre.
+  ///
+  /// In es, this message translates to:
+  /// **'Leche libre el {fecha}'**
+  String ganChipLecheLibre(String fecha);
+
+  /// No description provided for @ganChipCerrado.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrado'**
+  String get ganChipCerrado;
+
+  /// No description provided for @ganEstaEn.
+  ///
+  /// In es, this message translates to:
+  /// **'Está en'**
+  String get ganEstaEn;
+
+  /// No description provided for @ganCabezasEnTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'cabezas en total'**
+  String get ganCabezasEnTotal;
+
+  /// No description provided for @ganConCrotalRotulo.
+  ///
+  /// In es, this message translates to:
+  /// **'con crotal'**
+  String get ganConCrotalRotulo;
+
+  /// No description provided for @ganSinCrotalRotulo.
+  ///
+  /// In es, this message translates to:
+  /// **'sin crotal'**
+  String get ganSinCrotalRotulo;
+
+  /// No description provided for @ganUgmRotulo.
+  ///
+  /// In es, this message translates to:
+  /// **'UGM'**
+  String get ganUgmRotulo;
+
+  /// No description provided for @ganEstadoSanitario.
+  ///
+  /// In es, this message translates to:
+  /// **'Estado sanitario'**
+  String get ganEstadoSanitario;
+
+  /// No description provided for @ganTratamientosAlopaticos.
+  ///
+  /// In es, this message translates to:
+  /// **'Tratamientos alopáticos en 12 meses'**
+  String get ganTratamientosAlopaticos;
+
+  /// No description provided for @ganAlPasarDeLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'{limite, plural, =1{Al pasar de 1 deja de venderse como ecológico.} other{Al pasar de {limite} deja de venderse como ecológico.}}'**
+  String ganAlPasarDeLimite(int limite);
+
+  /// No description provided for @ganNDeLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} de {limite}'**
+  String ganNDeLimite(int n, int limite);
+
+  /// No description provided for @ganCarneLibreDesde.
+  ///
+  /// In es, this message translates to:
+  /// **'Carne: libre desde el {fecha}'**
+  String ganCarneLibreDesde(String fecha);
+
+  /// No description provided for @ganLecheLibreDesde.
+  ///
+  /// In es, this message translates to:
+  /// **'Leche: libre desde el {fecha}'**
+  String ganLecheLibreDesde(String fecha);
+
+  /// No description provided for @ganPlazoDoble.
+  ///
+  /// In es, this message translates to:
+  /// **'Plazo doble por ser ecológico'**
+  String get ganPlazoDoble;
+
+  /// No description provided for @ganManejo.
+  ///
+  /// In es, this message translates to:
+  /// **'Manejo'**
+  String get ganManejo;
+
+  /// No description provided for @ganVerTodo.
+  ///
+  /// In es, this message translates to:
+  /// **'Todo'**
+  String get ganVerTodo;
+
+  /// No description provided for @ganVerMenos.
+  ///
+  /// In es, this message translates to:
+  /// **'Menos'**
+  String get ganVerMenos;
+
+  /// No description provided for @ganVerLosN.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver los {n}'**
+  String ganVerLosN(int n);
+
+  /// No description provided for @ganEdadAnios.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 año} other{{n} años}}'**
+  String ganEdadAnios(int n);
+
+  /// No description provided for @ganEdadMeses.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{1 mes} other{{n} meses}}'**
+  String ganEdadMeses(int n);
+
+  /// No description provided for @ganApuntarManejoCorto.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar manejo'**
+  String get ganApuntarManejoCorto;
+
+  /// No description provided for @ganMoverRebano.
+  ///
+  /// In es, this message translates to:
+  /// **'Movimiento'**
+  String get ganMoverRebano;
+
+  /// No description provided for @ganVerCerradosCorto.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver cerrados'**
+  String get ganVerCerradosCorto;
 }
 
 class _AppLocalizationsDelegate

@@ -2733,7 +2733,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaGanadoManejoB =>
-      '1. Ireki taldea (talde osoarentzat bada) edo animalia eta sakatu «Sendaketa, pisaketa, erditzea…».\n2. Aukeratu zer egin den eta data.\n3. Sendaketa edo tratamendu batean, idatzi errezetan dagoena: substantzia aktiboa, dosia, haragiaren eta esnearen kentze-egunak, albaitaria eta errezeta-zenbakia. Aplikazioak ez du sendagairik gomendatzen.\n4. Gorde. Epeak irauten duen bitartean, taldea edo animalia «Kentze-epean» markatuta agertzen da, libre geratzen den egunarekin.\n» Animalia bati baja emateko (salmenta, hilketa, heriotza), erabili «Baja eman» bere fitxan: ez da ezabatzen, bere historia gordetzen da.\n» Ekologiko gisa markatutako artalde batean, adierazi sendagai mota: alopatikoek itxaronaldia bikoizten dute (gutxienez 48 ordu) eta fitxak abisatzen du urteko tratamendu-mugara hurbiltzen denean edo gainditzen denean. BEHIN-BEHINEKOA CPAEN/NNPEKek berrikusi arte.';
+      '1. Talde osoarentzat bada, ireki eta sakatu «Maneiua idatzi» (behean); animalia batentzat bada, ireki haren fitxa eta sakatu «Sendaketa, pisaketa, erditzea…».\n2. Aukeratu zer egin den eta data.\n3. Sendaketa edo tratamendu batean, idatzi errezetan dagoena: substantzia aktiboa, dosia, haragiaren eta esnearen kentze-egunak, albaitaria eta errezeta-zenbakia. Aplikazioak ez du sendagairik gomendatzen.\n4. Gorde. Epeak irauten duen bitartean, taldea edo animalia «Kentze-epean» markatuta agertzen da, libre geratzen den egunarekin.\n» Animalia bati baja emateko (salmenta, hilketa, heriotza), erabili «Baja eman» bere fitxan: ez da ezabatzen, bere historia gordetzen da.\n» Ekologiko gisa markatutako artalde batean, adierazi sendagai mota: alopatikoek itxaronaldia bikoizten dute (gutxienez 48 ordu) eta fitxak abisatzen du urteko tratamendu-mugara hurbiltzen denean edo gainditzen denean. BEHIN-BEHINEKOA CPAEN/NNPEKek berrikusi arte.';
 
   @override
   String ganCabezas(int n) {
@@ -3703,4 +3703,178 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get tableroSinAbiertas => 'Ez dago zeregin irekirik iragazki hauekin.';
+
+  @override
+  String ganResumenRebanos(int n, int cabezas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n artalde erabilian',
+      one: 'Artalde 1 erabilian',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      cabezas,
+      locale: localeName,
+      other: '$cabezas buru',
+      one: 'Buru 1',
+    );
+    return '$_temp0 · $_temp1';
+  }
+
+  @override
+  String ganRotuloCabezas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'buru',
+      one: 'buru',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ganDelEspacio => 'espaziokoa';
+
+  @override
+  String ganDePersona(String nombre) {
+    return 'jabea: $nombre';
+  }
+
+  @override
+  String ganDesdeElDia(String fecha) {
+    return '$fecha(e)tik';
+  }
+
+  @override
+  String ganConCrotalN(int n) {
+    return '$n krotaldun';
+  }
+
+  @override
+  String get ganSinCrotal => 'krotalik gabe';
+
+  @override
+  String ganFueraCorto(String destino) {
+    return 'Kanpoan: $destino';
+  }
+
+  @override
+  String get ganChipEcologico => 'Ekologikoa';
+
+  @override
+  String get ganChipEcologicoCicloCorto => 'Ekologikoa, ziklo laburra';
+
+  @override
+  String ganChipTratamientos(int n, int limite) {
+    return 'Tratamenduak: $n/$limite';
+  }
+
+  @override
+  String ganChipCarneLibre(String fecha) {
+    return 'Haragia libre: $fecha';
+  }
+
+  @override
+  String ganChipLecheLibre(String fecha) {
+    return 'Esnea libre: $fecha';
+  }
+
+  @override
+  String get ganChipCerrado => 'Itxita';
+
+  @override
+  String get ganEstaEn => 'Hemen dago';
+
+  @override
+  String get ganCabezasEnTotal => 'buru guztira';
+
+  @override
+  String get ganConCrotalRotulo => 'krotaldun';
+
+  @override
+  String get ganSinCrotalRotulo => 'krotalik gabe';
+
+  @override
+  String get ganUgmRotulo => 'ALU';
+
+  @override
+  String get ganEstadoSanitario => 'Osasun-egoera';
+
+  @override
+  String get ganTratamientosAlopaticos =>
+      'Tratamendu alopatikoak 12 hilabetean';
+
+  @override
+  String ganAlPasarDeLimite(int limite) {
+    String _temp0 = intl.Intl.pluralLogic(
+      limite,
+      locale: localeName,
+      other: '$limite gainditzean, ezin da ekologiko gisa saldu.',
+      one: '1 gainditzean, ezin da ekologiko gisa saldu.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganNDeLimite(int n, int limite) {
+    return '$n/$limite';
+  }
+
+  @override
+  String ganCarneLibreDesde(String fecha) {
+    return 'Haragia: libre $fecha(e)tik';
+  }
+
+  @override
+  String ganLecheLibreDesde(String fecha) {
+    return 'Esnea: libre $fecha(e)tik';
+  }
+
+  @override
+  String get ganPlazoDoble => 'Epe bikoitza, ekologikoa delako';
+
+  @override
+  String get ganManejo => 'Maneiua';
+
+  @override
+  String get ganVerTodo => 'Dena';
+
+  @override
+  String get ganVerMenos => 'Gutxiago';
+
+  @override
+  String ganVerLosN(int n) {
+    return 'Ikusi ${n}ak';
+  }
+
+  @override
+  String ganEdadAnios(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n urte',
+      one: 'urte 1',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganEdadMeses(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n hilabete',
+      one: 'hilabete 1',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ganApuntarManejoCorto => 'Maneiua idatzi';
+
+  @override
+  String get ganMoverRebano => 'Mugimendua';
+
+  @override
+  String get ganVerCerradosCorto => 'Itxiak ikusi';
 }

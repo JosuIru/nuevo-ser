@@ -195,7 +195,7 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 » En la ficha de cada pieza se ve qué rebaños hay, cuántas cabezas y cuántas por hectárea. El historial del rebaño guarda todos sus movimientos.
 » Un animal suelto se cambia de rebaño desde su ficha («Cambiar de rebaño»).',
 		'ayudaGanadoManejoT' => 'Curas, tratamientos, pesajes y partos',
-		'ayudaGanadoManejoB' => '1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».
+		'ayudaGanadoManejoB' => '1. Si es para todo el rebaño, ábrelo y pulsa «Apuntar manejo» (abajo); si es para un animal, abre su ficha y pulsa «Cura, pesaje, parto…».
 2. Elige qué se ha hecho y la fecha.
 3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.
 4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.
@@ -454,7 +454,7 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 » Sail bakoitzaren fitxan ikusten da zein talde dauden, zenbat buru eta zenbat hektareako. Taldearen historiak bere mugimendu guztiak gordetzen ditu.
 » Animalia solte bat bere fitxatik aldatzen da taldez («Taldez aldatu»).',
 		'ayudaGanadoManejoT' => 'Sendaketak, tratamenduak, pisaketak eta erditzeak',
-		'ayudaGanadoManejoB' => '1. Ireki taldea (talde osoarentzat bada) edo animalia eta sakatu «Sendaketa, pisaketa, erditzea…».
+		'ayudaGanadoManejoB' => '1. Talde osoarentzat bada, ireki eta sakatu «Maneiua idatzi» (behean); animalia batentzat bada, ireki haren fitxa eta sakatu «Sendaketa, pisaketa, erditzea…».
 2. Aukeratu zer egin den eta data.
 3. Sendaketa edo tratamendu batean, idatzi errezetan dagoena: substantzia aktiboa, dosia, haragiaren eta esnearen kentze-egunak, albaitaria eta errezeta-zenbakia. Aplikazioak ez du sendagairik gomendatzen.
 4. Gorde. Epeak irauten duen bitartean, taldea edo animalia «Kentze-epean» markatuta agertzen da, libre geratzen den egunarekin.

@@ -2730,7 +2730,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaGanadoManejoB =>
-      '1. Abre el rebaño (si es para todo el rebaño) o el animal y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.\n» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.';
+      '1. Si es para todo el rebaño, ábrelo y pulsa «Apuntar manejo» (abajo); si es para un animal, abre su ficha y pulsa «Cura, pesaje, parto…».\n2. Elige qué se ha hecho y la fecha.\n3. En una cura o tratamiento, apunta lo que pone la receta: sustancia activa, dosis, días de supresión de carne y de leche, veterinario/a y número de receta. La app no recomienda medicamentos.\n4. Guarda. Mientras dure el plazo, el rebaño o el animal sale marcado «En plazo de supresión» con el día desde el que queda libre.\n» Para dar de baja un animal (venta, sacrificio, muerte), usa «Dar de baja» en su ficha: no se borra, se guarda su historia.\n» En un rebaño marcado como ecológico, indica la clase de medicamento: los alopáticos doblan el plazo de espera (como mínimo 48 horas) y la ficha avisa cuando se acerca o se supera el límite de tratamientos al año. PROVISIONAL hasta que lo revise CPAEN/NNPEK.';
 
   @override
   String ganCabezas(int n) {
@@ -3701,4 +3701,177 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get tableroSinAbiertas => 'No hay tareas abiertas con estos filtros.';
+
+  @override
+  String ganResumenRebanos(int n, int cabezas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n rebaños en uso',
+      one: '1 rebaño en uso',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      cabezas,
+      locale: localeName,
+      other: '$cabezas cabezas',
+      one: '1 cabeza',
+    );
+    return '$_temp0 · $_temp1';
+  }
+
+  @override
+  String ganRotuloCabezas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'cabezas',
+      one: 'cabeza',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ganDelEspacio => 'del espacio';
+
+  @override
+  String ganDePersona(String nombre) {
+    return 'de $nombre';
+  }
+
+  @override
+  String ganDesdeElDia(String fecha) {
+    return 'desde el $fecha';
+  }
+
+  @override
+  String ganConCrotalN(int n) {
+    return '$n con crotal';
+  }
+
+  @override
+  String get ganSinCrotal => 'sin crotal';
+
+  @override
+  String ganFueraCorto(String destino) {
+    return 'Fuera: $destino';
+  }
+
+  @override
+  String get ganChipEcologico => 'Ecológico';
+
+  @override
+  String get ganChipEcologicoCicloCorto => 'Ecológico, ciclo corto';
+
+  @override
+  String ganChipTratamientos(int n, int limite) {
+    return 'Tratamientos $n de $limite';
+  }
+
+  @override
+  String ganChipCarneLibre(String fecha) {
+    return 'Carne libre el $fecha';
+  }
+
+  @override
+  String ganChipLecheLibre(String fecha) {
+    return 'Leche libre el $fecha';
+  }
+
+  @override
+  String get ganChipCerrado => 'Cerrado';
+
+  @override
+  String get ganEstaEn => 'Está en';
+
+  @override
+  String get ganCabezasEnTotal => 'cabezas en total';
+
+  @override
+  String get ganConCrotalRotulo => 'con crotal';
+
+  @override
+  String get ganSinCrotalRotulo => 'sin crotal';
+
+  @override
+  String get ganUgmRotulo => 'UGM';
+
+  @override
+  String get ganEstadoSanitario => 'Estado sanitario';
+
+  @override
+  String get ganTratamientosAlopaticos => 'Tratamientos alopáticos en 12 meses';
+
+  @override
+  String ganAlPasarDeLimite(int limite) {
+    String _temp0 = intl.Intl.pluralLogic(
+      limite,
+      locale: localeName,
+      other: 'Al pasar de $limite deja de venderse como ecológico.',
+      one: 'Al pasar de 1 deja de venderse como ecológico.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganNDeLimite(int n, int limite) {
+    return '$n de $limite';
+  }
+
+  @override
+  String ganCarneLibreDesde(String fecha) {
+    return 'Carne: libre desde el $fecha';
+  }
+
+  @override
+  String ganLecheLibreDesde(String fecha) {
+    return 'Leche: libre desde el $fecha';
+  }
+
+  @override
+  String get ganPlazoDoble => 'Plazo doble por ser ecológico';
+
+  @override
+  String get ganManejo => 'Manejo';
+
+  @override
+  String get ganVerTodo => 'Todo';
+
+  @override
+  String get ganVerMenos => 'Menos';
+
+  @override
+  String ganVerLosN(int n) {
+    return 'Ver los $n';
+  }
+
+  @override
+  String ganEdadAnios(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n años',
+      one: '1 año',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String ganEdadMeses(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n meses',
+      one: '1 mes',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get ganApuntarManejoCorto => 'Apuntar manejo';
+
+  @override
+  String get ganMoverRebano => 'Movimiento';
+
+  @override
+  String get ganVerCerradosCorto => 'Ver cerrados';
 }

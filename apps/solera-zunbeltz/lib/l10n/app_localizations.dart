@@ -6716,6 +6716,138 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No hay proyectos abiertos.'**
   String get proySinAbiertos;
+
+  /// No description provided for @proyPeriodoTodo.
+  ///
+  /// In es, this message translates to:
+  /// **'Todo el test'**
+  String get proyPeriodoTodo;
+
+  /// No description provided for @proyDeA.
+  ///
+  /// In es, this message translates to:
+  /// **'{inicio} a {fin}'**
+  String proyDeA(String inicio, String fin);
+
+  /// No description provided for @proyGastosDelTest.
+  ///
+  /// In es, this message translates to:
+  /// **'Gastos del test'**
+  String get proyGastosDelTest;
+
+  /// No description provided for @proySinAmortizaciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin amortizaciones: es lo que mide el testaje.'**
+  String get proySinAmortizaciones;
+
+  /// No description provided for @proyLaPersonaTester.
+  ///
+  /// In es, this message translates to:
+  /// **'La persona tester'**
+  String get proyLaPersonaTester;
+
+  /// No description provided for @proyReparto.
+  ///
+  /// In es, this message translates to:
+  /// **'Reparto'**
+  String get proyReparto;
+
+  /// No description provided for @proyPresupuestoAnexo.
+  ///
+  /// In es, this message translates to:
+  /// **'Presupuesto (anexo II)'**
+  String get proyPresupuestoAnexo;
+
+  /// No description provided for @proyPartidas.
+  ///
+  /// In es, this message translates to:
+  /// **'Partidas'**
+  String get proyPartidas;
+
+  /// No description provided for @proyDeTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'{real} de {previsto}'**
+  String proyDeTotal(String real, String previsto);
+
+  /// No description provided for @proySumaAmortizacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Suma {importe} de amortización de bienes que asume Zunbeltz.'**
+  String proySumaAmortizacion(String importe);
+
+  /// No description provided for @proyDeReferencia.
+  ///
+  /// In es, this message translates to:
+  /// **'De referencia'**
+  String get proyDeReferencia;
+
+  /// No description provided for @proyDiezPorCiento.
+  ///
+  /// In es, this message translates to:
+  /// **'10 % de lo que asume Zunbeltz'**
+  String get proyDiezPorCiento;
+
+  /// No description provided for @proyRetenido.
+  ///
+  /// In es, this message translates to:
+  /// **'Retenido'**
+  String get proyRetenido;
+
+  /// No description provided for @proySinIncidencias.
+  ///
+  /// In es, this message translates to:
+  /// **'sin incidencias'**
+  String get proySinIncidencias;
+
+  /// No description provided for @proyIncidencias.
+  ///
+  /// In es, this message translates to:
+  /// **'incidencias: {n}'**
+  String proyIncidencias(String n);
+
+  /// No description provided for @proyTodo.
+  ///
+  /// In es, this message translates to:
+  /// **'Todo'**
+  String get proyTodo;
+
+  /// No description provided for @proyApuntarGastoIngreso.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar gasto o ingreso'**
+  String get proyApuntarGastoIngreso;
+
+  /// No description provided for @proyRegistros.
+  ///
+  /// In es, this message translates to:
+  /// **'Registros del test'**
+  String get proyRegistros;
+
+  /// No description provided for @proyRentabilidad.
+  ///
+  /// In es, this message translates to:
+  /// **'Rentabilidad'**
+  String get proyRentabilidad;
+
+  /// No description provided for @proySinAcompanamiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay acompañamiento apuntado.'**
+  String get proySinAcompanamiento;
+
+  /// No description provided for @proyHoras.
+  ///
+  /// In es, this message translates to:
+  /// **'{horas} h'**
+  String proyHoras(String horas);
+
+  /// No description provided for @proyMasAcciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Más acciones'**
+  String get proyMasAcciones;
 }
 
 class _AppLocalizationsDelegate

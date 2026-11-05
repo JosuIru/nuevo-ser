@@ -3999,4 +3999,81 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get proySinAbiertos => 'Ez dago proiektu irekirik.';
+
+  @override
+  String get proyPeriodoTodo => 'Test osoa';
+
+  @override
+  String proyDeA(String inicio, String fin) {
+    return '$inicio – $fin';
+  }
+
+  @override
+  String get proyGastosDelTest => 'Testaren gastuak';
+
+  @override
+  String get proySinAmortizaciones =>
+      'Amortizaziorik gabe: testak hori neurtzen du.';
+
+  @override
+  String get proyLaPersonaTester => 'Pertsona testerra';
+
+  @override
+  String get proyReparto => 'Banaketa';
+
+  @override
+  String get proyPresupuestoAnexo => 'Aurrekontua (II. eranskina)';
+
+  @override
+  String get proyPartidas => 'Partidak';
+
+  @override
+  String proyDeTotal(String real, String previsto) {
+    return '$real / $previsto';
+  }
+
+  @override
+  String proySumaAmortizacion(String importe) {
+    return 'Zunbeltzek hartzen dituen ondasunen $importe amortizazio gehitzen ditu.';
+  }
+
+  @override
+  String get proyDeReferencia => 'Erreferentzia';
+
+  @override
+  String get proyDiezPorCiento => 'Zunbeltzek hartzen duenaren % 10';
+
+  @override
+  String get proyRetenido => 'Atxikia';
+
+  @override
+  String get proySinIncidencias => 'gorabeherarik gabe';
+
+  @override
+  String proyIncidencias(String n) {
+    return 'gorabeherak: $n';
+  }
+
+  @override
+  String get proyTodo => 'Dena';
+
+  @override
+  String get proyApuntarGastoIngreso => 'Gastua edo sarrera idatzi';
+
+  @override
+  String get proyRegistros => 'Testaren erregistroak';
+
+  @override
+  String get proyRentabilidad => 'Errentagarritasuna';
+
+  @override
+  String get proySinAcompanamiento => 'Oraindik ez dago laguntzarik idatzita.';
+
+  @override
+  String proyHoras(String horas) {
+    return '$horas h';
+  }
+
+  @override
+  String get proyMasAcciones => 'Ekintza gehiago';
 }

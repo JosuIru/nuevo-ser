@@ -25,9 +25,14 @@ import 'widgets/confirmar_borrado.dart';
 /// (indicadores del anexo IV) e incidencias de cumplimiento. Coordinación lo
 /// lleva; la persona tester lo consulta.
 class PantallaConvenio extends StatefulWidget {
-  const PantallaConvenio({super.key, required this.proyecto});
+  const PantallaConvenio(
+      {super.key, required this.proyecto, this.pestanaInicial = 0});
 
   final ProyectoTest proyecto;
+
+  /// 0 balance, 1 presupuesto, 2 amortizaciones, 3 fianza,
+  /// 4 acompañamiento, 5 incidencias.
+  final int pestanaInicial;
 
   @override
   State<PantallaConvenio> createState() => _PantallaConvenioState();
@@ -103,6 +108,7 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
     final textos = AppLocalizations.of(context);
     return DefaultTabController(
       length: 6,
+      initialIndex: widget.pestanaInicial,
       child: Scaffold(
         appBar: AppBar(
           title: Text('${textos.convenioTitulo} · ${_proyecto.nombre}'),

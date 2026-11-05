@@ -3996,4 +3996,81 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get proySinAbiertos => 'No hay proyectos abiertos.';
+
+  @override
+  String get proyPeriodoTodo => 'Todo el test';
+
+  @override
+  String proyDeA(String inicio, String fin) {
+    return '$inicio a $fin';
+  }
+
+  @override
+  String get proyGastosDelTest => 'Gastos del test';
+
+  @override
+  String get proySinAmortizaciones =>
+      'Sin amortizaciones: es lo que mide el testaje.';
+
+  @override
+  String get proyLaPersonaTester => 'La persona tester';
+
+  @override
+  String get proyReparto => 'Reparto';
+
+  @override
+  String get proyPresupuestoAnexo => 'Presupuesto (anexo II)';
+
+  @override
+  String get proyPartidas => 'Partidas';
+
+  @override
+  String proyDeTotal(String real, String previsto) {
+    return '$real de $previsto';
+  }
+
+  @override
+  String proySumaAmortizacion(String importe) {
+    return 'Suma $importe de amortización de bienes que asume Zunbeltz.';
+  }
+
+  @override
+  String get proyDeReferencia => 'De referencia';
+
+  @override
+  String get proyDiezPorCiento => '10 % de lo que asume Zunbeltz';
+
+  @override
+  String get proyRetenido => 'Retenido';
+
+  @override
+  String get proySinIncidencias => 'sin incidencias';
+
+  @override
+  String proyIncidencias(String n) {
+    return 'incidencias: $n';
+  }
+
+  @override
+  String get proyTodo => 'Todo';
+
+  @override
+  String get proyApuntarGastoIngreso => 'Apuntar gasto o ingreso';
+
+  @override
+  String get proyRegistros => 'Registros del test';
+
+  @override
+  String get proyRentabilidad => 'Rentabilidad';
+
+  @override
+  String get proySinAcompanamiento => 'Aún no hay acompañamiento apuntado.';
+
+  @override
+  String proyHoras(String horas) {
+    return '$horas h';
+  }
+
+  @override
+  String get proyMasAcciones => 'Más acciones';
 }

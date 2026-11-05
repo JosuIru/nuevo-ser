@@ -5,9 +5,13 @@ import '../../branding.dart';
 /// Barra fija de abajo de un formulario a pantalla completa, sobre una
 /// raya: los botones de guardar repartidos a partes iguales.
 class BarraInferiorFormulario extends StatelessWidget {
-  const BarraInferiorFormulario({super.key, required this.botones});
+  const BarraInferiorFormulario(
+      {super.key, required this.botones, this.conRaya = true});
 
   final List<Widget> botones;
+
+  /// Sin raya cuando va pegada a otra franja de la misma barra.
+  final bool conRaya;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,9 @@ class BarraInferiorFormulario extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: esquema.surfaceContainerLow,
-        border: Border(top: BorderSide(color: esquema.outlineVariant)),
+        border: conRaya
+            ? Border(top: BorderSide(color: esquema.outlineVariant))
+            : null,
       ),
       child: SafeArea(
         top: false,

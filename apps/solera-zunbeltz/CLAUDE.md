@@ -274,7 +274,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Apuntar gasto o ingreso** (pantalla 15, `nuevo_apunte.dart`): Gasto / Ingreso en segmentados, el importe sin IVA en grande con «300 × 0,42 €, sin IVA», **cantidad (opcional) × precio unitario**, bloque y partida («las del presupuesto del anexo II»), cuadro de **cuota de IVA** (se cambia el tipo tocándola) y **total con IVA**, «Lo asume», fecha y concepto en fila, notas y «Guardar gasto/ingreso» abajo (`widgets/barra_inferior_formulario.dart`, también en los formularios de Ganado). **Se escribe sin IVA y se guarda el total con IVA** (el importe de un apunte siempre ha sido con IVA: `cuotaIva` saca la base del total); cálculo en `utiles/calculo_apunte.dart` (con test, la cuota coincide con la del informe). La cantidad no tiene columna: va a las notas («300 × 0,42 €, sin IVA»). Sin foto del tique ni «Repartido» (los apuntes no tienen fotos y «lo asume» solo admite tester o Zunbeltz).
 
-**Pendiente**: informe (16), inventario (20), partidas (21), simulador (22), comparativa (23); Imágenes en la web de la propuesta.
+- **Informe del proyecto** (pantalla 16, `pantalla_informe_proyecto.dart`): vista previa del PDF (`PdfPreview` de `printing`, sin su barra), aviso de **borrador** si no es la versión definitiva, chips de periodo (cambiar uno regenera y deja la ficha en ese periodo), «Se envía a» con el correo de coordinación y **Compartir / Enviar al coordinador** (deshabilitado sin correo). Lo abren el icono PDF de la ficha y «Enviar al coordinador» del ⋮. **La vista previa no se ve en los tests** (rasterizar necesita el complemento nativo): sin comprobar en móvil.
+
+**Pendiente**: inventario (20), partidas (21), simulador (22), comparativa (23); Imágenes en la web de la propuesta.
 
 ## Hard limits (heredados de la Suite Solera)
 

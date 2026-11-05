@@ -32,6 +32,7 @@ import 'nuevo_apunte.dart';
 import 'nuevo_proyecto.dart';
 import 'pantalla_calculadora.dart';
 import 'pantalla_convenio.dart';
+import 'pantalla_informe_proyecto.dart';
 import '../estado/datos_notificador.dart';
 import 'widgets/confirmar_borrado.dart';
 import 'widgets/proyecto_visual.dart';
@@ -71,7 +72,6 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   /// nuevos.
   final _versionDatos = ValueNotifier<int>(0);
   bool _cargando = true;
-  bool _generando = false;
 
   RangoPeriodo get _rango => rangoDePeriodo(_periodo, DateTime.now());
 
@@ -339,17 +339,26 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     );
   }
 
+  /// Vista previa del informe con el periodo elegible; desde ella se
+  /// comparte o se manda a coordinación.
   Future<void> _informe() async {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
-    setState(() => _generando = true);
-    try {
-      final documento = await _generarInforme(textos, idioma);
-      await Printing.sharePdf(
-          bytes: documento.bytes, filename: documento.nombreFichero);
-    } finally {
-      if (mounted) setState(() => _generando = false);
-    }
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => PantallaInformeProyecto(
+        periodoInicial: _periodo,
+        definitivo: politicaEspacioActual.documentoDefinitivo(
+            proyectoCerrado: _proyecto.cerrado),
+        generar: (periodo) async {
+          if (periodo != _periodo) {
+            setState(() => _periodo = periodo);
+            await _cargar();
+          }
+          return _generarInforme(textos, idioma);
+        },
+        alEnviar: _enviarDocumento,
+      ),
+    ));
   }
 
   /// Kg de alimentación por día y lote de todo el proyecto, para Excel.
@@ -390,9 +399,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   /// Genera el informe y lo comparte indicando el coordinador (opción B, sin
   /// backend): el envío real lo hace la app de correo/mensajería que elija el
   /// usuario; el correo del coordinador se sugiere en el cuerpo.
-  Future<void> _enviarCoordinador() async {
+  Future<void> _enviarDocumento(DocumentoGenerado documento) async {
     final textos = AppLocalizations.of(context);
-    final idioma = Localizations.localeOf(context).languageCode;
     final correo = await Coordinador.cargarCorreo();
     if (!mounted) return;
     if (correo.isEmpty) {
@@ -400,37 +408,31 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
           SnackBar(content: Text(textos.enviarCoordinadorSinDestino)));
       return;
     }
-    setState(() => _generando = true);
+    final asunto = 'Larrea Zunbeltz · ${_proyecto.nombre}'
+        '${_proyecto.persona.isEmpty ? '' : ' (${_proyecto.persona})'}';
     try {
-      final documento = await _generarInforme(textos, idioma);
-      final asunto = 'Larrea Zunbeltz · ${_proyecto.nombre}'
-          '${_proyecto.persona.isEmpty ? '' : ' (${_proyecto.persona})'}';
+      // Móvil: hoja de compartir con el PDF adjunto (eliges tu correo).
+      await compartirDocumentos([documento],
+          asunto: asunto, texto: '${textos.enviarCoordinadorTexto}\n$correo');
+    } catch (_) {
+      // Escritorio (sin hoja de compartir): primero se ofrece guardar el
+      // PDF y después se abre el cliente de correo ya dirigido al
+      // coordinador; mailto no admite adjuntos, se adjunta a mano.
+      await Printing.sharePdf(
+          bytes: documento.bytes, filename: documento.nombreFichero);
+      final uri = Uri(
+        scheme: 'mailto',
+        path: correo,
+        query: 'subject=${Uri.encodeComponent(asunto)}'
+            '&body=${Uri.encodeComponent('${textos.enviarCoordinadorTexto}\n\n${textos.enviarCoordinadorAdjuntar}')}',
+      );
       try {
-        // Móvil: hoja de compartir con el PDF adjunto (eliges tu correo).
-        await compartirDocumentos([documento],
-            asunto: asunto, texto: '${textos.enviarCoordinadorTexto}\n$correo');
-      } catch (_) {
-        // Escritorio (sin hoja de compartir): primero se ofrece guardar el
-        // PDF y después se abre el cliente de correo ya dirigido al
-        // coordinador; mailto no admite adjuntos, se adjunta a mano.
-        await Printing.sharePdf(
-            bytes: documento.bytes, filename: documento.nombreFichero);
-        final uri = Uri(
-          scheme: 'mailto',
-          path: correo,
-          query: 'subject=${Uri.encodeComponent(asunto)}'
-              '&body=${Uri.encodeComponent('${textos.enviarCoordinadorTexto}\n\n${textos.enviarCoordinadorAdjuntar}')}',
-        );
-        try {
-          await launchUrl(uri);
-        } catch (_) {}
-        if (mounted) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(documento.nombreFichero)));
-        }
+        await launchUrl(uri);
+      } catch (_) {}
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(documento.nombreFichero)));
       }
-    } finally {
-      if (mounted) setState(() => _generando = false);
     }
   }
 
@@ -519,7 +521,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
       case _AccionProyecto.csv:
         _exportarCsv();
       case _AccionProyecto.enviar:
-        _enviarCoordinador();
+        _informe();
       case _AccionProyecto.alimentacion:
         _exportarAlimentacion();
       case _AccionProyecto.calculadora:
@@ -997,17 +999,11 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
         actions: [
           IconButton(
             tooltip: textos.detInformePdf,
-            icon: _generando
-                ? const SizedBox(
-                    width: 18,
-                    height: 18,
-                    child: CircularProgressIndicator(strokeWidth: 2))
-                : const Icon(Icons.picture_as_pdf_outlined),
-            onPressed: _generando ? null : _informe,
+            icon: const Icon(Icons.picture_as_pdf_outlined),
+            onPressed: _informe,
           ),
           PopupMenuButton<_AccionProyecto>(
             tooltip: textos.proyMasAcciones,
-            enabled: !_generando,
             onSelected: _accionMenu,
             itemBuilder: (_) {
               PopupMenuItem<_AccionProyecto> opcion(

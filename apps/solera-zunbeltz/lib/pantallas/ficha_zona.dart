@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../branding.dart';
+
 import '../datos/base_datos.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
@@ -67,29 +69,8 @@ class _FichaZonaState extends State<FichaZona> {
     if (creada == true) await _cargar();
   }
 
-  /// Trae aquí un lote que está en otra pieza (o fuera).
   Future<void> _traerLote() async {
-    final textos = AppLocalizations.of(context);
-    final aqui = {for (final resumen in _ganado) resumen.lote.id};
-    final lotes = (await _bd.listarResumenLotes())
-        .where((resumen) => !aqui.contains(resumen.lote.id))
-        .toList();
-    final zonas = await nombresDeZonas(_bd);
-    if (!mounted) return;
-    if (lotes.isEmpty) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(textos.ganSinOtrosLotes)));
-      return;
-    }
-    final elegido = await elegirLote(context, lotes, zonas);
-    if (elegido == null || !mounted) return;
-    final movido = await Navigator.of(context).push<bool>(MaterialPageRoute(
-        builder: (_) => FormularioMovimiento(
-            lote: elegido.lote, zonaDestinoId: widget.zona.id)));
-    if (movido == true) {
-      avisarCambioDatos();
-      await _cargar();
-    }
+    if (await traerRebanoAPieza(context, widget.zona.id!)) await _cargar();
   }
 
   Future<void> _abrirLote(int loteId) async {
@@ -102,23 +83,8 @@ class _FichaZonaState extends State<FichaZona> {
     if (await mostrarAccionesTarea(context, tarea)) await _cargar();
   }
 
-  Future<void> _marcarHecha(TareaMantenimiento tarea) async {
-    final id = tarea.id;
-    if (id == null) return;
-    final textos = AppLocalizations.of(context);
-    final generoSiguiente = await _bd.marcarTareaHecha(id) != null;
-    // Hoy, los contadores y el recordatorio de vencidas.
-    avisarCambioDatos();
-    await _cargar();
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(generoSiguiente
-            ? textos.tareaSiguienteGenerada
-            : textos.tareaGuardada)));
-    // La foto de cómo ha quedado, igual que al cerrarla desde su hoja.
-    await ofrecerFotoDespuesAlCerrar(context, id);
-    if (mounted) await _cargar();
-  }
+  Future<void> _marcarHecha(TareaMantenimiento tarea) =>
+      marcarTareaHechaDesdeLista(context, tarea, _cargar);
 
   Future<void> _borrarZona() async {
     final textos = AppLocalizations.of(context);
@@ -225,7 +191,8 @@ class _FichaZonaState extends State<FichaZona> {
                         width: 12,
                         height: 12,
                         decoration: BoxDecoration(
-                          color: colorEstadoZona(zona.estado),
+                          color: colorEstadoZona(
+                              zona.estado, context.coloresZunbeltz),
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -339,4 +306,34 @@ class _FichaZonaState extends State<FichaZona> {
             ),
     );
   }
+}
+
+/// Trae a la pieza `zonaId` un rebaño que está en otra pieza (o fuera):
+/// elige el rebaño y abre el formulario del movimiento con el destino ya
+/// puesto. `true` si se ha movido.
+Future<bool> traerRebanoAPieza(BuildContext context, int zonaId) async {
+  final textos = AppLocalizations.of(context);
+  final bd = BaseDatosSoleraZunbeltz();
+  final aqui = {
+    for (final resumen in (await bd.lotesPorZona())[zonaId] ?? const [])
+      resumen.lote.id
+  };
+  final lotes = (await bd.listarResumenLotes())
+      .where((resumen) => !aqui.contains(resumen.lote.id))
+      .toList();
+  final zonas = await nombresDeZonas(bd);
+  if (!context.mounted) return false;
+  if (lotes.isEmpty) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(textos.ganSinOtrosLotes)));
+    return false;
+  }
+  final elegido = await elegirLote(context, lotes, zonas);
+  if (elegido == null || !context.mounted) return false;
+  final movido = await Navigator.of(context).push<bool>(MaterialPageRoute(
+      builder: (_) =>
+          FormularioMovimiento(lote: elegido.lote, zonaDestinoId: zonaId)));
+  if (movido != true) return false;
+  avisarCambioDatos();
+  return true;
 }

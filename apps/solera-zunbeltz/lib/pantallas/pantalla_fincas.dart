@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -16,6 +19,7 @@ import '../modelos/constantes.dart';
 import '../modelos/finca.dart';
 import '../modelos/punto_infraestructura.dart';
 import '../modelos/zona_finca.dart';
+import '../utiles/etiquetas_sin_solape.dart';
 import '../utiles/estilos_tarea.dart';
 import '../utiles/edicion_contorno.dart';
 import '../utiles/geodesia.dart';
@@ -162,6 +166,20 @@ class _PantallaFincasState extends State<PantallaFincas> {
 
   /// Llega del botón «Mapa» del tablero: elige la pieza o se centra en el
   /// punto. Si aún está cargando, se atiende al terminar la carga.
+  /// Botones y hoja de abajo, para saber cuánto mapa tapan.
+  final _claveParteBaja = GlobalKey();
+
+  /// Alto medido de [_claveParteBaja] en el último fotograma (no se puede
+  /// preguntar mientras se construye).
+  double _altoParteBaja = 300;
+
+  void _medirParteBaja() {
+    final alto = _claveParteBaja.currentContext?.size?.height;
+    if (alto != null && mounted && (alto - _altoParteBaja).abs() > 1) {
+      setState(() => _altoParteBaja = alto);
+    }
+  }
+
   void _atenderVerEnMapa() {
     final destino = peticionVerEnMapa.value;
     if (destino == null || _cargando || !mounted) return;
@@ -181,7 +199,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
         _soloPorRevisar = false;
       });
       try {
-        _controlador.move(LatLng(punto.latitud!, punto.longitud!), 18);
+        // Al centro de lo que se ve: entre el buscador y los chips de
+        // arriba y la hoja de abajo, no en el centro del mapa entero.
+        final abajo = _altoParteBaja;
+        final arriba = MediaQuery.paddingOf(context).top + 140;
+        _controlador.move(LatLng(punto.latitud!, punto.longitud!), 18,
+            offset: Offset(0, (arriba - abajo) / 2));
       } catch (_) {
         // Sin mapa montado todavía.
       }
@@ -862,15 +885,78 @@ class _PantallaFincasState extends State<PantallaFincas> {
   /// Etiquetas de las zonas (nombre y superficie) y puntitos de las
   /// esquinas del trazado en curso. Van fuera del clustering: agrupar una
   /// etiqueta de parcela con un abrevadero no tendría sentido.
-  List<Marker> _marcadoresDeZonas(String idioma) {
+  /// Ids de las piezas cuyo nombre se pinta con esta cámara: lejos, solo la
+  /// elegida; de cerca, las que caben sin pisarse. Manda la elegida, luego
+  /// las de pasto y cercados, y entre iguales la más pequeña (la grande se
+  /// ve sola; la parcela catastral o el cierre, los últimos).
+  Set<int> _piezasConNombre(MapCamera camara, String idioma) {
+    final elegida = _zonaElegida?.id;
+    if (camara.zoom < _zoomMinimoEtiquetas) {
+      return {if (elegida != null) elegida};
+    }
+    final escala = MediaQuery.textScalerOf(context);
+    final rotulos = <RotuloMapa<int>>[];
+    for (final zona in _zonas) {
+      final centro = zona.centro;
+      if (centro == null || zona.id == null) continue;
+      final pantalla = camara.latLngToScreenPoint(centro);
+      final medida = TextPainter(
+        text: TextSpan(
+            text: _nombrePieza(zona, idioma),
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
+        textDirection: ui.TextDirection.ltr,
+        textScaler: escala,
+        maxLines: 1,
+      )..layout(maxWidth: 150);
+      final conCabezas = (_cabezasPorZona[zona.id] ?? 0) > 0;
+      final rango = switch (zona.tipo) {
+        'parcela_pasto' || 'pastoreo' || 'siega' || 'cercado' => 0,
+        _ => 1,
+      };
+      rotulos.add(RotuloMapa(
+        clave: zona.id!,
+        centro: Offset(pantalla.x, pantalla.y),
+        tamano: Size(math.min(medida.width + 20, 170),
+            medida.height + (conCabezas ? escala.scale(11) * 1.4 : 0) + 8),
+        prioridad: zona.id == elegida
+            ? -1
+            : rango * 100000 + zona.superficieHaCalculada,
+      ));
+      medida.dispose();
+    }
+    // Lo que no deja sitio a un nombre: el buscador y los chips de arriba,
+    // y los botones y la hoja de abajo. Los puntos no: van agrupados y se
+    // pintan encima.
+    final tamanoMapa = camara.nonRotatedSize;
+    final abajo = _altoParteBaja;
+    final arriba = MediaQuery.paddingOf(context).top + 140;
+    final obstaculos = <Rect>[
+      Rect.fromLTWH(0, 0, tamanoMapa.x, arriba),
+      Rect.fromLTWH(0, tamanoMapa.y - abajo, tamanoMapa.x, abajo),
+    ];
+    // La elegida se nombra siempre, aunque la tape algo.
+    return {
+      ...rotulosSinSolape(rotulos, obstaculos: obstaculos),
+      if (elegida != null) elegida,
+    };
+  }
+
+  String _nombrePieza(ZonaFinca zona, String idioma) => zona.nombre.isEmpty
+      ? (buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo)
+      : zona.nombre;
+
+  /// Etiquetas de las zonas (nombre y superficie) y puntitos de las
+  /// esquinas del trazado en curso. Van fuera del clustering: agrupar una
+  /// etiqueta de parcela con un abrevadero no tendría sentido.
+  List<Marker> _marcadoresDeZonas(String idioma, MapCamera camara) {
     final marcadores = <Marker>[];
+    final conNombre = (_editandoContorno || !_verPiezas)
+        ? const <int>{}
+        : _piezasConNombre(camara, idioma);
     for (final zona
         in (_editandoContorno || !_verPiezas) ? const <ZonaFinca>[] : _zonas) {
       final centro = zona.centro;
-      if (centro == null) continue;
-      final nombre = zona.nombre.isEmpty
-          ? (buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo)
-          : zona.nombre;
+      if (centro == null || !conNombre.contains(zona.id)) continue;
       final cabezas = _cabezasPorZona[zona.id] ?? 0;
       final elegida = zona.id != null && zona.id == _zonaElegida?.id;
       marcadores.add(Marker(
@@ -878,20 +964,14 @@ class _PantallaFincasState extends State<PantallaFincas> {
         width: 170,
         height: cabezas > 0 ? 48 : 32,
         child: IgnorePointer(
-          // Con poco zoom los nombres se amontonan: solo de cerca.
-          child: Builder(
-            builder: (contextoMapa) => !elegida &&
-                    MapCamera.of(contextoMapa).zoom < _zoomMinimoEtiquetas
-                ? const SizedBox.shrink()
-                : Center(
-                    child: _EtiquetaPieza(
-                      elegida: elegida,
-                      nombre: nombre,
-                      detalle: cabezas > 0
-                          ? AppLocalizations.of(context).ganCabezas(cabezas)
-                          : null,
-                    ),
-                  ),
+          child: Center(
+            child: _EtiquetaPieza(
+              elegida: elegida,
+              nombre: _nombrePieza(zona, idioma),
+              detalle: cabezas > 0
+                  ? AppLocalizations.of(context).ganCabezas(cabezas)
+                  : null,
+            ),
           ),
         ),
       ));
@@ -1093,6 +1173,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) => _medirParteBaja());
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
     if (_cargando) {
@@ -1151,7 +1232,12 @@ class _PantallaFincasState extends State<PantallaFincas> {
                       maxNativeZoom: 19,
                     ),
                     PolygonLayer(polygons: _poligonos()),
-                    MarkerLayer(markers: _marcadoresDeZonas(idioma)),
+                    // Con la cámara, para saber qué nombres caben sin pisarse.
+                    Builder(
+                      builder: (contextoMapa) => MarkerLayer(
+                          markers: _marcadoresDeZonas(
+                              idioma, MapCamera.of(contextoMapa))),
+                    ),
                     if (_ajustando) MarkerLayer(markers: _asasDeAjuste()),
                     MarkerClusterLayerWidget(
                       options: MarkerClusterLayerOptions(
@@ -1423,6 +1509,7 @@ class _PantallaFincasState extends State<PantallaFincas> {
                 right: 0,
                 bottom: 0,
                 child: Column(
+                  key: _claveParteBaja,
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [

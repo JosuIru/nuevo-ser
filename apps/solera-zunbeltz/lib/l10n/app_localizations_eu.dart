@@ -4257,4 +4257,74 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get compSinGastos => 'gasturik ez';
+
+  @override
+  String get ajuPreferencias => 'Hobespenak';
+
+  @override
+  String get ajuDatosCuenta => 'Datuak eta kontua';
+
+  @override
+  String get ajuLaApp => 'Aplikazioa';
+
+  @override
+  String get ajuTema => 'Gaia';
+
+  @override
+  String get ajuTemaSistema => 'Sistemak bezala';
+
+  @override
+  String get ajuTemaClaro => 'Argia';
+
+  @override
+  String get ajuTemaOscuro => 'Iluna';
+
+  @override
+  String get ajuSyncCuenta => 'Sinkronizazioa eta kontua';
+
+  @override
+  String get ajuSyncCuentaDetalle =>
+      'Zunbeltzen WordPressa, erabiltzaile-gakoa, modu lokala';
+
+  @override
+  String get ajuAyudaDetalle => 'Zure rolarekin egin dezakezuna';
+
+  @override
+  String get ajuAhora => 'Orain';
+
+  @override
+  String get ajuNadaPorSincronizar =>
+      'Zerbitzaririk gabe: dena gailu honetan geratzen da.';
+
+  @override
+  String ajuUltima(String cuando) {
+    return 'Azken sinkronizazioa: $cuando';
+  }
+
+  @override
+  String get sinTuCuenta => 'Zure kontua';
+
+  @override
+  String get sinServidor => 'Zerbitzaria';
+
+  @override
+  String get sinPerdisteClave =>
+      'Mugikorra aldatzen baduzu edo gakoa galtzen baduzu, eskatu berri bat koordinazioari.';
+
+  @override
+  String sinSesionIniciada(String nombre, String rol) {
+    return 'Saioa hasita: $nombre, $rol.';
+  }
+
+  @override
+  String get sinAlgoNoCuadra => 'Zerbait ez badator bat';
+
+  @override
+  String get sinVerClave => 'Gakoa ikusi';
+
+  @override
+  String get sinOcultarClave => 'Gakoa ezkutatu';
+
+  @override
+  String get sinSincronizado => 'Sinkronizatuta';
 }

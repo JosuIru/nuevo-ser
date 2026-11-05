@@ -4253,4 +4253,74 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get compSinGastos => 'sin gastos';
+
+  @override
+  String get ajuPreferencias => 'Preferencias';
+
+  @override
+  String get ajuDatosCuenta => 'Datos y cuenta';
+
+  @override
+  String get ajuLaApp => 'La app';
+
+  @override
+  String get ajuTema => 'Tema';
+
+  @override
+  String get ajuTemaSistema => 'Como el sistema';
+
+  @override
+  String get ajuTemaClaro => 'Claro';
+
+  @override
+  String get ajuTemaOscuro => 'Oscuro';
+
+  @override
+  String get ajuSyncCuenta => 'Sincronización y cuenta';
+
+  @override
+  String get ajuSyncCuentaDetalle =>
+      'WordPress de Zunbeltz, clave de usuario, modo local';
+
+  @override
+  String get ajuAyudaDetalle => 'Lo que puedes hacer con tu rol';
+
+  @override
+  String get ajuAhora => 'Ahora';
+
+  @override
+  String get ajuNadaPorSincronizar =>
+      'Sin servidor: todo queda en este dispositivo.';
+
+  @override
+  String ajuUltima(String cuando) {
+    return 'Última sincronización: $cuando';
+  }
+
+  @override
+  String get sinTuCuenta => 'Tu cuenta';
+
+  @override
+  String get sinServidor => 'Servidor';
+
+  @override
+  String get sinPerdisteClave =>
+      'Si cambias de móvil o pierdes la clave, pide una nueva a coordinación.';
+
+  @override
+  String sinSesionIniciada(String nombre, String rol) {
+    return 'Sesión iniciada: $nombre, $rol.';
+  }
+
+  @override
+  String get sinAlgoNoCuadra => 'Si algo no cuadra';
+
+  @override
+  String get sinVerClave => 'Ver la clave';
+
+  @override
+  String get sinOcultarClave => 'Ocultar la clave';
+
+  @override
+  String get sinSincronizado => 'Sincronizado';
 }

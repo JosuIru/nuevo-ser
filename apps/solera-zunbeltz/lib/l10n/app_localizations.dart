@@ -7154,6 +7154,132 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'sin gastos'**
   String get compSinGastos;
+
+  /// No description provided for @ajuPreferencias.
+  ///
+  /// In es, this message translates to:
+  /// **'Preferencias'**
+  String get ajuPreferencias;
+
+  /// No description provided for @ajuDatosCuenta.
+  ///
+  /// In es, this message translates to:
+  /// **'Datos y cuenta'**
+  String get ajuDatosCuenta;
+
+  /// No description provided for @ajuLaApp.
+  ///
+  /// In es, this message translates to:
+  /// **'La app'**
+  String get ajuLaApp;
+
+  /// No description provided for @ajuTema.
+  ///
+  /// In es, this message translates to:
+  /// **'Tema'**
+  String get ajuTema;
+
+  /// No description provided for @ajuTemaSistema.
+  ///
+  /// In es, this message translates to:
+  /// **'Como el sistema'**
+  String get ajuTemaSistema;
+
+  /// No description provided for @ajuTemaClaro.
+  ///
+  /// In es, this message translates to:
+  /// **'Claro'**
+  String get ajuTemaClaro;
+
+  /// No description provided for @ajuTemaOscuro.
+  ///
+  /// In es, this message translates to:
+  /// **'Oscuro'**
+  String get ajuTemaOscuro;
+
+  /// No description provided for @ajuSyncCuenta.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronización y cuenta'**
+  String get ajuSyncCuenta;
+
+  /// No description provided for @ajuSyncCuentaDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'WordPress de Zunbeltz, clave de usuario, modo local'**
+  String get ajuSyncCuentaDetalle;
+
+  /// No description provided for @ajuAyudaDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo que puedes hacer con tu rol'**
+  String get ajuAyudaDetalle;
+
+  /// No description provided for @ajuAhora.
+  ///
+  /// In es, this message translates to:
+  /// **'Ahora'**
+  String get ajuAhora;
+
+  /// No description provided for @ajuNadaPorSincronizar.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin servidor: todo queda en este dispositivo.'**
+  String get ajuNadaPorSincronizar;
+
+  /// No description provided for @ajuUltima.
+  ///
+  /// In es, this message translates to:
+  /// **'Última sincronización: {cuando}'**
+  String ajuUltima(String cuando);
+
+  /// No description provided for @sinTuCuenta.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuenta'**
+  String get sinTuCuenta;
+
+  /// No description provided for @sinServidor.
+  ///
+  /// In es, this message translates to:
+  /// **'Servidor'**
+  String get sinServidor;
+
+  /// No description provided for @sinPerdisteClave.
+  ///
+  /// In es, this message translates to:
+  /// **'Si cambias de móvil o pierdes la clave, pide una nueva a coordinación.'**
+  String get sinPerdisteClave;
+
+  /// No description provided for @sinSesionIniciada.
+  ///
+  /// In es, this message translates to:
+  /// **'Sesión iniciada: {nombre}, {rol}.'**
+  String sinSesionIniciada(String nombre, String rol);
+
+  /// No description provided for @sinAlgoNoCuadra.
+  ///
+  /// In es, this message translates to:
+  /// **'Si algo no cuadra'**
+  String get sinAlgoNoCuadra;
+
+  /// No description provided for @sinVerClave.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver la clave'**
+  String get sinVerClave;
+
+  /// No description provided for @sinOcultarClave.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocultar la clave'**
+  String get sinOcultarClave;
+
+  /// No description provided for @sinSincronizado.
+  ///
+  /// In es, this message translates to:
+  /// **'Sincronizado'**
+  String get sinSincronizado;
 }
 
 class _AppLocalizationsDelegate

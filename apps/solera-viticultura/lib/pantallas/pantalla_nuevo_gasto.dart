@@ -204,8 +204,16 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
       appBar: AppBar(
         title: Text(widget.existente == null ? SoleraL10n.t('viti.nuevo_gasto') : SoleraL10n.t('viti.editar_gasto')),
       ),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(SoleraL10n.t('guardar'),
+              guardando: _guardando),
+        ),
+      ]),
       body: Form(
         key: _claveFormulario,
+        child: CuerpoResponsivoSolera(
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -406,19 +414,8 @@ class _PantallaNuevoGastoState extends State<PantallaNuevoGasto> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: _guardando ? null : _guardar,
-              icon: _guardando
-                  ? SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(
-                          strokeWidth: 2, color: Colors.white))
-                  : Icon(Icons.check),
-              label: Text(SoleraL10n.t('guardar')),
-            ),
           ],
+        ),
         ),
       ),
     );

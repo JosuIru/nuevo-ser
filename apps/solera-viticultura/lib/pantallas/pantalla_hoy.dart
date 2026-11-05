@@ -1,22 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_bbch.dart';
 import '../datos/catalogos_generados/catalogo_variedades.dart';
 import 'pantalla_chat.dart';
 import 'pantalla_guia.dart';
+import '../utiles/idioma_fechas.dart';
 import 'widgets/tarjeta_resumen_meteo.dart';
-
-/// Nombre del día de la semana (1 = lunes) en el idioma actual.
-String _nombreDiaSemana(int diaSemana) => [
-      SoleraL10n.t('viti.dia_lunes'),
-      SoleraL10n.t('viti.dia_martes'),
-      SoleraL10n.t('viti.dia_miercoles'),
-      SoleraL10n.t('viti.dia_jueves'),
-      SoleraL10n.t('viti.dia_viernes'),
-      SoleraL10n.t('viti.dia_sabado'),
-      SoleraL10n.t('viti.dia_domingo')
-    ][diaSemana - 1];
 
 /// «de enero», «urtarrilaren», «d'abril»… en el idioma actual.
 String _mesConPreposicion(int mes) => [
@@ -74,12 +65,12 @@ class _PantallaHoyState extends State<PantallaHoy> {
     });
   }
 
-  String _fechaHoyEs(DateTime hoy) {
-    return SoleraL10n.tf('viti.fecha_hoy', {
-      'dia_semana': _nombreDiaSemana(hoy.weekday),
-      'dia': hoy.day,
-      'mes_de': _mesConPreposicion(hoy.month),
-    });
+  /// «Jueves, 5 de noviembre» en el idioma de la app, con mayúscula inicial.
+  String _fechaDeHoy(DateTime hoy) {
+    final textoFecha = DateFormat.MMMMEEEEd(localeFechasSolera).format(hoy);
+    return textoFecha.isEmpty
+        ? textoFecha
+        : textoFecha[0].toUpperCase() + textoFecha.substring(1);
   }
 
   /// Próximos N estados ordenados por mes/década, con wrap-around al
@@ -104,8 +95,8 @@ class _PantallaHoyState extends State<PantallaHoy> {
 
   @override
   Widget build(BuildContext context) {
+    final tema = Theme.of(context);
     final hoy = DateTime.now();
-    final fechaHoy = _fechaHoyEs(hoy);
     final estadoActual =
         estadoEsperadoEn(variedadId: _variedadId, zona: _zona, fecha: hoy);
     final proximos = _proximosEstados(
@@ -113,154 +104,137 @@ class _PantallaHoyState extends State<PantallaHoy> {
       zona: _zona,
       fecha: hoy,
     );
+    // El primer hito que no es el estado en que ya está la viña.
+    final proximoHito = proximos
+        .where((estado) => estado.estadoBbch != estadoActual?.estadoBbch)
+        .firstOrNull;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(SoleraL10n.t('viti.pestana_hoy')),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu_book_outlined),
-            tooltip: SoleraL10n.t('viti.guia_de_viticultura'),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const PantallaGuia()),
-            ),
-          ),
-        ],
-      ),
       body: ListView(
-        padding: const EdgeInsets.all(12),
+        padding:
+            rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 24)),
         children: [
-          // Aviso de versión nueva (no ocupa sitio si no hay).
-          AvisoActualizaciones(
-            config: configActualizacionesMonorepo('solera-viticultura'),
-            nombreApp: 'Larrea Viticultura',
-            margen: const EdgeInsets.only(bottom: 12),
-          ),
-          const TarjetaResumenMeteo(),
-          const SizedBox(height: 12),
-          Card(
-            child: ListTile(
-              leading: const Icon(Icons.chat_bubble_outline),
-              title: Text(SoleraL10n.t('viti.asistente_chat')),
-              subtitle: Text(SoleraL10n.t('viti.asistente_chat_ayuda')),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const PantallaChat()),
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    fechaHoy[0].toUpperCase() + fechaHoy.substring(1),
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  if (estadoActual != null) ...[
-                    Text(
-                      SoleraL10n.tf('viti.estado_fenologico_esperado', {
-                        'estado': estadoActual.nombreEstado,
-                        'bbch': estadoActual.estadoBbch,
-                      }),
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      SoleraL10n.tf('viti.variedad_en_zona', {
-                        'variedad': _etiquetaVariedad(_variedadId),
-                        'zona': _etiquetaZona(_zona),
-                      }),
-                      style: TextStyle(color: Colors.grey.shade700),
-                    ),
-                  ] else
-                    Text(SoleraL10n.t('viti.sin_datos_combinacion')),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(
-              SoleraL10n.t('viti.variedad'),
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Wrap(
-              spacing: 8,
-              runSpacing: 4,
-              children: [
-                for (final id in _variedadesConCalendario)
-                  ChoiceChip(
-                    label: Text(_etiquetaVariedad(id)),
-                    selected: _variedadId == id,
-                    onSelected: (s) {
-                      if (s) setState(() => _variedadId = id);
-                    },
-                  ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(
-              SoleraL10n.t('viti.zona'),
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Wrap(
-              spacing: 8,
-              children: [
-                for (final z in ZonaClimaticaVid.values)
-                  ChoiceChip(
-                    label: Text(_etiquetaZona(z)),
-                    selected: _zona == z,
-                    onSelected: (s) {
-                      if (s) setState(() => _zona = z);
-                    },
-                  ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Text(
-              SoleraL10n.t('viti.proximos_hitos_fenologicos'),
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          const SizedBox(height: 4),
-          if (proximos.isEmpty)
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(SoleraL10n.t('viti.sin_datos_calendario_combinacion')),
-            )
-          else
-            for (final e in proximos)
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.event, color: Color(0xFF7A1F2D)),
-                  title: Text('${e.nombreEstado} · BBCH ${e.estadoBbch}'),
-                  subtitle: Text(_formatoFecha(e.mes, e.decada)),
+          CabeceraHoySolera(
+            titulo: SoleraL10n.t('viti.pestana_hoy'),
+            fecha: _fechaDeHoy(hoy),
+            acciones: [
+              IconButton(
+                icon: const Icon(Icons.menu_book_outlined),
+                tooltip: SoleraL10n.t('viti.guia_de_viticultura'),
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const PantallaGuia()),
                 ),
               ),
-          const SizedBox(height: 16),
-          Text(
-            SoleraL10n.t('viti.aviso_decadas_orientativas'),
-            style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+            ],
+            cifras: [
+              CifraCabecera(
+                valor: estadoActual == null
+                    ? '—'
+                    : 'BBCH ${estadoActual.estadoBbch}',
+                etiqueta: SoleraL10n.t('viti.cifra_estado_esperado'),
+                detalle: estadoActual?.nombreEstado,
+              ),
+              CifraCabecera(
+                valor: proximoHito == null
+                    ? '—'
+                    : 'BBCH ${proximoHito.estadoBbch}',
+                etiqueta: SoleraL10n.t('viti.cifra_proximo_hito'),
+                detalle: proximoHito == null
+                    ? null
+                    : _formatoFecha(proximoHito.mes, proximoHito.decada),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Aviso de versión nueva (no ocupa sitio si no hay).
+                AvisoActualizaciones(
+                  config: configActualizacionesMonorepo('solera-viticultura'),
+                  nombreApp: 'Larrea Viticultura',
+                  margen: const EdgeInsets.only(bottom: 12),
+                ),
+                const TarjetaResumenMeteo(),
+                const SizedBox(height: 12),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.chat_bubble_outline),
+                    title: Text(SoleraL10n.t('viti.asistente_chat')),
+                    subtitle: Text(SoleraL10n.t('viti.asistente_chat_ayuda')),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const PantallaChat()),
+                    ),
+                  ),
+                ),
+                if (estadoActual == null)
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 16, 4, 0),
+                    child: Text(SoleraL10n.t('viti.sin_datos_combinacion'),
+                        style: tema.textTheme.bodyMedium?.copyWith(
+                            color: tema.colorScheme.onSurfaceVariant)),
+                  ),
+                TituloBloqueSolera(SoleraL10n.t('viti.variedad')),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 4,
+                  children: [
+                    for (final id in _variedadesConCalendario)
+                      ChoiceChip(
+                        label: Text(_etiquetaVariedad(id)),
+                        selected: _variedadId == id,
+                        onSelected: (seleccionado) {
+                          if (seleccionado) setState(() => _variedadId = id);
+                        },
+                      ),
+                  ],
+                ),
+                TituloBloqueSolera(SoleraL10n.t('viti.zona')),
+                Wrap(
+                  spacing: 8,
+                  children: [
+                    for (final zona in ZonaClimaticaVid.values)
+                      ChoiceChip(
+                        label: Text(_etiquetaZona(zona)),
+                        selected: _zona == zona,
+                        onSelected: (seleccionado) {
+                          if (seleccionado) setState(() => _zona = zona);
+                        },
+                      ),
+                  ],
+                ),
+                TituloBloqueSolera(
+                    SoleraL10n.t('viti.proximos_hitos_fenologicos')),
+                if (proximos.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Text(
+                        SoleraL10n.t('viti.sin_datos_calendario_combinacion')),
+                  )
+                else
+                  Card(
+                    child: Column(children: [
+                      for (final estado in proximos)
+                        ListTile(
+                          leading: Icon(Icons.event,
+                              color: tema.colorScheme.primary),
+                          title: Text(
+                              '${estado.nombreEstado} · BBCH ${estado.estadoBbch}'),
+                          subtitle:
+                              Text(_formatoFecha(estado.mes, estado.decada)),
+                        ),
+                    ]),
+                  ),
+                const SizedBox(height: 16),
+                Text(
+                  SoleraL10n.t('viti.aviso_decadas_orientativas'),
+                  style: tema.textTheme.bodySmall
+                      ?.copyWith(color: tema.colorScheme.onSurfaceVariant),
+                ),
+              ],
+            ),
           ),
         ],
       ),

@@ -241,8 +241,16 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
     final formatoFecha = DateFormat('dd/MM/yyyy');
     return Scaffold(
       appBar: AppBar(title: Text(_titulo)),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(SoleraL10n.t('guardar'),
+              guardando: _guardando),
+        ),
+      ]),
       body: Form(
         key: _claveFormulario,
+        child: CuerpoResponsivoSolera(
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
@@ -269,18 +277,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
               ),
               maxLines: 3,
             ),
-            SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: _guardando ? null : _guardar,
-              icon: _guardando
-                  ? SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                  : Icon(Icons.check),
-              label: Text(SoleraL10n.t('guardar')),
-            ),
           ],
+        ),
         ),
       ),
     );

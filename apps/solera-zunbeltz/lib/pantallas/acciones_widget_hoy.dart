@@ -11,6 +11,7 @@ import 'nuevo_aviso.dart';
 
 /// Pestañas de la pantalla principal a las que lleva el widget.
 const int indicePestanaHoy = 0;
+const int indicePestanaFincas = 1;
 const int indicePestanaGanado = 2;
 
 /// Lo que hace la app al abrirse desde un botón del widget de la pantalla

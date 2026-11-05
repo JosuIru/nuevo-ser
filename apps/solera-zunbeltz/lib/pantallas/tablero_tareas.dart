@@ -13,12 +13,19 @@ import '../modelos/tarea_mantenimiento.dart';
 import '../servicios/generador_parte_mantenimiento.dart';
 import 'pantalla_peticiones.dart';
 import 'widgets/acciones_tarea.dart';
-import 'widgets/tile_tarea.dart';
+import 'widgets/fila_tarea.dart';
+import 'nueva_tarea.dart';
+import '../utiles/estilos_tarea.dart';
+import '../utiles/tareas_por_lugar.dart';
+import '../estado/ver_en_mapa.dart';
+import '../branding.dart';
 import 'widgets/relleno_seguro.dart';
 import '../estado/datos_notificador.dart';
 
-/// Tablero de tareas de mantenimiento: lista filtrable por finca y estado,
-/// con exportación del parte en PDF.
+/// Tablero de tareas de mantenimiento (pantalla 07 de la propuesta):
+/// agrupadas por punto, pieza o finca, con «Mapa» para ir a cada sitio,
+/// filtros en chips (finca, abiertas o un estado, prioridad, mías) y el
+/// parte en PDF de lo filtrado.
 class TableroTareas extends StatefulWidget {
   const TableroTareas({super.key});
 
@@ -36,8 +43,14 @@ class _TableroTareasState extends State<TableroTareas> {
   bool _generandoPdf = false;
 
   int? _filtroFincaId;
-  String? _filtroEstado;
+
+  /// `abiertas` (todas menos las hechas, de partida), un estado concreto
+  /// o `null` (todas).
+  String? _filtroEstado = _estadoAbiertas;
+  String? _filtroPrioridad;
   bool _soloMias = false;
+
+  static const _estadoAbiertas = 'abiertas';
 
   @override
   void initState() {
@@ -74,62 +87,37 @@ class _TableroTareasState extends State<TableroTareas> {
     });
   }
 
-  Future<void> _marcarHecha(TareaMantenimiento tarea) async {
-    final id = tarea.id;
-    if (id == null) return;
-    final textos = AppLocalizations.of(context);
-    final generoSiguiente = await _bd.marcarTareaHecha(id) != null;
-    // Hoy, los contadores y el recordatorio de vencidas.
-    avisarCambioDatos();
-    await _cargar();
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(generoSiguiente
-            ? textos.tareaSiguienteGenerada
-            : textos.tareaGuardada)));
-    // La foto de cómo ha quedado, igual que al cerrarla desde su hoja.
-    await ofrecerFotoDespuesAlCerrar(context, id);
-    if (mounted) await _cargar();
-  }
+  Future<void> _marcarHecha(TareaMantenimiento tarea) =>
+      marcarTareaHechaDesdeLista(context, tarea, _cargar);
 
   Future<void> _accionesTarea(TareaMantenimiento tarea) async {
     if (await mostrarAccionesTarea(context, tarea)) await _cargar();
   }
 
-  List<TareaMantenimiento> get _tareasFiltradas {
-    final miUid = sesionEspacio.value?.persona.uid;
-    return _tareas.where((t) {
-      if (_filtroFincaId != null && t.fincaId != _filtroFincaId) return false;
-      if (_filtroEstado != null && t.estado != _filtroEstado) return false;
-      if (_soloMias && miUid != null && !t.tieneResponsable(miUid)) {
-        return false;
-      }
-      return true;
-    }).toList(growable: false);
+  /// Todos los filtros menos el de estado (para los contadores del chip).
+  bool _pasaFiltrosMenosEstado(TareaMantenimiento t, String? miUid) {
+    if (_filtroFincaId != null && t.fincaId != _filtroFincaId) return false;
+    if (_filtroPrioridad != null && t.prioridad != _filtroPrioridad) {
+      return false;
+    }
+    if (_soloMias && miUid != null && !t.tieneResponsable(miUid)) {
+      return false;
+    }
+    return true;
   }
 
-  String _subtitulo(TareaMantenimiento tarea, AppLocalizations textos) {
-    final finca = _fincas.firstWhere(
-      (f) => f.id == tarea.fincaId,
-      orElse: () => Finca(),
-    );
-    final punto = tarea.puntoId == null ? null : _puntosPorId[tarea.puntoId];
-    final zona = tarea.zonaId == null ? null : _zonasPorId[tarea.zonaId];
-    final idioma = Localizations.localeOf(context).languageCode;
-    final String anclaje;
-    if (punto != null) {
-      anclaje = punto.nombre.isNotEmpty
-          ? punto.nombre
-          : buscarOpcion(tiposPunto, punto.tipo)?.etiqueta(idioma) ??
-              punto.tipo;
-    } else if (zona != null) {
-      anclaje = zona.nombre.isNotEmpty
-          ? zona.nombre
-          : buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo;
-    } else {
-      anclaje = textos.tareaDeFinca;
-    }
-    return '${finca.nombre} · $anclaje';
+  bool _pasaEstado(TareaMantenimiento t, String? estado) => switch (estado) {
+        null => true,
+        _estadoAbiertas => t.estado != 'hecha',
+        _ => t.estado == estado,
+      };
+
+  List<TareaMantenimiento> get _tareasFiltradas {
+    final miUid = sesionEspacio.value?.persona.uid;
+    return _tareas
+        .where((t) =>
+            _pasaFiltrosMenosEstado(t, miUid) && _pasaEstado(t, _filtroEstado))
+        .toList(growable: false);
   }
 
   Future<void> _generarParte() async {
@@ -165,10 +153,65 @@ class _TableroTareasState extends State<TableroTareas> {
     );
   }
 
+  /// Nueva tarea de finca (sin punto ni pieza): la del filtro o, con varias,
+  /// la que se elija.
+  Future<void> _nuevaTarea() async {
+    final textos = AppLocalizations.of(context);
+    int? fincaId = _filtroFincaId;
+    if (fincaId == null && _fincas.length == 1) fincaId = _fincas.single.id;
+    if (fincaId == null && _fincas.isNotEmpty) {
+      fincaId = await showModalBottomSheet<int>(
+        context: context,
+        showDragHandle: true,
+        builder: (contexto) => SafeArea(
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
+              child: Text(textos.tableroElegirFinca,
+                  style: Theme.of(contexto).textTheme.titleMedium),
+            ),
+            for (final finca in _fincas)
+              ListTile(
+                leading: const Icon(Icons.home_work_outlined),
+                title: Text(finca.nombre),
+                onTap: () => Navigator.pop(contexto, finca.id),
+              ),
+          ]),
+        ),
+      );
+    }
+    if (fincaId == null || !mounted) return;
+    final creada = await Navigator.of(context).push<bool>(
+        MaterialPageRoute(builder: (_) => NuevaTarea(fincaId: fincaId!)));
+    if (creada == true) {
+      avisarCambioDatos();
+      await _cargar();
+    }
+  }
+
   Widget _construir(
       AppLocalizations textos, String idioma, SesionEspacio? sesion) {
     final tareas = _tareasFiltradas;
     final politica = politicaTareasActual;
+    final miUid = sesion?.persona.uid;
+    final grupos = agruparTareasPorLugar(
+      tareas,
+      puntosExistentes: _puntosPorId.keys.toSet(),
+      zonasExistentes: _zonasPorId.keys.toSet(),
+    );
+    int contar(String? estado) => _tareas
+        .where(
+            (t) => _pasaFiltrosMenosEstado(t, miUid) && _pasaEstado(t, estado))
+        .length;
+    String etiquetaEstado(String? estado) => switch (estado) {
+          null => textos.tableroTodosEstados,
+          _estadoAbiertas => textos.tableroAbiertas(contar(estado)),
+          _ =>
+            '${buscarOpcion(estadosTarea, estado)?.etiqueta(idioma) ?? estado} ${contar(estado)}',
+        };
+    final fincaFiltrada =
+        _fincas.where((finca) => finca.id == _filtroFincaId).firstOrNull;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(textos.tableroTitulo),
@@ -192,49 +235,107 @@ class _TableroTareasState extends State<TableroTareas> {
           ),
         ],
       ),
+      floatingActionButton: politica.puedeCrear && _fincas.isNotEmpty
+          ? FloatingActionButton.extended(
+              onPressed: _nuevaTarea,
+              icon: const Icon(Icons.add_task),
+              label: Text(textos.zonaNuevaTarea),
+            )
+          : null,
       body: _cargando
           ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
-                _Filtros(
-                  fincas: _fincas,
-                  idioma: idioma,
-                  textos: textos,
-                  fincaId: _filtroFincaId,
-                  estado: _filtroEstado,
-                  onFinca: (v) => setState(() => _filtroFincaId = v),
-                  onEstado: (v) => setState(() => _filtroEstado = v),
-                ),
-                if (sesion != null)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: FilterChip(
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                  child: Row(children: [
+                    if (_fincas.length > 1) ...[
+                      _ChipDesplegable<int>(
+                        etiqueta:
+                            fincaFiltrada?.nombre ?? textos.tableroTodasFincas,
+                        activo: fincaFiltrada != null,
+                        opciones: [
+                          (-1, textos.tableroTodasFincas),
+                          for (final finca in _fincas)
+                            if (finca.id != null) (finca.id!, finca.nombre),
+                        ],
+                        alElegir: (id) => setState(
+                            () => _filtroFincaId = id == -1 ? null : id),
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+                    _ChipDesplegable<String>(
+                      etiqueta: etiquetaEstado(_filtroEstado),
+                      activo: _filtroEstado != null,
+                      opciones: [
+                        (_estadoAbiertas, etiquetaEstado(_estadoAbiertas)),
+                        for (final estado in estadosTarea)
+                          (estado.codigo, etiquetaEstado(estado.codigo)),
+                        ('', textos.tableroTodosEstados),
+                      ],
+                      alElegir: (estado) => setState(
+                          () => _filtroEstado = estado.isEmpty ? null : estado),
+                    ),
+                    const SizedBox(width: 8),
+                    _ChipDesplegable<String>(
+                      etiqueta: _filtroPrioridad == null
+                          ? textos.tareaPrioridad
+                          : '${textos.tareaPrioridad}: ${(buscarOpcion(prioridadesTarea, _filtroPrioridad!)?.etiqueta(idioma) ?? _filtroPrioridad!).toLowerCase()}',
+                      activo: _filtroPrioridad != null,
+                      opciones: [
+                        for (final prioridad in prioridadesTarea)
+                          (prioridad.codigo, prioridad.etiqueta(idioma)),
+                        ('', textos.tableroTodasPrioridades),
+                      ],
+                      alElegir: (prioridad) => setState(() => _filtroPrioridad =
+                          prioridad.isEmpty ? null : prioridad),
+                    ),
+                    if (sesion != null) ...[
+                      const SizedBox(width: 8),
+                      FilterChip(
                         label: Text(textos.tableroMisTareas),
                         selected: _soloMias,
                         onSelected: (valor) =>
                             setState(() => _soloMias = valor),
                       ),
-                    ),
-                  ),
-                const Divider(height: 1),
+                    ],
+                  ]),
+                ),
                 Expanded(
-                  child: tareas.isEmpty
-                      ? Center(child: Text(textos.tableroSinTareas))
+                  child: grupos.isEmpty
+                      ? Center(
+                          child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: Text(
+                              _filtroEstado == _estadoAbiertas
+                                  ? textos.tableroSinAbiertas
+                                  : textos.tableroSinTareas,
+                              textAlign: TextAlign.center),
+                        ))
                       : ListView(
                           padding: rellenoSobreBarraSistema(
-                              context, const EdgeInsets.symmetric(vertical: 8)),
+                              context, const EdgeInsets.only(bottom: 96)),
                           children: [
-                            for (final tarea in tareas)
-                              TileTarea(
-                                tarea: tarea,
-                                idioma: idioma,
-                                subtitulo: _subtitulo(tarea, textos),
-                                onTap: () => _accionesTarea(tarea),
-                                onMarcarHecha: politica.puedeEjecutar(tarea)
-                                    ? () => _marcarHecha(tarea)
-                                    : null,
+                            for (final grupo in grupos)
+                              _GrupoLugar(
+                                grupo: grupo,
+                                icono: _iconoGrupo(grupo),
+                                titulo: _tituloGrupo(grupo, textos, idioma),
+                                alVerEnMapa: _destinoGrupo(grupo),
+                                filas: [
+                                  for (final tarea in grupo.tareas)
+                                    FilaTarea(
+                                      tarea: tarea,
+                                      lugar: '',
+                                      verResponsable: true,
+                                      alPulsar: () => _accionesTarea(tarea),
+                                      alMarcarHecha:
+                                          politica.puedeEjecutar(tarea)
+                                              ? () => _marcarHecha(tarea)
+                                              : null,
+                                    ),
+                                ],
                               ),
                           ],
                         ),
@@ -243,68 +344,166 @@ class _TableroTareasState extends State<TableroTareas> {
             ),
     );
   }
+
+  IconData _iconoGrupo(GrupoTareasLugar grupo) => switch (grupo.lugar) {
+        LugarTarea.punto => iconoTipoPunto(_puntosPorId[grupo.id]!.tipo),
+        LugarTarea.zona => Icons.grass,
+        LugarTarea.finca => Icons.home_work_outlined,
+      };
+
+  String _tituloGrupo(
+      GrupoTareasLugar grupo, AppLocalizations textos, String idioma) {
+    switch (grupo.lugar) {
+      case LugarTarea.punto:
+        final punto = _puntosPorId[grupo.id]!;
+        return punto.nombre.isNotEmpty
+            ? punto.nombre
+            : buscarOpcion(tiposPunto, punto.tipo)?.etiqueta(idioma) ??
+                punto.tipo;
+      case LugarTarea.zona:
+        final zona = _zonasPorId[grupo.id]!;
+        return zona.nombre.isNotEmpty
+            ? zona.nombre
+            : buscarOpcion(tiposZona, zona.tipo)?.etiqueta(idioma) ?? zona.tipo;
+      case LugarTarea.finca:
+        final finca =
+            _fincas.where((finca) => finca.id == grupo.id).firstOrNull;
+        return finca == null
+            ? textos.tareaDeFinca
+            : textos.tableroTareasGenerales(finca.nombre);
+    }
+  }
+
+  /// «Mapa» lleva a la pieza o al punto (si tiene coordenadas); las
+  /// tareas generales de una finca no tienen sitio al que ir.
+  VoidCallback? _destinoGrupo(GrupoTareasLugar grupo) {
+    switch (grupo.lugar) {
+      case LugarTarea.punto:
+        final punto = _puntosPorId[grupo.id]!;
+        if (punto.latitud == null || punto.longitud == null) return null;
+        return () => verEnMapa(context, DestinoMapa(puntoId: grupo.id));
+      case LugarTarea.zona:
+        return () => verEnMapa(context, DestinoMapa(zonaId: grupo.id));
+      case LugarTarea.finca:
+        return null;
+    }
+  }
 }
 
-class _Filtros extends StatelessWidget {
-  const _Filtros({
-    required this.fincas,
-    required this.idioma,
-    required this.textos,
-    required this.fincaId,
-    required this.estado,
-    required this.onFinca,
-    required this.onEstado,
+/// Un sitio del tablero: icono, nombre y «Mapa», y sus tareas en una
+/// tarjeta.
+class _GrupoLugar extends StatelessWidget {
+  const _GrupoLugar({
+    required this.grupo,
+    required this.icono,
+    required this.titulo,
+    required this.alVerEnMapa,
+    required this.filas,
   });
 
-  final List<Finca> fincas;
-  final String idioma;
-  final AppLocalizations textos;
-  final int? fincaId;
-  final String? estado;
-  final ValueChanged<int?> onFinca;
-  final ValueChanged<String?> onEstado;
+  final GrupoTareasLugar grupo;
+  final IconData icono;
+  final String titulo;
+  final VoidCallback? alVerEnMapa;
+  final List<Widget> filas;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 6),
-      child: Row(
-        children: [
-          Expanded(
-            child: DropdownButtonFormField<int?>(
-              initialValue: fincaId,
-              isExpanded: true,
-              decoration: InputDecoration(
-                labelText: textos.tableroFiltroFinca,
-                isDense: true,
-              ),
-              items: [
-                DropdownMenuItem(value: null, child: Text(textos.tableroTodas)),
-                for (final f in fincas)
-                  DropdownMenuItem(value: f.id, child: Text(f.nombre)),
-              ],
-              onChanged: onFinca,
+    final textos = AppLocalizations.of(context);
+    final esquema = context.esquemaZunbeltz;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: EdgeInsets.fromLTRB(20, 16, 8, alVerEnMapa == null ? 10 : 2),
+          child: Row(children: [
+            Icon(icono, size: 20, color: esquema.primary),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(titulo,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: Theme.of(context).textTheme.titleMedium),
             ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: DropdownButtonFormField<String?>(
-              initialValue: estado,
-              isExpanded: true,
-              decoration: InputDecoration(
-                labelText: textos.tableroFiltroEstado,
-                isDense: true,
+            if (alVerEnMapa != null)
+              TextButton.icon(
+                onPressed: alVerEnMapa,
+                icon: const Icon(Icons.map_outlined, size: 20),
+                label: Text(textos.tableroVerEnMapa),
               ),
-              items: [
-                DropdownMenuItem(value: null, child: Text(textos.tableroTodas)),
-                for (final e in estadosTarea)
-                  DropdownMenuItem(
-                      value: e.codigo, child: Text(e.etiqueta(idioma))),
-              ],
-              onChanged: onEstado,
-            ),
+          ]),
+        ),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: esquema.surfaceContainerLow,
+            borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
           ),
-        ],
+          clipBehavior: Clip.antiAlias,
+          child: Column(children: [
+            for (var indice = 0; indice < filas.length; indice++) ...[
+              if (indice > 0)
+                Divider(
+                    height: 1,
+                    indent: 74,
+                    endIndent: 16,
+                    color: esquema.outlineVariant),
+              filas[indice],
+            ],
+          ]),
+        ),
+      ],
+    );
+  }
+}
+
+/// Filtro en chip que abre un menú (finca, estado, prioridad). Activo,
+/// relleno y con la marca; si no, con borde.
+class _ChipDesplegable<T> extends StatelessWidget {
+  const _ChipDesplegable({
+    required this.etiqueta,
+    required this.activo,
+    required this.opciones,
+    required this.alElegir,
+  });
+
+  final String etiqueta;
+  final bool activo;
+  final List<(T, String)> opciones;
+  final ValueChanged<T> alElegir;
+
+  @override
+  Widget build(BuildContext context) {
+    final esquema = context.esquemaZunbeltz;
+    final color =
+        activo ? esquema.onSecondaryContainer : esquema.onSurfaceVariant;
+    return PopupMenuButton<T>(
+      tooltip: '',
+      onSelected: alElegir,
+      itemBuilder: (_) => [
+        for (final (valor, texto) in opciones)
+          PopupMenuItem<T>(value: valor, child: Text(texto)),
+      ],
+      child: Container(
+        height: 32,
+        padding: EdgeInsets.only(left: activo ? 8 : 12, right: 6),
+        decoration: BoxDecoration(
+          color: activo ? esquema.secondaryContainer : null,
+          border: activo ? null : Border.all(color: esquema.outline),
+          borderRadius: BorderRadius.circular(radioZunbeltz),
+        ),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          if (activo) ...[
+            Icon(Icons.check, size: 18, color: color),
+            const SizedBox(width: 6),
+          ],
+          Text(etiqueta,
+              style: Theme.of(context)
+                  .textTheme
+                  .labelLarge
+                  ?.copyWith(color: color)),
+          Icon(Icons.arrow_drop_down, size: 20, color: color),
+        ]),
       ),
     );
   }

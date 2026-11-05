@@ -27,6 +27,7 @@ import 'datos/base_datos.dart';
 import 'estado/idioma_app.dart';
 import 'estado/sesion_espacio.dart';
 import 'estado/version_demo.dart';
+import 'estado/ver_en_mapa.dart';
 import 'l10n/app_localizations.dart';
 import 'pantallas/acciones_widget_hoy.dart';
 import 'pantallas/pantalla_ajustes.dart';
@@ -89,6 +90,8 @@ class AppSoleraZunbeltz extends StatelessWidget {
           onGenerateTitle: (ctx) => AppLocalizations.of(ctx).appTitulo,
           debugShowCheckedModeBanner: false,
           theme: temaZunbeltz(),
+          darkTheme: temaZunbeltz(oscuro: true),
+          themeMode: ThemeMode.system,
           locale: localeActivo,
           localizationsDelegates: const [
             AppLocalizations.delegate,
@@ -187,6 +190,15 @@ class _PantallaPrincipalState extends State<PantallaPrincipal>
     _temporizadorSincronizacion = Timer.periodic(
         _intervaloSincronizacion, (_) => sincronizarEspacioEnSilencio());
     _escucharWidget();
+    peticionVerEnMapa.addListener(_irAlMapa);
+  }
+
+  /// «Mapa» en el tablero de tareas: a la pestaña de Fincas, que atiende
+  /// la petición.
+  void _irAlMapa() {
+    if (peticionVerEnMapa.value != null && mounted) {
+      setState(() => _indice = indicePestanaFincas);
+    }
   }
 
   Future<void> _escucharWidget() async {
@@ -217,6 +229,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal>
   @override
   void dispose() {
     _toquesWidget?.cancel();
+    peticionVerEnMapa.removeListener(_irAlMapa);
     _temporizadorSincronizacion?.cancel();
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();

@@ -3605,6 +3605,7 @@ class SoleraL10n {
     'ques.volumen_total_leche_l',
     'ques.y_n_mas',
     'ques.zona_geografica',
+    'ques.hoy_nada_pendiente',
     'viti.a_ingresar_hacienda_303',
     'viti.aceptar_y_rellenar',
     'viti.acerca_ayuda',
@@ -7728,6 +7729,7 @@ class SoleraL10n {
           'ques.volumen_total_leche_l',
           'ques.y_n_mas',
           'ques.zona_geografica',
+          'ques.hoy_nada_pendiente',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -11848,6 +11850,7 @@ class SoleraL10n {
           'ques.volumen_total_leche_l',
           'ques.y_n_mas',
           'ques.zona_geografica',
+          'ques.hoy_nada_pendiente',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -15968,6 +15971,7 @@ class SoleraL10n {
           'ques.volumen_total_leche_l',
           'ques.y_n_mas',
           'ques.zona_geografica',
+          'ques.hoy_nada_pendiente',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -20111,6 +20115,7 @@ class SoleraL10n {
       case 'ques.volumen_total_leche_l': return 'Volumen total de leche (L)';
       case 'ques.y_n_mas': return '… y {n} más';
       case 'ques.zona_geografica': return 'Zona geográfica';
+      case 'ques.hoy_nada_pendiente': return 'Nada pendiente para hoy';
       case 'viti.a_ingresar_hacienda_303': return 'A ingresar en Hacienda (modelo 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Aceptar y rellenar';
       case 'viti.acerca_ayuda': return 'Versión, créditos, compromisos legales';
@@ -24235,6 +24240,7 @@ class SoleraL10n {
       case 'ques.volumen_total_leche_l': return 'Esnearen bolumen osoa (L)';
       case 'ques.y_n_mas': return '… eta beste {n}';
       case 'ques.zona_geografica': return 'Eremu geografikoa';
+      case 'ques.hoy_nada_pendiente': return 'Gaur ez dago ezer egiteko';
       case 'viti.a_ingresar_hacienda_303': return 'Ogasunean sartzeko (303 eredua, hiruhilekoa)';
       case 'viti.aceptar_y_rellenar': return 'Onartu eta bete';
       case 'viti.acerca_ayuda': return 'Bertsioa, kredituak, lege-konpromisoak';
@@ -28359,6 +28365,7 @@ class SoleraL10n {
       case 'ques.volumen_total_leche_l': return 'Volum total de llet (L)';
       case 'ques.y_n_mas': return '… i {n} més';
       case 'ques.zona_geografica': return 'Zona geogràfica';
+      case 'ques.hoy_nada_pendiente': return 'Res pendent per avui';
       case 'viti.a_ingresar_hacienda_303': return 'A ingressar a Hisenda (model 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Acceptar i emplenar';
       case 'viti.acerca_ayuda': return 'Versió, crèdits, compromisos legals';
@@ -32483,6 +32490,7 @@ class SoleraL10n {
       case 'ques.volumen_total_leche_l': return 'Volume total de leite (L)';
       case 'ques.y_n_mas': return '… e {n} máis';
       case 'ques.zona_geografica': return 'Zona xeográfica';
+      case 'ques.hoy_nada_pendiente': return 'Nada pendente para hoxe';
       case 'viti.a_ingresar_hacienda_303': return 'A ingresar en Facenda (modelo 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Aceptar e encher';
       case 'viti.acerca_ayuda': return 'Versión, créditos, compromisos legais';

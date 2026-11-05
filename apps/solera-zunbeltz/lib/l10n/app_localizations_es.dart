@@ -4229,4 +4229,28 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get simTocaCamino =>
       'Toca uno para verlo arriba; mantén pulsado para borrarlo.';
+
+  @override
+  String get compTitulo => 'Comparativa de proyectos';
+
+  @override
+  String compMeses(String n) {
+    return '$n meses';
+  }
+
+  @override
+  String get compCerrado => 'cerrado';
+
+  @override
+  String get compBalanceMes => 'Balance del test por mes';
+
+  @override
+  String get compBalanceMesAyuda =>
+      'Para comparar proyectos de distinta duración.';
+
+  @override
+  String get compParteTester => 'Parte que asume la persona tester';
+
+  @override
+  String get compSinGastos => 'sin gastos';
 }

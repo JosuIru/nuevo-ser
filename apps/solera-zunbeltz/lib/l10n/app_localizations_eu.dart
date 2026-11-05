@@ -4233,4 +4233,28 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get simTocaCamino =>
       'Ukitu bat goian ikusteko; luze sakatu ezabatzeko.';
+
+  @override
+  String get compTitulo => 'Proiektuen alderaketa';
+
+  @override
+  String compMeses(String n) {
+    return '$n hilabete';
+  }
+
+  @override
+  String get compCerrado => 'itxita';
+
+  @override
+  String get compBalanceMes => 'Testaren balantzea hileko';
+
+  @override
+  String get compBalanceMesAyuda =>
+      'Iraupen desberdineko proiektuak alderatzeko.';
+
+  @override
+  String get compParteTester => 'Pertsona testerrak hartzen duen zatia';
+
+  @override
+  String get compSinGastos => 'gasturik ez';
 }

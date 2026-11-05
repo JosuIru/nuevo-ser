@@ -7112,6 +7112,48 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Toca uno para verlo arriba; mantén pulsado para borrarlo.'**
   String get simTocaCamino;
+
+  /// No description provided for @compTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Comparativa de proyectos'**
+  String get compTitulo;
+
+  /// No description provided for @compMeses.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} meses'**
+  String compMeses(String n);
+
+  /// No description provided for @compCerrado.
+  ///
+  /// In es, this message translates to:
+  /// **'cerrado'**
+  String get compCerrado;
+
+  /// No description provided for @compBalanceMes.
+  ///
+  /// In es, this message translates to:
+  /// **'Balance del test por mes'**
+  String get compBalanceMes;
+
+  /// No description provided for @compBalanceMesAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Para comparar proyectos de distinta duración.'**
+  String get compBalanceMesAyuda;
+
+  /// No description provided for @compParteTester.
+  ///
+  /// In es, this message translates to:
+  /// **'Parte que asume la persona tester'**
+  String get compParteTester;
+
+  /// No description provided for @compSinGastos.
+  ///
+  /// In es, this message translates to:
+  /// **'sin gastos'**
+  String get compSinGastos;
 }
 
 class _AppLocalizationsDelegate

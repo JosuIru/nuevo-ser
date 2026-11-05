@@ -1271,5 +1271,12 @@
   "simNombreCamino": "Bidearen izena",
   "simCaminoN": "{n}. bidea",
   "simPorKgVivo": "{importe}/kg bizirik",
-  "simTocaCamino": "Ukitu bat goian ikusteko; luze sakatu ezabatzeko."
+  "simTocaCamino": "Ukitu bat goian ikusteko; luze sakatu ezabatzeko.",
+  "compTitulo": "Proiektuen alderaketa",
+  "compMeses": "{n} hilabete",
+  "compCerrado": "itxita",
+  "compBalanceMes": "Testaren balantzea hileko",
+  "compBalanceMesAyuda": "Iraupen desberdineko proiektuak alderatzeko.",
+  "compParteTester": "Pertsona testerrak hartzen duen zatia",
+  "compSinGastos": "gasturik ez"
 }

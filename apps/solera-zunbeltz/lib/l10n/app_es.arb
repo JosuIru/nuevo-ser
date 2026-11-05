@@ -2029,5 +2029,13 @@
   "@simCaminoN": {"placeholders": {"n": {"type": "String"}}},
   "simPorKgVivo": "{importe}/kg vivo",
   "@simPorKgVivo": {"placeholders": {"importe": {"type": "String"}}},
-  "simTocaCamino": "Toca uno para verlo arriba; mantén pulsado para borrarlo."
+  "simTocaCamino": "Toca uno para verlo arriba; mantén pulsado para borrarlo.",
+  "compTitulo": "Comparativa de proyectos",
+  "compMeses": "{n} meses",
+  "@compMeses": {"placeholders": {"n": {"type": "String"}}},
+  "compCerrado": "cerrado",
+  "compBalanceMes": "Balance del test por mes",
+  "compBalanceMesAyuda": "Para comparar proyectos de distinta duración.",
+  "compParteTester": "Parte que asume la persona tester",
+  "compSinGastos": "sin gastos"
 }

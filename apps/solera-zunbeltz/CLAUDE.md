@@ -276,7 +276,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Informe del proyecto** (pantalla 16, `pantalla_informe_proyecto.dart`): vista previa del PDF (`PdfPreview` de `printing`, sin su barra), aviso de **borrador** si no es la versión definitiva, chips de periodo (cambiar uno regenera y deja la ficha en ese periodo), «Se envía a» con el correo de coordinación y **Compartir / Enviar al coordinador** (deshabilitado sin correo). Lo abren el icono PDF de la ficha y «Enviar al coordinador» del ⋮. **La vista previa no se ve en los tests** (rasterizar necesita el complemento nativo): sin comprobar en móvil.
 
-**Pendiente**: inventario (20), partidas (21), simulador (22), comparativa (23); Imágenes en la web de la propuesta.
+- **Inventario de bienes** (pantalla 20, `pantalla_inventario.dart`): agrupado por instalaciones / material ganadero / adecuaciones (icono en su cuadro de color), cada bien con «precio · vida útil N meses» y su cuota al mes. **Abierto desde un proyecto** (`PantallaInventario(proyecto:)`: ⋮ de la ficha y Convenio → Amortizaciones) lleva el bloque «Cuota que asume Zunbeltz» (al mes y en los meses del test) y una **casilla por bien** que crea o quita su `UsoBien` al 100 % (si el uso tenía porcentaje o meses propios, pregunta antes); sin proyecto, el inventario general de siempre. Solo marca quien puede editar el inventario.
+
+**Pendiente**: partidas (21), simulador (22), comparativa (23); Imágenes en la web de la propuesta.
 
 ## Hard limits (heredados de la Suite Solera)
 

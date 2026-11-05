@@ -565,8 +565,8 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
   }
 
   Future<void> _abrirInventario() async {
-    await Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => const PantallaInventario()));
+    await Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => PantallaInventario(proyecto: _proyecto)));
     await _cargar();
   }
 

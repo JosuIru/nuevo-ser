@@ -33,6 +33,7 @@ import 'nuevo_proyecto.dart';
 import 'pantalla_calculadora.dart';
 import 'pantalla_convenio.dart';
 import 'pantalla_informe_proyecto.dart';
+import 'pantalla_inventario.dart';
 import '../estado/datos_notificador.dart';
 import 'widgets/confirmar_borrado.dart';
 import 'widgets/proyecto_visual.dart';
@@ -529,6 +530,11 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
             builder: (_) => PantallaCalculadora(proyecto: _proyecto)));
       case _AccionProyecto.convenio:
         _abrirConvenio(0);
+      case _AccionProyecto.inventario:
+        Navigator.of(context)
+            .push(MaterialPageRoute(
+                builder: (_) => PantallaInventario(proyecto: _proyecto)))
+            .then((_) => _cargar());
       case _AccionProyecto.editar:
         _editar();
       case _AccionProyecto.cerrar:
@@ -1018,6 +1024,8 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
               return [
                 opcion(_AccionProyecto.convenio, Icons.handshake_outlined,
                     textos.convenioTitulo),
+                opcion(_AccionProyecto.inventario, Icons.inventory_2_outlined,
+                    textos.invTitulo),
                 opcion(_AccionProyecto.calculadora, Icons.calculate_outlined,
                     textos.calculadoraTitulo),
                 opcion(_AccionProyecto.csv, Icons.table_view_outlined,
@@ -1411,6 +1419,7 @@ class _DesgloseIva extends StatelessWidget {
 
 enum _AccionProyecto {
   convenio,
+  inventario,
   calculadora,
   csv,
   enviar,

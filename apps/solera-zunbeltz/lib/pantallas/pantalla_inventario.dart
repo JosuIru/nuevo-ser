@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
 
+import '../branding.dart';
 import '../datos/base_datos.dart';
+import '../estado/datos_notificador.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/amortizacion.dart';
 import '../modelos/constantes.dart';
 import '../modelos/indicadores_seguimiento.dart' show eurosDesdeCentimos;
+import '../modelos/proyecto_test.dart';
 import '../utiles/numeros.dart';
 import 'widgets/confirmar_borrado.dart';
 import 'widgets/cuerpo_responsivo.dart';
+import 'widgets/proyecto_visual.dart';
 import 'widgets/relleno_seguro.dart';
 
 /// Inventario de bienes amortizables del espacio (instalaciones, material
 /// ganadero, adecuaciones de finca), como la hoja «Listado-amortización»
 /// de Zunbeltz. Coordinación lo mantiene; el resto lo consulta.
+///
+/// Abierto desde un [proyecto], cada bien lleva una casilla «lo usa este
+/// proyecto» (un `UsoBien` al 100 %) y arriba sale la cuota que asume
+/// Zunbeltz por los bienes que usa.
 class PantallaInventario extends StatefulWidget {
-  const PantallaInventario({super.key});
+  const PantallaInventario({super.key, this.proyecto});
+
+  final ProyectoTest? proyecto;
 
   @override
   State<PantallaInventario> createState() => _PantallaInventarioState();
@@ -24,9 +34,13 @@ class PantallaInventario extends StatefulWidget {
 class _PantallaInventarioState extends State<PantallaInventario> {
   final _bd = BaseDatosSoleraZunbeltz();
   List<BienAmortizable> _bienes = const [];
+
+  /// Usos del proyecto por bien (vacío sin proyecto).
+  Map<int, UsoBien> _usosPorBien = const {};
   bool _cargando = true;
 
   bool get _gestiona => politicaEspacioActual.puedeEditarInventario;
+  ProyectoTest? get _proyecto => widget.proyecto;
 
   @override
   void initState() {
@@ -37,9 +51,14 @@ class _PantallaInventarioState extends State<PantallaInventario> {
   Future<void> _cargar() async {
     try {
       final bienes = await _bd.listarBienes();
+      final proyecto = _proyecto;
+      final usos = proyecto?.id == null
+          ? const <UsoBien>[]
+          : await _bd.listarUsosBienes(proyecto!.id!);
       if (!mounted) return;
       setState(() {
         _bienes = bienes;
+        _usosPorBien = {for (final uso in usos) uso.bienId: uso};
         _cargando = false;
       });
     } catch (_) {
@@ -59,13 +78,255 @@ class _PantallaInventarioState extends State<PantallaInventario> {
     await _cargar();
   }
 
+  /// Marca o desmarca el uso del bien en el proyecto. Si el uso tenía un
+  /// porcentaje o unos meses propios, se pregunta antes de quitarlo.
+  Future<void> _cambiarUso(BienAmortizable bien, bool usar) async {
+    final textos = AppLocalizations.of(context);
+    final proyecto = _proyecto;
+    if (proyecto?.id == null || bien.id == null) return;
+    final uso = _usosPorBien[bien.id];
+    if (usar && uso == null) {
+      await _bd
+          .guardarUsoBien(UsoBien(proyectoId: proyecto!.id!, bienId: bien.id!));
+    } else if (!usar && uso?.id != null) {
+      final propio = uso!.imputacionPorcentaje != 100 || uso.duracionMeses > 0;
+      if (propio) {
+        final seguir = await showDialog<bool>(
+          context: context,
+          builder: (contexto) => AlertDialog(
+            content: Text(textos.invQuitarUso),
+            actions: [
+              TextButton(
+                  onPressed: () => Navigator.pop(contexto, false),
+                  child: Text(textos.comunCancelar)),
+              FilledButton(
+                  onPressed: () => Navigator.pop(contexto, true),
+                  child: Text(textos.comunBorrar)),
+            ],
+          ),
+        );
+        if (seguir != true) return;
+      }
+      await _bd.borrarUsoBien(uso.id!);
+    }
+    avisarCambioDatos();
+    await _cargar();
+  }
+
+  /// Cuota mensual que se imputa al proyecto por un bien que usa.
+  double _cuotaMensualImputada(BienAmortizable bien, UsoBien uso) =>
+      bien.cuotaMensualCentimos * uso.imputacionPorcentaje / 100;
+
+  Widget _cabecera(AppLocalizations textos) {
+    final proyecto = _proyecto!;
+    final estilos = Theme.of(context).textTheme;
+    var alMes = 0.0;
+    var total = 0;
+    for (final bien in _bienes) {
+      final uso = _usosPorBien[bien.id];
+      if (uso == null) continue;
+      alMes += _cuotaMensualImputada(bien, uso);
+      total += cuotaImputadaCentimos(bien, uso, proyecto);
+    }
+    final meses = mesesDelProyecto(proyecto);
+    final tintaSuave = Colors.white.withValues(alpha: 0.8);
+    final oscuro = context.esquemaZunbeltz.brightness == Brightness.dark;
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+      decoration: BoxDecoration(
+        color: oscuro ? const Color(0xFF0E3A2B) : colorCuadroPino,
+        borderRadius: bordeDestacadoZunbeltz,
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(textos.invCuotaZunbeltz,
+            style: estilos.titleSmall?.copyWith(color: tintaSuave)),
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.end,
+          spacing: 10,
+          children: [
+            Text('${eurosDesdeCentimos(alMes.round())} €',
+                style: estilos.displaySmall?.copyWith(
+                    color: Colors.white, fontWeight: FontWeight.w700)),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Text(textos.invAlMes,
+                  style: estilos.titleMedium?.copyWith(color: tintaSuave)),
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        Text(
+            meses > 0
+                ? textos.invEnLosMeses(
+                    eurosRedondos(total), numeroLegible(meses))
+                : textos.invSinFechas,
+            style: estilos.bodyMedium?.copyWith(color: tintaSuave)),
+      ]),
+    );
+  }
+
+  Widget _grupo(String grupo, List<BienAmortizable> bienes, String idioma,
+      AppLocalizations textos) {
+    final esquema = context.esquemaZunbeltz;
+    final estilos = Theme.of(context).textTheme;
+    final (Color fondo, Color tinta, IconData icono) = switch (grupo) {
+      'instalaciones' => (
+          colorCuadroPino,
+          Colors.white,
+          Icons.warehouse_outlined
+        ),
+      'material_ganadero' => (
+          colorCuadroSalvia,
+          colorSobreCuadroClaro,
+          Icons.agriculture_outlined
+        ),
+      'adecuaciones' => (
+          colorCuadroEsmeralda,
+          colorSobreCuadroClaro,
+          Icons.water_drop_outlined
+        ),
+      _ => (
+          esquema.secondaryContainer,
+          esquema.onSecondaryContainer,
+          Icons.inventory_2_outlined
+        ),
+    };
+    final conProyecto = _proyecto != null;
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 10),
+        child: Row(children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: fondo,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(8),
+                topRight: Radius.circular(8),
+                bottomLeft: Radius.circular(8),
+                bottomRight: Radius.circular(16),
+              ),
+            ),
+            child: Icon(icono, size: 22, color: tinta),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Text(etiquetaPartida(categoriaAmortizacion, grupo, idioma),
+                style:
+                    estilos.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+          ),
+        ]),
+      ),
+      Container(
+        decoration: BoxDecoration(
+          color: esquema.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(children: [
+          for (var indice = 0; indice < bienes.length; indice++) ...[
+            if (indice > 0)
+              Divider(
+                  height: 1,
+                  indent: conProyecto ? 64 : 16,
+                  endIndent: 16,
+                  color: esquema.outlineVariant),
+            _filaBien(bienes[indice], idioma, textos),
+          ],
+        ]),
+      ),
+    ]);
+  }
+
+  Widget _filaBien(
+      BienAmortizable bien, String idioma, AppLocalizations textos) {
+    final esquema = context.esquemaZunbeltz;
+    final estilos = Theme.of(context).textTheme;
+    final uso = _usosPorBien[bien.id];
+    final conProyecto = _proyecto != null;
+    final usado = uso != null;
+    final apagado = conProyecto && !usado;
+    final cuota =
+        usado ? _cuotaMensualImputada(bien, uso) : bien.cuotaMensualCentimos;
+    final detalle = [
+      textos.invPrecioVidaUtil(
+          eurosRedondos(bien.totalCentimos), '${bien.vidaUtilMeses}'),
+      if (bien.especie.isNotEmpty)
+        buscarOpcion(especiesGanado, bien.especie)?.etiqueta(idioma) ??
+            bien.especie,
+      if (usado && uso.imputacionPorcentaje != 100)
+        textos
+            .invParte('${uso.imputacionPorcentaje}')
+            .replaceAll(' %', '\u00A0%'),
+    ].join(' · ');
+    return InkWell(
+      onTap: _gestiona ? () => _editar(bien) : null,
+      onLongPress: _gestiona ? () => _borrar(bien) : null,
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(conProyecto ? 8 : 16, 12, 16, 12),
+        child: Row(children: [
+          if (conProyecto)
+            Checkbox(
+              value: usado,
+              semanticLabel: textos.invLoUsa,
+              onChanged: _gestiona
+                  ? (valor) => _cambiarUso(bien, valor ?? false)
+                  : null,
+            ),
+          if (conProyecto) const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(bien.nombre,
+                    style: estilos.titleMedium?.copyWith(
+                        color: apagado ? esquema.onSurfaceVariant : null)),
+                Text(detalle,
+                    style: estilos.bodyMedium
+                        ?.copyWith(color: esquema.onSurfaceVariant)),
+              ],
+            ),
+          ),
+          const SizedBox(width: 12),
+          Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Text('${eurosDesdeCentimos(cuota.round())} €',
+                style: estilos.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: apagado ? esquema.onSurfaceVariant : null)),
+            Text(textos.invPorMes,
+                style: estilos.bodySmall
+                    ?.copyWith(color: esquema.onSurfaceVariant)),
+          ]),
+        ]),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
     final grupos = partidasDe(categoriaAmortizacion);
+    final proyecto = _proyecto;
+    final codigosGrupo = [
+      ...grupos.map((opcion) => opcion.codigo),
+      // Por si llega un grupo que esta versión no conoce.
+      ..._bienes
+          .map((bien) => bien.grupo)
+          .where((codigo) => buscarOpcion(grupos, codigo) == null)
+          .toSet(),
+    ];
     return Scaffold(
-      appBar: AppBar(title: Text(textos.invTitulo)),
+      appBar: AppBar(
+        title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(textos.invTitulo),
+          if (proyecto != null && proyecto.nombre.isNotEmpty)
+            Text(proyecto.nombre,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: context.esquemaZunbeltz.onSurfaceVariant)),
+        ]),
+      ),
       floatingActionButton: _gestiona
           ? FloatingActionButton.extended(
               onPressed: () => _editar(),
@@ -78,47 +339,26 @@ class _PantallaInventarioState extends State<PantallaInventario> {
           : CuerpoResponsivo(
               child: ListView(
                 padding: rellenoSobreBarraSistema(
-                    context, const EdgeInsets.fromLTRB(16, 12, 16, 88)),
+                    context, const EdgeInsets.fromLTRB(16, 8, 16, 96)),
                 children: [
+                  if (proyecto != null) ...[
+                    _cabecera(textos),
+                    const SizedBox(height: 16),
+                  ],
                   Text(textos.invIntro,
-                      style: Theme.of(context).textTheme.bodyMedium),
-                  const SizedBox(height: 12),
-                  if (_bienes.isEmpty) Text(textos.invVacio),
-                  for (final grupo in [
-                    ...grupos.map((opcion) => opcion.codigo),
-                    // Por si llega un grupo que esta versión no conoce.
-                    ..._bienes
-                        .map((bien) => bien.grupo)
-                        .where((codigo) => buscarOpcion(grupos, codigo) == null)
-                        .toSet(),
-                  ])
-                    if (_bienes.any((bien) => bien.grupo == grupo)) ...[
-                      Padding(
-                        padding: const EdgeInsets.only(top: 12, bottom: 4),
-                        child: Text(
-                            etiquetaPartida(
-                                categoriaAmortizacion, grupo, idioma),
-                            style: Theme.of(context).textTheme.titleMedium),
-                      ),
-                      for (final bien
-                          in _bienes.where((bien) => bien.grupo == grupo))
-                        Card(
-                          child: ListTile(
-                            title: Text(bien.nombre),
-                            subtitle: Text([
-                              if (bien.especie.isNotEmpty)
-                                buscarOpcion(especiesGanado, bien.especie)
-                                        ?.etiqueta(idioma) ??
-                                    bien.especie,
-                              resumenBien(textos, bien),
-                            ].join(' · ')),
-                            trailing: Text(
-                                '${eurosDesdeCentimos(bien.totalCentimos)} €'),
-                            onTap: _gestiona ? () => _editar(bien) : null,
-                            onLongPress: _gestiona ? () => _borrar(bien) : null,
-                          ),
-                        ),
-                    ],
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  if (_bienes.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Text(textos.invVacio),
+                    ),
+                  for (final grupo in codigosGrupo)
+                    if (_bienes.any((bien) => bien.grupo == grupo))
+                      _grupo(
+                          grupo,
+                          _bienes.where((bien) => bien.grupo == grupo).toList(),
+                          idioma,
+                          textos),
                 ],
               ),
             ),

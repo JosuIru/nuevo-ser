@@ -290,7 +290,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Registrar actividad, Entidades y Acerca de** (pantallas 24, 26 y 27). **Registrar actividad** (`pantalla_registrar_actividad.dart`, sustituye al diálogo de Convenio → Acompañamiento): tipo en baldosas a dos columnas con su icono (`iconoAcompanamiento` en `widgets/proyecto_visual.dart`), asistencia en segmentados, fecha y horas, descripción y notas. **Sin «persona experta» ni «valoración de la implicación (0-10)» de la propuesta**: no existen en el modelo (añadirlos es BD + sync + plugin; a decidir con Zunbeltz). **Entidades**: fondo verde de cabecera y logos en claro y centrados (`LogosEntidadesPorGrupo(colorTinta:)`; `filtroLogoClaro` ya es público). **Acerca de**: cabecera verde con curvas de nivel dibujadas, el símbolo en claro, «Zunbeltz» y la asociación, el texto en párrafos y los enlaces en tarjeta; los logos ya no van aquí (están en Entidades y en Hoy). **Actualizaciones (25) se queda como estaba**: es `PantallaEstadoActualizaciones` del core, común a toda la suite.
 
-**Pendiente**: bienvenida (01); Actualizaciones (25) si se quiere tocar el core.
+- **Bienvenida** (pantalla 01, `pantalla_onboarding.dart`): fondo de cabecera con curvas de nivel (`widgets/curvas_de_nivel.dart`, compartido con Acerca de), símbolo en claro, título y texto, idioma en segmentados (salvia el elegido), «Empezar →» en esmeralda y pie «Espacio Test Agrario Zunbeltz · Navarra» (la propuesta ponía «Lezaun»: sin confirmar, no se puso).
+
+**Pendiente**: Actualizaciones (25), si se quiere tocar la pantalla común del core; probar el rediseño entero en un móvil (sobre todo: hoja de la pieza en el mapa real, «Mapa» del tablero, vista previa del informe en PDF, tema claro/oscuro elegido a mano).
 
 ## Hard limits (heredados de la Suite Solera)
 

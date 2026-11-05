@@ -1,10 +1,9 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../branding.dart';
 import '../l10n/app_localizations.dart';
+import 'widgets/curvas_de_nivel.dart';
 import 'widgets/logos_entidades.dart' show filtroLogoClaro;
 import 'widgets/relleno_seguro.dart';
 
@@ -59,7 +58,7 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
               child: Stack(children: [
                 Positioned.fill(
                   child: CustomPaint(
-                    painter: _CurvasDeNivel(
+                    painter: CurvasDeNivel(
                         color: colores.sobreCabecera.withValues(alpha: 0.12)),
                   ),
                 ),
@@ -151,44 +150,6 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
       ),
     );
   }
-}
-
-/// Curvas de nivel concéntricas y algo deformadas, de adorno en la
-/// cabecera (como el plano de la presentación).
-class _CurvasDeNivel extends CustomPainter {
-  _CurvasDeNivel({required this.color});
-
-  final Color color;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final pincel = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.6;
-    final centro = Offset(size.width * 1.02, size.height * 0.5);
-    for (var anillo = 1; anillo <= 14; anillo++) {
-      final radio = anillo * size.height * 0.085;
-      final camino = Path();
-      for (var paso = 0; paso <= 72; paso++) {
-        final angulo = paso / 72 * 2 * math.pi;
-        // Una ondulación suave que cambia con el anillo.
-        final deformacion = 1 +
-            0.10 * math.sin(3 * angulo + anillo * 0.4) +
-            0.05 * math.cos(5 * angulo - anillo * 0.3);
-        final punto = centro +
-            Offset(math.cos(angulo) * radio * 1.25 * deformacion,
-                math.sin(angulo) * radio * deformacion);
-        paso == 0
-            ? camino.moveTo(punto.dx, punto.dy)
-            : camino.lineTo(punto.dx, punto.dy);
-      }
-      canvas.drawPath(camino, pincel);
-    }
-  }
-
-  @override
-  bool shouldRepaint(_CurvasDeNivel viejo) => viejo.color != color;
 }
 
 class _Enlace {

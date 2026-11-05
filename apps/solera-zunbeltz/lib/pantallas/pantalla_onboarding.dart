@@ -4,6 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../branding.dart';
 import '../estado/idioma_app.dart';
 import '../l10n/app_localizations.dart';
+import 'widgets/curvas_de_nivel.dart';
+import 'widgets/logos_entidades.dart' show filtroLogoClaro;
 
 /// Bienvenida de primer arranque. Permite elegir idioma (castellano/euskera)
 /// y entrar. Marca `zunbeltz.onboarding_visto` para no repetirse.
@@ -34,122 +36,117 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
     final localeActivo = Localizations.localeOf(context).languageCode;
+    final colores = context.coloresZunbeltz;
+    final estilos = Theme.of(context).textTheme;
     return Scaffold(
-      backgroundColor: context.coloresZunbeltz.cabecera,
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 32),
+      backgroundColor: colores.cabecera,
+      body: Stack(children: [
+        // Curvas de nivel de adorno, arriba a la derecha.
+        Positioned.fill(
+          child: CustomPaint(
+            painter: CurvasDeNivel(
+              color: colores.sobreCabecera.withValues(alpha: 0.14),
+              centroRelativo: const Offset(0.92, 0.26),
+              separacion: 0.028,
+            ),
+          ),
+        ),
+        SafeArea(
+          child: Center(
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 480),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    textos.onboardingTitulo,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 34,
-                      fontWeight: FontWeight.w700,
+              child: LayoutBuilder(
+                builder: (contexto, limites) => SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(24, 32, 24, 16),
+                  child: ConstrainedBox(
+                    constraints:
+                        BoxConstraints(minHeight: limites.maxHeight - 48),
+                    child: IntrinsicHeight(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: ColorFiltered(
+                              colorFilter: filtroLogoClaro(
+                                  colores.sobreCabecera.withValues(alpha: 0.9)),
+                              child: Image.asset(rutaLogoZunbeltz,
+                                  height: 72, semanticLabel: 'Zunbeltz'),
+                            ),
+                          ),
+                          const Spacer(flex: 3),
+                          Text(textos.onboardingTitulo,
+                              style: estilos.displaySmall?.copyWith(
+                                  color: colores.sobreCabecera,
+                                  fontWeight: FontWeight.w700)),
+                          const SizedBox(height: 16),
+                          Text(textos.onboardingCuerpo,
+                              style: estilos.titleMedium?.copyWith(
+                                  color: colores.sobreCabeceraVariante,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.5)),
+                          const Spacer(flex: 2),
+                          const SizedBox(height: 24),
+                          // Ambos idiomas de primera clase desde el día uno.
+                          SegmentedButton<String>(
+                            style: SegmentedButton.styleFrom(
+                              backgroundColor: Colors.transparent,
+                              foregroundColor: colores.sobreCabecera,
+                              selectedBackgroundColor: colorCuadroSalvia,
+                              selectedForegroundColor: colorSobreCuadroClaro,
+                              side: BorderSide(
+                                  color: colores.sobreCabeceraVariante
+                                      .withValues(alpha: 0.6)),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                            ),
+                            segments: [
+                              ButtonSegment(
+                                  value: 'es',
+                                  label: Text(textos.ajustesIdiomaCastellano)),
+                              ButtonSegment(
+                                  value: 'eu',
+                                  label: Text(textos.ajustesIdiomaEuskera)),
+                            ],
+                            selected: {localeActivo},
+                            onSelectionChanged: (elegidos) =>
+                                elegirIdiomaZunbeltz(elegidos.first),
+                          ),
+                          const Spacer(flex: 2),
+                          const SizedBox(height: 24),
+                          FilledButton(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: colores.acento,
+                              foregroundColor: colores.sobreAcento,
+                              padding: const EdgeInsets.symmetric(vertical: 18),
+                            ),
+                            onPressed: _empezar,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(textos.onboardingBoton,
+                                    style: estilos.titleMedium?.copyWith(
+                                        color: colores.sobreAcento,
+                                        fontWeight: FontWeight.w700)),
+                                const SizedBox(width: 10),
+                                const Icon(Icons.arrow_forward),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(textos.onboardingPie,
+                              textAlign: TextAlign.center,
+                              style: estilos.bodyMedium?.copyWith(
+                                  color: colores.sobreCabeceraVariante)),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Text(
-                    textos.onboardingCuerpo,
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.82),
-                      fontSize: 16,
-                      height: 1.5,
-                    ),
-                  ),
-                  const SizedBox(height: 28),
-                  // Selector de idioma: ambos de primera clase desde el día uno.
-                  Wrap(
-                    spacing: 10,
-                    children: [
-                      _ChipIdioma(
-                        etiqueta: textos.ajustesIdiomaCastellano,
-                        activo: localeActivo == 'es',
-                        alPulsar: () => elegirIdiomaZunbeltz('es'),
-                      ),
-                      _ChipIdioma(
-                        etiqueta: textos.ajustesIdiomaEuskera,
-                        activo: localeActivo == 'eu',
-                        alPulsar: () => elegirIdiomaZunbeltz('eu'),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FilledButton(
-                      style: FilledButton.styleFrom(
-                        backgroundColor: context.coloresZunbeltz.acento,
-                        foregroundColor: context.coloresZunbeltz.sobreAcento,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                      ),
-                      onPressed: _empezar,
-                      child: Text(
-                        textos.onboardingBoton,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _ChipIdioma extends StatelessWidget {
-  const _ChipIdioma({
-    required this.etiqueta,
-    required this.activo,
-    required this.alPulsar,
-  });
-
-  final String etiqueta;
-  final bool activo;
-  final VoidCallback alPulsar;
-
-  @override
-  Widget build(BuildContext context) {
-    // Botón propio (no ChoiceChip) para controlar el contraste sobre el fondo
-    // oscuro del onboarding: activo = musgo + texto oscuro; inactivo =
-    // translúcido con borde y texto blancos.
-    return Material(
-      color: activo
-          ? context.esquemaZunbeltz.secondaryContainer
-          : Colors.white.withValues(alpha: 0.14),
-      shape: StadiumBorder(
-        side: BorderSide(
-          color: activo ? Colors.transparent : Colors.white70,
-        ),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: alPulsar,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 11),
-          child: Text(
-            etiqueta,
-            style: TextStyle(
-              color: activo
-                  ? context.esquemaZunbeltz.onSecondaryContainer
-                  : Colors.white,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-      ),
+      ]),
     );
   }
 }

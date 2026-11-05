@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/sesion_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../modelos/agenda.dart';
 import '../modelos/calculo_transformacion.dart';
+import '../modelos/constantes.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/relleno_seguro.dart';
 import '../utiles/numeros.dart';
 import 'widgets/confirmar_borrado.dart';
-import 'widgets/liberar_al_cerrar.dart';
 
 /// Calculadora de transformación de un proyecto: de un animal de X kg a kg
 /// de producto, ingreso, costes y margen, con caminos guardados para
@@ -35,6 +36,10 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
   final _costeSacrificio = TextEditingController();
   final _costeTransformacion = TextEditingController();
   final _otrosCostes = TextEditingController();
+  final _nombreCamino = TextEditingController();
+
+  /// Camino guardado que se está viendo arriba (se resalta en la lista).
+  int? _caminoVisto;
 
   List<RendimientoReferencia> _referencias = const [];
   List<EscenarioTransformacion> _escenarios = const [];
@@ -69,10 +74,12 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
     for (final campo in _campos) {
       campo.dispose();
     }
+    _nombreCamino.dispose();
     super.dispose();
   }
 
-  void _recalcular() => setState(() {});
+  /// Al tocar una cifra, lo de arriba ya no es el camino guardado.
+  void _recalcular() => setState(() => _caminoVisto = null);
 
   Future<void> _cargar() async {
     final referencias = await _bd.listarRendimientos();
@@ -122,35 +129,14 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
 
   Future<void> _guardarEscenario() async {
     final textos = AppLocalizations.of(context);
-    final nombre = TextEditingController();
-    final aceptado = await showDialog<bool>(
-      context: context,
-      builder: (contexto) => LiberarAlCerrar(
-        controladores: [nombre],
-        child: AlertDialog(
-          title: Text(textos.calculadoraGuardar),
-          content: TextField(
-            controller: nombre,
-            autofocus: true,
-            decoration:
-                InputDecoration(labelText: textos.calculadoraNombreEscenario),
-          ),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.pop(contexto, false),
-                child: Text(textos.comunCancelar)),
-            FilledButton(
-                onPressed: () => Navigator.pop(contexto, true),
-                child: Text(textos.comunGuardar)),
-          ],
-        ),
-      ),
-    );
-    if (aceptado != true || widget.proyecto.id == null) return;
+    if (widget.proyecto.id == null) return;
     final calculo = _calculo;
-    await _bd.guardarEscenario(EscenarioTransformacion(
+    final nombre = _nombreCamino.text.trim().isEmpty
+        ? textos.simCaminoN('${_escenarios.length + 1}')
+        : _nombreCamino.text.trim();
+    final id = await _bd.guardarEscenario(EscenarioTransformacion(
       proyectoId: widget.proyecto.id!,
-      nombre: nombre.text.trim(),
+      nombre: nombre,
       pesoVivoKg: calculo.pesoVivoKg,
       animales: calculo.animales,
       rendimientoCanal: calculo.rendimientoCanalPorcentaje,
@@ -162,149 +148,360 @@ class _PantallaCalculadoraState extends State<PantallaCalculadora> {
       fechaMs: DateTime.now().millisecondsSinceEpoch,
     ));
     await _cargar();
+    if (mounted) setState(() => _caminoVisto = id);
   }
 
-  Widget _campo(TextEditingController controlador, String etiqueta) => SizedBox(
-        width: 260,
-        child: TextField(
-          controller: controlador,
-          keyboardType: const TextInputType.numberWithOptions(decimal: true),
-          decoration: InputDecoration(labelText: etiqueta),
-        ),
+  /// Pone arriba las cifras de un camino guardado.
+  void _verCamino(EscenarioTransformacion escenario) {
+    _pesoVivo.text = _texto(escenario.pesoVivoKg).replaceAll('.', ',');
+    _animales.text = '${escenario.animales}';
+    _rendimientoCanal.text =
+        _texto(escenario.rendimientoCanal).replaceAll('.', ',');
+    _rendimientoProducto.text =
+        _texto(escenario.rendimientoProducto).replaceAll('.', ',');
+    String euros(int centimos) =>
+        centimos == 0 ? '' : eurosDesdeCentimos(centimos);
+    _precioKg.text = euros(escenario.precioKgCentimos);
+    _costeSacrificio.text = euros(escenario.costeSacrificioCentimos);
+    _costeTransformacion.text = euros(escenario.costeTransformacionKgCentimos);
+    _otrosCostes.text = euros(escenario.otrosCostesCentimos);
+    _nombreCamino.text = escenario.nombre;
+    setState(() => _caminoVisto = escenario.id);
+  }
+
+  Widget _campo(TextEditingController controlador, String etiqueta) =>
+      TextField(
+        controller: controlador,
+        keyboardType: const TextInputType.numberWithOptions(decimal: true),
+        decoration: InputDecoration(labelText: etiqueta),
       );
 
-  Widget _fila(String etiqueta, String valor, {bool destacado = false}) {
-    final estilo = destacado
-        ? Theme.of(context).textTheme.titleMedium
-        : Theme.of(context).textTheme.bodyMedium;
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
-      child: Row(children: [
-        Expanded(child: Text(etiqueta, style: estilo)),
-        Text(valor, style: estilo),
+  /// Dos campos en una fila.
+  Widget _parCampos(Widget izquierdo, Widget derecho) => Padding(
+        padding: const EdgeInsets.only(bottom: 12),
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(child: izquierdo),
+          const SizedBox(width: 12),
+          Expanded(child: derecho),
+        ]),
+      );
+
+  /// Peso vivo → canal → producto vendible, con barras proporcionales.
+  Widget _embudo(CalculoTransformacion calculo, AppLocalizations textos) {
+    final esquema = context.esquemaZunbeltz;
+    final estilos = Theme.of(context).textTheme;
+    final vivo = calculo.kgVivosTotales;
+    Widget paso(String rotulo, String? detalle, double kilos, Color color) {
+      final proporcion = vivo <= 0 ? 0.0 : (kilos / vivo).clamp(0.0, 1.0);
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 14),
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(rotulo,
+                      style: estilos.titleSmall
+                          ?.copyWith(fontWeight: FontWeight.w600)),
+                  if (detalle != null)
+                    Text(detalle,
+                        style: estilos.bodySmall
+                            ?.copyWith(color: esquema.onSurfaceVariant)),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text('${_numero(kilos)} kg',
+                style:
+                    estilos.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
+          ]),
+          const SizedBox(height: 6),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: FractionallySizedBox(
+              widthFactor: proporcion == 0 ? 0.01 : proporcion,
+              child: Container(
+                height: 18,
+                decoration: BoxDecoration(
+                    color: color, borderRadius: BorderRadius.circular(5)),
+              ),
+            ),
+          ),
+        ]),
+      );
+    }
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 6),
+      decoration: BoxDecoration(
+        color: esquema.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(children: [
+        paso(textos.simPesoVivo, null, vivo, colorCuadroSalvia),
+        paso(
+            textos.simCanal,
+            textos.simACanal(_numero(calculo.rendimientoCanalPorcentaje)),
+            calculo.kgCanal,
+            colorCuadroEsmeralda),
+        paso(
+            textos.simProducto,
+            textos
+                .simSobreCanal(_numero(calculo.rendimientoProductoPorcentaje)),
+            calculo.kgProducto,
+            esquema.brightness == Brightness.dark
+                ? esquema.primary
+                : colorCuadroPino),
       ]),
     );
   }
 
-  Widget _resultados(CalculoTransformacion calculo, AppLocalizations textos) =>
-      Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        _fila(textos.calculadoraKgCanal, '${_numero(calculo.kgCanal)} kg'),
-        _fila(
-            textos.calculadoraKgProducto, '${_numero(calculo.kgProducto)} kg'),
-        _fila(textos.calculadoraIngreso,
-            '${eurosDesdeCentimos(calculo.ingresoCentimos)} €'),
-        _fila(textos.calculadoraCostes,
-            '−${eurosDesdeCentimos(calculo.costesCentimos)} €'),
-        const Divider(),
-        _fila(textos.calculadoraMargen,
-            '${eurosDesdeCentimos(calculo.margenCentimos)} €',
-            destacado: true),
-        _fila(textos.calculadoraMargenKgVivo,
-            '${eurosDesdeCentimos(calculo.margenPorKgVivoCentimos)} €/kg'),
-      ]);
+  /// Bloque destacado con ingreso, margen y margen por kg vivo.
+  Widget _resultado(CalculoTransformacion calculo, AppLocalizations textos) {
+    final estilos = Theme.of(context).textTheme;
+    final suave = Colors.white.withValues(alpha: 0.8);
+    final oscuro = context.esquemaZunbeltz.brightness == Brightness.dark;
+    Widget cifra(String rotulo, int centimos) => Expanded(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(rotulo, style: estilos.bodyMedium?.copyWith(color: suave)),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
+              child: Text('${eurosDesdeCentimos(centimos)} €',
+                  style: estilos.headlineSmall?.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.w700)),
+            ),
+          ]),
+        );
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: oscuro ? const Color(0xFF0E3A2B) : colorCuadroPino,
+        borderRadius: bordeDestacadoZunbeltz,
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          cifra(textos.calculadoraIngreso, calculo.ingresoCentimos),
+          const SizedBox(width: 12),
+          cifra(textos.calculadoraMargen, calculo.margenCentimos),
+        ]),
+        const SizedBox(height: 14),
+        Text(textos.calculadoraMargenKgVivo,
+            style: estilos.bodyMedium?.copyWith(color: suave)),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(
+              '${eurosDesdeCentimos(calculo.margenPorKgVivoCentimos)} €/kg',
+              style: estilos.displaySmall
+                  ?.copyWith(color: Colors.white, fontWeight: FontWeight.w700)),
+        ),
+        if (_puedeGuardar) ...[
+          const SizedBox(height: 16),
+          FilledButton.tonalIcon(
+            style: FilledButton.styleFrom(
+                backgroundColor: colorCuadroSalvia,
+                foregroundColor: colorSobreCuadroClaro),
+            onPressed: calculo.kgProducto > 0 ? _guardarEscenario : null,
+            icon: const Icon(Icons.bookmark_add_outlined),
+            label: Text(textos.calculadoraGuardar),
+          ),
+        ],
+      ]),
+    );
+  }
+
+  /// Los caminos guardados, con su margen por kg vivo en barras.
+  Widget _caminos(AppLocalizations textos) {
+    final esquema = context.esquemaZunbeltz;
+    final estilos = Theme.of(context).textTheme;
+    final ordenados = [..._escenarios]..sort((a, b) => b
+        .calculo.margenPorKgVivoCentimos
+        .compareTo(a.calculo.margenPorKgVivoCentimos));
+    final mayor = ordenados
+        .map((escenario) => escenario.calculo.margenPorKgVivoCentimos.abs())
+        .fold(0, (a, b) => a > b ? a : b);
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      for (final escenario in ordenados)
+        Builder(builder: (contexto) {
+          final margen = escenario.calculo.margenPorKgVivoCentimos;
+          final visto = escenario.id != null && escenario.id == _caminoVisto;
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 6),
+            child: Material(
+              color: visto ? esquema.secondaryContainer : Colors.transparent,
+              borderRadius: BorderRadius.circular(16),
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onTap: () => _verCamino(escenario),
+                onLongPress: !_puedeGuardar || escenario.id == null
+                    ? null
+                    : () async {
+                        if (!await confirmarBorrado(context)) return;
+                        await _bd.borrarEscenario(escenario.id!);
+                        await _cargar();
+                      },
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Row(children: [
+                        Expanded(
+                          child: Text(escenario.nombre,
+                              style: estilos.titleMedium?.copyWith(
+                                  fontWeight: visto ? FontWeight.w700 : null)),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                            textos.simPorKgVivo(
+                                '${eurosDesdeCentimos(margen)} €'),
+                            style: estilos.titleSmall
+                                ?.copyWith(fontWeight: FontWeight.w700)),
+                      ]),
+                      const SizedBox(height: 6),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: FractionallySizedBox(
+                          widthFactor: mayor == 0
+                              ? 0.01
+                              : (margen.abs() / mayor).clamp(0.01, 1.0),
+                          child: Container(
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: margen < 0
+                                  ? context.coloresZunbeltz.bloqueada
+                                  : visto
+                                      ? (esquema.brightness == Brightness.dark
+                                          ? esquema.primary
+                                          : colorCuadroPino)
+                                      : colorCuadroEsmeralda,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
+        }),
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
+    final esquema = context.esquemaZunbeltz;
+    final estilos = Theme.of(context).textTheme;
     final calculo = _calculo;
+    final proyecto = widget.proyecto;
+    final subtitulo = [
+      if (proyecto.nombre.isNotEmpty) proyecto.nombre,
+      if (buscarOpcion(especiesGanado, proyecto.especie) case final especie?
+          when proyecto.especie != 'varias')
+        especie.etiqueta(idioma).toLowerCase(),
+    ].join(' · ');
     return Scaffold(
-      appBar: AppBar(title: Text(textos.calculadoraTitulo)),
+      appBar: AppBar(
+        title: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(textos.simTitulo),
+          if (subtitulo.isNotEmpty)
+            Text(subtitulo,
+                style: estilos.bodyMedium
+                    ?.copyWith(color: esquema.onSurfaceVariant)),
+        ]),
+      ),
       body: CuerpoResponsivo(
         child: ListView(
-          padding: rellenoSobreBarraSistema(context, const EdgeInsets.all(16)),
+          padding: rellenoSobreBarraSistema(
+              context, const EdgeInsets.fromLTRB(16, 4, 16, 24)),
           children: [
-            Text(textos.calculadoraIntro),
+            Text(textos.calculadoraIntro, style: estilos.bodyLarge),
             const SizedBox(height: 16),
+            _embudo(calculo, textos),
+            const SizedBox(height: 20),
             if (_referencias.isEmpty)
-              Text(textos.calculadoraSinReferencias,
-                  style: Theme.of(context).textTheme.bodySmall)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: Text(textos.calculadoraSinReferencias,
+                    style: estilos.bodySmall
+                        ?.copyWith(color: esquema.onSurfaceVariant)),
+              )
             else
-              DropdownButtonFormField<int?>(
-                isExpanded: true,
-                initialValue: _referenciaElegida,
-                decoration:
-                    InputDecoration(labelText: textos.calculadoraReferencia),
-                items: [
-                  DropdownMenuItem(
-                      value: null, child: Text(textos.calculadoraNinguna)),
-                  for (var indice = 0; indice < _referencias.length; indice++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: DropdownButtonFormField<int?>(
+                  isExpanded: true,
+                  initialValue: _referenciaElegida,
+                  decoration:
+                      InputDecoration(labelText: textos.calculadoraReferencia),
+                  items: [
                     DropdownMenuItem(
-                      value: indice,
-                      child: Text(
-                          '${_referencias[indice].nombre} · ${_texto(_referencias[indice].rendimientoCanal)} % / ${_texto(_referencias[indice].rendimientoProducto)} %'),
-                    ),
-                ],
-                onChanged: _aplicarReferencia,
-              ),
-            const SizedBox(height: 12),
-            Wrap(spacing: 16, runSpacing: 8, children: [
-              _campo(_pesoVivo, textos.calculadoraPesoVivo),
-              _campo(_animales, textos.calculadoraAnimales),
-              _campo(_rendimientoCanal, textos.calculadoraRendimientoCanal),
-              _campo(
-                  _rendimientoProducto, textos.calculadoraRendimientoProducto),
-              _campo(_precioKg, textos.calculadoraPrecioKg),
-              _campo(_costeSacrificio, textos.calculadoraCosteSacrificio),
-              _campo(
-                  _costeTransformacion, textos.calculadoraCosteTransformacion),
-              _campo(_otrosCostes, textos.calculadoraOtrosCostes),
-            ]),
-            const SizedBox(height: 16),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(14),
-                child: _resultados(calculo, textos),
-              ),
-            ),
-            Text(textos.calculadoraOrientativo,
-                style: Theme.of(context).textTheme.bodySmall),
-            if (_puedeGuardar) ...[
-              const SizedBox(height: 12),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: FilledButton.icon(
-                  onPressed: calculo.kgProducto > 0 ? _guardarEscenario : null,
-                  icon: const Icon(Icons.bookmark_add_outlined),
-                  label: Text(textos.calculadoraGuardar),
+                        value: null, child: Text(textos.calculadoraNinguna)),
+                    for (var indice = 0; indice < _referencias.length; indice++)
+                      DropdownMenuItem(
+                        value: indice,
+                        child: Text(
+                            '${_referencias[indice].nombre} · ${_texto(_referencias[indice].rendimientoCanal)} % / ${_texto(_referencias[indice].rendimientoProducto)} %'),
+                      ),
+                  ],
+                  onChanged: _aplicarReferencia,
                 ),
               ),
-            ],
+            if (_puedeGuardar)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: TextField(
+                  controller: _nombreCamino,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: InputDecoration(
+                      labelText: textos.simNombreCamino,
+                      hintText: textos.simCaminoN('${_escenarios.length + 1}')),
+                ),
+              ),
+            _parCampos(_campo(_pesoVivo, textos.calculadoraPesoVivo),
+                _campo(_animales, textos.calculadoraAnimales)),
+            _parCampos(
+                _campo(_rendimientoCanal, textos.calculadoraRendimientoCanal),
+                _campo(_rendimientoProducto,
+                    textos.calculadoraRendimientoProducto)),
+            _parCampos(_campo(_precioKg, textos.calculadoraPrecioKg),
+                _campo(_costeSacrificio, textos.calculadoraCosteSacrificio)),
+            _parCampos(
+                _campo(_costeTransformacion,
+                    textos.calculadoraCosteTransformacion),
+                _campo(_otrosCostes, textos.calculadoraOtrosCostes)),
+            const SizedBox(height: 8),
+            _resultado(calculo, textos),
             if (_escenarios.isNotEmpty) ...[
-              const SizedBox(height: 24),
-              Text(textos.calculadoraEscenarios,
-                  style: Theme.of(context).textTheme.titleMedium),
-              for (final escenario in _escenarios)
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Row(children: [
-                          Expanded(
-                            child: Text(escenario.nombre,
-                                style: Theme.of(context).textTheme.titleSmall),
-                          ),
-                          if (_puedeGuardar && escenario.id != null)
-                            IconButton(
-                              icon: const Icon(Icons.delete_outline),
-                              onPressed: () async {
-                                if (!await confirmarBorrado(context)) return;
-                                await _bd.borrarEscenario(escenario.id!);
-                                await _cargar();
-                              },
-                            ),
-                        ]),
-                        Text(
-                            '${_numero(escenario.pesoVivoKg)} kg × ${escenario.animales} · ${_texto(escenario.rendimientoCanal)} % / ${_texto(escenario.rendimientoProducto)} % · ${eurosDesdeCentimos(escenario.precioKgCentimos)} €/kg',
-                            style: Theme.of(context).textTheme.bodySmall),
-                        const SizedBox(height: 6),
-                        _resultados(escenario.calculo, textos),
-                      ],
-                    ),
-                  ),
-                ),
+              const SizedBox(height: 28),
+              Text(textos.calculadoraEscenarios, style: estilos.titleLarge),
+              Padding(
+                padding: const EdgeInsets.only(top: 2, bottom: 10),
+                child: Text(textos.simTocaCamino,
+                    style: estilos.bodySmall
+                        ?.copyWith(color: esquema.onSurfaceVariant)),
+              ),
+              _caminos(textos),
             ],
+            const SizedBox(height: 20),
+            Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Icon(Icons.info_outline,
+                  size: 18, color: esquema.onSurfaceVariant),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(textos.calculadoraOrientativo,
+                    style: estilos.bodySmall
+                        ?.copyWith(color: esquema.onSurfaceVariant)),
+              ),
+            ]),
           ],
         ),
       ),

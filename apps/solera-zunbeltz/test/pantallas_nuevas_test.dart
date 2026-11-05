@@ -318,12 +318,15 @@ void main() {
     testWidgets('Calculadora de transformación ($idioma)', (tester) async {
       final proyecto = (await tester.runAsync(() => bd.obtenerProyecto(proyectoId)))!;
       await montar(tester, PantallaCalculadora(proyecto: proyecto), idioma: idioma);
-      await tester.enterText(find.byType(TextField).first, '30');
+      final textos = lookupAppLocalizations(Locale(idioma));
+      final pesoVivo =
+          find.widgetWithText(TextField, textos.calculadoraPesoVivo);
+      await tester.scrollUntilVisible(pesoVivo, 300,
+          scrollable: find.byType(Scrollable).first);
+      await tester.enterText(pesoVivo, '30');
       await tester.pump();
       await tester.scrollUntilVisible(find.text('Despiece y venta directa'), 300,
-          scrollable: find
-              .descendant(of: find.byType(ListView), matching: find.byType(Scrollable))
-              .first);
+          scrollable: find.byType(Scrollable).first);
       expect(find.text('Despiece y venta directa'), findsOneWidget,
           reason: 'el camino guardado aparece para comparar');
       await tester.pump();

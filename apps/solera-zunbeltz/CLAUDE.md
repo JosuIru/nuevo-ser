@@ -280,7 +280,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Partidas** (pantalla 21, `pantalla_partidas.dart`, desde «Partidas ›» de la ficha): total previsto, total imputado y un anillo con el %; los seis bloques del anexo II (también vacíos: «Sin partidas», o «Desde el inventario de bienes» el VI) desplegables, cada partida con «imputado de previsto» y su barra (`BarraPrevisto`: ámbar pasado el 85 %, roja si se pasa). Comparación pura en `utiles/comparativa_partidas.dart` (con test; cuenta apuntes y cuotas del inventario, no ingresos). El lápiz (coordinación) abre el Convenio en Presupuesto, donde se añaden y quitan.
 
-**Pendiente**: simulador (22), comparativa (23); Imágenes en la web de la propuesta.
+- **Simulador de rendimiento** (pantalla 22, `pantalla_calculadora.dart`, antes «Calculadora de transformación»): embudo peso vivo → canal → producto vendible con barras proporcionales, nombre del camino en el propio formulario (vacío: «Camino N»), campos a dos columnas (rótulos acortados), bloque en pino con ingreso, margen y **margen por kg vivo** y «Guardar este camino»; **caminos guardados** ordenados por margen por kg vivo con barras; tocar uno lo carga arriba y lo resalta, mantener pulsado lo borra.
+
+**Pendiente**: comparativa (23); Imágenes en la web de la propuesta.
 
 ## Hard limits (heredados de la Suite Solera)
 

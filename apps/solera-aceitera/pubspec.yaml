@@ -75,6 +75,24 @@ flutter:
   assets:
     - assets/icono-logo-aceitera.png
 
+  # Letra del tema común Larrea (temaSolera del core): Poppins en títulos y
+  # cifras, Inter en el resto. SIL OFL, en packages/nuevo_ser_core/lib/fuentes.
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: packages/nuevo_ser_core/fuentes/Poppins-SemiBold.ttf
+          weight: 600
+    - family: Inter
+      fonts:
+        - asset: packages/nuevo_ser_core/fuentes/Inter-Regular.ttf
+          weight: 400
+        - asset: packages/nuevo_ser_core/fuentes/Inter-Medium.ttf
+          weight: 500
+        - asset: packages/nuevo_ser_core/fuentes/Inter-SemiBold.ttf
+          weight: 600
+        - asset: packages/nuevo_ser_core/fuentes/Inter-Bold.ttf
+          weight: 700
+
 # Configuración del generador de iconos del lanzador.
 # El logo es PLACEHOLDER (generado con ImageMagick en F1-A8 — aceituna
 # verde oliva sobre fondo crema). El ilustrador debe sustituirlo por el

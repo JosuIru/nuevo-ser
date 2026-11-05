@@ -3,7 +3,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, cargarIdiomaSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, cargarIdiomaSolera, PaletaSolera, temaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
@@ -50,6 +50,12 @@ Future<void> main() async {
   runApp(AplicacionSolera(mostrarOnboarding: !yaCompletado));
 }
 
+/// Colores de marca: verde hoja y crema.
+const paletaAgro = PaletaSolera(
+  primario: Color(0xFF558B2F),
+  crema: Color(0xFFF5F1E8),
+);
+
 class AplicacionSolera extends StatelessWidget {
   final bool mostrarOnboarding;
   const AplicacionSolera({super.key, this.mostrarOnboarding = false});
@@ -59,21 +65,8 @@ class AplicacionSolera extends StatelessWidget {
     return MaterialApp(
       title: 'Larrea',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF558B2F),
-          brightness: Brightness.light,
-        ),
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFF5F1E8),
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF558B2F),
-          brightness: Brightness.dark,
-        ),
-        useMaterial3: true,
-      ),
+      theme: temaSolera(paletaAgro),
+      darkTheme: temaSolera(paletaAgro, oscuro: true),
       initialRoute: mostrarOnboarding ? '/onboarding' : '/',
       routes: {
         '/': (_) => const PantallaPrincipal(),

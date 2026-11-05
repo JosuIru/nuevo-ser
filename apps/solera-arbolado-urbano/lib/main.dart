@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show cargarIdiomaSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show cargarIdiomaSolera, PaletaSolera, temaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'pantallas/pantalla_onboarding.dart';
@@ -26,23 +26,21 @@ Future<void> main() async {
   runApp(const SoleraArboladoUrbanoApp());
 }
 
+/// Colores de marca: verde hoja oscuro y crema savia.
+const paletaArbolado = PaletaSolera(
+  primario: Color(0xFF2E7D32),
+  crema: Color(0xFFF4F8F0),
+);
+
 class SoleraArboladoUrbanoApp extends StatelessWidget {
   const SoleraArboladoUrbanoApp({super.key});
 
   @override
   Widget build(BuildContext contexto) {
-    final ColorScheme esquemaColores = ColorScheme.fromSeed(
-      seedColor: const Color(0xFF2E7D32), // verde hoja oscuro
-      brightness: Brightness.light,
-    );
     return MaterialApp(
       title: 'Larrea Arbolado Urbano',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: esquemaColores,
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFF4F8F0), // crema savia
-      ),
+      theme: temaSolera(paletaArbolado),
       home: const _OrquestadorArranque(),
     );
   }

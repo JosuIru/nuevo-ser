@@ -39,6 +39,12 @@ Future<void> main() async {
   runApp(const SoleraViticulturaApp());
 }
 
+/// Colores de marca: burdeos sobrio y crema papel viejo.
+const paletaViticultura = PaletaSolera(
+  primario: Color(0xFF7D2A2A),
+  crema: Color(0xFFF6F0E6),
+);
+
 class SoleraViticulturaApp extends StatefulWidget {
   const SoleraViticulturaApp({super.key});
 
@@ -68,18 +74,10 @@ class _SoleraViticulturaAppState extends State<SoleraViticulturaApp> with Widget
 
   @override
   Widget build(BuildContext contexto) {
-    final ColorScheme esquemaColores = ColorScheme.fromSeed(
-      seedColor: const Color(0xFF7D2A2A), // burdeos sobrio
-      brightness: Brightness.light,
-    );
     return MaterialApp(
       title: 'Larrea Viticultura',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: esquemaColores,
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFF6F0E6), // crema papel viejo
-      ),
+      theme: temaSolera(paletaViticultura),
       home: const _Orquestador(),
     );
   }

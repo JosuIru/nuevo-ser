@@ -40,6 +40,12 @@ Future<void> main() async {
   runApp(const SoleraApicolaApp());
 }
 
+/// Colores de marca: ámbar miel oscuro y crema panal.
+const paletaApicola = PaletaSolera(
+  primario: Color(0xFFB8860B),
+  crema: Color(0xFFFAF6E8),
+);
+
 class SoleraApicolaApp extends StatefulWidget {
   const SoleraApicolaApp({super.key});
 
@@ -69,18 +75,10 @@ class _SoleraApicolaAppState extends State<SoleraApicolaApp> with WidgetsBinding
 
   @override
   Widget build(BuildContext contexto) {
-    final ColorScheme esquemaColores = ColorScheme.fromSeed(
-      seedColor: const Color(0xFFB8860B), // ámbar miel oscuro
-      brightness: Brightness.light,
-    );
     return MaterialApp(
       title: 'Larrea Apícola',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: esquemaColores,
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFFAF6E8), // crema panal
-      ),
+      theme: temaSolera(paletaApicola),
       home: const _OrquestadorArranque(),
     );
   }

@@ -14,7 +14,7 @@
 // Detalle de fase y diferenciadores en `CLAUDE.md` del paquete.
 
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, cargarIdiomaSolera;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n, cargarIdiomaSolera, PaletaSolera, temaSolera;
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'branding.dart';
@@ -50,14 +50,10 @@ class AppSoleraAceitera extends StatelessWidget {
     return MaterialApp(
       title: 'Larrea Aceitera',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: colorPrimarioAceitera,
-          brightness: Brightness.light,
-        ),
-        scaffoldBackgroundColor: colorCremaAceitera,
-      ),
+      theme: temaSolera(const PaletaSolera(
+        primario: colorPrimarioAceitera,
+        crema: colorCremaAceitera,
+      )),
       home: const _Orquestador(),
     );
   }

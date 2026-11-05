@@ -108,6 +108,7 @@ export 'src/ui/selector_idioma.dart';
 export 'src/ui/cabecera_seccion_ajustes.dart';
 export 'src/ui/tarjeta_observacion.dart';
 export 'src/ui/tarjeta_resumen.dart';
+export 'src/ui/tema_solera.dart';
 export 'src/actualizaciones/banner_actualizacion.dart';
 export 'src/actualizaciones/checker_actualizaciones.dart';
 export 'src/actualizaciones/instalador_actualizacion.dart';

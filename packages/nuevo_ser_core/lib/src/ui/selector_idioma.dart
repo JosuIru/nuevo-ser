@@ -68,21 +68,23 @@ class SelectorIdioma extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    // Wrap y no Row: con letra más ancha o pantalla estrecha, los cuatro
+    // no caben en una fila y pasan a la siguiente en vez de desbordar.
+    // Dentro de un scroll horizontal sigue saliendo en una sola fila.
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
       children: idiomas.map((idioma) {
         final activo = SoleraL10n.idioma == idioma.codigo;
-        return Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: ChoiceChip(
-            selected: activo,
-            label: Text(idioma.nombre),
-            onSelected: (_) {
-              SoleraL10n.idioma = idioma.codigo;
-              _guardarIdiomaSolera(idioma.codigo);
-              _reconstruirTodaLaApp();
-              onCambio?.call();
-            },
-          ),
+        return ChoiceChip(
+          selected: activo,
+          label: Text(idioma.nombre),
+          onSelected: (_) {
+            SoleraL10n.idioma = idioma.codigo;
+            _guardarIdiomaSolera(idioma.codigo);
+            _reconstruirTodaLaApp();
+            onCambio?.call();
+          },
         );
       }).toList(),
     );

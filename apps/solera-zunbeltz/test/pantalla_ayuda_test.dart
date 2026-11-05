@@ -64,10 +64,14 @@ void main() {
       for (final apartados in indiceAyuda.values)
         for (final clave in apartados) arb['${clave}T'] as String,
     ];
+    // Cada apartado es una fila (ListTile con clave «ayuda|título»).
     final titulosPintados = [
-      for (final tile
-          in tester.widgetList<ExpansionTile>(find.byType(ExpansionTile)))
-        (tile.title as Text).data,
+      for (final fila in tester.widgetList<ListTile>(find.byWidgetPredicate(
+          (widget) =>
+              widget is ListTile &&
+              widget.key is ValueKey<String> &&
+              (widget.key as ValueKey<String>).value.startsWith('ayuda|'))))
+        (fila.title as Text).data,
     ];
     expect(titulosPintados, titulosEsperados);
     for (final claveGrupo in indiceAyuda.keys) {

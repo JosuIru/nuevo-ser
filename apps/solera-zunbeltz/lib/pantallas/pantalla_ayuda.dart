@@ -45,10 +45,24 @@ class _ApartadoAyuda {
 }
 
 class _GrupoAyuda {
-  const _GrupoAyuda(this.titulo, this.apartados);
+  const _GrupoAyuda(this.clave, this.titulo, this.apartados);
 
+  /// Clave del grupo en el índice (da el color de los iconos).
+  final String clave;
   final String titulo;
   final List<_ApartadoAyuda> apartados;
+}
+
+/// Fondo y tinta del cuadro del icono según el grupo: los cuadros del
+/// logotipo para fincas, ganado y proyectos; neutro el resto.
+(Color, Color) _coloresGrupo(BuildContext context, String grupo) {
+  final esquema = context.esquemaZunbeltz;
+  return switch (grupo) {
+    'ayudaGrupoFincas' => (colorCuadroEsmeralda, colorSobreCuadroClaro),
+    'ayudaGrupoGanado' => (colorCuadroSalvia, colorSobreCuadroClaro),
+    'ayudaGrupoProyectos' => (colorCuadroPino, Colors.white),
+    _ => (esquema.surfaceContainerHighest, esquema.onSurfaceVariant),
+  };
 }
 
 class _PantallaAyudaState extends State<PantallaAyuda> {
@@ -77,6 +91,7 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
     'ayudaWidget': Icons.widgets_outlined,
     'ayudaActualizaciones': Icons.system_update,
     'ayudaFincas': Icons.add_location_alt_outlined,
+    'ayudaMapaSinCobertura': Icons.signal_wifi_off_outlined,
     'ayudaZonas': Icons.pentagon_outlined,
     'ayudaEditarMapa': Icons.edit_location_alt_outlined,
     'ayudaImportar': Icons.layers_outlined,
@@ -112,7 +127,7 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
     String texto(String clave) => textoAyuda(cambiados, idioma, deSerie, clave);
     return [
       for (final entrada in indiceAyuda.entries)
-        _GrupoAyuda(texto(entrada.key), [
+        _GrupoAyuda(entrada.key, texto(entrada.key), [
           for (final clave in entrada.value)
             _ApartadoAyuda(
               texto(tester && apartadosConVersionTester.contains(clave)
@@ -148,9 +163,57 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
     final buscando = _textoBuscado.isNotEmpty;
     final gruposVisibles = [
       for (final grupo in _grupos(t, idioma, cambiados))
-        _GrupoAyuda(grupo.titulo,
+        _GrupoAyuda(grupo.clave, grupo.titulo,
             grupo.apartados.where(_coincide).toList(growable: false)),
     ].where((grupo) => grupo.apartados.isNotEmpty).toList(growable: false);
+
+    final esquema = context.esquemaZunbeltz;
+    final etiquetaNota =
+        textoAyuda(cambiados, idioma, textosAyudaDeSerie(t), 'ayudaConsejo');
+    void abrir(_ApartadoAyuda apartado) =>
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => Scaffold(
+            appBar: AppBar(),
+            body: CuerpoResponsivo(
+              maxAncho: 640,
+              child: ListView(
+                padding: rellenoSobreBarraSistema(
+                    context, const EdgeInsets.fromLTRB(20, 0, 20, 24)),
+                children: [
+                  Text(apartado.titulo, style: estilos.headlineSmall),
+                  const SizedBox(height: 8),
+                  _CuerpoApartado(
+                      cuerpo: apartado.cuerpo, etiquetaNota: etiquetaNota),
+                ],
+              ),
+            ),
+          ),
+        ));
+
+    Widget fila(_GrupoAyuda grupo, _ApartadoAyuda apartado) {
+      final (fondo, tinta) = _coloresGrupo(context, grupo.clave);
+      return ListTile(
+        key: ValueKey('ayuda|${apartado.titulo}'),
+        contentPadding: const EdgeInsets.fromLTRB(16, 6, 12, 6),
+        leading: Container(
+          width: 48,
+          height: 48,
+          decoration: BoxDecoration(
+            color: fondo,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(18),
+            ),
+          ),
+          child: Icon(apartado.icono, color: tinta),
+        ),
+        title: Text(apartado.titulo, style: estilos.titleMedium),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => abrir(apartado),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(title: Text(t.ayudaTitulo)),
@@ -158,46 +221,67 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
         maxAncho: 640,
         child: ListView(
           padding: rellenoSobreBarraSistema(
-              context, const EdgeInsets.fromLTRB(12, 8, 12, 24)),
+              context, const EdgeInsets.fromLTRB(16, 8, 16, 24)),
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 12),
-              child: Text(
-                  textoAyuda(
-                      cambiados, idioma, textosAyudaDeSerie(t), 'ayudaIntro'),
-                  style: estilos.bodyLarge),
+            TextField(
+              controller: _controladorBusqueda,
+              textInputAction: TextInputAction.search,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: esquema.surfaceContainerHigh,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(32),
+                  borderSide: BorderSide.none,
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(32),
+                  borderSide: BorderSide.none,
+                ),
+                prefixIcon: const Icon(Icons.search),
+                hintText: t.ayudaBuscar,
+                suffixIcon: buscando
+                    ? IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          _controladorBusqueda.clear();
+                          setState(() => _textoBuscado = '');
+                        },
+                      )
+                    : null,
+              ),
+              onChanged: (valor) =>
+                  setState(() => _textoBuscado = valor.trim()),
             ),
             if (_esTester)
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 0, 8, 12),
-                child: Text(
-                    textoAyuda(cambiados, idioma, textosAyudaDeSerie(t),
-                        'ayudaPerfilTester'),
-                    style: estilos.bodySmall?.copyWith(
-                        color: context.esquemaZunbeltz.onSurfaceVariant)),
-              ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: TextField(
-                controller: _controladorBusqueda,
-                textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
-                  hintText: t.ayudaBuscar,
-                  suffixIcon: buscando
-                      ? IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: () {
-                            _controladorBusqueda.clear();
-                            setState(() => _textoBuscado = '');
-                          },
-                        )
-                      : null,
+              Container(
+                margin: const EdgeInsets.only(top: 16),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: esquema.secondaryContainer,
+                  borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
                 ),
-                onChanged: (valor) =>
-                    setState(() => _textoBuscado = valor.trim()),
+                child: Row(children: [
+                  Icon(Icons.badge_outlined,
+                      color: esquema.onSecondaryContainer),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Text(
+                        textoAyuda(cambiados, idioma, textosAyudaDeSerie(t),
+                            'ayudaPerfilTester'),
+                        style: estilos.bodyMedium
+                            ?.copyWith(color: esquema.onSecondaryContainer)),
+                  ),
+                ]),
               ),
-            ),
+            if (!buscando)
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 16, 4, 0),
+                child: Text(
+                    textoAyuda(
+                        cambiados, idioma, textosAyudaDeSerie(t), 'ayudaIntro'),
+                    style: estilos.bodyMedium
+                        ?.copyWith(color: esquema.onSurfaceVariant)),
+              ),
             if (gruposVisibles.isEmpty)
               Padding(
                 padding: const EdgeInsets.all(16),
@@ -205,39 +289,70 @@ class _PantallaAyudaState extends State<PantallaAyuda> {
               ),
             for (final grupo in gruposVisibles) ...[
               Padding(
-                padding: const EdgeInsets.fromLTRB(8, 20, 8, 6),
-                child: Text(grupo.titulo, style: estilos.titleMedium),
+                padding: const EdgeInsets.fromLTRB(4, 24, 4, 10),
+                child: Text(grupo.titulo,
+                    style: estilos.titleSmall?.copyWith(
+                        color: esquema.primary, fontWeight: FontWeight.w600)),
               ),
-              for (final apartado in grupo.apartados)
-                Card(
-                  margin: const EdgeInsets.symmetric(vertical: 4),
-                  child: ExpansionTile(
-                    // Al buscar, la clave cambia para que se abran solos los
-                    // apartados que coinciden.
-                    key: ValueKey('${apartado.titulo}|$buscando'),
-                    initiallyExpanded: buscando,
-                    leading: Icon(apartado.icono),
-                    title: Text(apartado.titulo,
-                        style: const TextStyle(fontWeight: FontWeight.w600)),
-                    shape: const Border(),
-                    collapsedShape: const Border(),
-                    childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                    expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _CuerpoApartado(
-                          cuerpo: apartado.cuerpo,
-                          etiquetaNota: textoAyuda(cambiados, idioma,
-                              textosAyudaDeSerie(t), 'ayudaConsejo')),
-                    ],
+              if (buscando)
+                // Al buscar, cada apartado que coincide sale abierto.
+                for (final apartado in grupo.apartados)
+                  Card(
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    child: ExpansionTile(
+                      key: ValueKey('${apartado.titulo}|$buscando'),
+                      initiallyExpanded: true,
+                      leading: Icon(apartado.icono),
+                      title: Text(apartado.titulo,
+                          style: const TextStyle(fontWeight: FontWeight.w600)),
+                      shape: const Border(),
+                      collapsedShape: const Border(),
+                      childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                      expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _CuerpoApartado(
+                            cuerpo: apartado.cuerpo,
+                            etiquetaNota: etiquetaNota),
+                      ],
+                    ),
+                  )
+              else
+                Container(
+                  decoration: BoxDecoration(
+                    color: esquema.surfaceContainerLow,
+                    borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
                   ),
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(children: [
+                    for (var indice = 0;
+                        indice < grupo.apartados.length;
+                        indice++) ...[
+                      if (indice > 0)
+                        Divider(
+                            height: 1,
+                            indent: 80,
+                            endIndent: 16,
+                            color: esquema.outlineVariant),
+                      fila(grupo, grupo.apartados[indice]),
+                    ],
+                  ]),
                 ),
             ],
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 20, 8, 0),
-              child: Text(
-                  textoAyuda(
-                      cambiados, idioma, textosAyudaDeSerie(t), 'ayudaPie'),
-                  style: estilos.bodySmall),
+              padding: const EdgeInsets.fromLTRB(4, 24, 4, 0),
+              child:
+                  Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Icon(Icons.forum_outlined,
+                    size: 20, color: esquema.onSurfaceVariant),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                      textoAyuda(
+                          cambiados, idioma, textosAyudaDeSerie(t), 'ayudaPie'),
+                      style: estilos.bodyMedium
+                          ?.copyWith(color: esquema.onSurfaceVariant)),
+                ),
+              ]),
             ),
           ],
         ),

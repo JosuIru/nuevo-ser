@@ -14,11 +14,14 @@ void main() {
     tester.view.physicalSize = const Size(720, 1600); // 360 dp de ancho
     addTearDown(tester.view.resetPhysicalSize);
     await tester.pumpWidget(_app(Scaffold(
-      body: ListView(children: const [
+      body: ListView(children: [
         CabeceraHoySolera(
           titulo: 'Hoy',
+          acciones: [
+            IconButton(onPressed: () {}, icon: const Icon(Icons.menu_book)),
+          ],
           fecha: 'Jueves, 5 de noviembre',
-          cifras: [
+          cifras: const [
             CifraCabecera(
                 valor: '12', etiqueta: 'Partidas de leche hoy', detalle: '840 L'),
             CifraCabecera(valor: '3', etiqueta: 'Afinando'),
@@ -30,6 +33,13 @@ void main() {
     expect(find.text('Hoy'), findsOneWidget);
     expect(find.text('Jueves, 5 de noviembre'), findsOneWidget);
     expect(find.text('840 L'), findsOneWidget);
+    // Los iconos de las acciones, del color del texto de la cabecera (no el
+    // gris que el tema da a los IconButton).
+    final contexto = tester.element(find.byIcon(Icons.menu_book));
+    final colorIcono = IconTheme.of(contexto).color;
+    final sobreCabecera =
+        Theme.of(contexto).extension<ColoresSolera>()!.sobreCabecera;
+    expect(colorIcono, sobreCabecera);
     expect(tester.takeException(), isNull);
   });
 

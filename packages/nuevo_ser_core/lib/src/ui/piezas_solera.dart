@@ -117,9 +117,8 @@ class CabeceraHoySolera extends StatelessWidget {
   Widget build(BuildContext context) {
     final colores = context.coloresSolera;
     final estilos = Theme.of(context).textTheme;
-    final oscura =
-        ThemeData.estimateBrightnessForColor(colores.cabecera) ==
-            Brightness.dark;
+    final oscura = ThemeData.estimateBrightnessForColor(colores.cabecera) ==
+        Brightness.dark;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: oscura ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       child: Container(
@@ -130,53 +129,62 @@ class CabeceraHoySolera extends StatelessWidget {
         ),
         padding: EdgeInsets.fromLTRB(
             16, MediaQuery.paddingOf(context).top + 8, 8, 20),
-        child: IconTheme(
-          data: IconThemeData(color: colores.sobreCabecera),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(children: [
-                if (rutaLogo != null) ...[
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
-                    child: Image.asset(rutaLogo!,
-                        width: 34, height: 34, excludeFromSemantics: true),
+        // El tema fija el color de los IconButton (gris sobre superficie):
+        // en la cabecera van del color del texto de la cabecera.
+        child: IconButtonTheme(
+          data: IconButtonThemeData(
+            style: IconButton.styleFrom(foregroundColor: colores.sobreCabecera),
+          ),
+          child: IconTheme(
+            data: IconThemeData(color: colores.sobreCabecera),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(children: [
+                  if (rutaLogo != null) ...[
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Image.asset(rutaLogo!,
+                          width: 34, height: 34, excludeFromSemantics: true),
+                    ),
+                    const SizedBox(width: 12),
+                  ],
+                  Expanded(
+                    child: Text(titulo,
+                        style: estilos.titleLarge
+                            ?.copyWith(color: colores.sobreCabecera)),
                   ),
-                  const SizedBox(width: 12),
-                ],
-                Expanded(
-                  child: Text(titulo,
-                      style: estilos.titleLarge
-                          ?.copyWith(color: colores.sobreCabecera)),
-                ),
-                ...acciones,
-              ]),
-              const SizedBox(height: 14),
-              Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: Text(fecha,
-                    style: estilos.headlineMedium
-                        ?.copyWith(color: colores.sobreCabecera)),
-              ),
-              if (cifras.isNotEmpty) ...[
-                const SizedBox(height: 16),
+                  ...acciones,
+                ]),
+                const SizedBox(height: 14),
                 Padding(
                   padding: const EdgeInsets.only(right: 8),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        for (var indice = 0; indice < cifras.length; indice++)
-                          ...[
-                          if (indice > 0) const SizedBox(width: 8),
-                          Expanded(child: _BloqueCifra(cifra: cifras[indice])),
+                  child: Text(fecha,
+                      style: estilos.headlineMedium
+                          ?.copyWith(color: colores.sobreCabecera)),
+                ),
+                if (cifras.isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: IntrinsicHeight(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          for (var indice = 0;
+                              indice < cifras.length;
+                              indice++) ...[
+                            if (indice > 0) const SizedBox(width: 8),
+                            Expanded(
+                                child: _BloqueCifra(cifra: cifras[indice])),
+                          ],
                         ],
-                      ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       ),
@@ -210,8 +218,8 @@ class _BloqueCifra extends StatelessWidget {
           Text(cifra.etiqueta,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: estilos.labelMedium
-                  ?.copyWith(color: colores.sobreCabecera)),
+              style:
+                  estilos.labelMedium?.copyWith(color: colores.sobreCabecera)),
           if (cifra.detalle != null)
             Text(cifra.detalle!,
                 maxLines: 1,

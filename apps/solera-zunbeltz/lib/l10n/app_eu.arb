@@ -1191,5 +1191,19 @@
   "ganHojaAlApuntar": "Mugimendua idaztean sortzen da.",
   "ganApuntarMovimiento": "Mugimendua idatzi",
   "ganFechaHoy": "Gaur, {fecha}",
-  "ganHojaNoSalio": "Mugimendua idatzita dago, baina orria ezin izan da sortu."
+  "ganHojaNoSalio": "Mugimendua idatzita dago, baina orria ezin izan da sortu.",
+  "proyFiltroAbiertos": "Irekiak {n}",
+  "proyFiltroCerrados": "Itxiak {n}",
+  "proyDesde": "{fecha}tik",
+  "proyMesDe": "{total}tik {actual}. hilabetea",
+  "proyMes": "{actual}. hilabetea",
+  "proyEmpieza": "{fecha}(e)an hasten da",
+  "proyAbierto": "Irekita",
+  "proyQuienAsume": "Nork hartzen ditu gastuak",
+  "proyParteTester": "Testerra % {porcentaje}",
+  "proyParteZunbeltz": "Zunbeltz % {porcentaje}",
+  "proySinGastos": "Oraindik ez dago gasturik idatzita.",
+  "proyCerradoEl": "Proiektua {fecha}(e)an itxi zen",
+  "proySinCerrados": "Ez dago proiektu itxirik.",
+  "proySinAbiertos": "Ez dago proiektu irekirik."
 }

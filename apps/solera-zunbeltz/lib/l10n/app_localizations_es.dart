@@ -3936,4 +3936,64 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ganHojaNoSalio =>
       'El movimiento está apuntado, pero la hoja no se pudo generar.';
+
+  @override
+  String proyFiltroAbiertos(String n) {
+    return 'Abiertos $n';
+  }
+
+  @override
+  String proyFiltroCerrados(String n) {
+    return 'Cerrados $n';
+  }
+
+  @override
+  String proyDesde(String fecha) {
+    return 'desde $fecha';
+  }
+
+  @override
+  String proyMesDe(String actual, String total) {
+    return 'Mes $actual de $total';
+  }
+
+  @override
+  String proyMes(String actual) {
+    return 'Mes $actual';
+  }
+
+  @override
+  String proyEmpieza(String fecha) {
+    return 'Empieza el $fecha';
+  }
+
+  @override
+  String get proyAbierto => 'Abierto';
+
+  @override
+  String get proyQuienAsume => 'Quién asume los gastos';
+
+  @override
+  String proyParteTester(String porcentaje) {
+    return 'Tester $porcentaje %';
+  }
+
+  @override
+  String proyParteZunbeltz(String porcentaje) {
+    return 'Zunbeltz $porcentaje %';
+  }
+
+  @override
+  String get proySinGastos => 'Aún sin gastos apuntados.';
+
+  @override
+  String proyCerradoEl(String fecha) {
+    return 'Proyecto cerrado el $fecha';
+  }
+
+  @override
+  String get proySinCerrados => 'No hay proyectos cerrados.';
+
+  @override
+  String get proySinAbiertos => 'No hay proyectos abiertos.';
 }

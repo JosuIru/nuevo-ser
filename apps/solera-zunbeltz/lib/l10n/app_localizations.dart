@@ -6632,6 +6632,90 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'El movimiento está apuntado, pero la hoja no se pudo generar.'**
   String get ganHojaNoSalio;
+
+  /// No description provided for @proyFiltroAbiertos.
+  ///
+  /// In es, this message translates to:
+  /// **'Abiertos {n}'**
+  String proyFiltroAbiertos(String n);
+
+  /// No description provided for @proyFiltroCerrados.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrados {n}'**
+  String proyFiltroCerrados(String n);
+
+  /// No description provided for @proyDesde.
+  ///
+  /// In es, this message translates to:
+  /// **'desde {fecha}'**
+  String proyDesde(String fecha);
+
+  /// No description provided for @proyMesDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Mes {actual} de {total}'**
+  String proyMesDe(String actual, String total);
+
+  /// No description provided for @proyMes.
+  ///
+  /// In es, this message translates to:
+  /// **'Mes {actual}'**
+  String proyMes(String actual);
+
+  /// No description provided for @proyEmpieza.
+  ///
+  /// In es, this message translates to:
+  /// **'Empieza el {fecha}'**
+  String proyEmpieza(String fecha);
+
+  /// No description provided for @proyAbierto.
+  ///
+  /// In es, this message translates to:
+  /// **'Abierto'**
+  String get proyAbierto;
+
+  /// No description provided for @proyQuienAsume.
+  ///
+  /// In es, this message translates to:
+  /// **'Quién asume los gastos'**
+  String get proyQuienAsume;
+
+  /// No description provided for @proyParteTester.
+  ///
+  /// In es, this message translates to:
+  /// **'Tester {porcentaje} %'**
+  String proyParteTester(String porcentaje);
+
+  /// No description provided for @proyParteZunbeltz.
+  ///
+  /// In es, this message translates to:
+  /// **'Zunbeltz {porcentaje} %'**
+  String proyParteZunbeltz(String porcentaje);
+
+  /// No description provided for @proySinGastos.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún sin gastos apuntados.'**
+  String get proySinGastos;
+
+  /// No description provided for @proyCerradoEl.
+  ///
+  /// In es, this message translates to:
+  /// **'Proyecto cerrado el {fecha}'**
+  String proyCerradoEl(String fecha);
+
+  /// No description provided for @proySinCerrados.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay proyectos cerrados.'**
+  String get proySinCerrados;
+
+  /// No description provided for @proySinAbiertos.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay proyectos abiertos.'**
+  String get proySinAbiertos;
 }
 
 class _AppLocalizationsDelegate

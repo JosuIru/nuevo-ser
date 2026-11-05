@@ -3939,4 +3939,64 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ganHojaNoSalio =>
       'Mugimendua idatzita dago, baina orria ezin izan da sortu.';
+
+  @override
+  String proyFiltroAbiertos(String n) {
+    return 'Irekiak $n';
+  }
+
+  @override
+  String proyFiltroCerrados(String n) {
+    return 'Itxiak $n';
+  }
+
+  @override
+  String proyDesde(String fecha) {
+    return '${fecha}tik';
+  }
+
+  @override
+  String proyMesDe(String actual, String total) {
+    return '${total}tik $actual. hilabetea';
+  }
+
+  @override
+  String proyMes(String actual) {
+    return '$actual. hilabetea';
+  }
+
+  @override
+  String proyEmpieza(String fecha) {
+    return '$fecha(e)an hasten da';
+  }
+
+  @override
+  String get proyAbierto => 'Irekita';
+
+  @override
+  String get proyQuienAsume => 'Nork hartzen ditu gastuak';
+
+  @override
+  String proyParteTester(String porcentaje) {
+    return 'Testerra % $porcentaje';
+  }
+
+  @override
+  String proyParteZunbeltz(String porcentaje) {
+    return 'Zunbeltz % $porcentaje';
+  }
+
+  @override
+  String get proySinGastos => 'Oraindik ez dago gasturik idatzita.';
+
+  @override
+  String proyCerradoEl(String fecha) {
+    return 'Proiektua $fecha(e)an itxi zen';
+  }
+
+  @override
+  String get proySinCerrados => 'Ez dago proiektu itxirik.';
+
+  @override
+  String get proySinAbiertos => 'Ez dago proiektu irekirik.';
 }

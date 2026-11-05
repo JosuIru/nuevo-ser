@@ -284,7 +284,7 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Comparativa de proyectos** (pantalla 23, `pantalla_comparativa.dart`, desde el icono de gráfico de la lista): cada proyecto con sus siglas y meses (y si está cerrado), **balance del test por mes** en barras con signo desde un eje (para comparar duraciones distintas; con menos de un mes, el balance entero), ingresos, gastos del test y % de los gastos que asume la persona tester; abajo el botón «Comparativa (PDF)» de siempre. `AvatarProyecto` y `siglasProyecto` están ahora en `widgets/proyecto_visual.dart`.
 
-**Pendiente**: Imágenes en la web de la propuesta.
+**Pendiente**: Ajustes (17–19, 24–27: ajustes, sincronización, ayuda, actividad, actualizaciones, entidades, acerca de) y bienvenida (01).
 
 ## Hard limits (heredados de la Suite Solera)
 

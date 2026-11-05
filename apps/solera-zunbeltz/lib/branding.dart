@@ -1,327 +1,580 @@
 import 'package:flutter/material.dart';
 
-/// Paleta, tipografía y tema de Solera Zunbeltz. Consolidados en un único
-/// punto para que el ilustrador pueda sustituirlos sin tocar el árbol de
-/// widgets.
+/// Paleta, tipografía y tema de Larrea Zunbeltz, en un único punto.
 ///
-/// La dirección visual replica la de la presentación
-/// (`presentacion/index.html`), revisada en 2026-09-14: papel de plano
-/// catastral (gris-verde frío) + verde monte, con el rojo de marcaje del
-/// ganado como único acento, usado con cuentagotas. Tipografía invertida
-/// respecto a la convención: grotesca (Archivo) en los títulos y serif de
-/// lectura (Spectral) en el texto corrido.
+/// Dirección visual del **rediseño de noviembre de 2026** (propuesta de
+/// sopagraphics, `https://sopagraphics.com/dev/zunbeltz/`, con su
+/// `tokens.json`): Material 3 con la identidad de zunbeltz.com. Verde pino
+/// del logotipo como color principal, esmeralda como acento de la acción
+/// principal, superficies blanco roto y verdes muy claros, colores de estado
+/// propios (pendiente, en curso, hecha, bloqueada) y amarillo de crotal.
+/// Poppins en títulos y cifras, Inter en el resto. Modo claro y oscuro.
 ///
-/// Ver la sección "Dirección visual" de `CLAUDE.md`.
+/// Los nombres de rol siguen los de Material 3 en los tokens. Lo que no cabe
+/// en el [ColorScheme] (estados, acento, cabecera verde, crotal) va en
+/// [ColoresZunbeltz], que se lee con `context.coloresZunbeltz`.
 
-/// Papel de plano catastral — fondo principal de la app. Gris-verde frío,
-/// no crema cálido.
-const Color colorPapelZunbeltz = Color(0xFFE9EBE2);
+// ── Constantes del modo claro ─────────────────────────────────────────────
+//
+// Para lo que se pinta fuera de un `BuildContext` (mapa, notificaciones,
+// PDF). En pantallas, mejor el tema (`Theme.of(context).colorScheme` o
+// `context.coloresZunbeltz`), que cambia con el modo oscuro.
 
-/// Papel hundido — superficies elevadas, cabeceras y campos de formulario.
-const Color colorPapelHundidoZunbeltz = Color(0xFFDFE2D6);
+/// Superficie principal (blanco roto).
+const Color colorPapelZunbeltz = Color(0xFFFAFAF9);
 
-/// Verde monte profundo — color principal del branding Zunbeltz.
-const Color colorMonteZunbeltz = Color(0xFF1B2320);
+/// Superficie de contenedor: tarjetas, campos, barra de navegación.
+const Color colorPapelHundidoZunbeltz = Color(0xFFECF1EE);
 
-/// Rojo de marcaje del ganado — el único acento. Se reserva para lo que
-/// de verdad reclama atención: tareas pendientes, avisos, la acción
-/// principal de una pantalla.
-const Color colorSenalZunbeltz = Color(0xFFB8402A);
+/// Verde pino del logotipo — color principal.
+const Color colorMonteZunbeltz = Color(0xFF004331);
 
-/// Verde pasto — acento secundario sobre fondo claro (lo hecho, lo validado).
-const Color colorPastoZunbeltz = Color(0xFF5E7D3A);
+/// Rojo de alarma y de lo bloqueado (rol `blocked`).
+const Color colorSenalZunbeltz = Color(0xFFB3261E);
 
-/// Musgo — verde suave para superficies y chips.
-const Color colorMusgoZunbeltz = Color(0xFF8AA66B);
+/// Verde de lo hecho y validado (rol `done`).
+const Color colorPastoZunbeltz = Color(0xFF1E6B33);
 
-/// Tinta — texto sobre papel.
-const Color colorTintaZunbeltz = Color(0xFF171D19);
+/// Verde salvia del logotipo — superficies suaves y lo seleccionado.
+const Color colorMusgoZunbeltz = Color(0xFF9ACB96);
 
-/// Tinta apagada — texto secundario y metadatos.
-const Color colorTintaApagadaZunbeltz = Color(0xFF6C7870);
+/// Esmeralda del logotipo — acento de la acción principal (FAB).
+const Color colorAcentoZunbeltz = Color(0xFF25AC74);
 
-/// Línea — bordes finos. Sustituyen a las sombras: en esta dirección visual
-/// las superficies se separan por trazo, no por elevación.
-const Color colorLineaZunbeltz = Color(0x2B1B2320);
+/// Texto sobre superficie.
+const Color colorTintaZunbeltz = Color(0xFF15211C);
 
-/// Colores de estado de las tareas de mantenimiento (coherentes con la
-/// leyenda de la presentación: pendiente = señal, en curso = niebla,
-/// hecha = pasto, bloqueada = terracota).
-const Color colorEstadoPendiente = colorSenalZunbeltz;
-const Color colorEstadoEnCurso = Color(0xFF4B7488);
+/// Texto secundario y metadatos.
+const Color colorTintaApagadaZunbeltz = Color(0xFF42474B);
+
+/// Bordes finos y separadores (rol `outline-variant`).
+const Color colorLineaZunbeltz = Color(0xFFC7D0CB);
+
+/// Amarillo de la etiqueta del crotal.
+const Color colorCrotalZunbeltz = Color(0xFFF4D35E);
+
+/// Los cuatro cuadros del logotipo (iguales en claro y en oscuro), para los
+/// bloques de color: pino, hoja, esmeralda y salvia, y el texto que va
+/// encima de los claros y del oscuro.
+const Color colorCuadroPino = Color(0xFF004331);
+const Color colorCuadroHoja = Color(0xFF32A836);
+const Color colorCuadroEsmeralda = Color(0xFF25AC74);
+const Color colorCuadroSalvia = Color(0xFF9ACB96);
+const Color colorSobreCuadroClaro = Color(0xFF002117);
+const Color colorSobreCuadroOscuro = Color(0xFFFAFAF9);
+
+/// Colores de estado del modo claro (pendiente, en curso, hecha, bloqueada).
+const Color colorEstadoPendiente = Color(0xFF8A4600);
+const Color colorEstadoEnCurso = Color(0xFF24577F);
 const Color colorEstadoHecha = colorPastoZunbeltz;
-const Color colorEstadoBloqueada = Color(0xFFB05E3B);
+const Color colorEstadoBloqueada = colorSenalZunbeltz;
 
-/// Familia de los títulos: grotesca, empaquetada en `assets/fuentes`.
-const String familiaTitularZunbeltz = 'Archivo';
+/// Familia de títulos y cifras destacadas, empaquetada en `assets/fuentes`.
+const String familiaTitularZunbeltz = 'Poppins';
 
-/// Familia del texto corrido: serif de lectura, empaquetada en la app.
-const String familiaTextoZunbeltz = 'Spectral';
+/// Familia del texto, etiquetas, controles y datos.
+const String familiaTextoZunbeltz = 'Inter';
 
-/// Logo placeholder. Lo sustituye el ilustrador cuando entregue el activo
-/// definitivo (ver BLOQUEOS-PENDIENTES, branding visual).
+/// Símbolo de cuatro cuadros de zunbeltz.com.
 const String rutaLogoZunbeltz = 'assets/icono-logo-zunbeltz.png';
 
-/// Radio de las esquinas. Corto y constante: es papel, no tarjeta de app.
-const double radioZunbeltz = 4;
+/// Radio de chips y campos de formulario.
+const double radioZunbeltz = 8;
 
-const BorderRadius _bordeRedondeado = BorderRadius.all(
-  Radius.circular(radioZunbeltz),
+/// Radio de tarjetas y listas agrupadas.
+const double radioTarjetaZunbeltz = 16;
+
+/// Bloque destacado en verde pino: esquinas alternas de 24 y 8 px, como los
+/// cuadros del logotipo.
+const BorderRadius bordeDestacadoZunbeltz = BorderRadius.only(
+  topLeft: Radius.circular(24),
+  topRight: Radius.circular(8),
+  bottomLeft: Radius.circular(8),
+  bottomRight: Radius.circular(24),
 );
 
-/// Tema de la app. Se construye el [ColorScheme] a mano en vez de derivarlo
-/// con `fromSeed` para no heredar los tonos por defecto de Material 3.
-ThemeData temaZunbeltz() {
-  const esquema = ColorScheme(
-    brightness: Brightness.light,
-    primary: colorMonteZunbeltz,
-    onPrimary: colorPapelZunbeltz,
-    primaryContainer: colorPapelHundidoZunbeltz,
-    onPrimaryContainer: colorMonteZunbeltz,
-    secondary: colorPastoZunbeltz,
-    onSecondary: Colors.white,
-    secondaryContainer: Color(0xFFCBD6B6),
-    onSecondaryContainer: Color(0xFF25331A),
-    tertiary: colorSenalZunbeltz,
-    onTertiary: Colors.white,
-    tertiaryContainer: Color(0xFFF0CFC7),
-    onTertiaryContainer: Color(0xFF5C1A0E),
-    error: colorSenalZunbeltz,
-    onError: Colors.white,
-    surface: colorPapelZunbeltz,
-    onSurface: colorTintaZunbeltz,
-    surfaceContainerHighest: colorPapelHundidoZunbeltz,
-    onSurfaceVariant: colorTintaApagadaZunbeltz,
-    outline: colorTintaApagadaZunbeltz,
-    outlineVariant: colorLineaZunbeltz,
+/// [bordeDestacadoZunbeltz] en espejo, para el bloque de al lado.
+const BorderRadius bordeDestacadoEspejoZunbeltz = BorderRadius.only(
+  topLeft: Radius.circular(8),
+  topRight: Radius.circular(24),
+  bottomLeft: Radius.circular(24),
+  bottomRight: Radius.circular(8),
+);
+
+const BorderRadius _bordeCampo = BorderRadius.all(
+  Radius.circular(radioZunbeltz),
+);
+const BorderRadius _bordeTarjeta = BorderRadius.all(
+  Radius.circular(radioTarjetaZunbeltz),
+);
+
+// ── Colores propios que no están en el ColorScheme ────────────────────────
+
+/// Colores del sistema de Zunbeltz que Material 3 no trae: estados de tarea,
+/// acento esmeralda, cabecera verde («shell») y etiqueta de crotal.
+@immutable
+class ColoresZunbeltz extends ThemeExtension<ColoresZunbeltz> {
+  const ColoresZunbeltz({
+    required this.acento,
+    required this.sobreAcento,
+    required this.cabecera,
+    required this.sobreCabecera,
+    required this.sobreCabeceraVariante,
+    required this.pendiente,
+    required this.fondoPendiente,
+    required this.enCurso,
+    required this.fondoEnCurso,
+    required this.hecha,
+    required this.fondoHecha,
+    required this.bloqueada,
+    required this.fondoBloqueada,
+    required this.crotal,
+    required this.sobreCrotal,
+  });
+
+  final Color acento;
+  final Color sobreAcento;
+  final Color cabecera;
+  final Color sobreCabecera;
+  final Color sobreCabeceraVariante;
+  final Color pendiente;
+  final Color fondoPendiente;
+  final Color enCurso;
+  final Color fondoEnCurso;
+  final Color hecha;
+  final Color fondoHecha;
+  final Color bloqueada;
+  final Color fondoBloqueada;
+  final Color crotal;
+  final Color sobreCrotal;
+
+  static const ColoresZunbeltz claro = ColoresZunbeltz(
+    acento: colorAcentoZunbeltz,
+    sobreAcento: Color(0xFF002117),
+    cabecera: Color(0xFF004331),
+    sobreCabecera: Color(0xFFFAFAF9),
+    sobreCabeceraVariante: Color(0xFFB9D6C6),
+    pendiente: colorEstadoPendiente,
+    fondoPendiente: Color(0xFFFFE2C9),
+    enCurso: colorEstadoEnCurso,
+    fondoEnCurso: Color(0xFFD6E6F5),
+    hecha: colorEstadoHecha,
+    fondoHecha: Color(0xFFD5EED9),
+    bloqueada: colorEstadoBloqueada,
+    fondoBloqueada: Color(0xFFF9DEDC),
+    crotal: colorCrotalZunbeltz,
+    sobreCrotal: Color(0xFF2B2300),
   );
 
-  final textoBase = _textoZunbeltz();
+  static const ColoresZunbeltz oscuro = ColoresZunbeltz(
+    acento: colorAcentoZunbeltz,
+    sobreAcento: Color(0xFF002117),
+    cabecera: Color(0xFF0A2A20),
+    sobreCabecera: Color(0xFFE1E8E4),
+    sobreCabeceraVariante: Color(0xFFA6C2B3),
+    pendiente: Color(0xFFFFB77C),
+    fondoPendiente: Color(0xFF4A2800),
+    enCurso: Color(0xFF9ECAF2),
+    fondoEnCurso: Color(0xFF123A57),
+    hecha: Color(0xFF8FD8A0),
+    fondoHecha: Color(0xFF0F3D1C),
+    bloqueada: Color(0xFFF2B8B5),
+    fondoBloqueada: Color(0xFF5C1712),
+    crotal: Color(0xFFE9C84F),
+    sobreCrotal: Color(0xFF2B2300),
+  );
+
+  @override
+  ColoresZunbeltz copyWith() => this;
+
+  @override
+  ColoresZunbeltz lerp(ColoresZunbeltz? otro, double t) {
+    if (otro == null) return this;
+    Color mezcla(Color a, Color b) => Color.lerp(a, b, t)!;
+    return ColoresZunbeltz(
+      acento: mezcla(acento, otro.acento),
+      sobreAcento: mezcla(sobreAcento, otro.sobreAcento),
+      cabecera: mezcla(cabecera, otro.cabecera),
+      sobreCabecera: mezcla(sobreCabecera, otro.sobreCabecera),
+      sobreCabeceraVariante:
+          mezcla(sobreCabeceraVariante, otro.sobreCabeceraVariante),
+      pendiente: mezcla(pendiente, otro.pendiente),
+      fondoPendiente: mezcla(fondoPendiente, otro.fondoPendiente),
+      enCurso: mezcla(enCurso, otro.enCurso),
+      fondoEnCurso: mezcla(fondoEnCurso, otro.fondoEnCurso),
+      hecha: mezcla(hecha, otro.hecha),
+      fondoHecha: mezcla(fondoHecha, otro.fondoHecha),
+      bloqueada: mezcla(bloqueada, otro.bloqueada),
+      fondoBloqueada: mezcla(fondoBloqueada, otro.fondoBloqueada),
+      crotal: mezcla(crotal, otro.crotal),
+      sobreCrotal: mezcla(sobreCrotal, otro.sobreCrotal),
+    );
+  }
+}
+
+extension ColoresZunbeltzDeContexto on BuildContext {
+  /// Colores propios del tema activo (claro u oscuro).
+  ColoresZunbeltz get coloresZunbeltz =>
+      Theme.of(this).extension<ColoresZunbeltz>() ?? ColoresZunbeltz.claro;
+
+  /// Atajo al [ColorScheme] del tema activo.
+  ColorScheme get esquemaZunbeltz => Theme.of(this).colorScheme;
+}
+
+// ── Esquemas de color (tokens.json) ───────────────────────────────────────
+
+const ColorScheme _esquemaClaro = ColorScheme(
+  brightness: Brightness.light,
+  primary: Color(0xFF004331),
+  onPrimary: Color(0xFFFAFAF9),
+  primaryContainer: Color(0xFFCDEBDB),
+  onPrimaryContainer: Color(0xFF002117),
+  secondary: Color(0xFF1E6B33),
+  onSecondary: Color(0xFFFAFAF9),
+  secondaryContainer: Color(0xFFDCEEDA),
+  onSecondaryContainer: Color(0xFF10301A),
+  tertiary: colorAcentoZunbeltz,
+  onTertiary: Color(0xFF002117),
+  tertiaryContainer: Color(0xFFFFE2C9),
+  onTertiaryContainer: Color(0xFF8A4600),
+  error: Color(0xFFB3261E),
+  onError: Color(0xFFFFFFFF),
+  errorContainer: Color(0xFFF9DEDC),
+  onErrorContainer: Color(0xFF410E0B),
+  surface: Color(0xFFFAFAF9),
+  onSurface: Color(0xFF15211C),
+  surfaceContainerLowest: Color(0xFFFFFFFF),
+  surfaceContainerLow: Color(0xFFF3F6F4),
+  surfaceContainer: Color(0xFFECF1EE),
+  surfaceContainerHigh: Color(0xFFE6EEEA),
+  surfaceContainerHighest: Color(0xFFDFE8E3),
+  onSurfaceVariant: Color(0xFF42474B),
+  outline: Color(0xFF737A76),
+  outlineVariant: Color(0xFFC7D0CB),
+  inverseSurface: Color(0xFF15211C),
+  onInverseSurface: Color(0xFFE1E8E4),
+  inversePrimary: Color(0xFF8BD7AE),
+  surfaceTint: Colors.transparent,
+  shadow: Color(0xFF000000),
+  scrim: Color(0xFF000000),
+);
+
+const ColorScheme _esquemaOscuro = ColorScheme(
+  brightness: Brightness.dark,
+  primary: Color(0xFF8BD7AE),
+  onPrimary: Color(0xFF00382A),
+  primaryContainer: Color(0xFF0B5A42),
+  onPrimaryContainer: Color(0xFFCDEBDB),
+  secondary: Color(0xFF8FD8A0),
+  onSecondary: Color(0xFF0F3D1C),
+  secondaryContainer: Color(0xFF24402A),
+  onSecondaryContainer: Color(0xFFD2EBCF),
+  tertiary: colorAcentoZunbeltz,
+  onTertiary: Color(0xFF002117),
+  tertiaryContainer: Color(0xFF4A2800),
+  onTertiaryContainer: Color(0xFFFFB77C),
+  error: Color(0xFFF2B8B5),
+  onError: Color(0xFF601410),
+  errorContainer: Color(0xFF5C1712),
+  onErrorContainer: Color(0xFFF9DEDC),
+  surface: Color(0xFF0F1714),
+  onSurface: Color(0xFFE1E8E4),
+  surfaceContainerLowest: Color(0xFF0A110E),
+  surfaceContainerLow: Color(0xFF141D19),
+  surfaceContainer: Color(0xFF19231F),
+  surfaceContainerHigh: Color(0xFF222D29),
+  surfaceContainerHighest: Color(0xFF2C3833),
+  onSurfaceVariant: Color(0xFFBCC6C0),
+  outline: Color(0xFF87918C),
+  outlineVariant: Color(0xFF3E4843),
+  inverseSurface: Color(0xFFE1E8E4),
+  onInverseSurface: Color(0xFF15211C),
+  inversePrimary: Color(0xFF004331),
+  surfaceTint: Colors.transparent,
+  shadow: Color(0xFF000000),
+  scrim: Color(0xFF000000),
+);
+
+// ── Tema ─────────────────────────────────────────────────────────────────
+
+/// Tema de la app; `oscuro: true` para el modo oscuro.
+ThemeData temaZunbeltz({bool oscuro = false}) {
+  final esquema = oscuro ? _esquemaOscuro : _esquemaClaro;
+  final propios = oscuro ? ColoresZunbeltz.oscuro : ColoresZunbeltz.claro;
+  final texto = _textoZunbeltz(esquema);
+  const pildora = StadiumBorder();
+  const rellenoBoton = EdgeInsets.symmetric(horizontal: 24, vertical: 14);
 
   return ThemeData(
     useMaterial3: true,
+    brightness: esquema.brightness,
     colorScheme: esquema,
-    scaffoldBackgroundColor: colorPapelZunbeltz,
-    textTheme: textoBase,
+    extensions: [propios],
+    scaffoldBackgroundColor: esquema.surface,
+    canvasColor: esquema.surface,
+    textTheme: texto,
     fontFamily: familiaTextoZunbeltz,
-    dividerColor: colorLineaZunbeltz,
-    dividerTheme: const DividerThemeData(
-      color: colorLineaZunbeltz,
+    dividerColor: esquema.outlineVariant,
+    dividerTheme: DividerThemeData(
+      color: esquema.outlineVariant,
       thickness: 1,
       space: 1,
     ),
     appBarTheme: AppBarTheme(
-      backgroundColor: colorPapelZunbeltz,
-      foregroundColor: colorMonteZunbeltz,
+      backgroundColor: esquema.surface,
+      foregroundColor: esquema.onSurface,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       scrolledUnderElevation: 0,
       centerTitle: false,
-      shape: const Border(
-        bottom: BorderSide(color: colorLineaZunbeltz, width: 1),
-      ),
-      titleTextStyle: textoBase.titleLarge,
+      titleTextStyle: texto.titleLarge,
+      iconTheme: IconThemeData(color: esquema.onSurface),
     ),
-    cardTheme: const CardThemeData(
-      color: colorPapelZunbeltz,
+    cardTheme: CardThemeData(
+      color: esquema.surfaceContainerLow,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
-      margin: EdgeInsets.symmetric(vertical: 5),
-      shape: RoundedRectangleBorder(
-        borderRadius: _bordeRedondeado,
-        side: BorderSide(color: colorLineaZunbeltz),
-      ),
+      margin: const EdgeInsets.symmetric(vertical: 6),
+      shape: const RoundedRectangleBorder(borderRadius: _bordeTarjeta),
     ),
-    listTileTheme: const ListTileThemeData(
-      iconColor: colorTintaApagadaZunbeltz,
-      shape: RoundedRectangleBorder(borderRadius: _bordeRedondeado),
+    listTileTheme: ListTileThemeData(
+      iconColor: esquema.onSurfaceVariant,
+      titleTextStyle: texto.titleMedium,
+      subtitleTextStyle:
+          texto.bodyMedium?.copyWith(color: esquema.onSurfaceVariant),
+      shape: const RoundedRectangleBorder(borderRadius: _bordeTarjeta),
     ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
-        backgroundColor: colorMonteZunbeltz,
-        foregroundColor: colorPapelZunbeltz,
-        textStyle: _estiloBoton(),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        shape: const RoundedRectangleBorder(borderRadius: _bordeRedondeado),
+        backgroundColor: esquema.primary,
+        foregroundColor: esquema.onPrimary,
+        textStyle: texto.labelLarge,
+        padding: rellenoBoton,
+        shape: pildora,
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: colorMonteZunbeltz,
-        foregroundColor: colorPapelZunbeltz,
+        backgroundColor: esquema.primary,
+        foregroundColor: esquema.onPrimary,
         elevation: 0,
-        textStyle: _estiloBoton(),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        shape: const RoundedRectangleBorder(borderRadius: _bordeRedondeado),
+        textStyle: texto.labelLarge,
+        padding: rellenoBoton,
+        shape: pildora,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: colorMonteZunbeltz,
-        textStyle: _estiloBoton(),
-        side: const BorderSide(color: colorTintaApagadaZunbeltz),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        shape: const RoundedRectangleBorder(borderRadius: _bordeRedondeado),
+        foregroundColor: esquema.primary,
+        textStyle: texto.labelLarge,
+        side: BorderSide(color: esquema.outline),
+        padding: rellenoBoton,
+        shape: pildora,
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: colorMonteZunbeltz,
-        textStyle: _estiloBoton(),
+        foregroundColor: esquema.primary,
+        textStyle: texto.labelLarge,
+        shape: pildora,
       ),
     ),
-    floatingActionButtonTheme: const FloatingActionButtonThemeData(
-      backgroundColor: colorSenalZunbeltz,
-      foregroundColor: Colors.white,
-      elevation: 1,
-      focusElevation: 1,
-      hoverElevation: 2,
-      highlightElevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: _bordeRedondeado),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(foregroundColor: esquema.onSurfaceVariant),
+    ),
+    segmentedButtonTheme: SegmentedButtonThemeData(
+      style: SegmentedButton.styleFrom(
+        selectedBackgroundColor: esquema.secondaryContainer,
+        selectedForegroundColor: esquema.onSecondaryContainer,
+        foregroundColor: esquema.onSurface,
+        side: BorderSide(color: esquema.outline),
+        textStyle: texto.labelLarge,
+        shape: pildora,
+      ),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: propios.acento,
+      foregroundColor: propios.sobreAcento,
+      elevation: 2,
+      focusElevation: 2,
+      hoverElevation: 3,
+      highlightElevation: 3,
+      extendedTextStyle: texto.titleMedium,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
     ),
     chipTheme: ChipThemeData(
-      backgroundColor: colorPapelHundidoZunbeltz,
-      selectedColor: colorMusgoZunbeltz,
-      side: const BorderSide(color: colorLineaZunbeltz),
-      labelStyle: TextStyle(
-        fontFamily: familiaTitularZunbeltz,
-        fontSize: 13,
-        fontWeight: FontWeight.w600,
-        color: colorTintaZunbeltz,
+      backgroundColor: esquema.surface,
+      selectedColor: esquema.secondaryContainer,
+      checkmarkColor: esquema.onSecondaryContainer,
+      side: WidgetStateBorderSide.resolveWith(
+        (estados) => estados.contains(WidgetState.selected)
+            ? BorderSide.none
+            : BorderSide(color: esquema.outline),
       ),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(2)),
-      ),
+      labelStyle: texto.labelLarge?.copyWith(color: esquema.onSurface),
+      shape: const RoundedRectangleBorder(borderRadius: _bordeCampo),
     ),
     inputDecorationTheme: InputDecorationTheme(
-      filled: true,
-      fillColor: colorPapelHundidoZunbeltz,
-      border: _bordeCampo(colorLineaZunbeltz),
-      enabledBorder: _bordeCampo(colorLineaZunbeltz),
-      focusedBorder: _bordeCampo(colorMonteZunbeltz, grosor: 2),
-      errorBorder: _bordeCampo(colorSenalZunbeltz),
-      focusedErrorBorder: _bordeCampo(colorSenalZunbeltz, grosor: 2),
-      labelStyle: const TextStyle(
-        fontFamily: familiaTitularZunbeltz,
-        fontSize: 14,
-        color: colorTintaApagadaZunbeltz,
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      filled: false,
+      border: _bordeDeCampo(esquema.outline),
+      enabledBorder: _bordeDeCampo(esquema.outline),
+      focusedBorder: _bordeDeCampo(esquema.primary, grosor: 2),
+      errorBorder: _bordeDeCampo(esquema.error),
+      focusedErrorBorder: _bordeDeCampo(esquema.error, grosor: 2),
+      labelStyle: texto.bodyLarge?.copyWith(color: esquema.onSurfaceVariant),
+      hintStyle: texto.bodyLarge?.copyWith(color: esquema.onSurfaceVariant),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     ),
     tabBarTheme: TabBarThemeData(
-      labelColor: colorMonteZunbeltz,
-      unselectedLabelColor: colorTintaApagadaZunbeltz,
-      indicatorColor: colorSenalZunbeltz,
-      indicatorSize: TabBarIndicatorSize.tab,
-      dividerColor: colorLineaZunbeltz,
-      labelStyle: _estiloBoton(),
-      unselectedLabelStyle: _estiloBoton(peso: FontWeight.w400),
+      labelColor: esquema.primary,
+      unselectedLabelColor: esquema.onSurfaceVariant,
+      indicatorColor: esquema.primary,
+      indicatorSize: TabBarIndicatorSize.label,
+      dividerColor: esquema.outlineVariant,
+      labelStyle: texto.titleSmall,
+      unselectedLabelStyle:
+          texto.titleSmall?.copyWith(fontWeight: FontWeight.w500),
     ),
     navigationBarTheme: NavigationBarThemeData(
-      backgroundColor: colorPapelZunbeltz,
+      backgroundColor: esquema.surfaceContainer,
       surfaceTintColor: Colors.transparent,
-      indicatorColor: colorPapelHundidoZunbeltz,
+      indicatorColor: esquema.secondaryContainer,
       elevation: 0,
-      indicatorShape: const RoundedRectangleBorder(
-        borderRadius: _bordeRedondeado,
+      iconTheme: WidgetStateProperty.resolveWith(
+        (estados) => IconThemeData(
+          color: estados.contains(WidgetState.selected)
+              ? esquema.onSecondaryContainer
+              : esquema.onSurfaceVariant,
+        ),
       ),
-      labelTextStyle: WidgetStatePropertyAll(
-        TextStyle(
-          fontFamily: familiaTitularZunbeltz,
-          fontSize: 12.5,
-          fontWeight: FontWeight.w600,
-          color: colorMonteZunbeltz,
+      labelTextStyle: WidgetStateProperty.resolveWith(
+        (estados) => texto.labelMedium?.copyWith(
+          color: estados.contains(WidgetState.selected)
+              ? esquema.onSurface
+              : esquema.onSurfaceVariant,
+          fontWeight: estados.contains(WidgetState.selected)
+              ? FontWeight.w700
+              : FontWeight.w500,
         ),
       ),
     ),
-    snackBarTheme: SnackBarThemeData(
-      backgroundColor: colorMonteZunbeltz,
-      contentTextStyle: TextStyle(
-        fontFamily: familiaTextoZunbeltz,
-        fontSize: 15,
-        color: colorPapelZunbeltz,
+    navigationRailTheme: NavigationRailThemeData(
+      backgroundColor: esquema.surfaceContainer,
+      indicatorColor: esquema.secondaryContainer,
+      selectedIconTheme: IconThemeData(color: esquema.onSecondaryContainer),
+      unselectedIconTheme: IconThemeData(color: esquema.onSurfaceVariant),
+      selectedLabelTextStyle: texto.labelMedium
+          ?.copyWith(color: esquema.onSurface, fontWeight: FontWeight.w700),
+      unselectedLabelTextStyle:
+          texto.labelMedium?.copyWith(color: esquema.onSurfaceVariant),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: esquema.surfaceContainerLow,
+      surfaceTintColor: Colors.transparent,
+      showDragHandle: true,
+      dragHandleColor: esquema.outline,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
       ),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: esquema.inverseSurface,
+      contentTextStyle:
+          texto.bodyMedium?.copyWith(color: esquema.onInverseSurface),
+      actionTextColor: esquema.inversePrimary,
       behavior: SnackBarBehavior.floating,
-      shape: const RoundedRectangleBorder(borderRadius: _bordeRedondeado),
+      shape: const RoundedRectangleBorder(borderRadius: _bordeCampo),
     ),
     dialogTheme: DialogThemeData(
-      backgroundColor: colorPapelZunbeltz,
+      backgroundColor: esquema.surfaceContainerHigh,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       shape: const RoundedRectangleBorder(
-        borderRadius: _bordeRedondeado,
-        side: BorderSide(color: colorLineaZunbeltz),
+        borderRadius: BorderRadius.all(Radius.circular(24)),
       ),
-      titleTextStyle: textoBase.titleLarge,
-      contentTextStyle: textoBase.bodyMedium,
+      titleTextStyle: texto.headlineSmall,
+      contentTextStyle:
+          texto.bodyMedium?.copyWith(color: esquema.onSurfaceVariant),
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: esquema.surfaceContainer,
+      surfaceTintColor: Colors.transparent,
+      textStyle: texto.bodyLarge,
+      shape: const RoundedRectangleBorder(borderRadius: _bordeCampo),
+    ),
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      color: esquema.primary,
+      linearTrackColor: esquema.outlineVariant,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: WidgetStateProperty.resolveWith(
+        (estados) => estados.contains(WidgetState.selected)
+            ? esquema.onPrimary
+            : esquema.outline,
+      ),
+      trackColor: WidgetStateProperty.resolveWith(
+        (estados) => estados.contains(WidgetState.selected)
+            ? esquema.primary
+            : esquema.surfaceContainerHighest,
+      ),
     ),
   );
 }
 
-OutlineInputBorder _bordeCampo(Color color, {double grosor = 1}) {
+OutlineInputBorder _bordeDeCampo(Color color, {double grosor = 1}) {
   return OutlineInputBorder(
-    borderRadius: _bordeRedondeado,
+    borderRadius: _bordeCampo,
     borderSide: BorderSide(color: color, width: grosor),
   );
 }
 
-TextStyle _estiloBoton({FontWeight peso = FontWeight.w600}) {
-  return TextStyle(
-    fontFamily: familiaTitularZunbeltz,
-    fontSize: 15,
-    fontWeight: peso,
-    letterSpacing: 0,
-  );
-}
+/// Escala tipográfica de Material 3 (tamaños en sp). Poppins 600 en
+/// display, headline y titleLarge (títulos de pantalla y de sección, cifras
+/// destacadas); Inter en lo demás.
+TextTheme _textoZunbeltz(ColorScheme esquema) {
+  TextStyle titular(double tamano, double alto) => TextStyle(
+        fontFamily: familiaTitularZunbeltz,
+        fontSize: tamano,
+        height: alto / tamano,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 0,
+        color: esquema.onSurface,
+      );
 
-/// Escala tipográfica: títulos en grotesca con tracking cerrado, texto
-/// corrido en serif con más interlínea de la que trae Material por defecto.
-TextTheme _textoZunbeltz() {
-  TextStyle titulo(double tamano, {FontWeight peso = FontWeight.w600}) {
-    return TextStyle(
-      fontFamily: familiaTitularZunbeltz,
-      fontSize: tamano,
-      fontWeight: peso,
-      letterSpacing: -0.4,
-      height: 1.14,
-      color: colorMonteZunbeltz,
-    );
-  }
-
-  TextStyle texto(double tamano, {Color color = colorTintaZunbeltz}) {
-    return TextStyle(
-      fontFamily: familiaTextoZunbeltz,
-      fontSize: tamano,
-      height: 1.5,
-      color: color,
-    );
-  }
-
-  TextStyle etiqueta(double tamano, {Color color = colorTintaZunbeltz}) {
-    return TextStyle(
-      fontFamily: familiaTitularZunbeltz,
-      fontSize: tamano,
-      fontWeight: FontWeight.w600,
-      letterSpacing: 0,
-      color: color,
-    );
-  }
+  TextStyle inter(
+    double tamano,
+    double alto, {
+    FontWeight peso = FontWeight.w400,
+    double espaciado = 0,
+    Color? color,
+  }) =>
+      TextStyle(
+        fontFamily: familiaTextoZunbeltz,
+        fontSize: tamano,
+        height: alto / tamano,
+        fontWeight: peso,
+        letterSpacing: espaciado,
+        color: color ?? esquema.onSurface,
+      );
 
   return TextTheme(
-    displayLarge: titulo(40),
-    displayMedium: titulo(34),
-    displaySmall: titulo(29),
-    headlineLarge: titulo(26),
-    headlineMedium: titulo(23),
-    headlineSmall: titulo(20),
-    titleLarge: titulo(19),
-    titleMedium: titulo(17),
-    titleSmall: titulo(15),
-    bodyLarge: texto(17),
-    bodyMedium: texto(15.5),
-    bodySmall: texto(13.5, color: colorTintaApagadaZunbeltz),
-    labelLarge: etiqueta(15),
-    labelMedium: etiqueta(13),
-    labelSmall: etiqueta(12, color: colorTintaApagadaZunbeltz),
+    displayLarge: titular(57, 64),
+    displayMedium: titular(45, 52),
+    displaySmall: titular(36, 44),
+    headlineLarge: titular(32, 40),
+    headlineMedium: titular(28, 36),
+    headlineSmall: titular(24, 32),
+    titleLarge: titular(22, 28),
+    titleMedium: inter(16, 24, peso: FontWeight.w600, espaciado: 0.1),
+    titleSmall: inter(14, 20, peso: FontWeight.w600, espaciado: 0.1),
+    bodyLarge: inter(16, 24, espaciado: 0.2),
+    bodyMedium: inter(14, 20, espaciado: 0.2),
+    bodySmall: inter(12, 16, espaciado: 0.3, color: esquema.onSurfaceVariant),
+    labelLarge: inter(14, 20, peso: FontWeight.w600, espaciado: 0.1),
+    labelMedium: inter(12, 16, peso: FontWeight.w600, espaciado: 0.4),
+    labelSmall: inter(11, 16,
+        peso: FontWeight.w500, espaciado: 0.5, color: esquema.onSurfaceVariant),
   );
 }

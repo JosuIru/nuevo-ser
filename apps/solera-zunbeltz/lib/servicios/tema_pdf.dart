@@ -5,7 +5,7 @@ import '../logos_entidades.dart';
 
 pw.ThemeData? _temaCargado;
 
-/// Fuentes de los PDF de la app: Archivo, la misma de los títulos,
+/// Fuentes de los PDF de la app: Inter, la misma del texto de la app,
 /// incrustada desde `assets/fuentes`. Sin ella el generador usa Helvetica,
 /// que no tiene «€» ni «—» y los deja en blanco en todos los importes.
 Future<pw.ThemeData> temaPdfZunbeltz() async {
@@ -14,9 +14,9 @@ Future<pw.ThemeData> temaPdfZunbeltz() async {
   Future<pw.Font> fuente(String nombre) async =>
       pw.Font.ttf(await rootBundle.load('assets/fuentes/$nombre.ttf'));
   final tema = pw.ThemeData.withFont(
-    base: await fuente('Archivo-Regular'),
-    bold: await fuente('Archivo-Bold'),
-    italic: await fuente('Spectral-Italic'),
+    base: await fuente('Inter-Regular'),
+    bold: await fuente('Inter-Bold'),
+    italic: await fuente('Inter-Italic'),
   );
   _temaCargado = tema;
   return tema;

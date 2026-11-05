@@ -2,11 +2,11 @@
 <resources>
     <color name="ic_launcher_background">#FFFFFF</color>
     <!-- Paleta de la app (lib/branding.dart), para el widget de inicio. -->
-    <color name="zunbeltz_papel">#FFE9EBE2</color>
-    <color name="zunbeltz_monte">#FF1B2320</color>
-    <color name="zunbeltz_senal">#FFB8402A</color>
-    <color name="zunbeltz_pasto">#FF5E7D3A</color>
-    <color name="zunbeltz_tinta">#FF171D19</color>
-    <color name="zunbeltz_tinta_apagada">#FF6C7870</color>
-    <color name="zunbeltz_linea">#2B1B2320</color>
+    <color name="zunbeltz_papel">#FFFAFAF9</color>
+    <color name="zunbeltz_monte">#FF004331</color>
+    <color name="zunbeltz_senal">#FFB3261E</color>
+    <color name="zunbeltz_pasto">#FF1E6B33</color>
+    <color name="zunbeltz_tinta">#FF15211C</color>
+    <color name="zunbeltz_tinta_apagada">#FF42474B</color>
+    <color name="zunbeltz_linea">#FFC7D0CB</color>
 </resources>

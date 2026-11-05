@@ -96,26 +96,27 @@ flutter:
     - assets/logos/
 
   # Tipografía empaquetada (se usa sin conexión, como el resto de la app):
-  # Archivo para títulos y Spectral para texto corrido. Ambas con licencia
-  # SIL Open Font License 1.1 — ver assets/fuentes/OFL.txt.
+  # Poppins para títulos y cifras e Inter para el texto, como en el rediseño
+  # de noviembre de 2026. Ambas con licencia SIL Open Font License 1.1 —
+  # ver assets/fuentes/OFL-Poppins.txt y OFL-Inter.txt.
   fonts:
-    - family: Archivo
+    - family: Poppins
       fonts:
-        - asset: assets/fuentes/Archivo-Regular.ttf
-          weight: 400
-        - asset: assets/fuentes/Archivo-SemiBold.ttf
+        - asset: assets/fuentes/Poppins-SemiBold.ttf
           weight: 600
-        - asset: assets/fuentes/Archivo-Bold.ttf
-          weight: 700
-    - family: Spectral
+    - family: Inter
       fonts:
-        - asset: assets/fuentes/Spectral-Regular.ttf
+        - asset: assets/fuentes/Inter-Regular.ttf
           weight: 400
-        - asset: assets/fuentes/Spectral-Italic.ttf
+        - asset: assets/fuentes/Inter-Italic.ttf
           weight: 400
           style: italic
-        - asset: assets/fuentes/Spectral-SemiBold.ttf
+        - asset: assets/fuentes/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/fuentes/Inter-SemiBold.ttf
           weight: 600
+        - asset: assets/fuentes/Inter-Bold.ttf
+          weight: 700
 
 # Icono del lanzador: el símbolo de cuatro cuadros del logo de zunbeltz.com
 # (recortado de assets/logos/zunbeltz.png, decidido el 2026-10-22). Se regenera

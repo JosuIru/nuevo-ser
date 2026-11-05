@@ -25,6 +25,7 @@ import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 import 'branding.dart';
 import 'datos/base_datos.dart';
 import 'estado/idioma_app.dart';
+import 'estado/tema_app.dart';
 import 'estado/sesion_espacio.dart';
 import 'estado/version_demo.dart';
 import 'estado/ver_en_mapa.dart';
@@ -58,6 +59,7 @@ Future<void> main() async {
   // Precarga el idioma elegido en sesiones previas antes del primer build,
   // para evitar un parpadeo con el idioma del sistema.
   await precargarIdiomaZunbeltz();
+  await precargarTemaZunbeltz();
   // Persona conectada y sus permisos, guardados de la última sincronización.
   await precargarSesionEspacio();
   // Avisos al momento por FCM (solo Android).
@@ -83,15 +85,16 @@ class AppSoleraZunbeltz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Locale?>(
-      valueListenable: localeAppZunbeltz,
-      builder: (contexto, localeActivo, _) {
+    return ListenableBuilder(
+      listenable: Listenable.merge([localeAppZunbeltz, temaAppZunbeltz]),
+      builder: (contexto, _) {
+        final localeActivo = localeAppZunbeltz.value;
         return MaterialApp(
           onGenerateTitle: (ctx) => AppLocalizations.of(ctx).appTitulo,
           debugShowCheckedModeBanner: false,
           theme: temaZunbeltz(),
           darkTheme: temaZunbeltz(oscuro: true),
-          themeMode: ThemeMode.system,
+          themeMode: temaAppZunbeltz.value,
           locale: localeActivo,
           localizationsDelegates: const [
             AppLocalizations.delegate,

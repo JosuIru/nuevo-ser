@@ -1,18 +1,15 @@
-import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
-import '../datos/base_datos.dart';
+import '../branding.dart';
 import '../estado/ajustes_sincronizacion.dart';
 import '../estado/coordinador.dart';
-import '../estado/datos_notificador.dart';
-import '../servicios/cliente_sync_zunbeltz.dart';
-import '../servicios/servicio_sincronizacion.dart';
 import '../servicios/documento_generado.dart';
 import '../servicios/exportador_espacio.dart';
 import '../estado/idioma_app.dart';
 import '../estado/sesion_espacio.dart';
-import '../estado/version_demo.dart';
+import '../estado/tema_app.dart';
 import '../modelos/persona_espacio.dart';
 import '../l10n/app_localizations.dart';
 import '../utiles/traductor_actualizaciones.dart';
@@ -20,11 +17,9 @@ import 'pantalla_acerca_espacio_test.dart';
 import 'pantalla_entidades.dart';
 import 'pantalla_mapa_sin_cobertura.dart';
 import 'pantalla_ayuda.dart';
-import '../utiles/texto_error_sync.dart';
-import '../servicios/servicio_logos_entidades.dart';
-import '../servicios/servicio_textos_ayuda.dart';
-import '../servicios/servicio_noticias_sector.dart';
-import 'widgets/avisos_push_web.dart';
+import 'pantalla_inicio.dart' show haceCuanto;
+import 'pantalla_sincronizacion.dart';
+import 'widgets/relleno_seguro.dart';
 import 'widgets/liberar_al_cerrar.dart';
 
 /// Versión visible de la app. Se mantiene a mano sincronizada con `version`
@@ -32,7 +27,8 @@ import 'widgets/liberar_al_cerrar.dart';
 /// falla si no coinciden.
 const String versionAppZunbeltz = '0.8.1';
 
-/// Pestaña "Ajustes": idioma y acerca de.
+/// Pestaña «Ajustes»: arriba, quién es y cómo va la sincronización; luego
+/// preferencias, datos y cuenta, y lo de la app.
 class PantallaAjustes extends StatefulWidget {
   const PantallaAjustes({super.key});
 
@@ -45,23 +41,59 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   String _syncUrl = '';
   String _syncToken = '';
   bool _sincronizando = false;
+  int? _ultimaMs;
+
+  bool get _configurado => _syncUrl.isNotEmpty && _syncToken.isNotEmpty;
 
   @override
   void initState() {
     super.initState();
-    Coordinador.cargarCorreo().then((c) {
-      if (mounted) setState(() => _coordinador = c);
+    Coordinador.cargarCorreo().then((correo) {
+      if (mounted) setState(() => _coordinador = correo);
     });
-    AjustesSincronizacion.cargarUrl().then((u) {
-      if (mounted) setState(() => _syncUrl = u);
-    });
-    AjustesSincronizacion.cargarToken().then((t) {
-      if (mounted) setState(() => _syncToken = t);
+    _cargarSincronizacion();
+  }
+
+  Future<void> _cargarSincronizacion() async {
+    final url = await AjustesSincronizacion.cargarUrl();
+    final token = await AjustesSincronizacion.cargarToken();
+    final ultima = await leerUltimaSincronizacion();
+    if (!mounted) return;
+    setState(() {
+      _syncUrl = url;
+      _syncToken = token;
+      _ultimaMs = ultima;
     });
   }
 
   Future<void> _cambiarIdioma(String codigo) async {
     await elegirIdiomaZunbeltz(codigo);
+    if (mounted) setState(() {});
+  }
+
+  Future<void> _elegirTema() async {
+    final textos = AppLocalizations.of(context);
+    final elegido = await showDialog<ThemeMode>(
+      context: context,
+      builder: (contexto) => SimpleDialog(
+        title: Text(textos.ajuTema),
+        children: [
+          RadioGroup<ThemeMode>(
+            groupValue: temaAppZunbeltz.value,
+            onChanged: (valor) => Navigator.pop(contexto, valor),
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+              for (final (tema, etiqueta) in [
+                (ThemeMode.system, textos.ajuTemaSistema),
+                (ThemeMode.light, textos.ajuTemaClaro),
+                (ThemeMode.dark, textos.ajuTemaOscuro),
+              ])
+                RadioListTile<ThemeMode>(value: tema, title: Text(etiqueta)),
+            ]),
+          ),
+        ],
+      ),
+    );
+    if (elegido != null) await elegirTemaZunbeltz(elegido);
     if (mounted) setState(() {});
   }
 
@@ -79,16 +111,6 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                 .join('\n'))));
       }
     }
-  }
-
-  Future<void> _cargarDemo() async {
-    final textos = AppLocalizations.of(context);
-    final sembrado =
-        await BaseDatosSoleraZunbeltz().sembrarDemostracionSiVacia();
-    if (sembrado) avisarCambioDatos();
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(sembrado ? textos.demoCargada : textos.demoYaHay)));
   }
 
   Future<void> _editarCoordinador() async {
@@ -122,318 +144,317 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     if (mounted) setState(() => _coordinador = correo);
   }
 
-  Future<void> _editarSyncUrl() async {
-    final textos = AppLocalizations.of(context);
-    final controlador = TextEditingController(text: _syncUrl);
-    final url = await showDialog<String>(
-      context: context,
-      builder: (ctx) => LiberarAlCerrar(
-        controladores: [controlador],
-        child: AlertDialog(
-          title: Text(textos.ajustesSyncUrl),
-          content: TextField(
-            controller: controlador,
-            keyboardType: TextInputType.url,
-            decoration:
-                const InputDecoration(hintText: 'https://tuwordpress.org'),
-            autofocus: true,
-          ),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: Text(textos.comunCancelar)),
-            FilledButton(
-                onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
-                child: Text(textos.comunGuardar)),
-          ],
-        ),
-      ),
-    );
-    if (url == null || url == _syncUrl) return;
-    await AjustesSincronizacion.guardarUrl(url);
-    if (mounted) setState(() => _syncUrl = url);
-    await _conectar();
-  }
-
-  Future<void> _editarSyncToken() async {
-    final textos = AppLocalizations.of(context);
-    final controlador = TextEditingController(text: _syncToken);
-    final token = await showDialog<String>(
-      context: context,
-      builder: (ctx) => LiberarAlCerrar(
-        controladores: [controlador],
-        child: AlertDialog(
-          title: Text(textos.ajustesSyncToken),
-          content: TextField(
-            controller: controlador,
-            autofocus: true,
-          ),
-          actions: [
-            TextButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: Text(textos.comunCancelar)),
-            FilledButton(
-                onPressed: () => Navigator.pop(ctx, controlador.text.trim()),
-                child: Text(textos.comunGuardar)),
-          ],
-        ),
-      ),
-    );
-    if (token == null || token == _syncToken) return;
-    await AjustesSincronizacion.guardarToken(token);
-    if (mounted) setState(() => _syncToken = token);
-    await _conectar();
-  }
-
-  /// Tras cambiar de WordPress o de token, la sesión anterior deja de valer:
-  /// se cierra y se pregunta al servidor quién es la dueña del token nuevo.
-  Future<void> _conectar() async {
-    final textos = AppLocalizations.of(context);
-    await cerrarSesionEspacio();
-    await reiniciarCursoresSincronizacion();
-    await ServicioNoticiasSector.olvidarGuardadas();
-    await ServicioLogosEntidades.olvidarGuardadas();
-    await ServicioTextosAyuda.olvidarGuardados();
-    avisarCambioDatos();
-    if (!mounted || _syncUrl.isEmpty || _syncToken.isEmpty) return;
+  Future<void> _sincronizarAhora() async {
     setState(() => _sincronizando = true);
-    try {
-      final remota =
-          await ClienteSyncZunbeltz(urlBase: _syncUrl, token: _syncToken)
-              .obtenerSesion();
-      await guardarSesionEspacio(remota.sesion, remota.personas);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-              textos.ajustesSesionConectada(remota.sesion.persona.nombre))));
-    } catch (error) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(textoErrorSync(error, textos))));
-    } finally {
-      // Las pestañas (Fincas, Proyectos…) solo se reconstruyen con este
-      // aviso: sin él seguirían ofreciendo lo que permitía la sesión
-      // anterior hasta la siguiente sincronización.
-      avisarCambioDatos();
-      if (mounted) setState(() => _sincronizando = false);
+    await sincronizarConAviso(context);
+    final ultima = await leerUltimaSincronizacion();
+    if (mounted) {
+      setState(() {
+        _ultimaMs = ultima;
+        _sincronizando = false;
+      });
     }
   }
 
-  Future<void> _sincronizarAhora({bool completa = false}) async {
-    final textos = AppLocalizations.of(context);
-    setState(() => _sincronizando = true);
-    try {
-      final resultado = await sincronizarEspacio(completa: completa);
-      if (!mounted) return;
-      if (resultado == null) {
-        // Otra sincronización (la automática) tiene el candado: que la
-        // completa pedida no se pierda, y decirlo.
-        if (completa) {
-          await BaseDatosSoleraZunbeltz().pedirSincronizacionCompleta();
-        }
-        if (!mounted) return;
-        if (_syncUrl.isNotEmpty && _syncToken.isNotEmpty) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(textos.ajustesSyncOcupado)));
-        }
-        return;
-      }
-      final resumen = textos.ajustesSyncResultado(
-          resultado.subidas + resultado.entidadesSubidas,
-          resultado.bajadas + resultado.entidadesBajadas,
-          resultado.retiradas);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(resultado.rechazadasPorPermisos == 0
-              ? resumen
-              : '$resumen\n${textos.ajustesSyncRechazadas(resultado.rechazadasPorPermisos)}')));
-    } catch (error) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(textoErrorSync(error, textos))));
-    } finally {
-      if (mounted) setState(() => _sincronizando = false);
-    }
+  Future<void> _ir(Widget pantalla) async {
+    await Navigator.of(context)
+        .push(MaterialPageRoute(builder: (_) => pantalla));
+    await _cargarSincronizacion();
   }
+
+  /// Cabecera verde: la persona, su rol y la tarjeta de sincronización.
+  Widget _cabecera(AppLocalizations textos, String idioma) {
+    final colores = context.coloresZunbeltz;
+    final estilos = Theme.of(context).textTheme;
+    final ultima = _ultimaMs;
+    final relleno = MediaQuery.paddingOf(context).top;
+    return Container(
+      padding: EdgeInsets.fromLTRB(20, relleno + 20, 20, 24),
+      decoration: BoxDecoration(
+        color: colores.cabecera,
+        borderRadius: const BorderRadius.only(
+            bottomLeft: Radius.circular(28), bottomRight: Radius.circular(28)),
+      ),
+      child: ValueListenableBuilder<SesionEspacio?>(
+        valueListenable: sesionEspacio,
+        builder: (contexto, sesion, _) {
+          final nombre = sesion?.persona.nombre ?? '';
+          final palabras =
+              nombre.split(RegExp(r'\s+')).where((p) => p.isNotEmpty).toList();
+          final iniciales = palabras.isEmpty
+              ? null
+              : palabras.take(2).map((p) => p[0].toUpperCase()).join();
+          final (IconData icono, String titulo, String detalle) = switch (()) {
+            _ when !_configurado => (
+                Icons.phone_android_outlined,
+                textos.ajustesSesionLocal,
+                textos.ajuNadaPorSincronizar
+              ),
+            _ when _sincronizando => (
+                Icons.sync,
+                textos.hoySincronizando,
+                _syncUrl
+              ),
+            _ when ultima == null => (
+                Icons.cloud_off_outlined,
+                textos.hoySinSincronizar,
+                _syncUrl
+              ),
+            _ => (
+                Icons.cloud_done_outlined,
+                textos.hoySincronizado(
+                    haceCuanto(textos, ultima, DateTime.now(), idioma: idioma)),
+                _syncUrl.replaceFirst(RegExp(r'^https?://'), '')
+              ),
+          };
+          return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(textos.navAjustes,
+                    style: estilos.headlineMedium
+                        ?.copyWith(color: colores.sobreCabecera)),
+                const SizedBox(height: 18),
+                Row(children: [
+                  Container(
+                    width: 64,
+                    height: 64,
+                    alignment: Alignment.center,
+                    decoration: const BoxDecoration(
+                      color: colorCuadroSalvia,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        topRight: Radius.circular(12),
+                        bottomLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(26),
+                      ),
+                    ),
+                    child: iniciales == null
+                        ? const Icon(Icons.person_outline,
+                            size: 32, color: colorSobreCuadroClaro)
+                        : Text(iniciales,
+                            style: estilos.titleLarge?.copyWith(
+                                color: colorSobreCuadroClaro,
+                                fontWeight: FontWeight.w700)),
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                            nombre.isEmpty ? textos.ajustesSesionLocal : nombre,
+                            style: estilos.titleLarge
+                                ?.copyWith(color: colores.sobreCabecera)),
+                        if (sesion != null)
+                          Container(
+                            margin: const EdgeInsets.only(top: 6),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(
+                              color:
+                                  colores.sobreCabecera.withValues(alpha: 0.12),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(sesion.persona.etiquetaRol,
+                                style: estilos.labelLarge
+                                    ?.copyWith(color: colores.sobreCabecera)),
+                          ),
+                      ],
+                    ),
+                  ),
+                ]),
+                const SizedBox(height: 20),
+                Material(
+                  color: colores.sobreCabecera.withValues(alpha: 0.08),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    side: BorderSide(
+                        color: colores.sobreCabeceraVariante
+                            .withValues(alpha: 0.3)),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: InkWell(
+                    onTap: () => _ir(const PantallaSincronizacion()),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 12, 12, 12),
+                      child: Row(children: [
+                        Icon(icono, color: colores.sobreCabecera),
+                        const SizedBox(width: 14),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(titulo,
+                                  style: estilos.titleSmall?.copyWith(
+                                      color: colores.sobreCabecera,
+                                      fontWeight: FontWeight.w600)),
+                              if (detalle.isNotEmpty)
+                                Text(detalle,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: estilos.bodySmall?.copyWith(
+                                        color: colores.sobreCabeceraVariante)),
+                            ],
+                          ),
+                        ),
+                        if (_configurado) ...[
+                          const SizedBox(width: 8),
+                          FilledButton.icon(
+                            style: FilledButton.styleFrom(
+                                backgroundColor: colorCuadroSalvia,
+                                foregroundColor: colorSobreCuadroClaro),
+                            onPressed:
+                                _sincronizando ? null : _sincronizarAhora,
+                            icon: const Icon(Icons.sync, size: 20),
+                            label: Text(textos.ajuAhora),
+                          ),
+                        ],
+                      ]),
+                    ),
+                  ),
+                ),
+              ]);
+        },
+      ),
+    );
+  }
+
+  Widget _grupo(String titulo, List<Widget> filas) {
+    final esquema = context.esquemaZunbeltz;
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Padding(
+        padding: const EdgeInsets.fromLTRB(20, 24, 20, 10),
+        child: Text(titulo,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                color: esquema.primary, fontWeight: FontWeight.w600)),
+      ),
+      Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: BoxDecoration(
+          color: esquema.surfaceContainerLow,
+          borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(children: [
+          for (var indice = 0; indice < filas.length; indice++) ...[
+            if (indice > 0)
+              Divider(
+                  height: 1,
+                  indent: 72,
+                  endIndent: 16,
+                  color: esquema.outlineVariant),
+            filas[indice],
+          ],
+        ]),
+      ),
+    ]);
+  }
+
+  Widget _fila(IconData icono, String titulo,
+          {String? detalle,
+          Color? colorDetalle,
+          Widget? final_,
+          VoidCallback? alPulsar}) =>
+      ListTile(
+        contentPadding: const EdgeInsets.fromLTRB(20, 6, 16, 6),
+        leading: Icon(icono),
+        title: Text(titulo),
+        subtitle: detalle == null
+            ? null
+            : Text(detalle,
+                style: colorDetalle == null
+                    ? null
+                    : TextStyle(
+                        color: colorDetalle, fontWeight: FontWeight.w600)),
+        trailing: final_ ??
+            (alPulsar == null ? null : const Icon(Icons.chevron_right)),
+        onTap: alPulsar,
+      );
 
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
     final localeActivo = Localizations.localeOf(context).languageCode;
+    final estilos = Theme.of(context).textTheme;
+    final esquema = context.esquemaZunbeltz;
+    final tema = switch (temaAppZunbeltz.value) {
+      ThemeMode.light => textos.ajuTemaClaro,
+      ThemeMode.dark => textos.ajuTemaOscuro,
+      ThemeMode.system => textos.ajuTemaSistema,
+    };
     return Scaffold(
-      appBar: AppBar(title: Text(textos.navAjustes)),
       body: ListView(
+        padding: EdgeInsets.zero,
         children: [
-          ListTile(
-            leading: const Icon(Icons.translate_outlined),
-            title: Text(textos.ajustesIdioma),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Wrap(
-                spacing: 10,
-                children: [
-                  ChoiceChip(
-                    selected: localeActivo == 'es',
-                    label: Text(textos.ajustesIdiomaCastellano),
-                    onSelected: (_) => _cambiarIdioma('es'),
-                  ),
-                  ChoiceChip(
-                    selected: localeActivo == 'eu',
-                    label: Text(textos.ajustesIdiomaEuskera),
-                    onSelected: (_) => _cambiarIdioma('eu'),
-                  ),
+          _cabecera(textos, localeActivo),
+          _grupo(textos.ajuPreferencias, [
+            _fila(
+              Icons.translate_outlined,
+              textos.ajustesIdioma,
+              detalle: localeActivo == 'eu'
+                  ? textos.ajustesIdiomaEuskera
+                  : textos.ajustesIdiomaCastellano,
+              final_: SegmentedButton<String>(
+                showSelectedIcon: false,
+                segments: const [
+                  ButtonSegment(value: 'es', label: Text('ES')),
+                  ButtonSegment(value: 'eu', label: Text('EU')),
                 ],
+                selected: {localeActivo},
+                onSelectionChanged: (elegidos) =>
+                    _cambiarIdioma(elegidos.first),
               ),
             ),
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.help_outline),
-            title: Text(textos.ayudaTitulo),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const PantallaAyuda()),
-            ),
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.outgoing_mail),
-            title: Text(textos.ajustesCoordinador),
-            subtitle: Text(_coordinador.isEmpty
-                ? textos.ajustesCoordinadorVacio
-                : _coordinador),
-            trailing: const Icon(Icons.edit_outlined),
-            onTap: _editarCoordinador,
-          ),
-          const Divider(),
-          ListTile(
-            leading: const Icon(Icons.landscape_outlined),
-            title: Text(textos.acercaTitulo),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                  builder: (_) => const PantallaAcercaEspacioTest()),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.handshake_outlined),
-            title: Text(textos.entidadesTitulo),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const PantallaEntidades()),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.info_outline),
-            title: Text(textos.ajustesAcercaDe),
-            subtitle: Text(textos.ajustesVersion(versionAppZunbeltz)),
-          ),
-          ListTile(
-            leading: const Icon(Icons.system_update),
-            title: Text(textos.actualizacionesTitulo),
-            subtitle: Text(textos.ajustesActualizacionesSubtitulo),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => PantallaEstadoActualizaciones(
-                  config: configActualizacionesZunbeltz,
-                  nombreApp: textos.appTitulo,
-                  traducir: traductorActualizaciones(textos),
-                ),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.upload_file_outlined),
-            title: Text(textos.ajustesExportarEspacio),
-            trailing: const Icon(Icons.ios_share),
-            onTap: _exportarEspacio,
-          ),
-          if (!kIsWeb)
-            ListTile(
-              leading: const Icon(Icons.cloud_download_outlined),
-              title: Text(textos.mapaSinCobertura),
-              subtitle: Text(textos.mapaCallejeroSoloVisto),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => const PantallaMapaSinCobertura())),
-            ),
-          const Divider(),
+            _fila(Icons.contrast, textos.ajuTema,
+                detalle: tema, alPulsar: _elegirTema),
+          ]),
+          _grupo(textos.ajuDatosCuenta, [
+            _fila(Icons.sync_alt, textos.ajuSyncCuenta,
+                detalle: textos.ajuSyncCuentaDetalle,
+                alPulsar: () => _ir(const PantallaSincronizacion())),
+            _fila(Icons.outgoing_mail, textos.ajustesCoordinador,
+                detalle: _coordinador.isEmpty
+                    ? textos.ajustesCoordinadorVacio
+                    : _coordinador,
+                alPulsar: _editarCoordinador),
+            _fila(Icons.upload_file_outlined, textos.ajustesExportarEspacio,
+                final_: const Icon(Icons.ios_share),
+                alPulsar: _exportarEspacio),
+            if (!kIsWeb)
+              _fila(Icons.cloud_download_outlined, textos.mapaSinCobertura,
+                  detalle: textos.mapaCallejeroSoloVisto,
+                  alPulsar: () => _ir(const PantallaMapaSinCobertura())),
+          ]),
+          _grupo(textos.ajuLaApp, [
+            _fila(Icons.help_outline, textos.ayudaTitulo,
+                detalle: textos.ajuAyudaDetalle,
+                alPulsar: () => _ir(const PantallaAyuda())),
+            _fila(Icons.system_update_outlined, textos.actualizacionesTitulo,
+                detalle: textos.ajustesActualizacionesSubtitulo,
+                alPulsar: () => _ir(PantallaEstadoActualizaciones(
+                      config: configActualizacionesZunbeltz,
+                      nombreApp: textos.appTitulo,
+                      traducir: traductorActualizaciones(textos),
+                    ))),
+            _fila(Icons.landscape_outlined, textos.acercaTitulo,
+                alPulsar: () => _ir(const PantallaAcercaEspacioTest())),
+            _fila(Icons.handshake_outlined, textos.entidadesTitulo,
+                alPulsar: () => _ir(const PantallaEntidades())),
+          ]),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-            child: Text(textos.ajustesSyncTitulo,
-                style: Theme.of(context).textTheme.titleSmall),
-          ),
-          ListTile(
-            leading: const Icon(Icons.dns_outlined),
-            title: Text(textos.ajustesSyncUrl),
-            subtitle: Text(
-                _syncUrl.isEmpty ? textos.ajustesSyncSinConfigurar : _syncUrl),
-            trailing: const Icon(Icons.edit_outlined),
-            onTap: _editarSyncUrl,
-          ),
-          ListTile(
-            leading: const Icon(Icons.key_outlined),
-            title: Text(textos.ajustesSyncToken),
-            subtitle: Text(_syncToken.isEmpty
-                ? textos.ajustesSyncSinConfigurar
-                : '•' * _syncToken.length.clamp(4, 24)),
-            trailing: const Icon(Icons.edit_outlined),
-            onTap: _editarSyncToken,
-          ),
-          ValueListenableBuilder<SesionEspacio?>(
-            valueListenable: sesionEspacio,
-            builder: (contexto, sesion, _) => ListTile(
-              leading: const Icon(Icons.badge_outlined),
-              title: Text(sesion == null
-                  ? textos.ajustesSesionLocal
-                  : textos.ajustesSesionComo(sesion.persona.nombre)),
-              subtitle: Text(sesion == null
-                  ? textos.ajustesSesionLocalDetalle
-                  : sesion.persona.etiquetaRol),
-            ),
-          ),
-          ListTile(
-            leading: _sincronizando
-                ? const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2))
-                : const Icon(Icons.sync_outlined),
-            title: Text(textos.ajustesSyncAhora),
-            onTap: (_sincronizando || _syncUrl.isEmpty || _syncToken.isEmpty)
-                ? null
-                : _sincronizarAhora,
-          ),
-          if (kIsWeb && _syncUrl.isNotEmpty && _syncToken.isNotEmpty)
-            InterruptorAvisosPushWeb(
-                key: ValueKey('$_syncUrl|$_syncToken'),
-                url: _syncUrl,
-                token: _syncToken),
-          if (_syncUrl.isNotEmpty && _syncToken.isNotEmpty)
-            ListTile(
-              leading: const Icon(Icons.restart_alt),
-              title: Text(textos.ajustesSyncCompleta),
-              subtitle: Text(textos.ajustesSyncCompletaDetalle),
-              onTap: _sincronizando
-                  ? null
-                  : () => _sincronizarAhora(completa: true),
-            ),
-          // Los datos de ejemplo no deben acabar en el WordPress de
-          // Zunbeltz: solo en modo local.
-          if (kDebugMode || esVersionDemo)
-            ListTile(
-              leading: const Icon(Icons.science_outlined),
-              title: Text(textos.ajustesDemo),
-              subtitle:
-                  _syncUrl.isEmpty ? null : Text(textos.ajustesDemoSoloLocal),
-              trailing: const Icon(Icons.download),
-              onTap: _syncUrl.isEmpty ? _cargarDemo : null,
-            ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-            child: Text(
-              textos.ajustesProvisional,
-              style: Theme.of(context).textTheme.bodySmall,
+            padding: rellenoSobreBarraSistema(
+                context, const EdgeInsets.fromLTRB(20, 28, 20, 28)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('${textos.appTitulo} $versionAppZunbeltz',
+                    style: estilos.titleSmall
+                        ?.copyWith(fontWeight: FontWeight.w600)),
+                const SizedBox(height: 6),
+                Text(textos.ajustesProvisional,
+                    style: estilos.bodySmall
+                        ?.copyWith(color: esquema.onSurfaceVariant)),
+              ],
             ),
           ),
         ],

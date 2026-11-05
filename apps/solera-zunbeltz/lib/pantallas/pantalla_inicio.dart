@@ -384,7 +384,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
                           dense: true,
                           title:
                               Text(describirActividad(entrada, textos, idioma)),
-                          subtitle: Text(_haceCuanto(
+                          subtitle: Text(haceCuanto(
                               textos, entrada.momentoMs, ahora,
                               idioma: idioma)),
                         ),
@@ -407,7 +407,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
 
 /// «hace 5 min», «hace 3 h», «ayer», «hace 4 días»; pasada una semana, la
 /// fecha.
-String _haceCuanto(AppLocalizations textos, int momentoMs, DateTime ahora,
+String haceCuanto(AppLocalizations textos, int momentoMs, DateTime ahora,
     {required String idioma}) {
   final momento = DateTime.fromMillisecondsSinceEpoch(momentoMs);
   final diferencia = ahora.difference(momento);
@@ -552,7 +552,7 @@ class _PildoraSincronizacion extends StatelessWidget {
       _ => (
           Icons.cloud_done_outlined,
           textos.hoySincronizado(
-              _haceCuanto(textos, ultima, DateTime.now(), idioma: idioma))
+              haceCuanto(textos, ultima, DateTime.now(), idioma: idioma))
         ),
     };
     return Material(
@@ -908,7 +908,7 @@ class _TarjetaAviso extends StatelessWidget {
     final cabecera = [
       nombrePersonaEspacio(aviso.autorUid) ?? '',
       if (aviso.fechaMs > 0)
-        _haceCuanto(textos, aviso.fechaMs, DateTime.now(), idioma: idioma),
+        haceCuanto(textos, aviso.fechaMs, DateTime.now(), idioma: idioma),
       if (!aviso.abierto) textos.avisoResuelto,
     ].where((parte) => parte.isNotEmpty).join(' · ');
     return Card(

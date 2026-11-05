@@ -284,7 +284,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Comparativa de proyectos** (pantalla 23, `pantalla_comparativa.dart`, desde el icono de gráfico de la lista): cada proyecto con sus siglas y meses (y si está cerrado), **balance del test por mes** en barras con signo desde un eje (para comparar duraciones distintas; con menos de un mes, el balance entero), ingresos, gastos del test y % de los gastos que asume la persona tester; abajo el botón «Comparativa (PDF)» de siempre. `AvatarProyecto` y `siglasProyecto` están ahora en `widgets/proyecto_visual.dart`.
 
-**Pendiente**: Ajustes (17–19, 24–27: ajustes, sincronización, ayuda, actividad, actualizaciones, entidades, acerca de) y bienvenida (01).
+- **Ajustes y Sincronización y cuenta** (pantallas 17 y 18). **Ajustes** (`pantalla_ajustes.dart`): cabecera verde con iniciales, nombre y rol de la sesión (o «Modo local») y una tarjeta con el estado de la sincronización (hace cuánto, `haceCuanto` ya es pública en `pantalla_inicio.dart`) y «Ahora»; grupos **Preferencias** (idioma ES/EU en segmentados y **tema**: como el sistema / claro / oscuro, nuevo, `estado/tema_app.dart`, guardado en `zunbeltz.tema`), **Datos y cuenta** (sincronización y cuenta, coordinador, exportar CSV, mapa sin cobertura) y **La app** (ayuda, actualizaciones, acerca de, entidades); al pie, versión y nota provisional. **Sincronización y cuenta** (`pantalla_sincronizacion.dart`, nueva; ahí se fue toda la lógica de conectar/sincronizar que estaba en Ajustes): tarjeta de estado con «Sincronizar ahora», clave de usuario (oculta, con ojo) y «Sesión iniciada: …», servidor, avisos web, datos de demostración (solo depuración/demo) y «Si algo no cuadra» → sincronizar todo desde cero. `sincronizarConAviso` la usan las dos. No se enseña la lista de cambios pendientes de la propuesta: la app no sabe cuántos quedan.
+
+**Pendiente**: Ajustes (19, 24–27: ayuda, actividad, actualizaciones, entidades, acerca de) y bienvenida (01).
 
 ## Hard limits (heredados de la Suite Solera)
 

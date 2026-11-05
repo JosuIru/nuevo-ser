@@ -26,23 +26,23 @@ Future<void> main() async {
   runApp(const SoleraQueseraApp());
 }
 
+/// Colores de marca: dorado queso / corteza y crema leche.
+const paletaQuesera = PaletaSolera(
+  primario: Color(0xFFC8923B),
+  crema: Color(0xFFFDF6E8),
+);
+
 class SoleraQueseraApp extends StatelessWidget {
   const SoleraQueseraApp({super.key});
 
   @override
   Widget build(BuildContext contexto) {
-    final ColorScheme esquemaColores = ColorScheme.fromSeed(
-      seedColor: const Color(0xFFC8923B), // dorado queso / corteza
-      brightness: Brightness.light,
-    );
     return MaterialApp(
       title: 'Larrea Quesera',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: esquemaColores,
-        useMaterial3: true,
-        scaffoldBackgroundColor: const Color(0xFFFDF6E8), // crema leche
-      ),
+      // Tema común Larrea (core) con el dorado de la corteza y la crema
+      // de la leche.
+      theme: temaSolera(paletaQuesera),
       home: _AppConIdioma(),
     );
   }

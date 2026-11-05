@@ -436,3 +436,228 @@ String dondeEstaRebano(MovimientoGanado? ultimo, Map<int, String> nombresPieza,
   final nombre = nombresPieza[ultimo.zonaDestinoId];
   return nombre == null || nombre.isEmpty ? textos.ganSinUbicar : nombre;
 }
+
+/// Cabecera de «Mover un rebaño»: la pieza donde está y la de destino
+/// dibujadas a escala (sin teselas: funciona sin cobertura), con una flecha
+/// de una a otra y sus nombres en píldoras. Si falta una de las dos, se
+/// dibuja la otra sola.
+class PlanoMovimiento extends StatelessWidget {
+  const PlanoMovimiento({
+    super.key,
+    this.origen = const [],
+    this.destino = const [],
+    this.rotuloOrigen,
+    this.rotuloDestino,
+    this.alto = 200,
+  });
+
+  final List<LatLng> origen;
+  final List<LatLng> destino;
+  final String? rotuloOrigen;
+  final String? rotuloDestino;
+  final double alto;
+
+  @override
+  Widget build(BuildContext context) {
+    final oscuro = context.esquemaZunbeltz.brightness == Brightness.dark;
+    final estilo = Theme.of(context)
+        .textTheme
+        .labelLarge
+        ?.copyWith(fontWeight: FontWeight.w600);
+    Widget pildora(String texto, Color fondo, Color tinta) => Container(
+          constraints: const BoxConstraints(maxWidth: 220),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          decoration: BoxDecoration(
+              color: fondo, borderRadius: BorderRadius.circular(8)),
+          child: Text(texto,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: estilo?.copyWith(color: tinta)),
+        );
+    return SizedBox(
+      height: alto,
+      width: double.infinity,
+      child: Stack(children: [
+        Positioned.fill(
+          child: CustomPaint(
+            painter: _PintorMovimiento(
+              origen: origen,
+              destino: destino,
+              fondo: oscuro ? const Color(0xFF1E3329) : const Color(0xFFDCE8DA),
+              rellenoOrigen:
+                  oscuro ? const Color(0x33FFFFFF) : const Color(0xE6F4F5F2),
+              bordeOrigen:
+                  oscuro ? const Color(0xFFB8C4BC) : const Color(0xFF3F4945),
+              rellenoDestino: colorMusgoZunbeltz.withValues(alpha: 0.75),
+              bordeDestino: oscuro ? colorMusgoZunbeltz : colorMonteZunbeltz,
+            ),
+          ),
+        ),
+        if (rotuloOrigen != null)
+          Positioned(
+            left: 12,
+            bottom: 12,
+            child: pildora(rotuloOrigen!, Colors.white, colorSobreCuadroClaro),
+          ),
+        if (rotuloDestino != null)
+          Positioned(
+            right: 12,
+            bottom: rotuloOrigen == null ? 12 : 48,
+            child: pildora(rotuloDestino!, colorMonteZunbeltz, Colors.white),
+          ),
+      ]),
+    );
+  }
+}
+
+class _PintorMovimiento extends CustomPainter {
+  _PintorMovimiento({
+    required this.origen,
+    required this.destino,
+    required this.fondo,
+    required this.rellenoOrigen,
+    required this.bordeOrigen,
+    required this.rellenoDestino,
+    required this.bordeDestino,
+  });
+
+  final List<LatLng> origen;
+  final List<LatLng> destino;
+  final Color fondo;
+  final Color rellenoOrigen;
+  final Color bordeOrigen;
+  final Color rellenoDestino;
+  final Color bordeDestino;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.clipRect(Offset.zero & size);
+    canvas.drawRect(Offset.zero & size, Paint()..color = fondo);
+    final hayOrigen = origen.length >= 3;
+    final hayDestino = destino.length >= 3;
+    if (!hayOrigen && !hayDestino) return;
+    final todos = [if (hayOrigen) ...origen, if (hayDestino) ...destino];
+    // Proyección local común a las dos piezas.
+    final latitudMedia =
+        todos.map((v) => v.latitude).reduce((a, b) => a + b) / todos.length;
+    final factor = math.cos(latitudMedia * math.pi / 180);
+    Offset proyectar(LatLng v) => Offset(v.longitude * factor, -v.latitude);
+    Rect caja(List<LatLng> vertices) {
+      final puntos = vertices.map(proyectar).toList();
+      return Rect.fromLTRB(
+        puntos.map((p) => p.dx).reduce(math.min),
+        puntos.map((p) => p.dy).reduce(math.min),
+        puntos.map((p) => p.dx).reduce(math.max),
+        puntos.map((p) => p.dy).reduce(math.max),
+      );
+    }
+
+    // Se encuadra el destino. El origen entra en el encuadre salvo que sea
+    // mucho mayor (una parcela catastral entera frente a una pieza): entonces
+    // se ve solo su trozo cercano y la flecha sale del borde.
+    var encuadre = caja(hayDestino ? destino : origen);
+    if (hayOrigen && hayDestino) {
+      final cajaOrigen = caja(origen);
+      final unidas = encuadre.expandToInclude(cajaOrigen);
+      final crecimiento = math.max(
+          unidas.width / encuadre.width, unidas.height / encuadre.height);
+      encuadre = crecimiento <= 6
+          ? unidas
+          : Rect.fromCenter(
+              center: encuadre.center,
+              width: encuadre.width * 3,
+              height: encuadre.height * 3);
+    }
+    const margen = 28.0;
+    if (encuadre.width == 0 || encuadre.height == 0) return;
+    final escala = math.min((size.width - 2 * margen) / encuadre.width,
+        (size.height - 2 * margen) / encuadre.height);
+    final desplazamiento = Offset((size.width - encuadre.width * escala) / 2,
+        (size.height - encuadre.height * escala) / 2);
+    Offset enPantalla(LatLng v) {
+      final p = proyectar(v);
+      return Offset(
+              (p.dx - encuadre.left) * escala, (p.dy - encuadre.top) * escala) +
+          desplazamiento;
+    }
+
+    Path camino(List<LatLng> vertices) {
+      final puntos = vertices.map(enPantalla).toList();
+      return Path()..addPolygon(puntos, true);
+    }
+
+    Offset centro(List<LatLng> vertices) {
+      final puntos = vertices.map(enPantalla).toList();
+      return puntos.reduce((a, b) => a + b) / puntos.length.toDouble();
+    }
+
+    if (origen.length >= 3) {
+      final trazo = camino(origen);
+      canvas.drawPath(trazo, Paint()..color = rellenoOrigen);
+      canvas.drawPath(
+          trazo,
+          Paint()
+            ..color = bordeOrigen
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2.5
+            ..strokeJoin = StrokeJoin.round);
+    }
+    if (destino.length >= 3) {
+      final trazo = camino(destino);
+      canvas.drawPath(trazo, Paint()..color = rellenoDestino);
+      canvas.drawPath(
+          trazo,
+          Paint()
+            ..color = bordeDestino
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 4
+            ..strokeJoin = StrokeJoin.round);
+    }
+    if (origen.length >= 3 && destino.length >= 3) {
+      final hasta = centro(destino);
+      // Un centro fuera del encuadre se acerca hasta el borde.
+      final dentro = (Offset.zero & size).deflate(margen);
+      final centroOrigen = centro(origen);
+      final desde = dentro.contains(centroOrigen)
+          ? centroOrigen
+          : Offset(centroOrigen.dx.clamp(dentro.left, dentro.right),
+              centroOrigen.dy.clamp(dentro.top, dentro.bottom));
+      final distancia = (hasta - desde).distance;
+      if (distancia < 24) return;
+      // Curva hacia arriba, recortada para no tapar los centros.
+      final direccion = (hasta - desde) / distancia;
+      final inicio = desde + direccion * math.min(16, distancia * 0.15);
+      final fin = hasta - direccion * math.min(16, distancia * 0.15);
+      final normal = Offset(direccion.dy, -direccion.dx);
+      final control = (inicio + fin) / 2 +
+          normal * (normal.dy <= 0 ? 1 : -1) * distancia * 0.3;
+      final flecha = Path()
+        ..moveTo(inicio.dx, inicio.dy)
+        ..quadraticBezierTo(control.dx, control.dy, fin.dx, fin.dy);
+      final pincel = Paint()
+        ..color = bordeDestino
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3.5
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round;
+      canvas.drawPath(flecha, pincel);
+      final tangente = fin - control;
+      final angulo = math.atan2(tangente.dy, tangente.dx);
+      const largo = 14.0;
+      for (final giro in [math.pi * 0.8, -math.pi * 0.8]) {
+        canvas.drawLine(
+            fin,
+            fin +
+                Offset(math.cos(angulo + giro), math.sin(angulo + giro)) *
+                    largo,
+            pincel);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_PintorMovimiento viejo) =>
+      viejo.origen != origen ||
+      viejo.destino != destino ||
+      viejo.fondo != fondo;
+}

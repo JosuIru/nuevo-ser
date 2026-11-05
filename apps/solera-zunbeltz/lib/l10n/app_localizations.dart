@@ -5051,7 +5051,7 @@ abstract class AppLocalizations {
   /// No description provided for @widgetBotonMover.
   ///
   /// In es, this message translates to:
-  /// **'Mover rebaño'**
+  /// **'Mover'**
   String get widgetBotonMover;
 
   /// No description provided for @widgetBotonCura.

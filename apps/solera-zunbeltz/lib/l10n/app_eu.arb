@@ -1245,5 +1245,14 @@
   "infBorrador": "Zirriborroa: behin betiko bertsioa koordinazioak sortzen du, proiektua itxita dagoenean.",
   "infSeEnviaA": "Hona bidaltzen da",
   "infCompartir": "Partekatu",
-  "infNoSalio": "Ezin izan da txostena sortu."
+  "infNoSalio": "Ezin izan da txostena sortu.",
+  "invCuotaZunbeltz": "Zunbeltzek hartzen duen kuota",
+  "invAlMes": "hilean",
+  "invPorMes": "/hilean",
+  "invEnLosMeses": "{importe} testaren {meses} hilabeteetan. Proiektuaren balantzean kontatzen da, ez testarenean.",
+  "invSinFechas": "Proiektuak ez du datarik: kuota osoa datak dituenean aterako da.",
+  "invPrecioVidaUtil": "{precio} · bizitza erabilgarria {meses} hilabete",
+  "invParte": "% {porcentaje} proiektu honentzat",
+  "invLoUsa": "Proiektu honek erabiltzen du",
+  "invQuitarUso": "Ondasun hau proiektuari egozteari utzi? Zituen ehunekoa eta hilabeteak galduko dira."
 }

@@ -4133,4 +4133,39 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get infNoSalio => 'No se ha podido generar el informe.';
+
+  @override
+  String get invCuotaZunbeltz => 'Cuota que asume Zunbeltz';
+
+  @override
+  String get invAlMes => 'al mes';
+
+  @override
+  String get invPorMes => '/mes';
+
+  @override
+  String invEnLosMeses(String importe, String meses) {
+    return '$importe en los $meses meses del test. Cuenta en el balance del proyecto, no en el del test.';
+  }
+
+  @override
+  String get invSinFechas =>
+      'El proyecto no tiene fechas: la cuota total sale cuando las tenga.';
+
+  @override
+  String invPrecioVidaUtil(String precio, String meses) {
+    return '$precio · vida útil $meses meses';
+  }
+
+  @override
+  String invParte(String porcentaje) {
+    return '$porcentaje % para este proyecto';
+  }
+
+  @override
+  String get invLoUsa => 'Lo usa este proyecto';
+
+  @override
+  String get invQuitarUso =>
+      '¿Dejar de imputar este bien al proyecto? Se pierde el porcentaje y los meses que tenía puestos.';
 }

@@ -4136,4 +4136,39 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get infNoSalio => 'Ezin izan da txostena sortu.';
+
+  @override
+  String get invCuotaZunbeltz => 'Zunbeltzek hartzen duen kuota';
+
+  @override
+  String get invAlMes => 'hilean';
+
+  @override
+  String get invPorMes => '/hilean';
+
+  @override
+  String invEnLosMeses(String importe, String meses) {
+    return '$importe testaren $meses hilabeteetan. Proiektuaren balantzean kontatzen da, ez testarenean.';
+  }
+
+  @override
+  String get invSinFechas =>
+      'Proiektuak ez du datarik: kuota osoa datak dituenean aterako da.';
+
+  @override
+  String invPrecioVidaUtil(String precio, String meses) {
+    return '$precio · bizitza erabilgarria $meses hilabete';
+  }
+
+  @override
+  String invParte(String porcentaje) {
+    return '% $porcentaje proiektu honentzat';
+  }
+
+  @override
+  String get invLoUsa => 'Proiektu honek erabiltzen du';
+
+  @override
+  String get invQuitarUso =>
+      'Ondasun hau proiektuari egozteari utzi? Zituen ehunekoa eta hilabeteak galduko dira.';
 }

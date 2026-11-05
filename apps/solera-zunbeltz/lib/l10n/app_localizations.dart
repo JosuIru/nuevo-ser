@@ -6956,6 +6956,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No se ha podido generar el informe.'**
   String get infNoSalio;
+
+  /// No description provided for @invCuotaZunbeltz.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuota que asume Zunbeltz'**
+  String get invCuotaZunbeltz;
+
+  /// No description provided for @invAlMes.
+  ///
+  /// In es, this message translates to:
+  /// **'al mes'**
+  String get invAlMes;
+
+  /// No description provided for @invPorMes.
+  ///
+  /// In es, this message translates to:
+  /// **'/mes'**
+  String get invPorMes;
+
+  /// No description provided for @invEnLosMeses.
+  ///
+  /// In es, this message translates to:
+  /// **'{importe} en los {meses} meses del test. Cuenta en el balance del proyecto, no en el del test.'**
+  String invEnLosMeses(String importe, String meses);
+
+  /// No description provided for @invSinFechas.
+  ///
+  /// In es, this message translates to:
+  /// **'El proyecto no tiene fechas: la cuota total sale cuando las tenga.'**
+  String get invSinFechas;
+
+  /// No description provided for @invPrecioVidaUtil.
+  ///
+  /// In es, this message translates to:
+  /// **'{precio} · vida útil {meses} meses'**
+  String invPrecioVidaUtil(String precio, String meses);
+
+  /// No description provided for @invParte.
+  ///
+  /// In es, this message translates to:
+  /// **'{porcentaje} % para este proyecto'**
+  String invParte(String porcentaje);
+
+  /// No description provided for @invLoUsa.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo usa este proyecto'**
+  String get invLoUsa;
+
+  /// No description provided for @invQuitarUso.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Dejar de imputar este bien al proyecto? Se pierde el porcentaje y los meses que tenía puestos.'**
+  String get invQuitarUso;
 }
 
 class _AppLocalizationsDelegate

@@ -1995,5 +1995,17 @@
   "infBorrador": "Borrador: la versión definitiva la genera coordinación con el proyecto cerrado.",
   "infSeEnviaA": "Se envía a",
   "infCompartir": "Compartir",
-  "infNoSalio": "No se ha podido generar el informe."
+  "infNoSalio": "No se ha podido generar el informe.",
+  "invCuotaZunbeltz": "Cuota que asume Zunbeltz",
+  "invAlMes": "al mes",
+  "invPorMes": "/mes",
+  "invEnLosMeses": "{importe} en los {meses} meses del test. Cuenta en el balance del proyecto, no en el del test.",
+  "@invEnLosMeses": {"placeholders": {"importe": {"type": "String"}, "meses": {"type": "String"}}},
+  "invSinFechas": "El proyecto no tiene fechas: la cuota total sale cuando las tenga.",
+  "invPrecioVidaUtil": "{precio} · vida útil {meses} meses",
+  "@invPrecioVidaUtil": {"placeholders": {"precio": {"type": "String"}, "meses": {"type": "String"}}},
+  "invParte": "{porcentaje} % para este proyecto",
+  "@invParte": {"placeholders": {"porcentaje": {"type": "String"}}},
+  "invLoUsa": "Lo usa este proyecto",
+  "invQuitarUso": "¿Dejar de imputar este bien al proyecto? Se pierde el porcentaje y los meses que tenía puestos."
 }

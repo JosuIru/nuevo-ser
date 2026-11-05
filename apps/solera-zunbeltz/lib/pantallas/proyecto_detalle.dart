@@ -882,7 +882,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                   color: esquema.secondaryContainer,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Icon(_iconoAcompanamiento(actividad.tipo),
+                child: Icon(iconoAcompanamiento(actividad.tipo),
                     color: esquema.onSecondaryContainer),
               ),
               const SizedBox(width: 14),
@@ -1129,20 +1129,6 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     );
   }
 }
-
-IconData _iconoAcompanamiento(String tipo) => switch (tipo) {
-      'formacion' => Icons.school_outlined,
-      'visita_referencia' => Icons.travel_explore,
-      'asesoramiento' => Icons.support_agent,
-      'reunion' => Icons.groups_outlined,
-      'visita_finca' => Icons.agriculture_outlined,
-      'visita_recibida' => Icons.waving_hand_outlined,
-      'mercado' => Icons.storefront_outlined,
-      'difusion' => Icons.campaign_outlined,
-      'busqueda_canales' => Icons.alt_route,
-      'apoyo_tareas' => Icons.handyman_outlined,
-      _ => Icons.event_note_outlined,
-    };
 
 /// El bloque destacado: balance del test en grande sobre pino, con
 /// ingresos y gastos del test debajo.

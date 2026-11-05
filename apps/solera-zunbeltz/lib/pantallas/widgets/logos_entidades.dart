@@ -65,22 +65,43 @@ Future<void> _abrirEnlace(String enlace) async {
 /// Todas las entidades por grupo, con su rótulo. Tocar un logo abre la web
 /// de la entidad si coordinación la ha puesto.
 class LogosEntidadesPorGrupo extends StatelessWidget {
-  const LogosEntidadesPorGrupo({super.key});
+  const LogosEntidadesPorGrupo({super.key, this.colorTinta, this.colorRotulo});
+
+  /// Sobre fondo oscuro: logos teñidos de este color y todo centrado.
+  final Color? colorTinta;
+  final Color? colorRotulo;
 
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
+    final tinta = colorTinta;
+    final centrado = tinta != null;
+    Widget logo(EntidadColaboradora entidad) {
+      final imagen = LogoEntidad(entidad, altura: 40);
+      return tinta == null
+          ? imagen
+          : ColorFiltered(colorFilter: filtroLogoClaro(tinta), child: imagen);
+    }
+
     return ValueListenableBuilder<List<EntidadColaboradora>>(
       valueListenable: ServicioLogosEntidades.actuales,
       builder: (contexto, entidades, _) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            centrado ? CrossAxisAlignment.stretch : CrossAxisAlignment.start,
         children: [
           for (final (grupo, delGrupo) in entidadesPorGrupo(entidades)) ...[
-            const SizedBox(height: 12),
+            SizedBox(height: centrado ? 24 : 12),
             Text(tituloGrupoEntidades(textos, grupo.codigo),
-                style: Theme.of(context).textTheme.titleSmall),
-            const SizedBox(height: 10),
+                textAlign: centrado ? TextAlign.center : null,
+                style: centrado
+                    ? Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: colorRotulo ?? tinta)
+                    : Theme.of(context).textTheme.titleSmall),
+            const SizedBox(height: 12),
             Wrap(
+              alignment: centrado ? WrapAlignment.center : WrapAlignment.start,
               spacing: 20,
               runSpacing: 14,
               crossAxisAlignment: WrapCrossAlignment.center,
@@ -89,10 +110,10 @@ class LogosEntidadesPorGrupo extends StatelessWidget {
                   Tooltip(
                     message: entidad.nombre,
                     child: entidad.enlace.isEmpty
-                        ? LogoEntidad(entidad, altura: 40)
+                        ? logo(entidad)
                         : InkWell(
                             onTap: () => _abrirEnlace(entidad.enlace),
-                            child: LogoEntidad(entidad, altura: 40),
+                            child: logo(entidad),
                           ),
                   ),
               ],
@@ -107,7 +128,7 @@ class LogosEntidadesPorGrupo extends StatelessWidget {
 /// Pasa un logo oscuro sobre transparente a [tinta] sobre un fondo oscuro
 /// conservando su dibujo: lo oscuro queda opaco y lo claro, transparente
 /// (un tinte plano convertiría los escudos en manchas).
-ColorFilter _filtroLogoClaro(Color tinta) {
+ColorFilter filtroLogoClaro(Color tinta) {
   final rojo = tinta.r * 255, verde = tinta.g * 255, azul = tinta.b * 255;
   return ColorFilter.matrix([
     0, 0, 0, 0, rojo, //
@@ -145,7 +166,7 @@ class FranjaLogosEntidades extends StatelessWidget {
           return tinta == null
               ? imagen
               : ColorFiltered(
-                  colorFilter: _filtroLogoClaro(tinta), child: imagen);
+                  colorFilter: filtroLogoClaro(tinta), child: imagen);
         }
 
         return InkWell(

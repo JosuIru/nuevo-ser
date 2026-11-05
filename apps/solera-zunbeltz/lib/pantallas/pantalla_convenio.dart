@@ -14,6 +14,7 @@ import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
 import '../modelos/registro_comercializacion.dart';
 import 'pantalla_inventario.dart';
+import 'pantalla_registrar_actividad.dart';
 import 'widgets/liberar_al_cerrar.dart';
 import 'widgets/campo_partida_gasto.dart';
 import 'widgets/relleno_seguro.dart';
@@ -846,62 +847,9 @@ class _PantallaConvenioState extends State<PantallaConvenio> {
   }
 
   Future<void> _nuevoAcompanamiento() async {
-    final textos = AppLocalizations.of(context);
-    var tipo = tiposAcompanamiento.first.codigo;
-    var asistencia = asistenciasAcompanamiento.first.codigo;
-    var fecha = DateTime.now();
-    final descripcion = TextEditingController();
-    final horas = TextEditingController();
-    final aceptado = await _dialogo(
-      textos.acompanamientoNuevo,
-      const [],
-      controladores: [descripcion, horas],
-      constructor: (actualizar) => [
-        DropdownButtonFormField<String>(
-          isExpanded: true,
-          initialValue: tipo,
-          decoration: InputDecoration(labelText: textos.convenioTipo),
-          items: [
-            for (final opcion in tiposAcompanamiento)
-              DropdownMenuItem(
-                  value: opcion.codigo, child: Text(opcion.etiqueta(_idioma))),
-          ],
-          onChanged: (valor) => actualizar(() => tipo = valor ?? tipo),
-        ),
-        DropdownButtonFormField<String>(
-          isExpanded: true,
-          initialValue: asistencia,
-          decoration:
-              InputDecoration(labelText: textos.acompanamientoAsistencia),
-          items: [
-            for (final opcion in asistenciasAcompanamiento)
-              DropdownMenuItem(
-                  value: opcion.codigo, child: Text(opcion.etiqueta(_idioma))),
-          ],
-          onChanged: (valor) =>
-              actualizar(() => asistencia = valor ?? asistencia),
-        ),
-        _selectorFecha(
-            textos, fecha, (nueva) => actualizar(() => fecha = nueva)),
-        TextField(
-            controller: descripcion,
-            decoration: InputDecoration(labelText: textos.convenioDescripcion)),
-        TextField(
-            controller: horas,
-            keyboardType: const TextInputType.numberWithOptions(decimal: true),
-            decoration: InputDecoration(labelText: textos.acompanamientoHoras)),
-      ],
-    );
-    if (!aceptado) return;
-    await _bd.guardarAcompanamiento(Acompanamiento(
-      proyectoId: _proyectoId,
-      tipo: tipo,
-      asistencia: asistencia,
-      fechaMs: fecha.millisecondsSinceEpoch,
-      descripcion: descripcion.text.trim(),
-      horas: leerNumero(horas.text),
-    ));
-    await _cargar();
+    final guardado = await Navigator.of(context).push<bool>(MaterialPageRoute(
+        builder: (_) => PantallaRegistrarActividad(proyecto: _proyecto)));
+    if (guardado == true) await _cargar();
   }
 
   // ─── Incidencias de cumplimiento ───

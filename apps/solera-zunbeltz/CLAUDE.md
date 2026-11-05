@@ -288,7 +288,9 @@ Propuesta de diseño recibida el 2026-11-03 (borrador para revisión interna): *
 
 - **Ayuda** (pantalla 19, `pantalla_ayuda.dart`): buscador en píldora, franja verde «estás viendo la ayuda para personas tester», grupos del índice con **filas** (icono en su cuadro: esmeralda fincas, salvia ganado, pino proyectos, neutro el resto) que **abren el apartado en su página**; al buscar, los apartados que coinciden salen desplegados como antes. El orden y los grupos siguen siendo los de `indice_ayuda.dart` (la propuesta los reagrupaba, pero el índice lo comparten el manual y el panel de WordPress). El test de la ayuda cuenta las filas por su clave `ayuda|<título>`.
 
-**Pendiente**: Ajustes (24–27: actividad, actualizaciones, entidades, acerca de) y bienvenida (01).
+- **Registrar actividad, Entidades y Acerca de** (pantallas 24, 26 y 27). **Registrar actividad** (`pantalla_registrar_actividad.dart`, sustituye al diálogo de Convenio → Acompañamiento): tipo en baldosas a dos columnas con su icono (`iconoAcompanamiento` en `widgets/proyecto_visual.dart`), asistencia en segmentados, fecha y horas, descripción y notas. **Sin «persona experta» ni «valoración de la implicación (0-10)» de la propuesta**: no existen en el modelo (añadirlos es BD + sync + plugin; a decidir con Zunbeltz). **Entidades**: fondo verde de cabecera y logos en claro y centrados (`LogosEntidadesPorGrupo(colorTinta:)`; `filtroLogoClaro` ya es público). **Acerca de**: cabecera verde con curvas de nivel dibujadas, el símbolo en claro, «Zunbeltz» y la asociación, el texto en párrafos y los enlaces en tarjeta; los logos ya no van aquí (están en Entidades y en Hoy). **Actualizaciones (25) se queda como estaba**: es `PantallaEstadoActualizaciones` del core, común a toda la suite.
+
+**Pendiente**: bienvenida (01); Actualizaciones (25) si se quiere tocar el core.
 
 ## Hard limits (heredados de la Suite Solera)
 

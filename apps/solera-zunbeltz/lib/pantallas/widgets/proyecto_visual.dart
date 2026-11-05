@@ -186,3 +186,18 @@ class AvatarProyecto extends StatelessWidget {
     );
   }
 }
+
+/// Icono de cada tipo de acompañamiento (`tiposAcompanamiento`).
+IconData iconoAcompanamiento(String tipo) => switch (tipo) {
+      'formacion' => Icons.school_outlined,
+      'visita_referencia' => Icons.travel_explore,
+      'asesoramiento' => Icons.support_agent,
+      'reunion' => Icons.groups_outlined,
+      'visita_finca' => Icons.agriculture_outlined,
+      'visita_recibida' => Icons.waving_hand_outlined,
+      'mercado' => Icons.storefront_outlined,
+      'difusion' => Icons.campaign_outlined,
+      'busqueda_canales' => Icons.alt_route,
+      'apoyo_tareas' => Icons.handyman_outlined,
+      _ => Icons.event_note_outlined,
+    };

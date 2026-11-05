@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../branding.dart';
+
 import '../../l10n/app_localizations.dart';
 import '../../modelos/constantes.dart';
 import '../../modelos/tarea_mantenimiento.dart';
@@ -43,7 +45,7 @@ class TileTarea extends StatelessWidget {
           height: 14,
           margin: const EdgeInsets.only(top: 4),
           decoration: BoxDecoration(
-            color: colorEstadoTarea(tarea.estado),
+            color: colorEstadoTarea(tarea.estado, context.coloresZunbeltz),
             borderRadius: BorderRadius.circular(4),
           ),
         ),
@@ -62,7 +64,10 @@ class TileTarea extends StatelessWidget {
               spacing: 6,
               runSpacing: 4,
               children: [
-                _Chip(texto: estado, color: colorEstadoTarea(tarea.estado)),
+                _Chip(
+                    texto: estado,
+                    color: colorEstadoTarea(
+                        tarea.estado, context.coloresZunbeltz)),
                 _Chip(texto: prioridad),
                 if (tarea.responsable.isNotEmpty)
                   _Chip(texto: tarea.responsable),

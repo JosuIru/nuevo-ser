@@ -35,7 +35,7 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
     final textos = AppLocalizations.of(context);
     final localeActivo = Localizations.localeOf(context).languageCode;
     return Scaffold(
-      backgroundColor: colorMonteZunbeltz,
+      backgroundColor: context.coloresZunbeltz.cabecera,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -85,8 +85,8 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                     width: double.infinity,
                     child: FilledButton(
                       style: FilledButton.styleFrom(
-                        backgroundColor: colorSenalZunbeltz,
-                        foregroundColor: Colors.white,
+                        backgroundColor: context.coloresZunbeltz.acento,
+                        foregroundColor: context.coloresZunbeltz.sobreAcento,
                         padding: const EdgeInsets.symmetric(vertical: 16),
                       ),
                       onPressed: _empezar,
@@ -126,7 +126,9 @@ class _ChipIdioma extends StatelessWidget {
     // oscuro del onboarding: activo = musgo + texto oscuro; inactivo =
     // translúcido con borde y texto blancos.
     return Material(
-      color: activo ? colorMusgoZunbeltz : Colors.white.withValues(alpha: 0.14),
+      color: activo
+          ? context.esquemaZunbeltz.secondaryContainer
+          : Colors.white.withValues(alpha: 0.14),
       shape: StadiumBorder(
         side: BorderSide(
           color: activo ? Colors.transparent : Colors.white70,
@@ -140,7 +142,9 @@ class _ChipIdioma extends StatelessWidget {
           child: Text(
             etiqueta,
             style: TextStyle(
-              color: activo ? colorMonteZunbeltz : Colors.white,
+              color: activo
+                  ? context.esquemaZunbeltz.onSecondaryContainer
+                  : Colors.white,
               fontWeight: FontWeight.w700,
             ),
           ),

@@ -31,7 +31,9 @@ Future<bool> mostrarFichaAviso(BuildContext context, AvisoCampo aviso) async {
           children: [
             Row(children: [
               Icon(iconoCategoriaAviso(aviso.categoria),
-                  color: aviso.esAlarma ? colorSenalZunbeltz : null),
+                  color: aviso.esAlarma
+                      ? context.coloresZunbeltz.bloqueada
+                      : null),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(aviso.titulo,

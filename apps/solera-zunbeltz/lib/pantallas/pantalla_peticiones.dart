@@ -179,7 +179,9 @@ class _PantallaPeticionesState extends State<PantallaPeticiones> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 6),
                                     child: Icon(Icons.priority_high,
-                                        size: 18, color: colorSenalZunbeltz),
+                                        size: 18,
+                                        color:
+                                            context.coloresZunbeltz.bloqueada),
                                   ),
                                 Expanded(
                                   child: Text(peticion.titulo,

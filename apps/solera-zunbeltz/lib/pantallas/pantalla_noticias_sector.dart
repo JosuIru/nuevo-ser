@@ -103,8 +103,8 @@ class TarjetaNoticiaSector extends StatelessWidget {
               Text(cabecera,
                   style: estiloTexto.labelSmall?.copyWith(
                       color: noticia.fijada
-                          ? colorSenalZunbeltz
-                          : colorTintaApagadaZunbeltz)),
+                          ? context.coloresZunbeltz.bloqueada
+                          : context.esquemaZunbeltz.onSurfaceVariant)),
               const SizedBox(height: 4),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

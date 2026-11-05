@@ -197,8 +197,8 @@ class _TarjetaProyecto extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           color: positivo
-                              ? colorEstadoHecha
-                              : colorEstadoBloqueada)),
+                              ? context.coloresZunbeltz.hecha
+                              : context.coloresZunbeltz.bloqueada)),
                   Text('${r.margenPorcentaje.toStringAsFixed(0)} %',
                       style: Theme.of(context).textTheme.bodySmall),
                 ],

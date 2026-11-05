@@ -664,8 +664,10 @@ class _Cifra extends StatelessWidget {
       width: 110,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: resaltado ? colorMusgoZunbeltz.withValues(alpha: 0.30) : null,
-        border: Border.all(color: colorLineaZunbeltz),
+        color: resaltado
+            ? context.esquemaZunbeltz.secondaryContainer.withValues(alpha: 0.30)
+            : null,
+        border: Border.all(color: context.esquemaZunbeltz.outlineVariant),
         borderRadius: BorderRadius.circular(radioZunbeltz),
       ),
       child: Column(
@@ -808,8 +810,8 @@ class _ListaApuntes extends StatelessWidget {
           leading: Icon(
               a.tipo == 'ingreso' ? Icons.south_west : Icons.north_east,
               color: a.tipo == 'ingreso'
-                  ? colorEstadoHecha
-                  : colorEstadoBloqueada),
+                  ? context.coloresZunbeltz.hecha
+                  : context.coloresZunbeltz.bloqueada),
           title: Text(a.concepto.isNotEmpty
               ? a.concepto
               : a.partida.isNotEmpty

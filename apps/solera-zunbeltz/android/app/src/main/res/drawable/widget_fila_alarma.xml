@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Fila de alarmas: el fondo de «bloqueada» de la app. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
-    <solid android:color="@color/zunbeltz_senal" />
-    <corners android:radius="4dp" />
+    <solid android:color="@color/widget_alarma_fondo" />
+    <corners android:radius="12dp" />
 </shape>

@@ -70,16 +70,12 @@ class WidgetHoyZunbeltz : HomeWidgetProvider() {
 
         vistas.setTextViewText(
             R.id.texto_tareas, texto("zw_tareas", context.getString(R.string.widget_hoy_abre_app)))
-        val senal = context.getColor(R.color.zunbeltz_senal)
-        val monte = context.getColor(R.color.zunbeltz_monte)
-        vistas.setInt(
-            R.id.icono_tareas, "setColorFilter",
-            if (datos.getBoolean("zw_tareas_urgentes", false)) senal else monte)
+        colorearIcono(vistas, context, R.id.icono_tareas,
+            datos.getBoolean("zw_tareas_urgentes", false))
 
         vistas.setTextViewText(R.id.texto_supresion, texto("zw_supresion"))
-        vistas.setInt(
-            R.id.icono_supresion, "setColorFilter",
-            if (datos.getBoolean("zw_supresion_activa", false)) senal else monte)
+        colorearIcono(vistas, context, R.id.icono_supresion,
+            datos.getBoolean("zw_supresion_activa", false))
         vistas.setTextViewText(R.id.texto_tiempo, texto("zw_tiempo"))
 
         // Con poco alto no se cortan filas: se enseñan por orden de
@@ -185,5 +181,17 @@ class WidgetHoyZunbeltz : HomeWidgetProvider() {
 
     private companion object {
         val ENLACES = listOf("hoy", "ganado", "nuevo-aviso", "mover-lote", "apuntar-cura")
+    }
+
+    /** Icono de una fila en rojo si es urgente y en verde si no. Desde
+     *  Android 12 el color se resuelve al pintar el widget, así sigue al
+     *  modo claro u oscuro; antes se fija con el del momento. */
+    private fun colorearIcono(vistas: RemoteViews, context: Context, id: Int, urgente: Boolean) {
+        val color = if (urgente) R.color.widget_urgente else R.color.widget_icono
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            vistas.setColorStateList(id, "setImageTintList", color)
+        } else {
+            vistas.setInt(id, "setColorFilter", context.getColor(color))
+        }
     }
 }

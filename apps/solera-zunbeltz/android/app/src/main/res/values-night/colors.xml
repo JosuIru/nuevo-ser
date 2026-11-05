@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Widget «Hoy en Zunbeltz» en modo oscuro (lib/branding.dart). -->
+    <color name="widget_cabecera">#FF0A2A20</color>
+    <color name="widget_sobre_cabecera">#FFE1E8E4</color>
+    <color name="widget_sobre_cabecera_variante">#FFA6C2B3</color>
+    <color name="widget_superficie">#FF141D19</color>
+    <color name="widget_tinta">#FFE1E8E4</color>
+    <color name="widget_tinta_apagada">#FFBCC6C0</color>
+    <color name="widget_linea">#FF3E4843</color>
+    <color name="widget_icono_fondo">#FF2C3833</color>
+    <color name="widget_icono">#FF8BD7AE</color>
+    <color name="widget_urgente">#FFF2B8B5</color>
+    <color name="widget_alarma_fondo">#FF5C1712</color>
+    <color name="widget_alarma">#FFF9DEDC</color>
+    <color name="widget_acento">#FF25AC74</color>
+    <color name="widget_sobre_acento">#FF002117</color>
+    <color name="widget_tonal">#FF24402A</color>
+    <color name="widget_sobre_tonal">#FFD2EBCF</color>
+</resources>

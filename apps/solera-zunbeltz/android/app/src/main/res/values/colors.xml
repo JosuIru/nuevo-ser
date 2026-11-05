@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="ic_launcher_background">#FFFFFF</color>
-    <!-- Paleta de la app (lib/branding.dart), para el widget de inicio. -->
-    <color name="zunbeltz_papel">#FFFAFAF9</color>
-    <color name="zunbeltz_monte">#FF004331</color>
-    <color name="zunbeltz_senal">#FFB3261E</color>
-    <color name="zunbeltz_pasto">#FF1E6B33</color>
-    <color name="zunbeltz_tinta">#FF15211C</color>
-    <color name="zunbeltz_tinta_apagada">#FF42474B</color>
-    <color name="zunbeltz_linea">#FFC7D0CB</color>
+    <!-- Widget «Hoy en Zunbeltz» (modo claro; el oscuro, en values-night). -->
+    <color name="widget_cabecera">#FF004331</color>
+    <color name="widget_sobre_cabecera">#FFFAFAF9</color>
+    <color name="widget_sobre_cabecera_variante">#FFB9D6C6</color>
+    <color name="widget_superficie">#FFFAFAF9</color>
+    <color name="widget_tinta">#FF15211C</color>
+    <color name="widget_tinta_apagada">#FF42474B</color>
+    <color name="widget_linea">#FFC7D0CB</color>
+    <color name="widget_icono_fondo">#FFDFE8E3</color>
+    <color name="widget_icono">#FF004331</color>
+    <color name="widget_urgente">#FFB3261E</color>
+    <color name="widget_alarma_fondo">#FFF9DEDC</color>
+    <color name="widget_alarma">#FF8C1D18</color>
+    <color name="widget_acento">#FF25AC74</color>
+    <color name="widget_sobre_acento">#FF002117</color>
+    <color name="widget_tonal">#FF9ACB96</color>
+    <color name="widget_sobre_tonal">#FF002117</color>
 </resources>

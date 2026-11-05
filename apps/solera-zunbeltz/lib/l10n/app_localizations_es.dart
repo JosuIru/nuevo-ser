@@ -2867,7 +2867,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get widgetBotonAviso => 'Aviso';
 
   @override
-  String get widgetBotonMover => 'Mover rebaño';
+  String get widgetBotonMover => 'Mover';
 
   @override
   String get widgetBotonCura => 'Cura';

@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Widget «Hoy en Zunbeltz». Lo rellena WidgetHoyZunbeltz.kt con lo que deja
-     la app (lib/servicios/widget_hoy.dart). -->
+     la app (lib/servicios/widget_hoy.dart). Colores en values/colors.xml
+     (claro) y values-night/colors.xml (oscuro), sacados de lib/branding.dart.
+     En RemoteViews no vale <View>: los separadores son FrameLayout. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/raiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/widget_fondo"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:orientation="vertical">
 
+    <!-- Cabecera verde, como la de Hoy. -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/widget_cabecera"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
 
         <TextView
             android:id="@+id/titulo"
@@ -21,12 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ellipsize="end"
-            android:fontFamily="sans-serif-condensed"
+            android:fontFamily="sans-serif-medium"
             android:maxLines="1"
             android:text="@string/widget_hoy_nombre"
-            android:textColor="@color/zunbeltz_monte"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textColor="@color/widget_sobre_cabecera"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/actualizado"
@@ -34,164 +38,187 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:maxLines="1"
-            android:textColor="@color/zunbeltz_tinta_apagada"
+            android:textColor="@color/widget_sobre_cabecera_variante"
             android:textSize="11sp" />
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="6dp"
-        android:background="@color/zunbeltz_linea" />
-
     <LinearLayout
-        android:id="@+id/fila_alarmas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@drawable/widget_fila_alarma"
-        android:paddingHorizontal="8dp"
-        android:paddingVertical="4dp"
-        android:visibility="gone">
-
-        <ImageView
-            android:id="@+id/icono_alarmas"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginEnd="8dp"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_widget_alarma"
-            android:tint="@color/zunbeltz_papel" />
-
-        <TextView
-            android:id="@+id/texto_alarmas"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/zunbeltz_papel"
-            android:textStyle="bold"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fila_tareas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/icono_tareas"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginEnd="8dp"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_widget_tareas"
-            android:tint="@color/zunbeltz_monte" />
-
-        <TextView
-            android:id="@+id/texto_tareas"
-            android:text="@string/widget_hoy_abre_app"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/zunbeltz_tinta"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fila_supresion"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/icono_supresion"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginEnd="8dp"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_widget_supresion"
-            android:tint="@color/zunbeltz_monte" />
-
-        <TextView
-            android:id="@+id/texto_supresion"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/zunbeltz_tinta"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fila_tiempo"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/icono_tiempo"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginEnd="8dp"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_widget_tiempo"
-            android:tint="@color/zunbeltz_monte" />
-
-        <TextView
-            android:id="@+id/texto_tiempo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@color/zunbeltz_tinta"
-            android:textSize="13sp" />
-    </LinearLayout>
-
-    <!-- Empuja los botones abajo si sobra alto. -->
-    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:minHeight="8dp" />
+        android:orientation="vertical"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="12dp">
 
-    <LinearLayout
-        android:id="@+id/fila_botones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/fila_alarmas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/widget_fila_alarma"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="6dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/icono_alarmas"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="10dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_widget_alarma"
+                android:tint="@color/widget_alarma" />
+
+            <TextView
+                android:id="@+id/texto_alarmas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="2"
+                android:textColor="@color/widget_alarma"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fila_tareas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/widget_icono_fondo">
+
+                <ImageView
+                    android:id="@+id/icono_tareas"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_widget_tareas"
+                    android:tint="@color/widget_icono" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/texto_tareas"
+                android:text="@string/widget_hoy_abre_app"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/widget_tinta"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fila_supresion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/widget_icono_fondo">
+
+                <ImageView
+                    android:id="@+id/icono_supresion"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_widget_supresion"
+                    android:tint="@color/widget_icono" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/texto_supresion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/widget_tinta"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fila_tiempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/widget_icono_fondo">
+
+                <ImageView
+                    android:id="@+id/icono_tiempo"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_widget_tiempo"
+                    android:tint="@color/widget_icono" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/texto_tiempo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/widget_tinta"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- Empuja los botones abajo si sobra alto. -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="8dp" />
+
+        <LinearLayout
+            android:id="@+id/fila_botones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
         <TextView
             android:id="@+id/boton_aviso"
             android:layout_width="0dp"
             android:layout_height="36dp"
             android:layout_weight="1"
-            
             android:background="@drawable/widget_boton_senal"
             android:ellipsize="end"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:maxLines="1"
-            android:paddingHorizontal="4dp"
+            android:paddingHorizontal="2dp"
             android:text="@string/widget_boton_aviso"
-            android:textColor="@color/zunbeltz_papel"
-            android:textSize="13sp" />
+            android:textColor="@color/widget_sobre_acento"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/boton_mover"
@@ -204,10 +231,10 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:maxLines="1"
-            android:paddingHorizontal="4dp"
+            android:paddingHorizontal="2dp"
             android:text="@string/widget_boton_mover"
-            android:textColor="@color/zunbeltz_papel"
-            android:textSize="13sp" />
+            android:textColor="@color/widget_sobre_tonal"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/boton_cura"
@@ -220,10 +247,11 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:maxLines="1"
-            android:paddingHorizontal="4dp"
+            android:paddingHorizontal="2dp"
             android:text="@string/widget_boton_cura"
-            android:textColor="@color/zunbeltz_papel"
-            android:textSize="13sp" />
+            android:textColor="@color/widget_sobre_tonal"
+            android:textSize="12sp" />
 
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

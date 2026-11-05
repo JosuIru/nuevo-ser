@@ -165,11 +165,20 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
     final cultivo = cultivoPorId(_cultivoId);
     return Scaffold(
       appBar: AppBar(title: Text(_esEdicion ? SoleraL10n.t('agro.editar_planta') : SoleraL10n.t('agro.nueva_planta'))),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(
+            _esEdicion ? SoleraL10n.t('agro.guardar_cambios') : SoleraL10n.t('agro.guardar_planta'),
+            guardando: _guardando,
+          ),
+        ),
+      ]),
       body: AbsorbPointer(
         absorbing: _guardando,
         child: Form(
           key: _claveFormulario,
-          child: ListView(
+          child: CuerpoResponsivoSolera(child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
               DropdownButtonFormField<String>(
@@ -290,14 +299,8 @@ class _PantallaNuevaPlantaState extends State<PantallaNuevaPlanta> {
                 rutas: _rutasFotos,
                 alCambiar: (nuevas) => setState(() => _rutasFotos = nuevas),
               ),
-              const SizedBox(height: 16),
-              FilledButton.icon(
-                icon: const Icon(Icons.save),
-                onPressed: _guardando ? null : _guardar,
-                label: Text(_esEdicion ? SoleraL10n.t('agro.guardar_cambios') : SoleraL10n.t('agro.guardar_planta')),
-              ),
             ],
-          ),
+          )),
         ),
       ),
     );

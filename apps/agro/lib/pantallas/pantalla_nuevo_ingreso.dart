@@ -239,9 +239,15 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
       appBar: AppBar(
         title: Text(SoleraL10n.t(widget.existente == null ? 'agro.nuevo_ingreso' : 'agro.editar_ingreso')),
       ),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(SoleraL10n.t('guardar'), guardando: _guardando),
+        ),
+      ]),
       body: Form(
         key: _claveFormulario,
-        child: ListView(
+        child: CuerpoResponsivoSolera(child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
             DropdownButtonFormField<String>(
@@ -441,20 +447,8 @@ class _PantallaNuevoIngresoState extends State<PantallaNuevoIngreso> {
                 border: OutlineInputBorder(),
               ),
             ),
-            SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: _guardando ? null : _guardar,
-              icon: _guardando
-                  ? SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(
-                          strokeWidth: 2, color: Colors.white))
-                  : Icon(Icons.check),
-              label: Text(SoleraL10n.t('guardar')),
-            ),
           ],
-        ),
+        )),
       ),
     );
   }

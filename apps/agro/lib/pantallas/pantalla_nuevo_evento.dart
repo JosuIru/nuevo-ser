@@ -423,11 +423,17 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
     }
     return Scaffold(
       appBar: AppBar(title: Text(_titulo)),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(SoleraL10n.t('guardar'), guardando: _guardando),
+        ),
+      ]),
       body: AbsorbPointer(
         absorbing: _guardando,
         child: Form(
           key: _claveFormulario,
-          child: ListView(
+          child: CuerpoResponsivoSolera(child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
               ListTile(
@@ -461,14 +467,8 @@ class _PantallaNuevoEventoState extends State<PantallaNuevoEvento> {
                 decoration: InputDecoration(labelText: SoleraL10n.t('agro.notas'), border: OutlineInputBorder()),
                 maxLines: 3,
               ),
-              SizedBox(height: 16),
-              FilledButton.icon(
-                icon: Icon(Icons.save),
-                onPressed: _guardando ? null : _guardar,
-                label: Text(SoleraL10n.t('guardar')),
-              ),
             ],
-          ),
+          )),
         ),
       ),
     );

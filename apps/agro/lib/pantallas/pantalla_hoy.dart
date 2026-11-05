@@ -86,99 +86,128 @@ class _PantallaHoyState extends State<PantallaHoy> {
     }
   }
 
+  String get _fechaDeHoy {
+    final texto = DateFormat.MMMMEEEEd(SoleraL10n.idioma).format(DateTime.now());
+    return texto.isEmpty ? texto : texto[0].toUpperCase() + texto.substring(1);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // Antes: si _cargando == true, devolvíamos Scaffold pantalla
-    // completa con spinner → tarjeta meteo invisible mientras
-    // cargaba la BD. Ahora pintamos la pantalla siempre; la tarjeta
-    // meteo tiene su propio FutureBuilder y los bloques que
-    // dependen de la BD se muestran cuando _cargando vuelve a false.
-    final ahora = DateTime.now();
-    final mesActual = ahora.month;
+    // La pantalla se pinta siempre (también mientras carga la BD): la
+    // tarjeta meteo tiene su propio FutureBuilder y los bloques que
+    // dependen de la BD aparecen cuando _cargando vuelve a false.
+    final tema = Theme.of(context);
+    final colores = context.coloresSolera;
+    final mesActual = DateTime.now().month;
     final cultivosActivos = _conteoPorCultivo.keys.toList()..sort();
     final tareasPorCultivo = <String, List<String>>{};
     for (final cultivoId in cultivosActivos) {
       final tareas = tareasParaCultivoEnMes(cultivoId, mesActual);
       if (tareas.isNotEmpty) tareasPorCultivo[cultivoId] = tareas;
     }
-    final saludo = _saludo(ahora.hour);
+    final totalPlantas = _conteoPorCultivo.values.fold<int>(0, (a, b) => a + b);
+    final estiloTextoSecundario =
+        tema.textTheme.bodyMedium?.copyWith(color: tema.colorScheme.onSurfaceVariant);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(saludo),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu_book_outlined),
-            tooltip: SoleraL10n.t('agro.guia_cultivos_plagas'),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const PantallaGuia()),
-            ),
-          ),
-        ],
-      ),
       body: RefreshIndicator(
         onRefresh: _cargar,
+        edgeOffset: MediaQuery.paddingOf(context).top,
         child: ListView(
-          padding: const EdgeInsets.all(16),
+          padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 24)),
           children: [
-            // Aviso de versión nueva (no ocupa sitio si no hay).
-            AvisoActualizaciones(
-              config: configActualizacionesMonorepo('agro'),
-              nombreApp: 'Larrea',
-              margen: const EdgeInsets.only(bottom: 12),
-            ),
-            Text(
-              DateFormat.yMMMMEEEEd(SoleraL10n.idioma).format(ahora).replaceFirstMapped(
-                    RegExp(r'^.'),
-                    (m) => m.group(0)!.toUpperCase(),
-                  ),
-              style: const TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 4),
-            Text(
-                _nombreFincaActiva == null
-                    ? SoleraL10n.t('agro.en_todas_las_fincas')
-                    : SoleraL10n.tf('agro.en_finca', {'finca': _nombreFincaActiva}),
-                style: const TextStyle(color: Colors.grey, fontSize: 12)),
-            const SizedBox(height: 16),
-            const TarjetaResumenMeteo(),
-            const SizedBox(height: 12),
-            if (_incidenciasAbiertas.isNotEmpty) _BloqueIncidencias(incidencias: _incidenciasAbiertas),
-            if (tareasPorCultivo.isNotEmpty) ...[
-              const SizedBox(height: 12),
-              _BloqueQueToca(
-                mes: mesActual,
-                tareasPorCultivo: tareasPorCultivo,
-                conteoPorCultivo: _conteoPorCultivo,
-              ),
-            ],
-            const SizedBox(height: 12),
-            _BloqueResumen(
-              totalPlantas: _conteoPorCultivo.values.fold<int>(0, (a, b) => a + b),
-              kilosUltimos30: _kilosUltimos30Dias,
-              numCosechasUltimos30: _numCosechasUltimos30Dias,
-            ),
-            if (_conteoPorCultivo.isEmpty)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Center(
-                  child: Text(
-                    '${SoleraL10n.t('agro.aun_no_hay_plantas')}\n${SoleraL10n.t('agro.ve_al_mapa_anadir_aqui')}',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(color: Colors.grey),
+            CabeceraHoySolera(
+              titulo: SoleraL10n.t('agro.hoy'),
+              fecha: _fechaDeHoy,
+              acciones: [
+                IconButton(
+                  icon: const Icon(Icons.menu_book_outlined),
+                  tooltip: SoleraL10n.t('agro.guia_cultivos_plagas'),
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const PantallaGuia()),
                   ),
                 ),
+              ],
+              cifras: [
+                CifraCabecera(
+                  valor: '${_incidenciasAbiertas.length}',
+                  etiqueta: SoleraL10n.t('agro.incidencias_abiertas'),
+                ),
+                CifraCabecera(
+                  valor: '$totalPlantas',
+                  etiqueta: SoleraL10n.t('agro.plantas'),
+                ),
+                CifraCabecera(
+                  valor: _kilosUltimos30Dias == 0
+                      ? '—'
+                      : '${formatearNumero(_kilosUltimos30Dias, decimales: 1)} kg',
+                  etiqueta: SoleraL10n.t('agro.cosecha_30_dias'),
+                  detalle: _numCosechasUltimos30Dias == 0
+                      ? null
+                      : SoleraL10n.tf('agro.cosechas_n', {'n': _numCosechasUltimos30Dias}),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Aviso de versión nueva (no ocupa sitio si no hay).
+                  AvisoActualizaciones(
+                    config: configActualizacionesMonorepo('agro'),
+                    nombreApp: 'Larrea',
+                    margen: const EdgeInsets.only(bottom: 4),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(4, 0, 4, 12),
+                    child: Text(
+                      _nombreFincaActiva == null
+                          ? SoleraL10n.t('agro.en_todas_las_fincas')
+                          : SoleraL10n.tf('agro.en_finca', {'finca': _nombreFincaActiva}),
+                      style: estiloTextoSecundario,
+                    ),
+                  ),
+                  const TarjetaResumenMeteo(),
+                  if (_incidenciasAbiertas.isNotEmpty) _BloqueIncidencias(incidencias: _incidenciasAbiertas),
+                  if (tareasPorCultivo.isNotEmpty)
+                    _BloqueQueToca(
+                      mes: mesActual,
+                      tareasPorCultivo: tareasPorCultivo,
+                      conteoPorCultivo: _conteoPorCultivo,
+                    ),
+                  if (!_cargando && _conteoPorCultivo.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 32),
+                      child: Column(children: [
+                        Icon(Icons.eco_outlined, size: 40, color: tema.colorScheme.onSurfaceVariant),
+                        const SizedBox(height: 8),
+                        Text(
+                          '${SoleraL10n.t('agro.aun_no_hay_plantas')}\n${SoleraL10n.t('agro.ve_al_mapa_anadir_aqui')}',
+                          textAlign: TextAlign.center,
+                          style: estiloTextoSecundario,
+                        ),
+                      ]),
+                    )
+                  else if (!_cargando && _incidenciasAbiertas.isEmpty && tareasPorCultivo.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 32),
+                      child: Column(children: [
+                        Icon(Icons.task_alt, size: 40, color: colores.hecho),
+                        const SizedBox(height: 8),
+                        Text(
+                          SoleraL10n.t('agro.hoy_nada_pendiente'),
+                          textAlign: TextAlign.center,
+                          style: estiloTextoSecundario,
+                        ),
+                      ]),
+                    ),
+                ],
               ),
+            ),
           ],
         ),
       ),
     );
-  }
-
-  String _saludo(int hora) {
-    if (hora < 6) return SoleraL10n.t('agro.madrugada');
-    if (hora < 12) return SoleraL10n.t('agro.buenos_dias');
-    if (hora < 19) return SoleraL10n.t('agro.buenas_tardes');
-    return SoleraL10n.t('agro.buenas_noches');
   }
 }
 
@@ -188,46 +217,44 @@ class _BloqueIncidencias extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.orange.shade50,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.warning_amber, color: Color(0xFFE65100)),
-                const SizedBox(width: 8),
-                Text(
-                  SoleraL10n.tf('agro.incidencias_abiertas_n', {'n': incidencias.length}),
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+    final colores = context.coloresSolera;
+    final tema = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        TituloBloqueSolera(SoleraL10n.t('agro.incidencias_abiertas')),
+        Card(
+          child: Column(
+            children: [
+              for (final incidencia in incidencias.take(5))
+                ListTile(
+                  leading: Icon(Icons.bug_report_outlined, color: colores.peligro),
+                  title: Text(incidencia.diagnostico.isEmpty
+                      ? _nombreTipoIncidencia(incidencia.tipo).toUpperCase()
+                      : incidencia.diagnostico),
+                  subtitle: Text([
+                    DateFormat('dd MMM', SoleraL10n.idioma)
+                        .format(DateTime.fromMillisecondsSinceEpoch(incidencia.fechaMs)),
+                    if (incidencia.severidad != null)
+                      SoleraL10n.tf('agro.severidad_abrev_n', {'n': incidencia.severidad}),
+                  ].join(' · ')),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => PantallaFichaPlanta(plantaId: incidencia.plantaId)),
+                  ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            for (final i in incidencias.take(5))
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                dense: true,
-                leading: const Icon(Icons.bug_report, color: Color(0xFFE65100)),
-                title: Text(i.diagnostico.isEmpty ? _nombreTipoIncidencia(i.tipo).toUpperCase() : i.diagnostico),
-                subtitle: Text([
-                  DateFormat('dd MMM', SoleraL10n.idioma).format(DateTime.fromMillisecondsSinceEpoch(i.fechaMs)),
-                  if (i.severidad != null) SoleraL10n.tf('agro.severidad_abrev_n', {'n': i.severidad}),
-                ].join(' · ')),
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => PantallaFichaPlanta(plantaId: i.plantaId)),
+              if (incidencias.length > 5)
+                ListTile(
+                  dense: true,
+                  title: Text(
+                    SoleraL10n.tf('agro.y_n_mas', {'n': incidencias.length - 5}),
+                    style: tema.textTheme.bodySmall?.copyWith(color: tema.colorScheme.onSurfaceVariant),
+                  ),
                 ),
-              ),
-            if (incidencias.length > 5)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text(SoleraL10n.tf('agro.y_n_mas', {'n': incidencias.length - 5}), style: const TextStyle(color: Colors.grey, fontSize: 12)),
-              ),
-          ],
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -245,50 +272,47 @@ class _BloqueQueToca extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tema = Theme.of(context);
     final nombreMes = DateFormat('LLLL', SoleraL10n.idioma).format(DateTime(2000, mes, 1));
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Icon(Icons.calendar_month, color: Color(0xFF558B2F)),
-                const SizedBox(width: 8),
-                Text(
-                  SoleraL10n.tf('agro.que_toca_en_mes', {'mes': '${nombreMes[0].toUpperCase()}${nombreMes.substring(1)}'}),
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        TituloBloqueSolera(SoleraL10n.tf(
+            'agro.que_toca_en_mes', {'mes': '${nombreMes[0].toUpperCase()}${nombreMes.substring(1)}'})),
+        Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              for (final entrada in tareasPorCultivo.entries)
+                _FilaCultivoTareas(
+                  cultivoId: entrada.key,
+                  tareas: entrada.value,
+                  numPlantas: conteoPorCultivo[entrada.key] ?? 0,
                 ),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Text(
-              SoleraL10n.t('agro.calendario_orientativo_iberia'),
-              style: const TextStyle(fontSize: 11, color: Colors.grey, fontStyle: FontStyle.italic),
-            ),
-            const SizedBox(height: 12),
-            for (final entrada in tareasPorCultivo.entries) ...[
-              _BloqueCultivoTareas(
-                cultivoId: entrada.key,
-                tareas: entrada.value,
-                numPlantas: conteoPorCultivo[entrada.key] ?? 0,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                child: Text(
+                  SoleraL10n.t('agro.calendario_orientativo_iberia'),
+                  style: tema.textTheme.bodySmall?.copyWith(
+                    color: tema.colorScheme.onSurfaceVariant,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
               ),
-              const SizedBox(height: 8),
             ],
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 }
 
-class _BloqueCultivoTareas extends StatelessWidget {
+class _FilaCultivoTareas extends StatelessWidget {
   final String cultivoId;
   final List<String> tareas;
   final int numPlantas;
 
-  const _BloqueCultivoTareas({
+  const _FilaCultivoTareas({
     required this.cultivoId,
     required this.tareas,
     required this.numPlantas,
@@ -297,114 +321,12 @@ class _BloqueCultivoTareas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cultivo = cultivoPorId(cultivoId);
-    return Container(
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: cultivo.color.withAlpha(30),
-        borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: cultivo.color.withAlpha(80)),
+    return ListTile(
+      leading: Icon(cultivo.icono, color: cultivo.color),
+      title: Text(
+        '${cultivo.nombreVisible} · ${numPlantas == 1 ? SoleraL10n.t('agro.una_planta') : SoleraL10n.tf('agro.plantas_n', {'n': numPlantas})}',
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(cultivo.icono, color: cultivo.color, size: 18),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  '${cultivo.nombreVisible} · ${numPlantas == 1 ? SoleraL10n.t('agro.una_planta') : SoleraL10n.tf('agro.plantas_n', {'n': numPlantas})}',
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 4),
-          for (final t in tareas)
-            Padding(
-              padding: const EdgeInsets.only(left: 24, top: 2),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text('•  '),
-                  Expanded(child: Text(t, style: const TextStyle(fontSize: 13))),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-}
-
-class _BloqueResumen extends StatelessWidget {
-  final int totalPlantas;
-  final double kilosUltimos30;
-  final int numCosechasUltimos30;
-
-  const _BloqueResumen({
-    required this.totalPlantas,
-    required this.kilosUltimos30,
-    required this.numCosechasUltimos30,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            Expanded(
-              child: _Estadistica(
-                etiqueta: SoleraL10n.t('agro.plantas'),
-                valor: '$totalPlantas',
-                icono: Icons.eco,
-                color: Colors.green,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _Estadistica(
-                etiqueta: SoleraL10n.t('agro.cosecha_30_dias'),
-                valor: kilosUltimos30 == 0 ? '—' : '${formatearNumero(kilosUltimos30, decimales: 1)} kg',
-                icono: Icons.shopping_basket,
-                color: const Color(0xFF689F38),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: _Estadistica(
-                etiqueta: SoleraL10n.t('agro.registros'),
-                valor: '$numCosechasUltimos30',
-                icono: Icons.format_list_numbered,
-                color: Colors.blueGrey,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Estadistica extends StatelessWidget {
-  final String etiqueta;
-  final String valor;
-  final IconData icono;
-  final Color color;
-  const _Estadistica({required this.etiqueta, required this.valor, required this.icono, required this.color});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icono, color: color),
-        const SizedBox(height: 4),
-        Text(valor, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-        Text(etiqueta, style: const TextStyle(fontSize: 11, color: Colors.grey)),
-      ],
+      subtitle: Text(tareas.map((tarea) => '•  $tarea').join('\n')),
     );
   }
 }

@@ -632,3 +632,5 @@ agro.veterinario,Veterinario,Albaitaria,Veterinari,Veterinario
 agro.vuelo_abejas_limitado,Vuelo de abejas limitado,Erleen hegaldia mugatua,Vol d'abelles limitat,Voo de abellas limitado
 agro.vuelo_abejas_limitado_cuerpo,"Frío, lluvia o viento pueden frenar pecoreo y manejo.","Hotzak, euriak edo haizeak pecoreoa eta maneiua gelditu ditzakete.","El fred, la pluja o el vent poden frenar el pecoreig i el maneig.","O frío, a choiva ou o vento poden frear o pecoreo e o manexo."
 agro.y_n_mas,… y {n} más,… eta beste {n},… i {n} més,… e {n} máis
+agro.cosechas_n,{n} cosechas,{n} uzta,{n} collites,{n} colleitas
+agro.hoy_nada_pendiente,Nada pendiente para hoy,Gaur ez dago ezer egiteko,Res pendent per a avui,Nada pendente para hoxe

@@ -4076,4 +4076,48 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get proyMasAcciones => 'Ekintza gehiago';
+
+  @override
+  String get apuApuntar => 'Idatzi';
+
+  @override
+  String apuCantidadPorPrecio(String cantidad, String precio) {
+    return '$cantidad × $precio, BEZik gabe';
+  }
+
+  @override
+  String get apuSinIva => 'BEZik gabe';
+
+  @override
+  String get apuCantidad => 'Kopurua';
+
+  @override
+  String get apuCantidadAyuda => 'Hutsik uzten baduzu, prezioa da zenbatekoa.';
+
+  @override
+  String get apuPrecioUnitario => 'Unitateko prezioa';
+
+  @override
+  String get apuImporteSinIva => 'Zenbatekoa BEZik gabe';
+
+  @override
+  String get apuPartidasAnexo =>
+      'Partidak II. eranskineko aurrekontukoak dira.';
+
+  @override
+  String apuCuotaIva(String iva) {
+    return 'BEZ kuota (% $iva)';
+  }
+
+  @override
+  String get apuTotalConIva => 'Guztira BEZarekin';
+
+  @override
+  String get apuGuardarGasto => 'Gastua gorde';
+
+  @override
+  String get apuGuardarIngreso => 'Sarrera gorde';
+
+  @override
+  String get apuCambiarIva => 'BEZ mota aldatu';
 }

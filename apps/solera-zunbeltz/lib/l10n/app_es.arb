@@ -1975,5 +1975,20 @@
   "proySinAcompanamiento": "Aún no hay acompañamiento apuntado.",
   "proyHoras": "{horas} h",
   "@proyHoras": {"placeholders": {"horas": {"type": "String"}}},
-  "proyMasAcciones": "Más acciones"
+  "proyMasAcciones": "Más acciones",
+  "apuApuntar": "Apuntar",
+  "apuCantidadPorPrecio": "{cantidad} × {precio}, sin IVA",
+  "@apuCantidadPorPrecio": {"placeholders": {"cantidad": {"type": "String"}, "precio": {"type": "String"}}},
+  "apuSinIva": "sin IVA",
+  "apuCantidad": "Cantidad",
+  "apuCantidadAyuda": "Si lo dejas vacío, el precio es el importe.",
+  "apuPrecioUnitario": "Precio unitario",
+  "apuImporteSinIva": "Importe sin IVA",
+  "apuPartidasAnexo": "Las partidas son las del presupuesto del anexo II.",
+  "apuCuotaIva": "Cuota IVA ({iva} %)",
+  "@apuCuotaIva": {"placeholders": {"iva": {"type": "String"}}},
+  "apuTotalConIva": "Total con IVA",
+  "apuGuardarGasto": "Guardar gasto",
+  "apuGuardarIngreso": "Guardar ingreso",
+  "apuCambiarIva": "Cambiar el tipo de IVA"
 }

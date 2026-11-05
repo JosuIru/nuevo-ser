@@ -6848,6 +6848,84 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Más acciones'**
   String get proyMasAcciones;
+
+  /// No description provided for @apuApuntar.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar'**
+  String get apuApuntar;
+
+  /// No description provided for @apuCantidadPorPrecio.
+  ///
+  /// In es, this message translates to:
+  /// **'{cantidad} × {precio}, sin IVA'**
+  String apuCantidadPorPrecio(String cantidad, String precio);
+
+  /// No description provided for @apuSinIva.
+  ///
+  /// In es, this message translates to:
+  /// **'sin IVA'**
+  String get apuSinIva;
+
+  /// No description provided for @apuCantidad.
+  ///
+  /// In es, this message translates to:
+  /// **'Cantidad'**
+  String get apuCantidad;
+
+  /// No description provided for @apuCantidadAyuda.
+  ///
+  /// In es, this message translates to:
+  /// **'Si lo dejas vacío, el precio es el importe.'**
+  String get apuCantidadAyuda;
+
+  /// No description provided for @apuPrecioUnitario.
+  ///
+  /// In es, this message translates to:
+  /// **'Precio unitario'**
+  String get apuPrecioUnitario;
+
+  /// No description provided for @apuImporteSinIva.
+  ///
+  /// In es, this message translates to:
+  /// **'Importe sin IVA'**
+  String get apuImporteSinIva;
+
+  /// No description provided for @apuPartidasAnexo.
+  ///
+  /// In es, this message translates to:
+  /// **'Las partidas son las del presupuesto del anexo II.'**
+  String get apuPartidasAnexo;
+
+  /// No description provided for @apuCuotaIva.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuota IVA ({iva} %)'**
+  String apuCuotaIva(String iva);
+
+  /// No description provided for @apuTotalConIva.
+  ///
+  /// In es, this message translates to:
+  /// **'Total con IVA'**
+  String get apuTotalConIva;
+
+  /// No description provided for @apuGuardarGasto.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar gasto'**
+  String get apuGuardarGasto;
+
+  /// No description provided for @apuGuardarIngreso.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar ingreso'**
+  String get apuGuardarIngreso;
+
+  /// No description provided for @apuCambiarIva.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar el tipo de IVA'**
+  String get apuCambiarIva;
 }
 
 class _AppLocalizationsDelegate

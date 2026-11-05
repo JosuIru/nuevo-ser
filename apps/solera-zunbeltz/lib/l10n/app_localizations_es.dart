@@ -4073,4 +4073,48 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get proyMasAcciones => 'Más acciones';
+
+  @override
+  String get apuApuntar => 'Apuntar';
+
+  @override
+  String apuCantidadPorPrecio(String cantidad, String precio) {
+    return '$cantidad × $precio, sin IVA';
+  }
+
+  @override
+  String get apuSinIva => 'sin IVA';
+
+  @override
+  String get apuCantidad => 'Cantidad';
+
+  @override
+  String get apuCantidadAyuda => 'Si lo dejas vacío, el precio es el importe.';
+
+  @override
+  String get apuPrecioUnitario => 'Precio unitario';
+
+  @override
+  String get apuImporteSinIva => 'Importe sin IVA';
+
+  @override
+  String get apuPartidasAnexo =>
+      'Las partidas son las del presupuesto del anexo II.';
+
+  @override
+  String apuCuotaIva(String iva) {
+    return 'Cuota IVA ($iva %)';
+  }
+
+  @override
+  String get apuTotalConIva => 'Total con IVA';
+
+  @override
+  String get apuGuardarGasto => 'Guardar gasto';
+
+  @override
+  String get apuGuardarIngreso => 'Guardar ingreso';
+
+  @override
+  String get apuCambiarIva => 'Cambiar el tipo de IVA';
 }

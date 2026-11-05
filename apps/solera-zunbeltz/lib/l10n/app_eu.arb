@@ -1227,5 +1227,18 @@
   "proyRentabilidad": "Errentagarritasuna",
   "proySinAcompanamiento": "Oraindik ez dago laguntzarik idatzita.",
   "proyHoras": "{horas} h",
-  "proyMasAcciones": "Ekintza gehiago"
+  "proyMasAcciones": "Ekintza gehiago",
+  "apuApuntar": "Idatzi",
+  "apuCantidadPorPrecio": "{cantidad} × {precio}, BEZik gabe",
+  "apuSinIva": "BEZik gabe",
+  "apuCantidad": "Kopurua",
+  "apuCantidadAyuda": "Hutsik uzten baduzu, prezioa da zenbatekoa.",
+  "apuPrecioUnitario": "Unitateko prezioa",
+  "apuImporteSinIva": "Zenbatekoa BEZik gabe",
+  "apuPartidasAnexo": "Partidak II. eranskineko aurrekontukoak dira.",
+  "apuCuotaIva": "BEZ kuota (% {iva})",
+  "apuTotalConIva": "Guztira BEZarekin",
+  "apuGuardarGasto": "Gastua gorde",
+  "apuGuardarIngreso": "Sarrera gorde",
+  "apuCambiarIva": "BEZ mota aldatu"
 }

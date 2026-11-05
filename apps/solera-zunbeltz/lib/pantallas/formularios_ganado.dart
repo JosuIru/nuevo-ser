@@ -16,6 +16,7 @@ import '../utiles/crotal.dart';
 import '../utiles/numeros.dart';
 import 'pantalla_escaner_crotal.dart';
 import 'pantalla_ganado.dart' show etiquetaEspecie, nombresDeZonas;
+import 'widgets/barra_inferior_formulario.dart';
 import 'widgets/cuerpo_responsivo.dart';
 import 'widgets/ganado_visual.dart';
 import 'widgets/relleno_seguro.dart';
@@ -342,29 +343,6 @@ class _CajaFecha extends StatelessWidget {
   }
 }
 
-/// Barra fija de abajo con los botones de guardar, sobre una raya.
-Widget _barraInferior(BuildContext context, List<Widget> botones) {
-  return DecoratedBox(
-    decoration: BoxDecoration(
-      color: context.esquemaZunbeltz.surfaceContainerLow,
-      border: Border(
-          top: BorderSide(color: context.esquemaZunbeltz.outlineVariant)),
-    ),
-    child: SafeArea(
-      top: false,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-        child: Row(children: [
-          for (var indice = 0; indice < botones.length; indice++) ...[
-            if (indice > 0) const SizedBox(width: 12),
-            Expanded(child: botones[indice]),
-          ],
-        ]),
-      ),
-    ),
-  );
-}
-
 /// Rótulo de sección dentro de un formulario («Sexo», «A qué pieza»).
 Widget _rotuloSeccion(BuildContext context, String texto) => Padding(
       padding: const EdgeInsets.only(top: 8, bottom: 8),
@@ -578,7 +556,7 @@ class _FormularioAnimalState extends State<FormularioAnimal>
           leading: CloseButton(onPressed: _cerrar),
           title: Text(_esAlta ? textos.ganNuevoAnimal : textos.ganEditarAnimal),
         ),
-        bottomNavigationBar: _barraInferior(context, [
+        bottomNavigationBar: BarraInferiorFormulario(botones: [
           if (_esAlta)
             OutlinedButton(
               onPressed: guardando
@@ -1069,7 +1047,7 @@ class _FormularioMovimientoState extends State<FormularioMovimiento>
         leading: const CloseButton(),
         title: Text(textos.ganMoverUnRebano),
       ),
-      bottomNavigationBar: _barraInferior(context, [
+      bottomNavigationBar: BarraInferiorFormulario(botones: [
         FilledButton.icon(
           onPressed: guardando || !_cargado ? null : guardarUnaVez,
           icon: const Icon(Icons.trending_up),

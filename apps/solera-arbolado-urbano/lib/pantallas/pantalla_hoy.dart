@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../datos/catalogos_generados/catalogo_calendario_arbolado.dart';
@@ -37,110 +38,132 @@ class _PantallaHoyState extends State<PantallaHoy> {
     });
   }
 
-  /// «martes 4 de noviembre» en el idioma de la app.
-  String _fechaHoyTraducida(DateTime hoy) {
-    return SoleraL10n.tf('arb.fecha_hoy', {
-      'dia_semana': diaSemanaTraducido(hoy.weekday),
-      'dia': hoy.day,
-      'de_mes': deMesTraducido(hoy.month),
-    });
+  /// «Jueves, 5 de noviembre» en el idioma de la app, con mayúscula inicial.
+  String _fechaDeHoy(DateTime hoy) {
+    final texto = DateFormat.MMMMEEEEd(SoleraL10n.idioma).format(hoy);
+    return texto.isEmpty ? texto : texto[0].toUpperCase() + texto.substring(1);
+  }
+
+  void _abrirGuia() {
+    Navigator.of(context).push<void>(
+      MaterialPageRoute(builder: (_) => PantallaGuia()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final tema = Theme.of(context);
+    final colores = context.coloresSolera;
     final hoy = DateTime.now();
-    final fechaHoy = _fechaHoyTraducida(hoy);
     final proximas = tareasProximas(zona: _zona, fecha: hoy, limite: 6);
+    // Cifras de la cabecera: del mismo calendario de la zona que alimenta
+    // la lista (catálogo en memoria, sin consultas nuevas).
+    final tareasDeLaZona = tareasDeZona(_zona);
+    final decadaActual = ((hoy.day - 1) ~/ 10 + 1).clamp(1, 3);
+    final tareasDeEsteMes =
+        tareasDeLaZona.where((tarea) => tarea.mes == hoy.month).toList();
+    final tareasDeEstaDecada = tareasDeEsteMes
+        .where((tarea) => tarea.decada == decadaActual)
+        .length;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(SoleraL10n.t('arb.hoy')),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.menu_book),
-            tooltip: SoleraL10n.t('arb.guia_de_plagas'),
-            onPressed: () => Navigator.of(context).push<void>(
-              MaterialPageRoute(builder: (_) => PantallaGuia()),
-            ),
-          ),
-        ],
-      ),
       body: ListView(
-        padding: const EdgeInsets.all(12),
+        padding: rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 24)),
         children: [
-          // Aviso de versión nueva (no ocupa sitio si no hay).
-          AvisoActualizaciones(
-            config: configActualizacionesMonorepo('solera-arbolado-urbano'),
-            nombreApp: 'Larrea Arbolado Urbano',
-            margen: const EdgeInsets.only(bottom: 8),
-          ),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    fechaHoy[0].toUpperCase() + fechaHoy.substring(1),
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    SoleraL10n.tf('arb.proximas_actuaciones_en_zona', {'zona': _etiquetaZona(_zona)}),
-                    style: TextStyle(color: Colors.grey.shade700),
-                  ),
-                ],
+          CabeceraHoySolera(
+            titulo: SoleraL10n.t('arb.hoy'),
+            fecha: _fechaDeHoy(hoy),
+            acciones: [
+              IconButton(
+                icon: const Icon(Icons.menu_book),
+                tooltip: SoleraL10n.t('arb.guia_de_plagas'),
+                onPressed: _abrirGuia,
               ),
-            ),
+            ],
+            cifras: [
+              CifraCabecera(
+                valor: '$tareasDeEstaDecada',
+                etiqueta: SoleraL10n.t('arb.tareas_esta_decada'),
+                detalle: _formatoFecha(hoy.month, decadaActual),
+              ),
+              CifraCabecera(
+                valor: '${tareasDeEsteMes.length}',
+                etiqueta: SoleraL10n.t('arb.tareas_este_mes'),
+                detalle: _etiquetaZona(_zona),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Wrap(
-              spacing: 8,
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                for (final z in ZonaClimaticaArbolado.values)
-                  ChoiceChip(
-                    label: Text(_etiquetaZona(z)),
-                    selected: _zona == z,
-                    onSelected: (s) {
-                      if (s) setState(() => _zona = z);
-                    },
-                  ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 12),
-          if (proximas.isEmpty)
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(SoleraL10n.t('arb.sin_tareas_calendario_zona')),
-            )
-          else
-            for (final t in proximas)
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.event, color: Color(0xFF2E7D32)),
-                  title: Text(t.nombreVisible),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(_formatoFecha(t.mes, t.decada)),
-                      if (t.notas.isNotEmpty)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4),
-                          child: Text(
-                            t.notas,
-                            style: const TextStyle(fontSize: 12, fontStyle: FontStyle.italic),
+                // Aviso de versión nueva (no ocupa sitio si no hay).
+                AvisoActualizaciones(
+                  config: configActualizacionesMonorepo('solera-arbolado-urbano'),
+                  nombreApp: 'Larrea Arbolado Urbano',
+                  margen: const EdgeInsets.only(bottom: 4),
+                ),
+                Wrap(
+                  spacing: 8,
+                  children: [
+                    for (final zona in ZonaClimaticaArbolado.values)
+                      ChoiceChip(
+                        label: Text(_etiquetaZona(zona)),
+                        selected: _zona == zona,
+                        onSelected: (seleccionada) {
+                          if (seleccionada) setState(() => _zona = zona);
+                        },
+                      ),
+                  ],
+                ),
+                TituloBloqueSolera(SoleraL10n.tf(
+                    'arb.proximas_actuaciones_en_zona',
+                    {'zona': _etiquetaZona(_zona)})),
+                if (proximas.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 32),
+                    child: Column(children: [
+                      Icon(Icons.task_alt, size: 40, color: colores.hecho),
+                      const SizedBox(height: 8),
+                      Text(SoleraL10n.t('arb.sin_tareas_calendario_zona'),
+                          textAlign: TextAlign.center,
+                          style: tema.textTheme.bodyLarge?.copyWith(
+                              color: tema.colorScheme.onSurfaceVariant)),
+                    ]),
+                  )
+                else
+                  Card(
+                    child: Column(children: [
+                      for (final tarea in proximas)
+                        ListTile(
+                          leading: Icon(Icons.event, color: colores.pendiente),
+                          title: Text(tarea.nombreVisible),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(_formatoFecha(tarea.mes, tarea.decada)),
+                              if (tarea.notas.isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Text(
+                                    tarea.notas,
+                                    style: tema.textTheme.bodySmall
+                                        ?.copyWith(fontStyle: FontStyle.italic),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
-                    ],
+                    ]),
                   ),
+                const SizedBox(height: 16),
+                Text(
+                  SoleraL10n.t('arb.aviso_decadas_orientativas'),
+                  style: tema.textTheme.bodySmall
+                      ?.copyWith(color: tema.colorScheme.onSurfaceVariant),
                 ),
-              ),
-          const SizedBox(height: 16),
-          Text(
-            SoleraL10n.t('arb.aviso_decadas_orientativas'),
-            style: TextStyle(fontSize: 11, color: Colors.grey.shade600),
+              ],
+            ),
           ),
         ],
       ),

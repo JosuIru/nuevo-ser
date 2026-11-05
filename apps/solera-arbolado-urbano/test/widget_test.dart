@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solera_arbolado_urbano/main.dart';
 import 'package:solera_arbolado_urbano/pantallas/pantalla_onboarding.dart';
 import 'package:solera_arbolado_urbano/pantallas/pantalla_principal.dart';
 
 void main() {
+  // Como en main(): la pantalla Hoy formatea la fecha en el idioma de la app.
+  setUpAll(() => initializeDateFormatting());
+
   testWidgets('Primer arranque muestra onboarding con CTA Empezar', (tester) async {
     SharedPreferences.setMockInitialValues({});
     await tester.pumpWidget(const SoleraArboladoUrbanoApp());

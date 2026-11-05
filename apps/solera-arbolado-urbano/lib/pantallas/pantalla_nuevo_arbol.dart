@@ -260,9 +260,18 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
     final formatoFecha = DateFormat('dd/MM/yyyy');
     return Scaffold(
       appBar: AppBar(title: Text(widget.esEdicion ? SoleraL10n.t('arb.editar_arbol') : SoleraL10n.t('arb.nuevo_arbol'))),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(
+            widget.esEdicion ? SoleraL10n.t('arb.guardar_cambios') : SoleraL10n.t('arb.guardar_arbol'),
+            guardando: _guardando,
+          ),
+        ),
+      ]),
       body: Form(
         key: _claveFormulario,
-        child: ListView(
+        child: CuerpoResponsivoSolera(child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
             TextFormField(
@@ -410,19 +419,8 @@ class _PantallaNuevoArbolState extends State<PantallaNuevoArbol> {
               ),
               maxLines: 3,
             ),
-            const SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: _guardando ? null : _guardar,
-              icon: _guardando
-                  ? const SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                  : const Icon(Icons.check),
-              label: Text(widget.esEdicion ? SoleraL10n.t('arb.guardar_cambios') : SoleraL10n.t('arb.guardar_arbol')),
-            ),
           ],
-        ),
+        )),
       ),
     );
   }

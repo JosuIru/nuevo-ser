@@ -84,14 +84,14 @@ Para volver atrás, usa la flecha de arriba a la izquierda.',
 		'ayudaFincasT' => 'Marcar un punto en el mapa',
 		'ayudaFincasB' => 'Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…
 1. Entra en Fincas.
-2. Toca el sitio exacto en el mapa. O pulsa «Nuevo punto» (abajo a la derecha) y elige «Usar GPS actual» si estás junto a la instalación, o «Usar centro del mapa».
+2. Toca el sitio exacto en el mapa. O pulsa «Nuevo punto» (en la hoja de abajo) y elige «Usar GPS actual» si estás junto a la instalación, o «Usar centro del mapa».
 3. Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.
 4. Pulsa Guardar.
-» El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón «GPS» centra el mapa en ti y «Capas» cambia entre mapa y satélite.',
+» El color del punto dice su estado: verde oscuro, operativo; marrón, revisar; rojo, averiado. El botón de la diana (abajo a la derecha) centra el mapa en ti y el de las capas cambia entre mapa y foto aérea. Arriba puedes ocultar las piezas o los puntos, o dejar solo los puntos por revisar.',
 		'ayudaMapaSinCoberturaT' => 'El mapa sin cobertura',
 		'ayudaMapaSinCoberturaB' => 'En el monte muchas veces no hay cobertura. Los datos (puntos, zonas, tareas) están siempre en el móvil; la foto aérea, solo si se ha guardado antes.
 1. Lo que miras en el mapa se guarda solo (hasta unos 200 MB; lo más antiguo se borra).
-2. Para llevar las fincas enteras, con wifi: Fincas → icono de la nube con flecha (abajo, junto a «GPS») → «Descargar el mapa de las fincas». Te dice cuánto ocupa antes de empezar.
+2. Para llevar las fincas enteras, con wifi: Fincas → menú de los tres puntos del buscador de arriba → «Descargar el mapa de las fincas». Te dice cuánto ocupa antes de empezar.
 3. Mientras baja puedes usar la app; si la cancelas o se va la wifi, al volver a descargar sigue por donde iba.
 4. En Ajustes → «Mapa sin cobertura» ves cuánto ocupa y puedes borrarlo.
 » Solo se descarga la ortofoto del IGN. El callejero solo se guarda según lo vas viendo.',
@@ -104,14 +104,14 @@ Para volver atrás, usa la flecha de arriba a la izquierda.',
 		'ayudaZonasTesterT' => 'Consultar las zonas de una finca (parcelas, cercados…)',
 		'ayudaZonasTesterB' => 'En Fincas puedes consultar las parcelas, cercados, zonas de pastoreo y otros espacios que forman parte de la finca.
 1. Entra en Fincas para ver el mapa con las zonas y los puntos.
-2. Toca una zona del mapa para ver su información: nombre, tipo, superficie y otros datos.
+2. Toca una zona del mapa: abajo sale su hoja con la superficie, el perímetro, la referencia SIGPAC, el ganado que hay y sus tareas abiertas. «Ver ficha» enseña el resto (notas, fotos, todas las tareas).
 3. Si falta una zona, sus límites no son correctos o hay algún dato que actualizar, comunícalo a coordinación.
 » Las personas tester pueden consultar las zonas, pero no dibujar nuevas ni modificar sus límites. Esos cambios los hace coordinación.',
 		'ayudaEditarMapaT' => 'Mover o borrar un punto o una zona',
-		'ayudaEditarMapaB' => '1. Toca el punto o la zona en el mapa para abrir su ficha.
+		'ayudaEditarMapaB' => '1. Toca el punto en el mapa para abrir su ficha. Si tocas una zona, sale su hoja abajo, sobre el mapa: superficie, perímetro, SIGPAC, ganado y tareas abiertas; «Ver ficha» abre la ficha completa.
 2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.
-3. Para corregir una zona: pulsa el lápiz (arriba). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.
-4. Para borrarlo: pulsa la papelera y confirma.',
+3. Para corregir una zona: pulsa el lápiz de su hoja (o de su ficha). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.
+4. Para borrarlo: en la ficha, pulsa la papelera y confirma.',
 		'ayudaEditarMapaTesterT' => 'Comunicar cambios o incidencias en una finca',
 		'ayudaEditarMapaTesterB' => 'Si encuentras un problema en una instalación o ves que la información del mapa no es correcta, puedes comunicárselo a coordinación.
 1. Entra en Fincas y localiza en el mapa el punto o la zona.
@@ -121,13 +121,13 @@ Para volver atrás, usa la flecha de arriba a la izquierda.',
 » No necesitas modificar el mapa. Coordinación actualiza los puntos, las zonas y sus datos con la información que recibe.',
 		'ayudaImportarT' => 'Zonas desde el catastro o desde un fichero',
 		'ayudaImportarB' => 'No hace falta dibujar a mano una parcela que ya está medida.
-1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.
+1. En Fincas, abre el menú de los tres puntos del buscador de arriba y elige de dónde sale el contorno.
 • «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.
 • «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.
 • «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.
 2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.
 » El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.
-» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.',
+» «Buscar en el mapa», arriba, busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.',
 		'ayudaCierresT' => 'Un abrevadero o un cierre nuevo',
 		'ayudaCierresB' => 'Un abrevadero, un bebedero o una manga son un punto: se marcan como en «Marcar un punto en el mapa», con su tipo.
 Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de una de estas dos maneras:
@@ -155,21 +155,23 @@ Un cierre (alambrada, pastor eléctrico) no se dibuja como línea. Se apunta de 
 » En la lista, las tareas periódicas llevan el símbolo de repetir.',
 		'ayudaRecurrentesTesterT' => 'Tareas que se repiten',
 		'ayudaRecurrentesTesterB' => 'Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…
-1. En Fincas, pulsa «Tareas» para ver las actuaciones previstas.
+1. En Fincas, pulsa el icono de tareas (arriba) para ver las actuaciones previstas.
 2. Las que se repiten llevan el símbolo de repetir.
 3. Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.
 » No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.',
 		'ayudaTableroT' => 'Llevar las tareas al día',
-		'ayudaTableroB' => '1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.
-2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.
-3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.
-4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además «Cambiar responsables»: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.
-5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.
+		'ayudaTableroB' => '1. En Fincas, pulsa el icono de tareas del buscador de arriba (el número dice cuántas hay abiertas) para ver el tablero con todas. Desde Hoy, «Ver todas» lleva al mismo sitio.
+2. Las tareas salen agrupadas por sitio: cada punto, cada pieza y, al final, las generales de la finca. «Mapa», junto al nombre del sitio, te lleva a él en el mapa.
+3. De partida salen las abiertas (todo menos las hechas). Los chips de arriba filtran por finca, por estado (o todos) y por prioridad. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.
+4. «Nueva tarea», abajo, crea una tarea general de la finca; para una de un punto o una pieza, hazla desde su ficha o su hoja.
+5. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.
+6. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además «Cambiar responsables»: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.
+7. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.
 » «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».',
 		'ayudaTableroTesterT' => 'Consultar y llevar las tareas al día',
 		'ayudaTableroTesterB' => 'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.
-1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.
-2. Filtra por finca o por estado para encontrar las que te interesan.
+1. En Fincas, pulsa el icono de tareas del buscador de arriba para ver la lista.
+2. Las tareas salen agrupadas por sitio (cada punto, cada pieza y las generales de la finca) y, de partida, solo las abiertas. Con los chips de arriba filtras por finca, estado y prioridad; «Mapa» te lleva al sitio en el mapa.
 3. «Mis tareas» deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.
 4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.
 5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.
@@ -341,14 +343,14 @@ Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 		'ayudaFincasT' => 'Puntu bat markatu mapan',
 		'ayudaFincasB' => 'Puntua azpiegitura bakoitza da: aska, manga, hesia, aterpea, urmaela…
 1. Sartu Finketan.
-2. Ukitu mapan leku zehatza. Edo sakatu «Puntu berria» (behean eskuinean) eta aukeratu «Erabili uneko GPSa» instalazioaren ondoan bazaude, edo «Erabili maparen erdigunea».
+2. Ukitu mapan leku zehatza. Edo sakatu «Puntu berria» (beheko orrian) eta aukeratu «Erabili uneko GPSa» instalazioaren ondoan bazaude, edo «Erabili maparen erdigunea».
 3. Aukeratu mota eta egoera, jarri izena eta, nahi baduzu, gehitu argazkiak.
 4. Sakatu Gorde.
-» Puntuaren koloreak egoera adierazten du: berdea, operatiboa; okrea, berrikusteke; gorrixka, matxuratuta. «GPS» botoiak mapa zugan zentratzen du, eta «Geruzak» botoiak mapa eta satelitea txandakatzen ditu.',
+» Puntuaren koloreak egoera adierazten du: berde iluna, operatiboa; marroia, berrikusteke; gorria, matxuratuta. Itu-botoiak (behean eskuinean) mapa zugan zentratzen du, eta geruzen botoiak mapa eta aireko argazkia txandakatzen ditu. Goian piezak edo puntuak ezkuta ditzakezu, edo berrikusteko puntuak bakarrik utzi.',
 		'ayudaMapaSinCoberturaT' => 'Mapa estaldurarik gabe',
 		'ayudaMapaSinCoberturaB' => 'Mendian askotan ez dago estaldurarik. Datuak (puntuak, eremuak, zereginak) beti daude mugikorrean; aireko argazkia, aurretik gorde bada bakarrik.
 1. Mapan begiratzen duzuna berez gordetzen da (200 MB inguru arte; zaharrena ezabatzen da).
-2. Finka osoak eramateko, wifiarekin: Finkak → gezidun hodeiaren ikonoa (behean, «GPS»aren ondoan) → «Finketako mapa deskargatu». Hasi aurretik zenbat hartzen duen esaten dizu.
+2. Finka osoak eramateko, wifiarekin: Finkak → goiko bilatzaileko hiru puntuen menua → «Finketako mapa deskargatu». Hasi aurretik zenbat hartzen duen esaten dizu.
 3. Jaisten ari den bitartean aplikazioa erabil dezakezu; bertan behera uzten baduzu edo wifia joaten bada, berriz deskargatzean utzitako lekutik jarraituko du.
 4. Ezarpenak → «Mapa estaldurarik gabe» atalean zenbat hartzen duen ikusi eta ezaba dezakezu.
 » IGNren ortoargazkia bakarrik deskargatzen da. Kale-mapa ikusi ahala bakarrik gordetzen da.',
@@ -361,14 +363,14 @@ Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 		'ayudaZonasTesterT' => 'Finka baten eremuak kontsultatu (sailak, hesituak…)',
 		'ayudaZonasTesterB' => 'Finketan finkaren sailak, hesituak, alha-eremuak eta gainerako guneak kontsulta ditzakezu.
 1. Sartu Finketan, eremuak eta puntuak dituen mapa ikusteko.
-2. Ukitu mapan eremu bat haren informazioa ikusteko: izena, mota, azalera eta beste datu batzuk.
+2. Ukitu mapan eremu bat: behean haren orria agertzen da azalerarekin, perimetroarekin, SIGPAC erreferentziarekin, dauden abereekin eta zeregin irekiekin. «Fitxa ikusi» aukerak gainerakoa erakusten du (oharrak, argazkiak, zeregin guztiak).
 3. Eremu bat falta bada, mugak zuzenak ez badira edo daturen bat eguneratu behar bada, jakinarazi koordinazioari.
 » Pertsona testerrek eremuak kontsulta ditzakete, baina ezin dute berririk marraztu, ezta mugak aldatu ere. Aldaketa horiek koordinazioak egiten ditu.',
 		'ayudaEditarMapaT' => 'Puntu edo eremu bat mugitu edo ezabatu',
-		'ayudaEditarMapaB' => '1. Ukitu mapan puntua edo eremua haren fitxa irekitzeko.
+		'ayudaEditarMapaB' => '1. Ukitu mapan puntua haren fitxa irekitzeko. Eremu bat ukitzen baduzu, haren orria agertzen da behean, maparen gainean: azalera, perimetroa, SIGPAC, abereak eta zeregin irekiak; «Fitxa ikusi» aukerak fitxa osoa irekitzen du.
 2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.
-3. Eremu bat zuzentzeko: sakatu arkatza (goian). «Datuak editatu» aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; «Ingurua doitu» aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; «+» ikurrek izkina bat gehitzen dute); «Berriro marraztu» aukerak osorik egiten du berriro.
-4. Ezabatzeko: sakatu zakarrontzia eta berretsi.',
+3. Eremu bat zuzentzeko: sakatu haren orriko (edo fitxako) arkatza. «Datuak editatu» aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; «Ingurua doitu» aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; «+» ikurrek izkina bat gehitzen dute); «Berriro marraztu» aukerak osorik egiten du berriro.
+4. Ezabatzeko: fitxan, sakatu zakarrontzia eta berretsi.',
 		'ayudaEditarMapaTesterT' => 'Finka bateko aldaketak edo gorabeherak jakinarazi',
 		'ayudaEditarMapaTesterB' => 'Instalazio batean arazoren bat aurkitzen baduzu edo maparen informazioa zuzena ez dela ikusten baduzu, koordinazioari jakinaraz diezaiokezu.
 1. Sartu Finketan eta aurkitu mapan puntua edo eremua.
@@ -378,13 +380,13 @@ Atzera itzultzeko, erabili goiko ezkerreko gezia.',
 » Ez duzu mapa aldatu behar. Koordinazioak eguneratzen ditu puntuak, eremuak eta haien datuak, jasotzen duen informazioarekin.',
 		'ayudaImportarT' => 'Eremuak katastrotik edo fitxategi batetik',
 		'ayudaImportarB' => 'Ez da eskuz marraztu behar neurtuta dagoen partzela bat.
-1. Finketan, sakatu geruzen ikonoa (goian) eta aukeratu ingurua nondik ateratzen den.
+1. Finketan, ireki goiko bilatzaileko hiru puntuen menua eta aukeratu ingurua nondik ateratzen den.
 • «Maparen erdiko katastro-partzela»: mugitu mapa gurutzea partzelaren barruan erori arte.
 • «Katastro-partzela erreferentziaz»: udalerria, poligonoa eta partzela, kontribuzioaren ordainagirian bezala.
 • «Fitxategia inportatu»: Google Earth-eko KML edo KMZ, GeoJSON, GPS baten ibilbidea (GPX) edo QGISeko Shapefile bat zip-ean.
 2. Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.
 » Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.
-» Goiko luparekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.',
+» Goiko «Bilatu mapan» aukerarekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.',
 		'ayudaCierresT' => 'Aska edo hesi berri bat',
 		'ayudaCierresB' => 'Aska, edaska edo manga bat puntu bat da: «Puntu bat markatu mapan» atalean bezala markatzen da, bere motarekin.
 Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hauetako batean jasotzen da:
@@ -412,21 +414,23 @@ Hesi bat (alanbrea, artzain elektrikoa) ezin da lerro gisa marraztu. Bi modu hau
 » Zerrendan, zeregin periodikoek errepikatzeko ikurra dute.',
 		'ayudaRecurrentesTesterT' => 'Errepikatzen diren zereginak',
 		'ayudaRecurrentesTesterB' => 'Zeregin batzuk aldiro egiten dira: askak bete, hesia berrikusi, instalazioak egiaztatu…
-1. Finketan, sakatu «Zereginak» aurreikusitako jarduerak ikusteko.
+1. Finketan, sakatu zereginen ikonoa (goian) aurreikusitako jarduerak ikusteko.
 2. Errepikatzen direnek errepikatzeko ikurra dute.
 3. Ohiko zereginen bat falta bada edo beste maiztasun batekin egin beharko balitz, jakinarazi koordinazioari.
 » Ez dago jada programatuta dagoen zeregin periodiko bat aldi bakoitzean eskatu beharrik. Eginda gisa markatzean, app-ak berak prestatzen du hurrengoa.',
 		'ayudaTableroT' => 'Zereginak egunean eraman',
-		'ayudaTableroB' => '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.
-2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.
-3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.
-4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko. Koordinazioak, gainera, «Arduradunak aldatu» dezake: hainbatekin, zeregina partekatua geratzen da. Partekatu bat askatzen baduzu, zu ateratzen zara eta besteek jarraitzen dute.
-5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.
+		'ayudaTableroB' => '1. Finketan, sakatu goiko bilatzaileko zereginen ikonoa (zenbakiak zenbat dauden irekita esaten du) guztiak dituen taula ikusteko. Gaurtik, «Ikusi guztiak» leku berera eramaten du.
+2. Zereginak lekuka taldekatuta agertzen dira: puntu bakoitza, eremu bakoitza eta, amaieran, finkaren zeregin orokorrak. Lekuaren izenaren ondoko «Mapa» aukerak mapan erakusten dizu.
+3. Hasieran irekiak agertzen dira (eginda daudenak izan ezik denak). Goiko txipek finkaren, egoeraren (edo guztien) eta lehentasunaren arabera iragazten dute. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.
+4. Beheko «Zeregin berria» botoiak finkaren zeregin orokor bat sortzen du; puntu edo eremu batekoa sortzeko, egin haren fitxatik edo orritik.
+5. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.
+6. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko. Koordinazioak, gainera, «Arduradunak aldatu» dezake: hainbatekin, zeregina partekatua geratzen da. Partekatu bat askatzen baduzu, zu ateratzen zara eta besteek jarraitzen dute.
+7. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.
 » «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.',
 		'ayudaTableroTesterT' => 'Zereginak kontsultatu eta egunean eraman',
 		'ayudaTableroTesterB' => 'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.
-1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.
-2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.
+1. Finketan, sakatu goiko bilatzaileko zereginen ikonoa zerrenda ikusteko.
+2. Zereginak lekuka taldekatuta agertzen dira (puntu bakoitza, eremu bakoitza eta finkaren orokorrak) eta, hasieran, irekiak bakarrik. Goiko txipekin finkaren, egoeraren eta lehentasunaren arabera iragazten duzu; «Mapa» aukerak lekura eramaten zaitu mapan.
 3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu, baita beste pertsona batzuekin partekatzen dituzunak ere: horietan, edozeinek alda dezake egoera eta, batek eginda markatzen duenean, denentzat geratzen da eginda.
 4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.
 5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.

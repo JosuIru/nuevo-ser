@@ -910,7 +910,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaFincasB =>
-      'Puntua azpiegitura bakoitza da: aska, manga, hesia, aterpea, urmaela…\n1. Sartu Finketan.\n2. Ukitu mapan leku zehatza. Edo sakatu «Puntu berria» (behean eskuinean) eta aukeratu «Erabili uneko GPSa» instalazioaren ondoan bazaude, edo «Erabili maparen erdigunea».\n3. Aukeratu mota eta egoera, jarri izena eta, nahi baduzu, gehitu argazkiak.\n4. Sakatu Gorde.\n» Puntuaren koloreak egoera adierazten du: berdea, operatiboa; okrea, berrikusteke; gorrixka, matxuratuta. «GPS» botoiak mapa zugan zentratzen du, eta «Geruzak» botoiak mapa eta satelitea txandakatzen ditu.';
+      'Puntua azpiegitura bakoitza da: aska, manga, hesia, aterpea, urmaela…\n1. Sartu Finketan.\n2. Ukitu mapan leku zehatza. Edo sakatu «Puntu berria» (beheko orrian) eta aukeratu «Erabili uneko GPSa» instalazioaren ondoan bazaude, edo «Erabili maparen erdigunea».\n3. Aukeratu mota eta egoera, jarri izena eta, nahi baduzu, gehitu argazkiak.\n4. Sakatu Gorde.\n» Puntuaren koloreak egoera adierazten du: berde iluna, operatiboa; marroia, berrikusteke; gorria, matxuratuta. Itu-botoiak (behean eskuinean) mapa zugan zentratzen du, eta geruzen botoiak mapa eta aireko argazkia txandakatzen ditu. Goian piezak edo puntuak ezkuta ditzakezu, edo berrikusteko puntuak bakarrik utzi.';
 
   @override
   String get ayudaZonasT => 'Eremu bat marraztu (saila, hesitua…)';
@@ -925,14 +925,14 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaZonasTesterB =>
-      'Finketan finkaren sailak, hesituak, alha-eremuak eta gainerako guneak kontsulta ditzakezu.\n1. Sartu Finketan, eremuak eta puntuak dituen mapa ikusteko.\n2. Ukitu mapan eremu bat haren informazioa ikusteko: izena, mota, azalera eta beste datu batzuk.\n3. Eremu bat falta bada, mugak zuzenak ez badira edo daturen bat eguneratu behar bada, jakinarazi koordinazioari.\n» Pertsona testerrek eremuak kontsulta ditzakete, baina ezin dute berririk marraztu, ezta mugak aldatu ere. Aldaketa horiek koordinazioak egiten ditu.';
+      'Finketan finkaren sailak, hesituak, alha-eremuak eta gainerako guneak kontsulta ditzakezu.\n1. Sartu Finketan, eremuak eta puntuak dituen mapa ikusteko.\n2. Ukitu mapan eremu bat: behean haren orria agertzen da azalerarekin, perimetroarekin, SIGPAC erreferentziarekin, dauden abereekin eta zeregin irekiekin. «Fitxa ikusi» aukerak gainerakoa erakusten du (oharrak, argazkiak, zeregin guztiak).\n3. Eremu bat falta bada, mugak zuzenak ez badira edo daturen bat eguneratu behar bada, jakinarazi koordinazioari.\n» Pertsona testerrek eremuak kontsulta ditzakete, baina ezin dute berririk marraztu, ezta mugak aldatu ere. Aldaketa horiek koordinazioak egiten ditu.';
 
   @override
   String get ayudaEditarMapaT => 'Puntu edo eremu bat mugitu edo ezabatu';
 
   @override
   String get ayudaEditarMapaB =>
-      '1. Ukitu mapan puntua edo eremua haren fitxa irekitzeko.\n2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.\n3. Eremu bat zuzentzeko: sakatu arkatza (goian). «Datuak editatu» aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; «Ingurua doitu» aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; «+» ikurrek izkina bat gehitzen dute); «Berriro marraztu» aukerak osorik egiten du berriro.\n4. Ezabatzeko: sakatu zakarrontzia eta berretsi.';
+      '1. Ukitu mapan puntua haren fitxa irekitzeko. Eremu bat ukitzen baduzu, haren orria agertzen da behean, maparen gainean: azalera, perimetroa, SIGPAC, abereak eta zeregin irekiak; «Fitxa ikusi» aukerak fitxa osoa irekitzen du.\n2. Puntu bat mugitzeko: sakatu «Kokatu berriro mapan» (goian) eta ukitu leku berria.\n3. Eremu bat zuzentzeko: sakatu haren orriko (edo fitxako) arkatza. «Datuak editatu» aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; «Ingurua doitu» aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; «+» ikurrek izkina bat gehitzen dute); «Berriro marraztu» aukerak osorik egiten du berriro.\n4. Ezabatzeko: fitxan, sakatu zakarrontzia eta berretsi.';
 
   @override
   String get ayudaEditarMapaTesterT =>
@@ -975,21 +975,21 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaRecurrentesTesterB =>
-      'Zeregin batzuk aldiro egiten dira: askak bete, hesia berrikusi, instalazioak egiaztatu…\n1. Finketan, sakatu «Zereginak» aurreikusitako jarduerak ikusteko.\n2. Errepikatzen direnek errepikatzeko ikurra dute.\n3. Ohiko zereginen bat falta bada edo beste maiztasun batekin egin beharko balitz, jakinarazi koordinazioari.\n» Ez dago jada programatuta dagoen zeregin periodiko bat aldi bakoitzean eskatu beharrik. Eginda gisa markatzean, app-ak berak prestatzen du hurrengoa.';
+      'Zeregin batzuk aldiro egiten dira: askak bete, hesia berrikusi, instalazioak egiaztatu…\n1. Finketan, sakatu zereginen ikonoa (goian) aurreikusitako jarduerak ikusteko.\n2. Errepikatzen direnek errepikatzeko ikurra dute.\n3. Ohiko zereginen bat falta bada edo beste maiztasun batekin egin beharko balitz, jakinarazi koordinazioari.\n» Ez dago jada programatuta dagoen zeregin periodiko bat aldi bakoitzean eskatu beharrik. Eginda gisa markatzean, app-ak berak prestatzen du hurrengoa.';
 
   @override
   String get ayudaTableroT => 'Zereginak egunean eraman';
 
   @override
   String get ayudaTableroB =>
-      '1. Finketan, sakatu «Zereginak» (goian) guztiak dituen taula ikusteko.\n2. Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n3. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n4. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko. Koordinazioak, gainera, «Arduradunak aldatu» dezake: hainbatekin, zeregina partekatua geratzen da. Partekatu bat askatzen baduzu, zu ateratzen zara eta besteek jarraitzen dute.\n5. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.';
+      '1. Finketan, sakatu goiko bilatzaileko zereginen ikonoa (zenbakiak zenbat dauden irekita esaten du) guztiak dituen taula ikusteko. Gaurtik, «Ikusi guztiak» leku berera eramaten du.\n2. Zereginak lekuka taldekatuta agertzen dira: puntu bakoitza, eremu bakoitza eta, amaieran, finkaren zeregin orokorrak. Lekuaren izenaren ondoko «Mapa» aukerak mapan erakusten dizu.\n3. Hasieran irekiak agertzen dira (eginda daudenak izan ezik denak). Goiko txipek finkaren, egoeraren (edo guztien) eta lehentasunaren arabera iragazten dute. Taldearekin sinkronizatzen baduzu, «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu.\n4. Beheko «Zeregin berria» botoiak finkaren zeregin orokor bat sortzen du; puntu edo eremu batekoa sortzeko, egin haren fitxatik edo orritik.\n5. Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.\n6. Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko. Koordinazioak, gainera, «Arduradunak aldatu» dezake: hainbatekin, zeregina partekatua geratzen da. Partekatu bat askatzen baduzu, zu ateratzen zara eta besteek jarraitzen dute.\n7. «PDF txostena» botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.';
 
   @override
   String get ayudaTableroTesterT => 'Zereginak kontsultatu eta egunean eraman';
 
   @override
   String get ayudaTableroTesterB =>
-      'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.\n1. Finketan, sakatu «Zereginak» (goian) zerrenda ikusteko.\n2. Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu, baita beste pertsona batzuekin partekatzen dituzunak ere: horietan, edozeinek alda dezake egoera eta, batek eginda markatzen duenean, denentzat geratzen da eginda.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.';
+      'App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.\n1. Finketan, sakatu goiko bilatzaileko zereginen ikonoa zerrenda ikusteko.\n2. Zereginak lekuka taldekatuta agertzen dira (puntu bakoitza, eremu bakoitza eta finkaren orokorrak) eta, hasieran, irekiak bakarrik. Goiko txipekin finkaren, egoeraren eta lehentasunaren arabera iragazten duzu; «Mapa» aukerak lekura eramaten zaitu mapan.\n3. «Nire zereginak» aukerak zuri esleitutakoak bakarrik uzten ditu, baita beste pertsona batzuekin partekatzen dituzunak ere: horietan, edozeinek alda dezake egoera eta, batek eginda markatzen duenean, denentzat geratzen da eginda.\n4. Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.\n5. Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.\n» «Blokeatuta»: egiten duenaren esku ez dagoen zerbaitengatik ezin denean jarraitu: materiala falta da, norbaiti itxaron behar zaio edo eguraldiak ez du uzten. Koordinazioak panelean ikusten du, «Arreta behar du» atalean.\n» Pertsona testerrek ezin diete zereginak beste pertsona batzuei esleitu. Hori koordinazioak egiten du, finken mantentzea antolatzen baitu.';
 
   @override
   String get ayudaProyectosT => 'Zure proiektua sortu';
@@ -3197,7 +3197,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaImportarB =>
-      'Ez da eskuz marraztu behar neurtuta dagoen partzela bat.\n1. Finketan, sakatu geruzen ikonoa (goian) eta aukeratu ingurua nondik ateratzen den.\n• «Maparen erdiko katastro-partzela»: mugitu mapa gurutzea partzelaren barruan erori arte.\n• «Katastro-partzela erreferentziaz»: udalerria, poligonoa eta partzela, kontribuzioaren ordainagirian bezala.\n• «Fitxategia inportatu»: Google Earth-eko KML edo KMZ, GeoJSON, GPS baten ibilbidea (GPX) edo QGISeko Shapefile bat zip-ean.\n2. Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.\n» Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.\n» Goiko luparekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.';
+      'Ez da eskuz marraztu behar neurtuta dagoen partzela bat.\n1. Finketan, ireki goiko bilatzaileko hiru puntuen menua eta aukeratu ingurua nondik ateratzen den.\n• «Maparen erdiko katastro-partzela»: mugitu mapa gurutzea partzelaren barruan erori arte.\n• «Katastro-partzela erreferentziaz»: udalerria, poligonoa eta partzela, kontribuzioaren ordainagirian bezala.\n• «Fitxategia inportatu»: Google Earth-eko KML edo KMZ, GeoJSON, GPS baten ibilbidea (GPX) edo QGISeko Shapefile bat zip-ean.\n2. Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.\n» Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.\n» Goiko «Bilatu mapan» aukerarekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.';
 
   @override
   String get ganExportar => 'Excelera esportatu (CSV)';
@@ -3513,5 +3513,194 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaMapaSinCoberturaB =>
-      'Mendian askotan ez dago estaldurarik. Datuak (puntuak, eremuak, zereginak) beti daude mugikorrean; aireko argazkia, aurretik gorde bada bakarrik.\n1. Mapan begiratzen duzuna berez gordetzen da (200 MB inguru arte; zaharrena ezabatzen da).\n2. Finka osoak eramateko, wifiarekin: Finkak → gezidun hodeiaren ikonoa (behean, «GPS»aren ondoan) → «Finketako mapa deskargatu». Hasi aurretik zenbat hartzen duen esaten dizu.\n3. Jaisten ari den bitartean aplikazioa erabil dezakezu; bertan behera uzten baduzu edo wifia joaten bada, berriz deskargatzean utzitako lekutik jarraituko du.\n4. Ezarpenak → «Mapa estaldurarik gabe» atalean zenbat hartzen duen ikusi eta ezaba dezakezu.\n» IGNren ortoargazkia bakarrik deskargatzen da. Kale-mapa ikusi ahala bakarrik gordetzen da.';
+      'Mendian askotan ez dago estaldurarik. Datuak (puntuak, eremuak, zereginak) beti daude mugikorrean; aireko argazkia, aurretik gorde bada bakarrik.\n1. Mapan begiratzen duzuna berez gordetzen da (200 MB inguru arte; zaharrena ezabatzen da).\n2. Finka osoak eramateko, wifiarekin: Finkak → goiko bilatzaileko hiru puntuen menua → «Finketako mapa deskargatu». Hasi aurretik zenbat hartzen duen esaten dizu.\n3. Jaisten ari den bitartean aplikazioa erabil dezakezu; bertan behera uzten baduzu edo wifia joaten bada, berriz deskargatzean utzitako lekutik jarraituko du.\n4. Ezarpenak → «Mapa estaldurarik gabe» atalean zenbat hartzen duen ikusi eta ezaba dezakezu.\n» IGNren ortoargazkia bakarrik deskargatzen da. Kale-mapa ikusi ahala bakarrik gordetzen da.';
+
+  @override
+  String get hoySincronizando => 'Sinkronizatzen…';
+
+  @override
+  String hoySincronizado(String cuando) {
+    return 'Sinkronizatuta: $cuando';
+  }
+
+  @override
+  String get hoySinSincronizar => 'Oraindik sinkronizatu gabe';
+
+  @override
+  String get hoySoloEnEsteDispositivo =>
+      'Datuak gailu honetan bakarrik gordeta';
+
+  @override
+  String get hoyAhoraMismo => 'oraintxe';
+
+  @override
+  String hoyHaceMinutos(int n) {
+    return 'duela $n min';
+  }
+
+  @override
+  String hoyHaceHoras(int n) {
+    return 'duela $n h';
+  }
+
+  @override
+  String hoyHaceDias(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'duela $n egun',
+      one: 'atzo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get hoyVerTodas => 'Ikusi guztiak';
+
+  @override
+  String hoyFiltroVencidas(int n) {
+    return 'Iraungiak $n';
+  }
+
+  @override
+  String hoyFiltroSemana(int n) {
+    return 'Aste honetan $n';
+  }
+
+  @override
+  String hoyFiltroMias(int n) {
+    return 'Nireak $n';
+  }
+
+  @override
+  String get hoyTareasNinguna => 'Ezer ez hemen.';
+
+  @override
+  String hoyEstadoPrioridad(String estado, String prioridad) {
+    return '$estado, $prioridad lehentasuna';
+  }
+
+  @override
+  String hoyAvisosAbiertos(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n irekita',
+      one: '1 irekita',
+      zero: 'Bat ere ez irekita',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mapaBuscarEnMapa => 'Bilatu mapan';
+
+  @override
+  String get mapaMasOpciones => 'Aukera gehiago';
+
+  @override
+  String get mapaFiltroPiezas => 'Piezak';
+
+  @override
+  String get mapaFiltroPuntos => 'Puntuak';
+
+  @override
+  String mapaFiltroRevisar(int n) {
+    return 'Berrikusteko $n';
+  }
+
+  @override
+  String get mapaElegirFincaVista => 'Beste finka bat ikusi';
+
+  @override
+  String fincaResumen(int piezas, int puntos, int revisar) {
+    String _temp0 = intl.Intl.pluralLogic(
+      piezas,
+      locale: localeName,
+      other: '$piezas pieza',
+      one: 'pieza 1',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      puntos,
+      locale: localeName,
+      other: '$puntos puntu',
+      one: 'puntu 1',
+    );
+    String _temp2 = intl.Intl.pluralLogic(
+      revisar,
+      locale: localeName,
+      other: ', $revisar berrikusteko',
+      zero: '',
+    );
+    return '$_temp0 · $_temp1$_temp2';
+  }
+
+  @override
+  String get piezaVolverAlMapa => 'Mapara itzuli';
+
+  @override
+  String get piezaCerrar => 'Itxi';
+
+  @override
+  String get piezaVerFicha => 'Fitxa ikusi';
+
+  @override
+  String piezaPendientes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n zain',
+      one: '1 zain',
+      zero: 'Ezer ez zain',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get piezaSigpacPartes => 'polig. · partz. · azpip.';
+
+  @override
+  String get piezaSigpacPartesSinSub => 'polig. · partz.';
+
+  @override
+  String piezaMasTareas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Eta beste $n fitxan',
+      one: 'Eta beste 1 fitxan',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get piezaSinTareasAbiertas => 'Hemen ez dago zeregin irekirik.';
+
+  @override
+  String tableroAbiertas(int n) {
+    return 'Irekiak $n';
+  }
+
+  @override
+  String get tableroTodasFincas => 'Finka guztiak';
+
+  @override
+  String get tableroTodosEstados => 'Egoera guztiak';
+
+  @override
+  String get tableroTodasPrioridades => 'Lehentasun guztiak';
+
+  @override
+  String get tableroVerEnMapa => 'Mapa';
+
+  @override
+  String tableroTareasGenerales(String finca) {
+    return '$finca: zeregin orokorrak';
+  }
+
+  @override
+  String get tableroElegirFinca => 'Zein finkatakoa?';
+
+  @override
+  String get tableroSinAbiertas => 'Ez dago zeregin irekirik iragazki hauekin.';
 }

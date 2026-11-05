@@ -79,7 +79,7 @@ section ul li::marker{color:var(--pasto)}
 <main class="hoja">
   <header class="cab">
     <h1>Erabilera-eskuliburua</h1>
-    <p class="sub">Larrea Zunbeltz · 0.7.8 bertsioa</p>
+    <p class="sub">Larrea Zunbeltz · 0.8.1 bertsioa</p>
   </header>
   <div class="cuerpo">
     <p class="intro">App-a erabiltzeko gida, urratsez urrats.</p>
@@ -199,18 +199,18 @@ section ul li::marker{color:var(--pasto)}
 <p>Puntua azpiegitura bakoitza da: aska, manga, hesia, aterpea, urmaela…</p>
 <ol class="pasos">
 <li>Sartu Finketan.</li>
-<li>Ukitu mapan leku zehatza. Edo sakatu <span class="ui">Puntu berria</span> (behean eskuinean) eta aukeratu <span class="ui">Erabili uneko GPSa</span> instalazioaren ondoan bazaude, edo <span class="ui">Erabili maparen erdigunea</span>.</li>
+<li>Ukitu mapan leku zehatza. Edo sakatu <span class="ui">Puntu berria</span> (beheko orrian) eta aukeratu <span class="ui">Erabili uneko GPSa</span> instalazioaren ondoan bazaude, edo <span class="ui">Erabili maparen erdigunea</span>.</li>
 <li>Aukeratu mota eta egoera, jarri izena eta, nahi baduzu, gehitu argazkiak.</li>
 <li>Sakatu Gorde.</li>
 </ol>
-<p class="nota"><b>Jakitea komeni da.</b> Puntuaren koloreak egoera adierazten du: berdea, operatiboa; okrea, berrikusteke; gorrixka, matxuratuta. <span class="ui">GPS</span> botoiak mapa zugan zentratzen du, eta <span class="ui">Geruzak</span> botoiak mapa eta satelitea txandakatzen ditu.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Puntuaren koloreak egoera adierazten du: berde iluna, operatiboa; marroia, berrikusteke; gorria, matxuratuta. Itu-botoiak (behean eskuinean) mapa zugan zentratzen du, eta geruzen botoiak mapa eta aireko argazkia txandakatzen ditu. Goian piezak edo puntuak ezkuta ditzakezu, edo berrikusteko puntuak bakarrik utzi.</p>
 </section>
 <section id="a8">
 <h3><span class="n">8</span>Mapa estaldurarik gabe</h3>
 <p>Mendian askotan ez dago estaldurarik. Datuak (puntuak, eremuak, zereginak) beti daude mugikorrean; aireko argazkia, aurretik gorde bada bakarrik.</p>
 <ol class="pasos">
 <li>Mapan begiratzen duzuna berez gordetzen da (200 MB inguru arte; zaharrena ezabatzen da).</li>
-<li>Finka osoak eramateko, wifiarekin: Finkak → gezidun hodeiaren ikonoa (behean, <span class="ui">GPS</span>aren ondoan) → <span class="ui">Finketako mapa deskargatu</span>. Hasi aurretik zenbat hartzen duen esaten dizu.</li>
+<li>Finka osoak eramateko, wifiarekin: Finkak → goiko bilatzaileko hiru puntuen menua → <span class="ui">Finketako mapa deskargatu</span>. Hasi aurretik zenbat hartzen duen esaten dizu.</li>
 <li>Jaisten ari den bitartean aplikazioa erabil dezakezu; bertan behera uzten baduzu edo wifia joaten bada, berriz deskargatzean utzitako lekutik jarraituko du.</li>
 <li>Ezarpenak → <span class="ui">Mapa estaldurarik gabe</span> atalean zenbat hartzen duen ikusi eta ezaba dezakezu.</li>
 </ol>
@@ -229,7 +229,7 @@ section ul li::marker{color:var(--pasto)}
 <p>Finketan finkaren sailak, hesituak, alha-eremuak eta gainerako guneak kontsulta ditzakezu.</p>
 <ol class="pasos">
 <li>Sartu Finketan, eremuak eta puntuak dituen mapa ikusteko.</li>
-<li>Ukitu mapan eremu bat haren informazioa ikusteko: izena, mota, azalera eta beste datu batzuk.</li>
+<li>Ukitu mapan eremu bat: behean haren orria agertzen da azalerarekin, perimetroarekin, SIGPAC erreferentziarekin, dauden abereekin eta zeregin irekiekin. <span class="ui">Fitxa ikusi</span> aukerak gainerakoa erakusten du (oharrak, argazkiak, zeregin guztiak).</li>
 <li>Eremu bat falta bada, mugak zuzenak ez badira edo daturen bat eguneratu behar bada, jakinarazi koordinazioari.</li>
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Pertsona testerrek eremuak kontsulta ditzakete, baina ezin dute berririk marraztu, ezta mugak aldatu ere. Aldaketa horiek koordinazioak egiten ditu.</p>
@@ -237,10 +237,10 @@ section ul li::marker{color:var(--pasto)}
 <section id="a10">
 <h3><span class="n">10</span>Puntu edo eremu bat mugitu edo ezabatu</h3>
 <ol class="pasos">
-<li>Ukitu mapan puntua edo eremua haren fitxa irekitzeko.</li>
+<li>Ukitu mapan puntua haren fitxa irekitzeko. Eremu bat ukitzen baduzu, haren orria agertzen da behean, maparen gainean: azalera, perimetroa, SIGPAC, abereak eta zeregin irekiak; <span class="ui">Fitxa ikusi</span> aukerak fitxa osoa irekitzen du.</li>
 <li>Puntu bat mugitzeko: sakatu <span class="ui">Kokatu berriro mapan</span> (goian) eta ukitu leku berria.</li>
-<li>Eremu bat zuzentzeko: sakatu arkatza (goian). <span class="ui">Datuak editatu</span> aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; <span class="ui">Ingurua doitu</span> aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; <span class="ui">+</span> ikurrek izkina bat gehitzen dute); <span class="ui">Berriro marraztu</span> aukerak osorik egiten du berriro.</li>
-<li>Ezabatzeko: sakatu zakarrontzia eta berretsi.</li>
+<li>Eremu bat zuzentzeko: sakatu haren orriko (edo fitxako) arkatza. <span class="ui">Datuak editatu</span> aukerarekin izena, mota, egoera, SIGPAC erreferentzia edo oharrak aldatzen dira; <span class="ui">Ingurua doitu</span> aukerarekin izkinak mugitzen dira (ukitu izkina bat eta gero leku berria; <span class="ui">+</span> ikurrek izkina bat gehitzen dute); <span class="ui">Berriro marraztu</span> aukerak osorik egiten du berriro.</li>
+<li>Ezabatzeko: fitxan, sakatu zakarrontzia eta berretsi.</li>
 </ol>
 <h4>Pertsona testerra bazara: Finka bateko aldaketak edo gorabeherak jakinarazi</h4>
 <p>Instalazio batean arazoren bat aurkitzen baduzu edo maparen informazioa zuzena ez dela ikusten baduzu, koordinazioari jakinaraz diezaiokezu.</p>
@@ -256,7 +256,7 @@ section ul li::marker{color:var(--pasto)}
 <h3><span class="n">11</span>Eremuak katastrotik edo fitxategi batetik</h3>
 <p>Ez da eskuz marraztu behar neurtuta dagoen partzela bat.</p>
 <ol class="pasos">
-<li>Finketan, sakatu geruzen ikonoa (goian) eta aukeratu ingurua nondik ateratzen den.</li>
+<li>Finketan, ireki goiko bilatzaileko hiru puntuen menua eta aukeratu ingurua nondik ateratzen den.</li>
 </ol>
 <ul>
 <li><span class="ui">Maparen erdiko katastro-partzela</span>: mugitu mapa gurutzea partzelaren barruan erori arte.</li>
@@ -267,7 +267,7 @@ section ul li::marker{color:var(--pasto)}
 <li>Aurkitutako inguruak mapan ateratzen dira ertz marratuarekin. Ukitu bat eta bete eremua beti bezala: finka, mota, izena eta egoera.</li>
 </ol>
 <p class="nota"><b>Jakitea komeni da.</b> Katastroa Nafarroakoa da (IDENA) eta partzela osoarekin eta bere azpipartzelekin ateratzen da. Internet behar du.</p>
-<p class="nota"><b>Jakitea komeni da.</b> Goiko luparekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.</p>
+<p class="nota"><b>Jakitea komeni da.</b> Goiko <span class="ui">Bilatu mapan</span> aukerarekin Espainia osoko parajeak, herriak, kaleak eta katastro-erreferentziak bilatzen dira eta mapa hara eramaten da.</p>
 </section>
 <section id="a12">
 <h3><span class="n">12</span>Aska edo hesi berri bat</h3>
@@ -310,7 +310,7 @@ section ul li::marker{color:var(--pasto)}
 <h4>Pertsona testerra bazara: Errepikatzen diren zereginak</h4>
 <p>Zeregin batzuk aldiro egiten dira: askak bete, hesia berrikusi, instalazioak egiaztatu…</p>
 <ol class="pasos">
-<li>Finketan, sakatu <span class="ui">Zereginak</span> aurreikusitako jarduerak ikusteko.</li>
+<li>Finketan, sakatu zereginen ikonoa (goian) aurreikusitako jarduerak ikusteko.</li>
 <li>Errepikatzen direnek errepikatzeko ikurra dute.</li>
 <li>Ohiko zereginen bat falta bada edo beste maiztasun batekin egin beharko balitz, jakinarazi koordinazioari.</li>
 </ol>
@@ -319,8 +319,10 @@ section ul li::marker{color:var(--pasto)}
 <section id="a15">
 <h3><span class="n">15</span>Zereginak egunean eraman</h3>
 <ol class="pasos">
-<li>Finketan, sakatu <span class="ui">Zereginak</span> (goian) guztiak dituen taula ikusteko.</li>
-<li>Iragazi finkaren eta egoeraren arabera. Taldearekin sinkronizatzen baduzu, <span class="ui">Nire zereginak</span> aukerak zuri esleitutakoak bakarrik uzten ditu.</li>
+<li>Finketan, sakatu goiko bilatzaileko zereginen ikonoa (zenbakiak zenbat dauden irekita esaten du) guztiak dituen taula ikusteko. Gaurtik, <span class="ui">Ikusi guztiak</span> leku berera eramaten du.</li>
+<li>Zereginak lekuka taldekatuta agertzen dira: puntu bakoitza, eremu bakoitza eta, amaieran, finkaren zeregin orokorrak. Lekuaren izenaren ondoko <span class="ui">Mapa</span> aukerak mapan erakusten dizu.</li>
+<li>Hasieran irekiak agertzen dira (eginda daudenak izan ezik denak). Goiko txipek finkaren, egoeraren (edo guztien) eta lehentasunaren arabera iragazten dute. Taldearekin sinkronizatzen baduzu, <span class="ui">Nire zereginak</span> aukerak zuri esleitutakoak bakarrik uzten ditu.</li>
+<li>Beheko <span class="ui">Zeregin berria</span> botoiak finkaren zeregin orokor bat sortzen du; puntu edo eremu batekoa sortzeko, egin haren fitxatik edo orritik.</li>
 <li>Eginda emateko, sakatu zereginaren eskuinean dagoen marka duen zirkulua.</li>
 <li>Ukitu zeregin bat haren egoera aldatzeko (egiteke, egiten, eginda, blokeatuta), zuri esleitzeko edo askatzeko. Koordinazioak, gainera, <span class="ui">Arduradunak aldatu</span> dezake: hainbatekin, zeregina partekatua geratzen da. Partekatu bat askatzen baduzu, zu ateratzen zara eta besteek jarraitzen dute.</li>
 <li><span class="ui">PDF txostena</span> botoiarekin iragazita duzunaren mantentze-partea ateratzen duzu, inprimatzeko edo bidaltzeko.</li>
@@ -329,8 +331,8 @@ section ul li::marker{color:var(--pasto)}
 <h4>Pertsona testerra bazara: Zereginak kontsultatu eta egunean eraman</h4>
 <p>App-an finken mantentze-zereginak ikus ditzakezu eta jakin zein dauden egiteke, egiten, eginda edo blokeatuta.</p>
 <ol class="pasos">
-<li>Finketan, sakatu <span class="ui">Zereginak</span> (goian) zerrenda ikusteko.</li>
-<li>Iragazi finkaren edo egoeraren arabera, interesatzen zaizkizunak aurkitzeko.</li>
+<li>Finketan, sakatu goiko bilatzaileko zereginen ikonoa zerrenda ikusteko.</li>
+<li>Zereginak lekuka taldekatuta agertzen dira (puntu bakoitza, eremu bakoitza eta finkaren orokorrak) eta, hasieran, irekiak bakarrik. Goiko txipekin finkaren, egoeraren eta lehentasunaren arabera iragazten duzu; <span class="ui">Mapa</span> aukerak lekura eramaten zaitu mapan.</li>
 <li><span class="ui">Nire zereginak</span> aukerak zuri esleitutakoak bakarrik uzten ditu, baita beste pertsona batzuekin partekatzen dituzunak ere: horietan, edozeinek alda dezake egoera eta, batek eginda markatzen duenean, denentzat geratzen da eginda.</li>
 <li>Ukitu zeregin bat haren informazioa ikusteko eta egoera aldatzeko lana hasten edo amaitzen duzunean. Eginda emateko, sakatu eskuineko marka duen zirkulua.</li>
 <li>Jarduera bat falta bada, eskatu puntuaren edo eremuaren fitxatik, koordinazioak antola dezan.</li>

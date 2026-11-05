@@ -79,7 +79,7 @@ section ul li::marker{color:var(--pasto)}
 <main class="hoja">
   <header class="cab">
     <h1>Manual de uso</h1>
-    <p class="sub">Larrea Zunbeltz · versión 0.7.8</p>
+    <p class="sub">Larrea Zunbeltz · versión 0.8.1</p>
   </header>
   <div class="cuerpo">
     <p class="intro">Una guía paso a paso para usar la app.</p>
@@ -199,18 +199,18 @@ section ul li::marker{color:var(--pasto)}
 <p>Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…</p>
 <ol class="pasos">
 <li>Entra en Fincas.</li>
-<li>Toca el sitio exacto en el mapa. O pulsa <span class="ui">Nuevo punto</span> (abajo a la derecha) y elige <span class="ui">Usar GPS actual</span> si estás junto a la instalación, o <span class="ui">Usar centro del mapa</span>.</li>
+<li>Toca el sitio exacto en el mapa. O pulsa <span class="ui">Nuevo punto</span> (en la hoja de abajo) y elige <span class="ui">Usar GPS actual</span> si estás junto a la instalación, o <span class="ui">Usar centro del mapa</span>.</li>
 <li>Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.</li>
 <li>Pulsa Guardar.</li>
 </ol>
-<p class="nota"><b>Bueno saber.</b> El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón <span class="ui">GPS</span> centra el mapa en ti y <span class="ui">Capas</span> cambia entre mapa y satélite.</p>
+<p class="nota"><b>Bueno saber.</b> El color del punto dice su estado: verde oscuro, operativo; marrón, revisar; rojo, averiado. El botón de la diana (abajo a la derecha) centra el mapa en ti y el de las capas cambia entre mapa y foto aérea. Arriba puedes ocultar las piezas o los puntos, o dejar solo los puntos por revisar.</p>
 </section>
 <section id="a8">
 <h3><span class="n">8</span>El mapa sin cobertura</h3>
 <p>En el monte muchas veces no hay cobertura. Los datos (puntos, zonas, tareas) están siempre en el móvil; la foto aérea, solo si se ha guardado antes.</p>
 <ol class="pasos">
 <li>Lo que miras en el mapa se guarda solo (hasta unos 200 MB; lo más antiguo se borra).</li>
-<li>Para llevar las fincas enteras, con wifi: Fincas → icono de la nube con flecha (abajo, junto a <span class="ui">GPS</span>) → <span class="ui">Descargar el mapa de las fincas</span>. Te dice cuánto ocupa antes de empezar.</li>
+<li>Para llevar las fincas enteras, con wifi: Fincas → menú de los tres puntos del buscador de arriba → <span class="ui">Descargar el mapa de las fincas</span>. Te dice cuánto ocupa antes de empezar.</li>
 <li>Mientras baja puedes usar la app; si la cancelas o se va la wifi, al volver a descargar sigue por donde iba.</li>
 <li>En Ajustes → <span class="ui">Mapa sin cobertura</span> ves cuánto ocupa y puedes borrarlo.</li>
 </ol>
@@ -229,7 +229,7 @@ section ul li::marker{color:var(--pasto)}
 <p>En Fincas puedes consultar las parcelas, cercados, zonas de pastoreo y otros espacios que forman parte de la finca.</p>
 <ol class="pasos">
 <li>Entra en Fincas para ver el mapa con las zonas y los puntos.</li>
-<li>Toca una zona del mapa para ver su información: nombre, tipo, superficie y otros datos.</li>
+<li>Toca una zona del mapa: abajo sale su hoja con la superficie, el perímetro, la referencia SIGPAC, el ganado que hay y sus tareas abiertas. <span class="ui">Ver ficha</span> enseña el resto (notas, fotos, todas las tareas).</li>
 <li>Si falta una zona, sus límites no son correctos o hay algún dato que actualizar, comunícalo a coordinación.</li>
 </ol>
 <p class="nota"><b>Bueno saber.</b> Las personas tester pueden consultar las zonas, pero no dibujar nuevas ni modificar sus límites. Esos cambios los hace coordinación.</p>
@@ -237,10 +237,10 @@ section ul li::marker{color:var(--pasto)}
 <section id="a10">
 <h3><span class="n">10</span>Mover o borrar un punto o una zona</h3>
 <ol class="pasos">
-<li>Toca el punto o la zona en el mapa para abrir su ficha.</li>
+<li>Toca el punto en el mapa para abrir su ficha. Si tocas una zona, sale su hoja abajo, sobre el mapa: superficie, perímetro, SIGPAC, ganado y tareas abiertas; <span class="ui">Ver ficha</span> abre la ficha completa.</li>
 <li>Para mover un punto: pulsa <span class="ui">Recolocar en el mapa</span> (arriba) y toca el sitio nuevo.</li>
-<li>Para corregir una zona: pulsa el lápiz (arriba). <span class="ui">Editar datos</span> cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; <span class="ui">Ajustar contorno</span> deja mover sus esquinas (toca una esquina y después el sitio nuevo; los <span class="ui">+</span> añaden una esquina); <span class="ui">Volver a dibujar</span> la rehace entera.</li>
-<li>Para borrarlo: pulsa la papelera y confirma.</li>
+<li>Para corregir una zona: pulsa el lápiz de su hoja (o de su ficha). <span class="ui">Editar datos</span> cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; <span class="ui">Ajustar contorno</span> deja mover sus esquinas (toca una esquina y después el sitio nuevo; los <span class="ui">+</span> añaden una esquina); <span class="ui">Volver a dibujar</span> la rehace entera.</li>
+<li>Para borrarlo: en la ficha, pulsa la papelera y confirma.</li>
 </ol>
 <h4>Si eres persona tester: Comunicar cambios o incidencias en una finca</h4>
 <p>Si encuentras un problema en una instalación o ves que la información del mapa no es correcta, puedes comunicárselo a coordinación.</p>
@@ -256,7 +256,7 @@ section ul li::marker{color:var(--pasto)}
 <h3><span class="n">11</span>Zonas desde el catastro o desde un fichero</h3>
 <p>No hace falta dibujar a mano una parcela que ya está medida.</p>
 <ol class="pasos">
-<li>En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.</li>
+<li>En Fincas, abre el menú de los tres puntos del buscador de arriba y elige de dónde sale el contorno.</li>
 </ol>
 <ul>
 <li><span class="ui">Parcela catastral en el centro del mapa</span>: mueve el mapa hasta que la cruz caiga dentro de la parcela.</li>
@@ -267,7 +267,7 @@ section ul li::marker{color:var(--pasto)}
 <li>Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.</li>
 </ol>
 <p class="nota"><b>Bueno saber.</b> El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.</p>
-<p class="nota"><b>Bueno saber.</b> La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.</p>
+<p class="nota"><b>Bueno saber.</b> <span class="ui">Buscar en el mapa</span>, arriba, busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.</p>
 </section>
 <section id="a12">
 <h3><span class="n">12</span>Un abrevadero o un cierre nuevo</h3>
@@ -310,7 +310,7 @@ section ul li::marker{color:var(--pasto)}
 <h4>Si eres persona tester: Tareas que se repiten</h4>
 <p>Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…</p>
 <ol class="pasos">
-<li>En Fincas, pulsa <span class="ui">Tareas</span> para ver las actuaciones previstas.</li>
+<li>En Fincas, pulsa el icono de tareas (arriba) para ver las actuaciones previstas.</li>
 <li>Las que se repiten llevan el símbolo de repetir.</li>
 <li>Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.</li>
 </ol>
@@ -319,8 +319,10 @@ section ul li::marker{color:var(--pasto)}
 <section id="a15">
 <h3><span class="n">15</span>Llevar las tareas al día</h3>
 <ol class="pasos">
-<li>En Fincas, pulsa <span class="ui">Tareas</span> (arriba) para ver el tablero con todas.</li>
-<li>Filtra por finca y por estado. Si sincronizas con el equipo, <span class="ui">Mis tareas</span> deja solo las que tienes asignadas.</li>
+<li>En Fincas, pulsa el icono de tareas del buscador de arriba (el número dice cuántas hay abiertas) para ver el tablero con todas. Desde Hoy, <span class="ui">Ver todas</span> lleva al mismo sitio.</li>
+<li>Las tareas salen agrupadas por sitio: cada punto, cada pieza y, al final, las generales de la finca. <span class="ui">Mapa</span>, junto al nombre del sitio, te lleva a él en el mapa.</li>
+<li>De partida salen las abiertas (todo menos las hechas). Los chips de arriba filtran por finca, por estado (o todos) y por prioridad. Si sincronizas con el equipo, <span class="ui">Mis tareas</span> deja solo las que tienes asignadas.</li>
+<li><span class="ui">Nueva tarea</span>, abajo, crea una tarea general de la finca; para una de un punto o una pieza, hazla desde su ficha o su hoja.</li>
 <li>Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.</li>
 <li>Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además <span class="ui">Cambiar responsables</span>: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.</li>
 <li>Con <span class="ui">Parte PDF</span> sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.</li>
@@ -329,8 +331,8 @@ section ul li::marker{color:var(--pasto)}
 <h4>Si eres persona tester: Consultar y llevar las tareas al día</h4>
 <p>En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.</p>
 <ol class="pasos">
-<li>En Fincas, pulsa <span class="ui">Tareas</span> (arriba) para ver la lista.</li>
-<li>Filtra por finca o por estado para encontrar las que te interesan.</li>
+<li>En Fincas, pulsa el icono de tareas del buscador de arriba para ver la lista.</li>
+<li>Las tareas salen agrupadas por sitio (cada punto, cada pieza y las generales de la finca) y, de partida, solo las abiertas. Con los chips de arriba filtras por finca, estado y prioridad; <span class="ui">Mapa</span> te lleva al sitio en el mapa.</li>
 <li><span class="ui">Mis tareas</span> deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.</li>
 <li>Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.</li>
 <li>Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.</li>

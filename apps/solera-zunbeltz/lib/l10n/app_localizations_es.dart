@@ -908,7 +908,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaFincasB =>
-      'Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…\n1. Entra en Fincas.\n2. Toca el sitio exacto en el mapa. O pulsa «Nuevo punto» (abajo a la derecha) y elige «Usar GPS actual» si estás junto a la instalación, o «Usar centro del mapa».\n3. Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.\n4. Pulsa Guardar.\n» El color del punto dice su estado: verde, operativo; ocre, revisar; rojizo, averiado. El botón «GPS» centra el mapa en ti y «Capas» cambia entre mapa y satélite.';
+      'Un punto es cada infraestructura: abrevadero, manga, cierre, refugio, balsa…\n1. Entra en Fincas.\n2. Toca el sitio exacto en el mapa. O pulsa «Nuevo punto» (en la hoja de abajo) y elige «Usar GPS actual» si estás junto a la instalación, o «Usar centro del mapa».\n3. Elige el tipo y el estado, ponle nombre y, si quieres, añade fotos.\n4. Pulsa Guardar.\n» El color del punto dice su estado: verde oscuro, operativo; marrón, revisar; rojo, averiado. El botón de la diana (abajo a la derecha) centra el mapa en ti y el de las capas cambia entre mapa y foto aérea. Arriba puedes ocultar las piezas o los puntos, o dejar solo los puntos por revisar.';
 
   @override
   String get ayudaZonasT => 'Dibujar una zona (parcela, cercado…)';
@@ -923,14 +923,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaZonasTesterB =>
-      'En Fincas puedes consultar las parcelas, cercados, zonas de pastoreo y otros espacios que forman parte de la finca.\n1. Entra en Fincas para ver el mapa con las zonas y los puntos.\n2. Toca una zona del mapa para ver su información: nombre, tipo, superficie y otros datos.\n3. Si falta una zona, sus límites no son correctos o hay algún dato que actualizar, comunícalo a coordinación.\n» Las personas tester pueden consultar las zonas, pero no dibujar nuevas ni modificar sus límites. Esos cambios los hace coordinación.';
+      'En Fincas puedes consultar las parcelas, cercados, zonas de pastoreo y otros espacios que forman parte de la finca.\n1. Entra en Fincas para ver el mapa con las zonas y los puntos.\n2. Toca una zona del mapa: abajo sale su hoja con la superficie, el perímetro, la referencia SIGPAC, el ganado que hay y sus tareas abiertas. «Ver ficha» enseña el resto (notas, fotos, todas las tareas).\n3. Si falta una zona, sus límites no son correctos o hay algún dato que actualizar, comunícalo a coordinación.\n» Las personas tester pueden consultar las zonas, pero no dibujar nuevas ni modificar sus límites. Esos cambios los hace coordinación.';
 
   @override
   String get ayudaEditarMapaT => 'Mover o borrar un punto o una zona';
 
   @override
   String get ayudaEditarMapaB =>
-      '1. Toca el punto o la zona en el mapa para abrir su ficha.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa el lápiz (arriba). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.\n4. Para borrarlo: pulsa la papelera y confirma.';
+      '1. Toca el punto en el mapa para abrir su ficha. Si tocas una zona, sale su hoja abajo, sobre el mapa: superficie, perímetro, SIGPAC, ganado y tareas abiertas; «Ver ficha» abre la ficha completa.\n2. Para mover un punto: pulsa «Recolocar en el mapa» (arriba) y toca el sitio nuevo.\n3. Para corregir una zona: pulsa el lápiz de su hoja (o de su ficha). «Editar datos» cambia el nombre, el tipo, el estado, la referencia SIGPAC o las notas; «Ajustar contorno» deja mover sus esquinas (toca una esquina y después el sitio nuevo; los «+» añaden una esquina); «Volver a dibujar» la rehace entera.\n4. Para borrarlo: en la ficha, pulsa la papelera y confirma.';
 
   @override
   String get ayudaEditarMapaTesterT =>
@@ -973,21 +973,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaRecurrentesTesterB =>
-      'Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…\n1. En Fincas, pulsa «Tareas» para ver las actuaciones previstas.\n2. Las que se repiten llevan el símbolo de repetir.\n3. Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.\n» No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.';
+      'Algunas tareas se hacen cada cierto tiempo: rellenar comederos, revisar el vallado, comprobar las instalaciones…\n1. En Fincas, pulsa el icono de tareas (arriba) para ver las actuaciones previstas.\n2. Las que se repiten llevan el símbolo de repetir.\n3. Si falta alguna tarea habitual o debería hacerse con otra frecuencia, comunícalo a coordinación.\n» No hace falta pedir cada vez una tarea periódica que ya esté programada. Cuando se marca como hecha, la app prepara sola la siguiente.';
 
   @override
   String get ayudaTableroT => 'Llevar las tareas al día';
 
   @override
   String get ayudaTableroB =>
-      '1. En Fincas, pulsa «Tareas» (arriba) para ver el tablero con todas.\n2. Filtra por finca y por estado. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n3. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n4. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además «Cambiar responsables»: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.\n5. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».';
+      '1. En Fincas, pulsa el icono de tareas del buscador de arriba (el número dice cuántas hay abiertas) para ver el tablero con todas. Desde Hoy, «Ver todas» lleva al mismo sitio.\n2. Las tareas salen agrupadas por sitio: cada punto, cada pieza y, al final, las generales de la finca. «Mapa», junto al nombre del sitio, te lleva a él en el mapa.\n3. De partida salen las abiertas (todo menos las hechas). Los chips de arriba filtran por finca, por estado (o todos) y por prioridad. Si sincronizas con el equipo, «Mis tareas» deja solo las que tienes asignadas.\n4. «Nueva tarea», abajo, crea una tarea general de la finca; para una de un punto o una pieza, hazla desde su ficha o su hoja.\n5. Para darla por hecha, pulsa el círculo con la marca, a la derecha de la tarea.\n6. Toca una tarea para cambiar su estado (pendiente, en curso, hecha, bloqueada), asignártela o soltarla. Coordinación puede además «Cambiar responsables»: con varias, la tarea queda compartida. Si sueltas una compartida, sales tú y las demás siguen con ella.\n7. Con «Parte PDF» sacas el parte de mantenimiento de lo que tengas filtrado, para imprimirlo o enviarlo.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».';
 
   @override
   String get ayudaTableroTesterT => 'Consultar y llevar las tareas al día';
 
   @override
   String get ayudaTableroTesterB =>
-      'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa «Tareas» (arriba) para ver la lista.\n2. Filtra por finca o por estado para encontrar las que te interesan.\n3. «Mis tareas» deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.';
+      'En la app puedes ver las tareas de mantenimiento de las fincas y saber cuáles están pendientes, en curso, hechas o bloqueadas.\n1. En Fincas, pulsa el icono de tareas del buscador de arriba para ver la lista.\n2. Las tareas salen agrupadas por sitio (cada punto, cada pieza y las generales de la finca) y, de partida, solo las abiertas. Con los chips de arriba filtras por finca, estado y prioridad; «Mapa» te lleva al sitio en el mapa.\n3. «Mis tareas» deja solo las que tienes asignadas, también las que compartes con otras personas: en esas, cualquiera puede cambiar el estado y, cuando una la marca hecha, queda hecha para todas.\n4. Toca una tarea para ver su información y cambiar su estado cuando empieces o termines el trabajo. Para darla por hecha, pulsa el círculo con la marca, a la derecha.\n5. Si falta alguna actuación, pídela desde la ficha del punto o la zona para que coordinación la organice.\n» «Bloqueada» es para cuando no se puede seguir por algo ajeno a quien la hace: falta material, hay que esperar a alguien o el tiempo no deja. Coordinación la ve en el panel, en «Pide atención».\n» Las personas tester no pueden asignar tareas a otras personas. Eso lo hace coordinación, que organiza el mantenimiento de las fincas.';
 
   @override
   String get ayudaProyectosT => 'Crear tu proyecto';
@@ -3194,7 +3194,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaImportarB =>
-      'No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, pulsa el icono de capas (arriba) y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» La lupa de arriba busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.';
+      'No hace falta dibujar a mano una parcela que ya está medida.\n1. En Fincas, abre el menú de los tres puntos del buscador de arriba y elige de dónde sale el contorno.\n• «Parcela catastral en el centro del mapa»: mueve el mapa hasta que la cruz caiga dentro de la parcela.\n• «Parcela catastral por referencia»: municipio, polígono y parcela, como en el recibo de la contribución.\n• «Importar fichero»: KML o KMZ de Google Earth, GeoJSON, el recorrido de un GPS (GPX) o un Shapefile de QGIS en zip.\n2. Los contornos encontrados salen en el mapa con borde a trazos. Toca uno y rellena la zona como siempre: finca, tipo, nombre y estado.\n» El catastro es el de Navarra (IDENA) y sale con la parcela entera y sus subparcelas. Necesita internet.\n» «Buscar en el mapa», arriba, busca parajes, pueblos, calles y referencias catastrales de toda España y lleva el mapa allí.';
 
   @override
   String get ganExportar => 'Exportar a Excel (CSV)';
@@ -3511,5 +3511,194 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaMapaSinCoberturaB =>
-      'En el monte muchas veces no hay cobertura. Los datos (puntos, zonas, tareas) están siempre en el móvil; la foto aérea, solo si se ha guardado antes.\n1. Lo que miras en el mapa se guarda solo (hasta unos 200 MB; lo más antiguo se borra).\n2. Para llevar las fincas enteras, con wifi: Fincas → icono de la nube con flecha (abajo, junto a «GPS») → «Descargar el mapa de las fincas». Te dice cuánto ocupa antes de empezar.\n3. Mientras baja puedes usar la app; si la cancelas o se va la wifi, al volver a descargar sigue por donde iba.\n4. En Ajustes → «Mapa sin cobertura» ves cuánto ocupa y puedes borrarlo.\n» Solo se descarga la ortofoto del IGN. El callejero solo se guarda según lo vas viendo.';
+      'En el monte muchas veces no hay cobertura. Los datos (puntos, zonas, tareas) están siempre en el móvil; la foto aérea, solo si se ha guardado antes.\n1. Lo que miras en el mapa se guarda solo (hasta unos 200 MB; lo más antiguo se borra).\n2. Para llevar las fincas enteras, con wifi: Fincas → menú de los tres puntos del buscador de arriba → «Descargar el mapa de las fincas». Te dice cuánto ocupa antes de empezar.\n3. Mientras baja puedes usar la app; si la cancelas o se va la wifi, al volver a descargar sigue por donde iba.\n4. En Ajustes → «Mapa sin cobertura» ves cuánto ocupa y puedes borrarlo.\n» Solo se descarga la ortofoto del IGN. El callejero solo se guarda según lo vas viendo.';
+
+  @override
+  String get hoySincronizando => 'Sincronizando…';
+
+  @override
+  String hoySincronizado(String cuando) {
+    return 'Sincronizado $cuando';
+  }
+
+  @override
+  String get hoySinSincronizar => 'Aún sin sincronizar';
+
+  @override
+  String get hoySoloEnEsteDispositivo =>
+      'Datos guardados solo en este dispositivo';
+
+  @override
+  String get hoyAhoraMismo => 'ahora mismo';
+
+  @override
+  String hoyHaceMinutos(int n) {
+    return 'hace $n min';
+  }
+
+  @override
+  String hoyHaceHoras(int n) {
+    return 'hace $n h';
+  }
+
+  @override
+  String hoyHaceDias(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'hace $n días',
+      one: 'ayer',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get hoyVerTodas => 'Ver todas';
+
+  @override
+  String hoyFiltroVencidas(int n) {
+    return 'Vencidas $n';
+  }
+
+  @override
+  String hoyFiltroSemana(int n) {
+    return 'Esta semana $n';
+  }
+
+  @override
+  String hoyFiltroMias(int n) {
+    return 'Mías $n';
+  }
+
+  @override
+  String get hoyTareasNinguna => 'Nada por aquí.';
+
+  @override
+  String hoyEstadoPrioridad(String estado, String prioridad) {
+    return '$estado, prioridad $prioridad';
+  }
+
+  @override
+  String hoyAvisosAbiertos(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n abiertos',
+      one: '1 abierto',
+      zero: 'Ninguno abierto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mapaBuscarEnMapa => 'Buscar en el mapa';
+
+  @override
+  String get mapaMasOpciones => 'Más opciones';
+
+  @override
+  String get mapaFiltroPiezas => 'Piezas';
+
+  @override
+  String get mapaFiltroPuntos => 'Puntos';
+
+  @override
+  String mapaFiltroRevisar(int n) {
+    return 'Por revisar $n';
+  }
+
+  @override
+  String get mapaElegirFincaVista => 'Ver otra finca';
+
+  @override
+  String fincaResumen(int piezas, int puntos, int revisar) {
+    String _temp0 = intl.Intl.pluralLogic(
+      piezas,
+      locale: localeName,
+      other: '$piezas piezas',
+      one: '1 pieza',
+    );
+    String _temp1 = intl.Intl.pluralLogic(
+      puntos,
+      locale: localeName,
+      other: '$puntos puntos',
+      one: '1 punto',
+    );
+    String _temp2 = intl.Intl.pluralLogic(
+      revisar,
+      locale: localeName,
+      other: ', $revisar por revisar',
+      zero: '',
+    );
+    return '$_temp0 · $_temp1$_temp2';
+  }
+
+  @override
+  String get piezaVolverAlMapa => 'Volver al mapa';
+
+  @override
+  String get piezaCerrar => 'Cerrar';
+
+  @override
+  String get piezaVerFicha => 'Ver ficha';
+
+  @override
+  String piezaPendientes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n pendientes',
+      one: '1 pendiente',
+      zero: 'Nada pendiente',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get piezaSigpacPartes => 'pol. · parc. · subp.';
+
+  @override
+  String get piezaSigpacPartesSinSub => 'pol. · parc.';
+
+  @override
+  String piezaMasTareas(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Y $n más en la ficha',
+      one: 'Y 1 más en la ficha',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get piezaSinTareasAbiertas => 'No hay tareas abiertas aquí.';
+
+  @override
+  String tableroAbiertas(int n) {
+    return 'Abiertas $n';
+  }
+
+  @override
+  String get tableroTodasFincas => 'Todas las fincas';
+
+  @override
+  String get tableroTodosEstados => 'Todos los estados';
+
+  @override
+  String get tableroTodasPrioridades => 'Todas las prioridades';
+
+  @override
+  String get tableroVerEnMapa => 'Mapa';
+
+  @override
+  String tableroTareasGenerales(String finca) {
+    return '$finca: tareas generales';
+  }
+
+  @override
+  String get tableroElegirFinca => '¿De qué finca?';
+
+  @override
+  String get tableroSinAbiertas => 'No hay tareas abiertas con estos filtros.';
 }

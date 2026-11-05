@@ -609,3 +609,6 @@ api.ya_existe_colmena_matricula,Ya existe una colmena con matrícula {matricula}
 api.zona_centro,Centro (meseta),Erdialdea (mesetaria),Centre (altiplà),Centro (meseta)
 api.zona_norte,Norte (atlántica),Iparraldea (atlantikoa),Nord (atlàntica),Norte (atlántica)
 api.zona_sur,Sur (mediterránea),Hegoaldea (mediterraneoa),Sud (mediterrània),Sur (mediterránea)
+api.tareas_esta_decada,Tareas esta década,Hamarraldi honetako zereginak,Tasques d'aquesta desena,Tarefas desta década
+api.tareas_este_mes,Tareas este mes,Hilabete honetako zereginak,Tasques d'aquest mes,Tarefas deste mes
+api.proximas_tareas,Próximas tareas,Hurrengo zereginak,Properes tasques,Próximas tarefas

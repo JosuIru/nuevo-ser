@@ -228,7 +228,7 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
       appBar: AppBar(title: Text(widget.esEdicion ? SoleraL10n.t('api.editar_colmena') : SoleraL10n.t('api.nueva_colmena'))),
       body: Form(
         key: _claveFormulario,
-        child: ListView(
+        child: CuerpoResponsivoSolera(child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
             TextFormField(
@@ -324,20 +324,15 @@ class _PantallaNuevaColmenaState extends State<PantallaNuevaColmena> {
               ),
               maxLines: 3,
             ),
-            const SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: _guardando ? null : _guardar,
-              icon: _guardando
-                  ? const SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                  : const Icon(Icons.check),
-              label: Text(widget.esEdicion ? SoleraL10n.t('api.guardar_cambios') : SoleraL10n.t('api.guardar_colmena')),
-            ),
           ],
-        ),
+        )),
       ),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(widget.esEdicion ? SoleraL10n.t('api.guardar_cambios') : SoleraL10n.t('api.guardar_colmena'), guardando: _guardando),
+        ),
+      ]),
     );
   }
 }

@@ -135,7 +135,7 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
       ),
       body: Form(
         key: _formKey,
-        child: ListView(
+        child: CuerpoResponsivoSolera(child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
             TextFormField(
@@ -220,24 +220,19 @@ class _PantallaNuevoApiarioState extends State<PantallaNuevoApiario> {
               ),
             ],
           ],
-        ),
+        )),
       ),
-      bottomNavigationBar: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: FilledButton.icon(
-            onPressed: _guardando ? null : _guardar,
-            icon: _guardando
-                ? const SizedBox(
-                    width: 16,
-                    height: 16,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.save),
-            label: Text(widget.esEdicion ? SoleraL10n.t('api.guardar_cambios') : SoleraL10n.t('api.crear_apiario')),
+      bottomNavigationBar: BarraGuardarSolera(botones: [
+        FilledButton(
+          onPressed: _guardando ? null : _guardar,
+          child: textoOGuardando(
+            widget.esEdicion
+                ? SoleraL10n.t('api.guardar_cambios')
+                : SoleraL10n.t('api.crear_apiario'),
+            guardando: _guardando,
           ),
         ),
-      ),
+      ]),
     );
   }
 }

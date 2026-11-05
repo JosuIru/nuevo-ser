@@ -17,6 +17,7 @@ import '../servicios/generador_comparativa_proyectos.dart';
 import '../utiles/resumen_proyecto.dart';
 import 'nuevo_proyecto.dart';
 import 'proyecto_detalle.dart';
+import 'widgets/proyecto_visual.dart';
 
 /// Pestaña "Proyectos": el proceso de test por persona tester. Lista de
 /// proyectos con su rentabilidad de un vistazo (comparativa) y, al entrar,
@@ -300,14 +301,6 @@ class _AvatarProyecto extends StatelessWidget {
   }
 }
 
-/// «+1.360 €» / «−640 €»: euros enteros con su signo.
-String _eurosConSigno(int centimos, String idioma) {
-  final euros = NumberFormat.decimalPattern(idioma == 'eu' ? 'es' : idioma)
-      .format((centimos.abs() / 100).round());
-  if (centimos == 0) return '0 €';
-  return '${centimos > 0 ? '+' : '−'}$euros €';
-}
-
 class _TarjetaProyecto extends StatelessWidget {
   const _TarjetaProyecto({
     required this.proyecto,
@@ -387,7 +380,7 @@ class _TarjetaProyecto extends StatelessWidget {
                 ]),
                 if (mes.mesesTotales != null) ...[
                   const SizedBox(height: 8),
-                  _BarraMeses(
+                  BarraMesesTest(
                       hechos: mes.mesActual, totales: mes.mesesTotales!),
                 ],
               ],
@@ -405,7 +398,7 @@ class _TarjetaProyecto extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          _eurosConSigno(balanceTest, idioma),
+                          eurosConSigno(balanceTest),
                           style: estilos.headlineLarge?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: balanceTest < 0
@@ -443,48 +436,6 @@ class _TarjetaProyecto extends StatelessWidget {
   }
 }
 
-/// Una casilla por mes del test; las pasadas, en pino.
-class _BarraMeses extends StatelessWidget {
-  const _BarraMeses({required this.hechos, required this.totales});
-
-  final int hechos;
-  final int totales;
-
-  @override
-  Widget build(BuildContext context) {
-    final esquema = context.esquemaZunbeltz;
-    final hecho = esquema.brightness == Brightness.dark
-        ? colorCuadroSalvia
-        : colorCuadroPino;
-    // Más de 36 casillas no se distinguen: una barra continua.
-    if (totales > 36) {
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(4),
-        child: LinearProgressIndicator(
-          value: hechos / totales,
-          minHeight: 8,
-          color: hecho,
-          backgroundColor: esquema.surfaceContainerHighest,
-        ),
-      );
-    }
-    return Row(children: [
-      for (var indice = 0; indice < totales; indice++) ...[
-        if (indice > 0) const SizedBox(width: 3),
-        Expanded(
-          child: Container(
-            height: 10,
-            decoration: BoxDecoration(
-              color: indice < hechos ? hecho : esquema.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(3),
-            ),
-          ),
-        ),
-      ],
-    ]);
-  }
-}
-
 /// Barra partida: lo que asume la persona tester (salvia) y Zunbeltz (pino).
 class _BarraReparto extends StatelessWidget {
   const _BarraReparto({required this.tester, required this.zunbeltz});
@@ -495,30 +446,12 @@ class _BarraReparto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
-    final esquema = context.esquemaZunbeltz;
     final estilo = Theme.of(context)
         .textTheme
         .labelMedium
         ?.copyWith(fontWeight: FontWeight.w600);
-    final oscuro = esquema.brightness == Brightness.dark;
-    final zunbeltzColor = oscuro ? esquema.primary : colorCuadroPino;
-    final testerColor =
-        oscuro ? colorCuadroSalvia.withValues(alpha: 0.4) : colorCuadroSalvia;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      ClipRRect(
-        borderRadius: BorderRadius.circular(6),
-        child: SizedBox(
-          height: 12,
-          child: Row(children: [
-            if (tester > 0)
-              Expanded(
-                  flex: tester, child: Container(color: testerColor)),
-            if (tester > 0 && zunbeltz > 0) const SizedBox(width: 3),
-            if (zunbeltz > 0)
-              Expanded(flex: zunbeltz, child: Container(color: zunbeltzColor)),
-          ]),
-        ),
-      ),
+      BarraRepartoGastos(tester: tester, zunbeltz: zunbeltz),
       const SizedBox(height: 8),
       Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Flexible(

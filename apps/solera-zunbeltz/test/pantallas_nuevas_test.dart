@@ -244,7 +244,7 @@ void main() {
     });
   }
 
-  testWidgets('Detalle de proyecto en apaisado: la cabecera se desplaza sin desbordar',
+  testWidgets('Detalle de proyecto en apaisado: se desplaza sin desbordar y abre los registros',
       (tester) async {
     final proyecto = (await tester.runAsync(() => bd.obtenerProyecto(proyectoId)))!;
     await montar(tester, ProyectoDetalle(proyecto: proyecto));
@@ -252,10 +252,23 @@ void main() {
     await tester.pumpAndSettle();
     final desglose = find.byType(ExpansionTile);
     if (desglose.evaluate().isNotEmpty) {
+      await tester.ensureVisible(desglose.first);
       await tester.tap(desglose.first);
       await tester.pumpAndSettle();
     }
     expect(tester.takeException(), isNull);
+    // Las listas (producción, comercialización…) se abren desde
+    // «Registros del test», cada una en su pestaña.
+    final produccion =
+        find.text(lookupAppLocalizations(const Locale('es')).detProduccion);
+    await tester.scrollUntilVisible(produccion, 300,
+        scrollable: find.byType(Scrollable).first);
+    // En apaisado la fila puede quedar bajo el botón flotante.
+    tester
+        .widget<ListTile>(
+            find.ancestor(of: produccion, matching: find.byType(ListTile)))
+        .onTap!();
+    await tester.pumpAndSettle();
     for (var pestana = 0; pestana < 4; pestana++) {
       await tester.tap(find.byType(Tab).at(pestana));
       await tester.pumpAndSettle();

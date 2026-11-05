@@ -11,6 +11,7 @@ import '../l10n/app_localizations.dart';
 import '../modelos/apunte_economico.dart';
 import '../modelos/balance_convenio.dart';
 import '../modelos/constantes.dart';
+import '../modelos/convenio.dart';
 import '../modelos/desglose_gastos.dart';
 import '../modelos/indicadores_seguimiento.dart';
 import '../modelos/proyecto_test.dart';
@@ -23,6 +24,7 @@ import '../servicios/documento_generado.dart';
 import '../servicios/generador_csv_proyecto.dart';
 import '../servicios/generador_informe_proyecto.dart';
 import '../utiles/periodo.dart';
+import '../utiles/resumen_proyecto.dart';
 import 'nueva_actividad.dart';
 import 'nueva_comercializacion.dart';
 import 'nueva_validacion.dart';
@@ -32,6 +34,8 @@ import 'pantalla_calculadora.dart';
 import 'pantalla_convenio.dart';
 import '../estado/datos_notificador.dart';
 import 'widgets/confirmar_borrado.dart';
+import 'widgets/proyecto_visual.dart';
+import 'widgets/relleno_seguro.dart';
 
 /// Detalle de un proyecto de test: análisis de rentabilidad + producción,
 /// comercialización, validación de producto y económico, con informe PDF.
@@ -53,6 +57,19 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   List<ApunteEconomico> _apuntes = const [];
   DesgloseGastos _desgloseGastos = DesgloseGastos.calcular(const []);
   TipoPeriodo _periodo = TipoPeriodo.todo;
+
+  /// Cuentas del convenio en el periodo elegido (bloque del balance, quién
+  /// asume, coste real) y de todo el test (presupuesto y fianza, que se
+  /// comparan con lo previsto para todo el test).
+  BalanceConvenio? _balancePeriodo;
+  BalanceConvenio? _balanceTotal;
+  EstadoFianza? _fianza;
+  int _incidencias = 0;
+  List<Acompanamiento> _acompanamientos = const [];
+
+  /// Avisa a la pantalla de registros (abierta encima) de que hay datos
+  /// nuevos.
+  final _versionDatos = ValueNotifier<int>(0);
   bool _cargando = true;
   bool _generando = false;
 
@@ -64,6 +81,9 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
   /// Finca para los registros si el proyecto no tiene una propia (la
   /// columna es obligatoria y tiene que existir en todos los móviles).
   int? _fincaRespaldo;
+
+  /// La finca del proyecto, para la cabecera.
+  String? _nombreFinca;
 
   int get _proyectoId => widget.proyecto.id!;
   int get _fincaId => _proyecto.fincaId ?? _fincaRespaldo ?? 0;
@@ -77,13 +97,24 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     _cargar();
   }
 
+  @override
+  void dispose() {
+    _versionDatos.dispose();
+    super.dispose();
+  }
+
   Future<void> _cargar() async {
     final desde = _rango.desdeMs;
     final hasta = _rango.hastaMs;
     try {
       final proyecto = await _bd.obtenerProyecto(_proyectoId);
       if (proyecto != null) _proyecto = proyecto;
-      _fincaRespaldo ??= (await _bd.listarFincas()).firstOrNull?.id;
+      final fincas = await _bd.listarFincas();
+      _fincaRespaldo ??= fincas.firstOrNull?.id;
+      _nombreFinca = fincas
+          .where((finca) => finca.id == _proyecto.fincaId)
+          .firstOrNull
+          ?.nombre;
       final rent = await _bd.rentabilidadProyecto(_proyectoId,
           desdeMs: desde, hastaMs: hasta);
       final ventas = await _bd.listarComercializacion(
@@ -98,8 +129,32 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
           desdeMs: desde, hastaMs: hasta);
       final desglose =
           DesgloseGastos.calcular([...apuntes, ...cuotasInventario]);
+      final presupuesto = await _bd.listarPresupuesto(_proyectoId);
+      final todasLasVentas =
+          await _bd.listarComercializacion(proyectoId: _proyectoId);
+      final todosLosApuntes = [
+        ...await _bd.listarApuntes(proyectoId: _proyectoId),
+        ...await _bd.amortizacionesDelInventario(_proyecto),
+      ];
+      final incidencias = await _bd.listarIncidencias(_proyectoId);
+      final fianza = EstadoFianza.calcular(
+          await _bd.listarMovimientosFianza(_proyectoId), incidencias);
+      final acompanamientos = await _bd.listarAcompanamientos(_proyectoId)
+        ..sort((a, b) => b.fechaMs.compareTo(a.fechaMs));
       if (!mounted) return;
       setState(() {
+        _balancePeriodo = BalanceConvenio.calcular(
+            proyecto: _proyecto,
+            apuntes: [...apuntes, ...cuotasInventario],
+            ventas: ventas);
+        _balanceTotal = BalanceConvenio.calcular(
+            proyecto: _proyecto,
+            apuntes: todosLosApuntes,
+            ventas: todasLasVentas,
+            presupuesto: presupuesto);
+        _fianza = fianza;
+        _incidencias = incidencias.length;
+        _acompanamientos = acompanamientos;
         _rent = rent;
         _ventas = ventas;
         _produccion = produccion;
@@ -108,6 +163,7 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
         _desgloseGastos = desglose;
         _cargando = false;
       });
+      _versionDatos.value++;
     } catch (_) {
       if (mounted) setState(() => _cargando = false);
     }
@@ -378,207 +434,50 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Future<void> _abrirConvenio(int pestana) async {
+    await Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) =>
+            PantallaConvenio(proyecto: _proyecto, pestanaInicial: pestana)));
+    await _cargar();
+  }
+
+  void _cambiarPeriodo(TipoPeriodo periodo) {
+    if (periodo == _periodo) return;
+    setState(() => _periodo = periodo);
+    _cargar();
+  }
+
+  /// Producción, comercialización, validación y apuntes: cada uno en su
+  /// pestaña, con su botón de añadir. Mantener pulsado borra.
+  void _abrirRegistros(int pestana) {
     final textos = AppLocalizations.of(context);
     final idioma = Localizations.localeOf(context).languageCode;
-    final p = _proyecto;
-    final subt =
-        [p.persona, p.actividad].where((s) => s.isNotEmpty).join(' · ');
-    if (_cargando) {
-      return Scaffold(
-        appBar: AppBar(title: Text(p.nombre)),
-        body: const Center(child: CircularProgressIndicator()),
-      );
-    }
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(p.nombre),
-          actions: [
-            PopupMenuButton<TipoPeriodo>(
-              icon: const Icon(Icons.filter_list),
-              tooltip: textos.periodoEtiqueta,
-              initialValue: _periodo,
-              onSelected: (per) {
-                setState(() {
-                  _periodo = per;
-                  _cargando = true;
-                });
-                _cargar();
-              },
-              itemBuilder: (_) => [
-                PopupMenuItem(
-                    value: TipoPeriodo.todo, child: Text(textos.periodoTodo)),
-                PopupMenuItem(
-                    value: TipoPeriodo.anio, child: Text(textos.periodoAnio)),
-                PopupMenuItem(
-                    value: TipoPeriodo.trimestre,
-                    child: Text(textos.periodoTrimestre)),
-                PopupMenuItem(
-                    value: TipoPeriodo.trimestreAnterior,
-                    child: Text(textos.periodoTrimestreAnterior)),
-              ],
-            ),
-            PopupMenuButton<int>(
-              enabled: !_generando,
-              icon: _generando
-                  ? const SizedBox(
-                      width: 18,
-                      height: 18,
-                      child: CircularProgressIndicator(strokeWidth: 2))
-                  : const Icon(Icons.ios_share),
-              onSelected: (v) {
-                switch (v) {
-                  case 0:
-                    _informe();
-                  case 1:
-                    _exportarCsv();
-                  case 2:
-                    _enviarCoordinador();
-                  case 3:
-                    _exportarAlimentacion();
-                }
-              },
-              itemBuilder: (_) => [
-                PopupMenuItem(
-                  value: 0,
-                  child: ListTile(
-                      leading: const Icon(Icons.picture_as_pdf_outlined),
-                      title: Text(textos.detInformePdf),
-                      contentPadding: EdgeInsets.zero),
-                ),
-                PopupMenuItem(
-                  value: 1,
-                  child: ListTile(
-                      leading: const Icon(Icons.table_view_outlined),
-                      title: Text(textos.detExportarCsv),
-                      contentPadding: EdgeInsets.zero),
-                ),
-                PopupMenuItem(
-                  value: 2,
-                  child: ListTile(
-                      leading: const Icon(Icons.outgoing_mail),
-                      title: Text(textos.enviarCoordinador),
-                      contentPadding: EdgeInsets.zero),
-                ),
-                PopupMenuItem(
-                  value: 3,
-                  child: ListTile(
-                      leading: const Icon(Icons.grass_outlined),
-                      title: Text(textos.alimentacionExcel),
-                      contentPadding: EdgeInsets.zero),
-                ),
-              ],
-            ),
-            IconButton(
-              tooltip: textos.calculadoraTitulo,
-              icon: const Icon(Icons.calculate_outlined),
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => PantallaCalculadora(proyecto: _proyecto))),
-            ),
-            IconButton(
-              tooltip: textos.convenioTitulo,
-              icon: const Icon(Icons.handshake_outlined),
-              onPressed: () async {
-                await Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => PantallaConvenio(proyecto: _proyecto)));
-                await _cargar();
-              },
-            ),
-            if (politicaEspacioActual.puedeGestionarProyectos)
-              PopupMenuButton<_AccionProyecto>(
-                tooltip: textos.proyectoMas,
-                onSelected: (accion) {
-                  switch (accion) {
-                    case _AccionProyecto.editar:
-                      _editar();
-                    case _AccionProyecto.cerrar:
-                      _cambiarCierre(cerrar: true);
-                    case _AccionProyecto.reabrir:
-                      _cambiarCierre(cerrar: false);
-                    case _AccionProyecto.borrar:
-                      _borrar();
-                  }
-                },
-                itemBuilder: (_) => [
-                  PopupMenuItem(
-                      value: _AccionProyecto.editar,
-                      child: Text(textos.proyectoEditar)),
-                  if (p.cerrado)
-                    PopupMenuItem(
-                        value: _AccionProyecto.reabrir,
-                        child: Text(textos.proyectoReabrir))
-                  else
-                    PopupMenuItem(
-                        value: _AccionProyecto.cerrar,
-                        child: Text(textos.proyectoCerrar)),
-                  PopupMenuItem(
-                      value: _AccionProyecto.borrar,
-                      child: Text(textos.proyectoBorrar)),
-                ],
-              ),
-          ],
-          bottom: TabBar(isScrollable: true, tabs: [
-            Tab(text: textos.detProduccion),
-            Tab(text: textos.detComercial),
-            Tab(text: textos.detValidacion),
-            Tab(text: textos.detEconomico),
-          ]),
-        ),
-        floatingActionButton: _puedeRegistrar
-            ? Builder(
-                builder: (ctx) => FloatingActionButton(
-                  onPressed: () => _anadir(DefaultTabController.of(ctx).index),
-                  child: const Icon(Icons.add),
-                ),
-              )
-            : null,
-        // La cabecera (cifras y desglose) se desplaza con la lista: fija
-        // encima de las pestañas no cabe en un móvil apaisado o con el
-        // desglose abierto.
-        body: NestedScrollView(
-          headerSliverBuilder: (contexto, _) => [
-            SliverToBoxAdapter(
-              child: Column(children: [
-                if (p.cerrado)
-                  MaterialBanner(
-                    leading: const Icon(Icons.lock_outline),
-                    content: Text(textos.proyectoCerradoAviso(
-                        p.cerradoMs == null
-                            ? '—'
-                            : DateFormat('dd/MM/yyyy', idioma).format(
-                                DateTime.fromMillisecondsSinceEpoch(
-                                    p.cerradoMs!)))),
-                    actions: const [SizedBox.shrink()],
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => DefaultTabController(
+        length: 4,
+        initialIndex: pestana,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(_proyecto.nombre),
+            bottom: TabBar(isScrollable: true, tabs: [
+              Tab(text: textos.detProduccion),
+              Tab(text: textos.detComercial),
+              Tab(text: textos.detValidacion),
+              Tab(text: textos.detEconomico),
+            ]),
+          ),
+          floatingActionButton: _puedeRegistrar
+              ? Builder(
+                  builder: (contexto) => FloatingActionButton(
+                    onPressed: () =>
+                        _anadir(DefaultTabController.of(contexto).index),
+                    child: const Icon(Icons.add),
                   ),
-                if (subt.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(subt,
-                          style: Theme.of(context).textTheme.bodyMedium),
-                    ),
-                  ),
-                _PanelRentabilidad(
-                    rent: _rent, dias: _diasPeriodo(), textos: textos),
-                if (_desgloseGastos.isNotEmpty)
-                  _DesgloseIva(
-                    desgloseGastos: _desgloseGastos,
-                    ivaTotales: _ivaTotales(),
-                    idioma: idioma,
-                    textos: textos,
-                  ),
-                const Divider(height: 1),
-              ]),
-            ),
-          ],
-          body: TabBarView(
-            children: [
-              // Mantener pulsado borra (con confirmación): sin esto, un
-              // apunte mal metido no se podía quitar.
+                )
+              : null,
+          body: ListenableBuilder(
+            listenable: _versionDatos,
+            builder: (contexto, _) => TabBarView(children: [
               _ListaProduccion(
                   items: _produccion,
                   idioma: idioma,
@@ -608,79 +507,698 @@ class _ProyectoDetalleState extends State<ProyectoDetalle> {
                   alBorrar: _puedeRegistrar
                       ? (id) => _borrarElemento(() => _bd.borrarApunte(id))
                       : null),
-            ],
+            ]),
           ),
+        ),
+      ),
+    ));
+  }
+
+  void _accionMenu(_AccionProyecto accion) {
+    switch (accion) {
+      case _AccionProyecto.csv:
+        _exportarCsv();
+      case _AccionProyecto.enviar:
+        _enviarCoordinador();
+      case _AccionProyecto.alimentacion:
+        _exportarAlimentacion();
+      case _AccionProyecto.calculadora:
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => PantallaCalculadora(proyecto: _proyecto)));
+      case _AccionProyecto.convenio:
+        _abrirConvenio(0);
+      case _AccionProyecto.editar:
+        _editar();
+      case _AccionProyecto.cerrar:
+        _cambiarCierre(cerrar: true);
+      case _AccionProyecto.reabrir:
+        _cambiarCierre(cerrar: false);
+      case _AccionProyecto.borrar:
+        _borrar();
+    }
+  }
+
+  Widget _cabecera(AppLocalizations textos, String idioma) {
+    final p = _proyecto;
+    final esquema = context.esquemaZunbeltz;
+    final colores = context.coloresZunbeltz;
+    final estilos = Theme.of(context).textTheme;
+    final finca = _nombreFinca;
+    final subtitulo = [
+      if (p.persona.isNotEmpty) p.persona,
+      if (buscarOpcion(especiesGanado, p.especie) case final especie?
+          when p.especie != 'varias')
+        especie.etiqueta(idioma)
+      else if (p.actividad.isNotEmpty)
+        p.actividad,
+      if (finca != null && finca.isNotEmpty) finca,
+    ].join(' · ');
+    final mes = mesDelTest(p);
+    final mesAnio = DateFormat.yMMMM(idioma);
+    String? fechaLarga(int? ms) => ms == null || ms == 0
+        ? null
+        : mesAnio
+            .format(DateTime.fromMillisecondsSinceEpoch(ms))
+            .replaceAll(' de ', ' ')
+            .toLowerCase();
+    final inicio = fechaLarga(p.fechaInicioMs);
+    final fin = fechaLarga(p.fechaFinMs);
+    final lineaMes = [
+      if (mes != null)
+        mes.mesActual == 0
+            ? textos.proyEmpieza(inicio ?? '')
+            : mes.mesesTotales == null
+                ? textos.proyMes('${mes.mesActual}')
+                : textos.proyMesDe('${mes.mesActual}', '${mes.mesesTotales}'),
+      if (inicio != null && fin != null) textos.proyDeA(inicio, fin),
+    ].join(' · ');
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(p.nombre.isEmpty ? '—' : p.nombre, style: estilos.headlineMedium),
+        if (subtitulo.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(subtitulo,
+                style: estilos.bodyLarge
+                    ?.copyWith(color: esquema.onSurfaceVariant)),
+          ),
+        const SizedBox(height: 8),
+        Row(children: [
+          Expanded(
+            child: Text(lineaMes,
+                style:
+                    estilos.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
+          ),
+          Text(p.cerrado ? textos.proyectoCerradoEtiqueta : textos.proyAbierto,
+              style: estilos.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: p.cerrado ? esquema.onSurfaceVariant : colores.hecha)),
+        ]),
+        if (mes?.mesesTotales != null) ...[
+          const SizedBox(height: 8),
+          BarraMesesTest(hechos: mes!.mesActual, totales: mes.mesesTotales!),
+        ],
+      ]),
+    );
+  }
+
+  Widget _chipsPeriodo(AppLocalizations textos) {
+    final opciones = {
+      TipoPeriodo.todo: textos.proyPeriodoTodo,
+      TipoPeriodo.anio: textos.periodoAnio,
+      TipoPeriodo.trimestre: textos.periodoTrimestre,
+      TipoPeriodo.trimestreAnterior: textos.periodoTrimestreAnterior,
+    };
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(children: [
+        for (final MapEntry(key: periodo, value: etiqueta) in opciones.entries)
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ChoiceChip(
+              label: Text(etiqueta),
+              selected: _periodo == periodo,
+              onSelected: (_) => _cambiarPeriodo(periodo),
+            ),
+          ),
+      ]),
+    );
+  }
+
+  /// Título de sección con enlace a la derecha («Reparto ›»).
+  Widget _titulo(String texto, {String? enlace, VoidCallback? alPulsar}) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 28, 4, 8),
+      child: Row(children: [
+        Expanded(
+          child: Text(texto, style: Theme.of(context).textTheme.titleLarge),
+        ),
+        if (enlace != null)
+          TextButton(
+            onPressed: alPulsar,
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              Text(enlace),
+              const SizedBox(width: 4),
+              const Icon(Icons.chevron_right, size: 20),
+            ]),
+          ),
+      ]),
+    );
+  }
+
+  Widget _quienAsume(AppLocalizations textos, BalanceConvenio balance) {
+    final reparto = repartoDeGastos(balance);
+    final estilos = Theme.of(context).textTheme;
+    final esquema = context.esquemaZunbeltz;
+    final colores = coloresReparto(context);
+    Widget fila(Color color, String quien, int porcentaje, int centimos) =>
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Row(children: [
+            Container(
+              width: 14,
+              height: 14,
+              decoration: BoxDecoration(
+                  color: color, borderRadius: BorderRadius.circular(3)),
+            ),
+            const SizedBox(width: 12),
+            Expanded(child: Text(quien, style: estilos.bodyLarge)),
+            Text('$porcentaje %',
+                style: estilos.bodyMedium
+                    ?.copyWith(color: esquema.onSurfaceVariant)),
+            const SizedBox(width: 12),
+            SizedBox(
+              width: 92,
+              child: Text(eurosRedondos(centimos),
+                  textAlign: TextAlign.end,
+                  style: estilos.titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w700)),
+            ),
+          ]),
+        );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: reparto == null
+          ? Text(textos.proySinGastos)
+          : Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+              BarraRepartoGastos(
+                  tester: reparto.tester, zunbeltz: reparto.zunbeltz, alto: 14),
+              const SizedBox(height: 4),
+              fila(colores.tester, textos.proyLaPersonaTester, reparto.tester,
+                  balance.gastosAsumidosTesterCentimos),
+              fila(colores.zunbeltz, 'Zunbeltz', reparto.zunbeltz,
+                  balance.gastosAsumidosZunbeltzCentimos),
+            ]),
+    );
+  }
+
+  Widget _presupuesto(
+      AppLocalizations textos, String idioma, BalanceConvenio balance) {
+    final estilos = Theme.of(context).textTheme;
+    final esquema = context.esquemaZunbeltz;
+    final bloques = [
+      for (final bloque in balance.categoriasComparadas)
+        if ((balance.previstoPorCategoria[bloque] ?? 0) > 0) bloque,
+    ];
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 16),
+      decoration: BoxDecoration(
+        color: esquema.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
+      ),
+      child: Column(children: [
+        for (final bloque in bloques) ...[
+          const SizedBox(height: 12),
+          Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+            Expanded(
+              child: Text(
+                  buscarOpcion(categoriasGasto, bloque)?.etiqueta(idioma) ??
+                      bloque,
+                  style: estilos.bodyLarge),
+            ),
+            const SizedBox(width: 8),
+            Text(
+                textos.proyDeTotal(
+                    eurosRedondos(balance.realPorCategoria[bloque] ?? 0),
+                    eurosRedondos(balance.previstoPorCategoria[bloque] ?? 0)),
+                style: estilos.bodyMedium),
+          ]),
+          const SizedBox(height: 6),
+          BarraPrevisto(
+              real: balance.realPorCategoria[bloque] ?? 0,
+              previsto: balance.previstoPorCategoria[bloque] ?? 0),
+        ],
+      ]),
+    );
+  }
+
+  Widget _costeReal(AppLocalizations textos, BalanceConvenio balance) {
+    final estilos = Theme.of(context).textTheme;
+    final esquema = context.esquemaZunbeltz;
+    final colores = context.coloresZunbeltz;
+    final valor = balance.balanceProyectoCentimos;
+    return Container(
+      margin: const EdgeInsets.fromLTRB(16, 20, 16, 0),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        border: Border.all(color: esquema.outlineVariant),
+        borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
+      ),
+      child: Row(children: [
+        Expanded(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(textos.balanceProyecto,
+                style:
+                    estilos.titleSmall?.copyWith(fontWeight: FontWeight.w600)),
+            if (balance.amortizacionesCentimos > 0)
+              Text(
+                  textos.proySumaAmortizacion(
+                      eurosRedondos(balance.amortizacionesCentimos)),
+                  style: estilos.bodyMedium
+                      ?.copyWith(color: esquema.onSurfaceVariant)),
+          ]),
+        ),
+        const SizedBox(width: 12),
+        Text(eurosConSigno(valor),
+            style: estilos.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w700,
+                color: valor < 0 ? colores.bloqueada : colores.hecha)),
+      ]),
+    );
+  }
+
+  Widget _fianzaTarjetas(AppLocalizations textos, BalanceConvenio balance) {
+    final fianza = _fianza;
+    Widget tarjeta(String rotulo, String valor, String detalle) => Expanded(
+          child: Material(
+            color: context.esquemaZunbeltz.surfaceContainerLow,
+            borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: () => _abrirConvenio(3),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(rotulo, style: Theme.of(context).textTheme.bodyMedium),
+                    const SizedBox(height: 4),
+                    Text(valor,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.w700)),
+                    const SizedBox(height: 4),
+                    Text(detalle,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: context.esquemaZunbeltz.onSurfaceVariant)),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: IntrinsicHeight(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          tarjeta(
+              textos.proyDeReferencia,
+              eurosRedondos(balance.fianzaReferenciaCentimos),
+              textos.proyDiezPorCiento),
+          const SizedBox(width: 12),
+          tarjeta(
+              textos.proyRetenido,
+              eurosRedondos(fianza?.retenidoCentimos ?? 0),
+              _incidencias == 0
+                  ? textos.proySinIncidencias
+                  : textos.proyIncidencias('$_incidencias')),
+        ]),
+      ),
+    );
+  }
+
+  Widget _acompanamiento(AppLocalizations textos, String idioma) {
+    final estilos = Theme.of(context).textTheme;
+    final esquema = context.esquemaZunbeltz;
+    if (_acompanamientos.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Text(textos.proySinAcompanamiento,
+            style:
+                estilos.bodyMedium?.copyWith(color: esquema.onSurfaceVariant)),
+      );
+    }
+    final dia = DateFormat('d', idioma);
+    final mes = DateFormat('MMM', idioma);
+    return Column(children: [
+      for (final actividad in _acompanamientos.take(2))
+        InkWell(
+          onTap: () => _abrirConvenio(4),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(children: [
+              SizedBox(
+                width: 44,
+                child: Column(children: [
+                  Text(
+                      dia.format(DateTime.fromMillisecondsSinceEpoch(
+                          actividad.fechaMs)),
+                      style: estilos.headlineSmall
+                          ?.copyWith(fontWeight: FontWeight.w600)),
+                  Text(
+                      mes
+                          .format(DateTime.fromMillisecondsSinceEpoch(
+                              actividad.fechaMs))
+                          .replaceAll('.', ''),
+                      style: estilos.bodySmall
+                          ?.copyWith(color: esquema.onSurfaceVariant)),
+                ]),
+              ),
+              const SizedBox(width: 12),
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: esquema.secondaryContainer,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(_iconoAcompanamiento(actividad.tipo),
+                    color: esquema.onSecondaryContainer),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                        buscarOpcion(tiposAcompanamiento, actividad.tipo)
+                                ?.etiqueta(idioma) ??
+                            actividad.tipo,
+                        style: estilos.titleMedium),
+                    if (actividad.descripcion.isNotEmpty ||
+                        actividad.horas != null)
+                      Text(
+                        [
+                          if (actividad.descripcion.isNotEmpty)
+                            actividad.descripcion,
+                          if (actividad.horas != null)
+                            textos.proyHoras(cantidadBonita(actividad.horas!)),
+                        ].join(' · '),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: estilos.bodyMedium
+                            ?.copyWith(color: esquema.onSurfaceVariant),
+                      ),
+                  ],
+                ),
+              ),
+            ]),
+          ),
+        ),
+    ]);
+  }
+
+  /// Margen, proyección anual y desglose de gastos con IVA (lo que antes
+  /// enseñaba la cabecera).
+  Widget _rentabilidad(AppLocalizations textos, String idioma) {
+    final dias = _diasPeriodo();
+    final proyeccion =
+        dias == null ? null : _rent.balanceAnualExtrapoladoCentimos(dias);
+    final estilos = Theme.of(context).textTheme;
+    Widget cifra(String rotulo, String valor) => Expanded(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(rotulo,
+                style: estilos.bodyMedium?.copyWith(
+                    color: context.esquemaZunbeltz.onSurfaceVariant)),
+            Text(valor,
+                style:
+                    estilos.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
+          ]),
+        );
+    return Column(children: [
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(children: [
+          cifra(textos.rentMargen,
+              '${_rent.margenPorcentaje.toStringAsFixed(0)} %'),
+          if (proyeccion != null)
+            cifra(textos.rentProyeccion, eurosConSigno(proyeccion)),
+        ]),
+      ),
+      if (_desgloseGastos.isNotEmpty)
+        _DesgloseIva(
+          desgloseGastos: _desgloseGastos,
+          ivaTotales: _ivaTotales(),
+          idioma: idioma,
+          textos: textos,
+        ),
+    ]);
+  }
+
+  Widget _registros(AppLocalizations textos) {
+    final esquema = context.esquemaZunbeltz;
+    final filas = [
+      (Icons.grass_outlined, textos.detProduccion, _produccion.length),
+      (Icons.storefront_outlined, textos.detComercial, _ventas.length),
+      (Icons.verified_outlined, textos.detValidacion, _validaciones.length),
+      (Icons.receipt_long_outlined, textos.detEconomico, _apuntes.length),
+    ];
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      decoration: BoxDecoration(
+        color: esquema.surfaceContainerLow,
+        borderRadius: BorderRadius.circular(radioTarjetaZunbeltz),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Column(children: [
+        for (var indice = 0; indice < filas.length; indice++) ...[
+          if (indice > 0)
+            Divider(height: 1, indent: 56, color: esquema.outlineVariant),
+          ListTile(
+            leading: Icon(filas[indice].$1),
+            title: Text(filas[indice].$2),
+            trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+              Text('${filas[indice].$3}',
+                  style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(width: 4),
+              const Icon(Icons.chevron_right),
+            ]),
+            onTap: () => _abrirRegistros(indice),
+          ),
+        ],
+      ]),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    final idioma = Localizations.localeOf(context).languageCode;
+    final p = _proyecto;
+    if (_cargando) {
+      return Scaffold(
+        appBar: AppBar(),
+        body: const Center(child: CircularProgressIndicator()),
+      );
+    }
+    final balance = _balancePeriodo;
+    final total = _balanceTotal;
+    final gestiona = politicaEspacioActual.puedeGestionarProyectos;
+    final hayPresupuesto =
+        total != null && total.previstoPorCategoria.values.any((v) => v > 0);
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            tooltip: textos.detInformePdf,
+            icon: _generando
+                ? const SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2))
+                : const Icon(Icons.picture_as_pdf_outlined),
+            onPressed: _generando ? null : _informe,
+          ),
+          PopupMenuButton<_AccionProyecto>(
+            tooltip: textos.proyMasAcciones,
+            enabled: !_generando,
+            onSelected: _accionMenu,
+            itemBuilder: (_) {
+              PopupMenuItem<_AccionProyecto> opcion(
+                      _AccionProyecto valor, IconData icono, String texto) =>
+                  PopupMenuItem(
+                    value: valor,
+                    child: ListTile(
+                        leading: Icon(icono),
+                        title: Text(texto),
+                        contentPadding: EdgeInsets.zero),
+                  );
+              return [
+                opcion(_AccionProyecto.convenio, Icons.handshake_outlined,
+                    textos.convenioTitulo),
+                opcion(_AccionProyecto.calculadora, Icons.calculate_outlined,
+                    textos.calculadoraTitulo),
+                opcion(_AccionProyecto.csv, Icons.table_view_outlined,
+                    textos.detExportarCsv),
+                opcion(_AccionProyecto.enviar, Icons.outgoing_mail,
+                    textos.enviarCoordinador),
+                opcion(_AccionProyecto.alimentacion, Icons.grass_outlined,
+                    textos.alimentacionExcel),
+                if (gestiona) ...[
+                  const PopupMenuDivider(),
+                  opcion(_AccionProyecto.editar, Icons.edit_outlined,
+                      textos.proyectoEditar),
+                  if (p.cerrado)
+                    opcion(_AccionProyecto.reabrir, Icons.lock_open_outlined,
+                        textos.proyectoReabrir)
+                  else
+                    opcion(_AccionProyecto.cerrar, Icons.lock_outline,
+                        textos.proyectoCerrar),
+                  opcion(_AccionProyecto.borrar, Icons.delete_outline,
+                      textos.proyectoBorrar),
+                ],
+              ];
+            },
+          ),
+        ],
+      ),
+      floatingActionButton: _puedeRegistrar
+          ? FloatingActionButton.extended(
+              onPressed: () => _anadir(3),
+              icon: const Icon(Icons.add),
+              label: Text(textos.proyApuntarGastoIngreso),
+            )
+          : null,
+      body: RefreshIndicator(
+        onRefresh: _cargar,
+        child: ListView(
+          padding: rellenoSobreBarraSistema(
+              context, const EdgeInsets.only(bottom: 104)),
+          children: [
+            if (p.cerrado)
+              MaterialBanner(
+                leading: const Icon(Icons.lock_outline),
+                content: Text(textos.proyectoCerradoAviso(p.cerradoMs == null
+                    ? '—'
+                    : DateFormat('dd/MM/yyyy', idioma).format(
+                        DateTime.fromMillisecondsSinceEpoch(p.cerradoMs!)))),
+                actions: const [SizedBox.shrink()],
+              ),
+            _cabecera(textos, idioma),
+            const SizedBox(height: 16),
+            _chipsPeriodo(textos),
+            if (balance != null) ...[
+              const SizedBox(height: 16),
+              _BloqueBalance(balance: balance),
+              _titulo(textos.proyQuienAsume,
+                  enlace: textos.proyReparto,
+                  alPulsar: () => _abrirConvenio(0)),
+              _quienAsume(textos, balance),
+            ],
+            if (hayPresupuesto) ...[
+              _titulo(textos.proyPresupuestoAnexo,
+                  enlace: textos.proyPartidas,
+                  alPulsar: () => _abrirConvenio(1)),
+              _presupuesto(textos, idioma, total),
+            ],
+            if (balance != null) _costeReal(textos, balance),
+            if (total != null) ...[
+              _titulo(textos.convenioFianza),
+              _fianzaTarjetas(textos, total),
+            ],
+            _titulo(textos.convenioAcompanamiento,
+                enlace: textos.proyTodo, alPulsar: () => _abrirConvenio(4)),
+            _acompanamiento(textos, idioma),
+            _titulo(textos.proyRentabilidad),
+            _rentabilidad(textos, idioma),
+            _titulo(textos.proyRegistros),
+            _registros(textos),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
+              child:
+                  Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Icon(Icons.info_outline,
+                    size: 18, color: context.esquemaZunbeltz.onSurfaceVariant),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(textos.convenioProvisional,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: context.esquemaZunbeltz.onSurfaceVariant)),
+                ),
+              ]),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _PanelRentabilidad extends StatelessWidget {
-  const _PanelRentabilidad(
-      {required this.rent, required this.dias, required this.textos});
+IconData _iconoAcompanamiento(String tipo) => switch (tipo) {
+      'formacion' => Icons.school_outlined,
+      'visita_referencia' => Icons.travel_explore,
+      'asesoramiento' => Icons.support_agent,
+      'reunion' => Icons.groups_outlined,
+      'visita_finca' => Icons.agriculture_outlined,
+      'visita_recibida' => Icons.waving_hand_outlined,
+      'mercado' => Icons.storefront_outlined,
+      'difusion' => Icons.campaign_outlined,
+      'busqueda_canales' => Icons.alt_route,
+      'apoyo_tareas' => Icons.handyman_outlined,
+      _ => Icons.event_note_outlined,
+    };
 
-  final RentabilidadProyecto rent;
-  final int? dias;
-  final AppLocalizations textos;
+/// El bloque destacado: balance del test en grande sobre pino, con
+/// ingresos y gastos del test debajo.
+class _BloqueBalance extends StatelessWidget {
+  const _BloqueBalance({required this.balance});
 
-  @override
-  Widget build(BuildContext context) {
-    final proyeccion =
-        dias == null ? null : rent.balanceAnualExtrapoladoCentimos(dias!);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      child: Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: [
-          _Cifra(textos.rentVentas,
-              '${eurosDesdeCentimos(rent.ingresosComercializacionCentimos)} €'),
-          _Cifra(textos.rentGastos,
-              '${eurosDesdeCentimos(rent.gastosCentimos)} €'),
-          _Cifra(textos.rentBalance,
-              '${eurosDesdeCentimos(rent.balanceCentimos)} €',
-              resaltado: true),
-          _Cifra(textos.rentMargen,
-              '${rent.margenPorcentaje.toStringAsFixed(0)} %'),
-          if (proyeccion != null)
-            _Cifra(
-                textos.rentProyeccion, '${eurosDesdeCentimos(proyeccion)} €'),
-        ],
-      ),
-    );
-  }
-}
-
-class _Cifra extends StatelessWidget {
-  const _Cifra(this.etiqueta, this.valor, {this.resaltado = false});
-  final String etiqueta;
-  final String valor;
-  final bool resaltado;
+  final BalanceConvenio balance;
 
   @override
   Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    final estilos = Theme.of(context).textTheme;
+    final oscuro = context.esquemaZunbeltz.brightness == Brightness.dark;
+    final fondo = oscuro ? const Color(0xFF0E3A2B) : colorCuadroPino;
+    const tinta = Colors.white;
+    final tintaSuave = Colors.white.withValues(alpha: 0.78);
+    Widget cifra(String rotulo, int centimos) => Expanded(
+          child: Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.10),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(rotulo,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: estilos.bodyMedium?.copyWith(color: tintaSuave)),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerLeft,
+                child: Text(eurosRedondos(centimos),
+                    style: estilos.headlineSmall
+                        ?.copyWith(color: tinta, fontWeight: FontWeight.w700)),
+              ),
+            ]),
+          ),
+        );
     return Container(
-      width: 110,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.fromLTRB(20, 20, 20, 18),
       decoration: BoxDecoration(
-        color: resaltado
-            ? context.esquemaZunbeltz.secondaryContainer.withValues(alpha: 0.30)
-            : null,
-        border: Border.all(color: context.esquemaZunbeltz.outlineVariant),
-        borderRadius: BorderRadius.circular(radioZunbeltz),
+        color: fondo,
+        borderRadius: bordeDestacadoZunbeltz,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(valor,
-              style:
-                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-          const SizedBox(height: 2),
-          Text(etiqueta,
-              style: Theme.of(context).textTheme.bodySmall, maxLines: 2),
-        ],
-      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Text(textos.balanceTest,
+            style: estilos.titleSmall?.copyWith(color: tintaSuave)),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(eurosConSigno(balance.balanceTestCentimos),
+              style: estilos.displayMedium
+                  ?.copyWith(color: tinta, fontWeight: FontWeight.w700)),
+        ),
+        const SizedBox(height: 12),
+        Row(children: [
+          cifra(textos.balanceIngresos, balance.ingresosCentimos),
+          const SizedBox(width: 12),
+          cifra(textos.proyGastosDelTest, balance.gastosTestCentimos),
+        ]),
+        const SizedBox(height: 14),
+        Text(textos.proySinAmortizaciones,
+            style: estilos.bodySmall?.copyWith(color: tintaSuave)),
+      ]),
     );
   }
 }
@@ -895,4 +1413,14 @@ class _DesgloseIva extends StatelessWidget {
   }
 }
 
-enum _AccionProyecto { editar, cerrar, reabrir, borrar }
+enum _AccionProyecto {
+  convenio,
+  calculadora,
+  csv,
+  enviar,
+  alimentacion,
+  editar,
+  cerrar,
+  reabrir,
+  borrar,
+}

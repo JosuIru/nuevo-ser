@@ -183,8 +183,17 @@ void main() {
         }),
       });
       await montar(tester, const PantallaInicio(), idioma: idioma);
-      await tester.tap(find.text(idioma == 'eu' ? 'Berriak' : 'Noticias').first);
+      // Los cuadros de avisos quedan bajo la cabecera y las tareas.
+      final cuadroNoticias = find.text(idioma == 'eu' ? 'Berriak' : 'Noticias');
+      await tester.scrollUntilVisible(cuadroNoticias, 200,
+          scrollable: find.byType(Scrollable).first);
+      // Un poco más, para que no quede bajo el botón flotante.
+      await tester.drag(find.byType(Scrollable).first, const Offset(0, -250));
       await tester.pumpAndSettle();
+      await tester.tap(cuadroNoticias.first);
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(find.text('Tractorada en Madrid'), 200,
+          scrollable: find.byType(Scrollable).first);
       expect(find.text('Tractorada en Madrid', skipOffstage: false), findsOneWidget);
       expect(tester.takeException(), isNull);
     });

@@ -104,41 +104,81 @@ class LogosEntidadesPorGrupo extends StatelessWidget {
   }
 }
 
-/// Franja discreta con todos los logos por grupo, para el final de Hoy. Al tocarla
+/// Pasa un logo oscuro sobre transparente a [tinta] sobre un fondo oscuro
+/// conservando su dibujo: lo oscuro queda opaco y lo claro, transparente
+/// (un tinte plano convertiría los escudos en manchas).
+ColorFilter _filtroLogoClaro(Color tinta) {
+  final rojo = tinta.r * 255, verde = tinta.g * 255, azul = tinta.b * 255;
+  return ColorFilter.matrix([
+    0, 0, 0, 0, rojo, //
+    0, 0, 0, 0, verde, //
+    0, 0, 0, 0, azul, //
+    -0.2126, -0.7152, -0.0722, 1, 0,
+  ]);
+}
+
+/// Franja con todos los logos por grupo, para el final de Hoy. Al tocarla
 /// se abre la pantalla de entidades.
+///
+/// Con [colorTinta] (sobre la franja verde de Hoy), rótulos y logos van en
+/// ese color y centrados: los logos se tiñen enteros, también los que son
+/// en color.
 class FranjaLogosEntidades extends StatelessWidget {
-  const FranjaLogosEntidades({super.key, required this.alPulsar});
+  const FranjaLogosEntidades(
+      {super.key, required this.alPulsar, this.colorTinta, this.colorRotulo});
 
   final VoidCallback alPulsar;
+  final Color? colorTinta;
+  final Color? colorRotulo;
 
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
+    final tinta = colorTinta;
+    final centrado = tinta != null;
     return ValueListenableBuilder<List<EntidadColaboradora>>(
       valueListenable: ServicioLogosEntidades.actuales,
       builder: (contexto, entidades, _) {
         if (entidades.isEmpty) return const SizedBox.shrink();
+        Widget logo(EntidadColaboradora entidad) {
+          final imagen = LogoEntidad(entidad, altura: centrado ? 32 : 28);
+          return tinta == null
+              ? imagen
+              : ColorFiltered(
+                  colorFilter: _filtroLogoClaro(tinta), child: imagen);
+        }
+
         return InkWell(
           onTap: alPulsar,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: centrado
+                  ? CrossAxisAlignment.center
+                  : CrossAxisAlignment.start,
               children: [
                 for (final (grupo, delGrupo)
                     in entidadesPorGrupo(entidades)) ...[
                   Padding(
-                    padding: const EdgeInsets.only(top: 6, bottom: 8),
+                    padding:
+                        EdgeInsets.only(top: centrado ? 14 : 6, bottom: 10),
                     child: Text(tituloGrupoEntidades(textos, grupo.codigo),
-                        style: Theme.of(context).textTheme.labelMedium),
+                        textAlign: centrado ? TextAlign.center : null,
+                        style: centrado
+                            ? Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(color: colorRotulo ?? tinta)
+                            : Theme.of(context).textTheme.labelMedium),
                   ),
                   Wrap(
-                    spacing: 16,
-                    runSpacing: 10,
+                    alignment:
+                        centrado ? WrapAlignment.center : WrapAlignment.start,
+                    spacing: centrado ? 22 : 16,
+                    runSpacing: 12,
                     crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
-                      for (final entidad in delGrupo)
-                        LogoEntidad(entidad, altura: 28),
+                      for (final entidad in delGrupo) logo(entidad),
                     ],
                   ),
                   const SizedBox(height: 8),

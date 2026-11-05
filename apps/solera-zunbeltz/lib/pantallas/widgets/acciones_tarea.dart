@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart' show listEquals;
 import 'package:flutter/material.dart';
+
+import '../../branding.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show GestorFotos;
 
 import '../../datos/base_datos.dart';
@@ -88,8 +90,9 @@ Future<bool> mostrarAccionesTarea(
             ),
             for (final estado in estadosTarea)
               ListTile(
-                leading:
-                    Icon(Icons.circle, color: colorEstadoTarea(estado.codigo)),
+                leading: Icon(Icons.circle,
+                    color: colorEstadoTarea(
+                        estado.codigo, context.coloresZunbeltz)),
                 title: Text(estado.etiqueta(idioma)),
                 trailing: estado.codigo == tarea.estado
                     ? const Icon(Icons.check)
@@ -179,6 +182,29 @@ Future<bool> mostrarAccionesTarea(
       return false;
   }
   return false;
+}
+
+/// El atajo de la marca de una lista: da la tarea por hecha, avisa a Hoy
+/// y a los contadores, dice si se ha generado la siguiente (periódica) y
+/// ofrece la foto de cómo ha quedado. `alCambiar` recarga la lista, antes
+/// y después de la foto.
+Future<void> marcarTareaHechaDesdeLista(BuildContext context,
+    TareaMantenimiento tarea, Future<void> Function() alCambiar) async {
+  final id = tarea.id;
+  if (id == null) return;
+  final textos = AppLocalizations.of(context);
+  final mensajero = ScaffoldMessenger.of(context);
+  final generoSiguiente =
+      await BaseDatosSoleraZunbeltz().marcarTareaHecha(id) != null;
+  avisarCambioDatos();
+  await alCambiar();
+  mensajero.showSnackBar(SnackBar(
+      content: Text(generoSiguiente
+          ? textos.tareaSiguienteGenerada
+          : textos.tareaGuardada)));
+  if (!context.mounted) return;
+  await ofrecerFotoDespuesAlCerrar(context, id);
+  if (context.mounted) await alCambiar();
 }
 
 /// Tras cerrar una tarea (también con el atajo de la marca de la lista):

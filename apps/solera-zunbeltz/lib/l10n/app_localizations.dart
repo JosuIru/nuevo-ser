@@ -4001,7 +4001,7 @@ abstract class AppLocalizations {
   /// No description provided for @calculadoraPesoVivo.
   ///
   /// In es, this message translates to:
-  /// **'Peso vivo por animal (kg)'**
+  /// **'Peso vivo (kg)'**
   String get calculadoraPesoVivo;
 
   /// No description provided for @calculadoraAnimales.
@@ -4019,7 +4019,7 @@ abstract class AppLocalizations {
   /// No description provided for @calculadoraRendimientoProducto.
   ///
   /// In es, this message translates to:
-  /// **'Producto vendible sobre canal (%)'**
+  /// **'Vendible sobre canal (%)'**
   String get calculadoraRendimientoProducto;
 
   /// No description provided for @calculadoraPrecioKg.
@@ -4031,13 +4031,13 @@ abstract class AppLocalizations {
   /// No description provided for @calculadoraCosteSacrificio.
   ///
   /// In es, this message translates to:
-  /// **'Matadero por animal (€)'**
+  /// **'Matadero (€/animal)'**
   String get calculadoraCosteSacrificio;
 
   /// No description provided for @calculadoraCosteTransformacion.
   ///
   /// In es, this message translates to:
-  /// **'Transformación y envasado (€/kg)'**
+  /// **'Transformación (€/kg)'**
   String get calculadoraCosteTransformacion;
 
   /// No description provided for @calculadoraOtrosCostes.
@@ -7052,6 +7052,66 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Editar partidas'**
   String get partEditar;
+
+  /// No description provided for @simTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Simulador de rendimiento'**
+  String get simTitulo;
+
+  /// No description provided for @simPesoVivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Peso vivo'**
+  String get simPesoVivo;
+
+  /// No description provided for @simCanal.
+  ///
+  /// In es, this message translates to:
+  /// **'Canal'**
+  String get simCanal;
+
+  /// No description provided for @simProducto.
+  ///
+  /// In es, this message translates to:
+  /// **'Producto vendible'**
+  String get simProducto;
+
+  /// No description provided for @simACanal.
+  ///
+  /// In es, this message translates to:
+  /// **'{porcentaje} % a canal'**
+  String simACanal(String porcentaje);
+
+  /// No description provided for @simSobreCanal.
+  ///
+  /// In es, this message translates to:
+  /// **'{porcentaje} % sobre canal'**
+  String simSobreCanal(String porcentaje);
+
+  /// No description provided for @simNombreCamino.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre del camino'**
+  String get simNombreCamino;
+
+  /// No description provided for @simCaminoN.
+  ///
+  /// In es, this message translates to:
+  /// **'Camino {n}'**
+  String simCaminoN(String n);
+
+  /// No description provided for @simPorKgVivo.
+  ///
+  /// In es, this message translates to:
+  /// **'{importe}/kg vivo'**
+  String simPorKgVivo(String importe);
+
+  /// No description provided for @simTocaCamino.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca uno para verlo arriba; mantén pulsado para borrarlo.'**
+  String get simTocaCamino;
 }
 
 class _AppLocalizationsDelegate

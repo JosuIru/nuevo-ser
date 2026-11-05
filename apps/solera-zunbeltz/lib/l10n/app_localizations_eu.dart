@@ -2229,7 +2229,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get calculadoraNinguna => 'Bat ere ez (eskuz)';
 
   @override
-  String get calculadoraPesoVivo => 'Animalia bakoitzaren pisu bizia (kg)';
+  String get calculadoraPesoVivo => 'Pisu bizia (kg)';
 
   @override
   String get calculadoraAnimales => 'Animaliak';
@@ -2239,17 +2239,16 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get calculadoraRendimientoProducto =>
-      'Produktu salgarria kanalaren gainean (%)';
+      'Salgarria kanalaren gainean (%)';
 
   @override
   String get calculadoraPrecioKg => 'Salmenta-prezioa (€/kg)';
 
   @override
-  String get calculadoraCosteSacrificio => 'Hiltegia animalia bakoitzeko (€)';
+  String get calculadoraCosteSacrificio => 'Hiltegia (€/animalia)';
 
   @override
-  String get calculadoraCosteTransformacion =>
-      'Eraldaketa eta ontziratzea (€/kg)';
+  String get calculadoraCosteTransformacion => 'Eraldaketa (€/kg)';
 
   @override
   String get calculadoraOtrosCostes => 'Beste kostu batzuk (€)';
@@ -4195,4 +4194,43 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get partEditar => 'Partidak editatu';
+
+  @override
+  String get simTitulo => 'Errendimendu-simulagailua';
+
+  @override
+  String get simPesoVivo => 'Bizirik pisua';
+
+  @override
+  String get simCanal => 'Kanala';
+
+  @override
+  String get simProducto => 'Saltzeko produktua';
+
+  @override
+  String simACanal(String porcentaje) {
+    return '% $porcentaje kanalera';
+  }
+
+  @override
+  String simSobreCanal(String porcentaje) {
+    return '% $porcentaje kanalaren gainean';
+  }
+
+  @override
+  String get simNombreCamino => 'Bidearen izena';
+
+  @override
+  String simCaminoN(String n) {
+    return '$n. bidea';
+  }
+
+  @override
+  String simPorKgVivo(String importe) {
+    return '$importe/kg bizirik';
+  }
+
+  @override
+  String get simTocaCamino =>
+      'Ukitu bat goian ikusteko; luze sakatu ezabatzeko.';
 }

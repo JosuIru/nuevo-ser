@@ -2227,7 +2227,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calculadoraNinguna => 'Ninguno (a mano)';
 
   @override
-  String get calculadoraPesoVivo => 'Peso vivo por animal (kg)';
+  String get calculadoraPesoVivo => 'Peso vivo (kg)';
 
   @override
   String get calculadoraAnimales => 'Animales';
@@ -2236,18 +2236,16 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calculadoraRendimientoCanal => 'Rendimiento a canal (%)';
 
   @override
-  String get calculadoraRendimientoProducto =>
-      'Producto vendible sobre canal (%)';
+  String get calculadoraRendimientoProducto => 'Vendible sobre canal (%)';
 
   @override
   String get calculadoraPrecioKg => 'Precio de venta (€/kg)';
 
   @override
-  String get calculadoraCosteSacrificio => 'Matadero por animal (€)';
+  String get calculadoraCosteSacrificio => 'Matadero (€/animal)';
 
   @override
-  String get calculadoraCosteTransformacion =>
-      'Transformación y envasado (€/kg)';
+  String get calculadoraCosteTransformacion => 'Transformación (€/kg)';
 
   @override
   String get calculadoraOtrosCostes => 'Otros costes (€)';
@@ -4192,4 +4190,43 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get partEditar => 'Editar partidas';
+
+  @override
+  String get simTitulo => 'Simulador de rendimiento';
+
+  @override
+  String get simPesoVivo => 'Peso vivo';
+
+  @override
+  String get simCanal => 'Canal';
+
+  @override
+  String get simProducto => 'Producto vendible';
+
+  @override
+  String simACanal(String porcentaje) {
+    return '$porcentaje % a canal';
+  }
+
+  @override
+  String simSobreCanal(String porcentaje) {
+    return '$porcentaje % sobre canal';
+  }
+
+  @override
+  String get simNombreCamino => 'Nombre del camino';
+
+  @override
+  String simCaminoN(String n) {
+    return 'Camino $n';
+  }
+
+  @override
+  String simPorKgVivo(String importe) {
+    return '$importe/kg vivo';
+  }
+
+  @override
+  String get simTocaCamino =>
+      'Toca uno para verlo arriba; mantén pulsado para borrarlo.';
 }

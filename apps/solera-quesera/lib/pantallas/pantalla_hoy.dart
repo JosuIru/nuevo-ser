@@ -16,7 +16,6 @@ class PantallaHoy extends StatefulWidget {
 
 class _PantallaHoyState extends State<PantallaHoy> {
   final _bd = BaseDatosSoleraQuesera.instancia;
-  DateFormat get _formatter => DateFormat('EEEE d/M/yyyy', localeFechasQuesera());
   int _partidasHoy = 0;
   double _litrosHoy = 0;
   Map<String, int> _piezasPorEstado = {};
@@ -24,62 +23,153 @@ class _PantallaHoyState extends State<PantallaHoy> {
   List<EventoCuracion> _pendientes = [];
 
   @override
-  void initState() { super.initState(); _recargar(); }
+  void initState() {
+    super.initState();
+    _recargar();
+  }
 
   @override
-  void didChangeDependencies() { super.didChangeDependencies(); _recargar(); }
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _recargar();
+  }
 
   Future<void> _recargar() async {
     final inicio = DateTime.now().subtract(Duration(hours: 12));
     final fin = DateTime.now().add(Duration(hours: 12));
-    final p = await _bd.listarPartidasLeche(desdeMs: inicio.millisecondsSinceEpoch, hastaMs: fin.millisecondsSinceEpoch);
-    final l = await _bd.totalLitrosEnPeriodo(inicio.millisecondsSinceEpoch, fin.millisecondsSinceEpoch);
+    final p = await _bd.listarPartidasLeche(
+        desdeMs: inicio.millisecondsSinceEpoch,
+        hastaMs: fin.millisecondsSinceEpoch);
+    final l = await _bd.totalLitrosEnPeriodo(
+        inicio.millisecondsSinceEpoch, fin.millisecondsSinceEpoch);
     final pe = await _bd.contarPiezasPorEstado();
     final tc = await _bd.ultimaTemperaturaPorCava();
     final ev = await _bd.eventosPendientesHoy();
     if (!mounted) return;
     setState(() {
-      _partidasHoy = p.length; _litrosHoy = l; _piezasPorEstado = pe;
+      _partidasHoy = p.length;
+      _litrosHoy = l;
+      _piezasPorEstado = pe;
       _tempCavas = tc;
       _pendientes = ev;
     });
   }
 
+  String get _fechaDeHoy {
+    final texto =
+        DateFormat.MMMMEEEEd(localeFechasQuesera()).format(DateTime.now());
+    return texto.isEmpty ? texto : texto[0].toUpperCase() + texto.substring(1);
+  }
+
+  void _registrarPartida() async {
+    await Navigator.push(
+        context, MaterialPageRoute(builder: (_) => PantallaNuevaPartida()));
+    _recargar();
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colores = context.coloresSolera;
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.tf('ques.hoy_fecha', {'fecha': _formatter.format(DateTime.now())})), backgroundColor: theme.colorScheme.surface),
-      body: RefreshIndicator(onRefresh: _recargar, child: ListView(padding: const EdgeInsets.all(16), children: [
-        // Aviso de versión nueva: si no la hay, no ocupa sitio.
-        AvisoActualizaciones(
-          config: configActualizacionesMonorepo('solera-quesera'),
-          nombreApp: 'Larrea Quesera',
-          margen: const EdgeInsets.only(bottom: 12),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _registrarPartida,
+        icon: const Icon(Icons.add),
+        label: Text(SoleraL10n.t('registrar_partida_de_leche')),
+      ),
+      body: RefreshIndicator(
+        onRefresh: _recargar,
+        edgeOffset: MediaQuery.paddingOf(context).top,
+        child: ListView(
+          padding:
+              rellenoInferiorSeguro(context, const EdgeInsets.only(bottom: 96)),
+          children: [
+            CabeceraHoySolera(
+              titulo: SoleraL10n.t('ques.hoy'),
+              fecha: _fechaDeHoy,
+              cifras: [
+                CifraCabecera(
+                  valor: '$_partidasHoy',
+                  etiqueta: SoleraL10n.t('ques.partidas_de_leche_hoy'),
+                  detalle: SoleraL10n.tf('ques.litros_n',
+                      {'n': formatearNumero(_litrosHoy, decimales: 1)}),
+                ),
+                CifraCabecera(
+                  valor: '${_piezasPorEstado['afinando'] ?? 0}',
+                  etiqueta: SoleraL10n.t('ques.estado_afinando'),
+                ),
+                CifraCabecera(
+                  valor: '${_piezasPorEstado['lista'] ?? 0}',
+                  etiqueta: SoleraL10n.t('ques.listas_para_vender'),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  // Aviso de versión nueva: si no la hay, no ocupa sitio.
+                  AvisoActualizaciones(
+                    config: configActualizacionesMonorepo('solera-quesera'),
+                    nombreApp: 'Larrea Quesera',
+                    margen: const EdgeInsets.only(bottom: 4),
+                  ),
+                  if (_pendientes.isNotEmpty) ...[
+                    TituloBloqueSolera(SoleraL10n.t('pendientes_hoy')),
+                    Card(
+                      child: Column(children: [
+                        for (final pendiente in _pendientes)
+                          ListTile(
+                            leading: Icon(Icons.notifications_active_outlined,
+                                color: colores.pendiente),
+                            title: Text(SoleraL10n.tf('ques.evento_de_pieza', {
+                              'evento': textoTipoEventoCuracion(pendiente.tipo),
+                              'pieza': pendiente.piezaId,
+                            })),
+                            trailing: Text(
+                                DateFormat('HH:mm').format(
+                                    DateTime.fromMillisecondsSinceEpoch(
+                                        pendiente.fechaMs)),
+                                style: theme.textTheme.bodySmall),
+                          ),
+                      ]),
+                    ),
+                  ],
+                  if (_pendientes.isEmpty && _tempCavas.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 32),
+                      child: Column(children: [
+                        Icon(Icons.task_alt, size: 40, color: colores.hecho),
+                        const SizedBox(height: 8),
+                        Text(SoleraL10n.t('ques.hoy_nada_pendiente'),
+                            textAlign: TextAlign.center,
+                            style: theme.textTheme.bodyLarge?.copyWith(
+                                color: theme.colorScheme.onSurfaceVariant)),
+                      ]),
+                    ),
+                  if (_tempCavas.isNotEmpty) ...[
+                    TituloBloqueSolera(SoleraL10n.t('estado_de_cavas')),
+                    Card(
+                      child: Column(children: [
+                        for (final cava in _tempCavas.entries)
+                          ListTile(
+                            leading: const Icon(Icons.thermostat),
+                            title: Text(cava.key),
+                            trailing: Text(
+                                textoTemperaturaHumedad(cava.value.temperatura,
+                                    cava.value.humedadRelativa),
+                                style: theme.textTheme.titleSmall),
+                          ),
+                      ]),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ],
         ),
-        TarjetaResumen(titulo: SoleraL10n.t('ques.partidas_de_leche_hoy'), valor: '$_partidasHoy', subtitulo: SoleraL10n.tf('ques.litros_n', {'n': formatearNumero(_litrosHoy, decimales: 1)}), icono: Icons.water_drop, color: theme.colorScheme.primary),
-        SizedBox(height: 12),
-        if (_tempCavas.isNotEmpty) ...[
-          Text(SoleraL10n.t('estado_de_cavas'), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          ..._tempCavas.entries.map((e) => Card(child: ListTile(leading: Icon(Icons.thermostat), title: Text(e.key), trailing: Text(textoTemperaturaHumedad(e.value.temperatura, e.value.humedadRelativa), style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold))))),
-          SizedBox(height: 16),
-        ],
-        Text(SoleraL10n.t('inventario_de_cava'), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-        SizedBox(height: 8),
-        TarjetaResumen(titulo: SoleraL10n.t('ques.estado_afinando'), valor: '${_piezasPorEstado['afinando'] ?? 0}', icono: Icons.schedule, color: Colors.orange),
-        SizedBox(height: 8),
-        TarjetaResumen(titulo: SoleraL10n.t('ques.listas_para_vender'), valor: '${_piezasPorEstado['lista'] ?? 0}', icono: Icons.check_circle, color: Colors.green),
-        SizedBox(height: 16),
-        if (_pendientes.isNotEmpty) ...[
-          Text(SoleraL10n.t('pendientes_hoy'), style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold)),
-          SizedBox(height: 8),
-          ..._pendientes.map((p) => Card(child: ListTile(leading: Icon(Icons.notifications_active, color: Colors.orange), title: Text(SoleraL10n.tf('ques.evento_de_pieza', {'evento': textoTipoEventoCuracion(p.tipo), 'pieza': p.piezaId})), trailing: Text(DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(p.fechaMs)), style: theme.textTheme.bodySmall)))),
-          SizedBox(height: 16),
-        ],
-        SizedBox(width: double.infinity, child: FilledButton.icon(onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => PantallaNuevaPartida())), icon: Icon(Icons.add), label: Text(SoleraL10n.t('registrar_partida_de_leche')))),
-      ])),
+      ),
     );
   }
 }
-

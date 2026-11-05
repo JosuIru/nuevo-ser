@@ -39,7 +39,10 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(SoleraL10n.t('nueva_partida_de_leche'))),
-    body: Form(key: _fk, child: ListView(padding: const EdgeInsets.all(16), children: [
+    bottomNavigationBar: BarraGuardarSolera(botones: [
+      FilledButton(onPressed: _guardando ? null : _guardar, child: textoOGuardando(SoleraL10n.t('guardar_partida'), guardando: _guardando)),
+    ]),
+    body: Form(key: _fk, child: CuerpoResponsivoSolera(child: ListView(padding: const EdgeInsets.all(16), children: [
       DropdownButtonFormField<int>(decoration: InputDecoration(labelText: SoleraL10n.t('proveedor'), border: const OutlineInputBorder()), items: _proveedores.map((p) => DropdownMenuItem<int>(value: p.id as int, child: Text(p.nombre as String))).toList(), onChanged: (id) => _proveedorId = id, validator: (v) => v == null ? SoleraL10n.t('ques.requerido') : null),
       const SizedBox(height: 12),
       TextFormField(controller: _volC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.volumen_litros'), border: const OutlineInputBorder(), suffixText: 'L'), keyboardType: TextInputType.number, validator: (v) => (v == null || v.trim().isEmpty) ? SoleraL10n.t('ques.requerido') : validarNumeroOpcional(v, nullSiAmbiguo: true)),
@@ -51,8 +54,6 @@ class _PantallaNuevaPartidaState extends State<PantallaNuevaPartida> {
       CheckboxListTile(title: Text(SoleraL10n.t('antibioticos_positivos')), value: _antib, onChanged: (v) => setState(() => _antib = v ?? false)),
       const SizedBox(height: 12),
       TextFormField(controller: _notasC, decoration: InputDecoration(labelText: SoleraL10n.t('ques.notas'), border: const OutlineInputBorder()), maxLines: 3),
-      const SizedBox(height: 24),
-      FilledButton(onPressed: _guardando ? null : _guardar, child: _guardando ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2)) : Text(SoleraL10n.t('guardar_partida'))),
-    ])),
+    ]))),
   );
 }

@@ -46,7 +46,9 @@ class PestanaDebate extends StatelessWidget {
                 ],
               ),
             )),
-          if (estado.soyMesa)
+          // Con el acta firmada (aunque sea por una persona) el resumen
+          // queda quieto.
+          if (estado.soyMesa && !estado.acta(asunto.uid).tieneFirmas)
             Align(
               alignment: Alignment.centerLeft,
               child: TextButton.icon(

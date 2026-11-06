@@ -12,8 +12,8 @@ void main() {
     expect(acta.definitiva, isFalse);
     expect(acta.compromisosAlFirmarUids, isNull);
     expect(
-      () => acta.firmar(
-          personaUid: 'ane', ahora: _ahora, compromisosUids: const []),
+      () => acta
+          .firmar(personaUid: 'ane', ahora: _ahora, compromisosUids: const []),
       throwsStateError,
     );
     acta = acta.firmar(
@@ -23,17 +23,17 @@ void main() {
   });
 
   test('una firma se retira mientras falte la otra, no después', () {
-    final unaFirma = const Acta(asuntoUid: 'txoko').firmar(
-        personaUid: 'ane', ahora: _ahora, compromisosUids: const []);
+    final unaFirma = const Acta(asuntoUid: 'txoko')
+        .firmar(personaUid: 'ane', ahora: _ahora, compromisosUids: const []);
     expect(unaFirma.retirarFirma('ane').tieneFirmas, isFalse);
     expect(() => unaFirma.retirarFirma('mikel'), throwsStateError);
 
-    final firmada = unaFirma.firmar(
-        personaUid: 'mikel', ahora: _ahora, compromisosUids: const []);
+    final firmada = unaFirma
+        .firmar(personaUid: 'mikel', ahora: _ahora, compromisosUids: const []);
     expect(() => firmada.retirarFirma('ane'), throwsStateError);
     expect(
-      () => firmada.firmar(
-          personaUid: 'iker', ahora: _ahora, compromisosUids: const []),
+      () => firmada
+          .firmar(personaUid: 'iker', ahora: _ahora, compromisosUids: const []),
       throwsStateError,
     );
   });

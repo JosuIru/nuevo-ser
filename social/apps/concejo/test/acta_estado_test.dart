@@ -15,8 +15,7 @@ void main() {
     final acta = estado.acta('txoko');
     expect(acta.definitiva, isTrue);
     expect(acta.firmas.map((f) => f.personaUid), ['ane', 'mikel']);
-    expect(estado.compromisosDelActa('txoko').map((c) => c.uid),
-        ['c1', 'c2']);
+    expect(estado.compromisosDelActa('txoko').map((c) => c.uid), ['c1', 'c2']);
 
     // Lo que se apunta después va a «¿Se ha hecho?», no al acta firmada.
     estado.anadirCompromiso(
@@ -46,14 +45,14 @@ void main() {
           segundaFirmaUid: 'mikel',
         );
     expect(conteo, throwsStateError);
-    expect(() => estado.resumirDebate('txoko', 'Otro resumen'),
-        throwsStateError);
+    expect(
+        () => estado.resumirDebate('txoko', 'Otro resumen'), throwsStateError);
 
     estado.retirarFirmaActa('txoko');
     expect(estado.acta('txoko').tieneFirmas, isFalse);
     final conteosAntes = estado.urna('txoko').conteosPresenciales.length;
     conteo();
-    expect(estado.urna('txoko').conteosPresenciales,
-        hasLength(conteosAntes + 1));
+    expect(
+        estado.urna('txoko').conteosPresenciales, hasLength(conteosAntes + 1));
   });
 }

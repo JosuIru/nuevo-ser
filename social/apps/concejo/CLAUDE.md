@@ -16,7 +16,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 | F1C-2 | Interfaz: lista por fases, ficha (información, debate, decidir, resultado) y «¿Se ha hecho?», con datos de ejemplo | ✅ |
 | F1C-3 | Herramientas de la mesa: crear, editar, abrir y borrar borradores (con lo que falta para abrir a la vista); publicar o retirar aportaciones con motivo (queda el hueco); resumen del debate; integrar objeciones o declarar que no lo son, retirar la propia y cerrar vueltas; apuntar compromisos y marcarlos (en marcha, hecho, no se hará con motivo) | ✅ |
 | F1C-4 | Canal en papel: hoja del asunto (tablón), papeletas para recortar (u hoja de objeciones) y hoja de recuento en PDF (`lib/documentos/`, letra del core); pantalla «Votos en persona» para anotar a quien vota en papel, dar de alta a quien no está y pasar el conteo firmado por dos de la mesa; la mesa recoge aportaciones y objeciones dichas en persona. El «modo asamblea» a mano alzada es esa misma pantalla | ✅ |
-| F1C-5 | Acta en PDF con marca BORRADOR hasta que la firme la mesa | ⏳ |
+| F1C-5 | Acta en PDF con marca BORRADOR hasta que la firme la mesa | ✅ |
 | F1C-6 | Persistencia local y servidor: plugin de WordPress del propio pueblo (base común extraída de Zunbeltz), altas con código en papel, sincronización | ⏳ |
 | F1C-7 | Avisos mínimos y correo semanal | ⏳ |
 | F1C-8 | APK de release y pueblo piloto | ⏳ |
@@ -34,7 +34,8 @@ lib/
     debate.dart            aportaciones en 4 columnas, un nivel de respuestas, anónimas moderadas
     compromiso.dart        qué/quién/cuándo y balance para «¿Se ha hecho?»
     persona.dart           roles rotativos con fecha de fin
-  documentos/   PDF del canal en papel (hoja del asunto, papeletas, recuento)
+    acta.dart              firmas del acta (dos de la mesa) y compromisos fijados al firmar
+  documentos/   PDF: canal en papel (hoja del asunto, papeletas, recuento) y acta
   estado/       EstadoConcejo (ChangeNotifier en memoria) y el pueblo de ejemplo
   pantallas/    interfaz
   l10n/         ARB es/eu y código generado (`flutter gen-l10n`)
@@ -65,6 +66,10 @@ lib/
 - **Anónimas**: la mesa tampoco ve el nombre en pantalla, aunque se guarda para evitar abusos.
 - **Plazo**: se vota (en la app o anotando en persona) solo en fase de decisión; el conteo de las papeletas en papel se puede pasar también después del cierre, porque se cuentan al cerrar.
 - **Conteo**: lo firman la persona de la mesa que lo pasa y otra persona de la mesa distinta. Si las papeletas contadas no cuadran con las personas anotadas, se avisa pero no se bloquea: queda a la vista para el acta.
+- **Acta**: es borrador (marca BORRADOR en cada página y aviso arriba) hasta que la firman **dos personas distintas de la mesa**, y solo se firma con el asunto decidido: acabado el plazo y, en consentimiento, con la vuelta cerrada. Cualquiera la descarga, también en borrador.
+  - **Con una firma puesta, lo que recoge queda quieto**: no se pasan más conteos, no se cambia el resumen del debate ni se cierran vueltas. Para corregir, quien firmó retira su firma; con las dos, ya no se toca.
+  - Los **compromisos** del acta se fijan al firmarla; los que se apunten después siguen en «¿Se ha hecho?» sin cambiar el acta.
+  - El resultado sale en una tabla **app / papel / total** por opción, para rehacerlo a mano, con los conteos firmados y el aviso si no cuadran. Las fechas llevan año.
 - **Recoger en persona**: lo que la mesa apunta en nombre de alguien queda con el nombre de esa persona. Pendiente decidir con el piloto si además debe constar «recogido por la mesa».
 
 ## Pendiente de revisar

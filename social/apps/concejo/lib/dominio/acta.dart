@@ -66,8 +66,8 @@ class Acta {
     if (!firmadaPor(personaUid)) throw StateError('No la habías firmado');
     return Acta(
       asuntoUid: asuntoUid,
-      firmas: List.unmodifiable(
-          firmas.where((f) => f.personaUid != personaUid)),
+      firmas:
+          List.unmodifiable(firmas.where((f) => f.personaUid != personaUid)),
     );
   }
 }

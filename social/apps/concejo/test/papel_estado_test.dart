@@ -78,4 +78,18 @@ void main() {
       throwsStateError,
     );
   });
+
+  test('una papeleta con opciones que no son del asunto no vale', () {
+    final estado = estadoDeEjemplo(hoy: _hoy)..verComo('maite');
+    expect(
+        () => estado.votar('fiestas', {votoSi, votoNo}), throwsArgumentError);
+    expect(() => estado.votar('fiestas', {'quizas'}), throwsArgumentError);
+    expect(estado.heVotado('fiestas'), isFalse);
+  });
+
+  test('con el asunto cerrado ya no se aporta ni se objeta', () {
+    final estado = estadoDeEjemplo(hoy: _hoy);
+    expect(() => estado.aportar('txoko', TipoAportacion.aFavor, 'Tarde'),
+        throwsStateError);
+  });
 }

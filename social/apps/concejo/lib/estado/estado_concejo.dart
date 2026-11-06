@@ -102,6 +102,14 @@ class EstadoConcejo extends ChangeNotifier {
   bool heVotado(String asuntoUid) =>
       urna(asuntoUid).haParticipado(personaActual.uid);
 
+  /// Se debate y se objeta mientras el asunto está abierto y sin cerrar.
+  void _soloConDebateAbierto(String asuntoUid) {
+    final fase = asunto(asuntoUid).faseEn(ahora);
+    if (fase != FaseAsunto.debate && fase != FaseAsunto.decision) {
+      throw StateError('El debate de este asunto está cerrado');
+    }
+  }
+
   void _soloEnDecision(String asuntoUid) {
     if (asunto(asuntoUid).faseEn(ahora) != FaseAsunto.decision) {
       throw StateError('Fuera del plazo de decisión');
@@ -111,6 +119,9 @@ class EstadoConcejo extends ChangeNotifier {
   Null _votar(String asuntoUid, Set<String> opcionesMarcadas) {
     _soloEnDecision(asuntoUid);
     final reglas = asunto(asuntoUid).reglas;
+    if (!reglas.marcasValidas(opcionesMarcadas)) {
+      throw ArgumentError('Papeleta no válida para este asunto');
+    }
     _urnas[asuntoUid] = urna(asuntoUid).votarEnLaApp(
       personaUid: personaActual.uid,
       opcionesMarcadas: opcionesMarcadas,
@@ -131,6 +142,7 @@ class EstadoConcejo extends ChangeNotifier {
     String? enNombreDeUid,
   }) {
     if (enNombreDeUid != null) _soloMesa();
+    _soloConDebateAbierto(asuntoUid);
     _debates[asuntoUid] = debate(asuntoUid).aportar(Aportacion(
       uid: uid,
       asuntoUid: asuntoUid,
@@ -146,6 +158,7 @@ class EstadoConcejo extends ChangeNotifier {
   Null _objetar(String uid, String asuntoUid, String motivo,
       {String? enNombreDeUid}) {
     if (enNombreDeUid != null) _soloMesa();
+    _soloConDebateAbierto(asuntoUid);
     _consentimientos[asuntoUid] = consentimiento(asuntoUid).objetar(
       uid: uid,
       autorUid: enNombreDeUid ?? personaActual.uid,

@@ -79,6 +79,17 @@ class ReglasDecision {
 
   bool get esSecreta => secreta && forma != FormaDecision.consentimiento;
 
+  /// ¿Vale esta papeleta? En votación, una sola marca entre sí, no y
+  /// abstención; en el resto, cualquier grupo de opciones del asunto (o
+  /// ninguna: voto en blanco). En presupuesto se puede pasar de la bolsa:
+  /// el recuento mete las propuestas por apoyos mientras quepan.
+  bool marcasValidas(Set<String> marcadas) => switch (forma) {
+        FormaDecision.votacion => marcadas.length == 1 &&
+            const {'si', 'no', 'abstencion'}.contains(marcadas.single),
+        FormaDecision.consentimiento => false,
+        _ => marcadas.every((id) => opciones.any((opcion) => opcion.id == id)),
+      };
+
   List<ProblemaAsunto> problemas() {
     final ids = opciones.map((opcion) => opcion.id).toList();
     return [

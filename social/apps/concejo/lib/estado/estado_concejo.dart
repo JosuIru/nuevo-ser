@@ -5,7 +5,9 @@ library;
 
 import 'package:flutter/foundation.dart';
 
+import '../dominio/acta.dart';
 import '../dominio/asunto.dart';
+import '../dominio/reglas_decision.dart';
 import '../dominio/compromiso.dart';
 import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
@@ -22,6 +24,7 @@ class EstadoConcejo extends ChangeNotifier {
     Map<String, Debate> debates = const {},
     Map<String, EstadoConsentimiento> consentimientos = const {},
     List<Compromiso> compromisos = const [],
+    Map<String, Acta> actas = const {},
     DateTime Function()? reloj,
   })  : _personaActual = personaActual,
         _personas = [...personas],
@@ -30,6 +33,7 @@ class EstadoConcejo extends ChangeNotifier {
         _debates = {...debates},
         _consentimientos = {...consentimientos},
         _compromisos = [...compromisos],
+        _actas = {...actas},
         _reloj = reloj ?? DateTime.now;
 
   final String nombreEspacio;
@@ -40,6 +44,7 @@ class EstadoConcejo extends ChangeNotifier {
   final Map<String, Debate> _debates;
   final Map<String, EstadoConsentimiento> _consentimientos;
   final List<Compromiso> _compromisos;
+  final Map<String, Acta> _actas;
   final DateTime Function() _reloj;
   var _contadorUid = 0;
 
@@ -226,6 +231,7 @@ class EstadoConcejo extends ChangeNotifier {
 
   void resumirDebate(String asuntoUid, String resumen) {
     _soloMesa();
+    _sinFirmasEnElActa(asuntoUid);
     _debates[asuntoUid] = debate(asuntoUid).conResumen(resumen);
     notifyListeners();
   }
@@ -251,6 +257,7 @@ class EstadoConcejo extends ChangeNotifier {
 
   DesenlaceConsentimiento cerrarRondaConsentimiento(String asuntoUid) {
     _soloMesa();
+    _sinFirmasEnElActa(asuntoUid);
     final cierre = consentimiento(asuntoUid).cerrarRonda();
     _consentimientos[asuntoUid] = cierre.estado;
     notifyListeners();
@@ -334,6 +341,7 @@ class EstadoConcejo extends ChangeNotifier {
     if (fase != FaseAsunto.decision && fase != FaseAsunto.seguimiento) {
       throw StateError('Aún no se puede votar');
     }
+    _sinFirmasEnElActa(asuntoUid);
     if (!otrasPersonasDeLaMesa().any((p) => p.uid == segundaFirmaUid)) {
       throw StateError('El conteo lo firma otra persona de la mesa');
     }
@@ -347,5 +355,55 @@ class EstadoConcejo extends ChangeNotifier {
       firmadoPorUids: [personaActual.uid, segundaFirmaUid],
     ));
     notifyListeners();
+  }
+
+  // ---------------------------------------------------------------- acta
+
+  Acta acta(String asuntoUid) =>
+      _actas[asuntoUid] ?? Acta(asuntoUid: asuntoUid);
+
+  /// Se firma cuando el asunto está decidido: acabado el plazo y, en
+  /// consentimiento, con la ronda cerrada.
+  bool actaLista(String asuntoUid) {
+    final asuntoActa = asunto(asuntoUid);
+    if (asuntoActa.faseEn(ahora) != FaseAsunto.seguimiento) return false;
+    return asuntoActa.reglas.forma != FormaDecision.consentimiento ||
+        consentimiento(asuntoUid).decidido;
+  }
+
+  /// Los compromisos que recoge el acta: los fijados al firmarla o, si aún
+  /// es borrador, los de ahora.
+  List<Compromiso> compromisosDelActa(String asuntoUid) {
+    final fijados = acta(asuntoUid).compromisosAlFirmarUids;
+    final todos = compromisosDe(asuntoUid);
+    return fijados == null
+        ? todos
+        : todos.where((c) => fijados.contains(c.uid)).toList();
+  }
+
+  void firmarActa(String asuntoUid) {
+    _soloMesa();
+    if (!actaLista(asuntoUid)) {
+      throw StateError('El acta se firma con el asunto decidido');
+    }
+    _actas[asuntoUid] = acta(asuntoUid).firmar(
+      personaUid: personaActual.uid,
+      ahora: ahora,
+      compromisosUids: [for (final c in compromisosDe(asuntoUid)) c.uid],
+    );
+    notifyListeners();
+  }
+
+  void retirarFirmaActa(String asuntoUid) {
+    _soloMesa();
+    _actas[asuntoUid] = acta(asuntoUid).retirarFirma(personaActual.uid);
+    notifyListeners();
+  }
+
+  /// Lo que recoge el acta no cambia una vez que alguien la ha firmado.
+  void _sinFirmasEnElActa(String asuntoUid) {
+    if (acta(asuntoUid).tieneFirmas) {
+      throw StateError('El acta ya tiene firmas: retírala para corregir');
+    }
   }
 }

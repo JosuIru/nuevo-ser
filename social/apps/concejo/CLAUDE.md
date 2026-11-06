@@ -8,7 +8,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 
 ## Estado
 
-**v0.1.0 (2026-11-06): bloques F1C-1 a F1C-4.** Funciona en memoria con un pueblo de ejemplo; el menú de la barra superior (icono de cambiar de cuenta) deja verla como vecina o como mesa. Todavía no hay servidor ni persistencia. 67 tests verdes, analyze limpio, build web OK.
+**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-6.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 92 tests de Flutter y 96 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
 
 | Bloque | Contenido | Estado |
 |---|---|---|
@@ -17,7 +17,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 | F1C-3 | Herramientas de la mesa: crear, editar, abrir y borrar borradores (con lo que falta para abrir a la vista); publicar o retirar aportaciones con motivo (queda el hueco); resumen del debate; integrar objeciones o declarar que no lo son, retirar la propia y cerrar vueltas; apuntar compromisos y marcarlos (en marcha, hecho, no se hará con motivo) | ✅ |
 | F1C-4 | Canal en papel: hoja del asunto (tablón), papeletas para recortar (u hoja de objeciones) y hoja de recuento en PDF (`lib/documentos/`, letra del core); pantalla «Votos en persona» para anotar a quien vota en papel, dar de alta a quien no está y pasar el conteo firmado por dos de la mesa; la mesa recoge aportaciones y objeciones dichas en persona. El «modo asamblea» a mano alzada es esa misma pantalla | ✅ |
 | F1C-5 | Acta en PDF con marca BORRADOR hasta que la firme la mesa | ✅ |
-| F1C-6 | Persistencia local y servidor: plugin de WordPress del propio pueblo (base común extraída de Zunbeltz), altas con código en papel, sincronización | ⏳ |
+| F1C-6 | Servidor y sincronización: plugin de WordPress **aparte** (`social/wp-plugin/concejo/`, sin tocar Zunbeltz), reglas repetidas en PHP con test de paridad, cola de acciones sin red, entrar con código en papel, la mesa saca códigos e imprime la hoja | ✅ |
 | F1C-7 | Avisos mínimos y correo semanal | ⏳ |
 | F1C-8 | APK de release y pueblo piloto | ⏳ |
 
@@ -36,16 +36,31 @@ lib/
     persona.dart           roles rotativos con fecha de fin
     acta.dart              firmas del acta (dos de la mesa) y compromisos fijados al firmar
   documentos/   PDF: canal en papel (hoja del asunto, papeletas, recuento) y acta
-  estado/       EstadoConcejo (ChangeNotifier en memoria) y el pueblo de ejemplo
+  datos/        el estado en JSON (caché y servidor)
+  estado/       EstadoConcejo, las acciones (AccionConcejo) y el pueblo de ejemplo
+  servidor/     cliente HTTP, sincronizador (cola sin red) y almacén local
   pantallas/    interfaz
   l10n/         ARB es/eu y código generado (`flutter gen-l10n`)
 ```
 
-**`EstadoConcejo` es la costura**: las pantallas solo hablan con esa clase. En F1C-6 se le pone detrás la persistencia y la sincronización sin tocar las pantallas.
+**`EstadoConcejo` es la costura**: las pantallas solo hablan con esa clase. Cada método que cambia algo genera una `AccionConcejo` (con los uid que crea), la aplica y la avisa por `alHacerAccion`; el `Sincronizador` la encola, la envía y, al bajar el estado, rehace encima las que faltan. El estado se recarga en su sitio (`cargarDesde`).
+
+## Servidor (`social/wp-plugin/concejo/`)
+
+- **Se suben acciones, no entidades**: así el servidor puede guardar la papeleta secreta aparte y dos personas que escriben a la vez no se pisan. Cada acción lleva un uid; el servidor no aplica dos veces la misma (si se corta la red a mitad, se reenvía sin daño).
+- **Las reglas están dos veces** (Dart y PHP). `test/paridad_servidor_test.dart` genera `wp-plugin/concejo/tests/paridad.json` con lo que acepta o rechaza la app y `php tests/test_paridad.php` comprueba que el plugin decide lo mismo. **Si cambias una regla**: cámbiala en los dos lados, regenera con `CONCEJO_REGENERAR=1 flutter test test/paridad_servidor_test.dart` y pasa los tests de PHP. El primer pase destapó tres fallos de la app.
+- **Lo que ve cada persona** lo filtra el servidor (`includes/vista.php`): borradores solo la mesa; anónimas sin autor para todos menos quien la escribió; de las retiradas, el hueco sin el texto; papeletas solo al cerrar la votación.
+- **Papeleta secreta en el servidor: sin persona, sin hora y con clave al azar.** La hora en punto que guarda la app en local bastaría para identificar a quien vota sola en esa hora.
+- **Códigos personales**: 12 caracteres sin los que se confunden, se guarda su huella; son el token de la API (`Authorization: Bearer`). La mesa los saca desde la app (pantalla Personas) o desde Ajustes → Concejo; se enseñan una vez.
+- **Cerrojo**: las acciones se aplican de una en una con `GET_LOCK` de MySQL; en SQLite (que no lo tiene) se sigue sin él.
+- **La app guarda el código en `shared_preferences`** (privado de la app en Android). Pendiente valorar `flutter_secure_storage`.
+- **Los motivos de rechazo del servidor solo están en castellano.**
+
+Probar contra un WordPress: `CONCEJO_SERVIDOR=http://… CONCEJO_CODIGO_MESA=… CONCEJO_CODIGO_VECINA=… flutter test test/servidor/servidor_real_test.dart` (escribe en ese servidor). Cómo montar uno desechable: `social/wp-plugin/concejo/README.md`.
 
 ## Decisiones tomadas en el código (revisables con el piloto)
 
-- **Voto secreto**: la `Participacion` (quién ha votado) y la `Papeleta` (qué se ha votado) no comparten identificador. La papeleta secreta lleva la hora redondeada a la hora en punto y entra **en una posición al azar** de la lista: si fuera al final, la papeleta n.º 5 sería la de la quinta persona en participar. En voto nominal la papeleta sí lleva persona.
+- **Voto secreto**: la `Participacion` (quién ha votado) y la `Papeleta` (qué se ha votado) no comparten identificador. En la app, la papeleta secreta lleva la hora redondeada a la hora en punto (en el servidor, ninguna) y entra **en una posición al azar** de la lista: si fuera al final, la papeleta n.º 5 sería la de la quinta persona en participar. En voto nominal la papeleta sí lleva persona.
 - **Mayorías**:
   - **simple**: síes > noes, sin contar las abstenciones;
   - **absoluta**: síes > la mitad de los emitidos, abstenciones incluidas;

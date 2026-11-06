@@ -960,4 +960,50 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get confirmarSalir =>
       'Irtetean, telefono honetan gordetakoa ezabatzen da, oraindik bidali ez dena ere bai. Irten?';
+
+  @override
+  String get pdfHojaCodigo => 'Zure kodea Concejo-rako';
+
+  @override
+  String pdfHolaPersona(String nombre) {
+    return 'Kaixo, $nombre:';
+  }
+
+  @override
+  String get pdfCodigoTexto =>
+      'Concejo aplikazioarekin herriko gaiak jarraitu, iritzia eman eta etxetik bozkatu dezakezu. Sartzeko, idatzi bi datu hauek:';
+
+  @override
+  String get pdfCodigoGuardalo =>
+      'Kode hau zurea bakarrik da: ez partekatu. Galtzen baduzu, eskatu beste bat mahaiari eta honek ez du gehiago balioko. Papera nahiago baduzu, betiko moduan parte hartzen jarrai dezakezu.';
+
+  @override
+  String get personas => 'Pertsonak';
+
+  @override
+  String get sacarCodigo => 'Kodea atera';
+
+  @override
+  String confirmarSacarCodigo(String nombre) {
+    return 'Kode berri bat egingo da $nombre(r)entzat. Beste bat bazuen, ez du gehiago balioko. Jarraitu?';
+  }
+
+  @override
+  String codigoDe(String nombre) {
+    return '$nombre(r)en kodea';
+  }
+
+  @override
+  String get codigoUnaVez =>
+      'Inprimatu edo idatzi orain: ez da berriro erakutsiko.';
+
+  @override
+  String get imprimirHoja => 'Orria inprimatu';
+
+  @override
+  String get soloConServidor =>
+      'Kodeak herriko zerbitzariak ematen ditu: adibidean ez dago.';
+
+  @override
+  String get darDeAltaPersona => 'Norbait alta eman';
 }

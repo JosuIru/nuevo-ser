@@ -7,6 +7,7 @@ import '../servidor/sincronizador.dart';
 import 'dialogos.dart';
 import 'ficha_asunto.dart';
 import 'formulario_asunto.dart';
+import 'pantalla_personas.dart';
 import 'pantalla_se_ha_hecho.dart';
 import 'textos_dominio.dart';
 
@@ -46,6 +47,15 @@ class _PantallaInicioState extends State<PantallaInicio> {
           appBar: AppBar(
             title: Text(widget.estado.nombreEspacio),
             actions: [
+              if (widget.estado.soyMesa)
+                IconButton(
+                  tooltip: textos.personas,
+                  icon: const Icon(Icons.badge_outlined),
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => PantallaPersonas(
+                        estado: widget.estado, sincronizador: sincronizador),
+                  )),
+                ),
               if (widget.estado.esEjemplo) _MenuVerComo(estado: widget.estado),
               if (widget.estado.esEjemplo && widget.alSalir != null)
                 IconButton(

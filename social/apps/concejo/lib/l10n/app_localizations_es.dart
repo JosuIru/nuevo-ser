@@ -961,4 +961,50 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get confirmarSalir =>
       'Al salir se borra lo guardado en este teléfono, también lo que aún no se haya enviado. ¿Salir?';
+
+  @override
+  String get pdfHojaCodigo => 'Tu código para Concejo';
+
+  @override
+  String pdfHolaPersona(String nombre) {
+    return 'Hola, $nombre:';
+  }
+
+  @override
+  String get pdfCodigoTexto =>
+      'Con la app Concejo puedes seguir los asuntos del pueblo, opinar y votar desde casa. Para entrar, escribe estos dos datos:';
+
+  @override
+  String get pdfCodigoGuardalo =>
+      'Este código es solo tuyo: no lo compartas. Si lo pierdes, pide otro a la mesa y este dejará de valer. Si prefieres el papel, puedes seguir participando como siempre.';
+
+  @override
+  String get personas => 'Personas';
+
+  @override
+  String get sacarCodigo => 'Sacar código';
+
+  @override
+  String confirmarSacarCodigo(String nombre) {
+    return 'Se hará un código nuevo para $nombre. Si tenía otro, deja de valer. ¿Seguir?';
+  }
+
+  @override
+  String codigoDe(String nombre) {
+    return 'Código de $nombre';
+  }
+
+  @override
+  String get codigoUnaVez =>
+      'Imprímelo o apúntalo ahora: no se vuelve a enseñar.';
+
+  @override
+  String get imprimirHoja => 'Imprimir la hoja';
+
+  @override
+  String get soloConServidor =>
+      'Los códigos los da el servidor del pueblo: en el ejemplo no hay.';
+
+  @override
+  String get darDeAltaPersona => 'Dar de alta a alguien';
 }

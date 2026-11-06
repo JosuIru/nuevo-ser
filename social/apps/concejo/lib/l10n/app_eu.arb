@@ -264,5 +264,17 @@
   "entendido": "Ulertuta",
   "sincronizarAhora": "Eguneratu",
   "salir": "Irten",
-  "confirmarSalir": "Irtetean, telefono honetan gordetakoa ezabatzen da, oraindik bidali ez dena ere bai. Irten?"
+  "confirmarSalir": "Irtetean, telefono honetan gordetakoa ezabatzen da, oraindik bidali ez dena ere bai. Irten?",
+  "pdfHojaCodigo": "Zure kodea Concejo-rako",
+  "pdfHolaPersona": "Kaixo, {nombre}:",
+  "pdfCodigoTexto": "Concejo aplikazioarekin herriko gaiak jarraitu, iritzia eman eta etxetik bozkatu dezakezu. Sartzeko, idatzi bi datu hauek:",
+  "pdfCodigoGuardalo": "Kode hau zurea bakarrik da: ez partekatu. Galtzen baduzu, eskatu beste bat mahaiari eta honek ez du gehiago balioko. Papera nahiago baduzu, betiko moduan parte hartzen jarrai dezakezu.",
+  "personas": "Pertsonak",
+  "sacarCodigo": "Kodea atera",
+  "confirmarSacarCodigo": "Kode berri bat egingo da {nombre}(r)entzat. Beste bat bazuen, ez du gehiago balioko. Jarraitu?",
+  "codigoDe": "{nombre}(r)en kodea",
+  "codigoUnaVez": "Inprimatu edo idatzi orain: ez da berriro erakutsiko.",
+  "imprimirHoja": "Orria inprimatu",
+  "soloConServidor": "Kodeak herriko zerbitzariak ematen ditu: adibidean ez dago.",
+  "darDeAltaPersona": "Norbait alta eman"
 }

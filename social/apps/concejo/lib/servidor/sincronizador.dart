@@ -178,6 +178,19 @@ class Sincronizador extends ChangeNotifier {
     estado.cargarDesde(nuevo);
   }
 
+  /// Código nuevo para una persona (lo pide la mesa). Antes se envía la
+  /// cola, por si la persona se acaba de dar de alta sin red.
+  Future<String> nuevoCodigo(String personaUid) async {
+    await sincronizar();
+    return cliente.nuevoCodigo(personaUid);
+  }
+
+  /// La dirección que va en la hoja del código, como la teclearía alguien.
+  String get direccionPueblo => cliente.api
+      .toString()
+      .replaceFirst(RegExp(r'^https://'), '')
+      .replaceFirst(RegExp(r'/wp-json/concejo/v1/$'), '');
+
   /// Salir: se olvida todo lo guardado (también lo que no se ha enviado).
   Future<void> salir() async {
     _envioProgramado?.cancel();

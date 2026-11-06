@@ -331,3 +331,61 @@ Future<Uint8List> hojaDeRecuento({
   ));
   return documento.save();
 }
+
+/// La hoja que la mesa da a cada persona con la dirección del pueblo y su
+/// código personal (`docs/04-concejo.md` §4.1).
+Future<Uint8List> hojaDeCodigo({
+  required String nombreEspacio,
+  required String nombrePersona,
+  required String direccion,
+  required String codigo,
+  required AppLocalizations textos,
+}) async {
+  final documento = pw.Document(theme: await temaPdfSolera());
+  pw.Widget dato(String etiqueta, String valor, double tamano) => pw.Padding(
+        padding: const pw.EdgeInsets.only(bottom: 14),
+        child: pw.Column(
+          crossAxisAlignment: pw.CrossAxisAlignment.start,
+          children: [
+            pw.Text(etiqueta,
+                style: const pw.TextStyle(color: grisPdf, fontSize: 11)),
+            pw.Container(
+              margin: const pw.EdgeInsets.only(top: 4),
+              padding:
+                  const pw.EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: pw.BoxDecoration(
+                border: pw.Border.all(color: verdePdf, width: 1.2),
+                borderRadius: pw.BorderRadius.circular(4),
+              ),
+              child: pw.Text(valor,
+                  style: pw.TextStyle(
+                      fontSize: tamano,
+                      fontWeight: pw.FontWeight.bold,
+                      letterSpacing: tamano > 20 ? 2 : 0)),
+            ),
+          ],
+        ),
+      );
+  documento.addPage(pw.Page(
+    pageFormat: PdfPageFormat.a5,
+    margin: const pw.EdgeInsets.all(32),
+    build: (_) => pw.Column(
+      crossAxisAlignment: pw.CrossAxisAlignment.start,
+      children: [
+        cabeceraPdf(nombreEspacio, textos.pdfHojaCodigo),
+        pw.SizedBox(height: 18),
+        pw.Text(textos.pdfHolaPersona(nombrePersona),
+            style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold)),
+        pw.SizedBox(height: 6),
+        pw.Text(textos.pdfCodigoTexto),
+        pw.SizedBox(height: 16),
+        dato(textos.campoDireccion, direccion, 13),
+        dato(textos.campoCodigo, codigo, 26),
+        pw.Spacer(),
+        pw.Text(textos.pdfCodigoGuardalo,
+            style: const pw.TextStyle(fontSize: 10, color: grisPdf)),
+      ],
+    ),
+  ));
+  return documento.save();
+}

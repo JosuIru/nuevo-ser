@@ -1687,6 +1687,78 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Al salir se borra lo guardado en este teléfono, también lo que aún no se haya enviado. ¿Salir?'**
   String get confirmarSalir;
+
+  /// No description provided for @pdfHojaCodigo.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu código para Concejo'**
+  String get pdfHojaCodigo;
+
+  /// No description provided for @pdfHolaPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Hola, {nombre}:'**
+  String pdfHolaPersona(String nombre);
+
+  /// No description provided for @pdfCodigoTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'Con la app Concejo puedes seguir los asuntos del pueblo, opinar y votar desde casa. Para entrar, escribe estos dos datos:'**
+  String get pdfCodigoTexto;
+
+  /// No description provided for @pdfCodigoGuardalo.
+  ///
+  /// In es, this message translates to:
+  /// **'Este código es solo tuyo: no lo compartas. Si lo pierdes, pide otro a la mesa y este dejará de valer. Si prefieres el papel, puedes seguir participando como siempre.'**
+  String get pdfCodigoGuardalo;
+
+  /// No description provided for @personas.
+  ///
+  /// In es, this message translates to:
+  /// **'Personas'**
+  String get personas;
+
+  /// No description provided for @sacarCodigo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sacar código'**
+  String get sacarCodigo;
+
+  /// No description provided for @confirmarSacarCodigo.
+  ///
+  /// In es, this message translates to:
+  /// **'Se hará un código nuevo para {nombre}. Si tenía otro, deja de valer. ¿Seguir?'**
+  String confirmarSacarCodigo(String nombre);
+
+  /// No description provided for @codigoDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de {nombre}'**
+  String codigoDe(String nombre);
+
+  /// No description provided for @codigoUnaVez.
+  ///
+  /// In es, this message translates to:
+  /// **'Imprímelo o apúntalo ahora: no se vuelve a enseñar.'**
+  String get codigoUnaVez;
+
+  /// No description provided for @imprimirHoja.
+  ///
+  /// In es, this message translates to:
+  /// **'Imprimir la hoja'**
+  String get imprimirHoja;
+
+  /// No description provided for @soloConServidor.
+  ///
+  /// In es, this message translates to:
+  /// **'Los códigos los da el servidor del pueblo: en el ejemplo no hay.'**
+  String get soloConServidor;
+
+  /// No description provided for @darDeAltaPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Dar de alta a alguien'**
+  String get darDeAltaPersona;
 }
 
 class _AppLocalizationsDelegate

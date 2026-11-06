@@ -891,4 +891,74 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get descargarActa => 'Descargar el acta';
+
+  @override
+  String get entrarTitulo => 'Entra en tu concejo';
+
+  @override
+  String get entrarTexto =>
+      'La mesa te ha dado en papel la dirección de tu pueblo y tu código personal.';
+
+  @override
+  String get campoDireccion => 'Dirección del pueblo';
+
+  @override
+  String get campoCodigo => 'Tu código';
+
+  @override
+  String get entrar => 'Entrar';
+
+  @override
+  String get verEjemplo => 'Ver el pueblo de ejemplo';
+
+  @override
+  String get errorCodigo =>
+      'Ese código no vale. Revísalo o pide otro a la mesa.';
+
+  @override
+  String get errorConexion =>
+      'No se llega al servidor. Revisa la dirección y la conexión.';
+
+  @override
+  String get sinConexionAviso =>
+      'Sin conexión: lo que hagas se guarda y se enviará después.';
+
+  @override
+  String pendientesAviso(int cantidad) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad cambios por enviar',
+      one: '1 cambio por enviar',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get codigoCaducadoAviso =>
+      'Tu código ya no vale: pide otro a la mesa.';
+
+  @override
+  String rechazadasAviso(int cantidad, String motivo) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad cambios no se han podido guardar. El último: $motivo',
+      one: 'Un cambio no se ha podido guardar: $motivo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get entendido => 'Entendido';
+
+  @override
+  String get sincronizarAhora => 'Actualizar';
+
+  @override
+  String get salir => 'Salir';
+
+  @override
+  String get confirmarSalir =>
+      'Al salir se borra lo guardado en este teléfono, también lo que aún no se haya enviado. ¿Salir?';
 }

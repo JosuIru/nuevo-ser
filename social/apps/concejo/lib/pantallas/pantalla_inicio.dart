@@ -3,15 +3,22 @@ import 'package:flutter/material.dart';
 import '../dominio/asunto.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
+import '../servidor/sincronizador.dart';
+import 'dialogos.dart';
 import 'ficha_asunto.dart';
 import 'formulario_asunto.dart';
 import 'pantalla_se_ha_hecho.dart';
 import 'textos_dominio.dart';
 
 class PantallaInicio extends StatefulWidget {
-  const PantallaInicio({super.key, required this.estado});
+  const PantallaInicio(
+      {super.key, required this.estado, this.sincronizador, this.alSalir});
 
   final EstadoConcejo estado;
+
+  /// `null` en el pueblo de ejemplo.
+  final Sincronizador? sincronizador;
+  final VoidCallback? alSalir;
 
   @override
   State<PantallaInicio> createState() => _PantallaInicioState();
@@ -23,46 +30,133 @@ class _PantallaInicioState extends State<PantallaInicio> {
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
+    final sincronizador = widget.sincronizador;
     return ListenableBuilder(
-      listenable: widget.estado,
-      builder: (context, _) => Scaffold(
-        appBar: AppBar(
-          title: Text(widget.estado.nombreEspacio),
-          actions: [_MenuVerComo(estado: widget.estado)],
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(32),
-            child: _FranjaEjemplo(texto: textos.ejemploAviso),
-          ),
-        ),
-        body: _pestana == 0
+      listenable: Listenable.merge(
+          [widget.estado, if (sincronizador != null) sincronizador]),
+      builder: (context, _) {
+        final franja = widget.estado.esEjemplo
+            ? textos.ejemploAviso
+            : _avisoConexion(textos, sincronizador);
+        final rechazadas = sincronizador?.rechazadas ?? const [];
+        final cuerpo = _pestana == 0
             ? _ListaAsuntos(estado: widget.estado)
-            : PantallaSeHaHecho(estado: widget.estado),
-        floatingActionButton: _pestana == 0 && widget.estado.soyMesa
-            ? FloatingActionButton.extended(
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                  builder: (_) => FormularioAsunto(estado: widget.estado),
-                )),
-                icon: const Icon(Icons.add),
-                label: Text(textos.nuevoAsunto),
-              )
-            : null,
-        bottomNavigationBar: NavigationBar(
-          selectedIndex: _pestana,
-          onDestinationSelected: (indice) => setState(() => _pestana = indice),
-          destinations: [
-            NavigationDestination(
-              icon: const Icon(Icons.forum_outlined),
-              selectedIcon: const Icon(Icons.forum),
-              label: textos.pestanaAsuntos,
+            : PantallaSeHaHecho(estado: widget.estado);
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.estado.nombreEspacio),
+            actions: [
+              if (widget.estado.esEjemplo) _MenuVerComo(estado: widget.estado),
+              if (widget.estado.esEjemplo && widget.alSalir != null)
+                IconButton(
+                  tooltip: textos.salir,
+                  onPressed: widget.alSalir,
+                  icon: const Icon(Icons.logout),
+                ),
+              if (sincronizador != null)
+                _MenuConexion(
+                    sincronizador: sincronizador, alSalir: widget.alSalir),
+            ],
+            bottom: franja == null
+                ? null
+                : PreferredSize(
+                    preferredSize: const Size.fromHeight(32),
+                    child: _FranjaEjemplo(texto: franja),
+                  ),
+          ),
+          body: Column(children: [
+            if (rechazadas.isNotEmpty)
+              MaterialBanner(
+                content: Text(textos.rechazadasAviso(
+                    rechazadas.length, rechazadas.last.motivo)),
+                actions: [
+                  TextButton(
+                    onPressed: sincronizador!.olvidarRechazadas,
+                    child: Text(textos.entendido),
+                  ),
+                ],
+              ),
+            Expanded(
+              child: sincronizador == null
+                  ? cuerpo
+                  : RefreshIndicator(
+                      onRefresh: sincronizador.sincronizar, child: cuerpo),
             ),
-            NavigationDestination(
-              icon: const Icon(Icons.task_alt_outlined),
-              selectedIcon: const Icon(Icons.task_alt),
-              label: textos.pestanaSeHaHecho,
-            ),
-          ],
-        ),
-      ),
+          ]),
+          floatingActionButton: _pestana == 0 && widget.estado.soyMesa
+              ? FloatingActionButton.extended(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => FormularioAsunto(estado: widget.estado),
+                  )),
+                  icon: const Icon(Icons.add),
+                  label: Text(textos.nuevoAsunto),
+                )
+              : null,
+          bottomNavigationBar: NavigationBar(
+            selectedIndex: _pestana,
+            onDestinationSelected: (indice) =>
+                setState(() => _pestana = indice),
+            destinations: [
+              NavigationDestination(
+                icon: const Icon(Icons.forum_outlined),
+                selectedIcon: const Icon(Icons.forum),
+                label: textos.pestanaAsuntos,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.task_alt_outlined),
+                selectedIcon: const Icon(Icons.task_alt),
+                label: textos.pestanaSeHaHecho,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  /// Lo que hay que saber de la conexión, o nada si todo está al día.
+  String? _avisoConexion(
+      AppLocalizations textos, Sincronizador? sincronizador) {
+    if (sincronizador == null) return null;
+    if (sincronizador.codigoIncorrecto) return textos.codigoCaducadoAviso;
+    if (sincronizador.sinConexion) return textos.sinConexionAviso;
+    if (sincronizador.pendientes > 0) {
+      return textos.pendientesAviso(sincronizador.pendientes);
+    }
+    return null;
+  }
+}
+
+enum _OpcionConexion { actualizar, salir }
+
+class _MenuConexion extends StatelessWidget {
+  const _MenuConexion({required this.sincronizador, this.alSalir});
+
+  final Sincronizador sincronizador;
+  final VoidCallback? alSalir;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    return PopupMenuButton<_OpcionConexion>(
+      onSelected: (opcion) async {
+        switch (opcion) {
+          case _OpcionConexion.actualizar:
+            await sincronizador.sincronizar();
+          case _OpcionConexion.salir:
+            final seguro = await confirmar(context,
+                mensaje: textos.confirmarSalir, accion: textos.salir);
+            if (!seguro) return;
+            await sincronizador.salir();
+            alSalir?.call();
+        }
+      },
+      itemBuilder: (_) => [
+        PopupMenuItem(
+            value: _OpcionConexion.actualizar,
+            child: Text(textos.sincronizarAhora)),
+        PopupMenuItem(value: _OpcionConexion.salir, child: Text(textos.salir)),
+      ],
     );
   }
 }

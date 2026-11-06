@@ -1591,6 +1591,102 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Descargar el acta'**
   String get descargarActa;
+
+  /// No description provided for @entrarTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Entra en tu concejo'**
+  String get entrarTitulo;
+
+  /// No description provided for @entrarTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'La mesa te ha dado en papel la dirección de tu pueblo y tu código personal.'**
+  String get entrarTexto;
+
+  /// No description provided for @campoDireccion.
+  ///
+  /// In es, this message translates to:
+  /// **'Dirección del pueblo'**
+  String get campoDireccion;
+
+  /// No description provided for @campoCodigo.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu código'**
+  String get campoCodigo;
+
+  /// No description provided for @entrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar'**
+  String get entrar;
+
+  /// No description provided for @verEjemplo.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver el pueblo de ejemplo'**
+  String get verEjemplo;
+
+  /// No description provided for @errorCodigo.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese código no vale. Revísalo o pide otro a la mesa.'**
+  String get errorCodigo;
+
+  /// No description provided for @errorConexion.
+  ///
+  /// In es, this message translates to:
+  /// **'No se llega al servidor. Revisa la dirección y la conexión.'**
+  String get errorConexion;
+
+  /// No description provided for @sinConexionAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión: lo que hagas se guarda y se enviará después.'**
+  String get sinConexionAviso;
+
+  /// No description provided for @pendientesAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'{cantidad, plural, =1{1 cambio por enviar} other{{cantidad} cambios por enviar}}'**
+  String pendientesAviso(int cantidad);
+
+  /// No description provided for @codigoCaducadoAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu código ya no vale: pide otro a la mesa.'**
+  String get codigoCaducadoAviso;
+
+  /// No description provided for @rechazadasAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'{cantidad, plural, =1{Un cambio no se ha podido guardar: {motivo}} other{{cantidad} cambios no se han podido guardar. El último: {motivo}}}'**
+  String rechazadasAviso(int cantidad, String motivo);
+
+  /// No description provided for @entendido.
+  ///
+  /// In es, this message translates to:
+  /// **'Entendido'**
+  String get entendido;
+
+  /// No description provided for @sincronizarAhora.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizar'**
+  String get sincronizarAhora;
+
+  /// No description provided for @salir.
+  ///
+  /// In es, this message translates to:
+  /// **'Salir'**
+  String get salir;
+
+  /// No description provided for @confirmarSalir.
+  ///
+  /// In es, this message translates to:
+  /// **'Al salir se borra lo guardado en este teléfono, también lo que aún no se haya enviado. ¿Salir?'**
+  String get confirmarSalir;
 }
 
 class _AppLocalizationsDelegate

@@ -469,5 +469,38 @@
   "confirmarFirmarActa": "Al firmar, el resultado, los conteos y el resumen del debate quedan fijos. ¿Lo has revisado en el PDF?",
   "firmar": "Firmar",
   "retirarFirma": "Retirar mi firma",
-  "descargarActa": "Descargar el acta"
+  "descargarActa": "Descargar el acta",
+  "entrarTitulo": "Entra en tu concejo",
+  "entrarTexto": "La mesa te ha dado en papel la dirección de tu pueblo y tu código personal.",
+  "campoDireccion": "Dirección del pueblo",
+  "campoCodigo": "Tu código",
+  "entrar": "Entrar",
+  "verEjemplo": "Ver el pueblo de ejemplo",
+  "errorCodigo": "Ese código no vale. Revísalo o pide otro a la mesa.",
+  "errorConexion": "No se llega al servidor. Revisa la dirección y la conexión.",
+  "sinConexionAviso": "Sin conexión: lo que hagas se guarda y se enviará después.",
+  "pendientesAviso": "{cantidad, plural, =1{1 cambio por enviar} other{{cantidad} cambios por enviar}}",
+  "@pendientesAviso": {
+    "placeholders": {
+      "cantidad": {
+        "type": "int"
+      }
+    }
+  },
+  "codigoCaducadoAviso": "Tu código ya no vale: pide otro a la mesa.",
+  "rechazadasAviso": "{cantidad, plural, =1{Un cambio no se ha podido guardar: {motivo}} other{{cantidad} cambios no se han podido guardar. El último: {motivo}}}",
+  "@rechazadasAviso": {
+    "placeholders": {
+      "cantidad": {
+        "type": "int"
+      },
+      "motivo": {
+        "type": "String"
+      }
+    }
+  },
+  "entendido": "Entendido",
+  "sincronizarAhora": "Actualizar",
+  "salir": "Salir",
+  "confirmarSalir": "Al salir se borra lo guardado en este teléfono, también lo que aún no se haya enviado. ¿Salir?"
 }

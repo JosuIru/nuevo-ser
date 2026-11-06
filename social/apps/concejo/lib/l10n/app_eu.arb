@@ -248,5 +248,21 @@
   "confirmarFirmarActa": "Sinatzean, emaitza, zenbaketak eta eztabaidaren laburpena finko geratzen dira. PDFan berrikusi duzu?",
   "firmar": "Sinatu",
   "retirarFirma": "Nire sinadura kendu",
-  "descargarActa": "Akta deskargatu"
+  "descargarActa": "Akta deskargatu",
+  "entrarTitulo": "Sartu zure kontzejuan",
+  "entrarTexto": "Mahaiak paperean eman dizu herriaren helbidea eta zure kode pertsonala.",
+  "campoDireccion": "Herriaren helbidea",
+  "campoCodigo": "Zure kodea",
+  "entrar": "Sartu",
+  "verEjemplo": "Adibideko herria ikusi",
+  "errorCodigo": "Kode horrek ez du balio. Berrikusi edo eskatu beste bat mahaiari.",
+  "errorConexion": "Ezin da zerbitzarira iritsi. Berrikusi helbidea eta konexioa.",
+  "sinConexionAviso": "Konexiorik gabe: egiten duzuna gordetzen da eta gero bidaliko da.",
+  "pendientesAviso": "{cantidad, plural, =1{Aldaketa 1 bidaltzeko} other{{cantidad} aldaketa bidaltzeko}}",
+  "codigoCaducadoAviso": "Zure kodeak ez du balio jada: eskatu beste bat mahaiari.",
+  "rechazadasAviso": "{cantidad, plural, =1{Aldaketa bat ezin izan da gorde: {motivo}} other{{cantidad} aldaketa ezin izan dira gorde. Azkena: {motivo}}}",
+  "entendido": "Ulertuta",
+  "sincronizarAhora": "Eguneratu",
+  "salir": "Irten",
+  "confirmarSalir": "Irtetean, telefono honetan gordetakoa ezabatzen da, oraindik bidali ez dena ere bai. Irten?"
 }

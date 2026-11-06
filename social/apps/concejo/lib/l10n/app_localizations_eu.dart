@@ -890,4 +890,74 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get descargarActa => 'Akta deskargatu';
+
+  @override
+  String get entrarTitulo => 'Sartu zure kontzejuan';
+
+  @override
+  String get entrarTexto =>
+      'Mahaiak paperean eman dizu herriaren helbidea eta zure kode pertsonala.';
+
+  @override
+  String get campoDireccion => 'Herriaren helbidea';
+
+  @override
+  String get campoCodigo => 'Zure kodea';
+
+  @override
+  String get entrar => 'Sartu';
+
+  @override
+  String get verEjemplo => 'Adibideko herria ikusi';
+
+  @override
+  String get errorCodigo =>
+      'Kode horrek ez du balio. Berrikusi edo eskatu beste bat mahaiari.';
+
+  @override
+  String get errorConexion =>
+      'Ezin da zerbitzarira iritsi. Berrikusi helbidea eta konexioa.';
+
+  @override
+  String get sinConexionAviso =>
+      'Konexiorik gabe: egiten duzuna gordetzen da eta gero bidaliko da.';
+
+  @override
+  String pendientesAviso(int cantidad) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad aldaketa bidaltzeko',
+      one: 'Aldaketa 1 bidaltzeko',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get codigoCaducadoAviso =>
+      'Zure kodeak ez du balio jada: eskatu beste bat mahaiari.';
+
+  @override
+  String rechazadasAviso(int cantidad, String motivo) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad aldaketa ezin izan dira gorde. Azkena: $motivo',
+      one: 'Aldaketa bat ezin izan da gorde: $motivo',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get entendido => 'Ulertuta';
+
+  @override
+  String get sincronizarAhora => 'Eguneratu';
+
+  @override
+  String get salir => 'Irten';
+
+  @override
+  String get confirmarSalir =>
+      'Irtetean, telefono honetan gordetakoa ezabatzen da, oraindik bidali ez dena ere bai. Irten?';
 }

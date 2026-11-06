@@ -53,6 +53,11 @@ class EstadoConcejo extends ChangeNotifier {
   List<Persona> get personas => List.unmodifiable(_personas);
   List<Asunto> get asuntos => List.unmodifiable(_asuntos);
   List<Compromiso> get compromisos => List.unmodifiable(_compromisos);
+  Map<String, Urna> get urnas => Map.unmodifiable(_urnas);
+  Map<String, Debate> get debates => Map.unmodifiable(_debates);
+  Map<String, EstadoConsentimiento> get consentimientos =>
+      Map.unmodifiable(_consentimientos);
+  Map<String, Acta> get actas => Map.unmodifiable(_actas);
   bool get soyMesa => personaActual.esMesaEn(ahora);
 
   Asunto asunto(String uid) => _asuntos.firstWhere((a) => a.uid == uid);

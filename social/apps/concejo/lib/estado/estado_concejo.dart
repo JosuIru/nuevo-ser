@@ -89,7 +89,14 @@ class EstadoConcejo extends ChangeNotifier {
   bool heVotado(String asuntoUid) =>
       urna(asuntoUid).haParticipado(personaActual.uid);
 
+  void _soloEnDecision(String asuntoUid) {
+    if (asunto(asuntoUid).faseEn(ahora) != FaseAsunto.decision) {
+      throw StateError('Fuera del plazo de decisión');
+    }
+  }
+
   void votar(String asuntoUid, Set<String> opcionesMarcadas) {
+    _soloEnDecision(asuntoUid);
     final reglas = asunto(asuntoUid).reglas;
     _urnas[asuntoUid] = urna(asuntoUid).votarEnLaApp(
       personaUid: personaActual.uid,
@@ -100,17 +107,21 @@ class EstadoConcejo extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// [enNombreDeUid]: la mesa recoge lo que alguien dijo en persona o dejó
+  /// por escrito (canal en papel).
   void aportar(
     String asuntoUid,
     TipoAportacion tipo,
     String texto, {
     String? respondeAUid,
     bool anonima = false,
+    String? enNombreDeUid,
   }) {
+    if (enNombreDeUid != null) _soloMesa();
     _debates[asuntoUid] = debate(asuntoUid).aportar(Aportacion(
       uid: _nuevoUid('ap'),
       asuntoUid: asuntoUid,
-      autorUid: personaActual.uid,
+      autorUid: enNombreDeUid ?? personaActual.uid,
       tipo: tipo,
       texto: texto.trim(),
       creada: ahora,
@@ -120,10 +131,11 @@ class EstadoConcejo extends ChangeNotifier {
     notifyListeners();
   }
 
-  void objetar(String asuntoUid, String motivo) {
+  void objetar(String asuntoUid, String motivo, {String? enNombreDeUid}) {
+    if (enNombreDeUid != null) _soloMesa();
     _consentimientos[asuntoUid] = consentimiento(asuntoUid).objetar(
       uid: _nuevoUid('ob'),
-      autorUid: personaActual.uid,
+      autorUid: enNombreDeUid ?? personaActual.uid,
       motivo: motivo.trim(),
     );
     notifyListeners();
@@ -261,6 +273,78 @@ class EstadoConcejo extends ChangeNotifier {
       que: que.trim(),
       responsable: responsable.trim(),
       fechaLimite: fechaLimite,
+    ));
+    notifyListeners();
+  }
+
+  // --------------------------------------------------- el canal en papel
+
+  /// Personas que aún no han participado en el asunto, por nombre.
+  List<Persona> personasSinParticipar(String asuntoUid) {
+    final urnaAsunto = urna(asuntoUid);
+    return [
+      for (final persona in _personas)
+        if (!urnaAsunto.haParticipado(persona.uid)) persona,
+    ]..sort((a, b) => a.nombre.toLowerCase().compareTo(b.nombre.toLowerCase()));
+  }
+
+  /// Personas que pueden firmar un conteo con la persona actual: la otra
+  /// gente de la mesa en este momento.
+  List<Persona> otrasPersonasDeLaMesa() => [
+        for (final persona in _personas)
+          if (persona.uid != personaActual.uid && persona.esMesaEn(ahora))
+            persona,
+      ];
+
+  /// Alta rápida de alguien que vota en persona y no está en la lista (en
+  /// el servidor, el alta llevará además su código en papel).
+  Persona darDeAlta(String nombre) {
+    _soloMesa();
+    if (nombre.trim().isEmpty) throw ArgumentError('Falta el nombre');
+    final persona = Persona(uid: _nuevoUid('pe'), nombre: nombre.trim());
+    _personas.add(persona);
+    notifyListeners();
+    return persona;
+  }
+
+  /// La mesa apunta que alguien ha votado en papel. Su papeleta entra luego
+  /// en el conteo de la mesa.
+  void anotarVotoPresencial(String asuntoUid, String personaUid) {
+    _soloMesa();
+    _soloEnDecision(asuntoUid);
+    _urnas[asuntoUid] = urna(asuntoUid).anotarVotoPresencial(
+      personaUid: personaUid,
+      mesaUid: personaActual.uid,
+    );
+    notifyListeners();
+  }
+
+  /// El conteo de las papeletas en papel, firmado por la persona actual y
+  /// otra persona de la mesa.
+  void registrarConteoPresencial({
+    required String asuntoUid,
+    required int papeletasTotales,
+    required Map<String, int> marcasPorOpcion,
+    required String segundaFirmaUid,
+  }) {
+    _soloMesa();
+    // Las papeletas en papel se cuentan al cerrar, así que el conteo vale
+    // también cuando ya ha acabado el plazo.
+    final fase = asunto(asuntoUid).faseEn(ahora);
+    if (fase != FaseAsunto.decision && fase != FaseAsunto.seguimiento) {
+      throw StateError('Aún no se puede votar');
+    }
+    if (!otrasPersonasDeLaMesa().any((p) => p.uid == segundaFirmaUid)) {
+      throw StateError('El conteo lo firma otra persona de la mesa');
+    }
+    if (papeletasTotales < 0 || marcasPorOpcion.values.any((n) => n < 0)) {
+      throw ArgumentError('Las cifras no pueden ser negativas');
+    }
+    _urnas[asuntoUid] = urna(asuntoUid).anadirConteoPresencial(ConteoPresencial(
+      asuntoUid: asuntoUid,
+      papeletasTotales: papeletasTotales,
+      marcasPorOpcion: Map.unmodifiable(marcasPorOpcion),
+      firmadoPorUids: [personaActual.uid, segundaFirmaUid],
     ));
     notifyListeners();
   }

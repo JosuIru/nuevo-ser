@@ -14,6 +14,13 @@ dependencies:
     sdk: flutter
   intl: any
 
+  # Canal en papel: hoja del asunto, papeletas y hoja de recuento en PDF.
+  # La letra (Archivo, con «€») viene del core: temaPdfSolera().
+  pdf: ^3.11.1
+  printing: ^5.13.4
+  nuevo_ser_core:
+    path: ../../../packages/nuevo_ser_core
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

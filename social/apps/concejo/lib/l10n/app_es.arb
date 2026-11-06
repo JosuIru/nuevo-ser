@@ -1,0 +1,209 @@
+{
+  "@@locale": "es",
+  "nombreApp": "Concejo",
+  "pestanaAsuntos": "Asuntos",
+  "pestanaSeHaHecho": "¿Se ha hecho?",
+  "faseBorrador": "En preparación",
+  "faseDebate": "En debate",
+  "faseDecision": "Se decide ahora",
+  "faseSeguimiento": "Decidido",
+  "sinAsuntos": "No hay asuntos en esta fase.",
+  "tipoVinculante": "Decide el grupo",
+  "tipoConCompromiso": "Con compromiso previo",
+  "tipoConsultiva": "Consultiva",
+  "explicaVinculante": "Lo que salga lo decide el propio grupo, según sus normas.",
+  "explicaConCompromiso": "El órgano formal se ha comprometido antes a ejecutar lo que salga:",
+  "explicaConsultiva": "Sirve para saber qué piensa la gente. Decide el órgano formal.",
+  "seccionCalendario": "Calendario",
+  "calendarioDebate": "Debate: desde el {fecha}",
+  "@calendarioDebate": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "calendarioDecision": "Decisión: del {desde} al {hasta}",
+  "@calendarioDecision": {
+    "placeholders": {
+      "desde": {
+        "type": "String"
+      },
+      "hasta": {
+        "type": "String"
+      }
+    }
+  },
+  "seccionComoSeDecide": "Cómo se decide",
+  "formaVotacion": "Votación: sí, no o abstención",
+  "formaEleccion": "Elegir entre opciones: marca todas las que aceptas",
+  "formaConsentimiento": "Consentimiento: se aprueba si nadie plantea una objeción razonada",
+  "formaPresupuesto": "Presupuesto: apoya las propuestas que quieras; entran por apoyos mientras haya dinero",
+  "mayoriaSimple": "Mayoría simple (más síes que noes)",
+  "mayoriaAbsoluta": "Mayoría absoluta (más de la mitad de los votos)",
+  "mayoriaDosTercios": "Dos tercios de los síes y noes",
+  "quorum": "Hace falta que participen al menos {cantidad} personas",
+  "@quorum": {
+    "placeholders": {
+      "cantidad": {
+        "type": "int"
+      }
+    }
+  },
+  "sinQuorumRegla": "Sin mínimo de participación",
+  "votoSecreto": "Voto secreto",
+  "votoNominal": "Voto a la vista (se sabe quién vota qué)",
+  "reglasFijas": "Estas reglas se fijaron antes de abrir y no se pueden cambiar.",
+  "seccionEntorno": "Efecto sobre el entorno",
+  "seccionCoste": "Coste",
+  "verTextoCompleto": "Texto completo",
+  "pestanaInformacion": "Información",
+  "pestanaDebate": "Debate",
+  "pestanaDecidir": "Decidir",
+  "pestanaResultado": "Resultado",
+  "columnaAFavor": "A favor",
+  "columnaEnContra": "En contra",
+  "columnaDudas": "Dudas",
+  "columnaCambios": "Propuestas de cambio",
+  "columnaVacia": "Nadie ha escrito aquí todavía.",
+  "vecinaAnonima": "Vecina del pueblo",
+  "aportar": "Aportar",
+  "responder": "Responder",
+  "tuAportacion": "Lo que quieres decir",
+  "tipoDeAportacion": "¿Qué es?",
+  "aportarAnonima": "Sin mi nombre (lo verá la mesa antes de publicarlo)",
+  "publicar": "Publicar",
+  "cancelar": "Cancelar",
+  "debateCerrado": "El debate está cerrado.",
+  "pendienteMesa": "Tu aportación sin nombre espera a que la vea la mesa.",
+  "decisionAunNo": "La decisión se abre el {fecha}. Mientras, puedes participar en el debate.",
+  "@decisionAunNo": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "yaHasVotado": "Ya has participado. Gracias.",
+  "votoSi": "Sí",
+  "votoNo": "No",
+  "votoAbstencion": "Abstención",
+  "enviarVoto": "Enviar mi voto",
+  "confirmarVoto": "¿Envías tu voto? Después no se puede cambiar.",
+  "enviar": "Enviar",
+  "bolsaRestante": "Has elegido {gastado} de {bolsa}. Lo que no quepa no entrará.",
+  "@bolsaRestante": {
+    "placeholders": {
+      "gastado": {
+        "type": "String"
+      },
+      "bolsa": {
+        "type": "String"
+      }
+    }
+  },
+  "votoEnBlanco": "Si no marcas nada, cuenta como voto en blanco.",
+  "rondaConsentimiento": "Vuelta {ronda} de {maximo}",
+  "@rondaConsentimiento": {
+    "placeholders": {
+      "ronda": {
+        "type": "int"
+      },
+      "maximo": {
+        "type": "int"
+      }
+    }
+  },
+  "sinObjeciones": "Por ahora nadie ha planteado objeciones.",
+  "objecionesVivas": "Objeciones por resolver",
+  "objetar": "Plantear una objeción",
+  "queDanoCausa": "¿Qué daño causaría la propuesta?",
+  "objetarNoEsContra": "Objetar no es estar en contra: explica qué daño causaría y, si puedes, cómo evitarlo.",
+  "resultadoAprobada": "Aprobada",
+  "resultadoRechazada": "Rechazada",
+  "resultadoSinQuorum": "No vale: no se llegó al mínimo de participación",
+  "resultadoParticipacion": "Han participado {cantidad} personas",
+  "@resultadoParticipacion": {
+    "placeholders": {
+      "cantidad": {
+        "type": "int"
+      }
+    }
+  },
+  "resultadoEmpate": "Empate: lo resolverá la mesa o una segunda vuelta",
+  "resultadoGanadora": "Más aceptada",
+  "presupuestoEntra": "Entra",
+  "presupuestoNoCabe": "No cabe",
+  "presupuestoSinApoyos": "Sin apoyos",
+  "apoyos": "{cantidad} apoyos",
+  "@apoyos": {
+    "placeholders": {
+      "cantidad": {
+        "type": "int"
+      }
+    }
+  },
+  "sobrante": "Sobran {cantidad}",
+  "@sobrante": {
+    "placeholders": {
+      "cantidad": {
+        "type": "String"
+      }
+    }
+  },
+  "recuentoEnCurso": "El recuento se verá al cerrar la decisión.",
+  "seccionCompromisos": "Compromisos",
+  "sinCompromisos": "Todavía no hay compromisos apuntados.",
+  "compromisoPendiente": "Pendiente",
+  "compromisoEnMarcha": "En marcha",
+  "compromisoHecho": "Hecho",
+  "compromisoNoSeHara": "No se hará",
+  "compromisoVencido": "Fuera de plazo",
+  "compromisoPara": "{responsable} · para el {fecha}",
+  "@compromisoPara": {
+    "placeholders": {
+      "responsable": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "balanceCompromisos": "{hechos} hechos de {total} · {vencidos} fuera de plazo",
+  "@balanceCompromisos": {
+    "placeholders": {
+      "hechos": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "vencidos": {
+        "type": "int"
+      }
+    }
+  },
+  "marcarHecho": "Marcar como hecho",
+  "marcarEnMarcha": "Marcar en marcha",
+  "deAsunto": "De: {titulo}",
+  "@deAsunto": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      }
+    }
+  },
+  "ejemploAviso": "Pueblo de ejemplo: los datos solo están en este dispositivo.",
+  "eresMesa": "Estás en la mesa hasta el {fecha}",
+  "@eresMesa": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "@nombreApp": {
+    "description": "Nombre de la app (provisional)."
+  }
+}

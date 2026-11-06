@@ -26,10 +26,10 @@ $vista = function ( string $persona ) use ( &$estado, &$papeletas, $ahora, $zona
 	);
 };
 
-// La papeleta secreta: sin persona, a la hora en punto, y la participación aparte.
+// La papeleta secreta: sin persona ni hora, y la participación aparte.
 $voto = $aplicar( 'maite', 'votar', array( 'asunto_uid' => 'fiestas', 'opciones' => array( 'si' ) ) );
 comprobar( null === $voto['papeleta']['persona_uid'], 'la papeleta secreta no lleva persona' );
-comprobar( str_ends_with( $voto['papeleta']['hora'], ':00:00.000Z' ), 'la papeleta secreta lleva la hora en punto' );
+comprobar( null === $voto['papeleta']['hora'], 'la papeleta secreta no lleva hora' );
 comprobar( concejo_ha_participado( $estado['urnas']['fiestas'], 'maite' ), 'la participación queda apuntada' );
 $papeletas['fiestas'][] = $voto['papeleta'];
 

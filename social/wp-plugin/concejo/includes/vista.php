@@ -9,7 +9,8 @@
  *   solo a la mesa y a quien la escribió; de las retiradas, fuera de la
  *   mesa, queda el hueco con el motivo y sin el texto.
  * - Las **papeletas** solo salen cuando se ha cerrado la votación, todas a
- *   la vez y barajadas: mientras se vota, nadie (ni la mesa) ve cómo va.
+ *   la vez y ordenadas por contenido (no por llegada): mientras se vota,
+ *   nadie (ni la mesa) ve cómo va.
  * - De las personas, solo nombre, rol y fin de mandato.
  *
  * Función pura: se prueba con `php tests/test_vista.php`.
@@ -70,8 +71,17 @@ function concejo_vista(
 		$urna       = concejo_urna( $estado, $asunto_uid );
 		$papeletas  = array();
 		if ( 'seguimiento' === concejo_fase( $asunto, $ahora, $zona ) ) {
+			// Ordenadas por lo que dicen: el orden no cuenta nada de la
+			// llegada y la vista sale igual en cada petición (su huella no
+			// cambia si nada ha cambiado).
 			$papeletas = array_values( $papeletas_por_asunto[ $asunto_uid ] ?? array() );
-			shuffle( $papeletas );
+			usort(
+				$papeletas,
+				fn( $a, $b ) => strcmp(
+					(string) json_encode( array( $a['opciones'], $a['persona_uid'], $a['hora'] ) ),
+					(string) json_encode( array( $b['opciones'], $b['persona_uid'], $b['hora'] ) )
+				)
+			);
 		}
 		if ( array() === $urna['participaciones'] && array() === $urna['conteos'] && array() === $papeletas ) {
 			continue;

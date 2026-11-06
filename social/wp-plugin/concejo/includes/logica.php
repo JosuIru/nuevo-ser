@@ -259,9 +259,9 @@ function concejo_aplicar_accion( array $estado, array $accion, string $autor_uid
 			$papeleta = array(
 				'asunto_uid' => $asunto_uid,
 				'opciones'   => $marcas,
-				'hora'       => $secreta
-					? $ahora->setTimezone( new DateTimeZone( 'UTC' ) )->format( 'Y-m-d\TH:00:00.000\Z' )
-					: concejo_iso_utc( $ahora ),
+				// Sin hora en el voto secreto: con pocas personas votando, hasta
+				// la hora en punto puede decir de quién es una papeleta.
+				'hora'       => $secreta ? null : concejo_iso_utc( $ahora ),
 				'persona_uid' => $secreta ? null : $autor_uid,
 			);
 			break;

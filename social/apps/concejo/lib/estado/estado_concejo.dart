@@ -1,9 +1,11 @@
-/// Estado de la app en memoria. Es la costura donde entrará la
-/// sincronización con el servidor del pueblo (bloque siguiente): las
-/// pantallas solo hablan con esta clase.
+/// Estado de la app en memoria. Es la costura con la sincronización: las
+/// pantallas solo hablan con esta clase, y cada cambio sale como una
+/// [AccionConcejo] por [alHacerAccion] para la cola de envío.
 library;
 
 import 'package:flutter/foundation.dart';
+
+import '../datos/json_dominio.dart';
 
 import '../dominio/acta.dart';
 import '../dominio/asunto.dart';
@@ -13,6 +15,7 @@ import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/persona.dart';
 import '../dominio/urna.dart';
+import 'accion.dart';
 
 class EstadoConcejo extends ChangeNotifier {
   EstadoConcejo({
@@ -105,7 +108,7 @@ class EstadoConcejo extends ChangeNotifier {
     }
   }
 
-  void votar(String asuntoUid, Set<String> opcionesMarcadas) {
+  Null _votar(String asuntoUid, Set<String> opcionesMarcadas) {
     _soloEnDecision(asuntoUid);
     final reglas = asunto(asuntoUid).reglas;
     _urnas[asuntoUid] = urna(asuntoUid).votarEnLaApp(
@@ -114,12 +117,12 @@ class EstadoConcejo extends ChangeNotifier {
       ahora: ahora,
       secreta: reglas.esSecreta,
     );
-    notifyListeners();
   }
 
   /// [enNombreDeUid]: la mesa recoge lo que alguien dijo en persona o dejó
   /// por escrito (canal en papel).
-  void aportar(
+  Null _aportar(
+    String uid,
     String asuntoUid,
     TipoAportacion tipo,
     String texto, {
@@ -129,7 +132,7 @@ class EstadoConcejo extends ChangeNotifier {
   }) {
     if (enNombreDeUid != null) _soloMesa();
     _debates[asuntoUid] = debate(asuntoUid).aportar(Aportacion(
-      uid: _nuevoUid('ap'),
+      uid: uid,
       asuntoUid: asuntoUid,
       autorUid: enNombreDeUid ?? personaActual.uid,
       tipo: tipo,
@@ -138,20 +141,19 @@ class EstadoConcejo extends ChangeNotifier {
       respondeAUid: respondeAUid,
       anonima: anonima,
     ));
-    notifyListeners();
   }
 
-  void objetar(String asuntoUid, String motivo, {String? enNombreDeUid}) {
+  Null _objetar(String uid, String asuntoUid, String motivo,
+      {String? enNombreDeUid}) {
     if (enNombreDeUid != null) _soloMesa();
     _consentimientos[asuntoUid] = consentimiento(asuntoUid).objetar(
-      uid: _nuevoUid('ob'),
+      uid: uid,
       autorUid: enNombreDeUid ?? personaActual.uid,
       motivo: motivo.trim(),
     );
-    notifyListeners();
   }
 
-  void cambiarEstadoCompromiso(
+  Null _cambiarEstadoCompromiso(
     String compromisoUid,
     EstadoCompromiso nuevo, {
     String nota = '',
@@ -160,7 +162,6 @@ class EstadoConcejo extends ChangeNotifier {
     final indice = _compromisos.indexWhere((c) => c.uid == compromisoUid);
     _compromisos[indice] =
         _compromisos[indice].cambiarEstado(nuevo, nota: nota);
-    notifyListeners();
   }
 
   // ------------------------------------------------------------- la mesa
@@ -178,7 +179,7 @@ class EstadoConcejo extends ChangeNotifier {
   String nuevoUidAsunto() => _nuevoUid('as');
 
   /// Crea o reemplaza un borrador. Un asunto abierto ya no se toca.
-  void guardarBorrador(Asunto borrador) {
+  Null _guardarBorrador(Asunto borrador) {
     _soloMesa();
     if (borrador.abierto) {
       throw StateError('Un borrador no puede venir abierto');
@@ -208,42 +209,37 @@ class EstadoConcejo extends ChangeNotifier {
     } else {
       _asuntos.add(guardado);
     }
-    notifyListeners();
   }
 
   /// Abre el borrador: desde aquí las reglas quedan fijas.
-  void abrirAsunto(String uid) {
+  Null _abrirAsunto(String uid) {
     _soloMesa();
     final indice = _asuntos.indexWhere((a) => a.uid == uid);
     _asuntos[indice] = _asuntos[indice].abrir();
-    notifyListeners();
   }
 
-  void borrarBorrador(String uid) {
+  Null _borrarBorrador(String uid) {
     _soloMesa();
     if (asunto(uid).abierto) throw StateError('Un asunto abierto no se borra');
     _asuntos.removeWhere((a) => a.uid == uid);
-    notifyListeners();
   }
 
-  void moderar(String asuntoUid, String aportacionUid, EstadoModeracion nuevo,
+  Null _moderar(String asuntoUid, String aportacionUid, EstadoModeracion nuevo,
       {String motivo = ''}) {
     _soloMesa();
     _debates[asuntoUid] =
         debate(asuntoUid).moderar(aportacionUid, nuevo, motivo: motivo);
-    notifyListeners();
   }
 
-  void resumirDebate(String asuntoUid, String resumen) {
+  Null _resumirDebate(String asuntoUid, String resumen) {
     _soloMesa();
     _sinFirmasEnElActa(asuntoUid);
     _debates[asuntoUid] = debate(asuntoUid).conResumen(resumen);
-    notifyListeners();
   }
 
   /// Integrar o declarar que no es objeción lo hace la mesa; retirarla, solo
   /// quien la planteó.
-  void resolverObjecion(String asuntoUid, String objecionUid,
+  Null _resolverObjecion(String asuntoUid, String objecionUid,
       EstadoObjecion nuevo, String respuesta) {
     final objecion = consentimiento(asuntoUid)
         .objeciones
@@ -257,19 +253,18 @@ class EstadoConcejo extends ChangeNotifier {
     }
     _consentimientos[asuntoUid] = consentimiento(asuntoUid)
         .resolverObjecion(objecionUid, nuevo, respuesta);
-    notifyListeners();
   }
 
-  DesenlaceConsentimiento cerrarRondaConsentimiento(String asuntoUid) {
+  DesenlaceConsentimiento _cerrarRondaConsentimiento(String asuntoUid) {
     _soloMesa();
     _sinFirmasEnElActa(asuntoUid);
     final cierre = consentimiento(asuntoUid).cerrarRonda();
     _consentimientos[asuntoUid] = cierre.estado;
-    notifyListeners();
     return cierre.desenlace;
   }
 
-  void anadirCompromiso({
+  Null _anadirCompromiso({
+    required String uid,
     required String asuntoUid,
     required String que,
     required String responsable,
@@ -280,13 +275,12 @@ class EstadoConcejo extends ChangeNotifier {
       throw ArgumentError('Un compromiso dice qué y quién');
     }
     _compromisos.add(Compromiso(
-      uid: _nuevoUid('co'),
+      uid: uid,
       asuntoUid: asuntoUid,
       que: que.trim(),
       responsable: responsable.trim(),
       fechaLimite: fechaLimite,
     ));
-    notifyListeners();
   }
 
   // --------------------------------------------------- el canal en papel
@@ -310,30 +304,28 @@ class EstadoConcejo extends ChangeNotifier {
 
   /// Alta rápida de alguien que vota en persona y no está en la lista (en
   /// el servidor, el alta llevará además su código en papel).
-  Persona darDeAlta(String nombre) {
+  Persona _darDeAlta(String uid, String nombre) {
     _soloMesa();
     if (nombre.trim().isEmpty) throw ArgumentError('Falta el nombre');
-    final persona = Persona(uid: _nuevoUid('pe'), nombre: nombre.trim());
+    final persona = Persona(uid: uid, nombre: nombre.trim());
     _personas.add(persona);
-    notifyListeners();
     return persona;
   }
 
   /// La mesa apunta que alguien ha votado en papel. Su papeleta entra luego
   /// en el conteo de la mesa.
-  void anotarVotoPresencial(String asuntoUid, String personaUid) {
+  Null _anotarVotoPresencial(String asuntoUid, String personaUid) {
     _soloMesa();
     _soloEnDecision(asuntoUid);
     _urnas[asuntoUid] = urna(asuntoUid).anotarVotoPresencial(
       personaUid: personaUid,
       mesaUid: personaActual.uid,
     );
-    notifyListeners();
   }
 
   /// El conteo de las papeletas en papel, firmado por la persona actual y
   /// otra persona de la mesa.
-  void registrarConteoPresencial({
+  Null _registrarConteoPresencial({
     required String asuntoUid,
     required int papeletasTotales,
     required Map<String, int> marcasPorOpcion,
@@ -359,7 +351,6 @@ class EstadoConcejo extends ChangeNotifier {
       marcasPorOpcion: Map.unmodifiable(marcasPorOpcion),
       firmadoPorUids: [personaActual.uid, segundaFirmaUid],
     ));
-    notifyListeners();
   }
 
   // ---------------------------------------------------------------- acta
@@ -386,7 +377,7 @@ class EstadoConcejo extends ChangeNotifier {
         : todos.where((c) => fijados.contains(c.uid)).toList();
   }
 
-  void firmarActa(String asuntoUid) {
+  Null _firmarActa(String asuntoUid) {
     _soloMesa();
     if (!actaLista(asuntoUid)) {
       throw StateError('El acta se firma con el asunto decidido');
@@ -396,13 +387,11 @@ class EstadoConcejo extends ChangeNotifier {
       ahora: ahora,
       compromisosUids: [for (final c in compromisosDe(asuntoUid)) c.uid],
     );
-    notifyListeners();
   }
 
-  void retirarFirmaActa(String asuntoUid) {
+  Null _retirarFirmaActa(String asuntoUid) {
     _soloMesa();
     _actas[asuntoUid] = acta(asuntoUid).retirarFirma(personaActual.uid);
-    notifyListeners();
   }
 
   /// Lo que recoge el acta no cambia una vez que alguien la ha firmado.
@@ -411,4 +400,231 @@ class EstadoConcejo extends ChangeNotifier {
       throw StateError('El acta ya tiene firmas: retírala para corregir');
     }
   }
+
+  // ------------------------------------------------------------ acciones
+
+  /// Quien escucha las acciones que hace la persona actual (la cola de
+  /// envío al servidor). Solo salen las que se han aplicado bien.
+  void Function(AccionConcejo accion)? alHacerAccion;
+
+  Object? _hacer(TipoAccion tipo, Json datos) {
+    final accion = AccionConcejo(
+      uid: _nuevoUid('ac'),
+      tipo: tipo,
+      autorUid: personaActual.uid,
+      momento: ahora,
+      datos: datos,
+    );
+    final resultado = _aplicar(accion);
+    notifyListeners();
+    alHacerAccion?.call(accion);
+    return resultado;
+  }
+
+  /// Vuelve a aplicar una acción propia que aún no ha confirmado el
+  /// servidor, sobre el estado recién bajado. Lanza si ya no vale (se ha
+  /// cerrado el plazo, otra persona firmó…), y entonces se descarta.
+  void rehacer(AccionConcejo accion) {
+    if (accion.autorUid != personaActual.uid) {
+      throw StateError('Solo se rehacen las acciones propias');
+    }
+    _aplicar(accion);
+    notifyListeners();
+  }
+
+  /// Las mutaciones privadas devuelven `Null` (y no `void`) para caber en
+  /// este switch; `cerrarRonda` y `darDeAlta` devuelven su resultado.
+  Object? _aplicar(AccionConcejo accion) {
+    final datos = accion.datos;
+    String texto(String clave) => datos[clave] as String;
+    String? opcional(String clave) => datos[clave] as String?;
+    return switch (accion.tipo) {
+      TipoAccion.votar => _votar(texto('asunto_uid'),
+          {for (final opcion in datos['opciones'] as List) opcion as String}),
+      TipoAccion.aportar => _aportar(
+          texto('uid'),
+          texto('asunto_uid'),
+          TipoAportacion.values.byName(texto('tipo')),
+          texto('texto'),
+          respondeAUid: opcional('responde_a_uid'),
+          anonima: datos['anonima'] as bool? ?? false,
+          enNombreDeUid: opcional('en_nombre_de_uid'),
+        ),
+      TipoAccion.objetar => _objetar(
+          texto('uid'), texto('asunto_uid'), texto('motivo'),
+          enNombreDeUid: opcional('en_nombre_de_uid')),
+      TipoAccion.cambiarEstadoCompromiso => _cambiarEstadoCompromiso(
+          texto('compromiso_uid'),
+          EstadoCompromiso.values.byName(texto('estado')),
+          nota: opcional('nota') ?? ''),
+      TipoAccion.guardarBorrador =>
+        _guardarBorrador(asuntoDesdeJson(datos['asunto'] as Json)),
+      TipoAccion.abrirAsunto => _abrirAsunto(texto('asunto_uid')),
+      TipoAccion.borrarBorrador => _borrarBorrador(texto('asunto_uid')),
+      TipoAccion.moderar => _moderar(
+          texto('asunto_uid'),
+          texto('aportacion_uid'),
+          EstadoModeracion.values.byName(texto('estado')),
+          motivo: opcional('motivo') ?? ''),
+      TipoAccion.resumirDebate =>
+        _resumirDebate(texto('asunto_uid'), texto('resumen')),
+      TipoAccion.resolverObjecion => _resolverObjecion(
+          texto('asunto_uid'),
+          texto('objecion_uid'),
+          EstadoObjecion.values.byName(texto('estado')),
+          texto('respuesta')),
+      TipoAccion.cerrarRondaConsentimiento =>
+        _cerrarRondaConsentimiento(texto('asunto_uid')),
+      TipoAccion.anadirCompromiso => _anadirCompromiso(
+          uid: texto('uid'),
+          asuntoUid: texto('asunto_uid'),
+          que: texto('que'),
+          responsable: texto('responsable'),
+          fechaLimite: DateTime.parse(texto('fecha_limite'))),
+      TipoAccion.darDeAlta => _darDeAlta(texto('uid'), texto('nombre')),
+      TipoAccion.anotarVotoPresencial =>
+        _anotarVotoPresencial(texto('asunto_uid'), texto('persona_uid')),
+      TipoAccion.registrarConteoPresencial => _registrarConteoPresencial(
+          asuntoUid: texto('asunto_uid'),
+          papeletasTotales: (datos['papeletas_totales'] as num).toInt(),
+          marcasPorOpcion: {
+            for (final MapEntry(:key, :value)
+                in (datos['marcas'] as Map).entries)
+              key as String: (value as num).toInt(),
+          },
+          segundaFirmaUid: texto('segunda_firma_uid')),
+      TipoAccion.firmarActa => _firmarActa(texto('asunto_uid')),
+      TipoAccion.retirarFirmaActa => _retirarFirmaActa(texto('asunto_uid')),
+    };
+  }
+
+  // Lo que llaman las pantallas: cada método es una acción.
+
+  void votar(String asuntoUid, Set<String> opcionesMarcadas) => _hacer(
+      TipoAccion.votar,
+      {'asunto_uid': asuntoUid, 'opciones': opcionesMarcadas.toList()});
+
+  /// [enNombreDeUid]: la mesa recoge lo que alguien dijo en persona o dejó
+  /// por escrito (canal en papel).
+  void aportar(
+    String asuntoUid,
+    TipoAportacion tipo,
+    String texto, {
+    String? respondeAUid,
+    bool anonima = false,
+    String? enNombreDeUid,
+  }) =>
+      _hacer(TipoAccion.aportar, {
+        'uid': _nuevoUid('ap'),
+        'asunto_uid': asuntoUid,
+        'tipo': tipo.name,
+        'texto': texto,
+        'responde_a_uid': respondeAUid,
+        'anonima': anonima,
+        'en_nombre_de_uid': enNombreDeUid,
+      });
+
+  void objetar(String asuntoUid, String motivo, {String? enNombreDeUid}) =>
+      _hacer(TipoAccion.objetar, {
+        'uid': _nuevoUid('ob'),
+        'asunto_uid': asuntoUid,
+        'motivo': motivo,
+        'en_nombre_de_uid': enNombreDeUid,
+      });
+
+  void cambiarEstadoCompromiso(
+    String compromisoUid,
+    EstadoCompromiso nuevo, {
+    String nota = '',
+  }) =>
+      _hacer(TipoAccion.cambiarEstadoCompromiso, {
+        'compromiso_uid': compromisoUid,
+        'estado': nuevo.name,
+        'nota': nota,
+      });
+
+  /// Crea o reemplaza un borrador. Un asunto abierto ya no se toca.
+  void guardarBorrador(Asunto borrador) =>
+      _hacer(TipoAccion.guardarBorrador, {'asunto': asuntoAJson(borrador)});
+
+  /// Abre el borrador: desde aquí las reglas quedan fijas.
+  void abrirAsunto(String uid) =>
+      _hacer(TipoAccion.abrirAsunto, {'asunto_uid': uid});
+
+  void borrarBorrador(String uid) =>
+      _hacer(TipoAccion.borrarBorrador, {'asunto_uid': uid});
+
+  void moderar(String asuntoUid, String aportacionUid, EstadoModeracion nuevo,
+          {String motivo = ''}) =>
+      _hacer(TipoAccion.moderar, {
+        'asunto_uid': asuntoUid,
+        'aportacion_uid': aportacionUid,
+        'estado': nuevo.name,
+        'motivo': motivo,
+      });
+
+  void resumirDebate(String asuntoUid, String resumen) => _hacer(
+      TipoAccion.resumirDebate, {'asunto_uid': asuntoUid, 'resumen': resumen});
+
+  /// Integrar o declarar que no es objeción lo hace la mesa; retirarla, solo
+  /// quien la planteó.
+  void resolverObjecion(String asuntoUid, String objecionUid,
+          EstadoObjecion nuevo, String respuesta) =>
+      _hacer(TipoAccion.resolverObjecion, {
+        'asunto_uid': asuntoUid,
+        'objecion_uid': objecionUid,
+        'estado': nuevo.name,
+        'respuesta': respuesta,
+      });
+
+  DesenlaceConsentimiento cerrarRondaConsentimiento(String asuntoUid) =>
+      _hacer(TipoAccion.cerrarRondaConsentimiento, {'asunto_uid': asuntoUid})
+          as DesenlaceConsentimiento;
+
+  void anadirCompromiso({
+    required String asuntoUid,
+    required String que,
+    required String responsable,
+    required DateTime fechaLimite,
+  }) =>
+      _hacer(TipoAccion.anadirCompromiso, {
+        'uid': _nuevoUid('co'),
+        'asunto_uid': asuntoUid,
+        'que': que,
+        'responsable': responsable,
+        'fecha_limite': fechaLimite.toIso8601String(),
+      });
+
+  /// Alta rápida de alguien que vota en persona y no está en la lista (el
+  /// servidor le genera además su código en papel).
+  Persona darDeAlta(String nombre) =>
+      _hacer(TipoAccion.darDeAlta, {'uid': _nuevoUid('pe'), 'nombre': nombre})
+          as Persona;
+
+  /// La mesa apunta que alguien ha votado en papel. Su papeleta entra luego
+  /// en el conteo de la mesa.
+  void anotarVotoPresencial(String asuntoUid, String personaUid) => _hacer(
+      TipoAccion.anotarVotoPresencial,
+      {'asunto_uid': asuntoUid, 'persona_uid': personaUid});
+
+  /// El conteo de las papeletas en papel, firmado por la persona actual y
+  /// otra persona de la mesa.
+  void registrarConteoPresencial({
+    required String asuntoUid,
+    required int papeletasTotales,
+    required Map<String, int> marcasPorOpcion,
+    required String segundaFirmaUid,
+  }) =>
+      _hacer(TipoAccion.registrarConteoPresencial, {
+        'asunto_uid': asuntoUid,
+        'papeletas_totales': papeletasTotales,
+        'marcas': marcasPorOpcion,
+        'segunda_firma_uid': segundaFirmaUid,
+      });
+
+  void firmarActa(String asuntoUid) =>
+      _hacer(TipoAccion.firmarActa, {'asunto_uid': asuntoUid});
+
+  void retirarFirmaActa(String asuntoUid) =>
+      _hacer(TipoAccion.retirarFirmaActa, {'asunto_uid': asuntoUid});
 }

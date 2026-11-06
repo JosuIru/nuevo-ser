@@ -1,0 +1,24 @@
+name: concejo
+description: "Concejo — para que un pueblo, un barrio o un colectivo plantee sus asuntos, los debata con orden, los decida (también en papel) y siga si lo acordado se cumple. Línea social de la Colección Nuevo Ser. AGPL-3.0."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Castellano y euskera desde el primer día (ca/gl cuando haya revisión nativa).
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true

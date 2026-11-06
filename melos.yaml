@@ -3,6 +3,7 @@ name: nuevo_ser
 packages:
   - apps/*
   - packages/*
+  - social/apps/*
 
 command:
   bootstrap:

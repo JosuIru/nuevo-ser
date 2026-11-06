@@ -1,0 +1,1533 @@
+{
+  "hoy": "2026-11-10T12:00:00.000",
+  "inicial": {
+    "nombre_espacio": "Concejo de Ejemplo",
+    "revision": 0,
+    "personas": [
+      {
+        "uid": "ane",
+        "nombre": "Ane",
+        "rol": "mesa",
+        "mandato_hasta": "2026-12-20T00:00:00.000"
+      },
+      {
+        "uid": "mikel",
+        "nombre": "Mikel",
+        "rol": "mesa",
+        "mandato_hasta": "2026-12-20T00:00:00.000"
+      },
+      {
+        "uid": "maite",
+        "nombre": "Maite",
+        "rol": "vecina",
+        "mandato_hasta": null
+      },
+      {
+        "uid": "josean",
+        "nombre": "Josean",
+        "rol": "vecina",
+        "mandato_hasta": null
+      },
+      {
+        "uid": "pili",
+        "nombre": "Pili",
+        "rol": "vecina",
+        "mandato_hasta": null
+      },
+      {
+        "uid": "iker",
+        "nombre": "Iker",
+        "rol": "vecina",
+        "mandato_hasta": null
+      }
+    ],
+    "asuntos": [
+      {
+        "uid": "fiestas",
+        "titulo": "¿Pasamos las fiestas a septiembre?",
+        "resumen": "En agosto hay mucha gente fuera y el calor aprieta. La comisión propone mover las fiestas al primer fin de semana de septiembre.",
+        "texto": "La comisión de fiestas lo ha hablado con la charanga y con el bar. En septiembre la orquesta es un 15 % más barata. A cambio, parte de la gente joven ya habrá vuelto a estudiar.",
+        "tipo_decision": "conCompromisoPrevio",
+        "compromiso_previo": "La junta se compromete a mover las fiestas si sale que sí y participan al menos 20 vecinas y vecinos.",
+        "coste_euros": null,
+        "efecto_entorno": "Ninguno destacable.",
+        "reglas": {
+          "forma": "votacion",
+          "mayoria": "simple",
+          "quorum_personas": 20,
+          "secreta": true,
+          "opciones": [],
+          "bolsa_euros": null,
+          "rondas_consentimiento": 2
+        },
+        "inicio_debate": "2026-11-03T00:00:00.000",
+        "inicio_decision": "2026-11-09T00:00:00.000",
+        "fin_decision": "2026-11-15T00:00:00.000",
+        "creado_por_uid": "ane",
+        "abierto": true
+      },
+      {
+        "uid": "comunal",
+        "titulo": "Normas para el uso de la leña del comunal",
+        "resumen": "Proponemos un lote por casa y año, marcado por la guarda, y que no se corten árboles con nidos.",
+        "texto": "",
+        "tipo_decision": "vinculante",
+        "compromiso_previo": "",
+        "coste_euros": null,
+        "efecto_entorno": "Protege los árboles viejos y los nidos de rapaces del monte de Arriba.",
+        "reglas": {
+          "forma": "consentimiento",
+          "mayoria": "simple",
+          "quorum_personas": 0,
+          "secreta": true,
+          "opciones": [],
+          "bolsa_euros": null,
+          "rondas_consentimiento": 2
+        },
+        "inicio_debate": "2026-11-08T00:00:00.000",
+        "inicio_decision": "2026-11-16T00:00:00.000",
+        "fin_decision": "2026-11-23T00:00:00.000",
+        "creado_por_uid": "mikel",
+        "abierto": true
+      },
+      {
+        "uid": "presupuesto",
+        "titulo": "Presupuesto participativo 2027",
+        "resumen": "Hay 10.000 € para lo que decidamos entre todas. Apoya las propuestas que quieras: entran por apoyos mientras haya dinero.",
+        "texto": "",
+        "tipo_decision": "conCompromisoPrevio",
+        "compromiso_previo": "El concejo ejecutará en 2027 las propuestas que entren, si participan al menos 15 personas.",
+        "coste_euros": 10000.0,
+        "efecto_entorno": "La limpieza de la fuente vieja recupera un punto de agua para pájaros y anfibios.",
+        "reglas": {
+          "forma": "presupuesto",
+          "mayoria": "simple",
+          "quorum_personas": 15,
+          "secreta": true,
+          "opciones": [
+            {
+              "id": "bancos",
+              "texto": "Bancos y sombra en la plaza",
+              "coste_euros": 3000.0
+            },
+            {
+              "id": "fronton",
+              "texto": "Arreglar el tejado del frontón",
+              "coste_euros": 8000.0
+            },
+            {
+              "id": "fuente",
+              "texto": "Limpiar la fuente vieja",
+              "coste_euros": 1500.0
+            },
+            {
+              "id": "columpios",
+              "texto": "Columpios nuevos",
+              "coste_euros": 5000.0
+            }
+          ],
+          "bolsa_euros": 10000.0,
+          "rondas_consentimiento": 2
+        },
+        "inicio_debate": "2026-11-07T00:00:00.000",
+        "inicio_decision": "2026-11-14T00:00:00.000",
+        "fin_decision": "2026-11-25T00:00:00.000",
+        "creado_por_uid": "ane",
+        "abierto": true
+      },
+      {
+        "uid": "txoko",
+        "titulo": "Horario del local vecinal",
+        "resumen": "¿Hasta qué hora se puede usar el local entre semana?",
+        "texto": "",
+        "tipo_decision": "vinculante",
+        "compromiso_previo": "",
+        "coste_euros": null,
+        "efecto_entorno": "Menos ruido de noche en la calle Mayor.",
+        "reglas": {
+          "forma": "eleccionEntreOpciones",
+          "mayoria": "simple",
+          "quorum_personas": 0,
+          "secreta": true,
+          "opciones": [
+            {
+              "id": "22",
+              "texto": "Hasta las 22:00",
+              "coste_euros": null
+            },
+            {
+              "id": "23",
+              "texto": "Hasta las 23:00",
+              "coste_euros": null
+            },
+            {
+              "id": "24",
+              "texto": "Hasta las 24:00",
+              "coste_euros": null
+            }
+          ],
+          "bolsa_euros": null,
+          "rondas_consentimiento": 2
+        },
+        "inicio_debate": "2026-10-11T00:00:00.000",
+        "inicio_decision": "2026-10-21T00:00:00.000",
+        "fin_decision": "2026-10-31T00:00:00.000",
+        "creado_por_uid": "mikel",
+        "abierto": true
+      }
+    ],
+    "urnas": [
+      {
+        "asunto_uid": "txoko",
+        "participaciones": [
+          {
+            "persona_uid": "maite",
+            "canal": "app",
+            "anotada_por_uid": ""
+          },
+          {
+            "persona_uid": "josean",
+            "canal": "app",
+            "anotada_por_uid": ""
+          },
+          {
+            "persona_uid": "pili",
+            "canal": "app",
+            "anotada_por_uid": ""
+          },
+          {
+            "persona_uid": "iker",
+            "canal": "app",
+            "anotada_por_uid": ""
+          },
+          {
+            "persona_uid": "ane",
+            "canal": "presencial",
+            "anotada_por_uid": "mikel"
+          }
+        ],
+        "papeletas": [
+          {
+            "opciones": [
+              "22",
+              "23"
+            ],
+            "hora": "2026-10-25T23:00:00.000Z",
+            "persona_uid": null
+          },
+          {
+            "opciones": [
+              "24"
+            ],
+            "hora": "2026-10-25T23:00:00.000Z",
+            "persona_uid": null
+          },
+          {
+            "opciones": [
+              "23",
+              "24"
+            ],
+            "hora": "2026-10-25T23:00:00.000Z",
+            "persona_uid": null
+          },
+          {
+            "opciones": [
+              "23"
+            ],
+            "hora": "2026-10-25T23:00:00.000Z",
+            "persona_uid": null
+          }
+        ],
+        "conteos": [
+          {
+            "papeletas_totales": 1,
+            "marcas": {
+              "22": 1,
+              "23": 1
+            },
+            "firmado_por_uids": [
+              "ane",
+              "mikel"
+            ]
+          }
+        ]
+      }
+    ],
+    "debates": [
+      {
+        "asunto_uid": "fiestas",
+        "aportaciones": [
+          {
+            "uid": "f1",
+            "asunto_uid": "fiestas",
+            "autor_uid": "maite",
+            "tipo": "aFavor",
+            "texto": "Con el calor de agosto la gente mayor no sale a la plaza.",
+            "creada": "2026-11-05T00:00:00.000",
+            "responde_a_uid": null,
+            "anonima": false,
+            "estado": "visible",
+            "motivo_retirada": ""
+          },
+          {
+            "uid": "f2",
+            "asunto_uid": "fiestas",
+            "autor_uid": "iker",
+            "tipo": "enContra",
+            "texto": "En septiembre muchos estudiamos fuera y no podríamos venir.",
+            "creada": "2026-11-05T00:00:00.000",
+            "responde_a_uid": null,
+            "anonima": false,
+            "estado": "visible",
+            "motivo_retirada": ""
+          },
+          {
+            "uid": "f3",
+            "asunto_uid": "fiestas",
+            "autor_uid": "josean",
+            "tipo": "duda",
+            "texto": "¿Se ha preguntado a los pueblos de al lado? Coincidiríamos con sus fiestas.",
+            "creada": "2026-11-05T00:00:00.000",
+            "responde_a_uid": null,
+            "anonima": false,
+            "estado": "visible",
+            "motivo_retirada": ""
+          },
+          {
+            "uid": "f4",
+            "asunto_uid": "fiestas",
+            "autor_uid": "ane",
+            "tipo": "duda",
+            "texto": "Lo hemos mirado: el de al lado las tiene a mediados de mes.",
+            "creada": "2026-11-05T00:00:00.000",
+            "responde_a_uid": "f3",
+            "anonima": false,
+            "estado": "visible",
+            "motivo_retirada": ""
+          },
+          {
+            "uid": "f5",
+            "asunto_uid": "fiestas",
+            "autor_uid": "pili",
+            "tipo": "propuestaDeCambio",
+            "texto": "Probar un año y volver a decidir después.",
+            "creada": "2026-11-05T00:00:00.000",
+            "responde_a_uid": null,
+            "anonima": false,
+            "estado": "visible",
+            "motivo_retirada": ""
+          }
+        ],
+        "resumen_mesa": ""
+      },
+      {
+        "asunto_uid": "txoko",
+        "aportaciones": [],
+        "resumen_mesa": "Se habló en la reunión de octubre: la gente de la calle Mayor pedía cerrar antes; las cuadrillas, poder quedarse después de cenar. Se acordó votar entre tres horas."
+      }
+    ],
+    "consentimientos": {
+      "comunal": {
+        "ronda_actual": 1,
+        "rondas_maximas": 2,
+        "desenlace": "enCurso",
+        "objeciones": [
+          {
+            "uid": "o1",
+            "autor_uid": "josean",
+            "ronda": 1,
+            "motivo": "Un lote por casa deja sin leña a las casas grandes que solo tienen leña para calentarse.",
+            "estado": "viva",
+            "respuesta": ""
+          }
+        ]
+      }
+    },
+    "compromisos": [
+      {
+        "uid": "c1",
+        "asunto_uid": "txoko",
+        "que": "Poner el cartel con el horario nuevo en la puerta del local",
+        "responsable": "Mikel",
+        "fecha_limite": "2026-11-07T00:00:00.000",
+        "estado": "pendiente",
+        "nota": ""
+      },
+      {
+        "uid": "c2",
+        "asunto_uid": "txoko",
+        "que": "Avisar a las cuadrillas del cambio de horario",
+        "responsable": "La mesa",
+        "fecha_limite": "2026-11-02T00:00:00.000",
+        "estado": "hecho",
+        "nota": "Avisado por el bando y en el grupo."
+      }
+    ],
+    "actas": []
+  },
+  "casos": [
+    {
+      "nombre": "votar sí",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "votar sí-0",
+            "tipo": "votar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "opciones": [
+                "si"
+              ]
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "votar sí-1",
+            "tipo": "votar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "opciones": [
+                "no"
+              ]
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "papeleta con dos marcas",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "papeleta con dos marcas-0",
+            "tipo": "votar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "opciones": [
+                "si",
+                "no"
+              ]
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "opción que no existe",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "opción que no existe-0",
+            "tipo": "votar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko",
+              "opciones": [
+                "25"
+              ]
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "votar fuera de plazo",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "votar fuera de plazo-0",
+            "tipo": "votar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "presupuesto",
+              "opciones": [
+                "fuente"
+              ]
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "aportar",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "aportar-0",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap1",
+              "asunto_uid": "fiestas",
+              "tipo": "duda",
+              "texto": "¿Y la charanga?",
+              "anonima": false
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "aportar-1",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap2",
+              "asunto_uid": "fiestas",
+              "tipo": "aFavor",
+              "texto": "Sí",
+              "responde_a_uid": "ap1"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "aportar-2",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap3",
+              "asunto_uid": "fiestas",
+              "tipo": "aFavor",
+              "texto": "Y más",
+              "responde_a_uid": "ap2"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "aportar-3",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap1",
+              "asunto_uid": "fiestas",
+              "tipo": "duda",
+              "texto": "Repetida"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "aportar-4",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap4",
+              "asunto_uid": "fiestas",
+              "tipo": "duda",
+              "texto": "   "
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "aportar con el debate cerrado",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "aportar con el debate cerrado-0",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap1",
+              "asunto_uid": "txoko",
+              "tipo": "duda",
+              "texto": "Tarde"
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "recoger lo dicho en persona",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "recoger lo dicho en persona-0",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap1",
+              "asunto_uid": "fiestas",
+              "tipo": "duda",
+              "texto": "x",
+              "en_nombre_de_uid": "josean"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "recoger lo dicho en persona-1",
+            "tipo": "aportar",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap2",
+              "asunto_uid": "fiestas",
+              "tipo": "duda",
+              "texto": "x",
+              "en_nombre_de_uid": "josean"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "recoger lo dicho en persona-2",
+            "tipo": "objetar",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ob2",
+              "asunto_uid": "comunal",
+              "motivo": "Lo dijo en el concejo",
+              "en_nombre_de_uid": "pili"
+            }
+          },
+          "aceptada": true
+        }
+      ]
+    },
+    {
+      "nombre": "moderar",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "moderar-0",
+            "tipo": "aportar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ap1",
+              "asunto_uid": "fiestas",
+              "tipo": "duda",
+              "texto": "Sin nombre",
+              "anonima": true
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "moderar-1",
+            "tipo": "moderar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "aportacion_uid": "ap1",
+              "estado": "visible"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "moderar-2",
+            "tipo": "moderar",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "aportacion_uid": "ap1",
+              "estado": "retirada",
+              "motivo": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "moderar-3",
+            "tipo": "moderar",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "aportacion_uid": "ap1",
+              "estado": "pendiente"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "moderar-4",
+            "tipo": "moderar",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "aportacion_uid": "ap1",
+              "estado": "visible"
+            }
+          },
+          "aceptada": true
+        }
+      ]
+    },
+    {
+      "nombre": "objeciones",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "objeciones-0",
+            "tipo": "objetar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ob2",
+              "asunto_uid": "comunal",
+              "motivo": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "objeciones-1",
+            "tipo": "objetar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ob2",
+              "asunto_uid": "fiestas",
+              "motivo": "No es consentimiento"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "objeciones-2",
+            "tipo": "objetar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "o1",
+              "asunto_uid": "comunal",
+              "motivo": "Uid repetido"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "objeciones-3",
+            "tipo": "resolverObjecion",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal",
+              "objecion_uid": "o1",
+              "estado": "retirada",
+              "respuesta": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "objeciones-4",
+            "tipo": "resolverObjecion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal",
+              "objecion_uid": "o1",
+              "estado": "integrada",
+              "respuesta": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "objeciones-5",
+            "tipo": "resolverObjecion",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal",
+              "objecion_uid": "o1",
+              "estado": "retirada",
+              "respuesta": ""
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "objeciones-6",
+            "tipo": "cerrarRondaConsentimiento",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "objeciones-7",
+            "tipo": "cerrarRondaConsentimiento",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "objeciones-8",
+            "tipo": "cerrarRondaConsentimiento",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal"
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "dos vueltas con la objeción viva",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "dos vueltas con la objeción viva-0",
+            "tipo": "cerrarRondaConsentimiento",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "dos vueltas con la objeción viva-1",
+            "tipo": "cerrarRondaConsentimiento",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "dos vueltas con la objeción viva-2",
+            "tipo": "objetar",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "ob2",
+              "asunto_uid": "comunal",
+              "motivo": "Tarde"
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "borradores",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "borradores-0",
+            "tipo": "guardarBorrador",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto": {
+                "uid": "nuevo",
+                "titulo": "Arreglar la fuente",
+                "resumen": "El caño gotea desde el invierno.",
+                "texto": "",
+                "tipo_decision": "consultiva",
+                "compromiso_previo": "",
+                "coste_euros": null,
+                "efecto_entorno": "Se pierde menos agua.",
+                "reglas": {
+                  "forma": "votacion",
+                  "mayoria": "simple",
+                  "quorum_personas": 0,
+                  "secreta": true,
+                  "opciones": [],
+                  "bolsa_euros": null,
+                  "rondas_consentimiento": 2
+                },
+                "inicio_debate": "2026-11-12T00:00:00.000",
+                "inicio_decision": "2026-11-20T00:00:00.000",
+                "fin_decision": "2026-11-27T00:00:00.000",
+                "creado_por_uid": "",
+                "abierto": false
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "borradores-1",
+            "tipo": "guardarBorrador",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto": {
+                "uid": "vacio",
+                "titulo": "",
+                "resumen": "",
+                "texto": "",
+                "tipo_decision": "consultiva",
+                "compromiso_previo": "",
+                "coste_euros": null,
+                "efecto_entorno": "",
+                "reglas": {
+                  "forma": "votacion",
+                  "mayoria": "simple",
+                  "quorum_personas": 0,
+                  "secreta": true,
+                  "opciones": [],
+                  "bolsa_euros": null,
+                  "rondas_consentimiento": 2
+                },
+                "inicio_debate": "2026-11-12T00:00:00.000",
+                "inicio_decision": "2026-11-20T00:00:00.000",
+                "fin_decision": "2026-11-27T00:00:00.000",
+                "creado_por_uid": "",
+                "abierto": false
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "borradores-2",
+            "tipo": "abrirAsunto",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "vacio"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "borradores-3",
+            "tipo": "borrarBorrador",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "vacio"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "borradores-4",
+            "tipo": "guardarBorrador",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto": {
+                "uid": "nuevo",
+                "titulo": "Arreglar la fuente",
+                "resumen": "El caño gotea desde el invierno.",
+                "texto": "",
+                "tipo_decision": "consultiva",
+                "compromiso_previo": "",
+                "coste_euros": null,
+                "efecto_entorno": "Se pierde menos agua.",
+                "reglas": {
+                  "forma": "votacion",
+                  "mayoria": "simple",
+                  "quorum_personas": 0,
+                  "secreta": true,
+                  "opciones": [],
+                  "bolsa_euros": null,
+                  "rondas_consentimiento": 2
+                },
+                "inicio_debate": "2026-11-12T00:00:00.000",
+                "inicio_decision": "2026-11-20T00:00:00.000",
+                "fin_decision": "2026-11-27T00:00:00.000",
+                "creado_por_uid": "",
+                "abierto": false
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "borradores-5",
+            "tipo": "abrirAsunto",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "nuevo"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "borradores-6",
+            "tipo": "guardarBorrador",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto": {
+                "uid": "nuevo",
+                "titulo": "Arreglar la fuente",
+                "resumen": "El caño gotea desde el invierno.",
+                "texto": "",
+                "tipo_decision": "consultiva",
+                "compromiso_previo": "",
+                "coste_euros": null,
+                "efecto_entorno": "Se pierde menos agua.",
+                "reglas": {
+                  "forma": "votacion",
+                  "mayoria": "simple",
+                  "quorum_personas": 0,
+                  "secreta": true,
+                  "opciones": [],
+                  "bolsa_euros": null,
+                  "rondas_consentimiento": 2
+                },
+                "inicio_debate": "2026-11-12T00:00:00.000",
+                "inicio_decision": "2026-11-20T00:00:00.000",
+                "fin_decision": "2026-11-27T00:00:00.000",
+                "creado_por_uid": "",
+                "abierto": false
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "borradores-7",
+            "tipo": "borrarBorrador",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "nuevo"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "borradores-8",
+            "tipo": "abrirAsunto",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "nuevo"
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "papel",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "papel-0",
+            "tipo": "darDeAlta",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "pe1",
+              "nombre": "Maritxu"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-1",
+            "tipo": "darDeAlta",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "pe1",
+              "nombre": "  "
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-2",
+            "tipo": "darDeAlta",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "pe1",
+              "nombre": "Maritxu"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "papel-3",
+            "tipo": "darDeAlta",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "pe1",
+              "nombre": "Otra"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-4",
+            "tipo": "anotarVotoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "persona_uid": "pe1"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "papel-5",
+            "tipo": "anotarVotoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "persona_uid": "pe1"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-6",
+            "tipo": "votar",
+            "autor_uid": "pe1",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "opciones": [
+                "si"
+              ]
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-7",
+            "tipo": "anotarVotoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "presupuesto",
+              "persona_uid": "pili"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-8",
+            "tipo": "registrarConteoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "papeletas_totales": 1,
+              "marcas": {
+                "si": 1
+              },
+              "segunda_firma_uid": "ane"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-9",
+            "tipo": "registrarConteoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "papeletas_totales": 1,
+              "marcas": {
+                "si": 1
+              },
+              "segunda_firma_uid": "maite"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-10",
+            "tipo": "registrarConteoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "papeletas_totales": 1,
+              "marcas": {
+                "si": -1
+              },
+              "segunda_firma_uid": "mikel"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "papel-11",
+            "tipo": "registrarConteoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas",
+              "papeletas_totales": 1,
+              "marcas": {
+                "si": 1
+              },
+              "segunda_firma_uid": "mikel"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "papel-12",
+            "tipo": "registrarConteoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "presupuesto",
+              "papeletas_totales": 0,
+              "marcas": {},
+              "segunda_firma_uid": "mikel"
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "compromisos",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "compromisos-0",
+            "tipo": "anadirCompromiso",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "co1",
+              "asunto_uid": "txoko",
+              "que": "Cartel",
+              "responsable": "Iker",
+              "fecha_limite": "2026-12-01T00:00:00.000"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "compromisos-1",
+            "tipo": "anadirCompromiso",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "co1",
+              "asunto_uid": "txoko",
+              "que": " ",
+              "responsable": "Iker",
+              "fecha_limite": "2026-12-01T00:00:00.000"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "compromisos-2",
+            "tipo": "anadirCompromiso",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "co1",
+              "asunto_uid": "txoko",
+              "que": "Cartel",
+              "responsable": "Iker",
+              "fecha_limite": "2026-12-01T00:00:00.000"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "compromisos-3",
+            "tipo": "anadirCompromiso",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "uid": "co1",
+              "asunto_uid": "txoko",
+              "que": "Otro",
+              "responsable": "Iker",
+              "fecha_limite": "2026-12-01T00:00:00.000"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "compromisos-4",
+            "tipo": "cambiarEstadoCompromiso",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "compromiso_uid": "co1",
+              "estado": "noSeHara",
+              "nota": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "compromisos-5",
+            "tipo": "cambiarEstadoCompromiso",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "compromiso_uid": "co1",
+              "estado": "hecho",
+              "nota": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "compromisos-6",
+            "tipo": "cambiarEstadoCompromiso",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "compromiso_uid": "co1",
+              "estado": "hecho",
+              "nota": ""
+            }
+          },
+          "aceptada": true
+        }
+      ]
+    },
+    {
+      "nombre": "acta",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "acta-0",
+            "tipo": "firmarActa",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "acta-1",
+            "tipo": "firmarActa",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "fiestas"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "acta-2",
+            "tipo": "firmarActa",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "acta-3",
+            "tipo": "firmarActa",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "acta-4",
+            "tipo": "resumirDebate",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko",
+              "resumen": "Otro"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "acta-5",
+            "tipo": "registrarConteoPresencial",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko",
+              "papeletas_totales": 0,
+              "marcas": {},
+              "segunda_firma_uid": "mikel"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "acta-6",
+            "tipo": "retirarFirmaActa",
+            "autor_uid": "mikel",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "acta-7",
+            "tipo": "retirarFirmaActa",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "acta-8",
+            "tipo": "firmarActa",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "acta-9",
+            "tipo": "firmarActa",
+            "autor_uid": "mikel",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "acta-10",
+            "tipo": "retirarFirmaActa",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "txoko"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "acta-11",
+            "tipo": "firmarActa",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "asunto_uid": "comunal"
+            }
+          },
+          "aceptada": false
+        }
+      ]
+    }
+  ]
+}

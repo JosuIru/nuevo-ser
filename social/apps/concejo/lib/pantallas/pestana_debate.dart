@@ -5,6 +5,7 @@ import '../dominio/debate.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
 import '../tema.dart';
+import 'dialogos.dart';
 import 'textos_dominio.dart';
 
 /// El debate en cuatro columnas (en el móvil, una debajo de otra). Sin
@@ -35,8 +36,36 @@ class PestanaDebate extends StatelessWidget {
             Card(
                 child: Padding(
               padding: const EdgeInsets.all(16),
-              child: Text(debate.resumenMesa),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(textos.resumenDebate,
+                      style: Theme.of(context).textTheme.labelLarge),
+                  const SizedBox(height: 4),
+                  Text(debate.resumenMesa),
+                ],
+              ),
             )),
+          if (estado.soyMesa)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton.icon(
+                onPressed: () async {
+                  final resumen = await pedirTexto(
+                    context,
+                    titulo: textos.escribirResumen,
+                    etiqueta: textos.resumenDebate,
+                    confirmar: textos.guardar,
+                    inicial: debate.resumenMesa,
+                  );
+                  if (resumen != null) {
+                    estado.resumirDebate(asunto.uid, resumen);
+                  }
+                },
+                icon: const Icon(Icons.summarize_outlined),
+                label: Text(textos.escribirResumen),
+              ),
+            ),
           if (mias.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
@@ -128,7 +157,7 @@ class _Columna extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _Firma(estado: estado, aportacion: aportacion),
-                    Text(aportacion.texto),
+                    _Cuerpo(estado: estado, aportacion: aportacion),
                     for (final respuesta in debate.respuestasA(aportacion.uid,
                         paraLaMesa: estado.soyMesa))
                       Padding(
@@ -137,11 +166,12 @@ class _Columna extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _Firma(estado: estado, aportacion: respuesta),
-                            Text(respuesta.texto),
+                            _Cuerpo(estado: estado, aportacion: respuesta),
                           ],
                         ),
                       ),
-                    if (alResponder != null)
+                    if (alResponder != null &&
+                        aportacion.estado == EstadoModeracion.visible)
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -156,6 +186,75 @@ class _Columna extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+/// El texto, o el hueco de una retirada, o la moderación pendiente (mesa).
+class _Cuerpo extends StatelessWidget {
+  const _Cuerpo({required this.estado, required this.aportacion});
+
+  final EstadoConcejo estado;
+  final Aportacion aportacion;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    switch (aportacion.estado) {
+      case EstadoModeracion.retirada:
+        return Text(textos.retiradaPorMesa(aportacion.motivoRetirada),
+            style: const TextStyle(fontStyle: FontStyle.italic));
+      case EstadoModeracion.visible:
+        if (!estado.soyMesa) return Text(aportacion.texto);
+        // La mesa también puede retirar lo publicado (datos personales,
+        // insultos), y queda el hueco con el motivo.
+        return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(child: Text(aportacion.texto)),
+          IconButton(
+            tooltip: textos.retirarAportacion,
+            visualDensity: VisualDensity.compact,
+            icon: const Icon(Icons.remove_circle_outline, size: 20),
+            onPressed: () => _retirar(context),
+          ),
+        ]);
+      case EstadoModeracion.pendiente:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(textos.pendienteModeracion,
+                style: Theme.of(context).textTheme.labelSmall),
+            Text(aportacion.texto),
+            if (estado.soyMesa)
+              Wrap(spacing: 8, children: [
+                TextButton(
+                  onPressed: () => estado.moderar(aportacion.asuntoUid,
+                      aportacion.uid, EstadoModeracion.visible),
+                  child: Text(textos.publicarAportacion),
+                ),
+                TextButton(
+                  onPressed: () => _retirar(context),
+                  child: Text(textos.retirarAportacion),
+                ),
+              ]),
+          ],
+        );
+    }
+  }
+}
+
+extension on _Cuerpo {
+  Future<void> _retirar(BuildContext context) async {
+    final textos = AppLocalizations.of(context);
+    final motivo = await pedirTexto(
+      context,
+      titulo: textos.retirarAportacion,
+      etiqueta: textos.motivoRetirada,
+      confirmar: textos.retirarAportacion,
+    );
+    if (motivo != null) {
+      estado.moderar(
+          aportacion.asuntoUid, aportacion.uid, EstadoModeracion.retirada,
+          motivo: motivo);
+    }
   }
 }
 

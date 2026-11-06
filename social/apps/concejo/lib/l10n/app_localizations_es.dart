@@ -329,4 +329,265 @@ class AppLocalizationsEs extends AppLocalizations {
   String eresMesa(String fecha) {
     return 'Estás en la mesa hasta el $fecha';
   }
+
+  @override
+  String get nuevoAsunto => 'Nuevo asunto';
+
+  @override
+  String get editarAsunto => 'Editar asunto';
+
+  @override
+  String get campoTitulo => 'Título';
+
+  @override
+  String get campoResumen => 'Resumen en tres líneas';
+
+  @override
+  String get ayudaResumen => 'Lo primero que se lee. Frases cortas, sin jerga.';
+
+  @override
+  String get campoTexto => 'Texto completo (opcional)';
+
+  @override
+  String get campoTipoDecision => '¿Qué valor tiene lo que salga?';
+
+  @override
+  String get campoCompromiso => 'Compromiso previo';
+
+  @override
+  String get campoCoste => 'Coste (€, opcional)';
+
+  @override
+  String get campoEntorno => 'Efecto sobre el entorno';
+
+  @override
+  String get campoInicioDebate => 'Empieza el debate';
+
+  @override
+  String get campoInicioDecision => 'Empieza la decisión';
+
+  @override
+  String get campoFinDecision => 'Acaba la decisión';
+
+  @override
+  String get campoForma => 'Cómo se decide';
+
+  @override
+  String get nombreVotacion => 'Votación';
+
+  @override
+  String get nombreEleccion => 'Elegir entre opciones';
+
+  @override
+  String get nombreConsentimiento => 'Consentimiento';
+
+  @override
+  String get nombrePresupuesto => 'Presupuesto';
+
+  @override
+  String get campoMayoria => 'Mayoría';
+
+  @override
+  String get campoQuorum => 'Mínimo de participación';
+
+  @override
+  String get campoSecreto => 'Voto secreto';
+
+  @override
+  String get campoBolsa => 'Dinero disponible (€)';
+
+  @override
+  String get campoRondas =>
+      'Vueltas antes de llevarlo a votación o a la asamblea';
+
+  @override
+  String get opciones => 'Opciones';
+
+  @override
+  String get propuestas => 'Propuestas';
+
+  @override
+  String get anadirOpcion => 'Añadir';
+
+  @override
+  String get textoOpcion => 'Texto';
+
+  @override
+  String get costeOpcion => 'Coste €';
+
+  @override
+  String get guardarBorrador => 'Guardar borrador';
+
+  @override
+  String get abrirAsunto => 'Abrir el asunto';
+
+  @override
+  String get confirmarAbrir =>
+      'Al abrirlo, todo el mundo lo verá y las reglas de decisión ya no se podrán cambiar. ¿Lo abres?';
+
+  @override
+  String get abrir => 'Abrir';
+
+  @override
+  String get borrarBorrador => 'Borrar borrador';
+
+  @override
+  String get confirmarBorrar => '¿Borras este borrador?';
+
+  @override
+  String get borrar => 'Borrar';
+
+  @override
+  String get editar => 'Editar';
+
+  @override
+  String get guardar => 'Guardar';
+
+  @override
+  String get faltaParaAbrir => 'Falta para poder abrirlo:';
+
+  @override
+  String get problemaTitulo => 'el título';
+
+  @override
+  String get problemaResumen => 'el resumen';
+
+  @override
+  String get problemaEntorno => 'el efecto sobre el entorno';
+
+  @override
+  String get problemaCompromiso => 'el texto del compromiso previo';
+
+  @override
+  String get problemaFechas =>
+      'que las fechas vayan en orden (debate, decisión, fin)';
+
+  @override
+  String get problemaOpciones => 'al menos dos opciones (o una propuesta)';
+
+  @override
+  String get problemaRepetidas => 'que no haya opciones repetidas';
+
+  @override
+  String get problemaBolsa => 'el dinero disponible';
+
+  @override
+  String get problemaSinCoste => 'el coste de cada propuesta';
+
+  @override
+  String get problemaQuorum => 'un mínimo de participación que no sea negativo';
+
+  @override
+  String get verComo => 'Ver como…';
+
+  @override
+  String get rolMesa => 'mesa';
+
+  @override
+  String get rolVecina => 'vecina';
+
+  @override
+  String get pendienteModeracion => 'Sin nombre · espera a la mesa';
+
+  @override
+  String get publicarAportacion => 'Publicar';
+
+  @override
+  String get retirarAportacion => 'Retirar';
+
+  @override
+  String get motivoRetirada => '¿Por qué se retira? Quedará a la vista.';
+
+  @override
+  String retiradaPorMesa(String motivo) {
+    return 'Retirada por la mesa: $motivo';
+  }
+
+  @override
+  String get escribirResumen => 'Escribir el resumen del debate';
+
+  @override
+  String get resumenDebate => 'Resumen del debate (mesa)';
+
+  @override
+  String get integrarObjecion => 'Integrar';
+
+  @override
+  String get noEsObjecion => 'No es objeción';
+
+  @override
+  String get comoSeIntegra => '¿Cómo se cambia la propuesta para resolverla?';
+
+  @override
+  String get porQueNoEsObjecion =>
+      '¿Por qué no razona un daño? Quedará en el acta.';
+
+  @override
+  String get retirarMiObjecion => 'Retirar mi objeción';
+
+  @override
+  String cerrarVuelta(int ronda) {
+    return 'Cerrar la vuelta $ronda';
+  }
+
+  @override
+  String get confirmarCerrarVuelta =>
+      'Si no quedan objeciones vivas, la propuesta queda aprobada. Si quedan, empieza otra vuelta o pasa a votación o asamblea. ¿Cierras la vuelta?';
+
+  @override
+  String get cerrar => 'Cerrar';
+
+  @override
+  String get consentimientoAprobado =>
+      'Aprobada por consentimiento: nadie mantiene una objeción.';
+
+  @override
+  String get consentimientoPasa =>
+      'Quedan objeciones sin resolver: pasa a votación o a la asamblea en persona.';
+
+  @override
+  String get objecionesResueltas => 'Objeciones resueltas';
+
+  @override
+  String get estadoIntegrada => 'Integrada';
+
+  @override
+  String get estadoRetirada => 'Retirada';
+
+  @override
+  String get estadoNoEsObjecion => 'No era objeción';
+
+  @override
+  String get apuntarCompromiso => 'Apuntar compromiso';
+
+  @override
+  String get campoQue => 'Qué se hará';
+
+  @override
+  String get campoResponsable => 'Quién';
+
+  @override
+  String get campoFechaLimite => 'Para cuándo';
+
+  @override
+  String get marcarNoSeHara => 'No se hará…';
+
+  @override
+  String get porQueNoSeHara =>
+      '¿Por qué no se hará? También es información para el pueblo.';
+
+  @override
+  String get ayudaEntorno =>
+      'Agua, monte, ruido, paisaje, animales… Si no tiene, escribe «ninguno».';
+
+  @override
+  String get ayudaQuorum =>
+      'Personas que tienen que participar para que valga (0 = sin mínimo)';
+
+  @override
+  String get ayudaCompromiso =>
+      'Quién se compromete a qué y en qué condiciones';
+
+  @override
+  String get ayudaResponsable => 'Persona, comisión, «la junta»…';
 }

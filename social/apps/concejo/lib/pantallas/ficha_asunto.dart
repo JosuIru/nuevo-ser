@@ -4,6 +4,8 @@ import '../dominio/asunto.dart';
 import '../dominio/reglas_decision.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
+import 'dialogos.dart';
+import 'formulario_asunto.dart';
 import 'pestana_debate.dart';
 import 'pestana_decidir.dart';
 import 'pestana_resultado.dart';
@@ -21,7 +23,8 @@ class FichaAsunto extends StatelessWidget {
     return ListenableBuilder(
       listenable: estado,
       builder: (context, _) {
-        final asunto = estado.asunto(asuntoUid);
+        final asunto = estado.buscarAsunto(asuntoUid);
+        if (asunto == null) return const Scaffold();
         final fase = asunto.faseEn(estado.ahora);
         final terceraPestana = fase == FaseAsunto.seguimiento
             ? textos.pestanaResultado
@@ -37,6 +40,10 @@ class FichaAsunto extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               title: Text(asunto.titulo),
+              actions: [
+                if (fase == FaseAsunto.borrador && estado.soyMesa)
+                  _AccionesBorrador(estado: estado, asunto: asunto),
+              ],
               bottom: TabBar(tabs: [
                 Tab(text: textos.pestanaInformacion),
                 Tab(text: textos.pestanaDebate),
@@ -54,6 +61,51 @@ class FichaAsunto extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class _AccionesBorrador extends StatelessWidget {
+  const _AccionesBorrador({required this.estado, required this.asunto});
+
+  final EstadoConcejo estado;
+  final Asunto asunto;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    return Row(mainAxisSize: MainAxisSize.min, children: [
+      IconButton(
+        tooltip: textos.editar,
+        icon: const Icon(Icons.edit_outlined),
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => FormularioAsunto(estado: estado, existente: asunto),
+        )),
+      ),
+      IconButton(
+        tooltip: textos.abrirAsunto,
+        icon: const Icon(Icons.campaign_outlined),
+        onPressed: asunto.problemasParaAbrir().isNotEmpty
+            ? null
+            : () async {
+                if (await confirmar(context,
+                    mensaje: textos.confirmarAbrir, accion: textos.abrir)) {
+                  estado.abrirAsunto(asunto.uid);
+                }
+              },
+      ),
+      IconButton(
+        tooltip: textos.borrarBorrador,
+        icon: const Icon(Icons.delete_outline),
+        onPressed: () async {
+          if (await confirmar(context,
+                  mensaje: textos.confirmarBorrar, accion: textos.borrar) &&
+              context.mounted) {
+            Navigator.pop(context);
+            estado.borrarBorrador(asunto.uid);
+          }
+        },
+      ),
+    ]);
   }
 }
 

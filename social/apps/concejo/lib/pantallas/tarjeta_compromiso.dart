@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../dominio/compromiso.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
+import 'dialogos.dart';
 import 'textos_dominio.dart';
 
 class TarjetaCompromiso extends StatelessWidget {
@@ -50,8 +51,22 @@ class TarjetaCompromiso extends StatelessWidget {
         ),
         trailing: estado.soyMesa && !compromiso.cerrado
             ? PopupMenuButton<EstadoCompromiso>(
-                onSelected: (nuevo) =>
-                    estado.cambiarEstadoCompromiso(compromiso.uid, nuevo),
+                onSelected: (nuevo) async {
+                  if (nuevo != EstadoCompromiso.noSeHara) {
+                    estado.cambiarEstadoCompromiso(compromiso.uid, nuevo);
+                    return;
+                  }
+                  final motivo = await pedirTexto(
+                    context,
+                    titulo: textos.compromisoNoSeHara,
+                    etiqueta: textos.porQueNoSeHara,
+                    confirmar: textos.guardar,
+                  );
+                  if (motivo != null) {
+                    estado.cambiarEstadoCompromiso(compromiso.uid, nuevo,
+                        nota: motivo);
+                  }
+                },
                 itemBuilder: (_) => [
                   if (compromiso.estado != EstadoCompromiso.enMarcha)
                     PopupMenuItem(
@@ -60,10 +75,118 @@ class TarjetaCompromiso extends StatelessWidget {
                   PopupMenuItem(
                       value: EstadoCompromiso.hecho,
                       child: Text(textos.marcarHecho)),
+                  PopupMenuItem(
+                      value: EstadoCompromiso.noSeHara,
+                      child: Text(textos.marcarNoSeHara)),
                 ],
               )
             : null,
       ),
+    );
+  }
+}
+
+/// La mesa apunta qué se hará, quién y para cuándo.
+Future<void> apuntarCompromiso(
+    BuildContext context, EstadoConcejo estado, String asuntoUid) async {
+  final datos =
+      await showDialog<({String que, String responsable, DateTime fecha})>(
+    context: context,
+    builder: (_) => _DialogoCompromiso(ahora: estado.ahora),
+  );
+  if (datos != null) {
+    estado.anadirCompromiso(
+      asuntoUid: asuntoUid,
+      que: datos.que,
+      responsable: datos.responsable,
+      fechaLimite: datos.fecha,
+    );
+  }
+}
+
+class _DialogoCompromiso extends StatefulWidget {
+  const _DialogoCompromiso({required this.ahora});
+
+  final DateTime ahora;
+
+  @override
+  State<_DialogoCompromiso> createState() => _DialogoCompromisoState();
+}
+
+class _DialogoCompromisoState extends State<_DialogoCompromiso> {
+  final _que = TextEditingController();
+  final _responsable = TextEditingController();
+  late var _fecha =
+      DateTime(widget.ahora.year, widget.ahora.month + 1, widget.ahora.day);
+
+  @override
+  void dispose() {
+    _que.dispose();
+    _responsable.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    final completo =
+        _que.text.trim().isNotEmpty && _responsable.text.trim().isNotEmpty;
+    return AlertDialog(
+      title: Text(textos.apuntarCompromiso),
+      content: SingleChildScrollView(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          TextField(
+            controller: _que,
+            autofocus: true,
+            minLines: 2,
+            maxLines: 4,
+            textCapitalization: TextCapitalization.sentences,
+            onChanged: (_) => setState(() {}),
+            decoration: InputDecoration(
+                labelText: textos.campoQue, border: const OutlineInputBorder()),
+          ),
+          const SizedBox(height: 12),
+          TextField(
+            controller: _responsable,
+            textCapitalization: TextCapitalization.sentences,
+            onChanged: (_) => setState(() {}),
+            decoration: InputDecoration(
+                labelText: textos.campoResponsable,
+                helperText: textos.ayudaResponsable,
+                border: const OutlineInputBorder()),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.event_outlined),
+            title: Text(textos.campoFechaLimite),
+            subtitle: Text(textos.fecha(_fecha)),
+            onTap: () async {
+              final elegida = await showDatePicker(
+                context: context,
+                initialDate: _fecha,
+                firstDate: DateTime(_fecha.year - 1),
+                lastDate: DateTime(_fecha.year + 3),
+              );
+              if (elegida != null) setState(() => _fecha = elegida);
+            },
+          ),
+        ]),
+      ),
+      actions: [
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(textos.cancelar)),
+        FilledButton(
+          onPressed: completo
+              ? () => Navigator.pop(context, (
+                    que: _que.text.trim(),
+                    responsable: _responsable.text.trim(),
+                    fecha: _fecha,
+                  ))
+              : null,
+          child: Text(textos.guardar),
+        ),
+      ],
     );
   }
 }

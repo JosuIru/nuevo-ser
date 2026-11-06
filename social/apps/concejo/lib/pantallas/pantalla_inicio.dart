@@ -4,6 +4,7 @@ import '../dominio/asunto.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
 import 'ficha_asunto.dart';
+import 'formulario_asunto.dart';
 import 'pantalla_se_ha_hecho.dart';
 import 'textos_dominio.dart';
 
@@ -27,6 +28,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
       builder: (context, _) => Scaffold(
         appBar: AppBar(
           title: Text(widget.estado.nombreEspacio),
+          actions: [_MenuVerComo(estado: widget.estado)],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(32),
             child: _FranjaEjemplo(texto: textos.ejemploAviso),
@@ -35,6 +37,15 @@ class _PantallaInicioState extends State<PantallaInicio> {
         body: _pestana == 0
             ? _ListaAsuntos(estado: widget.estado)
             : PantallaSeHaHecho(estado: widget.estado),
+        floatingActionButton: _pestana == 0 && widget.estado.soyMesa
+            ? FloatingActionButton.extended(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => FormularioAsunto(estado: widget.estado),
+                )),
+                icon: const Icon(Icons.add),
+                label: Text(textos.nuevoAsunto),
+              )
+            : null,
         bottomNavigationBar: NavigationBar(
           selectedIndex: _pestana,
           onDestinationSelected: (indice) => setState(() => _pestana = indice),
@@ -52,6 +63,32 @@ class _PantallaInicioState extends State<PantallaInicio> {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Solo en el pueblo de ejemplo: probar la app como vecina o como mesa.
+class _MenuVerComo extends StatelessWidget {
+  const _MenuVerComo({required this.estado});
+
+  final EstadoConcejo estado;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    return PopupMenuButton<String>(
+      tooltip: textos.verComo,
+      icon: const Icon(Icons.switch_account_outlined),
+      onSelected: estado.verComo,
+      itemBuilder: (_) => [
+        for (final persona in estado.personas)
+          CheckedPopupMenuItem(
+            value: persona.uid,
+            checked: persona.uid == estado.personaActual.uid,
+            child: Text('${persona.nombre} · '
+                '${persona.esMesaEn(estado.ahora) ? textos.rolMesa : textos.rolVecina}'),
+          ),
+      ],
     );
   }
 }
@@ -86,6 +123,7 @@ class _ListaAsuntos extends StatelessWidget {
     final textos = AppLocalizations.of(context);
     // Lo que pide a la gente actuar ya, primero.
     const orden = [
+      FaseAsunto.borrador,
       FaseAsunto.decision,
       FaseAsunto.debate,
       FaseAsunto.seguimiento
@@ -93,19 +131,22 @@ class _ListaAsuntos extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        for (final fase in orden) ...[
-          Padding(
-            padding: const EdgeInsets.only(top: 12, bottom: 4),
-            child: Text(textos.fase(fase),
-                style: Theme.of(context).textTheme.titleMedium),
-          ),
-          if (estado.asuntosEnFase(fase).isEmpty)
-            Text(textos.sinAsuntos,
-                style: Theme.of(context).textTheme.bodySmall)
-          else
-            for (final asunto in estado.asuntosEnFase(fase))
-              _TarjetaAsunto(estado: estado, asunto: asunto),
-        ],
+        for (final fase in orden)
+          // Los borradores solo salen si hay alguno (y solo para la mesa).
+          if (fase != FaseAsunto.borrador ||
+              estado.asuntosEnFase(fase).isNotEmpty) ...[
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 4),
+              child: Text(textos.fase(fase),
+                  style: Theme.of(context).textTheme.titleMedium),
+            ),
+            if (estado.asuntosEnFase(fase).isEmpty)
+              Text(textos.sinAsuntos,
+                  style: Theme.of(context).textTheme.bodySmall)
+            else
+              for (final asunto in estado.asuntosEnFase(fase))
+                _TarjetaAsunto(estado: estado, asunto: asunto),
+          ],
       ],
     );
   }

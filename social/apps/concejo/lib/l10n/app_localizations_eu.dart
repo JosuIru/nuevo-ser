@@ -330,4 +330,265 @@ class AppLocalizationsEu extends AppLocalizations {
   String eresMesa(String fecha) {
     return '$fecha arte mahaian zaude';
   }
+
+  @override
+  String get nuevoAsunto => 'Gai berria';
+
+  @override
+  String get editarAsunto => 'Gaia editatu';
+
+  @override
+  String get campoTitulo => 'Izenburua';
+
+  @override
+  String get campoResumen => 'Laburpena hiru lerrotan';
+
+  @override
+  String get ayudaResumen =>
+      'Lehenik irakurtzen dena. Esaldi laburrak, jergarik gabe.';
+
+  @override
+  String get campoTexto => 'Testu osoa (aukerakoa)';
+
+  @override
+  String get campoTipoDecision => 'Zer balio du ateratzen denak?';
+
+  @override
+  String get campoCompromiso => 'Aurretiko konpromisoa';
+
+  @override
+  String get campoCoste => 'Kostua (€, aukerakoa)';
+
+  @override
+  String get campoEntorno => 'Ingurunean duen eragina';
+
+  @override
+  String get campoInicioDebate => 'Eztabaida hasten da';
+
+  @override
+  String get campoInicioDecision => 'Erabakia hasten da';
+
+  @override
+  String get campoFinDecision => 'Erabakia amaitzen da';
+
+  @override
+  String get campoForma => 'Nola erabakitzen da';
+
+  @override
+  String get nombreVotacion => 'Bozketa';
+
+  @override
+  String get nombreEleccion => 'Aukeren artean';
+
+  @override
+  String get nombreConsentimiento => 'Adostasuna';
+
+  @override
+  String get nombrePresupuesto => 'Aurrekontua';
+
+  @override
+  String get campoMayoria => 'Gehiengoa';
+
+  @override
+  String get campoQuorum => 'Gutxieneko parte-hartzea';
+
+  @override
+  String get campoSecreto => 'Boto sekretua';
+
+  @override
+  String get campoBolsa => 'Diru erabilgarria (€)';
+
+  @override
+  String get campoRondas => 'Bozketara edo batzarrera eraman aurreko itzuliak';
+
+  @override
+  String get opciones => 'Aukerak';
+
+  @override
+  String get propuestas => 'Proposamenak';
+
+  @override
+  String get anadirOpcion => 'Gehitu';
+
+  @override
+  String get textoOpcion => 'Testua';
+
+  @override
+  String get costeOpcion => 'Kostua €';
+
+  @override
+  String get guardarBorrador => 'Zirriborroa gorde';
+
+  @override
+  String get abrirAsunto => 'Gaia ireki';
+
+  @override
+  String get confirmarAbrir =>
+      'Irekitzean, denek ikusiko dute eta erabakitzeko arauak ezin izango dira aldatu. Irekitzen duzu?';
+
+  @override
+  String get abrir => 'Ireki';
+
+  @override
+  String get borrarBorrador => 'Zirriborroa ezabatu';
+
+  @override
+  String get confirmarBorrar => 'Zirriborro hau ezabatzen duzu?';
+
+  @override
+  String get borrar => 'Ezabatu';
+
+  @override
+  String get editar => 'Editatu';
+
+  @override
+  String get guardar => 'Gorde';
+
+  @override
+  String get faltaParaAbrir => 'Ireki ahal izateko falta da:';
+
+  @override
+  String get problemaTitulo => 'izenburua';
+
+  @override
+  String get problemaResumen => 'laburpena';
+
+  @override
+  String get problemaEntorno => 'ingurunean duen eragina';
+
+  @override
+  String get problemaCompromiso => 'aurretiko konpromisoaren testua';
+
+  @override
+  String get problemaFechas =>
+      'datak ordenan egotea (eztabaida, erabakia, amaiera)';
+
+  @override
+  String get problemaOpciones => 'gutxienez bi aukera (edo proposamen bat)';
+
+  @override
+  String get problemaRepetidas => 'aukera errepikaturik ez egotea';
+
+  @override
+  String get problemaBolsa => 'diru erabilgarria';
+
+  @override
+  String get problemaSinCoste => 'proposamen bakoitzaren kostua';
+
+  @override
+  String get problemaQuorum => 'negatiboa ez den parte-hartze minimoa';
+
+  @override
+  String get verComo => 'Honela ikusi…';
+
+  @override
+  String get rolMesa => 'mahaia';
+
+  @override
+  String get rolVecina => 'bizilaguna';
+
+  @override
+  String get pendienteModeracion => 'Izenik gabe · mahaiaren zain';
+
+  @override
+  String get publicarAportacion => 'Argitaratu';
+
+  @override
+  String get retirarAportacion => 'Erretiratu';
+
+  @override
+  String get motivoRetirada => 'Zergatik erretiratzen da? Agerian geratuko da.';
+
+  @override
+  String retiradaPorMesa(String motivo) {
+    return 'Mahaiak erretiratua: $motivo';
+  }
+
+  @override
+  String get escribirResumen => 'Eztabaidaren laburpena idatzi';
+
+  @override
+  String get resumenDebate => 'Eztabaidaren laburpena (mahaia)';
+
+  @override
+  String get integrarObjecion => 'Txertatu';
+
+  @override
+  String get noEsObjecion => 'Ez da objekzioa';
+
+  @override
+  String get comoSeIntegra => 'Nola aldatzen da proposamena konpontzeko?';
+
+  @override
+  String get porQueNoEsObjecion =>
+      'Zergatik ez du kalterik arrazoitzen? Aktan geratuko da.';
+
+  @override
+  String get retirarMiObjecion => 'Nire objekzioa erretiratu';
+
+  @override
+  String cerrarVuelta(int ronda) {
+    return '$ronda. itzulia itxi';
+  }
+
+  @override
+  String get confirmarCerrarVuelta =>
+      'Objekzio biziik geratzen ez bada, proposamena onartuta geratzen da. Geratzen badira, beste itzuli bat hasten da edo bozketara edo batzarrera pasatzen da. Itzulia ixten duzu?';
+
+  @override
+  String get cerrar => 'Itxi';
+
+  @override
+  String get consentimientoAprobado =>
+      'Adostasunez onartua: inork ez du objekziorik mantentzen.';
+
+  @override
+  String get consentimientoPasa =>
+      'Ebatzi gabeko objekzioak geratzen dira: bozketara edo aurrez aurreko batzarrera pasatzen da.';
+
+  @override
+  String get objecionesResueltas => 'Ebatzitako objekzioak';
+
+  @override
+  String get estadoIntegrada => 'Txertatua';
+
+  @override
+  String get estadoRetirada => 'Erretiratua';
+
+  @override
+  String get estadoNoEsObjecion => 'Ez zen objekzioa';
+
+  @override
+  String get apuntarCompromiso => 'Konpromisoa idatzi';
+
+  @override
+  String get campoQue => 'Zer egingo den';
+
+  @override
+  String get campoResponsable => 'Nork';
+
+  @override
+  String get campoFechaLimite => 'Noiz arte';
+
+  @override
+  String get marcarNoSeHara => 'Ez da egingo…';
+
+  @override
+  String get porQueNoSeHara =>
+      'Zergatik ez da egingo? Herriarentzat informazioa ere bada.';
+
+  @override
+  String get ayudaEntorno =>
+      'Ura, mendia, zarata, paisaia, animaliak… Ez badu, idatzi «bat ere ez».';
+
+  @override
+  String get ayudaQuorum =>
+      'Balio izateko parte hartu behar duten pertsonak (0 = gutxienekorik gabe)';
+
+  @override
+  String get ayudaCompromiso =>
+      'Nork zer hartzen duen bere gain eta zein baldintzatan';
+
+  @override
+  String get ayudaResponsable => 'Pertsona, batzordea, «batzarra»…';
 }

@@ -8,13 +8,13 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 
 ## Estado
 
-**v0.1.0 (2026-11-06): bloques F1C-1 y F1C-2.** Funciona en memoria con un pueblo de ejemplo. Todavía no hay servidor ni persistencia. 40 tests verdes, analyze limpio, build web OK.
+**v0.1.0 (2026-11-06): bloques F1C-1, F1C-2 y F1C-3.** Funciona en memoria con un pueblo de ejemplo; el menú de la barra superior (icono de cambiar de cuenta) deja verla como vecina o como mesa. Todavía no hay servidor ni persistencia. 52 tests verdes, analyze limpio, build web OK.
 
 | Bloque | Contenido | Estado |
 |---|---|---|
 | F1C-1 | Esqueleto Flutter (Android, web, Linux), i18n es/eu, dominio puro con tests | ✅ |
 | F1C-2 | Interfaz: lista por fases, ficha (información, debate, decidir, resultado) y «¿Se ha hecho?», con datos de ejemplo | ✅ |
-| F1C-3 | Herramientas de la mesa: crear y abrir asuntos en borrador, moderar anónimas, resumen del debate, cerrar vueltas de consentimiento y resolver objeciones, apuntar compromisos | ⏳ |
+| F1C-3 | Herramientas de la mesa: crear, editar, abrir y borrar borradores (con lo que falta para abrir a la vista); publicar o retirar aportaciones con motivo (queda el hueco); resumen del debate; integrar objeciones o declarar que no lo son, retirar la propia y cerrar vueltas; apuntar compromisos y marcarlos (en marcha, hecho, no se hará con motivo) | ✅ |
 | F1C-4 | Canal en papel: hoja del asunto y papeleta en PDF, anotar voto presencial, conteo firmado por dos, modo asamblea | ⏳ |
 | F1C-5 | Acta en PDF con marca BORRADOR hasta que la firme la mesa | ⏳ |
 | F1C-6 | Persistencia local y servidor: plugin de WordPress del propio pueblo (base común extraída de Zunbeltz), altas con código en papel, sincronización | ⏳ |
@@ -59,8 +59,13 @@ lib/
 - **Compromisos**: vencen al día siguiente de la fecha límite. «No se hará» exige motivo.
 - **Roles**: el cargo de mesa caduca solo al pasar la fecha de fin.
 - **Efecto sobre el entorno**: obligatorio para abrir un asunto, aunque sea «ninguno».
+- **Permisos**: lo de la mesa lo comprueba `EstadoConcejo` (lanza `StateError`), no solo la interfaz. El servidor tendrá que repetir esas comprobaciones. Retirar una objeción solo puede hacerlo quien la planteó; integrarla o declarar que no lo es, solo la mesa.
+- **Un asunto abierto antes de la fecha de debate** ya está en debate: la fecha de inicio es informativa.
+- **Anónimas**: la mesa tampoco ve el nombre en pantalla, aunque se guarda para evitar abusos.
 
 ## Pendiente de revisar
+
+- **La mesa no puede corregir un asunto ya abierto** (ni una errata). Habrá que decidir con el piloto si se permite editar el texto sin tocar las reglas, dejando constancia del cambio.
 
 - **El euskera de `app_eu.arb` es borrador propio.** Pendiente de revisión nativa, igual que en Zunbeltz.
 - **El nombre «Concejo / Kontzejua» es provisional.**

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../dominio/asunto.dart';
+import '../dominio/consentimiento.dart';
 import '../dominio/recuento.dart';
 import '../dominio/reglas_decision.dart';
 import '../estado/estado_concejo.dart';
@@ -38,11 +39,31 @@ class PestanaResultado extends StatelessWidget {
             _eleccion(context, reglas, contarEleccion(reglas, urna)),
           FormaDecision.presupuesto =>
             _presupuesto(context, contarPresupuesto(reglas, urna)),
-          FormaDecision.consentimiento => [Text(textos.recuentoEnCurso)],
+          FormaDecision.consentimiento => [
+              Text(
+                switch (estado.consentimiento(asunto.uid).desenlace) {
+                  DesenlaceConsentimiento.aprobada =>
+                    textos.consentimientoAprobado,
+                  DesenlaceConsentimiento.pasaAVotacionOAsamblea =>
+                    textos.consentimientoPasa,
+                  DesenlaceConsentimiento.enCurso => textos.recuentoEnCurso,
+                },
+                style: estilos.titleMedium,
+              ),
+            ],
         },
         const SizedBox(height: 24),
         Text(textos.seccionCompromisos, style: estilos.titleMedium),
         if (compromisos.isEmpty) Text(textos.sinCompromisos),
+        if (estado.soyMesa)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              onPressed: () => apuntarCompromiso(context, estado, asunto.uid),
+              icon: const Icon(Icons.add_task),
+              label: Text(textos.apuntarCompromiso),
+            ),
+          ),
         for (final compromiso in compromisos)
           TarjetaCompromiso(estado: estado, compromiso: compromiso),
       ],

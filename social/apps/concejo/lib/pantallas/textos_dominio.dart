@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../dominio/asunto.dart';
 import '../dominio/compromiso.dart';
+import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/reglas_decision.dart';
 import '../l10n/app_localizations.dart';
@@ -54,6 +55,33 @@ extension TextosDominio on AppLocalizations {
         EstadoCompromiso.enMarcha => compromisoEnMarcha,
         EstadoCompromiso.hecho => compromisoHecho,
         EstadoCompromiso.noSeHara => compromisoNoSeHara,
+      };
+
+  String nombreForma(FormaDecision forma) => switch (forma) {
+        FormaDecision.votacion => nombreVotacion,
+        FormaDecision.eleccionEntreOpciones => nombreEleccion,
+        FormaDecision.consentimiento => nombreConsentimiento,
+        FormaDecision.presupuesto => nombrePresupuesto,
+      };
+
+  String problema(ProblemaAsunto problema) => switch (problema) {
+        ProblemaAsunto.faltaTitulo => problemaTitulo,
+        ProblemaAsunto.faltaResumen => problemaResumen,
+        ProblemaAsunto.faltaEfectoEntorno => problemaEntorno,
+        ProblemaAsunto.faltaCompromisoPrevio => problemaCompromiso,
+        ProblemaAsunto.fechasDesordenadas => problemaFechas,
+        ProblemaAsunto.faltanOpciones => problemaOpciones,
+        ProblemaAsunto.opcionesRepetidas => problemaRepetidas,
+        ProblemaAsunto.faltaBolsa => problemaBolsa,
+        ProblemaAsunto.propuestaSinCoste => problemaSinCoste,
+        ProblemaAsunto.quorumNegativo => problemaQuorum,
+      };
+
+  String estadoObjecion(EstadoObjecion estado) => switch (estado) {
+        EstadoObjecion.viva => objecionesVivas,
+        EstadoObjecion.integrada => estadoIntegrada,
+        EstadoObjecion.retirada => estadoRetirada,
+        EstadoObjecion.noEsObjecion => estadoNoEsObjecion,
       };
 
   /// «5 de noviembre».

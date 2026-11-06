@@ -661,6 +661,498 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Estás en la mesa hasta el {fecha}'**
   String eresMesa(String fecha);
+
+  /// No description provided for @nuevoAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevo asunto'**
+  String get nuevoAsunto;
+
+  /// No description provided for @editarAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar asunto'**
+  String get editarAsunto;
+
+  /// No description provided for @campoTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Título'**
+  String get campoTitulo;
+
+  /// No description provided for @campoResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'Resumen en tres líneas'**
+  String get campoResumen;
+
+  /// No description provided for @ayudaResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo primero que se lee. Frases cortas, sin jerga.'**
+  String get ayudaResumen;
+
+  /// No description provided for @campoTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'Texto completo (opcional)'**
+  String get campoTexto;
+
+  /// No description provided for @campoTipoDecision.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué valor tiene lo que salga?'**
+  String get campoTipoDecision;
+
+  /// No description provided for @campoCompromiso.
+  ///
+  /// In es, this message translates to:
+  /// **'Compromiso previo'**
+  String get campoCompromiso;
+
+  /// No description provided for @campoCoste.
+  ///
+  /// In es, this message translates to:
+  /// **'Coste (€, opcional)'**
+  String get campoCoste;
+
+  /// No description provided for @campoEntorno.
+  ///
+  /// In es, this message translates to:
+  /// **'Efecto sobre el entorno'**
+  String get campoEntorno;
+
+  /// No description provided for @campoInicioDebate.
+  ///
+  /// In es, this message translates to:
+  /// **'Empieza el debate'**
+  String get campoInicioDebate;
+
+  /// No description provided for @campoInicioDecision.
+  ///
+  /// In es, this message translates to:
+  /// **'Empieza la decisión'**
+  String get campoInicioDecision;
+
+  /// No description provided for @campoFinDecision.
+  ///
+  /// In es, this message translates to:
+  /// **'Acaba la decisión'**
+  String get campoFinDecision;
+
+  /// No description provided for @campoForma.
+  ///
+  /// In es, this message translates to:
+  /// **'Cómo se decide'**
+  String get campoForma;
+
+  /// No description provided for @nombreVotacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Votación'**
+  String get nombreVotacion;
+
+  /// No description provided for @nombreEleccion.
+  ///
+  /// In es, this message translates to:
+  /// **'Elegir entre opciones'**
+  String get nombreEleccion;
+
+  /// No description provided for @nombreConsentimiento.
+  ///
+  /// In es, this message translates to:
+  /// **'Consentimiento'**
+  String get nombreConsentimiento;
+
+  /// No description provided for @nombrePresupuesto.
+  ///
+  /// In es, this message translates to:
+  /// **'Presupuesto'**
+  String get nombrePresupuesto;
+
+  /// No description provided for @campoMayoria.
+  ///
+  /// In es, this message translates to:
+  /// **'Mayoría'**
+  String get campoMayoria;
+
+  /// No description provided for @campoQuorum.
+  ///
+  /// In es, this message translates to:
+  /// **'Mínimo de participación'**
+  String get campoQuorum;
+
+  /// No description provided for @campoSecreto.
+  ///
+  /// In es, this message translates to:
+  /// **'Voto secreto'**
+  String get campoSecreto;
+
+  /// No description provided for @campoBolsa.
+  ///
+  /// In es, this message translates to:
+  /// **'Dinero disponible (€)'**
+  String get campoBolsa;
+
+  /// No description provided for @campoRondas.
+  ///
+  /// In es, this message translates to:
+  /// **'Vueltas antes de llevarlo a votación o a la asamblea'**
+  String get campoRondas;
+
+  /// No description provided for @opciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Opciones'**
+  String get opciones;
+
+  /// No description provided for @propuestas.
+  ///
+  /// In es, this message translates to:
+  /// **'Propuestas'**
+  String get propuestas;
+
+  /// No description provided for @anadirOpcion.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir'**
+  String get anadirOpcion;
+
+  /// No description provided for @textoOpcion.
+  ///
+  /// In es, this message translates to:
+  /// **'Texto'**
+  String get textoOpcion;
+
+  /// No description provided for @costeOpcion.
+  ///
+  /// In es, this message translates to:
+  /// **'Coste €'**
+  String get costeOpcion;
+
+  /// No description provided for @guardarBorrador.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar borrador'**
+  String get guardarBorrador;
+
+  /// No description provided for @abrirAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir el asunto'**
+  String get abrirAsunto;
+
+  /// No description provided for @confirmarAbrir.
+  ///
+  /// In es, this message translates to:
+  /// **'Al abrirlo, todo el mundo lo verá y las reglas de decisión ya no se podrán cambiar. ¿Lo abres?'**
+  String get confirmarAbrir;
+
+  /// No description provided for @abrir.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir'**
+  String get abrir;
+
+  /// No description provided for @borrarBorrador.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar borrador'**
+  String get borrarBorrador;
+
+  /// No description provided for @confirmarBorrar.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Borras este borrador?'**
+  String get confirmarBorrar;
+
+  /// No description provided for @borrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar'**
+  String get borrar;
+
+  /// No description provided for @editar.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar'**
+  String get editar;
+
+  /// No description provided for @guardar.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardar'**
+  String get guardar;
+
+  /// No description provided for @faltaParaAbrir.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta para poder abrirlo:'**
+  String get faltaParaAbrir;
+
+  /// No description provided for @problemaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'el título'**
+  String get problemaTitulo;
+
+  /// No description provided for @problemaResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'el resumen'**
+  String get problemaResumen;
+
+  /// No description provided for @problemaEntorno.
+  ///
+  /// In es, this message translates to:
+  /// **'el efecto sobre el entorno'**
+  String get problemaEntorno;
+
+  /// No description provided for @problemaCompromiso.
+  ///
+  /// In es, this message translates to:
+  /// **'el texto del compromiso previo'**
+  String get problemaCompromiso;
+
+  /// No description provided for @problemaFechas.
+  ///
+  /// In es, this message translates to:
+  /// **'que las fechas vayan en orden (debate, decisión, fin)'**
+  String get problemaFechas;
+
+  /// No description provided for @problemaOpciones.
+  ///
+  /// In es, this message translates to:
+  /// **'al menos dos opciones (o una propuesta)'**
+  String get problemaOpciones;
+
+  /// No description provided for @problemaRepetidas.
+  ///
+  /// In es, this message translates to:
+  /// **'que no haya opciones repetidas'**
+  String get problemaRepetidas;
+
+  /// No description provided for @problemaBolsa.
+  ///
+  /// In es, this message translates to:
+  /// **'el dinero disponible'**
+  String get problemaBolsa;
+
+  /// No description provided for @problemaSinCoste.
+  ///
+  /// In es, this message translates to:
+  /// **'el coste de cada propuesta'**
+  String get problemaSinCoste;
+
+  /// No description provided for @problemaQuorum.
+  ///
+  /// In es, this message translates to:
+  /// **'un mínimo de participación que no sea negativo'**
+  String get problemaQuorum;
+
+  /// No description provided for @verComo.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver como…'**
+  String get verComo;
+
+  /// No description provided for @rolMesa.
+  ///
+  /// In es, this message translates to:
+  /// **'mesa'**
+  String get rolMesa;
+
+  /// No description provided for @rolVecina.
+  ///
+  /// In es, this message translates to:
+  /// **'vecina'**
+  String get rolVecina;
+
+  /// No description provided for @pendienteModeracion.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin nombre · espera a la mesa'**
+  String get pendienteModeracion;
+
+  /// No description provided for @publicarAportacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Publicar'**
+  String get publicarAportacion;
+
+  /// No description provided for @retirarAportacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirar'**
+  String get retirarAportacion;
+
+  /// No description provided for @motivoRetirada.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Por qué se retira? Quedará a la vista.'**
+  String get motivoRetirada;
+
+  /// No description provided for @retiradaPorMesa.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirada por la mesa: {motivo}'**
+  String retiradaPorMesa(String motivo);
+
+  /// No description provided for @escribirResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribir el resumen del debate'**
+  String get escribirResumen;
+
+  /// No description provided for @resumenDebate.
+  ///
+  /// In es, this message translates to:
+  /// **'Resumen del debate (mesa)'**
+  String get resumenDebate;
+
+  /// No description provided for @integrarObjecion.
+  ///
+  /// In es, this message translates to:
+  /// **'Integrar'**
+  String get integrarObjecion;
+
+  /// No description provided for @noEsObjecion.
+  ///
+  /// In es, this message translates to:
+  /// **'No es objeción'**
+  String get noEsObjecion;
+
+  /// No description provided for @comoSeIntegra.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cómo se cambia la propuesta para resolverla?'**
+  String get comoSeIntegra;
+
+  /// No description provided for @porQueNoEsObjecion.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Por qué no razona un daño? Quedará en el acta.'**
+  String get porQueNoEsObjecion;
+
+  /// No description provided for @retirarMiObjecion.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirar mi objeción'**
+  String get retirarMiObjecion;
+
+  /// No description provided for @cerrarVuelta.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar la vuelta {ronda}'**
+  String cerrarVuelta(int ronda);
+
+  /// No description provided for @confirmarCerrarVuelta.
+  ///
+  /// In es, this message translates to:
+  /// **'Si no quedan objeciones vivas, la propuesta queda aprobada. Si quedan, empieza otra vuelta o pasa a votación o asamblea. ¿Cierras la vuelta?'**
+  String get confirmarCerrarVuelta;
+
+  /// No description provided for @cerrar.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar'**
+  String get cerrar;
+
+  /// No description provided for @consentimientoAprobado.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprobada por consentimiento: nadie mantiene una objeción.'**
+  String get consentimientoAprobado;
+
+  /// No description provided for @consentimientoPasa.
+  ///
+  /// In es, this message translates to:
+  /// **'Quedan objeciones sin resolver: pasa a votación o a la asamblea en persona.'**
+  String get consentimientoPasa;
+
+  /// No description provided for @objecionesResueltas.
+  ///
+  /// In es, this message translates to:
+  /// **'Objeciones resueltas'**
+  String get objecionesResueltas;
+
+  /// No description provided for @estadoIntegrada.
+  ///
+  /// In es, this message translates to:
+  /// **'Integrada'**
+  String get estadoIntegrada;
+
+  /// No description provided for @estadoRetirada.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirada'**
+  String get estadoRetirada;
+
+  /// No description provided for @estadoNoEsObjecion.
+  ///
+  /// In es, this message translates to:
+  /// **'No era objeción'**
+  String get estadoNoEsObjecion;
+
+  /// No description provided for @apuntarCompromiso.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar compromiso'**
+  String get apuntarCompromiso;
+
+  /// No description provided for @campoQue.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué se hará'**
+  String get campoQue;
+
+  /// No description provided for @campoResponsable.
+  ///
+  /// In es, this message translates to:
+  /// **'Quién'**
+  String get campoResponsable;
+
+  /// No description provided for @campoFechaLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'Para cuándo'**
+  String get campoFechaLimite;
+
+  /// No description provided for @marcarNoSeHara.
+  ///
+  /// In es, this message translates to:
+  /// **'No se hará…'**
+  String get marcarNoSeHara;
+
+  /// No description provided for @porQueNoSeHara.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Por qué no se hará? También es información para el pueblo.'**
+  String get porQueNoSeHara;
+
+  /// No description provided for @ayudaEntorno.
+  ///
+  /// In es, this message translates to:
+  /// **'Agua, monte, ruido, paisaje, animales… Si no tiene, escribe «ninguno».'**
+  String get ayudaEntorno;
+
+  /// No description provided for @ayudaQuorum.
+  ///
+  /// In es, this message translates to:
+  /// **'Personas que tienen que participar para que valga (0 = sin mínimo)'**
+  String get ayudaQuorum;
+
+  /// No description provided for @ayudaCompromiso.
+  ///
+  /// In es, this message translates to:
+  /// **'Quién se compromete a qué y en qué condiciones'**
+  String get ayudaCompromiso;
+
+  /// No description provided for @ayudaResponsable.
+  ///
+  /// In es, this message translates to:
+  /// **'Persona, comisión, «la junta»…'**
+  String get ayudaResponsable;
 }
 
 class _AppLocalizationsDelegate

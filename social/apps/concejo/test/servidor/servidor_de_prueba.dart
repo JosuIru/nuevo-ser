@@ -17,6 +17,8 @@ class ServidorDePrueba {
   var conRed = true;
   var codigoValido = 'K7PM-3QXD-9TRA';
   var peticionesEstado = 0;
+  var yo = 'maite';
+  final codigosSacados = <String>[];
 
   String get _huella => '${jsonEncode(instantaneaAJson(verdad)).hashCode}';
 
@@ -33,11 +35,20 @@ class ServidorDePrueba {
           return http.Response(
               jsonEncode({
                 ...instantaneaAJson(verdad),
-                'yo': 'maite',
+                'yo': yo,
                 'huella': _huella,
               }),
               200,
               headers: {'content-type': 'application/json; charset=utf-8'});
+        }
+        if (peticion.url.path.endsWith('/codigo')) {
+          final uid =
+              peticion.url.pathSegments[peticion.url.pathSegments.length - 2];
+          if (!verdad.personas.any((p) => p.uid == uid)) {
+            return http.Response('{}', 404);
+          }
+          codigosSacados.add(uid);
+          return http.Response(jsonEncode({'codigo': 'ABCD-EFGH-JKMN'}), 200);
         }
         final cuerpo = jsonDecode(peticion.body) as Map<String, dynamic>;
         final resultados = [];

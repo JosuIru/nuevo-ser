@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:concejo/documentos/documentos_papel.dart';
 import 'package:concejo/estado/datos_ejemplo.dart';
@@ -42,5 +43,21 @@ void main() {
         textos: textos,
         paginas: 3);
     expect(tres.length, greaterThan(una.length));
+  });
+
+  test('hoja con el código personal', () async {
+    final bytes = await hojaDeCodigo(
+      nombreEspacio: 'Concejo de Ejemplo',
+      nombrePersona: 'Maritxu',
+      direccion: 'concejo.ejemplo.eus',
+      codigo: 'K7PM-3QXD-9TRA',
+      textos: lookupAppLocalizations(const Locale('es')),
+    );
+    expect(ascii.decode(bytes.sublist(0, 5)), '%PDF-');
+    // Para mirarla a ojo: CONCEJO_PDF=<carpeta> flutter test …
+    final carpeta = Platform.environment['CONCEJO_PDF'];
+    if (carpeta != null) {
+      File('$carpeta/hoja-codigo.pdf').writeAsBytesSync(bytes);
+    }
   });
 }

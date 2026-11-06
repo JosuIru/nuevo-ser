@@ -106,6 +106,7 @@ class Asunto {
   /// Lo abre si no le falta nada. Devuelve el asunto abierto (las reglas
   /// quedan fijas) o lanza [StateError] con lo que falta.
   Asunto abrir() {
+    if (abierto) throw StateError('El asunto ya está abierto');
     final problemas = problemasParaAbrir();
     if (problemas.isNotEmpty) {
       throw StateError('No se puede abrir: ${problemas.join(', ')}');

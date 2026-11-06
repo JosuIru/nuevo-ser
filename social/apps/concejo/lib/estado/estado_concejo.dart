@@ -159,6 +159,9 @@ class EstadoConcejo extends ChangeNotifier {
       {String? enNombreDeUid}) {
     if (enNombreDeUid != null) _soloMesa();
     _soloConDebateAbierto(asuntoUid);
+    if (asunto(asuntoUid).reglas.forma != FormaDecision.consentimiento) {
+      throw StateError('Este asunto no se decide por consentimiento');
+    }
     _consentimientos[asuntoUid] = consentimiento(asuntoUid).objetar(
       uid: uid,
       autorUid: enNombreDeUid ?? personaActual.uid,
@@ -287,6 +290,9 @@ class EstadoConcejo extends ChangeNotifier {
     if (que.trim().isEmpty || responsable.trim().isEmpty) {
       throw ArgumentError('Un compromiso dice qué y quién');
     }
+    if (_compromisos.any((c) => c.uid == uid)) {
+      throw StateError('Identificador de compromiso repetido');
+    }
     _compromisos.add(Compromiso(
       uid: uid,
       asuntoUid: asuntoUid,
@@ -320,6 +326,9 @@ class EstadoConcejo extends ChangeNotifier {
   Persona _darDeAlta(String uid, String nombre) {
     _soloMesa();
     if (nombre.trim().isEmpty) throw ArgumentError('Falta el nombre');
+    if (_personas.any((p) => p.uid == uid)) {
+      throw StateError('Identificador de persona repetido');
+    }
     final persona = Persona(uid: uid, nombre: nombre.trim());
     _personas.add(persona);
     return persona;

@@ -105,6 +105,9 @@ class EstadoConsentimiento {
     if (motivo.trim().isEmpty) {
       throw ArgumentError('Una objeción explica qué daño causa la propuesta');
     }
+    if (objeciones.any((o) => o.uid == uid)) {
+      throw ArgumentError('Identificador de objeción repetido');
+    }
     return _con(objeciones: [
       ...objeciones,
       Objecion(

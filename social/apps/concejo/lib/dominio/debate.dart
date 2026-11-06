@@ -67,6 +67,9 @@ class Debate {
     if (nueva.texto.trim().isEmpty) {
       throw ArgumentError('Una aportación vacía no aporta');
     }
+    if (aportaciones.any((a) => a.uid == nueva.uid)) {
+      throw ArgumentError('Identificador de aportación repetido');
+    }
     if (nueva.respondeAUid != null) {
       final original = aportaciones.where((a) => a.uid == nueva.respondeAUid);
       if (original.isEmpty) {

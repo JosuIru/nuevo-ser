@@ -96,7 +96,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String quorum(int cantidad) {
-    return 'Hace falta que participen al menos $cantidad personas';
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: 'Hace falta que participen al menos $cantidad personas',
+      one: 'Hace falta que participe al menos 1 persona',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -247,7 +253,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String resultadoParticipacion(int cantidad) {
-    return 'Han participado $cantidad personas';
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: 'Han participado $cantidad personas',
+      one: 'Ha participado 1 persona',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -268,7 +280,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String apoyos(int cantidad) {
-    return '$cantidad apoyos';
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad apoyos',
+      one: '1 apoyo',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -590,4 +608,153 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ayudaResponsable => 'Persona, comisión, «la junta»…';
+
+  @override
+  String get pdfHojaAsunto => 'Hoja del asunto';
+
+  @override
+  String get pdfPapeletas => 'Papeletas';
+
+  @override
+  String get pdfHojaRecuento => 'Hoja de recuento';
+
+  @override
+  String get pdfComoParticipar => 'Cómo participar';
+
+  @override
+  String get pdfParticiparTexto =>
+      'En la app o en papel: pide la papeleta a la mesa y entrégala dentro del plazo. Cada persona vota una sola vez.';
+
+  @override
+  String get pdfMarcaUna => 'Marca una sola casilla.';
+
+  @override
+  String get pdfMarcaVarias => 'Marca todas las opciones que aceptes.';
+
+  @override
+  String pdfMarcaPropuestas(String bolsa) {
+    return 'Marca las propuestas que apoyas. Hay $bolsa: entran por apoyos mientras quepan.';
+  }
+
+  @override
+  String get pdfPapeletaSecreta =>
+      'Voto secreto: no escribas tu nombre. Dobla la papeleta.';
+
+  @override
+  String get pdfPapeletaNominal => 'Voto a la vista: escribe tu nombre.';
+
+  @override
+  String get pdfNombre => 'Nombre';
+
+  @override
+  String get pdfHojaObjeciones => 'Objeciones';
+
+  @override
+  String get pdfObjecionesTexto =>
+      'Si la propuesta causaría algún daño, explícalo aquí. Objetar no es estar en contra: di qué daño y, si puedes, cómo evitarlo.';
+
+  @override
+  String get pdfDanoYComoEvitarlo => 'Qué daño causaría y cómo evitarlo';
+
+  @override
+  String get pdfRecuentoTexto =>
+      'Para la mesa: cuenta las papeletas en papel entre dos personas y pasa las cifras a la app.';
+
+  @override
+  String get pdfOpcion => 'Opción';
+
+  @override
+  String get pdfMarcas => 'Marcas';
+
+  @override
+  String get pdfPapeletasTotales => 'Papeletas en total';
+
+  @override
+  String get pdfEnBlanco => 'De ellas, en blanco';
+
+  @override
+  String get pdfPersonasAnotadas =>
+      'Personas anotadas como votantes en persona';
+
+  @override
+  String get pdfFirma => 'Firma';
+
+  @override
+  String get pdfFecha => 'Fecha';
+
+  @override
+  String get pdfRecorta => 'Recorta por la línea';
+
+  @override
+  String get imprimir => 'Imprimir o compartir';
+
+  @override
+  String get votosEnPersona => 'Votos en persona';
+
+  @override
+  String get votosEnPersonaTexto =>
+      'Apunta a cada persona cuando te entregue su papeleta: así nadie vota dos veces ni en papel ni en la app. Al cerrar, contad las papeletas entre dos y pasad las cifras.';
+
+  @override
+  String get buscarPersona => 'Buscar por nombre';
+
+  @override
+  String get haVotadoEnPersona => 'Ha votado en persona';
+
+  @override
+  String get anotar => 'Anotar';
+
+  @override
+  String get darDeAlta => 'No está en la lista: darla de alta';
+
+  @override
+  String get nombreNuevaPersona => 'Nombre de la persona';
+
+  @override
+  String anotadasEnPersona(int cantidad) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad personas anotadas en persona',
+      one: '1 persona anotada en persona',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pasarConteo => 'Pasar el conteo de las papeletas';
+
+  @override
+  String conteosRegistrados(int papeletas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      papeletas,
+      locale: localeName,
+      other: 'Conteos registrados: $papeletas papeletas',
+      one: 'Conteos registrados: 1 papeleta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get segundaFirma => 'Segunda firma (otra persona de la mesa)';
+
+  @override
+  String get registrarConteo => 'Registrar el conteo';
+
+  @override
+  String get avisoPapeletasNoCuadran =>
+      'Las papeletas contadas en papel no cuadran con las personas anotadas. Revisadlo antes del acta.';
+
+  @override
+  String get sinOtraMesa =>
+      'Hace falta otra persona de la mesa para firmar el conteo.';
+
+  @override
+  String get aportarEnNombreDe => 'Recoger lo que dijo alguien en persona';
+
+  @override
+  String get objetarEnNombreDe => 'Recoger una objeción hecha en persona';
+
+  @override
+  String get quienLoDijo => '¿Quién lo dijo?';
 }

@@ -109,6 +109,25 @@ class PestanaConsentimiento extends StatelessWidget {
             label: Text(textos.objetar),
           ),
           if (estado.soyMesa) ...[
+            TextButton.icon(
+              onPressed: () async {
+                final persona = await elegirPersona(context,
+                    titulo: textos.quienLoDijo, personas: estado.personas);
+                if (persona == null || !context.mounted) return;
+                final motivo = await pedirTexto(
+                  context,
+                  titulo: textos.objetarEnNombreDe,
+                  etiqueta: textos.queDanoCausa,
+                  confirmar: textos.enviar,
+                );
+                if (motivo != null) {
+                  estado.objetar(asunto.uid, motivo,
+                      enNombreDeUid: persona.uid);
+                }
+              },
+              icon: const Icon(Icons.record_voice_over_outlined),
+              label: Text(textos.objetarEnNombreDe),
+            ),
             const SizedBox(height: 8),
             FilledButton.icon(
               onPressed: () async {

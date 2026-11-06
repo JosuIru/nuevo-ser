@@ -5,6 +5,7 @@ import '../dominio/reglas_decision.dart';
 import '../dominio/urna.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
+import 'pantalla_votos_en_persona.dart';
 import 'pestana_consentimiento.dart';
 import 'textos_dominio.dart';
 
@@ -30,8 +31,14 @@ class PestanaDecidir extends StatelessWidget {
       return _Mensaje(
           textos.decisionAunNo(textos.fecha(asunto.inicioDecision)));
     }
-    if (estado.heVotado(asunto.uid)) return _Mensaje(textos.yaHasVotado);
-    return _Papeleta(estado: estado, asunto: asunto);
+    final contenido = estado.heVotado(asunto.uid)
+        ? _Mensaje(textos.yaHasVotado)
+        : _Papeleta(estado: estado, asunto: asunto);
+    if (!estado.soyMesa) return contenido;
+    return Column(children: [
+      Expanded(child: contenido),
+      BotonVotosEnPersona(estado: estado, asuntoUid: asunto.uid),
+    ]);
   }
 }
 
@@ -154,4 +161,31 @@ class _PapeletaState extends State<_Papeleta> {
       widget.estado.votar(widget.asunto.uid, {..._marcadas});
     }
   }
+}
+
+/// Para la mesa: la urna de papel de este asunto.
+class BotonVotosEnPersona extends StatelessWidget {
+  const BotonVotosEnPersona(
+      {super.key, required this.estado, required this.asuntoUid});
+
+  final EstadoConcejo estado;
+  final String asuntoUid;
+
+  @override
+  Widget build(BuildContext context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: SizedBox(
+            width: double.infinity,
+            child: OutlinedButton.icon(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (_) => PantallaVotosEnPersona(
+                    estado: estado, asuntoUid: asuntoUid),
+              )),
+              icon: const Icon(Icons.how_to_reg_outlined),
+              label: Text(AppLocalizations.of(context).votosEnPersona),
+            ),
+          ),
+        ),
+      );
 }

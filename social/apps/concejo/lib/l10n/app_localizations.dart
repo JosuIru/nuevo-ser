@@ -251,7 +251,7 @@ abstract class AppLocalizations {
   /// No description provided for @quorum.
   ///
   /// In es, this message translates to:
-  /// **'Hace falta que participen al menos {cantidad} personas'**
+  /// **'{cantidad, plural, =1{Hace falta que participe al menos 1 persona} other{Hace falta que participen al menos {cantidad} personas}}'**
   String quorum(int cantidad);
 
   /// No description provided for @sinQuorumRegla.
@@ -527,7 +527,7 @@ abstract class AppLocalizations {
   /// No description provided for @resultadoParticipacion.
   ///
   /// In es, this message translates to:
-  /// **'Han participado {cantidad} personas'**
+  /// **'{cantidad, plural, =1{Ha participado 1 persona} other{Han participado {cantidad} personas}}'**
   String resultadoParticipacion(int cantidad);
 
   /// No description provided for @resultadoEmpate.
@@ -563,7 +563,7 @@ abstract class AppLocalizations {
   /// No description provided for @apoyos.
   ///
   /// In es, this message translates to:
-  /// **'{cantidad} apoyos'**
+  /// **'{cantidad, plural, =1{1 apoyo} other{{cantidad} apoyos}}'**
   String apoyos(int cantidad);
 
   /// No description provided for @sobrante.
@@ -1153,6 +1153,252 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Persona, comisión, «la junta»…'**
   String get ayudaResponsable;
+
+  /// No description provided for @pdfHojaAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoja del asunto'**
+  String get pdfHojaAsunto;
+
+  /// No description provided for @pdfPapeletas.
+  ///
+  /// In es, this message translates to:
+  /// **'Papeletas'**
+  String get pdfPapeletas;
+
+  /// No description provided for @pdfHojaRecuento.
+  ///
+  /// In es, this message translates to:
+  /// **'Hoja de recuento'**
+  String get pdfHojaRecuento;
+
+  /// No description provided for @pdfComoParticipar.
+  ///
+  /// In es, this message translates to:
+  /// **'Cómo participar'**
+  String get pdfComoParticipar;
+
+  /// No description provided for @pdfParticiparTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'En la app o en papel: pide la papeleta a la mesa y entrégala dentro del plazo. Cada persona vota una sola vez.'**
+  String get pdfParticiparTexto;
+
+  /// No description provided for @pdfMarcaUna.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca una sola casilla.'**
+  String get pdfMarcaUna;
+
+  /// No description provided for @pdfMarcaVarias.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca todas las opciones que aceptes.'**
+  String get pdfMarcaVarias;
+
+  /// No description provided for @pdfMarcaPropuestas.
+  ///
+  /// In es, this message translates to:
+  /// **'Marca las propuestas que apoyas. Hay {bolsa}: entran por apoyos mientras quepan.'**
+  String pdfMarcaPropuestas(String bolsa);
+
+  /// No description provided for @pdfPapeletaSecreta.
+  ///
+  /// In es, this message translates to:
+  /// **'Voto secreto: no escribas tu nombre. Dobla la papeleta.'**
+  String get pdfPapeletaSecreta;
+
+  /// No description provided for @pdfPapeletaNominal.
+  ///
+  /// In es, this message translates to:
+  /// **'Voto a la vista: escribe tu nombre.'**
+  String get pdfPapeletaNominal;
+
+  /// No description provided for @pdfNombre.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre'**
+  String get pdfNombre;
+
+  /// No description provided for @pdfHojaObjeciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Objeciones'**
+  String get pdfHojaObjeciones;
+
+  /// No description provided for @pdfObjecionesTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'Si la propuesta causaría algún daño, explícalo aquí. Objetar no es estar en contra: di qué daño y, si puedes, cómo evitarlo.'**
+  String get pdfObjecionesTexto;
+
+  /// No description provided for @pdfDanoYComoEvitarlo.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué daño causaría y cómo evitarlo'**
+  String get pdfDanoYComoEvitarlo;
+
+  /// No description provided for @pdfRecuentoTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'Para la mesa: cuenta las papeletas en papel entre dos personas y pasa las cifras a la app.'**
+  String get pdfRecuentoTexto;
+
+  /// No description provided for @pdfOpcion.
+  ///
+  /// In es, this message translates to:
+  /// **'Opción'**
+  String get pdfOpcion;
+
+  /// No description provided for @pdfMarcas.
+  ///
+  /// In es, this message translates to:
+  /// **'Marcas'**
+  String get pdfMarcas;
+
+  /// No description provided for @pdfPapeletasTotales.
+  ///
+  /// In es, this message translates to:
+  /// **'Papeletas en total'**
+  String get pdfPapeletasTotales;
+
+  /// No description provided for @pdfEnBlanco.
+  ///
+  /// In es, this message translates to:
+  /// **'De ellas, en blanco'**
+  String get pdfEnBlanco;
+
+  /// No description provided for @pdfPersonasAnotadas.
+  ///
+  /// In es, this message translates to:
+  /// **'Personas anotadas como votantes en persona'**
+  String get pdfPersonasAnotadas;
+
+  /// No description provided for @pdfFirma.
+  ///
+  /// In es, this message translates to:
+  /// **'Firma'**
+  String get pdfFirma;
+
+  /// No description provided for @pdfFecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Fecha'**
+  String get pdfFecha;
+
+  /// No description provided for @pdfRecorta.
+  ///
+  /// In es, this message translates to:
+  /// **'Recorta por la línea'**
+  String get pdfRecorta;
+
+  /// No description provided for @imprimir.
+  ///
+  /// In es, this message translates to:
+  /// **'Imprimir o compartir'**
+  String get imprimir;
+
+  /// No description provided for @votosEnPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Votos en persona'**
+  String get votosEnPersona;
+
+  /// No description provided for @votosEnPersonaTexto.
+  ///
+  /// In es, this message translates to:
+  /// **'Apunta a cada persona cuando te entregue su papeleta: así nadie vota dos veces ni en papel ni en la app. Al cerrar, contad las papeletas entre dos y pasad las cifras.'**
+  String get votosEnPersonaTexto;
+
+  /// No description provided for @buscarPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar por nombre'**
+  String get buscarPersona;
+
+  /// No description provided for @haVotadoEnPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Ha votado en persona'**
+  String get haVotadoEnPersona;
+
+  /// No description provided for @anotar.
+  ///
+  /// In es, this message translates to:
+  /// **'Anotar'**
+  String get anotar;
+
+  /// No description provided for @darDeAlta.
+  ///
+  /// In es, this message translates to:
+  /// **'No está en la lista: darla de alta'**
+  String get darDeAlta;
+
+  /// No description provided for @nombreNuevaPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre de la persona'**
+  String get nombreNuevaPersona;
+
+  /// No description provided for @anotadasEnPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'{cantidad, plural, =1{1 persona anotada en persona} other{{cantidad} personas anotadas en persona}}'**
+  String anotadasEnPersona(int cantidad);
+
+  /// No description provided for @pasarConteo.
+  ///
+  /// In es, this message translates to:
+  /// **'Pasar el conteo de las papeletas'**
+  String get pasarConteo;
+
+  /// No description provided for @conteosRegistrados.
+  ///
+  /// In es, this message translates to:
+  /// **'{papeletas, plural, =1{Conteos registrados: 1 papeleta} other{Conteos registrados: {papeletas} papeletas}}'**
+  String conteosRegistrados(int papeletas);
+
+  /// No description provided for @segundaFirma.
+  ///
+  /// In es, this message translates to:
+  /// **'Segunda firma (otra persona de la mesa)'**
+  String get segundaFirma;
+
+  /// No description provided for @registrarConteo.
+  ///
+  /// In es, this message translates to:
+  /// **'Registrar el conteo'**
+  String get registrarConteo;
+
+  /// No description provided for @avisoPapeletasNoCuadran.
+  ///
+  /// In es, this message translates to:
+  /// **'Las papeletas contadas en papel no cuadran con las personas anotadas. Revisadlo antes del acta.'**
+  String get avisoPapeletasNoCuadran;
+
+  /// No description provided for @sinOtraMesa.
+  ///
+  /// In es, this message translates to:
+  /// **'Hace falta otra persona de la mesa para firmar el conteo.'**
+  String get sinOtraMesa;
+
+  /// No description provided for @aportarEnNombreDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Recoger lo que dijo alguien en persona'**
+  String get aportarEnNombreDe;
+
+  /// No description provided for @objetarEnNombreDe.
+  ///
+  /// In es, this message translates to:
+  /// **'Recoger una objeción hecha en persona'**
+  String get objetarEnNombreDe;
+
+  /// No description provided for @quienLoDijo.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Quién lo dijo?'**
+  String get quienLoDijo;
 }
 
 class _AppLocalizationsDelegate

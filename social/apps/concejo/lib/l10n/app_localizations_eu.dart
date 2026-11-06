@@ -95,7 +95,13 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String quorum(int cantidad) {
-    return 'Gutxienez $cantidad pertsonak parte hartu behar dute';
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: 'Gutxienez $cantidad pertsonak parte hartu behar dute',
+      one: 'Gutxienez pertsona batek parte hartu behar du',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -248,7 +254,13 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String resultadoParticipacion(int cantidad) {
-    return '$cantidad pertsonak parte hartu dute';
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad pertsonak parte hartu dute',
+      one: 'Pertsona batek parte hartu du',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -269,7 +281,12 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String apoyos(int cantidad) {
-    return '$cantidad babes';
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad babes',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -591,4 +608,153 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ayudaResponsable => 'Pertsona, batzordea, «batzarra»…';
+
+  @override
+  String get pdfHojaAsunto => 'Gaiaren orria';
+
+  @override
+  String get pdfPapeletas => 'Txartelak';
+
+  @override
+  String get pdfHojaRecuento => 'Zenbaketa-orria';
+
+  @override
+  String get pdfComoParticipar => 'Nola parte hartu';
+
+  @override
+  String get pdfParticiparTexto =>
+      'Aplikazioan edo paperean: eskatu txartela mahaiari eta eman epearen barruan. Pertsona bakoitzak behin bakarrik bozkatzen du.';
+
+  @override
+  String get pdfMarcaUna => 'Lauki bakarra markatu.';
+
+  @override
+  String get pdfMarcaVarias => 'Onartzen dituzun aukera guztiak markatu.';
+
+  @override
+  String pdfMarcaPropuestas(String bolsa) {
+    return 'Babesten dituzun proposamenak markatu. $bolsa daude: babesen arabera sartzen dira sartzen diren bitartean.';
+  }
+
+  @override
+  String get pdfPapeletaSecreta =>
+      'Boto sekretua: ez idatzi zure izena. Tolestu txartela.';
+
+  @override
+  String get pdfPapeletaNominal => 'Boto agerikoa: idatzi zure izena.';
+
+  @override
+  String get pdfNombre => 'Izena';
+
+  @override
+  String get pdfHojaObjeciones => 'Objekzioak';
+
+  @override
+  String get pdfObjecionesTexto =>
+      'Proposamenak kalteren bat eragingo balu, azaldu hemen. Objekzioa jartzea ez da kontra egotea: esan zer kalte eta, ahal baduzu, nola saihestu.';
+
+  @override
+  String get pdfDanoYComoEvitarlo =>
+      'Zer kalte eragingo lukeen eta nola saihestu';
+
+  @override
+  String get pdfRecuentoTexto =>
+      'Mahaiarentzat: bi pertsonaren artean zenbatu paperezko txartelak eta pasatu zifrak aplikaziora.';
+
+  @override
+  String get pdfOpcion => 'Aukera';
+
+  @override
+  String get pdfMarcas => 'Markak';
+
+  @override
+  String get pdfPapeletasTotales => 'Txartelak guztira';
+
+  @override
+  String get pdfEnBlanco => 'Horietatik, zuriak';
+
+  @override
+  String get pdfPersonasAnotadas =>
+      'Aurrez aurre bozkatu dutenen zerrendako pertsonak';
+
+  @override
+  String get pdfFirma => 'Sinadura';
+
+  @override
+  String get pdfFecha => 'Data';
+
+  @override
+  String get pdfRecorta => 'Moztu lerrotik';
+
+  @override
+  String get imprimir => 'Inprimatu edo partekatu';
+
+  @override
+  String get votosEnPersona => 'Aurrez aurreko botoak';
+
+  @override
+  String get votosEnPersonaTexto =>
+      'Apuntatu pertsona bakoitza bere txartela ematen dizunean: horrela inork ez du bi aldiz bozkatzen, ez paperean ez aplikazioan. Ixtean, zenbatu txartelak biren artean eta pasatu zifrak.';
+
+  @override
+  String get buscarPersona => 'Izenez bilatu';
+
+  @override
+  String get haVotadoEnPersona => 'Aurrez aurre bozkatu du';
+
+  @override
+  String get anotar => 'Apuntatu';
+
+  @override
+  String get darDeAlta => 'Ez dago zerrendan: alta eman';
+
+  @override
+  String get nombreNuevaPersona => 'Pertsonaren izena';
+
+  @override
+  String anotadasEnPersona(int cantidad) {
+    String _temp0 = intl.Intl.pluralLogic(
+      cantidad,
+      locale: localeName,
+      other: '$cantidad pertsona aurrez aurre apuntatuta',
+      one: 'Pertsona 1 aurrez aurre apuntatuta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pasarConteo => 'Txartelen zenbaketa pasatu';
+
+  @override
+  String conteosRegistrados(int papeletas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      papeletas,
+      locale: localeName,
+      other: 'Erregistratutako zenbaketak: $papeletas txartel',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get segundaFirma => 'Bigarren sinadura (mahaiko beste pertsona bat)';
+
+  @override
+  String get registrarConteo => 'Zenbaketa erregistratu';
+
+  @override
+  String get avisoPapeletasNoCuadran =>
+      'Paperean zenbatutako txartelak ez datoz bat apuntatutako pertsonekin. Berrikusi akta egin aurretik.';
+
+  @override
+  String get sinOtraMesa =>
+      'Mahaiko beste pertsona bat behar da zenbaketa sinatzeko.';
+
+  @override
+  String get aportarEnNombreDe => 'Norbaitek aurrez aurre esandakoa jaso';
+
+  @override
+  String get objetarEnNombreDe => 'Aurrez aurre egindako objekzioa jaso';
+
+  @override
+  String get quienLoDijo => 'Nork esan zuen?';
 }

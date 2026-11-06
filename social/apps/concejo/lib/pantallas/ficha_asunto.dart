@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:printing/printing.dart';
 
+import '../documentos/documentos_papel.dart';
 import '../dominio/asunto.dart';
 import '../dominio/reglas_decision.dart';
 import '../estado/estado_concejo.dart';
@@ -43,6 +45,7 @@ class FichaAsunto extends StatelessWidget {
               actions: [
                 if (fase == FaseAsunto.borrador && estado.soyMesa)
                   _AccionesBorrador(estado: estado, asunto: asunto),
+                _MenuImprimir(estado: estado, asunto: asunto),
               ],
               bottom: TabBar(tabs: [
                 Tab(text: textos.pestanaInformacion),
@@ -60,6 +63,79 @@ class FichaAsunto extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+enum _Documento { hoja, papeletas, recuento }
+
+/// El canal en papel: cualquiera puede imprimir la hoja para el tablón; las
+/// papeletas y la hoja de recuento, la mesa.
+class _MenuImprimir extends StatelessWidget {
+  const _MenuImprimir({required this.estado, required this.asunto});
+
+  final EstadoConcejo estado;
+  final Asunto asunto;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    final esConsentimiento =
+        asunto.reglas.forma == FormaDecision.consentimiento;
+    return PopupMenuButton<_Documento>(
+      tooltip: textos.imprimir,
+      icon: const Icon(Icons.print_outlined),
+      onSelected: (documento) async {
+        final argumentos = (
+          nombreEspacio: estado.nombreEspacio,
+          asunto: asunto,
+          textos: textos,
+        );
+        final (bytes, nombre) = switch (documento) {
+          _Documento.hoja => (
+              await hojaDelAsunto(
+                  nombreEspacio: argumentos.nombreEspacio,
+                  asunto: argumentos.asunto,
+                  textos: argumentos.textos),
+              textos.pdfHojaAsunto,
+            ),
+          _Documento.papeletas => (
+              await papeletas(
+                  nombreEspacio: argumentos.nombreEspacio,
+                  asunto: argumentos.asunto,
+                  textos: argumentos.textos),
+              esConsentimiento ? textos.pdfHojaObjeciones : textos.pdfPapeletas,
+            ),
+          _Documento.recuento => (
+              await hojaDeRecuento(
+                  nombreEspacio: argumentos.nombreEspacio,
+                  asunto: argumentos.asunto,
+                  textos: argumentos.textos),
+              textos.pdfHojaRecuento,
+            ),
+        };
+        await Printing.sharePdf(
+          bytes: bytes,
+          filename:
+              '${nombre.toLowerCase().replaceAll(' ', '-')}-${asunto.uid}.pdf',
+        );
+      },
+      itemBuilder: (_) => [
+        PopupMenuItem(
+            value: _Documento.hoja, child: Text(textos.pdfHojaAsunto)),
+        if (estado.soyMesa) ...[
+          PopupMenuItem(
+            value: _Documento.papeletas,
+            child: Text(esConsentimiento
+                ? textos.pdfHojaObjeciones
+                : textos.pdfPapeletas),
+          ),
+          if (!esConsentimiento)
+            PopupMenuItem(
+                value: _Documento.recuento,
+                child: Text(textos.pdfHojaRecuento)),
+        ],
+      ],
     );
   }
 }

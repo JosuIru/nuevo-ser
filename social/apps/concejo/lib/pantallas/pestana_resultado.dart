@@ -6,6 +6,7 @@ import '../dominio/recuento.dart';
 import '../dominio/reglas_decision.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
+import 'pestana_decidir.dart' show BotonVotosEnPersona;
 import 'tarjeta_compromiso.dart';
 import 'textos_dominio.dart';
 
@@ -52,6 +53,8 @@ class PestanaResultado extends StatelessWidget {
               ),
             ],
         },
+        if (estado.soyMesa && reglas.forma != FormaDecision.consentimiento)
+          BotonVotosEnPersona(estado: estado, asuntoUid: asunto.uid),
         const SizedBox(height: 24),
         Text(textos.seccionCompromisos, style: estilos.titleMedium),
         if (compromisos.isEmpty) Text(textos.sinCompromisos),

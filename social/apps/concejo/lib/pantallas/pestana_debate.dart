@@ -298,6 +298,9 @@ class _FormularioAportacionState extends State<_FormularioAportacion> {
   var _tipo = TipoAportacion.aFavor;
   var _anonima = false;
 
+  /// La mesa recoge lo que dijo otra persona; `null` = lo digo yo.
+  String? _enNombreDe;
+
   @override
   void initState() {
     super.initState();
@@ -349,6 +352,27 @@ class _FormularioAportacionState extends State<_FormularioAportacion> {
             ),
             onChanged: (_) => setState(() {}),
           ),
+          if (widget.estado.soyMesa) ...[
+            const SizedBox(height: 12),
+            DropdownButtonFormField<String?>(
+              initialValue: _enNombreDe,
+              isExpanded: true,
+              decoration: InputDecoration(
+                labelText: textos.quienLoDijo,
+                border: const OutlineInputBorder(),
+              ),
+              items: [
+                DropdownMenuItem<String?>(
+                    value: null,
+                    child: Text(widget.estado.personaActual.nombre)),
+                for (final persona in widget.estado.personas)
+                  if (persona.uid != widget.estado.personaActual.uid)
+                    DropdownMenuItem<String?>(
+                        value: persona.uid, child: Text(persona.nombre)),
+              ],
+              onChanged: (valor) => setState(() => _enNombreDe = valor),
+            ),
+          ],
           CheckboxListTile(
             contentPadding: EdgeInsets.zero,
             value: _anonima,
@@ -371,6 +395,7 @@ class _FormularioAportacionState extends State<_FormularioAportacion> {
                         _texto.text,
                         respondeAUid: widget.respondeA?.uid,
                         anonima: _anonima,
+                        enNombreDeUid: _enNombreDe,
                       );
                       Navigator.pop(context);
                     },

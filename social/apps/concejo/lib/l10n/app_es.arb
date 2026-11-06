@@ -42,7 +42,7 @@
   "mayoriaSimple": "Mayoría simple (más síes que noes)",
   "mayoriaAbsoluta": "Mayoría absoluta (más de la mitad de los votos)",
   "mayoriaDosTercios": "Dos tercios de los síes y noes",
-  "quorum": "Hace falta que participen al menos {cantidad} personas",
+  "quorum": "{cantidad, plural, =1{Hace falta que participe al menos 1 persona} other{Hace falta que participen al menos {cantidad} personas}}",
   "@quorum": {
     "placeholders": {
       "cantidad": {
@@ -122,7 +122,7 @@
   "resultadoAprobada": "Aprobada",
   "resultadoRechazada": "Rechazada",
   "resultadoSinQuorum": "No vale: no se llegó al mínimo de participación",
-  "resultadoParticipacion": "Han participado {cantidad} personas",
+  "resultadoParticipacion": "{cantidad, plural, =1{Ha participado 1 persona} other{Han participado {cantidad} personas}}",
   "@resultadoParticipacion": {
     "placeholders": {
       "cantidad": {
@@ -135,7 +135,7 @@
   "presupuestoEntra": "Entra",
   "presupuestoNoCabe": "No cabe",
   "presupuestoSinApoyos": "Sin apoyos",
-  "apoyos": "{cantidad} apoyos",
+  "apoyos": "{cantidad, plural, =1{1 apoyo} other{{cantidad} apoyos}}",
   "@apoyos": {
     "placeholders": {
       "cantidad": {
@@ -301,5 +301,67 @@
   "ayudaEntorno": "Agua, monte, ruido, paisaje, animales… Si no tiene, escribe «ninguno».",
   "ayudaQuorum": "Personas que tienen que participar para que valga (0 = sin mínimo)",
   "ayudaCompromiso": "Quién se compromete a qué y en qué condiciones",
-  "ayudaResponsable": "Persona, comisión, «la junta»…"
+  "ayudaResponsable": "Persona, comisión, «la junta»…",
+  "pdfHojaAsunto": "Hoja del asunto",
+  "pdfPapeletas": "Papeletas",
+  "pdfHojaRecuento": "Hoja de recuento",
+  "pdfComoParticipar": "Cómo participar",
+  "pdfParticiparTexto": "En la app o en papel: pide la papeleta a la mesa y entrégala dentro del plazo. Cada persona vota una sola vez.",
+  "pdfMarcaUna": "Marca una sola casilla.",
+  "pdfMarcaVarias": "Marca todas las opciones que aceptes.",
+  "pdfMarcaPropuestas": "Marca las propuestas que apoyas. Hay {bolsa}: entran por apoyos mientras quepan.",
+  "@pdfMarcaPropuestas": {
+    "placeholders": {
+      "bolsa": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfPapeletaSecreta": "Voto secreto: no escribas tu nombre. Dobla la papeleta.",
+  "pdfPapeletaNominal": "Voto a la vista: escribe tu nombre.",
+  "pdfNombre": "Nombre",
+  "pdfHojaObjeciones": "Objeciones",
+  "pdfObjecionesTexto": "Si la propuesta causaría algún daño, explícalo aquí. Objetar no es estar en contra: di qué daño y, si puedes, cómo evitarlo.",
+  "pdfDanoYComoEvitarlo": "Qué daño causaría y cómo evitarlo",
+  "pdfRecuentoTexto": "Para la mesa: cuenta las papeletas en papel entre dos personas y pasa las cifras a la app.",
+  "pdfOpcion": "Opción",
+  "pdfMarcas": "Marcas",
+  "pdfPapeletasTotales": "Papeletas en total",
+  "pdfEnBlanco": "De ellas, en blanco",
+  "pdfPersonasAnotadas": "Personas anotadas como votantes en persona",
+  "pdfFirma": "Firma",
+  "pdfFecha": "Fecha",
+  "pdfRecorta": "Recorta por la línea",
+  "imprimir": "Imprimir o compartir",
+  "votosEnPersona": "Votos en persona",
+  "votosEnPersonaTexto": "Apunta a cada persona cuando te entregue su papeleta: así nadie vota dos veces ni en papel ni en la app. Al cerrar, contad las papeletas entre dos y pasad las cifras.",
+  "buscarPersona": "Buscar por nombre",
+  "haVotadoEnPersona": "Ha votado en persona",
+  "anotar": "Anotar",
+  "darDeAlta": "No está en la lista: darla de alta",
+  "nombreNuevaPersona": "Nombre de la persona",
+  "anotadasEnPersona": "{cantidad, plural, =1{1 persona anotada en persona} other{{cantidad} personas anotadas en persona}}",
+  "@anotadasEnPersona": {
+    "placeholders": {
+      "cantidad": {
+        "type": "int"
+      }
+    }
+  },
+  "pasarConteo": "Pasar el conteo de las papeletas",
+  "conteosRegistrados": "{papeletas, plural, =1{Conteos registrados: 1 papeleta} other{Conteos registrados: {papeletas} papeletas}}",
+  "@conteosRegistrados": {
+    "placeholders": {
+      "papeletas": {
+        "type": "int"
+      }
+    }
+  },
+  "segundaFirma": "Segunda firma (otra persona de la mesa)",
+  "registrarConteo": "Registrar el conteo",
+  "avisoPapeletasNoCuadran": "Las papeletas contadas en papel no cuadran con las personas anotadas. Revisadlo antes del acta.",
+  "sinOtraMesa": "Hace falta otra persona de la mesa para firmar el conteo.",
+  "aportarEnNombreDe": "Recoger lo que dijo alguien en persona",
+  "objetarEnNombreDe": "Recoger una objeción hecha en persona",
+  "quienLoDijo": "¿Quién lo dijo?"
 }

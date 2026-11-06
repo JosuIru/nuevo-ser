@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../dominio/persona.dart';
 import '../l10n/app_localizations.dart';
 
 /// Pide un texto obligatorio. Devuelve `null` si se cancela.
@@ -107,3 +108,23 @@ Future<bool> confirmar(
   );
   return respuesta ?? false;
 }
+
+/// Elegir a una persona de la lista (la mesa recoge algo dicho en persona).
+Future<Persona?> elegirPersona(
+  BuildContext context, {
+  required String titulo,
+  required List<Persona> personas,
+}) =>
+    showDialog<Persona>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(titulo),
+        children: [
+          for (final persona in personas)
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, persona),
+              child: Text(persona.nombre),
+            ),
+        ],
+      ),
+    );

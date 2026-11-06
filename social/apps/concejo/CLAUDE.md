@@ -8,14 +8,14 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 
 ## Estado
 
-**v0.1.0 (2026-11-06): bloques F1C-1, F1C-2 y F1C-3.** Funciona en memoria con un pueblo de ejemplo; el menú de la barra superior (icono de cambiar de cuenta) deja verla como vecina o como mesa. Todavía no hay servidor ni persistencia. 52 tests verdes, analyze limpio, build web OK.
+**v0.1.0 (2026-11-06): bloques F1C-1 a F1C-4.** Funciona en memoria con un pueblo de ejemplo; el menú de la barra superior (icono de cambiar de cuenta) deja verla como vecina o como mesa. Todavía no hay servidor ni persistencia. 67 tests verdes, analyze limpio, build web OK.
 
 | Bloque | Contenido | Estado |
 |---|---|---|
 | F1C-1 | Esqueleto Flutter (Android, web, Linux), i18n es/eu, dominio puro con tests | ✅ |
 | F1C-2 | Interfaz: lista por fases, ficha (información, debate, decidir, resultado) y «¿Se ha hecho?», con datos de ejemplo | ✅ |
 | F1C-3 | Herramientas de la mesa: crear, editar, abrir y borrar borradores (con lo que falta para abrir a la vista); publicar o retirar aportaciones con motivo (queda el hueco); resumen del debate; integrar objeciones o declarar que no lo son, retirar la propia y cerrar vueltas; apuntar compromisos y marcarlos (en marcha, hecho, no se hará con motivo) | ✅ |
-| F1C-4 | Canal en papel: hoja del asunto y papeleta en PDF, anotar voto presencial, conteo firmado por dos, modo asamblea | ⏳ |
+| F1C-4 | Canal en papel: hoja del asunto (tablón), papeletas para recortar (u hoja de objeciones) y hoja de recuento en PDF (`lib/documentos/`, letra del core); pantalla «Votos en persona» para anotar a quien vota en papel, dar de alta a quien no está y pasar el conteo firmado por dos de la mesa; la mesa recoge aportaciones y objeciones dichas en persona. El «modo asamblea» a mano alzada es esa misma pantalla | ✅ |
 | F1C-5 | Acta en PDF con marca BORRADOR hasta que la firme la mesa | ⏳ |
 | F1C-6 | Persistencia local y servidor: plugin de WordPress del propio pueblo (base común extraída de Zunbeltz), altas con código en papel, sincronización | ⏳ |
 | F1C-7 | Avisos mínimos y correo semanal | ⏳ |
@@ -34,6 +34,7 @@ lib/
     debate.dart            aportaciones en 4 columnas, un nivel de respuestas, anónimas moderadas
     compromiso.dart        qué/quién/cuándo y balance para «¿Se ha hecho?»
     persona.dart           roles rotativos con fecha de fin
+  documentos/   PDF del canal en papel (hoja del asunto, papeletas, recuento)
   estado/       EstadoConcejo (ChangeNotifier en memoria) y el pueblo de ejemplo
   pantallas/    interfaz
   l10n/         ARB es/eu y código generado (`flutter gen-l10n`)
@@ -62,6 +63,9 @@ lib/
 - **Permisos**: lo de la mesa lo comprueba `EstadoConcejo` (lanza `StateError`), no solo la interfaz. El servidor tendrá que repetir esas comprobaciones. Retirar una objeción solo puede hacerlo quien la planteó; integrarla o declarar que no lo es, solo la mesa.
 - **Un asunto abierto antes de la fecha de debate** ya está en debate: la fecha de inicio es informativa.
 - **Anónimas**: la mesa tampoco ve el nombre en pantalla, aunque se guarda para evitar abusos.
+- **Plazo**: se vota (en la app o anotando en persona) solo en fase de decisión; el conteo de las papeletas en papel se puede pasar también después del cierre, porque se cuentan al cerrar.
+- **Conteo**: lo firman la persona de la mesa que lo pasa y otra persona de la mesa distinta. Si las papeletas contadas no cuadran con las personas anotadas, se avisa pero no se bloquea: queda a la vista para el acta.
+- **Recoger en persona**: lo que la mesa apunta en nombre de alguien queda con el nombre de esa persona. Pendiente decidir con el piloto si además debe constar «recogido por la mesa».
 
 ## Pendiente de revisar
 

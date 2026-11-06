@@ -124,6 +124,9 @@ void main() {
       expect((resultado.si, resultado.no), (3, 2));
       expect(resultado.desenlace, DesenlaceVotacion.aprobada);
       expect(urna.avisos(), isEmpty);
+      // El acta enseña las dos partes por separado.
+      expect(marcasEnLaApp(urna), {votoNo: 2});
+      expect(marcasEnPapel(urna), {votoSi: 3});
     });
   });
 

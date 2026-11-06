@@ -23,54 +23,7 @@ import '../dominio/asunto.dart';
 import '../dominio/reglas_decision.dart';
 import '../l10n/app_localizations.dart';
 import '../pantallas/textos_dominio.dart';
-
-const _gris = PdfColor.fromInt(0xFF5F6B62);
-const _verde = PdfColor.fromInt(0xFF3E6B48);
-
-pw.Widget _cabecera(String nombreEspacio, String documento) => pw.Container(
-      padding: const pw.EdgeInsets.only(bottom: 6),
-      decoration: const pw.BoxDecoration(
-        border: pw.Border(bottom: pw.BorderSide(color: _verde, width: 1.5)),
-      ),
-      child: pw.Row(
-        mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-        children: [
-          pw.Text(nombreEspacio,
-              style:
-                  pw.TextStyle(fontWeight: pw.FontWeight.bold, color: _verde)),
-          pw.Text(documento, style: const pw.TextStyle(color: _gris)),
-        ],
-      ),
-    );
-
-pw.Widget _seccion(String titulo, List<pw.Widget> contenido) => pw.Padding(
-      padding: const pw.EdgeInsets.only(top: 12),
-      child: pw.Column(
-        crossAxisAlignment: pw.CrossAxisAlignment.start,
-        children: [
-          pw.Text(titulo,
-              style:
-                  pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 11)),
-          pw.SizedBox(height: 3),
-          ...contenido,
-        ],
-      ),
-    );
-
-List<String> _comoSeDecide(Asunto asunto, AppLocalizations textos) {
-  final reglas = asunto.reglas;
-  return [
-    textos.forma(reglas.forma),
-    if (reglas.forma == FormaDecision.votacion) textos.mayoria(reglas.mayoria),
-    if (reglas.forma == FormaDecision.presupuesto && reglas.bolsaEuros != null)
-      textos.euros(reglas.bolsaEuros!),
-    reglas.quorumPersonas > 0
-        ? textos.quorum(reglas.quorumPersonas)
-        : textos.sinQuorumRegla,
-    if (reglas.forma != FormaDecision.consentimiento)
-      reglas.esSecreta ? textos.votoSecreto : textos.votoNominal,
-  ];
-}
+import 'piezas_pdf.dart';
 
 /// Hoja del asunto, para colgar en el tablón.
 Future<Uint8List> hojaDelAsunto({
@@ -83,7 +36,7 @@ Future<Uint8List> hojaDelAsunto({
   documento.addPage(pw.MultiPage(
     pageFormat: PdfPageFormat.a4,
     margin: const pw.EdgeInsets.all(40),
-    header: (_) => _cabecera(nombreEspacio, textos.pdfHojaAsunto),
+    header: (_) => cabeceraPdf(nombreEspacio, textos.pdfHojaAsunto),
     build: (_) => [
       pw.SizedBox(height: 16),
       pw.Text(asunto.titulo,
@@ -110,18 +63,18 @@ Future<Uint8List> hojaDelAsunto({
       pw.SizedBox(height: 12),
       pw.Text(asunto.resumen, style: const pw.TextStyle(fontSize: 14)),
       if (asunto.texto.isNotEmpty)
-        _seccion(textos.verTextoCompleto, [pw.Text(asunto.texto)]),
-      _seccion(textos.seccionEntorno, [pw.Text(asunto.efectoEntorno)]),
+        seccionPdf(textos.verTextoCompleto, [pw.Text(asunto.texto)]),
+      seccionPdf(textos.seccionEntorno, [pw.Text(asunto.efectoEntorno)]),
       if (asunto.costeEuros != null)
-        _seccion(
+        seccionPdf(
             textos.seccionCoste, [pw.Text(textos.euros(asunto.costeEuros!))]),
-      _seccion(textos.seccionCalendario, [
+      seccionPdf(textos.seccionCalendario, [
         pw.Text(textos.calendarioDebate(textos.fecha(asunto.inicioDebate))),
         pw.Text(textos.calendarioDecision(textos.fecha(asunto.inicioDecision),
             textos.fecha(asunto.finDecision))),
       ]),
-      _seccion(textos.seccionComoSeDecide, [
-        for (final linea in _comoSeDecide(asunto, textos)) pw.Text(linea),
+      seccionPdf(textos.seccionComoSeDecide, [
+        for (final linea in comoSeDecide(asunto, textos)) pw.Text(linea),
         if (reglas.opciones.isNotEmpty) ...[
           pw.SizedBox(height: 4),
           for (final opcion in reglas.opciones)
@@ -132,7 +85,8 @@ Future<Uint8List> hojaDelAsunto({
             ),
         ],
       ]),
-      _seccion(textos.pdfComoParticipar, [pw.Text(textos.pdfParticiparTexto)]),
+      seccionPdf(
+          textos.pdfComoParticipar, [pw.Text(textos.pdfParticiparTexto)]),
     ],
   ));
   return documento.save();
@@ -173,7 +127,7 @@ pw.Widget _papeleta(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
         pw.Text(nombreEspacio,
-            style: const pw.TextStyle(color: _gris, fontSize: 9)),
+            style: const pw.TextStyle(color: grisPdf, fontSize: 9)),
         pw.Text(asunto.titulo,
             style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 13)),
         pw.SizedBox(height: 4),
@@ -194,7 +148,7 @@ pw.Widget _papeleta(
           reglas.esSecreta
               ? textos.pdfPapeletaSecreta
               : textos.pdfPapeletaNominal,
-          style: const pw.TextStyle(fontSize: 9, color: _gris),
+          style: const pw.TextStyle(fontSize: 9, color: grisPdf),
         ),
         if (!reglas.esSecreta) ...[
           pw.SizedBox(height: 8),
@@ -212,14 +166,14 @@ pw.Widget _lineaDeCorte(AppLocalizations textos) => pw.Row(children: [
           decoration: const pw.BoxDecoration(
             border: pw.Border(
               top: pw.BorderSide(
-                  color: _gris, width: 0.5, style: pw.BorderStyle.dashed),
+                  color: grisPdf, width: 0.5, style: pw.BorderStyle.dashed),
             ),
           ),
         ),
       ),
       pw.SizedBox(width: 6),
       pw.Text(textos.pdfRecorta,
-          style: const pw.TextStyle(fontSize: 7, color: _gris)),
+          style: const pw.TextStyle(fontSize: 7, color: grisPdf)),
     ]);
 
 /// Papeletas para recortar, tantas como quepan en [paginas] hojas A4. En
@@ -239,7 +193,7 @@ Future<Uint8List> papeletas({
       build: (_) => pw.Column(
         crossAxisAlignment: pw.CrossAxisAlignment.start,
         children: [
-          _cabecera(nombreEspacio, textos.pdfHojaObjeciones),
+          cabeceraPdf(nombreEspacio, textos.pdfHojaObjeciones),
           pw.SizedBox(height: 12),
           pw.Text(asunto.titulo,
               style:
@@ -248,7 +202,7 @@ Future<Uint8List> papeletas({
           pw.Text(textos.pdfObjecionesTexto),
           pw.SizedBox(height: 12),
           pw.Table(
-            border: pw.TableBorder.all(color: _gris, width: 0.5),
+            border: pw.TableBorder.all(color: grisPdf, width: 0.5),
             columnWidths: const {
               0: pw.FlexColumnWidth(1),
               1: pw.FlexColumnWidth(3),
@@ -324,7 +278,7 @@ Future<Uint8List> hojaDeRecuento({
             pw.Container(height: 0.5, color: PdfColors.black),
             pw.SizedBox(height: 2),
             pw.Text('${textos.pdfFirma} · ${textos.pdfNombre}',
-                style: const pw.TextStyle(fontSize: 9, color: _gris)),
+                style: const pw.TextStyle(fontSize: 9, color: grisPdf)),
           ],
         ),
       );
@@ -334,19 +288,19 @@ Future<Uint8List> hojaDeRecuento({
     build: (_) => pw.Column(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
       children: [
-        _cabecera(nombreEspacio, textos.pdfHojaRecuento),
+        cabeceraPdf(nombreEspacio, textos.pdfHojaRecuento),
         pw.SizedBox(height: 12),
         pw.Text(asunto.titulo,
             style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold)),
         pw.SizedBox(height: 4),
-        for (final linea in _comoSeDecide(asunto, textos))
+        for (final linea in comoSeDecide(asunto, textos))
           pw.Text(linea, style: const pw.TextStyle(fontSize: 10)),
         pw.SizedBox(height: 8),
         pw.Text(textos.pdfRecuentoTexto),
         pw.SizedBox(height: 12),
         if (reglas.forma != FormaDecision.consentimiento)
           pw.Table(
-            border: pw.TableBorder.all(color: _gris, width: 0.5),
+            border: pw.TableBorder.all(color: grisPdf, width: 0.5),
             columnWidths: const {
               0: pw.FlexColumnWidth(4),
               1: pw.FlexColumnWidth(1)

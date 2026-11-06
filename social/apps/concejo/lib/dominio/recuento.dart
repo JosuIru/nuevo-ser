@@ -9,19 +9,34 @@ library;
 import 'reglas_decision.dart';
 import 'urna.dart';
 
-/// Marcas por opción sumando app y papel.
-Map<String, int> marcasPorOpcion(Urna urna) {
+/// Marcas por opción de las papeletas emitidas en la app.
+Map<String, int> marcasEnLaApp(Urna urna) {
   final marcas = <String, int>{};
   for (final papeleta in urna.papeletas) {
     for (final opcion in papeleta.opcionesMarcadas) {
       marcas[opcion] = (marcas[opcion] ?? 0) + 1;
     }
   }
+  return marcas;
+}
+
+/// Marcas por opción de los conteos en papel.
+Map<String, int> marcasEnPapel(Urna urna) {
+  final marcas = <String, int>{};
   for (final conteo in urna.conteosPresenciales) {
     conteo.marcasPorOpcion.forEach((opcion, cantidad) {
       marcas[opcion] = (marcas[opcion] ?? 0) + cantidad;
     });
   }
+  return marcas;
+}
+
+/// Marcas por opción sumando app y papel.
+Map<String, int> marcasPorOpcion(Urna urna) {
+  final marcas = marcasEnLaApp(urna);
+  marcasEnPapel(urna).forEach((opcion, cantidad) {
+    marcas[opcion] = (marcas[opcion] ?? 0) + cantidad;
+  });
   return marcas;
 }
 

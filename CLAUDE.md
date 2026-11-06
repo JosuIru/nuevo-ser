@@ -29,6 +29,7 @@ Cuando los docs de este repo dicen "la Colección" sin más, se refieren a Kids.
 │   ├── nuevo_ser_companion/   acompañamiento (Cuaderno, Mosaicos, dashboards) — v1.5
 │   └── nuevo_ser_tutor/       cliente Tutor IA con caché y filtros
 │
+├── social/               línea social (pueblos, barrios, colectivos, comunes): criterios, fuentes y fichas; ver social/CLAUDE.md
 ├── content/              JSON exportables de habilidades/brechas por juego
 ├── tests/                suites cross-package (paridad Dart/PHP)
 ├── wp-plugin/            plugin WordPress backend

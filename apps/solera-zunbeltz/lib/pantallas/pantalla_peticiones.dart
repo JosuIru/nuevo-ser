@@ -222,6 +222,7 @@ class _PantallaPeticionesState extends State<PantallaPeticiones> {
                                   children: [
                                     if (politica.puedeGestionarPeticiones) ...[
                                       FilledButton.tonal(
+                                        style: estiloBotonTonalZunbeltz,
                                         onPressed: () => _crearTarea(peticion),
                                         child: Text(textos.peticionCrearTarea),
                                       ),

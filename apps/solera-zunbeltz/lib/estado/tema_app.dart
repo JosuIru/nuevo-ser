@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Claro, oscuro o como el sistema (de partida). Se guarda en
-/// `zunbeltz.tema` y repinta `MaterialApp` al cambiar.
+/// Claro (de partida: la app se usa a pleno sol, DESIGN.md del rediseño),
+/// oscuro o como el sistema. Se guarda en `zunbeltz.tema` y repinta
+/// `MaterialApp` al cambiar.
 final ValueNotifier<ThemeMode> temaAppZunbeltz =
-    ValueNotifier<ThemeMode>(ThemeMode.system);
+    ValueNotifier<ThemeMode>(ThemeMode.light);
 
 const String _claveTema = 'zunbeltz.tema';
 
@@ -24,9 +25,9 @@ Future<void> elegirTemaZunbeltz(ThemeMode tema) async {
   } catch (_) {}
 }
 
-/// «light» / «dark»; cualquier otra cosa, el del sistema.
+/// «system» / «dark»; cualquier otra cosa (también nada guardado), claro.
 ThemeMode temaDesdeCodigo(String? codigo) => switch (codigo) {
-      'light' => ThemeMode.light,
+      'system' => ThemeMode.system,
       'dark' => ThemeMode.dark,
-      _ => ThemeMode.system,
+      _ => ThemeMode.light,
     };

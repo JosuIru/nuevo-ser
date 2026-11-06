@@ -59,6 +59,7 @@ Future<bool> mostrarFichaAviso(BuildContext context, AvisoCampo aviso) async {
               const SizedBox(height: 16),
               Wrap(spacing: 8, children: [
                 FilledButton.tonal(
+                  style: estiloBotonTonalZunbeltz,
                   onPressed: () async {
                     await bd.actualizarAviso(aviso.id!, {
                       'estado': aviso.abierto

@@ -179,7 +179,10 @@ class _HojaPiezaState extends State<HojaPieza> {
       decoration: BoxDecoration(
         color: esquema.surfaceContainerLow,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
-        boxShadow: const [BoxShadow(color: Color(0x22000000), blurRadius: 12)],
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0x1F002117), blurRadius: 12, offset: Offset(0, -2)),
+        ],
       ),
       padding: const EdgeInsets.fromLTRB(24, 10, 16, 20),
       child: Column(

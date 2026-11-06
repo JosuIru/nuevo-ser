@@ -6,7 +6,6 @@ import '../branding.dart';
 import '../estado/idioma_app.dart';
 import '../l10n/app_localizations.dart';
 import 'widgets/curvas_de_nivel.dart';
-import 'widgets/logos_entidades.dart' show filtroLogoClaro;
 
 /// Bienvenida de primer arranque. Permite elegir idioma (castellano/euskera)
 /// y entrar. Marca `zunbeltz.onboarding_visto` para no repetirse.
@@ -71,13 +70,11 @@ class _PantallaOnboardingState extends State<PantallaOnboarding> {
                           children: [
                             Align(
                               alignment: Alignment.centerLeft,
-                              child: ColorFiltered(
-                                colorFilter: filtroLogoClaro(colores
-                                    .sobreCabecera
-                                    .withValues(alpha: 0.9)),
-                                child: Image.asset(rutaLogoZunbeltz,
-                                    height: 72, semanticLabel: 'Zunbeltz'),
-                              ),
+                              child: SimboloZunbeltz(
+                                  tamano: 72,
+                                  color: colores.sobreCabecera
+                                      .withValues(alpha: 0.9),
+                                  semanticLabel: 'Zunbeltz'),
                             ),
                             const Spacer(flex: 3),
                             Text(textos.onboardingTitulo,

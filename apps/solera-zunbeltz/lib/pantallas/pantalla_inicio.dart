@@ -174,7 +174,6 @@ class _PantallaInicioState extends State<PantallaInicio> {
   Future<void> _marcarHecha(TareaMantenimiento tarea) =>
       marcarTareaHechaDesdeLista(context, tarea, _cargar);
 
-
   Future<void> _accionesTarea(TareaMantenimiento tarea) async {
     if (await mostrarAccionesTarea(context, tarea)) await _cargar();
   }
@@ -461,11 +460,7 @@ class _CabeceraHoy extends StatelessWidget {
         child: Column(
           children: [
             Row(children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(6),
-                child: Image.asset(rutaLogoZunbeltz,
-                    width: 34, height: 34, excludeFromSemantics: true),
-              ),
+              SimboloZunbeltz(color: colores.sobreCabeceraVariante),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(textos.hoyTitulo,

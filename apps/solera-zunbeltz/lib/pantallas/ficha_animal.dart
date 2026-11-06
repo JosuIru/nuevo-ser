@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
 import '../estado/sesion_espacio.dart';
@@ -337,6 +338,7 @@ class _FichaAnimalState extends State<FichaAnimal> {
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
               child: Wrap(spacing: 8, runSpacing: 8, children: [
                 FilledButton.tonalIcon(
+                  style: estiloBotonTonalZunbeltz,
                   onPressed: () => _tras(_ir(FormularioEventoGanado(
                       animalId: animal.id, titulo: animal.rotulo))),
                   icon: const Icon(Icons.medication_outlined),

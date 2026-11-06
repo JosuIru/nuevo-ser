@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../estado/datos_notificador.dart';
 import '../estado/sesion_espacio.dart';
@@ -122,6 +123,7 @@ class _PantallaContactosState extends State<PantallaContactos> {
                   ),
                 if (contacto.correo.isNotEmpty)
                   FilledButton.tonalIcon(
+                    style: estiloBotonTonalZunbeltz,
                     onPressed: () => _abrirEnlace(
                         Uri(scheme: 'mailto', path: contacto.correo)),
                     icon: const Icon(Icons.mail_outline),

@@ -1679,7 +1679,7 @@ class _BarraBusquedaMapa extends StatelessWidget {
     return Material(
       color: esquema.surfaceContainerHigh,
       elevation: 3,
-      shadowColor: Colors.black38,
+      shadowColor: colorSombraZunbeltz,
       shape: const StadiumBorder(),
       clipBehavior: Clip.antiAlias,
       child: Row(children: [
@@ -1689,11 +1689,7 @@ class _BarraBusquedaMapa extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 8, 8, 8),
               child: Row(children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(6),
-                  child: Image.asset(rutaLogoZunbeltz,
-                      width: 34, height: 34, excludeFromSemantics: true),
-                ),
+                const SimboloZunbeltz(color: colorMonteZunbeltz),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(textos.mapaBuscarEnMapa,
@@ -1788,7 +1784,7 @@ class _BotonMapa extends StatelessWidget {
     return Material(
       color: context.esquemaZunbeltz.surfaceContainerHigh,
       elevation: 3,
-      shadowColor: Colors.black38,
+      shadowColor: colorSombraZunbeltz,
       shape: redondo
           ? const CircleBorder()
           : RoundedRectangleBorder(
@@ -1850,7 +1846,7 @@ class _EtiquetaPieza extends StatelessWidget {
         borderRadius: BorderRadius.circular(radioZunbeltz),
         boxShadow: const [
           BoxShadow(
-              color: Color(0x33000000), blurRadius: 4, offset: Offset(0, 1)),
+              color: Color(0x1A002117), blurRadius: 3, offset: Offset(0, 1)),
         ],
       ),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
@@ -1897,7 +1893,7 @@ class _MarcadorPunto extends StatelessWidget {
           border: Border.all(color: Colors.white, width: 2.5),
           boxShadow: const [
             BoxShadow(
-                color: Color(0x55000000), blurRadius: 4, offset: Offset(0, 1)),
+                color: Color(0x40002117), blurRadius: 6, offset: Offset(0, 2)),
           ],
         ),
         child: Icon(iconoTipoPunto(punto.tipo), size: 19, color: Colors.white),
@@ -1936,7 +1932,8 @@ class _HojaFinca extends StatelessWidget {
         color: esquema.surfaceContainerLow,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
         boxShadow: const [
-          BoxShadow(color: Color(0x22000000), blurRadius: 12),
+          BoxShadow(
+              color: Color(0x1F002117), blurRadius: 12, offset: Offset(0, -2)),
         ],
       ),
       padding: const EdgeInsets.fromLTRB(24, 10, 24, 20),

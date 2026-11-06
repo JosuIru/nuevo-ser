@@ -75,8 +75,18 @@ const String familiaTitularZunbeltz = 'Poppins';
 /// Familia del texto, etiquetas, controles y datos.
 const String familiaTextoZunbeltz = 'Inter';
 
-/// Símbolo de cuatro cuadros de zunbeltz.com.
+/// Símbolo de cuatro cuadros de zunbeltz.com, en color sobre blanco (icono
+/// del lanzador y splash).
 const String rutaLogoZunbeltz = 'assets/icono-logo-zunbeltz.png';
+
+/// Símbolo oficial en una sola tinta (negro sobre transparente, de la entrega
+/// del rediseño del 2026-11-06; el SVG está en `assets/marca/`). Se tiñe con
+/// [SimboloZunbeltz]: verde pino sobre fondos claros, claro sobre la
+/// cabecera verde.
+const String rutaSimboloMonoZunbeltz = 'assets/simbolo-zunbeltz-mono.png';
+
+/// Sombra de lo que flota (mapa, FAB, hojas): verde casi negro, nunca negro.
+const Color colorSombraZunbeltz = Color(0xFF002117);
 
 /// Radio de chips y campos de formulario.
 const double radioZunbeltz = 8;
@@ -99,6 +109,41 @@ const BorderRadius bordeDestacadoEspejoZunbeltz = BorderRadius.only(
   topRight: Radius.circular(24),
   bottomLeft: Radius.circular(24),
   bottomRight: Radius.circular(8),
+);
+
+/// El símbolo de Zunbeltz en una tinta ([color]; de partida, el `primary`
+/// del tema: verde pino en claro).
+class SimboloZunbeltz extends StatelessWidget {
+  const SimboloZunbeltz({
+    super.key,
+    this.tamano = 34,
+    this.color,
+    this.semanticLabel,
+  });
+
+  final double tamano;
+  final Color? color;
+  final String? semanticLabel;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      rutaSimboloMonoZunbeltz,
+      width: tamano,
+      height: tamano,
+      color: color ?? Theme.of(context).colorScheme.primary,
+      colorBlendMode: BlendMode.srcIn,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: semanticLabel == null,
+    );
+  }
+}
+
+/// Botón tonal de las acciones dentro de una tarjeta («Mover», «Cura»…):
+/// 40 dp de alto y 14 a los lados, más bajo que los principales (48).
+final ButtonStyle estiloBotonTonalZunbeltz = FilledButton.styleFrom(
+  minimumSize: const Size(48, 40),
+  padding: const EdgeInsets.symmetric(horizontal: 14),
 );
 
 const BorderRadius _bordeCampo = BorderRadius.all(
@@ -255,7 +300,7 @@ const ColorScheme _esquemaClaro = ColorScheme(
   onInverseSurface: Color(0xFFE1E8E4),
   inversePrimary: Color(0xFF8BD7AE),
   surfaceTint: Colors.transparent,
-  shadow: Color(0xFF000000),
+  shadow: colorSombraZunbeltz,
   scrim: Color(0xFF000000),
 );
 
@@ -291,7 +336,7 @@ const ColorScheme _esquemaOscuro = ColorScheme(
   onInverseSurface: Color(0xFF15211C),
   inversePrimary: Color(0xFF004331),
   surfaceTint: Colors.transparent,
-  shadow: Color(0xFF000000),
+  shadow: colorSombraZunbeltz,
   scrim: Color(0xFF000000),
 );
 
@@ -303,7 +348,10 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
   final propios = oscuro ? ColoresZunbeltz.oscuro : ColoresZunbeltz.claro;
   final texto = _textoZunbeltz(esquema);
   const pildora = StadiumBorder();
-  const rellenoBoton = EdgeInsets.symmetric(horizontal: 24, vertical: 14);
+  // Principales a 48 dp y 20 a los lados; los tonales (acciones dentro de
+  // tarjetas), 40 dp y 14: ver `estiloBotonTonalZunbeltz`.
+  const rellenoBoton = EdgeInsets.symmetric(horizontal: 20, vertical: 12);
+  const altoBoton = Size(64, 48);
 
   return ThemeData(
     useMaterial3: true,
@@ -339,7 +387,7 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
     ),
     listTileTheme: ListTileThemeData(
       iconColor: esquema.onSurfaceVariant,
-      titleTextStyle: texto.titleMedium,
+      titleTextStyle: texto.labelLarge,
       subtitleTextStyle:
           texto.bodyMedium?.copyWith(color: esquema.onSurfaceVariant),
       shape: const RoundedRectangleBorder(borderRadius: _bordeTarjeta),
@@ -348,6 +396,7 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
     // dejaría los tonales (FilledButton.tonal) iguales que los rellenos.
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
+        minimumSize: altoBoton,
         textStyle: texto.labelLarge,
         padding: rellenoBoton,
         shape: pildora,
@@ -355,6 +404,7 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
+        minimumSize: altoBoton,
         backgroundColor: esquema.primary,
         foregroundColor: esquema.onPrimary,
         elevation: 0,
@@ -365,6 +415,7 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
+        minimumSize: altoBoton,
         foregroundColor: esquema.primary,
         textStyle: texto.labelLarge,
         side: BorderSide(color: esquema.outline),
@@ -399,7 +450,7 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
       focusElevation: 2,
       hoverElevation: 3,
       highlightElevation: 3,
-      extendedTextStyle: texto.titleMedium,
+      extendedTextStyle: texto.labelLarge,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
@@ -411,9 +462,9 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
       side: WidgetStateBorderSide.resolveWith(
         (estados) => estados.contains(WidgetState.selected)
             ? BorderSide.none
-            : BorderSide(color: esquema.outline),
+            : BorderSide(color: esquema.outlineVariant),
       ),
-      labelStyle: texto.labelLarge?.copyWith(color: esquema.onSurface),
+      labelStyle: texto.labelMedium?.copyWith(color: esquema.onSurface),
       shape: const RoundedRectangleBorder(borderRadius: _bordeCampo),
     ),
     inputDecorationTheme: InputDecorationTheme(
@@ -450,7 +501,7 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
         ),
       ),
       labelTextStyle: WidgetStateProperty.resolveWith(
-        (estados) => texto.labelMedium?.copyWith(
+        (estados) => texto.labelSmall?.copyWith(
           color: estados.contains(WidgetState.selected)
               ? esquema.onSurface
               : esquema.onSurfaceVariant,
@@ -465,10 +516,10 @@ ThemeData temaZunbeltz({bool oscuro = false}) {
       indicatorColor: esquema.secondaryContainer,
       selectedIconTheme: IconThemeData(color: esquema.onSecondaryContainer),
       unselectedIconTheme: IconThemeData(color: esquema.onSurfaceVariant),
-      selectedLabelTextStyle: texto.labelMedium
+      selectedLabelTextStyle: texto.labelSmall
           ?.copyWith(color: esquema.onSurface, fontWeight: FontWeight.w700),
       unselectedLabelTextStyle:
-          texto.labelMedium?.copyWith(color: esquema.onSurfaceVariant),
+          texto.labelSmall?.copyWith(color: esquema.onSurfaceVariant),
     ),
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: esquema.surfaceContainerLow,
@@ -534,12 +585,14 @@ OutlineInputBorder _bordeDeCampo(Color color, {double grosor = 1}) {
 /// display, headline y titleLarge (títulos de pantalla y de sección, cifras
 /// destacadas); Inter en lo demás.
 TextTheme _textoZunbeltz(ColorScheme esquema) {
-  TextStyle titular(double tamano, double alto) => TextStyle(
+  // `apretado`: −0,02 em, como piden display y headline en el DESIGN.md.
+  TextStyle titular(double tamano, double alto, {bool apretado = false}) =>
+      TextStyle(
         fontFamily: familiaTitularZunbeltz,
         fontSize: tamano,
         height: alto / tamano,
         fontWeight: FontWeight.w600,
-        letterSpacing: 0,
+        letterSpacing: apretado ? -0.02 * tamano : 0,
         color: esquema.onSurface,
       );
 
@@ -560,21 +613,26 @@ TextTheme _textoZunbeltz(ColorScheme esquema) {
       );
 
   return TextTheme(
-    displayLarge: titular(57, 64),
-    displayMedium: titular(45, 52),
-    displaySmall: titular(36, 44),
-    headlineLarge: titular(32, 40),
-    headlineMedium: titular(28, 36),
-    headlineSmall: titular(24, 32),
+    displayLarge: titular(57, 64, apretado: true),
+    displayMedium: titular(45, 52, apretado: true),
+    // «Display» del DESIGN.md: bienvenida y cifras protagonistas.
+    displaySmall: titular(40, 42, apretado: true),
+    headlineLarge: titular(32, 40, apretado: true),
+    // «Headline»: fecha de Hoy, nombre del proyecto o del rebaño.
+    headlineMedium: titular(28, 32, apretado: true),
+    headlineSmall: titular(24, 30, apretado: true),
     titleLarge: titular(22, 28),
-    titleMedium: inter(16, 24, peso: FontWeight.w600, espaciado: 0.1),
+    // «Title medium»: cabeceras de sección y nombres en tarjetas.
+    titleMedium: titular(18, 23),
     titleSmall: inter(14, 20, peso: FontWeight.w600, espaciado: 0.1),
     bodyLarge: inter(16, 24, espaciado: 0.2),
     bodyMedium: inter(14, 20, espaciado: 0.2),
     bodySmall: inter(12, 16, espaciado: 0.3, color: esquema.onSurfaceVariant),
-    labelLarge: inter(14, 20, peso: FontWeight.w600, espaciado: 0.1),
-    labelMedium: inter(12, 16, peso: FontWeight.w600, espaciado: 0.4),
-    labelSmall: inter(11, 16,
-        peso: FontWeight.w500, espaciado: 0.5, color: esquema.onSurfaceVariant),
+    // Botones y títulos de fila; chips y metadatos; etiquetas de campo y
+    // barra de navegación (DESIGN.md: 15, 13 y 12).
+    labelLarge: inter(15, 20, peso: FontWeight.w600, espaciado: 0.1),
+    labelMedium: inter(13, 17, peso: FontWeight.w600, espaciado: 0.2),
+    labelSmall: inter(12, 16,
+        peso: FontWeight.w500, espaciado: 0.3, color: esquema.onSurfaceVariant),
   );
 }

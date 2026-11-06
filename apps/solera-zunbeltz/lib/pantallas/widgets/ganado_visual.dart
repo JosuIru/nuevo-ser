@@ -395,8 +395,7 @@ class TarjetaRebano extends StatelessWidget {
                   ),
                   if (alMover != null)
                     FilledButton.tonalIcon(
-                      style: FilledButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(horizontal: 14)),
+                      style: estiloBotonTonalZunbeltz,
                       onPressed: alMover,
                       icon: const Icon(Icons.moving, size: 18),
                       label: Text(textos.ganMover),

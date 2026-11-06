@@ -5,7 +5,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../branding.dart';
 import '../l10n/app_localizations.dart';
 import 'widgets/curvas_de_nivel.dart';
-import 'widgets/logos_entidades.dart' show filtroLogoClaro;
 import 'widgets/relleno_seguro.dart';
 
 /// Información pública sobre el Espacio Test Agrario Zunbeltz y enlaces a las
@@ -77,13 +76,11 @@ class PantallaAcercaEspacioTest extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              ColorFiltered(
-                                colorFilter: filtroLogoClaro(colores
-                                    .sobreCabecera
-                                    .withValues(alpha: 0.9)),
-                                child: Image.asset(rutaLogoZunbeltz,
-                                    height: 72, semanticLabel: 'Zunbeltz'),
-                              ),
+                              SimboloZunbeltz(
+                                  tamano: 72,
+                                  color: colores.sobreCabecera
+                                      .withValues(alpha: 0.9),
+                                  semanticLabel: 'Zunbeltz'),
                               const SizedBox(height: 12),
                               Text('Zunbeltz',
                                   style: estilos.displaySmall?.copyWith(

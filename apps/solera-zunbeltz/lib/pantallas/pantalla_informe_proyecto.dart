@@ -188,7 +188,7 @@ class _PantallaInformeProyectoState extends State<PantallaInformeProyecto> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                    color: Color(0x33000000),
+                    color: Color(0x33002117),
                     blurRadius: 12,
                     offset: Offset(0, 4)),
               ],

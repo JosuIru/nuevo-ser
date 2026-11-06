@@ -96,6 +96,53 @@ class Debate {
     );
   }
 
+  /// La mesa publica una anónima pendiente o retira una aportación (con
+  /// motivo: queda el hueco a la vista, no desaparece sin más).
+  Debate moderar(String uid, EstadoModeracion nuevo, {String motivo = ''}) {
+    if (nuevo == EstadoModeracion.pendiente) {
+      throw ArgumentError('Moderar es publicar o retirar');
+    }
+    if (nuevo == EstadoModeracion.retirada && motivo.trim().isEmpty) {
+      throw ArgumentError('Para retirar una aportación hay que decir por qué');
+    }
+    if (!aportaciones.any((a) => a.uid == uid)) {
+      throw ArgumentError('No existe la aportación $uid');
+    }
+    return Debate(
+      asuntoUid: asuntoUid,
+      resumenMesa: resumenMesa,
+      aportaciones: [
+        for (final a in aportaciones)
+          a.uid == uid
+              ? Aportacion(
+                  uid: a.uid,
+                  asuntoUid: a.asuntoUid,
+                  autorUid: a.autorUid,
+                  tipo: a.tipo,
+                  texto: a.texto,
+                  creada: a.creada,
+                  respondeAUid: a.respondeAUid,
+                  anonima: a.anonima,
+                  estado: nuevo,
+                  motivoRetirada:
+                      nuevo == EstadoModeracion.retirada ? motivo.trim() : '',
+                )
+              : a,
+      ],
+    );
+  }
+
+  Debate conResumen(String resumen) => Debate(
+        asuntoUid: asuntoUid,
+        aportaciones: aportaciones,
+        resumenMesa: resumen.trim(),
+      );
+
+  List<Aportacion> get pendientesDeModerar => [
+        for (final a in aportaciones)
+          if (a.estado == EstadoModeracion.pendiente) a,
+      ];
+
   /// Aportaciones principales (no respuestas) de un tipo, en orden de
   /// llegada. [paraLaMesa] incluye las pendientes de moderación.
   List<Aportacion> columna(TipoAportacion tipo, {bool paraLaMesa = false}) => [

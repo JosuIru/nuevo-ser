@@ -80,11 +80,18 @@ class EstadoConsentimiento {
     required this.rondaActual,
     required this.rondasMaximas,
     this.objeciones = const [],
+    this.desenlace = DesenlaceConsentimiento.enCurso,
   });
 
   final int rondaActual;
   final int rondasMaximas;
   final List<Objecion> objeciones;
+
+  /// Lo que salió al cerrar la última vuelta. Mientras sea
+  /// [DesenlaceConsentimiento.enCurso] se puede objetar y resolver.
+  final DesenlaceConsentimiento desenlace;
+
+  bool get decidido => desenlace != DesenlaceConsentimiento.enCurso;
 
   List<Objecion> get vivas =>
       objeciones.where((o) => o.estado == EstadoObjecion.viva).toList();
@@ -94,6 +101,7 @@ class EstadoConsentimiento {
     required String autorUid,
     required String motivo,
   }) {
+    _comprobarEnCurso();
     if (motivo.trim().isEmpty) {
       throw ArgumentError('Una objeción explica qué daño causa la propuesta');
     }
@@ -108,23 +116,32 @@ class EstadoConsentimiento {
     String objecionUid,
     EstadoObjecion nuevo,
     String respuesta,
-  ) =>
-      _con(objeciones: [
-        for (final o in objeciones)
-          o.uid == objecionUid ? o.resolver(nuevo, respuesta) : o,
-      ]);
+  ) {
+    _comprobarEnCurso();
+    if (!objeciones.any((o) => o.uid == objecionUid)) {
+      throw ArgumentError('No existe la objeción $objecionUid');
+    }
+    return _con(objeciones: [
+      for (final o in objeciones)
+        o.uid == objecionUid ? o.resolver(nuevo, respuesta) : o,
+    ]);
+  }
 
   /// La mesa cierra la vuelta en curso. Si no queda nada vivo, la propuesta
   /// está aprobada; si quedan objeciones y hay más vueltas, empieza otra;
   /// si no, pasa a votación o a la asamblea.
   ({EstadoConsentimiento estado, DesenlaceConsentimiento desenlace})
       cerrarRonda() {
+    _comprobarEnCurso();
     if (vivas.isEmpty) {
-      return (estado: this, desenlace: DesenlaceConsentimiento.aprobada);
+      return (
+        estado: _con(desenlace: DesenlaceConsentimiento.aprobada),
+        desenlace: DesenlaceConsentimiento.aprobada,
+      );
     }
     if (rondaActual >= rondasMaximas) {
       return (
-        estado: this,
+        estado: _con(desenlace: DesenlaceConsentimiento.pasaAVotacionOAsamblea),
         desenlace: DesenlaceConsentimiento.pasaAVotacionOAsamblea,
       );
     }
@@ -134,10 +151,19 @@ class EstadoConsentimiento {
     );
   }
 
-  EstadoConsentimiento _con({int? rondaActual, List<Objecion>? objeciones}) =>
+  void _comprobarEnCurso() {
+    if (decidido) throw StateError('El consentimiento ya está decidido');
+  }
+
+  EstadoConsentimiento _con({
+    int? rondaActual,
+    List<Objecion>? objeciones,
+    DesenlaceConsentimiento? desenlace,
+  }) =>
       EstadoConsentimiento(
         rondaActual: rondaActual ?? this.rondaActual,
         rondasMaximas: rondasMaximas,
         objeciones: objeciones ?? this.objeciones,
+        desenlace: desenlace ?? this.desenlace,
       );
 }

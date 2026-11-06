@@ -15,7 +15,7 @@ import '../dominio/urna.dart';
 class EstadoConcejo extends ChangeNotifier {
   EstadoConcejo({
     required this.nombreEspacio,
-    required this.personaActual,
+    required Persona personaActual,
     required List<Persona> personas,
     required List<Asunto> asuntos,
     Map<String, Urna> urnas = const {},
@@ -23,7 +23,8 @@ class EstadoConcejo extends ChangeNotifier {
     Map<String, EstadoConsentimiento> consentimientos = const {},
     List<Compromiso> compromisos = const [],
     DateTime Function()? reloj,
-  })  : _personas = [...personas],
+  })  : _personaActual = personaActual,
+        _personas = [...personas],
         _asuntos = [...asuntos],
         _urnas = {...urnas},
         _debates = {...debates},
@@ -32,7 +33,7 @@ class EstadoConcejo extends ChangeNotifier {
         _reloj = reloj ?? DateTime.now;
 
   final String nombreEspacio;
-  final Persona personaActual;
+  Persona _personaActual;
   final List<Persona> _personas;
   final List<Asunto> _asuntos;
   final Map<String, Urna> _urnas;
@@ -43,12 +44,22 @@ class EstadoConcejo extends ChangeNotifier {
   var _contadorUid = 0;
 
   DateTime get ahora => _reloj();
+  Persona get personaActual => _personaActual;
   List<Persona> get personas => List.unmodifiable(_personas);
   List<Asunto> get asuntos => List.unmodifiable(_asuntos);
   List<Compromiso> get compromisos => List.unmodifiable(_compromisos);
   bool get soyMesa => personaActual.esMesaEn(ahora);
 
   Asunto asunto(String uid) => _asuntos.firstWhere((a) => a.uid == uid);
+
+  /// `null` si ya no existe (un borrador recién borrado).
+  Asunto? buscarAsunto(String uid) {
+    for (final a in _asuntos) {
+      if (a.uid == uid) return a;
+    }
+    return null;
+  }
+
   Urna urna(String asuntoUid) =>
       _urnas[asuntoUid] ?? Urna(asuntoUid: asuntoUid);
   Debate debate(String asuntoUid) =>
@@ -66,8 +77,11 @@ class EstadoConcejo extends ChangeNotifier {
           orElse: () => Persona(uid: personaUid, nombre: personaUid))
       .nombre;
 
+  /// Los borradores solo los ve la mesa.
   List<Asunto> asuntosEnFase(FaseAsunto fase) =>
-      _asuntos.where((a) => a.faseEn(ahora) == fase).toList();
+      fase == FaseAsunto.borrador && !soyMesa
+          ? const []
+          : _asuntos.where((a) => a.faseEn(ahora) == fase).toList();
 
   String _nuevoUid(String prefijo) =>
       '$prefijo-${ahora.microsecondsSinceEpoch}-${_contadorUid++}';
@@ -120,9 +134,134 @@ class EstadoConcejo extends ChangeNotifier {
     EstadoCompromiso nuevo, {
     String nota = '',
   }) {
+    _soloMesa();
     final indice = _compromisos.indexWhere((c) => c.uid == compromisoUid);
     _compromisos[indice] =
         _compromisos[indice].cambiarEstado(nuevo, nota: nota);
+    notifyListeners();
+  }
+
+  // ------------------------------------------------------------- la mesa
+
+  void _soloMesa() {
+    if (!soyMesa) throw StateError('Esto lo hace la mesa');
+  }
+
+  /// Solo en el pueblo de ejemplo: ver la app como otra persona.
+  void verComo(String personaUid) {
+    _personaActual = _personas.firstWhere((p) => p.uid == personaUid);
+    notifyListeners();
+  }
+
+  String nuevoUidAsunto() => _nuevoUid('as');
+
+  /// Crea o reemplaza un borrador. Un asunto abierto ya no se toca.
+  void guardarBorrador(Asunto borrador) {
+    _soloMesa();
+    if (borrador.abierto) {
+      throw StateError('Un borrador no puede venir abierto');
+    }
+    final indice = _asuntos.indexWhere((a) => a.uid == borrador.uid);
+    if (indice >= 0 && _asuntos[indice].abierto) {
+      throw StateError('Un asunto abierto no se edita');
+    }
+    final guardado = Asunto(
+      uid: borrador.uid,
+      titulo: borrador.titulo,
+      resumen: borrador.resumen,
+      texto: borrador.texto,
+      tipoDecision: borrador.tipoDecision,
+      compromisoPrevio: borrador.compromisoPrevio,
+      costeEuros: borrador.costeEuros,
+      efectoEntorno: borrador.efectoEntorno,
+      reglas: borrador.reglas,
+      inicioDebate: borrador.inicioDebate,
+      inicioDecision: borrador.inicioDecision,
+      finDecision: borrador.finDecision,
+      creadoPorUid:
+          indice >= 0 ? _asuntos[indice].creadoPorUid : personaActual.uid,
+    );
+    if (indice >= 0) {
+      _asuntos[indice] = guardado;
+    } else {
+      _asuntos.add(guardado);
+    }
+    notifyListeners();
+  }
+
+  /// Abre el borrador: desde aquí las reglas quedan fijas.
+  void abrirAsunto(String uid) {
+    _soloMesa();
+    final indice = _asuntos.indexWhere((a) => a.uid == uid);
+    _asuntos[indice] = _asuntos[indice].abrir();
+    notifyListeners();
+  }
+
+  void borrarBorrador(String uid) {
+    _soloMesa();
+    if (asunto(uid).abierto) throw StateError('Un asunto abierto no se borra');
+    _asuntos.removeWhere((a) => a.uid == uid);
+    notifyListeners();
+  }
+
+  void moderar(String asuntoUid, String aportacionUid, EstadoModeracion nuevo,
+      {String motivo = ''}) {
+    _soloMesa();
+    _debates[asuntoUid] =
+        debate(asuntoUid).moderar(aportacionUid, nuevo, motivo: motivo);
+    notifyListeners();
+  }
+
+  void resumirDebate(String asuntoUid, String resumen) {
+    _soloMesa();
+    _debates[asuntoUid] = debate(asuntoUid).conResumen(resumen);
+    notifyListeners();
+  }
+
+  /// Integrar o declarar que no es objeción lo hace la mesa; retirarla, solo
+  /// quien la planteó.
+  void resolverObjecion(String asuntoUid, String objecionUid,
+      EstadoObjecion nuevo, String respuesta) {
+    final objecion = consentimiento(asuntoUid)
+        .objeciones
+        .firstWhere((o) => o.uid == objecionUid);
+    if (nuevo == EstadoObjecion.retirada) {
+      if (objecion.autorUid != personaActual.uid) {
+        throw StateError('Una objeción solo la retira quien la planteó');
+      }
+    } else {
+      _soloMesa();
+    }
+    _consentimientos[asuntoUid] = consentimiento(asuntoUid)
+        .resolverObjecion(objecionUid, nuevo, respuesta);
+    notifyListeners();
+  }
+
+  DesenlaceConsentimiento cerrarRondaConsentimiento(String asuntoUid) {
+    _soloMesa();
+    final cierre = consentimiento(asuntoUid).cerrarRonda();
+    _consentimientos[asuntoUid] = cierre.estado;
+    notifyListeners();
+    return cierre.desenlace;
+  }
+
+  void anadirCompromiso({
+    required String asuntoUid,
+    required String que,
+    required String responsable,
+    required DateTime fechaLimite,
+  }) {
+    _soloMesa();
+    if (que.trim().isEmpty || responsable.trim().isEmpty) {
+      throw ArgumentError('Un compromiso dice qué y quién');
+    }
+    _compromisos.add(Compromiso(
+      uid: _nuevoUid('co'),
+      asuntoUid: asuntoUid,
+      que: que.trim(),
+      responsable: responsable.trim(),
+      fechaLimite: fechaLimite,
+    ));
     notifyListeners();
   }
 }

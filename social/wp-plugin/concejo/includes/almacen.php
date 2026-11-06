@@ -278,7 +278,11 @@ function concejo_guardar_persona( array $persona ): void {
 function concejo_recibir_acciones( array $persona, array $acciones ): array {
 	global $wpdb;
 	$resultados = array();
-	if ( '1' !== (string) $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, 15)', CONCEJO_CERROJO ) ) ) {
+	// En MySQL/MariaDB, GET_LOCK da 1 (cerrojo puesto) o 0 (otra petición
+	// lo tiene más de 15 s). Si la base no lo conoce (SQLite, que ya
+	// escribe de una en una) da null y se sigue sin cerrojo.
+	$cerrojo = $wpdb->get_var( $wpdb->prepare( 'SELECT GET_LOCK(%s, 15)', CONCEJO_CERROJO ) );
+	if ( '0' === (string) $cerrojo && null !== $cerrojo ) {
 		return array(
 			'resultados' => array(),
 			'revision'   => concejo_revision(),
@@ -370,7 +374,9 @@ function concejo_recibir_acciones( array $persona, array $acciones ): array {
 			update_option( CONCEJO_OPCION_REVISION, concejo_revision() + 1, false );
 		}
 	} finally {
-		$wpdb->query( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', CONCEJO_CERROJO ) );
+		if ( null !== $cerrojo ) {
+			$wpdb->query( $wpdb->prepare( 'SELECT RELEASE_LOCK(%s)', CONCEJO_CERROJO ) );
+		}
 	}
 	return array(
 		'resultados' => $resultados,

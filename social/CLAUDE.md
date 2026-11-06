@@ -57,5 +57,5 @@ Los libros están en `~/Projects/nuevo-ser/coleccion-nuevo-ser/www/books/<id>/bo
 
 | App | Estado |
 |---|---|
-| Concejo | Ficha v0.1 (2026-11-06). Sin código. Busca pueblo o concejo piloto |
+| Concejo | `social/apps/concejo/`. v0.1.0 (2026-11-06): dominio con tests y primera interfaz con un pueblo de ejemplo, en memoria. Siguiente: herramientas de la mesa. Busca pueblo o concejo piloto. Ver `social/apps/concejo/CLAUDE.md` |
 | Resto del catálogo | Ideas, ver `docs/03-catalogo-apps.md` |

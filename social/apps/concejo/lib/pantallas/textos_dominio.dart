@@ -88,6 +88,10 @@ extension TextosDominio on AppLocalizations {
   String fecha(DateTime momento) =>
       DateFormat.MMMMd(localeName).format(momento);
 
+  /// «5 de noviembre de 2026»: para el acta, que se lee años después.
+  String fechaConAnio(DateTime momento) =>
+      DateFormat.yMMMMd(localeName).format(momento);
+
   String euros(double cantidad) => NumberFormat.currency(
         locale: localeName,
         symbol: '€',

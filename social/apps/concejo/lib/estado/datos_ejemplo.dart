@@ -205,7 +205,15 @@ EstadoConcejo estadoDeEjemplo({DateTime? hoy}) {
     personas: personas,
     asuntos: [fiestas, comunal, presupuesto, txoko],
     urnas: {'txoko': urnaTxoko},
-    debates: {'fiestas': debateFiestas},
+    debates: {
+      'fiestas': debateFiestas,
+      'txoko': const Debate(
+        asuntoUid: 'txoko',
+        resumenMesa: 'Se habló en la reunión de octubre: la gente de la calle '
+            'Mayor pedía cerrar antes; las cuadrillas, poder quedarse '
+            'después de cenar. Se acordó votar entre tres horas.',
+      ),
+    },
     consentimientos: {
       'comunal':
           const EstadoConsentimiento(rondaActual: 1, rondasMaximas: 2).objetar(

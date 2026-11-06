@@ -363,5 +363,111 @@
   "sinOtraMesa": "Hace falta otra persona de la mesa para firmar el conteo.",
   "aportarEnNombreDe": "Recoger lo que dijo alguien en persona",
   "objetarEnNombreDe": "Recoger una objeción hecha en persona",
-  "quienLoDijo": "¿Quién lo dijo?"
+  "quienLoDijo": "¿Quién lo dijo?",
+  "pdfActa": "Acta",
+  "pdfMarcaBorrador": "BORRADOR",
+  "pdfActaBorradorAviso": "Borrador: aún no vale como acta. Falta que la firmen dos personas de la mesa.",
+  "pdfParticipacion": "Participación",
+  "pdfParticipacionDetalle": "{total, plural, =1{Ha participado 1 persona} other{Han participado {total} personas}}: {app} en la app y {papel} en persona.",
+  "@pdfParticipacionDetalle": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      },
+      "app": {
+        "type": "int"
+      },
+      "papel": {
+        "type": "int"
+      }
+    }
+  },
+  "pdfQuorumAlcanzado": "Se ha llegado al quórum.",
+  "pdfQuorumNoAlcanzado": "No se ha llegado al quórum.",
+  "pdfResultado": "Resultado",
+  "pdfEnLaApp": "En la app",
+  "pdfEnPapel": "En papel",
+  "pdfTotal": "Total",
+  "pdfConteoFirmado": "{papeletas, plural, =1{Conteo en papel de 1 papeleta, firmado por {firmas}.} other{Conteo en papel de {papeletas} papeletas, firmado por {firmas}.}}",
+  "@pdfConteoFirmado": {
+    "placeholders": {
+      "papeletas": {
+        "type": "int"
+      },
+      "firmas": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfObjeciones": "Objeciones",
+  "pdfRespuestaMesa": "Respuesta: {respuesta}",
+  "@pdfRespuestaMesa": {
+    "placeholders": {
+      "respuesta": {
+        "type": "String"
+      }
+    }
+  },
+  "estadoViva": "Sin resolver",
+  "pdfDebate": "Debate",
+  "pdfSinResumen": "La mesa no ha escrito un resumen del debate.",
+  "pdfFirmas": "Firmas de la mesa",
+  "pdfFirmadaPor": "{nombre}, el {fecha}",
+  "@pdfFirmadaPor": {
+    "placeholders": {
+      "nombre": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfFaltaFirma": "Falta esta firma",
+  "pdfGenerada": "Generada el {fecha} con Concejo.",
+  "@pdfGenerada": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfCompromisoLinea": "{responsable}, para el {fecha}",
+  "@pdfCompromisoLinea": {
+    "placeholders": {
+      "responsable": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "seccionActa": "Acta",
+  "actaNoLista": "El acta se firma cuando el asunto está decidido.",
+  "actaBorrador": "{firmadas, plural, =0{Borrador: sin firmas de la mesa} =1{Borrador: tiene 1 de las 2 firmas de la mesa} other{Borrador: tiene {firmadas} de las 2 firmas de la mesa}}",
+  "@actaBorrador": {
+    "placeholders": {
+      "firmadas": {
+        "type": "int"
+      }
+    }
+  },
+  "actaDefinitiva": "Acta firmada por {primera} y {segunda}.",
+  "@actaDefinitiva": {
+    "placeholders": {
+      "primera": {
+        "type": "String"
+      },
+      "segunda": {
+        "type": "String"
+      }
+    }
+  },
+  "actaConFirmasAviso": "El acta ya tiene una firma: para corregir el resultado, retírala primero.",
+  "firmarActa": "Firmar el acta",
+  "confirmarFirmarActa": "Al firmar, el resultado, los conteos y el resumen del debate quedan fijos. ¿Lo has revisado en el PDF?",
+  "firmar": "Firmar",
+  "retirarFirma": "Retirar mi firma",
+  "descargarActa": "Descargar el acta"
 }

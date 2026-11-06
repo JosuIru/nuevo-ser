@@ -757,4 +757,137 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get quienLoDijo => 'Nork esan zuen?';
+
+  @override
+  String get pdfActa => 'Akta';
+
+  @override
+  String get pdfMarcaBorrador => 'ZIRRIBORROA';
+
+  @override
+  String get pdfActaBorradorAviso =>
+      'Zirriborroa: oraindik ez du akta gisa balio. Mahaiko bi pertsonak sinatu behar dute.';
+
+  @override
+  String get pdfParticipacion => 'Parte-hartzea';
+
+  @override
+  String pdfParticipacionDetalle(int total, int app, int papel) {
+    String _temp0 = intl.Intl.pluralLogic(
+      total,
+      locale: localeName,
+      other: '$total pertsonak hartu dute parte',
+      one: 'Pertsona batek hartu du parte',
+    );
+    return '$_temp0: $app aplikazioan eta $papel aurrez aurre.';
+  }
+
+  @override
+  String get pdfQuorumAlcanzado => 'Quoruma lortu da.';
+
+  @override
+  String get pdfQuorumNoAlcanzado => 'Ez da quoruma lortu.';
+
+  @override
+  String get pdfResultado => 'Emaitza';
+
+  @override
+  String get pdfEnLaApp => 'Aplikazioan';
+
+  @override
+  String get pdfEnPapel => 'Paperean';
+
+  @override
+  String get pdfTotal => 'Guztira';
+
+  @override
+  String pdfConteoFirmado(int papeletas, String firmas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      papeletas,
+      locale: localeName,
+      other: 'Paperezko zenbaketa, $papeletas txartel; sinatzaileak: $firmas.',
+      one: 'Paperezko zenbaketa, txartel 1; sinatzaileak: $firmas.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pdfObjeciones => 'Objekzioak';
+
+  @override
+  String pdfRespuestaMesa(String respuesta) {
+    return 'Erantzuna: $respuesta';
+  }
+
+  @override
+  String get estadoViva => 'Ebatzi gabe';
+
+  @override
+  String get pdfDebate => 'Eztabaida';
+
+  @override
+  String get pdfSinResumen => 'Mahaiak ez du eztabaidaren laburpenik idatzi.';
+
+  @override
+  String get pdfFirmas => 'Mahaiaren sinadurak';
+
+  @override
+  String pdfFirmadaPor(String nombre, String fecha) {
+    return '$nombre, $fecha';
+  }
+
+  @override
+  String get pdfFaltaFirma => 'Sinadura hau falta da';
+
+  @override
+  String pdfGenerada(String fecha) {
+    return 'Concejo-rekin sortua, $fecha.';
+  }
+
+  @override
+  String pdfCompromisoLinea(String responsable, String fecha) {
+    return '$responsable, $fecha(e)rako';
+  }
+
+  @override
+  String get seccionActa => 'Akta';
+
+  @override
+  String get actaNoLista => 'Akta gaia erabakita dagoenean sinatzen da.';
+
+  @override
+  String actaBorrador(int firmadas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      firmadas,
+      locale: localeName,
+      other: 'Zirriborroa: mahaiaren 2 sinaduretatik $firmadas ditu',
+      zero: 'Zirriborroa: mahaiaren sinadurarik gabe',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String actaDefinitiva(String primera, String segunda) {
+    return '$primera eta $segunda(e)k sinatutako akta.';
+  }
+
+  @override
+  String get actaConFirmasAviso =>
+      'Aktak sinadura bat du jada: emaitza zuzentzeko, kendu lehenik.';
+
+  @override
+  String get firmarActa => 'Akta sinatu';
+
+  @override
+  String get confirmarFirmarActa =>
+      'Sinatzean, emaitza, zenbaketak eta eztabaidaren laburpena finko geratzen dira. PDFan berrikusi duzu?';
+
+  @override
+  String get firmar => 'Sinatu';
+
+  @override
+  String get retirarFirma => 'Nire sinadura kendu';
+
+  @override
+  String get descargarActa => 'Akta deskargatu';
 }

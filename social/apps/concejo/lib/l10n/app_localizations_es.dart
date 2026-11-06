@@ -757,4 +757,138 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get quienLoDijo => '¿Quién lo dijo?';
+
+  @override
+  String get pdfActa => 'Acta';
+
+  @override
+  String get pdfMarcaBorrador => 'BORRADOR';
+
+  @override
+  String get pdfActaBorradorAviso =>
+      'Borrador: aún no vale como acta. Falta que la firmen dos personas de la mesa.';
+
+  @override
+  String get pdfParticipacion => 'Participación';
+
+  @override
+  String pdfParticipacionDetalle(int total, int app, int papel) {
+    String _temp0 = intl.Intl.pluralLogic(
+      total,
+      locale: localeName,
+      other: 'Han participado $total personas',
+      one: 'Ha participado 1 persona',
+    );
+    return '$_temp0: $app en la app y $papel en persona.';
+  }
+
+  @override
+  String get pdfQuorumAlcanzado => 'Se ha llegado al quórum.';
+
+  @override
+  String get pdfQuorumNoAlcanzado => 'No se ha llegado al quórum.';
+
+  @override
+  String get pdfResultado => 'Resultado';
+
+  @override
+  String get pdfEnLaApp => 'En la app';
+
+  @override
+  String get pdfEnPapel => 'En papel';
+
+  @override
+  String get pdfTotal => 'Total';
+
+  @override
+  String pdfConteoFirmado(int papeletas, String firmas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      papeletas,
+      locale: localeName,
+      other: 'Conteo en papel de $papeletas papeletas, firmado por $firmas.',
+      one: 'Conteo en papel de 1 papeleta, firmado por $firmas.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pdfObjeciones => 'Objeciones';
+
+  @override
+  String pdfRespuestaMesa(String respuesta) {
+    return 'Respuesta: $respuesta';
+  }
+
+  @override
+  String get estadoViva => 'Sin resolver';
+
+  @override
+  String get pdfDebate => 'Debate';
+
+  @override
+  String get pdfSinResumen => 'La mesa no ha escrito un resumen del debate.';
+
+  @override
+  String get pdfFirmas => 'Firmas de la mesa';
+
+  @override
+  String pdfFirmadaPor(String nombre, String fecha) {
+    return '$nombre, el $fecha';
+  }
+
+  @override
+  String get pdfFaltaFirma => 'Falta esta firma';
+
+  @override
+  String pdfGenerada(String fecha) {
+    return 'Generada el $fecha con Concejo.';
+  }
+
+  @override
+  String pdfCompromisoLinea(String responsable, String fecha) {
+    return '$responsable, para el $fecha';
+  }
+
+  @override
+  String get seccionActa => 'Acta';
+
+  @override
+  String get actaNoLista => 'El acta se firma cuando el asunto está decidido.';
+
+  @override
+  String actaBorrador(int firmadas) {
+    String _temp0 = intl.Intl.pluralLogic(
+      firmadas,
+      locale: localeName,
+      other: 'Borrador: tiene $firmadas de las 2 firmas de la mesa',
+      one: 'Borrador: tiene 1 de las 2 firmas de la mesa',
+      zero: 'Borrador: sin firmas de la mesa',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String actaDefinitiva(String primera, String segunda) {
+    return 'Acta firmada por $primera y $segunda.';
+  }
+
+  @override
+  String get actaConFirmasAviso =>
+      'El acta ya tiene una firma: para corregir el resultado, retírala primero.';
+
+  @override
+  String get firmarActa => 'Firmar el acta';
+
+  @override
+  String get confirmarFirmarActa =>
+      'Al firmar, el resultado, los conteos y el resumen del debate quedan fijos. ¿Lo has revisado en el PDF?';
+
+  @override
+  String get firmar => 'Firmar';
+
+  @override
+  String get retirarFirma => 'Retirar mi firma';
+
+  @override
+  String get descargarActa => 'Descargar el acta';
 }

@@ -1399,6 +1399,198 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¿Quién lo dijo?'**
   String get quienLoDijo;
+
+  /// No description provided for @pdfActa.
+  ///
+  /// In es, this message translates to:
+  /// **'Acta'**
+  String get pdfActa;
+
+  /// No description provided for @pdfMarcaBorrador.
+  ///
+  /// In es, this message translates to:
+  /// **'BORRADOR'**
+  String get pdfMarcaBorrador;
+
+  /// No description provided for @pdfActaBorradorAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrador: aún no vale como acta. Falta que la firmen dos personas de la mesa.'**
+  String get pdfActaBorradorAviso;
+
+  /// No description provided for @pdfParticipacion.
+  ///
+  /// In es, this message translates to:
+  /// **'Participación'**
+  String get pdfParticipacion;
+
+  /// No description provided for @pdfParticipacionDetalle.
+  ///
+  /// In es, this message translates to:
+  /// **'{total, plural, =1{Ha participado 1 persona} other{Han participado {total} personas}}: {app} en la app y {papel} en persona.'**
+  String pdfParticipacionDetalle(int total, int app, int papel);
+
+  /// No description provided for @pdfQuorumAlcanzado.
+  ///
+  /// In es, this message translates to:
+  /// **'Se ha llegado al quórum.'**
+  String get pdfQuorumAlcanzado;
+
+  /// No description provided for @pdfQuorumNoAlcanzado.
+  ///
+  /// In es, this message translates to:
+  /// **'No se ha llegado al quórum.'**
+  String get pdfQuorumNoAlcanzado;
+
+  /// No description provided for @pdfResultado.
+  ///
+  /// In es, this message translates to:
+  /// **'Resultado'**
+  String get pdfResultado;
+
+  /// No description provided for @pdfEnLaApp.
+  ///
+  /// In es, this message translates to:
+  /// **'En la app'**
+  String get pdfEnLaApp;
+
+  /// No description provided for @pdfEnPapel.
+  ///
+  /// In es, this message translates to:
+  /// **'En papel'**
+  String get pdfEnPapel;
+
+  /// No description provided for @pdfTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get pdfTotal;
+
+  /// No description provided for @pdfConteoFirmado.
+  ///
+  /// In es, this message translates to:
+  /// **'{papeletas, plural, =1{Conteo en papel de 1 papeleta, firmado por {firmas}.} other{Conteo en papel de {papeletas} papeletas, firmado por {firmas}.}}'**
+  String pdfConteoFirmado(int papeletas, String firmas);
+
+  /// No description provided for @pdfObjeciones.
+  ///
+  /// In es, this message translates to:
+  /// **'Objeciones'**
+  String get pdfObjeciones;
+
+  /// No description provided for @pdfRespuestaMesa.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta: {respuesta}'**
+  String pdfRespuestaMesa(String respuesta);
+
+  /// No description provided for @estadoViva.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin resolver'**
+  String get estadoViva;
+
+  /// No description provided for @pdfDebate.
+  ///
+  /// In es, this message translates to:
+  /// **'Debate'**
+  String get pdfDebate;
+
+  /// No description provided for @pdfSinResumen.
+  ///
+  /// In es, this message translates to:
+  /// **'La mesa no ha escrito un resumen del debate.'**
+  String get pdfSinResumen;
+
+  /// No description provided for @pdfFirmas.
+  ///
+  /// In es, this message translates to:
+  /// **'Firmas de la mesa'**
+  String get pdfFirmas;
+
+  /// No description provided for @pdfFirmadaPor.
+  ///
+  /// In es, this message translates to:
+  /// **'{nombre}, el {fecha}'**
+  String pdfFirmadaPor(String nombre, String fecha);
+
+  /// No description provided for @pdfFaltaFirma.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta esta firma'**
+  String get pdfFaltaFirma;
+
+  /// No description provided for @pdfGenerada.
+  ///
+  /// In es, this message translates to:
+  /// **'Generada el {fecha} con Concejo.'**
+  String pdfGenerada(String fecha);
+
+  /// No description provided for @pdfCompromisoLinea.
+  ///
+  /// In es, this message translates to:
+  /// **'{responsable}, para el {fecha}'**
+  String pdfCompromisoLinea(String responsable, String fecha);
+
+  /// No description provided for @seccionActa.
+  ///
+  /// In es, this message translates to:
+  /// **'Acta'**
+  String get seccionActa;
+
+  /// No description provided for @actaNoLista.
+  ///
+  /// In es, this message translates to:
+  /// **'El acta se firma cuando el asunto está decidido.'**
+  String get actaNoLista;
+
+  /// No description provided for @actaBorrador.
+  ///
+  /// In es, this message translates to:
+  /// **'{firmadas, plural, =0{Borrador: sin firmas de la mesa} =1{Borrador: tiene 1 de las 2 firmas de la mesa} other{Borrador: tiene {firmadas} de las 2 firmas de la mesa}}'**
+  String actaBorrador(int firmadas);
+
+  /// No description provided for @actaDefinitiva.
+  ///
+  /// In es, this message translates to:
+  /// **'Acta firmada por {primera} y {segunda}.'**
+  String actaDefinitiva(String primera, String segunda);
+
+  /// No description provided for @actaConFirmasAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'El acta ya tiene una firma: para corregir el resultado, retírala primero.'**
+  String get actaConFirmasAviso;
+
+  /// No description provided for @firmarActa.
+  ///
+  /// In es, this message translates to:
+  /// **'Firmar el acta'**
+  String get firmarActa;
+
+  /// No description provided for @confirmarFirmarActa.
+  ///
+  /// In es, this message translates to:
+  /// **'Al firmar, el resultado, los conteos y el resumen del debate quedan fijos. ¿Lo has revisado en el PDF?'**
+  String get confirmarFirmarActa;
+
+  /// No description provided for @firmar.
+  ///
+  /// In es, this message translates to:
+  /// **'Firmar'**
+  String get firmar;
+
+  /// No description provided for @retirarFirma.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirar mi firma'**
+  String get retirarFirma;
+
+  /// No description provided for @descargarActa.
+  ///
+  /// In es, this message translates to:
+  /// **'Descargar el acta'**
+  String get descargarActa;
 }
 
 class _AppLocalizationsDelegate

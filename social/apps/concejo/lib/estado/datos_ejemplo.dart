@@ -241,5 +241,6 @@ EstadoConcejo estadoDeEjemplo({DateTime? hoy}) {
       ),
     ],
     reloj: hoy == null ? null : () => hoy,
+    esEjemplo: true,
   );
 }

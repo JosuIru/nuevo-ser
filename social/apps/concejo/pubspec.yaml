@@ -21,6 +21,11 @@ dependencies:
   nuevo_ser_core:
     path: ../../../packages/nuevo_ser_core
 
+  # Servidor del pueblo (social/wp-plugin/concejo) y caché sin red: el
+  # estado bajado y la cola de acciones por enviar.
+  http: ^1.2.2
+  shared_preferences: ^2.3.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

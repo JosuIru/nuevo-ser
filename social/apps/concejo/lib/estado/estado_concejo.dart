@@ -19,7 +19,7 @@ import 'accion.dart';
 
 class EstadoConcejo extends ChangeNotifier {
   EstadoConcejo({
-    required this.nombreEspacio,
+    required String nombreEspacio,
     required Persona personaActual,
     required List<Persona> personas,
     required List<Asunto> asuntos,
@@ -29,7 +29,9 @@ class EstadoConcejo extends ChangeNotifier {
     List<Compromiso> compromisos = const [],
     Map<String, Acta> actas = const {},
     DateTime Function()? reloj,
-  })  : _personaActual = personaActual,
+    this.esEjemplo = false,
+  })  : _nombreEspacio = nombreEspacio,
+        _personaActual = personaActual,
         _personas = [...personas],
         _asuntos = [...asuntos],
         _urnas = {...urnas},
@@ -39,8 +41,12 @@ class EstadoConcejo extends ChangeNotifier {
         _actas = {...actas},
         _reloj = reloj ?? DateTime.now;
 
-  final String nombreEspacio;
+  String _nombreEspacio;
   Persona _personaActual;
+
+  /// El pueblo de ejemplo: no hay servidor y se puede ver la app como
+  /// cualquier persona.
+  final bool esEjemplo;
   final List<Persona> _personas;
   final List<Asunto> _asuntos;
   final Map<String, Urna> _urnas;
@@ -52,6 +58,7 @@ class EstadoConcejo extends ChangeNotifier {
   var _contadorUid = 0;
 
   DateTime get ahora => _reloj();
+  String get nombreEspacio => _nombreEspacio;
   Persona get personaActual => _personaActual;
   List<Persona> get personas => List.unmodifiable(_personas);
   List<Asunto> get asuntos => List.unmodifiable(_asuntos);
@@ -186,8 +193,32 @@ class EstadoConcejo extends ChangeNotifier {
     if (!soyMesa) throw StateError('Esto lo hace la mesa');
   }
 
+  /// Pone en este mismo objeto lo de [otro] (lo recién bajado del servidor
+  /// con las acciones pendientes encima), para que las pantallas que lo
+  /// escuchan se repinten sin cambiar de estado.
+  void cargarDesde(EstadoConcejo otro) {
+    _nombreEspacio = otro._nombreEspacio;
+    _personaActual = otro._personaActual;
+    void cambiar<T>(List<T> destino, List<T> origen) => destino
+      ..clear()
+      ..addAll(origen);
+    void cambiarMapa<T>(Map<String, T> destino, Map<String, T> origen) =>
+        destino
+          ..clear()
+          ..addAll(origen);
+    cambiar(_personas, otro._personas);
+    cambiar(_asuntos, otro._asuntos);
+    cambiar(_compromisos, otro._compromisos);
+    cambiarMapa(_urnas, otro._urnas);
+    cambiarMapa(_debates, otro._debates);
+    cambiarMapa(_consentimientos, otro._consentimientos);
+    cambiarMapa(_actas, otro._actas);
+    notifyListeners();
+  }
+
   /// Solo en el pueblo de ejemplo: ver la app como otra persona.
   void verComo(String personaUid) {
+    if (!esEjemplo) throw StateError('Solo en el pueblo de ejemplo');
     _personaActual = _personas.firstWhere((p) => p.uid == personaUid);
     notifyListeners();
   }

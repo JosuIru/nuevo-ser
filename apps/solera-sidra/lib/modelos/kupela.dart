@@ -24,6 +24,7 @@ class Kupela {
     this.material = 'madera',
     this.producto = 'sidra',
     this.calificacion = 'pendiente',
+    this.productoDopId = '',
     this.activa = true,
     this.notas = '',
   });
@@ -37,6 +38,10 @@ class Kupela {
   final String material;
   final String producto;
   final String calificacion;
+
+  /// Producto del catálogo `dop_sidra_txakoli` con el que se comparan las
+  /// mediciones (vacío: sin DOP).
+  final String productoDopId;
 
   /// False si se ha retirado (no sale en las listas de hoy).
   final bool activa;
@@ -54,6 +59,7 @@ class Kupela {
         'material': material,
         'producto': producto,
         'calificacion': calificacion,
+        'producto_dop_id': productoDopId,
         'activa': activa ? 1 : 0,
         'notas': notas,
       };
@@ -70,6 +76,7 @@ class Kupela {
         calificacion: calificacionesKupela.contains(mapa['calificacion'])
             ? mapa['calificacion'] as String
             : 'pendiente',
+        productoDopId: (mapa['producto_dop_id'] as String?) ?? '',
         activa: (mapa['activa'] as int?) != 0,
         notas: (mapa['notas'] as String?) ?? '',
       );

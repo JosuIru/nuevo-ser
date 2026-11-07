@@ -125,6 +125,7 @@ class BaseDatosSoleraSidra extends BaseDatosSolera {
         material TEXT NOT NULL DEFAULT 'madera',
         producto TEXT NOT NULL DEFAULT 'sidra',
         calificacion TEXT NOT NULL DEFAULT 'pendiente',
+        producto_dop_id TEXT NOT NULL DEFAULT '',
         activa INTEGER NOT NULL DEFAULT 1,
         notas TEXT NOT NULL DEFAULT ''
       )''',

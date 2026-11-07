@@ -9,6 +9,7 @@ huer.aplicador,Aplicador,Aplikatzailea,Aplicador,Aplicador
 huer.asesor,Asesor,Aholkularia,Assessor,Asesor
 huer.asesor_nombre,Nombre del asesor,Aholkulariaren izena,Nom de l'assessor,Nome do asesor
 huer.asesor_ropo,Nº ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l'assessor,N.º ROPO do asesor
+huer.aviso_documento_provisional,Documento PROVISIONAL: el formato no lo ha validado el organismo de control ni un asesor. La app registra lo que pide el certificador; no certifica nada como ecológico.,Behin-behineko dokumentua: formatua ez du kontrol-erakundeak ez aholkulari batek baliozkotu. Aplikazioak ziurtatzaileak eskatzen duena erregistratzen du; ez du ezer ekologikotzat ziurtatzen.,Document PROVISIONAL: el format no l'ha validat l'organisme de control ni cap assessor. L'app registra el que demana el certificador; no certifica res com a ecològic.,Documento PROVISIONAL: o formato non o validou o organismo de control nin un asesor. A app rexistra o que pide o certificador; non certifica nada como ecolóxico.
 huer.aviso_insumo_no_marcado,Este insumo no está marcado como permitido en ecológico. Revísalo con tu organismo de control.,Intsumo hau ez dago ekologikoan baimendutzat markatuta. Begiratu zure kontrol-erakundearekin.,Aquest insum no està marcat com a permès en ecològic. Revisa-ho amb el teu organisme de control.,Este insumo non está marcado como permitido en ecolóxico. Revísao co teu organismo de control.
 huer.aviso_rotacion,{familia} ya estuvo en este bancal el {fecha}: el catálogo pide {n} años entre una y otra.,{familia} bankal honetan egon zen {fecha} egunean: katalogoak {n} urte eskatzen ditu batetik bestera.,{familia} ja va ser en aquest bancal el {fecha}: el catàleg demana {n} anys entre una i altra.,{familia} xa estivo neste bancal o {fecha}: o catálogo pide {n} anos entre unha e outra.
 huer.bancal,Bancal,Bankala,Bancal,Bancal
@@ -45,6 +46,7 @@ huer.cosecha_prevista,Cosecha prevista,Aurreikusitako uzta,Collita prevista,Coll
 huer.cosechar_desde,Cosechar desde el {fecha},Uzta {fecha} egunetik aurrera,Collir a partir del {fecha},Colleitar dende o {fecha}
 huer.cosechas,Cosechas,Uztak,Collites,Colleitas
 huer.cuaderno,Cuaderno,Koadernoa,Quadern,Caderno
+huer.cuaderno_ecologico,Cuaderno de campo para el certificador ecológico,Ziurtatzaile ekologikoarentzako landa-koadernoa,Quadern de camp per al certificador ecològic,Caderno de campo para o certificador ecolóxico
 huer.cultivo,Cultivo,Laborea,Cultiu,Cultivo
 huer.cultivos,Cultivos,Laboreak,Cultius,Cultivos
 huer.datos_huerta,Datos de la huerta,Baratzearen datuak,Dades de l'hort,Datos da horta
@@ -57,6 +59,7 @@ huer.destino_mercado,Mercado,Azoka,Mercat,Mercado
 huer.destino_otros,Otros,Besteak,Altres,Outros
 huer.destino_restaurante,Restaurante,Jatetxea,Restaurant,Restaurante
 huer.destino_semilla,Semilla propia,Hazi propioa,Llavor pròpia,Semente propia
+huer.documentos,Documentos,Dokumentuak,Documents,Documentos
 huer.dosis_aplicada,Dosis aplicada (de la etiqueta),Aplikatutako dosia (etiketatik),Dosi aplicada (de l'etiqueta),Dose aplicada (da etiqueta)
 huer.dosis_ayuda,La app no calcula ni propone dosis: cópiala de la etiqueta.,Aplikazioak ez du dosirik kalkulatzen ez proposatzen: kopiatu etiketatik.,L'app no calcula ni proposa dosis: copia-la de l'etiqueta.,A app non calcula nin propón doses: cópiaa da etiqueta.
 huer.editar_aplicacion,Editar aplicación,Aplikazioa editatu,Edita l'aplicació,Editar aplicación
@@ -77,6 +80,7 @@ huer.en_pausa,En pausa,Etenda,En pausa,En pausa
 huer.en_uso_no_se_borra,Está en uso en algún registro: no se puede borrar.,Erregistroren batean erabiltzen da: ezin da ezabatu.,Està en ús en algun registre: no es pot esborrar.,Está en uso nalgún rexistro: non se pode borrar.
 huer.entrega,Entrega,Entrega,Lliurament,Entrega
 huer.equipo_aplicacion,Equipo de aplicación (nº ROMA o descripción),Aplikazio-ekipoa (ROMA zk. edo deskribapena),Equip d'aplicació (núm. ROMA o descripció),Equipo de aplicación (n.º ROMA ou descrición)
+huer.error_documento,No se pudo generar el documento.,Ezin izan da dokumentua sortu.,No s'ha pogut generar el document.,Non se puido xerar o documento.
 huer.especie,Especie,Espeziea,Espècie,Especie
 huer.especie_ayuda,Del catálogo o escrita a mano,Katalogotik edo eskuz idatzita,Del catàleg o escrita a mà,Do catálogo ou escrita a man
 huer.estado_cesta_preparada,preparada,prestatua,preparada,preparada
@@ -105,6 +109,7 @@ huer.germinacion,Germinación (%),Ernetzea (%),Germinació (%),Xerminación (%)
 huer.grupo_consumo,Grupo de consumo,Kontsumo-taldea,Grup de consum,Grupo de consumo
 huer.guardado,Guardado,Gordeta,Desat,Gardado
 huer.hasta_fecha,hasta {fecha},{fecha} arte,fins a {fecha},ata {fecha}
+huer.hoja_cestas,Hoja de cestas y reparto,Saskien eta banaketaren orria,Full de cistelles i repartiment,Folla de cestas e reparto
 huer.hoy,Hoy,Gaur,Avui,Hoxe
 huer.inicio_conversion,Inicio de la conversión,Bihurtzearen hasiera,Inici de la conversió,Inicio da conversión
 huer.insumo,Insumo,Intsumoa,Insum,Insumo
@@ -169,6 +174,36 @@ huer.origen_semilla,Origen de la semilla,Haziaren jatorria,Origen de la llavor,O
 huer.parcela,Parcela,Lursaila,Parcel·la,Parcela
 huer.parcela_con_registros,La parcela tiene registros del cuaderno: no se puede borrar.,Lursailak koadernoko erregistroak ditu: ezin da ezabatu.,La parcel·la té registres del quadern: no es pot esborrar.,A parcela ten rexistros do caderno: non se pode borrar.
 huer.parcelas,Parcelas,Lursailak,Parcel·les,Parcelas
+huer.pdf_aplicador_carne,Aplicador / carné,Aplikatzailea / txartela,Aplicador / carnet,Aplicador / carné
+huer.pdf_aviso_rotacion,misma familia el {fecha} (mín. {n} años),familia bera {fecha} egunean (gutx. {n} urte),mateixa família el {fecha} (mín. {n} anys),mesma familia o {fecha} (mín. {n} anos)
+huer.pdf_categoria,Categoría del anexo,Eranskineko kategoria,Categoria de l'annex,Categoría do anexo
+huer.pdf_contenido,Contenido,Edukia,Contingut,Contido
+huer.pdf_cosechado,Cosechado para cestas,Saskietarako jasoa,Collit per a cistelles,Colleitado para cestas
+huer.pdf_insumos,"Insumos aplicados (fertilizantes, enmiendas y fitosanitarios)","Aplikatutako intsumoak (ongarriak, zuzenketak eta fitosanitarioak)","Insums aplicats (fertilitzants, esmenes i fitosanitaris)","Insumos aplicados (fertilizantes, emendas e fitosanitarios)"
+huer.pdf_n_cestas,Nº cestas,Saski kop.,Núm. cistelles,N.º cestas
+huer.pdf_no_marcado,no marcado,markatu gabe,no marcat,non marcado
+huer.pdf_nota_normativa,"Registros del Reglamento (UE) 2018/848, anexo II, parte I: parcelas y cosecha (1.12), fertilizantes (1.9.3), necesidad de fitosanitarios (1.10.2), rotación con leguminosas (1.9.2) y semilla no ecológica autorizada (1.8.5). Formato del organismo de control: por verificar.","(EB) 2018/848 Erregelamenduko erregistroak, II. eranskina, I. zatia: lursailak eta uzta (1.12), ongarriak (1.9.3), fitosanitarioen beharra (1.10.2), lekaleekin txandakatzea (1.9.2) eta hazi ez-ekologiko baimendua (1.8.5). Kontrol-erakundearen formatua: egiaztatzeko.","Registres del Reglament (UE) 2018/848, annex II, part I: parcel·les i collita (1.12), fertilitzants (1.9.3), necessitat de fitosanitaris (1.10.2), rotació amb lleguminoses (1.9.2) i llavor no ecològica autoritzada (1.8.5). Format de l'organisme de control: per verificar.","Rexistros do Regulamento (UE) 2018/848, anexo II, parte I: parcelas e colleita (1.12), fertilizantes (1.9.3), necesidade de fitosanitarios (1.10.2), rotación con leguminosas (1.9.2) e semente non ecolóxica autorizada (1.8.5). Formato do organismo de control: por verificar."
+huer.pdf_nota_venta_directa,Venta directa: requisitos del RD 1086/2020 y de la normativa autonómica de proximidad por verificar. Conserva el lote de cosecha para la trazabilidad.,Zuzeneko salmenta: 1086/2020 EDren eta hurbiltasuneko arau autonomikoen baldintzak egiaztatzeko. Gorde uzta-sorta trazabilitaterako.,Venda directa: requisits del RD 1086/2020 i de la normativa autonòmica de proximitat per verificar. Conserva el lot de collita per a la traçabilitat.,Venda directa: requisitos do RD 1086/2020 e da normativa autonómica de proximidade por verificar. Conserva o lote de colleita para a trazabilidade.
+huer.pdf_orden,Nº,Zk.,Núm.,N.º
+huer.pdf_parcelas,Parcelas,Lursailak,Parcel·les,Parcelas
+huer.pdf_pasadas,Pasadas,Pasaldiak,Passades,Pasadas
+huer.pdf_preparar_por_cultivo,"Para preparar, por cultivo","Prestatzeko, laboreka","Per preparar, per cultiu","Para preparar, por cultivo"
+huer.pdf_producto_registro,Producto / nº registro,Produktua / erregistro-zk.,Producte / núm. registre,Produto / n.º rexistro
+huer.pdf_repartido,En cestas,Saskietan,A les cistelles,Nas cestas
+huer.pdf_reparto_cestas,Cestas de la semana,Asteko saskiak,Cistelles de la setmana,Cestas da semana
+huer.pdf_resumen_cestas,"{total} cestas esta semana, {compuestas} compuestas","{total} saski aste honetan, {compuestas} osatuta","{total} cistelles aquesta setmana, {compuestas} compostes","{total} cestas esta semana, {compuestas} compostas"
+huer.pdf_rotacion,Rotación,Txandakatzea,Rotació,Rotación
+huer.pdf_rotacion_bancal,Rotación por bancal (familias por año),Txandakatzea bankalka (familiak urteka),Rotació per bancal (famílies per any),Rotación por bancal (familias por ano)
+huer.pdf_semillas,Semillas y material de reproducción usados,Erabilitako haziak eta ugalketa-materiala,Llavors i material de reproducció usats,Sementes e material de reprodución usados
+huer.pdf_siembras,Siembras y plantaciones,Ereinak eta landaketak,Sembres i plantacions,Sementeiras e plantacións
+huer.pdf_sin_aviso,sin aviso,oharrik ez,sense avís,sen aviso
+huer.pdf_sin_dato,sin dato,daturik ez,sense dada,sen dato
+huer.pdf_sin_semillas,Sin lotes de semilla en las siembras del año.,Urteko ereinetan ez dago hazi-sortarik.,Cap lot de llavor a les sembres de l'any.,Sen lotes de semente nas sementeiras do ano.
+huer.pdf_sobrante,Sobra,Soberan,Sobra,Sobra
+huer.pdf_socio,Socio,Bazkidea,Soci,Socio
+huer.pdf_titulo_cestas,Cestas · semana {n} ({fecha}),Saskiak · {n}. astea ({fecha}),Cistelles · setmana {n} ({fecha}),Cestas · semana {n} ({fecha})
+huer.pdf_totales_cultivo,Cosecha por cultivo,Uzta laboreka,Collita per cultiu,Colleita por cultivo
+huer.pdf_tratamientos,Tratamientos fitosanitarios (RD 1311/2012),Tratamendu fitosanitarioak (1311/2012 ED),Tractaments fitosanitaris (RD 1311/2012),Tratamentos fitosanitarios (RD 1311/2012)
 huer.pendiente_certificador,Pendiente para el certificador,Ziurtatzailearentzat zain,Pendent per al certificador,Pendente para o certificador
 huer.permitido_ecologico,Permitido en ecológico,Ekologikoan baimendua,Permès en ecològic,Permitido en ecolóxico
 huer.permitido_ecologico_ayuda,Lo marcas tú con su justificante; la app no lo certifica.,Zuk markatzen duzu egiaztagiriarekin; aplikazioak ez du ziurtatzen.,Ho marques tu amb el justificant; l'app no ho certifica.,Márcalo ti co seu xustificante; a app non o certifica.
@@ -190,6 +225,7 @@ huer.proveedor_semilla,Proveedor o red de semillas,Hornitzailea edo hazi-sarea,P
 huer.puede_volver_desde,Puede volver desde el {fecha},{fecha} egunetik itzul daiteke,Pot tornar a partir del {fecha},Pode volver dende o {fecha}
 huer.punto_entrega,Punto de entrega,Entrega-gunea,Punt de lliurament,Punto de entrega
 huer.recogida_por,Recogida por (si no fue el socio),Nork jaso zuen (bazkideak ez bazuen),Recollida per (si no va ser el soci),Recollida por (se non foi o socio)
+huer.recordatorio_leguminosas,"Sin leguminosas en los últimos 3 años: el Reglamento (UE) 2018/848 pide una rotación plurianual que las incluya, como cultivo principal o de cobertura (anexo II, parte I, 1.9.2).","Lekalerik ez azken 3 urteetan: (EB) 2018/848 Erregelamenduak urte anitzeko txandakatzea eskatzen du, lekaleak barne, labore nagusi edo estalki gisa (II. eranskina, I. zatia, 1.9.2).","Sense lleguminoses els darrers 3 anys: el Reglament (UE) 2018/848 demana una rotació plurianual que les inclogui, com a cultiu principal o de cobertura (annex II, part I, 1.9.2).","Sen leguminosas nos últimos 3 anos: o Regulamento (UE) 2018/848 pide unha rotación plurianual que as inclúa, como cultivo principal ou de cuberta (anexo II, parte I, 1.9.2)."
 huer.regadio,Regadío,Ureztatua,Regadiu,Regadío
 huer.registrar_entrega,Registrar entrega,Entrega erregistratu,Registra el lliurament,Rexistrar entrega
 huer.registro_explotacion,Nº de registro de explotación,Ustiategi-erregistroaren zk.,Núm. de registre d'explotació,N.º de rexistro de explotación

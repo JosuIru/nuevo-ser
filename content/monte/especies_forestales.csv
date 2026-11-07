@@ -1,0 +1,61 @@
+# Especies forestales de Larrea Monte — datos PROVISIONALES.
+# Columnas: id (no cambiarlo nunca: lo guardan rodales, árboles y plagas; es el nombre científico en minúsculas
+#   con «_»); codigo_ifn (código de especie del Cuarto Inventario Forestal Nacional); nombre (común, en castellano);
+#   nombre_cientifico; grupo (conifera / frondosa); revisado_por.
+# Fuente leída el 2026-11-07:
+#   MITECO, «Cuarto Inventario Forestal Nacional. Descripción de los códigos de la base de datos Sig»,
+#   https://www.miteco.gob.es/content/dam/miteco/es/biodiversidad/temas/inventarios-nacionales/documentador_sig_tcm30-536622.pdf
+#   - anexo 20 (pp. 67-77 del PDF): código IFN y nombre científico de cada fila;
+#   - nivel 6 «Formaciones arboladas» (p. 30 del PDF): de ahí salen los nombres comunes de pino albar, pino negro,
+#     pino piñonero, pino carrasco, pino salgareño, pino canario, pinsapo, encina (encinares), alcornoque
+#     (alcornocales), melojo (melojares), quejigo (quejigares), haya (hayedos), castaño (castañares), abedul
+#     (abedulares), acebo (acebedas), avellano (avellanedas), madroño (madroñales), acebuche (acebuchales),
+#     sabina albar (sabinares albares) y abeto (abetales).
+#   - El nombre «pino insigne» de Pinus radiata sale de ESMA, «Guía visual de agentes y daños 2025», p. 35 del PDF.
+# LO QUE NO SALE DE UNA FUENTE LEÍDA: el resto de nombres comunes (uso corriente; cambian de una comarca a otra) y la
+#   columna grupo. El código y el nombre científico sí están contrastados en todas las filas.
+# Quercus ilex: el IFN4 da el código 045 a Quercus ilex ssp. ballota (la encina de la Península, salvo el norte);
+#   la ssp. ilex es la 245, que se deja fuera para no duplicar.
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,codigo_ifn,nombre,nombre_cientifico,grupo,revisado_por
+pinus_sylvestris,021,Pino albar o silvestre,Pinus sylvestris,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+pinus_uncinata,022,Pino negro,Pinus uncinata,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+pinus_pinea,023,Pino piñonero,Pinus pinea,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+pinus_halepensis,024,Pino carrasco,Pinus halepensis,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+pinus_nigra,025,Pino salgareño,Pinus nigra,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+pinus_pinaster,026,Pino resinero o negral,Pinus pinaster,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68"
+pinus_canariensis,027,Pino canario,Pinus canariensis,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+pinus_radiata,028,Pino insigne,Pinus radiata,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre ESMA 2025 p. 35"
+abies_alba,031,Abeto,Abies alba,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+abies_pinsapo,032,Pinsapo,Abies pinsapo,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+picea_abies,033,Pícea,Picea abies,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68"
+pseudotsuga_menziesii,034,Pino de Oregón,Pseudotsuga menziesii,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68"
+larix_decidua,235,Alerce europeo,Larix decidua,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 71"
+cedrus_atlantica,017,Cedro del Atlas,Cedrus atlantica,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 67"
+juniperus_thurifera,038,Sabina albar,Juniperus thurifera,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+taxus_baccata,014,Tejo,Taxus baccata,conifera,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 67"
+quercus_robur,041,Roble pedunculado,Quercus robur,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68"
+quercus_petraea,042,Roble albar,Quercus petraea,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68"
+quercus_pyrenaica,043,Melojo o rebollo,Quercus pyrenaica,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+quercus_faginea,044,Quejigo,Quercus faginea,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 68; nombre p. 30"
+quercus_ilex,045,Encina,Quercus ilex ssp. ballota,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69; nombre p. 30"
+quercus_suber,046,Alcornoque,Quercus suber,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69; nombre p. 30"
+quercus_pubescens,243,Roble pubescente,Quercus pubescens,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 71"
+quercus_rubra,048,Roble americano,Quercus rubra,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69"
+fagus_sylvatica,071,Haya,Fagus sylvatica,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 70; nombre p. 30"
+castanea_sativa,072,Castaño,Castanea sativa,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 70; nombre p. 30"
+betula_alba,273,Abedul,Betula alba,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 72; nombre p. 30"
+corylus_avellana,074,Avellano,Corylus avellana,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 70; nombre p. 30"
+ilex_aquifolium,065,Acebo,Ilex aquifolium,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69; nombre p. 30"
+arbutus_unedo,068,Madroño,Arbutus unedo,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69; nombre p. 30"
+olea_europaea,066,Acebuche,Olea europaea,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69; nombre p. 30"
+fraxinus_excelsior,255,Fresno común,Fraxinus excelsior,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 71"
+fraxinus_angustifolia,055,Fresno de hoja estrecha,Fraxinus angustifolia,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69"
+alnus_glutinosa,054,Aliso,Alnus glutinosa,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69"
+populus_nigra,058,Chopo,Populus nigra,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69"
+acer_pseudoplatanus,576,Arce blanco,Acer pseudoplatanus,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 74"
+sorbus_aucuparia,378,Serbal de cazadores,Sorbus aucuparia,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 73"
+prunus_avium,395,Cerezo silvestre,Prunus avium,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 73"
+juglans_regia,075,Nogal,Juglans regia,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 70"
+eucalyptus_globulus,061,Eucalipto blanco,Eucalyptus globulus,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69"
+eucalyptus_nitens,064,Eucalipto nitens,Eucalyptus nitens,frondosa,"fuente_publica: IFN4 documentador Sig, anexo 20, p. 69"

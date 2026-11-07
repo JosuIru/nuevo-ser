@@ -1,0 +1,18 @@
+# Unidades de volumen de Larrea Monte, con la conversión ORIENTATIVA a metros cúbicos sólidos — datos PROVISIONALES.
+# Columnas: id (el que guarda el aprovechamiento: m3, estereos, toneladas); nombre; simbolo;
+#   m3_por_unidad (metros cúbicos de madera sólida por unidad; vacío = no hay conversión de volumen);
+#   nota; fuente; revisado_por.
+# Fuentes leídas el 2026-11-07:
+#   - F. Padovani, «The Measurement of Forest products», en FAO, «Proceedings of the workshop and training on forest
+#     product statistics», tabla 2 «Approximate equivalents for forest measures»: 1 estéreo de leña = 0,65 m³ de
+#     volumen sólido sin corteza. https://www.fao.org/4/ac628e/ac628e11.htm
+#   - Ley 43/2003, art. 37.2.b (BOE consolidado, actualizado el 09/11/2024): mide la leña en estéreos y la madera
+#     en metros cúbicos (umbrales de menor cuantía). https://www.boe.es/buscar/act.php?id=BOE-A-2003-21339
+# El estéreo es el metro cúbico de leña APILADA, con huecos: cuánta madera hay dentro depende del grosor, la
+#   rectitud y cómo se apila. 0,65 es una media; la app lo usa solo para comparar con lo previsto en el plan.
+# Toneladas: sin conversión a volumen (el peso por m³ depende de la especie y la humedad).
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,nombre,simbolo,m3_por_unidad,nota,fuente,revisado_por
+m3,Metro cúbico,m³,1,Madera sólida (en rollo o en pie),Definición,"fuente_publica: Ley 43/2003, art. 37.2.b"
+estereos,Estéreo,est,0.65,"Metro cúbico de leña apilada; el factor real depende del grosor y del apilado","FAO, Padovani, tabla 2","fuente_publica: FAO, The Measurement of Forest products, tabla 2 (1 estéreo = 0,65 m³ sólidos sin corteza)"
+toneladas,Tonelada,t,,"Sin conversión a volumen: depende de la especie y la humedad",,

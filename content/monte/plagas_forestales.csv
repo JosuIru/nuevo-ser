@@ -1,0 +1,41 @@
+# Plagas, enfermedades y agentes de daño forestales de Larrea Monte — datos PROVISIONALES.
+# Fuentes leídas el 2026-11-07:
+#   - ESMA Estudios Medioambientales SL, «Guía visual de agentes y daños detectados por el equipo técnico de ESMA en
+#     los bosques de España», año 2025 (102 fichas):
+#     https://www.esmasl.es/wp-content/uploads/2025/05/Fichas%20agentes%20y%20danos%20forestales%202025.pdf
+#     Nombre científico, géneros o especies afectados, partes dañadas y síntomas de cada fila (página del PDF).
+#   - Reglamento Delegado (UE) 2019/1702, anexo (lista de plagas prioritarias de la Unión), EUR-Lex:
+#     https://eur-lex.europa.eu/legal-content/ES/TXT/HTML/?uri=CELEX:32019R1702 (Bursaphelenchus xylophilus).
+#   - Servicio de Sanidad Forestal del Govern de les Illes Balears, fichas «Plagas y enfermedades de las masas
+#     forestales españolas» (títulos): Monochamus galloprovincialis, «vector de propagación del nematodo de la
+#     madera del pino». https://www.caib.es/sites/sanitatforestal/es/l/fichas_de_plagas_y_agentes_patogenos_de_otras_ccaa-10105
+# La app NO recomienda tratamientos, productos, sustancias activas ni dosis (hard limit de la suite): el catálogo
+#   sirve para apuntar lo que se ve y para que la IA proponga un nombre. Por eso NO hay columna de sustancias
+#   activas: no se ha contrastado ninguna con el Registro de Productos Fitosanitarios del MAPA (BLOQUEOS).
+# LO QUE NO SALE DE UNA FUENTE LEÍDA: los nombres comunes que la ficha no da (lagarta peluda, perforadores,
+#   gorgojo del eucalipto, culebrilla, balanino, chancro del castaño, podredumbre radical) son los de uso corriente.
+# Columnas: id; nombre; nombre_cientifico; grupo (defoliador / perforador / gallicola / carpofago / hongo /
+#   oomiceto / nematodo); generos (géneros afectados, en minúsculas, separados por |: casan con el principio del id
+#   de especies_forestales.csv); especies (ids concretos de especies_forestales.csv, si la ficha los nombra);
+#   organos (partes dañadas); sintomas; aviso (vacío / urticante / prioritaria_ue); revisado_por.
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,nombre,nombre_cientifico,grupo,generos,especies,organos,sintomas,aviso,revisado_por
+procesionaria_pino,Procesionaria del pino,Thaumetopoea pityocampa,defoliador,pinus|cedrus,,Acículas,"Bolsones de seda en la copa; las orugas comen las acículas de noche y, pasado el invierno, bajan en procesión a enterrarse",urticante,"fuente_publica: ESMA 2025, p. 73 (orugas urticantes desde el tercer estadio)"
+procesionaria_roble,Procesionaria del roble,Thaumetopoea processionea,defoliador,quercus,,Hojas,"Colonias de orugas gregarias y un bolsón fijo en el tronco de robles de hoja caduca; comen las hojas de noche",,"fuente_publica: ESMA 2025, p. 74"
+lagarta_peluda,Lagarta peluda,Lymantria dispar,defoliador,acer|alnus|arbutus|betula|castanea|corylus|fagus|fraxinus|pinus|populus|quercus|salix|ulmus,,Hojas y yemas,"Puestas en plastones sobre el tronco; las orugas comen yemas y hojas hasta defoliar el árbol; daños cíclicos",,"fuente_publica: ESMA 2025, p. 66"
+lagarta_verde,Lagarta verde,Tortrix viridana,defoliador,quercus,quercus_ilex,Brotes y hojas del año,"Orugas dentro de las yemas y en refugios de hojas jóvenes unidas; daño en ventana; baja la producción de bellota",,"fuente_publica: ESMA 2025, p. 75"
+gorgojo_eucalipto,Gorgojo del eucalipto,Gonipterus scutellatus,defoliador,,eucalyptus_globulus|eucalyptus_nitens,"Hojas, brotes apicales y yemas florales","Ootecas en las hojas nuevas; las larvas hacen daños lineales y los adultos comen la hoja entera; defoliaciones en la parte alta de la copa",,"fuente_publica: ESMA 2025, p. 65"
+avispilla_castano,Avispilla del castaño,Dryocosmus kuriphilus,gallicola,castanea,castanea_sativa,"Yemas, brotes y amentos","Agallas en brotes, hojas y amentos; pérdida de vigor y de producción de castaña",,"fuente_publica: ESMA 2025, p. 82"
+ips_acuminatus,Perforador Ips acuminatus,Ips acuminatus,perforador,pinus,pinus_sylvestris,Ramas y tronco,"Galerías bajo la corteza que anillan el fuste y matan el árbol; lo favorece la madera muerta fresca en el monte",,"fuente_publica: ESMA 2025, p. 96"
+ips_sexdentatus,Perforador Ips sexdentatus,Ips sexdentatus,perforador,pinus|abies|cedrus|larix|pseudotsuga,,Ramas y tronco,"Galerías bajo la corteza que cortan la savia y matan el pie; lo favorecen la madera muerta fresca y los árboles débiles",,"fuente_publica: ESMA 2025, p. 97"
+tomicus_piniperda,Perforador Tomicus piniperda,Tomicus piniperda,perforador,pinus|abies|picea|larix,,Ramillos y tronco,"Grumo de resina en el orificio de entrada; galería materna recta y vertical; los adultos nuevos secan los ramillos de la copa",,"fuente_publica: ESMA 2025, p. 102"
+tomicus_minor,Perforador Tomicus minor,Tomicus minor,perforador,pinus,pinus_sylvestris|pinus_nigra,Ramillos y tronco,"Galería en forma de V abierta en el tronco; los adultos nuevos secan y tiran los ramillos terminales",,"fuente_publica: ESMA 2025, p. 101"
+cerambyx,Cerambícidos (Cerambyx),Cerambyx spp.,perforador,quercus,,Ramas gruesas y tronco,"Orificios de salida grandes, serrín acumulado y galerías en la albura; árboles debilitados que acaban rompiéndose",,"fuente_publica: ESMA 2025, p. 92"
+coraebus_florentinus,Culebrilla de los Quercus,Coraebus florentinus,perforador,,quercus_ilex|quercus_suber|quercus_faginea|quercus_pyrenaica,Ramas,"Ramas medias anilladas que se secan: «fogonazos» pardo rojizos salpicados en la copa",,"fuente_publica: ESMA 2025, p. 93"
+curculio_elephas,Balanino,Curculio elephas,carpofago,quercus|castanea,,Frutos,"Larva dentro de la bellota o la castaña; caída prematura y frutos más pequeños",,"fuente_publica: ESMA 2025, p. 94"
+chancro_castano,Chancro del castaño,Cryphonectria parasitica,hongo,castanea,castanea_sativa,"Brotes, ramas y tronco","Cancros que anillan y matan brotes, ramas o el pie entero; las hojas de lo afectado toman un tono atabacado",,"fuente_publica: ESMA 2025, p. 30"
+phytophthora_cinnamomi,Podredumbre radical (Phytophthora),Phytophthora cinnamomi,oomiceto,quercus|castanea,,Raíces,"Pudrición de las raíces absorbentes con suelo encharcado; lesiones en la base del tallo y mancha ocre en el cuello; asociada a la seca",,"fuente_publica: ESMA 2025, p. 37"
+banda_marron,Banda marrón del pino,Lecanosticta acicola,hongo,pinus,pinus_radiata,Acículas,"Pérdida prematura de acículas de todas las edades e intensas defoliaciones; con infecciones repetidas mueren los ramillos",,"fuente_publica: ESMA 2025, p. 35"
+sphaeropsis_sapinea,Sphaeropsis del pino,Sphaeropsis sapinea,hongo,pinus,,"Acículas, brotes, piñas, ramas y tronco","Brotes apicales marchitos con acículas rojizas, madera azulada y resinosis; aparece sobre todo tras heridas (granizo)",,"fuente_publica: ESMA 2025, p. 41"
+nematodo_pino,Nematodo de la madera del pino,Bursaphelenchus xylophilus,nematodo,pinus,,Madera,"Plaga prioritaria de la Unión: ante pinos que se secan de golpe, avisar al servicio de sanidad forestal o vegetal de la comunidad autónoma",prioritaria_ue,"revision-ia: Reglamento Delegado (UE) 2019/1702, anexo (EUR-Lex, leído el 2026-11-07)"
+monochamus_galloprovincialis,Longicornio del pino,Monochamus galloprovincialis,perforador,pinus,,Madera,"Vector del nematodo de la madera del pino",,"fuente_publica: CAIB Sanidad Forestal, ficha «Monochamus galloprovincialis, vector de propagación del nematodo de la madera del pino»"

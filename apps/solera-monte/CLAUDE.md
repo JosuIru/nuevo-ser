@@ -12,14 +12,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (`Monte` de una fila con figura, CA, instrumento de gestión, certificación y época de peligro; `Rodal` con contorno; `ActuacionPlan`; `Ejecucion`; `Aprovechamiento`; `SorteoLena` + `LoteLena`; `InfraestructuraIncendios` + `RevisionIncendios`; `ArbolSingular`; `ApunteEconomico`), 12 tablas en la v1 (`sentenciasEsquemaMonteV1`). Geodesia copiada de Ganadera. Dominio puro: `sorteo_lena.dart` (SHA-256 de «semilla\|participante», orden de menor a mayor, huella de la lista, verificación), `superficies.dart` (por especie, total, dibujada frente a declarada), `plan_gestion.dart` (estado de cada actuación, previsto frente a ejecutado por año, volumen del plan frente a lo aprovechado), `aprovechamientos.dart` (menor cuantía y plazo de un mes del art. 37) e `incendios.dart` (estado de la campaña y aviso antes de la época de peligro). 43 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
-| 6 Catálogos | pendiente | |
+| 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/monte/`: `especies_forestales.csv` (41 especies con código y nombre científico del anexo 20 del documentador Sig del IFN4, MITECO; nombres comunes de las formaciones arboladas del mismo documento cuando los da), `unidades_volumen.csv` (m³, estéreo con **0,65 m³ sólidos por estéreo** de la tabla 2 de Padovani en FAO, tonelada sin conversión) y `plagas_forestales.csv` (19 agentes: procesionarias, lagartas, perforadores Ips y Tomicus, Cerambyx, Coraebus, balanino, avispilla y chancro del castaño, Phytophthora, banda marrón, Sphaeropsis, de la guía visual 2025 de ESMA con página; nematodo del pino como plaga prioritaria UE, Reg. Delegado 2019/1702; Monochamus de la ficha de Sanidad Forestal de Baleares). **Sin sustancias activas** a propósito. Compilador sobre la librería común; consultas en `dominio/catalogos.dart` (plagas por especie o por género). 50 tests |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 6 (catálogos: las pantallas necesitan los nombres de las especies y la conversión de estéreos), después el 3.
+**Siguiente acción**: bloque 3 (pantallas).
 
 ## Encuadre
 
@@ -155,6 +155,19 @@ publicados por cada sistema; **por verificar** contra el estándar vigente.
 - **2026-11-07 — Economía en la v1 desde el bloque 2** (tablas de apuntes y
   régimen fiscal), para no migrar antes de publicar; el modelo de régimen
   llega en el bloque 9.
+- **2026-11-07 — Bloque 6 antes que el 3**: las pantallas necesitan los
+  nombres de las especies y la conversión de estéreos.
+- **2026-11-07 — Sin sustancias activas en las plagas forestales**: el
+  encargo pide contrastarlas con el Registro de Productos Fitosanitarios del
+  MAPA; la app no recomienda tratamientos y el catálogo solo sirve para
+  apuntar lo observado y para la IA. Quedan fuera y en BLOQUEOS.
+- **2026-11-07 — Plagas por género además de por especie** (columna
+  `generos`, que casa con el principio del id de la especie): las fichas
+  hablan de «Géneros afectados: Pinus», y así una especie nueva del catálogo
+  hereda sus plagas sin tocar el CSV de plagas.
+- **2026-11-07 — Estéreo = 0,65 m³ sólidos** como único factor (FAO): es
+  orientativo y solo sirve para comparar lo aprovechado con lo previsto en
+  el plan; las toneladas no se convierten.
 
 ## Datos técnicos
 

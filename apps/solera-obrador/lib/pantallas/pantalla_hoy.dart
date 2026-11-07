@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
 
+import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
 import '../estado/cambios_datos.dart';
@@ -102,6 +103,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
             children: [
               CabeceraHoySolera(
                 titulo: 'Larrea Obrador',
+                rutaLogo: rutaLogoObrador,
                 fecha: fecha,
                 acciones: [
                   IconButton(

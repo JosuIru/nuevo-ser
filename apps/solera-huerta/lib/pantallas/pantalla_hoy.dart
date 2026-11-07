@@ -63,7 +63,13 @@ class _PantallaHoyState extends State<PantallaHoy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('huer.hoy'))),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Image.asset('assets/icono-logo-huerta.png'),
+        ),
+        title: Text(SoleraL10n.t('huer.hoy')),
+      ),
       body: FutureBuilder<_DatosHoy>(
         future: _datos,
         builder: (context, instantanea) {

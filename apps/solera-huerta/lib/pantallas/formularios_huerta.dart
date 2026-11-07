@@ -19,6 +19,7 @@ import '../modelos/lote_semilla.dart';
 import '../modelos/parcela.dart';
 import '../modelos/siembra.dart';
 import '../modelos/tratamiento.dart';
+import '../utiles/permisos_gps.dart';
 import '../utiles/textos_huerta.dart';
 import 'campo_catalogo.dart';
 import 'hoja_formulario.dart';
@@ -64,6 +65,9 @@ Future<bool> mostrarFormularioParcela(BuildContext context,
   var riego = parcela?.sistemaRiego.isNotEmpty == true
       ? parcela!.sistemaRiego
       : sistemasRiego.first;
+  var latitud = parcela?.latitud;
+  var longitud = parcela?.longitud;
+  var localizando = false;
   final guardado = await mostrarHojaFormulario(
     context,
     titulo: SoleraL10n.t(
@@ -100,6 +104,29 @@ Future<bool> mostrarFormularioParcela(BuildContext context,
           nombre: nombreSistemaRiego,
           alCambiar: (valor) => refrescar(() => riego = valor ?? riego),
         ),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: localizando
+            ? const SizedBox.square(
+                dimension: 24, child: CircularProgressIndicator())
+            : const Icon(Icons.my_location),
+        title: Text(SoleraL10n.t('huer.usar_mi_ubicacion')),
+        subtitle: Text(latitud == null
+            ? SoleraL10n.t('huer.sin_ubicacion')
+            : '${latitud!.toStringAsFixed(5)}, ${longitud!.toStringAsFixed(5)}'),
+        onTap: localizando
+            ? null
+            : () async {
+                refrescar(() => localizando = true);
+                final posicion = await leerUbicacionActual(context);
+                refrescar(() {
+                  localizando = false;
+                  if (posicion != null) {
+                    (latitud, longitud) = posicion;
+                  }
+                });
+              },
+      ),
       campoTexto(notas, SoleraL10n.t('huer.notas')),
     ],
     guardar: () async {
@@ -114,8 +141,8 @@ Future<bool> mostrarFormularioParcela(BuildContext context,
             estado == 'conversion' ? _ms(inicioConversion) : null,
         regadio: regadio,
         sistemaRiego: riego,
-        latitud: parcela?.latitud,
-        longitud: parcela?.longitud,
+        latitud: latitud,
+        longitud: longitud,
         notas: notas.text.trim(),
         fechaCreacionMs: parcela?.fechaCreacionMs ?? _ms(DateTime.now()),
       ));

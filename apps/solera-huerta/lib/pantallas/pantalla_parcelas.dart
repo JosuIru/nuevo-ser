@@ -6,6 +6,7 @@ import '../estado/datos_huerta.dart';
 import '../utiles/textos_huerta.dart';
 import 'formularios_huerta.dart';
 import 'pantalla_ficha_parcela.dart';
+import 'pantalla_mapa.dart';
 
 /// Lista de parcelas con sus bancales y su situación ecológica.
 class PantallaParcelas extends StatefulWidget {
@@ -41,7 +42,17 @@ class _PantallaParcelasState extends State<PantallaParcelas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('huer.parcelas'))),
+      appBar: AppBar(
+        title: Text(SoleraL10n.t('huer.parcelas')),
+        actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('huer.mapa'),
+            icon: const Icon(Icons.map_outlined),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaMapa())),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         tooltip: SoleraL10n.t('huer.nueva_parcela'),
         onPressed: () => mostrarFormularioParcela(context),

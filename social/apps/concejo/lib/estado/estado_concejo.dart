@@ -16,6 +16,7 @@ import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/persona.dart';
 import '../dominio/sesion.dart';
+import '../dominio/tarea.dart';
 import '../dominio/urna.dart';
 import 'accion.dart';
 
@@ -32,6 +33,7 @@ class EstadoConcejo extends ChangeNotifier {
     Map<String, Acta> actas = const {},
     List<Sesion> sesiones = const [],
     List<Anuncio> anuncios = const [],
+    List<Tarea> tareas = const [],
     DateTime Function()? reloj,
     this.esEjemplo = false,
   })  : _nombreEspacio = nombreEspacio,
@@ -45,6 +47,7 @@ class EstadoConcejo extends ChangeNotifier {
         _actas = {...actas},
         _sesiones = [...sesiones],
         _anuncios = [...anuncios],
+        _tareas = [...tareas],
         _reloj = reloj ?? DateTime.now;
 
   String _nombreEspacio;
@@ -62,6 +65,7 @@ class EstadoConcejo extends ChangeNotifier {
   final Map<String, Acta> _actas;
   final List<Sesion> _sesiones;
   final List<Anuncio> _anuncios;
+  final List<Tarea> _tareas;
   final DateTime Function() _reloj;
   var _contadorUid = 0;
 
@@ -82,6 +86,11 @@ class EstadoConcejo extends ChangeNotifier {
       [..._sesiones]..sort((a, b) => a.inicio.compareTo(b.inicio)));
   Sesion sesion(String uid) => _sesiones.firstWhere((s) => s.uid == uid);
   bool get soyMesa => personaActual.esMesaEn(ahora);
+
+  /// Las tareas en común, por fecha.
+  List<Tarea> get tareas => List.unmodifiable(
+      [..._tareas]..sort((a, b) => a.inicio.compareTo(b.inicio)));
+  Tarea tarea(String uid) => _tareas.firstWhere((t) => t.uid == uid);
 
   /// Todos los anuncios, también los retirados y caducados.
   List<Anuncio> get anuncios => List.unmodifiable(_anuncios);
@@ -242,6 +251,7 @@ class EstadoConcejo extends ChangeNotifier {
     cambiarMapa(_actas, otro._actas);
     cambiar(_sesiones, otro._sesiones);
     cambiar(_anuncios, otro._anuncios);
+    cambiar(_tareas, otro._tareas);
     notifyListeners();
   }
 
@@ -478,6 +488,60 @@ class EstadoConcejo extends ChangeNotifier {
     _anuncios[indice] = _anuncios[indice].conFijado(fijado);
   }
 
+  // ------------------------------------------------------ tareas en común
+
+  String nuevoUidTarea() => _nuevoUid('ta');
+
+  /// La crea la mesa; sale sin nadie apuntado.
+  Null _crearTarea(Tarea tarea) {
+    _soloMesa();
+    final problemas = tarea.problemas(ahora);
+    if (problemas.isNotEmpty) {
+      throw StateError('No se puede crear: ${problemas.join(', ')}');
+    }
+    if (_tareas.any((t) => t.uid == tarea.uid)) {
+      throw StateError('Identificador de tarea repetido');
+    }
+    _tareas.add(Tarea(
+      uid: tarea.uid,
+      titulo: tarea.titulo.trim(),
+      inicio: tarea.inicio,
+      lugar: tarea.lugar.trim(),
+      descripcion: tarea.descripcion.trim(),
+      plazas: tarea.plazas,
+      creadaPorUid: personaActual.uid,
+    ));
+  }
+
+  int _indiceTarea(String uid) {
+    final indice = _tareas.indexWhere((t) => t.uid == uid);
+    if (indice < 0) throw StateError('No existe la tarea');
+    return indice;
+  }
+
+  /// Cada cual se apunta o se borra; a otra persona, solo la mesa.
+  Null _apuntarTarea(String uid, String personaUid, bool apuntado) {
+    if (personaUid != personaActual.uid) _soloMesa();
+    if (!_personas.any((p) => p.uid == personaUid)) {
+      throw StateError('No existe esa persona');
+    }
+    final indice = _indiceTarea(uid);
+    _tareas[indice] = _tareas[indice]
+        .conApuntado(personaUid, apuntado: apuntado, ahora: ahora);
+  }
+
+  Null _anularTarea(String uid, String motivo) {
+    _soloMesa();
+    final indice = _indiceTarea(uid);
+    _tareas[indice] = _tareas[indice].anular(motivo, ahora);
+  }
+
+  Null _marcarTareaHecha(String uid, String nota) {
+    _soloMesa();
+    final indice = _indiceTarea(uid);
+    _tareas[indice] = _tareas[indice].hecha(nota, ahora);
+  }
+
   // --------------------------------------------------- el canal en papel
 
   /// Personas que aún no han participado en el asunto, por nombre.
@@ -709,6 +773,14 @@ class EstadoConcejo extends ChangeNotifier {
         _retirarAnuncio(texto('anuncio_uid'), opcional('motivo') ?? ''),
       TipoAccion.fijarAnuncio =>
         _fijarAnuncio(texto('anuncio_uid'), datos['fijado'] as bool),
+      TipoAccion.crearTarea =>
+        _crearTarea(tareaDesdeJson(datos['tarea'] as Json)),
+      TipoAccion.apuntarTarea => _apuntarTarea(
+          texto('tarea_uid'), texto('persona_uid'), datos['apuntado'] as bool),
+      TipoAccion.anularTarea =>
+        _anularTarea(texto('tarea_uid'), texto('motivo')),
+      TipoAccion.marcarTareaHecha =>
+        _marcarTareaHecha(texto('tarea_uid'), opcional('nota') ?? ''),
     };
   }
 
@@ -872,4 +944,22 @@ class EstadoConcejo extends ChangeNotifier {
 
   void fijarAnuncio(String anuncioUid, {required bool fijado}) => _hacer(
       TipoAccion.fijarAnuncio, {'anuncio_uid': anuncioUid, 'fijado': fijado});
+
+  void crearTarea(Tarea tarea) =>
+      _hacer(TipoAccion.crearTarea, {'tarea': tareaAJson(tarea)});
+
+  /// Sin [personaUid], la persona actual.
+  void apuntarseATarea(String tareaUid,
+          {required bool apuntado, String? personaUid}) =>
+      _hacer(TipoAccion.apuntarTarea, {
+        'tarea_uid': tareaUid,
+        'persona_uid': personaUid ?? personaActual.uid,
+        'apuntado': apuntado,
+      });
+
+  void anularTarea(String tareaUid, String motivo) =>
+      _hacer(TipoAccion.anularTarea, {'tarea_uid': tareaUid, 'motivo': motivo});
+
+  void marcarTareaHecha(String tareaUid, String nota) => _hacer(
+      TipoAccion.marcarTareaHecha, {'tarea_uid': tareaUid, 'nota': nota});
 }

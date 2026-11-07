@@ -36,6 +36,10 @@ enum TipoAccion {
   publicarAnuncio,
   retirarAnuncio,
   fijarAnuncio,
+  crearTarea,
+  apuntarTarea,
+  anularTarea,
+  marcarTareaHecha,
 }
 
 class AccionConcejo {

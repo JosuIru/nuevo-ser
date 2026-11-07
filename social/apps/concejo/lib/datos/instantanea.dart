@@ -20,6 +20,7 @@ Json instantaneaAJson(EstadoConcejo estado, {int revision = 0}) => {
       'actas': [for (final a in estado.actas.values) actaAJson(a)],
       'sesiones': [for (final s in estado.sesiones) sesionAJson(s)],
       'anuncios': [for (final a in estado.anuncios) anuncioAJson(a)],
+      'tareas': [for (final t in estado.tareas) tareaAJson(t)],
     };
 
 /// [personaActualUid]: quien usa la app (la del token). Tiene que estar en
@@ -69,6 +70,10 @@ EstadoConcejo instantaneaDesdeJson(
     anuncios: [
       for (final anuncio in json['anuncios'] as List? ?? const [])
         anuncioDesdeJson(anuncio as Json),
+    ],
+    tareas: [
+      for (final tarea in json['tareas'] as List? ?? const [])
+        tareaDesdeJson(tarea as Json),
     ],
     reloj: reloj,
   );

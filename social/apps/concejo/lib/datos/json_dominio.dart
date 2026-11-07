@@ -17,6 +17,7 @@ import '../dominio/reglas_decision.dart';
 import '../dominio/urna.dart';
 import '../dominio/anuncio.dart';
 import '../dominio/sesion.dart';
+import '../dominio/tarea.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -406,4 +407,39 @@ Anuncio anuncioDesdeJson(Json json) => Anuncio(
       fijado: json['fijado'] as bool? ?? false,
       retirado: json['retirado'] as bool? ?? false,
       motivoRetirada: json['motivo_retirada'] as String? ?? '',
+    );
+
+// ----------------------------------------------------------------- tarea
+
+Json tareaAJson(Tarea tarea) => {
+      'uid': tarea.uid,
+      'titulo': tarea.titulo,
+      'inicio': tarea.inicio.toIso8601String(),
+      'lugar': tarea.lugar,
+      'descripcion': tarea.descripcion,
+      'plazas': tarea.plazas,
+      'creada_por_uid': tarea.creadaPorUid,
+      'apuntados_uids': tarea.apuntadosUids.toList()..sort(),
+      'anulada': tarea.anulada,
+      'motivo_anulacion': tarea.motivoAnulacion,
+      'hecha': tarea.estaHecha,
+      'nota_hecha': tarea.notaHecha,
+    };
+
+Tarea tareaDesdeJson(Json json) => Tarea(
+      uid: json['uid'] as String,
+      titulo: json['titulo'] as String? ?? '',
+      inicio: _leerFecha(json['inicio']),
+      lugar: json['lugar'] as String? ?? '',
+      descripcion: json['descripcion'] as String? ?? '',
+      plazas: (json['plazas'] as num?)?.toInt() ?? 0,
+      creadaPorUid: json['creada_por_uid'] as String? ?? '',
+      apuntadosUids: {
+        for (final uid in json['apuntados_uids'] as List? ?? const [])
+          uid as String,
+      },
+      anulada: json['anulada'] as bool? ?? false,
+      motivoAnulacion: json['motivo_anulacion'] as String? ?? '',
+      estaHecha: json['hecha'] as bool? ?? false,
+      notaHecha: json['nota_hecha'] as String? ?? '',
     );

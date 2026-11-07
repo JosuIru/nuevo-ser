@@ -15,6 +15,7 @@ import 'package:concejo/dominio/anuncio.dart';
 import 'package:concejo/dominio/asunto.dart';
 import 'package:concejo/dominio/reglas_decision.dart';
 import 'package:concejo/dominio/sesion.dart';
+import 'package:concejo/dominio/tarea.dart';
 import 'package:concejo/estado/accion.dart';
 import 'package:concejo/estado/datos_ejemplo.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -52,6 +53,25 @@ Json _anuncioNuevo({
       hasta: hasta,
       fijado: true,
     ));
+
+Json _tareaNueva({
+  String uid = 'nueva',
+  String titulo = 'Montar las mesas',
+  int plazas = 1,
+  DateTime? inicio,
+}) =>
+    tareaAJson(Tarea(
+      uid: uid,
+      titulo: titulo,
+      inicio: inicio ?? DateTime(2026, 11, 20, 10),
+      lugar: 'Plaza',
+      plazas: plazas,
+      creadaPorUid: 'quien-sea',
+      apuntadosUids: const {'maite'},
+    ));
+
+Json _apuntar(String tarea, String persona, {bool apuntado = true}) =>
+    {'tarea_uid': tarea, 'persona_uid': persona, 'apuntado': apuntado};
 
 Json _sesionNueva({
   String uid = 'nueva',
@@ -682,6 +702,70 @@ final Map<String, List<_Paso>> _casos = {
       'ane',
       TipoAccion.fijarAnuncio,
       {'anuncio_uid': 'no-existe', 'fijado': true}
+    ),
+  ],
+  'tareas': [
+    ('maite', TipoAccion.crearTarea, {'tarea': _tareaNueva()}),
+    ('ane', TipoAccion.crearTarea, {'tarea': _tareaNueva(titulo: ' ')}),
+    ('ane', TipoAccion.crearTarea, {'tarea': _tareaNueva(plazas: -1)}),
+    (
+      'ane',
+      TipoAccion.crearTarea,
+      {'tarea': _tareaNueva(inicio: DateTime(2026, 11, 10, 12))}
+    ),
+    ('ane', TipoAccion.crearTarea, {'tarea': _tareaNueva()}),
+    ('ane', TipoAccion.crearTarea, {'tarea': _tareaNueva()}),
+    ('maite', TipoAccion.apuntarTarea, _apuntar('nueva', 'maite')),
+    ('maite', TipoAccion.apuntarTarea, _apuntar('nueva', 'maite')),
+    ('pili', TipoAccion.apuntarTarea, _apuntar('nueva', 'pili')),
+    ('maite', TipoAccion.apuntarTarea, _apuntar('camino', 'pili')),
+    ('ane', TipoAccion.apuntarTarea, _apuntar('camino', 'pili')),
+    ('ane', TipoAccion.apuntarTarea, _apuntar('camino', 'nadie')),
+    (
+      'josean',
+      TipoAccion.apuntarTarea,
+      _apuntar('camino', 'josean', apuntado: false)
+    ),
+    (
+      'josean',
+      TipoAccion.apuntarTarea,
+      _apuntar('camino', 'josean', apuntado: false)
+    ),
+    (
+      'maite',
+      TipoAccion.apuntarTarea,
+      _apuntar('fronton', 'maite', apuntado: false)
+    ),
+    ('maite', TipoAccion.apuntarTarea, _apuntar('no-existe', 'maite')),
+    ('maite', TipoAccion.anularTarea, {'tarea_uid': 'camino', 'motivo': 'x'}),
+    ('ane', TipoAccion.anularTarea, {'tarea_uid': 'camino', 'motivo': ' '}),
+    (
+      'ane',
+      TipoAccion.anularTarea,
+      {'tarea_uid': 'camino', 'motivo': 'Ha nevado'}
+    ),
+    (
+      'ane',
+      TipoAccion.anularTarea,
+      {'tarea_uid': 'camino', 'motivo': 'Otra vez'}
+    ),
+    ('ane', TipoAccion.apuntarTarea, _apuntar('camino', 'maite')),
+    (
+      'ane',
+      TipoAccion.anularTarea,
+      {'tarea_uid': 'fronton', 'motivo': 'Tarde'}
+    ),
+    ('ane', TipoAccion.marcarTareaHecha, {'tarea_uid': 'local', 'nota': ''}),
+    ('ane', TipoAccion.marcarTareaHecha, {'tarea_uid': 'camino', 'nota': ''}),
+    (
+      'maite',
+      TipoAccion.marcarTareaHecha,
+      {'tarea_uid': 'fronton', 'nota': 'x'}
+    ),
+    (
+      'ane',
+      TipoAccion.marcarTareaHecha,
+      {'tarea_uid': 'fronton', 'nota': ' Repintada '}
     ),
   ],
 };

@@ -14,6 +14,7 @@ import '../dominio/persona.dart';
 import '../dominio/reglas_decision.dart';
 import '../dominio/anuncio.dart';
 import '../dominio/sesion.dart';
+import '../dominio/tarea.dart';
 import '../dominio/urna.dart';
 import 'estado_concejo.dart';
 
@@ -285,6 +286,41 @@ EstadoConcejo estadoDeEjemplo({DateTime? hoy}) {
     ),
   ];
 
+  final tareas = [
+    Tarea(
+      uid: 'fronton',
+      titulo: 'Pintar la pared del frontón',
+      inicio: aLas(-6, 10),
+      lugar: 'Frontón',
+      descripcion: 'La pintura la pone el concejo; traed brochas y rodillos.',
+      plazas: 6,
+      creadaPorUid: 'ane',
+      apuntadosUids: const {'ane', 'maite', 'josean', 'iker'},
+      estaHecha: true,
+      notaHecha: 'Pintada. Sobró media lata: está en el almacén del local.',
+    ),
+    Tarea(
+      uid: 'local',
+      titulo: 'Abrir el local vecinal',
+      inicio: aLas(4, 17),
+      lugar: 'Local vecinal',
+      descripcion: 'De 17:00 a 20:00. Las llaves están en el bar.',
+      plazas: 1,
+      creadaPorUid: 'ane',
+      apuntadosUids: const {'pili'},
+    ),
+    Tarea(
+      uid: 'camino',
+      titulo: 'Auzolan: limpiar el camino del monte',
+      inicio: aLas(5, 9),
+      lugar: 'Salida del camino, junto al lavadero',
+      descripcion: 'Desbrozar y quitar ramas caídas. Hay almuerzo al acabar.',
+      plazas: 8,
+      creadaPorUid: 'ane',
+      apuntadosUids: const {'josean', 'iker', 'mikel'},
+    ),
+  ];
+
   return EstadoConcejo(
     nombreEspacio: 'Concejo de Ejemplo',
     personaActual: personas.first,
@@ -292,6 +328,7 @@ EstadoConcejo estadoDeEjemplo({DateTime? hoy}) {
     asuntos: [fiestas, comunal, presupuesto, txoko],
     sesiones: sesiones,
     anuncios: anuncios,
+    tareas: tareas,
     urnas: {'txoko': urnaTxoko},
     debates: {
       'fiestas': debateFiestas,

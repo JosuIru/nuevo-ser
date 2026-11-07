@@ -14,12 +14,12 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | **Cuaderno de tratamientos** del año (datos generales, zonas con nº de orden, tratamientos, inspecciones de plagas; aviso del registro electrónico desde el 1-1-2027) y **registro de pasaportes y trazabilidad** (origen: material comprado con proveedor, ROPVEG y pasaporte recibido; destino: salidas; pasaportes preparados con su estado) en Salidas → PDF o Ajustes → Documentos. **Etiqueta del pasaporte** (10 × 6,5 cm) por registro, desde la ficha de la salida: recuadro, bandera en blanco y negro, título bilingüe, letras A-D (y ZP), QR con A-D; fuera del recuadro, PROVISIONAL y, si toca, BORRADOR «no válido como pasaporte». Tablas puras con test. 49 tests |
 | 6 Catálogos | ✅ 2026-11-07 | `content/vivero/`: especies (52, con «pasaporte de planta», «pasaporte de semilla» y «anexo XIV/ZP» del 2019/2072, `fuente_publica:`), plagas reguladas (26: 10 prioritarias del R. Del. 2019/1702 y 16 RNQP del anexo IV, `fuente_publica:`; huéspedes de las prioritarias por verificar), plagas comunes de vivero (17, agrupaciones del campo «Agente» del Registro MAPA) y sustancias activas (126, cruzando el Registro MAPA del 06/11/2026 con 6 grupos de cultivo y la EU Pesticides DB del 07/11/2026, `revision-ia:`). Compilador sobre la librería común. En la app: autocompletado de especie (rellena el nombre botánico), plaga y sustancia por grupo de cultivo de la partida, plaga regulada ordenada por nombre botánico, plazo del registro como aviso, aviso si el uso no está en el catálogo, aviso de anexo XIV en la salida y banner de datos provisionales en Hoy. 58 tests |
 | 7 IA visual | ✅ 2026-11-07 | Ficha de la partida → Inspecciones → escáner: foto (cámara o galería) → hasta 3 candidatos entre las plagas comunes del grupo de cultivo y las **reguladas que afectan a la planta** por su nombre botánico (salida estructurada con `enum` + «otra») → la persona elige y se abre el alta de una **inspección** con la plaga rellena («sospecha» si es regulada, con el aviso a la autoridad). Una regulada nunca sale con confianza «alta» (solo la confirma un laboratorio). El sistema prohíbe recomendar tratamientos y dar la planta por sana. Modelo equilibrado del core, clave BYO (`estado/clave_anthropic_vivero.dart`, Ajustes → Inteligencia artificial). La foto se borra al terminar. Intérprete puro testeado. 64 tests |
-| 8 Branding + GPS | pendiente | |
+| 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (plantón en maceta sobre crema) en `assets/`, iconos del lanzador (`flutter_launcher_icons`), arranque crema con el logo y cabecera de Hoy con logo y cifras (disponibles, listas, salidas sin pasaporte). **QR de bandejas** con el patrón de Arbolado (leído y copiado, sin tocarlo): el QR lleva el código tal cual; escáner (`mobile_scanner`) desde Hoy y Bandejas → ficha de la bandeja o alta con ese código; hoja A4 de 21 etiquetas QR por página. **GPS**: «Usar mi ubicación» en la zona (geolocator) y mapa de zonas (OSM) desde Zonas. Permisos INTERNET, ubicación y cámara en el manifiesto. 68 tests |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 8 (branding, QR de bandejas y GPS).
+**Siguiente acción**: bloque 9 (economía).
 
 ## Encuadre
 
@@ -138,6 +138,15 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
 - **2026-11-07 — Aviso a la autoridad solo si la plaga no es común**: una
   sospecha de pulgón no obliga a nada; una plaga regulada o escrita a mano sí
   (opción conservadora con el texto libre).
+
+- **2026-11-07 — Etiquetas QR de bandeja en hoja de 3 × 7** (Arbolado saca una
+  por página): las bandejas son muchas y pequeñas. No es documento oficial, así
+  que va en `servicios/etiquetas_qr_bandejas.dart` (sin el prefijo
+  `generador_*_pdf` que vigila el sello).
+- **2026-11-07 — Un QR desconocido ofrece dar de alta la bandeja con ese
+  código**: así sirven etiquetas ya impresas o de otro sistema.
+- **2026-11-07 — GPS en cualquier zona**, no solo en las exteriores: un
+  invernadero lejos de la nave también se agradece en el mapa.
 
 ## Datos técnicos
 

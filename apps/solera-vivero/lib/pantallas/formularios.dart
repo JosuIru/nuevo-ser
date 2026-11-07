@@ -12,6 +12,7 @@ import '../modelos/salida.dart';
 import '../modelos/siembra.dart';
 import '../modelos/tratamiento.dart';
 import '../modelos/zona_cultivo.dart';
+import '../utiles/permisos_gps.dart';
 import '../utiles/textos_vivero.dart';
 import 'campos_especie.dart';
 import 'hoja_formulario.dart';
@@ -39,6 +40,9 @@ Future<bool> mostrarFormularioZona(BuildContext context,
           : formatearNumero(existente!.superficieM2!, decimales: 0));
   final sigpac = TextEditingController(text: existente?.codigoSigpac ?? '');
   final notas = TextEditingController(text: existente?.notas ?? '');
+  var latitud = existente?.latitud;
+  var longitud = existente?.longitud;
+  var localizando = false;
   final guardado = await mostrarHojaFormulario(
     context,
     titulo: SoleraL10n.t(
@@ -54,6 +58,32 @@ Future<bool> mostrarFormularioZona(BuildContext context,
       campoNumero(superficie, SoleraL10n.t('vive.superficie_m2')),
       if (tipo == 'exterior')
         campoTexto(sigpac, SoleraL10n.t('vive.codigo_sigpac')),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.my_location_outlined),
+        title: Text(SoleraL10n.t('vive.ubicacion_gps')),
+        subtitle: Text(latitud == null || longitud == null
+            ? SoleraL10n.t('vive.sin_ubicacion')
+            : '${latitud!.toStringAsFixed(5)}, ${longitud!.toStringAsFixed(5)}'),
+        trailing: localizando
+            ? const SizedBox(
+                width: 20,
+                height: 20,
+                child: CircularProgressIndicator(strokeWidth: 2))
+            : TextButton(
+                onPressed: () async {
+                  refrescar(() => localizando = true);
+                  final posicion = await leerPosicionActual(context);
+                  refrescar(() {
+                    localizando = false;
+                    if (posicion != null) {
+                      latitud = posicion.$1;
+                      longitud = posicion.$2;
+                    }
+                  });
+                },
+                child: Text(SoleraL10n.t('vive.usar_mi_ubicacion'))),
+      ),
       campoTexto(notas, SoleraL10n.t('vive.notas')),
     ],
     guardar: () async {
@@ -64,8 +94,8 @@ Future<bool> mostrarFormularioZona(BuildContext context,
             tipo: tipo,
             superficieM2: leerNumero(superficie.text),
             codigoSigpac: tipo == 'exterior' ? sigpac.text.trim() : '',
-            latitud: existente?.latitud,
-            longitud: existente?.longitud,
+            latitud: latitud,
+            longitud: longitud,
             notas: notas.text.trim(),
           )));
     },

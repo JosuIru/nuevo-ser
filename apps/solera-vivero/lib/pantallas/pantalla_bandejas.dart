@@ -13,15 +13,15 @@ import '../modelos/zona_cultivo.dart';
 import '../utiles/textos_vivero.dart';
 import 'campos_especie.dart';
 import 'formularios.dart';
+import 'pantalla_escaner_qr.dart';
+import 'pantalla_etiquetas_qr.dart';
+import 'pantalla_mapa_zonas.dart';
 import 'pantalla_plantas.dart';
 import 'vista_carga.dart';
 
 /// Pestaña Bandejas: bandejas y contenedores con su QR, y las zonas.
 class PantallaBandejas extends StatelessWidget {
-  const PantallaBandejas({super.key, this.accionesExtra = const []});
-
-  /// Botones de la barra (escáner y etiquetas QR, bloque 8).
-  final List<Widget> accionesExtra;
+  const PantallaBandejas({super.key});
 
   Future<(List<Bandeja>, Map<int, ZonaCultivo>)> _cargar() async {
     final bd = BaseDatosSoleraVivero.instancia;
@@ -35,7 +35,17 @@ class PantallaBandejas extends StatelessWidget {
       appBar: AppBar(
         title: Text(SoleraL10n.t('vive.bandejas')),
         actions: [
-          ...accionesExtra,
+          IconButton(
+            tooltip: SoleraL10n.t('vive.escanear_bandeja'),
+            icon: const Icon(Icons.qr_code_scanner),
+            onPressed: () => abrirBandejaPorQr(context),
+          ),
+          IconButton(
+            tooltip: SoleraL10n.t('vive.etiquetas_qr'),
+            icon: const Icon(Icons.qr_code_2),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaEtiquetasQr())),
+          ),
           IconButton(
             tooltip: SoleraL10n.t('vive.zonas'),
             icon: const Icon(Icons.warehouse_outlined),
@@ -209,16 +219,19 @@ class PantallaFichaBandeja extends StatelessWidget {
 
 /// Zonas del vivero: naves, invernaderos, umbráculos y parcelas exteriores.
 class PantallaZonas extends StatelessWidget {
-  const PantallaZonas({super.key, this.accionesExtra = const []});
-
-  /// Mapa de las parcelas exteriores (bloque 8).
-  final List<Widget> accionesExtra;
+  const PantallaZonas({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Text(SoleraL10n.t('vive.zonas')), actions: accionesExtra),
+      appBar: AppBar(title: Text(SoleraL10n.t('vive.zonas')), actions: [
+        IconButton(
+          tooltip: SoleraL10n.t('vive.mapa'),
+          icon: const Icon(Icons.map_outlined),
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const PantallaMapaZonas())),
+        ),
+      ]),
       body: VistaCarga<List<ZonaCultivo>>(
         cargar: BaseDatosSoleraVivero.instancia.listarZonas,
         construir: (context, zonas) => zonas.isEmpty

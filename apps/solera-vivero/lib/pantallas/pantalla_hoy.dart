@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show CabeceraHoySolera, CifraCabecera, SoleraL10n;
+
+import '../branding.dart';
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
@@ -16,6 +20,7 @@ import 'campos_especie.dart';
 import 'formularios.dart';
 import 'pantalla_ajustes.dart';
 import 'pantalla_cuaderno.dart';
+import 'pantalla_escaner_qr.dart';
 import 'pantalla_salidas.dart';
 import 'vista_carga.dart';
 
@@ -89,118 +94,128 @@ Future<_DatosHoy> _cargarHoy() async {
 /// Pestaña Hoy: primeros pasos, avisos (inspecciones sin notificar,
 /// salidas sin pasaporte, plazos de seguridad) y accesos rápidos.
 class PantallaHoy extends StatelessWidget {
-  const PantallaHoy({super.key, this.cabecera, this.accionesExtra = const []});
-
-  /// Logo (bloque 8).
-  final Widget? cabecera;
-
-  /// Escanear bandeja (bloque 8).
-  final List<Widget> accionesExtra;
+  const PantallaHoy({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Larrea Vivero'),
-        actions: [
-          ...accionesExtra,
-          IconButton(
-            tooltip: SoleraL10n.t('ajustes'),
-            icon: const Icon(Icons.settings_outlined),
-            onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => const PantallaAjustes())),
-          ),
-        ],
-      ),
       body: VistaCarga<_DatosHoy>(
         cargar: _cargarHoy,
         construir: (context, datos) => ListView(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.only(bottom: 24),
           children: [
-            if (cabecera != null) cabecera!,
-            if (datos.faltanPrimerosPasos) _primerosPasos(context, datos),
-            if (!catalogosCompletamenteRevisados)
-              Card(
-                color: Theme.of(context).colorScheme.tertiaryContainer,
-                child: ListTile(
-                  leading: const Icon(Icons.info_outline),
-                  title: Text(SoleraL10n.t('vive.banner_datos_provisionales')),
+            CabeceraHoySolera(
+              titulo: 'Larrea Vivero',
+              rutaLogo: rutaLogoVivero,
+              fecha: DateFormat.MMMMEEEEd(SoleraL10n.idioma)
+                  .format(DateTime.now()),
+              acciones: [
+                IconButton(
+                  tooltip: SoleraL10n.t('vive.escanear_bandeja'),
+                  icon: const Icon(Icons.qr_code_scanner),
+                  onPressed: () => abrirBandejaPorQr(context),
                 ),
-              ),
-            for (final inspeccion in datos.inspeccionesPendientes)
-              Card(
-                color: Theme.of(context).colorScheme.errorContainer,
-                child: ListTile(
-                  leading: const Icon(Icons.warning_amber_outlined),
-                  title: Text(SoleraL10n.tf('vive.aviso_inspeccion', {
-                    'plaga': nombrePlagaVisible(inspeccion.plagaId),
-                    'fecha': formatearFecha(inspeccion.fechaMs),
-                  })),
-                  subtitle:
-                      Text(SoleraL10n.t('vive.aviso_notificar_autoridad')),
+                IconButton(
+                  tooltip: SoleraL10n.t('ajustes'),
+                  icon: const Icon(Icons.settings_outlined),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const PantallaAjustes())),
                 ),
-              ),
-            if (datos.salidasSinPasaporte.isNotEmpty)
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.pending_actions_outlined),
-                  title: Text(SoleraL10n.tf('vive.salidas_sin_pasaporte',
-                      {'n': datos.salidasSinPasaporte.length})),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => abrirFichaSalida(
-                      context, datos.salidasSinPasaporte.first.id!),
-                ),
-              ),
-            for (final tratamiento in datos.plazosAbiertos)
-              Card(
-                child: ListTile(
-                  leading: const Icon(Icons.timer_outlined),
-                  title: Text(SoleraL10n.tf('vive.plazo_abierto', {
-                    'sustancia':
-                        nombreSustanciaVisible(tratamiento.sustanciaActivaId),
-                    'fecha': formatearFecha(
-                        tratamiento.finPlazoSeguridad!.millisecondsSinceEpoch),
-                  })),
-                  subtitle: Text(tratamiento.partidaId == null
-                      ? ''
-                      : datos.partidas[tratamiento.partidaId]?.codigo ?? ''),
-                ),
-              ),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.local_florist_outlined),
-                title: Text(SoleraL10n.tf('vive.resumen_plantas', {
-                  'n': datos.plantasDisponibles,
-                  'listas': datos.listasParaVenta,
-                })),
-              ),
+              ],
+              cifras: [
+                CifraCabecera(
+                    valor: '${datos.plantasDisponibles}',
+                    etiqueta: SoleraL10n.t('vive.cifra_disponibles')),
+                CifraCabecera(
+                    valor: '${datos.listasParaVenta}',
+                    etiqueta: SoleraL10n.t('vive.cifra_listas')),
+                CifraCabecera(
+                    valor: '${datos.salidasSinPasaporte.length}',
+                    etiqueta: SoleraL10n.t('vive.cifra_sin_pasaporte')),
+              ],
             ),
             const SizedBox(height: 8),
-            Wrap(spacing: 8, runSpacing: 8, children: [
-              OutlinedButton.icon(
-                icon: const Icon(Icons.grain_outlined),
-                label: Text(SoleraL10n.t('vive.nueva_siembra')),
-                onPressed: () => mostrarFormularioSiembra(context),
-              ),
-              OutlinedButton.icon(
-                icon: const Icon(Icons.sanitizer_outlined),
-                label: Text(SoleraL10n.t('vive.nuevo_tratamiento')),
-                onPressed: () => mostrarFormularioTratamiento(context),
-              ),
-              OutlinedButton.icon(
-                icon: const Icon(Icons.search),
-                label: Text(SoleraL10n.t('vive.nueva_inspeccion')),
-                onPressed: () => mostrarFormularioInspeccion(context),
-              ),
-              OutlinedButton.icon(
-                icon: const Icon(Icons.menu_book_outlined),
-                label: Text(SoleraL10n.t('vive.cuaderno')),
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const PantallaCuaderno())),
-              ),
-            ]),
+            ...[
+              if (datos.faltanPrimerosPasos) _primerosPasos(context, datos),
+              if (!catalogosCompletamenteRevisados)
+                Card(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  child: ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title:
+                        Text(SoleraL10n.t('vive.banner_datos_provisionales')),
+                  ),
+                ),
+              for (final inspeccion in datos.inspeccionesPendientes)
+                Card(
+                  color: Theme.of(context).colorScheme.errorContainer,
+                  child: ListTile(
+                    leading: const Icon(Icons.warning_amber_outlined),
+                    title: Text(SoleraL10n.tf('vive.aviso_inspeccion', {
+                      'plaga': nombrePlagaVisible(inspeccion.plagaId),
+                      'fecha': formatearFecha(inspeccion.fechaMs),
+                    })),
+                    subtitle:
+                        Text(SoleraL10n.t('vive.aviso_notificar_autoridad')),
+                  ),
+                ),
+              if (datos.salidasSinPasaporte.isNotEmpty)
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.pending_actions_outlined),
+                    title: Text(SoleraL10n.tf('vive.salidas_sin_pasaporte',
+                        {'n': datos.salidasSinPasaporte.length})),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => abrirFichaSalida(
+                        context, datos.salidasSinPasaporte.first.id!),
+                  ),
+                ),
+              for (final tratamiento in datos.plazosAbiertos)
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.timer_outlined),
+                    title: Text(SoleraL10n.tf('vive.plazo_abierto', {
+                      'sustancia':
+                          nombreSustanciaVisible(tratamiento.sustanciaActivaId),
+                      'fecha': formatearFecha(tratamiento
+                          .finPlazoSeguridad!.millisecondsSinceEpoch),
+                    })),
+                    subtitle: Text(tratamiento.partidaId == null
+                        ? ''
+                        : datos.partidas[tratamiento.partidaId]?.codigo ?? ''),
+                  ),
+                ),
+              const SizedBox(height: 8),
+              Wrap(spacing: 8, runSpacing: 8, children: [
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.grain_outlined),
+                  label: Text(SoleraL10n.t('vive.nueva_siembra')),
+                  onPressed: () => mostrarFormularioSiembra(context),
+                ),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.sanitizer_outlined),
+                  label: Text(SoleraL10n.t('vive.nuevo_tratamiento')),
+                  onPressed: () => mostrarFormularioTratamiento(context),
+                ),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.search),
+                  label: Text(SoleraL10n.t('vive.nueva_inspeccion')),
+                  onPressed: () => mostrarFormularioInspeccion(context),
+                ),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.menu_book_outlined),
+                  label: Text(SoleraL10n.t('vive.cuaderno')),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const PantallaCuaderno())),
+                ),
+              ]),
+            ].map((hijo) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: hijo)),
           ],
         ),
       ),

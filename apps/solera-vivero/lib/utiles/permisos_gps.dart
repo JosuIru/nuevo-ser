@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 import 'package:permission_handler/permission_handler.dart';
 
 /// Asegura que la ubicación esté habilitada y que el usuario haya
@@ -29,4 +31,28 @@ Future<bool> asegurarPermisoNotificaciones() async {
     return nuevo.isGranted;
   }
   return estado.isGranted;
+}
+
+/// Posición actual (latitud, longitud) para guardarla en una zona. Si no
+/// hay permiso o el GPS no responde, avisa y devuelve null: la zona queda
+/// sin ubicación.
+Future<(double, double)?> leerPosicionActual(BuildContext context) async {
+  final mensajero = ScaffoldMessenger.of(context);
+  try {
+    if (!await asegurarPermisoUbicacion()) {
+      mensajero.showSnackBar(
+          SnackBar(content: Text(SoleraL10n.t('vive.gps_sin_permiso'))));
+      return null;
+    }
+    final posicion = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+      timeLimit: const Duration(seconds: 30),
+    );
+    return (posicion.latitude, posicion.longitude);
+  } catch (error) {
+    debugPrint('GPS: $error');
+    mensajero
+        .showSnackBar(SnackBar(content: Text(SoleraL10n.t('vive.gps_error'))));
+    return null;
+  }
 }

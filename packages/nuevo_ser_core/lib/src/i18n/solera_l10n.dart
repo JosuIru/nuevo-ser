@@ -3365,6 +3365,12 @@ class SoleraL10n {
     'obra.sin_incidencias',
     'obra.tipo',
     'obra.valor',
+    'obra.aviso_sal_maxima',
+    'obra.ayuda_catalogo_ingredientes',
+    'obra.catalogos_provisionales',
+    'obra.confirmar_con_proveedor',
+    'obra.denominacion',
+    'obra.sin_denominacion',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -7639,6 +7645,12 @@ class SoleraL10n {
           'obra.sin_incidencias',
           'obra.tipo',
           'obra.valor',
+          'obra.aviso_sal_maxima',
+          'obra.ayuda_catalogo_ingredientes',
+          'obra.catalogos_provisionales',
+          'obra.confirmar_con_proveedor',
+          'obra.denominacion',
+          'obra.sin_denominacion',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -11910,6 +11922,12 @@ class SoleraL10n {
           'obra.sin_incidencias',
           'obra.tipo',
           'obra.valor',
+          'obra.aviso_sal_maxima',
+          'obra.ayuda_catalogo_ingredientes',
+          'obra.catalogos_provisionales',
+          'obra.confirmar_con_proveedor',
+          'obra.denominacion',
+          'obra.sin_denominacion',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -16181,6 +16199,12 @@ class SoleraL10n {
           'obra.sin_incidencias',
           'obra.tipo',
           'obra.valor',
+          'obra.aviso_sal_maxima',
+          'obra.ayuda_catalogo_ingredientes',
+          'obra.catalogos_provisionales',
+          'obra.confirmar_con_proveedor',
+          'obra.denominacion',
+          'obra.sin_denominacion',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -20475,6 +20499,12 @@ class SoleraL10n {
       case 'obra.sin_incidencias': return 'Sin incidencias en el periodo.';
       case 'obra.tipo': return 'Tipo';
       case 'obra.valor': return 'Valor';
+      case 'obra.aviso_sal_maxima': return 'La sal estimada supera el máximo de esta denominación (RD 308/2019, art. 11.2.c). Revisa la receta o confírmalo con un análisis.';
+      case 'obra.ayuda_catalogo_ingredientes': return 'Escribe para elegir uno del catálogo o pon el nombre que quieras';
+      case 'obra.catalogos_provisionales': return 'Los catálogos (ingredientes base, denominaciones, controles) son provisionales: ningún técnico los ha firmado todavía.';
+      case 'obra.confirmar_con_proveedor': return 'Alérgenos tomados del catálogo: confírmalos con la ficha técnica del proveedor.';
+      case 'obra.denominacion': return 'Denominación (RD 308/2019)';
+      case 'obra.sin_denominacion': return 'Sin denominación de pan';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -24750,6 +24780,12 @@ class SoleraL10n {
       case 'obra.sin_incidencias': return 'Ez dago gorabeherarik aldian.';
       case 'obra.tipo': return 'Mota';
       case 'obra.valor': return 'Balioa';
+      case 'obra.aviso_sal_maxima': return 'Gatz estimatuak izendapen honen gehienezkoa gainditzen du (308/2019 EED, 11.2.c art.). Berrikusi errezeta edo egiaztatu analisi batekin.';
+      case 'obra.ayuda_catalogo_ingredientes': return 'Idatzi katalogotik bat aukeratzeko edo jarri nahi duzun izena';
+      case 'obra.catalogos_provisionales': return 'Katalogoak (oinarrizko osagaiak, izendapenak, kontrolak) behin-behinekoak dira: oraindik ez ditu teknikaririk sinatu.';
+      case 'obra.confirmar_con_proveedor': return 'Katalogotik hartutako alergenoak: egiaztatu hornitzailearen fitxa teknikoarekin.';
+      case 'obra.denominacion': return 'Izendapena (308/2019 EED)';
+      case 'obra.sin_denominacion': return 'Ogi-izendapenik gabe';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -29025,6 +29061,12 @@ class SoleraL10n {
       case 'obra.sin_incidencias': return 'Sense incidències en el període.';
       case 'obra.tipo': return 'Tipus';
       case 'obra.valor': return 'Valor';
+      case 'obra.aviso_sal_maxima': return 'La sal estimada supera el màxim d\'aquesta denominació (RD 308/2019, art. 11.2.c). Revisa la recepta o confirma-ho amb una anàlisi.';
+      case 'obra.ayuda_catalogo_ingredientes': return 'Escriu per triar-ne un del catàleg o posa el nom que vulguis';
+      case 'obra.catalogos_provisionales': return 'Els catàlegs (ingredients base, denominacions, controls) són provisionals: cap tècnic no els ha signat encara.';
+      case 'obra.confirmar_con_proveedor': return 'Al·lèrgens presos del catàleg: confirma\'ls amb la fitxa tècnica del proveïdor.';
+      case 'obra.denominacion': return 'Denominació (RD 308/2019)';
+      case 'obra.sin_denominacion': return 'Sense denominació de pa';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -33300,6 +33342,12 @@ class SoleraL10n {
       case 'obra.sin_incidencias': return 'Sen incidencias no período.';
       case 'obra.tipo': return 'Tipo';
       case 'obra.valor': return 'Valor';
+      case 'obra.aviso_sal_maxima': return 'A sal estimada supera o máximo desta denominación (RD 308/2019, art. 11.2.c). Revisa a receita ou confírmao cunha análise.';
+      case 'obra.ayuda_catalogo_ingredientes': return 'Escribe para escoller un do catálogo ou pon o nome que queiras';
+      case 'obra.catalogos_provisionales': return 'Os catálogos (ingredientes base, denominacións, controis) son provisionais: ningún técnico os asinou aínda.';
+      case 'obra.confirmar_con_proveedor': return 'Alérxenos tomados do catálogo: confírmaos coa ficha técnica do provedor.';
+      case 'obra.denominacion': return 'Denominación (RD 308/2019)';
+      case 'obra.sin_denominacion': return 'Sen denominación de pan';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

@@ -1,0 +1,13 @@
+# Denominaciones y menciones del pan. Fuente: Real Decreto 308/2019, norma de calidad del pan
+# (texto consolidado en el BOE, con la modificación del RD 142/2026 sobre pan sin gluten).
+# La app AVISA con estas reglas; no certifica el cumplimiento.
+id,nombre,articulo,requisito,sal_maxima_g_100g,revisado_por
+pan_comun,Pan común,art. 3,"Consumo habitual en las 24 h siguientes a la cocción; harina o harina integral de cereales, puede llevar salvado. Sal máxima 1,31 g/100 g por cloruros (1,66 g por sodio total), art. 11.2.c, obligatorio desde el 01/04/2022",1.31,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+pan_especial,Pan especial,art. 5,"No es pan común y cumple una condición de composición (harina tratada o ingrediente del art. 11.3) o de elaboración (rallado, en molde, formas especiales, escaldado parcial…)",,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+pan_integral,Pan integral / 100 % integral,art. 4.3.a,"Harina exclusivamente integral; se completa con el nombre del cereal",1.31,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+pan_con_harina_integral,Pan elaborado con harina integral X %,art. 4.3.b,"Harina no exclusivamente integral: indicar el % de harina integral sobre la harina total. Sin mínimo",1.31,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+pan_un_cereal,Pan 100 % de / pan de (cereal distinto del trigo),art. 4.4.a,"Solo harina de un cereal distinto del trigo (centeno, espelta…)",1.31,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+pan_varios_cereales,Pan de (dos o más cereales),art. 4.4.b,"Dos o más harinas de cereales: indicar el % de cada harina sobre el total. Sin mínimo",1.31,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+pan_multicereal,Pan multicereal,art. 6.2,"Tres o más harinas, al menos dos de cereales; cada una de las tres mayoritarias ≥ 10 %; las de cereales ≥ 30 % del total de harinas",,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+mencion_masa_madre,Mención «elaborado con masa madre»,art. 14.5,"Masa madre ≥ 5 % del peso total de harina de la masa final, sin aditivos; pH de la masa madre < 4,2; pH de la masa y del pan < 4,8; levadura ≤ 0,2 % de la harina solo en la última fase",,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07
+pan_sin_gluten,Pan sin gluten,art. 3 y art. 5.3,"Incluido desde el 01/03/2026 (RD 142/2026). La app nunca declara un producto sin gluten: lo decide el obrador con su control",,fuente_publica: RD 308/2019 consolidado (BOE-A-2019-6994), consultado 2026-11-07

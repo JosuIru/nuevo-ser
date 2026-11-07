@@ -1,0 +1,17 @@
+# Los 14 alérgenos de declaración obligatoria. Fuente: Reglamento (UE) 1169/2011, anexo II (EUR-Lex).
+# revisado_por con fuente_publica = revisión documental; solo asesor:/persona: cuenta como firma.
+id,nombre,ejemplos,revisado_por
+gluten,Cereales con gluten,"trigo (espelta, kamut), centeno, cebada, avena e híbridos",fuente_publica: Reglamento (UE) 1169/2011 anexo II
+crustaceos,Crustáceos,"gambas, langostinos, cangrejos",fuente_publica: Reglamento (UE) 1169/2011 anexo II
+huevos,Huevos,huevo y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+pescado,Pescado,pescado y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+cacahuetes,Cacahuetes,cacahuete y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+soja,Soja,soja y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+lacteos,Leche,"leche y derivados, incluida la lactosa",fuente_publica: Reglamento (UE) 1169/2011 anexo II
+frutos_cascara,Frutos de cáscara,"almendra, avellana, nuez, anacardo, pacana, nuez de Brasil, pistacho, macadamia",fuente_publica: Reglamento (UE) 1169/2011 anexo II
+apio,Apio,apio y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+mostaza,Mostaza,mostaza y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+sesamo,Granos de sésamo,sésamo y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+sulfitos,Dióxido de azufre y sulfitos,"en concentraciones superiores a 10 mg/kg o 10 mg/l",fuente_publica: Reglamento (UE) 1169/2011 anexo II
+altramuces,Altramuces,altramuz y derivados,fuente_publica: Reglamento (UE) 1169/2011 anexo II
+moluscos,Moluscos,"mejillones, almejas, calamares",fuente_publica: Reglamento (UE) 1169/2011 anexo II

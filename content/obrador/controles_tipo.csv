@@ -1,0 +1,15 @@
+# Controles habituales del cuaderno de autocontrol de un obrador pequeño, como sugerencia al apuntar.
+# SIN REVISAR: los límites y frecuencias los fija el plan de autocontrol del propio obrador
+# (guía de prácticas correctas de higiene de su comunidad). Por eso no se dan límites numéricos.
+id,tipo,elemento,frecuencia_sugerida,revisado_por
+camara_refrigeracion,temperatura,Cámara de refrigeración,diaria,
+congelador,temperatura,Congelador,diaria,
+vitrina,temperatura,Vitrina refrigerada del mostrador,diaria,
+recepcion_harina,proveedor,Recepción de harina,cada entrega,
+recepcion_refrigerados,proveedor,Recepción de refrigerados (mantequilla / nata / huevo),cada entrega,
+limpieza_obrador,limpieza,Superficies y suelo del obrador,diaria,
+limpieza_amasadora,limpieza,Amasadora,diaria,
+limpieza_horno,limpieza,Horno,semanal,
+limpieza_camaras,limpieza,Cámaras y congelador,mensual,
+revision_cebos,plagas,Cebos y trampas,mensual,
+formacion_manipuladores,formacion,Formación de manipuladores,anual,

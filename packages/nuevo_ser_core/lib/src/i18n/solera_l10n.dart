@@ -3174,7 +3174,10 @@ class SoleraL10n {
     'gana.atrasada',
     'gana.autorizacion_transportista',
     'gana.aviso_documento_provisional',
+    'gana.aviso_fiscal',
     'gana.aviso_no_sustituye',
+    'gana.base',
+    'gana.base_euros',
     'gana.buscando_gps',
     'gana.cabezas',
     'gana.cabezas_sin_identificar',
@@ -3185,6 +3188,7 @@ class SoleraL10n {
     'gana.capacidad_maxima',
     'gana.carne_hasta',
     'gana.catalogos_provisionales',
+    'gana.categoria',
     'gana.categoria_arrendamiento_pastos',
     'gana.categoria_ayudas',
     'gana.categoria_combustible',
@@ -3207,6 +3211,7 @@ class SoleraL10n {
     'gana.clase_natural',
     'gana.clase_vacuna',
     'gana.clasificacion',
+    'gana.cliente',
     'gana.codigo_rega',
     'gana.codigo_remo',
     'gana.col_animales_afectados',
@@ -3241,6 +3246,8 @@ class SoleraL10n {
     'gana.col_valor',
     'gana.col_veterinaria',
     'gana.col_veterinario_receta',
+    'gana.compensacion_reagp',
+    'gana.concepto',
     'gana.coordenadas_explotacion',
     'gana.correo',
     'gana.crias',
@@ -3301,6 +3308,9 @@ class SoleraL10n {
     'gana.explicacion_calendario',
     'gana.explicacion_contorno',
     'gana.explotacion',
+    'gana.exportar_datos',
+    'gana.exportar_datos_explicacion',
+    'gana.extracto_pdf',
     'gana.fecha',
     'gana.fecha_nacimiento',
     'gana.fecha_prevista',
@@ -3310,6 +3320,7 @@ class SoleraL10n {
     'gana.fuente',
     'gana.fuera_de_la_explotacion',
     'gana.fuera_o_sin_ubicar',
+    'gana.gastos',
     'gana.guardado',
     'gana.guardado_rega_raro',
     'gana.hacer_foto',
@@ -3325,7 +3336,13 @@ class SoleraL10n {
     'gana.ia_usar',
     'gana.identificacion',
     'gana.informe_ecoregimen',
+    'gana.ingresos',
+    'gana.ingresos_y_gastos',
     'gana.inteligencia_artificial',
+    'gana.iva',
+    'gana.iva_o_compensacion',
+    'gana.iva_repercutido',
+    'gana.iva_soportado',
     'gana.leche_hasta',
     'gana.leer_receta_ia',
     'gana.libro_aviso_provisional',
@@ -3383,6 +3400,8 @@ class SoleraL10n {
     'gana.nueva_visita',
     'gana.nuevo_animal',
     'gana.nuevo_evento',
+    'gana.nuevo_gasto',
+    'gana.nuevo_ingreso',
     'gana.nuevo_movimiento',
     'gana.nuevo_rebano',
     'gana.numero_receta',
@@ -3392,9 +3411,11 @@ class SoleraL10n {
     'gana.peso_kg',
     'gana.pieza_destino',
     'gana.pieza_en_uso',
+    'gana.porcentaje_compensacion',
     'gana.primeros_pasos',
     'gana.primeros_pasos_texto',
     'gana.proveedor',
+    'gana.proveedor_simple',
     'gana.provincia',
     'gana.proximos_14_dias',
     'gana.prueba_compra',
@@ -3408,12 +3429,14 @@ class SoleraL10n {
     'gana.rebanos',
     'gana.recinto_sigpac',
     'gana.rega_externa',
+    'gana.resultado',
     'gana.sexo',
     'gana.sexo_castrado',
     'gana.sexo_hembra',
     'gana.sexo_macho',
     'gana.si',
     'gana.sin_animales',
+    'gana.sin_apuntes',
     'gana.sin_avisos',
     'gana.sin_contorno',
     'gana.sin_eventos',
@@ -3439,6 +3462,7 @@ class SoleraL10n {
     'gana.tarea_vacunacion',
     'gana.tareas_hechas',
     'gana.telefono',
+    'gana.tercero',
     'gana.tipo',
     'gana.tipo_pasto',
     'gana.titular',
@@ -3449,6 +3473,7 @@ class SoleraL10n {
     'gana.titularidad_comunal',
     'gana.titularidad_propia',
     'gana.toda_la_explotacion',
+    'gana.total',
     'gana.tramite_andalucia',
     'gana.tramite_pac',
     'gana.tratamientos_ecologico',
@@ -8059,7 +8084,10 @@ class SoleraL10n {
           'gana.atrasada',
           'gana.autorizacion_transportista',
           'gana.aviso_documento_provisional',
+          'gana.aviso_fiscal',
           'gana.aviso_no_sustituye',
+          'gana.base',
+          'gana.base_euros',
           'gana.buscando_gps',
           'gana.cabezas',
           'gana.cabezas_sin_identificar',
@@ -8070,6 +8098,7 @@ class SoleraL10n {
           'gana.capacidad_maxima',
           'gana.carne_hasta',
           'gana.catalogos_provisionales',
+          'gana.categoria',
           'gana.categoria_arrendamiento_pastos',
           'gana.categoria_ayudas',
           'gana.categoria_combustible',
@@ -8092,6 +8121,7 @@ class SoleraL10n {
           'gana.clase_natural',
           'gana.clase_vacuna',
           'gana.clasificacion',
+          'gana.cliente',
           'gana.codigo_rega',
           'gana.codigo_remo',
           'gana.col_animales_afectados',
@@ -8126,6 +8156,8 @@ class SoleraL10n {
           'gana.col_valor',
           'gana.col_veterinaria',
           'gana.col_veterinario_receta',
+          'gana.compensacion_reagp',
+          'gana.concepto',
           'gana.coordenadas_explotacion',
           'gana.correo',
           'gana.crias',
@@ -8186,6 +8218,9 @@ class SoleraL10n {
           'gana.explicacion_calendario',
           'gana.explicacion_contorno',
           'gana.explotacion',
+          'gana.exportar_datos',
+          'gana.exportar_datos_explicacion',
+          'gana.extracto_pdf',
           'gana.fecha',
           'gana.fecha_nacimiento',
           'gana.fecha_prevista',
@@ -8195,6 +8230,7 @@ class SoleraL10n {
           'gana.fuente',
           'gana.fuera_de_la_explotacion',
           'gana.fuera_o_sin_ubicar',
+          'gana.gastos',
           'gana.guardado',
           'gana.guardado_rega_raro',
           'gana.hacer_foto',
@@ -8210,7 +8246,13 @@ class SoleraL10n {
           'gana.ia_usar',
           'gana.identificacion',
           'gana.informe_ecoregimen',
+          'gana.ingresos',
+          'gana.ingresos_y_gastos',
           'gana.inteligencia_artificial',
+          'gana.iva',
+          'gana.iva_o_compensacion',
+          'gana.iva_repercutido',
+          'gana.iva_soportado',
           'gana.leche_hasta',
           'gana.leer_receta_ia',
           'gana.libro_aviso_provisional',
@@ -8268,6 +8310,8 @@ class SoleraL10n {
           'gana.nueva_visita',
           'gana.nuevo_animal',
           'gana.nuevo_evento',
+          'gana.nuevo_gasto',
+          'gana.nuevo_ingreso',
           'gana.nuevo_movimiento',
           'gana.nuevo_rebano',
           'gana.numero_receta',
@@ -8277,9 +8321,11 @@ class SoleraL10n {
           'gana.peso_kg',
           'gana.pieza_destino',
           'gana.pieza_en_uso',
+          'gana.porcentaje_compensacion',
           'gana.primeros_pasos',
           'gana.primeros_pasos_texto',
           'gana.proveedor',
+          'gana.proveedor_simple',
           'gana.provincia',
           'gana.proximos_14_dias',
           'gana.prueba_compra',
@@ -8293,12 +8339,14 @@ class SoleraL10n {
           'gana.rebanos',
           'gana.recinto_sigpac',
           'gana.rega_externa',
+          'gana.resultado',
           'gana.sexo',
           'gana.sexo_castrado',
           'gana.sexo_hembra',
           'gana.sexo_macho',
           'gana.si',
           'gana.sin_animales',
+          'gana.sin_apuntes',
           'gana.sin_avisos',
           'gana.sin_contorno',
           'gana.sin_eventos',
@@ -8324,6 +8372,7 @@ class SoleraL10n {
           'gana.tarea_vacunacion',
           'gana.tareas_hechas',
           'gana.telefono',
+          'gana.tercero',
           'gana.tipo',
           'gana.tipo_pasto',
           'gana.titular',
@@ -8334,6 +8383,7 @@ class SoleraL10n {
           'gana.titularidad_comunal',
           'gana.titularidad_propia',
           'gana.toda_la_explotacion',
+          'gana.total',
           'gana.tramite_andalucia',
           'gana.tramite_pac',
           'gana.tratamientos_ecologico',
@@ -12941,7 +12991,10 @@ class SoleraL10n {
           'gana.atrasada',
           'gana.autorizacion_transportista',
           'gana.aviso_documento_provisional',
+          'gana.aviso_fiscal',
           'gana.aviso_no_sustituye',
+          'gana.base',
+          'gana.base_euros',
           'gana.buscando_gps',
           'gana.cabezas',
           'gana.cabezas_sin_identificar',
@@ -12952,6 +13005,7 @@ class SoleraL10n {
           'gana.capacidad_maxima',
           'gana.carne_hasta',
           'gana.catalogos_provisionales',
+          'gana.categoria',
           'gana.categoria_arrendamiento_pastos',
           'gana.categoria_ayudas',
           'gana.categoria_combustible',
@@ -12974,6 +13028,7 @@ class SoleraL10n {
           'gana.clase_natural',
           'gana.clase_vacuna',
           'gana.clasificacion',
+          'gana.cliente',
           'gana.codigo_rega',
           'gana.codigo_remo',
           'gana.col_animales_afectados',
@@ -13008,6 +13063,8 @@ class SoleraL10n {
           'gana.col_valor',
           'gana.col_veterinaria',
           'gana.col_veterinario_receta',
+          'gana.compensacion_reagp',
+          'gana.concepto',
           'gana.coordenadas_explotacion',
           'gana.correo',
           'gana.crias',
@@ -13068,6 +13125,9 @@ class SoleraL10n {
           'gana.explicacion_calendario',
           'gana.explicacion_contorno',
           'gana.explotacion',
+          'gana.exportar_datos',
+          'gana.exportar_datos_explicacion',
+          'gana.extracto_pdf',
           'gana.fecha',
           'gana.fecha_nacimiento',
           'gana.fecha_prevista',
@@ -13077,6 +13137,7 @@ class SoleraL10n {
           'gana.fuente',
           'gana.fuera_de_la_explotacion',
           'gana.fuera_o_sin_ubicar',
+          'gana.gastos',
           'gana.guardado',
           'gana.guardado_rega_raro',
           'gana.hacer_foto',
@@ -13092,7 +13153,13 @@ class SoleraL10n {
           'gana.ia_usar',
           'gana.identificacion',
           'gana.informe_ecoregimen',
+          'gana.ingresos',
+          'gana.ingresos_y_gastos',
           'gana.inteligencia_artificial',
+          'gana.iva',
+          'gana.iva_o_compensacion',
+          'gana.iva_repercutido',
+          'gana.iva_soportado',
           'gana.leche_hasta',
           'gana.leer_receta_ia',
           'gana.libro_aviso_provisional',
@@ -13150,6 +13217,8 @@ class SoleraL10n {
           'gana.nueva_visita',
           'gana.nuevo_animal',
           'gana.nuevo_evento',
+          'gana.nuevo_gasto',
+          'gana.nuevo_ingreso',
           'gana.nuevo_movimiento',
           'gana.nuevo_rebano',
           'gana.numero_receta',
@@ -13159,9 +13228,11 @@ class SoleraL10n {
           'gana.peso_kg',
           'gana.pieza_destino',
           'gana.pieza_en_uso',
+          'gana.porcentaje_compensacion',
           'gana.primeros_pasos',
           'gana.primeros_pasos_texto',
           'gana.proveedor',
+          'gana.proveedor_simple',
           'gana.provincia',
           'gana.proximos_14_dias',
           'gana.prueba_compra',
@@ -13175,12 +13246,14 @@ class SoleraL10n {
           'gana.rebanos',
           'gana.recinto_sigpac',
           'gana.rega_externa',
+          'gana.resultado',
           'gana.sexo',
           'gana.sexo_castrado',
           'gana.sexo_hembra',
           'gana.sexo_macho',
           'gana.si',
           'gana.sin_animales',
+          'gana.sin_apuntes',
           'gana.sin_avisos',
           'gana.sin_contorno',
           'gana.sin_eventos',
@@ -13206,6 +13279,7 @@ class SoleraL10n {
           'gana.tarea_vacunacion',
           'gana.tareas_hechas',
           'gana.telefono',
+          'gana.tercero',
           'gana.tipo',
           'gana.tipo_pasto',
           'gana.titular',
@@ -13216,6 +13290,7 @@ class SoleraL10n {
           'gana.titularidad_comunal',
           'gana.titularidad_propia',
           'gana.toda_la_explotacion',
+          'gana.total',
           'gana.tramite_andalucia',
           'gana.tramite_pac',
           'gana.tratamientos_ecologico',
@@ -17823,7 +17898,10 @@ class SoleraL10n {
           'gana.atrasada',
           'gana.autorizacion_transportista',
           'gana.aviso_documento_provisional',
+          'gana.aviso_fiscal',
           'gana.aviso_no_sustituye',
+          'gana.base',
+          'gana.base_euros',
           'gana.buscando_gps',
           'gana.cabezas',
           'gana.cabezas_sin_identificar',
@@ -17834,6 +17912,7 @@ class SoleraL10n {
           'gana.capacidad_maxima',
           'gana.carne_hasta',
           'gana.catalogos_provisionales',
+          'gana.categoria',
           'gana.categoria_arrendamiento_pastos',
           'gana.categoria_ayudas',
           'gana.categoria_combustible',
@@ -17856,6 +17935,7 @@ class SoleraL10n {
           'gana.clase_natural',
           'gana.clase_vacuna',
           'gana.clasificacion',
+          'gana.cliente',
           'gana.codigo_rega',
           'gana.codigo_remo',
           'gana.col_animales_afectados',
@@ -17890,6 +17970,8 @@ class SoleraL10n {
           'gana.col_valor',
           'gana.col_veterinaria',
           'gana.col_veterinario_receta',
+          'gana.compensacion_reagp',
+          'gana.concepto',
           'gana.coordenadas_explotacion',
           'gana.correo',
           'gana.crias',
@@ -17950,6 +18032,9 @@ class SoleraL10n {
           'gana.explicacion_calendario',
           'gana.explicacion_contorno',
           'gana.explotacion',
+          'gana.exportar_datos',
+          'gana.exportar_datos_explicacion',
+          'gana.extracto_pdf',
           'gana.fecha',
           'gana.fecha_nacimiento',
           'gana.fecha_prevista',
@@ -17959,6 +18044,7 @@ class SoleraL10n {
           'gana.fuente',
           'gana.fuera_de_la_explotacion',
           'gana.fuera_o_sin_ubicar',
+          'gana.gastos',
           'gana.guardado',
           'gana.guardado_rega_raro',
           'gana.hacer_foto',
@@ -17974,7 +18060,13 @@ class SoleraL10n {
           'gana.ia_usar',
           'gana.identificacion',
           'gana.informe_ecoregimen',
+          'gana.ingresos',
+          'gana.ingresos_y_gastos',
           'gana.inteligencia_artificial',
+          'gana.iva',
+          'gana.iva_o_compensacion',
+          'gana.iva_repercutido',
+          'gana.iva_soportado',
           'gana.leche_hasta',
           'gana.leer_receta_ia',
           'gana.libro_aviso_provisional',
@@ -18032,6 +18124,8 @@ class SoleraL10n {
           'gana.nueva_visita',
           'gana.nuevo_animal',
           'gana.nuevo_evento',
+          'gana.nuevo_gasto',
+          'gana.nuevo_ingreso',
           'gana.nuevo_movimiento',
           'gana.nuevo_rebano',
           'gana.numero_receta',
@@ -18041,9 +18135,11 @@ class SoleraL10n {
           'gana.peso_kg',
           'gana.pieza_destino',
           'gana.pieza_en_uso',
+          'gana.porcentaje_compensacion',
           'gana.primeros_pasos',
           'gana.primeros_pasos_texto',
           'gana.proveedor',
+          'gana.proveedor_simple',
           'gana.provincia',
           'gana.proximos_14_dias',
           'gana.prueba_compra',
@@ -18057,12 +18153,14 @@ class SoleraL10n {
           'gana.rebanos',
           'gana.recinto_sigpac',
           'gana.rega_externa',
+          'gana.resultado',
           'gana.sexo',
           'gana.sexo_castrado',
           'gana.sexo_hembra',
           'gana.sexo_macho',
           'gana.si',
           'gana.sin_animales',
+          'gana.sin_apuntes',
           'gana.sin_avisos',
           'gana.sin_contorno',
           'gana.sin_eventos',
@@ -18088,6 +18186,7 @@ class SoleraL10n {
           'gana.tarea_vacunacion',
           'gana.tareas_hechas',
           'gana.telefono',
+          'gana.tercero',
           'gana.tipo',
           'gana.tipo_pasto',
           'gana.titular',
@@ -18098,6 +18197,7 @@ class SoleraL10n {
           'gana.titularidad_comunal',
           'gana.titularidad_propia',
           'gana.toda_la_explotacion',
+          'gana.total',
           'gana.tramite_andalucia',
           'gana.tramite_pac',
           'gana.tratamientos_ecologico',
@@ -22728,7 +22828,10 @@ class SoleraL10n {
       case 'gana.atrasada': return 'atrasada';
       case 'gana.autorizacion_transportista': return 'N.º de autorización del transportista';
       case 'gana.aviso_documento_provisional': return 'Todos los documentos llevan el sello PROVISIONAL: el formato no lo ha validado todavía un veterinario asesor ni un técnico PAC, y tu comunidad puede pedir otro modelo.';
+      case 'gana.aviso_fiscal': return 'PROVISIONAL y orientativo: no es una liquidación de IVA ni de IRPF. El régimen (REAGP o general), los porcentajes de compensación y los tipos de IVA los confirma tu asesor fiscal.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.';
+      case 'gana.base': return 'Base';
+      case 'gana.base_euros': return 'Base (€, sin IVA)';
       case 'gana.buscando_gps': return 'Buscando posición…';
       case 'gana.cabezas': return 'cabezas';
       case 'gana.cabezas_sin_identificar': return 'Cabezas sin identificar una a una';
@@ -22739,6 +22842,7 @@ class SoleraL10n {
       case 'gana.capacidad_maxima': return 'Capacidad máxima (cabezas)';
       case 'gana.carne_hasta': return 'Carne hasta el';
       case 'gana.catalogos_provisionales': return 'Catálogos provisionales: falta la revisión de un veterinario y de un técnico PAC.';
+      case 'gana.categoria': return 'Categoría';
       case 'gana.categoria_arrendamiento_pastos': return 'Arrendamiento de pastos';
       case 'gana.categoria_ayudas': return 'Ayudas (PAC y otras)';
       case 'gana.categoria_combustible': return 'Combustible';
@@ -22761,6 +22865,7 @@ class SoleraL10n {
       case 'gana.clase_natural': return 'Fitoterapia, homeopatía u oligoelementos';
       case 'gana.clase_vacuna': return 'Vacuna';
       case 'gana.clasificacion': return 'Clasificación de la explotación';
+      case 'gana.cliente': return 'Cliente';
       case 'gana.codigo_rega': return 'Código REGA';
       case 'gana.codigo_remo': return 'Código REMO del movimiento';
       case 'gana.col_animales_afectados': return 'Animales afectados';
@@ -22795,6 +22900,8 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Valor';
       case 'gana.col_veterinaria': return 'Veterinaria';
       case 'gana.col_veterinario_receta': return 'Veterinario y receta';
+      case 'gana.compensacion_reagp': return 'Compensación REAGP cobrada';
+      case 'gana.concepto': return 'Concepto';
       case 'gana.coordenadas_explotacion': return 'Coordenadas de la explotación';
       case 'gana.correo': return 'Correo electrónico';
       case 'gana.crias': return 'Crías';
@@ -22855,6 +22962,9 @@ class SoleraL10n {
       case 'gana.explicacion_calendario': return 'Aquí salen las tareas que planifica tu veterinario y el día en que acaba cada tiempo de espera de una receta. La app no propone tratamientos.';
       case 'gana.explicacion_contorno': return 'Camina el linde de la pieza y, en cada esquina, pulsa «Añadir punto aquí». Con tres puntos o más se calcula la superficie.';
       case 'gana.explotacion': return 'Explotación';
+      case 'gana.exportar_datos': return 'Exportar todos mis datos';
+      case 'gana.exportar_datos_explicacion': return 'Un CSV por tabla, para guardarlos o llevarlos a otro programa. Los datos son tuyos.';
+      case 'gana.extracto_pdf': return 'Extracto en PDF';
       case 'gana.fecha': return 'Fecha';
       case 'gana.fecha_nacimiento': return 'Fecha de nacimiento';
       case 'gana.fecha_prevista': return 'Fecha prevista';
@@ -22864,6 +22974,7 @@ class SoleraL10n {
       case 'gana.fuente': return 'Fuente';
       case 'gana.fuera_de_la_explotacion': return 'Fuera de la explotación';
       case 'gana.fuera_o_sin_ubicar': return 'Fuera de la explotación o sin ubicar';
+      case 'gana.gastos': return 'Gastos';
       case 'gana.guardado': return 'Guardado';
       case 'gana.guardado_rega_raro': return 'Guardado. Ojo: el código REGA no tiene la forma ES + 12 cifras.';
       case 'gana.hacer_foto': return 'Hacer una foto';
@@ -22879,7 +22990,13 @@ class SoleraL10n {
       case 'gana.ia_usar': return 'Usar y revisar';
       case 'gana.identificacion': return 'Identificación (crotal, DIB…)';
       case 'gana.informe_ecoregimen': return 'Informe del eco-régimen de pastoreo';
+      case 'gana.ingresos': return 'Ingresos';
+      case 'gana.ingresos_y_gastos': return 'Ingresos y gastos';
       case 'gana.inteligencia_artificial': return 'Inteligencia artificial';
+      case 'gana.iva': return 'IVA';
+      case 'gana.iva_o_compensacion': return 'IVA o compensación';
+      case 'gana.iva_repercutido': return 'IVA repercutido';
+      case 'gana.iva_soportado': return 'IVA soportado (en el REAGP no se deduce)';
       case 'gana.leche_hasta': return 'Leche hasta el';
       case 'gana.leer_receta_ia': return 'Leer receta con IA';
       case 'gana.libro_aviso_provisional': return 'Libro de registro PROVISIONAL, con los datos mínimos del anexo V del RD 787/2023. El formato que vale es el aprobado por tu comunidad autónoma.';
@@ -22937,6 +23054,8 @@ class SoleraL10n {
       case 'gana.nueva_visita': return 'Nueva visita';
       case 'gana.nuevo_animal': return 'Nuevo animal';
       case 'gana.nuevo_evento': return 'Apuntar manejo';
+      case 'gana.nuevo_gasto': return 'Nuevo gasto';
+      case 'gana.nuevo_ingreso': return 'Nuevo ingreso';
       case 'gana.nuevo_movimiento': return 'Movimiento';
       case 'gana.nuevo_rebano': return 'Nuevo rebaño';
       case 'gana.numero_receta': return 'N.º de receta';
@@ -22946,9 +23065,11 @@ class SoleraL10n {
       case 'gana.peso_kg': return 'Peso (kg)';
       case 'gana.pieza_destino': return 'Pieza de destino';
       case 'gana.pieza_en_uso': return 'Pieza en uso';
+      case 'gana.porcentaje_compensacion': return 'Compensación REAGP (%, por verificar con tu asesor)';
       case 'gana.primeros_pasos': return 'Primeros pasos';
       case 'gana.primeros_pasos_texto': return '1. En Ajustes, los datos del titular y el código REGA. 2. En Pastos, tus piezas con su superficie y su recinto SIGPAC. 3. En Rebaños, cada rebaño y su primera entrada en una pieza.';
       case 'gana.proveedor': return 'Proveedor (nombre y dirección)';
+      case 'gana.proveedor_simple': return 'Proveedor';
       case 'gana.provincia': return 'Provincia';
       case 'gana.proximos_14_dias': return 'Próximos 14 días';
       case 'gana.prueba_compra': return 'Prueba de compra (factura o albarán)';
@@ -22962,12 +23083,14 @@ class SoleraL10n {
       case 'gana.rebanos': return 'Rebaños';
       case 'gana.recinto_sigpac': return 'Recinto SIGPAC (pol. parc. recinto)';
       case 'gana.rega_externa': return 'Código REGA de la otra explotación';
+      case 'gana.resultado': return 'Resultado';
       case 'gana.sexo': return 'Sexo';
       case 'gana.sexo_castrado': return 'Castrado';
       case 'gana.sexo_hembra': return 'Hembra';
       case 'gana.sexo_macho': return 'Macho';
       case 'gana.si': return 'Sí';
       case 'gana.sin_animales': return 'Sin animales identificados.';
+      case 'gana.sin_apuntes': return 'Sin apuntes.';
       case 'gana.sin_avisos': return 'Nada pendiente.';
       case 'gana.sin_contorno': return 'Sin contorno: tócala para trazarlo con el GPS';
       case 'gana.sin_eventos': return 'Sin manejo apuntado.';
@@ -22993,6 +23116,7 @@ class SoleraL10n {
       case 'gana.tarea_vacunacion': return 'Vacunación';
       case 'gana.tareas_hechas': return 'Hechas';
       case 'gana.telefono': return 'Teléfono';
+      case 'gana.tercero': return 'Cliente o proveedor';
       case 'gana.tipo': return 'Tipo';
       case 'gana.tipo_pasto': return 'Tipo de pasto (eco-régimen)';
       case 'gana.titular': return 'Titular';
@@ -23003,6 +23127,7 @@ class SoleraL10n {
       case 'gana.titularidad_comunal': return 'Comunal';
       case 'gana.titularidad_propia': return 'Propia';
       case 'gana.toda_la_explotacion': return 'Toda la explotación';
+      case 'gana.total': return 'Total';
       case 'gana.tramite_andalucia': return 'Registro de explotaciones (Junta de Andalucía, sin revisar)';
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, anexo V)';
       case 'gana.tratamientos_ecologico': return 'Tratamientos que cuentan en 12 meses: {n} de {limite}';
@@ -27614,7 +27739,10 @@ class SoleraL10n {
       case 'gana.atrasada': return 'atzeratuta';
       case 'gana.autorizacion_transportista': return 'Garraiolariaren baimen-zk.';
       case 'gana.aviso_documento_provisional': return 'Agiri guztiek BEHIN-BEHINEKO zigilua dute: albaitari aholkulari batek edo PAC teknikari batek ez du formatua oraindik baliozkotu, eta zure erkidegoak beste eredu bat eska dezake.';
+      case 'gana.aviso_fiscal': return 'BEHIN-BEHINEKOA eta orientagarria: ez da BEZaren edo PFEZaren likidazioa. Araubidea (NANEB edo orokorra), konpentsazio-ehunekoak eta BEZ tasak zure zerga-aholkulariak berresten ditu.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.';
+      case 'gana.base': return 'Oinarria';
+      case 'gana.base_euros': return 'Oinarria (€, BEZik gabe)';
       case 'gana.buscando_gps': return 'Posizioa bilatzen…';
       case 'gana.cabezas': return 'buru';
       case 'gana.cabezas_sin_identificar': return 'Banaka identifikatu gabeko buruak';
@@ -27625,6 +27753,7 @@ class SoleraL10n {
       case 'gana.capacidad_maxima': return 'Gehieneko edukiera (buruak)';
       case 'gana.carne_hasta': return 'Haragia, egun honetara arte:';
       case 'gana.catalogos_provisionales': return 'Behin-behineko katalogoak: albaitari baten eta PAC teknikari baten berrikuspena falta da.';
+      case 'gana.categoria': return 'Kategoria';
       case 'gana.categoria_arrendamiento_pastos': return 'Larreen errentamendua';
       case 'gana.categoria_ayudas': return 'Laguntzak (PAC eta besteak)';
       case 'gana.categoria_combustible': return 'Erregaia';
@@ -27647,6 +27776,7 @@ class SoleraL10n {
       case 'gana.clase_natural': return 'Fitoterapia, homeopatia edo oligoelementuak';
       case 'gana.clase_vacuna': return 'Txertoa';
       case 'gana.clasificacion': return 'Ustiategiaren sailkapena';
+      case 'gana.cliente': return 'Bezeroa';
       case 'gana.codigo_rega': return 'REGA kodea';
       case 'gana.codigo_remo': return 'Mugimenduaren REMO kodea';
       case 'gana.col_animales_afectados': return 'Kaltetutako animaliak';
@@ -27681,6 +27811,8 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Balioa';
       case 'gana.col_veterinaria': return 'Albaitaritzakoa';
       case 'gana.col_veterinario_receta': return 'Albaitaria eta errezeta';
+      case 'gana.compensacion_reagp': return 'Kobratutako NANEB konpentsazioa';
+      case 'gana.concepto': return 'Kontzeptua';
       case 'gana.coordenadas_explotacion': return 'Ustiategiaren koordenatuak';
       case 'gana.correo': return 'Helbide elektronikoa';
       case 'gana.crias': return 'Kumeak';
@@ -27741,6 +27873,9 @@ class SoleraL10n {
       case 'gana.explicacion_calendario': return 'Hemen agertzen dira zure albaitariak antolatutako lanak eta errezeta bakoitzaren itxaronaldia amaitzen den eguna. Aplikazioak ez du tratamendurik proposatzen.';
       case 'gana.explicacion_contorno': return 'Ibili larre-sailaren mugan eta, izkina bakoitzean, sakatu «Gehitu puntua hemen». Hiru puntu edo gehiagorekin azalera kalkulatzen da.';
       case 'gana.explotacion': return 'Ustiategia';
+      case 'gana.exportar_datos': return 'Nire datu guztiak esportatu';
+      case 'gana.exportar_datos_explicacion': return 'CSV bat taula bakoitzeko, gordetzeko edo beste programa batera eramateko. Datuak zureak dira.';
+      case 'gana.extracto_pdf': return 'Laburpena PDFn';
       case 'gana.fecha': return 'Data';
       case 'gana.fecha_nacimiento': return 'Jaiotze-data';
       case 'gana.fecha_prevista': return 'Aurreikusitako data';
@@ -27750,6 +27885,7 @@ class SoleraL10n {
       case 'gana.fuente': return 'Iturria';
       case 'gana.fuera_de_la_explotacion': return 'Ustiategitik kanpo';
       case 'gana.fuera_o_sin_ubicar': return 'Ustiategitik kanpo edo kokatu gabe';
+      case 'gana.gastos': return 'Gastuak';
       case 'gana.guardado': return 'Gordeta';
       case 'gana.guardado_rega_raro': return 'Gordeta. Kontuz: REGA kodeak ez du ES + 12 zifra itxura.';
       case 'gana.hacer_foto': return 'Argazkia atera';
@@ -27765,7 +27901,13 @@ class SoleraL10n {
       case 'gana.ia_usar': return 'Erabili eta berrikusi';
       case 'gana.identificacion': return 'Identifikazioa (belarritakoa, DIB…)';
       case 'gana.informe_ecoregimen': return 'Larratze eko-erregimenaren txostena';
+      case 'gana.ingresos': return 'Diru-sarrerak';
+      case 'gana.ingresos_y_gastos': return 'Diru-sarrerak eta gastuak';
       case 'gana.inteligencia_artificial': return 'Adimen artifiziala';
+      case 'gana.iva': return 'BEZ';
+      case 'gana.iva_o_compensacion': return 'BEZ edo konpentsazioa';
+      case 'gana.iva_repercutido': return 'Jasanarazitako BEZ';
+      case 'gana.iva_soportado': return 'Jasandako BEZ (NANEBen ez da kentzen)';
       case 'gana.leche_hasta': return 'Esnea, egun honetara arte:';
       case 'gana.leer_receta_ia': return 'Errezeta IArekin irakurri';
       case 'gana.libro_aviso_provisional': return 'BEHIN-BEHINEKO erregistro-liburua, RD 787/2023ko V. eranskineko gutxieneko datuekin. Balio duen formatua zure autonomia-erkidegoak onartutakoa da.';
@@ -27823,6 +27965,8 @@ class SoleraL10n {
       case 'gana.nueva_visita': return 'Bisita berria';
       case 'gana.nuevo_animal': return 'Animalia berria';
       case 'gana.nuevo_evento': return 'Maneiua idatzi';
+      case 'gana.nuevo_gasto': return 'Gastu berria';
+      case 'gana.nuevo_ingreso': return 'Diru-sarrera berria';
       case 'gana.nuevo_movimiento': return 'Mugimendua';
       case 'gana.nuevo_rebano': return 'Artalde berria';
       case 'gana.numero_receta': return 'Errezeta-zk.';
@@ -27832,9 +27976,11 @@ class SoleraL10n {
       case 'gana.peso_kg': return 'Pisua (kg)';
       case 'gana.pieza_destino': return 'Helmugako larre-saila';
       case 'gana.pieza_en_uso': return 'Erabilitako larre-saila';
+      case 'gana.porcentaje_compensacion': return 'NANEB konpentsazioa (%, aholkulariarekin egiaztatzeko)';
       case 'gana.primeros_pasos': return 'Lehen urratsak';
       case 'gana.primeros_pasos_texto': return '1. Ezarpenetan, titularraren datuak eta REGA kodea. 2. Larreetan, zure larre-sailak azalerarekin eta SIGPAC barrutiarekin. 3. Artaldeetan, artalde bakoitza eta haren lehen sarrera larre-sail batean.';
       case 'gana.proveedor': return 'Hornitzailea (izena eta helbidea)';
+      case 'gana.proveedor_simple': return 'Hornitzailea';
       case 'gana.provincia': return 'Probintzia';
       case 'gana.proximos_14_dias': return 'Hurrengo 14 egunak';
       case 'gana.prueba_compra': return 'Erosketa-froga (faktura edo albarana)';
@@ -27848,12 +27994,14 @@ class SoleraL10n {
       case 'gana.rebanos': return 'Artaldeak';
       case 'gana.recinto_sigpac': return 'SIGPAC barrutia (pol. lurz. barrutia)';
       case 'gana.rega_externa': return 'Beste ustiategiaren REGA kodea';
+      case 'gana.resultado': return 'Emaitza';
       case 'gana.sexo': return 'Sexua';
       case 'gana.sexo_castrado': return 'Zikiratua';
       case 'gana.sexo_hembra': return 'Emea';
       case 'gana.sexo_macho': return 'Arra';
       case 'gana.si': return 'Bai';
       case 'gana.sin_animales': return 'Identifikatutako animaliarik ez.';
+      case 'gana.sin_apuntes': return 'Idazpenik ez.';
       case 'gana.sin_avisos': return 'Ezer ez dago zain.';
       case 'gana.sin_contorno': return 'Ingururik gabe: ukitu GPSarekin marrazteko';
       case 'gana.sin_eventos': return 'Ez dago maneiurik idatzita.';
@@ -27879,6 +28027,7 @@ class SoleraL10n {
       case 'gana.tarea_vacunacion': return 'Txertaketa';
       case 'gana.tareas_hechas': return 'Eginak';
       case 'gana.telefono': return 'Telefonoa';
+      case 'gana.tercero': return 'Bezeroa edo hornitzailea';
       case 'gana.tipo': return 'Mota';
       case 'gana.tipo_pasto': return 'Larre mota (eko-erregimena)';
       case 'gana.titular': return 'Titularra';
@@ -27889,6 +28038,7 @@ class SoleraL10n {
       case 'gana.titularidad_comunal': return 'Herri-lurra';
       case 'gana.titularidad_propia': return 'Norberarena';
       case 'gana.toda_la_explotacion': return 'Ustiategi osoa';
+      case 'gana.total': return 'Guztira';
       case 'gana.tramite_andalucia': return 'Ustiategien erregistroa (Andaluziako Junta, berrikusi gabe)';
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, V. eranskina)';
       case 'gana.tratamientos_ecologico': return '12 hilabetean kontatzen diren tratamenduak: {n} / {limite}';
@@ -32500,7 +32650,10 @@ class SoleraL10n {
       case 'gana.atrasada': return 'endarrerida';
       case 'gana.autorizacion_transportista': return 'Núm. d’autorització del transportista';
       case 'gana.aviso_documento_provisional': return 'Tots els documents porten el segell PROVISIONAL: el format encara no l’ha validat un veterinari assessor ni un tècnic PAC, i la teva comunitat pot demanar un altre model.';
+      case 'gana.aviso_fiscal': return 'PROVISIONAL i orientatiu: no és una liquidació d’IVA ni d’IRPF. El règim (REAGP o general), els percentatges de compensació i els tipus d’IVA els confirma el teu assessor fiscal.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.';
+      case 'gana.base': return 'Base';
+      case 'gana.base_euros': return 'Base (€, sense IVA)';
       case 'gana.buscando_gps': return 'Cercant posició…';
       case 'gana.cabezas': return 'caps';
       case 'gana.cabezas_sin_identificar': return 'Caps sense identificar un per un';
@@ -32511,6 +32664,7 @@ class SoleraL10n {
       case 'gana.capacidad_maxima': return 'Capacitat màxima (caps)';
       case 'gana.carne_hasta': return 'Carn fins al';
       case 'gana.catalogos_provisionales': return 'Catàlegs provisionals: falta la revisió d’un veterinari i d’un tècnic PAC.';
+      case 'gana.categoria': return 'Categoria';
       case 'gana.categoria_arrendamiento_pastos': return 'Arrendament de pastures';
       case 'gana.categoria_ayudas': return 'Ajuts (PAC i altres)';
       case 'gana.categoria_combustible': return 'Combustible';
@@ -32533,6 +32687,7 @@ class SoleraL10n {
       case 'gana.clase_natural': return 'Fitoteràpia, homeopatia o oligoelements';
       case 'gana.clase_vacuna': return 'Vacuna';
       case 'gana.clasificacion': return 'Classificació de l’explotació';
+      case 'gana.cliente': return 'Client';
       case 'gana.codigo_rega': return 'Codi REGA';
       case 'gana.codigo_remo': return 'Codi REMO del moviment';
       case 'gana.col_animales_afectados': return 'Animals afectats';
@@ -32567,6 +32722,8 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Valor';
       case 'gana.col_veterinaria': return 'Veterinària';
       case 'gana.col_veterinario_receta': return 'Veterinari i recepta';
+      case 'gana.compensacion_reagp': return 'Compensació REAGP cobrada';
+      case 'gana.concepto': return 'Concepte';
       case 'gana.coordenadas_explotacion': return 'Coordenades de l’explotació';
       case 'gana.correo': return 'Correu electrònic';
       case 'gana.crias': return 'Cries';
@@ -32627,6 +32784,9 @@ class SoleraL10n {
       case 'gana.explicacion_calendario': return 'Aquí surten les tasques que planifica el teu veterinari i el dia en què acaba cada temps d’espera d’una recepta. L’app no proposa tractaments.';
       case 'gana.explicacion_contorno': return 'Camina el límit de la parcel·la i, a cada cantonada, prem «Afegeix un punt aquí». Amb tres punts o més es calcula la superfície.';
       case 'gana.explotacion': return 'Explotació';
+      case 'gana.exportar_datos': return 'Exportar totes les meves dades';
+      case 'gana.exportar_datos_explicacion': return 'Un CSV per taula, per desar-les o portar-les a un altre programa. Les dades són teves.';
+      case 'gana.extracto_pdf': return 'Extracte en PDF';
       case 'gana.fecha': return 'Data';
       case 'gana.fecha_nacimiento': return 'Data de naixement';
       case 'gana.fecha_prevista': return 'Data prevista';
@@ -32636,6 +32796,7 @@ class SoleraL10n {
       case 'gana.fuente': return 'Font';
       case 'gana.fuera_de_la_explotacion': return 'Fora de l’explotació';
       case 'gana.fuera_o_sin_ubicar': return 'Fora de l’explotació o sense ubicar';
+      case 'gana.gastos': return 'Despeses';
       case 'gana.guardado': return 'Desat';
       case 'gana.guardado_rega_raro': return 'Desat. Compte: el codi REGA no té la forma ES + 12 xifres.';
       case 'gana.hacer_foto': return 'Fer una foto';
@@ -32651,7 +32812,13 @@ class SoleraL10n {
       case 'gana.ia_usar': return 'Fer servir i revisar';
       case 'gana.identificacion': return 'Identificació (crotal, DIB…)';
       case 'gana.informe_ecoregimen': return 'Informe de l’ecoregim de pasturatge';
+      case 'gana.ingresos': return 'Ingressos';
+      case 'gana.ingresos_y_gastos': return 'Ingressos i despeses';
       case 'gana.inteligencia_artificial': return 'Intel·ligència artificial';
+      case 'gana.iva': return 'IVA';
+      case 'gana.iva_o_compensacion': return 'IVA o compensació';
+      case 'gana.iva_repercutido': return 'IVA repercutit';
+      case 'gana.iva_soportado': return 'IVA suportat (al REAGP no es dedueix)';
       case 'gana.leche_hasta': return 'Llet fins al';
       case 'gana.leer_receta_ia': return 'Llegir recepta amb IA';
       case 'gana.libro_aviso_provisional': return 'Llibre de registre PROVISIONAL, amb les dades mínimes de l’annex V del RD 787/2023. El format vàlid és l’aprovat per la teva comunitat autònoma.';
@@ -32709,6 +32876,8 @@ class SoleraL10n {
       case 'gana.nueva_visita': return 'Nova visita';
       case 'gana.nuevo_animal': return 'Nou animal';
       case 'gana.nuevo_evento': return 'Apuntar maneig';
+      case 'gana.nuevo_gasto': return 'Nova despesa';
+      case 'gana.nuevo_ingreso': return 'Nou ingrés';
       case 'gana.nuevo_movimiento': return 'Moviment';
       case 'gana.nuevo_rebano': return 'Nou ramat';
       case 'gana.numero_receta': return 'Núm. de recepta';
@@ -32718,9 +32887,11 @@ class SoleraL10n {
       case 'gana.peso_kg': return 'Pes (kg)';
       case 'gana.pieza_destino': return 'Parcel·la de destinació';
       case 'gana.pieza_en_uso': return 'Parcel·la en ús';
+      case 'gana.porcentaje_compensacion': return 'Compensació REAGP (%, per verificar amb el teu assessor)';
       case 'gana.primeros_pasos': return 'Primers passos';
       case 'gana.primeros_pasos_texto': return '1. A Configuració, les dades del titular i el codi REGA. 2. A Pastures, les teves parcel·les amb la superfície i el recinte SIGPAC. 3. A Ramats, cada ramat i la seva primera entrada a una parcel·la.';
       case 'gana.proveedor': return 'Proveïdor (nom i adreça)';
+      case 'gana.proveedor_simple': return 'Proveïdor';
       case 'gana.provincia': return 'Província';
       case 'gana.proximos_14_dias': return 'Propers 14 dies';
       case 'gana.prueba_compra': return 'Prova de compra (factura o albarà)';
@@ -32734,12 +32905,14 @@ class SoleraL10n {
       case 'gana.rebanos': return 'Ramats';
       case 'gana.recinto_sigpac': return 'Recinte SIGPAC (pol. parc. recinte)';
       case 'gana.rega_externa': return 'Codi REGA de l’altra explotació';
+      case 'gana.resultado': return 'Resultat';
       case 'gana.sexo': return 'Sexe';
       case 'gana.sexo_castrado': return 'Castrat';
       case 'gana.sexo_hembra': return 'Femella';
       case 'gana.sexo_macho': return 'Mascle';
       case 'gana.si': return 'Sí';
       case 'gana.sin_animales': return 'Sense animals identificats.';
+      case 'gana.sin_apuntes': return 'Sense apunts.';
       case 'gana.sin_avisos': return 'Res pendent.';
       case 'gana.sin_contorno': return 'Sense contorn: toca-la per traçar-lo amb el GPS';
       case 'gana.sin_eventos': return 'Sense maneig apuntat.';
@@ -32765,6 +32938,7 @@ class SoleraL10n {
       case 'gana.tarea_vacunacion': return 'Vacunació';
       case 'gana.tareas_hechas': return 'Fetes';
       case 'gana.telefono': return 'Telèfon';
+      case 'gana.tercero': return 'Client o proveïdor';
       case 'gana.tipo': return 'Tipus';
       case 'gana.tipo_pasto': return 'Tipus de pastura (ecoregim)';
       case 'gana.titular': return 'Titular';
@@ -32775,6 +32949,7 @@ class SoleraL10n {
       case 'gana.titularidad_comunal': return 'Comunal';
       case 'gana.titularidad_propia': return 'Pròpia';
       case 'gana.toda_la_explotacion': return 'Tota l’explotació';
+      case 'gana.total': return 'Total';
       case 'gana.tramite_andalucia': return 'Registre d’explotacions (Junta d’Andalusia, sense revisar)';
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, annex V)';
       case 'gana.tratamientos_ecologico': return 'Tractaments que compten en 12 mesos: {n} de {limite}';
@@ -37386,7 +37561,10 @@ class SoleraL10n {
       case 'gana.atrasada': return 'atrasada';
       case 'gana.autorizacion_transportista': return 'N.º de autorización do transportista';
       case 'gana.aviso_documento_provisional': return 'Todos os documentos levan o selo PROVISIONAL: o formato aínda non o validou un veterinario asesor nin un técnico PAC, e a túa comunidade pode pedir outro modelo.';
+      case 'gana.aviso_fiscal': return 'PROVISIONAL e orientativo: non é unha liquidación de IVE nin de IRPF. O réxime (REAXP ou xeral), as porcentaxes de compensación e os tipos de IVE confírmaos o teu asesor fiscal.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS.';
+      case 'gana.base': return 'Base';
+      case 'gana.base_euros': return 'Base (€, sen IVE)';
       case 'gana.buscando_gps': return 'Buscando posición…';
       case 'gana.cabezas': return 'cabezas';
       case 'gana.cabezas_sin_identificar': return 'Cabezas sen identificar unha a unha';
@@ -37397,6 +37575,7 @@ class SoleraL10n {
       case 'gana.capacidad_maxima': return 'Capacidade máxima (cabezas)';
       case 'gana.carne_hasta': return 'Carne ata o';
       case 'gana.catalogos_provisionales': return 'Catálogos provisionais: falta a revisión dun veterinario e dun técnico PAC.';
+      case 'gana.categoria': return 'Categoría';
       case 'gana.categoria_arrendamiento_pastos': return 'Arrendamento de pastos';
       case 'gana.categoria_ayudas': return 'Axudas (PAC e outras)';
       case 'gana.categoria_combustible': return 'Combustible';
@@ -37419,6 +37598,7 @@ class SoleraL10n {
       case 'gana.clase_natural': return 'Fitoterapia, homeopatía ou oligoelementos';
       case 'gana.clase_vacuna': return 'Vacina';
       case 'gana.clasificacion': return 'Clasificación da explotación';
+      case 'gana.cliente': return 'Cliente';
       case 'gana.codigo_rega': return 'Código REGA';
       case 'gana.codigo_remo': return 'Código REMO do movemento';
       case 'gana.col_animales_afectados': return 'Animais afectados';
@@ -37453,6 +37633,8 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Valor';
       case 'gana.col_veterinaria': return 'Veterinaria';
       case 'gana.col_veterinario_receta': return 'Veterinario e receita';
+      case 'gana.compensacion_reagp': return 'Compensación REAXP cobrada';
+      case 'gana.concepto': return 'Concepto';
       case 'gana.coordenadas_explotacion': return 'Coordenadas da explotación';
       case 'gana.correo': return 'Correo electrónico';
       case 'gana.crias': return 'Crías';
@@ -37513,6 +37695,9 @@ class SoleraL10n {
       case 'gana.explicacion_calendario': return 'Aquí saen as tarefas que planifica o teu veterinario e o día en que remata cada tempo de espera dunha receita. A app non propón tratamentos.';
       case 'gana.explicacion_contorno': return 'Camiña o linde da parcela e, en cada esquina, preme «Engadir punto aquí». Con tres puntos ou máis calcúlase a superficie.';
       case 'gana.explotacion': return 'Explotación';
+      case 'gana.exportar_datos': return 'Exportar todos os meus datos';
+      case 'gana.exportar_datos_explicacion': return 'Un CSV por táboa, para gardalos ou levalos a outro programa. Os datos son teus.';
+      case 'gana.extracto_pdf': return 'Extracto en PDF';
       case 'gana.fecha': return 'Data';
       case 'gana.fecha_nacimiento': return 'Data de nacemento';
       case 'gana.fecha_prevista': return 'Data prevista';
@@ -37522,6 +37707,7 @@ class SoleraL10n {
       case 'gana.fuente': return 'Fonte';
       case 'gana.fuera_de_la_explotacion': return 'Fóra da explotación';
       case 'gana.fuera_o_sin_ubicar': return 'Fóra da explotación ou sen situar';
+      case 'gana.gastos': return 'Gastos';
       case 'gana.guardado': return 'Gardado';
       case 'gana.guardado_rega_raro': return 'Gardado. Ollo: o código REGA non ten a forma ES + 12 cifras.';
       case 'gana.hacer_foto': return 'Facer unha foto';
@@ -37537,7 +37723,13 @@ class SoleraL10n {
       case 'gana.ia_usar': return 'Usar e revisar';
       case 'gana.identificacion': return 'Identificación (crotal, DIB…)';
       case 'gana.informe_ecoregimen': return 'Informe do ecorréxime de pastoreo';
+      case 'gana.ingresos': return 'Ingresos';
+      case 'gana.ingresos_y_gastos': return 'Ingresos e gastos';
       case 'gana.inteligencia_artificial': return 'Intelixencia artificial';
+      case 'gana.iva': return 'IVE';
+      case 'gana.iva_o_compensacion': return 'IVE ou compensación';
+      case 'gana.iva_repercutido': return 'IVE repercutido';
+      case 'gana.iva_soportado': return 'IVE soportado (no REAXP non se deduce)';
       case 'gana.leche_hasta': return 'Leite ata o';
       case 'gana.leer_receta_ia': return 'Ler receita con IA';
       case 'gana.libro_aviso_provisional': return 'Libro de rexistro PROVISIONAL, cos datos mínimos do anexo V do RD 787/2023. O formato válido é o aprobado pola túa comunidade autónoma.';
@@ -37595,6 +37787,8 @@ class SoleraL10n {
       case 'gana.nueva_visita': return 'Nova visita';
       case 'gana.nuevo_animal': return 'Novo animal';
       case 'gana.nuevo_evento': return 'Apuntar manexo';
+      case 'gana.nuevo_gasto': return 'Novo gasto';
+      case 'gana.nuevo_ingreso': return 'Novo ingreso';
       case 'gana.nuevo_movimiento': return 'Movemento';
       case 'gana.nuevo_rebano': return 'Novo rabaño';
       case 'gana.numero_receta': return 'N.º de receita';
@@ -37604,9 +37798,11 @@ class SoleraL10n {
       case 'gana.peso_kg': return 'Peso (kg)';
       case 'gana.pieza_destino': return 'Parcela de destino';
       case 'gana.pieza_en_uso': return 'Parcela en uso';
+      case 'gana.porcentaje_compensacion': return 'Compensación REAXP (%, por verificar co teu asesor)';
       case 'gana.primeros_pasos': return 'Primeiros pasos';
       case 'gana.primeros_pasos_texto': return '1. En Axustes, os datos do titular e o código REGA. 2. En Pastos, as túas parcelas coa súa superficie e o seu recinto SIXPAC. 3. En Rabaños, cada rabaño e a súa primeira entrada nunha parcela.';
       case 'gana.proveedor': return 'Provedor (nome e enderezo)';
+      case 'gana.proveedor_simple': return 'Provedor';
       case 'gana.provincia': return 'Provincia';
       case 'gana.proximos_14_dias': return 'Próximos 14 días';
       case 'gana.prueba_compra': return 'Proba de compra (factura ou albará)';
@@ -37620,12 +37816,14 @@ class SoleraL10n {
       case 'gana.rebanos': return 'Rabaños';
       case 'gana.recinto_sigpac': return 'Recinto SIXPAC (pol. parc. recinto)';
       case 'gana.rega_externa': return 'Código REGA da outra explotación';
+      case 'gana.resultado': return 'Resultado';
       case 'gana.sexo': return 'Sexo';
       case 'gana.sexo_castrado': return 'Castrado';
       case 'gana.sexo_hembra': return 'Femia';
       case 'gana.sexo_macho': return 'Macho';
       case 'gana.si': return 'Si';
       case 'gana.sin_animales': return 'Sen animais identificados.';
+      case 'gana.sin_apuntes': return 'Sen apuntamentos.';
       case 'gana.sin_avisos': return 'Nada pendente.';
       case 'gana.sin_contorno': return 'Sen contorno: tócaa para trazalo co GPS';
       case 'gana.sin_eventos': return 'Sen manexo apuntado.';
@@ -37651,6 +37849,7 @@ class SoleraL10n {
       case 'gana.tarea_vacunacion': return 'Vacinación';
       case 'gana.tareas_hechas': return 'Feitas';
       case 'gana.telefono': return 'Teléfono';
+      case 'gana.tercero': return 'Cliente ou provedor';
       case 'gana.tipo': return 'Tipo';
       case 'gana.tipo_pasto': return 'Tipo de pasto (ecorréxime)';
       case 'gana.titular': return 'Titular';
@@ -37661,6 +37860,7 @@ class SoleraL10n {
       case 'gana.titularidad_comunal': return 'Comunal';
       case 'gana.titularidad_propia': return 'Propia';
       case 'gana.toda_la_explotacion': return 'Toda a explotación';
+      case 'gana.total': return 'Total';
       case 'gana.tramite_andalucia': return 'Rexistro de explotacións (Junta de Andalucía, sen revisar)';
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, anexo V)';
       case 'gana.tratamientos_ecologico': return 'Tratamentos que contan en 12 meses: {n} de {limite}';

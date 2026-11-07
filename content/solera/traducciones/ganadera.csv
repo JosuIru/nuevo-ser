@@ -5,7 +5,10 @@ gana.animales,Animales,Animaliak,Animals,Animais
 gana.atrasada,atrasada,atzeratuta,endarrerida,atrasada
 gana.autorizacion_transportista,N.º de autorización del transportista,Garraiolariaren baimen-zk.,Núm. d’autorització del transportista,N.º de autorización do transportista
 gana.aviso_documento_provisional,"Todos los documentos llevan el sello PROVISIONAL: el formato no lo ha validado todavía un veterinario asesor ni un técnico PAC, y tu comunidad puede pedir otro modelo.","Agiri guztiek BEHIN-BEHINEKO zigilua dute: albaitari aholkulari batek edo PAC teknikari batek ez du formatua oraindik baliozkotu, eta zure erkidegoak beste eredu bat eska dezake.","Tots els documents porten el segell PROVISIONAL: el format encara no l’ha validat un veterinari assessor ni un tècnic PAC, i la teva comunitat pot demanar un altre model.","Todos os documentos levan o selo PROVISIONAL: o formato aínda non o validou un veterinario asesor nin un técnico PAC, e a túa comunidade pode pedir outro modelo."
+gana.aviso_fiscal,"PROVISIONAL y orientativo: no es una liquidación de IVA ni de IRPF. El régimen (REAGP o general), los porcentajes de compensación y los tipos de IVA los confirma tu asesor fiscal.","BEHIN-BEHINEKOA eta orientagarria: ez da BEZaren edo PFEZaren likidazioa. Araubidea (NANEB edo orokorra), konpentsazio-ehunekoak eta BEZ tasak zure zerga-aholkulariak berresten ditu.","PROVISIONAL i orientatiu: no és una liquidació d’IVA ni d’IRPF. El règim (REAGP o general), els percentatges de compensació i els tipus d’IVA els confirma el teu assessor fiscal.","PROVISIONAL e orientativo: non é unha liquidación de IVE nin de IRPF. O réxime (REAXP ou xeral), as porcentaxes de compensación e os tipos de IVE confírmaos o teu asesor fiscal."
 gana.aviso_no_sustituye,"Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.","Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.","Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.","Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS."
+gana.base,Base,Oinarria,Base,Base
+gana.base_euros,"Base (€, sin IVA)","Oinarria (€, BEZik gabe)","Base (€, sense IVA)","Base (€, sen IVE)"
 gana.buscando_gps,Buscando posición…,Posizioa bilatzen…,Cercant posició…,Buscando posición…
 gana.cabezas,cabezas,buru,caps,cabezas
 gana.cabezas_sin_identificar,Cabezas sin identificar una a una,Banaka identifikatu gabeko buruak,Caps sense identificar un per un,Cabezas sen identificar unha a unha
@@ -16,6 +19,7 @@ gana.cantidad_administrada,Cantidad administrada (como en la receta),Emandako ko
 gana.capacidad_maxima,Capacidad máxima (cabezas),Gehieneko edukiera (buruak),Capacitat màxima (caps),Capacidade máxima (cabezas)
 gana.carne_hasta,Carne hasta el,"Haragia, egun honetara arte:",Carn fins al,Carne ata o
 gana.catalogos_provisionales,Catálogos provisionales: falta la revisión de un veterinario y de un técnico PAC.,Behin-behineko katalogoak: albaitari baten eta PAC teknikari baten berrikuspena falta da.,Catàlegs provisionals: falta la revisió d’un veterinari i d’un tècnic PAC.,Catálogos provisionais: falta a revisión dun veterinario e dun técnico PAC.
+gana.categoria,Categoría,Kategoria,Categoria,Categoría
 gana.categoria_arrendamiento_pastos,Arrendamiento de pastos,Larreen errentamendua,Arrendament de pastures,Arrendamento de pastos
 gana.categoria_ayudas,Ayudas (PAC y otras),Laguntzak (PAC eta besteak),Ajuts (PAC i altres),Axudas (PAC e outras)
 gana.categoria_combustible,Combustible,Erregaia,Combustible,Combustible
@@ -38,6 +42,7 @@ gana.clase_medicamento,Clase de medicamento,Sendagai mota,Classe de medicament,C
 gana.clase_natural,"Fitoterapia, homeopatía u oligoelementos","Fitoterapia, homeopatia edo oligoelementuak","Fitoteràpia, homeopatia o oligoelements","Fitoterapia, homeopatía ou oligoelementos"
 gana.clase_vacuna,Vacuna,Txertoa,Vacuna,Vacina
 gana.clasificacion,Clasificación de la explotación,Ustiategiaren sailkapena,Classificació de l’explotació,Clasificación da explotación
+gana.cliente,Cliente,Bezeroa,Client,Cliente
 gana.codigo_rega,Código REGA,REGA kodea,Codi REGA,Código REGA
 gana.codigo_remo,Código REMO del movimiento,Mugimenduaren REMO kodea,Codi REMO del moviment,Código REMO do movemento
 gana.col_animales_afectados,Animales afectados,Kaltetutako animaliak,Animals afectats,Animais afectados
@@ -72,6 +77,8 @@ gana.col_ugm_media,UGM medias,Batez besteko ALU,UBM mitjanes,UGM medias
 gana.col_valor,Valor,Balioa,Valor,Valor
 gana.col_veterinaria,Veterinaria,Albaitaritzakoa,Veterinària,Veterinaria
 gana.col_veterinario_receta,Veterinario y receta,Albaitaria eta errezeta,Veterinari i recepta,Veterinario e receita
+gana.compensacion_reagp,Compensación REAGP cobrada,Kobratutako NANEB konpentsazioa,Compensació REAGP cobrada,Compensación REAXP cobrada
+gana.concepto,Concepto,Kontzeptua,Concepte,Concepto
 gana.coordenadas_explotacion,Coordenadas de la explotación,Ustiategiaren koordenatuak,Coordenades de l’explotació,Coordenadas da explotación
 gana.correo,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
 gana.crias,Crías,Kumeak,Cries,Crías
@@ -132,6 +139,9 @@ gana.evento_tratamiento,Tratamiento con receta,Errezetadun tratamendua,Tractamen
 gana.explicacion_calendario,Aquí salen las tareas que planifica tu veterinario y el día en que acaba cada tiempo de espera de una receta. La app no propone tratamientos.,Hemen agertzen dira zure albaitariak antolatutako lanak eta errezeta bakoitzaren itxaronaldia amaitzen den eguna. Aplikazioak ez du tratamendurik proposatzen.,Aquí surten les tasques que planifica el teu veterinari i el dia en què acaba cada temps d’espera d’una recepta. L’app no proposa tractaments.,Aquí saen as tarefas que planifica o teu veterinario e o día en que remata cada tempo de espera dunha receita. A app non propón tratamentos.
 gana.explicacion_contorno,"Camina el linde de la pieza y, en cada esquina, pulsa «Añadir punto aquí». Con tres puntos o más se calcula la superficie.","Ibili larre-sailaren mugan eta, izkina bakoitzean, sakatu «Gehitu puntua hemen». Hiru puntu edo gehiagorekin azalera kalkulatzen da.","Camina el límit de la parcel·la i, a cada cantonada, prem «Afegeix un punt aquí». Amb tres punts o més es calcula la superfície.","Camiña o linde da parcela e, en cada esquina, preme «Engadir punto aquí». Con tres puntos ou máis calcúlase a superficie."
 gana.explotacion,Explotación,Ustiategia,Explotació,Explotación
+gana.exportar_datos,Exportar todos mis datos,Nire datu guztiak esportatu,Exportar totes les meves dades,Exportar todos os meus datos
+gana.exportar_datos_explicacion,"Un CSV por tabla, para guardarlos o llevarlos a otro programa. Los datos son tuyos.","CSV bat taula bakoitzeko, gordetzeko edo beste programa batera eramateko. Datuak zureak dira.","Un CSV per taula, per desar-les o portar-les a un altre programa. Les dades són teves.","Un CSV por táboa, para gardalos ou levalos a outro programa. Os datos son teus."
+gana.extracto_pdf,Extracto en PDF,Laburpena PDFn,Extracte en PDF,Extracto en PDF
 gana.fecha,Fecha,Data,Data,Data
 gana.fecha_nacimiento,Fecha de nacimiento,Jaiotze-data,Data de naixement,Data de nacemento
 gana.fecha_prevista,Fecha prevista,Aurreikusitako data,Data prevista,Data prevista
@@ -141,6 +151,7 @@ gana.fin_supresion_leche,Acaba la espera de leche,Esnearen itxaronaldia amaitzen
 gana.fuente,Fuente,Iturria,Font,Fonte
 gana.fuera_de_la_explotacion,Fuera de la explotación,Ustiategitik kanpo,Fora de l’explotació,Fóra da explotación
 gana.fuera_o_sin_ubicar,Fuera de la explotación o sin ubicar,Ustiategitik kanpo edo kokatu gabe,Fora de l’explotació o sense ubicar,Fóra da explotación ou sen situar
+gana.gastos,Gastos,Gastuak,Despeses,Gastos
 gana.guardado,Guardado,Gordeta,Desat,Gardado
 gana.guardado_rega_raro,Guardado. Ojo: el código REGA no tiene la forma ES + 12 cifras.,Gordeta. Kontuz: REGA kodeak ez du ES + 12 zifra itxura.,Desat. Compte: el codi REGA no té la forma ES + 12 xifres.,Gardado. Ollo: o código REGA non ten a forma ES + 12 cifras.
 gana.hacer_foto,Hacer una foto,Argazkia atera,Fer una foto,Facer unha foto
@@ -156,7 +167,13 @@ gana.ia_revisa,"Compara cada dato con la receta antes de guardar. Si un tiempo d
 gana.ia_usar,Usar y revisar,Erabili eta berrikusi,Fer servir i revisar,Usar e revisar
 gana.identificacion,"Identificación (crotal, DIB…)","Identifikazioa (belarritakoa, DIB…)","Identificació (crotal, DIB…)","Identificación (crotal, DIB…)"
 gana.informe_ecoregimen,Informe del eco-régimen de pastoreo,Larratze eko-erregimenaren txostena,Informe de l’ecoregim de pasturatge,Informe do ecorréxime de pastoreo
+gana.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
+gana.ingresos_y_gastos,Ingresos y gastos,Diru-sarrerak eta gastuak,Ingressos i despeses,Ingresos e gastos
 gana.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
+gana.iva,IVA,BEZ,IVA,IVE
+gana.iva_o_compensacion,IVA o compensación,BEZ edo konpentsazioa,IVA o compensació,IVE ou compensación
+gana.iva_repercutido,IVA repercutido,Jasanarazitako BEZ,IVA repercutit,IVE repercutido
+gana.iva_soportado,IVA soportado (en el REAGP no se deduce),Jasandako BEZ (NANEBen ez da kentzen),IVA suportat (al REAGP no es dedueix),IVE soportado (no REAXP non se deduce)
 gana.leche_hasta,Leche hasta el,"Esnea, egun honetara arte:",Llet fins al,Leite ata o
 gana.leer_receta_ia,Leer receta con IA,Errezeta IArekin irakurri,Llegir recepta amb IA,Ler receita con IA
 gana.libro_aviso_provisional,"Libro de registro PROVISIONAL, con los datos mínimos del anexo V del RD 787/2023. El formato que vale es el aprobado por tu comunidad autónoma.","BEHIN-BEHINEKO erregistro-liburua, RD 787/2023ko V. eranskineko gutxieneko datuekin. Balio duen formatua zure autonomia-erkidegoak onartutakoa da.","Llibre de registre PROVISIONAL, amb les dades mínimes de l’annex V del RD 787/2023. El format vàlid és l’aprovat per la teva comunitat autònoma.","Libro de rexistro PROVISIONAL, cos datos mínimos do anexo V do RD 787/2023. O formato válido é o aprobado pola túa comunidade autónoma."
@@ -214,6 +231,8 @@ gana.nueva_tarea_sanitaria,Nueva tarea sanitaria,Osasun-lan berria,Nova tasca sa
 gana.nueva_visita,Nueva visita,Bisita berria,Nova visita,Nova visita
 gana.nuevo_animal,Nuevo animal,Animalia berria,Nou animal,Novo animal
 gana.nuevo_evento,Apuntar manejo,Maneiua idatzi,Apuntar maneig,Apuntar manexo
+gana.nuevo_gasto,Nuevo gasto,Gastu berria,Nova despesa,Novo gasto
+gana.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Nou ingrés,Novo ingreso
 gana.nuevo_movimiento,Movimiento,Mugimendua,Moviment,Movemento
 gana.nuevo_rebano,Nuevo rebaño,Artalde berria,Nou ramat,Novo rabaño
 gana.numero_receta,N.º de receta,Errezeta-zk.,Núm. de recepta,N.º de receita
@@ -223,9 +242,11 @@ gana.pastos,Pastos,Larreak,Pastures,Pastos
 gana.peso_kg,Peso (kg),Pisua (kg),Pes (kg),Peso (kg)
 gana.pieza_destino,Pieza de destino,Helmugako larre-saila,Parcel·la de destinació,Parcela de destino
 gana.pieza_en_uso,Pieza en uso,Erabilitako larre-saila,Parcel·la en ús,Parcela en uso
+gana.porcentaje_compensacion,"Compensación REAGP (%, por verificar con tu asesor)","NANEB konpentsazioa (%, aholkulariarekin egiaztatzeko)","Compensació REAGP (%, per verificar amb el teu assessor)","Compensación REAXP (%, por verificar co teu asesor)"
 gana.primeros_pasos,Primeros pasos,Lehen urratsak,Primers passos,Primeiros pasos
 gana.primeros_pasos_texto,"1. En Ajustes, los datos del titular y el código REGA. 2. En Pastos, tus piezas con su superficie y su recinto SIGPAC. 3. En Rebaños, cada rebaño y su primera entrada en una pieza.","1. Ezarpenetan, titularraren datuak eta REGA kodea. 2. Larreetan, zure larre-sailak azalerarekin eta SIGPAC barrutiarekin. 3. Artaldeetan, artalde bakoitza eta haren lehen sarrera larre-sail batean.","1. A Configuració, les dades del titular i el codi REGA. 2. A Pastures, les teves parcel·les amb la superfície i el recinte SIGPAC. 3. A Ramats, cada ramat i la seva primera entrada a una parcel·la.","1. En Axustes, os datos do titular e o código REGA. 2. En Pastos, as túas parcelas coa súa superficie e o seu recinto SIXPAC. 3. En Rabaños, cada rabaño e a súa primeira entrada nunha parcela."
 gana.proveedor,Proveedor (nombre y dirección),Hornitzailea (izena eta helbidea),Proveïdor (nom i adreça),Provedor (nome e enderezo)
+gana.proveedor_simple,Proveedor,Hornitzailea,Proveïdor,Provedor
 gana.provincia,Provincia,Probintzia,Província,Provincia
 gana.proximos_14_dias,Próximos 14 días,Hurrengo 14 egunak,Propers 14 dies,Próximos 14 días
 gana.prueba_compra,Prueba de compra (factura o albarán),Erosketa-froga (faktura edo albarana),Prova de compra (factura o albarà),Proba de compra (factura ou albará)
@@ -239,12 +260,14 @@ gana.rebano_cerrado,Rebaño cerrado (ya no existe),Artalde itxia (jada ez dago),
 gana.rebanos,Rebaños,Artaldeak,Ramats,Rabaños
 gana.recinto_sigpac,Recinto SIGPAC (pol. parc. recinto),SIGPAC barrutia (pol. lurz. barrutia),Recinte SIGPAC (pol. parc. recinte),Recinto SIXPAC (pol. parc. recinto)
 gana.rega_externa,Código REGA de la otra explotación,Beste ustiategiaren REGA kodea,Codi REGA de l’altra explotació,Código REGA da outra explotación
+gana.resultado,Resultado,Emaitza,Resultat,Resultado
 gana.sexo,Sexo,Sexua,Sexe,Sexo
 gana.sexo_castrado,Castrado,Zikiratua,Castrat,Castrado
 gana.sexo_hembra,Hembra,Emea,Femella,Femia
 gana.sexo_macho,Macho,Arra,Mascle,Macho
 gana.si,Sí,Bai,Sí,Si
 gana.sin_animales,Sin animales identificados.,Identifikatutako animaliarik ez.,Sense animals identificats.,Sen animais identificados.
+gana.sin_apuntes,Sin apuntes.,Idazpenik ez.,Sense apunts.,Sen apuntamentos.
 gana.sin_avisos,Nada pendiente.,Ezer ez dago zain.,Res pendent.,Nada pendente.
 gana.sin_contorno,Sin contorno: tócala para trazarlo con el GPS,Ingururik gabe: ukitu GPSarekin marrazteko,Sense contorn: toca-la per traçar-lo amb el GPS,Sen contorno: tócaa para trazalo co GPS
 gana.sin_eventos,Sin manejo apuntado.,Ez dago maneiurik idatzita.,Sense maneig apuntat.,Sen manexo apuntado.
@@ -270,6 +293,7 @@ gana.tarea_saneamiento,Saneamiento,Saneamendua,Sanejament,Saneamento
 gana.tarea_vacunacion,Vacunación,Txertaketa,Vacunació,Vacinación
 gana.tareas_hechas,Hechas,Eginak,Fetes,Feitas
 gana.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+gana.tercero,Cliente o proveedor,Bezeroa edo hornitzailea,Client o proveïdor,Cliente ou provedor
 gana.tipo,Tipo,Mota,Tipus,Tipo
 gana.tipo_pasto,Tipo de pasto (eco-régimen),Larre mota (eko-erregimena),Tipus de pastura (ecoregim),Tipo de pasto (ecorréxime)
 gana.titular,Titular,Titularra,Titular,Titular
@@ -280,6 +304,7 @@ gana.titularidad_cedida,Cedida,Lagata,Cedida,Cedida
 gana.titularidad_comunal,Comunal,Herri-lurra,Comunal,Comunal
 gana.titularidad_propia,Propia,Norberarena,Pròpia,Propia
 gana.toda_la_explotacion,Toda la explotación,Ustiategi osoa,Tota l’explotació,Toda a explotación
+gana.total,Total,Guztira,Total,Total
 gana.tramite_andalucia,"Registro de explotaciones (Junta de Andalucía, sin revisar)","Ustiategien erregistroa (Andaluziako Junta, berrikusi gabe)","Registre d’explotacions (Junta d’Andalusia, sense revisar)","Rexistro de explotacións (Junta de Andalucía, sen revisar)"
 gana.tramite_pac,"PAC (RD 1048/2022, anexo V)","PAC (RD 1048/2022, V. eranskina)","PAC (RD 1048/2022, annex V)","PAC (RD 1048/2022, anexo V)"
 gana.tratamientos_ecologico,Tratamientos que cuentan en 12 meses: {n} de {limite},12 hilabetean kontatzen diren tratamenduak: {n} / {limite},Tractaments que compten en 12 mesos: {n} de {limite},Tratamentos que contan en 12 meses: {n} de {limite}

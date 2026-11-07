@@ -136,6 +136,11 @@ bool? usoAutorizado(
   return sustancia.usos.contains('$grupo:$plagaId');
 }
 
+/// Si una sospecha o detección de esta plaga obliga a avisar a la
+/// autoridad: sí salvo que sea una plaga común del catálogo. Una plaga
+/// escrita a mano cuenta como posible regulada (opción conservadora).
+bool exigeAvisoAutoridad(String plagaId) => !_plagas.containsKey(plagaId);
+
 /// Convierte lo escrito en un campo en el id del catálogo si coincide con
 /// un nombre (sin distinguir mayúsculas); si no, deja el texto libre.
 String idDesdeTexto(String texto, List<OpcionCatalogo> opciones) {

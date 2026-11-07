@@ -15,6 +15,7 @@ import '../modelos/tratamiento.dart';
 import '../utiles/textos_vivero.dart';
 import 'campos_especie.dart';
 import 'formularios.dart';
+import 'identificar_plaga.dart';
 import 'pantalla_salidas.dart';
 import 'vista_carga.dart';
 
@@ -274,12 +275,20 @@ class PantallaFichaPartida extends StatelessWidget {
                       '${formatearFecha(tratamiento.fechaMs)} · ${nombrePlagaVisible(tratamiento.problemaFitosanitario)}'),
                 ),
               TituloSeccion(SoleraL10n.t('vive.inspecciones'),
-                  accion: IconButton(
-                    tooltip: SoleraL10n.t('vive.nueva_inspeccion'),
-                    icon: const Icon(Icons.add),
-                    onPressed: () => mostrarFormularioInspeccion(context,
-                        partidaId: partida.id),
-                  )),
+                  accion: Row(mainAxisSize: MainAxisSize.min, children: [
+                    IconButton(
+                      tooltip: SoleraL10n.t('vive.identificar_con_ia'),
+                      icon: const Icon(Icons.document_scanner_outlined),
+                      onPressed: () =>
+                          identificarPlagaConFoto(context, partida),
+                    ),
+                    IconButton(
+                      tooltip: SoleraL10n.t('vive.nueva_inspeccion'),
+                      icon: const Icon(Icons.add),
+                      onPressed: () => mostrarFormularioInspeccion(context,
+                          partidaId: partida.id),
+                    ),
+                  ])),
               for (final inspeccion in datos.inspecciones)
                 ListTile(
                   dense: true,

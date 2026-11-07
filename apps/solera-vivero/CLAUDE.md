@@ -13,13 +13,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos, avisos de inspección sin notificar, salidas sin pasaporte y plazos de seguridad, accesos a siembra, tratamiento, inspección y Cuaderno; Ajustes en la barra), Material (lotes y ficha con sus siembras), Bandejas (lista, alta con el siguiente código QR, ficha con partidas y siembras; zonas en la barra), Plantas (stock por especie y formato, partidas, ficha con disponibles, merma, repicado, salida, trazabilidad hasta el lote, tratamientos e inspecciones), Salidas (año, estado del pasaporte; ficha con la necesidad de pasaporte, letras A-D, lo que falta y registro de pasaportes con anulación). Sembrar crea la partida. Altas en hojas inferiores (`formularios.dart`). 40 tests, 6 de pantalla |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | **Cuaderno de tratamientos** del año (datos generales, zonas con nº de orden, tratamientos, inspecciones de plagas; aviso del registro electrónico desde el 1-1-2027) y **registro de pasaportes y trazabilidad** (origen: material comprado con proveedor, ROPVEG y pasaporte recibido; destino: salidas; pasaportes preparados con su estado) en Salidas → PDF o Ajustes → Documentos. **Etiqueta del pasaporte** (10 × 6,5 cm) por registro, desde la ficha de la salida: recuadro, bandera en blanco y negro, título bilingüe, letras A-D (y ZP), QR con A-D; fuera del recuadro, PROVISIONAL y, si toca, BORRADOR «no válido como pasaporte». Tablas puras con test. 49 tests |
 | 6 Catálogos | ✅ 2026-11-07 | `content/vivero/`: especies (52, con «pasaporte de planta», «pasaporte de semilla» y «anexo XIV/ZP» del 2019/2072, `fuente_publica:`), plagas reguladas (26: 10 prioritarias del R. Del. 2019/1702 y 16 RNQP del anexo IV, `fuente_publica:`; huéspedes de las prioritarias por verificar), plagas comunes de vivero (17, agrupaciones del campo «Agente» del Registro MAPA) y sustancias activas (126, cruzando el Registro MAPA del 06/11/2026 con 6 grupos de cultivo y la EU Pesticides DB del 07/11/2026, `revision-ia:`). Compilador sobre la librería común. En la app: autocompletado de especie (rellena el nombre botánico), plaga y sustancia por grupo de cultivo de la partida, plaga regulada ordenada por nombre botánico, plazo del registro como aviso, aviso si el uso no está en el catálogo, aviso de anexo XIV en la salida y banner de datos provisionales en Hoy. 58 tests |
-| 7 IA visual | pendiente | |
+| 7 IA visual | ✅ 2026-11-07 | Ficha de la partida → Inspecciones → escáner: foto (cámara o galería) → hasta 3 candidatos entre las plagas comunes del grupo de cultivo y las **reguladas que afectan a la planta** por su nombre botánico (salida estructurada con `enum` + «otra») → la persona elige y se abre el alta de una **inspección** con la plaga rellena («sospecha» si es regulada, con el aviso a la autoridad). Una regulada nunca sale con confianza «alta» (solo la confirma un laboratorio). El sistema prohíbe recomendar tratamientos y dar la planta por sana. Modelo equilibrado del core, clave BYO (`estado/clave_anthropic_vivero.dart`, Ajustes → Inteligencia artificial). La foto se borra al terminar. Intérprete puro testeado. 64 tests |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 7 (IA visual).
+**Siguiente acción**: bloque 8 (branding, QR de bandejas y GPS).
 
 ## Encuadre
 
@@ -131,6 +131,13 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   (leído literalmente: puntos 1-4 y 9); vacío = por verificar. Las zonas
   protegidas concretas (anexo III) no se han leído: la persona marca si el
   destino lo es.
+
+- **2026-11-07 — La IA propone una inspección, no un tratamiento**, y solo
+  entre plagas del catálogo: no puede sugerir sustancias ni dosis, ni dar una
+  planta por sana (hard limit).
+- **2026-11-07 — Aviso a la autoridad solo si la plaga no es común**: una
+  sospecha de pulgón no obliga a nada; una plaga regulada o escrita a mano sí
+  (opción conservadora con el texto libre).
 
 ## Datos técnicos
 

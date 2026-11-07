@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart' show exigeAvisoAutoridad;
 import '../estado/cambios_datos.dart';
 import '../modelos/bandeja.dart';
 import '../modelos/inspeccion_plagas.dart';
@@ -745,7 +746,10 @@ Future<bool> mostrarFormularioTratamiento(BuildContext context,
 /// cuarentenaria, la ley pide avisar de inmediato a la autoridad: la app
 /// lo recuerda, no lo hace.
 Future<bool> mostrarFormularioInspeccion(BuildContext context,
-    {int? partidaId, String? plagaInicial}) async {
+    {int? partidaId,
+    String? plagaInicial,
+    String resultadoInicial = 'no_detectada',
+    String notasIniciales = ''}) async {
   final partidas = await _bd.listarPartidas();
   final zonas = await _bd.listarZonas();
   final vivero = await _bd.obtenerVivero();
@@ -754,7 +758,7 @@ Future<bool> mostrarFormularioInspeccion(BuildContext context,
   int? zona = partidaId != null || zonas.isEmpty ? null : zonas.first.id;
   var fecha = DateTime.now();
   var tipo = 'autoinspeccion';
-  var resultado = 'no_detectada';
+  var resultado = resultadoInicial;
   var muestra = false;
   var notificada = false;
   final plaga = TextEditingController(text: plagaInicial ?? '');
@@ -762,7 +766,7 @@ Future<bool> mostrarFormularioInspeccion(BuildContext context,
       text: vivero.personaContactoFitosanitaria.isEmpty
           ? vivero.nombre
           : vivero.personaContactoFitosanitaria);
-  final notas = TextEditingController();
+  final notas = TextEditingController(text: notasIniciales);
   final guardado = await mostrarHojaFormulario(
     context,
     titulo: SoleraL10n.t('vive.nueva_inspeccion'),
@@ -802,7 +806,8 @@ Future<bool> mostrarFormularioInspeccion(BuildContext context,
           nombre: nombreResultadoInspeccion,
           alCambiar: (valor) =>
               refrescar(() => resultado = valor ?? 'no_detectada')),
-      if (resultado != 'no_detectada')
+      if (resultado != 'no_detectada' &&
+          exigeAvisoAutoridad(idPlagaDesdeTexto(plaga.text)))
         Card(
           color: Theme.of(context).colorScheme.errorContainer,
           child: Padding(

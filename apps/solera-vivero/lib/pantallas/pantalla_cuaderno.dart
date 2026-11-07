@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart' show exigeAvisoAutoridad;
 import '../estado/cambios_datos.dart';
 import '../modelos/inspeccion_plagas.dart';
 import '../modelos/partida_planta.dart';
@@ -122,7 +123,8 @@ class _PantallaCuadernoState extends State<PantallaCuaderno> {
                   inspeccion.resultado == 'no_detectada'
                       ? Icons.check_circle_outline
                       : Icons.warning_amber_outlined,
-                  color: inspeccion.pendienteDeNotificar
+                  color: inspeccion.pendienteDeNotificar &&
+                          exigeAvisoAutoridad(inspeccion.plagaId)
                       ? Theme.of(context).colorScheme.error
                       : null,
                 ),
@@ -132,7 +134,8 @@ class _PantallaCuadernoState extends State<PantallaCuaderno> {
                   datos.donde(inspeccion.partidaId, inspeccion.zonaId),
                   nombreResultadoInspeccion(inspeccion.resultado),
                   nombreTipoInspeccion(inspeccion.tipo),
-                  if (inspeccion.pendienteDeNotificar)
+                  if (inspeccion.pendienteDeNotificar &&
+                      exigeAvisoAutoridad(inspeccion.plagaId))
                     SoleraL10n.t('vive.sin_notificar'),
                 ].where((parte) => parte.isNotEmpty).join(' · ')),
                 onLongPress: () =>

@@ -3,6 +3,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
+import '../dominio/catalogos.dart' show exigeAvisoAutoridad;
 import '../dominio/pasaporte.dart';
 import '../dominio/stock.dart';
 import '../modelos/inspeccion_plagas.dart';
@@ -63,7 +64,9 @@ Future<_DatosHoy> _cargarHoy() async {
     hayBandejas: (await bd.listarBandejas()).isNotEmpty,
     hayPartidas: partidas.isNotEmpty,
     inspeccionesPendientes: (await bd.listarInspecciones())
-        .where((inspeccion) => inspeccion.pendienteDeNotificar)
+        .where((inspeccion) =>
+            inspeccion.pendienteDeNotificar &&
+            exigeAvisoAutoridad(inspeccion.plagaId))
         .toList(),
     salidasSinPasaporte: salidas
         .where((salida) =>

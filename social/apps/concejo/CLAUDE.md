@@ -8,7 +8,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 
 ## Estado
 
-**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-7.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 128 tests de Flutter y 177 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
+**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-7.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 131 tests de Flutter y 177 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
 
 | Bloque | Contenido | Estado |
 |---|---|---|
@@ -20,7 +20,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 | F1C-6 | Servidor y sincronización: plugin de WordPress **aparte** (`social/wp-plugin/concejo/`, sin tocar Zunbeltz), reglas repetidas en PHP con test de paridad, cola de acciones sin red, entrar con código en papel, la mesa saca códigos e imprime la hoja | ✅ |
 | F1C-7 | Avisos mínimos en la app («Para ti» y etiqueta «Nuevo») y resumen semanal por correo desde el plugin, con baja | ✅ |
 | F1C-8 | APK de release y pueblo piloto | APK hecha (firma de pruebas); piloto ⏳ |
-| F1C-9 | Asambleas: convocar (día, hora, lugar, orden del día con asuntos y puntos libres), cambiar o anular con motivo hasta que empieza; asistencia (con app y sin ella) y lo hablado en cada punto; convocatoria en PDF; aviso tres días antes y sección en el correo semanal | ✅ |
+| F1C-9 | Asambleas: convocar (día, hora, lugar, orden del día con asuntos y puntos libres), cambiar o anular con motivo hasta que empieza; asistencia (con app y sin ella) y lo hablado en cada punto; convocatoria y acta en PDF; aviso tres días antes y sección en el correo semanal | ✅ |
 | F1C-10 | Tablón de anuncios: publica cualquier participante (título, texto si hace falta, último día opcional); quien lo puso lo retira, la mesa fija arriba y retira el de otra persona con motivo; sección en el correo semanal | ✅ |
 
 ## Estructura
@@ -73,7 +73,7 @@ Probar contra un WordPress: `CONCEJO_SERVIDOR=http://… CONCEJO_CODIGO_MESA=…
 
 ## Decisiones tomadas en el código (revisables con el piloto)
 
-- **Asambleas**: la convocatoria se cambia o se anula (con motivo) solo antes de empezar; asistencia y notas, desde el día de la asamblea. La asistencia es pública para el espacio (como en un acta); la gente sin app se cuenta, no se nombra. Un punto puede enlazar un asunto **abierto**. Aún no hay acta de la sesión en PDF ni firma: lo hablado queda en la app y en la convocatoria.
+- **Asambleas**: la convocatoria se cambia o se anula (con motivo) solo antes de empezar; asistencia y notas, desde el día de la asamblea. La asistencia es pública para el espacio (como en un acta); la gente sin app se cuenta, no se nombra. Un punto puede enlazar un asunto **abierto**. El **acta de la asamblea** sale en PDF desde el día de la sesión (cualquiera puede sacarla: la asistencia ya es pública): quién vino, lo hablado en cada punto y dos huecos para firmar **a mano**. No se firma en la app, a diferencia del acta de un asunto: si el piloto lo pide, haría falta una acción nueva con paridad.
 
 - **Tablón**: publica cualquier participante, sin pasar por la mesa (es lo que antes se pegaba en la puerta); la mesa modera **después**: fija arriba y retira con motivo. Quien lo puso lo retira sin dar explicaciones. No se edita: se retira y se vuelve a poner. Título hasta 120 letras y texto hasta 2000 (contadas como `mb_strlen`, `runes` en Dart). Con «último día», deja de verse al acabar ese día. **Lo retirado no se manda a los móviles** (la vista lo quita), pero queda en el servidor. «Nuevo» sale tres días en lo de otras personas, sin llevar la cuenta de lo visto. El correo lleva lo fijado y lo puesto por otras personas en la última semana.
 

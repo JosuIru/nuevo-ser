@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
 
+import '../documentos/acta_sesion_pdf.dart';
 import '../documentos/convocatoria_pdf.dart';
 import '../dominio/sesion.dart';
 import '../estado/estado_concejo.dart';
@@ -40,6 +41,12 @@ class FichaSesion extends StatelessWidget {
                 icon: const Icon(Icons.print_outlined),
                 onPressed: () => _descargarConvocatoria(context, sesion),
               ),
+              if (sesion.admiteAsistenciaEn(ahora))
+                IconButton(
+                  tooltip: textos.pdfActaAsamblea,
+                  icon: const Icon(Icons.description_outlined),
+                  onPressed: () => _descargarActa(context, sesion),
+                ),
               if (puedeCambiar)
                 PopupMenuButton<String>(
                   onSelected: (opcion) => opcion == 'cambiar'
@@ -122,6 +129,17 @@ class FichaSesion extends StatelessWidget {
     );
     await Printing.sharePdf(
         bytes: bytes, filename: 'convocatoria-${sesion.uid}.pdf');
+  }
+
+  Future<void> _descargarActa(BuildContext context, Sesion sesion) async {
+    final bytes = await actaDeLaSesion(
+      nombreEspacio: estado.nombreEspacio,
+      sesion: sesion,
+      nombreDe: estado.nombreDe,
+      ahora: estado.ahora,
+      textos: AppLocalizations.of(context),
+    );
+    await Printing.sharePdf(bytes: bytes, filename: 'acta-${sesion.uid}.pdf');
   }
 
   Future<void> _anular(BuildContext context, Sesion sesion) async {

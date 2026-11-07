@@ -35,6 +35,16 @@ void main() {
         findsOneWidget);
     expect(find.textContaining('Piden arreglar la fuente'), findsOneWidget);
     expect(find.text('Apuntar lo hablado'), findsNothing);
+    expect(find.byTooltip('Acta de la asamblea'), findsOneWidget,
+        reason: 'la ya celebrada tiene acta para imprimir');
+  });
+
+  testWidgets('antes del día no hay acta, solo convocatoria', (tester) async {
+    await _abrirAsambleas(tester, _pueblo('maite', () => _hoy));
+    await tester.tap(find.text('Asamblea de noviembre'));
+    await tester.pumpAndSettle();
+    expect(find.byTooltip('Convocatoria'), findsOneWidget);
+    expect(find.byTooltip('Acta de la asamblea'), findsNothing);
   });
 
   testWidgets('la mesa convoca una asamblea con un asunto y la anula',

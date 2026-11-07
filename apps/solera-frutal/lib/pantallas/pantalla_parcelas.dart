@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/parcela.dart';
+import '../utiles/permisos_gps.dart';
 import '../utiles/textos_frutal.dart';
+import 'pantalla_mapa.dart';
 import 'pantalla_ficha_parcela.dart';
 
 /// Lista de parcelas con su especie, variedad y superficie.
@@ -47,7 +50,17 @@ class _PantallaParcelasState extends State<PantallaParcelas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(SoleraL10n.t('frut.parcelas'))),
+      appBar: AppBar(
+        title: Text(SoleraL10n.t('frut.parcelas')),
+        actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('frut.mapa'),
+            icon: const Icon(Icons.map_outlined),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaMapa())),
+          ),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
         tooltip: SoleraL10n.t('frut.nueva_parcela'),
         onPressed: _nueva,
@@ -136,6 +149,38 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       ? widget.parcela!.sistemaRiego
       : sistemasRiego.first;
   bool _guardando = false;
+  bool _localizando = false;
+  late double? _latitud = widget.parcela?.latitud;
+  late double? _longitud = widget.parcela?.longitud;
+
+  /// Guarda la posición actual como ubicación de la parcela. Si no hay
+  /// permiso o el GPS no responde, avisa y la parcela queda sin ubicación.
+  Future<void> _usarMiUbicacion() async {
+    final mensajero = ScaffoldMessenger.of(context);
+    setState(() => _localizando = true);
+    try {
+      if (!await asegurarPermisoUbicacion()) {
+        mensajero.showSnackBar(
+            SnackBar(content: Text(SoleraL10n.t('frut.gps_sin_permiso'))));
+        return;
+      }
+      final posicion = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+        timeLimit: const Duration(seconds: 30),
+      );
+      if (!mounted) return;
+      setState(() {
+        _latitud = posicion.latitude;
+        _longitud = posicion.longitude;
+      });
+    } catch (error) {
+      debugPrint('GPS: $error');
+      mensajero.showSnackBar(
+          SnackBar(content: Text(SoleraL10n.t('frut.gps_error'))));
+    } finally {
+      if (mounted) setState(() => _localizando = false);
+    }
+  }
 
   @override
   void dispose() {
@@ -170,8 +215,8 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       anyoPlantacion: leerEntero(_anyo.text),
       regadio: _regadio,
       sistemaRiego: _sistemaRiego,
-      latitud: original?.latitud,
-      longitud: original?.longitud,
+      latitud: _latitud,
+      longitud: _longitud,
       notas: _notas.text.trim(),
       fechaCreacionMs:
           original?.fechaCreacionMs ?? DateTime.now().millisecondsSinceEpoch,
@@ -257,6 +302,22 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
                   ),
               ],
             ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.my_location_outlined),
+            title: Text(SoleraL10n.t('frut.ubicacion')),
+            subtitle: Text(_latitud == null || _longitud == null
+                ? SoleraL10n.t('frut.sin_ubicacion')
+                : '${_latitud!.toStringAsFixed(5)}, ${_longitud!.toStringAsFixed(5)}'),
+            trailing: _localizando
+                ? const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2))
+                : TextButton(
+                    onPressed: _usarMiUbicacion,
+                    child: Text(SoleraL10n.t('frut.usar_mi_ubicacion'))),
+          ),
           TextField(
             controller: _notas,
             maxLines: 3,

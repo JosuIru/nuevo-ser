@@ -47,6 +47,8 @@ void main() {
                   of: find.byType(PantallaEditarParcela),
                   matching: find.byType(Scrollable))
               .first);
+      await tester.ensureVisible(find.byType(FilledButton));
+      await tester.pumpAndSettle();
       await tester.tap(find.byType(FilledButton));
       await esperar(tester);
       await esperar(tester, 200);

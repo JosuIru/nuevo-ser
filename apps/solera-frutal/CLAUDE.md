@@ -14,7 +14,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos, año en curso y anterior: **cuaderno de explotación** (datos generales y asesor, identificación de parcelas con nº de orden, tratamientos, fertilización, riegos si los hay y cosecha comercializada) y **parte de cosecha y rendimientos** (por parcela, entregas, heladas y pedrisco para el seguro). Tablas en funciones puras con test; PDF con `informe_periodico` del core. 39 tests. Cotejo de columnas con el modelo andaluz v8 en el bloque 10 |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
-| 8 Branding + GPS | pendiente | |
+| 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (almendra con hoja sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» al editar la parcela (geolocator) y mapa de parcelas (OSM) desde Parcelas. Permisos INTERNET y ubicación en el manifiesto. 41 tests |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
@@ -72,6 +72,12 @@ Lo esencial que no se toca (hard limits):
 - **2026-11-07 — Encabezados de los PDF en el idioma de la app** (como Obrador);
   la versión que se entregue a la administración debería ir en castellano o en
   la cooficial que acepte cada comunidad: lo decide el asesor.
+- **2026-11-07 — Ubicación = un punto por parcela** (de pie en ella con el GPS),
+  no el polígono SIGPAC: basta para el mapa y la meteo; el recinto oficial va
+  en el código SIGPAC.
+- **2026-11-07 — Permiso INTERNET declarado** en el manifiesto principal: sin
+  él la IA y la meteo no funcionan en la APK release (Obrador no lo declara; ver
+  el informe al coordinador).
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Obrador): no hay
   ninguna instalación publicada.
 

@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 14 modelos (titular-huerta, parcela, bancal, cultivo, lote de semilla, siembra/plantación, cosecha, insumo, tratamiento; y en `lib/provisional_core/venta_directa/` socio, suscripción, cesta, línea de cesta, entrega), 14 tablas en la v1. Lógica pura: `dominio/rotacion.dart` (aviso por familia y años mínimos, familias bloqueadas por bancal), `dominio/siembras_escalonadas.dart`, `dominio/prevision_cosecha.dart` (cosecha prevista y real de la semana) y `provisional_core/venta_directa/reparto_cestas.dart` (reparto por partes con mayor resto, pasos de 50 g o piezas, turno rotatorio en empates). 65 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos sin parcelas o cultivos, siembras planificadas de los próximos 14 días o atrasadas con aviso de rotación, cestas de la semana, plazos de seguridad abiertos, pendientes para el certificador: semilla no ecológica sin autorización e insumo sin justificante), Parcelas → ficha de parcela con bancales y lo que tienen → ficha de bancal (plan de rotación: familias bloqueadas y hasta cuándo, siembras con acciones hecha/cosechar/levantar, cosechas), Cuaderno del año (siembras, cosechas, aplicaciones de insumos; menú con cultivos, banco de semillas e insumos), Cestas (semana, cosecha real y prevista, **proponer reparto**, cesta editable, entrega) y socios con suscripciones, Ajustes (datos de la huerta, organismo de control, asesor). Altas en hojas inferiores (`formularios_huerta.dart`), siembra con serie escalonada y aviso de rotación en vivo. 75 tests, 7 de pantalla |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas).
+**Siguiente acción**: bloques 4-5 (PDF) y 6 (catálogos: los CSV de `content/huerta/` y regenerar `lib/datos/catalogos_generados/`, que ahora son marcadores vacíos).
 
 ## Encuadre
 
@@ -87,6 +87,16 @@ Lo esencial que no se toca (hard limits):
 - **2026-11-07 — Integridad**: siembras, cosechas, tratamientos y cestas
   impiden borrar lo que citan (`RESTRICT`); bancales y socios se desactivan.
   Borrar una cesta se lleva sus líneas y entregas.
+- **2026-11-07 — Onboarding = tarjeta «Primeros pasos» en Hoy** mientras no
+  haya parcelas o cultivos (como Frutal): no hay que recordar si ya se vio.
+- **2026-11-07 — Cultivos, semillas e insumos en el menú del Cuaderno**, no
+  como pestañas: se dan de alta una vez y luego solo se eligen.
+- **2026-11-07 — Reparto con la cosecha real si hay alguna con destino
+  «cestas» esa semana; si no, con la prevista** (`dominio/composicion_cestas.dart`).
+  No se mezclan las dos para no contar dos veces. Repartir de nuevo sustituye
+  los productos de las cestas de la semana (con confirmación).
+- **2026-11-07 — Sin indicador de carga**: SQLite local responde al momento y
+  la rueda animada bloqueaba `pumpAndSettle` en los tests de pantalla.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Frutal): no hay
   ninguna instalación publicada.
 

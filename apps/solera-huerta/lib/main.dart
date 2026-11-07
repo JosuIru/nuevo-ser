@@ -1,7 +1,10 @@
-// Larrea Huerta — esqueleto generado por scripts/nueva_vertical.sh (2026-11-07).
+// Larrea Huerta — horticultura diversificada con cestas para grupos de consumo.
 //
 //   main() → AppHuerta → PantallaPrincipal (NavigationBar + IndexedStack)
-//     ├── Hoy
+//     ├── Hoy        siembras próximas, cestas de la semana, plazos, pendientes
+//     ├── Parcelas   parcelas → bancales con su plan de rotación
+//     ├── Cuaderno   siembras, cosechas y aplicaciones de insumos del año
+//     ├── Cestas     reparto de la cosecha de la semana y entregas
 //     └── Ajustes
 
 import 'package:flutter/material.dart';
@@ -11,7 +14,10 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import 'branding.dart';
 import 'pantallas/pantalla_ajustes.dart';
+import 'pantallas/pantalla_cestas.dart';
+import 'pantallas/pantalla_cuaderno.dart';
 import 'pantallas/pantalla_hoy.dart';
+import 'pantallas/pantalla_parcelas.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +61,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     return Scaffold(
       body: IndexedStack(
         index: _pestanaActual,
-        children: const [PantallaHoy(), PantallaAjustes()],
+        children: const [
+          PantallaHoy(),
+          PantallaParcelas(),
+          PantallaCuaderno(),
+          PantallaCestas(),
+          PantallaAjustes(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pestanaActual,
@@ -65,6 +77,18 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           NavigationDestination(
             icon: const Icon(Icons.today_outlined),
             label: SoleraL10n.t('huer.hoy'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.grass_outlined),
+            label: SoleraL10n.t('huer.parcelas'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.menu_book_outlined),
+            label: SoleraL10n.t('huer.cuaderno'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.shopping_basket_outlined),
+            label: SoleraL10n.t('huer.cestas'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),

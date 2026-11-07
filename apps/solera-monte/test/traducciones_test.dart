@@ -12,6 +12,7 @@ import 'package:solera_monte/modelos/arbol_singular.dart';
 import 'package:solera_monte/modelos/incendios.dart';
 import 'package:solera_monte/modelos/monte.dart';
 import 'package:solera_monte/modelos/rodal.dart';
+import 'package:solera_monte/pantallas/pantalla_ayuda.dart';
 
 /// Grupos de valores cerrados y su prefijo de clave.
 final Map<String, List<String>> gruposDeValores = {
@@ -47,5 +48,16 @@ void main() {
       }
     }
     expect(faltan, isEmpty);
+  });
+
+  test('cada apartado de la ayuda tiene título y texto en los cuatro idiomas',
+      () {
+    for (final (titulo, texto) in apartadosAyudaMonte) {
+      expect(SoleraL10n.clavesDisponibles, containsAll([titulo, texto]));
+      for (final idioma in ['eu', 'ca', 'gl']) {
+        expect(
+            SoleraL10n.clavesTraducidas(idioma), containsAll([titulo, texto]));
+      }
+    }
   });
 }

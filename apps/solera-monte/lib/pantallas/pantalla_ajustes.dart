@@ -9,6 +9,7 @@ import '../modelos/monte.dart';
 import '../utiles/textos_monte.dart';
 import 'hoja_formulario.dart';
 import 'identificar_con_ia.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_economia.dart';
 
@@ -47,6 +48,14 @@ class PantallaAjustes extends StatelessWidget {
             subtitle: Text(SoleraL10n.t('mont.ingresos_y_gastos_ayuda')),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaEconomia())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.help_outline),
+            title: Text(SoleraL10n.t('mont.ayuda')),
+            subtitle: Text(SoleraL10n.t('mont.ayuda_resumen')),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaAyuda())),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

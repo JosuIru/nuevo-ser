@@ -1,8 +1,12 @@
-// Larrea Ganadera — esqueleto generado por scripts/nueva_vertical.sh (2026-11-07).
+// Larrea Ganadera — ganadería extensiva pequeña y mixta, con el pasto en el
+// centro.
 //
 //   main() → AppGanadera → PantallaPrincipal (NavigationBar + IndexedStack)
-//     ├── Hoy
-//     └── Ajustes
+//     ├── Hoy        dónde está cada rebaño, avisos sanitarios, supresiones
+//     ├── Rebaños    rebaños → animales, movimientos y manejo
+//     ├── Pastos     piezas de pasto con su carga y el mapa
+//     ├── Manejo     calendario sanitario y visitas
+//     └── Ajustes    titular, explotación, documentos, economía, IA, ayuda
 
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -12,6 +16,9 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import 'branding.dart';
 import 'pantallas/pantalla_ajustes.dart';
 import 'pantallas/pantalla_hoy.dart';
+import 'pantallas/pantalla_manejo.dart';
+import 'pantallas/pantalla_pastos.dart';
+import 'pantallas/pantalla_rebanos.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +62,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     return Scaffold(
       body: IndexedStack(
         index: _pestanaActual,
-        children: const [PantallaHoy(), PantallaAjustes()],
+        children: const [
+          PantallaHoy(),
+          PantallaRebanos(),
+          PantallaPastos(),
+          PantallaManejo(),
+          PantallaAjustes(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pestanaActual,
@@ -65,6 +78,18 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           NavigationDestination(
             icon: const Icon(Icons.today_outlined),
             label: SoleraL10n.t('gana.hoy'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.pets_outlined),
+            label: SoleraL10n.t('gana.rebanos'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.grass_outlined),
+            label: SoleraL10n.t('gana.pastos'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.medical_services_outlined),
+            label: SoleraL10n.t('gana.manejo'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),

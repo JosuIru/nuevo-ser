@@ -190,6 +190,8 @@ pw.Widget _bloqueFirma() {
 /// las casillas `- [ ]` como guiones.
 String quitarMarcasMarkdown(String texto) => texto
     .replaceAll(RegExp(r'\*\*|__|`'), '')
-    .replaceAll(RegExp(r'^(\s*)[-*]\s+\[[ xX]\]\s*', multiLine: true), r'$1– ')
+    .replaceAllMapped(
+        RegExp(r'^(\s*)[-*]\s+\[[ xX]\]\s*', multiLine: true),
+        (coincidencia) => '${coincidencia.group(1)}– ')
     .replaceAllMapped(RegExp(r'^(\s*)[-*]\s+', multiLine: true),
         (coincidencia) => '${coincidencia.group(1)}– ');

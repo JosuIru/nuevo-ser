@@ -9,13 +9,16 @@ import '../servidor/sincronizador.dart';
 import 'dialogos.dart';
 import 'ficha_asunto.dart';
 import 'ficha_sesion.dart';
+import 'ficha_tarea.dart';
 import 'formulario_anuncio.dart';
 import 'formulario_asunto.dart';
 import 'formulario_sesion.dart';
+import 'formulario_tarea.dart';
 import 'pantalla_asambleas.dart';
 import 'pantalla_personas.dart';
 import 'pantalla_se_ha_hecho.dart';
 import 'pantalla_tablon.dart';
+import 'pantalla_tareas.dart';
 import 'textos_dominio.dart';
 
 class PantallaInicio extends StatefulWidget {
@@ -68,7 +71,8 @@ class _PantallaInicioState extends State<PantallaInicio> {
           0 =>
             _ListaAsuntos(estado: widget.estado, avisosVistos: _avisosVistos),
           1 => PantallaAsambleas(estado: widget.estado),
-          2 => PantallaTablon(estado: widget.estado),
+          2 => PantallaTareas(estado: widget.estado),
+          3 => PantallaTablon(estado: widget.estado),
           _ => PantallaSeHaHecho(estado: widget.estado),
         };
         return Scaffold(
@@ -138,6 +142,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 label: textos.pestanaAsambleas,
               ),
               NavigationDestination(
+                icon: const Icon(Icons.handyman_outlined),
+                selectedIcon: const Icon(Icons.handyman),
+                label: textos.pestanaTareas,
+              ),
+              NavigationDestination(
                 icon: const Icon(Icons.push_pin_outlined),
                 selectedIcon: const Icon(Icons.push_pin),
                 label: textos.pestanaTablon,
@@ -154,8 +163,8 @@ class _PantallaInicioState extends State<PantallaInicio> {
     );
   }
 
-  /// El botón de crear de cada pestaña: asuntos y asambleas los lleva la
-  /// mesa; en el tablón publica cualquiera.
+  /// El botón de crear de cada pestaña: asuntos, asambleas y tareas los
+  /// lleva la mesa; en el tablón publica cualquiera.
   Widget? _botonNuevo(AppLocalizations textos) {
     final mesa = widget.estado.soyMesa;
     final (etiqueta, formulario) = switch (_pestana) {
@@ -167,7 +176,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
           textos.convocarAsamblea,
           FormularioSesion(estado: widget.estado)
         ),
-      2 => (textos.publicarAnuncio, FormularioAnuncio(estado: widget.estado)),
+      2 when mesa => (
+          textos.nuevaTarea,
+          FormularioTarea(estado: widget.estado)
+        ),
+      3 => (textos.publicarAnuncio, FormularioAnuncio(estado: widget.estado)),
       _ => (null, null),
     };
     if (etiqueta == null || formulario == null) return null;
@@ -426,6 +439,8 @@ class _TarjetaAviso extends StatelessWidget {
     final asunto = asuntoUid == null ? null : estado.buscarAsunto(asuntoUid);
     final titulo = asunto?.titulo ?? '';
     final fecha = textos.fecha(aviso.fecha);
+    final tareaUid = aviso.tareaUid;
+    final tarea = tareaUid == null ? null : estado.tarea(tareaUid);
     final sesionUid = aviso.sesionUid;
     final sesion = sesionUid == null ? null : estado.sesion(sesionUid);
     String queDelCompromiso() => estado.compromisos
@@ -453,6 +468,14 @@ class _TarjetaAviso extends StatelessWidget {
           Icons.event_busy_outlined,
           textos.avisoAsambleaAnulada(sesion!.titulo, sesion.motivoAnulacion)
         ),
+      TipoAviso.tarea => (
+          Icons.handyman_outlined,
+          textos.avisoTarea(tarea!.titulo, textos.fechaYHora(tarea.inicio))
+        ),
+      TipoAviso.tareaAnulada => (
+          Icons.event_busy_outlined,
+          textos.avisoAsambleaAnulada(tarea!.titulo, tarea.motivoAnulacion)
+        ),
       TipoAviso.mandatoAcaba => (
           Icons.autorenew,
           textos.avisoMandatoAcaba(fecha)
@@ -472,17 +495,22 @@ class _TarjetaAviso extends StatelessWidget {
         leading: Icon(icono, color: colores.onTertiaryContainer),
         title:
             Text(texto, style: TextStyle(color: colores.onTertiaryContainer)),
-        onTap: sesion != null
+        onTap: tarea != null
             ? () => Navigator.of(context).push(MaterialPageRoute(
                   builder: (_) =>
-                      FichaSesion(estado: estado, sesionUid: sesion.uid),
+                      FichaTarea(estado: estado, tareaUid: tarea.uid),
                 ))
-            : asunto == null
-                ? null
-                : () => Navigator.of(context).push(MaterialPageRoute(
+            : sesion != null
+                ? () => Navigator.of(context).push(MaterialPageRoute(
                       builder: (_) =>
-                          FichaAsunto(estado: estado, asuntoUid: asunto.uid),
-                    )),
+                          FichaSesion(estado: estado, sesionUid: sesion.uid),
+                    ))
+                : asunto == null
+                    ? null
+                    : () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => FichaAsunto(
+                              estado: estado, asuntoUid: asunto.uid),
+                        )),
         trailing: IconButton(
           tooltip: textos.quitarAviso,
           icon: const Icon(Icons.close),

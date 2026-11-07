@@ -1,6 +1,187 @@
 clave,es,eu,ca,gl
+arom.alambique_arrastre_vapor,Arrastre de vapor,Lurrun arrastea,Arrossegament de vapor,Arrastre de vapor
+arom.alambique_hidrodestilacion,Hidrodestilación,Hidrodistilazioa,Hidrodestil·lació,Hidrodestilación
+arom.alambique_otro,Otro,Bestelakoa,Altre,Outro
+arom.alambique_vapor_y_agua,Agua y vapor,Ura eta lurruna,Aigua i vapor,Auga e vapor
+arom.anadir_especie,Añadir especie,Espeziea gehitu,Afegeix espècie,Engadir especie
+arom.anyo_plantacion,Año de plantación,Landatze urtea,Any de plantació,Ano de plantación
+arom.aplicador,Aplicador,Aplikatzailea,Aplicador,Aplicador
+arom.asesor,Asesor GIP,GIP aholkularia,Assessor GIP,Asesor XIP
+arom.asesor_ropo,N.º ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l’assessor,N.º ROPO do asesor
+arom.aviso_confundibles,Se confunde con: {especies}. Comprueba la especie antes de recolectar.,Honekin nahas daiteke: {especies}. Egiaztatu espeziea bildu aurretik.,Es confon amb: {especies}. Comprova l’espècie abans de collir.,Confúndese con: {especies}. Comproba a especie antes de recoller.
+arom.aviso_especie_no_incluida,Esta especie no figura en el permiso de la zona.,Espezie hau ez dago eremuko baimenean.,Aquesta espècie no figura al permís de la zona.,Esta especie non figura no permiso da zona.
+arom.aviso_especie_protegida,Especie con protección: no se recolecta sin autorización expresa de la comunidad autónoma.,Babestutako espeziea: ez da biltzen autonomia erkidegoaren berariazko baimenik gabe.,Espècie protegida: no es cull sense autorització expressa de la comunitat autònoma.,Especie protexida: non se recolle sen autorización expresa da comunidade autónoma.
+arom.aviso_fuera_vigencia,La fecha está fuera de la vigencia del permiso.,Data baimenaren indarraldietik kanpo dago.,La data és fora de la vigència del permís.,A data está fóra da vixencia do permiso.
+arom.aviso_sin_permiso,La zona no tiene permiso apuntado. Consulta a tu comunidad autónoma si hace falta.,Eremuak ez du baimenik idatzita. Galdetu zure autonomia erkidegoari behar den.,La zona no té cap permís anotat. Consulta la teva comunitat autònoma si cal.,A zona non ten permiso anotado. Consulta coa túa comunidade autónoma se fai falta.
+arom.aviso_supera_limite,Con esta recolección se pasa del límite de kg del permiso.,Bilketa honekin baimenaren kg mugatik pasatzen da.,Amb aquesta collita se supera el límit de kg del permís.,Con esta recolección supérase o límite de kg do permiso.
 arom.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
+arom.borrar_registro,¿Borrar este registro?,Erregistro hau ezabatu?,Vols esborrar aquest registre?,Borrar este rexistro?
+arom.caducado,caducó el {fecha},{fecha}(e)an iraungi zen,va caducar el {fecha},caducou o {fecha}
+arom.campo,Campo,Landa,Camp,Campo
+arom.cantidad,Cantidad (queda / producida),Kopurua (geratzen da / ekoitzia),Quantitat (queda / produïda),Cantidade (queda / producida)
+arom.cantidad_disponible,Cantidad que queda ({unidad}),Geratzen den kopurua ({unidad}),Quantitat que queda ({unidad}),Cantidade que queda ({unidad})
+arom.capacidad_alambique,Capacidad del alambique (l),Alanbikearen edukiera (l),Capacitat de l’alambí (l),Capacidade do alambique (l)
+arom.carnet_aplicador,Carné de aplicador,Aplikatzaile txartela,Carnet d’aplicador,Carné de aplicador
+arom.catalogos_provisionales,"Catálogos provisionales: especies, rendimientos y plagas están sin validar por una persona experta.","Behin-behineko katalogoak: espezieak, errendimenduak eta izurriteak aditu batek balioztatu gabe daude.","Catàlegs provisionals: espècies, rendiments i plagues sense validar per una persona experta.","Catálogos provisionais: especies, rendementos e pragas sen validar por unha persoa experta."
+arom.codigo_lote,Código del lote,Lotearen kodea,Codi del lot,Código do lote
+arom.codigo_repetido,Ya hay un lote con ese código.,Badago kode hori duen lote bat.,Ja hi ha un lot amb aquest codi.,Xa hai un lote con ese código.
+arom.codigo_sigpac,Código SIGPAC,SIGPAC kodea,Codi SIGPAC,Código SIXPAC
+arom.comunidad_autonoma,Comunidad autónoma,Autonomia erkidegoa,Comunitat autònoma,Comunidade autónoma
+arom.copiar_de_etiqueta,Cópialo de la etiqueta,Kopiatu etiketatik,Copia-ho de l’etiqueta,Cópiao da etiqueta
+arom.cosechas,Cosechas,Uztak,Collites,Colleitas
+arom.cosechas_del_anyo,{n} cosechas este año · {kg} kg frescos,{n} uzta aurten · {kg} kg fresko,{n} collites aquest any · {kg} kg frescos,{n} colleitas este ano · {kg} kg frescos
+arom.cosechas_que_entran,Cosechas que entran,Sartzen diren uztak,Collites que hi entren,Colleitas que entran
+arom.crear_lote_planta_seca,Crear el lote de planta seca,Landare lehorraren lotea sortu,Crea el lot de planta seca,Crear o lote de planta seca
+arom.crear_lotes_destilacion,Crear los lotes de aceite esencial e hidrolato,Olio esentzialaren eta hidrolatoaren loteak sortu,Crea els lots d’oli essencial i d’hidrolat,Crear os lotes de aceite esencial e hidrolato
+arom.cultivo,Cultivo,Laborantza,Cultiu,Cultivo
+arom.destilaciones,Destilaciones,Distilazioak,Destil·lacions,Destilacións
+arom.destilado_el,Destilado el {fecha},{fecha}(e)an distilatua,Destil·lat el {fecha},Destilado o {fecha}
+arom.destino,Destino,Helmuga,Destinació,Destino
+arom.destino_alimentario,Alimentario,Elikagaia,Alimentari,Alimentario
+arom.destino_cosmetico,Cosmético (materia prima),Kosmetikoa (lehengaia),Cosmètic (matèria primera),Cosmético (materia prima)
+arom.destino_otros_usos,Otros usos (químico),Beste erabilera batzuk (kimikoa),Altres usos (químic),Outros usos (químico)
+arom.destino_por_verificar,"El régimen de cada destino (alimentario, cosmético o químico) está por verificar con un asesor.","Helmuga bakoitzaren araubidea (elikagaia, kosmetikoa edo kimikoa) aholkulari batekin egiaztatzeko dago.","El règim de cada destinació (alimentari, cosmètic o químic) està per verificar amb un assessor.","O réxime de cada destino (alimentario, cosmético ou químico) está por verificar cun asesor."
+arom.destino_sin_decidir,Sin decidir,Erabaki gabe,Sense decidir,Sen decidir
+arom.dias_secado,Días de secado,Lehortze egunak,Dies d’assecatge,Días de secado
+arom.dosis_aplicada,Dosis aplicada,Aplikatutako dosia,Dosi aplicada,Dose aplicada
+arom.ecologico,Ecológico,Ekologikoa,Ecològic,Ecolóxico
+arom.editar_cosecha,Editar cosecha,Uzta editatu,Edita la collita,Editar colleita
+arom.editar_lote,Lote {codigo},{codigo} lotea,Lot {codigo},Lote {codigo}
+arom.eficacia,Eficacia,Eraginkortasuna,Eficàcia,Eficacia
+arom.eficacia_buena,Buena,Ona,Bona,Boa
+arom.eficacia_mala,Mala,Txarra,Dolenta,Mala
+arom.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
+arom.en_temporada,En temporada este mes,Hilabete honetan sasoian,En temporada aquest mes,En tempada este mes
+arom.envase,Envase,Ontzia,Envàs,Envase
+arom.epoca_orientativa,"Época orientativa, sin fuente revisada: manda lo que veas en la planta.","Gutxi gorabeherako sasoia, iturri berrikusirik gabe: landarean ikusten duzunak agintzen du.","Època orientativa, sense font revisada: mana el que vegis a la planta.","Época orientativa, sen fonte revisada: manda o que vexas na planta."
+arom.equipo_aplicacion,Equipo de aplicación,Aplikazio ekipoa,Equip d’aplicació,Equipo de aplicación
+arom.error_cargar,No se pudieron cargar los datos.,Ezin izan dira datuak kargatu.,No s’han pogut carregar les dades.,Non se puideron cargar os datos.
+arom.error_documento,No se pudo generar el documento.,Ezin izan da dokumentua sortu.,No s’ha pogut generar el document.,Non se puido xerar o documento.
+arom.especie,Especie,Espeziea,Espècie,Especie
+arom.especie_protegida_en_permiso,{especie} tiene protección: comprueba que el permiso la autoriza expresamente.,{especie} babestuta dago: egiaztatu baimenak berariaz onartzen duela.,{especie} està protegida: comprova que el permís l’autoritza expressament.,{especie} está protexida: comproba que o permiso a autoriza expresamente.
+arom.especies_permitidas,Especies del permiso,Baimeneko espezieak,Espècies del permís,Especies do permiso
+arom.estado_fenologico,Estado de la planta,Landarearen egoera,Estat de la planta,Estado da planta
+arom.estado_planta,Estado de la planta que entra,Sartzen den landarearen egoera,Estat de la planta que hi entra,Estado da planta que entra
+arom.fecha,Fecha,Data,Data,Data
+arom.fecha_inicio,Fecha de inicio,Hasiera data,Data d’inici,Data de inicio
+arom.feno_final_floracion,Final de floración,Loraldiaren amaiera,Final de floració,Final da floración
+arom.feno_fructificacion,Fructificación,Fruitu-ematea,Fructificació,Frutificación
+arom.feno_inicio_floracion,Inicio de floración,Loraldiaren hasiera,Inici de floració,Inicio da floración
+arom.feno_plena_floracion,Plena floración,Loraldi betea,Plena floració,Plena floración
+arom.feno_vegetativo,Vegetativo,Begetatiboa,Vegetatiu,Vexetativo
+arom.fin_vigencia,Fin de la vigencia,Indarraldiaren amaiera,Fi de la vigència,Fin da vixencia
+arom.gps_error,No se pudo leer la ubicación.,Ezin izan da kokapena irakurri.,No s’ha pogut llegir la ubicació.,Non se puido ler a localización.
+arom.gps_sin_permiso,Sin permiso de ubicación.,Kokapen baimenik gabe.,Sense permís d’ubicació.,Sen permiso de localización.
 arom.guardado,Guardado,Gordeta,Desat,Gardado
+arom.guardar_igualmente,Guardar igualmente,Hala ere gorde,Desa igualment,Gardar igualmente
+arom.hasta,hasta el {fecha},{fecha} arte,fins al {fecha},ata o {fecha}
+arom.horas_destilacion,Horas de destilación,Distilazio orduak,Hores de destil·lació,Horas de destilación
 arom.hoy,Hoy,Gaur,Avui,Hoxe
+arom.inicio_vigencia,Inicio de la vigencia,Indarraldiaren hasiera,Inici de la vigència,Inicio da vixencia
+arom.kg_cosechados_anyo,kg cosechados,kg bilduta,kg collits,kg colleitados
+arom.kg_de_limite,{kg} de {limite} kg,{limite} kg-tik {kg},{kg} de {limite} kg,{kg} de {limite} kg
+arom.kg_frescos,kg frescos,kg fresko,kg frescos,kg frescos
+arom.kg_planta,kg de planta,landare kg,kg de planta,kg de planta
+arom.kg_recolectados,{kg} kg recolectados,{kg} kg bilduta,{kg} kg collits,{kg} kg recollidos
+arom.kg_secos,kg secos,kg lehor,kg secs,kg secos
+arom.limite_kg,Límite del permiso (kg frescos),Baimenaren muga (kg fresko),Límit del permís (kg frescos),Límite do permiso (kg frescos)
+arom.limite_kg_ayuda,Total de la vigencia; vacío si no lo fija,Indarraldi osoa; hutsik ez badu finkatzen,Total de la vigència; buit si no el fixa,Total da vixencia; baleiro se non o fixa
+arom.litros_hidrolato,Litros de hidrolato,Hidrolato litroak,Litres d’hidrolat,Litros de hidrolato
+arom.litros_hidrolato_n,{litros} l de hidrolato,{litros} l hidrolato,{litros} l d’hidrolat,{litros} l de hidrolato
+arom.lote_aceite_esencial,Aceite esencial,Olio esentziala,Oli essencial,Aceite esencial
+arom.lote_hidrolato,Hidrolato,Hidrolatoa,Hidrolat,Hidrolato
+arom.lote_planta_fresca,Planta fresca,Landare freskoa,Planta fresca,Planta fresca
+arom.lote_planta_seca,Planta seca,Landare lehorra,Planta seca,Planta seca
+arom.lote_sin_origen,Lote apuntado a mano: no sale de ningún secado ni destilación.,Eskuz idatzitako lotea: ez dator lehortze edo distilaziotik.,Lot anotat a mà: no surt de cap assecatge ni destil·lació.,Lote anotado a man: non sae de ningún secado nin destilación.
+arom.lotes,Lotes,Loteak,Lots,Lotes
+arom.metodo_secado,Método de secado,Lehortze metodoa,Mètode d’assecatge,Método de secado
+arom.ml_aceite,ml de aceite esencial,olio esentzial ml,ml d’oli essencial,ml de aceite esencial
+arom.municipio,Municipio,Udalerria,Municipi,Concello
+arom.nada_en_temporada,Ninguna de tus especies está en su época orientativa.,Zure espezieetako bat ere ez dago bere sasoian.,Cap de les teves espècies no és a la seva època orientativa.,Ningunha das túas especies está na súa época orientativa.
+arom.no_se_puede_borrar,No se puede borrar: tiene registros que dependen de él.,Ezin da ezabatu: haren menpeko erregistroak ditu.,No es pot esborrar: té registres que en depenen.,Non se pode borrar: ten rexistros que dependen del.
+arom.nombre,Nombre,Izena,Nom,Nome
+arom.nombre_producto,Nombre del producto,Produktuaren izena,Nom del producte,Nome do produto
 arom.nombre_titular,Nombre del titular,Titularraren izena,Nom del titular,Nome do titular
+arom.notas,Notas,Oharrak,Notes,Notas
+arom.nueva_cosecha,Nueva cosecha,Uzta berria,Nova collita,Nova colleita
+arom.nueva_destilacion,Nueva destilación,Distilazio berria,Nova destil·lació,Nova destilación
+arom.nueva_parcela,Nueva parcela,Lursail berria,Nova parcel·la,Nova parcela
+arom.nueva_zona,Nueva zona de recolección,Bilketa eremu berria,Nova zona de collita,Nova zona de recolección
+arom.nuevo_proceso,Secado o destilación,Lehortzea edo distilazioa,Assecatge o destil·lació,Secado ou destilación
+arom.nuevo_secado,Nuevo secado,Lehortze berria,Nou assecatge,Novo secado
+arom.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Nou tractament,Novo tratamento
+arom.numero_permiso,N.º de permiso o autorización,Baimen zk.,Núm. de permís o autorització,N.º de permiso ou autorización
+arom.numero_permiso_ayuda,Tal como figura en la autorización; vacío si no hay,Baimenean dagoen bezala; hutsik ez badago,Tal com figura a l’autorització; buit si no n’hi ha,Tal como figura na autorización; baleiro se non hai
+arom.numero_registro,N.º de registro del producto,Produktuaren erregistro zk.,Núm. de registre del producte,N.º de rexistro do produto
+arom.observaciones,Observaciones,Oharpenak,Observacions,Observacións
+arom.organismo_permiso,Órgano que lo emite,Ematen duen organoa,Òrgan que l’emet,Órgano que o emite
+arom.orientativo_intervalo,orientativo {min}-{max} {unidad},gutxi gorabehera {min}-{max} {unidad},orientatiu {min}-{max} {unidad},orientativo {min}-{max} {unidad}
+arom.origen,Origen,Jatorria,Origen,Orixe
+arom.origenes,parcelas y zonas,lursail eta eremu,parcel·les i zones,parcelas e zonas
+arom.parcela,Parcela,Lursaila,Parcel·la,Parcela
+arom.parcelas,Parcelas,Lursailak,Parcel·les,Parcelas
+arom.parte_recolectada,Parte recolectada,Bildutako zatia,Part collida,Parte recollida
+arom.permiso,Permiso de recolección,Bilketa baimena,Permís de collita,Permiso de recolección
+arom.permiso_caducado_el,El permiso caducó el {fecha},Baimena {fecha}(e)an iraungi zen,El permís va caducar el {fecha},O permiso caducou o {fecha}
+arom.permiso_n,Permiso {numero},{numero} baimena,Permís {numero},Permiso {numero}
+arom.permiso_vence_el,El permiso vence el {fecha},Baimena {fecha}(e)an iraungiko da,El permís venç el {fecha},O permiso vence o {fecha}
+arom.permisos,Permisos,Baimenak,Permisos,Permisos
+arom.planta_fresca,Fresca,Freskoa,Fresca,Fresca
+arom.planta_oreada,Oreada,Aireztatua,Orejada,Oreada
+arom.planta_seca,Seca,Lehorra,Seca,Seca
+arom.plazo_seguridad_dias,"Plazo de seguridad (días, de la etiqueta)","Segurtasun epea (egunak, etiketakoa)","Termini de seguretat (dies, de l’etiqueta)","Prazo de seguridade (días, da etiqueta)"
+arom.primero_un_origen,Primero da de alta una parcela o una zona de recolección.,Lehenik eman alta lursail edo bilketa eremu bati.,Primer dona d’alta una parcel·la o una zona de collita.,Primeiro dá de alta unha parcela ou unha zona de recolección.
+arom.primero_una_parcela,Primero da de alta una parcela.,Lehenik eman alta lursail bati.,Primer dona d’alta una parcel·la.,Primeiro dá de alta unha parcela.
+arom.primeros_pasos,Primeros pasos,Lehen urratsak,Primers passos,Primeiros pasos
+arom.primeros_pasos_texto,"Da de alta una parcela de cultivo o una zona de recolección con su permiso. Después apunta las cosechas, los secados y las destilaciones: la app calcula los rendimientos y crea los lotes.","Eman alta laborantza lursail bati edo bilketa eremu bati bere baimenarekin. Gero idatzi uztak, lehortzeak eta distilazioak: aplikazioak errendimenduak kalkulatzen ditu eta loteak sortzen ditu.","Dona d’alta una parcel·la de cultiu o una zona de collita amb el seu permís. Després anota les collites, els assecatges i les destil·lacions: l’app calcula els rendiments i crea els lots.","Dá de alta unha parcela de cultivo ou unha zona de recolección co seu permiso. Despois anota as colleitas, os secados e as destilacións: a app calcula os rendementos e crea os lotes."
+arom.problema_fitosanitario,Plaga o problema,Izurritea edo arazoa,Plaga o problema,Praga ou problema
+arom.recolector,Quién recolecta,Nork biltzen du,Qui cull,Quen recolle
+arom.regadio,Regadío,Ureztatua,Regadiu,Regadío
+arom.registro_explotacion,Registro de explotación,Ustiategiaren erregistroa,Registre d’explotació,Rexistro de explotación
+arom.registro_sanitario,Registro sanitario (si lo tienes),Osasun erregistroa (baduzu),Registre sanitari (si en tens),Rexistro sanitario (se o tes)
+arom.registro_sanitario_ayuda,Si hace falta depende del destino: por verificar con un asesor,Behar den ala ez helmugaren araberakoa da: aholkulariarekin egiaztatzeko,Si cal depèn de la destinació: per verificar amb un assessor,Se fai falta depende do destino: por verificar cun asesor
+arom.rend_dentro,dentro de lo orientativo,gutxi gorabeherakoaren barruan,dins de l’orientatiu,dentro do orientativo
+arom.rend_por_debajo,por debajo de lo orientativo,gutxi gorabeherakoaren azpitik,per sota de l’orientatiu,por debaixo do orientativo
+arom.rend_por_encima,por encima de lo orientativo,gutxi gorabeherakoaren gainetik,per sobre de l’orientatiu,por riba do orientativo
+arom.rendimiento_aceite,{ml} ml/kg,{ml} ml/kg,{ml} ml/kg,{ml} ml/kg
+arom.rendimiento_por_especie,Rendimiento por especie este año,Errendimendua espezieka aurten,Rendiment per espècie aquest any,Rendemento por especie este ano
+arom.rendimiento_secado,{pct} kg secos por 100 kg,{pct} kg lehor 100 kg-ko,{pct} kg secs per 100 kg,{pct} kg secos por 100 kg
+arom.resumen_destilacion,{n} destilaciones · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l de hidrolato,{n} distilazio · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l hidrolato,{n} destil·lacions · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l d’hidrolat,{n} destilacións · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l de hidrolato
+arom.revisa_antes_de_guardar,Revisa antes de guardar,Berrikusi gorde aurretik,Revisa-ho abans de desar,Revisa antes de gardar
+arom.secado_el,Secado desde el {fecha},{fecha}(e)tik lehortua,Assecat des del {fecha},Secado desde o {fecha}
+arom.secado_otro,Otro,Bestelakoa,Altre,Outro
+arom.secado_secadero_aire,Secadero de aire,Aire lehorgailua,Assecador d’aire,Secadoiro de aire
+arom.secado_secadero_calor,Secadero con calor,Bero lehorgailua,Assecador amb calor,Secadoiro con calor
+arom.secado_sombra_natural,A la sombra,Itzalean,A l’ombra,Á sombra
+arom.secados,Secados,Lehortzeak,Assecatges,Secados
+arom.sigpac_ayuda,Provincia:municipio:agregado:zona:polígono:parcela:recinto,Probintzia:udalerria:agregatua:zona:poligonoa:lursaila:esparrua,Província:municipi:agregat:zona:polígon:parcel·la:recinte,Provincia:concello:agregado:zona:polígono:parcela:recinto
+arom.silvestre,Silvestre,Basatia,Silvestre,Silvestre
+arom.sin_cosechas,Aún no hay cosechas este año.,Oraindik ez dago uztarik aurten.,Encara no hi ha collites aquest any.,Aínda non hai colleitas este ano.
+arom.sin_cosechas_de_especie,No hay cosechas de esta especie: puedes poner los kg a mano.,Ez dago espezie honen uztarik: kg-ak eskuz jar ditzakezu.,No hi ha collites d’aquesta espècie: pots posar els kg a mà.,Non hai colleitas desta especie: podes poñer os kg a man.
+arom.sin_lotes,Aún no hay lotes. Se crean al guardar un secado o una destilación.,Oraindik ez dago loterik. Lehortze edo distilazio bat gordetzean sortzen dira.,Encara no hi ha lots. Es creen en desar un assecatge o una destil·lació.,Aínda non hai lotes. Créanse ao gardar un secado ou unha destilación.
+arom.sin_parcelas,Sin parcelas de cultivo.,Laborantza lursailik gabe.,Sense parcel·les de cultiu.,Sen parcelas de cultivo.
+arom.sin_permiso_apuntado,Sin permiso apuntado,Baimenik idatzi gabe,Sense permís anotat,Sen permiso anotado
+arom.sin_procesos,Aún no hay secados ni destilaciones este año.,Oraindik ez dago lehortze edo distilaziorik aurten.,Encara no hi ha assecatges ni destil·lacions aquest any.,Aínda non hai secados nin destilacións este ano.
+arom.sin_tratamientos,Sin tratamientos este año.,Tratamendurik gabe aurten.,Sense tractaments aquest any.,Sen tratamentos este ano.
+arom.sin_ubicacion,Sin ubicación,Kokapenik gabe,Sense ubicació,Sen localización
+arom.sin_zonas,Sin zonas de recolección silvestre.,Bilketa basatiko eremurik gabe.,Sense zones de collita silvestre.,Sen zonas de recolección silvestre.
+arom.suma_cosechas,Suma de las cosechas marcadas: {kg} kg,Markatutako uzten batura: {kg} kg,Suma de les collites marcades: {kg} kg,Suma das colleitas marcadas: {kg} kg
+arom.superficie_ha,Superficie (ha),Azalera (ha),Superfície (ha),Superficie (ha)
+arom.superficie_tratada_ha,Superficie tratada (ha),Tratatutako azalera (ha),Superfície tractada (ha),Superficie tratada (ha)
+arom.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+arom.taller,Taller,Lantegia,Taller,Obradoiro
+arom.temperatura_maxima,Temperatura máxima (°C),Gehieneko tenperatura (°C),Temperatura màxima (°C),Temperatura máxima (°C)
+arom.terreno_monte_privado,Monte privado,Mendi pribatua,Forest privat,Monte privado
+arom.terreno_monte_publico,Monte público,Mendi publikoa,Forest públic,Monte público
+arom.terreno_otro,Otro,Bestelakoa,Altre,Outro
+arom.tipo_alambique,Tipo de alambique,Alanbike mota,Tipus d’alambí,Tipo de alambique
+arom.tipo_terreno,Terreno,Lurra,Terreny,Terreo
 arom.titular,Titular,Titularra,Titular,Titular
+arom.titular_terreno,Titular del terreno,Lurraren titularra,Titular del terreny,Titular do terreo
+arom.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
+arom.trazabilidad,De dónde sale,Nondik dator,D’on surt,De onde sae
+arom.ubicacion,Ubicación,Kokapena,Ubicació,Localización
+arom.usar_mi_ubicacion,Usar mi ubicación,Nire kokapena erabili,Fes servir la meva ubicació,Usar a miña localización
+arom.zona_aviso_normativa,La app no decide si necesitas permiso: lo fija tu comunidad autónoma (Ley 42/2007 y su normativa). Apunta aquí lo que diga tu autorización y consulta el catálogo de flora protegida de tu comunidad.,Aplikazioak ez du erabakitzen baimena behar duzun: zure autonomia erkidegoak finkatzen du (42/2007 Legea eta bere araudia). Idatzi hemen zure baimenak dioena eta kontsultatu zure erkidegoko flora babestuaren katalogoa.,L’app no decideix si necessites permís: ho fixa la teva comunitat autònoma (Llei 42/2007 i la seva normativa). Anota aquí el que digui la teva autorització i consulta el catàleg de flora protegida de la teva comunitat.,A app non decide se precisas permiso: fíxao a túa comunidade autónoma (Lei 42/2007 e a súa normativa). Anota aquí o que diga a túa autorización e consulta o catálogo de flora protexida da túa comunidade.
+arom.zonas,Zonas,Eremuak,Zones,Zonas
+arom.zonas_explicacion,Zonas de recolección silvestre con su permiso. Rojo: sin permiso o fuera de vigencia hoy.,Bilketa basatiko eremuak beren baimenarekin. Gorria: baimenik gabe edo gaur indarraldiz kanpo.,Zones de collita silvestre amb el seu permís. Vermell: sense permís o fora de vigència avui.,Zonas de recolección silvestre co seu permiso. Vermello: sen permiso ou fóra de vixencia hoxe.

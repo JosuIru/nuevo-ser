@@ -14,7 +14,6 @@ import '../modelos/partida_manzana.dart';
 import '../modelos/sagardotegi.dart';
 import '../modelos/tratamiento.dart';
 import '../utiles/textos_sidra.dart';
-import 'hoja_formulario.dart';
 import 'pantalla_bienvenida.dart';
 import 'pantalla_kupela.dart';
 import 'pantalla_partidas.dart';

@@ -2900,6 +2900,11 @@ class SoleraL10n {
     'fos.mapa_meteo_desconocido',
     'fos.mapa_cueva_sin_nombre',
     'fos.mapa_bocamina_sin_nombre',
+    'frut.bienvenida',
+    'frut.guardado',
+    'frut.hoy',
+    'frut.nombre_titular',
+    'frut.titular',
     'nat.ajus_cabecera_titulo',
     'nat.ajus_cabecera_sub',
     'nat.ajus_explorar_mapa_sub',
@@ -3238,6 +3243,11 @@ class SoleraL10n {
     'nat.mapa_sin_especie',
     'nat.mapa_anotaciones_margen',
     'nat.mapa_sin_anotaciones',
+    'obra.bienvenida',
+    'obra.guardado',
+    'obra.hoy',
+    'obra.nombre_titular',
+    'obra.titular',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -3622,6 +3632,11 @@ class SoleraL10n {
     'ques.y_n_mas',
     'ques.zona_geografica',
     'ques.hoy_nada_pendiente',
+    'sidr.bienvenida',
+    'sidr.guardado',
+    'sidr.hoy',
+    'sidr.nombre_titular',
+    'sidr.titular',
     'viti.a_ingresar_hacienda_303',
     'viti.aceptar_y_rellenar',
     'viti.acerca_ayuda',
@@ -7042,6 +7057,11 @@ class SoleraL10n {
           'fos.mapa_meteo_desconocido',
           'fos.mapa_cueva_sin_nombre',
           'fos.mapa_bocamina_sin_nombre',
+          'frut.bienvenida',
+          'frut.guardado',
+          'frut.hoy',
+          'frut.nombre_titular',
+          'frut.titular',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -7380,6 +7400,11 @@ class SoleraL10n {
           'nat.mapa_sin_especie',
           'nat.mapa_anotaciones_margen',
           'nat.mapa_sin_anotaciones',
+          'obra.bienvenida',
+          'obra.guardado',
+          'obra.hoy',
+          'obra.nombre_titular',
+          'obra.titular',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -7764,6 +7789,11 @@ class SoleraL10n {
           'ques.y_n_mas',
           'ques.zona_geografica',
           'ques.hoy_nada_pendiente',
+          'sidr.bienvenida',
+          'sidr.guardado',
+          'sidr.hoy',
+          'sidr.nombre_titular',
+          'sidr.titular',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -11181,6 +11211,11 @@ class SoleraL10n {
           'fos.mapa_meteo_desconocido',
           'fos.mapa_cueva_sin_nombre',
           'fos.mapa_bocamina_sin_nombre',
+          'frut.bienvenida',
+          'frut.guardado',
+          'frut.hoy',
+          'frut.nombre_titular',
+          'frut.titular',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -11519,6 +11554,11 @@ class SoleraL10n {
           'nat.mapa_sin_especie',
           'nat.mapa_anotaciones_margen',
           'nat.mapa_sin_anotaciones',
+          'obra.bienvenida',
+          'obra.guardado',
+          'obra.hoy',
+          'obra.nombre_titular',
+          'obra.titular',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -11903,6 +11943,11 @@ class SoleraL10n {
           'ques.y_n_mas',
           'ques.zona_geografica',
           'ques.hoy_nada_pendiente',
+          'sidr.bienvenida',
+          'sidr.guardado',
+          'sidr.hoy',
+          'sidr.nombre_titular',
+          'sidr.titular',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -15320,6 +15365,11 @@ class SoleraL10n {
           'fos.mapa_meteo_desconocido',
           'fos.mapa_cueva_sin_nombre',
           'fos.mapa_bocamina_sin_nombre',
+          'frut.bienvenida',
+          'frut.guardado',
+          'frut.hoy',
+          'frut.nombre_titular',
+          'frut.titular',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -15658,6 +15708,11 @@ class SoleraL10n {
           'nat.mapa_sin_especie',
           'nat.mapa_anotaciones_margen',
           'nat.mapa_sin_anotaciones',
+          'obra.bienvenida',
+          'obra.guardado',
+          'obra.hoy',
+          'obra.nombre_titular',
+          'obra.titular',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -16042,6 +16097,11 @@ class SoleraL10n {
           'ques.y_n_mas',
           'ques.zona_geografica',
           'ques.hoy_nada_pendiente',
+          'sidr.bienvenida',
+          'sidr.guardado',
+          'sidr.hoy',
+          'sidr.nombre_titular',
+          'sidr.titular',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -19482,6 +19542,11 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Desconocido';
       case 'fos.mapa_cueva_sin_nombre': return 'Cueva sin nombre';
       case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sin nombre';
+      case 'frut.bienvenida': return 'Primera versión en construcción.';
+      case 'frut.guardado': return 'Guardado';
+      case 'frut.hoy': return 'Hoy';
+      case 'frut.nombre_titular': return 'Nombre del titular';
+      case 'frut.titular': return 'Titular';
       case 'nat.ajus_cabecera_titulo': return 'Cuaderno de campo de naturaleza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende y convive con la biodiversidad que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies y observaciones';
@@ -19820,6 +19885,11 @@ class SoleraL10n {
       case 'nat.mapa_sin_especie': return 'Sin especie';
       case 'nat.mapa_anotaciones_margen': return 'Anotaciones al margen';
       case 'nat.mapa_sin_anotaciones': return 'Sin anotaciones todavía. Úsalas para revisar la salida días después: dudas, correcciones, conexiones.';
+      case 'obra.bienvenida': return 'Primera versión en construcción.';
+      case 'obra.guardado': return 'Guardado';
+      case 'obra.hoy': return 'Hoy';
+      case 'obra.nombre_titular': return 'Nombre del titular';
+      case 'obra.titular': return 'Titular';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -20204,6 +20274,11 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… y {n} más';
       case 'ques.zona_geografica': return 'Zona geográfica';
       case 'ques.hoy_nada_pendiente': return 'Nada pendiente para hoy';
+      case 'sidr.bienvenida': return 'Primera versión en construcción.';
+      case 'sidr.guardado': return 'Guardado';
+      case 'sidr.hoy': return 'Hoy';
+      case 'sidr.nombre_titular': return 'Nombre del titular';
+      case 'sidr.titular': return 'Titular';
       case 'viti.a_ingresar_hacienda_303': return 'A ingresar en Hacienda (modelo 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Aceptar y rellenar';
       case 'viti.acerca_ayuda': return 'Versión, créditos, compromisos legales';
@@ -23625,6 +23700,11 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Ezezaguna';
       case 'fos.mapa_cueva_sin_nombre': return 'Izenik gabeko haitzuloa';
       case 'fos.mapa_bocamina_sin_nombre': return 'Izenik gabeko meategi-ahoa';
+      case 'frut.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
+      case 'frut.guardado': return 'Gordeta';
+      case 'frut.hoy': return 'Gaur';
+      case 'frut.nombre_titular': return 'Titularraren izena';
+      case 'frut.titular': return 'Titularra';
       case 'nat.ajus_cabecera_titulo': return 'Naturako landa-koadernoa';
       case 'nat.ajus_cabecera_sub': return 'Behatu, ikasi eta bizi zure inguruko biodibertsitatearekin batera';
       case 'nat.ajus_explorar_mapa_sub': return 'Espezieak eta behaketak';
@@ -23963,6 +24043,11 @@ class SoleraL10n {
       case 'nat.mapa_sin_especie': return 'Espezierik gabe';
       case 'nat.mapa_anotaciones_margen': return 'Marjinako oharrak';
       case 'nat.mapa_sin_anotaciones': return 'Oraindik ez dago oharrik. Erabili irteera egun batzuk geroago berrikusteko: zalantzak, zuzenketak, loturak.';
+      case 'obra.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
+      case 'obra.guardado': return 'Gordeta';
+      case 'obra.hoy': return 'Gaur';
+      case 'obra.nombre_titular': return 'Titularraren izena';
+      case 'obra.titular': return 'Titularra';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -24347,6 +24432,11 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… eta beste {n}';
       case 'ques.zona_geografica': return 'Eremu geografikoa';
       case 'ques.hoy_nada_pendiente': return 'Gaur ez dago ezer egiteko';
+      case 'sidr.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
+      case 'sidr.guardado': return 'Gordeta';
+      case 'sidr.hoy': return 'Gaur';
+      case 'sidr.nombre_titular': return 'Titularraren izena';
+      case 'sidr.titular': return 'Titularra';
       case 'viti.a_ingresar_hacienda_303': return 'Ogasunean sartzeko (303 eredua, hiruhilekoa)';
       case 'viti.aceptar_y_rellenar': return 'Onartu eta bete';
       case 'viti.acerca_ayuda': return 'Bertsioa, kredituak, lege-konpromisoak';
@@ -27768,6 +27858,11 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Desconegut';
       case 'fos.mapa_cueva_sin_nombre': return 'Cova sense nom';
       case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sense nom';
+      case 'frut.bienvenida': return 'Primera versió en construcció.';
+      case 'frut.guardado': return 'Desat';
+      case 'frut.hoy': return 'Avui';
+      case 'frut.nombre_titular': return 'Nom del titular';
+      case 'frut.titular': return 'Titular';
       case 'nat.ajus_cabecera_titulo': return 'Quadern de camp de natura';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprèn i conviu amb la biodiversitat que t\'envolta';
       case 'nat.ajus_explorar_mapa_sub': return 'Espècies i observacions';
@@ -28106,6 +28201,11 @@ class SoleraL10n {
       case 'nat.mapa_sin_especie': return 'Sense espècie';
       case 'nat.mapa_anotaciones_margen': return 'Anotacions al marge';
       case 'nat.mapa_sin_anotaciones': return 'Encara no hi ha anotacions. Fes-les servir per revisar la sortida dies després: dubtes, correccions, connexions.';
+      case 'obra.bienvenida': return 'Primera versió en construcció.';
+      case 'obra.guardado': return 'Desat';
+      case 'obra.hoy': return 'Avui';
+      case 'obra.nombre_titular': return 'Nom del titular';
+      case 'obra.titular': return 'Titular';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -28490,6 +28590,11 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… i {n} més';
       case 'ques.zona_geografica': return 'Zona geogràfica';
       case 'ques.hoy_nada_pendiente': return 'Res pendent per avui';
+      case 'sidr.bienvenida': return 'Primera versió en construcció.';
+      case 'sidr.guardado': return 'Desat';
+      case 'sidr.hoy': return 'Avui';
+      case 'sidr.nombre_titular': return 'Nom del titular';
+      case 'sidr.titular': return 'Titular';
       case 'viti.a_ingresar_hacienda_303': return 'A ingressar a Hisenda (model 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Acceptar i emplenar';
       case 'viti.acerca_ayuda': return 'Versió, crèdits, compromisos legals';
@@ -31911,6 +32016,11 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Descoñecido';
       case 'fos.mapa_cueva_sin_nombre': return 'Cova sen nome';
       case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sen nome';
+      case 'frut.bienvenida': return 'Primeira versión en construción.';
+      case 'frut.guardado': return 'Gardado';
+      case 'frut.hoy': return 'Hoxe';
+      case 'frut.nombre_titular': return 'Nome do titular';
+      case 'frut.titular': return 'Titular';
       case 'nat.ajus_cabecera_titulo': return 'Caderno de campo de natureza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende e convive coa biodiversidade que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies e observacións';
@@ -32249,6 +32359,11 @@ class SoleraL10n {
       case 'nat.mapa_sin_especie': return 'Sen especie';
       case 'nat.mapa_anotaciones_margen': return 'Anotacións á marxe';
       case 'nat.mapa_sin_anotaciones': return 'Aínda non hai anotacións. Úsaas para revisar a saída días despois: dúbidas, correccións, conexións.';
+      case 'obra.bienvenida': return 'Primeira versión en construción.';
+      case 'obra.guardado': return 'Gardado';
+      case 'obra.hoy': return 'Hoxe';
+      case 'obra.nombre_titular': return 'Nome do titular';
+      case 'obra.titular': return 'Titular';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';
@@ -32633,6 +32748,11 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… e {n} máis';
       case 'ques.zona_geografica': return 'Zona xeográfica';
       case 'ques.hoy_nada_pendiente': return 'Nada pendente para hoxe';
+      case 'sidr.bienvenida': return 'Primeira versión en construción.';
+      case 'sidr.guardado': return 'Gardado';
+      case 'sidr.hoy': return 'Hoxe';
+      case 'sidr.nombre_titular': return 'Nome do titular';
+      case 'sidr.titular': return 'Titular';
       case 'viti.a_ingresar_hacienda_303': return 'A ingresar en Facenda (modelo 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Aceptar e encher';
       case 'viti.acerca_ayuda': return 'Versión, créditos, compromisos legais';

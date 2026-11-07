@@ -1,0 +1,54 @@
+name: solera_frutal
+description: "Larrea Frutal — vertical de la suite Larrea (Colección Nuevo Ser)."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  geolocator: 12.0.0
+  permission_handler: ^11.3.1
+  image_picker: ^1.1.2
+  path_provider: ^2.1.4
+  path: ^1.9.0
+  sqflite: ^2.3.3
+  shared_preferences: ^2.3.2
+  http: ^1.2.2
+  share_plus: ^10.0.2
+  intl: ^0.19.0
+  pdf: ^3.11.1
+  printing: ^5.13.4
+  nuevo_ser_core:
+    path: ../../packages/nuevo_ser_core
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  sqflite_common_ffi: ^2.3.3
+
+flutter:
+  uses-material-design: true
+
+  # Letra del tema común Larrea (temaSolera del core). SIL OFL.
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: packages/nuevo_ser_core/fuentes/Poppins-SemiBold.ttf
+          weight: 600
+    - family: Inter
+      fonts:
+        - asset: packages/nuevo_ser_core/fuentes/Inter-Regular.ttf
+          weight: 400
+        - asset: packages/nuevo_ser_core/fuentes/Inter-Medium.ttf
+          weight: 500
+        - asset: packages/nuevo_ser_core/fuentes/Inter-SemiBold.ttf
+          weight: 600
+        - asset: packages/nuevo_ser_core/fuentes/Inter-Bold.ttf
+          weight: 700

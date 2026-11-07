@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/apicola/plagas_apicolas.csv
-// Generado: 2026-05-08
-// Filas: 17 (17 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: WOAH Manual cap. 3.2.7, WOAH Manual cap. 3.2.4, RD 1492/2009 + UE 2018/1882 clase D + WOAH cap. 3.2.2, WOAH Manual cap. 3.2.3 + verificar RD CCAA, WOAH Manual cap. 3.2.5, Bibliografía sanitaria apícola, WOAH Manual cap. 3.2.1, UE 2018/1882 clase A + WOAH cap. 3.2.6 + RD 1492/2009, UE 2018/1882 clase A + WOAH cap. 3.2.8, RD 630/2013 + Estrategia Nacional Vespa velutina MAPA, Ley 42/2007 Patrimonio Natural y Biodiversidad, Bibliografía apícola clásica
+// Generado: 2026-11-07
+// Filas: 17 (0 revisadas, 17 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR VETERINARIO APÍCOLA NI APICULTOR ASESOR.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-apicola && dart run tool/compilar_catalogos.dart
 
 /// Categoría de la incidencia apícola.
 enum TipoPlagaApicola { parasito, infeccion, plagaFisica, depredador, abiotico }

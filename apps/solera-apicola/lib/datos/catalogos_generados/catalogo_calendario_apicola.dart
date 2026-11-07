@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/apicola/calendario_apicola.csv
-// Generado: 2026-05-08
-// Filas: 36 (36 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: FEDAS + boletines técnicos cooperativas regionales
+// Generado: 2026-11-07
+// Filas: 36 (0 revisadas, 36 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR VETERINARIO APÍCOLA NI APICULTOR ASESOR.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-apicola && dart run tool/compilar_catalogos.dart
 
 /// Zona climática orientativa peninsular.
 /// Norte = Galicia/Cantábrica/Vasconia/Pirineos/Norte Castilla.

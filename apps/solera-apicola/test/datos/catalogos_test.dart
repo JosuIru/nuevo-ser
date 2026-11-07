@@ -174,12 +174,11 @@ void main() {
   });
 
   group('Flag de revisión global', () {
-    test('verdadero porque todas las filas tienen fuente pública trazable', () {
-      // Tras la curación con fuentes públicas (RD 1492/2009, WOAH Manual,
-      // RD 630/2013, AEMPS CIMA Vet, COLOSS), todas las filas tienen
-      // `revisado_por` rellenado. El veterinario apícola asesor cuando
-      // audite sustituirá la fuente pública por su nombre + nº colegiado.
-      expect(catalogosCompletamenteRevisados, isTrue);
+    test('falso mientras ninguna persona experta firme todas las filas', () {
+      // Solo cuenta como firma un `revisado_por` que empiece por `asesor:` o
+      // `persona:`. Una fuente pública, una cita o `revision-ia:` no retiran
+      // el banner de datos provisionales (ver scripts/pendientes/README.md).
+      expect(catalogosCompletamenteRevisados, isFalse);
     });
   });
 }

@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/apicola/razas_abeja.csv
-// Generado: 2026-05-08
-// Filas: 7 (7 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: COLOSS + Cánovas et al. 2008
+// Generado: 2026-11-07
+// Filas: 7 (0 revisadas, 7 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR VETERINARIO APÍCOLA NI APICULTOR ASESOR.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-apicola && dart run tool/compilar_catalogos.dart
 
 class RazaAbeja {
   final String id;

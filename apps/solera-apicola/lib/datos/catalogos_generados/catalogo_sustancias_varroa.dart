@@ -2,8 +2,11 @@
 //
 // Fuente: content/apicola/sustancias_varroa.csv
 // Generado: 2026-11-07
-// Filas: 8 (8 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023
+// Filas: 8 (0 revisadas, 8 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR VETERINARIO APÍCOLA NI APICULTOR ASESOR.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-apicola && dart run tool/compilar_catalogos.dart
 
 /// Familia química de la sustancia activa.
 enum FamiliaSustanciaVarroa { organica, sintetica, naturalAceiteEsencial }

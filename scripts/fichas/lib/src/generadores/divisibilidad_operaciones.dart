@@ -87,8 +87,9 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
   PlantillaFicha(
     idHabilidad: 'DIV.01',
     descripcion:
-        'Los múltiplos de un número son los que salen al multiplicarlo por 1, 2, 3, 4… '
-        'Los múltiplos de 4 son 4, 8, 12, 16… y no se acaban nunca.',
+        'Los múltiplos de un número son los que salen al multiplicarlo por 1, 2, 3, 4… y no se '
+        'acaban nunca.\n'
+        'Ejemplo: los múltiplos de 4 son 4, 8, 12, 16, 20…',
     preguntaExplicalo: '¿Por qué un número tiene infinitos múltiplos pero no infinitos divisores?',
     generar: (azar) {
       final numero = azar.entre(3, 15);
@@ -111,7 +112,8 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'DIV.02',
     descripcion:
         'Los divisores de un número son los que lo dividen exactamente, sin resto. Se buscan '
-        'por parejas: 18 = 1 × 18 = 2 × 9 = 3 × 6, así que sus divisores son 1, 2, 3, 6, 9 y 18.',
+        'por parejas.\n'
+        'Ejemplo: 18 = 1 × 18 = 2 × 9 = 3 × 6, así que sus divisores son 1, 2, 3, 6, 9 y 18.',
     preguntaExplicalo: '¿Cómo sabes que ya has encontrado todos los divisores de un número?',
     generar: (azar) {
       final numero = azar.elegir([12, 16, 18, 20, 24, 28, 30, 32, 36, 40, 42, 45, 48, 50, 60]);
@@ -126,7 +128,9 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'DIV.03',
     descripcion:
         'Un número es divisible entre 2 si acaba en cifra par; entre 5 si acaba en 0 o 5; '
-        'entre 10 si acaba en 0; y entre 3 si la suma de sus cifras es múltiplo de 3.',
+        'entre 10 si acaba en 0; y entre 3 si la suma de sus cifras es múltiplo de 3.\n'
+        'Ejemplo: 435 es divisible entre 5 (acaba en 5) y entre 3 (4 + 3 + 5 = 12), pero no entre '
+        '2 ni entre 10.',
     preguntaExplicalo: '¿Por qué crees que basta mirar la última cifra para saber si un número es par?',
     generar: (azar) => _rodearDivisibles(azar, azar.elegir([2, 3, 5, 10])),
   ),
@@ -134,7 +138,9 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'DIV.04',
     descripcion:
         'Divisible entre 4: sus dos últimas cifras forman un múltiplo de 4. Entre 9: la suma de '
-        'sus cifras es múltiplo de 9. Entre 6: es divisible entre 2 y entre 3 a la vez.',
+        'sus cifras es múltiplo de 9. Entre 6: es divisible entre 2 y entre 3 a la vez.\n'
+        'Ejemplo: 1716 es divisible entre 4 (16 lo es) y entre 6 (es par y 1 + 7 + 1 + 6 = 15), '
+        'pero no entre 9.',
     preguntaExplicalo: '¿Por qué para ser divisible entre 6 hay que serlo entre 2 y entre 3?',
     generar: (azar) => _rodearDivisibles(azar, azar.elegir([4, 6, 9]), maximo: 2000),
   ),
@@ -142,7 +148,8 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'DIV.05',
     descripcion:
         'Un número primo solo tiene dos divisores: el 1 y él mismo (2, 3, 5, 7, 11…). Si tiene '
-        'más, es compuesto. El 1 no es primo ni compuesto.',
+        'más, es compuesto. El 1 no es primo ni compuesto.\n'
+        'Ejemplo: 13 es primo (solo 1 y 13); 15 es compuesto (1, 3, 5 y 15).',
     preguntaExplicalo: '¿Por qué el 2 es el único número primo par?',
     generar: (azar) {
       final numeros = <int>{};
@@ -166,7 +173,9 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'DIV.06',
     descripcion:
         'El máximo común divisor (m.c.d.) de dos números es el mayor número que divide a los '
-        'dos. Sirve para repartir en grupos iguales lo más grandes posible.',
+        'dos. Sirve para repartir en grupos iguales lo más grandes posible.\n'
+        'Ejemplo: los divisores de 12 son 1, 2, 3, 4, 6 y 12; los de 18, 1, 2, 3, 6, 9 y 18. '
+        'm.c.d.(12, 18) = 6.',
     preguntaExplicalo: 'Pon un ejemplo de la vida real en el que necesites el m.c.d.',
     generar: (azar) {
       final comun = azar.entre(2, 9);
@@ -196,7 +205,8 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'DIV.07',
     descripcion:
         'El mínimo común múltiplo (m.c.m.) de dos números es el menor número (distinto de 0) '
-        'que es múltiplo de los dos. Sirve para saber cuándo vuelven a coincidir dos cosas.',
+        'que es múltiplo de los dos. Sirve para saber cuándo vuelven a coincidir dos cosas.\n'
+        'Ejemplo: múltiplos de 4: 4, 8, 12, 16…; de 6: 6, 12, 18… m.c.m.(4, 6) = 12.',
     preguntaExplicalo: '¿Por qué el m.c.m. de dos números nunca es menor que el mayor de ellos?',
     generar: (azar) {
       late int a, b;
@@ -224,7 +234,8 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'DIV.08',
     descripcion:
         'Descomponer en factores primos es escribir un número como producto de primos: se '
-        'divide entre 2, 3, 5, 7… hasta llegar a 1. 60 = 2^{2} · 3 · 5.',
+        'divide entre 2, 3, 5, 7… hasta llegar a 1.\n'
+        'Ejemplo: 60 : 2 = 30, 30 : 2 = 15, 15 : 3 = 5 y 5 : 5 = 1, así que 60 = 2^{2} · 3 · 5.',
     preguntaExplicalo: '¿Por qué cada número tiene una sola descomposición en factores primos?',
     generar: (azar) {
       final numero = azar.elegir([12, 18, 24, 30, 36, 40, 45, 48, 54, 60, 72, 84, 90, 100, 120, 150, 180]);
@@ -239,8 +250,10 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
   PlantillaFicha(
     idHabilidad: 'OP.01',
     descripcion:
-        'Cuando hay varias operaciones, primero se hace lo de dentro de los paréntesis, después '
-        'multiplicaciones y divisiones, y al final sumas y restas, de izquierda a derecha.',
+        'Cuando hay varias operaciones, primero se hace lo de dentro de los paréntesis; después, '
+        'multiplicaciones y divisiones; y al final, sumas y restas. Si hay varias del mismo '
+        'tipo, de izquierda a derecha.\n'
+        'Ejemplo: 3 + 4 × (5 − 3) = 3 + 4 × 2 = 3 + 8 = 11.',
     preguntaExplicalo: '¿Por qué crees que hace falta un orden acordado para hacer las operaciones?',
     generar: (azar) {
       final (expresion, valor) = _expresionJerarquia(azar);
@@ -256,7 +269,8 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'OP.02',
     descripcion:
         'Con fracciones el orden es el mismo: paréntesis, luego multiplicaciones y divisiones, '
-        'y al final sumas y restas. Simplifica cuando puedas para trabajar con números pequeños.',
+        'y al final sumas y restas. Simplifica cuando puedas para trabajar con números pequeños.\n'
+        'Ejemplo: 1/3 + 1/2 × 2/3 = 1/3 + 2/6 = 1/3 + 1/3 = 2/3.',
     preguntaExplicalo: '¿Qué error se comete si en 1/2 + 1/4 × 2 se suma primero? Explícalo.',
     generar: (azar) {
       Fraccion propia() {
@@ -268,7 +282,10 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
       final forma = azar.nextInt(3);
       final (expresion, valor) = switch (forma) {
         0 => ('${a.texto} + ${b.texto} × ${c.texto}', a + b * c),
-        1 => ('${a.texto} × ${b.texto} − ${c.texto}', a * b - c),
+        // En 6.º no hay negativos: si a × b no llega a c, se resta al revés.
+        1 => (a * b).compareTo(c) >= 0
+            ? ('${a.texto} × ${b.texto} − ${c.texto}', a * b - c)
+            : ('${c.texto} − ${a.texto} × ${b.texto}', c - a * b),
         _ => ('(${a.texto} + ${b.texto}) : ${c.texto}', (a + b) / c),
       };
       return Ejercicio(
@@ -283,29 +300,38 @@ final List<PlantillaFicha> plantillasDivisibilidadOperaciones = [
     idHabilidad: 'OP.03',
     descripcion:
         'Para operar con decimales y fracciones a la vez, pásalo todo a decimales o todo a '
-        'fracciones. 0,5 = 1/2, 0,25 = 1/4, 0,75 = 3/4, 0,2 = 1/5.',
+        'fracciones (0,5 = 1/2, 0,25 = 1/4, 0,75 = 3/4, 0,2 = 1/5) y respeta el orden de las '
+        'operaciones.\n'
+        'Ejemplo: 0,5 + 3/4 · 2 = 0,5 + 0,75 · 2 = 0,5 + 1,5 = 2.',
     preguntaExplicalo: '¿Cuándo te resulta más fácil pasar a fracciones y cuándo a decimales?',
     generar: (azar) {
       const fraccionesSencillas = [(1, 2), (1, 4), (3, 4), (1, 5), (2, 5), (3, 5), (1, 10), (3, 10)];
-      final (numerador, denominador) = azar.elegir(fraccionesSencillas);
-      final fraccion = Fraccion(numerador, denominador);
-      final decimal = azar.entre(1, 9) / 10 + azar.entre(0, 2);
-      final operacion = azar.nextInt(3);
-      final textoDecimal = formatearDecimal(decimal);
-      final (expresion, valor) = switch (operacion) {
-        0 => ('$textoDecimal + ${fraccion.texto}', decimal + fraccion.valor),
-        1 => ('${fraccion.texto} × $textoDecimal', fraccion.valor * decimal),
-        // La resta siempre con el mayor delante: nada de negativos aquí.
-        _ => decimal >= fraccion.valor
-            ? ('$textoDecimal − ${fraccion.texto}', decimal - fraccion.valor)
-            : ('${fraccion.texto} − $textoDecimal', fraccion.valor - decimal),
-      };
-      return Ejercicio(
-        enunciado: 'Calcula. Da el resultado como número decimal:',
-        destacado: '$expresion =',
-        solucion: formatearDecimal(valor, cifras: 3),
-        renglones: 3,
-      );
+      double decimalCorto() => azar.entre(1, 9) / 10 + azar.entre(0, 2);
+      // Siempre dos operaciones (la habilidad es combinarlas), sin
+      // negativos y sin resultados nulos.
+      while (true) {
+        final (numerador, denominador) = azar.elegir(fraccionesSencillas);
+        final fraccion = Fraccion(numerador, denominador);
+        final primero = decimalCorto();
+        final segundo = decimalCorto();
+        final natural = azar.entre(2, 5);
+        final f = fraccion.texto;
+        final p = formatearDecimal(primero);
+        final s = formatearDecimal(segundo);
+        final (expresion, valor) = switch (azar.nextInt(4)) {
+          0 => ('$p + $f · $s', primero + fraccion.valor * segundo),
+          1 => ('($p + $f) · $natural', (primero + fraccion.valor) * natural),
+          2 => ('$p · $natural − $f', primero * natural - fraccion.valor),
+          _ => ('$f · ($p − $s)', fraccion.valor * (primero - segundo)),
+        };
+        if (valor < 0.0005) continue;
+        return Ejercicio(
+          enunciado: 'Calcula. Da el resultado como número decimal:',
+          destacado: '$expresion =',
+          solucion: formatearDecimal(valor, cifras: 3),
+          renglones: 4,
+        );
+      }
     },
   ),
 ];

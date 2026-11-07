@@ -11,7 +11,7 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
 
 /// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
 /// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR', 'DEC', 'PROP'};
+const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP'};
 
 bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
 
@@ -288,6 +288,22 @@ void main() {
           final bici = RegExp(r'^Una bici cuesta (\d+) €').firstMatch(ejercicio.enunciado);
           if (bici != null) expect(int.parse(bici[1]!), greaterThanOrEqualTo(80));
         }
+      }
+    });
+
+    test('OP.02: en 6.º, ningún resultado negativo', () {
+      for (final ejercicio in _muestras('OP.02', semilla: 3, cantidad: 3000)) {
+        expect(ejercicio.solucion, isNot(startsWith('−')), reason: ejercicio.destacado);
+      }
+    });
+
+    test('OP.03: dos operaciones combinadas, sin negativos y nunca 0', () {
+      final operaciones = RegExp(r' [+−·] ');
+      for (final ejercicio in _muestras('OP.03', semilla: 3, cantidad: 3000)) {
+        final expresion = ejercicio.destacado!.replaceAll(' =', '');
+        expect(operaciones.allMatches(expresion).length, greaterThanOrEqualTo(2), reason: expresion);
+        expect(ejercicio.solucion, isNot(startsWith('−')), reason: expresion);
+        expect(ejercicio.solucion, isNot('0'), reason: expresion);
       }
     });
 

@@ -197,7 +197,7 @@ Alternativa más barata: **una sesión interactiva por vertical** (como se hizo 
 | V1 Obrador | ✅ bloques 1-11 (38 tests, APK release de 65 MB). Release de GitHub pendiente de push |
 | V2 Sidra | ✅ bloques 1-11, hechos por un agente e integrados (53 tests, APK release de 67,4 MB) |
 | V4 Ganadera | ✅ bloques 1-11, hechos por un agente e integrados (99 tests, APK release de 68,2 MB; build de Linux bloqueado por falta de `lld-21`). Copiado de Zunbeltz 92ade2b sin tocarla |
-| V7 Vivero | en curso (agente en worktree) |
+| V7 Vivero | ✅ bloques 1-11, hechos por un agente e integrados (75 tests, APK release de 80,3 MB) |
 | V8 Aromáticas | ✅ bloques 1-11, hechos por un agente e integrados (67 tests, APK release de 66,3 MB) |
 | V5 Huerta | en curso (agente en worktree) |
 | V6 Monte | en curso (agente en worktree) |

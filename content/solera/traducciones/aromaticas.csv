@@ -9,6 +9,7 @@ arom.aplicador,Aplicador,Aplikatzailea,Aplicador,Aplicador
 arom.asesor,Asesor GIP,GIP aholkularia,Assessor GIP,Asesor XIP
 arom.asesor_ropo,N.º ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l’assessor,N.º ROPO do asesor
 arom.aviso_confundibles,Se confunde con: {especies}. Comprueba la especie antes de recolectar.,Honekin nahas daiteke: {especies}. Egiaztatu espeziea bildu aurretik.,Es confon amb: {especies}. Comprova l’espècie abans de collir.,Confúndese con: {especies}. Comproba a especie antes de recoller.
+arom.aviso_documento_provisional,Documento PROVISIONAL: formato sin validar por un asesor. No acredita que se cumpla ninguna norma.,Behin-behineko dokumentua: formatua aholkulari batek balioztatu gabe. Ez du egiaztatzen inolako araurik betetzen denik.,Document PROVISIONAL: format sense validar per un assessor. No acredita que es compleixi cap norma.,Documento PROVISIONAL: formato sen validar por un asesor. Non acredita que se cumpra ningunha norma.
 arom.aviso_especie_no_incluida,Esta especie no figura en el permiso de la zona.,Espezie hau ez dago eremuko baimenean.,Aquesta espècie no figura al permís de la zona.,Esta especie non figura no permiso da zona.
 arom.aviso_especie_protegida,Especie con protección: no se recolecta sin autorización expresa de la comunidad autónoma.,Babestutako espeziea: ez da biltzen autonomia erkidegoaren berariazko baimenik gabe.,Espècie protegida: no es cull sense autorització expressa de la comunitat autònoma.,Especie protexida: non se recolle sen autorización expresa da comunidade autónoma.
 arom.aviso_fuera_vigencia,La fecha está fuera de la vigencia del permiso.,Data baimenaren indarraldietik kanpo dago.,La data és fora de la vigència del permís.,A data está fóra da vixencia do permiso.
@@ -33,6 +34,7 @@ arom.cosechas_del_anyo,{n} cosechas este año · {kg} kg frescos,{n} uzta aurten
 arom.cosechas_que_entran,Cosechas que entran,Sartzen diren uztak,Collites que hi entren,Colleitas que entran
 arom.crear_lote_planta_seca,Crear el lote de planta seca,Landare lehorraren lotea sortu,Crea el lot de planta seca,Crear o lote de planta seca
 arom.crear_lotes_destilacion,Crear los lotes de aceite esencial e hidrolato,Olio esentzialaren eta hidrolatoaren loteak sortu,Crea els lots d’oli essencial i d’hidrolat,Crear os lotes de aceite esencial e hidrolato
+arom.cuaderno_recoleccion,Cuaderno de cosechas y recolección,Uzta eta bilketa koadernoa,Quadern de collites i recol·lecció,Caderno de colleitas e recolección
 arom.cultivo,Cultivo,Laborantza,Cultiu,Cultivo
 arom.destilaciones,Destilaciones,Distilazioak,Destil·lacions,Destilacións
 arom.destilado_el,Destilado el {fecha},{fecha}(e)an distilatua,Destil·lat el {fecha},Destilado o {fecha}
@@ -43,6 +45,7 @@ arom.destino_otros_usos,Otros usos (químico),Beste erabilera batzuk (kimikoa),A
 arom.destino_por_verificar,"El régimen de cada destino (alimentario, cosmético o químico) está por verificar con un asesor.","Helmuga bakoitzaren araubidea (elikagaia, kosmetikoa edo kimikoa) aholkulari batekin egiaztatzeko dago.","El règim de cada destinació (alimentari, cosmètic o químic) està per verificar amb un assessor.","O réxime de cada destino (alimentario, cosmético ou químico) está por verificar cun asesor."
 arom.destino_sin_decidir,Sin decidir,Erabaki gabe,Sense decidir,Sen decidir
 arom.dias_secado,Días de secado,Lehortze egunak,Dies d’assecatge,Días de secado
+arom.documentos,Documentos,Dokumentuak,Documents,Documentos
 arom.dosis_aplicada,Dosis aplicada,Aplikatutako dosia,Dosi aplicada,Dose aplicada
 arom.ecologico,Ecológico,Ekologikoa,Ecològic,Ecolóxico
 arom.editar_cosecha,Editar cosecha,Uzta editatu,Edita la collita,Editar colleita
@@ -84,6 +87,7 @@ arom.kg_frescos,kg frescos,kg fresko,kg frescos,kg frescos
 arom.kg_planta,kg de planta,landare kg,kg de planta,kg de planta
 arom.kg_recolectados,{kg} kg recolectados,{kg} kg bilduta,{kg} kg collits,{kg} kg recollidos
 arom.kg_secos,kg secos,kg lehor,kg secs,kg secos
+arom.libro_destilacion,Libro de destilación y lotes,Distilazio eta lote liburua,Llibre de destil·lació i lots,Libro de destilación e lotes
 arom.limite_kg,Límite del permiso (kg frescos),Baimenaren muga (kg fresko),Límit del permís (kg frescos),Límite do permiso (kg frescos)
 arom.limite_kg_ayuda,Total de la vigencia; vacío si no lo fija,Indarraldi osoa; hutsik ez badu finkatzen,Total de la vigència; buit si no el fixa,Total da vixencia; baleiro se non o fixa
 arom.litros_hidrolato,Litros de hidrolato,Hidrolato litroak,Litres d’hidrolat,Litros de hidrolato
@@ -98,6 +102,7 @@ arom.metodo_secado,Método de secado,Lehortze metodoa,Mètode d’assecatge,Mét
 arom.ml_aceite,ml de aceite esencial,olio esentzial ml,ml d’oli essencial,ml de aceite esencial
 arom.municipio,Municipio,Udalerria,Municipi,Concello
 arom.nada_en_temporada,Ninguna de tus especies está en su época orientativa.,Zure espezieetako bat ere ez dago bere sasoian.,Cap de les teves espècies no és a la seva època orientativa.,Ningunha das túas especies está na súa época orientativa.
+arom.no,No,Ez,No,Non
 arom.no_se_puede_borrar,No se puede borrar: tiene registros que dependen de él.,Ezin da ezabatu: haren menpeko erregistroak ditu.,No es pot esborrar: té registres que en depenen.,Non se pode borrar: ten rexistros que dependen del.
 arom.nombre,Nombre,Izena,Nom,Nome
 arom.nombre_producto,Nombre del producto,Produktuaren izena,Nom del producte,Nome do produto
@@ -121,6 +126,42 @@ arom.origenes,parcelas y zonas,lursail eta eremu,parcel·les i zones,parcelas e 
 arom.parcela,Parcela,Lursaila,Parcel·la,Parcela
 arom.parcelas,Parcelas,Lursailak,Parcel·les,Parcelas
 arom.parte_recolectada,Parte recolectada,Bildutako zatia,Part collida,Parte recollida
+arom.pasaporte_lote,Pasaporte del lote,Lotearen pasaportea,Passaport del lot,Pasaporte do lote
+arom.pdf_aplicador_carnet,Aplicador / carné,Aplikatzailea / txartela,Aplicador / carnet,Aplicador / carné
+arom.pdf_aviso_pasaporte,"Ficha de trazabilidad del lote, PROVISIONAL. No es una etiqueta de venta: el etiquetado según el destino (alimentario, cosmético o químico) está por verificar con un asesor.","Lotearen trazabilitate fitxa, BEHIN-BEHINEKOA. Ez da salmenta etiketa bat: helmugaren araberako etiketatzea (elikagaia, kosmetikoa edo kimikoa) aholkulari batekin egiaztatzeko dago.","Fitxa de traçabilitat del lot, PROVISIONAL. No és una etiqueta de venda: l’etiquetatge segons la destinació (alimentari, cosmètic o químic) està per verificar amb un assessor.","Ficha de rastrexabilidade do lote, PROVISIONAL. Non é unha etiqueta de venda: o etiquetado segundo o destino (alimentario, cosmético ou químico) está por verificar cun asesor."
+arom.pdf_aviso_recoleccion,"Los permisos son los que apunta la persona titular. La app no decide si hace falta autorización: la da la comunidad autónoma (Ley 42/2007, art. 61, y su normativa).","Baimenak titularrak idatzitakoak dira. Aplikazioak ez du erabakitzen baimena behar den: autonomia erkidegoak ematen du (42/2007 Legea, 61. art., eta bere araudia).","Els permisos són els que anota la persona titular. L’app no decideix si cal autorització: la dona la comunitat autònoma (Llei 42/2007, art. 61, i la seva normativa).","Os permisos son os que anota a persoa titular. A app non decide se fai falta autorización: dáa a comunidade autónoma (Lei 42/2007, art. 61, e a súa normativa)."
+arom.pdf_aviso_registro_electronico,"Si se usan productos fitosanitarios, desde el 1-1-2027 el registro de tratamientos tiene que ser electrónico (RD 1311/2012, art. 16.1): este PDF no lo sustituye.","Produktu fitosanitarioak erabiltzen badira, 2027-1-1etik aurrera tratamenduen erregistroak elektronikoa izan behar du (1311/2012 EDa, 16.1 art.): PDF honek ez du ordezten.","Si s’utilitzen productes fitosanitaris, des de l’1-1-2027 el registre de tractaments ha de ser electrònic (RD 1311/2012, art. 16.1): aquest PDF no el substitueix.","Se se usan produtos fitosanitarios, desde o 1-1-2027 o rexistro de tratamentos ten que ser electrónico (RD 1311/2012, art. 16.1): este PDF non o substitúe."
+arom.pdf_aviso_unidades,"Los rendimientos orientativos (CTFC, en g/kg) se comparan con los ml/kg medidos tomando 1 ml ≈ 1 g: es una orientación, no una medida de calidad.","Gutxi gorabeherako errendimenduak (CTFC, g/kg-tan) neurtutako ml/kg-ekin alderatzen dira 1 ml ≈ 1 g hartuta: orientazio bat da, ez kalitate neurri bat.","Els rendiments orientatius (CTFC, en g/kg) es comparen amb els ml/kg mesurats prenent 1 ml ≈ 1 g: és una orientació, no una mesura de qualitat.","Os rendementos orientativos (CTFC, en g/kg) compáranse cos ml/kg medidos tomando 1 ml ≈ 1 g: é unha orientación, non unha medida de calidade."
+arom.pdf_avisos,Avisos,Oharrak,Avisos,Avisos
+arom.pdf_cantidad,Cantidad,Kopurua,Quantitat,Cantidade
+arom.pdf_cosechas_cultivo,Cosechas de cultivo,Laborantzako uztak,Collites de cultiu,Colleitas de cultivo
+arom.pdf_dias,Días,Egunak,Dies,Días
+arom.pdf_fechas_cosecha,Cosecha,Uzta,Collita,Colleita
+arom.pdf_kg_100,kg secos / 100 kg,kg lehor / 100 kg,kg secs / 100 kg,kg secos / 100 kg
+arom.pdf_kg_vigencia,kg en la vigencia,kg indarraldian,kg en la vigència,kg na vixencia
+arom.pdf_l_hidrolato,Hidrolato (l),Hidrolatoa (l),Hidrolat (l),Hidrolato (l)
+arom.pdf_limite_kg,Límite (kg),Muga (kg),Límit (kg),Límite (kg)
+arom.pdf_lote,Lote,Lotea,Lot,Lote
+arom.pdf_lote_a_mano,Apuntado a mano,Eskuz idatzia,Anotat a mà,Anotado a man
+arom.pdf_ml_aceite,Aceite (ml),Olioa (ml),Oli (ml),Aceite (ml)
+arom.pdf_orden,N.º,Zk.,Núm.,N.º
+arom.pdf_orientativo,Orientativo,Gutxi gorabehera,Orientatiu,Orientativo
+arom.pdf_orientativo_gkg,Orientativo (g/kg),Gutxi gorabehera (g/kg),Orientatiu (g/kg),Orientativo (g/kg)
+arom.pdf_origen_silvestre,Incluye planta silvestre,Landare basatia dauka,Inclou planta silvestre,Inclúe planta silvestre
+arom.pdf_parcelas,Parcelas de cultivo,Laborantza lursailak,Parcel·les de cultiu,Parcelas de cultivo
+arom.pdf_planta,Planta,Landarea,Planta,Planta
+arom.pdf_producto,Producto,Produktua,Producte,Produto
+arom.pdf_producto_registro,Producto / n.º registro,Produktua / erregistro zk.,Producte / núm. registre,Produto / n.º rexistro
+arom.pdf_queda,Queda,Geratzen da,Queda,Queda
+arom.pdf_recolecciones,Recolección silvestre,Bilketa basatia,Collita silvestre,Recolección silvestre
+arom.pdf_sin_cosechas_enlazadas,Sin cosechas enlazadas,Lotutako uztarik gabe,Sense collites enllaçades,Sen colleitas ligadas
+arom.pdf_sin_destilaciones,Sin destilaciones este año.,Distilaziorik gabe aurten.,Sense destil·lacions aquest any.,Sen destilacións este ano.
+arom.pdf_total_cultivo,Cosecha de cultivo: {kg} kg frescos,Laborantzako uzta: {kg} kg fresko,Collita de cultiu: {kg} kg frescos,Colleita de cultivo: {kg} kg frescos
+arom.pdf_total_destilado,Destilado: {kg} kg de planta → {ml} ml de aceite esencial,Distilatua: {kg} kg landare → {ml} ml olio esentzial,Destil·lat: {kg} kg de planta → {ml} ml d’oli essencial,Destilado: {kg} kg de planta → {ml} ml de aceite esencial
+arom.pdf_total_silvestre,Recolección silvestre: {kg} kg frescos,Bilketa basatia: {kg} kg fresko,Collita silvestre: {kg} kg frescos,Recolección silvestre: {kg} kg frescos
+arom.pdf_tratamientos,Tratamientos fitosanitarios,Tratamendu fitosanitarioak,Tractaments fitosanitaris,Tratamentos fitosanitarios
+arom.pdf_vigencia,Vigencia,Indarraldia,Vigència,Vixencia
+arom.pdf_zonas_permisos,Zonas de recolección y permisos,Bilketa eremuak eta baimenak,Zones de collita i permisos,Zonas de recolección e permisos
 arom.permiso,Permiso de recolección,Bilketa baimena,Permís de collita,Permiso de recolección
 arom.permiso_caducado_el,El permiso caducó el {fecha},Baimena {fecha}(e)an iraungi zen,El permís va caducar el {fecha},O permiso caducou o {fecha}
 arom.permiso_n,Permiso {numero},{numero} baimena,Permís {numero},Permiso {numero}
@@ -154,6 +195,7 @@ arom.secado_secadero_aire,Secadero de aire,Aire lehorgailua,Assecador d’aire,S
 arom.secado_secadero_calor,Secadero con calor,Bero lehorgailua,Assecador amb calor,Secadoiro con calor
 arom.secado_sombra_natural,A la sombra,Itzalean,A l’ombra,Á sombra
 arom.secados,Secados,Lehortzeak,Assecatges,Secados
+arom.si,Sí,Bai,Sí,Si
 arom.sigpac_ayuda,Provincia:municipio:agregado:zona:polígono:parcela:recinto,Probintzia:udalerria:agregatua:zona:poligonoa:lursaila:esparrua,Província:municipi:agregat:zona:polígon:parcel·la:recinte,Provincia:concello:agregado:zona:polígono:parcela:recinto
 arom.silvestre,Silvestre,Basatia,Silvestre,Silvestre
 arom.sin_cosechas,Aún no hay cosechas este año.,Oraindik ez dago uztarik aurten.,Encara no hi ha collites aquest any.,Aínda non hai colleitas este ano.
@@ -182,6 +224,7 @@ arom.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
 arom.trazabilidad,De dónde sale,Nondik dator,D’on surt,De onde sae
 arom.ubicacion,Ubicación,Kokapena,Ubicació,Localización
 arom.usar_mi_ubicacion,Usar mi ubicación,Nire kokapena erabili,Fes servir la meva ubicació,Usar a miña localización
+arom.zona,Zona,Eremua,Zona,Zona
 arom.zona_aviso_normativa,La app no decide si necesitas permiso: lo fija tu comunidad autónoma (Ley 42/2007 y su normativa). Apunta aquí lo que diga tu autorización y consulta el catálogo de flora protegida de tu comunidad.,Aplikazioak ez du erabakitzen baimena behar duzun: zure autonomia erkidegoak finkatzen du (42/2007 Legea eta bere araudia). Idatzi hemen zure baimenak dioena eta kontsultatu zure erkidegoko flora babestuaren katalogoa.,L’app no decideix si necessites permís: ho fixa la teva comunitat autònoma (Llei 42/2007 i la seva normativa). Anota aquí el que digui la teva autorització i consulta el catàleg de flora protegida de la teva comunitat.,A app non decide se precisas permiso: fíxao a túa comunidade autónoma (Lei 42/2007 e a súa normativa). Anota aquí o que diga a túa autorización e consulta o catálogo de flora protexida da túa comunidade.
 arom.zonas,Zonas,Eremuak,Zones,Zonas
 arom.zonas_explicacion,Zonas de recolección silvestre con su permiso. Rojo: sin permiso o fuera de vigencia hoy.,Bilketa basatiko eremuak beren baimenarekin. Gorria: baimenik gabe edo gaur indarraldiz kanpo.,Zones de collita silvestre amb el seu permís. Vermell: sense permís o fora de vigència avui.,Zonas de recolección silvestre co seu permiso. Vermello: sen permiso ou fóra de vixencia hoxe.

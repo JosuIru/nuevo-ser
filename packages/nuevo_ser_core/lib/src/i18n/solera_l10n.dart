@@ -2900,11 +2900,145 @@ class SoleraL10n {
     'fos.mapa_meteo_desconocido',
     'fos.mapa_cueva_sin_nombre',
     'fos.mapa_bocamina_sin_nombre',
+    'frut.abonado_cobertera',
+    'frut.abonado_fertirrigacion',
+    'frut.abonado_foliar',
+    'frut.abonado_fondo',
+    'frut.abonados',
+    'frut.anadir',
+    'frut.anyo_plantacion',
+    'frut.apicultor',
+    'frut.aplicador',
+    'frut.arboles_por_ha',
+    'frut.asesor',
+    'frut.asesor_ropo',
+    'frut.aviso_plazo_seguridad',
     'frut.bienvenida',
+    'frut.calibre',
+    'frut.campania',
+    'frut.cantidad_kg_ha',
+    'frut.carnet_aplicador',
+    'frut.catalogos_provisionales',
+    'frut.codigo_rega',
+    'frut.codigo_rega_ayuda',
+    'frut.codigo_sigpac',
+    'frut.colmenas_en_parcela',
+    'frut.colmenas_por_ha',
+    'frut.comunicada_seguro',
+    'frut.copiar_de_etiqueta',
+    'frut.cosecha',
+    'frut.cuaderno',
+    'frut.danio_estimado',
+    'frut.destino',
+    'frut.dosis_aplicada',
+    'frut.eficacia',
+    'frut.eficacia_buena',
+    'frut.eficacia_mala',
+    'frut.eficacia_regular',
+    'frut.entregas',
+    'frut.equipo_aplicacion',
+    'frut.error_cargar',
+    'frut.es_pedrisco',
+    'frut.es_polinizadora',
+    'frut.especie',
+    'frut.especie_almendro',
+    'frut.especie_avellano',
+    'frut.especie_castano',
+    'frut.especie_hueso',
+    'frut.especie_nogal',
+    'frut.especie_pepita',
+    'frut.especie_pistachero',
+    'frut.estado_fenologico',
+    'frut.etiqueta_fila',
+    'frut.etiqueta_fila_ayuda',
+    'frut.fecha',
+    'frut.fecha_entrada',
+    'frut.fecha_salida',
+    'frut.filas_variedades',
+    'frut.grano',
     'frut.guardado',
+    'frut.heladas',
+    'frut.horas',
     'frut.hoy',
+    'frut.humedad',
+    'frut.humedad_corta',
+    'frut.kg_cascara',
+    'frut.marco_ayuda',
+    'frut.marco_plantacion',
+    'frut.municipio',
+    'frut.n_arboles',
+    'frut.n_colmenas',
+    'frut.no_cosechar_hasta',
+    'frut.nombre',
+    'frut.nombre_producto',
     'frut.nombre_titular',
+    'frut.notas',
+    'frut.nueva_cosecha',
+    'frut.nueva_fila',
+    'frut.nueva_helada',
+    'frut.nueva_observacion',
+    'frut.nueva_parcela',
+    'frut.nuevo_abonado',
+    'frut.nuevo_contrato',
+    'frut.nuevo_riego',
+    'frut.nuevo_tratamiento',
+    'frut.numero_albaran',
+    'frut.numero_arboles',
+    'frut.numero_colmenas',
+    'frut.numero_registro',
+    'frut.observaciones',
+    'frut.origen_agua',
+    'frut.parcela',
+    'frut.parcela_con_registros',
+    'frut.parcelas',
+    'frut.parcelas_total',
+    'frut.plaga',
+    'frut.plazo_seguridad_dias',
+    'frut.plazos_abiertos',
+    'frut.polinizacion',
+    'frut.por_parcela',
+    'frut.precio_colmena',
+    'frut.primero_una_parcela',
+    'frut.primeros_pasos',
+    'frut.primeros_pasos_texto',
+    'frut.problema_fitosanitario',
+    'frut.recuento',
+    'frut.recuento_ayuda',
+    'frut.regadio',
+    'frut.registro_explotacion',
+    'frut.rendimiento',
+    'frut.rendimiento_ayuda',
+    'frut.rendimiento_grano',
+    'frut.riego_aspersion',
+    'frut.riego_goteo',
+    'frut.riego_superficie',
+    'frut.riegos',
+    'frut.riqueza_npk',
+    'frut.secano',
+    'frut.seguimiento_plagas',
+    'frut.sigpac_ayuda',
+    'frut.sin_comunicar_seguro',
+    'frut.sin_cosechas',
+    'frut.sin_filas',
+    'frut.sin_parcelas',
+    'frut.sin_parcelas_regadio',
+    'frut.sin_plazos_abiertos',
+    'frut.sin_registros',
+    'frut.supera_umbral',
+    'frut.superficie_ha',
+    'frut.superficie_tratada_ha',
+    'frut.sustancia_activa',
+    'frut.temperatura_minima',
+    'frut.tipo_abono',
     'frut.titular',
+    'frut.toda_explotacion',
+    'frut.tratamientos',
+    'frut.tratamientos_del_anyo',
+    'frut.ultimos_tratamientos',
+    'frut.umbral_lo_decides',
+    'frut.variedad',
+    'frut.variedad_principal',
+    'frut.volumen_m3',
     'nat.ajus_cabecera_titulo',
     'nat.ajus_cabecera_sub',
     'nat.ajus_explorar_mapa_sub',
@@ -7234,11 +7368,145 @@ class SoleraL10n {
           'fos.mapa_meteo_desconocido',
           'fos.mapa_cueva_sin_nombre',
           'fos.mapa_bocamina_sin_nombre',
+          'frut.abonado_cobertera',
+          'frut.abonado_fertirrigacion',
+          'frut.abonado_foliar',
+          'frut.abonado_fondo',
+          'frut.abonados',
+          'frut.anadir',
+          'frut.anyo_plantacion',
+          'frut.apicultor',
+          'frut.aplicador',
+          'frut.arboles_por_ha',
+          'frut.asesor',
+          'frut.asesor_ropo',
+          'frut.aviso_plazo_seguridad',
           'frut.bienvenida',
+          'frut.calibre',
+          'frut.campania',
+          'frut.cantidad_kg_ha',
+          'frut.carnet_aplicador',
+          'frut.catalogos_provisionales',
+          'frut.codigo_rega',
+          'frut.codigo_rega_ayuda',
+          'frut.codigo_sigpac',
+          'frut.colmenas_en_parcela',
+          'frut.colmenas_por_ha',
+          'frut.comunicada_seguro',
+          'frut.copiar_de_etiqueta',
+          'frut.cosecha',
+          'frut.cuaderno',
+          'frut.danio_estimado',
+          'frut.destino',
+          'frut.dosis_aplicada',
+          'frut.eficacia',
+          'frut.eficacia_buena',
+          'frut.eficacia_mala',
+          'frut.eficacia_regular',
+          'frut.entregas',
+          'frut.equipo_aplicacion',
+          'frut.error_cargar',
+          'frut.es_pedrisco',
+          'frut.es_polinizadora',
+          'frut.especie',
+          'frut.especie_almendro',
+          'frut.especie_avellano',
+          'frut.especie_castano',
+          'frut.especie_hueso',
+          'frut.especie_nogal',
+          'frut.especie_pepita',
+          'frut.especie_pistachero',
+          'frut.estado_fenologico',
+          'frut.etiqueta_fila',
+          'frut.etiqueta_fila_ayuda',
+          'frut.fecha',
+          'frut.fecha_entrada',
+          'frut.fecha_salida',
+          'frut.filas_variedades',
+          'frut.grano',
           'frut.guardado',
+          'frut.heladas',
+          'frut.horas',
           'frut.hoy',
+          'frut.humedad',
+          'frut.humedad_corta',
+          'frut.kg_cascara',
+          'frut.marco_ayuda',
+          'frut.marco_plantacion',
+          'frut.municipio',
+          'frut.n_arboles',
+          'frut.n_colmenas',
+          'frut.no_cosechar_hasta',
+          'frut.nombre',
+          'frut.nombre_producto',
           'frut.nombre_titular',
+          'frut.notas',
+          'frut.nueva_cosecha',
+          'frut.nueva_fila',
+          'frut.nueva_helada',
+          'frut.nueva_observacion',
+          'frut.nueva_parcela',
+          'frut.nuevo_abonado',
+          'frut.nuevo_contrato',
+          'frut.nuevo_riego',
+          'frut.nuevo_tratamiento',
+          'frut.numero_albaran',
+          'frut.numero_arboles',
+          'frut.numero_colmenas',
+          'frut.numero_registro',
+          'frut.observaciones',
+          'frut.origen_agua',
+          'frut.parcela',
+          'frut.parcela_con_registros',
+          'frut.parcelas',
+          'frut.parcelas_total',
+          'frut.plaga',
+          'frut.plazo_seguridad_dias',
+          'frut.plazos_abiertos',
+          'frut.polinizacion',
+          'frut.por_parcela',
+          'frut.precio_colmena',
+          'frut.primero_una_parcela',
+          'frut.primeros_pasos',
+          'frut.primeros_pasos_texto',
+          'frut.problema_fitosanitario',
+          'frut.recuento',
+          'frut.recuento_ayuda',
+          'frut.regadio',
+          'frut.registro_explotacion',
+          'frut.rendimiento',
+          'frut.rendimiento_ayuda',
+          'frut.rendimiento_grano',
+          'frut.riego_aspersion',
+          'frut.riego_goteo',
+          'frut.riego_superficie',
+          'frut.riegos',
+          'frut.riqueza_npk',
+          'frut.secano',
+          'frut.seguimiento_plagas',
+          'frut.sigpac_ayuda',
+          'frut.sin_comunicar_seguro',
+          'frut.sin_cosechas',
+          'frut.sin_filas',
+          'frut.sin_parcelas',
+          'frut.sin_parcelas_regadio',
+          'frut.sin_plazos_abiertos',
+          'frut.sin_registros',
+          'frut.supera_umbral',
+          'frut.superficie_ha',
+          'frut.superficie_tratada_ha',
+          'frut.sustancia_activa',
+          'frut.temperatura_minima',
+          'frut.tipo_abono',
           'frut.titular',
+          'frut.toda_explotacion',
+          'frut.tratamientos',
+          'frut.tratamientos_del_anyo',
+          'frut.ultimos_tratamientos',
+          'frut.umbral_lo_decides',
+          'frut.variedad',
+          'frut.variedad_principal',
+          'frut.volumen_m3',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -11565,11 +11833,145 @@ class SoleraL10n {
           'fos.mapa_meteo_desconocido',
           'fos.mapa_cueva_sin_nombre',
           'fos.mapa_bocamina_sin_nombre',
+          'frut.abonado_cobertera',
+          'frut.abonado_fertirrigacion',
+          'frut.abonado_foliar',
+          'frut.abonado_fondo',
+          'frut.abonados',
+          'frut.anadir',
+          'frut.anyo_plantacion',
+          'frut.apicultor',
+          'frut.aplicador',
+          'frut.arboles_por_ha',
+          'frut.asesor',
+          'frut.asesor_ropo',
+          'frut.aviso_plazo_seguridad',
           'frut.bienvenida',
+          'frut.calibre',
+          'frut.campania',
+          'frut.cantidad_kg_ha',
+          'frut.carnet_aplicador',
+          'frut.catalogos_provisionales',
+          'frut.codigo_rega',
+          'frut.codigo_rega_ayuda',
+          'frut.codigo_sigpac',
+          'frut.colmenas_en_parcela',
+          'frut.colmenas_por_ha',
+          'frut.comunicada_seguro',
+          'frut.copiar_de_etiqueta',
+          'frut.cosecha',
+          'frut.cuaderno',
+          'frut.danio_estimado',
+          'frut.destino',
+          'frut.dosis_aplicada',
+          'frut.eficacia',
+          'frut.eficacia_buena',
+          'frut.eficacia_mala',
+          'frut.eficacia_regular',
+          'frut.entregas',
+          'frut.equipo_aplicacion',
+          'frut.error_cargar',
+          'frut.es_pedrisco',
+          'frut.es_polinizadora',
+          'frut.especie',
+          'frut.especie_almendro',
+          'frut.especie_avellano',
+          'frut.especie_castano',
+          'frut.especie_hueso',
+          'frut.especie_nogal',
+          'frut.especie_pepita',
+          'frut.especie_pistachero',
+          'frut.estado_fenologico',
+          'frut.etiqueta_fila',
+          'frut.etiqueta_fila_ayuda',
+          'frut.fecha',
+          'frut.fecha_entrada',
+          'frut.fecha_salida',
+          'frut.filas_variedades',
+          'frut.grano',
           'frut.guardado',
+          'frut.heladas',
+          'frut.horas',
           'frut.hoy',
+          'frut.humedad',
+          'frut.humedad_corta',
+          'frut.kg_cascara',
+          'frut.marco_ayuda',
+          'frut.marco_plantacion',
+          'frut.municipio',
+          'frut.n_arboles',
+          'frut.n_colmenas',
+          'frut.no_cosechar_hasta',
+          'frut.nombre',
+          'frut.nombre_producto',
           'frut.nombre_titular',
+          'frut.notas',
+          'frut.nueva_cosecha',
+          'frut.nueva_fila',
+          'frut.nueva_helada',
+          'frut.nueva_observacion',
+          'frut.nueva_parcela',
+          'frut.nuevo_abonado',
+          'frut.nuevo_contrato',
+          'frut.nuevo_riego',
+          'frut.nuevo_tratamiento',
+          'frut.numero_albaran',
+          'frut.numero_arboles',
+          'frut.numero_colmenas',
+          'frut.numero_registro',
+          'frut.observaciones',
+          'frut.origen_agua',
+          'frut.parcela',
+          'frut.parcela_con_registros',
+          'frut.parcelas',
+          'frut.parcelas_total',
+          'frut.plaga',
+          'frut.plazo_seguridad_dias',
+          'frut.plazos_abiertos',
+          'frut.polinizacion',
+          'frut.por_parcela',
+          'frut.precio_colmena',
+          'frut.primero_una_parcela',
+          'frut.primeros_pasos',
+          'frut.primeros_pasos_texto',
+          'frut.problema_fitosanitario',
+          'frut.recuento',
+          'frut.recuento_ayuda',
+          'frut.regadio',
+          'frut.registro_explotacion',
+          'frut.rendimiento',
+          'frut.rendimiento_ayuda',
+          'frut.rendimiento_grano',
+          'frut.riego_aspersion',
+          'frut.riego_goteo',
+          'frut.riego_superficie',
+          'frut.riegos',
+          'frut.riqueza_npk',
+          'frut.secano',
+          'frut.seguimiento_plagas',
+          'frut.sigpac_ayuda',
+          'frut.sin_comunicar_seguro',
+          'frut.sin_cosechas',
+          'frut.sin_filas',
+          'frut.sin_parcelas',
+          'frut.sin_parcelas_regadio',
+          'frut.sin_plazos_abiertos',
+          'frut.sin_registros',
+          'frut.supera_umbral',
+          'frut.superficie_ha',
+          'frut.superficie_tratada_ha',
+          'frut.sustancia_activa',
+          'frut.temperatura_minima',
+          'frut.tipo_abono',
           'frut.titular',
+          'frut.toda_explotacion',
+          'frut.tratamientos',
+          'frut.tratamientos_del_anyo',
+          'frut.ultimos_tratamientos',
+          'frut.umbral_lo_decides',
+          'frut.variedad',
+          'frut.variedad_principal',
+          'frut.volumen_m3',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -15896,11 +16298,145 @@ class SoleraL10n {
           'fos.mapa_meteo_desconocido',
           'fos.mapa_cueva_sin_nombre',
           'fos.mapa_bocamina_sin_nombre',
+          'frut.abonado_cobertera',
+          'frut.abonado_fertirrigacion',
+          'frut.abonado_foliar',
+          'frut.abonado_fondo',
+          'frut.abonados',
+          'frut.anadir',
+          'frut.anyo_plantacion',
+          'frut.apicultor',
+          'frut.aplicador',
+          'frut.arboles_por_ha',
+          'frut.asesor',
+          'frut.asesor_ropo',
+          'frut.aviso_plazo_seguridad',
           'frut.bienvenida',
+          'frut.calibre',
+          'frut.campania',
+          'frut.cantidad_kg_ha',
+          'frut.carnet_aplicador',
+          'frut.catalogos_provisionales',
+          'frut.codigo_rega',
+          'frut.codigo_rega_ayuda',
+          'frut.codigo_sigpac',
+          'frut.colmenas_en_parcela',
+          'frut.colmenas_por_ha',
+          'frut.comunicada_seguro',
+          'frut.copiar_de_etiqueta',
+          'frut.cosecha',
+          'frut.cuaderno',
+          'frut.danio_estimado',
+          'frut.destino',
+          'frut.dosis_aplicada',
+          'frut.eficacia',
+          'frut.eficacia_buena',
+          'frut.eficacia_mala',
+          'frut.eficacia_regular',
+          'frut.entregas',
+          'frut.equipo_aplicacion',
+          'frut.error_cargar',
+          'frut.es_pedrisco',
+          'frut.es_polinizadora',
+          'frut.especie',
+          'frut.especie_almendro',
+          'frut.especie_avellano',
+          'frut.especie_castano',
+          'frut.especie_hueso',
+          'frut.especie_nogal',
+          'frut.especie_pepita',
+          'frut.especie_pistachero',
+          'frut.estado_fenologico',
+          'frut.etiqueta_fila',
+          'frut.etiqueta_fila_ayuda',
+          'frut.fecha',
+          'frut.fecha_entrada',
+          'frut.fecha_salida',
+          'frut.filas_variedades',
+          'frut.grano',
           'frut.guardado',
+          'frut.heladas',
+          'frut.horas',
           'frut.hoy',
+          'frut.humedad',
+          'frut.humedad_corta',
+          'frut.kg_cascara',
+          'frut.marco_ayuda',
+          'frut.marco_plantacion',
+          'frut.municipio',
+          'frut.n_arboles',
+          'frut.n_colmenas',
+          'frut.no_cosechar_hasta',
+          'frut.nombre',
+          'frut.nombre_producto',
           'frut.nombre_titular',
+          'frut.notas',
+          'frut.nueva_cosecha',
+          'frut.nueva_fila',
+          'frut.nueva_helada',
+          'frut.nueva_observacion',
+          'frut.nueva_parcela',
+          'frut.nuevo_abonado',
+          'frut.nuevo_contrato',
+          'frut.nuevo_riego',
+          'frut.nuevo_tratamiento',
+          'frut.numero_albaran',
+          'frut.numero_arboles',
+          'frut.numero_colmenas',
+          'frut.numero_registro',
+          'frut.observaciones',
+          'frut.origen_agua',
+          'frut.parcela',
+          'frut.parcela_con_registros',
+          'frut.parcelas',
+          'frut.parcelas_total',
+          'frut.plaga',
+          'frut.plazo_seguridad_dias',
+          'frut.plazos_abiertos',
+          'frut.polinizacion',
+          'frut.por_parcela',
+          'frut.precio_colmena',
+          'frut.primero_una_parcela',
+          'frut.primeros_pasos',
+          'frut.primeros_pasos_texto',
+          'frut.problema_fitosanitario',
+          'frut.recuento',
+          'frut.recuento_ayuda',
+          'frut.regadio',
+          'frut.registro_explotacion',
+          'frut.rendimiento',
+          'frut.rendimiento_ayuda',
+          'frut.rendimiento_grano',
+          'frut.riego_aspersion',
+          'frut.riego_goteo',
+          'frut.riego_superficie',
+          'frut.riegos',
+          'frut.riqueza_npk',
+          'frut.secano',
+          'frut.seguimiento_plagas',
+          'frut.sigpac_ayuda',
+          'frut.sin_comunicar_seguro',
+          'frut.sin_cosechas',
+          'frut.sin_filas',
+          'frut.sin_parcelas',
+          'frut.sin_parcelas_regadio',
+          'frut.sin_plazos_abiertos',
+          'frut.sin_registros',
+          'frut.supera_umbral',
+          'frut.superficie_ha',
+          'frut.superficie_tratada_ha',
+          'frut.sustancia_activa',
+          'frut.temperatura_minima',
+          'frut.tipo_abono',
           'frut.titular',
+          'frut.toda_explotacion',
+          'frut.tratamientos',
+          'frut.tratamientos_del_anyo',
+          'frut.ultimos_tratamientos',
+          'frut.umbral_lo_decides',
+          'frut.variedad',
+          'frut.variedad_principal',
+          'frut.volumen_m3',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -20250,11 +20786,145 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Desconocido';
       case 'fos.mapa_cueva_sin_nombre': return 'Cueva sin nombre';
       case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sin nombre';
+      case 'frut.abonado_cobertera': return 'Cobertera';
+      case 'frut.abonado_fertirrigacion': return 'Fertirrigación';
+      case 'frut.abonado_foliar': return 'Foliar';
+      case 'frut.abonado_fondo': return 'De fondo';
+      case 'frut.abonados': return 'Abonados';
+      case 'frut.anadir': return 'Añadir';
+      case 'frut.anyo_plantacion': return 'Año de plantación';
+      case 'frut.apicultor': return 'Apicultor o apicultora';
+      case 'frut.aplicador': return 'Aplicador';
+      case 'frut.arboles_por_ha': return '{n} árboles/ha';
+      case 'frut.asesor': return 'Asesor de gestión integrada de plagas';
+      case 'frut.asesor_ropo': return 'Nº ROPO del asesor';
+      case 'frut.aviso_plazo_seguridad': return 'Hay tratamientos dentro de su plazo de seguridad en esta fecha';
       case 'frut.bienvenida': return 'Primera versión en construcción.';
+      case 'frut.calibre': return 'Calibre';
+      case 'frut.campania': return 'Campaña (año)';
+      case 'frut.cantidad_kg_ha': return 'Cantidad (kg/ha)';
+      case 'frut.carnet_aplicador': return 'Nº de carné de aplicador';
+      case 'frut.catalogos_provisionales': return 'Catálogos provisionales: pendientes de revisión por un técnico';
+      case 'frut.codigo_rega': return 'Código REGA del apicultor';
+      case 'frut.codigo_rega_ayuda': return 'El mismo que usa en Larrea Apícola';
+      case 'frut.codigo_sigpac': return 'Código SIGPAC';
+      case 'frut.colmenas_en_parcela': return 'Colmenas en las parcelas';
+      case 'frut.colmenas_por_ha': return '{n} colmenas/ha';
+      case 'frut.comunicada_seguro': return 'Comunicada al seguro';
+      case 'frut.copiar_de_etiqueta': return 'Cópialo de la etiqueta: la app no lo propone';
+      case 'frut.cosecha': return 'Cosecha';
+      case 'frut.cuaderno': return 'Cuaderno';
+      case 'frut.danio_estimado': return 'Daño estimado (%)';
+      case 'frut.destino': return 'Destino (cooperativa, comprador…)';
+      case 'frut.dosis_aplicada': return 'Dosis aplicada';
+      case 'frut.eficacia': return 'Eficacia';
+      case 'frut.eficacia_buena': return 'Buena';
+      case 'frut.eficacia_mala': return 'Mala';
+      case 'frut.eficacia_regular': return 'Regular';
+      case 'frut.entregas': return 'Entregas';
+      case 'frut.equipo_aplicacion': return 'Equipo de aplicación (nº ROMA)';
+      case 'frut.error_cargar': return 'No se han podido cargar los datos';
+      case 'frut.es_pedrisco': return 'Es pedrisco, no helada';
+      case 'frut.es_polinizadora': return 'Polinizadora';
+      case 'frut.especie': return 'Especie';
+      case 'frut.especie_almendro': return 'Almendro';
+      case 'frut.especie_avellano': return 'Avellano';
+      case 'frut.especie_castano': return 'Castaño';
+      case 'frut.especie_hueso': return 'Frutal de hueso';
+      case 'frut.especie_nogal': return 'Nogal';
+      case 'frut.especie_pepita': return 'Frutal de pepita';
+      case 'frut.especie_pistachero': return 'Pistachero';
+      case 'frut.estado_fenologico': return 'Estado fenológico';
+      case 'frut.etiqueta_fila': return 'Filas';
+      case 'frut.etiqueta_fila_ayuda': return 'Cómo las llamas: «Filas 1-4», «Lindero norte»…';
+      case 'frut.fecha': return 'Fecha';
+      case 'frut.fecha_entrada': return 'Entrada de las colmenas';
+      case 'frut.fecha_salida': return 'Salida de las colmenas';
+      case 'frut.filas_variedades': return 'Filas y variedades';
+      case 'frut.grano': return 'grano';
       case 'frut.guardado': return 'Guardado';
+      case 'frut.heladas': return 'Heladas';
+      case 'frut.horas': return 'Horas';
       case 'frut.hoy': return 'Hoy';
+      case 'frut.humedad': return 'Humedad (%)';
+      case 'frut.humedad_corta': return 'humedad';
+      case 'frut.kg_cascara': return 'Kilos en cáscara (o de fruta)';
+      case 'frut.marco_ayuda': return 'Por ejemplo, 7x6';
+      case 'frut.marco_plantacion': return 'Marco de plantación (m)';
+      case 'frut.municipio': return 'Municipio';
+      case 'frut.n_arboles': return '{n} árboles';
+      case 'frut.n_colmenas': return '{n} colmenas';
+      case 'frut.no_cosechar_hasta': return 'Plazo de seguridad hasta el {fecha}';
+      case 'frut.nombre': return 'Nombre';
+      case 'frut.nombre_producto': return 'Producto (nombre de la etiqueta)';
       case 'frut.nombre_titular': return 'Nombre del titular';
+      case 'frut.notas': return 'Notas';
+      case 'frut.nueva_cosecha': return 'Nueva entrega de cosecha';
+      case 'frut.nueva_fila': return 'Nuevas filas';
+      case 'frut.nueva_helada': return 'Apuntar helada o pedrisco';
+      case 'frut.nueva_observacion': return 'Nuevo muestreo de plaga';
+      case 'frut.nueva_parcela': return 'Nueva parcela';
+      case 'frut.nuevo_abonado': return 'Nuevo abonado';
+      case 'frut.nuevo_contrato': return 'Colmenas de polinización';
+      case 'frut.nuevo_riego': return 'Nuevo riego';
+      case 'frut.nuevo_tratamiento': return 'Nuevo tratamiento';
+      case 'frut.numero_albaran': return 'Nº de albarán';
+      case 'frut.numero_arboles': return 'Número de árboles';
+      case 'frut.numero_colmenas': return 'Número de colmenas';
+      case 'frut.numero_registro': return 'Nº de registro del producto';
+      case 'frut.observaciones': return 'Observaciones';
+      case 'frut.origen_agua': return 'Origen del agua';
+      case 'frut.parcela': return 'Parcela';
+      case 'frut.parcela_con_registros': return 'No se puede borrar: la parcela tiene registros del cuaderno';
+      case 'frut.parcelas': return 'Parcelas';
+      case 'frut.parcelas_total': return '{n} parcelas · {ha} ha';
+      case 'frut.plaga': return 'Plaga o enfermedad';
+      case 'frut.plazo_seguridad_dias': return 'Plazo de seguridad (días, de la etiqueta)';
+      case 'frut.plazos_abiertos': return 'Plazos de seguridad abiertos';
+      case 'frut.polinizacion': return 'Polinización';
+      case 'frut.por_parcela': return 'Por parcela';
+      case 'frut.precio_colmena': return 'Precio por colmena (€)';
+      case 'frut.primero_una_parcela': return 'Primero da de alta una parcela';
+      case 'frut.primeros_pasos': return 'Primeros pasos';
+      case 'frut.primeros_pasos_texto': return '1. Pon tus datos en Ajustes (titular y asesor). 2. Da de alta tus parcelas con su especie, marco y variedades. 3. Apunta tratamientos, abonados, riegos y cosechas: con eso sale el cuaderno.';
+      case 'frut.problema_fitosanitario': return 'Plaga, enfermedad o mala hierba';
+      case 'frut.recuento': return 'Recuento';
+      case 'frut.recuento_ayuda': return 'Capturas, % de órganos afectados… (unidad en notas)';
+      case 'frut.regadio': return 'Regadío';
+      case 'frut.registro_explotacion': return 'Nº de registro de la explotación (REGEPA)';
+      case 'frut.rendimiento': return 'rendimiento';
+      case 'frut.rendimiento_ayuda': return 'Grano sobre cáscara, en %. Vacío en fruta fresca';
+      case 'frut.rendimiento_grano': return 'Rendimiento en grano (%)';
+      case 'frut.riego_aspersion': return 'Aspersión';
+      case 'frut.riego_goteo': return 'Goteo';
+      case 'frut.riego_superficie': return 'Superficie (a manta)';
+      case 'frut.riegos': return 'Riegos';
+      case 'frut.riqueza_npk': return 'Riqueza N-P-K';
+      case 'frut.secano': return 'Secano';
+      case 'frut.seguimiento_plagas': return 'Seguimiento de plagas';
+      case 'frut.sigpac_ayuda': return 'Provincia:municipio:agregado:zona:polígono:parcela:recinto';
+      case 'frut.sin_comunicar_seguro': return 'Sin comunicar al seguro';
+      case 'frut.sin_cosechas': return 'Sin cosechas apuntadas en esta campaña';
+      case 'frut.sin_filas': return 'Sin filas: añade las variedades y las polinizadoras';
+      case 'frut.sin_parcelas': return 'Todavía no hay parcelas. Añade la primera con el botón +';
+      case 'frut.sin_parcelas_regadio': return 'No hay parcelas de regadío';
+      case 'frut.sin_plazos_abiertos': return 'Ningún tratamiento dentro de su plazo de seguridad';
+      case 'frut.sin_registros': return 'Sin registros este año';
+      case 'frut.supera_umbral': return 'Supera el umbral de intervención';
+      case 'frut.superficie_ha': return 'Superficie (ha)';
+      case 'frut.superficie_tratada_ha': return 'Superficie tratada (ha)';
+      case 'frut.sustancia_activa': return 'Sustancia activa';
+      case 'frut.temperatura_minima': return 'Temperatura mínima (°C)';
+      case 'frut.tipo_abono': return 'Abono o enmienda';
       case 'frut.titular': return 'Titular';
+      case 'frut.toda_explotacion': return 'Toda la explotación';
+      case 'frut.tratamientos': return 'Tratamientos';
+      case 'frut.tratamientos_del_anyo': return 'tratamientos este año';
+      case 'frut.ultimos_tratamientos': return 'Últimos tratamientos';
+      case 'frut.umbral_lo_decides': return 'Lo decides tú o tu asesor con la guía de gestión integrada';
+      case 'frut.variedad': return 'Variedad';
+      case 'frut.variedad_principal': return 'Variedad principal';
+      case 'frut.volumen_m3': return 'Volumen (m³)';
       case 'nat.ajus_cabecera_titulo': return 'Cuaderno de campo de naturaleza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende y convive con la biodiversidad que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies y observaciones';
@@ -24585,11 +25255,145 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Ezezaguna';
       case 'fos.mapa_cueva_sin_nombre': return 'Izenik gabeko haitzuloa';
       case 'fos.mapa_bocamina_sin_nombre': return 'Izenik gabeko meategi-ahoa';
+      case 'frut.abonado_cobertera': return 'Estaldura';
+      case 'frut.abonado_fertirrigacion': return 'Fertirrigazioa';
+      case 'frut.abonado_foliar': return 'Hostokoa';
+      case 'frut.abonado_fondo': return 'Oinarrikoa';
+      case 'frut.abonados': return 'Ongarritzeak';
+      case 'frut.anadir': return 'Gehitu';
+      case 'frut.anyo_plantacion': return 'Landaketa urtea';
+      case 'frut.apicultor': return 'Erlezaina';
+      case 'frut.aplicador': return 'Aplikatzailea';
+      case 'frut.arboles_por_ha': return '{n} zuhaitz/ha';
+      case 'frut.asesor': return 'Izurriteen kudeaketa integratuko aholkularia';
+      case 'frut.asesor_ropo': return 'Aholkulariaren ROPO zk.';
+      case 'frut.aviso_plazo_seguridad': return 'Data honetan segurtasun-epean dauden tratamenduak daude';
       case 'frut.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
+      case 'frut.calibre': return 'Kalibrea';
+      case 'frut.campania': return 'Kanpaina (urtea)';
+      case 'frut.cantidad_kg_ha': return 'Kopurua (kg/ha)';
+      case 'frut.carnet_aplicador': return 'Aplikatzaile-txartelaren zk.';
+      case 'frut.catalogos_provisionales': return 'Behin-behineko katalogoak: teknikari batek berrikusteko';
+      case 'frut.codigo_rega': return 'Erlezainaren REGA kodea';
+      case 'frut.codigo_rega_ayuda': return 'Larrea Apícolan erabiltzen duen bera';
+      case 'frut.codigo_sigpac': return 'SIGPAC kodea';
+      case 'frut.colmenas_en_parcela': return 'Erlauntzak lursailetan';
+      case 'frut.colmenas_por_ha': return '{n} erlauntz/ha';
+      case 'frut.comunicada_seguro': return 'Aseguruari jakinarazita';
+      case 'frut.copiar_de_etiqueta': return 'Kopiatu etiketatik: aplikazioak ez du proposatzen';
+      case 'frut.cosecha': return 'Uzta';
+      case 'frut.cuaderno': return 'Koadernoa';
+      case 'frut.danio_estimado': return 'Kalte estimatua (%)';
+      case 'frut.destino': return 'Helmuga (kooperatiba, erosleak…)';
+      case 'frut.dosis_aplicada': return 'Aplikatutako dosia';
+      case 'frut.eficacia': return 'Eraginkortasuna';
+      case 'frut.eficacia_buena': return 'Ona';
+      case 'frut.eficacia_mala': return 'Txarra';
+      case 'frut.eficacia_regular': return 'Erdipurdikoa';
+      case 'frut.entregas': return 'Entregak';
+      case 'frut.equipo_aplicacion': return 'Aplikazio-ekipoa (ROMA zk.)';
+      case 'frut.error_cargar': return 'Ezin izan dira datuak kargatu';
+      case 'frut.es_pedrisco': return 'Txingorra da, ez izotza';
+      case 'frut.es_polinizadora': return 'Polinizatzailea';
+      case 'frut.especie': return 'Espeziea';
+      case 'frut.especie_almendro': return 'Almendrondoa';
+      case 'frut.especie_avellano': return 'Hurritza';
+      case 'frut.especie_castano': return 'Gaztainondoa';
+      case 'frut.especie_hueso': return 'Hezurdun fruta-arbola';
+      case 'frut.especie_nogal': return 'Intxaurrondoa';
+      case 'frut.especie_pepita': return 'Hazidun fruta-arbola';
+      case 'frut.especie_pistachero': return 'Pistatxondoa';
+      case 'frut.estado_fenologico': return 'Egoera fenologikoa';
+      case 'frut.etiqueta_fila': return 'Ilarak';
+      case 'frut.etiqueta_fila_ayuda': return 'Nola deitzen dituzun: «1-4 ilarak», «Iparraldeko mugakidea»…';
+      case 'frut.fecha': return 'Data';
+      case 'frut.fecha_entrada': return 'Erlauntzen sarrera';
+      case 'frut.fecha_salida': return 'Erlauntzen irteera';
+      case 'frut.filas_variedades': return 'Ilarak eta barietateak';
+      case 'frut.grano': return 'ale';
       case 'frut.guardado': return 'Gordeta';
+      case 'frut.heladas': return 'Izotzak';
+      case 'frut.horas': return 'Orduak';
       case 'frut.hoy': return 'Gaur';
+      case 'frut.humedad': return 'Hezetasuna (%)';
+      case 'frut.humedad_corta': return 'hezetasuna';
+      case 'frut.kg_cascara': return 'Kiloak azalarekin (edo fruta)';
+      case 'frut.marco_ayuda': return 'Adibidez, 7x6';
+      case 'frut.marco_plantacion': return 'Landaketa-markoa (m)';
+      case 'frut.municipio': return 'Udalerria';
+      case 'frut.n_arboles': return '{n} zuhaitz';
+      case 'frut.n_colmenas': return '{n} erlauntz';
+      case 'frut.no_cosechar_hasta': return 'Segurtasun-epea {fecha} arte';
+      case 'frut.nombre': return 'Izena';
+      case 'frut.nombre_producto': return 'Produktua (etiketako izena)';
       case 'frut.nombre_titular': return 'Titularraren izena';
+      case 'frut.notas': return 'Oharrak';
+      case 'frut.nueva_cosecha': return 'Uzta-entrega berria';
+      case 'frut.nueva_fila': return 'Ilara berriak';
+      case 'frut.nueva_helada': return 'Izotza edo txingorra idatzi';
+      case 'frut.nueva_observacion': return 'Izurrite-laginketa berria';
+      case 'frut.nueva_parcela': return 'Lursail berria';
+      case 'frut.nuevo_abonado': return 'Ongarritze berria';
+      case 'frut.nuevo_contrato': return 'Polinizazio-erlauntzak';
+      case 'frut.nuevo_riego': return 'Ureztatze berria';
+      case 'frut.nuevo_tratamiento': return 'Tratamendu berria';
+      case 'frut.numero_albaran': return 'Albaran zk.';
+      case 'frut.numero_arboles': return 'Zuhaitz kopurua';
+      case 'frut.numero_colmenas': return 'Erlauntz kopurua';
+      case 'frut.numero_registro': return 'Produktuaren erregistro zk.';
+      case 'frut.observaciones': return 'Oharrak';
+      case 'frut.origen_agua': return 'Uraren jatorria';
+      case 'frut.parcela': return 'Lursaila';
+      case 'frut.parcela_con_registros': return 'Ezin da ezabatu: lursailak koadernoko erregistroak ditu';
+      case 'frut.parcelas': return 'Lursailak';
+      case 'frut.parcelas_total': return '{n} lursail · {ha} ha';
+      case 'frut.plaga': return 'Izurritea edo gaixotasuna';
+      case 'frut.plazo_seguridad_dias': return 'Segurtasun-epea (egunak, etiketatik)';
+      case 'frut.plazos_abiertos': return 'Segurtasun-epe irekiak';
+      case 'frut.polinizacion': return 'Polinizazioa';
+      case 'frut.por_parcela': return 'Lursailka';
+      case 'frut.precio_colmena': return 'Prezioa erlauntzeko (€)';
+      case 'frut.primero_una_parcela': return 'Lehenik, eman alta lursail bati';
+      case 'frut.primeros_pasos': return 'Lehen urratsak';
+      case 'frut.primeros_pasos_texto': return '1. Jarri zure datuak Ezarpenetan (titularra eta aholkularia). 2. Eman alta lursailei, espeziea, markoa eta barietateekin. 3. Idatzi tratamenduak, ongarritzeak, ureztatzeak eta uztak: horrekin ateratzen da koadernoa.';
+      case 'frut.problema_fitosanitario': return 'Izurritea, gaixotasuna edo belar txarra';
+      case 'frut.recuento': return 'Zenbaketa';
+      case 'frut.recuento_ayuda': return 'Harrapaketak, organo kaltetuen %… (unitatea oharretan)';
+      case 'frut.regadio': return 'Ureztatua';
+      case 'frut.registro_explotacion': return 'Ustiategiaren erregistro zk. (REGEPA)';
+      case 'frut.rendimiento': return 'errendimendua';
+      case 'frut.rendimiento_ayuda': return 'Alea azalaren gainean, %-tan. Hutsik fruta freskoan';
+      case 'frut.rendimiento_grano': return 'Ale-errendimendua (%)';
+      case 'frut.riego_aspersion': return 'Ihinztadura';
+      case 'frut.riego_goteo': return 'Tantakakoa';
+      case 'frut.riego_superficie': return 'Azalekoa (uholdez)';
+      case 'frut.riegos': return 'Ureztatzeak';
+      case 'frut.riqueza_npk': return 'N-P-K aberastasuna';
+      case 'frut.secano': return 'Lehorra';
+      case 'frut.seguimiento_plagas': return 'Izurriteen jarraipena';
+      case 'frut.sigpac_ayuda': return 'Probintzia:udalerria:agregatua:eremua:poligonoa:lursaila:barrutia';
+      case 'frut.sin_comunicar_seguro': return 'Aseguruari jakinarazi gabe';
+      case 'frut.sin_cosechas': return 'Kanpaina honetan ez dago uztarik idatzita';
+      case 'frut.sin_filas': return 'Ilararik ez: gehitu barietateak eta polinizatzaileak';
+      case 'frut.sin_parcelas': return 'Oraindik ez dago lursailik. Gehitu lehena + botoiarekin';
+      case 'frut.sin_parcelas_regadio': return 'Ez dago lursail ureztaturik';
+      case 'frut.sin_plazos_abiertos': return 'Ez dago tratamendurik segurtasun-epean';
+      case 'frut.sin_registros': return 'Aurten ez dago erregistrorik';
+      case 'frut.supera_umbral': return 'Esku-hartze atalasea gainditzen du';
+      case 'frut.superficie_ha': return 'Azalera (ha)';
+      case 'frut.superficie_tratada_ha': return 'Tratatutako azalera (ha)';
+      case 'frut.sustancia_activa': return 'Substantzia aktiboa';
+      case 'frut.temperatura_minima': return 'Gutxieneko tenperatura (°C)';
+      case 'frut.tipo_abono': return 'Ongarria edo zuzenketa';
       case 'frut.titular': return 'Titularra';
+      case 'frut.toda_explotacion': return 'Ustiategi osoa';
+      case 'frut.tratamientos': return 'Tratamenduak';
+      case 'frut.tratamientos_del_anyo': return 'tratamendu aurten';
+      case 'frut.ultimos_tratamientos': return 'Azken tratamenduak';
+      case 'frut.umbral_lo_decides': return 'Zuk edo zure aholkulariak erabakitzen duzue kudeaketa integratuko gidarekin';
+      case 'frut.variedad': return 'Barietatea';
+      case 'frut.variedad_principal': return 'Barietate nagusia';
+      case 'frut.volumen_m3': return 'Bolumena (m³)';
       case 'nat.ajus_cabecera_titulo': return 'Naturako landa-koadernoa';
       case 'nat.ajus_cabecera_sub': return 'Behatu, ikasi eta bizi zure inguruko biodibertsitatearekin batera';
       case 'nat.ajus_explorar_mapa_sub': return 'Espezieak eta behaketak';
@@ -28920,11 +29724,145 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Desconegut';
       case 'fos.mapa_cueva_sin_nombre': return 'Cova sense nom';
       case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sense nom';
+      case 'frut.abonado_cobertera': return 'Cobertora';
+      case 'frut.abonado_fertirrigacion': return 'Fertirrigació';
+      case 'frut.abonado_foliar': return 'Foliar';
+      case 'frut.abonado_fondo': return 'De fons';
+      case 'frut.abonados': return 'Adobats';
+      case 'frut.anadir': return 'Afegir';
+      case 'frut.anyo_plantacion': return 'Any de plantació';
+      case 'frut.apicultor': return 'Apicultor o apicultora';
+      case 'frut.aplicador': return 'Aplicador';
+      case 'frut.arboles_por_ha': return '{n} arbres/ha';
+      case 'frut.asesor': return 'Assessor de gestió integrada de plagues';
+      case 'frut.asesor_ropo': return 'Núm. ROPO de l\'assessor';
+      case 'frut.aviso_plazo_seguridad': return 'Hi ha tractaments dins del seu termini de seguretat en aquesta data';
       case 'frut.bienvenida': return 'Primera versió en construcció.';
+      case 'frut.calibre': return 'Calibre';
+      case 'frut.campania': return 'Campanya (any)';
+      case 'frut.cantidad_kg_ha': return 'Quantitat (kg/ha)';
+      case 'frut.carnet_aplicador': return 'Núm. de carnet d\'aplicador';
+      case 'frut.catalogos_provisionales': return 'Catàlegs provisionals: pendents de revisió per un tècnic';
+      case 'frut.codigo_rega': return 'Codi REGA de l\'apicultor';
+      case 'frut.codigo_rega_ayuda': return 'El mateix que fa servir a Larrea Apícola';
+      case 'frut.codigo_sigpac': return 'Codi SIGPAC';
+      case 'frut.colmenas_en_parcela': return 'Ruscs a les parcel·les';
+      case 'frut.colmenas_por_ha': return '{n} ruscs/ha';
+      case 'frut.comunicada_seguro': return 'Comunicada a l\'assegurança';
+      case 'frut.copiar_de_etiqueta': return 'Copia-ho de l\'etiqueta: l\'app no ho proposa';
+      case 'frut.cosecha': return 'Collita';
+      case 'frut.cuaderno': return 'Quadern';
+      case 'frut.danio_estimado': return 'Dany estimat (%)';
+      case 'frut.destino': return 'Destinació (cooperativa, comprador…)';
+      case 'frut.dosis_aplicada': return 'Dosi aplicada';
+      case 'frut.eficacia': return 'Eficàcia';
+      case 'frut.eficacia_buena': return 'Bona';
+      case 'frut.eficacia_mala': return 'Dolenta';
+      case 'frut.eficacia_regular': return 'Regular';
+      case 'frut.entregas': return 'Lliuraments';
+      case 'frut.equipo_aplicacion': return 'Equip d\'aplicació (núm. ROMA)';
+      case 'frut.error_cargar': return 'No s\'han pogut carregar les dades';
+      case 'frut.es_pedrisco': return 'És calamarsa, no gelada';
+      case 'frut.es_polinizadora': return 'Pol·linitzadora';
+      case 'frut.especie': return 'Espècie';
+      case 'frut.especie_almendro': return 'Ametller';
+      case 'frut.especie_avellano': return 'Avellaner';
+      case 'frut.especie_castano': return 'Castanyer';
+      case 'frut.especie_hueso': return 'Fruiter de pinyol';
+      case 'frut.especie_nogal': return 'Noguera';
+      case 'frut.especie_pepita': return 'Fruiter de llavor';
+      case 'frut.especie_pistachero': return 'Pistatxer';
+      case 'frut.estado_fenologico': return 'Estat fenològic';
+      case 'frut.etiqueta_fila': return 'Files';
+      case 'frut.etiqueta_fila_ayuda': return 'Com les anomenes: «Files 1-4», «Partió nord»…';
+      case 'frut.fecha': return 'Data';
+      case 'frut.fecha_entrada': return 'Entrada dels ruscs';
+      case 'frut.fecha_salida': return 'Sortida dels ruscs';
+      case 'frut.filas_variedades': return 'Files i varietats';
+      case 'frut.grano': return 'gra';
       case 'frut.guardado': return 'Desat';
+      case 'frut.heladas': return 'Gelades';
+      case 'frut.horas': return 'Hores';
       case 'frut.hoy': return 'Avui';
+      case 'frut.humedad': return 'Humitat (%)';
+      case 'frut.humedad_corta': return 'humitat';
+      case 'frut.kg_cascara': return 'Quilos en closca (o de fruita)';
+      case 'frut.marco_ayuda': return 'Per exemple, 7x6';
+      case 'frut.marco_plantacion': return 'Marc de plantació (m)';
+      case 'frut.municipio': return 'Municipi';
+      case 'frut.n_arboles': return '{n} arbres';
+      case 'frut.n_colmenas': return '{n} ruscs';
+      case 'frut.no_cosechar_hasta': return 'Termini de seguretat fins al {fecha}';
+      case 'frut.nombre': return 'Nom';
+      case 'frut.nombre_producto': return 'Producte (nom de l\'etiqueta)';
       case 'frut.nombre_titular': return 'Nom del titular';
+      case 'frut.notas': return 'Notes';
+      case 'frut.nueva_cosecha': return 'Nou lliurament de collita';
+      case 'frut.nueva_fila': return 'Noves files';
+      case 'frut.nueva_helada': return 'Anotar gelada o calamarsa';
+      case 'frut.nueva_observacion': return 'Nou mostreig de plaga';
+      case 'frut.nueva_parcela': return 'Nova parcel·la';
+      case 'frut.nuevo_abonado': return 'Nou adobat';
+      case 'frut.nuevo_contrato': return 'Ruscs de pol·linització';
+      case 'frut.nuevo_riego': return 'Nou reg';
+      case 'frut.nuevo_tratamiento': return 'Nou tractament';
+      case 'frut.numero_albaran': return 'Núm. d\'albarà';
+      case 'frut.numero_arboles': return 'Nombre d\'arbres';
+      case 'frut.numero_colmenas': return 'Nombre de ruscs';
+      case 'frut.numero_registro': return 'Núm. de registre del producte';
+      case 'frut.observaciones': return 'Observacions';
+      case 'frut.origen_agua': return 'Origen de l\'aigua';
+      case 'frut.parcela': return 'Parcel·la';
+      case 'frut.parcela_con_registros': return 'No es pot esborrar: la parcel·la té registres del quadern';
+      case 'frut.parcelas': return 'Parcel·les';
+      case 'frut.parcelas_total': return '{n} parcel·les · {ha} ha';
+      case 'frut.plaga': return 'Plaga o malaltia';
+      case 'frut.plazo_seguridad_dias': return 'Termini de seguretat (dies, de l\'etiqueta)';
+      case 'frut.plazos_abiertos': return 'Terminis de seguretat oberts';
+      case 'frut.polinizacion': return 'Pol·linització';
+      case 'frut.por_parcela': return 'Per parcel·la';
+      case 'frut.precio_colmena': return 'Preu per rusc (€)';
+      case 'frut.primero_una_parcela': return 'Primer dona d\'alta una parcel·la';
+      case 'frut.primeros_pasos': return 'Primers passos';
+      case 'frut.primeros_pasos_texto': return '1. Posa les teves dades a Configuració (titular i assessor). 2. Dona d\'alta les parcel·les amb l\'espècie, el marc i les varietats. 3. Anota tractaments, adobats, regs i collites: amb això surt el quadern.';
+      case 'frut.problema_fitosanitario': return 'Plaga, malaltia o mala herba';
+      case 'frut.recuento': return 'Recompte';
+      case 'frut.recuento_ayuda': return 'Captures, % d\'òrgans afectats… (unitat a les notes)';
+      case 'frut.regadio': return 'Regadiu';
+      case 'frut.registro_explotacion': return 'Núm. de registre de l\'explotació (REGEPA)';
+      case 'frut.rendimiento': return 'rendiment';
+      case 'frut.rendimiento_ayuda': return 'Gra sobre closca, en %. Buit en fruita fresca';
+      case 'frut.rendimiento_grano': return 'Rendiment en gra (%)';
+      case 'frut.riego_aspersion': return 'Aspersió';
+      case 'frut.riego_goteo': return 'Degoteig';
+      case 'frut.riego_superficie': return 'Superfície (a manta)';
+      case 'frut.riegos': return 'Regs';
+      case 'frut.riqueza_npk': return 'Riquesa N-P-K';
+      case 'frut.secano': return 'Secà';
+      case 'frut.seguimiento_plagas': return 'Seguiment de plagues';
+      case 'frut.sigpac_ayuda': return 'Província:municipi:agregat:zona:polígon:parcel·la:recinte';
+      case 'frut.sin_comunicar_seguro': return 'Sense comunicar a l\'assegurança';
+      case 'frut.sin_cosechas': return 'Sense collites anotades en aquesta campanya';
+      case 'frut.sin_filas': return 'Sense files: afegeix les varietats i les pol·linitzadores';
+      case 'frut.sin_parcelas': return 'Encara no hi ha parcel·les. Afegeix la primera amb el botó +';
+      case 'frut.sin_parcelas_regadio': return 'No hi ha parcel·les de regadiu';
+      case 'frut.sin_plazos_abiertos': return 'Cap tractament dins del seu termini de seguretat';
+      case 'frut.sin_registros': return 'Sense registres aquest any';
+      case 'frut.supera_umbral': return 'Supera el llindar d\'intervenció';
+      case 'frut.superficie_ha': return 'Superfície (ha)';
+      case 'frut.superficie_tratada_ha': return 'Superfície tractada (ha)';
+      case 'frut.sustancia_activa': return 'Substància activa';
+      case 'frut.temperatura_minima': return 'Temperatura mínima (°C)';
+      case 'frut.tipo_abono': return 'Adob o esmena';
       case 'frut.titular': return 'Titular';
+      case 'frut.toda_explotacion': return 'Tota l\'explotació';
+      case 'frut.tratamientos': return 'Tractaments';
+      case 'frut.tratamientos_del_anyo': return 'tractaments enguany';
+      case 'frut.ultimos_tratamientos': return 'Últims tractaments';
+      case 'frut.umbral_lo_decides': return 'Ho decideixes tu o el teu assessor amb la guia de gestió integrada';
+      case 'frut.variedad': return 'Varietat';
+      case 'frut.variedad_principal': return 'Varietat principal';
+      case 'frut.volumen_m3': return 'Volum (m³)';
       case 'nat.ajus_cabecera_titulo': return 'Quadern de camp de natura';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprèn i conviu amb la biodiversitat que t\'envolta';
       case 'nat.ajus_explorar_mapa_sub': return 'Espècies i observacions';
@@ -33255,11 +34193,145 @@ class SoleraL10n {
       case 'fos.mapa_meteo_desconocido': return 'Descoñecido';
       case 'fos.mapa_cueva_sin_nombre': return 'Cova sen nome';
       case 'fos.mapa_bocamina_sin_nombre': return 'Bocamina sen nome';
+      case 'frut.abonado_cobertera': return 'Cobertura';
+      case 'frut.abonado_fertirrigacion': return 'Fertirrigación';
+      case 'frut.abonado_foliar': return 'Foliar';
+      case 'frut.abonado_fondo': return 'De fondo';
+      case 'frut.abonados': return 'Abonados';
+      case 'frut.anadir': return 'Engadir';
+      case 'frut.anyo_plantacion': return 'Ano de plantación';
+      case 'frut.apicultor': return 'Apicultor ou apicultora';
+      case 'frut.aplicador': return 'Aplicador';
+      case 'frut.arboles_por_ha': return '{n} árbores/ha';
+      case 'frut.asesor': return 'Asesor de xestión integrada de pragas';
+      case 'frut.asesor_ropo': return 'N.º ROPO do asesor';
+      case 'frut.aviso_plazo_seguridad': return 'Hai tratamentos dentro do seu prazo de seguridade nesta data';
       case 'frut.bienvenida': return 'Primeira versión en construción.';
+      case 'frut.calibre': return 'Calibre';
+      case 'frut.campania': return 'Campaña (ano)';
+      case 'frut.cantidad_kg_ha': return 'Cantidade (kg/ha)';
+      case 'frut.carnet_aplicador': return 'N.º de carné de aplicador';
+      case 'frut.catalogos_provisionales': return 'Catálogos provisionais: pendentes de revisión por un técnico';
+      case 'frut.codigo_rega': return 'Código REGA do apicultor';
+      case 'frut.codigo_rega_ayuda': return 'O mesmo que usa en Larrea Apícola';
+      case 'frut.codigo_sigpac': return 'Código SIXPAC';
+      case 'frut.colmenas_en_parcela': return 'Colmeas nas parcelas';
+      case 'frut.colmenas_por_ha': return '{n} colmeas/ha';
+      case 'frut.comunicada_seguro': return 'Comunicada ao seguro';
+      case 'frut.copiar_de_etiqueta': return 'Cópiao da etiqueta: a app non o propón';
+      case 'frut.cosecha': return 'Colleita';
+      case 'frut.cuaderno': return 'Caderno';
+      case 'frut.danio_estimado': return 'Dano estimado (%)';
+      case 'frut.destino': return 'Destino (cooperativa, comprador…)';
+      case 'frut.dosis_aplicada': return 'Dose aplicada';
+      case 'frut.eficacia': return 'Eficacia';
+      case 'frut.eficacia_buena': return 'Boa';
+      case 'frut.eficacia_mala': return 'Mala';
+      case 'frut.eficacia_regular': return 'Regular';
+      case 'frut.entregas': return 'Entregas';
+      case 'frut.equipo_aplicacion': return 'Equipo de aplicación (n.º ROMA)';
+      case 'frut.error_cargar': return 'Non se puideron cargar os datos';
+      case 'frut.es_pedrisco': return 'É sarabia, non xeada';
+      case 'frut.es_polinizadora': return 'Polinizadora';
+      case 'frut.especie': return 'Especie';
+      case 'frut.especie_almendro': return 'Amendoeira';
+      case 'frut.especie_avellano': return 'Abeleira';
+      case 'frut.especie_castano': return 'Castiñeiro';
+      case 'frut.especie_hueso': return 'Froiteira de óso';
+      case 'frut.especie_nogal': return 'Nogueira';
+      case 'frut.especie_pepita': return 'Froiteira de pebida';
+      case 'frut.especie_pistachero': return 'Pistacheira';
+      case 'frut.estado_fenologico': return 'Estado fenolóxico';
+      case 'frut.etiqueta_fila': return 'Filas';
+      case 'frut.etiqueta_fila_ayuda': return 'Como as chamas: «Filas 1-4», «Lindeiro norte»…';
+      case 'frut.fecha': return 'Data';
+      case 'frut.fecha_entrada': return 'Entrada das colmeas';
+      case 'frut.fecha_salida': return 'Saída das colmeas';
+      case 'frut.filas_variedades': return 'Filas e variedades';
+      case 'frut.grano': return 'gran';
       case 'frut.guardado': return 'Gardado';
+      case 'frut.heladas': return 'Xeadas';
+      case 'frut.horas': return 'Horas';
       case 'frut.hoy': return 'Hoxe';
+      case 'frut.humedad': return 'Humidade (%)';
+      case 'frut.humedad_corta': return 'humidade';
+      case 'frut.kg_cascara': return 'Quilos en casca (ou de froita)';
+      case 'frut.marco_ayuda': return 'Por exemplo, 7x6';
+      case 'frut.marco_plantacion': return 'Marco de plantación (m)';
+      case 'frut.municipio': return 'Concello';
+      case 'frut.n_arboles': return '{n} árbores';
+      case 'frut.n_colmenas': return '{n} colmeas';
+      case 'frut.no_cosechar_hasta': return 'Prazo de seguridade ata o {fecha}';
+      case 'frut.nombre': return 'Nome';
+      case 'frut.nombre_producto': return 'Produto (nome da etiqueta)';
       case 'frut.nombre_titular': return 'Nome do titular';
+      case 'frut.notas': return 'Notas';
+      case 'frut.nueva_cosecha': return 'Nova entrega de colleita';
+      case 'frut.nueva_fila': return 'Novas filas';
+      case 'frut.nueva_helada': return 'Anotar xeada ou sarabia';
+      case 'frut.nueva_observacion': return 'Nova mostraxe de praga';
+      case 'frut.nueva_parcela': return 'Nova parcela';
+      case 'frut.nuevo_abonado': return 'Novo abonado';
+      case 'frut.nuevo_contrato': return 'Colmeas de polinización';
+      case 'frut.nuevo_riego': return 'Nova rega';
+      case 'frut.nuevo_tratamiento': return 'Novo tratamento';
+      case 'frut.numero_albaran': return 'N.º de albará';
+      case 'frut.numero_arboles': return 'Número de árbores';
+      case 'frut.numero_colmenas': return 'Número de colmeas';
+      case 'frut.numero_registro': return 'N.º de rexistro do produto';
+      case 'frut.observaciones': return 'Observacións';
+      case 'frut.origen_agua': return 'Orixe da auga';
+      case 'frut.parcela': return 'Parcela';
+      case 'frut.parcela_con_registros': return 'Non se pode borrar: a parcela ten rexistros do caderno';
+      case 'frut.parcelas': return 'Parcelas';
+      case 'frut.parcelas_total': return '{n} parcelas · {ha} ha';
+      case 'frut.plaga': return 'Praga ou enfermidade';
+      case 'frut.plazo_seguridad_dias': return 'Prazo de seguridade (días, da etiqueta)';
+      case 'frut.plazos_abiertos': return 'Prazos de seguridade abertos';
+      case 'frut.polinizacion': return 'Polinización';
+      case 'frut.por_parcela': return 'Por parcela';
+      case 'frut.precio_colmena': return 'Prezo por colmea (€)';
+      case 'frut.primero_una_parcela': return 'Primeiro dá de alta unha parcela';
+      case 'frut.primeros_pasos': return 'Primeiros pasos';
+      case 'frut.primeros_pasos_texto': return '1. Pon os teus datos en Axustes (titular e asesor). 2. Dá de alta as túas parcelas coa especie, o marco e as variedades. 3. Anota tratamentos, abonados, regas e colleitas: con iso sae o caderno.';
+      case 'frut.problema_fitosanitario': return 'Praga, enfermidade ou mala herba';
+      case 'frut.recuento': return 'Reconto';
+      case 'frut.recuento_ayuda': return 'Capturas, % de órganos afectados… (unidade nas notas)';
+      case 'frut.regadio': return 'Regadío';
+      case 'frut.registro_explotacion': return 'N.º de rexistro da explotación (REGEPA)';
+      case 'frut.rendimiento': return 'rendemento';
+      case 'frut.rendimiento_ayuda': return 'Gran sobre casca, en %. Baleiro en froita fresca';
+      case 'frut.rendimiento_grano': return 'Rendemento en gran (%)';
+      case 'frut.riego_aspersion': return 'Aspersión';
+      case 'frut.riego_goteo': return 'Pinga a pinga';
+      case 'frut.riego_superficie': return 'Superficie (a manta)';
+      case 'frut.riegos': return 'Regas';
+      case 'frut.riqueza_npk': return 'Riqueza N-P-K';
+      case 'frut.secano': return 'Secaño';
+      case 'frut.seguimiento_plagas': return 'Seguimento de pragas';
+      case 'frut.sigpac_ayuda': return 'Provincia:concello:agregado:zona:polígono:parcela:recinto';
+      case 'frut.sin_comunicar_seguro': return 'Sen comunicar ao seguro';
+      case 'frut.sin_cosechas': return 'Sen colleitas anotadas nesta campaña';
+      case 'frut.sin_filas': return 'Sen filas: engade as variedades e as polinizadoras';
+      case 'frut.sin_parcelas': return 'Aínda non hai parcelas. Engade a primeira co botón +';
+      case 'frut.sin_parcelas_regadio': return 'Non hai parcelas de regadío';
+      case 'frut.sin_plazos_abiertos': return 'Ningún tratamento dentro do seu prazo de seguridade';
+      case 'frut.sin_registros': return 'Sen rexistros este ano';
+      case 'frut.supera_umbral': return 'Supera o limiar de intervención';
+      case 'frut.superficie_ha': return 'Superficie (ha)';
+      case 'frut.superficie_tratada_ha': return 'Superficie tratada (ha)';
+      case 'frut.sustancia_activa': return 'Substancia activa';
+      case 'frut.temperatura_minima': return 'Temperatura mínima (°C)';
+      case 'frut.tipo_abono': return 'Abono ou emenda';
       case 'frut.titular': return 'Titular';
+      case 'frut.toda_explotacion': return 'Toda a explotación';
+      case 'frut.tratamientos': return 'Tratamentos';
+      case 'frut.tratamientos_del_anyo': return 'tratamentos este ano';
+      case 'frut.ultimos_tratamientos': return 'Últimos tratamentos';
+      case 'frut.umbral_lo_decides': return 'Decídelo ti ou o teu asesor coa guía de xestión integrada';
+      case 'frut.variedad': return 'Variedade';
+      case 'frut.variedad_principal': return 'Variedade principal';
+      case 'frut.volumen_m3': return 'Volume (m³)';
       case 'nat.ajus_cabecera_titulo': return 'Caderno de campo de natureza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende e convive coa biodiversidade que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies e observacións';

@@ -1,6 +1,140 @@
 clave,es,eu,ca,gl
+frut.abonado_cobertera,Cobertera,Estaldura,Cobertora,Cobertura
+frut.abonado_fertirrigacion,Fertirrigación,Fertirrigazioa,Fertirrigació,Fertirrigación
+frut.abonado_foliar,Foliar,Hostokoa,Foliar,Foliar
+frut.abonado_fondo,De fondo,Oinarrikoa,De fons,De fondo
+frut.abonados,Abonados,Ongarritzeak,Adobats,Abonados
+frut.anadir,Añadir,Gehitu,Afegir,Engadir
+frut.anyo_plantacion,Año de plantación,Landaketa urtea,Any de plantació,Ano de plantación
+frut.apicultor,Apicultor o apicultora,Erlezaina,Apicultor o apicultora,Apicultor ou apicultora
+frut.aplicador,Aplicador,Aplikatzailea,Aplicador,Aplicador
+frut.arboles_por_ha,{n} árboles/ha,{n} zuhaitz/ha,{n} arbres/ha,{n} árbores/ha
+frut.asesor,Asesor de gestión integrada de plagas,Izurriteen kudeaketa integratuko aholkularia,Assessor de gestió integrada de plagues,Asesor de xestión integrada de pragas
+frut.asesor_ropo,Nº ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l'assessor,N.º ROPO do asesor
+frut.aviso_plazo_seguridad,Hay tratamientos dentro de su plazo de seguridad en esta fecha,Data honetan segurtasun-epean dauden tratamenduak daude,Hi ha tractaments dins del seu termini de seguretat en aquesta data,Hai tratamentos dentro do seu prazo de seguridade nesta data
 frut.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
+frut.calibre,Calibre,Kalibrea,Calibre,Calibre
+frut.campania,Campaña (año),Kanpaina (urtea),Campanya (any),Campaña (ano)
+frut.cantidad_kg_ha,Cantidad (kg/ha),Kopurua (kg/ha),Quantitat (kg/ha),Cantidade (kg/ha)
+frut.carnet_aplicador,Nº de carné de aplicador,Aplikatzaile-txartelaren zk.,Núm. de carnet d'aplicador,N.º de carné de aplicador
+frut.catalogos_provisionales,Catálogos provisionales: pendientes de revisión por un técnico,Behin-behineko katalogoak: teknikari batek berrikusteko,Catàlegs provisionals: pendents de revisió per un tècnic,Catálogos provisionais: pendentes de revisión por un técnico
+frut.codigo_rega,Código REGA del apicultor,Erlezainaren REGA kodea,Codi REGA de l'apicultor,Código REGA do apicultor
+frut.codigo_rega_ayuda,El mismo que usa en Larrea Apícola,Larrea Apícolan erabiltzen duen bera,El mateix que fa servir a Larrea Apícola,O mesmo que usa en Larrea Apícola
+frut.codigo_sigpac,Código SIGPAC,SIGPAC kodea,Codi SIGPAC,Código SIXPAC
+frut.colmenas_en_parcela,Colmenas en las parcelas,Erlauntzak lursailetan,Ruscs a les parcel·les,Colmeas nas parcelas
+frut.colmenas_por_ha,{n} colmenas/ha,{n} erlauntz/ha,{n} ruscs/ha,{n} colmeas/ha
+frut.comunicada_seguro,Comunicada al seguro,Aseguruari jakinarazita,Comunicada a l'assegurança,Comunicada ao seguro
+frut.copiar_de_etiqueta,Cópialo de la etiqueta: la app no lo propone,Kopiatu etiketatik: aplikazioak ez du proposatzen,Copia-ho de l'etiqueta: l'app no ho proposa,Cópiao da etiqueta: a app non o propón
+frut.cosecha,Cosecha,Uzta,Collita,Colleita
+frut.cuaderno,Cuaderno,Koadernoa,Quadern,Caderno
+frut.danio_estimado,Daño estimado (%),Kalte estimatua (%),Dany estimat (%),Dano estimado (%)
+frut.destino,"Destino (cooperativa, comprador…)","Helmuga (kooperatiba, erosleak…)","Destinació (cooperativa, comprador…)","Destino (cooperativa, comprador…)"
+frut.dosis_aplicada,Dosis aplicada,Aplikatutako dosia,Dosi aplicada,Dose aplicada
+frut.eficacia,Eficacia,Eraginkortasuna,Eficàcia,Eficacia
+frut.eficacia_buena,Buena,Ona,Bona,Boa
+frut.eficacia_mala,Mala,Txarra,Dolenta,Mala
+frut.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
+frut.entregas,Entregas,Entregak,Lliuraments,Entregas
+frut.equipo_aplicacion,Equipo de aplicación (nº ROMA),Aplikazio-ekipoa (ROMA zk.),Equip d'aplicació (núm. ROMA),Equipo de aplicación (n.º ROMA)
+frut.error_cargar,No se han podido cargar los datos,Ezin izan dira datuak kargatu,No s'han pogut carregar les dades,Non se puideron cargar os datos
+frut.es_pedrisco,"Es pedrisco, no helada","Txingorra da, ez izotza","És calamarsa, no gelada","É sarabia, non xeada"
+frut.es_polinizadora,Polinizadora,Polinizatzailea,Pol·linitzadora,Polinizadora
+frut.especie,Especie,Espeziea,Espècie,Especie
+frut.especie_almendro,Almendro,Almendrondoa,Ametller,Amendoeira
+frut.especie_avellano,Avellano,Hurritza,Avellaner,Abeleira
+frut.especie_castano,Castaño,Gaztainondoa,Castanyer,Castiñeiro
+frut.especie_hueso,Frutal de hueso,Hezurdun fruta-arbola,Fruiter de pinyol,Froiteira de óso
+frut.especie_nogal,Nogal,Intxaurrondoa,Noguera,Nogueira
+frut.especie_pepita,Frutal de pepita,Hazidun fruta-arbola,Fruiter de llavor,Froiteira de pebida
+frut.especie_pistachero,Pistachero,Pistatxondoa,Pistatxer,Pistacheira
+frut.estado_fenologico,Estado fenológico,Egoera fenologikoa,Estat fenològic,Estado fenolóxico
+frut.etiqueta_fila,Filas,Ilarak,Files,Filas
+frut.etiqueta_fila_ayuda,"Cómo las llamas: «Filas 1-4», «Lindero norte»…","Nola deitzen dituzun: «1-4 ilarak», «Iparraldeko mugakidea»…","Com les anomenes: «Files 1-4», «Partió nord»…","Como as chamas: «Filas 1-4», «Lindeiro norte»…"
+frut.fecha,Fecha,Data,Data,Data
+frut.fecha_entrada,Entrada de las colmenas,Erlauntzen sarrera,Entrada dels ruscs,Entrada das colmeas
+frut.fecha_salida,Salida de las colmenas,Erlauntzen irteera,Sortida dels ruscs,Saída das colmeas
+frut.filas_variedades,Filas y variedades,Ilarak eta barietateak,Files i varietats,Filas e variedades
+frut.grano,grano,ale,gra,gran
 frut.guardado,Guardado,Gordeta,Desat,Gardado
+frut.heladas,Heladas,Izotzak,Gelades,Xeadas
+frut.horas,Horas,Orduak,Hores,Horas
 frut.hoy,Hoy,Gaur,Avui,Hoxe
+frut.humedad,Humedad (%),Hezetasuna (%),Humitat (%),Humidade (%)
+frut.humedad_corta,humedad,hezetasuna,humitat,humidade
+frut.kg_cascara,Kilos en cáscara (o de fruta),Kiloak azalarekin (edo fruta),Quilos en closca (o de fruita),Quilos en casca (ou de froita)
+frut.marco_ayuda,"Por ejemplo, 7x6","Adibidez, 7x6","Per exemple, 7x6","Por exemplo, 7x6"
+frut.marco_plantacion,Marco de plantación (m),Landaketa-markoa (m),Marc de plantació (m),Marco de plantación (m)
+frut.municipio,Municipio,Udalerria,Municipi,Concello
+frut.n_arboles,{n} árboles,{n} zuhaitz,{n} arbres,{n} árbores
+frut.n_colmenas,{n} colmenas,{n} erlauntz,{n} ruscs,{n} colmeas
+frut.no_cosechar_hasta,Plazo de seguridad hasta el {fecha},Segurtasun-epea {fecha} arte,Termini de seguretat fins al {fecha},Prazo de seguridade ata o {fecha}
+frut.nombre,Nombre,Izena,Nom,Nome
+frut.nombre_producto,Producto (nombre de la etiqueta),Produktua (etiketako izena),Producte (nom de l'etiqueta),Produto (nome da etiqueta)
 frut.nombre_titular,Nombre del titular,Titularraren izena,Nom del titular,Nome do titular
+frut.notas,Notas,Oharrak,Notes,Notas
+frut.nueva_cosecha,Nueva entrega de cosecha,Uzta-entrega berria,Nou lliurament de collita,Nova entrega de colleita
+frut.nueva_fila,Nuevas filas,Ilara berriak,Noves files,Novas filas
+frut.nueva_helada,Apuntar helada o pedrisco,Izotza edo txingorra idatzi,Anotar gelada o calamarsa,Anotar xeada ou sarabia
+frut.nueva_observacion,Nuevo muestreo de plaga,Izurrite-laginketa berria,Nou mostreig de plaga,Nova mostraxe de praga
+frut.nueva_parcela,Nueva parcela,Lursail berria,Nova parcel·la,Nova parcela
+frut.nuevo_abonado,Nuevo abonado,Ongarritze berria,Nou adobat,Novo abonado
+frut.nuevo_contrato,Colmenas de polinización,Polinizazio-erlauntzak,Ruscs de pol·linització,Colmeas de polinización
+frut.nuevo_riego,Nuevo riego,Ureztatze berria,Nou reg,Nova rega
+frut.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Nou tractament,Novo tratamento
+frut.numero_albaran,Nº de albarán,Albaran zk.,Núm. d'albarà,N.º de albará
+frut.numero_arboles,Número de árboles,Zuhaitz kopurua,Nombre d'arbres,Número de árbores
+frut.numero_colmenas,Número de colmenas,Erlauntz kopurua,Nombre de ruscs,Número de colmeas
+frut.numero_registro,Nº de registro del producto,Produktuaren erregistro zk.,Núm. de registre del producte,N.º de rexistro do produto
+frut.observaciones,Observaciones,Oharrak,Observacions,Observacións
+frut.origen_agua,Origen del agua,Uraren jatorria,Origen de l'aigua,Orixe da auga
+frut.parcela,Parcela,Lursaila,Parcel·la,Parcela
+frut.parcela_con_registros,No se puede borrar: la parcela tiene registros del cuaderno,Ezin da ezabatu: lursailak koadernoko erregistroak ditu,No es pot esborrar: la parcel·la té registres del quadern,Non se pode borrar: a parcela ten rexistros do caderno
+frut.parcelas,Parcelas,Lursailak,Parcel·les,Parcelas
+frut.parcelas_total,{n} parcelas · {ha} ha,{n} lursail · {ha} ha,{n} parcel·les · {ha} ha,{n} parcelas · {ha} ha
+frut.plaga,Plaga o enfermedad,Izurritea edo gaixotasuna,Plaga o malaltia,Praga ou enfermidade
+frut.plazo_seguridad_dias,"Plazo de seguridad (días, de la etiqueta)","Segurtasun-epea (egunak, etiketatik)","Termini de seguretat (dies, de l'etiqueta)","Prazo de seguridade (días, da etiqueta)"
+frut.plazos_abiertos,Plazos de seguridad abiertos,Segurtasun-epe irekiak,Terminis de seguretat oberts,Prazos de seguridade abertos
+frut.polinizacion,Polinización,Polinizazioa,Pol·linització,Polinización
+frut.por_parcela,Por parcela,Lursailka,Per parcel·la,Por parcela
+frut.precio_colmena,Precio por colmena (€),Prezioa erlauntzeko (€),Preu per rusc (€),Prezo por colmea (€)
+frut.primero_una_parcela,Primero da de alta una parcela,"Lehenik, eman alta lursail bati",Primer dona d'alta una parcel·la,Primeiro dá de alta unha parcela
+frut.primeros_pasos,Primeros pasos,Lehen urratsak,Primers passos,Primeiros pasos
+frut.primeros_pasos_texto,"1. Pon tus datos en Ajustes (titular y asesor). 2. Da de alta tus parcelas con su especie, marco y variedades. 3. Apunta tratamientos, abonados, riegos y cosechas: con eso sale el cuaderno.","1. Jarri zure datuak Ezarpenetan (titularra eta aholkularia). 2. Eman alta lursailei, espeziea, markoa eta barietateekin. 3. Idatzi tratamenduak, ongarritzeak, ureztatzeak eta uztak: horrekin ateratzen da koadernoa.","1. Posa les teves dades a Configuració (titular i assessor). 2. Dona d'alta les parcel·les amb l'espècie, el marc i les varietats. 3. Anota tractaments, adobats, regs i collites: amb això surt el quadern.","1. Pon os teus datos en Axustes (titular e asesor). 2. Dá de alta as túas parcelas coa especie, o marco e as variedades. 3. Anota tratamentos, abonados, regas e colleitas: con iso sae o caderno."
+frut.problema_fitosanitario,"Plaga, enfermedad o mala hierba","Izurritea, gaixotasuna edo belar txarra","Plaga, malaltia o mala herba","Praga, enfermidade ou mala herba"
+frut.recuento,Recuento,Zenbaketa,Recompte,Reconto
+frut.recuento_ayuda,"Capturas, % de órganos afectados… (unidad en notas)","Harrapaketak, organo kaltetuen %… (unitatea oharretan)","Captures, % d'òrgans afectats… (unitat a les notes)","Capturas, % de órganos afectados… (unidade nas notas)"
+frut.regadio,Regadío,Ureztatua,Regadiu,Regadío
+frut.registro_explotacion,Nº de registro de la explotación (REGEPA),Ustiategiaren erregistro zk. (REGEPA),Núm. de registre de l'explotació (REGEPA),N.º de rexistro da explotación (REGEPA)
+frut.rendimiento,rendimiento,errendimendua,rendiment,rendemento
+frut.rendimiento_ayuda,"Grano sobre cáscara, en %. Vacío en fruta fresca","Alea azalaren gainean, %-tan. Hutsik fruta freskoan","Gra sobre closca, en %. Buit en fruita fresca","Gran sobre casca, en %. Baleiro en froita fresca"
+frut.rendimiento_grano,Rendimiento en grano (%),Ale-errendimendua (%),Rendiment en gra (%),Rendemento en gran (%)
+frut.riego_aspersion,Aspersión,Ihinztadura,Aspersió,Aspersión
+frut.riego_goteo,Goteo,Tantakakoa,Degoteig,Pinga a pinga
+frut.riego_superficie,Superficie (a manta),Azalekoa (uholdez),Superfície (a manta),Superficie (a manta)
+frut.riegos,Riegos,Ureztatzeak,Regs,Regas
+frut.riqueza_npk,Riqueza N-P-K,N-P-K aberastasuna,Riquesa N-P-K,Riqueza N-P-K
+frut.secano,Secano,Lehorra,Secà,Secaño
+frut.seguimiento_plagas,Seguimiento de plagas,Izurriteen jarraipena,Seguiment de plagues,Seguimento de pragas
+frut.sigpac_ayuda,Provincia:municipio:agregado:zona:polígono:parcela:recinto,Probintzia:udalerria:agregatua:eremua:poligonoa:lursaila:barrutia,Província:municipi:agregat:zona:polígon:parcel·la:recinte,Provincia:concello:agregado:zona:polígono:parcela:recinto
+frut.sin_comunicar_seguro,Sin comunicar al seguro,Aseguruari jakinarazi gabe,Sense comunicar a l'assegurança,Sen comunicar ao seguro
+frut.sin_cosechas,Sin cosechas apuntadas en esta campaña,Kanpaina honetan ez dago uztarik idatzita,Sense collites anotades en aquesta campanya,Sen colleitas anotadas nesta campaña
+frut.sin_filas,Sin filas: añade las variedades y las polinizadoras,Ilararik ez: gehitu barietateak eta polinizatzaileak,Sense files: afegeix les varietats i les pol·linitzadores,Sen filas: engade as variedades e as polinizadoras
+frut.sin_parcelas,Todavía no hay parcelas. Añade la primera con el botón +,Oraindik ez dago lursailik. Gehitu lehena + botoiarekin,Encara no hi ha parcel·les. Afegeix la primera amb el botó +,Aínda non hai parcelas. Engade a primeira co botón +
+frut.sin_parcelas_regadio,No hay parcelas de regadío,Ez dago lursail ureztaturik,No hi ha parcel·les de regadiu,Non hai parcelas de regadío
+frut.sin_plazos_abiertos,Ningún tratamiento dentro de su plazo de seguridad,Ez dago tratamendurik segurtasun-epean,Cap tractament dins del seu termini de seguretat,Ningún tratamento dentro do seu prazo de seguridade
+frut.sin_registros,Sin registros este año,Aurten ez dago erregistrorik,Sense registres aquest any,Sen rexistros este ano
+frut.supera_umbral,Supera el umbral de intervención,Esku-hartze atalasea gainditzen du,Supera el llindar d'intervenció,Supera o limiar de intervención
+frut.superficie_ha,Superficie (ha),Azalera (ha),Superfície (ha),Superficie (ha)
+frut.superficie_tratada_ha,Superficie tratada (ha),Tratatutako azalera (ha),Superfície tractada (ha),Superficie tratada (ha)
+frut.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+frut.temperatura_minima,Temperatura mínima (°C),Gutxieneko tenperatura (°C),Temperatura mínima (°C),Temperatura mínima (°C)
+frut.tipo_abono,Abono o enmienda,Ongarria edo zuzenketa,Adob o esmena,Abono ou emenda
 frut.titular,Titular,Titularra,Titular,Titular
+frut.toda_explotacion,Toda la explotación,Ustiategi osoa,Tota l'explotació,Toda a explotación
+frut.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
+frut.tratamientos_del_anyo,tratamientos este año,tratamendu aurten,tractaments enguany,tratamentos este ano
+frut.ultimos_tratamientos,Últimos tratamientos,Azken tratamenduak,Últims tractaments,Últimos tratamentos
+frut.umbral_lo_decides,Lo decides tú o tu asesor con la guía de gestión integrada,Zuk edo zure aholkulariak erabakitzen duzue kudeaketa integratuko gidarekin,Ho decideixes tu o el teu assessor amb la guia de gestió integrada,Decídelo ti ou o teu asesor coa guía de xestión integrada
+frut.variedad,Variedad,Barietatea,Varietat,Variedade
+frut.variedad_principal,Variedad principal,Barietate nagusia,Varietat principal,Variedade principal
+frut.volumen_m3,Volumen (m³),Bolumena (m³),Volum (m³),Volume (m³)

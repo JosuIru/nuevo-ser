@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoCatalogosProvisionales;
+import 'package:intl/intl.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show CabeceraHoySolera, CifraCabecera, SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
@@ -49,8 +53,10 @@ class _PantallaHoyState extends State<PantallaHoy> {
       datos: semana.datos,
       semana: semana,
       tratamientos: await BaseDatosSoleraHuerta.instancia.listarTratamientos(
-          desdeMs:
-              ahora.subtract(const Duration(days: 120)).millisecondsSinceEpoch),
+        desdeMs: ahora
+            .subtract(const Duration(days: 120))
+            .millisecondsSinceEpoch,
+      ),
     );
   }
 
@@ -64,32 +70,49 @@ class _PantallaHoyState extends State<PantallaHoy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Image.asset('assets/icono-logo-huerta.png'),
-        ),
-        title: Text(SoleraL10n.t('huer.hoy')),
-      ),
       body: FutureBuilder<_DatosHoy>(
         future: _datos,
         builder: (context, instantanea) {
           final cargado = instantanea.data;
-          if (cargado == null) {
-            return const SizedBox.shrink();
-          }
+          final datos = cargado?.datos;
+          // Cabecera común de la suite (como el resto de verticales).
+          final cabecera = CabeceraHoySolera(
+            titulo: 'Larrea Huerta',
+            fecha: DateFormat.MMMMEEEEd(
+              SoleraL10n.idioma,
+            ).format(DateTime.now()),
+            rutaLogo: 'assets/icono-logo-huerta.png',
+            cifras: [
+              CifraCabecera(
+                valor: '${datos?.parcelas.length ?? 0}',
+                etiqueta: SoleraL10n.t('huer.parcelas'),
+              ),
+              CifraCabecera(
+                valor: '${datos?.bancales.length ?? 0}',
+                etiqueta: SoleraL10n.t('huer.bancales'),
+              ),
+              CifraCabecera(
+                valor: '${datos?.cultivos.length ?? 0}',
+                etiqueta: SoleraL10n.t('huer.cultivos'),
+              ),
+            ],
+          );
           return ListView(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.only(bottom: 24),
             children: [
+              cabecera,
               if (!catalogosCompletamenteRevisados)
-                Card(
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
-                  child: ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title: Text(SoleraL10n.t('huer.catalogos_provisionales')),
+                AvisoCatalogosProvisionales(
+                  texto: SoleraL10n.t('huer.catalogos_provisionales'),
+                ),
+              if (cargado != null)
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: _tarjetas(context, cargado),
                   ),
                 ),
-              ..._tarjetas(context, cargado),
             ],
           );
         },
@@ -106,23 +129,31 @@ class _PantallaHoyState extends State<PantallaHoy> {
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(SoleraL10n.t('huer.primeros_pasos'), style: estilo),
-              const SizedBox(height: 8),
-              Text(SoleraL10n.t('huer.primeros_pasos_texto')),
-              const SizedBox(height: 8),
-              Wrap(spacing: 8, runSpacing: 8, children: [
-                if (datos.parcelas.isEmpty)
-                  FilledButton.tonal(
-                      onPressed: () => mostrarFormularioParcela(context),
-                      child: Text(SoleraL10n.t('huer.nueva_parcela'))),
-                if (datos.cultivos.isEmpty)
-                  FilledButton.tonal(
-                      onPressed: () => mostrarFormularioCultivo(context),
-                      child: Text(SoleraL10n.t('huer.nuevo_cultivo'))),
-              ]),
-            ]),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(SoleraL10n.t('huer.primeros_pasos'), style: estilo),
+                const SizedBox(height: 8),
+                Text(SoleraL10n.t('huer.primeros_pasos_texto')),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    if (datos.parcelas.isEmpty)
+                      FilledButton.tonal(
+                        onPressed: () => mostrarFormularioParcela(context),
+                        child: Text(SoleraL10n.t('huer.nueva_parcela')),
+                      ),
+                    if (datos.cultivos.isEmpty)
+                      FilledButton.tonal(
+                        onPressed: () => mostrarFormularioCultivo(context),
+                        child: Text(SoleraL10n.t('huer.nuevo_cultivo')),
+                      ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ];
@@ -130,16 +161,17 @@ class _PantallaHoyState extends State<PantallaHoy> {
     final limite = ahora.add(const Duration(days: 14)).millisecondsSinceEpoch;
     final porSembrar = [
       for (final siembra in datos.siembras)
-        if (!siembra.realizada && siembra.fechaPrevistaMs <= limite) siembra
+        if (!siembra.realizada && siembra.fechaPrevistaMs <= limite) siembra,
     ]..sort((a, b) => a.fechaPrevistaMs.compareTo(b.fechaPrevistaMs));
     final plazosAbiertos = [
       for (final tratamiento in cargado.tratamientos)
-        if (tratamiento.finPlazoSeguridad?.isAfter(ahora) ?? false) tratamiento
+        if (tratamiento.finPlazoSeguridad?.isAfter(ahora) ?? false) tratamiento,
     ];
     final semana = cargado.semana;
     final queTocan = semana.queTocan;
-    final compuestas =
-        queTocan.where((s) => semana.cestaDe(s.id!) != null).length;
+    final compuestas = queTocan
+        .where((s) => semana.cestaDe(s.id!) != null)
+        .length;
     final entregadas = queTocan.where((s) {
       final cesta = semana.cestaDe(s.id!);
       return cesta != null && semana.entregaDe(cesta.id!) != null;
@@ -150,89 +182,123 @@ class _PantallaHoyState extends State<PantallaHoy> {
           SoleraL10n.tf('huer.lote_sin_autorizacion', {'lote': lote.codigo}),
       for (final insumo in datos.insumos)
         if (insumo.faltaJustificante)
-          SoleraL10n.tf(
-              'huer.insumo_sin_justificante', {'insumo': insumo.nombre}),
+          SoleraL10n.tf('huer.insumo_sin_justificante', {
+            'insumo': insumo.nombre,
+          }),
     ];
     return [
       Card(
-        child:
-            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          ListTile(
-            title: Text(SoleraL10n.t('huer.siembras_proximas'), style: estilo),
-            subtitle: porSembrar.isEmpty
-                ? Text(SoleraL10n.t('huer.nada_por_sembrar'))
-                : null,
-          ),
-          for (final siembra in porSembrar.take(8))
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
             ListTile(
-              dense: true,
-              leading: Icon(
+              title: Text(
+                SoleraL10n.t('huer.siembras_proximas'),
+                style: estilo,
+              ),
+              subtitle: porSembrar.isEmpty
+                  ? Text(SoleraL10n.t('huer.nada_por_sembrar'))
+                  : null,
+            ),
+            for (final siembra in porSembrar.take(8))
+              ListTile(
+                dense: true,
+                leading: Icon(
                   siembra.fechaPrevistaMs < ahora.millisecondsSinceEpoch
                       ? Icons.warning_amber_outlined
-                      : Icons.schedule_outlined),
-              title: Text(datos.nombreDeCultivo(siembra.cultivoId)),
-              subtitle: Text([
-                datos.nombreDeBancal(siembra.bancalId),
-                formatearFecha(siembra.fechaPrevistaMs),
-                if (datos.avisoRotacion(
-                        bancalId: siembra.bancalId,
-                        cultivoId: siembra.cultivoId,
-                        fecha: DateTime.fromMillisecondsSinceEpoch(
-                            siembra.fechaPrevistaMs),
-                        excluirSiembraId: siembra.id) !=
-                    null)
-                  SoleraL10n.t('huer.rotacion_corta'),
-              ].join(' · ')),
-              onTap: () => mostrarFormularioSiembra(context,
-                  datos: datos, siembra: siembra),
-            ),
-        ]),
+                      : Icons.schedule_outlined,
+                ),
+                title: Text(datos.nombreDeCultivo(siembra.cultivoId)),
+                subtitle: Text(
+                  [
+                    datos.nombreDeBancal(siembra.bancalId),
+                    formatearFecha(siembra.fechaPrevistaMs),
+                    if (datos.avisoRotacion(
+                          bancalId: siembra.bancalId,
+                          cultivoId: siembra.cultivoId,
+                          fecha: DateTime.fromMillisecondsSinceEpoch(
+                            siembra.fechaPrevistaMs,
+                          ),
+                          excluirSiembraId: siembra.id,
+                        ) !=
+                        null)
+                      SoleraL10n.t('huer.rotacion_corta'),
+                  ].join(' · '),
+                ),
+                onTap: () => mostrarFormularioSiembra(
+                  context,
+                  datos: datos,
+                  siembra: siembra,
+                ),
+              ),
+          ],
+        ),
       ),
       Card(
         child: ListTile(
           leading: const Icon(Icons.shopping_basket_outlined),
           title: Text(SoleraL10n.t('huer.cestas_esta_semana'), style: estilo),
-          subtitle: Text(SoleraL10n.tf('huer.resumen_cestas', {
-            'total': queTocan.length,
-            'compuestas': compuestas,
-            'entregadas': entregadas,
-          })),
+          subtitle: Text(
+            SoleraL10n.tf('huer.resumen_cestas', {
+              'total': queTocan.length,
+              'compuestas': compuestas,
+              'entregadas': entregadas,
+            }),
+          ),
         ),
       ),
       if (plazosAbiertos.isNotEmpty)
         Card(
-          child: Column(children: [
-            ListTile(
-                title:
-                    Text(SoleraL10n.t('huer.plazos_abiertos'), style: estilo)),
-            for (final tratamiento in plazosAbiertos)
+          child: Column(
+            children: [
               ListTile(
-                dense: true,
-                leading: const Icon(Icons.timer_outlined),
-                title: Text(datos.insumo(tratamiento.insumoId)?.nombre ?? '?'),
-                subtitle: Text([
-                  tratamiento.bancalId == null
-                      ? (datos.parcela(tratamiento.parcelaId)?.nombre ?? '?')
-                      : datos.nombreDeBancal(tratamiento.bancalId!),
-                  SoleraL10n.tf('huer.cosechar_desde', {
-                    'fecha': formatearFechaDia(tratamiento.finPlazoSeguridad!)
-                  }),
-                ].join(' · ')),
+                title: Text(
+                  SoleraL10n.t('huer.plazos_abiertos'),
+                  style: estilo,
+                ),
               ),
-          ]),
+              for (final tratamiento in plazosAbiertos)
+                ListTile(
+                  dense: true,
+                  leading: const Icon(Icons.timer_outlined),
+                  title: Text(
+                    datos.insumo(tratamiento.insumoId)?.nombre ?? '?',
+                  ),
+                  subtitle: Text(
+                    [
+                      tratamiento.bancalId == null
+                          ? (datos.parcela(tratamiento.parcelaId)?.nombre ??
+                                '?')
+                          : datos.nombreDeBancal(tratamiento.bancalId!),
+                      SoleraL10n.tf('huer.cosechar_desde', {
+                        'fecha': formatearFechaDia(
+                          tratamiento.finPlazoSeguridad!,
+                        ),
+                      }),
+                    ].join(' · '),
+                  ),
+                ),
+            ],
+          ),
         ),
       if (pendientesCertificador.isNotEmpty)
         Card(
-          child: Column(children: [
-            ListTile(
-                title: Text(SoleraL10n.t('huer.pendiente_certificador'),
-                    style: estilo)),
-            for (final texto in pendientesCertificador)
+          child: Column(
+            children: [
               ListTile(
+                title: Text(
+                  SoleraL10n.t('huer.pendiente_certificador'),
+                  style: estilo,
+                ),
+              ),
+              for (final texto in pendientesCertificador)
+                ListTile(
                   dense: true,
                   leading: const Icon(Icons.assignment_late_outlined),
-                  title: Text(texto)),
-          ]),
+                  title: Text(texto),
+                ),
+            ],
+          ),
         ),
     ];
   }

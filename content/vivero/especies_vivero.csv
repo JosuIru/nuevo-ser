@@ -1,0 +1,69 @@
+# Especies de Larrea Vivero — datos PROVISIONALES.
+# Fuente de las columnas de pasaporte: Reglamento de Ejecución (UE) 2019/2072 de la Comisión, de 28/11/2019,
+#   versión adoptada leída el 2026-11-07 en https://legislation.gov.uk/eur/2019/2072 (anexos XIII y XIV);
+#   texto oficial: https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32019R2072
+#   La versión CONSOLIDADA VIGENTE está POR VERIFICAR (hay modificaciones posteriores).
+# planta_pasaporte: anexo XIII, punto 1 («vegetales para plantación, distintos de las semillas»): «si» en todas.
+# semilla_pasaporte: anexo XIII, puntos 5-11 (lista cerrada de semillas): «si» si la especie está; «no» si no.
+#   Ojo: esos puntos piden pasaporte cuando la semilla circula al amparo de su directiva de comercialización.
+# anexo_xiv_zp: «si» si el género (o la especie) aparece en el anexo XIV (pasaporte «ZP» para entrar o moverse
+#   en ciertas zonas protegidas); vacío si no se ha verificado. Las zonas protegidas concretas (anexo III) NO se
+#   han verificado: la app pide a la persona que marque si el destino es zona protegida.
+# grupo_fitosanitario: grupo de cultivo con el que se cruzó el Registro de Productos Fitosanitarios (ver
+#   fitosanitarios_vivero.csv); vacío si no se cruzó.
+# plagas_reguladas: ids de plagas_reguladas_vivero.csv relevantes para la especie (anexo IV y R. Del. 2019/1702).
+# Nombres comunes y botánicos: conocimiento general, no fuente leída.
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,nombre,nombre_botanico,grupo,grupo_fitosanitario,planta_pasaporte,semilla_pasaporte,anexo_xiv_zp,plagas_reguladas,notas,revisado_por
+tomate,Tomate,Solanum lycopersicum,horticola,tomate,si,si,,clavibacter_michiganensis|xanthomonas_tomate_pimiento|virus_bronceado_tomate|virus_cuchara_tomate|viroide_tuberculo_fusiforme,Semilla: anexo XIII punto 6.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+pimiento,Pimiento,Capsicum annuum,horticola,pimiento,si,si,,xanthomonas_tomate_pimiento|virus_bronceado_tomate|viroide_tuberculo_fusiforme,"Semilla: anexo XIII puntos 6 y 10.","fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+lechuga,Lechuga,Lactuca sativa,horticola,lechuga,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+cebolla,Cebolla,Allium cepa,horticola,,si,si,,,Semilla: anexo XIII punto 6.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+puerro,Puerro,Allium porrum,horticola,,si,si,,,Semilla: anexo XIII punto 6.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+judia,Judía,Phaseolus vulgaris,horticola,,si,si,,,Semilla: anexo XIII punto 6.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+guisante,Guisante,Pisum sativum,horticola,,si,si,,,Semilla: anexo XIII punto 6.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+haba,Haba,Vicia faba,horticola,,si,si,,,Semilla: anexo XIII punto 6.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+berenjena,Berenjena,Solanum melongena,horticola,,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+calabacin,Calabacín,Cucurbita pepo,horticola,,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+col,Col,Brassica oleracea,horticola,,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+pino_resinero,Pino resinero,Pinus pinaster,forestal,pino,si,no,si,bursaphelenchus_xylophilus|dothistroma|lecanosticta_acicola,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+pino_silvestre,Pino silvestre,Pinus sylvestris,forestal,pino,si,no,si,bursaphelenchus_xylophilus|dothistroma|lecanosticta_acicola,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+pino_carrasco,Pino carrasco,Pinus halepensis,forestal,pino,si,no,si,bursaphelenchus_xylophilus|dothistroma|lecanosticta_acicola,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+pino_pinonero,Pino piñonero,Pinus pinea,forestal,pino,si,no,si,bursaphelenchus_xylophilus|dothistroma|lecanosticta_acicola,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+encina,Encina,Quercus ilex,forestal,ornamental_lenosa,si,no,si,,Anexo XIV: Quercus salvo Q. suber.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+roble_comun,Roble común,Quercus robur,forestal,ornamental_lenosa,si,no,si,,Anexo XIV: Quercus salvo Q. suber.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+alcornoque,Alcornoque,Quercus suber,forestal,ornamental_lenosa,si,no,,,El anexo XIV excluye Q. suber; el resto de zonas protegidas está por verificar.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+castano,Castaño,Castanea sativa,forestal,,si,no,si,cryphonectria_parasitica,"Anexo XIV: planta, semilla, madera y corteza de Castanea.","fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+haya,Haya,Fagus sylvatica,forestal,ornamental_lenosa,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+chopo,Chopo,Populus nigra,forestal,ornamental_lenosa,si,no,si,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+olmo,Olmo,Ulmus minor,forestal,ornamental_lenosa,si,no,si,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+fresno,Fresno,Fraxinus excelsior,forestal,ornamental_lenosa,si,no,,agrilus_planipennis,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada) y R. Del. (UE) 2019/1702, leído 2026-11-07"
+almendro,Almendro,Prunus dulcis,frutal,,si,si,si,plum_pox_virus|xanthomonas_arboricola_pruni|xylella_fastidiosa|aromia_bungii,Semilla: anexo XIII puntos 10 y 11.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV, XIII y XIV (versión adoptada) y R. Del. (UE) 2019/1702, leído 2026-11-07"
+cerezo,Cerezo,Prunus avium,frutal,,si,si,si,plum_pox_virus|xanthomonas_arboricola_pruni|aromia_bungii,Semilla: anexo XIII puntos 10 y 11.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV, XIII y XIV (versión adoptada) y R. Del. (UE) 2019/1702, leído 2026-11-07"
+melocotonero,Melocotonero,Prunus persica,frutal,,si,si,si,plum_pox_virus|xanthomonas_arboricola_pruni|aromia_bungii,Semilla: anexo XIII puntos 10 y 11.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV, XIII y XIV (versión adoptada) y R. Del. (UE) 2019/1702, leído 2026-11-07"
+manzano,Manzano,Malus domestica,frutal,,si,no,si,erwinia_amylovora,Anexo XIV: huésped del fuego bacteriano.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV, XIII y XIV (versión adoptada), leído 2026-11-07"
+peral,Peral,Pyrus communis,frutal,,si,no,si,erwinia_amylovora,Anexo XIV: huésped del fuego bacteriano.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV, XIII y XIV (versión adoptada), leído 2026-11-07"
+membrillero,Membrillero,Cydonia oblonga,frutal,,si,no,si,erwinia_amylovora,Anexo XIV: huésped del fuego bacteriano.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+nogal,Nogal,Juglans regia,frutal,,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+avellano,Avellano,Corylus avellana,frutal,,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+olivo,Olivo,Olea europaea,frutal,,si,no,,xylella_fastidiosa|pseudomonas_savastanoi,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV y XIII (versión adoptada) y R. Del. (UE) 2019/1702, leído 2026-11-07"
+vid,Vid,Vitis vinifera,frutal,,si,no,si,xylella_fastidiosa|virus_entrenudo_corto|xylophilus_ampelinus,Anexo XIII punto 2: también otros vegetales de Vitis salvo frutos y semillas.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV, XIII y XIV (versión adoptada), leído 2026-11-07"
+limonero,Limonero,Citrus limon,frutal,,si,no,,candidatus_liberibacter|virus_tristeza_citricos,"Anexo XIII punto 2: también otros vegetales de Citrus salvo frutos y semillas, y punto 3 (frutos con hojas).","fuente_publica: R. Ej. (UE) 2019/2072, anexos IV y XIII (versión adoptada) y R. Del. (UE) 2019/1702, leído 2026-11-07"
+naranjo,Naranjo,Citrus sinensis,frutal,,si,no,,candidatus_liberibacter|virus_tristeza_citricos,"Anexo XIII punto 2: también otros vegetales de Citrus salvo frutos y semillas, y punto 3 (frutos con hojas).","fuente_publica: R. Ej. (UE) 2019/2072, anexos IV y XIII (versión adoptada) y R. Del. (UE) 2019/1702, leído 2026-11-07"
+lavanda,Lavanda,Lavandula angustifolia,ornamental,ornamental_herbacea,si,no,,xylella_fastidiosa,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+romero,Romero,Salvia rosmarinus,ornamental,ornamental_lenosa,si,no,,xylella_fastidiosa,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+polygala,Polígala,Polygala myrtifolia,ornamental,ornamental_lenosa,si,no,,xylella_fastidiosa,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+adelfa,Adelfa,Nerium oleander,ornamental,ornamental_lenosa,si,no,si,xylella_fastidiosa,Anexo XIV punto 2.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+rosal,Rosal,Rosa spp.,ornamental,ornamental_lenosa,si,no,,popillia_japonica,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+espino_albar,Espino albar,Crataegus monogyna,ornamental,ornamental_lenosa,si,no,si,erwinia_amylovora,Anexo XIV: huésped del fuego bacteriano.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos IV, XIII y XIV (versión adoptada), leído 2026-11-07"
+piracanta,Piracanta,Pyracantha coccinea,ornamental,ornamental_lenosa,si,no,si,erwinia_amylovora,Anexo XIV: huésped del fuego bacteriano.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+cotoneaster,Cotoneaster,Cotoneaster spp.,ornamental,ornamental_lenosa,si,no,si,erwinia_amylovora,Anexo XIV: huésped del fuego bacteriano.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+serbal,Serbal,Sorbus aucuparia,ornamental,ornamental_lenosa,si,no,si,erwinia_amylovora,Anexo XIV: huésped del fuego bacteriano.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+platano_sombra,Plátano de sombra,Platanus × hispanica,ornamental,ornamental_lenosa,si,no,si,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+tejo,Tejo,Taxus baccata,ornamental,ornamental_lenosa,si,no,si,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+arandano,Arándano,Vaccinium corymbosum,frutal,,si,no,si,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+viburno,Durillo,Viburnum tinus,ornamental,ornamental_lenosa,si,no,si,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+geranio,Geranio,Pelargonium spp.,ornamental,ornamental_herbacea,si,no,,,,"fuente_publica: R. Ej. (UE) 2019/2072, anexo XIII (versión adoptada), leído 2026-11-07"
+palmera_canaria,Palmera canaria,Phoenix canariensis,ornamental,ornamental_lenosa,si,no,si,,Anexo XIV punto 4: palmeras de más de 5 cm de diámetro en la base del tallo.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+palmito,Palmito,Chamaerops humilis,ornamental,ornamental_lenosa,si,no,si,,Anexo XIV punto 4: palmeras de más de 5 cm de diámetro en la base del tallo.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"
+madrono,Madroño,Arbutus unedo,ornamental,ornamental_lenosa,si,no,si,,Anexo XIV punto 3.,"fuente_publica: R. Ej. (UE) 2019/2072, anexos XIII y XIV (versión adoptada), leído 2026-11-07"

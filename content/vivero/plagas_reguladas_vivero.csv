@@ -1,0 +1,41 @@
+# Plagas reguladas relevantes para viveros — datos PROVISIONALES.
+# Fuentes leídas el 2026-11-07:
+#   Reglamento Delegado (UE) 2019/1702 (20 plagas prioritarias):
+#     https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32019R1702
+#   Reglamento de Ejecución (UE) 2019/2072, anexo IV (plagas reguladas no cuarentenarias, RNQP, por género y
+#     material), versión adoptada en https://legislation.gov.uk/eur/2019/2072/annex/IV/adopted
+#     (consolidado vigente POR VERIFICAR: el anexo IV se ha modificado después).
+# categoria: prioritaria (cuarentenaria prioritaria, 2019/1702) o rnqp (anexo IV).
+# generos: géneros (o especies) huéspedes en nombre botánico; la app los compara con el nombre botánico de la
+#   partida. En las prioritarias la lista de huéspedes es ORIENTATIVA y no sale de la fuente leída (la de
+#   Xylella, por ejemplo, la mantiene la Comisión en su base de datos): POR VERIFICAR.
+# sintomas: orientación de conocimiento general, no de la fuente.
+# Sospecha de una cuarentenaria = aviso inmediato a la autoridad (RD 1054/2021, art. 22.2.b).
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,nombre,nombre_cientifico,categoria,generos,sintomas,revisado_por
+xylella_fastidiosa,Xylella,Xylella fastidiosa,prioritaria,Olea|Prunus|Lavandula|Salvia|Polygala|Nerium|Vitis|Citrus|Coffea,"Quemado de bordes de hoja, secado de ramas; muchos huéspedes sin síntomas","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+popillia_japonica,Escarabajo japonés,Popillia japonica,prioritaria,Rosa|Vitis|Prunus|Malus|Tilia|Acer,"Hojas esqueletizadas; adultos verde metálico con mechones blancos; larvas en el césped y el sustrato","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+anoplophora_chinensis,Escarabajo de cuernos largos de los cítricos,Anoplophora chinensis,prioritaria,Acer|Citrus|Malus|Platanus|Populus|Salix,"Orificios de salida redondos en la base del tronco y las raíces","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+anoplophora_glabripennis,Escarabajo asiático de cuernos largos,Anoplophora glabripennis,prioritaria,Acer|Populus|Salix|Betula|Ulmus|Aesculus,"Orificios de salida redondos en tronco y ramas; serrín","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+agrilus_planipennis,Barrenador esmeralda del fresno,Agrilus planipennis,prioritaria,Fraxinus,"Orificios de salida en forma de D; galerías serpenteantes bajo la corteza","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+aromia_bungii,Escarabajo de cuello rojo,Aromia bungii,prioritaria,Prunus,"Serrín en la base del tronco; orificios de salida ovalados","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+bursaphelenchus_xylophilus,Nematodo de la madera del pino,Bursaphelenchus xylophilus,prioritaria,Pinus,"Marchitez rápida de las acículas y muerte del pino","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+candidatus_liberibacter,Huanglongbing (enverdecimiento de los cítricos),Candidatus Liberibacter spp.,prioritaria,Citrus|Fortunella|Poncirus|Murraya,"Moteado asimétrico de las hojas; brotes amarillos","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+phyllosticta_citricarpa,Mancha negra de los cítricos,Phyllosticta citricarpa,prioritaria,Citrus,"Manchas negras en frutos y hojas","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+spodoptera_frugiperda,Gusano cogollero,Spodoptera frugiperda,prioritaria,Zea|Sorghum|Solanum|Capsicum,"Orugas en los cogollos; hojas perforadas","fuente_publica: R. Del. (UE) 2019/1702 (categoría); huéspedes por verificar"
+plum_pox_virus,Sharka,Plum pox virus,rnqp,Prunus,"Anillos y manchas cloróticas en hojas y frutos","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte J (versión adoptada)"
+xanthomonas_arboricola_pruni,Mancha bacteriana de los frutales de hueso,Xanthomonas arboricola pv. pruni,rnqp,Prunus,"Manchas angulosas que se perforan; chancros","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte J (versión adoptada)"
+erwinia_amylovora,Fuego bacteriano,Erwinia amylovora,rnqp,Malus|Pyrus|Cydonia|Crataegus|Pyracantha|Cotoneaster|Sorbus|Amelanchier|Chaenomeles|Eriobotrya|Mespilus,"Flores y brotes ennegrecidos como quemados, en cayado","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte J (Malus, Pyrus) y anexo XIV (huéspedes ZP), versión adoptada"
+cryphonectria_parasitica,Chancro del castaño,Cryphonectria parasitica,rnqp,Castanea,"Chancros anaranjados en tronco y ramas; ramas secas","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV partes D, E y J (versión adoptada)"
+dothistroma,Banda roja del pino,Dothistroma septosporum y D. pini,rnqp,Pinus,"Bandas rojas en las acículas; defoliación","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV partes D y E (versión adoptada)"
+lecanosticta_acicola,Mancha parda del pino,Lecanosticta acicola,rnqp,Pinus,"Manchas pardas con halo amarillo en las acículas","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV partes D y E (versión adoptada)"
+clavibacter_michiganensis,Chancro bacteriano del tomate,Clavibacter michiganensis subsp. michiganensis,rnqp,Solanum lycopersicum,"Marchitez unilateral; chancros en el tallo; ojo de perdiz en frutos","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV partes F e I (versión adoptada)"
+xanthomonas_tomate_pimiento,Mancha bacteriana del tomate y el pimiento,"Xanthomonas euvesicatoria, X. gardneri, X. perforans, X. vesicatoria",rnqp,Solanum lycopersicum|Capsicum annuum,"Manchas pequeñas, oscuras y grasientas en hojas y frutos","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV partes F e I (versión adoptada)"
+virus_bronceado_tomate,Virus del bronceado del tomate,Tomato spotted wilt tospovirus,rnqp,Solanum lycopersicum|Capsicum annuum,"Bronceado y anillos necróticos en hojas; frutos con anillos","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte I (versión adoptada)"
+virus_cuchara_tomate,Virus de la cuchara del tomate,Tomato yellow leaf curl virus,rnqp,Solanum lycopersicum,"Hojas pequeñas, amarillas y enrolladas hacia arriba; enanismo","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte I (versión adoptada)"
+viroide_tuberculo_fusiforme,Viroide del tubérculo fusiforme de la patata,Potato spindle tuber viroid,rnqp,Solanum lycopersicum|Capsicum annuum|Solanum tuberosum,"Enanismo, hojas rizadas y cloróticas; a menudo sin síntomas","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV partes F, I y K (versión adoptada)"
+virus_tristeza_citricos,Virus de la tristeza de los cítricos,Citrus tristeza virus,rnqp,Citrus|Fortunella|Poncirus,"Decaimiento; acanaladuras en la madera","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte J (versión adoptada)"
+pseudomonas_savastanoi,Tuberculosis del olivo,Pseudomonas savastanoi pv. savastanoi,rnqp,Olea,"Tumores o verrugas en ramas y tronco","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte J (versión adoptada)"
+virus_entrenudo_corto,Entrenudo corto de la vid,Grapevine fanleaf virus,rnqp,Vitis,"Hojas en abanico, entrenudos cortos y dobles","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte C (versión adoptada)"
+xylophilus_ampelinus,Necrosis bacteriana de la vid,Xylophilus ampelinus,rnqp,Vitis,"Manchas y grietas en brotes; brotes secos","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV parte C (versión adoptada)"
+verticillium_dahliae,Verticilosis,Verticillium dahliae,rnqp,Olea|Prunus|Malus|Pyrus|Corylus|Humulus,"Marchitez y seca de ramas; madera con estrías oscuras","fuente_publica: R. Ej. (UE) 2019/2072, anexo IV partes J y L (versión adoptada)"

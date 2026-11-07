@@ -1,0 +1,26 @@
+# Plagas y enfermedades frecuentes en planta joven de vivero — datos PROVISIONALES.
+# Son las agrupaciones con las que se cruzó el campo «Agente» del Registro de Productos Fitosanitarios del MAPA
+#   (exportación «Productos autorizados para el Cuaderno de Explotación», datos del 06/11/2026,
+#   https://servicio.mapa.gob.es/regfiweb). En patrones_registro, los textos del campo «Agente» que cuentan.
+# grupos: grupos de cultivo de fitosanitarios_vivero.csv donde hay algún uso autorizado.
+# sintomas: orientación de conocimiento general, no de una guía leída (por eso revisado_por solo cita el
+#   registro para el nombre y la agrupación).
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,nombre,nombre_cientifico,tipo,sintomas,patrones_registro,revisado_por
+pulgones,Pulgones,Aphididae (Myzus persicae y otros),plaga,"Colonias en brotes tiernos, hojas enrolladas, melaza",Áfidos pulgones|Pulgón verde Myzus|Pulgón rojo del rosal,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+mosca_blanca,Mosca blanca,"Bemisia tabaci, Trialeurodes vaporariorum",plaga,"Adultos blancos en el envés que vuelan al mover la planta; melaza y negrilla",Mosca blanca|Moscas blancas,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+trips,Trips,Thysanoptera (Frankliniella occidentalis y otros),plaga,"Punteado plateado en hojas; flores deformadas; vectores de virus",Trips|Frankliniella,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+arana_roja,Araña roja,Tetranychus spp.,plaga,"Punteado amarillento, telillas finas en el envés",Araña roja|Tetranychus|Ácaros tetraníquidos,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+minadores,Minadores de hoja,Liriomyza spp.,plaga,"Galerías serpenteantes en las hojas",Liriomyza,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+orugas,Orugas (lepidópteros),"Spodoptera, Helicoverpa, Agrotis y otros",plaga,"Hojas comidas, excrementos, plántulas cortadas a ras de suelo",Lepidópteros|Noctuidos|Spodoptera|Heliothis Helicoverpa|Gusanos grises|Rosquilla,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+procesionaria,Procesionaria,Thaumetopoea spp.,plaga,"Bolsones de seda en las puntas de las ramas; orugas en fila",Procesionaria|Thaumetopoea,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+tuta_absoluta,Polilla del tomate,Tuta absoluta,plaga,"Minas en hojas y galerías en frutos de tomate",Tuta absoluta,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+babosas_caracoles,Babosas y caracoles,Gastropoda,plaga,"Hojas comidas con bordes irregulares y rastro de baba",Babosas limacos|Caracoles,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+oidio,Oídio,"Erysiphaceae (Erysiphe, Podosphaera, Leveillula)",enfermedad,"Polvo blanco en hojas y brotes",Oídio|Erysiphe|Podosphaera|Leveillula,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+mildiu,Mildiu,"Peronosporaceae (Peronospora, Bremia, Phytophthora infestans)",enfermedad,"Manchas aceitosas en el haz y pelusa grisácea en el envés",Mildiu|Peronospora|Bremia,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+botritis,Podredumbre gris,Botrytis cinerea,enfermedad,"Podredumbre blanda con moho gris, sobre todo con humedad alta",Botrytis|Podredumbre gris,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+roya,Roya,Pucciniaceae,enfermedad,"Pústulas anaranjadas o pardas en el envés",Roya|Puccinia,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+pythium,Caída de plántulas (Pythium),Pythium spp.,enfermedad,"Plántulas que se doblan por el cuello, podredumbre de raíz",Pythium,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+rhizoctonia,Rhizoctonia,Rhizoctonia solani,enfermedad,"Lesiones pardas en el cuello; caída de plántulas",Rhizoctonia,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+phytophthora,Phytophthora,Phytophthora spp.,enfermedad,"Podredumbre de cuello y raíz; marchitez",Phytophthora spp.|P. cryptogea|P. nicotianae|P. capsici,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"
+fusarium,Fusariosis,Fusarium spp.,enfermedad,"Marchitez y amarilleo; vasos pardos al cortar el tallo",Fusarium|Fusariosis,"fuente_publica: Registro de Productos Fitosanitarios MAPA, campo Agente (datos 06/11/2026)"

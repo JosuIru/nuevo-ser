@@ -9,6 +9,7 @@ import 'boton_diagnostico_ia.dart' show pantallaClaveSidra;
 import 'hoja_formulario.dart';
 import 'pantalla_bienvenida.dart';
 import 'pantalla_documentos.dart';
+import 'pantalla_economia.dart';
 
 /// Ajustes: datos de la casa y del titular, idioma y el resto de apartados.
 class PantallaAjustes extends StatefulWidget {
@@ -92,6 +93,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               const PantallaBienvenida()),
           _apartado(Icons.picture_as_pdf_outlined, 'sidr.documentos',
               const PantallaDocumentos()),
+          _apartado(Icons.euro_outlined, 'sidr.ingresos_y_gastos',
+              const PantallaEconomia()),
           _apartado(Icons.auto_awesome_outlined, 'sidr.inteligencia_artificial',
               pantallaClaveSidra()),
           const SelectorIdioma(),

@@ -15,11 +15,11 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | ✅ 2026-11-07 (adelantado al 3) | `content/sidra/`: 268 variedades de manzana (pliegos Euskal Sagardoa y Asturias), 11 de uva (DO de txakoli), 18 plagas, 61 sustancias activas (registro MAPA 06/11/2026 + EU Pesticides DB) y 8 productos DOP con sus límites. `dominio/catalogos.dart` y `comprobacion_dop.dart` (avisos de acidez volátil, grado, SO₂, densidad del mosto y rendimiento). Banner de provisionales en Hoy |
 | 7 IA visual | ✅ 2026-11-07 | Ficha de la pomarada → ✨: foto de hoja, fruto o rama → propuesta de plaga **del catálogo** (salida estructurada con `enum` de los 18 ids + «ninguna» / «no identificada»), confianza, otras posibles y síntomas vistos. Si es del catálogo, ofrece «Apuntar tratamiento» con la plaga ya puesta (la sustancia la elige la persona). Aviso de organismo regulado (fuego bacteriano). Nunca productos ni dosis. Modelo equilibrado del core, clave BYO en `estado/clave_anthropic_sidra.dart` (Ajustes → IA). La foto se borra al terminar. 47 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (manzana verde `#6B7A2E` con hoja sobre crema `#F5EFE2`) en `assets/`, iconos del lanzador con `flutter_launcher_icons` (adaptativo con fondo crema), logo en la cabecera de Hoy, etiqueta «Larrea Sagardoa» en Android. **GPS**: «Estoy aquí» en la pomarada guarda latitud y longitud (permisos de ubicación e INTERNET añadidos al manifiesto) |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes por mes con base, tipo de IVA o **compensación del REAGP (12 %)** en vez de IVA; la app propone tipo y compensación por categoría (`dominio/resumen_economico.dart`, LIVA arts. 91, 126 y 130 leídos en el BOE). El resumen separa venta de manzana (actividad agraria) de sidra, txakoli y txotx (transformación y servicios), con IVA y compensaciones orientativos, y extracto PDF con sello. Régimen fiscal del titular en Ajustes. 52 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 9 (ingresos y gastos, REAGP frente a transformación, PROVISIONAL).
+**Siguiente acción**: bloque 10 (revisión con fuente pública de catálogos y documentos).
 
 ## Encuadre
 
@@ -112,6 +112,15 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
 - **2026-11-07 — GPS de un punto, sin mapa**: la pomarada guarda dónde está
   la persona al pulsar «Estoy aquí». El polígono lo da el SIGPAC (polígono,
   parcela, recinto), que es lo que pide el pliego; un mapa no aporta en F1.
+- **2026-11-07 — Economía en un solo libro de apuntes** (como obrador), con la
+  compensación del REAGP como casilla: venta de manzana propia (12 %, LIVA art.
+  130.Cinco.1.º) frente a sidra y txotx (transformación, fuera del REAGP por el
+  art. 126.Uno.1.º). Sin facturas ni impuestos especiales hasta el asesor.
+- **2026-11-07 — Tipos de IVA propuestos y editables**: manzana 4 %, sidra y
+  txakoli 21 % (bebidas alcohólicas, fuera del 10 %), txotx 10 % (comidas y
+  bebidas para consumir en el acto), fitosanitarios 10 %. Leídos en la LIVA
+  consolidada; los confirma el asesor.
+- **2026-11-07 — Borrar un apunte pide confirmación** (pulsación larga + diálogo).
 
 ## Datos técnicos
 

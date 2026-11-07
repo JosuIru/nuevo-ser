@@ -13,6 +13,14 @@ y sigue. Lo recoge `scripts/pendientes/`.
 - **Técnico de la pomarada (asesor GIP)**: cuaderno de fitosanitarios; si basta el
   n.º de registro o hace falta el nombre comercial; síntomas de
   `content/sidra/plagas_manzano.csv` (escritos por Claude, sin contrastar).
+- **Asesor fiscal**: régimen de cada sagardotegi (REAGP para la manzana propia
+  vendida sin transformar frente a estimación directa u objetiva para la sidra,
+  el txakoli y el txotx), los tipos de IVA que la app propone (manzana 4 %,
+  sidra y txakoli 21 %, txotx 10 %, fitosanitarios 10 %, leídos en la LIVA
+  consolidada el 2026-11-07: arts. 91, 126 y 130), el porcentaje de
+  compensación (12 %), si la venta de sidra a granel a hostelería o la de
+  manzana a otra sagardotegi cambian algo, Verifactu, impuestos especiales
+  sobre la sidra (no tratados) y facturas. El extracto lleva sello PROVISIONAL.
 - **DO de txakoli**: confirmar si el pliego de Getariako Txakolina de 2011 sigue
   vigente o hay una versión posterior.
 

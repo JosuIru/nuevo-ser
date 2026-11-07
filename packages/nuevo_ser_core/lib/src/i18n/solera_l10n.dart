@@ -4448,6 +4448,9 @@ class SoleraL10n {
     'sidr.comensales',
     'sidr.comparado_con',
     'sidr.con_contraetiqueta_dop',
+    'sidr.confianza_alta',
+    'sidr.confianza_baja',
+    'sidr.confianza_media',
     'sidr.contraetiquetas_rango',
     'sidr.cuaderno_pomarada',
     'sidr.cuaderno_pomarada_explicacion',
@@ -4475,6 +4478,7 @@ class SoleraL10n {
     'sidr.eficacia_buena',
     'sidr.eficacia_mala',
     'sidr.eficacia_regular',
+    'sidr.elegir_foto',
     'sidr.embotellados',
     'sidr.embotellar',
     'sidr.en_bodega',
@@ -4500,8 +4504,20 @@ class SoleraL10n {
     'sidr.fruta_uva',
     'sidr.grado_alcoholico',
     'sidr.guardado',
+    'sidr.hacer_foto',
     'sidr.hoy',
+    'sidr.ia_confianza',
+    'sidr.ia_error',
+    'sidr.ia_foto_no_valida',
+    'sidr.ia_mirar',
+    'sidr.ia_no_identificada',
+    'sidr.ia_otras',
+    'sidr.ia_propuesta',
+    'sidr.ia_que_hace',
+    'sidr.ia_revisa',
+    'sidr.ia_sin_plaga',
     'sidr.inscripcion_dop',
+    'sidr.inteligencia_artificial',
     'sidr.kilos',
     'sidr.kupela',
     'sidr.kupela_activa',
@@ -9634,6 +9650,9 @@ class SoleraL10n {
           'sidr.comensales',
           'sidr.comparado_con',
           'sidr.con_contraetiqueta_dop',
+          'sidr.confianza_alta',
+          'sidr.confianza_baja',
+          'sidr.confianza_media',
           'sidr.contraetiquetas_rango',
           'sidr.cuaderno_pomarada',
           'sidr.cuaderno_pomarada_explicacion',
@@ -9661,6 +9680,7 @@ class SoleraL10n {
           'sidr.eficacia_buena',
           'sidr.eficacia_mala',
           'sidr.eficacia_regular',
+          'sidr.elegir_foto',
           'sidr.embotellados',
           'sidr.embotellar',
           'sidr.en_bodega',
@@ -9686,8 +9706,20 @@ class SoleraL10n {
           'sidr.fruta_uva',
           'sidr.grado_alcoholico',
           'sidr.guardado',
+          'sidr.hacer_foto',
           'sidr.hoy',
+          'sidr.ia_confianza',
+          'sidr.ia_error',
+          'sidr.ia_foto_no_valida',
+          'sidr.ia_mirar',
+          'sidr.ia_no_identificada',
+          'sidr.ia_otras',
+          'sidr.ia_propuesta',
+          'sidr.ia_que_hace',
+          'sidr.ia_revisa',
+          'sidr.ia_sin_plaga',
           'sidr.inscripcion_dop',
+          'sidr.inteligencia_artificial',
           'sidr.kilos',
           'sidr.kupela',
           'sidr.kupela_activa',
@@ -14817,6 +14849,9 @@ class SoleraL10n {
           'sidr.comensales',
           'sidr.comparado_con',
           'sidr.con_contraetiqueta_dop',
+          'sidr.confianza_alta',
+          'sidr.confianza_baja',
+          'sidr.confianza_media',
           'sidr.contraetiquetas_rango',
           'sidr.cuaderno_pomarada',
           'sidr.cuaderno_pomarada_explicacion',
@@ -14844,6 +14879,7 @@ class SoleraL10n {
           'sidr.eficacia_buena',
           'sidr.eficacia_mala',
           'sidr.eficacia_regular',
+          'sidr.elegir_foto',
           'sidr.embotellados',
           'sidr.embotellar',
           'sidr.en_bodega',
@@ -14869,8 +14905,20 @@ class SoleraL10n {
           'sidr.fruta_uva',
           'sidr.grado_alcoholico',
           'sidr.guardado',
+          'sidr.hacer_foto',
           'sidr.hoy',
+          'sidr.ia_confianza',
+          'sidr.ia_error',
+          'sidr.ia_foto_no_valida',
+          'sidr.ia_mirar',
+          'sidr.ia_no_identificada',
+          'sidr.ia_otras',
+          'sidr.ia_propuesta',
+          'sidr.ia_que_hace',
+          'sidr.ia_revisa',
+          'sidr.ia_sin_plaga',
           'sidr.inscripcion_dop',
+          'sidr.inteligencia_artificial',
           'sidr.kilos',
           'sidr.kupela',
           'sidr.kupela_activa',
@@ -20000,6 +20048,9 @@ class SoleraL10n {
           'sidr.comensales',
           'sidr.comparado_con',
           'sidr.con_contraetiqueta_dop',
+          'sidr.confianza_alta',
+          'sidr.confianza_baja',
+          'sidr.confianza_media',
           'sidr.contraetiquetas_rango',
           'sidr.cuaderno_pomarada',
           'sidr.cuaderno_pomarada_explicacion',
@@ -20027,6 +20078,7 @@ class SoleraL10n {
           'sidr.eficacia_buena',
           'sidr.eficacia_mala',
           'sidr.eficacia_regular',
+          'sidr.elegir_foto',
           'sidr.embotellados',
           'sidr.embotellar',
           'sidr.en_bodega',
@@ -20052,8 +20104,20 @@ class SoleraL10n {
           'sidr.fruta_uva',
           'sidr.grado_alcoholico',
           'sidr.guardado',
+          'sidr.hacer_foto',
           'sidr.hoy',
+          'sidr.ia_confianza',
+          'sidr.ia_error',
+          'sidr.ia_foto_no_valida',
+          'sidr.ia_mirar',
+          'sidr.ia_no_identificada',
+          'sidr.ia_otras',
+          'sidr.ia_propuesta',
+          'sidr.ia_que_hace',
+          'sidr.ia_revisa',
+          'sidr.ia_sin_plaga',
           'sidr.inscripcion_dop',
+          'sidr.inteligencia_artificial',
           'sidr.kilos',
           'sidr.kupela',
           'sidr.kupela_activa',
@@ -25206,6 +25270,9 @@ class SoleraL10n {
       case 'sidr.comensales': return 'Comensales';
       case 'sidr.comparado_con': return 'Comparado con: {producto}';
       case 'sidr.con_contraetiqueta_dop': return 'Con contraetiqueta numerada de la DOP';
+      case 'sidr.confianza_alta': return 'alta';
+      case 'sidr.confianza_baja': return 'baja';
+      case 'sidr.confianza_media': return 'media';
       case 'sidr.contraetiquetas_rango': return 'Contraetiquetas {desde}–{hasta}';
       case 'sidr.cuaderno_pomarada': return 'Cuaderno de la pomarada';
       case 'sidr.cuaderno_pomarada_explicacion': return 'Parcelas, tratamientos fitosanitarios y cosecha propia de la campaña';
@@ -25233,6 +25300,7 @@ class SoleraL10n {
       case 'sidr.eficacia_buena': return 'Buena';
       case 'sidr.eficacia_mala': return 'Mala';
       case 'sidr.eficacia_regular': return 'Regular';
+      case 'sidr.elegir_foto': return 'Elegir de la galería';
       case 'sidr.embotellados': return 'Embotellados';
       case 'sidr.embotellar': return 'Embotellar';
       case 'sidr.en_bodega': return 'en bodega';
@@ -25258,8 +25326,20 @@ class SoleraL10n {
       case 'sidr.fruta_uva': return 'Uva';
       case 'sidr.grado_alcoholico': return 'Grado alcohólico';
       case 'sidr.guardado': return 'Guardado';
+      case 'sidr.hacer_foto': return 'Hacer una foto';
       case 'sidr.hoy': return 'Hoy';
+      case 'sidr.ia_confianza': return 'confianza {confianza}';
+      case 'sidr.ia_error': return 'No se pudo consultar a la IA. Revisa la conexión y la clave.';
+      case 'sidr.ia_foto_no_valida': return 'La foto no deja ver un manzano con claridad.';
+      case 'sidr.ia_mirar': return 'Mirar una foto con IA';
+      case 'sidr.ia_no_identificada': return 'Hay algo, pero no encaja con ninguna de la lista.';
+      case 'sidr.ia_otras': return 'También podría ser: {plagas}';
+      case 'sidr.ia_propuesta': return 'Propuesta de la IA';
+      case 'sidr.ia_que_hace': return 'Mira la foto de una hoja, un fruto o una rama del manzano y propone qué plaga o enfermedad puede ser. No recomienda productos ni dosis.';
+      case 'sidr.ia_revisa': return 'Es una propuesta: compruébala tú o con tu técnico antes de tratar.';
+      case 'sidr.ia_sin_plaga': return 'No se ve ninguna plaga ni enfermedad de la lista.';
       case 'sidr.inscripcion_dop': return 'N.º de inscripción en la DOP';
+      case 'sidr.inteligencia_artificial': return 'Inteligencia artificial';
       case 'sidr.kilos': return 'Kilos';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'En uso';
@@ -30393,6 +30473,9 @@ class SoleraL10n {
       case 'sidr.comensales': return 'Mahaikideak';
       case 'sidr.comparado_con': return 'Honekin alderatuta: {producto}';
       case 'sidr.con_contraetiqueta_dop': return 'JDBko kontraetiketa zenbakidunarekin';
+      case 'sidr.confianza_alta': return 'handia';
+      case 'sidr.confianza_baja': return 'txikia';
+      case 'sidr.confianza_media': return 'ertaina';
       case 'sidr.contraetiquetas_rango': return 'Kontraetiketak {desde}–{hasta}';
       case 'sidr.cuaderno_pomarada': return 'Sagastiaren koadernoa';
       case 'sidr.cuaderno_pomarada_explicacion': return 'Partzelak, tratamendu fitosanitarioak eta kanpainako uzta propioa';
@@ -30420,6 +30503,7 @@ class SoleraL10n {
       case 'sidr.eficacia_buena': return 'Ona';
       case 'sidr.eficacia_mala': return 'Txarra';
       case 'sidr.eficacia_regular': return 'Erdipurdikoa';
+      case 'sidr.elegir_foto': return 'Galeriatik aukeratu';
       case 'sidr.embotellados': return 'Botilaratzeak';
       case 'sidr.embotellar': return 'Botilaratu';
       case 'sidr.en_bodega': return 'upategian';
@@ -30445,8 +30529,20 @@ class SoleraL10n {
       case 'sidr.fruta_uva': return 'Mahatsa';
       case 'sidr.grado_alcoholico': return 'Alkohol-gradua';
       case 'sidr.guardado': return 'Gordeta';
+      case 'sidr.hacer_foto': return 'Argazki bat atera';
       case 'sidr.hoy': return 'Gaur';
+      case 'sidr.ia_confianza': return '{confianza} konfiantza';
+      case 'sidr.ia_error': return 'Ezin izan zaio AAri galdetu. Begiratu konexioa eta gakoa.';
+      case 'sidr.ia_foto_no_valida': return 'Argazkian ez da sagarrondorik argi ikusten.';
+      case 'sidr.ia_mirar': return 'Argazki bat AArekin aztertu';
+      case 'sidr.ia_no_identificada': return 'Zerbait badago, baina ez dator bat zerrendako batekin ere.';
+      case 'sidr.ia_otras': return 'Hau ere izan liteke: {plagas}';
+      case 'sidr.ia_propuesta': return 'AAren proposamena';
+      case 'sidr.ia_que_hace': return 'Sagarrondoaren hosto, fruitu edo adar baten argazkia aztertzen du eta zer izurrite edo gaixotasun izan daitekeen proposatzen du. Ez du produkturik ez dosirik gomendatzen.';
+      case 'sidr.ia_revisa': return 'Proposamen bat da: egiaztatu zuk edo zure teknikariarekin tratatu aurretik.';
+      case 'sidr.ia_sin_plaga': return 'Ez da zerrendako izurrite edo gaixotasunik ikusten.';
       case 'sidr.inscripcion_dop': return 'JDBko inskripzio-zk.';
+      case 'sidr.inteligencia_artificial': return 'Adimen artifiziala';
       case 'sidr.kilos': return 'Kiloak';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'Erabilian';
@@ -35580,6 +35676,9 @@ class SoleraL10n {
       case 'sidr.comensales': return 'Comensals';
       case 'sidr.comparado_con': return 'Comparat amb: {producto}';
       case 'sidr.con_contraetiqueta_dop': return 'Amb contraetiqueta numerada de la DOP';
+      case 'sidr.confianza_alta': return 'alta';
+      case 'sidr.confianza_baja': return 'baixa';
+      case 'sidr.confianza_media': return 'mitjana';
       case 'sidr.contraetiquetas_rango': return 'Contraetiquetes {desde}–{hasta}';
       case 'sidr.cuaderno_pomarada': return 'Quadern de la pomereda';
       case 'sidr.cuaderno_pomarada_explicacion': return 'Parcel·les, tractaments fitosanitaris i collita pròpia de la campanya';
@@ -35607,6 +35706,7 @@ class SoleraL10n {
       case 'sidr.eficacia_buena': return 'Bona';
       case 'sidr.eficacia_mala': return 'Dolenta';
       case 'sidr.eficacia_regular': return 'Regular';
+      case 'sidr.elegir_foto': return 'Tria de la galeria';
       case 'sidr.embotellados': return 'Embotellats';
       case 'sidr.embotellar': return 'Embotella';
       case 'sidr.en_bodega': return 'al celler';
@@ -35632,8 +35732,20 @@ class SoleraL10n {
       case 'sidr.fruta_uva': return 'Raïm';
       case 'sidr.grado_alcoholico': return 'Grau alcohòlic';
       case 'sidr.guardado': return 'Desat';
+      case 'sidr.hacer_foto': return 'Fes una foto';
       case 'sidr.hoy': return 'Avui';
+      case 'sidr.ia_confianza': return 'confiança {confianza}';
+      case 'sidr.ia_error': return 'No s\'ha pogut consultar la IA. Revisa la connexió i la clau.';
+      case 'sidr.ia_foto_no_valida': return 'La foto no deixa veure una pomera amb claredat.';
+      case 'sidr.ia_mirar': return 'Mira una foto amb IA';
+      case 'sidr.ia_no_identificada': return 'Hi ha alguna cosa, però no encaixa amb cap de la llista.';
+      case 'sidr.ia_otras': return 'També podria ser: {plagas}';
+      case 'sidr.ia_propuesta': return 'Proposta de la IA';
+      case 'sidr.ia_que_hace': return 'Mira la foto d\'una fulla, un fruit o una branca de la pomera i proposa quina plaga o malaltia pot ser. No recomana productes ni dosis.';
+      case 'sidr.ia_revisa': return 'És una proposta: comprova-la tu o amb el teu tècnic abans de tractar.';
+      case 'sidr.ia_sin_plaga': return 'No es veu cap plaga ni malaltia de la llista.';
       case 'sidr.inscripcion_dop': return 'Núm. d\'inscripció a la DOP';
+      case 'sidr.inteligencia_artificial': return 'Intel·ligència artificial';
       case 'sidr.kilos': return 'Quilos';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'En ús';
@@ -40767,6 +40879,9 @@ class SoleraL10n {
       case 'sidr.comensales': return 'Comensais';
       case 'sidr.comparado_con': return 'Comparado con: {producto}';
       case 'sidr.con_contraetiqueta_dop': return 'Con contraetiqueta numerada da DOP';
+      case 'sidr.confianza_alta': return 'alta';
+      case 'sidr.confianza_baja': return 'baixa';
+      case 'sidr.confianza_media': return 'media';
       case 'sidr.contraetiquetas_rango': return 'Contraetiquetas {desde}–{hasta}';
       case 'sidr.cuaderno_pomarada': return 'Caderno do pomar';
       case 'sidr.cuaderno_pomarada_explicacion': return 'Parcelas, tratamentos fitosanitarios e colleita propia da campaña';
@@ -40794,6 +40909,7 @@ class SoleraL10n {
       case 'sidr.eficacia_buena': return 'Boa';
       case 'sidr.eficacia_mala': return 'Mala';
       case 'sidr.eficacia_regular': return 'Regular';
+      case 'sidr.elegir_foto': return 'Escoller da galería';
       case 'sidr.embotellados': return 'Embotellados';
       case 'sidr.embotellar': return 'Embotellar';
       case 'sidr.en_bodega': return 'na adega';
@@ -40819,8 +40935,20 @@ class SoleraL10n {
       case 'sidr.fruta_uva': return 'Uva';
       case 'sidr.grado_alcoholico': return 'Grao alcohólico';
       case 'sidr.guardado': return 'Gardado';
+      case 'sidr.hacer_foto': return 'Facer unha foto';
       case 'sidr.hoy': return 'Hoxe';
+      case 'sidr.ia_confianza': return 'confianza {confianza}';
+      case 'sidr.ia_error': return 'Non se puido consultar a IA. Revisa a conexión e a clave.';
+      case 'sidr.ia_foto_no_valida': return 'A foto non deixa ver unha maceira con claridade.';
+      case 'sidr.ia_mirar': return 'Mirar unha foto con IA';
+      case 'sidr.ia_no_identificada': return 'Hai algo, pero non encaixa con ningunha da lista.';
+      case 'sidr.ia_otras': return 'Tamén podería ser: {plagas}';
+      case 'sidr.ia_propuesta': return 'Proposta da IA';
+      case 'sidr.ia_que_hace': return 'Mira a foto dunha folla, un froito ou unha póla da maceira e propón que praga ou enfermidade pode ser. Non recomenda produtos nin doses.';
+      case 'sidr.ia_revisa': return 'É unha proposta: compróbaa ti ou co teu técnico antes de tratar.';
+      case 'sidr.ia_sin_plaga': return 'Non se ve ningunha praga nin enfermidade da lista.';
       case 'sidr.inscripcion_dop': return 'N.º de inscrición na DOP';
+      case 'sidr.inteligencia_artificial': return 'Intelixencia artificial';
       case 'sidr.kilos': return 'Quilos';
       case 'sidr.kupela': return 'Kupela';
       case 'sidr.kupela_activa': return 'En uso';

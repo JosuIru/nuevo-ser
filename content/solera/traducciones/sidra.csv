@@ -43,6 +43,9 @@ sidr.codigo_repetido,Ya hay una kupela con ese código.,Badago kode hori duen ku
 sidr.comensales,Comensales,Mahaikideak,Comensals,Comensais
 sidr.comparado_con,Comparado con: {producto},Honekin alderatuta: {producto},Comparat amb: {producto},Comparado con: {producto}
 sidr.con_contraetiqueta_dop,Con contraetiqueta numerada de la DOP,JDBko kontraetiketa zenbakidunarekin,Amb contraetiqueta numerada de la DOP,Con contraetiqueta numerada da DOP
+sidr.confianza_alta,alta,handia,alta,alta
+sidr.confianza_baja,baja,txikia,baixa,baixa
+sidr.confianza_media,media,ertaina,mitjana,media
 sidr.contraetiquetas_rango,Contraetiquetas {desde}–{hasta},Kontraetiketak {desde}–{hasta},Contraetiquetes {desde}–{hasta},Contraetiquetas {desde}–{hasta}
 sidr.cuaderno_pomarada,Cuaderno de la pomarada,Sagastiaren koadernoa,Quadern de la pomereda,Caderno do pomar
 sidr.cuaderno_pomarada_explicacion,"Parcelas, tratamientos fitosanitarios y cosecha propia de la campaña","Partzelak, tratamendu fitosanitarioak eta kanpainako uzta propioa","Parcel·les, tractaments fitosanitaris i collita pròpia de la campanya","Parcelas, tratamentos fitosanitarios e colleita propia da campaña"
@@ -70,6 +73,7 @@ sidr.eficacia,Eficacia observada,Ikusitako eraginkortasuna,Eficàcia observada,E
 sidr.eficacia_buena,Buena,Ona,Bona,Boa
 sidr.eficacia_mala,Mala,Txarra,Dolenta,Mala
 sidr.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
+sidr.elegir_foto,Elegir de la galería,Galeriatik aukeratu,Tria de la galeria,Escoller da galería
 sidr.embotellados,Embotellados,Botilaratzeak,Embotellats,Embotellados
 sidr.embotellar,Embotellar,Botilaratu,Embotella,Embotellar
 sidr.en_bodega,en bodega,upategian,al celler,na adega
@@ -95,8 +99,20 @@ sidr.fruta_propia,Fruta propia,Fruta propioa,Fruita pròpia,Froita propia
 sidr.fruta_uva,Uva,Mahatsa,Raïm,Uva
 sidr.grado_alcoholico,Grado alcohólico,Alkohol-gradua,Grau alcohòlic,Grao alcohólico
 sidr.guardado,Guardado,Gordeta,Desat,Gardado
+sidr.hacer_foto,Hacer una foto,Argazki bat atera,Fes una foto,Facer unha foto
 sidr.hoy,Hoy,Gaur,Avui,Hoxe
+sidr.ia_confianza,confianza {confianza},{confianza} konfiantza,confiança {confianza},confianza {confianza}
+sidr.ia_error,No se pudo consultar a la IA. Revisa la conexión y la clave.,Ezin izan zaio AAri galdetu. Begiratu konexioa eta gakoa.,No s'ha pogut consultar la IA. Revisa la connexió i la clau.,Non se puido consultar a IA. Revisa a conexión e a clave.
+sidr.ia_foto_no_valida,La foto no deja ver un manzano con claridad.,Argazkian ez da sagarrondorik argi ikusten.,La foto no deixa veure una pomera amb claredat.,A foto non deixa ver unha maceira con claridade.
+sidr.ia_mirar,Mirar una foto con IA,Argazki bat AArekin aztertu,Mira una foto amb IA,Mirar unha foto con IA
+sidr.ia_no_identificada,"Hay algo, pero no encaja con ninguna de la lista.","Zerbait badago, baina ez dator bat zerrendako batekin ere.","Hi ha alguna cosa, però no encaixa amb cap de la llista.","Hai algo, pero non encaixa con ningunha da lista."
+sidr.ia_otras,También podría ser: {plagas},Hau ere izan liteke: {plagas},També podria ser: {plagas},Tamén podería ser: {plagas}
+sidr.ia_propuesta,Propuesta de la IA,AAren proposamena,Proposta de la IA,Proposta da IA
+sidr.ia_que_hace,"Mira la foto de una hoja, un fruto o una rama del manzano y propone qué plaga o enfermedad puede ser. No recomienda productos ni dosis.","Sagarrondoaren hosto, fruitu edo adar baten argazkia aztertzen du eta zer izurrite edo gaixotasun izan daitekeen proposatzen du. Ez du produkturik ez dosirik gomendatzen.","Mira la foto d'una fulla, un fruit o una branca de la pomera i proposa quina plaga o malaltia pot ser. No recomana productes ni dosis.","Mira a foto dunha folla, un froito ou unha póla da maceira e propón que praga ou enfermidade pode ser. Non recomenda produtos nin doses."
+sidr.ia_revisa,Es una propuesta: compruébala tú o con tu técnico antes de tratar.,Proposamen bat da: egiaztatu zuk edo zure teknikariarekin tratatu aurretik.,És una proposta: comprova-la tu o amb el teu tècnic abans de tractar.,É unha proposta: compróbaa ti ou co teu técnico antes de tratar.
+sidr.ia_sin_plaga,No se ve ninguna plaga ni enfermedad de la lista.,Ez da zerrendako izurrite edo gaixotasunik ikusten.,No es veu cap plaga ni malaltia de la llista.,Non se ve ningunha praga nin enfermidade da lista.
 sidr.inscripcion_dop,N.º de inscripción en la DOP,JDBko inskripzio-zk.,Núm. d'inscripció a la DOP,N.º de inscrición na DOP
+sidr.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
 sidr.kilos,Kilos,Kiloak,Quilos,Quilos
 sidr.kupela,Kupela,Kupela,Kupela,Kupela
 sidr.kupela_activa,En uso,Erabilian,En ús,En uso

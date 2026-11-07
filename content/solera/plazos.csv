@@ -1,0 +1,43 @@
+# Plazos legales recurrentes de la suite Larrea — datos PROVISIONALES,
+# pendiente de revisión por asesor (agrónomo, técnico OCA/AICA y asesor fiscal).
+#
+# Cada fila cita la norma y enlaza su texto consolidado en el BOE, consultado
+# el 2026-11-07. El texto consolidado del BOE es informativo y no tiene valor
+# jurídico: manda la publicación oficial y, cada año, la convocatoria o
+# resolución de la comunidad autónoma o del organismo que corresponda.
+# Solo entra un plazo cuya fecha se ha leído en la fuente; si una comunidad
+# autónoma puede moverlo, se dice en la nota y se usa la ventana estatal.
+# Que un plazo esté listado para una vertical NO significa que obligue a
+# todos sus titulares: la nota dice quién está obligado y quién no.
+#
+# Columnas:
+#   identificador                 id estable snake_case.
+#   verticales                    separadas por «|»: agro, viticultura, apicola,
+#                                 quesera, aceitera, arbolado_urbano.
+#   nombre_visible                texto para la app.
+#   norma_citada                  norma y artículo que fijan el plazo.
+#   url_fuente                    texto consolidado consultado (https).
+#   periodicidad                  anual | mensual | trimestral.
+#   dia_inicio, mes_inicio        anual: apertura de la ventana. Vacíos si la
+#                                 norma solo fija el día límite.
+#   dia_fin, mes_fin              anual: día límite (incluido). Un 29/2 vale
+#                                 28/2 en años no bisiestos.
+#   dia_limite                    mensual/trimestral: último día de cada mes de
+#                                 presentación (trimestral: abril, julio,
+#                                 octubre y enero).
+#   dia_limite_cuarto_trimestre   trimestral: límite propio en enero, si lo hay.
+#   antelacion_aviso_dias         días antes del límite en que se empieza a avisar.
+#   nota                          quién está obligado, matices, variaciones.
+identificador,verticales,nombre_visible,norma_citada,url_fuente,periodicidad,dia_inicio,mes_inicio,dia_fin,mes_fin,dia_limite,dia_limite_cuarto_trimestre,antelacion_aviso_dias,nota
+pac_solicitud_unica,agro|viticultura|aceitera,Solicitud única de ayudas PAC,"RD 1048/2022, art. 108.2",https://www.boe.es/buscar/act.php?id=BOE-A-2022-23048,anual,1,2,30,4,,,30,"Ventana estatal desde 2024: del 1 de febrero al 30 de abril. Cada comunidad autónoma puede ampliarla cada año, comunicándolo al FEGA, sin pasar del 15 de mayo: mira la convocatoria de tu consejería."
+pac_modificacion_solicitud_unica,agro|viticultura|aceitera,Fin del plazo para modificar la solicitud única PAC,"RD 1048/2022, art. 112.1",https://www.boe.es/buscar/act.php?id=BOE-A-2022-23048,anual,,,31,5,,,15,"Límite estatal: 31 de mayo (2024 y siguientes). La comunidad autónoma puede fijar otra fecha, al menos diez días hábiles después del cierre de la presentación y sin pasar del 31 de mayo; para Andalucía en 2026 una disposición transitoria la lleva al 15 de junio."
+infovi_declaracion_cosecha,viticultura,Declaración de cosecha de uva,"RD 739/2015, art. 3.2",https://www.boe.es/buscar/act.php?id=BOE-A-2015-8647,anual,,,10,12,,,30,"La presentan los cosecheros. Exentos: quien destina toda la uva a consumo en fresco, pasas o zumo directo, y quien tiene menos de 0,1 ha en producción y no comercializa la cosecha o la entrega entera a su cooperativa (art. 3.1)."
+infovi_proveedores_justificantes,viticultura,Declaración de proveedores y justificantes de compraventa (INFOVI),"RD 739/2015, art. 6.2",https://www.boe.es/buscar/act.php?id=BOE-A-2015-8647,anual,1,12,10,12,,,10,Anexos IV a y IV b con los datos a 30 de noviembre. La presentan los productores obligados al INFOVI (art. 5.2 y 5.3).
+infovi_declaracion_mensual,viticultura,Declaración mensual INFOVI (1.000 hl o más),"RD 739/2015, art. 5.2",https://www.boe.es/buscar/act.php?id=BOE-A-2015-8647,mensual,,,,,20,,5,"Almacenistas y productores con producción media de vino y mosto igual o superior a 1.000 hl: una declaración por instalación (anexo III a) a más tardar el día 20 de cada mes. Exceptuados los del art. 5.5 (p. ej. socios que entregan toda la producción a su cooperativa)."
+infovi_declaracion_agosto,viticultura,Declaración INFOVI de agosto (menos de 1.000 hl),"RD 739/2015, art. 5.3",https://www.boe.es/buscar/act.php?id=BOE-A-2015-8647,anual,1,8,20,8,,,10,Productores con producción media inferior a 1.000 hl: una declaración por instalación (anexo III b) en agosto y otra en diciembre; a más tardar el día 20 de esos meses.
+infovi_declaracion_diciembre,viticultura,Declaración INFOVI de diciembre (menos de 1.000 hl),"RD 739/2015, art. 5.3",https://www.boe.es/buscar/act.php?id=BOE-A-2015-8647,anual,1,12,20,12,,,10,Productores con producción media inferior a 1.000 hl: una declaración por instalación (anexo III b) en agosto y otra en diciembre; a más tardar el día 20 de esos meses.
+aica_declaracion_mensual,aceitera,Declaración mensual de actividad a la AICA (SIMO),"RD 861/2018, arts. 4 y 12.3",https://www.boe.es/buscar/act.php?id=BOE-A-2018-10939,mensual,,,,,10,,5,"Almazaras (también envasadoras, operadores y demás obligados del RD 861/2018): resumen de la actividad del mes anterior, a más tardar el día 10 de cada mes."
+aica_declaracion_anual_almazara,aceitera,Declaración anual complementaria de la almazara a la AICA,"RD 861/2018, art. 4 (redacción del RD 564/2025)",https://www.boe.es/buscar/act.php?id=BOE-A-2018-10939,anual,1,11,30,11,,,15,"En noviembre, referida a la campaña anterior; se actualiza después con las cantidades no clasificadas al final de la campaña. Exigible desde el 1 de octubre de 2025 en aceite de oliva."
+rega_censo_apicola,apicola,Comunicación anual del censo de colmenas (REGA),"RD 209/2002, art. 7.5",https://www.boe.es/buscar/act.php?id=BOE-A-2002-5016,anual,1,1,29,2,,,20,"Antes del 1 de marzo de cada año, ante la autoridad competente del registro (cada comunidad autónoma la tramita a su manera): censo de colmenas y cuántas están preparadas para la invernada, a 31 de diciembre del año anterior. La norma no fija apertura: se toma el 1 de enero porque los datos son a 31 de diciembre."
+aeat_iva_303_trimestral,quesera|aceitera|arbolado_urbano,Autoliquidación trimestral del IVA (modelo 303),"RD 1624/1992 (Reglamento del IVA), art. 71.4",https://www.boe.es/buscar/act.php?id=BOE-A-1992-28925,trimestral,,,,,20,30,10,"Solo para actividades en el régimen general del IVA con liquidación trimestral: los 20 primeros días naturales del mes siguiente al trimestre; el 4T, los 30 primeros días de enero. Quien liquida por meses tiene otro plazo. Lo que vaya en el régimen especial de agricultura (REAGP) no se declara así: confírmalo con tu asesor."
+aeat_irpf_pago_fraccionado,agro|viticultura|apicola|quesera|aceitera|arbolado_urbano,Pago fraccionado del IRPF (modelo 130 o 131),"RD 439/2007 (Reglamento del IRPF), arts. 109-111",https://www.boe.es/buscar/act.php?id=BOE-A-2007-6820,trimestral,,,,,20,30,10,"Personas físicas con actividad económica: del 1 al 20 de abril, julio y octubre y del 1 al 30 de enero (art. 111.1). Modelo 130 en estimación directa, 131 en estimación objetiva. No lo presenta quien tiene actividad agrícola o ganadera con retención en al menos el 70 % de sus ingresos del año anterior (art. 109.3). No aplica a sociedades."

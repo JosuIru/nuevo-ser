@@ -44,6 +44,7 @@ export 'src/pdf/tema_pdf.dart';
 // content/solera/plazos.csv, PROVISIONAL).
 export 'src/plazos/calendario_plazos.dart';
 export 'src/plazos/plazo_legal.dart';
+export 'src/plazos/plazos_csv.dart';
 export 'src/utiles/numeros.dart';
 export 'src/mapa/buscador_lugares.dart';
 export 'src/utiles/validadores_numero.dart';

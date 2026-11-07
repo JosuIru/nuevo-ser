@@ -6,6 +6,7 @@ import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
 import 'hoja_formulario.dart';
 import 'pantalla_documentos.dart';
+import 'pantalla_economia.dart';
 
 /// Ajustes: idioma, datos de la huerta para los cuadernos y accesos.
 class PantallaAjustes extends StatefulWidget {
@@ -112,6 +113,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         children: [
           _acceso(Icons.picture_as_pdf_outlined, 'huer.documentos',
               const PantallaDocumentos()),
+          _acceso(Icons.euro_outlined, 'huer.ingresos_y_gastos',
+              const PantallaEconomia()),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('huer.datos_huerta'), style: estilo),

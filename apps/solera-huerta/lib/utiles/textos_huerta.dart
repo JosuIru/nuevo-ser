@@ -22,6 +22,11 @@ String nombreTamanoCesta(String id) => _texto('tamano', id);
 String nombreFrecuencia(String id) => _texto('frecuencia', id);
 String nombreEstadoCesta(String id) => _texto('estado_cesta', id);
 String nombreResultadoEntrega(String id) => _texto('resultado', id);
+String nombreRegimenIva(String id) => _texto('regimen', id);
+
+/// Nombre visible de una categoría del libro de ingresos y gastos.
+String nombreCategoriaEconomica(String categoria) =>
+    _texto('categoria', categoria);
 
 /// 1234.5 céntimos → «12,35 €» (formato del idioma de la app).
 String formatearEuros(num centimos) => NumberFormat.currency(

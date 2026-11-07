@@ -16,6 +16,12 @@ y sigue. Lo recoge `scripts/pendientes/`.
   y de la normativa autonómica de venta de proximidad para la hoja de cestas
   (`lib/servicios/generador_hoja_cestas_pdf.dart`): etiquetado, trazabilidad
   y registro sanitario. Hoy todo «por verificar».
+- **Asesor fiscal**: confirmar el régimen (REAGP o general), la compensación
+  del 12 % solo en ventas a empresarios (art. 130.Tres.1.º), el 4 % de las
+  hortalizas, si la venta en mercado o en puesto fijo cambia el régimen, si
+  las cuotas de las cestas pagadas por adelantado se apuntan al cobro o a la
+  entrega, las categorías y si hace falta emitir facturas a restaurantes
+  (`generador_extracto_economico_pdf.dart`, `modelos/configuracion_fiscal.dart`).
 
 ## Pilotos
 

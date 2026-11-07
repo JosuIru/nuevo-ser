@@ -15,7 +15,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir), apuntes en céntimos con **ventas por canal** (cestas, mercado, restaurantes y tiendas, otras), interruptor «comprador empresario o profesional» (en REAGP solo entonces hay compensación del 12 %), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 91 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
@@ -104,6 +104,14 @@ Lo esencial que no se toca (hard limits):
   lo planificado no es un registro.
 - **2026-11-07 — La hoja de cestas no dice «ecológico»** ni pone sello de
   certificación: solo el nombre de la huerta, porque la app no certifica.
+- **2026-11-07 — REAGP: compensación solo a empresarios o profesionales**
+  (Ley 37/1992, art. 130.Tres.1.º, leído en el consolidado del BOE): a los
+  socios de las cestas y en el mercado no se carga ni IVA ni compensación.
+  En régimen general, 4 % (art. 91.Dos.1.1.º f, hortalizas como productos
+  naturales). Si vender en un puesto fijo fuera de la explotación saca la
+  actividad del REAGP queda para el asesor fiscal.
+- **2026-11-07 — Economía mínima, sin facturas del core** (como Frutal y
+  Obrador): el régimen lo fija antes el asesor fiscal.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Frutal): no hay
   ninguna instalación publicada.
 
@@ -117,6 +125,11 @@ Lo esencial que no se toca (hard limits):
   (registros que acrediten la necesidad de fitosanitarios) y 1.12 (registros
   de parcelas y cantidad de cosecha). Leído el texto original; la versión
   consolidada no abrió (404) y queda **por verificar** si hay cambios.
+
+- **Ley 37/1992 del IVA**, consolidado del BOE (última actualización
+  07/10/2026): https://www.boe.es/buscar/pdf/1992/BOE-A-1992-28740-consolidado.pdf
+  — art. 130.Tres.1.º y Cinco.1.º (compensación del 12 % en entregas a
+  empresarios o profesionales) y art. 91.Dos.1.1.º f) (4 % en hortalizas).
 
 ## Datos técnicos
 

@@ -3,6 +3,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show DialogoConfirmacion, SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/abonado.dart';
 import '../modelos/helada.dart';
@@ -157,12 +158,12 @@ class _PantallaCuadernoState extends State<PantallaCuaderno>
                 for (final tratamiento in datos.tratamientos)
                   ListTile(
                     leading: const Icon(Icons.science_outlined),
-                    title: Text(tratamiento.sustanciaActivaId),
+                    title: Text(nombreSustancia(tratamiento.sustanciaActivaId)),
                     subtitle: Text([
                       formatearFecha(tratamiento.fechaMs),
                       nombreParcela(tratamiento.parcelaId),
                       if (tratamiento.problemaFitosanitario.isNotEmpty)
-                        tratamiento.problemaFitosanitario,
+                        nombrePlaga(tratamiento.problemaFitosanitario),
                       if (tratamiento.nombreProducto.isNotEmpty)
                         tratamiento.nombreProducto,
                     ].join(' · ')),

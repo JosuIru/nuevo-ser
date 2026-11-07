@@ -17,6 +17,28 @@ y sigue. Lo recoge `scripts/pendientes/`.
   frutos secos y fruta (y el del **pistacho**, que no figura en el Código
   Alimentario 3.22.07), las categorías de gasto y si hace falta emitir facturas
   (`generador_extracto_economico_pdf.dart`, `modelos/configuracion_fiscal.dart`).
+- **Asesor de gestión integrada de plagas**: revisar y firmar los catálogos
+  (`content/frutal/`, con `scripts/auditoria`): plagas y umbrales (las filas de
+  nogal y castaño no tienen guía leída), sustancias activas y plazos de
+  seguridad (`revision-ia:`, no firma), variedades (autocompatibilidad, épocas
+  de floración y **grupos de incompatibilidad**, hoy vacíos), fenología
+  (meses, estados sensibles y **temperaturas críticas**, hoy vacías) y
+  colmenas por hectárea (la única cifra es de 1985).
+
+## Catálogos: lo que no se pudo contrastar
+
+- Guías GIP de nogal, castaño, pistachero y frutales de hueso y pepita: no se
+  pudieron descargar (www.mapa.gob.es falla el certificado y la Wayback dio
+  429). Sus plagas van sin umbral y sin revisar; hueso y pepita, sin plagas.
+- Sustancias que se dejaron fuera: «aceite de parafina» sin CAS (no se sabe
+  cuál es), aceite de parafina CAS 97862-82-3 (la EU Pesticides DB lo da
+  aprobado con caducidad 31/12/2021: incoherente), *Bacillus amyloliquefaciens*
+  FZB24 (no está en la base UE).
+- Aprobaciones UE que caducan en 2027 (ditianona, azadiractin, caolín,
+  parafina 64742-46-7, protioconazol, kresoxim-metil, clorantraniliprol,
+  azufre, D747, *Aureobasidium*, *Beauveria*): revisar el catálogo en 2027.
+- Pistachero: sin usos extraídos del registro (pulgones, *Labidostomis*,
+  *Botryosphaeria* existen) ni plagas en el catálogo.
 
 ## Revisión nativa eu/ca/gl
 

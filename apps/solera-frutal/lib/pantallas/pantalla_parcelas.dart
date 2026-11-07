@@ -3,11 +3,13 @@ import 'package:geolocator/geolocator.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/parcela.dart';
 import '../utiles/permisos_gps.dart';
 import '../utiles/textos_frutal.dart';
 import 'pantalla_mapa.dart';
+import 'campo_catalogo.dart';
 import 'pantalla_ficha_parcela.dart';
 
 /// Lista de parcelas con su especie, variedad y superficie.
@@ -98,7 +100,7 @@ class _PantallaParcelasState extends State<PantallaParcelas> {
                   subtitle: Text([
                     nombreEspecie(parcela.especieId),
                     if (parcela.variedadPrincipalId.isNotEmpty)
-                      parcela.variedadPrincipalId,
+                      nombreVariedad(parcela.variedadPrincipalId),
                     SoleraL10n.t(
                         parcela.regadio ? 'frut.regadio' : 'frut.secano'),
                   ].join(' · ')),
@@ -130,8 +132,8 @@ class PantallaEditarParcela extends StatefulWidget {
 
 class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
   late final _nombre = TextEditingController(text: widget.parcela?.nombre);
-  late final _variedad =
-      TextEditingController(text: widget.parcela?.variedadPrincipalId);
+  late final _variedad = TextEditingController(
+      text: nombreVariedad(widget.parcela?.variedadPrincipalId ?? ''));
   late final _sigpac =
       TextEditingController(text: widget.parcela?.codigoSigpac);
   late final _superficie = TextEditingController(
@@ -208,7 +210,8 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
       id: original?.id,
       nombre: _nombre.text.trim(),
       especieId: _especie,
-      variedadPrincipalId: _variedad.text.trim(),
+      variedadPrincipalId:
+          idDesdeTexto(_variedad.text, opcionesVariedades(_especie)),
       codigoSigpac: _sigpac.text.trim(),
       superficieHa: leerNumero(_superficie.text) ?? 0,
       marcoPlantacion: _marco.text.trim(),
@@ -250,10 +253,10 @@ class _PantallaEditarParcelaState extends State<PantallaEditarParcela> {
             ],
             onChanged: (valor) => setState(() => _especie = valor ?? _especie),
           ),
-          TextField(
-            controller: _variedad,
-            decoration: InputDecoration(
-                labelText: SoleraL10n.t('frut.variedad_principal')),
+          CampoCatalogo(
+            controlador: _variedad,
+            opciones: opcionesVariedades(_especie),
+            etiqueta: SoleraL10n.t('frut.variedad_principal'),
           ),
           TextField(
             controller: _superficie,

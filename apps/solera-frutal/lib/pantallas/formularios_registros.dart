@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart';
 import '../dominio/resumen_cosecha.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/abonado.dart';
@@ -14,6 +15,7 @@ import '../modelos/parcela.dart';
 import '../modelos/riego.dart';
 import '../modelos/tratamiento.dart';
 import '../utiles/textos_frutal.dart';
+import 'campo_catalogo.dart';
 import 'hoja_formulario.dart';
 
 // Altas de los registros del cuaderno en hojas inferiores. Cada función
@@ -25,6 +27,11 @@ Future<List<Parcela>> _parcelas() =>
 void _avisarSinParcelas(BuildContext context) =>
     ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(SoleraL10n.t('frut.primero_una_parcela'))));
+
+String _especieDe(List<Parcela> parcelas, int parcelaId) => parcelas
+    .firstWhere((parcela) => parcela.id == parcelaId,
+        orElse: () => parcelas.first)
+    .especieId;
 
 void _liberar(List<TextEditingController> controladores) {
   for (final controlador in controladores) {
@@ -68,8 +75,48 @@ Future<bool> mostrarAltaTratamiento(BuildContext context,
           alCambiar: (valor) => refrescar(() => parcela = valor)),
       selectorFecha(context,
           fecha: fecha, alCambiar: (valor) => refrescar(() => fecha = valor)),
-      campoTexto(problema, SoleraL10n.t('frut.problema_fitosanitario')),
-      campoTexto(sustancia, SoleraL10n.t('frut.sustancia_activa')),
+      ...() {
+        final especie = parcelas
+            .firstWhere((candidata) => candidata.id == parcela,
+                orElse: () => parcelas.first)
+            .especieId;
+        final opcionesPlaga = opcionesPlagas(especie);
+        final plagaId = idDesdeTexto(problema.text, opcionesPlaga);
+        final sustanciaId =
+            idDesdeTexto(sustancia.text, opcionesSustancias(especie));
+        final datosSustancia = sustanciaPorId(sustanciaId);
+        final uso = usoRegistrado(sustanciaId, especie, plagaId);
+        return [
+          CampoCatalogo(
+              controlador: problema,
+              opciones: opcionesPlaga,
+              etiqueta: SoleraL10n.t('frut.problema_fitosanitario'),
+              alElegir: (_) => refrescar(() {})),
+          CampoCatalogo(
+              controlador: sustancia,
+              opciones: opcionesSustancias(especie, plagaId: plagaId),
+              etiqueta: SoleraL10n.t('frut.sustancia_activa'),
+              ayuda: SoleraL10n.t('frut.sustancia_ayuda'),
+              alElegir: (_) => refrescar(() {})),
+          if (datosSustancia != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                [
+                  datosSustancia.plazoSeguridadMaximoDias == null
+                      ? SoleraL10n.t('frut.ps_no_procede_registro')
+                      : SoleraL10n.tf('frut.ps_maximo_registro',
+                          {'n': datosSustancia.plazoSeguridadMaximoDias}),
+                  if (uso == false) SoleraL10n.t('frut.uso_no_registrado'),
+                ].join(' '),
+                style: TextStyle(
+                    color: uso == false
+                        ? Theme.of(context).colorScheme.error
+                        : null),
+              ),
+            ),
+        ];
+      }(),
       campoTexto(producto, SoleraL10n.t('frut.nombre_producto'),
           ayuda: SoleraL10n.t('frut.copiar_de_etiqueta')),
       campoTexto(registro, SoleraL10n.t('frut.numero_registro')),
@@ -103,8 +150,10 @@ Future<bool> mostrarAltaTratamiento(BuildContext context,
         parcelaId: parcela!,
         fechaMs: fecha.millisecondsSinceEpoch,
         superficieTratadaHa: leerNumero(superficie.text) ?? 0,
-        problemaFitosanitario: problema.text.trim(),
-        sustanciaActivaId: sustancia.text.trim(),
+        problemaFitosanitario: idDesdeTexto(
+            problema.text, opcionesPlagas(_especieDe(parcelas, parcela!))),
+        sustanciaActivaId: idDesdeTexto(
+            sustancia.text, opcionesSustancias(_especieDe(parcelas, parcela!))),
         nombreProducto: producto.text.trim(),
         numeroRegistroProducto: registro.text.trim(),
         dosisAplicada: dosis.text.trim(),
@@ -295,7 +344,7 @@ Future<bool> mostrarAltaCosecha(BuildContext context,
               title: Text(SoleraL10n.t('frut.aviso_plazo_seguridad')),
               subtitle: Text(abiertos
                   .map((tratamiento) =>
-                      '${tratamiento.sustanciaActivaId} · ${formatearFecha(tratamiento.finPlazoSeguridad!.millisecondsSinceEpoch)}')
+                      '${nombreSustancia(tratamiento.sustanciaActivaId)} · ${formatearFecha(tratamiento.finPlazoSeguridad!.millisecondsSinceEpoch)}')
                   .join('\n')),
             ),
           ),
@@ -403,11 +452,14 @@ Future<bool> mostrarAltaHelada(BuildContext context, {int? parcelaId}) async {
 /// Muestreo de una plaga. [plagaPropuesta] la rellena la IA (bloque 7).
 Future<bool> mostrarAltaObservacion(BuildContext context,
     {required int parcelaId,
+    required String especieId,
     String plagaPropuesta = '',
     String notasPropuestas = ''}) async {
   var fecha = DateTime.now();
   var superaUmbral = false;
-  final plaga = TextEditingController(text: plagaPropuesta);
+  final plaga = TextEditingController(
+      text: plagaPropuesta.isEmpty ? '' : nombrePlaga(plagaPropuesta));
+  final opcionesPlaga = opcionesPlagas(especieId);
   final recuento = TextEditingController();
   final notas = TextEditingController(text: notasPropuestas);
   final guardado = await mostrarHojaFormulario(
@@ -416,7 +468,18 @@ Future<bool> mostrarAltaObservacion(BuildContext context,
     construir: (refrescar) => [
       selectorFecha(context,
           fecha: fecha, alCambiar: (valor) => refrescar(() => fecha = valor)),
-      campoTexto(plaga, SoleraL10n.t('frut.plaga')),
+      CampoCatalogo(
+          controlador: plaga,
+          opciones: opcionesPlaga,
+          etiqueta: SoleraL10n.t('frut.plaga'),
+          alElegir: (_) => refrescar(() {})),
+      if (plagaPorId(idDesdeTexto(plaga.text, opcionesPlaga)) case final datos?
+          when datos.umbral.isNotEmpty)
+        Padding(
+          padding: const EdgeInsets.only(top: 6),
+          child: Text('${SoleraL10n.t('frut.umbral_guia')}: ${datos.umbral}',
+              style: Theme.of(context).textTheme.bodySmall),
+        ),
       campoNumero(recuento, SoleraL10n.t('frut.recuento'),
           ayuda: SoleraL10n.t('frut.recuento_ayuda')),
       SwitchListTile(
@@ -434,7 +497,7 @@ Future<bool> mostrarAltaObservacion(BuildContext context,
           .guardarObservacionPlaga(ObservacionPlaga(
         parcelaId: parcelaId,
         fechaMs: fecha.millisecondsSinceEpoch,
-        plagaId: plaga.text.trim(),
+        plagaId: idDesdeTexto(plaga.text, opcionesPlaga),
         recuento: leerNumero(recuento.text),
         superaUmbral: superaUmbral,
         notas: notas.text.trim(),
@@ -448,7 +511,8 @@ Future<bool> mostrarAltaObservacion(BuildContext context,
 }
 
 Future<bool> mostrarAltaFila(BuildContext context,
-    {required int parcelaId}) async {
+    {required int parcelaId, required String especieId}) async {
+  final opcionesVariedad = opcionesVariedades(especieId);
   var esPolinizadora = false;
   final etiqueta = TextEditingController();
   final variedad = TextEditingController();
@@ -459,7 +523,10 @@ Future<bool> mostrarAltaFila(BuildContext context,
     construir: (refrescar) => [
       campoTexto(etiqueta, SoleraL10n.t('frut.etiqueta_fila'),
           ayuda: SoleraL10n.t('frut.etiqueta_fila_ayuda')),
-      campoTexto(variedad, SoleraL10n.t('frut.variedad')),
+      CampoCatalogo(
+          controlador: variedad,
+          opciones: opcionesVariedad,
+          etiqueta: SoleraL10n.t('frut.variedad')),
       campoNumero(arboles, SoleraL10n.t('frut.numero_arboles'),
           decimales: false),
       SwitchListTile(
@@ -476,7 +543,7 @@ Future<bool> mostrarAltaFila(BuildContext context,
       await BaseDatosSoleraFrutal.instancia.guardarFilaArboles(FilaArboles(
         parcelaId: parcelaId,
         etiqueta: etiqueta.text.trim(),
-        variedadId: variedad.text.trim(),
+        variedadId: idDesdeTexto(variedad.text, opcionesVariedad),
         numeroArboles: leerEntero(arboles.text) ?? 0,
         esPolinizadora: esPolinizadora,
       ));

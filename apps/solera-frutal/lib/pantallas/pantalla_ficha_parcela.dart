@@ -3,6 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show DialogoConfirmacion, SoleraL10n, TituloBloqueSolera;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart';
+import '../dominio/polinizacion.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/contrato_polinizacion.dart';
 import '../modelos/fila_arboles.dart';
@@ -97,6 +99,67 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
     }
   }
 
+  /// Orientación de polinización: variedades de la parcela contra el
+  /// catálogo y colmenas por hectárea contra la orientación de la especie.
+  List<Widget> _polinizacion(BuildContext context, _DatosFicha datos) {
+    final parcela = datos.parcela;
+    final resultados = evaluarPolinizacion(
+      variedadesEnParcela: [
+        parcela.variedadPrincipalId,
+        for (final fila in datos.filas) fila.variedadId,
+      ],
+      catalogo: datosPolinizacionCatalogo(),
+    );
+    final especie = especiePorId(parcela.especieId);
+    final esquema = Theme.of(context).colorScheme;
+    String textoEstado(ResultadoPolinizacion resultado) =>
+        switch (resultado.estado) {
+          EstadoPolinizacion.autocompatible =>
+            SoleraL10n.t('frut.poli_autocompatible'),
+          EstadoPolinizacion.cubierta => SoleraL10n.tf('frut.poli_cubierta', {
+              'variedades':
+                  resultado.polinizadoras.map(nombreVariedad).join(', ')
+            }),
+          EstadoPolinizacion.porConfirmar => SoleraL10n.tf(
+                'frut.poli_por_confirmar', {
+              'variedades':
+                  resultado.polinizadoras.map(nombreVariedad).join(', ')
+            }),
+          EstadoPolinizacion.sinPolinizadora =>
+            SoleraL10n.t('frut.poli_sin_polinizadora'),
+          EstadoPolinizacion.desconocida =>
+            SoleraL10n.t('frut.poli_desconocida'),
+        };
+    return [
+      for (final resultado in resultados)
+        ListTile(
+          dense: true,
+          leading: Icon(
+              resultado.necesitaAtencion
+                  ? Icons.warning_amber_outlined
+                  : Icons.check_circle_outline,
+              color: resultado.necesitaAtencion ? esquema.error : null),
+          title: Text(nombreVariedad(resultado.variedadId)),
+          subtitle: Text(textoEstado(resultado)),
+        ),
+      if (especie?.colmenasPorHaMinimo != null)
+        ListTile(
+          dense: true,
+          leading: const Icon(Icons.info_outline),
+          title: Text(SoleraL10n.tf('frut.colmenas_orientacion', {
+            'min': formatearNumero(especie!.colmenasPorHaMinimo!),
+            'max': formatearNumero(especie.colmenasPorHaMaximo ?? 0),
+          })),
+        ),
+      if (resultados.isNotEmpty)
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Text(SoleraL10n.t('frut.poli_aviso'),
+              style: Theme.of(context).textTheme.bodySmall),
+        ),
+    ];
+  }
+
   Widget _titulo(String texto, {VoidCallback? alAnadir}) => Padding(
         padding: const EdgeInsets.fromLTRB(12, 8, 4, 0),
         child: Row(
@@ -150,7 +213,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                 subtitle: Text([
                   '${formatearNumero(parcela.superficieHa, decimales: 2)} ha',
                   if (parcela.variedadPrincipalId.isNotEmpty)
-                    parcela.variedadPrincipalId,
+                    nombreVariedad(parcela.variedadPrincipalId),
                   if (parcela.marcoPlantacion.isNotEmpty)
                     parcela.marcoPlantacion,
                   if (arbolesPorHa != null)
@@ -164,8 +227,8 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                 ].join(' · ')),
               ),
               _titulo(SoleraL10n.t('frut.filas_variedades'),
-                  alAnadir: () =>
-                      mostrarAltaFila(context, parcelaId: parcela.id!)),
+                  alAnadir: () => mostrarAltaFila(context,
+                      parcelaId: parcela.id!, especieId: parcela.especieId)),
               if (datos.filas.isEmpty)
                 ListTile(title: Text(SoleraL10n.t('frut.sin_filas')))
               else
@@ -174,7 +237,8 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                     leading: Icon(fila.esPolinizadora
                         ? Icons.local_florist_outlined
                         : Icons.forest_outlined),
-                    title: Text('${fila.etiqueta} · ${fila.variedadId}'),
+                    title: Text(
+                        '${fila.etiqueta} · ${nombreVariedad(fila.variedadId)}'),
                     subtitle: Text([
                       if (fila.numeroArboles > 0)
                         SoleraL10n.tf(
@@ -191,6 +255,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
               _titulo(SoleraL10n.t('frut.polinizacion'),
                   alAnadir: () => mostrarAltaContratoPolinizacion(context,
                       parcelaId: parcela.id!)),
+              ..._polinizacion(context, datos),
               for (final contrato in datos.contratos)
                 ListTile(
                   leading: const Icon(Icons.hive_outlined),
@@ -208,8 +273,8 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                   ].join(' · ')),
                 ),
               _titulo(SoleraL10n.t('frut.seguimiento_plagas'),
-                  alAnadir: () =>
-                      mostrarAltaObservacion(context, parcelaId: parcela.id!)),
+                  alAnadir: () => mostrarAltaObservacion(context,
+                      parcelaId: parcela.id!, especieId: parcela.especieId)),
               for (final observacion in datos.observaciones.take(10))
                 ListTile(
                   leading: Icon(
@@ -219,7 +284,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                       color: observacion.superaUmbral
                           ? Theme.of(context).colorScheme.error
                           : null),
-                  title: Text(observacion.plagaId),
+                  title: Text(nombrePlaga(observacion.plagaId)),
                   subtitle: Text([
                     formatearFecha(observacion.fechaMs),
                     if (observacion.recuento != null)
@@ -233,7 +298,7 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
               for (final tratamiento in datos.tratamientos.take(10))
                 ListTile(
                   leading: const Icon(Icons.science_outlined),
-                  title: Text(tratamiento.sustanciaActivaId),
+                  title: Text(nombreSustancia(tratamiento.sustanciaActivaId)),
                   subtitle: Text([
                     formatearFecha(tratamiento.fechaMs),
                     if (tratamiento.problemaFitosanitario.isNotEmpty)

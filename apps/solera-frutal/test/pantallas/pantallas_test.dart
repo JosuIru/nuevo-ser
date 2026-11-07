@@ -117,7 +117,10 @@ void main() {
           MaterialApp(home: PantallaFichaParcela(parcelaId: parcela)));
       await esperar(tester);
     });
-    expect(find.text('Filas 1-3 · marcona'), findsOneWidget);
+    expect(find.text('Filas 1-3 · Marcona'), findsOneWidget);
+    // Marcona sola: necesita polinizadora (orientación del catálogo).
+    expect(find.text(SoleraL10n.t('frut.poli_sin_polinizadora')),
+        findsOneWidget);
     expect(find.text('2027 · Iñaki'), findsOneWidget);
     expect(find.textContaining('4,0 colmenas/ha'), findsOneWidget);
   });

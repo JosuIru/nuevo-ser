@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
-    show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
+    show
+        CabeceraHoySolera,
+        CifraCabecera,
+        ServicioMeteoAgro,
+        SoleraL10n,
+        TituloBloqueSolera;
 
 import '../branding.dart';
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/flag_revision.dart';
+import '../dominio/avisos_helada.dart';
+import '../dominio/catalogos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/contrato_polinizacion.dart';
 import '../modelos/parcela.dart';
@@ -35,11 +42,13 @@ class PantallaHoy extends StatefulWidget {
 
 class _PantallaHoyState extends State<PantallaHoy> {
   late Future<_DatosHoy> _datos;
+  late Future<List<AvisoHelada>> _avisosHelada;
 
   @override
   void initState() {
     super.initState();
     _datos = _cargar();
+    _avisosHelada = _cargarAvisosHelada();
     cambiosDatos.addListener(_recargar);
   }
 
@@ -53,7 +62,29 @@ class _PantallaHoyState extends State<PantallaHoy> {
     if (!mounted) return;
     setState(() {
       _datos = _cargar();
+      _avisosHelada = _cargarAvisosHelada();
     });
+  }
+
+  /// Previsión de 7 días en la primera parcela con ubicación, cruzada con
+  /// el calendario fenológico. Sin ubicación o sin red: ningún aviso.
+  Future<List<AvisoHelada>> _cargarAvisosHelada() async {
+    try {
+      final parcelas = await BaseDatosSoleraFrutal.instancia.listarParcelas();
+      final conUbicacion =
+          parcelas.where((parcela) => parcela.tieneUbicacion).toList();
+      if (conUbicacion.isEmpty) return const [];
+      final prevision = await ServicioMeteoAgro().obtener(
+          latitud: conUbicacion.first.latitud!,
+          longitud: conUbicacion.first.longitud!);
+      return calcularAvisosHelada(parcelas: parcelas, prevision: [
+        for (final dia in prevision.dias)
+          (fecha: dia.fecha, minimaC: dia.tempMin)
+      ]);
+    } catch (error) {
+      debugPrint('Sin previsión: $error');
+      return const [];
+    }
   }
 
   Future<_DatosHoy> _cargar() async {
@@ -179,6 +210,34 @@ class _PantallaHoyState extends State<PantallaHoy> {
     }
     String nombreParcela(int id) => datos.parcelas[id]?.nombre ?? '#$id';
     return [
+      FutureBuilder<List<AvisoHelada>>(
+        future: _avisosHelada,
+        builder: (context, instantanea) {
+          final avisos = instantanea.data ?? const <AvisoHelada>[];
+          if (avisos.isEmpty) return const SizedBox.shrink();
+          return Card(
+            margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+            color: Theme.of(context).colorScheme.errorContainer,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.ac_unit),
+                  title: Text(SoleraL10n.t('frut.aviso_helada')),
+                  subtitle: Text(SoleraL10n.t('frut.aviso_helada_orientativo')),
+                ),
+                for (final aviso in avisos.take(6))
+                  ListTile(
+                    dense: true,
+                    title: Text(
+                        '${formatearFecha(aviso.fecha.millisecondsSinceEpoch)} · ${aviso.parcela.nombre} · ${formatearNumero(aviso.minimaC)} °C'),
+                    subtitle: Text(aviso.estados.join(', ')),
+                  ),
+              ],
+            ),
+          );
+        },
+      ),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: TituloBloqueSolera(SoleraL10n.t('frut.plazos_abiertos')),
@@ -190,7 +249,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
           ListTile(
             leading: const Icon(Icons.timer_outlined),
             title: Text(
-                '${nombreParcela(tratamiento.parcelaId)} · ${tratamiento.sustanciaActivaId}'),
+                '${nombreParcela(tratamiento.parcelaId)} · ${nombreSustancia(tratamiento.sustanciaActivaId)}'),
             subtitle: Text(SoleraL10n.tf('frut.no_cosechar_hasta', {
               'fecha': formatearFecha(
                   tratamiento.finPlazoSeguridad!.millisecondsSinceEpoch)

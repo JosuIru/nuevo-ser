@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart';
 import '../servicios/compartir_documento.dart';
 import '../servicios/generador_cuaderno_explotacion_pdf.dart';
 import '../servicios/generador_parte_cosecha_pdf.dart';
@@ -29,6 +30,8 @@ class PantallaDocumentos extends StatelessWidget {
               await baseDatos.listarAbonados(desdeMs: desde, hastaMs: hasta),
           riegos: await baseDatos.listarRiegos(desdeMs: desde, hastaMs: hasta),
           cosechas: await baseDatos.listarCosechas(campania: anyo),
+          nombreSustancia: nombreSustancia,
+          nombrePlaga: nombrePlaga,
         ),
         tema: tema,
       ),

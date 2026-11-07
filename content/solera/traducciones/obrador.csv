@@ -71,3 +71,31 @@ obra.tipo_plagas,Plagas,Izurriak,Plagues,Pragas
 obra.tipo_proveedor,Recepción de mercancía,Salgaien harrera,Recepció de mercaderia,Recepción de mercadoría
 obra.tipo_temperatura,Temperatura,Tenperatura,Temperatura,Temperatura
 obra.trazas,Puede contener (trazas),Izan dezake (aztarnak),Pot contenir (traces),Pode conter (trazas)
+obra.activo,Activo,Aktibo,Actiu,Activo
+obra.cantidad_kg,Cantidad (kg),Kopurua (kg),Quantitat (kg),Cantidade (kg)
+obra.cliente,Cliente,Bezeroa,Client,Cliente
+obra.codigo_lote,Código de lote,Lote-kodea,Codi de lot,Código de lote
+obra.gramos_agua,Agua (g),Ura (g),Aigua (g),Auga (g)
+obra.gramos_harina,Harina (g),Irina (g),Farina (g),Fariña (g)
+obra.gramos_masa_madre,Masa madre (g),Ama-orea (g),Massa mare (g),Masa nai (g)
+obra.harina_base,Harina con la que se alimenta,Elikatzeko irina,Farina amb què s'alimenta,Fariña coa que se alimenta
+obra.hornadas,Hornadas,Labealdiak,Fornades,Fornadas
+obra.horas_hasta_pico,Horas hasta el pico,Gailurrera arteko orduak,Hores fins al punt màxim,Horas ata o pico
+obra.lote,Lote,Lotea,Lot,Lote
+obra.lotes,Lotes recibidos,Jasotako loteak,Lots rebuts,Lotes recibidos
+obra.lotes_usados,Lotes de ingrediente usados,Erabilitako osagai-loteak,Lots d'ingredient utilitzats,Lotes de ingrediente usados
+obra.minutos_horno,Minutos de horno,Labeko minutuak,Minuts de forn,Minutos de forno
+obra.nueva_hornada,Nueva hornada,Labealdi berria,Fornada nova,Nova fornada
+obra.nueva_masa_madre,Nueva masa madre,Ama-ore berria,Massa mare nova,Nova masa nai
+obra.nuevo_pedido_fijo,Nuevo pedido fijo,Eskaera finko berria,Comanda fixa nova,Novo pedido fixo
+obra.nuevo_refresco,Refresco,Freskatzea,Refresc,Refresco
+obra.pedidos_fijos,Pedidos fijos,Eskaera finkoak,Comandes fixes,Pedidos fixos
+obra.piezas,Piezas,Piezak,Peces,Pezas
+obra.producto,Producto,Produktua,Producte,Produto
+obra.recibir_lote,Recibir lote,Lotea jaso,Rep un lot,Recibir lote
+obra.refrescar,Refrescar,Freskatu,Refresca,Refrescar
+obra.sin_hornadas,No hay hornadas en los últimos 30 días.,Ez dago labealdirik azken 30 egunetan.,No hi ha fornades en els darrers 30 dies.,Non hai fornadas nos últimos 30 días.
+obra.sin_masas_madre,Aún no hay masas madre.,Oraindik ez dago ama-orerik.,Encara no hi ha masses mare.,Aínda non hai masas nai.
+obra.sin_pedidos_fijos,Aún no hay pedidos fijos.,Oraindik ez dago eskaera finkorik.,Encara no hi ha comandes fixes.,Aínda non hai pedidos fixos.
+obra.temperatura_horno,Temperatura del horno (°C),Labearen tenperatura (°C),Temperatura del forn (°C),Temperatura do forno (°C)
+obra.temperatura_recepcion,Temperatura al recibir (°C),Jasotzean tenperatura (°C),Temperatura en rebre (°C),Temperatura ao recibir (°C)

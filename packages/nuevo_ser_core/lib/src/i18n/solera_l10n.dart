@@ -3315,6 +3315,34 @@ class SoleraL10n {
     'obra.tipo_proveedor',
     'obra.tipo_temperatura',
     'obra.trazas',
+    'obra.activo',
+    'obra.cantidad_kg',
+    'obra.cliente',
+    'obra.codigo_lote',
+    'obra.gramos_agua',
+    'obra.gramos_harina',
+    'obra.gramos_masa_madre',
+    'obra.harina_base',
+    'obra.hornadas',
+    'obra.horas_hasta_pico',
+    'obra.lote',
+    'obra.lotes',
+    'obra.lotes_usados',
+    'obra.minutos_horno',
+    'obra.nueva_hornada',
+    'obra.nueva_masa_madre',
+    'obra.nuevo_pedido_fijo',
+    'obra.nuevo_refresco',
+    'obra.pedidos_fijos',
+    'obra.piezas',
+    'obra.producto',
+    'obra.recibir_lote',
+    'obra.refrescar',
+    'obra.sin_hornadas',
+    'obra.sin_masas_madre',
+    'obra.sin_pedidos_fijos',
+    'obra.temperatura_horno',
+    'obra.temperatura_recepcion',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -7539,6 +7567,34 @@ class SoleraL10n {
           'obra.tipo_proveedor',
           'obra.tipo_temperatura',
           'obra.trazas',
+          'obra.activo',
+          'obra.cantidad_kg',
+          'obra.cliente',
+          'obra.codigo_lote',
+          'obra.gramos_agua',
+          'obra.gramos_harina',
+          'obra.gramos_masa_madre',
+          'obra.harina_base',
+          'obra.hornadas',
+          'obra.horas_hasta_pico',
+          'obra.lote',
+          'obra.lotes',
+          'obra.lotes_usados',
+          'obra.minutos_horno',
+          'obra.nueva_hornada',
+          'obra.nueva_masa_madre',
+          'obra.nuevo_pedido_fijo',
+          'obra.nuevo_refresco',
+          'obra.pedidos_fijos',
+          'obra.piezas',
+          'obra.producto',
+          'obra.recibir_lote',
+          'obra.refrescar',
+          'obra.sin_hornadas',
+          'obra.sin_masas_madre',
+          'obra.sin_pedidos_fijos',
+          'obra.temperatura_horno',
+          'obra.temperatura_recepcion',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -11760,6 +11816,34 @@ class SoleraL10n {
           'obra.tipo_proveedor',
           'obra.tipo_temperatura',
           'obra.trazas',
+          'obra.activo',
+          'obra.cantidad_kg',
+          'obra.cliente',
+          'obra.codigo_lote',
+          'obra.gramos_agua',
+          'obra.gramos_harina',
+          'obra.gramos_masa_madre',
+          'obra.harina_base',
+          'obra.hornadas',
+          'obra.horas_hasta_pico',
+          'obra.lote',
+          'obra.lotes',
+          'obra.lotes_usados',
+          'obra.minutos_horno',
+          'obra.nueva_hornada',
+          'obra.nueva_masa_madre',
+          'obra.nuevo_pedido_fijo',
+          'obra.nuevo_refresco',
+          'obra.pedidos_fijos',
+          'obra.piezas',
+          'obra.producto',
+          'obra.recibir_lote',
+          'obra.refrescar',
+          'obra.sin_hornadas',
+          'obra.sin_masas_madre',
+          'obra.sin_pedidos_fijos',
+          'obra.temperatura_horno',
+          'obra.temperatura_recepcion',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -15981,6 +16065,34 @@ class SoleraL10n {
           'obra.tipo_proveedor',
           'obra.tipo_temperatura',
           'obra.trazas',
+          'obra.activo',
+          'obra.cantidad_kg',
+          'obra.cliente',
+          'obra.codigo_lote',
+          'obra.gramos_agua',
+          'obra.gramos_harina',
+          'obra.gramos_masa_madre',
+          'obra.harina_base',
+          'obra.hornadas',
+          'obra.horas_hasta_pico',
+          'obra.lote',
+          'obra.lotes',
+          'obra.lotes_usados',
+          'obra.minutos_horno',
+          'obra.nueva_hornada',
+          'obra.nueva_masa_madre',
+          'obra.nuevo_pedido_fijo',
+          'obra.nuevo_refresco',
+          'obra.pedidos_fijos',
+          'obra.piezas',
+          'obra.producto',
+          'obra.recibir_lote',
+          'obra.refrescar',
+          'obra.sin_hornadas',
+          'obra.sin_masas_madre',
+          'obra.sin_pedidos_fijos',
+          'obra.temperatura_horno',
+          'obra.temperatura_recepcion',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -20225,6 +20337,34 @@ class SoleraL10n {
       case 'obra.tipo_proveedor': return 'Recepción de mercancía';
       case 'obra.tipo_temperatura': return 'Temperatura';
       case 'obra.trazas': return 'Puede contener (trazas)';
+      case 'obra.activo': return 'Activo';
+      case 'obra.cantidad_kg': return 'Cantidad (kg)';
+      case 'obra.cliente': return 'Cliente';
+      case 'obra.codigo_lote': return 'Código de lote';
+      case 'obra.gramos_agua': return 'Agua (g)';
+      case 'obra.gramos_harina': return 'Harina (g)';
+      case 'obra.gramos_masa_madre': return 'Masa madre (g)';
+      case 'obra.harina_base': return 'Harina con la que se alimenta';
+      case 'obra.hornadas': return 'Hornadas';
+      case 'obra.horas_hasta_pico': return 'Horas hasta el pico';
+      case 'obra.lote': return 'Lote';
+      case 'obra.lotes': return 'Lotes recibidos';
+      case 'obra.lotes_usados': return 'Lotes de ingrediente usados';
+      case 'obra.minutos_horno': return 'Minutos de horno';
+      case 'obra.nueva_hornada': return 'Nueva hornada';
+      case 'obra.nueva_masa_madre': return 'Nueva masa madre';
+      case 'obra.nuevo_pedido_fijo': return 'Nuevo pedido fijo';
+      case 'obra.nuevo_refresco': return 'Refresco';
+      case 'obra.pedidos_fijos': return 'Pedidos fijos';
+      case 'obra.piezas': return 'Piezas';
+      case 'obra.producto': return 'Producto';
+      case 'obra.recibir_lote': return 'Recibir lote';
+      case 'obra.refrescar': return 'Refrescar';
+      case 'obra.sin_hornadas': return 'No hay hornadas en los últimos 30 días.';
+      case 'obra.sin_masas_madre': return 'Aún no hay masas madre.';
+      case 'obra.sin_pedidos_fijos': return 'Aún no hay pedidos fijos.';
+      case 'obra.temperatura_horno': return 'Temperatura del horno (°C)';
+      case 'obra.temperatura_recepcion': return 'Temperatura al recibir (°C)';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -24450,6 +24590,34 @@ class SoleraL10n {
       case 'obra.tipo_proveedor': return 'Salgaien harrera';
       case 'obra.tipo_temperatura': return 'Tenperatura';
       case 'obra.trazas': return 'Izan dezake (aztarnak)';
+      case 'obra.activo': return 'Aktibo';
+      case 'obra.cantidad_kg': return 'Kopurua (kg)';
+      case 'obra.cliente': return 'Bezeroa';
+      case 'obra.codigo_lote': return 'Lote-kodea';
+      case 'obra.gramos_agua': return 'Ura (g)';
+      case 'obra.gramos_harina': return 'Irina (g)';
+      case 'obra.gramos_masa_madre': return 'Ama-orea (g)';
+      case 'obra.harina_base': return 'Elikatzeko irina';
+      case 'obra.hornadas': return 'Labealdiak';
+      case 'obra.horas_hasta_pico': return 'Gailurrera arteko orduak';
+      case 'obra.lote': return 'Lotea';
+      case 'obra.lotes': return 'Jasotako loteak';
+      case 'obra.lotes_usados': return 'Erabilitako osagai-loteak';
+      case 'obra.minutos_horno': return 'Labeko minutuak';
+      case 'obra.nueva_hornada': return 'Labealdi berria';
+      case 'obra.nueva_masa_madre': return 'Ama-ore berria';
+      case 'obra.nuevo_pedido_fijo': return 'Eskaera finko berria';
+      case 'obra.nuevo_refresco': return 'Freskatzea';
+      case 'obra.pedidos_fijos': return 'Eskaera finkoak';
+      case 'obra.piezas': return 'Piezak';
+      case 'obra.producto': return 'Produktua';
+      case 'obra.recibir_lote': return 'Lotea jaso';
+      case 'obra.refrescar': return 'Freskatu';
+      case 'obra.sin_hornadas': return 'Ez dago labealdirik azken 30 egunetan.';
+      case 'obra.sin_masas_madre': return 'Oraindik ez dago ama-orerik.';
+      case 'obra.sin_pedidos_fijos': return 'Oraindik ez dago eskaera finkorik.';
+      case 'obra.temperatura_horno': return 'Labearen tenperatura (°C)';
+      case 'obra.temperatura_recepcion': return 'Jasotzean tenperatura (°C)';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -28675,6 +28843,34 @@ class SoleraL10n {
       case 'obra.tipo_proveedor': return 'Recepció de mercaderia';
       case 'obra.tipo_temperatura': return 'Temperatura';
       case 'obra.trazas': return 'Pot contenir (traces)';
+      case 'obra.activo': return 'Actiu';
+      case 'obra.cantidad_kg': return 'Quantitat (kg)';
+      case 'obra.cliente': return 'Client';
+      case 'obra.codigo_lote': return 'Codi de lot';
+      case 'obra.gramos_agua': return 'Aigua (g)';
+      case 'obra.gramos_harina': return 'Farina (g)';
+      case 'obra.gramos_masa_madre': return 'Massa mare (g)';
+      case 'obra.harina_base': return 'Farina amb què s\'alimenta';
+      case 'obra.hornadas': return 'Fornades';
+      case 'obra.horas_hasta_pico': return 'Hores fins al punt màxim';
+      case 'obra.lote': return 'Lot';
+      case 'obra.lotes': return 'Lots rebuts';
+      case 'obra.lotes_usados': return 'Lots d\'ingredient utilitzats';
+      case 'obra.minutos_horno': return 'Minuts de forn';
+      case 'obra.nueva_hornada': return 'Fornada nova';
+      case 'obra.nueva_masa_madre': return 'Massa mare nova';
+      case 'obra.nuevo_pedido_fijo': return 'Comanda fixa nova';
+      case 'obra.nuevo_refresco': return 'Refresc';
+      case 'obra.pedidos_fijos': return 'Comandes fixes';
+      case 'obra.piezas': return 'Peces';
+      case 'obra.producto': return 'Producte';
+      case 'obra.recibir_lote': return 'Rep un lot';
+      case 'obra.refrescar': return 'Refresca';
+      case 'obra.sin_hornadas': return 'No hi ha fornades en els darrers 30 dies.';
+      case 'obra.sin_masas_madre': return 'Encara no hi ha masses mare.';
+      case 'obra.sin_pedidos_fijos': return 'Encara no hi ha comandes fixes.';
+      case 'obra.temperatura_horno': return 'Temperatura del forn (°C)';
+      case 'obra.temperatura_recepcion': return 'Temperatura en rebre (°C)';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -32900,6 +33096,34 @@ class SoleraL10n {
       case 'obra.tipo_proveedor': return 'Recepción de mercadoría';
       case 'obra.tipo_temperatura': return 'Temperatura';
       case 'obra.trazas': return 'Pode conter (trazas)';
+      case 'obra.activo': return 'Activo';
+      case 'obra.cantidad_kg': return 'Cantidade (kg)';
+      case 'obra.cliente': return 'Cliente';
+      case 'obra.codigo_lote': return 'Código de lote';
+      case 'obra.gramos_agua': return 'Auga (g)';
+      case 'obra.gramos_harina': return 'Fariña (g)';
+      case 'obra.gramos_masa_madre': return 'Masa nai (g)';
+      case 'obra.harina_base': return 'Fariña coa que se alimenta';
+      case 'obra.hornadas': return 'Fornadas';
+      case 'obra.horas_hasta_pico': return 'Horas ata o pico';
+      case 'obra.lote': return 'Lote';
+      case 'obra.lotes': return 'Lotes recibidos';
+      case 'obra.lotes_usados': return 'Lotes de ingrediente usados';
+      case 'obra.minutos_horno': return 'Minutos de forno';
+      case 'obra.nueva_hornada': return 'Nova fornada';
+      case 'obra.nueva_masa_madre': return 'Nova masa nai';
+      case 'obra.nuevo_pedido_fijo': return 'Novo pedido fixo';
+      case 'obra.nuevo_refresco': return 'Refresco';
+      case 'obra.pedidos_fijos': return 'Pedidos fixos';
+      case 'obra.piezas': return 'Pezas';
+      case 'obra.producto': return 'Produto';
+      case 'obra.recibir_lote': return 'Recibir lote';
+      case 'obra.refrescar': return 'Refrescar';
+      case 'obra.sin_hornadas': return 'Non hai fornadas nos últimos 30 días.';
+      case 'obra.sin_masas_madre': return 'Aínda non hai masas nai.';
+      case 'obra.sin_pedidos_fijos': return 'Aínda non hai pedidos fixos.';
+      case 'obra.temperatura_horno': return 'Temperatura do forno (°C)';
+      case 'obra.temperatura_recepcion': return 'Temperatura ao recibir (°C)';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Montar el servidor del grupo</title>
+<style>
+:root { --texto: #1f1d1a; --suave: #5f5a52; --borde: #cfc8ba; --acento: #5b6b2e; --fondo: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --texto: #ece8df; --suave: #a39d91; --borde: #45413a; --acento: #b5c77a; --fondo: #171614; }
+}
+:root[data-theme="dark"] { --texto: #ece8df; --suave: #a39d91; --borde: #45413a; --acento: #b5c77a; --fondo: #171614; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 11.5pt/1.5 Georgia, "Times New Roman", serif; }
+main { max-width: 720px; margin: 0 auto; padding: 32px 16px 48px; }
+h1 { font: 700 22pt/1.2 system-ui, sans-serif; margin: 0 0 4px; }
+h2 { font: 700 13pt/1.3 system-ui, sans-serif; color: var(--acento); margin: 24px 0 6px; break-after: avoid; }
+.sub { color: var(--suave); margin: 0 0 18px; }
+ol, ul { padding-left: 22px; margin: 6px 0; }
+li { margin: 4px 0; }
+.caja { border: 1.5px solid var(--borde); border-radius: 8px; padding: 10px 14px; margin: 12px 0; break-inside: avoid; }
+.caja strong:first-child { font-family: system-ui, sans-serif; }
+.casilla { display: inline-block; width: 11px; height: 11px; border: 1.2px solid var(--texto); margin-right: 8px; vertical-align: -1px; }
+.lista-casillas { list-style: none; padding-left: 0; }
+table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+td { border-bottom: 1px solid var(--borde); padding: 10px 6px; vertical-align: bottom; }
+td:first-child { width: 42%; color: var(--suave); }
+code { font: 10pt ui-monospace, monospace; }
+.pie { color: var(--suave); font-size: 9.5pt; margin-top: 28px; border-top: 1px solid var(--borde); padding-top: 8px; }
+@media print {
+  @page { size: A4; margin: 16mm 18mm; }
+  main { padding: 0; max-width: none; }
+  body { background: #fff; color: #000; }
+}
+</style>
+</head>
+<body>
+<main>
+<h1>Montar el servidor del grupo</h1>
+<p class="sub">Guía para el grupo que va a usar Concejo. No hace falta saber programar: hace falta alguien que tenga (o pueda pedir) acceso al panel del hosting.</p>
+
+<div class="caja">
+  <strong>Por qué un servidor propio.</strong> Lo que el grupo debate y decide se guarda en vuestra web, no en la de una empresa. Si un día dejamos de mantener la app, los datos siguen en vuestra web.
+</div>
+
+<h2>1. Qué necesitáis</h2>
+<ul class="lista-casillas">
+  <li><span class="casilla"></span>Una web con <strong>WordPress</strong> (versión 6.4 o más reciente). Puede ser la que ya tiene la asociación o el ayuntamiento, o una nueva en cualquier hosting.</li>
+  <li><span class="casilla"></span><strong>PHP 8.1 o más reciente.</strong> Se mira en el panel del hosting; si no, se pregunta al soporte.</li>
+  <li><span class="casilla"></span><strong>Certificado https</strong> (el candado en la barra del navegador). Casi todos los hostings lo dan gratis. Sin él, los códigos personales viajarían sin protección.</li>
+  <li><span class="casilla"></span>Que la web <strong>sepa enviar correo</strong>, para el resumen de los lunes. Si el hosting no lo hace, se instala un plugin «SMTP».</li>
+  <li><span class="casilla"></span>Una persona de la <strong>mesa</strong> que vaya a dar de alta a las demás.</li>
+</ul>
+
+<h2>2. Instalar el plugin</h2>
+<ol>
+  <li>Os pasaremos un archivo <code>concejo-x.y.z.zip</code>. No lo descomprimáis.</li>
+  <li>En el panel de WordPress: <strong>Plugins → Añadir nuevo → Subir plugin</strong>, elegid el zip y pulsad <strong>Instalar ahora</strong>.</li>
+  <li>Pulsad <strong>Activar</strong>. Al activarse crea sus propias tablas; no toca nada más de la web.</li>
+  <li><strong>Ajustes → Generales → Zona horaria</strong>: elegid una ciudad (por ejemplo, Madrid), no «UTC». Marca cuándo se abre y se cierra cada votación.</li>
+  <li><strong>Ajustes → Enlaces permanentes</strong>: «Nombre de la entrada» y guardar.</li>
+</ol>
+
+<h2>3. Primera mesa y códigos</h2>
+<ol>
+  <li><strong>Ajustes → Concejo</strong>: escribid el nombre del pueblo, barrio o colectivo.</li>
+  <li>Añadid a las personas de la mesa con su fecha de fin de mandato.</li>
+  <li>Al añadir a alguien aparece su <strong>código personal</strong>. <strong>Apuntadlo en papel y entregádselo en mano</strong>: no se vuelve a enseñar. Si alguien lo pierde, se le genera otro y el viejo deja de valer.</li>
+  <li>Desde la app, la mesa da de alta al resto y saca sus códigos.</li>
+  <li>En la misma página está el botón <strong>«Mandar ya»</strong> del resumen semanal: pulsadlo una vez para comprobar que llega el correo.</li>
+</ol>
+
+<h2>4. En el móvil de cada persona</h2>
+<ol>
+  <li>Instalar la app Concejo.</li>
+  <li>Escribir la dirección de la web (con <code>https://</code>) y su código.</li>
+  <li>Quien no use móvil puede votar en papel: la mesa lo apunta en la app.</li>
+</ol>
+
+<h2>Apuntad aquí los datos del grupo</h2>
+<table>
+  <tr><td>Dirección de la web</td><td></td></tr>
+  <tr><td>Hosting y cómo contactar con su soporte</td><td></td></tr>
+  <tr><td>Quién tiene acceso al panel de WordPress</td><td></td></tr>
+  <tr><td>Correo desde el que sale el resumen</td><td></td></tr>
+  <tr><td>Fecha de instalación y versión del plugin</td><td></td></tr>
+</table>
+
+<h2>Si algo no funciona</h2>
+<ul>
+  <li><strong>La app dice «código incorrecto» con un código bueno:</strong> algunos hostings quitan la cabecera de identificación. Pedid al soporte que añada al <code>.htaccess</code> la línea<br><code>SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1</code>.</li>
+  <li><strong>No llega el resumen de los lunes:</strong> la web no envía correo (instalad un plugin SMTP) o tiene muy pocas visitas (pedid al hosting un «cron» que llame a <code>wp-cron.php</code> cada hora).</li>
+  <li><strong>Cualquier otra cosa:</strong> escribidnos con la dirección de la web y lo que veis en pantalla.</li>
+</ul>
+
+<p class="pie">Lo que se decide en Concejo organiza al grupo, pero no tiene validez jurídica por sí solo: un acuerdo que deba ser oficial sigue necesitando su acta y su procedimiento legal. · Colección Nuevo Ser · Concejo es software libre (AGPL-3.0).</p>
+</main>
+</body>
+</html>

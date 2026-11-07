@@ -11,7 +11,7 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
 
 /// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
 /// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR', 'DEC'};
+const _dominiosRevisados = {'FR', 'DEC', 'PROP'};
 
 bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
 
@@ -253,6 +253,41 @@ void main() {
         final cociente = double.parse(ejercicio.solucion.replaceAll(',', '.'));
         expect((dividendo / divisor - cociente).abs(), lessThan(1e-9), reason: ejercicio.destacado);
         expect(cociente, isNot(1), reason: ejercicio.destacado);
+      }
+    });
+
+    test('PROP.03: precios y velocidades verosímiles, y la regla de tres cuadra', () {
+      // Lo que vale una unidad en cada contexto, dentro de lo que se ve en la vida.
+      final rangos = {
+        'kg de manzanas': (2, 4),
+        'cuadernos': (2, 6),
+        'horas': (12, 20),
+        'personas': (80, 120),
+      };
+      final numeros = RegExp(r'\d+');
+      for (final ejercicio in _muestras('PROP.03', semilla: 3, cantidad: 3000)) {
+        final contexto = rangos.keys.where(ejercicio.enunciado.contains).single;
+        final valores = numeros.allMatches(ejercicio.enunciado).map((m) => int.parse(m[0]!)).toList();
+        // Orden en el texto: manzanas/cuadernos/personas, a b c; ciclista, b a c.
+        final (a, b, c) = contexto == 'horas'
+            ? (valores[1], valores[0], valores[2])
+            : (valores[0], valores[1], valores[2]);
+        final porUnidad = b ~/ a;
+        expect(b % a, 0, reason: ejercicio.enunciado);
+        expect(porUnidad, inInclusiveRange(rangos[contexto]!.$1, rangos[contexto]!.$2),
+            reason: ejercicio.enunciado);
+        expect(ejercicio.solucion, '${c * porUnidad}');
+      }
+    });
+
+    test('PROP.06 y PROP.09: euros con dos decimales y bicis de precio creíble', () {
+      final euros = RegExp(r'^\d+(,\d\d)? €$');
+      for (final id in ['PROP.06', 'PROP.09']) {
+        for (final ejercicio in _muestras(id, semilla: 3, cantidad: 3000)) {
+          expect(euros.hasMatch(ejercicio.solucion), isTrue, reason: '$id: ${ejercicio.solucion}');
+          final bici = RegExp(r'^Una bici cuesta (\d+) €').firstMatch(ejercicio.enunciado);
+          if (bici != null) expect(int.parse(bici[1]!), greaterThanOrEqualTo(80));
+        }
       }
     });
 

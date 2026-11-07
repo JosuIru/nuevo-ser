@@ -11,19 +11,30 @@ const _parejasRazon = [
   ('lápices', 'gomas'),
 ];
 
+/// (magnitud A, magnitud B, plantilla, valores creíbles de B por cada A).
 const _magnitudesDirectas = [
-  ('kg de patatas', '€', 'Si {a} {ma} cuestan {b} {mb}, ¿cuánto cuestan {c} {ma}?'),
-  ('cuadernos', '€', 'Si {a} {ma} cuestan {b} {mb}, ¿cuánto cuestan {c} {ma}?'),
-  ('horas', 'km', 'Un tren recorre {b} {mb} en {a} {ma}. A la misma velocidad, ¿cuántos km recorre en {c} {ma}?'),
-  ('personas', 'barras de pan', 'Para {a} {ma} hacen falta {b} {mb}. ¿Cuántas hacen falta para {c} {ma}?'),
+  ('kg de manzanas', '€', 'Si {a} {ma} cuestan {b} {mb}, ¿cuánto cuestan {c} {ma}?', [2, 3, 4]),
+  ('cuadernos', '€', 'Si {a} {ma} cuestan {b} {mb}, ¿cuánto cuestan {c} {ma}?', [2, 3, 4, 5, 6]),
+  ('horas', 'km',
+      'Una ciclista recorre {b} {mb} en {a} {ma}. Al mismo ritmo, ¿cuántos km recorre en {c} {ma}?',
+      [12, 14, 15, 16, 18, 20]),
+  ('personas', 'g de pasta',
+      'Para {a} {ma} hacen falta {b} {mb}. ¿Cuántos gramos hacen falta para {c} {ma}?',
+      [80, 90, 100, 120]),
 ];
+
+/// Euros como se escriben: «66 €» o «52,50 €» (nunca «52,5 €»).
+String _euros(num cantidad) => cantidad == cantidad.roundToDouble()
+    ? '${formatearEntero(cantidad.round())} €'
+    : '${formatearDecimalFijo(cantidad, 2)} €';
 
 final List<PlantillaFicha> plantillasProporcionalidad = [
   PlantillaFicha(
     idHabilidad: 'PROP.01',
     descripcion:
-        'Una razón compara dos cantidades dividiéndolas. Si hay 12 manzanas y 8 naranjas, la '
-        'razón es 12 : 8, que simplificada queda 3 : 2: por cada 3 manzanas hay 2 naranjas.',
+        'Una razón compara dos cantidades dividiéndolas.\n'
+        'Ejemplo: si hay 12 manzanas y 8 naranjas, la razón es 12 : 8, que simplificada queda '
+        '3 : 2: por cada 3 manzanas hay 2 naranjas.',
     preguntaExplicalo: '¿Qué significa decir que la razón de chicas a chicos de una clase es 1 : 1?',
     generar: (azar) {
       final (primera, segunda) = azar.elegir(_parejasRazon);
@@ -46,7 +57,8 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.02',
     descripcion:
         'Dos magnitudes son directamente proporcionales si al multiplicar una por un número, '
-        'la otra se multiplica por el mismo número. En la tabla, el cociente es siempre igual.',
+        'la otra se multiplica por el mismo número. En la tabla, el cociente es siempre igual.\n'
+        'Ejemplo: 1 kg cuesta 3 €, 2 kg cuestan 6 € y 5 kg, 15 €: 3 : 1 = 6 : 2 = 15 : 5 = 3.',
     preguntaExplicalo:
         'La edad y la altura de una persona, ¿son directamente proporcionales? ¿Por qué?',
     generar: (azar) {
@@ -77,11 +89,12 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.03',
     descripcion:
         'La regla de tres sirve cuando dos magnitudes son directamente proporcionales: con tres '
-        'datos se calcula el cuarto. Un camino es calcular primero lo que corresponde a 1.',
+        'datos se calcula el cuarto. Un camino es calcular primero lo que corresponde a 1.\n'
+        'Ejemplo: si 4 cuadernos cuestan 12 €, 1 cuesta 12 : 4 = 3 €, y 7 cuestan 7 × 3 = 21 €.',
     preguntaExplicalo: '¿Cómo sabes si un problema se puede resolver con una regla de tres directa?',
     generar: (azar) {
-      final (magnitudA, magnitudB, plantilla) = azar.elegir(_magnitudesDirectas);
-      final porUnidad = azar.entre(2, 9);
+      final (magnitudA, magnitudB, plantilla, valoresPorUnidad) = azar.elegir(_magnitudesDirectas);
+      final porUnidad = azar.elegir(valoresPorUnidad);
       final a = azar.entre(2, 6);
       var c = azar.entre(2, 12);
       if (c == a) c++;
@@ -98,7 +111,8 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.04',
     descripcion:
         'Un porcentaje es una fracción con denominador 100: el 25 % de algo son 25 de cada 100. '
-        'Para calcularlo, multiplica la cantidad por el porcentaje y divide entre 100.',
+        'Para calcularlo, multiplica la cantidad por el porcentaje y divide entre 100.\n'
+        'Ejemplo: el 30 % de 60 es 60 × 30 : 100 = 18.',
     preguntaExplicalo: '¿Por qué el 50 % de una cantidad es la mitad? ¿Y el 25 %?',
     generar: (azar) {
       final porcentaje = azar.elegir([10, 20, 25, 30, 40, 50, 60, 75, 5, 15]);
@@ -115,7 +129,8 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.05',
     descripcion:
         'Para saber qué porcentaje es una parte del total, divide la parte entre el total y '
-        'multiplica por 100. 12 de 50 son 12 : 50 × 100 = 24 %.',
+        'multiplica por 100.\n'
+        'Ejemplo: 12 de 50 son 12 : 50 × 100 = 24 %.',
     preguntaExplicalo: 'Si 30 de 30 alumnos traen almuerzo, ¿qué porcentaje es? ¿Por qué?',
     generar: (azar) {
       // Solo combinaciones con parte entera: 25 × 5 % daría 1,25.
@@ -141,19 +156,21 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.06',
     descripcion:
         'En un aumento del 10 % se suma al precio su 10 %; en un descuento del 10 %, se resta. '
-        'También se puede multiplicar directamente por 1,10 o por 0,90.',
+        'También se puede multiplicar directamente por 1,10 o por 0,90.\n'
+        'Ejemplo: un abrigo de 40 € con un 25 % de descuento: el 25 % de 40 es 10, y 40 − 10 = 30 €.',
     preguntaExplicalo: '¿Por qué un descuento del 20 % es lo mismo que pagar el 80 %?',
     generar: (azar) {
-      final cantidad = azar.entre(2, 30) * 10;
-      final porcentaje = azar.elegir([10, 20, 25, 50, 15, 30]);
       final esAumento = azar.nextBool();
+      // Una bici de menos de 80 € no es creíble; un abrigo, desde 20 €.
+      final cantidad = (esAumento ? azar.entre(8, 40) : azar.entre(2, 30)) * 10;
+      final porcentaje = azar.elegir([10, 20, 25, 50, 15, 30]);
       final variacion = cantidad * porcentaje / 100;
       final resultado = esAumento ? cantidad + variacion : cantidad - variacion;
       return Ejercicio(
         enunciado: esAumento
             ? 'Una bici cuesta $cantidad € y su precio sube un $porcentaje %. ¿Cuánto cuesta ahora?'
             : 'Un abrigo cuesta $cantidad € y tiene un descuento del $porcentaje %. ¿Cuánto se paga?',
-        solucion: '${formatearDecimal(resultado)} €',
+        solucion: _euros(resultado),
         renglones: 3,
       );
     },
@@ -162,7 +179,8 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.07',
     descripcion:
         'La escala de un mapa o plano dice cuántas veces se ha reducido la realidad: en escala '
-        '1 : 500, 1 cm del plano son 500 cm (5 m) de verdad.',
+        '1 : 500, 1 cm del plano son 500 cm (5 m) de verdad.\n'
+        'Ejemplo: en un plano a escala 1 : 500, 3 cm son 1500 cm, es decir, 15 m.',
     preguntaExplicalo: '¿Qué mapa muestra más detalle, uno a escala 1 : 1000 o uno a 1 : 100 000? ¿Por qué?',
     generar: (azar) {
       final escala = azar.elegir([100, 200, 500, 1000, 50000, 100000]);
@@ -184,7 +202,9 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.08',
     descripcion:
         'Dos magnitudes son inversamente proporcionales si, cuando una se duplica, la otra se '
-        'reduce a la mitad. Su producto es siempre el mismo.',
+        'reduce a la mitad. Su producto es siempre el mismo.\n'
+        'Ejemplo: si 2 grifos llenan un depósito en 12 minutos, 4 grifos tardan 6 minutos '
+        '(2 · 12 = 4 · 6 = 24).',
     preguntaExplicalo:
         'Si más personas pintan una valla, tardan menos. ¿Pasa siempre? ¿Hay algún límite? Explícalo.',
     generar: (azar) {
@@ -209,7 +229,8 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.09',
     descripcion:
         'Cuando se aplican varios porcentajes seguidos, cada uno se calcula sobre el resultado '
-        'del anterior. Por eso subir un 10 % y bajar un 10 % no deja el precio igual.',
+        'del anterior. Por eso subir un 10 % y bajar un 10 % no deja el precio igual.\n'
+        'Ejemplo: 200 € que suben un 20 % son 240 €; si después bajan un 25 %, quedan 240 − 60 = 180 €.',
     preguntaExplicalo: '¿Por qué subir un 10 % y después bajar un 10 % no te devuelve al precio inicial?',
     generar: (azar) {
       final inicial = azar.entre(1, 10) * 100;
@@ -223,7 +244,7 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
       return Ejercicio(
         enunciado: 'Un precio de $inicial € ${verbo(primeroSube)} un $primero % y después '
             '${verbo(segundoSube)} un $segundo %. ¿Cuál es el precio final?',
-        solucion: '${formatearDecimal(tras2, cifras: 2)} €',
+        solucion: _euros(tras2),
         renglones: 3,
       );
     },
@@ -232,7 +253,9 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     idHabilidad: 'PROP.10',
     descripcion:
         'En un reparto proporcional, cada parte recibe según lo que aporta. Se suman las partes, '
-        'se ve cuánto vale una parte y se multiplica.',
+        'se ve cuánto vale una parte y se multiplica.\n'
+        'Ejemplo: 30 kg para quien trabaja 2 horas y quien trabaja 3 son 5 partes de 30 : 5 = 6 kg: '
+        '12 kg y 18 kg.',
     preguntaExplicalo: '¿Te parece justo repartir según lo que ha trabajado cada uno? ¿Cuándo sí y cuándo no?',
     generar: (azar) {
       final parteA = azar.entre(2, 5);

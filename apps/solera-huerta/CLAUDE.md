@@ -9,7 +9,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
-| 2 Modelos + BD | pendiente | |
+| 2 Modelos + BD | ✅ 2026-11-07 | 14 modelos (titular-huerta, parcela, bancal, cultivo, lote de semilla, siembra/plantación, cosecha, insumo, tratamiento; y en `lib/provisional_core/venta_directa/` socio, suscripción, cesta, línea de cesta, entrega), 14 tablas en la v1. Lógica pura: `dominio/rotacion.dart` (aviso por familia y años mínimos, familias bloqueadas por bancal), `dominio/siembras_escalonadas.dart`, `dominio/prevision_cosecha.dart` (cosecha prevista y real de la semana) y `provisional_core/venta_directa/reparto_cestas.dart` (reparto por partes con mayor resto, pasos de 50 g o piezas, turno rotatorio en empates). 65 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 2.
+**Siguiente acción**: bloque 3 (pantallas).
 
 ## Encuadre
 
@@ -50,7 +50,45 @@ Lo esencial que no se toca (hard limits):
 
 ## Decisiones tomadas sin consultar
 
-(Cada una con fecha y porqué.)
+- **2026-11-07 — `Titular` hace de `Huerta`**: una instalación = una huerta
+  (como el resto de la suite). Lleva la cabecera de los cuadernos: NIF,
+  registro, comunidad autónoma, **organismo de control** y código de operador
+  ecológico, y el asesor con su ROPO.
+- **2026-11-07 — `Plantacion` es una `Siembra` de tipo `plantacion`**: comparten
+  todos los campos (bancal, cultivo, fecha, lote, cantidad) y la rotación las
+  trata igual; dos tablas duplicarían consultas y PDF.
+- **2026-11-07 — Siembra planificada = sin fecha real**: el plan de bancales y
+  las siembras escalonadas son siembras con fecha prevista; al hacerlas se
+  apunta la real. Las series comparten `serie_escalonada`.
+- **2026-11-07 — La familia botánica se guarda en el `Cultivo`** (no se deduce
+  solo del catálogo): la rotación funciona aunque la especie sea texto libre.
+- **2026-11-07 — La rotación mira hacia atrás y hacia delante**: una siembra
+  planificada más adelante de la misma familia también avisa. Sin regla en el
+  catálogo, no se avisa y se dice «sin dato» (nunca «bien»).
+- **2026-11-07 — `Tratamiento` = aplicación de cualquier `Insumo`**
+  (fitosanitario, abono o enmienda): el certificador pide el registro de todos
+  los insumos y el cuaderno de tratamientos solo los fitosanitarios; el tipo
+  lo da el insumo. Bancal opcional (toda la parcela si falta).
+- **2026-11-07 — «Permitido en ecológico» lo marca la persona con justificante**
+  (etiqueta, listado del organismo, certificado del proveedor): la app no lo
+  decide; avisa si falta el justificante.
+- **2026-11-07 — Cestas en `lib/provisional_core/venta_directa/`**: el módulo
+  transversal T2 del plan no existe aún en el core. Modelos y reparto viven
+  ahí sin depender de nada de la app (solo `semanas.dart`); las tablas, en la
+  BD de la app. Cuando T2 suba al core, se sustituye esta carpeta por el
+  import y se migran las tablas si el core define otras.
+- **2026-11-07 — Reparto por «partes»** (pequeña 2, mediana 3, grande 4) y
+  **mayor resto**: nunca se reparte más de lo que hay; lo que no cabe en el
+  redondeo (pasos de 50 g o piezas enteras) queda como sobrante a la vista. En
+  empates rota el turno con el número de semana para no castigar siempre a
+  la misma cesta. Es una propuesta: se retoca a mano.
+- **2026-11-07 — Una cesta por suscripción y semana** (UNIQUE), con la semana
+  como su lunes; la quincenal va en semanas alternas desde la de inicio.
+- **2026-11-07 — Integridad**: siembras, cosechas, tratamientos y cestas
+  impiden borrar lo que citan (`RESTRICT`); bancales y socios se desactivan.
+  Borrar una cesta se lleva sus líneas y entregas.
+- **2026-11-07 — La v1 se amplía durante la F1** (como en Frutal): no hay
+  ninguna instalación publicada.
 
 ## Datos técnicos
 

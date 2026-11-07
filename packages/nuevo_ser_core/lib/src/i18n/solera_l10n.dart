@@ -2951,6 +2951,9 @@ class SoleraL10n {
     'frut.comunicada_seguro',
     'frut.con_compensacion_reagp',
     'frut.concepto',
+    'frut.confianza_alta',
+    'frut.confianza_baja',
+    'frut.confianza_media',
     'frut.copiar_de_etiqueta',
     'frut.cosecha',
     'frut.cuaderno',
@@ -2963,6 +2966,7 @@ class SoleraL10n {
     'frut.eficacia_buena',
     'frut.eficacia_mala',
     'frut.eficacia_regular',
+    'frut.elegir_foto',
     'frut.entregas',
     'frut.equipo_aplicacion',
     'frut.error_cargar',
@@ -2990,15 +2994,26 @@ class SoleraL10n {
     'frut.gps_sin_permiso',
     'frut.grano',
     'frut.guardado',
+    'frut.hacer_foto',
     'frut.helada',
     'frut.heladas',
     'frut.horas',
     'frut.hoy',
     'frut.humedad',
     'frut.humedad_corta',
+    'frut.ia_analizando',
+    'frut.ia_error',
+    'frut.ia_fuera_catalogo',
+    'frut.ia_identificar',
+    'frut.ia_no_legible',
+    'frut.ia_nota_observacion',
+    'frut.ia_propuesta',
+    'frut.ia_que_hace',
+    'frut.ia_revisa',
     'frut.impuesto',
     'frut.ingresos',
     'frut.ingresos_y_gastos',
+    'frut.inteligencia_artificial',
     'frut.iva',
     'frut.iva_repercutido',
     'frut.iva_soportado',
@@ -7506,6 +7521,9 @@ class SoleraL10n {
           'frut.comunicada_seguro',
           'frut.con_compensacion_reagp',
           'frut.concepto',
+          'frut.confianza_alta',
+          'frut.confianza_baja',
+          'frut.confianza_media',
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
@@ -7518,6 +7536,7 @@ class SoleraL10n {
           'frut.eficacia_buena',
           'frut.eficacia_mala',
           'frut.eficacia_regular',
+          'frut.elegir_foto',
           'frut.entregas',
           'frut.equipo_aplicacion',
           'frut.error_cargar',
@@ -7545,15 +7564,26 @@ class SoleraL10n {
           'frut.gps_sin_permiso',
           'frut.grano',
           'frut.guardado',
+          'frut.hacer_foto',
           'frut.helada',
           'frut.heladas',
           'frut.horas',
           'frut.hoy',
           'frut.humedad',
           'frut.humedad_corta',
+          'frut.ia_analizando',
+          'frut.ia_error',
+          'frut.ia_fuera_catalogo',
+          'frut.ia_identificar',
+          'frut.ia_no_legible',
+          'frut.ia_nota_observacion',
+          'frut.ia_propuesta',
+          'frut.ia_que_hace',
+          'frut.ia_revisa',
           'frut.impuesto',
           'frut.ingresos',
           'frut.ingresos_y_gastos',
+          'frut.inteligencia_artificial',
           'frut.iva',
           'frut.iva_repercutido',
           'frut.iva_soportado',
@@ -12058,6 +12088,9 @@ class SoleraL10n {
           'frut.comunicada_seguro',
           'frut.con_compensacion_reagp',
           'frut.concepto',
+          'frut.confianza_alta',
+          'frut.confianza_baja',
+          'frut.confianza_media',
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
@@ -12070,6 +12103,7 @@ class SoleraL10n {
           'frut.eficacia_buena',
           'frut.eficacia_mala',
           'frut.eficacia_regular',
+          'frut.elegir_foto',
           'frut.entregas',
           'frut.equipo_aplicacion',
           'frut.error_cargar',
@@ -12097,15 +12131,26 @@ class SoleraL10n {
           'frut.gps_sin_permiso',
           'frut.grano',
           'frut.guardado',
+          'frut.hacer_foto',
           'frut.helada',
           'frut.heladas',
           'frut.horas',
           'frut.hoy',
           'frut.humedad',
           'frut.humedad_corta',
+          'frut.ia_analizando',
+          'frut.ia_error',
+          'frut.ia_fuera_catalogo',
+          'frut.ia_identificar',
+          'frut.ia_no_legible',
+          'frut.ia_nota_observacion',
+          'frut.ia_propuesta',
+          'frut.ia_que_hace',
+          'frut.ia_revisa',
           'frut.impuesto',
           'frut.ingresos',
           'frut.ingresos_y_gastos',
+          'frut.inteligencia_artificial',
           'frut.iva',
           'frut.iva_repercutido',
           'frut.iva_soportado',
@@ -16610,6 +16655,9 @@ class SoleraL10n {
           'frut.comunicada_seguro',
           'frut.con_compensacion_reagp',
           'frut.concepto',
+          'frut.confianza_alta',
+          'frut.confianza_baja',
+          'frut.confianza_media',
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
@@ -16622,6 +16670,7 @@ class SoleraL10n {
           'frut.eficacia_buena',
           'frut.eficacia_mala',
           'frut.eficacia_regular',
+          'frut.elegir_foto',
           'frut.entregas',
           'frut.equipo_aplicacion',
           'frut.error_cargar',
@@ -16649,15 +16698,26 @@ class SoleraL10n {
           'frut.gps_sin_permiso',
           'frut.grano',
           'frut.guardado',
+          'frut.hacer_foto',
           'frut.helada',
           'frut.heladas',
           'frut.horas',
           'frut.hoy',
           'frut.humedad',
           'frut.humedad_corta',
+          'frut.ia_analizando',
+          'frut.ia_error',
+          'frut.ia_fuera_catalogo',
+          'frut.ia_identificar',
+          'frut.ia_no_legible',
+          'frut.ia_nota_observacion',
+          'frut.ia_propuesta',
+          'frut.ia_que_hace',
+          'frut.ia_revisa',
           'frut.impuesto',
           'frut.ingresos',
           'frut.ingresos_y_gastos',
+          'frut.inteligencia_artificial',
           'frut.iva',
           'frut.iva_repercutido',
           'frut.iva_soportado',
@@ -21185,6 +21245,9 @@ class SoleraL10n {
       case 'frut.comunicada_seguro': return 'Comunicada al seguro';
       case 'frut.con_compensacion_reagp': return 'Sin IVA: el comprador paga la compensación del REAGP ({n} %)';
       case 'frut.concepto': return 'Concepto';
+      case 'frut.confianza_alta': return 'Confianza alta';
+      case 'frut.confianza_baja': return 'Confianza baja';
+      case 'frut.confianza_media': return 'Confianza media';
       case 'frut.copiar_de_etiqueta': return 'Cópialo de la etiqueta: la app no lo propone';
       case 'frut.cosecha': return 'Cosecha';
       case 'frut.cuaderno': return 'Cuaderno';
@@ -21197,6 +21260,7 @@ class SoleraL10n {
       case 'frut.eficacia_buena': return 'Buena';
       case 'frut.eficacia_mala': return 'Mala';
       case 'frut.eficacia_regular': return 'Regular';
+      case 'frut.elegir_foto': return 'Elegir de la galería';
       case 'frut.entregas': return 'Entregas';
       case 'frut.equipo_aplicacion': return 'Equipo de aplicación (nº ROMA)';
       case 'frut.error_cargar': return 'No se han podido cargar los datos';
@@ -21224,15 +21288,26 @@ class SoleraL10n {
       case 'frut.gps_sin_permiso': return 'Sin permiso de ubicación o con el GPS apagado';
       case 'frut.grano': return 'grano';
       case 'frut.guardado': return 'Guardado';
+      case 'frut.hacer_foto': return 'Hacer una foto';
       case 'frut.helada': return 'Helada';
       case 'frut.heladas': return 'Heladas';
       case 'frut.horas': return 'Horas';
       case 'frut.hoy': return 'Hoy';
       case 'frut.humedad': return 'Humedad (%)';
       case 'frut.humedad_corta': return 'humedad';
+      case 'frut.ia_analizando': return 'Analizando la foto…';
+      case 'frut.ia_error': return 'No se ha podido analizar la foto. Revisa la conexión y la clave.';
+      case 'frut.ia_fuera_catalogo': return 'La IA cree que puede ser algo que no está en el catálogo (carencia, helada, otra plaga…).';
+      case 'frut.ia_identificar': return 'Identificar con IA a partir de una foto';
+      case 'frut.ia_no_legible': return 'La foto no deja ver bien el síntoma: prueba con otra más cerca y con luz.';
+      case 'frut.ia_nota_observacion': return 'Propuesta de la IA ({confianza}), revisada por mí';
+      case 'frut.ia_propuesta': return 'Propuesta de la IA';
+      case 'frut.ia_que_hace': return 'Propone qué plaga o enfermedad puede ser a partir de una foto. No recomienda tratamientos.';
+      case 'frut.ia_revisa': return 'Es una propuesta: compruébala en el campo o con tu asesor antes de apuntarla. La IA no recomienda tratamientos.';
       case 'frut.impuesto': return 'IVA o compensación';
       case 'frut.ingresos': return 'Ingresos';
       case 'frut.ingresos_y_gastos': return 'Ingresos y gastos';
+      case 'frut.inteligencia_artificial': return 'Inteligencia artificial';
       case 'frut.iva': return 'IVA';
       case 'frut.iva_repercutido': return 'IVA repercutido';
       case 'frut.iva_soportado': return 'IVA soportado';
@@ -25741,6 +25816,9 @@ class SoleraL10n {
       case 'frut.comunicada_seguro': return 'Aseguruari jakinarazita';
       case 'frut.con_compensacion_reagp': return 'BEZik gabe: erosleak REAGP konpentsazioa ordaintzen du (% {n})';
       case 'frut.concepto': return 'Kontzeptua';
+      case 'frut.confianza_alta': return 'Konfiantza handia';
+      case 'frut.confianza_baja': return 'Konfiantza txikia';
+      case 'frut.confianza_media': return 'Erdiko konfiantza';
       case 'frut.copiar_de_etiqueta': return 'Kopiatu etiketatik: aplikazioak ez du proposatzen';
       case 'frut.cosecha': return 'Uzta';
       case 'frut.cuaderno': return 'Koadernoa';
@@ -25753,6 +25831,7 @@ class SoleraL10n {
       case 'frut.eficacia_buena': return 'Ona';
       case 'frut.eficacia_mala': return 'Txarra';
       case 'frut.eficacia_regular': return 'Erdipurdikoa';
+      case 'frut.elegir_foto': return 'Galeriatik aukeratu';
       case 'frut.entregas': return 'Entregak';
       case 'frut.equipo_aplicacion': return 'Aplikazio-ekipoa (ROMA zk.)';
       case 'frut.error_cargar': return 'Ezin izan dira datuak kargatu';
@@ -25780,15 +25859,26 @@ class SoleraL10n {
       case 'frut.gps_sin_permiso': return 'Kokapen-baimenik gabe edo GPSa itzalita';
       case 'frut.grano': return 'ale';
       case 'frut.guardado': return 'Gordeta';
+      case 'frut.hacer_foto': return 'Argazkia atera';
       case 'frut.helada': return 'Izotza';
       case 'frut.heladas': return 'Izotzak';
       case 'frut.horas': return 'Orduak';
       case 'frut.hoy': return 'Gaur';
       case 'frut.humedad': return 'Hezetasuna (%)';
       case 'frut.humedad_corta': return 'hezetasuna';
+      case 'frut.ia_analizando': return 'Argazkia aztertzen…';
+      case 'frut.ia_error': return 'Ezin izan da argazkia aztertu. Egiaztatu konexioa eta gakoa.';
+      case 'frut.ia_fuera_catalogo': return 'IAren ustez katalogoan ez dagoen zerbait izan daiteke (gabezia, izotza, beste izurrite bat…).';
+      case 'frut.ia_identificar': return 'IArekin identifikatu argazki batetik';
+      case 'frut.ia_no_legible': return 'Argazkian ez da sintoma ondo ikusten: saiatu beste batekin, hurbilago eta argiarekin.';
+      case 'frut.ia_nota_observacion': return 'IAren proposamena ({confianza}), nik berrikusia';
+      case 'frut.ia_propuesta': return 'IAren proposamena';
+      case 'frut.ia_que_hace': return 'Argazki batetik zein izurrite edo gaixotasun izan daitekeen proposatzen du. Ez du tratamendurik gomendatzen.';
+      case 'frut.ia_revisa': return 'Proposamen bat da: egiaztatu landan edo zure aholkulariarekin idatzi aurretik. IAk ez du tratamendurik gomendatzen.';
       case 'frut.impuesto': return 'BEZ edo konpentsazioa';
       case 'frut.ingresos': return 'Diru-sarrerak';
       case 'frut.ingresos_y_gastos': return 'Diru-sarrerak eta gastuak';
+      case 'frut.inteligencia_artificial': return 'Adimen artifiziala';
       case 'frut.iva': return 'BEZ';
       case 'frut.iva_repercutido': return 'BEZ jasanarazia';
       case 'frut.iva_soportado': return 'BEZ jasana';
@@ -30297,6 +30387,9 @@ class SoleraL10n {
       case 'frut.comunicada_seguro': return 'Comunicada a l\'assegurança';
       case 'frut.con_compensacion_reagp': return 'Sense IVA: el comprador paga la compensació del REAGP ({n} %)';
       case 'frut.concepto': return 'Concepte';
+      case 'frut.confianza_alta': return 'Confiança alta';
+      case 'frut.confianza_baja': return 'Confiança baixa';
+      case 'frut.confianza_media': return 'Confiança mitjana';
       case 'frut.copiar_de_etiqueta': return 'Copia-ho de l\'etiqueta: l\'app no ho proposa';
       case 'frut.cosecha': return 'Collita';
       case 'frut.cuaderno': return 'Quadern';
@@ -30309,6 +30402,7 @@ class SoleraL10n {
       case 'frut.eficacia_buena': return 'Bona';
       case 'frut.eficacia_mala': return 'Dolenta';
       case 'frut.eficacia_regular': return 'Regular';
+      case 'frut.elegir_foto': return 'Triar de la galeria';
       case 'frut.entregas': return 'Lliuraments';
       case 'frut.equipo_aplicacion': return 'Equip d\'aplicació (núm. ROMA)';
       case 'frut.error_cargar': return 'No s\'han pogut carregar les dades';
@@ -30336,15 +30430,26 @@ class SoleraL10n {
       case 'frut.gps_sin_permiso': return 'Sense permís d\'ubicació o amb el GPS apagat';
       case 'frut.grano': return 'gra';
       case 'frut.guardado': return 'Desat';
+      case 'frut.hacer_foto': return 'Fer una foto';
       case 'frut.helada': return 'Gelada';
       case 'frut.heladas': return 'Gelades';
       case 'frut.horas': return 'Hores';
       case 'frut.hoy': return 'Avui';
       case 'frut.humedad': return 'Humitat (%)';
       case 'frut.humedad_corta': return 'humitat';
+      case 'frut.ia_analizando': return 'Analitzant la foto…';
+      case 'frut.ia_error': return 'No s\'ha pogut analitzar la foto. Revisa la connexió i la clau.';
+      case 'frut.ia_fuera_catalogo': return 'La IA creu que pot ser una cosa que no és al catàleg (carència, gelada, una altra plaga…).';
+      case 'frut.ia_identificar': return 'Identificar amb IA a partir d\'una foto';
+      case 'frut.ia_no_legible': return 'La foto no deixa veure bé el símptoma: prova\'n una altra més a prop i amb llum.';
+      case 'frut.ia_nota_observacion': return 'Proposta de la IA ({confianza}), revisada per mi';
+      case 'frut.ia_propuesta': return 'Proposta de la IA';
+      case 'frut.ia_que_hace': return 'Proposa quina plaga o malaltia pot ser a partir d\'una foto. No recomana tractaments.';
+      case 'frut.ia_revisa': return 'És una proposta: comprova-la al camp o amb el teu assessor abans d\'anotar-la. La IA no recomana tractaments.';
       case 'frut.impuesto': return 'IVA o compensació';
       case 'frut.ingresos': return 'Ingressos';
       case 'frut.ingresos_y_gastos': return 'Ingressos i despeses';
+      case 'frut.inteligencia_artificial': return 'Intel·ligència artificial';
       case 'frut.iva': return 'IVA';
       case 'frut.iva_repercutido': return 'IVA repercutit';
       case 'frut.iva_soportado': return 'IVA suportat';
@@ -34853,6 +34958,9 @@ class SoleraL10n {
       case 'frut.comunicada_seguro': return 'Comunicada ao seguro';
       case 'frut.con_compensacion_reagp': return 'Sen IVE: o comprador paga a compensación do REAGP ({n} %)';
       case 'frut.concepto': return 'Concepto';
+      case 'frut.confianza_alta': return 'Confianza alta';
+      case 'frut.confianza_baja': return 'Confianza baixa';
+      case 'frut.confianza_media': return 'Confianza media';
       case 'frut.copiar_de_etiqueta': return 'Cópiao da etiqueta: a app non o propón';
       case 'frut.cosecha': return 'Colleita';
       case 'frut.cuaderno': return 'Caderno';
@@ -34865,6 +34973,7 @@ class SoleraL10n {
       case 'frut.eficacia_buena': return 'Boa';
       case 'frut.eficacia_mala': return 'Mala';
       case 'frut.eficacia_regular': return 'Regular';
+      case 'frut.elegir_foto': return 'Escoller da galería';
       case 'frut.entregas': return 'Entregas';
       case 'frut.equipo_aplicacion': return 'Equipo de aplicación (n.º ROMA)';
       case 'frut.error_cargar': return 'Non se puideron cargar os datos';
@@ -34892,15 +35001,26 @@ class SoleraL10n {
       case 'frut.gps_sin_permiso': return 'Sen permiso de localización ou co GPS apagado';
       case 'frut.grano': return 'gran';
       case 'frut.guardado': return 'Gardado';
+      case 'frut.hacer_foto': return 'Facer unha foto';
       case 'frut.helada': return 'Xeada';
       case 'frut.heladas': return 'Xeadas';
       case 'frut.horas': return 'Horas';
       case 'frut.hoy': return 'Hoxe';
       case 'frut.humedad': return 'Humidade (%)';
       case 'frut.humedad_corta': return 'humidade';
+      case 'frut.ia_analizando': return 'Analizando a foto…';
+      case 'frut.ia_error': return 'Non se puido analizar a foto. Revisa a conexión e a clave.';
+      case 'frut.ia_fuera_catalogo': return 'A IA cre que pode ser algo que non está no catálogo (carencia, xeada, outra praga…).';
+      case 'frut.ia_identificar': return 'Identificar con IA a partir dunha foto';
+      case 'frut.ia_no_legible': return 'A foto non deixa ver ben o síntoma: proba con outra máis preto e con luz.';
+      case 'frut.ia_nota_observacion': return 'Proposta da IA ({confianza}), revisada por min';
+      case 'frut.ia_propuesta': return 'Proposta da IA';
+      case 'frut.ia_que_hace': return 'Propón que praga ou enfermidade pode ser a partir dunha foto. Non recomenda tratamentos.';
+      case 'frut.ia_revisa': return 'É unha proposta: compróbaa no campo ou co teu asesor antes de anotala. A IA non recomenda tratamentos.';
       case 'frut.impuesto': return 'IVE ou compensación';
       case 'frut.ingresos': return 'Ingresos';
       case 'frut.ingresos_y_gastos': return 'Ingresos e gastos';
+      case 'frut.inteligencia_artificial': return 'Intelixencia artificial';
       case 'frut.iva': return 'IVE';
       case 'frut.iva_repercutido': return 'IVE repercutido';
       case 'frut.iva_soportado': return 'IVE soportado';

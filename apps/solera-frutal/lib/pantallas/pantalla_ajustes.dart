@@ -34,8 +34,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     await BaseDatosSoleraFrutal.instancia
         .guardarTitular(Titular(nombre: _controladorNombre.text.trim()));
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(SoleraL10n.t('frut.guardado'))));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(SoleraL10n.t('frut.guardado'))));
   }
 
   @override
@@ -57,11 +57,12 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               style: Theme.of(context).textTheme.titleMedium),
           TextField(
             controller: _controladorNombre,
-            decoration: InputDecoration(
-                labelText: SoleraL10n.t('frut.nombre_titular')),
+            decoration:
+                InputDecoration(labelText: SoleraL10n.t('frut.nombre_titular')),
           ),
           const SizedBox(height: 12),
-          FilledButton(onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
+          FilledButton(
+              onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
         ],
       ),
     );

@@ -120,6 +120,7 @@ pw.Widget _numeroEjercicio(String etiqueta, pw.TextStyle base) => pw.Container(
 pw.Widget _tabla(List<List<String>> filas, pw.TextStyle base) => pw.Table(
       border: pw.TableBorder.all(color: PaletaFicha.textoTenue, width: 0.6),
       defaultColumnWidth: const pw.IntrinsicColumnWidth(),
+      tableWidth: pw.TableWidth.min,
       children: [
         for (var indice = 0; indice < filas.length; indice++)
           pw.TableRow(

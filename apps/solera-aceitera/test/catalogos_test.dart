@@ -93,13 +93,22 @@ void main() {
       }
     });
 
-    test('Filtro por plaga: spinosad sirve para mosca y prays', () {
+    // Registro MAPA 06/11/2026: el spinosad en olivo solo está autorizado
+    // en cebo contra la mosca; contra el prays no hay uso autorizado.
+    test('Filtro por plaga: spinosad solo para mosca; Bt para prays', () {
       final paraMosca =
           fitosanitariosParaPlaga('mosca_olivo').map((f) => f.id).toSet();
       expect(paraMosca, contains('spinosad'));
       final paraPrays =
           fitosanitariosParaPlaga('prays_olivo').map((f) => f.id).toSet();
-      expect(paraPrays, contains('spinosad'));
+      expect(paraPrays, contains('bacillus_thuringiensis'));
+      expect(paraPrays, isNot(contains('spinosad')));
+    });
+
+    test('Sustancias no aprobadas o sin uso en olivar no están', () {
+      final ids = catalogoFitosanitariosOlivar.map((f) => f.id).toSet();
+      expect(ids, isNot(contains('mancozeb')));
+      expect(ids, isNot(contains('azadiractina')));
     });
   });
 

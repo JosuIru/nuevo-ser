@@ -357,10 +357,15 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
         );
       }
       final razon = azar.entre(2, 4);
-      final lados = [azar.entre(2, 6), azar.entre(2, 6), azar.entre(3, 7)];
+      // Solo triángulos que existen: el lado mayor, menor que la suma de los otros dos.
+      late List<int> lados;
+      do {
+        lados = [azar.entre(2, 6), azar.entre(2, 6), azar.entre(3, 7)]..sort();
+      } while (lados[0] + lados[1] <= lados[2]);
       return Ejercicio(
         enunciado: 'Un triángulo tiene lados de ${unirConY(lados.map((l) => '$l cm').toList())}. '
-            'Otro semejante es $razon veces más grande. ¿Cuánto miden sus lados?',
+            'Otro triángulo semejante tiene cada lado multiplicado por $razon '
+            '(razón de semejanza $razon). ¿Cuánto miden sus lados?',
         solucion: lados.map((l) => '${l * razon} cm').join(', '),
         renglones: 3,
       );

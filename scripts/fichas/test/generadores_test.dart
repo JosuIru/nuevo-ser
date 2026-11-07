@@ -168,6 +168,33 @@ void main() {
       expect(fraccionEnPalabras(1, 2), 'un medio');
     });
   });
+
+  group('soluciones recalculadas desde el enunciado', () {
+    test('PROP.05: el porcentaje es exactamente parte/total', () {
+      final patron = RegExp(r'^De (\d+) .*?, (\d+) .*¿Qué porcentaje es\?$');
+      for (final ejercicio in _muestras('PROP.05', semilla: 3, cantidad: 3000)) {
+        final datos = patron.firstMatch(ejercicio.enunciado)!;
+        final total = int.parse(datos.group(1)!);
+        final parte = int.parse(datos.group(2)!);
+        final porcentaje = int.parse(ejercicio.solucion.split(' ').first);
+        expect(parte * 100, porcentaje * total, reason: ejercicio.enunciado);
+      }
+    });
+
+    test('GEO.09: los triángulos existen (desigualdad triangular estricta)', () {
+      final numeros = RegExp(r'(\d+) cm');
+      for (final ejercicio in _muestras('GEO.09', semilla: 3, cantidad: 3000)) {
+        if (!ejercicio.enunciado.startsWith('Un triángulo')) continue;
+        final lados = numeros
+            .allMatches(ejercicio.enunciado)
+            .map((m) => int.parse(m.group(1)!))
+            .toList()
+          ..sort();
+        expect(lados[0] + lados[1], greaterThan(lados[2]), reason: ejercicio.enunciado);
+        expect(ejercicio.enunciado, isNot(contains('veces más grande')));
+      }
+    });
+  });
 }
 
 /// Evaluador mínimo con jerarquía (enteros, + − × : y paréntesis) para

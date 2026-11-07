@@ -118,8 +118,12 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
         'multiplica por 100. 12 de 50 son 12 : 50 × 100 = 24 %.',
     preguntaExplicalo: 'Si 30 de 30 alumnos traen almuerzo, ¿qué porcentaje es? ¿Por qué?',
     generar: (azar) {
-      final total = azar.elegir([20, 25, 40, 50, 80, 200]);
-      final porcentaje = azar.elegir([5, 10, 20, 25, 30, 40, 60, 75, 80]);
+      // Solo combinaciones con parte entera: 25 × 5 % daría 1,25.
+      late int total, porcentaje;
+      do {
+        total = azar.elegir([20, 25, 40, 50, 80, 200]);
+        porcentaje = azar.elegir([5, 10, 20, 25, 30, 40, 60, 75, 80]);
+      } while (total * porcentaje % 100 != 0);
       final parte = total * porcentaje ~/ 100;
       final contexto = azar.elegir([
         ('preguntas de un test', 'están bien contestadas'),

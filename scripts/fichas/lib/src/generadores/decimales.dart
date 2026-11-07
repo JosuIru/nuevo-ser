@@ -128,7 +128,7 @@ final List<PlantillaFicha> plantillasDecimales = [
     descripcion:
         'Para ordenar decimales, compáralos cifra a cifra empezando por la izquierda. Si te '
         'ayuda, añade ceros al final para que todos tengan las mismas cifras: 0,5 = 0,50.\n'
-        'Ejemplo: 0,5, 0,45 y 0,6 son 0,50, 0,45 y 0,60; así que 0,45 < 0,5 < 0,6.',
+        'Ejemplo: 0,5; 0,45 y 0,6 se escriben 0,50; 0,45 y 0,60, así que 0,45 < 0,5 < 0,6.',
     preguntaExplicalo: '¿Para qué sirve añadir ceros al final al ordenar decimales? ¿Cambia el número?',
     generar: (azar) {
       final entero = azar.entre(0, 3);

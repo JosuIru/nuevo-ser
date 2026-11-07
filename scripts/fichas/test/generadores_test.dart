@@ -9,12 +9,6 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
   return List.generate(cantidad, (_) => plantillasPorHabilidad[id]!.generar(azar));
 }
 
-/// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
-/// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO', 'EST', 'ARI', 'ALG', 'FUN'};
-
-bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
-
 /// Todo lo que se imprime de una plantilla con [cantidad] ejercicios.
 List<String> _textosImpresos(PlantillaFicha plantilla, {int cantidad = 200}) => [
       plantilla.descripcion,
@@ -81,7 +75,8 @@ void main() {
   });
 
   group('reglas comunes de la revisión', () {
-    for (final plantilla in plantillasPorHabilidad.values.where((p) => _revisada(p.idHabilidad))) {
+    // Revisión pedagógica 2026-11-07: valen para todas las plantillas.
+    for (final plantilla in plantillasPorHabilidad.values) {
       final id = plantilla.idHabilidad;
       test('$id: la explicación trae una línea «Ejemplo: …»', () {
         expect(plantilla.descripcion, contains('Ejemplo: '));

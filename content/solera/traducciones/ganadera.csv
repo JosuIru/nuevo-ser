@@ -1,13 +1,16 @@
 clave,es,eu,ca,gl
 gana.anadir,Añadir,Gehitu,Afegir,Engadir
+gana.anadir_punto_aqui,Añadir punto aquí,Gehitu puntua hemen,Afegeix un punt aquí,Engadir punto aquí
 gana.animales,Animales,Animaliak,Animals,Animais
 gana.atrasada,atrasada,atzeratuta,endarrerida,atrasada
 gana.autorizacion_transportista,N.º de autorización del transportista,Garraiolariaren baimen-zk.,Núm. d’autorització del transportista,N.º de autorización do transportista
 gana.aviso_documento_provisional,"Todos los documentos llevan el sello PROVISIONAL: el formato no lo ha validado todavía un veterinario asesor ni un técnico PAC, y tu comunidad puede pedir otro modelo.","Agiri guztiek BEHIN-BEHINEKO zigilua dute: albaitari aholkulari batek edo PAC teknikari batek ez du formatua oraindik baliozkotu, eta zure erkidegoak beste eredu bat eska dezake.","Tots els documents porten el segell PROVISIONAL: el format encara no l’ha validat un veterinari assessor ni un tècnic PAC, i la teva comunitat pot demanar un altre model.","Todos os documentos levan o selo PROVISIONAL: o formato aínda non o validou un veterinario asesor nin un técnico PAC, e a túa comunidade pode pedir outro modelo."
 gana.aviso_no_sustituye,"Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.","Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.","Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.","Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS."
+gana.buscando_gps,Buscando posición…,Posizioa bilatzen…,Cercant posició…,Buscando posición…
 gana.cabezas,cabezas,buru,caps,cabezas
 gana.cabezas_sin_identificar,Cabezas sin identificar una a una,Banaka identifikatu gabeko buruak,Caps sense identificar un per un,Cabezas sen identificar unha a unha
 gana.cabezas_tratadas,Cabezas tratadas (vacío = todas),Tratatutako buruak (hutsik = guztiak),Caps tractats (buit = tots),Cabezas tratadas (baleiro = todas)
+gana.calculada,calculada,kalkulatua,calculada,calculada
 gana.calendario_sanitario,Calendario sanitario,Osasun-egutegia,Calendari sanitari,Calendario sanitario
 gana.cantidad_administrada,Cantidad administrada (como en la receta),Emandako kopurua (errezetan bezala),Quantitat administrada (com a la recepta),Cantidade administrada (como na receita)
 gana.capacidad_maxima,Capacidad máxima (cabezas),Gehieneko edukiera (buruak),Capacitat màxima (caps),Capacidade máxima (cabezas)
@@ -69,6 +72,7 @@ gana.col_ugm_media,UGM medias,Batez besteko ALU,UBM mitjanes,UGM medias
 gana.col_valor,Valor,Balioa,Valor,Valor
 gana.col_veterinaria,Veterinaria,Albaitaritzakoa,Veterinària,Veterinaria
 gana.col_veterinario_receta,Veterinario y receta,Albaitaria eta errezeta,Veterinari i recepta,Veterinario e receita
+gana.coordenadas_explotacion,Coordenadas de la explotación,Ustiategiaren koordenatuak,Coordenades de l’explotació,Coordenadas da explotación
 gana.correo,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
 gana.crias,Crías,Kumeak,Cries,Crías
 gana.crotales_movidos,Crotales de los animales (separados por comas),Animalien belarritakoak (komaz bereizita),Crotals dels animals (separats per comes),Crotais dos animais (separados por comas)
@@ -126,6 +130,7 @@ gana.evento_pesaje,Pesaje,Pisaketa,Pesatge,Pesaxe
 gana.evento_saneamiento,Saneamiento o vacunación,Saneamendua edo txertaketa,Sanejament o vacunació,Saneamento ou vacinación
 gana.evento_tratamiento,Tratamiento con receta,Errezetadun tratamendua,Tractament amb recepta,Tratamento con receita
 gana.explicacion_calendario,Aquí salen las tareas que planifica tu veterinario y el día en que acaba cada tiempo de espera de una receta. La app no propone tratamientos.,Hemen agertzen dira zure albaitariak antolatutako lanak eta errezeta bakoitzaren itxaronaldia amaitzen den eguna. Aplikazioak ez du tratamendurik proposatzen.,Aquí surten les tasques que planifica el teu veterinari i el dia en què acaba cada temps d’espera d’una recepta. L’app no proposa tractaments.,Aquí saen as tarefas que planifica o teu veterinario e o día en que remata cada tempo de espera dunha receita. A app non propón tratamentos.
+gana.explicacion_contorno,"Camina el linde de la pieza y, en cada esquina, pulsa «Añadir punto aquí». Con tres puntos o más se calcula la superficie.","Ibili larre-sailaren mugan eta, izkina bakoitzean, sakatu «Gehitu puntua hemen». Hiru puntu edo gehiagorekin azalera kalkulatzen da.","Camina el límit de la parcel·la i, a cada cantonada, prem «Afegeix un punt aquí». Amb tres punts o més es calcula la superfície.","Camiña o linde da parcela e, en cada esquina, preme «Engadir punto aquí». Con tres puntos ou máis calcúlase a superficie."
 gana.explotacion,Explotación,Ustiategia,Explotació,Explotación
 gana.fecha,Fecha,Data,Data,Data
 gana.fecha_nacimiento,Fecha de nacimiento,Jaiotze-data,Data de naixement,Data de nacemento
@@ -171,6 +176,7 @@ gana.lo_que_pone_la_receta,Apunta lo que pone la receta del veterinario. La app 
 gana.madre,Madre (identificación),Ama (identifikazioa),Mare (identificació),Nai (identificación)
 gana.manejo,Manejo,Maneiua,Maneig,Manexo
 gana.manejo_del_rebano,Manejo del rebaño,Artaldearen maneiua,Maneig del ramat,Manexo do rabaño
+gana.mapa_pastos,Mapa de pastos,Larreen mapa,Mapa de pastures,Mapa de pastos
 gana.marcar_hecha,Marcar como hecha,Egindakotzat markatu,Marcar com a feta,Marcar como feita
 gana.matricula_vehiculo,Matrícula del vehículo,Ibilgailuaren matrikula,Matrícula del vehicle,Matrícula do vehículo
 gana.medicamento,Medicamento (denominación de la receta),Sendagaia (errezetako izena),Medicament (denominació de la recepta),Medicamento (denominación da receita)
@@ -223,8 +229,10 @@ gana.proveedor,Proveedor (nombre y dirección),Hornitzailea (izena eta helbidea)
 gana.provincia,Provincia,Probintzia,Província,Provincia
 gana.proximos_14_dias,Próximos 14 días,Hurrengo 14 egunak,Propers 14 dies,Próximos 14 días
 gana.prueba_compra,Prueba de compra (factura o albarán),Erosketa-froga (faktura edo albarana),Prova de compra (factura o albarà),Proba de compra (factura ou albará)
+gana.puntos,puntos,puntu,punts,puntos
 gana.que_hay_que_hacer,Qué hay que hacer,Zer egin behar den,Què cal fer,Que hai que facer
 gana.quien,Quién,Nor,Qui,Quen
+gana.quitar_ultimo,Quitar el último,Kendu azkena,Treure l’últim,Quitar o último
 gana.raza,Raza,Arraza,Raça,Raza
 gana.rebano,Rebaño,Artaldea,Ramat,Rabaño
 gana.rebano_cerrado,Rebaño cerrado (ya no existe),Artalde itxia (jada ez dago),Ramat tancat (ja no existeix),Rabaño pechado (xa non existe)
@@ -238,8 +246,10 @@ gana.sexo_macho,Macho,Arra,Mascle,Macho
 gana.si,Sí,Bai,Sí,Si
 gana.sin_animales,Sin animales identificados.,Identifikatutako animaliarik ez.,Sense animals identificats.,Sen animais identificados.
 gana.sin_avisos,Nada pendiente.,Ezer ez dago zain.,Res pendent.,Nada pendente.
+gana.sin_contorno,Sin contorno: tócala para trazarlo con el GPS,Ingururik gabe: ukitu GPSarekin marrazteko,Sense contorn: toca-la per traçar-lo amb el GPS,Sen contorno: tócaa para trazalo co GPS
 gana.sin_eventos,Sin manejo apuntado.,Ez dago maneiurik idatzita.,Sense maneig apuntat.,Sen manexo apuntado.
 gana.sin_ganado,sin ganado,abererik gabe,sense bestiar,sen gando
+gana.sin_gps,No hay posición del GPS: revisa el permiso de ubicación o sal a cielo abierto.,Ez dago GPS posiziorik: begiratu kokapen-baimena edo irten zeru irekira.,No hi ha posició del GPS: revisa el permís d’ubicació o surt a cel obert.,Non hai posición do GPS: revisa o permiso de localización ou sae a ceo aberto.
 gana.sin_incidencias,Sin incidencias apuntadas.,Ez dago gorabeherarik idatzita.,Sense incidències apuntades.,Sen incidencias apuntadas.
 gana.sin_indicar,Sin indicar,Adierazi gabe,Sense indicar,Sen indicar
 gana.sin_movimientos,Sin movimientos.,Mugimendurik ez.,Sense moviments.,Sen movementos.
@@ -248,6 +258,7 @@ gana.sin_rebanos,Todavía no hay rebaños. Crea el primero con el botón +.,Orai
 gana.sin_tratamientos,Sin tratamientos apuntados.,Ez dago tratamendurik idatzita.,Sense tractaments apuntats.,Sen tratamentos apuntados.
 gana.sin_visitas,Sin visitas apuntadas.,Ez dago bisitarik idatzita.,Sense visites apuntades.,Sen visitas apuntadas.
 gana.superficie_ha,Superficie de pasto (ha),Larre-azalera (ha),Superfície de pastura (ha),Superficie de pasto (ha)
+gana.superficie_orientativa,Superficie orientativa: la oficial del recinto es la de SIGPAC.,Azalera gutxi gorabeherakoa: barrutiaren azalera ofiziala SIGPACekoa da.,Superfície orientativa: l’oficial del recinte és la del SIGPAC.,Superficie orientativa: a oficial do recinto é a do SIXPAC.
 gana.supresion_vigente,Tiempo de espera vigente,Itxaronaldia indarrean,Temps d’espera vigent,Tempo de espera vixente
 gana.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
 gana.tabla_ugm,Tabla de UGM,ALU taula,Taula d’UBM,Táboa de UGM
@@ -273,5 +284,6 @@ gana.tramite_andalucia,"Registro de explotaciones (Junta de Andalucía, sin revi
 gana.tramite_pac,"PAC (RD 1048/2022, anexo V)","PAC (RD 1048/2022, V. eranskina)","PAC (RD 1048/2022, annex V)","PAC (RD 1048/2022, anexo V)"
 gana.tratamientos_ecologico,Tratamientos que cuentan en 12 meses: {n} de {limite},12 hilabetean kontatzen diren tratamenduak: {n} / {limite},Tractaments que compten en 12 mesos: {n} de {limite},Tratamentos que contan en 12 meses: {n} de {limite}
 gana.ugm_pac,UGM (PAC),ALU (PAC),UBM (PAC),UGM (PAC)
+gana.usar_mi_ubicacion,Usar mi ubicación,Nire kokapena erabili,Fer servir la meva ubicació,Usar a miña localización
 gana.veterinario,Veterinario prescriptor (nombre y contacto),Albaitari errezetagilea (izena eta harremana),Veterinari prescriptor (nom i contacte),Veterinario prescritor (nome e contacto)
 gana.visitas,Visitas y vehículos,Bisitak eta ibilgailuak,Visites i vehicles,Visitas e vehículos

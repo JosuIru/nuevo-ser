@@ -3169,14 +3169,17 @@ class SoleraL10n {
     'frut.variedad_principal',
     'frut.volumen_m3',
     'gana.anadir',
+    'gana.anadir_punto_aqui',
     'gana.animales',
     'gana.atrasada',
     'gana.autorizacion_transportista',
     'gana.aviso_documento_provisional',
     'gana.aviso_no_sustituye',
+    'gana.buscando_gps',
     'gana.cabezas',
     'gana.cabezas_sin_identificar',
     'gana.cabezas_tratadas',
+    'gana.calculada',
     'gana.calendario_sanitario',
     'gana.cantidad_administrada',
     'gana.capacidad_maxima',
@@ -3238,6 +3241,7 @@ class SoleraL10n {
     'gana.col_valor',
     'gana.col_veterinaria',
     'gana.col_veterinario_receta',
+    'gana.coordenadas_explotacion',
     'gana.correo',
     'gana.crias',
     'gana.crotales_movidos',
@@ -3295,6 +3299,7 @@ class SoleraL10n {
     'gana.evento_saneamiento',
     'gana.evento_tratamiento',
     'gana.explicacion_calendario',
+    'gana.explicacion_contorno',
     'gana.explotacion',
     'gana.fecha',
     'gana.fecha_nacimiento',
@@ -3340,6 +3345,7 @@ class SoleraL10n {
     'gana.madre',
     'gana.manejo',
     'gana.manejo_del_rebano',
+    'gana.mapa_pastos',
     'gana.marcar_hecha',
     'gana.matricula_vehiculo',
     'gana.medicamento',
@@ -3392,8 +3398,10 @@ class SoleraL10n {
     'gana.provincia',
     'gana.proximos_14_dias',
     'gana.prueba_compra',
+    'gana.puntos',
     'gana.que_hay_que_hacer',
     'gana.quien',
+    'gana.quitar_ultimo',
     'gana.raza',
     'gana.rebano',
     'gana.rebano_cerrado',
@@ -3407,8 +3415,10 @@ class SoleraL10n {
     'gana.si',
     'gana.sin_animales',
     'gana.sin_avisos',
+    'gana.sin_contorno',
     'gana.sin_eventos',
     'gana.sin_ganado',
+    'gana.sin_gps',
     'gana.sin_incidencias',
     'gana.sin_indicar',
     'gana.sin_movimientos',
@@ -3417,6 +3427,7 @@ class SoleraL10n {
     'gana.sin_tratamientos',
     'gana.sin_visitas',
     'gana.superficie_ha',
+    'gana.superficie_orientativa',
     'gana.supresion_vigente',
     'gana.sustancia_activa',
     'gana.tabla_ugm',
@@ -3442,6 +3453,7 @@ class SoleraL10n {
     'gana.tramite_pac',
     'gana.tratamientos_ecologico',
     'gana.ugm_pac',
+    'gana.usar_mi_ubicacion',
     'gana.veterinario',
     'gana.visitas',
     'nat.ajus_cabecera_titulo',
@@ -8042,14 +8054,17 @@ class SoleraL10n {
           'frut.variedad_principal',
           'frut.volumen_m3',
           'gana.anadir',
+          'gana.anadir_punto_aqui',
           'gana.animales',
           'gana.atrasada',
           'gana.autorizacion_transportista',
           'gana.aviso_documento_provisional',
           'gana.aviso_no_sustituye',
+          'gana.buscando_gps',
           'gana.cabezas',
           'gana.cabezas_sin_identificar',
           'gana.cabezas_tratadas',
+          'gana.calculada',
           'gana.calendario_sanitario',
           'gana.cantidad_administrada',
           'gana.capacidad_maxima',
@@ -8111,6 +8126,7 @@ class SoleraL10n {
           'gana.col_valor',
           'gana.col_veterinaria',
           'gana.col_veterinario_receta',
+          'gana.coordenadas_explotacion',
           'gana.correo',
           'gana.crias',
           'gana.crotales_movidos',
@@ -8168,6 +8184,7 @@ class SoleraL10n {
           'gana.evento_saneamiento',
           'gana.evento_tratamiento',
           'gana.explicacion_calendario',
+          'gana.explicacion_contorno',
           'gana.explotacion',
           'gana.fecha',
           'gana.fecha_nacimiento',
@@ -8213,6 +8230,7 @@ class SoleraL10n {
           'gana.madre',
           'gana.manejo',
           'gana.manejo_del_rebano',
+          'gana.mapa_pastos',
           'gana.marcar_hecha',
           'gana.matricula_vehiculo',
           'gana.medicamento',
@@ -8265,8 +8283,10 @@ class SoleraL10n {
           'gana.provincia',
           'gana.proximos_14_dias',
           'gana.prueba_compra',
+          'gana.puntos',
           'gana.que_hay_que_hacer',
           'gana.quien',
+          'gana.quitar_ultimo',
           'gana.raza',
           'gana.rebano',
           'gana.rebano_cerrado',
@@ -8280,8 +8300,10 @@ class SoleraL10n {
           'gana.si',
           'gana.sin_animales',
           'gana.sin_avisos',
+          'gana.sin_contorno',
           'gana.sin_eventos',
           'gana.sin_ganado',
+          'gana.sin_gps',
           'gana.sin_incidencias',
           'gana.sin_indicar',
           'gana.sin_movimientos',
@@ -8290,6 +8312,7 @@ class SoleraL10n {
           'gana.sin_tratamientos',
           'gana.sin_visitas',
           'gana.superficie_ha',
+          'gana.superficie_orientativa',
           'gana.supresion_vigente',
           'gana.sustancia_activa',
           'gana.tabla_ugm',
@@ -8315,6 +8338,7 @@ class SoleraL10n {
           'gana.tramite_pac',
           'gana.tratamientos_ecologico',
           'gana.ugm_pac',
+          'gana.usar_mi_ubicacion',
           'gana.veterinario',
           'gana.visitas',
           'nat.ajus_cabecera_titulo',
@@ -12912,14 +12936,17 @@ class SoleraL10n {
           'frut.variedad_principal',
           'frut.volumen_m3',
           'gana.anadir',
+          'gana.anadir_punto_aqui',
           'gana.animales',
           'gana.atrasada',
           'gana.autorizacion_transportista',
           'gana.aviso_documento_provisional',
           'gana.aviso_no_sustituye',
+          'gana.buscando_gps',
           'gana.cabezas',
           'gana.cabezas_sin_identificar',
           'gana.cabezas_tratadas',
+          'gana.calculada',
           'gana.calendario_sanitario',
           'gana.cantidad_administrada',
           'gana.capacidad_maxima',
@@ -12981,6 +13008,7 @@ class SoleraL10n {
           'gana.col_valor',
           'gana.col_veterinaria',
           'gana.col_veterinario_receta',
+          'gana.coordenadas_explotacion',
           'gana.correo',
           'gana.crias',
           'gana.crotales_movidos',
@@ -13038,6 +13066,7 @@ class SoleraL10n {
           'gana.evento_saneamiento',
           'gana.evento_tratamiento',
           'gana.explicacion_calendario',
+          'gana.explicacion_contorno',
           'gana.explotacion',
           'gana.fecha',
           'gana.fecha_nacimiento',
@@ -13083,6 +13112,7 @@ class SoleraL10n {
           'gana.madre',
           'gana.manejo',
           'gana.manejo_del_rebano',
+          'gana.mapa_pastos',
           'gana.marcar_hecha',
           'gana.matricula_vehiculo',
           'gana.medicamento',
@@ -13135,8 +13165,10 @@ class SoleraL10n {
           'gana.provincia',
           'gana.proximos_14_dias',
           'gana.prueba_compra',
+          'gana.puntos',
           'gana.que_hay_que_hacer',
           'gana.quien',
+          'gana.quitar_ultimo',
           'gana.raza',
           'gana.rebano',
           'gana.rebano_cerrado',
@@ -13150,8 +13182,10 @@ class SoleraL10n {
           'gana.si',
           'gana.sin_animales',
           'gana.sin_avisos',
+          'gana.sin_contorno',
           'gana.sin_eventos',
           'gana.sin_ganado',
+          'gana.sin_gps',
           'gana.sin_incidencias',
           'gana.sin_indicar',
           'gana.sin_movimientos',
@@ -13160,6 +13194,7 @@ class SoleraL10n {
           'gana.sin_tratamientos',
           'gana.sin_visitas',
           'gana.superficie_ha',
+          'gana.superficie_orientativa',
           'gana.supresion_vigente',
           'gana.sustancia_activa',
           'gana.tabla_ugm',
@@ -13185,6 +13220,7 @@ class SoleraL10n {
           'gana.tramite_pac',
           'gana.tratamientos_ecologico',
           'gana.ugm_pac',
+          'gana.usar_mi_ubicacion',
           'gana.veterinario',
           'gana.visitas',
           'nat.ajus_cabecera_titulo',
@@ -17782,14 +17818,17 @@ class SoleraL10n {
           'frut.variedad_principal',
           'frut.volumen_m3',
           'gana.anadir',
+          'gana.anadir_punto_aqui',
           'gana.animales',
           'gana.atrasada',
           'gana.autorizacion_transportista',
           'gana.aviso_documento_provisional',
           'gana.aviso_no_sustituye',
+          'gana.buscando_gps',
           'gana.cabezas',
           'gana.cabezas_sin_identificar',
           'gana.cabezas_tratadas',
+          'gana.calculada',
           'gana.calendario_sanitario',
           'gana.cantidad_administrada',
           'gana.capacidad_maxima',
@@ -17851,6 +17890,7 @@ class SoleraL10n {
           'gana.col_valor',
           'gana.col_veterinaria',
           'gana.col_veterinario_receta',
+          'gana.coordenadas_explotacion',
           'gana.correo',
           'gana.crias',
           'gana.crotales_movidos',
@@ -17908,6 +17948,7 @@ class SoleraL10n {
           'gana.evento_saneamiento',
           'gana.evento_tratamiento',
           'gana.explicacion_calendario',
+          'gana.explicacion_contorno',
           'gana.explotacion',
           'gana.fecha',
           'gana.fecha_nacimiento',
@@ -17953,6 +17994,7 @@ class SoleraL10n {
           'gana.madre',
           'gana.manejo',
           'gana.manejo_del_rebano',
+          'gana.mapa_pastos',
           'gana.marcar_hecha',
           'gana.matricula_vehiculo',
           'gana.medicamento',
@@ -18005,8 +18047,10 @@ class SoleraL10n {
           'gana.provincia',
           'gana.proximos_14_dias',
           'gana.prueba_compra',
+          'gana.puntos',
           'gana.que_hay_que_hacer',
           'gana.quien',
+          'gana.quitar_ultimo',
           'gana.raza',
           'gana.rebano',
           'gana.rebano_cerrado',
@@ -18020,8 +18064,10 @@ class SoleraL10n {
           'gana.si',
           'gana.sin_animales',
           'gana.sin_avisos',
+          'gana.sin_contorno',
           'gana.sin_eventos',
           'gana.sin_ganado',
+          'gana.sin_gps',
           'gana.sin_incidencias',
           'gana.sin_indicar',
           'gana.sin_movimientos',
@@ -18030,6 +18076,7 @@ class SoleraL10n {
           'gana.sin_tratamientos',
           'gana.sin_visitas',
           'gana.superficie_ha',
+          'gana.superficie_orientativa',
           'gana.supresion_vigente',
           'gana.sustancia_activa',
           'gana.tabla_ugm',
@@ -18055,6 +18102,7 @@ class SoleraL10n {
           'gana.tramite_pac',
           'gana.tratamientos_ecologico',
           'gana.ugm_pac',
+          'gana.usar_mi_ubicacion',
           'gana.veterinario',
           'gana.visitas',
           'nat.ajus_cabecera_titulo',
@@ -22675,14 +22723,17 @@ class SoleraL10n {
       case 'frut.variedad_principal': return 'Variedad principal';
       case 'frut.volumen_m3': return 'Volumen (m³)';
       case 'gana.anadir': return 'Añadir';
+      case 'gana.anadir_punto_aqui': return 'Añadir punto aquí';
       case 'gana.animales': return 'Animales';
       case 'gana.atrasada': return 'atrasada';
       case 'gana.autorizacion_transportista': return 'N.º de autorización del transportista';
       case 'gana.aviso_documento_provisional': return 'Todos los documentos llevan el sello PROVISIONAL: el formato no lo ha validado todavía un veterinario asesor ni un técnico PAC, y tu comunidad puede pedir otro modelo.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.';
+      case 'gana.buscando_gps': return 'Buscando posición…';
       case 'gana.cabezas': return 'cabezas';
       case 'gana.cabezas_sin_identificar': return 'Cabezas sin identificar una a una';
       case 'gana.cabezas_tratadas': return 'Cabezas tratadas (vacío = todas)';
+      case 'gana.calculada': return 'calculada';
       case 'gana.calendario_sanitario': return 'Calendario sanitario';
       case 'gana.cantidad_administrada': return 'Cantidad administrada (como en la receta)';
       case 'gana.capacidad_maxima': return 'Capacidad máxima (cabezas)';
@@ -22744,6 +22795,7 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Valor';
       case 'gana.col_veterinaria': return 'Veterinaria';
       case 'gana.col_veterinario_receta': return 'Veterinario y receta';
+      case 'gana.coordenadas_explotacion': return 'Coordenadas de la explotación';
       case 'gana.correo': return 'Correo electrónico';
       case 'gana.crias': return 'Crías';
       case 'gana.crotales_movidos': return 'Crotales de los animales (separados por comas)';
@@ -22801,6 +22853,7 @@ class SoleraL10n {
       case 'gana.evento_saneamiento': return 'Saneamiento o vacunación';
       case 'gana.evento_tratamiento': return 'Tratamiento con receta';
       case 'gana.explicacion_calendario': return 'Aquí salen las tareas que planifica tu veterinario y el día en que acaba cada tiempo de espera de una receta. La app no propone tratamientos.';
+      case 'gana.explicacion_contorno': return 'Camina el linde de la pieza y, en cada esquina, pulsa «Añadir punto aquí». Con tres puntos o más se calcula la superficie.';
       case 'gana.explotacion': return 'Explotación';
       case 'gana.fecha': return 'Fecha';
       case 'gana.fecha_nacimiento': return 'Fecha de nacimiento';
@@ -22846,6 +22899,7 @@ class SoleraL10n {
       case 'gana.madre': return 'Madre (identificación)';
       case 'gana.manejo': return 'Manejo';
       case 'gana.manejo_del_rebano': return 'Manejo del rebaño';
+      case 'gana.mapa_pastos': return 'Mapa de pastos';
       case 'gana.marcar_hecha': return 'Marcar como hecha';
       case 'gana.matricula_vehiculo': return 'Matrícula del vehículo';
       case 'gana.medicamento': return 'Medicamento (denominación de la receta)';
@@ -22898,8 +22952,10 @@ class SoleraL10n {
       case 'gana.provincia': return 'Provincia';
       case 'gana.proximos_14_dias': return 'Próximos 14 días';
       case 'gana.prueba_compra': return 'Prueba de compra (factura o albarán)';
+      case 'gana.puntos': return 'puntos';
       case 'gana.que_hay_que_hacer': return 'Qué hay que hacer';
       case 'gana.quien': return 'Quién';
+      case 'gana.quitar_ultimo': return 'Quitar el último';
       case 'gana.raza': return 'Raza';
       case 'gana.rebano': return 'Rebaño';
       case 'gana.rebano_cerrado': return 'Rebaño cerrado (ya no existe)';
@@ -22913,8 +22969,10 @@ class SoleraL10n {
       case 'gana.si': return 'Sí';
       case 'gana.sin_animales': return 'Sin animales identificados.';
       case 'gana.sin_avisos': return 'Nada pendiente.';
+      case 'gana.sin_contorno': return 'Sin contorno: tócala para trazarlo con el GPS';
       case 'gana.sin_eventos': return 'Sin manejo apuntado.';
       case 'gana.sin_ganado': return 'sin ganado';
+      case 'gana.sin_gps': return 'No hay posición del GPS: revisa el permiso de ubicación o sal a cielo abierto.';
       case 'gana.sin_incidencias': return 'Sin incidencias apuntadas.';
       case 'gana.sin_indicar': return 'Sin indicar';
       case 'gana.sin_movimientos': return 'Sin movimientos.';
@@ -22923,6 +22981,7 @@ class SoleraL10n {
       case 'gana.sin_tratamientos': return 'Sin tratamientos apuntados.';
       case 'gana.sin_visitas': return 'Sin visitas apuntadas.';
       case 'gana.superficie_ha': return 'Superficie de pasto (ha)';
+      case 'gana.superficie_orientativa': return 'Superficie orientativa: la oficial del recinto es la de SIGPAC.';
       case 'gana.supresion_vigente': return 'Tiempo de espera vigente';
       case 'gana.sustancia_activa': return 'Sustancia activa';
       case 'gana.tabla_ugm': return 'Tabla de UGM';
@@ -22948,6 +23007,7 @@ class SoleraL10n {
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, anexo V)';
       case 'gana.tratamientos_ecologico': return 'Tratamientos que cuentan en 12 meses: {n} de {limite}';
       case 'gana.ugm_pac': return 'UGM (PAC)';
+      case 'gana.usar_mi_ubicacion': return 'Usar mi ubicación';
       case 'gana.veterinario': return 'Veterinario prescriptor (nombre y contacto)';
       case 'gana.visitas': return 'Visitas y vehículos';
       case 'nat.ajus_cabecera_titulo': return 'Cuaderno de campo de naturaleza';
@@ -27549,14 +27609,17 @@ class SoleraL10n {
       case 'frut.variedad_principal': return 'Barietate nagusia';
       case 'frut.volumen_m3': return 'Bolumena (m³)';
       case 'gana.anadir': return 'Gehitu';
+      case 'gana.anadir_punto_aqui': return 'Gehitu puntua hemen';
       case 'gana.animales': return 'Animaliak';
       case 'gana.atrasada': return 'atzeratuta';
       case 'gana.autorizacion_transportista': return 'Garraiolariaren baimen-zk.';
       case 'gana.aviso_documento_provisional': return 'Agiri guztiek BEHIN-BEHINEKO zigilua dute: albaitari aholkulari batek edo PAC teknikari batek ez du formatua oraindik baliozkotu, eta zure erkidegoak beste eredu bat eska dezake.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.';
+      case 'gana.buscando_gps': return 'Posizioa bilatzen…';
       case 'gana.cabezas': return 'buru';
       case 'gana.cabezas_sin_identificar': return 'Banaka identifikatu gabeko buruak';
       case 'gana.cabezas_tratadas': return 'Tratatutako buruak (hutsik = guztiak)';
+      case 'gana.calculada': return 'kalkulatua';
       case 'gana.calendario_sanitario': return 'Osasun-egutegia';
       case 'gana.cantidad_administrada': return 'Emandako kopurua (errezetan bezala)';
       case 'gana.capacidad_maxima': return 'Gehieneko edukiera (buruak)';
@@ -27618,6 +27681,7 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Balioa';
       case 'gana.col_veterinaria': return 'Albaitaritzakoa';
       case 'gana.col_veterinario_receta': return 'Albaitaria eta errezeta';
+      case 'gana.coordenadas_explotacion': return 'Ustiategiaren koordenatuak';
       case 'gana.correo': return 'Helbide elektronikoa';
       case 'gana.crias': return 'Kumeak';
       case 'gana.crotales_movidos': return 'Animalien belarritakoak (komaz bereizita)';
@@ -27675,6 +27739,7 @@ class SoleraL10n {
       case 'gana.evento_saneamiento': return 'Saneamendua edo txertaketa';
       case 'gana.evento_tratamiento': return 'Errezetadun tratamendua';
       case 'gana.explicacion_calendario': return 'Hemen agertzen dira zure albaitariak antolatutako lanak eta errezeta bakoitzaren itxaronaldia amaitzen den eguna. Aplikazioak ez du tratamendurik proposatzen.';
+      case 'gana.explicacion_contorno': return 'Ibili larre-sailaren mugan eta, izkina bakoitzean, sakatu «Gehitu puntua hemen». Hiru puntu edo gehiagorekin azalera kalkulatzen da.';
       case 'gana.explotacion': return 'Ustiategia';
       case 'gana.fecha': return 'Data';
       case 'gana.fecha_nacimiento': return 'Jaiotze-data';
@@ -27720,6 +27785,7 @@ class SoleraL10n {
       case 'gana.madre': return 'Ama (identifikazioa)';
       case 'gana.manejo': return 'Maneiua';
       case 'gana.manejo_del_rebano': return 'Artaldearen maneiua';
+      case 'gana.mapa_pastos': return 'Larreen mapa';
       case 'gana.marcar_hecha': return 'Egindakotzat markatu';
       case 'gana.matricula_vehiculo': return 'Ibilgailuaren matrikula';
       case 'gana.medicamento': return 'Sendagaia (errezetako izena)';
@@ -27772,8 +27838,10 @@ class SoleraL10n {
       case 'gana.provincia': return 'Probintzia';
       case 'gana.proximos_14_dias': return 'Hurrengo 14 egunak';
       case 'gana.prueba_compra': return 'Erosketa-froga (faktura edo albarana)';
+      case 'gana.puntos': return 'puntu';
       case 'gana.que_hay_que_hacer': return 'Zer egin behar den';
       case 'gana.quien': return 'Nor';
+      case 'gana.quitar_ultimo': return 'Kendu azkena';
       case 'gana.raza': return 'Arraza';
       case 'gana.rebano': return 'Artaldea';
       case 'gana.rebano_cerrado': return 'Artalde itxia (jada ez dago)';
@@ -27787,8 +27855,10 @@ class SoleraL10n {
       case 'gana.si': return 'Bai';
       case 'gana.sin_animales': return 'Identifikatutako animaliarik ez.';
       case 'gana.sin_avisos': return 'Ezer ez dago zain.';
+      case 'gana.sin_contorno': return 'Ingururik gabe: ukitu GPSarekin marrazteko';
       case 'gana.sin_eventos': return 'Ez dago maneiurik idatzita.';
       case 'gana.sin_ganado': return 'abererik gabe';
+      case 'gana.sin_gps': return 'Ez dago GPS posiziorik: begiratu kokapen-baimena edo irten zeru irekira.';
       case 'gana.sin_incidencias': return 'Ez dago gorabeherarik idatzita.';
       case 'gana.sin_indicar': return 'Adierazi gabe';
       case 'gana.sin_movimientos': return 'Mugimendurik ez.';
@@ -27797,6 +27867,7 @@ class SoleraL10n {
       case 'gana.sin_tratamientos': return 'Ez dago tratamendurik idatzita.';
       case 'gana.sin_visitas': return 'Ez dago bisitarik idatzita.';
       case 'gana.superficie_ha': return 'Larre-azalera (ha)';
+      case 'gana.superficie_orientativa': return 'Azalera gutxi gorabeherakoa: barrutiaren azalera ofiziala SIGPACekoa da.';
       case 'gana.supresion_vigente': return 'Itxaronaldia indarrean';
       case 'gana.sustancia_activa': return 'Substantzia aktiboa';
       case 'gana.tabla_ugm': return 'ALU taula';
@@ -27822,6 +27893,7 @@ class SoleraL10n {
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, V. eranskina)';
       case 'gana.tratamientos_ecologico': return '12 hilabetean kontatzen diren tratamenduak: {n} / {limite}';
       case 'gana.ugm_pac': return 'ALU (PAC)';
+      case 'gana.usar_mi_ubicacion': return 'Nire kokapena erabili';
       case 'gana.veterinario': return 'Albaitari errezetagilea (izena eta harremana)';
       case 'gana.visitas': return 'Bisitak eta ibilgailuak';
       case 'nat.ajus_cabecera_titulo': return 'Naturako landa-koadernoa';
@@ -32423,14 +32495,17 @@ class SoleraL10n {
       case 'frut.variedad_principal': return 'Varietat principal';
       case 'frut.volumen_m3': return 'Volum (m³)';
       case 'gana.anadir': return 'Afegir';
+      case 'gana.anadir_punto_aqui': return 'Afegeix un punt aquí';
       case 'gana.animales': return 'Animals';
       case 'gana.atrasada': return 'endarrerida';
       case 'gana.autorizacion_transportista': return 'Núm. d’autorització del transportista';
       case 'gana.aviso_documento_provisional': return 'Tots els documents porten el segell PROVISIONAL: el format encara no l’ha validat un veterinari assessor ni un tècnic PAC, i la teva comunitat pot demanar un altre model.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.';
+      case 'gana.buscando_gps': return 'Cercant posició…';
       case 'gana.cabezas': return 'caps';
       case 'gana.cabezas_sin_identificar': return 'Caps sense identificar un per un';
       case 'gana.cabezas_tratadas': return 'Caps tractats (buit = tots)';
+      case 'gana.calculada': return 'calculada';
       case 'gana.calendario_sanitario': return 'Calendari sanitari';
       case 'gana.cantidad_administrada': return 'Quantitat administrada (com a la recepta)';
       case 'gana.capacidad_maxima': return 'Capacitat màxima (caps)';
@@ -32492,6 +32567,7 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Valor';
       case 'gana.col_veterinaria': return 'Veterinària';
       case 'gana.col_veterinario_receta': return 'Veterinari i recepta';
+      case 'gana.coordenadas_explotacion': return 'Coordenades de l’explotació';
       case 'gana.correo': return 'Correu electrònic';
       case 'gana.crias': return 'Cries';
       case 'gana.crotales_movidos': return 'Crotals dels animals (separats per comes)';
@@ -32549,6 +32625,7 @@ class SoleraL10n {
       case 'gana.evento_saneamiento': return 'Sanejament o vacunació';
       case 'gana.evento_tratamiento': return 'Tractament amb recepta';
       case 'gana.explicacion_calendario': return 'Aquí surten les tasques que planifica el teu veterinari i el dia en què acaba cada temps d’espera d’una recepta. L’app no proposa tractaments.';
+      case 'gana.explicacion_contorno': return 'Camina el límit de la parcel·la i, a cada cantonada, prem «Afegeix un punt aquí». Amb tres punts o més es calcula la superfície.';
       case 'gana.explotacion': return 'Explotació';
       case 'gana.fecha': return 'Data';
       case 'gana.fecha_nacimiento': return 'Data de naixement';
@@ -32594,6 +32671,7 @@ class SoleraL10n {
       case 'gana.madre': return 'Mare (identificació)';
       case 'gana.manejo': return 'Maneig';
       case 'gana.manejo_del_rebano': return 'Maneig del ramat';
+      case 'gana.mapa_pastos': return 'Mapa de pastures';
       case 'gana.marcar_hecha': return 'Marcar com a feta';
       case 'gana.matricula_vehiculo': return 'Matrícula del vehicle';
       case 'gana.medicamento': return 'Medicament (denominació de la recepta)';
@@ -32646,8 +32724,10 @@ class SoleraL10n {
       case 'gana.provincia': return 'Província';
       case 'gana.proximos_14_dias': return 'Propers 14 dies';
       case 'gana.prueba_compra': return 'Prova de compra (factura o albarà)';
+      case 'gana.puntos': return 'punts';
       case 'gana.que_hay_que_hacer': return 'Què cal fer';
       case 'gana.quien': return 'Qui';
+      case 'gana.quitar_ultimo': return 'Treure l’últim';
       case 'gana.raza': return 'Raça';
       case 'gana.rebano': return 'Ramat';
       case 'gana.rebano_cerrado': return 'Ramat tancat (ja no existeix)';
@@ -32661,8 +32741,10 @@ class SoleraL10n {
       case 'gana.si': return 'Sí';
       case 'gana.sin_animales': return 'Sense animals identificats.';
       case 'gana.sin_avisos': return 'Res pendent.';
+      case 'gana.sin_contorno': return 'Sense contorn: toca-la per traçar-lo amb el GPS';
       case 'gana.sin_eventos': return 'Sense maneig apuntat.';
       case 'gana.sin_ganado': return 'sense bestiar';
+      case 'gana.sin_gps': return 'No hi ha posició del GPS: revisa el permís d’ubicació o surt a cel obert.';
       case 'gana.sin_incidencias': return 'Sense incidències apuntades.';
       case 'gana.sin_indicar': return 'Sense indicar';
       case 'gana.sin_movimientos': return 'Sense moviments.';
@@ -32671,6 +32753,7 @@ class SoleraL10n {
       case 'gana.sin_tratamientos': return 'Sense tractaments apuntats.';
       case 'gana.sin_visitas': return 'Sense visites apuntades.';
       case 'gana.superficie_ha': return 'Superfície de pastura (ha)';
+      case 'gana.superficie_orientativa': return 'Superfície orientativa: l’oficial del recinte és la del SIGPAC.';
       case 'gana.supresion_vigente': return 'Temps d’espera vigent';
       case 'gana.sustancia_activa': return 'Substància activa';
       case 'gana.tabla_ugm': return 'Taula d’UBM';
@@ -32696,6 +32779,7 @@ class SoleraL10n {
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, annex V)';
       case 'gana.tratamientos_ecologico': return 'Tractaments que compten en 12 mesos: {n} de {limite}';
       case 'gana.ugm_pac': return 'UBM (PAC)';
+      case 'gana.usar_mi_ubicacion': return 'Fer servir la meva ubicació';
       case 'gana.veterinario': return 'Veterinari prescriptor (nom i contacte)';
       case 'gana.visitas': return 'Visites i vehicles';
       case 'nat.ajus_cabecera_titulo': return 'Quadern de camp de natura';
@@ -37297,14 +37381,17 @@ class SoleraL10n {
       case 'frut.variedad_principal': return 'Variedade principal';
       case 'frut.volumen_m3': return 'Volume (m³)';
       case 'gana.anadir': return 'Engadir';
+      case 'gana.anadir_punto_aqui': return 'Engadir punto aquí';
       case 'gana.animales': return 'Animais';
       case 'gana.atrasada': return 'atrasada';
       case 'gana.autorizacion_transportista': return 'N.º de autorización do transportista';
       case 'gana.aviso_documento_provisional': return 'Todos os documentos levan o selo PROVISIONAL: o formato aínda non o validou un veterinario asesor nin un técnico PAC, e a túa comunidade pode pedir outro modelo.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS.';
+      case 'gana.buscando_gps': return 'Buscando posición…';
       case 'gana.cabezas': return 'cabezas';
       case 'gana.cabezas_sin_identificar': return 'Cabezas sen identificar unha a unha';
       case 'gana.cabezas_tratadas': return 'Cabezas tratadas (baleiro = todas)';
+      case 'gana.calculada': return 'calculada';
       case 'gana.calendario_sanitario': return 'Calendario sanitario';
       case 'gana.cantidad_administrada': return 'Cantidade administrada (como na receita)';
       case 'gana.capacidad_maxima': return 'Capacidade máxima (cabezas)';
@@ -37366,6 +37453,7 @@ class SoleraL10n {
       case 'gana.col_valor': return 'Valor';
       case 'gana.col_veterinaria': return 'Veterinaria';
       case 'gana.col_veterinario_receta': return 'Veterinario e receita';
+      case 'gana.coordenadas_explotacion': return 'Coordenadas da explotación';
       case 'gana.correo': return 'Correo electrónico';
       case 'gana.crias': return 'Crías';
       case 'gana.crotales_movidos': return 'Crotais dos animais (separados por comas)';
@@ -37423,6 +37511,7 @@ class SoleraL10n {
       case 'gana.evento_saneamiento': return 'Saneamento ou vacinación';
       case 'gana.evento_tratamiento': return 'Tratamento con receita';
       case 'gana.explicacion_calendario': return 'Aquí saen as tarefas que planifica o teu veterinario e o día en que remata cada tempo de espera dunha receita. A app non propón tratamentos.';
+      case 'gana.explicacion_contorno': return 'Camiña o linde da parcela e, en cada esquina, preme «Engadir punto aquí». Con tres puntos ou máis calcúlase a superficie.';
       case 'gana.explotacion': return 'Explotación';
       case 'gana.fecha': return 'Data';
       case 'gana.fecha_nacimiento': return 'Data de nacemento';
@@ -37468,6 +37557,7 @@ class SoleraL10n {
       case 'gana.madre': return 'Nai (identificación)';
       case 'gana.manejo': return 'Manexo';
       case 'gana.manejo_del_rebano': return 'Manexo do rabaño';
+      case 'gana.mapa_pastos': return 'Mapa de pastos';
       case 'gana.marcar_hecha': return 'Marcar como feita';
       case 'gana.matricula_vehiculo': return 'Matrícula do vehículo';
       case 'gana.medicamento': return 'Medicamento (denominación da receita)';
@@ -37520,8 +37610,10 @@ class SoleraL10n {
       case 'gana.provincia': return 'Provincia';
       case 'gana.proximos_14_dias': return 'Próximos 14 días';
       case 'gana.prueba_compra': return 'Proba de compra (factura ou albará)';
+      case 'gana.puntos': return 'puntos';
       case 'gana.que_hay_que_hacer': return 'Que hai que facer';
       case 'gana.quien': return 'Quen';
+      case 'gana.quitar_ultimo': return 'Quitar o último';
       case 'gana.raza': return 'Raza';
       case 'gana.rebano': return 'Rabaño';
       case 'gana.rebano_cerrado': return 'Rabaño pechado (xa non existe)';
@@ -37535,8 +37627,10 @@ class SoleraL10n {
       case 'gana.si': return 'Si';
       case 'gana.sin_animales': return 'Sen animais identificados.';
       case 'gana.sin_avisos': return 'Nada pendente.';
+      case 'gana.sin_contorno': return 'Sen contorno: tócaa para trazalo co GPS';
       case 'gana.sin_eventos': return 'Sen manexo apuntado.';
       case 'gana.sin_ganado': return 'sen gando';
+      case 'gana.sin_gps': return 'Non hai posición do GPS: revisa o permiso de localización ou sae a ceo aberto.';
       case 'gana.sin_incidencias': return 'Sen incidencias apuntadas.';
       case 'gana.sin_indicar': return 'Sen indicar';
       case 'gana.sin_movimientos': return 'Sen movementos.';
@@ -37545,6 +37639,7 @@ class SoleraL10n {
       case 'gana.sin_tratamientos': return 'Sen tratamentos apuntados.';
       case 'gana.sin_visitas': return 'Sen visitas apuntadas.';
       case 'gana.superficie_ha': return 'Superficie de pasto (ha)';
+      case 'gana.superficie_orientativa': return 'Superficie orientativa: a oficial do recinto é a do SIXPAC.';
       case 'gana.supresion_vigente': return 'Tempo de espera vixente';
       case 'gana.sustancia_activa': return 'Substancia activa';
       case 'gana.tabla_ugm': return 'Táboa de UGM';
@@ -37570,6 +37665,7 @@ class SoleraL10n {
       case 'gana.tramite_pac': return 'PAC (RD 1048/2022, anexo V)';
       case 'gana.tratamientos_ecologico': return 'Tratamentos que contan en 12 meses: {n} de {limite}';
       case 'gana.ugm_pac': return 'UGM (PAC)';
+      case 'gana.usar_mi_ubicacion': return 'Usar a miña localización';
       case 'gana.veterinario': return 'Veterinario prescritor (nome e contacto)';
       case 'gana.visitas': return 'Visitas e vehículos';
       case 'nat.ajus_cabecera_titulo': return 'Caderno de campo de natureza';

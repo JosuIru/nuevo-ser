@@ -5,6 +5,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 import 'package:solera_monte/modelos/actuacion_plan.dart';
+import 'package:solera_monte/modelos/apunte_economico.dart';
+import 'package:solera_monte/modelos/configuracion_fiscal.dart';
 import 'package:solera_monte/modelos/aprovechamiento.dart';
 import 'package:solera_monte/modelos/arbol_singular.dart';
 import 'package:solera_monte/modelos/incendios.dart';
@@ -25,6 +27,8 @@ final Map<String, List<String>> gruposDeValores = {
   'infra': tiposInfraestructuraIncendios,
   'revision': estadosRevision,
   'arbol': tiposArbolInventario,
+  'categoria': [...categoriasIngreso, ...categoriasGasto],
+  'regimen': regimenesFiscalesMonte,
 };
 
 void main() {

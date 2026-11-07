@@ -15,11 +15,11 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/monte/`: `especies_forestales.csv` (41 especies con código y nombre científico del anexo 20 del documentador Sig del IFN4, MITECO; nombres comunes de las formaciones arboladas del mismo documento cuando los da), `unidades_volumen.csv` (m³, estéreo con **0,65 m³ sólidos por estéreo** de la tabla 2 de Padovani en FAO, tonelada sin conversión) y `plagas_forestales.csv` (19 agentes: procesionarias, lagartas, perforadores Ips y Tomicus, Cerambyx, Coraebus, balanino, avispilla y chancro del castaño, Phytophthora, banda marrón, Sphaeropsis, de la guía visual 2025 de ESMA con página; nematodo del pino como plaga prioritaria UE, Reg. Delegado 2019/1702; Monochamus de la ficha de Sanidad Forestal de Baleares). **Sin sustancias activas** a propósito. Compilador sobre la librería común; consultas en `dominio/catalogos.dart` (plagas por especie o por género). 50 tests |
 | 7 IA visual | ✅ 2026-11-07 | Monte → icono de escáner: **plaga, enfermedad o daño por foto**. Se elige el rodal (su especie limita las plagas del catálogo, por especie o por género) u «otra especie» (todo el catálogo) → hasta 3 candidatas con confianza y motivo, «qué comprobar» en el árbol y «otra» (sequía, fuego, viento, fauna…). Aviso fijo si sale una **plaga prioritaria de la UE** (nematodo del pino: no mover madera y avisar a sanidad forestal de la CA) o una **urticante** (procesionaria). Solo informa: nunca abre ni sugiere tratamientos. Salida estructurada con `enum` de ids + «otra», modelo equilibrado del core, clave BYO (`estado/clave_anthropic_monte.dart`, Ajustes → Inteligencia artificial). La foto se borra siempre. 73 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (dos abetos, crema y dorado, sobre círculo verde pino `#2F4F3A`, fondo crema `#F5EFE2`) en `assets/`, iconos de lanzador (`flutter_launcher_icons`, adaptativo), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: contorno de rodales y trazas de pistas y cortafuegos caminando (bloque 3), «usar mi ubicación» en árboles y puntos de agua, mapa OSM. Permisos INTERNET y ubicación en el manifiesto, con test (`test/branding_test.dart`). 76 tests |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen (sin elegir / particular en REAGP / particular en general / comunidad de montes / junta vecinal, concejo o ayuntamiento, estos dos «por verificar»); apuntes por categoría propia (venta de madera y de leña, cuotas de lotes vecinales, pastos, caza, setas, ayudas; trabajos selvícolas, prevención de incendios, pistas, repoblación, asistencia técnica, certificación, seguros, tasas, gestión de la comunidad), rodal opcional → margen por rodal; resumen del año y extracto PDF con sello. **Solo la venta de madera o leña de un particular lleva propuesta** (REAGP 12 %, general 21 % por verificar); pastos, caza, lotes y setas pueden ser cesión o arrendamiento: sin propuesta y con aviso. En comunidades y entidades locales, nada y aviso. Importes en céntimos. Guardarraíles en `test/dominio/economia_test.dart`. 83 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 9 (economía).
+**Siguiente acción**: bloque 10 (revisión con fuente pública).
 
 ## Encuadre
 
@@ -195,6 +195,12 @@ publicados por cada sistema; **por verificar** contra el estándar vigente.
   observaciones sanitarias en la F1 y la propuesta no debe acabar en un
   tratamiento; se lee y se cierra. Modelo equilibrado (como Frutal y
   Aromáticas): confundir perforadores o hongos de acícula es el riesgo real.
+- **2026-11-07 — Economía mínima como Frutal y Aromáticas** (libro de
+  ingresos y gastos, sin facturas del core): una junta vecinal lleva
+  contabilidad pública y una comunidad de montes tiene un régimen propio
+  (por verificar); la app no finge ninguna de las dos. Lo conservador en lo
+  dudoso: sin propuesta de impuesto fuera de la venta de madera o leña de un
+  particular.
 
 ## Datos técnicos
 

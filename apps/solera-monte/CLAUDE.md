@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh`; normativa resuelta abajo (Ley 43/2003, Ley 55/1980 y TRRL art. 75 leídos en el BOE; lo autonómico, por verificar) |
 | 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (`Monte` de una fila con figura, CA, instrumento de gestión, certificación y época de peligro; `Rodal` con contorno; `ActuacionPlan`; `Ejecucion`; `Aprovechamiento`; `SorteoLena` + `LoteLena`; `InfraestructuraIncendios` + `RevisionIncendios`; `ArbolSingular`; `ApunteEconomico`), 12 tablas en la v1 (`sentenciasEsquemaMonteV1`). Geodesia copiada de Ganadera. Dominio puro: `sorteo_lena.dart` (SHA-256 de «semilla\|participante», orden de menor a mayor, huella de la lista, verificación), `superficies.dart` (por especie, total, dibujada frente a declarada), `plan_gestion.dart` (estado de cada actuación, previsto frente a ejecutado por año, volumen del plan frente a lo aprovechado), `aprovechamientos.dart` (menor cuantía y plazo de un mes del art. 37) e `incendios.dart` (estado de la campaña y aviso antes de la época de peligro). 43 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas: **Hoy** (primeros pasos; época de peligro: pide la fecha si falta, cuenta atrás y lista de infraestructuras sin revisar o con trabajo; trámites y plazos del art. 37 de la campaña actual y la anterior; plan pendiente o atrasado; sorteos sin hacer; banner de catálogos), **Monte** (rodales con superficie por especie y total, ficha con «Dibujar el contorno caminando»; árboles y parcelas de muestreo con «usar mi ubicación»; infraestructuras con estado de la campaña y ficha con revisiones, punto GPS o traza caminando; mapa OSM con polígonos, trazas y puntos), **Plan** (previsto por año con estado de cada actuación, resumen hechas/previstas y m³ previstos frente a aprovechados; hecho, con «no prevista»), **Aprovechamientos** (campaña año anterior/actual/siguiente; lista con avisos; sorteos de leña) y **Ajustes** (idioma y datos del monte). **Sorteo** en pantalla propia: lista → cerrar (huella SHA-256) → lotes → semilla y su origen → sortear con confirmación → resultado con clave de cada puesto, lista de espera y **comprobación automática** al abrir («Comprobado» o «no coincide»), más cómo repetirlo con `sha256sum`. Altas en hojas (`formularios.dart`) con `controladores:` liberados por la hoja. 58 tests (7 de pantalla, uno de traducciones dinámicas) |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/monte/`: `especies_forestales.csv` (41 especies con código y nombre científico del anexo 20 del documentador Sig del IFN4, MITECO; nombres comunes de las formaciones arboladas del mismo documento cuando los da), `unidades_volumen.csv` (m³, estéreo con **0,65 m³ sólidos por estéreo** de la tabla 2 de Padovani en FAO, tonelada sin conversión) y `plagas_forestales.csv` (19 agentes: procesionarias, lagartas, perforadores Ips y Tomicus, Cerambyx, Coraebus, balanino, avispilla y chancro del castaño, Phytophthora, banda marrón, Sphaeropsis, de la guía visual 2025 de ESMA con página; nematodo del pino como plaga prioritaria UE, Reg. Delegado 2019/1702; Monochamus de la ficha de Sanidad Forestal de Baleares). **Sin sustancias activas** a propósito. Compilador sobre la librería común; consultas en `dominio/catalogos.dart` (plagas por especie o por género). 50 tests |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas).
+**Siguiente acción**: bloques 4-5 (PDF).
 
 ## Encuadre
 
@@ -168,6 +168,17 @@ publicados por cada sistema; **por verificar** contra el estándar vigente.
 - **2026-11-07 — Estéreo = 0,65 m³ sólidos** como único factor (FAO): es
   orientativo y solo sirve para comparar lo aprovechado con lo previsto en
   el plan; las toneladas no se convierten.
+- **2026-11-07 — Cinco pestañas** (Hoy, Monte, Plan, Aprovechamientos,
+  Ajustes): Monte agrupa rodales, árboles e incendios en sub-pestañas, y
+  Aprovechamientos, la campaña y los sorteos.
+- **2026-11-07 — Contorno y traza caminando ya en el bloque 3** (es el
+  corazón del rodal); el bloque 8 añade el branding, los permisos del
+  manifiesto y su test.
+- **2026-11-07 — El sorteo se comprueba solo cada vez que se abre**: repite
+  el sorteo con la lista y la semilla guardadas y compara lote a lote y la
+  huella; si alguien tocara la BD, se vería «no coincide».
+- **2026-11-07 — Un sorteo sin hacer se puede borrar; uno hecho, no** (desde
+  la app). Los lotes de un sorteo hecho no se editan.
 
 ## Datos técnicos
 

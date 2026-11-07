@@ -1,7 +1,10 @@
 // Larrea Monte — esqueleto generado por scripts/nueva_vertical.sh (2026-11-07).
 //
 //   main() → AppMonte → PantallaPrincipal (NavigationBar + IndexedStack)
-//     ├── Hoy
+//     ├── Hoy                época de peligro, trámites y plazos, plan del año
+//     ├── Monte              rodales (mapa y contorno), árboles, incendios
+//     ├── Plan               actuaciones previstas y ejecutadas
+//     ├── Aprovechamientos   campaña y sorteos de leña vecinal
 //     └── Ajustes
 
 import 'package:flutter/material.dart';
@@ -11,7 +14,10 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import 'branding.dart';
 import 'pantallas/pantalla_ajustes.dart';
+import 'pantallas/pantalla_aprovechamientos.dart';
 import 'pantallas/pantalla_hoy.dart';
+import 'pantallas/pantalla_monte.dart';
+import 'pantallas/pantalla_plan.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +61,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     return Scaffold(
       body: IndexedStack(
         index: _pestanaActual,
-        children: const [PantallaHoy(), PantallaAjustes()],
+        children: const [
+          PantallaHoy(),
+          PantallaMonte(),
+          PantallaPlan(),
+          PantallaAprovechamientos(),
+          PantallaAjustes(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pestanaActual,
@@ -65,6 +77,18 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           NavigationDestination(
             icon: const Icon(Icons.today_outlined),
             label: SoleraL10n.t('mont.hoy'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.forest_outlined),
+            label: SoleraL10n.t('mont.monte'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.event_note_outlined),
+            label: SoleraL10n.t('mont.plan'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.carpenter_outlined),
+            label: SoleraL10n.t('mont.aprovechamientos_corto'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),

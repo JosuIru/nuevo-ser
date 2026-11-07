@@ -34,6 +34,8 @@ vive.cambiar_camara,Cambiar de cámara,Kamera aldatu,Canvia de càmera,Cambiar d
 vive.cantidad,Cantidad,Kopurua,Quantitat,Cantidade
 vive.cantidad_material_usada,Material usado (en la unidad del lote),Erabilitako materiala (sortaren unitatean),Material usat (en la unitat del lot),Material usado (na unidade do lote)
 vive.cantidad_no_valida,La cantidad no es válida o supera las plantas disponibles.,Kopurua ez da baliozkoa edo landare erabilgarriak gainditzen ditu.,La quantitat no és vàlida o supera les plantes disponibles.,A cantidade non é válida ou supera as plantas dispoñibles.
+vive.cantidad_producto,Producto gastado (kg o l),Gastatutako produktua (kg edo l),Producte gastat (kg o l),Produto gastado (kg ou l)
+vive.cantidad_producto_ayuda,"Lo que pide el cuaderno (RD 1311/2012, anexo III): p. ej. «1,5 l».","Koadernoak eskatzen duena (1311/2012 EDa, III. eranskina): adib. «1,5 l».","El que demana el quadern (RD 1311/2012, annex III): p. ex. «1,5 l».","O que pide o caderno (RD 1311/2012, anexo III): p. ex. «1,5 l»."
 vive.carnet_aplicador,Carné de aplicador,Aplikatzaile-txartela,Carnet d’aplicador,Carné de aplicador
 vive.categoria,Categoría,Kategoria,Categoria,Categoría
 vive.categoria_abonos,Abonos,Ongarriak,Adobs,Abonos
@@ -217,8 +219,10 @@ vive.paso_bandeja,Da de alta una bandeja (pestaña Bandejas).,Erretilu bat alta 
 vive.paso_datos_vivero,Pon los datos del vivero y su nº ROPVEG (Ajustes).,Jarri mintegiaren datuak eta bere ROPVEG zk. (Ezarpenak).,Posa les dades del viver i el núm. ROPVEG (Configuració).,Pon os datos do viveiro e o seu nº ROPVEG (Axustes).
 vive.paso_lote,Apunta un lote de semilla o esquejes (pestaña Material).,Idatzi hazi edo ebakin sorta bat (Materiala fitxa).,Anota un lot de llavor o esqueixos (pestanya Material).,Anota un lote de semente ou esqueixes (lapela Material).
 vive.paso_siembra,Siembra el lote en la bandeja: nace la primera partida.,Erein sorta erretiluan: lehen partida sortzen da.,Sembra el lot a la safata: neix la primera partida.,Sementa o lote na bandexa: nace a primeira partida.
+vive.pdf_aire_libre,Aire libre,Aire zabalean,Aire lliure,Aire libre
 vive.pdf_aplicador,Aplicador y carné,Aplikatzailea eta txartela,Aplicador i carnet,Aplicador e carné
 vive.pdf_borrador_no_valido,BORRADOR: no válido como pasaporte fitosanitario (vivero sin autorización apuntada o datos incompletos).,ZIRRIBORROA: ez du balio pasaporte fitosanitario gisa (baimenik idatzi gabeko mintegia edo datu osatugabeak).,ESBORRANY: no vàlid com a passaport fitosanitari (viver sense autorització anotada o dades incompletes).,BORRADOR: non válido como pasaporte fitosanitario (viveiro sen autorización anotada ou datos incompletos).
+vive.pdf_cantidad_producto,kg o l,kg edo l,kg o l,kg ou l
 vive.pdf_dato,Dato,Datua,Dada,Dato
 vive.pdf_datos_generales,Datos generales,Datu orokorrak,Dades generals,Datos xerais
 vive.pdf_destino,Destino: salidas,Helmuga: irteerak,Destinació: sortides,Destino: saídas
@@ -231,7 +235,9 @@ vive.pdf_numero_registro,Nº registro,Erregistro-zk.,Núm. registre,Nº rexistro
 vive.pdf_origen,Origen: material recibido,Jatorria: jasotako materiala,Origen: material rebut,Orixe: material recibido
 vive.pdf_pasaporte,Pasaporte,Pasaportea,Passaport,Pasaporte
 vive.pdf_plazo,P. seg. (días),Segurt. epea (egunak),T. seg. (dies),P. seg. (días)
+vive.pdf_protegido,Protegido,Babestua,Protegit,Protexido
 vive.pdf_sin_entradas,Sin material recibido de proveedores este año.,Aurten ez da hornitzaileen materialik jaso.,Sense material rebut de proveïdors aquest any.,Sen material recibido de provedores este ano.
+vive.pdf_sistema_cultivo,Sistema,Sistema,Sistema,Sistema
 vive.pdf_valor,Valor,Balioa,Valor,Valor
 vive.pdf_zonas,Zonas de cultivo,Laborantza-eremuak,Zones de cultiu,Zonas de cultivo
 vive.persona_contacto,Persona de contacto fitosanitaria,Fitosanitario-arloko harremanetarako pertsona,Persona de contacte fitosanitària,Persoa de contacto fitosanitaria

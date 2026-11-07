@@ -1,7 +1,8 @@
 <?php
 /**
  * Ajustes → Concejo: lo mínimo para arrancar un pueblo desde el WordPress
- * (nombre del espacio, personas, rol de mesa con fin de mandato y códigos).
+ * (nombre del espacio, personas, rol de mesa con fin de mandato, códigos y
+ * correo para el resumen semanal).
  * Todo lo demás se hace desde la app.
  *
  * @package Concejo
@@ -83,6 +84,21 @@ function concejo_procesar_formulario(): void {
 				'persona' => sanitize_text_field( wp_unslash( (string) ( $_POST['nombre'] ?? '' ) ) ),
 			);
 			break;
+		case 'correo':
+			global $wpdb;
+			$correo = sanitize_email( wp_unslash( (string) ( $_POST['correo'] ?? '' ) ) );
+			$wpdb->update(
+				concejo_tabla( 'personas' ),
+				array(
+					'correo'  => is_email( $correo ) ? $correo : '',
+					'resumen' => 'nunca' === ( $_POST['resumen'] ?? '' ) ? 'nunca' : 'semanal',
+				),
+				array( 'uid' => $uid )
+			);
+			break;
+		case 'enviar_resumen':
+			set_transient( 'concejo_enviados_' . get_current_user_id(), concejo_enviar_resumenes(), MINUTE_IN_SECONDS );
+			break;
 		case 'baja':
 		case 'alta':
 			global $wpdb;
@@ -125,6 +141,8 @@ function concejo_pagina_admin(): void {
 	$accion  = esc_url( admin_url( 'admin-post.php' ) );
 	$recien  = get_transient( 'concejo_codigo_' . get_current_user_id() );
 	delete_transient( 'concejo_codigo_' . get_current_user_id() );
+	$enviados = get_transient( 'concejo_enviados_' . get_current_user_id() );
+	delete_transient( 'concejo_enviados_' . get_current_user_id() );
 	$codigo  = is_array( $recien ) ? (string) $recien['codigo'] : '';
 	$persona = is_array( $recien ) ? (string) $recien['persona'] : '';
 	echo '<div class="wrap"><h1>Concejo</h1>';
@@ -132,6 +150,9 @@ function concejo_pagina_admin(): void {
 		echo '<div class="notice notice-success"><p>Código de <strong>' . esc_html( $persona ) . '</strong>: '
 			. '<code style="font-size:1.4em">' . esc_html( $codigo ) . '</code><br>'
 			. 'Apúntalo y dáselo en papel: no se vuelve a enseñar. Si se pierde, se genera otro.</p></div>';
+	}
+	if ( false !== $enviados ) {
+		echo '<div class="notice notice-success"><p>Resumen enviado a ' . (int) $enviados . ' personas.</p></div>';
 	}
 	echo '<p>La app se conecta a <code>' . esc_html( rest_url( 'concejo/v1/' ) ) . '</code> con el código personal de cada persona.</p>';
 
@@ -141,7 +162,7 @@ function concejo_pagina_admin(): void {
 	submit_button( 'Guardar', 'secondary', 'submit', false );
 	echo '</form>';
 
-	echo '<h2>Personas</h2><table class="widefat striped"><thead><tr><th>Nombre</th><th>Rol y fin de mandato</th><th>Código</th><th></th></tr></thead><tbody>';
+	echo '<h2>Personas</h2><table class="widefat striped"><thead><tr><th>Nombre</th><th>Rol y fin de mandato</th><th>Código</th><th>Resumen semanal por correo</th><th></th></tr></thead><tbody>';
 	foreach ( concejo_filas_personas() as $fila ) {
 		$fecha = substr( (string) $fila['mandato_hasta'], 0, 10 );
 		echo '<tr' . ( '1' === (string) $fila['activa'] ? '' : ' style="opacity:.5"' ) . '><td>' . esc_html( $fila['nombre'] ) . '</td><td>';
@@ -151,6 +172,13 @@ function concejo_pagina_admin(): void {
 		echo ' <input type="date" name="mandato_hasta" value="' . esc_attr( $fecha ) . '"> ';
 		submit_button( 'Cambiar', 'small', 'submit', false );
 		echo '</form></td><td>' . ( '1' === (string) $fila['tiene_codigo'] ? 'Tiene' : '—' ) . '</td><td>';
+		echo '<form method="post" action="' . $accion . '">';
+		concejo_campo_oculto( 'correo', $fila['uid'] );
+		echo '<input type="email" name="correo" placeholder="Sin correo" value="' . esc_attr( (string) $fila['correo'] ) . '"> ';
+		echo '<select name="resumen"><option value="semanal"' . selected( $fila['resumen'], 'semanal', false ) . '>Semanal</option>'
+			. '<option value="nunca"' . selected( $fila['resumen'], 'nunca', false ) . '>Nunca</option></select> ';
+		submit_button( 'Guardar', 'small', 'submit', false );
+		echo '</form></td><td>';
 		echo '<form method="post" action="' . $accion . '" style="display:inline">';
 		concejo_campo_oculto( 'codigo', $fila['uid'], $fila['nombre'] );
 		submit_button( 'Código nuevo', 'small', 'submit', false );
@@ -167,5 +195,29 @@ function concejo_pagina_admin(): void {
 	concejo_selector_rol( 'vecina' );
 	echo ' <label>Mesa hasta <input type="date" name="mandato_hasta"></label> ';
 	submit_button( 'Añadir y sacar su código', 'primary', 'submit', false );
-	echo '</form></div>';
+	echo '</form>';
+
+	concejo_seccion_resumen( $accion );
+	echo '</div>';
+}
+
+/** Quién lo recibe, cómo queda y un botón para mandarlo ya. */
+function concejo_seccion_resumen( string $accion ): void {
+	$destinatarios = concejo_destinatarios_resumen();
+	echo '<h2>Resumen semanal</h2>';
+	echo '<p>Sale los lunes a quien tiene correo y lo quiere (ahora, ' . count( $destinatarios ) . ' personas). '
+		. 'Cada correo lleva un enlace para darse de baja. Si una semana no hay nada que contar, no se manda.</p>';
+	$ejemplo = $destinatarios[0] ?? ( concejo_filas_personas()[0] ?? null );
+	if ( null === $ejemplo ) {
+		return;
+	}
+	$correo = concejo_resumen_semanal( concejo_cargar_estado(), $ejemplo['uid'], concejo_nombre_espacio(), concejo_ahora(), concejo_zona(), '(enlace para darse de baja)' );
+	echo '<p>Así le llegaría hoy a <strong>' . esc_html( $ejemplo['nombre'] ) . '</strong>:</p>';
+	echo '<pre style="background:#fff;border:1px solid #ccd0d4;padding:12px;white-space:pre-wrap;max-width:44em">'
+		. esc_html( null === $correo ? '(Nada que contar esta semana: no se le mandaría.)' : 'Asunto: ' . $correo['asunto'] . "\n\n" . $correo['texto'] )
+		. '</pre>';
+	echo '<form method="post" action="' . $accion . '">';
+	concejo_campo_oculto( 'enviar_resumen' );
+	submit_button( 'Enviarlo ahora', 'secondary', 'submit', false );
+	echo '</form>';
 }

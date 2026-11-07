@@ -21,6 +21,9 @@ $leido = concejo_estado_desde_documentos( $documentos, $personas );
 comprobar( concejo_documentos( $leido ) === $documentos, 'las piezas van y vuelven sin cambios' );
 comprobar( array_keys( $leido['personas'] ) === array_keys( $estado['personas'] ), 'las personas también' );
 comprobar( null === $leido['personas']['maite']['mandato_hasta'], 'sin mandato queda null' );
+$con_correo = array_map( fn( $p ) => $p + array( 'correo' => 'x@example.org', 'resumen' => 'semanal' ), $personas );
+$leido_con_correo = concejo_estado_desde_documentos( $documentos, $con_correo );
+comprobar( ! isset( $leido_con_correo['personas']['maite']['correo'] ), 'el correo no entra en el estado (ni en la vista de la app)' );
 
 $resultado = concejo_aplicar_accion(
 	$estado,

@@ -2,7 +2,9 @@
 /**
  * Dónde guarda el servidor el estado de Concejo.
  *
- * - `concejo_personas`: personas con la huella de su código.
+ * - `concejo_personas`: personas con la huella de su código y, si
+ *   quieren el resumen semanal, su correo. El correo no sale nunca en la
+ *   vista que baja la app: solo lo usa el servidor para enviar.
  * - `concejo_documentos`: un JSON por pieza (`asunto:<uid>`,
  *   `debate:<asunto>`, `consentimiento:<asunto>`, `urna:<asunto>`,
  *   `compromiso:<uid>`, `acta:<asunto>`). Un pueblo tiene decenas de
@@ -24,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const CONCEJO_VERSION_ESQUEMA        = 1;
+const CONCEJO_VERSION_ESQUEMA        = 2;
 const CONCEJO_OPCION_ESQUEMA         = 'concejo_version_esquema';
 const CONCEJO_OPCION_REVISION        = 'concejo_revision';
 const CONCEJO_OPCION_NOMBRE_ESPACIO  = 'concejo_nombre_espacio';
@@ -121,6 +123,8 @@ function concejo_instalar_esquema(): void {
 		rol VARCHAR(20) NOT NULL DEFAULT 'vecina',
 		mandato_hasta VARCHAR(32) NOT NULL DEFAULT '',
 		huella_codigo CHAR(64) NULL,
+		correo VARCHAR(190) NOT NULL DEFAULT '',
+		resumen VARCHAR(10) NOT NULL DEFAULT 'semanal',
 		activa TINYINT(1) NOT NULL DEFAULT 1,
 		creada_en DATETIME NOT NULL,
 		PRIMARY KEY  (uid),
@@ -185,7 +189,7 @@ function concejo_nombre_espacio(): string {
 function concejo_filas_personas(): array {
 	global $wpdb;
 	return (array) $wpdb->get_results(
-		'SELECT uid, nombre, rol, mandato_hasta, activa, huella_codigo IS NOT NULL AS tiene_codigo FROM ' . concejo_tabla( 'personas' ) . ' ORDER BY nombre',
+		'SELECT uid, nombre, rol, mandato_hasta, activa, correo, resumen, huella_codigo IS NOT NULL AS tiene_codigo FROM ' . concejo_tabla( 'personas' ) . ' ORDER BY nombre',
 		ARRAY_A
 	);
 }

@@ -21,6 +21,7 @@
  * - `includes/vista.php`: lo que ve cada persona.
  * - `includes/almacen.php`: tablas, cerrojo y acciones recibidas.
  * - `includes/api.php`: `/wp-json/concejo/v1/…`.
+ * - `includes/correo.php`: el resumen semanal (los lunes) y la baja.
  * - `includes/admin.php`: Ajustes → Concejo.
  *
  * Es aparte del plugin de Zunbeltz a propósito: no comparte código con un
@@ -40,7 +41,9 @@ require_once __DIR__ . '/includes/instantanea.php';
 require_once __DIR__ . '/includes/codigos.php';
 require_once __DIR__ . '/includes/almacen.php';
 require_once __DIR__ . '/includes/api.php';
+require_once __DIR__ . '/includes/correo.php';
 require_once __DIR__ . '/includes/admin.php';
 
 register_activation_hook( __FILE__, 'concejo_instalar_esquema' );
+register_deactivation_hook( __FILE__, 'concejo_desprogramar_evento_diario' );
 add_action( 'plugins_loaded', 'concejo_actualizar_esquema_si_hace_falta' );

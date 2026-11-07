@@ -4,3 +4,7 @@ import 'package:flutter/material.dart';
 /// PLACEHOLDER hasta el branding definitivo.
 const Color colorPrimarioAromaticas = Color(0xFF6E5A8A);
 const Color colorCremaAromaticas = Color(0xFFF5EFE2);
+
+/// Logo PLACEHOLDER (1024×1024, ImageMagick: espiga de lavanda y gota),
+/// hasta el del ilustrador.
+const String rutaLogoAromaticas = 'assets/icono-logo-aromaticas.png';

@@ -12,6 +12,7 @@ import '../modelos/zona_recoleccion.dart';
 import '../utiles/textos_aromaticas.dart';
 import 'formularios.dart';
 import 'identificar_con_ia.dart';
+import 'pantalla_mapa.dart';
 import 'pantalla_editar_origen.dart';
 
 class _DatosCampo {
@@ -96,6 +97,12 @@ class _PantallaCampoState extends State<PantallaCampo>
       appBar: AppBar(
         title: Text(SoleraL10n.t('arom.campo')),
         actions: [
+          IconButton(
+            tooltip: SoleraL10n.t('arom.mapa'),
+            icon: const Icon(Icons.map_outlined),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaMapa())),
+          ),
           PopupMenuButton<String>(
             tooltip: SoleraL10n.t('arom.ia_identificar'),
             icon: const Icon(Icons.document_scanner_outlined),

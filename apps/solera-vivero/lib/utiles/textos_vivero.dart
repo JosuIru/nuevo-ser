@@ -127,3 +127,28 @@ int? leerEntero(String texto) => leerNumero(texto)?.round();
       DateTime(anyo).millisecondsSinceEpoch,
       DateTime(anyo + 1).millisecondsSinceEpoch - 1,
     );
+
+String nombreRegimenIva(String id) => switch (id) {
+      'reagp' => SoleraL10n.t('vive.regimen_reagp'),
+      'general' => SoleraL10n.t('vive.regimen_general'),
+      _ => SoleraL10n.t('vive.regimen_sin_elegir'),
+    };
+
+/// Nombre visible de una categoría del libro de ingresos y gastos.
+String nombreCategoriaEconomica(String categoria) => switch (categoria) {
+      'otras_ventas' => SoleraL10n.t('vive.categoria_otras_ventas'),
+      'subvenciones' => SoleraL10n.t('vive.categoria_subvenciones'),
+      'otros_ingresos' => SoleraL10n.t('vive.categoria_otros_ingresos'),
+      'semillas_material' => SoleraL10n.t('vive.categoria_semillas_material'),
+      'sustratos_macetas' => SoleraL10n.t('vive.categoria_sustratos_macetas'),
+      'fitosanitarios' => SoleraL10n.t('vive.categoria_fitosanitarios'),
+      'abonos' => SoleraL10n.t('vive.categoria_abonos'),
+      'agua_energia' => SoleraL10n.t('vive.categoria_agua_energia'),
+      'mano_obra' => SoleraL10n.t('vive.categoria_mano_obra'),
+      'maquinaria' => SoleraL10n.t('vive.categoria_maquinaria'),
+      'tasas_sanidad_vegetal' =>
+        SoleraL10n.t('vive.categoria_tasas_sanidad_vegetal'),
+      'seguro' => SoleraL10n.t('vive.categoria_seguro'),
+      'otros_gastos' => SoleraL10n.t('vive.categoria_otros_gastos'),
+      _ => categoria,
+    };

@@ -2,7 +2,9 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
+import '../modelos/apunte_economico.dart';
 import '../modelos/bandeja.dart';
+import '../modelos/configuracion_fiscal.dart';
 import '../modelos/inspeccion_plagas.dart';
 import '../modelos/lote_material.dart';
 import '../modelos/partida_planta.dart';
@@ -177,6 +179,23 @@ const List<String> sentenciasEsquemaViveroV1 = [
     notificada_autoridad INTEGER NOT NULL DEFAULT 0,
     notas TEXT NOT NULL DEFAULT ''
   )''',
+  '''CREATE TABLE apuntes_economicos (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    es_ingreso INTEGER NOT NULL,
+    fecha_ms INTEGER NOT NULL,
+    concepto TEXT NOT NULL,
+    categoria TEXT NOT NULL,
+    base_centimos INTEGER NOT NULL,
+    tipo_iva_pct INTEGER NOT NULL DEFAULT 0,
+    compensacion_reagp_pct REAL NOT NULL DEFAULT 0,
+    tercero TEXT NOT NULL DEFAULT '',
+    notas TEXT NOT NULL DEFAULT ''
+  )''',
+  '''CREATE TABLE configuraciones_fiscales (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    regimen_iva TEXT NOT NULL DEFAULT 'sin_elegir'
+  )''',
+  'CREATE INDEX idx_apuntes_fecha ON apuntes_economicos(fecha_ms)',
   'CREATE INDEX idx_bandejas_qr ON bandejas(codigo_qr)',
   'CREATE INDEX idx_siembras_bandeja ON siembras(bandeja_id)',
   'CREATE INDEX idx_partidas_siembra ON partidas_planta(siembra_id)',
@@ -518,4 +537,31 @@ class BaseDatosSoleraVivero extends BaseDatosSolera {
 
   Future<void> borrarInspeccion(int inspeccionId) =>
       _borrar('inspecciones_plagas', inspeccionId);
+
+  // ─── Economía ────────────────────────────────────────────────────
+
+  Future<ConfiguracionFiscal> obtenerConfiguracionFiscal() async {
+    final filas = await _listar('configuraciones_fiscales', orden: 'id');
+    return filas.isEmpty
+        ? ConfiguracionFiscal()
+        : ConfiguracionFiscal.fromMap(filas.first);
+  }
+
+  Future<void> guardarConfiguracionFiscal(
+      ConfiguracionFiscal configuracion) async {
+    await guardarFilaUnica('configuraciones_fiscales', configuracion.toMap());
+  }
+
+  Future<int> guardarApunteEconomico(ApunteEconomico apunte) =>
+      _guardar('apuntes_economicos', apunte.toMap());
+
+  Future<void> borrarApunteEconomico(int apunteId) =>
+      _borrar('apuntes_economicos', apunteId);
+
+  Future<List<ApunteEconomico>> listarApuntesEconomicos(
+          {int? desdeMs, int? hastaMs}) async =>
+      (await _listarPorFecha('apuntes_economicos',
+              desdeMs: desdeMs, hastaMs: hastaMs))
+          .map(ApunteEconomico.fromMap)
+          .toList();
 }

@@ -18,6 +18,15 @@ y sigue. Lo recoge `scripts/pendientes/`.
   tratamientos (`generador_cuaderno_tratamientos_pdf.dart`) frente al modelo de
   la comunidad y si basta un PDF (registro electrónico desde el 1-1-2027).
 
+- **Asesor fiscal**: decidir si el vivero entra en el REAGP (Ley 37/1992,
+  art. 124-126: ¿«obtener directamente productos naturales vegetales» incluye
+  criar planta de semilla o esqueje comprados?, ¿y la reventa de planta
+  comprada?) o va al régimen general; confirmar el 10 % de IVA en plantas
+  vivas, semillas y esquejes (art. 91.Uno.1.3.º y 8.º), el 12 % de
+  compensación (art. 130.Cinco.1.º), las categorías de gasto y si hacen falta
+  facturas (`modelos/configuracion_fiscal.dart`,
+  `generador_extracto_economico_pdf.dart`).
+
 ## Revisión nativa eu/ca/gl
 
 - Textos de `content/solera/traducciones/vivero.csv` (borrador, 2026-11-07).

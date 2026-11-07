@@ -7,6 +7,7 @@ import '../estado/cambios_datos.dart';
 import '../modelos/vivero.dart';
 import 'hoja_formulario.dart';
 import 'identificar_plaga.dart';
+import 'pantalla_economia.dart';
 import 'pantalla_documentos.dart';
 
 /// Ajustes: datos del vivero (los de las cabeceras y la letra B del
@@ -110,6 +111,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.euro_outlined),
+            title: Text(SoleraL10n.t('vive.ingresos_y_gastos')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaEconomia())),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

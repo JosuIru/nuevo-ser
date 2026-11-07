@@ -15,11 +15,11 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | ✅ 2026-11-07 | `content/vivero/`: especies (52, con «pasaporte de planta», «pasaporte de semilla» y «anexo XIV/ZP» del 2019/2072, `fuente_publica:`), plagas reguladas (26: 10 prioritarias del R. Del. 2019/1702 y 16 RNQP del anexo IV, `fuente_publica:`; huéspedes de las prioritarias por verificar), plagas comunes de vivero (17, agrupaciones del campo «Agente» del Registro MAPA) y sustancias activas (126, cruzando el Registro MAPA del 06/11/2026 con 6 grupos de cultivo y la EU Pesticides DB del 07/11/2026, `revision-ia:`). Compilador sobre la librería común. En la app: autocompletado de especie (rellena el nombre botánico), plaga y sustancia por grupo de cultivo de la partida, plaga regulada ordenada por nombre botánico, plazo del registro como aviso, aviso si el uso no está en el catálogo, aviso de anexo XIV en la salida y banner de datos provisionales en Hoy. 58 tests |
 | 7 IA visual | ✅ 2026-11-07 | Ficha de la partida → Inspecciones → escáner: foto (cámara o galería) → hasta 3 candidatos entre las plagas comunes del grupo de cultivo y las **reguladas que afectan a la planta** por su nombre botánico (salida estructurada con `enum` + «otra») → la persona elige y se abre el alta de una **inspección** con la plaga rellena («sospecha» si es regulada, con el aviso a la autoridad). Una regulada nunca sale con confianza «alta» (solo la confirma un laboratorio). El sistema prohíbe recomendar tratamientos y dar la planta por sana. Modelo equilibrado del core, clave BYO (`estado/clave_anthropic_vivero.dart`, Ajustes → Inteligencia artificial). La foto se borra al terminar. Intérprete puro testeado. 64 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (plantón en maceta sobre crema) en `assets/`, iconos del lanzador (`flutter_launcher_icons`), arranque crema con el logo y cabecera de Hoy con logo y cifras (disponibles, listas, salidas sin pasaporte). **QR de bandejas** con el patrón de Arbolado (leído y copiado, sin tocarlo): el QR lleva el código tal cual; escáner (`mobile_scanner`) desde Hoy y Bandejas → ficha de la bandeja o alta con ese código; hoja A4 de 21 etiquetas QR por página. **GPS**: «Usar mi ubicación» en la zona (geolocator) y mapa de zonas (OSM) desde Zonas. Permisos INTERNET, ubicación y cámara en el manifiesto. 68 tests |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir) en `configuraciones_fiscales`; las **ventas de planta salen de las salidas con importe** (con el IVA del 10 % o la compensación REAGP del 12 % según el régimen actual) y el libro recoge otros ingresos y los gastos por categoría; resumen del año, ventas por especie y extracto PDF con sello. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 74 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 9 (economía).
+**Siguiente acción**: bloque 10 (revisión con fuente pública).
 
 ## Encuadre
 
@@ -147,6 +147,18 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   código**: así sirven etiquetas ya impresas o de otro sistema.
 - **2026-11-07 — GPS en cualquier zona**, no solo en las exteriores: un
   invernadero lejos de la nave también se agradece en el mapa.
+
+- **2026-11-07 — Economía: REAGP o general, PROVISIONAL**. La ficha deja
+  abierto si el vivero es agrario (REAGP) o no: la app ofrece los dos y «sin
+  elegir» por defecto (no inventa impuestos). Ley 37/1992 leída: art. 91.Uno.1.8.º
+  y 3.º (10 % a plantas vivas ornamentales, semillas, bulbos, esquejes y material
+  vegetal de reproducción), art. 125 (REAGP para explotaciones que obtienen
+  productos vegetales de sus cultivos) y 130.Cinco.1.º (12 %). Que un vivero
+  quepa en el REAGP lo decide el asesor fiscal.
+- **2026-11-07 — Las ventas no se apuntan dos veces**: el importe va en la
+  salida y el libro lo suma; el IVA o la compensación se calculan con el
+  régimen actual (no se congelan en la salida). Sin facturas del core hasta que
+  el asesor fije el régimen (como Frutal).
 
 ## Datos técnicos
 

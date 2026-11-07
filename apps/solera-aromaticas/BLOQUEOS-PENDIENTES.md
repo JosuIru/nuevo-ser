@@ -35,3 +35,12 @@ y sigue. Lo recoge `scripts/pendientes/`.
 - Textos de `content/solera/traducciones/aromaticas.csv` (borrador, 2026-11-07).
 
 ## Bloqueos técnicos
+
+- **`scripts/auditoria` y `scripts/pendientes` no conocen la vertical**: la
+  lista de verticales está fija en
+  `scripts/auditoria/lib/src/lista_comprobacion.dart`, fuera de la calle de
+  esta vertical. Darla de alta (`solera-aromaticas`, `aromaticas`, con los
+  responsables técnico de medio natural, asesor de aceites esenciales y
+  asesor fiscal) es trabajo de la integración.
+- **Pasaporte del lote sin el T1 del core**: QR con texto plano; sustituir
+  por el pasaporte común cuando exista.

@@ -111,7 +111,7 @@ void main() {
     expect(opcionesPlagas('lavandin').map((plaga) => plaga.id),
         contains('decaimiento_stolbur'));
     expect(
-        especiesEnEpoca(['lavanda', 'romero', 'genciana'], 7)
+        especiesEnEpoca(['lavanda', 'romero', 'genciana'], 8)
             .map((especie) => especie.id),
         ['lavanda']);
     expect(mesEnIntervalo(1, 11, 2), isTrue);

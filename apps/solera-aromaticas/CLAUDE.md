@@ -16,10 +16,10 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 7 IA visual | ✅ 2026-11-07 | Campo → icono de escáner: **identificar la especie** (foto → hasta 3 especies del catálogo con confianza, motivo y «qué comprobar»; aviso fijo de que **nunca habilita el consumo**, aviso de protección y de confundibles; al elegir se abre el alta de cosecha con la especie) e **identificar una plaga en cultivo** (parcela de una especie con plagas en el catálogo → hasta 3 candidatas; solo informa, nunca abre un tratamiento). Salida estructurada con `enum` de ids + «otra», modelo equilibrado del core, clave BYO (`estado/clave_anthropic_aromaticas.dart`, Ajustes → Inteligencia artificial). La foto se borra siempre. Intérprete genérico testeado y test de que los prompts no llevan vocabulario de salud. 55 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (espiga de lavanda y gota sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`, adaptativo), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» en la ficha de parcela y de zona (geolocator) y mapa OSM de parcelas y zonas desde Campo. Permisos INTERNET y ubicación en el manifiesto, con test. 58 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir); apuntes por categoría propia (venta de planta, de aceite esencial y de hidrolato; permisos y tasas de recolección, combustible del alambique, envases, analíticas…), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. **Solo la venta de planta lleva compensación REAGP (12 %)**; aceite e hidrolato nunca (la destilación puede ser transformación: aviso «por verificar» en REAGP). En general, 10 % planta y 21 % destilado, por verificar. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 65 tests |
-| 10 Revisión con fuente pública | pendiente | |
+| 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Revisión en `content/aromaticas/revision-2026-11-07.md`: rendimientos (29) y plagas (10) todas `fuente_publica:` con tabla y página; especies 2 `revision-ia:` (BOE, anexo VI Ley 42/2007) y 10 `fuente_publica:` (época del CTFC, tabla 1 de la ficha de cultivo); 15 especies sin revisar (época y confundibles). **`catalogosCompletamenteRevisados` sigue en `false`** y el banner se ve en Hoy. Normativa de los PDF cotejada: Ley 42/2007 arts. 56, 57.1.a, 58, 61 y 80.1.m (BOE consolidado), Ley 43/2003 art. 6 (BOE, 09/11/2024), REACH art. 6.1 (EUR-Lex, consolidado 23/06/2025), RD 1311/2012 art. 16.1. `scripts/auditoria` aún no conoce la vertical (lista fija fuera de esta calle). 66 tests |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 10 (revisión con fuente pública y cotejo de normativa).
+**Siguiente acción**: bloque 11 (ayuda in-app, README y APK release).
 
 ## Encuadre
 
@@ -102,7 +102,11 @@ con sello PROVISIONAL).
   venta al público de las plantas de su anexo por toxicidad. Cruce con el
   catálogo de especies: **por verificar** (no se ha leído el anexo entero).
 - **Aceite esencial como químico**: REACH (Reglamento (CE) 1907/2006) obliga
-  a registrar una sustancia a partir de 1 t/año por fabricante (art. 6), y la
+  a registrar una sustancia a partir de 1 t/año por fabricante o importador
+  (art. 6.1, cotejado en EUR-Lex, consolidado del 23/06/2025,
+  https://eur-lex.europa.eu/legal-content/ES/TXT/HTML/?uri=CELEX:02006R1907-20250623;
+  las exenciones del anexo V para sustancias naturales no modificadas:
+  **por verificar**, no se pudo leer el anexo), y la
   clasificación y el etiquetado CLP (Reglamento (CE) 1272/2008) se aplican a
   lo que se comercializa como sustancia. La revisión del CLP (Reglamento (UE)
   2024/2865) mantiene una excepción para las sustancias de más de un componente

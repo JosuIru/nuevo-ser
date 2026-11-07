@@ -11,7 +11,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 9 modelos, 11 tablas en la v1, `ComposicionReceta`; 16 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy, Recetas, Ingredientes (con lotes recibidos), Autocontrol, Ajustes. Desde la cabecera de Hoy: Hornadas (propone las piezas pedidas y el código de lote; marca los lotes usados de los ingredientes directos), Pedidos fijos y Masa madre. 19 tests, 3 de pantalla |
-| 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
+| 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: cuaderno de autocontrol del mes (una tabla por tipo + incidencias y acciones correctoras) y cartel de alérgenos del mostrador. Ficha técnica desde cada receta (ingredientes por peso con los de alérgeno en MAYÚSCULAS, %, sal estimada). Datos en funciones puras con test; PDF con `informe_periodico` del core. 25 tests |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloques 4-5. (4) Cuaderno de autocontrol mensual en PDF con `informe_periodico` del core y sello PROVISIONAL, con la guía vasca como referencia de columnas. (5) Ficha técnica (ingredientes por peso, alérgenos en negrita, sal estimada) + cartel de alérgenos del mostrador. Ver aceitera `servicios/generador_cuaderno_pac_pdf.dart` como modelo.
+**Siguiente acción**: bloque 6 (catálogos `content/obrador/`: ingredientes_base, alergenos, denominaciones_pan, controles_tipo) con su compilador sobre la librería común, y siembra de ingredientes base desde el catálogo.
 
 ## Encuadre
 
@@ -41,6 +41,7 @@ un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
 - **2026-11-07 — Integridad**: no se puede borrar un ingrediente ni un lote en
   uso (`ON DELETE RESTRICT`); borrar una receta se lleva sus líneas.
 - **2026-11-07 — Lotes en la hornada**: solo se ofrecen los de los ingredientes *directos* de la receta; los de una base se apuntan al hacer la base (pendiente: hornada de subreceta).
+- **2026-11-07 — Alérgenos destacados en MAYÚSCULAS** en la lista de ingredientes de la ficha: la tabla del `informe_periodico` no admite negrita. Comprobar con el técnico si basta.
 - **2026-11-07 — Importes en céntimos** (como aceitera), no en REAL como la quesera.
 
 ## Datos técnicos

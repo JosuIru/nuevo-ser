@@ -4,6 +4,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
+import 'pantalla_documentos.dart';
 
 class PantallaAjustes extends StatefulWidget {
   const PantallaAjustes({super.key});
@@ -61,6 +62,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.picture_as_pdf_outlined),
+            title: Text(SoleraL10n.t('obra.documentos')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('obra.titular'),

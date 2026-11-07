@@ -7,6 +7,8 @@ import '../dominio/composicion_receta.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/ingrediente.dart';
 import '../modelos/receta.dart';
+import '../servicios/compartir_documento.dart';
+import '../servicios/generador_ficha_tecnica_pdf.dart';
 import '../utiles/textos_obrador.dart';
 
 /// Todo lo que hace falta para calcular composiciones de una vez.
@@ -188,6 +190,23 @@ class _PantallaFichaRecetaState extends State<PantallaFichaReceta> {
           appBar: AppBar(
             title: Text(receta.nombre),
             actions: [
+              if (composicion != null)
+                IconButton(
+                  tooltip: SoleraL10n.t('obra.ficha_tecnica'),
+                  icon: const Icon(Icons.picture_as_pdf_outlined),
+                  onPressed: () => compartirDocumentoPdf(
+                    context,
+                    nombreFichero: 'ficha_${receta.id}.pdf',
+                    generar: (tema) async => generarFichaTecnicaPdf(
+                      receta: receta,
+                      composicion: composicion,
+                      ingredientes: recetario.ingredientes,
+                      titular: await BaseDatosSoleraObrador.instancia
+                          .obtenerTitular(),
+                      tema: tema,
+                    ),
+                  ),
+                ),
               IconButton(
                 tooltip: SoleraL10n.t('editar'),
                 icon: const Icon(Icons.edit_outlined),

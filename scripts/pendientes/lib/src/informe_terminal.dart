@@ -50,11 +50,12 @@ String informeTerminal(Inventario inventario) {
   }
   salida.writeln();
 
-  salida.writeln('Catálogos (filas: persona / fuente pública / sin revisar)');
+  salida.writeln('Catálogos (filas: persona / revisión IA / fuente pública / sin revisar)');
   for (final catalogo in inventario.catalogos
       .where((catalogo) => catalogo.tieneColumnaRevision)) {
     salida.writeln('  ${catalogo.ruta.padRight(48)} '
         '${catalogo.revisadasPorPersona}/'
+        '${catalogo.revisadasPorIa}/'
         '${catalogo.revisadasPorFuentePublica}/'
         '${catalogo.sinRevisar} de ${catalogo.filas}');
   }

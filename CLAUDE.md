@@ -121,7 +121,7 @@ export PATH="$HOME/flutter/bin:$PATH"
 Paquetes Dart o scripts independientes (fuera de Melos), creados el 2026-11-07. Cada uno tiene su README.
 
 - `scripts/pendientes/` — tablero de todo lo que espera a una persona: `BLOQUEOS-PENDIENTES.md`, sellos `PROVISIONAL` en código y catálogos sin firma, agrupado por responsable (`dart run bin/pendientes.dart`).
-- `scripts/auditoria/` — lista de comprobación en PDF por vertical y asesor, `firmar` catálogos (`revisado_por=asesor: …`) y `comprobar` qué falta para retirar sellos. **Convención**: solo cuenta como firma humana un `revisado_por` que empiece por `asesor:` o `persona:`; `fuente_publica` o una cita no lo son.
+- `scripts/auditoria/` — lista de comprobación en PDF por vertical y asesor, `firmar` catálogos (`revisado_por=asesor: …`) y `comprobar` qué falta para retirar sellos. **Convención**: solo cuenta como firma humana un `revisado_por` que empiece por `asesor:` o `persona:`; `fuente_publica` o una cita no lo son. `revision-ia:` anota una revisión de Claude con informe y fuentes: se cuenta aparte, no es firma ni retira sellos.
 - `scripts/traducciones/` — exporta ARB a CSV para revisión nativa e importa solo las filas `revisado`, validando placeholders e ICU.
 - `scripts/servidor-grupo/` — zip del plugin social, `montar-servidor.sh` (instala, activa y comprueba; nunca crea personas ni códigos; `--solo-comprobar` para WordPress con datos vivos) y guía en papel.
 - `scripts/fichas/` — fichas A4 imprimibles para el aula sin pantallas a partir de `apps/uno-roto/assets/data/skills.json` (102 de 106 habilidades; generadores deterministas con semilla). Explicaciones escritas por Claude: pendientes de revisión pedagógica.

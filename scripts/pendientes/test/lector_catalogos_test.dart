@@ -30,13 +30,16 @@ picual,Picual,fuente_publica
 arbequina,Arbequina,
 cornicabra,Cornicabra,asesor: Ana Pérez (agrónoma)
 hojiblanca,Hojiblanca,MAPA Registro de Variedades 2026
+empeltre,Empeltre,"revision-ia: Claude, 2026-11-07; fuente: MAPA"
 ''';
       final catalogo =
           analizarCatalogo(texto, ruta: 'content/aceitera/variedades.csv');
-      expect(catalogo.filas, 4);
+      expect(catalogo.filas, 5);
       expect(catalogo.sinRevisar, 1);
       expect(catalogo.revisadasPorFuentePublica, 2);
+      expect(catalogo.revisadasPorIa, 1);
       expect(catalogo.revisadasPorPersona, 1);
+      expect(catalogo.pendienteDePersona, isTrue);
       expect(catalogo.cabeceraProvisional, isTrue);
       expect(catalogo.tieneColumnaRevision, isTrue);
       expect(catalogo.vertical, 'aceitera');
@@ -49,6 +52,12 @@ hojiblanca,Hojiblanca,MAPA Registro de Variedades 2026
       expect(catalogo.cabeceraProvisional, isFalse);
       expect(catalogo.filas, 1);
     });
+  });
+
+  test('una revisión de IA no es firma de persona', () {
+    expect(esRevisionDeIa('revision-ia: Claude, 2026-11-07'), isTrue);
+    expect(esFirmaDePersona('revision-ia: Claude, 2026-11-07'), isFalse);
+    expect(esRevisionDeIa('asesor: Ana'), isFalse);
   });
 
   test('leerFlagRevision lee el booleano generado', () {

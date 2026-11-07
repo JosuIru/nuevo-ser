@@ -6,6 +6,7 @@ class EstadoCatalogo {
     required this.sinRevisar,
     required this.revisadasPorFuentePublica,
     required this.revisadasPorPersona,
+    this.revisadasPorIa = 0,
     required this.cabeceraProvisional,
     required this.tieneColumnaRevision,
   });
@@ -21,6 +22,10 @@ class EstadoCatalogo {
   /// `revisado_por` empieza por `persona:` o `asesor:` (convención para la
   /// firma de una persona experta; ver README).
   final int revisadasPorPersona;
+
+  /// `revisado_por` empieza por `revision-ia:`: contrastado a fondo por una
+  /// IA con sus fuentes, pero sin firma de persona (no retira sellos).
+  final int revisadasPorIa;
   final bool cabeceraProvisional;
   final bool tieneColumnaRevision;
 
@@ -44,6 +49,13 @@ class EstadoCatalogo {
 
 /// Prefijos que marcan la firma de una persona experta en `revisado_por`.
 const List<String> prefijosFirmaPersona = ['persona:', 'asesor:'];
+
+/// Prefijo de una revisión hecha por una IA (informe con fuentes). Cuenta
+/// como trabajo hecho, nunca como firma de persona.
+const String prefijoRevisionIa = 'revision-ia:';
+
+bool esRevisionDeIa(String valor) =>
+    valor.trim().toLowerCase().startsWith(prefijoRevisionIa);
 
 bool esFirmaDePersona(String valor) {
   final normalizado = valor.trim().toLowerCase();
@@ -119,6 +131,7 @@ EstadoCatalogo analizarCatalogo(String texto, {required String ruta}) {
   var sinRevisar = 0;
   var porFuente = 0;
   var porPersona = 0;
+  var porIa = 0;
   if (indiceRevision >= 0) {
     for (final fila in datos) {
       final valor =
@@ -127,6 +140,8 @@ EstadoCatalogo analizarCatalogo(String texto, {required String ruta}) {
         sinRevisar++;
       } else if (esFirmaDePersona(valor)) {
         porPersona++;
+      } else if (esRevisionDeIa(valor)) {
+        porIa++;
       } else {
         porFuente++;
       }
@@ -139,6 +154,7 @@ EstadoCatalogo analizarCatalogo(String texto, {required String ruta}) {
     sinRevisar: sinRevisar,
     revisadasPorFuentePublica: porFuente,
     revisadasPorPersona: porPersona,
+    revisadasPorIa: porIa,
     cabeceraProvisional: comentarios.toUpperCase().contains('PROVISIONAL'),
     tieneColumnaRevision: indiceRevision >= 0,
   );

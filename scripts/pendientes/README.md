@@ -30,4 +30,8 @@ Hoy los catálogos llevan en `revisado_por` una **cita** (`fuente_publica`, «MA
 picual,Picual,…,asesor: Nombre Apellido (agrónomo, 2026-11-20)
 ```
 
-Lo escribe el asistente de auditoría (`scripts/auditoria/`).
+`persona:` es quien asume la revisión sin ser asesor (por ejemplo, el titular del proyecto después de leer un informe).
+
+Un valor que empieza por `revision-ia:` es una revisión hecha por una IA, con informe y fuentes. El tablero la cuenta en una columna aparte: es trabajo hecho, pero **no es firma** y no retira sellos. Una persona puede firmar encima y la revisión de IA queda como cita.
+
+Lo escribe el asistente de auditoría (`scripts/auditoria/`, `firmar --como asesor|persona|revision-ia`).

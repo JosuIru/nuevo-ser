@@ -55,6 +55,7 @@ String informeHtml(Inventario inventario) {
         '<td><code>${escaparHtml(catalogo.nombreArchivo)}</code></td>'
         '<td class="num">${catalogo.filas}</td>'
         '<td class="num">${catalogo.revisadasPorPersona}</td>'
+        '<td class="num">${catalogo.revisadasPorIa}</td>'
         '<td class="num">${catalogo.revisadasPorFuentePublica}</td>'
         '<td class="num">${catalogo.sinRevisar}</td>'
         '<td><span class="barra"><span style="width:$porcentajePersona%"></span></span></td></tr>');
@@ -148,7 +149,7 @@ code { font: .85rem ui-monospace, monospace; }
 
 <h2>Catálogos</h2>
 <p class="sub">Filas firmadas por una persona, contrastadas solo con fuente pública y sin revisar. La barra muestra la parte firmada por una persona.</p>
-<div class="tabla"><table><thead><tr><th>Vertical</th><th>Archivo</th><th>Filas</th><th>Persona</th><th>Fuente pública</th><th>Sin revisar</th><th></th></tr></thead><tbody>$filasCatalogos</tbody></table></div>
+<div class="tabla"><table><thead><tr><th>Vertical</th><th>Archivo</th><th>Filas</th><th>Persona</th><th>Revisión IA</th><th>Fuente pública</th><th>Sin revisar</th><th></th></tr></thead><tbody>$filasCatalogos</tbody></table></div>
 <ul>$filasFlags</ul>
 </main>
 <script>

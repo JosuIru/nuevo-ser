@@ -8,7 +8,9 @@ import '../modelos/ganado.dart';
 import '../modelos/titular.dart';
 import '../utiles/textos_ganadera.dart';
 import 'lectura_receta.dart';
+import '../servicios/exportacion_datos.dart';
 import 'pantalla_documentos.dart';
+import 'pantalla_economia.dart';
 import 'pantalla_mapa_pastos.dart' show posicionActual;
 
 /// Ajustes: idioma, titular y explotación (los datos de cabecera del libro
@@ -169,6 +171,30 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             title: Text(SoleraL10n.t('gana.inteligencia_artificial')),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => abrirClaveIaGanadera(context),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.euro_outlined),
+            title: Text(SoleraL10n.t('gana.ingresos_y_gastos')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaEconomia())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.download_outlined),
+            title: Text(SoleraL10n.t('gana.exportar_datos')),
+            subtitle: Text(SoleraL10n.t('gana.exportar_datos_explicacion')),
+            onTap: () async {
+              final mensajero = ScaffoldMessenger.of(context);
+              try {
+                await exportarTodosLosDatos();
+              } catch (error) {
+                debugPrint('Exportación fallida: $error');
+                mensajero.showSnackBar(SnackBar(
+                    content: Text(SoleraL10n.t('gana.error_documento'))));
+              }
+            },
           ),
           // ACCESOS
           const SelectorIdioma(),

@@ -15,6 +15,10 @@ y sigue. Lo recoge `scripts/pendientes/`.
   (`dominio/informe_ecoregimen.dart`): fechas de cómputo y reducciones de la
   campaña en cada comunidad, si la hembra vacuna adulta cuenta 0,8 o 1,0, cómo
   tratar la cerda de cría sin peso y cómo cuentan comunales y arrendados.
+- **Asesor fiscal**: REAGP ganadero (porcentaje de compensación vigente, Ley
+  37/1992 art. 130; cuándo conviene el régimen general), tipos de IVA de la venta
+  directa de carne, categorías del libro y si hacen falta facturas
+  (`generador_extracto_economico_pdf.dart`).
 
 ## Catálogos
 

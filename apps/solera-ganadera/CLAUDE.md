@@ -15,11 +15,11 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | ✅ 2026-11-07 | `content/ganadera/`: tabla UGM por trámite, parámetros del eco-régimen, especies, razas (RD 45/2019 anexo I) y 24 sustancias activas **sin marcas, dosis ni tiempos de espera**, contrastadas con la API de CIMA Vet. Autocompletado de raza y sustancia; la clase de medicamento sale del catálogo si no se indica. Tests de integridad (cobertura de la tabla UGM, sin firmas falsas). 76 tests |
 | 7 IA visual | ✅ 2026-11-07 | Ficha del rebaño → «Leer receta con IA»: foto de la **receta veterinaria** → transcripción estructurada (medicamento, sustancias, cantidad, duración, esperas, veterinario, n.º, fecha) → la persona la compara → el formulario del tratamiento se abre relleno. La sustancia se casa con el catálogo. Un plazo que no se lee queda vacío (−1 en el esquema). Modelo equilibrado del core, clave BYO (`estado/clave_anthropic_ganadera.dart`), la foto se borra. 80 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (crotal rojo `#B8402A` sobre pasto, pardo lana y crema) en `assets/`, iconos del lanzador con `flutter_launcher_icons`, logo en la cabecera de Hoy. **GPS**: contorno de cada pieza caminando el linde (superficie y perímetro por exceso esférico, `geodesia.dart` de Zunbeltz) y coordenadas de la explotación; mapa de pastos con `flutter_map` (los contornos se ven sin cobertura). Permisos de Internet y ubicación en el manifiesto. 93 tests |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes con fecha, categoría ganadera y, en ingresos, REAGP (compensación editable, 10,5 % por verificar) o IVA; resumen del mes (resultado, compensación cobrada, IVA repercutido y soportado) y extracto PDF con sello. **Exportación completa**: un CSV por tabla desde Ajustes (hard limit 4). 98 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 9 (economía REAGP ganadera PROVISIONAL y exportación completa de datos).
+**Siguiente acción**: bloque 10 (revisión con fuente pública y lista para los asesores).
 
 ## Encuadre
 
@@ -137,6 +137,14 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
 - **2026-11-07 — Sin caché de teselas**: Zunbeltz la tiene (`cache_teselas.dart`),
   pero arrastra servicios de sincronización. Sin cobertura se ven los contornos
   sobre fondo vacío. Pendiente para F2.
+- **2026-11-07 — Economía mínima, sin facturas del core**: un libro de apuntes
+  como Obrador, con régimen por apunte (REAGP o IVA) porque la explotación mixta
+  vende a cooperativa (REAGP) y en directo (puede facturar con IVA). Las facturas
+  (`facturacion/` del core) esperan a que el asesor fije el régimen. La
+  compensación del 10,5 % para ganadería no se ha podido leer en el BOE (art. 130
+  de la Ley 37/1992): queda editable y marcada «por verificar».
+- **2026-11-07 — Exportación en CSV, no Excel**: un CSV por tabla con la hoja de
+  compartir; sin dependencias nuevas. Importar desde Zunbeltz queda para F2.
 - **2026-11-07 — Fechas con selector** en movimientos, eventos, tareas y visitas
   (en Obrador se apuntaba con la fecha actual).
 

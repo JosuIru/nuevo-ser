@@ -11,7 +11,7 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
 
 /// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
 /// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR'};
+const _dominiosRevisados = {'FR', 'DEC'};
 
 bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
 
@@ -226,6 +226,33 @@ void main() {
           ..sort();
         expect(lados[0] + lados[1], greaterThan(lados[2]), reason: ejercicio.enunciado);
         expect(ejercicio.enunciado, isNot(contains('veces más grande')));
+      }
+    });
+
+    test('DEC.02: a veces gana el decimal con más cifras y a veces el de menos', () {
+      var ganaElLargo = 0, ganaElCorto = 0;
+      for (final ejercicio in _muestras('DEC.02', semilla: 3, cantidad: 3000)) {
+        final numeros = ejercicio.destacado!.split('___').map((n) => n.trim()).toList();
+        final valores = numeros.map((n) => double.parse(n.replaceAll(',', '.'))).toList();
+        final signo = valores[0] < valores[1] ? '<' : (valores[0] > valores[1] ? '>' : '=');
+        expect(ejercicio.solucion, signo, reason: ejercicio.destacado);
+        final mayor = valores[0] > valores[1] ? numeros[0] : numeros[1];
+        final menor = valores[0] > valores[1] ? numeros[1] : numeros[0];
+        if (mayor.length > menor.length) ganaElLargo++;
+        if (mayor.length < menor.length) ganaElCorto++;
+      }
+      expect(ganaElLargo, greaterThan(600), reason: 'el error típico no debe premiarse siempre');
+      expect(ganaElCorto, greaterThan(600));
+    });
+
+    test('DEC.07: el cociente es correcto y nunca trivial (nada de «3 : 3»)', () {
+      for (final ejercicio in _muestras('DEC.07', semilla: 3, cantidad: 3000)) {
+        final partes = ejercicio.destacado!.replaceAll(' =', '').split(' : ');
+        final dividendo = double.parse(partes[0].replaceAll(',', '.'));
+        final divisor = double.parse(partes[1].replaceAll(',', '.'));
+        final cociente = double.parse(ejercicio.solucion.replaceAll(',', '.'));
+        expect((dividendo / divisor - cociente).abs(), lessThan(1e-9), reason: ejercicio.destacado);
+        expect(cociente, isNot(1), reason: ejercicio.destacado);
       }
     });
 

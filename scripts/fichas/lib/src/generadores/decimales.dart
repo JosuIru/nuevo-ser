@@ -70,7 +70,8 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.01',
     descripcion:
         'Un número decimal tiene una parte entera y, tras la coma, décimas (1/10), '
-        'centésimas (1/100) y milésimas (1/1000). 3,07 son tres unidades y siete centésimas.',
+        'centésimas (1/100) y milésimas (1/1000).\n'
+        'Ejemplo: 3,07 son tres unidades y siete centésimas.',
     preguntaExplicalo: '¿Por qué 0,5 y 0,50 son el mismo número? ¿Y por qué 0,05 no lo es?',
     generar: (azar) {
       final cifras = azar.entre(1, 2);
@@ -99,15 +100,19 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.02',
     descripcion:
         'Para comparar decimales se mira primero la parte entera; si es igual, las décimas; '
-        'luego las centésimas… Tener más cifras no hace a un número más grande: 0,4 > 0,35.',
+        'luego las centésimas… Tener más cifras no hace a un número más grande.\n'
+        'Ejemplo: 0,4 > 0,35, porque 4 décimas son más que 3 décimas.',
     preguntaExplicalo: 'Alguien dice que 0,35 es mayor que 0,4 porque 35 es más que 4. ¿Qué le dirías?',
     generar: (azar) {
-      // Sesgo hacia el error típico: el número con más cifras no es el mayor.
+      // Dos de cada tres, el error típico (el de más cifras es el menor);
+      // uno de cada tres, al revés, para no premiar «el más corto gana».
       final entero = azar.entre(0, 9);
-      final decimas = azar.entre(2, 9);
+      final decimas = azar.entre(2, 8);
       final corto = DecimalExacto(entero * 10 + decimas, 1);
-      // Con centésimas de verdad (no «1,10»), y menor que el corto.
-      final largo = DecimalExacto(entero * 100 + azar.entre(0, decimas - 1) * 10 + azar.entre(1, 9), 2);
+      final decimasDelLargo =
+          azar.nextInt(3) == 0 ? azar.entre(decimas, 9) : azar.entre(0, decimas - 1);
+      // Con centésimas de verdad (no «1,10»).
+      final largo = DecimalExacto(entero * 100 + decimasDelLargo * 10 + azar.entre(1, 9), 2);
       final (primero, segundo) = azar.nextBool() ? (corto, largo) : (largo, corto);
       final comparacion = primero.valor.compareTo(segundo.valor);
       return Ejercicio(
@@ -122,7 +127,8 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.03',
     descripcion:
         'Para ordenar decimales, compáralos cifra a cifra empezando por la izquierda. Si te '
-        'ayuda, añade ceros al final para que todos tengan las mismas cifras: 0,5 = 0,50.',
+        'ayuda, añade ceros al final para que todos tengan las mismas cifras: 0,5 = 0,50.\n'
+        'Ejemplo: 0,5, 0,45 y 0,6 son 0,50, 0,45 y 0,60; así que 0,45 < 0,5 < 0,6.',
     preguntaExplicalo: '¿Para qué sirve añadir ceros al final al ordenar decimales? ¿Cambia el número?',
     generar: (azar) {
       final entero = azar.entre(0, 3);
@@ -147,7 +153,8 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.04',
     descripcion:
         'Para sumar o restar decimales se colocan uno debajo de otro con las comas alineadas, '
-        'y se opera como con números enteros. La coma del resultado va en la misma columna.',
+        'y se opera como con números enteros. La coma del resultado va en la misma columna.\n'
+        'Ejemplo: 3,5 + 1,25 se escribe 3,50 + 1,25 = 4,75.',
     preguntaExplicalo: '¿Qué pasa si no pones las comas una debajo de la otra? Pon un ejemplo.',
     generar: (azar) {
       final primero = _decimal(azar, cifras: azar.entre(1, 2));
@@ -166,7 +173,8 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.05',
     descripcion:
         'Para multiplicar un decimal por un número natural, multiplica sin la coma y después '
-        'pon en el resultado tantas cifras decimales como tenía el decimal.',
+        'pon en el resultado tantas cifras decimales como tenía el decimal.\n'
+        'Ejemplo: 1,25 × 3: 125 × 3 = 375, y con dos cifras decimales, 3,75.',
     preguntaExplicalo: '¿Por qué 0,3 × 4 da 1,2 y no 12? Explícalo con dinero o con medidas.',
     generar: (azar) {
       final decimal = _decimal(azar, enteroMaximo: 12, cifras: azar.entre(1, 2));
@@ -183,7 +191,8 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.06',
     descripcion:
         'Para multiplicar dos decimales, multiplica sin las comas y pon en el resultado tantas '
-        'cifras decimales como sumen los dos factores. 1,2 × 0,3 = 0,36.',
+        'cifras decimales como sumen los dos factores.\n'
+        'Ejemplo: 1,2 × 0,3: 12 × 3 = 36, y con una + una = dos cifras decimales, 0,36.',
     preguntaExplicalo: '¿Por qué al multiplicar por 0,5 el resultado se hace más pequeño?',
     generar: (azar) {
       final primero = _decimal(azar, enteroMaximo: 9, cifras: 1);
@@ -200,11 +209,14 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.07',
     descripcion:
         'Para dividir entre un decimal, quita la coma del divisor multiplicando los dos números '
-        'por 10, 100…: el cociente no cambia. 4,8 : 0,4 = 48 : 4 = 12.',
-    preguntaExplicalo: '¿Por qué se puede multiplicar por 10 los dos números de una división sin cambiar el resultado?',
+        'por 10, 100…: el cociente no cambia.\n'
+        'Ejemplo: 4,8 : 0,4 = 48 : 4 = 12.',
+    preguntaExplicalo:
+        '¿Por qué se pueden multiplicar por 10 los dos números de una división sin que cambie el resultado?',
     generar: (azar) {
       final divisor = DecimalExacto(azar.entre(2, 9), azar.entre(1, 2) == 1 ? 1 : 0);
-      final cociente = azar.entre(2, 15);
+      // Sin 10: con divisor natural daría «3 : 3 = 1».
+      final cociente = azar.elegir([for (var c = 2; c <= 15; c++) if (c != 10) c]);
       // El dividendo siempre lleva una cifra decimal: 4,8 : 0,4 o 4,8 : 4.
       final dividendo = DecimalExacto(divisor.escalado * cociente, 1);
       final divisorTexto = divisor.cifras == 0 ? '${divisor.escalado}' : divisor.texto;
@@ -221,8 +233,9 @@ final List<PlantillaFicha> plantillasDecimales = [
   PlantillaFicha(
     idHabilidad: 'DEC.08',
     descripcion:
-        'Una fracción es una división: 3/4 = 3 : 4 = 0,75. Con denominadores 2, 4, 5, 10, 20, '
-        '25 o 100 sale un decimal exacto y corto.',
+        'Una fracción es una división. Con denominadores 2, 4, 5, 10, 20, 25 o 100 sale un '
+        'decimal exacto y corto.\n'
+        'Ejemplo: 3/4 = 3 : 4 = 0,75.',
     preguntaExplicalo: '¿Por qué 1/4 es 0,25 y no 0,4? Explícalo con monedas de euro.',
     generar: (azar) {
       final denominador = azar.elegir([2, 4, 5, 10, 20, 25, 100]);
@@ -241,7 +254,8 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.09',
     descripcion:
         'Para redondear a las décimas, mira la cifra de las centésimas: si es 5 o más, la '
-        'décima sube uno; si es menos de 5, se queda igual. 2,37 se redondea a 2,4 y 2,34, a 2,3.',
+        'décima sube uno; si es menos de 5, se queda igual.\n'
+        'Ejemplo: 2,37 se redondea a 2,4 y 2,34, a 2,3.',
     preguntaExplicalo: '¿Para qué sirve redondear? Piensa en un caso de la vida en que lo hagas.',
     generar: (azar) {
       final numero = _decimal(azar, enteroMaximo: 30, cifras: 2);

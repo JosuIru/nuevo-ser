@@ -11,8 +11,11 @@ vive.asesor,Asesor de gestión integrada de plagas,Izurriteen kudeaketa integrat
 vive.asesor_ropo,Nº ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l’assessor,Nº ROPO do asesor
 vive.autorizado_pasaporte,Autorizado a expedir pasaportes fitosanitarios,Pasaporte fitosanitarioak emateko baimena,Autoritzat a expedir passaports fitosanitaris,Autorizado a expedir pasaportes fitosanitarios
 vive.autorizado_pasaporte_ayuda,"Lo concede la comunidad autónoma (RD 1054/2021, art. 22). Sin autorización, la app solo prepara borradores.","Autonomia erkidegoak ematen du (1054/2021 EDa, 22. art.). Baimenik gabe, aplikazioak zirriborroak baino ez ditu prestatzen.","L’atorga la comunitat autònoma (RD 1054/2021, art. 22). Sense autorització, l’app només prepara esborranys.","Concédea a comunidade autónoma (RD 1054/2021, art. 22). Sen autorización, a app só prepara borradores."
+vive.aviso_conservar_tres_anos,"Hay que conservar el registro de trazabilidad y los datos de los pasaportes al menos tres años (RD 1054/2021, art. 20).","Trazabilitate-erregistroa eta pasaporteen datuak gutxienez hiru urtez gorde behar dira (1054/2021 EDa, 20. art.).","Cal conservar el registre de traçabilitat i les dades dels passaports almenys tres anys (RD 1054/2021, art. 20).","Hai que conservar o rexistro de rastrexabilidade e os datos dos pasaportes polo menos tres anos (RD 1054/2021, art. 20)."
+vive.aviso_documento_provisional,Documento PROVISIONAL generado por Larrea Vivero: el formato está pendiente de validación por una persona experta y no sustituye su firma.,Larrea Vivero-k sortutako behin-behineko dokumentua (PROVISIONAL): formatua aditu batek balidatzeko dago eta ez du haren sinadura ordezten.,Document PROVISIONAL generat per Larrea Vivero: el format està pendent de validació per una persona experta i no en substitueix la signatura.,Documento PROVISIONAL xerado por Larrea Vivero: o formato está pendente de validación por unha persoa experta e non substitúe a súa sinatura.
 vive.aviso_inspeccion,Sospecha o detección de {plaga} ({fecha}) sin notificar,"{plaga} susmatua edo detektatua ({fecha}), jakinarazi gabe",Sospita o detecció de {plaga} ({fecha}) sense notificar,Sospeita ou detección de {plaga} ({fecha}) sen notificar
 vive.aviso_notificar_autoridad,"Si es una plaga cuarentenaria, hay que avisar de inmediato a la autoridad competente (RD 1054/2021, art. 22.2). La app no lo hace por ti.","Berrogeialdiko izurritea bada, berehala jakinarazi behar zaio agintaritza eskudunari (1054/2021 EDa, 22.2 art.). Aplikazioak ez du zure ordez egiten.","Si és una plaga de quarantena, cal avisar immediatament l’autoritat competent (RD 1054/2021, art. 22.2). L’app no ho fa per tu.","Se é unha praga corentenaria, hai que avisar de inmediato á autoridade competente (RD 1054/2021, art. 22.2). A app non o fai por ti."
+vive.aviso_registro_electronico,"Desde el 1-1-2027 el registro de tratamientos debe ser electrónico (RD 1311/2012, art. 16.1, mod. RD 1039/2025): este PDF no lo sustituye.","2027-1-1etik aurrera tratamenduen erregistroak elektronikoa izan behar du (1311/2012 EDa, 16.1 art., 1039/2025 EDak aldatua): PDF honek ez du ordezten.","Des de l’1-1-2027 el registre de tractaments ha de ser electrònic (RD 1311/2012, art. 16.1, mod. RD 1039/2025): aquest PDF no el substitueix.","Desde o 1-1-2027 o rexistro de tratamentos debe ser electrónico (RD 1311/2012, art. 16.1, mod. RD 1039/2025): este PDF non o substitúe."
 vive.bandeja,Bandeja,Erretilua,Safata,Bandexa
 vive.bandeja_activa,En uso,Erabilian,En ús,En uso
 vive.bandeja_destino,Bandeja de destino,Helmuga-erretilua,Safata de destinació,Bandexa de destino
@@ -45,12 +48,14 @@ vive.comunidad_autonoma,Comunidad autónoma,Autonomia erkidegoa,Comunitat autòn
 vive.con_gps,con GPS,GPSarekin,amb GPS,con GPS
 vive.copiar_de_etiqueta,Cópialo de la etiqueta del producto: la app no lo propone.,Kopiatu produktuaren etiketatik: aplikazioak ez du proposatzen.,Copia-ho de l’etiqueta del producte: l’app no ho proposa.,Cópiao da etiqueta do produto: a app non o propón.
 vive.cuaderno,Cuaderno,Koadernoa,Quadern,Caderno
+vive.cuaderno_tratamientos,Cuaderno de tratamientos,Tratamenduen koadernoa,Quadern de tractaments,Caderno de tratamentos
 vive.datos_pasaporte,Datos del pasaporte (letras A-D),Pasaportearen datuak (A-D letrak),Dades del passaport (lletres A-D),Datos do pasaporte (letras A-D)
 vive.datos_vivero,Datos del vivero,Mintegiaren datuak,Dades del viver,Datos do viveiro
 vive.decision_del_operador,Es una orientación según el Reglamento (UE) 2016/2031 (art. 81) y el RD 1054/2021 (art. 16): la decisión y la firma son del operador autorizado.,Orientazio bat da (EB) 2016/2031 Erregelamenduaren (81. art.) eta 1054/2021 EDaren (16. art.) arabera: erabakia eta sinadura operadore baimenduarenak dira.,És una orientació segons el Reglament (UE) 2016/2031 (art. 81) i el RD 1054/2021 (art. 16): la decisió i la signatura són de l’operador autoritzat.,É unha orientación segundo o Regulamento (UE) 2016/2031 (art. 81) e o RD 1054/2021 (art. 16): a decisión e a sinatura son do operador autorizado.
 vive.destino_zona_protegida,Destino en zona protegida,Helmuga babestutako eremuan,Destinació en zona protegida,Destino en zona protexida
 vive.destino_zona_protegida_ayuda,Para alguna plaga de la especie: entonces el pasaporte es «ZP».,Espeziearen izurriteren baterako: orduan pasaportea «ZP» da.,Per a alguna plaga de l’espècie: aleshores el passaport és «ZP».,Para algunha praga da especie: entón o pasaporte é «ZP».
 vive.disponibles_n,{n} disponibles,{n} erabilgarri,{n} disponibles,{n} dispoñibles
+vive.documentos,Documentos,Dokumentuak,Documents,Documentos
 vive.dosis_aplicada,Dosis aplicada,Aplikatutako dosia,Dosi aplicada,Dose aplicada
 vive.editar_bandeja,Editar bandeja,Erretilua editatu,Edita la safata,Editar bandexa
 vive.editar_lote,Editar lote,Sorta editatu,Edita el lot,Editar lote
@@ -62,9 +67,11 @@ vive.eficacia_mala,Mala,Txarra,Dolenta,Mala
 vive.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
 vive.elige_partida_o_zona,Elige una partida o una zona.,Aukeratu partida bat edo eremu bat.,Tria una partida o una zona.,Escolle unha partida ou unha zona.
 vive.equipo_aplicacion,Equipo de aplicación (nº ROMA),Aplikazio-ekipoa (ROMA zk.),Equip d’aplicació (núm. ROMA),Equipo de aplicación (nº ROMA)
+vive.error_documento,No se pudo generar el documento.,Ezin izan da dokumentua sortu.,No s’ha pogut generar el document.,Non se puido xerar o documento.
 vive.es_usuario_final,Usuario final,Azken erabiltzailea,Usuari final,Usuario final
 vive.es_usuario_final_ayuda,"Compra para su uso personal, fuera de su profesión.","Erabilera pertsonalerako erosten du, bere lanbidetik kanpo.","Compra per al seu ús personal, fora de la seva professió.","Compra para o seu uso persoal, fóra da súa profesión."
 vive.especie,Especie,Espeziea,Espècie,Especie
+vive.etiqueta_pdf,Etiqueta en PDF,Etiketa PDFn,Etiqueta en PDF,Etiqueta en PDF
 vive.falta_codigo_operador,Falta el nº ROPVEG del vivero (Ajustes) o no tiene la forma «ES-» y ocho dígitos.,Mintegiaren ROPVEG zk. falta da (Ezarpenak) edo ez du «ES-» eta zortzi digituko itxura.,Falta el núm. ROPVEG del viver (Configuració) o no té la forma «ES-» i vuit dígits.,Falta o nº ROPVEG do viveiro (Axustes) ou non ten a forma «ES-» e oito díxitos.
 vive.falta_codigo_trazabilidad,Falta el código de trazabilidad.,Trazabilitate-kodea falta da.,Falta el codi de traçabilitat.,Falta o código de rastrexabilidade.
 vive.falta_nombre_botanico,Falta el nombre botánico de la partida.,Partidaren izen botanikoa falta da.,Falta el nom botànic de la partida.,Falta o nome botánico da partida.
@@ -110,6 +117,7 @@ vive.metodo_plantacion,Plantación,Landaketa,Plantació,Plantación
 vive.metodo_siembra,Siembra,Ereitea,Sembra,Sementeira
 vive.muestra_tomada,Se tomó muestra,Lagina hartu zen,Es va prendre mostra,Tomouse mostra
 vive.municipio,Municipio,Udalerria,Municipi,Concello
+vive.no,No,Ez,No,Non
 vive.nombre,Nombre,Izena,Nom,Nome
 vive.nombre_botanico,Nombre botánico (letra A),Izen botanikoa (A letra),Nom botànic (lletra A),Nome botánico (letra A)
 vive.nombre_botanico_ayuda,"Género y especie en latín, p. ej. Castanea sativa.","Generoa eta espeziea latinez, adib. Castanea sativa.","Gènere i espècie en llatí, p. ex. Castanea sativa.","Xénero e especie en latín, p. ex. Castanea sativa."
@@ -148,6 +156,23 @@ vive.paso_bandeja,Da de alta una bandeja (pestaña Bandejas).,Erretilu bat alta 
 vive.paso_datos_vivero,Pon los datos del vivero y su nº ROPVEG (Ajustes).,Jarri mintegiaren datuak eta bere ROPVEG zk. (Ezarpenak).,Posa les dades del viver i el núm. ROPVEG (Configuració).,Pon os datos do viveiro e o seu nº ROPVEG (Axustes).
 vive.paso_lote,Apunta un lote de semilla o esquejes (pestaña Material).,Idatzi hazi edo ebakin sorta bat (Materiala fitxa).,Anota un lot de llavor o esqueixos (pestanya Material).,Anota un lote de semente ou esqueixes (lapela Material).
 vive.paso_siembra,Siembra el lote en la bandeja: nace la primera partida.,Erein sorta erretiluan: lehen partida sortzen da.,Sembra el lot a la safata: neix la primera partida.,Sementa o lote na bandexa: nace a primeira partida.
+vive.pdf_aplicador,Aplicador y carné,Aplikatzailea eta txartela,Aplicador i carnet,Aplicador e carné
+vive.pdf_borrador_no_valido,BORRADOR: no válido como pasaporte fitosanitario (vivero sin autorización apuntada o datos incompletos).,ZIRRIBORROA: ez du balio pasaporte fitosanitario gisa (baimenik idatzi gabeko mintegia edo datu osatugabeak).,ESBORRANY: no vàlid com a passaport fitosanitari (viver sense autorització anotada o dades incompletes).,BORRADOR: non válido como pasaporte fitosanitario (viveiro sen autorización anotada ou datos incompletos).
+vive.pdf_dato,Dato,Datua,Dada,Dato
+vive.pdf_datos_generales,Datos generales,Datu orokorrak,Dades generals,Datos xerais
+vive.pdf_destino,Destino: salidas,Helmuga: irteerak,Destinació: sortides,Destino: saídas
+vive.pdf_donde,Zona y partida,Eremua eta partida,Zona i partida,Zona e partida
+vive.pdf_equipo,Equipo,Ekipoa,Equip,Equipo
+vive.pdf_estado,Estado,Egoera,Estat,Estado
+vive.pdf_formato_por_validar,"formato según el Reglamento de Ejecución (UE) 2017/2313, pendiente de validar por la autoridad de sanidad vegetal.","formatua (EB) 2017/2313 Betearazpen Erregelamenduaren arabera, landare-osasuneko agintaritzak balidatzeko.","format segons el Reglament d’Execució (UE) 2017/2313, pendent de validar per l’autoritat de sanitat vegetal.","formato segundo o Regulamento de Execución (UE) 2017/2313, pendente de validar pola autoridade de sanidade vexetal."
+vive.pdf_numero_orden,Nº,Zk.,Núm.,Nº
+vive.pdf_numero_registro,Nº registro,Erregistro-zk.,Núm. registre,Nº rexistro
+vive.pdf_origen,Origen: material recibido,Jatorria: jasotako materiala,Origen: material rebut,Orixe: material recibido
+vive.pdf_pasaporte,Pasaporte,Pasaportea,Passaport,Pasaporte
+vive.pdf_plazo,P. seg. (días),Segurt. epea (egunak),T. seg. (dies),P. seg. (días)
+vive.pdf_sin_entradas,Sin material recibido de proveedores este año.,Aurten ez da hornitzaileen materialik jaso.,Sense material rebut de proveïdors aquest any.,Sen material recibido de provedores este ano.
+vive.pdf_valor,Valor,Balioa,Valor,Valor
+vive.pdf_zonas,Zonas de cultivo,Laborantza-eremuak,Zones de cultiu,Zonas de cultivo
 vive.persona_contacto,Persona de contacto fitosanitaria,Fitosanitario-arloko harremanetarako pertsona,Persona de contacte fitosanitària,Persoa de contacto fitosanitaria
 vive.plaga_regulada,Plaga regulada,Izurrite arautua,Plaga regulada,Praga regulada
 vive.plagas_zona_protegida,Plaga de zona protegida (nombre o código),Eremu babestuko izurritea (izena edo kodea),Plaga de zona protegida (nom o codi),Praga de zona protexida (nome ou código)
@@ -172,6 +197,7 @@ vive.proveedor_ropveg,Nº ROPVEG del proveedor,Hornitzailearen ROPVEG zk.,Núm. 
 vive.region_procedencia,Región de procedencia (nombre y código),Jatorri-eskualdea (izena eta kodea),Regió de procedència (nom i codi),Rexión de procedencia (nome e código)
 vive.region_procedencia_ayuda,"La del documento del proveedor (RD 289/2003, anexo IX).","Hornitzailearen agirikoa (289/2003 EDa, IX. eranskina).","La del document del proveïdor (RD 289/2003, annex IX).","A do documento do provedor (RD 289/2003, anexo IX)."
 vive.registro_explotacion,Registro de explotación (si es agrario),Ustiategiaren erregistroa (nekazaritzakoa bada),Registre d’explotació (si és agrari),Rexistro de explotación (se é agrario)
+vive.registro_pasaportes,Registro de pasaportes y trazabilidad,Pasaporteen eta trazabilitatearen erregistroa,Registre de passaports i traçabilitat,Rexistro de pasaportes e rastrexabilidade
 vive.repicar,Repicar,Birlandatu,Repicar,Repicar
 vive.resultado,Resultado,Emaitza,Resultat,Resultado
 vive.resultado_detectada,Detectada,Detektatua,Detectada,Detectada
@@ -183,6 +209,7 @@ vive.salida_del,Salida del {fecha},{fecha}ko irteera,Sortida del {fecha},Saída 
 vive.salidas,Salidas,Irteerak,Sortides,Saídas
 vive.salidas_sin_pasaporte,{n} salidas necesitan los datos del pasaporte,{n} irteerak pasaportearen datuak behar dituzte,{n} sortides necessiten les dades del passaport,{n} saídas necesitan os datos do pasaporte
 vive.sembrar,Sembrar,Erein,Sembra,Sementar
+vive.si,Sí,Bai,Sí,Si
 vive.siembras,Siembras,Ereintzak,Sembres,Sementeiras
 vive.sin_autorizacion_borrador,El vivero no tiene apuntada la autorización para expedir pasaportes: lo que se prepare será un borrador.,Mintegiak ez du pasaporteak emateko baimena idatzita: prestatzen dena zirriborroa izango da.,El viver no té anotada l’autorització per expedir passaports: el que es prepari serà un esborrany.,O viveiro non ten anotada a autorización para expedir pasaportes: o que se prepare será un borrador.
 vive.sin_bandeja,Sin bandeja,Erretilurik gabe,Sense safata,Sen bandexa

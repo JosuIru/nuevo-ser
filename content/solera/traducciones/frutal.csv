@@ -13,6 +13,8 @@ frut.asesor,Asesor de gestión integrada de plagas,Izurriteen kudeaketa integrat
 frut.asesor_ropo,Nº ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l'assessor,N.º ROPO do asesor
 frut.aviso_documento_provisional,Documento PROVISIONAL: formato pendiente de validar por un asesor y por la administración autonómica. No sustituye la firma del asesor ni acredita el cumplimiento de ninguna norma.,"BEHIN-BEHINEKO dokumentua: formatua aholkulari batek eta administrazio autonomikoak balioztatu behar dute. Ez du aholkulariaren sinadura ordezten, ezta inolako araurik betetzen dela egiaztatzen ere.",Document PROVISIONAL: format pendent de validar per un assessor i per l'administració autonòmica. No substitueix la signatura de l'assessor ni acredita el compliment de cap norma.,Documento PROVISIONAL: formato pendente de validar por un asesor e pola administración autonómica. Non substitúe a sinatura do asesor nin acredita o cumprimento de ningunha norma.
 frut.aviso_fiscal,"Cálculo orientativo y PROVISIONAL: no es una liquidación de impuestos. El régimen, los tipos de IVA y el porcentaje de compensación los confirma tu asesor fiscal.","Kalkulu orientagarria eta BEHIN-BEHINEKOA: ez da zerga-likidazio bat. Erregimena, BEZ tasak eta konpentsazio-ehunekoa zure zerga-aholkulariak berresten ditu.","Càlcul orientatiu i PROVISIONAL: no és una liquidació d'impostos. El règim, els tipus d'IVA i el percentatge de compensació els confirma el teu assessor fiscal.","Cálculo orientativo e PROVISIONAL: non é unha liquidación de impostos. O réxime, os tipos de IVE e a porcentaxe de compensación confírmaos o teu asesor fiscal."
+frut.aviso_helada,Previsión de helada en estados sensibles,Izotz-iragarpena egoera sentikorretan,Previsió de gelada en estats sensibles,Previsión de xeada en estados sensibles
+frut.aviso_helada_orientativo,Orientativo: cruza la previsión de 7 días con un calendario aproximado. El estado real depende de la variedad y de la zona.,Orientagarria: 7 eguneko iragarpena egutegi hurbildu batekin gurutzatzen du. Benetako egoera barietatearen eta eremuaren araberakoa da.,Orientatiu: creua la previsió de 7 dies amb un calendari aproximat. L'estat real depèn de la varietat i de la zona.,Orientativo: cruza a previsión de 7 días cun calendario aproximado. O estado real depende da variedade e da zona.
 frut.aviso_plazo_seguridad,Hay tratamientos dentro de su plazo de seguridad en esta fecha,Data honetan segurtasun-epean dauden tratamenduak daude,Hi ha tractaments dins del seu termini de seguretat en aquesta data,Hai tratamentos dentro do seu prazo de seguridade nesta data
 frut.base,Base,Oinarria,Base,Base
 frut.base_euros,Base imponible (€),Zerga-oinarria (€),Base imposable (€),Base impoñible (€)
@@ -42,6 +44,7 @@ frut.codigo_rega,Código REGA del apicultor,Erlezainaren REGA kodea,Codi REGA de
 frut.codigo_rega_ayuda,El mismo que usa en Larrea Apícola,Larrea Apícolan erabiltzen duen bera,El mateix que fa servir a Larrea Apícola,O mesmo que usa en Larrea Apícola
 frut.codigo_sigpac,Código SIGPAC,SIGPAC kodea,Codi SIGPAC,Código SIXPAC
 frut.colmenas_en_parcela,Colmenas en las parcelas,Erlauntzak lursailetan,Ruscs a les parcel·les,Colmeas nas parcelas
+frut.colmenas_orientacion,Orientación para la especie: de {min} a {max} colmenas/ha,Espeziearentzako orientazioa: {min} eta {max} erlauntz/ha artean,Orientació per a l'espècie: de {min} a {max} ruscs/ha,Orientación para a especie: de {min} a {max} colmeas/ha
 frut.colmenas_por_ha,{n} colmenas/ha,{n} erlauntz/ha,{n} ruscs/ha,{n} colmeas/ha
 frut.compensaciones_reagp,Compensaciones REAGP,REAGP konpentsazioak,Compensacions REAGP,Compensacións REAGP
 frut.comunicada_seguro,Comunicada al seguro,Aseguruari jakinarazita,Comunicada a l'assegurança,Comunicada ao seguro
@@ -155,6 +158,12 @@ frut.pedrisco,Pedrisco,Txingorra,Calamarsa,Sarabia
 frut.plaga,Plaga o enfermedad,Izurritea edo gaixotasuna,Plaga o malaltia,Praga ou enfermidade
 frut.plazo_seguridad_dias,"Plazo de seguridad (días, de la etiqueta)","Segurtasun-epea (egunak, etiketatik)","Termini de seguretat (dies, de l'etiqueta)","Prazo de seguridade (días, da etiqueta)"
 frut.plazos_abiertos,Plazos de seguridad abiertos,Segurtasun-epe irekiak,Terminis de seguretat oberts,Prazos de seguridade abertos
+frut.poli_autocompatible,Autocompatible según el catálogo,Autobateragarria katalogoaren arabera,Autocompatible segons el catàleg,Autocompatible segundo o catálogo
+frut.poli_aviso,Orientación a partir del catálogo (sin revisar): la compatibilidad real la confirma el vivero o el técnico.,Katalogotik ateratako orientazioa (berrikusi gabe): benetako bateragarritasuna mintegiak edo teknikariak berresten du.,Orientació a partir del catàleg (sense revisar): la compatibilitat real la confirma el viver o el tècnic.,Orientación a partir do catálogo (sen revisar): a compatibilidade real confírmaa o viveiro ou o técnico.
+frut.poli_cubierta,Polinizada por: {variedades},Polinizatzaileak: {variedades},Pol·linitzada per: {variedades},Polinizada por: {variedades}
+frut.poli_desconocida,Sin datos de polinización en el catálogo,Katalogoan ez dago polinizazio-daturik,Sense dades de pol·linització al catàleg,Sen datos de polinización no catálogo
+frut.poli_por_confirmar,Florece a la vez que {variedades}; falta confirmar que sean compatibles,{variedades} barietateekin batera loratzen da; bateragarriak diren berretsi behar da,Floreix alhora que {variedades}; cal confirmar que siguin compatibles,Florece ao mesmo tempo ca {variedades}; falta confirmar que sexan compatibles
+frut.poli_sin_polinizadora,Necesita polinizadora y en la parcela no hay ninguna que florezca a la vez,Polinizatzailea behar du eta lursailean ez dago batera loratzen den bat ere,Necessita pol·linitzadora i a la parcel·la no n'hi ha cap que floreixi alhora,Necesita polinizadora e na parcela non hai ningunha que floreza ao mesmo tempo
 frut.polinizacion,Polinización,Polinizazioa,Pol·linització,Polinización
 frut.por_parcela,Por parcela,Lursailka,Per parcel·la,Por parcela
 frut.precio_colmena,Precio por colmena (€),Prezioa erlauntzeko (€),Preu per rusc (€),Prezo por colmea (€)
@@ -163,6 +172,8 @@ frut.primeros_pasos,Primeros pasos,Lehen urratsak,Primers passos,Primeiros pasos
 frut.primeros_pasos_texto,"1. Pon tus datos en Ajustes (titular y asesor). 2. Da de alta tus parcelas con su especie, marco y variedades. 3. Apunta tratamientos, abonados, riegos y cosechas: con eso sale el cuaderno.","1. Jarri zure datuak Ezarpenetan (titularra eta aholkularia). 2. Eman alta lursailei, espeziea, markoa eta barietateekin. 3. Idatzi tratamenduak, ongarritzeak, ureztatzeak eta uztak: horrekin ateratzen da koadernoa.","1. Posa les teves dades a Configuració (titular i assessor). 2. Dona d'alta les parcel·les amb l'espècie, el marc i les varietats. 3. Anota tractaments, adobats, regs i collites: amb això surt el quadern.","1. Pon os teus datos en Axustes (titular e asesor). 2. Dá de alta as túas parcelas coa especie, o marco e as variedades. 3. Anota tratamentos, abonados, regas e colleitas: con iso sae o caderno."
 frut.problema_fitosanitario,"Plaga, enfermedad o mala hierba","Izurritea, gaixotasuna edo belar txarra","Plaga, malaltia o mala herba","Praga, enfermidade ou mala herba"
 frut.proveedor,Proveedor,Hornitzailea,Proveïdor,Provedor
+frut.ps_maximo_registro,Plazo de seguridad máximo en el Registro MAPA para esta sustancia: {n} días. Manda el de la etiqueta.,Substantzia honen gehieneko segurtasun-epea MAPA Erregistroan: {n} egun. Etiketakoak agintzen du.,Termini de seguretat màxim al Registre MAPA per a aquesta substància: {n} dies. Mana el de l'etiqueta.,Prazo de seguridade máximo no Rexistro MAPA para esta substancia: {n} días. Manda o da etiqueta.
+frut.ps_no_procede_registro,En el Registro MAPA el plazo de seguridad de esta sustancia es «no procede». Manda el de la etiqueta.,MAPA Erregistroan substantzia honen segurtasun-epea «ez dagokio» da. Etiketakoak agintzen du.,Al Registre MAPA el termini de seguretat d'aquesta substància és «no procedeix». Mana el de l'etiqueta.,No Rexistro MAPA o prazo de seguridade desta substancia é «non procede». Manda o da etiqueta.
 frut.recuento,Recuento,Zenbaketa,Recompte,Reconto
 frut.recuento_ayuda,"Capturas, % de órganos afectados… (unidad en notas)","Harrapaketak, organo kaltetuen %… (unitatea oharretan)","Captures, % d'òrgans afectats… (unitat a les notes)","Capturas, % de órganos afectados… (unidade nas notas)"
 frut.regadio,Regadío,Ureztatua,Regadiu,Regadío
@@ -197,6 +208,7 @@ frut.supera_umbral,Supera el umbral de intervención,Esku-hartze atalasea gaindi
 frut.superficie_ha,Superficie (ha),Azalera (ha),Superfície (ha),Superficie (ha)
 frut.superficie_tratada_ha,Superficie tratada (ha),Tratatutako azalera (ha),Superfície tractada (ha),Superficie tratada (ha)
 frut.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+frut.sustancia_ayuda,Solo sustancias activas con algún uso registrado en la especie. La app no recomienda productos ni dosis.,Espeziean erregistratutako erabileraren bat duten substantzia aktiboak bakarrik. Aplikazioak ez du produkturik ez dosirik gomendatzen.,Només substàncies actives amb algun ús registrat a l'espècie. L'app no recomana productes ni dosis.,Só substancias activas con algún uso rexistrado na especie. A app non recomenda produtos nin doses.
 frut.temperatura_minima,Temperatura mínima (°C),Gutxieneko tenperatura (°C),Temperatura mínima (°C),Temperatura mínima (°C)
 frut.tipo_abono,Abono o enmienda,Ongarria edo zuzenketa,Adob o esmena,Abono ou emenda
 frut.titular,Titular,Titularra,Titular,Titular
@@ -206,8 +218,10 @@ frut.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
 frut.tratamientos_del_anyo,tratamientos este año,tratamendu aurten,tractaments enguany,tratamentos este ano
 frut.ubicacion,Ubicación,Kokapena,Ubicació,Localización
 frut.ultimos_tratamientos,Últimos tratamientos,Azken tratamenduak,Últims tractaments,Últimos tratamentos
+frut.umbral_guia,Umbral según la guía de gestión integrada,Atalasea kudeaketa integratuko gidaren arabera,Llindar segons la guia de gestió integrada,Limiar segundo a guía de xestión integrada
 frut.umbral_lo_decides,Lo decides tú o tu asesor con la guía de gestión integrada,Zuk edo zure aholkulariak erabakitzen duzue kudeaketa integratuko gidarekin,Ho decideixes tu o el teu assessor amb la guia de gestió integrada,Decídelo ti ou o teu asesor coa guía de xestión integrada
 frut.usar_mi_ubicacion,Usar mi ubicación,Erabili nire kokapena,Fes servir la meva ubicació,Usar a miña localización
+frut.uso_no_registrado,Atención: el catálogo no recoge ningún uso de esta sustancia para esta especie y plaga. Comprueba la etiqueta.,Kontuz: katalogoak ez du substantzia honen erabilerarik jasotzen espezie eta izurrite honetarako. Egiaztatu etiketa.,Atenció: el catàleg no recull cap ús d'aquesta substància per a aquesta espècie i plaga. Comprova l'etiqueta.,Atención: o catálogo non recolle ningún uso desta substancia para esta especie e praga. Comproba a etiqueta.
 frut.variedad,Variedad,Barietatea,Varietat,Variedade
 frut.variedad_principal,Variedad principal,Barietate nagusia,Varietat principal,Variedade principal
 frut.volumen_m3,Volumen (m³),Bolumena (m³),Volum (m³),Volume (m³)

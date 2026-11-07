@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
@@ -7,6 +8,7 @@ import '../estado/cambios_datos.dart';
 import '../modelos/pomarada.dart';
 import '../modelos/sagardotegi.dart';
 import '../modelos/tratamiento.dart';
+import '../utiles/permisos_gps.dart';
 import '../utiles/textos_sidra.dart';
 import 'boton_diagnostico_ia.dart';
 import 'hoja_formulario.dart';
@@ -175,6 +177,36 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
     if (elegidas != null) setState(() => _variedades = elegidas);
   }
 
+  bool _buscandoUbicacion = false;
+
+  /// Toma la posición del móvil (de pie en la pomarada).
+  Future<void> _usarUbicacion() async {
+    final mensajero = ScaffoldMessenger.of(context);
+    setState(() => _buscandoUbicacion = true);
+    try {
+      if (!await asegurarPermisoUbicacion()) {
+        mensajero.showSnackBar(SnackBar(
+            content: Text(SoleraL10n.t('sidr.sin_permiso_ubicacion'))));
+        return;
+      }
+      final posicion = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+        timeLimit: const Duration(seconds: 30),
+      );
+      if (!mounted) return;
+      setState(() {
+        _latitud = posicion.latitude;
+        _longitud = posicion.longitude;
+      });
+    } catch (error) {
+      debugPrint('Sin ubicación: $error');
+      mensajero.showSnackBar(
+          SnackBar(content: Text(SoleraL10n.t('sidr.sin_ubicacion'))));
+    } finally {
+      if (mounted) setState(() => _buscandoUbicacion = false);
+    }
+  }
+
   Future<void> _guardar() async {
     final nombre = _nombre.text.trim();
     if (nombre.isEmpty) {
@@ -260,6 +292,22 @@ class _PantallaEditarPomaradaState extends State<PantallaEditarPomarada> {
             title: Text(SoleraL10n.t('sidr.registrada_dop')),
             subtitle: Text(SoleraL10n.t('sidr.registrada_dop_ayuda')),
             onChanged: (valor) => setState(() => _registradaDop = valor),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.place_outlined),
+            title: Text(SoleraL10n.t('sidr.ubicacion')),
+            subtitle: Text(_latitud == null || _longitud == null
+                ? '—'
+                : '${_latitud!.toStringAsFixed(5)}, ${_longitud!.toStringAsFixed(5)}'),
+            trailing: _buscandoUbicacion
+                ? const SizedBox(
+                    width: 24, height: 24, child: CircularProgressIndicator())
+                : TextButton.icon(
+                    onPressed: _usarUbicacion,
+                    icon: const Icon(Icons.my_location),
+                    label: Text(SoleraL10n.t('sidr.usar_mi_ubicacion')),
+                  ),
           ),
           campoTexto(_notas, SoleraL10n.t('sidr.notas')),
           const SizedBox(height: 16),

@@ -5,5 +5,5 @@ import 'package:flutter/material.dart';
 const Color colorPrimarioSidra = Color(0xFF6B7A2E);
 const Color colorCremaSidra = Color(0xFFF5EFE2);
 
-/// Logo PLACEHOLDER (1024×1024): llega en el bloque 8.
-const String? rutaLogoSidra = null;
+/// Logo PLACEHOLDER (1024×1024, ImageMagick), hasta el del ilustrador.
+const String rutaLogoSidra = 'assets/icono-logo-sidra.png';

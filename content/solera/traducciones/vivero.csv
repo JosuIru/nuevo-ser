@@ -47,6 +47,9 @@ vive.codigo_trazabilidad,Código de trazabilidad (letra C),Trazabilitate-kodea (
 vive.codigo_trazabilidad_ayuda,"Por defecto, el código de la partida.","Berez, partidaren kodea.","Per defecte, el codi de la partida.","Por defecto, o código da partida."
 vive.comunidad_autonoma,Comunidad autónoma,Autonomia erkidegoa,Comunitat autònoma,Comunidade autónoma
 vive.con_gps,con GPS,GPSarekin,amb GPS,con GPS
+vive.confianza_alta,Confianza alta,Konfiantza handia,Confiança alta,Confianza alta
+vive.confianza_baja,Confianza baja,Konfiantza txikia,Confiança baixa,Confianza baixa
+vive.confianza_media,Confianza media,Konfiantza ertaina,Confiança mitjana,Confianza media
 vive.copiar_de_etiqueta,Cópialo de la etiqueta del producto: la app no lo propone.,Kopiatu produktuaren etiketatik: aplikazioak ez du proposatzen.,Copia-ho de l’etiqueta del producte: l’app no ho proposa.,Cópiao da etiqueta do produto: a app non o propón.
 vive.cuaderno,Cuaderno,Koadernoa,Quadern,Caderno
 vive.cuaderno_tratamientos,Cuaderno de tratamientos,Tratamenduen koadernoa,Quadern de tractaments,Caderno de tratamentos
@@ -66,6 +69,7 @@ vive.eficacia,Eficacia,Eraginkortasuna,Eficàcia,Eficacia
 vive.eficacia_buena,Buena,Ona,Bona,Boa
 vive.eficacia_mala,Mala,Txarra,Dolenta,Mala
 vive.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
+vive.elegir_foto,Elegir de la galería,Galeriatik aukeratu,Tria de la galeria,Escoller da galería
 vive.elige_partida_o_zona,Elige una partida o una zona.,Aukeratu partida bat edo eremu bat.,Tria una partida o una zona.,Escolle unha partida ou unha zona.
 vive.equipo_aplicacion,Equipo de aplicación (nº ROMA),Aplikazio-ekipoa (ROMA zk.),Equip d’aplicació (núm. ROMA),Equipo de aplicación (nº ROMA)
 vive.error_documento,No se pudo generar el documento.,Ezin izan da dokumentua sortu.,No s’ha pogut generar el document.,Non se puido xerar o documento.
@@ -94,13 +98,24 @@ vive.formato_destino,Formato de destino,Helmuga-formatua,Format de destinació,F
 vive.formato_maceta,Maceta,Lorontzia,Test,Testo
 vive.formato_raiz_desnuda,Raíz desnuda,Sustrai biluzia,Arrel nua,Raíz espida
 vive.guardado,Guardado,Gordeta,Desat,Gardado
+vive.hacer_foto,Hacer una foto,Argazki bat atera,Fes una foto,Facer unha foto
 vive.hoy,Hoy,Gaur,Avui,Hoxe
+vive.ia_analizando,Analizando la foto…,Argazkia aztertzen…,S’està analitzant la foto…,Analizando a foto…
+vive.ia_error,No se pudo analizar la foto. Revisa la conexión y la clave.,Ezin izan da argazkia aztertu. Egiaztatu konexioa eta gakoa.,No s’ha pogut analitzar la foto. Revisa la connexió i la clau.,Non se puido analizar a foto. Revisa a conexión e a clave.
+vive.ia_fuera_catalogo,"La IA cree que también puede ser algo que no está en la lista (riego, carencia, frío…).","AAren ustez zerrendan ez dagoen zerbait ere izan daiteke (ureztatzea, gabezia, hotza…).","La IA creu que també pot ser una cosa que no és a la llista (reg, carència, fred…).","A IA cre que tamén pode ser algo que non está na lista (rega, carencia, frío…)."
+vive.ia_no_legible,La foto no deja ver bien el síntoma: prueba con otra más cerca y con luz.,"Argazkiak ez du sintoma ondo ikusten uzten: saiatu beste batekin, hurbilago eta argiarekin.",La foto no deixa veure bé el símptoma: prova’n una altra més a prop i amb llum.,A foto non deixa ver ben o síntoma: proba con outra máis preto e con luz.
+vive.ia_nota_inspeccion,Propuesta de la IA a partir de una foto ({confianza}); revisada por la persona.,AAren proposamena argazki batetik abiatuta ({confianza}); pertsonak berrikusia.,Proposta de la IA a partir d’una foto ({confianza}); revisada per la persona.,Proposta da IA a partir dunha foto ({confianza}); revisada pola persoa.
+vive.ia_propuesta,Lo que propone la IA,AAk proposatzen duena,El que proposa la IA,O que propón a IA
+vive.ia_que_hace,Mira la foto de una planta joven y propone qué plaga o enfermedad del catálogo puede ser. No recomienda tratamientos ni da la planta por sana: las reguladas solo las confirma un laboratorio.,Landare gazte baten argazkia begiratzen du eta katalogoko zein izurrite edo gaixotasun izan daitekeen proposatzen du. Ez du tratamendurik gomendatzen ezta landarea osasuntsutzat jotzen ere: arautuak laborategi batek baino ez ditu baieztatzen.,Mira la foto d’una planta jove i proposa quina plaga o malaltia del catàleg pot ser. No recomana tractaments ni dona la planta per sana: les regulades només les confirma un laboratori.,Mira a foto dunha planta nova e propón que praga ou enfermidade do catálogo pode ser. Non recomenda tratamentos nin dá a planta por sa: as reguladas só as confirma un laboratorio.
+vive.ia_revisa,"Es una propuesta: revísala. Si es una plaga regulada, se abre una inspección con «sospecha» y hay que avisar a la autoridad.","Proposamena da: berrikusi. Izurrite arautua bada, «susmoa» duen ikuskapen bat irekitzen da eta agintaritzari jakinarazi behar zaio.","És una proposta: revisa-la. Si és una plaga regulada, s’obre una inspecció amb «sospita» i cal avisar l’autoritat.","É unha proposta: revísaa. Se é unha praga regulada, ábrese unha inspección con «sospeita» e hai que avisar á autoridade."
+vive.identificar_con_ia,Identificar con una foto (IA),Argazki batekin identifikatu (AA),Identifica amb una foto (IA),Identificar cunha foto (IA)
 vive.importe_sin_iva,Importe sin IVA (€),Zenbatekoa BEZik gabe (€),Import sense IVA (€),Importe sen IVE (€)
 vive.inicial_mermas,"{inicial} iniciales, {mermas} perdidas","{inicial} hasieran, {mermas} galduta","{inicial} inicials, {mermas} perdudes","{inicial} iniciais, {mermas} perdidas"
 vive.inspeccion_autoinspeccion,Autoinspección,Autoikuskapena,Autoinspecció,Autoinspección
 vive.inspeccion_oficial,Inspección oficial,Ikuskapen ofiziala,Inspecció oficial,Inspección oficial
 vive.inspecciones,Inspecciones de plagas,Izurrite-ikuskapenak,Inspeccions de plagues,Inspeccións de pragas
 vive.inspector,Quién inspecciona,Nork ikuskatzen du,Qui inspecciona,Quen inspecciona
+vive.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
 vive.lista_para_venta,Lista para venta,Saltzeko prest,A punt per vendre,Lista para a venda
 vive.lote,Lote,Sorta,Lot,Lote
 vive.material,Material,Materiala,Material,Material

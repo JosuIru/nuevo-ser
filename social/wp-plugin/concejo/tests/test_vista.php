@@ -79,4 +79,10 @@ $sesiones_vecina = $vista( 'pili' )['sesiones'];
 comprobar( 2 === count( $sesiones_vecina ), 'una vecina ve las asambleas' );
 comprobar( in_array( 'maite', array_merge( ...array_column( $sesiones_vecina, 'asistentes_uids' ) ), true ), 'y quién vino' );
 
+// El tablón: lo retirado no vuelve a los móviles.
+$aplicar( 'ane', 'retirarAnuncio', array( 'anuncio_uid' => 'nueces', 'motivo' => 'Ya no quedan' ) );
+$anuncios_vecina = array_column( $vista( 'pili' )['anuncios'], 'uid' );
+comprobar( in_array( 'agua', $anuncios_vecina, true ), 'una vecina ve el tablón' );
+comprobar( ! in_array( 'nueces', $anuncios_vecina, true ), 'pero no lo que se ha retirado' );
+
 terminar();

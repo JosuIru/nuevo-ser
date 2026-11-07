@@ -17,6 +17,7 @@
  *     compromisos      uid        => compromiso
  *     actas            asunto_uid => { asunto_uid, firmas[], compromisos_al_firmar_uids }
  *     sesiones         uid        => asamblea (fecha, lugar, puntos[], asistencia)
+ *     anuncios         uid        => anuncio del tablón
  *
  * **Las papeletas no están en el estado**: votar devuelve la papeleta
  * aparte y el almacén la guarda en su propia tabla, sin persona (si el
@@ -715,6 +716,36 @@ function concejo_aplicar_accion( array $estado, array $accion, string $autor_uid
 			$estado['sesiones'][ $sesion['uid'] ] = $sesion;
 			break;
 
+		case 'publicarAnuncio':
+			$nuevo = concejo_anuncio_publicado( (array) ( $datos['anuncio'] ?? array() ), $ahora, $zona );
+			if ( isset( $estado['anuncios'][ $nuevo['uid'] ] ) ) {
+				concejo_rechazar( 'Identificador de anuncio repetido' );
+			}
+			$nuevo['autor_uid']                  = $autor_uid;
+			$estado['anuncios'][ $nuevo['uid'] ] = $nuevo;
+			break;
+
+		case 'retirarAnuncio':
+			$anuncio = concejo_anuncio( $estado, $texto( 'anuncio_uid' ) );
+			if ( $anuncio['autor_uid'] !== $autor_uid ) {
+				$solo_mesa();
+				if ( '' === $texto( 'motivo' ) ) {
+					concejo_rechazar( 'Para retirar el anuncio de otra persona, di por qué' );
+				}
+			}
+			$anuncio['retirado']        = true;
+			$anuncio['fijado']          = false;
+			$anuncio['motivo_retirada'] = $texto( 'motivo' );
+			$estado['anuncios'][ $anuncio['uid'] ] = $anuncio;
+			break;
+
+		case 'fijarAnuncio':
+			$solo_mesa();
+			$anuncio           = concejo_anuncio( $estado, $texto( 'anuncio_uid' ) );
+			$anuncio['fijado'] = true === ( $datos['fijado'] ?? false );
+			$estado['anuncios'][ $anuncio['uid'] ] = $anuncio;
+			break;
+
 		default:
 			concejo_rechazar( 'Acción desconocida' );
 	}
@@ -810,4 +841,68 @@ function concejo_sesion_convocada( array $estado, array $datos ): array {
 		'anulada'            => false,
 		'motivo_anulacion'   => '',
 	);
+}
+
+// ---------------------------------------------------------------- tablón
+
+const CONCEJO_LARGO_TITULO_ANUNCIO = 120;
+const CONCEJO_LARGO_TEXTO_ANUNCIO  = 2000;
+
+/** Un anuncio sin retirar (los retirados ya no se tocan). */
+function concejo_anuncio( array $estado, string $uid ): array {
+	if ( ! isset( $estado['anuncios'][ $uid ] ) ) {
+		concejo_rechazar( 'No existe el anuncio' );
+	}
+	$anuncio = $estado['anuncios'][ $uid ];
+	if ( ! empty( $anuncio['retirado'] ) ) {
+		concejo_rechazar( 'El anuncio ya está retirado' );
+	}
+	return $anuncio;
+}
+
+/**
+ * El anuncio que manda la app, comprobado y limpio (como
+ * `Anuncio.problemas` y `EstadoConcejo._publicarAnuncio`). Quién y cuándo
+ * los pone el servidor; sale sin fijar.
+ */
+function concejo_anuncio_publicado( array $datos, DateTimeImmutable $ahora, DateTimeZone $zona ): array {
+	$uid    = trim( (string) ( $datos['uid'] ?? '' ) );
+	$titulo = trim( (string) ( $datos['titulo'] ?? '' ) );
+	$texto  = trim( (string) ( $datos['texto'] ?? '' ) );
+	if ( '' === $uid || '' === $titulo ) {
+		concejo_rechazar( 'Al anuncio le falta el título' );
+	}
+	if ( mb_strlen( $titulo ) > CONCEJO_LARGO_TITULO_ANUNCIO || mb_strlen( $texto ) > CONCEJO_LARGO_TEXTO_ANUNCIO ) {
+		concejo_rechazar( 'El anuncio es demasiado largo' );
+	}
+	$hasta = $datos['hasta'] ?? null;
+	if ( null !== $hasta ) {
+		$hasta = (string) $hasta;
+		$dia   = concejo_leer_fecha( $hasta, $zona )->format( 'Y-m-d' );
+		if ( $dia < $ahora->setTimezone( $zona )->format( 'Y-m-d' ) ) {
+			concejo_rechazar( 'La fecha hasta la que se ve el anuncio ya ha pasado' );
+		}
+	}
+	return array(
+		'uid'             => $uid,
+		'titulo'          => $titulo,
+		'texto'           => $texto,
+		'autor_uid'       => '',
+		'publicado'       => concejo_iso_utc( $ahora ),
+		'hasta'           => $hasta,
+		'fijado'          => false,
+		'retirado'        => false,
+		'motivo_retirada' => '',
+	);
+}
+
+/** Como `Anuncio.vigenteEn`: sin retirar y sin pasar del día «hasta». */
+function concejo_anuncio_vigente( array $anuncio, DateTimeImmutable $ahora, DateTimeZone $zona ): bool {
+	if ( ! empty( $anuncio['retirado'] ) ) {
+		return false;
+	}
+	if ( empty( $anuncio['hasta'] ) ) {
+		return true;
+	}
+	return $ahora < concejo_leer_fecha( (string) $anuncio['hasta'], $zona )->setTime( 0, 0 )->modify( '+1 day' );
 }

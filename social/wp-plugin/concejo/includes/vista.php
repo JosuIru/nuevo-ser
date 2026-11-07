@@ -141,5 +141,10 @@ function concejo_vista(
 		),
 		// Las asambleas son públicas para todo el espacio, también quién vino.
 		'sesiones'        => array_values( $estado['sesiones'] ?? array() ),
+		// Lo retirado no se vuelve a mandar: si la mesa lo quitó, que no
+		// siga en los móviles.
+		'anuncios'        => array_values(
+			array_filter( $estado['anuncios'] ?? array(), fn( $a ) => empty( $a['retirado'] ) )
+		),
 	);
 }

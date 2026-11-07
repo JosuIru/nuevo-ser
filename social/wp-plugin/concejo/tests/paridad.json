@@ -432,6 +432,52 @@
         "anulada": false,
         "motivo_anulacion": ""
       }
+    ],
+    "anuncios": [
+      {
+        "uid": "agua",
+        "titulo": "Corte de agua por la obra de la calle Mayor",
+        "texto": "Pasado mañana, de 9 a 12. Llenad alguna garrafa la víspera.",
+        "autor_uid": "ane",
+        "publicado": "2026-11-09T10:00:00.000",
+        "hasta": "2026-11-12T00:00:00.000",
+        "fijado": true,
+        "retirado": false,
+        "motivo_retirada": ""
+      },
+      {
+        "uid": "poda",
+        "titulo": "Taller de poda de frutales",
+        "texto": "El sábado por la mañana en la huerta de Iker. Quien tenga tijeras, que las traiga.",
+        "autor_uid": "josean",
+        "publicado": "2026-11-08T20:00:00.000",
+        "hasta": "2026-11-15T00:00:00.000",
+        "fijado": false,
+        "retirado": false,
+        "motivo_retirada": ""
+      },
+      {
+        "uid": "nueces",
+        "titulo": "Se regalan nueces",
+        "texto": "Dos sacos de este año. Pasad por casa, al lado de la fuente, a partir de las seis.",
+        "autor_uid": "maite",
+        "publicado": "2026-11-07T18:00:00.000",
+        "hasta": null,
+        "fijado": false,
+        "retirado": false,
+        "motivo_retirada": ""
+      },
+      {
+        "uid": "feria",
+        "titulo": "Feria de artesanía en el valle",
+        "texto": "Hay sitio en dos coches para ir juntos.",
+        "autor_uid": "mikel",
+        "publicado": "2026-10-31T12:00:00.000",
+        "hasta": "2026-11-07T00:00:00.000",
+        "fijado": false,
+        "retirado": false,
+        "motivo_retirada": ""
+      }
     ]
   },
   "casos": [
@@ -2056,6 +2102,330 @@
             }
           },
           "aceptada": true
+        }
+      ]
+    },
+    {
+      "nombre": "tablón",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "tablón-0",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "nuevo",
+                "titulo": "Se regalan nueces",
+                "texto": "",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": null,
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tablón-1",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "nuevo",
+                "titulo": "Se regalan nueces",
+                "texto": "",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": null,
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-2",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "vacio",
+                "titulo": "  ",
+                "texto": "",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": null,
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-3",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "largo",
+                "titulo": "ñññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññ",
+                "texto": "",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": null,
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-4",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "justo",
+                "titulo": "ññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññ",
+                "texto": "",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": null,
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tablón-5",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "texto",
+                "titulo": "Se regalan nueces",
+                "texto": "ñññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññññ",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": null,
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-6",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "ayer",
+                "titulo": "Se regalan nueces",
+                "texto": "",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": "2026-11-09T00:00:00.000",
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-7",
+            "tipo": "publicarAnuncio",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio": {
+                "uid": "hoy",
+                "titulo": "Se regalan nueces",
+                "texto": "",
+                "autor_uid": "quien-sea",
+                "publicado": "2000-01-01T00:00:00.000",
+                "hasta": "2026-11-10T00:00:00.000",
+                "fijado": true,
+                "retirado": false,
+                "motivo_retirada": ""
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tablón-8",
+            "tipo": "retirarAnuncio",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "nueces",
+              "motivo": "x"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-9",
+            "tipo": "retirarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "nueces",
+              "motivo": " "
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-10",
+            "tipo": "retirarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "nueces",
+              "motivo": "Ya no quedan"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tablón-11",
+            "tipo": "retirarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "nueces",
+              "motivo": "Otra vez"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-12",
+            "tipo": "retirarAnuncio",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "nuevo",
+              "motivo": ""
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tablón-13",
+            "tipo": "retirarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "no-existe",
+              "motivo": "x"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-14",
+            "tipo": "fijarAnuncio",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "poda",
+              "fijado": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-15",
+            "tipo": "fijarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "poda",
+              "fijado": true
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tablón-16",
+            "tipo": "fijarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "agua",
+              "fijado": false
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tablón-17",
+            "tipo": "fijarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "nueces",
+              "fijado": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tablón-18",
+            "tipo": "fijarAnuncio",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "anuncio_uid": "no-existe",
+              "fijado": true
+            }
+          },
+          "aceptada": false
         }
       ]
     }

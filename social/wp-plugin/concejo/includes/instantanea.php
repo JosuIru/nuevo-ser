@@ -47,6 +47,7 @@ function concejo_estado_desde_instantanea( array $instantanea ): array {
 			'compromisos'     => $por( $instantanea['compromisos'] ?? array(), 'uid' ),
 			'actas'           => $por( $instantanea['actas'] ?? array(), 'asunto_uid' ),
 			'sesiones'        => $por( $instantanea['sesiones'] ?? array(), 'uid' ),
+			'anuncios'        => $por( $instantanea['anuncios'] ?? array(), 'uid' ),
 		),
 		'papeletas' => $papeletas,
 	);

@@ -7,7 +7,7 @@
  *   vista que baja la app: solo lo usa el servidor para enviar.
  * - `concejo_documentos`: un JSON por pieza (`asunto:<uid>`,
  *   `debate:<asunto>`, `consentimiento:<asunto>`, `urna:<asunto>`,
- *   `compromiso:<uid>`, `acta:<asunto>`, `sesion:<uid>`). Un pueblo tiene decenas de
+ *   `compromiso:<uid>`, `acta:<asunto>`, `sesion:<uid>`, `anuncio:<uid>`). Un pueblo tiene decenas de
  *   asuntos: se carga todo en cada petición y se guarda lo que cambia.
  * - `concejo_papeletas`: las papeletas, aparte. Clave al azar, sin hora en
  *   el voto secreto y sin persona: ni la tabla ni su orden dicen de quién
@@ -45,6 +45,7 @@ function concejo_documentos( array $estado ): array {
 		'compromiso'     => 'compromisos',
 		'acta'           => 'actas',
 		'sesion'         => 'sesiones',
+		'anuncio'        => 'anuncios',
 	);
 	foreach ( $piezas as $prefijo => $mapa ) {
 		foreach ( $estado[ $mapa ] ?? array() as $clave => $pieza ) {
@@ -65,6 +66,7 @@ function concejo_estado_desde_documentos( array $documentos, array $personas ): 
 		'compromisos'     => array(),
 		'actas'           => array(),
 		'sesiones'        => array(),
+		'anuncios'        => array(),
 	);
 	$mapas  = array(
 		'asunto'         => 'asuntos',
@@ -74,6 +76,7 @@ function concejo_estado_desde_documentos( array $documentos, array $personas ): 
 		'compromiso'     => 'compromisos',
 		'acta'           => 'actas',
 		'sesion'         => 'sesiones',
+		'anuncio'        => 'anuncios',
 	);
 	foreach ( $documentos as $clave => $json ) {
 		[ $prefijo, $uid ] = explode( ':', (string) $clave, 2 );

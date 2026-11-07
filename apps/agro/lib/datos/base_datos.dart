@@ -1,5 +1,5 @@
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/apunte_gasto.dart';
@@ -34,35 +34,30 @@ const String nombreFicheroBaseDatosAgro = 'agro.db';
 /// silencio.
 const int versionEsquemaAgro = 7;
 
-class BaseDatosAgro {
+class BaseDatosAgro extends BaseDatosSolera {
   static final BaseDatosAgro instancia = BaseDatosAgro._interno();
   factory BaseDatosAgro() => instancia;
   BaseDatosAgro._interno();
 
-  Database? _basedatos;
+  @override
+  String get nombreFichero => nombreFicheroBaseDatosAgro;
 
-  Future<Database> get basedatos async {
-    if (_basedatos != null) return _basedatos!;
-    final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosAgro);
-    _basedatos = await openDatabase(
-      ruta,
-      // Esquema con migración escalonada (ver `versionEsquemaAgro`).
-      version: versionEsquemaAgro,
-      onConfigure: (db) async {
-        // ON DELETE CASCADE en eventos hijos requiere FKs activas.
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: (db, version) async {
-        await _crearEsquemaInicial(db);
-        await _aplicarMigraciones(db, desde: 1, hasta: version);
-      },
-      onUpgrade: (db, anterior, actual) async {
-        await _aplicarMigraciones(db, desde: anterior, hasta: actual);
-      },
-    );
-    return _basedatos!;
-  }
+  @override
+  int get versionEsquema => versionEsquemaAgro;
+
+  @override
+  DatabaseFactory get fabricaBaseDatos => databaseFactory;
+
+  @override
+  Future<void> crearEsquemaInicial(Database db) => _crearEsquemaInicial(db);
+
+  @override
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        // Un paso por versión; el detalle de cada uno, en _aplicarMigraciones.
+        for (var version = 2; version <= versionEsquemaAgro; version++)
+          version: (db) =>
+              _aplicarMigraciones(db, desde: version - 1, hasta: version),
+      };
 
   // ─── Fincas ─────────────────────────────────────────────
 
@@ -724,10 +719,6 @@ class BaseDatosAgro {
     await db.delete('apuntes_gasto', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> cerrar() async {
-    await _basedatos?.close();
-    _basedatos = null;
-  }
 }
 
 // ─── Esquema y migraciones ────────────────────────────────

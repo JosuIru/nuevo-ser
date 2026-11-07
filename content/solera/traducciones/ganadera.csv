@@ -3,6 +3,7 @@ gana.anadir,Añadir,Gehitu,Afegir,Engadir
 gana.animales,Animales,Animaliak,Animals,Animais
 gana.atrasada,atrasada,atzeratuta,endarrerida,atrasada
 gana.autorizacion_transportista,N.º de autorización del transportista,Garraiolariaren baimen-zk.,Núm. d’autorització del transportista,N.º de autorización do transportista
+gana.aviso_documento_provisional,"Todos los documentos llevan el sello PROVISIONAL: el formato no lo ha validado todavía un veterinario asesor ni un técnico PAC, y tu comunidad puede pedir otro modelo.","Agiri guztiek BEHIN-BEHINEKO zigilua dute: albaitari aholkulari batek edo PAC teknikari batek ez du formatua oraindik baliozkotu, eta zure erkidegoak beste eredu bat eska dezake.","Tots els documents porten el segell PROVISIONAL: el format encara no l’ha validat un veterinari assessor ni un tècnic PAC, i la teva comunitat pot demanar un altre model.","Todos os documentos levan o selo PROVISIONAL: o formato aínda non o validou un veterinario asesor nin un técnico PAC, e a túa comunidade pode pedir outro modelo."
 gana.aviso_no_sustituye,"Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.","Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.","Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.","Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS."
 gana.cabezas,cabezas,buru,caps,cabezas
 gana.cabezas_sin_identificar,Cabezas sin identificar una a una,Banaka identifikatu gabeko buruak,Caps sense identificar un per un,Cabezas sen identificar unha a unha
@@ -36,6 +37,38 @@ gana.clase_vacuna,Vacuna,Txertoa,Vacuna,Vacina
 gana.clasificacion,Clasificación de la explotación,Ustiategiaren sailkapena,Classificació de l’explotació,Clasificación da explotación
 gana.codigo_rega,Código REGA,REGA kodea,Codi REGA,Código REGA
 gana.codigo_remo,Código REMO del movimiento,Mugimenduaren REMO kodea,Codi REMO del moviment,Código REMO do movemento
+gana.col_animales_afectados,Animales afectados,Kaltetutako animaliak,Animals afectats,Animais afectados
+gana.col_animales_tratados,Animal o grupo tratado,Tratatutako animalia edo taldea,Animal o grup tractat,Animal ou grupo tratado
+gana.col_avisos,Avisos,Abisuak,Avisos,Avisos
+gana.col_cantidad,Cantidad,Kopurua,Quantitat,Cantidade
+gana.col_carga_media,UGM/ha media,ALU/ha batez beste,UBM/ha mitjana,UGM/ha media
+gana.col_carga_min_max,UGM/ha mín. – máx.,ALU/ha min. – max.,UBM/ha mín. – màx.,UGM/ha mín. – máx.
+gana.col_coordenadas,Coordenadas,Koordenatuak,Coordenades,Coordenadas
+gana.col_dato,Dato,Datua,Dada,Dato
+gana.col_dias_ganado,Días con ganado,Abereekin egunak,Dies amb bestiar,Días con gando
+gana.col_duracion,Duración (días),Iraupena (egunak),Durada (dies),Duración (días)
+gana.col_espera_carne,Espera carne (días),Haragi-itxaronaldia (egunak),Espera carn (dies),Espera carne (días)
+gana.col_espera_leche,Espera leche (días),Esne-itxaronaldia (egunak),Espera llet (dies),Espera leite (días)
+gana.col_fecha_certificado,Fecha del certificado sanitario,Osasun-ziurtagiriaren data,Data del certificat sanitari,Data do certificado sanitario
+gana.col_fecha_primera,Primera administración,Lehen ematea,Primera administració,Primeira administración
+gana.col_fecha_salida,Fecha de salida,Irteera-data,Data de sortida,Data de saída
+gana.col_firma,Firma,Sinadura,Signatura,Sinatura
+gana.col_identificacion,Identificación,Identifikazioa,Identificació,Identificación
+gana.col_llegada_prevista,Llegada prevista,Aurreikusitako iritsiera,Arribada prevista,Chegada prevista
+gana.col_medicamento,Medicamento,Sendagaia,Medicament,Medicamento
+gana.col_numero,N.º de animales,Animalia kopurua,Núm. d’animals,N.º de animais
+gana.col_pieza,Pieza,Larre-saila,Parcel·la,Parcela
+gana.col_proveedor_compra,Proveedor y prueba de compra,Hornitzailea eta erosketa-froga,Proveïdor i prova de compra,Provedor e proba de compra
+gana.col_rega,REGA de origen o destino,Jatorriko edo helmugako REGA,REGA d’origen o destinació,REGA de orixe ou destino
+gana.col_remo,Código REMO,REMO kodea,Codi REMO,Código REMO
+gana.col_tipo_transporte,Tipo de transporte,Garraio mota,Tipus de transport,Tipo de transporte
+gana.col_titular_direccion,Titular y dirección,Titularra eta helbidea,Titular i adreça,Titular e enderezo
+gana.col_titular_nif,Titular y NIF,Titularra eta IFZ,Titular i NIF,Titular e NIF
+gana.col_trayecto,Trayecto,Ibilbidea,Trajecte,Traxecto
+gana.col_ugm_media,UGM medias,Batez besteko ALU,UBM mitjanes,UGM medias
+gana.col_valor,Valor,Balioa,Valor,Valor
+gana.col_veterinaria,Veterinaria,Albaitaritzakoa,Veterinària,Veterinaria
+gana.col_veterinario_receta,Veterinario y receta,Albaitaria eta errezeta,Veterinari i recepta,Veterinario e receita
 gana.correo,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
 gana.crias,Crías,Kumeak,Cries,Crías
 gana.crotales_movidos,Crotales de los animales (separados por comas),Animalien belarritakoak (komaz bereizita),Crotals dels animals (separats per comes),Crotais dos animais (separados por comas)
@@ -48,8 +81,18 @@ gana.dispositivo_crotal_electronico,Crotal electrónico,Belarritako elektronikoa
 gana.dispositivo_marca_auricular,Marca auricular,Belarri-marka,Marca auricular,Marca auricular
 gana.dispositivo_otro,Otro,Bestelakoa,Altre,Outro
 gana.dispositivo_tatuaje,Tatuaje,Tatuajea,Tatuatge,Tatuaxe
+gana.documento_movimiento,Documento de movimiento,Mugimendu-agiria,Document de moviment,Documento de movemento
+gana.documentos,Documentos,Agiriak,Documents,Documentos
 gana.donde_esta_cada_rebano,Dónde está cada rebaño,Non dagoen artalde bakoitza,On és cada ramat,Onde está cada rabaño
 gana.duracion_dias,Duración del tratamiento (días),Tratamenduaren iraupena (egunak),Durada del tractament (dies),Duración do tratamento (días)
+gana.eco_aviso_ayuda,"Este informe es una AYUDA para preparar la solicitud, no una declaración: la comunidad autónoma calcula las UGM con SITRAN y con las fechas y reducciones de su convocatoria.","Txosten hau eskaera prestatzeko LAGUNTZA bat da, ez aitorpen bat: autonomia-erkidegoak SITRANekin kalkulatzen ditu ALUak, bere deialdiko datekin eta murrizketekin.","Aquest informe és una AJUDA per preparar la sol·licitud, no una declaració: la comunitat autònoma calcula les UBM amb SITRAN i amb les dates i reduccions de la seva convocatòria.","Este informe é unha AXUDA para preparar a solicitude, non unha declaración: a comunidade autónoma calcula as UGM con SITRAN e coas datas e reducións da súa convocatoria."
+gana.eco_como_se_calcula,"Cómo se calcula: cada día, el rebaño está en la pieza de su último movimiento; sus UGM son las de hoy, escaladas por las cabezas que llevaba. La carga es la de los días con ganado.","Nola kalkulatzen den: egunero, artaldea bere azken mugimenduko larre-sailean dago; haren ALUak gaurkoak dira, eraman zituen buruen arabera eskalatuta. Karga abereak egon ziren egunetakoa da.","Com es calcula: cada dia, el ramat és a la parcel·la del seu últim moviment; les seves UBM són les d’avui, escalades pels caps que portava. La càrrega és la dels dies amb bestiar.","Como se calcula: cada día, o rabaño está na parcela do seu último movemento; as súas UGM son as de hoxe, escaladas polas cabezas que levaba. A carga é a dos días con gando."
+gana.eco_pocos_dias,menos de {n} días de pastoreo,{n} egun baino gutxiagoko larratzea,menys de {n} dies de pasturatge,menos de {n} días de pastoreo
+gana.eco_por_debajo,carga media por debajo de {minimo} UGM/ha,batez besteko karga {minimo} ALU/ha baino txikiagoa,càrrega mitjana per sota de {minimo} UBM/ha,carga media por debaixo de {minimo} UGM/ha
+gana.eco_por_encima,algún día por encima de {maximo} UGM/ha,egunen batean {maximo} ALU/ha baino gehiago,algun dia per sobre de {maximo} UBM/ha,algún día por riba de {maximo} UGM/ha
+gana.eco_por_recinto,Por pieza o recinto,Larre-sail edo barrutiko,Per parcel·la o recinte,Por parcela ou recinto
+gana.eco_sin_superficie,sin superficie: no se puede calcular la carga,azalerarik gabe: ezin da karga kalkulatu,sense superfície: no es pot calcular la càrrega,sen superficie: non se pode calcular a carga
+gana.eco_tabla_usada,Tabla de UGM: {tabla}. Para la PAC manda la del anexo V del RD 1048/2022.,"ALU taula: {tabla}. PACerako, RD 1048/2022ko V. eranskinekoa da balio duena.",Taula d’UBM: {tabla}. Per a la PAC val la de l’annex V del RD 1048/2022.,Táboa de UGM: {tabla}. Para a PAC vale a do anexo V do RD 1048/2022.
 gana.ecologico,ecológico,ekologikoa,ecològic,ecolóxico
 gana.ecologico_o_conversion,Ecológico o en conversión,Ekologikoa edo bihurtzen,Ecològic o en conversió,Ecolóxico ou en conversión
 gana.editar_animal,Editar animal,Editatu animalia,Editar animal,Editar animal
@@ -89,6 +132,7 @@ gana.fecha_prevista,Fecha prevista,Aurreikusitako data,Data prevista,Data previs
 gana.fecha_primera_administracion,Fecha de la primera administración,Lehen ematearen data,Data de la primera administració,Data da primeira administración
 gana.fin_supresion_carne,Acaba la espera de carne,Haragiaren itxaronaldia amaitzen da,Acaba l’espera de carn,Remata a espera de carne
 gana.fin_supresion_leche,Acaba la espera de leche,Esnearen itxaronaldia amaitzen da,Acaba l’espera de llet,Remata a espera de leite
+gana.fuente,Fuente,Iturria,Font,Fonte
 gana.fuera_de_la_explotacion,Fuera de la explotación,Ustiategitik kanpo,Fora de l’explotació,Fóra da explotación
 gana.fuera_o_sin_ubicar,Fuera de la explotación o sin ubicar,Ustiategitik kanpo edo kokatu gabe,Fora de l’explotació o sense ubicar,Fóra da explotación ou sen situar
 gana.guardado,Guardado,Gordeta,Desat,Gardado
@@ -96,7 +140,20 @@ gana.guardado_rega_raro,Guardado. Ojo: el código REGA no tiene la forma ES + 12
 gana.historia,Historia,Historia,Història,Historia
 gana.hoy,Hoy,Gaur,Avui,Hoxe
 gana.identificacion,"Identificación (crotal, DIB…)","Identifikazioa (belarritakoa, DIB…)","Identificació (crotal, DIB…)","Identificación (crotal, DIB…)"
+gana.informe_ecoregimen,Informe del eco-régimen de pastoreo,Larratze eko-erregimenaren txostena,Informe de l’ecoregim de pasturatge,Informe do ecorréxime de pastoreo
 gana.leche_hasta,Leche hasta el,"Esnea, egun honetara arte:",Llet fins al,Leite ata o
+gana.libro_aviso_provisional,"Libro de registro PROVISIONAL, con los datos mínimos del anexo V del RD 787/2023. El formato que vale es el aprobado por tu comunidad autónoma.","BEHIN-BEHINEKO erregistro-liburua, RD 787/2023ko V. eranskineko gutxieneko datuekin. Balio duen formatua zure autonomia-erkidegoak onartutakoa da.","Llibre de registre PROVISIONAL, amb les dades mínimes de l’annex V del RD 787/2023. El format vàlid és l’aprovat per la teva comunitat autònoma.","Libro de rexistro PROVISIONAL, cos datos mínimos do anexo V do RD 787/2023. O formato válido é o aprobado pola túa comunidade autónoma."
+gana.libro_bienestar,7. Cambios en producción o bienestar,7. Ekoizpen edo ongizate aldaketak,7. Canvis en producció o benestar,7. Cambios en produción ou benestar
+gana.libro_censo,Censo actual por rebaño,Artaldekako egungo errolda,Cens actual per ramat,Censo actual por rabaño
+gana.libro_datos_explotacion,1-5. Explotación y titular,1-5. Ustiategia eta titularra,1-5. Explotació i titular,1-5. Explotación e titular
+gana.libro_enfermedades,6. Enfermedades infecciosas o parasitarias,6. Gaixotasun infekzioso edo parasitarioak,6. Malalties infeccioses o parasitàries,6. Enfermidades infecciosas ou parasitarias
+gana.libro_entradas,9. Entradas de animales,9. Animalien sarrerak,9. Entrades d’animals,9. Entradas de animais
+gana.libro_identificacion,8. Identificación de los animales,8. Animalien identifikazioa,8. Identificació dels animals,8. Identificación dos animais
+gana.libro_registro,Libro de registro de la explotación,Ustiategiaren erregistro-liburua,Llibre de registre de l’explotació,Libro de rexistro da explotación
+gana.libro_salidas,10. Salidas de animales,10. Animalien irteerak,10. Sortides d’animals,10. Saídas de animais
+gana.libro_traslados_internos,Cambios de pieza (dentro de la explotación),Larre-sail aldaketak (ustiategi barruan),Canvis de parcel·la (dins l’explotació),Cambios de parcela (dentro da explotación)
+gana.libro_tratamientos,"Tratamientos con medicamentos (RD 666/2023, art. 41)","Sendagaiekin tratamenduak (RD 666/2023, 41. art.)","Tractaments amb medicaments (RD 666/2023, art. 41)","Tratamentos con medicamentos (RD 666/2023, art. 41)"
+gana.libro_visitas,11. Visitas y vehículos,11. Bisitak eta ibilgailuak,11. Visites i vehicles,11. Visitas e vehículos
 gana.limite_ecologico_superado,Límite superado: ya no se puede vender como ecológico.,Muga gaindituta: ezin da ekologiko gisa saldu.,Límit superat: ja no es pot vendre com a ecològic.,Límite superado: xa non se pode vender como ecolóxico.
 gana.lo_que_pone_la_receta,Apunta lo que pone la receta del veterinario. La app no propone medicamentos ni dosis.,Idatzi albaitariaren errezetak dioena. Aplikazioak ez du sendagairik ez dosirik proposatzen.,Apunta el que diu la recepta del veterinari. L’app no proposa medicaments ni dosis.,Apunta o que pon a receita do veterinario. A app non propón medicamentos nin doses.
 gana.madre,Madre (identificación),Ama (identifikazioa),Mare (identificació),Nai (identificación)
@@ -108,6 +165,16 @@ gana.medicamento,Medicamento (denominación de la receta),Sendagaia (errezetako 
 gana.medio_transporte,Medio de transporte (matrícula o código),Garraiobidea (matrikula edo kodea),Mitjà de transport (matrícula o codi),Medio de transporte (matrícula ou código)
 gana.meses,meses,hilabete,mesos,meses
 gana.motivo,Motivo,Arrazoia,Motiu,Motivo
+gana.mov_aviso_no_oficial,"Hoja PROVISIONAL con los datos mínimos del documento de movimiento. No es el documento oficial: lo emite o valida la autoridad competente (SITRAN, tu oficina comarcal o la sede de tu comunidad).","BEHIN-BEHINEKO orria, mugimendu-agiriaren gutxieneko datuekin. Ez da agiri ofiziala: agintaritza eskudunak egiten edo baliozkotzen du (SITRAN, eskualdeko bulegoa edo erkidegoaren egoitza).","Full PROVISIONAL amb les dades mínimes del document de moviment. No és el document oficial: l’emet o valida l’autoritat competent (SITRAN, la teva oficina comarcal o la seu de la comunitat).","Folla PROVISIONAL cos datos mínimos do documento de movemento. Non é o documento oficial: emíteo ou valídao a autoridade competente (SITRAN, a túa oficina comarcal ou a sede da túa comunidade)."
+gana.mov_conformidad_destino,Conformidad del titular de destino,Helmugako titularraren adostasuna,Conformitat del titular de destinació,Conformidade do titular de destino
+gana.mov_conformidad_origen,Conformidad del titular de origen,Jatorriko titularraren adostasuna,Conformitat del titular d’origen,Conformidade do titular de orixe
+gana.mov_conformidades,4. Conformidades,4. Adostasunak,4. Conformitats,4. Conformidades
+gana.mov_datos,3. Datos del movimiento,3. Mugimenduaren datuak,3. Dades del moviment,3. Datos do movemento
+gana.mov_destino,2. Explotación de destino,2. Helmugako ustiategia,2. Explotació de destinació,2. Explotación de destino
+gana.mov_fecha_llegada,Fecha de llegada,Iritsiera-data,Data d’arribada,Data de chegada
+gana.mov_identificacion,Identificación individual de los animales,Animalien banakako identifikazioa,Identificació individual dels animals,Identificación individual dos animais
+gana.mov_origen,1. Explotación de origen,1. Jatorriko ustiategia,1. Explotació d’origen,1. Explotación de orixe
+gana.mov_sin_identificacion,Sin identificaciones individuales apuntadas.,Ez dago banakako identifikaziorik idatzita.,Sense identificacions individuals apuntades.,Sen identificacións individuais apuntadas.
 gana.mover,Mover,Mugitu,Moure,Mover
 gana.movimiento_alta_parcial,"Entran animales (compra, nacidos fuera…)",Animaliak sartzen dira (erosketa…),Entren animals (compra…),Entran animais (compra…)
 gana.movimiento_baja_parcial,"Salen animales (venta, matadero…)","Animaliak irteten dira (salmenta, hiltegia…)","Surten animals (venda, escorxador…)","Saen animais (venda, matadoiro…)"
@@ -118,6 +185,7 @@ gana.movimientos,Movimientos,Mugimenduak,Moviments,Movementos
 gana.municipio,Municipio,Udalerria,Municipi,Concello
 gana.nacimiento,Nacimiento,Jaiotza,Naixement,Nacemento
 gana.nif,NIF,IFZ,NIF,NIF
+gana.no,No,Ez,No,Non
 gana.nombre,Nombre,Izena,Nom,Nome
 gana.nombre_explotacion,Nombre de la explotación,Ustiategiaren izena,Nom de l’explotació,Nome da explotación
 gana.nombre_o_apodo,Nombre o apodo,Izena edo ezizena,Nom o malnom,Nome ou alcume
@@ -155,18 +223,22 @@ gana.sexo,Sexo,Sexua,Sexe,Sexo
 gana.sexo_castrado,Castrado,Zikiratua,Castrat,Castrado
 gana.sexo_hembra,Hembra,Emea,Femella,Femia
 gana.sexo_macho,Macho,Arra,Mascle,Macho
+gana.si,Sí,Bai,Sí,Si
 gana.sin_animales,Sin animales identificados.,Identifikatutako animaliarik ez.,Sense animals identificats.,Sen animais identificados.
 gana.sin_avisos,Nada pendiente.,Ezer ez dago zain.,Res pendent.,Nada pendente.
 gana.sin_eventos,Sin manejo apuntado.,Ez dago maneiurik idatzita.,Sense maneig apuntat.,Sen manexo apuntado.
 gana.sin_ganado,sin ganado,abererik gabe,sense bestiar,sen gando
+gana.sin_incidencias,Sin incidencias apuntadas.,Ez dago gorabeherarik idatzita.,Sense incidències apuntades.,Sen incidencias apuntadas.
 gana.sin_indicar,Sin indicar,Adierazi gabe,Sense indicar,Sen indicar
 gana.sin_movimientos,Sin movimientos.,Mugimendurik ez.,Sense moviments.,Sen movementos.
 gana.sin_piezas,Todavía no hay piezas de pasto. Da de alta la primera con el botón +.,Oraindik ez dago larre-sailik. Eman altan lehenengoa + botoiarekin.,Encara no hi ha parcel·les de pastura. Dona d’alta la primera amb el botó +.,Aínda non hai parcelas de pasto. Dá de alta a primeira co botón +.
 gana.sin_rebanos,Todavía no hay rebaños. Crea el primero con el botón +.,Oraindik ez dago artalderik. Sortu lehenengoa + botoiarekin.,Encara no hi ha ramats. Crea el primer amb el botó +.,Aínda non hai rabaños. Crea o primeiro co botón +.
+gana.sin_tratamientos,Sin tratamientos apuntados.,Ez dago tratamendurik idatzita.,Sense tractaments apuntats.,Sen tratamentos apuntados.
 gana.sin_visitas,Sin visitas apuntadas.,Ez dago bisitarik idatzita.,Sense visites apuntades.,Sen visitas apuntadas.
 gana.superficie_ha,Superficie de pasto (ha),Larre-azalera (ha),Superfície de pastura (ha),Superficie de pasto (ha)
 gana.supresion_vigente,Tiempo de espera vigente,Itxaronaldia indarrean,Temps d’espera vigent,Tempo de espera vixente
 gana.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+gana.tabla_ugm,Tabla de UGM,ALU taula,Taula d’UBM,Táboa de UGM
 gana.tarea_desparasitacion,Desparasitación,Desparasitazioa,Desparasitació,Desparasitación
 gana.tarea_la_planifica_veterinario,Apunta lo que ha planificado tu veterinario: la app solo te lo recuerda.,Idatzi zure albaitariak antolatutakoa: aplikazioak gogorarazi baino ez du egiten.,Apunta el que ha planificat el teu veterinari: l’app només t’ho recorda.,Apunta o que planificou o teu veterinario: a app só cho lembra.
 gana.tarea_otro,Otra tarea,Beste lan bat,Una altra tasca,Outra tarefa
@@ -185,6 +257,8 @@ gana.titularidad_cedida,Cedida,Lagata,Cedida,Cedida
 gana.titularidad_comunal,Comunal,Herri-lurra,Comunal,Comunal
 gana.titularidad_propia,Propia,Norberarena,Pròpia,Propia
 gana.toda_la_explotacion,Toda la explotación,Ustiategi osoa,Tota l’explotació,Toda a explotación
+gana.tramite_andalucia,"Registro de explotaciones (Junta de Andalucía, sin revisar)","Ustiategien erregistroa (Andaluziako Junta, berrikusi gabe)","Registre d’explotacions (Junta d’Andalusia, sense revisar)","Rexistro de explotacións (Junta de Andalucía, sen revisar)"
+gana.tramite_pac,"PAC (RD 1048/2022, anexo V)","PAC (RD 1048/2022, V. eranskina)","PAC (RD 1048/2022, annex V)","PAC (RD 1048/2022, anexo V)"
 gana.tratamientos_ecologico,Tratamientos que cuentan en 12 meses: {n} de {limite},12 hilabetean kontatzen diren tratamenduak: {n} / {limite},Tractaments que compten en 12 mesos: {n} de {limite},Tratamentos que contan en 12 meses: {n} de {limite}
 gana.ugm_pac,UGM (PAC),ALU (PAC),UBM (PAC),UGM (PAC)
 gana.veterinario,Veterinario prescriptor (nombre y contacto),Albaitari errezetagilea (izena eta harremana),Veterinari prescriptor (nom i contacte),Veterinario prescritor (nome e contacto)

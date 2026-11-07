@@ -4,4 +4,7 @@
          to allow setting breakpoints, to provide hot reload, etc.
     -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Solo en la de pruebas: deja hablar con un WordPress local por http.
+         La de verdad va siempre por https. -->
+    <application android:usesCleartextTraffic="true"/>
 </manifest>

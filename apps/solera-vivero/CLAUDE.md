@@ -12,14 +12,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 2 Modelos + BD | ✅ 2026-11-07 | 11 modelos (vivero, zona de cultivo, lote de material, bandeja con QR, siembra, partida de planta, repicado, salida, pasaporte emitido, tratamiento, inspección de plagas), 11 tablas en la v1 (`sentenciasEsquemaViveroV1`). Dominio puro: `stock.dart` (disponibles y resumen por especie/variedad/formato), `trazabilidad.dart` (de la partida al lote, con repicados), `pasaporte.dart` (necesidad de pasaporte por salida y datos A-D con lo que falta). 34 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos, avisos de inspección sin notificar, salidas sin pasaporte y plazos de seguridad, accesos a siembra, tratamiento, inspección y Cuaderno; Ajustes en la barra), Material (lotes y ficha con sus siembras), Bandejas (lista, alta con el siguiente código QR, ficha con partidas y siembras; zonas en la barra), Plantas (stock por especie y formato, partidas, ficha con disponibles, merma, repicado, salida, trazabilidad hasta el lote, tratamientos e inspecciones), Salidas (año, estado del pasaporte; ficha con la necesidad de pasaporte, letras A-D, lo que falta y registro de pasaportes con anulación). Sembrar crea la partida. Altas en hojas inferiores (`formularios.dart`). 40 tests, 6 de pantalla |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | **Cuaderno de tratamientos** del año (datos generales, zonas con nº de orden, tratamientos, inspecciones de plagas; aviso del registro electrónico desde el 1-1-2027) y **registro de pasaportes y trazabilidad** (origen: material comprado con proveedor, ROPVEG y pasaporte recibido; destino: salidas; pasaportes preparados con su estado) en Salidas → PDF o Ajustes → Documentos. **Etiqueta del pasaporte** (10 × 6,5 cm) por registro, desde la ficha de la salida: recuadro, bandera en blanco y negro, título bilingüe, letras A-D (y ZP), QR con A-D; fuera del recuadro, PROVISIONAL y, si toca, BORRADOR «no válido como pasaporte». Tablas puras con test. 49 tests |
-| 6 Catálogos | pendiente | |
+| 6 Catálogos | ✅ 2026-11-07 | `content/vivero/`: especies (52, con «pasaporte de planta», «pasaporte de semilla» y «anexo XIV/ZP» del 2019/2072, `fuente_publica:`), plagas reguladas (26: 10 prioritarias del R. Del. 2019/1702 y 16 RNQP del anexo IV, `fuente_publica:`; huéspedes de las prioritarias por verificar), plagas comunes de vivero (17, agrupaciones del campo «Agente» del Registro MAPA) y sustancias activas (126, cruzando el Registro MAPA del 06/11/2026 con 6 grupos de cultivo y la EU Pesticides DB del 07/11/2026, `revision-ia:`). Compilador sobre la librería común. En la app: autocompletado de especie (rellena el nombre botánico), plaga y sustancia por grupo de cultivo de la partida, plaga regulada ordenada por nombre botánico, plazo del registro como aviso, aviso si el uso no está en el catálogo, aviso de anexo XIV en la salida y banner de datos provisionales en Hoy. 58 tests |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 6 (catálogos).
+**Siguiente acción**: bloque 7 (IA visual).
 
 ## Encuadre
 
@@ -111,6 +111,26 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   pasaporte definitivo. Retirarlo es decisión humana (BLOQUEOS).
 - **2026-11-07 — Bandera en blanco y negro** dibujada a mano (12 estrellas):
   el anexo del 2017/2313 la admite y evita depender de una imagen.
+
+- **2026-11-07 — Fitosanitarios por grupo de cultivo del registro**, no por
+  especie: el Registro MAPA autoriza en «Ornamentales herbáceas», «Arbustos y
+  pequeños árboles ornamentales», «Forestales y ornamentales leñosas»,
+  «Pinos», «Tomate», «Pimiento», «Lechuga». Cada especie del catálogo lleva su
+  grupo (vacío si no se cruzó: castaño, frutales…; entonces se ofrecen todas
+  las sustancias y no se avisa de uso no autorizado). El cruce lo hace
+  `generar_fitosanitarios.py` (en el scratchpad de la sesión; criterio
+  descrito en la cabecera del CSV).
+- **2026-11-07 — `tipo_accion` deducido de las plagas** de cada sustancia (la
+  base UE no trae la categoría en la descarga); es orientativo.
+- **2026-11-07 — Plagas comunes en un catálogo aparte** (`plagas_vivero.csv`,
+  no lo pedía la ficha): los usos de los fitosanitarios necesitan ids.
+- **2026-11-07 — Huéspedes de las plagas reguladas por género**, comparados con
+  el nombre botánico de la partida: así sirve también con especies escritas a
+  mano. Las listas de huéspedes de las prioritarias son orientativas.
+- **2026-11-07 — Anexo XIV marcado solo donde el texto nombra el género**
+  (leído literalmente: puntos 1-4 y 9); vacío = por verificar. Las zonas
+  protegidas concretas (anexo III) no se han leído: la persona marca si el
+  destino lo es.
 
 ## Datos técnicos
 

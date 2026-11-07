@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../datos/catalogos_generados/flag_revision.dart';
 import '../dominio/pasaporte.dart';
 import '../dominio/stock.dart';
 import '../modelos/inspeccion_plagas.dart';
@@ -115,6 +116,14 @@ class PantallaHoy extends StatelessWidget {
           children: [
             if (cabecera != null) cabecera!,
             if (datos.faltanPrimerosPasos) _primerosPasos(context, datos),
+            if (!catalogosCompletamenteRevisados)
+              Card(
+                color: Theme.of(context).colorScheme.tertiaryContainer,
+                child: ListTile(
+                  leading: const Icon(Icons.info_outline),
+                  title: Text(SoleraL10n.t('vive.banner_datos_provisionales')),
+                ),
+              ),
             for (final inspeccion in datos.inspeccionesPendientes)
               Card(
                 color: Theme.of(context).colorScheme.errorContainer,

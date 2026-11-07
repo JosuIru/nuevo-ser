@@ -80,8 +80,15 @@ void main() {
     });
     expect(find.textContaining('SEM-77'), findsOneWidget);
     final lote = (await tester.runAsync(baseDatos.listarLotesMaterial))!.single;
-    expect((lote.especieId, lote.nombreBotanico, lote.paisOrigen),
-        ('Castaño', 'Castanea sativa', 'ES'));
+    expect((
+      lote.especieId,
+      lote.nombreBotanico,
+      lote.paisOrigen
+    ), (
+      'castano',
+      'Castanea sativa',
+      'ES'
+    ), reason: 'el catálogo convierte el nombre en su id');
   });
 
   testWidgets('alta de una bandeja con el siguiente código', (tester) async {
@@ -129,8 +136,11 @@ void main() {
       await tester.pumpWidget(const MaterialApp(home: PantallaHoy()));
       await esperar(tester);
     });
-    expect(find.textContaining('Xylella fastidiosa'), findsOneWidget);
-    expect(find.text(SoleraL10n.tf('vive.salidas_sin_pasaporte', {'n': 1})),
+    expect(find.textContaining('Xylella fastidiosa', skipOffstage: false),
+        findsOneWidget);
+    expect(
+        find.text(SoleraL10n.tf('vive.salidas_sin_pasaporte', {'n': 1}),
+            skipOffstage: false),
         findsOneWidget);
   });
 

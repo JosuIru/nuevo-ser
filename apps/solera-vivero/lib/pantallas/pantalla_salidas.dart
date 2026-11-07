@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../dominio/catalogos.dart';
 import '../dominio/pasaporte.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/partida_planta.dart';
@@ -254,6 +255,13 @@ class PantallaFichaSalida extends StatelessWidget {
                   dense: true,
                   leading: const Icon(Icons.error_outline),
                   title: Text(textoDatoFaltante(falta)),
+                ),
+              if (especiePorId(partida.especieId)?.anexoXivZonaProtegida ==
+                  true)
+                ListTile(
+                  dense: true,
+                  leading: const Icon(Icons.shield_outlined),
+                  title: Text(SoleraL10n.t('vive.especie_anexo_xiv')),
                 ),
               if (!datos.vivero.autorizadoPasaporte)
                 ListTile(

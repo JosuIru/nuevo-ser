@@ -1,6 +1,294 @@
 clave,es,eu,ca,gl
-mont.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
 mont.guardado,Guardado,Gordeta,Desat,Gardado
 mont.hoy,Hoy,Gaur,Avui,Hoxe
-mont.nombre_titular,Nombre del titular,Titularraren izena,Nom del titular,Nome do titular
 mont.titular,Titular,Titularra,Titular,Titular
+mont.aceptar,Aceptar,Onartu,Accepta,Aceptar
+mont.activa,En uso,Erabilgarri,En ús,En uso
+mont.actuacion,Actuación,Jarduketa,Actuació,Actuación
+mont.actuacion_del_plan,Actuación del plan,Planeko jarduketa,Actuació del pla,Actuación do plan
+mont.adjudicatario,"Adjudicatario (rematante, ganadero, vecino…)","Esleipenduna (erosle, abeltzain, auzokide…)","Adjudicatari (rematant, ramader, veí…)","Adxudicatario (rematante, gandeiro, veciño…)"
+mont.altura_m,Altura (m),Altuera (m),Alçada (m),Altura (m)
+mont.anadir_punto_aqui,Añadir punto aquí,Gehitu puntua hemen,Afegeix un punt aquí,Engadir punto aquí
+mont.ancho_m,Anchura (m),Zabalera (m),Amplada (m),Anchura (m)
+mont.anyo_origen,Año de origen,Jatorri-urtea,Any d'origen,Ano de orixe
+mont.anyo_origen_ayuda,"Plantación, regeneración o última corta a hecho; con él se calcula la edad","Landaketa, birsorkuntza edo azken mozketa osoa; horrekin kalkulatzen da adina","Plantació, regeneració o darrera tallada arreu; amb aquest any es calcula l'edat","Plantación, rexeneración ou última corta a feito; con el calcúlase a idade"
+mont.anyo_previsto,Año previsto,Aurreikusitako urtea,Any previst,Ano previsto
+mont.aprovechamiento,Aprovechamiento,Aprobetxamendua,Aprofitament,Aproveitamento
+mont.aprovechamientos,Aprovechamientos,Aprobetxamenduak,Aprofitaments,Aproveitamentos
+mont.aprovechamientos_anyo,aprovechamientos este año,aprobetxamendu aurten,aprofitaments enguany,aproveitamentos este ano
+mont.aprovechamientos_corto,Aprovech.,Aprob.,Aprofit.,Aproveit.
+mont.apunta_epoca_peligro,Apunta cuándo empieza la época de peligro de incendios,Idatzi noiz hasten den sute-arriskuko garaia,Apunta quan comença l'època de perill d'incendis,Anota cando comeza a época de perigo de incendios
+mont.apuntar_ejecucion,Apuntar lo hecho,Egindakoa idatzi,Apunta el que s'ha fet,Anotar o feito
+mont.arbol,Árbol o parcela,Zuhaitza edo partzela,Arbre o parcel·la,Árbore ou parcela
+mont.arboles,Árboles,Zuhaitzak,Arbres,Árbores
+mont.aviso_comunicacion_vencida,Pasó el mes para comunicar la cantidad obtenida ({fecha}); compruébalo con el órgano forestal,Lortutako kopurua jakinarazteko hilabetea igaro da ({fecha}); egiaztatu baso-organoarekin,Ha passat el mes per comunicar la quantitat obtinguda ({fecha}); comprova-ho amb l'òrgan forestal,Pasou o mes para comunicar a cantidade obtida ({fecha}); compróbao co órgano forestal
+mont.aviso_comunicar_cuantia,"Se vende: comunicar la cantidad obtenida antes del {fecha} (Ley 43/2003, art. 37.4)","Saltzen da: jakinarazi lortutako kopurua {fecha} baino lehen (43/2003 Legea, 37.4 art.)","Es ven: cal comunicar la quantitat obtinguda abans del {fecha} (Llei 43/2003, art. 37.4)","Véndese: comunicar a cantidade obtida antes do {fecha} (Lei 43/2003, art. 37.4)"
+mont.aviso_menor_cuantia,Pasa de 10 m³ de madera o 20 estéreos de leña: deja de ser de menor cuantía según la ley estatal (tu comunidad puede fijar menos),10 m³ egur edo 20 ester egur baino gehiago: ez da kopuru txikikoa estatuko legearen arabera (zure erkidegoak gutxiago ezar dezake),Passa de 10 m³ de fusta o 20 estèreos de llenya: deixa de ser de menor quantia segons la llei estatal (la teva comunitat pot fixar-ne menys),Pasa de 10 m³ de madeira ou 20 estéreos de leña: deixa de ser de menor contía segundo a lei estatal (a túa comunidade pode fixar menos)
+mont.aviso_tramite_pendiente,Trámite sin apuntar: la declaración o la autorización la gestiona la comunidad autónoma,Izapidea idatzi gabe: adierazpena edo baimena autonomia-erkidegoak kudeatzen du,Tràmit sense apuntar: la declaració o l'autorització la gestiona la comunitat autònoma,Trámite sen anotar: a declaración ou a autorización xestiónaa a comunidade autónoma
+mont.borrar_rodal,¿Borrar el rodal?,Sail-zatia ezabatu?,Esborrar el rodal?,Borrar o rodal?
+mont.borrar_sorteo,¿Borrar el sorteo y sus lotes?,Zozketa eta bere sortak ezabatu?,Esborrar el sorteig i els seus lots?,Borrar o sorteo e os seus lotes?
+mont.buscando_gps,Buscando GPS…,GPSa bilatzen…,Cercant el GPS…,Buscando GPS…
+mont.calculada,calculada,kalkulatua,calculada,calculada
+mont.campanya,Campaña (año),Kanpaina (urtea),Campanya (any),Campaña (ano)
+mont.cancelada,Descartada,Baztertua,Descartada,Descartada
+mont.cantidad_obtenida,Cantidad obtenida,Lortutako kopurua,Quantitat obtinguda,Cantidade obtida
+mont.cantidad_prevista,Cantidad prevista o pedida,Aurreikusitako edo eskatutako kopurua,Quantitat prevista o demanada,Cantidade prevista ou pedida
+mont.capacidad_m3,Capacidad (m³),Edukiera (m³),Capacitat (m³),Capacidade (m³)
+mont.catalogos_provisionales,"Catálogos provisionales: especies, unidades y plagas sin revisar por una persona experta","Behin-behineko katalogoak: espezieak, unitateak eta izurriak aditu batek berrikusi gabe","Catàlegs provisionals: espècies, unitats i plagues sense revisar per una persona experta","Catálogos provisionais: especies, unidades e pragas sen revisar por unha persoa experta"
+mont.cerrar_lista,Cerrar la lista,Zerrenda itxi,Tanca la llista,Pechar a lista
+mont.cerrar_lista_detalle,Después no se puede cambiar. Publica la huella antes de conocer la semilla: así nadie puede tocar la lista sin que se note.,Gero ezin da aldatu. Argitaratu aztarna hazia jakin aurretik: horrela inork ezin du zerrenda ukitu nabaritu gabe.,Després no es pot canviar. Publica l'empremta abans de conèixer la llavor: així ningú no pot tocar la llista sense que es noti.,Despois non se pode cambiar. Publica a pegada antes de coñecer a semente: así ninguén pode tocar a lista sen que se note.
+mont.cerrar_lista_pregunta,¿Cerrar la lista de participantes?,Parte-hartzaileen zerrenda itxi?,Tancar la llista de participants?,Pechar a lista de participantes?
+mont.certificacion,Certificación forestal,Baso-ziurtagiria,Certificació forestal,Certificación forestal
+mont.codigo_certificado,Código del certificado,Ziurtagiriaren kodea,Codi del certificat,Código do certificado
+mont.codigo_chapa,Código de la chapa,Plakaren kodea,Codi de la placa,Código da chapa
+mont.codigo_repetido,Ese código ya existe,Kode hori badago,Aquest codi ja existeix,Ese código xa existe
+mont.codigo_rodal,Código del rodal,Sail-zatiaren kodea,Codi del rodal,Código do rodal
+mont.codigo_rodal_ayuda,"El del plan de gestión (1a, R-03…)","Kudeaketa-planekoa (1a, R-03…)","El del pla de gestió (1a, R-03…)","O do plan de xestión (1a, R-03…)"
+mont.comercializado,Se vende,Saltzen da,Es ven,Véndese
+mont.comercializado_ayuda,"Si se vende madera o leña, hay que comunicar lo obtenido en un mes","Egurra saltzen bada, lortutakoa hilabetean jakinarazi behar da","Si es ven fusta o llenya, cal comunicar el que s'ha obtingut en un mes","Se se vende madeira ou leña, hai que comunicar o obtido nun mes"
+mont.como_verificar,"Cómo comprobarlo: para cada participante, SHA-256 de «semilla|nombre» (en Linux: echo -n ""semilla|nombre"" | sha256sum). Ordenadas de menor a mayor, la primera se lleva el lote de número más bajo, y así. Con la misma lista y la misma semilla sale siempre lo mismo.","Nola egiaztatu: parte-hartzaile bakoitzeko, «hazia|izena»-ren SHA-256 (Linuxen: echo -n ""hazia|izena"" | sha256sum). Txikienetik handienera ordenatuta, lehenak zenbaki txikieneko sorta hartzen du, eta horrela. Zerrenda eta hazi berarekin beti gauza bera ateratzen da.","Com comprovar-ho: per a cada participant, SHA-256 de «llavor|nom» (a Linux: echo -n ""llavor|nom"" | sha256sum). Ordenades de menor a major, la primera s'emporta el lot de número més baix, i així. Amb la mateixa llista i la mateixa llavor surt sempre el mateix.","Como comprobalo: para cada participante, SHA-256 de «semente|nome» (en Linux: echo -n ""semente|nome"" | sha256sum). Ordenadas de menor a maior, a primeira lévase o lote de número máis baixo, e así. Coa mesma lista e a mesma semente sae sempre o mesmo."
+mont.completa,Hecha del todo,Osorik egina,Feta del tot,Feita de todo
+mont.completa_ayuda,"Si se hizo en parte, la actuación del plan sigue abierta","Zati bat egin bada, planeko jarduketa irekita jarraitzen du","Si s'ha fet en part, l'actuació del pla continua oberta","Se se fixo en parte, a actuación do plan segue aberta"
+mont.comunidad_autonoma,Comunidad autónoma,Autonomia-erkidegoa,Comunitat autònoma,Comunidade autónoma
+mont.con_trabajo_pendiente,Con trabajo pendiente,Lana egiteke,Amb feina pendent,Con traballo pendente
+mont.datos_monte,Datos del monte,Mendiaren datuak,Dades de la forest,Datos do monte
+mont.datos_monte_ayuda,"Titular, figura, instrumento de gestión, certificación y época de peligro","Titularra, mota, kudeaketa-tresna, ziurtagiria eta arrisku-garaia","Titular, figura, instrument de gestió, certificació i època de perill","Titular, figura, instrumento de xestión, certificación e época de perigo"
+mont.de_ancho,de ancho,zabal,d'ample,de ancho
+mont.descripcion,Descripción,Deskribapena,Descripció,Descrición
+mont.dia,Día,Eguna,Dia,Día
+mont.dibujar_contorno,Dibujar el contorno caminando,Ingurua oinez marraztu,Dibuixa el contorn caminant,Debuxar o contorno camiñando
+mont.donde_esta_lote,"Dónde está (paraje, marcas, pintura)","Non dago (lekua, markak, pintura)","On és (paratge, marques, pintura)","Onde está (paraxe, marcas, pintura)"
+mont.edad_anyos,{n} años,{n} urte,{n} anys,{n} anos
+mont.ejecucion,Lo hecho,Egindakoa,El que s'ha fet,O feito
+mont.ejecutado,Hecho,Egina,Fet,Feito
+mont.ejecutor,Quién lo hizo,Nork egin zuen,Qui ho ha fet,Quen o fixo
+mont.ejecutor_ayuda,"Vecinos en vereda, cuadrilla, empresa…","Auzolana, kuadrilla, enpresa…","Veïns a jornal de vila, colla, empresa…","Veciños en roza, cuadrilla, empresa…"
+mont.en_parte,en parte,zati batean,en part,en parte
+mont.epoca_peligro,Época de peligro de incendios,Sute-arriskuko garaia,Època de perill d'incendis,Época de perigo de incendios
+mont.epoca_peligro_ca,La fija cada comunidad autónoma en su plan anual: apunta el día de inicio que publique la tuya,Autonomia-erkidego bakoitzak bere urteko planean ezartzen du: idatzi zureak argitaratzen duen hasiera-eguna,La fixa cada comunitat autònoma en el seu pla anual: apunta el dia d'inici que publiqui la teva,Fíxaa cada comunidade autónoma no seu plan anual: anota o día de inicio que publique a túa
+mont.epoca_peligro_empieza,La época de peligro empieza el {fecha},Arrisku-garaia {fecha}(e)an hasten da,L'època de perill comença el {fecha},A época de perigo comeza o {fecha}
+mont.epoca_peligro_en_curso,Época de peligro en curso,Arrisku-garaia martxan,Època de perill en curs,Época de perigo en curso
+mont.epoca_peligro_en_dias,La época de peligro empieza en {n} días,Arrisku-garaia {n} egun barru hasiko da,L'època de perill comença d'aquí a {n} dies,A época de perigo comeza en {n} días
+mont.error_cargar,No se han podido cargar los datos,Ezin izan dira datuak kargatu,No s'han pogut carregar les dades,Non se puideron cargar os datos
+mont.especie,Especie,Espeziea,Espècie,Especie
+mont.especie_principal,Especie principal,Espezie nagusia,Espècie principal,Especie principal
+mont.estado_atrasada,Atrasada,Atzeratua,Endarrerida,Atrasada
+mont.estado_cancelada,Descartada,Baztertua,Descartada,Descartada
+mont.estado_ejecutada,Hecha,Egina,Feta,Feita
+mont.estado_en_curso,En curso,Martxan,En curs,En curso
+mont.estado_masa,Estado de la masa,Masaren egoera,Estat de la massa,Estado da masa
+mont.estado_pendiente,Pendiente,Egiteke,Pendent,Pendente
+mont.estereos_lote,Estéreos del lote (orientativo),Sortaren esterak (gutxi gorabehera),Estèreos del lot (orientatiu),Estéreos do lote (orientativo)
+mont.estereos_lote_ayuda,Lo fija la junta; la app no calcula el tamaño de cada lote,Batzordeak ezartzen du; aplikazioak ez du sorta bakoitzaren tamaina kalkulatzen,Ho fixa la junta; l'aplicació no calcula la mida de cada lot,Fíxao a xunta; a aplicación non calcula o tamaño de cada lote
+mont.explicacion_contorno,"Camina la linde del rodal y, en cada esquina, toca «Añadir punto aquí». La superficie es orientativa: la oficial es la del catastro o la del plan.","Ibili sail-zatiaren muga eta, izkina bakoitzean, sakatu «Gehitu puntua hemen». Azalera gutxi gorabeherakoa da: ofiziala katastrokoa edo planekoa da.","Camina la partió del rodal i, a cada cantonada, toca «Afegeix un punt aquí». La superfície és orientativa: l'oficial és la del cadastre o la del pla.","Camiña o linde do rodal e, en cada esquina, toca «Engadir punto aquí». A superficie é orientativa: a oficial é a do catastro ou a do plan."
+mont.explicacion_traza,"Camina la pista o el cortafuegos y, en cada recodo, toca «Añadir punto aquí». La longitud es orientativa.","Ibili pista edo suebakia eta, bihurgune bakoitzean, sakatu «Gehitu puntua hemen». Luzera gutxi gorabeherakoa da.","Camina la pista o el tallafoc i, a cada revolt, toca «Afegeix un punt aquí». La longitud és orientativa.","Camiña a pista ou o devasa e, en cada curva, toca «Engadir punto aquí». A lonxitude é orientativa."
+mont.falta_anyo,Falta un año válido,Urte baliozko bat falta da,Falta un any vàlid,Falta un ano válido
+mont.falta_codigo,Falta el código,Kodea falta da,Falta el codi,Falta o código
+mont.falta_codigo_especie,Faltan el código y la especie,Kodea eta espeziea falta dira,Falten el codi i l'espècie,Faltan o código e a especie
+mont.falta_nombre,Falta el nombre,Izena falta da,Falta el nom,Falta o nome
+mont.falta_numero_lote,Falta el número del lote,Sortaren zenbakia falta da,Falta el número del lot,Falta o número do lote
+mont.falta_semilla,Falta la semilla,Hazia falta da,Falta la llavor,Falta a semente
+mont.faltan_lotes,Faltan los lotes,Sortak falta dira,Falten els lots,Faltan os lotes
+mont.fecha,Fecha,Data,Data,Data
+mont.fecha_comunicacion_cuantia,Fecha en que se comunicó lo obtenido,Lortutakoa jakinarazi zen data,Data en què es va comunicar el que s'ha obtingut,Data en que se comunicou o obtido
+mont.fecha_fin,Fin,Amaiera,Final,Fin
+mont.fecha_inicio,Inicio,Hasiera,Inici,Inicio
+mont.figura,Figura de propiedad,Jabetza-mota,Figura de propietat,Figura de propiedade
+mont.guardar_lista,Guardar la lista,Zerrenda gorde,Desa la llista,Gardar a lista
+mont.huella_lista,Huella de la lista (SHA-256),Zerrendaren aztarna (SHA-256),Empremta de la llista (SHA-256),Pegada da lista (SHA-256)
+mont.inactiva,fuera de uso,erabili gabe,fora d'ús,fóra de uso
+mont.incendios,Incendios,Suteak,Incendis,Incendios
+mont.infraestructura,Infraestructura,Azpiegitura,Infraestructura,Infraestrutura
+mont.instrumento_gestion,Instrumento de gestión,Kudeaketa-tresna,Instrument de gestió,Instrumento de xestión
+mont.instrumento_tecnico,El proyecto de ordenación o el plan los redacta un profesional forestal y los aprueba la comunidad autónoma: la app solo guarda su referencia,Antolamendu-proiektua edo plana baso-profesional batek idazten du eta autonomia-erkidegoak onartzen du: aplikazioak erreferentzia baino ez du gordetzen,El projecte d'ordenació o el pla els redacta un professional forestal i els aprova la comunitat autònoma: l'aplicació només en desa la referència,O proxecto de ordenación ou o plan redáctaos un profesional forestal e apróbaos a comunidade autónoma: a aplicación só garda a súa referencia
+mont.lista_abierta,Lista abierta,Zerrenda irekia,Llista oberta,Lista aberta
+mont.lista_cerrada,"Lista cerrada, sin sortear","Zerrenda itxia, zozketatu gabe","Llista tancada, sense sortejar","Lista pechada, sen sortear"
+mont.lista_cerrada_el,Lista cerrada el {fecha},Zerrenda {fecha}(e)an itxia,Llista tancada el {fecha},Lista pechada o {fecha}
+mont.lista_con_repetidos,"Hay nombres repetidos: distínguelos (casa, apodo)","Izen errepikatuak daude: bereizi (etxea, ezizena)","Hi ha noms repetits: distingeix-los (casa, malnom)","Hai nomes repetidos: distíngueos (casa, alcume)"
+mont.lista_espera,En espera,Itxaron-zerrendan,En espera,En espera
+mont.lista_vacia,La lista está vacía,Zerrenda hutsik dago,La llista és buida,A lista está baleira
+mont.longitud_ayuda,"Si no la pones, la de la traza","Jartzen ez baduzu, ibilbidearena","Si no la poses, la del traçat","Se non a pos, a do trazado"
+mont.longitud_m,Longitud (m),Luzera (m),Longitud (m),Lonxitude (m)
+mont.lote,Lote,Sorta,Lot,Lote
+mont.lote_n,Lote {n},{n}. sorta,Lot {n},Lote {n}
+mont.lotes_n,Lotes ({n}),Sortak ({n}),Lots ({n}),Lotes ({n})
+mont.mapa,Mapa,Mapa,Mapa,Mapa
+mont.mes,Mes,Hilabetea,Mes,Mes
+mont.modalidad,Cómo se reparte o se vende,Nola banatzen edo saltzen den,Com es reparteix o es ven,Como se reparte ou se vende
+mont.monte,Monte,Mendia,Forest,Monte
+mont.municipio,Municipio,Udalerria,Municipi,Concello
+mont.n_participantes,{n} participantes,{n} parte-hartzaile,{n} participants,{n} participantes
+mont.nif,NIF,IFZ,NIF,NIF
+mont.ninguno,Ninguno,Bat ere ez,Cap,Ningún
+mont.no_prevista,No prevista en el plan,Planean aurreikusi gabea,No prevista al pla,Non prevista no plan
+mont.nombre,Nombre,Izena,Nom,Nome
+mont.nombre_arbol,Nombre popular,Herri-izena,Nom popular,Nome popular
+mont.nombre_monte,Nombre del monte,Mendiaren izena,Nom de la forest,Nome do monte
+mont.nombre_paraje,Paraje,Lekua,Paratge,Paraxe
+mont.nombre_sorteo,Nombre del sorteo,Zozketaren izena,Nom del sorteig,Nome do sorteo
+mont.nombre_sorteo_ayuda,Por ejemplo: suertes de leña 2026-2027,Adibidez: egur-sortak 2026-2027,Per exemple: lots de llenya 2026-2027,Por exemplo: lotes de leña 2026-2027
+mont.notas,Notas,Oharrak,Notes,Notas
+mont.nueva_actuacion,Nueva actuación,Jarduketa berria,Actuació nova,Nova actuación
+mont.nueva_ejecucion,Apuntar lo hecho,Egindakoa idatzi,Apunta el que s'ha fet,Anotar o feito
+mont.nueva_infraestructura,Nueva infraestructura,Azpiegitura berria,Infraestructura nova,Nova infraestrutura
+mont.nueva_revision,Nueva revisión,Berrikuspen berria,Revisió nova,Nova revisión
+mont.nuevo_aprovechamiento,Nuevo aprovechamiento,Aprobetxamendu berria,Aprofitament nou,Novo aproveitamento
+mont.nuevo_arbol,Nuevo árbol o parcela,Zuhaitz edo partzela berria,Arbre o parcel·la nova,Nova árbore ou parcela
+mont.nuevo_lote,Nuevo lote,Sorta berria,Lot nou,Novo lote
+mont.nuevo_rodal,Nuevo rodal,Sail-zati berria,Rodal nou,Novo rodal
+mont.nuevo_sorteo,Nuevo sorteo,Zozketa berria,Sorteig nou,Novo sorteo
+mont.numero_catalogo,Número de catálogo o registro,Katalogo- edo erregistro-zenbakia,Número de catàleg o registre,Número de catálogo ou rexistro
+mont.numero_catalogo_ayuda,"El del catálogo de utilidad pública o el registro de montes vecinales, si lo tiene","Onura publikoko katalogokoa edo auzo-mendien erregistrokoa, baldin badu","El del catàleg d'utilitat pública o el registre de forests veïnals, si en té","O do catálogo de utilidade pública ou o rexistro de montes veciñais, se o ten"
+mont.numero_lote,Número del lote,Sortaren zenbakia,Número del lot,Número do lote
+mont.numero_lote_repetido,Ese número ya está en este sorteo,Zenbaki hori badago zozketa honetan,Aquest número ja és en aquest sorteig,Ese número xa está neste sorteo
+mont.origen_semilla,De dónde sale la semilla,Nondik dator hazia,D'on surt la llavor,De onde sae a semente
+mont.origen_semilla_ayuda,"Para que cualquiera la compruebe (sorteo público, fecha…)","Edonork egiazta dezan (zozketa publikoa, data…)","Perquè qualsevol la comprovi (sorteig públic, data…)","Para que calquera a comprobe (sorteo público, data…)"
+mont.participantes,Participantes (una casa o persona por línea),Parte-hartzaileak (etxe edo pertsona bat lerroko),Participants (una casa o persona per línia),Participantes (unha casa ou persoa por liña)
+mont.participantes_ayuda,"Quién tiene derecho lo dicen la ordenanza, los estatutos o la costumbre: la app sortea entre esta lista","Nork duen eskubidea ordenantzak, estatutuek edo ohiturak esaten dute: aplikazioak zerrenda honen artean zozketatzen du","Qui té dret ho diuen l'ordenança, els estatuts o el costum: l'aplicació sorteja entre aquesta llista","Quen ten dereito dino a ordenanza, os estatutos ou o costume: a aplicación sortea entre esta lista"
+mont.paso_lista,1. Lista de participantes,1. Parte-hartzaileen zerrenda,1. Llista de participants,1. Lista de participantes
+mont.paso_semilla,2. Semilla pública y sorteo,2. Hazi publikoa eta zozketa,2. Llavor pública i sorteig,2. Semente pública e sorteo
+mont.perimetro_cm,"Perímetro a 1,30 m (cm)","Perimetroa 1,30 m-tan (cm)","Perímetre a 1,30 m (cm)","Perímetro a 1,30 m (cm)"
+mont.plan,Plan,Plana,Pla,Plan
+mont.plan_al_dia,Nada pendiente del plan,Planean ezer ez dago egiteke,Res pendent del pla,Nada pendente do plan
+mont.plan_del_anyo,Plan hasta {anyo},Plana {anyo} arte,Pla fins al {anyo},Plan ata {anyo}
+mont.previsto,Previsto,Aurreikusia,Previst,Previsto
+mont.primeros_pasos,Primeros pasos,Lehen urratsak,Primers passos,Primeiros pasos
+mont.primeros_pasos_texto,"Apunta los datos del monte y crea los rodales del plan. Después, dibuja su contorno caminando la linde con el móvil.","Idatzi mendiaren datuak eta sortu planeko sail-zatiak. Gero, marraztu haien ingurua muga mugikorrarekin oinez ibiliz.","Apunta les dades de la forest i crea els rodals del pla. Després, dibuixa'n el contorn caminant la partió amb el mòbil.","Anota os datos do monte e crea os rodais do plan. Despois, debuxa o seu contorno camiñando o linde co móbil."
+mont.puntos,puntos,puntu,punts,puntos
+mont.quitar_ultimo,Quitar el último,Azkena kendu,Treu el darrer,Quitar o último
+mont.radio_parcela_m,Radio de la parcela (m),Partzelaren erradioa (m),Radi de la parcel·la (m),Radio da parcela (m)
+mont.referencia_instrumento,Referencia o expediente,Erreferentzia edo espedientea,Referència o expedient,Referencia ou expediente
+mont.referencia_tramite,Número de expediente,Espediente-zenbakia,Número d'expedient,Número de expediente
+mont.resultado,Resultado,Emaitza,Resultat,Resultado
+mont.resumen_anyo,{ejecutadas} de {previstas} actuaciones hechas,{previstas} jarduketatik {ejecutadas} eginak,{ejecutadas} de {previstas} actuacions fetes,{ejecutadas} de {previstas} actuacións feitas
+mont.revisada_bien,Revisada,Berrikusia,Revisada,Revisada
+mont.revision,Revisión,Berrikuspena,Revisió,Revisión
+mont.revisiones,Revisiones,Berrikuspenak,Revisions,Revisións
+mont.revisiones_pendientes,{sin} sin revisar este año y {trabajo} con trabajo pendiente,{sin} aurten berrikusi gabe eta {trabajo} lana egiteke,{sin} sense revisar enguany i {trabajo} amb feina pendent,{sin} sen revisar este ano e {trabajo} con traballo pendente
+mont.revisor,Quién revisa,Nork berrikusten du,Qui revisa,Quen revisa
+mont.rodal,Rodal,Sail-zatia,Rodal,Rodal
+mont.rodal_con_registros,"No se puede borrar: el rodal tiene actuaciones, aprovechamientos o lotes","Ezin da ezabatu: sail-zatiak jarduketak, aprobetxamenduak edo sortak ditu","No es pot esborrar: el rodal té actuacions, aprofitaments o lots","Non se pode borrar: o rodal ten actuacións, aproveitamentos ou lotes"
+mont.rodales,Rodales,Sail-zatiak,Rodals,Rodais
+mont.semilla,Semilla,Hazia,Llavor,Semente
+mont.semilla_ayuda,"Un texto público que nadie conozca al cerrar la lista: por ejemplo, el número premiado de un sorteo público de una fecha posterior.","Zerrenda ixtean inork ezagutzen ez duen testu publikoa: adibidez, geroagoko data bateko zozketa publiko baten zenbaki saridduna.","Un text públic que ningú no conegui en tancar la llista: per exemple, el número premiat d'un sorteig públic d'una data posterior.","Un texto público que ninguén coñeza ao pechar a lista: por exemplo, o número premiado dun sorteo público dunha data posterior."
+mont.senalamiento_tecnico,El señalamiento lo hace el técnico forestal: aquí solo se apunta,Seinaleztapena baso-teknikariak egiten du: hemen idatzi baino ez da egiten,L'assenyalament el fa el tècnic forestal: aquí només s'apunta,O sinalamento faino o técnico forestal: aquí só se anota
+mont.sin_actuaciones,"Aún no hay actuaciones. Copia aquí las del plan de gestión, por año y rodal.","Oraindik ez dago jarduketarik. Kopiatu hemen kudeaketa-planekoak, urteka eta sail-zatika.","Encara no hi ha actuacions. Copia aquí les del pla de gestió, per any i rodal.","Aínda non hai actuacións. Copia aquí as do plan de xestión, por ano e rodal."
+mont.sin_adjudicar,Sin adjudicar,Esleitu gabe,Sense adjudicar,Sen adxudicar
+mont.sin_aprovechamientos,No hay aprovechamientos en esta campaña,Ez dago aprobetxamendurik kanpaina honetan,No hi ha aprofitaments en aquesta campanya,Non hai aproveitamentos nesta campaña
+mont.sin_apuntar,Sin apuntar,Idatzi gabe,Sense apuntar,Sen anotar
+mont.sin_arboles,Aún no hay árboles singulares ni parcelas de muestreo,Oraindik ez dago zuhaitz berezirik ez lagin-partzelarik,Encara no hi ha arbres singulars ni parcel·les de mostreig,Aínda non hai árbores singulares nin parcelas de mostraxe
+mont.sin_contorno,Sin contorno,Ingururik gabe,Sense contorn,Sen contorno
+mont.sin_ejecuciones,Aún no hay nada hecho apuntado,Oraindik ez dago ezer eginik idatzita,Encara no hi ha res fet apuntat,Aínda non hai nada feito anotado
+mont.sin_fecha,Sin fecha,Datarik gabe,Sense data,Sen data
+mont.sin_gps,No llega la posición: revisa el GPS y el permiso,Kokapena ez da iristen: egiaztatu GPSa eta baimena,No arriba la posició: revisa el GPS i el permís,Non chega a posición: revisa o GPS e o permiso
+mont.sin_infraestructuras,"Apunta las pistas, puntos de agua y cortafuegos para revisarlos antes de la temporada","Idatzi pistak, ur-puntuak eta suebakiak denboraldia baino lehen berrikusteko","Apunta les pistes, punts d'aigua i tallafocs per revisar-los abans de la temporada","Anota as pistas, puntos de auga e devasas para revisalos antes da tempada"
+mont.sin_revisar,Sin revisar,Berrikusi gabe,Sense revisar,Sen revisar
+mont.sin_revisiones,Sin revisiones,Berrikuspenik gabe,Sense revisions,Sen revisións
+mont.sin_rodales,Aún no hay rodales. Crea los del plan de gestión y dibuja su contorno caminando.,Oraindik ez dago sail-zatirik. Sortu kudeaketa-planekoak eta marraztu haien ingurua oinez.,Encara no hi ha rodals. Crea els del pla de gestió i dibuixa'n el contorn caminant.,Aínda non hai rodais. Crea os do plan de xestión e debuxa o seu contorno camiñando.
+mont.sin_sorteos,No hay sorteos de leña en esta campaña,Ez dago egur-zozketarik kanpaina honetan,No hi ha sortejos de llenya en aquesta campanya,Non hai sorteos de leña nesta campaña
+mont.sin_ubicacion,sin ubicación,kokapenik gabe,sense ubicació,sen localización
+mont.sortear,Sortear,Zozketatu,Sorteja,Sortear
+mont.sortear_detalle,"Después la lista, la semilla y el resultado quedan fijos y cualquiera puede repetirlo.","Gero zerrenda, hazia eta emaitza finko geratzen dira eta edonork errepika dezake.","Després la llista, la llavor i el resultat queden fixos i qualsevol el pot repetir.","Despois a lista, a semente e o resultado quedan fixos e calquera pode repetilo."
+mont.sortear_pregunta,¿Sortear ahora?,Orain zozketatu?,Sortejar ara?,Sortear agora?
+mont.sorteo_de,Sorteo de leña {anyo},{anyo}ko egur-zozketa,Sorteig de llenya {anyo},Sorteo de leña {anyo}
+mont.sorteo_explicacion,"El sorteo es transparente: se cierra la lista, se fija una semilla pública que nadie conocía y el orden sale de la lista y la semilla. Con los mismos datos, cualquiera saca el mismo resultado.","Zozketa gardena da: zerrenda ixten da, inork ezagutzen ez zuen hazi publiko bat ezartzen da eta ordena zerrendatik eta hazitik ateratzen da. Datu berekin, edonork emaitza bera ateratzen du.","El sorteig és transparent: es tanca la llista, es fixa una llavor pública que ningú no coneixia i l'ordre surt de la llista i la llavor. Amb les mateixes dades, qualsevol en treu el mateix resultat.","O sorteo é transparente: péchase a lista, fíxase unha semente pública que ninguén coñecía e a orde sae da lista e da semente. Cos mesmos datos, calquera saca o mesmo resultado."
+mont.sorteo_no_coincide,El resultado guardado no coincide con la lista y la semilla: revisa si se ha tocado,Gordetako emaitza ez dator bat zerrendarekin eta haziarekin: egiaztatu ukitu den,El resultat desat no coincideix amb la llista i la llavor: revisa si s'ha tocat,O resultado gardado non coincide coa lista e a semente: revisa se se tocou
+mont.sorteo_no_valido,"No se puede sortear: revisa la lista, la semilla y los lotes","Ezin da zozketatu: egiaztatu zerrenda, hazia eta sortak","No es pot sortejar: revisa la llista, la llavor i els lots","Non se pode sortear: revisa a lista, a semente e os lotes"
+mont.sorteo_realizado,Sorteado,Zozketatua,Sortejat,Sorteado
+mont.sorteo_verificado,Comprobado: la lista y la semilla dan este mismo resultado,Egiaztatua: zerrendak eta haziak emaitza bera ematen dute,Comprovat: la llista i la llavor donen aquest mateix resultat,Comprobado: a lista e a semente dan este mesmo resultado
+mont.sorteos_lena,Sorteos de leña,Egur-zozketak,Sortejos de llenya,Sorteos de leña
+mont.superficie_declarada,Superficie del plan o la escritura (ha),Planeko edo eskriturako azalera (ha),Superfície del pla o l'escriptura (ha),Superficie do plan ou da escritura (ha)
+mont.superficie_declarada_ayuda,"Si no la pones, se usa la del contorno dibujado","Jartzen ez baduzu, marraztutako ingurukoa erabiltzen da","Si no la poses, s'usa la del contorn dibuixat","Se non a pos, úsase a do contorno debuxado"
+mont.superficie_dibujada,Contorno dibujado: {ha} ha (orientativa),Marraztutako ingurua: {ha} ha (gutxi gorabehera),Contorn dibuixat: {ha} ha (orientativa),Contorno debuxado: {ha} ha (orientativa)
+mont.superficie_ha,Superficie (ha),Azalera (ha),Superfície (ha),Superficie (ha)
+mont.superficie_orientativa,Medida orientativa sobre el GPS del móvil,Mugikorraren GPSaren gaineko neurri gutxi gorabeherakoa,Mesura orientativa sobre el GPS del mòbil,Medida orientativa sobre o GPS do móbil
+mont.superficie_total,Superficie: {ha} ha,Azalera: {ha} ha,Superfície: {ha} ha,Superficie: {ha} ha
+mont.tecnico_forestal,Técnico forestal de referencia,Erreferentziako baso-teknikaria,Tècnic forestal de referència,Técnico forestal de referencia
+mont.tipo_actuacion,Tipo de actuación,Jarduketa mota,Tipus d'actuació,Tipo de actuación
+mont.tipo_aprovechamiento,Qué se aprovecha,Zer aprobetxatzen den,Què s'aprofita,Que se aproveita
+mont.titular_ayuda,"Persona propietaria, comunidad de montes, junta vecinal o concejo","Jabea, mendi-erkidegoa, auzo-batzarra edo kontzejua","Persona propietària, comunitat de forests, junta veïnal o consell","Persoa propietaria, comunidade de montes, xunta veciñal ou concello"
+mont.todo_el_monte,Todo el monte,Mendi osoa,Tota la forest,Todo o monte
+mont.todo_revisado,Todo revisado y en buen estado,Dena berrikusia eta egoera onean,Tot revisat i en bon estat,Todo revisado e en bo estado
+mont.trabajos_necesarios,Trabajos necesarios,Beharrezko lanak,Feines necessàries,Traballos necesarios
+mont.tramite,Trámite ante la comunidad autónoma,Autonomia-erkidegoaren aurreko izapidea,Tràmit davant la comunitat autònoma,Trámite ante a comunidade autónoma
+mont.tramite_lo_decide_ca,"La app no autoriza nada: qué trámite toca lo dice la norma de tu comunidad (Ley 43/2003, arts. 36 y 37)","Aplikazioak ez du ezer baimentzen: zein izapide dagokion zure erkidegoaren arauak esaten du (43/2003 Legea, 36. eta 37. art.)","L'aplicació no autoritza res: quin tràmit toca ho diu la norma de la teva comunitat (Llei 43/2003, arts. 36 i 37)","A aplicación non autoriza nada: que trámite toca dio a norma da túa comunidade (Lei 43/2003, arts. 36 e 37)"
+mont.tramites_y_plazos,Trámites y plazos,Izapideak eta epeak,Tràmits i terminis,Trámites e prazos
+mont.trazar_caminando,Trazar caminando,Oinez trazatu,Traça caminant,Trazar camiñando
+mont.unidad,Unidad,Unitatea,Unitat,Unidade
+mont.usar_mi_ubicacion,Usar mi ubicación,Nire kokapena erabili,Fes servir la meva ubicació,Usar a miña localización
+mont.vigente_hasta,Vigente hasta,Indarrean noiz arte,Vigent fins a,Vixente ata
+mont.volumen_previsto_aprovechado,"Madera y leña: {previsto} m³ previstos, {aprovechado} m³ aprovechados (estéreos a m³, orientativo)","Egurra: {previsto} m³ aurreikusiak, {aprovechado} m³ aprobetxatuak (esterak m³-ra, gutxi gorabehera)","Fusta i llenya: {previsto} m³ previstos, {aprovechado} m³ aprofitats (estèreos a m³, orientatiu)","Madeira e leña: {previsto} m³ previstos, {aprovechado} m³ aproveitados (estéreos a m³, orientativo)"
+mont.volumen_previsto_ayuda,Solo si la actuación saca madera o leña,Jarduketak egurra ateratzen badu bakarrik,Només si l'actuació treu fusta o llenya,Só se a actuación saca madeira ou leña
+mont.volumen_previsto_m3,Volumen previsto (m³),Aurreikusitako bolumena (m³),Volum previst (m³),Volume previsto (m³)
+mont.figura_particular,Monte particular,Mendi partikularra,Forest particular,Monte particular
+mont.figura_vecinal_mano_comun,Vecinal en mano común,Auzo-mendia esku komunean,Veïnal en mà comuna,Veciñal en man común
+mont.figura_comunal_junta_vecinal,Comunal de junta vecinal o concejo,Auzo-batzar edo kontzejuaren herri-lurra,Comunal de junta veïnal o consell,Comunal de xunta veciñal ou concello
+mont.figura_comunal_ayuntamiento,Comunal del ayuntamiento,Udalaren herri-lurra,Comunal de l'ajuntament,Comunal do concello
+mont.figura_otro,Otra,Beste bat,Altra,Outra
+mont.instrumento_ninguno,Ninguno,Bat ere ez,Cap,Ningún
+mont.instrumento_proyecto_ordenacion,Proyecto de ordenación,Antolamendu-proiektua,Projecte d'ordenació,Proxecto de ordenación
+mont.instrumento_plan_dasocratico,Plan dasocrático,Plan dasokratikoa,Pla dasocràtic,Plan dasocrático
+mont.instrumento_plan_tecnico,Plan técnico,Plan teknikoa,Pla tècnic,Plan técnico
+mont.instrumento_modelo_tipo,Adhesión a un modelo tipo,Eredu-tipo baterako atxikimendua,Adhesió a un model tipus,Adhesión a un modelo tipo
+mont.instrumento_otro,Otro equivalente,Beste baliokide bat,Un altre d'equivalent,Outro equivalente
+mont.certificacion_ninguna,Sin certificar,Ziurtatu gabe,Sense certificar,Sen certificar
+mont.certificacion_pefc,PEFC,PEFC,PEFC,PEFC
+mont.certificacion_fsc,FSC,FSC,FSC,FSC
+mont.masa_repoblado,Repoblado,Birlandatua,Repoblat,Repoboado
+mont.masa_monte_bajo,Monte bajo,Baso baxua,Forest baixa,Monte baixo
+mont.masa_latizal,Latizal,Latizala,Latissal,Latizal
+mont.masa_fustal,Fustal,Fustala,Fustal,Fustal
+mont.masa_masa_irregular,Masa irregular,Masa irregularra,Massa irregular,Masa irregular
+mont.masa_raso,Raso o desarbolado,Zuhaitzik gabea,Desarbrat,Raso ou sen arborado
+mont.masa_quemado,Quemado,Erreta,Cremat,Queimado
+mont.actuacion_clara,Clara,Bakantzea,Aclarida,Clara
+mont.actuacion_clareo,Clareo,Argitzea,Aclarida precomercial,Clareo
+mont.actuacion_poda,Poda,Inausketa,Poda,Poda
+mont.actuacion_desbroce,Desbroce,Sastrakak garbitzea,Desbrossada,Rozada
+mont.actuacion_corta_regeneracion,Corta de regeneración,Birsortze-mozketa,Tallada de regeneració,Corta de rexeneración
+mont.actuacion_corta_final,Corta final,Azken mozketa,Tallada final,Corta final
+mont.actuacion_repoblacion,Repoblación,Birlandaketa,Repoblació,Repoboación
+mont.actuacion_senalamiento,Señalamiento,Seinaleztapena,Assenyalament,Sinalamento
+mont.actuacion_mantenimiento_pista,Mantenimiento de pista,Pistaren mantentzea,Manteniment de pista,Mantemento de pista
+mont.actuacion_mantenimiento_cortafuegos,Mantenimiento de cortafuegos,Suebakien mantentzea,Manteniment de tallafocs,Mantemento de devasas
+mont.actuacion_otra,Otra,Beste bat,Altra,Outra
+mont.aprov_madera,Madera,Egurra (zura),Fusta,Madeira
+mont.aprov_lena,Leña,Egurra (sutarako),Llenya,Leña
+mont.aprov_biomasa,Biomasa,Biomasa,Biomassa,Biomasa
+mont.aprov_corcho,Corcho,Kortxoa,Suro,Cortiza
+mont.aprov_resina,Resina,Erretxina,Resina,Resina
+mont.aprov_pastos,Pastos,Larreak,Pastures,Pastos
+mont.aprov_caza,Caza,Ehiza,Caça,Caza
+mont.aprov_frutos,Frutos,Fruituak,Fruits,Froitos
+mont.aprov_hongos,Hongos,Onddoak,Bolets,Cogomelos
+mont.aprov_aromaticas,Plantas aromáticas y medicinales,Landare aromatikoak eta sendabelarrak,Plantes aromàtiques i medicinals,Plantas aromáticas e medicinais
+mont.aprov_apicolas,Productos apícolas,Erle-produktuak,Productes apícoles,Produtos apícolas
+mont.aprov_otros,Otros,Besteak,Altres,Outros
+mont.unidad_m3,m³,m³,m³,m³
+mont.unidad_estereos,estéreos,ester,estèreos,estéreos
+mont.unidad_toneladas,t,t,t,t
+mont.unidad_kg,kg,kg,kg,kg
+mont.unidad_hectareas,ha,ha,ha,ha
+mont.unidad_cabezas,cabezas,buru,caps,cabezas
+mont.unidad_colmenas,colmenas,erlauntz,ruscs,colmeas
+mont.unidad_unidades,unidades,unitate,unitats,unidades
+mont.modalidad_lotes_vecinales,Lotes vecinales,Auzo-sortak,Lots veïnals,Lotes veciñais
+mont.modalidad_subasta,Subasta,Enkantea,Subhasta,Poxa
+mont.modalidad_adjudicacion_directa,Adjudicación directa,Zuzeneko esleipena,Adjudicació directa,Adxudicación directa
+mont.modalidad_uso_propio,Uso propio,Norberaren erabilera,Ús propi,Uso propio
+mont.modalidad_otra,Otra,Beste bat,Altra,Outra
+mont.tramite_pendiente,Sin trámite apuntado,Izapiderik idatzi gabe,Sense tràmit apuntat,Sen trámite anotado
+mont.tramite_declaracion_responsable,Declaración responsable,Erantzukizunpeko adierazpena,Declaració responsable,Declaración responsable
+mont.tramite_autorizacion,Autorización,Baimena,Autorització,Autorización
+mont.tramite_comunicacion,Comunicación,Jakinarazpena,Comunicació,Comunicación
+mont.tramite_otro,Otro,Beste bat,Un altre,Outro
+mont.infra_pista,Pista,Pista,Pista,Pista
+mont.infra_punto_agua,Punto de agua,Ur-puntua,Punt d'aigua,Punto de auga
+mont.infra_cortafuegos,Cortafuegos,Suebakia,Tallafoc,Devasa
+mont.infra_faja_auxiliar,Faja auxiliar,Laguntza-zerrenda,Franja auxiliar,Faixa auxiliar
+mont.infra_otra,Otra,Beste bat,Altra,Outra
+mont.revision_correcto,Correcto,Zuzena,Correcte,Correcto
+mont.revision_necesita_mantenimiento,Necesita mantenimiento,Mantentzea behar du,Necessita manteniment,Necesita mantemento
+mont.revision_no_utilizable,No se puede usar,Ezin da erabili,No es pot fer servir,Non se pode usar
+mont.arbol_arbol_singular,Árbol singular,Zuhaitz berezia,Arbre singular,Árbore singular
+mont.arbol_parcela_muestreo,Parcela de muestreo,Lagin-partzela,Parcel·la de mostreig,Parcela de mostraxe

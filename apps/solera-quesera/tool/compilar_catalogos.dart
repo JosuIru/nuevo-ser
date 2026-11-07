@@ -61,7 +61,7 @@ void main() {
     final idxRevisado = cabeceras.indexOf('revisado_por');
     if (idxRevisado >= 0) {
       for (final f in filas) {
-        if (idxRevisado < f.length && f[idxRevisado].trim().isEmpty) {
+        if (idxRevisado >= f.length || !_esFirmaDePersona(f[idxRevisado])) {
           todosRevisados = false;
           break;
         }
@@ -117,7 +117,7 @@ const bool catalogosCompletamenteRevisados = $todosRevisados;
   File('$_rutaSalida/flag_revision.dart').writeAsStringSync(flag);
   print(todosRevisados
       ? '✅ Todos los catálogos están revisados'
-      : '⚠️  Hay catálogos con datos provisionales (revisado_por vacío)');
+      : '⚠️  Hay catálogos con datos provisionales (sin firma asesor:/persona: en revisado_por)');
 }
 
 List<String> _parseCsvLine(String linea) {
@@ -144,4 +144,12 @@ class _Catalogo {
   final String clase;
   final List<String> cabecerasEsperadas;
   _Catalogo(this.archivo, this.clase, this.cabecerasEsperadas);
+}
+
+/// Solo cuenta como firma de persona experta un `revisado_por` que empiece
+/// por `asesor:` o `persona:` (convención de scripts/pendientes). Una fuente
+/// pública, una cita o `revision-ia:` no retiran el banner provisional.
+bool _esFirmaDePersona(String valor) {
+  final normalizado = valor.trim().toLowerCase();
+  return normalizado.startsWith('asesor:') || normalizado.startsWith('persona:');
 }

@@ -15,11 +15,11 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (almendra con hoja sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» al editar la parcela (geolocator) y mapa de parcelas (OSM) desde Parcelas. Permisos INTERNET y ubicación en el manifiesto. 41 tests |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir) en `configuraciones_fiscales`; apuntes con base, IVA o compensación REAGP (12 %, solo en venta de cosecha), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 49 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 6 (catálogos CSV y compilador).
+**Siguiente acción**: bloque 6 (catálogos CSV y compilador; los datos del Registro MAPA ya están extraídos, ver «Fuentes consultadas»).
 
 ## Encuadre
 
@@ -78,6 +78,11 @@ Lo esencial que no se toca (hard limits):
 - **2026-11-07 — Permiso INTERNET declarado** en el manifiesto principal: sin
   él la IA y la meteo no funcionan en la APK release (Obrador no lo declara; ver
   el informe al coordinador).
+- **2026-11-07 — Economía mínima REAGP** (como Obrador, sin terceros ni
+  facturas): en REAGP no factura el agricultor sino que el comprador paga la
+  compensación; las facturas del core se dejan para cuando el asesor fiscal
+  fije el régimen. Tabla `configuraciones_fiscales` (nombre de la mayoría de
+  la suite, no el de aceitera). Venta de cosecha al 4 % en régimen general.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Obrador): no hay
   ninguna instalación publicada.
 

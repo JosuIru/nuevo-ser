@@ -27,9 +27,13 @@ void main() {
     await entorno.limpiar();
   });
 
+  /// Deja correr la BD real (ffi) y repinta varias veces: la primera
+  /// apertura tarda más cuando los tests van en paralelo.
   Future<void> esperar(WidgetTester tester, [int milisegundos = 300]) async {
-    await Future<void>.delayed(Duration(milliseconds: milisegundos));
-    await tester.pumpAndSettle();
+    for (var vuelta = 0; vuelta < 4; vuelta++) {
+      await Future<void>.delayed(Duration(milliseconds: milisegundos ~/ 2));
+      await tester.pumpAndSettle();
+    }
   }
 
   testWidgets('alta de una parcela desde la lista', (tester) async {

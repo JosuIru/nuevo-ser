@@ -69,3 +69,29 @@ int? leerEntero(String texto) => leerNumero(texto)?.round();
       DateTime(anyo).millisecondsSinceEpoch,
       DateTime(anyo + 1).millisecondsSinceEpoch - 1,
     );
+
+String nombreRegimenIva(String id) => switch (id) {
+      'reagp' => SoleraL10n.t('frut.regimen_reagp'),
+      'general' => SoleraL10n.t('frut.regimen_general'),
+      _ => SoleraL10n.t('frut.regimen_sin_elegir'),
+    };
+
+/// Nombre visible de una categoría del libro de ingresos y gastos.
+String nombreCategoriaEconomica(String categoria) => switch (categoria) {
+      'venta_cosecha' => SoleraL10n.t('frut.categoria_venta_cosecha'),
+      'subvenciones' => SoleraL10n.t('frut.categoria_subvenciones'),
+      'indemnizacion_seguro' =>
+        SoleraL10n.t('frut.categoria_indemnizacion_seguro'),
+      'otros_ingresos' => SoleraL10n.t('frut.categoria_otros_ingresos'),
+      'fitosanitarios' => SoleraL10n.t('frut.categoria_fitosanitarios'),
+      'abonos' => SoleraL10n.t('frut.categoria_abonos'),
+      'agua_riego' => SoleraL10n.t('frut.categoria_agua_riego'),
+      'polinizacion' => SoleraL10n.t('frut.categoria_polinizacion'),
+      'gasoleo' => SoleraL10n.t('frut.categoria_gasoleo'),
+      'maquinaria' => SoleraL10n.t('frut.categoria_maquinaria'),
+      'mano_obra' => SoleraL10n.t('frut.categoria_mano_obra'),
+      'seguro' => SoleraL10n.t('frut.categoria_seguro'),
+      'plantones' => SoleraL10n.t('frut.categoria_plantones'),
+      'otros_gastos' => SoleraL10n.t('frut.categoria_otros_gastos'),
+      _ => categoria,
+    };

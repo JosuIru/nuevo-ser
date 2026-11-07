@@ -13,13 +13,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas Hoy (bienvenida/onboarding, litros en bodega, txotx de hoy, «por revisar»), Pomaradas (alta, ficha con tratamientos y manzanos marcados), Bodega (kupelas con ocupación; desde la cabecera: entradas de fruta, prensados, embotellados; ficha de kupela con medir, trasegar, embotellar y calificación), Txotx (temporada) y Ajustes (sagardotegi, titular, régimen). Hojas con selector de fecha. 38 tests, 5 de pantalla y 4 de claves de traducción |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos, por campaña (actual y anterior): **cuaderno de la pomarada** (parcelas con SIGPAC, tratamientos fitosanitarios con sustancia, n.º de registro, cantidad, aplicador, carné y eficacia; cosecha propia) y **libro de elaboración y embotellado** propio con los registros del ap. E del pliego (entrada de fruta, prensados con sus partidas, kupelas con entradas/salidas/saldo al cierre y calificación, trasiegos, txotx, embotellado con contraetiquetas numeradas y balance). Tablas en funciones puras con test; PDF con `informe_periodico` del core. 43 tests |
 | 6 Catálogos | ✅ 2026-11-07 (adelantado al 3) | `content/sidra/`: 268 variedades de manzana (pliegos Euskal Sagardoa y Asturias), 11 de uva (DO de txakoli), 18 plagas, 61 sustancias activas (registro MAPA 06/11/2026 + EU Pesticides DB) y 8 productos DOP con sus límites. `dominio/catalogos.dart` y `comprobacion_dop.dart` (avisos de acidez volátil, grado, SO₂, densidad del mosto y rendimiento). Banner de provisionales en Hoy |
-| 7 IA visual | pendiente | |
+| 7 IA visual | ✅ 2026-11-07 | Ficha de la pomarada → ✨: foto de hoja, fruto o rama → propuesta de plaga **del catálogo** (salida estructurada con `enum` de los 18 ids + «ninguna» / «no identificada»), confianza, otras posibles y síntomas vistos. Si es del catálogo, ofrece «Apuntar tratamiento» con la plaga ya puesta (la sustancia la elige la persona). Aviso de organismo regulado (fuego bacteriano). Nunca productos ni dosis. Modelo equilibrado del core, clave BYO en `estado/clave_anthropic_sidra.dart` (Ajustes → IA). La foto se borra al terminar. 47 tests |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 7 (IA de plagas y enfermedades del manzano).
+**Siguiente acción**: bloque 8 (logo placeholder, iconos y GPS de la pomarada).
 
 ## Encuadre
 
@@ -101,6 +101,11 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
   del Consejo Regulador. Sello PROVISIONAL y bloqueo apuntado.
 - **2026-11-07 — Documentos por campaña (sep-ago)**, no por mes: es el ciclo
   del pliego y del balance de existencias.
+- **2026-11-07 — IA con el modelo equilibrado** (como obrador): una propuesta
+  equivocada lleva a tratar contra lo que no es.
+- **2026-11-07 — La IA propone la plaga, nunca la sustancia**: el formulario
+  del tratamiento filtra las sustancias con uso autorizado contra esa plaga y
+  la persona elige; así la IA no «recomienda» nada.
 
 ## Datos técnicos
 

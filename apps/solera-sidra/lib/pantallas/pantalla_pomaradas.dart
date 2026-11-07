@@ -8,6 +8,7 @@ import '../modelos/pomarada.dart';
 import '../modelos/sagardotegi.dart';
 import '../modelos/tratamiento.dart';
 import '../utiles/textos_sidra.dart';
+import 'boton_diagnostico_ia.dart';
 import 'hoja_formulario.dart';
 import 'pantalla_tratamiento.dart';
 
@@ -349,6 +350,7 @@ class _PantallaFichaPomaradaState extends State<PantallaFichaPomarada> {
       appBar: AppBar(
         title: Text(_pomarada.nombre),
         actions: [
+          BotonDiagnosticoIa(pomaradaId: _pomarada.id!),
           IconButton(
             tooltip: SoleraL10n.t('editar'),
             icon: const Icon(Icons.edit_outlined),

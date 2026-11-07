@@ -5,6 +5,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
 import '../utiles/textos_sidra.dart';
+import 'boton_diagnostico_ia.dart' show pantallaClaveSidra;
 import 'hoja_formulario.dart';
 import 'pantalla_bienvenida.dart';
 import 'pantalla_documentos.dart';
@@ -91,6 +92,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               const PantallaBienvenida()),
           _apartado(Icons.picture_as_pdf_outlined, 'sidr.documentos',
               const PantallaDocumentos()),
+          _apartado(Icons.auto_awesome_outlined, 'sidr.inteligencia_artificial',
+              pantallaClaveSidra()),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('sidr.titular'),

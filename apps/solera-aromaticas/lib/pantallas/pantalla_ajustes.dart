@@ -23,7 +23,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
 
   Future<void> _cargar() async {
     try {
-      final titular = await BaseDatosSoleraAromaticas.instancia.obtenerTitular();
+      final titular =
+          await BaseDatosSoleraAromaticas.instancia.obtenerTitular();
       if (mounted) _controladorNombre.text = titular.nombre;
     } catch (error) {
       debugPrint('No se pudo leer el titular: $error');
@@ -34,8 +35,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     await BaseDatosSoleraAromaticas.instancia
         .guardarTitular(Titular(nombre: _controladorNombre.text.trim()));
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(SoleraL10n.t('arom.guardado'))));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(SoleraL10n.t('arom.guardado'))));
   }
 
   @override
@@ -57,11 +58,12 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               style: Theme.of(context).textTheme.titleMedium),
           TextField(
             controller: _controladorNombre,
-            decoration: InputDecoration(
-                labelText: SoleraL10n.t('arom.nombre_titular')),
+            decoration:
+                InputDecoration(labelText: SoleraL10n.t('arom.nombre_titular')),
           ),
           const SizedBox(height: 12),
-          FilledButton(onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
+          FilledButton(
+              onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
         ],
       ),
     );

@@ -9,7 +9,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
-| 2 Modelos + BD | pendiente | |
+| 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (titular-explotación, parcela, zona de recolección con permiso, cosecha de parcela **o** zona, secado, destilación, lote de producto, tratamiento, apunte económico, configuración fiscal), 10 tablas en la v1 (`sentenciasEsquemaAromaticasV1`). Dominio puro: `rendimientos.dart` (secado %, aceite % v/p, hidrolato l/kg, comparación con el orientativo, resumen ponderado por especie), `recoleccion.dart` (avisos frente al permiso: sin permiso, fuera de vigencia, especie no incluida, límite de kg, especie protegida; permisos por vencer) y `trazabilidad.dart` (lote → proceso → cosechas → parcela/zona, texto del QR). 26 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 2.
+**Siguiente acción**: bloque 3 (pantallas).
 
 ## Encuadre
 
@@ -131,6 +131,24 @@ electrónico desde el 1-1-2027, RD 1039/2025). Fiscalidad en el bloque 9.
 - **2026-11-07 — Sin destino «medicamento»**: el destino de un lote es «sin
   decidir», «alimentario», «cosmético (materia prima)» u «otros usos
   (químico)». El medicamento a base de plantas exige la AEMPS.
+- **2026-11-07 — `Titular` hace de `Explotacion`** (como el resto de la
+  suite): una instalación = una explotación. Añade comunidad autónoma y
+  registro sanitario (opcional, la app no dice si hace falta).
+- **2026-11-07 — Una cosecha viene de una parcela o de una zona, nunca de las
+  dos** (assert en el modelo y CHECK en la BD): así el cuaderno de
+  recolección por permiso y el de cultivo no se mezclan.
+- **2026-11-07 — Secado y destilación como la molturación de aceitera**:
+  lista de cosechas usadas en JSON y FK al lote o lotes que salen (la
+  destilación genera dos: aceite y hidrolato). Borrar un lote deja el proceso
+  sin lote (SET NULL); una parcela o zona con cosechas no se borra (RESTRICT).
+- **2026-11-07 — Rendimiento del aceite en % v/p** (ml por 100 g de planta),
+  la unidad habitual de las fichas técnicas; ponderado por kg en los
+  resúmenes. Planta fresca y seca no se mezclan en el resumen.
+- **2026-11-07 — Límite del permiso en kg frescos totales de la vigencia**
+  (todas las especies juntas): es el caso sencillo; si un permiso fija
+  límites por especie, se apunta en notas. La app avisa, no bloquea.
+- **2026-11-07 — Unidades de lote fijas por tipo**: planta en kg, aceite en
+  ml, hidrolato en l.
 
 ## Datos técnicos
 

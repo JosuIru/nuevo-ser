@@ -16,6 +16,7 @@ frut.aviso_fiscal,"Cálculo orientativo y PROVISIONAL: no es una liquidación de
 frut.aviso_helada,Previsión de helada en estados sensibles,Izotz-iragarpena egoera sentikorretan,Previsió de gelada en estats sensibles,Previsión de xeada en estados sensibles
 frut.aviso_helada_orientativo,Orientativo: cruza la previsión de 7 días con un calendario aproximado. El estado real depende de la variedad y de la zona.,Orientagarria: 7 eguneko iragarpena egutegi hurbildu batekin gurutzatzen du. Benetako egoera barietatearen eta eremuaren araberakoa da.,Orientatiu: creua la previsió de 7 dies amb un calendari aproximat. L'estat real depèn de la varietat i de la zona.,Orientativo: cruza a previsión de 7 días cun calendario aproximado. O estado real depende da variedade e da zona.
 frut.aviso_plazo_seguridad,Hay tratamientos dentro de su plazo de seguridad en esta fecha,Data honetan segurtasun-epean dauden tratamenduak daude,Hi ha tractaments dins del seu termini de seguretat en aquesta data,Hai tratamentos dentro do seu prazo de seguridade nesta data
+frut.aviso_registro_electronico,"Desde el 1 de enero de 2027 el registro de tratamientos fitosanitarios debe llevarse en formato electrónico (RD 1311/2012, art. 16.1, en la redacción del RD 1039/2025). Este PDF no sustituye ese registro.","2027ko urtarrilaren 1etik aurrera tratamendu fitosanitarioen erregistroa formatu elektronikoan eraman behar da (1311/2012 EDa, 16.1 art., 1039/2025 EDaren idazketan). PDF honek ez du erregistro hori ordezten.","Des de l'1 de gener de 2027 el registre de tractaments fitosanitaris s'ha de portar en format electrònic (RD 1311/2012, art. 16.1, en la redacció del RD 1039/2025). Aquest PDF no substitueix aquest registre.","Desde o 1 de xaneiro de 2027 o rexistro de tratamentos fitosanitarios debe levarse en formato electrónico (RD 1311/2012, art. 16.1, na redacción do RD 1039/2025). Este PDF non substitúe ese rexistro."
 frut.base,Base,Oinarria,Base,Base
 frut.base_euros,Base imponible (€),Zerga-oinarria (€),Base imposable (€),Base impoñible (€)
 frut.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
@@ -156,16 +157,23 @@ frut.pdf_aplicador_carnet,Aplicador / carné,Aplikatzailea / txartela,Aplicador 
 frut.pdf_cosecha_comercializada,Cosecha comercializada,Merkaturatutako uzta,Collita comercialitzada,Colleita comercializada
 frut.pdf_dosis,Dosis,Dosia,Dosi,Dose
 frut.pdf_equipo,Equipo (ROMA),Ekipoa (ROMA),Equip (ROMA),Equipo (ROMA)
+frut.pdf_equipos,Equipos de aplicación,Aplikazio-ekipoak,Equips d'aplicació,Equipos de aplicación
 frut.pdf_fertilizacion,Fertilización,Ongarritzea,Fertilització,Fertilización
 frut.pdf_heladas_pedrisco,Heladas y pedrisco,Izotzak eta txingorra,Gelades i calamarsa,Xeadas e sarabia
 frut.pdf_identificacion_parcelas,Identificación de las parcelas,Lursailen identifikazioa,Identificació de les parcel·les,Identificación das parcelas
 frut.pdf_kg,Kilos,Kiloak,Quilos,Quilos
 frut.pdf_kg_grano,Kilos de grano,Ale-kiloak,Quilos de gra,Quilos de gran
+frut.pdf_m3_ha,m³/ha,m³/ha,m³/ha,m³/ha
+frut.pdf_m3_ha_acumulado,m³/ha acumulado,m³/ha metatua,m³/ha acumulat,m³/ha acumulado
 frut.pdf_metodo,Método,Metodoa,Mètode,Método
+frut.pdf_nitrogeno,N (kg/ha),N (kg/ha),N (kg/ha),N (kg/ha)
 frut.pdf_orden,Nº orden,Ordena,Núm. ordre,N.º orde
+frut.pdf_personas,Personas que intervienen en los tratamientos,Tratamenduetan parte hartzen duten pertsonak,Persones que intervenen en els tractaments,Persoas que interveñen nos tratamentos
 frut.pdf_problema,Problema fitosanitario,Arazo fitosanitarioa,Problema fitosanitari,Problema fitosanitario
+frut.pdf_producto,Producto,Produktua,Producte,Produto
 frut.pdf_producto_registro,Producto / nº registro,Produktua / erregistro zk.,Producte / núm. registre,Produto / n.º rexistro
 frut.pdf_secano_regadio,Secano o regadío,Lehorra edo ureztatua,Secà o regadiu,Secaño ou regadío
+frut.pdf_sistema,Sistema,Sistema,Sistema,Sistema
 frut.pdf_superficie_tratada,Sup. tratada (ha),Tratatutako az. (ha),Sup. tractada (ha),Sup. tratada (ha)
 frut.pdf_tipo,Tipo,Mota,Tipus,Tipo
 frut.pdf_tratamientos,Tratamientos fitosanitarios,Tratamendu fitosanitarioak,Tractaments fitosanitaris,Tratamentos fitosanitarios

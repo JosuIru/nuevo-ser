@@ -2917,6 +2917,7 @@ class SoleraL10n {
     'frut.aviso_helada',
     'frut.aviso_helada_orientativo',
     'frut.aviso_plazo_seguridad',
+    'frut.aviso_registro_electronico',
     'frut.base',
     'frut.base_euros',
     'frut.bienvenida',
@@ -3057,16 +3058,23 @@ class SoleraL10n {
     'frut.pdf_cosecha_comercializada',
     'frut.pdf_dosis',
     'frut.pdf_equipo',
+    'frut.pdf_equipos',
     'frut.pdf_fertilizacion',
     'frut.pdf_heladas_pedrisco',
     'frut.pdf_identificacion_parcelas',
     'frut.pdf_kg',
     'frut.pdf_kg_grano',
+    'frut.pdf_m3_ha',
+    'frut.pdf_m3_ha_acumulado',
     'frut.pdf_metodo',
+    'frut.pdf_nitrogeno',
     'frut.pdf_orden',
+    'frut.pdf_personas',
     'frut.pdf_problema',
+    'frut.pdf_producto',
     'frut.pdf_producto_registro',
     'frut.pdf_secano_regadio',
+    'frut.pdf_sistema',
     'frut.pdf_superficie_tratada',
     'frut.pdf_tipo',
     'frut.pdf_tratamientos',
@@ -7487,6 +7495,7 @@ class SoleraL10n {
           'frut.aviso_helada',
           'frut.aviso_helada_orientativo',
           'frut.aviso_plazo_seguridad',
+          'frut.aviso_registro_electronico',
           'frut.base',
           'frut.base_euros',
           'frut.bienvenida',
@@ -7627,16 +7636,23 @@ class SoleraL10n {
           'frut.pdf_cosecha_comercializada',
           'frut.pdf_dosis',
           'frut.pdf_equipo',
+          'frut.pdf_equipos',
           'frut.pdf_fertilizacion',
           'frut.pdf_heladas_pedrisco',
           'frut.pdf_identificacion_parcelas',
           'frut.pdf_kg',
           'frut.pdf_kg_grano',
+          'frut.pdf_m3_ha',
+          'frut.pdf_m3_ha_acumulado',
           'frut.pdf_metodo',
+          'frut.pdf_nitrogeno',
           'frut.pdf_orden',
+          'frut.pdf_personas',
           'frut.pdf_problema',
+          'frut.pdf_producto',
           'frut.pdf_producto_registro',
           'frut.pdf_secano_regadio',
+          'frut.pdf_sistema',
           'frut.pdf_superficie_tratada',
           'frut.pdf_tipo',
           'frut.pdf_tratamientos',
@@ -12054,6 +12070,7 @@ class SoleraL10n {
           'frut.aviso_helada',
           'frut.aviso_helada_orientativo',
           'frut.aviso_plazo_seguridad',
+          'frut.aviso_registro_electronico',
           'frut.base',
           'frut.base_euros',
           'frut.bienvenida',
@@ -12194,16 +12211,23 @@ class SoleraL10n {
           'frut.pdf_cosecha_comercializada',
           'frut.pdf_dosis',
           'frut.pdf_equipo',
+          'frut.pdf_equipos',
           'frut.pdf_fertilizacion',
           'frut.pdf_heladas_pedrisco',
           'frut.pdf_identificacion_parcelas',
           'frut.pdf_kg',
           'frut.pdf_kg_grano',
+          'frut.pdf_m3_ha',
+          'frut.pdf_m3_ha_acumulado',
           'frut.pdf_metodo',
+          'frut.pdf_nitrogeno',
           'frut.pdf_orden',
+          'frut.pdf_personas',
           'frut.pdf_problema',
+          'frut.pdf_producto',
           'frut.pdf_producto_registro',
           'frut.pdf_secano_regadio',
+          'frut.pdf_sistema',
           'frut.pdf_superficie_tratada',
           'frut.pdf_tipo',
           'frut.pdf_tratamientos',
@@ -16621,6 +16645,7 @@ class SoleraL10n {
           'frut.aviso_helada',
           'frut.aviso_helada_orientativo',
           'frut.aviso_plazo_seguridad',
+          'frut.aviso_registro_electronico',
           'frut.base',
           'frut.base_euros',
           'frut.bienvenida',
@@ -16761,16 +16786,23 @@ class SoleraL10n {
           'frut.pdf_cosecha_comercializada',
           'frut.pdf_dosis',
           'frut.pdf_equipo',
+          'frut.pdf_equipos',
           'frut.pdf_fertilizacion',
           'frut.pdf_heladas_pedrisco',
           'frut.pdf_identificacion_parcelas',
           'frut.pdf_kg',
           'frut.pdf_kg_grano',
+          'frut.pdf_m3_ha',
+          'frut.pdf_m3_ha_acumulado',
           'frut.pdf_metodo',
+          'frut.pdf_nitrogeno',
           'frut.pdf_orden',
+          'frut.pdf_personas',
           'frut.pdf_problema',
+          'frut.pdf_producto',
           'frut.pdf_producto_registro',
           'frut.pdf_secano_regadio',
+          'frut.pdf_sistema',
           'frut.pdf_superficie_tratada',
           'frut.pdf_tipo',
           'frut.pdf_tratamientos',
@@ -21211,6 +21243,7 @@ class SoleraL10n {
       case 'frut.aviso_helada': return 'Previsión de helada en estados sensibles';
       case 'frut.aviso_helada_orientativo': return 'Orientativo: cruza la previsión de 7 días con un calendario aproximado. El estado real depende de la variedad y de la zona.';
       case 'frut.aviso_plazo_seguridad': return 'Hay tratamientos dentro de su plazo de seguridad en esta fecha';
+      case 'frut.aviso_registro_electronico': return 'Desde el 1 de enero de 2027 el registro de tratamientos fitosanitarios debe llevarse en formato electrónico (RD 1311/2012, art. 16.1, en la redacción del RD 1039/2025). Este PDF no sustituye ese registro.';
       case 'frut.base': return 'Base';
       case 'frut.base_euros': return 'Base imponible (€)';
       case 'frut.bienvenida': return 'Primera versión en construcción.';
@@ -21351,16 +21384,23 @@ class SoleraL10n {
       case 'frut.pdf_cosecha_comercializada': return 'Cosecha comercializada';
       case 'frut.pdf_dosis': return 'Dosis';
       case 'frut.pdf_equipo': return 'Equipo (ROMA)';
+      case 'frut.pdf_equipos': return 'Equipos de aplicación';
       case 'frut.pdf_fertilizacion': return 'Fertilización';
       case 'frut.pdf_heladas_pedrisco': return 'Heladas y pedrisco';
       case 'frut.pdf_identificacion_parcelas': return 'Identificación de las parcelas';
       case 'frut.pdf_kg': return 'Kilos';
       case 'frut.pdf_kg_grano': return 'Kilos de grano';
+      case 'frut.pdf_m3_ha': return 'm³/ha';
+      case 'frut.pdf_m3_ha_acumulado': return 'm³/ha acumulado';
       case 'frut.pdf_metodo': return 'Método';
+      case 'frut.pdf_nitrogeno': return 'N (kg/ha)';
       case 'frut.pdf_orden': return 'Nº orden';
+      case 'frut.pdf_personas': return 'Personas que intervienen en los tratamientos';
       case 'frut.pdf_problema': return 'Problema fitosanitario';
+      case 'frut.pdf_producto': return 'Producto';
       case 'frut.pdf_producto_registro': return 'Producto / nº registro';
       case 'frut.pdf_secano_regadio': return 'Secano o regadío';
+      case 'frut.pdf_sistema': return 'Sistema';
       case 'frut.pdf_superficie_tratada': return 'Sup. tratada (ha)';
       case 'frut.pdf_tipo': return 'Tipo';
       case 'frut.pdf_tratamientos': return 'Tratamientos fitosanitarios';
@@ -25782,6 +25822,7 @@ class SoleraL10n {
       case 'frut.aviso_helada': return 'Izotz-iragarpena egoera sentikorretan';
       case 'frut.aviso_helada_orientativo': return 'Orientagarria: 7 eguneko iragarpena egutegi hurbildu batekin gurutzatzen du. Benetako egoera barietatearen eta eremuaren araberakoa da.';
       case 'frut.aviso_plazo_seguridad': return 'Data honetan segurtasun-epean dauden tratamenduak daude';
+      case 'frut.aviso_registro_electronico': return '2027ko urtarrilaren 1etik aurrera tratamendu fitosanitarioen erregistroa formatu elektronikoan eraman behar da (1311/2012 EDa, 16.1 art., 1039/2025 EDaren idazketan). PDF honek ez du erregistro hori ordezten.';
       case 'frut.base': return 'Oinarria';
       case 'frut.base_euros': return 'Zerga-oinarria (€)';
       case 'frut.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
@@ -25922,16 +25963,23 @@ class SoleraL10n {
       case 'frut.pdf_cosecha_comercializada': return 'Merkaturatutako uzta';
       case 'frut.pdf_dosis': return 'Dosia';
       case 'frut.pdf_equipo': return 'Ekipoa (ROMA)';
+      case 'frut.pdf_equipos': return 'Aplikazio-ekipoak';
       case 'frut.pdf_fertilizacion': return 'Ongarritzea';
       case 'frut.pdf_heladas_pedrisco': return 'Izotzak eta txingorra';
       case 'frut.pdf_identificacion_parcelas': return 'Lursailen identifikazioa';
       case 'frut.pdf_kg': return 'Kiloak';
       case 'frut.pdf_kg_grano': return 'Ale-kiloak';
+      case 'frut.pdf_m3_ha': return 'm³/ha';
+      case 'frut.pdf_m3_ha_acumulado': return 'm³/ha metatua';
       case 'frut.pdf_metodo': return 'Metodoa';
+      case 'frut.pdf_nitrogeno': return 'N (kg/ha)';
       case 'frut.pdf_orden': return 'Ordena';
+      case 'frut.pdf_personas': return 'Tratamenduetan parte hartzen duten pertsonak';
       case 'frut.pdf_problema': return 'Arazo fitosanitarioa';
+      case 'frut.pdf_producto': return 'Produktua';
       case 'frut.pdf_producto_registro': return 'Produktua / erregistro zk.';
       case 'frut.pdf_secano_regadio': return 'Lehorra edo ureztatua';
+      case 'frut.pdf_sistema': return 'Sistema';
       case 'frut.pdf_superficie_tratada': return 'Tratatutako az. (ha)';
       case 'frut.pdf_tipo': return 'Mota';
       case 'frut.pdf_tratamientos': return 'Tratamendu fitosanitarioak';
@@ -30353,6 +30401,7 @@ class SoleraL10n {
       case 'frut.aviso_helada': return 'Previsió de gelada en estats sensibles';
       case 'frut.aviso_helada_orientativo': return 'Orientatiu: creua la previsió de 7 dies amb un calendari aproximat. L\'estat real depèn de la varietat i de la zona.';
       case 'frut.aviso_plazo_seguridad': return 'Hi ha tractaments dins del seu termini de seguretat en aquesta data';
+      case 'frut.aviso_registro_electronico': return 'Des de l\'1 de gener de 2027 el registre de tractaments fitosanitaris s\'ha de portar en format electrònic (RD 1311/2012, art. 16.1, en la redacció del RD 1039/2025). Aquest PDF no substitueix aquest registre.';
       case 'frut.base': return 'Base';
       case 'frut.base_euros': return 'Base imposable (€)';
       case 'frut.bienvenida': return 'Primera versió en construcció.';
@@ -30493,16 +30542,23 @@ class SoleraL10n {
       case 'frut.pdf_cosecha_comercializada': return 'Collita comercialitzada';
       case 'frut.pdf_dosis': return 'Dosi';
       case 'frut.pdf_equipo': return 'Equip (ROMA)';
+      case 'frut.pdf_equipos': return 'Equips d\'aplicació';
       case 'frut.pdf_fertilizacion': return 'Fertilització';
       case 'frut.pdf_heladas_pedrisco': return 'Gelades i calamarsa';
       case 'frut.pdf_identificacion_parcelas': return 'Identificació de les parcel·les';
       case 'frut.pdf_kg': return 'Quilos';
       case 'frut.pdf_kg_grano': return 'Quilos de gra';
+      case 'frut.pdf_m3_ha': return 'm³/ha';
+      case 'frut.pdf_m3_ha_acumulado': return 'm³/ha acumulat';
       case 'frut.pdf_metodo': return 'Mètode';
+      case 'frut.pdf_nitrogeno': return 'N (kg/ha)';
       case 'frut.pdf_orden': return 'Núm. ordre';
+      case 'frut.pdf_personas': return 'Persones que intervenen en els tractaments';
       case 'frut.pdf_problema': return 'Problema fitosanitari';
+      case 'frut.pdf_producto': return 'Producte';
       case 'frut.pdf_producto_registro': return 'Producte / núm. registre';
       case 'frut.pdf_secano_regadio': return 'Secà o regadiu';
+      case 'frut.pdf_sistema': return 'Sistema';
       case 'frut.pdf_superficie_tratada': return 'Sup. tractada (ha)';
       case 'frut.pdf_tipo': return 'Tipus';
       case 'frut.pdf_tratamientos': return 'Tractaments fitosanitaris';
@@ -34924,6 +34980,7 @@ class SoleraL10n {
       case 'frut.aviso_helada': return 'Previsión de xeada en estados sensibles';
       case 'frut.aviso_helada_orientativo': return 'Orientativo: cruza a previsión de 7 días cun calendario aproximado. O estado real depende da variedade e da zona.';
       case 'frut.aviso_plazo_seguridad': return 'Hai tratamentos dentro do seu prazo de seguridade nesta data';
+      case 'frut.aviso_registro_electronico': return 'Desde o 1 de xaneiro de 2027 o rexistro de tratamentos fitosanitarios debe levarse en formato electrónico (RD 1311/2012, art. 16.1, na redacción do RD 1039/2025). Este PDF non substitúe ese rexistro.';
       case 'frut.base': return 'Base';
       case 'frut.base_euros': return 'Base impoñible (€)';
       case 'frut.bienvenida': return 'Primeira versión en construción.';
@@ -35064,16 +35121,23 @@ class SoleraL10n {
       case 'frut.pdf_cosecha_comercializada': return 'Colleita comercializada';
       case 'frut.pdf_dosis': return 'Dose';
       case 'frut.pdf_equipo': return 'Equipo (ROMA)';
+      case 'frut.pdf_equipos': return 'Equipos de aplicación';
       case 'frut.pdf_fertilizacion': return 'Fertilización';
       case 'frut.pdf_heladas_pedrisco': return 'Xeadas e sarabia';
       case 'frut.pdf_identificacion_parcelas': return 'Identificación das parcelas';
       case 'frut.pdf_kg': return 'Quilos';
       case 'frut.pdf_kg_grano': return 'Quilos de gran';
+      case 'frut.pdf_m3_ha': return 'm³/ha';
+      case 'frut.pdf_m3_ha_acumulado': return 'm³/ha acumulado';
       case 'frut.pdf_metodo': return 'Método';
+      case 'frut.pdf_nitrogeno': return 'N (kg/ha)';
       case 'frut.pdf_orden': return 'N.º orde';
+      case 'frut.pdf_personas': return 'Persoas que interveñen nos tratamentos';
       case 'frut.pdf_problema': return 'Problema fitosanitario';
+      case 'frut.pdf_producto': return 'Produto';
       case 'frut.pdf_producto_registro': return 'Produto / n.º rexistro';
       case 'frut.pdf_secano_regadio': return 'Secaño ou regadío';
+      case 'frut.pdf_sistema': return 'Sistema';
       case 'frut.pdf_superficie_tratada': return 'Sup. tratada (ha)';
       case 'frut.pdf_tipo': return 'Tipo';
       case 'frut.pdf_tratamientos': return 'Tratamentos fitosanitarios';

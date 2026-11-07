@@ -3267,6 +3267,7 @@ class SoleraL10n {
     'gana.editar_animal',
     'gana.editar_pieza',
     'gana.editar_rebano',
+    'gana.elegir_foto',
     'gana.error_cargar',
     'gana.error_documento',
     'gana.es_visita_veterinaria',
@@ -3306,11 +3307,22 @@ class SoleraL10n {
     'gana.fuera_o_sin_ubicar',
     'gana.guardado',
     'gana.guardado_rega_raro',
+    'gana.hacer_foto',
     'gana.historia',
     'gana.hoy',
+    'gana.ia_error',
+    'gana.ia_fuera_catalogo',
+    'gana.ia_leyendo',
+    'gana.ia_no_legible',
+    'gana.ia_propuesta',
+    'gana.ia_que_hace',
+    'gana.ia_revisa',
+    'gana.ia_usar',
     'gana.identificacion',
     'gana.informe_ecoregimen',
+    'gana.inteligencia_artificial',
     'gana.leche_hasta',
+    'gana.leer_receta_ia',
     'gana.libro_aviso_provisional',
     'gana.libro_bienestar',
     'gana.libro_censo',
@@ -8128,6 +8140,7 @@ class SoleraL10n {
           'gana.editar_animal',
           'gana.editar_pieza',
           'gana.editar_rebano',
+          'gana.elegir_foto',
           'gana.error_cargar',
           'gana.error_documento',
           'gana.es_visita_veterinaria',
@@ -8167,11 +8180,22 @@ class SoleraL10n {
           'gana.fuera_o_sin_ubicar',
           'gana.guardado',
           'gana.guardado_rega_raro',
+          'gana.hacer_foto',
           'gana.historia',
           'gana.hoy',
+          'gana.ia_error',
+          'gana.ia_fuera_catalogo',
+          'gana.ia_leyendo',
+          'gana.ia_no_legible',
+          'gana.ia_propuesta',
+          'gana.ia_que_hace',
+          'gana.ia_revisa',
+          'gana.ia_usar',
           'gana.identificacion',
           'gana.informe_ecoregimen',
+          'gana.inteligencia_artificial',
           'gana.leche_hasta',
+          'gana.leer_receta_ia',
           'gana.libro_aviso_provisional',
           'gana.libro_bienestar',
           'gana.libro_censo',
@@ -12986,6 +13010,7 @@ class SoleraL10n {
           'gana.editar_animal',
           'gana.editar_pieza',
           'gana.editar_rebano',
+          'gana.elegir_foto',
           'gana.error_cargar',
           'gana.error_documento',
           'gana.es_visita_veterinaria',
@@ -13025,11 +13050,22 @@ class SoleraL10n {
           'gana.fuera_o_sin_ubicar',
           'gana.guardado',
           'gana.guardado_rega_raro',
+          'gana.hacer_foto',
           'gana.historia',
           'gana.hoy',
+          'gana.ia_error',
+          'gana.ia_fuera_catalogo',
+          'gana.ia_leyendo',
+          'gana.ia_no_legible',
+          'gana.ia_propuesta',
+          'gana.ia_que_hace',
+          'gana.ia_revisa',
+          'gana.ia_usar',
           'gana.identificacion',
           'gana.informe_ecoregimen',
+          'gana.inteligencia_artificial',
           'gana.leche_hasta',
+          'gana.leer_receta_ia',
           'gana.libro_aviso_provisional',
           'gana.libro_bienestar',
           'gana.libro_censo',
@@ -17844,6 +17880,7 @@ class SoleraL10n {
           'gana.editar_animal',
           'gana.editar_pieza',
           'gana.editar_rebano',
+          'gana.elegir_foto',
           'gana.error_cargar',
           'gana.error_documento',
           'gana.es_visita_veterinaria',
@@ -17883,11 +17920,22 @@ class SoleraL10n {
           'gana.fuera_o_sin_ubicar',
           'gana.guardado',
           'gana.guardado_rega_raro',
+          'gana.hacer_foto',
           'gana.historia',
           'gana.hoy',
+          'gana.ia_error',
+          'gana.ia_fuera_catalogo',
+          'gana.ia_leyendo',
+          'gana.ia_no_legible',
+          'gana.ia_propuesta',
+          'gana.ia_que_hace',
+          'gana.ia_revisa',
+          'gana.ia_usar',
           'gana.identificacion',
           'gana.informe_ecoregimen',
+          'gana.inteligencia_artificial',
           'gana.leche_hasta',
+          'gana.leer_receta_ia',
           'gana.libro_aviso_provisional',
           'gana.libro_bienestar',
           'gana.libro_censo',
@@ -22725,6 +22773,7 @@ class SoleraL10n {
       case 'gana.editar_animal': return 'Editar animal';
       case 'gana.editar_pieza': return 'Editar pieza';
       case 'gana.editar_rebano': return 'Editar rebaño';
+      case 'gana.elegir_foto': return 'Elegir una foto';
       case 'gana.error_cargar': return 'No se han podido cargar los datos.';
       case 'gana.error_documento': return 'No se ha podido generar el documento.';
       case 'gana.es_visita_veterinaria': return 'Es una visita veterinaria';
@@ -22764,11 +22813,22 @@ class SoleraL10n {
       case 'gana.fuera_o_sin_ubicar': return 'Fuera de la explotación o sin ubicar';
       case 'gana.guardado': return 'Guardado';
       case 'gana.guardado_rega_raro': return 'Guardado. Ojo: el código REGA no tiene la forma ES + 12 cifras.';
+      case 'gana.hacer_foto': return 'Hacer una foto';
       case 'gana.historia': return 'Historia';
       case 'gana.hoy': return 'Hoy';
+      case 'gana.ia_error': return 'No se ha podido leer la receta. Apunta el tratamiento a mano.';
+      case 'gana.ia_fuera_catalogo': return 'no está en el catálogo';
+      case 'gana.ia_leyendo': return 'Leyendo la receta…';
+      case 'gana.ia_no_legible': return 'La foto no se lee bien: revisa cada dato con la receta.';
+      case 'gana.ia_propuesta': return 'Lo que pone la receta (propuesta)';
+      case 'gana.ia_que_hace': return 'lee la foto de una receta veterinaria y te propone los datos del tratamiento (medicamento, sustancia, cantidad, tiempos de espera) tal como están escritos. No recomienda nada: tú los comparas con la receta y guardas.';
+      case 'gana.ia_revisa': return 'Compara cada dato con la receta antes de guardar. Si un tiempo de espera no se ha leído, escríbelo tú: la app no lo pone nunca por su cuenta.';
+      case 'gana.ia_usar': return 'Usar y revisar';
       case 'gana.identificacion': return 'Identificación (crotal, DIB…)';
       case 'gana.informe_ecoregimen': return 'Informe del eco-régimen de pastoreo';
+      case 'gana.inteligencia_artificial': return 'Inteligencia artificial';
       case 'gana.leche_hasta': return 'Leche hasta el';
+      case 'gana.leer_receta_ia': return 'Leer receta con IA';
       case 'gana.libro_aviso_provisional': return 'Libro de registro PROVISIONAL, con los datos mínimos del anexo V del RD 787/2023. El formato que vale es el aprobado por tu comunidad autónoma.';
       case 'gana.libro_bienestar': return '7. Cambios en producción o bienestar';
       case 'gana.libro_censo': return 'Censo actual por rebaño';
@@ -27587,6 +27647,7 @@ class SoleraL10n {
       case 'gana.editar_animal': return 'Editatu animalia';
       case 'gana.editar_pieza': return 'Editatu larre-saila';
       case 'gana.editar_rebano': return 'Editatu artaldea';
+      case 'gana.elegir_foto': return 'Argazki bat aukeratu';
       case 'gana.error_cargar': return 'Ezin izan dira datuak kargatu.';
       case 'gana.error_documento': return 'Ezin izan da agiria sortu.';
       case 'gana.es_visita_veterinaria': return 'Albaitari-bisita da';
@@ -27626,11 +27687,22 @@ class SoleraL10n {
       case 'gana.fuera_o_sin_ubicar': return 'Ustiategitik kanpo edo kokatu gabe';
       case 'gana.guardado': return 'Gordeta';
       case 'gana.guardado_rega_raro': return 'Gordeta. Kontuz: REGA kodeak ez du ES + 12 zifra itxura.';
+      case 'gana.hacer_foto': return 'Argazkia atera';
       case 'gana.historia': return 'Historia';
       case 'gana.hoy': return 'Gaur';
+      case 'gana.ia_error': return 'Ezin izan da errezeta irakurri. Idatzi tratamendua eskuz.';
+      case 'gana.ia_fuera_catalogo': return 'ez dago katalogoan';
+      case 'gana.ia_leyendo': return 'Errezeta irakurtzen…';
+      case 'gana.ia_no_legible': return 'Argazkia ez da ondo irakurtzen: berrikusi datu bakoitza errezetarekin.';
+      case 'gana.ia_propuesta': return 'Errezetak dioena (proposamena)';
+      case 'gana.ia_que_hace': return 'albaitari-errezeta baten argazkia irakurri eta tratamenduaren datuak proposatzen dizkizu (sendagaia, substantzia, kopurua, itxaronaldiak), idatzita dauden bezala. Ez du ezer gomendatzen: zuk errezetarekin alderatu eta gordetzen dituzu.';
+      case 'gana.ia_revisa': return 'Alderatu datu bakoitza errezetarekin gorde aurretik. Itxaronaldiren bat irakurri ez bada, idatzi zuk: aplikazioak ez du inoiz bere kabuz jartzen.';
+      case 'gana.ia_usar': return 'Erabili eta berrikusi';
       case 'gana.identificacion': return 'Identifikazioa (belarritakoa, DIB…)';
       case 'gana.informe_ecoregimen': return 'Larratze eko-erregimenaren txostena';
+      case 'gana.inteligencia_artificial': return 'Adimen artifiziala';
       case 'gana.leche_hasta': return 'Esnea, egun honetara arte:';
+      case 'gana.leer_receta_ia': return 'Errezeta IArekin irakurri';
       case 'gana.libro_aviso_provisional': return 'BEHIN-BEHINEKO erregistro-liburua, RD 787/2023ko V. eranskineko gutxieneko datuekin. Balio duen formatua zure autonomia-erkidegoak onartutakoa da.';
       case 'gana.libro_bienestar': return '7. Ekoizpen edo ongizate aldaketak';
       case 'gana.libro_censo': return 'Artaldekako egungo errolda';
@@ -32449,6 +32521,7 @@ class SoleraL10n {
       case 'gana.editar_animal': return 'Editar animal';
       case 'gana.editar_pieza': return 'Editar parcel·la';
       case 'gana.editar_rebano': return 'Editar ramat';
+      case 'gana.elegir_foto': return 'Triar una foto';
       case 'gana.error_cargar': return 'No s’han pogut carregar les dades.';
       case 'gana.error_documento': return 'No s’ha pogut generar el document.';
       case 'gana.es_visita_veterinaria': return 'És una visita veterinària';
@@ -32488,11 +32561,22 @@ class SoleraL10n {
       case 'gana.fuera_o_sin_ubicar': return 'Fora de l’explotació o sense ubicar';
       case 'gana.guardado': return 'Desat';
       case 'gana.guardado_rega_raro': return 'Desat. Compte: el codi REGA no té la forma ES + 12 xifres.';
+      case 'gana.hacer_foto': return 'Fer una foto';
       case 'gana.historia': return 'Història';
       case 'gana.hoy': return 'Avui';
+      case 'gana.ia_error': return 'No s’ha pogut llegir la recepta. Apunta el tractament a mà.';
+      case 'gana.ia_fuera_catalogo': return 'no és al catàleg';
+      case 'gana.ia_leyendo': return 'Llegint la recepta…';
+      case 'gana.ia_no_legible': return 'La foto no es llegeix bé: revisa cada dada amb la recepta.';
+      case 'gana.ia_propuesta': return 'El que diu la recepta (proposta)';
+      case 'gana.ia_que_hace': return 'llegeix la foto d’una recepta veterinària i et proposa les dades del tractament (medicament, substància, quantitat, temps d’espera) tal com estan escrites. No recomana res: tu les compares amb la recepta i deses.';
+      case 'gana.ia_revisa': return 'Compara cada dada amb la recepta abans de desar. Si un temps d’espera no s’ha llegit, escriu-lo tu: l’app no el posa mai pel seu compte.';
+      case 'gana.ia_usar': return 'Fer servir i revisar';
       case 'gana.identificacion': return 'Identificació (crotal, DIB…)';
       case 'gana.informe_ecoregimen': return 'Informe de l’ecoregim de pasturatge';
+      case 'gana.inteligencia_artificial': return 'Intel·ligència artificial';
       case 'gana.leche_hasta': return 'Llet fins al';
+      case 'gana.leer_receta_ia': return 'Llegir recepta amb IA';
       case 'gana.libro_aviso_provisional': return 'Llibre de registre PROVISIONAL, amb les dades mínimes de l’annex V del RD 787/2023. El format vàlid és l’aprovat per la teva comunitat autònoma.';
       case 'gana.libro_bienestar': return '7. Canvis en producció o benestar';
       case 'gana.libro_censo': return 'Cens actual per ramat';
@@ -37311,6 +37395,7 @@ class SoleraL10n {
       case 'gana.editar_animal': return 'Editar animal';
       case 'gana.editar_pieza': return 'Editar parcela';
       case 'gana.editar_rebano': return 'Editar rabaño';
+      case 'gana.elegir_foto': return 'Escoller unha foto';
       case 'gana.error_cargar': return 'Non se puideron cargar os datos.';
       case 'gana.error_documento': return 'Non se puido xerar o documento.';
       case 'gana.es_visita_veterinaria': return 'É unha visita veterinaria';
@@ -37350,11 +37435,22 @@ class SoleraL10n {
       case 'gana.fuera_o_sin_ubicar': return 'Fóra da explotación ou sen situar';
       case 'gana.guardado': return 'Gardado';
       case 'gana.guardado_rega_raro': return 'Gardado. Ollo: o código REGA non ten a forma ES + 12 cifras.';
+      case 'gana.hacer_foto': return 'Facer unha foto';
       case 'gana.historia': return 'Historia';
       case 'gana.hoy': return 'Hoxe';
+      case 'gana.ia_error': return 'Non se puido ler a receita. Apunta o tratamento a man.';
+      case 'gana.ia_fuera_catalogo': return 'non está no catálogo';
+      case 'gana.ia_leyendo': return 'Lendo a receita…';
+      case 'gana.ia_no_legible': return 'A foto non se le ben: revisa cada dato coa receita.';
+      case 'gana.ia_propuesta': return 'O que pon a receita (proposta)';
+      case 'gana.ia_que_hace': return 'le a foto dunha receita veterinaria e propónche os datos do tratamento (medicamento, substancia, cantidade, tempos de espera) tal como están escritos. Non recomenda nada: ti compáralos coa receita e gardas.';
+      case 'gana.ia_revisa': return 'Compara cada dato coa receita antes de gardar. Se un tempo de espera non se leu, escríbeo ti: a app nunca o pon pola súa conta.';
+      case 'gana.ia_usar': return 'Usar e revisar';
       case 'gana.identificacion': return 'Identificación (crotal, DIB…)';
       case 'gana.informe_ecoregimen': return 'Informe do ecorréxime de pastoreo';
+      case 'gana.inteligencia_artificial': return 'Intelixencia artificial';
       case 'gana.leche_hasta': return 'Leite ata o';
+      case 'gana.leer_receta_ia': return 'Ler receita con IA';
       case 'gana.libro_aviso_provisional': return 'Libro de rexistro PROVISIONAL, cos datos mínimos do anexo V do RD 787/2023. O formato válido é o aprobado pola túa comunidade autónoma.';
       case 'gana.libro_bienestar': return '7. Cambios en produción ou benestar';
       case 'gana.libro_censo': return 'Censo actual por rabaño';

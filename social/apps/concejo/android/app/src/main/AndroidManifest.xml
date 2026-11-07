@@ -2,7 +2,7 @@
     <!-- La app habla con el servidor del pueblo. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="concejo"
+        android:label="Concejo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -1,5 +1,5 @@
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/analitica.dart';
@@ -37,48 +37,39 @@ const int versionEsquemaSoleraAceitera = 2;
 /// recolecciones, molturaciones y lotes de aceite registrados —
 /// perder un dato por una actualización es inaceptable y, en el caso
 /// del libro de movimientos, ilegal por AICA. Cada subida de versión
-/// es un paso aditivo en `_aplicarMigraciones`.
+/// es un paso aditivo en `pasosMigracion`. La apertura, el cerrojo, las
+/// FK y el recorrido de los pasos los pone `BaseDatosSolera` (core).
 ///
 /// v1 arranca con esquema completo (titular + olivar + parcelas +
 /// olivos + campañas + recolecciones + partidas + molturaciones +
 /// lotes_aceite + movimientos + ventas + tratamientos + incidencias +
 /// analíticas).
-class BaseDatosSoleraAceitera {
+class BaseDatosSoleraAceitera extends BaseDatosSolera {
   static final BaseDatosSoleraAceitera instancia =
       BaseDatosSoleraAceitera._interno();
   factory BaseDatosSoleraAceitera() => instancia;
   BaseDatosSoleraAceitera._interno();
 
-  Database? _basedatos;
+  @override
+  String get nombreFichero => nombreFicheroBaseDatosAceitera;
 
-  Future<Database> get basedatos async {
-    if (_basedatos != null) return _basedatos!;
-    final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosAceitera);
-    _basedatos = await openDatabase(
-      ruta,
-      version: versionEsquemaSoleraAceitera,
-      onConfigure: (db) async {
-        // Activar Foreign Keys. SQLite las desactiva por defecto en cada
-        // conexión — sin esto, las cascadas FK no se respetan.
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: (db, version) async {
-        await _crearEsquemaV1(db);
-        await _aplicarMigracionV2(db);
-      },
-      onUpgrade: (db, anterior, actual) async {
-        await _aplicarMigraciones(db, anterior, actual);
-      },
-    );
-    return _basedatos!;
-  }
+  @override
+  int get versionEsquema => versionEsquemaSoleraAceitera;
+
+  @override
+  DatabaseFactory get fabricaBaseDatos => databaseFactory;
+
+  @override
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _aplicarMigracionV2,
+      };
 
   /// Esquema completo de la versión 1. Si necesitas cambiar tablas,
-  /// añade un paso en `_aplicarMigraciones` y bumpea `version` en
-  /// `openDatabase` — nunca modifiques este método para no romper
+  /// añade un paso en `pasosMigracion` y sube
+  /// `versionEsquemaSoleraAceitera` — nunca modifiques este método para no romper
   /// instalaciones existentes.
-  Future<void> _crearEsquemaV1(Database db) async {
+  @override
+  Future<void> crearEsquemaInicial(DatabaseExecutor db) async {
     // ─── Titular (single-row en v0.1) ───
     await db.execute('''
       CREATE TABLE titulares (
@@ -392,25 +383,11 @@ class BaseDatosSoleraAceitera {
         'CREATE INDEX idx_analiticas_fecha ON analiticas(fecha_ms)');
   }
 
-  /// Cadena de migraciones aditivas — nunca destructivas. Cada subida
-  /// añade ALTER TABLE o tablas nuevas. Si se necesita renombrar o
-  /// dropear, se hace por copia (tabla nueva + INSERT desde la vieja
-  /// + DROP de la vieja DESPUÉS de verificar).
-  Future<void> _aplicarMigraciones(
-    Database db,
-    int versionAnterior,
-    int versionActual,
-  ) async {
-    if (versionAnterior < 2) {
-      await _aplicarMigracionV2(db);
-    }
-  }
-
   /// v1 → v2: libro económico (terceros + configuración fiscal +
   /// apuntes de ingreso/gasto). PROVISIONAL hasta asesor fiscal —
   /// las tipologías y reglas IVA están documentadas en los modelos
   /// y registradas en BLOQUEOS-PENDIENTES.md (F1-A9).
-  Future<void> _aplicarMigracionV2(Database db) async {
+  Future<void> _aplicarMigracionV2(DatabaseExecutor db) async {
     // ─── Terceros (clientes + proveedores) ───
     await db.execute('''
       CREATE TABLE terceros (
@@ -708,17 +685,8 @@ class BaseDatosSoleraAceitera {
     return ConfiguracionFiscal.fromMap(filas.first);
   }
 
-  Future<int> guardarConfiguracionFiscal(ConfiguracionFiscal c) async {
-    final db = await basedatos;
-    final existente = await db.query('configuracion_fiscal', limit: 1);
-    if (existente.isEmpty) {
-      return db.insert('configuracion_fiscal', c.toMap()..remove('id'));
-    }
-    final id = existente.first['id'] as int;
-    await db.update('configuracion_fiscal', c.toMap()..remove('id'),
-        where: 'id = ?', whereArgs: [id]);
-    return id;
-  }
+  Future<int> guardarConfiguracionFiscal(ConfiguracionFiscal c) =>
+      guardarFilaUnica('configuracion_fiscal', c.toMap());
 
   Future<int> insertarApunteIngreso(ApunteIngreso a) async {
     final db = await basedatos;
@@ -758,12 +726,5 @@ class BaseDatosSoleraAceitera {
             orderBy: 'fecha_ms DESC')
         : await db.query('apuntes_gasto', orderBy: 'fecha_ms DESC');
     return filas.map(ApunteGasto.fromMap).toList(growable: false);
-  }
-
-  /// Cierra la conexión; el siguiente acceso la reabre. Lo usan los
-  /// tests y la copia de seguridad al restaurar.
-  Future<void> cerrar() async {
-    await _basedatos?.close();
-    _basedatos = null;
   }
 }

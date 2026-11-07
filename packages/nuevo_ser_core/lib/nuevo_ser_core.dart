@@ -101,6 +101,7 @@ export 'src/sync/fecha_mysql.dart';
 // Arbolado Urbano) y candidatos a otras apps que necesiten formularios
 // con catálogo + IA.
 export 'src/ui/accesos_directos.dart';
+export 'src/ui/aviso_catalogos_provisionales.dart';
 export 'src/ui/barra_busqueda.dart';
 export 'src/ui/banner_coincidencia_catalogo.dart';
 export 'src/ui/cruz_centro_mapa.dart';

@@ -165,14 +165,15 @@ void main() {
 
   group('Flag de revisión global', () {
     test(
-        'Tras F1-A10 las 5 CSV están marcadas como revisadas contra fuente pública: el flag es true',
+        'Sin firma de persona en todas las filas el flag es false y el banner se ve',
         () {
-      // Si quitas filas o añades nuevas sin `revisado_por`, este test
-      // se rompe a propósito — recompila con `dart run
-      // tool/compilar_catalogos.dart` antes de mergear. La auditoría
-      // humana definitiva sigue pendiente (asesor agrónomo olivarero
-      // sustituye `fuente_publica` por su nombre + colegiación).
-      expect(catalogosCompletamenteRevisados, isTrue);
+      // Desde el 2026-11-07 solo cuenta como revisada una fila con
+      // `revisado_por` que empieza por `asesor:` o `persona:` (convención de
+      // scripts/pendientes). `fuente_publica` es revisión documental y no
+      // apaga el banner: la revisión de ese día encontró sustancias retiradas
+      // en catálogos marcados así. Cuando un asesor firme todas las filas
+      // (scripts/auditoria), recompila y cambia esto a isTrue.
+      expect(catalogosCompletamenteRevisados, isFalse);
     });
   });
 }

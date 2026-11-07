@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/aceitera/calendario_olivar.csv
-// Generado: 2026-05-12
-// Filas: 40 (40 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: fuente_publica
+// Generado: 2026-11-07
+// Filas: 40 (0 firmadas por persona, 40 con alguna revisión, 0 sin revisar)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICAMENTE.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-aceitera && dart run tool/compilar_catalogos.dart
 
 /// Zonas productivas olivareras de la península e islas.
 enum ZonaOlivar {

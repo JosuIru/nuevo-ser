@@ -88,7 +88,7 @@ Son los 11 de aceitera ya probados, con la plantilla delante:
 | 7 | IA visual (BYO key, `cliente_anthropic` del core) | tests del parser y del matching con el catálogo |
 | 8 | Branding placeholder (ImageMagick) + GPS | icono y splash generados |
 | 9 | Economía (REAGP o el régimen que toque) + facturas del core, PROVISIONAL | guardrails fiscales verdes |
-| 10 | Catálogos revisados con **fuente pública** (`revisado_por=fuente_publica`) y documentos cotejados con el texto vigente en BOE/EUR-Lex | flag `catalogosCompletamenteRevisados=true` |
+| 10 | Catálogos revisados con **fuente pública** (`revisado_por=fuente_publica`) y documentos cotejados con el texto vigente en BOE/EUR-Lex | todas las filas con fuente citada; el flag `catalogosCompletamenteRevisados` **sigue en false** hasta la firma humana (`asesor:`/`persona:`), y el banner se ve |
 | 11 | APK release + build Linux, ayuda in-app, `README.md` | APK firmado con la clave de pruebas, tamaño apuntado |
 
 Particularidades que el agente de cada vertical **ya trae escritas en su encargo** (§7):

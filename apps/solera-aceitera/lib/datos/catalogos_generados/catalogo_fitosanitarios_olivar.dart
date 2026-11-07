@@ -2,8 +2,11 @@
 //
 // Fuente: content/aceitera/fitosanitarios_olivar.csv
 // Generado: 2026-11-07
-// Filas: 18 (18 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: fuente_publica
+// Filas: 18 (0 firmadas por persona, 18 con alguna revisión, 0 sin revisar)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICAMENTE.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-aceitera && dart run tool/compilar_catalogos.dart
 
 class FitosanitarioOlivar {
   final String id;

@@ -8,7 +8,8 @@ import '../../datos/catalogos_generados/flag_revision.dart';
 /// calendario olivar) están sin validar por un asesor agrónomo
 /// olivarero. Desaparece automáticamente cuando el compilador detecta
 /// que `revisado_por` está rellenado en todas las filas de los 5 CSVs
-/// y regenera `catalogosCompletamenteRevisados = true`.
+/// (firma `asesor:` o `persona:` en cada fila) y regenera
+/// `catalogosCompletamenteRevisados = true`. `fuente_publica` no basta.
 ///
 /// Usado en pantallas que muestran datos derivados de catálogo
 /// (dashboard Hoy, formularios con autocomplete) para mantener al

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvisionales;
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
@@ -143,7 +144,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                   ),
                 ),
               if (!catalogosCompletamenteRevisados)
-                TarjetaAviso(SoleraL10n.t('sidr.catalogos_provisionales')),
+                AvisoCatalogosProvisionales(texto: SoleraL10n.t('sidr.catalogos_provisionales')),
               if (instantanea.hasError)
                 Padding(
                   padding: const EdgeInsets.all(16),

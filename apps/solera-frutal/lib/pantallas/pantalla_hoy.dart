@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvisionales;
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show
@@ -155,14 +156,7 @@ class _PantallaHoyState extends State<PantallaHoy> {
                 ],
               ),
               if (!catalogosCompletamenteRevisados)
-                Card(
-                  margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
-                  child: ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title: Text(SoleraL10n.t('frut.catalogos_provisionales')),
-                  ),
-                ),
+                AvisoCatalogosProvisionales(texto: SoleraL10n.t('frut.catalogos_provisionales')),
               if (instantanea.hasError)
                 Padding(
                   padding: const EdgeInsets.all(16),

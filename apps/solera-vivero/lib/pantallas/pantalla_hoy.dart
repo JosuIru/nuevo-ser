@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show AvisoCatalogosProvisionales;
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n;
@@ -140,14 +141,7 @@ class PantallaHoy extends StatelessWidget {
             ...[
               if (datos.faltanPrimerosPasos) _primerosPasos(context, datos),
               if (!catalogosCompletamenteRevisados)
-                Card(
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
-                  child: ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title:
-                        Text(SoleraL10n.t('vive.banner_datos_provisionales')),
-                  ),
-                ),
+                AvisoCatalogosProvisionales(texto: SoleraL10n.t('vive.banner_datos_provisionales')),
               for (final inspeccion in datos.inspeccionesPendientes)
                 Card(
                   color: Theme.of(context).colorScheme.errorContainer,

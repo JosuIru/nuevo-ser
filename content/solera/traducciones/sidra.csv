@@ -1,6 +1,214 @@
 clave,es,eu,ca,gl
-sidr.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
+sidr.abre_txotx,Abro temporada de txotx,Txotx denboraldia irekitzen dut,Obro temporada de txotx,Abro tempada de txotx
+sidr.abrir_kupela,Abrir kupela,Kupela ireki,Obrir kupela,Abrir kupela
+sidr.aceptar,Aceptar,Ados,Accepta,Aceptar
+sidr.acidez_volatil,Acidez volátil,Azidotasun lurrunkorra,Acidesa volàtil,Acidez volátil
+sidr.anio_plantacion,Año de plantación,Landaketa urtea,Any de plantació,Ano de plantación
+sidr.aplicador,Quién aplicó,Nork aplikatu zuen,Qui ho va aplicar,Quen aplicou
+sidr.arboles_por_ha,{n} árboles/ha,{n} zuhaitz/ha,{n} arbres/ha,{n} árbores/ha
+sidr.av,AV,AL,AV,AV
+sidr.aviso_acidez_volatil_alta,Acidez volátil {valor} g/l: el pliego pide menos de {limite},Azidotasun lurrunkorra {valor} g/l: pleguak {limite} baino gutxiago eskatzen du,Acidesa volàtil {valor} g/l: el plec demana menys de {limite},Acidez volátil {valor} g/l: o prego pide menos de {limite}
+sidr.aviso_densidad_mosto_baja,Densidad del mosto {valor}: el pliego pide al menos {limite},Muztioaren dentsitatea {valor}: pleguak gutxienez {limite} eskatzen du,Densitat del most {valor}: el plec demana com a mínim {limite},Densidade do mosto {valor}: o prego pide polo menos {limite}
+sidr.aviso_etiquetas_descuadradas,Las contraetiquetas del rango no coinciden con las botellas,Tarteko kontraetiketak ez datoz bat botilekin,Les contraetiquetes del rang no coincideixen amb les ampolles,As contraetiquetas do rango non coinciden coas botellas
+sidr.aviso_grado_bajo,Grado {valor} % vol: el pliego pide más de {limite},Gradua {valor} % vol: pleguak {limite} baino gehiago eskatzen du,Grau {valor} % vol: el plec demana més de {limite},Grao {valor} % vol: o prego pide máis de {limite}
+sidr.aviso_negativo,Lo apuntado deja esta kupela en negativo: falta una entrada o sobra una salida.,Idatzitakoaren arabera kupela hau negatiboan dago: sarrera bat falta da edo irteera bat soberan dago.,El que s'ha anotat deixa aquesta kupela en negatiu: falta una entrada o sobra una sortida.,O anotado deixa esta kupela en negativo: falta unha entrada ou sobra unha saída.
+sidr.aviso_no_certifica,"La app compara lo que apuntas con el pliego y avisa, pero no certifica nada: califica el órgano de control de la DOP.","Aplikazioak idazten duzuna pleguarekin alderatzen du eta abisatzen du, baina ez du ezer ziurtatzen: JDBko kontrol-organoak kalifikatzen du.","L'app compara el que anotes amb el plec i avisa, però no certifica res: qualifica l'òrgan de control de la DOP.","A app compara o que anotas co prego e avisa, pero non certifica nada: cualifica o órgano de control da DOP."
+sidr.aviso_no_recomienda,"La app no recomienda productos ni dosis: apunta lo que ya se aplicó, copiando la etiqueta del producto.","Aplikazioak ez du produkturik ez dosirik gomendatzen: aplikatutakoa idazten da, produktuaren etiketa kopiatuz.","L'app no recomana productes ni dosis: anota el que ja s'ha aplicat, copiant l'etiqueta del producte.","A app non recomenda produtos nin doses: anota o que xa se aplicou, copiando a etiqueta do produto."
+sidr.aviso_procedencia_no_registrada,Esta fruta no consta de un manzanal registrado en la DOP: no podría ir a una elaboración DOP.,Fruta hau ez dator JDBn erregistratutako sagastitik: ezin litzateke JDBko ekoizpen batera joan.,Aquesta fruita no consta d'una pomereda registrada a la DOP: no podria anar a una elaboració DOP.,Esta froita non consta dunha pomareira rexistrada na DOP: non podería ir a unha elaboración DOP.
+sidr.aviso_rendimiento_alto,Rendimiento {valor} %: por encima de {limite} % del pliego,Etekina % {valor}: pleguko % {limite}-tik gora,Rendiment {valor} %: per sobre del {limite} % del plec,Rendemento {valor} %: por riba do {limite} % do prego
+sidr.aviso_rendimiento_bajo,"Rendimiento {valor} %: por debajo de {limite} %, el mínimo habitual del pliego","Etekina % {valor}: % {limite}-tik behera, pleguko ohiko gutxienekoa","Rendiment {valor} %: per sota del {limite} %, el mínim habitual del plec","Rendemento {valor} %: por baixo do {limite} %, o mínimo habitual do prego"
+sidr.aviso_sulfuroso_alto,Sulfuroso total {valor} mg/l: el pliego pide menos de {limite},Sulfuroso osoa {valor} mg/l: pleguak {limite} baino gutxiago eskatzen du,Sulfurós total {valor} mg/l: el plec demana menys de {limite},Sulfuroso total {valor} mg/l: o prego pide menos de {limite}
+sidr.aviso_supera_capacidad,Lo apuntado supera la capacidad de la kupela.,Idatzitakoak kupelaren edukiera gainditzen du.,El que s'ha anotat supera la capacitat de la kupela.,O anotado supera a capacidade da kupela.
+sidr.bienvenida_explicacion,Unos datos para empezar. Puedes cambiarlos cuando quieras en Ajustes.,Hasteko datu batzuk. Nahi duzunean alda ditzakezu Ezarpenetan.,Unes dades per començar. Les pots canviar quan vulguis a Configuració.,Uns datos para comezar. Podes cambialos cando queiras en Axustes.
+sidr.bienvenida_texto,Di cómo se llama tu sagardotegi y qué elaboras.,Esan zure sagardotegiaren izena eta zer egiten duzun.,Digues com es diu la teva sagardotegi i què elabores.,Di como se chama a túa sagardotegi e que elaboras.
+sidr.bienvenida_titulo,Ongi etorri,Ongi etorri,Benvinguda,Benvida
+sidr.bodega,Bodega,Upategia,Celler,Adega
+sidr.botellas,Botellas,Botilak,Ampolles,Botellas
+sidr.buscar,Buscar,Bilatu,Cerca,Buscar
+sidr.calificacion,Calificación,Kalifikazioa,Qualificació,Cualificación
+sidr.calificacion_apta,Apta (DOP),Egokia (JDB),Apta (DOP),Apta (DOP)
+sidr.calificacion_ayuda,La calificación la da el órgano de control con su análisis; aquí solo la apuntas.,Kalifikazioa kontrol-organoak ematen du bere analisiarekin; hemen idatzi besterik ez duzu egiten.,La qualificació la dona l'òrgan de control amb la seva anàlisi; aquí només l'anotes.,A cualificación dáa o órgano de control coa súa análise; aquí só a anotas.
+sidr.calificacion_descalificada,Descalificada,Deskalifikatua,Desqualificada,Descualificada
+sidr.calificacion_pendiente,Sin calificar,Kalifikatu gabe,Sense qualificar,Sen cualificar
+sidr.cantidad_aplicada,Cantidad aplicada,Aplikatutako kantitatea,Quantitat aplicada,Cantidade aplicada
+sidr.cantidad_aplicada_ayuda,"Lo que se aplicó, con su unidad","Aplikatu zena, bere unitatearekin","El que es va aplicar, amb la unitat","O que se aplicou, coa súa unidade"
+sidr.capacidad,Capacidad,Edukiera,Capacitat,Capacidade
+sidr.carnet_aplicador,N.º de carné de aplicador,Aplikatzaile-txartelaren zk.,Núm. de carnet d'aplicador,N.º de carné de aplicador
+sidr.catalogos_provisionales,"Catálogos provisionales: copiados de fuentes públicas, pendientes de revisión por una persona experta.","Behin-behineko katalogoak: iturri publikoetatik kopiatuak, aditu batek berrikusteko zain.","Catàlegs provisionals: copiats de fonts públiques, pendents de revisió per una persona experta.","Catálogos provisionais: copiados de fontes públicas, pendentes de revisión por unha persoa experta."
+sidr.codigo_kupela,Código de la kupela,Kupelaren kodea,Codi de la kupela,Código da kupela
+sidr.codigo_kupela_ayuda,"El que tiene pintado: K-7, 3…","Margotuta duena: K-7, 3…","El que té pintat: K-7, 3…","O que ten pintado: K-7, 3…"
+sidr.codigo_lote,Código de lote,Lote-kodea,Codi de lot,Código de lote
+sidr.codigo_repetido,Ya hay una kupela con ese código.,Badago kode hori duen kupela bat.,Ja hi ha una kupela amb aquest codi.,Xa hai unha kupela con ese código.
+sidr.comensales,Comensales,Mahaikideak,Comensals,Comensais
+sidr.comparado_con,Comparado con: {producto},Honekin alderatuta: {producto},Comparat amb: {producto},Comparado con: {producto}
+sidr.con_contraetiqueta_dop,Con contraetiqueta numerada de la DOP,JDBko kontraetiketa zenbakidunarekin,Amb contraetiqueta numerada de la DOP,Con contraetiqueta numerada da DOP
+sidr.contraetiquetas_rango,Contraetiquetas {desde}–{hasta},Kontraetiketak {desde}–{hasta},Contraetiquetes {desde}–{hasta},Contraetiquetas {desde}–{hasta}
+sidr.cultivo,Cultivo,Laborea,Cultiu,Cultivo
+sidr.cultivo_manzano,Manzano (pomarada),Sagarrondoa (sagastia),Pomera (pomereda),Maceira (pomar)
+sidr.cultivo_vid,Vid (txakoli),Mahatsondoa (txakolina),Vinya (txakoli),Vide (txakoli)
+sidr.datos_sagardotegi,Datos de la sagardotegi,Sagardotegiaren datuak,Dades de la sagardotegi,Datos da sagardotegi
+sidr.denominacion,Denominación de origen,Jatorri-deitura,Denominació d'origen,Denominación de orixe
+sidr.densidad,Densidad,Dentsitatea,Densitat,Densidade
+sidr.densidad_mosto,Densidad del mosto,Muztioaren dentsitatea,Densitat del most,Densidade do mosto
+sidr.destino,Destino,Helmuga,Destinació,Destino
+sidr.documento_transporte,Albarán o título de transporte,Albarana edo garraio-titulua,Albarà o títol de transport,Albarán ou título de transporte
+sidr.dop,DOP,JDB,DOP,DOP
+sidr.dop_arabako_txakolina,Arabako Txakolina,Arabako Txakolina,Arabako Txakolina,Arabako Txakolina
+sidr.dop_bizkaiko_txakolina,Bizkaiko Txakolina,Bizkaiko Txakolina,Bizkaiko Txakolina,Bizkaiko Txakolina
+sidr.dop_euskal_sagardoa,Euskal Sagardoa,Euskal Sagardoa,Euskal Sagardoa,Euskal Sagardoa
+sidr.dop_getariako_txakolina,Getariako Txakolina,Getariako Txakolina,Getariako Txakolina,Getariako Txakolina
+sidr.dop_sidra_asturias,Sidra de Asturias,Asturiasko Sagardoa,Sidra d'Astúries,Sidra de Asturias
+sidr.editar_entrada,Editar entrada de fruta,Fruta-sarrera editatu,Edita l'entrada de fruita,Editar entrada de froita
+sidr.editar_kupela,Editar kupela,Kupela editatu,Edita la kupela,Editar kupela
+sidr.editar_pomarada,Editar pomarada,Sagastia editatu,Edita la pomereda,Editar pomar
+sidr.editar_tratamiento,Editar tratamiento,Tratamendua editatu,Edita el tractament,Editar tratamento
+sidr.eficacia,Eficacia observada,Ikusitako eraginkortasuna,Eficàcia observada,Eficacia observada
+sidr.eficacia_buena,Buena,Ona,Bona,Boa
+sidr.eficacia_mala,Mala,Txarra,Dolenta,Mala
+sidr.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
+sidr.embotellados,Embotellados,Botilaratzeak,Embotellats,Embotellados
+sidr.embotellar,Embotellar,Botilaratu,Embotella,Embotellar
+sidr.en_bodega,en bodega,upategian,al celler,na adega
+sidr.entradas_fruta,Entradas de fruta,Fruta-sarrerak,Entrades de fruita,Entradas de froita
+sidr.error_cargar,No se pudieron cargar los datos.,Ezin izan dira datuak kargatu.,No s'han pogut carregar les dades.,Non se puideron cargar os datos.
+sidr.estado_fruta,Estado de la fruta,Frutaren egoera,Estat de la fruita,Estado da froita
+sidr.estado_fruta_danos_graves,Daños graves,Kalte larriak,Danys greus,Danos graves
+sidr.estado_fruta_danos_leves,Daños leves,Kalte arinak,Danys lleus,Danos leves
+sidr.estado_fruta_sana,Sana,Osasuntsua,Sana,Sa
+sidr.etiqueta_desde,Desde n.º,Zk. honetatik,Des del núm.,Desde o n.º
+sidr.etiqueta_hasta,Hasta n.º,Zk. honetara,Fins al núm.,Ata o n.º
+sidr.etiqueta_manzano,Cómo lo reconoces,Nola ezagutzen duzun,Com el reconeixes,Como o recoñeces
+sidr.etiqueta_manzano_ayuda,"Fila 3, n.º 12; el viejo del borde…","3. ilara, 12. zk.; ertzeko zaharra…","Fila 3, núm. 12; el vell del marge…","Fila 3, n.º 12; o vello do bordo…"
+sidr.falta_kilos_origen,Faltan los kilos o de dónde viene la fruta.,Kiloak edo fruta nondik datorren falta da.,Falten els quilos o d'on ve la fruita.,Faltan os quilos ou de onde vén a froita.
+sidr.falta_nombre,Falta el nombre.,Izena falta da.,Falta el nom.,Falta o nome.
+sidr.fecha,Fecha,Data,Data,Data
+sidr.fecha_entrega,Fecha de entrega,Entrega-data,Data de lliurament,Data de entrega
+sidr.fecha_recoleccion,Fecha de recolección,Bilketa-data,Data de collita,Data de recolección
+sidr.fruta_campania,de fruta esta campaña,fruta kanpaina honetan,de fruita aquesta campanya,de froita nesta campaña
+sidr.fruta_manzana,Manzana,Sagarra,Poma,Mazá
+sidr.fruta_propia,Fruta propia,Fruta propioa,Fruita pròpia,Froita propia
+sidr.fruta_uva,Uva,Mahatsa,Raïm,Uva
+sidr.grado_alcoholico,Grado alcohólico,Alkohol-gradua,Grau alcohòlic,Grao alcohólico
 sidr.guardado,Guardado,Gordeta,Desat,Gardado
 sidr.hoy,Hoy,Gaur,Avui,Hoxe
-sidr.nombre_titular,Nombre del titular,Titularraren izena,Nom del titular,Nome do titular
+sidr.inscripcion_dop,N.º de inscripción en la DOP,JDBko inskripzio-zk.,Núm. d'inscripció a la DOP,N.º de inscrición na DOP
+sidr.kilos,Kilos,Kiloak,Quilos,Quilos
+sidr.kupela,Kupela,Kupela,Kupela,Kupela
+sidr.kupela_activa,En uso,Erabilian,En ús,En uso
+sidr.kupela_descuadrada,{kupela}: los litros apuntados no cuadran,{kupela}: idatzitako litroak ez datoz bat,{kupela}: els litres anotats no quadren,{kupela}: os litros anotados non cadran
+sidr.kupela_destino,Kupela de destino,Helmugako kupela,Kupela de destinació,Kupela de destino
+sidr.kupelas,Kupelas,Kupelak,Kupeles,Kupelas
+sidr.litros,Litros,Litroak,Litres,Litros
+sidr.litros_en_bodega,En bodega: {litros},Upategian: {litros},Al celler: {litros},Na adega: {litros}
+sidr.litros_mosto,Litros de mosto,Muztio-litroak,Litres de most,Litros de mosto
+sidr.litros_servidos,Litros servidos (estimados),Zerbitzatutako litroak (gutxi gorabehera),Litres servits (estimats),Litros servidos (estimados)
+sidr.lotes_etiquetas_descuadradas,{n} lotes con contraetiquetas que no cuadran,{n} lote kontraetiketa okerrekin,{n} lots amb contraetiquetes que no quadren,{n} lotes con contraetiquetas que non cadran
+sidr.manzanos_marcados,Manzanos marcados,Markatutako sagarrondoak,Pomeres marcades,Maceiras marcadas
+sidr.material,Material,Materiala,Material,Material
+sidr.material_inoxidable,Acero inoxidable,Altzairu herdoilgaitza,Acer inoxidable,Aceiro inoxidable
+sidr.material_madera,Madera,Egurra,Fusta,Madeira
+sidr.material_otro,Otro,Bestelakoa,Altre,Outro
+sidr.mediciones,Mediciones,Neurketak,Mesures,Medicións
+sidr.medir,Medir,Neurtu,Mesura,Medir
+sidr.mililitros_botella,Mililitros por botella,Mililitro botilako,Mil·lilitres per ampolla,Mililitros por botella
+sidr.motivo,Motivo,Arrazoia,Motiu,Motivo
+sidr.movimiento_embotellado,Embotellado,Botilaratzea,Embotellat,Embotellado
+sidr.movimiento_prensado,Prensado,Prentsaketa,Premsat,Prensado
+sidr.movimiento_retirada,"Retirada (lías, merma)","Kentzea (hondarrak, galera)","Retirada (mares, minva)","Retirada (borras, mingua)"
+sidr.movimiento_trasiego_entrada,Trasiego de,"Trasegua, hemendik",Trasbals de,Trasfega de
+sidr.movimiento_trasiego_salida,Trasiego a,"Trasegua, hona",Trasbals a,Trasfega a
+sidr.movimiento_txotx,Txotx,Txotx,Txotx,Txotx
+sidr.movimientos,Movimientos,Mugimenduak,Moviments,Movementos
+sidr.municipio,Municipio,Udalerria,Municipi,Concello
+sidr.n_arboles,{n} árboles,{n} zuhaitz,{n} arbres,{n} árbores
+sidr.n_botellas,{n} botellas,{n} botila,{n} ampolles,{n} botellas
+sidr.n_comensales,{n} comensales,{n} mahaikide,{n} comensals,{n} comensais
+sidr.n_partidas,{n} partidas,{n} partida,{n} partides,{n} partidas
+sidr.nada_por_revisar,Nada pendiente.,Ezer ez dago zain.,Res pendent.,Nada pendente.
+sidr.no_procede,no procede,ez dagokio,no escau,non procede
+sidr.nombre,Nombre,Izena,Nom,Nome
+sidr.nombre_opcional,Nombre (opcional),Izena (aukerakoa),Nom (opcional),Nome (opcional)
+sidr.nombre_sagardotegi,Nombre de la sagardotegi o bodega,Sagardotegiaren edo upategiaren izena,Nom de la sagardotegi o celler,Nome da sagardotegi ou adega
+sidr.nombre_titular,Nombre o razón social,Izena edo sozietatearen izena,Nom o raó social,Nome ou razón social
+sidr.notas,Notas,Oharrak,Notes,Notas
+sidr.nueva_entrada,Nueva entrada de fruta,Fruta-sarrera berria,Nova entrada de fruita,Nova entrada de froita
+sidr.nueva_kupela,Nueva kupela,Kupela berria,Nova kupela,Nova kupela
+sidr.nueva_medicion,Nueva medición,Neurketa berria,Nova mesura,Nova medición
+sidr.nueva_pomarada,Nueva pomarada,Sagasti berria,Nova pomereda,Novo pomar
+sidr.nuevo_manzano,Marcar un manzano,Sagarrondo bat markatu,Marca una pomera,Marcar unha maceira
+sidr.nuevo_prensado,Nuevo prensado,Prentsaketa berria,Nou premsat,Novo prensado
+sidr.nuevo_tratamiento,Apuntar tratamiento,Tratamendua idatzi,Anota un tractament,Anotar tratamento
+sidr.numero_arboles,Número de árboles,Zuhaitz kopurua,Nombre d'arbres,Número de árbores
+sidr.numero_registro,N.º de registro del producto,Produktuaren erregistro-zk.,Núm. de registre del producte,N.º de rexistro do produto
+sidr.numero_registro_ayuda,El de la etiqueta (Registro de Productos Fitosanitarios),Etiketakoa (Produktu Fitosanitarioen Erregistroa),El de l'etiqueta (Registre de Productes Fitosanitaris),O da etiqueta (Rexistro de Produtos Fitosanitarios)
+sidr.organismo_regulado_aviso,"Organismo regulado: ante una sospecha, avisa al servicio de sanidad vegetal de tu territorio.","Organismo arautua: susmorik baduzu, abisatu zure lurraldeko landare-osasun zerbitzuari.","Organisme regulat: davant d'una sospita, avisa el servei de sanitat vegetal del teu territori.","Organismo regulado: ante unha sospeita, avisa o servizo de sanidade vexetal do teu territorio."
+sidr.parcela,Parcela,Partzela,Parcel·la,Parcela
+sidr.partidas_que_entran,Partidas que entran,Sartzen diren partidak,Partides que entren,Partidas que entran
+sidr.partidas_sin_prensar,{n} entradas de fruta sin prensar,Prentsatu gabeko {n} fruta-sarrera,{n} entrades de fruita sense premsar,{n} entradas de froita sen prensar
+sidr.perfil_ambos,Las dos,Biak,Les dues,As dúas
+sidr.perfil_sidra,Sidra,Sagardoa,Sidra,Sidra
+sidr.perfil_txakoli,Txakoli,Txakolina,Txakoli,Txakoli
+sidr.plaga_objetivo,Plaga o enfermedad,Izurritea edo gaixotasuna,Plaga o malaltia,Praga ou enfermidade
+sidr.poligono,Polígono,Poligonoa,Polígon,Polígono
+sidr.pomarada,Pomarada,Sagastia,Pomereda,Pomar
+sidr.pomaradas,Pomaradas,Sagastiak,Pomeredes,Pomares
+sidr.por_revisar,Por revisar,Berrikusteko,Per revisar,Por revisar
+sidr.precio_kg,Precio por kilo,Kiloko prezioa,Preu per quilo,Prezo por quilo
+sidr.prensada,prensada,prentsatuta,premsada,prensada
+sidr.prensados,Prensados,Prentsaketak,Premsats,Prensados
+sidr.presion,Presión de prensado,Prentsatze-presioa,Pressió de premsat,Presión de prensado
+sidr.preventivo,Preventivo (sin plaga concreta),Prebentiboa (izurrite zehatzik gabe),Preventiu (sense plaga concreta),Preventivo (sen praga concreta)
+sidr.procedencia,Procedencia (municipio o zona),Jatorria (udalerria edo eremua),Procedència (municipi o zona),Procedencia (concello ou zona)
+sidr.producto,Producto,Produktua,Producte,Produto
+sidr.producto_dop,Producto DOP con el que comparar,Alderatzeko JDBko produktua,Producte DOP amb què comparar,Produto DOP co que comparar
+sidr.producto_sidra,Sidra,Sagardoa,Sidra,Sidra
+sidr.producto_txakoli,Txakoli,Txakolina,Txakoli,Txakoli
+sidr.propia,Propia,Propioa,Pròpia,Propia
+sidr.proveedor,Proveedor,Hornitzailea,Proveïdor,Provedor
+sidr.proveedor_registrado,Manzanal del proveedor registrado en la DOP,Hornitzailearen sagastia JDBn erregistratuta,Pomereda del proveïdor registrada a la DOP,Pomar do provedor rexistrado na DOP
+sidr.que_elaboras,¿Qué elaboras?,Zer egiten duzu?,Què elabores?,Que elaboras?
+sidr.quedan,quedan {litros},{litros} geratzen dira,en queden {litros},quedan {litros}
+sidr.recinto,Recinto,Barrutia,Recinte,Recinto
+sidr.regimen_fiscal,Régimen fiscal (PROVISIONAL),Zerga-araubidea (BEHIN-BEHINEKOA),Règim fiscal (PROVISIONAL),Réxime fiscal (PROVISIONAL)
+sidr.regimen_general,General o simplificado,Orokorra edo erraztua,General o simplificat,Xeral ou simplificado
+sidr.regimen_reagp,REAGP (venta de manzana propia),NANAB (sagar propioaren salmenta),REAGP (venda de poma pròpia),REAGP (venda de mazá propia)
+sidr.registrada_dop,Registrada en la DOP,JDBn erregistratuta,Registrada a la DOP,Rexistrada na DOP
+sidr.registrada_dop_ayuda,Lo marcas tú: la app no consulta el registro.,Zuk markatzen duzu: aplikazioak ez du erregistroa kontsultatzen.,Ho marques tu: l'app no consulta el registre.,Márcalo ti: a app non consulta o rexistro.
+sidr.registro_sanitario,Registro sanitario (RGSEAA),Osasun-erregistroa (RGSEAA),Registre sanitari (RGSEAA),Rexistro sanitario (RXSEAA)
+sidr.resumen_txotx,{dias} días de txotx · {litros} servidos,{dias} txotx egun · {litros} zerbitzatuta,{dias} dies de txotx · {litros} servits,{dias} días de txotx · {litros} servidos
+sidr.retirada,retirada,kenduta,retirada,retirada
+sidr.retirada_lias,"Ninguna: se retira (lías, merma)","Bat ere ez: kendu egiten da (hondarrak, galera)","Cap: es retira (mares, minva)","Ningunha: retírase (borras, mingua)"
+sidr.sigpac,SIGPAC,SIGPAC,SIGPAC,SIXPAC
+sidr.sin_dop,Sin DOP,JDB gabe,Sense DOP,Sen DOP
+sidr.sin_embotellados,Todavía no hay lotes embotellados. Se embotella desde la ficha de cada kupela.,Oraindik ez dago botilaratutako loterik. Kupela bakoitzaren fitxatik botilaratzen da.,Encara no hi ha lots embotellats. S'embotella des de la fitxa de cada kupela.,Aínda non hai lotes embotellados. Embotéllase desde a ficha de cada kupela.
+sidr.sin_entradas,Todavía no hay entradas de fruta.,Oraindik ez dago fruta-sarrerarik.,Encara no hi ha entrades de fruita.,Aínda non hai entradas de froita.
+sidr.sin_kupelas,Todavía no hay kupelas. Da de alta las tuyas con el botón +.,Oraindik ez dago kupelarik. Eman altan zureak + botoiarekin.,Encara no hi ha kupeles. Dona d'alta les teves amb el botó +.,Aínda non hai kupelas. Dá de alta as túas co botón +.
+sidr.sin_kupelas_llenas,Ninguna kupela tiene sidra apuntada.,Kupela batek ere ez du sagardorik idatzita.,Cap kupela no té sidra anotada.,Ningunha kupela ten sidra anotada.
+sidr.sin_mediciones,Sin mediciones.,Neurketarik gabe.,Sense mesures.,Sen medicións.
+sidr.sin_partidas_pendientes,No hay entradas de fruta sin prensar.,Ez dago prentsatu gabeko fruta-sarrerarik.,No hi ha entrades de fruita sense premsar.,Non hai entradas de froita sen prensar.
+sidr.sin_pomaradas,Todavía no hay pomaradas. Da de alta la primera con el botón +.,Oraindik ez dago sagastirik. Eman altan lehena + botoiarekin.,Encara no hi ha pomeredes. Dona d'alta la primera amb el botó +.,Aínda non hai pomares. Dá de alta o primeiro co botón +.
+sidr.sin_prensados,Todavía no hay prensados.,Oraindik ez dago prentsaketarik.,Encara no hi ha premsats.,Aínda non hai prensados.
+sidr.sin_prensar,sin prensar,prentsatu gabe,sense premsar,sen prensar
+sidr.sin_sustancia,Sin sustancia activa,Substantzia aktiborik gabe,Sense substància activa,Sen substancia activa
+sidr.sin_tratamientos,Sin tratamientos apuntados.,Ez dago tratamendurik idatzita.,Sense tractaments anotats.,Sen tratamentos anotados.
+sidr.sin_txotx,Esta temporada todavía no se ha abierto ninguna kupela.,Denboraldi honetan oraindik ez da kupelarik ireki.,Aquesta temporada encara no s'ha obert cap kupela.,Esta tempada aínda non se abriu ningunha kupela.
+sidr.sin_txotx_hoy,Hoy no hay txotx apuntado.,Gaur ez dago txotxik idatzita.,Avui no hi ha txotx anotat.,Hoxe non hai txotx anotado.
+sidr.sulfuroso_total,Sulfuroso total,Sulfuroso osoa,Sulfurós total,Sulfuroso total
+sidr.superficie,Superficie,Azalera,Superfície,Superficie
+sidr.superficie_tratada,Superficie tratada,Tratatutako azalera,Superfície tractada,Superficie tratada
+sidr.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+sidr.sustancia_resumen,Plazo de seguridad máximo en el registro: {ps} días (manda la etiqueta). Aprobada en la UE hasta {ue}.,Erregistroko gehieneko segurtasun-epea: {ps} egun (etiketak agintzen du). EBn onartua {ue} arte.,Termini de seguretat màxim al registre: {ps} dies (mana l'etiqueta). Aprovada a la UE fins al {ue}.,Prazo de seguridade máximo no rexistro: {ps} días (manda a etiqueta). Aprobada na UE ata o {ue}.
+sidr.temperatura,Temperatura,Tenperatura,Temperatura,Temperatura
+sidr.temporada,Temporada {campania},{campania} denboraldia,Temporada {campania},Tempada {campania}
+sidr.territorio,Territorio o provincia,Lurraldea edo probintzia,Territori o província,Territorio ou provincia
 sidr.titular,Titular,Titularra,Titular,Titular
+sidr.trasegar,Trasegar,Trasegatu,Trasbalsa,Trasfegar
+sidr.trasiego,Trasiego,Trasegua,Trasbals,Trasfega
+sidr.tratamiento_incompleto,faltan datos del cuaderno,koadernoko datuak falta dira,falten dades del quadern,faltan datos do caderno
+sidr.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
+sidr.tratamientos_incompletos,{n} tratamientos con datos del cuaderno sin rellenar,Koadernoko datuak bete gabe dituzten {n} tratamendu,{n} tractaments amb dades del quadern sense omplir,{n} tratamentos con datos do caderno sen encher
+sidr.txotx,Txotx,Txotx,Txotx,Txotx
+sidr.txotx_de_hoy,Txotx de hoy,Gaurko txotxa,Txotx d'avui,Txotx de hoxe
+sidr.variedad,Variedad,Barietatea,Varietat,Variedade
+sidr.variedades,Variedades,Barietateak,Varietats,Variedades
+sidr.variedades_fuera_pliego,No están en la lista del pliego de tu DOP: {variedades},Ez daude zure JDBko pleguko zerrendan: {variedades},No són a la llista del plec de la teva DOP: {variedades},Non están na lista do prego da túa DOP: {variedades}

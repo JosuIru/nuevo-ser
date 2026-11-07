@@ -4404,11 +4404,219 @@ class SoleraL10n {
     'ques.y_n_mas',
     'ques.zona_geografica',
     'ques.hoy_nada_pendiente',
-    'sidr.bienvenida',
+    'sidr.abre_txotx',
+    'sidr.abrir_kupela',
+    'sidr.aceptar',
+    'sidr.acidez_volatil',
+    'sidr.anio_plantacion',
+    'sidr.aplicador',
+    'sidr.arboles_por_ha',
+    'sidr.av',
+    'sidr.aviso_acidez_volatil_alta',
+    'sidr.aviso_densidad_mosto_baja',
+    'sidr.aviso_etiquetas_descuadradas',
+    'sidr.aviso_grado_bajo',
+    'sidr.aviso_negativo',
+    'sidr.aviso_no_certifica',
+    'sidr.aviso_no_recomienda',
+    'sidr.aviso_procedencia_no_registrada',
+    'sidr.aviso_rendimiento_alto',
+    'sidr.aviso_rendimiento_bajo',
+    'sidr.aviso_sulfuroso_alto',
+    'sidr.aviso_supera_capacidad',
+    'sidr.bienvenida_explicacion',
+    'sidr.bienvenida_texto',
+    'sidr.bienvenida_titulo',
+    'sidr.bodega',
+    'sidr.botellas',
+    'sidr.buscar',
+    'sidr.calificacion',
+    'sidr.calificacion_apta',
+    'sidr.calificacion_ayuda',
+    'sidr.calificacion_descalificada',
+    'sidr.calificacion_pendiente',
+    'sidr.cantidad_aplicada',
+    'sidr.cantidad_aplicada_ayuda',
+    'sidr.capacidad',
+    'sidr.carnet_aplicador',
+    'sidr.catalogos_provisionales',
+    'sidr.codigo_kupela',
+    'sidr.codigo_kupela_ayuda',
+    'sidr.codigo_lote',
+    'sidr.codigo_repetido',
+    'sidr.comensales',
+    'sidr.comparado_con',
+    'sidr.con_contraetiqueta_dop',
+    'sidr.contraetiquetas_rango',
+    'sidr.cultivo',
+    'sidr.cultivo_manzano',
+    'sidr.cultivo_vid',
+    'sidr.datos_sagardotegi',
+    'sidr.denominacion',
+    'sidr.densidad',
+    'sidr.densidad_mosto',
+    'sidr.destino',
+    'sidr.documento_transporte',
+    'sidr.dop',
+    'sidr.dop_arabako_txakolina',
+    'sidr.dop_bizkaiko_txakolina',
+    'sidr.dop_euskal_sagardoa',
+    'sidr.dop_getariako_txakolina',
+    'sidr.dop_sidra_asturias',
+    'sidr.editar_entrada',
+    'sidr.editar_kupela',
+    'sidr.editar_pomarada',
+    'sidr.editar_tratamiento',
+    'sidr.eficacia',
+    'sidr.eficacia_buena',
+    'sidr.eficacia_mala',
+    'sidr.eficacia_regular',
+    'sidr.embotellados',
+    'sidr.embotellar',
+    'sidr.en_bodega',
+    'sidr.entradas_fruta',
+    'sidr.error_cargar',
+    'sidr.estado_fruta',
+    'sidr.estado_fruta_danos_graves',
+    'sidr.estado_fruta_danos_leves',
+    'sidr.estado_fruta_sana',
+    'sidr.etiqueta_desde',
+    'sidr.etiqueta_hasta',
+    'sidr.etiqueta_manzano',
+    'sidr.etiqueta_manzano_ayuda',
+    'sidr.falta_kilos_origen',
+    'sidr.falta_nombre',
+    'sidr.fecha',
+    'sidr.fecha_entrega',
+    'sidr.fecha_recoleccion',
+    'sidr.fruta_campania',
+    'sidr.fruta_manzana',
+    'sidr.fruta_propia',
+    'sidr.fruta_uva',
+    'sidr.grado_alcoholico',
     'sidr.guardado',
     'sidr.hoy',
+    'sidr.inscripcion_dop',
+    'sidr.kilos',
+    'sidr.kupela',
+    'sidr.kupela_activa',
+    'sidr.kupela_descuadrada',
+    'sidr.kupela_destino',
+    'sidr.kupelas',
+    'sidr.litros',
+    'sidr.litros_en_bodega',
+    'sidr.litros_mosto',
+    'sidr.litros_servidos',
+    'sidr.lotes_etiquetas_descuadradas',
+    'sidr.manzanos_marcados',
+    'sidr.material',
+    'sidr.material_inoxidable',
+    'sidr.material_madera',
+    'sidr.material_otro',
+    'sidr.mediciones',
+    'sidr.medir',
+    'sidr.mililitros_botella',
+    'sidr.motivo',
+    'sidr.movimiento_embotellado',
+    'sidr.movimiento_prensado',
+    'sidr.movimiento_retirada',
+    'sidr.movimiento_trasiego_entrada',
+    'sidr.movimiento_trasiego_salida',
+    'sidr.movimiento_txotx',
+    'sidr.movimientos',
+    'sidr.municipio',
+    'sidr.n_arboles',
+    'sidr.n_botellas',
+    'sidr.n_comensales',
+    'sidr.n_partidas',
+    'sidr.nada_por_revisar',
+    'sidr.no_procede',
+    'sidr.nombre',
+    'sidr.nombre_opcional',
+    'sidr.nombre_sagardotegi',
     'sidr.nombre_titular',
+    'sidr.notas',
+    'sidr.nueva_entrada',
+    'sidr.nueva_kupela',
+    'sidr.nueva_medicion',
+    'sidr.nueva_pomarada',
+    'sidr.nuevo_manzano',
+    'sidr.nuevo_prensado',
+    'sidr.nuevo_tratamiento',
+    'sidr.numero_arboles',
+    'sidr.numero_registro',
+    'sidr.numero_registro_ayuda',
+    'sidr.organismo_regulado_aviso',
+    'sidr.parcela',
+    'sidr.partidas_que_entran',
+    'sidr.partidas_sin_prensar',
+    'sidr.perfil_ambos',
+    'sidr.perfil_sidra',
+    'sidr.perfil_txakoli',
+    'sidr.plaga_objetivo',
+    'sidr.poligono',
+    'sidr.pomarada',
+    'sidr.pomaradas',
+    'sidr.por_revisar',
+    'sidr.precio_kg',
+    'sidr.prensada',
+    'sidr.prensados',
+    'sidr.presion',
+    'sidr.preventivo',
+    'sidr.procedencia',
+    'sidr.producto',
+    'sidr.producto_dop',
+    'sidr.producto_sidra',
+    'sidr.producto_txakoli',
+    'sidr.propia',
+    'sidr.proveedor',
+    'sidr.proveedor_registrado',
+    'sidr.que_elaboras',
+    'sidr.quedan',
+    'sidr.recinto',
+    'sidr.regimen_fiscal',
+    'sidr.regimen_general',
+    'sidr.regimen_reagp',
+    'sidr.registrada_dop',
+    'sidr.registrada_dop_ayuda',
+    'sidr.registro_sanitario',
+    'sidr.resumen_txotx',
+    'sidr.retirada',
+    'sidr.retirada_lias',
+    'sidr.sigpac',
+    'sidr.sin_dop',
+    'sidr.sin_embotellados',
+    'sidr.sin_entradas',
+    'sidr.sin_kupelas',
+    'sidr.sin_kupelas_llenas',
+    'sidr.sin_mediciones',
+    'sidr.sin_partidas_pendientes',
+    'sidr.sin_pomaradas',
+    'sidr.sin_prensados',
+    'sidr.sin_prensar',
+    'sidr.sin_sustancia',
+    'sidr.sin_tratamientos',
+    'sidr.sin_txotx',
+    'sidr.sin_txotx_hoy',
+    'sidr.sulfuroso_total',
+    'sidr.superficie',
+    'sidr.superficie_tratada',
+    'sidr.sustancia_activa',
+    'sidr.sustancia_resumen',
+    'sidr.temperatura',
+    'sidr.temporada',
+    'sidr.territorio',
     'sidr.titular',
+    'sidr.trasegar',
+    'sidr.trasiego',
+    'sidr.tratamiento_incompleto',
+    'sidr.tratamientos',
+    'sidr.tratamientos_incompletos',
+    'sidr.txotx',
+    'sidr.txotx_de_hoy',
+    'sidr.variedad',
+    'sidr.variedades',
+    'sidr.variedades_fuera_pliego',
     'viti.a_ingresar_hacienda_303',
     'viti.aceptar_y_rellenar',
     'viti.acerca_ayuda',
@@ -9333,11 +9541,219 @@ class SoleraL10n {
           'ques.y_n_mas',
           'ques.zona_geografica',
           'ques.hoy_nada_pendiente',
-          'sidr.bienvenida',
+          'sidr.abre_txotx',
+          'sidr.abrir_kupela',
+          'sidr.aceptar',
+          'sidr.acidez_volatil',
+          'sidr.anio_plantacion',
+          'sidr.aplicador',
+          'sidr.arboles_por_ha',
+          'sidr.av',
+          'sidr.aviso_acidez_volatil_alta',
+          'sidr.aviso_densidad_mosto_baja',
+          'sidr.aviso_etiquetas_descuadradas',
+          'sidr.aviso_grado_bajo',
+          'sidr.aviso_negativo',
+          'sidr.aviso_no_certifica',
+          'sidr.aviso_no_recomienda',
+          'sidr.aviso_procedencia_no_registrada',
+          'sidr.aviso_rendimiento_alto',
+          'sidr.aviso_rendimiento_bajo',
+          'sidr.aviso_sulfuroso_alto',
+          'sidr.aviso_supera_capacidad',
+          'sidr.bienvenida_explicacion',
+          'sidr.bienvenida_texto',
+          'sidr.bienvenida_titulo',
+          'sidr.bodega',
+          'sidr.botellas',
+          'sidr.buscar',
+          'sidr.calificacion',
+          'sidr.calificacion_apta',
+          'sidr.calificacion_ayuda',
+          'sidr.calificacion_descalificada',
+          'sidr.calificacion_pendiente',
+          'sidr.cantidad_aplicada',
+          'sidr.cantidad_aplicada_ayuda',
+          'sidr.capacidad',
+          'sidr.carnet_aplicador',
+          'sidr.catalogos_provisionales',
+          'sidr.codigo_kupela',
+          'sidr.codigo_kupela_ayuda',
+          'sidr.codigo_lote',
+          'sidr.codigo_repetido',
+          'sidr.comensales',
+          'sidr.comparado_con',
+          'sidr.con_contraetiqueta_dop',
+          'sidr.contraetiquetas_rango',
+          'sidr.cultivo',
+          'sidr.cultivo_manzano',
+          'sidr.cultivo_vid',
+          'sidr.datos_sagardotegi',
+          'sidr.denominacion',
+          'sidr.densidad',
+          'sidr.densidad_mosto',
+          'sidr.destino',
+          'sidr.documento_transporte',
+          'sidr.dop',
+          'sidr.dop_arabako_txakolina',
+          'sidr.dop_bizkaiko_txakolina',
+          'sidr.dop_euskal_sagardoa',
+          'sidr.dop_getariako_txakolina',
+          'sidr.dop_sidra_asturias',
+          'sidr.editar_entrada',
+          'sidr.editar_kupela',
+          'sidr.editar_pomarada',
+          'sidr.editar_tratamiento',
+          'sidr.eficacia',
+          'sidr.eficacia_buena',
+          'sidr.eficacia_mala',
+          'sidr.eficacia_regular',
+          'sidr.embotellados',
+          'sidr.embotellar',
+          'sidr.en_bodega',
+          'sidr.entradas_fruta',
+          'sidr.error_cargar',
+          'sidr.estado_fruta',
+          'sidr.estado_fruta_danos_graves',
+          'sidr.estado_fruta_danos_leves',
+          'sidr.estado_fruta_sana',
+          'sidr.etiqueta_desde',
+          'sidr.etiqueta_hasta',
+          'sidr.etiqueta_manzano',
+          'sidr.etiqueta_manzano_ayuda',
+          'sidr.falta_kilos_origen',
+          'sidr.falta_nombre',
+          'sidr.fecha',
+          'sidr.fecha_entrega',
+          'sidr.fecha_recoleccion',
+          'sidr.fruta_campania',
+          'sidr.fruta_manzana',
+          'sidr.fruta_propia',
+          'sidr.fruta_uva',
+          'sidr.grado_alcoholico',
           'sidr.guardado',
           'sidr.hoy',
+          'sidr.inscripcion_dop',
+          'sidr.kilos',
+          'sidr.kupela',
+          'sidr.kupela_activa',
+          'sidr.kupela_descuadrada',
+          'sidr.kupela_destino',
+          'sidr.kupelas',
+          'sidr.litros',
+          'sidr.litros_en_bodega',
+          'sidr.litros_mosto',
+          'sidr.litros_servidos',
+          'sidr.lotes_etiquetas_descuadradas',
+          'sidr.manzanos_marcados',
+          'sidr.material',
+          'sidr.material_inoxidable',
+          'sidr.material_madera',
+          'sidr.material_otro',
+          'sidr.mediciones',
+          'sidr.medir',
+          'sidr.mililitros_botella',
+          'sidr.motivo',
+          'sidr.movimiento_embotellado',
+          'sidr.movimiento_prensado',
+          'sidr.movimiento_retirada',
+          'sidr.movimiento_trasiego_entrada',
+          'sidr.movimiento_trasiego_salida',
+          'sidr.movimiento_txotx',
+          'sidr.movimientos',
+          'sidr.municipio',
+          'sidr.n_arboles',
+          'sidr.n_botellas',
+          'sidr.n_comensales',
+          'sidr.n_partidas',
+          'sidr.nada_por_revisar',
+          'sidr.no_procede',
+          'sidr.nombre',
+          'sidr.nombre_opcional',
+          'sidr.nombre_sagardotegi',
           'sidr.nombre_titular',
+          'sidr.notas',
+          'sidr.nueva_entrada',
+          'sidr.nueva_kupela',
+          'sidr.nueva_medicion',
+          'sidr.nueva_pomarada',
+          'sidr.nuevo_manzano',
+          'sidr.nuevo_prensado',
+          'sidr.nuevo_tratamiento',
+          'sidr.numero_arboles',
+          'sidr.numero_registro',
+          'sidr.numero_registro_ayuda',
+          'sidr.organismo_regulado_aviso',
+          'sidr.parcela',
+          'sidr.partidas_que_entran',
+          'sidr.partidas_sin_prensar',
+          'sidr.perfil_ambos',
+          'sidr.perfil_sidra',
+          'sidr.perfil_txakoli',
+          'sidr.plaga_objetivo',
+          'sidr.poligono',
+          'sidr.pomarada',
+          'sidr.pomaradas',
+          'sidr.por_revisar',
+          'sidr.precio_kg',
+          'sidr.prensada',
+          'sidr.prensados',
+          'sidr.presion',
+          'sidr.preventivo',
+          'sidr.procedencia',
+          'sidr.producto',
+          'sidr.producto_dop',
+          'sidr.producto_sidra',
+          'sidr.producto_txakoli',
+          'sidr.propia',
+          'sidr.proveedor',
+          'sidr.proveedor_registrado',
+          'sidr.que_elaboras',
+          'sidr.quedan',
+          'sidr.recinto',
+          'sidr.regimen_fiscal',
+          'sidr.regimen_general',
+          'sidr.regimen_reagp',
+          'sidr.registrada_dop',
+          'sidr.registrada_dop_ayuda',
+          'sidr.registro_sanitario',
+          'sidr.resumen_txotx',
+          'sidr.retirada',
+          'sidr.retirada_lias',
+          'sidr.sigpac',
+          'sidr.sin_dop',
+          'sidr.sin_embotellados',
+          'sidr.sin_entradas',
+          'sidr.sin_kupelas',
+          'sidr.sin_kupelas_llenas',
+          'sidr.sin_mediciones',
+          'sidr.sin_partidas_pendientes',
+          'sidr.sin_pomaradas',
+          'sidr.sin_prensados',
+          'sidr.sin_prensar',
+          'sidr.sin_sustancia',
+          'sidr.sin_tratamientos',
+          'sidr.sin_txotx',
+          'sidr.sin_txotx_hoy',
+          'sidr.sulfuroso_total',
+          'sidr.superficie',
+          'sidr.superficie_tratada',
+          'sidr.sustancia_activa',
+          'sidr.sustancia_resumen',
+          'sidr.temperatura',
+          'sidr.temporada',
+          'sidr.territorio',
           'sidr.titular',
+          'sidr.trasegar',
+          'sidr.trasiego',
+          'sidr.tratamiento_incompleto',
+          'sidr.tratamientos',
+          'sidr.tratamientos_incompletos',
+          'sidr.txotx',
+          'sidr.txotx_de_hoy',
+          'sidr.variedad',
+          'sidr.variedades',
+          'sidr.variedades_fuera_pliego',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -14259,11 +14675,219 @@ class SoleraL10n {
           'ques.y_n_mas',
           'ques.zona_geografica',
           'ques.hoy_nada_pendiente',
-          'sidr.bienvenida',
+          'sidr.abre_txotx',
+          'sidr.abrir_kupela',
+          'sidr.aceptar',
+          'sidr.acidez_volatil',
+          'sidr.anio_plantacion',
+          'sidr.aplicador',
+          'sidr.arboles_por_ha',
+          'sidr.av',
+          'sidr.aviso_acidez_volatil_alta',
+          'sidr.aviso_densidad_mosto_baja',
+          'sidr.aviso_etiquetas_descuadradas',
+          'sidr.aviso_grado_bajo',
+          'sidr.aviso_negativo',
+          'sidr.aviso_no_certifica',
+          'sidr.aviso_no_recomienda',
+          'sidr.aviso_procedencia_no_registrada',
+          'sidr.aviso_rendimiento_alto',
+          'sidr.aviso_rendimiento_bajo',
+          'sidr.aviso_sulfuroso_alto',
+          'sidr.aviso_supera_capacidad',
+          'sidr.bienvenida_explicacion',
+          'sidr.bienvenida_texto',
+          'sidr.bienvenida_titulo',
+          'sidr.bodega',
+          'sidr.botellas',
+          'sidr.buscar',
+          'sidr.calificacion',
+          'sidr.calificacion_apta',
+          'sidr.calificacion_ayuda',
+          'sidr.calificacion_descalificada',
+          'sidr.calificacion_pendiente',
+          'sidr.cantidad_aplicada',
+          'sidr.cantidad_aplicada_ayuda',
+          'sidr.capacidad',
+          'sidr.carnet_aplicador',
+          'sidr.catalogos_provisionales',
+          'sidr.codigo_kupela',
+          'sidr.codigo_kupela_ayuda',
+          'sidr.codigo_lote',
+          'sidr.codigo_repetido',
+          'sidr.comensales',
+          'sidr.comparado_con',
+          'sidr.con_contraetiqueta_dop',
+          'sidr.contraetiquetas_rango',
+          'sidr.cultivo',
+          'sidr.cultivo_manzano',
+          'sidr.cultivo_vid',
+          'sidr.datos_sagardotegi',
+          'sidr.denominacion',
+          'sidr.densidad',
+          'sidr.densidad_mosto',
+          'sidr.destino',
+          'sidr.documento_transporte',
+          'sidr.dop',
+          'sidr.dop_arabako_txakolina',
+          'sidr.dop_bizkaiko_txakolina',
+          'sidr.dop_euskal_sagardoa',
+          'sidr.dop_getariako_txakolina',
+          'sidr.dop_sidra_asturias',
+          'sidr.editar_entrada',
+          'sidr.editar_kupela',
+          'sidr.editar_pomarada',
+          'sidr.editar_tratamiento',
+          'sidr.eficacia',
+          'sidr.eficacia_buena',
+          'sidr.eficacia_mala',
+          'sidr.eficacia_regular',
+          'sidr.embotellados',
+          'sidr.embotellar',
+          'sidr.en_bodega',
+          'sidr.entradas_fruta',
+          'sidr.error_cargar',
+          'sidr.estado_fruta',
+          'sidr.estado_fruta_danos_graves',
+          'sidr.estado_fruta_danos_leves',
+          'sidr.estado_fruta_sana',
+          'sidr.etiqueta_desde',
+          'sidr.etiqueta_hasta',
+          'sidr.etiqueta_manzano',
+          'sidr.etiqueta_manzano_ayuda',
+          'sidr.falta_kilos_origen',
+          'sidr.falta_nombre',
+          'sidr.fecha',
+          'sidr.fecha_entrega',
+          'sidr.fecha_recoleccion',
+          'sidr.fruta_campania',
+          'sidr.fruta_manzana',
+          'sidr.fruta_propia',
+          'sidr.fruta_uva',
+          'sidr.grado_alcoholico',
           'sidr.guardado',
           'sidr.hoy',
+          'sidr.inscripcion_dop',
+          'sidr.kilos',
+          'sidr.kupela',
+          'sidr.kupela_activa',
+          'sidr.kupela_descuadrada',
+          'sidr.kupela_destino',
+          'sidr.kupelas',
+          'sidr.litros',
+          'sidr.litros_en_bodega',
+          'sidr.litros_mosto',
+          'sidr.litros_servidos',
+          'sidr.lotes_etiquetas_descuadradas',
+          'sidr.manzanos_marcados',
+          'sidr.material',
+          'sidr.material_inoxidable',
+          'sidr.material_madera',
+          'sidr.material_otro',
+          'sidr.mediciones',
+          'sidr.medir',
+          'sidr.mililitros_botella',
+          'sidr.motivo',
+          'sidr.movimiento_embotellado',
+          'sidr.movimiento_prensado',
+          'sidr.movimiento_retirada',
+          'sidr.movimiento_trasiego_entrada',
+          'sidr.movimiento_trasiego_salida',
+          'sidr.movimiento_txotx',
+          'sidr.movimientos',
+          'sidr.municipio',
+          'sidr.n_arboles',
+          'sidr.n_botellas',
+          'sidr.n_comensales',
+          'sidr.n_partidas',
+          'sidr.nada_por_revisar',
+          'sidr.no_procede',
+          'sidr.nombre',
+          'sidr.nombre_opcional',
+          'sidr.nombre_sagardotegi',
           'sidr.nombre_titular',
+          'sidr.notas',
+          'sidr.nueva_entrada',
+          'sidr.nueva_kupela',
+          'sidr.nueva_medicion',
+          'sidr.nueva_pomarada',
+          'sidr.nuevo_manzano',
+          'sidr.nuevo_prensado',
+          'sidr.nuevo_tratamiento',
+          'sidr.numero_arboles',
+          'sidr.numero_registro',
+          'sidr.numero_registro_ayuda',
+          'sidr.organismo_regulado_aviso',
+          'sidr.parcela',
+          'sidr.partidas_que_entran',
+          'sidr.partidas_sin_prensar',
+          'sidr.perfil_ambos',
+          'sidr.perfil_sidra',
+          'sidr.perfil_txakoli',
+          'sidr.plaga_objetivo',
+          'sidr.poligono',
+          'sidr.pomarada',
+          'sidr.pomaradas',
+          'sidr.por_revisar',
+          'sidr.precio_kg',
+          'sidr.prensada',
+          'sidr.prensados',
+          'sidr.presion',
+          'sidr.preventivo',
+          'sidr.procedencia',
+          'sidr.producto',
+          'sidr.producto_dop',
+          'sidr.producto_sidra',
+          'sidr.producto_txakoli',
+          'sidr.propia',
+          'sidr.proveedor',
+          'sidr.proveedor_registrado',
+          'sidr.que_elaboras',
+          'sidr.quedan',
+          'sidr.recinto',
+          'sidr.regimen_fiscal',
+          'sidr.regimen_general',
+          'sidr.regimen_reagp',
+          'sidr.registrada_dop',
+          'sidr.registrada_dop_ayuda',
+          'sidr.registro_sanitario',
+          'sidr.resumen_txotx',
+          'sidr.retirada',
+          'sidr.retirada_lias',
+          'sidr.sigpac',
+          'sidr.sin_dop',
+          'sidr.sin_embotellados',
+          'sidr.sin_entradas',
+          'sidr.sin_kupelas',
+          'sidr.sin_kupelas_llenas',
+          'sidr.sin_mediciones',
+          'sidr.sin_partidas_pendientes',
+          'sidr.sin_pomaradas',
+          'sidr.sin_prensados',
+          'sidr.sin_prensar',
+          'sidr.sin_sustancia',
+          'sidr.sin_tratamientos',
+          'sidr.sin_txotx',
+          'sidr.sin_txotx_hoy',
+          'sidr.sulfuroso_total',
+          'sidr.superficie',
+          'sidr.superficie_tratada',
+          'sidr.sustancia_activa',
+          'sidr.sustancia_resumen',
+          'sidr.temperatura',
+          'sidr.temporada',
+          'sidr.territorio',
           'sidr.titular',
+          'sidr.trasegar',
+          'sidr.trasiego',
+          'sidr.tratamiento_incompleto',
+          'sidr.tratamientos',
+          'sidr.tratamientos_incompletos',
+          'sidr.txotx',
+          'sidr.txotx_de_hoy',
+          'sidr.variedad',
+          'sidr.variedades',
+          'sidr.variedades_fuera_pliego',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -19185,11 +19809,219 @@ class SoleraL10n {
           'ques.y_n_mas',
           'ques.zona_geografica',
           'ques.hoy_nada_pendiente',
-          'sidr.bienvenida',
+          'sidr.abre_txotx',
+          'sidr.abrir_kupela',
+          'sidr.aceptar',
+          'sidr.acidez_volatil',
+          'sidr.anio_plantacion',
+          'sidr.aplicador',
+          'sidr.arboles_por_ha',
+          'sidr.av',
+          'sidr.aviso_acidez_volatil_alta',
+          'sidr.aviso_densidad_mosto_baja',
+          'sidr.aviso_etiquetas_descuadradas',
+          'sidr.aviso_grado_bajo',
+          'sidr.aviso_negativo',
+          'sidr.aviso_no_certifica',
+          'sidr.aviso_no_recomienda',
+          'sidr.aviso_procedencia_no_registrada',
+          'sidr.aviso_rendimiento_alto',
+          'sidr.aviso_rendimiento_bajo',
+          'sidr.aviso_sulfuroso_alto',
+          'sidr.aviso_supera_capacidad',
+          'sidr.bienvenida_explicacion',
+          'sidr.bienvenida_texto',
+          'sidr.bienvenida_titulo',
+          'sidr.bodega',
+          'sidr.botellas',
+          'sidr.buscar',
+          'sidr.calificacion',
+          'sidr.calificacion_apta',
+          'sidr.calificacion_ayuda',
+          'sidr.calificacion_descalificada',
+          'sidr.calificacion_pendiente',
+          'sidr.cantidad_aplicada',
+          'sidr.cantidad_aplicada_ayuda',
+          'sidr.capacidad',
+          'sidr.carnet_aplicador',
+          'sidr.catalogos_provisionales',
+          'sidr.codigo_kupela',
+          'sidr.codigo_kupela_ayuda',
+          'sidr.codigo_lote',
+          'sidr.codigo_repetido',
+          'sidr.comensales',
+          'sidr.comparado_con',
+          'sidr.con_contraetiqueta_dop',
+          'sidr.contraetiquetas_rango',
+          'sidr.cultivo',
+          'sidr.cultivo_manzano',
+          'sidr.cultivo_vid',
+          'sidr.datos_sagardotegi',
+          'sidr.denominacion',
+          'sidr.densidad',
+          'sidr.densidad_mosto',
+          'sidr.destino',
+          'sidr.documento_transporte',
+          'sidr.dop',
+          'sidr.dop_arabako_txakolina',
+          'sidr.dop_bizkaiko_txakolina',
+          'sidr.dop_euskal_sagardoa',
+          'sidr.dop_getariako_txakolina',
+          'sidr.dop_sidra_asturias',
+          'sidr.editar_entrada',
+          'sidr.editar_kupela',
+          'sidr.editar_pomarada',
+          'sidr.editar_tratamiento',
+          'sidr.eficacia',
+          'sidr.eficacia_buena',
+          'sidr.eficacia_mala',
+          'sidr.eficacia_regular',
+          'sidr.embotellados',
+          'sidr.embotellar',
+          'sidr.en_bodega',
+          'sidr.entradas_fruta',
+          'sidr.error_cargar',
+          'sidr.estado_fruta',
+          'sidr.estado_fruta_danos_graves',
+          'sidr.estado_fruta_danos_leves',
+          'sidr.estado_fruta_sana',
+          'sidr.etiqueta_desde',
+          'sidr.etiqueta_hasta',
+          'sidr.etiqueta_manzano',
+          'sidr.etiqueta_manzano_ayuda',
+          'sidr.falta_kilos_origen',
+          'sidr.falta_nombre',
+          'sidr.fecha',
+          'sidr.fecha_entrega',
+          'sidr.fecha_recoleccion',
+          'sidr.fruta_campania',
+          'sidr.fruta_manzana',
+          'sidr.fruta_propia',
+          'sidr.fruta_uva',
+          'sidr.grado_alcoholico',
           'sidr.guardado',
           'sidr.hoy',
+          'sidr.inscripcion_dop',
+          'sidr.kilos',
+          'sidr.kupela',
+          'sidr.kupela_activa',
+          'sidr.kupela_descuadrada',
+          'sidr.kupela_destino',
+          'sidr.kupelas',
+          'sidr.litros',
+          'sidr.litros_en_bodega',
+          'sidr.litros_mosto',
+          'sidr.litros_servidos',
+          'sidr.lotes_etiquetas_descuadradas',
+          'sidr.manzanos_marcados',
+          'sidr.material',
+          'sidr.material_inoxidable',
+          'sidr.material_madera',
+          'sidr.material_otro',
+          'sidr.mediciones',
+          'sidr.medir',
+          'sidr.mililitros_botella',
+          'sidr.motivo',
+          'sidr.movimiento_embotellado',
+          'sidr.movimiento_prensado',
+          'sidr.movimiento_retirada',
+          'sidr.movimiento_trasiego_entrada',
+          'sidr.movimiento_trasiego_salida',
+          'sidr.movimiento_txotx',
+          'sidr.movimientos',
+          'sidr.municipio',
+          'sidr.n_arboles',
+          'sidr.n_botellas',
+          'sidr.n_comensales',
+          'sidr.n_partidas',
+          'sidr.nada_por_revisar',
+          'sidr.no_procede',
+          'sidr.nombre',
+          'sidr.nombre_opcional',
+          'sidr.nombre_sagardotegi',
           'sidr.nombre_titular',
+          'sidr.notas',
+          'sidr.nueva_entrada',
+          'sidr.nueva_kupela',
+          'sidr.nueva_medicion',
+          'sidr.nueva_pomarada',
+          'sidr.nuevo_manzano',
+          'sidr.nuevo_prensado',
+          'sidr.nuevo_tratamiento',
+          'sidr.numero_arboles',
+          'sidr.numero_registro',
+          'sidr.numero_registro_ayuda',
+          'sidr.organismo_regulado_aviso',
+          'sidr.parcela',
+          'sidr.partidas_que_entran',
+          'sidr.partidas_sin_prensar',
+          'sidr.perfil_ambos',
+          'sidr.perfil_sidra',
+          'sidr.perfil_txakoli',
+          'sidr.plaga_objetivo',
+          'sidr.poligono',
+          'sidr.pomarada',
+          'sidr.pomaradas',
+          'sidr.por_revisar',
+          'sidr.precio_kg',
+          'sidr.prensada',
+          'sidr.prensados',
+          'sidr.presion',
+          'sidr.preventivo',
+          'sidr.procedencia',
+          'sidr.producto',
+          'sidr.producto_dop',
+          'sidr.producto_sidra',
+          'sidr.producto_txakoli',
+          'sidr.propia',
+          'sidr.proveedor',
+          'sidr.proveedor_registrado',
+          'sidr.que_elaboras',
+          'sidr.quedan',
+          'sidr.recinto',
+          'sidr.regimen_fiscal',
+          'sidr.regimen_general',
+          'sidr.regimen_reagp',
+          'sidr.registrada_dop',
+          'sidr.registrada_dop_ayuda',
+          'sidr.registro_sanitario',
+          'sidr.resumen_txotx',
+          'sidr.retirada',
+          'sidr.retirada_lias',
+          'sidr.sigpac',
+          'sidr.sin_dop',
+          'sidr.sin_embotellados',
+          'sidr.sin_entradas',
+          'sidr.sin_kupelas',
+          'sidr.sin_kupelas_llenas',
+          'sidr.sin_mediciones',
+          'sidr.sin_partidas_pendientes',
+          'sidr.sin_pomaradas',
+          'sidr.sin_prensados',
+          'sidr.sin_prensar',
+          'sidr.sin_sustancia',
+          'sidr.sin_tratamientos',
+          'sidr.sin_txotx',
+          'sidr.sin_txotx_hoy',
+          'sidr.sulfuroso_total',
+          'sidr.superficie',
+          'sidr.superficie_tratada',
+          'sidr.sustancia_activa',
+          'sidr.sustancia_resumen',
+          'sidr.temperatura',
+          'sidr.temporada',
+          'sidr.territorio',
           'sidr.titular',
+          'sidr.trasegar',
+          'sidr.trasiego',
+          'sidr.tratamiento_incompleto',
+          'sidr.tratamientos',
+          'sidr.tratamientos_incompletos',
+          'sidr.txotx',
+          'sidr.txotx_de_hoy',
+          'sidr.variedad',
+          'sidr.variedades',
+          'sidr.variedades_fuera_pliego',
           'viti.a_ingresar_hacienda_303',
           'viti.aceptar_y_rellenar',
           'viti.acerca_ayuda',
@@ -24134,11 +24966,219 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… y {n} más';
       case 'ques.zona_geografica': return 'Zona geográfica';
       case 'ques.hoy_nada_pendiente': return 'Nada pendiente para hoy';
-      case 'sidr.bienvenida': return 'Primera versión en construcción.';
+      case 'sidr.abre_txotx': return 'Abro temporada de txotx';
+      case 'sidr.abrir_kupela': return 'Abrir kupela';
+      case 'sidr.aceptar': return 'Aceptar';
+      case 'sidr.acidez_volatil': return 'Acidez volátil';
+      case 'sidr.anio_plantacion': return 'Año de plantación';
+      case 'sidr.aplicador': return 'Quién aplicó';
+      case 'sidr.arboles_por_ha': return '{n} árboles/ha';
+      case 'sidr.av': return 'AV';
+      case 'sidr.aviso_acidez_volatil_alta': return 'Acidez volátil {valor} g/l: el pliego pide menos de {limite}';
+      case 'sidr.aviso_densidad_mosto_baja': return 'Densidad del mosto {valor}: el pliego pide al menos {limite}';
+      case 'sidr.aviso_etiquetas_descuadradas': return 'Las contraetiquetas del rango no coinciden con las botellas';
+      case 'sidr.aviso_grado_bajo': return 'Grado {valor} % vol: el pliego pide más de {limite}';
+      case 'sidr.aviso_negativo': return 'Lo apuntado deja esta kupela en negativo: falta una entrada o sobra una salida.';
+      case 'sidr.aviso_no_certifica': return 'La app compara lo que apuntas con el pliego y avisa, pero no certifica nada: califica el órgano de control de la DOP.';
+      case 'sidr.aviso_no_recomienda': return 'La app no recomienda productos ni dosis: apunta lo que ya se aplicó, copiando la etiqueta del producto.';
+      case 'sidr.aviso_procedencia_no_registrada': return 'Esta fruta no consta de un manzanal registrado en la DOP: no podría ir a una elaboración DOP.';
+      case 'sidr.aviso_rendimiento_alto': return 'Rendimiento {valor} %: por encima de {limite} % del pliego';
+      case 'sidr.aviso_rendimiento_bajo': return 'Rendimiento {valor} %: por debajo de {limite} %, el mínimo habitual del pliego';
+      case 'sidr.aviso_sulfuroso_alto': return 'Sulfuroso total {valor} mg/l: el pliego pide menos de {limite}';
+      case 'sidr.aviso_supera_capacidad': return 'Lo apuntado supera la capacidad de la kupela.';
+      case 'sidr.bienvenida_explicacion': return 'Unos datos para empezar. Puedes cambiarlos cuando quieras en Ajustes.';
+      case 'sidr.bienvenida_texto': return 'Di cómo se llama tu sagardotegi y qué elaboras.';
+      case 'sidr.bienvenida_titulo': return 'Ongi etorri';
+      case 'sidr.bodega': return 'Bodega';
+      case 'sidr.botellas': return 'Botellas';
+      case 'sidr.buscar': return 'Buscar';
+      case 'sidr.calificacion': return 'Calificación';
+      case 'sidr.calificacion_apta': return 'Apta (DOP)';
+      case 'sidr.calificacion_ayuda': return 'La calificación la da el órgano de control con su análisis; aquí solo la apuntas.';
+      case 'sidr.calificacion_descalificada': return 'Descalificada';
+      case 'sidr.calificacion_pendiente': return 'Sin calificar';
+      case 'sidr.cantidad_aplicada': return 'Cantidad aplicada';
+      case 'sidr.cantidad_aplicada_ayuda': return 'Lo que se aplicó, con su unidad';
+      case 'sidr.capacidad': return 'Capacidad';
+      case 'sidr.carnet_aplicador': return 'N.º de carné de aplicador';
+      case 'sidr.catalogos_provisionales': return 'Catálogos provisionales: copiados de fuentes públicas, pendientes de revisión por una persona experta.';
+      case 'sidr.codigo_kupela': return 'Código de la kupela';
+      case 'sidr.codigo_kupela_ayuda': return 'El que tiene pintado: K-7, 3…';
+      case 'sidr.codigo_lote': return 'Código de lote';
+      case 'sidr.codigo_repetido': return 'Ya hay una kupela con ese código.';
+      case 'sidr.comensales': return 'Comensales';
+      case 'sidr.comparado_con': return 'Comparado con: {producto}';
+      case 'sidr.con_contraetiqueta_dop': return 'Con contraetiqueta numerada de la DOP';
+      case 'sidr.contraetiquetas_rango': return 'Contraetiquetas {desde}–{hasta}';
+      case 'sidr.cultivo': return 'Cultivo';
+      case 'sidr.cultivo_manzano': return 'Manzano (pomarada)';
+      case 'sidr.cultivo_vid': return 'Vid (txakoli)';
+      case 'sidr.datos_sagardotegi': return 'Datos de la sagardotegi';
+      case 'sidr.denominacion': return 'Denominación de origen';
+      case 'sidr.densidad': return 'Densidad';
+      case 'sidr.densidad_mosto': return 'Densidad del mosto';
+      case 'sidr.destino': return 'Destino';
+      case 'sidr.documento_transporte': return 'Albarán o título de transporte';
+      case 'sidr.dop': return 'DOP';
+      case 'sidr.dop_arabako_txakolina': return 'Arabako Txakolina';
+      case 'sidr.dop_bizkaiko_txakolina': return 'Bizkaiko Txakolina';
+      case 'sidr.dop_euskal_sagardoa': return 'Euskal Sagardoa';
+      case 'sidr.dop_getariako_txakolina': return 'Getariako Txakolina';
+      case 'sidr.dop_sidra_asturias': return 'Sidra de Asturias';
+      case 'sidr.editar_entrada': return 'Editar entrada de fruta';
+      case 'sidr.editar_kupela': return 'Editar kupela';
+      case 'sidr.editar_pomarada': return 'Editar pomarada';
+      case 'sidr.editar_tratamiento': return 'Editar tratamiento';
+      case 'sidr.eficacia': return 'Eficacia observada';
+      case 'sidr.eficacia_buena': return 'Buena';
+      case 'sidr.eficacia_mala': return 'Mala';
+      case 'sidr.eficacia_regular': return 'Regular';
+      case 'sidr.embotellados': return 'Embotellados';
+      case 'sidr.embotellar': return 'Embotellar';
+      case 'sidr.en_bodega': return 'en bodega';
+      case 'sidr.entradas_fruta': return 'Entradas de fruta';
+      case 'sidr.error_cargar': return 'No se pudieron cargar los datos.';
+      case 'sidr.estado_fruta': return 'Estado de la fruta';
+      case 'sidr.estado_fruta_danos_graves': return 'Daños graves';
+      case 'sidr.estado_fruta_danos_leves': return 'Daños leves';
+      case 'sidr.estado_fruta_sana': return 'Sana';
+      case 'sidr.etiqueta_desde': return 'Desde n.º';
+      case 'sidr.etiqueta_hasta': return 'Hasta n.º';
+      case 'sidr.etiqueta_manzano': return 'Cómo lo reconoces';
+      case 'sidr.etiqueta_manzano_ayuda': return 'Fila 3, n.º 12; el viejo del borde…';
+      case 'sidr.falta_kilos_origen': return 'Faltan los kilos o de dónde viene la fruta.';
+      case 'sidr.falta_nombre': return 'Falta el nombre.';
+      case 'sidr.fecha': return 'Fecha';
+      case 'sidr.fecha_entrega': return 'Fecha de entrega';
+      case 'sidr.fecha_recoleccion': return 'Fecha de recolección';
+      case 'sidr.fruta_campania': return 'de fruta esta campaña';
+      case 'sidr.fruta_manzana': return 'Manzana';
+      case 'sidr.fruta_propia': return 'Fruta propia';
+      case 'sidr.fruta_uva': return 'Uva';
+      case 'sidr.grado_alcoholico': return 'Grado alcohólico';
       case 'sidr.guardado': return 'Guardado';
       case 'sidr.hoy': return 'Hoy';
-      case 'sidr.nombre_titular': return 'Nombre del titular';
+      case 'sidr.inscripcion_dop': return 'N.º de inscripción en la DOP';
+      case 'sidr.kilos': return 'Kilos';
+      case 'sidr.kupela': return 'Kupela';
+      case 'sidr.kupela_activa': return 'En uso';
+      case 'sidr.kupela_descuadrada': return '{kupela}: los litros apuntados no cuadran';
+      case 'sidr.kupela_destino': return 'Kupela de destino';
+      case 'sidr.kupelas': return 'Kupelas';
+      case 'sidr.litros': return 'Litros';
+      case 'sidr.litros_en_bodega': return 'En bodega: {litros}';
+      case 'sidr.litros_mosto': return 'Litros de mosto';
+      case 'sidr.litros_servidos': return 'Litros servidos (estimados)';
+      case 'sidr.lotes_etiquetas_descuadradas': return '{n} lotes con contraetiquetas que no cuadran';
+      case 'sidr.manzanos_marcados': return 'Manzanos marcados';
+      case 'sidr.material': return 'Material';
+      case 'sidr.material_inoxidable': return 'Acero inoxidable';
+      case 'sidr.material_madera': return 'Madera';
+      case 'sidr.material_otro': return 'Otro';
+      case 'sidr.mediciones': return 'Mediciones';
+      case 'sidr.medir': return 'Medir';
+      case 'sidr.mililitros_botella': return 'Mililitros por botella';
+      case 'sidr.motivo': return 'Motivo';
+      case 'sidr.movimiento_embotellado': return 'Embotellado';
+      case 'sidr.movimiento_prensado': return 'Prensado';
+      case 'sidr.movimiento_retirada': return 'Retirada (lías, merma)';
+      case 'sidr.movimiento_trasiego_entrada': return 'Trasiego de';
+      case 'sidr.movimiento_trasiego_salida': return 'Trasiego a';
+      case 'sidr.movimiento_txotx': return 'Txotx';
+      case 'sidr.movimientos': return 'Movimientos';
+      case 'sidr.municipio': return 'Municipio';
+      case 'sidr.n_arboles': return '{n} árboles';
+      case 'sidr.n_botellas': return '{n} botellas';
+      case 'sidr.n_comensales': return '{n} comensales';
+      case 'sidr.n_partidas': return '{n} partidas';
+      case 'sidr.nada_por_revisar': return 'Nada pendiente.';
+      case 'sidr.no_procede': return 'no procede';
+      case 'sidr.nombre': return 'Nombre';
+      case 'sidr.nombre_opcional': return 'Nombre (opcional)';
+      case 'sidr.nombre_sagardotegi': return 'Nombre de la sagardotegi o bodega';
+      case 'sidr.nombre_titular': return 'Nombre o razón social';
+      case 'sidr.notas': return 'Notas';
+      case 'sidr.nueva_entrada': return 'Nueva entrada de fruta';
+      case 'sidr.nueva_kupela': return 'Nueva kupela';
+      case 'sidr.nueva_medicion': return 'Nueva medición';
+      case 'sidr.nueva_pomarada': return 'Nueva pomarada';
+      case 'sidr.nuevo_manzano': return 'Marcar un manzano';
+      case 'sidr.nuevo_prensado': return 'Nuevo prensado';
+      case 'sidr.nuevo_tratamiento': return 'Apuntar tratamiento';
+      case 'sidr.numero_arboles': return 'Número de árboles';
+      case 'sidr.numero_registro': return 'N.º de registro del producto';
+      case 'sidr.numero_registro_ayuda': return 'El de la etiqueta (Registro de Productos Fitosanitarios)';
+      case 'sidr.organismo_regulado_aviso': return 'Organismo regulado: ante una sospecha, avisa al servicio de sanidad vegetal de tu territorio.';
+      case 'sidr.parcela': return 'Parcela';
+      case 'sidr.partidas_que_entran': return 'Partidas que entran';
+      case 'sidr.partidas_sin_prensar': return '{n} entradas de fruta sin prensar';
+      case 'sidr.perfil_ambos': return 'Las dos';
+      case 'sidr.perfil_sidra': return 'Sidra';
+      case 'sidr.perfil_txakoli': return 'Txakoli';
+      case 'sidr.plaga_objetivo': return 'Plaga o enfermedad';
+      case 'sidr.poligono': return 'Polígono';
+      case 'sidr.pomarada': return 'Pomarada';
+      case 'sidr.pomaradas': return 'Pomaradas';
+      case 'sidr.por_revisar': return 'Por revisar';
+      case 'sidr.precio_kg': return 'Precio por kilo';
+      case 'sidr.prensada': return 'prensada';
+      case 'sidr.prensados': return 'Prensados';
+      case 'sidr.presion': return 'Presión de prensado';
+      case 'sidr.preventivo': return 'Preventivo (sin plaga concreta)';
+      case 'sidr.procedencia': return 'Procedencia (municipio o zona)';
+      case 'sidr.producto': return 'Producto';
+      case 'sidr.producto_dop': return 'Producto DOP con el que comparar';
+      case 'sidr.producto_sidra': return 'Sidra';
+      case 'sidr.producto_txakoli': return 'Txakoli';
+      case 'sidr.propia': return 'Propia';
+      case 'sidr.proveedor': return 'Proveedor';
+      case 'sidr.proveedor_registrado': return 'Manzanal del proveedor registrado en la DOP';
+      case 'sidr.que_elaboras': return '¿Qué elaboras?';
+      case 'sidr.quedan': return 'quedan {litros}';
+      case 'sidr.recinto': return 'Recinto';
+      case 'sidr.regimen_fiscal': return 'Régimen fiscal (PROVISIONAL)';
+      case 'sidr.regimen_general': return 'General o simplificado';
+      case 'sidr.regimen_reagp': return 'REAGP (venta de manzana propia)';
+      case 'sidr.registrada_dop': return 'Registrada en la DOP';
+      case 'sidr.registrada_dop_ayuda': return 'Lo marcas tú: la app no consulta el registro.';
+      case 'sidr.registro_sanitario': return 'Registro sanitario (RGSEAA)';
+      case 'sidr.resumen_txotx': return '{dias} días de txotx · {litros} servidos';
+      case 'sidr.retirada': return 'retirada';
+      case 'sidr.retirada_lias': return 'Ninguna: se retira (lías, merma)';
+      case 'sidr.sigpac': return 'SIGPAC';
+      case 'sidr.sin_dop': return 'Sin DOP';
+      case 'sidr.sin_embotellados': return 'Todavía no hay lotes embotellados. Se embotella desde la ficha de cada kupela.';
+      case 'sidr.sin_entradas': return 'Todavía no hay entradas de fruta.';
+      case 'sidr.sin_kupelas': return 'Todavía no hay kupelas. Da de alta las tuyas con el botón +.';
+      case 'sidr.sin_kupelas_llenas': return 'Ninguna kupela tiene sidra apuntada.';
+      case 'sidr.sin_mediciones': return 'Sin mediciones.';
+      case 'sidr.sin_partidas_pendientes': return 'No hay entradas de fruta sin prensar.';
+      case 'sidr.sin_pomaradas': return 'Todavía no hay pomaradas. Da de alta la primera con el botón +.';
+      case 'sidr.sin_prensados': return 'Todavía no hay prensados.';
+      case 'sidr.sin_prensar': return 'sin prensar';
+      case 'sidr.sin_sustancia': return 'Sin sustancia activa';
+      case 'sidr.sin_tratamientos': return 'Sin tratamientos apuntados.';
+      case 'sidr.sin_txotx': return 'Esta temporada todavía no se ha abierto ninguna kupela.';
+      case 'sidr.sin_txotx_hoy': return 'Hoy no hay txotx apuntado.';
+      case 'sidr.sulfuroso_total': return 'Sulfuroso total';
+      case 'sidr.superficie': return 'Superficie';
+      case 'sidr.superficie_tratada': return 'Superficie tratada';
+      case 'sidr.sustancia_activa': return 'Sustancia activa';
+      case 'sidr.sustancia_resumen': return 'Plazo de seguridad máximo en el registro: {ps} días (manda la etiqueta). Aprobada en la UE hasta {ue}.';
+      case 'sidr.temperatura': return 'Temperatura';
+      case 'sidr.temporada': return 'Temporada {campania}';
+      case 'sidr.territorio': return 'Territorio o provincia';
       case 'sidr.titular': return 'Titular';
+      case 'sidr.trasegar': return 'Trasegar';
+      case 'sidr.trasiego': return 'Trasiego';
+      case 'sidr.tratamiento_incompleto': return 'faltan datos del cuaderno';
+      case 'sidr.tratamientos': return 'Tratamientos';
+      case 'sidr.tratamientos_incompletos': return '{n} tratamientos con datos del cuaderno sin rellenar';
+      case 'sidr.txotx': return 'Txotx';
+      case 'sidr.txotx_de_hoy': return 'Txotx de hoy';
+      case 'sidr.variedad': return 'Variedad';
+      case 'sidr.variedades': return 'Variedades';
+      case 'sidr.variedades_fuera_pliego': return 'No están en la lista del pliego de tu DOP: {variedades}';
       case 'viti.a_ingresar_hacienda_303': return 'A ingresar en Hacienda (modelo 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Aceptar y rellenar';
       case 'viti.acerca_ayuda': return 'Versión, créditos, compromisos legales';
@@ -29064,11 +30104,219 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… eta beste {n}';
       case 'ques.zona_geografica': return 'Eremu geografikoa';
       case 'ques.hoy_nada_pendiente': return 'Gaur ez dago ezer egiteko';
-      case 'sidr.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
+      case 'sidr.abre_txotx': return 'Txotx denboraldia irekitzen dut';
+      case 'sidr.abrir_kupela': return 'Kupela ireki';
+      case 'sidr.aceptar': return 'Ados';
+      case 'sidr.acidez_volatil': return 'Azidotasun lurrunkorra';
+      case 'sidr.anio_plantacion': return 'Landaketa urtea';
+      case 'sidr.aplicador': return 'Nork aplikatu zuen';
+      case 'sidr.arboles_por_ha': return '{n} zuhaitz/ha';
+      case 'sidr.av': return 'AL';
+      case 'sidr.aviso_acidez_volatil_alta': return 'Azidotasun lurrunkorra {valor} g/l: pleguak {limite} baino gutxiago eskatzen du';
+      case 'sidr.aviso_densidad_mosto_baja': return 'Muztioaren dentsitatea {valor}: pleguak gutxienez {limite} eskatzen du';
+      case 'sidr.aviso_etiquetas_descuadradas': return 'Tarteko kontraetiketak ez datoz bat botilekin';
+      case 'sidr.aviso_grado_bajo': return 'Gradua {valor} % vol: pleguak {limite} baino gehiago eskatzen du';
+      case 'sidr.aviso_negativo': return 'Idatzitakoaren arabera kupela hau negatiboan dago: sarrera bat falta da edo irteera bat soberan dago.';
+      case 'sidr.aviso_no_certifica': return 'Aplikazioak idazten duzuna pleguarekin alderatzen du eta abisatzen du, baina ez du ezer ziurtatzen: JDBko kontrol-organoak kalifikatzen du.';
+      case 'sidr.aviso_no_recomienda': return 'Aplikazioak ez du produkturik ez dosirik gomendatzen: aplikatutakoa idazten da, produktuaren etiketa kopiatuz.';
+      case 'sidr.aviso_procedencia_no_registrada': return 'Fruta hau ez dator JDBn erregistratutako sagastitik: ezin litzateke JDBko ekoizpen batera joan.';
+      case 'sidr.aviso_rendimiento_alto': return 'Etekina % {valor}: pleguko % {limite}-tik gora';
+      case 'sidr.aviso_rendimiento_bajo': return 'Etekina % {valor}: % {limite}-tik behera, pleguko ohiko gutxienekoa';
+      case 'sidr.aviso_sulfuroso_alto': return 'Sulfuroso osoa {valor} mg/l: pleguak {limite} baino gutxiago eskatzen du';
+      case 'sidr.aviso_supera_capacidad': return 'Idatzitakoak kupelaren edukiera gainditzen du.';
+      case 'sidr.bienvenida_explicacion': return 'Hasteko datu batzuk. Nahi duzunean alda ditzakezu Ezarpenetan.';
+      case 'sidr.bienvenida_texto': return 'Esan zure sagardotegiaren izena eta zer egiten duzun.';
+      case 'sidr.bienvenida_titulo': return 'Ongi etorri';
+      case 'sidr.bodega': return 'Upategia';
+      case 'sidr.botellas': return 'Botilak';
+      case 'sidr.buscar': return 'Bilatu';
+      case 'sidr.calificacion': return 'Kalifikazioa';
+      case 'sidr.calificacion_apta': return 'Egokia (JDB)';
+      case 'sidr.calificacion_ayuda': return 'Kalifikazioa kontrol-organoak ematen du bere analisiarekin; hemen idatzi besterik ez duzu egiten.';
+      case 'sidr.calificacion_descalificada': return 'Deskalifikatua';
+      case 'sidr.calificacion_pendiente': return 'Kalifikatu gabe';
+      case 'sidr.cantidad_aplicada': return 'Aplikatutako kantitatea';
+      case 'sidr.cantidad_aplicada_ayuda': return 'Aplikatu zena, bere unitatearekin';
+      case 'sidr.capacidad': return 'Edukiera';
+      case 'sidr.carnet_aplicador': return 'Aplikatzaile-txartelaren zk.';
+      case 'sidr.catalogos_provisionales': return 'Behin-behineko katalogoak: iturri publikoetatik kopiatuak, aditu batek berrikusteko zain.';
+      case 'sidr.codigo_kupela': return 'Kupelaren kodea';
+      case 'sidr.codigo_kupela_ayuda': return 'Margotuta duena: K-7, 3…';
+      case 'sidr.codigo_lote': return 'Lote-kodea';
+      case 'sidr.codigo_repetido': return 'Badago kode hori duen kupela bat.';
+      case 'sidr.comensales': return 'Mahaikideak';
+      case 'sidr.comparado_con': return 'Honekin alderatuta: {producto}';
+      case 'sidr.con_contraetiqueta_dop': return 'JDBko kontraetiketa zenbakidunarekin';
+      case 'sidr.contraetiquetas_rango': return 'Kontraetiketak {desde}–{hasta}';
+      case 'sidr.cultivo': return 'Laborea';
+      case 'sidr.cultivo_manzano': return 'Sagarrondoa (sagastia)';
+      case 'sidr.cultivo_vid': return 'Mahatsondoa (txakolina)';
+      case 'sidr.datos_sagardotegi': return 'Sagardotegiaren datuak';
+      case 'sidr.denominacion': return 'Jatorri-deitura';
+      case 'sidr.densidad': return 'Dentsitatea';
+      case 'sidr.densidad_mosto': return 'Muztioaren dentsitatea';
+      case 'sidr.destino': return 'Helmuga';
+      case 'sidr.documento_transporte': return 'Albarana edo garraio-titulua';
+      case 'sidr.dop': return 'JDB';
+      case 'sidr.dop_arabako_txakolina': return 'Arabako Txakolina';
+      case 'sidr.dop_bizkaiko_txakolina': return 'Bizkaiko Txakolina';
+      case 'sidr.dop_euskal_sagardoa': return 'Euskal Sagardoa';
+      case 'sidr.dop_getariako_txakolina': return 'Getariako Txakolina';
+      case 'sidr.dop_sidra_asturias': return 'Asturiasko Sagardoa';
+      case 'sidr.editar_entrada': return 'Fruta-sarrera editatu';
+      case 'sidr.editar_kupela': return 'Kupela editatu';
+      case 'sidr.editar_pomarada': return 'Sagastia editatu';
+      case 'sidr.editar_tratamiento': return 'Tratamendua editatu';
+      case 'sidr.eficacia': return 'Ikusitako eraginkortasuna';
+      case 'sidr.eficacia_buena': return 'Ona';
+      case 'sidr.eficacia_mala': return 'Txarra';
+      case 'sidr.eficacia_regular': return 'Erdipurdikoa';
+      case 'sidr.embotellados': return 'Botilaratzeak';
+      case 'sidr.embotellar': return 'Botilaratu';
+      case 'sidr.en_bodega': return 'upategian';
+      case 'sidr.entradas_fruta': return 'Fruta-sarrerak';
+      case 'sidr.error_cargar': return 'Ezin izan dira datuak kargatu.';
+      case 'sidr.estado_fruta': return 'Frutaren egoera';
+      case 'sidr.estado_fruta_danos_graves': return 'Kalte larriak';
+      case 'sidr.estado_fruta_danos_leves': return 'Kalte arinak';
+      case 'sidr.estado_fruta_sana': return 'Osasuntsua';
+      case 'sidr.etiqueta_desde': return 'Zk. honetatik';
+      case 'sidr.etiqueta_hasta': return 'Zk. honetara';
+      case 'sidr.etiqueta_manzano': return 'Nola ezagutzen duzun';
+      case 'sidr.etiqueta_manzano_ayuda': return '3. ilara, 12. zk.; ertzeko zaharra…';
+      case 'sidr.falta_kilos_origen': return 'Kiloak edo fruta nondik datorren falta da.';
+      case 'sidr.falta_nombre': return 'Izena falta da.';
+      case 'sidr.fecha': return 'Data';
+      case 'sidr.fecha_entrega': return 'Entrega-data';
+      case 'sidr.fecha_recoleccion': return 'Bilketa-data';
+      case 'sidr.fruta_campania': return 'fruta kanpaina honetan';
+      case 'sidr.fruta_manzana': return 'Sagarra';
+      case 'sidr.fruta_propia': return 'Fruta propioa';
+      case 'sidr.fruta_uva': return 'Mahatsa';
+      case 'sidr.grado_alcoholico': return 'Alkohol-gradua';
       case 'sidr.guardado': return 'Gordeta';
       case 'sidr.hoy': return 'Gaur';
-      case 'sidr.nombre_titular': return 'Titularraren izena';
+      case 'sidr.inscripcion_dop': return 'JDBko inskripzio-zk.';
+      case 'sidr.kilos': return 'Kiloak';
+      case 'sidr.kupela': return 'Kupela';
+      case 'sidr.kupela_activa': return 'Erabilian';
+      case 'sidr.kupela_descuadrada': return '{kupela}: idatzitako litroak ez datoz bat';
+      case 'sidr.kupela_destino': return 'Helmugako kupela';
+      case 'sidr.kupelas': return 'Kupelak';
+      case 'sidr.litros': return 'Litroak';
+      case 'sidr.litros_en_bodega': return 'Upategian: {litros}';
+      case 'sidr.litros_mosto': return 'Muztio-litroak';
+      case 'sidr.litros_servidos': return 'Zerbitzatutako litroak (gutxi gorabehera)';
+      case 'sidr.lotes_etiquetas_descuadradas': return '{n} lote kontraetiketa okerrekin';
+      case 'sidr.manzanos_marcados': return 'Markatutako sagarrondoak';
+      case 'sidr.material': return 'Materiala';
+      case 'sidr.material_inoxidable': return 'Altzairu herdoilgaitza';
+      case 'sidr.material_madera': return 'Egurra';
+      case 'sidr.material_otro': return 'Bestelakoa';
+      case 'sidr.mediciones': return 'Neurketak';
+      case 'sidr.medir': return 'Neurtu';
+      case 'sidr.mililitros_botella': return 'Mililitro botilako';
+      case 'sidr.motivo': return 'Arrazoia';
+      case 'sidr.movimiento_embotellado': return 'Botilaratzea';
+      case 'sidr.movimiento_prensado': return 'Prentsaketa';
+      case 'sidr.movimiento_retirada': return 'Kentzea (hondarrak, galera)';
+      case 'sidr.movimiento_trasiego_entrada': return 'Trasegua, hemendik';
+      case 'sidr.movimiento_trasiego_salida': return 'Trasegua, hona';
+      case 'sidr.movimiento_txotx': return 'Txotx';
+      case 'sidr.movimientos': return 'Mugimenduak';
+      case 'sidr.municipio': return 'Udalerria';
+      case 'sidr.n_arboles': return '{n} zuhaitz';
+      case 'sidr.n_botellas': return '{n} botila';
+      case 'sidr.n_comensales': return '{n} mahaikide';
+      case 'sidr.n_partidas': return '{n} partida';
+      case 'sidr.nada_por_revisar': return 'Ezer ez dago zain.';
+      case 'sidr.no_procede': return 'ez dagokio';
+      case 'sidr.nombre': return 'Izena';
+      case 'sidr.nombre_opcional': return 'Izena (aukerakoa)';
+      case 'sidr.nombre_sagardotegi': return 'Sagardotegiaren edo upategiaren izena';
+      case 'sidr.nombre_titular': return 'Izena edo sozietatearen izena';
+      case 'sidr.notas': return 'Oharrak';
+      case 'sidr.nueva_entrada': return 'Fruta-sarrera berria';
+      case 'sidr.nueva_kupela': return 'Kupela berria';
+      case 'sidr.nueva_medicion': return 'Neurketa berria';
+      case 'sidr.nueva_pomarada': return 'Sagasti berria';
+      case 'sidr.nuevo_manzano': return 'Sagarrondo bat markatu';
+      case 'sidr.nuevo_prensado': return 'Prentsaketa berria';
+      case 'sidr.nuevo_tratamiento': return 'Tratamendua idatzi';
+      case 'sidr.numero_arboles': return 'Zuhaitz kopurua';
+      case 'sidr.numero_registro': return 'Produktuaren erregistro-zk.';
+      case 'sidr.numero_registro_ayuda': return 'Etiketakoa (Produktu Fitosanitarioen Erregistroa)';
+      case 'sidr.organismo_regulado_aviso': return 'Organismo arautua: susmorik baduzu, abisatu zure lurraldeko landare-osasun zerbitzuari.';
+      case 'sidr.parcela': return 'Partzela';
+      case 'sidr.partidas_que_entran': return 'Sartzen diren partidak';
+      case 'sidr.partidas_sin_prensar': return 'Prentsatu gabeko {n} fruta-sarrera';
+      case 'sidr.perfil_ambos': return 'Biak';
+      case 'sidr.perfil_sidra': return 'Sagardoa';
+      case 'sidr.perfil_txakoli': return 'Txakolina';
+      case 'sidr.plaga_objetivo': return 'Izurritea edo gaixotasuna';
+      case 'sidr.poligono': return 'Poligonoa';
+      case 'sidr.pomarada': return 'Sagastia';
+      case 'sidr.pomaradas': return 'Sagastiak';
+      case 'sidr.por_revisar': return 'Berrikusteko';
+      case 'sidr.precio_kg': return 'Kiloko prezioa';
+      case 'sidr.prensada': return 'prentsatuta';
+      case 'sidr.prensados': return 'Prentsaketak';
+      case 'sidr.presion': return 'Prentsatze-presioa';
+      case 'sidr.preventivo': return 'Prebentiboa (izurrite zehatzik gabe)';
+      case 'sidr.procedencia': return 'Jatorria (udalerria edo eremua)';
+      case 'sidr.producto': return 'Produktua';
+      case 'sidr.producto_dop': return 'Alderatzeko JDBko produktua';
+      case 'sidr.producto_sidra': return 'Sagardoa';
+      case 'sidr.producto_txakoli': return 'Txakolina';
+      case 'sidr.propia': return 'Propioa';
+      case 'sidr.proveedor': return 'Hornitzailea';
+      case 'sidr.proveedor_registrado': return 'Hornitzailearen sagastia JDBn erregistratuta';
+      case 'sidr.que_elaboras': return 'Zer egiten duzu?';
+      case 'sidr.quedan': return '{litros} geratzen dira';
+      case 'sidr.recinto': return 'Barrutia';
+      case 'sidr.regimen_fiscal': return 'Zerga-araubidea (BEHIN-BEHINEKOA)';
+      case 'sidr.regimen_general': return 'Orokorra edo erraztua';
+      case 'sidr.regimen_reagp': return 'NANAB (sagar propioaren salmenta)';
+      case 'sidr.registrada_dop': return 'JDBn erregistratuta';
+      case 'sidr.registrada_dop_ayuda': return 'Zuk markatzen duzu: aplikazioak ez du erregistroa kontsultatzen.';
+      case 'sidr.registro_sanitario': return 'Osasun-erregistroa (RGSEAA)';
+      case 'sidr.resumen_txotx': return '{dias} txotx egun · {litros} zerbitzatuta';
+      case 'sidr.retirada': return 'kenduta';
+      case 'sidr.retirada_lias': return 'Bat ere ez: kendu egiten da (hondarrak, galera)';
+      case 'sidr.sigpac': return 'SIGPAC';
+      case 'sidr.sin_dop': return 'JDB gabe';
+      case 'sidr.sin_embotellados': return 'Oraindik ez dago botilaratutako loterik. Kupela bakoitzaren fitxatik botilaratzen da.';
+      case 'sidr.sin_entradas': return 'Oraindik ez dago fruta-sarrerarik.';
+      case 'sidr.sin_kupelas': return 'Oraindik ez dago kupelarik. Eman altan zureak + botoiarekin.';
+      case 'sidr.sin_kupelas_llenas': return 'Kupela batek ere ez du sagardorik idatzita.';
+      case 'sidr.sin_mediciones': return 'Neurketarik gabe.';
+      case 'sidr.sin_partidas_pendientes': return 'Ez dago prentsatu gabeko fruta-sarrerarik.';
+      case 'sidr.sin_pomaradas': return 'Oraindik ez dago sagastirik. Eman altan lehena + botoiarekin.';
+      case 'sidr.sin_prensados': return 'Oraindik ez dago prentsaketarik.';
+      case 'sidr.sin_prensar': return 'prentsatu gabe';
+      case 'sidr.sin_sustancia': return 'Substantzia aktiborik gabe';
+      case 'sidr.sin_tratamientos': return 'Ez dago tratamendurik idatzita.';
+      case 'sidr.sin_txotx': return 'Denboraldi honetan oraindik ez da kupelarik ireki.';
+      case 'sidr.sin_txotx_hoy': return 'Gaur ez dago txotxik idatzita.';
+      case 'sidr.sulfuroso_total': return 'Sulfuroso osoa';
+      case 'sidr.superficie': return 'Azalera';
+      case 'sidr.superficie_tratada': return 'Tratatutako azalera';
+      case 'sidr.sustancia_activa': return 'Substantzia aktiboa';
+      case 'sidr.sustancia_resumen': return 'Erregistroko gehieneko segurtasun-epea: {ps} egun (etiketak agintzen du). EBn onartua {ue} arte.';
+      case 'sidr.temperatura': return 'Tenperatura';
+      case 'sidr.temporada': return '{campania} denboraldia';
+      case 'sidr.territorio': return 'Lurraldea edo probintzia';
       case 'sidr.titular': return 'Titularra';
+      case 'sidr.trasegar': return 'Trasegatu';
+      case 'sidr.trasiego': return 'Trasegua';
+      case 'sidr.tratamiento_incompleto': return 'koadernoko datuak falta dira';
+      case 'sidr.tratamientos': return 'Tratamenduak';
+      case 'sidr.tratamientos_incompletos': return 'Koadernoko datuak bete gabe dituzten {n} tratamendu';
+      case 'sidr.txotx': return 'Txotx';
+      case 'sidr.txotx_de_hoy': return 'Gaurko txotxa';
+      case 'sidr.variedad': return 'Barietatea';
+      case 'sidr.variedades': return 'Barietateak';
+      case 'sidr.variedades_fuera_pliego': return 'Ez daude zure JDBko pleguko zerrendan: {variedades}';
       case 'viti.a_ingresar_hacienda_303': return 'Ogasunean sartzeko (303 eredua, hiruhilekoa)';
       case 'viti.aceptar_y_rellenar': return 'Onartu eta bete';
       case 'viti.acerca_ayuda': return 'Bertsioa, kredituak, lege-konpromisoak';
@@ -33994,11 +35242,219 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… i {n} més';
       case 'ques.zona_geografica': return 'Zona geogràfica';
       case 'ques.hoy_nada_pendiente': return 'Res pendent per avui';
-      case 'sidr.bienvenida': return 'Primera versió en construcció.';
+      case 'sidr.abre_txotx': return 'Obro temporada de txotx';
+      case 'sidr.abrir_kupela': return 'Obrir kupela';
+      case 'sidr.aceptar': return 'Accepta';
+      case 'sidr.acidez_volatil': return 'Acidesa volàtil';
+      case 'sidr.anio_plantacion': return 'Any de plantació';
+      case 'sidr.aplicador': return 'Qui ho va aplicar';
+      case 'sidr.arboles_por_ha': return '{n} arbres/ha';
+      case 'sidr.av': return 'AV';
+      case 'sidr.aviso_acidez_volatil_alta': return 'Acidesa volàtil {valor} g/l: el plec demana menys de {limite}';
+      case 'sidr.aviso_densidad_mosto_baja': return 'Densitat del most {valor}: el plec demana com a mínim {limite}';
+      case 'sidr.aviso_etiquetas_descuadradas': return 'Les contraetiquetes del rang no coincideixen amb les ampolles';
+      case 'sidr.aviso_grado_bajo': return 'Grau {valor} % vol: el plec demana més de {limite}';
+      case 'sidr.aviso_negativo': return 'El que s\'ha anotat deixa aquesta kupela en negatiu: falta una entrada o sobra una sortida.';
+      case 'sidr.aviso_no_certifica': return 'L\'app compara el que anotes amb el plec i avisa, però no certifica res: qualifica l\'òrgan de control de la DOP.';
+      case 'sidr.aviso_no_recomienda': return 'L\'app no recomana productes ni dosis: anota el que ja s\'ha aplicat, copiant l\'etiqueta del producte.';
+      case 'sidr.aviso_procedencia_no_registrada': return 'Aquesta fruita no consta d\'una pomereda registrada a la DOP: no podria anar a una elaboració DOP.';
+      case 'sidr.aviso_rendimiento_alto': return 'Rendiment {valor} %: per sobre del {limite} % del plec';
+      case 'sidr.aviso_rendimiento_bajo': return 'Rendiment {valor} %: per sota del {limite} %, el mínim habitual del plec';
+      case 'sidr.aviso_sulfuroso_alto': return 'Sulfurós total {valor} mg/l: el plec demana menys de {limite}';
+      case 'sidr.aviso_supera_capacidad': return 'El que s\'ha anotat supera la capacitat de la kupela.';
+      case 'sidr.bienvenida_explicacion': return 'Unes dades per començar. Les pots canviar quan vulguis a Configuració.';
+      case 'sidr.bienvenida_texto': return 'Digues com es diu la teva sagardotegi i què elabores.';
+      case 'sidr.bienvenida_titulo': return 'Benvinguda';
+      case 'sidr.bodega': return 'Celler';
+      case 'sidr.botellas': return 'Ampolles';
+      case 'sidr.buscar': return 'Cerca';
+      case 'sidr.calificacion': return 'Qualificació';
+      case 'sidr.calificacion_apta': return 'Apta (DOP)';
+      case 'sidr.calificacion_ayuda': return 'La qualificació la dona l\'òrgan de control amb la seva anàlisi; aquí només l\'anotes.';
+      case 'sidr.calificacion_descalificada': return 'Desqualificada';
+      case 'sidr.calificacion_pendiente': return 'Sense qualificar';
+      case 'sidr.cantidad_aplicada': return 'Quantitat aplicada';
+      case 'sidr.cantidad_aplicada_ayuda': return 'El que es va aplicar, amb la unitat';
+      case 'sidr.capacidad': return 'Capacitat';
+      case 'sidr.carnet_aplicador': return 'Núm. de carnet d\'aplicador';
+      case 'sidr.catalogos_provisionales': return 'Catàlegs provisionals: copiats de fonts públiques, pendents de revisió per una persona experta.';
+      case 'sidr.codigo_kupela': return 'Codi de la kupela';
+      case 'sidr.codigo_kupela_ayuda': return 'El que té pintat: K-7, 3…';
+      case 'sidr.codigo_lote': return 'Codi de lot';
+      case 'sidr.codigo_repetido': return 'Ja hi ha una kupela amb aquest codi.';
+      case 'sidr.comensales': return 'Comensals';
+      case 'sidr.comparado_con': return 'Comparat amb: {producto}';
+      case 'sidr.con_contraetiqueta_dop': return 'Amb contraetiqueta numerada de la DOP';
+      case 'sidr.contraetiquetas_rango': return 'Contraetiquetes {desde}–{hasta}';
+      case 'sidr.cultivo': return 'Cultiu';
+      case 'sidr.cultivo_manzano': return 'Pomera (pomereda)';
+      case 'sidr.cultivo_vid': return 'Vinya (txakoli)';
+      case 'sidr.datos_sagardotegi': return 'Dades de la sagardotegi';
+      case 'sidr.denominacion': return 'Denominació d\'origen';
+      case 'sidr.densidad': return 'Densitat';
+      case 'sidr.densidad_mosto': return 'Densitat del most';
+      case 'sidr.destino': return 'Destinació';
+      case 'sidr.documento_transporte': return 'Albarà o títol de transport';
+      case 'sidr.dop': return 'DOP';
+      case 'sidr.dop_arabako_txakolina': return 'Arabako Txakolina';
+      case 'sidr.dop_bizkaiko_txakolina': return 'Bizkaiko Txakolina';
+      case 'sidr.dop_euskal_sagardoa': return 'Euskal Sagardoa';
+      case 'sidr.dop_getariako_txakolina': return 'Getariako Txakolina';
+      case 'sidr.dop_sidra_asturias': return 'Sidra d\'Astúries';
+      case 'sidr.editar_entrada': return 'Edita l\'entrada de fruita';
+      case 'sidr.editar_kupela': return 'Edita la kupela';
+      case 'sidr.editar_pomarada': return 'Edita la pomereda';
+      case 'sidr.editar_tratamiento': return 'Edita el tractament';
+      case 'sidr.eficacia': return 'Eficàcia observada';
+      case 'sidr.eficacia_buena': return 'Bona';
+      case 'sidr.eficacia_mala': return 'Dolenta';
+      case 'sidr.eficacia_regular': return 'Regular';
+      case 'sidr.embotellados': return 'Embotellats';
+      case 'sidr.embotellar': return 'Embotella';
+      case 'sidr.en_bodega': return 'al celler';
+      case 'sidr.entradas_fruta': return 'Entrades de fruita';
+      case 'sidr.error_cargar': return 'No s\'han pogut carregar les dades.';
+      case 'sidr.estado_fruta': return 'Estat de la fruita';
+      case 'sidr.estado_fruta_danos_graves': return 'Danys greus';
+      case 'sidr.estado_fruta_danos_leves': return 'Danys lleus';
+      case 'sidr.estado_fruta_sana': return 'Sana';
+      case 'sidr.etiqueta_desde': return 'Des del núm.';
+      case 'sidr.etiqueta_hasta': return 'Fins al núm.';
+      case 'sidr.etiqueta_manzano': return 'Com el reconeixes';
+      case 'sidr.etiqueta_manzano_ayuda': return 'Fila 3, núm. 12; el vell del marge…';
+      case 'sidr.falta_kilos_origen': return 'Falten els quilos o d\'on ve la fruita.';
+      case 'sidr.falta_nombre': return 'Falta el nom.';
+      case 'sidr.fecha': return 'Data';
+      case 'sidr.fecha_entrega': return 'Data de lliurament';
+      case 'sidr.fecha_recoleccion': return 'Data de collita';
+      case 'sidr.fruta_campania': return 'de fruita aquesta campanya';
+      case 'sidr.fruta_manzana': return 'Poma';
+      case 'sidr.fruta_propia': return 'Fruita pròpia';
+      case 'sidr.fruta_uva': return 'Raïm';
+      case 'sidr.grado_alcoholico': return 'Grau alcohòlic';
       case 'sidr.guardado': return 'Desat';
       case 'sidr.hoy': return 'Avui';
-      case 'sidr.nombre_titular': return 'Nom del titular';
+      case 'sidr.inscripcion_dop': return 'Núm. d\'inscripció a la DOP';
+      case 'sidr.kilos': return 'Quilos';
+      case 'sidr.kupela': return 'Kupela';
+      case 'sidr.kupela_activa': return 'En ús';
+      case 'sidr.kupela_descuadrada': return '{kupela}: els litres anotats no quadren';
+      case 'sidr.kupela_destino': return 'Kupela de destinació';
+      case 'sidr.kupelas': return 'Kupeles';
+      case 'sidr.litros': return 'Litres';
+      case 'sidr.litros_en_bodega': return 'Al celler: {litros}';
+      case 'sidr.litros_mosto': return 'Litres de most';
+      case 'sidr.litros_servidos': return 'Litres servits (estimats)';
+      case 'sidr.lotes_etiquetas_descuadradas': return '{n} lots amb contraetiquetes que no quadren';
+      case 'sidr.manzanos_marcados': return 'Pomeres marcades';
+      case 'sidr.material': return 'Material';
+      case 'sidr.material_inoxidable': return 'Acer inoxidable';
+      case 'sidr.material_madera': return 'Fusta';
+      case 'sidr.material_otro': return 'Altre';
+      case 'sidr.mediciones': return 'Mesures';
+      case 'sidr.medir': return 'Mesura';
+      case 'sidr.mililitros_botella': return 'Mil·lilitres per ampolla';
+      case 'sidr.motivo': return 'Motiu';
+      case 'sidr.movimiento_embotellado': return 'Embotellat';
+      case 'sidr.movimiento_prensado': return 'Premsat';
+      case 'sidr.movimiento_retirada': return 'Retirada (mares, minva)';
+      case 'sidr.movimiento_trasiego_entrada': return 'Trasbals de';
+      case 'sidr.movimiento_trasiego_salida': return 'Trasbals a';
+      case 'sidr.movimiento_txotx': return 'Txotx';
+      case 'sidr.movimientos': return 'Moviments';
+      case 'sidr.municipio': return 'Municipi';
+      case 'sidr.n_arboles': return '{n} arbres';
+      case 'sidr.n_botellas': return '{n} ampolles';
+      case 'sidr.n_comensales': return '{n} comensals';
+      case 'sidr.n_partidas': return '{n} partides';
+      case 'sidr.nada_por_revisar': return 'Res pendent.';
+      case 'sidr.no_procede': return 'no escau';
+      case 'sidr.nombre': return 'Nom';
+      case 'sidr.nombre_opcional': return 'Nom (opcional)';
+      case 'sidr.nombre_sagardotegi': return 'Nom de la sagardotegi o celler';
+      case 'sidr.nombre_titular': return 'Nom o raó social';
+      case 'sidr.notas': return 'Notes';
+      case 'sidr.nueva_entrada': return 'Nova entrada de fruita';
+      case 'sidr.nueva_kupela': return 'Nova kupela';
+      case 'sidr.nueva_medicion': return 'Nova mesura';
+      case 'sidr.nueva_pomarada': return 'Nova pomereda';
+      case 'sidr.nuevo_manzano': return 'Marca una pomera';
+      case 'sidr.nuevo_prensado': return 'Nou premsat';
+      case 'sidr.nuevo_tratamiento': return 'Anota un tractament';
+      case 'sidr.numero_arboles': return 'Nombre d\'arbres';
+      case 'sidr.numero_registro': return 'Núm. de registre del producte';
+      case 'sidr.numero_registro_ayuda': return 'El de l\'etiqueta (Registre de Productes Fitosanitaris)';
+      case 'sidr.organismo_regulado_aviso': return 'Organisme regulat: davant d\'una sospita, avisa el servei de sanitat vegetal del teu territori.';
+      case 'sidr.parcela': return 'Parcel·la';
+      case 'sidr.partidas_que_entran': return 'Partides que entren';
+      case 'sidr.partidas_sin_prensar': return '{n} entrades de fruita sense premsar';
+      case 'sidr.perfil_ambos': return 'Les dues';
+      case 'sidr.perfil_sidra': return 'Sidra';
+      case 'sidr.perfil_txakoli': return 'Txakoli';
+      case 'sidr.plaga_objetivo': return 'Plaga o malaltia';
+      case 'sidr.poligono': return 'Polígon';
+      case 'sidr.pomarada': return 'Pomereda';
+      case 'sidr.pomaradas': return 'Pomeredes';
+      case 'sidr.por_revisar': return 'Per revisar';
+      case 'sidr.precio_kg': return 'Preu per quilo';
+      case 'sidr.prensada': return 'premsada';
+      case 'sidr.prensados': return 'Premsats';
+      case 'sidr.presion': return 'Pressió de premsat';
+      case 'sidr.preventivo': return 'Preventiu (sense plaga concreta)';
+      case 'sidr.procedencia': return 'Procedència (municipi o zona)';
+      case 'sidr.producto': return 'Producte';
+      case 'sidr.producto_dop': return 'Producte DOP amb què comparar';
+      case 'sidr.producto_sidra': return 'Sidra';
+      case 'sidr.producto_txakoli': return 'Txakoli';
+      case 'sidr.propia': return 'Pròpia';
+      case 'sidr.proveedor': return 'Proveïdor';
+      case 'sidr.proveedor_registrado': return 'Pomereda del proveïdor registrada a la DOP';
+      case 'sidr.que_elaboras': return 'Què elabores?';
+      case 'sidr.quedan': return 'en queden {litros}';
+      case 'sidr.recinto': return 'Recinte';
+      case 'sidr.regimen_fiscal': return 'Règim fiscal (PROVISIONAL)';
+      case 'sidr.regimen_general': return 'General o simplificat';
+      case 'sidr.regimen_reagp': return 'REAGP (venda de poma pròpia)';
+      case 'sidr.registrada_dop': return 'Registrada a la DOP';
+      case 'sidr.registrada_dop_ayuda': return 'Ho marques tu: l\'app no consulta el registre.';
+      case 'sidr.registro_sanitario': return 'Registre sanitari (RGSEAA)';
+      case 'sidr.resumen_txotx': return '{dias} dies de txotx · {litros} servits';
+      case 'sidr.retirada': return 'retirada';
+      case 'sidr.retirada_lias': return 'Cap: es retira (mares, minva)';
+      case 'sidr.sigpac': return 'SIGPAC';
+      case 'sidr.sin_dop': return 'Sense DOP';
+      case 'sidr.sin_embotellados': return 'Encara no hi ha lots embotellats. S\'embotella des de la fitxa de cada kupela.';
+      case 'sidr.sin_entradas': return 'Encara no hi ha entrades de fruita.';
+      case 'sidr.sin_kupelas': return 'Encara no hi ha kupeles. Dona d\'alta les teves amb el botó +.';
+      case 'sidr.sin_kupelas_llenas': return 'Cap kupela no té sidra anotada.';
+      case 'sidr.sin_mediciones': return 'Sense mesures.';
+      case 'sidr.sin_partidas_pendientes': return 'No hi ha entrades de fruita sense premsar.';
+      case 'sidr.sin_pomaradas': return 'Encara no hi ha pomeredes. Dona d\'alta la primera amb el botó +.';
+      case 'sidr.sin_prensados': return 'Encara no hi ha premsats.';
+      case 'sidr.sin_prensar': return 'sense premsar';
+      case 'sidr.sin_sustancia': return 'Sense substància activa';
+      case 'sidr.sin_tratamientos': return 'Sense tractaments anotats.';
+      case 'sidr.sin_txotx': return 'Aquesta temporada encara no s\'ha obert cap kupela.';
+      case 'sidr.sin_txotx_hoy': return 'Avui no hi ha txotx anotat.';
+      case 'sidr.sulfuroso_total': return 'Sulfurós total';
+      case 'sidr.superficie': return 'Superfície';
+      case 'sidr.superficie_tratada': return 'Superfície tractada';
+      case 'sidr.sustancia_activa': return 'Substància activa';
+      case 'sidr.sustancia_resumen': return 'Termini de seguretat màxim al registre: {ps} dies (mana l\'etiqueta). Aprovada a la UE fins al {ue}.';
+      case 'sidr.temperatura': return 'Temperatura';
+      case 'sidr.temporada': return 'Temporada {campania}';
+      case 'sidr.territorio': return 'Territori o província';
       case 'sidr.titular': return 'Titular';
+      case 'sidr.trasegar': return 'Trasbalsa';
+      case 'sidr.trasiego': return 'Trasbals';
+      case 'sidr.tratamiento_incompleto': return 'falten dades del quadern';
+      case 'sidr.tratamientos': return 'Tractaments';
+      case 'sidr.tratamientos_incompletos': return '{n} tractaments amb dades del quadern sense omplir';
+      case 'sidr.txotx': return 'Txotx';
+      case 'sidr.txotx_de_hoy': return 'Txotx d\'avui';
+      case 'sidr.variedad': return 'Varietat';
+      case 'sidr.variedades': return 'Varietats';
+      case 'sidr.variedades_fuera_pliego': return 'No són a la llista del plec de la teva DOP: {variedades}';
       case 'viti.a_ingresar_hacienda_303': return 'A ingressar a Hisenda (model 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Acceptar i emplenar';
       case 'viti.acerca_ayuda': return 'Versió, crèdits, compromisos legals';
@@ -38924,11 +40380,219 @@ class SoleraL10n {
       case 'ques.y_n_mas': return '… e {n} máis';
       case 'ques.zona_geografica': return 'Zona xeográfica';
       case 'ques.hoy_nada_pendiente': return 'Nada pendente para hoxe';
-      case 'sidr.bienvenida': return 'Primeira versión en construción.';
+      case 'sidr.abre_txotx': return 'Abro tempada de txotx';
+      case 'sidr.abrir_kupela': return 'Abrir kupela';
+      case 'sidr.aceptar': return 'Aceptar';
+      case 'sidr.acidez_volatil': return 'Acidez volátil';
+      case 'sidr.anio_plantacion': return 'Ano de plantación';
+      case 'sidr.aplicador': return 'Quen aplicou';
+      case 'sidr.arboles_por_ha': return '{n} árbores/ha';
+      case 'sidr.av': return 'AV';
+      case 'sidr.aviso_acidez_volatil_alta': return 'Acidez volátil {valor} g/l: o prego pide menos de {limite}';
+      case 'sidr.aviso_densidad_mosto_baja': return 'Densidade do mosto {valor}: o prego pide polo menos {limite}';
+      case 'sidr.aviso_etiquetas_descuadradas': return 'As contraetiquetas do rango non coinciden coas botellas';
+      case 'sidr.aviso_grado_bajo': return 'Grao {valor} % vol: o prego pide máis de {limite}';
+      case 'sidr.aviso_negativo': return 'O anotado deixa esta kupela en negativo: falta unha entrada ou sobra unha saída.';
+      case 'sidr.aviso_no_certifica': return 'A app compara o que anotas co prego e avisa, pero non certifica nada: cualifica o órgano de control da DOP.';
+      case 'sidr.aviso_no_recomienda': return 'A app non recomenda produtos nin doses: anota o que xa se aplicou, copiando a etiqueta do produto.';
+      case 'sidr.aviso_procedencia_no_registrada': return 'Esta froita non consta dunha pomareira rexistrada na DOP: non podería ir a unha elaboración DOP.';
+      case 'sidr.aviso_rendimiento_alto': return 'Rendemento {valor} %: por riba do {limite} % do prego';
+      case 'sidr.aviso_rendimiento_bajo': return 'Rendemento {valor} %: por baixo do {limite} %, o mínimo habitual do prego';
+      case 'sidr.aviso_sulfuroso_alto': return 'Sulfuroso total {valor} mg/l: o prego pide menos de {limite}';
+      case 'sidr.aviso_supera_capacidad': return 'O anotado supera a capacidade da kupela.';
+      case 'sidr.bienvenida_explicacion': return 'Uns datos para comezar. Podes cambialos cando queiras en Axustes.';
+      case 'sidr.bienvenida_texto': return 'Di como se chama a túa sagardotegi e que elaboras.';
+      case 'sidr.bienvenida_titulo': return 'Benvida';
+      case 'sidr.bodega': return 'Adega';
+      case 'sidr.botellas': return 'Botellas';
+      case 'sidr.buscar': return 'Buscar';
+      case 'sidr.calificacion': return 'Cualificación';
+      case 'sidr.calificacion_apta': return 'Apta (DOP)';
+      case 'sidr.calificacion_ayuda': return 'A cualificación dáa o órgano de control coa súa análise; aquí só a anotas.';
+      case 'sidr.calificacion_descalificada': return 'Descualificada';
+      case 'sidr.calificacion_pendiente': return 'Sen cualificar';
+      case 'sidr.cantidad_aplicada': return 'Cantidade aplicada';
+      case 'sidr.cantidad_aplicada_ayuda': return 'O que se aplicou, coa súa unidade';
+      case 'sidr.capacidad': return 'Capacidade';
+      case 'sidr.carnet_aplicador': return 'N.º de carné de aplicador';
+      case 'sidr.catalogos_provisionales': return 'Catálogos provisionais: copiados de fontes públicas, pendentes de revisión por unha persoa experta.';
+      case 'sidr.codigo_kupela': return 'Código da kupela';
+      case 'sidr.codigo_kupela_ayuda': return 'O que ten pintado: K-7, 3…';
+      case 'sidr.codigo_lote': return 'Código de lote';
+      case 'sidr.codigo_repetido': return 'Xa hai unha kupela con ese código.';
+      case 'sidr.comensales': return 'Comensais';
+      case 'sidr.comparado_con': return 'Comparado con: {producto}';
+      case 'sidr.con_contraetiqueta_dop': return 'Con contraetiqueta numerada da DOP';
+      case 'sidr.contraetiquetas_rango': return 'Contraetiquetas {desde}–{hasta}';
+      case 'sidr.cultivo': return 'Cultivo';
+      case 'sidr.cultivo_manzano': return 'Maceira (pomar)';
+      case 'sidr.cultivo_vid': return 'Vide (txakoli)';
+      case 'sidr.datos_sagardotegi': return 'Datos da sagardotegi';
+      case 'sidr.denominacion': return 'Denominación de orixe';
+      case 'sidr.densidad': return 'Densidade';
+      case 'sidr.densidad_mosto': return 'Densidade do mosto';
+      case 'sidr.destino': return 'Destino';
+      case 'sidr.documento_transporte': return 'Albarán ou título de transporte';
+      case 'sidr.dop': return 'DOP';
+      case 'sidr.dop_arabako_txakolina': return 'Arabako Txakolina';
+      case 'sidr.dop_bizkaiko_txakolina': return 'Bizkaiko Txakolina';
+      case 'sidr.dop_euskal_sagardoa': return 'Euskal Sagardoa';
+      case 'sidr.dop_getariako_txakolina': return 'Getariako Txakolina';
+      case 'sidr.dop_sidra_asturias': return 'Sidra de Asturias';
+      case 'sidr.editar_entrada': return 'Editar entrada de froita';
+      case 'sidr.editar_kupela': return 'Editar kupela';
+      case 'sidr.editar_pomarada': return 'Editar pomar';
+      case 'sidr.editar_tratamiento': return 'Editar tratamento';
+      case 'sidr.eficacia': return 'Eficacia observada';
+      case 'sidr.eficacia_buena': return 'Boa';
+      case 'sidr.eficacia_mala': return 'Mala';
+      case 'sidr.eficacia_regular': return 'Regular';
+      case 'sidr.embotellados': return 'Embotellados';
+      case 'sidr.embotellar': return 'Embotellar';
+      case 'sidr.en_bodega': return 'na adega';
+      case 'sidr.entradas_fruta': return 'Entradas de froita';
+      case 'sidr.error_cargar': return 'Non se puideron cargar os datos.';
+      case 'sidr.estado_fruta': return 'Estado da froita';
+      case 'sidr.estado_fruta_danos_graves': return 'Danos graves';
+      case 'sidr.estado_fruta_danos_leves': return 'Danos leves';
+      case 'sidr.estado_fruta_sana': return 'Sa';
+      case 'sidr.etiqueta_desde': return 'Desde o n.º';
+      case 'sidr.etiqueta_hasta': return 'Ata o n.º';
+      case 'sidr.etiqueta_manzano': return 'Como o recoñeces';
+      case 'sidr.etiqueta_manzano_ayuda': return 'Fila 3, n.º 12; o vello do bordo…';
+      case 'sidr.falta_kilos_origen': return 'Faltan os quilos ou de onde vén a froita.';
+      case 'sidr.falta_nombre': return 'Falta o nome.';
+      case 'sidr.fecha': return 'Data';
+      case 'sidr.fecha_entrega': return 'Data de entrega';
+      case 'sidr.fecha_recoleccion': return 'Data de recolección';
+      case 'sidr.fruta_campania': return 'de froita nesta campaña';
+      case 'sidr.fruta_manzana': return 'Mazá';
+      case 'sidr.fruta_propia': return 'Froita propia';
+      case 'sidr.fruta_uva': return 'Uva';
+      case 'sidr.grado_alcoholico': return 'Grao alcohólico';
       case 'sidr.guardado': return 'Gardado';
       case 'sidr.hoy': return 'Hoxe';
-      case 'sidr.nombre_titular': return 'Nome do titular';
+      case 'sidr.inscripcion_dop': return 'N.º de inscrición na DOP';
+      case 'sidr.kilos': return 'Quilos';
+      case 'sidr.kupela': return 'Kupela';
+      case 'sidr.kupela_activa': return 'En uso';
+      case 'sidr.kupela_descuadrada': return '{kupela}: os litros anotados non cadran';
+      case 'sidr.kupela_destino': return 'Kupela de destino';
+      case 'sidr.kupelas': return 'Kupelas';
+      case 'sidr.litros': return 'Litros';
+      case 'sidr.litros_en_bodega': return 'Na adega: {litros}';
+      case 'sidr.litros_mosto': return 'Litros de mosto';
+      case 'sidr.litros_servidos': return 'Litros servidos (estimados)';
+      case 'sidr.lotes_etiquetas_descuadradas': return '{n} lotes con contraetiquetas que non cadran';
+      case 'sidr.manzanos_marcados': return 'Maceiras marcadas';
+      case 'sidr.material': return 'Material';
+      case 'sidr.material_inoxidable': return 'Aceiro inoxidable';
+      case 'sidr.material_madera': return 'Madeira';
+      case 'sidr.material_otro': return 'Outro';
+      case 'sidr.mediciones': return 'Medicións';
+      case 'sidr.medir': return 'Medir';
+      case 'sidr.mililitros_botella': return 'Mililitros por botella';
+      case 'sidr.motivo': return 'Motivo';
+      case 'sidr.movimiento_embotellado': return 'Embotellado';
+      case 'sidr.movimiento_prensado': return 'Prensado';
+      case 'sidr.movimiento_retirada': return 'Retirada (borras, mingua)';
+      case 'sidr.movimiento_trasiego_entrada': return 'Trasfega de';
+      case 'sidr.movimiento_trasiego_salida': return 'Trasfega a';
+      case 'sidr.movimiento_txotx': return 'Txotx';
+      case 'sidr.movimientos': return 'Movementos';
+      case 'sidr.municipio': return 'Concello';
+      case 'sidr.n_arboles': return '{n} árbores';
+      case 'sidr.n_botellas': return '{n} botellas';
+      case 'sidr.n_comensales': return '{n} comensais';
+      case 'sidr.n_partidas': return '{n} partidas';
+      case 'sidr.nada_por_revisar': return 'Nada pendente.';
+      case 'sidr.no_procede': return 'non procede';
+      case 'sidr.nombre': return 'Nome';
+      case 'sidr.nombre_opcional': return 'Nome (opcional)';
+      case 'sidr.nombre_sagardotegi': return 'Nome da sagardotegi ou adega';
+      case 'sidr.nombre_titular': return 'Nome ou razón social';
+      case 'sidr.notas': return 'Notas';
+      case 'sidr.nueva_entrada': return 'Nova entrada de froita';
+      case 'sidr.nueva_kupela': return 'Nova kupela';
+      case 'sidr.nueva_medicion': return 'Nova medición';
+      case 'sidr.nueva_pomarada': return 'Novo pomar';
+      case 'sidr.nuevo_manzano': return 'Marcar unha maceira';
+      case 'sidr.nuevo_prensado': return 'Novo prensado';
+      case 'sidr.nuevo_tratamiento': return 'Anotar tratamento';
+      case 'sidr.numero_arboles': return 'Número de árbores';
+      case 'sidr.numero_registro': return 'N.º de rexistro do produto';
+      case 'sidr.numero_registro_ayuda': return 'O da etiqueta (Rexistro de Produtos Fitosanitarios)';
+      case 'sidr.organismo_regulado_aviso': return 'Organismo regulado: ante unha sospeita, avisa o servizo de sanidade vexetal do teu territorio.';
+      case 'sidr.parcela': return 'Parcela';
+      case 'sidr.partidas_que_entran': return 'Partidas que entran';
+      case 'sidr.partidas_sin_prensar': return '{n} entradas de froita sen prensar';
+      case 'sidr.perfil_ambos': return 'As dúas';
+      case 'sidr.perfil_sidra': return 'Sidra';
+      case 'sidr.perfil_txakoli': return 'Txakoli';
+      case 'sidr.plaga_objetivo': return 'Praga ou enfermidade';
+      case 'sidr.poligono': return 'Polígono';
+      case 'sidr.pomarada': return 'Pomar';
+      case 'sidr.pomaradas': return 'Pomares';
+      case 'sidr.por_revisar': return 'Por revisar';
+      case 'sidr.precio_kg': return 'Prezo por quilo';
+      case 'sidr.prensada': return 'prensada';
+      case 'sidr.prensados': return 'Prensados';
+      case 'sidr.presion': return 'Presión de prensado';
+      case 'sidr.preventivo': return 'Preventivo (sen praga concreta)';
+      case 'sidr.procedencia': return 'Procedencia (concello ou zona)';
+      case 'sidr.producto': return 'Produto';
+      case 'sidr.producto_dop': return 'Produto DOP co que comparar';
+      case 'sidr.producto_sidra': return 'Sidra';
+      case 'sidr.producto_txakoli': return 'Txakoli';
+      case 'sidr.propia': return 'Propia';
+      case 'sidr.proveedor': return 'Provedor';
+      case 'sidr.proveedor_registrado': return 'Pomar do provedor rexistrado na DOP';
+      case 'sidr.que_elaboras': return 'Que elaboras?';
+      case 'sidr.quedan': return 'quedan {litros}';
+      case 'sidr.recinto': return 'Recinto';
+      case 'sidr.regimen_fiscal': return 'Réxime fiscal (PROVISIONAL)';
+      case 'sidr.regimen_general': return 'Xeral ou simplificado';
+      case 'sidr.regimen_reagp': return 'REAGP (venda de mazá propia)';
+      case 'sidr.registrada_dop': return 'Rexistrada na DOP';
+      case 'sidr.registrada_dop_ayuda': return 'Márcalo ti: a app non consulta o rexistro.';
+      case 'sidr.registro_sanitario': return 'Rexistro sanitario (RXSEAA)';
+      case 'sidr.resumen_txotx': return '{dias} días de txotx · {litros} servidos';
+      case 'sidr.retirada': return 'retirada';
+      case 'sidr.retirada_lias': return 'Ningunha: retírase (borras, mingua)';
+      case 'sidr.sigpac': return 'SIXPAC';
+      case 'sidr.sin_dop': return 'Sen DOP';
+      case 'sidr.sin_embotellados': return 'Aínda non hai lotes embotellados. Embotéllase desde a ficha de cada kupela.';
+      case 'sidr.sin_entradas': return 'Aínda non hai entradas de froita.';
+      case 'sidr.sin_kupelas': return 'Aínda non hai kupelas. Dá de alta as túas co botón +.';
+      case 'sidr.sin_kupelas_llenas': return 'Ningunha kupela ten sidra anotada.';
+      case 'sidr.sin_mediciones': return 'Sen medicións.';
+      case 'sidr.sin_partidas_pendientes': return 'Non hai entradas de froita sen prensar.';
+      case 'sidr.sin_pomaradas': return 'Aínda non hai pomares. Dá de alta o primeiro co botón +.';
+      case 'sidr.sin_prensados': return 'Aínda non hai prensados.';
+      case 'sidr.sin_prensar': return 'sen prensar';
+      case 'sidr.sin_sustancia': return 'Sen substancia activa';
+      case 'sidr.sin_tratamientos': return 'Sen tratamentos anotados.';
+      case 'sidr.sin_txotx': return 'Esta tempada aínda non se abriu ningunha kupela.';
+      case 'sidr.sin_txotx_hoy': return 'Hoxe non hai txotx anotado.';
+      case 'sidr.sulfuroso_total': return 'Sulfuroso total';
+      case 'sidr.superficie': return 'Superficie';
+      case 'sidr.superficie_tratada': return 'Superficie tratada';
+      case 'sidr.sustancia_activa': return 'Substancia activa';
+      case 'sidr.sustancia_resumen': return 'Prazo de seguridade máximo no rexistro: {ps} días (manda a etiqueta). Aprobada na UE ata o {ue}.';
+      case 'sidr.temperatura': return 'Temperatura';
+      case 'sidr.temporada': return 'Tempada {campania}';
+      case 'sidr.territorio': return 'Territorio ou provincia';
       case 'sidr.titular': return 'Titular';
+      case 'sidr.trasegar': return 'Trasfegar';
+      case 'sidr.trasiego': return 'Trasfega';
+      case 'sidr.tratamiento_incompleto': return 'faltan datos do caderno';
+      case 'sidr.tratamientos': return 'Tratamentos';
+      case 'sidr.tratamientos_incompletos': return '{n} tratamentos con datos do caderno sen encher';
+      case 'sidr.txotx': return 'Txotx';
+      case 'sidr.txotx_de_hoy': return 'Txotx de hoxe';
+      case 'sidr.variedad': return 'Variedade';
+      case 'sidr.variedades': return 'Variedades';
+      case 'sidr.variedades_fuera_pliego': return 'Non están na lista do prego da túa DOP: {variedades}';
       case 'viti.a_ingresar_hacienda_303': return 'A ingresar en Facenda (modelo 303 trimestral)';
       case 'viti.aceptar_y_rellenar': return 'Aceptar e encher';
       case 'viti.acerca_ayuda': return 'Versión, créditos, compromisos legais';

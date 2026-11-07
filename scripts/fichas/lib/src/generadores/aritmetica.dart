@@ -10,8 +10,9 @@ final List<PlantillaFicha> plantillasAritmetica = [
   PlantillaFicha(
     idHabilidad: 'ARI.01',
     descripcion:
-        'Sumar es juntar. Para sumar de cabeza ayuda descomponer: 27 + 38 = 27 + 3 + 35 = 30 + 35 = 65. '
-        'Buscar la decena redonda hace la cuenta más fácil.',
+        'Sumar es juntar. Para sumar de cabeza ayuda descomponer y buscar la decena redonda: así '
+        'la cuenta es más fácil.\n'
+        'Ejemplo: 27 + 38 = 27 + 3 + 35 = 30 + 35 = 65.',
     preguntaExplicalo: '¿Qué truco usas tú para sumar de cabeza? Explícalo con un ejemplo.',
     generar: (azar) {
       final cantidadSumandos = azar.entre(2, 3);
@@ -27,9 +28,10 @@ final List<PlantillaFicha> plantillasAritmetica = [
   PlantillaFicha(
     idHabilidad: 'ARI.02',
     descripcion:
-        'Una potencia es una multiplicación repetida: 2^{5} = 2 · 2 · 2 · 2 · 2 = 32. El número '
-        'de abajo (base) es el que se multiplica; el pequeño de arriba (exponente), cuántas veces.',
-    preguntaExplicalo: '¿Por qué 2^{3} no es lo mismo que 2 · 3? Explícalo.',
+        'Una potencia es una multiplicación repetida. El número de abajo (base) es el que se '
+        'multiplica; el pequeño de arriba (exponente), cuántas veces aparece.\n'
+        'Ejemplo: 2^{5} = 2 × 2 × 2 × 2 × 2 = 32.',
+    preguntaExplicalo: '¿Por qué 2^{3} no es lo mismo que 2 × 3? Explícalo.',
     generar: (azar) {
       final base = azar.entre(2, 10);
       final exponente = base <= 3 ? azar.entre(2, 6) : (base == 10 ? azar.entre(2, 6) : azar.entre(2, 3));
@@ -44,7 +46,7 @@ final List<PlantillaFicha> plantillasAritmetica = [
       }
       return Ejercicio(
         enunciado: 'Escribe como potencia y calcula su valor:',
-        destacado: '${List.filled(exponente, '$base').join(' · ')} =',
+        destacado: '${List.filled(exponente, '$base').join(' × ')} =',
         solucion: '${potencia('$base', exponente)} = ${formatearEntero(valor)}',
         renglones: 2,
       );
@@ -53,8 +55,9 @@ final List<PlantillaFicha> plantillasAritmetica = [
   PlantillaFicha(
     idHabilidad: 'ARI.03',
     descripcion:
-        'La raíz cuadrada de un número es el que, multiplicado por sí mismo, da ese número: '
-        '√49 = 7 porque 7 · 7 = 49. Los números como 49 se llaman cuadrados perfectos.',
+        'La raíz cuadrada de un número es el que, multiplicado por sí mismo, da ese número. Los '
+        'números como 49 se llaman cuadrados perfectos.\n'
+        'Ejemplo: √49 = 7 porque 7 · 7 = 49.',
     preguntaExplicalo: '¿Qué tiene que ver la raíz cuadrada con el lado de un cuadrado? Haz un dibujo.',
     generar: (azar) {
       final raiz = azar.entre(2, 20);
@@ -77,7 +80,8 @@ final List<PlantillaFicha> plantillasAritmetica = [
     idHabilidad: 'ARI.04',
     descripcion:
         'Los números enteros pueden ser positivos o negativos. Sumar un negativo es como restar; '
-        'restar un negativo es como sumar: 5 − (−3) = 5 + 3 = 8.',
+        'restar un negativo es como sumar.\n'
+        'Ejemplo: 5 − (−3) = 5 + 3 = 8, y −2 + (−4) = −2 − 4 = −6.',
     preguntaExplicalo: '¿Por qué restar un número negativo hace que el resultado sea más grande?',
     generar: (azar) {
       final primero = azar.conSignoNoNulo(15);
@@ -98,8 +102,9 @@ final List<PlantillaFicha> plantillasAritmetica = [
   PlantillaFicha(
     idHabilidad: 'ARI.05',
     descripcion:
-        'El valor absoluto de un número es su distancia al 0, sin importar el signo: |−7| = 7 y '
-        '|7| = 7. Por eso nunca es negativo.',
+        'El valor absoluto de un número es su distancia al 0, sin importar el signo. Por eso nunca '
+        'es negativo.\n'
+        'Ejemplo: |−7| = 7 y |7| = 7.',
     preguntaExplicalo: '¿Por qué el valor absoluto nunca puede ser negativo?',
     generar: (azar) {
       final tipo = azar.nextInt(3);
@@ -138,7 +143,8 @@ final List<PlantillaFicha> plantillasAritmetica = [
     idHabilidad: 'ARI.06',
     descripcion:
         'Para multiplicar o dividir enteros, primero opera sin signos y luego pon el signo: si '
-        'los dos tienen el mismo signo, positivo; si tienen signos distintos, negativo.',
+        'los dos tienen el mismo signo, positivo; si tienen signos distintos, negativo.\n'
+        'Ejemplo: (−4) · (−3) = 12 y 12 : (−3) = −4.',
     preguntaExplicalo: 'Inventa una situación de la vida en la que se multiplique un número negativo.',
     generar: (azar) {
       final primero = azar.conSignoNoNulo(12);
@@ -164,7 +170,8 @@ final List<PlantillaFicha> plantillasAritmetica = [
     idHabilidad: 'ARI.07',
     descripcion:
         'Con enteros, el orden es el de siempre: paréntesis, multiplicaciones y divisiones, sumas y '
-        'restas. Un menos delante de un paréntesis cambia el signo de todo lo de dentro.',
+        'restas. Un menos delante de un paréntesis cambia el signo de todo lo de dentro.\n'
+        'Ejemplo: 5 − (2 − 7) = 5 − 2 + 7 = 10, y −3 + 2 · (−4) = −3 − 8 = −11.',
     preguntaExplicalo: '¿Qué le pasa a lo de dentro de un paréntesis si delante hay un signo menos?',
     generar: (azar) {
       final a = azar.conSignoNoNulo(9);
@@ -190,7 +197,8 @@ final List<PlantillaFicha> plantillasAritmetica = [
     idHabilidad: 'ARI.08',
     descripcion:
         'Con la misma base: al multiplicar potencias se suman los exponentes; al dividir, se restan; '
-        'en una potencia de potencia, se multiplican. Y cualquier número (no 0) elevado a 0 da 1.',
+        'en una potencia de potencia, se multiplican. Y cualquier número (no 0) elevado a 0 da 1.\n'
+        'Ejemplo: 3^{4} · 3^{2} = 3^{6}, 5^{7} : 5^{3} = 5^{4} y (2^{3})^{2} = 2^{6}.',
     preguntaExplicalo: '¿Por qué 2^{5} · 2^{3} es 2^{8} y no 2^{15}? Escríbelo con multiplicaciones.',
     generar: (azar) {
       final base = azar.entre(2, 7);
@@ -215,9 +223,21 @@ final List<PlantillaFicha> plantillasAritmetica = [
     idHabilidad: 'ARI.09',
     descripcion:
         'Un exponente negativo da la inversa: 10^{−3} = 1/1000 = 0,001. En notación científica se '
-        'escribe una sola cifra (no 0) antes de la coma por una potencia de 10: 3 500 000 = 3,5 · 10^{6}.',
+        'escribe una sola cifra (no 0) antes de la coma por una potencia de 10.\n'
+        'Ejemplo: 2^{−3} = 1/2^{3} = 1/8, y 3 500 000 = 3,5 · 10^{6}.',
     preguntaExplicalo: '¿Para qué sirve la notación científica? Piensa en el tamaño de una bacteria o de una galaxia.',
     generar: (azar) {
+      // Uno de cada tres: exponente negativo con base pequeña («2^{−3} = 1/8»).
+      if (azar.nextInt(3) == 0) {
+        final base = azar.entre(2, 5);
+        final exponente = azar.entre(1, 3);
+        return Ejercicio(
+          enunciado: 'Escribe como fracción:',
+          destacado: '${potencia('$base', -exponente)} =',
+          solucion: '1/${math.pow(base, exponente).toInt()}',
+          renglones: 2,
+        );
+      }
       final cifras = azar.entre(11, 99);
       final mantisa = cifras / 10;
       final esGrande = azar.nextBool();

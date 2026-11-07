@@ -11,7 +11,7 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
 
 /// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
 /// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO', 'EST'};
+const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO', 'EST', 'ARI'};
 
 bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
 
@@ -366,6 +366,19 @@ void main() {
         final media = double.parse(RegExp(r'media ([\d,]+)').firstMatch(ejercicio.solucion)![1]!.replaceAll(',', '.'));
         expect((media - suma / total).abs(), lessThanOrEqualTo(0.005 + 1e-9), reason: ejercicio.solucion);
       }
+    });
+
+    test('ARI.09: también hay potencias de exponente negativo, bien resueltas', () {
+      final patron = RegExp(r'^(\d)\^\{−(\d)\} =$');
+      var negativas = 0;
+      for (final ejercicio in _muestras('ARI.09', semilla: 3, cantidad: 3000)) {
+        final datos = patron.firstMatch(ejercicio.destacado!);
+        if (datos == null) continue;
+        negativas++;
+        final base = int.parse(datos[1]!), exponente = int.parse(datos[2]!);
+        expect(ejercicio.solucion, '1/${math.pow(base, exponente)}', reason: ejercicio.destacado);
+      }
+      expect(negativas, greaterThan(600));
     });
 
     test('FR.01: la pregunta dice de qué se pide la fracción', () {

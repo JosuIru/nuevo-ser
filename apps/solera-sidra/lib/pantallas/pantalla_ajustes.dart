@@ -7,6 +7,7 @@ import '../modelos/titular.dart';
 import '../utiles/textos_sidra.dart';
 import 'hoja_formulario.dart';
 import 'pantalla_bienvenida.dart';
+import 'pantalla_documentos.dart';
 
 /// Ajustes: datos de la casa y del titular, idioma y el resto de apartados.
 class PantallaAjustes extends StatefulWidget {
@@ -88,6 +89,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         children: [
           _apartado(Icons.storefront_outlined, 'sidr.datos_sagardotegi',
               const PantallaBienvenida()),
+          _apartado(Icons.picture_as_pdf_outlined, 'sidr.documentos',
+              const PantallaDocumentos()),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('sidr.titular'),

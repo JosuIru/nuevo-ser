@@ -11,7 +11,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 11 modelos (`Titular`, `Sagardotegi`, `Pomarada`, `Manzano`, `Tratamiento`, `PartidaManzana`, `Prensado`, `Kupela`, `MedicionKupela`, `Trasiego`, `SesionTxotx`, `Embotellado`, `ApunteEconomico`), 15 tablas en la v1. Dominio: `campania.dart` (sep-ago, pliego F.1) y `saldo_kupelas.dart` (litros por kupela y origen por trasiegos). 22 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas Hoy (bienvenida/onboarding, litros en bodega, txotx de hoy, «por revisar»), Pomaradas (alta, ficha con tratamientos y manzanos marcados), Bodega (kupelas con ocupación; desde la cabecera: entradas de fruta, prensados, embotellados; ficha de kupela con medir, trasegar, embotellar y calificación), Txotx (temporada) y Ajustes (sagardotegi, titular, régimen). Hojas con selector de fecha. 38 tests, 5 de pantalla y 4 de claves de traducción |
-| 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
+| 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos, por campaña (actual y anterior): **cuaderno de la pomarada** (parcelas con SIGPAC, tratamientos fitosanitarios con sustancia, n.º de registro, cantidad, aplicador, carné y eficacia; cosecha propia) y **libro de elaboración y embotellado** propio con los registros del ap. E del pliego (entrada de fruta, prensados con sus partidas, kupelas con entradas/salidas/saldo al cierre y calificación, trasiegos, txotx, embotellado con contraetiquetas numeradas y balance). Tablas en funciones puras con test; PDF con `informe_periodico` del core. 43 tests |
 | 6 Catálogos | ✅ 2026-11-07 (adelantado al 3) | `content/sidra/`: 268 variedades de manzana (pliegos Euskal Sagardoa y Asturias), 11 de uva (DO de txakoli), 18 plagas, 61 sustancias activas (registro MAPA 06/11/2026 + EU Pesticides DB) y 8 productos DOP con sus límites. `dominio/catalogos.dart` y `comprobacion_dop.dart` (avisos de acidez volátil, grado, SO₂, densidad del mosto y rendimiento). Banner de provisionales en Hoy |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloques 4-5 (cuaderno de la pomarada y libro de elaboración y embotellado en PDF).
+**Siguiente acción**: bloque 7 (IA de plagas y enfermedades del manzano).
 
 ## Encuadre
 
@@ -95,6 +95,12 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
 - **2026-11-07 — Las hojas liberan sus controladores al desaparecer**: liberarlos
   justo después del `await` (como en obrador) rompe la animación de cierre; lo
   cazó el test de pantalla.
+- **2026-11-07 — El libro de bodega es propio** («libro de elaboración y
+  embotellado»): el pliego de Euskal Sagardoa enumera los registros (ap. E) y el
+  balance de fin de campaña, pero no un formato; no se encontró uno de HAZI ni
+  del Consejo Regulador. Sello PROVISIONAL y bloqueo apuntado.
+- **2026-11-07 — Documentos por campaña (sep-ago)**, no por mes: es el ciclo
+  del pliego y del balance de existencias.
 
 ## Datos técnicos
 

@@ -127,3 +127,13 @@ obra.catalogos_provisionales,"Los catálogos (ingredientes base, denominaciones,
 obra.confirmar_con_proveedor,Alérgenos tomados del catálogo: confírmalos con la ficha técnica del proveedor.,Katalogotik hartutako alergenoak: egiaztatu hornitzailearen fitxa teknikoarekin.,Al·lèrgens presos del catàleg: confirma'ls amb la fitxa tècnica del proveïdor.,Alérxenos tomados do catálogo: confírmaos coa ficha técnica do provedor.
 obra.denominacion,Denominación (RD 308/2019),Izendapena (308/2019 EED),Denominació (RD 308/2019),Denominación (RD 308/2019)
 obra.sin_denominacion,Sin denominación de pan,Ogi-izendapenik gabe,Sense denominació de pa,Sen denominación de pan
+obra.elegir_foto,Elegir de la galería,Galeriatik aukeratu,Tria de la galeria,Escoller da galería
+obra.hacer_foto,Hacer una foto,Argazkia atera,Fes una foto,Facer unha foto
+obra.ia_error,No se ha podido leer la etiqueta. Comprueba la conexión y la clave.,Ezin izan da etiketa irakurri. Egiaztatu konexioa eta gakoa.,No s'ha pogut llegir l'etiqueta. Comprova la connexió i la clau.,Non se puido ler a etiqueta. Comproba a conexión e a clave.
+obra.ia_leer_etiqueta,Leer etiqueta con IA,Etiketa AArekin irakurri,Llegeix l'etiqueta amb IA,Ler etiqueta con IA
+obra.ia_no_legible,La foto no deja leer bien la lista: repítela o rellena a mano.,Argazkian ezin da zerrenda ondo irakurri: errepikatu edo bete eskuz.,La foto no deixa llegir bé la llista: repeteix-la o omple-ho a mà.,A foto non deixa ler ben a lista: repítea ou enche a man.
+obra.ia_propuesta,Propuesta de la IA,AAren proposamena,Proposta de la IA,Proposta da IA
+obra.ia_que_hace,Lee la etiqueta o la ficha técnica del proveedor y propone ingredientes y alérgenos,Hornitzailearen etiketa edo fitxa teknikoa irakurtzen du eta osagaiak eta alergenoak proposatzen ditu,Llegeix l'etiqueta o la fitxa tècnica del proveïdor i proposa ingredients i al·lèrgens,Le a etiqueta ou a ficha técnica do provedor e propón ingredientes e alérxenos
+obra.ia_revisa,Es una propuesta: compárala con la etiqueta antes de guardar.,Proposamen bat da: alderatu etiketarekin gorde aurretik.,És una proposta: compara-la amb l'etiqueta abans de desar.,É unha proposta: compáraa coa etiqueta antes de gardar.
+obra.ia_usar,Usar la propuesta,Proposamena erabili,Fes servir la proposta,Usar a proposta
+obra.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial

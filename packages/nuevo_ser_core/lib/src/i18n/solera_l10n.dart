@@ -3371,6 +3371,16 @@ class SoleraL10n {
     'obra.confirmar_con_proveedor',
     'obra.denominacion',
     'obra.sin_denominacion',
+    'obra.elegir_foto',
+    'obra.hacer_foto',
+    'obra.ia_error',
+    'obra.ia_leer_etiqueta',
+    'obra.ia_no_legible',
+    'obra.ia_propuesta',
+    'obra.ia_que_hace',
+    'obra.ia_revisa',
+    'obra.ia_usar',
+    'obra.inteligencia_artificial',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -7651,6 +7661,16 @@ class SoleraL10n {
           'obra.confirmar_con_proveedor',
           'obra.denominacion',
           'obra.sin_denominacion',
+          'obra.elegir_foto',
+          'obra.hacer_foto',
+          'obra.ia_error',
+          'obra.ia_leer_etiqueta',
+          'obra.ia_no_legible',
+          'obra.ia_propuesta',
+          'obra.ia_que_hace',
+          'obra.ia_revisa',
+          'obra.ia_usar',
+          'obra.inteligencia_artificial',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -11928,6 +11948,16 @@ class SoleraL10n {
           'obra.confirmar_con_proveedor',
           'obra.denominacion',
           'obra.sin_denominacion',
+          'obra.elegir_foto',
+          'obra.hacer_foto',
+          'obra.ia_error',
+          'obra.ia_leer_etiqueta',
+          'obra.ia_no_legible',
+          'obra.ia_propuesta',
+          'obra.ia_que_hace',
+          'obra.ia_revisa',
+          'obra.ia_usar',
+          'obra.inteligencia_artificial',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -16205,6 +16235,16 @@ class SoleraL10n {
           'obra.confirmar_con_proveedor',
           'obra.denominacion',
           'obra.sin_denominacion',
+          'obra.elegir_foto',
+          'obra.hacer_foto',
+          'obra.ia_error',
+          'obra.ia_leer_etiqueta',
+          'obra.ia_no_legible',
+          'obra.ia_propuesta',
+          'obra.ia_que_hace',
+          'obra.ia_revisa',
+          'obra.ia_usar',
+          'obra.inteligencia_artificial',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -20505,6 +20545,16 @@ class SoleraL10n {
       case 'obra.confirmar_con_proveedor': return 'Alérgenos tomados del catálogo: confírmalos con la ficha técnica del proveedor.';
       case 'obra.denominacion': return 'Denominación (RD 308/2019)';
       case 'obra.sin_denominacion': return 'Sin denominación de pan';
+      case 'obra.elegir_foto': return 'Elegir de la galería';
+      case 'obra.hacer_foto': return 'Hacer una foto';
+      case 'obra.ia_error': return 'No se ha podido leer la etiqueta. Comprueba la conexión y la clave.';
+      case 'obra.ia_leer_etiqueta': return 'Leer etiqueta con IA';
+      case 'obra.ia_no_legible': return 'La foto no deja leer bien la lista: repítela o rellena a mano.';
+      case 'obra.ia_propuesta': return 'Propuesta de la IA';
+      case 'obra.ia_que_hace': return 'Lee la etiqueta o la ficha técnica del proveedor y propone ingredientes y alérgenos';
+      case 'obra.ia_revisa': return 'Es una propuesta: compárala con la etiqueta antes de guardar.';
+      case 'obra.ia_usar': return 'Usar la propuesta';
+      case 'obra.inteligencia_artificial': return 'Inteligencia artificial';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -24786,6 +24836,16 @@ class SoleraL10n {
       case 'obra.confirmar_con_proveedor': return 'Katalogotik hartutako alergenoak: egiaztatu hornitzailearen fitxa teknikoarekin.';
       case 'obra.denominacion': return 'Izendapena (308/2019 EED)';
       case 'obra.sin_denominacion': return 'Ogi-izendapenik gabe';
+      case 'obra.elegir_foto': return 'Galeriatik aukeratu';
+      case 'obra.hacer_foto': return 'Argazkia atera';
+      case 'obra.ia_error': return 'Ezin izan da etiketa irakurri. Egiaztatu konexioa eta gakoa.';
+      case 'obra.ia_leer_etiqueta': return 'Etiketa AArekin irakurri';
+      case 'obra.ia_no_legible': return 'Argazkian ezin da zerrenda ondo irakurri: errepikatu edo bete eskuz.';
+      case 'obra.ia_propuesta': return 'AAren proposamena';
+      case 'obra.ia_que_hace': return 'Hornitzailearen etiketa edo fitxa teknikoa irakurtzen du eta osagaiak eta alergenoak proposatzen ditu';
+      case 'obra.ia_revisa': return 'Proposamen bat da: alderatu etiketarekin gorde aurretik.';
+      case 'obra.ia_usar': return 'Proposamena erabili';
+      case 'obra.inteligencia_artificial': return 'Adimen artifiziala';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -29067,6 +29127,16 @@ class SoleraL10n {
       case 'obra.confirmar_con_proveedor': return 'Al·lèrgens presos del catàleg: confirma\'ls amb la fitxa tècnica del proveïdor.';
       case 'obra.denominacion': return 'Denominació (RD 308/2019)';
       case 'obra.sin_denominacion': return 'Sense denominació de pa';
+      case 'obra.elegir_foto': return 'Tria de la galeria';
+      case 'obra.hacer_foto': return 'Fes una foto';
+      case 'obra.ia_error': return 'No s\'ha pogut llegir l\'etiqueta. Comprova la connexió i la clau.';
+      case 'obra.ia_leer_etiqueta': return 'Llegeix l\'etiqueta amb IA';
+      case 'obra.ia_no_legible': return 'La foto no deixa llegir bé la llista: repeteix-la o omple-ho a mà.';
+      case 'obra.ia_propuesta': return 'Proposta de la IA';
+      case 'obra.ia_que_hace': return 'Llegeix l\'etiqueta o la fitxa tècnica del proveïdor i proposa ingredients i al·lèrgens';
+      case 'obra.ia_revisa': return 'És una proposta: compara-la amb l\'etiqueta abans de desar.';
+      case 'obra.ia_usar': return 'Fes servir la proposta';
+      case 'obra.inteligencia_artificial': return 'Intel·ligència artificial';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -33348,6 +33418,16 @@ class SoleraL10n {
       case 'obra.confirmar_con_proveedor': return 'Alérxenos tomados do catálogo: confírmaos coa ficha técnica do provedor.';
       case 'obra.denominacion': return 'Denominación (RD 308/2019)';
       case 'obra.sin_denominacion': return 'Sen denominación de pan';
+      case 'obra.elegir_foto': return 'Escoller da galería';
+      case 'obra.hacer_foto': return 'Facer unha foto';
+      case 'obra.ia_error': return 'Non se puido ler a etiqueta. Comproba a conexión e a clave.';
+      case 'obra.ia_leer_etiqueta': return 'Ler etiqueta con IA';
+      case 'obra.ia_no_legible': return 'A foto non deixa ler ben a lista: repítea ou enche a man.';
+      case 'obra.ia_propuesta': return 'Proposta da IA';
+      case 'obra.ia_que_hace': return 'Le a etiqueta ou a ficha técnica do provedor e propón ingredientes e alérxenos';
+      case 'obra.ia_revisa': return 'É unha proposta: compáraa coa etiqueta antes de gardar.';
+      case 'obra.ia_usar': return 'Usar a proposta';
+      case 'obra.inteligencia_artificial': return 'Intelixencia artificial';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

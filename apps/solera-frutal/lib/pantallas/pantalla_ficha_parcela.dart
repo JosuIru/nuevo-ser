@@ -13,6 +13,7 @@ import '../modelos/parcela.dart';
 import '../modelos/tratamiento.dart';
 import '../utiles/textos_frutal.dart';
 import 'formularios_registros.dart';
+import 'identificar_plaga.dart';
 import 'pantalla_parcelas.dart';
 
 class _DatosFicha {
@@ -160,11 +161,13 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
     ];
   }
 
-  Widget _titulo(String texto, {VoidCallback? alAnadir}) => Padding(
+  Widget _titulo(String texto, {VoidCallback? alAnadir, Widget? accionExtra}) =>
+      Padding(
         padding: const EdgeInsets.fromLTRB(12, 8, 4, 0),
         child: Row(
           children: [
             Expanded(child: TituloBloqueSolera(texto)),
+            if (accionExtra != null) accionExtra,
             if (alAnadir != null)
               IconButton(
                   tooltip: SoleraL10n.t('frut.anadir'),
@@ -273,6 +276,11 @@ class _PantallaFichaParcelaState extends State<PantallaFichaParcela> {
                   ].join(' · ')),
                 ),
               _titulo(SoleraL10n.t('frut.seguimiento_plagas'),
+                  accionExtra: IconButton(
+                      tooltip: SoleraL10n.t('frut.ia_identificar'),
+                      onPressed: () =>
+                          identificarPlagaConFoto(context, parcela),
+                      icon: const Icon(Icons.document_scanner_outlined)),
                   alAnadir: () => mostrarAltaObservacion(context,
                       parcelaId: parcela.id!, especieId: parcela.especieId)),
               for (final observacion in datos.observaciones.take(10))

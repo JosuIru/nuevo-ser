@@ -13,13 +13,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos si no hay parcelas, plazos de seguridad abiertos, colmenas puestas, alta rápida de helada), Parcelas (lista, alta/edición con marco → árboles/ha, ficha con filas y variedades, polinización, seguimiento de plagas y últimos tratamientos), Cuaderno (tratamientos, abonados, riegos y heladas del año), Cosecha (parte por parcela y entregas; aviso si se cosecha dentro del plazo de seguridad), Ajustes (titular y asesor). Altas en hojas inferiores con selector de fecha (`formularios_registros.dart`). 34 tests, 5 de pantalla y un guardarraíl propio de traducciones |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos, año en curso y anterior: **cuaderno de explotación** (datos generales y asesor, identificación de parcelas con nº de orden, tratamientos, fertilización, riegos si los hay y cosecha comercializada) y **parte de cosecha y rendimientos** (por parcela, entregas, heladas y pedrisco para el seguro). Tablas en funciones puras con test; PDF con `informe_periodico` del core. 39 tests. Cotejo de columnas con el modelo andaluz v8 en el bloque 10 |
 | 6 Catálogos | ✅ 2026-11-07 | `content/frutal/`: especies (7), variedades (22, sin revisar), plagas (20; las 13 de almendro y avellano con su guía GIP del MAPA), sustancias activas (38, contrastadas con el Registro MAPA del 06/11/2026 y la EU Pesticides DB: `revision-ia:`) y fenología (15, sin revisar). Compilador genérico sobre la librería común. En la app: autocompletado de variedad, plaga y sustancia filtrado por especie; plazo de seguridad máximo del registro como aviso (no se rellena); aviso si el uso no está en el catálogo; umbral de la guía al apuntar un muestreo; polinización en la ficha; avisos de helada en Hoy (previsión de 7 días × fenología); nombres del catálogo en listas y PDF. 57 tests |
-| 7 IA visual | pendiente | |
+| 7 IA visual | ✅ 2026-11-07 | Ficha de parcela → Seguimiento de plagas → icono de escáner: foto (cámara o galería) → hasta 3 candidatos del catálogo de **esa especie** con confianza y motivo (salida estructurada con `enum` de ids + «otra») → la persona elige y se abre el alta de un **muestreo** con la plaga rellena. Nunca propone tratamientos. Modelo equilibrado del core, clave BYO en `estado/clave_anthropic_frutal.dart` (Ajustes → Inteligencia artificial). La foto se borra al terminar. Intérprete puro testeado. 62 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (almendra con hoja sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» al editar la parcela (geolocator) y mapa de parcelas (OSM) desde Parcelas. Permisos INTERNET y ubicación en el manifiesto. 41 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir) en `configuraciones_fiscales`; apuntes con base, IVA o compensación REAGP (12 %, solo en venta de cosecha), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 49 tests |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 7 (IA de plagas y enfermedades por especie).
+**Siguiente acción**: bloque 10 (revisión con fuente pública y cotejo de los PDF con el texto vigente); después el 11.
 
 ## Encuadre
 
@@ -101,6 +101,10 @@ Lo esencial que no se toca (hard limits):
   ubicación** para todas: explotaciones pequeñas y una sola llamada a la red.
 - **2026-11-07 — Sin catálogo de plagas para frutal de hueso y pepita**: no se
   leyó ninguna guía; las parcelas de esas especies se apuntan con texto libre.
+- **2026-11-07 — La IA propone un muestreo, no un tratamiento**, y solo entre
+  las plagas del catálogo de la especie (más «otra»): así no puede sugerir
+  sustancias ni dosis, y lo que apunta queda como observación revisable.
+  Modelo equilibrado, como Obrador: un error de diagnóstico lleva a tratar mal.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Obrador): no hay
   ninguna instalación publicada.
 

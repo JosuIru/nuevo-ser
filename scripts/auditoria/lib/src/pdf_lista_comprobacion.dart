@@ -58,7 +58,8 @@ Future<Uint8List> generarPdfListaComprobacion(ListaComprobacion lista,
       build: (contexto) => [
         pw.Text('Para: ${seccion.responsable.nombreVisible}',
             style: pw.TextStyle(
-                fontSize: 18, fontWeight: pw.FontWeight.bold,
+                fontSize: 18,
+                fontWeight: pw.FontWeight.bold,
                 color: _colorAcento)),
         pw.SizedBox(height: 6),
         pw.Text(
@@ -155,7 +156,8 @@ pw.Widget _filaBloqueo(Bloqueo bloqueo) {
   }
   return _casilla(
     bloqueo.titulo,
-    detalle: 'apps/${bloqueo.aplicacion}/BLOQUEOS-PENDIENTES.md:${bloqueo.linea}',
+    detalle:
+        'apps/${bloqueo.aplicacion}/BLOQUEOS-PENDIENTES.md:${bloqueo.linea}',
     extra: [
       if (recortadas.isNotEmpty)
         pw.Padding(
@@ -173,10 +175,9 @@ pw.Widget _bloqueFirma() {
         child: pw.Row(children: [
           pw.SizedBox(
               width: 90,
-              child: pw.Text(etiqueta, style: const pw.TextStyle(fontSize: 10))),
-          pw.Expanded(
-              child: pw.Container(
-                  height: 1, color: PdfColors.black)),
+              child:
+                  pw.Text(etiqueta, style: const pw.TextStyle(fontSize: 10))),
+          pw.Expanded(child: pw.Container(height: 1, color: PdfColors.black)),
         ]),
       );
   return pw.Column(children: [
@@ -191,8 +192,7 @@ pw.Widget _bloqueFirma() {
 /// las casillas `- [ ]` como guiones.
 String quitarMarcasMarkdown(String texto) => texto
     .replaceAll(RegExp(r'\*\*|__|`'), '')
-    .replaceAllMapped(
-        RegExp(r'^(\s*)[-*]\s+\[[ xX]\]\s*', multiLine: true),
+    .replaceAllMapped(RegExp(r'^(\s*)[-*]\s+\[[ xX]\]\s*', multiLine: true),
         (coincidencia) => '${coincidencia.group(1)}– ')
     .replaceAllMapped(RegExp(r'^(\s*)[-*]\s+', multiLine: true),
         (coincidencia) => '${coincidencia.group(1)}– ');

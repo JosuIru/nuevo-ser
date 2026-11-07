@@ -1,7 +1,8 @@
 import 'package:pendientes/pendientes.dart';
 
 class ResultadoFirma {
-  ResultadoFirma(this.texto, this.filasFirmadas, this.identificadoresNoEncontrados);
+  ResultadoFirma(
+      this.texto, this.filasFirmadas, this.identificadoresNoEncontrados);
 
   final String texto;
   final int filasFirmadas;
@@ -16,7 +17,11 @@ String escribirCampoCsv(String campo) {
 
 /// Prefijos que acepta [firmarCatalogo]: firma de asesor, firma de persona
 /// (p. ej. el titular que asume la revisión) o revisión de IA.
-const List<String> prefijosAdmitidos = ['asesor:', 'persona:', prefijoRevisionIa];
+const List<String> prefijosAdmitidos = [
+  'asesor:',
+  'persona:',
+  prefijoRevisionIa
+];
 
 /// Escribe `<prefijo> <firma>` en `revisado_por` de cada fila (o solo de las
 /// de [identificadores], por la primera columna). La cita previa se conserva
@@ -62,7 +67,8 @@ ResultadoFirma firmarCatalogo(String texto,
     encontrados.add(identificador);
     final camposCompletos = [
       ...campos,
-      for (var relleno = campos.length; relleno <= indiceRevision; relleno++) '',
+      for (var relleno = campos.length; relleno <= indiceRevision; relleno++)
+        '',
     ];
     final valorPrevio = camposCompletos[indiceRevision].trim();
     if (esFirmaDePersona(valorPrevio)) continue;
@@ -71,7 +77,8 @@ ResultadoFirma firmarCatalogo(String texto,
         ? '$prefijo ${firma.trim()}'
         : '$prefijo ${firma.trim()}; fuente: $valorPrevio';
     final finDeLinea = linea.endsWith('\r') ? '\r' : '';
-    lineas[indice] = camposCompletos.map(escribirCampoCsv).join(',') + finDeLinea;
+    lineas[indice] =
+        camposCompletos.map(escribirCampoCsv).join(',') + finDeLinea;
     filasFirmadas++;
   }
   if (indiceRevision == null) {

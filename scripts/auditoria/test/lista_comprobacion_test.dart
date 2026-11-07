@@ -25,7 +25,8 @@ void main() {
 
 ## Branding ✅
 ''');
-    escribir('apps/solera-aceitera/lib/servicios/generador_libro_aceite_pdf.dart',
+    escribir(
+        'apps/solera-aceitera/lib/servicios/generador_libro_aceite_pdf.dart',
         "final s = ' · RD 760/2021 + AICA · PROVISIONAL';\n");
     escribir('content/aceitera/variedades_olivo.csv',
         'id,nombre,revisado_por\npicual,Picual,fuente_publica\nhojiblanca,Hojiblanca,asesor: Ana\n');
@@ -33,6 +34,29 @@ void main() {
   });
 
   tearDown(() => raiz.deleteSync(recursive: true));
+
+  test('descubre verticales nuevas en apps/solera-* sin darlas de alta', () {
+    Directory('${raiz.path}/apps/solera-ganadera').createSync(recursive: true);
+    Directory('${raiz.path}/content/ganadera').createSync(recursive: true);
+    Directory('${raiz.path}/apps/solera-monte').createSync(recursive: true);
+
+    final ganadera = verticalPorNombre('ganadera', raiz: raiz.path);
+    expect(ganadera.aplicacion, 'solera-ganadera');
+    expect(ganadera.carpetaContenido, 'ganadera');
+    expect(ganadera.expertoCatalogos, Responsable.veterinario);
+    expect(ganadera.nombreVisible, 'Larrea Ganadera');
+
+    final monte = verticalPorNombre('solera-monte', raiz: raiz.path);
+    expect(monte.carpetaContenido, 'monte');
+    expect(monte.expertoCatalogos, Responsable.asesorAgronomo);
+    expect(monte.nombreVisible, 'Larrea Monte');
+
+    final nombres =
+        descubrirVerticales(raiz.path).map((v) => v.carpetaContenido);
+    expect(nombres, containsAll(['aceitera', 'ganadera', 'monte']));
+    expect(() => verticalPorNombre('huerta', raiz: raiz.path),
+        throwsArgumentError);
+  });
 
   test('verticalPorNombre resuelve app y carpeta de content', () {
     final vertical = verticalPorNombre('aceitera');
@@ -48,11 +72,13 @@ void main() {
         construirListaComprobacion(inventario, verticalPorNombre('aceitera'));
     final responsables =
         lista.secciones.map((seccion) => seccion.responsable).toList();
-    expect(responsables, containsAll([
-      Responsable.auditorAica,
-      Responsable.asesorFiscal,
-      Responsable.asesorAgronomo,
-    ]));
+    expect(
+        responsables,
+        containsAll([
+          Responsable.auditorAica,
+          Responsable.asesorFiscal,
+          Responsable.asesorAgronomo,
+        ]));
     final agronomo = lista.secciones
         .firstWhere((s) => s.responsable == Responsable.asesorAgronomo);
     expect(agronomo.catalogos.single.nombreArchivo, 'variedades_olivo.csv');
@@ -60,7 +86,8 @@ void main() {
     final aica = lista.secciones
         .firstWhere((s) => s.responsable == Responsable.auditorAica);
     expect(aica.bloqueos.single.titulo, 'Libro de movimientos del aceite');
-    expect(aica.sellos.single.ruta, endsWith('generador_libro_aceite_pdf.dart'));
+    expect(
+        aica.sellos.single.ruta, endsWith('generador_libro_aceite_pdf.dart'));
     // Lo resuelto no entra.
     expect(lista.secciones.expand((s) => s.bloqueos).map((b) => b.titulo),
         isNot(contains('Branding ✅')));
@@ -70,8 +97,8 @@ void main() {
     final lista = construirListaComprobacion(
         recolectar(raiz.path), verticalPorNombre('aceitera'),
         soloResponsable: Responsable.asesorFiscal);
-    expect(lista.secciones.map((s) => s.responsable),
-        [Responsable.asesorFiscal]);
+    expect(
+        lista.secciones.map((s) => s.responsable), [Responsable.asesorFiscal]);
   });
 
   test('comprobarRetiradaDeSellos enumera lo que falta', () {
@@ -85,11 +112,14 @@ void main() {
     final lista = construirListaComprobacion(
         recolectar(raiz.path), verticalPorNombre('aceitera'));
     final bytes = await generarPdfListaComprobacion(lista,
-        directorioFuentes: '${_raizMonorepo()}/packages/nuevo_ser_core/assets/fuentes');
+        directorioFuentes:
+            '${_raizMonorepo()}/packages/nuevo_ser_core/assets/fuentes');
     expect(bytes.length, greaterThan(1000));
     expect(String.fromCharCodes(bytes.take(5)), '%PDF-');
   });
 }
 
-String _raizMonorepo() =>
-    Directory.current.uri.resolve('../..').toFilePath().replaceAll(RegExp(r'/$'), '');
+String _raizMonorepo() => Directory.current.uri
+    .resolve('../..')
+    .toFilePath()
+    .replaceAll(RegExp(r'/$'), '');

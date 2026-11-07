@@ -17,12 +17,14 @@ Asistente de auditoría de las verticales Larrea.
       Qué falta para poder retirar los sellos PROVISIONAL.
 
 Verticales: aceitera, apicola, arbolado-urbano, quesera, viticultura, agro, zunbeltz
+  y cualquier apps/solera-* nueva (se descubre sola)
 Responsables (--para): asesorFiscal, asesorAgronomo, tecnicoOca, auditorAica,
   veterinario, apicultor, quesero, arborista, …
 ''';
 
 Future<void> main(List<String> argumentos) async {
-  if (argumentos.isEmpty || argumentos.contains('-h') ||
+  if (argumentos.isEmpty ||
+      argumentos.contains('-h') ||
       argumentos.contains('--help')) {
     stdout.write(_ayuda);
     return;
@@ -60,7 +62,8 @@ Future<void> main(List<String> argumentos) async {
 
 Future<void> _lista(
     List<String> argumentos, String raiz, String directorioPaquete) async {
-  final vertical = verticalPorNombre(_posicional(argumentos, 1, 'vertical'));
+  final vertical =
+      verticalPorNombre(_posicional(argumentos, 1, 'vertical'), raiz: raiz);
   final nombreResponsable = _valorDe(argumentos, '--para');
   final responsable = nombreResponsable == null
       ? null
@@ -104,12 +107,14 @@ void _firmar(List<String> argumentos) {
         '${resultado.identificadoresNoEncontrados.join(', ')}');
     exitCode = 1;
   }
-  stdout.writeln('Recompila los catálogos de la app (tool/compilar_catalogos.dart) '
+  stdout.writeln(
+      'Recompila los catálogos de la app (tool/compilar_catalogos.dart) '
       'y revisa el diff antes del commit.');
 }
 
 void _comprobar(List<String> argumentos, String raiz) {
-  final vertical = verticalPorNombre(_posicional(argumentos, 1, 'vertical'));
+  final vertical =
+      verticalPorNombre(_posicional(argumentos, 1, 'vertical'), raiz: raiz);
   final faltas = comprobarRetiradaDeSellos(recolectar(raiz), vertical);
   if (faltas.isEmpty) {
     stdout.writeln('${vertical.nombreVisible}: todo firmado y sin bloqueos '

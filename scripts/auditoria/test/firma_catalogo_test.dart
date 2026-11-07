@@ -12,8 +12,8 @@ cornicabra,Cornicabra,"di ""sí""",MAPA 2026
 void main() {
   group('firmarCatalogo', () {
     test('firma todas las filas y conserva la cita previa', () {
-      final resultado = firmarCatalogo(_catalogo,
-          firma: 'Ana Pérez (agrónoma, 2026-11-20)');
+      final resultado =
+          firmarCatalogo(_catalogo, firma: 'Ana Pérez (agrónoma, 2026-11-20)');
       expect(resultado.filasFirmadas, 3);
       final lineas = resultado.texto.split('\n');
       expect(lineas[0], '# Variedades — datos PROVISIONALES.');
@@ -54,20 +54,26 @@ void main() {
 
     test('firma como persona: o anota una revisión de IA', () {
       final comoPersona = firmarCatalogo(_catalogo,
-          firma: 'Josu (titular)', prefijo: 'persona:', identificadores: {'arbequina'});
+          firma: 'Josu (titular)',
+          prefijo: 'persona:',
+          identificadores: {'arbequina'});
       expect(comoPersona.texto.split('\n')[3],
           'arbequina,Arbequina,,persona: Josu (titular)');
 
       final revisado = firmarCatalogo(_catalogo,
-          firma: 'Claude, 2026-11-07', prefijo: 'revision-ia:',
+          firma: 'Claude, 2026-11-07',
+          prefijo: 'revision-ia:',
           identificadores: {'picual'});
       expect(revisado.texto.split('\n')[2],
           'picual,Picual,"dulce, amarga","revision-ia: Claude, 2026-11-07; fuente: fuente_publica"');
 
       // Una revisión de IA no se repite, pero la firma humana va encima.
-      expect(firmarCatalogo(revisado.texto,
-              firma: 'otra', prefijo: 'revision-ia:', identificadores: {'picual'})
-          .filasFirmadas, 0);
+      expect(
+          firmarCatalogo(revisado.texto,
+              firma: 'otra',
+              prefijo: 'revision-ia:',
+              identificadores: {'picual'}).filasFirmadas,
+          0);
       final firmado = firmarCatalogo(revisado.texto,
           firma: 'Ana', identificadores: {'picual'});
       expect(firmado.texto.split('\n')[2],
@@ -91,7 +97,9 @@ void main() {
   });
 
   test('quitarMarcasMarkdown deja texto plano', () {
-    expect(quitarMarcasMarkdown('**Estado**: `flag` listo\n- [ ] Validar\n  * sub'),
+    expect(
+        quitarMarcasMarkdown(
+            '**Estado**: `flag` listo\n- [ ] Validar\n  * sub'),
         'Estado: flag listo\n– Validar\n  – sub');
   });
 

@@ -8,6 +8,7 @@ import '../estado/cambios_datos.dart';
 import '../modelos/monte.dart';
 import '../utiles/textos_monte.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_documentos.dart';
 
 class PantallaAjustes extends StatelessWidget {
   const PantallaAjustes({super.key});
@@ -28,6 +29,14 @@ class PantallaAjustes extends StatelessWidget {
             subtitle: Text(SoleraL10n.t('mont.datos_monte_ayuda')),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaDatosMonte())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.picture_as_pdf_outlined),
+            title: Text(SoleraL10n.t('mont.documentos')),
+            subtitle: Text(SoleraL10n.t('mont.documentos_ayuda')),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
           ),
         ],
       ),

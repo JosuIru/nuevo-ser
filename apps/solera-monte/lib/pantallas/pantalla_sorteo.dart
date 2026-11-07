@@ -9,6 +9,7 @@ import '../modelos/sorteo_lena.dart';
 import '../utiles/textos_monte.dart';
 import 'formularios.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_documentos.dart';
 
 /// Un sorteo de lotes de leña, en tres pasos a la vista de todos: cerrar la
 /// lista (con su huella), fijar la semilla pública y sortear. Después queda
@@ -165,6 +166,12 @@ class _PantallaSorteoState extends State<PantallaSorteo> {
             ? SoleraL10n.tf('mont.sorteo_de', {'anyo': '${sorteo.campanya}'})
             : sorteo.nombre),
         actions: [
+          if (sorteo.realizado)
+            IconButton(
+              tooltip: SoleraL10n.t('mont.acta_sorteo'),
+              icon: const Icon(Icons.picture_as_pdf_outlined),
+              onPressed: () => compartirActaSorteo(context, sorteo),
+            ),
           if (!sorteo.realizado)
             IconButton(
               tooltip: SoleraL10n.t('borrar'),

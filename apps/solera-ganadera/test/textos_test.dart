@@ -11,6 +11,7 @@ import 'package:solera_ganadera/modelos/ganado.dart';
 import 'package:solera_ganadera/modelos/ganado_ecologico.dart';
 import 'package:solera_ganadera/modelos/pieza_pasto.dart';
 import 'package:solera_ganadera/modelos/tarea_sanitaria.dart';
+import 'package:solera_ganadera/pantallas/pantalla_ayuda.dart';
 
 void main() {
   test('todas las claves gana.* usadas en lib/ existen', () {
@@ -51,5 +52,17 @@ void main() {
             'gana.${grupo}_$codigo'
     ];
     expect(faltan, isEmpty);
+  });
+
+  test('cada apartado de la ayuda tiene título y texto en los cuatro idiomas',
+      () {
+    for (final (titulo, texto) in apartadosAyudaGanadera) {
+      expect(SoleraL10n.clavesDisponibles, containsAll([titulo, texto]));
+      for (final idioma in ['eu', 'ca', 'gl']) {
+        expect(
+            SoleraL10n.clavesTraducidas(idioma), containsAll([titulo, texto]),
+            reason: idioma);
+      }
+    }
   });
 }

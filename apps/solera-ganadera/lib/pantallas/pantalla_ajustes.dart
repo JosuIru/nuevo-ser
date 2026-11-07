@@ -9,6 +9,7 @@ import '../modelos/titular.dart';
 import '../utiles/textos_ganadera.dart';
 import 'lectura_receta.dart';
 import '../servicios/exportacion_datos.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_economia.dart';
 import 'pantalla_mapa_pastos.dart' show posicionActual;
@@ -196,7 +197,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
               }
             },
           ),
-          // ACCESOS
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.help_outline),
+            title: Text(SoleraL10n.t('gana.ayuda')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaAyuda())),
+          ),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('gana.titular'), style: estilos.titleMedium),

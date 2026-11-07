@@ -16,10 +16,10 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 7 IA visual | ✅ 2026-11-07 | Ficha del rebaño → «Leer receta con IA»: foto de la **receta veterinaria** → transcripción estructurada (medicamento, sustancias, cantidad, duración, esperas, veterinario, n.º, fecha) → la persona la compara → el formulario del tratamiento se abre relleno. La sustancia se casa con el catálogo. Un plazo que no se lee queda vacío (−1 en el esquema). Modelo equilibrado del core, clave BYO (`estado/clave_anthropic_ganadera.dart`), la foto se borra. 80 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (crotal rojo `#B8402A` sobre pasto, pardo lana y crema) en `assets/`, iconos del lanzador con `flutter_launcher_icons`, logo en la cabecera de Hoy. **GPS**: contorno de cada pieza caminando el linde (superficie y perímetro por exceso esférico, `geodesia.dart` de Zunbeltz) y coordenadas de la explotación; mapa de pastos con `flutter_map` (los contornos se ven sin cobertura). Permisos de Internet y ubicación en el manifiesto. 93 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes con fecha, categoría ganadera y, en ingresos, REAGP (compensación editable, 10,5 % por verificar) o IVA; resumen del mes (resultado, compensación cobrada, IVA repercutido y soportado) y extracto PDF con sello. **Exportación completa**: un CSV por tabla desde Ajustes (hard limit 4). 98 tests |
-| 10 Revisión con fuente pública | pendiente | |
+| 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Normativa de los PDF cotejada con el texto vigente (lista en Encuadre). Catálogos: tabla UGM de la PAC y eco-régimen con `fuente_publica` (BOE), razas con `fuente_publica` (salvo 4 añadidas y «Cruce»), sustancias con `revision-ia:` (CIMA Vet). Sin revisar a propósito: especies (lista propia), la tabla de Andalucía y la cerda de cría. `catalogosCompletamenteRevisados = false` y el banner se ve. `scripts/auditoria` no conoce todavía `ganadera` (fuera de esta calle) |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 10 (revisión con fuente pública y lista para los asesores).
+**Siguiente acción**: bloque 11 (ayuda in-app, README, APK release y build Linux).
 
 ## Encuadre
 
@@ -39,16 +39,35 @@ Diferencial: **el pasto como centro** (dónde está cada rebaño, UGM/ha por pie
 y días de pastoreo) y el **informe del eco-régimen de pastoreo extensivo** con
 los movimientos reales; multiespecie y ecológico de serie; es/eu/ca/gl y offline.
 
-Normativa que digitaliza (todo PROVISIONAL, a validar por veterinario asesor):
-- RD 787/2023, libro de registro de explotación y documento de movimiento:
-  https://www.boe.es/eli/es/rd/2023/10/17/787/con
-- RD 479/2004, REGA: https://www.boe.es/eli/es/rd/2004/03/26/479/con
-- RD 666/2023, art. 41, registro de tratamientos (se apunta la receta):
-  https://www.boe.es/eli/es/rd/2023/07/18/666/con
-- Reglamento (UE) 2018/848, ecológico (supresión doble, mínimo 48 h):
-  https://eur-lex.europa.eu/eli/reg/2018/848/oj
-- Eco-régimen de pastoreo extensivo de la PAC (PEPAC): cargas mínimas por
-  verificar en el BOE de la campaña.
+Normativa que digitaliza (todo PROVISIONAL, a validar por veterinario asesor).
+Textos leídos en el BOE o EUR-Lex el **2026-11-07** (bloque 10):
+- RD 787/2023 (BOE-A-2023-22499, consolidado 24/12/2024), art. 23 y **anexo V**
+  (contenido mínimo del libro de registro, puntos 1-11), art. 20-22 y **DF 3.ª**
+  (datos mínimos del documento de movimiento, que reescribe el anexo del
+  RD 728/2007): https://www.boe.es/eli/es/rd/2023/10/17/787/con
+- RD 479/2004 (BOE-A-2004-6426, consolidado 24/12/2024), art. 5: código REGA =
+  ES + 2 cifras de provincia + 3 de municipio (INE) + 7 de explotación:
+  https://www.boe.es/eli/es/rd/2004/03/26/479/con
+- RD 666/2023 (BOE-A-2023-16727, consolidado 03/09/2025), **art. 41**: registro
+  de tratamientos con lo del art. 108 del Reglamento (UE) 2019/6 y el n.º de
+  receta; 5 años: https://www.boe.es/eli/es/rd/2023/07/18/666/con
+- Reglamento (UE) 2019/6, **art. 108.2** (fecha de la primera administración,
+  medicamento, cantidad, proveedor, prueba de compra, animales, veterinario,
+  tiempo de espera aunque sea cero, duración):
+  https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32019R0006
+- Reglamento (UE) 2018/848, anexo II, parte II, **1.5.2.4 y 1.5.2.5** (límite de
+  tratamientos y espera doble, mínimo 48 h):
+  https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:32018R0848
+- RD 1048/2022 (BOE-A-2022-23048, consolidado 08/07/2026), **art. 30.2**
+  (eco-régimen de pastoreo: 120 días, reducibles a 90; 0,4-2 UGM/ha en húmedos y
+  0,2-1,2 en mediterráneos, mínimos reducibles a 0,2 y 0,1) y **anexo V** (tabla
+  de UGM): https://www.boe.es/eli/es/rd/2022/12/27/1048/con
+- RD 45/2019 (BOE-A-2019-2859, consolidado 21/06/2023), anexo I: razas.
+- CIMA Vet (AEMPS), API REST pública: sustancias activas con medicamentos
+  autorizados. https://cimavet.aemps.es/cimavet/rest/medicamentos?practiv1=…
+- **Por verificar**: el porcentaje de compensación REAGP de ganadería (Ley
+  37/1992 art. 130: no se pudo leer en el BOE en esta sesión) y las fechas de
+  cómputo de la carga de cada comunidad.
 
 Hard limits (propuesta §5): la app **no recomienda medicamentos, dosis ni
 diagnósticos** (apunta la receta y avisa de plazos; catálogos con sustancias

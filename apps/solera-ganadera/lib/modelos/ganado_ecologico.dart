@@ -12,8 +12,14 @@
 /// - no cuentan las vacunas, los antiparasitarios ni los tratamientos de los
 ///   programas de erradicación obligatoria (el «saneamiento» de la app).
 ///
-/// Copiado de Zunbeltz (commit `92ade2b`). PROVISIONAL hasta que lo revise
-/// la autoridad de control ecológico de cada comunidad. Si no se sabe la clase del
+/// Copiado de Zunbeltz (commit `92ade2b`). Cotejado en Larrea Ganadera el
+/// 2026-11-07 con el texto del Reglamento (UE) 2018/848 en EUR-Lex: anexo II,
+/// parte II, punto 1.5.2.4 (más de tres tandas de alopáticos de síntesis en 12
+/// meses, o más de una con vida productiva menor de un año; «con excepción de las
+/// vacunaciones, los tratamientos antiparasitarios y los programas de
+/// erradicación obligatorios») y 1.5.2.5 (el tiempo de espera se «duplicará» y
+/// será «al menos, de 48 horas»). PROVISIONAL hasta que lo revise la autoridad
+/// de control ecológico de cada comunidad. Si no se sabe la clase del
 /// medicamento, la app hace lo prudente: dobla el plazo y lo cuenta.
 library;
 

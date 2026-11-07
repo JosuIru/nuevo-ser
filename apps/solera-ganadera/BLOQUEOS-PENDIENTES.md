@@ -35,3 +35,8 @@ y sigue. Lo recoge `scripts/pendientes/`.
 - Textos de `content/solera/traducciones/ganadera.csv` (borrador, 2026-11-07).
 
 ## Bloqueos técnicos
+
+- `scripts/auditoria` (calle externa apps-3a) no tiene `ganadera` en su lista de
+  verticales: `dart run bin/auditoria.dart comprobar ganadera` responde «No
+  existe». Hay que darla de alta allí para sacar la lista de comprobación por
+  asesor; esta vertical no escribe en esa ruta.

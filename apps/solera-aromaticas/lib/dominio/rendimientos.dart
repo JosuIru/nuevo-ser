@@ -10,11 +10,12 @@ import '../modelos/secado.dart';
 double? rendimientoSecadoPorcentaje(double kgFrescos, double kgSecos) =>
     kgFrescos <= 0 || kgSecos < 0 ? null : kgSecos / kgFrescos * 100;
 
-/// Rendimiento en aceite esencial en % volumen/peso: ml de aceite por cada
-/// 100 g de planta (1 kg = 1000 g ⇒ ml / (kg · 10)). Es la unidad en la que
-/// suelen darse los rendimientos orientativos. Null si no hay planta.
-double? rendimientoAceitePorcentaje(double kgPlanta, double mlAceite) =>
-    kgPlanta <= 0 || mlAceite < 0 ? null : mlAceite / (kgPlanta * 10);
+/// Rendimiento en aceite esencial: ml de aceite por kg de planta (= litros
+/// por tonelada). Los rendimientos orientativos del catálogo van en g/kg
+/// (kg/t); se comparan tomando 1 ml ≈ 1 g (ver `rendimientos_orientativos.csv`).
+/// Null si no hay planta.
+double? mlAceitePorKg(double kgPlanta, double mlAceite) =>
+    kgPlanta <= 0 || mlAceite < 0 ? null : mlAceite / kgPlanta;
 
 /// Litros de hidrolato por kg de planta; null si no hay planta.
 double? hidrolatoPorKg(double kgPlanta, double litrosHidrolato) =>
@@ -26,8 +27,7 @@ extension RendimientoSecado on Secado {
 }
 
 extension RendimientoDestilacion on Destilacion {
-  double? get rendimientoAceite =>
-      rendimientoAceitePorcentaje(kgPlanta, mlAceiteEsencial);
+  double? get rendimientoAceite => mlAceitePorKg(kgPlanta, mlAceiteEsencial);
   double? get hidrolatoLitrosPorKg => hidrolatoPorKg(kgPlanta, litrosHidrolato);
 }
 
@@ -59,8 +59,7 @@ class ResumenDestilacionEspecie {
   double horas = 0;
 
   /// Rendimiento medio ponderado por los kg (no la media de los porcentajes).
-  double? get rendimientoAceiteMedio =>
-      rendimientoAceitePorcentaje(kgPlanta, mlAceite);
+  double? get rendimientoAceiteMedio => mlAceitePorKg(kgPlanta, mlAceite);
   double? get hidrolatoMedioPorKg => hidrolatoPorKg(kgPlanta, litrosHidrolato);
 }
 

@@ -16,6 +16,14 @@ y sigue. Lo recoge `scripts/pendientes/`.
   registro REACH para un pequeño destilador y etiqueta CLP. Vigencia del
   RD 3176/1983 (infusiones) y cruce del catálogo con la Orden SCO/190/2004.
 
+- **Asesor GIP o técnico agrícola**: catálogo de sustancias activas con uso
+  autorizado en aromáticas (Registro de Productos Fitosanitarios del MAPA,
+  usos menores), sin el cual el tratamiento va con texto libre. Plagas de
+  romero, orégano, menta y el resto de especies (sin fuente leída).
+- **Técnico de medio natural**: cruzar `content/aromaticas/especies_pam.csv`
+  con los catálogos autonómicos de flora amenazada y de recolección regulada;
+  revisar la columna de confundibles y la época orientativa (sin fuente).
+
 ## Revisión nativa eu/ca/gl
 
 - Textos de `content/solera/traducciones/aromaticas.csv` (borrador, 2026-11-07).

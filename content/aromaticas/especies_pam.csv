@@ -1,0 +1,53 @@
+# Especies de plantas aromáticas de Larrea Aromáticas — datos PROVISIONALES.
+# HARD LIMIT: este catálogo describe botánica, parte que se recolecta, época y protección.
+#   NUNCA usos de salud ni propiedades (ningún texto de la app las da).
+# Columnas: id (no cambiarlo nunca: lo guardan parcelas, zonas, cosechas y lotes); nombre;
+#   nombre_cientifico; familia; parte_usada; mes_inicio, mes_fin (época orientativa de cosecha);
+#   origen (cultivo / silvestre / ambos); proteccion (vacío = sin figura estatal en lo leído;
+#   anexo_vi_ley_42_2007 = especie de interés comunitario cuya recogida puede ser objeto de medidas de
+#   gestión); nota_proteccion; confundibles (especies parecidas con las que se confunde al recolectar);
+#   notas; revisado_por.
+# Fuentes leídas el 2026-11-07:
+#   - Ley 42/2007, anexo VI b) «PLANTAS», texto consolidado del BOE:
+#     https://www.boe.es/buscar/act.php?id=BOE-A-2007-21490 (Arnica montana, Gentiana lutea; no hay
+#     Thymus, Lavandula ni Sideritis en ese anexo).
+#   - CTFC/ValuePAM, «Análisis comparativo de la situación actual de las PAM en las regiones SUDOE»
+#     (abril 2018), pp. 113-115: https://apsb.ctfc.cat/docs/E%201.1.%20ES_valuepam%20fichas%20especies_final.pdf
+#     (Gentiana lutea en el anexo D del Reg. (UE) 709/2010; Thymus zygis, Cistus ladanifer y Chiliadenus
+#     glutinosus «no catalogadas ni vulnerables ni en peligro de extinción» a escala estatal).
+#   - CTFC, «Transformación de plantas aromáticas y medicinales» (Moré y Melero), tablas 5 y 8:
+#     https://apsb.ctfc.cat/docs/ficha%20TRANSFORMACION%20PAM.pdf (nombre científico y parte usada).
+# LO QUE NO SALE DE UNA FUENTE LEÍDA: los meses de cosecha y la columna confundibles (conocimiento
+#   general, para avisar). Por eso las filas con meses van con revisado_por vacío. Las dos especies
+#   protegidas van sin meses a propósito: la app no anima a recolectarlas.
+# Los catálogos AUTONÓMICOS de flora protegida NO están cruzados (BLOQUEOS): la app avisa siempre de
+#   que hay que consultarlos antes de recolectar en silvestre.
+# fuente_publica / revision-ia = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,nombre,nombre_cientifico,familia,parte_usada,mes_inicio,mes_fin,origen,proteccion,nota_proteccion,confundibles,notas,revisado_por
+lavanda,Lavanda,Lavandula angustifolia,Lamiaceae,Flor (espiga),6,8,ambos,,,lavandin|espliego,Lavanda fina; de montaña,
+lavandin,Lavandín,Lavandula × intermedia,Lamiaceae,Flor (espiga),7,8,cultivo,,,lavanda|espliego,Híbrido de lavanda y espliego; se multiplica por esqueje,
+espliego,Espliego,Lavandula latifolia,Lamiaceae,Flor (espiga),7,9,ambos,,,lavanda|lavandin,,
+cantueso,Cantueso,Lavandula stoechas,Lamiaceae,Sumidad florida,4,6,silvestre,,,,,
+romero,Romero,Salvia rosmarinus (sin. Rosmarinus officinalis),Lamiaceae,Hoja y rama,3,6,ambos,,,,,
+tomillo_comun,Tomillo común,Thymus vulgaris,Lamiaceae,Hierba y hoja,4,6,ambos,,,tomillo_salsero|tomillo_blanco,Hay muchos tomillos silvestres y algunos están protegidos: comprobar la especie,
+tomillo_salsero,Tomillo salsero,Thymus zygis,Lamiaceae,Sumidad florida,4,6,silvestre,,"Sin figura estatal (CTFC/ValuePAM 2018, p. 115); catálogos autonómicos por verificar",tomillo_comun,,
+tomillo_blanco,Tomillo blanco o mejorana silvestre,Thymus mastichina,Lamiaceae,Sumidad florida,5,7,silvestre,,,tomillo_comun,,
+salvia,Salvia,Salvia officinalis,Lamiaceae,Hierba y hoja,5,7,cultivo,,,salvia_espanola,,
+salvia_espanola,Salvia española,Salvia lavandulifolia,Lamiaceae,Hoja y sumidad florida,5,7,ambos,,,salvia,,
+salvia_esclarea,Salvia esclarea,Salvia sclarea,Lamiaceae,Sumidad florida,6,7,cultivo,,,,,
+oregano,Orégano,Origanum vulgare,Lamiaceae,Planta florida,7,8,ambos,,,,,
+ajedrea,Ajedrea,Satureja montana,Lamiaceae,Hierba y hoja,8,10,ambos,,,,,
+hisopo,Hisopo,Hyssopus officinalis,Lamiaceae,Hierba y hoja,7,9,ambos,,,,,
+melisa,Melisa,Melissa officinalis,Lamiaceae,Hierba y hoja,6,9,cultivo,,,,,
+menta_piperita,Menta piperita,Mentha × piperita,Lamiaceae,Hoja,7,9,cultivo,,,,,
+hierba_luisa,Hierba luisa,Aloysia citrodora (sin. Lippia citriodora),Verbenaceae,Hierba y hoja,6,9,cultivo,,,,,
+albahaca,Albahaca,Ocimum basilicum,Lamiaceae,Hierba y hoja,7,9,cultivo,,,,,
+estragon,Estragón,Artemisia dracunculus,Asteraceae,Hierba y hoja,6,9,cultivo,,,,,
+hinojo,Hinojo,Foeniculum vulgare,Apiaceae,Fruto (semilla),8,10,ambos,,,"Otras apiáceas silvestres, entre ellas cicuta (Conium maculatum), que es tóxica",En silvestre no recolectar sin identificación segura,
+manzanilla,Manzanilla,Matricaria chamomilla,Asteraceae,Flor (capítulo),5,7,ambos,,,Otras compuestas de flor parecida (Anthemis y Tripleurospermum),,
+milenrama,Milenrama,Achillea millefolium,Asteraceae,Flor,6,8,ambos,,,,,
+hiperico,Hipérico,Hypericum perforatum,Hypericaceae,Flor,6,7,ambos,,,,,
+jara,Jara pringosa,Cistus ladanifer,Cistaceae,Rama con hoja (exudado),5,9,silvestre,,"Sin figura estatal (CTFC/ValuePAM 2018, p. 115); catálogos autonómicos por verificar",,,
+te_de_roca,Té de roca,Chiliadenus glutinosus,Asteraceae,Sumidad florida,7,9,silvestre,,"Sin figura estatal (CTFC/ValuePAM 2018, p. 115); catálogos autonómicos por verificar",,,
+genciana,Genciana,Gentiana lutea,Gentianaceae,Raíz,,,silvestre,anexo_vi_ley_42_2007,"Ley 42/2007, anexo VI b): su recogida puede ser objeto de medidas de gestión. Comercio internacional controlado (Reg. (UE) 709/2010, anexo D, según CTFC/ValuePAM 2018, p. 113). Catálogos autonómicos por verificar","Vedegambre (Veratrum album), muy tóxico, de hoja parecida","No se anima a recolectarla: solo con la autorización de la comunidad autónoma","revision-ia: BOE Ley 42/2007 anexo VI b) consolidado, 2026-11-07; CTFC/ValuePAM 2018 pp. 113-115"
+arnica,Árnica,Arnica montana,Asteraceae,Flor,,,silvestre,anexo_vi_ley_42_2007,"Ley 42/2007, anexo VI b): su recogida puede ser objeto de medidas de gestión. Catálogos autonómicos por verificar",,"No se anima a recolectarla: solo con la autorización de la comunidad autónoma","revision-ia: BOE Ley 42/2007 anexo VI b) consolidado, 2026-11-07"

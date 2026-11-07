@@ -23,17 +23,17 @@ void main() {
           25);
     });
 
-    test('destilación: % v/p = ml por 100 g de planta', () {
-      // 300 kg de lavandín y 3 litros de aceite → 1 % v/p.
-      expect(rendimientoAceitePorcentaje(300, 3000), closeTo(1, 1e-9));
-      expect(rendimientoAceitePorcentaje(0, 10), isNull);
+    test('destilación: ml de aceite por kg de planta', () {
+      // 300 kg de lavandín y 3 litros de aceite → 10 ml/kg.
+      expect(mlAceitePorKg(300, 3000), 10);
+      expect(mlAceitePorKg(0, 10), isNull);
       expect(hidrolatoPorKg(200, 100), 0.5);
       final destilacion = Destilacion(
           fechaMs: 0,
           especieId: 'romero',
           kgPlanta: 100,
           mlAceiteEsencial: 500);
-      expect(destilacion.rendimientoAceite, closeTo(0.5, 1e-9));
+      expect(destilacion.rendimientoAceite, 5);
     });
 
     test('comparación con el intervalo orientativo', () {
@@ -70,8 +70,8 @@ void main() {
       ]);
       final fresca = resumen['lavandin|fresca']!;
       expect(fresca.numeroDestilaciones, 2);
-      expect(fresca.rendimientoAceiteMedio, closeTo(0.5, 1e-9),
-          reason: '2000 ml / 400 kg, no la media de 1 % y 0,33 %');
+      expect(fresca.rendimientoAceiteMedio, 5,
+          reason: '2000 ml / 400 kg, no la media de 10 y 3,3 ml/kg');
       expect(resumen['lavandin|seca']!.kgPlanta, 10);
     });
   });

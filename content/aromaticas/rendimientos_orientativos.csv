@@ -1,0 +1,49 @@
+# Rendimientos orientativos de secado y de aceite esencial — datos PROVISIONALES.
+# Fuente única leída el 2026-11-07: CTFC (Eva Moré y Roser Melero), «Transformación de plantas aromáticas
+#   y medicinales», https://apsb.ctfc.cat/docs/ficha%20TRANSFORMACION%20PAM.pdf
+#   - Tabla 5 «Productividad de algunas especies», p. 28: «Relación aceite esencial / materia fresca (kg/t)».
+#   - Tabla 8 «Rendimientos en planta fresca y seca según especie, año y corte», p. 21: «Relación peso
+#     fresco/seco» (n:1). Aquí se guarda como kg secos por 100 kg frescos = 100 / n (redondeado a 0,1).
+#   La tabla mezcla tres referencias (a Fernández-Pola, b Hornok, c ITEIPMAI): el intervalo de cada fila
+#   va del mínimo al máximo de las que da.
+# producto: aceite_esencial (unidad g/kg = kg/t) o planta_seca (unidad kg secos por 100 kg frescos).
+# estado_planta: en qué estado se mide la planta de partida (fresca / seca).
+# AVISO DE UNIDADES: la app apunta el aceite en ml y compara ml/kg con g/kg tomando 1 ml ≈ 1 g. Los aceites
+#   esenciales pesan algo menos que el agua, así que el valor medido en volumen sale algo por encima: es una
+#   orientación, no una medida de calidad. La variedad, el clima, el año de la plantación y el alambique lo
+#   cambian mucho.
+# Fuera a propósito: Lavandula angustifolia en aceite (la tabla 5 no da la relación, solo kg/ha), milenrama
+#   en aceite (la da sobre flor seca y sin estado claro), orégano en secado (la relación «(0,35-0,45):1» no
+#   tiene sentido como fresco/seco) y Valeriana (raíz). Hidrolato: la ficha (p. 27) da «aproximado 30 % del
+#   peso de materia verde» en general, sin especie: va en la ayuda, no aquí.
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,especie_id,producto,estado_planta,minimo,maximo,unidad,fuente,revisado_por
+estragon_aceite,estragon,aceite_esencial,fresca,1,4,g/kg,"Tabla 5, p. 28: 1-3 (b), 3-4 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+hinojo_aceite,hinojo,aceite_esencial,fresca,30,40,g/kg,"Tabla 5, p. 28: 30-40 (b), sobre grano","fuente_publica: CTFC Transformación PAM, tabla 5"
+hiperico_aceite,hiperico,aceite_esencial,fresca,0.1,2.5,g/kg,"Tabla 5, p. 28: 2,5 (b), 0,1 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+hisopo_aceite,hisopo,aceite_esencial,fresca,0.8,2.5,g/kg,"Tabla 5, p. 28: 0,8-2,5 (b)","fuente_publica: CTFC Transformación PAM, tabla 5"
+espliego_aceite,espliego,aceite_esencial,fresca,4,8,g/kg,"Tabla 5, p. 28: 4-8 (b)","fuente_publica: CTFC Transformación PAM, tabla 5"
+hierba_luisa_aceite,hierba_luisa,aceite_esencial,fresca,0.7,1,g/kg,"Tabla 5, p. 28: 0,7-1 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+melisa_aceite,melisa,aceite_esencial,fresca,0.1,0.3,g/kg,"Tabla 5, p. 28: 0,1-0,3 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+menta_piperita_aceite,menta_piperita,aceite_esencial,fresca,1.5,6,g/kg,"Tabla 5, p. 28: 1,5-4,0 (b), 2-6 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+albahaca_aceite,albahaca,aceite_esencial,fresca,0.2,1.3,g/kg,"Tabla 5, p. 28: 0,2-1,3 (b), 0,2-0,7 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+oregano_aceite,oregano,aceite_esencial,fresca,0.7,3,g/kg,"Tabla 5, p. 28: hierba 0,7-3 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+oregano_aceite_seca,oregano,aceite_esencial,seca,2,7,g/kg,"Tabla 5, p. 28: hoja + flor seca 2-7 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+romero_aceite,romero,aceite_esencial,fresca,2,6,g/kg,"Tabla 5, p. 28: 2-6 (b), 5-6 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+salvia_aceite,salvia,aceite_esencial,fresca,3,6,g/kg,"Tabla 5, p. 29: 3-6 (b)","fuente_publica: CTFC Transformación PAM, tabla 5"
+ajedrea_aceite,ajedrea,aceite_esencial,fresca,2,3,g/kg,"Tabla 5, p. 29: 2-3 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+tomillo_comun_aceite,tomillo_comun,aceite_esencial,fresca,1,4,g/kg,"Tabla 5, p. 29: 1-3 (b), 3-4 (c)","fuente_publica: CTFC Transformación PAM, tabla 5"
+milenrama_secado,milenrama,planta_seca,fresca,16.7,33.3,kg/100 kg,"Tabla 8, p. 21: (5-6):1 (b), (3-3,6):1 (a)","fuente_publica: CTFC Transformación PAM, tabla 8"
+estragon_secado,estragon,planta_seca,fresca,12.5,13.3,kg/100 kg,"Tabla 8, p. 21: (7,5-8):1 (b)","fuente_publica: CTFC Transformación PAM, tabla 8"
+hiperico_secado,hiperico,planta_seca,fresca,20,25,kg/100 kg,"Tabla 8, p. 21: (4-5):1 (b)","fuente_publica: CTFC Transformación PAM, tabla 8"
+hisopo_secado,hisopo,planta_seca,fresca,40,40,kg/100 kg,"Tabla 8, p. 21: 2,5:1 (c)","fuente_publica: CTFC Transformación PAM, tabla 8"
+espliego_secado,espliego,planta_seca,fresca,40,50,kg/100 kg,"Tabla 8, p. 21: (2-2,5):1 (a), flor","fuente_publica: CTFC Transformación PAM, tabla 8"
+lavanda_secado,lavanda,planta_seca,fresca,50,50,kg/100 kg,"Tabla 8, p. 21: 2:1 (a), flor","fuente_publica: CTFC Transformación PAM, tabla 8"
+hierba_luisa_secado,hierba_luisa,planta_seca,fresca,25,33.3,kg/100 kg,"Tabla 8, p. 21: (3-4):1 (c)","fuente_publica: CTFC Transformación PAM, tabla 8"
+melisa_secado,melisa,planta_seca,fresca,20,20,kg/100 kg,"Tabla 8, p. 21: 5:1 (a)","fuente_publica: CTFC Transformación PAM, tabla 8"
+menta_piperita_secado,menta_piperita,planta_seca,fresca,16.7,16.7,kg/100 kg,"Tabla 8, p. 21: 6:1 (a)","fuente_publica: CTFC Transformación PAM, tabla 8"
+albahaca_secado,albahaca,planta_seca,fresca,10,10,kg/100 kg,"Tabla 8, p. 21: 10:1 (a)","fuente_publica: CTFC Transformación PAM, tabla 8"
+romero_secado,romero,planta_seca,fresca,12.5,14.3,kg/100 kg,"Tabla 8, p. 21: (7-8):1 (a), hoja","fuente_publica: CTFC Transformación PAM, tabla 8"
+salvia_secado,salvia,planta_seca,fresca,20,20,kg/100 kg,"Tabla 8, p. 21: 5:1 (b)","fuente_publica: CTFC Transformación PAM, tabla 8"
+ajedrea_secado,ajedrea,planta_seca,fresca,16.7,25,kg/100 kg,"Tabla 8, p. 21: (4-6):1 (a)","fuente_publica: CTFC Transformación PAM, tabla 8"
+tomillo_comun_secado,tomillo_comun,planta_seca,fresca,25,33.3,kg/100 kg,"Tabla 8, p. 22: (3-4):1 (b)","fuente_publica: CTFC Transformación PAM, tabla 8"

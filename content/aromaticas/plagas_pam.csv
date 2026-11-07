@@ -1,0 +1,23 @@
+# Plagas, enfermedades y fisiopatías de las aromáticas en cultivo — datos PROVISIONALES.
+# Fuente única leída el 2026-11-07 (en francés; traducción propia):
+#   BSV PAPAM PACA, «Bilan 2025» (CRIEPPAM y Chambre régionale d'agriculture PACA, abril 2026),
+#   https://draaf.paca.agriculture.gouv.fr/IMG/pdf/bsv_papam_bilan_2025.pdf
+#   Red de vigilancia de lavanda y lavandín (Provenza); las especies de cada fila son las que nombra el boletín.
+# La app NO recomienda tratamientos, productos ni dosis (hard limit de la suite): este catálogo sirve para
+#   apuntar lo que se observa y para que la IA proponga un nombre, nunca qué aplicar.
+# Fuera a propósito: romero, orégano, menta y el resto (no hay fuente leída para ellas). Sin umbrales: el
+#   boletín no los da.
+# Columnas: id; especies (ids de especies_pam.csv separados por |); nombre; nombre_cientifico (vacío si el
+#   boletín no lo da); tipo (plaga / enfermedad / fisiopatia / vector); sintomas; revisado_por.
+# fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
+id,especies,nombre,nombre_cientifico,tipo,sintomas,revisado_por
+cecidomia_lavandin,lavanda|lavandin,Cecidomia del lavandín,,plaga,"Las larvas secan los ramos; la necrosis se acumula de un año a otro, baja el rendimiento y acorta la vida de la plantación","fuente_publica: BSV PAPAM PACA bilan 2025, p. 6"
+arima_marginata,lavanda|lavandin|tomillo_comun|salvia_esclarea,Arima,Arima marginata,plaga,"Ataques de larvas desde marzo","fuente_publica: BSV PAPAM PACA bilan 2025, p. 7"
+cochinilla_lavandin,lavanda|lavandin,Cochinilla del lavandín,,plaga,"Hojas crispadas por las picaduras; en ataques fuertes los tallos se deforman y dan espigas alteradas e improductivas","fuente_publica: BSV PAPAM PACA bilan 2025, p. 7"
+orugas_filofagas,lavanda|lavandin|salvia_esclarea,Orugas filófagas (tipo tortrícido),,plaga,"Orugas que comen las hojas jóvenes y las unen con hilos de seda; la planta toma un aspecto grisáceo","fuente_publica: BSV PAPAM PACA bilan 2025, p. 8"
+noctuidos,salvia_esclarea|lavanda|lavandin,Noctuidos,"Autographa gamma, Heliothis spp.",plaga,"Orugas con daños fuertes en siembras de salvia esclarea; capturas de mariposas en trampas","fuente_publica: BSV PAPAM PACA bilan 2025, p. 9"
+crisomela_americana,lavanda|lavandin,Crisomela americana,Chrysolina americana,plaga,"Presión baja en 2025; el boletín no describe síntomas","fuente_publica: BSV PAPAM PACA bilan 2025, p. 4 (presión baja)"
+hyalesthes_obsoletus,lavanda|lavandin,Cicadela del stolbur,Hyalesthes obsoletus,vector,"Cicadela que transmite el fitoplasma del stolbur cuando lo porta; se sigue con placas engomadas","fuente_publica: BSV PAPAM PACA bilan 2025, pp. 10-11"
+decaimiento_stolbur,lavanda|lavandin,Decaimiento por fitoplasma del stolbur,Fitoplasma del stolbur,enfermedad,"Plantas que decaen y mueren, a veces desde la primera corta; en 2025, del 20 al 50 % de mortalidad en algunas parcelas","fuente_publica: BSV PAPAM PACA bilan 2025, p. 12"
+virus_mosaico_alfalfa,lavandin,Virus del mosaico de la alfalfa (AMV),Alfalfa mosaic virus,enfermedad,"Amarilleos; sobre todo en plantas de vivero no certificado o tras alfalfa","fuente_publica: BSV PAPAM PACA bilan 2025, p. 12"
+clorosis_ferrica,lavandin,Clorosis férrica,,fisiopatia,"Hojas amarillas por bloqueo del hierro; crecimiento lento y, en casos extremos, muerte de la planta","fuente_publica: BSV PAPAM PACA bilan 2025, p. 8"

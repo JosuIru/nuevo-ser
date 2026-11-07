@@ -9,17 +9,17 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
-| 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (titular-explotación, parcela, zona de recolección con permiso, cosecha de parcela **o** zona, secado, destilación, lote de producto, tratamiento, apunte económico, configuración fiscal), 10 tablas en la v1 (`sentenciasEsquemaAromaticasV1`). Dominio puro: `rendimientos.dart` (secado %, aceite % v/p, hidrolato l/kg, comparación con el orientativo, resumen ponderado por especie), `recoleccion.dart` (avisos frente al permiso: sin permiso, fuera de vigencia, especie no incluida, límite de kg, especie protegida; permisos por vencer) y `trazabilidad.dart` (lote → proceso → cosechas → parcela/zona, texto del QR). 26 tests |
+| 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (titular-explotación, parcela, zona de recolección con permiso, cosecha de parcela **o** zona, secado, destilación, lote de producto, tratamiento, apunte económico, configuración fiscal), 10 tablas en la v1 (`sentenciasEsquemaAromaticasV1`). Dominio puro: `rendimientos.dart` (secado %, aceite ml/kg, hidrolato l/kg, comparación con el orientativo, resumen ponderado por especie), `recoleccion.dart` (avisos frente al permiso: sin permiso, fuera de vigencia, especie no incluida, límite de kg, especie protegida; permisos por vencer) y `trazabilidad.dart` (lote → proceso → cosechas → parcela/zona, texto del QR). 26 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
-| 6 Catálogos | pendiente | |
+| 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/aromaticas/`: `especies_pam.csv` (27 especies; nombre científico, familia, parte usada, época orientativa, origen, protección y confundibles; genciana y árnica marcadas con el anexo VI de la Ley 42/2007 y **sin época** a propósito), `rendimientos_orientativos.csv` (29 filas: 15 de aceite en g/kg y 14 de secado en kg/100 kg, todas de las tablas 5 y 8 de la ficha de transformación del CTFC) y `plagas_pam.csv` (10, del BSV PAPAM PACA 2025). Compilador sobre la librería común; consultas en `dominio/catalogos.dart`. Guardarraíl `test/hard_limits_test.dart` (vocabulario de propiedades de salud en lib, catálogos y traducciones). 34 tests |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas).
+**Siguiente acción**: bloque 3 (pantallas; los catálogos del bloque 6 ya están).
 
 ## Encuadre
 
@@ -141,12 +141,27 @@ electrónico desde el 1-1-2027, RD 1039/2025). Fiscalidad en el bloque 9.
   lista de cosechas usadas en JSON y FK al lote o lotes que salen (la
   destilación genera dos: aceite y hidrolato). Borrar un lote deja el proceso
   sin lote (SET NULL); una parcela o zona con cosechas no se borra (RESTRICT).
-- **2026-11-07 — Rendimiento del aceite en % v/p** (ml por 100 g de planta),
-  la unidad habitual de las fichas técnicas; ponderado por kg en los
-  resúmenes. Planta fresca y seca no se mezclan en el resumen.
+- **2026-11-07 — Rendimiento del aceite en ml por kg de planta** (= l/t),
+  ponderado por kg en los resúmenes; planta fresca y seca no se mezclan. La
+  fuente de los orientativos (CTFC) da kg/t: se compara tomando 1 ml ≈ 1 g,
+  con el aviso de que es una orientación (los aceites pesan algo menos que el
+  agua). Se descartó el % v/p: no hay fuente leída que lo use.
 - **2026-11-07 — Límite del permiso en kg frescos totales de la vigencia**
   (todas las especies juntas): es el caso sencillo; si un permiso fija
   límites por especie, se apunta en notas. La app avisa, no bloquea.
+- **2026-11-07 — Bloque 6 antes que el 3**: las pantallas necesitan los
+  nombres de las especies y los avisos de protección; hacerlo al revés
+  obligaba a reescribirlas.
+- **2026-11-07 — Época y confundibles sin fuente leída** pero dentro del
+  catálogo (revisado_por vacío): sin época no hay «en temporada» en Hoy, y
+  las confundibles son avisos de seguridad (genciana/vedegambre,
+  hinojo/cicuta) que es mejor dar que callar.
+- **2026-11-07 — Sin catálogo de fitosanitarios**: el encargo exige
+  contrastar cada sustancia con el Registro del MAPA por cultivo, y para
+  aromáticas los usos autorizados son pocos y dispersos (usos menores). El
+  tratamiento se apunta con texto libre copiado de la etiqueta; va a
+  BLOQUEOS. Plagas solo de lavanda, lavandín, tomillo y salvia esclarea (lo
+  que cubre el boletín leído).
 - **2026-11-07 — Unidades de lote fijas por tipo**: planta en kg, aceite en
   ml, hidrolato en l.
 

@@ -24,10 +24,14 @@ arom.cantidad_disponible,Cantidad que queda ({unidad}),Geratzen den kopurua ({un
 arom.capacidad_alambique,Capacidad del alambique (l),Alanbikearen edukiera (l),Capacitat de l’alambí (l),Capacidade do alambique (l)
 arom.carnet_aplicador,Carné de aplicador,Aplikatzaile txartela,Carnet d’aplicador,Carné de aplicador
 arom.catalogos_provisionales,"Catálogos provisionales: especies, rendimientos y plagas están sin validar por una persona experta.","Behin-behineko katalogoak: espezieak, errendimenduak eta izurriteak aditu batek balioztatu gabe daude.","Catàlegs provisionals: espècies, rendiments i plagues sense validar per una persona experta.","Catálogos provisionais: especies, rendementos e pragas sen validar por unha persoa experta."
+arom.cerrar,Cerrar,Itxi,Tanca,Pechar
 arom.codigo_lote,Código del lote,Lotearen kodea,Codi del lot,Código do lote
 arom.codigo_repetido,Ya hay un lote con ese código.,Badago kode hori duen lote bat.,Ja hi ha un lot amb aquest codi.,Xa hai un lote con ese código.
 arom.codigo_sigpac,Código SIGPAC,SIGPAC kodea,Codi SIGPAC,Código SIXPAC
 arom.comunidad_autonoma,Comunidad autónoma,Autonomia erkidegoa,Comunitat autònoma,Comunidade autónoma
+arom.confianza_alta,Confianza alta,Konfiantza handia,Confiança alta,Confianza alta
+arom.confianza_baja,Confianza baja,Konfiantza txikia,Confiança baixa,Confianza baixa
+arom.confianza_media,Confianza media,Erdiko konfiantza,Confiança mitjana,Confianza media
 arom.copiar_de_etiqueta,Cópialo de la etiqueta,Kopiatu etiketatik,Copia-ho de l’etiqueta,Cópiao da etiqueta
 arom.cosechas,Cosechas,Uztak,Collites,Colleitas
 arom.cosechas_del_anyo,{n} cosechas este año · {kg} kg frescos,{n} uzta aurten · {kg} kg fresko,{n} collites aquest any · {kg} kg frescos,{n} colleitas este ano · {kg} kg frescos
@@ -54,6 +58,7 @@ arom.eficacia,Eficacia,Eraginkortasuna,Eficàcia,Eficacia
 arom.eficacia_buena,Buena,Ona,Bona,Boa
 arom.eficacia_mala,Mala,Txarra,Dolenta,Mala
 arom.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
+arom.elegir_foto,Elegir de la galería,Galeriatik aukeratu,Tria de la galeria,Escoller da galería
 arom.en_temporada,En temporada este mes,Hilabete honetan sasoian,En temporada aquest mes,En tempada este mes
 arom.envase,Envase,Ontzia,Envàs,Envase
 arom.epoca_orientativa,"Época orientativa, sin fuente revisada: manda lo que veas en la planta.","Gutxi gorabeherako sasoia, iturri berrikusirik gabe: landarean ikusten duzunak agintzen du.","Època orientativa, sense font revisada: mana el que vegis a la planta.","Época orientativa, sen fonte revisada: manda o que vexas na planta."
@@ -77,10 +82,26 @@ arom.gps_error,No se pudo leer la ubicación.,Ezin izan da kokapena irakurri.,No
 arom.gps_sin_permiso,Sin permiso de ubicación.,Kokapen baimenik gabe.,Sense permís d’ubicació.,Sen permiso de localización.
 arom.guardado,Guardado,Gordeta,Desat,Gardado
 arom.guardar_igualmente,Guardar igualmente,Hala ere gorde,Desa igualment,Gardar igualmente
+arom.hacer_foto,Hacer una foto,Argazki bat atera,Fes una foto,Facer unha foto
 arom.hasta,hasta el {fecha},{fecha} arte,fins al {fecha},ata o {fecha}
 arom.horas_destilacion,Horas de destilación,Distilazio orduak,Hores de destil·lació,Horas de destilación
 arom.hoy,Hoy,Gaur,Avui,Hoxe
+arom.ia_analizando,Analizando la foto…,Argazkia aztertzen…,S’està analitzant la foto…,Analizando a foto…
+arom.ia_aviso_no_consumo,"Es una propuesta de la IA, no una identificación segura. Nunca sirve para decidir si una planta se puede consumir o usar: compruébala con una clave botánica o con alguien que la conozca.","IAren proposamen bat da, ez identifikazio ziur bat. Ez du inoiz balio landare bat kontsumitu edo erabil daitekeen erabakitzeko: egiaztatu gako botaniko batekin edo ezagutzen duen norbaitekin.","És una proposta de la IA, no una identificació segura. Mai no serveix per decidir si una planta es pot consumir o fer servir: comprova-la amb una clau botànica o amb algú que la conegui.","É unha proposta da IA, non unha identificación segura. Nunca serve para decidir se unha planta se pode consumir ou usar: compróbaa cunha clave botánica ou con alguén que a coñeza."
+arom.ia_error,No se pudo analizar la foto. Revisa la clave y la conexión.,Ezin izan da argazkia aztertu. Berrikusi gakoa eta konexioa.,No s’ha pogut analitzar la foto. Revisa la clau i la connexió.,Non se puido analizar a foto. Revisa a clave e a conexión.
+arom.ia_fuera_catalogo,Puede ser algo que no está en el catálogo.,Katalogoan ez dagoen zerbait izan daiteke.,Pot ser una cosa que no és al catàleg.,Pode ser algo que non está no catálogo.
+arom.ia_identificar,Identificar con foto,Argazkiarekin identifikatu,Identifica amb foto,Identificar con foto
+arom.ia_identificar_especie,Identificar la especie,Espeziea identifikatu,Identifica l’espècie,Identificar a especie
+arom.ia_identificar_plaga,Identificar una plaga en cultivo,Laborantzako izurrite bat identifikatu,Identifica una plaga en cultiu,Identificar unha praga en cultivo
+arom.ia_no_legible,La foto no deja ver lo necesario: repítela más cerca y con luz.,Argazkiak ez du behar dena erakusten: errepikatu gertuago eta argiarekin.,La foto no deixa veure el necessari: repeteix-la més a prop i amb llum.,A foto non deixa ver o necesario: repítea máis preto e con luz.
+arom.ia_propuesta_especie,Propuesta de especie,Espezie proposamena,Proposta d’espècie,Proposta de especie
+arom.ia_propuesta_plaga,Propuesta de plaga,Izurrite proposamena,Proposta de plaga,Proposta de praga
+arom.ia_que_hace,propone la especie de una planta o la plaga de un cultivo a partir de una foto. Es solo una propuesta: no habilita el consumo ni sugiere tratamientos.,landare baten espeziea edo laborantza baten izurritea proposatzen du argazki batetik. Proposamen bat besterik ez da: ez du kontsumoa baimentzen ez tratamendurik iradokitzen.,proposa l’espècie d’una planta o la plaga d’un cultiu a partir d’una foto. És només una proposta: no habilita el consum ni suggereix tractaments.,propón a especie dunha planta ou a praga dun cultivo a partir dunha foto. É só unha proposta: non habilita o consumo nin suxire tratamentos.
+arom.ia_rasgos,Qué comprobar: {rasgos},Zer egiaztatu: {rasgos},Què cal comprovar: {rasgos},Que comprobar: {rasgos}
+arom.ia_revisa_plaga,Es una propuesta: confírmala en el campo o con tu asesor. La app no propone tratamientos.,Proposamen bat da: berretsi landan edo zure aholkulariarekin. Aplikazioak ez du tratamendurik proposatzen.,És una proposta: confirma-la al camp o amb el teu assessor. L’app no proposa tractaments.,É unha proposta: confírmaa no campo ou co teu asesor. A app non propón tratamentos.
+arom.ia_sin_plagas_catalogo,"Ninguna parcela es de una especie con plagas en el catálogo (lavanda, lavandín, tomillo, salvia esclarea).","Lursail bat ere ez da katalogoan izurriteak dituen espezie batekoa (izpilikua, lavandina, ezkaia, salbia esklarea).","Cap parcel·la no és d’una espècie amb plagues al catàleg (espígol, lavandí, farigola, sàlvia esclarea).","Ningunha parcela é dunha especie con pragas no catálogo (lavanda, lavandín, tomiño, salvia esclarea)."
 arom.inicio_vigencia,Inicio de la vigencia,Indarraldiaren hasiera,Inici de la vigència,Inicio da vixencia
+arom.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
 arom.kg_cosechados_anyo,kg cosechados,kg bilduta,kg collits,kg colleitados
 arom.kg_de_limite,{kg} de {limite} kg,{limite} kg-tik {kg},{kg} de {limite} kg,{kg} de {limite} kg
 arom.kg_frescos,kg frescos,kg fresko,kg frescos,kg frescos

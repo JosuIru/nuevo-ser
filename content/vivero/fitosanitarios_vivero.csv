@@ -8,6 +8,8 @@
 #   ornamentales» + «Forestales y ornamentales leñosas»; pino = «Pinos»; tomate = «Tomate»;
 #   pimiento = «Pimiento»; lechuga = «Lechuga y similares» + «Lechuga».
 # Plagas: las de plagas_vivero.csv (columna patrones_registro). usos = grupo:plaga.
+# Filas generadas con content/vivero/generar_fitosanitarios.py (python3 -I generar_fitosanitarios.py
+#   <productos.json del registro> <descarga de la base UE> <salida.csv> <informe.txt>) + esta cabecera.
 # Una mezcla cuenta para cada componente. plazo_seguridad_max_dias = el máximo del registro para esos usos
 #   (criterio de aceitera y Frutal); el rango va en plazo_seguridad_registro. Manda la etiqueta.
 # tipo_accion: deducido de las plagas de sus usos (insecticida, acaricida, fungicida, molusquicida), no de la

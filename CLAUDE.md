@@ -76,7 +76,7 @@ Detalle de cada una en su `CLAUDE.md` + `BLOQUEOS-PENDIENTES.md`.
 
 **Contabilidad**: planificado por vertical (agro/viticultura/apícola como gastos REAGP, arbolado como facturación B2B Facturae). Bloqueado por asesor fiscal humano.
 
-**Deuda técnica conocida — refactor BD compartida (auditoría 2026-05-12 R5)**: las 5 apps Larrea (`agro` + 4 verticales) tienen `lib/datos/base_datos.dart` con **patrón estructural idéntico** (singleton lazy, openDatabase con `_v<N>.db`, migraciones aditivas en `_aplicarMigraciones`) pero **tablas distintas** (cepas/colmenas/árboles/piezas/cultivos). Cada cambio en el patrón base obliga a editar 5 archivos sincronizados a mano. Refactor planificado: extraer una clase `BaseDatosSolera` abstracta a `nuevo_ser_core/src/datos/` con plantilla del singleton + framework de migraciones, y dejar a cada vertical solo el bloque "esquema y migraciones". Bloqueado por: necesidad de tests CRUD que cubran el contrato antes de mover el patrón. Ver `docs/auditoria-2026-05-12.md` riesgo R5.
+**Deuda técnica conocida — refactor BD compartida (auditoría 2026-05-12 R5)**: las 6 apps Larrea (`agro` + 5 verticales) tienen `lib/datos/base_datos.dart` con el mismo patrón (singleton lazy, `openDatabase` sobre `<app>.db` — sin sufijo de versión —, migraciones aditivas) pero tablas distintas y estilos de migración distintos (solo agro usa `_aplicarMigraciones(desde:, hasta:)`; el resto, `if (vieja < N)` en `onUpgrade`). Refactor planificado: extraer `BaseDatosSolera` a `nuevo_ser_core/src/datos/` (plantilla del singleton + framework de migraciones). **Desbloqueado el 2026-11-07**: cada app tiene `test/datos/contrato_base_datos_test.dart` (singleton, esquema nuevo, migración desde cada versión sin perder filas, CRUD por la API pública) y un `soporte_contrato_base_datos.dart` común que puede subir al core con el refactor. **Fallo conocido**: en solera-apicola, `facturas` se crea en el paso `< 3` pero la versión declarada es 2, así que una BD que ya esté en v2 no la recibe; el test está con `skip` hasta subir la versión a 3. Ver `docs/auditoria-2026-05-12.md` riesgo R5.
 
 ## Decisiones cerradas
 
@@ -115,6 +115,16 @@ export PATH="$HOME/flutter/bin:$PATH"
 - **Tests antes del código no visual**: motor, sync, API, persistencia.
 - **Verificar antes de inventar**: APIs Flutter/Melos/WordPress confirmadas o preguntadas.
 - **Respetar tono**: si algo choca con `coleccion-nuevo-ser/coleccion/01-manifiesto.md` → señalar antes de implementar.
+
+## Utilidades (`scripts/`)
+
+Paquetes Dart o scripts independientes (fuera de Melos), creados el 2026-11-07. Cada uno tiene su README.
+
+- `scripts/pendientes/` — tablero de todo lo que espera a una persona: `BLOQUEOS-PENDIENTES.md`, sellos `PROVISIONAL` en código y catálogos sin firma, agrupado por responsable (`dart run bin/pendientes.dart`).
+- `scripts/auditoria/` — lista de comprobación en PDF por vertical y asesor, `firmar` catálogos (`revisado_por=asesor: …`) y `comprobar` qué falta para retirar sellos. **Convención**: solo cuenta como firma humana un `revisado_por` que empiece por `asesor:` o `persona:`; `fuente_publica` o una cita no lo son.
+- `scripts/traducciones/` — exporta ARB a CSV para revisión nativa e importa solo las filas `revisado`, validando placeholders e ICU.
+- `scripts/servidor-grupo/` — zip del plugin social, `montar-servidor.sh` (instala, activa y comprueba; nunca crea personas ni códigos; `--solo-comprobar` para WordPress con datos vivos) y guía en papel.
+- `nuevo_ser_core/src/plazos/` + `content/solera/plazos.csv` — plazos legales de Larrea con fuente BOE (PROVISIONAL). Solo entra un plazo leído en la fuente.
 
 ## Detalle por juego
 

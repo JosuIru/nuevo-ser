@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 9 modelos, 11 tablas en la v1, `ComposicionReceta`; 16 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 (parte A) | Hoy, Recetas (lista, ficha con composición, editor de líneas), Ingredientes (alérgenos y trazas), Autocontrol (mes + alta en hoja), Ajustes (NIF y registro sanitario). 2 tests de pantalla. **Falta (parte B)**: masa madre, pedidos fijos, hornadas con los lotes usados, lotes de ingrediente |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas). Hoy = piezas pedidas para hoy (`piezasPedidasPara`) + controles del día + último refresco de la masa madre. Traducir los alérgenos como `obra.alergeno_<id>`.
+**Siguiente acción**: bloque 3 parte B (masa madre, pedidos fijos, hornadas y lotes de ingrediente; Hoy ya muestra masa madre y pedidos si existen). Después, bloques 4-5 (cuaderno de autocontrol mensual y ficha técnica en PDF).
 
 ## Encuadre
 
@@ -48,5 +48,7 @@ un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
 - Traducciones: `content/solera/traducciones/obrador.csv` (claves `obra.*`), y
   regenerar con `cd packages/nuevo_ser_core && dart run tool/compilar_traducciones_solera.dart`.
   eu/ca/gl son **borrador** hasta la revisión nativa (`scripts/traducciones/`).
+- Recarga entre pestañas: `estado/cambios_datos.dart` (`avisarCambioDatos()` tras guardar).
+- **Ojo**: `setState(() => _futuro = cargar())` devuelve el Future y Flutter lo rechaza; usar cuerpo con llaves. Lo cazó el test de pantalla.
 - Lógica pura en `lib/dominio/` (sin Flutter, con tests).
 - Catálogos: `content/obrador/` → `dart run tool/compilar_catalogos.dart`.

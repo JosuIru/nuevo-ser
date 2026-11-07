@@ -14,6 +14,8 @@ class PantallaAjustes extends StatefulWidget {
 
 class _PantallaAjustesState extends State<PantallaAjustes> {
   final _controladorNombre = TextEditingController();
+  final _controladorNif = TextEditingController();
+  final _controladorRegistro = TextEditingController();
 
   @override
   void initState() {
@@ -24,15 +26,21 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   Future<void> _cargar() async {
     try {
       final titular = await BaseDatosSoleraObrador.instancia.obtenerTitular();
-      if (mounted) _controladorNombre.text = titular.nombre;
+      if (!mounted) return;
+      _controladorNombre.text = titular.nombre;
+      _controladorNif.text = titular.nif;
+      _controladorRegistro.text = titular.registroSanitario;
     } catch (error) {
       debugPrint('No se pudo leer el titular: $error');
     }
   }
 
   Future<void> _guardar() async {
-    await BaseDatosSoleraObrador.instancia
-        .guardarTitular(Titular(nombre: _controladorNombre.text.trim()));
+    await BaseDatosSoleraObrador.instancia.guardarTitular(Titular(
+      nombre: _controladorNombre.text.trim(),
+      nif: _controladorNif.text.trim(),
+      registroSanitario: _controladorRegistro.text.trim(),
+    ));
     if (!mounted) return;
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text(SoleraL10n.t('obra.guardado'))));
@@ -41,6 +49,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   @override
   void dispose() {
     _controladorNombre.dispose();
+    _controladorNif.dispose();
+    _controladorRegistro.dispose();
     super.dispose();
   }
 
@@ -59,6 +69,15 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             controller: _controladorNombre,
             decoration:
                 InputDecoration(labelText: SoleraL10n.t('obra.nombre_titular')),
+          ),
+          TextField(
+            controller: _controladorNif,
+            decoration: const InputDecoration(labelText: 'NIF'),
+          ),
+          TextField(
+            controller: _controladorRegistro,
+            decoration: InputDecoration(
+                labelText: SoleraL10n.t('obra.registro_sanitario')),
           ),
           const SizedBox(height: 12),
           FilledButton(

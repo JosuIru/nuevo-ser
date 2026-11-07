@@ -1,7 +1,10 @@
 // Larrea Obrador — esqueleto generado por scripts/nueva_vertical.sh (2026-11-07).
 //
 //   main() → AppObrador → PantallaPrincipal (NavigationBar + IndexedStack)
-//     ├── Hoy
+//     ├── Hoy          qué hornear, controles del día, masa madre
+//     ├── Recetas      fichas técnicas con alérgenos, coste y sal
+//     ├── Ingredientes alérgenos, trazas, precio
+//     ├── Autocontrol  cuaderno del mes
 //     └── Ajustes
 
 import 'package:flutter/material.dart';
@@ -11,7 +14,10 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import 'branding.dart';
 import 'pantallas/pantalla_ajustes.dart';
+import 'pantallas/pantalla_autocontrol.dart';
 import 'pantallas/pantalla_hoy.dart';
+import 'pantallas/pantalla_ingredientes.dart';
+import 'pantallas/pantalla_recetas.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +61,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     return Scaffold(
       body: IndexedStack(
         index: _pestanaActual,
-        children: const [PantallaHoy(), PantallaAjustes()],
+        children: const [
+          PantallaHoy(),
+          PantallaRecetas(),
+          PantallaIngredientes(),
+          PantallaAutocontrol(),
+          PantallaAjustes(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pestanaActual,
@@ -65,6 +77,18 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           NavigationDestination(
             icon: const Icon(Icons.today_outlined),
             label: SoleraL10n.t('obra.hoy'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.menu_book_outlined),
+            label: SoleraL10n.t('obra.recetas'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.inventory_2_outlined),
+            label: SoleraL10n.t('obra.ingredientes'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.fact_check_outlined),
+            label: SoleraL10n.t('obra.autocontrol'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),

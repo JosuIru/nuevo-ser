@@ -47,6 +47,10 @@ echo "→ flutter create $paquete"
 flutter create --platforms=android,linux --org com.coleccionnuevoser \
   --project-name "$paquete" --description "$nombre" "$destino" >/dev/null
 rm -rf "$destino/test" "$destino/lib/main.dart"
+# Release: INTERNET declarado (en debug Flutter lo añade solo) y nombre visible.
+manifiesto="$destino/android/app/src/main/AndroidManifest.xml"
+sed -i "s|<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\">|&\n    <uses-permission android:name=\"android.permission.INTERNET\" />|" "$manifiesto"
+sed -i "s|android:label=\"$paquete\"|android:label=\"$nombre\"|" "$manifiesto"
 mkdir -p "$destino"/lib/{datos/catalogos_generados,modelos,pantallas,servicios,estado,utiles} \
   "$destino"/test/datos "$destino"/tool "$raiz/content/$id"
 

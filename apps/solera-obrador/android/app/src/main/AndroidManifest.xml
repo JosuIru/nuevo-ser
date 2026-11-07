@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- INTERNET: IA (API de Anthropic) y mapas. En debug Flutter lo añade solo;
+         el release lo necesita declarado aquí. -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:label="solera_obrador"
+        android:label="Larrea Obrador"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

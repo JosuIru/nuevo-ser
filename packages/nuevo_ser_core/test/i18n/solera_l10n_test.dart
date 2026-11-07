@@ -6,9 +6,23 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart';
 
 import '../../tool/compilar_traducciones_solera.dart';
 
-/// Carpetas cuyo código usa `SoleraL10n.t('…')`: las seis apps Larrea, el
-/// core, Fósiles y Naturaleza. (Zunbeltz tiene su propio sistema de idioma.)
-const carpetasConTextosSolera = [
+/// Carpetas cuyo código usa `SoleraL10n.t('…')`: agro, todas las apps
+/// `apps/solera-*` (se descubren solas, también las verticales nuevas), el
+/// core, Fósiles y Naturaleza. Zunbeltz tiene su propio sistema de idioma.
+final carpetasConTextosSolera = [
+  ..._carpetasFijas,
+  if (Directory('../../apps').existsSync())
+    for (final entidad
+        in Directory('../../apps').listSync()
+          ..sort((a, b) => a.path.compareTo(b.path)))
+      if (entidad is Directory &&
+          entidad.path.split('/').last.startsWith('solera-') &&
+          !entidad.path.endsWith('solera-zunbeltz') &&
+          !_carpetasFijas.contains('${entidad.path}/lib'))
+        '${entidad.path}/lib',
+];
+
+const _carpetasFijas = [
   '../../apps/agro/lib',
   '../../apps/solera-viticultura/lib',
   '../../apps/solera-apicola/lib',
@@ -29,8 +43,8 @@ final _llamadaConClave = RegExp(r"SoleraL10n\.tf?\(\s*'([^']*)'");
 /// claves, mapas valor → clave): 'api.de_mes_1', 'acei.tipo_gasto_luz'…
 /// Sin un segundo punto, que es lo que distingue una clave de traducción
 /// de una de preferencias ('agro.mapa.ultimo_lat') o de la BD ('agro.db').
-final _claveSuelta =
-    RegExp(r"'((?:agro|viti|api|arb|ques|acei|core|fos|nat|obra|sidr|frut)\.(?!db')[a-z0-9_]+)'");
+final _claveSuelta = RegExp(
+    r"'((?:agro|viti|api|arb|ques|acei|core|fos|nat|obra|sidr|frut)\.(?!db')[a-z0-9_]+)'");
 
 Map<String, String> _clavesUsadas() {
   final primeraAparicion = <String, String>{};
@@ -64,17 +78,20 @@ void main() {
         reason: 'Ejecuta: dart run tool/compilar_traducciones_solera.dart');
   });
 
-  test('ninguna clave lleva «\$» (Dart la interpolaría y no se encontraría)', () {
+  test('ninguna clave lleva «\$» (Dart la interpolaría y no se encontraría)',
+      () {
     final conDolar = _clavesUsadas().entries.where((e) => e.key.contains(r'$'));
     expect({for (final e in conDolar) e.key: e.value}, isEmpty);
   });
 
-  test('todas las claves usadas existen (si no, se vería la clave en bruto)', () {
+  test('todas las claves usadas existen (si no, se vería la clave en bruto)',
+      () {
     final faltan = {
       for (final e in _clavesUsadas().entries)
         if (!SoleraL10n.clavesDisponibles.contains(e.key)) e.key: e.value,
     };
-    expect(faltan, isEmpty, reason: 'Añádelas a content/solera/traducciones.csv');
+    expect(faltan, isEmpty,
+        reason: 'Añádelas a content/solera/traducciones.csv');
   });
 
   for (final idioma in ['eu', 'ca', 'gl']) {
@@ -101,7 +118,8 @@ void main() {
     final generado = generarCodigoSoleraL10n(
         'clave,es,eu,ca,gl\ncolmenas_n,{n} colmenas,{n} erlauntz,{n} ruscs,{n} colmeas\n');
     expect(generado, contains("static String tf("));
-    expect(SoleraL10n.tf('clave_inexistente_{n}', {'n': 3}), 'clave_inexistente_3');
+    expect(SoleraL10n.tf('clave_inexistente_{n}', {'n': 3}),
+        'clave_inexistente_3');
   });
 
   test('los marcadores coinciden en los cuatro idiomas', () {
@@ -113,14 +131,17 @@ void main() {
       final enCastellano = marcadores(SoleraL10n.t(clave, idioma: 'es'));
       for (final idioma in ['eu', 'ca', 'gl']) {
         final enIdioma = marcadores(SoleraL10n.t(clave, idioma: idioma));
-        if (!setEquals(enCastellano, enIdioma)) distintos.add('$clave ($idioma)');
+        if (!setEquals(enCastellano, enIdioma))
+          distintos.add('$clave ($idioma)');
       }
     }
     expect(distintos, isEmpty);
   });
 
   test('el CSV rechaza claves con «\$», repetidas o sin castellano', () {
-    expect(() => generarCodigoSoleraL10n('clave,es,eu,ca,gl\nerror_\$e,Error,,,\n'),
+    expect(
+        () =>
+            generarCodigoSoleraL10n('clave,es,eu,ca,gl\nerror_\$e,Error,,,\n'),
         throwsFormatException);
     expect(() => generarCodigoSoleraL10n('clave,es,eu,ca,gl\na,A,,,\na,B,,,\n'),
         throwsFormatException);

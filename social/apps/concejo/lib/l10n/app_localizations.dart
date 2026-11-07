@@ -353,7 +353,7 @@ abstract class AppLocalizations {
   /// No description provided for @vecinaAnonima.
   ///
   /// In es, this message translates to:
-  /// **'Vecina del pueblo'**
+  /// **'Participante sin nombre'**
   String get vecinaAnonima;
 
   /// No description provided for @aportar.
@@ -653,7 +653,7 @@ abstract class AppLocalizations {
   /// No description provided for @ejemploAviso.
   ///
   /// In es, this message translates to:
-  /// **'Pueblo de ejemplo: los datos solo están en este dispositivo.'**
+  /// **'Espacio de ejemplo: los datos solo están en este dispositivo.'**
   String get ejemploAviso;
 
   /// No description provided for @eresMesa.
@@ -965,7 +965,7 @@ abstract class AppLocalizations {
   /// No description provided for @rolVecina.
   ///
   /// In es, this message translates to:
-  /// **'vecina'**
+  /// **'participante'**
   String get rolVecina;
 
   /// No description provided for @pendienteModeracion.
@@ -1127,7 +1127,7 @@ abstract class AppLocalizations {
   /// No description provided for @porQueNoSeHara.
   ///
   /// In es, this message translates to:
-  /// **'¿Por qué no se hará? También es información para el pueblo.'**
+  /// **'¿Por qué no se hará? También es información para todo el mundo.'**
   String get porQueNoSeHara;
 
   /// No description provided for @ayudaEntorno.
@@ -1595,19 +1595,19 @@ abstract class AppLocalizations {
   /// No description provided for @entrarTitulo.
   ///
   /// In es, this message translates to:
-  /// **'Entra en tu concejo'**
+  /// **'Entra en tu espacio'**
   String get entrarTitulo;
 
   /// No description provided for @entrarTexto.
   ///
   /// In es, this message translates to:
-  /// **'La mesa te ha dado en papel la dirección de tu pueblo y tu código personal.'**
+  /// **'La mesa te ha dado en papel la dirección y tu código personal.'**
   String get entrarTexto;
 
   /// No description provided for @campoDireccion.
   ///
   /// In es, this message translates to:
-  /// **'Dirección del pueblo'**
+  /// **'Dirección que te ha dado la mesa'**
   String get campoDireccion;
 
   /// No description provided for @campoCodigo.
@@ -1625,7 +1625,7 @@ abstract class AppLocalizations {
   /// No description provided for @verEjemplo.
   ///
   /// In es, this message translates to:
-  /// **'Ver el pueblo de ejemplo'**
+  /// **'Ver un ejemplo'**
   String get verEjemplo;
 
   /// No description provided for @errorCodigo.
@@ -1703,7 +1703,7 @@ abstract class AppLocalizations {
   /// No description provided for @pdfCodigoTexto.
   ///
   /// In es, this message translates to:
-  /// **'Con la app Concejo puedes seguir los asuntos del pueblo, opinar y votar desde casa. Para entrar, escribe estos dos datos:'**
+  /// **'Con la app Concejo puedes seguir los asuntos, opinar y votar desde casa. Para entrar, escribe estos dos datos:'**
   String get pdfCodigoTexto;
 
   /// No description provided for @pdfCodigoGuardalo.
@@ -1751,7 +1751,7 @@ abstract class AppLocalizations {
   /// No description provided for @soloConServidor.
   ///
   /// In es, this message translates to:
-  /// **'Los códigos los da el servidor del pueblo: en el ejemplo no hay.'**
+  /// **'Los códigos los da el servidor: en el ejemplo no hay.'**
   String get soloConServidor;
 
   /// No description provided for @darDeAltaPersona.

@@ -155,7 +155,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get columnaVacia => 'Oraindik inork ez du hemen idatzi.';
 
   @override
-  String get vecinaAnonima => 'Herriko bizilaguna';
+  String get vecinaAnonima => 'Izenik gabeko parte-hartzailea';
 
   @override
   String get aportar => 'Ekarpena egin';
@@ -341,7 +341,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get ejemploAviso =>
-      'Adibideko herria: datuak gailu honetan bakarrik daude.';
+      'Adibideko gunea: datuak gailu honetan bakarrik daude.';
 
   @override
   String eresMesa(String fecha) {
@@ -502,7 +502,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get rolMesa => 'mahaia';
 
   @override
-  String get rolVecina => 'bizilaguna';
+  String get rolVecina => 'parte-hartzailea';
 
   @override
   String get pendienteModeracion => 'Izenik gabe · mahaiaren zain';
@@ -592,7 +592,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get porQueNoSeHara =>
-      'Zergatik ez da egingo? Herriarentzat informazioa ere bada.';
+      'Zergatik ez da egingo? Denontzat informazioa ere bada.';
 
   @override
   String get ayudaEntorno =>
@@ -892,14 +892,14 @@ class AppLocalizationsEu extends AppLocalizations {
   String get descargarActa => 'Akta deskargatu';
 
   @override
-  String get entrarTitulo => 'Sartu zure kontzejuan';
+  String get entrarTitulo => 'Sartu zure gunean';
 
   @override
   String get entrarTexto =>
-      'Mahaiak paperean eman dizu herriaren helbidea eta zure kode pertsonala.';
+      'Mahaiak paperean eman dizu helbidea eta zure kode pertsonala.';
 
   @override
-  String get campoDireccion => 'Herriaren helbidea';
+  String get campoDireccion => 'Mahaiak emandako helbidea';
 
   @override
   String get campoCodigo => 'Zure kodea';
@@ -908,7 +908,7 @@ class AppLocalizationsEu extends AppLocalizations {
   String get entrar => 'Sartu';
 
   @override
-  String get verEjemplo => 'Adibideko herria ikusi';
+  String get verEjemplo => 'Adibide bat ikusi';
 
   @override
   String get errorCodigo =>
@@ -971,7 +971,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get pdfCodigoTexto =>
-      'Concejo aplikazioarekin herriko gaiak jarraitu, iritzia eman eta etxetik bozkatu dezakezu. Sartzeko, idatzi bi datu hauek:';
+      'Concejo aplikazioarekin gaiak jarraitu, iritzia eman eta etxetik bozkatu dezakezu. Sartzeko, idatzi bi datu hauek:';
 
   @override
   String get pdfCodigoGuardalo =>
@@ -1002,7 +1002,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get soloConServidor =>
-      'Kodeak herriko zerbitzariak ematen ditu: adibidean ez dago.';
+      'Kodeak zerbitzariak ematen ditu: adibidean ez dago.';
 
   @override
   String get darDeAltaPersona => 'Norbait alta eman';

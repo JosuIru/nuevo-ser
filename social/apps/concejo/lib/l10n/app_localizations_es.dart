@@ -155,7 +155,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get columnaVacia => 'Nadie ha escrito aquí todavía.';
 
   @override
-  String get vecinaAnonima => 'Vecina del pueblo';
+  String get vecinaAnonima => 'Participante sin nombre';
 
   @override
   String get aportar => 'Aportar';
@@ -341,7 +341,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get ejemploAviso =>
-      'Pueblo de ejemplo: los datos solo están en este dispositivo.';
+      'Espacio de ejemplo: los datos solo están en este dispositivo.';
 
   @override
   String eresMesa(String fecha) {
@@ -502,7 +502,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get rolMesa => 'mesa';
 
   @override
-  String get rolVecina => 'vecina';
+  String get rolVecina => 'participante';
 
   @override
   String get pendienteModeracion => 'Sin nombre · espera a la mesa';
@@ -592,7 +592,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get porQueNoSeHara =>
-      '¿Por qué no se hará? También es información para el pueblo.';
+      '¿Por qué no se hará? También es información para todo el mundo.';
 
   @override
   String get ayudaEntorno =>
@@ -893,14 +893,14 @@ class AppLocalizationsEs extends AppLocalizations {
   String get descargarActa => 'Descargar el acta';
 
   @override
-  String get entrarTitulo => 'Entra en tu concejo';
+  String get entrarTitulo => 'Entra en tu espacio';
 
   @override
   String get entrarTexto =>
-      'La mesa te ha dado en papel la dirección de tu pueblo y tu código personal.';
+      'La mesa te ha dado en papel la dirección y tu código personal.';
 
   @override
-  String get campoDireccion => 'Dirección del pueblo';
+  String get campoDireccion => 'Dirección que te ha dado la mesa';
 
   @override
   String get campoCodigo => 'Tu código';
@@ -909,7 +909,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get entrar => 'Entrar';
 
   @override
-  String get verEjemplo => 'Ver el pueblo de ejemplo';
+  String get verEjemplo => 'Ver un ejemplo';
 
   @override
   String get errorCodigo =>
@@ -972,7 +972,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get pdfCodigoTexto =>
-      'Con la app Concejo puedes seguir los asuntos del pueblo, opinar y votar desde casa. Para entrar, escribe estos dos datos:';
+      'Con la app Concejo puedes seguir los asuntos, opinar y votar desde casa. Para entrar, escribe estos dos datos:';
 
   @override
   String get pdfCodigoGuardalo =>
@@ -1003,7 +1003,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get soloConServidor =>
-      'Los códigos los da el servidor del pueblo: en el ejemplo no hay.';
+      'Los códigos los da el servidor: en el ejemplo no hay.';
 
   @override
   String get darDeAltaPersona => 'Dar de alta a alguien';

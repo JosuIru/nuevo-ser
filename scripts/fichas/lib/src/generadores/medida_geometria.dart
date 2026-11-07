@@ -63,7 +63,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'MED.01',
     descripcion:
         'Las unidades de longitud van de 10 en 10: km, hm, dam, m, dm, cm, mm. Para pasar a una '
-        'unidad más pequeña se multiplica por 10 en cada escalón; a una más grande, se divide.',
+        'unidad más pequeña se multiplica por 10 en cada escalón; a una más grande, se divide.\n'
+        'Ejemplo: 3 m = 30 dm = 300 cm, y 2500 m = 2,5 km.',
     preguntaExplicalo: '¿Por qué al pasar de metros a centímetros el número se hace más grande?',
     generar: (azar) => _conversionEscalera(azar, _longitud, factorPeldano: 10),
   ),
@@ -71,7 +72,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'MED.02',
     descripcion:
         'La masa (kg, g, mg…) y la capacidad (L, dL, mL…) también van de 10 en 10, como la '
-        'longitud: cada escalón hacia abajo multiplica por 10.',
+        'longitud: cada escalón hacia abajo multiplica por 10.\n'
+        'Ejemplo: 2 kg = 2000 g y 350 mL = 0,35 L.',
     preguntaExplicalo: '¿Qué tienen en común los nombres kilómetro, kilogramo y kilolitro? ¿Qué significa «kilo»?',
     generar: (azar) =>
         _conversionEscalera(azar, azar.nextBool() ? _masa : _capacidad, factorPeldano: 10),
@@ -80,7 +82,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'MED.03',
     descripcion:
         'El tiempo no va de 10 en 10, sino de 60 en 60: 1 hora son 60 minutos y 1 minuto son '
-        '60 segundos. Por eso 2 h 30 min son 150 minutos, no 230.',
+        '60 segundos.\n'
+        'Ejemplo: 2 h 30 min son 2 × 60 + 30 = 150 minutos, no 230.',
     preguntaExplicalo: '¿Por qué 1,5 horas no son 1 hora y 50 minutos?',
     generar: (azar) {
       final tipo = azar.nextInt(3);
@@ -103,14 +106,15 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
           renglones: 2,
         );
       }
-      final inicioHora = azar.entre(8, 16);
+      // Una película: dura de hora y cuarto a dos horas y media.
+      final inicioHora = azar.entre(16, 20);
       final inicioMinuto = azar.entre(0, 11) * 5;
-      final duracion = azar.entre(4, 30) * 5;
+      final duracion = azar.entre(15, 30) * 5;
       final fin = inicioHora * 60 + inicioMinuto + duracion;
       String reloj(int hora, int minuto) => '$hora:${minuto.toString().padLeft(2, '0')}';
       return Ejercicio(
-        enunciado: 'Una excursión sale a las ${reloj(inicioHora, inicioMinuto)} y dura '
-            '$duracion minutos. ¿A qué hora vuelve?',
+        enunciado: 'Una película empieza a las ${reloj(inicioHora, inicioMinuto)} y dura '
+            '$duracion minutos. ¿A qué hora termina?',
         solucion: reloj(fin ~/ 60, fin % 60),
         renglones: 3,
       );
@@ -120,7 +124,9 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'MED.04',
     descripcion:
         'Los ángulos se miden en grados (°). Un ángulo recto mide 90°; si mide menos es agudo, '
-        'si mide más (y menos de 180°) es obtuso, y uno de 180° es llano.',
+        'si mide más (y menos de 180°) es obtuso, y uno de 180° es llano.\n'
+        'Ejemplo: un ángulo de 40° es agudo, uno de 120° es obtuso, y a uno de 70° le faltan 20° '
+        'para ser recto.',
     preguntaExplicalo: 'Busca en el aula un ángulo recto, uno agudo y uno obtuso. ¿Dónde están?',
     generar: (azar) {
       if (azar.nextBool()) {
@@ -152,7 +158,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'MED.05',
     descripcion:
         'Las unidades de superficie (m², cm²…) van de 100 en 100, no de 10 en 10: un cuadrado de '
-        '1 m de lado tiene 100 × 100 = 10 000 cm².',
+        '1 m de lado tiene 100 × 100 = 10 000 cm².\n'
+        'Ejemplo: 3 m² = 30 000 cm², y 500 cm² = 5 dm².',
     preguntaExplicalo: '¿Por qué 1 m² son 10 000 cm² y no 100? Haz un dibujo si te ayuda.',
     generar: (azar) =>
         _conversionEscalera(azar, _superficie, factorPeldano: 100, maximoPeldanos: 2),
@@ -161,7 +168,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'MED.06',
     descripcion:
         'Las unidades de volumen van de 1000 en 1000: 1 m³ = 1000 dm³. Y se relacionan con la '
-        'capacidad: 1 dm³ es 1 litro y 1 cm³ es 1 mililitro.',
+        'capacidad: 1 dm³ es 1 litro y 1 cm³ es 1 mililitro.\n'
+        'Ejemplo: 2,5 m³ = 2500 dm³, es decir, 2500 litros.',
     preguntaExplicalo: '¿Por qué una caja de 1 dm de lado tiene 1000 cm³? Explícalo con cubitos.',
     generar: (azar) {
       if (azar.nextBool()) {
@@ -177,7 +185,7 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
               renglones: 2,
             )
           : Ejercicio(
-              enunciado: 'Una botella tiene $cantidad cL. ¿Cuántos cm³ de agua caben?',
+              enunciado: 'Un recipiente tiene una capacidad de $cantidad cL. ¿Cuántos cm³ de agua caben?',
               solucion: '${cantidad * 10}',
               renglones: 2,
             );
@@ -187,11 +195,22 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.01',
     descripcion:
         'Los polígonos se nombran por su número de lados: triángulo (3), cuadrilátero (4), '
-        'pentágono (5), hexágono (6)… Los ángulos pueden ser agudos, rectos u obtusos.',
+        'pentágono (5), hexágono (6)… Los ángulos pueden ser agudos (menos de 90°), rectos (90°) '
+        'u obtusos (más de 90°).\n'
+        'Ejemplo: una señal de stop es un octógono (8 lados), y la esquina de una hoja, un ángulo recto.',
     preguntaExplicalo: '¿Un círculo es un polígono? Explica por qué sí o por qué no.',
     generar: (azar) {
       final lados = azar.entre(3, 10);
-      if (azar.nextBool()) {
+      final tipo = azar.nextInt(3);
+      if (tipo == 2) {
+        final grados = azar.elegir([azar.entre(10, 80), 90, azar.entre(100, 170)]);
+        return Ejercicio(
+          enunciado: 'Un ángulo mide $grados°. ¿Es agudo, recto u obtuso? Dibújalo a ojo.',
+          solucion: _clasificarAngulo(grados),
+          renglones: 3,
+        );
+      }
+      if (tipo == 0) {
         return Ejercicio(
           enunciado: '¿Cómo se llama un polígono de $lados lados? Dibuja uno.',
           solucion: _poligonos[lados]!,
@@ -209,7 +228,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.02',
     descripcion:
         'El perímetro es lo que mide el borde de una figura: la suma de todos sus lados. Se mide '
-        'en unidades de longitud (cm, m…).',
+        'en unidades de longitud (cm, m…).\n'
+        'Ejemplo: un rectángulo de 5 cm por 3 cm tiene 5 + 3 + 5 + 3 = 16 cm de perímetro.',
     preguntaExplicalo: 'Si quieres poner una valla alrededor de un huerto, ¿necesitas el perímetro o el área? ¿Por qué?',
     generar: (azar) {
       final tipo = azar.nextInt(3);
@@ -244,16 +264,18 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.03',
     descripcion:
         'El área es lo que ocupa una figura por dentro. En un rectángulo se calcula multiplicando '
-        'la base por la altura, y se mide en unidades cuadradas (cm², m²).',
+        'la base por la altura, y se mide en unidades cuadradas (cm², m²).\n'
+        'Ejemplo: un rectángulo de 5 cm por 3 cm tiene 5 × 3 = 15 cm² de área.',
     preguntaExplicalo: '¿Por qué el área se mide en cm² y el perímetro en cm?',
     generar: (azar) {
       final esCuadrado = azar.nextInt(3) == 0;
       final base = azar.entre(3, 15);
-      final altura = esCuadrado ? base : azar.entre(2, base);
+      // Un rectángulo «de 7 m por 7 m» sería un cuadrado: el ancho, siempre menor.
+      final altura = esCuadrado ? base : azar.entre(2, base - 1);
       return Ejercicio(
         enunciado: esCuadrado
             ? '¿Cuál es el área de un cuadrado de $base cm de lado?'
-            : 'Una alfombra rectangular mide $base m de largo y $altura m de ancho. ¿Qué área tiene?',
+            : 'Un patio rectangular mide $base m de largo y $altura m de ancho. ¿Qué área tiene?',
         solucion: '${base * altura} ${esCuadrado ? 'cm²' : 'm²'}',
         renglones: 3,
       );
@@ -263,7 +285,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.04',
     descripcion:
         'Un triángulo es la mitad de un rectángulo con su misma base y altura. Por eso su área es '
-        'base por altura entre 2.',
+        'base por altura entre 2.\n'
+        'Ejemplo: un triángulo de 6 cm de base y 4 cm de altura tiene 6 × 4 : 2 = 12 cm².',
     preguntaExplicalo: 'Dibuja un rectángulo y una diagonal. ¿Qué te dice eso del área del triángulo?',
     generar: (azar) {
       late int base, altura;
@@ -281,8 +304,10 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
   PlantillaFicha(
     idHabilidad: 'GEO.05',
     descripcion:
-        'En un círculo de radio r, el borde (circunferencia) mide 2 · π · r y el área es π · r^{2}. '
-        'π es un número que vale más o menos 3,14.',
+        'En un círculo de radio r, el borde (circunferencia) mide 2 × π × r y el área es π × r^{2}. '
+        'π es un número que vale más o menos 3,14.\n'
+        'Ejemplo: con r = 3 cm, la circunferencia mide 2 × 3,14 × 3 = 18,84 cm y el área, '
+        '3,14 × 3 × 3 = 28,26 cm².',
     preguntaExplicalo: 'Si duplicas el radio de un círculo, ¿se duplica también su área? Explícalo.',
     generar: (azar) {
       final radio = azar.entre(1, 10);
@@ -301,7 +326,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.06',
     descripcion:
         'El volumen es lo que ocupa un cuerpo. En un ortoedro (una caja) se multiplican el largo, '
-        'el ancho y el alto, y se mide en unidades cúbicas (cm³, m³).',
+        'el ancho y el alto, y se mide en unidades cúbicas (cm³, m³).\n'
+        'Ejemplo: una caja de 5 cm de largo, 4 cm de ancho y 2 cm de alto tiene 5 × 4 × 2 = 40 cm³.',
     preguntaExplicalo: '¿Cuántos cubitos de 1 cm caben en una caja de 2 × 3 × 4 cm? ¿Cómo lo has contado?',
     generar: (azar) {
       final largo = azar.entre(2, 12);
@@ -318,8 +344,9 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
   PlantillaFicha(
     idHabilidad: 'GEO.08',
     descripcion:
-        'En un triángulo rectángulo, el lado largo (hipotenusa) cumple a^{2} + b^{2} = c^{2}, donde '
-        'a y b son los lados que forman el ángulo recto (catetos).',
+        'En un triángulo rectángulo, los lados que forman el ángulo recto se llaman catetos (a y b) '
+        'y el más largo, hipotenusa (c). Siempre se cumple a^{2} + b^{2} = c^{2}.\n'
+        'Ejemplo: con catetos de 3 cm y 4 cm, c^{2} = 9 + 16 = 25, así que la hipotenusa mide 5 cm.',
     preguntaExplicalo: '¿Sirve el teorema de Pitágoras para cualquier triángulo? ¿Por qué?',
     generar: (azar) {
       final (a, b, c) = azar.elegir(_ternas);
@@ -342,7 +369,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.09',
     descripcion:
         'Dos figuras son semejantes si tienen la misma forma y sus lados son proporcionales. Con '
-        'el teorema de Tales se calculan alturas con sombras: a la misma hora, la razón altura/sombra es igual.',
+        'el teorema de Tales se calculan alturas con sombras: a la misma hora, la razón altura/sombra es igual.\n'
+        'Ejemplo: si un palo de 1 m da 2 m de sombra y un árbol da 10 m, el árbol mide 10 : 2 = 5 m.',
     preguntaExplicalo: '¿Por qué la sombra sirve para medir un árbol sin subirse a él?',
     generar: (azar) {
       if (azar.nextBool()) {
@@ -374,8 +402,9 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
   PlantillaFicha(
     idHabilidad: 'GEO.10',
     descripcion:
-        'Cada polígono tiene su fórmula de área: romboide, base × altura; rombo, (D × d) : 2; '
-        'trapecio, (B + b) × altura : 2. Y un polígono cualquiera se puede partir en triángulos.',
+        'Cada polígono tiene su fórmula de área: romboide, base · altura; rombo, (D · d) : 2; '
+        'trapecio, (B + b) · altura : 2. Y un polígono cualquiera se puede partir en triángulos.\n'
+        'Ejemplo: un rombo de diagonales 6 cm y 4 cm tiene (6 · 4) : 2 = 12 cm².',
     preguntaExplicalo: '¿Por qué el área del rombo se parece a la del triángulo? Haz un dibujo.',
     generar: (azar) {
       final tipo = azar.nextInt(3);
@@ -418,7 +447,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.11',
     descripcion:
         'El volumen de un prisma o de un cilindro es el área de la base por la altura. En un '
-        'cilindro, la base es un círculo: V = π · r^{2} · h.',
+        'cilindro, la base es un círculo: V = π · r^{2} · h.\n'
+        'Ejemplo: un cilindro de 2 cm de radio y 5 cm de altura tiene 3,14 · 2^{2} · 5 = 62,8 cm³.',
     preguntaExplicalo: '¿Por qué el volumen de un prisma es «área de la base por altura»? Piensa en hojas apiladas.',
     generar: (azar) {
       final altura = azar.entre(3, 12);
@@ -448,7 +478,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.12',
     descripcion:
         'Una pirámide o un cono ocupan un tercio del prisma o cilindro con la misma base y altura: '
-        'V = área de la base × h : 3. Una esfera de radio r: V = 4/3 · π · r^{3}.',
+        'V = área de la base · h : 3. Una esfera de radio r: V = 4/3 · π · r^{3}.\n'
+        'Ejemplo: un cono de 3 cm de radio y 4 cm de altura tiene 3,14 · 3^{2} · 4 : 3 = 37,68 cm³.',
     preguntaExplicalo: '¿Cuántos conos llenos de agua necesitas para llenar un cilindro de la misma base y altura?',
     generar: (azar) {
       final tipo = azar.nextInt(3);
@@ -483,7 +514,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     idHabilidad: 'GEO.13',
     descripcion:
         'Pitágoras sirve en muchos problemas: la diagonal de una pantalla, la altura a la que '
-        'llega una escalera apoyada… Busca el triángulo rectángulo escondido.',
+        'llega una escalera apoyada… Busca el triángulo rectángulo escondido.\n'
+        'Ejemplo: una escalera de 5 m con el pie a 3 m de la pared llega a √(25 − 9) = √16 = 4 m de altura.',
     preguntaExplicalo: '¿Cómo encuentras el triángulo rectángulo escondido en un problema? Pon un ejemplo.',
     generar: (azar) {
       final (a, b, c) = azar.elegir(_ternas);
@@ -498,8 +530,8 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
       }
       if (tipo == 1) {
         return Ejercicio(
-          enunciado: 'Un campo rectangular mide $a m por $b m. ¿Cuánto se ahorra al cruzarlo por la '
-              'diagonal en vez de ir por los bordes?',
+          enunciado: 'Un campo rectangular mide $a m por $b m. ¿Cuántos metros te ahorras al cruzarlo '
+              'por la diagonal en vez de ir de una esquina a la opuesta por dos de sus bordes?',
           solucion: '${a + b - c} m',
           renglones: 4,
         );

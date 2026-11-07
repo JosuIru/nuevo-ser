@@ -11,7 +11,7 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
 
 /// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
 /// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP'};
+const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO'};
 
 bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
 
@@ -304,6 +304,45 @@ void main() {
         expect(operaciones.allMatches(expresion).length, greaterThanOrEqualTo(2), reason: expresion);
         expect(ejercicio.solucion, isNot(startsWith('−')), reason: expresion);
         expect(ejercicio.solucion, isNot('0'), reason: expresion);
+      }
+    });
+
+    test('GEO.01: también clasifica ángulos, y bien', () {
+      var deAngulos = 0;
+      final angulo = RegExp(r'^Un ángulo mide (\d+)°');
+      for (final ejercicio in _muestras('GEO.01', semilla: 3, cantidad: 3000)) {
+        final datos = angulo.firstMatch(ejercicio.enunciado);
+        if (datos == null) continue;
+        deAngulos++;
+        final grados = int.parse(datos[1]!);
+        expect(ejercicio.solucion, grados < 90 ? 'agudo' : (grados == 90 ? 'recto' : 'obtuso'));
+      }
+      expect(deAngulos, greaterThan(600));
+    });
+
+    test('GEO.03: un rectángulo nunca tiene el largo igual al ancho', () {
+      final medidas = RegExp(r'rectangular mide (\d+) m de largo y (\d+) m de ancho');
+      var rectangulos = 0;
+      for (final ejercicio in _muestras('GEO.03', semilla: 3, cantidad: 3000)) {
+        final datos = medidas.firstMatch(ejercicio.enunciado);
+        if (datos == null) continue;
+        rectangulos++;
+        final largo = int.parse(datos[1]!), ancho = int.parse(datos[2]!);
+        expect(largo, greaterThan(ancho), reason: ejercicio.enunciado);
+        expect(ejercicio.solucion, '${largo * ancho} m²');
+      }
+      expect(rectangulos, greaterThan(1000));
+    });
+
+    test('MED.03: duraciones creíbles y hora de fin correcta', () {
+      final datos = RegExp(r'a las (\d+):(\d\d) y dura (\d+) minutos');
+      for (final ejercicio in _muestras('MED.03', semilla: 3, cantidad: 3000)) {
+        final encontrado = datos.firstMatch(ejercicio.enunciado);
+        if (encontrado == null) continue;
+        final duracion = int.parse(encontrado[3]!);
+        expect(duracion, greaterThanOrEqualTo(60), reason: ejercicio.enunciado);
+        final fin = int.parse(encontrado[1]!) * 60 + int.parse(encontrado[2]!) + duracion;
+        expect(ejercicio.solucion, '${fin ~/ 60}:${(fin % 60).toString().padLeft(2, '0')}');
       }
     });
 

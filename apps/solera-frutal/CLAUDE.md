@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (titular-explotación, parcela, fila de árboles, contrato de polinización, tratamiento, abonado, riego, cosecha, helada, observación de plaga), 10 tablas en la v1. Dominio puro: `resumen_cosecha.dart` (parte por parcela y campaña, plazo de seguridad abierto) y `polinizacion.dart` (polinizadora compatible en la parcela). 24 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos si no hay parcelas, plazos de seguridad abiertos, colmenas puestas, alta rápida de helada), Parcelas (lista, alta/edición con marco → árboles/ha, ficha con filas y variedades, polinización, seguimiento de plagas y últimos tratamientos), Cuaderno (tratamientos, abonados, riegos y heladas del año), Cosecha (parte por parcela y entregas; aviso si se cosecha dentro del plazo de seguridad), Ajustes (titular y asesor). Altas en hojas inferiores con selector de fecha (`formularios_registros.dart`). 34 tests, 5 de pantalla y un guardarraíl propio de traducciones |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas).
+**Siguiente acción**: bloques 4-5 (cuaderno de explotación y parte de cosecha en PDF).
 
 ## Encuadre
 
@@ -58,6 +58,14 @@ Lo esencial que no se toca (hard limits):
 - **2026-11-07 — Se añadió `ObservacionPlaga`** (no estaba en la ficha): el
   seguimiento de plagas clave de la ficha necesita un apunte de muestreo, y la
   IA del bloque 7 propone una observación, no un tratamiento.
+- **2026-11-07 — Onboarding = tarjeta «Primeros pasos» en Hoy** mientras no
+  haya parcelas, en vez de una pantalla aparte: no hay que recordar si ya se vio.
+- **2026-11-07 — Fecha elegible en todos los registros** (en Obrador quedó
+  pendiente): el cuaderno se rellena a menudo días después.
+- **2026-11-07 — Riegos solo en parcelas de regadío**; borrar un registro es
+  pulsación larga con confirmación.
+- **2026-11-07 — Guardarraíl de traducciones propio** (`test/traducciones_test.dart`):
+  el test del core aún no recorre `apps/solera-frutal/lib`. Pedirlo a la calle N.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Obrador): no hay
   ninguna instalación publicada.
 

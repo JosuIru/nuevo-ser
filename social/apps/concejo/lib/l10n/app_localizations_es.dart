@@ -1170,4 +1170,69 @@ class AppLocalizationsEs extends AppLocalizations {
   String avisoAsambleaAnulada(String titulo, String motivo) {
     return 'Se anula «$titulo»: $motivo';
   }
+
+  @override
+  String get pestanaTablon => 'Tablón';
+
+  @override
+  String get publicarAnuncio => 'Publicar anuncio';
+
+  @override
+  String get tablonVacio =>
+      'No hay anuncios. Lo que antes se pegaba en la puerta del local o del bar, ponlo aquí.';
+
+  @override
+  String get campoTextoAnuncio => 'Texto (si hace falta)';
+
+  @override
+  String get anuncioSinFin => 'Se queda hasta que lo retires';
+
+  @override
+  String anuncioHasta(String fecha) {
+    return 'Hasta el $fecha';
+  }
+
+  @override
+  String get ponerFechaFin => 'Poner un último día';
+
+  @override
+  String get quitarFechaFin => 'Quitar la fecha';
+
+  @override
+  String get fijarAnuncio => 'Fijar arriba';
+
+  @override
+  String get desfijarAnuncio => 'Dejar de fijar';
+
+  @override
+  String get retirarAnuncio => 'Retirar el anuncio';
+
+  @override
+  String get motivoRetiradaAnuncio => 'Por qué se retira';
+
+  @override
+  String get retirarAnuncioPropio => 'Dejará de verse en el tablón.';
+
+  @override
+  String get etiquetaFijado => 'Fijado';
+
+  @override
+  String get anuncioFaltaTitulo => 'Falta el título.';
+
+  @override
+  String anuncioTituloLargo(int maximo) {
+    return 'El título es demasiado largo: como mucho $maximo letras.';
+  }
+
+  @override
+  String anuncioTextoLargo(int maximo) {
+    return 'El texto es demasiado largo: como mucho $maximo letras.';
+  }
+
+  @override
+  String get anuncioHastaPasado => 'Ese día ya ha pasado.';
+
+  @override
+  String get ayudaTablon =>
+      'Lo ve todo el espacio. La mesa puede fijarlo arriba o retirarlo.';
 }

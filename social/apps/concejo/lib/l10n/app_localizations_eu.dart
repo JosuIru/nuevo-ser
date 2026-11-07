@@ -1169,4 +1169,69 @@ class AppLocalizationsEu extends AppLocalizations {
   String avisoAsambleaAnulada(String titulo, String motivo) {
     return '«$titulo» bertan behera: $motivo';
   }
+
+  @override
+  String get pestanaTablon => 'Iragarkiak';
+
+  @override
+  String get publicarAnuncio => 'Iragarkia jarri';
+
+  @override
+  String get tablonVacio =>
+      'Ez dago iragarkirik. Lehen lokaleko edo tabernako atean itsasten zena, jarri hemen.';
+
+  @override
+  String get campoTextoAnuncio => 'Testua (behar bada)';
+
+  @override
+  String get anuncioSinFin => 'Zuk kendu arte geratzen da';
+
+  @override
+  String anuncioHasta(String fecha) {
+    return '$fecha arte';
+  }
+
+  @override
+  String get ponerFechaFin => 'Azken eguna jarri';
+
+  @override
+  String get quitarFechaFin => 'Data kendu';
+
+  @override
+  String get fijarAnuncio => 'Goian finkatu';
+
+  @override
+  String get desfijarAnuncio => 'Finkatzeari utzi';
+
+  @override
+  String get retirarAnuncio => 'Iragarkia kendu';
+
+  @override
+  String get motivoRetiradaAnuncio => 'Zergatik kentzen den';
+
+  @override
+  String get retirarAnuncioPropio => 'Ez da gehiago iragarkietan ikusiko.';
+
+  @override
+  String get etiquetaFijado => 'Finkatuta';
+
+  @override
+  String get anuncioFaltaTitulo => 'Izenburua falta da.';
+
+  @override
+  String anuncioTituloLargo(int maximo) {
+    return 'Izenburua luzeegia da: gehienez $maximo letra.';
+  }
+
+  @override
+  String anuncioTextoLargo(int maximo) {
+    return 'Testua luzeegia da: gehienez $maximo letra.';
+  }
+
+  @override
+  String get anuncioHastaPasado => 'Egun hori pasatu da.';
+
+  @override
+  String get ayudaTablon =>
+      'Gune osoak ikusten du. Mahaiak goian finka edo ken dezake.';
 }

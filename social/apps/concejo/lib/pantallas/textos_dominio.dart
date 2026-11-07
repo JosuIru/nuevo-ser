@@ -3,6 +3,7 @@ library;
 
 import 'package:intl/intl.dart';
 
+import '../dominio/anuncio.dart';
 import '../dominio/asunto.dart';
 import '../dominio/compromiso.dart';
 import '../dominio/consentimiento.dart';
@@ -100,6 +101,15 @@ extension TextosDominio on AppLocalizations {
         ProblemaSesion.sinPuntos => sesionSinPuntos,
         ProblemaSesion.puntoVacio => sesionPuntoVacio,
         ProblemaSesion.puntoRepetido => sesionPuntoRepetido,
+      };
+
+  String problemaAnuncio(ProblemaAnuncio problema) => switch (problema) {
+        ProblemaAnuncio.faltaTitulo => anuncioFaltaTitulo,
+        ProblemaAnuncio.tituloLargo =>
+          anuncioTituloLargo(Anuncio.largoMaximoTitulo),
+        ProblemaAnuncio.textoLargo =>
+          anuncioTextoLargo(Anuncio.largoMaximoTexto),
+        ProblemaAnuncio.hastaPasado => anuncioHastaPasado,
       };
 
   /// «5 de noviembre de 2026»: para el acta, que se lee años después.

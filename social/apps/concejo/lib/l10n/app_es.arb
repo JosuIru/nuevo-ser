@@ -679,5 +679,45 @@
         "type": "String"
       }
     }
-  }
+  },
+  "pestanaTablon": "Tablón",
+  "publicarAnuncio": "Publicar anuncio",
+  "tablonVacio": "No hay anuncios. Lo que antes se pegaba en la puerta del local o del bar, ponlo aquí.",
+  "campoTextoAnuncio": "Texto (si hace falta)",
+  "anuncioSinFin": "Se queda hasta que lo retires",
+  "anuncioHasta": "Hasta el {fecha}",
+  "@anuncioHasta": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "ponerFechaFin": "Poner un último día",
+  "quitarFechaFin": "Quitar la fecha",
+  "fijarAnuncio": "Fijar arriba",
+  "desfijarAnuncio": "Dejar de fijar",
+  "retirarAnuncio": "Retirar el anuncio",
+  "motivoRetiradaAnuncio": "Por qué se retira",
+  "retirarAnuncioPropio": "Dejará de verse en el tablón.",
+  "etiquetaFijado": "Fijado",
+  "anuncioFaltaTitulo": "Falta el título.",
+  "anuncioTituloLargo": "El título es demasiado largo: como mucho {maximo} letras.",
+  "@anuncioTituloLargo": {
+    "placeholders": {
+      "maximo": {
+        "type": "int"
+      }
+    }
+  },
+  "anuncioTextoLargo": "El texto es demasiado largo: como mucho {maximo} letras.",
+  "@anuncioTextoLargo": {
+    "placeholders": {
+      "maximo": {
+        "type": "int"
+      }
+    }
+  },
+  "anuncioHastaPasado": "Ese día ya ha pasado.",
+  "ayudaTablon": "Lo ve todo el espacio. La mesa puede fijarlo arriba o retirarlo."
 }

@@ -2041,6 +2041,120 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Se anula «{titulo}»: {motivo}'**
   String avisoAsambleaAnulada(String titulo, String motivo);
+
+  /// No description provided for @pestanaTablon.
+  ///
+  /// In es, this message translates to:
+  /// **'Tablón'**
+  String get pestanaTablon;
+
+  /// No description provided for @publicarAnuncio.
+  ///
+  /// In es, this message translates to:
+  /// **'Publicar anuncio'**
+  String get publicarAnuncio;
+
+  /// No description provided for @tablonVacio.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay anuncios. Lo que antes se pegaba en la puerta del local o del bar, ponlo aquí.'**
+  String get tablonVacio;
+
+  /// No description provided for @campoTextoAnuncio.
+  ///
+  /// In es, this message translates to:
+  /// **'Texto (si hace falta)'**
+  String get campoTextoAnuncio;
+
+  /// No description provided for @anuncioSinFin.
+  ///
+  /// In es, this message translates to:
+  /// **'Se queda hasta que lo retires'**
+  String get anuncioSinFin;
+
+  /// No description provided for @anuncioHasta.
+  ///
+  /// In es, this message translates to:
+  /// **'Hasta el {fecha}'**
+  String anuncioHasta(String fecha);
+
+  /// No description provided for @ponerFechaFin.
+  ///
+  /// In es, this message translates to:
+  /// **'Poner un último día'**
+  String get ponerFechaFin;
+
+  /// No description provided for @quitarFechaFin.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar la fecha'**
+  String get quitarFechaFin;
+
+  /// No description provided for @fijarAnuncio.
+  ///
+  /// In es, this message translates to:
+  /// **'Fijar arriba'**
+  String get fijarAnuncio;
+
+  /// No description provided for @desfijarAnuncio.
+  ///
+  /// In es, this message translates to:
+  /// **'Dejar de fijar'**
+  String get desfijarAnuncio;
+
+  /// No description provided for @retirarAnuncio.
+  ///
+  /// In es, this message translates to:
+  /// **'Retirar el anuncio'**
+  String get retirarAnuncio;
+
+  /// No description provided for @motivoRetiradaAnuncio.
+  ///
+  /// In es, this message translates to:
+  /// **'Por qué se retira'**
+  String get motivoRetiradaAnuncio;
+
+  /// No description provided for @retirarAnuncioPropio.
+  ///
+  /// In es, this message translates to:
+  /// **'Dejará de verse en el tablón.'**
+  String get retirarAnuncioPropio;
+
+  /// No description provided for @etiquetaFijado.
+  ///
+  /// In es, this message translates to:
+  /// **'Fijado'**
+  String get etiquetaFijado;
+
+  /// No description provided for @anuncioFaltaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta el título.'**
+  String get anuncioFaltaTitulo;
+
+  /// No description provided for @anuncioTituloLargo.
+  ///
+  /// In es, this message translates to:
+  /// **'El título es demasiado largo: como mucho {maximo} letras.'**
+  String anuncioTituloLargo(int maximo);
+
+  /// No description provided for @anuncioTextoLargo.
+  ///
+  /// In es, this message translates to:
+  /// **'El texto es demasiado largo: como mucho {maximo} letras.'**
+  String anuncioTextoLargo(int maximo);
+
+  /// No description provided for @anuncioHastaPasado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese día ya ha pasado.'**
+  String get anuncioHastaPasado;
+
+  /// No description provided for @ayudaTablon.
+  ///
+  /// In es, this message translates to:
+  /// **'Lo ve todo el espacio. La mesa puede fijarlo arriba o retirarlo.'**
+  String get ayudaTablon;
 }
 
 class _AppLocalizationsDelegate

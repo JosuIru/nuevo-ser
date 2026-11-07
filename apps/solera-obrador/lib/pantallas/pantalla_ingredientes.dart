@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/alergenos.dart';
 import '../modelos/ingrediente.dart';
+import '../modelos/lote_ingrediente.dart';
 import '../utiles/textos_obrador.dart';
+import 'hoja_formulario.dart';
 
 /// Materias primas con sus alérgenos, precio y sal.
 class PantallaIngredientes extends StatefulWidget {
@@ -194,11 +197,106 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
           ),
           _selectorAlergenos(SoleraL10n.t('obra.alergenos'), _alergenos),
           _selectorAlergenos(SoleraL10n.t('obra.trazas'), _trazas),
+          if (widget.ingrediente?.id != null)
+            _SeccionLotes(ingredienteId: widget.ingrediente!.id!),
           const SizedBox(height: 24),
           FilledButton(
             onPressed: _guardando ? null : _guardar,
             child: Text(SoleraL10n.t('guardar')),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Lotes recibidos de un ingrediente, con alta rápida.
+class _SeccionLotes extends StatefulWidget {
+  const _SeccionLotes({required this.ingredienteId});
+
+  final int ingredienteId;
+
+  @override
+  State<_SeccionLotes> createState() => _SeccionLotesState();
+}
+
+class _SeccionLotesState extends State<_SeccionLotes> {
+  late Future<List<LoteIngrediente>> _lotes = _cargar();
+
+  Future<List<LoteIngrediente>> _cargar() => BaseDatosSoleraObrador.instancia
+      .listarLotesIngrediente(ingredienteId: widget.ingredienteId);
+
+  Future<void> _recibir() async {
+    final codigo = TextEditingController();
+    final kilos = TextEditingController();
+    final temperatura = TextEditingController();
+    final guardado = await mostrarHojaFormulario(
+      context,
+      titulo: SoleraL10n.t('obra.recibir_lote'),
+      construir: (_) => [
+        campoTexto(codigo, SoleraL10n.t('obra.codigo_lote')),
+        campoNumero(kilos, SoleraL10n.t('obra.cantidad_kg')),
+        campoNumero(temperatura, SoleraL10n.t('obra.temperatura_recepcion')),
+      ],
+      guardar: () async {
+        if (codigo.text.trim().isEmpty) return false;
+        await BaseDatosSoleraObrador.instancia
+            .guardarLoteIngrediente(LoteIngrediente(
+          ingredienteId: widget.ingredienteId,
+          codigoLote: codigo.text.trim(),
+          fechaRecepcionMs: DateTime.now().millisecondsSinceEpoch,
+          cantidadKg: leerNumero(kilos.text) ?? 0,
+          temperaturaRecepcionC: leerNumero(temperatura.text),
+        ));
+        return true;
+      },
+    );
+    for (final controlador in [codigo, kilos, temperatura]) {
+      controlador.dispose();
+    }
+    if (guardado) {
+      avisarCambioDatos();
+      setState(() {
+        _lotes = _cargar();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<LoteIngrediente>>(
+      future: _lotes,
+      builder: (context, instantanea) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Expanded(
+                child: Text(SoleraL10n.t('obra.lotes'),
+                    style: Theme.of(context).textTheme.titleSmall),
+              ),
+              TextButton.icon(
+                onPressed: _recibir,
+                icon: const Icon(Icons.add),
+                label: Text(SoleraL10n.t('obra.recibir_lote')),
+              ),
+            ],
+          ),
+          for (final lote in instantanea.data ?? const <LoteIngrediente>[])
+            ListTile(
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              title: Text(lote.codigoLote),
+              subtitle: Text([
+                DateFormat.yMMMd(SoleraL10n.idioma).format(
+                    DateTime.fromMillisecondsSinceEpoch(lote.fechaRecepcionMs)),
+                if (lote.cantidadKg > 0)
+                  '${formatearNumero(lote.cantidadKg)} kg',
+                if (lote.temperaturaRecepcionC != null)
+                  '${formatearNumero(lote.temperaturaRecepcionC!)} °C',
+              ].join(' · ')),
+            ),
         ],
       ),
     );

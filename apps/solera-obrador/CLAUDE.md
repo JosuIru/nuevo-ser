@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 9 modelos, 11 tablas en la v1, `ComposicionReceta`; 16 tests |
-| 3 Pantallas | ✅ 2026-11-07 (parte A) | Hoy, Recetas (lista, ficha con composición, editor de líneas), Ingredientes (alérgenos y trazas), Autocontrol (mes + alta en hoja), Ajustes (NIF y registro sanitario). 2 tests de pantalla. **Falta (parte B)**: masa madre, pedidos fijos, hornadas con los lotes usados, lotes de ingrediente |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy, Recetas, Ingredientes (con lotes recibidos), Autocontrol, Ajustes. Desde la cabecera de Hoy: Hornadas (propone las piezas pedidas y el código de lote; marca los lotes usados de los ingredientes directos), Pedidos fijos y Masa madre. 19 tests, 3 de pantalla |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 parte B (masa madre, pedidos fijos, hornadas y lotes de ingrediente; Hoy ya muestra masa madre y pedidos si existen). Después, bloques 4-5 (cuaderno de autocontrol mensual y ficha técnica en PDF).
+**Siguiente acción**: bloques 4-5. (4) Cuaderno de autocontrol mensual en PDF con `informe_periodico` del core y sello PROVISIONAL, con la guía vasca como referencia de columnas. (5) Ficha técnica (ingredientes por peso, alérgenos en negrita, sal estimada) + cartel de alérgenos del mostrador. Ver aceitera `servicios/generador_cuaderno_pac_pdf.dart` como modelo.
 
 ## Encuadre
 
@@ -40,6 +40,7 @@ un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
   (`ComposicionReceta`); una receta que se contiene a sí misma es un error.
 - **2026-11-07 — Integridad**: no se puede borrar un ingrediente ni un lote en
   uso (`ON DELETE RESTRICT`); borrar una receta se lleva sus líneas.
+- **2026-11-07 — Lotes en la hornada**: solo se ofrecen los de los ingredientes *directos* de la receta; los de una base se apuntan al hacer la base (pendiente: hornada de subreceta).
 - **2026-11-07 — Importes en céntimos** (como aceitera), no en REAL como la quesera.
 
 ## Datos técnicos

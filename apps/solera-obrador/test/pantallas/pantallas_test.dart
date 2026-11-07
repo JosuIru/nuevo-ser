@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:solera_obrador/datos/base_datos.dart';
+import 'package:solera_obrador/modelos/hornada.dart';
+import 'package:solera_obrador/modelos/masa_madre.dart';
 import 'package:solera_obrador/modelos/pedido_fijo.dart';
 import 'package:solera_obrador/modelos/receta.dart';
+import 'package:solera_obrador/pantallas/pantalla_hornadas.dart';
 import 'package:solera_obrador/pantallas/pantalla_hoy.dart';
+import 'package:solera_obrador/pantallas/pantalla_masa_madre.dart';
+import 'package:solera_obrador/pantallas/pantalla_pedidos_fijos.dart';
 import 'package:solera_obrador/pantallas/pantalla_ingredientes.dart';
 
 import '../datos/soporte_contrato_base_datos.dart';
@@ -64,5 +69,38 @@ void main() {
     });
     expect(find.text('Pan de pueblo'), findsOneWidget);
     expect(find.text('12'), findsWidgets);
+  });
+
+  testWidgets('pedidos fijos, masa madre y hornadas se listan', (tester) async {
+    await tester.runAsync(() async {
+      final pan = await baseDatos.guardarReceta(Receta(nombre: 'Barra'));
+      await baseDatos.guardarPedidoFijo(PedidoFijo(
+          cliente: 'Bar Txoko', recetaId: pan, piezas: 8, diasSemana: {1, 5}));
+      final masa = await baseDatos
+          .guardarMasaMadre(MasaMadre(nombre: 'Centeno', creadaMs: 0));
+      await baseDatos.guardarRefresco(RefrescoMasaMadre(
+          masaMadreId: masa,
+          fechaMs: 0,
+          gramosMasaMadre: 50,
+          gramosHarina: 100,
+          gramosAgua: 100));
+      await baseDatos.guardarHornada(Hornada(
+          recetaId: pan,
+          fechaMs: DateTime.now().millisecondsSinceEpoch,
+          piezas: 40,
+          codigoLote: 'L-7'));
+    });
+    for (final (pantalla, esperado) in [
+      (const PantallaPedidosFijos(), 'Bar Txoko · Barra'),
+      (const PantallaMasaMadre(), '1:2:2 · 100 %'),
+      (const PantallaHornadas(), 'Barra · 40'),
+    ]) {
+      await tester.runAsync(() async {
+        await tester.pumpWidget(MaterialApp(home: pantalla));
+        await Future<void>.delayed(const Duration(milliseconds: 300));
+        await tester.pumpAndSettle();
+      });
+      expect(find.text(esperado), findsOneWidget, reason: '$pantalla');
+    }
   });
 }

@@ -11,6 +11,9 @@ import '../modelos/receta.dart';
 import '../modelos/registro_autocontrol.dart';
 import '../utiles/textos_obrador.dart';
 import 'pantalla_autocontrol.dart';
+import 'pantalla_hornadas.dart';
+import 'pantalla_masa_madre.dart';
+import 'pantalla_pedidos_fijos.dart';
 
 /// Lo del día: qué hornear (pedidos fijos), controles apuntados y la masa
 /// madre.
@@ -73,6 +76,9 @@ class _PantallaHoyState extends State<PantallaHoy> {
     return _DatosHoy(piezas, recetas, controles, ultimo);
   }
 
+  Future<void> _abrir(Widget pantalla) =>
+      Navigator.push(context, MaterialPageRoute(builder: (_) => pantalla));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,6 +102,23 @@ class _PantallaHoyState extends State<PantallaHoy> {
               CabeceraHoySolera(
                 titulo: 'Larrea Obrador',
                 fecha: fecha,
+                acciones: [
+                  IconButton(
+                    tooltip: SoleraL10n.t('obra.hornadas'),
+                    icon: const Icon(Icons.local_fire_department_outlined),
+                    onPressed: () => _abrir(const PantallaHornadas()),
+                  ),
+                  IconButton(
+                    tooltip: SoleraL10n.t('obra.pedidos_fijos'),
+                    icon: const Icon(Icons.event_repeat_outlined),
+                    onPressed: () => _abrir(const PantallaPedidosFijos()),
+                  ),
+                  IconButton(
+                    tooltip: SoleraL10n.t('obra.masa_madre'),
+                    icon: const Icon(Icons.bubble_chart_outlined),
+                    onPressed: () => _abrir(const PantallaMasaMadre()),
+                  ),
+                ],
                 cifras: [
                   CifraCabecera(
                       valor: '$totalPiezas',

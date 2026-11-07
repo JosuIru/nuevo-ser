@@ -16,10 +16,13 @@ const List<String> regimenesFiscalesMonte = [
 ];
 
 /// Compensación del REAGP para productos agrícolas **y forestales**, en %.
-/// **PROVISIONAL**. Fuente leída el 2026-11-07 por la vertical Frutal: Ley
-/// 37/1992 del IVA, art. 130.Cinco, texto consolidado,
-/// https://www.boe.es/buscar/pdf/1992/BOE-A-1992-28740-consolidado.pdf
-/// (12 % agrícolas y forestales). Lo confirma el asesor fiscal.
+/// **PROVISIONAL**. Ley 37/1992 del IVA, art. 130.Cinco.1.º, texto
+/// consolidado (https://www.boe.es/buscar/act.php?id=BOE-A-1992-28740,
+/// última actualización publicada el 07/10/2026, leído el 2026-11-07): «El
+/// 12 por 100, en las entregas de productos naturales obtenidos en
+/// explotaciones agrícolas o forestales». Si la madera en pie o un
+/// aprovechamiento vecinal es «entrega de productos naturales» de la
+/// explotación lo confirma el asesor fiscal.
 const double compensacionReagpForestalPorcentaje = 12;
 
 /// IVA que la app propone en régimen general para la madera y la leña.

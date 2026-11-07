@@ -10,9 +10,10 @@
 #     en metros cúbicos (umbrales de menor cuantía). https://www.boe.es/buscar/act.php?id=BOE-A-2003-21339
 # El estéreo es el metro cúbico de leña APILADA, con huecos: cuánta madera hay dentro depende del grosor, la
 #   rectitud y cómo se apila. 0,65 es una media; la app lo usa solo para comparar con lo previsto en el plan.
-# Toneladas: sin conversión a volumen (el peso por m³ depende de la especie y la humedad).
+# Toneladas: sin conversión a volumen. FAO, «Factores de conversión útiles» (anexo 4,
+#   https://www.fao.org/4/X5595S/X5595S19.htm): un estéreo pesa de 550 a 900 kg según especie y secado.
 # fuente_publica = revisión documental, NO firma: solo asesor:/persona: retiran el banner.
 id,nombre,simbolo,m3_por_unidad,nota,fuente,revisado_por
 m3,Metro cúbico,m³,1,Madera sólida (en rollo o en pie),Definición,"fuente_publica: Ley 43/2003, art. 37.2.b"
 estereos,Estéreo,est,0.65,"Metro cúbico de leña apilada; el factor real depende del grosor y del apilado","FAO, Padovani, tabla 2","fuente_publica: FAO, The Measurement of Forest products, tabla 2 (1 estéreo = 0,65 m³ sólidos sin corteza)"
-toneladas,Tonelada,t,,"Sin conversión a volumen: depende de la especie y la humedad",,
+toneladas,Tonelada,t,,"Sin conversión a volumen: depende de la especie y la humedad","FAO, Factores de conversión útiles, anexo 4","fuente_publica: FAO, Factores de conversión útiles (anexo 4): el peso de un estéreo va de 550 a 900 kg según especie y secado, https://www.fao.org/4/X5595S/X5595S19.htm"

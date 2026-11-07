@@ -2,7 +2,7 @@
 //
 // Fuente: content/monte/unidades_volumen.csv
 // Generado: 2026-11-07
-// Filas: 3 (0 firmadas por persona, 2 con alguna revisión, 1 sin revisar)
+// Filas: 3 (0 firmadas por persona, 3 con alguna revisión, 0 sin revisar)
 //
 // ⚠ DATOS PROVISIONALES SIN VALIDAR.
 // La app muestra un banner mientras este flag siga activo.
@@ -53,6 +53,7 @@ const List<UnidadVolumen> catalogoUnidades = [
       simbolo: 't',
       m3PorUnidad: null,
       nota: 'Sin conversión a volumen: depende de la especie y la humedad',
-      fuente: '',
-      revisadoPor: ''),
+      fuente: 'FAO, Factores de conversión útiles, anexo 4',
+      revisadoPor:
+          'fuente_publica: FAO, Factores de conversión útiles (anexo 4): el peso de un estéreo va de 550 a 900 kg según especie y secado, https://www.fao.org/4/X5595S/X5595S19.htm'),
 ];

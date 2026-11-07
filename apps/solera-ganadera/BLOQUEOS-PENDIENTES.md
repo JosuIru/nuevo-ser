@@ -16,6 +16,16 @@ y sigue. Lo recoge `scripts/pendientes/`.
   campaña en cada comunidad, si la hembra vacuna adulta cuenta 0,8 o 1,0, cómo
   tratar la cerda de cría sin peso y cómo cuentan comunales y arrendados.
 
+## Catálogos
+
+- `razas.csv`: comprobar contra la versión vigente del Catálogo Oficial de Razas
+  (el anexo I del RD 45/2019 se actualiza por orden; se leyó el consolidado de
+  21/06/2023) y firmar las cuatro razas añadidas sin fuente.
+- `sustancias_activas.csv`: el contraste con CIMA Vet solo mira que haya
+  medicamentos autorizados; un veterinario debe confirmar la lista y la clase
+  (alopático/antiparasitario) a efectos del Reglamento (UE) 2018/848.
+- `tabla_ugm.csv` (filas de Andalucía): sin revisar en esta vertical.
+
 ## Revisión nativa eu/ca/gl
 
 - Textos de `content/solera/traducciones/ganadera.csv` (borrador, 2026-11-07).

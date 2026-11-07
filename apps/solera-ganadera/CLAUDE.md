@@ -12,14 +12,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 2 Modelos + BD | ✅ 2026-11-07 | Dominio de ganado copiado de Zunbeltz (`92ade2b`) sin sync ni permisos; explotación, titular, piezas de pasto, visitas, calendario sanitario y apuntes. 10 tablas en la v1. Tabla UGM por trámite (PAC anexo V y Andalucía) como catálogo. 48 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas Hoy (dónde está cada rebaño con su carga, avisos de 14 días, primeros pasos), Rebaños (ficha con animales, movimientos y manejo; ficha del animal con su historia), Pastos (piezas con ocupación y UGM/ha), Manejo (calendario sanitario y visitas), Ajustes (titular y explotación). Lógica pura en `dominio/` (ocupación, calendario). 58 tests, 5 de pantalla |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: **libro de registro** por año (apartados 1-11 del anexo V del RD 787/2023 + tratamientos del art. 41 RD 666/2023) e **informe del eco-régimen de pastoreo** por campaña y tabla UGM (art. 30.2 RD 1048/2022). Desde la ficha del rebaño, el **documento de movimiento** de cada entrada o salida (anexo del RD 728/2007 según la DF 3.ª del RD 787/2023). Tablas puras con test, sello y marca de agua PROVISIONAL. 67 tests |
-| 6 Catálogos | pendiente | |
+| 6 Catálogos | ✅ 2026-11-07 | `content/ganadera/`: tabla UGM por trámite, parámetros del eco-régimen, especies, razas (RD 45/2019 anexo I) y 24 sustancias activas **sin marcas, dosis ni tiempos de espera**, contrastadas con la API de CIMA Vet. Autocompletado de raza y sustancia; la clase de medicamento sale del catálogo si no se indica. Tests de integridad (cobertura de la tabla UGM, sin firmas falsas). 76 tests |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 6 (catálogos: tests de integridad y uso en pantalla; los CSV ya están desde el bloque 2).
+**Siguiente acción**: bloque 7 (IA: lectura de la receta veterinaria).
 
 ## Encuadre
 
@@ -117,6 +117,15 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
 - **2026-11-07 — El documento de movimiento sale para entradas, salidas, altas
   y bajas parciales** (los traslados internos no lo necesitan) y deja en blanco
   las conformidades para firmar.
+- **2026-11-07 — Sustancias activas sin tiempos de espera**: el plazo de
+  supresión lo pone siempre la receta (hard limit 1). Cada fila se contrastó con
+  la API REST pública de CIMA Vet (AEMPS) el 2026-11-07 (`revision-ia:`, con el
+  número de medicamentos autorizados en la primera página). Se quitaron las que no
+  daban ninguno autorizado (oxfendazol, netobimina, praziquantel, diazinón).
+- **2026-11-07 — Razas sin clasificación** (de fomento, amenazada…): la lectura
+  del anexo I del RD 45/2019 salió de un resumen automático y la clasificación era
+  dudosa. Merina, Manchega, Castellana y Murciano-Granadina se añadieron sin verlas
+  en ese texto (sin `revisado_por`). «Cruce» por especie, sin fuente.
 - **2026-11-07 — Fechas con selector** en movimientos, eventos, tareas y visitas
   (en Obrador se apuntaba con la fecha actual).
 

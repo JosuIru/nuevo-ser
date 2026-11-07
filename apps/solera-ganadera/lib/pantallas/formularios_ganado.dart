@@ -3,8 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_especies.dart';
-import '../datos/catalogos_generados/catalogo_razas.dart';
 import '../datos/catalogos_generados/catalogo_sustancias_activas.dart';
+import '../dominio/busqueda_catalogos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/ganado.dart';
 import '../modelos/ganado_ecologico.dart';
@@ -148,9 +148,7 @@ Future<void> mostrarEdicionAnimal(BuildContext context, LoteGanado lote,
   DateTime? nacimiento = existente?.fechaNacimientoMs == null
       ? null
       : DateTime.fromMillisecondsSinceEpoch(existente!.fechaNacimientoMs!);
-  final razas = catalogoRazas
-      .where((raza) => raza.especie == especieAnimal)
-      .map((raza) => raza.nombre);
+  final razas = razasDeEspecie(especieAnimal);
   final guardado = await mostrarHojaFormulario(
     context,
     titulo: SoleraL10n.t(
@@ -443,7 +441,10 @@ Future<void> mostrarAltaEvento(BuildContext context, LoteGanado lote,
         descripcion: descripcion.text.trim(),
         medicamento: medicamento.text.trim(),
         sustanciaActiva: sustancia.text.trim(),
-        claseMedicamento: clase,
+        // Sin clase indicada, la del catálogo si la sustancia está en él.
+        claseMedicamento: clase.isNotEmpty
+            ? clase
+            : buscarSustanciaActiva(sustancia.text)?.clase ?? '',
         dosis: dosis.text.trim(),
         duracionDias: leerEntero(duracion.text) ?? 0,
         plazoSupresionCarneDias: leerEntero(esperaCarne.text) ?? 0,

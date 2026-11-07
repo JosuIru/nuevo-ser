@@ -8,7 +8,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 
 ## Estado
 
-**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-6.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 92 tests de Flutter y 96 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
+**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-7.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 101 tests de Flutter y 121 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
 
 | Bloque | Contenido | Estado |
 |---|---|---|
@@ -18,7 +18,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 | F1C-4 | Canal en papel: hoja del asunto (tablón), papeletas para recortar (u hoja de objeciones) y hoja de recuento en PDF (`lib/documentos/`, letra del core); pantalla «Votos en persona» para anotar a quien vota en papel, dar de alta a quien no está y pasar el conteo firmado por dos de la mesa; la mesa recoge aportaciones y objeciones dichas en persona. El «modo asamblea» a mano alzada es esa misma pantalla | ✅ |
 | F1C-5 | Acta en PDF con marca BORRADOR hasta que la firme la mesa | ✅ |
 | F1C-6 | Servidor y sincronización: plugin de WordPress **aparte** (`social/wp-plugin/concejo/`, sin tocar Zunbeltz), reglas repetidas en PHP con test de paridad, cola de acciones sin red, entrar con código en papel, la mesa saca códigos e imprime la hoja | ✅ |
-| F1C-7 | Avisos mínimos y correo semanal | ⏳ |
+| F1C-7 | Avisos mínimos en la app («Para ti» y etiqueta «Nuevo») y resumen semanal por correo desde el plugin, con baja | ✅ |
 | F1C-8 | APK de release y pueblo piloto | ⏳ |
 
 ## Estructura
@@ -37,7 +37,7 @@ lib/
     acta.dart              firmas del acta (dos de la mesa) y compromisos fijados al firmar
   documentos/   PDF: canal en papel (hoja del asunto, papeletas, recuento) y acta
   datos/        el estado en JSON (caché y servidor)
-  estado/       EstadoConcejo, las acciones (AccionConcejo) y el pueblo de ejemplo
+  estado/       EstadoConcejo, las acciones (AccionConcejo), los avisos y el pueblo de ejemplo
   servidor/     cliente HTTP, sincronizador (cola sin red) y almacén local
   pantallas/    interfaz
   l10n/         ARB es/eu y código generado (`flutter gen-l10n`)
@@ -57,6 +57,15 @@ lib/
 - **Los motivos de rechazo del servidor solo están en castellano.**
 
 Probar contra un WordPress: `CONCEJO_SERVIDOR=http://… CONCEJO_CODIGO_MESA=… CONCEJO_CODIGO_VECINA=… flutter test test/servidor/servidor_real_test.dart` (escribe en ese servidor). Cómo montar uno desechable: `social/wp-plugin/concejo/README.md`.
+
+## Avisos y correo (F1C-7)
+
+- **Avisos en la app** (`lib/estado/avisos.dart`), calculados del estado, sin notificaciones del sistema: asunto nuevo (dos semanas), últimos dos días para decidir (solo a quien no ha votado; en consentimiento, a todo el mundo), resultado (dos semanas), compromiso que vence en tres días o vencido (a quien lo tiene y a la mesa) y fin de mandato (dos semanas antes).
+  - Arriba, en «Para ti», solo lo que pide hacer algo; «nuevo» y «hay resultado» van como etiqueta en la tarjeta y se quitan al abrir el asunto.
+  - Los quitados se recuerdan por persona en el teléfono (`concejo.avisos_vistos`).
+  - **El responsable de un compromiso es texto libre**: se reconoce a la persona por su nombre (sin mayúsculas ni espacios de más). Si en el piloto hace falta, se añade un `responsableUid` opcional.
+- **Resumen semanal** (`wp-plugin/concejo/includes/correo.php`): los lunes, en texto plano, a quien tiene correo apuntado en Ajustes → Concejo y no lo ha apagado. No se manda si no hay nada. La baja va por enlace firmado y botón. El correo de cada persona no baja nunca a la app. **Solo en castellano** por ahora.
+- **Push al móvil**: no hay. Haría falta un servicio externo (FCM) y el criterio es avisar poco; queda para después del piloto si se echa en falta.
 
 ## Decisiones tomadas en el código (revisables con el piloto)
 

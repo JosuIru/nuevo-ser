@@ -4413,6 +4413,8 @@ class SoleraL10n {
     'sidr.aplicador',
     'sidr.apuntes',
     'sidr.arboles_por_ha',
+    'sidr.asesor',
+    'sidr.asesor_opcional',
     'sidr.av',
     'sidr.aviso_acidez_volatil_alta',
     'sidr.aviso_densidad_mosto_baja',
@@ -4510,6 +4512,8 @@ class SoleraL10n {
     'sidr.embotellar',
     'sidr.en_bodega',
     'sidr.entradas_fruta',
+    'sidr.equipo_aplicacion',
+    'sidr.equipo_aplicacion_ayuda',
     'sidr.error_cargar',
     'sidr.error_documento',
     'sidr.estado_fruta',
@@ -4611,19 +4615,21 @@ class SoleraL10n {
     'sidr.partidas_sin_prensar',
     'sidr.pdf_a',
     'sidr.pdf_al_cierre',
+    'sidr.pdf_aplicador_asesor',
     'sidr.pdf_arboles',
     'sidr.pdf_balance',
     'sidr.pdf_cantidad',
-    'sidr.pdf_carne',
     'sidr.pdf_concepto',
     'sidr.pdf_contraetiquetas',
     'sidr.pdf_contraetiquetas_usadas',
     'sidr.pdf_cosecha_propia',
+    'sidr.pdf_cultivo_variedad',
     'sidr.pdf_de',
     'sidr.pdf_documento',
     'sidr.pdf_embotellado',
     'sidr.pdf_entra',
     'sidr.pdf_envasado',
+    'sidr.pdf_equipo',
     'sidr.pdf_etiquetado',
     'sidr.pdf_existencias',
     'sidr.pdf_fruta_entrada',
@@ -4632,13 +4638,16 @@ class SoleraL10n {
     'sidr.pdf_litros_txotx',
     'sidr.pdf_lote',
     'sidr.pdf_n_etiquetas',
+    'sidr.pdf_n_orden',
     'sidr.pdf_n_registro',
+    'sidr.pdf_nombre_comercial_a_mano',
     'sidr.pdf_origen',
     'sidr.pdf_parcelas',
     'sidr.pdf_partida',
     'sidr.pdf_partidas',
     'sidr.pdf_plantacion',
     'sidr.pdf_presion',
+    'sidr.pdf_producto',
     'sidr.pdf_registrada',
     'sidr.pdf_registro_entrada',
     'sidr.pdf_resumen_libro',
@@ -4679,6 +4688,7 @@ class SoleraL10n {
     'sidr.regimen_reagp',
     'sidr.registrada_dop',
     'sidr.registrada_dop_ayuda',
+    'sidr.registro_explotacion',
     'sidr.registro_sanitario',
     'sidr.resultado',
     'sidr.resumen_txotx',
@@ -9661,6 +9671,8 @@ class SoleraL10n {
           'sidr.aplicador',
           'sidr.apuntes',
           'sidr.arboles_por_ha',
+          'sidr.asesor',
+          'sidr.asesor_opcional',
           'sidr.av',
           'sidr.aviso_acidez_volatil_alta',
           'sidr.aviso_densidad_mosto_baja',
@@ -9758,6 +9770,8 @@ class SoleraL10n {
           'sidr.embotellar',
           'sidr.en_bodega',
           'sidr.entradas_fruta',
+          'sidr.equipo_aplicacion',
+          'sidr.equipo_aplicacion_ayuda',
           'sidr.error_cargar',
           'sidr.error_documento',
           'sidr.estado_fruta',
@@ -9859,19 +9873,21 @@ class SoleraL10n {
           'sidr.partidas_sin_prensar',
           'sidr.pdf_a',
           'sidr.pdf_al_cierre',
+          'sidr.pdf_aplicador_asesor',
           'sidr.pdf_arboles',
           'sidr.pdf_balance',
           'sidr.pdf_cantidad',
-          'sidr.pdf_carne',
           'sidr.pdf_concepto',
           'sidr.pdf_contraetiquetas',
           'sidr.pdf_contraetiquetas_usadas',
           'sidr.pdf_cosecha_propia',
+          'sidr.pdf_cultivo_variedad',
           'sidr.pdf_de',
           'sidr.pdf_documento',
           'sidr.pdf_embotellado',
           'sidr.pdf_entra',
           'sidr.pdf_envasado',
+          'sidr.pdf_equipo',
           'sidr.pdf_etiquetado',
           'sidr.pdf_existencias',
           'sidr.pdf_fruta_entrada',
@@ -9880,13 +9896,16 @@ class SoleraL10n {
           'sidr.pdf_litros_txotx',
           'sidr.pdf_lote',
           'sidr.pdf_n_etiquetas',
+          'sidr.pdf_n_orden',
           'sidr.pdf_n_registro',
+          'sidr.pdf_nombre_comercial_a_mano',
           'sidr.pdf_origen',
           'sidr.pdf_parcelas',
           'sidr.pdf_partida',
           'sidr.pdf_partidas',
           'sidr.pdf_plantacion',
           'sidr.pdf_presion',
+          'sidr.pdf_producto',
           'sidr.pdf_registrada',
           'sidr.pdf_registro_entrada',
           'sidr.pdf_resumen_libro',
@@ -9927,6 +9946,7 @@ class SoleraL10n {
           'sidr.regimen_reagp',
           'sidr.registrada_dop',
           'sidr.registrada_dop_ayuda',
+          'sidr.registro_explotacion',
           'sidr.registro_sanitario',
           'sidr.resultado',
           'sidr.resumen_txotx',
@@ -14906,6 +14926,8 @@ class SoleraL10n {
           'sidr.aplicador',
           'sidr.apuntes',
           'sidr.arboles_por_ha',
+          'sidr.asesor',
+          'sidr.asesor_opcional',
           'sidr.av',
           'sidr.aviso_acidez_volatil_alta',
           'sidr.aviso_densidad_mosto_baja',
@@ -15003,6 +15025,8 @@ class SoleraL10n {
           'sidr.embotellar',
           'sidr.en_bodega',
           'sidr.entradas_fruta',
+          'sidr.equipo_aplicacion',
+          'sidr.equipo_aplicacion_ayuda',
           'sidr.error_cargar',
           'sidr.error_documento',
           'sidr.estado_fruta',
@@ -15104,19 +15128,21 @@ class SoleraL10n {
           'sidr.partidas_sin_prensar',
           'sidr.pdf_a',
           'sidr.pdf_al_cierre',
+          'sidr.pdf_aplicador_asesor',
           'sidr.pdf_arboles',
           'sidr.pdf_balance',
           'sidr.pdf_cantidad',
-          'sidr.pdf_carne',
           'sidr.pdf_concepto',
           'sidr.pdf_contraetiquetas',
           'sidr.pdf_contraetiquetas_usadas',
           'sidr.pdf_cosecha_propia',
+          'sidr.pdf_cultivo_variedad',
           'sidr.pdf_de',
           'sidr.pdf_documento',
           'sidr.pdf_embotellado',
           'sidr.pdf_entra',
           'sidr.pdf_envasado',
+          'sidr.pdf_equipo',
           'sidr.pdf_etiquetado',
           'sidr.pdf_existencias',
           'sidr.pdf_fruta_entrada',
@@ -15125,13 +15151,16 @@ class SoleraL10n {
           'sidr.pdf_litros_txotx',
           'sidr.pdf_lote',
           'sidr.pdf_n_etiquetas',
+          'sidr.pdf_n_orden',
           'sidr.pdf_n_registro',
+          'sidr.pdf_nombre_comercial_a_mano',
           'sidr.pdf_origen',
           'sidr.pdf_parcelas',
           'sidr.pdf_partida',
           'sidr.pdf_partidas',
           'sidr.pdf_plantacion',
           'sidr.pdf_presion',
+          'sidr.pdf_producto',
           'sidr.pdf_registrada',
           'sidr.pdf_registro_entrada',
           'sidr.pdf_resumen_libro',
@@ -15172,6 +15201,7 @@ class SoleraL10n {
           'sidr.regimen_reagp',
           'sidr.registrada_dop',
           'sidr.registrada_dop_ayuda',
+          'sidr.registro_explotacion',
           'sidr.registro_sanitario',
           'sidr.resultado',
           'sidr.resumen_txotx',
@@ -20151,6 +20181,8 @@ class SoleraL10n {
           'sidr.aplicador',
           'sidr.apuntes',
           'sidr.arboles_por_ha',
+          'sidr.asesor',
+          'sidr.asesor_opcional',
           'sidr.av',
           'sidr.aviso_acidez_volatil_alta',
           'sidr.aviso_densidad_mosto_baja',
@@ -20248,6 +20280,8 @@ class SoleraL10n {
           'sidr.embotellar',
           'sidr.en_bodega',
           'sidr.entradas_fruta',
+          'sidr.equipo_aplicacion',
+          'sidr.equipo_aplicacion_ayuda',
           'sidr.error_cargar',
           'sidr.error_documento',
           'sidr.estado_fruta',
@@ -20349,19 +20383,21 @@ class SoleraL10n {
           'sidr.partidas_sin_prensar',
           'sidr.pdf_a',
           'sidr.pdf_al_cierre',
+          'sidr.pdf_aplicador_asesor',
           'sidr.pdf_arboles',
           'sidr.pdf_balance',
           'sidr.pdf_cantidad',
-          'sidr.pdf_carne',
           'sidr.pdf_concepto',
           'sidr.pdf_contraetiquetas',
           'sidr.pdf_contraetiquetas_usadas',
           'sidr.pdf_cosecha_propia',
+          'sidr.pdf_cultivo_variedad',
           'sidr.pdf_de',
           'sidr.pdf_documento',
           'sidr.pdf_embotellado',
           'sidr.pdf_entra',
           'sidr.pdf_envasado',
+          'sidr.pdf_equipo',
           'sidr.pdf_etiquetado',
           'sidr.pdf_existencias',
           'sidr.pdf_fruta_entrada',
@@ -20370,13 +20406,16 @@ class SoleraL10n {
           'sidr.pdf_litros_txotx',
           'sidr.pdf_lote',
           'sidr.pdf_n_etiquetas',
+          'sidr.pdf_n_orden',
           'sidr.pdf_n_registro',
+          'sidr.pdf_nombre_comercial_a_mano',
           'sidr.pdf_origen',
           'sidr.pdf_parcelas',
           'sidr.pdf_partida',
           'sidr.pdf_partidas',
           'sidr.pdf_plantacion',
           'sidr.pdf_presion',
+          'sidr.pdf_producto',
           'sidr.pdf_registrada',
           'sidr.pdf_registro_entrada',
           'sidr.pdf_resumen_libro',
@@ -20417,6 +20456,7 @@ class SoleraL10n {
           'sidr.regimen_reagp',
           'sidr.registrada_dop',
           'sidr.registrada_dop_ayuda',
+          'sidr.registro_explotacion',
           'sidr.registro_sanitario',
           'sidr.resultado',
           'sidr.resumen_txotx',
@@ -25419,6 +25459,8 @@ class SoleraL10n {
       case 'sidr.aplicador': return 'Quién aplicó';
       case 'sidr.apuntes': return 'Apuntes';
       case 'sidr.arboles_por_ha': return '{n} árboles/ha';
+      case 'sidr.asesor': return 'Asesor';
+      case 'sidr.asesor_opcional': return 'Asesor (si lo hubo)';
       case 'sidr.av': return 'AV';
       case 'sidr.aviso_acidez_volatil_alta': return 'Acidez volátil {valor} g/l: el pliego pide menos de {limite}';
       case 'sidr.aviso_densidad_mosto_baja': return 'Densidad del mosto {valor}: el pliego pide al menos {limite}';
@@ -25516,6 +25558,8 @@ class SoleraL10n {
       case 'sidr.embotellar': return 'Embotellar';
       case 'sidr.en_bodega': return 'en bodega';
       case 'sidr.entradas_fruta': return 'Entradas de fruta';
+      case 'sidr.equipo_aplicacion': return 'Equipo de aplicación';
+      case 'sidr.equipo_aplicacion_ayuda': return 'Mochila, atomizador… y su n.º de registro (ROMA)';
       case 'sidr.error_cargar': return 'No se pudieron cargar los datos.';
       case 'sidr.error_documento': return 'No se pudo generar el documento.';
       case 'sidr.estado_fruta': return 'Estado de la fruta';
@@ -25617,19 +25661,21 @@ class SoleraL10n {
       case 'sidr.partidas_sin_prensar': return '{n} entradas de fruta sin prensar';
       case 'sidr.pdf_a': return 'A';
       case 'sidr.pdf_al_cierre': return 'Al cierre (l)';
+      case 'sidr.pdf_aplicador_asesor': return 'Aplicador (carné) · asesor';
       case 'sidr.pdf_arboles': return 'Árboles';
       case 'sidr.pdf_balance': return 'Balance de la campaña';
       case 'sidr.pdf_cantidad': return 'Cantidad';
-      case 'sidr.pdf_carne': return 'Carné';
       case 'sidr.pdf_concepto': return 'Concepto';
       case 'sidr.pdf_contraetiquetas': return 'Contraetiquetas';
       case 'sidr.pdf_contraetiquetas_usadas': return 'Contraetiquetas DOP usadas';
       case 'sidr.pdf_cosecha_propia': return 'Cosecha propia';
+      case 'sidr.pdf_cultivo_variedad': return 'Cultivo y variedad';
       case 'sidr.pdf_de': return 'De';
       case 'sidr.pdf_documento': return 'Albarán';
       case 'sidr.pdf_embotellado': return 'Embotellado';
       case 'sidr.pdf_entra': return 'Entra (l)';
       case 'sidr.pdf_envasado': return 'Envasado';
+      case 'sidr.pdf_equipo': return 'Equipo';
       case 'sidr.pdf_etiquetado': return 'Etiquetado';
       case 'sidr.pdf_existencias': return 'Existencias en kupelas al cierre';
       case 'sidr.pdf_fruta_entrada': return 'Fruta entrada';
@@ -25638,13 +25684,16 @@ class SoleraL10n {
       case 'sidr.pdf_litros_txotx': return 'Servido en el txotx';
       case 'sidr.pdf_lote': return 'Lote';
       case 'sidr.pdf_n_etiquetas': return 'N.º etiquetas';
+      case 'sidr.pdf_n_orden': return 'N.º';
       case 'sidr.pdf_n_registro': return 'N.º registro';
+      case 'sidr.pdf_nombre_comercial_a_mano': return 'El nombre comercial del producto se completa a mano en la línea en blanco: la app no guarda marcas.';
       case 'sidr.pdf_origen': return 'Origen';
       case 'sidr.pdf_parcelas': return 'Parcelas';
       case 'sidr.pdf_partida': return 'Partida (kupela)';
       case 'sidr.pdf_partidas': return 'Entradas';
       case 'sidr.pdf_plantacion': return 'Plantación';
       case 'sidr.pdf_presion': return 'Presión (bar)';
+      case 'sidr.pdf_producto': return 'Producto (nombre comercial · n.º registro)';
       case 'sidr.pdf_registrada': return 'Manzanal registrado';
       case 'sidr.pdf_registro_entrada': return 'Registro de entrada de fruta';
       case 'sidr.pdf_resumen_libro': return '{kilos} kg de fruta, {mosto} l de mosto y {botellas} botellas en la campaña.';
@@ -25685,6 +25734,7 @@ class SoleraL10n {
       case 'sidr.regimen_reagp': return 'REAGP (venta de manzana propia)';
       case 'sidr.registrada_dop': return 'Registrada en la DOP';
       case 'sidr.registrada_dop_ayuda': return 'Lo marcas tú: la app no consulta el registro.';
+      case 'sidr.registro_explotacion': return 'N.º de registro de la explotación (REA)';
       case 'sidr.registro_sanitario': return 'Registro sanitario (RGSEAA)';
       case 'sidr.resultado': return 'Resultado (sin IVA)';
       case 'sidr.resumen_txotx': return '{dias} días de txotx · {litros} servidos';
@@ -30668,6 +30718,8 @@ class SoleraL10n {
       case 'sidr.aplicador': return 'Nork aplikatu zuen';
       case 'sidr.apuntes': return 'Idazpenak';
       case 'sidr.arboles_por_ha': return '{n} zuhaitz/ha';
+      case 'sidr.asesor': return 'Aholkularia';
+      case 'sidr.asesor_opcional': return 'Aholkularia (baldin bazegoen)';
       case 'sidr.av': return 'AL';
       case 'sidr.aviso_acidez_volatil_alta': return 'Azidotasun lurrunkorra {valor} g/l: pleguak {limite} baino gutxiago eskatzen du';
       case 'sidr.aviso_densidad_mosto_baja': return 'Muztioaren dentsitatea {valor}: pleguak gutxienez {limite} eskatzen du';
@@ -30765,6 +30817,8 @@ class SoleraL10n {
       case 'sidr.embotellar': return 'Botilaratu';
       case 'sidr.en_bodega': return 'upategian';
       case 'sidr.entradas_fruta': return 'Fruta-sarrerak';
+      case 'sidr.equipo_aplicacion': return 'Aplikazio-ekipoa';
+      case 'sidr.equipo_aplicacion_ayuda': return 'Motxila, atomizagailua… eta bere erregistro-zk. (ROMA)';
       case 'sidr.error_cargar': return 'Ezin izan dira datuak kargatu.';
       case 'sidr.error_documento': return 'Ezin izan da dokumentua sortu.';
       case 'sidr.estado_fruta': return 'Frutaren egoera';
@@ -30866,19 +30920,21 @@ class SoleraL10n {
       case 'sidr.partidas_sin_prensar': return 'Prentsatu gabeko {n} fruta-sarrera';
       case 'sidr.pdf_a': return 'Nora';
       case 'sidr.pdf_al_cierre': return 'Itxieran (l)';
+      case 'sidr.pdf_aplicador_asesor': return 'Aplikatzailea (txartela) · aholkularia';
       case 'sidr.pdf_arboles': return 'Zuhaitzak';
       case 'sidr.pdf_balance': return 'Kanpainako balantzea';
       case 'sidr.pdf_cantidad': return 'Kantitatea';
-      case 'sidr.pdf_carne': return 'Txartela';
       case 'sidr.pdf_concepto': return 'Kontzeptua';
       case 'sidr.pdf_contraetiquetas': return 'Kontraetiketak';
       case 'sidr.pdf_contraetiquetas_usadas': return 'Erabilitako JDB kontraetiketak';
       case 'sidr.pdf_cosecha_propia': return 'Uzta propioa';
+      case 'sidr.pdf_cultivo_variedad': return 'Laborea eta barietatea';
       case 'sidr.pdf_de': return 'Nondik';
       case 'sidr.pdf_documento': return 'Albarana';
       case 'sidr.pdf_embotellado': return 'Botilaratzea';
       case 'sidr.pdf_entra': return 'Sartu (l)';
       case 'sidr.pdf_envasado': return 'Ontziratzea';
+      case 'sidr.pdf_equipo': return 'Ekipoa';
       case 'sidr.pdf_etiquetado': return 'Etiketatzea';
       case 'sidr.pdf_existencias': return 'Kupeletako izakinak itxieran';
       case 'sidr.pdf_fruta_entrada': return 'Sartutako fruta';
@@ -30887,13 +30943,16 @@ class SoleraL10n {
       case 'sidr.pdf_litros_txotx': return 'Txotxean zerbitzatua';
       case 'sidr.pdf_lote': return 'Lotea';
       case 'sidr.pdf_n_etiquetas': return 'Etiketa kop.';
+      case 'sidr.pdf_n_orden': return 'Zk.';
       case 'sidr.pdf_n_registro': return 'Erregistro zk.';
+      case 'sidr.pdf_nombre_comercial_a_mano': return 'Produktuaren izen komertziala eskuz osatzen da lerro zurian: aplikazioak ez du markarik gordetzen.';
       case 'sidr.pdf_origen': return 'Jatorria';
       case 'sidr.pdf_parcelas': return 'Partzelak';
       case 'sidr.pdf_partida': return 'Partida (kupela)';
       case 'sidr.pdf_partidas': return 'Sarrerak';
       case 'sidr.pdf_plantacion': return 'Landaketa';
       case 'sidr.pdf_presion': return 'Presioa (bar)';
+      case 'sidr.pdf_producto': return 'Produktua (izen komertziala · erregistro-zk.)';
       case 'sidr.pdf_registrada': return 'Sagasti erregistratua';
       case 'sidr.pdf_registro_entrada': return 'Fruta-sarreren erregistroa';
       case 'sidr.pdf_resumen_libro': return 'Kanpainan {kilos} kg fruta, {mosto} l muztio eta {botellas} botila.';
@@ -30934,6 +30993,7 @@ class SoleraL10n {
       case 'sidr.regimen_reagp': return 'NANAB (sagar propioaren salmenta)';
       case 'sidr.registrada_dop': return 'JDBn erregistratuta';
       case 'sidr.registrada_dop_ayuda': return 'Zuk markatzen duzu: aplikazioak ez du erregistroa kontsultatzen.';
+      case 'sidr.registro_explotacion': return 'Ustiategiaren erregistro-zk. (REA)';
       case 'sidr.registro_sanitario': return 'Osasun-erregistroa (RGSEAA)';
       case 'sidr.resultado': return 'Emaitza (BEZik gabe)';
       case 'sidr.resumen_txotx': return '{dias} txotx egun · {litros} zerbitzatuta';
@@ -35917,6 +35977,8 @@ class SoleraL10n {
       case 'sidr.aplicador': return 'Qui ho va aplicar';
       case 'sidr.apuntes': return 'Apunts';
       case 'sidr.arboles_por_ha': return '{n} arbres/ha';
+      case 'sidr.asesor': return 'Assessor';
+      case 'sidr.asesor_opcional': return 'Assessor (si n\'hi va haver)';
       case 'sidr.av': return 'AV';
       case 'sidr.aviso_acidez_volatil_alta': return 'Acidesa volàtil {valor} g/l: el plec demana menys de {limite}';
       case 'sidr.aviso_densidad_mosto_baja': return 'Densitat del most {valor}: el plec demana com a mínim {limite}';
@@ -36014,6 +36076,8 @@ class SoleraL10n {
       case 'sidr.embotellar': return 'Embotella';
       case 'sidr.en_bodega': return 'al celler';
       case 'sidr.entradas_fruta': return 'Entrades de fruita';
+      case 'sidr.equipo_aplicacion': return 'Equip d\'aplicació';
+      case 'sidr.equipo_aplicacion_ayuda': return 'Motxilla, atomitzador… i el núm. de registre (ROMA)';
       case 'sidr.error_cargar': return 'No s\'han pogut carregar les dades.';
       case 'sidr.error_documento': return 'No s\'ha pogut generar el document.';
       case 'sidr.estado_fruta': return 'Estat de la fruita';
@@ -36115,19 +36179,21 @@ class SoleraL10n {
       case 'sidr.partidas_sin_prensar': return '{n} entrades de fruita sense premsar';
       case 'sidr.pdf_a': return 'A';
       case 'sidr.pdf_al_cierre': return 'Al tancament (l)';
+      case 'sidr.pdf_aplicador_asesor': return 'Aplicador (carnet) · assessor';
       case 'sidr.pdf_arboles': return 'Arbres';
       case 'sidr.pdf_balance': return 'Balanç de la campanya';
       case 'sidr.pdf_cantidad': return 'Quantitat';
-      case 'sidr.pdf_carne': return 'Carnet';
       case 'sidr.pdf_concepto': return 'Concepte';
       case 'sidr.pdf_contraetiquetas': return 'Contraetiquetes';
       case 'sidr.pdf_contraetiquetas_usadas': return 'Contraetiquetes DOP usades';
       case 'sidr.pdf_cosecha_propia': return 'Collita pròpia';
+      case 'sidr.pdf_cultivo_variedad': return 'Cultiu i varietat';
       case 'sidr.pdf_de': return 'De';
       case 'sidr.pdf_documento': return 'Albarà';
       case 'sidr.pdf_embotellado': return 'Embotellat';
       case 'sidr.pdf_entra': return 'Entra (l)';
       case 'sidr.pdf_envasado': return 'Envasat';
+      case 'sidr.pdf_equipo': return 'Equip';
       case 'sidr.pdf_etiquetado': return 'Etiquetat';
       case 'sidr.pdf_existencias': return 'Existències a les kupeles al tancament';
       case 'sidr.pdf_fruta_entrada': return 'Fruita entrada';
@@ -36136,13 +36202,16 @@ class SoleraL10n {
       case 'sidr.pdf_litros_txotx': return 'Servit al txotx';
       case 'sidr.pdf_lote': return 'Lot';
       case 'sidr.pdf_n_etiquetas': return 'Núm. etiquetes';
+      case 'sidr.pdf_n_orden': return 'Núm.';
       case 'sidr.pdf_n_registro': return 'Núm. registre';
+      case 'sidr.pdf_nombre_comercial_a_mano': return 'El nom comercial del producte es completa a mà a la línia en blanc: l\'app no desa marques.';
       case 'sidr.pdf_origen': return 'Origen';
       case 'sidr.pdf_parcelas': return 'Parcel·les';
       case 'sidr.pdf_partida': return 'Partida (kupela)';
       case 'sidr.pdf_partidas': return 'Entrades';
       case 'sidr.pdf_plantacion': return 'Plantació';
       case 'sidr.pdf_presion': return 'Pressió (bar)';
+      case 'sidr.pdf_producto': return 'Producte (nom comercial · núm. registre)';
       case 'sidr.pdf_registrada': return 'Pomereda registrada';
       case 'sidr.pdf_registro_entrada': return 'Registre d\'entrada de fruita';
       case 'sidr.pdf_resumen_libro': return '{kilos} kg de fruita, {mosto} l de most i {botellas} ampolles a la campanya.';
@@ -36183,6 +36252,7 @@ class SoleraL10n {
       case 'sidr.regimen_reagp': return 'REAGP (venda de poma pròpia)';
       case 'sidr.registrada_dop': return 'Registrada a la DOP';
       case 'sidr.registrada_dop_ayuda': return 'Ho marques tu: l\'app no consulta el registre.';
+      case 'sidr.registro_explotacion': return 'Núm. de registre de l\'explotació (REA)';
       case 'sidr.registro_sanitario': return 'Registre sanitari (RGSEAA)';
       case 'sidr.resultado': return 'Resultat (sense IVA)';
       case 'sidr.resumen_txotx': return '{dias} dies de txotx · {litros} servits';
@@ -41166,6 +41236,8 @@ class SoleraL10n {
       case 'sidr.aplicador': return 'Quen aplicou';
       case 'sidr.apuntes': return 'Apuntamentos';
       case 'sidr.arboles_por_ha': return '{n} árbores/ha';
+      case 'sidr.asesor': return 'Asesor';
+      case 'sidr.asesor_opcional': return 'Asesor (se o houbo)';
       case 'sidr.av': return 'AV';
       case 'sidr.aviso_acidez_volatil_alta': return 'Acidez volátil {valor} g/l: o prego pide menos de {limite}';
       case 'sidr.aviso_densidad_mosto_baja': return 'Densidade do mosto {valor}: o prego pide polo menos {limite}';
@@ -41263,6 +41335,8 @@ class SoleraL10n {
       case 'sidr.embotellar': return 'Embotellar';
       case 'sidr.en_bodega': return 'na adega';
       case 'sidr.entradas_fruta': return 'Entradas de froita';
+      case 'sidr.equipo_aplicacion': return 'Equipo de aplicación';
+      case 'sidr.equipo_aplicacion_ayuda': return 'Mochila, atomizador… e o seu n.º de rexistro (ROMA)';
       case 'sidr.error_cargar': return 'Non se puideron cargar os datos.';
       case 'sidr.error_documento': return 'Non se puido xerar o documento.';
       case 'sidr.estado_fruta': return 'Estado da froita';
@@ -41364,19 +41438,21 @@ class SoleraL10n {
       case 'sidr.partidas_sin_prensar': return '{n} entradas de froita sen prensar';
       case 'sidr.pdf_a': return 'A';
       case 'sidr.pdf_al_cierre': return 'Ao peche (l)';
+      case 'sidr.pdf_aplicador_asesor': return 'Aplicador (carné) · asesor';
       case 'sidr.pdf_arboles': return 'Árbores';
       case 'sidr.pdf_balance': return 'Balance da campaña';
       case 'sidr.pdf_cantidad': return 'Cantidade';
-      case 'sidr.pdf_carne': return 'Carné';
       case 'sidr.pdf_concepto': return 'Concepto';
       case 'sidr.pdf_contraetiquetas': return 'Contraetiquetas';
       case 'sidr.pdf_contraetiquetas_usadas': return 'Contraetiquetas DOP usadas';
       case 'sidr.pdf_cosecha_propia': return 'Colleita propia';
+      case 'sidr.pdf_cultivo_variedad': return 'Cultivo e variedade';
       case 'sidr.pdf_de': return 'De';
       case 'sidr.pdf_documento': return 'Albarán';
       case 'sidr.pdf_embotellado': return 'Embotellado';
       case 'sidr.pdf_entra': return 'Entra (l)';
       case 'sidr.pdf_envasado': return 'Envasado';
+      case 'sidr.pdf_equipo': return 'Equipo';
       case 'sidr.pdf_etiquetado': return 'Etiquetado';
       case 'sidr.pdf_existencias': return 'Existencias nas kupelas ao peche';
       case 'sidr.pdf_fruta_entrada': return 'Froita entrada';
@@ -41385,13 +41461,16 @@ class SoleraL10n {
       case 'sidr.pdf_litros_txotx': return 'Servido no txotx';
       case 'sidr.pdf_lote': return 'Lote';
       case 'sidr.pdf_n_etiquetas': return 'N.º etiquetas';
+      case 'sidr.pdf_n_orden': return 'N.º';
       case 'sidr.pdf_n_registro': return 'N.º rexistro';
+      case 'sidr.pdf_nombre_comercial_a_mano': return 'O nome comercial do produto complétase a man na liña en branco: a app non garda marcas.';
       case 'sidr.pdf_origen': return 'Orixe';
       case 'sidr.pdf_parcelas': return 'Parcelas';
       case 'sidr.pdf_partida': return 'Partida (kupela)';
       case 'sidr.pdf_partidas': return 'Entradas';
       case 'sidr.pdf_plantacion': return 'Plantación';
       case 'sidr.pdf_presion': return 'Presión (bar)';
+      case 'sidr.pdf_producto': return 'Produto (nome comercial · n.º rexistro)';
       case 'sidr.pdf_registrada': return 'Pomar rexistrado';
       case 'sidr.pdf_registro_entrada': return 'Rexistro de entrada de froita';
       case 'sidr.pdf_resumen_libro': return '{kilos} kg de froita, {mosto} l de mosto e {botellas} botellas na campaña.';
@@ -41432,6 +41511,7 @@ class SoleraL10n {
       case 'sidr.regimen_reagp': return 'REAGP (venda de mazá propia)';
       case 'sidr.registrada_dop': return 'Rexistrada na DOP';
       case 'sidr.registrada_dop_ayuda': return 'Márcalo ti: a app non consulta o rexistro.';
+      case 'sidr.registro_explotacion': return 'N.º de rexistro da explotación (REA)';
       case 'sidr.registro_sanitario': return 'Rexistro sanitario (RXSEAA)';
       case 'sidr.resultado': return 'Resultado (sen IVE)';
       case 'sidr.resumen_txotx': return '{dias} días de txotx · {litros} servidos';

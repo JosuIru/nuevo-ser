@@ -8,6 +8,8 @@ sidr.anio_plantacion,Año de plantación,Landaketa urtea,Any de plantació,Ano d
 sidr.aplicador,Quién aplicó,Nork aplikatu zuen,Qui ho va aplicar,Quen aplicou
 sidr.apuntes,Apuntes,Idazpenak,Apunts,Apuntamentos
 sidr.arboles_por_ha,{n} árboles/ha,{n} zuhaitz/ha,{n} arbres/ha,{n} árbores/ha
+sidr.asesor,Asesor,Aholkularia,Assessor,Asesor
+sidr.asesor_opcional,Asesor (si lo hubo),Aholkularia (baldin bazegoen),Assessor (si n'hi va haver),Asesor (se o houbo)
 sidr.av,AV,AL,AV,AV
 sidr.aviso_acidez_volatil_alta,Acidez volátil {valor} g/l: el pliego pide menos de {limite},Azidotasun lurrunkorra {valor} g/l: pleguak {limite} baino gutxiago eskatzen du,Acidesa volàtil {valor} g/l: el plec demana menys de {limite},Acidez volátil {valor} g/l: o prego pide menos de {limite}
 sidr.aviso_densidad_mosto_baja,Densidad del mosto {valor}: el pliego pide al menos {limite},Muztioaren dentsitatea {valor}: pleguak gutxienez {limite} eskatzen du,Densitat del most {valor}: el plec demana com a mínim {limite},Densidade do mosto {valor}: o prego pide polo menos {limite}
@@ -105,6 +107,8 @@ sidr.embotellados,Embotellados,Botilaratzeak,Embotellats,Embotellados
 sidr.embotellar,Embotellar,Botilaratu,Embotella,Embotellar
 sidr.en_bodega,en bodega,upategian,al celler,na adega
 sidr.entradas_fruta,Entradas de fruta,Fruta-sarrerak,Entrades de fruita,Entradas de froita
+sidr.equipo_aplicacion,Equipo de aplicación,Aplikazio-ekipoa,Equip d'aplicació,Equipo de aplicación
+sidr.equipo_aplicacion_ayuda,"Mochila, atomizador… y su n.º de registro (ROMA)","Motxila, atomizagailua… eta bere erregistro-zk. (ROMA)","Motxilla, atomitzador… i el núm. de registre (ROMA)","Mochila, atomizador… e o seu n.º de rexistro (ROMA)"
 sidr.error_cargar,No se pudieron cargar los datos.,Ezin izan dira datuak kargatu.,No s'han pogut carregar les dades.,Non se puideron cargar os datos.
 sidr.error_documento,No se pudo generar el documento.,Ezin izan da dokumentua sortu.,No s'ha pogut generar el document.,Non se puido xerar o documento.
 sidr.estado_fruta,Estado de la fruta,Frutaren egoera,Estat de la fruita,Estado da froita
@@ -206,19 +210,21 @@ sidr.partidas_que_entran,Partidas que entran,Sartzen diren partidak,Partides que
 sidr.partidas_sin_prensar,{n} entradas de fruta sin prensar,Prentsatu gabeko {n} fruta-sarrera,{n} entrades de fruita sense premsar,{n} entradas de froita sen prensar
 sidr.pdf_a,A,Nora,A,A
 sidr.pdf_al_cierre,Al cierre (l),Itxieran (l),Al tancament (l),Ao peche (l)
+sidr.pdf_aplicador_asesor,Aplicador (carné) · asesor,Aplikatzailea (txartela) · aholkularia,Aplicador (carnet) · assessor,Aplicador (carné) · asesor
 sidr.pdf_arboles,Árboles,Zuhaitzak,Arbres,Árbores
 sidr.pdf_balance,Balance de la campaña,Kanpainako balantzea,Balanç de la campanya,Balance da campaña
 sidr.pdf_cantidad,Cantidad,Kantitatea,Quantitat,Cantidade
-sidr.pdf_carne,Carné,Txartela,Carnet,Carné
 sidr.pdf_concepto,Concepto,Kontzeptua,Concepte,Concepto
 sidr.pdf_contraetiquetas,Contraetiquetas,Kontraetiketak,Contraetiquetes,Contraetiquetas
 sidr.pdf_contraetiquetas_usadas,Contraetiquetas DOP usadas,Erabilitako JDB kontraetiketak,Contraetiquetes DOP usades,Contraetiquetas DOP usadas
 sidr.pdf_cosecha_propia,Cosecha propia,Uzta propioa,Collita pròpia,Colleita propia
+sidr.pdf_cultivo_variedad,Cultivo y variedad,Laborea eta barietatea,Cultiu i varietat,Cultivo e variedade
 sidr.pdf_de,De,Nondik,De,De
 sidr.pdf_documento,Albarán,Albarana,Albarà,Albarán
 sidr.pdf_embotellado,Embotellado,Botilaratzea,Embotellat,Embotellado
 sidr.pdf_entra,Entra (l),Sartu (l),Entra (l),Entra (l)
 sidr.pdf_envasado,Envasado,Ontziratzea,Envasat,Envasado
+sidr.pdf_equipo,Equipo,Ekipoa,Equip,Equipo
 sidr.pdf_etiquetado,Etiquetado,Etiketatzea,Etiquetat,Etiquetado
 sidr.pdf_existencias,Existencias en kupelas al cierre,Kupeletako izakinak itxieran,Existències a les kupeles al tancament,Existencias nas kupelas ao peche
 sidr.pdf_fruta_entrada,Fruta entrada,Sartutako fruta,Fruita entrada,Froita entrada
@@ -227,13 +233,16 @@ sidr.pdf_litros_mosto,Litros de mosto,Muztio-litroak,Litres de most,Litros de mo
 sidr.pdf_litros_txotx,Servido en el txotx,Txotxean zerbitzatua,Servit al txotx,Servido no txotx
 sidr.pdf_lote,Lote,Lotea,Lot,Lote
 sidr.pdf_n_etiquetas,N.º etiquetas,Etiketa kop.,Núm. etiquetes,N.º etiquetas
+sidr.pdf_n_orden,N.º,Zk.,Núm.,N.º
 sidr.pdf_n_registro,N.º registro,Erregistro zk.,Núm. registre,N.º rexistro
+sidr.pdf_nombre_comercial_a_mano,El nombre comercial del producto se completa a mano en la línea en blanco: la app no guarda marcas.,Produktuaren izen komertziala eskuz osatzen da lerro zurian: aplikazioak ez du markarik gordetzen.,El nom comercial del producte es completa a mà a la línia en blanc: l'app no desa marques.,O nome comercial do produto complétase a man na liña en branco: a app non garda marcas.
 sidr.pdf_origen,Origen,Jatorria,Origen,Orixe
 sidr.pdf_parcelas,Parcelas,Partzelak,Parcel·les,Parcelas
 sidr.pdf_partida,Partida (kupela),Partida (kupela),Partida (kupela),Partida (kupela)
 sidr.pdf_partidas,Entradas,Sarrerak,Entrades,Entradas
 sidr.pdf_plantacion,Plantación,Landaketa,Plantació,Plantación
 sidr.pdf_presion,Presión (bar),Presioa (bar),Pressió (bar),Presión (bar)
+sidr.pdf_producto,Producto (nombre comercial · n.º registro),Produktua (izen komertziala · erregistro-zk.),Producte (nom comercial · núm. registre),Produto (nome comercial · n.º rexistro)
 sidr.pdf_registrada,Manzanal registrado,Sagasti erregistratua,Pomereda registrada,Pomar rexistrado
 sidr.pdf_registro_entrada,Registro de entrada de fruta,Fruta-sarreren erregistroa,Registre d'entrada de fruita,Rexistro de entrada de froita
 sidr.pdf_resumen_libro,"{kilos} kg de fruta, {mosto} l de mosto y {botellas} botellas en la campaña.","Kanpainan {kilos} kg fruta, {mosto} l muztio eta {botellas} botila.","{kilos} kg de fruita, {mosto} l de most i {botellas} ampolles a la campanya.","{kilos} kg de froita, {mosto} l de mosto e {botellas} botellas na campaña."
@@ -274,6 +283,7 @@ sidr.regimen_general,General o simplificado,Orokorra edo erraztua,General o simp
 sidr.regimen_reagp,REAGP (venta de manzana propia),NANAB (sagar propioaren salmenta),REAGP (venda de poma pròpia),REAGP (venda de mazá propia)
 sidr.registrada_dop,Registrada en la DOP,JDBn erregistratuta,Registrada a la DOP,Rexistrada na DOP
 sidr.registrada_dop_ayuda,Lo marcas tú: la app no consulta el registro.,Zuk markatzen duzu: aplikazioak ez du erregistroa kontsultatzen.,Ho marques tu: l'app no consulta el registre.,Márcalo ti: a app non consulta o rexistro.
+sidr.registro_explotacion,N.º de registro de la explotación (REA),Ustiategiaren erregistro-zk. (REA),Núm. de registre de l'explotació (REA),N.º de rexistro da explotación (REA)
 sidr.registro_sanitario,Registro sanitario (RGSEAA),Osasun-erregistroa (RGSEAA),Registre sanitari (RGSEAA),Rexistro sanitario (RXSEAA)
 sidr.resultado,Resultado (sin IVA),Emaitza (BEZik gabe),Resultat (sense IVA),Resultado (sen IVE)
 sidr.resumen_txotx,{dias} días de txotx · {litros} servidos,{dias} txotx egun · {litros} zerbitzatuta,{dias} dies de txotx · {litros} servits,{dias} días de txotx · {litros} servidos

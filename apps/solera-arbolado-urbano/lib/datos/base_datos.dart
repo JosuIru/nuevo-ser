@@ -1,5 +1,5 @@
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/arbol.dart';
@@ -27,35 +27,27 @@ const int versionEsquemaArbolado = 2;
 /// v1 arranca con esquema completo: zonas + árboles + 4 eventos
 /// (inspeccion / poda / tratamiento / incidencia) + tecnicos +
 /// ayuntamiento (single-row).
-class BaseDatosSoleraArbolado {
+class BaseDatosSoleraArbolado extends BaseDatosSolera {
   static final BaseDatosSoleraArbolado instancia = BaseDatosSoleraArbolado._interno();
   factory BaseDatosSoleraArbolado() => instancia;
   BaseDatosSoleraArbolado._interno();
 
-  Database? _basedatos;
+  @override
+  String get nombreFichero => nombreFicheroBaseDatosArbolado;
 
-  Future<Database> get basedatos async {
-    if (_basedatos != null) return _basedatos!;
-    final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosArbolado);
-    _basedatos = await openDatabase(
-      ruta,
-      version: versionEsquemaArbolado,
-      onConfigure: (db) async {
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: (db, version) async {
-        await _crearEsquemaInicial(db);
-        await _crearEsquemaV2(db);
-      },
-      onUpgrade: (db, viejaVersion, nuevaVersion) async {
-        if (viejaVersion < 2) {
-          await _crearEsquemaV2(db);
-        }
-      },
-    );
-    return _basedatos!;
-  }
+  @override
+  int get versionEsquema => versionEsquemaArbolado;
+
+  @override
+  DatabaseFactory get fabricaBaseDatos => databaseFactory;
+
+  @override
+  Future<void> crearEsquemaInicial(Database db) => _crearEsquemaInicial(db);
+
+  @override
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _crearEsquemaV2,
+      };
 
   // ─── Zonas ────────────────────────────────────────────────
 
@@ -357,20 +349,9 @@ class BaseDatosSoleraArbolado {
   }
 
   Future<void> guardarAyuntamiento(Ayuntamiento a) async {
-    final db = await basedatos;
-    final actual = await obtenerAyuntamiento();
-    final mapa = a.toMap()..remove('id');
-    if (actual.id != null) {
-      await db.update('ayuntamientos', mapa, where: 'id = ?', whereArgs: [actual.id]);
-    } else {
-      await db.insert('ayuntamientos', mapa);
-    }
+    await guardarFilaUnica('ayuntamientos', a.toMap());
   }
 
-  Future<void> cerrar() async {
-    await _basedatos?.close();
-    _basedatos = null;
-  }
 }
 
 // ─── Esquema inicial v1 ─────────────────────────────────────

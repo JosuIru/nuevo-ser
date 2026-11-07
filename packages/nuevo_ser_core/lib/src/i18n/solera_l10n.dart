@@ -2918,6 +2918,25 @@ class SoleraL10n {
     'frut.aviso_helada_orientativo',
     'frut.aviso_plazo_seguridad',
     'frut.aviso_registro_electronico',
+    'frut.ayuda',
+    'frut.ayuda_cosecha_texto',
+    'frut.ayuda_cosecha_titulo',
+    'frut.ayuda_cuaderno_texto',
+    'frut.ayuda_cuaderno_titulo',
+    'frut.ayuda_documentos_texto',
+    'frut.ayuda_documentos_titulo',
+    'frut.ayuda_economia_texto',
+    'frut.ayuda_economia_titulo',
+    'frut.ayuda_empezar_texto',
+    'frut.ayuda_empezar_titulo',
+    'frut.ayuda_helada_texto',
+    'frut.ayuda_helada_titulo',
+    'frut.ayuda_ia_texto',
+    'frut.ayuda_ia_titulo',
+    'frut.ayuda_limites_texto',
+    'frut.ayuda_limites_titulo',
+    'frut.ayuda_parcelas_texto',
+    'frut.ayuda_parcelas_titulo',
     'frut.base',
     'frut.base_euros',
     'frut.bienvenida',
@@ -7496,6 +7515,25 @@ class SoleraL10n {
           'frut.aviso_helada_orientativo',
           'frut.aviso_plazo_seguridad',
           'frut.aviso_registro_electronico',
+          'frut.ayuda',
+          'frut.ayuda_cosecha_texto',
+          'frut.ayuda_cosecha_titulo',
+          'frut.ayuda_cuaderno_texto',
+          'frut.ayuda_cuaderno_titulo',
+          'frut.ayuda_documentos_texto',
+          'frut.ayuda_documentos_titulo',
+          'frut.ayuda_economia_texto',
+          'frut.ayuda_economia_titulo',
+          'frut.ayuda_empezar_texto',
+          'frut.ayuda_empezar_titulo',
+          'frut.ayuda_helada_texto',
+          'frut.ayuda_helada_titulo',
+          'frut.ayuda_ia_texto',
+          'frut.ayuda_ia_titulo',
+          'frut.ayuda_limites_texto',
+          'frut.ayuda_limites_titulo',
+          'frut.ayuda_parcelas_texto',
+          'frut.ayuda_parcelas_titulo',
           'frut.base',
           'frut.base_euros',
           'frut.bienvenida',
@@ -12071,6 +12109,25 @@ class SoleraL10n {
           'frut.aviso_helada_orientativo',
           'frut.aviso_plazo_seguridad',
           'frut.aviso_registro_electronico',
+          'frut.ayuda',
+          'frut.ayuda_cosecha_texto',
+          'frut.ayuda_cosecha_titulo',
+          'frut.ayuda_cuaderno_texto',
+          'frut.ayuda_cuaderno_titulo',
+          'frut.ayuda_documentos_texto',
+          'frut.ayuda_documentos_titulo',
+          'frut.ayuda_economia_texto',
+          'frut.ayuda_economia_titulo',
+          'frut.ayuda_empezar_texto',
+          'frut.ayuda_empezar_titulo',
+          'frut.ayuda_helada_texto',
+          'frut.ayuda_helada_titulo',
+          'frut.ayuda_ia_texto',
+          'frut.ayuda_ia_titulo',
+          'frut.ayuda_limites_texto',
+          'frut.ayuda_limites_titulo',
+          'frut.ayuda_parcelas_texto',
+          'frut.ayuda_parcelas_titulo',
           'frut.base',
           'frut.base_euros',
           'frut.bienvenida',
@@ -16646,6 +16703,25 @@ class SoleraL10n {
           'frut.aviso_helada_orientativo',
           'frut.aviso_plazo_seguridad',
           'frut.aviso_registro_electronico',
+          'frut.ayuda',
+          'frut.ayuda_cosecha_texto',
+          'frut.ayuda_cosecha_titulo',
+          'frut.ayuda_cuaderno_texto',
+          'frut.ayuda_cuaderno_titulo',
+          'frut.ayuda_documentos_texto',
+          'frut.ayuda_documentos_titulo',
+          'frut.ayuda_economia_texto',
+          'frut.ayuda_economia_titulo',
+          'frut.ayuda_empezar_texto',
+          'frut.ayuda_empezar_titulo',
+          'frut.ayuda_helada_texto',
+          'frut.ayuda_helada_titulo',
+          'frut.ayuda_ia_texto',
+          'frut.ayuda_ia_titulo',
+          'frut.ayuda_limites_texto',
+          'frut.ayuda_limites_titulo',
+          'frut.ayuda_parcelas_texto',
+          'frut.ayuda_parcelas_titulo',
           'frut.base',
           'frut.base_euros',
           'frut.bienvenida',
@@ -21244,6 +21320,25 @@ class SoleraL10n {
       case 'frut.aviso_helada_orientativo': return 'Orientativo: cruza la previsión de 7 días con un calendario aproximado. El estado real depende de la variedad y de la zona.';
       case 'frut.aviso_plazo_seguridad': return 'Hay tratamientos dentro de su plazo de seguridad en esta fecha';
       case 'frut.aviso_registro_electronico': return 'Desde el 1 de enero de 2027 el registro de tratamientos fitosanitarios debe llevarse en formato electrónico (RD 1311/2012, art. 16.1, en la redacción del RD 1039/2025). Este PDF no sustituye ese registro.';
+      case 'frut.ayuda': return 'Ayuda';
+      case 'frut.ayuda_cosecha_texto': return 'Apunta cada entrega con los kilos en cáscara, el rendimiento en grano que te da la cooperativa, el calibre y la humedad. La app suma por parcela y campaña y calcula kilos por hectárea, kilos de grano y el rendimiento medio. Si cosechas dentro del plazo de seguridad de un tratamiento apuntado, te avisa.';
+      case 'frut.ayuda_cosecha_titulo': return 'Cosecha y rendimientos';
+      case 'frut.ayuda_cuaderno_texto': return 'Apunta cada tratamiento con la plaga, la sustancia activa, el producto y su número de registro, la dosis y el plazo de seguridad tal como vienen en la etiqueta. La app solo te enseña las sustancias con algún uso registrado en la especie y te avisa si no encuentra el uso para esa plaga, pero no propone productos ni dosis. Los abonados y los riegos van igual. Puedes cambiar la fecha si lo apuntas días después. Una pulsación larga borra un registro.';
+      case 'frut.ayuda_cuaderno_titulo': return 'Cuaderno: tratamientos, abonados y riegos';
+      case 'frut.ayuda_documentos_texto': return 'En Ajustes → Documentos tienes el cuaderno de explotación del año (con el orden y los códigos del modelo de cuaderno de Andalucía) y el parte de cosecha y rendimientos. Son PROVISIONALES: falta que un asesor y la administración validen el formato. Desde el 1 de enero de 2027 el registro de tratamientos tiene que ser electrónico, y este PDF no lo sustituye.';
+      case 'frut.ayuda_documentos_titulo': return 'Documentos en PDF';
+      case 'frut.ayuda_economia_texto': return 'Elige tu régimen de IVA (el especial agrario, REAGP, o el general) y apunta ventas y gastos, si quieres imputados a una parcela para ver su margen. En el REAGP la venta de la cosecha lleva la compensación del 12 % que paga el comprador. Es orientativo y PROVISIONAL: no es una liquidación de impuestos. Confírmalo con tu asesor fiscal.';
+      case 'frut.ayuda_economia_titulo': return 'Ingresos y gastos';
+      case 'frut.ayuda_empezar_texto': return 'Pon en Ajustes el titular, el registro de la explotación y tu asesor de gestión integrada con su número ROPO. Después da de alta tus parcelas: especie, variedad, superficie, marco de plantación, código SIGPAC y si es secano o regadío. Todo se guarda en el móvil y funciona sin cobertura.';
+      case 'frut.ayuda_empezar_titulo': return 'Cómo empezar';
+      case 'frut.ayuda_helada_texto': return 'Si alguna parcela tiene ubicación, Hoy cruza la previsión de 7 días con un calendario fenológico aproximado y avisa de heladas en estados sensibles (botón, flor, fruto cuajado). Es orientativo. Cuando hiele o caiga piedra, apúntalo con la temperatura, el estado y el daño estimado: sale en el parte de cosecha como memoria para el seguro. La app no tramita siniestros.';
+      case 'frut.ayuda_helada_titulo': return 'Heladas, pedrisco y seguro';
+      case 'frut.ayuda_ia_texto': return 'En la ficha de la parcela, en Seguimiento de plagas, el icono del escáner analiza una foto y propone hasta tres plagas o enfermedades del catálogo de esa especie. Eliges una y se abre un muestreo para que lo revises. Necesitas tu propia clave de Anthropic (Ajustes → Inteligencia artificial); se guarda solo en el móvil y la foto se borra al terminar. La IA nunca recomienda tratamientos.';
+      case 'frut.ayuda_ia_titulo': return 'Identificar plagas con IA';
+      case 'frut.ayuda_limites_texto': return 'No recomienda productos por marca ni dosis. No sustituye la firma ni el criterio de tu asesor. No afirma que cumplas ninguna norma. No envía nada al SIEX ni a la administración. Los avisos de helada y de polinización son orientativos. Los catálogos son provisionales hasta que los revise un técnico.';
+      case 'frut.ayuda_limites_titulo': return 'Lo que la app no hace';
+      case 'frut.ayuda_parcelas_texto': return 'En la ficha de cada parcela apunta las filas con su variedad y marca las polinizadoras. La app compara las variedades con el catálogo y te dice si alguna necesita polinizadora y no la tiene. También puedes apuntar las colmenas que pone el apicultor (con su código REGA) y ver cuántas hay por hectárea. Es una orientación: la compatibilidad real la confirma el vivero o el técnico. Con «Usar mi ubicación», de pie en la parcela, aparece en el mapa.';
+      case 'frut.ayuda_parcelas_titulo': return 'Parcelas, filas y polinización';
       case 'frut.base': return 'Base';
       case 'frut.base_euros': return 'Base imponible (€)';
       case 'frut.bienvenida': return 'Primera versión en construcción.';
@@ -25823,6 +25918,25 @@ class SoleraL10n {
       case 'frut.aviso_helada_orientativo': return 'Orientagarria: 7 eguneko iragarpena egutegi hurbildu batekin gurutzatzen du. Benetako egoera barietatearen eta eremuaren araberakoa da.';
       case 'frut.aviso_plazo_seguridad': return 'Data honetan segurtasun-epean dauden tratamenduak daude';
       case 'frut.aviso_registro_electronico': return '2027ko urtarrilaren 1etik aurrera tratamendu fitosanitarioen erregistroa formatu elektronikoan eraman behar da (1311/2012 EDa, 16.1 art., 1039/2025 EDaren idazketan). PDF honek ez du erregistro hori ordezten.';
+      case 'frut.ayuda': return 'Laguntza';
+      case 'frut.ayuda_cosecha_texto': return 'Idatzi entrega bakoitza azaleko kiloekin, kooperatibak ematen dizun ale-errendimenduarekin, kalibrearekin eta hezetasunarekin. Aplikazioak lursailka eta kanpainaka batzen du eta hektareako kiloak, ale-kiloak eta batez besteko errendimendua kalkulatzen ditu. Idatzitako tratamendu baten segurtasun-epean uzta biltzen baduzu, abisatzen dizu.';
+      case 'frut.ayuda_cosecha_titulo': return 'Uzta eta errendimenduak';
+      case 'frut.ayuda_cuaderno_texto': return 'Idatzi tratamendu bakoitza izurritearekin, substantzia aktiboarekin, produktuarekin eta bere erregistro-zenbakiarekin, dosiarekin eta segurtasun-epearekin, etiketan datozen bezala. Aplikazioak espeziean erregistratutako erabileraren bat duten substantziak bakarrik erakusten ditu eta abisatzen dizu izurrite horretarako erabilera aurkitzen ez badu, baina ez du produkturik ez dosirik proposatzen. Ongarritzeak eta ureztatzeak berdin doaz. Data alda dezakezu egun batzuk geroago idazten baduzu. Sakatze luze batek erregistro bat ezabatzen du.';
+      case 'frut.ayuda_cuaderno_titulo': return 'Koadernoa: tratamenduak, ongarritzeak eta ureztatzeak';
+      case 'frut.ayuda_documentos_texto': return 'Ezarpenak → Dokumentuak atalean urteko ustiategi-koadernoa (Andaluziako koaderno-ereduaren ordena eta kodeekin) eta uzta eta errendimenduen partea dituzu. BEHIN-BEHINEKOAK dira: aholkulari batek eta administrazioak formatua balioztatu behar dute. 2027ko urtarrilaren 1etik tratamenduen erregistroak elektronikoa izan behar du, eta PDF honek ez du ordezten.';
+      case 'frut.ayuda_documentos_titulo': return 'PDF dokumentuak';
+      case 'frut.ayuda_economia_texto': return 'Aukeratu zure BEZ erregimena (nekazaritzako berezia, REAGP, edo orokorra) eta idatzi salmentak eta gastuak, nahi baduzu lursail bati egotzita bere marjina ikusteko. REAGPn uztaren salmentak erosleak ordaintzen duen % 12ko konpentsazioa darama. Orientagarria eta BEHIN-BEHINEKOA da: ez da zerga-likidazio bat. Berretsi zure zerga-aholkulariarekin.';
+      case 'frut.ayuda_economia_titulo': return 'Diru-sarrerak eta gastuak';
+      case 'frut.ayuda_empezar_texto': return 'Jarri Ezarpenetan titularra, ustiategiaren erregistroa eta kudeaketa integratuko aholkularia bere ROPO zenbakiarekin. Ondoren eman alta lursailei: espeziea, barietatea, azalera, landaketa-markoa, SIGPAC kodea eta lehorra edo ureztatua den. Dena mugikorrean gordetzen da eta estaldurarik gabe dabil.';
+      case 'frut.ayuda_empezar_titulo': return 'Nola hasi';
+      case 'frut.ayuda_helada_texto': return 'Lursail batek kokapena badu, Gaur atalak 7 eguneko iragarpena egutegi fenologiko hurbildu batekin gurutzatzen du eta egoera sentikorretako izotzez abisatzen du (begia, lorea, fruitu loratua). Orientagarria da. Izotza edo txingorra egiten duenean, idatzi tenperaturarekin, egoerarekin eta kalte estimatuarekin: uzta-partean ateratzen da aseguruarentzako oroigarri gisa. Aplikazioak ez ditu istripuak izapidetzen.';
+      case 'frut.ayuda_helada_titulo': return 'Izotzak, txingorra eta asegurua';
+      case 'frut.ayuda_ia_texto': return 'Lursailaren fitxan, Izurriteen jarraipenean, eskanerraren ikonoak argazki bat aztertzen du eta espezie horren katalogoko hiru izurrite edo gaixotasun proposatzen ditu gehienez. Bat aukeratzen duzu eta laginketa bat irekitzen da berrikus dezazun. Zure Anthropic gakoa behar duzu (Ezarpenak → Adimen artifiziala); mugikorrean bakarrik gordetzen da eta argazkia amaitzean ezabatzen da. IAk ez du inoiz tratamendurik gomendatzen.';
+      case 'frut.ayuda_ia_titulo': return 'Izurriteak IArekin identifikatu';
+      case 'frut.ayuda_limites_texto': return 'Ez du produkturik markaka ez dosirik gomendatzen. Ez du zure aholkulariaren sinadura ez irizpidea ordezten. Ez du baieztatzen inolako araurik betetzen duzunik. Ez du ezer bidaltzen SIEXera ez administraziora. Izotz- eta polinizazio-abisuak orientagarriak dira. Katalogoak behin-behinekoak dira teknikari batek berrikusi arte.';
+      case 'frut.ayuda_limites_titulo': return 'Aplikazioak egiten ez duena';
+      case 'frut.ayuda_parcelas_texto': return 'Lursail bakoitzaren fitxan idatzi ilarak bere barietatearekin eta markatu polinizatzaileak. Aplikazioak barietateak katalogoarekin alderatzen ditu eta esaten dizu baten batek polinizatzailea behar duen eta ez duen. Erlezainak jartzen dituen erlauntzak ere idatz ditzakezu (bere REGA kodearekin) eta hektareako zenbat dauden ikusi. Orientazio bat da: benetako bateragarritasuna mintegiak edo teknikariak berresten du. «Erabili nire kokapena» lursailean zutik sakatuta, mapan agertzen da.';
+      case 'frut.ayuda_parcelas_titulo': return 'Lursailak, ilarak eta polinizazioa';
       case 'frut.base': return 'Oinarria';
       case 'frut.base_euros': return 'Zerga-oinarria (€)';
       case 'frut.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
@@ -30402,6 +30516,25 @@ class SoleraL10n {
       case 'frut.aviso_helada_orientativo': return 'Orientatiu: creua la previsió de 7 dies amb un calendari aproximat. L\'estat real depèn de la varietat i de la zona.';
       case 'frut.aviso_plazo_seguridad': return 'Hi ha tractaments dins del seu termini de seguretat en aquesta data';
       case 'frut.aviso_registro_electronico': return 'Des de l\'1 de gener de 2027 el registre de tractaments fitosanitaris s\'ha de portar en format electrònic (RD 1311/2012, art. 16.1, en la redacció del RD 1039/2025). Aquest PDF no substitueix aquest registre.';
+      case 'frut.ayuda': return 'Ajuda';
+      case 'frut.ayuda_cosecha_texto': return 'Anota cada lliurament amb els quilos en closca, el rendiment en gra que et dóna la cooperativa, el calibre i la humitat. L\'app suma per parcel·la i campanya i calcula quilos per hectàrea, quilos de gra i el rendiment mitjà. Si culls dins del termini de seguretat d\'un tractament anotat, t\'avisa.';
+      case 'frut.ayuda_cosecha_titulo': return 'Collita i rendiments';
+      case 'frut.ayuda_cuaderno_texto': return 'Anota cada tractament amb la plaga, la substància activa, el producte i el número de registre, la dosi i el termini de seguretat tal com vénen a l\'etiqueta. L\'app només t\'ensenya les substàncies amb algun ús registrat a l\'espècie i t\'avisa si no troba l\'ús per a aquella plaga, però no proposa productes ni dosis. Els adobats i els regs van igual. Pots canviar la data si ho anotes dies després. Una pulsació llarga esborra un registre.';
+      case 'frut.ayuda_cuaderno_titulo': return 'Quadern: tractaments, adobats i regs';
+      case 'frut.ayuda_documentos_texto': return 'A Configuració → Documents tens el quadern d\'explotació de l\'any (amb l\'ordre i els codis del model de quadern d\'Andalusia) i el part de collita i rendiments. Són PROVISIONALS: cal que un assessor i l\'administració validin el format. Des de l\'1 de gener de 2027 el registre de tractaments ha de ser electrònic, i aquest PDF no el substitueix.';
+      case 'frut.ayuda_documentos_titulo': return 'Documents en PDF';
+      case 'frut.ayuda_economia_texto': return 'Tria el teu règim d\'IVA (l\'especial agrari, REAGP, o el general) i anota vendes i despeses, si vols imputades a una parcel·la per veure\'n el marge. Al REAGP la venda de la collita porta la compensació del 12 % que paga el comprador. És orientatiu i PROVISIONAL: no és una liquidació d\'impostos. Confirma-ho amb el teu assessor fiscal.';
+      case 'frut.ayuda_economia_titulo': return 'Ingressos i despeses';
+      case 'frut.ayuda_empezar_texto': return 'Posa a Configuració el titular, el registre de l\'explotació i el teu assessor de gestió integrada amb el número ROPO. Després dona d\'alta les parcel·les: espècie, varietat, superfície, marc de plantació, codi SIGPAC i si és secà o regadiu. Tot es desa al mòbil i funciona sense cobertura.';
+      case 'frut.ayuda_empezar_titulo': return 'Com començar';
+      case 'frut.ayuda_helada_texto': return 'Si alguna parcel·la té ubicació, Avui creua la previsió de 7 dies amb un calendari fenològic aproximat i avisa de gelades en estats sensibles (botó, flor, fruit quallat). És orientatiu. Quan geli o caigui calamarsa, anota-ho amb la temperatura, l\'estat i el dany estimat: surt al part de collita com a memòria per a l\'assegurança. L\'app no tramita sinistres.';
+      case 'frut.ayuda_helada_titulo': return 'Gelades, calamarsa i assegurança';
+      case 'frut.ayuda_ia_texto': return 'A la fitxa de la parcel·la, a Seguiment de plagues, la icona de l\'escàner analitza una foto i proposa fins a tres plagues o malalties del catàleg d\'aquella espècie. En tries una i s\'obre un mostreig perquè el revisis. Necessites la teva clau d\'Anthropic (Configuració → Intel·ligència artificial); es desa només al mòbil i la foto s\'esborra en acabar. La IA no recomana mai tractaments.';
+      case 'frut.ayuda_ia_titulo': return 'Identificar plagues amb IA';
+      case 'frut.ayuda_limites_texto': return 'No recomana productes per marca ni dosis. No substitueix la signatura ni el criteri del teu assessor. No afirma que compleixis cap norma. No envia res al SIEX ni a l\'administració. Els avisos de gelada i de pol·linització són orientatius. Els catàlegs són provisionals fins que els revisi un tècnic.';
+      case 'frut.ayuda_limites_titulo': return 'El que l\'app no fa';
+      case 'frut.ayuda_parcelas_texto': return 'A la fitxa de cada parcel·la anota les files amb la varietat i marca les pol·linitzadores. L\'app compara les varietats amb el catàleg i et diu si alguna necessita pol·linitzadora i no en té. També pots anotar els ruscs que posa l\'apicultor (amb el codi REGA) i veure quants n\'hi ha per hectàrea. És una orientació: la compatibilitat real la confirma el viver o el tècnic. Amb «Fes servir la meva ubicació», dret a la parcel·la, apareix al mapa.';
+      case 'frut.ayuda_parcelas_titulo': return 'Parcel·les, files i pol·linització';
       case 'frut.base': return 'Base';
       case 'frut.base_euros': return 'Base imposable (€)';
       case 'frut.bienvenida': return 'Primera versió en construcció.';
@@ -34981,6 +35114,25 @@ class SoleraL10n {
       case 'frut.aviso_helada_orientativo': return 'Orientativo: cruza a previsión de 7 días cun calendario aproximado. O estado real depende da variedade e da zona.';
       case 'frut.aviso_plazo_seguridad': return 'Hai tratamentos dentro do seu prazo de seguridade nesta data';
       case 'frut.aviso_registro_electronico': return 'Desde o 1 de xaneiro de 2027 o rexistro de tratamentos fitosanitarios debe levarse en formato electrónico (RD 1311/2012, art. 16.1, na redacción do RD 1039/2025). Este PDF non substitúe ese rexistro.';
+      case 'frut.ayuda': return 'Axuda';
+      case 'frut.ayuda_cosecha_texto': return 'Anota cada entrega cos quilos en casca, o rendemento en gran que che dá a cooperativa, o calibre e a humidade. A app suma por parcela e campaña e calcula quilos por hectárea, quilos de gran e o rendemento medio. Se colles dentro do prazo de seguridade dun tratamento anotado, avísache.';
+      case 'frut.ayuda_cosecha_titulo': return 'Colleita e rendementos';
+      case 'frut.ayuda_cuaderno_texto': return 'Anota cada tratamento coa praga, a substancia activa, o produto e o seu número de rexistro, a dose e o prazo de seguridade tal como veñen na etiqueta. A app só che amosa as substancias con algún uso rexistrado na especie e avísache se non atopa o uso para esa praga, pero non propón produtos nin doses. Os abonados e as regas van igual. Podes cambiar a data se o anotas días despois. Unha pulsación longa borra un rexistro.';
+      case 'frut.ayuda_cuaderno_titulo': return 'Caderno: tratamentos, abonados e regas';
+      case 'frut.ayuda_documentos_texto': return 'En Axustes → Documentos tes o caderno de explotación do ano (coa orde e os códigos do modelo de caderno de Andalucía) e o parte de colleita e rendementos. Son PROVISIONAIS: falta que un asesor e a administración validen o formato. Desde o 1 de xaneiro de 2027 o rexistro de tratamentos ten que ser electrónico, e este PDF non o substitúe.';
+      case 'frut.ayuda_documentos_titulo': return 'Documentos en PDF';
+      case 'frut.ayuda_economia_texto': return 'Escolle o teu réxime de IVE (o especial agrario, REAGP, ou o xeral) e anota vendas e gastos, se queres imputados a unha parcela para ver a súa marxe. No REAGP a venda da colleita leva a compensación do 12 % que paga o comprador. É orientativo e PROVISIONAL: non é unha liquidación de impostos. Confírmao co teu asesor fiscal.';
+      case 'frut.ayuda_economia_titulo': return 'Ingresos e gastos';
+      case 'frut.ayuda_empezar_texto': return 'Pon en Axustes o titular, o rexistro da explotación e o teu asesor de xestión integrada co seu número ROPO. Despois dá de alta as túas parcelas: especie, variedade, superficie, marco de plantación, código SIXPAC e se é secaño ou regadío. Todo se garda no móbil e funciona sen cobertura.';
+      case 'frut.ayuda_empezar_titulo': return 'Como comezar';
+      case 'frut.ayuda_helada_texto': return 'Se algunha parcela ten localización, Hoxe cruza a previsión de 7 días cun calendario fenolóxico aproximado e avisa de xeadas en estados sensibles (botón, flor, froito callado). É orientativo. Cando xee ou caia sarabia, anótao coa temperatura, o estado e o dano estimado: sae no parte de colleita como memoria para o seguro. A app non tramita sinistros.';
+      case 'frut.ayuda_helada_titulo': return 'Xeadas, sarabia e seguro';
+      case 'frut.ayuda_ia_texto': return 'Na ficha da parcela, en Seguimento de pragas, a icona do escáner analiza unha foto e propón ata tres pragas ou enfermidades do catálogo desa especie. Escolles unha e ábrese unha mostraxe para que a revises. Necesitas a túa propia clave de Anthropic (Axustes → Intelixencia artificial); gárdase só no móbil e a foto bórrase ao rematar. A IA nunca recomenda tratamentos.';
+      case 'frut.ayuda_ia_titulo': return 'Identificar pragas con IA';
+      case 'frut.ayuda_limites_texto': return 'Non recomenda produtos por marca nin doses. Non substitúe a sinatura nin o criterio do teu asesor. Non afirma que cumpras ningunha norma. Non envía nada ao SIEX nin á administración. Os avisos de xeada e de polinización son orientativos. Os catálogos son provisionais ata que os revise un técnico.';
+      case 'frut.ayuda_limites_titulo': return 'O que a app non fai';
+      case 'frut.ayuda_parcelas_texto': return 'Na ficha de cada parcela anota as filas coa súa variedade e marca as polinizadoras. A app compara as variedades co catálogo e dille se algunha necesita polinizadora e non a ten. Tamén podes anotar as colmeas que pon o apicultor (co seu código REGA) e ver cantas hai por hectárea. É unha orientación: a compatibilidade real confírmaa o viveiro ou o técnico. Con «Usar a miña localización», de pé na parcela, aparece no mapa.';
+      case 'frut.ayuda_parcelas_titulo': return 'Parcelas, filas e polinización';
       case 'frut.base': return 'Base';
       case 'frut.base_euros': return 'Base impoñible (€)';
       case 'frut.bienvenida': return 'Primeira versión en construción.';

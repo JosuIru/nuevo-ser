@@ -11,6 +11,7 @@ frut.aplicador,Aplicador,Aplikatzailea,Aplicador,Aplicador
 frut.arboles_por_ha,{n} árboles/ha,{n} zuhaitz/ha,{n} arbres/ha,{n} árbores/ha
 frut.asesor,Asesor de gestión integrada de plagas,Izurriteen kudeaketa integratuko aholkularia,Assessor de gestió integrada de plagues,Asesor de xestión integrada de pragas
 frut.asesor_ropo,Nº ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l'assessor,N.º ROPO do asesor
+frut.aviso_documento_provisional,Documento PROVISIONAL: formato pendiente de validar por un asesor y por la administración autonómica. No sustituye la firma del asesor ni acredita el cumplimiento de ninguna norma.,"BEHIN-BEHINEKO dokumentua: formatua aholkulari batek eta administrazio autonomikoak balioztatu behar dute. Ez du aholkulariaren sinadura ordezten, ezta inolako araurik betetzen dela egiaztatzen ere.",Document PROVISIONAL: format pendent de validar per un assessor i per l'administració autonòmica. No substitueix la signatura de l'assessor ni acredita el compliment de cap norma.,Documento PROVISIONAL: formato pendente de validar por un asesor e pola administración autonómica. Non substitúe a sinatura do asesor nin acredita o cumprimento de ningunha norma.
 frut.aviso_plazo_seguridad,Hay tratamientos dentro de su plazo de seguridad en esta fecha,Data honetan segurtasun-epean dauden tratamenduak daude,Hi ha tractaments dins del seu termini de seguretat en aquesta data,Hai tratamentos dentro do seu prazo de seguridade nesta data
 frut.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
 frut.calibre,Calibre,Kalibrea,Calibre,Calibre
@@ -27,8 +28,10 @@ frut.comunicada_seguro,Comunicada al seguro,Aseguruari jakinarazita,Comunicada a
 frut.copiar_de_etiqueta,Cópialo de la etiqueta: la app no lo propone,Kopiatu etiketatik: aplikazioak ez du proposatzen,Copia-ho de l'etiqueta: l'app no ho proposa,Cópiao da etiqueta: a app non o propón
 frut.cosecha,Cosecha,Uzta,Collita,Colleita
 frut.cuaderno,Cuaderno,Koadernoa,Quadern,Caderno
+frut.cuaderno_explotacion,Cuaderno de explotación,Ustiategiko koadernoa,Quadern d'explotació,Caderno de explotación
 frut.danio_estimado,Daño estimado (%),Kalte estimatua (%),Dany estimat (%),Dano estimado (%)
 frut.destino,"Destino (cooperativa, comprador…)","Helmuga (kooperatiba, erosleak…)","Destinació (cooperativa, comprador…)","Destino (cooperativa, comprador…)"
+frut.documentos,Documentos,Dokumentuak,Documents,Documentos
 frut.dosis_aplicada,Dosis aplicada,Aplikatutako dosia,Dosi aplicada,Dose aplicada
 frut.eficacia,Eficacia,Eraginkortasuna,Eficàcia,Eficacia
 frut.eficacia_buena,Buena,Ona,Bona,Boa
@@ -37,6 +40,7 @@ frut.eficacia_regular,Regular,Erdipurdikoa,Regular,Regular
 frut.entregas,Entregas,Entregak,Lliuraments,Entregas
 frut.equipo_aplicacion,Equipo de aplicación (nº ROMA),Aplikazio-ekipoa (ROMA zk.),Equip d'aplicació (núm. ROMA),Equipo de aplicación (n.º ROMA)
 frut.error_cargar,No se han podido cargar los datos,Ezin izan dira datuak kargatu,No s'han pogut carregar les dades,Non se puideron cargar os datos
+frut.error_documento,No se ha podido generar el documento,Ezin izan da dokumentua sortu,No s'ha pogut generar el document,Non se puido xerar o documento
 frut.es_pedrisco,"Es pedrisco, no helada","Txingorra da, ez izotza","És calamarsa, no gelada","É sarabia, non xeada"
 frut.es_polinizadora,Polinizadora,Polinizatzailea,Pol·linitzadora,Polinizadora
 frut.especie,Especie,Espeziea,Espècie,Especie
@@ -56,6 +60,7 @@ frut.fecha_salida,Salida de las colmenas,Erlauntzen irteera,Sortida dels ruscs,S
 frut.filas_variedades,Filas y variedades,Ilarak eta barietateak,Files i varietats,Filas e variedades
 frut.grano,grano,ale,gra,gran
 frut.guardado,Guardado,Gordeta,Desat,Gardado
+frut.helada,Helada,Izotza,Gelada,Xeada
 frut.heladas,Heladas,Izotzak,Gelades,Xeadas
 frut.horas,Horas,Orduak,Hores,Horas
 frut.hoy,Hoy,Gaur,Avui,Hoxe
@@ -67,6 +72,7 @@ frut.marco_plantacion,Marco de plantación (m),Landaketa-markoa (m),Marc de plan
 frut.municipio,Municipio,Udalerria,Municipi,Concello
 frut.n_arboles,{n} árboles,{n} zuhaitz,{n} arbres,{n} árbores
 frut.n_colmenas,{n} colmenas,{n} erlauntz,{n} ruscs,{n} colmeas
+frut.no,No,Ez,No,Non
 frut.no_cosechar_hasta,Plazo de seguridad hasta el {fecha},Segurtasun-epea {fecha} arte,Termini de seguretat fins al {fecha},Prazo de seguridade ata o {fecha}
 frut.nombre,Nombre,Izena,Nom,Nome
 frut.nombre_producto,Producto (nombre de la etiqueta),Produktua (etiketako izena),Producte (nom de l'etiqueta),Produto (nome da etiqueta)
@@ -91,6 +97,25 @@ frut.parcela,Parcela,Lursaila,Parcel·la,Parcela
 frut.parcela_con_registros,No se puede borrar: la parcela tiene registros del cuaderno,Ezin da ezabatu: lursailak koadernoko erregistroak ditu,No es pot esborrar: la parcel·la té registres del quadern,Non se pode borrar: a parcela ten rexistros do caderno
 frut.parcelas,Parcelas,Lursailak,Parcel·les,Parcelas
 frut.parcelas_total,{n} parcelas · {ha} ha,{n} lursail · {ha} ha,{n} parcel·les · {ha} ha,{n} parcelas · {ha} ha
+frut.parte_cosecha,Parte de cosecha y rendimientos,Uzta eta errendimenduen partea,Part de collita i rendiments,Parte de colleita e rendementos
+frut.pdf_aplicador_carnet,Aplicador / carné,Aplikatzailea / txartela,Aplicador / carnet,Aplicador / carné
+frut.pdf_cosecha_comercializada,Cosecha comercializada,Merkaturatutako uzta,Collita comercialitzada,Colleita comercializada
+frut.pdf_dosis,Dosis,Dosia,Dosi,Dose
+frut.pdf_equipo,Equipo (ROMA),Ekipoa (ROMA),Equip (ROMA),Equipo (ROMA)
+frut.pdf_fertilizacion,Fertilización,Ongarritzea,Fertilització,Fertilización
+frut.pdf_heladas_pedrisco,Heladas y pedrisco,Izotzak eta txingorra,Gelades i calamarsa,Xeadas e sarabia
+frut.pdf_identificacion_parcelas,Identificación de las parcelas,Lursailen identifikazioa,Identificació de les parcel·les,Identificación das parcelas
+frut.pdf_kg,Kilos,Kiloak,Quilos,Quilos
+frut.pdf_kg_grano,Kilos de grano,Ale-kiloak,Quilos de gra,Quilos de gran
+frut.pdf_metodo,Método,Metodoa,Mètode,Método
+frut.pdf_orden,Nº orden,Ordena,Núm. ordre,N.º orde
+frut.pdf_problema,Problema fitosanitario,Arazo fitosanitarioa,Problema fitosanitari,Problema fitosanitario
+frut.pdf_producto_registro,Producto / nº registro,Produktua / erregistro zk.,Producte / núm. registre,Produto / n.º rexistro
+frut.pdf_secano_regadio,Secano o regadío,Lehorra edo ureztatua,Secà o regadiu,Secaño ou regadío
+frut.pdf_superficie_tratada,Sup. tratada (ha),Tratatutako az. (ha),Sup. tractada (ha),Sup. tratada (ha)
+frut.pdf_tipo,Tipo,Mota,Tipus,Tipo
+frut.pdf_tratamientos,Tratamientos fitosanitarios,Tratamendu fitosanitarioak,Tractaments fitosanitaris,Tratamentos fitosanitarios
+frut.pedrisco,Pedrisco,Txingorra,Calamarsa,Sarabia
 frut.plaga,Plaga o enfermedad,Izurritea edo gaixotasuna,Plaga o malaltia,Praga ou enfermidade
 frut.plazo_seguridad_dias,"Plazo de seguridad (días, de la etiqueta)","Segurtasun-epea (egunak, etiketatik)","Termini de seguretat (dies, de l'etiqueta)","Prazo de seguridade (días, da etiqueta)"
 frut.plazos_abiertos,Plazos de seguridad abiertos,Segurtasun-epe irekiak,Terminis de seguretat oberts,Prazos de seguridade abertos
@@ -115,6 +140,7 @@ frut.riegos,Riegos,Ureztatzeak,Regs,Regas
 frut.riqueza_npk,Riqueza N-P-K,N-P-K aberastasuna,Riquesa N-P-K,Riqueza N-P-K
 frut.secano,Secano,Lehorra,Secà,Secaño
 frut.seguimiento_plagas,Seguimiento de plagas,Izurriteen jarraipena,Seguiment de plagues,Seguimento de pragas
+frut.si,Sí,Bai,Sí,Si
 frut.sigpac_ayuda,Provincia:municipio:agregado:zona:polígono:parcela:recinto,Probintzia:udalerria:agregatua:eremua:poligonoa:lursaila:barrutia,Província:municipi:agregat:zona:polígon:parcel·la:recinte,Provincia:concello:agregado:zona:polígono:parcela:recinto
 frut.sin_comunicar_seguro,Sin comunicar al seguro,Aseguruari jakinarazi gabe,Sense comunicar a l'assegurança,Sen comunicar ao seguro
 frut.sin_cosechas,Sin cosechas apuntadas en esta campaña,Kanpaina honetan ez dago uztarik idatzita,Sense collites anotades en aquesta campanya,Sen colleitas anotadas nesta campaña

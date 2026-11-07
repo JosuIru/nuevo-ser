@@ -2912,6 +2912,7 @@ class SoleraL10n {
     'frut.arboles_por_ha',
     'frut.asesor',
     'frut.asesor_ropo',
+    'frut.aviso_documento_provisional',
     'frut.aviso_plazo_seguridad',
     'frut.bienvenida',
     'frut.calibre',
@@ -2928,8 +2929,10 @@ class SoleraL10n {
     'frut.copiar_de_etiqueta',
     'frut.cosecha',
     'frut.cuaderno',
+    'frut.cuaderno_explotacion',
     'frut.danio_estimado',
     'frut.destino',
+    'frut.documentos',
     'frut.dosis_aplicada',
     'frut.eficacia',
     'frut.eficacia_buena',
@@ -2938,6 +2941,7 @@ class SoleraL10n {
     'frut.entregas',
     'frut.equipo_aplicacion',
     'frut.error_cargar',
+    'frut.error_documento',
     'frut.es_pedrisco',
     'frut.es_polinizadora',
     'frut.especie',
@@ -2957,6 +2961,7 @@ class SoleraL10n {
     'frut.filas_variedades',
     'frut.grano',
     'frut.guardado',
+    'frut.helada',
     'frut.heladas',
     'frut.horas',
     'frut.hoy',
@@ -2968,6 +2973,7 @@ class SoleraL10n {
     'frut.municipio',
     'frut.n_arboles',
     'frut.n_colmenas',
+    'frut.no',
     'frut.no_cosechar_hasta',
     'frut.nombre',
     'frut.nombre_producto',
@@ -2992,6 +2998,25 @@ class SoleraL10n {
     'frut.parcela_con_registros',
     'frut.parcelas',
     'frut.parcelas_total',
+    'frut.parte_cosecha',
+    'frut.pdf_aplicador_carnet',
+    'frut.pdf_cosecha_comercializada',
+    'frut.pdf_dosis',
+    'frut.pdf_equipo',
+    'frut.pdf_fertilizacion',
+    'frut.pdf_heladas_pedrisco',
+    'frut.pdf_identificacion_parcelas',
+    'frut.pdf_kg',
+    'frut.pdf_kg_grano',
+    'frut.pdf_metodo',
+    'frut.pdf_orden',
+    'frut.pdf_problema',
+    'frut.pdf_producto_registro',
+    'frut.pdf_secano_regadio',
+    'frut.pdf_superficie_tratada',
+    'frut.pdf_tipo',
+    'frut.pdf_tratamientos',
+    'frut.pedrisco',
     'frut.plaga',
     'frut.plazo_seguridad_dias',
     'frut.plazos_abiertos',
@@ -3016,6 +3041,7 @@ class SoleraL10n {
     'frut.riqueza_npk',
     'frut.secano',
     'frut.seguimiento_plagas',
+    'frut.si',
     'frut.sigpac_ayuda',
     'frut.sin_comunicar_seguro',
     'frut.sin_cosechas',
@@ -7380,6 +7406,7 @@ class SoleraL10n {
           'frut.arboles_por_ha',
           'frut.asesor',
           'frut.asesor_ropo',
+          'frut.aviso_documento_provisional',
           'frut.aviso_plazo_seguridad',
           'frut.bienvenida',
           'frut.calibre',
@@ -7396,8 +7423,10 @@ class SoleraL10n {
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
+          'frut.cuaderno_explotacion',
           'frut.danio_estimado',
           'frut.destino',
+          'frut.documentos',
           'frut.dosis_aplicada',
           'frut.eficacia',
           'frut.eficacia_buena',
@@ -7406,6 +7435,7 @@ class SoleraL10n {
           'frut.entregas',
           'frut.equipo_aplicacion',
           'frut.error_cargar',
+          'frut.error_documento',
           'frut.es_pedrisco',
           'frut.es_polinizadora',
           'frut.especie',
@@ -7425,6 +7455,7 @@ class SoleraL10n {
           'frut.filas_variedades',
           'frut.grano',
           'frut.guardado',
+          'frut.helada',
           'frut.heladas',
           'frut.horas',
           'frut.hoy',
@@ -7436,6 +7467,7 @@ class SoleraL10n {
           'frut.municipio',
           'frut.n_arboles',
           'frut.n_colmenas',
+          'frut.no',
           'frut.no_cosechar_hasta',
           'frut.nombre',
           'frut.nombre_producto',
@@ -7460,6 +7492,25 @@ class SoleraL10n {
           'frut.parcela_con_registros',
           'frut.parcelas',
           'frut.parcelas_total',
+          'frut.parte_cosecha',
+          'frut.pdf_aplicador_carnet',
+          'frut.pdf_cosecha_comercializada',
+          'frut.pdf_dosis',
+          'frut.pdf_equipo',
+          'frut.pdf_fertilizacion',
+          'frut.pdf_heladas_pedrisco',
+          'frut.pdf_identificacion_parcelas',
+          'frut.pdf_kg',
+          'frut.pdf_kg_grano',
+          'frut.pdf_metodo',
+          'frut.pdf_orden',
+          'frut.pdf_problema',
+          'frut.pdf_producto_registro',
+          'frut.pdf_secano_regadio',
+          'frut.pdf_superficie_tratada',
+          'frut.pdf_tipo',
+          'frut.pdf_tratamientos',
+          'frut.pedrisco',
           'frut.plaga',
           'frut.plazo_seguridad_dias',
           'frut.plazos_abiertos',
@@ -7484,6 +7535,7 @@ class SoleraL10n {
           'frut.riqueza_npk',
           'frut.secano',
           'frut.seguimiento_plagas',
+          'frut.si',
           'frut.sigpac_ayuda',
           'frut.sin_comunicar_seguro',
           'frut.sin_cosechas',
@@ -11845,6 +11897,7 @@ class SoleraL10n {
           'frut.arboles_por_ha',
           'frut.asesor',
           'frut.asesor_ropo',
+          'frut.aviso_documento_provisional',
           'frut.aviso_plazo_seguridad',
           'frut.bienvenida',
           'frut.calibre',
@@ -11861,8 +11914,10 @@ class SoleraL10n {
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
+          'frut.cuaderno_explotacion',
           'frut.danio_estimado',
           'frut.destino',
+          'frut.documentos',
           'frut.dosis_aplicada',
           'frut.eficacia',
           'frut.eficacia_buena',
@@ -11871,6 +11926,7 @@ class SoleraL10n {
           'frut.entregas',
           'frut.equipo_aplicacion',
           'frut.error_cargar',
+          'frut.error_documento',
           'frut.es_pedrisco',
           'frut.es_polinizadora',
           'frut.especie',
@@ -11890,6 +11946,7 @@ class SoleraL10n {
           'frut.filas_variedades',
           'frut.grano',
           'frut.guardado',
+          'frut.helada',
           'frut.heladas',
           'frut.horas',
           'frut.hoy',
@@ -11901,6 +11958,7 @@ class SoleraL10n {
           'frut.municipio',
           'frut.n_arboles',
           'frut.n_colmenas',
+          'frut.no',
           'frut.no_cosechar_hasta',
           'frut.nombre',
           'frut.nombre_producto',
@@ -11925,6 +11983,25 @@ class SoleraL10n {
           'frut.parcela_con_registros',
           'frut.parcelas',
           'frut.parcelas_total',
+          'frut.parte_cosecha',
+          'frut.pdf_aplicador_carnet',
+          'frut.pdf_cosecha_comercializada',
+          'frut.pdf_dosis',
+          'frut.pdf_equipo',
+          'frut.pdf_fertilizacion',
+          'frut.pdf_heladas_pedrisco',
+          'frut.pdf_identificacion_parcelas',
+          'frut.pdf_kg',
+          'frut.pdf_kg_grano',
+          'frut.pdf_metodo',
+          'frut.pdf_orden',
+          'frut.pdf_problema',
+          'frut.pdf_producto_registro',
+          'frut.pdf_secano_regadio',
+          'frut.pdf_superficie_tratada',
+          'frut.pdf_tipo',
+          'frut.pdf_tratamientos',
+          'frut.pedrisco',
           'frut.plaga',
           'frut.plazo_seguridad_dias',
           'frut.plazos_abiertos',
@@ -11949,6 +12026,7 @@ class SoleraL10n {
           'frut.riqueza_npk',
           'frut.secano',
           'frut.seguimiento_plagas',
+          'frut.si',
           'frut.sigpac_ayuda',
           'frut.sin_comunicar_seguro',
           'frut.sin_cosechas',
@@ -16310,6 +16388,7 @@ class SoleraL10n {
           'frut.arboles_por_ha',
           'frut.asesor',
           'frut.asesor_ropo',
+          'frut.aviso_documento_provisional',
           'frut.aviso_plazo_seguridad',
           'frut.bienvenida',
           'frut.calibre',
@@ -16326,8 +16405,10 @@ class SoleraL10n {
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
+          'frut.cuaderno_explotacion',
           'frut.danio_estimado',
           'frut.destino',
+          'frut.documentos',
           'frut.dosis_aplicada',
           'frut.eficacia',
           'frut.eficacia_buena',
@@ -16336,6 +16417,7 @@ class SoleraL10n {
           'frut.entregas',
           'frut.equipo_aplicacion',
           'frut.error_cargar',
+          'frut.error_documento',
           'frut.es_pedrisco',
           'frut.es_polinizadora',
           'frut.especie',
@@ -16355,6 +16437,7 @@ class SoleraL10n {
           'frut.filas_variedades',
           'frut.grano',
           'frut.guardado',
+          'frut.helada',
           'frut.heladas',
           'frut.horas',
           'frut.hoy',
@@ -16366,6 +16449,7 @@ class SoleraL10n {
           'frut.municipio',
           'frut.n_arboles',
           'frut.n_colmenas',
+          'frut.no',
           'frut.no_cosechar_hasta',
           'frut.nombre',
           'frut.nombre_producto',
@@ -16390,6 +16474,25 @@ class SoleraL10n {
           'frut.parcela_con_registros',
           'frut.parcelas',
           'frut.parcelas_total',
+          'frut.parte_cosecha',
+          'frut.pdf_aplicador_carnet',
+          'frut.pdf_cosecha_comercializada',
+          'frut.pdf_dosis',
+          'frut.pdf_equipo',
+          'frut.pdf_fertilizacion',
+          'frut.pdf_heladas_pedrisco',
+          'frut.pdf_identificacion_parcelas',
+          'frut.pdf_kg',
+          'frut.pdf_kg_grano',
+          'frut.pdf_metodo',
+          'frut.pdf_orden',
+          'frut.pdf_problema',
+          'frut.pdf_producto_registro',
+          'frut.pdf_secano_regadio',
+          'frut.pdf_superficie_tratada',
+          'frut.pdf_tipo',
+          'frut.pdf_tratamientos',
+          'frut.pedrisco',
           'frut.plaga',
           'frut.plazo_seguridad_dias',
           'frut.plazos_abiertos',
@@ -16414,6 +16517,7 @@ class SoleraL10n {
           'frut.riqueza_npk',
           'frut.secano',
           'frut.seguimiento_plagas',
+          'frut.si',
           'frut.sigpac_ayuda',
           'frut.sin_comunicar_seguro',
           'frut.sin_cosechas',
@@ -20798,6 +20902,7 @@ class SoleraL10n {
       case 'frut.arboles_por_ha': return '{n} árboles/ha';
       case 'frut.asesor': return 'Asesor de gestión integrada de plagas';
       case 'frut.asesor_ropo': return 'Nº ROPO del asesor';
+      case 'frut.aviso_documento_provisional': return 'Documento PROVISIONAL: formato pendiente de validar por un asesor y por la administración autonómica. No sustituye la firma del asesor ni acredita el cumplimiento de ninguna norma.';
       case 'frut.aviso_plazo_seguridad': return 'Hay tratamientos dentro de su plazo de seguridad en esta fecha';
       case 'frut.bienvenida': return 'Primera versión en construcción.';
       case 'frut.calibre': return 'Calibre';
@@ -20814,8 +20919,10 @@ class SoleraL10n {
       case 'frut.copiar_de_etiqueta': return 'Cópialo de la etiqueta: la app no lo propone';
       case 'frut.cosecha': return 'Cosecha';
       case 'frut.cuaderno': return 'Cuaderno';
+      case 'frut.cuaderno_explotacion': return 'Cuaderno de explotación';
       case 'frut.danio_estimado': return 'Daño estimado (%)';
       case 'frut.destino': return 'Destino (cooperativa, comprador…)';
+      case 'frut.documentos': return 'Documentos';
       case 'frut.dosis_aplicada': return 'Dosis aplicada';
       case 'frut.eficacia': return 'Eficacia';
       case 'frut.eficacia_buena': return 'Buena';
@@ -20824,6 +20931,7 @@ class SoleraL10n {
       case 'frut.entregas': return 'Entregas';
       case 'frut.equipo_aplicacion': return 'Equipo de aplicación (nº ROMA)';
       case 'frut.error_cargar': return 'No se han podido cargar los datos';
+      case 'frut.error_documento': return 'No se ha podido generar el documento';
       case 'frut.es_pedrisco': return 'Es pedrisco, no helada';
       case 'frut.es_polinizadora': return 'Polinizadora';
       case 'frut.especie': return 'Especie';
@@ -20843,6 +20951,7 @@ class SoleraL10n {
       case 'frut.filas_variedades': return 'Filas y variedades';
       case 'frut.grano': return 'grano';
       case 'frut.guardado': return 'Guardado';
+      case 'frut.helada': return 'Helada';
       case 'frut.heladas': return 'Heladas';
       case 'frut.horas': return 'Horas';
       case 'frut.hoy': return 'Hoy';
@@ -20854,6 +20963,7 @@ class SoleraL10n {
       case 'frut.municipio': return 'Municipio';
       case 'frut.n_arboles': return '{n} árboles';
       case 'frut.n_colmenas': return '{n} colmenas';
+      case 'frut.no': return 'No';
       case 'frut.no_cosechar_hasta': return 'Plazo de seguridad hasta el {fecha}';
       case 'frut.nombre': return 'Nombre';
       case 'frut.nombre_producto': return 'Producto (nombre de la etiqueta)';
@@ -20878,6 +20988,25 @@ class SoleraL10n {
       case 'frut.parcela_con_registros': return 'No se puede borrar: la parcela tiene registros del cuaderno';
       case 'frut.parcelas': return 'Parcelas';
       case 'frut.parcelas_total': return '{n} parcelas · {ha} ha';
+      case 'frut.parte_cosecha': return 'Parte de cosecha y rendimientos';
+      case 'frut.pdf_aplicador_carnet': return 'Aplicador / carné';
+      case 'frut.pdf_cosecha_comercializada': return 'Cosecha comercializada';
+      case 'frut.pdf_dosis': return 'Dosis';
+      case 'frut.pdf_equipo': return 'Equipo (ROMA)';
+      case 'frut.pdf_fertilizacion': return 'Fertilización';
+      case 'frut.pdf_heladas_pedrisco': return 'Heladas y pedrisco';
+      case 'frut.pdf_identificacion_parcelas': return 'Identificación de las parcelas';
+      case 'frut.pdf_kg': return 'Kilos';
+      case 'frut.pdf_kg_grano': return 'Kilos de grano';
+      case 'frut.pdf_metodo': return 'Método';
+      case 'frut.pdf_orden': return 'Nº orden';
+      case 'frut.pdf_problema': return 'Problema fitosanitario';
+      case 'frut.pdf_producto_registro': return 'Producto / nº registro';
+      case 'frut.pdf_secano_regadio': return 'Secano o regadío';
+      case 'frut.pdf_superficie_tratada': return 'Sup. tratada (ha)';
+      case 'frut.pdf_tipo': return 'Tipo';
+      case 'frut.pdf_tratamientos': return 'Tratamientos fitosanitarios';
+      case 'frut.pedrisco': return 'Pedrisco';
       case 'frut.plaga': return 'Plaga o enfermedad';
       case 'frut.plazo_seguridad_dias': return 'Plazo de seguridad (días, de la etiqueta)';
       case 'frut.plazos_abiertos': return 'Plazos de seguridad abiertos';
@@ -20902,6 +21031,7 @@ class SoleraL10n {
       case 'frut.riqueza_npk': return 'Riqueza N-P-K';
       case 'frut.secano': return 'Secano';
       case 'frut.seguimiento_plagas': return 'Seguimiento de plagas';
+      case 'frut.si': return 'Sí';
       case 'frut.sigpac_ayuda': return 'Provincia:municipio:agregado:zona:polígono:parcela:recinto';
       case 'frut.sin_comunicar_seguro': return 'Sin comunicar al seguro';
       case 'frut.sin_cosechas': return 'Sin cosechas apuntadas en esta campaña';
@@ -25267,6 +25397,7 @@ class SoleraL10n {
       case 'frut.arboles_por_ha': return '{n} zuhaitz/ha';
       case 'frut.asesor': return 'Izurriteen kudeaketa integratuko aholkularia';
       case 'frut.asesor_ropo': return 'Aholkulariaren ROPO zk.';
+      case 'frut.aviso_documento_provisional': return 'BEHIN-BEHINEKO dokumentua: formatua aholkulari batek eta administrazio autonomikoak balioztatu behar dute. Ez du aholkulariaren sinadura ordezten, ezta inolako araurik betetzen dela egiaztatzen ere.';
       case 'frut.aviso_plazo_seguridad': return 'Data honetan segurtasun-epean dauden tratamenduak daude';
       case 'frut.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
       case 'frut.calibre': return 'Kalibrea';
@@ -25283,8 +25414,10 @@ class SoleraL10n {
       case 'frut.copiar_de_etiqueta': return 'Kopiatu etiketatik: aplikazioak ez du proposatzen';
       case 'frut.cosecha': return 'Uzta';
       case 'frut.cuaderno': return 'Koadernoa';
+      case 'frut.cuaderno_explotacion': return 'Ustiategiko koadernoa';
       case 'frut.danio_estimado': return 'Kalte estimatua (%)';
       case 'frut.destino': return 'Helmuga (kooperatiba, erosleak…)';
+      case 'frut.documentos': return 'Dokumentuak';
       case 'frut.dosis_aplicada': return 'Aplikatutako dosia';
       case 'frut.eficacia': return 'Eraginkortasuna';
       case 'frut.eficacia_buena': return 'Ona';
@@ -25293,6 +25426,7 @@ class SoleraL10n {
       case 'frut.entregas': return 'Entregak';
       case 'frut.equipo_aplicacion': return 'Aplikazio-ekipoa (ROMA zk.)';
       case 'frut.error_cargar': return 'Ezin izan dira datuak kargatu';
+      case 'frut.error_documento': return 'Ezin izan da dokumentua sortu';
       case 'frut.es_pedrisco': return 'Txingorra da, ez izotza';
       case 'frut.es_polinizadora': return 'Polinizatzailea';
       case 'frut.especie': return 'Espeziea';
@@ -25312,6 +25446,7 @@ class SoleraL10n {
       case 'frut.filas_variedades': return 'Ilarak eta barietateak';
       case 'frut.grano': return 'ale';
       case 'frut.guardado': return 'Gordeta';
+      case 'frut.helada': return 'Izotza';
       case 'frut.heladas': return 'Izotzak';
       case 'frut.horas': return 'Orduak';
       case 'frut.hoy': return 'Gaur';
@@ -25323,6 +25458,7 @@ class SoleraL10n {
       case 'frut.municipio': return 'Udalerria';
       case 'frut.n_arboles': return '{n} zuhaitz';
       case 'frut.n_colmenas': return '{n} erlauntz';
+      case 'frut.no': return 'Ez';
       case 'frut.no_cosechar_hasta': return 'Segurtasun-epea {fecha} arte';
       case 'frut.nombre': return 'Izena';
       case 'frut.nombre_producto': return 'Produktua (etiketako izena)';
@@ -25347,6 +25483,25 @@ class SoleraL10n {
       case 'frut.parcela_con_registros': return 'Ezin da ezabatu: lursailak koadernoko erregistroak ditu';
       case 'frut.parcelas': return 'Lursailak';
       case 'frut.parcelas_total': return '{n} lursail · {ha} ha';
+      case 'frut.parte_cosecha': return 'Uzta eta errendimenduen partea';
+      case 'frut.pdf_aplicador_carnet': return 'Aplikatzailea / txartela';
+      case 'frut.pdf_cosecha_comercializada': return 'Merkaturatutako uzta';
+      case 'frut.pdf_dosis': return 'Dosia';
+      case 'frut.pdf_equipo': return 'Ekipoa (ROMA)';
+      case 'frut.pdf_fertilizacion': return 'Ongarritzea';
+      case 'frut.pdf_heladas_pedrisco': return 'Izotzak eta txingorra';
+      case 'frut.pdf_identificacion_parcelas': return 'Lursailen identifikazioa';
+      case 'frut.pdf_kg': return 'Kiloak';
+      case 'frut.pdf_kg_grano': return 'Ale-kiloak';
+      case 'frut.pdf_metodo': return 'Metodoa';
+      case 'frut.pdf_orden': return 'Ordena';
+      case 'frut.pdf_problema': return 'Arazo fitosanitarioa';
+      case 'frut.pdf_producto_registro': return 'Produktua / erregistro zk.';
+      case 'frut.pdf_secano_regadio': return 'Lehorra edo ureztatua';
+      case 'frut.pdf_superficie_tratada': return 'Tratatutako az. (ha)';
+      case 'frut.pdf_tipo': return 'Mota';
+      case 'frut.pdf_tratamientos': return 'Tratamendu fitosanitarioak';
+      case 'frut.pedrisco': return 'Txingorra';
       case 'frut.plaga': return 'Izurritea edo gaixotasuna';
       case 'frut.plazo_seguridad_dias': return 'Segurtasun-epea (egunak, etiketatik)';
       case 'frut.plazos_abiertos': return 'Segurtasun-epe irekiak';
@@ -25371,6 +25526,7 @@ class SoleraL10n {
       case 'frut.riqueza_npk': return 'N-P-K aberastasuna';
       case 'frut.secano': return 'Lehorra';
       case 'frut.seguimiento_plagas': return 'Izurriteen jarraipena';
+      case 'frut.si': return 'Bai';
       case 'frut.sigpac_ayuda': return 'Probintzia:udalerria:agregatua:eremua:poligonoa:lursaila:barrutia';
       case 'frut.sin_comunicar_seguro': return 'Aseguruari jakinarazi gabe';
       case 'frut.sin_cosechas': return 'Kanpaina honetan ez dago uztarik idatzita';
@@ -29736,6 +29892,7 @@ class SoleraL10n {
       case 'frut.arboles_por_ha': return '{n} arbres/ha';
       case 'frut.asesor': return 'Assessor de gestió integrada de plagues';
       case 'frut.asesor_ropo': return 'Núm. ROPO de l\'assessor';
+      case 'frut.aviso_documento_provisional': return 'Document PROVISIONAL: format pendent de validar per un assessor i per l\'administració autonòmica. No substitueix la signatura de l\'assessor ni acredita el compliment de cap norma.';
       case 'frut.aviso_plazo_seguridad': return 'Hi ha tractaments dins del seu termini de seguretat en aquesta data';
       case 'frut.bienvenida': return 'Primera versió en construcció.';
       case 'frut.calibre': return 'Calibre';
@@ -29752,8 +29909,10 @@ class SoleraL10n {
       case 'frut.copiar_de_etiqueta': return 'Copia-ho de l\'etiqueta: l\'app no ho proposa';
       case 'frut.cosecha': return 'Collita';
       case 'frut.cuaderno': return 'Quadern';
+      case 'frut.cuaderno_explotacion': return 'Quadern d\'explotació';
       case 'frut.danio_estimado': return 'Dany estimat (%)';
       case 'frut.destino': return 'Destinació (cooperativa, comprador…)';
+      case 'frut.documentos': return 'Documents';
       case 'frut.dosis_aplicada': return 'Dosi aplicada';
       case 'frut.eficacia': return 'Eficàcia';
       case 'frut.eficacia_buena': return 'Bona';
@@ -29762,6 +29921,7 @@ class SoleraL10n {
       case 'frut.entregas': return 'Lliuraments';
       case 'frut.equipo_aplicacion': return 'Equip d\'aplicació (núm. ROMA)';
       case 'frut.error_cargar': return 'No s\'han pogut carregar les dades';
+      case 'frut.error_documento': return 'No s\'ha pogut generar el document';
       case 'frut.es_pedrisco': return 'És calamarsa, no gelada';
       case 'frut.es_polinizadora': return 'Pol·linitzadora';
       case 'frut.especie': return 'Espècie';
@@ -29781,6 +29941,7 @@ class SoleraL10n {
       case 'frut.filas_variedades': return 'Files i varietats';
       case 'frut.grano': return 'gra';
       case 'frut.guardado': return 'Desat';
+      case 'frut.helada': return 'Gelada';
       case 'frut.heladas': return 'Gelades';
       case 'frut.horas': return 'Hores';
       case 'frut.hoy': return 'Avui';
@@ -29792,6 +29953,7 @@ class SoleraL10n {
       case 'frut.municipio': return 'Municipi';
       case 'frut.n_arboles': return '{n} arbres';
       case 'frut.n_colmenas': return '{n} ruscs';
+      case 'frut.no': return 'No';
       case 'frut.no_cosechar_hasta': return 'Termini de seguretat fins al {fecha}';
       case 'frut.nombre': return 'Nom';
       case 'frut.nombre_producto': return 'Producte (nom de l\'etiqueta)';
@@ -29816,6 +29978,25 @@ class SoleraL10n {
       case 'frut.parcela_con_registros': return 'No es pot esborrar: la parcel·la té registres del quadern';
       case 'frut.parcelas': return 'Parcel·les';
       case 'frut.parcelas_total': return '{n} parcel·les · {ha} ha';
+      case 'frut.parte_cosecha': return 'Part de collita i rendiments';
+      case 'frut.pdf_aplicador_carnet': return 'Aplicador / carnet';
+      case 'frut.pdf_cosecha_comercializada': return 'Collita comercialitzada';
+      case 'frut.pdf_dosis': return 'Dosi';
+      case 'frut.pdf_equipo': return 'Equip (ROMA)';
+      case 'frut.pdf_fertilizacion': return 'Fertilització';
+      case 'frut.pdf_heladas_pedrisco': return 'Gelades i calamarsa';
+      case 'frut.pdf_identificacion_parcelas': return 'Identificació de les parcel·les';
+      case 'frut.pdf_kg': return 'Quilos';
+      case 'frut.pdf_kg_grano': return 'Quilos de gra';
+      case 'frut.pdf_metodo': return 'Mètode';
+      case 'frut.pdf_orden': return 'Núm. ordre';
+      case 'frut.pdf_problema': return 'Problema fitosanitari';
+      case 'frut.pdf_producto_registro': return 'Producte / núm. registre';
+      case 'frut.pdf_secano_regadio': return 'Secà o regadiu';
+      case 'frut.pdf_superficie_tratada': return 'Sup. tractada (ha)';
+      case 'frut.pdf_tipo': return 'Tipus';
+      case 'frut.pdf_tratamientos': return 'Tractaments fitosanitaris';
+      case 'frut.pedrisco': return 'Calamarsa';
       case 'frut.plaga': return 'Plaga o malaltia';
       case 'frut.plazo_seguridad_dias': return 'Termini de seguretat (dies, de l\'etiqueta)';
       case 'frut.plazos_abiertos': return 'Terminis de seguretat oberts';
@@ -29840,6 +30021,7 @@ class SoleraL10n {
       case 'frut.riqueza_npk': return 'Riquesa N-P-K';
       case 'frut.secano': return 'Secà';
       case 'frut.seguimiento_plagas': return 'Seguiment de plagues';
+      case 'frut.si': return 'Sí';
       case 'frut.sigpac_ayuda': return 'Província:municipi:agregat:zona:polígon:parcel·la:recinte';
       case 'frut.sin_comunicar_seguro': return 'Sense comunicar a l\'assegurança';
       case 'frut.sin_cosechas': return 'Sense collites anotades en aquesta campanya';
@@ -34205,6 +34387,7 @@ class SoleraL10n {
       case 'frut.arboles_por_ha': return '{n} árbores/ha';
       case 'frut.asesor': return 'Asesor de xestión integrada de pragas';
       case 'frut.asesor_ropo': return 'N.º ROPO do asesor';
+      case 'frut.aviso_documento_provisional': return 'Documento PROVISIONAL: formato pendente de validar por un asesor e pola administración autonómica. Non substitúe a sinatura do asesor nin acredita o cumprimento de ningunha norma.';
       case 'frut.aviso_plazo_seguridad': return 'Hai tratamentos dentro do seu prazo de seguridade nesta data';
       case 'frut.bienvenida': return 'Primeira versión en construción.';
       case 'frut.calibre': return 'Calibre';
@@ -34221,8 +34404,10 @@ class SoleraL10n {
       case 'frut.copiar_de_etiqueta': return 'Cópiao da etiqueta: a app non o propón';
       case 'frut.cosecha': return 'Colleita';
       case 'frut.cuaderno': return 'Caderno';
+      case 'frut.cuaderno_explotacion': return 'Caderno de explotación';
       case 'frut.danio_estimado': return 'Dano estimado (%)';
       case 'frut.destino': return 'Destino (cooperativa, comprador…)';
+      case 'frut.documentos': return 'Documentos';
       case 'frut.dosis_aplicada': return 'Dose aplicada';
       case 'frut.eficacia': return 'Eficacia';
       case 'frut.eficacia_buena': return 'Boa';
@@ -34231,6 +34416,7 @@ class SoleraL10n {
       case 'frut.entregas': return 'Entregas';
       case 'frut.equipo_aplicacion': return 'Equipo de aplicación (n.º ROMA)';
       case 'frut.error_cargar': return 'Non se puideron cargar os datos';
+      case 'frut.error_documento': return 'Non se puido xerar o documento';
       case 'frut.es_pedrisco': return 'É sarabia, non xeada';
       case 'frut.es_polinizadora': return 'Polinizadora';
       case 'frut.especie': return 'Especie';
@@ -34250,6 +34436,7 @@ class SoleraL10n {
       case 'frut.filas_variedades': return 'Filas e variedades';
       case 'frut.grano': return 'gran';
       case 'frut.guardado': return 'Gardado';
+      case 'frut.helada': return 'Xeada';
       case 'frut.heladas': return 'Xeadas';
       case 'frut.horas': return 'Horas';
       case 'frut.hoy': return 'Hoxe';
@@ -34261,6 +34448,7 @@ class SoleraL10n {
       case 'frut.municipio': return 'Concello';
       case 'frut.n_arboles': return '{n} árbores';
       case 'frut.n_colmenas': return '{n} colmeas';
+      case 'frut.no': return 'Non';
       case 'frut.no_cosechar_hasta': return 'Prazo de seguridade ata o {fecha}';
       case 'frut.nombre': return 'Nome';
       case 'frut.nombre_producto': return 'Produto (nome da etiqueta)';
@@ -34285,6 +34473,25 @@ class SoleraL10n {
       case 'frut.parcela_con_registros': return 'Non se pode borrar: a parcela ten rexistros do caderno';
       case 'frut.parcelas': return 'Parcelas';
       case 'frut.parcelas_total': return '{n} parcelas · {ha} ha';
+      case 'frut.parte_cosecha': return 'Parte de colleita e rendementos';
+      case 'frut.pdf_aplicador_carnet': return 'Aplicador / carné';
+      case 'frut.pdf_cosecha_comercializada': return 'Colleita comercializada';
+      case 'frut.pdf_dosis': return 'Dose';
+      case 'frut.pdf_equipo': return 'Equipo (ROMA)';
+      case 'frut.pdf_fertilizacion': return 'Fertilización';
+      case 'frut.pdf_heladas_pedrisco': return 'Xeadas e sarabia';
+      case 'frut.pdf_identificacion_parcelas': return 'Identificación das parcelas';
+      case 'frut.pdf_kg': return 'Quilos';
+      case 'frut.pdf_kg_grano': return 'Quilos de gran';
+      case 'frut.pdf_metodo': return 'Método';
+      case 'frut.pdf_orden': return 'N.º orde';
+      case 'frut.pdf_problema': return 'Problema fitosanitario';
+      case 'frut.pdf_producto_registro': return 'Produto / n.º rexistro';
+      case 'frut.pdf_secano_regadio': return 'Secaño ou regadío';
+      case 'frut.pdf_superficie_tratada': return 'Sup. tratada (ha)';
+      case 'frut.pdf_tipo': return 'Tipo';
+      case 'frut.pdf_tratamientos': return 'Tratamentos fitosanitarios';
+      case 'frut.pedrisco': return 'Sarabia';
       case 'frut.plaga': return 'Praga ou enfermidade';
       case 'frut.plazo_seguridad_dias': return 'Prazo de seguridade (días, da etiqueta)';
       case 'frut.plazos_abiertos': return 'Prazos de seguridade abertos';
@@ -34309,6 +34516,7 @@ class SoleraL10n {
       case 'frut.riqueza_npk': return 'Riqueza N-P-K';
       case 'frut.secano': return 'Secaño';
       case 'frut.seguimiento_plagas': return 'Seguimento de pragas';
+      case 'frut.si': return 'Si';
       case 'frut.sigpac_ayuda': return 'Provincia:concello:agregado:zona:polígono:parcela:recinto';
       case 'frut.sin_comunicar_seguro': return 'Sen comunicar ao seguro';
       case 'frut.sin_cosechas': return 'Sen colleitas anotadas nesta campaña';

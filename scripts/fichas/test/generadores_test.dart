@@ -9,6 +9,23 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
   return List.generate(cantidad, (_) => plantillasPorHabilidad[id]!.generar(azar));
 }
 
+/// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
+/// comunes se exigen solo a estos mientras se aplica la revisión.
+const _dominiosRevisados = {'FR'};
+
+bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
+
+/// Todo lo que se imprime de una plantilla con [cantidad] ejercicios.
+List<String> _textosImpresos(PlantillaFicha plantilla, {int cantidad = 200}) => [
+      plantilla.descripcion,
+      plantilla.preguntaExplicalo,
+      for (final ejercicio in _muestras(plantilla.idHabilidad, semilla: 11, cantidad: cantidad)) ...[
+        ejercicio.enunciado,
+        ejercicio.destacado ?? '',
+        ...(ejercicio.tabla ?? const <List<String>>[]).expand((fila) => fila),
+      ],
+    ];
+
 void main() {
   final catalogo = cargarCatalogo(rutaSkillsPorDefecto(localizarRaizPaquete()!));
 
@@ -59,6 +76,23 @@ void main() {
         }
         expect(plantilla.descripcion.length, greaterThan(40));
         expect(plantilla.preguntaExplicalo, matches(RegExp(r'[?.]$')));
+      });
+    }
+  });
+
+  group('reglas comunes de la revisión', () {
+    for (final plantilla in plantillasPorHabilidad.values.where((p) => _revisada(p.idHabilidad))) {
+      final id = plantilla.idHabilidad;
+      test('$id: la explicación trae una línea «Ejemplo: …»', () {
+        expect(plantilla.descripcion, contains('Ejemplo: '));
+      });
+
+      test('$id: × en Primaria y · en ESO', () {
+        final curso = catalogo.porId(id)!.curso!;
+        final prohibido = curso.endsWith('P') ? '·' : '×';
+        for (final texto in _textosImpresos(plantilla)) {
+          expect(texto, isNot(contains(prohibido)), reason: '$id ($curso): $texto');
+        }
       });
     }
   });
@@ -192,6 +226,23 @@ void main() {
           ..sort();
         expect(lados[0] + lados[1], greaterThan(lados[2]), reason: ejercicio.enunciado);
         expect(ejercicio.enunciado, isNot(contains('veces más grande')));
+      }
+    });
+
+    test('FR.01: la pregunta dice de qué se pide la fracción', () {
+      for (final ejercicio in _muestras('FR.01', semilla: 3, cantidad: 3000)) {
+        expect(ejercicio.enunciado, contains('¿Qué fracción de'), reason: ejercicio.enunciado);
+        expect(ejercicio.enunciado, isNot(contains('caja de huevos')));
+      }
+    });
+
+    test('FR.22: la pregunta nombra lo que se cuenta (nada de «¿Cuántos son?»)', () {
+      for (final ejercicio in _muestras('FR.22', semilla: 3, cantidad: 3000)) {
+        expect(ejercicio.enunciado, isNot(contains('son?')), reason: ejercicio.enunciado);
+        final datos = RegExp(r'^De l[oa]s (\d+) .*?, (\d+)/(\d+) ').firstMatch(ejercicio.enunciado)!;
+        final cantidad = int.parse(datos.group(1)!);
+        final fraccion = Fraccion(int.parse(datos.group(2)!), int.parse(datos.group(3)!));
+        expect(ejercicio.solucion, '${cantidad * fraccion.numerador ~/ fraccion.denominador}');
       }
     });
   });

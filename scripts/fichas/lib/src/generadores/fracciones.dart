@@ -43,12 +43,14 @@ List<Fraccion> _tresDistintas(math.Random azar, Fraccion Function() fabrica) {
   return elegidas;
 }
 
+/// (objeto, partes, acción con {n}, pregunta): la pregunta dice de qué
+/// se pide la fracción.
 const _repartos = [
-  ('una pizza', 'trozos iguales', 'te comes'),
-  ('una tableta de chocolate', 'onzas iguales', 'repartes'),
-  ('un huerto', 'parcelas iguales', 'siembras de tomates'),
-  ('una cuerda', 'tramos iguales', 'pintas de azul'),
-  ('una caja de huevos', 'huecos', 'llenas'),
+  ('una pizza', 'trozos iguales', 'te comes {n}', '¿Qué fracción de la pizza te has comido?'),
+  ('una tableta de chocolate', 'onzas iguales', 'regalas {n}', '¿Qué fracción de la tableta has regalado?'),
+  ('un huerto', 'parcelas iguales', 'siembras tomates en {n}', '¿Qué fracción del huerto tiene tomates?'),
+  ('una cuerda', 'tramos iguales', 'pintas de azul {n}', '¿Qué fracción de la cuerda está pintada?'),
+  ('una tarta', 'porciones iguales', 'os coméis {n}', '¿Qué fracción de la tarta os habéis comido?'),
 ];
 
 final List<PlantillaFicha> plantillasFracciones = [
@@ -56,17 +58,18 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.01',
     descripcion:
         'Una fracción dice en cuántas partes iguales se ha partido algo (el número de abajo, '
-        'el denominador) y cuántas de esas partes tomamos (el de arriba, el numerador).',
+        'el denominador) y cuántas de esas partes tomamos (el de arriba, el numerador).\n'
+        'Ejemplo: si partes una pizza en 8 trozos iguales y te comes 3, te has comido 3/8.',
     preguntaExplicalo:
         'Si partes una hoja en 4 trozos que no son iguales y coges uno, ¿has cogido 1/4 de '
         'la hoja? Explica por qué.',
     generar: (azar) {
-      final (objeto, partes, accion) = azar.elegir(_repartos);
+      final (objeto, partes, accion, pregunta) = azar.elegir(_repartos);
       final total = azar.entre(3, 12);
       final tomadas = azar.entre(1, total - 1);
       return Ejercicio(
-        enunciado: 'Se divide $objeto en $total $partes y $accion $tomadas. '
-            '¿Qué fracción es? ¿Y qué fracción queda sin tocar? Puedes hacer un dibujo.',
+        enunciado: 'Se parte $objeto en $total $partes y ${accion.replaceAll('{n}', '$tomadas')}. '
+            '$pregunta ¿Y qué fracción queda? Puedes hacer un dibujo.',
         solucion: '$tomadas/$total; quedan ${total - tomadas}/$total',
         renglones: 4,
       );
@@ -75,8 +78,9 @@ final List<PlantillaFicha> plantillasFracciones = [
   PlantillaFicha(
     idHabilidad: 'FR.02',
     descripcion:
-        'Las fracciones se leen con el numerador y el nombre de las partes: 3/5 se lee «tres '
-        'quintos» y 1/2, «un medio». A partir de 11 se dice «onceavos», «doceavos»…',
+        'Las fracciones se leen con el numerador y el nombre de las partes (medios, tercios, '
+        'cuartos, quintos…). A partir de 11 se dice «onceavos», «doceavos»…\n'
+        'Ejemplo: 3/5 se lee «tres quintos» y 1/2, «un medio».',
     preguntaExplicalo:
         '¿Por qué crees que 1/4 se lee «un cuarto»? ¿Qué tiene que ver con partir algo en cuatro?',
     generar: (azar) {
@@ -102,8 +106,9 @@ final List<PlantillaFicha> plantillasFracciones = [
   PlantillaFicha(
     idHabilidad: 'FR.03',
     descripcion:
-        'Para saber si una fracción es más o menos que la mitad, mira si el numerador es '
-        'más o menos que la mitad del denominador: 4/9 es menos que 1/2 porque 4 no llega a 4,5.',
+        'Para saber si una fracción es más o menos que la mitad, compara el doble del numerador '
+        'con el denominador.\n'
+        'Ejemplo: en 4/9, el doble de 4 es 8, y 8 es menos que 9; así que 4/9 es menos que 1/2.',
     preguntaExplicalo: '¿Cómo sabes, sin dibujar, si una fracción es justo la mitad?',
     generar: (azar) {
       final denominador = azar.entre(3, 12);
@@ -121,7 +126,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.04',
     descripcion:
         'Si el numerador es menor que el denominador, la fracción es menos que una unidad; '
-        'si son iguales, es justo una unidad; si es mayor, es más que una unidad.',
+        'si son iguales, es justo una unidad; si es mayor, es más que una unidad.\n'
+        'Ejemplo: 3/5 < 1, 5/5 = 1 y 7/5 > 1.',
     preguntaExplicalo: '¿Por qué 7/7 es lo mismo que 1? Pon un ejemplo con algo que se reparte.',
     generar: (azar) {
       final denominador = azar.entre(2, 10);
@@ -141,7 +147,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.05',
     descripcion:
         'Si dos fracciones tienen el mismo denominador, las partes son del mismo tamaño: '
-        'es mayor la que tiene más partes, es decir, el numerador más grande.',
+        'es mayor la que tiene más partes, es decir, el numerador más grande.\n'
+        'Ejemplo: 5/8 > 3/8, porque 5 trozos de un octavo son más que 3.',
     preguntaExplicalo: '¿Por qué con el mismo denominador basta con mirar el numerador?',
     generar: (azar) {
       final denominador = azar.entre(3, 12);
@@ -160,7 +167,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.06',
     descripcion:
         'Si dos fracciones tienen el mismo numerador, tomamos el mismo número de partes; '
-        'es mayor la de denominador más pequeño, porque sus partes son más grandes.',
+        'es mayor la de denominador más pequeño, porque sus partes son más grandes.\n'
+        'Ejemplo: 2/3 > 2/7, porque un tercio es más grande que un séptimo.',
     preguntaExplicalo:
         '¿Qué prefieres, 1/3 o 1/8 de una tarta? Explica por qué el número más grande abajo '
         'da un trozo más pequeño.',
@@ -180,8 +188,9 @@ final List<PlantillaFicha> plantillasFracciones = [
   PlantillaFicha(
     idHabilidad: 'FR.07',
     descripcion:
-        'Para comparar dos fracciones cualesquiera, pásalas a un denominador común (o '
-        'multiplica en cruz): así las partes son del mismo tamaño y se pueden contar.',
+        'Para comparar dos fracciones con distinto denominador, búscales fracciones equivalentes '
+        'con el mismo denominador: así las partes son del mismo tamaño y basta mirar el numerador.\n'
+        'Ejemplo: 2/3 = 8/12 y 3/4 = 9/12, así que 2/3 < 3/4.',
     preguntaExplicalo:
         'Alguien dice que 5/7 es mayor que 3/4 «porque 5 y 7 son más grandes». ¿Tiene razón? '
         '¿Cómo se lo explicarías?',
@@ -205,7 +214,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.08',
     descripcion:
         'Ordenar fracciones es compararlas de dos en dos. Ayuda pasarlas todas a un '
-        'denominador común o compararlas con 1/2.',
+        'denominador común o compararlas con 1/2.\n'
+        'Ejemplo: 1/4, 2/3 y 1/2 son 3/12, 8/12 y 6/12; así que 1/4 < 1/2 < 2/3.',
     preguntaExplicalo: '¿Qué truco usas para ordenar fracciones que tienen denominadores distintos?',
     generar: (azar) {
       final fracciones = _tresDistintas(azar, () => _propia(azar, denominadorMaximo: 9));
@@ -221,8 +231,9 @@ final List<PlantillaFicha> plantillasFracciones = [
   PlantillaFicha(
     idHabilidad: 'FR.09',
     descripcion:
-        'Dos fracciones son equivalentes si valen lo mismo, como 1/2 y 2/4. Se consiguen '
-        'multiplicando (o dividiendo) el numerador y el denominador por el mismo número.',
+        'Dos fracciones son equivalentes si valen lo mismo. Se consiguen multiplicando (o '
+        'dividiendo) el numerador y el denominador por el mismo número.\n'
+        'Ejemplo: 1/2 = 2/4 = 3/6 (arriba y abajo por 2, y por 3).',
     preguntaExplicalo: '¿Por qué 2/4 y 1/2 son la misma cantidad? Explícalo con un dibujo o con palabras.',
     generar: (azar) {
       final base = _propia(azar, denominadorMaximo: 6).simplificada();
@@ -244,7 +255,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.10',
     descripcion:
         'Simplificar es escribir la misma fracción con números más pequeños, dividiendo '
-        'numerador y denominador entre el mismo número, hasta que no se pueda más.',
+        'numerador y denominador entre el mismo número, hasta que no se pueda más.\n'
+        'Ejemplo: 12/18 = 6/9 = 2/3 (primero entre 2 y luego entre 3).',
     preguntaExplicalo: '¿Cómo sabes que una fracción ya no se puede simplificar más?',
     generar: (azar) {
       final reducida = _propia(azar, denominadorMaximo: 9).simplificada();
@@ -262,7 +274,9 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.11',
     descripcion:
         'Amplificar es multiplicar numerador y denominador por el mismo número: la fracción '
-        'sigue valiendo lo mismo, solo cambia el tamaño de las partes.',
+        'sigue valiendo lo mismo, solo cambia el tamaño de las partes.\n'
+        'Ejemplo: para escribir 2/5 con denominador 15, como 15 = 5 × 3, se multiplica arriba y '
+        'abajo por 3: 2/5 = 6/15.',
     preguntaExplicalo: 'Para completar 3/4 = ?/12, ¿por qué número multiplicas y por qué?',
     generar: (azar) {
       final base = _propia(azar, denominadorMaximo: 8).simplificada();
@@ -279,7 +293,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.12',
     descripcion:
         'Una fracción impropia (numerador mayor que el denominador) vale más que 1. Se puede '
-        'escribir como número mixto: unidades enteras y una fracción. 7/3 = 2 y 1/3.',
+        'escribir como número mixto: unidades enteras y una fracción.\n'
+        'Ejemplo: 11/4 = 2 y 3/4, porque en 11 cuartos caben 2 unidades (8 cuartos) y sobran 3 cuartos.',
     preguntaExplicalo: '¿Qué tiene que ver la división con pasar 7/3 a número mixto?',
     generar: (azar) {
       final denominador = azar.entre(2, 9);
@@ -298,7 +313,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.13',
     descripcion:
         'Para pasar un número mixto a fracción, cada unidad entera son tantas partes como '
-        'diga el denominador: 2 y 3/4 son 4 + 4 + 3 = 11 cuartos, 11/4.',
+        'diga el denominador.\n'
+        'Ejemplo: 2 y 3/4 son 4 + 4 + 3 = 11 cuartos, 11/4.',
     preguntaExplicalo: '¿Por qué 2 y 3/4 no es 23/4? Explícalo con tus palabras.',
     generar: (azar) {
       final denominador = azar.entre(2, 9);
@@ -316,7 +332,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.14',
     descripcion:
         'Con el mismo denominador las partes son iguales: se suman los numeradores y el '
-        'denominador se queda como está. 2/7 + 3/7 = 5/7.',
+        'denominador se queda como está.\n'
+        'Ejemplo: 2/7 + 3/7 = 5/7.',
     preguntaExplicalo: '¿Por qué no se suman también los denominadores? Pon un ejemplo con una tarta.',
     generar: (azar) {
       final denominador = azar.entre(3, 12);
@@ -333,8 +350,8 @@ final List<PlantillaFicha> plantillasFracciones = [
   PlantillaFicha(
     idHabilidad: 'FR.15',
     descripcion:
-        'Con el mismo denominador se restan los numeradores y el denominador se queda igual. '
-        '5/8 − 2/8 = 3/8.',
+        'Con el mismo denominador se restan los numeradores y el denominador se queda igual.\n'
+        'Ejemplo: 5/8 − 2/8 = 3/8.',
     preguntaExplicalo: 'Si tienes 5/8 de pizza y te comes 2/8, ¿qué ha cambiado y qué no?',
     generar: (azar) {
       final denominador = azar.entre(3, 12);
@@ -352,7 +369,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.16',
     descripcion:
         'Para sumar fracciones con denominadores distintos, primero se buscan fracciones '
-        'equivalentes con el mismo denominador (el m.c.m.) y luego se suman los numeradores.',
+        'equivalentes con el mismo denominador (el m.c.m.) y luego se suman los numeradores.\n'
+        'Ejemplo: 1/2 + 1/3 = 3/6 + 2/6 = 5/6.',
     preguntaExplicalo: '¿Por qué hay que buscar un denominador común antes de sumar?',
     generar: (azar) {
       late Fraccion primera, segunda;
@@ -372,7 +390,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.17',
     descripcion:
         'Para restar fracciones con denominadores distintos, se pasan a un denominador común '
-        'y después se restan los numeradores.',
+        'y después se restan los numeradores.\n'
+        'Ejemplo: 3/4 − 1/6 = 9/12 − 2/12 = 7/12.',
     preguntaExplicalo: 'Explica paso a paso cómo resolverías 1/2 − 1/3 a alguien que no sabe.',
     generar: (azar) {
       late Fraccion primera, segunda;
@@ -392,7 +411,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.18',
     descripcion:
         'Multiplicar una fracción por un número natural es sumarla varias veces: se multiplica '
-        'el numerador y el denominador se queda igual. 3 × 2/5 = 6/5.',
+        'el numerador y el denominador se queda igual.\n'
+        'Ejemplo: 3 × 2/5 = 6/5.',
     preguntaExplicalo: '¿Por qué 3 × 2/5 es lo mismo que 2/5 + 2/5 + 2/5?',
     generar: (azar) {
       final fraccion = _propia(azar, denominadorMaximo: 9);
@@ -409,7 +429,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.19',
     descripcion:
         'Para multiplicar dos fracciones se multiplican los numeradores entre sí y los '
-        'denominadores entre sí. 2/3 × 4/5 = 8/15.',
+        'denominadores entre sí.\n'
+        'Ejemplo: 2/3 × 4/5 = 8/15.',
     preguntaExplicalo:
         'Al multiplicar 1/2 × 1/3 sale un número más pequeño que los dos. ¿Por qué crees que pasa?',
     generar: (azar) {
@@ -427,7 +448,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.20',
     descripcion:
         'Dividir una fracción entre un número natural es repartirla: se multiplica el '
-        'denominador por ese número. 3/4 : 2 = 3/8.',
+        'denominador por ese número.\n'
+        'Ejemplo: 3/4 : 2 = 3/8.',
     preguntaExplicalo: 'Si repartes 1/2 pizza entre 3 personas, ¿cuánto le toca a cada una? ¿Por qué?',
     generar: (azar) {
       final fraccion = _propia(azar, denominadorMaximo: 9);
@@ -444,7 +466,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.21',
     descripcion:
         'Para dividir entre una fracción se multiplica por su inversa (la fracción dada la '
-        'vuelta). 2/3 : 4/5 = 2/3 × 5/4 = 10/12 = 5/6.',
+        'vuelta).\n'
+        'Ejemplo: 2/3 : 4/5 = 2/3 × 5/4 = 10/12 = 5/6.',
     preguntaExplicalo: '¿Cuántas veces cabe 1/4 en 1/2? ¿Qué tiene que ver con dividir fracciones?',
     generar: (azar) {
       final primera = _propia(azar, denominadorMaximo: 7);
@@ -461,20 +484,23 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.22',
     descripcion:
         'Para calcular la fracción de una cantidad, se divide la cantidad entre el denominador '
-        '(lo que vale una parte) y se multiplica por el numerador. 3/5 de 20 = 12.',
+        '(lo que vale una parte) y se multiplica por el numerador.\n'
+        'Ejemplo: 3/5 de 20 son (20 : 5) × 3 = 4 × 3 = 12.',
     preguntaExplicalo: '¿Por qué primero se divide entre el denominador? ¿Qué significa ese número?',
     generar: (azar) {
       final fraccion = _propia(azar, denominadorMaximo: 8);
       final cantidad = fraccion.denominador * azar.entre(2, 10);
-      final cosa = azar.elegir([
-        ('alumnos de una clase', 'van en bici al cole'),
-        ('libros de la biblioteca de aula', 'son de aventuras'),
-        ('semillas plantadas', 'han brotado'),
-        ('metros de un camino', 'están asfaltados'),
+      // (lo contado, qué les pasa, pregunta, artículo): la pregunta nombra
+      // lo que se cuenta y concuerda en género.
+      final (contado, predicado, pregunta, articulo) = azar.elegir([
+        ('personas de una clase', 'van en bici al cole', '¿Cuántas personas van en bici?', 'las'),
+        ('libros de la biblioteca de aula', 'son de aventuras', '¿Cuántos libros son de aventuras?', 'los'),
+        ('semillas plantadas', 'han brotado', '¿Cuántas semillas han brotado?', 'las'),
+        ('metros de un camino', 'están asfaltados', '¿Cuántos metros están asfaltados?', 'los'),
       ]);
       final resultado = cantidad ~/ fraccion.denominador * fraccion.numerador;
       return Ejercicio(
-        enunciado: 'De $cantidad ${cosa.$1}, ${fraccion.texto} ${cosa.$2}. ¿Cuántos son?',
+        enunciado: 'De $articulo $cantidad $contado, ${fraccion.texto} $predicado. $pregunta',
         solucion: '$resultado',
         renglones: 3,
       );
@@ -484,7 +510,8 @@ final List<PlantillaFicha> plantillasFracciones = [
     idHabilidad: 'FR.23',
     descripcion:
         'Con fracciones con signo se usan las mismas reglas que con los enteros: menos por '
-        'menos da más. Para sumar, denominador común; al final, simplifica.',
+        'menos da más. Para sumar, denominador común; al final, simplifica.\n'
+        'Ejemplo: −1/2 · (−2/3) = 2/6 = 1/3, y −1/2 + 1/3 = −3/6 + 2/6 = −1/6.',
     preguntaExplicalo: '¿Es lo mismo −3/4 que 3/(−4) y que −(3/4)? Explica por qué.',
     generar: (azar) {
       // Fracciones ya irreducibles y no enteras: nada de «4/4».

@@ -9,10 +9,12 @@ ThemeData temaConcejo(Brightness brillo) {
   );
   final base = ThemeData(colorScheme: colores, useMaterial3: true);
   return base.copyWith(
-    // Los tamaños vienen de la geometría de Material 2021; el tema base
-    // aún no los tiene puestos y no se pueden escalar sin ellos.
-    textTheme: base.textTheme
-        .merge(Typography.englishLike2021.apply(fontSizeFactor: 1.08)),
+    // Tamaños de la geometría de Material 2021 y colores del esquema. Ojo:
+    // `merge` con la geometría sola borraba los colores (sus estilos no
+    // heredan) y el texto salía blanco sobre fondo claro en Android.
+    textTheme: Typography.englishLike2021
+        .apply(fontSizeFactor: 1.08)
+        .apply(bodyColor: colores.onSurface, displayColor: colores.onSurface),
     cardTheme: const CardThemeData(margin: EdgeInsets.symmetric(vertical: 6)),
   );
 }

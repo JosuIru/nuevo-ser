@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/analitica.dart';
@@ -38,49 +38,31 @@ const String nombreFicheroBaseDatosSoleraQuesera = 'solera_quesera.db';
 /// v1 arranca con esquema completo (15 tablas + FK + índices).
 /// Migraciones nunca destructivas — una quesería en producción lleva
 /// años de lotes, piezas y ventas.
-class BaseDatosSoleraQuesera {
+class BaseDatosSoleraQuesera extends BaseDatosSolera {
   static final BaseDatosSoleraQuesera instancia =
       BaseDatosSoleraQuesera._interno();
   factory BaseDatosSoleraQuesera() => instancia;
   BaseDatosSoleraQuesera._interno();
 
-  Database? _basedatos;
+  @override
+  String get nombreFichero => nombreFicheroBaseDatosSoleraQuesera;
 
-  Future<Database> get basedatos async {
-    if (_basedatos != null) return _basedatos!;
-    final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosSoleraQuesera);
-    _basedatos = await openDatabase(
-      ruta,
-      version: versionEsquemaSoleraQuesera,
-      onConfigure: (db) async {
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: (db, version) async {
-        await _crearEsquemaV1(db);
-        await _crearEsquemaV2(db);
-        await _crearEsquemaV3(db);
-        await _crearEsquemaV4(db);
-      },
-      onUpgrade: (db, viejaVersion, nuevaVersion) async {
-        if (viejaVersion < 2) {
-          await _crearEsquemaV2(db);
-        }
-        if (viejaVersion < 3) {
-          await _crearEsquemaV3(db);
-        }
-        if (viejaVersion < 4) {
-          await _crearEsquemaV4(db);
-        }
-      },
-    );
-    return _basedatos!;
-  }
+  @override
+  int get versionEsquema => versionEsquemaSoleraQuesera;
 
-  Future<void> cerrar() async {
-    await _basedatos?.close();
-    _basedatos = null;
-  }
+  @override
+  DatabaseFactory get fabricaBaseDatos => databaseFactory;
+
+  @override
+  Future<void> crearEsquemaInicial(Database db) => _crearEsquemaV1(db);
+
+  @override
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _crearEsquemaV2,
+        3: _crearEsquemaV3,
+        4: _crearEsquemaV4,
+      };
+
 
   // ─── Quesería (single-row) ──────────────────────────────
 
@@ -92,14 +74,7 @@ class BaseDatosSoleraQuesera {
   }
 
   Future<void> guardarQueseria(Queseria q) async {
-    final db = await basedatos;
-    final actual = await obtenerQueseria();
-    final mapa = q.toMap()..remove('id');
-    if (actual.id != null) {
-      await db.update('queserias', mapa, where: 'id = ?', whereArgs: [actual.id]);
-    } else {
-      await db.insert('queserias', mapa);
-    }
+    await guardarFilaUnica('queserias', q.toMap());
   }
 
   // ─── Proveedores de leche ──────────────────────────────
@@ -800,15 +775,7 @@ class BaseDatosSoleraQuesera {
   }
 
   Future<void> guardarConfiguracionFiscal(ConfiguracionFiscal cf) async {
-    final db = await basedatos;
-    final actual = await obtenerConfiguracionFiscal();
-    final mapa = cf.toMap()..remove('id');
-    if (actual.id != null) {
-      await db.update('configuraciones_fiscales', mapa,
-          where: 'id = ?', whereArgs: [actual.id]);
-    } else {
-      await db.insert('configuraciones_fiscales', mapa);
-    }
+    await guardarFilaUnica('configuraciones_fiscales', cf.toMap());
   }
 
   Future<int> guardarIngreso(ApunteIngreso i) async {

@@ -1,0 +1,21 @@
+name: auditoria
+description: Listas de comprobación en PDF para los asesores humanos de cada vertical Larrea y firma de catálogos.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  pdf: ^3.11.1
+  pendientes:
+    path: ../pendientes
+
+dev_dependencies:
+  test: ^1.25.0
+
+# Las mismas que resuelve nuevo_ser_core: image 4.11 pide un archive más
+# nuevo del que pdf 3.11 deja elegir y no compila.
+dependency_overrides:
+  image: 4.3.0
+  archive: 3.6.1

@@ -14,15 +14,28 @@ String escribirCampoCsv(String campo) {
   return '"${campo.replaceAll('"', '""')}"';
 }
 
-/// Escribe `asesor: <firma>` en `revisado_por` de cada fila (o solo de las
+/// Prefijos que acepta [firmarCatalogo]: firma de asesor, firma de persona
+/// (p. ej. el titular que asume la revisión) o revisión de IA.
+const List<String> prefijosAdmitidos = ['asesor:', 'persona:', prefijoRevisionIa];
+
+/// Escribe `<prefijo> <firma>` en `revisado_por` de cada fila (o solo de las
 /// de [identificadores], por la primera columna). La cita previa se conserva
 /// detrás (`; fuente: ...`). Las líneas que no se firman no se tocan, ni las
-/// de comentario `#`, para que el diff sea mínimo.
+/// de comentario `#`, para que el diff sea mínimo. Una fila firmada por
+/// persona no se vuelve a tocar; una revisión de IA no se repite, pero sí
+/// admite encima la firma de una persona.
 ResultadoFirma firmarCatalogo(String texto,
-    {required String firma, Set<String>? identificadores}) {
+    {required String firma,
+    String prefijo = 'asesor:',
+    Set<String>? identificadores}) {
   if (firma.trim().isEmpty) {
     throw ArgumentError.value(firma, 'firma', 'no puede estar vacía');
   }
+  if (!prefijosAdmitidos.contains(prefijo)) {
+    throw ArgumentError.value(
+        prefijo, 'prefijo', 'debe ser uno de ${prefijosAdmitidos.join(' ')}');
+  }
+  final anotaRevisionIa = prefijo == prefijoRevisionIa;
   final lineas = texto.split('\n');
   int? indiceRevision;
   var filasFirmadas = 0;
@@ -53,9 +66,10 @@ ResultadoFirma firmarCatalogo(String texto,
     ];
     final valorPrevio = camposCompletos[indiceRevision].trim();
     if (esFirmaDePersona(valorPrevio)) continue;
+    if (anotaRevisionIa && esRevisionDeIa(valorPrevio)) continue;
     camposCompletos[indiceRevision] = valorPrevio.isEmpty
-        ? 'asesor: ${firma.trim()}'
-        : 'asesor: ${firma.trim()}; fuente: $valorPrevio';
+        ? '$prefijo ${firma.trim()}'
+        : '$prefijo ${firma.trim()}; fuente: $valorPrevio';
     final finDeLinea = linea.endsWith('\r') ? '\r' : '';
     lineas[indice] = camposCompletos.map(escribirCampoCsv).join(',') + finDeLinea;
     filasFirmadas++;

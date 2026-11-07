@@ -137,8 +137,9 @@ pw.Widget _filaCatalogo(EstadoCatalogo catalogo) {
     '${catalogo.nombreArchivo} — ${catalogo.filas} filas, '
     '$porFirmar por firmar',
     detalle: '${catalogo.ruta} · ${catalogo.revisadasPorFuentePublica} '
-        'contrastadas con fuente documental, ${catalogo.sinRevisar} sin '
-        'revisar, ${catalogo.revisadasPorPersona} ya firmadas',
+        'contrastadas con fuente documental, ${catalogo.revisadasPorIa} '
+        'con revisión de IA, ${catalogo.sinRevisar} sin revisar, '
+        '${catalogo.revisadasPorPersona} ya firmadas',
   );
 }
 

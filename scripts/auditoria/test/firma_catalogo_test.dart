@@ -52,6 +52,33 @@ void main() {
       expect(otra.texto, firmado);
     });
 
+    test('firma como persona: o anota una revisión de IA', () {
+      final comoPersona = firmarCatalogo(_catalogo,
+          firma: 'Josu (titular)', prefijo: 'persona:', identificadores: {'arbequina'});
+      expect(comoPersona.texto.split('\n')[3],
+          'arbequina,Arbequina,,persona: Josu (titular)');
+
+      final revisado = firmarCatalogo(_catalogo,
+          firma: 'Claude, 2026-11-07', prefijo: 'revision-ia:',
+          identificadores: {'picual'});
+      expect(revisado.texto.split('\n')[2],
+          'picual,Picual,"dulce, amarga","revision-ia: Claude, 2026-11-07; fuente: fuente_publica"');
+
+      // Una revisión de IA no se repite, pero la firma humana va encima.
+      expect(firmarCatalogo(revisado.texto,
+              firma: 'otra', prefijo: 'revision-ia:', identificadores: {'picual'})
+          .filasFirmadas, 0);
+      final firmado = firmarCatalogo(revisado.texto,
+          firma: 'Ana', identificadores: {'picual'});
+      expect(firmado.texto.split('\n')[2],
+          'picual,Picual,"dulce, amarga","asesor: Ana; fuente: revision-ia: Claude, 2026-11-07; fuente: fuente_publica"');
+    });
+
+    test('rechaza un prefijo desconocido', () {
+      expect(() => firmarCatalogo(_catalogo, firma: 'Ana', prefijo: 'yo:'),
+          throwsA(isA<ArgumentError>()));
+    });
+
     test('falla si no hay columna revisado_por', () {
       expect(() => firmarCatalogo('id,nombre\na,b\n', firma: 'Ana'),
           throwsA(isA<FormatException>()));

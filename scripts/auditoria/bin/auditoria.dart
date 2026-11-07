@@ -8,9 +8,11 @@ Asistente de auditoría de las verticales Larrea.
 
   dart run bin/auditoria.dart lista <vertical> [--para <responsable>] [--salida <dir>]
       PDF con la lista de comprobación (una sección por asesor).
-  dart run bin/auditoria.dart firmar <archivo.csv> --firma "Nombre (cargo, fecha)" [--ids a,b,c]
-      Escribe «asesor: …» en revisado_por. Solo cuando la persona ya ha
-      firmado la lista en papel o por escrito.
+  dart run bin/auditoria.dart firmar <archivo.csv> --firma "Nombre (cargo, fecha)" [--ids a,b,c] [--como asesor|persona|revision-ia]
+      Escribe «asesor: …» (por defecto) en revisado_por. Solo cuando la
+      persona ya ha firmado la lista en papel o por escrito. «persona» es
+      quien asume la revisión sin ser asesor (p. ej. el titular);
+      «revision-ia» anota una revisión de IA con informe: no retira sellos.
   dart run bin/auditoria.dart comprobar <vertical>
       Qué falta para poder retirar los sellos PROVISIONAL.
 
@@ -89,9 +91,11 @@ void _firmar(List<String> argumentos) {
   final firma = _valorDe(argumentos, '--firma') ??
       (throw ArgumentError('Falta --firma "Nombre (cargo, fecha)"'));
   final ids = _valorDe(argumentos, '--ids');
+  final como = _valorDe(argumentos, '--como') ?? 'asesor';
   final archivo = File(ruta);
   final resultado = firmarCatalogo(archivo.readAsStringSync(),
       firma: firma,
+      prefijo: '$como:',
       identificadores: ids?.split(',').map((id) => id.trim()).toSet());
   archivo.writeAsStringSync(resultado.texto);
   stdout.writeln('${resultado.filasFirmadas} filas firmadas en $ruta');

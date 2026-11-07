@@ -1,5 +1,5 @@
-import 'package:path/path.dart' as path_lib;
-import 'package:path_provider/path_provider.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
 import '../modelos/apunte_gasto.dart';
@@ -34,37 +34,29 @@ const int versionEsquemaBaseDatosViticultura = 3;
 /// v1 arranca con esquema completo (vinedos + cepas + 4 eventos +
 /// titular). Tracks de inspección quedan fuera de v0.1 — se añadirán
 /// cuando entre el chunk correspondiente.
-class BaseDatosSoleraViticultura {
+class BaseDatosSoleraViticultura extends BaseDatosSolera {
   static final BaseDatosSoleraViticultura instancia =
       BaseDatosSoleraViticultura._interno();
   factory BaseDatosSoleraViticultura() => instancia;
   BaseDatosSoleraViticultura._interno();
 
-  Database? _basedatos;
+  @override
+  String get nombreFichero => nombreFicheroBaseDatosViticultura;
 
-  Future<Database> get basedatos async {
-    if (_basedatos != null) return _basedatos!;
-    final directorio = await getApplicationDocumentsDirectory();
-    final ruta = path_lib.join(directorio.path, nombreFicheroBaseDatosViticultura);
-    _basedatos = await openDatabase(
-      ruta,
-      version: versionEsquemaBaseDatosViticultura,
-      onConfigure: (db) async {
-        // ON DELETE CASCADE en eventos hijos requiere FKs activas.
-        await db.execute('PRAGMA foreign_keys = ON');
-      },
-      onCreate: (db, version) => crearEsquemaCompleto(db),
-      onUpgrade: (db, viejaVersion, nuevaVersion) async {
-        if (viejaVersion < 2) {
-          await _crearTablasContabilidadV2(db);
-        }
-        if (viejaVersion < 3) {
-          await _crearTablasFacturasV3(db);
-        }
-      },
-    );
-    return _basedatos!;
-  }
+  @override
+  int get versionEsquema => versionEsquemaBaseDatosViticultura;
+
+  @override
+  DatabaseFactory get fabricaBaseDatos => databaseFactory;
+
+  @override
+  Future<void> crearEsquemaInicial(Database db) => _crearEsquemaInicial(db);
+
+  @override
+  Map<int, PasoMigracionSolera> get pasosMigracion => {
+        2: _crearTablasContabilidadV2,
+        3: _crearTablasFacturasV3,
+      };
 
   // ─── Viñedos ────────────────────────────────────────────
 
@@ -330,14 +322,7 @@ class BaseDatosSoleraViticultura {
   /// Upsert single-row del titular. Si ya existe, actualiza; si no,
   /// inserta. La tabla nunca debe tener más de una fila en v0.1.
   Future<void> guardarTitular(Titular titular) async {
-    final db = await basedatos;
-    final actual = await obtenerTitular();
-    final mapa = titular.toMap()..remove('id');
-    if (actual.id != null) {
-      await db.update('titulares', mapa, where: 'id = ?', whereArgs: [actual.id]);
-    } else {
-      await db.insert('titulares', mapa);
-    }
+    await guardarFilaUnica('titulares', titular.toMap());
   }
 
   // ─── Terceros (clientes y proveedores) ──────────────────
@@ -385,15 +370,7 @@ class BaseDatosSoleraViticultura {
   }
 
   Future<void> guardarConfiguracionFiscal(ConfiguracionFiscal cf) async {
-    final db = await basedatos;
-    final actual = await obtenerConfiguracionFiscal();
-    final mapa = cf.toMap()..remove('id');
-    if (actual.id != null) {
-      await db.update('configuraciones_fiscales', mapa,
-          where: 'id = ?', whereArgs: [actual.id]);
-    } else {
-      await db.insert('configuraciones_fiscales', mapa);
-    }
+    await guardarFilaUnica('configuraciones_fiscales', cf.toMap());
   }
 
   // ─── Apuntes de ingreso ─────────────────────────────────
@@ -484,10 +461,6 @@ class BaseDatosSoleraViticultura {
     await db.delete('apuntes_gasto', where: 'id = ?', whereArgs: [id]);
   }
 
-  Future<void> cerrar() async {
-    await _basedatos?.close();
-    _basedatos = null;
-  }
 
   Future<String> rutaBaseDatos() async {
     final db = await basedatos;
@@ -499,10 +472,7 @@ class BaseDatosSoleraViticultura {
   /// la consulta fallaba y la restauración no se lanzaba nunca.
   Future<bool> estaVacia() async => baseDatosSinRegistros(await basedatos);
 
-  Future<void> reiniciar() async {
-    await _basedatos?.close();
-    _basedatos = null;
-  }
+  Future<void> reiniciar() => cerrar();
 }
 
 // ─── Esquema inicial v1 ───────────────────────────────────

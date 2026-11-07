@@ -1,0 +1,17 @@
+# Especies de Larrea Frutal — datos PROVISIONALES.
+# Los ids coinciden con `especiesFrutal` (lib/modelos/parcela.dart): no cambiarlos.
+# colmenas_ha_min/max: orientación para la polinización; vacío si no hay fuente leída.
+#   Almendro: «de 2,5 a 5 colmenas por ha» (Felipe, A. 1985, «Factores que influyen en la polinización
+#   del almendro», Quaderns Agraris, IEC, pp. 66 y 76,
+#   https://revistes.iec.cat/index.php/QA/article/download/22258.001/51738/54767). Fuente antigua,
+#   anterior a las variedades autocompatibles: el apicultor y el técnico ajustan la cifra.
+# El resto de columnas son conocimiento general sin fuente citada: revisado_por vacío salvo almendro,
+# donde la revisión documental cubre solo las colmenas/ha.
+id,nombre,nombre_cientifico,tipo_fruto,polinizacion,colmenas_ha_min,colmenas_ha_max,notas,revisado_por
+almendro,Almendro,Prunus dulcis,cascara,entomofila,2.5,5,"Muchas variedades tradicionales son autoincompatibles y necesitan polinizadora y abejas","fuente_publica: Felipe 1985, Quaderns Agraris (IEC), pp. 66 y 76 (solo colmenas/ha)"
+avellano,Avellano,Corylus avellana,cascara,anemofila,,,"Polinización por el viento; las variedades suelen necesitar polinizadoras compatibles",
+nogal,Nogal,Juglans regia,cascara,anemofila,,,"Polinización por el viento; la dicogamia (flores masculinas y femeninas a destiempo) puede exigir polinizadoras",
+castano,Castaño,Castanea sativa,cascara,mixta,,,"Muchas variedades son autoestériles",
+pistachero,Pistachero,Pistacia vera,cascara,anemofila,,,"Especie dioica: hacen falta pies machos que florezcan a la vez que las hembras",
+hueso,Frutal de hueso,Prunus spp.,fresco,entomofila,,,"Cerezo, ciruelo, melocotonero, albaricoquero: la compatibilidad depende de la variedad",
+pepita,Frutal de pepita,"Malus domestica, Pyrus communis",fresco,entomofila,,,"Manzano y peral: la mayoría de variedades necesitan polinizadora",

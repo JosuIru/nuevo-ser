@@ -1,0 +1,31 @@
+# Variedades de Larrea Frutal con datos de polinización — datos PROVISIONALES SIN REVISAR.
+# NINGUNA fila sale de una fuente leída: son variedades conocidas con datos de conocimiento general,
+# para que la app tenga autocompletado y una primera orientación. revisado_por vacío en todas.
+# autocompatible: si / no / vacío (no se sabe). grupo_incompatibilidad: vacío en todas a propósito
+#   (los grupos de alelos S hay que tomarlos de una fuente; sin grupo, la app nunca da una
+#   polinización por «cubierta», solo «por confirmar»).
+# floracion: muy_temprana / temprana / media / tardia / muy_tardia / extra_tardia (orden de epocasFloracion).
+# polinizadoras_habituales: ids de este mismo catálogo, separados por |, solo como pista.
+id,especie_id,nombre,autocompatible,grupo_incompatibilidad,floracion,polinizadoras_habituales,origen,notas,revisado_por
+guara,almendro,Guara,si,,tardia,,CITA Aragón,,
+lauranne,almendro,Lauranne,si,,tardia,,INRA (Francia),,
+soleta,almendro,Soleta,si,,tardia,,CITA Aragón,,
+belona,almendro,Belona,si,,tardia,,CITA Aragón,,
+vairo,almendro,Vairo,si,,tardia,,IRTA,,
+marinada,almendro,Marinada,si,,muy_tardia,,IRTA,,
+constanti,almendro,Constantí,si,,tardia,,IRTA,,
+penta,almendro,Penta,si,,extra_tardia,,CEBAS-CSIC,,
+tardona,almendro,Tardona,si,,extra_tardia,,CEBAS-CSIC,,
+marcona,almendro,Marcona,no,,media,,Tradicional,Necesita polinizadora de floración coincidente,
+desmayo_largueta,almendro,Desmayo Largueta,no,,temprana,,Tradicional,Necesita polinizadora de floración coincidente,
+ferragnes,almendro,Ferragnès,no,,tardia,ferraduel,INRA (Francia),Se planta a menudo con Ferraduel,
+ferraduel,almendro,Ferraduel,no,,tardia,ferragnes,INRA (Francia),Se planta a menudo con Ferragnès,
+negret,avellano,Negret,no,,,,Tradicional (Tarragona),Necesita polinizadoras,
+pauetet,avellano,Pauetet,no,,,,Tradicional (Tarragona),,
+tonda_giffoni,avellano,Tonda di Giffoni,no,,,,Italia,,
+segorbe,avellano,Segorbe,no,,,,Tradicional,,
+chandler,nogal,Chandler,,,,,Universidad de California,Dicogamia: valorar polinizadora,
+franquette,nogal,Franquette,,,,,Francia,,
+lara,nogal,Lara,,,,,Francia,,
+kerman,pistachero,Kerman (hembra),,,,peter,Estados Unidos,Dioica: necesita pies machos,
+peter,pistachero,Peter (macho),,,,,Estados Unidos,Pie macho polinizador,

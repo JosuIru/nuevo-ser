@@ -51,7 +51,10 @@ final List<PlantillaFicha> plantillasEstadistica = [
     idHabilidad: 'EST.01',
     descripcion:
         'Una tabla ordena datos en filas y columnas para leerlos de un vistazo. Para leerla, '
-        'busca la fila y la columna que te interesan y mira dónde se cruzan.',
+        'busca la fila y la columna que te interesan y mira dónde se cruzan. Con una tabla se puede '
+        'dibujar un gráfico de barras: una barra por respuesta, tan alta como su número.\n'
+        'Ejemplo: si Perro tiene 9 y Gato 4, la barra de Perro llega al 9 y la de Gato al 4: '
+        'perro lo eligen 5 personas más.',
     preguntaExplicalo: '¿Qué pregunta harías tú a tu clase para hacer una tabla? ¿Qué esperas que salga?',
     generar: (azar) {
       final (titulo, categorias) = azar.elegir(_encuestas);
@@ -59,8 +62,20 @@ final List<PlantillaFicha> plantillasEstadistica = [
       do {
         valores = _datos(azar, categorias.length, 1, 12);
       } while (valores.where((v) => v == valores.reduce(math.max)).length > 1);
-      final tipo = azar.nextInt(3);
+      final tipo = azar.nextInt(4);
       final indiceMaximo = valores.indexOf(valores.reduce(math.max));
+      if (tipo == 3) {
+        return Ejercicio(
+          enunciado: '$titulo. Dibuja un gráfico de barras con los datos de la tabla: una barra '
+              'por respuesta, tan alta como el número de personas.',
+          tabla: [
+            ['Respuesta', ...categorias],
+            ['Personas', ...valores.map((v) => '$v')],
+          ],
+          solucion: 'barras de alturas ${valores.join(', ')}',
+          renglones: 5,
+        );
+      }
       final (pregunta, solucion) = switch (tipo) {
         0 => ('¿Cuántas personas han respondido en total?', '${valores.reduce((a, b) => a + b)}'),
         1 => ('¿Qué respuesta es la más elegida? ¿Cuántas personas más la eligen que la menos elegida?',
@@ -75,7 +90,7 @@ final List<PlantillaFicha> plantillasEstadistica = [
           ['Personas', ...valores.map((v) => '$v')],
         ],
         solucion: solucion,
-        renglones: 2,
+        renglones: 3,
       );
     },
   ),
@@ -83,7 +98,8 @@ final List<PlantillaFicha> plantillasEstadistica = [
     idHabilidad: 'EST.03',
     descripcion:
         'La media es el valor que tocaría a cada uno si se repartiera todo a partes iguales: se '
-        'suman todos los datos y se divide entre cuántos hay.',
+        'suman todos los datos y se divide entre cuántos hay.\n'
+        'Ejemplo: la media de 4, 7 y 10 es (4 + 7 + 10) : 3 = 21 : 3 = 7.',
     preguntaExplicalo: 'Si a una lista de datos le añades uno muy grande, ¿qué le pasa a la media? ¿Por qué?',
     generar: (azar) {
       final cantidad = azar.entre(4, 6);
@@ -115,7 +131,9 @@ final List<PlantillaFicha> plantillasEstadistica = [
     idHabilidad: 'EST.04',
     descripcion:
         'La moda es el dato que más se repite. La mediana es el que queda en el centro cuando '
-        'ordenas los datos (si hay dos en el centro, la media de los dos).',
+        'ordenas los datos (si hay dos en el centro, la media de los dos).\n'
+        'Ejemplo: en 3, 5, 5, 6, 9, la moda es 5 y la mediana también; en 2, 4, 6, 8, la mediana '
+        'es (4 + 6) : 2 = 5.',
     preguntaExplicalo: '¿Por qué para hallar la mediana hay que ordenar primero los datos?',
     generar: (azar) {
       late List<int> datos;
@@ -136,7 +154,8 @@ final List<PlantillaFicha> plantillasEstadistica = [
     idHabilidad: 'EST.05',
     descripcion:
         'Si todos los resultados son igual de posibles, la probabilidad de un suceso es: casos '
-        'favorables entre casos posibles. Va de 0 (imposible) a 1 (seguro).',
+        'favorables entre casos posibles. Va de 0 (imposible) a 1 (seguro).\n'
+        'Ejemplo: con 3 bolas rojas y 5 azules, la probabilidad de sacar una roja es 3/8.',
     preguntaExplicalo: '¿Puede una probabilidad ser 3/2? Explica por qué sí o por qué no.',
     generar: (azar) {
       if (azar.nextInt(3) == 0) {
@@ -170,8 +189,9 @@ final List<PlantillaFicha> plantillasEstadistica = [
   PlantillaFicha(
     idHabilidad: 'EST.06',
     descripcion:
-        'Una probabilidad se puede escribir como fracción, como decimal o como porcentaje: '
-        '1/4 = 0,25 = 25 %. Las tres dicen lo mismo.',
+        'Una probabilidad se puede escribir como fracción, como decimal o como porcentaje, y las '
+        'tres dicen lo mismo.\n'
+        'Ejemplo: 1/4 = 1 : 4 = 0,25 = 25 %.',
     preguntaExplicalo: 'Si la radio dice «70 % de probabilidad de lluvia», ¿va a llover seguro? Explícalo.',
     generar: (azar) {
       final (numerador, denominador) =
@@ -193,7 +213,8 @@ final List<PlantillaFicha> plantillasEstadistica = [
     idHabilidad: 'EST.07',
     descripcion:
         'Una tabla de frecuencias cuenta cuántas veces sale cada dato (frecuencia absoluta). La '
-        'frecuencia relativa es esa cuenta dividida entre el total de datos.',
+        'frecuencia relativa es esa cuenta dividida entre el total de datos.\n'
+        'Ejemplo: con 2, 0, 2, 1, 2 la tabla es: 0, una vez (1/5); 1, una vez (1/5); 2, tres veces (3/5).',
     preguntaExplicalo: '¿Cuánto suman todas las frecuencias relativas de una tabla? ¿Por qué?',
     generar: (azar) {
       final total = azar.elegir([10, 20]);
@@ -219,7 +240,9 @@ final List<PlantillaFicha> plantillasEstadistica = [
     idHabilidad: 'EST.08',
     descripcion:
         'En una tabla de frecuencias, la media se calcula multiplicando cada dato por su frecuencia, '
-        'sumando y dividiendo entre el total. El rango (máximo − mínimo) dice cuánto se dispersan.',
+        'sumando y dividiendo entre el total. El rango (máximo − mínimo) dice cuánto se dispersan.\n'
+        'Ejemplo: 2 personas leen 1 libro y 3 leen 6: media (2 · 1 + 3 · 6) : 5 = 20 : 5 = 4; '
+        'rango 6 − 1 = 5.',
     preguntaExplicalo: 'Dos grupos tienen la misma media pero distinto rango. ¿En qué se diferencian?',
     generar: (azar) {
       final valores = [azar.entre(0, 2), azar.entre(3, 4), azar.entre(5, 6), azar.entre(7, 9)];
@@ -229,7 +252,7 @@ final List<PlantillaFicha> plantillasEstadistica = [
           .reduce((a, b) => a + b);
       return Ejercicio(
         enunciado: 'Libros que ha leído cada persona de un grupo este verano. '
-            'Calcula la media y el rango:',
+            'Calcula la media (redondea a las centésimas si no sale exacta) y el rango:',
         tabla: [
           ['Libros', ...valores.map((v) => '$v')],
           ['Personas', ...frecuencias.map((f) => '$f')],
@@ -243,7 +266,9 @@ final List<PlantillaFicha> plantillasEstadistica = [
     idHabilidad: 'EST.09',
     descripcion:
         'En un experimento compuesto (lanzar dos monedas, sacar dos bolas…), un diagrama de árbol '
-        'ayuda a ver todos los casos. Si son independientes, se multiplican las probabilidades.',
+        'ayuda a ver todos los casos. Si son independientes, se multiplican las probabilidades. Si '
+        'no devuelves la primera bola, la segunda se calcula con las que quedan, y también se multiplican.\n'
+        'Ejemplo: con 4 bolas rojas y 6 azules, sacar dos rojas sin devolver es 4/10 · 3/9 = 12/90 = 2/15.',
     preguntaExplicalo: '¿Por qué al sacar dos bolas sin devolver cambia la probabilidad de la segunda?',
     generar: (azar) {
       final tipo = azar.nextInt(3);
@@ -268,7 +293,7 @@ final List<PlantillaFicha> plantillasEstadistica = [
         ]);
         return Ejercicio(
           enunciado: 'Lanzas dos dados de seis caras. ¿Qué probabilidad hay de $descripcion? '
-              'Una tabla de 6 × 6 te puede ayudar.',
+              'Una tabla de doble entrada (6 filas y 6 columnas) te puede ayudar.',
           solucion: Fraccion(favorables, 36).simplificada().texto,
           renglones: 4,
         );

@@ -11,7 +11,7 @@ List<Ejercicio> _muestras(String id, {int semilla = 7, int cantidad = 40}) {
 
 /// Dominios ya revisados (revisión pedagógica 2026-11-07): las reglas
 /// comunes se exigen solo a estos mientras se aplica la revisión.
-const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO'};
+const _dominiosRevisados = {'FR', 'DEC', 'PROP', 'DIV', 'OP', 'MED', 'GEO', 'EST'};
 
 bool _revisada(String id) => _dominiosRevisados.contains(id.split('.').first);
 
@@ -343,6 +343,28 @@ void main() {
         expect(duracion, greaterThanOrEqualTo(60), reason: ejercicio.enunciado);
         final fin = int.parse(encontrado[1]!) * 60 + int.parse(encontrado[2]!) + duracion;
         expect(ejercicio.solucion, '${fin ~/ 60}:${(fin % 60).toString().padLeft(2, '0')}');
+      }
+    });
+
+    test('EST.01: también se pide dibujar el gráfico de barras', () {
+      final barras = _muestras('EST.01', semilla: 3, cantidad: 3000)
+          .where((e) => e.enunciado.contains('gráfico de barras'))
+          .length;
+      expect(barras, greaterThan(500));
+    });
+
+    test('EST.08: el enunciado dice cómo redondear y la media cuadra con la tabla', () {
+      for (final ejercicio in _muestras('EST.08', semilla: 3, cantidad: 3000)) {
+        expect(ejercicio.enunciado, contains('redondea a las centésimas'));
+        final libros = ejercicio.tabla![0].skip(1).map(int.parse).toList();
+        final personas = ejercicio.tabla![1].skip(1).map(int.parse).toList();
+        var suma = 0, total = 0;
+        for (var i = 0; i < libros.length; i++) {
+          suma += libros[i] * personas[i];
+          total += personas[i];
+        }
+        final media = double.parse(RegExp(r'media ([\d,]+)').firstMatch(ejercicio.solucion)![1]!.replaceAll(',', '.'));
+        expect((media - suma / total).abs(), lessThanOrEqualTo(0.005 + 1e-9), reason: ejercicio.solucion);
       }
     });
 

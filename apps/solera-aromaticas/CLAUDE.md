@@ -11,7 +11,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (titular-explotación, parcela, zona de recolección con permiso, cosecha de parcela **o** zona, secado, destilación, lote de producto, tratamiento, apunte económico, configuración fiscal), 10 tablas en la v1 (`sentenciasEsquemaAromaticasV1`). Dominio puro: `rendimientos.dart` (secado %, aceite ml/kg, hidrolato l/kg, comparación con el orientativo, resumen ponderado por especie), `recoleccion.dart` (avisos frente al permiso: sin permiso, fuera de vigencia, especie no incluida, límite de kg, especie protegida; permisos por vencer) y `trazabilidad.dart` (lote → proceso → cosechas → parcela/zona, texto del QR). 26 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: **Hoy** (primeros pasos sin parcelas ni zonas, permisos que vencen en 30 días o sin apuntar, especies en temporada, banner de catálogos provisionales), **Campo** (parcelas, zonas con permiso y kg usados del límite, cosechas del año, tratamientos), **Taller** (secados y destilaciones con rendimiento y comparación con el orientativo; resumen por especie), **Lotes** (lista y ficha con trazabilidad hasta parcela o zona y permiso) y **Ajustes** (titular con comunidad y registro sanitario). Altas en hojas (`formularios.dart`): la cosecha silvestre comprueba el permiso y pide confirmación con los avisos (no bloquea); secado y destilación marcan las cosechas que entran y crean los lotes con código propuesto. Edición de parcela y zona con GPS. 42 tests (7 de pantalla y uno propio de traducciones dinámicas) |
-| 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
+| 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos, año en curso y anterior: **cuaderno de cosechas y recolección** (zonas con permiso, vigencia, especies, límite y kg recolectados en la vigencia; recolecciones silvestres con nombre científico y los avisos frente al permiso; parcelas con nº de orden; cosechas de cultivo; tratamientos del RD 1311/2012 si hay parcelas) y **libro de destilación y lotes** (destilaciones con ml/kg y orientativo, rendimiento por especie, secados con kg/100 kg, lotes con su origen y permiso). **Pasaporte del lote** desde su ficha (A5 con QR de texto plano, solo trazabilidad). Tablas en funciones puras con test; PDF con `informe_periodico` del core. 50 tests (3 generadores vigilados por el sello) |
 | 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/aromaticas/`: `especies_pam.csv` (27 especies; nombre científico, familia, parte usada, época orientativa, origen, protección y confundibles; genciana y árnica marcadas con el anexo VI de la Ley 42/2007 y **sin época** a propósito), `rendimientos_orientativos.csv` (29 filas: 15 de aceite en g/kg y 14 de secado en kg/100 kg, todas de las tablas 5 y 8 de la ficha de transformación del CTFC) y `plagas_pam.csv` (10, del BSV PAPAM PACA 2025). Compilador sobre la librería común; consultas en `dominio/catalogos.dart`. Guardarraíl `test/hard_limits_test.dart` (vocabulario de propiedades de salud en lib, catálogos y traducciones). 34 tests |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloques 4-5 (cuaderno de cosechas y recolección; libro de destilación y lotes, PDF PROVISIONAL).
+**Siguiente acción**: bloque 7 (IA: especie y plagas, siempre propuesta).
 
 ## Encuadre
 
@@ -174,6 +174,18 @@ electrónico desde el 1-1-2027, RD 1039/2025). Fiscalidad en el bloque 9.
 - **2026-11-07 — Traducciones de valores cerrados con claves dinámicas**
   (`arom.<grupo>_<id>`), comprobadas por `test/traducciones_test.dart`
   porque el test del core no las ve.
+- **2026-11-07 — Ningún modelo oficial de cuaderno de recolección**: no se
+  encontró un formato estatal; el cuaderno recoge lo que suele pedir una
+  autorización (zona, permiso, vigencia, especie, kg) y el aviso de que la
+  autorización la da la comunidad. El libro de destilación tampoco tiene
+  modelo oficial: es un registro interno de rendimientos y trazabilidad.
+- **2026-11-07 — Pasaporte del lote propio, sin el T1 del core** (aún no
+  está): QR con texto plano (sin URL ni servidor) y ficha A5; avisa de que no
+  es una etiqueta de venta. Cuando T1 llegue, se sustituye.
+- **2026-11-07 — Aviso del registro electrónico de tratamientos** desde el
+  1-1-2027 (RD 1311/2012, art. 16.1, en la redacción del RD 1039/2025,
+  https://www.boe.es/boe/dias/2025/11/20/pdfs/BOE-A-2025-23421.pdf, cotejado
+  por la vertical Frutal el 2026-11-07).
 - **2026-11-07 — Unidades de lote fijas por tipo**: planta en kg, aceite en
   ml, hidrolato en l.
 

@@ -4,6 +4,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
+import 'pantalla_documentos.dart';
 
 class PantallaAjustes extends StatefulWidget {
   const PantallaAjustes({super.key});
@@ -88,9 +89,22 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         decoration: InputDecoration(labelText: etiqueta, helperText: ayuda),
       );
 
-  /// Entradas a otras pantallas (documentos, economía, IA, ayuda): las
-  /// añaden los bloques 4-5, 7, 9 y 11.
-  List<Widget> _accesos(BuildContext context) => const [];
+  Widget _acceso(BuildContext context, IconData icono, String clave,
+          Widget Function() destino) =>
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: Icon(icono),
+        title: Text(SoleraL10n.t(clave)),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (_) => destino())),
+      );
+
+  /// Entradas a otras pantallas.
+  List<Widget> _accesos(BuildContext context) => [
+        _acceso(context, Icons.picture_as_pdf_outlined, 'arom.documentos',
+            () => const PantallaDocumentos()),
+      ];
 
   @override
   Widget build(BuildContext context) {

@@ -9,6 +9,7 @@ import '../estado/cambios_datos.dart';
 import '../modelos/lote_producto.dart';
 import '../utiles/textos_aromaticas.dart';
 import 'formularios.dart';
+import 'pantalla_documentos.dart';
 
 /// Lotes de producto (planta seca, aceite esencial, hidrolato), del más
 /// reciente.
@@ -157,6 +158,13 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
           appBar: AppBar(
             title: Text(lote?.codigo ?? ''),
             actions: [
+              if (lote != null && origen != null)
+                IconButton(
+                  tooltip: SoleraL10n.t('arom.pasaporte_lote'),
+                  icon: const Icon(Icons.qr_code_2),
+                  onPressed: () =>
+                      compartirPasaporteLote(context, lote, origen),
+                ),
               if (lote != null)
                 IconButton(
                   tooltip: SoleraL10n.t('editar'),

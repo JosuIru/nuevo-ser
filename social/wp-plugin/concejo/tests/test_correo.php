@@ -76,8 +76,19 @@ $retirado = $estado;
 $retirado['anuncios']['poda']['retirado'] = true;
 comprobar( ! str_contains( concejo_resumen_semanal( $retirado, 'maite', 'X', $ahora, $zona, '' )['texto'], 'Taller de poda' ), 'lo retirado no sale' );
 
+// Tareas en común: si faltan manos y si la persona va.
+comprobar( str_contains( $texto, 'TAREAS EN COMÚN' ) && str_contains( $texto, 'Auzolan: limpiar el camino del monte (15 de noviembre a las 09:00, Salida del camino, junto al lavadero). Van 3 de 8: faltan 5.' ), 'sale la tarea con cuántas manos faltan' );
+comprobar( str_contains( $texto, 'Abrir el local vecinal (14 de noviembre a las 17:00, Local vecinal). Van 1 de 1.' ), 'una llena no pide más manos' );
+comprobar( ! str_contains( $texto, 'Pintar la pared' ), 'la ya hecha no sale' );
+comprobar( str_contains( concejo_resumen_semanal( $estado, 'pili', 'X', $ahora, $zona, '' )['texto'], 'Van 1 de 1. Te has apuntado' ), 'a quien va se le recuerda' );
+$tarea_anulada                                    = $estado;
+$tarea_anulada['tareas']['camino']['anulada']          = true;
+$tarea_anulada['tareas']['camino']['motivo_anulacion'] = 'Ha nevado.';
+comprobar( str_contains( concejo_resumen_semanal( $tarea_anulada, 'josean', 'X', $ahora, $zona, '' )['texto'], 'ANULADA. Ha nevado.' ), 'a quien iba se le avisa de que se anula' );
+comprobar( ! str_contains( concejo_resumen_semanal( $tarea_anulada, 'maite', 'X', $ahora, $zona, '' )['texto'], 'limpiar el camino' ), 'a quien no iba, no' );
+
 // Si no hay nada que contar, no se manda nada.
-$vacio = array_merge( $estado, array( 'asuntos' => array(), 'compromisos' => array(), 'sesiones' => array(), 'anuncios' => array() ) );
+$vacio = array_merge( $estado, array( 'asuntos' => array(), 'compromisos' => array(), 'sesiones' => array(), 'anuncios' => array(), 'tareas' => array() ) );
 comprobar( null === concejo_resumen_semanal( $vacio, 'maite', 'X', $ahora, $zona, '' ), 'sin nada que contar no hay correo' );
 comprobar( null === concejo_resumen_semanal( $estado, 'nadie', 'X', $ahora, $zona, '' ), 'ni a quien no existe' );
 

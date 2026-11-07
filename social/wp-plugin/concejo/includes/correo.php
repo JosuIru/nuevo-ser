@@ -140,6 +140,36 @@ function concejo_resumen_semanal(
 			. ( $vencido ? "venció el {$fecha}" : "para el {$fecha}" ) . ').';
 	}
 
+	// Tareas en común de las dos próximas semanas: si faltan manos y si
+	// la persona va. Una anulada solo se cuenta a quien iba.
+	$tareas_lista = array();
+	$tareas       = array_values( $estado['tareas'] ?? array() );
+	usort( $tareas, fn( $a, $b ) => strcmp( (string) $a['inicio'], (string) $b['inicio'] ) );
+	foreach ( $tareas as $tarea ) {
+		$inicio = concejo_leer_fecha( $tarea['inicio'], $zona );
+		if ( $inicio <= $ahora || $inicio > $ahora->modify( '+14 days' ) || ! empty( $tarea['hecha'] ) ) {
+			continue;
+		}
+		$voy    = in_array( $persona_uid, $tarea['apuntados_uids'] ?? array(), true );
+		$cuando = concejo_fecha_legible( $inicio ) . ' a las ' . $inicio->format( 'H:i' )
+			. ( '' !== (string) ( $tarea['lugar'] ?? '' ) ? ', ' . $tarea['lugar'] : '' );
+		if ( ! empty( $tarea['anulada'] ) ) {
+			if ( $voy ) {
+				$tareas_lista[] = '- ' . $tarea['titulo'] . " ({$cuando}): ANULADA. " . $tarea['motivo_anulacion'];
+			}
+			continue;
+		}
+		$apuntadas = count( $tarea['apuntados_uids'] ?? array() );
+		$plazas    = (int) ( $tarea['plazas'] ?? 0 );
+		if ( $plazas > 0 ) {
+			$faltan = max( 0, $plazas - $apuntadas );
+			$cuenta = "Van {$apuntadas} de {$plazas}" . ( $faltan > 0 ? ": faltan {$faltan}." : '.' );
+		} else {
+			$cuenta = "Van {$apuntadas}.";
+		}
+		$tareas_lista[] = '- ' . $tarea['titulo'] . " ({$cuando}). {$cuenta}" . ( $voy ? ' Te has apuntado.' : '' );
+	}
+
 	// El tablón: lo fijado por la mesa y lo que otras personas han puesto
 	// esta semana, si sigue vigente.
 	$anuncios = array_values(
@@ -174,7 +204,7 @@ function concejo_resumen_semanal(
 		}
 	}
 
-	if ( array() === $se_decide && array() === $en_debate && array() === $decidido && array() === $compromisos && array() === $mandato && array() === $asambleas && array() === $tablon ) {
+	if ( array() === $se_decide && array() === $en_debate && array() === $decidido && array() === $compromisos && array() === $mandato && array() === $asambleas && array() === $tablon && array() === $tareas_lista ) {
 		return null;
 	}
 
@@ -186,6 +216,7 @@ function concejo_resumen_semanal(
 	};
 	$seccion( 'PARA TI', $mandato );
 	$seccion( 'PRÓXIMAS ASAMBLEAS', $asambleas );
+	$seccion( 'TAREAS EN COMÚN', $tareas_lista );
 	$seccion( 'SE DECIDE AHORA', $se_decide );
 	$seccion( 'EN DEBATE', $en_debate );
 	if ( array() !== $decidido ) {

@@ -478,6 +478,61 @@
         "retirado": false,
         "motivo_retirada": ""
       }
+    ],
+    "tareas": [
+      {
+        "uid": "fronton",
+        "titulo": "Pintar la pared del frontón",
+        "inicio": "2026-11-04T10:00:00.000",
+        "lugar": "Frontón",
+        "descripcion": "La pintura la pone el concejo; traed brochas y rodillos.",
+        "plazas": 6,
+        "creada_por_uid": "ane",
+        "apuntados_uids": [
+          "ane",
+          "iker",
+          "josean",
+          "maite"
+        ],
+        "anulada": false,
+        "motivo_anulacion": "",
+        "hecha": true,
+        "nota_hecha": "Pintada. Sobró media lata: está en el almacén del local."
+      },
+      {
+        "uid": "local",
+        "titulo": "Abrir el local vecinal",
+        "inicio": "2026-11-14T17:00:00.000",
+        "lugar": "Local vecinal",
+        "descripcion": "De 17:00 a 20:00. Las llaves están en el bar.",
+        "plazas": 1,
+        "creada_por_uid": "ane",
+        "apuntados_uids": [
+          "pili"
+        ],
+        "anulada": false,
+        "motivo_anulacion": "",
+        "hecha": false,
+        "nota_hecha": ""
+      },
+      {
+        "uid": "camino",
+        "titulo": "Auzolan: limpiar el camino del monte",
+        "inicio": "2026-11-15T09:00:00.000",
+        "lugar": "Salida del camino, junto al lavadero",
+        "descripcion": "Desbrozar y quitar ramas caídas. Hay almuerzo al acabar.",
+        "plazas": 8,
+        "creada_por_uid": "ane",
+        "apuntados_uids": [
+          "iker",
+          "josean",
+          "mikel"
+        ],
+        "anulada": false,
+        "motivo_anulacion": "",
+        "hecha": false,
+        "nota_hecha": ""
+      }
     ]
   },
   "casos": [
@@ -2426,6 +2481,444 @@
             }
           },
           "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "tareas",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "tareas-0",
+            "tipo": "crearTarea",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea": {
+                "uid": "nueva",
+                "titulo": "Montar las mesas",
+                "inicio": "2026-11-20T10:00:00.000",
+                "lugar": "Plaza",
+                "descripcion": "",
+                "plazas": 1,
+                "creada_por_uid": "quien-sea",
+                "apuntados_uids": [
+                  "maite"
+                ],
+                "anulada": false,
+                "motivo_anulacion": "",
+                "hecha": false,
+                "nota_hecha": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-1",
+            "tipo": "crearTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea": {
+                "uid": "nueva",
+                "titulo": " ",
+                "inicio": "2026-11-20T10:00:00.000",
+                "lugar": "Plaza",
+                "descripcion": "",
+                "plazas": 1,
+                "creada_por_uid": "quien-sea",
+                "apuntados_uids": [
+                  "maite"
+                ],
+                "anulada": false,
+                "motivo_anulacion": "",
+                "hecha": false,
+                "nota_hecha": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-2",
+            "tipo": "crearTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea": {
+                "uid": "nueva",
+                "titulo": "Montar las mesas",
+                "inicio": "2026-11-20T10:00:00.000",
+                "lugar": "Plaza",
+                "descripcion": "",
+                "plazas": -1,
+                "creada_por_uid": "quien-sea",
+                "apuntados_uids": [
+                  "maite"
+                ],
+                "anulada": false,
+                "motivo_anulacion": "",
+                "hecha": false,
+                "nota_hecha": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-3",
+            "tipo": "crearTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea": {
+                "uid": "nueva",
+                "titulo": "Montar las mesas",
+                "inicio": "2026-11-10T12:00:00.000",
+                "lugar": "Plaza",
+                "descripcion": "",
+                "plazas": 1,
+                "creada_por_uid": "quien-sea",
+                "apuntados_uids": [
+                  "maite"
+                ],
+                "anulada": false,
+                "motivo_anulacion": "",
+                "hecha": false,
+                "nota_hecha": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-4",
+            "tipo": "crearTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea": {
+                "uid": "nueva",
+                "titulo": "Montar las mesas",
+                "inicio": "2026-11-20T10:00:00.000",
+                "lugar": "Plaza",
+                "descripcion": "",
+                "plazas": 1,
+                "creada_por_uid": "quien-sea",
+                "apuntados_uids": [
+                  "maite"
+                ],
+                "anulada": false,
+                "motivo_anulacion": "",
+                "hecha": false,
+                "nota_hecha": ""
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tareas-5",
+            "tipo": "crearTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea": {
+                "uid": "nueva",
+                "titulo": "Montar las mesas",
+                "inicio": "2026-11-20T10:00:00.000",
+                "lugar": "Plaza",
+                "descripcion": "",
+                "plazas": 1,
+                "creada_por_uid": "quien-sea",
+                "apuntados_uids": [
+                  "maite"
+                ],
+                "anulada": false,
+                "motivo_anulacion": "",
+                "hecha": false,
+                "nota_hecha": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-6",
+            "tipo": "apuntarTarea",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "nueva",
+              "persona_uid": "maite",
+              "apuntado": true
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tareas-7",
+            "tipo": "apuntarTarea",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "nueva",
+              "persona_uid": "maite",
+              "apuntado": true
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tareas-8",
+            "tipo": "apuntarTarea",
+            "autor_uid": "pili",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "nueva",
+              "persona_uid": "pili",
+              "apuntado": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-9",
+            "tipo": "apuntarTarea",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "persona_uid": "pili",
+              "apuntado": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-10",
+            "tipo": "apuntarTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "persona_uid": "pili",
+              "apuntado": true
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tareas-11",
+            "tipo": "apuntarTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "persona_uid": "nadie",
+              "apuntado": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-12",
+            "tipo": "apuntarTarea",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "persona_uid": "josean",
+              "apuntado": false
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tareas-13",
+            "tipo": "apuntarTarea",
+            "autor_uid": "josean",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "persona_uid": "josean",
+              "apuntado": false
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tareas-14",
+            "tipo": "apuntarTarea",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "fronton",
+              "persona_uid": "maite",
+              "apuntado": false
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-15",
+            "tipo": "apuntarTarea",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "no-existe",
+              "persona_uid": "maite",
+              "apuntado": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-16",
+            "tipo": "anularTarea",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "motivo": "x"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-17",
+            "tipo": "anularTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "motivo": " "
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-18",
+            "tipo": "anularTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "motivo": "Ha nevado"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "tareas-19",
+            "tipo": "anularTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "motivo": "Otra vez"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-20",
+            "tipo": "apuntarTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "persona_uid": "maite",
+              "apuntado": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-21",
+            "tipo": "anularTarea",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "fronton",
+              "motivo": "Tarde"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-22",
+            "tipo": "marcarTareaHecha",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "local",
+              "nota": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-23",
+            "tipo": "marcarTareaHecha",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "camino",
+              "nota": ""
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-24",
+            "tipo": "marcarTareaHecha",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "fronton",
+              "nota": "x"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "tareas-25",
+            "tipo": "marcarTareaHecha",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "tarea_uid": "fronton",
+              "nota": " Repintada "
+            }
+          },
+          "aceptada": true
         }
       ]
     }

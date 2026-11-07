@@ -85,4 +85,8 @@ $anuncios_vecina = array_column( $vista( 'pili' )['anuncios'], 'uid' );
 comprobar( in_array( 'agua', $anuncios_vecina, true ), 'una vecina ve el tablón' );
 comprobar( ! in_array( 'nueces', $anuncios_vecina, true ), 'pero no lo que se ha retirado' );
 
+// Las tareas y quién se apunta, para todo el espacio.
+$camino = array_values( array_filter( $vista( 'pili' )['tareas'], fn( $t ) => 'camino' === $t['uid'] ) );
+comprobar( 1 === count( $camino ) && in_array( 'josean', $camino[0]['apuntados_uids'], true ), 'una vecina ve las tareas y quién va' );
+
 terminar();

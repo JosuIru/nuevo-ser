@@ -20,6 +20,7 @@ $personas   = array_map(
 $leido = concejo_estado_desde_documentos( $documentos, $personas );
 comprobar( concejo_documentos( $leido ) === $documentos, 'las piezas van y vuelven sin cambios' );
 comprobar( isset( $documentos['anuncio:agua'] ) && 4 === count( $leido['anuncios'] ), 'los anuncios del tablón se guardan cada uno en su pieza' );
+comprobar( isset( $documentos['tarea:camino'] ) && 3 === count( $leido['tareas'] ), 'las tareas también' );
 comprobar( array_keys( $leido['personas'] ) === array_keys( $estado['personas'] ), 'las personas también' );
 comprobar( null === $leido['personas']['maite']['mandato_hasta'], 'sin mandato queda null' );
 $con_correo = array_map( fn( $p ) => $p + array( 'correo' => 'x@example.org', 'resumen' => 'semanal' ), $personas );

@@ -18,6 +18,7 @@
  *     actas            asunto_uid => { asunto_uid, firmas[], compromisos_al_firmar_uids }
  *     sesiones         uid        => asamblea (fecha, lugar, puntos[], asistencia)
  *     anuncios         uid        => anuncio del tablón
+ *     tareas           uid        => tarea en común (auzolan, turno)
  *
  * **Las papeletas no están en el estado**: votar devuelve la papeleta
  * aparte y el almacén la guarda en su propia tabla, sin persona (si el
@@ -746,6 +747,64 @@ function concejo_aplicar_accion( array $estado, array $accion, string $autor_uid
 			$estado['anuncios'][ $anuncio['uid'] ] = $anuncio;
 			break;
 
+		case 'crearTarea':
+			$solo_mesa();
+			$nueva = concejo_tarea_creada( (array) ( $datos['tarea'] ?? array() ), $ahora, $zona );
+			if ( isset( $estado['tareas'][ $nueva['uid'] ] ) ) {
+				concejo_rechazar( 'Identificador de tarea repetido' );
+			}
+			$nueva['creada_por_uid']           = $autor_uid;
+			$estado['tareas'][ $nueva['uid'] ] = $nueva;
+			break;
+
+		case 'apuntarTarea':
+			$persona_uid = $texto( 'persona_uid' );
+			if ( $persona_uid !== $autor_uid ) {
+				$solo_mesa();
+			}
+			if ( ! isset( $estado['personas'][ $persona_uid ] ) ) {
+				concejo_rechazar( 'No existe esa persona' );
+			}
+			$tarea      = concejo_tarea_antes_de_empezar( $estado, $texto( 'tarea_uid' ), $ahora, $zona );
+			$apuntados  = array_values( array_diff( $tarea['apuntados_uids'] ?? array(), array( $persona_uid ) ) );
+			$ya_estaba  = count( $apuntados ) !== count( $tarea['apuntados_uids'] ?? array() );
+			if ( true === ( $datos['apuntado'] ?? false ) ) {
+				$plazas = (int) ( $tarea['plazas'] ?? 0 );
+				if ( ! $ya_estaba && $plazas > 0 && count( $apuntados ) >= $plazas ) {
+					concejo_rechazar( 'No quedan plazas' );
+				}
+				$apuntados[] = $persona_uid;
+			}
+			sort( $apuntados );
+			$tarea['apuntados_uids']          = $apuntados;
+			$estado['tareas'][ $tarea['uid'] ] = $tarea;
+			break;
+
+		case 'anularTarea':
+			$solo_mesa();
+			$tarea = concejo_tarea_antes_de_empezar( $estado, $texto( 'tarea_uid' ), $ahora, $zona );
+			if ( '' === $texto( 'motivo' ) ) {
+				concejo_rechazar( 'Para anular una tarea hay que decir por qué' );
+			}
+			$tarea['anulada']                  = true;
+			$tarea['motivo_anulacion']         = $texto( 'motivo' );
+			$estado['tareas'][ $tarea['uid'] ] = $tarea;
+			break;
+
+		case 'marcarTareaHecha':
+			$solo_mesa();
+			$tarea = concejo_tarea( $estado, $texto( 'tarea_uid' ) );
+			if ( ! empty( $tarea['anulada'] ) ) {
+				concejo_rechazar( 'La tarea está anulada' );
+			}
+			if ( $ahora < concejo_leer_fecha( $tarea['inicio'], $zona )->setTime( 0, 0 ) ) {
+				concejo_rechazar( 'Se da por hecha desde el día de la tarea' );
+			}
+			$tarea['hecha']                    = true;
+			$tarea['nota_hecha']               = $texto( 'nota' );
+			$estado['tareas'][ $tarea['uid'] ] = $tarea;
+			break;
+
 		default:
 			concejo_rechazar( 'Acción desconocida' );
 	}
@@ -905,4 +964,62 @@ function concejo_anuncio_vigente( array $anuncio, DateTimeImmutable $ahora, Date
 		return true;
 	}
 	return $ahora < concejo_leer_fecha( (string) $anuncio['hasta'], $zona )->setTime( 0, 0 )->modify( '+1 day' );
+}
+
+// ------------------------------------------------------- tareas en común
+
+function concejo_tarea( array $estado, string $uid ): array {
+	if ( ! isset( $estado['tareas'][ $uid ] ) ) {
+		concejo_rechazar( 'No existe la tarea' );
+	}
+	return $estado['tareas'][ $uid ];
+}
+
+/** Como `Tarea._soloAntesDeEmpezar`: apuntarse y anular, antes de empezar. */
+function concejo_tarea_antes_de_empezar( array $estado, string $uid, DateTimeImmutable $ahora, DateTimeZone $zona ): array {
+	$tarea = concejo_tarea( $estado, $uid );
+	if ( ! empty( $tarea['anulada'] ) ) {
+		concejo_rechazar( 'La tarea está anulada' );
+	}
+	if ( ! empty( $tarea['hecha'] ) ) {
+		concejo_rechazar( 'La tarea ya está hecha' );
+	}
+	if ( $ahora >= concejo_leer_fecha( $tarea['inicio'], $zona ) ) {
+		concejo_rechazar( 'La tarea ya ha empezado' );
+	}
+	return $tarea;
+}
+
+/**
+ * La tarea que manda la app, comprobada y limpia (como `Tarea.problemas`
+ * y `EstadoConcejo._crearTarea`). Sale sin nadie apuntado.
+ */
+function concejo_tarea_creada( array $datos, DateTimeImmutable $ahora, DateTimeZone $zona ): array {
+	$uid    = trim( (string) ( $datos['uid'] ?? '' ) );
+	$titulo = trim( (string) ( $datos['titulo'] ?? '' ) );
+	$inicio = (string) ( $datos['inicio'] ?? '' );
+	$plazas = $datos['plazas'] ?? 0;
+	if ( '' === $uid || '' === $titulo || '' === $inicio ) {
+		concejo_rechazar( 'A la tarea le falta título o fecha' );
+	}
+	if ( ! is_numeric( $plazas ) || (int) $plazas < 0 ) {
+		concejo_rechazar( 'Las plazas no pueden ser negativas' );
+	}
+	if ( $ahora >= concejo_leer_fecha( $inicio, $zona ) ) {
+		concejo_rechazar( 'La tarea ya ha empezado' );
+	}
+	return array(
+		'uid'              => $uid,
+		'titulo'           => $titulo,
+		'inicio'           => $inicio,
+		'lugar'            => trim( (string) ( $datos['lugar'] ?? '' ) ),
+		'descripcion'      => trim( (string) ( $datos['descripcion'] ?? '' ) ),
+		'plazas'           => (int) $plazas,
+		'creada_por_uid'   => '',
+		'apuntados_uids'   => array(),
+		'anulada'          => false,
+		'motivo_anulacion' => '',
+		'hecha'            => false,
+		'nota_hecha'       => '',
+	);
 }

@@ -146,5 +146,7 @@ function concejo_vista(
 		'anuncios'        => array_values(
 			array_filter( $estado['anuncios'] ?? array(), fn( $a ) => empty( $a['retirado'] ) )
 		),
+		// Las tareas y quién se ha apuntado son públicas, como un cartel.
+		'tareas'          => array_values( $estado['tareas'] ?? array() ),
 	);
 }

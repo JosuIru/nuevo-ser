@@ -9,7 +9,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
-| 2 Modelos + BD | pendiente | |
+| 2 Modelos + BD | ✅ 2026-11-07 | 9 modelos, 11 tablas en la v1, `ComposicionReceta`; 16 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
@@ -19,16 +19,28 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 2.
+**Siguiente acción**: bloque 3 (pantallas). Hoy = piezas pedidas para hoy (`piezasPedidasPara`) + controles del día + último refresco de la masa madre. Traducir los alérgenos como `obra.alergeno_<id>`.
 
 ## Encuadre
 
-(Para quién, diferencial, normativa con fuente enlazada y hard limits: copiar
-de la ficha de encargo y mantener al día.)
+Panaderías artesanas, obradores caseros, repostería y conservas. Diferencial,
+normativa con fuentes y hard limits: **`docs/plan-verticales/obrador.md`** (es la
+referencia; no se duplica aquí). Lo esencial que no se toca: la app **no declara
+un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
+**estimaciones**.
 
 ## Decisiones tomadas sin consultar
 
-(Cada una con fecha y porqué.)
+- **2026-11-07 — Un solo registro de autocontrol** (`registros_autocontrol` con
+  `tipo`) en vez de las cinco tablas `control_*` de la quesera: el cuaderno
+  mensual sale de una consulta y añadir un tipo no exige migración.
+- **2026-11-07 — La v1 se amplió en el bloque 2** en lugar de añadir una v2: no
+  había ninguna instalación (nada publicado).
+- **2026-11-07 — Subrecetas** desplegadas en proporción a los gramos usados
+  (`ComposicionReceta`); una receta que se contiene a sí misma es un error.
+- **2026-11-07 — Integridad**: no se puede borrar un ingrediente ni un lote en
+  uso (`ON DELETE RESTRICT`); borrar una receta se lleva sus líneas.
+- **2026-11-07 — Importes en céntimos** (como aceitera), no en REAL como la quesera.
 
 ## Datos técnicos
 
@@ -36,4 +48,5 @@ de la ficha de encargo y mantener al día.)
 - Traducciones: `content/solera/traducciones/obrador.csv` (claves `obra.*`), y
   regenerar con `cd packages/nuevo_ser_core && dart run tool/compilar_traducciones_solera.dart`.
   eu/ca/gl son **borrador** hasta la revisión nativa (`scripts/traducciones/`).
+- Lógica pura en `lib/dominio/` (sin Flutter, con tests).
 - Catálogos: `content/obrador/` → `dart run tool/compilar_catalogos.dart`.

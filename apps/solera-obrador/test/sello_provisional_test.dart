@@ -10,9 +10,11 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   final carpeta = Directory('lib/servicios');
   // git no guarda carpetas vacías: sin generadores todavía, no hay nada que vigilar.
-  final generadores = (carpeta.existsSync() ? carpeta.listSync() : <FileSystemEntity>[])
-      .whereType<File>()
-      .where((fichero) => RegExp(r'generador_\w+_pdf\.dart$').hasMatch(fichero.path));
+  final generadores =
+      (carpeta.existsSync() ? carpeta.listSync() : <FileSystemEntity>[])
+          .whereType<File>()
+          .where((fichero) =>
+              RegExp(r'generador_\w+_pdf\.dart$').hasMatch(fichero.path));
 
   for (final generador in generadores) {
     test('${generador.path} conserva el sello PROVISIONAL', () {
@@ -22,5 +24,6 @@ void main() {
     });
   }
 
-  test('el guardarraíl se carga', () => expect(generadores, isA<Iterable<File>>()));
+  test('el guardarraíl se carga',
+      () => expect(generadores, isA<Iterable<File>>()));
 }

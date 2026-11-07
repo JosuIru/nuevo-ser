@@ -13,13 +13,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: **Hoy** (primeros pasos sin parcelas ni zonas, permisos que vencen en 30 días o sin apuntar, especies en temporada, banner de catálogos provisionales), **Campo** (parcelas, zonas con permiso y kg usados del límite, cosechas del año, tratamientos), **Taller** (secados y destilaciones con rendimiento y comparación con el orientativo; resumen por especie), **Lotes** (lista y ficha con trazabilidad hasta parcela o zona y permiso) y **Ajustes** (titular con comunidad y registro sanitario). Altas en hojas (`formularios.dart`): la cosecha silvestre comprueba el permiso y pide confirmación con los avisos (no bloquea); secado y destilación marcan las cosechas que entran y crean los lotes con código propuesto. Edición de parcela y zona con GPS. 42 tests (7 de pantalla y uno propio de traducciones dinámicas) |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos, año en curso y anterior: **cuaderno de cosechas y recolección** (zonas con permiso, vigencia, especies, límite y kg recolectados en la vigencia; recolecciones silvestres con nombre científico y los avisos frente al permiso; parcelas con nº de orden; cosechas de cultivo; tratamientos del RD 1311/2012 si hay parcelas) y **libro de destilación y lotes** (destilaciones con ml/kg y orientativo, rendimiento por especie, secados con kg/100 kg, lotes con su origen y permiso). **Pasaporte del lote** desde su ficha (A5 con QR de texto plano, solo trazabilidad). Tablas en funciones puras con test; PDF con `informe_periodico` del core. 50 tests (3 generadores vigilados por el sello) |
 | 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/aromaticas/`: `especies_pam.csv` (27 especies; nombre científico, familia, parte usada, época orientativa, origen, protección y confundibles; genciana y árnica marcadas con el anexo VI de la Ley 42/2007 y **sin época** a propósito), `rendimientos_orientativos.csv` (29 filas: 15 de aceite en g/kg y 14 de secado en kg/100 kg, todas de las tablas 5 y 8 de la ficha de transformación del CTFC) y `plagas_pam.csv` (10, del BSV PAPAM PACA 2025). Compilador sobre la librería común; consultas en `dominio/catalogos.dart`. Guardarraíl `test/hard_limits_test.dart` (vocabulario de propiedades de salud en lib, catálogos y traducciones). 34 tests |
-| 7 IA visual | pendiente | |
+| 7 IA visual | ✅ 2026-11-07 | Campo → icono de escáner: **identificar la especie** (foto → hasta 3 especies del catálogo con confianza, motivo y «qué comprobar»; aviso fijo de que **nunca habilita el consumo**, aviso de protección y de confundibles; al elegir se abre el alta de cosecha con la especie) e **identificar una plaga en cultivo** (parcela de una especie con plagas en el catálogo → hasta 3 candidatas; solo informa, nunca abre un tratamiento). Salida estructurada con `enum` de ids + «otra», modelo equilibrado del core, clave BYO (`estado/clave_anthropic_aromaticas.dart`, Ajustes → Inteligencia artificial). La foto se borra siempre. Intérprete genérico testeado y test de que los prompts no llevan vocabulario de salud. 55 tests |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 7 (IA: especie y plagas, siempre propuesta).
+**Siguiente acción**: bloque 8 (branding placeholder; el GPS ya está en las fichas de parcela y zona).
 
 ## Encuadre
 
@@ -186,6 +186,12 @@ electrónico desde el 1-1-2027, RD 1039/2025). Fiscalidad en el bloque 9.
   1-1-2027 (RD 1311/2012, art. 16.1, en la redacción del RD 1039/2025,
   https://www.boe.es/boe/dias/2025/11/20/pdfs/BOE-A-2025-23421.pdf, cotejado
   por la vertical Frutal el 2026-11-07).
+- **2026-11-07 — La IA de especie abre una cosecha, la de plaga no abre
+  nada**: la especie sirve para apuntar (con todos los avisos delante); la
+  plaga solo informa, para que nunca acabe en un tratamiento sugerido. Los
+  prompts prohíben hablar de si la planta se puede comer, beber, usar o de
+  sus propiedades. Modelo equilibrado (como Frutal): confundir especies
+  parecidas es el riesgo real.
 - **2026-11-07 — Unidades de lote fijas por tipo**: planta en kg, aceite en
   ml, hidrolato en l.
 

@@ -11,6 +11,7 @@ import '../modelos/tratamiento.dart';
 import '../modelos/zona_recoleccion.dart';
 import '../utiles/textos_aromaticas.dart';
 import 'formularios.dart';
+import 'identificar_con_ia.dart';
 import 'pantalla_editar_origen.dart';
 
 class _DatosCampo {
@@ -94,6 +95,23 @@ class _PantallaCampoState extends State<PantallaCampo>
     return Scaffold(
       appBar: AppBar(
         title: Text(SoleraL10n.t('arom.campo')),
+        actions: [
+          PopupMenuButton<String>(
+            tooltip: SoleraL10n.t('arom.ia_identificar'),
+            icon: const Icon(Icons.document_scanner_outlined),
+            onSelected: (opcion) => opcion == 'especie'
+                ? identificarEspecieConFoto(context)
+                : identificarPlagaConFoto(context),
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                  value: 'especie',
+                  child: Text(SoleraL10n.t('arom.ia_identificar_especie'))),
+              PopupMenuItem(
+                  value: 'plaga',
+                  child: Text(SoleraL10n.t('arom.ia_identificar_plaga'))),
+            ],
+          ),
+        ],
         bottom: TabBar(
           controller: _pestanas,
           isScrollable: true,

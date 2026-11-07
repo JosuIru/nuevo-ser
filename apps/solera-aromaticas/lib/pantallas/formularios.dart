@@ -65,7 +65,10 @@ Future<bool> confirmarAvisos(BuildContext context, List<String> avisos) async {
 /// Cosecha de una parcela o recolección en una zona silvestre. Con una zona,
 /// comprueba el permiso y avisa (no bloquea).
 Future<bool> mostrarAltaCosecha(BuildContext context,
-    {int? parcelaId, int? zonaId, Cosecha? cosecha}) async {
+    {int? parcelaId,
+    int? zonaId,
+    Cosecha? cosecha,
+    String? especiePropuesta}) async {
   final parcelas = await _bd.listarParcelas();
   final zonas = await _bd.listarZonasRecoleccion();
   if (!context.mounted) return false;
@@ -102,9 +105,11 @@ Future<bool> mostrarAltaCosecha(BuildContext context,
       : DateTime.fromMillisecondsSinceEpoch(cosecha.fechaMs);
   var estado = cosecha?.estadoFenologico ?? '';
   final especie = TextEditingController(
-      text: cosecha == null
-          ? especieInicial()
-          : nombreEspecie(cosecha.especieId));
+      text: cosecha != null
+          ? nombreEspecie(cosecha.especieId)
+          : especiePropuesta != null
+              ? nombreEspecie(especiePropuesta)
+              : especieInicial());
   final kg = TextEditingController(
       text: numeroParaCampo(cosecha?.kgFrescos, decimales: 1));
   final parte = TextEditingController(text: cosecha?.parteRecolectada);

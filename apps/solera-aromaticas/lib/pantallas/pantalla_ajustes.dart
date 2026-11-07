@@ -4,6 +4,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
+import 'identificar_con_ia.dart';
 import 'pantalla_documentos.dart';
 
 class PantallaAjustes extends StatefulWidget {
@@ -104,6 +105,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   List<Widget> _accesos(BuildContext context) => [
         _acceso(context, Icons.picture_as_pdf_outlined, 'arom.documentos',
             () => const PantallaDocumentos()),
+        _acceso(context, Icons.auto_awesome_outlined,
+            'arom.inteligencia_artificial', pantallaClaveAromaticas),
       ];
 
   @override

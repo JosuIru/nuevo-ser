@@ -251,6 +251,7 @@ sidr.sin_kupelas,Todavía no hay kupelas. Da de alta las tuyas con el botón +.,
 sidr.sin_kupelas_llenas,Ninguna kupela tiene sidra apuntada.,Kupela batek ere ez du sagardorik idatzita.,Cap kupela no té sidra anotada.,Ningunha kupela ten sidra anotada.
 sidr.sin_mediciones,Sin mediciones.,Neurketarik gabe.,Sense mesures.,Sen medicións.
 sidr.sin_partidas_pendientes,No hay entradas de fruta sin prensar.,Ez dago prentsatu gabeko fruta-sarrerarik.,No hi ha entrades de fruita sense premsar.,Non hai entradas de froita sen prensar.
+sidr.sin_permiso_ubicacion,Sin permiso de ubicación: actívalo en los ajustes del móvil.,Kokapen-baimenik gabe: aktibatu mugikorraren ezarpenetan.,Sense permís d'ubicació: activa'l a la configuració del mòbil.,Sen permiso de localización: actívao nos axustes do móbil.
 sidr.sin_pomaradas,Todavía no hay pomaradas. Da de alta la primera con el botón +.,Oraindik ez dago sagastirik. Eman altan lehena + botoiarekin.,Encara no hi ha pomeredes. Dona d'alta la primera amb el botó +.,Aínda non hai pomares. Dá de alta o primeiro co botón +.
 sidr.sin_prensados,Todavía no hay prensados.,Oraindik ez dago prentsaketarik.,Encara no hi ha premsats.,Aínda non hai prensados.
 sidr.sin_prensar,sin prensar,prentsatu gabe,sense premsar,sen prensar
@@ -258,6 +259,7 @@ sidr.sin_sustancia,Sin sustancia activa,Substantzia aktiborik gabe,Sense substà
 sidr.sin_tratamientos,Sin tratamientos apuntados.,Ez dago tratamendurik idatzita.,Sense tractaments anotats.,Sen tratamentos anotados.
 sidr.sin_txotx,Esta temporada todavía no se ha abierto ninguna kupela.,Denboraldi honetan oraindik ez da kupelarik ireki.,Aquesta temporada encara no s'ha obert cap kupela.,Esta tempada aínda non se abriu ningunha kupela.
 sidr.sin_txotx_hoy,Hoy no hay txotx apuntado.,Gaur ez dago txotxik idatzita.,Avui no hi ha txotx anotat.,Hoxe non hai txotx anotado.
+sidr.sin_ubicacion,No se pudo saber dónde estás. Prueba al aire libre.,Ezin izan da jakin non zauden. Saiatu kanpoan.,No s'ha pogut saber on ets. Prova a l'aire lliure.,Non se puido saber onde estás. Proba ao aire libre.
 sidr.sulfuroso_total,Sulfuroso total,Sulfuroso osoa,Sulfurós total,Sulfuroso total
 sidr.superficie,Superficie,Azalera,Superfície,Superficie
 sidr.superficie_tratada,Superficie tratada,Tratatutako azalera,Superfície tractada,Superficie tratada
@@ -274,6 +276,8 @@ sidr.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
 sidr.tratamientos_incompletos,{n} tratamientos con datos del cuaderno sin rellenar,Koadernoko datuak bete gabe dituzten {n} tratamendu,{n} tractaments amb dades del quadern sense omplir,{n} tratamentos con datos do caderno sen encher
 sidr.txotx,Txotx,Txotx,Txotx,Txotx
 sidr.txotx_de_hoy,Txotx de hoy,Gaurko txotxa,Txotx d'avui,Txotx de hoxe
+sidr.ubicacion,Ubicación,Kokapena,Ubicació,Localización
+sidr.usar_mi_ubicacion,Estoy aquí,Hemen nago,Soc aquí,Estou aquí
 sidr.variedad,Variedad,Barietatea,Varietat,Variedade
 sidr.variedades,Variedades,Barietateak,Varietats,Variedades
 sidr.variedades_fuera_pliego,No están en la lista del pliego de tu DOP: {variedades},Ez daude zure JDBko pleguko zerrendan: {variedades},No són a la llista del plec de la teva DOP: {variedades},Non están na lista do prego da túa DOP: {variedades}

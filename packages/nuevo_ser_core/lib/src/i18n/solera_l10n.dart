@@ -4656,6 +4656,7 @@ class SoleraL10n {
     'sidr.sin_kupelas_llenas',
     'sidr.sin_mediciones',
     'sidr.sin_partidas_pendientes',
+    'sidr.sin_permiso_ubicacion',
     'sidr.sin_pomaradas',
     'sidr.sin_prensados',
     'sidr.sin_prensar',
@@ -4663,6 +4664,7 @@ class SoleraL10n {
     'sidr.sin_tratamientos',
     'sidr.sin_txotx',
     'sidr.sin_txotx_hoy',
+    'sidr.sin_ubicacion',
     'sidr.sulfuroso_total',
     'sidr.superficie',
     'sidr.superficie_tratada',
@@ -4679,6 +4681,8 @@ class SoleraL10n {
     'sidr.tratamientos_incompletos',
     'sidr.txotx',
     'sidr.txotx_de_hoy',
+    'sidr.ubicacion',
+    'sidr.usar_mi_ubicacion',
     'sidr.variedad',
     'sidr.variedades',
     'sidr.variedades_fuera_pliego',
@@ -9858,6 +9862,7 @@ class SoleraL10n {
           'sidr.sin_kupelas_llenas',
           'sidr.sin_mediciones',
           'sidr.sin_partidas_pendientes',
+          'sidr.sin_permiso_ubicacion',
           'sidr.sin_pomaradas',
           'sidr.sin_prensados',
           'sidr.sin_prensar',
@@ -9865,6 +9870,7 @@ class SoleraL10n {
           'sidr.sin_tratamientos',
           'sidr.sin_txotx',
           'sidr.sin_txotx_hoy',
+          'sidr.sin_ubicacion',
           'sidr.sulfuroso_total',
           'sidr.superficie',
           'sidr.superficie_tratada',
@@ -9881,6 +9887,8 @@ class SoleraL10n {
           'sidr.tratamientos_incompletos',
           'sidr.txotx',
           'sidr.txotx_de_hoy',
+          'sidr.ubicacion',
+          'sidr.usar_mi_ubicacion',
           'sidr.variedad',
           'sidr.variedades',
           'sidr.variedades_fuera_pliego',
@@ -15057,6 +15065,7 @@ class SoleraL10n {
           'sidr.sin_kupelas_llenas',
           'sidr.sin_mediciones',
           'sidr.sin_partidas_pendientes',
+          'sidr.sin_permiso_ubicacion',
           'sidr.sin_pomaradas',
           'sidr.sin_prensados',
           'sidr.sin_prensar',
@@ -15064,6 +15073,7 @@ class SoleraL10n {
           'sidr.sin_tratamientos',
           'sidr.sin_txotx',
           'sidr.sin_txotx_hoy',
+          'sidr.sin_ubicacion',
           'sidr.sulfuroso_total',
           'sidr.superficie',
           'sidr.superficie_tratada',
@@ -15080,6 +15090,8 @@ class SoleraL10n {
           'sidr.tratamientos_incompletos',
           'sidr.txotx',
           'sidr.txotx_de_hoy',
+          'sidr.ubicacion',
+          'sidr.usar_mi_ubicacion',
           'sidr.variedad',
           'sidr.variedades',
           'sidr.variedades_fuera_pliego',
@@ -20256,6 +20268,7 @@ class SoleraL10n {
           'sidr.sin_kupelas_llenas',
           'sidr.sin_mediciones',
           'sidr.sin_partidas_pendientes',
+          'sidr.sin_permiso_ubicacion',
           'sidr.sin_pomaradas',
           'sidr.sin_prensados',
           'sidr.sin_prensar',
@@ -20263,6 +20276,7 @@ class SoleraL10n {
           'sidr.sin_tratamientos',
           'sidr.sin_txotx',
           'sidr.sin_txotx_hoy',
+          'sidr.sin_ubicacion',
           'sidr.sulfuroso_total',
           'sidr.superficie',
           'sidr.superficie_tratada',
@@ -20279,6 +20293,8 @@ class SoleraL10n {
           'sidr.tratamientos_incompletos',
           'sidr.txotx',
           'sidr.txotx_de_hoy',
+          'sidr.ubicacion',
+          'sidr.usar_mi_ubicacion',
           'sidr.variedad',
           'sidr.variedades',
           'sidr.variedades_fuera_pliego',
@@ -25478,6 +25494,7 @@ class SoleraL10n {
       case 'sidr.sin_kupelas_llenas': return 'Ninguna kupela tiene sidra apuntada.';
       case 'sidr.sin_mediciones': return 'Sin mediciones.';
       case 'sidr.sin_partidas_pendientes': return 'No hay entradas de fruta sin prensar.';
+      case 'sidr.sin_permiso_ubicacion': return 'Sin permiso de ubicación: actívalo en los ajustes del móvil.';
       case 'sidr.sin_pomaradas': return 'Todavía no hay pomaradas. Da de alta la primera con el botón +.';
       case 'sidr.sin_prensados': return 'Todavía no hay prensados.';
       case 'sidr.sin_prensar': return 'sin prensar';
@@ -25485,6 +25502,7 @@ class SoleraL10n {
       case 'sidr.sin_tratamientos': return 'Sin tratamientos apuntados.';
       case 'sidr.sin_txotx': return 'Esta temporada todavía no se ha abierto ninguna kupela.';
       case 'sidr.sin_txotx_hoy': return 'Hoy no hay txotx apuntado.';
+      case 'sidr.sin_ubicacion': return 'No se pudo saber dónde estás. Prueba al aire libre.';
       case 'sidr.sulfuroso_total': return 'Sulfuroso total';
       case 'sidr.superficie': return 'Superficie';
       case 'sidr.superficie_tratada': return 'Superficie tratada';
@@ -25501,6 +25519,8 @@ class SoleraL10n {
       case 'sidr.tratamientos_incompletos': return '{n} tratamientos con datos del cuaderno sin rellenar';
       case 'sidr.txotx': return 'Txotx';
       case 'sidr.txotx_de_hoy': return 'Txotx de hoy';
+      case 'sidr.ubicacion': return 'Ubicación';
+      case 'sidr.usar_mi_ubicacion': return 'Estoy aquí';
       case 'sidr.variedad': return 'Variedad';
       case 'sidr.variedades': return 'Variedades';
       case 'sidr.variedades_fuera_pliego': return 'No están en la lista del pliego de tu DOP: {variedades}';
@@ -30681,6 +30701,7 @@ class SoleraL10n {
       case 'sidr.sin_kupelas_llenas': return 'Kupela batek ere ez du sagardorik idatzita.';
       case 'sidr.sin_mediciones': return 'Neurketarik gabe.';
       case 'sidr.sin_partidas_pendientes': return 'Ez dago prentsatu gabeko fruta-sarrerarik.';
+      case 'sidr.sin_permiso_ubicacion': return 'Kokapen-baimenik gabe: aktibatu mugikorraren ezarpenetan.';
       case 'sidr.sin_pomaradas': return 'Oraindik ez dago sagastirik. Eman altan lehena + botoiarekin.';
       case 'sidr.sin_prensados': return 'Oraindik ez dago prentsaketarik.';
       case 'sidr.sin_prensar': return 'prentsatu gabe';
@@ -30688,6 +30709,7 @@ class SoleraL10n {
       case 'sidr.sin_tratamientos': return 'Ez dago tratamendurik idatzita.';
       case 'sidr.sin_txotx': return 'Denboraldi honetan oraindik ez da kupelarik ireki.';
       case 'sidr.sin_txotx_hoy': return 'Gaur ez dago txotxik idatzita.';
+      case 'sidr.sin_ubicacion': return 'Ezin izan da jakin non zauden. Saiatu kanpoan.';
       case 'sidr.sulfuroso_total': return 'Sulfuroso osoa';
       case 'sidr.superficie': return 'Azalera';
       case 'sidr.superficie_tratada': return 'Tratatutako azalera';
@@ -30704,6 +30726,8 @@ class SoleraL10n {
       case 'sidr.tratamientos_incompletos': return 'Koadernoko datuak bete gabe dituzten {n} tratamendu';
       case 'sidr.txotx': return 'Txotx';
       case 'sidr.txotx_de_hoy': return 'Gaurko txotxa';
+      case 'sidr.ubicacion': return 'Kokapena';
+      case 'sidr.usar_mi_ubicacion': return 'Hemen nago';
       case 'sidr.variedad': return 'Barietatea';
       case 'sidr.variedades': return 'Barietateak';
       case 'sidr.variedades_fuera_pliego': return 'Ez daude zure JDBko pleguko zerrendan: {variedades}';
@@ -35884,6 +35908,7 @@ class SoleraL10n {
       case 'sidr.sin_kupelas_llenas': return 'Cap kupela no té sidra anotada.';
       case 'sidr.sin_mediciones': return 'Sense mesures.';
       case 'sidr.sin_partidas_pendientes': return 'No hi ha entrades de fruita sense premsar.';
+      case 'sidr.sin_permiso_ubicacion': return 'Sense permís d\'ubicació: activa\'l a la configuració del mòbil.';
       case 'sidr.sin_pomaradas': return 'Encara no hi ha pomeredes. Dona d\'alta la primera amb el botó +.';
       case 'sidr.sin_prensados': return 'Encara no hi ha premsats.';
       case 'sidr.sin_prensar': return 'sense premsar';
@@ -35891,6 +35916,7 @@ class SoleraL10n {
       case 'sidr.sin_tratamientos': return 'Sense tractaments anotats.';
       case 'sidr.sin_txotx': return 'Aquesta temporada encara no s\'ha obert cap kupela.';
       case 'sidr.sin_txotx_hoy': return 'Avui no hi ha txotx anotat.';
+      case 'sidr.sin_ubicacion': return 'No s\'ha pogut saber on ets. Prova a l\'aire lliure.';
       case 'sidr.sulfuroso_total': return 'Sulfurós total';
       case 'sidr.superficie': return 'Superfície';
       case 'sidr.superficie_tratada': return 'Superfície tractada';
@@ -35907,6 +35933,8 @@ class SoleraL10n {
       case 'sidr.tratamientos_incompletos': return '{n} tractaments amb dades del quadern sense omplir';
       case 'sidr.txotx': return 'Txotx';
       case 'sidr.txotx_de_hoy': return 'Txotx d\'avui';
+      case 'sidr.ubicacion': return 'Ubicació';
+      case 'sidr.usar_mi_ubicacion': return 'Soc aquí';
       case 'sidr.variedad': return 'Varietat';
       case 'sidr.variedades': return 'Varietats';
       case 'sidr.variedades_fuera_pliego': return 'No són a la llista del plec de la teva DOP: {variedades}';
@@ -41087,6 +41115,7 @@ class SoleraL10n {
       case 'sidr.sin_kupelas_llenas': return 'Ningunha kupela ten sidra anotada.';
       case 'sidr.sin_mediciones': return 'Sen medicións.';
       case 'sidr.sin_partidas_pendientes': return 'Non hai entradas de froita sen prensar.';
+      case 'sidr.sin_permiso_ubicacion': return 'Sen permiso de localización: actívao nos axustes do móbil.';
       case 'sidr.sin_pomaradas': return 'Aínda non hai pomares. Dá de alta o primeiro co botón +.';
       case 'sidr.sin_prensados': return 'Aínda non hai prensados.';
       case 'sidr.sin_prensar': return 'sen prensar';
@@ -41094,6 +41123,7 @@ class SoleraL10n {
       case 'sidr.sin_tratamientos': return 'Sen tratamentos anotados.';
       case 'sidr.sin_txotx': return 'Esta tempada aínda non se abriu ningunha kupela.';
       case 'sidr.sin_txotx_hoy': return 'Hoxe non hai txotx anotado.';
+      case 'sidr.sin_ubicacion': return 'Non se puido saber onde estás. Proba ao aire libre.';
       case 'sidr.sulfuroso_total': return 'Sulfuroso total';
       case 'sidr.superficie': return 'Superficie';
       case 'sidr.superficie_tratada': return 'Superficie tratada';
@@ -41110,6 +41140,8 @@ class SoleraL10n {
       case 'sidr.tratamientos_incompletos': return '{n} tratamentos con datos do caderno sen encher';
       case 'sidr.txotx': return 'Txotx';
       case 'sidr.txotx_de_hoy': return 'Txotx de hoxe';
+      case 'sidr.ubicacion': return 'Localización';
+      case 'sidr.usar_mi_ubicacion': return 'Estou aquí';
       case 'sidr.variedad': return 'Variedade';
       case 'sidr.variedades': return 'Variedades';
       case 'sidr.variedades_fuera_pliego': return 'Non están na lista do prego da túa DOP: {variedades}';

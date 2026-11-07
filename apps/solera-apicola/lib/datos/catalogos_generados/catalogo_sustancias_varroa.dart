@@ -1,9 +1,9 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/apicola/sustancias_varroa.csv
-// Generado: 2026-05-08
-// Filas: 9 (9 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: AEMPS CIMA Vet + RD 1132/2010
+// Generado: 2026-11-07
+// Filas: 8 (8 revisadas, 0 pendientes de revisión)
+// Estado: ✅ todas las filas revisadas por: revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023
 
 /// Familia química de la sustancia activa.
 enum FamiliaSustanciaVarroa { organica, sintetica, naturalAceiteEsencial }
@@ -46,14 +46,14 @@ class SustanciaVarroa {
 const List<SustanciaVarroa> catalogoSustanciasVarroa = [
   SustanciaVarroa(
     id: 'acido_oxalico',
-    nombreCanonico: 'Ácido oxálico',
+    nombreCanonico: 'Ácido oxálico (vaporización)',
     familia: FamiliaSustanciaVarroa.organica,
     vehiculoPrincipal: VehiculoSustanciaVarroa.sublimacion,
     eficaciaOrientativa: EficaciaSustanciaVarroa.muyAlta,
     plazoSeguridadDias: 0,
     autorizadaEcologico: true,
     ventanaAplicacion: VentanaAplicacionVarroa.sinPostura,
-    notas: 'Muy eficaz en ausencia de cría operculada — invernada o tras enjambrazón. Mejor vehículo: sublimación con vaporizador',
+    notas: 'Solo con medicamento autorizado para vaporización/sublimación (no ácido oxálico genérico). Colonias sin cría (invernada o enjambres sin cría) y sin alzas. Ficha: no recomendada en verano. EPI respiratorio. Tiempo de espera en miel: 0 d.',
   ),
   SustanciaVarroa(
     id: 'acido_oxalico_goteo',
@@ -64,18 +64,18 @@ const List<SustanciaVarroa> catalogoSustanciasVarroa = [
     plazoSeguridadDias: 0,
     autorizadaEcologico: true,
     ventanaAplicacion: VentanaAplicacionVarroa.sinPostura,
-    notas: 'Mismo principio activo en jarabe — más manual y agresivo para abejas que la sublimación',
+    notas: 'Goteo en jarabe según la ficha del medicamento autorizado. Colonias sin cría y sin alzas; no usar durante la producción de miel. Tiempo de espera en miel: 0 d.',
   ),
   SustanciaVarroa(
     id: 'acido_formico',
     nombreCanonico: 'Ácido fórmico',
     familia: FamiliaSustanciaVarroa.organica,
-    vehiculoPrincipal: VehiculoSustanciaVarroa.nebulizacion,
+    vehiculoPrincipal: VehiculoSustanciaVarroa.tiraPolimero,
     eficaciaOrientativa: EficaciaSustanciaVarroa.alta,
     plazoSeguridadDias: 0,
     autorizadaEcologico: true,
     ventanaAplicacion: VentanaAplicacionVarroa.conPostura,
-    notas: 'Penetra en la cría operculada — útil con cría presente. Cuidado: tóxico para abejas adultas en dosis alta',
+    notas: 'Autorizado en tiras de gel que liberan por evaporación (el compilador no tiene ese vehículo: se usa tira_polimero) y en dispersión por goteo en mezcla con oxálico. Nebulización NO autorizada. Penetra en la cría operculada. Temperatura diurna 10–29,5 °C; retirar alzas con miel. Con calor: riesgo de pérdida de reina y cría.',
   ),
   SustanciaVarroa(
     id: 'timol',
@@ -86,7 +86,7 @@ const List<SustanciaVarroa> catalogoSustanciasVarroa = [
     plazoSeguridadDias: 0,
     autorizadaEcologico: true,
     ventanaAplicacion: VentanaAplicacionVarroa.otono,
-    notas: 'Aceite esencial del tomillo. Eficacia variable con la temperatura ambiente. Plazo retirada antes de cosecha',
+    notas: 'Aceite esencial del tomillo. Autorizado en gel o en tira de esponja impregnada (se usa tira_polimero por ser el vehículo más cercano). Eficacia variable con la temperatura (15–30 °C). No usar durante la mielada; tratar tras retirar alzas. Tiempo de espera en miel: 0 d.',
   ),
   SustanciaVarroa(
     id: 'amitraz',
@@ -94,10 +94,10 @@ const List<SustanciaVarroa> catalogoSustanciasVarroa = [
     familia: FamiliaSustanciaVarroa.sintetica,
     vehiculoPrincipal: VehiculoSustanciaVarroa.tiraPolimero,
     eficaciaOrientativa: EficaciaSustanciaVarroa.muyAlta,
-    plazoSeguridadDias: 30,
+    plazoSeguridadDias: 7,
     autorizadaEcologico: false,
     ventanaAplicacion: VentanaAplicacionVarroa.otono,
-    notas: 'Acaricida sintético. Riesgo de residuos en cera. Sospecha de resistencias documentadas en Europa',
+    notas: 'Acaricida sintético. Tiempo de espera en miel 0–7 d según medicamento (la fila usa el máximo). No usar durante el flujo de miel; no extraer miel de la cámara de cría. Riesgo de residuos en cera. Resistencias documentadas en Europa.',
   ),
   SustanciaVarroa(
     id: 'flumetrina',
@@ -105,10 +105,10 @@ const List<SustanciaVarroa> catalogoSustanciasVarroa = [
     familia: FamiliaSustanciaVarroa.sintetica,
     vehiculoPrincipal: VehiculoSustanciaVarroa.tiraPolimero,
     eficaciaOrientativa: EficaciaSustanciaVarroa.alta,
-    plazoSeguridadDias: 30,
+    plazoSeguridadDias: 0,
     autorizadaEcologico: false,
     ventanaAplicacion: VentanaAplicacionVarroa.otono,
-    notas: 'Piretroide sintético. Resistencias documentadas — alternar con familias distintas',
+    notas: 'Piretroide sintético. Tiempo de espera en miel: 0 d; no tratar durante la mielada; otros productos de la colmena no consumibles hasta la primavera siguiente (según ficha). Resistencias documentadas — alternar con familias distintas.',
   ),
   SustanciaVarroa(
     id: 'fluvalinato',
@@ -116,32 +116,21 @@ const List<SustanciaVarroa> catalogoSustanciasVarroa = [
     familia: FamiliaSustanciaVarroa.sintetica,
     vehiculoPrincipal: VehiculoSustanciaVarroa.tiraPolimero,
     eficaciaOrientativa: EficaciaSustanciaVarroa.alta,
-    plazoSeguridadDias: 30,
+    plazoSeguridadDias: 0,
     autorizadaEcologico: false,
     ventanaAplicacion: VentanaAplicacionVarroa.otono,
-    notas: 'Piretroide sintético. Resistencias documentadas — usar con prudencia',
-  ),
-  SustanciaVarroa(
-    id: 'acido_lactico',
-    nombreCanonico: 'Ácido láctico',
-    familia: FamiliaSustanciaVarroa.organica,
-    vehiculoPrincipal: VehiculoSustanciaVarroa.nebulizacion,
-    eficaciaOrientativa: EficaciaSustanciaVarroa.media,
-    plazoSeguridadDias: 0,
-    autorizadaEcologico: true,
-    ventanaAplicacion: VentanaAplicacionVarroa.sinPostura,
-    notas: 'Tradicional — eficaz solo sobre varroa forética. Operativamente muy laborioso',
+    notas: 'Piretroide sintético. Tiempo de espera en miel: 0 d. Ficha: mejor en primavera antes de las mieladas o en otoño tras la cosecha con poca cría (la columna solo admite una ventana). No reciclar la cera tratada. Resistencias documentadas — usar con prudencia.',
   ),
   SustanciaVarroa(
     id: 'mezcla_oxalico_glicerol',
-    nombreCanonico: 'Ácido oxálico + glicerol (tiras)',
+    nombreCanonico: 'Ácido oxálico en tira (excipiente glicerol)',
     familia: FamiliaSustanciaVarroa.organica,
     vehiculoPrincipal: VehiculoSustanciaVarroa.tiraPolimero,
     eficaciaOrientativa: EficaciaSustanciaVarroa.alta,
     plazoSeguridadDias: 0,
     autorizadaEcologico: true,
     ventanaAplicacion: VentanaAplicacionVarroa.otono,
-    notas: 'Tira de carton impregnada — efecto prolongado. Confirmar autorización vigente',
+    notas: 'Solo el medicamento autorizado (tira de polipropileno); las tiras caseras de cartón impregnado NO están autorizadas. 6 semanas de tratamiento; sin alzas; no cosechar miel durante el tratamiento. Otoño con las abejas activas antes de la piña invernal; más eficaz con poca o ninguna cría.',
   ),
 ];
 

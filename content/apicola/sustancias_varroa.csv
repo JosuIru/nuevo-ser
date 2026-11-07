@@ -1,8 +1,10 @@
 # DATOS PROVISIONALES SIN VALIDAR POR VETERINARIO APÍCOLA
-# Fuente: bibliografía sanitaria apícola + textos de organismos públicos sobre varroosis
+# Fuente: AEMPS CIMA Vet (registro de medicamentos veterinarios autorizados en España,
+#   fichas técnicas) + RD 666/2023 + Reglamento (UE) 2018/848 (anexo II, parte II, 1.9.6.3)
 # AVISO IMPORTANTE: la lista oficial de sustancias autorizadas para varroosis cambia con
-# cada actualización del MAPA y normativa europea. Para producción comercial:
-#   1) Descargar Registro vigente desde el MAPA antes de cada release
+# cada actualización del registro de la AEMPS y de la normativa europea. Para producción comercial:
+#   1) Consultar el registro vigente de la AEMPS (CIMA Vet, cimavet.aemps.es) antes de cada release.
+#      En abejas solo se pueden usar medicamentos veterinarios autorizados, según su ficha técnica
 #   2) Validar con veterinario apícola
 #   3) Confirmar dosis, plazo de seguridad y eficacia contra etiqueta del producto comercial
 #
@@ -22,12 +24,11 @@
 #   revisado_por                vacío hasta validación
 #   fecha_revision              vacía hasta validación
 id,nombre_canonico,familia,vehiculo_principal,eficacia_orientativa,plazo_seguridad_dias,autorizada_ecologico,ventana_aplicacion,notas,revisado_por,fecha_revision
-acido_oxalico,Ácido oxálico,organica,sublimacion,muy_alta,0,si,sin_postura,Muy eficaz en ausencia de cría operculada — invernada o tras enjambrazón. Mejor vehículo: sublimación con vaporizador,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-acido_oxalico_goteo,Ácido oxálico (goteo),organica,goteo,alta,0,si,sin_postura,Mismo principio activo en jarabe — más manual y agresivo para abejas que la sublimación,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-acido_formico,Ácido fórmico,organica,nebulizacion,alta,0,si,con_postura,Penetra en la cría operculada — útil con cría presente. Cuidado: tóxico para abejas adultas en dosis alta,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-timol,Timol,natural_aceite_esencial,tira_polimero,media,0,si,otono,Aceite esencial del tomillo. Eficacia variable con la temperatura ambiente. Plazo retirada antes de cosecha,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-amitraz,Amitraz,sintetica,tira_polimero,muy_alta,30,no,otono,Acaricida sintético. Riesgo de residuos en cera. Sospecha de resistencias documentadas en Europa,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-flumetrina,Flumetrina,sintetica,tira_polimero,alta,30,no,otono,Piretroide sintético. Resistencias documentadas — alternar con familias distintas,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-fluvalinato,Tau-fluvalinato,sintetica,tira_polimero,alta,30,no,otono,Piretroide sintético. Resistencias documentadas — usar con prudencia,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-acido_lactico,Ácido láctico,organica,nebulizacion,media,0,si,sin_postura,Tradicional — eficaz solo sobre varroa forética. Operativamente muy laborioso,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
-mezcla_oxalico_glicerol,Ácido oxálico + glicerol (tiras),organica,tira_polimero,alta,0,si,otono,Tira de carton impregnada — efecto prolongado. Confirmar autorización vigente,AEMPS CIMA Vet + RD 1132/2010,2026-05-08
+acido_oxalico,Ácido oxálico (vaporización),organica,sublimacion,muy_alta,0,si,sin_postura,Solo con medicamento autorizado para vaporización/sublimación (no ácido oxálico genérico). Colonias sin cría (invernada o enjambres sin cría) y sin alzas. Ficha: no recomendada en verano. EPI respiratorio. Tiempo de espera en miel: 0 d.,"revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07
+acido_oxalico_goteo,Ácido oxálico (goteo),organica,goteo,alta,0,si,sin_postura,Goteo en jarabe según la ficha del medicamento autorizado. Colonias sin cría y sin alzas; no usar durante la producción de miel. Tiempo de espera en miel: 0 d.,"revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07
+acido_formico,Ácido fórmico,organica,tira_polimero,alta,0,si,con_postura,"Autorizado en tiras de gel que liberan por evaporación (el compilador no tiene ese vehículo: se usa tira_polimero) y en dispersión por goteo en mezcla con oxálico. Nebulización NO autorizada. Penetra en la cría operculada. Temperatura diurna 10–29,5 °C; retirar alzas con miel. Con calor: riesgo de pérdida de reina y cría.","revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07
+timol,Timol,natural_aceite_esencial,tira_polimero,media,0,si,otono,Aceite esencial del tomillo. Autorizado en gel o en tira de esponja impregnada (se usa tira_polimero por ser el vehículo más cercano). Eficacia variable con la temperatura (15–30 °C). No usar durante la mielada; tratar tras retirar alzas. Tiempo de espera en miel: 0 d.,"revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07
+amitraz,Amitraz,sintetica,tira_polimero,muy_alta,7,no,otono,Acaricida sintético. Tiempo de espera en miel 0–7 d según medicamento (la fila usa el máximo). No usar durante el flujo de miel; no extraer miel de la cámara de cría. Riesgo de residuos en cera. Resistencias documentadas en Europa.,"revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07
+flumetrina,Flumetrina,sintetica,tira_polimero,alta,0,no,otono,Piretroide sintético. Tiempo de espera en miel: 0 d; no tratar durante la mielada; otros productos de la colmena no consumibles hasta la primavera siguiente (según ficha). Resistencias documentadas — alternar con familias distintas.,"revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07
+fluvalinato,Tau-fluvalinato,sintetica,tira_polimero,alta,0,no,otono,Piretroide sintético. Tiempo de espera en miel: 0 d. Ficha: mejor en primavera antes de las mieladas o en otoño tras la cosecha con poca cría (la columna solo admite una ventana). No reciclar la cera tratada. Resistencias documentadas — usar con prudencia.,"revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07
+mezcla_oxalico_glicerol,Ácido oxálico en tira (excipiente glicerol),organica,tira_polimero,alta,0,si,otono,Solo el medicamento autorizado (tira de polipropileno); las tiras caseras de cartón impregnado NO están autorizadas. 6 semanas de tratamiento; sin alzas; no cosechar miel durante el tratamiento. Otoño con las abejas activas antes de la piña invernal; más eficaz con poca o ninguna cría.,"revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: AEMPS CIMA Vet + RD 666/2023",2026-11-07

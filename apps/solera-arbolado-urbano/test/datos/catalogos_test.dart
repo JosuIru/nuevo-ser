@@ -154,14 +154,11 @@ void main() {
   });
 
   group('Flag de revisión global', () {
-    test('verdadero porque todas las filas tienen fuente pública trazable', () {
-      // Tras la curación con fuentes públicas (Reglamento UE 2019/2072,
-      // RD 526/2014, RD 1201/1999, NTJ 08C, AEPJP, Estándar Europeo de
-      // Poda EN 17321, inventarios municipales Madrid+Barcelona OpenData),
-      // todas las filas tienen `revisado_por` rellenado. El ingeniero
-      // técnico forestal asesor cuando audite sustituirá la fuente pública
-      // por su nombre + nº colegiado.
-      expect(catalogosCompletamenteRevisados, isTrue);
+    test('falso mientras ninguna persona experta firme todas las filas', () {
+      // Solo cuenta como firma un `revisado_por` que empiece por `asesor:` o
+      // `persona:`. Una fuente pública, una cita o `revision-ia:` no retiran
+      // el banner de datos provisionales (ver scripts/pendientes/README.md).
+      expect(catalogosCompletamenteRevisados, isFalse);
     });
   });
 }

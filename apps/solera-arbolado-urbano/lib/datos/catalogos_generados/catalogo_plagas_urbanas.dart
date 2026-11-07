@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/arbolado-urbano/plagas_urbanas.csv
-// Generado: 2026-05-08
-// Filas: 21 (21 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: AEPJP + Estaciones Aviso Fitosanitario CCAA, Reglamento UE 2019/2072 + RD 526/2014, RD 1201/1999 + Reglamento UE 2019/2072, Reglamento UE 2019/2072 + RD 690/2017, Reglamento UE 2019/2072 + Plan Contingencia MAPA
+// Generado: 2026-11-07
+// Filas: 21 (0 revisadas, 21 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR INGENIERO TÉCNICO FORESTAL.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-arbolado-urbano && dart run tool/compilar_catalogos.dart
 
 /// Categoría de la incidencia urbana.
 enum TipoPlagaUrbana { plagaInsecto, enfermedadFungica, enfermedadBacteriana, plagaInvasora, trastornoAbiotico }

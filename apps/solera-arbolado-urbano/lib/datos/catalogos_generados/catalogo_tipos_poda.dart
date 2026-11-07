@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/arbolado-urbano/tipos_poda.csv
-// Generado: 2026-05-08
-// Filas: 12 (12 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: Estándar Europeo de Poda EN 17321 + AEPJP
+// Generado: 2026-11-07
+// Filas: 12 (0 revisadas, 12 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR INGENIERO TÉCNICO FORESTAL.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-arbolado-urbano && dart run tool/compilar_catalogos.dart
 
 /// Intensidad de la poda — orientativa para evaluar el impacto sobre el árbol.
 enum IntensidadPoda { baja, media, alta, muyAlta, variable }

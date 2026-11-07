@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/arbolado-urbano/tareas_calendario.csv
-// Generado: 2026-05-08
-// Filas: 23 (23 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: AEPJP guía estacional + servicios municipales
+// Generado: 2026-11-07
+// Filas: 23 (0 revisadas, 23 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR INGENIERO TÉCNICO FORESTAL.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-arbolado-urbano && dart run tool/compilar_catalogos.dart
 
 /// Zona climática orientativa peninsular.
 /// Norte = Galicia/Cantábrica/Vasconia/Pirineos/Norte Castilla.

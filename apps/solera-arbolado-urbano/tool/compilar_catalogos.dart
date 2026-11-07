@@ -14,7 +14,7 @@
 // El script:
 //  1. Skipea las líneas que empiezan por `#` (cabecera-comentario).
 //  2. Lee la cabecera de columnas reales y los datos.
-//  3. Cuenta filas revisadas (con `revisado_por` no vacío) vs sin revisar.
+//  3. Cuenta filas firmadas (`revisado_por` que empieza por `asesor:` o `persona:`) vs sin revisar.
 //  4. Genera el `.dart` correspondiente con disclaimer + timestamp.
 //
 // El disclaimer "DATOS PROVISIONALES SIN VALIDAR" se mantiene en el
@@ -128,7 +128,7 @@ Future<_CsvLeido> _leer(String nombre) async {
   for (final fila in tabla.filas) {
     if (indiceRevisado >= 0 &&
         indiceRevisado < fila.length &&
-        fila[indiceRevisado].trim().isNotEmpty) {
+        _esFirmaDePersona(fila[indiceRevisado])) {
       revisadas++;
     }
   }
@@ -695,7 +695,7 @@ Future<void> _escribirFlagRevision() async {
     ..writeln('// GENERADO AUTOMÁTICAMENTE por tool/compilar_catalogos.dart.')
     ..writeln('//')
     ..writeln('// Flag global: true si TODAS las filas de los 5 catálogos tienen')
-    ..writeln('// `revisado_por` no vacío. La app lo lee para mostrar/ocultar el banner')
+    ..writeln('// `revisado_por` firmado por persona (asesor:/persona:). La app lo lee para mostrar/ocultar el banner')
     ..writeln('// "datos provisionales sin validar".')
     ..writeln()
     ..writeln('const bool catalogosCompletamenteRevisados = $_todasRevisadasGlobal;');
@@ -724,4 +724,12 @@ String _normalizar(String texto) {
       .trim();
 }
 ''';
+}
+
+/// Solo cuenta como firma de persona experta un `revisado_por` que empiece
+/// por `asesor:` o `persona:` (convención de scripts/pendientes). Una fuente
+/// pública, una cita o `revision-ia:` no retiran el banner provisional.
+bool _esFirmaDePersona(String valor) {
+  final normalizado = valor.trim().toLowerCase();
+  return normalizado.startsWith('asesor:') || normalizado.startsWith('persona:');
 }

@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/arbolado-urbano/sustratos_alcorque.csv
-// Generado: 2026-05-08
-// Filas: 7 (7 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: NTJ 08C + AEPJP
+// Generado: 2026-11-07
+// Filas: 7 (0 revisadas, 7 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR POR INGENIERO TÉCNICO FORESTAL.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-arbolado-urbano && dart run tool/compilar_catalogos.dart
 
 enum PermeabilidadAlcorque { alta, media, baja, nula }
 

@@ -9,11 +9,13 @@ import '../servidor/sincronizador.dart';
 import 'dialogos.dart';
 import 'ficha_asunto.dart';
 import 'ficha_sesion.dart';
+import 'formulario_anuncio.dart';
 import 'formulario_asunto.dart';
 import 'formulario_sesion.dart';
 import 'pantalla_asambleas.dart';
 import 'pantalla_personas.dart';
 import 'pantalla_se_ha_hecho.dart';
+import 'pantalla_tablon.dart';
 import 'textos_dominio.dart';
 
 class PantallaInicio extends StatefulWidget {
@@ -66,6 +68,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
           0 =>
             _ListaAsuntos(estado: widget.estado, avisosVistos: _avisosVistos),
           1 => PantallaAsambleas(estado: widget.estado),
+          2 => PantallaTablon(estado: widget.estado),
           _ => PantallaSeHaHecho(estado: widget.estado),
         };
         return Scaffold(
@@ -118,19 +121,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
                       onRefresh: sincronizador.sincronizar, child: cuerpo),
             ),
           ]),
-          floatingActionButton: !widget.estado.soyMesa || _pestana == 2
-              ? null
-              : FloatingActionButton.extended(
-                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => _pestana == 0
-                        ? FormularioAsunto(estado: widget.estado)
-                        : FormularioSesion(estado: widget.estado),
-                  )),
-                  icon: const Icon(Icons.add),
-                  label: Text(_pestana == 0
-                      ? textos.nuevoAsunto
-                      : textos.convocarAsamblea),
-                ),
+          floatingActionButton: _botonNuevo(textos),
           bottomNavigationBar: NavigationBar(
             selectedIndex: _pestana,
             onDestinationSelected: (indice) =>
@@ -147,6 +138,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 label: textos.pestanaAsambleas,
               ),
               NavigationDestination(
+                icon: const Icon(Icons.push_pin_outlined),
+                selectedIcon: const Icon(Icons.push_pin),
+                label: textos.pestanaTablon,
+              ),
+              NavigationDestination(
                 icon: const Icon(Icons.task_alt_outlined),
                 selectedIcon: const Icon(Icons.task_alt),
                 label: textos.pestanaSeHaHecho,
@@ -155,6 +151,31 @@ class _PantallaInicioState extends State<PantallaInicio> {
           ),
         );
       },
+    );
+  }
+
+  /// El botón de crear de cada pestaña: asuntos y asambleas los lleva la
+  /// mesa; en el tablón publica cualquiera.
+  Widget? _botonNuevo(AppLocalizations textos) {
+    final mesa = widget.estado.soyMesa;
+    final (etiqueta, formulario) = switch (_pestana) {
+      0 when mesa => (
+          textos.nuevoAsunto,
+          FormularioAsunto(estado: widget.estado)
+        ),
+      1 when mesa => (
+          textos.convocarAsamblea,
+          FormularioSesion(estado: widget.estado)
+        ),
+      2 => (textos.publicarAnuncio, FormularioAnuncio(estado: widget.estado)),
+      _ => (null, null),
+    };
+    if (etiqueta == null || formulario == null) return null;
+    return FloatingActionButton.extended(
+      onPressed: () => Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => formulario)),
+      icon: const Icon(Icons.add),
+      label: Text(etiqueta),
     );
   }
 

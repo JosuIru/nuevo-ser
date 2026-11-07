@@ -4,3 +4,6 @@ import 'package:flutter/material.dart';
 /// PLACEHOLDER hasta el branding definitivo.
 const Color colorPrimarioSidra = Color(0xFF6B7A2E);
 const Color colorCremaSidra = Color(0xFFF5EFE2);
+
+/// Logo PLACEHOLDER (1024×1024): llega en el bloque 8.
+const String? rutaLogoSidra = null;

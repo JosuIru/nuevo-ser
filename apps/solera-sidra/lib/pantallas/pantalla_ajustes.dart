@@ -4,7 +4,11 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
+import '../utiles/textos_sidra.dart';
+import 'hoja_formulario.dart';
+import 'pantalla_bienvenida.dart';
 
+/// Ajustes: datos de la casa y del titular, idioma y el resto de apartados.
 class PantallaAjustes extends StatefulWidget {
   const PantallaAjustes({super.key});
 
@@ -13,7 +17,12 @@ class PantallaAjustes extends StatefulWidget {
 }
 
 class _PantallaAjustesState extends State<PantallaAjustes> {
-  final _controladorNombre = TextEditingController();
+  final _nombre = TextEditingController();
+  final _nif = TextEditingController();
+  final _registroSanitario = TextEditingController();
+  final _inscripcionDop = TextEditingController();
+  Titular _titular = Titular();
+  String _regimen = 'general';
 
   @override
   void initState() {
@@ -24,27 +33,51 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   Future<void> _cargar() async {
     try {
       final titular = await BaseDatosSoleraSidra.instancia.obtenerTitular();
-      if (mounted) _controladorNombre.text = titular.nombre;
+      if (!mounted) return;
+      setState(() {
+        _titular = titular;
+        _nombre.text = titular.nombre;
+        _nif.text = titular.nif;
+        _registroSanitario.text = titular.registroSanitario;
+        _inscripcionDop.text = titular.inscripcionDop;
+        _regimen = titular.regimenFiscal;
+      });
     } catch (error) {
       debugPrint('No se pudo leer el titular: $error');
     }
   }
 
   Future<void> _guardar() async {
-    await BaseDatosSoleraSidra.instancia.guardarTitular(
-      Titular(nombre: _controladorNombre.text.trim()),
-    );
+    await BaseDatosSoleraSidra.instancia.guardarTitular(Titular(
+      id: _titular.id,
+      nombre: _nombre.text.trim(),
+      nif: _nif.text.trim(),
+      registroSanitario: _registroSanitario.text.trim(),
+      inscripcionDop: _inscripcionDop.text.trim(),
+      regimenFiscal: _regimen,
+    ));
     if (!mounted) return;
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(SoleraL10n.t('sidr.guardado'))));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(SoleraL10n.t('sidr.guardado'))));
   }
 
   @override
   void dispose() {
-    _controladorNombre.dispose();
+    _nombre.dispose();
+    _nif.dispose();
+    _registroSanitario.dispose();
+    _inscripcionDop.dispose();
     super.dispose();
   }
+
+  Widget _apartado(IconData icono, String clave, Widget pantalla) => ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: Icon(icono),
+        title: Text(SoleraL10n.t(clave)),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => Navigator.push(
+            context, MaterialPageRoute(builder: (_) => pantalla)),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -53,23 +86,29 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          _apartado(Icons.storefront_outlined, 'sidr.datos_sagardotegi',
+              const PantallaBienvenida()),
           const SelectorIdioma(),
           const SizedBox(height: 24),
-          Text(
-            SoleraL10n.t('sidr.titular'),
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-          TextField(
-            controller: _controladorNombre,
-            decoration: InputDecoration(
-              labelText: SoleraL10n.t('sidr.nombre_titular'),
-            ),
+          Text(SoleraL10n.t('sidr.titular'),
+              style: Theme.of(context).textTheme.titleMedium),
+          campoTexto(_nombre, SoleraL10n.t('sidr.nombre_titular')),
+          campoTexto(_nif, 'NIF'),
+          campoTexto(
+              _registroSanitario, SoleraL10n.t('sidr.registro_sanitario')),
+          campoTexto(_inscripcionDop, SoleraL10n.t('sidr.inscripcion_dop')),
+          campoDesplegable<String>(
+            etiqueta: SoleraL10n.t('sidr.regimen_fiscal'),
+            valor: _regimen,
+            opciones: [
+              for (final regimen in regimenesFiscales)
+                (regimen, nombreValor('regimen', regimen)),
+            ],
+            alCambiar: (valor) => setState(() => _regimen = valor ?? _regimen),
           ),
           const SizedBox(height: 12),
           FilledButton(
-            onPressed: _guardar,
-            child: Text(SoleraL10n.t('guardar')),
-          ),
+              onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
         ],
       ),
     );

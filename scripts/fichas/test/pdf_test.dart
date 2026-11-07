@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:fichas_imprimibles/fichas_imprimibles.dart';
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:test/test.dart';
 
@@ -25,6 +27,33 @@ void main() {
     final texto = latin1.decode(bytes);
     final paginas = RegExp(r'/Type\s*/Page\b').allMatches(texto).length;
     expect(paginas, fichas.length);
+  });
+
+  test('la letra tiene todos los signos que se imprimen (nada sale en blanco)', () {
+    final bytesLetra = File('${raiz.path}/fuentes/Roboto-Regular.ttf').readAsBytesSync();
+    final glifos = TtfParser(bytesLetra.buffer.asByteData()).charToGlyphIndexMap;
+    final textos = <String>[];
+    for (final id in plantillasPorHabilidad.keys) {
+      for (final semilla in [1, 2, 3, 4, 5]) {
+        final ficha = generarContenidoFicha(catalogo, catalogo.porId(id)!, semilla: semilla);
+        textos
+          ..add(ficha.nombreHabilidad)
+          ..add(ficha.descripcion)
+          ..add(ficha.preguntaExplicalo);
+        for (final ejercicio in ficha.ejercicios) {
+          textos
+            ..add(ejercicio.enunciado)
+            ..add(ejercicio.destacado ?? '')
+            ..addAll((ejercicio.tabla ?? []).expand((fila) => fila));
+        }
+      }
+    }
+    final sinGlifo = <String>{
+      for (final texto in textos)
+        for (final runa in texto.replaceAll(RegExp(r'[\^{}]'), '').runes)
+          if (runa > 32 && !glifos.containsKey(runa)) String.fromCharCode(runa),
+    };
+    expect(sinGlifo, isEmpty);
   });
 
   test('sin fichas no se genera nada', () {

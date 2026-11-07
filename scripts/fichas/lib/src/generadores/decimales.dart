@@ -240,7 +240,7 @@ final List<PlantillaFicha> plantillasDecimales = [
     idHabilidad: 'DEC.09',
     descripcion:
         'Para redondear a las décimas, mira la cifra de las centésimas: si es 5 o más, la '
-        'décima sube uno; si es menos de 5, se queda igual. 2,37 → 2,4; 2,34 → 2,3.',
+        'décima sube uno; si es menos de 5, se queda igual. 2,37 se redondea a 2,4 y 2,34, a 2,3.',
     preguntaExplicalo: '¿Para qué sirve redondear? Piensa en un caso de la vida en que lo hagas.',
     generar: (azar) {
       final numero = _decimal(azar, enteroMaximo: 30, cifras: 2);

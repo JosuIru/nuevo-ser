@@ -106,6 +106,31 @@ void main() {
       }
     });
 
+    test('DIV.05 marca como primos solo los primos', () {
+      for (final ejercicio in _muestras('DIV.05')) {
+        final rodeados = ejercicio.solucion.split(', ').map(int.parse);
+        expect(rodeados, isNotEmpty);
+        for (final numero in rodeados) {
+          expect([2, 3, 5, 7].where((p) => p < numero && numero % p == 0), isEmpty);
+        }
+      }
+    });
+
+    test('factorización y regla de tres', () {
+      expect(factorizacion(60), '2^{2} · 3 · 5');
+      expect(factorizacion(13), '13');
+      for (final ejercicio in _muestras('PROP.03')) {
+        expect(int.parse(ejercicio.solucion), greaterThan(0));
+      }
+    });
+
+    test('OP.01: la solución respeta la jerarquía', () {
+      for (final ejercicio in _muestras('OP.01')) {
+        final expresion = ejercicio.destacado!.replaceAll(' =', '');
+        expect(formatearEntero(_evaluar(expresion)), ejercicio.solucion, reason: expresion);
+      }
+    });
+
     test('palabras de números y fracciones', () {
       expect(numeroEnPalabras(21, femenino: true), 'veintiuna');
       expect(numeroEnPalabras(31, femenino: true), 'treinta y una');
@@ -114,4 +139,42 @@ void main() {
       expect(fraccionEnPalabras(1, 2), 'un medio');
     });
   });
+}
+
+/// Evaluador mínimo con jerarquía (enteros, + − × : y paréntesis) para
+/// comprobar OP.01 por un camino distinto al del generador.
+int _evaluar(String expresion) {
+  final fichas = RegExp(r'\d+|[+−×:()]').allMatches(expresion).map((m) => m[0]!).toList();
+  var posicion = 0;
+  late int Function() suma;
+  int factor() {
+    final ficha = fichas[posicion++];
+    if (ficha == '(') {
+      final valor = suma();
+      posicion++;
+      return valor;
+    }
+    return int.parse(ficha);
+  }
+
+  int producto() {
+    var valor = factor();
+    while (posicion < fichas.length && (fichas[posicion] == '×' || fichas[posicion] == ':')) {
+      final operador = fichas[posicion++];
+      final derecho = factor();
+      valor = operador == '×' ? valor * derecho : valor ~/ derecho;
+    }
+    return valor;
+  }
+
+  suma = () {
+    var valor = producto();
+    while (posicion < fichas.length && (fichas[posicion] == '+' || fichas[posicion] == '−')) {
+      final operador = fichas[posicion++];
+      final derecho = producto();
+      valor = operador == '+' ? valor + derecho : valor - derecho;
+    }
+    return valor;
+  };
+  return suma();
 }

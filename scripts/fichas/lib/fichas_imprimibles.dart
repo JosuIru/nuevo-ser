@@ -5,6 +5,7 @@ library;
 export 'src/catalogo_habilidades.dart';
 export 'src/ejercicio.dart';
 export 'src/generadores/decimales.dart' show numeroEnPalabras, decimalEnPalabras;
+export 'src/generadores/divisibilidad_operaciones.dart' show esPrimo, factorizacion;
 export 'src/generadores/fracciones.dart' show fraccionEnPalabras;
 export 'src/maquetador_pdf.dart';
 export 'src/recursos.dart';

@@ -12,14 +12,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 2 Modelos + BD | ✅ 2026-11-07 | 9 modelos, 11 tablas en la v1, `ComposicionReceta`; 16 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy, Recetas, Ingredientes (con lotes recibidos), Autocontrol, Ajustes. Desde la cabecera de Hoy: Hornadas (propone las piezas pedidas y el código de lote; marca los lotes usados de los ingredientes directos), Pedidos fijos y Masa madre. 19 tests, 3 de pantalla |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: cuaderno de autocontrol del mes (una tabla por tipo + incidencias y acciones correctoras) y cartel de alérgenos del mostrador. Ficha técnica desde cada receta (ingredientes por peso con los de alérgeno en MAYÚSCULAS, %, sal estimada). Datos en funciones puras con test; PDF con `informe_periodico` del core. 25 tests |
-| 6 Catálogos | pendiente | |
+| 6 Catálogos | ✅ 2026-11-07 | `content/obrador/`: alérgenos (Reglamento 1169/2011 anexo II), denominaciones del pan (RD 308/2019 consolidado, con artículo y sal máxima), ingredientes base y controles tipo (sin revisar). Autocompletado de ingredientes, denominación en la receta con aviso de sal, sugerencias de control y banner en Hoy. 30 tests |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
-| 10 Revisión con fuente pública | pendiente | |
+| 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Alérgenos y denominaciones ya citan su norma (`fuente_publica`). Ingredientes base y controles tipo quedan sin revisar a propósito: el alérgeno real es el de la ficha del proveedor y los límites, los del plan de cada obrador. El banner sigue hasta la firma humana |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 6 (catálogos `content/obrador/`: ingredientes_base, alergenos, denominaciones_pan, controles_tipo) con su compilador sobre la librería común, y siembra de ingredientes base desde el catálogo.
+**Siguiente acción**: bloque 7 (IA: leer con el cliente del core la foto de la etiqueta o la ficha del proveedor → ingredientes y alérgenos propuestos, que la persona confirma), bloque 8 (logo placeholder) y bloque 9 (libro de ingresos y gastos, no REAGP).
 
 ## Encuadre
 

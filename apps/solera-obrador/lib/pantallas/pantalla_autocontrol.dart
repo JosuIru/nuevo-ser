@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../datos/catalogos_generados/catalogo_controles_tipo.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/registro_autocontrol.dart';
 import '../utiles/textos_obrador.dart';
@@ -178,6 +179,18 @@ class _HojaAltaAutocontrolState extends State<_HojaAltaAutocontrol> {
                     label: Text(nombreTipoAutocontrol(tipo)),
                     selected: _tipo == tipo,
                     onSelected: (_) => setState(() => _tipo = tipo),
+                  ),
+              ],
+            ),
+            Wrap(
+              spacing: 6,
+              children: [
+                for (final control in catalogoControlesTipo
+                    .where((control) => control.tipo == _tipo))
+                  ActionChip(
+                    label: Text(control.elemento),
+                    onPressed: () =>
+                        setState(() => _elemento.text = control.elemento),
                   ),
               ],
             ),

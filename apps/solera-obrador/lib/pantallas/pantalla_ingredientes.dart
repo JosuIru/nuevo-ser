@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../datos/catalogos_generados/catalogo_ingredientes_base.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/alergenos.dart';
 import '../modelos/ingrediente.dart';
@@ -113,6 +114,21 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
   late final Set<String> _alergenos = {...?widget.ingrediente?.alergenos};
   late final Set<String> _trazas = {...?widget.ingrediente?.trazas};
   bool _guardando = false;
+  bool _desdeCatalogo = false;
+  bool _escuchandoNombre = false;
+
+  void _usarIngredienteBase(IngredienteBase base) => setState(() {
+        _desdeCatalogo = true;
+        _nombre.text = base.nombre;
+        _alergenos
+          ..clear()
+          ..addAll(base.alergenos);
+        _trazas
+          ..clear()
+          ..addAll(base.trazas);
+        if (base.salGramosPor100g > 0)
+          _sal.text = formatearNumero(base.salGramosPor100g);
+      });
 
   @override
   void dispose() {
@@ -174,10 +190,43 @@ class _PantallaEditarIngredienteState extends State<PantallaEditarIngrediente> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          TextField(
-            controller: _nombre,
-            decoration: InputDecoration(labelText: SoleraL10n.t('obra.nombre')),
-          ),
+          if (widget.ingrediente == null)
+            Autocomplete<IngredienteBase>(
+              optionsBuilder: (valor) => valor.text.trim().length < 2
+                  ? const []
+                  : catalogoIngredientesBase.where((base) => base.nombre
+                      .toLowerCase()
+                      .contains(valor.text.trim().toLowerCase())),
+              displayStringForOption: (base) => base.nombre,
+              onSelected: _usarIngredienteBase,
+              fieldViewBuilder: (context, controlador, foco, alEnviar) {
+                if (!_escuchandoNombre) {
+                  _escuchandoNombre = true;
+                  controlador
+                      .addListener(() => _nombre.text = controlador.text);
+                }
+                return TextField(
+                  controller: controlador,
+                  focusNode: foco,
+                  decoration: InputDecoration(
+                      labelText: SoleraL10n.t('obra.nombre'),
+                      helperText:
+                          SoleraL10n.t('obra.ayuda_catalogo_ingredientes')),
+                );
+              },
+            )
+          else
+            TextField(
+              controller: _nombre,
+              decoration:
+                  InputDecoration(labelText: SoleraL10n.t('obra.nombre')),
+            ),
+          if (_desdeCatalogo)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(SoleraL10n.t('obra.confirmar_con_proveedor'),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            ),
           TextField(
             controller: _proveedor,
             decoration:

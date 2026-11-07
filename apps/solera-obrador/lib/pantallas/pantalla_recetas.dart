@@ -3,6 +3,8 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show DialogoConfirmacion, SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../datos/catalogos_generados/catalogo_denominaciones_pan.dart';
+import '../dominio/comprobacion_denominacion.dart';
 import '../dominio/composicion_receta.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/ingrediente.dart';
@@ -252,6 +254,21 @@ class _PantallaFichaRecetaState extends State<PantallaFichaReceta> {
                           formatearEuros(composicion.costeCentimosPieza)),
                     _Dato(SoleraL10n.t('obra.sal_estimada'),
                         '${formatearNumero(composicion.salEstimadaGramosPor100g, decimales: 2)} g / 100 g'),
+                    if (denominacionPorId(receta.denominacion)
+                        case final denominacion?) ...[
+                      const Divider(height: 32),
+                      Text(
+                          '${denominacion.nombre} (RD 308/2019, ${denominacion.articulo})',
+                          style: estilo.titleSmall),
+                      Text(denominacion.requisito, style: estilo.bodySmall),
+                      if (salSuperaMaximo(composicion, receta.denominacion))
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Text(SoleraL10n.t('obra.aviso_sal_maxima'),
+                              style: TextStyle(
+                                  color: Theme.of(context).colorScheme.error)),
+                        ),
+                    ],
                     const SizedBox(height: 16),
                     Text(SoleraL10n.t('obra.aviso_estimacion'),
                         style: estilo.bodySmall),
@@ -303,6 +320,7 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
   late final _merma = TextEditingController(
       text: formatearNumero(widget.receta?.mermaCoccionPorcentaje ?? 0));
   late bool _esSubreceta = widget.receta?.esSubreceta ?? false;
+  late String _denominacion = widget.receta?.denominacion ?? '';
   late final List<_LineaEditable> _lineas = [
     for (final linea in widget.lineas)
       _LineaEditable(
@@ -336,7 +354,7 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
     final recetaId = await baseDatos.guardarReceta(Receta(
       id: widget.receta?.id,
       nombre: _nombre.text.trim(),
-      denominacion: widget.receta?.denominacion ?? '',
+      denominacion: _denominacion,
       piezasPorMasa: int.tryParse(_piezas.text.trim()) ?? 1,
       mermaCoccionPorcentaje: leerNumero(_merma.text) ?? 0,
       esSubreceta: _esSubreceta,
@@ -406,6 +424,25 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
                     const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
                     labelText: SoleraL10n.t('obra.merma_coccion')),
+              ),
+              DropdownButtonFormField<String>(
+                initialValue: denominacionPorId(_denominacion) == null
+                    ? ''
+                    : _denominacion,
+                isExpanded: true,
+                decoration: InputDecoration(
+                    labelText: SoleraL10n.t('obra.denominacion')),
+                items: [
+                  DropdownMenuItem(
+                      value: '',
+                      child: Text(SoleraL10n.t('obra.sin_denominacion'))),
+                  for (final denominacion in catalogoDenominacionesPan)
+                    DropdownMenuItem(
+                        value: denominacion.id,
+                        child: Text(denominacion.nombre)),
+                ],
+                onChanged: (valor) =>
+                    setState(() => _denominacion = valor ?? ''),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,

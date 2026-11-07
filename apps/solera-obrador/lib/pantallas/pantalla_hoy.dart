@@ -4,6 +4,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
 
 import '../datos/base_datos.dart';
+import '../datos/catalogos_generados/flag_revision.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/masa_madre.dart';
 import '../modelos/pedido_fijo.dart';
@@ -128,6 +129,15 @@ class _PantallaHoyState extends State<PantallaHoy> {
                       etiqueta: SoleraL10n.t('obra.controles_de_hoy')),
                 ],
               ),
+              if (!catalogosCompletamenteRevisados)
+                Card(
+                  margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  child: ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: Text(SoleraL10n.t('obra.catalogos_provisionales')),
+                  ),
+                ),
               if (instantanea.hasError)
                 Padding(
                   padding: const EdgeInsets.all(16),

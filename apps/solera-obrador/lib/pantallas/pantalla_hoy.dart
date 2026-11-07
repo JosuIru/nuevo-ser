@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart'
+    show AvisoCatalogosProvisionales;
 import 'package:intl/intl.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show CabeceraHoySolera, CifraCabecera, SoleraL10n, TituloBloqueSolera;
@@ -14,6 +16,8 @@ import '../modelos/registro_autocontrol.dart';
 import '../utiles/textos_obrador.dart';
 import 'pantalla_autocontrol.dart';
 import 'pantalla_hornadas.dart';
+import 'pantalla_ingredientes.dart';
+import 'pantalla_recetas.dart';
 import 'pantalla_masa_madre.dart';
 import 'pantalla_pedidos_fijos.dart';
 
@@ -27,13 +31,14 @@ class PantallaHoy extends StatefulWidget {
 }
 
 class _DatosHoy {
-  _DatosHoy(
-      this.piezasPorReceta, this.recetas, this.controles, this.ultimoRefresco);
+  _DatosHoy(this.piezasPorReceta, this.recetas, this.controles,
+      this.ultimoRefresco, this.hayIngredientes);
 
   final Map<int, int> piezasPorReceta;
   final Map<int, Receta> recetas;
   final List<RegistroAutocontrol> controles;
   final (MasaMadre, RefrescoMasaMadre?)? ultimoRefresco;
+  final bool hayIngredientes;
 }
 
 class _PantallaHoyState extends State<PantallaHoy> {
@@ -75,7 +80,8 @@ class _PantallaHoyState extends State<PantallaHoy> {
       final refrescos = await baseDatos.listarRefrescos(masas.first.id!);
       ultimo = (masas.first, refrescos.isEmpty ? null : refrescos.first);
     }
-    return _DatosHoy(piezas, recetas, controles, ultimo);
+    final hayIngredientes = (await baseDatos.listarIngredientes()).isNotEmpty;
+    return _DatosHoy(piezas, recetas, controles, ultimo, hayIngredientes);
   }
 
   Future<void> _abrir(Widget pantalla) =>
@@ -132,14 +138,8 @@ class _PantallaHoyState extends State<PantallaHoy> {
                 ],
               ),
               if (!catalogosCompletamenteRevisados)
-                Card(
-                  margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
-                  color: Theme.of(context).colorScheme.tertiaryContainer,
-                  child: ListTile(
-                    leading: const Icon(Icons.info_outline),
-                    title: Text(SoleraL10n.t('obra.catalogos_provisionales')),
-                  ),
-                ),
+                AvisoCatalogosProvisionales(
+                    texto: SoleraL10n.t('obra.catalogos_provisionales')),
               if (instantanea.hasError)
                 Padding(
                   padding: const EdgeInsets.all(16),
@@ -153,9 +153,46 @@ class _PantallaHoyState extends State<PantallaHoy> {
     );
   }
 
+  /// Tarjeta de bienvenida mientras falten ingredientes o recetas, como en
+  /// el resto de verticales.
+  Widget _primerosPasos(BuildContext context) => Card(
+        margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(SoleraL10n.t('obra.primeros_pasos'),
+                  style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 8),
+              Text(SoleraL10n.t('obra.ayuda_empezar_texto')),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  FilledButton.icon(
+                    onPressed: () => _abrir(const PantallaEditarIngrediente()),
+                    icon: const Icon(Icons.inventory_2_outlined),
+                    label: Text(SoleraL10n.t('obra.nuevo_ingrediente')),
+                  ),
+                  OutlinedButton.icon(
+                    onPressed: () => _abrir(const PantallaEditarReceta()),
+                    icon: const Icon(Icons.menu_book_outlined),
+                    label: Text(SoleraL10n.t('obra.nueva_receta')),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+
   List<Widget> _bloques(BuildContext context, _DatosHoy datos) {
     final refresco = datos.ultimoRefresco;
     return [
+      if (!datos.hayIngredientes || datos.recetas.isEmpty)
+        _primerosPasos(context),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: TituloBloqueSolera(SoleraL10n.t('obra.que_hornear')),

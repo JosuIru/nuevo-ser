@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:solera_obrador/datos/base_datos.dart';
 import 'package:solera_obrador/modelos/hornada.dart';
+import 'package:solera_obrador/modelos/ingrediente.dart';
 import 'package:solera_obrador/modelos/masa_madre.dart';
 import 'package:solera_obrador/modelos/pedido_fijo.dart';
 import 'package:solera_obrador/modelos/receta.dart';
@@ -58,6 +59,8 @@ void main() {
 
   testWidgets('Hoy muestra las piezas pedidas para hoy', (tester) async {
     await tester.runAsync(() async {
+      // Con ingredientes y recetas ya no sale la tarjeta de primeros pasos.
+      await baseDatos.guardarIngrediente(Ingrediente(nombre: 'Harina'));
       final pan =
           await baseDatos.guardarReceta(Receta(nombre: 'Pan de pueblo'));
       await baseDatos.guardarPedidoFijo(PedidoFijo(

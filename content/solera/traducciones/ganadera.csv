@@ -1,6 +1,191 @@
 clave,es,eu,ca,gl
-gana.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
+gana.anadir,Añadir,Gehitu,Afegir,Engadir
+gana.animales,Animales,Animaliak,Animals,Animais
+gana.atrasada,atrasada,atzeratuta,endarrerida,atrasada
+gana.autorizacion_transportista,N.º de autorización del transportista,Garraiolariaren baimen-zk.,Núm. d’autorització del transportista,N.º de autorización do transportista
+gana.aviso_no_sustituye,"Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.","Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.","Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.","Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS."
+gana.cabezas,cabezas,buru,caps,cabezas
+gana.cabezas_sin_identificar,Cabezas sin identificar una a una,Banaka identifikatu gabeko buruak,Caps sense identificar un per un,Cabezas sen identificar unha a unha
+gana.cabezas_tratadas,Cabezas tratadas (vacío = todas),Tratatutako buruak (hutsik = guztiak),Caps tractats (buit = tots),Cabezas tratadas (baleiro = todas)
+gana.calendario_sanitario,Calendario sanitario,Osasun-egutegia,Calendari sanitari,Calendario sanitario
+gana.cantidad_administrada,Cantidad administrada (como en la receta),Emandako kopurua (errezetan bezala),Quantitat administrada (com a la recepta),Cantidade administrada (como na receita)
+gana.capacidad_maxima,Capacidad máxima (cabezas),Gehieneko edukiera (buruak),Capacitat màxima (caps),Capacidade máxima (cabezas)
+gana.carne_hasta,Carne hasta el,"Haragia, egun honetara arte:",Carn fins al,Carne ata o
+gana.catalogos_provisionales,Catálogos provisionales: falta la revisión de un veterinario y de un técnico PAC.,Behin-behineko katalogoak: albaitari baten eta PAC teknikari baten berrikuspena falta da.,Catàlegs provisionals: falta la revisió d’un veterinari i d’un tècnic PAC.,Catálogos provisionais: falta a revisión dun veterinario e dun técnico PAC.
+gana.categoria_arrendamiento_pastos,Arrendamiento de pastos,Larreen errentamendua,Arrendament de pastures,Arrendamento de pastos
+gana.categoria_ayudas,Ayudas (PAC y otras),Laguntzak (PAC eta besteak),Ajuts (PAC i altres),Axudas (PAC e outras)
+gana.categoria_combustible,Combustible,Erregaia,Combustible,Combustible
+gana.categoria_maquinaria,Maquinaria y reparaciones,Makineria eta konponketak,Maquinària i reparacions,Maquinaria e reparacións
+gana.categoria_medicamentos,Medicamentos,Sendagaiak,Medicaments,Medicamentos
+gana.categoria_otros_gastos,Otros gastos,Beste gastu batzuk,Altres despeses,Outros gastos
+gana.categoria_otros_ingresos,Otros ingresos,Beste diru-sarrera batzuk,Altres ingressos,Outros ingresos
+gana.categoria_piensos_forraje,Piensos y forraje,Pentsuak eta bazka,Pinsos i farratge,Pensos e forraxe
+gana.categoria_seguros,Seguros,Aseguruak,Assegurances,Seguros
+gana.categoria_venta_animales,"Venta de animales (corderos, terneros…)","Animalien salmenta (bildotsak, txahalak…)","Venda d’animals (anyells, vedells…)","Venda de animais (año, becerros…)"
+gana.categoria_venta_carne,Venta directa de carne,Haragiaren zuzeneko salmenta,Venda directa de carn,Venda directa de carne
+gana.categoria_venta_lana,"Lana, pieles y otros","Artilea, larruak eta bestelakoak","Llana, pells i altres","La, peles e outros"
+gana.categoria_venta_leche,Venta de leche,Esnearen salmenta,Venda de llet,Venda de leite
+gana.categoria_veterinario,Veterinario,Albaitaria,Veterinari,Veterinario
+gana.certificado_sanitario,Certificado sanitario de origen (n.º),Jatorriko osasun-ziurtagiria (zk.),Certificat sanitari d’origen (núm.),Certificado sanitario de orixe (n.º)
+gana.ciclo_corto,Vida productiva menor de un año (límite: 1 tratamiento),Urtebete baino gutxiagoko bizitza produktiboa (muga: tratamendu 1),Vida productiva inferior a un any (límit: 1 tractament),Vida produtiva menor dun ano (límite: 1 tratamento)
+gana.clase_alopatico,Alopático de síntesis química (antibióticos incluidos),Sintesi kimikoko alopatikoa (antibiotikoak barne),Al·lopàtic de síntesi química (antibiòtics inclosos),Alopático de síntese química (antibióticos incluídos)
+gana.clase_antiparasitario,Antiparasitario,Antiparasitarioa,Antiparasitari,Antiparasitario
+gana.clase_medicamento,Clase de medicamento,Sendagai mota,Classe de medicament,Clase de medicamento
+gana.clase_natural,"Fitoterapia, homeopatía u oligoelementos","Fitoterapia, homeopatia edo oligoelementuak","Fitoteràpia, homeopatia o oligoelements","Fitoterapia, homeopatía ou oligoelementos"
+gana.clase_vacuna,Vacuna,Txertoa,Vacuna,Vacina
+gana.clasificacion,Clasificación de la explotación,Ustiategiaren sailkapena,Classificació de l’explotació,Clasificación da explotación
+gana.codigo_rega,Código REGA,REGA kodea,Codi REGA,Código REGA
+gana.codigo_remo,Código REMO del movimiento,Mugimenduaren REMO kodea,Codi REMO del moviment,Código REMO do movemento
+gana.correo,Correo electrónico,Helbide elektronikoa,Correu electrònic,Correo electrónico
+gana.crias,Crías,Kumeak,Cries,Crías
+gana.crotales_movidos,Crotales de los animales (separados por comas),Animalien belarritakoak (komaz bereizita),Crotals dels animals (separats per comes),Crotais dos animais (separados por comas)
+gana.descripcion,Descripción,Deskribapena,Descripció,Descrición
+gana.direccion,Dirección,Helbidea,Adreça,Enderezo
+gana.dispositivo,Dispositivo de identificación,Identifikazio-gailua,Dispositiu d’identificació,Dispositivo de identificación
+gana.dispositivo_bolo_ruminal,Bolo ruminal,Bolo errumenekoa,Bol ruminal,Bolo ruminal
+gana.dispositivo_crotal,Crotal,Belarritakoa,Crotal,Crotal
+gana.dispositivo_crotal_electronico,Crotal electrónico,Belarritako elektronikoa,Crotal electrònic,Crotal electrónico
+gana.dispositivo_marca_auricular,Marca auricular,Belarri-marka,Marca auricular,Marca auricular
+gana.dispositivo_otro,Otro,Bestelakoa,Altre,Outro
+gana.dispositivo_tatuaje,Tatuaje,Tatuajea,Tatuatge,Tatuaxe
+gana.donde_esta_cada_rebano,Dónde está cada rebaño,Non dagoen artalde bakoitza,On és cada ramat,Onde está cada rabaño
+gana.duracion_dias,Duración del tratamiento (días),Tratamenduaren iraupena (egunak),Durada del tractament (dies),Duración do tratamento (días)
+gana.ecologico,ecológico,ekologikoa,ecològic,ecolóxico
+gana.ecologico_o_conversion,Ecológico o en conversión,Ekologikoa edo bihurtzen,Ecològic o en conversió,Ecolóxico ou en conversión
+gana.editar_animal,Editar animal,Editatu animalia,Editar animal,Editar animal
+gana.editar_pieza,Editar pieza,Editatu larre-saila,Editar parcel·la,Editar parcela
+gana.editar_rebano,Editar rebaño,Editatu artaldea,Editar ramat,Editar rabaño
+gana.error_cargar,No se han podido cargar los datos.,Ezin izan dira datuak kargatu.,No s’han pogut carregar les dades.,Non se puideron cargar os datos.
+gana.error_documento,No se ha podido generar el documento.,Ezin izan da agiria sortu.,No s’ha pogut generar el document.,Non se puido xerar o documento.
+gana.es_visita_veterinaria,Es una visita veterinaria,Albaitari-bisita da,És una visita veterinària,É unha visita veterinaria
+gana.especie,Especie,Espeziea,Espècie,Especie
+gana.especie_caprino,Caprino,Ahuntzak,Cabrum,Caprino
+gana.especie_equino,Equino,Zaldiak,Equí,Equino
+gana.especie_ovino,Ovino,Ardiak,Oví,Ovino
+gana.especie_porcino,Porcino,Txerriak,Porcí,Porcino
+gana.especie_vacuno,Vacuno,Behiak,Boví,Vacún
+gana.especies_autorizadas,Especies de la explotación,Ustiategiko espezieak,Espècies de l’explotació,Especies da explotación
+gana.espera_carne_dias,"Tiempo de espera carne (días, aunque sea 0)","Haragiaren itxaronaldia (egunak, 0 bada ere)","Temps d’espera carn (dies, encara que sigui 0)","Tempo de espera carne (días, aínda que sexa 0)"
+gana.espera_leche_dias,"Tiempo de espera leche (días, aunque sea 0)","Esnearen itxaronaldia (egunak, 0 bada ere)","Temps d’espera llet (dies, encara que sigui 0)","Tempo de espera leite (días, aínda que sexa 0)"
+gana.estado,Estado,Egoera,Estat,Estado
+gana.estado_activo,En la explotación,Ustiategian,A l’explotació,Na explotación
+gana.estado_baja,Baja por otro motivo,Baja beste arrazoi batengatik,Baixa per un altre motiu,Baixa por outro motivo
+gana.estado_muerto,Muerto,Hila,Mort,Morto
+gana.estado_sacrificado,Sacrificado,Hilda (hiltegian),Sacrificat,Sacrificado
+gana.estado_vendido,Vendido,Saldua,Venut,Vendido
+gana.evento_bienestar,Cambio en producción o bienestar,Ekoizpen edo ongizate aldaketa,Canvi en producció o benestar,Cambio en produción ou benestar
+gana.evento_enfermedad,Enfermedad infecciosa o parasitaria,Gaixotasun infekziosoa edo parasitarioa,Malaltia infecciosa o parasitària,Enfermidade infecciosa ou parasitaria
+gana.evento_incidencia,"Incidencia (cojera, herida, ataque…)","Gorabehera (herrena, zauria, erasoa…)","Incidència (coixesa, ferida, atac…)","Incidencia (coxeira, ferida, ataque…)"
+gana.evento_otro,Otro manejo,Beste maneiu bat,Un altre maneig,Outro manexo
+gana.evento_parto,Parto,Erditzea,Part,Parto
+gana.evento_pesaje,Pesaje,Pisaketa,Pesatge,Pesaxe
+gana.evento_saneamiento,Saneamiento o vacunación,Saneamendua edo txertaketa,Sanejament o vacunació,Saneamento ou vacinación
+gana.evento_tratamiento,Tratamiento con receta,Errezetadun tratamendua,Tractament amb recepta,Tratamento con receita
+gana.explicacion_calendario,Aquí salen las tareas que planifica tu veterinario y el día en que acaba cada tiempo de espera de una receta. La app no propone tratamientos.,Hemen agertzen dira zure albaitariak antolatutako lanak eta errezeta bakoitzaren itxaronaldia amaitzen den eguna. Aplikazioak ez du tratamendurik proposatzen.,Aquí surten les tasques que planifica el teu veterinari i el dia en què acaba cada temps d’espera d’una recepta. L’app no proposa tractaments.,Aquí saen as tarefas que planifica o teu veterinario e o día en que remata cada tempo de espera dunha receita. A app non propón tratamentos.
+gana.explotacion,Explotación,Ustiategia,Explotació,Explotación
+gana.fecha,Fecha,Data,Data,Data
+gana.fecha_nacimiento,Fecha de nacimiento,Jaiotze-data,Data de naixement,Data de nacemento
+gana.fecha_prevista,Fecha prevista,Aurreikusitako data,Data prevista,Data prevista
+gana.fecha_primera_administracion,Fecha de la primera administración,Lehen ematearen data,Data de la primera administració,Data da primeira administración
+gana.fin_supresion_carne,Acaba la espera de carne,Haragiaren itxaronaldia amaitzen da,Acaba l’espera de carn,Remata a espera de carne
+gana.fin_supresion_leche,Acaba la espera de leche,Esnearen itxaronaldia amaitzen da,Acaba l’espera de llet,Remata a espera de leite
+gana.fuera_de_la_explotacion,Fuera de la explotación,Ustiategitik kanpo,Fora de l’explotació,Fóra da explotación
+gana.fuera_o_sin_ubicar,Fuera de la explotación o sin ubicar,Ustiategitik kanpo edo kokatu gabe,Fora de l’explotació o sense ubicar,Fóra da explotación ou sen situar
 gana.guardado,Guardado,Gordeta,Desat,Gardado
+gana.guardado_rega_raro,Guardado. Ojo: el código REGA no tiene la forma ES + 12 cifras.,Gordeta. Kontuz: REGA kodeak ez du ES + 12 zifra itxura.,Desat. Compte: el codi REGA no té la forma ES + 12 xifres.,Gardado. Ollo: o código REGA non ten a forma ES + 12 cifras.
+gana.historia,Historia,Historia,Història,Historia
 gana.hoy,Hoy,Gaur,Avui,Hoxe
+gana.identificacion,"Identificación (crotal, DIB…)","Identifikazioa (belarritakoa, DIB…)","Identificació (crotal, DIB…)","Identificación (crotal, DIB…)"
+gana.leche_hasta,Leche hasta el,"Esnea, egun honetara arte:",Llet fins al,Leite ata o
+gana.limite_ecologico_superado,Límite superado: ya no se puede vender como ecológico.,Muga gaindituta: ezin da ekologiko gisa saldu.,Límit superat: ja no es pot vendre com a ecològic.,Límite superado: xa non se pode vender como ecolóxico.
+gana.lo_que_pone_la_receta,Apunta lo que pone la receta del veterinario. La app no propone medicamentos ni dosis.,Idatzi albaitariaren errezetak dioena. Aplikazioak ez du sendagairik ez dosirik proposatzen.,Apunta el que diu la recepta del veterinari. L’app no proposa medicaments ni dosis.,Apunta o que pon a receita do veterinario. A app non propón medicamentos nin doses.
+gana.madre,Madre (identificación),Ama (identifikazioa),Mare (identificació),Nai (identificación)
+gana.manejo,Manejo,Maneiua,Maneig,Manexo
+gana.manejo_del_rebano,Manejo del rebaño,Artaldearen maneiua,Maneig del ramat,Manexo do rabaño
+gana.marcar_hecha,Marcar como hecha,Egindakotzat markatu,Marcar com a feta,Marcar como feita
+gana.matricula_vehiculo,Matrícula del vehículo,Ibilgailuaren matrikula,Matrícula del vehicle,Matrícula do vehículo
+gana.medicamento,Medicamento (denominación de la receta),Sendagaia (errezetako izena),Medicament (denominació de la recepta),Medicamento (denominación da receita)
+gana.medio_transporte,Medio de transporte (matrícula o código),Garraiobidea (matrikula edo kodea),Mitjà de transport (matrícula o codi),Medio de transporte (matrícula ou código)
+gana.meses,meses,hilabete,mesos,meses
+gana.motivo,Motivo,Arrazoia,Motiu,Motivo
+gana.mover,Mover,Mugitu,Moure,Mover
+gana.movimiento_alta_parcial,"Entran animales (compra, nacidos fuera…)",Animaliak sartzen dira (erosketa…),Entren animals (compra…),Entran animais (compra…)
+gana.movimiento_baja_parcial,"Salen animales (venta, matadero…)","Animaliak irteten dira (salmenta, hiltegia…)","Surten animals (venda, escorxador…)","Saen animais (venda, matadoiro…)"
+gana.movimiento_entrada,Entrada del rebaño en la explotación,Artaldearen sarrera ustiategian,Entrada del ramat a l’explotació,Entrada do rabaño na explotación
+gana.movimiento_salida,Salida del rebaño de la explotación,Artaldearen irteera ustiategitik,Sortida del ramat de l’explotació,Saída do rabaño da explotación
+gana.movimiento_traslado,Cambio de pieza,Larre-sail aldaketa,Canvi de parcel·la,Cambio de parcela
+gana.movimientos,Movimientos,Mugimenduak,Moviments,Movementos
+gana.municipio,Municipio,Udalerria,Municipi,Concello
+gana.nacimiento,Nacimiento,Jaiotza,Naixement,Nacemento
+gana.nif,NIF,IFZ,NIF,NIF
+gana.nombre,Nombre,Izena,Nom,Nome
+gana.nombre_explotacion,Nombre de la explotación,Ustiategiaren izena,Nom de l’explotació,Nome da explotación
+gana.nombre_o_apodo,Nombre o apodo,Izena edo ezizena,Nom o malnom,Nome ou alcume
 gana.nombre_titular,Nombre del titular,Titularraren izena,Nom del titular,Nome do titular
+gana.notas,Notas,Oharrak,Notes,Notas
+gana.nueva_pieza,Nueva pieza de pasto,Larre-sail berria,Nova parcel·la de pastura,Nova parcela de pasto
+gana.nueva_tarea_sanitaria,Nueva tarea sanitaria,Osasun-lan berria,Nova tasca sanitària,Nova tarefa sanitaria
+gana.nueva_visita,Nueva visita,Bisita berria,Nova visita,Nova visita
+gana.nuevo_animal,Nuevo animal,Animalia berria,Nou animal,Novo animal
+gana.nuevo_evento,Apuntar manejo,Maneiua idatzi,Apuntar maneig,Apuntar manexo
+gana.nuevo_movimiento,Movimiento,Mugimendua,Moviment,Movemento
+gana.nuevo_rebano,Nuevo rebaño,Artalde berria,Nou ramat,Novo rabaño
+gana.numero_receta,N.º de receta,Errezeta-zk.,Núm. de recepta,N.º de receita
+gana.pasto_humedo,Pasto húmedo,Larre hezea,Pastura humida,Pasto húmido
+gana.pasto_mediterraneo,Pasto mediterráneo,Mediterraneoko larrea,Pastura mediterrània,Pasto mediterráneo
+gana.pastos,Pastos,Larreak,Pastures,Pastos
+gana.peso_kg,Peso (kg),Pisua (kg),Pes (kg),Peso (kg)
+gana.pieza_destino,Pieza de destino,Helmugako larre-saila,Parcel·la de destinació,Parcela de destino
+gana.pieza_en_uso,Pieza en uso,Erabilitako larre-saila,Parcel·la en ús,Parcela en uso
+gana.primeros_pasos,Primeros pasos,Lehen urratsak,Primers passos,Primeiros pasos
+gana.primeros_pasos_texto,"1. En Ajustes, los datos del titular y el código REGA. 2. En Pastos, tus piezas con su superficie y su recinto SIGPAC. 3. En Rebaños, cada rebaño y su primera entrada en una pieza.","1. Ezarpenetan, titularraren datuak eta REGA kodea. 2. Larreetan, zure larre-sailak azalerarekin eta SIGPAC barrutiarekin. 3. Artaldeetan, artalde bakoitza eta haren lehen sarrera larre-sail batean.","1. A Configuració, les dades del titular i el codi REGA. 2. A Pastures, les teves parcel·les amb la superfície i el recinte SIGPAC. 3. A Ramats, cada ramat i la seva primera entrada a una parcel·la.","1. En Axustes, os datos do titular e o código REGA. 2. En Pastos, as túas parcelas coa súa superficie e o seu recinto SIXPAC. 3. En Rabaños, cada rabaño e a súa primeira entrada nunha parcela."
+gana.proveedor,Proveedor (nombre y dirección),Hornitzailea (izena eta helbidea),Proveïdor (nom i adreça),Provedor (nome e enderezo)
+gana.provincia,Provincia,Probintzia,Província,Provincia
+gana.proximos_14_dias,Próximos 14 días,Hurrengo 14 egunak,Propers 14 dies,Próximos 14 días
+gana.prueba_compra,Prueba de compra (factura o albarán),Erosketa-froga (faktura edo albarana),Prova de compra (factura o albarà),Proba de compra (factura ou albará)
+gana.que_hay_que_hacer,Qué hay que hacer,Zer egin behar den,Què cal fer,Que hai que facer
+gana.quien,Quién,Nor,Qui,Quen
+gana.raza,Raza,Arraza,Raça,Raza
+gana.rebano,Rebaño,Artaldea,Ramat,Rabaño
+gana.rebano_cerrado,Rebaño cerrado (ya no existe),Artalde itxia (jada ez dago),Ramat tancat (ja no existeix),Rabaño pechado (xa non existe)
+gana.rebanos,Rebaños,Artaldeak,Ramats,Rabaños
+gana.recinto_sigpac,Recinto SIGPAC (pol. parc. recinto),SIGPAC barrutia (pol. lurz. barrutia),Recinte SIGPAC (pol. parc. recinte),Recinto SIXPAC (pol. parc. recinto)
+gana.rega_externa,Código REGA de la otra explotación,Beste ustiategiaren REGA kodea,Codi REGA de l’altra explotació,Código REGA da outra explotación
+gana.sexo,Sexo,Sexua,Sexe,Sexo
+gana.sexo_castrado,Castrado,Zikiratua,Castrat,Castrado
+gana.sexo_hembra,Hembra,Emea,Femella,Femia
+gana.sexo_macho,Macho,Arra,Mascle,Macho
+gana.sin_animales,Sin animales identificados.,Identifikatutako animaliarik ez.,Sense animals identificats.,Sen animais identificados.
+gana.sin_avisos,Nada pendiente.,Ezer ez dago zain.,Res pendent.,Nada pendente.
+gana.sin_eventos,Sin manejo apuntado.,Ez dago maneiurik idatzita.,Sense maneig apuntat.,Sen manexo apuntado.
+gana.sin_ganado,sin ganado,abererik gabe,sense bestiar,sen gando
+gana.sin_indicar,Sin indicar,Adierazi gabe,Sense indicar,Sen indicar
+gana.sin_movimientos,Sin movimientos.,Mugimendurik ez.,Sense moviments.,Sen movementos.
+gana.sin_piezas,Todavía no hay piezas de pasto. Da de alta la primera con el botón +.,Oraindik ez dago larre-sailik. Eman altan lehenengoa + botoiarekin.,Encara no hi ha parcel·les de pastura. Dona d’alta la primera amb el botó +.,Aínda non hai parcelas de pasto. Dá de alta a primeira co botón +.
+gana.sin_rebanos,Todavía no hay rebaños. Crea el primero con el botón +.,Oraindik ez dago artalderik. Sortu lehenengoa + botoiarekin.,Encara no hi ha ramats. Crea el primer amb el botó +.,Aínda non hai rabaños. Crea o primeiro co botón +.
+gana.sin_visitas,Sin visitas apuntadas.,Ez dago bisitarik idatzita.,Sense visites apuntades.,Sen visitas apuntadas.
+gana.superficie_ha,Superficie de pasto (ha),Larre-azalera (ha),Superfície de pastura (ha),Superficie de pasto (ha)
+gana.supresion_vigente,Tiempo de espera vigente,Itxaronaldia indarrean,Temps d’espera vigent,Tempo de espera vixente
+gana.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+gana.tarea_desparasitacion,Desparasitación,Desparasitazioa,Desparasitació,Desparasitación
+gana.tarea_la_planifica_veterinario,Apunta lo que ha planificado tu veterinario: la app solo te lo recuerda.,Idatzi zure albaitariak antolatutakoa: aplikazioak gogorarazi baino ez du egiten.,Apunta el que ha planificat el teu veterinari: l’app només t’ho recorda.,Apunta o que planificou o teu veterinario: a app só cho lembra.
+gana.tarea_otro,Otra tarea,Beste lan bat,Una altra tasca,Outra tarefa
+gana.tarea_revision,Revisión veterinaria,Albaitari-azterketa,Revisió veterinària,Revisión veterinaria
+gana.tarea_saneamiento,Saneamiento,Saneamendua,Sanejament,Saneamento
+gana.tarea_vacunacion,Vacunación,Txertaketa,Vacunació,Vacinación
+gana.tareas_hechas,Hechas,Eginak,Fetes,Feitas
+gana.telefono,Teléfono,Telefonoa,Telèfon,Teléfono
+gana.tipo,Tipo,Mota,Tipus,Tipo
+gana.tipo_pasto,Tipo de pasto (eco-régimen),Larre mota (eko-erregimena),Tipus de pastura (ecoregim),Tipo de pasto (ecorréxime)
 gana.titular,Titular,Titularra,Titular,Titular
+gana.titular_externo,Titular de la otra explotación,Beste ustiategiaren titularra,Titular de l’altra explotació,Titular da outra explotación
+gana.titularidad,Titularidad,Titulartasuna,Titularitat,Titularidade
+gana.titularidad_arrendada,Arrendada,Errentan,Arrendada,Arrendada
+gana.titularidad_cedida,Cedida,Lagata,Cedida,Cedida
+gana.titularidad_comunal,Comunal,Herri-lurra,Comunal,Comunal
+gana.titularidad_propia,Propia,Norberarena,Pròpia,Propia
+gana.toda_la_explotacion,Toda la explotación,Ustiategi osoa,Tota l’explotació,Toda a explotación
+gana.tratamientos_ecologico,Tratamientos que cuentan en 12 meses: {n} de {limite},12 hilabetean kontatzen diren tratamenduak: {n} / {limite},Tractaments que compten en 12 mesos: {n} de {limite},Tratamentos que contan en 12 meses: {n} de {limite}
+gana.ugm_pac,UGM (PAC),ALU (PAC),UBM (PAC),UGM (PAC)
+gana.veterinario,Veterinario prescriptor (nombre y contacto),Albaitari errezetagilea (izena eta harremana),Veterinari prescriptor (nom i contacte),Veterinario prescritor (nome e contacto)
+gana.visitas,Visitas y vehículos,Bisitak eta ibilgailuak,Visites i vehicles,Visitas e vehículos

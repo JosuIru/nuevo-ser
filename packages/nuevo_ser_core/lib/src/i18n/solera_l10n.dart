@@ -3168,11 +3168,196 @@ class SoleraL10n {
     'frut.variedad',
     'frut.variedad_principal',
     'frut.volumen_m3',
-    'gana.bienvenida',
+    'gana.anadir',
+    'gana.animales',
+    'gana.atrasada',
+    'gana.autorizacion_transportista',
+    'gana.aviso_no_sustituye',
+    'gana.cabezas',
+    'gana.cabezas_sin_identificar',
+    'gana.cabezas_tratadas',
+    'gana.calendario_sanitario',
+    'gana.cantidad_administrada',
+    'gana.capacidad_maxima',
+    'gana.carne_hasta',
+    'gana.catalogos_provisionales',
+    'gana.categoria_arrendamiento_pastos',
+    'gana.categoria_ayudas',
+    'gana.categoria_combustible',
+    'gana.categoria_maquinaria',
+    'gana.categoria_medicamentos',
+    'gana.categoria_otros_gastos',
+    'gana.categoria_otros_ingresos',
+    'gana.categoria_piensos_forraje',
+    'gana.categoria_seguros',
+    'gana.categoria_venta_animales',
+    'gana.categoria_venta_carne',
+    'gana.categoria_venta_lana',
+    'gana.categoria_venta_leche',
+    'gana.categoria_veterinario',
+    'gana.certificado_sanitario',
+    'gana.ciclo_corto',
+    'gana.clase_alopatico',
+    'gana.clase_antiparasitario',
+    'gana.clase_medicamento',
+    'gana.clase_natural',
+    'gana.clase_vacuna',
+    'gana.clasificacion',
+    'gana.codigo_rega',
+    'gana.codigo_remo',
+    'gana.correo',
+    'gana.crias',
+    'gana.crotales_movidos',
+    'gana.descripcion',
+    'gana.direccion',
+    'gana.dispositivo',
+    'gana.dispositivo_bolo_ruminal',
+    'gana.dispositivo_crotal',
+    'gana.dispositivo_crotal_electronico',
+    'gana.dispositivo_marca_auricular',
+    'gana.dispositivo_otro',
+    'gana.dispositivo_tatuaje',
+    'gana.donde_esta_cada_rebano',
+    'gana.duracion_dias',
+    'gana.ecologico',
+    'gana.ecologico_o_conversion',
+    'gana.editar_animal',
+    'gana.editar_pieza',
+    'gana.editar_rebano',
+    'gana.error_cargar',
+    'gana.error_documento',
+    'gana.es_visita_veterinaria',
+    'gana.especie',
+    'gana.especie_caprino',
+    'gana.especie_equino',
+    'gana.especie_ovino',
+    'gana.especie_porcino',
+    'gana.especie_vacuno',
+    'gana.especies_autorizadas',
+    'gana.espera_carne_dias',
+    'gana.espera_leche_dias',
+    'gana.estado',
+    'gana.estado_activo',
+    'gana.estado_baja',
+    'gana.estado_muerto',
+    'gana.estado_sacrificado',
+    'gana.estado_vendido',
+    'gana.evento_bienestar',
+    'gana.evento_enfermedad',
+    'gana.evento_incidencia',
+    'gana.evento_otro',
+    'gana.evento_parto',
+    'gana.evento_pesaje',
+    'gana.evento_saneamiento',
+    'gana.evento_tratamiento',
+    'gana.explicacion_calendario',
+    'gana.explotacion',
+    'gana.fecha',
+    'gana.fecha_nacimiento',
+    'gana.fecha_prevista',
+    'gana.fecha_primera_administracion',
+    'gana.fin_supresion_carne',
+    'gana.fin_supresion_leche',
+    'gana.fuera_de_la_explotacion',
+    'gana.fuera_o_sin_ubicar',
     'gana.guardado',
+    'gana.guardado_rega_raro',
+    'gana.historia',
     'gana.hoy',
+    'gana.identificacion',
+    'gana.leche_hasta',
+    'gana.limite_ecologico_superado',
+    'gana.lo_que_pone_la_receta',
+    'gana.madre',
+    'gana.manejo',
+    'gana.manejo_del_rebano',
+    'gana.marcar_hecha',
+    'gana.matricula_vehiculo',
+    'gana.medicamento',
+    'gana.medio_transporte',
+    'gana.meses',
+    'gana.motivo',
+    'gana.mover',
+    'gana.movimiento_alta_parcial',
+    'gana.movimiento_baja_parcial',
+    'gana.movimiento_entrada',
+    'gana.movimiento_salida',
+    'gana.movimiento_traslado',
+    'gana.movimientos',
+    'gana.municipio',
+    'gana.nacimiento',
+    'gana.nif',
+    'gana.nombre',
+    'gana.nombre_explotacion',
+    'gana.nombre_o_apodo',
     'gana.nombre_titular',
+    'gana.notas',
+    'gana.nueva_pieza',
+    'gana.nueva_tarea_sanitaria',
+    'gana.nueva_visita',
+    'gana.nuevo_animal',
+    'gana.nuevo_evento',
+    'gana.nuevo_movimiento',
+    'gana.nuevo_rebano',
+    'gana.numero_receta',
+    'gana.pasto_humedo',
+    'gana.pasto_mediterraneo',
+    'gana.pastos',
+    'gana.peso_kg',
+    'gana.pieza_destino',
+    'gana.pieza_en_uso',
+    'gana.primeros_pasos',
+    'gana.primeros_pasos_texto',
+    'gana.proveedor',
+    'gana.provincia',
+    'gana.proximos_14_dias',
+    'gana.prueba_compra',
+    'gana.que_hay_que_hacer',
+    'gana.quien',
+    'gana.raza',
+    'gana.rebano',
+    'gana.rebano_cerrado',
+    'gana.rebanos',
+    'gana.recinto_sigpac',
+    'gana.rega_externa',
+    'gana.sexo',
+    'gana.sexo_castrado',
+    'gana.sexo_hembra',
+    'gana.sexo_macho',
+    'gana.sin_animales',
+    'gana.sin_avisos',
+    'gana.sin_eventos',
+    'gana.sin_ganado',
+    'gana.sin_indicar',
+    'gana.sin_movimientos',
+    'gana.sin_piezas',
+    'gana.sin_rebanos',
+    'gana.sin_visitas',
+    'gana.superficie_ha',
+    'gana.supresion_vigente',
+    'gana.sustancia_activa',
+    'gana.tarea_desparasitacion',
+    'gana.tarea_la_planifica_veterinario',
+    'gana.tarea_otro',
+    'gana.tarea_revision',
+    'gana.tarea_saneamiento',
+    'gana.tarea_vacunacion',
+    'gana.tareas_hechas',
+    'gana.telefono',
+    'gana.tipo',
+    'gana.tipo_pasto',
     'gana.titular',
+    'gana.titular_externo',
+    'gana.titularidad',
+    'gana.titularidad_arrendada',
+    'gana.titularidad_cedida',
+    'gana.titularidad_comunal',
+    'gana.titularidad_propia',
+    'gana.toda_la_explotacion',
+    'gana.tratamientos_ecologico',
+    'gana.ugm_pac',
+    'gana.veterinario',
+    'gana.visitas',
     'nat.ajus_cabecera_titulo',
     'nat.ajus_cabecera_sub',
     'nat.ajus_explorar_mapa_sub',
@@ -7770,11 +7955,196 @@ class SoleraL10n {
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
-          'gana.bienvenida',
+          'gana.anadir',
+          'gana.animales',
+          'gana.atrasada',
+          'gana.autorizacion_transportista',
+          'gana.aviso_no_sustituye',
+          'gana.cabezas',
+          'gana.cabezas_sin_identificar',
+          'gana.cabezas_tratadas',
+          'gana.calendario_sanitario',
+          'gana.cantidad_administrada',
+          'gana.capacidad_maxima',
+          'gana.carne_hasta',
+          'gana.catalogos_provisionales',
+          'gana.categoria_arrendamiento_pastos',
+          'gana.categoria_ayudas',
+          'gana.categoria_combustible',
+          'gana.categoria_maquinaria',
+          'gana.categoria_medicamentos',
+          'gana.categoria_otros_gastos',
+          'gana.categoria_otros_ingresos',
+          'gana.categoria_piensos_forraje',
+          'gana.categoria_seguros',
+          'gana.categoria_venta_animales',
+          'gana.categoria_venta_carne',
+          'gana.categoria_venta_lana',
+          'gana.categoria_venta_leche',
+          'gana.categoria_veterinario',
+          'gana.certificado_sanitario',
+          'gana.ciclo_corto',
+          'gana.clase_alopatico',
+          'gana.clase_antiparasitario',
+          'gana.clase_medicamento',
+          'gana.clase_natural',
+          'gana.clase_vacuna',
+          'gana.clasificacion',
+          'gana.codigo_rega',
+          'gana.codigo_remo',
+          'gana.correo',
+          'gana.crias',
+          'gana.crotales_movidos',
+          'gana.descripcion',
+          'gana.direccion',
+          'gana.dispositivo',
+          'gana.dispositivo_bolo_ruminal',
+          'gana.dispositivo_crotal',
+          'gana.dispositivo_crotal_electronico',
+          'gana.dispositivo_marca_auricular',
+          'gana.dispositivo_otro',
+          'gana.dispositivo_tatuaje',
+          'gana.donde_esta_cada_rebano',
+          'gana.duracion_dias',
+          'gana.ecologico',
+          'gana.ecologico_o_conversion',
+          'gana.editar_animal',
+          'gana.editar_pieza',
+          'gana.editar_rebano',
+          'gana.error_cargar',
+          'gana.error_documento',
+          'gana.es_visita_veterinaria',
+          'gana.especie',
+          'gana.especie_caprino',
+          'gana.especie_equino',
+          'gana.especie_ovino',
+          'gana.especie_porcino',
+          'gana.especie_vacuno',
+          'gana.especies_autorizadas',
+          'gana.espera_carne_dias',
+          'gana.espera_leche_dias',
+          'gana.estado',
+          'gana.estado_activo',
+          'gana.estado_baja',
+          'gana.estado_muerto',
+          'gana.estado_sacrificado',
+          'gana.estado_vendido',
+          'gana.evento_bienestar',
+          'gana.evento_enfermedad',
+          'gana.evento_incidencia',
+          'gana.evento_otro',
+          'gana.evento_parto',
+          'gana.evento_pesaje',
+          'gana.evento_saneamiento',
+          'gana.evento_tratamiento',
+          'gana.explicacion_calendario',
+          'gana.explotacion',
+          'gana.fecha',
+          'gana.fecha_nacimiento',
+          'gana.fecha_prevista',
+          'gana.fecha_primera_administracion',
+          'gana.fin_supresion_carne',
+          'gana.fin_supresion_leche',
+          'gana.fuera_de_la_explotacion',
+          'gana.fuera_o_sin_ubicar',
           'gana.guardado',
+          'gana.guardado_rega_raro',
+          'gana.historia',
           'gana.hoy',
+          'gana.identificacion',
+          'gana.leche_hasta',
+          'gana.limite_ecologico_superado',
+          'gana.lo_que_pone_la_receta',
+          'gana.madre',
+          'gana.manejo',
+          'gana.manejo_del_rebano',
+          'gana.marcar_hecha',
+          'gana.matricula_vehiculo',
+          'gana.medicamento',
+          'gana.medio_transporte',
+          'gana.meses',
+          'gana.motivo',
+          'gana.mover',
+          'gana.movimiento_alta_parcial',
+          'gana.movimiento_baja_parcial',
+          'gana.movimiento_entrada',
+          'gana.movimiento_salida',
+          'gana.movimiento_traslado',
+          'gana.movimientos',
+          'gana.municipio',
+          'gana.nacimiento',
+          'gana.nif',
+          'gana.nombre',
+          'gana.nombre_explotacion',
+          'gana.nombre_o_apodo',
           'gana.nombre_titular',
+          'gana.notas',
+          'gana.nueva_pieza',
+          'gana.nueva_tarea_sanitaria',
+          'gana.nueva_visita',
+          'gana.nuevo_animal',
+          'gana.nuevo_evento',
+          'gana.nuevo_movimiento',
+          'gana.nuevo_rebano',
+          'gana.numero_receta',
+          'gana.pasto_humedo',
+          'gana.pasto_mediterraneo',
+          'gana.pastos',
+          'gana.peso_kg',
+          'gana.pieza_destino',
+          'gana.pieza_en_uso',
+          'gana.primeros_pasos',
+          'gana.primeros_pasos_texto',
+          'gana.proveedor',
+          'gana.provincia',
+          'gana.proximos_14_dias',
+          'gana.prueba_compra',
+          'gana.que_hay_que_hacer',
+          'gana.quien',
+          'gana.raza',
+          'gana.rebano',
+          'gana.rebano_cerrado',
+          'gana.rebanos',
+          'gana.recinto_sigpac',
+          'gana.rega_externa',
+          'gana.sexo',
+          'gana.sexo_castrado',
+          'gana.sexo_hembra',
+          'gana.sexo_macho',
+          'gana.sin_animales',
+          'gana.sin_avisos',
+          'gana.sin_eventos',
+          'gana.sin_ganado',
+          'gana.sin_indicar',
+          'gana.sin_movimientos',
+          'gana.sin_piezas',
+          'gana.sin_rebanos',
+          'gana.sin_visitas',
+          'gana.superficie_ha',
+          'gana.supresion_vigente',
+          'gana.sustancia_activa',
+          'gana.tarea_desparasitacion',
+          'gana.tarea_la_planifica_veterinario',
+          'gana.tarea_otro',
+          'gana.tarea_revision',
+          'gana.tarea_saneamiento',
+          'gana.tarea_vacunacion',
+          'gana.tareas_hechas',
+          'gana.telefono',
+          'gana.tipo',
+          'gana.tipo_pasto',
           'gana.titular',
+          'gana.titular_externo',
+          'gana.titularidad',
+          'gana.titularidad_arrendada',
+          'gana.titularidad_cedida',
+          'gana.titularidad_comunal',
+          'gana.titularidad_propia',
+          'gana.toda_la_explotacion',
+          'gana.tratamientos_ecologico',
+          'gana.ugm_pac',
+          'gana.veterinario',
+          'gana.visitas',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -12369,11 +12739,196 @@ class SoleraL10n {
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
-          'gana.bienvenida',
+          'gana.anadir',
+          'gana.animales',
+          'gana.atrasada',
+          'gana.autorizacion_transportista',
+          'gana.aviso_no_sustituye',
+          'gana.cabezas',
+          'gana.cabezas_sin_identificar',
+          'gana.cabezas_tratadas',
+          'gana.calendario_sanitario',
+          'gana.cantidad_administrada',
+          'gana.capacidad_maxima',
+          'gana.carne_hasta',
+          'gana.catalogos_provisionales',
+          'gana.categoria_arrendamiento_pastos',
+          'gana.categoria_ayudas',
+          'gana.categoria_combustible',
+          'gana.categoria_maquinaria',
+          'gana.categoria_medicamentos',
+          'gana.categoria_otros_gastos',
+          'gana.categoria_otros_ingresos',
+          'gana.categoria_piensos_forraje',
+          'gana.categoria_seguros',
+          'gana.categoria_venta_animales',
+          'gana.categoria_venta_carne',
+          'gana.categoria_venta_lana',
+          'gana.categoria_venta_leche',
+          'gana.categoria_veterinario',
+          'gana.certificado_sanitario',
+          'gana.ciclo_corto',
+          'gana.clase_alopatico',
+          'gana.clase_antiparasitario',
+          'gana.clase_medicamento',
+          'gana.clase_natural',
+          'gana.clase_vacuna',
+          'gana.clasificacion',
+          'gana.codigo_rega',
+          'gana.codigo_remo',
+          'gana.correo',
+          'gana.crias',
+          'gana.crotales_movidos',
+          'gana.descripcion',
+          'gana.direccion',
+          'gana.dispositivo',
+          'gana.dispositivo_bolo_ruminal',
+          'gana.dispositivo_crotal',
+          'gana.dispositivo_crotal_electronico',
+          'gana.dispositivo_marca_auricular',
+          'gana.dispositivo_otro',
+          'gana.dispositivo_tatuaje',
+          'gana.donde_esta_cada_rebano',
+          'gana.duracion_dias',
+          'gana.ecologico',
+          'gana.ecologico_o_conversion',
+          'gana.editar_animal',
+          'gana.editar_pieza',
+          'gana.editar_rebano',
+          'gana.error_cargar',
+          'gana.error_documento',
+          'gana.es_visita_veterinaria',
+          'gana.especie',
+          'gana.especie_caprino',
+          'gana.especie_equino',
+          'gana.especie_ovino',
+          'gana.especie_porcino',
+          'gana.especie_vacuno',
+          'gana.especies_autorizadas',
+          'gana.espera_carne_dias',
+          'gana.espera_leche_dias',
+          'gana.estado',
+          'gana.estado_activo',
+          'gana.estado_baja',
+          'gana.estado_muerto',
+          'gana.estado_sacrificado',
+          'gana.estado_vendido',
+          'gana.evento_bienestar',
+          'gana.evento_enfermedad',
+          'gana.evento_incidencia',
+          'gana.evento_otro',
+          'gana.evento_parto',
+          'gana.evento_pesaje',
+          'gana.evento_saneamiento',
+          'gana.evento_tratamiento',
+          'gana.explicacion_calendario',
+          'gana.explotacion',
+          'gana.fecha',
+          'gana.fecha_nacimiento',
+          'gana.fecha_prevista',
+          'gana.fecha_primera_administracion',
+          'gana.fin_supresion_carne',
+          'gana.fin_supresion_leche',
+          'gana.fuera_de_la_explotacion',
+          'gana.fuera_o_sin_ubicar',
           'gana.guardado',
+          'gana.guardado_rega_raro',
+          'gana.historia',
           'gana.hoy',
+          'gana.identificacion',
+          'gana.leche_hasta',
+          'gana.limite_ecologico_superado',
+          'gana.lo_que_pone_la_receta',
+          'gana.madre',
+          'gana.manejo',
+          'gana.manejo_del_rebano',
+          'gana.marcar_hecha',
+          'gana.matricula_vehiculo',
+          'gana.medicamento',
+          'gana.medio_transporte',
+          'gana.meses',
+          'gana.motivo',
+          'gana.mover',
+          'gana.movimiento_alta_parcial',
+          'gana.movimiento_baja_parcial',
+          'gana.movimiento_entrada',
+          'gana.movimiento_salida',
+          'gana.movimiento_traslado',
+          'gana.movimientos',
+          'gana.municipio',
+          'gana.nacimiento',
+          'gana.nif',
+          'gana.nombre',
+          'gana.nombre_explotacion',
+          'gana.nombre_o_apodo',
           'gana.nombre_titular',
+          'gana.notas',
+          'gana.nueva_pieza',
+          'gana.nueva_tarea_sanitaria',
+          'gana.nueva_visita',
+          'gana.nuevo_animal',
+          'gana.nuevo_evento',
+          'gana.nuevo_movimiento',
+          'gana.nuevo_rebano',
+          'gana.numero_receta',
+          'gana.pasto_humedo',
+          'gana.pasto_mediterraneo',
+          'gana.pastos',
+          'gana.peso_kg',
+          'gana.pieza_destino',
+          'gana.pieza_en_uso',
+          'gana.primeros_pasos',
+          'gana.primeros_pasos_texto',
+          'gana.proveedor',
+          'gana.provincia',
+          'gana.proximos_14_dias',
+          'gana.prueba_compra',
+          'gana.que_hay_que_hacer',
+          'gana.quien',
+          'gana.raza',
+          'gana.rebano',
+          'gana.rebano_cerrado',
+          'gana.rebanos',
+          'gana.recinto_sigpac',
+          'gana.rega_externa',
+          'gana.sexo',
+          'gana.sexo_castrado',
+          'gana.sexo_hembra',
+          'gana.sexo_macho',
+          'gana.sin_animales',
+          'gana.sin_avisos',
+          'gana.sin_eventos',
+          'gana.sin_ganado',
+          'gana.sin_indicar',
+          'gana.sin_movimientos',
+          'gana.sin_piezas',
+          'gana.sin_rebanos',
+          'gana.sin_visitas',
+          'gana.superficie_ha',
+          'gana.supresion_vigente',
+          'gana.sustancia_activa',
+          'gana.tarea_desparasitacion',
+          'gana.tarea_la_planifica_veterinario',
+          'gana.tarea_otro',
+          'gana.tarea_revision',
+          'gana.tarea_saneamiento',
+          'gana.tarea_vacunacion',
+          'gana.tareas_hechas',
+          'gana.telefono',
+          'gana.tipo',
+          'gana.tipo_pasto',
           'gana.titular',
+          'gana.titular_externo',
+          'gana.titularidad',
+          'gana.titularidad_arrendada',
+          'gana.titularidad_cedida',
+          'gana.titularidad_comunal',
+          'gana.titularidad_propia',
+          'gana.toda_la_explotacion',
+          'gana.tratamientos_ecologico',
+          'gana.ugm_pac',
+          'gana.veterinario',
+          'gana.visitas',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -16968,11 +17523,196 @@ class SoleraL10n {
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
-          'gana.bienvenida',
+          'gana.anadir',
+          'gana.animales',
+          'gana.atrasada',
+          'gana.autorizacion_transportista',
+          'gana.aviso_no_sustituye',
+          'gana.cabezas',
+          'gana.cabezas_sin_identificar',
+          'gana.cabezas_tratadas',
+          'gana.calendario_sanitario',
+          'gana.cantidad_administrada',
+          'gana.capacidad_maxima',
+          'gana.carne_hasta',
+          'gana.catalogos_provisionales',
+          'gana.categoria_arrendamiento_pastos',
+          'gana.categoria_ayudas',
+          'gana.categoria_combustible',
+          'gana.categoria_maquinaria',
+          'gana.categoria_medicamentos',
+          'gana.categoria_otros_gastos',
+          'gana.categoria_otros_ingresos',
+          'gana.categoria_piensos_forraje',
+          'gana.categoria_seguros',
+          'gana.categoria_venta_animales',
+          'gana.categoria_venta_carne',
+          'gana.categoria_venta_lana',
+          'gana.categoria_venta_leche',
+          'gana.categoria_veterinario',
+          'gana.certificado_sanitario',
+          'gana.ciclo_corto',
+          'gana.clase_alopatico',
+          'gana.clase_antiparasitario',
+          'gana.clase_medicamento',
+          'gana.clase_natural',
+          'gana.clase_vacuna',
+          'gana.clasificacion',
+          'gana.codigo_rega',
+          'gana.codigo_remo',
+          'gana.correo',
+          'gana.crias',
+          'gana.crotales_movidos',
+          'gana.descripcion',
+          'gana.direccion',
+          'gana.dispositivo',
+          'gana.dispositivo_bolo_ruminal',
+          'gana.dispositivo_crotal',
+          'gana.dispositivo_crotal_electronico',
+          'gana.dispositivo_marca_auricular',
+          'gana.dispositivo_otro',
+          'gana.dispositivo_tatuaje',
+          'gana.donde_esta_cada_rebano',
+          'gana.duracion_dias',
+          'gana.ecologico',
+          'gana.ecologico_o_conversion',
+          'gana.editar_animal',
+          'gana.editar_pieza',
+          'gana.editar_rebano',
+          'gana.error_cargar',
+          'gana.error_documento',
+          'gana.es_visita_veterinaria',
+          'gana.especie',
+          'gana.especie_caprino',
+          'gana.especie_equino',
+          'gana.especie_ovino',
+          'gana.especie_porcino',
+          'gana.especie_vacuno',
+          'gana.especies_autorizadas',
+          'gana.espera_carne_dias',
+          'gana.espera_leche_dias',
+          'gana.estado',
+          'gana.estado_activo',
+          'gana.estado_baja',
+          'gana.estado_muerto',
+          'gana.estado_sacrificado',
+          'gana.estado_vendido',
+          'gana.evento_bienestar',
+          'gana.evento_enfermedad',
+          'gana.evento_incidencia',
+          'gana.evento_otro',
+          'gana.evento_parto',
+          'gana.evento_pesaje',
+          'gana.evento_saneamiento',
+          'gana.evento_tratamiento',
+          'gana.explicacion_calendario',
+          'gana.explotacion',
+          'gana.fecha',
+          'gana.fecha_nacimiento',
+          'gana.fecha_prevista',
+          'gana.fecha_primera_administracion',
+          'gana.fin_supresion_carne',
+          'gana.fin_supresion_leche',
+          'gana.fuera_de_la_explotacion',
+          'gana.fuera_o_sin_ubicar',
           'gana.guardado',
+          'gana.guardado_rega_raro',
+          'gana.historia',
           'gana.hoy',
+          'gana.identificacion',
+          'gana.leche_hasta',
+          'gana.limite_ecologico_superado',
+          'gana.lo_que_pone_la_receta',
+          'gana.madre',
+          'gana.manejo',
+          'gana.manejo_del_rebano',
+          'gana.marcar_hecha',
+          'gana.matricula_vehiculo',
+          'gana.medicamento',
+          'gana.medio_transporte',
+          'gana.meses',
+          'gana.motivo',
+          'gana.mover',
+          'gana.movimiento_alta_parcial',
+          'gana.movimiento_baja_parcial',
+          'gana.movimiento_entrada',
+          'gana.movimiento_salida',
+          'gana.movimiento_traslado',
+          'gana.movimientos',
+          'gana.municipio',
+          'gana.nacimiento',
+          'gana.nif',
+          'gana.nombre',
+          'gana.nombre_explotacion',
+          'gana.nombre_o_apodo',
           'gana.nombre_titular',
+          'gana.notas',
+          'gana.nueva_pieza',
+          'gana.nueva_tarea_sanitaria',
+          'gana.nueva_visita',
+          'gana.nuevo_animal',
+          'gana.nuevo_evento',
+          'gana.nuevo_movimiento',
+          'gana.nuevo_rebano',
+          'gana.numero_receta',
+          'gana.pasto_humedo',
+          'gana.pasto_mediterraneo',
+          'gana.pastos',
+          'gana.peso_kg',
+          'gana.pieza_destino',
+          'gana.pieza_en_uso',
+          'gana.primeros_pasos',
+          'gana.primeros_pasos_texto',
+          'gana.proveedor',
+          'gana.provincia',
+          'gana.proximos_14_dias',
+          'gana.prueba_compra',
+          'gana.que_hay_que_hacer',
+          'gana.quien',
+          'gana.raza',
+          'gana.rebano',
+          'gana.rebano_cerrado',
+          'gana.rebanos',
+          'gana.recinto_sigpac',
+          'gana.rega_externa',
+          'gana.sexo',
+          'gana.sexo_castrado',
+          'gana.sexo_hembra',
+          'gana.sexo_macho',
+          'gana.sin_animales',
+          'gana.sin_avisos',
+          'gana.sin_eventos',
+          'gana.sin_ganado',
+          'gana.sin_indicar',
+          'gana.sin_movimientos',
+          'gana.sin_piezas',
+          'gana.sin_rebanos',
+          'gana.sin_visitas',
+          'gana.superficie_ha',
+          'gana.supresion_vigente',
+          'gana.sustancia_activa',
+          'gana.tarea_desparasitacion',
+          'gana.tarea_la_planifica_veterinario',
+          'gana.tarea_otro',
+          'gana.tarea_revision',
+          'gana.tarea_saneamiento',
+          'gana.tarea_vacunacion',
+          'gana.tareas_hechas',
+          'gana.telefono',
+          'gana.tipo',
+          'gana.tipo_pasto',
           'gana.titular',
+          'gana.titular_externo',
+          'gana.titularidad',
+          'gana.titularidad_arrendada',
+          'gana.titularidad_cedida',
+          'gana.titularidad_comunal',
+          'gana.titularidad_propia',
+          'gana.toda_la_explotacion',
+          'gana.tratamientos_ecologico',
+          'gana.ugm_pac',
+          'gana.veterinario',
+          'gana.visitas',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -21590,11 +22330,196 @@ class SoleraL10n {
       case 'frut.variedad': return 'Variedad';
       case 'frut.variedad_principal': return 'Variedad principal';
       case 'frut.volumen_m3': return 'Volumen (m³)';
-      case 'gana.bienvenida': return 'Primera versión en construcción.';
+      case 'gana.anadir': return 'Añadir';
+      case 'gana.animales': return 'Animales';
+      case 'gana.atrasada': return 'atrasada';
+      case 'gana.autorizacion_transportista': return 'N.º de autorización del transportista';
+      case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.';
+      case 'gana.cabezas': return 'cabezas';
+      case 'gana.cabezas_sin_identificar': return 'Cabezas sin identificar una a una';
+      case 'gana.cabezas_tratadas': return 'Cabezas tratadas (vacío = todas)';
+      case 'gana.calendario_sanitario': return 'Calendario sanitario';
+      case 'gana.cantidad_administrada': return 'Cantidad administrada (como en la receta)';
+      case 'gana.capacidad_maxima': return 'Capacidad máxima (cabezas)';
+      case 'gana.carne_hasta': return 'Carne hasta el';
+      case 'gana.catalogos_provisionales': return 'Catálogos provisionales: falta la revisión de un veterinario y de un técnico PAC.';
+      case 'gana.categoria_arrendamiento_pastos': return 'Arrendamiento de pastos';
+      case 'gana.categoria_ayudas': return 'Ayudas (PAC y otras)';
+      case 'gana.categoria_combustible': return 'Combustible';
+      case 'gana.categoria_maquinaria': return 'Maquinaria y reparaciones';
+      case 'gana.categoria_medicamentos': return 'Medicamentos';
+      case 'gana.categoria_otros_gastos': return 'Otros gastos';
+      case 'gana.categoria_otros_ingresos': return 'Otros ingresos';
+      case 'gana.categoria_piensos_forraje': return 'Piensos y forraje';
+      case 'gana.categoria_seguros': return 'Seguros';
+      case 'gana.categoria_venta_animales': return 'Venta de animales (corderos, terneros…)';
+      case 'gana.categoria_venta_carne': return 'Venta directa de carne';
+      case 'gana.categoria_venta_lana': return 'Lana, pieles y otros';
+      case 'gana.categoria_venta_leche': return 'Venta de leche';
+      case 'gana.categoria_veterinario': return 'Veterinario';
+      case 'gana.certificado_sanitario': return 'Certificado sanitario de origen (n.º)';
+      case 'gana.ciclo_corto': return 'Vida productiva menor de un año (límite: 1 tratamiento)';
+      case 'gana.clase_alopatico': return 'Alopático de síntesis química (antibióticos incluidos)';
+      case 'gana.clase_antiparasitario': return 'Antiparasitario';
+      case 'gana.clase_medicamento': return 'Clase de medicamento';
+      case 'gana.clase_natural': return 'Fitoterapia, homeopatía u oligoelementos';
+      case 'gana.clase_vacuna': return 'Vacuna';
+      case 'gana.clasificacion': return 'Clasificación de la explotación';
+      case 'gana.codigo_rega': return 'Código REGA';
+      case 'gana.codigo_remo': return 'Código REMO del movimiento';
+      case 'gana.correo': return 'Correo electrónico';
+      case 'gana.crias': return 'Crías';
+      case 'gana.crotales_movidos': return 'Crotales de los animales (separados por comas)';
+      case 'gana.descripcion': return 'Descripción';
+      case 'gana.direccion': return 'Dirección';
+      case 'gana.dispositivo': return 'Dispositivo de identificación';
+      case 'gana.dispositivo_bolo_ruminal': return 'Bolo ruminal';
+      case 'gana.dispositivo_crotal': return 'Crotal';
+      case 'gana.dispositivo_crotal_electronico': return 'Crotal electrónico';
+      case 'gana.dispositivo_marca_auricular': return 'Marca auricular';
+      case 'gana.dispositivo_otro': return 'Otro';
+      case 'gana.dispositivo_tatuaje': return 'Tatuaje';
+      case 'gana.donde_esta_cada_rebano': return 'Dónde está cada rebaño';
+      case 'gana.duracion_dias': return 'Duración del tratamiento (días)';
+      case 'gana.ecologico': return 'ecológico';
+      case 'gana.ecologico_o_conversion': return 'Ecológico o en conversión';
+      case 'gana.editar_animal': return 'Editar animal';
+      case 'gana.editar_pieza': return 'Editar pieza';
+      case 'gana.editar_rebano': return 'Editar rebaño';
+      case 'gana.error_cargar': return 'No se han podido cargar los datos.';
+      case 'gana.error_documento': return 'No se ha podido generar el documento.';
+      case 'gana.es_visita_veterinaria': return 'Es una visita veterinaria';
+      case 'gana.especie': return 'Especie';
+      case 'gana.especie_caprino': return 'Caprino';
+      case 'gana.especie_equino': return 'Equino';
+      case 'gana.especie_ovino': return 'Ovino';
+      case 'gana.especie_porcino': return 'Porcino';
+      case 'gana.especie_vacuno': return 'Vacuno';
+      case 'gana.especies_autorizadas': return 'Especies de la explotación';
+      case 'gana.espera_carne_dias': return 'Tiempo de espera carne (días, aunque sea 0)';
+      case 'gana.espera_leche_dias': return 'Tiempo de espera leche (días, aunque sea 0)';
+      case 'gana.estado': return 'Estado';
+      case 'gana.estado_activo': return 'En la explotación';
+      case 'gana.estado_baja': return 'Baja por otro motivo';
+      case 'gana.estado_muerto': return 'Muerto';
+      case 'gana.estado_sacrificado': return 'Sacrificado';
+      case 'gana.estado_vendido': return 'Vendido';
+      case 'gana.evento_bienestar': return 'Cambio en producción o bienestar';
+      case 'gana.evento_enfermedad': return 'Enfermedad infecciosa o parasitaria';
+      case 'gana.evento_incidencia': return 'Incidencia (cojera, herida, ataque…)';
+      case 'gana.evento_otro': return 'Otro manejo';
+      case 'gana.evento_parto': return 'Parto';
+      case 'gana.evento_pesaje': return 'Pesaje';
+      case 'gana.evento_saneamiento': return 'Saneamiento o vacunación';
+      case 'gana.evento_tratamiento': return 'Tratamiento con receta';
+      case 'gana.explicacion_calendario': return 'Aquí salen las tareas que planifica tu veterinario y el día en que acaba cada tiempo de espera de una receta. La app no propone tratamientos.';
+      case 'gana.explotacion': return 'Explotación';
+      case 'gana.fecha': return 'Fecha';
+      case 'gana.fecha_nacimiento': return 'Fecha de nacimiento';
+      case 'gana.fecha_prevista': return 'Fecha prevista';
+      case 'gana.fecha_primera_administracion': return 'Fecha de la primera administración';
+      case 'gana.fin_supresion_carne': return 'Acaba la espera de carne';
+      case 'gana.fin_supresion_leche': return 'Acaba la espera de leche';
+      case 'gana.fuera_de_la_explotacion': return 'Fuera de la explotación';
+      case 'gana.fuera_o_sin_ubicar': return 'Fuera de la explotación o sin ubicar';
       case 'gana.guardado': return 'Guardado';
+      case 'gana.guardado_rega_raro': return 'Guardado. Ojo: el código REGA no tiene la forma ES + 12 cifras.';
+      case 'gana.historia': return 'Historia';
       case 'gana.hoy': return 'Hoy';
+      case 'gana.identificacion': return 'Identificación (crotal, DIB…)';
+      case 'gana.leche_hasta': return 'Leche hasta el';
+      case 'gana.limite_ecologico_superado': return 'Límite superado: ya no se puede vender como ecológico.';
+      case 'gana.lo_que_pone_la_receta': return 'Apunta lo que pone la receta del veterinario. La app no propone medicamentos ni dosis.';
+      case 'gana.madre': return 'Madre (identificación)';
+      case 'gana.manejo': return 'Manejo';
+      case 'gana.manejo_del_rebano': return 'Manejo del rebaño';
+      case 'gana.marcar_hecha': return 'Marcar como hecha';
+      case 'gana.matricula_vehiculo': return 'Matrícula del vehículo';
+      case 'gana.medicamento': return 'Medicamento (denominación de la receta)';
+      case 'gana.medio_transporte': return 'Medio de transporte (matrícula o código)';
+      case 'gana.meses': return 'meses';
+      case 'gana.motivo': return 'Motivo';
+      case 'gana.mover': return 'Mover';
+      case 'gana.movimiento_alta_parcial': return 'Entran animales (compra, nacidos fuera…)';
+      case 'gana.movimiento_baja_parcial': return 'Salen animales (venta, matadero…)';
+      case 'gana.movimiento_entrada': return 'Entrada del rebaño en la explotación';
+      case 'gana.movimiento_salida': return 'Salida del rebaño de la explotación';
+      case 'gana.movimiento_traslado': return 'Cambio de pieza';
+      case 'gana.movimientos': return 'Movimientos';
+      case 'gana.municipio': return 'Municipio';
+      case 'gana.nacimiento': return 'Nacimiento';
+      case 'gana.nif': return 'NIF';
+      case 'gana.nombre': return 'Nombre';
+      case 'gana.nombre_explotacion': return 'Nombre de la explotación';
+      case 'gana.nombre_o_apodo': return 'Nombre o apodo';
       case 'gana.nombre_titular': return 'Nombre del titular';
+      case 'gana.notas': return 'Notas';
+      case 'gana.nueva_pieza': return 'Nueva pieza de pasto';
+      case 'gana.nueva_tarea_sanitaria': return 'Nueva tarea sanitaria';
+      case 'gana.nueva_visita': return 'Nueva visita';
+      case 'gana.nuevo_animal': return 'Nuevo animal';
+      case 'gana.nuevo_evento': return 'Apuntar manejo';
+      case 'gana.nuevo_movimiento': return 'Movimiento';
+      case 'gana.nuevo_rebano': return 'Nuevo rebaño';
+      case 'gana.numero_receta': return 'N.º de receta';
+      case 'gana.pasto_humedo': return 'Pasto húmedo';
+      case 'gana.pasto_mediterraneo': return 'Pasto mediterráneo';
+      case 'gana.pastos': return 'Pastos';
+      case 'gana.peso_kg': return 'Peso (kg)';
+      case 'gana.pieza_destino': return 'Pieza de destino';
+      case 'gana.pieza_en_uso': return 'Pieza en uso';
+      case 'gana.primeros_pasos': return 'Primeros pasos';
+      case 'gana.primeros_pasos_texto': return '1. En Ajustes, los datos del titular y el código REGA. 2. En Pastos, tus piezas con su superficie y su recinto SIGPAC. 3. En Rebaños, cada rebaño y su primera entrada en una pieza.';
+      case 'gana.proveedor': return 'Proveedor (nombre y dirección)';
+      case 'gana.provincia': return 'Provincia';
+      case 'gana.proximos_14_dias': return 'Próximos 14 días';
+      case 'gana.prueba_compra': return 'Prueba de compra (factura o albarán)';
+      case 'gana.que_hay_que_hacer': return 'Qué hay que hacer';
+      case 'gana.quien': return 'Quién';
+      case 'gana.raza': return 'Raza';
+      case 'gana.rebano': return 'Rebaño';
+      case 'gana.rebano_cerrado': return 'Rebaño cerrado (ya no existe)';
+      case 'gana.rebanos': return 'Rebaños';
+      case 'gana.recinto_sigpac': return 'Recinto SIGPAC (pol. parc. recinto)';
+      case 'gana.rega_externa': return 'Código REGA de la otra explotación';
+      case 'gana.sexo': return 'Sexo';
+      case 'gana.sexo_castrado': return 'Castrado';
+      case 'gana.sexo_hembra': return 'Hembra';
+      case 'gana.sexo_macho': return 'Macho';
+      case 'gana.sin_animales': return 'Sin animales identificados.';
+      case 'gana.sin_avisos': return 'Nada pendiente.';
+      case 'gana.sin_eventos': return 'Sin manejo apuntado.';
+      case 'gana.sin_ganado': return 'sin ganado';
+      case 'gana.sin_indicar': return 'Sin indicar';
+      case 'gana.sin_movimientos': return 'Sin movimientos.';
+      case 'gana.sin_piezas': return 'Todavía no hay piezas de pasto. Da de alta la primera con el botón +.';
+      case 'gana.sin_rebanos': return 'Todavía no hay rebaños. Crea el primero con el botón +.';
+      case 'gana.sin_visitas': return 'Sin visitas apuntadas.';
+      case 'gana.superficie_ha': return 'Superficie de pasto (ha)';
+      case 'gana.supresion_vigente': return 'Tiempo de espera vigente';
+      case 'gana.sustancia_activa': return 'Sustancia activa';
+      case 'gana.tarea_desparasitacion': return 'Desparasitación';
+      case 'gana.tarea_la_planifica_veterinario': return 'Apunta lo que ha planificado tu veterinario: la app solo te lo recuerda.';
+      case 'gana.tarea_otro': return 'Otra tarea';
+      case 'gana.tarea_revision': return 'Revisión veterinaria';
+      case 'gana.tarea_saneamiento': return 'Saneamiento';
+      case 'gana.tarea_vacunacion': return 'Vacunación';
+      case 'gana.tareas_hechas': return 'Hechas';
+      case 'gana.telefono': return 'Teléfono';
+      case 'gana.tipo': return 'Tipo';
+      case 'gana.tipo_pasto': return 'Tipo de pasto (eco-régimen)';
       case 'gana.titular': return 'Titular';
+      case 'gana.titular_externo': return 'Titular de la otra explotación';
+      case 'gana.titularidad': return 'Titularidad';
+      case 'gana.titularidad_arrendada': return 'Arrendada';
+      case 'gana.titularidad_cedida': return 'Cedida';
+      case 'gana.titularidad_comunal': return 'Comunal';
+      case 'gana.titularidad_propia': return 'Propia';
+      case 'gana.toda_la_explotacion': return 'Toda la explotación';
+      case 'gana.tratamientos_ecologico': return 'Tratamientos que cuentan en 12 meses: {n} de {limite}';
+      case 'gana.ugm_pac': return 'UGM (PAC)';
+      case 'gana.veterinario': return 'Veterinario prescriptor (nombre y contacto)';
+      case 'gana.visitas': return 'Visitas y vehículos';
       case 'nat.ajus_cabecera_titulo': return 'Cuaderno de campo de naturaleza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende y convive con la biodiversidad que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies y observaciones';
@@ -26193,11 +27118,196 @@ class SoleraL10n {
       case 'frut.variedad': return 'Barietatea';
       case 'frut.variedad_principal': return 'Barietate nagusia';
       case 'frut.volumen_m3': return 'Bolumena (m³)';
-      case 'gana.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
+      case 'gana.anadir': return 'Gehitu';
+      case 'gana.animales': return 'Animaliak';
+      case 'gana.atrasada': return 'atzeratuta';
+      case 'gana.autorizacion_transportista': return 'Garraiolariaren baimen-zk.';
+      case 'gana.aviso_no_sustituye': return 'Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.';
+      case 'gana.cabezas': return 'buru';
+      case 'gana.cabezas_sin_identificar': return 'Banaka identifikatu gabeko buruak';
+      case 'gana.cabezas_tratadas': return 'Tratatutako buruak (hutsik = guztiak)';
+      case 'gana.calendario_sanitario': return 'Osasun-egutegia';
+      case 'gana.cantidad_administrada': return 'Emandako kopurua (errezetan bezala)';
+      case 'gana.capacidad_maxima': return 'Gehieneko edukiera (buruak)';
+      case 'gana.carne_hasta': return 'Haragia, egun honetara arte:';
+      case 'gana.catalogos_provisionales': return 'Behin-behineko katalogoak: albaitari baten eta PAC teknikari baten berrikuspena falta da.';
+      case 'gana.categoria_arrendamiento_pastos': return 'Larreen errentamendua';
+      case 'gana.categoria_ayudas': return 'Laguntzak (PAC eta besteak)';
+      case 'gana.categoria_combustible': return 'Erregaia';
+      case 'gana.categoria_maquinaria': return 'Makineria eta konponketak';
+      case 'gana.categoria_medicamentos': return 'Sendagaiak';
+      case 'gana.categoria_otros_gastos': return 'Beste gastu batzuk';
+      case 'gana.categoria_otros_ingresos': return 'Beste diru-sarrera batzuk';
+      case 'gana.categoria_piensos_forraje': return 'Pentsuak eta bazka';
+      case 'gana.categoria_seguros': return 'Aseguruak';
+      case 'gana.categoria_venta_animales': return 'Animalien salmenta (bildotsak, txahalak…)';
+      case 'gana.categoria_venta_carne': return 'Haragiaren zuzeneko salmenta';
+      case 'gana.categoria_venta_lana': return 'Artilea, larruak eta bestelakoak';
+      case 'gana.categoria_venta_leche': return 'Esnearen salmenta';
+      case 'gana.categoria_veterinario': return 'Albaitaria';
+      case 'gana.certificado_sanitario': return 'Jatorriko osasun-ziurtagiria (zk.)';
+      case 'gana.ciclo_corto': return 'Urtebete baino gutxiagoko bizitza produktiboa (muga: tratamendu 1)';
+      case 'gana.clase_alopatico': return 'Sintesi kimikoko alopatikoa (antibiotikoak barne)';
+      case 'gana.clase_antiparasitario': return 'Antiparasitarioa';
+      case 'gana.clase_medicamento': return 'Sendagai mota';
+      case 'gana.clase_natural': return 'Fitoterapia, homeopatia edo oligoelementuak';
+      case 'gana.clase_vacuna': return 'Txertoa';
+      case 'gana.clasificacion': return 'Ustiategiaren sailkapena';
+      case 'gana.codigo_rega': return 'REGA kodea';
+      case 'gana.codigo_remo': return 'Mugimenduaren REMO kodea';
+      case 'gana.correo': return 'Helbide elektronikoa';
+      case 'gana.crias': return 'Kumeak';
+      case 'gana.crotales_movidos': return 'Animalien belarritakoak (komaz bereizita)';
+      case 'gana.descripcion': return 'Deskribapena';
+      case 'gana.direccion': return 'Helbidea';
+      case 'gana.dispositivo': return 'Identifikazio-gailua';
+      case 'gana.dispositivo_bolo_ruminal': return 'Bolo errumenekoa';
+      case 'gana.dispositivo_crotal': return 'Belarritakoa';
+      case 'gana.dispositivo_crotal_electronico': return 'Belarritako elektronikoa';
+      case 'gana.dispositivo_marca_auricular': return 'Belarri-marka';
+      case 'gana.dispositivo_otro': return 'Bestelakoa';
+      case 'gana.dispositivo_tatuaje': return 'Tatuajea';
+      case 'gana.donde_esta_cada_rebano': return 'Non dagoen artalde bakoitza';
+      case 'gana.duracion_dias': return 'Tratamenduaren iraupena (egunak)';
+      case 'gana.ecologico': return 'ekologikoa';
+      case 'gana.ecologico_o_conversion': return 'Ekologikoa edo bihurtzen';
+      case 'gana.editar_animal': return 'Editatu animalia';
+      case 'gana.editar_pieza': return 'Editatu larre-saila';
+      case 'gana.editar_rebano': return 'Editatu artaldea';
+      case 'gana.error_cargar': return 'Ezin izan dira datuak kargatu.';
+      case 'gana.error_documento': return 'Ezin izan da agiria sortu.';
+      case 'gana.es_visita_veterinaria': return 'Albaitari-bisita da';
+      case 'gana.especie': return 'Espeziea';
+      case 'gana.especie_caprino': return 'Ahuntzak';
+      case 'gana.especie_equino': return 'Zaldiak';
+      case 'gana.especie_ovino': return 'Ardiak';
+      case 'gana.especie_porcino': return 'Txerriak';
+      case 'gana.especie_vacuno': return 'Behiak';
+      case 'gana.especies_autorizadas': return 'Ustiategiko espezieak';
+      case 'gana.espera_carne_dias': return 'Haragiaren itxaronaldia (egunak, 0 bada ere)';
+      case 'gana.espera_leche_dias': return 'Esnearen itxaronaldia (egunak, 0 bada ere)';
+      case 'gana.estado': return 'Egoera';
+      case 'gana.estado_activo': return 'Ustiategian';
+      case 'gana.estado_baja': return 'Baja beste arrazoi batengatik';
+      case 'gana.estado_muerto': return 'Hila';
+      case 'gana.estado_sacrificado': return 'Hilda (hiltegian)';
+      case 'gana.estado_vendido': return 'Saldua';
+      case 'gana.evento_bienestar': return 'Ekoizpen edo ongizate aldaketa';
+      case 'gana.evento_enfermedad': return 'Gaixotasun infekziosoa edo parasitarioa';
+      case 'gana.evento_incidencia': return 'Gorabehera (herrena, zauria, erasoa…)';
+      case 'gana.evento_otro': return 'Beste maneiu bat';
+      case 'gana.evento_parto': return 'Erditzea';
+      case 'gana.evento_pesaje': return 'Pisaketa';
+      case 'gana.evento_saneamiento': return 'Saneamendua edo txertaketa';
+      case 'gana.evento_tratamiento': return 'Errezetadun tratamendua';
+      case 'gana.explicacion_calendario': return 'Hemen agertzen dira zure albaitariak antolatutako lanak eta errezeta bakoitzaren itxaronaldia amaitzen den eguna. Aplikazioak ez du tratamendurik proposatzen.';
+      case 'gana.explotacion': return 'Ustiategia';
+      case 'gana.fecha': return 'Data';
+      case 'gana.fecha_nacimiento': return 'Jaiotze-data';
+      case 'gana.fecha_prevista': return 'Aurreikusitako data';
+      case 'gana.fecha_primera_administracion': return 'Lehen ematearen data';
+      case 'gana.fin_supresion_carne': return 'Haragiaren itxaronaldia amaitzen da';
+      case 'gana.fin_supresion_leche': return 'Esnearen itxaronaldia amaitzen da';
+      case 'gana.fuera_de_la_explotacion': return 'Ustiategitik kanpo';
+      case 'gana.fuera_o_sin_ubicar': return 'Ustiategitik kanpo edo kokatu gabe';
       case 'gana.guardado': return 'Gordeta';
+      case 'gana.guardado_rega_raro': return 'Gordeta. Kontuz: REGA kodeak ez du ES + 12 zifra itxura.';
+      case 'gana.historia': return 'Historia';
       case 'gana.hoy': return 'Gaur';
+      case 'gana.identificacion': return 'Identifikazioa (belarritakoa, DIB…)';
+      case 'gana.leche_hasta': return 'Esnea, egun honetara arte:';
+      case 'gana.limite_ecologico_superado': return 'Muga gaindituta: ezin da ekologiko gisa saldu.';
+      case 'gana.lo_que_pone_la_receta': return 'Idatzi albaitariaren errezetak dioena. Aplikazioak ez du sendagairik ez dosirik proposatzen.';
+      case 'gana.madre': return 'Ama (identifikazioa)';
+      case 'gana.manejo': return 'Maneiua';
+      case 'gana.manejo_del_rebano': return 'Artaldearen maneiua';
+      case 'gana.marcar_hecha': return 'Egindakotzat markatu';
+      case 'gana.matricula_vehiculo': return 'Ibilgailuaren matrikula';
+      case 'gana.medicamento': return 'Sendagaia (errezetako izena)';
+      case 'gana.medio_transporte': return 'Garraiobidea (matrikula edo kodea)';
+      case 'gana.meses': return 'hilabete';
+      case 'gana.motivo': return 'Arrazoia';
+      case 'gana.mover': return 'Mugitu';
+      case 'gana.movimiento_alta_parcial': return 'Animaliak sartzen dira (erosketa…)';
+      case 'gana.movimiento_baja_parcial': return 'Animaliak irteten dira (salmenta, hiltegia…)';
+      case 'gana.movimiento_entrada': return 'Artaldearen sarrera ustiategian';
+      case 'gana.movimiento_salida': return 'Artaldearen irteera ustiategitik';
+      case 'gana.movimiento_traslado': return 'Larre-sail aldaketa';
+      case 'gana.movimientos': return 'Mugimenduak';
+      case 'gana.municipio': return 'Udalerria';
+      case 'gana.nacimiento': return 'Jaiotza';
+      case 'gana.nif': return 'IFZ';
+      case 'gana.nombre': return 'Izena';
+      case 'gana.nombre_explotacion': return 'Ustiategiaren izena';
+      case 'gana.nombre_o_apodo': return 'Izena edo ezizena';
       case 'gana.nombre_titular': return 'Titularraren izena';
+      case 'gana.notas': return 'Oharrak';
+      case 'gana.nueva_pieza': return 'Larre-sail berria';
+      case 'gana.nueva_tarea_sanitaria': return 'Osasun-lan berria';
+      case 'gana.nueva_visita': return 'Bisita berria';
+      case 'gana.nuevo_animal': return 'Animalia berria';
+      case 'gana.nuevo_evento': return 'Maneiua idatzi';
+      case 'gana.nuevo_movimiento': return 'Mugimendua';
+      case 'gana.nuevo_rebano': return 'Artalde berria';
+      case 'gana.numero_receta': return 'Errezeta-zk.';
+      case 'gana.pasto_humedo': return 'Larre hezea';
+      case 'gana.pasto_mediterraneo': return 'Mediterraneoko larrea';
+      case 'gana.pastos': return 'Larreak';
+      case 'gana.peso_kg': return 'Pisua (kg)';
+      case 'gana.pieza_destino': return 'Helmugako larre-saila';
+      case 'gana.pieza_en_uso': return 'Erabilitako larre-saila';
+      case 'gana.primeros_pasos': return 'Lehen urratsak';
+      case 'gana.primeros_pasos_texto': return '1. Ezarpenetan, titularraren datuak eta REGA kodea. 2. Larreetan, zure larre-sailak azalerarekin eta SIGPAC barrutiarekin. 3. Artaldeetan, artalde bakoitza eta haren lehen sarrera larre-sail batean.';
+      case 'gana.proveedor': return 'Hornitzailea (izena eta helbidea)';
+      case 'gana.provincia': return 'Probintzia';
+      case 'gana.proximos_14_dias': return 'Hurrengo 14 egunak';
+      case 'gana.prueba_compra': return 'Erosketa-froga (faktura edo albarana)';
+      case 'gana.que_hay_que_hacer': return 'Zer egin behar den';
+      case 'gana.quien': return 'Nor';
+      case 'gana.raza': return 'Arraza';
+      case 'gana.rebano': return 'Artaldea';
+      case 'gana.rebano_cerrado': return 'Artalde itxia (jada ez dago)';
+      case 'gana.rebanos': return 'Artaldeak';
+      case 'gana.recinto_sigpac': return 'SIGPAC barrutia (pol. lurz. barrutia)';
+      case 'gana.rega_externa': return 'Beste ustiategiaren REGA kodea';
+      case 'gana.sexo': return 'Sexua';
+      case 'gana.sexo_castrado': return 'Zikiratua';
+      case 'gana.sexo_hembra': return 'Emea';
+      case 'gana.sexo_macho': return 'Arra';
+      case 'gana.sin_animales': return 'Identifikatutako animaliarik ez.';
+      case 'gana.sin_avisos': return 'Ezer ez dago zain.';
+      case 'gana.sin_eventos': return 'Ez dago maneiurik idatzita.';
+      case 'gana.sin_ganado': return 'abererik gabe';
+      case 'gana.sin_indicar': return 'Adierazi gabe';
+      case 'gana.sin_movimientos': return 'Mugimendurik ez.';
+      case 'gana.sin_piezas': return 'Oraindik ez dago larre-sailik. Eman altan lehenengoa + botoiarekin.';
+      case 'gana.sin_rebanos': return 'Oraindik ez dago artalderik. Sortu lehenengoa + botoiarekin.';
+      case 'gana.sin_visitas': return 'Ez dago bisitarik idatzita.';
+      case 'gana.superficie_ha': return 'Larre-azalera (ha)';
+      case 'gana.supresion_vigente': return 'Itxaronaldia indarrean';
+      case 'gana.sustancia_activa': return 'Substantzia aktiboa';
+      case 'gana.tarea_desparasitacion': return 'Desparasitazioa';
+      case 'gana.tarea_la_planifica_veterinario': return 'Idatzi zure albaitariak antolatutakoa: aplikazioak gogorarazi baino ez du egiten.';
+      case 'gana.tarea_otro': return 'Beste lan bat';
+      case 'gana.tarea_revision': return 'Albaitari-azterketa';
+      case 'gana.tarea_saneamiento': return 'Saneamendua';
+      case 'gana.tarea_vacunacion': return 'Txertaketa';
+      case 'gana.tareas_hechas': return 'Eginak';
+      case 'gana.telefono': return 'Telefonoa';
+      case 'gana.tipo': return 'Mota';
+      case 'gana.tipo_pasto': return 'Larre mota (eko-erregimena)';
       case 'gana.titular': return 'Titularra';
+      case 'gana.titular_externo': return 'Beste ustiategiaren titularra';
+      case 'gana.titularidad': return 'Titulartasuna';
+      case 'gana.titularidad_arrendada': return 'Errentan';
+      case 'gana.titularidad_cedida': return 'Lagata';
+      case 'gana.titularidad_comunal': return 'Herri-lurra';
+      case 'gana.titularidad_propia': return 'Norberarena';
+      case 'gana.toda_la_explotacion': return 'Ustiategi osoa';
+      case 'gana.tratamientos_ecologico': return '12 hilabetean kontatzen diren tratamenduak: {n} / {limite}';
+      case 'gana.ugm_pac': return 'ALU (PAC)';
+      case 'gana.veterinario': return 'Albaitari errezetagilea (izena eta harremana)';
+      case 'gana.visitas': return 'Bisitak eta ibilgailuak';
       case 'nat.ajus_cabecera_titulo': return 'Naturako landa-koadernoa';
       case 'nat.ajus_cabecera_sub': return 'Behatu, ikasi eta bizi zure inguruko biodibertsitatearekin batera';
       case 'nat.ajus_explorar_mapa_sub': return 'Espezieak eta behaketak';
@@ -30796,11 +31906,196 @@ class SoleraL10n {
       case 'frut.variedad': return 'Varietat';
       case 'frut.variedad_principal': return 'Varietat principal';
       case 'frut.volumen_m3': return 'Volum (m³)';
-      case 'gana.bienvenida': return 'Primera versió en construcció.';
+      case 'gana.anadir': return 'Afegir';
+      case 'gana.animales': return 'Animals';
+      case 'gana.atrasada': return 'endarrerida';
+      case 'gana.autorizacion_transportista': return 'Núm. d’autorització del transportista';
+      case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.';
+      case 'gana.cabezas': return 'caps';
+      case 'gana.cabezas_sin_identificar': return 'Caps sense identificar un per un';
+      case 'gana.cabezas_tratadas': return 'Caps tractats (buit = tots)';
+      case 'gana.calendario_sanitario': return 'Calendari sanitari';
+      case 'gana.cantidad_administrada': return 'Quantitat administrada (com a la recepta)';
+      case 'gana.capacidad_maxima': return 'Capacitat màxima (caps)';
+      case 'gana.carne_hasta': return 'Carn fins al';
+      case 'gana.catalogos_provisionales': return 'Catàlegs provisionals: falta la revisió d’un veterinari i d’un tècnic PAC.';
+      case 'gana.categoria_arrendamiento_pastos': return 'Arrendament de pastures';
+      case 'gana.categoria_ayudas': return 'Ajuts (PAC i altres)';
+      case 'gana.categoria_combustible': return 'Combustible';
+      case 'gana.categoria_maquinaria': return 'Maquinària i reparacions';
+      case 'gana.categoria_medicamentos': return 'Medicaments';
+      case 'gana.categoria_otros_gastos': return 'Altres despeses';
+      case 'gana.categoria_otros_ingresos': return 'Altres ingressos';
+      case 'gana.categoria_piensos_forraje': return 'Pinsos i farratge';
+      case 'gana.categoria_seguros': return 'Assegurances';
+      case 'gana.categoria_venta_animales': return 'Venda d’animals (anyells, vedells…)';
+      case 'gana.categoria_venta_carne': return 'Venda directa de carn';
+      case 'gana.categoria_venta_lana': return 'Llana, pells i altres';
+      case 'gana.categoria_venta_leche': return 'Venda de llet';
+      case 'gana.categoria_veterinario': return 'Veterinari';
+      case 'gana.certificado_sanitario': return 'Certificat sanitari d’origen (núm.)';
+      case 'gana.ciclo_corto': return 'Vida productiva inferior a un any (límit: 1 tractament)';
+      case 'gana.clase_alopatico': return 'Al·lopàtic de síntesi química (antibiòtics inclosos)';
+      case 'gana.clase_antiparasitario': return 'Antiparasitari';
+      case 'gana.clase_medicamento': return 'Classe de medicament';
+      case 'gana.clase_natural': return 'Fitoteràpia, homeopatia o oligoelements';
+      case 'gana.clase_vacuna': return 'Vacuna';
+      case 'gana.clasificacion': return 'Classificació de l’explotació';
+      case 'gana.codigo_rega': return 'Codi REGA';
+      case 'gana.codigo_remo': return 'Codi REMO del moviment';
+      case 'gana.correo': return 'Correu electrònic';
+      case 'gana.crias': return 'Cries';
+      case 'gana.crotales_movidos': return 'Crotals dels animals (separats per comes)';
+      case 'gana.descripcion': return 'Descripció';
+      case 'gana.direccion': return 'Adreça';
+      case 'gana.dispositivo': return 'Dispositiu d’identificació';
+      case 'gana.dispositivo_bolo_ruminal': return 'Bol ruminal';
+      case 'gana.dispositivo_crotal': return 'Crotal';
+      case 'gana.dispositivo_crotal_electronico': return 'Crotal electrònic';
+      case 'gana.dispositivo_marca_auricular': return 'Marca auricular';
+      case 'gana.dispositivo_otro': return 'Altre';
+      case 'gana.dispositivo_tatuaje': return 'Tatuatge';
+      case 'gana.donde_esta_cada_rebano': return 'On és cada ramat';
+      case 'gana.duracion_dias': return 'Durada del tractament (dies)';
+      case 'gana.ecologico': return 'ecològic';
+      case 'gana.ecologico_o_conversion': return 'Ecològic o en conversió';
+      case 'gana.editar_animal': return 'Editar animal';
+      case 'gana.editar_pieza': return 'Editar parcel·la';
+      case 'gana.editar_rebano': return 'Editar ramat';
+      case 'gana.error_cargar': return 'No s’han pogut carregar les dades.';
+      case 'gana.error_documento': return 'No s’ha pogut generar el document.';
+      case 'gana.es_visita_veterinaria': return 'És una visita veterinària';
+      case 'gana.especie': return 'Espècie';
+      case 'gana.especie_caprino': return 'Cabrum';
+      case 'gana.especie_equino': return 'Equí';
+      case 'gana.especie_ovino': return 'Oví';
+      case 'gana.especie_porcino': return 'Porcí';
+      case 'gana.especie_vacuno': return 'Boví';
+      case 'gana.especies_autorizadas': return 'Espècies de l’explotació';
+      case 'gana.espera_carne_dias': return 'Temps d’espera carn (dies, encara que sigui 0)';
+      case 'gana.espera_leche_dias': return 'Temps d’espera llet (dies, encara que sigui 0)';
+      case 'gana.estado': return 'Estat';
+      case 'gana.estado_activo': return 'A l’explotació';
+      case 'gana.estado_baja': return 'Baixa per un altre motiu';
+      case 'gana.estado_muerto': return 'Mort';
+      case 'gana.estado_sacrificado': return 'Sacrificat';
+      case 'gana.estado_vendido': return 'Venut';
+      case 'gana.evento_bienestar': return 'Canvi en producció o benestar';
+      case 'gana.evento_enfermedad': return 'Malaltia infecciosa o parasitària';
+      case 'gana.evento_incidencia': return 'Incidència (coixesa, ferida, atac…)';
+      case 'gana.evento_otro': return 'Un altre maneig';
+      case 'gana.evento_parto': return 'Part';
+      case 'gana.evento_pesaje': return 'Pesatge';
+      case 'gana.evento_saneamiento': return 'Sanejament o vacunació';
+      case 'gana.evento_tratamiento': return 'Tractament amb recepta';
+      case 'gana.explicacion_calendario': return 'Aquí surten les tasques que planifica el teu veterinari i el dia en què acaba cada temps d’espera d’una recepta. L’app no proposa tractaments.';
+      case 'gana.explotacion': return 'Explotació';
+      case 'gana.fecha': return 'Data';
+      case 'gana.fecha_nacimiento': return 'Data de naixement';
+      case 'gana.fecha_prevista': return 'Data prevista';
+      case 'gana.fecha_primera_administracion': return 'Data de la primera administració';
+      case 'gana.fin_supresion_carne': return 'Acaba l’espera de carn';
+      case 'gana.fin_supresion_leche': return 'Acaba l’espera de llet';
+      case 'gana.fuera_de_la_explotacion': return 'Fora de l’explotació';
+      case 'gana.fuera_o_sin_ubicar': return 'Fora de l’explotació o sense ubicar';
       case 'gana.guardado': return 'Desat';
+      case 'gana.guardado_rega_raro': return 'Desat. Compte: el codi REGA no té la forma ES + 12 xifres.';
+      case 'gana.historia': return 'Història';
       case 'gana.hoy': return 'Avui';
+      case 'gana.identificacion': return 'Identificació (crotal, DIB…)';
+      case 'gana.leche_hasta': return 'Llet fins al';
+      case 'gana.limite_ecologico_superado': return 'Límit superat: ja no es pot vendre com a ecològic.';
+      case 'gana.lo_que_pone_la_receta': return 'Apunta el que diu la recepta del veterinari. L’app no proposa medicaments ni dosis.';
+      case 'gana.madre': return 'Mare (identificació)';
+      case 'gana.manejo': return 'Maneig';
+      case 'gana.manejo_del_rebano': return 'Maneig del ramat';
+      case 'gana.marcar_hecha': return 'Marcar com a feta';
+      case 'gana.matricula_vehiculo': return 'Matrícula del vehicle';
+      case 'gana.medicamento': return 'Medicament (denominació de la recepta)';
+      case 'gana.medio_transporte': return 'Mitjà de transport (matrícula o codi)';
+      case 'gana.meses': return 'mesos';
+      case 'gana.motivo': return 'Motiu';
+      case 'gana.mover': return 'Moure';
+      case 'gana.movimiento_alta_parcial': return 'Entren animals (compra…)';
+      case 'gana.movimiento_baja_parcial': return 'Surten animals (venda, escorxador…)';
+      case 'gana.movimiento_entrada': return 'Entrada del ramat a l’explotació';
+      case 'gana.movimiento_salida': return 'Sortida del ramat de l’explotació';
+      case 'gana.movimiento_traslado': return 'Canvi de parcel·la';
+      case 'gana.movimientos': return 'Moviments';
+      case 'gana.municipio': return 'Municipi';
+      case 'gana.nacimiento': return 'Naixement';
+      case 'gana.nif': return 'NIF';
+      case 'gana.nombre': return 'Nom';
+      case 'gana.nombre_explotacion': return 'Nom de l’explotació';
+      case 'gana.nombre_o_apodo': return 'Nom o malnom';
       case 'gana.nombre_titular': return 'Nom del titular';
+      case 'gana.notas': return 'Notes';
+      case 'gana.nueva_pieza': return 'Nova parcel·la de pastura';
+      case 'gana.nueva_tarea_sanitaria': return 'Nova tasca sanitària';
+      case 'gana.nueva_visita': return 'Nova visita';
+      case 'gana.nuevo_animal': return 'Nou animal';
+      case 'gana.nuevo_evento': return 'Apuntar maneig';
+      case 'gana.nuevo_movimiento': return 'Moviment';
+      case 'gana.nuevo_rebano': return 'Nou ramat';
+      case 'gana.numero_receta': return 'Núm. de recepta';
+      case 'gana.pasto_humedo': return 'Pastura humida';
+      case 'gana.pasto_mediterraneo': return 'Pastura mediterrània';
+      case 'gana.pastos': return 'Pastures';
+      case 'gana.peso_kg': return 'Pes (kg)';
+      case 'gana.pieza_destino': return 'Parcel·la de destinació';
+      case 'gana.pieza_en_uso': return 'Parcel·la en ús';
+      case 'gana.primeros_pasos': return 'Primers passos';
+      case 'gana.primeros_pasos_texto': return '1. A Configuració, les dades del titular i el codi REGA. 2. A Pastures, les teves parcel·les amb la superfície i el recinte SIGPAC. 3. A Ramats, cada ramat i la seva primera entrada a una parcel·la.';
+      case 'gana.proveedor': return 'Proveïdor (nom i adreça)';
+      case 'gana.provincia': return 'Província';
+      case 'gana.proximos_14_dias': return 'Propers 14 dies';
+      case 'gana.prueba_compra': return 'Prova de compra (factura o albarà)';
+      case 'gana.que_hay_que_hacer': return 'Què cal fer';
+      case 'gana.quien': return 'Qui';
+      case 'gana.raza': return 'Raça';
+      case 'gana.rebano': return 'Ramat';
+      case 'gana.rebano_cerrado': return 'Ramat tancat (ja no existeix)';
+      case 'gana.rebanos': return 'Ramats';
+      case 'gana.recinto_sigpac': return 'Recinte SIGPAC (pol. parc. recinte)';
+      case 'gana.rega_externa': return 'Codi REGA de l’altra explotació';
+      case 'gana.sexo': return 'Sexe';
+      case 'gana.sexo_castrado': return 'Castrat';
+      case 'gana.sexo_hembra': return 'Femella';
+      case 'gana.sexo_macho': return 'Mascle';
+      case 'gana.sin_animales': return 'Sense animals identificats.';
+      case 'gana.sin_avisos': return 'Res pendent.';
+      case 'gana.sin_eventos': return 'Sense maneig apuntat.';
+      case 'gana.sin_ganado': return 'sense bestiar';
+      case 'gana.sin_indicar': return 'Sense indicar';
+      case 'gana.sin_movimientos': return 'Sense moviments.';
+      case 'gana.sin_piezas': return 'Encara no hi ha parcel·les de pastura. Dona d’alta la primera amb el botó +.';
+      case 'gana.sin_rebanos': return 'Encara no hi ha ramats. Crea el primer amb el botó +.';
+      case 'gana.sin_visitas': return 'Sense visites apuntades.';
+      case 'gana.superficie_ha': return 'Superfície de pastura (ha)';
+      case 'gana.supresion_vigente': return 'Temps d’espera vigent';
+      case 'gana.sustancia_activa': return 'Substància activa';
+      case 'gana.tarea_desparasitacion': return 'Desparasitació';
+      case 'gana.tarea_la_planifica_veterinario': return 'Apunta el que ha planificat el teu veterinari: l’app només t’ho recorda.';
+      case 'gana.tarea_otro': return 'Una altra tasca';
+      case 'gana.tarea_revision': return 'Revisió veterinària';
+      case 'gana.tarea_saneamiento': return 'Sanejament';
+      case 'gana.tarea_vacunacion': return 'Vacunació';
+      case 'gana.tareas_hechas': return 'Fetes';
+      case 'gana.telefono': return 'Telèfon';
+      case 'gana.tipo': return 'Tipus';
+      case 'gana.tipo_pasto': return 'Tipus de pastura (ecoregim)';
       case 'gana.titular': return 'Titular';
+      case 'gana.titular_externo': return 'Titular de l’altra explotació';
+      case 'gana.titularidad': return 'Titularitat';
+      case 'gana.titularidad_arrendada': return 'Arrendada';
+      case 'gana.titularidad_cedida': return 'Cedida';
+      case 'gana.titularidad_comunal': return 'Comunal';
+      case 'gana.titularidad_propia': return 'Pròpia';
+      case 'gana.toda_la_explotacion': return 'Tota l’explotació';
+      case 'gana.tratamientos_ecologico': return 'Tractaments que compten en 12 mesos: {n} de {limite}';
+      case 'gana.ugm_pac': return 'UBM (PAC)';
+      case 'gana.veterinario': return 'Veterinari prescriptor (nom i contacte)';
+      case 'gana.visitas': return 'Visites i vehicles';
       case 'nat.ajus_cabecera_titulo': return 'Quadern de camp de natura';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprèn i conviu amb la biodiversitat que t\'envolta';
       case 'nat.ajus_explorar_mapa_sub': return 'Espècies i observacions';
@@ -35399,11 +36694,196 @@ class SoleraL10n {
       case 'frut.variedad': return 'Variedade';
       case 'frut.variedad_principal': return 'Variedade principal';
       case 'frut.volumen_m3': return 'Volume (m³)';
-      case 'gana.bienvenida': return 'Primeira versión en construción.';
+      case 'gana.anadir': return 'Engadir';
+      case 'gana.animales': return 'Animais';
+      case 'gana.atrasada': return 'atrasada';
+      case 'gana.autorizacion_transportista': return 'N.º de autorización do transportista';
+      case 'gana.aviso_no_sustituye': return 'Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS.';
+      case 'gana.cabezas': return 'cabezas';
+      case 'gana.cabezas_sin_identificar': return 'Cabezas sen identificar unha a unha';
+      case 'gana.cabezas_tratadas': return 'Cabezas tratadas (baleiro = todas)';
+      case 'gana.calendario_sanitario': return 'Calendario sanitario';
+      case 'gana.cantidad_administrada': return 'Cantidade administrada (como na receita)';
+      case 'gana.capacidad_maxima': return 'Capacidade máxima (cabezas)';
+      case 'gana.carne_hasta': return 'Carne ata o';
+      case 'gana.catalogos_provisionales': return 'Catálogos provisionais: falta a revisión dun veterinario e dun técnico PAC.';
+      case 'gana.categoria_arrendamiento_pastos': return 'Arrendamento de pastos';
+      case 'gana.categoria_ayudas': return 'Axudas (PAC e outras)';
+      case 'gana.categoria_combustible': return 'Combustible';
+      case 'gana.categoria_maquinaria': return 'Maquinaria e reparacións';
+      case 'gana.categoria_medicamentos': return 'Medicamentos';
+      case 'gana.categoria_otros_gastos': return 'Outros gastos';
+      case 'gana.categoria_otros_ingresos': return 'Outros ingresos';
+      case 'gana.categoria_piensos_forraje': return 'Pensos e forraxe';
+      case 'gana.categoria_seguros': return 'Seguros';
+      case 'gana.categoria_venta_animales': return 'Venda de animais (año, becerros…)';
+      case 'gana.categoria_venta_carne': return 'Venda directa de carne';
+      case 'gana.categoria_venta_lana': return 'La, peles e outros';
+      case 'gana.categoria_venta_leche': return 'Venda de leite';
+      case 'gana.categoria_veterinario': return 'Veterinario';
+      case 'gana.certificado_sanitario': return 'Certificado sanitario de orixe (n.º)';
+      case 'gana.ciclo_corto': return 'Vida produtiva menor dun ano (límite: 1 tratamento)';
+      case 'gana.clase_alopatico': return 'Alopático de síntese química (antibióticos incluídos)';
+      case 'gana.clase_antiparasitario': return 'Antiparasitario';
+      case 'gana.clase_medicamento': return 'Clase de medicamento';
+      case 'gana.clase_natural': return 'Fitoterapia, homeopatía ou oligoelementos';
+      case 'gana.clase_vacuna': return 'Vacina';
+      case 'gana.clasificacion': return 'Clasificación da explotación';
+      case 'gana.codigo_rega': return 'Código REGA';
+      case 'gana.codigo_remo': return 'Código REMO do movemento';
+      case 'gana.correo': return 'Correo electrónico';
+      case 'gana.crias': return 'Crías';
+      case 'gana.crotales_movidos': return 'Crotais dos animais (separados por comas)';
+      case 'gana.descripcion': return 'Descrición';
+      case 'gana.direccion': return 'Enderezo';
+      case 'gana.dispositivo': return 'Dispositivo de identificación';
+      case 'gana.dispositivo_bolo_ruminal': return 'Bolo ruminal';
+      case 'gana.dispositivo_crotal': return 'Crotal';
+      case 'gana.dispositivo_crotal_electronico': return 'Crotal electrónico';
+      case 'gana.dispositivo_marca_auricular': return 'Marca auricular';
+      case 'gana.dispositivo_otro': return 'Outro';
+      case 'gana.dispositivo_tatuaje': return 'Tatuaxe';
+      case 'gana.donde_esta_cada_rebano': return 'Onde está cada rabaño';
+      case 'gana.duracion_dias': return 'Duración do tratamento (días)';
+      case 'gana.ecologico': return 'ecolóxico';
+      case 'gana.ecologico_o_conversion': return 'Ecolóxico ou en conversión';
+      case 'gana.editar_animal': return 'Editar animal';
+      case 'gana.editar_pieza': return 'Editar parcela';
+      case 'gana.editar_rebano': return 'Editar rabaño';
+      case 'gana.error_cargar': return 'Non se puideron cargar os datos.';
+      case 'gana.error_documento': return 'Non se puido xerar o documento.';
+      case 'gana.es_visita_veterinaria': return 'É unha visita veterinaria';
+      case 'gana.especie': return 'Especie';
+      case 'gana.especie_caprino': return 'Caprino';
+      case 'gana.especie_equino': return 'Equino';
+      case 'gana.especie_ovino': return 'Ovino';
+      case 'gana.especie_porcino': return 'Porcino';
+      case 'gana.especie_vacuno': return 'Vacún';
+      case 'gana.especies_autorizadas': return 'Especies da explotación';
+      case 'gana.espera_carne_dias': return 'Tempo de espera carne (días, aínda que sexa 0)';
+      case 'gana.espera_leche_dias': return 'Tempo de espera leite (días, aínda que sexa 0)';
+      case 'gana.estado': return 'Estado';
+      case 'gana.estado_activo': return 'Na explotación';
+      case 'gana.estado_baja': return 'Baixa por outro motivo';
+      case 'gana.estado_muerto': return 'Morto';
+      case 'gana.estado_sacrificado': return 'Sacrificado';
+      case 'gana.estado_vendido': return 'Vendido';
+      case 'gana.evento_bienestar': return 'Cambio en produción ou benestar';
+      case 'gana.evento_enfermedad': return 'Enfermidade infecciosa ou parasitaria';
+      case 'gana.evento_incidencia': return 'Incidencia (coxeira, ferida, ataque…)';
+      case 'gana.evento_otro': return 'Outro manexo';
+      case 'gana.evento_parto': return 'Parto';
+      case 'gana.evento_pesaje': return 'Pesaxe';
+      case 'gana.evento_saneamiento': return 'Saneamento ou vacinación';
+      case 'gana.evento_tratamiento': return 'Tratamento con receita';
+      case 'gana.explicacion_calendario': return 'Aquí saen as tarefas que planifica o teu veterinario e o día en que remata cada tempo de espera dunha receita. A app non propón tratamentos.';
+      case 'gana.explotacion': return 'Explotación';
+      case 'gana.fecha': return 'Data';
+      case 'gana.fecha_nacimiento': return 'Data de nacemento';
+      case 'gana.fecha_prevista': return 'Data prevista';
+      case 'gana.fecha_primera_administracion': return 'Data da primeira administración';
+      case 'gana.fin_supresion_carne': return 'Remata a espera de carne';
+      case 'gana.fin_supresion_leche': return 'Remata a espera de leite';
+      case 'gana.fuera_de_la_explotacion': return 'Fóra da explotación';
+      case 'gana.fuera_o_sin_ubicar': return 'Fóra da explotación ou sen situar';
       case 'gana.guardado': return 'Gardado';
+      case 'gana.guardado_rega_raro': return 'Gardado. Ollo: o código REGA non ten a forma ES + 12 cifras.';
+      case 'gana.historia': return 'Historia';
       case 'gana.hoy': return 'Hoxe';
+      case 'gana.identificacion': return 'Identificación (crotal, DIB…)';
+      case 'gana.leche_hasta': return 'Leite ata o';
+      case 'gana.limite_ecologico_superado': return 'Límite superado: xa non se pode vender como ecolóxico.';
+      case 'gana.lo_que_pone_la_receta': return 'Apunta o que pon a receita do veterinario. A app non propón medicamentos nin doses.';
+      case 'gana.madre': return 'Nai (identificación)';
+      case 'gana.manejo': return 'Manexo';
+      case 'gana.manejo_del_rebano': return 'Manexo do rabaño';
+      case 'gana.marcar_hecha': return 'Marcar como feita';
+      case 'gana.matricula_vehiculo': return 'Matrícula do vehículo';
+      case 'gana.medicamento': return 'Medicamento (denominación da receita)';
+      case 'gana.medio_transporte': return 'Medio de transporte (matrícula ou código)';
+      case 'gana.meses': return 'meses';
+      case 'gana.motivo': return 'Motivo';
+      case 'gana.mover': return 'Mover';
+      case 'gana.movimiento_alta_parcial': return 'Entran animais (compra…)';
+      case 'gana.movimiento_baja_parcial': return 'Saen animais (venda, matadoiro…)';
+      case 'gana.movimiento_entrada': return 'Entrada do rabaño na explotación';
+      case 'gana.movimiento_salida': return 'Saída do rabaño da explotación';
+      case 'gana.movimiento_traslado': return 'Cambio de parcela';
+      case 'gana.movimientos': return 'Movementos';
+      case 'gana.municipio': return 'Concello';
+      case 'gana.nacimiento': return 'Nacemento';
+      case 'gana.nif': return 'NIF';
+      case 'gana.nombre': return 'Nome';
+      case 'gana.nombre_explotacion': return 'Nome da explotación';
+      case 'gana.nombre_o_apodo': return 'Nome ou alcume';
       case 'gana.nombre_titular': return 'Nome do titular';
+      case 'gana.notas': return 'Notas';
+      case 'gana.nueva_pieza': return 'Nova parcela de pasto';
+      case 'gana.nueva_tarea_sanitaria': return 'Nova tarefa sanitaria';
+      case 'gana.nueva_visita': return 'Nova visita';
+      case 'gana.nuevo_animal': return 'Novo animal';
+      case 'gana.nuevo_evento': return 'Apuntar manexo';
+      case 'gana.nuevo_movimiento': return 'Movemento';
+      case 'gana.nuevo_rebano': return 'Novo rabaño';
+      case 'gana.numero_receta': return 'N.º de receita';
+      case 'gana.pasto_humedo': return 'Pasto húmido';
+      case 'gana.pasto_mediterraneo': return 'Pasto mediterráneo';
+      case 'gana.pastos': return 'Pastos';
+      case 'gana.peso_kg': return 'Peso (kg)';
+      case 'gana.pieza_destino': return 'Parcela de destino';
+      case 'gana.pieza_en_uso': return 'Parcela en uso';
+      case 'gana.primeros_pasos': return 'Primeiros pasos';
+      case 'gana.primeros_pasos_texto': return '1. En Axustes, os datos do titular e o código REGA. 2. En Pastos, as túas parcelas coa súa superficie e o seu recinto SIXPAC. 3. En Rabaños, cada rabaño e a súa primeira entrada nunha parcela.';
+      case 'gana.proveedor': return 'Provedor (nome e enderezo)';
+      case 'gana.provincia': return 'Provincia';
+      case 'gana.proximos_14_dias': return 'Próximos 14 días';
+      case 'gana.prueba_compra': return 'Proba de compra (factura ou albará)';
+      case 'gana.que_hay_que_hacer': return 'Que hai que facer';
+      case 'gana.quien': return 'Quen';
+      case 'gana.raza': return 'Raza';
+      case 'gana.rebano': return 'Rabaño';
+      case 'gana.rebano_cerrado': return 'Rabaño pechado (xa non existe)';
+      case 'gana.rebanos': return 'Rabaños';
+      case 'gana.recinto_sigpac': return 'Recinto SIXPAC (pol. parc. recinto)';
+      case 'gana.rega_externa': return 'Código REGA da outra explotación';
+      case 'gana.sexo': return 'Sexo';
+      case 'gana.sexo_castrado': return 'Castrado';
+      case 'gana.sexo_hembra': return 'Femia';
+      case 'gana.sexo_macho': return 'Macho';
+      case 'gana.sin_animales': return 'Sen animais identificados.';
+      case 'gana.sin_avisos': return 'Nada pendente.';
+      case 'gana.sin_eventos': return 'Sen manexo apuntado.';
+      case 'gana.sin_ganado': return 'sen gando';
+      case 'gana.sin_indicar': return 'Sen indicar';
+      case 'gana.sin_movimientos': return 'Sen movementos.';
+      case 'gana.sin_piezas': return 'Aínda non hai parcelas de pasto. Dá de alta a primeira co botón +.';
+      case 'gana.sin_rebanos': return 'Aínda non hai rabaños. Crea o primeiro co botón +.';
+      case 'gana.sin_visitas': return 'Sen visitas apuntadas.';
+      case 'gana.superficie_ha': return 'Superficie de pasto (ha)';
+      case 'gana.supresion_vigente': return 'Tempo de espera vixente';
+      case 'gana.sustancia_activa': return 'Substancia activa';
+      case 'gana.tarea_desparasitacion': return 'Desparasitación';
+      case 'gana.tarea_la_planifica_veterinario': return 'Apunta o que planificou o teu veterinario: a app só cho lembra.';
+      case 'gana.tarea_otro': return 'Outra tarefa';
+      case 'gana.tarea_revision': return 'Revisión veterinaria';
+      case 'gana.tarea_saneamiento': return 'Saneamento';
+      case 'gana.tarea_vacunacion': return 'Vacinación';
+      case 'gana.tareas_hechas': return 'Feitas';
+      case 'gana.telefono': return 'Teléfono';
+      case 'gana.tipo': return 'Tipo';
+      case 'gana.tipo_pasto': return 'Tipo de pasto (ecorréxime)';
       case 'gana.titular': return 'Titular';
+      case 'gana.titular_externo': return 'Titular da outra explotación';
+      case 'gana.titularidad': return 'Titularidade';
+      case 'gana.titularidad_arrendada': return 'Arrendada';
+      case 'gana.titularidad_cedida': return 'Cedida';
+      case 'gana.titularidad_comunal': return 'Comunal';
+      case 'gana.titularidad_propia': return 'Propia';
+      case 'gana.toda_la_explotacion': return 'Toda a explotación';
+      case 'gana.tratamientos_ecologico': return 'Tratamentos que contan en 12 meses: {n} de {limite}';
+      case 'gana.ugm_pac': return 'UGM (PAC)';
+      case 'gana.veterinario': return 'Veterinario prescritor (nome e contacto)';
+      case 'gana.visitas': return 'Visitas e vehículos';
       case 'nat.ajus_cabecera_titulo': return 'Caderno de campo de natureza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende e convive coa biodiversidade que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies e observacións';

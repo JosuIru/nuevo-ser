@@ -1,0 +1,14 @@
+name: traducciones
+description: Revisor de traducciones para nativos. Exporta los ARB a una hoja CSV y vuelve a aplicar las filas revisadas.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.0
+
+executables:
+  traducciones: traducciones

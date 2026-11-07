@@ -14,6 +14,7 @@ import '../dominio/compromiso.dart';
 import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/persona.dart';
+import '../dominio/sesion.dart';
 import '../dominio/urna.dart';
 import 'accion.dart';
 
@@ -28,6 +29,7 @@ class EstadoConcejo extends ChangeNotifier {
     Map<String, EstadoConsentimiento> consentimientos = const {},
     List<Compromiso> compromisos = const [],
     Map<String, Acta> actas = const {},
+    List<Sesion> sesiones = const [],
     DateTime Function()? reloj,
     this.esEjemplo = false,
   })  : _nombreEspacio = nombreEspacio,
@@ -39,6 +41,7 @@ class EstadoConcejo extends ChangeNotifier {
         _consentimientos = {...consentimientos},
         _compromisos = [...compromisos],
         _actas = {...actas},
+        _sesiones = [...sesiones],
         _reloj = reloj ?? DateTime.now;
 
   String _nombreEspacio;
@@ -54,6 +57,7 @@ class EstadoConcejo extends ChangeNotifier {
   final Map<String, EstadoConsentimiento> _consentimientos;
   final List<Compromiso> _compromisos;
   final Map<String, Acta> _actas;
+  final List<Sesion> _sesiones;
   final DateTime Function() _reloj;
   var _contadorUid = 0;
 
@@ -68,6 +72,11 @@ class EstadoConcejo extends ChangeNotifier {
   Map<String, EstadoConsentimiento> get consentimientos =>
       Map.unmodifiable(_consentimientos);
   Map<String, Acta> get actas => Map.unmodifiable(_actas);
+
+  /// Las asambleas, por fecha.
+  List<Sesion> get sesiones => List.unmodifiable(
+      [..._sesiones]..sort((a, b) => a.inicio.compareTo(b.inicio)));
+  Sesion sesion(String uid) => _sesiones.firstWhere((s) => s.uid == uid);
   bool get soyMesa => personaActual.esMesaEn(ahora);
 
   Asunto asunto(String uid) => _asuntos.firstWhere((a) => a.uid == uid);
@@ -213,6 +222,7 @@ class EstadoConcejo extends ChangeNotifier {
     cambiarMapa(_debates, otro._debates);
     cambiarMapa(_consentimientos, otro._consentimientos);
     cambiarMapa(_actas, otro._actas);
+    cambiar(_sesiones, otro._sesiones);
     notifyListeners();
   }
 
@@ -332,6 +342,74 @@ class EstadoConcejo extends ChangeNotifier {
       fechaLimite: fechaLimite,
     ));
   }
+
+  // ----------------------------------------------------------- asambleas
+
+  String nuevoUidSesion() => _nuevoUid('se');
+  String nuevoUidPunto() => _nuevoUid('pu');
+
+  /// Convoca una asamblea o cambia su convocatoria (hasta que empieza).
+  Null _convocarSesion(Sesion sesion) {
+    _soloMesa();
+    final problemas = sesion.problemas();
+    if (problemas.isNotEmpty) {
+      throw StateError('No se puede convocar: ${problemas.join(', ')}');
+    }
+    for (final punto in sesion.puntos) {
+      final asuntoUid = punto.asuntoUid;
+      if (asuntoUid != null && !(buscarAsunto(asuntoUid)?.abierto ?? false)) {
+        throw StateError('Un punto apunta a un asunto que no está abierto');
+      }
+    }
+    final indice = _sesiones.indexWhere((s) => s.uid == sesion.uid);
+    if (indice < 0) {
+      _sesiones.add(Sesion(
+        uid: sesion.uid,
+        titulo: sesion.titulo.trim(),
+        inicio: sesion.inicio,
+        lugar: sesion.lugar.trim(),
+        puntos: sesion.puntos,
+        convocadaPorUid: personaActual.uid,
+      ));
+    } else {
+      final anterior = _sesiones[indice];
+      _sesiones[indice] = anterior.cambiadaPor(
+        Sesion(
+          uid: sesion.uid,
+          titulo: sesion.titulo.trim(),
+          inicio: sesion.inicio,
+          lugar: sesion.lugar.trim(),
+          puntos: sesion.puntos,
+          convocadaPorUid: anterior.convocadaPorUid,
+        ),
+        ahora,
+      );
+    }
+  }
+
+  Null _cambiarSesion(String uid, Sesion Function(Sesion sesion) cambio) {
+    _soloMesa();
+    final indice = _sesiones.indexWhere((s) => s.uid == uid);
+    if (indice < 0) throw StateError('No existe la asamblea');
+    _sesiones[indice] = cambio(_sesiones[indice]);
+  }
+
+  Null _anularSesion(String uid, String motivo) =>
+      _cambiarSesion(uid, (s) => s.anular(motivo, ahora));
+
+  Null _anotarAsistencia(String uid, String personaUid, bool presente) {
+    if (!_personas.any((p) => p.uid == personaUid)) {
+      throw StateError('No existe esa persona');
+    }
+    _cambiarSesion(uid,
+        (s) => s.conAsistencia(personaUid, presente: presente, ahora: ahora));
+  }
+
+  Null _anotarAsistentesSinApp(String uid, int cantidad) =>
+      _cambiarSesion(uid, (s) => s.conAsistentesSinApp(cantidad, ahora));
+
+  Null _anotarNotasPunto(String uid, String puntoUid, String notas) =>
+      _cambiarSesion(uid, (s) => s.conNotas(puntoUid, notas, ahora));
 
   // --------------------------------------------------- el canal en papel
 
@@ -548,6 +626,16 @@ class EstadoConcejo extends ChangeNotifier {
           segundaFirmaUid: texto('segunda_firma_uid')),
       TipoAccion.firmarActa => _firmarActa(texto('asunto_uid')),
       TipoAccion.retirarFirmaActa => _retirarFirmaActa(texto('asunto_uid')),
+      TipoAccion.convocarSesion =>
+        _convocarSesion(sesionDesdeJson(datos['sesion'] as Json)),
+      TipoAccion.anularSesion =>
+        _anularSesion(texto('sesion_uid'), texto('motivo')),
+      TipoAccion.anotarAsistencia => _anotarAsistencia(
+          texto('sesion_uid'), texto('persona_uid'), datos['presente'] as bool),
+      TipoAccion.anotarAsistentesSinApp => _anotarAsistentesSinApp(
+          texto('sesion_uid'), (datos['cantidad'] as num).toInt()),
+      TipoAccion.anotarNotasPunto => _anotarNotasPunto(
+          texto('sesion_uid'), texto('punto_uid'), texto('notas')),
     };
   }
 
@@ -680,4 +768,26 @@ class EstadoConcejo extends ChangeNotifier {
 
   void retirarFirmaActa(String asuntoUid) =>
       _hacer(TipoAccion.retirarFirmaActa, {'asunto_uid': asuntoUid});
+
+  void convocarSesion(Sesion sesion) =>
+      _hacer(TipoAccion.convocarSesion, {'sesion': sesionAJson(sesion)});
+
+  void anularSesion(String sesionUid, String motivo) => _hacer(
+      TipoAccion.anularSesion, {'sesion_uid': sesionUid, 'motivo': motivo});
+
+  void anotarAsistencia(String sesionUid, String personaUid,
+          {required bool presente}) =>
+      _hacer(TipoAccion.anotarAsistencia, {
+        'sesion_uid': sesionUid,
+        'persona_uid': personaUid,
+        'presente': presente,
+      });
+
+  void anotarAsistentesSinApp(String sesionUid, int cantidad) => _hacer(
+      TipoAccion.anotarAsistentesSinApp,
+      {'sesion_uid': sesionUid, 'cantidad': cantidad});
+
+  void anotarNotasPunto(String sesionUid, String puntoUid, String notas) =>
+      _hacer(TipoAccion.anotarNotasPunto,
+          {'sesion_uid': sesionUid, 'punto_uid': puntoUid, 'notas': notas});
 }

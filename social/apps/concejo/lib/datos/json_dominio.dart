@@ -15,6 +15,7 @@ import '../dominio/debate.dart';
 import '../dominio/persona.dart';
 import '../dominio/reglas_decision.dart';
 import '../dominio/urna.dart';
+import '../dominio/sesion.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -330,4 +331,52 @@ Acta actaDesdeJson(Json json) => Acta(
       compromisosAlFirmarUids: (json['compromisos_al_firmar_uids'] as List?)
           ?.map((uid) => uid as String)
           .toList(),
+    );
+
+// ---------------------------------------------------------------- sesion
+
+Json puntoAJson(PuntoOrdenDia punto) => {
+      'uid': punto.uid,
+      'texto': punto.texto,
+      'asunto_uid': punto.asuntoUid,
+      'notas': punto.notas,
+    };
+
+PuntoOrdenDia puntoDesdeJson(Json json) => PuntoOrdenDia(
+      uid: json['uid'] as String,
+      texto: json['texto'] as String,
+      asuntoUid: json['asunto_uid'] as String?,
+      notas: json['notas'] as String? ?? '',
+    );
+
+Json sesionAJson(Sesion sesion) => {
+      'uid': sesion.uid,
+      'titulo': sesion.titulo,
+      'inicio': sesion.inicio.toIso8601String(),
+      'lugar': sesion.lugar,
+      'puntos': [for (final punto in sesion.puntos) puntoAJson(punto)],
+      'convocada_por_uid': sesion.convocadaPorUid,
+      'asistentes_uids': sesion.asistentesUids.toList()..sort(),
+      'asistentes_sin_app': sesion.asistentesSinApp,
+      'anulada': sesion.anulada,
+      'motivo_anulacion': sesion.motivoAnulacion,
+    };
+
+Sesion sesionDesdeJson(Json json) => Sesion(
+      uid: json['uid'] as String,
+      titulo: json['titulo'] as String,
+      inicio: _leerFecha(json['inicio']),
+      lugar: json['lugar'] as String,
+      puntos: [
+        for (final punto in json['puntos'] as List)
+          puntoDesdeJson(punto as Json),
+      ],
+      convocadaPorUid: json['convocada_por_uid'] as String? ?? '',
+      asistentesUids: {
+        for (final uid in json['asistentes_uids'] as List? ?? const [])
+          uid as String,
+      },
+      asistentesSinApp: (json['asistentes_sin_app'] as num?)?.toInt() ?? 0,
+      anulada: json['anulada'] as bool? ?? false,
+      motivoAnulacion: json['motivo_anulacion'] as String? ?? '',
     );

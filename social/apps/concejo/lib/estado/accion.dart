@@ -28,6 +28,11 @@ enum TipoAccion {
   registrarConteoPresencial,
   firmarActa,
   retirarFirmaActa,
+  convocarSesion,
+  anularSesion,
+  anotarAsistencia,
+  anotarAsistentesSinApp,
+  anotarNotasPunto,
 }
 
 class AccionConcejo {

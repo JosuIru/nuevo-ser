@@ -18,6 +18,7 @@ Json instantaneaAJson(EstadoConcejo estado, {int revision = 0}) => {
       },
       'compromisos': [for (final c in estado.compromisos) compromisoAJson(c)],
       'actas': [for (final a in estado.actas.values) actaAJson(a)],
+      'sesiones': [for (final s in estado.sesiones) sesionAJson(s)],
     };
 
 /// [personaActualUid]: quien usa la app (la del token). Tiene que estar en
@@ -60,6 +61,10 @@ EstadoConcejo instantaneaDesdeJson(
       for (final acta in json['actas'] as List? ?? const [])
         (acta as Json)['asunto_uid'] as String: actaDesdeJson(acta),
     },
+    sesiones: [
+      for (final sesion in json['sesiones'] as List? ?? const [])
+        sesionDesdeJson(sesion as Json),
+    ],
     reloj: reloj,
   );
 }

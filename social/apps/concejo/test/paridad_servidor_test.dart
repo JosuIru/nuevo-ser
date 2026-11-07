@@ -13,6 +13,7 @@ import 'package:concejo/datos/instantanea.dart';
 import 'package:concejo/datos/json_dominio.dart';
 import 'package:concejo/dominio/asunto.dart';
 import 'package:concejo/dominio/reglas_decision.dart';
+import 'package:concejo/dominio/sesion.dart';
 import 'package:concejo/estado/accion.dart';
 import 'package:concejo/estado/datos_ejemplo.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,6 +35,25 @@ Asunto _borrador(String uid, {String titulo = 'Arreglar la fuente'}) => Asunto(
     );
 
 const _fecha = '2026-12-01T00:00:00.000';
+
+Json _sesionNueva({
+  String uid = 'nueva',
+  String lugar = 'Frontón cubierto',
+  String? asuntoUid = 'comunal',
+  bool dosPuntosIguales = false,
+}) =>
+    sesionAJson(Sesion(
+      uid: uid,
+      titulo: 'Asamblea extraordinaria',
+      inicio: DateTime(2026, 11, 14, 19),
+      lugar: lugar,
+      puntos: [
+        PuntoOrdenDia(uid: 'n1', texto: 'Leña del comunal', asuntoUid: asuntoUid),
+        PuntoOrdenDia(
+            uid: 'n2',
+            texto: dosPuntosIguales ? 'leña del comunal' : 'Ruegos y preguntas'),
+      ],
+    ));
 
 // dart format off
 /// Cada caso empieza en el pueblo de ejemplo y aplica sus pasos en orden.
@@ -467,6 +487,30 @@ final Map<String, List<_Paso>> _casos = {
     ('mikel', TipoAccion.firmarActa, {'asunto_uid': 'txoko'}),
     ('ane', TipoAccion.retirarFirmaActa, {'asunto_uid': 'txoko'}),
     ('ane', TipoAccion.firmarActa, {'asunto_uid': 'comunal'}),
+  ],
+  'asambleas': [
+    ('maite', TipoAccion.convocarSesion, {'sesion': _sesionNueva()}),
+    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva()}),
+    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(asuntoUid: 'no-existe')}),
+    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(lugar: ' ')}),
+    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(dosPuntosIguales: true)}),
+    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(uid: 'octubre')}),
+    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(lugar: 'Frontón')}),
+    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'noviembre', 'motivo': ' '}),
+    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'noviembre', 'motivo': 'Coincide con el funeral'}),
+    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'noviembre', 'motivo': 'Otra vez'}),
+    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'octubre', 'motivo': 'Tarde'}),
+    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'noviembre', 'persona_uid': 'pili', 'presente': true}),
+    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'nueva', 'persona_uid': 'pili', 'presente': true}),
+    ('maite', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'pili', 'presente': true}),
+    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'nadie', 'presente': true}),
+    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'pili', 'presente': true}),
+    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'maite', 'presente': false}),
+    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'no-existe', 'persona_uid': 'pili', 'presente': true}),
+    ('ane', TipoAccion.anotarAsistentesSinApp, {'sesion_uid': 'octubre', 'cantidad': -1}),
+    ('ane', TipoAccion.anotarAsistentesSinApp, {'sesion_uid': 'octubre', 'cantidad': 12}),
+    ('ane', TipoAccion.anotarNotasPunto, {'sesion_uid': 'octubre', 'punto_uid': 'no-existe', 'notas': 'x'}),
+    ('ane', TipoAccion.anotarNotasPunto, {'sesion_uid': 'octubre', 'punto_uid': 'oc2', 'notas': ' La fuente ya es asunto. '}),
   ],
 };
 // dart format on

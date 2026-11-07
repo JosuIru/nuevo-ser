@@ -12,6 +12,7 @@ import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/persona.dart';
 import '../dominio/reglas_decision.dart';
+import '../dominio/sesion.dart';
 import '../dominio/urna.dart';
 import 'estado_concejo.dart';
 
@@ -199,11 +200,59 @@ EstadoConcejo estadoDeEjemplo({DateTime? hoy}) {
     ));
   }
 
+  DateTime aLas(int dia, int hora) =>
+      DateTime(ahora.year, ahora.month, ahora.day + dia, hora);
+  final sesiones = [
+    Sesion(
+      uid: 'octubre',
+      titulo: 'Asamblea de octubre',
+      inicio: aLas(-12, 19),
+      lugar: 'Local vecinal',
+      convocadaPorUid: 'ane',
+      puntos: const [
+        PuntoOrdenDia(
+          uid: 'oc1',
+          texto: 'Horario del local vecinal',
+          asuntoUid: 'txoko',
+          notas: 'La calle de abajo pide cerrar antes entre semana. Se '
+              'decide votarlo en la app con tres horarios.',
+        ),
+        PuntoOrdenDia(
+          uid: 'oc2',
+          texto: 'Ruegos y preguntas',
+          notas: 'Piden arreglar la fuente de la plaza. La mesa lo '
+              'traerá como asunto.',
+        ),
+      ],
+      asistentesUids: const {'ane', 'mikel', 'maite', 'josean'},
+      asistentesSinApp: 9,
+    ),
+    Sesion(
+      uid: 'noviembre',
+      titulo: 'Asamblea de noviembre',
+      inicio: aLas(4, 19),
+      lugar: 'Local vecinal',
+      convocadaPorUid: 'ane',
+      puntos: const [
+        PuntoOrdenDia(
+            uid: 'no1', texto: 'Fiestas en septiembre', asuntoUid: 'fiestas'),
+        PuntoOrdenDia(
+            uid: 'no2', texto: 'Leña del comunal', asuntoUid: 'comunal'),
+        PuntoOrdenDia(
+            uid: 'no3',
+            texto: 'Presupuesto participativo 2027',
+            asuntoUid: 'presupuesto'),
+        PuntoOrdenDia(uid: 'no4', texto: 'Ruegos y preguntas'),
+      ],
+    ),
+  ];
+
   return EstadoConcejo(
     nombreEspacio: 'Concejo de Ejemplo',
     personaActual: personas.first,
     personas: personas,
     asuntos: [fiestas, comunal, presupuesto, txoko],
+    sesiones: sesiones,
     urnas: {'txoko': urnaTxoko},
     debates: {
       'fiestas': debateFiestas,

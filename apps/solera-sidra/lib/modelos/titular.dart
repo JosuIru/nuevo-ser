@@ -12,6 +12,7 @@ class Titular {
     this.nif = '',
     this.registroSanitario = '',
     this.inscripcionDop = '',
+    this.registroExplotacion = '',
     this.regimenFiscal = 'general',
   });
 
@@ -25,6 +26,10 @@ class Titular {
   /// Número de inscripción en los registros de la DOP (elaborador).
   final String inscripcionDop;
 
+  /// N.º del registro autonómico de explotaciones agrícolas (REA), que
+  /// encabeza el cuaderno (RD 1311/2012, anexo III, A.1.a).
+  final String registroExplotacion;
+
   /// Uno de [regimenesFiscales].
   final String regimenFiscal;
 
@@ -34,6 +39,7 @@ class Titular {
         'nif': nif,
         'registro_sanitario': registroSanitario,
         'inscripcion_dop': inscripcionDop,
+        'registro_explotacion': registroExplotacion,
         'regimen_fiscal': regimenFiscal,
       };
 
@@ -43,6 +49,7 @@ class Titular {
         nif: (mapa['nif'] as String?) ?? '',
         registroSanitario: (mapa['registro_sanitario'] as String?) ?? '',
         inscripcionDop: (mapa['inscripcion_dop'] as String?) ?? '',
+        registroExplotacion: (mapa['registro_explotacion'] as String?) ?? '',
         regimenFiscal: regimenesFiscales.contains(mapa['regimen_fiscal'])
             ? mapa['regimen_fiscal'] as String
             : 'general',

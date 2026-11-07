@@ -21,6 +21,8 @@ class Tratamiento {
     this.superficieTratadaHa,
     this.aplicador = '',
     this.carnetAplicador = '',
+    this.asesor = '',
+    this.equipoAplicacion = '',
     this.eficacia = '',
     this.notas = '',
   });
@@ -48,6 +50,12 @@ class Tratamiento {
   /// N.º del carné de usuario profesional de fitosanitarios.
   final String carnetAplicador;
 
+  /// Asesor que indicó el tratamiento, si lo hubo (anexo III, B.d).
+  final String asesor;
+
+  /// Máquina o equipo de aplicación y su n.º de registro (anexo III, B.h).
+  final String equipoAplicacion;
+
   /// Uno de [eficaciasTratamiento].
   final String eficacia;
   final String notas;
@@ -69,6 +77,8 @@ class Tratamiento {
         'superficie_tratada_ha': superficieTratadaHa,
         'aplicador': aplicador,
         'carnet_aplicador': carnetAplicador,
+        'asesor': asesor,
+        'equipo_aplicacion': equipoAplicacion,
         'eficacia': eficacia,
         'notas': notas,
       };
@@ -86,6 +96,8 @@ class Tratamiento {
             (mapa['superficie_tratada_ha'] as num?)?.toDouble(),
         aplicador: (mapa['aplicador'] as String?) ?? '',
         carnetAplicador: (mapa['carnet_aplicador'] as String?) ?? '',
+        asesor: (mapa['asesor'] as String?) ?? '',
+        equipoAplicacion: (mapa['equipo_aplicacion'] as String?) ?? '',
         eficacia: eficaciasTratamiento.contains(mapa['eficacia'])
             ? mapa['eficacia'] as String
             : '',

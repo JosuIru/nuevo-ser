@@ -16,10 +16,10 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 7 IA visual | ✅ 2026-11-07 | Ficha de la pomarada → ✨: foto de hoja, fruto o rama → propuesta de plaga **del catálogo** (salida estructurada con `enum` de los 18 ids + «ninguna» / «no identificada»), confianza, otras posibles y síntomas vistos. Si es del catálogo, ofrece «Apuntar tratamiento» con la plaga ya puesta (la sustancia la elige la persona). Aviso de organismo regulado (fuego bacteriano). Nunca productos ni dosis. Modelo equilibrado del core, clave BYO en `estado/clave_anthropic_sidra.dart` (Ajustes → IA). La foto se borra al terminar. 47 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (manzana verde `#6B7A2E` con hoja sobre crema `#F5EFE2`) en `assets/`, iconos del lanzador con `flutter_launcher_icons` (adaptativo con fondo crema), logo en la cabecera de Hoy, etiqueta «Larrea Sagardoa» en Android. **GPS**: «Estoy aquí» en la pomarada guarda latitud y longitud (permisos de ubicación e INTERNET añadidos al manifiesto) |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes por mes con base, tipo de IVA o **compensación del REAGP (12 %)** en vez de IVA; la app propone tipo y compensación por categoría (`dominio/resumen_economico.dart`, LIVA arts. 91, 126 y 130 leídos en el BOE). El resumen separa venta de manzana (actividad agraria) de sidra, txakoli y txotx (transformación y servicios), con IVA y compensaciones orientativos, y extracto PDF con sello. Régimen fiscal del titular en Ajustes. 52 tests |
-| 10 Revisión con fuente pública | pendiente | |
+| 10 Revisión con fuente pública | ✅ 2026-11-07 | **Catálogos**: las 366 filas llevan `revisado_por`: variedades, uvas y límites DOP con `fuente_publica:` (copiados de los pliegos), plagas y sustancias con `revision-ia:` (registro del MAPA 06/11/2026 + EU Pesticides DB + Reg. 2021/1165). `catalogosCompletamenteRevisados` **sigue en false** y el banner se ve. **Documentos**: cuaderno cotejado con el anexo III del RD 1311/2012 consolidado (20/11/2025): se añadieron n.º de orden de parcela, cultivo y variedad, equipo de aplicación, asesor y REA del titular; el nombre comercial queda en blanco a propósito (BLOQUEOS). Libro cotejado con el ap. E del pliego. Extracto con la LIVA consolidada. 52 tests |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 10 (revisión con fuente pública de catálogos y documentos).
+**Siguiente acción**: bloque 11 (ayuda in-app, README y APK release).
 
 ## Encuadre
 
@@ -40,7 +40,7 @@ inicio.
 | Pliego de la DOP Euskal Sagardoa (jul-2024) | Registros del ap. E (cultivo: polígono, parcela, recinto, superficie, n.º de manzanos, edad, variedad; cosecha: registro de entrada con proveedor, cantidad, fecha de recolección, estado y entrega; elaboración: día de envasado, cantidad, partida, día de etiquetado, n.º de etiquetas y numeraciones, destino; balance de existencias al final de campaña). Campaña sep-ago (F.1). Densidad mínima del mosto 1045 a 20 °C (F.2). Rendimiento del prensado 40-75 % (F.3). Cada depósito es una partida (F.4). Límites de los tres productos (C.3). Entidad de control: Fundación HAZI (H). Etiquetas numeradas del órgano de control (I) | [pliego](https://www.euskadi.eus/contenidos/informacion/calidad_diferenciada_dopigp/es_def/adjuntos/Pliego-de-condiciones-Euskal-Sagardoa_20240719.pdf) |
 | Pliego de la DOP Sidra de Asturias | Límites de sidra natural y espumosa, variedades por clasificación tecnológica, rendimiento máx. 75 % (rápido) / 80 % (lento) | [pliego (asturias.es)](https://www.asturias.es/documents/4911212/4919930/DOP-Sidra-Normal25.pdf/dc24402b-e4a8-ff38-fc8c-24838b3296dd) |
 | Pliegos de Bizkaiko, Getariako y Arabako Txakolina | Variedades y límites analíticos por tipo, rendimientos | [Bizkaia 2024](https://www.euskadi.eus/contenidos/informacion/dop_txakoli_bizkaia/es_dapa/adjuntos/BIZKAIKO-TXAKOLINAren-pliegoak-20241128-consolidado.pdf) · [Araba 2024](https://www.euskadi.eus/contenidos/informacion/dop_txakoli_araba/es_dapa/adjuntos/Pliego-Arabako-Tx-20241219-consolidado.pdf) · [Getaria 2011, **por verificar si hay versión posterior**](https://euskadi.eus/contenidos/informacion/dop_txakoli_getaria/eu_dapa/adjuntos/PLIEGO-CR-GT_29-06-2011.pdf) |
-| RD 1311/2012 (cuaderno de fitosanitarios) y registro electrónico | Cuaderno de la pomarada | RD 34/2025 ([BOE](https://www.boe.es/eli/es/rd/2025/01/21/34)); aplazamiento opcional al 1-ene-2027 según [nota del MAPA de 18-nov-2025](https://www.mapa.gob.es/dam/mapa/contenido/prensa/notas-de-prensa/documentos/documentos-2025/25-11-18-cm-bases-reguladoras-ayudas-intercambio-conocimiento.pdf): **por verificar en BOE** |
+| RD 1311/2012 (cuaderno de fitosanitarios) y registro electrónico | Cuaderno de la pomarada | RD 34/2025 ([BOE](https://www.boe.es/eli/es/rd/2025/01/21/34)); papel admitido hasta el 31-dic-2026 (art. 16 del RD 1311/2012 consolidado, [BOE](https://www.boe.es/buscar/act.php?id=BOE-A-2012-11605)); ver también la [nota del MAPA de 18-nov-2025](https://www.mapa.gob.es/dam/mapa/contenido/prensa/notas-de-prensa/documentos/documentos-2025/25-11-18-cm-bases-reguladoras-ayudas-intercambio-conocimiento.pdf) |
 
 **Libro de bodega**: el pliego no exige un libro con formato propio, sino los
 registros del ap. E y el balance de fin de campaña. El bloque 5 es por eso un
@@ -121,6 +121,13 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
   bebidas para consumir en el acto), fitosanitarios 10 %. Leídos en la LIVA
   consolidada; los confirma el asesor.
 - **2026-11-07 — Borrar un apunte pide confirmación** (pulsación larga + diálogo).
+- **2026-11-07 — Nombre comercial del fitosanitario: línea en blanco en el
+  PDF**, no un campo: el anexo III (B.g) lo pide, pero la ficha prohíbe
+  fitosanitarios por marca. Opción conservadora hasta que Josu decida.
+- **2026-11-07 — Registro electrónico de tratamientos**: el art. 16 del RD
+  1311/2012 consolidado permite el papel hasta el 31/12/2026; desde 2027 se
+  vuelca en la aplicación de la autoridad. La app no se conecta a esa aplicación
+  (SIEX, calle N/T4); el PDF es una ayuda, no el registro oficial.
 
 ## Datos técnicos
 

@@ -35,10 +35,21 @@ List<TablaInforme> tablasCuadernoPomarada({
   }
 
   String texto(String valor) => valor.trim().isEmpty ? '—' : valor;
+  String cultivoYVariedad(int? id) {
+    final pomarada = porId[id];
+    if (pomarada == null) return '—';
+    return [
+      nombreValor('cultivo', pomarada.cultivo),
+      if (pomarada.variedades.isNotEmpty)
+        pomarada.variedades.map(nombreVariedad).join(', '),
+    ].join(': ');
+  }
+
   return [
     TablaInforme(
       titulo: SoleraL10n.t('sidr.pdf_parcelas'),
       headers: [
+        SoleraL10n.t('sidr.pdf_n_orden'),
         SoleraL10n.t('sidr.pomarada'),
         SoleraL10n.t('sidr.sigpac'),
         SoleraL10n.t('sidr.municipio'),
@@ -49,8 +60,9 @@ List<TablaInforme> tablasCuadernoPomarada({
         SoleraL10n.t('sidr.dop'),
       ],
       filas: [
-        for (final pomarada in pomaradas)
+        for (final (indice, pomarada) in pomaradas.indexed)
           [
+            '${indice + 1}',
             pomarada.nombre,
             texto(pomarada.referenciaSigpac),
             texto(pomarada.municipio),
@@ -74,13 +86,14 @@ List<TablaInforme> tablasCuadernoPomarada({
       headers: [
         SoleraL10n.t('sidr.fecha'),
         SoleraL10n.t('sidr.pomarada'),
+        SoleraL10n.t('sidr.pdf_cultivo_variedad'),
         SoleraL10n.t('sidr.plaga_objetivo'),
         SoleraL10n.t('sidr.sustancia_activa'),
-        SoleraL10n.t('sidr.pdf_n_registro'),
+        SoleraL10n.t('sidr.pdf_producto'),
         SoleraL10n.t('sidr.pdf_cantidad'),
         'ha',
-        SoleraL10n.t('sidr.aplicador'),
-        SoleraL10n.t('sidr.pdf_carne'),
+        SoleraL10n.t('sidr.pdf_equipo'),
+        SoleraL10n.t('sidr.pdf_aplicador_asesor'),
         SoleraL10n.t('sidr.eficacia'),
       ],
       filas: [
@@ -90,20 +103,28 @@ List<TablaInforme> tablasCuadernoPomarada({
           [
             formatearFecha(tratamiento.fechaMs),
             parcela(tratamiento.pomaradaId),
+            cultivoYVariedad(tratamiento.pomaradaId),
             tratamiento.plagaObjetivoId.isEmpty
                 ? SoleraL10n.t('sidr.preventivo')
                 : nombrePlaga(tratamiento.plagaObjetivoId),
             tratamiento.sustanciaActivaId.isEmpty
                 ? '—'
                 : nombreSustancia(tratamiento.sustanciaActivaId),
-            texto(tratamiento.numeroRegistroProducto),
+            // El nombre comercial se completa a mano: la app no guarda marcas.
+            '_____ · ${SoleraL10n.t('sidr.pdf_n_registro')} ${texto(tratamiento.numeroRegistroProducto)}',
             texto(tratamiento.cantidadAplicada),
             tratamiento.superficieTratadaHa == null
                 ? '—'
                 : formatearNumero(tratamiento.superficieTratadaHa!,
                     decimales: 2),
-            texto(tratamiento.aplicador),
-            texto(tratamiento.carnetAplicador),
+            texto(tratamiento.equipoAplicacion),
+            [
+              texto(tratamiento.aplicador),
+              if (tratamiento.carnetAplicador.isNotEmpty)
+                '(${tratamiento.carnetAplicador})',
+              if (tratamiento.asesor.isNotEmpty)
+                '· ${SoleraL10n.t('sidr.asesor')}: ${tratamiento.asesor}',
+            ].join(' '),
             nombreValor('eficacia', tratamiento.eficacia),
           ],
       ],
@@ -157,6 +178,7 @@ Future<Uint8List> generarCuadernoPomaradaPdf({
         '${SoleraL10n.t('sidr.cuaderno_pomarada')} · ${nombreCampania(campania)}',
     subtituloCabecera: '${titular.nombre}'
         '${titular.nif.isEmpty ? '' : ' · NIF ${titular.nif}'}'
+        '${titular.registroExplotacion.isEmpty ? '' : ' · REA ${titular.registroExplotacion}'}'
         ' · RD 1311/2012 · $selloCuadernoPomarada',
     bulletsResumen: [
       SoleraL10n.tf(
@@ -164,6 +186,7 @@ Future<Uint8List> generarCuadernoPomaradaPdf({
       if (incompletos > 0)
         SoleraL10n.tf('sidr.tratamientos_incompletos', {'n': incompletos}),
       SoleraL10n.t('sidr.aviso_no_recomienda'),
+      SoleraL10n.t('sidr.pdf_nombre_comercial_a_mano'),
       SoleraL10n.t('sidr.aviso_documento_provisional'),
     ],
     tablas: tablasCuadernoPomarada(

@@ -102,10 +102,17 @@ void main() {
     final filasTratamientos = tablas[1].filas;
     expect(filasTratamientos, hasLength(2));
     expect(filasTratamientos.last[1], 'Goiko (7/12/1)');
-    expect(filasTratamientos.last[3], 'Captan');
-    expect(filasTratamientos.last[4], '25.123');
+    expect(filasTratamientos.last[2], 'Manzano (pomarada): Errezila');
+    expect(filasTratamientos.last[4], 'Captan');
+    // Sin marca: el nombre comercial queda en blanco para escribirlo a mano.
+    expect(filasTratamientos.last[5], startsWith('_____'));
+    expect(filasTratamientos.last[5], endsWith('25.123'));
+    expect(filasTratamientos.last[8], '—'); // sin equipo apuntado
+    expect(filasTratamientos.last[9], 'Miren');
     // El incompleto (el primero por fecha) sale con «—», no con un valor.
-    expect(filasTratamientos.first[3], '—');
+    expect(filasTratamientos.first[4], '—');
+    // Las parcelas llevan n.º de orden (anexo III, A.2.a).
+    expect(tablas[0].filas.single.first, '1');
     expect(tablas[2].filas.single[3], '1.000');
   });
 

@@ -50,6 +50,7 @@ class BaseDatosSoleraSidra extends BaseDatosSolera {
         nif TEXT NOT NULL DEFAULT '',
         registro_sanitario TEXT NOT NULL DEFAULT '',
         inscripcion_dop TEXT NOT NULL DEFAULT '',
+        registro_explotacion TEXT NOT NULL DEFAULT '',
         regimen_fiscal TEXT NOT NULL DEFAULT 'general'
       )''',
       '''CREATE TABLE sagardotegis (
@@ -97,6 +98,8 @@ class BaseDatosSoleraSidra extends BaseDatosSolera {
         superficie_tratada_ha REAL,
         aplicador TEXT NOT NULL DEFAULT '',
         carnet_aplicador TEXT NOT NULL DEFAULT '',
+        asesor TEXT NOT NULL DEFAULT '',
+        equipo_aplicacion TEXT NOT NULL DEFAULT '',
         eficacia TEXT NOT NULL DEFAULT '',
         notas TEXT NOT NULL DEFAULT ''
       )''',

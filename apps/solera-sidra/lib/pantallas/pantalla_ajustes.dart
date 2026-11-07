@@ -24,6 +24,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   final _nif = TextEditingController();
   final _registroSanitario = TextEditingController();
   final _inscripcionDop = TextEditingController();
+  final _registroExplotacion = TextEditingController();
   Titular _titular = Titular();
   String _regimen = 'general';
 
@@ -43,6 +44,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         _nif.text = titular.nif;
         _registroSanitario.text = titular.registroSanitario;
         _inscripcionDop.text = titular.inscripcionDop;
+        _registroExplotacion.text = titular.registroExplotacion;
         _regimen = titular.regimenFiscal;
       });
     } catch (error) {
@@ -57,6 +59,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       nif: _nif.text.trim(),
       registroSanitario: _registroSanitario.text.trim(),
       inscripcionDop: _inscripcionDop.text.trim(),
+      registroExplotacion: _registroExplotacion.text.trim(),
       regimenFiscal: _regimen,
     ));
     if (!mounted) return;
@@ -70,6 +73,7 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
     _nif.dispose();
     _registroSanitario.dispose();
     _inscripcionDop.dispose();
+    _registroExplotacion.dispose();
     super.dispose();
   }
 
@@ -106,6 +110,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
           campoTexto(
               _registroSanitario, SoleraL10n.t('sidr.registro_sanitario')),
           campoTexto(_inscripcionDop, SoleraL10n.t('sidr.inscripcion_dop')),
+          campoTexto(
+              _registroExplotacion, SoleraL10n.t('sidr.registro_explotacion')),
           campoDesplegable<String>(
             etiqueta: SoleraL10n.t('sidr.regimen_fiscal'),
             valor: _regimen,

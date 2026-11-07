@@ -49,6 +49,8 @@ class _PantallaEditarTratamientoState extends State<PantallaEditarTratamiento> {
           : formatearNumero(_original!.superficieTratadaHa!, decimales: 2));
   late final _aplicador = TextEditingController(text: _original?.aplicador);
   late final _carnet = TextEditingController(text: _original?.carnetAplicador);
+  late final _asesor = TextEditingController(text: _original?.asesor);
+  late final _equipo = TextEditingController(text: _original?.equipoAplicacion);
   late final _notas = TextEditingController(text: _original?.notas);
 
   @override
@@ -59,6 +61,8 @@ class _PantallaEditarTratamientoState extends State<PantallaEditarTratamiento> {
       _superficie,
       _aplicador,
       _carnet,
+      _asesor,
+      _equipo,
       _notas,
     ]) {
       controlador.dispose();
@@ -78,6 +82,8 @@ class _PantallaEditarTratamientoState extends State<PantallaEditarTratamiento> {
       superficieTratadaHa: leerNumero(_superficie.text),
       aplicador: _aplicador.text.trim(),
       carnetAplicador: _carnet.text.trim(),
+      asesor: _asesor.text.trim(),
+      equipoAplicacion: _equipo.text.trim(),
       eficacia: _eficacia,
       notas: _notas.text.trim(),
     ));
@@ -168,6 +174,9 @@ class _PantallaEditarTratamientoState extends State<PantallaEditarTratamiento> {
               sufijo: 'ha'),
           campoTexto(_aplicador, SoleraL10n.t('sidr.aplicador')),
           campoTexto(_carnet, SoleraL10n.t('sidr.carnet_aplicador')),
+          campoTexto(_asesor, SoleraL10n.t('sidr.asesor_opcional')),
+          campoTexto(_equipo, SoleraL10n.t('sidr.equipo_aplicacion'),
+              ayuda: SoleraL10n.t('sidr.equipo_aplicacion_ayuda')),
           campoDesplegable<String>(
             etiqueta: SoleraL10n.t('sidr.eficacia'),
             valor: _eficacia,

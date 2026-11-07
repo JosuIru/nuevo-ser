@@ -135,6 +135,8 @@ huer.frecuencia_quincenal,Quincenal,Hamabostero,Quinzenal,Quincenal
 huer.frecuencia_semanal,Semanal,Astero,Setmanal,Semanal
 huer.gastos,Gastos,Gastuak,Despeses,Gastos
 huer.germinacion,Germinación (%),Ernetzea (%),Germinació (%),Xerminación (%)
+huer.gps_error,No se pudo leer la ubicación.,Ezin izan da kokapena irakurri.,No s'ha pogut llegir la ubicació.,Non se puido ler a localización.
+huer.gps_sin_permiso,Sin permiso de ubicación o con el GPS apagado.,Kokapen-baimenik gabe edo GPSa itzalita.,Sense permís d'ubicació o amb el GPS apagat.,Sen permiso de localización ou co GPS apagado.
 huer.grupo_consumo,Grupo de consumo,Kontsumo-taldea,Grup de consum,Grupo de consumo
 huer.guardado,Guardado,Gordeta,Desat,Gardado
 huer.hasta_fecha,hasta {fecha},{fecha} arte,fins a {fecha},ata {fecha}
@@ -164,6 +166,8 @@ huer.linea_cesta,Producto de la cesta,Saskiko produktua,Producte de la cistella,
 huer.lote_cosecha,Lote de cosecha,Uzta-sorta,Lot de collita,Lote de colleita
 huer.lote_semilla,Lote de semilla,Hazi-sorta,Lot de llavor,Lote de semente
 huer.lote_sin_autorizacion,Semilla no ecológica sin autorización: lote {lote},Hazi ez-ekologikoa baimenik gabe: {lote} sorta,Llavor no ecològica sense autorització: lot {lote},Semente non ecolóxica sen autorización: lote {lote}
+huer.mapa,Mapa,Mapa,Mapa,Mapa
+huer.mapa_sin_ubicaciones,Ninguna parcela tiene ubicación. Edita una y pulsa «Usar mi ubicación» estando en ella.,Lursail batek ere ez du kokapenik. Editatu bat eta sakatu «Nire kokapena erabili» bertan zaudela.,Cap parcel·la té ubicació. Edita'n una i prem «Usa la meva ubicació» mentre hi ets.,Ningunha parcela ten localización. Edita unha e preme «Usar a miña localización» estando nela.
 huer.marcado_permitido,Marcado como permitido,Baimendutzat markatua,Marcat com a permès,Marcado como permitido
 huer.marcar_hecha_hoy,Hecha hoy,Gaur egina,Feta avui,Feita hoxe
 huer.marcar_preparada,Marcar como preparada,Prestatutzat markatu,Marca com a preparada,Marcar como preparada
@@ -312,6 +316,7 @@ huer.sin_lotes,Sin lotes de semilla.,Hazi-sortarik ez.,Sense lots de llavor.,Sen
 huer.sin_parcelas,Sin parcelas. Añade la primera con el botón +.,Lursailik ez. Gehitu lehena + botoiarekin.,Sense parcel·les. Afegeix la primera amb el botó +.,Sen parcelas. Engade a primeira co botón +.
 huer.sin_siembras,Sin siembras.,Ereinik ez.,Sense sembres.,Sen sementeiras.
 huer.sin_socios,Sin socios. Añade el primero.,Bazkiderik ez. Gehitu lehena.,Sense socis. Afegeix el primer.,Sen socios. Engade o primeiro.
+huer.sin_ubicacion,Sin ubicación,Kokapenik gabe,Sense ubicació,Sen localización
 huer.sin_valorar,Sin valorar,Baloratu gabe,Sense valorar,Sen valorar
 huer.sistema_riego,Sistema de riego,Ureztatze-sistema,Sistema de reg,Sistema de rega
 huer.sobra,Sobra: {sobrante}.,Soberan: {sobrante}.,Sobra: {sobrante}.,Sobra: {sobrante}.
@@ -344,5 +349,6 @@ huer.unidad,Unidad,Unitatea,Unitat,Unidade
 huer.unidad_gramos,gramos de semilla,hazi-gramoak,grams de llavor,gramos de semente
 huer.unidad_metros_lineales,metros lineales,metro linealak,metres lineals,metros lineais
 huer.unidad_plantas,plantas,landareak,plantes,plantas
+huer.usar_mi_ubicacion,Usar mi ubicación,Nire kokapena erabili,Usa la meva ubicació,Usar a miña localización
 huer.variedad,Variedad,Barietatea,Varietat,Variedade
 huer.variedad_local,Variedad local o tradicional,Tokiko barietatea edo tradizionala,Varietat local o tradicional,Variedade local ou tradicional

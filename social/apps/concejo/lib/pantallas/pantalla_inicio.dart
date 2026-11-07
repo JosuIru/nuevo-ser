@@ -9,6 +9,8 @@ import '../servidor/sincronizador.dart';
 import 'dialogos.dart';
 import 'ficha_asunto.dart';
 import 'formulario_asunto.dart';
+import 'formulario_sesion.dart';
+import 'pantalla_asambleas.dart';
 import 'pantalla_personas.dart';
 import 'pantalla_se_ha_hecho.dart';
 import 'textos_dominio.dart';
@@ -59,9 +61,12 @@ class _PantallaInicioState extends State<PantallaInicio> {
             ? textos.ejemploAviso
             : _avisoConexion(textos, sincronizador);
         final rechazadas = sincronizador?.rechazadas ?? const [];
-        final cuerpo = _pestana == 0
-            ? _ListaAsuntos(estado: widget.estado, avisosVistos: _avisosVistos)
-            : PantallaSeHaHecho(estado: widget.estado);
+        final cuerpo = switch (_pestana) {
+          0 =>
+            _ListaAsuntos(estado: widget.estado, avisosVistos: _avisosVistos),
+          1 => PantallaAsambleas(estado: widget.estado),
+          _ => PantallaSeHaHecho(estado: widget.estado),
+        };
         return Scaffold(
           appBar: AppBar(
             title: Text(widget.estado.nombreEspacio),
@@ -112,15 +117,19 @@ class _PantallaInicioState extends State<PantallaInicio> {
                       onRefresh: sincronizador.sincronizar, child: cuerpo),
             ),
           ]),
-          floatingActionButton: _pestana == 0 && widget.estado.soyMesa
-              ? FloatingActionButton.extended(
+          floatingActionButton: !widget.estado.soyMesa || _pestana == 2
+              ? null
+              : FloatingActionButton.extended(
                   onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => FormularioAsunto(estado: widget.estado),
+                    builder: (_) => _pestana == 0
+                        ? FormularioAsunto(estado: widget.estado)
+                        : FormularioSesion(estado: widget.estado),
                   )),
                   icon: const Icon(Icons.add),
-                  label: Text(textos.nuevoAsunto),
-                )
-              : null,
+                  label: Text(_pestana == 0
+                      ? textos.nuevoAsunto
+                      : textos.convocarAsamblea),
+                ),
           bottomNavigationBar: NavigationBar(
             selectedIndex: _pestana,
             onDestinationSelected: (indice) =>
@@ -130,6 +139,11 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 icon: const Icon(Icons.forum_outlined),
                 selectedIcon: const Icon(Icons.forum),
                 label: textos.pestanaAsuntos,
+              ),
+              NavigationDestination(
+                icon: const Icon(Icons.groups_outlined),
+                selectedIcon: const Icon(Icons.groups),
+                label: textos.pestanaAsambleas,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.task_alt_outlined),

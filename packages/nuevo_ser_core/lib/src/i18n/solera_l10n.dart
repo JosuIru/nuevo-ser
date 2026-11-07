@@ -5605,6 +5605,11 @@ class SoleraL10n {
     'viti.zona_sur_mediterranea',
     'viti.cifra_estado_esperado',
     'viti.cifra_proximo_hito',
+    'vive.bienvenida',
+    'vive.guardado',
+    'vive.hoy',
+    'vive.nombre_titular',
+    'vive.titular',
   };
 
   /// Claves que tienen texto propio en [idioma] (para tests).
@@ -11227,6 +11232,11 @@ class SoleraL10n {
     'viti.zona_sur_mediterranea': 'Sur (mediterránea)',
     'viti.cifra_estado_esperado': 'Estado esperado',
     'viti.cifra_proximo_hito': 'Próximo hito',
+    'vive.bienvenida': 'Primera versión en construcción.',
+    'vive.guardado': 'Guardado',
+    'vive.hoy': 'Hoy',
+    'vive.nombre_titular': 'Nombre del titular',
+    'vive.titular': 'Titular',
   };
 
   static const _textosEu = <String, String>{
@@ -16817,6 +16827,11 @@ class SoleraL10n {
     'viti.zona_sur_mediterranea': 'Hegoaldea (mediterraneoa)',
     'viti.cifra_estado_esperado': 'Espero den egoera',
     'viti.cifra_proximo_hito': 'Hurrengo mugarria',
+    'vive.bienvenida': 'Lehen bertsioa eraikitzen ari da.',
+    'vive.guardado': 'Gordeta',
+    'vive.hoy': 'Gaur',
+    'vive.nombre_titular': 'Titularraren izena',
+    'vive.titular': 'Titularra',
   };
 
   static const _textosCa = <String, String>{
@@ -22407,6 +22422,11 @@ class SoleraL10n {
     'viti.zona_sur_mediterranea': 'Sud (mediterrània)',
     'viti.cifra_estado_esperado': 'Estat esperat',
     'viti.cifra_proximo_hito': 'Proper estadi',
+    'vive.bienvenida': 'Primera versió en construcció.',
+    'vive.guardado': 'Desat',
+    'vive.hoy': 'Avui',
+    'vive.nombre_titular': 'Nom del titular',
+    'vive.titular': 'Titular',
   };
 
   static const _textosGl = <String, String>{
@@ -27997,6 +28017,11 @@ class SoleraL10n {
     'viti.zona_sur_mediterranea': 'Sur (mediterránea)',
     'viti.cifra_estado_esperado': 'Estado esperado',
     'viti.cifra_proximo_hito': 'Próximo fito',
+    'vive.bienvenida': 'Primeira versión en construción.',
+    'vive.guardado': 'Gardado',
+    'vive.hoy': 'Hoxe',
+    'vive.nombre_titular': 'Nome do titular',
+    'vive.titular': 'Titular',
   };
 
 }

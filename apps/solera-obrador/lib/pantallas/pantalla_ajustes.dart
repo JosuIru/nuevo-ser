@@ -6,6 +6,7 @@ import '../datos/base_datos.dart';
 import '../estado/clave_anthropic_obrador.dart';
 import '../modelos/titular.dart';
 import 'pantalla_documentos.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_economia.dart';
 
 class PantallaAjustes extends StatefulWidget {
@@ -93,6 +94,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
                           nombreApp: 'Larrea Obrador',
                           queIdentifica: SoleraL10n.t('obra.ia_que_hace'),
                         ))),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.help_outline),
+            title: Text(SoleraL10n.t('obra.ayuda')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaAyuda())),
           ),
           const SelectorIdioma(),
           const SizedBox(height: 24),

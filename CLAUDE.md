@@ -72,6 +72,11 @@ Cinco forks de Larrea por vertical. Comparten widgets (`CampoAutocompleteCatalog
 - **`apps/solera-quesera/`** — queserías artesanas. Cuaderno APPCC + curación + trazabilidad lotes. F1-5 (catálogos provisionales). Branding dorado+crema.
 - **`apps/solera-aceitera/`** — almazaras pequeñas y medianas (100-2000 hl/campaña). Cuaderno PAC olivar (RD 1311/2012) + libro de movimientos del aceite (RD 760/2021 + AICA) + DOP olivar + IA visual plagas olivar + cierre fiscal REAGP. **F1-A1 a F1-A11 cerradas** (esqueleto + 18 modelos POJO + sqflite v2 + 20 pantallas + 3 generadores PDF con sello PROVISIONAL R1 + 5 catálogos revisados contra fuente pública con compilador CSV→Dart (flag `catalogosCompletamenteRevisados=false` desde el 2026-11-07: solo una firma `asesor:`/`persona:` lo pone a true, `fuente_publica` no) + IA Claude Vision BYO key + branding placeholder + GPS captura + libro económico REAGP olivar PROVISIONAL completo + target Android `com.coleccionnuevoser.solera_aceitera` con APK release de 56 MB + 83 tests). Auditoría humana final del asesor agrónomo + técnico OCA + auditor AICA + asesor fiscal pendiente para retirar sellos. Branding verde oliva+crema.
 
+- **`apps/solera-obrador/`** — panaderías artesanas, obradores caseros, repostería y conservas (2026-11-07, plan de verticales V1). Recetas con subrecetas (alérgenos heredados, coste, margen, sal estimada frente al RD 308/2019), autocontrol, hornadas con trazabilidad de lotes, pedidos fijos, masa madre, 4 PDF PROVISIONAL, IA para leer etiquetas, ingresos y gastos (no REAGP). F1 bloques 1-11 cerrados, 38 tests, APK release. Branding tostado+crema.
+- **`apps/solera-sidra/`** y **`apps/solera-frutal/`** — esqueletos (bloque 1) de Larrea Sagardoa y Larrea Frutal; encargos en `docs/plan-verticales/`.
+
+Plan de las nuevas verticales (fases, calles de trabajo, contrato de autonomía): `docs/plan-verticales-larrea.md`. Una vertical nueva se crea con `scripts/nueva_vertical.sh`.
+
 Detalle de cada una en su `CLAUDE.md` + `BLOQUEOS-PENDIENTES.md`.
 
 **Contabilidad**: planificado por vertical (agro/viticultura/apícola como gastos REAGP, arbolado como facturación B2B Facturae). Bloqueado por asesor fiscal humano.

@@ -6,6 +6,8 @@ import 'package:solera_obrador/modelos/hornada.dart';
 import 'package:solera_obrador/modelos/masa_madre.dart';
 import 'package:solera_obrador/modelos/pedido_fijo.dart';
 import 'package:solera_obrador/modelos/receta.dart';
+import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
+import 'package:solera_obrador/pantallas/pantalla_ayuda.dart';
 import 'package:solera_obrador/pantallas/pantalla_hornadas.dart';
 import 'package:solera_obrador/pantallas/pantalla_hoy.dart';
 import 'package:solera_obrador/pantallas/pantalla_masa_madre.dart';
@@ -101,6 +103,12 @@ void main() {
         await tester.pumpAndSettle();
       });
       expect(find.text(esperado), findsOneWidget, reason: '$pantalla');
+    }
+  });
+
+  test('cada apartado de la ayuda tiene título y texto traducidos', () {
+    for (final (titulo, texto) in apartadosAyudaObrador) {
+      expect(SoleraL10n.clavesDisponibles, containsAll([titulo, texto]));
     }
   });
 }

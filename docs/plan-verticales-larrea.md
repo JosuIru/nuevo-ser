@@ -190,6 +190,14 @@ Alternativa más barata: **una sesión interactiva por vertical** (como se hizo 
 
 ---
 
+### Estado de la oleada A (2026-11-07)
+
+| Vertical | Estado |
+|---|---|
+| V1 Obrador | ✅ bloques 1-11 (38 tests, APK release de 65 MB). Release de GitHub pendiente de push |
+| V2 Sidra | bloque 1 (esqueleto) |
+| V3 Frutal | bloque 1 (esqueleto) |
+
 ### Presupuesto de tokens (2026-11-07)
 
 A Josu le queda el ~25 % de la cuota semanal hasta el **lunes 9-nov por la tarde**. Hasta entonces **no se lanza ningún workflow ni oleada**. Solo pasos baratos, de uno en uno: fichas de encargo (§7) y como mucho un bloque de la Fase 0. Las oleadas empiezan con la cuota renovada, **una oleada por semana de cuota** como mucho, y cerrando la anterior antes de abrir la siguiente.

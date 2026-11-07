@@ -17,9 +17,9 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (hogaza tostada sobre crema) en `assets/`, iconos de lanzador generados, logo en la cabecera de Hoy. **GPS: no aplica** (el obrador no trabaja con parcelas) |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes con base, tipo de IVA (0/4/10/21) y cuota; resumen del mes (resultado, IVA repercutido y soportado orientativos) y extracto PDF con sello. Precio de venta por receta y margen sobre el coste de ingredientes. **No es REAGP** ni liquidación de impuestos. 37 tests |
 | 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Alérgenos y denominaciones ya citan su norma (`fuente_publica`). Ingredientes base y controles tipo quedan sin revisar a propósito: el alérgeno real es el de la ficha del proveedor y los límites, los del plan de cada obrador. El banner sigue hasta la firma humana |
-| 11 APK + ayuda | pendiente | |
+| 11 APK + ayuda | ✅ 2026-11-07 | Ayuda in-app (7 apartados, 4 idiomas, con «lo que la app no hace»), README, APK release de 65 MB (copia en `~/larrea-apks/solera-obrador-release.apk`). 38 tests. **Release de GitHub sin publicar**: necesita push de `main` antes |
 
-**Siguiente acción**: bloque 8 (logo placeholder e iconos), bloque 9 (libro de ingresos y gastos con IVA, PROVISIONAL; precio de venta y margen por receta) y bloque 11 (ayuda in-app, README, APK release).
+**Siguiente acción**: F1 completa salvo lo humano (BLOQUEOS). Pendientes técnicos menores: hornada de una base o relleno (lotes de subrecetas), selector de fecha en los apuntes y controles (hoy se apuntan con la fecha actual), y facturas cuando el asesor fiscal fije el régimen.
 
 ## Encuadre
 

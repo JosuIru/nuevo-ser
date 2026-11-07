@@ -1,7 +1,10 @@
 // Larrea Aromáticas — esqueleto generado por scripts/nueva_vertical.sh (2026-11-07).
 //
 //   main() → AppAromaticas → PantallaPrincipal (NavigationBar + IndexedStack)
-//     ├── Hoy
+//     ├── Hoy     permisos que vencen, especies en temporada, primeros pasos
+//     ├── Campo   parcelas, zonas de recolección, cosechas y tratamientos
+//     ├── Taller  secados y destilaciones con sus rendimientos
+//     ├── Lotes   planta seca, aceite esencial e hidrolato con trazabilidad
 //     └── Ajustes
 
 import 'package:flutter/material.dart';
@@ -11,7 +14,10 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 
 import 'branding.dart';
 import 'pantallas/pantalla_ajustes.dart';
+import 'pantallas/pantalla_campo.dart';
 import 'pantallas/pantalla_hoy.dart';
+import 'pantallas/pantalla_lotes.dart';
+import 'pantallas/pantalla_taller.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +61,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     return Scaffold(
       body: IndexedStack(
         index: _pestanaActual,
-        children: const [PantallaHoy(), PantallaAjustes()],
+        children: const [
+          PantallaHoy(),
+          PantallaCampo(),
+          PantallaTaller(),
+          PantallaLotes(),
+          PantallaAjustes(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pestanaActual,
@@ -65,6 +77,18 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           NavigationDestination(
             icon: const Icon(Icons.today_outlined),
             label: SoleraL10n.t('arom.hoy'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.grass_outlined),
+            label: SoleraL10n.t('arom.campo'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.water_drop_outlined),
+            label: SoleraL10n.t('arom.taller'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.inventory_2_outlined),
+            label: SoleraL10n.t('arom.lotes'),
           ),
           NavigationDestination(
             icon: const Icon(Icons.settings_outlined),

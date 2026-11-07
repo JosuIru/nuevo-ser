@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (titular-explotación, parcela, zona de recolección con permiso, cosecha de parcela **o** zona, secado, destilación, lote de producto, tratamiento, apunte económico, configuración fiscal), 10 tablas en la v1 (`sentenciasEsquemaAromaticasV1`). Dominio puro: `rendimientos.dart` (secado %, aceite ml/kg, hidrolato l/kg, comparación con el orientativo, resumen ponderado por especie), `recoleccion.dart` (avisos frente al permiso: sin permiso, fuera de vigencia, especie no incluida, límite de kg, especie protegida; permisos por vencer) y `trazabilidad.dart` (lote → proceso → cosechas → parcela/zona, texto del QR). 26 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas: **Hoy** (primeros pasos sin parcelas ni zonas, permisos que vencen en 30 días o sin apuntar, especies en temporada, banner de catálogos provisionales), **Campo** (parcelas, zonas con permiso y kg usados del límite, cosechas del año, tratamientos), **Taller** (secados y destilaciones con rendimiento y comparación con el orientativo; resumen por especie), **Lotes** (lista y ficha con trazabilidad hasta parcela o zona y permiso) y **Ajustes** (titular con comunidad y registro sanitario). Altas en hojas (`formularios.dart`): la cosecha silvestre comprueba el permiso y pide confirmación con los avisos (no bloquea); secado y destilación marcan las cosechas que entran y crean los lotes con código propuesto. Edición de parcela y zona con GPS. 42 tests (7 de pantalla y uno propio de traducciones dinámicas) |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/aromaticas/`: `especies_pam.csv` (27 especies; nombre científico, familia, parte usada, época orientativa, origen, protección y confundibles; genciana y árnica marcadas con el anexo VI de la Ley 42/2007 y **sin época** a propósito), `rendimientos_orientativos.csv` (29 filas: 15 de aceite en g/kg y 14 de secado en kg/100 kg, todas de las tablas 5 y 8 de la ficha de transformación del CTFC) y `plagas_pam.csv` (10, del BSV PAPAM PACA 2025). Compilador sobre la librería común; consultas en `dominio/catalogos.dart`. Guardarraíl `test/hard_limits_test.dart` (vocabulario de propiedades de salud en lib, catálogos y traducciones). 34 tests |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas; los catálogos del bloque 6 ya están).
+**Siguiente acción**: bloques 4-5 (cuaderno de cosechas y recolección; libro de destilación y lotes, PDF PROVISIONAL).
 
 ## Encuadre
 
@@ -162,6 +162,18 @@ electrónico desde el 1-1-2027, RD 1039/2025). Fiscalidad en el bloque 9.
   tratamiento se apunta con texto libre copiado de la etiqueta; va a
   BLOQUEOS. Plagas solo de lavanda, lavandín, tomillo y salvia esclarea (lo
   que cubre el boletín leído).
+- **2026-11-07 — Cinco pestañas** (Hoy, Campo, Taller, Lotes, Ajustes): Campo
+  agrupa parcelas, zonas, cosechas y tratamientos en sub-pestañas para no
+  pasar de cinco destinos en la barra.
+- **2026-11-07 — Los avisos de recolección no bloquean**: se muestran en un
+  diálogo y la persona decide (puede tener una autorización que la app no
+  conoce). La especie protegida y las confundibles se avisan ya en la hoja.
+- **2026-11-07 — Los lotes se crean al guardar el proceso** (interruptor
+  activado por defecto) con código propuesto «PS/AE/HI-año-nnn»; se editan
+  después en la ficha del lote (código, destino, lo que queda, envase).
+- **2026-11-07 — Traducciones de valores cerrados con claves dinámicas**
+  (`arom.<grupo>_<id>`), comprobadas por `test/traducciones_test.dart`
+  porque el test del core no las ve.
 - **2026-11-07 — Unidades de lote fijas por tipo**: planta en kg, aceite en
   ml, hidrolato en l.
 

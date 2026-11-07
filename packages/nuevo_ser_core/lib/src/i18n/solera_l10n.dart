@@ -3176,6 +3176,25 @@ class SoleraL10n {
     'gana.aviso_documento_provisional',
     'gana.aviso_fiscal',
     'gana.aviso_no_sustituye',
+    'gana.ayuda',
+    'gana.ayuda_datos_texto',
+    'gana.ayuda_datos_titulo',
+    'gana.ayuda_documentos_texto',
+    'gana.ayuda_documentos_titulo',
+    'gana.ayuda_ecoregimen_texto',
+    'gana.ayuda_ecoregimen_titulo',
+    'gana.ayuda_empezar_texto',
+    'gana.ayuda_empezar_titulo',
+    'gana.ayuda_ia_texto',
+    'gana.ayuda_ia_titulo',
+    'gana.ayuda_limites_texto',
+    'gana.ayuda_limites_titulo',
+    'gana.ayuda_pastos_texto',
+    'gana.ayuda_pastos_titulo',
+    'gana.ayuda_rebanos_texto',
+    'gana.ayuda_rebanos_titulo',
+    'gana.ayuda_tratamientos_texto',
+    'gana.ayuda_tratamientos_titulo',
     'gana.base',
     'gana.base_euros',
     'gana.buscando_gps',
@@ -8086,6 +8105,25 @@ class SoleraL10n {
           'gana.aviso_documento_provisional',
           'gana.aviso_fiscal',
           'gana.aviso_no_sustituye',
+          'gana.ayuda',
+          'gana.ayuda_datos_texto',
+          'gana.ayuda_datos_titulo',
+          'gana.ayuda_documentos_texto',
+          'gana.ayuda_documentos_titulo',
+          'gana.ayuda_ecoregimen_texto',
+          'gana.ayuda_ecoregimen_titulo',
+          'gana.ayuda_empezar_texto',
+          'gana.ayuda_empezar_titulo',
+          'gana.ayuda_ia_texto',
+          'gana.ayuda_ia_titulo',
+          'gana.ayuda_limites_texto',
+          'gana.ayuda_limites_titulo',
+          'gana.ayuda_pastos_texto',
+          'gana.ayuda_pastos_titulo',
+          'gana.ayuda_rebanos_texto',
+          'gana.ayuda_rebanos_titulo',
+          'gana.ayuda_tratamientos_texto',
+          'gana.ayuda_tratamientos_titulo',
           'gana.base',
           'gana.base_euros',
           'gana.buscando_gps',
@@ -12993,6 +13031,25 @@ class SoleraL10n {
           'gana.aviso_documento_provisional',
           'gana.aviso_fiscal',
           'gana.aviso_no_sustituye',
+          'gana.ayuda',
+          'gana.ayuda_datos_texto',
+          'gana.ayuda_datos_titulo',
+          'gana.ayuda_documentos_texto',
+          'gana.ayuda_documentos_titulo',
+          'gana.ayuda_ecoregimen_texto',
+          'gana.ayuda_ecoregimen_titulo',
+          'gana.ayuda_empezar_texto',
+          'gana.ayuda_empezar_titulo',
+          'gana.ayuda_ia_texto',
+          'gana.ayuda_ia_titulo',
+          'gana.ayuda_limites_texto',
+          'gana.ayuda_limites_titulo',
+          'gana.ayuda_pastos_texto',
+          'gana.ayuda_pastos_titulo',
+          'gana.ayuda_rebanos_texto',
+          'gana.ayuda_rebanos_titulo',
+          'gana.ayuda_tratamientos_texto',
+          'gana.ayuda_tratamientos_titulo',
           'gana.base',
           'gana.base_euros',
           'gana.buscando_gps',
@@ -17900,6 +17957,25 @@ class SoleraL10n {
           'gana.aviso_documento_provisional',
           'gana.aviso_fiscal',
           'gana.aviso_no_sustituye',
+          'gana.ayuda',
+          'gana.ayuda_datos_texto',
+          'gana.ayuda_datos_titulo',
+          'gana.ayuda_documentos_texto',
+          'gana.ayuda_documentos_titulo',
+          'gana.ayuda_ecoregimen_texto',
+          'gana.ayuda_ecoregimen_titulo',
+          'gana.ayuda_empezar_texto',
+          'gana.ayuda_empezar_titulo',
+          'gana.ayuda_ia_texto',
+          'gana.ayuda_ia_titulo',
+          'gana.ayuda_limites_texto',
+          'gana.ayuda_limites_titulo',
+          'gana.ayuda_pastos_texto',
+          'gana.ayuda_pastos_titulo',
+          'gana.ayuda_rebanos_texto',
+          'gana.ayuda_rebanos_titulo',
+          'gana.ayuda_tratamientos_texto',
+          'gana.ayuda_tratamientos_titulo',
           'gana.base',
           'gana.base_euros',
           'gana.buscando_gps',
@@ -22830,6 +22906,25 @@ class SoleraL10n {
       case 'gana.aviso_documento_provisional': return 'Todos los documentos llevan el sello PROVISIONAL: el formato no lo ha validado todavía un veterinario asesor ni un técnico PAC, y tu comunidad puede pedir otro modelo.';
       case 'gana.aviso_fiscal': return 'PROVISIONAL y orientativo: no es una liquidación de IVA ni de IRPF. El régimen (REAGP o general), los porcentajes de compensación y los tipos de IVA los confirma tu asesor fiscal.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica nada a SITRAN, a la OCA ni a PRESVET: esas comunicaciones las sigues haciendo tú o tu oficina comarcal. La app ordena tus datos y te prepara los documentos, siempre PROVISIONALES.';
+      case 'gana.ayuda': return 'Ayuda';
+      case 'gana.ayuda_datos_texto': return 'Todo se guarda en este móvil, sin cuenta ni conexión. En Ajustes → Exportar todos mis datos tienes un CSV por tabla para guardarlos o llevarlos a otro programa. El libro debe conservarse al menos 3 años y el registro de tratamientos, 5.';
+      case 'gana.ayuda_datos_titulo': return 'Tus datos';
+      case 'gana.ayuda_documentos_texto': return 'El libro de registro sale por año con los datos mínimos del anexo V del RD 787/2023 y el registro de tratamientos. Desde la ficha del rebaño, cada entrada o salida tiene su hoja de movimiento para imprimir. Todo lleva el sello PROVISIONAL: el modelo que vale es el de tu comunidad, y la guía oficial la emite SITRAN o tu oficina comarcal.';
+      case 'gana.ayuda_documentos_titulo': return 'Libro de registro y documentos';
+      case 'gana.ayuda_ecoregimen_texto': return 'En Documentos, el informe del eco-régimen te da por cada pieza los días con ganado y la carga media, mínima y máxima de la campaña, y avisa si no llegas a 120 días o a la carga mínima de tu tipo de pasto (RD 1048/2022, art. 30). Es una ayuda para preparar la solicitud, no una declaración: tu comunidad calcula con SITRAN y con su convocatoria.';
+      case 'gana.ayuda_ecoregimen_titulo': return 'Eco-régimen de pastoreo';
+      case 'gana.ayuda_empezar_texto': return 'En Ajustes, rellena el titular y la explotación (código REGA, municipio, especies): salen en la cabecera del libro y de los documentos. Después da de alta tus piezas de pasto y tus rebaños, y apunta la primera entrada de cada rebaño en una pieza.';
+      case 'gana.ayuda_empezar_titulo': return 'Por dónde empezar';
+      case 'gana.ayuda_ia_texto': return 'Con tu propia clave de Anthropic (Ajustes → Inteligencia artificial), la app lee la foto de una receta y te deja el tratamiento relleno para que lo compares y lo guardes. La foto no se guarda. La IA transcribe; no recomienda medicamentos ni pone tiempos de espera que no estén escritos.';
+      case 'gana.ayuda_ia_titulo': return 'Leer la receta con IA';
+      case 'gana.ayuda_limites_texto': return 'No recomienda medicamentos, dosis ni diagnósticos. No comunica nada a SITRAN, a la OCA ni a PRESVET. No presenta la solicitud de la PAC ni declara la carga. No liquida impuestos. Los documentos son PROVISIONALES hasta que los revisen un veterinario, un técnico PAC y un asesor fiscal.';
+      case 'gana.ayuda_limites_titulo': return 'Lo que la app no hace';
+      case 'gana.ayuda_pastos_texto': return 'Cada pieza lleva su superficie, su recinto SIGPAC, si el pasto es mediterráneo o húmedo y si es propia, arrendada o comunal. Desde el mapa puedes trazar su contorno caminando el linde con el GPS. La carga (UGM/ha) se calcula con la tabla de la PAC.';
+      case 'gana.ayuda_pastos_titulo': return 'Pastos y carga';
+      case 'gana.ayuda_rebanos_texto': return 'El ganado se mueve por rebaños: un cambio de pieza es del rebaño entero, y la app sabe dónde está cada uno por su último movimiento. Los animales con crotal van uno a uno; los que no, como cabezas sin identificar. Si entran o salen animales sin mover el rebaño (una venta de corderos), usa «Entran animales» o «Salen animales».';
+      case 'gana.ayuda_rebanos_titulo': return 'Rebaños, animales y movimientos';
+      case 'gana.ayuda_tratamientos_texto': return 'Apunta lo que pone la receta: medicamento, sustancia activa, cantidad, duración, tiempos de espera (aunque sean 0), veterinario, número de receta, proveedor y factura. En ganado ecológico la app dobla la espera (mínimo 48 h) y cuenta los tratamientos del año. En Manejo verás cuándo acaba cada espera y las tareas que haya planificado tu veterinario.';
+      case 'gana.ayuda_tratamientos_titulo': return 'Tratamientos y tiempos de espera';
       case 'gana.base': return 'Base';
       case 'gana.base_euros': return 'Base (€, sin IVA)';
       case 'gana.buscando_gps': return 'Buscando posición…';
@@ -27741,6 +27836,25 @@ class SoleraL10n {
       case 'gana.aviso_documento_provisional': return 'Agiri guztiek BEHIN-BEHINEKO zigilua dute: albaitari aholkulari batek edo PAC teknikari batek ez du formatua oraindik baliozkotu, eta zure erkidegoak beste eredu bat eska dezake.';
       case 'gana.aviso_fiscal': return 'BEHIN-BEHINEKOA eta orientagarria: ez da BEZaren edo PFEZaren likidazioa. Araubidea (NANEB edo orokorra), konpentsazio-ehunekoak eta BEZ tasak zure zerga-aholkulariak berresten ditu.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganaderak ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi: jakinarazpen horiek zuk edo zure bulegoak egiten jarraitzen duzue. Aplikazioak datuak antolatzen ditu eta agiriak prestatzen ditu, beti BEHIN-BEHINEKOAK.';
+      case 'gana.ayuda': return 'Laguntza';
+      case 'gana.ayuda_datos_texto': return 'Dena mugikor honetan gordetzen da, konturik eta konexiorik gabe. Ezarpenak → Nire datu guztiak esportatu atalean CSV bat duzu taula bakoitzeko, gordetzeko edo beste programa batera eramateko. Liburua gutxienez 3 urtez gorde behar da eta tratamenduen erregistroa, 5 urtez.';
+      case 'gana.ayuda_datos_titulo': return 'Zure datuak';
+      case 'gana.ayuda_documentos_texto': return 'Erregistro-liburua urtero ateratzen da RD 787/2023ko V. eranskineko gutxieneko datuekin eta tratamenduen erregistroarekin. Artaldearen fitxatik, sarrera edo irteera bakoitzak bere mugimendu-orria du inprimatzeko. Guztiak BEHIN-BEHINEKO zigilua du: balio duen eredua zure erkidegoarena da, eta gida ofiziala SITRANek edo eskualdeko bulegoak egiten du.';
+      case 'gana.ayuda_documentos_titulo': return 'Erregistro-liburua eta agiriak';
+      case 'gana.ayuda_ecoregimen_texto': return 'Agirietan, eko-erregimenaren txostenak larre-sail bakoitzeko abereekin egunak eta kanpainako batez besteko, gutxieneko eta gehieneko karga ematen dizkizu, eta abisatzen du 120 egunetara edo zure larre motaren gutxieneko kargara iristen ez bazara (RD 1048/2022, 30. art.). Eskaera prestatzeko laguntza da, ez aitorpena: zure erkidegoak SITRANekin eta bere deialdiarekin kalkulatzen du.';
+      case 'gana.ayuda_ecoregimen_titulo': return 'Larratze eko-erregimena';
+      case 'gana.ayuda_empezar_texto': return 'Ezarpenetan, bete titularra eta ustiategia (REGA kodea, udalerria, espezieak): liburuaren eta agirien goiburuan ateratzen dira. Gero eman altan zure larre-sailak eta artaldeak, eta idatzi artalde bakoitzaren lehen sarrera larre-sail batean.';
+      case 'gana.ayuda_empezar_titulo': return 'Nondik hasi';
+      case 'gana.ayuda_ia_texto': return 'Zure Anthropic gakoarekin (Ezarpenak → Adimen artifiziala), aplikazioak errezeta baten argazkia irakurtzen du eta tratamendua beteta uzten dizu alderatu eta gordetzeko. Argazkia ez da gordetzen. IAk transkribatu egiten du; ez du sendagairik gomendatzen ez idatzita ez dauden itxaronaldiak jartzen.';
+      case 'gana.ayuda_ia_titulo': return 'Errezeta IArekin irakurri';
+      case 'gana.ayuda_limites_texto': return 'Ez du sendagairik, dosirik edo diagnostikorik gomendatzen. Ez dio ezer jakinarazten SITRANi, eskualdeko bulegoari edo PRESVETi. Ez du PACeko eskaera aurkezten ez karga aitortzen. Ez ditu zergak likidatzen. Agiriak BEHIN-BEHINEKOAK dira albaitari batek, PAC teknikari batek eta zerga-aholkulari batek berrikusi arte.';
+      case 'gana.ayuda_limites_titulo': return 'Aplikazioak egiten ez duena';
+      case 'gana.ayuda_pastos_texto': return 'Larre-sail bakoitzak bere azalera, SIGPAC barrutia, larrea mediterraneoa edo hezea den eta norberarena, errentan edo herri-lurra den dauka. Mapatik bere ingurua marraz dezakezu muga GPSarekin ibiliz. Karga (ALU/ha) PACeko taularekin kalkulatzen da.';
+      case 'gana.ayuda_pastos_titulo': return 'Larreak eta karga';
+      case 'gana.ayuda_rebanos_texto': return 'Abereak artaldeka mugitzen dira: larre-sail aldaketa artalde osoarena da, eta aplikazioak badaki non dagoen bakoitza bere azken mugimenduagatik. Belarritakodun animaliak banan-banan doaz; besteak, identifikatu gabeko buru gisa. Artaldea mugitu gabe animaliak sartzen edo irteten badira (bildots-salmenta bat), erabili «Animaliak sartzen dira» edo «Animaliak irteten dira».';
+      case 'gana.ayuda_rebanos_titulo': return 'Artaldeak, animaliak eta mugimenduak';
+      case 'gana.ayuda_tratamientos_texto': return 'Idatzi errezetak dioena: sendagaia, substantzia aktiboa, kopurua, iraupena, itxaronaldiak (0 badira ere), albaitaria, errezeta-zenbakia, hornitzailea eta faktura. Abere ekologikoetan aplikazioak itxaronaldia bikoizten du (gutxienez 48 h) eta urteko tratamenduak kontatzen ditu. Maneiuan ikusiko duzu noiz amaitzen den itxaronaldi bakoitza eta zure albaitariak antolatutako lanak.';
+      case 'gana.ayuda_tratamientos_titulo': return 'Tratamenduak eta itxaronaldiak';
       case 'gana.base': return 'Oinarria';
       case 'gana.base_euros': return 'Oinarria (€, BEZik gabe)';
       case 'gana.buscando_gps': return 'Posizioa bilatzen…';
@@ -32652,6 +32766,25 @@ class SoleraL10n {
       case 'gana.aviso_documento_provisional': return 'Tots els documents porten el segell PROVISIONAL: el format encara no l’ha validat un veterinari assessor ni un tècnic PAC, i la teva comunitat pot demanar un altre model.';
       case 'gana.aviso_fiscal': return 'PROVISIONAL i orientatiu: no és una liquidació d’IVA ni d’IRPF. El règim (REAGP o general), els percentatges de compensació i els tipus d’IVA els confirma el teu assessor fiscal.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera no comunica res a SITRAN, a l’OCA ni a PRESVET: aquestes comunicacions les continues fent tu o la teva oficina comarcal. L’app ordena les teves dades i et prepara els documents, sempre PROVISIONALS.';
+      case 'gana.ayuda': return 'Ajuda';
+      case 'gana.ayuda_datos_texto': return 'Tot es desa en aquest mòbil, sense compte ni connexió. A Configuració → Exportar totes les meves dades tens un CSV per taula per desar-les o portar-les a un altre programa. El llibre s’ha de conservar com a mínim 3 anys i el registre de tractaments, 5.';
+      case 'gana.ayuda_datos_titulo': return 'Les teves dades';
+      case 'gana.ayuda_documentos_texto': return 'El llibre de registre surt per any amb les dades mínimes de l’annex V del RD 787/2023 i el registre de tractaments. Des de la fitxa del ramat, cada entrada o sortida té el seu full de moviment per imprimir. Tot porta el segell PROVISIONAL: el model vàlid és el de la teva comunitat, i la guia oficial l’emet SITRAN o la teva oficina comarcal.';
+      case 'gana.ayuda_documentos_titulo': return 'Llibre de registre i documents';
+      case 'gana.ayuda_ecoregimen_texto': return 'A Documents, l’informe de l’ecoregim et dona per cada parcel·la els dies amb bestiar i la càrrega mitjana, mínima i màxima de la campanya, i avisa si no arribes a 120 dies o a la càrrega mínima del teu tipus de pastura (RD 1048/2022, art. 30). És una ajuda per preparar la sol·licitud, no una declaració: la teva comunitat calcula amb SITRAN i amb la seva convocatòria.';
+      case 'gana.ayuda_ecoregimen_titulo': return 'Ecoregim de pasturatge';
+      case 'gana.ayuda_empezar_texto': return 'A Configuració, omple el titular i l’explotació (codi REGA, municipi, espècies): surten a la capçalera del llibre i dels documents. Després dona d’alta les teves parcel·les de pastura i els teus ramats, i apunta la primera entrada de cada ramat en una parcel·la.';
+      case 'gana.ayuda_empezar_titulo': return 'Per on començar';
+      case 'gana.ayuda_ia_texto': return 'Amb la teva pròpia clau d’Anthropic (Configuració → Intel·ligència artificial), l’app llegeix la foto d’una recepta i et deixa el tractament omplert perquè el comparis i el desis. La foto no es desa. La IA transcriu; no recomana medicaments ni posa temps d’espera que no estiguin escrits.';
+      case 'gana.ayuda_ia_titulo': return 'Llegir la recepta amb IA';
+      case 'gana.ayuda_limites_texto': return 'No recomana medicaments, dosis ni diagnòstics. No comunica res a SITRAN, a l’OCA ni a PRESVET. No presenta la sol·licitud de la PAC ni declara la càrrega. No liquida impostos. Els documents són PROVISIONALS fins que els revisin un veterinari, un tècnic PAC i un assessor fiscal.';
+      case 'gana.ayuda_limites_titulo': return 'El que l’app no fa';
+      case 'gana.ayuda_pastos_texto': return 'Cada parcel·la porta la superfície, el recinte SIGPAC, si la pastura és mediterrània o humida i si és pròpia, arrendada o comunal. Des del mapa pots traçar-ne el contorn caminant el límit amb el GPS. La càrrega (UBM/ha) es calcula amb la taula de la PAC.';
+      case 'gana.ayuda_pastos_titulo': return 'Pastures i càrrega';
+      case 'gana.ayuda_rebanos_texto': return 'El bestiar es mou per ramats: un canvi de parcel·la és del ramat sencer, i l’app sap on és cadascun pel seu últim moviment. Els animals amb crotal van un per un; els altres, com a caps sense identificar. Si entren o surten animals sense moure el ramat (una venda d’anyells), fes servir «Entren animals» o «Surten animals».';
+      case 'gana.ayuda_rebanos_titulo': return 'Ramats, animals i moviments';
+      case 'gana.ayuda_tratamientos_texto': return 'Apunta el que diu la recepta: medicament, substància activa, quantitat, durada, temps d’espera (encara que siguin 0), veterinari, número de recepta, proveïdor i factura. En bestiar ecològic l’app dobla l’espera (mínim 48 h) i compta els tractaments de l’any. A Maneig veuràs quan acaba cada espera i les tasques que hagi planificat el teu veterinari.';
+      case 'gana.ayuda_tratamientos_titulo': return 'Tractaments i temps d’espera';
       case 'gana.base': return 'Base';
       case 'gana.base_euros': return 'Base (€, sense IVA)';
       case 'gana.buscando_gps': return 'Cercant posició…';
@@ -37563,6 +37696,25 @@ class SoleraL10n {
       case 'gana.aviso_documento_provisional': return 'Todos os documentos levan o selo PROVISIONAL: o formato aínda non o validou un veterinario asesor nin un técnico PAC, e a túa comunidade pode pedir outro modelo.';
       case 'gana.aviso_fiscal': return 'PROVISIONAL e orientativo: non é unha liquidación de IVE nin de IRPF. O réxime (REAXP ou xeral), as porcentaxes de compensación e os tipos de IVE confírmaos o teu asesor fiscal.';
       case 'gana.aviso_no_sustituye': return 'Larrea Ganadera non comunica nada a SITRAN, á OCA nin a PRESVET: esas comunicacións segues facéndoas ti ou a túa oficina comarcal. A app ordena os teus datos e prepárache os documentos, sempre PROVISIONAIS.';
+      case 'gana.ayuda': return 'Axuda';
+      case 'gana.ayuda_datos_texto': return 'Todo se garda neste móbil, sen conta nin conexión. En Axustes → Exportar todos os meus datos tes un CSV por táboa para gardalos ou levalos a outro programa. O libro debe conservarse polo menos 3 anos e o rexistro de tratamentos, 5.';
+      case 'gana.ayuda_datos_titulo': return 'Os teus datos';
+      case 'gana.ayuda_documentos_texto': return 'O libro de rexistro sae por ano cos datos mínimos do anexo V do RD 787/2023 e o rexistro de tratamentos. Desde a ficha do rabaño, cada entrada ou saída ten a súa folla de movemento para imprimir. Todo leva o selo PROVISIONAL: o modelo válido é o da túa comunidade, e a guía oficial emítea SITRAN ou a túa oficina comarcal.';
+      case 'gana.ayuda_documentos_titulo': return 'Libro de rexistro e documentos';
+      case 'gana.ayuda_ecoregimen_texto': return 'En Documentos, o informe do ecorréxime dáche por cada parcela os días con gando e a carga media, mínima e máxima da campaña, e avisa se non chegas a 120 días ou á carga mínima do teu tipo de pasto (RD 1048/2022, art. 30). É unha axuda para preparar a solicitude, non unha declaración: a túa comunidade calcula con SITRAN e coa súa convocatoria.';
+      case 'gana.ayuda_ecoregimen_titulo': return 'Ecorréxime de pastoreo';
+      case 'gana.ayuda_empezar_texto': return 'En Axustes, enche o titular e a explotación (código REGA, concello, especies): saen na cabeceira do libro e dos documentos. Despois dá de alta as túas parcelas de pasto e os teus rabaños, e apunta a primeira entrada de cada rabaño nunha parcela.';
+      case 'gana.ayuda_empezar_titulo': return 'Por onde comezar';
+      case 'gana.ayuda_ia_texto': return 'Coa túa propia clave de Anthropic (Axustes → Intelixencia artificial), a app le a foto dunha receita e déixache o tratamento enchido para que o compares e o gardes. A foto non se garda. A IA transcribe; non recomenda medicamentos nin pon tempos de espera que non estean escritos.';
+      case 'gana.ayuda_ia_titulo': return 'Ler a receita con IA';
+      case 'gana.ayuda_limites_texto': return 'Non recomenda medicamentos, doses nin diagnósticos. Non comunica nada a SITRAN, á OCA nin a PRESVET. Non presenta a solicitude da PAC nin declara a carga. Non liquida impostos. Os documentos son PROVISIONAIS ata que os revisen un veterinario, un técnico PAC e un asesor fiscal.';
+      case 'gana.ayuda_limites_titulo': return 'O que a app non fai';
+      case 'gana.ayuda_pastos_texto': return 'Cada parcela leva a súa superficie, o seu recinto SIXPAC, se o pasto é mediterráneo ou húmido e se é propia, arrendada ou comunal. Desde o mapa podes trazar o seu contorno camiñando o linde co GPS. A carga (UGM/ha) calcúlase coa táboa da PAC.';
+      case 'gana.ayuda_pastos_titulo': return 'Pastos e carga';
+      case 'gana.ayuda_rebanos_texto': return 'O gando móvese por rabaños: un cambio de parcela é do rabaño enteiro, e a app sabe onde está cada un polo seu último movemento. Os animais con crotal van un a un; os outros, como cabezas sen identificar. Se entran ou saen animais sen mover o rabaño (unha venda de años), usa «Entran animais» ou «Saen animais».';
+      case 'gana.ayuda_rebanos_titulo': return 'Rabaños, animais e movementos';
+      case 'gana.ayuda_tratamientos_texto': return 'Apunta o que pon a receita: medicamento, substancia activa, cantidade, duración, tempos de espera (aínda que sexan 0), veterinario, número de receita, provedor e factura. No gando ecolóxico a app dobra a espera (mínimo 48 h) e conta os tratamentos do ano. En Manexo verás cando remata cada espera e as tarefas que planificase o teu veterinario.';
+      case 'gana.ayuda_tratamientos_titulo': return 'Tratamentos e tempos de espera';
       case 'gana.base': return 'Base';
       case 'gana.base_euros': return 'Base (€, sen IVE)';
       case 'gana.buscando_gps': return 'Buscando posición…';

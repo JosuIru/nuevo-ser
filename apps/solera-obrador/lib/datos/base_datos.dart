@@ -2,6 +2,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show BaseDatosSolera, PasoMigracionSolera;
 import 'package:sqflite/sqflite.dart';
 
+import '../modelos/apunte_economico.dart';
 import '../modelos/hornada.dart';
 import '../modelos/ingrediente.dart';
 import '../modelos/lote_ingrediente.dart';
@@ -141,6 +142,18 @@ class BaseDatosSoleraObrador extends BaseDatosSolera {
         responsable TEXT NOT NULL DEFAULT '',
         notas TEXT NOT NULL DEFAULT ''
       )''',
+      '''CREATE TABLE apuntes_economicos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        es_ingreso INTEGER NOT NULL,
+        fecha_ms INTEGER NOT NULL,
+        concepto TEXT NOT NULL,
+        categoria TEXT NOT NULL,
+        base_centimos INTEGER NOT NULL,
+        tipo_iva_pct INTEGER NOT NULL DEFAULT 0,
+        tercero TEXT NOT NULL DEFAULT '',
+        notas TEXT NOT NULL DEFAULT ''
+      )''',
+      'CREATE INDEX idx_apuntes_fecha ON apuntes_economicos(fecha_ms)',
       'CREATE INDEX idx_lotes_ingrediente ON lotes_ingrediente(ingrediente_id)',
       'CREATE INDEX idx_lineas_receta ON lineas_receta(receta_id)',
       'CREATE INDEX idx_refrescos_fecha ON refrescos_masa_madre(masa_madre_id, fecha_ms)',
@@ -351,5 +364,24 @@ class BaseDatosSoleraObrador extends BaseDatosSolera {
               argumentos: [desdeMs, hastaMs, if (tipo != null) tipo],
               orden: 'fecha_ms ASC'))
           .map(RegistroAutocontrol.fromMap)
+          .toList();
+
+  // ─── Ingresos y gastos ───────────────────────────────────────────
+
+  Future<int> guardarApunteEconomico(ApunteEconomico apunte) =>
+      _guardar('apuntes_economicos', apunte.toMap());
+
+  Future<void> borrarApunteEconomico(int apunteId) =>
+      _borrar('apuntes_economicos', apunteId);
+
+  Future<List<ApunteEconomico>> listarApuntesEconomicos({
+    required int desdeMs,
+    required int hastaMs,
+  }) async =>
+      (await _listar('apuntes_economicos',
+              donde: 'fecha_ms >= ? AND fecha_ms <= ?',
+              argumentos: [desdeMs, hastaMs],
+              orden: 'fecha_ms DESC'))
+          .map(ApunteEconomico.fromMap)
           .toList();
 }

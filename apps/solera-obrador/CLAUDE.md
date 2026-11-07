@@ -15,7 +15,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 6 Catálogos | ✅ 2026-11-07 | `content/obrador/`: alérgenos (Reglamento 1169/2011 anexo II), denominaciones del pan (RD 308/2019 consolidado, con artículo y sal máxima), ingredientes base y controles tipo (sin revisar). Autocompletado de ingredientes, denominación en la receta con aviso de sal, sugerencias de control y banner en Hoy. 30 tests |
 | 7 IA visual | ✅ 2026-11-07 | Ingrediente → «Leer etiqueta con IA»: foto de la etiqueta o ficha del proveedor → propuesta (ingredientes, alérgenos, trazas) con salida estructurada limitada a los 14; la persona la ve y decide. Modelo equilibrado del core (`modeloClaudeEquilibrado`), clave BYO en `estado/clave_anthropic_obrador.dart`. La foto se borra al terminar. 33 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (hogaza tostada sobre crema) en `assets/`, iconos de lanzador generados, logo en la cabecera de Hoy. **GPS: no aplica** (el obrador no trabaja con parcelas) |
-| 9 Economía | pendiente | PROVISIONAL |
+| 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: apuntes con base, tipo de IVA (0/4/10/21) y cuota; resumen del mes (resultado, IVA repercutido y soportado orientativos) y extracto PDF con sello. Precio de venta por receta y margen sobre el coste de ingredientes. **No es REAGP** ni liquidación de impuestos. 37 tests |
 | 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Alérgenos y denominaciones ya citan su norma (`fuente_publica`). Ingredientes base y controles tipo quedan sin revisar a propósito: el alérgeno real es el de la ficha del proveedor y los límites, los del plan de cada obrador. El banner sigue hasta la firma humana |
 | 11 APK + ayuda | pendiente | |
 
@@ -43,6 +43,7 @@ un producto apto** para alérgicos ni celíacos, y la sal y los nutrientes son
 - **2026-11-07 — Lotes en la hornada**: solo se ofrecen los de los ingredientes *directos* de la receta; los de una base se apuntan al hacer la base (pendiente: hornada de subreceta).
 - **2026-11-07 — Alérgenos destacados en MAYÚSCULAS** en la lista de ingredientes de la ficha: la tabla del `informe_periodico` no admite negrita. Comprobar con el técnico si basta.
 - **2026-11-07 — IA con el modelo equilibrado** y no el rápido: un error de lectura de alérgenos tiene consecuencias para una persona alérgica.
+- **2026-11-07 — Economía mínima**: un solo libro de apuntes (sin terceros como entidad ni facturas) mientras el asesor fiscal no fije el régimen; ingreso por defecto al 4 % (pan común) y gasto al 21 %, editables.
 - **2026-11-07 — Importes en céntimos** (como aceitera), no en REAL como la quesera.
 
 ## Datos técnicos

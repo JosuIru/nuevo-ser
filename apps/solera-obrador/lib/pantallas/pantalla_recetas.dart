@@ -6,6 +6,7 @@ import '../datos/base_datos.dart';
 import '../datos/catalogos_generados/catalogo_denominaciones_pan.dart';
 import '../dominio/comprobacion_denominacion.dart';
 import '../dominio/composicion_receta.dart';
+import '../dominio/resumen_economico.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/ingrediente.dart';
 import '../modelos/receta.dart';
@@ -254,6 +255,11 @@ class _PantallaFichaRecetaState extends State<PantallaFichaReceta> {
                           formatearEuros(composicion.costeCentimosPieza)),
                     _Dato(SoleraL10n.t('obra.sal_estimada'),
                         '${formatearNumero(composicion.salEstimadaGramosPor100g, decimales: 2)} g / 100 g'),
+                    if (margenPorPieza(receta, composicion) case final margen?)
+                      _Dato(
+                          SoleraL10n.t('obra.margen_pieza'),
+                          '${formatearEuros(margen.margenCentimos)} '
+                          '(${formatearNumero(margen.porcentaje, decimales: 0)} %)'),
                     if (denominacionPorId(receta.denominacion)
                         case final denominacion?) ...[
                       const Divider(height: 32),
@@ -321,6 +327,11 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
       text: formatearNumero(widget.receta?.mermaCoccionPorcentaje ?? 0));
   late bool _esSubreceta = widget.receta?.esSubreceta ?? false;
   late String _denominacion = widget.receta?.denominacion ?? '';
+  late final _precioVenta = TextEditingController(
+      text: (widget.receta?.precioVentaCentimosPieza ?? 0) == 0
+          ? ''
+          : formatearNumero(widget.receta!.precioVentaCentimosPieza / 100,
+              decimales: 2));
   late final List<_LineaEditable> _lineas = [
     for (final linea in widget.lineas)
       _LineaEditable(
@@ -335,6 +346,7 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
   @override
   void dispose() {
     for (final controlador in [
+      _precioVenta,
       _nombre,
       _piezas,
       _merma,
@@ -358,7 +370,8 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
       piezasPorMasa: int.tryParse(_piezas.text.trim()) ?? 1,
       mermaCoccionPorcentaje: leerNumero(_merma.text) ?? 0,
       esSubreceta: _esSubreceta,
-      precioVentaCentimosPieza: widget.receta?.precioVentaCentimosPieza ?? 0,
+      precioVentaCentimosPieza:
+          ((leerNumero(_precioVenta.text) ?? 0) * 100).round(),
       notas: widget.receta?.notas ?? '',
     ));
     final lineas = <LineaReceta>[
@@ -424,6 +437,13 @@ class _PantallaEditarRecetaState extends State<PantallaEditarReceta> {
                     const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
                     labelText: SoleraL10n.t('obra.merma_coccion')),
+              ),
+              TextField(
+                controller: _precioVenta,
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                decoration: InputDecoration(
+                    labelText: SoleraL10n.t('obra.precio_venta_pieza')),
               ),
               DropdownButtonFormField<String>(
                 initialValue: denominacionPorId(_denominacion) == null

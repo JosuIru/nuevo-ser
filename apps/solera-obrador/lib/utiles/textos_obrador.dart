@@ -51,3 +51,18 @@ double? leerNumero(String texto) {
       : limpio;
   return double.tryParse(normalizado);
 }
+
+/// Nombre visible de una categoría del libro de ingresos y gastos.
+String nombreCategoriaEconomica(String categoria) => switch (categoria) {
+      'venta_mostrador' => SoleraL10n.t('obra.categoria_venta_mostrador'),
+      'venta_pedidos' => SoleraL10n.t('obra.categoria_venta_pedidos'),
+      'otros_ingresos' => SoleraL10n.t('obra.categoria_otros_ingresos'),
+      'materia_prima' => SoleraL10n.t('obra.categoria_materia_prima'),
+      'envases' => SoleraL10n.t('obra.categoria_envases'),
+      'energia' => SoleraL10n.t('obra.categoria_energia'),
+      'alquiler' => SoleraL10n.t('obra.categoria_alquiler'),
+      'personal' => SoleraL10n.t('obra.categoria_personal'),
+      'maquinaria' => SoleraL10n.t('obra.categoria_maquinaria'),
+      'otros_gastos' => SoleraL10n.t('obra.categoria_otros_gastos'),
+      _ => categoria,
+    };

@@ -6,6 +6,7 @@ import '../datos/base_datos.dart';
 import '../estado/clave_anthropic_obrador.dart';
 import '../modelos/titular.dart';
 import 'pantalla_documentos.dart';
+import 'pantalla_economia.dart';
 
 class PantallaAjustes extends StatefulWidget {
   const PantallaAjustes({super.key});
@@ -70,6 +71,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.euro_outlined),
+            title: Text(SoleraL10n.t('obra.ingresos_y_gastos')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaEconomia())),
           ),
           ListTile(
             contentPadding: EdgeInsets.zero,

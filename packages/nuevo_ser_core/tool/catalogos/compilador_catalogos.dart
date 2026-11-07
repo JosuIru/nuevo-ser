@@ -16,18 +16,35 @@
 
 import 'dart:io';
 
+/// Prefijos de `revisado_por` que cuentan como **firma de una persona**
+/// experta (misma convención que `scripts/pendientes` y
+/// `scripts/auditoria`). `fuente_publica`, una cita o `revision-ia:` son
+/// revisión documental: útil, pero no apaga el banner de datos provisionales.
+const List<String> prefijosFirmaPersona = ['asesor:', 'persona:'];
+
+bool esFirmaDePersona(String valor) {
+  final normalizado = valor.trim().toLowerCase();
+  return prefijosFirmaPersona.any(normalizado.startsWith);
+}
+
 /// Un CSV de catálogo ya leído, sin las líneas de comentario `#`.
 class CsvCatalogo {
-  CsvCatalogo(this.cabecera, this.filas, this.revisadas);
+  CsvCatalogo(this.cabecera, this.filas, this.revisadas, this.firmadas);
 
   final List<String> cabecera;
   final List<List<String>> filas;
 
-  /// Filas con `revisado_por` no vacío.
+  /// Filas con `revisado_por` no vacío (cualquier revisión, también documental).
   final int revisadas;
 
+  /// Filas firmadas por una persona ([esFirmaDePersona]).
+  final int firmadas;
+
   int get totalFilas => filas.length;
-  bool get todasRevisadas => totalFilas > 0 && revisadas == totalFilas;
+
+  /// Solo con todas las filas **firmadas por persona**: es lo que apaga el
+  /// banner. Una revisión documental o de IA no basta (riesgo R1).
+  bool get todasRevisadas => totalFilas > 0 && firmadas == totalFilas;
 
   /// Valores distintos de `revisado_por`.
   Set<String> get revisores {
@@ -87,14 +104,15 @@ class CompiladorCatalogos {
     if (tabla.cabecera.isEmpty) throw Exception('CSV vacío: $nombre');
     final indiceRevisado = tabla.cabecera.indexOf('revisado_por');
     var revisadas = 0;
+    var firmadas = 0;
     for (final fila in tabla.filas) {
-      if (indiceRevisado >= 0 &&
-          indiceRevisado < fila.length &&
-          fila[indiceRevisado].trim().isNotEmpty) {
-        revisadas++;
-      }
+      final valor = indiceRevisado >= 0 && indiceRevisado < fila.length
+          ? fila[indiceRevisado]
+          : '';
+      if (valor.trim().isNotEmpty) revisadas++;
+      if (esFirmaDePersona(valor)) firmadas++;
     }
-    final csv = CsvCatalogo(tabla.cabecera, tabla.filas, revisadas);
+    final csv = CsvCatalogo(tabla.cabecera, tabla.filas, revisadas, firmadas);
     if (!csv.todasRevisadas) todasRevisadas = false;
     return csv;
   }
@@ -109,10 +127,11 @@ class CompiladorCatalogos {
       ..writeln('//')
       ..writeln('// Fuente: content/$carpetaContent/$nombreCsv')
       ..writeln('// Generado: $fecha')
-      ..writeln('// Filas: ${csv.totalFilas} (${csv.revisadas} revisadas, '
-          '${csv.totalFilas - csv.revisadas} pendientes de revisión)');
+      ..writeln('// Filas: ${csv.totalFilas} (${csv.firmadas} firmadas por persona, '
+          '${csv.revisadas} con alguna revisión, '
+          '${csv.totalFilas - csv.revisadas} sin revisar)');
     if (csv.todasRevisadas) {
-      lineas.writeln('// Estado: ✅ todas las filas revisadas por: '
+      lineas.writeln('// Estado: ✅ todas las filas firmadas por: '
           '${csv.revisores.join(", ")}');
     } else {
       lineas
@@ -135,8 +154,9 @@ class CompiladorCatalogos {
       ..writeln('// GENERADO AUTOMÁTICAMENTE por tool/compilar_catalogos.dart.')
       ..writeln('//')
       ..writeln('// Flag global: true si TODAS las filas de $descripcionCatalogos'
-          ' tienen')
-      ..writeln('// `revisado_por` no vacío. La app lo lee para mostrar/ocultar el')
+          ' están')
+      ..writeln('// firmadas por persona (`revisado_por` con `asesor:` o `persona:`).')
+      ..writeln('// La app lo lee para mostrar/ocultar el')
       ..writeln('// banner "$textoBanner".')
       ..writeln()
       ..writeln('const bool catalogosCompletamenteRevisados = '

@@ -17,9 +17,14 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (plantón en maceta sobre crema) en `assets/`, iconos del lanzador (`flutter_launcher_icons`), arranque crema con el logo y cabecera de Hoy con logo y cifras (disponibles, listas, salidas sin pasaporte). **QR de bandejas** con el patrón de Arbolado (leído y copiado, sin tocarlo): el QR lleva el código tal cual; escáner (`mobile_scanner`) desde Hoy y Bandejas → ficha de la bandeja o alta con ese código; hoja A4 de 21 etiquetas QR por página. **GPS**: «Usar mi ubicación» en la zona (geolocator) y mapa de zonas (OSM) desde Zonas. Permisos INTERNET, ubicación y cámara en el manifiesto. 68 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir) en `configuraciones_fiscales`; las **ventas de planta salen de las salidas con importe** (con el IVA del 10 % o la compensación REAGP del 12 % según el régimen actual) y el libro recoge otros ingresos y los gastos por categoría; resumen del año, ventas por especie y extracto PDF con sello. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 74 tests |
 | 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Nota en `content/vivero/revision-2026-11-07.md`: las 221 filas de los 4 catálogos llevan fuente (`fuente_publica:` o `revision-ia:`); **`catalogosCompletamenteRevisados` sigue en `false`** a propósito y el banner se ve en Hoy. Cuaderno de tratamientos cotejado con el RD 1311/2012, anexo III, parte I: superficie en ha, aire libre o protegido, cultivo con variedad, **kg o l de producto gastado** (campo nuevo del tratamiento) y observaciones. Etiqueta y registro ya citaban el 2017/2313 y el RD 1054/2021 (art. 16 y 20). `scripts/auditoria` no conoce aún la vertical (lista cerrada en su código: calle N). 74 tests |
-| 11 APK + ayuda | pendiente | |
+| 11 APK + ayuda | ✅ 2026-11-07 | Ayuda in-app (Ajustes → Ayuda, 9 apartados en 4 idiomas, con «lo que la app no hace»), README, APK release de **80,3 MB** firmada con la clave de depuración (como el resto de la suite; copia en `~/larrea-apks/solera-vivero-release.apk`) y `flutter clean` después. 75 tests. **Sin build Linux** (no lo pide el encargo; ahorra disco). **Release de GitHub sin publicar** (la publica la integración) |
 
-**Siguiente acción**: bloque 11 (ayuda in-app, README y APK).
+**Siguiente acción**: F1 completa salvo lo humano (`BLOQUEOS-PENDIENTES.md`).
+Pendientes técnicos: que `scripts/auditoria` conozca la vertical (calle N);
+exportar al SIEX (módulo T4) antes del 1-1-2027; catálogo de regiones de
+procedencia del material forestal; zonas protegidas de España (anexo III del
+2019/2072) para afinar la marca «ZP»; quizá integrar el módulo T1 Pasaporte
+del core cuando exista (hoy el pasaporte es propio de la app).
 
 ## Encuadre
 

@@ -7,6 +7,7 @@ import '../estado/cambios_datos.dart';
 import '../modelos/vivero.dart';
 import 'hoja_formulario.dart';
 import 'identificar_plaga.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_economia.dart';
 import 'pantalla_documentos.dart';
 
@@ -127,6 +128,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => pantallaClaveVivero())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.help_outline),
+            title: Text(SoleraL10n.t('vive.ayuda')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaAyuda())),
           ),
           const SelectorIdioma(),
           const SizedBox(height: 24),

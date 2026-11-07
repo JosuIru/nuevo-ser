@@ -140,6 +140,26 @@ void main() {
       }
     });
 
+    test('polinomios con signos y exponentes bien escritos', () {
+      expect(formatearPolinomio({2: 3, 1: -2, 0: 1}), '3x^{2} − 2x + 1');
+      expect(formatearPolinomio({2: -1, 0: -9}), '−x^{2} − 9');
+      expect(formatearPolinomio({1: 1, 0: 0}), 'x');
+      expect(formatearPolinomio({3: 0}), '0');
+    });
+
+    test('ALG.10: las soluciones anulan la ecuación', () {
+      for (final ejercicio in _muestras('ALG.10')) {
+        final soluciones = RegExp(r'x = (−?\d+)')
+            .allMatches(ejercicio.solucion)
+            .map((m) => int.parse(m[1]!.replaceAll('−', '-')))
+            .toList();
+        expect(soluciones, hasLength(2));
+        final suma = soluciones[0] + soluciones[1];
+        final producto = soluciones[0] * soluciones[1];
+        expect(ejercicio.destacado, '${formatearPolinomio({2: 1, 1: -suma, 0: producto})} = 0');
+      }
+    });
+
     test('palabras de números y fracciones', () {
       expect(numeroEnPalabras(21, femenino: true), 'veintiuna');
       expect(numeroEnPalabras(31, femenino: true), 'treinta y una');

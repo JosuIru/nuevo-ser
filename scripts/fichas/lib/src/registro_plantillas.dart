@@ -1,4 +1,6 @@
 import 'ejercicio.dart';
+import 'generadores/algebra_funciones.dart';
+import 'generadores/aritmetica.dart';
 import 'generadores/decimales.dart';
 import 'generadores/divisibilidad_operaciones.dart';
 import 'generadores/estadistica.dart';
@@ -17,6 +19,8 @@ final Map<String, PlantillaFicha> plantillasPorHabilidad = {
     ...plantillasDivisibilidadOperaciones,
     ...plantillasMedidaGeometria,
     ...plantillasEstadistica,
+    ...plantillasAritmetica,
+    ...plantillasAlgebraFunciones,
   ])
     plantilla.idHabilidad: plantilla,
 };
@@ -26,4 +30,5 @@ final Map<String, PlantillaFicha> plantillasPorHabilidad = {
 const Map<String, String> motivosSinPlantilla = {
   ...motivosSinPlantillaGeometria,
   ...motivosSinPlantillaEstadistica,
+  ...motivosSinPlantillaAlgebraFunciones,
 };

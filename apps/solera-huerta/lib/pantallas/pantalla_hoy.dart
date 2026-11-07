@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nuevo_ser_core/nuevo_ser_core.dart' show SoleraL10n;
 
 import '../datos/base_datos.dart';
+import '../datos/catalogos_generados/flag_revision.dart';
 import '../estado/cambios_datos.dart';
 import '../estado/datos_huerta.dart';
 import '../modelos/tratamiento.dart';
@@ -79,7 +80,17 @@ class _PantallaHoyState extends State<PantallaHoy> {
           }
           return ListView(
             padding: const EdgeInsets.all(12),
-            children: _tarjetas(context, cargado),
+            children: [
+              if (!catalogosCompletamenteRevisados)
+                Card(
+                  color: Theme.of(context).colorScheme.tertiaryContainer,
+                  child: ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: Text(SoleraL10n.t('huer.catalogos_provisionales')),
+                  ),
+                ),
+              ..._tarjetas(context, cargado),
+            ],
           );
         },
       ),

@@ -44,7 +44,7 @@ final _llamadaConClave = RegExp(r"SoleraL10n\.tf?\(\s*'([^']*)'");
 /// Sin un segundo punto, que es lo que distingue una clave de traducción
 /// de una de preferencias ('agro.mapa.ultimo_lat') o de la BD ('agro.db').
 final _claveSuelta = RegExp(
-    r"'((?:agro|viti|api|arb|ques|acei|core|fos|nat|obra|sidr|frut|gana)\.(?!db')[a-z0-9_]+)'");
+    r"'((?:agro|viti|api|arb|ques|acei|core|fos|nat|obra|sidr|frut|gana|arom)\.(?!db')[a-z0-9_]+)'");
 
 Map<String, String> _clavesUsadas() {
   final primeraAparicion = <String, String>{};

@@ -9,7 +9,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
-| 2 Modelos + BD | pendiente | |
+| 2 Modelos + BD | ✅ 2026-11-07 | Dominio de ganado copiado de Zunbeltz (`92ade2b`) sin sync ni permisos; explotación, titular, piezas de pasto, visitas, calendario sanitario y apuntes. 10 tablas en la v1. Tabla UGM por trámite (PAC anexo V y Andalucía) como catálogo. 48 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 2.
+**Siguiente acción**: bloque 3 (pantallas).
 
 ## Encuadre
 
@@ -67,7 +67,31 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
 
 ## Decisiones tomadas sin consultar
 
-(Cada una con fecha y porqué.)
+- **2026-11-07 — Zonas → piezas de pasto**: en Zunbeltz el ganado se movía
+  entre `zonas` de una finca; aquí la unidad es la `PiezaPasto` (recinto SIGPAC,
+  tipo de pasto, titularidad, contorno). Columnas `pieza_origen_id`/`pieza_destino_id`.
+- **2026-11-07 — Sin `titular_uid` ni `autor_uid`** (además de `uid` y
+  `actualizado_ms`): son de la política de espacio de Zunbeltz; la F1 es de un
+  solo dispositivo y de un solo titular.
+- **2026-11-07 — Catálogos de códigos sin `OpcionCatalogo`**: los nombres
+  visibles salen de las traducciones `gana.*` (cuatro idiomas), no de pares es/eu.
+- **2026-11-07 — Altas y bajas parciales** (`alta_parcial`, `baja_parcial`):
+  vender 10 corderos no saca al rebaño de su pieza. Solo traslado, entrada y
+  salida cambian la ubicación.
+- **2026-11-07 — Movimiento con los datos del documento de movimiento**
+  (anexo de RD 728/2007 modificado por la DF 3.ª del RD 787/2023, leído en el
+  BOE el 2026-11-07) y tratamiento con los del art. 108.2 del Reglamento (UE)
+  2019/6 (al que remite el art. 41 del RD 666/2023): medicamento, proveedor,
+  prueba de compra, duración, tiempo de espera aunque sea 0.
+- **2026-11-07 — Tabla UGM por trámite como catálogo** (`content/ganadera/tabla_ugm.csv`):
+  la de la PAC del anexo V del RD 1048/2022 (leída en el BOE) y la de Andalucía
+  de Zunbeltz (sin revisar). En la PAC la hembra vacuna adulta cuenta 0,8
+  («otras vacas»; la de leche sería 1,0) y la cerda adulta 0,5 (aproximación a
+  «cerdas de cría >50 kg»). Las cabezas sin crotal cuentan como hembras adultas.
+- **2026-11-07 — Integridad**: un rebaño o una pieza con movimientos no se borra
+  (`ON DELETE RESTRICT`): se cierra o se desactiva. El libro debe conservarse 3
+  años (RD 787/2023 art. 23.2) y el registro de tratamientos 5 (RD 666/2023 art. 41.4).
+- **2026-11-07 — La v1 se amplió en el bloque 2** (nada publicado todavía).
 
 ## Datos técnicos
 

@@ -363,7 +363,76 @@
         "nota": "Avisado por el bando y en el grupo."
       }
     ],
-    "actas": []
+    "actas": [],
+    "sesiones": [
+      {
+        "uid": "octubre",
+        "titulo": "Asamblea de octubre",
+        "inicio": "2026-10-29T19:00:00.000",
+        "lugar": "Local vecinal",
+        "puntos": [
+          {
+            "uid": "oc1",
+            "texto": "Horario del local vecinal",
+            "asunto_uid": "txoko",
+            "notas": "La calle de abajo pide cerrar antes entre semana. Se decide votarlo en la app con tres horarios."
+          },
+          {
+            "uid": "oc2",
+            "texto": "Ruegos y preguntas",
+            "asunto_uid": null,
+            "notas": "Piden arreglar la fuente de la plaza. La mesa lo traerá como asunto."
+          }
+        ],
+        "convocada_por_uid": "ane",
+        "asistentes_uids": [
+          "ane",
+          "josean",
+          "maite",
+          "mikel"
+        ],
+        "asistentes_sin_app": 9,
+        "anulada": false,
+        "motivo_anulacion": ""
+      },
+      {
+        "uid": "noviembre",
+        "titulo": "Asamblea de noviembre",
+        "inicio": "2026-11-14T19:00:00.000",
+        "lugar": "Local vecinal",
+        "puntos": [
+          {
+            "uid": "no1",
+            "texto": "Fiestas en septiembre",
+            "asunto_uid": "fiestas",
+            "notas": ""
+          },
+          {
+            "uid": "no2",
+            "texto": "Leña del comunal",
+            "asunto_uid": "comunal",
+            "notas": ""
+          },
+          {
+            "uid": "no3",
+            "texto": "Presupuesto participativo 2027",
+            "asunto_uid": "presupuesto",
+            "notas": ""
+          },
+          {
+            "uid": "no4",
+            "texto": "Ruegos y preguntas",
+            "asunto_uid": null,
+            "notas": ""
+          }
+        ],
+        "convocada_por_uid": "ane",
+        "asistentes_uids": [],
+        "asistentes_sin_app": 0,
+        "anulada": false,
+        "motivo_anulacion": ""
+      }
+    ]
   },
   "casos": [
     {
@@ -1526,6 +1595,467 @@
             }
           },
           "aceptada": false
+        }
+      ]
+    },
+    {
+      "nombre": "asambleas",
+      "pasos": [
+        {
+          "accion": {
+            "uid": "asambleas-0",
+            "tipo": "convocarSesion",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion": {
+                "uid": "nueva",
+                "titulo": "Asamblea extraordinaria",
+                "inicio": "2026-11-14T19:00:00.000",
+                "lugar": "Frontón cubierto",
+                "puntos": [
+                  {
+                    "uid": "n1",
+                    "texto": "Leña del comunal",
+                    "asunto_uid": "comunal",
+                    "notas": ""
+                  },
+                  {
+                    "uid": "n2",
+                    "texto": "Ruegos y preguntas",
+                    "asunto_uid": null,
+                    "notas": ""
+                  }
+                ],
+                "convocada_por_uid": "",
+                "asistentes_uids": [],
+                "asistentes_sin_app": 0,
+                "anulada": false,
+                "motivo_anulacion": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-1",
+            "tipo": "convocarSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion": {
+                "uid": "nueva",
+                "titulo": "Asamblea extraordinaria",
+                "inicio": "2026-11-14T19:00:00.000",
+                "lugar": "Frontón cubierto",
+                "puntos": [
+                  {
+                    "uid": "n1",
+                    "texto": "Leña del comunal",
+                    "asunto_uid": "comunal",
+                    "notas": ""
+                  },
+                  {
+                    "uid": "n2",
+                    "texto": "Ruegos y preguntas",
+                    "asunto_uid": null,
+                    "notas": ""
+                  }
+                ],
+                "convocada_por_uid": "",
+                "asistentes_uids": [],
+                "asistentes_sin_app": 0,
+                "anulada": false,
+                "motivo_anulacion": ""
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "asambleas-2",
+            "tipo": "convocarSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion": {
+                "uid": "nueva",
+                "titulo": "Asamblea extraordinaria",
+                "inicio": "2026-11-14T19:00:00.000",
+                "lugar": "Frontón cubierto",
+                "puntos": [
+                  {
+                    "uid": "n1",
+                    "texto": "Leña del comunal",
+                    "asunto_uid": "no-existe",
+                    "notas": ""
+                  },
+                  {
+                    "uid": "n2",
+                    "texto": "Ruegos y preguntas",
+                    "asunto_uid": null,
+                    "notas": ""
+                  }
+                ],
+                "convocada_por_uid": "",
+                "asistentes_uids": [],
+                "asistentes_sin_app": 0,
+                "anulada": false,
+                "motivo_anulacion": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-3",
+            "tipo": "convocarSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion": {
+                "uid": "nueva",
+                "titulo": "Asamblea extraordinaria",
+                "inicio": "2026-11-14T19:00:00.000",
+                "lugar": " ",
+                "puntos": [
+                  {
+                    "uid": "n1",
+                    "texto": "Leña del comunal",
+                    "asunto_uid": "comunal",
+                    "notas": ""
+                  },
+                  {
+                    "uid": "n2",
+                    "texto": "Ruegos y preguntas",
+                    "asunto_uid": null,
+                    "notas": ""
+                  }
+                ],
+                "convocada_por_uid": "",
+                "asistentes_uids": [],
+                "asistentes_sin_app": 0,
+                "anulada": false,
+                "motivo_anulacion": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-4",
+            "tipo": "convocarSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion": {
+                "uid": "nueva",
+                "titulo": "Asamblea extraordinaria",
+                "inicio": "2026-11-14T19:00:00.000",
+                "lugar": "Frontón cubierto",
+                "puntos": [
+                  {
+                    "uid": "n1",
+                    "texto": "Leña del comunal",
+                    "asunto_uid": "comunal",
+                    "notas": ""
+                  },
+                  {
+                    "uid": "n2",
+                    "texto": "leña del comunal",
+                    "asunto_uid": null,
+                    "notas": ""
+                  }
+                ],
+                "convocada_por_uid": "",
+                "asistentes_uids": [],
+                "asistentes_sin_app": 0,
+                "anulada": false,
+                "motivo_anulacion": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-5",
+            "tipo": "convocarSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion": {
+                "uid": "octubre",
+                "titulo": "Asamblea extraordinaria",
+                "inicio": "2026-11-14T19:00:00.000",
+                "lugar": "Frontón cubierto",
+                "puntos": [
+                  {
+                    "uid": "n1",
+                    "texto": "Leña del comunal",
+                    "asunto_uid": "comunal",
+                    "notas": ""
+                  },
+                  {
+                    "uid": "n2",
+                    "texto": "Ruegos y preguntas",
+                    "asunto_uid": null,
+                    "notas": ""
+                  }
+                ],
+                "convocada_por_uid": "",
+                "asistentes_uids": [],
+                "asistentes_sin_app": 0,
+                "anulada": false,
+                "motivo_anulacion": ""
+              }
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-6",
+            "tipo": "convocarSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion": {
+                "uid": "nueva",
+                "titulo": "Asamblea extraordinaria",
+                "inicio": "2026-11-14T19:00:00.000",
+                "lugar": "Frontón",
+                "puntos": [
+                  {
+                    "uid": "n1",
+                    "texto": "Leña del comunal",
+                    "asunto_uid": "comunal",
+                    "notas": ""
+                  },
+                  {
+                    "uid": "n2",
+                    "texto": "Ruegos y preguntas",
+                    "asunto_uid": null,
+                    "notas": ""
+                  }
+                ],
+                "convocada_por_uid": "",
+                "asistentes_uids": [],
+                "asistentes_sin_app": 0,
+                "anulada": false,
+                "motivo_anulacion": ""
+              }
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "asambleas-7",
+            "tipo": "anularSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "noviembre",
+              "motivo": " "
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-8",
+            "tipo": "anularSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "noviembre",
+              "motivo": "Coincide con el funeral"
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "asambleas-9",
+            "tipo": "anularSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "noviembre",
+              "motivo": "Otra vez"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-10",
+            "tipo": "anularSesion",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "motivo": "Tarde"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-11",
+            "tipo": "anotarAsistencia",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "noviembre",
+              "persona_uid": "pili",
+              "presente": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-12",
+            "tipo": "anotarAsistencia",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "nueva",
+              "persona_uid": "pili",
+              "presente": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-13",
+            "tipo": "anotarAsistencia",
+            "autor_uid": "maite",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "persona_uid": "pili",
+              "presente": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-14",
+            "tipo": "anotarAsistencia",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "persona_uid": "nadie",
+              "presente": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-15",
+            "tipo": "anotarAsistencia",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "persona_uid": "pili",
+              "presente": true
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "asambleas-16",
+            "tipo": "anotarAsistencia",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "persona_uid": "maite",
+              "presente": false
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "asambleas-17",
+            "tipo": "anotarAsistencia",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "no-existe",
+              "persona_uid": "pili",
+              "presente": true
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-18",
+            "tipo": "anotarAsistentesSinApp",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "cantidad": -1
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-19",
+            "tipo": "anotarAsistentesSinApp",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "cantidad": 12
+            }
+          },
+          "aceptada": true
+        },
+        {
+          "accion": {
+            "uid": "asambleas-20",
+            "tipo": "anotarNotasPunto",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "punto_uid": "no-existe",
+              "notas": "x"
+            }
+          },
+          "aceptada": false
+        },
+        {
+          "accion": {
+            "uid": "asambleas-21",
+            "tipo": "anotarNotasPunto",
+            "autor_uid": "ane",
+            "momento": "2026-11-10T11:00:00.000Z",
+            "datos": {
+              "sesion_uid": "octubre",
+              "punto_uid": "oc2",
+              "notas": " La fuente ya es asunto. "
+            }
+          },
+          "aceptada": true
         }
       ]
     }

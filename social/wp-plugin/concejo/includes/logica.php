@@ -16,6 +16,7 @@
  *     urnas            asunto_uid => { asunto_uid, participaciones[], conteos[] }
  *     compromisos      uid        => compromiso
  *     actas            asunto_uid => { asunto_uid, firmas[], compromisos_al_firmar_uids }
+ *     sesiones         uid        => asamblea (fecha, lugar, puntos[], asistencia)
  *
  * **Las papeletas no están en el estado**: votar devuelve la papeleta
  * aparte y el almacén la guarda en su propia tabla, sin persona (si el
@@ -644,6 +645,76 @@ function concejo_aplicar_accion( array $estado, array $accion, string $autor_uid
 			$estado['actas'][ $asunto_uid ] = $acta;
 			break;
 
+		case 'convocarSesion':
+			$solo_mesa();
+			$nueva = concejo_sesion_convocada( $estado, (array) ( $datos['sesion'] ?? array() ) );
+			$uid   = $nueva['uid'];
+			if ( isset( $estado['sesiones'][ $uid ] ) ) {
+				$anterior = $estado['sesiones'][ $uid ];
+				concejo_sesion_antes_de_empezar( $anterior, $ahora, $zona );
+				$nueva['convocada_por_uid'] = $anterior['convocada_por_uid'];
+			} else {
+				$nueva['convocada_por_uid'] = $autor_uid;
+			}
+			$estado['sesiones'][ $uid ] = $nueva;
+			break;
+
+		case 'anularSesion':
+			$solo_mesa();
+			$sesion = concejo_sesion( $estado, $texto( 'sesion_uid' ) );
+			concejo_sesion_antes_de_empezar( $sesion, $ahora, $zona );
+			if ( '' === $texto( 'motivo' ) ) {
+				concejo_rechazar( 'Para anular una asamblea hay que decir por qué' );
+			}
+			$sesion['anulada']          = true;
+			$sesion['motivo_anulacion'] = $texto( 'motivo' );
+			$estado['sesiones'][ $sesion['uid'] ] = $sesion;
+			break;
+
+		case 'anotarAsistencia':
+			$persona_uid = $texto( 'persona_uid' );
+			if ( ! isset( $estado['personas'][ $persona_uid ] ) ) {
+				concejo_rechazar( 'No existe esa persona' );
+			}
+			$solo_mesa();
+			$sesion = concejo_sesion_con_asistencia( $estado, $texto( 'sesion_uid' ), $ahora, $zona );
+			$asistentes = array_values( array_diff( $sesion['asistentes_uids'] ?? array(), array( $persona_uid ) ) );
+			if ( true === ( $datos['presente'] ?? false ) ) {
+				$asistentes[] = $persona_uid;
+			}
+			sort( $asistentes );
+			$sesion['asistentes_uids']            = $asistentes;
+			$estado['sesiones'][ $sesion['uid'] ] = $sesion;
+			break;
+
+		case 'anotarAsistentesSinApp':
+			$solo_mesa();
+			$sesion   = concejo_sesion_con_asistencia( $estado, $texto( 'sesion_uid' ), $ahora, $zona );
+			$cantidad = $datos['cantidad'] ?? null;
+			if ( ! is_numeric( $cantidad ) || (int) $cantidad < 0 ) {
+				concejo_rechazar( 'No puede venir gente en negativo' );
+			}
+			$sesion['asistentes_sin_app']         = (int) $cantidad;
+			$estado['sesiones'][ $sesion['uid'] ] = $sesion;
+			break;
+
+		case 'anotarNotasPunto':
+			$solo_mesa();
+			$sesion     = concejo_sesion_con_asistencia( $estado, $texto( 'sesion_uid' ), $ahora, $zona );
+			$punto_uid  = $texto( 'punto_uid' );
+			$encontrado = false;
+			foreach ( $sesion['puntos'] as $indice => $punto ) {
+				if ( $punto['uid'] === $punto_uid ) {
+					$sesion['puntos'][ $indice ]['notas'] = $texto( 'notas' );
+					$encontrado                           = true;
+				}
+			}
+			if ( ! $encontrado ) {
+				concejo_rechazar( 'No existe ese punto del orden del día' );
+			}
+			$estado['sesiones'][ $sesion['uid'] ] = $sesion;
+			break;
+
 		default:
 			concejo_rechazar( 'Acción desconocida' );
 	}
@@ -652,5 +723,91 @@ function concejo_aplicar_accion( array $estado, array $accion, string $autor_uid
 		'estado'        => $estado,
 		'papeleta'      => $papeleta,
 		'persona_nueva' => $persona_nueva,
+	);
+}
+
+// ------------------------------------------------------------- asambleas
+
+function concejo_sesion( array $estado, string $uid ): array {
+	if ( ! isset( $estado['sesiones'][ $uid ] ) ) {
+		concejo_rechazar( 'No existe la asamblea' );
+	}
+	return $estado['sesiones'][ $uid ];
+}
+
+/** Como `Sesion._soloAntesDeEmpezar`: se cambia o anula antes de empezar. */
+function concejo_sesion_antes_de_empezar( array $sesion, DateTimeImmutable $ahora, DateTimeZone $zona ): void {
+	if ( ! empty( $sesion['anulada'] ) ) {
+		concejo_rechazar( 'La asamblea está anulada' );
+	}
+	if ( $ahora >= concejo_leer_fecha( $sesion['inicio'], $zona ) ) {
+		concejo_rechazar( 'La asamblea ya ha empezado' );
+	}
+}
+
+/** Como `Sesion.admiteAsistenciaEn`: desde el día de la asamblea. */
+function concejo_sesion_con_asistencia( array $estado, string $uid, DateTimeImmutable $ahora, DateTimeZone $zona ): array {
+	$sesion = concejo_sesion( $estado, $uid );
+	if ( ! empty( $sesion['anulada'] ) ) {
+		concejo_rechazar( 'La asamblea está anulada' );
+	}
+	if ( $ahora < concejo_leer_fecha( $sesion['inicio'], $zona )->setTime( 0, 0 ) ) {
+		concejo_rechazar( 'La asistencia se apunta desde el día de la asamblea' );
+	}
+	return $sesion;
+}
+
+/**
+ * La convocatoria que manda la app, comprobada y limpia (como
+ * `Sesion.problemas` y `EstadoConcejo._convocarSesion`). Sale sin
+ * asistencia: se convoca antes de empezar.
+ */
+function concejo_sesion_convocada( array $estado, array $datos ): array {
+	$uid    = trim( (string) ( $datos['uid'] ?? '' ) );
+	$titulo = trim( (string) ( $datos['titulo'] ?? '' ) );
+	$lugar  = trim( (string) ( $datos['lugar'] ?? '' ) );
+	$inicio = (string) ( $datos['inicio'] ?? '' );
+	if ( '' === $uid || '' === $titulo || '' === $lugar || '' === $inicio ) {
+		concejo_rechazar( 'A la convocatoria le falta título, lugar o fecha' );
+	}
+	concejo_leer_fecha( $inicio, new DateTimeZone( 'UTC' ) );
+	$puntos = array();
+	$textos = array();
+	$uids   = array();
+	foreach ( (array) ( $datos['puntos'] ?? array() ) as $punto ) {
+		$texto_punto = trim( (string) ( $punto['texto'] ?? '' ) );
+		if ( '' === $texto_punto ) {
+			concejo_rechazar( 'Un punto del orden del día está vacío' );
+		}
+		$asunto_uid = $punto['asunto_uid'] ?? null;
+		if ( null !== $asunto_uid && empty( $estado['asuntos'][ (string) $asunto_uid ]['abierto'] ) ) {
+			concejo_rechazar( 'Un punto apunta a un asunto que no está abierto' );
+		}
+		$textos[] = mb_strtolower( $texto_punto );
+		$uids[]   = (string) ( $punto['uid'] ?? '' );
+		$puntos[] = array(
+			'uid'        => (string) ( $punto['uid'] ?? '' ),
+			'texto'      => (string) $punto['texto'],
+			'asunto_uid' => null === $asunto_uid ? null : (string) $asunto_uid,
+			'notas'      => (string) ( $punto['notas'] ?? '' ),
+		);
+	}
+	if ( array() === $puntos ) {
+		concejo_rechazar( 'La asamblea necesita algún punto en el orden del día' );
+	}
+	if ( count( array_unique( $textos ) ) !== count( $textos ) || count( array_unique( $uids ) ) !== count( $uids ) ) {
+		concejo_rechazar( 'Hay puntos repetidos en el orden del día' );
+	}
+	return array(
+		'uid'                => $uid,
+		'titulo'             => $titulo,
+		'inicio'             => $inicio,
+		'lugar'              => $lugar,
+		'puntos'             => $puntos,
+		'convocada_por_uid'  => '',
+		'asistentes_uids'    => array(),
+		'asistentes_sin_app' => 0,
+		'anulada'            => false,
+		'motivo_anulacion'   => '',
 	);
 }

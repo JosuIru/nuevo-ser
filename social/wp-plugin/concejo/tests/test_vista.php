@@ -74,4 +74,9 @@ comprobar( ! in_array( 'borrador', $uids( 'pili' ), true ), 'una vecina no ve lo
 $json = (string) json_encode( concejo_vista( array( 'personas' => $estado['personas'] ), array(), 'pili', 'x', 0, $ahora, $zona ) );
 comprobar( str_contains( $json, '"consentimientos":{}' ), 'consentimientos vacío sale como objeto' );
 
+// Las asambleas las ve todo el mundo.
+$sesiones_vecina = $vista( 'pili' )['sesiones'];
+comprobar( 2 === count( $sesiones_vecina ), 'una vecina ve las asambleas' );
+comprobar( in_array( 'maite', array_merge( ...array_column( $sesiones_vecina, 'asistentes_uids' ) ), true ), 'y quién vino' );
+
 terminar();

@@ -139,5 +139,7 @@ function concejo_vista(
 		'actas'           => array_values(
 			array_filter( $estado['actas'] ?? array(), fn( $a ) => isset( $asuntos[ $a['asunto_uid'] ] ) )
 		),
+		// Las asambleas son públicas para todo el espacio, también quién vino.
+		'sesiones'        => array_values( $estado['sesiones'] ?? array() ),
 	);
 }

@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import '../datos/json_dominio.dart';
 
 import '../dominio/acta.dart';
+import '../dominio/anuncio.dart';
 import '../dominio/asunto.dart';
 import '../dominio/reglas_decision.dart';
 import '../dominio/compromiso.dart';
@@ -30,6 +31,7 @@ class EstadoConcejo extends ChangeNotifier {
     List<Compromiso> compromisos = const [],
     Map<String, Acta> actas = const {},
     List<Sesion> sesiones = const [],
+    List<Anuncio> anuncios = const [],
     DateTime Function()? reloj,
     this.esEjemplo = false,
   })  : _nombreEspacio = nombreEspacio,
@@ -42,6 +44,7 @@ class EstadoConcejo extends ChangeNotifier {
         _compromisos = [...compromisos],
         _actas = {...actas},
         _sesiones = [...sesiones],
+        _anuncios = [...anuncios],
         _reloj = reloj ?? DateTime.now;
 
   String _nombreEspacio;
@@ -58,6 +61,7 @@ class EstadoConcejo extends ChangeNotifier {
   final List<Compromiso> _compromisos;
   final Map<String, Acta> _actas;
   final List<Sesion> _sesiones;
+  final List<Anuncio> _anuncios;
   final DateTime Function() _reloj;
   var _contadorUid = 0;
 
@@ -78,6 +82,20 @@ class EstadoConcejo extends ChangeNotifier {
       [..._sesiones]..sort((a, b) => a.inicio.compareTo(b.inicio)));
   Sesion sesion(String uid) => _sesiones.firstWhere((s) => s.uid == uid);
   bool get soyMesa => personaActual.esMesaEn(ahora);
+
+  /// Todos los anuncios, también los retirados y caducados.
+  List<Anuncio> get anuncios => List.unmodifiable(_anuncios);
+
+  /// Lo que se ve en el tablón: los fijados arriba y luego lo más reciente.
+  List<Anuncio> get anunciosVigentes {
+    final momento = ahora;
+    return [
+      for (final anuncio in _anuncios)
+        if (anuncio.vigenteEn(momento)) anuncio,
+    ]..sort((a, b) => a.fijado != b.fijado
+        ? (a.fijado ? -1 : 1)
+        : b.publicado.compareTo(a.publicado));
+  }
 
   Asunto asunto(String uid) => _asuntos.firstWhere((a) => a.uid == uid);
 
@@ -223,6 +241,7 @@ class EstadoConcejo extends ChangeNotifier {
     cambiarMapa(_consentimientos, otro._consentimientos);
     cambiarMapa(_actas, otro._actas);
     cambiar(_sesiones, otro._sesiones);
+    cambiar(_anuncios, otro._anuncios);
     notifyListeners();
   }
 
@@ -410,6 +429,54 @@ class EstadoConcejo extends ChangeNotifier {
 
   Null _anotarNotasPunto(String uid, String puntoUid, String notas) =>
       _cambiarSesion(uid, (s) => s.conNotas(puntoUid, notas, ahora));
+
+  // ------------------------------------------------------------- tablón
+
+  String nuevoUidAnuncio() => _nuevoUid('an');
+
+  /// Publica cualquiera; quién y cuándo los pone la app, no el anuncio.
+  Null _publicarAnuncio(Anuncio anuncio) {
+    final problemas = anuncio.problemas(ahora);
+    if (problemas.isNotEmpty) {
+      throw StateError('No se puede publicar: ${problemas.join(', ')}');
+    }
+    if (_anuncios.any((a) => a.uid == anuncio.uid)) {
+      throw StateError('Identificador de anuncio repetido');
+    }
+    _anuncios.add(Anuncio(
+      uid: anuncio.uid,
+      titulo: anuncio.titulo.trim(),
+      texto: anuncio.texto.trim(),
+      autorUid: personaActual.uid,
+      publicado: ahora,
+      hasta: anuncio.hasta,
+    ));
+  }
+
+  int _indiceAnuncio(String uid) {
+    final indice = _anuncios.indexWhere((a) => a.uid == uid);
+    if (indice < 0) throw StateError('No existe el anuncio');
+    return indice;
+  }
+
+  /// Quien lo publicó, sin más; la mesa, el de otra persona diciendo por qué.
+  Null _retirarAnuncio(String uid, String motivo) {
+    final indice = _indiceAnuncio(uid);
+    final anuncio = _anuncios[indice];
+    if (anuncio.autorUid != personaActual.uid) {
+      _soloMesa();
+      if (motivo.trim().isEmpty) {
+        throw StateError('Para retirar el anuncio de otra persona, di por qué');
+      }
+    }
+    _anuncios[indice] = anuncio.retirar(motivo: motivo);
+  }
+
+  Null _fijarAnuncio(String uid, bool fijado) {
+    _soloMesa();
+    final indice = _indiceAnuncio(uid);
+    _anuncios[indice] = _anuncios[indice].conFijado(fijado);
+  }
 
   // --------------------------------------------------- el canal en papel
 
@@ -636,6 +703,12 @@ class EstadoConcejo extends ChangeNotifier {
           texto('sesion_uid'), (datos['cantidad'] as num).toInt()),
       TipoAccion.anotarNotasPunto => _anotarNotasPunto(
           texto('sesion_uid'), texto('punto_uid'), texto('notas')),
+      TipoAccion.publicarAnuncio =>
+        _publicarAnuncio(anuncioDesdeJson(datos['anuncio'] as Json)),
+      TipoAccion.retirarAnuncio =>
+        _retirarAnuncio(texto('anuncio_uid'), opcional('motivo') ?? ''),
+      TipoAccion.fijarAnuncio =>
+        _fijarAnuncio(texto('anuncio_uid'), datos['fijado'] as bool),
     };
   }
 
@@ -790,4 +863,13 @@ class EstadoConcejo extends ChangeNotifier {
   void anotarNotasPunto(String sesionUid, String puntoUid, String notas) =>
       _hacer(TipoAccion.anotarNotasPunto,
           {'sesion_uid': sesionUid, 'punto_uid': puntoUid, 'notas': notas});
+
+  void publicarAnuncio(Anuncio anuncio) =>
+      _hacer(TipoAccion.publicarAnuncio, {'anuncio': anuncioAJson(anuncio)});
+
+  void retirarAnuncio(String anuncioUid, String motivo) => _hacer(
+      TipoAccion.retirarAnuncio, {'anuncio_uid': anuncioUid, 'motivo': motivo});
+
+  void fijarAnuncio(String anuncioUid, {required bool fijado}) => _hacer(
+      TipoAccion.fijarAnuncio, {'anuncio_uid': anuncioUid, 'fijado': fijado});
 }

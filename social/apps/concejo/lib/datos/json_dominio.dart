@@ -15,6 +15,7 @@ import '../dominio/debate.dart';
 import '../dominio/persona.dart';
 import '../dominio/reglas_decision.dart';
 import '../dominio/urna.dart';
+import '../dominio/anuncio.dart';
 import '../dominio/sesion.dart';
 
 typedef Json = Map<String, dynamic>;
@@ -379,4 +380,30 @@ Sesion sesionDesdeJson(Json json) => Sesion(
       asistentesSinApp: (json['asistentes_sin_app'] as num?)?.toInt() ?? 0,
       anulada: json['anulada'] as bool? ?? false,
       motivoAnulacion: json['motivo_anulacion'] as String? ?? '',
+    );
+
+// --------------------------------------------------------------- anuncio
+
+Json anuncioAJson(Anuncio anuncio) => {
+      'uid': anuncio.uid,
+      'titulo': anuncio.titulo,
+      'texto': anuncio.texto,
+      'autor_uid': anuncio.autorUid,
+      'publicado': anuncio.publicado.toIso8601String(),
+      'hasta': anuncio.hasta?.toIso8601String(),
+      'fijado': anuncio.fijado,
+      'retirado': anuncio.retirado,
+      'motivo_retirada': anuncio.motivoRetirada,
+    };
+
+Anuncio anuncioDesdeJson(Json json) => Anuncio(
+      uid: json['uid'] as String,
+      titulo: json['titulo'] as String? ?? '',
+      texto: json['texto'] as String? ?? '',
+      autorUid: json['autor_uid'] as String? ?? '',
+      publicado: _leerFecha(json['publicado']),
+      hasta: json['hasta'] == null ? null : _leerFecha(json['hasta']),
+      fijado: json['fijado'] as bool? ?? false,
+      retirado: json['retirado'] as bool? ?? false,
+      motivoRetirada: json['motivo_retirada'] as String? ?? '',
     );

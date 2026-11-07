@@ -12,6 +12,7 @@ import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/persona.dart';
 import '../dominio/reglas_decision.dart';
+import '../dominio/anuncio.dart';
 import '../dominio/sesion.dart';
 import '../dominio/urna.dart';
 import 'estado_concejo.dart';
@@ -247,12 +248,50 @@ EstadoConcejo estadoDeEjemplo({DateTime? hoy}) {
     ),
   ];
 
+  final anuncios = [
+    Anuncio(
+      uid: 'agua',
+      titulo: 'Corte de agua por la obra de la calle Mayor',
+      texto: 'Pasado mañana, de 9 a 12. Llenad alguna garrafa la víspera.',
+      autorUid: 'ane',
+      publicado: aLas(-1, 10),
+      hasta: dias(2),
+      fijado: true,
+    ),
+    Anuncio(
+      uid: 'poda',
+      titulo: 'Taller de poda de frutales',
+      texto: 'El sábado por la mañana en la huerta de Iker. Quien tenga '
+          'tijeras, que las traiga.',
+      autorUid: 'josean',
+      publicado: aLas(-2, 20),
+      hasta: dias(5),
+    ),
+    Anuncio(
+      uid: 'nueces',
+      titulo: 'Se regalan nueces',
+      texto: 'Dos sacos de este año. Pasad por casa, al lado de la fuente, '
+          'a partir de las seis.',
+      autorUid: 'maite',
+      publicado: aLas(-3, 18),
+    ),
+    Anuncio(
+      uid: 'feria',
+      titulo: 'Feria de artesanía en el valle',
+      texto: 'Hay sitio en dos coches para ir juntos.',
+      autorUid: 'mikel',
+      publicado: aLas(-10, 12),
+      hasta: dias(-3),
+    ),
+  ];
+
   return EstadoConcejo(
     nombreEspacio: 'Concejo de Ejemplo',
     personaActual: personas.first,
     personas: personas,
     asuntos: [fiestas, comunal, presupuesto, txoko],
     sesiones: sesiones,
+    anuncios: anuncios,
     urnas: {'txoko': urnaTxoko},
     debates: {
       'fiestas': debateFiestas,

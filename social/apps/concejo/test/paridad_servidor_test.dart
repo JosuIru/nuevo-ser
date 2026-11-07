@@ -11,6 +11,7 @@ import 'dart:io';
 
 import 'package:concejo/datos/instantanea.dart';
 import 'package:concejo/datos/json_dominio.dart';
+import 'package:concejo/dominio/anuncio.dart';
 import 'package:concejo/dominio/asunto.dart';
 import 'package:concejo/dominio/reglas_decision.dart';
 import 'package:concejo/dominio/sesion.dart';
@@ -36,6 +37,22 @@ Asunto _borrador(String uid, {String titulo = 'Arreglar la fuente'}) => Asunto(
 
 const _fecha = '2026-12-01T00:00:00.000';
 
+Json _anuncioNuevo({
+  String uid = 'nuevo',
+  String titulo = 'Se regalan nueces',
+  String texto = '',
+  DateTime? hasta,
+}) =>
+    anuncioAJson(Anuncio(
+      uid: uid,
+      titulo: titulo,
+      texto: texto,
+      autorUid: 'quien-sea',
+      publicado: DateTime(2000),
+      hasta: hasta,
+      fijado: true,
+    ));
+
 Json _sesionNueva({
   String uid = 'nueva',
   String lugar = 'Frontón cubierto',
@@ -48,10 +65,12 @@ Json _sesionNueva({
       inicio: DateTime(2026, 11, 14, 19),
       lugar: lugar,
       puntos: [
-        PuntoOrdenDia(uid: 'n1', texto: 'Leña del comunal', asuntoUid: asuntoUid),
+        PuntoOrdenDia(
+            uid: 'n1', texto: 'Leña del comunal', asuntoUid: asuntoUid),
         PuntoOrdenDia(
             uid: 'n2',
-            texto: dosPuntosIguales ? 'leña del comunal' : 'Ruegos y preguntas'),
+            texto:
+                dosPuntosIguales ? 'leña del comunal' : 'Ruegos y preguntas'),
       ],
     ));
 
@@ -491,26 +510,179 @@ final Map<String, List<_Paso>> _casos = {
   'asambleas': [
     ('maite', TipoAccion.convocarSesion, {'sesion': _sesionNueva()}),
     ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva()}),
-    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(asuntoUid: 'no-existe')}),
+    (
+      'ane',
+      TipoAccion.convocarSesion,
+      {'sesion': _sesionNueva(asuntoUid: 'no-existe')}
+    ),
     ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(lugar: ' ')}),
-    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(dosPuntosIguales: true)}),
-    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(uid: 'octubre')}),
-    ('ane', TipoAccion.convocarSesion, {'sesion': _sesionNueva(lugar: 'Frontón')}),
-    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'noviembre', 'motivo': ' '}),
-    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'noviembre', 'motivo': 'Coincide con el funeral'}),
-    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'noviembre', 'motivo': 'Otra vez'}),
-    ('ane', TipoAccion.anularSesion, {'sesion_uid': 'octubre', 'motivo': 'Tarde'}),
-    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'noviembre', 'persona_uid': 'pili', 'presente': true}),
-    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'nueva', 'persona_uid': 'pili', 'presente': true}),
-    ('maite', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'pili', 'presente': true}),
-    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'nadie', 'presente': true}),
-    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'pili', 'presente': true}),
-    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'octubre', 'persona_uid': 'maite', 'presente': false}),
-    ('ane', TipoAccion.anotarAsistencia, {'sesion_uid': 'no-existe', 'persona_uid': 'pili', 'presente': true}),
-    ('ane', TipoAccion.anotarAsistentesSinApp, {'sesion_uid': 'octubre', 'cantidad': -1}),
-    ('ane', TipoAccion.anotarAsistentesSinApp, {'sesion_uid': 'octubre', 'cantidad': 12}),
-    ('ane', TipoAccion.anotarNotasPunto, {'sesion_uid': 'octubre', 'punto_uid': 'no-existe', 'notas': 'x'}),
-    ('ane', TipoAccion.anotarNotasPunto, {'sesion_uid': 'octubre', 'punto_uid': 'oc2', 'notas': ' La fuente ya es asunto. '}),
+    (
+      'ane',
+      TipoAccion.convocarSesion,
+      {'sesion': _sesionNueva(dosPuntosIguales: true)}
+    ),
+    (
+      'ane',
+      TipoAccion.convocarSesion,
+      {'sesion': _sesionNueva(uid: 'octubre')}
+    ),
+    (
+      'ane',
+      TipoAccion.convocarSesion,
+      {'sesion': _sesionNueva(lugar: 'Frontón')}
+    ),
+    (
+      'ane',
+      TipoAccion.anularSesion,
+      {'sesion_uid': 'noviembre', 'motivo': ' '}
+    ),
+    (
+      'ane',
+      TipoAccion.anularSesion,
+      {'sesion_uid': 'noviembre', 'motivo': 'Coincide con el funeral'}
+    ),
+    (
+      'ane',
+      TipoAccion.anularSesion,
+      {'sesion_uid': 'noviembre', 'motivo': 'Otra vez'}
+    ),
+    (
+      'ane',
+      TipoAccion.anularSesion,
+      {'sesion_uid': 'octubre', 'motivo': 'Tarde'}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistencia,
+      {'sesion_uid': 'noviembre', 'persona_uid': 'pili', 'presente': true}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistencia,
+      {'sesion_uid': 'nueva', 'persona_uid': 'pili', 'presente': true}
+    ),
+    (
+      'maite',
+      TipoAccion.anotarAsistencia,
+      {'sesion_uid': 'octubre', 'persona_uid': 'pili', 'presente': true}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistencia,
+      {'sesion_uid': 'octubre', 'persona_uid': 'nadie', 'presente': true}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistencia,
+      {'sesion_uid': 'octubre', 'persona_uid': 'pili', 'presente': true}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistencia,
+      {'sesion_uid': 'octubre', 'persona_uid': 'maite', 'presente': false}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistencia,
+      {'sesion_uid': 'no-existe', 'persona_uid': 'pili', 'presente': true}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistentesSinApp,
+      {'sesion_uid': 'octubre', 'cantidad': -1}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarAsistentesSinApp,
+      {'sesion_uid': 'octubre', 'cantidad': 12}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarNotasPunto,
+      {'sesion_uid': 'octubre', 'punto_uid': 'no-existe', 'notas': 'x'}
+    ),
+    (
+      'ane',
+      TipoAccion.anotarNotasPunto,
+      {
+        'sesion_uid': 'octubre',
+        'punto_uid': 'oc2',
+        'notas': ' La fuente ya es asunto. '
+      }
+    ),
+  ],
+  'tablón': [
+    ('maite', TipoAccion.publicarAnuncio, {'anuncio': _anuncioNuevo()}),
+    ('maite', TipoAccion.publicarAnuncio, {'anuncio': _anuncioNuevo()}),
+    (
+      'josean',
+      TipoAccion.publicarAnuncio,
+      {'anuncio': _anuncioNuevo(uid: 'vacio', titulo: '  ')}
+    ),
+    (
+      'josean',
+      TipoAccion.publicarAnuncio,
+      {'anuncio': _anuncioNuevo(uid: 'largo', titulo: 'ñ' * 121)}
+    ),
+    (
+      'josean',
+      TipoAccion.publicarAnuncio,
+      {'anuncio': _anuncioNuevo(uid: 'justo', titulo: 'ñ' * 120)}
+    ),
+    (
+      'josean',
+      TipoAccion.publicarAnuncio,
+      {'anuncio': _anuncioNuevo(uid: 'texto', texto: 'ñ' * 2001)}
+    ),
+    (
+      'josean',
+      TipoAccion.publicarAnuncio,
+      {'anuncio': _anuncioNuevo(uid: 'ayer', hasta: DateTime(2026, 11, 9))}
+    ),
+    (
+      'josean',
+      TipoAccion.publicarAnuncio,
+      {'anuncio': _anuncioNuevo(uid: 'hoy', hasta: DateTime(2026, 11, 10))}
+    ),
+    (
+      'josean',
+      TipoAccion.retirarAnuncio,
+      {'anuncio_uid': 'nueces', 'motivo': 'x'}
+    ),
+    (
+      'ane',
+      TipoAccion.retirarAnuncio,
+      {'anuncio_uid': 'nueces', 'motivo': ' '}
+    ),
+    (
+      'ane',
+      TipoAccion.retirarAnuncio,
+      {'anuncio_uid': 'nueces', 'motivo': 'Ya no quedan'}
+    ),
+    (
+      'ane',
+      TipoAccion.retirarAnuncio,
+      {'anuncio_uid': 'nueces', 'motivo': 'Otra vez'}
+    ),
+    (
+      'maite',
+      TipoAccion.retirarAnuncio,
+      {'anuncio_uid': 'nuevo', 'motivo': ''}
+    ),
+    (
+      'ane',
+      TipoAccion.retirarAnuncio,
+      {'anuncio_uid': 'no-existe', 'motivo': 'x'}
+    ),
+    ('maite', TipoAccion.fijarAnuncio, {'anuncio_uid': 'poda', 'fijado': true}),
+    ('ane', TipoAccion.fijarAnuncio, {'anuncio_uid': 'poda', 'fijado': true}),
+    ('ane', TipoAccion.fijarAnuncio, {'anuncio_uid': 'agua', 'fijado': false}),
+    ('ane', TipoAccion.fijarAnuncio, {'anuncio_uid': 'nueces', 'fijado': true}),
+    (
+      'ane',
+      TipoAccion.fijarAnuncio,
+      {'anuncio_uid': 'no-existe', 'fijado': true}
+    ),
   ],
 };
 // dart format on

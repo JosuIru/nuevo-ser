@@ -33,6 +33,9 @@ enum TipoAccion {
   anotarAsistencia,
   anotarAsistentesSinApp,
   anotarNotasPunto,
+  publicarAnuncio,
+  retirarAnuncio,
+  fijarAnuncio,
 }
 
 class AccionConcejo {

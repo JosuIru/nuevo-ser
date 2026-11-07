@@ -15,6 +15,7 @@ import 'formulario_asunto.dart';
 import 'formulario_sesion.dart';
 import 'formulario_tarea.dart';
 import 'pantalla_asambleas.dart';
+import 'pantalla_guia.dart';
 import 'pantalla_personas.dart';
 import 'pantalla_se_ha_hecho.dart';
 import 'pantalla_tablon.dart';
@@ -79,6 +80,15 @@ class _PantallaInicioState extends State<PantallaInicio> {
           appBar: AppBar(
             title: Text(widget.estado.nombreEspacio),
             actions: [
+              IconButton(
+                tooltip: textos.guia,
+                icon: const Icon(Icons.help_outline),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) => PantallaGuia(
+                      nombreEspacio: widget.estado.nombreEspacio,
+                      soyMesa: widget.estado.soyMesa),
+                )),
+              ),
               if (widget.estado.soyMesa)
                 IconButton(
                   tooltip: textos.personas,

@@ -1362,4 +1362,82 @@ class AppLocalizationsEu extends AppLocalizations {
   String avisoTarea(String titulo, String fecha) {
     return 'Izena eman duzu: $titulo, $fecha.';
   }
+
+  @override
+  String get guia => 'Gida';
+
+  @override
+  String get guiaTitulo => 'Nola dabilen';
+
+  @override
+  String get guiaParaTodos => 'Guztiontzat';
+
+  @override
+  String get guiaParaLaMesa => 'Mahaiarentzat';
+
+  @override
+  String get imprimirGuia => 'Gida inprimatu';
+
+  @override
+  String get guiaEntrarTitulo => 'Sartu';
+
+  @override
+  String get guiaEntrar =>
+      'Mahaiak helbide bat eta kode pertsonal bat ematen dizkizu paperean.\nIreki aplikazioa, sakatu «Sartu zure gunean» eta idatzi biak.\nKodea zurea baino ez da: ez partekatu. Galtzen baduzu, mahaiak beste bat aterako dizu eta zaharrak ez du balioko.';
+
+  @override
+  String get guiaDecidirTitulo => 'Iritzia eman eta erabaki';
+
+  @override
+  String get guiaDecidir =>
+      'Gai bakoitzak eztabaida, erabakia eta jarraipena ditu, ireki ondoren aldatzen ez diren datekin.\nEztabaidan, eman alde, aurka, zalantza bat edo aldaketa-proposamen bat. Izenik gabe ere egin dezakezu: mahaiak ikusiko du lehenago.\nErabakian, bozkatu edo eragozpen arrazoitu bat aurkeztu, gai hori nola erabakitzen den.\nAplikazioa erabiltzen ez baduzu, paperean bozka dezakezu: hitz egin mahaiarekin.';
+
+  @override
+  String get guiaEspacioTitulo => 'Batzarrak, lanak eta iragarkiak';
+
+  @override
+  String get guiaEspacio =>
+      '«Batzarrak» atalean gai-zerrenda dago eta, gero, nor etorri zen eta zer hitz egin zen.\n«Lanak» atalean auzolan edo txanda batean izena ematen duzu; bi egun lehenago aplikazioak gogoraraziko dizu.\n«Iragarkiak» atalean gune osoarentzako iragarki bat jar dezakezu, eta nahi duzunean kendu.\n«Egin da?» atalean adostutakoaren jarraipena egiten da.';
+
+  @override
+  String get guiaSinRedTitulo => 'Konexiorik gabe';
+
+  @override
+  String get guiaSinRed =>
+      'Aplikazioak sarerik gabe ere badabil: egiten duzuna gorde eta konexioa itzultzean bidaltzen da.\nGoian ikusiko duzu bidaltzeko zerbait geratzen den. Irristatu behera eguneratzeko.';
+
+  @override
+  String get guiaMesaEmpezarTitulo => 'Hasi';
+
+  @override
+  String get guiaMesaEmpezar =>
+      'Gunearen WordPressa daramanak Concejo plugina instalatzen du eta, Ezarpenak → Concejo atalean, mahaia altan ematen du.\nAplikazioan, «Pertsonak» ikonoarekin, gainerakoak altan eman eta kodea ateratzen diezu.\n«Orria inprimatu» aukerak helbidea eta kodea dituen papera ateratzen du, eskuan emateko. Kodea behin bakarrik erakusten da.\nAsteko laburpena posta bidez jasotzeko, pertsona bakoitzaren posta Ezarpenak → Concejo atalean jartzen da.';
+
+  @override
+  String get guiaMesaAsuntoTitulo => 'Gai bat eraman';
+
+  @override
+  String get guiaMesaAsunto =>
+      '«Gai berria» aukerak mahaiak bakarrik ikusten duen zirriborro bat sortzen du. Irekitzean, datak eta erabakitzeko modua finko geratzen dira.\nFitxako inprimatzeko ikonoarekin iragarki-taularako orria, txartelak eta zenbaketa-orria ateratzen dituzu.\n«Erabaki» atalean, «Aurrez aurreko botoak» aukerak paperean bozkatzen dutenak idazteko eta zenbaketa mahaiko beste pertsona batekin erregistratzeko balio du.\nAmaitzean, idatzi konpromisoak eta sinatu akta mahaiko bi pertsonak.';
+
+  @override
+  String get guiaMesaAsambleaTitulo => 'Batzarrak';
+
+  @override
+  String get guiaMesaAsamblea =>
+      '«Batzarra deitu»: eguna, ordua, lekua eta gai-zerrenda, gai irekiekin eta puntu libreekin.\nInprimatu deialdia iragarki-taularako. Hasi arte alda edo bertan behera utz daiteke, arrazoia emanda.\nBatzarraren egunean, markatu nor etorri den, gehitu aplikaziorik gabeko jendea eta idatzi puntu bakoitzean zer hitz egin den.\nGero, atera akta PDFan eta sinatu eskuz.';
+
+  @override
+  String get guiaMesaTareasTitulo => 'Lanak eta txandak';
+
+  @override
+  String get guiaMesaTareas =>
+      '«Lan berria»: eguna, ordua, lekua eta zenbat pertsona behar diren (0, datozenak).\nTxandetarako, aktibatu «Astero errepikatu» eta aukeratu zenbat aste: aste bakoitzeko lan bat sortzen da.\nAhoz eskatzen dizuna idatz dezakezu, edo kendu.\nEgun horretatik aurrera, «Egindakotzat eman», behar bada ohar batekin.';
+
+  @override
+  String get guiaMesaModerarTitulo => 'Moderatu';
+
+  @override
+  String get guiaMesaModerar =>
+      'Izenik gabeko ekarpenek mahaiak argitaratu arte itxaroten dute.\nBeste pertsona baten ekarpena edo iragarkia ken dezakezu, zergatik den esanda.\nFinkatu iragarki-taularen goian garrantzitsuena.\nMahaiak txandakatzen du: karguak amaiera-data du eta aplikazioak bi aste lehenago abisatzen du.';
 }

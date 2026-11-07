@@ -8,7 +8,7 @@ App de la línea social (`social/`) para que un pueblo, un barrio o un colectivo
 
 ## Estado
 
-**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-7.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 147 tests de Flutter y 211 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
+**v0.1.0 (2026-11-07): bloques F1C-1 a F1C-7.** Al abrirla se entra en un pueblo con la dirección y el código en papel, o se ve el pueblo de ejemplo (allí, el icono de cambiar de cuenta deja verla como vecina o como mesa). Funciona sin red y se sincroniza con el plugin `social/wp-plugin/concejo/`. 151 tests de Flutter y 211 comprobaciones de PHP en verde, analyze limpio, build web OK; probada contra un WordPress real (SQLite) con `test/servidor/servidor_real_test.dart`.
 
 | Bloque | Contenido | Estado |
 |---|---|---|
@@ -76,6 +76,8 @@ Probar contra un WordPress: `CONCEJO_SERVIDOR=http://… CONCEJO_CODIGO_MESA=…
 ## Decisiones tomadas en el código (revisables con el piloto)
 
 - **Asambleas**: la convocatoria se cambia o se anula (con motivo) solo antes de empezar; asistencia y notas, desde el día de la asamblea. La asistencia es pública para el espacio (como en un acta); la gente sin app se cuenta, no se nombra. Un punto puede enlazar un asunto **abierto**. El **acta de la asamblea** sale en PDF desde el día de la sesión (cualquiera puede sacarla: la asistencia ya es pública): quién vino, lo hablado en cada punto y dos huecos para firmar **a mano**. No se firma en la app, a diferencia del acta de un asunto: si el piloto lo pide, haría falta una acción nueva con paridad.
+
+- **Guía dentro de la app** (icono «?» arriba, para todo el mundo): una parte para cualquiera y otra para la mesa (a la mesa le sale primero la suya), con un botón para imprimirla en PDF. Cada paso es una línea del ARB (`guia*`); un test comprueba que es y eu tienen los mismos pasos. Los textos nombran los botones tal como salen en pantalla: si cambia uno, hay que cambiar la guía.
 
 - **Tareas en común**: las crea la mesa (como las asambleas); no se editan: se anulan y se crean otra vez. Quién va es público, como un cartel. Una persona se apunta o se borra sola; a otra persona solo la apunta o la quita la mesa (la que lo pide de palabra). Con las plazas llenas no entra nadie más, ni siquiera desde la mesa. Los **turnos** que se repiten no son un tipo aparte: el formulario crea varias tareas, una por semana (de 2 a 12). Se da por hecha desde el día, con nota opcional, y se puede volver a dar para corregir la nota. En el correo salen las de las dos próximas semanas con las manos que faltan; una anulada, solo a quien iba.
 

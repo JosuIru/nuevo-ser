@@ -1363,4 +1363,82 @@ class AppLocalizationsEs extends AppLocalizations {
   String avisoTarea(String titulo, String fecha) {
     return 'Te has apuntado: $titulo, $fecha.';
   }
+
+  @override
+  String get guia => 'Guía';
+
+  @override
+  String get guiaTitulo => 'Cómo funciona';
+
+  @override
+  String get guiaParaTodos => 'Para todo el mundo';
+
+  @override
+  String get guiaParaLaMesa => 'Para la mesa';
+
+  @override
+  String get imprimirGuia => 'Imprimir la guía';
+
+  @override
+  String get guiaEntrarTitulo => 'Entrar';
+
+  @override
+  String get guiaEntrar =>
+      'La mesa te da en papel una dirección y un código personal.\nAbre la app, pulsa «Entra en tu espacio» y escribe las dos cosas.\nEl código es solo tuyo: no lo compartas. Si lo pierdes, la mesa te saca otro y el viejo deja de valer.';
+
+  @override
+  String get guiaDecidirTitulo => 'Opinar y decidir';
+
+  @override
+  String get guiaDecidir =>
+      'Cada asunto pasa por debate, decisión y seguimiento, con unas fechas que no cambian una vez abierto.\nEn el debate, aporta a favor, en contra, una duda o una propuesta de cambio. Puedes hacerlo sin nombre: lo verá antes la mesa.\nEn la decisión, vota o plantea una objeción razonada, según cómo se decida ese asunto.\nSi no usas la app, puedes votar en papel: habla con la mesa.';
+
+  @override
+  String get guiaEspacioTitulo => 'Asambleas, tareas y tablón';
+
+  @override
+  String get guiaEspacio =>
+      'En «Asambleas» está el orden del día y, después, quién vino y lo que se habló.\nEn «Tareas» te apuntas a un auzolan o a un turno; dos días antes la app te lo recuerda.\nEn el «Tablón» puedes poner un anuncio para todo el espacio, y quitarlo cuando quieras.\nEn «¿Se ha hecho?» se sigue lo que se acordó.';
+
+  @override
+  String get guiaSinRedTitulo => 'Sin conexión';
+
+  @override
+  String get guiaSinRed =>
+      'La app funciona sin red: lo que hagas se guarda y se envía cuando vuelve la conexión.\nArriba verás si queda algo por enviar. Desliza hacia abajo para actualizar.';
+
+  @override
+  String get guiaMesaEmpezarTitulo => 'Empezar';
+
+  @override
+  String get guiaMesaEmpezar =>
+      'Quien lleva el WordPress del espacio instala el plugin Concejo y, en Ajustes → Concejo, da de alta a la mesa.\nEn la app, con el icono de «Personas», das de alta al resto y les sacas el código.\n«Imprimir la hoja» saca el papel con la dirección y el código para darlo en mano. El código solo se enseña una vez.\nPara recibir el resumen semanal por correo, el correo de cada persona se pone en Ajustes → Concejo.';
+
+  @override
+  String get guiaMesaAsuntoTitulo => 'Llevar un asunto';
+
+  @override
+  String get guiaMesaAsunto =>
+      '«Nuevo asunto» crea un borrador que solo ve la mesa. Al abrirlo, las fechas y la forma de decidir quedan fijas.\nCon el icono de imprimir de la ficha sacas la hoja para el tablón, las papeletas y la hoja de recuento.\nEn «Decidir», «Votos en persona» sirve para apuntar a quien vota en papel y registrar el recuento con otra persona de la mesa.\nAl acabar, apunta los compromisos y firmad el acta dos personas de la mesa.';
+
+  @override
+  String get guiaMesaAsambleaTitulo => 'Asambleas';
+
+  @override
+  String get guiaMesaAsamblea =>
+      '«Convocar asamblea»: día, hora, lugar y orden del día, con asuntos abiertos y puntos libres.\nImprime la convocatoria para el tablón. Se puede cambiar o anular, con motivo, hasta que empieza.\nEl día de la asamblea, marca quién vino, suma a la gente sin app y apunta lo hablado en cada punto.\nDespués, saca el acta en PDF y firmadla a mano.';
+
+  @override
+  String get guiaMesaTareasTitulo => 'Tareas y turnos';
+
+  @override
+  String get guiaMesaTareas =>
+      '«Nueva tarea»: día, hora, lugar y cuántas personas hacen falta (0 son las que vengan).\nPara turnos, activa «Repetir cada semana» y elige cuántas semanas: sale una tarea por semana.\nPuedes apuntar a quien te lo pide de palabra, o quitarlo.\nDesde ese día, «Dar por hecha», con una nota si hace falta.';
+
+  @override
+  String get guiaMesaModerarTitulo => 'Moderar';
+
+  @override
+  String get guiaMesaModerar =>
+      'Las aportaciones sin nombre esperan a que la mesa las publique.\nPuedes retirar una aportación o un anuncio de otra persona diciendo por qué.\nFija arriba del tablón lo importante.\nLa mesa rota: el cargo tiene fecha de fin y la app avisa dos semanas antes.';
 }

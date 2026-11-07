@@ -2377,6 +2377,144 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Te has apuntado: {titulo}, {fecha}.'**
   String avisoTarea(String titulo, String fecha);
+
+  /// No description provided for @guia.
+  ///
+  /// In es, this message translates to:
+  /// **'Guía'**
+  String get guia;
+
+  /// No description provided for @guiaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Cómo funciona'**
+  String get guiaTitulo;
+
+  /// No description provided for @guiaParaTodos.
+  ///
+  /// In es, this message translates to:
+  /// **'Para todo el mundo'**
+  String get guiaParaTodos;
+
+  /// No description provided for @guiaParaLaMesa.
+  ///
+  /// In es, this message translates to:
+  /// **'Para la mesa'**
+  String get guiaParaLaMesa;
+
+  /// No description provided for @imprimirGuia.
+  ///
+  /// In es, this message translates to:
+  /// **'Imprimir la guía'**
+  String get imprimirGuia;
+
+  /// No description provided for @guiaEntrarTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Entrar'**
+  String get guiaEntrarTitulo;
+
+  /// No description provided for @guiaEntrar.
+  ///
+  /// In es, this message translates to:
+  /// **'La mesa te da en papel una dirección y un código personal.\nAbre la app, pulsa «Entra en tu espacio» y escribe las dos cosas.\nEl código es solo tuyo: no lo compartas. Si lo pierdes, la mesa te saca otro y el viejo deja de valer.'**
+  String get guiaEntrar;
+
+  /// No description provided for @guiaDecidirTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Opinar y decidir'**
+  String get guiaDecidirTitulo;
+
+  /// No description provided for @guiaDecidir.
+  ///
+  /// In es, this message translates to:
+  /// **'Cada asunto pasa por debate, decisión y seguimiento, con unas fechas que no cambian una vez abierto.\nEn el debate, aporta a favor, en contra, una duda o una propuesta de cambio. Puedes hacerlo sin nombre: lo verá antes la mesa.\nEn la decisión, vota o plantea una objeción razonada, según cómo se decida ese asunto.\nSi no usas la app, puedes votar en papel: habla con la mesa.'**
+  String get guiaDecidir;
+
+  /// No description provided for @guiaEspacioTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Asambleas, tareas y tablón'**
+  String get guiaEspacioTitulo;
+
+  /// No description provided for @guiaEspacio.
+  ///
+  /// In es, this message translates to:
+  /// **'En «Asambleas» está el orden del día y, después, quién vino y lo que se habló.\nEn «Tareas» te apuntas a un auzolan o a un turno; dos días antes la app te lo recuerda.\nEn el «Tablón» puedes poner un anuncio para todo el espacio, y quitarlo cuando quieras.\nEn «¿Se ha hecho?» se sigue lo que se acordó.'**
+  String get guiaEspacio;
+
+  /// No description provided for @guiaSinRedTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión'**
+  String get guiaSinRedTitulo;
+
+  /// No description provided for @guiaSinRed.
+  ///
+  /// In es, this message translates to:
+  /// **'La app funciona sin red: lo que hagas se guarda y se envía cuando vuelve la conexión.\nArriba verás si queda algo por enviar. Desliza hacia abajo para actualizar.'**
+  String get guiaSinRed;
+
+  /// No description provided for @guiaMesaEmpezarTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar'**
+  String get guiaMesaEmpezarTitulo;
+
+  /// No description provided for @guiaMesaEmpezar.
+  ///
+  /// In es, this message translates to:
+  /// **'Quien lleva el WordPress del espacio instala el plugin Concejo y, en Ajustes → Concejo, da de alta a la mesa.\nEn la app, con el icono de «Personas», das de alta al resto y les sacas el código.\n«Imprimir la hoja» saca el papel con la dirección y el código para darlo en mano. El código solo se enseña una vez.\nPara recibir el resumen semanal por correo, el correo de cada persona se pone en Ajustes → Concejo.'**
+  String get guiaMesaEmpezar;
+
+  /// No description provided for @guiaMesaAsuntoTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Llevar un asunto'**
+  String get guiaMesaAsuntoTitulo;
+
+  /// No description provided for @guiaMesaAsunto.
+  ///
+  /// In es, this message translates to:
+  /// **'«Nuevo asunto» crea un borrador que solo ve la mesa. Al abrirlo, las fechas y la forma de decidir quedan fijas.\nCon el icono de imprimir de la ficha sacas la hoja para el tablón, las papeletas y la hoja de recuento.\nEn «Decidir», «Votos en persona» sirve para apuntar a quien vota en papel y registrar el recuento con otra persona de la mesa.\nAl acabar, apunta los compromisos y firmad el acta dos personas de la mesa.'**
+  String get guiaMesaAsunto;
+
+  /// No description provided for @guiaMesaAsambleaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Asambleas'**
+  String get guiaMesaAsambleaTitulo;
+
+  /// No description provided for @guiaMesaAsamblea.
+  ///
+  /// In es, this message translates to:
+  /// **'«Convocar asamblea»: día, hora, lugar y orden del día, con asuntos abiertos y puntos libres.\nImprime la convocatoria para el tablón. Se puede cambiar o anular, con motivo, hasta que empieza.\nEl día de la asamblea, marca quién vino, suma a la gente sin app y apunta lo hablado en cada punto.\nDespués, saca el acta en PDF y firmadla a mano.'**
+  String get guiaMesaAsamblea;
+
+  /// No description provided for @guiaMesaTareasTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Tareas y turnos'**
+  String get guiaMesaTareasTitulo;
+
+  /// No description provided for @guiaMesaTareas.
+  ///
+  /// In es, this message translates to:
+  /// **'«Nueva tarea»: día, hora, lugar y cuántas personas hacen falta (0 son las que vengan).\nPara turnos, activa «Repetir cada semana» y elige cuántas semanas: sale una tarea por semana.\nPuedes apuntar a quien te lo pide de palabra, o quitarlo.\nDesde ese día, «Dar por hecha», con una nota si hace falta.'**
+  String get guiaMesaTareas;
+
+  /// No description provided for @guiaMesaModerarTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Moderar'**
+  String get guiaMesaModerarTitulo;
+
+  /// No description provided for @guiaMesaModerar.
+  ///
+  /// In es, this message translates to:
+  /// **'Las aportaciones sin nombre esperan a que la mesa las publique.\nPuedes retirar una aportación o un anuncio de otra persona diciendo por qué.\nFija arriba del tablón lo importante.\nLa mesa rota: el cargo tiene fecha de fin y la app avisa dos semanas antes.'**
+  String get guiaMesaModerar;
 }
 
 class _AppLocalizationsDelegate

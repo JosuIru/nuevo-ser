@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | Dominio de ganado copiado de Zunbeltz (`92ade2b`) sin sync ni permisos; explotación, titular, piezas de pasto, visitas, calendario sanitario y apuntes. 10 tablas en la v1. Tabla UGM por trámite (PAC anexo V y Andalucía) como catálogo. 48 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas Hoy (dónde está cada rebaño con su carga, avisos de 14 días, primeros pasos), Rebaños (ficha con animales, movimientos y manejo; ficha del animal con su historia), Pastos (piezas con ocupación y UGM/ha), Manejo (calendario sanitario y visitas), Ajustes (titular y explotación). Lógica pura en `dominio/` (ocupación, calendario). 58 tests, 5 de pantalla |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas).
+**Siguiente acción**: bloques 4-5 (libro de registro, documento de movimiento e informe del eco-régimen en PDF).
 
 ## Encuadre
 
@@ -92,6 +92,18 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
   (`ON DELETE RESTRICT`): se cierra o se desactiva. El libro debe conservarse 3
   años (RD 787/2023 art. 23.2) y el registro de tratamientos 5 (RD 666/2023 art. 41.4).
 - **2026-11-07 — La v1 se amplió en el bloque 2** (nada publicado todavía).
+- **2026-11-07 — Pantallas propias, no las de Zunbeltz**: `formularios_ganado.dart`
+  y `ficha_lote.dart` de Zunbeltz (2.300 líneas) dependen de `PoliticaEspacio`,
+  la sincronización y el sistema de idioma de Zunbeltz; se rehicieron con la forma
+  de Obrador (`hoja_formulario`, `cambios_datos`, `SoleraL10n`).
+- **2026-11-07 — Sin escáner del DIB en la F1**: necesitaría `mobile_scanner`
+  (más peso y permisos de cámara). El crotal escrito se limpia con
+  `interpretarCodigoCrotal` (de Zunbeltz). Pendiente para F2 junto al RFID.
+- **2026-11-07 — Las pantallas cuentan la carga con la tabla de la PAC**
+  (`tablaUgmPantallas`): es la que interesa para el eco-régimen; el informe deja
+  elegir trámite.
+- **2026-11-07 — Fechas con selector** en movimientos, eventos, tareas y visitas
+  (en Obrador se apuntaba con la fecha actual).
 
 ## Datos técnicos
 

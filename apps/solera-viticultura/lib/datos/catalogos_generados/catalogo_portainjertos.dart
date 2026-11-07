@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/viticultura/portainjertos.csv
-// Generado: 2026-05-11
-// Filas: 10 (10 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: IMIDA Certificación + ENTAV-INRA
+// Generado: 2026-11-07
+// Filas: 10 (0 revisadas, 10 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICA/ENOLÓGICAMENTE.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-viticultura && dart run tool/compilar_catalogos.dart
 
 class Portainjerto {
   final String id;

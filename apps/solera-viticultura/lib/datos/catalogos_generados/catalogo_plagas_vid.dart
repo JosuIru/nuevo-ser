@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/viticultura/plagas_vid.csv
-// Generado: 2026-05-11
-// Filas: 21 (21 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: Boletines avisos fitosanitarios CCAA, Reglamento UE 2019/2072 + RD 690/2017 + Orden APA/793/2020, Reglamento UE 2019/2072 anexo II A2 + Plan Contingencia MAPA
+// Generado: 2026-11-07
+// Filas: 21 (0 revisadas, 21 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICA/ENOLÓGICAMENTE.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-viticultura && dart run tool/compilar_catalogos.dart
 
 /// Tipo de incidencia. Coincide con el dropdown del formulario de
 /// incidencia (`tipo` en la BD) salvo que ese también acepta `estres`

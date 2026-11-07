@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/viticultura/calendario_bbch.csv
-// Generado: 2026-05-11
-// Filas: 72 (72 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: Eichhorn-Lorenz / Lorenz et al. 1995
+// Generado: 2026-11-07
+// Filas: 72 (0 revisadas, 72 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICA/ENOLÓGICAMENTE.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-viticultura && dart run tool/compilar_catalogos.dart
 
 /// Zona climática orientativa. Norte = Galicia/Cantábrica/Rioja Alta/
 /// Norte de Castilla. Sur = La Mancha/Andalucía/Extremadura/Levante.

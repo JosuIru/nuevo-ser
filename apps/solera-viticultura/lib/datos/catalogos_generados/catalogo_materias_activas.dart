@@ -2,8 +2,11 @@
 //
 // Fuente: content/viticultura/materias_activas.csv
 // Generado: 2026-11-07
-// Filas: 16 (16 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: revision-ia: Claude, 2026-11-07, registro MAPA 06/11/2026 + EU Pesticides DB + CIMA Vet; fuente: Registro Fitosanitario MAPA 2026
+// Filas: 16 (0 revisadas, 16 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICA/ENOLÓGICAMENTE.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-viticultura && dart run tool/compilar_catalogos.dart
 
 class MateriaActiva {
   final String id;

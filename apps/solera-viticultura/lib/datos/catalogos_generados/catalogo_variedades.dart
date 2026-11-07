@@ -1,9 +1,12 @@
 // GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.
 //
 // Fuente: content/viticultura/variedades.csv
-// Generado: 2026-05-11
-// Filas: 44 (44 revisadas, 0 pendientes de revisión)
-// Estado: ✅ todas las filas revisadas por: MAPA Registro Variedades Vid 2026
+// Generado: 2026-11-07
+// Filas: 44 (0 revisadas, 44 pendientes de revisión)
+//
+// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICA/ENOLÓGICAMENTE.
+// La app muestra un banner mientras este flag siga activo.
+// Para regenerar: cd apps/solera-viticultura && dart run tool/compilar_catalogos.dart
 
 /// Color visual de la variedad. Las rosadas son raras pero existen.
 enum ColorVariedad { tinta, blanca, rosada }

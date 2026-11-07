@@ -20,7 +20,7 @@ const String nombreFicheroBaseDatosApicola = 'solera_apicola.db';
 
 /// Versión del esquema que abre la app (`version:` de openDatabase). La
 /// usa también la copia de seguridad para rechazar copias más nuevas.
-const int versionEsquemaBaseDatosApicola = 2;
+const int versionEsquemaBaseDatosApicola = 3;
 
 /// Acceso a la base de datos local de Larrea Apícola. Singleton con
 /// inicialización perezosa: la primera lectura crea la BD.
@@ -36,6 +36,12 @@ const int versionEsquemaBaseDatosApicola = 2;
 /// y proveedores con NIF), configuración fiscal del titular,
 /// apuntes de ingreso y apuntes de gasto. La migración v1→v2 es
 /// puramente aditiva — las tablas existentes no se tocan.
+///
+/// v3 añade `facturas`. El paso existía en el `onUpgrade` con la versión
+/// declarada aún en 2, así que una BD que ya estaba en v2 nunca la recibía
+/// (pantalla de facturas y `estaVacia()` fallaban). Subir a 3 dispara el
+/// paso; es idempotente (`IF NOT EXISTS`) para las BD v2 creadas de cero,
+/// que ya la tenían por `crearEsquemaCompleto`.
 class BaseDatosSoleraApicola {
   static final BaseDatosSoleraApicola instancia = BaseDatosSoleraApicola._interno();
   factory BaseDatosSoleraApicola() => instancia;

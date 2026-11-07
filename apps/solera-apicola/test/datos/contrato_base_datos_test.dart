@@ -17,12 +17,11 @@
 //     y v2 usa CREATE TABLE sin IF NOT EXISTS: no son idempotentes.
 //   * `facturas` no tiene API en la clase: se prueba con SQL directo.
 //
-// **Desajuste encontrado** (mismo fallo que agro corrigió al subir a v7):
-// `versionEsquemaBaseDatosApicola` vale 2, pero `facturas` se crea en un paso
-// `if (viejaVersion < 3)`. Una BD nueva y una migrada desde v1 sí tienen
-// `facturas`; una BD que ya estuviera en v2 sin esa tabla no la recibe nunca
-// (no hay salto de versión que dispare el paso), y entonces pantalla_facturas
-// y `estaVacia()` fallan. Ver el test marcado con `skip`.
+// **Desajuste corregido el 2026-11-07** (mismo fallo que agro corrigió al
+// subir a v7): la versión valía 2 pero `facturas` se creaba en el paso
+// `if (viejaVersion < 3)`, así que una BD que ya estuviera en v2 sin esa
+// tabla no la recibía nunca. Ahora la versión es 3; lo fija el test
+// «v2 sin facturas → recibe la tabla al abrir».
 
 import 'dart:io';
 
@@ -182,8 +181,7 @@ const List<String> sentenciasEsquemaV1Apicola = [
     )''',
 ];
 
-/// Historial del `onUpgrade` tal como está escrito: contabilidad en v2 y
-/// facturas en un paso «v3» que la versión declarada (2) nunca alcanza.
+/// Historial del `onUpgrade`: contabilidad en v2 y facturas en v3.
 const Map<int, CambioEsquema> historialMigracionesApicola = {
   2: CambioEsquema(
     tablasNuevas: [
@@ -196,7 +194,7 @@ const Map<int, CambioEsquema> historialMigracionesApicola = {
   3: CambioEsquema(tablasNuevas: ['facturas']),
 };
 
-/// Último paso escrito en el `onUpgrade` (no coincide con la versión real).
+/// Último paso escrito en el `onUpgrade` (= versión declarada).
 const int ultimoPasoMigracionApicola = 3;
 
 /// Esquema esperado en una BD nueva.
@@ -475,7 +473,7 @@ void main() {
     test('llega a la versión actual con todas las tablas y columnas', () async {
       final baseDatos = await baseDatosApicola.basedatos;
       expect(await baseDatos.getVersion(), versionEsquemaBaseDatosApicola);
-      expect(versionEsquemaBaseDatosApicola, 2);
+      expect(versionEsquemaBaseDatosApicola, 3);
       expect(await leerColumnasPorTabla(baseDatos), columnasEsperadasApicola);
     });
 
@@ -545,11 +543,6 @@ void main() {
         expect(await leerColumnasPorTabla(baseDatos), columnasEsperadasApicola);
         expect(await baseDatosApicola.estaVacia(), isFalse);
       },
-      skip:
-          'Desajuste conocido: versionEsquemaBaseDatosApicola = 2 pero '
-          'facturas está en el paso «< 3»; una BD v2 sin facturas no se '
-          'migra nunca. Se arregla subiendo la versión a 3 (como hizo agro '
-          'con v7). Quitar el skip entonces.',
     );
 
     test(

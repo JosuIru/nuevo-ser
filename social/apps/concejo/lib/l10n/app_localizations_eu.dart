@@ -1006,4 +1006,46 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get darDeAltaPersona => 'Norbait alta eman';
+
+  @override
+  String get paraTi => 'Zuretzat';
+
+  @override
+  String get quitarAviso => 'Abisua kendu';
+
+  @override
+  String avisoAsuntoNuevo(String titulo, String fecha) {
+    return 'Gai berria: «$titulo». $fecha arte eztabaidatuko da.';
+  }
+
+  @override
+  String avisoUltimosDias(String titulo, String fecha) {
+    return 'Egun gutxi geratzen dira «$titulo» erabakitzeko: $fecha(e)an ixten da.';
+  }
+
+  @override
+  String avisoResultado(String titulo) {
+    return 'Emaitza badago: «$titulo».';
+  }
+
+  @override
+  String avisoCompromisoVence(String que, String fecha) {
+    return '${fecha}rako konpromisoa: $que.';
+  }
+
+  @override
+  String avisoCompromisoVencido(String que, String fecha) {
+    return '$fecha(e)an iraungi zen konpromisoa: $que.';
+  }
+
+  @override
+  String avisoMandatoAcaba(String fecha) {
+    return 'Mahaiko zure kargua $fecha(e)an amaitzen da. Nork jarraituko duen hitz egiteko garaia da.';
+  }
+
+  @override
+  String get etiquetaNuevo => 'Berria';
+
+  @override
+  String get etiquetaResultado => 'Emaitza badago';
 }

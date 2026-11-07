@@ -1007,4 +1007,46 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get darDeAltaPersona => 'Dar de alta a alguien';
+
+  @override
+  String get paraTi => 'Para ti';
+
+  @override
+  String get quitarAviso => 'Quitar aviso';
+
+  @override
+  String avisoAsuntoNuevo(String titulo, String fecha) {
+    return 'Asunto nuevo: «$titulo». Se debate hasta el $fecha.';
+  }
+
+  @override
+  String avisoUltimosDias(String titulo, String fecha) {
+    return 'Quedan pocos días para decidir «$titulo»: cierra el $fecha.';
+  }
+
+  @override
+  String avisoResultado(String titulo) {
+    return 'Ya hay resultado: «$titulo».';
+  }
+
+  @override
+  String avisoCompromisoVence(String que, String fecha) {
+    return 'Compromiso para el $fecha: $que.';
+  }
+
+  @override
+  String avisoCompromisoVencido(String que, String fecha) {
+    return 'Compromiso que venció el $fecha: $que.';
+  }
+
+  @override
+  String avisoMandatoAcaba(String fecha) {
+    return 'Tu cargo en la mesa acaba el $fecha. Toca hablar de quién sigue.';
+  }
+
+  @override
+  String get etiquetaNuevo => 'Nuevo';
+
+  @override
+  String get etiquetaResultado => 'Hay resultado';
 }

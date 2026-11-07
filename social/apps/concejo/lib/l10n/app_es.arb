@@ -535,5 +535,69 @@
   "codigoUnaVez": "Imprímelo o apúntalo ahora: no se vuelve a enseñar.",
   "imprimirHoja": "Imprimir la hoja",
   "soloConServidor": "Los códigos los da el servidor del pueblo: en el ejemplo no hay.",
-  "darDeAltaPersona": "Dar de alta a alguien"
+  "darDeAltaPersona": "Dar de alta a alguien",
+  "paraTi": "Para ti",
+  "quitarAviso": "Quitar aviso",
+  "avisoAsuntoNuevo": "Asunto nuevo: «{titulo}». Se debate hasta el {fecha}.",
+  "@avisoAsuntoNuevo": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "avisoUltimosDias": "Quedan pocos días para decidir «{titulo}»: cierra el {fecha}.",
+  "@avisoUltimosDias": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "avisoResultado": "Ya hay resultado: «{titulo}».",
+  "@avisoResultado": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      }
+    }
+  },
+  "avisoCompromisoVence": "Compromiso para el {fecha}: {que}.",
+  "@avisoCompromisoVence": {
+    "placeholders": {
+      "que": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "avisoCompromisoVencido": "Compromiso que venció el {fecha}: {que}.",
+  "@avisoCompromisoVencido": {
+    "placeholders": {
+      "que": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "avisoMandatoAcaba": "Tu cargo en la mesa acaba el {fecha}. Toca hablar de quién sigue.",
+  "@avisoMandatoAcaba": {
+    "placeholders": {
+      "fecha": {
+        "type": "String"
+      }
+    }
+  },
+  "etiquetaNuevo": "Nuevo",
+  "etiquetaResultado": "Hay resultado"
 }

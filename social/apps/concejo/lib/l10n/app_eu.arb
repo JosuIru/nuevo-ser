@@ -276,5 +276,15 @@
   "codigoUnaVez": "Inprimatu edo idatzi orain: ez da berriro erakutsiko.",
   "imprimirHoja": "Orria inprimatu",
   "soloConServidor": "Kodeak herriko zerbitzariak ematen ditu: adibidean ez dago.",
-  "darDeAltaPersona": "Norbait alta eman"
+  "darDeAltaPersona": "Norbait alta eman",
+  "paraTi": "Zuretzat",
+  "quitarAviso": "Abisua kendu",
+  "avisoAsuntoNuevo": "Gai berria: «{titulo}». {fecha} arte eztabaidatuko da.",
+  "avisoUltimosDias": "Egun gutxi geratzen dira «{titulo}» erabakitzeko: {fecha}(e)an ixten da.",
+  "avisoResultado": "Emaitza badago: «{titulo}».",
+  "avisoCompromisoVence": "{fecha}rako konpromisoa: {que}.",
+  "avisoCompromisoVencido": "{fecha}(e)an iraungi zen konpromisoa: {que}.",
+  "avisoMandatoAcaba": "Mahaiko zure kargua {fecha}(e)an amaitzen da. Nork jarraituko duen hitz egiteko garaia da.",
+  "etiquetaNuevo": "Berria",
+  "etiquetaResultado": "Emaitza badago"
 }

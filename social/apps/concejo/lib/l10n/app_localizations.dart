@@ -1759,6 +1759,66 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Dar de alta a alguien'**
   String get darDeAltaPersona;
+
+  /// No description provided for @paraTi.
+  ///
+  /// In es, this message translates to:
+  /// **'Para ti'**
+  String get paraTi;
+
+  /// No description provided for @quitarAviso.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar aviso'**
+  String get quitarAviso;
+
+  /// No description provided for @avisoAsuntoNuevo.
+  ///
+  /// In es, this message translates to:
+  /// **'Asunto nuevo: «{titulo}». Se debate hasta el {fecha}.'**
+  String avisoAsuntoNuevo(String titulo, String fecha);
+
+  /// No description provided for @avisoUltimosDias.
+  ///
+  /// In es, this message translates to:
+  /// **'Quedan pocos días para decidir «{titulo}»: cierra el {fecha}.'**
+  String avisoUltimosDias(String titulo, String fecha);
+
+  /// No description provided for @avisoResultado.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya hay resultado: «{titulo}».'**
+  String avisoResultado(String titulo);
+
+  /// No description provided for @avisoCompromisoVence.
+  ///
+  /// In es, this message translates to:
+  /// **'Compromiso para el {fecha}: {que}.'**
+  String avisoCompromisoVence(String que, String fecha);
+
+  /// No description provided for @avisoCompromisoVencido.
+  ///
+  /// In es, this message translates to:
+  /// **'Compromiso que venció el {fecha}: {que}.'**
+  String avisoCompromisoVencido(String que, String fecha);
+
+  /// No description provided for @avisoMandatoAcaba.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cargo en la mesa acaba el {fecha}. Toca hablar de quién sigue.'**
+  String avisoMandatoAcaba(String fecha);
+
+  /// No description provided for @etiquetaNuevo.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevo'**
+  String get etiquetaNuevo;
+
+  /// No description provided for @etiquetaResultado.
+  ///
+  /// In es, this message translates to:
+  /// **'Hay resultado'**
+  String get etiquetaResultado;
 }
 
 class _AppLocalizationsDelegate

@@ -150,6 +150,7 @@ class _RaizConcejoState extends State<RaizConcejo> with WidgetsBindingObserver {
         estado: sincronizador.estado,
         sincronizador: sincronizador,
         alSalir: _salir,
+        almacen: _almacen,
       );
     } else if (ejemplo != null) {
       pantalla = PantallaInicio(

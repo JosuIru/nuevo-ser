@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../dominio/asunto.dart';
+import '../estado/avisos.dart';
 import '../estado/estado_concejo.dart';
 import '../l10n/app_localizations.dart';
+import '../servidor/almacen_local.dart';
 import '../servidor/sincronizador.dart';
 import 'dialogos.dart';
 import 'ficha_asunto.dart';
@@ -13,7 +15,11 @@ import 'textos_dominio.dart';
 
 class PantallaInicio extends StatefulWidget {
   const PantallaInicio(
-      {super.key, required this.estado, this.sincronizador, this.alSalir});
+      {super.key,
+      required this.estado,
+      this.sincronizador,
+      this.alSalir,
+      this.almacen});
 
   final EstadoConcejo estado;
 
@@ -21,27 +27,40 @@ class PantallaInicio extends StatefulWidget {
   final Sincronizador? sincronizador;
   final VoidCallback? alSalir;
 
+  /// Dónde recordar los avisos quitados; sin él, solo mientras dure.
+  final AlmacenLocal? almacen;
+
   @override
   State<PantallaInicio> createState() => _PantallaInicioState();
 }
 
 class _PantallaInicioState extends State<PantallaInicio> {
   var _pestana = 0;
+  late final _avisosVistos = AvisosVistos(almacen: widget.almacen);
+
+  @override
+  void dispose() {
+    _avisosVistos.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final textos = AppLocalizations.of(context);
     final sincronizador = widget.sincronizador;
     return ListenableBuilder(
-      listenable: Listenable.merge(
-          [widget.estado, if (sincronizador != null) sincronizador]),
+      listenable: Listenable.merge([
+        widget.estado,
+        _avisosVistos,
+        if (sincronizador != null) sincronizador
+      ]),
       builder: (context, _) {
         final franja = widget.estado.esEjemplo
             ? textos.ejemploAviso
             : _avisoConexion(textos, sincronizador);
         final rechazadas = sincronizador?.rechazadas ?? const [];
         final cuerpo = _pestana == 0
-            ? _ListaAsuntos(estado: widget.estado)
+            ? _ListaAsuntos(estado: widget.estado, avisosVistos: _avisosVistos)
             : PantallaSeHaHecho(estado: widget.estado);
         return Scaffold(
           appBar: AppBar(
@@ -218,9 +237,10 @@ class _FranjaEjemplo extends StatelessWidget {
 }
 
 class _ListaAsuntos extends StatelessWidget {
-  const _ListaAsuntos({required this.estado});
+  const _ListaAsuntos({required this.estado, required this.avisosVistos});
 
   final EstadoConcejo estado;
+  final AvisosVistos avisosVistos;
 
   @override
   Widget build(BuildContext context) {
@@ -232,9 +252,32 @@ class _ListaAsuntos extends StatelessWidget {
       FaseAsunto.debate,
       FaseAsunto.seguimiento
     ];
+    final yo = estado.personaActual.uid;
+    final avisos = avisosPara(estado);
+    final pendientes = avisosVistos.pendientes(yo, avisos);
+    // «Nuevo» y «hay resultado» van en la tarjeta del asunto y se quitan al
+    // abrirlo; arriba, solo lo que pide hacer algo.
+    bool vaEnLaTarjeta(Aviso aviso) =>
+        aviso.tipo == TipoAviso.asuntoNuevo ||
+        aviso.tipo == TipoAviso.resultado;
+    final paraTi = pendientes.where((a) => !vaEnLaTarjeta(a)).toList();
+    List<Aviso> deLaTarjeta(Asunto asunto) => [
+          for (final aviso in pendientes)
+            if (vaEnLaTarjeta(aviso) && aviso.asuntoUid == asunto.uid) aviso,
+        ];
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+        if (paraTi.isNotEmpty) ...[
+          Text(textos.paraTi, style: Theme.of(context).textTheme.titleMedium),
+          const SizedBox(height: 4),
+          for (final aviso in paraTi)
+            _TarjetaAviso(
+              estado: estado,
+              aviso: aviso,
+              alQuitar: () => avisosVistos.quitar(yo, [aviso], avisos),
+            ),
+        ],
         for (final fase in orden)
           // Los borradores solo salen si hay alguno (y solo para la mesa).
           if (fase != FaseAsunto.borrador ||
@@ -249,7 +292,13 @@ class _ListaAsuntos extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodySmall)
             else
               for (final asunto in estado.asuntosEnFase(fase))
-                _TarjetaAsunto(estado: estado, asunto: asunto),
+                _TarjetaAsunto(
+                  estado: estado,
+                  asunto: asunto,
+                  avisos: deLaTarjeta(asunto),
+                  alAbrir: (avisosDeLaTarjeta) =>
+                      avisosVistos.quitar(yo, avisosDeLaTarjeta, avisos),
+                ),
           ],
       ],
     );
@@ -257,10 +306,19 @@ class _ListaAsuntos extends StatelessWidget {
 }
 
 class _TarjetaAsunto extends StatelessWidget {
-  const _TarjetaAsunto({required this.estado, required this.asunto});
+  const _TarjetaAsunto({
+    required this.estado,
+    required this.asunto,
+    this.avisos = const [],
+    this.alAbrir,
+  });
 
   final EstadoConcejo estado;
   final Asunto asunto;
+
+  /// «Nuevo» o «hay resultado», si la persona aún no lo ha abierto.
+  final List<Aviso> avisos;
+  final void Function(List<Aviso> avisos)? alAbrir;
 
   @override
   Widget build(BuildContext context) {
@@ -278,16 +336,31 @@ class _TarjetaAsunto extends StatelessWidget {
     return Card(
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => FichaAsunto(estado: estado, asuntoUid: asunto.uid),
-        )),
+        onTap: () {
+          if (avisos.isNotEmpty) alAbrir?.call(avisos);
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => FichaAsunto(estado: estado, asuntoUid: asunto.uid),
+          ));
+        },
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(asunto.titulo,
-                  style: Theme.of(context).textTheme.titleMedium),
+              Row(children: [
+                Expanded(
+                  child: Text(asunto.titulo,
+                      style: Theme.of(context).textTheme.titleMedium),
+                ),
+                for (final aviso in avisos)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8),
+                    child: _Etiqueta(
+                        texto: aviso.tipo == TipoAviso.resultado
+                            ? textos.etiquetaResultado
+                            : textos.etiquetaNuevo),
+                  ),
+              ]),
               const SizedBox(height: 6),
               Text(asunto.resumen,
                   maxLines: 3, overflow: TextOverflow.ellipsis),
@@ -297,6 +370,94 @@ class _TarjetaAsunto extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _TarjetaAviso extends StatelessWidget {
+  const _TarjetaAviso(
+      {required this.estado, required this.aviso, required this.alQuitar});
+
+  final EstadoConcejo estado;
+  final Aviso aviso;
+  final VoidCallback alQuitar;
+
+  @override
+  Widget build(BuildContext context) {
+    final textos = AppLocalizations.of(context);
+    final colores = Theme.of(context).colorScheme;
+    final asuntoUid = aviso.asuntoUid;
+    final asunto = asuntoUid == null ? null : estado.buscarAsunto(asuntoUid);
+    final titulo = asunto?.titulo ?? '';
+    final fecha = textos.fecha(aviso.fecha);
+    String queDelCompromiso() => estado.compromisos
+        .firstWhere((compromiso) => compromiso.uid == aviso.compromisoUid)
+        .que;
+    final (icono, texto) = switch (aviso.tipo) {
+      TipoAviso.ultimosDias => (
+          Icons.how_to_vote_outlined,
+          textos.avisoUltimosDias(titulo, fecha)
+        ),
+      TipoAviso.compromisoVence => (
+          Icons.event_outlined,
+          textos.avisoCompromisoVence(queDelCompromiso(), fecha)
+        ),
+      TipoAviso.compromisoVencido => (
+          Icons.event_busy_outlined,
+          textos.avisoCompromisoVencido(queDelCompromiso(), fecha)
+        ),
+      TipoAviso.mandatoAcaba => (
+          Icons.autorenew,
+          textos.avisoMandatoAcaba(fecha)
+        ),
+      TipoAviso.asuntoNuevo => (
+          Icons.fiber_new_outlined,
+          textos.avisoAsuntoNuevo(titulo, fecha)
+        ),
+      TipoAviso.resultado => (
+          Icons.fact_check_outlined,
+          textos.avisoResultado(titulo)
+        ),
+    };
+    return Card(
+      color: colores.tertiaryContainer,
+      child: ListTile(
+        leading: Icon(icono, color: colores.onTertiaryContainer),
+        title:
+            Text(texto, style: TextStyle(color: colores.onTertiaryContainer)),
+        onTap: asunto == null
+            ? null
+            : () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (_) =>
+                      FichaAsunto(estado: estado, asuntoUid: asunto.uid),
+                )),
+        trailing: IconButton(
+          tooltip: textos.quitarAviso,
+          icon: const Icon(Icons.close),
+          color: colores.onTertiaryContainer,
+          onPressed: alQuitar,
+        ),
+      ),
+    );
+  }
+}
+
+class _Etiqueta extends StatelessWidget {
+  const _Etiqueta({required this.texto});
+
+  final String texto;
+
+  @override
+  Widget build(BuildContext context) {
+    final colores = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      decoration: BoxDecoration(
+        color: colores.tertiaryContainer,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(texto,
+          style: TextStyle(color: colores.onTertiaryContainer, fontSize: 12)),
     );
   }
 }

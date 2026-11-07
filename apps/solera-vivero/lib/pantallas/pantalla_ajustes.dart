@@ -6,14 +6,12 @@ import '../datos/base_datos.dart';
 import '../estado/cambios_datos.dart';
 import '../modelos/vivero.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_documentos.dart';
 
 /// Ajustes: datos del vivero (los de las cabeceras y la letra B del
 /// pasaporte), idioma y accesos a documentos, economía, IA y ayuda.
 class PantallaAjustes extends StatefulWidget {
-  const PantallaAjustes({super.key, this.accesos = const []});
-
-  /// Documentos, economía, IA y ayuda (bloques 5, 7, 9 y 11).
-  final List<Widget> accesos;
+  const PantallaAjustes({super.key});
 
   @override
   State<PantallaAjustes> createState() => _PantallaAjustesState();
@@ -104,7 +102,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          ...widget.accesos,
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.picture_as_pdf_outlined),
+            title: Text(SoleraL10n.t('vive.documentos')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
           const SelectorIdioma(),
           const SizedBox(height: 24),
           Text(SoleraL10n.t('vive.datos_vivero'),

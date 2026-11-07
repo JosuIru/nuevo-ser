@@ -8,9 +8,12 @@ import '../modelos/partida_planta.dart';
 import '../modelos/pasaporte_emitido.dart';
 import '../modelos/salida.dart';
 import '../modelos/vivero.dart';
+import '../servicios/compartir_documento.dart';
+import '../servicios/generador_pasaporte_pdf.dart';
 import '../utiles/textos_vivero.dart';
 import 'formularios.dart';
 import 'hoja_formulario.dart';
+import 'pantalla_documentos.dart';
 import 'vista_carga.dart';
 
 /// Necesidad de pasaporte de una salida de planta. Todos los vegetales
@@ -33,10 +36,7 @@ class _DatosSalidas {
 /// Pestaña Salidas: ventas y entregas del año, con el estado del pasaporte,
 /// y el registro de pasaportes.
 class PantallaSalidas extends StatefulWidget {
-  const PantallaSalidas({super.key, this.accionesExtra = const []});
-
-  /// Documentos del registro (bloque 5).
-  final List<Widget> accionesExtra;
+  const PantallaSalidas({super.key});
 
   @override
   State<PantallaSalidas> createState() => _PantallaSalidasState();
@@ -62,7 +62,12 @@ class _PantallaSalidasState extends State<PantallaSalidas> {
       appBar: AppBar(
         title: Text(SoleraL10n.t('vive.salidas')),
         actions: [
-          ...widget.accionesExtra,
+          IconButton(
+            tooltip: SoleraL10n.t('vive.documentos'),
+            icon: const Icon(Icons.picture_as_pdf_outlined),
+            onPressed: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
           DropdownButton<int>(
             value: _anyo,
             underline: const SizedBox.shrink(),
@@ -144,13 +149,8 @@ class _DatosFichaSalida {
 /// Ficha de la salida: si necesita pasaporte, los datos A-D y el registro
 /// de los pasaportes preparados para ella.
 class PantallaFichaSalida extends StatelessWidget {
-  const PantallaFichaSalida(
-      {super.key, required this.salidaId, this.accionesPasaporte});
+  const PantallaFichaSalida({super.key, required this.salidaId});
   final int salidaId;
-
-  /// Botones para el PDF de la etiqueta (bloque 5).
-  final List<Widget> Function(BuildContext, PasaporteEmitido)?
-      accionesPasaporte;
 
   Future<_DatosFichaSalida> _cargar() async {
     final bd = BaseDatosSoleraVivero.instancia;
@@ -288,7 +288,20 @@ class PantallaFichaSalida extends StatelessWidget {
                     if (pasaporte.esBorrador) SoleraL10n.t('vive.borrador'),
                   ].join(' · ')),
                   trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                    ...?accionesPasaporte?.call(context, pasaporte),
+                    IconButton(
+                      tooltip: SoleraL10n.t('vive.etiqueta_pdf'),
+                      icon: const Icon(Icons.print_outlined),
+                      onPressed: () => compartirDocumentoPdf(
+                        context,
+                        nombreFichero:
+                            'pasaporte_${pasaporte.codigoTrazabilidad}.pdf',
+                        generar: (tema) => generarEtiquetaPasaportePdf(
+                            datosDesdeRegistro(pasaporte,
+                                operadorAutorizado:
+                                    datos.vivero.autorizadoPasaporte),
+                            tema: tema),
+                      ),
+                    ),
                     if (!pasaporte.anulado)
                       IconButton(
                         tooltip: SoleraL10n.t('vive.anular'),

@@ -11,7 +11,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh vivero "Larrea Vivero" 3F6B4A F5EFE2 vive Vivero`. Encuadre y normativa verificada abajo. 3 tests |
 | 2 Modelos + BD | ✅ 2026-11-07 | 11 modelos (vivero, zona de cultivo, lote de material, bandeja con QR, siembra, partida de planta, repicado, salida, pasaporte emitido, tratamiento, inspección de plagas), 11 tablas en la v1 (`sentenciasEsquemaViveroV1`). Dominio puro: `stock.dart` (disponibles y resumen por especie/variedad/formato), `trazabilidad.dart` (de la partida al lote, con repicados), `pasaporte.dart` (necesidad de pasaporte por salida y datos A-D con lo que falta). 34 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos, avisos de inspección sin notificar, salidas sin pasaporte y plazos de seguridad, accesos a siembra, tratamiento, inspección y Cuaderno; Ajustes en la barra), Material (lotes y ficha con sus siembras), Bandejas (lista, alta con el siguiente código QR, ficha con partidas y siembras; zonas en la barra), Plantas (stock por especie y formato, partidas, ficha con disponibles, merma, repicado, salida, trazabilidad hasta el lote, tratamientos e inspecciones), Salidas (año, estado del pasaporte; ficha con la necesidad de pasaporte, letras A-D, lo que falta y registro de pasaportes con anulación). Sembrar crea la partida. Altas en hojas inferiores (`formularios.dart`). 40 tests, 6 de pantalla |
-| 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
+| 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | **Cuaderno de tratamientos** del año (datos generales, zonas con nº de orden, tratamientos, inspecciones de plagas; aviso del registro electrónico desde el 1-1-2027) y **registro de pasaportes y trazabilidad** (origen: material comprado con proveedor, ROPVEG y pasaporte recibido; destino: salidas; pasaportes preparados con su estado) en Salidas → PDF o Ajustes → Documentos. **Etiqueta del pasaporte** (10 × 6,5 cm) por registro, desde la ficha de la salida: recuadro, bandera en blanco y negro, título bilingüe, letras A-D (y ZP), QR con A-D; fuera del recuadro, PROVISIONAL y, si toca, BORRADOR «no válido como pasaporte». Tablas puras con test. 49 tests |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloques 4-5 (cuaderno de tratamientos y etiqueta del pasaporte en PDF).
+**Siguiente acción**: bloque 6 (catálogos).
 
 ## Encuadre
 
@@ -101,6 +101,16 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   `showModalBottomSheet` vuelva (en Frutal no se notaba).
 - **2026-11-07 — Tests de pantalla sin `pumpAndSettle`**: mientras la BD real
   carga, el indicador de progreso no deja asentarse; se bombea con pausas.
+
+- **2026-11-07 — Los dos documentos oficiales** son el cuaderno de
+  tratamientos (RD 1311/2012) y el registro de pasaportes y trazabilidad
+  (RD 1054/2021, art. 20); la etiqueta del pasaporte es un tercer PDF por
+  registro. Todos con PROVISIONAL.
+- **2026-11-07 — La etiqueta lleva PROVISIONAL impreso** (fuera del recuadro):
+  mientras la autoridad no valide el formato, la etiqueta no debe pasar por un
+  pasaporte definitivo. Retirarlo es decisión humana (BLOQUEOS).
+- **2026-11-07 — Bandera en blanco y negro** dibujada a mano (12 estrellas):
+  el anexo del 2017/2313 la admite y evita depender de una imagen.
 
 ## Datos técnicos
 

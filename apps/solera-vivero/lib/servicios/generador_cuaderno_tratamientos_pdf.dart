@@ -46,9 +46,14 @@ String _identidad(String texto) => texto;
 
 /// Tablas del cuaderno: datos generales, zonas de cultivo, tratamientos
 /// fitosanitarios e inspecciones de plagas reguladas (autocontrol).
-/// Columnas de los tratamientos según la parte de tratamientos del
-/// cuaderno de explotación (RD 1311/2012, art. 16 y anexo III), como en
-/// Frutal; **por cotejar** con el modelo de cada comunidad.
+/// Columnas cotejadas el 2026-11-07 con el RD 1311/2012, anexo III, parte I
+/// (texto consolidado, https://www.boe.es/buscar/act.php?id=BOE-A-2012-11605):
+/// A.1 datos generales (falta la relación de equipos con su inspección),
+/// A.2 parcelas (nº de orden, SIGPAC, superficie en ha, aire libre o
+/// protegido) y B a-k de los tratamientos (fecha, parcela, plaga, aplicador,
+/// cultivo con variedad, ha, producto y nº de registro, equipo, kg o l de
+/// producto, eficacia y observaciones). El modelo de cada comunidad puede
+/// pedir más: **por cotejar** con el asesor.
 List<TablaInforme> tablasCuadernoTratamientos(DatosCuadernoTratamientos datos) {
   final zonas = {for (final zona in datos.zonas) zona.id!: zona};
   final partidas = {for (final partida in datos.partidas) partida.id!: partida};
@@ -60,9 +65,18 @@ List<TablaInforme> tablasCuadernoTratamientos(DatosCuadernoTratamientos datos) {
           '${numeroOrden[zonaId] ?? '?'}. ${zonas[zonaId]?.nombre ?? ''}',
         if (partidaId != null) partidas[partidaId]?.codigo ?? '#$partidaId',
       ].join(' · ');
-  String especie(int? partidaId) => partidaId == null
+  String especie(int? partidaId) {
+    final partida = partidas[partidaId];
+    if (partida == null) return '—';
+    return _o([
+      datos.nombreEspecie(partida.especieId),
+      partida.variedad,
+    ].where((parte) => parte.isNotEmpty).join(' · '));
+  }
+
+  String hectareas(double? metrosCuadrados) => metrosCuadrados == null
       ? '—'
-      : _o(datos.nombreEspecie(partidas[partidaId]?.especieId ?? ''));
+      : formatearNumero(metrosCuadrados / 10000, decimales: 4);
   final vivero = datos.vivero;
   final tratamientos = [...datos.tratamientos]
     ..sort((a, b) => a.fechaMs.compareTo(b.fechaMs));
@@ -95,7 +109,8 @@ List<TablaInforme> tablasCuadernoTratamientos(DatosCuadernoTratamientos datos) {
         SoleraL10n.t('vive.pdf_numero_orden'),
         SoleraL10n.t('vive.nombre'),
         SoleraL10n.t('vive.tipo_zona'),
-        SoleraL10n.t('vive.superficie_m2'),
+        SoleraL10n.t('vive.pdf_sistema_cultivo'),
+        'ha',
         SoleraL10n.t('vive.codigo_sigpac'),
       ],
       filas: [
@@ -104,9 +119,10 @@ List<TablaInforme> tablasCuadernoTratamientos(DatosCuadernoTratamientos datos) {
             '${numeroOrden[zona.id]}',
             zona.nombre,
             nombreTipoZona(zona.tipo),
-            zona.superficieM2 == null
-                ? '—'
-                : formatearNumero(zona.superficieM2!, decimales: 0),
+            SoleraL10n.t(zona.tipo == 'invernadero' || zona.tipo == 'umbraculo'
+                ? 'vive.pdf_protegido'
+                : 'vive.pdf_aire_libre'),
+            hectareas(zona.superficieM2),
             _o(zona.codigoSigpac),
           ],
       ],
@@ -123,11 +139,13 @@ List<TablaInforme> tablasCuadernoTratamientos(DatosCuadernoTratamientos datos) {
         SoleraL10n.t('vive.nombre_producto'),
         SoleraL10n.t('vive.pdf_numero_registro'),
         SoleraL10n.t('vive.dosis_aplicada'),
-        'm²',
+        SoleraL10n.t('vive.pdf_cantidad_producto'),
+        'ha',
         SoleraL10n.t('vive.pdf_plazo'),
         SoleraL10n.t('vive.pdf_aplicador'),
         SoleraL10n.t('vive.pdf_equipo'),
         SoleraL10n.t('vive.eficacia'),
+        SoleraL10n.t('vive.observaciones'),
       ],
       filas: [
         for (final tratamiento in tratamientos)
@@ -140,10 +158,8 @@ List<TablaInforme> tablasCuadernoTratamientos(DatosCuadernoTratamientos datos) {
             _o(tratamiento.nombreProducto),
             _o(tratamiento.numeroRegistroProducto),
             _o(tratamiento.dosisAplicada),
-            tratamiento.superficieTratadaM2 == null
-                ? '—'
-                : formatearNumero(tratamiento.superficieTratadaM2!,
-                    decimales: 0),
+            _o(tratamiento.cantidadProductoUtilizado),
+            hectareas(tratamiento.superficieTratadaM2),
             tratamiento.plazoSeguridadDias == null
                 ? '—'
                 : '${tratamiento.plazoSeguridadDias}',
@@ -155,6 +171,7 @@ List<TablaInforme> tablasCuadernoTratamientos(DatosCuadernoTratamientos datos) {
             tratamiento.eficacia.isEmpty
                 ? '—'
                 : nombreEficacia(tratamiento.eficacia),
+            _o(tratamiento.observaciones),
           ],
       ],
       mensajeSiVacia: SoleraL10n.t('vive.sin_tratamientos'),

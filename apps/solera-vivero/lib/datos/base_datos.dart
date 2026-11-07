@@ -159,6 +159,7 @@ const List<String> sentenciasEsquemaViveroV1 = [
     nombre_producto TEXT NOT NULL DEFAULT '',
     numero_registro_producto TEXT NOT NULL DEFAULT '',
     dosis_aplicada TEXT NOT NULL DEFAULT '',
+    cantidad_producto TEXT NOT NULL DEFAULT '',
     plazo_seguridad_dias INTEGER,
     aplicador_nombre TEXT NOT NULL DEFAULT '',
     carnet_aplicador TEXT NOT NULL DEFAULT '',

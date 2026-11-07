@@ -16,10 +16,10 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 7 IA visual | ✅ 2026-11-07 | Ficha de la partida → Inspecciones → escáner: foto (cámara o galería) → hasta 3 candidatos entre las plagas comunes del grupo de cultivo y las **reguladas que afectan a la planta** por su nombre botánico (salida estructurada con `enum` + «otra») → la persona elige y se abre el alta de una **inspección** con la plaga rellena («sospecha» si es regulada, con el aviso a la autoridad). Una regulada nunca sale con confianza «alta» (solo la confirma un laboratorio). El sistema prohíbe recomendar tratamientos y dar la planta por sana. Modelo equilibrado del core, clave BYO (`estado/clave_anthropic_vivero.dart`, Ajustes → Inteligencia artificial). La foto se borra al terminar. Intérprete puro testeado. 64 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (plantón en maceta sobre crema) en `assets/`, iconos del lanzador (`flutter_launcher_icons`), arranque crema con el logo y cabecera de Hoy con logo y cifras (disponibles, listas, salidas sin pasaporte). **QR de bandejas** con el patrón de Arbolado (leído y copiado, sin tocarlo): el QR lleva el código tal cual; escáner (`mobile_scanner`) desde Hoy y Bandejas → ficha de la bandeja o alta con ese código; hoja A4 de 21 etiquetas QR por página. **GPS**: «Usar mi ubicación» en la zona (geolocator) y mapa de zonas (OSM) desde Zonas. Permisos INTERNET, ubicación y cámara en el manifiesto. 68 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir) en `configuraciones_fiscales`; las **ventas de planta salen de las salidas con importe** (con el IVA del 10 % o la compensación REAGP del 12 % según el régimen actual) y el libro recoge otros ingresos y los gastos por categoría; resumen del año, ventas por especie y extracto PDF con sello. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 74 tests |
-| 10 Revisión con fuente pública | pendiente | |
+| 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Nota en `content/vivero/revision-2026-11-07.md`: las 221 filas de los 4 catálogos llevan fuente (`fuente_publica:` o `revision-ia:`); **`catalogosCompletamenteRevisados` sigue en `false`** a propósito y el banner se ve en Hoy. Cuaderno de tratamientos cotejado con el RD 1311/2012, anexo III, parte I: superficie en ha, aire libre o protegido, cultivo con variedad, **kg o l de producto gastado** (campo nuevo del tratamiento) y observaciones. Etiqueta y registro ya citaban el 2017/2313 y el RD 1054/2021 (art. 16 y 20). `scripts/auditoria` no conoce aún la vertical (lista cerrada en su código: calle N). 74 tests |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 10 (revisión con fuente pública).
+**Siguiente acción**: bloque 11 (ayuda in-app, README y APK).
 
 ## Encuadre
 
@@ -118,8 +118,9 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   «Pinos», «Tomate», «Pimiento», «Lechuga». Cada especie del catálogo lleva su
   grupo (vacío si no se cruzó: castaño, frutales…; entonces se ofrecen todas
   las sustancias y no se avisa de uso no autorizado). El cruce lo hace
-  `generar_fitosanitarios.py` (en el scratchpad de la sesión; criterio
-  descrito en la cabecera del CSV).
+  `generar_fitosanitarios.py` (criterio
+  descrito en la cabecera del CSV); desde el bloque 10, copiado en
+  `content/vivero/generar_fitosanitarios.py`.
 - **2026-11-07 — `tipo_accion` deducido de las plagas** de cada sustancia (la
   base UE no trae la categoría en la descarga); es orientativo.
 - **2026-11-07 — Plagas comunes en un catálogo aparte** (`plagas_vivero.csv`,
@@ -159,6 +160,11 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   salida y el libro lo suma; el IVA o la compensación se calculan con el
   régimen actual (no se congelan en la salida). Sin facturas del core hasta que
   el asesor fije el régimen (como Frutal).
+
+- **2026-11-07 — Cotejo con el anexo III sin copiarlo entero**: quedan fuera
+  la relación de equipos con su última inspección (A.1.h), masas de agua y
+  zonas del art. 35, análisis de suelo, fertilización y riego (el vivero no los
+  apunta en la app). Lo apunta el asesor si su comunidad los pide.
 
 ## Datos técnicos
 

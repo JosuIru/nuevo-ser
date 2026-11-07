@@ -677,6 +677,7 @@ Future<bool> mostrarFormularioTratamiento(BuildContext context,
   final producto = TextEditingController();
   final registro = TextEditingController();
   final dosis = TextEditingController();
+  final cantidadProducto = TextEditingController();
   final plazo = TextEditingController();
   final superficie = TextEditingController();
   final aplicador = TextEditingController(text: vivero.nombre);
@@ -713,6 +714,8 @@ Future<bool> mostrarFormularioTratamiento(BuildContext context,
       campoTexto(registro, SoleraL10n.t('vive.numero_registro')),
       campoTexto(dosis, SoleraL10n.t('vive.dosis_aplicada'),
           ayuda: SoleraL10n.t('vive.copiar_de_etiqueta')),
+      campoTexto(cantidadProducto, SoleraL10n.t('vive.cantidad_producto'),
+          ayuda: SoleraL10n.t('vive.cantidad_producto_ayuda')),
       campoNumero(plazo, SoleraL10n.t('vive.plazo_seguridad_dias'),
           decimales: false, ayuda: avisoPlazoSustancia(sustancia.text)),
       campoNumero(superficie, SoleraL10n.t('vive.superficie_m2')),
@@ -747,6 +750,7 @@ Future<bool> mostrarFormularioTratamiento(BuildContext context,
             nombreProducto: producto.text.trim(),
             numeroRegistroProducto: registro.text.trim(),
             dosisAplicada: dosis.text.trim(),
+            cantidadProductoUtilizado: cantidadProducto.text.trim(),
             plazoSeguridadDias: leerEntero(plazo.text),
             aplicadorNombre: aplicador.text.trim(),
             carnetAplicador: carnet.text.trim(),
@@ -762,6 +766,7 @@ Future<bool> mostrarFormularioTratamiento(BuildContext context,
     producto,
     registro,
     dosis,
+    cantidadProducto,
     plazo,
     superficie,
     aplicador,

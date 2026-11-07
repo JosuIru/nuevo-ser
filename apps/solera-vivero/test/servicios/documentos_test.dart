@@ -81,7 +81,9 @@ void main() {
       expect(tratamientos.first[1], '2. Era', reason: 'del más antiguo');
       expect(tratamientos.last[1], '1. Nave · P26-0004');
       expect(tratamientos.last[2], 'Castaño');
-      expect(tratamientos.last[10], 'Ane · C-1');
+      expect(tratamientos.last[11], 'Ane · C-1');
+      expect(tablas[1].filas.first[3], SoleraL10n.t('vive.pdf_aire_libre'));
+      expect(tablas[1].filas.first[4], '0,0400');
       expect(
           tablas[3].filas.single[5], SoleraL10n.t('vive.resultado_sospecha'));
     });

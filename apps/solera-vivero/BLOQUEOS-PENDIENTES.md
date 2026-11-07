@@ -31,4 +31,20 @@ y sigue. Lo recoge `scripts/pendientes/`.
 
 - Textos de `content/solera/traducciones/vivero.csv` (borrador, 2026-11-07).
 
+## Catálogos: lo que no se pudo contrastar
+
+- Versión consolidada vigente de los anexos IV, XIII y XIV del Reglamento de
+  Ejecución (UE) 2019/2072: se leyó la versión adoptada (legislation.gov.uk);
+  EUR-Lex no devolvió el texto completo en la consulta.
+- Zonas protegidas de España (anexo III del 2019/2072) para las especies del
+  anexo XIV: no leídas; la persona marca si el destino es zona protegida.
+- Huéspedes de las plagas prioritarias (la lista de *Xylella* es de la
+  Comisión) y síntomas de todas las plagas: orientativos.
+- Material forestal de reproducción: el RD 289/2003 (mod. RD 1220/2011) se
+  da por vigente sin comprobar si hay norma posterior; regiones de
+  procedencia sin catálogo (texto libre).
+- *Trichoderma asperellum* T25: aprobación UE hasta el 30/11/2026; revisar.
+- Firmas: `scripts/auditoria` no tiene la vertical «vivero» en su lista
+  (código de otra calle). Pedir a la calle N que la añada.
+
 ## Bloqueos técnicos

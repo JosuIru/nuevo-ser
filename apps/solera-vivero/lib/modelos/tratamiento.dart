@@ -18,6 +18,7 @@ class Tratamiento {
     this.nombreProducto = '',
     this.numeroRegistroProducto = '',
     this.dosisAplicada = '',
+    this.cantidadProductoUtilizado = '',
     this.plazoSeguridadDias,
     this.aplicadorNombre = '',
     this.carnetAplicador = '',
@@ -44,6 +45,10 @@ class Tratamiento {
 
   /// Texto tal como lo apunta la persona. La app no lo calcula ni lo propone.
   final String dosisAplicada;
+
+  /// Kilos o litros de producto gastados en el tratamiento, como los
+  /// apunta la persona (RD 1311/2012, anexo III, parte I.B.i).
+  final String cantidadProductoUtilizado;
 
   /// Plazo de seguridad de la etiqueta, en días (en hortícola importa:
   /// la planta acaba en un huerto).
@@ -72,6 +77,7 @@ class Tratamiento {
         'nombre_producto': nombreProducto,
         'numero_registro_producto': numeroRegistroProducto,
         'dosis_aplicada': dosisAplicada,
+        'cantidad_producto': cantidadProductoUtilizado,
         'plazo_seguridad_dias': plazoSeguridadDias,
         'aplicador_nombre': aplicadorNombre,
         'carnet_aplicador': carnetAplicador,
@@ -94,6 +100,7 @@ class Tratamiento {
         numeroRegistroProducto:
             (mapa['numero_registro_producto'] as String?) ?? '',
         dosisAplicada: (mapa['dosis_aplicada'] as String?) ?? '',
+        cantidadProductoUtilizado: (mapa['cantidad_producto'] as String?) ?? '',
         plazoSeguridadDias: mapa['plazo_seguridad_dias'] as int?,
         aplicadorNombre: (mapa['aplicador_nombre'] as String?) ?? '',
         carnetAplicador: (mapa['carnet_aplicador'] as String?) ?? '',

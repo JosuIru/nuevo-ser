@@ -10,6 +10,7 @@ huer.asesor,Asesor,Aholkularia,Assessor,Asesor
 huer.asesor_nombre,Nombre del asesor,Aholkulariaren izena,Nom de l'assessor,Nome do asesor
 huer.asesor_ropo,Nº ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l'assessor,N.º ROPO do asesor
 huer.aviso_documento_provisional,Documento PROVISIONAL: el formato no lo ha validado el organismo de control ni un asesor. La app registra lo que pide el certificador; no certifica nada como ecológico.,Behin-behineko dokumentua: formatua ez du kontrol-erakundeak ez aholkulari batek baliozkotu. Aplikazioak ziurtatzaileak eskatzen duena erregistratzen du; ez du ezer ekologikotzat ziurtatzen.,Document PROVISIONAL: el format no l'ha validat l'organisme de control ni cap assessor. L'app registra el que demana el certificador; no certifica res com a ecològic.,Documento PROVISIONAL: o formato non o validou o organismo de control nin un asesor. A app rexistra o que pide o certificador; non certifica nada como ecolóxico.
+huer.aviso_fiscal,"PROVISIONAL y orientativo: no es una liquidación de impuestos. El régimen, los tipos y la compensación los confirma tu asesor fiscal.","Behin-behinekoa eta orientagarria: ez da zerga-likidazio bat. Araubidea, tasak eta konpentsazioa zure zerga-aholkulariak berresten ditu.","PROVISIONAL i orientatiu: no és una liquidació d'impostos. El règim, els tipus i la compensació els confirma el teu assessor fiscal.","PROVISIONAL e orientativo: non é unha liquidación de impostos. O réxime, os tipos e a compensación confírmaos o teu asesor fiscal."
 huer.aviso_insumo_no_marcado,Este insumo no está marcado como permitido en ecológico. Revísalo con tu organismo de control.,Intsumo hau ez dago ekologikoan baimendutzat markatuta. Begiratu zure kontrol-erakundearekin.,Aquest insum no està marcat com a permès en ecològic. Revisa-ho amb el teu organisme de control.,Este insumo non está marcado como permitido en ecolóxico. Revísao co teu organismo de control.
 huer.aviso_rotacion,{familia} ya estuvo en este bancal el {fecha}: el catálogo pide {n} años entre una y otra.,{familia} bankal honetan egon zen {fecha} egunean: katalogoak {n} urte eskatzen ditu batetik bestera.,{familia} ja va ser en aquest bancal el {fecha}: el catàleg demana {n} anys entre una i altra.,{familia} xa estivo neste bancal o {fecha}: o catálogo pide {n} anos entre unha e outra.
 huer.bancal,Bancal,Bankala,Bancal,Bancal
@@ -17,6 +18,8 @@ huer.bancal_activo,Bancal en uso,Bankala erabileran,Bancal en ús,Bancal en uso
 huer.bancal_libre,Libre,Libre,Lliure,Libre
 huer.bancales,Bancales,Bankalak,Bancals,Bancais
 huer.banco_semillas,Banco de semillas,Hazi-bankua,Banc de llavors,Banco de sementes
+huer.base,Base,Oinarria,Base,Base
+huer.base_euros,"Base (€, sin impuestos)","Oinarria (€, zergarik gabe)","Base (€, sense impostos)","Base (€, sen impostos)"
 huer.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
 huer.borrar_parcela,¿Borrar la parcela y sus bancales? Solo se puede si no tienen registros.,Lursaila eta bere bankalak ezabatu? Erregistrorik ez badute bakarrik.,Esborrar la parcel·la i els seus bancals? Només si no tenen registres.,Borrar a parcela e os seus bancais? Só se non teñen rexistros.
 huer.borrar_registro,¿Borrar este registro?,Erregistro hau ezabatu?,Esborrar aquest registre?,Borrar este rexistro?
@@ -26,19 +29,43 @@ huer.cantidad,Cantidad,Kopurua,Quantitat,Cantidade
 huer.cantidad_semilla,"Cantidad («25 g», «2 sobres»)","Kopurua («25 g», «2 gutun-azal»)","Quantitat («25 g», «2 sobres»)","Cantidade («25 g», «2 sobres»)"
 huer.cantidad_total,Cantidad total gastada,Guztira erabilitako kopurua,Quantitat total gastada,Cantidade total gastada
 huer.carnet_aplicador,Carné de aplicador,Aplikatzaile-txartela,Carnet d'aplicador,Carné de aplicador
+huer.categoria,Categoría,Kategoria,Categoria,Categoría
+huer.categoria_abonos_enmiendas,Abonos y enmiendas,Ongarriak eta zuzenketak,Adobs i esmenes,Abonos e emendas
+huer.categoria_agua_riego,Agua de riego,Ureztatzeko ura,Aigua de reg,Auga de rega
 huer.categoria_anexo,Categoría del anexo (Reglamento 2021/1165),Eranskineko kategoria (2021/1165 Erregelamendua),Categoria de l'annex (Reglament 2021/1165),Categoría do anexo (Regulamento 2021/1165)
 huer.categoria_anexo_ayuda,Referencia; lo que vale es la etiqueta y tu certificador.,Erreferentzia; balio duena etiketa eta zure ziurtatzailea dira.,Referència; el que val és l'etiqueta i el teu certificador.,Referencia; o que vale é a etiqueta e o teu certificador.
+huer.categoria_certificacion,Certificación ecológica,Ziurtapen ekologikoa,Certificació ecològica,Certificación ecolóxica
+huer.categoria_envases_cestas,"Cajas, cestas y envases","Kutxak, saskiak eta ontziak","Caixes, cistelles i envasos","Caixas, cestas e envases"
+huer.categoria_fitosanitarios,Fitosanitarios,Fitosanitarioak,Fitosanitaris,Fitosanitarios
+huer.categoria_gasoleo,Gasóleo,Gasolioa,Gasoil,Gasóleo
+huer.categoria_mano_obra,Mano de obra,Eskulana,Mà d'obra,Man de obra
+huer.categoria_maquinaria,Maquinaria y herramientas,Makineria eta tresnak,Maquinària i eines,Maquinaria e ferramentas
+huer.categoria_otros_gastos,Otros gastos,Beste gastu batzuk,Altres despeses,Outros gastos
+huer.categoria_otros_ingresos,Otros ingresos,Beste sarrera batzuk,Altres ingressos,Outros ingresos
+huer.categoria_seguro,Seguros,Aseguruak,Assegurances,Seguros
+huer.categoria_semillas_plantel,Semillas y plantel,Haziak eta landareak,Llavors i planter,Sementes e planta
+huer.categoria_subvenciones,Subvenciones,Diru-laguntzak,Subvencions,Subvencións
+huer.categoria_venta_cestas,Venta en cestas,Saskien salmenta,Venda en cistelles,Venda en cestas
+huer.categoria_venta_mercado,Venta en mercado,Azokako salmenta,Venda al mercat,Venda no mercado
+huer.categoria_venta_otros,Otras ventas de cosecha,Uztaren beste salmenta batzuk,Altres vendes de collita,Outras vendas de colleita
+huer.categoria_venta_restaurantes,Venta a restaurantes y tiendas,Jatetxe eta dendetarako salmenta,Venda a restaurants i botigues,Venda a restaurantes e tendas
 huer.certificacion_ecologica,Certificación ecológica,Ziurtapen ekologikoa,Certificació ecològica,Certificación ecolóxica
 huer.cesta_vacia,Cesta vacía. Propón el reparto o añade a mano.,Saski hutsa. Proposatu banaketa edo gehitu eskuz.,Cistella buida. Proposa el repartiment o afegeix a mà.,Cesta baleira. Propón o reparto ou engade a man.
 huer.cestas,Cestas,Saskiak,Cistelles,Cestas
 huer.cestas_esta_semana,Cestas de esta semana,Aste honetako saskiak,Cistelles d'aquesta setmana,Cestas desta semana
 huer.cestas_semana,Cestas de la semana ({n}),Asteko saskiak ({n}),Cistelles de la setmana ({n}),Cestas da semana ({n})
+huer.cliente,Cliente,Bezeroa,Client,Cliente
 huer.codigo_lote,Código del lote,Sortaren kodea,Codi del lot,Código do lote
 huer.codigo_operador_ecologico,Código de operador ecológico,Operadore ekologikoaren kodea,Codi d'operador ecològic,Código de operador ecolóxico
 huer.codigo_sigpac,Código SIGPAC,SIGPAC kodea,Codi SIGPAC,Código SIGPAC
 huer.codigo_sigpac_ayuda,Provincia:municipio:agregado:zona:polígono:parcela:recinto,Probintzia:udalerria:agregatua:zona:poligonoa:lursaila:barrutia,Província:municipi:agregat:zona:polígon:parcel·la:recinte,Provincia:concello:agregado:zona:polígono:parcela:recinto
+huer.compensaciones_reagp,Compensaciones REAGP,NNAE konpentsazioak,Compensacions REAGP,Compensacións REAGP
+huer.comprador_empresario,Comprador empresario o profesional,Erosle enpresaburua edo profesionala,Comprador empresari o professional,Comprador empresario ou profesional
+huer.comprador_empresario_ayuda,"Restaurante, tienda… En REAGP solo a ellos se les cobra la compensación; a un particular, nada.","Jatetxea, denda… NNAEn haiei bakarrik kobratzen zaie konpentsazioa; partikular bati, ezer ez.","Restaurant, botiga… En REAGP només a ells se'ls cobra la compensació; a un particular, res.","Restaurante, tenda… En REAGP só a eles se lles cobra a compensación; a un particular, nada."
 huer.comunidad_autonoma,Comunidad autónoma,Autonomia-erkidegoa,Comunitat autònoma,Comunidade autónoma
+huer.con_compensacion_reagp,Con compensación REAGP del {n} %,{n} %ko NNAE konpentsazioarekin,Amb compensació REAGP del {n} %,Con compensación REAGP do {n} %
 huer.con_fecha_fin,Con fecha de fin,Amaiera-datarekin,Amb data de fi,Con data de fin
+huer.concepto,Concepto,Kontzeptua,Concepte,Concepto
 huer.conversion_desde,En conversión desde {fecha},Bihurtzen {fecha} geroztik,En conversió des de {fecha},En conversión dende {fecha}
 huer.correo,Correo,Posta,Correu,Correo
 huer.cosecha_para_cestas,Cosecha para cestas (real),Saskietarako uzta (benetakoa),Collita per a cistelles (real),Colleita para cestas (real)
@@ -89,6 +116,7 @@ huer.estado_eco_convencional,Convencional,Konbentzionala,Convencional,Convencion
 huer.estado_eco_conversion,En conversión,Bihurtzen,En conversió,En conversión
 huer.estado_eco_ecologica,Ecológica,Ekologikoa,Ecològica,Ecolóxica
 huer.estado_ecologico,Situación ecológica,Egoera ekologikoa,Situació ecològica,Situación ecolóxica
+huer.extracto_pdf,Extracto en PDF,Laburpena PDFan,Extracte en PDF,Extracto en PDF
 huer.falta_autorizacion,Falta la autorización,Baimena falta da,Falta l'autorització,Falta a autorización
 huer.falta_bancal_o_cultivo,Primero da de alta un bancal y un cultivo.,"Lehenik, sortu bankal bat eta labore bat.",Primer dona d'alta un bancal i un cultiu.,Primeiro dá de alta un bancal e un cultivo.
 huer.falta_justificante,Falta el justificante,Egiaztagiria falta da,Falta el justificant,Falta o xustificante
@@ -105,18 +133,25 @@ huer.fecha_siembra,Fecha de siembra o plantación,Ereite- edo landatze-data,Data
 huer.frecuencia,Frecuencia,Maiztasuna,Freqüència,Frecuencia
 huer.frecuencia_quincenal,Quincenal,Hamabostero,Quinzenal,Quincenal
 huer.frecuencia_semanal,Semanal,Astero,Setmanal,Semanal
+huer.gastos,Gastos,Gastuak,Despeses,Gastos
 huer.germinacion,Germinación (%),Ernetzea (%),Germinació (%),Xerminación (%)
 huer.grupo_consumo,Grupo de consumo,Kontsumo-taldea,Grup de consum,Grupo de consumo
 huer.guardado,Guardado,Gordeta,Desat,Gardado
 huer.hasta_fecha,hasta {fecha},{fecha} arte,fins a {fecha},ata {fecha}
 huer.hoja_cestas,Hoja de cestas y reparto,Saskien eta banaketaren orria,Full de cistelles i repartiment,Folla de cestas e reparto
 huer.hoy,Hoy,Gaur,Avui,Hoxe
+huer.impuesto,Impuesto,Zerga,Impost,Imposto
+huer.ingresos,Ingresos,Sarrerak,Ingressos,Ingresos
+huer.ingresos_y_gastos,Ingresos y gastos,Sarrerak eta gastuak,Ingressos i despeses,Ingresos e gastos
 huer.inicio_conversion,Inicio de la conversión,Bihurtzearen hasiera,Inici de la conversió,Inicio da conversión
 huer.insumo,Insumo,Intsumoa,Insum,Insumo
 huer.insumo_sin_justificante,Insumo «{insumo}» marcado como permitido sin justificante,«{insumo}» intsumoa baimendutzat markatuta egiaztagiririk gabe,Insum «{insumo}» marcat com a permès sense justificant,Insumo «{insumo}» marcado como permitido sen xustificante
 huer.insumos,Insumos,Intsumoak,Insums,Insumos
 huer.insumos_aviso,"«Permitido en ecológico» lo marcas tú con su justificante (etiqueta, listado de tu organismo de control, certificado del proveedor). La app no lo decide ni lo certifica.","«Ekologikoan baimendua» zuk markatzen duzu egiaztagiriarekin (etiketa, zure kontrol-erakundearen zerrenda, hornitzailearen ziurtagiria). Aplikazioak ez du erabakitzen ez ziurtatzen.","«Permès en ecològic» ho marques tu amb el justificant (etiqueta, llista del teu organisme de control, certificat del proveïdor). L'app no ho decideix ni ho certifica.","«Permitido en ecolóxico» márcalo ti co seu xustificante (etiqueta, listaxe do teu organismo de control, certificado do provedor). A app non o decide nin o certifica."
 huer.invernadero,Bajo cubierta (túnel o invernadero),Estalpean (tunela edo negutegia),Sota coberta (túnel o hivernacle),Baixo cuberta (túnel ou invernadoiro)
+huer.iva,IVA,BEZ,IVA,IVE
+huer.iva_repercutido,IVA repercutido,Jasanarazitako BEZa,IVA repercutit,IVE repercutido
+huer.iva_soportado,IVA soportado,Jasandako BEZa,IVA suportat,IVE soportado
 huer.justificante,Justificante,Egiaztagiria,Justificant,Xustificante
 huer.justificante_ayuda,"Por qué: etiqueta «utilizable en AE», listado del organismo, certificado…","Zergatik: «NE-n erabilgarria» etiketa, erakundearen zerrenda, ziurtagiria…","Per què: etiqueta «utilitzable en AE», llista de l'organisme, certificat…","Por que: etiqueta «utilizable en AE», listaxe do organismo, certificado…"
 huer.kg,Kilos,Kiloak,Quilos,Quilos
@@ -155,6 +190,8 @@ huer.nueva_siembra,Nueva siembra,Erein berria,Nova sembra,Nova sementeira
 huer.nueva_suscripcion,Nueva suscripción,Harpidetza berria,Nova subscripció,Nova subscrición
 huer.nuevo_bancal,Nuevo bancal,Bankal berria,Nou bancal,Novo bancal
 huer.nuevo_cultivo,Nuevo cultivo,Labore berria,Nou cultiu,Novo cultivo
+huer.nuevo_gasto,Nuevo gasto,Gastu berria,Nova despesa,Novo gasto
+huer.nuevo_ingreso,Nuevo ingreso,Sarrera berria,Nou ingrés,Novo ingreso
 huer.nuevo_insumo,Nuevo insumo,Intsumo berria,Nou insum,Novo insumo
 huer.nuevo_lote_semilla,Nuevo lote de semilla,Hazi-sorta berria,Nou lot de llavor,Novo lote de semente
 huer.nuevo_socio,Nuevo socio,Bazkide berria,Nou soci,Novo socio
@@ -224,9 +261,14 @@ huer.proveedor,Proveedor,Hornitzailea,Proveïdor,Provedor
 huer.proveedor_semilla,Proveedor o red de semillas,Hornitzailea edo hazi-sarea,Proveïdor o xarxa de llavors,Provedor ou rede de sementes
 huer.puede_volver_desde,Puede volver desde el {fecha},{fecha} egunetik itzul daiteke,Pot tornar a partir del {fecha},Pode volver dende o {fecha}
 huer.punto_entrega,Punto de entrega,Entrega-gunea,Punt de lliurament,Punto de entrega
+huer.reagp_sin_compensacion,REAGP a un particular: sin IVA ni compensación.,NNAE partikular bati: BEZik eta konpentsaziorik gabe.,REAGP a un particular: sense IVA ni compensació.,REAGP a un particular: sen IVE nin compensación.
 huer.recogida_por,Recogida por (si no fue el socio),Nork jaso zuen (bazkideak ez bazuen),Recollida per (si no va ser el soci),Recollida por (se non foi o socio)
 huer.recordatorio_leguminosas,"Sin leguminosas en los últimos 3 años: el Reglamento (UE) 2018/848 pide una rotación plurianual que las incluya, como cultivo principal o de cobertura (anexo II, parte I, 1.9.2).","Lekalerik ez azken 3 urteetan: (EB) 2018/848 Erregelamenduak urte anitzeko txandakatzea eskatzen du, lekaleak barne, labore nagusi edo estalki gisa (II. eranskina, I. zatia, 1.9.2).","Sense lleguminoses els darrers 3 anys: el Reglament (UE) 2018/848 demana una rotació plurianual que les inclogui, com a cultiu principal o de cobertura (annex II, part I, 1.9.2).","Sen leguminosas nos últimos 3 anos: o Regulamento (UE) 2018/848 pide unha rotación plurianual que as inclúa, como cultivo principal ou de cuberta (anexo II, parte I, 1.9.2)."
 huer.regadio,Regadío,Ureztatua,Regadiu,Regadío
+huer.regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
+huer.regimen_iva,Régimen de IVA,BEZ araubidea,Règim d'IVA,Réxime de IVE
+huer.regimen_reagp,Régimen especial agrario (REAGP),Nekazaritzako araubide berezia (NNAE),Règim especial agrari (REAGP),Réxime especial agrario (REAGP)
+huer.regimen_sin_elegir,Sin elegir,Aukeratu gabe,Sense triar,Sen escoller
 huer.registrar_entrega,Registrar entrega,Entrega erregistratu,Registra el lliurament,Rexistrar entrega
 huer.registro_explotacion,Nº de registro de explotación,Ustiategi-erregistroaren zk.,Núm. de registre d'explotació,N.º de rexistro de explotación
 huer.repartido_previsto,Reparto propuesto con la cosecha prevista.,Banaketa aurreikusitako uztarekin proposatua.,Repartiment proposat amb la collita prevista.,Reparto proposto coa colleita prevista.
@@ -234,6 +276,7 @@ huer.repartido_real,Reparto propuesto con la cosecha real.,Banaketa benetako uzt
 huer.repartir,Repartir,Banatu,Reparteix,Repartir
 huer.reparto_ayuda,"Reparte la cosecha con destino «cestas» de la semana (o la prevista, si aún no hay) en proporción al tamaño de cada cesta. Es una propuesta: retócala a mano.","Asteko «saskiak» helmugako uzta (edo aurreikusitakoa, oraindik ez badago) saski bakoitzaren tamainaren arabera banatzen du. Proposamena da: zuzendu eskuz.","Reparteix la collita amb destinació «cistelles» de la setmana (o la prevista, si encara no n'hi ha) en proporció a la mida de cada cistella. És una proposta: retoca-la a mà.","Reparte a colleita con destino «cestas» da semana (ou a prevista, se aínda non hai) en proporción ao tamaño de cada cesta. É unha proposta: retócaa a man."
 huer.reparto_sustituye,Ya hay cestas compuestas esta semana: el reparto sustituirá sus productos.,Aste honetan badaude saski osatuak: banaketak haien produktuak ordeztuko ditu.,Ja hi ha cistelles compostes aquesta setmana: el repartiment en substituirà els productes.,Xa hai cestas compostas esta semana: o reparto substituirá os seus produtos.
+huer.resultado,Resultado,Emaitza,Resultat,Resultado
 huer.resultado_aplazada,Aplazada,Atzeratua,Ajornada,Aprazada
 huer.resultado_entrega,Resultado,Emaitza,Resultat,Resultado
 huer.resultado_entregada,Entregada,Entregatua,Lliurada,Entregada
@@ -254,6 +297,7 @@ huer.siembra_hecha_ayuda,"Si no, queda planificada para la fecha prevista.","Bes
 huer.siembras,Siembras,Ereinak,Sembres,Sementeiras
 huer.siembras_proximas,Siembras y plantaciones próximas,Hurrengo ereinak eta landaketak,Properes sembres i plantacions,Próximas sementeiras e plantacións
 huer.sin_aplicaciones,Sin aplicaciones de insumos este año.,Aurten ez dago intsumo-aplikaziorik.,Cap aplicació d'insums aquest any.,Sen aplicacións de insumos este ano.
+huer.sin_apuntes,Sin apuntes.,Idazpenik ez.,Sense apunts.,Sen apuntamentos.
 huer.sin_bancales,Sin bancales. Añade el primero.,Bankalik ez. Gehitu lehena.,Sense bancals. Afegeix el primer.,Sen bancais. Engade o primeiro.
 huer.sin_cestas_semana,A ninguna suscripción le toca cesta esta semana.,Aste honetan ez dagokio saskirik inongo harpidetzari.,A cap subscripció li toca cistella aquesta setmana.,A ningunha subscrición lle toca cesta esta semana.
 huer.sin_componer,sin componer,osatu gabe,sense compondre,sen compoñer
@@ -293,7 +337,9 @@ huer.tipo_siembra_plantacion,Plantación (trasplante),Landaketa (transplantea),P
 huer.tipo_siembra_semillero,Semillero,Haztegia,Planter,Semilleiro
 huer.tipo_siembra_siembra_directa,Siembra directa,Zuzeneko ereina,Sembra directa,Sementeira directa
 huer.titular,Titular,Titularra,Titular,Titular
+huer.toda_la_huerta,Toda la huerta,Baratze osoa,Tot l'hort,Toda a horta
 huer.toda_la_parcela,Toda la parcela,Lursail osoa,Tota la parcel·la,Toda a parcela
+huer.total,Total,Guztira,Total,Total
 huer.unidad,Unidad,Unitatea,Unitat,Unidade
 huer.unidad_gramos,gramos de semilla,hazi-gramoak,grams de llavor,gramos de semente
 huer.unidad_metros_lineales,metros lineales,metro linealak,metres lineals,metros lineais

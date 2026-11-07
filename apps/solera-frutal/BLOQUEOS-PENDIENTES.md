@@ -40,6 +40,15 @@ y sigue. Lo recoge `scripts/pendientes/`.
 - Pistachero: sin usos extraídos del registro (pulgones, *Labidostomis*,
   *Botryosphaeria* existen) ni plagas en el catálogo.
 
+## Registro electrónico (SIEX) desde el 1-1-2027
+
+- El registro de tratamientos debe ser electrónico desde el 1/1/2027 (RD
+  1311/2012 art. 16.1, mod. RD 1039/2025). La app genera un PDF PROVISIONAL y
+  no exporta al SIEX ni a los cuadernos autonómicos: depende del módulo
+  transversal T4 (calle N). Hasta entonces, avisar a las explotaciones piloto.
+- Pedir a la calle N que `content/solera/plazos.csv` recoja este plazo
+  (fuera de las rutas de esta vertical).
+
 ## Revisión nativa eu/ca/gl
 
 - Textos de `content/solera/traducciones/frutal.csv` (borrador, 2026-11-07).

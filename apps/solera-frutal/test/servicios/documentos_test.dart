@@ -6,6 +6,7 @@ import 'package:solera_frutal/modelos/abonado.dart';
 import 'package:solera_frutal/modelos/cosecha.dart';
 import 'package:solera_frutal/modelos/helada.dart';
 import 'package:solera_frutal/modelos/parcela.dart';
+import 'package:solera_frutal/modelos/riego.dart';
 import 'package:solera_frutal/modelos/titular.dart';
 import 'package:solera_frutal/modelos/tratamiento.dart';
 import 'package:solera_frutal/servicios/generador_cuaderno_explotacion_pdf.dart';
@@ -69,21 +70,70 @@ void main() {
 
   bool esPdf(List<int> bytes) => ascii.decode(bytes.take(4).toList()) == '%PDF';
 
-  test('cuaderno: parcelas con número de orden y tratamientos por fecha', () {
+  test('cuaderno: tablas en el orden del modelo andaluz v8', () {
     final tablas = tablasCuadernoExplotacion(datos);
-    expect(tablas, hasLength(5));
-    expect(tablas[0].filas.first.take(3), ['1', '50:1:0:0:3:12:1', 'La Loma']);
-    final tratamientos = tablas[1].filas;
-    expect(tratamientos.first[1], '1 · La Loma',
+    expect(tablas, hasLength(7));
+    final [
+      personas,
+      equipos,
+      parcelasT,
+      tratamientosT,
+      abonosT,
+      riegosT,
+      cosechaT
+    ] = tablas;
+    expect(personas.filas.single, ['1', 'Ana', 'C-1']);
+    expect(equipos.filas, isEmpty);
+    expect(equipos.mensajeSiVacia, isNull, reason: 'sin equipos no sale');
+    expect(parcelasT.filas.first.take(3), ['1', '50:1:0:0:3:12:1', 'La Loma']);
+    expect(parcelasT.filas.first.last, 'SEC');
+    expect(parcelasT.filas.last.last, 'LOC');
+    final tratamientos = tratamientosT.filas;
+    expect(tratamientos.first[1], '1 · La Loma (Almendro)',
         reason: 'el de marzo va primero');
     expect(tratamientos.last[4], 'Azufre');
     expect(tratamientos.last[5], 'Producto X / ES-00001');
     expect(tratamientos.last[7], 'Ana / C-1');
-    expect(tablas[1].headers, hasLength(tratamientos.last.length));
-    expect(tablas[3].filas, isEmpty);
-    expect(tablas[3].mensajeSiVacia, isNull,
+    expect(tratamientosT.headers, hasLength(tratamientos.last.length));
+    expect(abonosT.headers, hasLength(abonosT.filas.single.length));
+    expect(riegosT.filas, isEmpty);
+    expect(riegosT.mensajeSiVacia, isNull,
         reason: 'sin riegos no sale la sección');
-    expect(tablas[4].filas.single[3], 'Cooperativa');
+    expect(cosechaT.filas.single[1], 'Almendro');
+    expect(cosechaT.filas.single[4], 'Cooperativa');
+  });
+
+  test('códigos del modelo andaluz y nitrógeno aportado', () {
+    expect(codigoRiegoModelo(parcelas[0]), 'SEC');
+    expect(
+        codigoRiegoModelo(Parcela(
+            nombre: 'a',
+            especieId: 'nogal',
+            regadio: true,
+            sistemaRiego: 'aspersion')),
+        'ASP');
+    expect(codigoAbonadoModelo('fertirrigacion'), 'F');
+    expect(codigoAbonadoModelo('fondo'), 'AF');
+    expect(codigoAbonadoModelo('cobertera'), 'AC');
+    expect(nitrogenoKgPorHa('15-15-15', 200), 30);
+    expect(nitrogenoKgPorHa('8,5-4-12', 100), closeTo(8.5, 1e-9));
+    expect(nitrogenoKgPorHa('estiércol', 100), isNull);
+    expect(nitrogenoKgPorHa('15-15-15', 0), isNull);
+  });
+
+  test('riego: m³/ha y acumulado por parcela', () {
+    final tablas = tablasCuadernoExplotacion(DatosCuadernoExplotacion(
+      anyo: 2026,
+      titular: titular,
+      parcelas: parcelas,
+      riegos: [
+        Riego(parcelaId: 3, fechaMs: 2, volumenM3: 30),
+        Riego(parcelaId: 3, fechaMs: 1, volumenM3: 20),
+      ],
+    ));
+    final riegos = tablas[5].filas;
+    expect(riegos.first[3], '20,0');
+    expect(riegos.last[5], '50,0', reason: 'acumulado (1 ha)');
   });
 
   test('parte de cosecha: totales por parcela y heladas', () {

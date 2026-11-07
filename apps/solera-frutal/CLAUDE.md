@@ -16,10 +16,10 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 7 IA visual | ✅ 2026-11-07 | Ficha de parcela → Seguimiento de plagas → icono de escáner: foto (cámara o galería) → hasta 3 candidatos del catálogo de **esa especie** con confianza y motivo (salida estructurada con `enum` de ids + «otra») → la persona elige y se abre el alta de un **muestreo** con la plaga rellena. Nunca propone tratamientos. Modelo equilibrado del core, clave BYO en `estado/clave_anthropic_frutal.dart` (Ajustes → Inteligencia artificial). La foto se borra al terminar. Intérprete puro testeado. 62 tests |
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (almendra con hoja sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» al editar la parcela (geolocator) y mapa de parcelas (OSM) desde Parcelas. Permisos INTERNET y ubicación en el manifiesto. 41 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir) en `configuraciones_fiscales`; apuntes con base, IVA o compensación REAGP (12 %, solo en venta de cosecha), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 49 tests |
-| 10 Revisión con fuente pública | pendiente | |
+| 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Revisión en `content/frutal/revision-2026-11-07.md`: sustancias `revision-ia:` (Registro MAPA 06/11/2026 + EU Pesticides DB), plagas de almendro y avellano `fuente_publica:` (guías GIP con página); nogal, castaño, variedades y fenología sin revisar. **`catalogosCompletamenteRevisados` sigue en `false`** a propósito (solo `asesor:`/`persona:` lo apagan). Cuaderno cotejado con el modelo andaluz v8: tablas de personas (1.2) y equipos (1.3), códigos SEC/ASP/LOC/GRA y F/AF/AC, N aportado (kg/ha), riego en m³/ha y acumulado, producto en la cosecha y aviso del registro electrónico obligatorio desde el 1-1-2027. 64 tests |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 10 (revisión con fuente pública y cotejo de los PDF con el texto vigente); después el 11.
+**Siguiente acción**: bloque 11 (ayuda in-app, README y APK release).
 
 ## Encuadre
 
@@ -105,8 +105,31 @@ Lo esencial que no se toca (hard limits):
   las plagas del catálogo de la especie (más «otra»): así no puede sugerir
   sustancias ni dosis, y lo que apunta queda como observación revisable.
   Modelo equilibrado, como Obrador: un error de diagnóstico lleva a tratar mal.
+- **2026-11-07 — Cotejo con el modelo andaluz v8 sin copiarlo entero**: se
+  añadieron las tablas y columnas que salen de lo que ya se apunta; quedan
+  fuera semilla tratada, postcosecha, locales, transporte, análisis, datos
+  medioambientales, plan de abonado y ecorregímenes (no aplican o piden datos
+  que la app no recoge). NIF y dirección del comprador tampoco se piden.
+- **2026-11-07 — Aviso del registro electrónico en el PDF**: desde el 1-1-2027
+  el papel ya no vale; la app no conecta con el SIEX ni con los cuadernos
+  autonómicos (módulo T4 del plan, calle N).
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Obrador): no hay
   ninguna instalación publicada.
+
+## Normativa y fuentes consultadas (2026-11-07)
+
+- **Registro electrónico de tratamientos**: RD 1311/2012, art. 16.1, en la
+  redacción de la disposición final primera del RD 1039/2025 (BOE 20/11/2025,
+  https://www.boe.es/boe/dias/2025/11/20/pdfs/BOE-A-2025-23421.pdf): papel
+  hasta el 31/12/2026, **electrónico desde el 1/1/2027**. Consolidado:
+  https://www.boe.es/buscar/pdf/2012/BOE-A-2012-11605-consolidado.pdf.
+  El cuaderno digital del RD 1054/2022 (art. 9) es voluntario salvo esa norma.
+- **Modelo de cuaderno de Andalucía v8** (03/07/2025):
+  https://cdn.juntadeandalucia.es/sites/default/files/inline-files/2025/07/20250703_MODELO_DE_CUADERNO_DE_EXPLOTACION_v8.pdf
+- **IVA**: Ley 37/1992, art. 130.Cinco (REAGP 12 % agrícola) y art. 91.Dos.1.1.º
+  (4 % frutas naturales), consolidado:
+  https://www.boe.es/buscar/pdf/1992/BOE-A-1992-28740-consolidado.pdf
+- Catálogos: ver `content/frutal/revision-2026-11-07.md`.
 
 ## Datos técnicos
 

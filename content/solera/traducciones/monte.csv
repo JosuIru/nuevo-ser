@@ -374,3 +374,54 @@ mont.confianza_alta,Confianza alta,Konfiantza handia,Confiança alta,Confianza a
 mont.confianza_media,Confianza media,Konfiantza ertaina,Confiança mitjana,Confianza media
 mont.confianza_baja,Confianza baja,Konfiantza txikia,Confiança baixa,Confianza baixa
 mont.cerrar,Cerrar,Itxi,Tanca,Pechar
+mont.ingresos_y_gastos,Ingresos y gastos,Sarrerak eta gastuak,Ingressos i despeses,Ingresos e gastos
+mont.ingresos_y_gastos_ayuda,"Subastas, lotes, pastos, ayudas y trabajos del monte (provisional)","Enkanteak, sortak, larreak, laguntzak eta mendiko lanak (behin-behinekoa)","Subhastes, lots, pastures, ajuts i treballs de la forest (provisional)","Poxas, lotes, pastos, axudas e traballos do monte (provisional)"
+mont.extracto_pdf,Extracto en PDF,Laburpena PDFn,Extracte en PDF,Extracto en PDF
+mont.nuevo_ingreso,Nuevo ingreso,Sarrera berria,Ingrés nou,Novo ingreso
+mont.nuevo_gasto,Nuevo gasto,Gastu berria,Despesa nova,Novo gasto
+mont.concepto,Concepto,Kontzeptua,Concepte,Concepto
+mont.categoria,Categoría,Kategoria,Categoria,Categoría
+mont.base_euros,"Base (€, sin IVA)","Oinarria (€, BEZik gabe)","Base (€, sense IVA)","Base (€, sen IVE)"
+mont.iva,IVA,BEZ,IVA,IVE
+mont.con_compensacion_reagp,Con compensación del REAGP del {n} % (la paga quien compra),REAGParen %{n}eko konpentsazioarekin (erosleak ordaintzen du),Amb compensació del REAGP del {n} % (la paga qui compra),Con compensación do REAGP do {n} % (págaa quen compra)
+mont.tercero,"Comprador, rematante, empresa o administración","Eroslea, erostuna, enpresa edo administrazioa","Comprador, rematant, empresa o administració","Comprador, rematante, empresa ou administración"
+mont.falta_concepto_importe,Faltan el concepto y el importe,Kontzeptua eta zenbatekoa falta dira,Falten el concepte i l'import,Faltan o concepto e o importe
+mont.borrar_apunte,¿Borrar el apunte?,Idazpena ezabatu?,Esborrar l'apunt?,Borrar o apuntamento?
+mont.regimen_fiscal,Régimen fiscal,Zerga-araubidea,Règim fiscal,Réxime fiscal
+mont.resultado_economico,Resultado,Emaitza,Resultat,Resultado
+mont.ingresos,Ingresos,Sarrerak,Ingressos,Ingresos
+mont.gastos,Gastos,Gastuak,Despeses,Gastos
+mont.sin_apuntes,Sin apuntes este año,Aurten idazpenik ez,Sense apunts enguany,Sen apuntamentos este ano
+mont.compensaciones_reagp,Compensaciones REAGP cobradas,Kobratutako REAGP konpentsazioak,Compensacions REAGP cobrades,Compensacións REAGP cobradas
+mont.iva_repercutido,IVA repercutido,Jasanarazitako BEZa,IVA repercutit,IVE repercutido
+mont.iva_soportado,IVA soportado,Jasandako BEZa,IVA suportat,IVE soportado
+mont.base,Base,Oinarria,Base,Base
+mont.impuesto,Impuesto,Zerga,Impost,Imposto
+mont.total,Total,Guztira,Total,Total
+mont.pdf_por_categoria,Por categoría,Kategoriaka,Per categoria,Por categoría
+mont.aviso_fiscal,"PROVISIONAL: libro orientativo, no es una liquidación de impuestos ni la contabilidad de una entidad local. El régimen de una comunidad de montes o de una junta vecinal y el IVA de cada operación los confirma el asesor fiscal.","BEHIN-BEHINEKOA: liburu orientagarria da, ez zerga-likidazioa ez toki-erakunde baten kontabilitatea. Mendi-erkidego edo auzo-batzar baten araubidea eta eragiketa bakoitzaren BEZa zerga-aholkulariak berresten ditu.","PROVISIONAL: llibre orientatiu, no és una liquidació d'impostos ni la comptabilitat d'una entitat local. El règim d'una comunitat de forests o d'una junta veïnal i l'IVA de cada operació els confirma l'assessor fiscal.","PROVISIONAL: libro orientativo, non é unha liquidación de impostos nin a contabilidade dunha entidade local. O réxime dunha comunidade de montes ou dunha xunta veciñal e o IVE de cada operación confírmaos o asesor fiscal."
+mont.aviso_fiscal_categoria,Por verificar con el asesor: puede ser cesión o arrendamiento (no venta de producto) o tu régimen no tiene reglas en la app; la app no propone impuesto.,Aholkulariarekin egiaztatzeko: lagapena edo errentamendua izan daiteke (ez produktu-salmenta) edo zure araubideak ez du araurik aplikazioan; aplikazioak ez du zergarik proposatzen.,Per verificar amb l'assessor: pot ser cessió o arrendament (no venda de producte) o el teu règim no té regles a l'aplicació; l'aplicació no proposa impost.,Por verificar co asesor: pode ser cesión ou arrendamento (non venda de produto) ou o teu réxime non ten regras na aplicación; a aplicación non propón imposto.
+mont.categoria_venta_madera,Venta de madera (subasta o venta),Zur-salmenta (enkantea edo salmenta),Venda de fusta (subhasta o venda),Venda de madeira (poxa ou venda)
+mont.categoria_venta_lena,Venta de leña,Egur-salmenta,Venda de llenya,Venda de leña
+mont.categoria_lotes_vecinales,Cuotas de lotes vecinales,Auzo-sorten kuotak,Quotes de lots veïnals,Cotas de lotes veciñais
+mont.categoria_pastos,Pastos,Larreak,Pastures,Pastos
+mont.categoria_caza,Caza (coto),Ehiza (barrutia),Caça (vedat),Caza (couto)
+mont.categoria_hongos_frutos,Setas y frutos,Perretxikoak eta fruituak,Bolets i fruits,Cogomelos e froitos
+mont.categoria_otros_aprovechamientos,Otros aprovechamientos,Beste aprobetxamendu batzuk,Altres aprofitaments,Outros aproveitamentos
+mont.categoria_ayudas,Ayudas y subvenciones,Laguntzak eta diru-laguntzak,Ajuts i subvencions,Axudas e subvencións
+mont.categoria_otros_ingresos,Otros ingresos,Beste sarrera batzuk,Altres ingressos,Outros ingresos
+mont.categoria_trabajos_selvicolas,Trabajos selvícolas,Silbikultura-lanak,Treballs silvícoles,Traballos silvícolas
+mont.categoria_prevencion_incendios,Prevención de incendios,Suteen prebentzioa,Prevenció d'incendis,Prevención de incendios
+mont.categoria_pistas,Pistas y caminos,Pistak eta bideak,Pistes i camins,Pistas e camiños
+mont.categoria_repoblacion,Repoblación,Birlandaketa,Repoblació,Repoboación
+mont.categoria_asistencia_tecnica,"Asistencia técnica (plan, señalamiento)","Laguntza teknikoa (plana, seinaleztapena)","Assistència tècnica (pla, assenyalament)","Asistencia técnica (plan, sinalamento)"
+mont.categoria_certificacion,Certificación forestal,Baso-ziurtagiria,Certificació forestal,Certificación forestal
+mont.categoria_seguros,Seguros,Aseguruak,Assegurances,Seguros
+mont.categoria_tasas_tramites,Tasas y trámites,Tasak eta izapideak,Taxes i tràmits,Taxas e trámites
+mont.categoria_gestion_comunidad,Gestión de la comunidad o junta,Erkidegoaren edo batzarraren kudeaketa,Gestió de la comunitat o junta,Xestión da comunidade ou xunta
+mont.categoria_otros_gastos,Otros gastos,Beste gastu batzuk,Altres despeses,Outros gastos
+mont.regimen_sin_elegir,Sin elegir,Aukeratu gabe,Sense triar,Sen escoller
+mont.regimen_particular_reagp,Particular en REAGP,Partikularra REAGPn,Particular en REAGP,Particular en REAGP
+mont.regimen_particular_general,Particular en régimen general de IVA,Partikularra BEZaren araubide orokorrean,Particular en règim general d'IVA,Particular en réxime xeral de IVE
+mont.regimen_comunidad_montes,Comunidad de montes vecinales (por verificar),Auzo-mendien erkidegoa (egiaztatzeko),Comunitat de forests veïnals (per verificar),Comunidade de montes veciñais (por verificar)
+mont.regimen_entidad_local,"Junta vecinal, concejo o ayuntamiento (por verificar)","Auzo-batzarra, kontzejua edo udala (egiaztatzeko)","Junta veïnal, consell o ajuntament (per verificar)","Xunta veciñal, entidade local menor ou concello (por verificar)"

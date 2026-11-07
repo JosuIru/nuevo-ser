@@ -2913,19 +2913,41 @@ class SoleraL10n {
     'frut.asesor',
     'frut.asesor_ropo',
     'frut.aviso_documento_provisional',
+    'frut.aviso_fiscal',
     'frut.aviso_plazo_seguridad',
+    'frut.base',
+    'frut.base_euros',
     'frut.bienvenida',
     'frut.calibre',
     'frut.campania',
     'frut.cantidad_kg_ha',
     'frut.carnet_aplicador',
     'frut.catalogos_provisionales',
+    'frut.categoria',
+    'frut.categoria_abonos',
+    'frut.categoria_agua_riego',
+    'frut.categoria_fitosanitarios',
+    'frut.categoria_gasoleo',
+    'frut.categoria_indemnizacion_seguro',
+    'frut.categoria_mano_obra',
+    'frut.categoria_maquinaria',
+    'frut.categoria_otros_gastos',
+    'frut.categoria_otros_ingresos',
+    'frut.categoria_plantones',
+    'frut.categoria_polinizacion',
+    'frut.categoria_seguro',
+    'frut.categoria_subvenciones',
+    'frut.categoria_venta_cosecha',
+    'frut.cliente',
     'frut.codigo_rega',
     'frut.codigo_rega_ayuda',
     'frut.codigo_sigpac',
     'frut.colmenas_en_parcela',
     'frut.colmenas_por_ha',
+    'frut.compensaciones_reagp',
     'frut.comunicada_seguro',
+    'frut.con_compensacion_reagp',
+    'frut.concepto',
     'frut.copiar_de_etiqueta',
     'frut.cosecha',
     'frut.cuaderno',
@@ -2955,10 +2977,12 @@ class SoleraL10n {
     'frut.estado_fenologico',
     'frut.etiqueta_fila',
     'frut.etiqueta_fila_ayuda',
+    'frut.extracto_pdf',
     'frut.fecha',
     'frut.fecha_entrada',
     'frut.fecha_salida',
     'frut.filas_variedades',
+    'frut.gastos',
     'frut.gps_error',
     'frut.gps_sin_permiso',
     'frut.grano',
@@ -2969,6 +2993,12 @@ class SoleraL10n {
     'frut.hoy',
     'frut.humedad',
     'frut.humedad_corta',
+    'frut.impuesto',
+    'frut.ingresos',
+    'frut.ingresos_y_gastos',
+    'frut.iva',
+    'frut.iva_repercutido',
+    'frut.iva_soportado',
     'frut.kg_cascara',
     'frut.mapa',
     'frut.mapa_sin_ubicaciones',
@@ -2990,6 +3020,8 @@ class SoleraL10n {
     'frut.nueva_parcela',
     'frut.nuevo_abonado',
     'frut.nuevo_contrato',
+    'frut.nuevo_gasto',
+    'frut.nuevo_ingreso',
     'frut.nuevo_riego',
     'frut.nuevo_tratamiento',
     'frut.numero_albaran',
@@ -3031,13 +3063,19 @@ class SoleraL10n {
     'frut.primeros_pasos',
     'frut.primeros_pasos_texto',
     'frut.problema_fitosanitario',
+    'frut.proveedor',
     'frut.recuento',
     'frut.recuento_ayuda',
     'frut.regadio',
+    'frut.regimen_general',
+    'frut.regimen_iva',
+    'frut.regimen_reagp',
+    'frut.regimen_sin_elegir',
     'frut.registro_explotacion',
     'frut.rendimiento',
     'frut.rendimiento_ayuda',
     'frut.rendimiento_grano',
+    'frut.resultado',
     'frut.riego_aspersion',
     'frut.riego_goteo',
     'frut.riego_superficie',
@@ -3047,6 +3085,7 @@ class SoleraL10n {
     'frut.seguimiento_plagas',
     'frut.si',
     'frut.sigpac_ayuda',
+    'frut.sin_apuntes',
     'frut.sin_comunicar_seguro',
     'frut.sin_cosechas',
     'frut.sin_filas',
@@ -3063,6 +3102,7 @@ class SoleraL10n {
     'frut.tipo_abono',
     'frut.titular',
     'frut.toda_explotacion',
+    'frut.total',
     'frut.tratamientos',
     'frut.tratamientos_del_anyo',
     'frut.ubicacion',
@@ -7414,19 +7454,41 @@ class SoleraL10n {
           'frut.asesor',
           'frut.asesor_ropo',
           'frut.aviso_documento_provisional',
+          'frut.aviso_fiscal',
           'frut.aviso_plazo_seguridad',
+          'frut.base',
+          'frut.base_euros',
           'frut.bienvenida',
           'frut.calibre',
           'frut.campania',
           'frut.cantidad_kg_ha',
           'frut.carnet_aplicador',
           'frut.catalogos_provisionales',
+          'frut.categoria',
+          'frut.categoria_abonos',
+          'frut.categoria_agua_riego',
+          'frut.categoria_fitosanitarios',
+          'frut.categoria_gasoleo',
+          'frut.categoria_indemnizacion_seguro',
+          'frut.categoria_mano_obra',
+          'frut.categoria_maquinaria',
+          'frut.categoria_otros_gastos',
+          'frut.categoria_otros_ingresos',
+          'frut.categoria_plantones',
+          'frut.categoria_polinizacion',
+          'frut.categoria_seguro',
+          'frut.categoria_subvenciones',
+          'frut.categoria_venta_cosecha',
+          'frut.cliente',
           'frut.codigo_rega',
           'frut.codigo_rega_ayuda',
           'frut.codigo_sigpac',
           'frut.colmenas_en_parcela',
           'frut.colmenas_por_ha',
+          'frut.compensaciones_reagp',
           'frut.comunicada_seguro',
+          'frut.con_compensacion_reagp',
+          'frut.concepto',
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
@@ -7456,10 +7518,12 @@ class SoleraL10n {
           'frut.estado_fenologico',
           'frut.etiqueta_fila',
           'frut.etiqueta_fila_ayuda',
+          'frut.extracto_pdf',
           'frut.fecha',
           'frut.fecha_entrada',
           'frut.fecha_salida',
           'frut.filas_variedades',
+          'frut.gastos',
           'frut.gps_error',
           'frut.gps_sin_permiso',
           'frut.grano',
@@ -7470,6 +7534,12 @@ class SoleraL10n {
           'frut.hoy',
           'frut.humedad',
           'frut.humedad_corta',
+          'frut.impuesto',
+          'frut.ingresos',
+          'frut.ingresos_y_gastos',
+          'frut.iva',
+          'frut.iva_repercutido',
+          'frut.iva_soportado',
           'frut.kg_cascara',
           'frut.mapa',
           'frut.mapa_sin_ubicaciones',
@@ -7491,6 +7561,8 @@ class SoleraL10n {
           'frut.nueva_parcela',
           'frut.nuevo_abonado',
           'frut.nuevo_contrato',
+          'frut.nuevo_gasto',
+          'frut.nuevo_ingreso',
           'frut.nuevo_riego',
           'frut.nuevo_tratamiento',
           'frut.numero_albaran',
@@ -7532,13 +7604,19 @@ class SoleraL10n {
           'frut.primeros_pasos',
           'frut.primeros_pasos_texto',
           'frut.problema_fitosanitario',
+          'frut.proveedor',
           'frut.recuento',
           'frut.recuento_ayuda',
           'frut.regadio',
+          'frut.regimen_general',
+          'frut.regimen_iva',
+          'frut.regimen_reagp',
+          'frut.regimen_sin_elegir',
           'frut.registro_explotacion',
           'frut.rendimiento',
           'frut.rendimiento_ayuda',
           'frut.rendimiento_grano',
+          'frut.resultado',
           'frut.riego_aspersion',
           'frut.riego_goteo',
           'frut.riego_superficie',
@@ -7548,6 +7626,7 @@ class SoleraL10n {
           'frut.seguimiento_plagas',
           'frut.si',
           'frut.sigpac_ayuda',
+          'frut.sin_apuntes',
           'frut.sin_comunicar_seguro',
           'frut.sin_cosechas',
           'frut.sin_filas',
@@ -7564,6 +7643,7 @@ class SoleraL10n {
           'frut.tipo_abono',
           'frut.titular',
           'frut.toda_explotacion',
+          'frut.total',
           'frut.tratamientos',
           'frut.tratamientos_del_anyo',
           'frut.ubicacion',
@@ -11912,19 +11992,41 @@ class SoleraL10n {
           'frut.asesor',
           'frut.asesor_ropo',
           'frut.aviso_documento_provisional',
+          'frut.aviso_fiscal',
           'frut.aviso_plazo_seguridad',
+          'frut.base',
+          'frut.base_euros',
           'frut.bienvenida',
           'frut.calibre',
           'frut.campania',
           'frut.cantidad_kg_ha',
           'frut.carnet_aplicador',
           'frut.catalogos_provisionales',
+          'frut.categoria',
+          'frut.categoria_abonos',
+          'frut.categoria_agua_riego',
+          'frut.categoria_fitosanitarios',
+          'frut.categoria_gasoleo',
+          'frut.categoria_indemnizacion_seguro',
+          'frut.categoria_mano_obra',
+          'frut.categoria_maquinaria',
+          'frut.categoria_otros_gastos',
+          'frut.categoria_otros_ingresos',
+          'frut.categoria_plantones',
+          'frut.categoria_polinizacion',
+          'frut.categoria_seguro',
+          'frut.categoria_subvenciones',
+          'frut.categoria_venta_cosecha',
+          'frut.cliente',
           'frut.codigo_rega',
           'frut.codigo_rega_ayuda',
           'frut.codigo_sigpac',
           'frut.colmenas_en_parcela',
           'frut.colmenas_por_ha',
+          'frut.compensaciones_reagp',
           'frut.comunicada_seguro',
+          'frut.con_compensacion_reagp',
+          'frut.concepto',
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
@@ -11954,10 +12056,12 @@ class SoleraL10n {
           'frut.estado_fenologico',
           'frut.etiqueta_fila',
           'frut.etiqueta_fila_ayuda',
+          'frut.extracto_pdf',
           'frut.fecha',
           'frut.fecha_entrada',
           'frut.fecha_salida',
           'frut.filas_variedades',
+          'frut.gastos',
           'frut.gps_error',
           'frut.gps_sin_permiso',
           'frut.grano',
@@ -11968,6 +12072,12 @@ class SoleraL10n {
           'frut.hoy',
           'frut.humedad',
           'frut.humedad_corta',
+          'frut.impuesto',
+          'frut.ingresos',
+          'frut.ingresos_y_gastos',
+          'frut.iva',
+          'frut.iva_repercutido',
+          'frut.iva_soportado',
           'frut.kg_cascara',
           'frut.mapa',
           'frut.mapa_sin_ubicaciones',
@@ -11989,6 +12099,8 @@ class SoleraL10n {
           'frut.nueva_parcela',
           'frut.nuevo_abonado',
           'frut.nuevo_contrato',
+          'frut.nuevo_gasto',
+          'frut.nuevo_ingreso',
           'frut.nuevo_riego',
           'frut.nuevo_tratamiento',
           'frut.numero_albaran',
@@ -12030,13 +12142,19 @@ class SoleraL10n {
           'frut.primeros_pasos',
           'frut.primeros_pasos_texto',
           'frut.problema_fitosanitario',
+          'frut.proveedor',
           'frut.recuento',
           'frut.recuento_ayuda',
           'frut.regadio',
+          'frut.regimen_general',
+          'frut.regimen_iva',
+          'frut.regimen_reagp',
+          'frut.regimen_sin_elegir',
           'frut.registro_explotacion',
           'frut.rendimiento',
           'frut.rendimiento_ayuda',
           'frut.rendimiento_grano',
+          'frut.resultado',
           'frut.riego_aspersion',
           'frut.riego_goteo',
           'frut.riego_superficie',
@@ -12046,6 +12164,7 @@ class SoleraL10n {
           'frut.seguimiento_plagas',
           'frut.si',
           'frut.sigpac_ayuda',
+          'frut.sin_apuntes',
           'frut.sin_comunicar_seguro',
           'frut.sin_cosechas',
           'frut.sin_filas',
@@ -12062,6 +12181,7 @@ class SoleraL10n {
           'frut.tipo_abono',
           'frut.titular',
           'frut.toda_explotacion',
+          'frut.total',
           'frut.tratamientos',
           'frut.tratamientos_del_anyo',
           'frut.ubicacion',
@@ -16410,19 +16530,41 @@ class SoleraL10n {
           'frut.asesor',
           'frut.asesor_ropo',
           'frut.aviso_documento_provisional',
+          'frut.aviso_fiscal',
           'frut.aviso_plazo_seguridad',
+          'frut.base',
+          'frut.base_euros',
           'frut.bienvenida',
           'frut.calibre',
           'frut.campania',
           'frut.cantidad_kg_ha',
           'frut.carnet_aplicador',
           'frut.catalogos_provisionales',
+          'frut.categoria',
+          'frut.categoria_abonos',
+          'frut.categoria_agua_riego',
+          'frut.categoria_fitosanitarios',
+          'frut.categoria_gasoleo',
+          'frut.categoria_indemnizacion_seguro',
+          'frut.categoria_mano_obra',
+          'frut.categoria_maquinaria',
+          'frut.categoria_otros_gastos',
+          'frut.categoria_otros_ingresos',
+          'frut.categoria_plantones',
+          'frut.categoria_polinizacion',
+          'frut.categoria_seguro',
+          'frut.categoria_subvenciones',
+          'frut.categoria_venta_cosecha',
+          'frut.cliente',
           'frut.codigo_rega',
           'frut.codigo_rega_ayuda',
           'frut.codigo_sigpac',
           'frut.colmenas_en_parcela',
           'frut.colmenas_por_ha',
+          'frut.compensaciones_reagp',
           'frut.comunicada_seguro',
+          'frut.con_compensacion_reagp',
+          'frut.concepto',
           'frut.copiar_de_etiqueta',
           'frut.cosecha',
           'frut.cuaderno',
@@ -16452,10 +16594,12 @@ class SoleraL10n {
           'frut.estado_fenologico',
           'frut.etiqueta_fila',
           'frut.etiqueta_fila_ayuda',
+          'frut.extracto_pdf',
           'frut.fecha',
           'frut.fecha_entrada',
           'frut.fecha_salida',
           'frut.filas_variedades',
+          'frut.gastos',
           'frut.gps_error',
           'frut.gps_sin_permiso',
           'frut.grano',
@@ -16466,6 +16610,12 @@ class SoleraL10n {
           'frut.hoy',
           'frut.humedad',
           'frut.humedad_corta',
+          'frut.impuesto',
+          'frut.ingresos',
+          'frut.ingresos_y_gastos',
+          'frut.iva',
+          'frut.iva_repercutido',
+          'frut.iva_soportado',
           'frut.kg_cascara',
           'frut.mapa',
           'frut.mapa_sin_ubicaciones',
@@ -16487,6 +16637,8 @@ class SoleraL10n {
           'frut.nueva_parcela',
           'frut.nuevo_abonado',
           'frut.nuevo_contrato',
+          'frut.nuevo_gasto',
+          'frut.nuevo_ingreso',
           'frut.nuevo_riego',
           'frut.nuevo_tratamiento',
           'frut.numero_albaran',
@@ -16528,13 +16680,19 @@ class SoleraL10n {
           'frut.primeros_pasos',
           'frut.primeros_pasos_texto',
           'frut.problema_fitosanitario',
+          'frut.proveedor',
           'frut.recuento',
           'frut.recuento_ayuda',
           'frut.regadio',
+          'frut.regimen_general',
+          'frut.regimen_iva',
+          'frut.regimen_reagp',
+          'frut.regimen_sin_elegir',
           'frut.registro_explotacion',
           'frut.rendimiento',
           'frut.rendimiento_ayuda',
           'frut.rendimiento_grano',
+          'frut.resultado',
           'frut.riego_aspersion',
           'frut.riego_goteo',
           'frut.riego_superficie',
@@ -16544,6 +16702,7 @@ class SoleraL10n {
           'frut.seguimiento_plagas',
           'frut.si',
           'frut.sigpac_ayuda',
+          'frut.sin_apuntes',
           'frut.sin_comunicar_seguro',
           'frut.sin_cosechas',
           'frut.sin_filas',
@@ -16560,6 +16719,7 @@ class SoleraL10n {
           'frut.tipo_abono',
           'frut.titular',
           'frut.toda_explotacion',
+          'frut.total',
           'frut.tratamientos',
           'frut.tratamientos_del_anyo',
           'frut.ubicacion',
@@ -20931,19 +21091,41 @@ class SoleraL10n {
       case 'frut.asesor': return 'Asesor de gestión integrada de plagas';
       case 'frut.asesor_ropo': return 'Nº ROPO del asesor';
       case 'frut.aviso_documento_provisional': return 'Documento PROVISIONAL: formato pendiente de validar por un asesor y por la administración autonómica. No sustituye la firma del asesor ni acredita el cumplimiento de ninguna norma.';
+      case 'frut.aviso_fiscal': return 'Cálculo orientativo y PROVISIONAL: no es una liquidación de impuestos. El régimen, los tipos de IVA y el porcentaje de compensación los confirma tu asesor fiscal.';
       case 'frut.aviso_plazo_seguridad': return 'Hay tratamientos dentro de su plazo de seguridad en esta fecha';
+      case 'frut.base': return 'Base';
+      case 'frut.base_euros': return 'Base imponible (€)';
       case 'frut.bienvenida': return 'Primera versión en construcción.';
       case 'frut.calibre': return 'Calibre';
       case 'frut.campania': return 'Campaña (año)';
       case 'frut.cantidad_kg_ha': return 'Cantidad (kg/ha)';
       case 'frut.carnet_aplicador': return 'Nº de carné de aplicador';
       case 'frut.catalogos_provisionales': return 'Catálogos provisionales: pendientes de revisión por un técnico';
+      case 'frut.categoria': return 'Categoría';
+      case 'frut.categoria_abonos': return 'Abonos';
+      case 'frut.categoria_agua_riego': return 'Agua de riego';
+      case 'frut.categoria_fitosanitarios': return 'Fitosanitarios';
+      case 'frut.categoria_gasoleo': return 'Gasóleo';
+      case 'frut.categoria_indemnizacion_seguro': return 'Indemnización del seguro';
+      case 'frut.categoria_mano_obra': return 'Mano de obra';
+      case 'frut.categoria_maquinaria': return 'Maquinaria';
+      case 'frut.categoria_otros_gastos': return 'Otros gastos';
+      case 'frut.categoria_otros_ingresos': return 'Otros ingresos';
+      case 'frut.categoria_plantones': return 'Plantones';
+      case 'frut.categoria_polinizacion': return 'Polinización (colmenas)';
+      case 'frut.categoria_seguro': return 'Seguro agrario';
+      case 'frut.categoria_subvenciones': return 'Ayudas y subvenciones';
+      case 'frut.categoria_venta_cosecha': return 'Venta de cosecha';
+      case 'frut.cliente': return 'Comprador';
       case 'frut.codigo_rega': return 'Código REGA del apicultor';
       case 'frut.codigo_rega_ayuda': return 'El mismo que usa en Larrea Apícola';
       case 'frut.codigo_sigpac': return 'Código SIGPAC';
       case 'frut.colmenas_en_parcela': return 'Colmenas en las parcelas';
       case 'frut.colmenas_por_ha': return '{n} colmenas/ha';
+      case 'frut.compensaciones_reagp': return 'Compensaciones REAGP';
       case 'frut.comunicada_seguro': return 'Comunicada al seguro';
+      case 'frut.con_compensacion_reagp': return 'Sin IVA: el comprador paga la compensación del REAGP ({n} %)';
+      case 'frut.concepto': return 'Concepto';
       case 'frut.copiar_de_etiqueta': return 'Cópialo de la etiqueta: la app no lo propone';
       case 'frut.cosecha': return 'Cosecha';
       case 'frut.cuaderno': return 'Cuaderno';
@@ -20973,10 +21155,12 @@ class SoleraL10n {
       case 'frut.estado_fenologico': return 'Estado fenológico';
       case 'frut.etiqueta_fila': return 'Filas';
       case 'frut.etiqueta_fila_ayuda': return 'Cómo las llamas: «Filas 1-4», «Lindero norte»…';
+      case 'frut.extracto_pdf': return 'Extracto en PDF';
       case 'frut.fecha': return 'Fecha';
       case 'frut.fecha_entrada': return 'Entrada de las colmenas';
       case 'frut.fecha_salida': return 'Salida de las colmenas';
       case 'frut.filas_variedades': return 'Filas y variedades';
+      case 'frut.gastos': return 'Gastos';
       case 'frut.gps_error': return 'No se ha podido obtener la posición. Inténtalo al aire libre';
       case 'frut.gps_sin_permiso': return 'Sin permiso de ubicación o con el GPS apagado';
       case 'frut.grano': return 'grano';
@@ -20987,6 +21171,12 @@ class SoleraL10n {
       case 'frut.hoy': return 'Hoy';
       case 'frut.humedad': return 'Humedad (%)';
       case 'frut.humedad_corta': return 'humedad';
+      case 'frut.impuesto': return 'IVA o compensación';
+      case 'frut.ingresos': return 'Ingresos';
+      case 'frut.ingresos_y_gastos': return 'Ingresos y gastos';
+      case 'frut.iva': return 'IVA';
+      case 'frut.iva_repercutido': return 'IVA repercutido';
+      case 'frut.iva_soportado': return 'IVA soportado';
       case 'frut.kg_cascara': return 'Kilos en cáscara (o de fruta)';
       case 'frut.mapa': return 'Mapa';
       case 'frut.mapa_sin_ubicaciones': return 'Ninguna parcela tiene ubicación. Guárdala con «Usar mi ubicación» al editarla, de pie en la parcela';
@@ -21008,6 +21198,8 @@ class SoleraL10n {
       case 'frut.nueva_parcela': return 'Nueva parcela';
       case 'frut.nuevo_abonado': return 'Nuevo abonado';
       case 'frut.nuevo_contrato': return 'Colmenas de polinización';
+      case 'frut.nuevo_gasto': return 'Nuevo gasto';
+      case 'frut.nuevo_ingreso': return 'Nuevo ingreso';
       case 'frut.nuevo_riego': return 'Nuevo riego';
       case 'frut.nuevo_tratamiento': return 'Nuevo tratamiento';
       case 'frut.numero_albaran': return 'Nº de albarán';
@@ -21049,13 +21241,19 @@ class SoleraL10n {
       case 'frut.primeros_pasos': return 'Primeros pasos';
       case 'frut.primeros_pasos_texto': return '1. Pon tus datos en Ajustes (titular y asesor). 2. Da de alta tus parcelas con su especie, marco y variedades. 3. Apunta tratamientos, abonados, riegos y cosechas: con eso sale el cuaderno.';
       case 'frut.problema_fitosanitario': return 'Plaga, enfermedad o mala hierba';
+      case 'frut.proveedor': return 'Proveedor';
       case 'frut.recuento': return 'Recuento';
       case 'frut.recuento_ayuda': return 'Capturas, % de órganos afectados… (unidad en notas)';
       case 'frut.regadio': return 'Regadío';
+      case 'frut.regimen_general': return 'Régimen general';
+      case 'frut.regimen_iva': return 'Régimen de IVA';
+      case 'frut.regimen_reagp': return 'Régimen especial agrario (REAGP)';
+      case 'frut.regimen_sin_elegir': return 'Sin elegir (pregunta a tu asesor)';
       case 'frut.registro_explotacion': return 'Nº de registro de la explotación (REGEPA)';
       case 'frut.rendimiento': return 'rendimiento';
       case 'frut.rendimiento_ayuda': return 'Grano sobre cáscara, en %. Vacío en fruta fresca';
       case 'frut.rendimiento_grano': return 'Rendimiento en grano (%)';
+      case 'frut.resultado': return 'Resultado';
       case 'frut.riego_aspersion': return 'Aspersión';
       case 'frut.riego_goteo': return 'Goteo';
       case 'frut.riego_superficie': return 'Superficie (a manta)';
@@ -21065,6 +21263,7 @@ class SoleraL10n {
       case 'frut.seguimiento_plagas': return 'Seguimiento de plagas';
       case 'frut.si': return 'Sí';
       case 'frut.sigpac_ayuda': return 'Provincia:municipio:agregado:zona:polígono:parcela:recinto';
+      case 'frut.sin_apuntes': return 'Sin apuntes';
       case 'frut.sin_comunicar_seguro': return 'Sin comunicar al seguro';
       case 'frut.sin_cosechas': return 'Sin cosechas apuntadas en esta campaña';
       case 'frut.sin_filas': return 'Sin filas: añade las variedades y las polinizadoras';
@@ -21081,6 +21280,7 @@ class SoleraL10n {
       case 'frut.tipo_abono': return 'Abono o enmienda';
       case 'frut.titular': return 'Titular';
       case 'frut.toda_explotacion': return 'Toda la explotación';
+      case 'frut.total': return 'Total';
       case 'frut.tratamientos': return 'Tratamientos';
       case 'frut.tratamientos_del_anyo': return 'tratamientos este año';
       case 'frut.ubicacion': return 'Ubicación';
@@ -25433,19 +25633,41 @@ class SoleraL10n {
       case 'frut.asesor': return 'Izurriteen kudeaketa integratuko aholkularia';
       case 'frut.asesor_ropo': return 'Aholkulariaren ROPO zk.';
       case 'frut.aviso_documento_provisional': return 'BEHIN-BEHINEKO dokumentua: formatua aholkulari batek eta administrazio autonomikoak balioztatu behar dute. Ez du aholkulariaren sinadura ordezten, ezta inolako araurik betetzen dela egiaztatzen ere.';
+      case 'frut.aviso_fiscal': return 'Kalkulu orientagarria eta BEHIN-BEHINEKOA: ez da zerga-likidazio bat. Erregimena, BEZ tasak eta konpentsazio-ehunekoa zure zerga-aholkulariak berresten ditu.';
       case 'frut.aviso_plazo_seguridad': return 'Data honetan segurtasun-epean dauden tratamenduak daude';
+      case 'frut.base': return 'Oinarria';
+      case 'frut.base_euros': return 'Zerga-oinarria (€)';
       case 'frut.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
       case 'frut.calibre': return 'Kalibrea';
       case 'frut.campania': return 'Kanpaina (urtea)';
       case 'frut.cantidad_kg_ha': return 'Kopurua (kg/ha)';
       case 'frut.carnet_aplicador': return 'Aplikatzaile-txartelaren zk.';
       case 'frut.catalogos_provisionales': return 'Behin-behineko katalogoak: teknikari batek berrikusteko';
+      case 'frut.categoria': return 'Kategoria';
+      case 'frut.categoria_abonos': return 'Ongarriak';
+      case 'frut.categoria_agua_riego': return 'Ureztatzeko ura';
+      case 'frut.categoria_fitosanitarios': return 'Fitosanitarioak';
+      case 'frut.categoria_gasoleo': return 'Gasolioa';
+      case 'frut.categoria_indemnizacion_seguro': return 'Aseguruaren kalte-ordaina';
+      case 'frut.categoria_mano_obra': return 'Eskulana';
+      case 'frut.categoria_maquinaria': return 'Makineria';
+      case 'frut.categoria_otros_gastos': return 'Beste gastu batzuk';
+      case 'frut.categoria_otros_ingresos': return 'Beste diru-sarrera batzuk';
+      case 'frut.categoria_plantones': return 'Landareak';
+      case 'frut.categoria_polinizacion': return 'Polinizazioa (erlauntzak)';
+      case 'frut.categoria_seguro': return 'Nekazaritza-asegurua';
+      case 'frut.categoria_subvenciones': return 'Laguntzak eta diru-laguntzak';
+      case 'frut.categoria_venta_cosecha': return 'Uztaren salmenta';
+      case 'frut.cliente': return 'Eroslea';
       case 'frut.codigo_rega': return 'Erlezainaren REGA kodea';
       case 'frut.codigo_rega_ayuda': return 'Larrea Apícolan erabiltzen duen bera';
       case 'frut.codigo_sigpac': return 'SIGPAC kodea';
       case 'frut.colmenas_en_parcela': return 'Erlauntzak lursailetan';
       case 'frut.colmenas_por_ha': return '{n} erlauntz/ha';
+      case 'frut.compensaciones_reagp': return 'REAGP konpentsazioak';
       case 'frut.comunicada_seguro': return 'Aseguruari jakinarazita';
+      case 'frut.con_compensacion_reagp': return 'BEZik gabe: erosleak REAGP konpentsazioa ordaintzen du (% {n})';
+      case 'frut.concepto': return 'Kontzeptua';
       case 'frut.copiar_de_etiqueta': return 'Kopiatu etiketatik: aplikazioak ez du proposatzen';
       case 'frut.cosecha': return 'Uzta';
       case 'frut.cuaderno': return 'Koadernoa';
@@ -25475,10 +25697,12 @@ class SoleraL10n {
       case 'frut.estado_fenologico': return 'Egoera fenologikoa';
       case 'frut.etiqueta_fila': return 'Ilarak';
       case 'frut.etiqueta_fila_ayuda': return 'Nola deitzen dituzun: «1-4 ilarak», «Iparraldeko mugakidea»…';
+      case 'frut.extracto_pdf': return 'Laburpena PDFn';
       case 'frut.fecha': return 'Data';
       case 'frut.fecha_entrada': return 'Erlauntzen sarrera';
       case 'frut.fecha_salida': return 'Erlauntzen irteera';
       case 'frut.filas_variedades': return 'Ilarak eta barietateak';
+      case 'frut.gastos': return 'Gastuak';
       case 'frut.gps_error': return 'Ezin izan da kokapena lortu. Saiatu kanpoan';
       case 'frut.gps_sin_permiso': return 'Kokapen-baimenik gabe edo GPSa itzalita';
       case 'frut.grano': return 'ale';
@@ -25489,6 +25713,12 @@ class SoleraL10n {
       case 'frut.hoy': return 'Gaur';
       case 'frut.humedad': return 'Hezetasuna (%)';
       case 'frut.humedad_corta': return 'hezetasuna';
+      case 'frut.impuesto': return 'BEZ edo konpentsazioa';
+      case 'frut.ingresos': return 'Diru-sarrerak';
+      case 'frut.ingresos_y_gastos': return 'Diru-sarrerak eta gastuak';
+      case 'frut.iva': return 'BEZ';
+      case 'frut.iva_repercutido': return 'BEZ jasanarazia';
+      case 'frut.iva_soportado': return 'BEZ jasana';
       case 'frut.kg_cascara': return 'Kiloak azalarekin (edo fruta)';
       case 'frut.mapa': return 'Mapa';
       case 'frut.mapa_sin_ubicaciones': return 'Lursail batek ere ez du kokapenik. Gorde ezazu «Erabili nire kokapena» botoiarekin, lursailean zutik zaudela';
@@ -25510,6 +25740,8 @@ class SoleraL10n {
       case 'frut.nueva_parcela': return 'Lursail berria';
       case 'frut.nuevo_abonado': return 'Ongarritze berria';
       case 'frut.nuevo_contrato': return 'Polinizazio-erlauntzak';
+      case 'frut.nuevo_gasto': return 'Gastu berria';
+      case 'frut.nuevo_ingreso': return 'Diru-sarrera berria';
       case 'frut.nuevo_riego': return 'Ureztatze berria';
       case 'frut.nuevo_tratamiento': return 'Tratamendu berria';
       case 'frut.numero_albaran': return 'Albaran zk.';
@@ -25551,13 +25783,19 @@ class SoleraL10n {
       case 'frut.primeros_pasos': return 'Lehen urratsak';
       case 'frut.primeros_pasos_texto': return '1. Jarri zure datuak Ezarpenetan (titularra eta aholkularia). 2. Eman alta lursailei, espeziea, markoa eta barietateekin. 3. Idatzi tratamenduak, ongarritzeak, ureztatzeak eta uztak: horrekin ateratzen da koadernoa.';
       case 'frut.problema_fitosanitario': return 'Izurritea, gaixotasuna edo belar txarra';
+      case 'frut.proveedor': return 'Hornitzailea';
       case 'frut.recuento': return 'Zenbaketa';
       case 'frut.recuento_ayuda': return 'Harrapaketak, organo kaltetuen %… (unitatea oharretan)';
       case 'frut.regadio': return 'Ureztatua';
+      case 'frut.regimen_general': return 'Erregimen orokorra';
+      case 'frut.regimen_iva': return 'BEZ erregimena';
+      case 'frut.regimen_reagp': return 'Nekazaritzako erregimen berezia (REAGP)';
+      case 'frut.regimen_sin_elegir': return 'Aukeratu gabe (galdetu zure aholkulariari)';
       case 'frut.registro_explotacion': return 'Ustiategiaren erregistro zk. (REGEPA)';
       case 'frut.rendimiento': return 'errendimendua';
       case 'frut.rendimiento_ayuda': return 'Alea azalaren gainean, %-tan. Hutsik fruta freskoan';
       case 'frut.rendimiento_grano': return 'Ale-errendimendua (%)';
+      case 'frut.resultado': return 'Emaitza';
       case 'frut.riego_aspersion': return 'Ihinztadura';
       case 'frut.riego_goteo': return 'Tantakakoa';
       case 'frut.riego_superficie': return 'Azalekoa (uholdez)';
@@ -25567,6 +25805,7 @@ class SoleraL10n {
       case 'frut.seguimiento_plagas': return 'Izurriteen jarraipena';
       case 'frut.si': return 'Bai';
       case 'frut.sigpac_ayuda': return 'Probintzia:udalerria:agregatua:eremua:poligonoa:lursaila:barrutia';
+      case 'frut.sin_apuntes': return 'Idazpenik gabe';
       case 'frut.sin_comunicar_seguro': return 'Aseguruari jakinarazi gabe';
       case 'frut.sin_cosechas': return 'Kanpaina honetan ez dago uztarik idatzita';
       case 'frut.sin_filas': return 'Ilararik ez: gehitu barietateak eta polinizatzaileak';
@@ -25583,6 +25822,7 @@ class SoleraL10n {
       case 'frut.tipo_abono': return 'Ongarria edo zuzenketa';
       case 'frut.titular': return 'Titularra';
       case 'frut.toda_explotacion': return 'Ustiategi osoa';
+      case 'frut.total': return 'Guztira';
       case 'frut.tratamientos': return 'Tratamenduak';
       case 'frut.tratamientos_del_anyo': return 'tratamendu aurten';
       case 'frut.ubicacion': return 'Kokapena';
@@ -29935,19 +30175,41 @@ class SoleraL10n {
       case 'frut.asesor': return 'Assessor de gestió integrada de plagues';
       case 'frut.asesor_ropo': return 'Núm. ROPO de l\'assessor';
       case 'frut.aviso_documento_provisional': return 'Document PROVISIONAL: format pendent de validar per un assessor i per l\'administració autonòmica. No substitueix la signatura de l\'assessor ni acredita el compliment de cap norma.';
+      case 'frut.aviso_fiscal': return 'Càlcul orientatiu i PROVISIONAL: no és una liquidació d\'impostos. El règim, els tipus d\'IVA i el percentatge de compensació els confirma el teu assessor fiscal.';
       case 'frut.aviso_plazo_seguridad': return 'Hi ha tractaments dins del seu termini de seguretat en aquesta data';
+      case 'frut.base': return 'Base';
+      case 'frut.base_euros': return 'Base imposable (€)';
       case 'frut.bienvenida': return 'Primera versió en construcció.';
       case 'frut.calibre': return 'Calibre';
       case 'frut.campania': return 'Campanya (any)';
       case 'frut.cantidad_kg_ha': return 'Quantitat (kg/ha)';
       case 'frut.carnet_aplicador': return 'Núm. de carnet d\'aplicador';
       case 'frut.catalogos_provisionales': return 'Catàlegs provisionals: pendents de revisió per un tècnic';
+      case 'frut.categoria': return 'Categoria';
+      case 'frut.categoria_abonos': return 'Adobs';
+      case 'frut.categoria_agua_riego': return 'Aigua de reg';
+      case 'frut.categoria_fitosanitarios': return 'Fitosanitaris';
+      case 'frut.categoria_gasoleo': return 'Gasoil';
+      case 'frut.categoria_indemnizacion_seguro': return 'Indemnització de l\'assegurança';
+      case 'frut.categoria_mano_obra': return 'Mà d\'obra';
+      case 'frut.categoria_maquinaria': return 'Maquinària';
+      case 'frut.categoria_otros_gastos': return 'Altres despeses';
+      case 'frut.categoria_otros_ingresos': return 'Altres ingressos';
+      case 'frut.categoria_plantones': return 'Plançons';
+      case 'frut.categoria_polinizacion': return 'Pol·linització (ruscs)';
+      case 'frut.categoria_seguro': return 'Assegurança agrària';
+      case 'frut.categoria_subvenciones': return 'Ajuts i subvencions';
+      case 'frut.categoria_venta_cosecha': return 'Venda de collita';
+      case 'frut.cliente': return 'Comprador';
       case 'frut.codigo_rega': return 'Codi REGA de l\'apicultor';
       case 'frut.codigo_rega_ayuda': return 'El mateix que fa servir a Larrea Apícola';
       case 'frut.codigo_sigpac': return 'Codi SIGPAC';
       case 'frut.colmenas_en_parcela': return 'Ruscs a les parcel·les';
       case 'frut.colmenas_por_ha': return '{n} ruscs/ha';
+      case 'frut.compensaciones_reagp': return 'Compensacions REAGP';
       case 'frut.comunicada_seguro': return 'Comunicada a l\'assegurança';
+      case 'frut.con_compensacion_reagp': return 'Sense IVA: el comprador paga la compensació del REAGP ({n} %)';
+      case 'frut.concepto': return 'Concepte';
       case 'frut.copiar_de_etiqueta': return 'Copia-ho de l\'etiqueta: l\'app no ho proposa';
       case 'frut.cosecha': return 'Collita';
       case 'frut.cuaderno': return 'Quadern';
@@ -29977,10 +30239,12 @@ class SoleraL10n {
       case 'frut.estado_fenologico': return 'Estat fenològic';
       case 'frut.etiqueta_fila': return 'Files';
       case 'frut.etiqueta_fila_ayuda': return 'Com les anomenes: «Files 1-4», «Partió nord»…';
+      case 'frut.extracto_pdf': return 'Extracte en PDF';
       case 'frut.fecha': return 'Data';
       case 'frut.fecha_entrada': return 'Entrada dels ruscs';
       case 'frut.fecha_salida': return 'Sortida dels ruscs';
       case 'frut.filas_variedades': return 'Files i varietats';
+      case 'frut.gastos': return 'Despeses';
       case 'frut.gps_error': return 'No s\'ha pogut obtenir la posició. Prova-ho a l\'aire lliure';
       case 'frut.gps_sin_permiso': return 'Sense permís d\'ubicació o amb el GPS apagat';
       case 'frut.grano': return 'gra';
@@ -29991,6 +30255,12 @@ class SoleraL10n {
       case 'frut.hoy': return 'Avui';
       case 'frut.humedad': return 'Humitat (%)';
       case 'frut.humedad_corta': return 'humitat';
+      case 'frut.impuesto': return 'IVA o compensació';
+      case 'frut.ingresos': return 'Ingressos';
+      case 'frut.ingresos_y_gastos': return 'Ingressos i despeses';
+      case 'frut.iva': return 'IVA';
+      case 'frut.iva_repercutido': return 'IVA repercutit';
+      case 'frut.iva_soportado': return 'IVA suportat';
       case 'frut.kg_cascara': return 'Quilos en closca (o de fruita)';
       case 'frut.mapa': return 'Mapa';
       case 'frut.mapa_sin_ubicaciones': return 'Cap parcel·la no té ubicació. Desa-la amb «Fes servir la meva ubicació» en editar-la, dret a la parcel·la';
@@ -30012,6 +30282,8 @@ class SoleraL10n {
       case 'frut.nueva_parcela': return 'Nova parcel·la';
       case 'frut.nuevo_abonado': return 'Nou adobat';
       case 'frut.nuevo_contrato': return 'Ruscs de pol·linització';
+      case 'frut.nuevo_gasto': return 'Nova despesa';
+      case 'frut.nuevo_ingreso': return 'Nou ingrés';
       case 'frut.nuevo_riego': return 'Nou reg';
       case 'frut.nuevo_tratamiento': return 'Nou tractament';
       case 'frut.numero_albaran': return 'Núm. d\'albarà';
@@ -30053,13 +30325,19 @@ class SoleraL10n {
       case 'frut.primeros_pasos': return 'Primers passos';
       case 'frut.primeros_pasos_texto': return '1. Posa les teves dades a Configuració (titular i assessor). 2. Dona d\'alta les parcel·les amb l\'espècie, el marc i les varietats. 3. Anota tractaments, adobats, regs i collites: amb això surt el quadern.';
       case 'frut.problema_fitosanitario': return 'Plaga, malaltia o mala herba';
+      case 'frut.proveedor': return 'Proveïdor';
       case 'frut.recuento': return 'Recompte';
       case 'frut.recuento_ayuda': return 'Captures, % d\'òrgans afectats… (unitat a les notes)';
       case 'frut.regadio': return 'Regadiu';
+      case 'frut.regimen_general': return 'Règim general';
+      case 'frut.regimen_iva': return 'Règim d\'IVA';
+      case 'frut.regimen_reagp': return 'Règim especial agrari (REAGP)';
+      case 'frut.regimen_sin_elegir': return 'Sense triar (pregunta al teu assessor)';
       case 'frut.registro_explotacion': return 'Núm. de registre de l\'explotació (REGEPA)';
       case 'frut.rendimiento': return 'rendiment';
       case 'frut.rendimiento_ayuda': return 'Gra sobre closca, en %. Buit en fruita fresca';
       case 'frut.rendimiento_grano': return 'Rendiment en gra (%)';
+      case 'frut.resultado': return 'Resultat';
       case 'frut.riego_aspersion': return 'Aspersió';
       case 'frut.riego_goteo': return 'Degoteig';
       case 'frut.riego_superficie': return 'Superfície (a manta)';
@@ -30069,6 +30347,7 @@ class SoleraL10n {
       case 'frut.seguimiento_plagas': return 'Seguiment de plagues';
       case 'frut.si': return 'Sí';
       case 'frut.sigpac_ayuda': return 'Província:municipi:agregat:zona:polígon:parcel·la:recinte';
+      case 'frut.sin_apuntes': return 'Sense apunts';
       case 'frut.sin_comunicar_seguro': return 'Sense comunicar a l\'assegurança';
       case 'frut.sin_cosechas': return 'Sense collites anotades en aquesta campanya';
       case 'frut.sin_filas': return 'Sense files: afegeix les varietats i les pol·linitzadores';
@@ -30085,6 +30364,7 @@ class SoleraL10n {
       case 'frut.tipo_abono': return 'Adob o esmena';
       case 'frut.titular': return 'Titular';
       case 'frut.toda_explotacion': return 'Tota l\'explotació';
+      case 'frut.total': return 'Total';
       case 'frut.tratamientos': return 'Tractaments';
       case 'frut.tratamientos_del_anyo': return 'tractaments enguany';
       case 'frut.ubicacion': return 'Ubicació';
@@ -34437,19 +34717,41 @@ class SoleraL10n {
       case 'frut.asesor': return 'Asesor de xestión integrada de pragas';
       case 'frut.asesor_ropo': return 'N.º ROPO do asesor';
       case 'frut.aviso_documento_provisional': return 'Documento PROVISIONAL: formato pendente de validar por un asesor e pola administración autonómica. Non substitúe a sinatura do asesor nin acredita o cumprimento de ningunha norma.';
+      case 'frut.aviso_fiscal': return 'Cálculo orientativo e PROVISIONAL: non é unha liquidación de impostos. O réxime, os tipos de IVE e a porcentaxe de compensación confírmaos o teu asesor fiscal.';
       case 'frut.aviso_plazo_seguridad': return 'Hai tratamentos dentro do seu prazo de seguridade nesta data';
+      case 'frut.base': return 'Base';
+      case 'frut.base_euros': return 'Base impoñible (€)';
       case 'frut.bienvenida': return 'Primeira versión en construción.';
       case 'frut.calibre': return 'Calibre';
       case 'frut.campania': return 'Campaña (ano)';
       case 'frut.cantidad_kg_ha': return 'Cantidade (kg/ha)';
       case 'frut.carnet_aplicador': return 'N.º de carné de aplicador';
       case 'frut.catalogos_provisionales': return 'Catálogos provisionais: pendentes de revisión por un técnico';
+      case 'frut.categoria': return 'Categoría';
+      case 'frut.categoria_abonos': return 'Abonos';
+      case 'frut.categoria_agua_riego': return 'Auga de rega';
+      case 'frut.categoria_fitosanitarios': return 'Fitosanitarios';
+      case 'frut.categoria_gasoleo': return 'Gasóleo';
+      case 'frut.categoria_indemnizacion_seguro': return 'Indemnización do seguro';
+      case 'frut.categoria_mano_obra': return 'Man de obra';
+      case 'frut.categoria_maquinaria': return 'Maquinaria';
+      case 'frut.categoria_otros_gastos': return 'Outros gastos';
+      case 'frut.categoria_otros_ingresos': return 'Outros ingresos';
+      case 'frut.categoria_plantones': return 'Plantóns';
+      case 'frut.categoria_polinizacion': return 'Polinización (colmeas)';
+      case 'frut.categoria_seguro': return 'Seguro agrario';
+      case 'frut.categoria_subvenciones': return 'Axudas e subvencións';
+      case 'frut.categoria_venta_cosecha': return 'Venda de colleita';
+      case 'frut.cliente': return 'Comprador';
       case 'frut.codigo_rega': return 'Código REGA do apicultor';
       case 'frut.codigo_rega_ayuda': return 'O mesmo que usa en Larrea Apícola';
       case 'frut.codigo_sigpac': return 'Código SIXPAC';
       case 'frut.colmenas_en_parcela': return 'Colmeas nas parcelas';
       case 'frut.colmenas_por_ha': return '{n} colmeas/ha';
+      case 'frut.compensaciones_reagp': return 'Compensacións REAGP';
       case 'frut.comunicada_seguro': return 'Comunicada ao seguro';
+      case 'frut.con_compensacion_reagp': return 'Sen IVE: o comprador paga a compensación do REAGP ({n} %)';
+      case 'frut.concepto': return 'Concepto';
       case 'frut.copiar_de_etiqueta': return 'Cópiao da etiqueta: a app non o propón';
       case 'frut.cosecha': return 'Colleita';
       case 'frut.cuaderno': return 'Caderno';
@@ -34479,10 +34781,12 @@ class SoleraL10n {
       case 'frut.estado_fenologico': return 'Estado fenolóxico';
       case 'frut.etiqueta_fila': return 'Filas';
       case 'frut.etiqueta_fila_ayuda': return 'Como as chamas: «Filas 1-4», «Lindeiro norte»…';
+      case 'frut.extracto_pdf': return 'Extracto en PDF';
       case 'frut.fecha': return 'Data';
       case 'frut.fecha_entrada': return 'Entrada das colmeas';
       case 'frut.fecha_salida': return 'Saída das colmeas';
       case 'frut.filas_variedades': return 'Filas e variedades';
+      case 'frut.gastos': return 'Gastos';
       case 'frut.gps_error': return 'Non se puido obter a posición. Téntao ao aire libre';
       case 'frut.gps_sin_permiso': return 'Sen permiso de localización ou co GPS apagado';
       case 'frut.grano': return 'gran';
@@ -34493,6 +34797,12 @@ class SoleraL10n {
       case 'frut.hoy': return 'Hoxe';
       case 'frut.humedad': return 'Humidade (%)';
       case 'frut.humedad_corta': return 'humidade';
+      case 'frut.impuesto': return 'IVE ou compensación';
+      case 'frut.ingresos': return 'Ingresos';
+      case 'frut.ingresos_y_gastos': return 'Ingresos e gastos';
+      case 'frut.iva': return 'IVE';
+      case 'frut.iva_repercutido': return 'IVE repercutido';
+      case 'frut.iva_soportado': return 'IVE soportado';
       case 'frut.kg_cascara': return 'Quilos en casca (ou de froita)';
       case 'frut.mapa': return 'Mapa';
       case 'frut.mapa_sin_ubicaciones': return 'Ningunha parcela ten localización. Gárdaa con «Usar a miña localización» ao editala, de pé na parcela';
@@ -34514,6 +34824,8 @@ class SoleraL10n {
       case 'frut.nueva_parcela': return 'Nova parcela';
       case 'frut.nuevo_abonado': return 'Novo abonado';
       case 'frut.nuevo_contrato': return 'Colmeas de polinización';
+      case 'frut.nuevo_gasto': return 'Novo gasto';
+      case 'frut.nuevo_ingreso': return 'Novo ingreso';
       case 'frut.nuevo_riego': return 'Nova rega';
       case 'frut.nuevo_tratamiento': return 'Novo tratamento';
       case 'frut.numero_albaran': return 'N.º de albará';
@@ -34555,13 +34867,19 @@ class SoleraL10n {
       case 'frut.primeros_pasos': return 'Primeiros pasos';
       case 'frut.primeros_pasos_texto': return '1. Pon os teus datos en Axustes (titular e asesor). 2. Dá de alta as túas parcelas coa especie, o marco e as variedades. 3. Anota tratamentos, abonados, regas e colleitas: con iso sae o caderno.';
       case 'frut.problema_fitosanitario': return 'Praga, enfermidade ou mala herba';
+      case 'frut.proveedor': return 'Provedor';
       case 'frut.recuento': return 'Reconto';
       case 'frut.recuento_ayuda': return 'Capturas, % de órganos afectados… (unidade nas notas)';
       case 'frut.regadio': return 'Regadío';
+      case 'frut.regimen_general': return 'Réxime xeral';
+      case 'frut.regimen_iva': return 'Réxime de IVE';
+      case 'frut.regimen_reagp': return 'Réxime especial agrario (REAGP)';
+      case 'frut.regimen_sin_elegir': return 'Sen escoller (pregúntalle ao teu asesor)';
       case 'frut.registro_explotacion': return 'N.º de rexistro da explotación (REGEPA)';
       case 'frut.rendimiento': return 'rendemento';
       case 'frut.rendimiento_ayuda': return 'Gran sobre casca, en %. Baleiro en froita fresca';
       case 'frut.rendimiento_grano': return 'Rendemento en gran (%)';
+      case 'frut.resultado': return 'Resultado';
       case 'frut.riego_aspersion': return 'Aspersión';
       case 'frut.riego_goteo': return 'Pinga a pinga';
       case 'frut.riego_superficie': return 'Superficie (a manta)';
@@ -34571,6 +34889,7 @@ class SoleraL10n {
       case 'frut.seguimiento_plagas': return 'Seguimento de pragas';
       case 'frut.si': return 'Si';
       case 'frut.sigpac_ayuda': return 'Provincia:concello:agregado:zona:polígono:parcela:recinto';
+      case 'frut.sin_apuntes': return 'Sen apuntamentos';
       case 'frut.sin_comunicar_seguro': return 'Sen comunicar ao seguro';
       case 'frut.sin_cosechas': return 'Sen colleitas anotadas nesta campaña';
       case 'frut.sin_filas': return 'Sen filas: engade as variedades e as polinizadoras';
@@ -34587,6 +34906,7 @@ class SoleraL10n {
       case 'frut.tipo_abono': return 'Abono ou emenda';
       case 'frut.titular': return 'Titular';
       case 'frut.toda_explotacion': return 'Toda a explotación';
+      case 'frut.total': return 'Total';
       case 'frut.tratamientos': return 'Tratamentos';
       case 'frut.tratamientos_del_anyo': return 'tratamentos este ano';
       case 'frut.ubicacion': return 'Localización';

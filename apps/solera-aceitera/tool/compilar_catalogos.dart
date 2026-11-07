@@ -2,11 +2,9 @@
 // Compilador de catálogos curados de Larrea Aceitera.
 //
 // Lee los 5 CSVs de `content/aceitera/` y genera los ficheros `.dart`
-// en `lib/datos/catalogos_generados/`. El parser CSV está inline para
-// que el script sea ejecutable con `dart run` sin resolver las
-// dependencias Flutter del core — la lógica es la misma que
-// `nuevo_ser_core/lib/src/csv/csv_io.dart` y la análoga de los demás
-// forks Larrea (viticultura/apícola/arbolado/quesera).
+// en `lib/datos/catalogos_generados/`. Lo común (parser CSV, cabecera,
+// flag de revisión) está en `nuevo_ser_core/tool/catalogos/`, importado
+// por ruta relativa para que `dart run` no resuelva Flutter.
 //
 // Ejecución:
 //   cd apps/solera-aceitera
@@ -23,57 +21,31 @@
 // rellenas, pasa a "REVISADO POR <listado>". Esto da feedback al
 // asesor sobre el progreso de validación.
 
-import 'dart:io';
+import '../../../packages/nuevo_ser_core/tool/catalogos/compilador_catalogos.dart';
 
-typedef _TablaCsv = ({List<String> cabecera, List<List<String>> filas});
-
-_TablaCsv _parsearTablaCsv(String contenido) {
-  if (contenido.isEmpty) {
-    return (cabecera: const [], filas: const []);
-  }
-  if (contenido.codeUnitAt(0) == 0xFEFF) {
-    contenido = contenido.substring(1);
-  }
-  final primeraLinea = contenido.split('\n').first;
-  final delim =
-      primeraLinea.contains(';') && !primeraLinea.contains(',') ? ';' : ',';
-  final filasCrudas = <List<String>>[];
-  for (final linea in contenido.split('\n')) {
-    final limpia =
-        linea.endsWith('\r') ? linea.substring(0, linea.length - 1) : linea;
-    if (limpia.isEmpty) continue;
-    filasCrudas.add(_parsearLineaCsv(limpia, delim));
-  }
-  if (filasCrudas.isEmpty) return (cabecera: const [], filas: const []);
-  return (cabecera: filasCrudas.first, filas: filasCrudas.sublist(1));
-}
-
-List<String> _parsearLineaCsv(String linea, String delim) {
-  final campos = <String>[];
-  final actual = StringBuffer();
-  var dentroComillas = false;
-  for (var i = 0; i < linea.length; i++) {
-    final c = linea[i];
-    if (c == '"') {
-      if (dentroComillas && i + 1 < linea.length && linea[i + 1] == '"') {
-        actual.write('"');
-        i++;
-      } else {
-        dentroComillas = !dentroComillas;
-      }
-    } else if (c == delim && !dentroComillas) {
-      campos.add(actual.toString());
-      actual.clear();
-    } else {
-      actual.write(c);
-    }
-  }
-  campos.add(actual.toString());
-  return campos;
-}
-
-const _rutaContent = '../../content/aceitera';
-const _rutaSalida = 'lib/datos/catalogos_generados';
+// Las piezas comunes viven en el core; estos alias mantienen los nombres
+// que usan las funciones `_compilarX` de abajo.
+final _compilador = CompiladorCatalogos(
+  carpetaContent: 'aceitera',
+  carpetaApp: 'solera-aceitera',
+  avisoProvisional: 'DATOS PROVISIONALES SIN VALIDAR AGRONÓMICAMENTE.',
+);
+typedef _CsvLeido = CsvCatalogo;
+Future<_CsvLeido> _leer(String nombre) => _compilador.leer(nombre);
+String _cabeceraDart({required String nombreCsv, required _CsvLeido csv}) =>
+    _compilador.cabeceraDart(nombreCsv: nombreCsv, csv: csv);
+String _escapeDart(String texto) => escaparDart(texto);
+List<String> _separarPipe(String texto) => separarPipe(texto);
+String _campo(_CsvLeido csv, List<String> fila, String nombreColumna) =>
+    csv.campo(fila, nombreColumna);
+bool get _todasRevisadasGlobal => _compilador.todasRevisadas;
+String _funcionNormalizar() => funcionNormalizarDart;
+Future<void> _escribir(String nombre, String contenido) =>
+    _compilador.escribir(nombre, contenido);
+Future<void> _escribirFlagRevision() => _compilador.escribirFlagRevision(
+      descripcionCatalogos: 'los 5 catálogos',
+      textoBanner: 'datos provisionales sin validar agronómicamente',
+    );
 
 void main() async {
   print('Compilando catálogos de Larrea Aceitera…\n');
@@ -93,117 +65,10 @@ void main() async {
   print('Hecho. Recuerda ejecutar `flutter analyze` y `flutter test`.');
 }
 
-class _CsvLeido {
-  final List<String> cabecera;
-  final List<List<String>> filas;
-  final int totalFilas;
-  final int revisadas;
-
-  _CsvLeido(this.cabecera, this.filas, this.totalFilas, this.revisadas);
-
-  bool get todasRevisadas => totalFilas > 0 && revisadas == totalFilas;
-  Set<String> get revisores {
-    final i = cabecera.indexOf('revisado_por');
-    if (i < 0) return const {};
-    return filas
-        .map((f) => i < f.length ? f[i].trim() : '')
-        .where((s) => s.isNotEmpty)
-        .toSet();
-  }
-}
-
-Future<_CsvLeido> _leer(String nombre) async {
-  final fichero = File('$_rutaContent/$nombre');
-  if (!await fichero.exists()) {
-    throw Exception('No se encuentra $_rutaContent/$nombre');
-  }
-  final crudo = await fichero.readAsString();
-  final sinComentarios = crudo
-      .split('\n')
-      .where((l) => !l.trim().startsWith('#'))
-      .join('\n');
-  final tabla = _parsearTablaCsv(sinComentarios);
-  if (tabla.cabecera.isEmpty) {
-    throw Exception('CSV vacío: $nombre');
-  }
-  final indiceRevisado = tabla.cabecera.indexOf('revisado_por');
-  var revisadas = 0;
-  for (final fila in tabla.filas) {
-    if (indiceRevisado >= 0 &&
-        indiceRevisado < fila.length &&
-        fila[indiceRevisado].trim().isNotEmpty) {
-      revisadas++;
-    }
-  }
-  return _CsvLeido(
-      tabla.cabecera, tabla.filas, tabla.filas.length, revisadas);
-}
-
-String _cabeceraDart({
-  required String nombreCsv,
-  required _CsvLeido csv,
-}) {
-  final ahora = DateTime.now();
-  final fecha =
-      '${ahora.year}-${_dosCifras(ahora.month)}-${_dosCifras(ahora.day)}';
-  final lineas = StringBuffer();
-  lineas.writeln('// GENERADO AUTOMÁTICAMENTE — NO EDITAR A MANO.');
-  lineas.writeln('//');
-  lineas.writeln('// Fuente: content/aceitera/$nombreCsv');
-  lineas.writeln('// Generado: $fecha');
-  lineas.writeln(
-      '// Filas: ${csv.totalFilas} (${csv.revisadas} revisadas, '
-      '${csv.totalFilas - csv.revisadas} pendientes de revisión)');
-  if (csv.todasRevisadas) {
-    lineas.writeln('// Estado: ✅ todas las filas revisadas por: '
-        '${csv.revisores.join(", ")}');
-  } else {
-    lineas.writeln('//');
-    lineas
-        .writeln('// ⚠ DATOS PROVISIONALES SIN VALIDAR AGRONÓMICAMENTE.');
-    lineas.writeln(
-        '// La app muestra un banner mientras este flag siga activo.');
-    lineas.writeln('// Para regenerar: cd apps/solera-aceitera && '
-        'dart run tool/compilar_catalogos.dart');
-  }
-  lineas.writeln();
-  return lineas.toString();
-}
-
-String _dosCifras(int n) => n.toString().padLeft(2, '0');
-
-String _escapeDart(String s) {
-  return "'" +
-      s
-          .replaceAll(r'\', r'\\')
-          .replaceAll("'", r"\'")
-          .replaceAll('\n', r'\n')
-          .replaceAll('\r', '') +
-      "'";
-}
-
-List<String> _separarPipe(String s) {
-  if (s.trim().isEmpty) return const [];
-  return s
-      .split('|')
-      .map((x) => x.trim())
-      .where((x) => x.isNotEmpty)
-      .toList();
-}
-
-String _campo(_CsvLeido csv, List<String> fila, String nombreColumna) {
-  final i = csv.cabecera.indexOf(nombreColumna);
-  if (i < 0 || i >= fila.length) return '';
-  return fila[i].trim();
-}
-
-bool _todasRevisadasGlobal = true;
-
 // ─── Variedades de olivo ───────────────────────────────────
 
 Future<void> _compilarVariedades() async {
   final csv = await _leer('variedades_olivo.csv');
-  if (!csv.todasRevisadas) _todasRevisadasGlobal = false;
   final buf = StringBuffer()
     ..write(_cabeceraDart(nombreCsv: 'variedades_olivo.csv', csv: csv))
     ..writeln(
@@ -306,7 +171,6 @@ Future<void> _compilarVariedades() async {
 
 Future<void> _compilarPlagas() async {
   final csv = await _leer('plagas_olivo.csv');
-  if (!csv.todasRevisadas) _todasRevisadasGlobal = false;
   final buf = StringBuffer()
     ..write(_cabeceraDart(nombreCsv: 'plagas_olivo.csv', csv: csv))
     ..writeln('/// Tipo de patología. Para el formulario de incidencia los')
@@ -413,7 +277,6 @@ Future<void> _compilarPlagas() async {
 
 Future<void> _compilarFitosanitarios() async {
   final csv = await _leer('fitosanitarios_olivar.csv');
-  if (!csv.todasRevisadas) _todasRevisadasGlobal = false;
   final buf = StringBuffer()
     ..write(_cabeceraDart(nombreCsv: 'fitosanitarios_olivar.csv', csv: csv))
     ..writeln('class FitosanitarioOlivar {')
@@ -504,7 +367,6 @@ Future<void> _compilarFitosanitarios() async {
 
 Future<void> _compilarDopAceite() async {
   final csv = await _leer('do_aceite.csv');
-  if (!csv.todasRevisadas) _todasRevisadasGlobal = false;
   final buf = StringBuffer()
     ..write(_cabeceraDart(nombreCsv: 'do_aceite.csv', csv: csv))
     ..writeln('class DopAceite {')
@@ -584,7 +446,6 @@ Future<void> _compilarDopAceite() async {
 
 Future<void> _compilarCalendarioOlivar() async {
   final csv = await _leer('calendario_olivar.csv');
-  if (!csv.todasRevisadas) _todasRevisadasGlobal = false;
   final buf = StringBuffer()
     ..write(_cabeceraDart(nombreCsv: 'calendario_olivar.csv', csv: csv))
     ..writeln('/// Zonas productivas olivareras de la península e islas.')
@@ -681,38 +542,3 @@ Future<void> _compilarCalendarioOlivar() async {
 }
 
 // ─── Flag global de revisión ──────────────────────────────
-
-Future<void> _escribirFlagRevision() async {
-  final buf = StringBuffer()
-    ..writeln('// GENERADO AUTOMÁTICAMENTE por tool/compilar_catalogos.dart.')
-    ..writeln('//')
-    ..writeln('// Flag global: true si TODAS las filas de los 5 catálogos tienen')
-    ..writeln('// `revisado_por` no vacío. La app lo lee para mostrar/ocultar el')
-    ..writeln('// banner "datos provisionales sin validar agronómicamente".')
-    ..writeln()
-    ..writeln('const bool catalogosCompletamenteRevisados = '
-        '$_todasRevisadasGlobal;');
-  await _escribir('flag_revision.dart', buf.toString());
-}
-
-Future<void> _escribir(String nombre, String contenido) async {
-  final fichero = File('$_rutaSalida/$nombre');
-  await fichero.parent.create(recursive: true);
-  await fichero.writeAsString(contenido);
-}
-
-String _funcionNormalizar() {
-  return '''
-String _normalizar(String texto) {
-  return texto
-      .toLowerCase()
-      .replaceAll(RegExp(r'[áàä]'), 'a')
-      .replaceAll(RegExp(r'[éèë]'), 'e')
-      .replaceAll(RegExp(r'[íìï]'), 'i')
-      .replaceAll(RegExp(r'[óòö]'), 'o')
-      .replaceAll(RegExp(r'[úùü]'), 'u')
-      .replaceAll('ñ', 'n')
-      .trim();
-}
-''';
-}

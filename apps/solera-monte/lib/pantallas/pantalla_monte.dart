@@ -13,6 +13,7 @@ import '../modelos/rodal.dart';
 import '../utiles/textos_monte.dart';
 import 'formularios.dart';
 import 'hoja_formulario.dart';
+import 'identificar_con_ia.dart';
 import 'pantalla_mapa.dart';
 
 class _DatosMonte {
@@ -101,6 +102,11 @@ class _PantallaMonteState extends State<PantallaMonte>
           appBar: AppBar(
             title: Text(SoleraL10n.t('mont.monte')),
             actions: [
+              IconButton(
+                tooltip: SoleraL10n.t('mont.ia_identificar'),
+                icon: const Icon(Icons.document_scanner_outlined),
+                onPressed: () => identificarPlagaConFoto(context),
+              ),
               IconButton(
                 tooltip: SoleraL10n.t('mont.mapa'),
                 icon: const Icon(Icons.map_outlined),

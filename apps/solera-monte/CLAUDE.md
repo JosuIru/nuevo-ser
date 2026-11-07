@@ -13,13 +13,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: **Hoy** (primeros pasos; época de peligro: pide la fecha si falta, cuenta atrás y lista de infraestructuras sin revisar o con trabajo; trámites y plazos del art. 37 de la campaña actual y la anterior; plan pendiente o atrasado; sorteos sin hacer; banner de catálogos), **Monte** (rodales con superficie por especie y total, ficha con «Dibujar el contorno caminando»; árboles y parcelas de muestreo con «usar mi ubicación»; infraestructuras con estado de la campaña y ficha con revisiones, punto GPS o traza caminando; mapa OSM con polígonos, trazas y puntos), **Plan** (previsto por año con estado de cada actuación, resumen hechas/previstas y m³ previstos frente a aprovechados; hecho, con «no prevista»), **Aprovechamientos** (campaña año anterior/actual/siguiente; lista con avisos; sorteos de leña) y **Ajustes** (idioma y datos del monte). **Sorteo** en pantalla propia: lista → cerrar (huella SHA-256) → lotes → semilla y su origen → sortear con confirmación → resultado con clave de cada puesto, lista de espera y **comprobación automática** al abrir («Comprobado» o «no coincide»), más cómo repetirlo con `sha256sum`. Altas en hojas (`formularios.dart`) con `controladores:` liberados por la hoja. 58 tests (7 de pantalla, uno de traducciones dinámicas) |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: **parte de aprovechamientos de la campaña** (año actual y anterior: qué y dónde con especie y nombre científico, fechas, prevista/obtenida, reparto y adjudicatario, trámite y expediente, fecha de comunicación de la cuantía; tabla aparte de avisos; totales por tipo y unidad con m³ orientativos; lotes vecinales; resumen con el texto del art. 37.2 y 37.4 cotejado en el BOE y el aviso de que no es la solicitud oficial), **estado del plan de gestión** (inventario de rodales con edad y superficie declarada/dibujada, superficie por especie, previsto frente a hecho por año, cada actuación con su estado y lo hecho, lo hecho fuera del plan, volumen previsto frente a aprovechado; certificación si la hay) y **hoja de revisión de incendios** (año actual y anterior: estado de cada infraestructura en la campaña con la última revisión y trabajos; revisiones del año; época de peligro). Además, **acta del sorteo de leña** desde la pantalla del sorteo (lista cerrada, huella, semilla y origen, lotes y adjudicatarios, orden completo con la clave SHA-256 en cuatro grupos, cómo repetirlo y líneas de firma). Tablas en funciones puras con test; PDF con `informe_periodico` del core; 4 generadores vigilados por el sello. 67 tests |
 | 6 Catálogos | ✅ 2026-11-07 (antes que el 3) | `content/monte/`: `especies_forestales.csv` (41 especies con código y nombre científico del anexo 20 del documentador Sig del IFN4, MITECO; nombres comunes de las formaciones arboladas del mismo documento cuando los da), `unidades_volumen.csv` (m³, estéreo con **0,65 m³ sólidos por estéreo** de la tabla 2 de Padovani en FAO, tonelada sin conversión) y `plagas_forestales.csv` (19 agentes: procesionarias, lagartas, perforadores Ips y Tomicus, Cerambyx, Coraebus, balanino, avispilla y chancro del castaño, Phytophthora, banda marrón, Sphaeropsis, de la guía visual 2025 de ESMA con página; nematodo del pino como plaga prioritaria UE, Reg. Delegado 2019/1702; Monochamus de la ficha de Sanidad Forestal de Baleares). **Sin sustancias activas** a propósito. Compilador sobre la librería común; consultas en `dominio/catalogos.dart` (plagas por especie o por género). 50 tests |
-| 7 IA visual | pendiente | |
+| 7 IA visual | ✅ 2026-11-07 | Monte → icono de escáner: **plaga, enfermedad o daño por foto**. Se elige el rodal (su especie limita las plagas del catálogo, por especie o por género) u «otra especie» (todo el catálogo) → hasta 3 candidatas con confianza y motivo, «qué comprobar» en el árbol y «otra» (sequía, fuego, viento, fauna…). Aviso fijo si sale una **plaga prioritaria de la UE** (nematodo del pino: no mover madera y avisar a sanidad forestal de la CA) o una **urticante** (procesionaria). Solo informa: nunca abre ni sugiere tratamientos. Salida estructurada con `enum` de ids + «otra», modelo equilibrado del core, clave BYO (`estado/clave_anthropic_monte.dart`, Ajustes → Inteligencia artificial). La foto se borra siempre. 73 tests |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 7 (IA de plagas y daños por foto).
+**Siguiente acción**: bloque 8 (branding y GPS).
 
 ## Encuadre
 
@@ -191,6 +191,10 @@ publicados por cada sistema; **por verificar** contra el estándar vigente.
   suspensivos (…) y salían como cuadros; se vio al renderizar los PDF.
   Posible fallo igual en otras verticales que usan «—» (Aromáticas): fuera
   de esta calle, apuntado en BLOQUEOS como aviso para la integración.
+- **2026-11-07 — La IA de plagas no apunta nada**: no hay registro de
+  observaciones sanitarias en la F1 y la propuesta no debe acabar en un
+  tratamiento; se lee y se cierra. Modelo equilibrado (como Frutal y
+  Aromáticas): confundir perforadores o hongos de acícula es el riesgo real.
 
 ## Datos técnicos
 

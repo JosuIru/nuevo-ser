@@ -8,6 +8,7 @@ import '../estado/cambios_datos.dart';
 import '../modelos/monte.dart';
 import '../utiles/textos_monte.dart';
 import 'hoja_formulario.dart';
+import 'identificar_con_ia.dart';
 import 'pantalla_documentos.dart';
 
 class PantallaAjustes extends StatelessWidget {
@@ -37,6 +38,14 @@ class PantallaAjustes extends StatelessWidget {
             subtitle: Text(SoleraL10n.t('mont.documentos_ayuda')),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.auto_awesome_outlined),
+            title: Text(SoleraL10n.t('mont.inteligencia_artificial')),
+            subtitle: Text(SoleraL10n.t('mont.ia_que_hace')),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => pantallaClaveMonte())),
           ),
         ],
       ),

@@ -34,6 +34,7 @@ Si tu app aún no existe: `scripts/nueva_vertical.sh` con los argumentos de la f
 - Los tests con fechas necesitan `setUpAll(initializeDateFormatting)`.
 - En los tests de pantalla, los botones fuera de la vista necesitan `scrollUntilVisible` con un `scrollable:` explícito.
 - Importa el core con `show`, para evitar choques de nombres.
+- **Hojas inferiores**: no liberes los `TextEditingController` justo al volver del `await showModalBottomSheet`, porque la animación de cierre aún los usa. Pásalos a la hoja para que los libere al desaparecer (`controladores:` en `hoja_formulario.dart` de Obrador o Sagardoa).
 - **Android release**: `<uses-permission android:name="android.permission.INTERNET" />` en `android/app/src/main/AndroidManifest.xml` y `android:label="<Nombre visible>"`. La plantilla ya lo hace desde el commit 7736eb0; compruébalo.
 
 ## Cómo trabajar

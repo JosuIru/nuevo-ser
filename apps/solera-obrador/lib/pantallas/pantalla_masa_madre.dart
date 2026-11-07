@@ -39,6 +39,7 @@ class _PantallaMasaMadreState extends State<PantallaMasaMadre> {
     final harina = TextEditingController();
     final guardado = await mostrarHojaFormulario(
       context,
+      controladores: [nombre, harina],
       titulo: SoleraL10n.t('obra.nueva_masa_madre'),
       construir: (_) => [
         campoTexto(nombre, SoleraL10n.t('obra.nombre')),
@@ -53,8 +54,6 @@ class _PantallaMasaMadreState extends State<PantallaMasaMadre> {
         return true;
       },
     );
-    nombre.dispose();
-    harina.dispose();
     if (guardado) _recargar();
   }
 
@@ -71,6 +70,7 @@ class _PantallaMasaMadreState extends State<PantallaMasaMadre> {
     };
     final guardado = await mostrarHojaFormulario(
       context,
+      controladores: controladores.values.toList(),
       titulo: '${SoleraL10n.t('obra.nuevo_refresco')} · ${masa.nombre}',
       construir: (_) => [
         campoNumero(
@@ -101,9 +101,6 @@ class _PantallaMasaMadreState extends State<PantallaMasaMadre> {
         return true;
       },
     );
-    for (final controlador in controladores.values) {
-      controlador.dispose();
-    }
     if (guardado) _recargar();
   }
 

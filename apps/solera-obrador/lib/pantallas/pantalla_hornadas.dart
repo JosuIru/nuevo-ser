@@ -79,6 +79,7 @@ class _PantallaHornadasState extends State<PantallaHornadas> {
     }).length;
     final guardado = await mostrarHojaFormulario(
       context,
+      controladores: [piezas, temperatura, minutos, responsable],
       titulo: SoleraL10n.t('obra.nueva_hornada'),
       construir: (refrescar) {
         final ingredientesReceta =
@@ -145,9 +146,6 @@ class _PantallaHornadasState extends State<PantallaHornadas> {
         return true;
       },
     );
-    for (final controlador in [piezas, temperatura, minutos, responsable]) {
-      controlador.dispose();
-    }
     if (guardado) {
       avisarCambioDatos();
       setState(() {

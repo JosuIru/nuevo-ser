@@ -49,6 +49,7 @@ class _PantallaPedidosFijosState extends State<PantallaPedidosFijos> {
         recetas.values.where((receta) => !receta.esSubreceta).toList();
     final guardado = await mostrarHojaFormulario(
       context,
+      controladores: [cliente, piezas],
       titulo: pedido == null
           ? SoleraL10n.t('obra.nuevo_pedido_fijo')
           : pedido.cliente,
@@ -104,8 +105,6 @@ class _PantallaPedidosFijosState extends State<PantallaPedidosFijos> {
         return true;
       },
     );
-    cliente.dispose();
-    piezas.dispose();
     if (guardado) {
       avisarCambioDatos();
       setState(() {

@@ -43,6 +43,7 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
     var tipoIva = esIngreso ? 4 : 21;
     final guardado = await mostrarHojaFormulario(
       context,
+      controladores: [concepto, base, tercero],
       titulo:
           SoleraL10n.t(esIngreso ? 'obra.nuevo_ingreso' : 'obra.nuevo_gasto'),
       construir: (refrescar) => [
@@ -93,9 +94,6 @@ class _PantallaEconomiaState extends State<PantallaEconomia> {
         return true;
       },
     );
-    for (final controlador in [concepto, base, tercero]) {
-      controlador.dispose();
-    }
     if (guardado) {
       setState(() {
         _apuntes = _cargar();

@@ -395,6 +395,7 @@ class _SeccionLotesState extends State<_SeccionLotes> {
     final temperatura = TextEditingController();
     final guardado = await mostrarHojaFormulario(
       context,
+      controladores: [codigo, kilos, temperatura],
       titulo: SoleraL10n.t('obra.recibir_lote'),
       construir: (_) => [
         campoTexto(codigo, SoleraL10n.t('obra.codigo_lote')),
@@ -414,9 +415,6 @@ class _SeccionLotesState extends State<_SeccionLotes> {
         return true;
       },
     );
-    for (final controlador in [codigo, kilos, temperatura]) {
-      controlador.dispose();
-    }
     if (guardado) {
       avisarCambioDatos();
       setState(() {

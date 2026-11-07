@@ -3168,6 +3168,11 @@ class SoleraL10n {
     'frut.variedad',
     'frut.variedad_principal',
     'frut.volumen_m3',
+    'gana.bienvenida',
+    'gana.guardado',
+    'gana.hoy',
+    'gana.nombre_titular',
+    'gana.titular',
     'nat.ajus_cabecera_titulo',
     'nat.ajus_cabecera_sub',
     'nat.ajus_explorar_mapa_sub',
@@ -7765,6 +7770,11 @@ class SoleraL10n {
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
+          'gana.bienvenida',
+          'gana.guardado',
+          'gana.hoy',
+          'gana.nombre_titular',
+          'gana.titular',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -12359,6 +12369,11 @@ class SoleraL10n {
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
+          'gana.bienvenida',
+          'gana.guardado',
+          'gana.hoy',
+          'gana.nombre_titular',
+          'gana.titular',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -16953,6 +16968,11 @@ class SoleraL10n {
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
+          'gana.bienvenida',
+          'gana.guardado',
+          'gana.hoy',
+          'gana.nombre_titular',
+          'gana.titular',
           'nat.ajus_cabecera_titulo',
           'nat.ajus_cabecera_sub',
           'nat.ajus_explorar_mapa_sub',
@@ -21570,6 +21590,11 @@ class SoleraL10n {
       case 'frut.variedad': return 'Variedad';
       case 'frut.variedad_principal': return 'Variedad principal';
       case 'frut.volumen_m3': return 'Volumen (m³)';
+      case 'gana.bienvenida': return 'Primera versión en construcción.';
+      case 'gana.guardado': return 'Guardado';
+      case 'gana.hoy': return 'Hoy';
+      case 'gana.nombre_titular': return 'Nombre del titular';
+      case 'gana.titular': return 'Titular';
       case 'nat.ajus_cabecera_titulo': return 'Cuaderno de campo de naturaleza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende y convive con la biodiversidad que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies y observaciones';
@@ -26168,6 +26193,11 @@ class SoleraL10n {
       case 'frut.variedad': return 'Barietatea';
       case 'frut.variedad_principal': return 'Barietate nagusia';
       case 'frut.volumen_m3': return 'Bolumena (m³)';
+      case 'gana.bienvenida': return 'Lehen bertsioa eraikitzen ari da.';
+      case 'gana.guardado': return 'Gordeta';
+      case 'gana.hoy': return 'Gaur';
+      case 'gana.nombre_titular': return 'Titularraren izena';
+      case 'gana.titular': return 'Titularra';
       case 'nat.ajus_cabecera_titulo': return 'Naturako landa-koadernoa';
       case 'nat.ajus_cabecera_sub': return 'Behatu, ikasi eta bizi zure inguruko biodibertsitatearekin batera';
       case 'nat.ajus_explorar_mapa_sub': return 'Espezieak eta behaketak';
@@ -30766,6 +30796,11 @@ class SoleraL10n {
       case 'frut.variedad': return 'Varietat';
       case 'frut.variedad_principal': return 'Varietat principal';
       case 'frut.volumen_m3': return 'Volum (m³)';
+      case 'gana.bienvenida': return 'Primera versió en construcció.';
+      case 'gana.guardado': return 'Desat';
+      case 'gana.hoy': return 'Avui';
+      case 'gana.nombre_titular': return 'Nom del titular';
+      case 'gana.titular': return 'Titular';
       case 'nat.ajus_cabecera_titulo': return 'Quadern de camp de natura';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprèn i conviu amb la biodiversitat que t\'envolta';
       case 'nat.ajus_explorar_mapa_sub': return 'Espècies i observacions';
@@ -35364,6 +35399,11 @@ class SoleraL10n {
       case 'frut.variedad': return 'Variedade';
       case 'frut.variedad_principal': return 'Variedade principal';
       case 'frut.volumen_m3': return 'Volume (m³)';
+      case 'gana.bienvenida': return 'Primeira versión en construción.';
+      case 'gana.guardado': return 'Gardado';
+      case 'gana.hoy': return 'Hoxe';
+      case 'gana.nombre_titular': return 'Nome do titular';
+      case 'gana.titular': return 'Titular';
       case 'nat.ajus_cabecera_titulo': return 'Caderno de campo de natureza';
       case 'nat.ajus_cabecera_sub': return 'Observa, aprende e convive coa biodiversidade que te rodea';
       case 'nat.ajus_explorar_mapa_sub': return 'Especies e observacións';

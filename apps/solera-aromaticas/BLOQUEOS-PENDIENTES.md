@@ -15,6 +15,9 @@ y sigue. Lo recoge `scripts/pendientes/`.
   Reg. 1223/2009; químico: REACH/CLP y la revisión 2024/2865), umbral de
   registro REACH para un pequeño destilador y etiqueta CLP. Vigencia del
   RD 3176/1983 (infusiones) y cruce del catálogo con la Orden SCO/190/2004.
+  Exenciones del anexo V de REACH para sustancias naturales no modificadas
+  (no se pudo leer el anexo). Si el registro sanitario hace falta y para qué
+  destinos.
 
 - **Asesor GIP o técnico agrícola**: catálogo de sustancias activas con uso
   autorizado en aromáticas (Registro de Productos Fitosanitarios del MAPA,
@@ -30,9 +33,16 @@ y sigue. Lo recoge `scripts/pendientes/`.
   verificar) y de lo destilado (21 % propuesto, por verificar); si hacen
   falta facturas (Verifactu) para la venta de lo destilado.
 
+## Productores piloto (2: uno de cultivo y uno de recolección)
+
+- Probar el flujo completo zona → cosecha → destilación → lote → pasaporte.
+- Validar los intervalos de rendimiento orientativos en su zona y alambique,
+  y la época de las 15 especies sin fuente.
+
 ## Revisión nativa eu/ca/gl
 
-- Textos de `content/solera/traducciones/aromaticas.csv` (borrador, 2026-11-07).
+- Textos de `content/solera/traducciones/aromaticas.csv` (borrador, 2026-11-07),
+  exportables a ARB con `scripts/traducciones/`.
 
 ## Bloqueos técnicos
 

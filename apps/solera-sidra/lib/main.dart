@@ -30,10 +30,12 @@ class AppSidra extends StatelessWidget {
       builder: (context, _, __) => MaterialApp(
         title: 'Larrea Sagardoa',
         debugShowCheckedModeBanner: false,
-        theme: temaSolera(const PaletaSolera(
-          primario: colorPrimarioSidra,
-          crema: colorCremaSidra,
-        )),
+        theme: temaSolera(
+          const PaletaSolera(
+            primario: colorPrimarioSidra,
+            crema: colorCremaSidra,
+          ),
+        ),
         home: const PantallaPrincipal(),
       ),
     );

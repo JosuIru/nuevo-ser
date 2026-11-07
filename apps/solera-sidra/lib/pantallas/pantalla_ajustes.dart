@@ -31,11 +31,13 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
   }
 
   Future<void> _guardar() async {
-    await BaseDatosSoleraSidra.instancia
-        .guardarTitular(Titular(nombre: _controladorNombre.text.trim()));
+    await BaseDatosSoleraSidra.instancia.guardarTitular(
+      Titular(nombre: _controladorNombre.text.trim()),
+    );
     if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(SoleraL10n.t('sidr.guardado'))));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text(SoleraL10n.t('sidr.guardado'))));
   }
 
   @override
@@ -53,15 +55,21 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
         children: [
           const SelectorIdioma(),
           const SizedBox(height: 24),
-          Text(SoleraL10n.t('sidr.titular'),
-              style: Theme.of(context).textTheme.titleMedium),
+          Text(
+            SoleraL10n.t('sidr.titular'),
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
           TextField(
             controller: _controladorNombre,
             decoration: InputDecoration(
-                labelText: SoleraL10n.t('sidr.nombre_titular')),
+              labelText: SoleraL10n.t('sidr.nombre_titular'),
+            ),
           ),
           const SizedBox(height: 12),
-          FilledButton(onPressed: _guardar, child: Text(SoleraL10n.t('guardar'))),
+          FilledButton(
+            onPressed: _guardar,
+            child: Text(SoleraL10n.t('guardar')),
+          ),
         ],
       ),
     );

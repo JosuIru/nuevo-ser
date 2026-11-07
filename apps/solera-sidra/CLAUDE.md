@@ -9,7 +9,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | Bloque | Estado | Notas |
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
-| 2 Modelos + BD | pendiente | |
+| 2 Modelos + BD | ✅ 2026-11-07 | 11 modelos (`Titular`, `Sagardotegi`, `Pomarada`, `Manzano`, `Tratamiento`, `PartidaManzana`, `Prensado`, `Kupela`, `MedicionKupela`, `Trasiego`, `SesionTxotx`, `Embotellado`, `ApunteEconomico`), 15 tablas en la v1. Dominio: `campania.dart` (sep-ago, pliego F.1) y `saldo_kupelas.dart` (litros por kupela y origen por trasiegos). 22 tests |
 | 3 Pantallas | pendiente | |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
@@ -19,16 +19,57 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 2.
+**Siguiente acción**: bloque 3 (pantallas).
 
 ## Encuadre
 
-(Para quién, diferencial, normativa con fuente enlazada y hard limits: copiar
-de la ficha de encargo y mantener al día.)
+**Para quién**: sagardotegis familiares y bodegas pequeñas de sidra natural y
+de txakoli, con pomaradas o viñas propias, que compran manzana a vecinos,
+elaboran en kupelas y venden en el txotx, en botella y a hostelería. Fuera:
+sidra industrial y espumosa a gran escala. Detalle en
+`docs/plan-verticales/sidra.md`.
+
+**Diferencial**: la cadena completa pomarada → partida → prensado → kupela →
+txotx / botella de una sagardotegi pequeña, en euskera y castellano desde el
+inicio.
+
+**Normativa leída** (2026-11-07):
+
+| Norma | Qué saca la app | Fuente |
+|---|---|---|
+| Pliego de la DOP Euskal Sagardoa (jul-2024) | Registros del ap. E (cultivo: polígono, parcela, recinto, superficie, n.º de manzanos, edad, variedad; cosecha: registro de entrada con proveedor, cantidad, fecha de recolección, estado y entrega; elaboración: día de envasado, cantidad, partida, día de etiquetado, n.º de etiquetas y numeraciones, destino; balance de existencias al final de campaña). Campaña sep-ago (F.1). Densidad mínima del mosto 1045 a 20 °C (F.2). Rendimiento del prensado 40-75 % (F.3). Cada depósito es una partida (F.4). Límites de los tres productos (C.3). Entidad de control: Fundación HAZI (H). Etiquetas numeradas del órgano de control (I) | [pliego](https://www.euskadi.eus/contenidos/informacion/calidad_diferenciada_dopigp/es_def/adjuntos/Pliego-de-condiciones-Euskal-Sagardoa_20240719.pdf) |
+| Pliego de la DOP Sidra de Asturias | Límites de sidra natural y espumosa, variedades por clasificación tecnológica, rendimiento máx. 75 % (rápido) / 80 % (lento) | [pliego (asturias.es)](https://www.asturias.es/documents/4911212/4919930/DOP-Sidra-Normal25.pdf/dc24402b-e4a8-ff38-fc8c-24838b3296dd) |
+| Pliegos de Bizkaiko, Getariako y Arabako Txakolina | Variedades y límites analíticos por tipo, rendimientos | [Bizkaia 2024](https://www.euskadi.eus/contenidos/informacion/dop_txakoli_bizkaia/es_dapa/adjuntos/BIZKAIKO-TXAKOLINAren-pliegoak-20241128-consolidado.pdf) · [Araba 2024](https://www.euskadi.eus/contenidos/informacion/dop_txakoli_araba/es_dapa/adjuntos/Pliego-Arabako-Tx-20241219-consolidado.pdf) · [Getaria 2011, **por verificar si hay versión posterior**](https://euskadi.eus/contenidos/informacion/dop_txakoli_getaria/eu_dapa/adjuntos/PLIEGO-CR-GT_29-06-2011.pdf) |
+| RD 1311/2012 (cuaderno de fitosanitarios) y registro electrónico | Cuaderno de la pomarada | RD 34/2025 ([BOE](https://www.boe.es/eli/es/rd/2025/01/21/34)); aplazamiento opcional al 1-ene-2027 según [nota del MAPA de 18-nov-2025](https://www.mapa.gob.es/dam/mapa/contenido/prensa/notas-de-prensa/documentos/documentos-2025/25-11-18-cm-bases-reguladoras-ayudas-intercambio-conocimiento.pdf): **por verificar en BOE** |
+
+**Libro de bodega**: el pliego no exige un libro con formato propio, sino los
+registros del ap. E y el balance de fin de campaña. El bloque 5 es por eso un
+«libro de elaboración y embotellado» propio con esos campos, PROVISIONAL, y el
+formato que pida HAZI está en BLOQUEOS.
+
+**Hard limits**: nada de fitosanitarios por marca ni de dosis propuestas por la
+app; la app **no certifica** que una sidra cumpla la DOP (compara y avisa);
+ningún texto ni el pasaporte promociona el consumo de alcohol.
 
 ## Decisiones tomadas sin consultar
 
-(Cada una con fecha y porqué.)
+- **2026-11-07 — La rama se avanzó a `main` (fast-forward)** antes de empezar:
+  se creó desde un `main` anterior al cierre de Obrador, que es la referencia.
+- **2026-11-07 — Una sola tabla de parcelas para pomaradas y viñas**
+  (`pomaradas.cultivo` = `manzano`/`vid`) y una sola de entradas de fruta
+  (`partidas_manzana.fruta` = `manzana`/`uva`): el txakoli es un segundo
+  perfil y así no duplica pantallas.
+- **2026-11-07 — Kupela física, no por campaña**: su contenido se calcula de
+  los movimientos (`SaldoKupelas`). Es una cuenta, no una medida: la merma se
+  apunta como trasiego sin destino («retirada»).
+- **2026-11-07 — Tratamientos con n.º de registro y cantidad en texto libre**:
+  el cuaderno los exige, pero la app no los propone ni guarda marcas; la
+  sustancia activa sale del catálogo.
+- **2026-11-07 — El registro DOP de pomaradas y proveedores lo declara la
+  persona** (casilla): no hay registro público que consultar.
+- **2026-11-07 — La v1 se amplió en el bloque 2** con la tabla de apuntes del
+  bloque 9: no hay ninguna instalación publicada.
+- **2026-11-07 — Importes en céntimos** (como aceitera y obrador).
 
 ## Datos técnicos
 
@@ -37,3 +78,6 @@ de la ficha de encargo y mantener al día.)
   regenerar con `cd packages/nuevo_ser_core && dart run tool/compilar_traducciones_solera.dart`.
   eu/ca/gl son **borrador** hasta la revisión nativa (`scripts/traducciones/`).
 - Catálogos: `content/sidra/` → `dart run tool/compilar_catalogos.dart`.
+- Lógica pura en `lib/dominio/` (sin Flutter, con tests).
+- `dart format` usa el estilo nuevo («tall») de Dart 3.7: los ficheros de esta
+  app están formateados así.

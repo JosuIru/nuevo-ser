@@ -66,8 +66,18 @@ $antes_del_fin = new DateTimeImmutable( '2026-12-10T10:00:00', $zona );
 comprobar( str_contains( concejo_resumen_semanal( $estado, 'ane', 'X', $antes_del_fin, $zona, '' )['texto'], 'Tu cargo en la mesa acaba el 20 de diciembre' ), 'avisa a la mesa de que acaba su cargo' );
 comprobar( ! str_contains( concejo_resumen_semanal( $estado, 'maite', 'X', $antes_del_fin, $zona, '' )['texto'], 'Tu cargo' ), 'a una vecina no' );
 
+// El tablón: lo fijado y lo que otras personas han puesto esta semana.
+comprobar( str_contains( $texto, "TABLÓN\n\n- Corte de agua por la obra de la calle Mayor (Ane).\n  Pasado mañana" ), 'el anuncio fijado sale el primero, con quién lo puso y el texto' );
+comprobar( str_contains( $texto, 'Taller de poda de frutales (Josean)' ), 'sale lo puesto esta semana' );
+comprobar( ! str_contains( $texto, 'Se regalan nueces' ), 'lo que puso la propia persona no' );
+comprobar( ! str_contains( $texto, 'Feria de artesanía' ), 'ni lo que ya pasó su fecha' );
+comprobar( str_contains( concejo_resumen_semanal( $estado, 'ane', 'X', $ahora, $zona, '' )['texto'], 'Se regalan nueces (Maite)' ), 'a otra persona sí le sale' );
+$retirado = $estado;
+$retirado['anuncios']['poda']['retirado'] = true;
+comprobar( ! str_contains( concejo_resumen_semanal( $retirado, 'maite', 'X', $ahora, $zona, '' )['texto'], 'Taller de poda' ), 'lo retirado no sale' );
+
 // Si no hay nada que contar, no se manda nada.
-$vacio = array_merge( $estado, array( 'asuntos' => array(), 'compromisos' => array(), 'sesiones' => array() ) );
+$vacio = array_merge( $estado, array( 'asuntos' => array(), 'compromisos' => array(), 'sesiones' => array(), 'anuncios' => array() ) );
 comprobar( null === concejo_resumen_semanal( $vacio, 'maite', 'X', $ahora, $zona, '' ), 'sin nada que contar no hay correo' );
 comprobar( null === concejo_resumen_semanal( $estado, 'nadie', 'X', $ahora, $zona, '' ), 'ni a quien no existe' );
 

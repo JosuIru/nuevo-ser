@@ -12,7 +12,7 @@ La zona horaria del pueblo es la de WordPress (Ajustes → Generales): marca cu�
 
 ## Resumen semanal por correo
 
-Los lunes (WP-Cron, que se dispara con las visitas; en un sitio con poco tráfico conviene un cron real que llame a `wp-cron.php`) sale un correo en texto plano a quien tiene correo en Ajustes → Concejo y lo quiere: qué se decide y hasta cuándo, qué está en debate, lo decidido esta semana y los compromisos que vencen. Si no hay nada, no se manda. En Ajustes → Concejo hay una vista previa y un botón para mandarlo ya. Usa `wp_mail`: el WordPress tiene que saber enviar correo (un plugin SMTP si el hosting no lo hace).
+Los lunes (WP-Cron, que se dispara con las visitas; en un sitio con poco tráfico conviene un cron real que llame a `wp-cron.php`) sale un correo en texto plano a quien tiene correo en Ajustes → Concejo y lo quiere: qué se decide y hasta cuándo, qué está en debate, las asambleas de las dos próximas semanas, lo decidido esta semana, el tablón (lo fijado y lo que otras personas han puesto esta semana) y los compromisos que vencen. Si no hay nada, no se manda. En Ajustes → Concejo hay una vista previa y un botón para mandarlo ya. Usa `wp_mail`: el WordPress tiene que saber enviar correo (un plugin SMTP si el hosting no lo hace).
 
 ## Pruebas
 

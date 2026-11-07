@@ -140,6 +140,31 @@ function concejo_resumen_semanal(
 			. ( $vencido ? "venció el {$fecha}" : "para el {$fecha}" ) . ').';
 	}
 
+	// El tablón: lo fijado por la mesa y lo que otras personas han puesto
+	// esta semana, si sigue vigente.
+	$anuncios = array_values(
+		array_filter(
+			$estado['anuncios'] ?? array(),
+			fn( $anuncio ) => concejo_anuncio_vigente( $anuncio, $ahora, $zona ) && (
+				! empty( $anuncio['fijado'] ) || (
+					$anuncio['autor_uid'] !== $persona_uid
+					&& concejo_leer_fecha( (string) $anuncio['publicado'], $zona ) > $hace_una_semana
+				)
+			)
+		)
+	);
+	usort(
+		$anuncios,
+		fn( $a, $b ) => array( empty( $a['fijado'] ), (string) $b['publicado'] ) <=> array( empty( $b['fijado'] ), (string) $a['publicado'] )
+	);
+	$tablon = array();
+	foreach ( $anuncios as $anuncio ) {
+		$autor   = $estado['personas'][ $anuncio['autor_uid'] ]['nombre'] ?? '';
+		$linea   = '- ' . $anuncio['titulo'] . ( '' !== $autor ? " ({$autor})" : '' ) . '.';
+		$cuerpo  = trim( (string) $anuncio['texto'] );
+		$tablon[] = '' === $cuerpo ? $linea : $linea . "\n  " . str_replace( "\n", "\n  ", $cuerpo );
+	}
+
 	$mandato = array();
 	$hasta   = $persona['mandato_hasta'] ?? null;
 	if ( concejo_es_mesa( $persona, $ahora, $zona ) && null !== $hasta && '' !== $hasta ) {
@@ -149,7 +174,7 @@ function concejo_resumen_semanal(
 		}
 	}
 
-	if ( array() === $se_decide && array() === $en_debate && array() === $decidido && array() === $compromisos && array() === $mandato && array() === $asambleas ) {
+	if ( array() === $se_decide && array() === $en_debate && array() === $decidido && array() === $compromisos && array() === $mandato && array() === $asambleas && array() === $tablon ) {
 		return null;
 	}
 
@@ -167,6 +192,7 @@ function concejo_resumen_semanal(
 		$decidido[] = 'El resultado y el acta están en la app; si no la usas, pídeselos a la mesa.';
 	}
 	$seccion( 'DECIDIDO ESTA SEMANA', $decidido );
+	$seccion( 'TABLÓN', $tablon );
 	$seccion( 'COMPROMISOS QUE VENCEN', $compromisos );
 	$partes[] = 'Si no usas la app, también puedes opinar y votar en papel: habla con la mesa.';
 	if ( '' !== $enlace_baja ) {

@@ -342,5 +342,11 @@
   "anuncioTituloLargo": "Izenburua luzeegia da: gehienez {maximo} letra.",
   "anuncioTextoLargo": "Testua luzeegia da: gehienez {maximo} letra.",
   "anuncioHastaPasado": "Egun hori pasatu da.",
-  "ayudaTablon": "Gune osoak ikusten du. Mahaiak goian finka edo ken dezake."
+  "ayudaTablon": "Gune osoak ikusten du. Mahaiak goian finka edo ken dezake.",
+  "pdfActaAsamblea": "Batzarraren akta",
+  "pdfConvocadaPor": "Deitzailea: {nombre}.",
+  "pdfConLaApp": "Aplikazioarekin: {nombres}.",
+  "pdfSinNotas": "Ez dago ezer idatzita.",
+  "pdfNombreYFirma": "Izena eta sinadura",
+  "pdfActaAsambleaPie": "Mahaiak aplikazioan idatzitakoa da. Eskuz sinatzen da."
 }

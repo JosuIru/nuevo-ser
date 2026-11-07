@@ -95,6 +95,9 @@ extension TextosDominio on AppLocalizations {
       '${DateFormat.MMMMEEEEd(localeName).format(momento)}, '
       '${DateFormat.Hm(localeName).format(momento)}';
 
+  /// «19:00».
+  String hora(DateTime momento) => DateFormat.Hm(localeName).format(momento);
+
   String problemaSesion(ProblemaSesion problema) => switch (problema) {
         ProblemaSesion.faltaTitulo => sesionFaltaTitulo,
         ProblemaSesion.faltaLugar => sesionFaltaLugar,

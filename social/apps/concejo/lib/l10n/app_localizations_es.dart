@@ -1235,4 +1235,27 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get ayudaTablon =>
       'Lo ve todo el espacio. La mesa puede fijarlo arriba o retirarlo.';
+
+  @override
+  String get pdfActaAsamblea => 'Acta de la asamblea';
+
+  @override
+  String pdfConvocadaPor(String nombre) {
+    return 'Convocada por $nombre.';
+  }
+
+  @override
+  String pdfConLaApp(String nombres) {
+    return 'Con la app: $nombres.';
+  }
+
+  @override
+  String get pdfSinNotas => 'Sin nada apuntado.';
+
+  @override
+  String get pdfNombreYFirma => 'Nombre y firma';
+
+  @override
+  String get pdfActaAsambleaPie =>
+      'Es lo que la mesa apuntó en la app. Se firma a mano.';
 }

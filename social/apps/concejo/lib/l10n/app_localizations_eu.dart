@@ -1234,4 +1234,27 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get ayudaTablon =>
       'Gune osoak ikusten du. Mahaiak goian finka edo ken dezake.';
+
+  @override
+  String get pdfActaAsamblea => 'Batzarraren akta';
+
+  @override
+  String pdfConvocadaPor(String nombre) {
+    return 'Deitzailea: $nombre.';
+  }
+
+  @override
+  String pdfConLaApp(String nombres) {
+    return 'Aplikazioarekin: $nombres.';
+  }
+
+  @override
+  String get pdfSinNotas => 'Ez dago ezer idatzita.';
+
+  @override
+  String get pdfNombreYFirma => 'Izena eta sinadura';
+
+  @override
+  String get pdfActaAsambleaPie =>
+      'Mahaiak aplikazioan idatzitakoa da. Eskuz sinatzen da.';
 }

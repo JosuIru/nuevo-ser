@@ -2155,6 +2155,42 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Lo ve todo el espacio. La mesa puede fijarlo arriba o retirarlo.'**
   String get ayudaTablon;
+
+  /// No description provided for @pdfActaAsamblea.
+  ///
+  /// In es, this message translates to:
+  /// **'Acta de la asamblea'**
+  String get pdfActaAsamblea;
+
+  /// No description provided for @pdfConvocadaPor.
+  ///
+  /// In es, this message translates to:
+  /// **'Convocada por {nombre}.'**
+  String pdfConvocadaPor(String nombre);
+
+  /// No description provided for @pdfConLaApp.
+  ///
+  /// In es, this message translates to:
+  /// **'Con la app: {nombres}.'**
+  String pdfConLaApp(String nombres);
+
+  /// No description provided for @pdfSinNotas.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin nada apuntado.'**
+  String get pdfSinNotas;
+
+  /// No description provided for @pdfNombreYFirma.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre y firma'**
+  String get pdfNombreYFirma;
+
+  /// No description provided for @pdfActaAsambleaPie.
+  ///
+  /// In es, this message translates to:
+  /// **'Es lo que la mesa apuntó en la app. Se firma a mano.'**
+  String get pdfActaAsambleaPie;
 }
 
 class _AppLocalizationsDelegate

@@ -719,5 +719,25 @@
     }
   },
   "anuncioHastaPasado": "Ese día ya ha pasado.",
-  "ayudaTablon": "Lo ve todo el espacio. La mesa puede fijarlo arriba o retirarlo."
+  "ayudaTablon": "Lo ve todo el espacio. La mesa puede fijarlo arriba o retirarlo.",
+  "pdfActaAsamblea": "Acta de la asamblea",
+  "pdfConvocadaPor": "Convocada por {nombre}.",
+  "@pdfConvocadaPor": {
+    "placeholders": {
+      "nombre": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfConLaApp": "Con la app: {nombres}.",
+  "@pdfConLaApp": {
+    "placeholders": {
+      "nombres": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfSinNotas": "Sin nada apuntado.",
+  "pdfNombreYFirma": "Nombre y firma",
+  "pdfActaAsambleaPie": "Es lo que la mesa apuntó en la app. Se firma a mano."
 }

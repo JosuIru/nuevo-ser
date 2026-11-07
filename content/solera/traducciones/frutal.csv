@@ -58,6 +58,8 @@ frut.fecha,Fecha,Data,Data,Data
 frut.fecha_entrada,Entrada de las colmenas,Erlauntzen sarrera,Entrada dels ruscs,Entrada das colmeas
 frut.fecha_salida,Salida de las colmenas,Erlauntzen irteera,Sortida dels ruscs,Saída das colmeas
 frut.filas_variedades,Filas y variedades,Ilarak eta barietateak,Files i varietats,Filas e variedades
+frut.gps_error,No se ha podido obtener la posición. Inténtalo al aire libre,Ezin izan da kokapena lortu. Saiatu kanpoan,No s'ha pogut obtenir la posició. Prova-ho a l'aire lliure,Non se puido obter a posición. Téntao ao aire libre
+frut.gps_sin_permiso,Sin permiso de ubicación o con el GPS apagado,Kokapen-baimenik gabe edo GPSa itzalita,Sense permís d'ubicació o amb el GPS apagat,Sen permiso de localización ou co GPS apagado
 frut.grano,grano,ale,gra,gran
 frut.guardado,Guardado,Gordeta,Desat,Gardado
 frut.helada,Helada,Izotza,Gelada,Xeada
@@ -67,6 +69,8 @@ frut.hoy,Hoy,Gaur,Avui,Hoxe
 frut.humedad,Humedad (%),Hezetasuna (%),Humitat (%),Humidade (%)
 frut.humedad_corta,humedad,hezetasuna,humitat,humidade
 frut.kg_cascara,Kilos en cáscara (o de fruta),Kiloak azalarekin (edo fruta),Quilos en closca (o de fruita),Quilos en casca (ou de froita)
+frut.mapa,Mapa,Mapa,Mapa,Mapa
+frut.mapa_sin_ubicaciones,"Ninguna parcela tiene ubicación. Guárdala con «Usar mi ubicación» al editarla, de pie en la parcela","Lursail batek ere ez du kokapenik. Gorde ezazu «Erabili nire kokapena» botoiarekin, lursailean zutik zaudela","Cap parcel·la no té ubicació. Desa-la amb «Fes servir la meva ubicació» en editar-la, dret a la parcel·la","Ningunha parcela ten localización. Gárdaa con «Usar a miña localización» ao editala, de pé na parcela"
 frut.marco_ayuda,"Por ejemplo, 7x6","Adibidez, 7x6","Per exemple, 7x6","Por exemplo, 7x6"
 frut.marco_plantacion,Marco de plantación (m),Landaketa-markoa (m),Marc de plantació (m),Marco de plantación (m)
 frut.municipio,Municipio,Udalerria,Municipi,Concello
@@ -149,6 +153,7 @@ frut.sin_parcelas,Todavía no hay parcelas. Añade la primera con el botón +,Or
 frut.sin_parcelas_regadio,No hay parcelas de regadío,Ez dago lursail ureztaturik,No hi ha parcel·les de regadiu,Non hai parcelas de regadío
 frut.sin_plazos_abiertos,Ningún tratamiento dentro de su plazo de seguridad,Ez dago tratamendurik segurtasun-epean,Cap tractament dins del seu termini de seguretat,Ningún tratamento dentro do seu prazo de seguridade
 frut.sin_registros,Sin registros este año,Aurten ez dago erregistrorik,Sense registres aquest any,Sen rexistros este ano
+frut.sin_ubicacion,Sin ubicación,Kokapenik gabe,Sense ubicació,Sen localización
 frut.supera_umbral,Supera el umbral de intervención,Esku-hartze atalasea gainditzen du,Supera el llindar d'intervenció,Supera o limiar de intervención
 frut.superficie_ha,Superficie (ha),Azalera (ha),Superfície (ha),Superficie (ha)
 frut.superficie_tratada_ha,Superficie tratada (ha),Tratatutako azalera (ha),Superfície tractada (ha),Superficie tratada (ha)
@@ -159,8 +164,10 @@ frut.titular,Titular,Titularra,Titular,Titular
 frut.toda_explotacion,Toda la explotación,Ustiategi osoa,Tota l'explotació,Toda a explotación
 frut.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
 frut.tratamientos_del_anyo,tratamientos este año,tratamendu aurten,tractaments enguany,tratamentos este ano
+frut.ubicacion,Ubicación,Kokapena,Ubicació,Localización
 frut.ultimos_tratamientos,Últimos tratamientos,Azken tratamenduak,Últims tractaments,Últimos tratamentos
 frut.umbral_lo_decides,Lo decides tú o tu asesor con la guía de gestión integrada,Zuk edo zure aholkulariak erabakitzen duzue kudeaketa integratuko gidarekin,Ho decideixes tu o el teu assessor amb la guia de gestió integrada,Decídelo ti ou o teu asesor coa guía de xestión integrada
+frut.usar_mi_ubicacion,Usar mi ubicación,Erabili nire kokapena,Fes servir la meva ubicació,Usar a miña localización
 frut.variedad,Variedad,Barietatea,Varietat,Variedade
 frut.variedad_principal,Variedad principal,Barietate nagusia,Varietat principal,Variedade principal
 frut.volumen_m3,Volumen (m³),Bolumena (m³),Volum (m³),Volume (m³)

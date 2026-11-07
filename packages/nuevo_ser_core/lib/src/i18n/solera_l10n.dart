@@ -2959,6 +2959,8 @@ class SoleraL10n {
     'frut.fecha_entrada',
     'frut.fecha_salida',
     'frut.filas_variedades',
+    'frut.gps_error',
+    'frut.gps_sin_permiso',
     'frut.grano',
     'frut.guardado',
     'frut.helada',
@@ -2968,6 +2970,8 @@ class SoleraL10n {
     'frut.humedad',
     'frut.humedad_corta',
     'frut.kg_cascara',
+    'frut.mapa',
+    'frut.mapa_sin_ubicaciones',
     'frut.marco_ayuda',
     'frut.marco_plantacion',
     'frut.municipio',
@@ -3050,6 +3054,7 @@ class SoleraL10n {
     'frut.sin_parcelas_regadio',
     'frut.sin_plazos_abiertos',
     'frut.sin_registros',
+    'frut.sin_ubicacion',
     'frut.supera_umbral',
     'frut.superficie_ha',
     'frut.superficie_tratada_ha',
@@ -3060,8 +3065,10 @@ class SoleraL10n {
     'frut.toda_explotacion',
     'frut.tratamientos',
     'frut.tratamientos_del_anyo',
+    'frut.ubicacion',
     'frut.ultimos_tratamientos',
     'frut.umbral_lo_decides',
+    'frut.usar_mi_ubicacion',
     'frut.variedad',
     'frut.variedad_principal',
     'frut.volumen_m3',
@@ -7453,6 +7460,8 @@ class SoleraL10n {
           'frut.fecha_entrada',
           'frut.fecha_salida',
           'frut.filas_variedades',
+          'frut.gps_error',
+          'frut.gps_sin_permiso',
           'frut.grano',
           'frut.guardado',
           'frut.helada',
@@ -7462,6 +7471,8 @@ class SoleraL10n {
           'frut.humedad',
           'frut.humedad_corta',
           'frut.kg_cascara',
+          'frut.mapa',
+          'frut.mapa_sin_ubicaciones',
           'frut.marco_ayuda',
           'frut.marco_plantacion',
           'frut.municipio',
@@ -7544,6 +7555,7 @@ class SoleraL10n {
           'frut.sin_parcelas_regadio',
           'frut.sin_plazos_abiertos',
           'frut.sin_registros',
+          'frut.sin_ubicacion',
           'frut.supera_umbral',
           'frut.superficie_ha',
           'frut.superficie_tratada_ha',
@@ -7554,8 +7566,10 @@ class SoleraL10n {
           'frut.toda_explotacion',
           'frut.tratamientos',
           'frut.tratamientos_del_anyo',
+          'frut.ubicacion',
           'frut.ultimos_tratamientos',
           'frut.umbral_lo_decides',
+          'frut.usar_mi_ubicacion',
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
@@ -11944,6 +11958,8 @@ class SoleraL10n {
           'frut.fecha_entrada',
           'frut.fecha_salida',
           'frut.filas_variedades',
+          'frut.gps_error',
+          'frut.gps_sin_permiso',
           'frut.grano',
           'frut.guardado',
           'frut.helada',
@@ -11953,6 +11969,8 @@ class SoleraL10n {
           'frut.humedad',
           'frut.humedad_corta',
           'frut.kg_cascara',
+          'frut.mapa',
+          'frut.mapa_sin_ubicaciones',
           'frut.marco_ayuda',
           'frut.marco_plantacion',
           'frut.municipio',
@@ -12035,6 +12053,7 @@ class SoleraL10n {
           'frut.sin_parcelas_regadio',
           'frut.sin_plazos_abiertos',
           'frut.sin_registros',
+          'frut.sin_ubicacion',
           'frut.supera_umbral',
           'frut.superficie_ha',
           'frut.superficie_tratada_ha',
@@ -12045,8 +12064,10 @@ class SoleraL10n {
           'frut.toda_explotacion',
           'frut.tratamientos',
           'frut.tratamientos_del_anyo',
+          'frut.ubicacion',
           'frut.ultimos_tratamientos',
           'frut.umbral_lo_decides',
+          'frut.usar_mi_ubicacion',
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
@@ -16435,6 +16456,8 @@ class SoleraL10n {
           'frut.fecha_entrada',
           'frut.fecha_salida',
           'frut.filas_variedades',
+          'frut.gps_error',
+          'frut.gps_sin_permiso',
           'frut.grano',
           'frut.guardado',
           'frut.helada',
@@ -16444,6 +16467,8 @@ class SoleraL10n {
           'frut.humedad',
           'frut.humedad_corta',
           'frut.kg_cascara',
+          'frut.mapa',
+          'frut.mapa_sin_ubicaciones',
           'frut.marco_ayuda',
           'frut.marco_plantacion',
           'frut.municipio',
@@ -16526,6 +16551,7 @@ class SoleraL10n {
           'frut.sin_parcelas_regadio',
           'frut.sin_plazos_abiertos',
           'frut.sin_registros',
+          'frut.sin_ubicacion',
           'frut.supera_umbral',
           'frut.superficie_ha',
           'frut.superficie_tratada_ha',
@@ -16536,8 +16562,10 @@ class SoleraL10n {
           'frut.toda_explotacion',
           'frut.tratamientos',
           'frut.tratamientos_del_anyo',
+          'frut.ubicacion',
           'frut.ultimos_tratamientos',
           'frut.umbral_lo_decides',
+          'frut.usar_mi_ubicacion',
           'frut.variedad',
           'frut.variedad_principal',
           'frut.volumen_m3',
@@ -20949,6 +20977,8 @@ class SoleraL10n {
       case 'frut.fecha_entrada': return 'Entrada de las colmenas';
       case 'frut.fecha_salida': return 'Salida de las colmenas';
       case 'frut.filas_variedades': return 'Filas y variedades';
+      case 'frut.gps_error': return 'No se ha podido obtener la posición. Inténtalo al aire libre';
+      case 'frut.gps_sin_permiso': return 'Sin permiso de ubicación o con el GPS apagado';
       case 'frut.grano': return 'grano';
       case 'frut.guardado': return 'Guardado';
       case 'frut.helada': return 'Helada';
@@ -20958,6 +20988,8 @@ class SoleraL10n {
       case 'frut.humedad': return 'Humedad (%)';
       case 'frut.humedad_corta': return 'humedad';
       case 'frut.kg_cascara': return 'Kilos en cáscara (o de fruta)';
+      case 'frut.mapa': return 'Mapa';
+      case 'frut.mapa_sin_ubicaciones': return 'Ninguna parcela tiene ubicación. Guárdala con «Usar mi ubicación» al editarla, de pie en la parcela';
       case 'frut.marco_ayuda': return 'Por ejemplo, 7x6';
       case 'frut.marco_plantacion': return 'Marco de plantación (m)';
       case 'frut.municipio': return 'Municipio';
@@ -21040,6 +21072,7 @@ class SoleraL10n {
       case 'frut.sin_parcelas_regadio': return 'No hay parcelas de regadío';
       case 'frut.sin_plazos_abiertos': return 'Ningún tratamiento dentro de su plazo de seguridad';
       case 'frut.sin_registros': return 'Sin registros este año';
+      case 'frut.sin_ubicacion': return 'Sin ubicación';
       case 'frut.supera_umbral': return 'Supera el umbral de intervención';
       case 'frut.superficie_ha': return 'Superficie (ha)';
       case 'frut.superficie_tratada_ha': return 'Superficie tratada (ha)';
@@ -21050,8 +21083,10 @@ class SoleraL10n {
       case 'frut.toda_explotacion': return 'Toda la explotación';
       case 'frut.tratamientos': return 'Tratamientos';
       case 'frut.tratamientos_del_anyo': return 'tratamientos este año';
+      case 'frut.ubicacion': return 'Ubicación';
       case 'frut.ultimos_tratamientos': return 'Últimos tratamientos';
       case 'frut.umbral_lo_decides': return 'Lo decides tú o tu asesor con la guía de gestión integrada';
+      case 'frut.usar_mi_ubicacion': return 'Usar mi ubicación';
       case 'frut.variedad': return 'Variedad';
       case 'frut.variedad_principal': return 'Variedad principal';
       case 'frut.volumen_m3': return 'Volumen (m³)';
@@ -25444,6 +25479,8 @@ class SoleraL10n {
       case 'frut.fecha_entrada': return 'Erlauntzen sarrera';
       case 'frut.fecha_salida': return 'Erlauntzen irteera';
       case 'frut.filas_variedades': return 'Ilarak eta barietateak';
+      case 'frut.gps_error': return 'Ezin izan da kokapena lortu. Saiatu kanpoan';
+      case 'frut.gps_sin_permiso': return 'Kokapen-baimenik gabe edo GPSa itzalita';
       case 'frut.grano': return 'ale';
       case 'frut.guardado': return 'Gordeta';
       case 'frut.helada': return 'Izotza';
@@ -25453,6 +25490,8 @@ class SoleraL10n {
       case 'frut.humedad': return 'Hezetasuna (%)';
       case 'frut.humedad_corta': return 'hezetasuna';
       case 'frut.kg_cascara': return 'Kiloak azalarekin (edo fruta)';
+      case 'frut.mapa': return 'Mapa';
+      case 'frut.mapa_sin_ubicaciones': return 'Lursail batek ere ez du kokapenik. Gorde ezazu «Erabili nire kokapena» botoiarekin, lursailean zutik zaudela';
       case 'frut.marco_ayuda': return 'Adibidez, 7x6';
       case 'frut.marco_plantacion': return 'Landaketa-markoa (m)';
       case 'frut.municipio': return 'Udalerria';
@@ -25535,6 +25574,7 @@ class SoleraL10n {
       case 'frut.sin_parcelas_regadio': return 'Ez dago lursail ureztaturik';
       case 'frut.sin_plazos_abiertos': return 'Ez dago tratamendurik segurtasun-epean';
       case 'frut.sin_registros': return 'Aurten ez dago erregistrorik';
+      case 'frut.sin_ubicacion': return 'Kokapenik gabe';
       case 'frut.supera_umbral': return 'Esku-hartze atalasea gainditzen du';
       case 'frut.superficie_ha': return 'Azalera (ha)';
       case 'frut.superficie_tratada_ha': return 'Tratatutako azalera (ha)';
@@ -25545,8 +25585,10 @@ class SoleraL10n {
       case 'frut.toda_explotacion': return 'Ustiategi osoa';
       case 'frut.tratamientos': return 'Tratamenduak';
       case 'frut.tratamientos_del_anyo': return 'tratamendu aurten';
+      case 'frut.ubicacion': return 'Kokapena';
       case 'frut.ultimos_tratamientos': return 'Azken tratamenduak';
       case 'frut.umbral_lo_decides': return 'Zuk edo zure aholkulariak erabakitzen duzue kudeaketa integratuko gidarekin';
+      case 'frut.usar_mi_ubicacion': return 'Erabili nire kokapena';
       case 'frut.variedad': return 'Barietatea';
       case 'frut.variedad_principal': return 'Barietate nagusia';
       case 'frut.volumen_m3': return 'Bolumena (m³)';
@@ -29939,6 +29981,8 @@ class SoleraL10n {
       case 'frut.fecha_entrada': return 'Entrada dels ruscs';
       case 'frut.fecha_salida': return 'Sortida dels ruscs';
       case 'frut.filas_variedades': return 'Files i varietats';
+      case 'frut.gps_error': return 'No s\'ha pogut obtenir la posició. Prova-ho a l\'aire lliure';
+      case 'frut.gps_sin_permiso': return 'Sense permís d\'ubicació o amb el GPS apagat';
       case 'frut.grano': return 'gra';
       case 'frut.guardado': return 'Desat';
       case 'frut.helada': return 'Gelada';
@@ -29948,6 +29992,8 @@ class SoleraL10n {
       case 'frut.humedad': return 'Humitat (%)';
       case 'frut.humedad_corta': return 'humitat';
       case 'frut.kg_cascara': return 'Quilos en closca (o de fruita)';
+      case 'frut.mapa': return 'Mapa';
+      case 'frut.mapa_sin_ubicaciones': return 'Cap parcel·la no té ubicació. Desa-la amb «Fes servir la meva ubicació» en editar-la, dret a la parcel·la';
       case 'frut.marco_ayuda': return 'Per exemple, 7x6';
       case 'frut.marco_plantacion': return 'Marc de plantació (m)';
       case 'frut.municipio': return 'Municipi';
@@ -30030,6 +30076,7 @@ class SoleraL10n {
       case 'frut.sin_parcelas_regadio': return 'No hi ha parcel·les de regadiu';
       case 'frut.sin_plazos_abiertos': return 'Cap tractament dins del seu termini de seguretat';
       case 'frut.sin_registros': return 'Sense registres aquest any';
+      case 'frut.sin_ubicacion': return 'Sense ubicació';
       case 'frut.supera_umbral': return 'Supera el llindar d\'intervenció';
       case 'frut.superficie_ha': return 'Superfície (ha)';
       case 'frut.superficie_tratada_ha': return 'Superfície tractada (ha)';
@@ -30040,8 +30087,10 @@ class SoleraL10n {
       case 'frut.toda_explotacion': return 'Tota l\'explotació';
       case 'frut.tratamientos': return 'Tractaments';
       case 'frut.tratamientos_del_anyo': return 'tractaments enguany';
+      case 'frut.ubicacion': return 'Ubicació';
       case 'frut.ultimos_tratamientos': return 'Últims tractaments';
       case 'frut.umbral_lo_decides': return 'Ho decideixes tu o el teu assessor amb la guia de gestió integrada';
+      case 'frut.usar_mi_ubicacion': return 'Fes servir la meva ubicació';
       case 'frut.variedad': return 'Varietat';
       case 'frut.variedad_principal': return 'Varietat principal';
       case 'frut.volumen_m3': return 'Volum (m³)';
@@ -34434,6 +34483,8 @@ class SoleraL10n {
       case 'frut.fecha_entrada': return 'Entrada das colmeas';
       case 'frut.fecha_salida': return 'Saída das colmeas';
       case 'frut.filas_variedades': return 'Filas e variedades';
+      case 'frut.gps_error': return 'Non se puido obter a posición. Téntao ao aire libre';
+      case 'frut.gps_sin_permiso': return 'Sen permiso de localización ou co GPS apagado';
       case 'frut.grano': return 'gran';
       case 'frut.guardado': return 'Gardado';
       case 'frut.helada': return 'Xeada';
@@ -34443,6 +34494,8 @@ class SoleraL10n {
       case 'frut.humedad': return 'Humidade (%)';
       case 'frut.humedad_corta': return 'humidade';
       case 'frut.kg_cascara': return 'Quilos en casca (ou de froita)';
+      case 'frut.mapa': return 'Mapa';
+      case 'frut.mapa_sin_ubicaciones': return 'Ningunha parcela ten localización. Gárdaa con «Usar a miña localización» ao editala, de pé na parcela';
       case 'frut.marco_ayuda': return 'Por exemplo, 7x6';
       case 'frut.marco_plantacion': return 'Marco de plantación (m)';
       case 'frut.municipio': return 'Concello';
@@ -34525,6 +34578,7 @@ class SoleraL10n {
       case 'frut.sin_parcelas_regadio': return 'Non hai parcelas de regadío';
       case 'frut.sin_plazos_abiertos': return 'Ningún tratamento dentro do seu prazo de seguridade';
       case 'frut.sin_registros': return 'Sen rexistros este ano';
+      case 'frut.sin_ubicacion': return 'Sen localización';
       case 'frut.supera_umbral': return 'Supera o limiar de intervención';
       case 'frut.superficie_ha': return 'Superficie (ha)';
       case 'frut.superficie_tratada_ha': return 'Superficie tratada (ha)';
@@ -34535,8 +34589,10 @@ class SoleraL10n {
       case 'frut.toda_explotacion': return 'Toda a explotación';
       case 'frut.tratamientos': return 'Tratamentos';
       case 'frut.tratamientos_del_anyo': return 'tratamentos este ano';
+      case 'frut.ubicacion': return 'Localización';
       case 'frut.ultimos_tratamientos': return 'Últimos tratamentos';
       case 'frut.umbral_lo_decides': return 'Decídelo ti ou o teu asesor coa guía de xestión integrada';
+      case 'frut.usar_mi_ubicacion': return 'Usar a miña localización';
       case 'frut.variedad': return 'Variedade';
       case 'frut.variedad_principal': return 'Variedade principal';
       case 'frut.volumen_m3': return 'Volume (m³)';

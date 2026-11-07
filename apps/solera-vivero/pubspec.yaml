@@ -24,6 +24,7 @@ dependencies:
   intl: ^0.19.0
   pdf: ^3.11.1
   printing: ^5.13.4
+  mobile_scanner: ^5.2.3
   nuevo_ser_core:
     path: ../../packages/nuevo_ser_core
 
@@ -32,9 +33,12 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   sqflite_common_ffi: ^2.3.3
+  flutter_launcher_icons: ^0.14.1
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icono-logo-vivero.png
 
   # Letra del tema común Larrea (temaSolera del core). SIL OFL.
   fonts:
@@ -52,3 +56,14 @@ flutter:
           weight: 600
         - asset: packages/nuevo_ser_core/fuentes/Inter-Bold.ttf
           weight: 700
+
+# Iconos del lanzador. El logo es PLACEHOLDER (ImageMagick, 2026-11-07):
+# sustituir el PNG por el definitivo y regenerar con
+# `dart run flutter_launcher_icons`.
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icono-logo-vivero.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#F5EFE2"
+  adaptive_icon_foreground: "assets/icono-logo-vivero.png"

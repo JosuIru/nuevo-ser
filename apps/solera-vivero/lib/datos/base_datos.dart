@@ -370,6 +370,21 @@ class BaseDatosSoleraVivero extends BaseDatosSolera {
           .map(Siembra.fromMap)
           .toList();
 
+  /// Siembra y su partida de planta en una transacción. Devuelve el id de
+  /// la partida.
+  Future<int> sembrar(Siembra siembra, PartidaPlanta partida) async {
+    final db = await basedatos;
+    return db.transaction((transaccion) async {
+      final siembraId = await transaccion.insert(
+          'siembras', Map<String, Object?>.of(siembra.toMap())..remove('id'));
+      return transaccion.insert(
+          'partidas_planta',
+          Map<String, Object?>.of(partida.toMap())
+            ..remove('id')
+            ..['siembra_id'] = siembraId);
+    });
+  }
+
   /// Lanza si de la siembra ya salió una partida.
   Future<void> borrarSiembra(int siembraId) => _borrar('siembras', siembraId);
 

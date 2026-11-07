@@ -10,7 +10,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh vivero "Larrea Vivero" 3F6B4A F5EFE2 vive Vivero`. Encuadre y normativa verificada abajo. 3 tests |
 | 2 Modelos + BD | ✅ 2026-11-07 | 11 modelos (vivero, zona de cultivo, lote de material, bandeja con QR, siembra, partida de planta, repicado, salida, pasaporte emitido, tratamiento, inspección de plagas), 11 tablas en la v1 (`sentenciasEsquemaViveroV1`). Dominio puro: `stock.dart` (disponibles y resumen por especie/variedad/formato), `trazabilidad.dart` (de la partida al lote, con repicados), `pasaporte.dart` (necesidad de pasaporte por salida y datos A-D con lo que falta). 34 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos, avisos de inspección sin notificar, salidas sin pasaporte y plazos de seguridad, accesos a siembra, tratamiento, inspección y Cuaderno; Ajustes en la barra), Material (lotes y ficha con sus siembras), Bandejas (lista, alta con el siguiente código QR, ficha con partidas y siembras; zonas en la barra), Plantas (stock por especie y formato, partidas, ficha con disponibles, merma, repicado, salida, trazabilidad hasta el lote, tratamientos e inspecciones), Salidas (año, estado del pasaporte; ficha con la necesidad de pasaporte, letras A-D, lo que falta y registro de pasaportes con anulación). Sembrar crea la partida. Altas en hojas inferiores (`formularios.dart`). 40 tests, 6 de pantalla |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas).
+**Siguiente acción**: bloques 4-5 (cuaderno de tratamientos y etiqueta del pasaporte en PDF).
 
 ## Encuadre
 
@@ -87,6 +87,20 @@ con bandejas identificadas por QR. Ficha completa: `docs/plan-verticales/vivero.
   por «|» (formato propio): **por verificar** si sirve de soporte oficial.
 - **2026-11-07 — Códigos propios**: bandejas `VIV-B-0001…` (el QR lleva el
   código tal cual, como Arbolado) y partidas `P26-0001…` por año.
+
+- **2026-11-07 — Cinco pestañas** (Hoy, Material, Bandejas, Plantas, Salidas);
+  Ajustes y el Cuaderno se abren desde Hoy para no pasar de cinco.
+- **2026-11-07 — Sembrar crea la partida a la vez** (transacción): la partida
+  nace con una planta por alveolo, que se corrige con las mermas. Así no hay
+  partidas sin origen salvo que se den de alta a mano.
+- **2026-11-07 — La necesidad de pasaporte de una salida no depende de la
+  especie**: toda planta para plantación salvo la semilla lo necesita
+  (2019/2072, anexo XIII.1); deciden las marcas de destino.
+- **2026-11-07 — Los controladores de las hojas se liberan con un segundo de
+  retraso**: la animación de cierre los repinta después de que
+  `showModalBottomSheet` vuelva (en Frutal no se notaba).
+- **2026-11-07 — Tests de pantalla sin `pumpAndSettle`**: mientras la BD real
+  carga, el indicador de progreso no deja asentarse; se bombea con pausas.
 
 ## Datos técnicos
 

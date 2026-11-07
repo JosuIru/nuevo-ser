@@ -1,8 +1,11 @@
 // Larrea Vivero — esqueleto generado por scripts/nueva_vertical.sh (2026-11-07).
 //
 //   main() → AppVivero → PantallaPrincipal (NavigationBar + IndexedStack)
-//     ├── Hoy
-//     └── Ajustes
+//     ├── Hoy       primeros pasos, avisos y accesos (Ajustes y Cuaderno)
+//     ├── Material  lotes de semilla, esquejes y plantones
+//     ├── Bandejas  bandejas con QR y zonas
+//     ├── Plantas   stock y partidas con su trazabilidad
+//     └── Salidas   ventas y entregas con los datos del pasaporte
 
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -10,8 +13,11 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
     show SoleraL10n, cargarIdiomaSolera, PaletaSolera, temaSolera;
 
 import 'branding.dart';
-import 'pantallas/pantalla_ajustes.dart';
+import 'pantallas/pantalla_bandejas.dart';
 import 'pantallas/pantalla_hoy.dart';
+import 'pantallas/pantalla_material.dart';
+import 'pantallas/pantalla_plantas.dart';
+import 'pantallas/pantalla_salidas.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,7 +61,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     return Scaffold(
       body: IndexedStack(
         index: _pestanaActual,
-        children: const [PantallaHoy(), PantallaAjustes()],
+        children: const [
+          PantallaHoy(),
+          PantallaMaterial(),
+          PantallaBandejas(),
+          PantallaPlantas(),
+          PantallaSalidas(),
+        ],
       ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: _pestanaActual,
@@ -67,8 +79,20 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             label: SoleraL10n.t('vive.hoy'),
           ),
           NavigationDestination(
-            icon: const Icon(Icons.settings_outlined),
-            label: SoleraL10n.t('ajustes'),
+            icon: const Icon(Icons.grain_outlined),
+            label: SoleraL10n.t('vive.material'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.grid_on_outlined),
+            label: SoleraL10n.t('vive.bandejas'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.spa_outlined),
+            label: SoleraL10n.t('vive.plantas'),
+          ),
+          NavigationDestination(
+            icon: const Icon(Icons.local_shipping_outlined),
+            label: SoleraL10n.t('vive.salidas'),
           ),
         ],
       ),

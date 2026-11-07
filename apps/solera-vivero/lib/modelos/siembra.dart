@@ -1,5 +1,12 @@
 /// Cómo se puso el material en la bandeja.
-const List<String> metodosSiembra = ['siembra', 'estaquillado', 'injerto'];
+/// «plantacion»: un plantón o planta madre comprados que se ponen en su
+/// bandeja o contenedor.
+const List<String> metodosSiembra = [
+  'siembra',
+  'estaquillado',
+  'injerto',
+  'plantacion',
+];
 
 /// Siembra (o estaquillado) de un lote de material en una bandeja. De ella
 /// nace la partida de planta.

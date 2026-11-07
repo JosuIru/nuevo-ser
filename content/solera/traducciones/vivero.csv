@@ -6,6 +6,7 @@ vive.anulado,anulado,baliogabetua,anul·lat,anulado
 vive.anular,Anular,Baliogabetu,Anul·la,Anular
 vive.anular_pasaporte,"¿Anular este pasaporte? Se conserva en el registro, marcado como anulado.","Pasaporte hau baliogabetu? Erregistroan geratzen da, baliogabetutzat markatuta.","Vols anul·lar aquest passaport? Es conserva al registre, marcat com a anul·lat.","Anular este pasaporte? Consérvase no rexistro, marcado como anulado."
 vive.aplicador,Aplicador,Aplikatzailea,Aplicador,Aplicador
+vive.apunta_qr_bandeja,Apunta al QR de la etiqueta de la bandeja.,Zuzendu erretiluaren etiketako QRra.,Apunta al QR de l’etiqueta de la safata.,Apunta ao QR da etiqueta da bandexa.
 vive.apuntar_merma,Apuntar merma,Galera idatzi,Anota una pèrdua,Anotar perda
 vive.asesor,Asesor de gestión integrada de plagas,Izurriteen kudeaketa integratuko aholkularia,Assessor de gestió integrada de plagues,Asesor de xestión integrada de pragas
 vive.asesor_ropo,Nº ROPO del asesor,Aholkulariaren ROPO zk.,Núm. ROPO de l’assessor,Nº ROPO do asesor
@@ -26,12 +27,16 @@ vive.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari
 vive.borrador,borrador,zirriborroa,esborrany,borrador
 vive.borrar_registro,¿Borrar este registro?,Erregistro hau ezabatu?,Vols esborrar aquest registre?,Borrar este rexistro?
 vive.borrar_salida,¿Borrar esta salida? Solo se puede mientras no tenga pasaporte.,Irteera hau ezabatu? Pasaporterik ez duen bitartean baino ezin da.,Vols esborrar aquesta sortida? Només es pot mentre no tingui passaport.,Borrar esta saída? Só se pode mentres non teña pasaporte.
+vive.cambiar_camara,Cambiar de cámara,Kamera aldatu,Canvia de càmera,Cambiar de cámara
 vive.cantidad,Cantidad,Kopurua,Quantitat,Cantidade
 vive.cantidad_material_usada,Material usado (en la unidad del lote),Erabilitako materiala (sortaren unitatean),Material usat (en la unitat del lot),Material usado (na unidade do lote)
 vive.cantidad_no_valida,La cantidad no es válida o supera las plantas disponibles.,Kopurua ez da baliozkoa edo landare erabilgarriak gainditzen ditu.,La quantitat no és vàlida o supera les plantes disponibles.,A cantidade non é válida ou supera as plantas dispoñibles.
 vive.carnet_aplicador,Carné de aplicador,Aplikatzaile-txartela,Carnet d’aplicador,Carné de aplicador
 vive.categoria_forestal,Material forestal de reproducción,Basoko ugalketa-materiala,Material forestal de reproducció,Material forestal de reprodución
 vive.certificado_patron,Nº de certificado patrón,Ziurtagiri nagusiaren zk.,Núm. de certificat patró,Nº de certificado patrón
+vive.cifra_disponibles,plantas disponibles,landare erabilgarri,plantes disponibles,plantas dispoñibles
+vive.cifra_listas,listas para venta,saltzeko prest,a punt per vendre,listas para a venda
+vive.cifra_sin_pasaporte,salidas sin pasaporte,pasaporterik gabeko irteerak,sortides sense passaport,saídas sen pasaporte
 vive.cliente,Cliente,Bezeroa,Client,Cliente
 vive.cliente_ropveg,Nº ROPVEG del cliente (si es profesional),Bezeroaren ROPVEG zk. (profesionala bada),Núm. ROPVEG del client (si és professional),Nº ROPVEG do cliente (se é profesional)
 vive.codigo_lote,Código del lote,Sortaren kodea,Codi del lot,Código do lote
@@ -75,9 +80,11 @@ vive.equipo_aplicacion,Equipo de aplicación (nº ROMA),Aplikazio-ekipoa (ROMA z
 vive.error_documento,No se pudo generar el documento.,Ezin izan da dokumentua sortu.,No s’ha pogut generar el document.,Non se puido xerar o documento.
 vive.es_usuario_final,Usuario final,Azken erabiltzailea,Usuari final,Usuario final
 vive.es_usuario_final_ayuda,"Compra para su uso personal, fuera de su profesión.","Erabilera pertsonalerako erosten du, bere lanbidetik kanpo.","Compra per al seu ús personal, fora de la seva professió.","Compra para o seu uso persoal, fóra da súa profesión."
+vive.escanear_bandeja,Escanear bandeja,Erretilua eskaneatu,Escaneja una safata,Escanear bandexa
 vive.especie,Especie,Espeziea,Espècie,Especie
 vive.especie_anexo_xiv,"La especie está en el anexo XIV del Reglamento 2019/2072: si el destino es una zona protegida, el pasaporte es «ZP».","Espeziea 2019/2072 Erregelamenduaren XIV. eranskinean dago: helmuga eremu babestua bada, pasaportea «ZP» da.","L’espècie és a l’annex XIV del Reglament 2019/2072: si la destinació és una zona protegida, el passaport és «ZP».","A especie está no anexo XIV do Regulamento 2019/2072: se o destino é unha zona protexida, o pasaporte é «ZP»."
 vive.etiqueta_pdf,Etiqueta en PDF,Etiketa PDFn,Etiqueta en PDF,Etiqueta en PDF
+vive.etiquetas_qr,Etiquetas QR de bandejas,Erretiluen QR etiketak,Etiquetes QR de safates,Etiquetas QR de bandexas
 vive.falta_codigo_operador,Falta el nº ROPVEG del vivero (Ajustes) o no tiene la forma «ES-» y ocho dígitos.,Mintegiaren ROPVEG zk. falta da (Ezarpenak) edo ez du «ES-» eta zortzi digituko itxura.,Falta el núm. ROPVEG del viver (Configuració) o no té la forma «ES-» i vuit dígits.,Falta o nº ROPVEG do viveiro (Axustes) ou non ten a forma «ES-» e oito díxitos.
 vive.falta_codigo_trazabilidad,Falta el código de trazabilidad.,Trazabilitate-kodea falta da.,Falta el codi de traçabilitat.,Falta o código de rastrexabilidade.
 vive.falta_nombre_botanico,Falta el nombre botánico de la partida.,Partidaren izen botanikoa falta da.,Falta el nom botànic de la partida.,Falta o nome botánico da partida.
@@ -97,6 +104,8 @@ vive.formato_contenedor,Contenedor,Edukiontzia,Contenidor,Contedor
 vive.formato_destino,Formato de destino,Helmuga-formatua,Format de destinació,Formato de destino
 vive.formato_maceta,Maceta,Lorontzia,Test,Testo
 vive.formato_raiz_desnuda,Raíz desnuda,Sustrai biluzia,Arrel nua,Raíz espida
+vive.gps_error,No se pudo leer la ubicación. Inténtalo al aire libre.,Ezin izan da kokapena irakurri. Saiatu kanpoan.,No s’ha pogut llegir la ubicació. Prova-ho a l’aire lliure.,Non se puido ler a localización. Inténtao ao aire libre.
+vive.gps_sin_permiso,Sin permiso de ubicación o con el GPS apagado.,Kokapen-baimenik gabe edo GPSa itzalita.,Sense permís d’ubicació o amb el GPS apagat.,Sen permiso de localización ou co GPS apagado.
 vive.guardado,Guardado,Gordeta,Desat,Gardado
 vive.hacer_foto,Hacer una foto,Argazki bat atera,Fes una foto,Facer unha foto
 vive.hoy,Hoy,Gaur,Avui,Hoxe
@@ -110,14 +119,18 @@ vive.ia_que_hace,Mira la foto de una planta joven y propone qué plaga o enferme
 vive.ia_revisa,"Es una propuesta: revísala. Si es una plaga regulada, se abre una inspección con «sospecha» y hay que avisar a la autoridad.","Proposamena da: berrikusi. Izurrite arautua bada, «susmoa» duen ikuskapen bat irekitzen da eta agintaritzari jakinarazi behar zaio.","És una proposta: revisa-la. Si és una plaga regulada, s’obre una inspecció amb «sospita» i cal avisar l’autoritat.","É unha proposta: revísaa. Se é unha praga regulada, ábrese unha inspección con «sospeita» e hai que avisar á autoridade."
 vive.identificar_con_ia,Identificar con una foto (IA),Argazki batekin identifikatu (AA),Identifica amb una foto (IA),Identificar cunha foto (IA)
 vive.importe_sin_iva,Importe sin IVA (€),Zenbatekoa BEZik gabe (€),Import sense IVA (€),Importe sen IVE (€)
+vive.imprimir_etiquetas_n,Imprimir {n} etiquetas,{n} etiketa inprimatu,Imprimeix {n} etiquetes,Imprimir {n} etiquetas
 vive.inicial_mermas,"{inicial} iniciales, {mermas} perdidas","{inicial} hasieran, {mermas} galduta","{inicial} inicials, {mermas} perdudes","{inicial} iniciais, {mermas} perdidas"
 vive.inspeccion_autoinspeccion,Autoinspección,Autoikuskapena,Autoinspecció,Autoinspección
 vive.inspeccion_oficial,Inspección oficial,Ikuskapen ofiziala,Inspecció oficial,Inspección oficial
 vive.inspecciones,Inspecciones de plagas,Izurrite-ikuskapenak,Inspeccions de plagues,Inspeccións de pragas
 vive.inspector,Quién inspecciona,Nork ikuskatzen du,Qui inspecciona,Quen inspecciona
 vive.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
+vive.linterna,Linterna,Linterna,Llanterna,Lanterna
 vive.lista_para_venta,Lista para venta,Saltzeko prest,A punt per vendre,Lista para a venda
 vive.lote,Lote,Sorta,Lot,Lote
+vive.mapa,Mapa,Mapa,Mapa,Mapa
+vive.mapa_sin_ubicaciones,Ninguna zona tiene ubicación: guárdala con «Usar mi ubicación» al editarla.,Eremu batek ere ez du kokapenik: gorde «Erabili nire kokapena» editatzean.,Cap zona no té ubicació: desa-la amb «Fes servir la meva ubicació» en editar-la.,Ningunha zona ten localización: gárdaa con «Usar a miña localización» ao editala.
 vive.material,Material,Materiala,Material,Material
 vive.material_bulbo,Bulbo,Erraboila,Bulb,Bulbo
 vive.material_esqueje,Esqueje o estaquilla,Ebakina edo aldaxka,Esqueix o estaca,Esqueixe ou estaca
@@ -213,6 +226,7 @@ vive.problema_fitosanitario,Plaga o enfermedad,Izurritea edo gaixotasuna,Plaga o
 vive.propio,propio,norberarena,propi,propio
 vive.proveedor,Proveedor,Hornitzailea,Proveïdor,Provedor
 vive.proveedor_ropveg,Nº ROPVEG del proveedor,Hornitzailearen ROPVEG zk.,Núm. ROPVEG del proveïdor,Nº ROPVEG do provedor
+vive.qr_desconocido,No hay ninguna bandeja con el código «{codigo}». ¿Darla de alta con ese código?,Ez dago «{codigo}» kodea duen erretilurik. Kode horrekin alta eman?,No hi ha cap safata amb el codi «{codigo}». Vols donar-la d’alta amb aquest codi?,Non hai ningunha bandexa co código «{codigo}». Dala de alta con ese código?
 vive.region_procedencia,Región de procedencia (nombre y código),Jatorri-eskualdea (izena eta kodea),Regió de procedència (nom i codi),Rexión de procedencia (nome e código)
 vive.region_procedencia_ayuda,"La del documento del proveedor (RD 289/2003, anexo IX).","Hornitzailearen agirikoa (289/2003 EDa, IX. eranskina).","La del document del proveïdor (RD 289/2003, annex IX).","A do documento do provedor (RD 289/2003, anexo IX)."
 vive.registro_explotacion,Registro de explotación (si es agrario),Ustiategiaren erregistroa (nekazaritzakoa bada),Registre d’explotació (si és agrari),Rexistro de explotación (se é agrario)
@@ -243,6 +257,7 @@ vive.sin_salidas,Sin salidas.,Irteerarik ez.,Sense sortides.,Sen saídas.
 vive.sin_salidas_ayuda,Sin salidas este año. Se apuntan desde la ficha de cada partida.,Irteerarik ez aurten. Partida bakoitzaren fitxatik idazten dira.,Sense sortides aquest any. S’anoten des de la fitxa de cada partida.,Sen saídas este ano. Anótanse dende a ficha de cada partida.
 vive.sin_siembras,Sin siembras.,Ereintzarik ez.,Sense sembres.,Sen sementeiras.
 vive.sin_tratamientos,Sin tratamientos este año.,Tratamendurik ez aurten.,Sense tractaments aquest any.,Sen tratamentos este ano.
+vive.sin_ubicacion,Sin ubicación,Kokapenik gabe,Sense ubicació,Sen localización
 vive.sin_zona,Sin zona,Eremurik gabe,Sense zona,Sen zona
 vive.sin_zonas,"Aún no hay zonas: naves, invernaderos, umbráculos o parcelas exteriores.","Oraindik ez dago eremurik: nabeak, negutegiak, itzalpeak edo kanpoko lursailak.","Encara no hi ha zones: naus, hivernacles, ombracles o parcel·les exteriors.","Aínda non hai zonas: naves, invernadoiros, umbráculos ou parcelas exteriores."
 vive.stock,Stock,Stocka,Estoc,Stock
@@ -261,8 +276,10 @@ vive.trazabilidad,Trazabilidad,Trazabilitatea,Traçabilitat,Rastrexabilidade
 vive.trazabilidad_incompleta,La cadena no llega a un lote de material: falta algún dato.,Katea ez da material-sorta batera iristen: daturen bat falta da.,La cadena no arriba a un lot de material: falta alguna dada.,A cadea non chega a un lote de material: falta algún dato.
 vive.ubicacion,"Ubicación (mesa, pasillo…)","Kokapena (mahaia, korridorea…)","Ubicació (taula, passadís…)","Localización (mesa, corredor…)"
 vive.ubicacion_ayuda,Dentro de la zona.,Eremuaren barruan.,Dins de la zona.,Dentro da zona.
+vive.ubicacion_gps,Ubicación (GPS),Kokapena (GPS),Ubicació (GPS),Localización (GPS)
 vive.unidad,Unidad,Unitatea,Unitat,Unidade
 vive.unidades_por_alveolo,Semillas o esquejes por alveolo,Hazi edo ebakin alveolo bakoitzeko,Llavors o esqueixos per alvèol,Sementes ou esqueixes por alvéolo
+vive.usar_mi_ubicacion,Usar mi ubicación,Erabili nire kokapena,Fes servir la meva ubicació,Usar a miña localización
 vive.uso_no_en_catalogo,Ese uso (cultivo y plaga) no está en el catálogo del registro: compruébalo en la etiqueta.,Erabilera hori (laborantza eta izurritea) ez dago erregistroaren katalogoan: egiaztatu etiketan.,Aquest ús (cultiu i plaga) no és al catàleg del registre: comprova-ho a l’etiqueta.,Ese uso (cultivo e praga) non está no catálogo do rexistro: compróbao na etiqueta.
 vive.variedad,Variedad,Barietatea,Varietat,Variedade
 vive.venta_a_distancia,"Venta a distancia (internet, teléfono, correo)","Urrutiko salmenta (internet, telefonoa, posta)","Venda a distància (internet, telèfon, correu)","Venda a distancia (internet, teléfono, correo)"

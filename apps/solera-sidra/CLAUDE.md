@@ -10,16 +10,16 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 |---|---|---|
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 11 modelos (`Titular`, `Sagardotegi`, `Pomarada`, `Manzano`, `Tratamiento`, `PartidaManzana`, `Prensado`, `Kupela`, `MedicionKupela`, `Trasiego`, `SesionTxotx`, `Embotellado`, `ApunteEconomico`), 15 tablas en la v1. Dominio: `campania.dart` (sep-ago, pliego F.1) y `saldo_kupelas.dart` (litros por kupela y origen por trasiegos). 22 tests |
-| 3 Pantallas | pendiente | |
+| 3 Pantallas | ✅ 2026-11-07 | Pestañas Hoy (bienvenida/onboarding, litros en bodega, txotx de hoy, «por revisar»), Pomaradas (alta, ficha con tratamientos y manzanos marcados), Bodega (kupelas con ocupación; desde la cabecera: entradas de fruta, prensados, embotellados; ficha de kupela con medir, trasegar, embotellar y calificación), Txotx (temporada) y Ajustes (sagardotegi, titular, régimen). Hojas con selector de fecha. 38 tests, 5 de pantalla y 4 de claves de traducción |
 | 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
-| 6 Catálogos | pendiente | |
+| 6 Catálogos | ✅ 2026-11-07 (adelantado al 3) | `content/sidra/`: 268 variedades de manzana (pliegos Euskal Sagardoa y Asturias), 11 de uva (DO de txakoli), 18 plagas, 61 sustancias activas (registro MAPA 06/11/2026 + EU Pesticides DB) y 8 productos DOP con sus límites. `dominio/catalogos.dart` y `comprobacion_dop.dart` (avisos de acidez volátil, grado, SO₂, densidad del mosto y rendimiento). Banner de provisionales en Hoy |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 3 (pantallas).
+**Siguiente acción**: bloques 4-5 (cuaderno de la pomarada y libro de elaboración y embotellado en PDF).
 
 ## Encuadre
 
@@ -70,6 +70,31 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
 - **2026-11-07 — La v1 se amplió en el bloque 2** con la tabla de apuntes del
   bloque 9: no hay ninguna instalación publicada.
 - **2026-11-07 — Importes en céntimos** (como aceitera y obrador).
+- **2026-11-07 — Bloque 6 antes que el 3**: las pantallas eligen variedades,
+  plagas, sustancias y productos DOP del catálogo; hacerlo al revés obligaba a
+  poner campos de texto libre y rehacerlos.
+- **2026-11-07 — Catálogo de fitosanitarios generado del registro del MAPA**
+  (no a mano): plaga objetivo y plazo de seguridad **máximo** del registro por
+  sustancia; fuera las que la EU Pesticides DB no da por aprobadas a fecha de
+  hoy. Método en `content/sidra/README.md`.
+- **2026-11-07 — Los catálogos van solo en castellano** (nombres de variedades
+  y plagas tal como salen en los pliegos y el registro), como en obrador: no hay
+  fuente pública con los nombres en las cuatro lenguas.
+- **2026-11-07 — La sagardotegi elige una denominación** (`dopId`) y cada kupela
+  un producto DOP con el que se comparan sus mediciones: un pliego tiene varios
+  productos (sidra, gazi-gozoa, espumosa) con límites distintos.
+- **2026-11-07 — El rango de rendimiento 40-75 % de Euskal Sagardoa avisa como
+  «habitual»**, no como límite: el pliego lo describe («oscila»), no lo fija. El
+  de Asturias (75 % rápido / 80 % lento) sí es límite; la app avisa con el 80.
+- **2026-11-07 — Onboarding como tarjeta de bienvenida en Hoy** que abre los
+  datos de la sagardotegi (los mismos que en Ajustes), en vez de un asistente
+  de varias pantallas: son cuatro campos.
+- **2026-11-07 — La pestaña Txotx se ve siempre**; la casilla «abro txotx» solo
+  quita el bloque de Hoy. Esconder una pestaña cambia los índices del
+  IndexedStack y no aporta.
+- **2026-11-07 — Las hojas liberan sus controladores al desaparecer**: liberarlos
+  justo después del `await` (como en obrador) rompe la animación de cierre; lo
+  cazó el test de pantalla.
 
 ## Datos técnicos
 
@@ -79,5 +104,8 @@ ningún texto ni el pasaporte promociona el consumo de alcohol.
   eu/ca/gl son **borrador** hasta la revisión nativa (`scripts/traducciones/`).
 - Catálogos: `content/sidra/` → `dart run tool/compilar_catalogos.dart`.
 - Lógica pura en `lib/dominio/` (sin Flutter, con tests).
-- `dart format` usa el estilo nuevo («tall») de Dart 3.7: los ficheros de esta
-  app están formateados así.
+- Tests de pantalla: `pantallaAlta(tester)` agranda la vista para que los
+  formularios quepan sin desplazar; las claves de traducción las vigila
+  `test/i18n/claves_sidra_test.dart` (el test del core no recorre esta app).
+- Las hojas (`mostrarHojaFormulario`) reciben sus `controladores` y los liberan
+  al desaparecer: no liberarlos a mano después del `await`.

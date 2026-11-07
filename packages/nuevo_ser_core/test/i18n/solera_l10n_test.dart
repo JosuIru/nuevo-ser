@@ -108,7 +108,7 @@ void main() {
   test('sin traducción en un idioma sale el castellano, no la clave', () {
     final generado = generarCodigoSoleraL10n(
         'clave,es,eu,ca,gl\nsolo_es,Solo en castellano,,,\n');
-    expect(generado, contains('default: return _tEs(c);'));
+    expect(generado, contains('_textosEu[c] ?? _tEs(c)'));
     expect(SoleraL10n.t('guardar', idioma: 'eu'), 'Gorde');
     expect(SoleraL10n.t('no_existe_en_euskera_xyz', idioma: 'eu'),
         SoleraL10n.t('no_existe_en_euskera_xyz', idioma: 'es'));

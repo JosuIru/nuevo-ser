@@ -120,11 +120,7 @@ String generarCodigoSoleraL10n(String contenidoCsv) {
     ..writeln('  /// Claves que tienen texto propio en [idioma] (para tests).')
     ..writeln('  static Set<String> clavesTraducidas(String idioma) => switch (idioma) {');
   for (final idioma in idiomas.skip(1)) {
-    codigo.writeln("        '$idioma' => const {");
-    for (final clave in textosPorIdioma[idioma]!.keys) {
-      codigo.writeln("          '${_escapar(clave)}',");
-    }
-    codigo.writeln('        },');
+    codigo.writeln("        '$idioma' => _textos${_capitalizar(idioma)}.keys.toSet(),");
   }
   codigo
     ..writeln('        _ => clavesDisponibles,')
@@ -150,25 +146,31 @@ String generarCodigoSoleraL10n(String contenidoCsv) {
     ..writeln('  }')
     ..writeln();
 
-  const nombresFuncion = {'es': '_tEs', 'eu': '_tEu', 'ca': '_tCa', 'gl': '_tGl'};
+  // Un mapa constante por idioma. Hasta el 2026-11-07 era un `switch` por
+  // idioma; con ~5.300 claves el compilador JIT de la VM se caía
+  // (segmentation fault) al optimizarlo. Lo que falta en un idioma sale en
+  // castellano; lo que falta en castellano, como la clave (el test lo impide).
   for (final idioma in idiomas) {
-    codigo
-      ..writeln('  static String ${nombresFuncion[idioma]}(String c) {')
-      ..writeln('    switch (c) {');
+    final sufijo = _capitalizar(idioma);
+    codigo.writeln(idioma == 'es'
+        ? '  static String _tEs(String c) => _textosEs[c] ?? c;'
+        : '  static String _t$sufijo(String c) => _textos$sufijo[c] ?? _tEs(c);');
+  }
+  codigo.writeln();
+  for (final idioma in idiomas) {
+    codigo.writeln('  static const _textos${_capitalizar(idioma)} = <String, String>{');
     textosPorIdioma[idioma]!.forEach((clave, texto) {
-      codigo.writeln("      case '${_escapar(clave)}': return '${_escapar(texto)}';");
+      codigo.writeln("    '${_escapar(clave)}': '${_escapar(texto)}',");
     });
-    // Lo que falta en un idioma sale en castellano; lo que falta en
-    // castellano, como la clave (el test lo impide).
     codigo
-      ..writeln(idioma == 'es' ? '      default: return c;' : '      default: return _tEs(c);')
-      ..writeln('    }')
-      ..writeln('  }')
+      ..writeln('  };')
       ..writeln();
   }
   codigo.writeln('}');
   return codigo.toString();
 }
+
+String _capitalizar(String texto) => texto[0].toUpperCase() + texto.substring(1);
 
 /// Escapa un texto para un literal Dart entre comillas simples.
 String _escapar(String texto) => texto

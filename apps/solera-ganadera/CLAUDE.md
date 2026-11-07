@@ -11,7 +11,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | Dominio de ganado copiado de Zunbeltz (`92ade2b`) sin sync ni permisos; explotación, titular, piezas de pasto, visitas, calendario sanitario y apuntes. 10 tablas en la v1. Tabla UGM por trámite (PAC anexo V y Andalucía) como catálogo. 48 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas Hoy (dónde está cada rebaño con su carga, avisos de 14 días, primeros pasos), Rebaños (ficha con animales, movimientos y manejo; ficha del animal con su historia), Pastos (piezas con ocupación y UGM/ha), Manejo (calendario sanitario y visitas), Ajustes (titular y explotación). Lógica pura en `dominio/` (ocupación, calendario). 58 tests, 5 de pantalla |
-| 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
+| 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: **libro de registro** por año (apartados 1-11 del anexo V del RD 787/2023 + tratamientos del art. 41 RD 666/2023) e **informe del eco-régimen de pastoreo** por campaña y tabla UGM (art. 30.2 RD 1048/2022). Desde la ficha del rebaño, el **documento de movimiento** de cada entrada o salida (anexo del RD 728/2007 según la DF 3.ª del RD 787/2023). Tablas puras con test, sello y marca de agua PROVISIONAL. 67 tests |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloques 4-5 (libro de registro, documento de movimiento e informe del eco-régimen en PDF).
+**Siguiente acción**: bloque 6 (catálogos: tests de integridad y uso en pantalla; los CSV ya están desde el bloque 2).
 
 ## Encuadre
 
@@ -102,6 +102,21 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
 - **2026-11-07 — Las pantallas cuentan la carga con la tabla de la PAC**
   (`tablaUgmPantallas`): es la que interesa para el eco-régimen; el informe deja
   elegir trámite.
+- **2026-11-07 — Tres documentos en vez de dos**: libro y documento de
+  movimiento (los oficiales) y el informe del eco-régimen (el diferencial, F1G-7)
+  en el mismo bloque; los tres con sello y marca de agua PROVISIONAL.
+- **2026-11-07 — Eco-régimen calculado día a día**: el rebaño está en la pieza de
+  su último movimiento (el día del movimiento ya cuenta en el destino); sus UGM
+  son las de hoy escaladas por las cabezas de su último movimiento con cabezas.
+  Se dan media, mínima y máxima de los días con ganado y se avisa con los
+  mínimos generales del art. 30.2 (120 días; 0,4/0,2 UGM/ha; máximos 2/1,2). Las
+  reducciones (90 días; 0,2/0,1) dependen de cada comunidad: están en el
+  catálogo pero no se aplican solas. Las fechas de cómputo de cada CA (en
+  Extremadura y Castilla-La Mancha, cuatro fechas de censo, según sus guías) no
+  se han verificado en el BOE.
+- **2026-11-07 — El documento de movimiento sale para entradas, salidas, altas
+  y bajas parciales** (los traslados internos no lo necesitan) y deja en blanco
+  las conformidades para firmar.
 - **2026-11-07 — Fechas con selector** en movimientos, eventos, tareas y visitas
   (en Obrador se apuntaba con la fecha actual).
 

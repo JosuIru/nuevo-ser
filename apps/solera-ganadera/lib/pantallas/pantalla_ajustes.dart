@@ -7,6 +7,7 @@ import '../modelos/explotacion.dart';
 import '../modelos/ganado.dart';
 import '../modelos/titular.dart';
 import '../utiles/textos_ganadera.dart';
+import 'pantalla_documentos.dart';
 
 /// Ajustes: idioma, titular y explotación (los datos de cabecera del libro
 /// de registro) y los accesos al resto.
@@ -136,6 +137,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.picture_as_pdf_outlined),
+            title: Text(SoleraL10n.t('gana.documentos')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
           // ACCESOS
           const SelectorIdioma(),
           const SizedBox(height: 24),

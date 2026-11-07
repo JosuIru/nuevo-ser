@@ -9,6 +9,8 @@ import '../modelos/ganado.dart';
 import '../modelos/ganado_ecologico.dart';
 import '../utiles/textos_ganadera.dart';
 import 'formularios_ganado.dart';
+import '../utiles/trayecto_movimiento.dart';
+import 'pantalla_documentos.dart';
 import 'pantalla_ficha_animal.dart';
 
 /// Un rebaño: dónde está, sus animales, sus movimientos y su manejo.
@@ -193,7 +195,15 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
             ListTile(title: Text(SoleraL10n.t('gana.sin_movimientos')))
           else
             for (final movimiento in movimientos.reversed)
-              TarjetaMovimiento(movimiento: movimiento, piezas: piezas),
+              TarjetaMovimiento(
+                movimiento: movimiento,
+                piezas: piezas,
+                alPulsar: movimiento.cambiaUbicacion &&
+                        movimiento.tipo == tipoMovimientoTraslado
+                    ? null
+                    : () => compartirDocumentoMovimiento(
+                        context, movimiento, lote, animales),
+              ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: TituloBloqueSolera(SoleraL10n.t('gana.manejo_del_rebano')),
@@ -208,41 +218,25 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
   }
 }
 
-/// «Soto → Larre altua», «ES31… → Soto».
-String trayectoMovimiento(
-    MovimientoGanado movimiento, Map<int, String> piezas) {
-  String externo() => [
-        movimiento.titularExterno,
-        movimiento.explotacionExterna,
-      ]
-          .where((parte) => parte.isNotEmpty)
-          .join(' ')
-          .ifEmpty(SoleraL10n.t('gana.fuera_de_la_explotacion'));
-  final origen = movimiento.esEntradaEnExplotacion
-      ? externo()
-      : piezas[movimiento.piezaOrigenId] ?? '—';
-  final destino = movimiento.esSalidaDeExplotacion
-      ? externo()
-      : piezas[movimiento.piezaDestinoId] ??
-          piezas[movimiento.piezaOrigenId] ??
-          '—';
-  return '$origen → $destino';
-}
-
-extension on String {
-  String ifEmpty(String alternativa) => isEmpty ? alternativa : this;
-}
-
 class TarjetaMovimiento extends StatelessWidget {
   const TarjetaMovimiento(
-      {super.key, required this.movimiento, required this.piezas});
+      {super.key,
+      required this.movimiento,
+      required this.piezas,
+      this.alPulsar});
 
   final MovimientoGanado movimiento;
   final Map<int, String> piezas;
 
+  /// Con explotación externa: abre su documento de movimiento.
+  final VoidCallback? alPulsar;
+
   @override
   Widget build(BuildContext context) => ListTile(
         leading: const Icon(Icons.swap_horiz),
+        trailing:
+            alPulsar == null ? null : const Icon(Icons.picture_as_pdf_outlined),
+        onTap: alPulsar,
         title: Text(trayectoMovimiento(movimiento, piezas)),
         subtitle: Text([
           formatearFecha(movimiento.fechaMs),

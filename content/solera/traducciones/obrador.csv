@@ -4,3 +4,70 @@ obra.guardado,Guardado,Gordeta,Desat,Gardado
 obra.hoy,Hoy,Gaur,Avui,Hoxe
 obra.nombre_titular,Nombre del titular,Titularraren izena,Nom del titular,Nome do titular
 obra.titular,Titular,Titularra,Titular,Titular
+obra.accion_correctora,Acción correctora,Neurri zuzentzailea,Acció correctora,Acción correctora
+obra.alergeno_altramuces,Altramuces,Eskuzuriak,Tramussos,Chochos
+obra.alergeno_apio,Apio,Apioa,Api,Apio
+obra.alergeno_cacahuetes,Cacahuetes,Kakahueteak,Cacauets,Cacahuetes
+obra.alergeno_crustaceos,Crustáceos,Krustazeoak,Crustacis,Crustáceos
+obra.alergeno_frutos_cascara,Frutos de cáscara,Fruitu lehorrak,Fruits de closca,Froitos de casca
+obra.alergeno_gluten,Gluten,Glutena,Gluten,Glute
+obra.alergeno_huevos,Huevos,Arrautzak,Ous,Ovos
+obra.alergeno_lacteos,Leche y lácteos,Esnea eta esnekiak,Llet i lactis,Leite e lácteos
+obra.alergeno_moluscos,Moluscos,Moluskuak,Mol·luscs,Moluscos
+obra.alergeno_mostaza,Mostaza,Ziapea,Mostassa,Mostaza
+obra.alergeno_pescado,Pescado,Arraina,Peix,Peixe
+obra.alergeno_sesamo,Sésamo,Sesamoa,Sèsam,Sésamo
+obra.alergeno_soja,Soja,Soja,Soia,Soia
+obra.alergeno_sulfitos,Sulfitos,Sulfitoak,Sulfits,Sulfitos
+obra.alergenos,Alérgenos,Alergenoak,Al·lèrgens,Alérxenos
+obra.anadir_linea,Añadir ingrediente,Osagaia gehitu,Afegeix ingredient,Engadir ingrediente
+obra.autocontrol,Autocontrol,Autokontrola,Autocontrol,Autocontrol
+obra.aviso_estimacion,"Estimación a partir de las fichas de los ingredientes. No sustituye un análisis de laboratorio ni declara el producto apto para personas alérgicas o celíacas.","Osagaien fitxetatik ateratako estimazioa. Ez du laborategiko analisirik ordezten, ezta produktua alergikoentzat edo zeliakoentzat egokia dela adierazten ere.","Estimació a partir de les fitxes dels ingredients. No substitueix una anàlisi de laboratori ni declara el producte apte per a persones al·lèrgiques o celíaques.","Estimación a partir das fichas dos ingredientes. Non substitúe unha análise de laboratorio nin declara o produto apto para persoas alérxicas ou celíacas."
+obra.borrar_receta,Borrar receta,Errezeta ezabatu,Esborra la recepta,Borrar receita
+obra.controles_de_hoy,Controles de hoy,Gaurko kontrolak,Controls d'avui,Controis de hoxe
+obra.correcto,Correcto,Zuzena,Correcte,Correcto
+obra.coste_pieza,Coste por pieza,Pieza bakoitzaren kostua,Cost per peça,Custo por peza
+obra.elemento,"Qué se controla (cámara, zona, proveedor…)","Zer kontrolatzen den (ganbera, gunea, hornitzailea…)","Què es controla (cambra, zona, proveïdor…)","Que se controla (cámara, zona, provedor…)"
+obra.error_cargar,No se han podido cargar los datos.,Ezin izan dira datuak kargatu.,No s'han pogut carregar les dades.,Non se puideron cargar os datos.
+obra.error_receta,La receta se contiene a sí misma o le falta un ingrediente.,Errezetak bere burua dauka edo osagai bat falta zaio.,La recepta es conté a si mateixa o li falta un ingredient.,A receita contense a si mesma ou fáltalle un ingrediente.
+obra.es_subreceta,"Es una base o relleno (se usa dentro de otras recetas)","Oinarria edo betegarria da (beste errezeta batzuetan erabiltzen da)","És una base o farciment (s'usa dins d'altres receptes)","É unha base ou recheo (úsase dentro doutras receitas)"
+obra.falta_accion,Falta la acción correctora,Neurri zuzentzailea falta da,Falta l'acció correctora,Falta a acción correctora
+obra.gramos,Gramos,Gramoak,Grams,Gramos
+obra.ingrediente,Ingrediente,Osagaia,Ingredient,Ingrediente
+obra.ingredientes,Ingredientes,Osagaiak,Ingredients,Ingredientes
+obra.ingredientes_por_peso,Ingredientes (de más a menos peso),Osagaiak (pisu handienetik txikienera),Ingredients (de més a menys pes),Ingredientes (de máis a menos peso)
+obra.lineas,Ingredientes de la receta,Errezetaren osagaiak,Ingredients de la recepta,Ingredientes da receita
+obra.masa_madre,Masa madre,Ama-orea,Massa mare,Masa nai
+obra.merma_coccion,Merma de cocción (%),Egosketako galera (%),Minva de cocció (%),Mingua de cocción (%)
+obra.nombre,Nombre,Izena,Nom,Nome
+obra.nueva_receta,Nueva receta,Errezeta berria,Recepta nova,Nova receita
+obra.nuevo_control,Apuntar control,Kontrola idatzi,Anota un control,Anotar control
+obra.nuevo_ingrediente,Nuevo ingrediente,Osagai berria,Ingredient nou,Novo ingrediente
+obra.peso_pieza,Peso por pieza (cocida),Pieza bakoitzaren pisua (egosita),Pes per peça (cuita),Peso por peza (cocida)
+obra.piezas_para_hoy,Piezas para hoy,Gaurko piezak,Peces per a avui,Pezas para hoxe
+obra.piezas_por_masa,Piezas por masa,Piezak oreko,Peces per massa,Pezas por masa
+obra.precio_kg,Precio (€/kg),Prezioa (€/kg),Preu (€/kg),Prezo (€/kg)
+obra.proveedor,Proveedor,Hornitzailea,Proveïdor,Provedor
+obra.que_hornear,Qué hornear hoy,Gaur zer labean sartu,Què cal enfornar avui,Que cocer hoxe
+obra.receta_en_uso,"No se puede borrar: otra receta, una hornada o un pedido la usan.","Ezin da ezabatu: beste errezeta batek, labealdi batek edo eskaera batek erabiltzen du.","No es pot esborrar: una altra recepta, una fornada o una comanda la fan servir.","Non se pode borrar: outra receita, unha fornada ou un pedido úsana."
+obra.recetas,Recetas,Errezetak,Receptes,Receitas
+obra.registro_sanitario,Número de registro sanitario,Osasun-erregistroko zenbakia,Número de registre sanitari,Número de rexistro sanitario
+obra.responsable,Responsable,Arduraduna,Responsable,Responsable
+obra.sal_100g,Sal (g por 100 g),Gatza (g 100 g-ko),Sal (g per 100 g),Sal (g por 100 g)
+obra.sal_estimada,Sal estimada,Gatz estimatua,Sal estimada,Sal estimada
+obra.sin_alergenos,Sin alérgenos declarados,Ez du alergenorik adierazita,Sense al·lèrgens declarats,Sen alérxenos declarados
+obra.sin_controles_hoy,Hoy aún no hay controles apuntados.,Gaur oraindik ez dago kontrolik idatzita.,Avui encara no hi ha controls anotats.,Hoxe aínda non hai controis anotados.
+obra.sin_controles_mes,Este mes aún no hay controles.,Hilabete honetan oraindik ez dago kontrolik.,Aquest mes encara no hi ha controls.,Este mes aínda non hai controis.
+obra.sin_ingredientes,Aún no hay ingredientes.,Oraindik ez dago osagairik.,Encara no hi ha ingredients.,Aínda non hai ingredientes.
+obra.sin_pedidos_hoy,Hoy no hay pedidos fijos.,Gaur ez dago eskaera finkorik.,Avui no hi ha comandes fixes.,Hoxe non hai pedidos fixos.
+obra.sin_recetas,Aún no hay recetas.,Oraindik ez dago errezetarik.,Encara no hi ha receptes.,Aínda non hai receitas.
+obra.sin_refrescos,Sin refrescos apuntados,Ez dago freskatzerik idatzita,Sense refrescs anotats,Sen refrescos anotados
+obra.subreceta,base,oinarria,base,base
+obra.temperatura_c,Temperatura (°C),Tenperatura (°C),Temperatura (°C),Temperatura (°C)
+obra.tipo_formacion,Formación,Prestakuntza,Formació,Formación
+obra.tipo_incidencia,Incidencia,Gorabehera,Incidència,Incidencia
+obra.tipo_limpieza,Limpieza,Garbiketa,Neteja,Limpeza
+obra.tipo_plagas,Plagas,Izurriak,Plagues,Pragas
+obra.tipo_proveedor,Recepción de mercancía,Salgaien harrera,Recepció de mercaderia,Recepción de mercadoría
+obra.tipo_temperatura,Temperatura,Tenperatura,Temperatura,Temperatura
+obra.trazas,Puede contener (trazas),Izan dezake (aztarnak),Pot contenir (traces),Pode conter (trazas)

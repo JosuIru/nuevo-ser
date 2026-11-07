@@ -547,6 +547,9 @@ EOF
 
 # ─── generar, comprobar ──────────────────────────────────────────────
 echo "→ traducciones"
+# El test de traducciones del core vigila las claves sueltas por prefijo.
+prueba_l10n="$raiz/packages/nuevo_ser_core/test/i18n/solera_l10n_test.dart"
+grep -q "|$prefijo)" "$prueba_l10n" || sed -i "s/|nat\(|[a-z|]*\)\?)\\\\./|nat\1|$prefijo)\\\\./" "$prueba_l10n"
 ( cd "$raiz/packages/nuevo_ser_core" && dart run tool/compilar_traducciones_solera.dart >/dev/null )
 cd "$destino"
 echo "→ pub get + catálogos"

@@ -3248,6 +3248,73 @@ class SoleraL10n {
     'obra.hoy',
     'obra.nombre_titular',
     'obra.titular',
+    'obra.accion_correctora',
+    'obra.alergeno_altramuces',
+    'obra.alergeno_apio',
+    'obra.alergeno_cacahuetes',
+    'obra.alergeno_crustaceos',
+    'obra.alergeno_frutos_cascara',
+    'obra.alergeno_gluten',
+    'obra.alergeno_huevos',
+    'obra.alergeno_lacteos',
+    'obra.alergeno_moluscos',
+    'obra.alergeno_mostaza',
+    'obra.alergeno_pescado',
+    'obra.alergeno_sesamo',
+    'obra.alergeno_soja',
+    'obra.alergeno_sulfitos',
+    'obra.alergenos',
+    'obra.anadir_linea',
+    'obra.autocontrol',
+    'obra.aviso_estimacion',
+    'obra.borrar_receta',
+    'obra.controles_de_hoy',
+    'obra.correcto',
+    'obra.coste_pieza',
+    'obra.elemento',
+    'obra.error_cargar',
+    'obra.error_receta',
+    'obra.es_subreceta',
+    'obra.falta_accion',
+    'obra.gramos',
+    'obra.ingrediente',
+    'obra.ingredientes',
+    'obra.ingredientes_por_peso',
+    'obra.lineas',
+    'obra.masa_madre',
+    'obra.merma_coccion',
+    'obra.nombre',
+    'obra.nueva_receta',
+    'obra.nuevo_control',
+    'obra.nuevo_ingrediente',
+    'obra.peso_pieza',
+    'obra.piezas_para_hoy',
+    'obra.piezas_por_masa',
+    'obra.precio_kg',
+    'obra.proveedor',
+    'obra.que_hornear',
+    'obra.receta_en_uso',
+    'obra.recetas',
+    'obra.registro_sanitario',
+    'obra.responsable',
+    'obra.sal_100g',
+    'obra.sal_estimada',
+    'obra.sin_alergenos',
+    'obra.sin_controles_hoy',
+    'obra.sin_controles_mes',
+    'obra.sin_ingredientes',
+    'obra.sin_pedidos_hoy',
+    'obra.sin_recetas',
+    'obra.sin_refrescos',
+    'obra.subreceta',
+    'obra.temperatura_c',
+    'obra.tipo_formacion',
+    'obra.tipo_incidencia',
+    'obra.tipo_limpieza',
+    'obra.tipo_plagas',
+    'obra.tipo_proveedor',
+    'obra.tipo_temperatura',
+    'obra.trazas',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -7405,6 +7472,73 @@ class SoleraL10n {
           'obra.hoy',
           'obra.nombre_titular',
           'obra.titular',
+          'obra.accion_correctora',
+          'obra.alergeno_altramuces',
+          'obra.alergeno_apio',
+          'obra.alergeno_cacahuetes',
+          'obra.alergeno_crustaceos',
+          'obra.alergeno_frutos_cascara',
+          'obra.alergeno_gluten',
+          'obra.alergeno_huevos',
+          'obra.alergeno_lacteos',
+          'obra.alergeno_moluscos',
+          'obra.alergeno_mostaza',
+          'obra.alergeno_pescado',
+          'obra.alergeno_sesamo',
+          'obra.alergeno_soja',
+          'obra.alergeno_sulfitos',
+          'obra.alergenos',
+          'obra.anadir_linea',
+          'obra.autocontrol',
+          'obra.aviso_estimacion',
+          'obra.borrar_receta',
+          'obra.controles_de_hoy',
+          'obra.correcto',
+          'obra.coste_pieza',
+          'obra.elemento',
+          'obra.error_cargar',
+          'obra.error_receta',
+          'obra.es_subreceta',
+          'obra.falta_accion',
+          'obra.gramos',
+          'obra.ingrediente',
+          'obra.ingredientes',
+          'obra.ingredientes_por_peso',
+          'obra.lineas',
+          'obra.masa_madre',
+          'obra.merma_coccion',
+          'obra.nombre',
+          'obra.nueva_receta',
+          'obra.nuevo_control',
+          'obra.nuevo_ingrediente',
+          'obra.peso_pieza',
+          'obra.piezas_para_hoy',
+          'obra.piezas_por_masa',
+          'obra.precio_kg',
+          'obra.proveedor',
+          'obra.que_hornear',
+          'obra.receta_en_uso',
+          'obra.recetas',
+          'obra.registro_sanitario',
+          'obra.responsable',
+          'obra.sal_100g',
+          'obra.sal_estimada',
+          'obra.sin_alergenos',
+          'obra.sin_controles_hoy',
+          'obra.sin_controles_mes',
+          'obra.sin_ingredientes',
+          'obra.sin_pedidos_hoy',
+          'obra.sin_recetas',
+          'obra.sin_refrescos',
+          'obra.subreceta',
+          'obra.temperatura_c',
+          'obra.tipo_formacion',
+          'obra.tipo_incidencia',
+          'obra.tipo_limpieza',
+          'obra.tipo_plagas',
+          'obra.tipo_proveedor',
+          'obra.tipo_temperatura',
+          'obra.trazas',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -11559,6 +11693,73 @@ class SoleraL10n {
           'obra.hoy',
           'obra.nombre_titular',
           'obra.titular',
+          'obra.accion_correctora',
+          'obra.alergeno_altramuces',
+          'obra.alergeno_apio',
+          'obra.alergeno_cacahuetes',
+          'obra.alergeno_crustaceos',
+          'obra.alergeno_frutos_cascara',
+          'obra.alergeno_gluten',
+          'obra.alergeno_huevos',
+          'obra.alergeno_lacteos',
+          'obra.alergeno_moluscos',
+          'obra.alergeno_mostaza',
+          'obra.alergeno_pescado',
+          'obra.alergeno_sesamo',
+          'obra.alergeno_soja',
+          'obra.alergeno_sulfitos',
+          'obra.alergenos',
+          'obra.anadir_linea',
+          'obra.autocontrol',
+          'obra.aviso_estimacion',
+          'obra.borrar_receta',
+          'obra.controles_de_hoy',
+          'obra.correcto',
+          'obra.coste_pieza',
+          'obra.elemento',
+          'obra.error_cargar',
+          'obra.error_receta',
+          'obra.es_subreceta',
+          'obra.falta_accion',
+          'obra.gramos',
+          'obra.ingrediente',
+          'obra.ingredientes',
+          'obra.ingredientes_por_peso',
+          'obra.lineas',
+          'obra.masa_madre',
+          'obra.merma_coccion',
+          'obra.nombre',
+          'obra.nueva_receta',
+          'obra.nuevo_control',
+          'obra.nuevo_ingrediente',
+          'obra.peso_pieza',
+          'obra.piezas_para_hoy',
+          'obra.piezas_por_masa',
+          'obra.precio_kg',
+          'obra.proveedor',
+          'obra.que_hornear',
+          'obra.receta_en_uso',
+          'obra.recetas',
+          'obra.registro_sanitario',
+          'obra.responsable',
+          'obra.sal_100g',
+          'obra.sal_estimada',
+          'obra.sin_alergenos',
+          'obra.sin_controles_hoy',
+          'obra.sin_controles_mes',
+          'obra.sin_ingredientes',
+          'obra.sin_pedidos_hoy',
+          'obra.sin_recetas',
+          'obra.sin_refrescos',
+          'obra.subreceta',
+          'obra.temperatura_c',
+          'obra.tipo_formacion',
+          'obra.tipo_incidencia',
+          'obra.tipo_limpieza',
+          'obra.tipo_plagas',
+          'obra.tipo_proveedor',
+          'obra.tipo_temperatura',
+          'obra.trazas',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -15713,6 +15914,73 @@ class SoleraL10n {
           'obra.hoy',
           'obra.nombre_titular',
           'obra.titular',
+          'obra.accion_correctora',
+          'obra.alergeno_altramuces',
+          'obra.alergeno_apio',
+          'obra.alergeno_cacahuetes',
+          'obra.alergeno_crustaceos',
+          'obra.alergeno_frutos_cascara',
+          'obra.alergeno_gluten',
+          'obra.alergeno_huevos',
+          'obra.alergeno_lacteos',
+          'obra.alergeno_moluscos',
+          'obra.alergeno_mostaza',
+          'obra.alergeno_pescado',
+          'obra.alergeno_sesamo',
+          'obra.alergeno_soja',
+          'obra.alergeno_sulfitos',
+          'obra.alergenos',
+          'obra.anadir_linea',
+          'obra.autocontrol',
+          'obra.aviso_estimacion',
+          'obra.borrar_receta',
+          'obra.controles_de_hoy',
+          'obra.correcto',
+          'obra.coste_pieza',
+          'obra.elemento',
+          'obra.error_cargar',
+          'obra.error_receta',
+          'obra.es_subreceta',
+          'obra.falta_accion',
+          'obra.gramos',
+          'obra.ingrediente',
+          'obra.ingredientes',
+          'obra.ingredientes_por_peso',
+          'obra.lineas',
+          'obra.masa_madre',
+          'obra.merma_coccion',
+          'obra.nombre',
+          'obra.nueva_receta',
+          'obra.nuevo_control',
+          'obra.nuevo_ingrediente',
+          'obra.peso_pieza',
+          'obra.piezas_para_hoy',
+          'obra.piezas_por_masa',
+          'obra.precio_kg',
+          'obra.proveedor',
+          'obra.que_hornear',
+          'obra.receta_en_uso',
+          'obra.recetas',
+          'obra.registro_sanitario',
+          'obra.responsable',
+          'obra.sal_100g',
+          'obra.sal_estimada',
+          'obra.sin_alergenos',
+          'obra.sin_controles_hoy',
+          'obra.sin_controles_mes',
+          'obra.sin_ingredientes',
+          'obra.sin_pedidos_hoy',
+          'obra.sin_recetas',
+          'obra.sin_refrescos',
+          'obra.subreceta',
+          'obra.temperatura_c',
+          'obra.tipo_formacion',
+          'obra.tipo_incidencia',
+          'obra.tipo_limpieza',
+          'obra.tipo_plagas',
+          'obra.tipo_proveedor',
+          'obra.tipo_temperatura',
+          'obra.trazas',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -19890,6 +20158,73 @@ class SoleraL10n {
       case 'obra.hoy': return 'Hoy';
       case 'obra.nombre_titular': return 'Nombre del titular';
       case 'obra.titular': return 'Titular';
+      case 'obra.accion_correctora': return 'Acción correctora';
+      case 'obra.alergeno_altramuces': return 'Altramuces';
+      case 'obra.alergeno_apio': return 'Apio';
+      case 'obra.alergeno_cacahuetes': return 'Cacahuetes';
+      case 'obra.alergeno_crustaceos': return 'Crustáceos';
+      case 'obra.alergeno_frutos_cascara': return 'Frutos de cáscara';
+      case 'obra.alergeno_gluten': return 'Gluten';
+      case 'obra.alergeno_huevos': return 'Huevos';
+      case 'obra.alergeno_lacteos': return 'Leche y lácteos';
+      case 'obra.alergeno_moluscos': return 'Moluscos';
+      case 'obra.alergeno_mostaza': return 'Mostaza';
+      case 'obra.alergeno_pescado': return 'Pescado';
+      case 'obra.alergeno_sesamo': return 'Sésamo';
+      case 'obra.alergeno_soja': return 'Soja';
+      case 'obra.alergeno_sulfitos': return 'Sulfitos';
+      case 'obra.alergenos': return 'Alérgenos';
+      case 'obra.anadir_linea': return 'Añadir ingrediente';
+      case 'obra.autocontrol': return 'Autocontrol';
+      case 'obra.aviso_estimacion': return 'Estimación a partir de las fichas de los ingredientes. No sustituye un análisis de laboratorio ni declara el producto apto para personas alérgicas o celíacas.';
+      case 'obra.borrar_receta': return 'Borrar receta';
+      case 'obra.controles_de_hoy': return 'Controles de hoy';
+      case 'obra.correcto': return 'Correcto';
+      case 'obra.coste_pieza': return 'Coste por pieza';
+      case 'obra.elemento': return 'Qué se controla (cámara, zona, proveedor…)';
+      case 'obra.error_cargar': return 'No se han podido cargar los datos.';
+      case 'obra.error_receta': return 'La receta se contiene a sí misma o le falta un ingrediente.';
+      case 'obra.es_subreceta': return 'Es una base o relleno (se usa dentro de otras recetas)';
+      case 'obra.falta_accion': return 'Falta la acción correctora';
+      case 'obra.gramos': return 'Gramos';
+      case 'obra.ingrediente': return 'Ingrediente';
+      case 'obra.ingredientes': return 'Ingredientes';
+      case 'obra.ingredientes_por_peso': return 'Ingredientes (de más a menos peso)';
+      case 'obra.lineas': return 'Ingredientes de la receta';
+      case 'obra.masa_madre': return 'Masa madre';
+      case 'obra.merma_coccion': return 'Merma de cocción (%)';
+      case 'obra.nombre': return 'Nombre';
+      case 'obra.nueva_receta': return 'Nueva receta';
+      case 'obra.nuevo_control': return 'Apuntar control';
+      case 'obra.nuevo_ingrediente': return 'Nuevo ingrediente';
+      case 'obra.peso_pieza': return 'Peso por pieza (cocida)';
+      case 'obra.piezas_para_hoy': return 'Piezas para hoy';
+      case 'obra.piezas_por_masa': return 'Piezas por masa';
+      case 'obra.precio_kg': return 'Precio (€/kg)';
+      case 'obra.proveedor': return 'Proveedor';
+      case 'obra.que_hornear': return 'Qué hornear hoy';
+      case 'obra.receta_en_uso': return 'No se puede borrar: otra receta, una hornada o un pedido la usan.';
+      case 'obra.recetas': return 'Recetas';
+      case 'obra.registro_sanitario': return 'Número de registro sanitario';
+      case 'obra.responsable': return 'Responsable';
+      case 'obra.sal_100g': return 'Sal (g por 100 g)';
+      case 'obra.sal_estimada': return 'Sal estimada';
+      case 'obra.sin_alergenos': return 'Sin alérgenos declarados';
+      case 'obra.sin_controles_hoy': return 'Hoy aún no hay controles apuntados.';
+      case 'obra.sin_controles_mes': return 'Este mes aún no hay controles.';
+      case 'obra.sin_ingredientes': return 'Aún no hay ingredientes.';
+      case 'obra.sin_pedidos_hoy': return 'Hoy no hay pedidos fijos.';
+      case 'obra.sin_recetas': return 'Aún no hay recetas.';
+      case 'obra.sin_refrescos': return 'Sin refrescos apuntados';
+      case 'obra.subreceta': return 'base';
+      case 'obra.temperatura_c': return 'Temperatura (°C)';
+      case 'obra.tipo_formacion': return 'Formación';
+      case 'obra.tipo_incidencia': return 'Incidencia';
+      case 'obra.tipo_limpieza': return 'Limpieza';
+      case 'obra.tipo_plagas': return 'Plagas';
+      case 'obra.tipo_proveedor': return 'Recepción de mercancía';
+      case 'obra.tipo_temperatura': return 'Temperatura';
+      case 'obra.trazas': return 'Puede contener (trazas)';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -24048,6 +24383,73 @@ class SoleraL10n {
       case 'obra.hoy': return 'Gaur';
       case 'obra.nombre_titular': return 'Titularraren izena';
       case 'obra.titular': return 'Titularra';
+      case 'obra.accion_correctora': return 'Neurri zuzentzailea';
+      case 'obra.alergeno_altramuces': return 'Eskuzuriak';
+      case 'obra.alergeno_apio': return 'Apioa';
+      case 'obra.alergeno_cacahuetes': return 'Kakahueteak';
+      case 'obra.alergeno_crustaceos': return 'Krustazeoak';
+      case 'obra.alergeno_frutos_cascara': return 'Fruitu lehorrak';
+      case 'obra.alergeno_gluten': return 'Glutena';
+      case 'obra.alergeno_huevos': return 'Arrautzak';
+      case 'obra.alergeno_lacteos': return 'Esnea eta esnekiak';
+      case 'obra.alergeno_moluscos': return 'Moluskuak';
+      case 'obra.alergeno_mostaza': return 'Ziapea';
+      case 'obra.alergeno_pescado': return 'Arraina';
+      case 'obra.alergeno_sesamo': return 'Sesamoa';
+      case 'obra.alergeno_soja': return 'Soja';
+      case 'obra.alergeno_sulfitos': return 'Sulfitoak';
+      case 'obra.alergenos': return 'Alergenoak';
+      case 'obra.anadir_linea': return 'Osagaia gehitu';
+      case 'obra.autocontrol': return 'Autokontrola';
+      case 'obra.aviso_estimacion': return 'Osagaien fitxetatik ateratako estimazioa. Ez du laborategiko analisirik ordezten, ezta produktua alergikoentzat edo zeliakoentzat egokia dela adierazten ere.';
+      case 'obra.borrar_receta': return 'Errezeta ezabatu';
+      case 'obra.controles_de_hoy': return 'Gaurko kontrolak';
+      case 'obra.correcto': return 'Zuzena';
+      case 'obra.coste_pieza': return 'Pieza bakoitzaren kostua';
+      case 'obra.elemento': return 'Zer kontrolatzen den (ganbera, gunea, hornitzailea…)';
+      case 'obra.error_cargar': return 'Ezin izan dira datuak kargatu.';
+      case 'obra.error_receta': return 'Errezetak bere burua dauka edo osagai bat falta zaio.';
+      case 'obra.es_subreceta': return 'Oinarria edo betegarria da (beste errezeta batzuetan erabiltzen da)';
+      case 'obra.falta_accion': return 'Neurri zuzentzailea falta da';
+      case 'obra.gramos': return 'Gramoak';
+      case 'obra.ingrediente': return 'Osagaia';
+      case 'obra.ingredientes': return 'Osagaiak';
+      case 'obra.ingredientes_por_peso': return 'Osagaiak (pisu handienetik txikienera)';
+      case 'obra.lineas': return 'Errezetaren osagaiak';
+      case 'obra.masa_madre': return 'Ama-orea';
+      case 'obra.merma_coccion': return 'Egosketako galera (%)';
+      case 'obra.nombre': return 'Izena';
+      case 'obra.nueva_receta': return 'Errezeta berria';
+      case 'obra.nuevo_control': return 'Kontrola idatzi';
+      case 'obra.nuevo_ingrediente': return 'Osagai berria';
+      case 'obra.peso_pieza': return 'Pieza bakoitzaren pisua (egosita)';
+      case 'obra.piezas_para_hoy': return 'Gaurko piezak';
+      case 'obra.piezas_por_masa': return 'Piezak oreko';
+      case 'obra.precio_kg': return 'Prezioa (€/kg)';
+      case 'obra.proveedor': return 'Hornitzailea';
+      case 'obra.que_hornear': return 'Gaur zer labean sartu';
+      case 'obra.receta_en_uso': return 'Ezin da ezabatu: beste errezeta batek, labealdi batek edo eskaera batek erabiltzen du.';
+      case 'obra.recetas': return 'Errezetak';
+      case 'obra.registro_sanitario': return 'Osasun-erregistroko zenbakia';
+      case 'obra.responsable': return 'Arduraduna';
+      case 'obra.sal_100g': return 'Gatza (g 100 g-ko)';
+      case 'obra.sal_estimada': return 'Gatz estimatua';
+      case 'obra.sin_alergenos': return 'Ez du alergenorik adierazita';
+      case 'obra.sin_controles_hoy': return 'Gaur oraindik ez dago kontrolik idatzita.';
+      case 'obra.sin_controles_mes': return 'Hilabete honetan oraindik ez dago kontrolik.';
+      case 'obra.sin_ingredientes': return 'Oraindik ez dago osagairik.';
+      case 'obra.sin_pedidos_hoy': return 'Gaur ez dago eskaera finkorik.';
+      case 'obra.sin_recetas': return 'Oraindik ez dago errezetarik.';
+      case 'obra.sin_refrescos': return 'Ez dago freskatzerik idatzita';
+      case 'obra.subreceta': return 'oinarria';
+      case 'obra.temperatura_c': return 'Tenperatura (°C)';
+      case 'obra.tipo_formacion': return 'Prestakuntza';
+      case 'obra.tipo_incidencia': return 'Gorabehera';
+      case 'obra.tipo_limpieza': return 'Garbiketa';
+      case 'obra.tipo_plagas': return 'Izurriak';
+      case 'obra.tipo_proveedor': return 'Salgaien harrera';
+      case 'obra.tipo_temperatura': return 'Tenperatura';
+      case 'obra.trazas': return 'Izan dezake (aztarnak)';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -28206,6 +28608,73 @@ class SoleraL10n {
       case 'obra.hoy': return 'Avui';
       case 'obra.nombre_titular': return 'Nom del titular';
       case 'obra.titular': return 'Titular';
+      case 'obra.accion_correctora': return 'Acció correctora';
+      case 'obra.alergeno_altramuces': return 'Tramussos';
+      case 'obra.alergeno_apio': return 'Api';
+      case 'obra.alergeno_cacahuetes': return 'Cacauets';
+      case 'obra.alergeno_crustaceos': return 'Crustacis';
+      case 'obra.alergeno_frutos_cascara': return 'Fruits de closca';
+      case 'obra.alergeno_gluten': return 'Gluten';
+      case 'obra.alergeno_huevos': return 'Ous';
+      case 'obra.alergeno_lacteos': return 'Llet i lactis';
+      case 'obra.alergeno_moluscos': return 'Mol·luscs';
+      case 'obra.alergeno_mostaza': return 'Mostassa';
+      case 'obra.alergeno_pescado': return 'Peix';
+      case 'obra.alergeno_sesamo': return 'Sèsam';
+      case 'obra.alergeno_soja': return 'Soia';
+      case 'obra.alergeno_sulfitos': return 'Sulfits';
+      case 'obra.alergenos': return 'Al·lèrgens';
+      case 'obra.anadir_linea': return 'Afegeix ingredient';
+      case 'obra.autocontrol': return 'Autocontrol';
+      case 'obra.aviso_estimacion': return 'Estimació a partir de les fitxes dels ingredients. No substitueix una anàlisi de laboratori ni declara el producte apte per a persones al·lèrgiques o celíaques.';
+      case 'obra.borrar_receta': return 'Esborra la recepta';
+      case 'obra.controles_de_hoy': return 'Controls d\'avui';
+      case 'obra.correcto': return 'Correcte';
+      case 'obra.coste_pieza': return 'Cost per peça';
+      case 'obra.elemento': return 'Què es controla (cambra, zona, proveïdor…)';
+      case 'obra.error_cargar': return 'No s\'han pogut carregar les dades.';
+      case 'obra.error_receta': return 'La recepta es conté a si mateixa o li falta un ingredient.';
+      case 'obra.es_subreceta': return 'És una base o farciment (s\'usa dins d\'altres receptes)';
+      case 'obra.falta_accion': return 'Falta l\'acció correctora';
+      case 'obra.gramos': return 'Grams';
+      case 'obra.ingrediente': return 'Ingredient';
+      case 'obra.ingredientes': return 'Ingredients';
+      case 'obra.ingredientes_por_peso': return 'Ingredients (de més a menys pes)';
+      case 'obra.lineas': return 'Ingredients de la recepta';
+      case 'obra.masa_madre': return 'Massa mare';
+      case 'obra.merma_coccion': return 'Minva de cocció (%)';
+      case 'obra.nombre': return 'Nom';
+      case 'obra.nueva_receta': return 'Recepta nova';
+      case 'obra.nuevo_control': return 'Anota un control';
+      case 'obra.nuevo_ingrediente': return 'Ingredient nou';
+      case 'obra.peso_pieza': return 'Pes per peça (cuita)';
+      case 'obra.piezas_para_hoy': return 'Peces per a avui';
+      case 'obra.piezas_por_masa': return 'Peces per massa';
+      case 'obra.precio_kg': return 'Preu (€/kg)';
+      case 'obra.proveedor': return 'Proveïdor';
+      case 'obra.que_hornear': return 'Què cal enfornar avui';
+      case 'obra.receta_en_uso': return 'No es pot esborrar: una altra recepta, una fornada o una comanda la fan servir.';
+      case 'obra.recetas': return 'Receptes';
+      case 'obra.registro_sanitario': return 'Número de registre sanitari';
+      case 'obra.responsable': return 'Responsable';
+      case 'obra.sal_100g': return 'Sal (g per 100 g)';
+      case 'obra.sal_estimada': return 'Sal estimada';
+      case 'obra.sin_alergenos': return 'Sense al·lèrgens declarats';
+      case 'obra.sin_controles_hoy': return 'Avui encara no hi ha controls anotats.';
+      case 'obra.sin_controles_mes': return 'Aquest mes encara no hi ha controls.';
+      case 'obra.sin_ingredientes': return 'Encara no hi ha ingredients.';
+      case 'obra.sin_pedidos_hoy': return 'Avui no hi ha comandes fixes.';
+      case 'obra.sin_recetas': return 'Encara no hi ha receptes.';
+      case 'obra.sin_refrescos': return 'Sense refrescs anotats';
+      case 'obra.subreceta': return 'base';
+      case 'obra.temperatura_c': return 'Temperatura (°C)';
+      case 'obra.tipo_formacion': return 'Formació';
+      case 'obra.tipo_incidencia': return 'Incidència';
+      case 'obra.tipo_limpieza': return 'Neteja';
+      case 'obra.tipo_plagas': return 'Plagues';
+      case 'obra.tipo_proveedor': return 'Recepció de mercaderia';
+      case 'obra.tipo_temperatura': return 'Temperatura';
+      case 'obra.trazas': return 'Pot contenir (traces)';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -32364,6 +32833,73 @@ class SoleraL10n {
       case 'obra.hoy': return 'Hoxe';
       case 'obra.nombre_titular': return 'Nome do titular';
       case 'obra.titular': return 'Titular';
+      case 'obra.accion_correctora': return 'Acción correctora';
+      case 'obra.alergeno_altramuces': return 'Chochos';
+      case 'obra.alergeno_apio': return 'Apio';
+      case 'obra.alergeno_cacahuetes': return 'Cacahuetes';
+      case 'obra.alergeno_crustaceos': return 'Crustáceos';
+      case 'obra.alergeno_frutos_cascara': return 'Froitos de casca';
+      case 'obra.alergeno_gluten': return 'Glute';
+      case 'obra.alergeno_huevos': return 'Ovos';
+      case 'obra.alergeno_lacteos': return 'Leite e lácteos';
+      case 'obra.alergeno_moluscos': return 'Moluscos';
+      case 'obra.alergeno_mostaza': return 'Mostaza';
+      case 'obra.alergeno_pescado': return 'Peixe';
+      case 'obra.alergeno_sesamo': return 'Sésamo';
+      case 'obra.alergeno_soja': return 'Soia';
+      case 'obra.alergeno_sulfitos': return 'Sulfitos';
+      case 'obra.alergenos': return 'Alérxenos';
+      case 'obra.anadir_linea': return 'Engadir ingrediente';
+      case 'obra.autocontrol': return 'Autocontrol';
+      case 'obra.aviso_estimacion': return 'Estimación a partir das fichas dos ingredientes. Non substitúe unha análise de laboratorio nin declara o produto apto para persoas alérxicas ou celíacas.';
+      case 'obra.borrar_receta': return 'Borrar receita';
+      case 'obra.controles_de_hoy': return 'Controis de hoxe';
+      case 'obra.correcto': return 'Correcto';
+      case 'obra.coste_pieza': return 'Custo por peza';
+      case 'obra.elemento': return 'Que se controla (cámara, zona, provedor…)';
+      case 'obra.error_cargar': return 'Non se puideron cargar os datos.';
+      case 'obra.error_receta': return 'A receita contense a si mesma ou fáltalle un ingrediente.';
+      case 'obra.es_subreceta': return 'É unha base ou recheo (úsase dentro doutras receitas)';
+      case 'obra.falta_accion': return 'Falta a acción correctora';
+      case 'obra.gramos': return 'Gramos';
+      case 'obra.ingrediente': return 'Ingrediente';
+      case 'obra.ingredientes': return 'Ingredientes';
+      case 'obra.ingredientes_por_peso': return 'Ingredientes (de máis a menos peso)';
+      case 'obra.lineas': return 'Ingredientes da receita';
+      case 'obra.masa_madre': return 'Masa nai';
+      case 'obra.merma_coccion': return 'Mingua de cocción (%)';
+      case 'obra.nombre': return 'Nome';
+      case 'obra.nueva_receta': return 'Nova receita';
+      case 'obra.nuevo_control': return 'Anotar control';
+      case 'obra.nuevo_ingrediente': return 'Novo ingrediente';
+      case 'obra.peso_pieza': return 'Peso por peza (cocida)';
+      case 'obra.piezas_para_hoy': return 'Pezas para hoxe';
+      case 'obra.piezas_por_masa': return 'Pezas por masa';
+      case 'obra.precio_kg': return 'Prezo (€/kg)';
+      case 'obra.proveedor': return 'Provedor';
+      case 'obra.que_hornear': return 'Que cocer hoxe';
+      case 'obra.receta_en_uso': return 'Non se pode borrar: outra receita, unha fornada ou un pedido úsana.';
+      case 'obra.recetas': return 'Receitas';
+      case 'obra.registro_sanitario': return 'Número de rexistro sanitario';
+      case 'obra.responsable': return 'Responsable';
+      case 'obra.sal_100g': return 'Sal (g por 100 g)';
+      case 'obra.sal_estimada': return 'Sal estimada';
+      case 'obra.sin_alergenos': return 'Sen alérxenos declarados';
+      case 'obra.sin_controles_hoy': return 'Hoxe aínda non hai controis anotados.';
+      case 'obra.sin_controles_mes': return 'Este mes aínda non hai controis.';
+      case 'obra.sin_ingredientes': return 'Aínda non hai ingredientes.';
+      case 'obra.sin_pedidos_hoy': return 'Hoxe non hai pedidos fixos.';
+      case 'obra.sin_recetas': return 'Aínda non hai receitas.';
+      case 'obra.sin_refrescos': return 'Sen refrescos anotados';
+      case 'obra.subreceta': return 'base';
+      case 'obra.temperatura_c': return 'Temperatura (°C)';
+      case 'obra.tipo_formacion': return 'Formación';
+      case 'obra.tipo_incidencia': return 'Incidencia';
+      case 'obra.tipo_limpieza': return 'Limpeza';
+      case 'obra.tipo_plagas': return 'Pragas';
+      case 'obra.tipo_proveedor': return 'Recepción de mercadoría';
+      case 'obra.tipo_temperatura': return 'Temperatura';
+      case 'obra.trazas': return 'Pode conter (trazas)';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

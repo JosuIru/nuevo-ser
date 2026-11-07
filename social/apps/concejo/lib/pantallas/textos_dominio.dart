@@ -10,6 +10,7 @@ import '../dominio/consentimiento.dart';
 import '../dominio/debate.dart';
 import '../dominio/reglas_decision.dart';
 import '../dominio/sesion.dart';
+import '../dominio/tarea.dart';
 import '../l10n/app_localizations.dart';
 
 extension TextosDominio on AppLocalizations {
@@ -114,6 +115,21 @@ extension TextosDominio on AppLocalizations {
           anuncioTextoLargo(Anuncio.largoMaximoTexto),
         ProblemaAnuncio.hastaPasado => anuncioHastaPasado,
       };
+
+  String problemaTarea(ProblemaTarea problema) => switch (problema) {
+        ProblemaTarea.faltaTitulo => tareaFaltaTitulo,
+        ProblemaTarea.plazasNegativas => tareaPlazasNegativas,
+        ProblemaTarea.yaHaEmpezado => tareaYaHaEmpezado,
+      };
+
+  /// «Van 3 de 8: faltan 5», «Van 1 de 1: completa», «Van 4».
+  String cuentaTarea(Tarea tarea) {
+    final apuntadas = tarea.apuntadosUids.length;
+    final libres = tarea.plazasLibres;
+    if (libres == null) return tareaCuentaSinLimite(apuntadas);
+    return '${tareaCuenta(apuntadas, tarea.plazas)}: '
+        '${libres == 0 ? tareaCompleta : faltanManos(libres)}';
+  }
 
   /// «5 de noviembre de 2026»: para el acta, que se lee años después.
   String fechaConAnio(DateTime momento) =>

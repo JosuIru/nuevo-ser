@@ -1258,4 +1258,109 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get pdfActaAsambleaPie =>
       'Es lo que la mesa apuntó en la app. Se firma a mano.';
+
+  @override
+  String get pestanaTareas => 'Tareas';
+
+  @override
+  String get nuevaTarea => 'Nueva tarea';
+
+  @override
+  String get tareasPasadas => 'Hechas y pasadas';
+
+  @override
+  String get sinTareas => 'No hay ninguna.';
+
+  @override
+  String tareaCuenta(int apuntadas, int plazas) {
+    return 'Van $apuntadas de $plazas';
+  }
+
+  @override
+  String tareaCuentaSinLimite(int apuntadas) {
+    return 'Van $apuntadas';
+  }
+
+  @override
+  String faltanManos(int cantidad) {
+    return 'faltan $cantidad';
+  }
+
+  @override
+  String get tareaCompleta => 'completa';
+
+  @override
+  String get meApunto => 'Me apunto';
+
+  @override
+  String get meBorro => 'Me borro';
+
+  @override
+  String get teHasApuntado => 'Te has apuntado.';
+
+  @override
+  String get quienVa => 'Quién va';
+
+  @override
+  String get nadieApuntado => 'Todavía no se ha apuntado nadie.';
+
+  @override
+  String get apuntarAOtraPersona => 'Apuntar a otra persona';
+
+  @override
+  String get quitarDeLaTarea => 'Quitar de la tarea';
+
+  @override
+  String get anularTarea => 'Anular la tarea';
+
+  @override
+  String get motivoAnulacionTarea => 'Por qué se anula';
+
+  @override
+  String tareaAnulada(String motivo) {
+    return 'Anulada: $motivo';
+  }
+
+  @override
+  String get darPorHecha => 'Dar por hecha';
+
+  @override
+  String get notaHecha => 'Cómo fue (si quieres)';
+
+  @override
+  String get tareaHecha => 'Hecha';
+
+  @override
+  String get campoDescripcionTarea => 'Qué hay que hacer (si hace falta)';
+
+  @override
+  String get campoPlazas => 'Personas que hacen falta';
+
+  @override
+  String get plazasSinLimite => 'Las que vengan';
+
+  @override
+  String get repetirCadaSemana => 'Repetir cada semana (turnos)';
+
+  @override
+  String semanasRepetir(int veces) {
+    return 'Semanas: $veces';
+  }
+
+  @override
+  String get crear => 'Crear';
+
+  @override
+  String get tareaFaltaTitulo => 'Falta el título.';
+
+  @override
+  String get tareaPlazasNegativas => 'Las plazas no pueden ser negativas.';
+
+  @override
+  String get tareaYaHaEmpezado => 'Esa fecha ya ha pasado.';
+
+  @override
+  String avisoTarea(String titulo, String fecha) {
+    return 'Te has apuntado: $titulo, $fecha.';
+  }
 }

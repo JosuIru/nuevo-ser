@@ -739,5 +739,84 @@
   },
   "pdfSinNotas": "Sin nada apuntado.",
   "pdfNombreYFirma": "Nombre y firma",
-  "pdfActaAsambleaPie": "Es lo que la mesa apuntó en la app. Se firma a mano."
+  "pdfActaAsambleaPie": "Es lo que la mesa apuntó en la app. Se firma a mano.",
+  "pestanaTareas": "Tareas",
+  "nuevaTarea": "Nueva tarea",
+  "tareasPasadas": "Hechas y pasadas",
+  "sinTareas": "No hay ninguna.",
+  "tareaCuenta": "Van {apuntadas} de {plazas}",
+  "@tareaCuenta": {
+    "placeholders": {
+      "apuntadas": {
+        "type": "int"
+      },
+      "plazas": {
+        "type": "int"
+      }
+    }
+  },
+  "tareaCuentaSinLimite": "Van {apuntadas}",
+  "@tareaCuentaSinLimite": {
+    "placeholders": {
+      "apuntadas": {
+        "type": "int"
+      }
+    }
+  },
+  "faltanManos": "faltan {cantidad}",
+  "@faltanManos": {
+    "placeholders": {
+      "cantidad": {
+        "type": "int"
+      }
+    }
+  },
+  "tareaCompleta": "completa",
+  "meApunto": "Me apunto",
+  "meBorro": "Me borro",
+  "teHasApuntado": "Te has apuntado.",
+  "quienVa": "Quién va",
+  "nadieApuntado": "Todavía no se ha apuntado nadie.",
+  "apuntarAOtraPersona": "Apuntar a otra persona",
+  "quitarDeLaTarea": "Quitar de la tarea",
+  "anularTarea": "Anular la tarea",
+  "motivoAnulacionTarea": "Por qué se anula",
+  "tareaAnulada": "Anulada: {motivo}",
+  "@tareaAnulada": {
+    "placeholders": {
+      "motivo": {
+        "type": "String"
+      }
+    }
+  },
+  "darPorHecha": "Dar por hecha",
+  "notaHecha": "Cómo fue (si quieres)",
+  "tareaHecha": "Hecha",
+  "campoDescripcionTarea": "Qué hay que hacer (si hace falta)",
+  "campoPlazas": "Personas que hacen falta",
+  "plazasSinLimite": "Las que vengan",
+  "repetirCadaSemana": "Repetir cada semana (turnos)",
+  "semanasRepetir": "Semanas: {veces}",
+  "@semanasRepetir": {
+    "placeholders": {
+      "veces": {
+        "type": "int"
+      }
+    }
+  },
+  "crear": "Crear",
+  "tareaFaltaTitulo": "Falta el título.",
+  "tareaPlazasNegativas": "Las plazas no pueden ser negativas.",
+  "tareaYaHaEmpezado": "Esa fecha ya ha pasado.",
+  "avisoTarea": "Te has apuntado: {titulo}, {fecha}.",
+  "@avisoTarea": {
+    "placeholders": {
+      "titulo": {
+        "type": "String"
+      },
+      "fecha": {
+        "type": "String"
+      }
+    }
+  }
 }

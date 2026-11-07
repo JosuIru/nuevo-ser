@@ -1257,4 +1257,109 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get pdfActaAsambleaPie =>
       'Mahaiak aplikazioan idatzitakoa da. Eskuz sinatzen da.';
+
+  @override
+  String get pestanaTareas => 'Lanak';
+
+  @override
+  String get nuevaTarea => 'Lan berria';
+
+  @override
+  String get tareasPasadas => 'Eginak eta pasatuak';
+
+  @override
+  String get sinTareas => 'Ez dago bat ere.';
+
+  @override
+  String tareaCuenta(int apuntadas, int plazas) {
+    return '$apuntadas/$plazas doaz';
+  }
+
+  @override
+  String tareaCuentaSinLimite(int apuntadas) {
+    return '$apuntadas doaz';
+  }
+
+  @override
+  String faltanManos(int cantidad) {
+    return '$cantidad falta dira';
+  }
+
+  @override
+  String get tareaCompleta => 'beteta';
+
+  @override
+  String get meApunto => 'Izena eman';
+
+  @override
+  String get meBorro => 'Izena kendu';
+
+  @override
+  String get teHasApuntado => 'Izena eman duzu.';
+
+  @override
+  String get quienVa => 'Nor doan';
+
+  @override
+  String get nadieApuntado => 'Oraindik inork ez du izenik eman.';
+
+  @override
+  String get apuntarAOtraPersona => 'Beste pertsona bat idatzi';
+
+  @override
+  String get quitarDeLaTarea => 'Lanetik kendu';
+
+  @override
+  String get anularTarea => 'Lana bertan behera utzi';
+
+  @override
+  String get motivoAnulacionTarea => 'Zergatik uzten den bertan behera';
+
+  @override
+  String tareaAnulada(String motivo) {
+    return 'Bertan behera: $motivo';
+  }
+
+  @override
+  String get darPorHecha => 'Egindakotzat eman';
+
+  @override
+  String get notaHecha => 'Nola joan zen (nahi baduzu)';
+
+  @override
+  String get tareaHecha => 'Egina';
+
+  @override
+  String get campoDescripcionTarea => 'Zer egin behar den (behar bada)';
+
+  @override
+  String get campoPlazas => 'Behar diren pertsonak';
+
+  @override
+  String get plazasSinLimite => 'Datozenak';
+
+  @override
+  String get repetirCadaSemana => 'Astero errepikatu (txandak)';
+
+  @override
+  String semanasRepetir(int veces) {
+    return 'Asteak: $veces';
+  }
+
+  @override
+  String get crear => 'Sortu';
+
+  @override
+  String get tareaFaltaTitulo => 'Izenburua falta da.';
+
+  @override
+  String get tareaPlazasNegativas => 'Lekuak ezin dira negatiboak izan.';
+
+  @override
+  String get tareaYaHaEmpezado => 'Data hori pasatu da.';
+
+  @override
+  String avisoTarea(String titulo, String fecha) {
+    return 'Izena eman duzu: $titulo, $fecha.';
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:concejo/datos/instantanea.dart';
 import 'package:concejo/estado/avisos.dart';
 import 'package:concejo/estado/datos_ejemplo.dart';
 import 'package:concejo/estado/estado_concejo.dart';
@@ -20,6 +21,7 @@ EstadoConcejo _pueblo(String personaUid, DateTime Function() reloj) {
     compromisos: ejemplo.compromisos,
     actas: ejemplo.actas,
     sesiones: ejemplo.sesiones,
+    tareas: ejemplo.tareas,
     reloj: reloj,
   );
 }
@@ -123,5 +125,22 @@ void main() {
         _claves(_pueblo('maite', () => DateTime(2026, 11, 14, 20)))
             .where((c) => c.contains('noviembre')),
         isEmpty);
+  });
+
+  test('a quien va a una tarea se le recuerda dos días antes, y si se anula',
+      () {
+    // «local» es el 14 a las 17:00 y va Pili.
+    expect(
+        _claves(_pueblo('pili', () => _hoy)), isNot(contains('tarea:local')));
+    final cerca = _pueblo('pili', () => DateTime(2026, 11, 13, 12));
+    expect(_claves(cerca), contains('tarea:local'));
+    expect(_claves(_pueblo('maite', () => DateTime(2026, 11, 13, 12))),
+        isNot(contains('tarea:local')),
+        reason: 'Maite no va');
+    final mesa = _pueblo('ane', () => DateTime(2026, 11, 13, 12))
+      ..anularTarea('local', 'Se ha roto la cerradura');
+    final pili = instantaneaDesdeJson(instantaneaAJson(mesa),
+        personaActualUid: 'pili', reloj: () => DateTime(2026, 11, 13, 12));
+    expect(_claves(pili), contains('tarea-anulada:local'));
   });
 }

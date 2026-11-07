@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../dominio/persona.dart';
 import '../l10n/app_localizations.dart';
 
-/// Pide un texto obligatorio. Devuelve `null` si se cancela.
+/// Pide un texto, obligatorio salvo con [obligatorio] a `false`. Devuelve
+/// `null` si se cancela.
 ///
 /// El campo vive dentro del propio diálogo (y se libera con él): si se
 /// liberase al volver de `showDialog`, la animación de cierre lo seguiría
@@ -14,6 +15,7 @@ Future<String?> pedirTexto(
   required String etiqueta,
   required String confirmar,
   String inicial = '',
+  bool obligatorio = true,
 }) =>
     showDialog<String>(
       context: context,
@@ -22,6 +24,7 @@ Future<String?> pedirTexto(
         etiqueta: etiqueta,
         confirmar: confirmar,
         inicial: inicial,
+        obligatorio: obligatorio,
       ),
     );
 
@@ -31,12 +34,14 @@ class _DialogoTexto extends StatefulWidget {
     required this.etiqueta,
     required this.confirmar,
     required this.inicial,
+    required this.obligatorio,
   });
 
   final String titulo;
   final String etiqueta;
   final String confirmar;
   final String inicial;
+  final bool obligatorio;
 
   @override
   State<_DialogoTexto> createState() => _DialogoTextoState();
@@ -74,7 +79,7 @@ class _DialogoTextoState extends State<_DialogoTexto> {
           child: Text(textos.cancelar),
         ),
         FilledButton(
-          onPressed: _controlador.text.trim().isEmpty
+          onPressed: widget.obligatorio && _controlador.text.trim().isEmpty
               ? null
               : () => Navigator.pop(context, _controlador.text.trim()),
           child: Text(widget.confirmar),

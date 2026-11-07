@@ -21,6 +21,8 @@ enum TipoAviso {
   ultimosDias,
   asamblea,
   asambleaAnulada,
+  tarea,
+  tareaAnulada,
   compromisoVence,
   compromisoVencido,
   mandatoAcaba,
@@ -36,6 +38,7 @@ class Aviso {
     this.asuntoUid,
     this.compromisoUid,
     this.sesionUid,
+    this.tareaUid,
   });
 
   final TipoAviso tipo;
@@ -49,6 +52,7 @@ class Aviso {
   final String? asuntoUid;
   final String? compromisoUid;
   final String? sesionUid;
+  final String? tareaUid;
 }
 
 /// Un asunto es «nuevo» durante sus primeras dos semanas de debate.
@@ -62,6 +66,10 @@ const diasDeResultado = 14;
 
 /// Una asamblea se avisa en los tres días anteriores (también si se anula).
 const diasAntesDeLaAsamblea = 3;
+
+/// A quien se ha apuntado a una tarea se le recuerda en los dos días
+/// anteriores (y si se anula).
+const diasAntesDeLaTarea = 2;
 
 /// Un compromiso se avisa tres días antes de su fecha.
 const diasAntesDelCompromiso = 3;
@@ -143,6 +151,21 @@ List<Aviso> avisosPara(EstadoConcejo estado) {
           '${sesion.inicio.toIso8601String()}',
       fecha: sesion.inicio,
       sesionUid: sesion.uid,
+    ));
+  }
+
+  for (final tarea in estado.tareas) {
+    if (!tarea.apuntadosUids.contains(persona.uid)) continue;
+    if (tarea.estaHecha || tarea.empezadaEn(ahora)) continue;
+    if (tarea.inicio.difference(ahora) >
+        const Duration(days: diasAntesDeLaTarea)) {
+      continue;
+    }
+    avisos.add(Aviso(
+      tipo: tarea.anulada ? TipoAviso.tareaAnulada : TipoAviso.tarea,
+      clave: '${tarea.anulada ? 'tarea-anulada' : 'tarea'}:${tarea.uid}',
+      fecha: tarea.inicio,
+      tareaUid: tarea.uid,
     ));
   }
 

@@ -2191,6 +2191,192 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Es lo que la mesa apuntó en la app. Se firma a mano.'**
   String get pdfActaAsambleaPie;
+
+  /// No description provided for @pestanaTareas.
+  ///
+  /// In es, this message translates to:
+  /// **'Tareas'**
+  String get pestanaTareas;
+
+  /// No description provided for @nuevaTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Nueva tarea'**
+  String get nuevaTarea;
+
+  /// No description provided for @tareasPasadas.
+  ///
+  /// In es, this message translates to:
+  /// **'Hechas y pasadas'**
+  String get tareasPasadas;
+
+  /// No description provided for @sinTareas.
+  ///
+  /// In es, this message translates to:
+  /// **'No hay ninguna.'**
+  String get sinTareas;
+
+  /// No description provided for @tareaCuenta.
+  ///
+  /// In es, this message translates to:
+  /// **'Van {apuntadas} de {plazas}'**
+  String tareaCuenta(int apuntadas, int plazas);
+
+  /// No description provided for @tareaCuentaSinLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'Van {apuntadas}'**
+  String tareaCuentaSinLimite(int apuntadas);
+
+  /// No description provided for @faltanManos.
+  ///
+  /// In es, this message translates to:
+  /// **'faltan {cantidad}'**
+  String faltanManos(int cantidad);
+
+  /// No description provided for @tareaCompleta.
+  ///
+  /// In es, this message translates to:
+  /// **'completa'**
+  String get tareaCompleta;
+
+  /// No description provided for @meApunto.
+  ///
+  /// In es, this message translates to:
+  /// **'Me apunto'**
+  String get meApunto;
+
+  /// No description provided for @meBorro.
+  ///
+  /// In es, this message translates to:
+  /// **'Me borro'**
+  String get meBorro;
+
+  /// No description provided for @teHasApuntado.
+  ///
+  /// In es, this message translates to:
+  /// **'Te has apuntado.'**
+  String get teHasApuntado;
+
+  /// No description provided for @quienVa.
+  ///
+  /// In es, this message translates to:
+  /// **'Quién va'**
+  String get quienVa;
+
+  /// No description provided for @nadieApuntado.
+  ///
+  /// In es, this message translates to:
+  /// **'Todavía no se ha apuntado nadie.'**
+  String get nadieApuntado;
+
+  /// No description provided for @apuntarAOtraPersona.
+  ///
+  /// In es, this message translates to:
+  /// **'Apuntar a otra persona'**
+  String get apuntarAOtraPersona;
+
+  /// No description provided for @quitarDeLaTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Quitar de la tarea'**
+  String get quitarDeLaTarea;
+
+  /// No description provided for @anularTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Anular la tarea'**
+  String get anularTarea;
+
+  /// No description provided for @motivoAnulacionTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Por qué se anula'**
+  String get motivoAnulacionTarea;
+
+  /// No description provided for @tareaAnulada.
+  ///
+  /// In es, this message translates to:
+  /// **'Anulada: {motivo}'**
+  String tareaAnulada(String motivo);
+
+  /// No description provided for @darPorHecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Dar por hecha'**
+  String get darPorHecha;
+
+  /// No description provided for @notaHecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Cómo fue (si quieres)'**
+  String get notaHecha;
+
+  /// No description provided for @tareaHecha.
+  ///
+  /// In es, this message translates to:
+  /// **'Hecha'**
+  String get tareaHecha;
+
+  /// No description provided for @campoDescripcionTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Qué hay que hacer (si hace falta)'**
+  String get campoDescripcionTarea;
+
+  /// No description provided for @campoPlazas.
+  ///
+  /// In es, this message translates to:
+  /// **'Personas que hacen falta'**
+  String get campoPlazas;
+
+  /// No description provided for @plazasSinLimite.
+  ///
+  /// In es, this message translates to:
+  /// **'Las que vengan'**
+  String get plazasSinLimite;
+
+  /// No description provided for @repetirCadaSemana.
+  ///
+  /// In es, this message translates to:
+  /// **'Repetir cada semana (turnos)'**
+  String get repetirCadaSemana;
+
+  /// No description provided for @semanasRepetir.
+  ///
+  /// In es, this message translates to:
+  /// **'Semanas: {veces}'**
+  String semanasRepetir(int veces);
+
+  /// No description provided for @crear.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear'**
+  String get crear;
+
+  /// No description provided for @tareaFaltaTitulo.
+  ///
+  /// In es, this message translates to:
+  /// **'Falta el título.'**
+  String get tareaFaltaTitulo;
+
+  /// No description provided for @tareaPlazasNegativas.
+  ///
+  /// In es, this message translates to:
+  /// **'Las plazas no pueden ser negativas.'**
+  String get tareaPlazasNegativas;
+
+  /// No description provided for @tareaYaHaEmpezado.
+  ///
+  /// In es, this message translates to:
+  /// **'Esa fecha ya ha pasado.'**
+  String get tareaYaHaEmpezado;
+
+  /// No description provided for @avisoTarea.
+  ///
+  /// In es, this message translates to:
+  /// **'Te has apuntado: {titulo}, {fecha}.'**
+  String avisoTarea(String titulo, String fecha);
 }
 
 class _AppLocalizationsDelegate

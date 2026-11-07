@@ -5,6 +5,7 @@ import 'package:nuevo_ser_core/nuevo_ser_core.dart'
 import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
 import 'identificar_con_ia.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_economia.dart';
 
@@ -110,6 +111,8 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             () => const PantallaEconomia()),
         _acceso(context, Icons.auto_awesome_outlined,
             'arom.inteligencia_artificial', pantallaClaveAromaticas),
+        _acceso(context, Icons.help_outline, 'arom.ayuda',
+            () => const PantallaAyuda()),
       ];
 
   @override

@@ -12,6 +12,7 @@ import 'package:solera_aromaticas/modelos/lote_producto.dart';
 import 'package:solera_aromaticas/modelos/secado.dart';
 import 'package:solera_aromaticas/modelos/tratamiento.dart';
 import 'package:solera_aromaticas/modelos/zona_recoleccion.dart';
+import 'package:solera_aromaticas/pantallas/pantalla_ayuda.dart';
 
 /// Grupos de valores cerrados y su prefijo de clave.
 final Map<String, List<String>> gruposDeValores = {
@@ -43,5 +44,16 @@ void main() {
       }
     }
     expect(faltan, isEmpty);
+  });
+
+  test('cada apartado de la ayuda tiene título y texto en los cuatro idiomas',
+      () {
+    for (final (titulo, texto) in apartadosAyudaAromaticas) {
+      expect(SoleraL10n.clavesDisponibles, containsAll([titulo, texto]));
+      for (final idioma in ['eu', 'ca', 'gl']) {
+        expect(
+            SoleraL10n.clavesTraducidas(idioma), containsAll([titulo, texto]));
+      }
+    }
   });
 }

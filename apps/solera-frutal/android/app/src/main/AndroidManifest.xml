@@ -1,6 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- IA (Anthropic, clave de la persona) y previsión meteorológica. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Ubicación de la parcela al darla de alta (geolocator). -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
-        android:label="solera_frutal"
+        android:label="Larrea Frutal"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

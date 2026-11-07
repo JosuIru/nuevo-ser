@@ -18,7 +18,8 @@ void main() {
         idioma: const Locale('es')));
     await tester.pumpAndSettle();
     await tester.enterText(
-        find.widgetWithText(TextField, 'Dirección del pueblo'), 'pueblo.eus');
+        find.widgetWithText(TextField, 'Dirección que te ha dado la mesa'),
+        'pueblo.eus');
     await tester.enterText(
         find.widgetWithText(TextField, 'Tu código'), servidor.codigoValido);
     await tester.pump();

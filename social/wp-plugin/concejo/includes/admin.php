@@ -128,7 +128,7 @@ function concejo_campo_oculto( string $que, string $uid = '', string $nombre = '
 
 function concejo_selector_rol( string $actual ): void {
 	echo '<select name="rol">';
-	foreach ( array( 'vecina' => 'Vecina', 'mesa' => 'Mesa', 'coordinacion' => 'Coordinación' ) as $valor => $etiqueta ) {
+	foreach ( array( 'vecina' => 'Participante', 'mesa' => 'Mesa', 'coordinacion' => 'Coordinación' ) as $valor => $etiqueta ) {
 		echo '<option value="' . esc_attr( $valor ) . '"' . selected( $actual, $valor, false ) . '>' . esc_html( $etiqueta ) . '</option>';
 	}
 	echo '</select>';

@@ -69,6 +69,8 @@ Probar contra un WordPress: `CONCEJO_SERVIDOR=http://… CONCEJO_CODIGO_MESA=…
 
 ## Decisiones tomadas en el código (revisables con el piloto)
 
+- **Vale para cualquier grupo**, no solo para pueblos: concejos, asociaciones, colectivos, cooperativas, comunidades de montes. Las palabras visibles son neutras («tu espacio», «participante»; arriba sale siempre el nombre del espacio) y «mesa» se queda. **Los identificadores internos no cambian** (`Rol.vecina`, `'vecina'` en el JSON y en el servidor) para no romper datos ni la paridad. El ejemplo sigue siendo un pueblo.
+
 - **Voto secreto**: la `Participacion` (quién ha votado) y la `Papeleta` (qué se ha votado) no comparten identificador. En la app, la papeleta secreta lleva la hora redondeada a la hora en punto (en el servidor, ninguna) y entra **en una posición al azar** de la lista: si fuera al final, la papeleta n.º 5 sería la de la quinta persona en participar. En voto nominal la papeleta sí lleva persona.
 - **Mayorías**:
   - **simple**: síes > noes, sin contar las abstenciones;

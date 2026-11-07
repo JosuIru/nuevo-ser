@@ -18,7 +18,7 @@ void main() {
     await tester.pumpAndSettle();
 
     await tester.enterText(
-        find.widgetWithText(TextField, 'Dirección del pueblo'),
+        find.widgetWithText(TextField, 'Dirección que te ha dado la mesa'),
         'concejo.ejemplo.eus');
     await tester.enterText(
         find.widgetWithText(TextField, 'Tu código'), 'MAL-CODIGO');
@@ -60,11 +60,11 @@ void main() {
     await tester.pumpWidget(
         RaizConcejo(almacen: AlmacenEnMemoria(), idioma: const Locale('es')));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Ver el pueblo de ejemplo'));
+    await tester.tap(find.text('Ver un ejemplo'));
     await tester.pumpAndSettle();
     expect(find.byTooltip('Ver como…'), findsOneWidget);
     await tester.tap(find.byTooltip('Salir'));
     await tester.pumpAndSettle();
-    expect(find.text('Entra en tu concejo'), findsOneWidget);
+    expect(find.text('Entra en tu espacio'), findsOneWidget);
   });
 }

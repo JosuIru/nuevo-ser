@@ -218,7 +218,7 @@ class EstadoConcejo extends ChangeNotifier {
 
   /// Solo en el pueblo de ejemplo: ver la app como otra persona.
   void verComo(String personaUid) {
-    if (!esEjemplo) throw StateError('Solo en el pueblo de ejemplo');
+    if (!esEjemplo) throw StateError('Solo en el espacio de ejemplo');
     _personaActual = _personas.firstWhere((p) => p.uid == personaUid);
     notifyListeners();
   }

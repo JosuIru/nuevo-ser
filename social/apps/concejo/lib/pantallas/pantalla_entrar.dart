@@ -74,7 +74,7 @@ class _PantallaEntrarState extends State<PantallaEntrar> {
                   onChanged: (_) => setState(() {}),
                   decoration: InputDecoration(
                     labelText: textos.campoDireccion,
-                    hintText: 'concejo.mipueblo.eus',
+                    hintText: 'decidimos.ejemplo.org',
                     border: const OutlineInputBorder(),
                   ),
                 ),

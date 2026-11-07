@@ -194,6 +194,11 @@ publicados por cada sistema; **por verificar** contra el estándar vigente.
   suspensivos (…) y salían como cuadros; se vio al renderizar los PDF.
   Posible fallo igual en otras verticales que usan «—» (Aromáticas): fuera
   de esta calle, apuntado en BLOQUEOS como aviso para la integración.
+  **Corrección de la integración (2026-11-07)**: Archivo, la letra de
+  `temaPdfSolera()`, sí tiene «—», «–», «…» y «€» (comprobado con
+  fc-query). Los cuadros salen solo si el PDF se genera sin `tema:` (Helvetica),
+  como en los tests; en la app siempre se pasa el tema. El guion corto se
+  queda porque no hace daño, pero no hace falta en otras verticales.
 - **2026-11-07 — La IA de plagas no apunta nada**: no hay registro de
   observaciones sanitarias en la F1 y la propuesta no debe acabar en un
   tratamiento; se lee y se cierra. Modelo equilibrado (como Frutal y

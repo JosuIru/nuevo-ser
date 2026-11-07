@@ -56,10 +56,9 @@ y sigue. Lo recoge `scripts/pendientes/`.
   desde el fin del aprovechamiento, si se vende) vive en
   `lib/dominio/aprovechamientos.dart`. La integración puede llevarlo al CSV
   común.
-- **Aviso para otras verticales**: la letra del tema PDF del core no tiene la
-  raya «—», la semirraya «–» ni «…» (salen como un cuadro al renderizar).
-  Monte usa guion corto; otras verticales (p. ej. Aromáticas) escriben «—» en
-  celdas vacías. No se toca fuera de esta calle.
+- ~~Aviso para otras verticales: la letra del tema PDF no tiene «—», «–» ni «…».~~
+  **Resuelto en la integración (2026-11-07)**: Archivo sí los tiene; los cuadros
+  solo salen al generar el PDF sin `tema:` (Helvetica), como en los tests.
 - **Un monte por instalación**: una junta con varios montes los separa por
   código de rodal o usa una instalación por monte. Si un piloto lo pide,
   migración aditiva.

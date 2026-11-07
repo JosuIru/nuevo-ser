@@ -190,7 +190,7 @@ Alternativa más barata: **una sesión interactiva por vertical** (como se hizo 
 
 ---
 
-### Estado de la oleada A (2026-11-07)
+### Estado de las verticales (2026-11-07): las 8 con código, terminadas
 
 | Vertical | Estado |
 |---|---|
@@ -200,7 +200,7 @@ Alternativa más barata: **una sesión interactiva por vertical** (como se hizo 
 | V7 Vivero | ✅ bloques 1-11, hechos por un agente e integrados (75 tests, APK release de 80,3 MB) |
 | V8 Aromáticas | ✅ bloques 1-11, hechos por un agente e integrados (67 tests, APK release de 66,3 MB) |
 | V5 Huerta | ✅ bloques 1-11, hechos por un agente e integrados (113 tests, APK release de 66,1 MB). Cestas en `lib/provisional_core/venta_directa/` hasta que exista T2 |
-| V6 Monte | en curso (agente en worktree) |
+| V6 Monte | ✅ bloques 1-11, hechos por un agente e integrados (84 tests, APK release de 66,5 MB) |
 | V3 Frutal | ✅ bloques 1-11, hechos por un agente en worktree e integrados (65 tests, APK release de 67,6 MB) |
 
 ### Presupuesto de tokens (2026-11-07)

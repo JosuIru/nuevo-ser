@@ -16,6 +16,15 @@ void main() {
           isNot(contains(Responsable.tecnicoOca)));
     });
 
+    test('detecta al técnico de seguridad alimentaria (obrador)', () {
+      expect(
+          clasificarResponsables(
+              'Técnico de seguridad alimentaria — cuaderno de autocontrol y alérgenos'),
+          contains(Responsable.tecnicoSeguridadAlimentaria));
+      expect(clasificarResponsables('Guía de prácticas correctas de higiene'),
+          contains(Responsable.tecnicoSeguridadAlimentaria));
+    });
+
     test('ignora mayúsculas y tildes', () {
       expect(clasificarResponsables('ASESORIA LINGUISTICA en euskera'),
           contains(Responsable.asesoriaLinguistica));

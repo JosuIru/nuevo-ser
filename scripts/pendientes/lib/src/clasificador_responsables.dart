@@ -7,6 +7,7 @@ enum Responsable {
   veterinario('Veterinario / REGA'),
   apicultor('Apicultor asesor'),
   quesero('Quesero / inspector sanitario'),
+  tecnicoSeguridadAlimentaria('Técnico de seguridad alimentaria'),
   arborista('Arborista / ayuntamiento'),
   asesoriaLinguistica('Asesoría lingüística'),
   comiteHistorico('Comité histórico'),
@@ -70,6 +71,13 @@ final Map<Responsable, List<RegExp>> _patronesPorResponsable = {
     r'\bappcc\b',
     r'inspector',
     r'\baesan\b',
+  ]),
+  Responsable.tecnicoSeguridadAlimentaria: _patrones([
+    r'seguridad alimentaria',
+    r'autocontrol',
+    r'alergen',
+    r'practicas correctas de higiene',
+    r'1169/2011',
   ]),
   Responsable.arborista: _patrones([
     r'arborist',

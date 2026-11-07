@@ -35,7 +35,7 @@ const Map<String, Responsable> _expertoPorPalabra = {
   'ganad': Responsable.veterinario,
   'apic': Responsable.apicultor,
   'queser': Responsable.quesero,
-  'obrador': Responsable.quesero,
+  'obrador': Responsable.tecnicoSeguridadAlimentaria,
   'arbolado': Responsable.arborista,
 };
 

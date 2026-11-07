@@ -13,13 +13,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas Hoy (dónde está cada rebaño con su carga, avisos de 14 días, primeros pasos), Rebaños (ficha con animales, movimientos y manejo; ficha del animal con su historia), Pastos (piezas con ocupación y UGM/ha), Manejo (calendario sanitario y visitas), Ajustes (titular y explotación). Lógica pura en `dominio/` (ocupación, calendario). 58 tests, 5 de pantalla |
 | 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos: **libro de registro** por año (apartados 1-11 del anexo V del RD 787/2023 + tratamientos del art. 41 RD 666/2023) e **informe del eco-régimen de pastoreo** por campaña y tabla UGM (art. 30.2 RD 1048/2022). Desde la ficha del rebaño, el **documento de movimiento** de cada entrada o salida (anexo del RD 728/2007 según la DF 3.ª del RD 787/2023). Tablas puras con test, sello y marca de agua PROVISIONAL. 67 tests |
 | 6 Catálogos | ✅ 2026-11-07 | `content/ganadera/`: tabla UGM por trámite, parámetros del eco-régimen, especies, razas (RD 45/2019 anexo I) y 24 sustancias activas **sin marcas, dosis ni tiempos de espera**, contrastadas con la API de CIMA Vet. Autocompletado de raza y sustancia; la clase de medicamento sale del catálogo si no se indica. Tests de integridad (cobertura de la tabla UGM, sin firmas falsas). 76 tests |
-| 7 IA visual | pendiente | |
+| 7 IA visual | ✅ 2026-11-07 | Ficha del rebaño → «Leer receta con IA»: foto de la **receta veterinaria** → transcripción estructurada (medicamento, sustancias, cantidad, duración, esperas, veterinario, n.º, fecha) → la persona la compara → el formulario del tratamiento se abre relleno. La sustancia se casa con el catálogo. Un plazo que no se lee queda vacío (−1 en el esquema). Modelo equilibrado del core, clave BYO (`estado/clave_anthropic_ganadera.dart`), la foto se borra. 80 tests |
 | 8 Branding + GPS | pendiente | |
 | 9 Economía | pendiente | PROVISIONAL |
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloque 7 (IA: lectura de la receta veterinaria).
+**Siguiente acción**: bloque 8 (logo placeholder, iconos y GPS: contorno de piezas y ubicación de la explotación, mapa de pastos).
 
 ## Encuadre
 
@@ -126,6 +126,11 @@ Para comparar: `git diff 92ade2b -- apps/solera-zunbeltz/lib/modelos/`.
   del anexo I del RD 45/2019 salió de un resumen automático y la clasificación era
   dudosa. Merina, Manchega, Castellana y Murciano-Granadina se añadieron sin verlas
   en ese texto (sin `revisado_por`). «Cruce» por especie, sin fuente.
+- **2026-11-07 — La IA del bloque 7 lee recetas, no animales**: la propuesta
+  deja la IA visual de cojeras o condición corporal para F3. Transcribir la receta
+  respeta el hard limit (la app apunta lo que dice el veterinario) y ahorra
+  teclear el registro del art. 41. El modelo equilibrado y no el rápido: un error
+  en un tiempo de espera tiene consecuencias en la cadena alimentaria.
 - **2026-11-07 — Fechas con selector** en movimientos, eventos, tareas y visitas
   (en Obrador se apuntaba con la fecha actual).
 

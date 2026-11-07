@@ -10,6 +10,7 @@ import '../modelos/ganado_ecologico.dart';
 import '../utiles/textos_ganadera.dart';
 import 'formularios_ganado.dart';
 import '../utiles/trayecto_movimiento.dart';
+import 'lectura_receta.dart';
 import 'pantalla_documentos.dart';
 import 'pantalla_ficha_animal.dart';
 
@@ -158,6 +159,11 @@ class _PantallaFichaLoteState extends State<PantallaFichaLote> {
                   icon: const Icon(Icons.vaccines_outlined),
                   label: Text(SoleraL10n.t('gana.manejo_del_rebano')),
                   onPressed: () => mostrarAltaEvento(context, lote),
+                ),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.document_scanner_outlined),
+                  label: Text(SoleraL10n.t('gana.leer_receta_ia')),
+                  onPressed: () => leerRecetaYApuntar(context, lote),
                 ),
               ],
             ),

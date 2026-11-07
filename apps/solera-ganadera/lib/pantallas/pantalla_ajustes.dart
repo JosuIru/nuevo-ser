@@ -7,6 +7,7 @@ import '../modelos/explotacion.dart';
 import '../modelos/ganado.dart';
 import '../modelos/titular.dart';
 import '../utiles/textos_ganadera.dart';
+import 'lectura_receta.dart';
 import 'pantalla_documentos.dart';
 
 /// Ajustes: idioma, titular y explotación (los datos de cabecera del libro
@@ -144,6 +145,13 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const PantallaDocumentos())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.auto_awesome_outlined),
+            title: Text(SoleraL10n.t('gana.inteligencia_artificial')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => abrirClaveIaGanadera(context),
           ),
           // ACCESOS
           const SelectorIdioma(),

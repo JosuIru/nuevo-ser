@@ -3410,6 +3410,21 @@ class SoleraL10n {
     'obra.resultado',
     'obra.sin_apuntes',
     'obra.total',
+    'obra.ayuda',
+    'obra.ayuda_autocontrol_texto',
+    'obra.ayuda_autocontrol_titulo',
+    'obra.ayuda_documentos_texto',
+    'obra.ayuda_documentos_titulo',
+    'obra.ayuda_empezar_texto',
+    'obra.ayuda_empezar_titulo',
+    'obra.ayuda_hornadas_texto',
+    'obra.ayuda_hornadas_titulo',
+    'obra.ayuda_ia_texto',
+    'obra.ayuda_ia_titulo',
+    'obra.ayuda_limites_texto',
+    'obra.ayuda_limites_titulo',
+    'obra.ayuda_recetas_texto',
+    'obra.ayuda_recetas_titulo',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -7729,6 +7744,21 @@ class SoleraL10n {
           'obra.resultado',
           'obra.sin_apuntes',
           'obra.total',
+          'obra.ayuda',
+          'obra.ayuda_autocontrol_texto',
+          'obra.ayuda_autocontrol_titulo',
+          'obra.ayuda_documentos_texto',
+          'obra.ayuda_documentos_titulo',
+          'obra.ayuda_empezar_texto',
+          'obra.ayuda_empezar_titulo',
+          'obra.ayuda_hornadas_texto',
+          'obra.ayuda_hornadas_titulo',
+          'obra.ayuda_ia_texto',
+          'obra.ayuda_ia_titulo',
+          'obra.ayuda_limites_texto',
+          'obra.ayuda_limites_titulo',
+          'obra.ayuda_recetas_texto',
+          'obra.ayuda_recetas_titulo',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -12045,6 +12075,21 @@ class SoleraL10n {
           'obra.resultado',
           'obra.sin_apuntes',
           'obra.total',
+          'obra.ayuda',
+          'obra.ayuda_autocontrol_texto',
+          'obra.ayuda_autocontrol_titulo',
+          'obra.ayuda_documentos_texto',
+          'obra.ayuda_documentos_titulo',
+          'obra.ayuda_empezar_texto',
+          'obra.ayuda_empezar_titulo',
+          'obra.ayuda_hornadas_texto',
+          'obra.ayuda_hornadas_titulo',
+          'obra.ayuda_ia_texto',
+          'obra.ayuda_ia_titulo',
+          'obra.ayuda_limites_texto',
+          'obra.ayuda_limites_titulo',
+          'obra.ayuda_recetas_texto',
+          'obra.ayuda_recetas_titulo',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -16361,6 +16406,21 @@ class SoleraL10n {
           'obra.resultado',
           'obra.sin_apuntes',
           'obra.total',
+          'obra.ayuda',
+          'obra.ayuda_autocontrol_texto',
+          'obra.ayuda_autocontrol_titulo',
+          'obra.ayuda_documentos_texto',
+          'obra.ayuda_documentos_titulo',
+          'obra.ayuda_empezar_texto',
+          'obra.ayuda_empezar_titulo',
+          'obra.ayuda_hornadas_texto',
+          'obra.ayuda_hornadas_titulo',
+          'obra.ayuda_ia_texto',
+          'obra.ayuda_ia_titulo',
+          'obra.ayuda_limites_texto',
+          'obra.ayuda_limites_titulo',
+          'obra.ayuda_recetas_texto',
+          'obra.ayuda_recetas_titulo',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -20700,6 +20760,21 @@ class SoleraL10n {
       case 'obra.resultado': return 'Resultado';
       case 'obra.sin_apuntes': return 'Sin apuntes.';
       case 'obra.total': return 'Total';
+      case 'obra.ayuda': return 'Ayuda';
+      case 'obra.ayuda_autocontrol_texto': return 'Apunta cada control en dos toques desde Hoy o Autocontrol: elige el tipo, toca una sugerencia o escribe qué controlas, pon la temperatura si toca y marca si fue correcto. Si no lo fue, escribe la acción correctora: el cuaderno avisa cuando falta.';
+      case 'obra.ayuda_autocontrol_titulo': return 'Cuaderno de autocontrol';
+      case 'obra.ayuda_documentos_texto': return 'En Ajustes → Documentos sacas el cuaderno de autocontrol del mes y el cartel de alérgenos del mostrador. La ficha técnica de cada producto sale desde su receta. Todos llevan el sello PROVISIONAL hasta que un técnico valide el formato.';
+      case 'obra.ayuda_documentos_titulo': return 'Documentos en PDF';
+      case 'obra.ayuda_empezar_texto': return 'Pon tu nombre y tu número de registro sanitario en Ajustes. Después da de alta tus ingredientes (con sus alérgenos y precio) y tus recetas. Con eso la app ya calcula alérgenos, coste por pieza y sal estimada.';
+      case 'obra.ayuda_empezar_titulo': return 'Primeros pasos';
+      case 'obra.ayuda_hornadas_texto': return 'Desde la cabecera de Hoy registras cada hornada: la app propone las piezas pedidas y el código de lote, y marcas los lotes de ingrediente que usaste. Así, si un proveedor avisa de un lote con problemas, sabes qué hornadas lo llevaron. Los lotes se reciben en la ficha de cada ingrediente.';
+      case 'obra.ayuda_hornadas_titulo': return 'Hornadas y trazabilidad';
+      case 'obra.ayuda_ia_texto': return 'Con tu propia clave de Anthropic (Ajustes → Inteligencia artificial), la app lee la foto de una etiqueta o ficha de proveedor y propone ingredientes y alérgenos. Es solo una propuesta: compárala con la etiqueta. La clave y las fotos no salen de tu móvil salvo para esa consulta.';
+      case 'obra.ayuda_ia_titulo': return 'Leer etiquetas con IA';
+      case 'obra.ayuda_limites_texto': return 'La app no declara ningún producto apto para personas alérgicas o celíacas. La sal y el coste son estimaciones a partir de tus fichas: la cifra legal de sal la da un laboratorio. Los documentos no sustituyen la inspección sanitaria ni el asesoramiento fiscal. Tus datos son tuyos y se quedan en el móvil.';
+      case 'obra.ayuda_limites_titulo': return 'Lo que la app no hace';
+      case 'obra.ayuda_recetas_texto': return 'Cada receta lleva sus ingredientes en gramos y puede usar bases o rellenos (otras recetas marcadas como base). La ficha muestra los alérgenos heredados, las trazas, el orden de ingredientes para la etiqueta, el coste y el margen por pieza y la sal estimada. Si eliges una denominación del pan, avisa cuando la sal pasa del máximo.';
+      case 'obra.ayuda_recetas_titulo': return 'Recetas y alérgenos';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -25020,6 +25095,21 @@ class SoleraL10n {
       case 'obra.resultado': return 'Emaitza';
       case 'obra.sin_apuntes': return 'Idazpenik ez.';
       case 'obra.total': return 'Guztira';
+      case 'obra.ayuda': return 'Laguntza';
+      case 'obra.ayuda_autocontrol_texto': return 'Idatzi kontrol bakoitza bi ukitutan Gaur edo Autokontrola pantailatik: aukeratu mota, ukitu iradokizun bat edo idatzi zer kontrolatzen duzun, jarri tenperatura behar bada eta markatu zuzena izan den. Ez bada, idatzi neurri zuzentzailea: koadernoak abisatzen du falta denean.';
+      case 'obra.ayuda_autocontrol_titulo': return 'Autokontrol-koadernoa';
+      case 'obra.ayuda_documentos_texto': return 'Doikuntzak → Dokumentuak atalean hilabeteko autokontrol-koadernoa eta mostradorerako alergenoen kartela ateratzen dituzu. Produktu bakoitzaren fitxa teknikoa bere errezetatik ateratzen da. Guztiek behin-behineko zigilua dute teknikari batek formatua baliozkotu arte.';
+      case 'obra.ayuda_documentos_titulo': return 'PDF dokumentuak';
+      case 'obra.ayuda_empezar_texto': return 'Jarri zure izena eta osasun-erregistroko zenbakia Doikuntzetan. Ondoren, eman alta zure osagaiei (alergeno eta prezioekin) eta errezetei. Horrekin aplikazioak alergenoak, pieza bakoitzaren kostua eta gatz estimatua kalkulatzen ditu.';
+      case 'obra.ayuda_empezar_titulo': return 'Lehen urratsak';
+      case 'obra.ayuda_hornadas_texto': return 'Gaur pantailaren goiburutik labealdi bakoitza erregistratzen duzu: aplikazioak eskatutako piezak eta lote-kodea proposatzen ditu, eta erabilitako osagai-loteak markatzen dituzu. Horrela, hornitzaile batek lote batean arazoak daudela abisatzen badu, badakizu zein labealdik eraman zuten. Loteak osagai bakoitzaren fitxan jasotzen dira.';
+      case 'obra.ayuda_hornadas_titulo': return 'Labealdiak eta trazabilitatea';
+      case 'obra.ayuda_ia_texto': return 'Zure Anthropic gakoarekin (Doikuntzak → Adimen artifiziala), aplikazioak hornitzailearen etiketa edo fitxa baten argazkia irakurtzen du eta osagaiak eta alergenoak proposatzen ditu. Proposamen bat besterik ez da: alderatu etiketarekin. Gakoa eta argazkiak ez dira zure mugikorretik ateratzen kontsulta horretarako ez bada.';
+      case 'obra.ayuda_ia_titulo': return 'Etiketak AArekin irakurri';
+      case 'obra.ayuda_limites_texto': return 'Aplikazioak ez du inolako produkturik alergikoentzat edo zeliakoentzat egokitzat jotzen. Gatza eta kostua zure fitxetatik ateratako estimazioak dira: gatzaren zifra legala laborategi batek ematen du. Dokumentuek ez dute osasun-ikuskapena ez aholkularitza fiskala ordezten. Zure datuak zureak dira eta mugikorrean geratzen dira.';
+      case 'obra.ayuda_limites_titulo': return 'Aplikazioak egiten ez duena';
+      case 'obra.ayuda_recetas_texto': return 'Errezeta bakoitzak bere osagaiak gramotan ditu eta oinarriak edo betegarriak erabil ditzake (oinarri gisa markatutako beste errezeta batzuk). Fitxak heredatutako alergenoak, aztarnak, etiketarako osagaien ordena, pieza bakoitzeko kostua eta marjina eta gatz estimatua erakusten ditu. Ogi-izendapen bat aukeratzen baduzu, abisatzen du gatzak gehienezkoa gainditzen duenean.';
+      case 'obra.ayuda_recetas_titulo': return 'Errezetak eta alergenoak';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -29340,6 +29430,21 @@ class SoleraL10n {
       case 'obra.resultado': return 'Resultat';
       case 'obra.sin_apuntes': return 'Sense apunts.';
       case 'obra.total': return 'Total';
+      case 'obra.ayuda': return 'Ajuda';
+      case 'obra.ayuda_autocontrol_texto': return 'Anota cada control amb dos tocs des d\'Avui o Autocontrol: tria el tipus, toca un suggeriment o escriu què controles, posa la temperatura si cal i marca si ha estat correcte. Si no ho ha estat, escriu l\'acció correctora: el quadern avisa quan falta.';
+      case 'obra.ayuda_autocontrol_titulo': return 'Quadern d\'autocontrol';
+      case 'obra.ayuda_documentos_texto': return 'A Ajustos → Documents treus el quadern d\'autocontrol del mes i el cartell d\'al·lèrgens del taulell. La fitxa tècnica de cada producte surt de la seva recepta. Tots porten el segell PROVISIONAL fins que un tècnic validi el format.';
+      case 'obra.ayuda_documentos_titulo': return 'Documents en PDF';
+      case 'obra.ayuda_empezar_texto': return 'Posa el teu nom i el número de registre sanitari a Ajustos. Després dona d\'alta els teus ingredients (amb al·lèrgens i preu) i les teves receptes. Amb això l\'app ja calcula al·lèrgens, cost per peça i sal estimada.';
+      case 'obra.ayuda_empezar_titulo': return 'Primers passos';
+      case 'obra.ayuda_hornadas_texto': return 'Des de la capçalera d\'Avui registres cada fornada: l\'app proposa les peces demanades i el codi de lot, i marques els lots d\'ingredient que has fet servir. Així, si un proveïdor avisa d\'un lot amb problemes, saps quines fornades el van portar. Els lots es reben a la fitxa de cada ingredient.';
+      case 'obra.ayuda_hornadas_titulo': return 'Fornades i traçabilitat';
+      case 'obra.ayuda_ia_texto': return 'Amb la teva clau d\'Anthropic (Ajustos → Intel·ligència artificial), l\'app llegeix la foto d\'una etiqueta o fitxa de proveïdor i proposa ingredients i al·lèrgens. És només una proposta: compara-la amb l\'etiqueta. La clau i les fotos no surten del mòbil excepte per a aquesta consulta.';
+      case 'obra.ayuda_ia_titulo': return 'Llegir etiquetes amb IA';
+      case 'obra.ayuda_limites_texto': return 'L\'app no declara cap producte apte per a persones al·lèrgiques o celíaques. La sal i el cost són estimacions a partir de les teves fitxes: la xifra legal de sal la dona un laboratori. Els documents no substitueixen la inspecció sanitària ni l\'assessorament fiscal. Les teves dades són teves i es queden al mòbil.';
+      case 'obra.ayuda_limites_titulo': return 'El que l\'app no fa';
+      case 'obra.ayuda_recetas_texto': return 'Cada recepta porta els ingredients en grams i pot fer servir bases o farciments (altres receptes marcades com a base). La fitxa mostra els al·lèrgens heretats, les traces, l\'ordre d\'ingredients per a l\'etiqueta, el cost i el marge per peça i la sal estimada. Si tries una denominació del pa, avisa quan la sal passa del màxim.';
+      case 'obra.ayuda_recetas_titulo': return 'Receptes i al·lèrgens';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -33660,6 +33765,21 @@ class SoleraL10n {
       case 'obra.resultado': return 'Resultado';
       case 'obra.sin_apuntes': return 'Sen apuntamentos.';
       case 'obra.total': return 'Total';
+      case 'obra.ayuda': return 'Axuda';
+      case 'obra.ayuda_autocontrol_texto': return 'Anota cada control en dous toques desde Hoxe ou Autocontrol: escolle o tipo, toca unha suxestión ou escribe que controlas, pon a temperatura se cómpre e marca se foi correcto. Se non o foi, escribe a acción correctora: o caderno avisa cando falta.';
+      case 'obra.ayuda_autocontrol_titulo': return 'Caderno de autocontrol';
+      case 'obra.ayuda_documentos_texto': return 'En Axustes → Documentos sacas o caderno de autocontrol do mes e o cartel de alérxenos do mostrador. A ficha técnica de cada produto sae desde a súa receita. Todos levan o selo PROVISIONAL ata que un técnico valide o formato.';
+      case 'obra.ayuda_documentos_titulo': return 'Documentos en PDF';
+      case 'obra.ayuda_empezar_texto': return 'Pon o teu nome e o número de rexistro sanitario en Axustes. Despois dá de alta os teus ingredientes (cos seus alérxenos e prezo) e as túas receitas. Con iso a app xa calcula alérxenos, custo por peza e sal estimada.';
+      case 'obra.ayuda_empezar_titulo': return 'Primeiros pasos';
+      case 'obra.ayuda_hornadas_texto': return 'Desde a cabeceira de Hoxe rexistras cada fornada: a app propón as pezas pedidas e o código de lote, e marcas os lotes de ingrediente que usaches. Así, se un provedor avisa dun lote con problemas, sabes que fornadas o levaron. Os lotes recíbense na ficha de cada ingrediente.';
+      case 'obra.ayuda_hornadas_titulo': return 'Fornadas e trazabilidade';
+      case 'obra.ayuda_ia_texto': return 'Coa túa propia clave de Anthropic (Axustes → Intelixencia artificial), a app le a foto dunha etiqueta ou ficha de provedor e propón ingredientes e alérxenos. É só unha proposta: compáraa coa etiqueta. A clave e as fotos non saen do teu móbil agás para esa consulta.';
+      case 'obra.ayuda_ia_titulo': return 'Ler etiquetas con IA';
+      case 'obra.ayuda_limites_texto': return 'A app non declara ningún produto apto para persoas alérxicas ou celíacas. A sal e o custo son estimacións a partir das túas fichas: a cifra legal de sal dáa un laboratorio. Os documentos non substitúen a inspección sanitaria nin o asesoramento fiscal. Os teus datos son teus e quedan no móbil.';
+      case 'obra.ayuda_limites_titulo': return 'O que a app non fai';
+      case 'obra.ayuda_recetas_texto': return 'Cada receita leva os seus ingredientes en gramos e pode usar bases ou recheos (outras receitas marcadas como base). A ficha mostra os alérxenos herdados, as trazas, a orde de ingredientes para a etiqueta, o custo e a marxe por peza e a sal estimada. Se escolles unha denominación do pan, avisa cando a sal pasa do máximo.';
+      case 'obra.ayuda_recetas_titulo': return 'Receitas e alérxenos';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

@@ -137,3 +137,32 @@ obra.ia_que_hace,Lee la etiqueta o la ficha técnica del proveedor y propone ing
 obra.ia_revisa,Es una propuesta: compárala con la etiqueta antes de guardar.,Proposamen bat da: alderatu etiketarekin gorde aurretik.,És una proposta: compara-la amb l'etiqueta abans de desar.,É unha proposta: compáraa coa etiqueta antes de gardar.
 obra.ia_usar,Usar la propuesta,Proposamena erabili,Fes servir la proposta,Usar a proposta
 obra.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
+obra.aviso_fiscal,"PROVISIONAL: categorías y tipos de IVA orientativos, pendientes de un asesor fiscal. No es una liquidación de impuestos.","Behin-behinekoa: kategoriak eta BEZ tasak orientagarriak dira, aholkulari fiskal baten zain. Ez da zerga-likidazio bat.","PROVISIONAL: categories i tipus d'IVA orientatius, pendents d'un assessor fiscal. No és una liquidació d'impostos.","PROVISIONAL: categorías e tipos de IVE orientativos, pendentes dun asesor fiscal. Non é unha liquidación de impostos."
+obra.base,Base,Oinarria,Base,Base
+obra.base_euros,Importe sin IVA (€),Zenbatekoa BEZik gabe (€),Import sense IVA (€),Importe sen IVE (€)
+obra.categoria,Categoría,Kategoria,Categoria,Categoría
+obra.categoria_alquiler,Alquiler,Alokairua,Lloguer,Aluguer
+obra.categoria_energia,Energía (luz / gas / leña),Energia (argia / gasa / egurra),Energia (llum / gas / llenya),Enerxía (luz / gas / leña)
+obra.categoria_envases,Envases y etiquetas,Ontziak eta etiketak,Envasos i etiquetes,Envases e etiquetas
+obra.categoria_maquinaria,Maquinaria y reparaciones,Makineria eta konponketak,Maquinària i reparacions,Maquinaria e reparacións
+obra.categoria_materia_prima,Materia prima,Lehengaiak,Matèria primera,Materia prima
+obra.categoria_otros_gastos,Otros gastos,Beste gastu batzuk,Altres despeses,Outros gastos
+obra.categoria_otros_ingresos,Otros ingresos,Beste diru-sarrera batzuk,Altres ingressos,Outros ingresos
+obra.categoria_personal,Personal,Langileak,Personal,Persoal
+obra.categoria_venta_mostrador,Venta en mostrador,Mostradoreko salmenta,Venda al taulell,Venda no mostrador
+obra.categoria_venta_pedidos,Venta por pedidos,Eskaeren bidezko salmenta,Venda per comandes,Venda por pedidos
+obra.concepto,Concepto,Kontzeptua,Concepte,Concepto
+obra.extracto_pdf,Extracto en PDF,Laburpena PDFn,Extracte en PDF,Extracto en PDF
+obra.gastos,Gastos,Gastuak,Despeses,Gastos
+obra.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
+obra.ingresos_y_gastos,Ingresos y gastos,Diru-sarrerak eta gastuak,Ingressos i despeses,Ingresos e gastos
+obra.iva,IVA,BEZ,IVA,IVE
+obra.iva_repercutido,IVA repercutido,BEZ jasanarazia,IVA repercutit,IVE repercutido
+obra.iva_soportado,IVA soportado,BEZ jasana,IVA suportat,IVE soportado
+obra.margen_pieza,Margen por pieza (solo ingredientes),Pieza bakoitzeko marjina (osagaiak bakarrik),Marge per peça (només ingredients),Marxe por peza (só ingredientes)
+obra.nuevo_gasto,Nuevo gasto,Gastu berria,Despesa nova,Novo gasto
+obra.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Ingrés nou,Novo ingreso
+obra.precio_venta_pieza,Precio de venta por pieza sin IVA (€),Pieza bakoitzaren salmenta-prezioa BEZik gabe (€),Preu de venda per peça sense IVA (€),Prezo de venda por peza sen IVE (€)
+obra.resultado,Resultado,Emaitza,Resultat,Resultado
+obra.sin_apuntes,Sin apuntes.,Idazpenik ez.,Sense apunts.,Sen apuntamentos.
+obra.total,Total,Guztira,Total,Total

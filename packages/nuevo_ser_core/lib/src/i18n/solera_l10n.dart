@@ -3381,6 +3381,35 @@ class SoleraL10n {
     'obra.ia_revisa',
     'obra.ia_usar',
     'obra.inteligencia_artificial',
+    'obra.aviso_fiscal',
+    'obra.base',
+    'obra.base_euros',
+    'obra.categoria',
+    'obra.categoria_alquiler',
+    'obra.categoria_energia',
+    'obra.categoria_envases',
+    'obra.categoria_maquinaria',
+    'obra.categoria_materia_prima',
+    'obra.categoria_otros_gastos',
+    'obra.categoria_otros_ingresos',
+    'obra.categoria_personal',
+    'obra.categoria_venta_mostrador',
+    'obra.categoria_venta_pedidos',
+    'obra.concepto',
+    'obra.extracto_pdf',
+    'obra.gastos',
+    'obra.ingresos',
+    'obra.ingresos_y_gastos',
+    'obra.iva',
+    'obra.iva_repercutido',
+    'obra.iva_soportado',
+    'obra.margen_pieza',
+    'obra.nuevo_gasto',
+    'obra.nuevo_ingreso',
+    'obra.precio_venta_pieza',
+    'obra.resultado',
+    'obra.sin_apuntes',
+    'obra.total',
     'ques.accion_recomendada',
     'ques.acerca_descripcion',
     'ques.activa_las_do',
@@ -7671,6 +7700,35 @@ class SoleraL10n {
           'obra.ia_revisa',
           'obra.ia_usar',
           'obra.inteligencia_artificial',
+          'obra.aviso_fiscal',
+          'obra.base',
+          'obra.base_euros',
+          'obra.categoria',
+          'obra.categoria_alquiler',
+          'obra.categoria_energia',
+          'obra.categoria_envases',
+          'obra.categoria_maquinaria',
+          'obra.categoria_materia_prima',
+          'obra.categoria_otros_gastos',
+          'obra.categoria_otros_ingresos',
+          'obra.categoria_personal',
+          'obra.categoria_venta_mostrador',
+          'obra.categoria_venta_pedidos',
+          'obra.concepto',
+          'obra.extracto_pdf',
+          'obra.gastos',
+          'obra.ingresos',
+          'obra.ingresos_y_gastos',
+          'obra.iva',
+          'obra.iva_repercutido',
+          'obra.iva_soportado',
+          'obra.margen_pieza',
+          'obra.nuevo_gasto',
+          'obra.nuevo_ingreso',
+          'obra.precio_venta_pieza',
+          'obra.resultado',
+          'obra.sin_apuntes',
+          'obra.total',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -11958,6 +12016,35 @@ class SoleraL10n {
           'obra.ia_revisa',
           'obra.ia_usar',
           'obra.inteligencia_artificial',
+          'obra.aviso_fiscal',
+          'obra.base',
+          'obra.base_euros',
+          'obra.categoria',
+          'obra.categoria_alquiler',
+          'obra.categoria_energia',
+          'obra.categoria_envases',
+          'obra.categoria_maquinaria',
+          'obra.categoria_materia_prima',
+          'obra.categoria_otros_gastos',
+          'obra.categoria_otros_ingresos',
+          'obra.categoria_personal',
+          'obra.categoria_venta_mostrador',
+          'obra.categoria_venta_pedidos',
+          'obra.concepto',
+          'obra.extracto_pdf',
+          'obra.gastos',
+          'obra.ingresos',
+          'obra.ingresos_y_gastos',
+          'obra.iva',
+          'obra.iva_repercutido',
+          'obra.iva_soportado',
+          'obra.margen_pieza',
+          'obra.nuevo_gasto',
+          'obra.nuevo_ingreso',
+          'obra.precio_venta_pieza',
+          'obra.resultado',
+          'obra.sin_apuntes',
+          'obra.total',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -16245,6 +16332,35 @@ class SoleraL10n {
           'obra.ia_revisa',
           'obra.ia_usar',
           'obra.inteligencia_artificial',
+          'obra.aviso_fiscal',
+          'obra.base',
+          'obra.base_euros',
+          'obra.categoria',
+          'obra.categoria_alquiler',
+          'obra.categoria_energia',
+          'obra.categoria_envases',
+          'obra.categoria_maquinaria',
+          'obra.categoria_materia_prima',
+          'obra.categoria_otros_gastos',
+          'obra.categoria_otros_ingresos',
+          'obra.categoria_personal',
+          'obra.categoria_venta_mostrador',
+          'obra.categoria_venta_pedidos',
+          'obra.concepto',
+          'obra.extracto_pdf',
+          'obra.gastos',
+          'obra.ingresos',
+          'obra.ingresos_y_gastos',
+          'obra.iva',
+          'obra.iva_repercutido',
+          'obra.iva_soportado',
+          'obra.margen_pieza',
+          'obra.nuevo_gasto',
+          'obra.nuevo_ingreso',
+          'obra.precio_venta_pieza',
+          'obra.resultado',
+          'obra.sin_apuntes',
+          'obra.total',
           'ques.accion_recomendada',
           'ques.acerca_descripcion',
           'ques.activa_las_do',
@@ -20555,6 +20671,35 @@ class SoleraL10n {
       case 'obra.ia_revisa': return 'Es una propuesta: compárala con la etiqueta antes de guardar.';
       case 'obra.ia_usar': return 'Usar la propuesta';
       case 'obra.inteligencia_artificial': return 'Inteligencia artificial';
+      case 'obra.aviso_fiscal': return 'PROVISIONAL: categorías y tipos de IVA orientativos, pendientes de un asesor fiscal. No es una liquidación de impuestos.';
+      case 'obra.base': return 'Base';
+      case 'obra.base_euros': return 'Importe sin IVA (€)';
+      case 'obra.categoria': return 'Categoría';
+      case 'obra.categoria_alquiler': return 'Alquiler';
+      case 'obra.categoria_energia': return 'Energía (luz / gas / leña)';
+      case 'obra.categoria_envases': return 'Envases y etiquetas';
+      case 'obra.categoria_maquinaria': return 'Maquinaria y reparaciones';
+      case 'obra.categoria_materia_prima': return 'Materia prima';
+      case 'obra.categoria_otros_gastos': return 'Otros gastos';
+      case 'obra.categoria_otros_ingresos': return 'Otros ingresos';
+      case 'obra.categoria_personal': return 'Personal';
+      case 'obra.categoria_venta_mostrador': return 'Venta en mostrador';
+      case 'obra.categoria_venta_pedidos': return 'Venta por pedidos';
+      case 'obra.concepto': return 'Concepto';
+      case 'obra.extracto_pdf': return 'Extracto en PDF';
+      case 'obra.gastos': return 'Gastos';
+      case 'obra.ingresos': return 'Ingresos';
+      case 'obra.ingresos_y_gastos': return 'Ingresos y gastos';
+      case 'obra.iva': return 'IVA';
+      case 'obra.iva_repercutido': return 'IVA repercutido';
+      case 'obra.iva_soportado': return 'IVA soportado';
+      case 'obra.margen_pieza': return 'Margen por pieza (solo ingredientes)';
+      case 'obra.nuevo_gasto': return 'Nuevo gasto';
+      case 'obra.nuevo_ingreso': return 'Nuevo ingreso';
+      case 'obra.precio_venta_pieza': return 'Precio de venta por pieza sin IVA (€)';
+      case 'obra.resultado': return 'Resultado';
+      case 'obra.sin_apuntes': return 'Sin apuntes.';
+      case 'obra.total': return 'Total';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera es un gestor para queserías artesanas: recepción de leche por proveedor, lotes de producción, afinado pieza a pieza en la cava, controles APPCC, perfiles de denominación de origen, identificación de defectos por foto con IA y libro de trazabilidad en PDF.';
       case 'ques.activa_las_do': return 'Activa las DO a las que pertenece tu quesería.';
@@ -24846,6 +24991,35 @@ class SoleraL10n {
       case 'obra.ia_revisa': return 'Proposamen bat da: alderatu etiketarekin gorde aurretik.';
       case 'obra.ia_usar': return 'Proposamena erabili';
       case 'obra.inteligencia_artificial': return 'Adimen artifiziala';
+      case 'obra.aviso_fiscal': return 'Behin-behinekoa: kategoriak eta BEZ tasak orientagarriak dira, aholkulari fiskal baten zain. Ez da zerga-likidazio bat.';
+      case 'obra.base': return 'Oinarria';
+      case 'obra.base_euros': return 'Zenbatekoa BEZik gabe (€)';
+      case 'obra.categoria': return 'Kategoria';
+      case 'obra.categoria_alquiler': return 'Alokairua';
+      case 'obra.categoria_energia': return 'Energia (argia / gasa / egurra)';
+      case 'obra.categoria_envases': return 'Ontziak eta etiketak';
+      case 'obra.categoria_maquinaria': return 'Makineria eta konponketak';
+      case 'obra.categoria_materia_prima': return 'Lehengaiak';
+      case 'obra.categoria_otros_gastos': return 'Beste gastu batzuk';
+      case 'obra.categoria_otros_ingresos': return 'Beste diru-sarrera batzuk';
+      case 'obra.categoria_personal': return 'Langileak';
+      case 'obra.categoria_venta_mostrador': return 'Mostradoreko salmenta';
+      case 'obra.categoria_venta_pedidos': return 'Eskaeren bidezko salmenta';
+      case 'obra.concepto': return 'Kontzeptua';
+      case 'obra.extracto_pdf': return 'Laburpena PDFn';
+      case 'obra.gastos': return 'Gastuak';
+      case 'obra.ingresos': return 'Diru-sarrerak';
+      case 'obra.ingresos_y_gastos': return 'Diru-sarrerak eta gastuak';
+      case 'obra.iva': return 'BEZ';
+      case 'obra.iva_repercutido': return 'BEZ jasanarazia';
+      case 'obra.iva_soportado': return 'BEZ jasana';
+      case 'obra.margen_pieza': return 'Pieza bakoitzeko marjina (osagaiak bakarrik)';
+      case 'obra.nuevo_gasto': return 'Gastu berria';
+      case 'obra.nuevo_ingreso': return 'Diru-sarrera berria';
+      case 'obra.precio_venta_pieza': return 'Pieza bakoitzaren salmenta-prezioa BEZik gabe (€)';
+      case 'obra.resultado': return 'Emaitza';
+      case 'obra.sin_apuntes': return 'Idazpenik ez.';
+      case 'obra.total': return 'Guztira';
       case 'ques.accion_recomendada': return 'Gomendatutako ekintza';
       case 'ques.acerca_descripcion': return 'Larrea Quesera gaztategi artisauentzako kudeatzailea da: esne-harrera hornitzaileka, ekoizpen-loteak, ontze-gelako ontzea piezaz pieza, APPCC kontrolak, jatorri-deituren profilak, akatsen identifikazioa argazki bidez AArekin eta trazabilitate-liburua PDFan.';
       case 'ques.activa_las_do': return 'Aktibatu zure gaztategia zein JDtakoa den.';
@@ -29137,6 +29311,35 @@ class SoleraL10n {
       case 'obra.ia_revisa': return 'És una proposta: compara-la amb l\'etiqueta abans de desar.';
       case 'obra.ia_usar': return 'Fes servir la proposta';
       case 'obra.inteligencia_artificial': return 'Intel·ligència artificial';
+      case 'obra.aviso_fiscal': return 'PROVISIONAL: categories i tipus d\'IVA orientatius, pendents d\'un assessor fiscal. No és una liquidació d\'impostos.';
+      case 'obra.base': return 'Base';
+      case 'obra.base_euros': return 'Import sense IVA (€)';
+      case 'obra.categoria': return 'Categoria';
+      case 'obra.categoria_alquiler': return 'Lloguer';
+      case 'obra.categoria_energia': return 'Energia (llum / gas / llenya)';
+      case 'obra.categoria_envases': return 'Envasos i etiquetes';
+      case 'obra.categoria_maquinaria': return 'Maquinària i reparacions';
+      case 'obra.categoria_materia_prima': return 'Matèria primera';
+      case 'obra.categoria_otros_gastos': return 'Altres despeses';
+      case 'obra.categoria_otros_ingresos': return 'Altres ingressos';
+      case 'obra.categoria_personal': return 'Personal';
+      case 'obra.categoria_venta_mostrador': return 'Venda al taulell';
+      case 'obra.categoria_venta_pedidos': return 'Venda per comandes';
+      case 'obra.concepto': return 'Concepte';
+      case 'obra.extracto_pdf': return 'Extracte en PDF';
+      case 'obra.gastos': return 'Despeses';
+      case 'obra.ingresos': return 'Ingressos';
+      case 'obra.ingresos_y_gastos': return 'Ingressos i despeses';
+      case 'obra.iva': return 'IVA';
+      case 'obra.iva_repercutido': return 'IVA repercutit';
+      case 'obra.iva_soportado': return 'IVA suportat';
+      case 'obra.margen_pieza': return 'Marge per peça (només ingredients)';
+      case 'obra.nuevo_gasto': return 'Despesa nova';
+      case 'obra.nuevo_ingreso': return 'Ingrés nou';
+      case 'obra.precio_venta_pieza': return 'Preu de venda per peça sense IVA (€)';
+      case 'obra.resultado': return 'Resultat';
+      case 'obra.sin_apuntes': return 'Sense apunts.';
+      case 'obra.total': return 'Total';
       case 'ques.accion_recomendada': return 'Acció recomanada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera és un gestor per a formatgeries artesanes: recepció de llet per proveïdor, lots de producció, afinament peça a peça a la cava, controls APPCC, perfils de denominació d\'origen, identificació de defectes per foto amb IA i llibre de traçabilitat en PDF.';
       case 'ques.activa_las_do': return 'Activa les DO a les quals pertany la teva formatgeria.';
@@ -33428,6 +33631,35 @@ class SoleraL10n {
       case 'obra.ia_revisa': return 'É unha proposta: compáraa coa etiqueta antes de gardar.';
       case 'obra.ia_usar': return 'Usar a proposta';
       case 'obra.inteligencia_artificial': return 'Intelixencia artificial';
+      case 'obra.aviso_fiscal': return 'PROVISIONAL: categorías e tipos de IVE orientativos, pendentes dun asesor fiscal. Non é unha liquidación de impostos.';
+      case 'obra.base': return 'Base';
+      case 'obra.base_euros': return 'Importe sen IVE (€)';
+      case 'obra.categoria': return 'Categoría';
+      case 'obra.categoria_alquiler': return 'Aluguer';
+      case 'obra.categoria_energia': return 'Enerxía (luz / gas / leña)';
+      case 'obra.categoria_envases': return 'Envases e etiquetas';
+      case 'obra.categoria_maquinaria': return 'Maquinaria e reparacións';
+      case 'obra.categoria_materia_prima': return 'Materia prima';
+      case 'obra.categoria_otros_gastos': return 'Outros gastos';
+      case 'obra.categoria_otros_ingresos': return 'Outros ingresos';
+      case 'obra.categoria_personal': return 'Persoal';
+      case 'obra.categoria_venta_mostrador': return 'Venda no mostrador';
+      case 'obra.categoria_venta_pedidos': return 'Venda por pedidos';
+      case 'obra.concepto': return 'Concepto';
+      case 'obra.extracto_pdf': return 'Extracto en PDF';
+      case 'obra.gastos': return 'Gastos';
+      case 'obra.ingresos': return 'Ingresos';
+      case 'obra.ingresos_y_gastos': return 'Ingresos e gastos';
+      case 'obra.iva': return 'IVE';
+      case 'obra.iva_repercutido': return 'IVE repercutido';
+      case 'obra.iva_soportado': return 'IVE soportado';
+      case 'obra.margen_pieza': return 'Marxe por peza (só ingredientes)';
+      case 'obra.nuevo_gasto': return 'Novo gasto';
+      case 'obra.nuevo_ingreso': return 'Novo ingreso';
+      case 'obra.precio_venta_pieza': return 'Prezo de venda por peza sen IVE (€)';
+      case 'obra.resultado': return 'Resultado';
+      case 'obra.sin_apuntes': return 'Sen apuntamentos.';
+      case 'obra.total': return 'Total';
       case 'ques.accion_recomendada': return 'Acción recomendada';
       case 'ques.acerca_descripcion': return 'Larrea Quesera é un xestor para queixarías artesás: recepción de leite por provedor, lotes de produción, afinado peza a peza na cava, controis APPCC, perfís de denominación de orixe, identificación de defectos por foto con IA e libro de rastrexabilidade en PDF.';
       case 'ques.activa_las_do': return 'Activa as DO ás que pertence a túa queixaría.';

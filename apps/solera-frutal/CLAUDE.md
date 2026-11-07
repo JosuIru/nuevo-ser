@@ -11,7 +11,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 1 Esqueleto | ✅ 2026-11-07 | Generado con `scripts/nueva_vertical.sh` |
 | 2 Modelos + BD | ✅ 2026-11-07 | 10 modelos (titular-explotación, parcela, fila de árboles, contrato de polinización, tratamiento, abonado, riego, cosecha, helada, observación de plaga), 10 tablas en la v1. Dominio puro: `resumen_cosecha.dart` (parte por parcela y campaña, plazo de seguridad abierto) y `polinizacion.dart` (polinizadora compatible en la parcela). 24 tests |
 | 3 Pantallas | ✅ 2026-11-07 | Pestañas: Hoy (primeros pasos si no hay parcelas, plazos de seguridad abiertos, colmenas puestas, alta rápida de helada), Parcelas (lista, alta/edición con marco → árboles/ha, ficha con filas y variedades, polinización, seguimiento de plagas y últimos tratamientos), Cuaderno (tratamientos, abonados, riegos y heladas del año), Cosecha (parte por parcela y entregas; aviso si se cosecha dentro del plazo de seguridad), Ajustes (titular y asesor). Altas en hojas inferiores con selector de fecha (`formularios_registros.dart`). 34 tests, 5 de pantalla y un guardarraíl propio de traducciones |
-| 4-5 Documentos oficiales PDF | pendiente | sello PROVISIONAL |
+| 4-5 Documentos oficiales PDF | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Documentos, año en curso y anterior: **cuaderno de explotación** (datos generales y asesor, identificación de parcelas con nº de orden, tratamientos, fertilización, riegos si los hay y cosecha comercializada) y **parte de cosecha y rendimientos** (por parcela, entregas, heladas y pedrisco para el seguro). Tablas en funciones puras con test; PDF con `informe_periodico` del core. 39 tests. Cotejo de columnas con el modelo andaluz v8 en el bloque 10 |
 | 6 Catálogos | pendiente | |
 | 7 IA visual | pendiente | |
 | 8 Branding + GPS | pendiente | |
@@ -19,7 +19,7 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 10 Revisión con fuente pública | pendiente | |
 | 11 APK + ayuda | pendiente | |
 
-**Siguiente acción**: bloques 4-5 (cuaderno de explotación y parte de cosecha en PDF).
+**Siguiente acción**: bloque 6 (catálogos CSV y compilador).
 
 ## Encuadre
 
@@ -66,6 +66,12 @@ Lo esencial que no se toca (hard limits):
   pulsación larga con confirmación.
 - **2026-11-07 — Guardarraíl de traducciones propio** (`test/traducciones_test.dart`):
   el test del core aún no recorre `apps/solera-frutal/lib`. Pedirlo a la calle N.
+- **2026-11-07 — Un cuaderno por año natural** y la cosecha por campaña
+  (= año de cosecha), los dos en el mismo PDF: en frutos secos la campaña y el
+  año coinciden. Las parcelas se citan por nº de orden, como en el modelo.
+- **2026-11-07 — Encabezados de los PDF en el idioma de la app** (como Obrador);
+  la versión que se entregue a la administración debería ir en castellano o en
+  la cooficial que acepte cada comunidad: lo decide el asesor.
 - **2026-11-07 — La v1 se amplía durante la F1** (como en Obrador): no hay
   ninguna instalación publicada.
 

@@ -53,13 +53,13 @@ void main() {
     });
 
     test('placeholder que sobra', () {
-      expect(compararEstructuraIcu('Hola', 'Kaixo {nombre}'),
-          contains('nombre'));
+      expect(
+          compararEstructuraIcu('Hola', 'Kaixo {nombre}'), contains('nombre'));
     });
 
     test('llaves desequilibradas', () {
-      expect(compararEstructuraIcu('Hola {nombre}', 'Kaixo {nombre'),
-          isNotNull);
+      expect(
+          compararEstructuraIcu('Hola {nombre}', 'Kaixo {nombre'), isNotNull);
     });
 
     test('plural convertido en placeholder simple', () {
@@ -80,8 +80,8 @@ void main() {
 
     test('plural con un caso inventado', () {
       expect(
-        compararEstructuraIcu('{n, plural, other{{n}}}',
-            '{n, plural, muchos{{n}} other{{n}}}'),
+        compararEstructuraIcu(
+            '{n, plural, other{{n}}}', '{n, plural, muchos{{n}} other{{n}}}'),
         contains('muchos'),
       );
     });

@@ -48,8 +48,7 @@ const arbEuskera = r'''{
 late Directory directorioTemporal;
 late Directory directorioArb;
 
-File archivoArb(String lengua) =>
-    File('${directorioArb.path}/app_$lengua.arb');
+File archivoArb(String lengua) => File('${directorioArb.path}/app_$lengua.arb');
 
 File archivoCsv(String nombre) => File('${directorioTemporal.path}/$nombre');
 
@@ -90,7 +89,8 @@ void main() {
       expect(bytesHoja.sublist(0, 3), [0xEF, 0xBB, 0xBF]);
 
       final filas = leerCsv(decodificarBytesCsv(bytesHoja));
-      expect(filas.first, ['clave', 'es', 'eu', 'estado', 'nota', 'descripcion']);
+      expect(
+          filas.first, ['clave', 'es', 'eu', 'estado', 'nota', 'descripcion']);
       final filaPorClave = {for (final fila in filas.skip(1)) fila[0]: fila};
 
       expect(filaPorClave.keys.toList(), [
@@ -113,8 +113,8 @@ void main() {
       expect(filaPorClave['ok']![3], 'igual_que_es');
       expect(filaPorClave['sinTraducir']![2], '');
       expect(filaPorClave['sinTraducir']![3], 'falta');
-      expect(filaPorClave['multilinea']![2],
-          'Lehen lerroa\nBigarren "lerroa" é');
+      expect(
+          filaPorClave['multilinea']![2], 'Lehen lerroa\nBigarren "lerroa" é');
     });
 
     test('si el ARB de la lengua no existe, todo sale como falta', () {
@@ -148,6 +148,31 @@ void main() {
       expect(archivoArb('eu').readAsBytesSync(), bytesAntes);
     });
 
+    test('cambiar una cadena y deshacer el cambio deja el ARB igual', () {
+      final bytesAntes = archivoArb('eu').readAsBytesSync();
+      final hoja = archivoCsv('eu.csv');
+      exportarHoja(directorioArb, 'eu', hoja);
+      editarHoja(hoja, 'eu', {
+        'personas': (
+          texto: '{cantidad, plural, other{PRUEBA {cantidad}}}',
+          estado: 'revisado'
+        ),
+      });
+      importarHoja(directorioArb, 'eu', hoja);
+      expect(archivoArb('eu').readAsBytesSync(), isNot(bytesAntes));
+
+      exportarHoja(directorioArb, 'eu', hoja);
+      editarHoja(hoja, 'eu', {
+        'personas': (
+          texto:
+              '{cantidad, plural, =1{Pertsona bat} other{{cantidad} pertsona}}',
+          estado: 'revisado'
+        ),
+      });
+      importarHoja(directorioArb, 'eu', hoja);
+      expect(archivoArb('eu').readAsBytesSync(), bytesAntes);
+    });
+
     test('solo aplica las filas revisadas', () {
       final hoja = archivoCsv('eu.csv');
       exportarHoja(directorioArb, 'eu', hoja);
@@ -172,8 +197,8 @@ void main() {
       });
       importarHoja(directorioArb, 'eu', hoja);
       expect(archivoArb('es').readAsBytesSync(), bytesEspanol);
-      expect(() => importarHoja(directorioArb, 'es', hoja),
-          throwsArgumentError);
+      expect(
+          () => importarHoja(directorioArb, 'es', hoja), throwsArgumentError);
     });
 
     test('rechaza placeholders erróneos y los lista sin aplicarlos', () {

@@ -79,8 +79,8 @@ void main() {
       final bytesLatin1 = [0x61, 0x2C, 0xF1, 0x0A];
       expect(
         () => decodificarBytesCsv(bytesLatin1),
-        throwsA(isA<FormatException>().having(
-            (error) => error.message, 'mensaje', contains('UTF-8'))),
+        throwsA(isA<FormatException>()
+            .having((error) => error.message, 'mensaje', contains('UTF-8'))),
       );
     });
   });

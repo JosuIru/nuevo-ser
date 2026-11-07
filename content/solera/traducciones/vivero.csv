@@ -21,6 +21,7 @@ vive.bandeja_activa,En uso,Erabilian,En ús,En uso
 vive.bandeja_destino,Bandeja de destino,Helmuga-erretilua,Safata de destinació,Bandexa de destino
 vive.bandeja_no_encontrada,No hay ninguna bandeja con ese código.,Ez dago kode hori duen erretilurik.,No hi ha cap safata amb aquest codi.,Non hai ningunha bandexa con ese código.
 vive.bandejas,Bandejas,Erretiluak,Safates,Bandexas
+vive.banner_datos_provisionales,"Catálogos con datos provisionales sin validar: especies, plagas reguladas y sustancias activas están pendientes de la firma de una persona experta.","Balidatu gabeko behin-behineko datuak dituzten katalogoak: espezieak, izurrite arautuak eta substantzia aktiboak aditu baten sinaduraren zain daude.","Catàlegs amb dades provisionals sense validar: espècies, plagues regulades i substàncies actives estan pendents de la signatura d’una persona experta.","Catálogos con datos provisionais sen validar: especies, pragas reguladas e substancias activas están pendentes da sinatura dunha persoa experta."
 vive.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
 vive.borrador,borrador,zirriborroa,esborrany,borrador
 vive.borrar_registro,¿Borrar este registro?,Erregistro hau ezabatu?,Vols esborrar aquest registre?,Borrar este rexistro?
@@ -71,6 +72,7 @@ vive.error_documento,No se pudo generar el documento.,Ezin izan da dokumentua so
 vive.es_usuario_final,Usuario final,Azken erabiltzailea,Usuari final,Usuario final
 vive.es_usuario_final_ayuda,"Compra para su uso personal, fuera de su profesión.","Erabilera pertsonalerako erosten du, bere lanbidetik kanpo.","Compra per al seu ús personal, fora de la seva professió.","Compra para o seu uso persoal, fóra da súa profesión."
 vive.especie,Especie,Espeziea,Espècie,Especie
+vive.especie_anexo_xiv,"La especie está en el anexo XIV del Reglamento 2019/2072: si el destino es una zona protegida, el pasaporte es «ZP».","Espeziea 2019/2072 Erregelamenduaren XIV. eranskinean dago: helmuga eremu babestua bada, pasaportea «ZP» da.","L’espècie és a l’annex XIV del Reglament 2019/2072: si la destinació és una zona protegida, el passaport és «ZP».","A especie está no anexo XIV do Regulamento 2019/2072: se o destino é unha zona protexida, o pasaporte é «ZP»."
 vive.etiqueta_pdf,Etiqueta en PDF,Etiketa PDFn,Etiqueta en PDF,Etiqueta en PDF
 vive.falta_codigo_operador,Falta el nº ROPVEG del vivero (Ajustes) o no tiene la forma «ES-» y ocho dígitos.,Mintegiaren ROPVEG zk. falta da (Ezarpenak) edo ez du «ES-» eta zortzi digituko itxura.,Falta el núm. ROPVEG del viver (Configuració) o no té la forma «ES-» i vuit dígits.,Falta o nº ROPVEG do viveiro (Axustes) ou non ten a forma «ES-» e oito díxitos.
 vive.falta_codigo_trazabilidad,Falta el código de trazabilidad.,Trazabilitate-kodea falta da.,Falta el codi de traçabilitat.,Falta o código de rastrexabilidade.
@@ -175,6 +177,7 @@ vive.pdf_valor,Valor,Balioa,Valor,Valor
 vive.pdf_zonas,Zonas de cultivo,Laborantza-eremuak,Zones de cultiu,Zonas de cultivo
 vive.persona_contacto,Persona de contacto fitosanitaria,Fitosanitario-arloko harremanetarako pertsona,Persona de contacte fitosanitària,Persoa de contacto fitosanitaria
 vive.plaga_regulada,Plaga regulada,Izurrite arautua,Plaga regulada,Praga regulada
+vive.plaga_regulada_ayuda,Primero las que afectan a la planta según su nombre botánico.,"Lehenik, landareari eragiten diotenak bere izen botanikoaren arabera.",Primer les que afecten la planta segons el seu nom botànic.,Primeiro as que afectan á planta segundo o seu nome botánico.
 vive.plagas_zona_protegida,Plaga de zona protegida (nombre o código),Eremu babestuko izurritea (izena edo kodea),Plaga de zona protegida (nom o codi),Praga de zona protexida (nome ou código)
 vive.plagas_zona_protegida_ayuda,La que da lugar a la zona protegida de destino: la app no la deduce.,Helmugako eremu babestua sortzen duena: aplikazioak ez du ondorioztatzen.,La que dona lloc a la zona protegida de destinació: l’app no la dedueix.,A que dá lugar á zona protexida de destino: a app non a deduce.
 vive.plantas,Plantas,Landareak,Plantes,Plantas
@@ -184,6 +187,7 @@ vive.plantas_n,{n} plantas,{n} landare,{n} plantes,{n} plantas
 vive.plantas_perdidas,Plantas perdidas ahora,Orain galdutako landareak,Plantes perdudes ara,Plantas perdidas agora
 vive.plantas_repicadas,Plantas que se repican,Landatzen diren landareak,Plantes que es repiquen,Plantas que se repican
 vive.plazo_abierto,{sustancia}: plazo de seguridad hasta el {fecha},{sustancia}: segurtasun-epea {fecha} arte,{sustancia}: termini de seguretat fins al {fecha},{sustancia}: prazo de seguridade ata o {fecha}
+vive.plazo_registro,Registro MAPA: {rango} días. Manda la etiqueta del producto.,MAPA erregistroa: {rango} egun. Produktuaren etiketak agintzen du.,Registre MAPA: {rango} dies. Mana l’etiqueta del producte.,Rexistro MAPA: {rango} días. Manda a etiqueta do produto.
 vive.plazo_seguridad_dias,Plazo de seguridad (días),Segurtasun-epea (egunak),Termini de seguretat (dies),Prazo de seguridade (días)
 vive.preparado_por,Preparado por,Nork prestatua,Preparat per,Preparado por
 vive.preparar_pasaporte,Preparar los datos del pasaporte,Pasaportearen datuak prestatu,Prepara les dades del passaport,Preparar os datos do pasaporte
@@ -230,6 +234,7 @@ vive.stock,Stock,Stocka,Estoc,Stock
 vive.stock_fila,{n} · {listas} listas,{n} · {listas} prest,{n} · {listas} a punt,{n} · {listas} listas
 vive.superficie_m2,Superficie (m²),Azalera (m²),Superfície (m²),Superficie (m²)
 vive.sustancia_activa,Sustancia activa,Substantzia aktiboa,Substància activa,Substancia activa
+vive.sustancia_ayuda,Primero las que tienen uso registrado para el cultivo y la plaga.,"Lehenik, laborantzarako eta izurriterako erabilera erregistratua dutenak.",Primer les que tenen ús registrat per al cultiu i la plaga.,Primeiro as que teñen uso rexistrado para o cultivo e a praga.
 vive.tipo_inspeccion,Tipo de inspección,Ikuskapen mota,Tipus d’inspecció,Tipo de inspección
 vive.tipo_material,Tipo de material,Material mota,Tipus de material,Tipo de material
 vive.tipo_zona,Tipo de zona,Eremu mota,Tipus de zona,Tipo de zona
@@ -243,6 +248,7 @@ vive.ubicacion,"Ubicación (mesa, pasillo…)","Kokapena (mahaia, korridorea…)
 vive.ubicacion_ayuda,Dentro de la zona.,Eremuaren barruan.,Dins de la zona.,Dentro da zona.
 vive.unidad,Unidad,Unitatea,Unitat,Unidade
 vive.unidades_por_alveolo,Semillas o esquejes por alveolo,Hazi edo ebakin alveolo bakoitzeko,Llavors o esqueixos per alvèol,Sementes ou esqueixes por alvéolo
+vive.uso_no_en_catalogo,Ese uso (cultivo y plaga) no está en el catálogo del registro: compruébalo en la etiqueta.,Erabilera hori (laborantza eta izurritea) ez dago erregistroaren katalogoan: egiaztatu etiketan.,Aquest ús (cultiu i plaga) no és al catàleg del registre: comprova-ho a l’etiqueta.,Ese uso (cultivo e praga) non está no catálogo do rexistro: compróbao na etiqueta.
 vive.variedad,Variedad,Barietatea,Varietat,Variedade
 vive.venta_a_distancia,"Venta a distancia (internet, teléfono, correo)","Urrutiko salmenta (internet, telefonoa, posta)","Venda a distància (internet, telèfon, correu)","Venda a distancia (internet, teléfono, correo)"
 vive.ver_agotadas,Ver también las agotadas,Agortutakoak ere ikusi,Mostra també les exhaurides,Ver tamén as esgotadas

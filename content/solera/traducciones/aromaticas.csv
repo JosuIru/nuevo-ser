@@ -12,9 +12,13 @@ arom.aviso_confundibles,Se confunde con: {especies}. Comprueba la especie antes 
 arom.aviso_documento_provisional,Documento PROVISIONAL: formato sin validar por un asesor. No acredita que se cumpla ninguna norma.,Behin-behineko dokumentua: formatua aholkulari batek balioztatu gabe. Ez du egiaztatzen inolako araurik betetzen denik.,Document PROVISIONAL: format sense validar per un assessor. No acredita que es compleixi cap norma.,Documento PROVISIONAL: formato sen validar por un asesor. Non acredita que se cumpra ningunha norma.
 arom.aviso_especie_no_incluida,Esta especie no figura en el permiso de la zona.,Espezie hau ez dago eremuko baimenean.,Aquesta espècie no figura al permís de la zona.,Esta especie non figura no permiso da zona.
 arom.aviso_especie_protegida,Especie con protección: no se recolecta sin autorización expresa de la comunidad autónoma.,Babestutako espeziea: ez da biltzen autonomia erkidegoaren berariazko baimenik gabe.,Espècie protegida: no es cull sense autorització expressa de la comunitat autònoma.,Especie protexida: non se recolle sen autorización expresa da comunidade autónoma.
+arom.aviso_fiscal,"PROVISIONAL: categorías, régimen y porcentajes sin validar por un asesor fiscal. Orientativo, no es una liquidación de impuestos.","BEHIN-BEHINEKOA: kategoriak, araubidea eta ehunekoak zerga aholkulari batek balioztatu gabe. Orientagarria, ez da zerga likidazio bat.","PROVISIONAL: categories, règim i percentatges sense validar per un assessor fiscal. Orientatiu, no és una liquidació d’impostos.","PROVISIONAL: categorías, réxime e porcentaxes sen validar por un asesor fiscal. Orientativo, non é unha liquidación de impostos."
 arom.aviso_fuera_vigencia,La fecha está fuera de la vigencia del permiso.,Data baimenaren indarraldietik kanpo dago.,La data és fora de la vigència del permís.,A data está fóra da vixencia do permiso.
 arom.aviso_sin_permiso,La zona no tiene permiso apuntado. Consulta a tu comunidad autónoma si hace falta.,Eremuak ez du baimenik idatzita. Galdetu zure autonomia erkidegoari behar den.,La zona no té cap permís anotat. Consulta la teva comunitat autònoma si cal.,A zona non ten permiso anotado. Consulta coa túa comunidade autónoma se fai falta.
 arom.aviso_supera_limite,Con esta recolección se pasa del límite de kg del permiso.,Bilketa honekin baimenaren kg mugatik pasatzen da.,Amb aquesta collita se supera el límit de kg del permís.,Con esta recolección supérase o límite de kg do permiso.
+arom.aviso_transformacion,La destilación puede ser transformación y quedar fuera del REAGP: por verificar con el asesor fiscal. La app no pone compensación.,Distilazioa eraldaketa izan daiteke eta NNAEB-tik kanpo geratu: zerga aholkulariarekin egiaztatzeko. Aplikazioak ez du konpentsaziorik jartzen.,La destil·lació pot ser transformació i quedar fora del REAGP: per verificar amb l’assessor fiscal. L’app no hi posa compensació.,A destilación pode ser transformación e quedar fóra do REAXP: por verificar co asesor fiscal. A app non pon compensación.
+arom.base,Base,Oinarria,Base,Base
+arom.base_euros,"Base (€, sin impuestos)","Oinarria (€, zergarik gabe)","Base (€, sense impostos)","Base (€, sen impostos)"
 arom.bienvenida,Primera versión en construcción.,Lehen bertsioa eraikitzen ari da.,Primera versió en construcció.,Primeira versión en construción.
 arom.borrar_registro,¿Borrar este registro?,Erregistro hau ezabatu?,Vols esborrar aquest registre?,Borrar este rexistro?
 arom.caducado,caducó el {fecha},{fecha}(e)an iraungi zen,va caducar el {fecha},caducou o {fecha}
@@ -24,11 +28,32 @@ arom.cantidad_disponible,Cantidad que queda ({unidad}),Geratzen den kopurua ({un
 arom.capacidad_alambique,Capacidad del alambique (l),Alanbikearen edukiera (l),Capacitat de l’alambí (l),Capacidade do alambique (l)
 arom.carnet_aplicador,Carné de aplicador,Aplikatzaile txartela,Carnet d’aplicador,Carné de aplicador
 arom.catalogos_provisionales,"Catálogos provisionales: especies, rendimientos y plagas están sin validar por una persona experta.","Behin-behineko katalogoak: espezieak, errendimenduak eta izurriteak aditu batek balioztatu gabe daude.","Catàlegs provisionals: espècies, rendiments i plagues sense validar per una persona experta.","Catálogos provisionais: especies, rendementos e pragas sen validar por unha persoa experta."
+arom.categoria,Categoría,Kategoria,Categoria,Categoría
+arom.categoria_abonos,Abonos,Ongarriak,Adobs,Fertilizantes
+arom.categoria_analiticas,Analíticas,Analisiak,Analítiques,Analíticas
+arom.categoria_combustible_alambique,Combustible del alambique,Alanbikearen erregaia,Combustible de l’alambí,Combustible do alambique
+arom.categoria_envases,Envases y etiquetas,Ontziak eta etiketak,Envasos i etiquetes,Envases e etiquetas
+arom.categoria_fitosanitarios,Fitosanitarios,Fitosanitarioak,Fitosanitaris,Fitosanitarios
+arom.categoria_mano_obra,Mano de obra,Eskulana,Mà d’obra,Man de obra
+arom.categoria_maquinaria,Maquinaria,Makineria,Maquinària,Maquinaria
+arom.categoria_otros_gastos,Otros gastos,Beste gastu batzuk,Altres despeses,Outros gastos
+arom.categoria_otros_ingresos,Otros ingresos,Beste diru-sarrera batzuk,Altres ingressos,Outros ingresos
+arom.categoria_permisos_tasas,Permisos y tasas de recolección,Bilketa baimenak eta tasak,Permisos i taxes de collita,Permisos e taxas de recolección
+arom.categoria_plantones,Planta y semilla,Landareak eta hazia,Planta i llavor,Planta e semente
+arom.categoria_seguro,Seguro,Asegurua,Assegurança,Seguro
+arom.categoria_subvenciones,Subvenciones,Diru-laguntzak,Subvencions,Subvencións
+arom.categoria_venta_aceite_esencial,Venta de aceite esencial,Olio esentzial salmenta,Venda d’oli essencial,Venda de aceite esencial
+arom.categoria_venta_hidrolato,Venta de hidrolato,Hidrolato salmenta,Venda d’hidrolat,Venda de hidrolato
+arom.categoria_venta_planta,Venta de planta (fresca o seca),Landare salmenta (freskoa edo lehorra),Venda de planta (fresca o seca),Venda de planta (fresca ou seca)
 arom.cerrar,Cerrar,Itxi,Tanca,Pechar
+arom.cliente,Cliente,Bezeroa,Client,Cliente
 arom.codigo_lote,Código del lote,Lotearen kodea,Codi del lot,Código do lote
 arom.codigo_repetido,Ya hay un lote con ese código.,Badago kode hori duen lote bat.,Ja hi ha un lot amb aquest codi.,Xa hai un lote con ese código.
 arom.codigo_sigpac,Código SIGPAC,SIGPAC kodea,Codi SIGPAC,Código SIXPAC
+arom.compensaciones_reagp,Compensaciones REAGP,NNAEB konpentsazioak,Compensacions REAGP,Compensacións REAXP
 arom.comunidad_autonoma,Comunidad autónoma,Autonomia erkidegoa,Comunitat autònoma,Comunidade autónoma
+arom.con_compensacion_reagp,Con compensación REAGP del {n} %,NNAEB konpentsazioa %{n},Amb compensació REAGP del {n} %,Con compensación REAXP do {n} %
+arom.concepto,Concepto,Kontzeptua,Concepte,Concepto
 arom.confianza_alta,Confianza alta,Konfiantza handia,Confiança alta,Confianza alta
 arom.confianza_baja,Confianza baja,Konfiantza txikia,Confiança baixa,Confianza baixa
 arom.confianza_media,Confianza media,Erdiko konfiantza,Confiança mitjana,Confianza media
@@ -70,6 +95,7 @@ arom.especie_protegida_en_permiso,{especie} tiene protección: comprueba que el 
 arom.especies_permitidas,Especies del permiso,Baimeneko espezieak,Espècies del permís,Especies do permiso
 arom.estado_fenologico,Estado de la planta,Landarearen egoera,Estat de la planta,Estado da planta
 arom.estado_planta,Estado de la planta que entra,Sartzen den landarearen egoera,Estat de la planta que hi entra,Estado da planta que entra
+arom.extracto_pdf,Extracto en PDF,Laburpena PDFn,Extracte en PDF,Extracto en PDF
 arom.fecha,Fecha,Data,Data,Data
 arom.fecha_inicio,Fecha de inicio,Hasiera data,Data d’inici,Data de inicio
 arom.feno_final_floracion,Final de floración,Loraldiaren amaiera,Final de floració,Final da floración
@@ -78,6 +104,7 @@ arom.feno_inicio_floracion,Inicio de floración,Loraldiaren hasiera,Inici de flo
 arom.feno_plena_floracion,Plena floración,Loraldi betea,Plena floració,Plena floración
 arom.feno_vegetativo,Vegetativo,Begetatiboa,Vegetatiu,Vexetativo
 arom.fin_vigencia,Fin de la vigencia,Indarraldiaren amaiera,Fi de la vigència,Fin da vixencia
+arom.gastos,Gastos,Gastuak,Despeses,Gastos
 arom.gps_error,No se pudo leer la ubicación.,Ezin izan da kokapena irakurri.,No s’ha pogut llegir la ubicació.,Non se puido ler a localización.
 arom.gps_sin_permiso,Sin permiso de ubicación.,Kokapen baimenik gabe.,Sense permís d’ubicació.,Sen permiso de localización.
 arom.guardado,Guardado,Gordeta,Desat,Gardado
@@ -100,8 +127,14 @@ arom.ia_que_hace,propone la especie de una planta o la plaga de un cultivo a par
 arom.ia_rasgos,Qué comprobar: {rasgos},Zer egiaztatu: {rasgos},Què cal comprovar: {rasgos},Que comprobar: {rasgos}
 arom.ia_revisa_plaga,Es una propuesta: confírmala en el campo o con tu asesor. La app no propone tratamientos.,Proposamen bat da: berretsi landan edo zure aholkulariarekin. Aplikazioak ez du tratamendurik proposatzen.,És una proposta: confirma-la al camp o amb el teu assessor. L’app no proposa tractaments.,É unha proposta: confírmaa no campo ou co teu asesor. A app non propón tratamentos.
 arom.ia_sin_plagas_catalogo,"Ninguna parcela es de una especie con plagas en el catálogo (lavanda, lavandín, tomillo, salvia esclarea).","Lursail bat ere ez da katalogoan izurriteak dituen espezie batekoa (izpilikua, lavandina, ezkaia, salbia esklarea).","Cap parcel·la no és d’una espècie amb plagues al catàleg (espígol, lavandí, farigola, sàlvia esclarea).","Ningunha parcela é dunha especie con pragas no catálogo (lavanda, lavandín, tomiño, salvia esclarea)."
+arom.impuesto,Impuesto,Zerga,Impost,Imposto
+arom.ingresos,Ingresos,Diru-sarrerak,Ingressos,Ingresos
+arom.ingresos_y_gastos,Ingresos y gastos,Diru-sarrerak eta gastuak,Ingressos i despeses,Ingresos e gastos
 arom.inicio_vigencia,Inicio de la vigencia,Indarraldiaren hasiera,Inici de la vigència,Inicio da vixencia
 arom.inteligencia_artificial,Inteligencia artificial,Adimen artifiziala,Intel·ligència artificial,Intelixencia artificial
+arom.iva,IVA,BEZ,IVA,IVE
+arom.iva_repercutido,IVA repercutido,BEZ jasanarazia,IVA repercutit,IVE repercutido
+arom.iva_soportado,IVA soportado,BEZ jasana,IVA suportat,IVE soportado
 arom.kg_cosechados_anyo,kg cosechados,kg bilduta,kg collits,kg colleitados
 arom.kg_de_limite,{kg} de {limite} kg,{limite} kg-tik {kg},{kg} de {limite} kg,{kg} de {limite} kg
 arom.kg_frescos,kg frescos,kg fresko,kg frescos,kg frescos
@@ -135,6 +168,8 @@ arom.nueva_cosecha,Nueva cosecha,Uzta berria,Nova collita,Nova colleita
 arom.nueva_destilacion,Nueva destilación,Distilazio berria,Nova destil·lació,Nova destilación
 arom.nueva_parcela,Nueva parcela,Lursail berria,Nova parcel·la,Nova parcela
 arom.nueva_zona,Nueva zona de recolección,Bilketa eremu berria,Nova zona de collita,Nova zona de recolección
+arom.nuevo_gasto,Nuevo gasto,Gastu berria,Nova despesa,Novo gasto
+arom.nuevo_ingreso,Nuevo ingreso,Diru-sarrera berria,Nou ingrés,Novo ingreso
 arom.nuevo_proceso,Secado o destilación,Lehortzea edo distilazioa,Assecatge o destil·lació,Secado ou destilación
 arom.nuevo_secado,Nuevo secado,Lehortze berria,Nou assecatge,Novo secado
 arom.nuevo_tratamiento,Nuevo tratamiento,Tratamendu berria,Nou tractament,Novo tratamento
@@ -199,8 +234,13 @@ arom.primero_una_parcela,Primero da de alta una parcela.,Lehenik eman alta lursa
 arom.primeros_pasos,Primeros pasos,Lehen urratsak,Primers passos,Primeiros pasos
 arom.primeros_pasos_texto,"Da de alta una parcela de cultivo o una zona de recolección con su permiso. Después apunta las cosechas, los secados y las destilaciones: la app calcula los rendimientos y crea los lotes.","Eman alta laborantza lursail bati edo bilketa eremu bati bere baimenarekin. Gero idatzi uztak, lehortzeak eta distilazioak: aplikazioak errendimenduak kalkulatzen ditu eta loteak sortzen ditu.","Dona d’alta una parcel·la de cultiu o una zona de collita amb el seu permís. Després anota les collites, els assecatges i les destil·lacions: l’app calcula els rendiments i crea els lots.","Dá de alta unha parcela de cultivo ou unha zona de recolección co seu permiso. Despois anota as colleitas, os secados e as destilacións: a app calcula os rendementos e crea os lotes."
 arom.problema_fitosanitario,Plaga o problema,Izurritea edo arazoa,Plaga o problema,Praga ou problema
+arom.proveedor,Proveedor,Hornitzailea,Proveïdor,Provedor
 arom.recolector,Quién recolecta,Nork biltzen du,Qui cull,Quen recolle
 arom.regadio,Regadío,Ureztatua,Regadiu,Regadío
+arom.regimen_general,Régimen general,Araubide orokorra,Règim general,Réxime xeral
+arom.regimen_iva,Régimen de IVA,BEZ araubidea,Règim d’IVA,Réxime de IVE
+arom.regimen_reagp,Régimen especial agrario (REAGP),Nekazaritzako araubide berezia (NNAEB),Règim especial agrari (REAGP),Réxime especial agrario (REAXP)
+arom.regimen_sin_elegir,Sin elegir,Aukeratu gabe,Sense triar,Sen escoller
 arom.registro_explotacion,Registro de explotación,Ustiategiaren erregistroa,Registre d’explotació,Rexistro de explotación
 arom.registro_sanitario,Registro sanitario (si lo tienes),Osasun erregistroa (baduzu),Registre sanitari (si en tens),Rexistro sanitario (se o tes)
 arom.registro_sanitario_ayuda,Si hace falta depende del destino: por verificar con un asesor,Behar den ala ez helmugaren araberakoa da: aholkulariarekin egiaztatzeko,Si cal depèn de la destinació: per verificar amb un assessor,Se fai falta depende do destino: por verificar cun asesor
@@ -210,6 +250,7 @@ arom.rend_por_encima,por encima de lo orientativo,gutxi gorabeherakoaren gaineti
 arom.rendimiento_aceite,{ml} ml/kg,{ml} ml/kg,{ml} ml/kg,{ml} ml/kg
 arom.rendimiento_por_especie,Rendimiento por especie este año,Errendimendua espezieka aurten,Rendiment per espècie aquest any,Rendemento por especie este ano
 arom.rendimiento_secado,{pct} kg secos por 100 kg,{pct} kg lehor 100 kg-ko,{pct} kg secs per 100 kg,{pct} kg secos por 100 kg
+arom.resultado,Resultado,Emaitza,Resultat,Resultado
 arom.resumen_destilacion,{n} destilaciones · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l de hidrolato,{n} distilazio · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l hidrolato,{n} destil·lacions · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l d’hidrolat,{n} destilacións · {kg} kg → {ml} ml ({rend} ml/kg) · {litros} l de hidrolato
 arom.revisa_antes_de_guardar,Revisa antes de guardar,Berrikusi gorde aurretik,Revisa-ho abans de desar,Revisa antes de gardar
 arom.secado_el,Secado desde el {fecha},{fecha}(e)tik lehortua,Assecat des del {fecha},Secado desde o {fecha}
@@ -221,6 +262,7 @@ arom.secados,Secados,Lehortzeak,Assecatges,Secados
 arom.si,Sí,Bai,Sí,Si
 arom.sigpac_ayuda,Provincia:municipio:agregado:zona:polígono:parcela:recinto,Probintzia:udalerria:agregatua:zona:poligonoa:lursaila:esparrua,Província:municipi:agregat:zona:polígon:parcel·la:recinte,Provincia:concello:agregado:zona:polígono:parcela:recinto
 arom.silvestre,Silvestre,Basatia,Silvestre,Silvestre
+arom.sin_apuntes,Sin apuntes.,Idazpenik gabe.,Sense apunts.,Sen apuntamentos.
 arom.sin_cosechas,Aún no hay cosechas este año.,Oraindik ez dago uztarik aurten.,Encara no hi ha collites aquest any.,Aínda non hai colleitas este ano.
 arom.sin_cosechas_de_especie,No hay cosechas de esta especie: puedes poner los kg a mano.,Ez dago espezie honen uztarik: kg-ak eskuz jar ditzakezu.,No hi ha collites d’aquesta espècie: pots posar els kg a mà.,Non hai colleitas desta especie: podes poñer os kg a man.
 arom.sin_lotes,Aún no hay lotes. Se crean al guardar un secado o una destilación.,Oraindik ez dago loterik. Lehortze edo distilazio bat gordetzean sortzen dira.,Encara no hi ha lots. Es creen en desar un assecatge o una destil·lació.,Aínda non hai lotes. Créanse ao gardar un secado ou unha destilación.
@@ -243,6 +285,8 @@ arom.tipo_alambique,Tipo de alambique,Alanbike mota,Tipus d’alambí,Tipo de al
 arom.tipo_terreno,Terreno,Lurra,Terreny,Terreo
 arom.titular,Titular,Titularra,Titular,Titular
 arom.titular_terreno,Titular del terreno,Lurraren titularra,Titular del terreny,Titular do terreo
+arom.toda_explotacion,Toda la explotación,Ustiategi osoa,Tota l’explotació,Toda a explotación
+arom.total,Total,Guztira,Total,Total
 arom.tratamientos,Tratamientos,Tratamenduak,Tractaments,Tratamentos
 arom.trazabilidad,De dónde sale,Nondik dator,D’on surt,De onde sae
 arom.ubicacion,Ubicación,Kokapena,Ubicació,Localización

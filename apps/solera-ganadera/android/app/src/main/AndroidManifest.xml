@@ -1,6 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- IA (clave BYO) y teselas del mapa. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Contorno de las piezas y coordenadas de la explotación. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
-        android:label="solera_ganadera"
+        android:label="Larrea Ganadera"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

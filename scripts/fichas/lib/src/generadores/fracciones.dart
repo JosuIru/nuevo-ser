@@ -487,8 +487,16 @@ final List<PlantillaFicha> plantillasFracciones = [
         'menos da más. Para sumar, denominador común; al final, simplifica.',
     preguntaExplicalo: '¿Es lo mismo −3/4 que 3/(−4) y que −(3/4)? Explica por qué.',
     generar: (azar) {
-      final primera = Fraccion(azar.conSignoNoNulo(5), azar.entre(2, 6));
-      final segunda = Fraccion(azar.conSignoNoNulo(5), azar.entre(2, 6));
+      // Fracciones ya irreducibles y no enteras: nada de «4/4».
+      Fraccion conSigno() {
+        while (true) {
+          final candidata = Fraccion(azar.conSignoNoNulo(5), azar.entre(2, 6)).simplificada();
+          if (candidata.denominador > 1) return candidata;
+        }
+      }
+
+      final primera = conSigno();
+      final segunda = conSigno();
       final operacion = azar.nextInt(4);
       final simbolo = ['+', '−', '·', ':'][operacion];
       final resultado = [

@@ -11,7 +11,7 @@ const _encuestas = [
   ('Fruta favorita', ['Manzana', 'Plátano', 'Naranja', 'Pera', 'Uva']),
   ('Cómo venimos al cole', ['Andando', 'Bici', 'Autobús', 'Coche']),
   ('Deporte favorito', ['Fútbol', 'Baloncesto', 'Natación', 'Pelota', 'Atletismo']),
-  ('Pájaros vistos en el patio', ['Gorrión', 'Mirlo', 'Paloma', 'Urraca']),
+  ('Animal que más nos gusta', ['Perro', 'Gato', 'Conejo', 'Tortuga']),
 ];
 
 List<int> _datos(math.Random azar, int cantidad, int minimo, int maximo) =>
@@ -231,7 +231,7 @@ final List<PlantillaFicha> plantillasEstadistica = [
         enunciado: 'Libros que ha leído cada persona de un grupo este verano. '
             'Calcula la media y el rango:',
         tabla: [
-          ['Horas', ...valores.map((v) => '$v')],
+          ['Libros', ...valores.map((v) => '$v')],
           ['Personas', ...frecuencias.map((f) => '$f')],
         ],
         solucion: 'media ${formatearDecimal(suma / total, cifras: 2)}; rango ${valores.last - valores.first}',

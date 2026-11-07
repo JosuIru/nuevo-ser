@@ -106,7 +106,8 @@ final List<PlantillaFicha> plantillasDecimales = [
       final entero = azar.entre(0, 9);
       final decimas = azar.entre(2, 9);
       final corto = DecimalExacto(entero * 10 + decimas, 1);
-      final largo = DecimalExacto(entero * 100 + azar.entre(1, decimas * 10 - 1), 2);
+      // Con centésimas de verdad (no «1,10»), y menor que el corto.
+      final largo = DecimalExacto(entero * 100 + azar.entre(0, decimas - 1) * 10 + azar.entre(1, 9), 2);
       final (primero, segundo) = azar.nextBool() ? (corto, largo) : (largo, corto);
       final comparacion = primero.valor.compareTo(segundo.valor);
       return Ejercicio(

@@ -249,7 +249,7 @@ final List<PlantillaFicha> plantillasMedidaGeometria = [
     generar: (azar) {
       final esCuadrado = azar.nextInt(3) == 0;
       final base = azar.entre(3, 15);
-      final altura = esCuadrado ? base : azar.entre(2, 12);
+      final altura = esCuadrado ? base : azar.entre(2, base);
       return Ejercicio(
         enunciado: esCuadrado
             ? '¿Cuál es el área de un cuadrado de $base cm de lado?'

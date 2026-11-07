@@ -186,7 +186,8 @@ final List<PlantillaFicha> plantillasProporcionalidad = [
     generar: (azar) {
       const totales = [12, 24, 36, 48, 60];
       final producto = azar.elegir(totales);
-      final divisores = [for (var d = 2; d < producto; d++) if (producto % d == 0 && producto ~/ d <= 30) d];
+      // Entre 2 y 12 personas o grifos: cantidades que se imaginan bien.
+      final divisores = [for (var d = 2; d <= 12; d++) if (producto % d == 0 && producto ~/ d <= 30) d];
       final a = azar.elegir(divisores);
       late int c;
       do {

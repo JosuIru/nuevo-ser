@@ -110,7 +110,9 @@ final List<PlantillaFicha> plantillasAlgebraFunciones = [
     descripcion:
         'El lenguaje algebraico usa letras para números que no conocemos. «El doble de un número '
         'más 3» se escribe 2x + 3; «la mitad de un número», x/2.',
-    preguntaExplicalo: '¿Es lo mismo «el doble de un número más 3» que «el doble de un número más 3 unidades»? ¿Y que 2(x + 3)?',
+    preguntaExplicalo:
+        '¿Es lo mismo «el doble de un número más 3» que «el doble de la suma de un número y 3»? '
+        'Escribe las dos y compáralas con un ejemplo.',
     generar: (azar) {
       final k = azar.entre(2, 5);
       final b = azar.entre(1, 9);

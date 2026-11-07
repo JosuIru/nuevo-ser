@@ -81,7 +81,8 @@ final List<PlantillaFicha> plantillasAritmetica = [
     preguntaExplicalo: '¿Por qué restar un número negativo hace que el resultado sea más grande?',
     generar: (azar) {
       final primero = azar.conSignoNoNulo(15);
-      final segundo = azar.conSignoNoNulo(15);
+      // Al menos un negativo: dos positivos no ejercitan la habilidad.
+      final segundo = primero > 0 ? -azar.entre(1, 15) : azar.conSignoNoNulo(15);
       final suma = azar.nextBool();
       final resultado = suma ? primero + segundo : primero - segundo;
       return Ejercicio(
@@ -141,7 +142,8 @@ final List<PlantillaFicha> plantillasAritmetica = [
     preguntaExplicalo: 'Inventa una situación de la vida en la que se multiplique un número negativo.',
     generar: (azar) {
       final primero = azar.conSignoNoNulo(12);
-      final segundo = azar.conSignoNoNulo(9);
+      final magnitudSegundo = azar.entre(2, 9);
+      final segundo = primero > 0 || azar.nextBool() ? -magnitudSegundo : magnitudSegundo;
       if (azar.nextBool()) {
         return Ejercicio(
           enunciado: 'Calcula:',

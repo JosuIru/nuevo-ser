@@ -8,6 +8,7 @@ import 'package:solera_frutal/modelos/cosecha.dart';
 import 'package:solera_frutal/modelos/fila_arboles.dart';
 import 'package:solera_frutal/modelos/parcela.dart';
 import 'package:solera_frutal/modelos/tratamiento.dart';
+import 'package:solera_frutal/pantallas/pantalla_ayuda.dart';
 import 'package:solera_frutal/pantallas/pantalla_cosecha.dart';
 import 'package:solera_frutal/pantallas/pantalla_cuaderno.dart';
 import 'package:solera_frutal/pantallas/pantalla_ficha_parcela.dart';
@@ -151,5 +152,16 @@ void main() {
     });
     expect(find.text('Nogueral'), findsOneWidget);
     expect(find.textContaining('750 kg'), findsOneWidget);
+  });
+
+  test('cada apartado de la ayuda tiene título y texto en los cuatro idiomas',
+      () {
+    for (final (titulo, texto) in apartadosAyudaFrutal) {
+      expect(SoleraL10n.clavesDisponibles, containsAll([titulo, texto]));
+      for (final idioma in ['eu', 'ca', 'gl']) {
+        expect(
+            SoleraL10n.clavesTraducidas(idioma), containsAll([titulo, texto]));
+      }
+    }
   });
 }

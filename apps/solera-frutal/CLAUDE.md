@@ -17,9 +17,13 @@ cualquier agente nuevo debe poder seguir leyendo solo este fichero, su ficha
 | 8 Branding + GPS | ✅ 2026-11-07 (placeholder) | Logo ImageMagick (almendra con hoja sobre crema) en `assets/`, iconos de lanzador (`flutter_launcher_icons`), pantalla de arranque crema con el logo y logo en la cabecera de Hoy. GPS: «Usar mi ubicación» al editar la parcela (geolocator) y mapa de parcelas (OSM) desde Parcelas. Permisos INTERNET y ubicación en el manifiesto. 41 tests |
 | 9 Economía | ✅ 2026-11-07 (PROVISIONAL) | Ajustes → Ingresos y gastos: régimen de IVA (REAGP / general / sin elegir) en `configuraciones_fiscales`; apuntes con base, IVA o compensación REAGP (12 %, solo en venta de cosecha), parcela opcional → margen por parcela; resumen del año y extracto PDF con sello. Importes en céntimos. Guardarraíles fiscales en `test/dominio/economia_test.dart`. 49 tests |
 | 10 Revisión con fuente pública | ✅ en parte (2026-11-07) | Revisión en `content/frutal/revision-2026-11-07.md`: sustancias `revision-ia:` (Registro MAPA 06/11/2026 + EU Pesticides DB), plagas de almendro y avellano `fuente_publica:` (guías GIP con página); nogal, castaño, variedades y fenología sin revisar. **`catalogosCompletamenteRevisados` sigue en `false`** a propósito (solo `asesor:`/`persona:` lo apagan). Cuaderno cotejado con el modelo andaluz v8: tablas de personas (1.2) y equipos (1.3), códigos SEC/ASP/LOC/GRA y F/AF/AC, N aportado (kg/ha), riego en m³/ha y acumulado, producto en la cosecha y aviso del registro electrónico obligatorio desde el 1-1-2027. 64 tests |
-| 11 APK + ayuda | pendiente | |
+| 11 APK + ayuda | ✅ 2026-11-07 | Ayuda in-app (Ajustes → Ayuda, 9 apartados en 4 idiomas, con «lo que la app no hace»), README, APK release de **67,6 MB** firmada con la clave de depuración (como el resto de la suite; copia en `~/larrea-apks/solera-frutal-release.apk`) y `flutter clean` después. 65 tests. **Sin build Linux** (no lo pedía el encargo; ahorra disco). **Release de GitHub sin publicar** (la publica la integración) |
 
-**Siguiente acción**: bloque 11 (ayuda in-app, README y APK release).
+**Siguiente acción**: F1 completa salvo lo humano (`BLOQUEOS-PENDIENTES.md`).
+Pendientes técnicos: exportar al SIEX (módulo T4) antes del 1-1-2027; NIF y
+dirección del comprador en la cosecha; usos del pistachero y plagas de hueso y
+pepita en los catálogos; quitar `test/traducciones_test.dart` cuando el test
+del core recorra esta app.
 
 ## Encuadre
 

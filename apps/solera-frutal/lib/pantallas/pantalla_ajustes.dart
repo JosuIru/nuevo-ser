@@ -6,6 +6,7 @@ import '../datos/base_datos.dart';
 import '../modelos/titular.dart';
 import 'pantalla_documentos.dart';
 import 'identificar_plaga.dart';
+import 'pantalla_ayuda.dart';
 import 'pantalla_economia.dart';
 
 class PantallaAjustes extends StatefulWidget {
@@ -105,6 +106,14 @@ class _PantallaAjustesState extends State<PantallaAjustes> {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => Navigator.push(context,
                 MaterialPageRoute(builder: (_) => pantallaClaveFrutal())),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.help_outline),
+            title: Text(SoleraL10n.t('frut.ayuda')),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (_) => const PantallaAyuda())),
           ),
           const SelectorIdioma(),
           const SizedBox(height: 24),
